@@ -40,8 +40,8 @@ namespace platform
 //      ::string                                        m_strSchema;
 //
 //
-//      string_array                                    m_straMatterLocatorPriority;
-//      string_array                                    m_straMatterLocator;
+//      string_array_base                                    m_straMatterLocatorPriority;
+//      string_array_base                                    m_straMatterLocator;
 //
 //      ::pointer<::platform::http>                     m_phttp;
 //
@@ -125,16 +125,16 @@ namespace platform
       virtual ::string get_schema();
 
 
-      virtual void locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema);
+      virtual void locale_schema_matter(string_array_base & stra, const string_array_base & straMatterLocator, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema);
       virtual string get_locale_schema_dir();
 
 
 
-      virtual string matter_locator(string strApp);
+      virtual string matter_locator(const ::scoped_string & scopedstrApp);
       virtual string matter_locator(::platform::application * papp);
 
 
-      virtual void add_matter_locator(string strApp);
+      virtual void add_matter_locator(const ::scoped_string & scopedstrApp);
       virtual void add_matter_locator(::platform::application * papp);
 
 
@@ -142,9 +142,9 @@ namespace platform
 
       //virtual ::file::path defer_process_relative_path(const ::file::path & path);
 
-      virtual ::file::path get_matter_path(string strMatter);
+      virtual ::file::path get_matter_path(const ::scoped_string & scopedstrMatter);
       virtual ::file::path get_matter_cache_path(::file::path path);
-      virtual ::file::path side_get_matter_path(string strMatter);
+      virtual ::file::path side_get_matter_path(const ::scoped_string & scopedstrMatter);
 
 
       virtual bool os_is_alias(const ::file::path & path);

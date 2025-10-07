@@ -1,14 +1,16 @@
 #include "framework.h"
 #include "bred_approach.h"
 #include "context.h"
+#include "debug_scope.h"
 #include "device.h"
-#include "context_lock.h"
 #include "cpu_buffer.h"
 #include "guard.h"
 #include "input_layout.h"
 #include "memory_buffer.h"
 #include "model_buffer.h"
+#include "queue.h"
 #include "render.h"
+#include "renderable.h"
 #include "renderer.h"
 #include "render_state.h"
 #include "render_target.h"
@@ -22,13 +24,13 @@
 #include "aura/platform/system.h"
 #include "aura/graphics/image/image.h"
 #include "acme/filesystem/filesystem/file_context.h"
-#include "aura/platform/system.h"
 #include "aura/windowing/window.h"
 #include "aura/graphics/image/context.h"
-
-#include "input_layout.h"
 #include "bred/gpu/command_buffer.h"
 #include "bred/gpu/graphics.h"
+#include "bred/graphics3d/engine.h"
+#include "bred/graphics3d/model.h"
+#include "bred/graphics3d/renderable.h"
 #include "bred/graphics3d/types.h"
 
 
@@ -105,6 +107,8 @@ namespace gpu
    }
 
 
+
+
    //void context::swap_buffers()
    //{
 
@@ -165,7 +169,7 @@ namespace gpu
 
             }
 
-            __defer_construct(m_pcpubuffer);
+            ødefer_construct(m_pcpubuffer);
 
             m_pcpubuffer->initialize_cpu_buffer(this);
 
@@ -220,7 +224,7 @@ namespace gpu
 
             }
 
-            _synchronous_lock synchronouslock(m_pcpubuffer->synchronization());
+            _synchronous_lock synchronouslock(m_pcpubuffer->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
             m_pcpubuffer->set_size(size);
 
@@ -270,13 +274,13 @@ namespace gpu
    //}
 
 
-   ::gpu::texture* context::current_target_texture()
+   ::gpu::texture* context::current_target_texture(::gpu::frame* pgpuframe)
    {
 
       if (m_pgpucompositor)
       {
 
-         auto ptexture = m_pgpucompositor->current_target_texture();
+         auto ptexture = m_pgpucompositor->current_target_texture(pgpuframe);
 
          if (ptexture)
          {
@@ -287,7 +291,83 @@ namespace gpu
 
       }
 
-      return m_pgpurenderer->current_render_target_texture();
+      return m_pgpurenderer->current_render_target_texture(pgpuframe);
+
+   }
+
+
+
+
+   void context::construct(::pointer < ::gpu::shader >& pgpushader)
+   {
+
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+
+      try
+      {
+
+         if (::is_set(pgpushader))
+         {
+
+            pgpushader->m_timeRetire.Now();
+
+            m_shaderaRetire.add(pgpushader);
+
+         }
+
+      }
+      catch (...)
+      {
+
+
+      }
+
+      øconstruct(pgpushader);
+
+   }
+
+
+   void context::manage_retired_objects()
+   {
+
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+
+      for (::collection::index i = 0; i < m_shaderaRetire.size();)
+      {
+
+         auto& pshader = m_shaderaRetire[i];
+
+         if (pshader->m_timeRetire.elapsed() > 15_s)
+         {
+
+            ::release(pshader);
+
+            m_shaderaRetire.erase_at(i);
+
+         }
+         else
+         {
+
+            i++;
+
+         }
+
+      }
+
+   }
+
+
+   void context::start_debug_happening(const ::scoped_string& scopedstrDebugHappening)
+   {
+
+
+   }
+   
+   
+   void context::end_debug_happening()
+   {
+
+
 
    }
 
@@ -295,7 +375,7 @@ namespace gpu
    ::gpu::texture* context::texture(const ::file::path& path)
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       auto& ptexture = m_texturemap[path];
 
@@ -314,7 +394,7 @@ namespace gpu
    void context::load_texture(::pointer < ::gpu::texture >& ptexture, const ::file::path& path)
    {
 
-      if (__defer_construct(ptexture))
+      if (ødefer_construct(ptexture))
       {
 
          ptexture->initialize_image_texture(m_pgpurenderer, path);
@@ -324,11 +404,186 @@ namespace gpu
    }
 
 
+   ::gpu::texture* context::generic_texture(const ::file::path& path, int iAssimpTextureType)
+   {
+
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+
+      auto& ptexture = m_texturemapGeneric[path];
+
+      if (!ptexture)
+      {
+
+         load_generic_texture(ptexture, path, iAssimpTextureType);
+
+      }
+
+      return ptexture;
+
+   }
+
+
+   void context::load_generic_texture(::pointer < ::gpu::texture >& ptexture, const ::file::path& path, int iAssimpTextureType)
+   {
+
+      throw interface_only();
+
+      // if (ødefer_construct(ptexture))
+      // {
+      //
+      //    ptexture->initialize_image_texture(m_pgpurenderer, path);
+      //
+      // }
+
+   }
+
    void context::defer_make_current()
    {
 
 
    }
+
+
+   ::pointer < ::gpu::command_buffer >context::beginSingleTimeCommands(::gpu::queue * pqueue, ::gpu::enum_command_buffer ecommandbuffer)
+   {
+
+      ::pointer < command_buffer > pcommandbuffer;
+
+      ødefer_construct(pcommandbuffer);
+
+      pcommandbuffer->initialize_command_buffer(
+         m_pgpurenderer->m_pgpurendertarget, 
+         pqueue,
+         ecommandbuffer);
+
+      pcommandbuffer->begin_command_buffer(true);
+
+      return pcommandbuffer;
+
+   }
+
+
+   void context::endSingleTimeCommands(::gpu::command_buffer *pcommandbuffer)
+   {
+
+      pcommandbuffer->submit_command_buffer(nullptr);
+
+      pcommandbuffer->wait_commands_to_execute();
+
+   }
+
+
+   ::pointer<::graphics3d::renderable> context::load_wavefront_obj_renderable(const ::gpu::renderable_t & model)
+   {
+      // // 1) cache check
+      // if (auto it = m_mapObjectModel.find(name); it != m_mapObjectModel.end())
+      //    return it->element2();
+
+      // 2) load
+
+      ASSERT(model.m_erenderabletype == ::gpu::e_renderable_type_wavefront_obj);
+
+      auto prenderable = _load_wavefront_obj_renderable(model);
+
+      *((::gpu::renderable_t*)prenderable) = model;
+      // // 3) cache & return
+      // m_mapObjectModel[name] = model;
+      return prenderable;
+
+   }
+
+
+   ::pointer<::graphics3d::renderable> context::_load_wavefront_obj_renderable(const ::gpu::renderable_t & model)
+   {
+
+      auto prenderable = m_pengine->_load_wavefront_obj_renderable(model.m_path);
+
+      return prenderable;
+
+   }
+
+
+   ::pointer<::graphics3d::renderable> context::load_gltf_model(const ::gpu::renderable_t & model)
+   {
+      ASSERT(model.m_erenderabletype == ::gpu::e_renderable_type_gltf);
+      auto prenderable = _load_gltf_model(model);
+      *((::gpu::renderable_t*)prenderable) = model;
+      return prenderable;
+
+      // //if (auto it = m_mapGltfModel.find(name); it != m_mapGltfModel.end())
+      //   // return it->element2();
+      //
+      // auto model = øcreate_pointer<gltf::Model>();
+      //
+      // model->loadFromFile(filepath, &m_pgpudevice, m_pgpudevice->graphicsQueue(), gltfFlags, scale);
+      //
+      // //m_mapGltfModel[name] = model;
+      // return model;
+
+   }
+
+
+   ::pointer<::graphics3d::renderable> context::_load_gltf_model(const ::gpu::renderable_t & model)
+   {
+
+return {};
+
+   }
+
+
+   ::gpu::command_buffer* context::defer_get_upload_command_buffer()
+   {
+
+      if (!m_pcommandbufferUpload)
+      {
+
+         m_pcommandbufferUpload = beginSingleTimeCommands(transfer_queue());
+
+      }
+
+      return m_pcommandbufferUpload;
+
+   }
+
+
+   void context::defer_end_upload_command_buffer()
+   {
+
+      if (m_pcommandbufferUpload)
+      {
+
+         endSingleTimeCommands(m_pcommandbufferUpload);
+
+         m_pcommandbufferUpload.release();
+
+      }
+
+   }
+
+
+   ::gpu::queue * context::transfer_queue()
+   {
+
+      return nullptr;
+
+   }
+
+
+   ::gpu::queue * context::graphics_queue()
+   {
+
+      return nullptr;
+
+   }
+
+
+   ::gpu::queue * context::present_queue()
+   {
+
+      return nullptr;
+
+   }
+
 
 
    void context::_context_lock()
@@ -346,10 +601,63 @@ namespace gpu
    }
 
 
+   void context::defer_bind(::gpu::shader* pgpushader)
+   {
+
+      if (pgpushader == m_pshaderBound)
+      {
+
+         return;
+
+      }
+
+      if (m_pshaderBound)
+      {
+
+         end_debug_happening();
+
+         m_pshaderBound->unbind();
+
+      }
+      start_debug_happening("shader changing");
+
+      pgpushader->bind();
+
+      m_pshaderBound = pgpushader;
+
+   }
+
+
+   void context::defer_unbind(::gpu::shader* pgpushader)
+   {
+
+
+   }
+
+
+   void context::defer_unbind_shader()
+   {
+
+      if (m_pshaderBound)
+      {
+
+         auto pshaderBound = m_pshaderBound;
+
+         m_pshaderBound.release();
+
+         pshaderBound->unbind();
+
+         end_debug_happening();
+
+      }
+
+   }
+
+
    //bool context::defer_construct_new(::pointer < ::gpu::memory_buffer >& pmemorybuffer, memsize size, memory_buffer::enum_type etype)
    //{
 
-   //   if (__defer_construct(pmemorybuffer))
+   //   if (ødefer_construct(pmemorybuffer))
    //   {
 
    //      pmemorybuffer->initialize_memory_buffer_with_conext(this, size, etype);
@@ -573,8 +881,6 @@ namespace gpu
 
       m_rectangle.set_size(size);
 
-      m_escene = m_escene;
-
       on_create_context(pgpudevice, eoutput, pwindow, size);
 
    }
@@ -649,7 +955,7 @@ namespace gpu
    ::pointer < ::gpu::input_layout > context::input_layout(const ::gpu::properties & properties)
    {
 
-      auto pinputlayout = __øcreate<::gpu::input_layout>();
+      auto pinputlayout = øcreate<::gpu::input_layout>();
 
       pinputlayout->initialize_input_layout(this, properties);
 
@@ -705,10 +1011,10 @@ namespace gpu
    //}
 
 
-   void context::set_cull_face(bool bSet)
+   void context::set_cull_face(::gpu::enum_cull_mode ecullmode)
    {
 
-      m_bCullFace = bSet;
+      m_ecullmode = ecullmode;
 
    }
 
@@ -731,9 +1037,26 @@ namespace gpu
    }
 
 
-   void context::resize_offscreen_buffer(const ::int_size& size)
+   void context::on_resize(const ::int_size& size)
    {
 
+      m_rectangle.top_left() = { 0, 0 };
+
+      m_rectangle.set_size(size);
+
+      if (m_pgpurenderer)
+      {
+
+         m_pgpurenderer->on_resize(size);
+
+      }
+
+      if (m_pgpucompositor)
+      {
+
+         m_pgpucompositor->on_gpu_context_placement_change(size);
+
+      }
 
    }
 
@@ -755,6 +1078,8 @@ namespace gpu
 
       auto procedure = procedureParam;
 
+      procedure.set_timeout(5_min);
+
       _send([this, procedure]()
          {
 
@@ -765,30 +1090,87 @@ namespace gpu
    }
 
 
+   ////void context::gpu_debug_message(const ::scoped_string& scopedstrMessage)
+   //void context::gpu_debug_message(const ::scoped_string& scopedstrMessage)
+   //{
+
+   //   //{
+
+   //   //   ::string strMessage(scopedstrMessage);
+
+   //   //   glDebugMessageInsert(GL_DEBUG_SOURCE_APPLICATION,
+   //   //      GL_DEBUG_TYPE_MARKER,
+   //   //      0,
+   //   //      GL_DEBUG_SEVERITY_NOTIFICATION,
+   //   //      -1,
+   //   //      strMessage);
+
+   //   //}
+
+   //}
+
+
+   ::pointer < ::gpu::pixmap > context::create_gpu_pixmap(const ::int_size& size)
+   {
+
+      ::pointer < ::gpu::pixmap > ppixmap;
+
+      if (m_textureaAtlas.is_empty()
+         || (!(ppixmap = m_textureaAtlas.last()->create_gpu_pixmap(size))))
+      {
+
+         auto ptextureNewAtlas = øcreate<::gpu::texture >();
+
+         ptextureNewAtlas->initialize_image_texture(m_pgpurenderer, 
+            { 0, 0, 4096, 4096 }, false);
+
+         m_textureaAtlas.add(ptextureNewAtlas);
+
+         ppixmap = m_textureaAtlas.last()->create_gpu_pixmap(size);
+
+         if (!ppixmap)
+         {
+
+            throw ::exception(error_failed);
+
+         }
+
+      }
+
+      return ppixmap;
+
+   }
+
+
    ::gpu::swap_chain* context::get_swap_chain()
    {
 
       if (m_etype != e_type_window)
       {
 
-         throw ::exception(error_failed);
+         //throw ::exception(error_failed);
 
-         return nullptr;
+         return m_pgpudevice->m_pgpucontextMain->get_swap_chain();
+
+//         return nullptr;
 
       }
 
-      if (!m_pswapchain)
+      if (!m_pgpuswapchain)
       {
 
-         __defer_construct(m_pswapchain);
+         ødefer_construct(m_pgpuswapchain);
 
          ///m_pswapchain->initialize_gpu_swap_chain(this, m_pwindow);
 
       }
 
-      return m_pswapchain;
+      return m_pgpuswapchain;
 
    }
+
+
+
 
 
    void context::top_send_on_context(::gpu::context* pcontextInnerStart, bool bForDrawing, const ::procedure& procedure)
@@ -807,16 +1189,23 @@ namespace gpu
 
       }
 
-      auto pgpudevice = m_papplication->get_gpu_approach()->get_gpu_device();
+      if (!bForDrawing)
+      {
 
-      pgpudevice->start_stacking_layers();
+         m_pgpudevice->on_new_frame();
+
+         //auto pgpudevice = m_papplication->get_gpu_approach()->get_gpu_device();
+
+         m_pgpudevice->start_stacking_layers();
+
+      }
 
       send_on_context([this, pcontextInnerStart, bForDrawing, procedure]()
          {
 
             auto pgpurenderer = get_gpu_renderer();
 
-            pgpurenderer->do_on_frame(bForDrawing, [this, pcontextInnerStart, bForDrawing, procedure]()
+            pgpurenderer->do_on_frame(bForDrawing, [this, pcontextInnerStart, bForDrawing, procedure](::gpu::frame* pgpuframe)
                {
 
                   if (bForDrawing)
@@ -832,7 +1221,7 @@ namespace gpu
 
                               prenderer->defer_update_renderer();
 
-                              ::procedure λ = [procedure]()
+                              auto λ = [procedure](::gpu::frame* pgpuframe)
                                  {
 
                                     procedure();
@@ -872,7 +1261,7 @@ namespace gpu
 
                            auto prendertargetBackBuffer = prendererBackBuffer->m_pgpurendertarget;
 
-                           auto ptextureBackBuffer = prendertargetBackBuffer->current_texture();
+                           auto ptextureBackBuffer = prendertargetBackBuffer->current_texture(pgpuframe);
 
                            merge_layers(ptextureBackBuffer, m_pgpudevice->m_playera);
 
@@ -913,10 +1302,10 @@ namespace gpu
                            for (auto player : *playera)
                            {
 
-                              if (player->m_pcommandbufferLayer)
+                              if (player->getCurrentCommandBuffer4())
                               {
 
-                                 player->m_pcommandbufferLayer->wait_commands_to_execute();
+                                 player->getCurrentCommandBuffer4()->wait_commands_to_execute();
 
                               }
 
@@ -940,7 +1329,7 @@ namespace gpu
 
                               prenderer->defer_update_renderer();
 
-                              ::procedure λ = [procedure]()
+                              auto λ = [procedure](::gpu::frame* pgpuframe)
                                  {
 
                                     procedure();
@@ -965,6 +1354,16 @@ namespace gpu
 
          });
 
+         if (bForDrawing)
+         {
+
+            m_pgpudevice->on_end_frame();
+
+         }
+
+
+
+
    }
 
 
@@ -982,7 +1381,7 @@ namespace gpu
       if (!m_pgpurenderer)
       {
 
-         __øconstruct(m_pgpurenderer);
+         øconstruct(m_pgpurenderer);
 
          m_pgpurenderer->initialize_gpu_renderer(this);
 
@@ -1001,7 +1400,7 @@ namespace gpu
    //   if (!m_pgpurendererBackBuffer)
    //   {
 
-   //      __øconstruct(m_pgpurendererBackBuffer);
+   //      øconstruct(m_pgpurendererBackBuffer);
 
    //      m_pgpurendererBackBuffer->initialize_gpu_renderer(this);
 
@@ -1026,7 +1425,7 @@ namespace gpu
 
    //      ::gpu::enum_scene escene = m_escene;
 
-   //      __øconstruct(m_pgpucontextDraw2d->m_pgpurenderer);
+   //      øconstruct(m_pgpucontextDraw2d->m_pgpurenderer);
 
    //      auto eoutputDraw2d = m_papplication->m_gpu.m_eoutputDraw2d;
 
@@ -1051,7 +1450,7 @@ namespace gpu
 
    //      ::gpu::enum_scene escene = m_escene;
 
-   //      __øconstruct(m_pgpurendererEngine);
+   //      øconstruct(m_pgpurendererEngine);
 
    //      auto eoutputEngine = m_papplication->m_gpu.m_eoutputEngine;
 
@@ -1077,7 +1476,7 @@ namespace gpu
 
    //   ::gpu::enum_scene escene = m_escene;
 
-   //   __øconstruct(pgpurendererDraw2d);
+   //   øconstruct(pgpurendererDraw2d);
 
    //   //auto eoutputDraw2d = m_papplication->m_gpu.m_eoutputDraw2d;
 
@@ -1146,10 +1545,10 @@ namespace gpu
    }
 
 
-   string context::load_fragment(const ::string& pszPath, enum_shader_source& eshadersource)
+   string context::load_fragment(const ::scoped_string & scopedstrPath, enum_shader_source& eshadersource)
    {
 
-      ::file::path path(pszPath);
+      ::file::path path(scopedstrPath);
 
       string strFragment = file()->as_string(path);
 
@@ -1220,7 +1619,7 @@ namespace gpu
    void context::translate_shader(string& strFragment)
    {
 
-      string_array stra;
+      string_array_base stra;
 
       stra.add_lines(strFragment);
 
@@ -1246,7 +1645,7 @@ namespace gpu
    }
 
 
-   void context::_translate_shader(string_array& stra)
+   void context::_translate_shader(string_array_base& stra)
    {
 
    }
@@ -1391,7 +1790,9 @@ namespace gpu
    void context::on_end_layer(::gpu::layer* player)
    {
 
-      ::gpu::context_lock contextlock(this);
+      //::gpu::context_lock contextlock(this);
+
+      defer_unbind_shader();
 
       if (m_pgpucompositor)
       {
@@ -1400,13 +1801,13 @@ namespace gpu
 
       }
 
-      auto ptextureTarget = player->texture();
+      //auto ptextureTarget = player->texture();
 
-      auto ptextureSource = current_target_texture();
+      //auto ptextureSource = current_target_texture(player->m_pgpuframe);
 
-      //auto ptextureSource = m_pgpurendertarget->current_texture();
+      ////auto ptextureSource = m_pgpurendertarget->current_texture();
 
-      copy(ptextureTarget, ptextureSource);
+      //copy(ptextureTarget, ptextureSource);
 
 
    }
@@ -1519,7 +1920,7 @@ namespace gpu
    }
 
 
-   void context::__soft_unbind_draw2d_compositor(::gpu::compositor* pgpucompositor, ::gpu::layer* player)
+   void context::__defer_soft_unbind_draw2d_compositor(::gpu::compositor* pgpucompositor, ::gpu::layer* player)
    {
 
 
@@ -1551,11 +1952,11 @@ namespace gpu
    }
 
 
-   void context::white_to_color_sampler_shader_setup(gpu::shader* pshader)
-   {
+   //void context::white_to_color_sampler_shader_setup(gpu::shader* pshader)
+   //{
 
 
-   }
+   //}
 
 
    ::memory context::white_to_color_sampler_frag()
@@ -1587,15 +1988,15 @@ namespace gpu
    }
 
 
-   ::gpu::model_buffer* context::sequence2_uv_fullscreen_quad_model_buffer()
+   ::gpu::model_buffer* context::sequence2_uv_fullscreen_quad_model_buffer(::gpu::frame* pgpuframe)
    {
 
       if (!m_pmodelbufferFullscreenQuad)
       {
 
-         __defer_construct(m_pmodelbufferFullscreenQuad);
+         ødefer_construct(m_pmodelbufferFullscreenQuad);
 
-         m_pmodelbufferFullscreenQuad->sequence2_uv_create_fullscreen_quad(this);
+         m_pmodelbufferFullscreenQuad->sequence2_uv_create_fullscreen_quad(pgpuframe);
 
       }
 
@@ -1618,6 +2019,117 @@ namespace gpu
    //   return nullptr;
 
    //}
+
+
+   ::pointer<::graphics3d::renderable> context::load_model(const ::gpu::renderable_t & model)
+   {
+
+      ::pointer<::graphics3d::renderable> prenderable;
+
+      try
+      {
+
+         if (model.m_erenderabletype == ::gpu::e_renderable_type_wavefront_obj)
+         {
+
+            prenderable = load_wavefront_obj_renderable(model);
+
+            // information("[asset_manager] Successfully loaded OBJ model '{}' from '{}'",
+            //    model.m_strName,
+            //    model.m_path);
+
+         }
+         else if (model.m_erenderabletype == ::gpu::e_renderable_type_gltf)
+         {
+
+            //uint32_t flags = entry.get("flags", 0); // Optional flags
+            //float scale = entry.get("scale", 1.0f); // Optional scale
+            prenderable = load_gltf_model(model);
+
+            //name, path, flags, scale);
+            // if (entry.get("usage", "") == "skybox" || name == "cube")
+            // {
+            //    m_pmodelSkybox = pmodel;
+            // }
+
+            //information("[asset_manager] Successfully loaded glTF model '{}' from '{}'",
+              // loadmodel.m_strName,
+               //loadmodel.m_path);
+
+         }
+         else
+         {
+
+            warningf("[context::load_model] Unknown model type '%s' for asset '%s'",
+               model.m_strRenderableType1.c_str(),
+               model.m_strName.c_str());
+
+         }
+
+      }
+      catch (const ::exception &e)
+      {
+
+         errorf("[asset_manager] Failed to load model '%s': %s", model.m_strName.c_str(), e.get_message().c_str());
+
+      }
+
+      //prenderable->set_emodel(loadmodel.m_emodel);
+
+      //prenderable->set_model_usage(loadmodel.m_emodelusage);
+
+      //
+      // if (loadmodel.m_emodelusage == gpu::e_model_usage_default)
+      // {
+      //
+      //    m_prenderableSkybox = prenderable;
+      //
+      // }
+
+      return prenderable;
+
+   }
+
+
+   ::pointer<::gpu::texture> context::load_cube_map(
+      const ::scoped_string & scopedstrName,
+      const ::file::path & path, 
+      bool b32)
+   {
+
+return {};
+
+   }
+
+
+   ::pointer<::gpu::texture> context::load_sandbox_texture(const ::scoped_string & scopedstrName,
+                                                    const ::file::path & path,
+                                                    const ::scoped_string & scopedstrImageFormat)
+   {
+
+      return {};
+
+   }
+
+   
+   ::pointer<::gpu::texture> context::cubemap_from_hdr(const ::file::path & path)
+   {
+
+      return {};
+
+   }
+
+
+   // ::pointer < ::graphics3d::renderable> context::create_tinyobj_renderable(const ::file::path& path)
+   // {
+   //
+   //    auto pmodel = m_pengine->create_tinyobjloader_model(path);
+   //
+   //    return pmodel;
+   //
+   // }
+
+
 
 
 } // namespace gpu

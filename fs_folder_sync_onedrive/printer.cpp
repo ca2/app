@@ -17,13 +17,13 @@ namespace draw2d_gdiplus
    {
    }
 
-   bool printer::open(const ::string & pszDeviceName)
+   bool printer::open(const ::scoped_string & scopedstrDeviceName)
    {
 
       if (is_opened())
          close();
 
-      wstring wstr(pszDeviceName);
+      wstring wstr(scopedstrDeviceName);
 
       if (!OpenPrinter((LPWSTR)(LPCWSTR)wstr, &m_hPrinter, nullptr))
          return false;

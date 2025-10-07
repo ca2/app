@@ -388,7 +388,7 @@ bool TabWidgetBase::is_tab_selected(const Widget * pwidgetChild) const
    ::item_pointer TabWidgetBase::hit_test(const int_point& p, bool test_vertical) const 
    {
 
-      auto pitem = __allocate ::item();
+      auto pitem = øallocate ::item();
 
       int tab_height = (int)font_size() + 2 * m_ptheme->m_iVerticalPaddingTabButton;
 
@@ -482,7 +482,7 @@ bool TabWidgetBase::is_tab_selected(const Widget * pwidgetChild) const
          m_ppopup->set_anchor_size(8);
          
          if (m_ppopup->layout() == nullptr)
-            m_ppopup->set_layout(__allocate GroupLayout(5, 3));
+            m_ppopup->set_layout(øallocate GroupLayout(5, 3));
 
          for (Widget* pwidgetChild : m_ppopup->children()) 
          {
@@ -757,7 +757,7 @@ bool TabWidgetBase::is_tab_selected(const Widget * pwidgetChild) const
 
       }
 
-      auto p = m_widgets.plookup(selected_id());
+      auto p = m_widgets.find(selected_id());
 
       if (::is_set(p))
       {
@@ -828,7 +828,7 @@ bool TabWidgetBase::is_tab_selected(const Widget * pwidgetChild) const
 
       Widget* pwidget = m_widgets[iId];
 
-      m_widgets.erase_item(iId);
+      m_widgets.erase(iId);
 
       if (m_bEraseChildren)
       {

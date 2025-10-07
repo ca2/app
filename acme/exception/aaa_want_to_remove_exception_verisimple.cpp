@@ -2,7 +2,7 @@
 
 //
 //veri::exception::veri::exception(const ::scoped_string & scopedstrMessage):
-//   ::exception(pszMessage)
+//   ::exception(scopedstrMessage)
 //{
 //
 //   debug_print(":verisimple(\"%s\")", pszMessage);

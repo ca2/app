@@ -285,7 +285,7 @@ inline binary_stream & operator >>(binary_stream & stream, ARRAY & a)
 inline binary_stream & operator <<(binary_stream & stream, const ::property_set & propertyset)
 {
 
-   return stream << (const property_holder_array & ) propertyset;
+   return stream << (const property_holder_array_base & ) propertyset;
 
 }
 
@@ -293,7 +293,7 @@ inline binary_stream & operator <<(binary_stream & stream, const ::property_set 
 inline binary_stream & operator >>(binary_stream & stream, ::property_set & propertyset)
 {
 
-   return stream >> (property_holder_array &) propertyset;
+   return stream >> (property_holder_array_base &) propertyset;
 
 }
 

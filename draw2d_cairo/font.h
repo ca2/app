@@ -75,7 +75,7 @@ namespace draw2d_cairo
 
          };
 
-      string_map < pango_layout > m_mapPangoLayout;
+      string_map_base < pango_layout > m_mapPangoLayout;
 
 #else
 

@@ -190,7 +190,7 @@ namespace networking_bsd
 #endif
 
 
-//   void address::set_address(const string & host, ::networking::port_t port)
+//   void address::set_address(const ::scoped_string & scopedstrHost, ::networking::port_t port)
 //   {
 //
 //      ::zero(&u.m_sa, sizeof(u.m_sa));
@@ -220,7 +220,7 @@ namespace networking_bsd
 //   }
 
 
-//   void address::set_address(::particle * pparticle, const string & host, const ::string & strService)
+//   void address::set_address(::particle * pparticle, const ::scoped_string & scopedstrHost, const ::scoped_string & scopedstrService)
 //   {
 //
 //      auto psystem = pparticle->system();
@@ -438,7 +438,7 @@ namespace networking_bsd
 //
 //      if (u.s.m_family == AF_INET || u.s.m_family == AF_INET6)
 //      {
-//         m_posdata->m_hostname = ref __allocate< ::winrt::Windows::Networking::HostName(get_display_number >());
+//         m_posdata->m_hostname = ref øallocate< ::winrt::Windows::Networking::HostName(get_display_number >());
 //      }
 //      else if (m_posdata->m_hostname != nullptr)
 //      {
@@ -498,7 +498,7 @@ namespace networking_bsd
 #endif
 
 
-//   void address::parse_string(const ::string & strAddress)
+//   void address::parse_string(const ::scoped_string & scopedstrAddress)
 //   {
 //
 //#if defined(BSD_STYLE_SOCKETS)

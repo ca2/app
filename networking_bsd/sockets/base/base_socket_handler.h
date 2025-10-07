@@ -38,16 +38,6 @@ namespace sockets_bsd
 {
 
 
-   //enum enum_list
-   //{
-   //   e_list_call_on_connect,
-   //   e_list_detach,
-   //   e_list_timeout,
-   //   e_list_retry_client_connect,
-   //   e_list_close
-   //};
-
-
    /** socket container class, happening generator.
    \ingroup basic */
    class CLASS_DECL_NETWORKING_BSD base_socket_handler:
@@ -92,14 +82,14 @@ namespace sockets_bsd
       // -------------------------------------------------------------------------
       // socket stuff
       // -------------------------------------------------------------------------
-      /** add socket instance to socket ::map. Removal is always automatic. */
+      /** add socket instance to socket ::map_base. Removal is always automatic. */
       virtual void add(::sockets::base_socket * psocket) override = 0;
       //virtual void move2(::sockets::socket_pointer && psocket) = 0;
       //virtual void transfer(socket_map::node * pnode, socket_map * psocketmap = nullptr) = 0;
       virtual void restart_socket(SOCKET socket) = 0;
       //virtual socket_map::association* new_association(socket_pointer && psocket) = 0;
    //private:
-      /** erase socket from socket ::map, used by socket class. */
+      /** erase socket from socket ::map_base, used by socket class. */
      virtual void erase(const ::sockets::socket_pointer & psocket) override = 0;
    
 
@@ -127,11 +117,11 @@ namespace sockets_bsd
       \lparam int_point listen_socket class pointer (use GetPort to identify which one) */
       virtual bool OkToAccept(::sockets::base_socket *int_point) override = 0;
 
-      /** Called by socket when a socket changes state. */
-      virtual socket_id_list& socket_id_list_get(enum_list elist) = 0;
-      virtual void socket_id_list_modify(SOCKET s, enum_list elist, bool bAdd) = 0;
-      virtual void socket_id_list_add(SOCKET s, enum_list elist) = 0;
-      virtual void socket_id_list_erase(SOCKET s, enum_list elist) = 0;
+      ///** Called by socket when a socket changes state. */
+      //virtual socket_id_list& socket_id_list_get(enum_list elist) = 0;
+      //virtual void socket_id_list_modify(SOCKET s, enum_list elist, bool bAdd) = 0;
+      //virtual void socket_id_list_add(SOCKET s, enum_list elist) = 0;
+      //virtual void socket_id_list_erase(SOCKET s, enum_list elist) = 0;
 
       virtual void erase_socket(SOCKET s) = 0;
       // -------------------------------------------------------------------------
@@ -153,12 +143,12 @@ namespace sockets_bsd
       /** Set socks4 server ip that all ___new tcp sockets should use. */
       //virtual void SetSocks4Host(in_addr) = 0;
       /** Set socks4 server hostname that all ___new tcp sockets should use. */
-      virtual void SetSocks4Host(const string & ) = 0;
+      virtual void SetSocks4Host(const ::scoped_string & scopedstrHost) = 0;
 #endif
       /** Set socks4 server port number that all ___new tcp sockets should use. */
       virtual void SetSocks4Port(::networking::port_t) = 0;
       /** Set optional socks4 userid. */
-      virtual void SetSocks4Userid(const string & ) = 0;
+      virtual void SetSocks4Userid(const ::scoped_string & scopedstrUserId) = 0;
       /** If connection to socks4 server fails, immediately try direct connection to final host. */
       virtual void SetSocks4TryDirect(bool = true) = 0;
       /** get socks4 server ip.
@@ -185,9 +175,9 @@ namespace sockets_bsd
       /** Queue a dns request.
       \lparam host Hostname to be resolved
       \lparam port Port number will be echoed in socket::OnResolved callback */
-      //virtual int Resolve(base_socket *,const string & host,port_t port) = 0;
-      //virtual int Resolve6(base_socket *,const string & host,port_t port) = 0;
-      /** Do a reverse dns lookup. */
+      //virtual int Resolve(base_socket *,const ::scoped_string & scopedstrHost,port_t port) = 0;
+      //virtual int Resolve6(base_socket *,const ::scoped_string & scopedstrHost,port_t port) = 0;
+      /** Do a reverse dns find. */
       //virtual int Resolve(base_socket *,in_addr a) = 0;
       //virtual int Resolve(base_socket *,in6_addr& a) = 0;
       /** get listen port of asynchronous dns server. */
@@ -213,7 +203,7 @@ namespace sockets_bsd
       /** Indicates that the handler runs under socket_thread. */
       //virtual bool IsSlave() = 0;
 
-      //virtual void __tracef(e_trace_category ecategory, enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, int iLine, base_socket * psocket, const ::string & strContext, int err, const ::string & strMessage);
+      //virtual void __tracef(e_trace_category ecategory, enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, int iLine, base_socket * psocket, const ::scoped_string & scopedstrContext, int err, const ::scoped_string & scopedstrMessage);
 
 
    };

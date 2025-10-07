@@ -16,7 +16,7 @@ namespace user
    public:
 
 
-      //index_map < pointer_array < ::user::interaction > > m_mapControl;
+      //index_map_base < pointer_array < ::user::interaction > > m_mapControl;
 
 
       form_list();
@@ -69,7 +69,7 @@ namespace user
       void on_timer(::timer * ptimer) override;
 
       using list::get_selection;
-      void get_selection(const ::scoped_string & scopedstrDataKey,::string_array & stra) override;
+      void get_selection(const ::scoped_string & scopedstrDataKey,::string_array_base & stra) override;
       DECLARE_MESSAGE_HANDLER(_001OnMessageNotify);
 
       DECLARE_MESSAGE_HANDLER(on_message_scroll_y);

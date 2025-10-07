@@ -17,9 +17,9 @@
 #include "acme/handler/topic.h"
 #include "aura/windowing/placement_log.h"
 #include "acme/constant/id.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "acme/constant/timer.h"
-#include "acme/constant/message_prototype.h"
+#include "acme/constant/user_message_prototype.h"
 #include "acme/constant/simple_command.h"
 #include "acme/exception/interface_only.h"
 #include "acme/graphics/graphics/output_purpose.h"
@@ -68,7 +68,7 @@
 #include "acme/prototype/geometry2d/item.h"
 #include "acme/prototype/geometry2d/_defer_item.h"
 #include "acme/prototype/collection/_tuple.h"
-#include "acme/_finish.h"
+//#include "acme/_finish.h"
 //#include "app-core/store/_.h"
 //#define SPECIAL_DEBUG
 #if defined( WINDOWS_DESKTOP) && defined(SPECIAL_DEBUG)
@@ -90,10 +90,10 @@ CLASS_DECL_AURA::int_point __get_bottom_right();
 CLASS_DECL_AURA void __set_bottom_right(const ::int_point & pointBottomRight);
 
 
-inline void make_parent_mouse_message(::enum_message & emessage)
+inline void make_parent_mouse_message(::user::enum_message & emessage)
 {
 
-   emessage = (::enum_message)((long long)emessage + (long long)(e_message_parent_mouse_first - e_message_mouse_first));
+   emessage = (::user::enum_message)((long long)emessage + (long long)(::user::e_message_parent_mouse_first - ::user::e_message_mouse_first));
 
 }
 
@@ -232,6 +232,8 @@ namespace user
 
    interaction::interaction()
    {
+
+      m_eelementMain = e_element_none;
 
       m_ekeyboardmode = e_keyboard_mode_none;
 
@@ -501,7 +503,7 @@ namespace user
    void interaction::on_initialize_particle()
    {
 
-      //__defer_construct_new(m_puseritema);
+      //ødefer_construct_new(m_puseritema);
 
       if (id().is_empty())
       {
@@ -745,7 +747,9 @@ namespace user
       if (::is_null(get_parent()))
       {
 
-         window()->set_position(pointNew);
+         //window()->set_position(pointNew);
+
+         set_need_redraw({}, pgraphics);
 
       }
       else
@@ -780,7 +784,7 @@ namespace user
 
       {
 
-         synchronous_lock synchronouslock(this->synchronization());
+         synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          auto & layoutstate = layout().m_statea[elayout];
 
@@ -1431,19 +1435,7 @@ namespace user
    ::write_text::font_pointer interaction::get_font(style * pstyle, enum_element eelement, ::user::enum_state estate)
    {
 
-      if (pstyle)
-      {
-
-         if (pstyle->m_pfont)
-         {
-
-            return pstyle->m_pfont;
-
-         }
-
-      }
-
-      return nullptr;
+      return {};
 
    }
 
@@ -1668,7 +1660,7 @@ namespace user
    ::user::e_flag interaction::get_draw_flags(::user::style * pstyle)
    {
 
-      return e_null;
+      return {};
 
    }
 
@@ -1763,7 +1755,7 @@ namespace user
 
       //_synchronous_lock slChildren(::user::pointer < ::mutex >_children());
 
-      _synchronous_lock synchronouslock(window()->m_pparticleChildrenSynchronization);
+      _synchronous_lock synchronouslock(window()->m_pparticleChildrenSynchronization, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       auto pacmeuserinteractionaChildren = m_pacmeuserinteractionaChildren;
 
@@ -1820,7 +1812,7 @@ namespace user
 
    //   arguments.insert_at(0, this);
 
-   //   auto pdescriptor = __allocate control_descriptor(arguments);
+   //   auto pdescriptor = øallocate control_descriptor(arguments);
 
    //   //if (::is_null(pdescriptor->m_puserinteractionParent))
    //   //{
@@ -1840,7 +1832,7 @@ namespace user
 
    //   }
 
-   //   //auto pdescriptor = __allocate control_descriptor();
+   //   //auto pdescriptor = øallocate control_descriptor();
 
 
    //   //pdescriptor->id() = atom;
@@ -1911,7 +1903,7 @@ namespace user
    void interaction::set_reposition(bool bSetThis)
    {
 
-      //_synchronous_lock synchronouslock(mutex_children());
+      //_synchronous_lock synchronouslock(mutex_children(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       _set_reposition(bSetThis);
 
@@ -1925,6 +1917,30 @@ namespace user
       {
 
          m_bReposition = true;
+
+      }
+
+   }
+
+
+   void interaction::set_need_perform_layout()
+   {
+
+      m_bNeedPerformLayout = true;
+
+      for_user_interaction_children(puserinteraction, this)
+      {
+
+         try
+         {
+
+            puserinteraction->set_need_perform_layout();
+
+         }
+         catch (...)
+         {
+
+         }
 
       }
 
@@ -1986,7 +2002,7 @@ namespace user
 
 
    void interaction::set_need_redraw(
-      const ::int_rectangle_array & rectangleaNeedRedraw,
+      const ::int_rectangle_array_base & rectangleaNeedRedraw,
       ::draw2d::graphics * pgraphics,
       function<void()> function,
       bool bAscendants)
@@ -2030,7 +2046,7 @@ namespace user
       if (!this->is_window_screen_visible(e_layout_sketch))
       {
 
-         _synchronous_lock synchronouslock(this->synchronization());
+         _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          m_setneedredrawa.add({ rectangleaNeedRedraw, function, bAscendants });
 
@@ -2276,7 +2292,7 @@ namespace user
 
       m_bNeedLoadFormData = true;
 
-      post_message(e_message_need_load_form_data);
+      post_message(::user::e_message_need_load_form_data);
 
    }
 
@@ -2286,7 +2302,7 @@ namespace user
 
       m_bNeedSaveFormData = true;
 
-      post_message(e_message_need_save_form_data);
+      post_message(::user::e_message_need_save_form_data);
 
    }
 
@@ -2467,10 +2483,10 @@ namespace user
    }
 
 
-   void interaction::set_place_child_title(const ::string & pszTitle)
+   void interaction::set_place_child_title(const ::scoped_string & scopedstrTitle)
    {
 
-      payload("place_child_title") = pszTitle;
+      payload("place_child_title") = scopedstrTitle;
 
       //::pointer<::user::place_holder>pholder = get_parent();
 
@@ -2741,7 +2757,7 @@ namespace user
       if (puserinteractionParent == nullptr)
       {
 
-         auto pwindowNew = __øcreate<::windowing::window>();
+         auto pwindowNew = øcreate<::windowing::window>();
 
          auto strName = get_window_text();
 
@@ -2760,7 +2776,7 @@ namespace user
 
          //auto rectangleRequest = this->screen_rectangle(::user::e_layout_sketch);
 
-         //auto pusersystem = __allocate ::user::system();
+         //auto pusersystem = øallocate ::user::system();
 
          //pusersystem->add_visible(is_visible(layout().sketch().display()));
 
@@ -2778,7 +2794,7 @@ namespace user
 
          on_set_parent(puserinteractionParent);
 
-         /*auto pwindowNew = __create_new<::user::interaction_child>();
+         /*auto pwindowNew = øcreate_new<::user::interaction_child>();
 
          pwindowNew->m_puserinteraction = this;*/
 
@@ -2845,11 +2861,11 @@ namespace user
    bool interaction::pre_message_handler(::message::key *& pkey, bool & bKeyMessage, ::message::message * pmessage)
    {
 
-      auto emessage = pmessage->m_emessage;
+      auto emessage = pmessage->m_eusermessage;
 
       auto psession = session();
 
-      if (emessage == e_message_left_button_down)
+      if (emessage == ::user::e_message_left_button_down)
       {
 
          try
@@ -2864,7 +2880,7 @@ namespace user
          }
 
       }
-      else if (emessage == e_message_left_button_up)
+      else if (emessage == ::user::e_message_left_button_up)
       {
 
          try
@@ -2879,7 +2895,7 @@ namespace user
          }
 
       }
-      else if (emessage == e_message_right_button_down)
+      else if (emessage == ::user::e_message_right_button_down)
       {
 
          try
@@ -2894,7 +2910,7 @@ namespace user
          }
 
       }
-      else if (emessage == e_message_right_button_up)
+      else if (emessage == ::user::e_message_right_button_up)
       {
 
 
@@ -2911,7 +2927,7 @@ namespace user
          }
 
       }
-      else if (emessage == e_message_middle_button_down)
+      else if (emessage == ::user::e_message_middle_button_down)
       {
 
 
@@ -2928,7 +2944,7 @@ namespace user
          }
 
       }
-      else if (emessage == e_message_middle_button_up)
+      else if (emessage == ::user::e_message_middle_button_up)
       {
 
 
@@ -2946,35 +2962,35 @@ namespace user
 
       }
 
-      bKeyMessage = emessage == e_message_key_down ||
-         emessage == e_message_key_up ||
-         emessage == e_message_char ||
-         emessage == e_message_text_composition
+      bKeyMessage = emessage == ::user::e_message_key_down ||
+         emessage == ::user::e_message_key_up ||
+         emessage == ::user::e_message_char ||
+         emessage == ::user::e_message_text_composition
 #ifdef WINDOWS_DESKTOP
-         || emessage == e_message_sys_key_down
-         || emessage == e_message_sys_key_up
-         || emessage == e_message_sys_char
-         || emessage == e_message_ime_key_down
-         || emessage == e_message_ime_key_up
-         || emessage == e_message_ime_char
-         || emessage == e_message_ime_select
-         || emessage == e_message_ime_set_context
-         || emessage == e_message_ime_start_composition
-         || emessage == e_message_ime_composition
-         || emessage == e_message_ime_composition_full
-         || emessage == e_message_ime_notify
-         || emessage == e_message_ime_end_composition
-         || emessage == e_message_input_language
+         || emessage == ::user::e_message_sys_key_down
+         || emessage == ::user::e_message_sys_key_up
+         || emessage == ::user::e_message_sys_char
+         || emessage == ::user::e_message_ime_key_down
+         || emessage == ::user::e_message_ime_key_up
+         || emessage == ::user::e_message_ime_char
+         || emessage == ::user::e_message_ime_select
+         || emessage == ::user::e_message_ime_set_context
+         || emessage == ::user::e_message_ime_start_composition
+         || emessage == ::user::e_message_ime_composition
+         || emessage == ::user::e_message_ime_composition_full
+         || emessage == ::user::e_message_ime_notify
+         || emessage == ::user::e_message_ime_end_composition
+         || emessage == ::user::e_message_input_language
 #endif
          ;
 
       if (bKeyMessage)
       {
 
-         if (emessage == e_message_key_down)
+         if (emessage == ::user::e_message_key_down)
          {
 
-            informationf("e_message_key_down");
+            informationf("::user::e_message_key_down");
 
          }
 
@@ -2983,11 +2999,11 @@ namespace user
          if (pkey)
          {
 
-            windowing()->set(pkey, pkey->m_oswindow, pkey->m_pwindow, pkey->m_emessage, pkey->m_wparam, pkey->m_lparam);
+            windowing()->set(pkey, pkey->m_oswindow, pkey->m_pwindow, pkey->m_eusermessage, pkey->m_wparam, pkey->m_lparam);
 
          }
 
-         if (emessage == e_message_key_down || emessage == e_message_sys_key_down)
+         if (emessage == ::user::e_message_key_down || emessage == ::user::e_message_sys_key_down)
          {
 
 
@@ -3004,7 +3020,7 @@ namespace user
             }
 
          }
-         else if (emessage == e_message_key_up || emessage == e_message_sys_key_up)
+         else if (emessage == ::user::e_message_key_up || emessage == ::user::e_message_sys_key_up)
          {
 
 
@@ -3107,7 +3123,7 @@ namespace user
    //
    //         // Now notify it is done...
    //
-   //         post_message(e_message_set_focus);
+   //         post_message(::user::e_message_set_focus);
    //
    //      }
    //
@@ -3180,19 +3196,19 @@ namespace user
    {
 
       __check_refdbg
-         MESSAGE_LINK(e_message_create, pchannel, this, &interaction::on_message_create);
+         USER_MESSAGE_LINK(::user::e_message_create, pchannel, this, &interaction::on_message_create);
       __check_refdbg
-         MESSAGE_LINK(e_message_destroy, pchannel, this, &interaction::on_message_destroy);
-      MESSAGE_LINK(e_message_non_client_destroy, pchannel, this, &interaction::on_message_non_client_destroy);
-      MESSAGE_LINK(e_message_after_create, pchannel, this, &interaction::on_message_after_create);
-      MESSAGE_LINK(e_message_text_composition, pchannel, this, &interaction::_001OnTextComposition);
+         USER_MESSAGE_LINK(::user::e_message_destroy, pchannel, this, &interaction::on_message_destroy);
+      USER_MESSAGE_LINK(::user::e_message_non_client_destroy, pchannel, this, &interaction::on_message_non_client_destroy);
+      USER_MESSAGE_LINK(::user::e_message_after_create, pchannel, this, &interaction::on_message_after_create);
+      USER_MESSAGE_LINK(::user::e_message_text_composition, pchannel, this, &interaction::_001OnTextComposition);
 
       ::user::interaction_base::install_message_routing(pchannel);
 
       if (m_bMessageOnlyWindow)
       {
 
-         //MESSAGE_LINK(e_message_destroy              , pchannel, this, &interaction::_001OnDestroyMessageWindow);
+         //USER_MESSAGE_LINK(::user::e_message_destroy              , pchannel, this, &interaction::_001OnDestroyMessageWindow);
 
       }
       else
@@ -3205,27 +3221,27 @@ namespace user
 
          }
 
-         MESSAGE_LINK(e_message_close, pchannel, this, &interaction::on_message_close);
-         MESSAGE_LINK(e_message_size, pchannel, this, &interaction::on_message_size);
-         MESSAGE_LINK(e_message_reposition, pchannel, this, &interaction::on_message_reposition);
-         MESSAGE_LINK(e_message_non_client_calc_size, pchannel, this,
+         USER_MESSAGE_LINK(::user::e_message_close, pchannel, this, &interaction::on_message_close);
+         USER_MESSAGE_LINK(::user::e_message_size, pchannel, this, &interaction::on_message_size);
+         USER_MESSAGE_LINK(::user::e_message_reposition, pchannel, this, &interaction::on_message_reposition);
+         USER_MESSAGE_LINK(::user::e_message_non_client_calc_size, pchannel, this,
                       &interaction::on_message_non_client_calculate_size);
-         MESSAGE_LINK(e_message_show_window, pchannel, this, &interaction::on_message_show_window);
-         MESSAGE_LINK(e_message_display_change, pchannel, this, &interaction::on_message_display_change);
-         MESSAGE_LINK(e_message_subject, pchannel, this, &interaction::on_message_subject);
-         MESSAGE_LINK(e_message_left_button_down, pchannel, this, &::user::interaction::on_message_left_button_down);
-         MESSAGE_LINK(e_message_left_button_double_click, pchannel, this,
+         USER_MESSAGE_LINK(::user::e_message_show_window, pchannel, this, &interaction::on_message_show_window);
+         USER_MESSAGE_LINK(::user::e_message_display_change, pchannel, this, &interaction::on_message_display_change);
+         USER_MESSAGE_LINK(::user::e_message_subject, pchannel, this, &interaction::on_message_subject);
+         USER_MESSAGE_LINK(::user::e_message_left_button_down, pchannel, this, &::user::interaction::on_message_left_button_down);
+         USER_MESSAGE_LINK(::user::e_message_left_button_double_click, pchannel, this,
                       &::user::interaction::on_message_left_button_double_click);
-         //MESSAGE_LINK(e_message_set_focus, pchannel, this, &::user::interaction::on_message_set_focus);
+         //USER_MESSAGE_LINK(::user::e_message_set_focus, pchannel, this, &::user::interaction::on_message_set_focus);
 
          if (m_bDefaultParentMouseMessageHandling)
          {
 
-            MESSAGE_LINK(e_message_parent_left_button_down, pchannel, this,
+            USER_MESSAGE_LINK(::user::e_message_parent_left_button_down, pchannel, this,
                          &::user::interaction::on_message_parent_left_button_down);
-            MESSAGE_LINK(e_message_parent_left_button_up, pchannel, this,
+            USER_MESSAGE_LINK(::user::e_message_parent_left_button_up, pchannel, this,
                          &::user::interaction::on_message_parent_left_button_up);
-            MESSAGE_LINK(e_message_parent_mouse_move, pchannel, this,
+            USER_MESSAGE_LINK(::user::e_message_parent_mouse_move, pchannel, this,
                          &::user::interaction::on_message_parent_mouse_move);
 
          }
@@ -3233,64 +3249,64 @@ namespace user
          if (m_bDefaultDataUpdateHandling)
          {
 
-            MESSAGE_LINK(e_message_need_load_form_data, pchannel, this, &interaction::on_message_need_load_form_data);
-            MESSAGE_LINK(e_message_need_save_form_data, pchannel, this, &interaction::on_message_need_save_form_data);
+            USER_MESSAGE_LINK(::user::e_message_need_load_form_data, pchannel, this, &interaction::on_message_need_load_form_data);
+            USER_MESSAGE_LINK(::user::e_message_need_save_form_data, pchannel, this, &interaction::on_message_need_save_form_data);
 
          }
 
-         //MESSAGE_LINK(e_message_left_button_up, pchannel, this, &interaction::on_message_left_button_up);
+         //USER_MESSAGE_LINK(::user::e_message_left_button_up, pchannel, this, &interaction::on_message_left_button_up);
 
-         //MESSAGE_LINK(e_message_left_button_up, pchannel, this, &interaction::on_message_left_button_up);
+         //USER_MESSAGE_LINK(::user::e_message_left_button_up, pchannel, this, &interaction::on_message_left_button_up);
 
          if (m_bDefaultClickHandling)
          {
 
-            MESSAGE_LINK(e_message_left_button_up, pchannel, this, &interaction::on_message_left_button_up);
+            USER_MESSAGE_LINK(::user::e_message_left_button_up, pchannel, this, &interaction::on_message_left_button_up);
 
             m_bDefaultMouseHoverHandling = true;
 
 #if MOUSE_MIDDLE_BUTTON_MESSAGE_HANDLING_DEBUG
 
-            MESSAGE_LINK(e_message_middle_button_down, pchannel, this, &interaction::on_message_middle_button_down);
-            MESSAGE_LINK(e_message_middle_button_up, pchannel, this, &interaction::on_message_middle_button_up);
+            USER_MESSAGE_LINK(::user::e_message_middle_button_down, pchannel, this, &interaction::on_message_middle_button_down);
+            USER_MESSAGE_LINK(::user::e_message_middle_button_up, pchannel, this, &interaction::on_message_middle_button_up);
 
 #endif
 
          }
 
-         MESSAGE_LINK(e_message_mouse_wheel, pchannel, this, &interaction::on_message_mouse_wheel);
+         USER_MESSAGE_LINK(::user::e_message_mouse_wheel, pchannel, this, &interaction::on_message_mouse_wheel);
 
          if (m_bDefaultMouseHoverHandling)
          {
 
-            MESSAGE_LINK(e_message_mouse_move, pchannel, this, &interaction::on_message_mouse_move);
-            MESSAGE_LINK(e_message_mouse_leave, pchannel, this, &interaction::on_message_mouse_leave);
+            USER_MESSAGE_LINK(::user::e_message_mouse_move, pchannel, this, &interaction::on_message_mouse_move);
+            USER_MESSAGE_LINK(::user::e_message_mouse_leave, pchannel, this, &interaction::on_message_mouse_leave);
 
          }
 
-         //MESSAGE_LINK(e_message_set_cursor, pchannel, this, &::user::interaction::on_message_set_cursor);
-         MESSAGE_LINK(e_message_key_down, pchannel, this, &::user::interaction::on_message_key_down);
+         //USER_MESSAGE_LINK(::user::e_message_set_cursor, pchannel, this, &::user::interaction::on_message_set_cursor);
+         USER_MESSAGE_LINK(::user::e_message_key_down, pchannel, this, &::user::interaction::on_message_key_down);
 
          if (m_bDefaultEditHandling || m_bDefaultKeyboardMultipleSelectionHandling)
          {
 
-            MESSAGE_LINK(e_message_key_up, pchannel, this, &::user::interaction::on_message_key_up);
-            MESSAGE_LINK(e_message_sys_key_down, pchannel, this, &::user::interaction::on_message_key_down);
-            MESSAGE_LINK(e_message_sys_key_up, pchannel, this, &::user::interaction::on_message_key_up);
-            MESSAGE_LINK(e_message_char, pchannel, this, &::user::interaction::on_message_character);
+            USER_MESSAGE_LINK(::user::e_message_key_up, pchannel, this, &::user::interaction::on_message_key_up);
+            USER_MESSAGE_LINK(::user::e_message_sys_key_down, pchannel, this, &::user::interaction::on_message_key_down);
+            USER_MESSAGE_LINK(::user::e_message_sys_key_up, pchannel, this, &::user::interaction::on_message_key_up);
+            USER_MESSAGE_LINK(::user::e_message_char, pchannel, this, &::user::interaction::on_message_character);
 
          }
 
-         MESSAGE_LINK(e_message_enable, pchannel, this, &::user::interaction::_001OnEnable);
+         USER_MESSAGE_LINK(::user::e_message_enable, pchannel, this, &::user::interaction::_001OnEnable);
 
       }
 
-      //MESSAGE_LINK(e_message_command, pchannel, this, &interaction::_001OnCommand);
-      MESSAGE_LINK(e_message_simple_command, pchannel, this, &interaction::on_message_simple_command);
+      //USER_MESSAGE_LINK(::user::e_message_command, pchannel, this, &interaction::_001OnCommand);
+      USER_MESSAGE_LINK(::user::e_message_simple_command, pchannel, this, &interaction::on_message_simple_command);
 
 
-      MESSAGE_LINK(e_message_right_button_down, pchannel, this, &interaction::on_message_right_button_down);
-      MESSAGE_LINK(e_message_right_button_up, pchannel, this, &interaction::on_message_right_button_up);
+      USER_MESSAGE_LINK(::user::e_message_right_button_down, pchannel, this, &interaction::on_message_right_button_down);
+      USER_MESSAGE_LINK(::user::e_message_right_button_up, pchannel, this, &interaction::on_message_right_button_up);
 
 
       //if (m_bDefaultClickHandling)
@@ -3313,8 +3329,8 @@ namespace user
    void interaction::prio_install_message_routing(::channel * pchannel)
    {
 
-      //MESSAGE_LINK(e_message_create, pchannel, this, &interaction::on_message_prio_create);
-      MESSAGE_LINK(e_message_left_button_down, pchannel, this, &interaction::on_message_left_button_down);
+      //USER_MESSAGE_LINK(::user::e_message_create, pchannel, this, &interaction::on_message_prio_create);
+      USER_MESSAGE_LINK(::user::e_message_left_button_down, pchannel, this, &interaction::on_message_left_button_down);
 
    }
 
@@ -3662,6 +3678,17 @@ namespace user
 
          bChange = true;
 
+//#if MOBILE_PLATFORM
+//
+//         if(edisplay == e_display_normal)
+//         {
+//
+//            edisplay = e_display_full_screen;
+//
+//         }
+//
+//#endif
+
          if (equivalence_sink(edisplay) == e_display_normal)
          {
 
@@ -3849,21 +3876,34 @@ namespace user
    bool interaction::post_pending_set_need_redraw()
    {
 
-      if (window()->m_pgraphicsthread->m_bFps)
+      auto pwindow = window();
+
+      if (pwindow)
       {
 
-         //warning() << "graphics thread is going to ignore post redraw as it should be doing Fps drawing";
+         auto pgraphicsthread = pwindow->m_pgraphicsthread;
 
-         m_setneedredrawa.clear();
+         if (pgraphicsthread)
+         {
 
-         return true;
+            if (pgraphicsthread->m_bFps)
+            {
+
+               //warning() << "graphics thread is going to ignore post redraw as it should be doing Fps drawing";
+
+               m_setneedredrawa.clear();
+
+               return true;
+
+            }
+
+         }
 
       }
 
-
       {
 
-         _synchronous_lock synchronouslock(this->synchronization());
+         _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          if (m_setneedredrawa.has_element() && ::is_screen_visible(layout().sketch().display()))
          {
@@ -3979,7 +4019,7 @@ namespace user
 
    }
 
-   //e_message_post_user
+   //::user::e_message_post_user
    //   void interaction::on_message_user_post(::message::message * pmessage)
    //   {
    //
@@ -4081,7 +4121,7 @@ namespace user
 
       //                  // synchronouslock.unlock();
 
-      //                  puserinteraction->send_message(e_message_show_window, 0, 1);
+      //                  puserinteraction->send_message(::user::e_message_show_window, 0, 1);
 
       //                  //synchronouslock.lock();
 
@@ -4166,11 +4206,11 @@ namespace user
 
             //auto pmessage
 
-            //call_message_handler(e_message_mouse_leave);
+            //call_message_handler(::user::e_message_mouse_leave);
 
-            auto pmessage = __create_new<::user::message>();
+            auto pmessage = øcreate_new<::user::message>();
 
-            pmessage->m_emessage = e_message_mouse_leave;
+            pmessage->m_eusermessage = ::user::e_message_mouse_leave;
             //pmessage->m_pwindow = window();
             //pmessage->m_oswindow = window()->oswindow();
             //pmessage->m_wparam = 0;
@@ -4295,7 +4335,7 @@ namespace user
 
          {
 
-            _synchronous_lock synchronouslock(psession->synchronization());
+            _synchronous_lock synchronouslock(psession->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
             try
             {
@@ -4335,7 +4375,7 @@ namespace user
    }
 
 
-   bool interaction::set_sel_by_name(const ::string & strName)
+   bool interaction::set_sel_by_name(const ::scoped_string & scopedstrName)
    {
 
       return false;
@@ -4503,7 +4543,7 @@ namespace user
       //
       // {
       //
-      //    _synchronous_lock synchronouslock(window()->m_pparticleChildrenSynchronization);
+      //    _synchronous_lock synchronouslock(window()->m_pparticleChildrenSynchronization, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
       //
       //    if (!m_pacmeuserinteractionaChildren)
       //    {
@@ -4622,7 +4662,7 @@ namespace user
                if (pwindow)
                {
 
-                  _synchronous_lock synchronouslock(pwindow->synchronization());
+                  _synchronous_lock synchronouslock(pwindow->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
                   pwindow->m_userinteractionaMouseHover.erase(this);
 
@@ -4638,7 +4678,7 @@ namespace user
 
       {
 
-         _synchronous_lock synchronouslock(this->synchronization());
+         _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          auto pthread = get_thread();
 
@@ -4686,9 +4726,9 @@ namespace user
 
             puserinteractionParent->on_erase_child(this);
 
-            //_synchronous_lock synchronouslock(puserinteractionParent->synchronization());
+            //_synchronous_lock synchronouslock(puserinteractionParent->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-            //auto puserinteractionpointeraChild = __allocate(
+            //auto puserinteractionpointeraChild = øallocate(
             //   ::user::interaction_array(*puserinteractionParent->m_puserinteractionpointeraChild));
 
             //if (puserinteractionParent->m_bUserElementOk)
@@ -4816,6 +4856,19 @@ namespace user
 
       pmessage->previous();
 
+//      if(psize->m_wparam & 1024)
+//      {
+//
+//         m_bNeedPerformLayout = true;
+//
+//         set_need_layout();
+//
+//         set_need_redraw();
+//
+//         post_redraw();
+//
+//      }
+
       if (psize->m_nType == ::user::e_size_minimized)
       {
 
@@ -4838,7 +4891,7 @@ namespace user
 
          //auto children = synchronized_get_children();
 
-         // _synchronous_lock synchronouslock(this->synchronization());
+         // _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          // auto puserinteractionpointeraChild = m_puserinteractionpointeraChild.get();
 
@@ -4851,7 +4904,7 @@ namespace user
 
                //synchronouslock.unlock();
 
-               puserinteraction->post_message((enum_message)e_message_display_change);
+               puserinteraction->post_message((enum_message)::user::e_message_display_change);
 
                //synchronouslock.lock();
 
@@ -4864,7 +4917,7 @@ namespace user
       if (is_root())
       {
 
-         //_synchronous_lock synchronouslock(this->synchronization());
+         //_synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          //auto children = synchronized_get_children();
 
@@ -4885,11 +4938,13 @@ namespace user
 
                   //synchronouslock.lock();
 
-                  //                  puserinteraction->set_need_layout();
-                  //
-                  //                  puserinteraction->set_need_redraw();
-                  //
-                  //                  puserinteraction->post_redraw();
+                  puserinteraction->m_bNeedPerformLayout = true;
+
+                  puserinteraction->set_need_layout();
+
+                  puserinteraction->set_need_redraw();
+
+                  puserinteraction->post_redraw();
 
                }
 
@@ -5228,7 +5283,7 @@ namespace user
 
          //      hostToClient(rectangleNeedRedraw);
 
-         //      auto prectangle = __allocate ::draw2d::clip_rectangle();
+         //      auto prectangle = øallocate ::draw2d::clip_rectangle();
 
          //      prectangle->m_item = rectangleNeedRedraw;
 
@@ -5334,7 +5389,7 @@ namespace user
 
          {
 
-            //_synchronous_lock synchronouslock(this->synchronization());
+            //_synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
             if (pgraphics->m_bDraw)
             {
@@ -5543,7 +5598,7 @@ namespace user
 
 #endif
 
-      //_synchronous_lock synchronouslock(this->synchronization());
+      //_synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       {
 
@@ -5647,7 +5702,7 @@ namespace user
 
          set_context_org(pgraphics);
 
-         _synchronous_lock synchronouslock(this->synchronization());
+         _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          _008OnDraw(pgraphics);
 
@@ -5714,15 +5769,15 @@ namespace user
 
       }
 
-      //{
+      {
 
-      //   auto pointContextOffset = get_context_offset();
+         auto pointContextOffset = get_context_offset();
+         
+         auto sizeImpact = layout().layout().size();
 
-      //   auto sizeImpact = layout().layout().size();
+         offsetcontext -=pointContextOffset;
 
-      //   pgraphics->shift_impact_area(-pointContextOffset, sizeImpact);
-
-      //}
+      }
 
    }
 
@@ -5831,7 +5886,7 @@ namespace user
 
          //auto children = synchronized_get_children();
 
-         //_synchronous_lock synchronouslock(this->synchronization());
+         //_synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          //auto puserinteractionpointeraChild = m_puserinteractionpointeraChild;
 
@@ -6657,7 +6712,7 @@ namespace user
 
       //auto children = synchronized_get_children();
 
-      // _synchronous_lock synchronouslock(this->synchronization());
+      // _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       // if (!m_puserinteractionpointeraChild)
       // {
@@ -6894,15 +6949,15 @@ namespace user
 
       __check_refdbg
 
-         _synchronous_lock synchronouslock(this->synchronization());
+         _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       __check_refdbg
 
-         __defer_construct_new(m_pgraphicscalla);
+         ødefer_construct_new(m_pgraphicscalla);
 
       __check_refdbg
 
-         m_pgraphicscalla->add(__allocate::draw2d::graphics_call(function));
+         m_pgraphicscalla->add(øallocate::draw2d::graphics_call(function));
 
       __check_refdbg
 
@@ -6912,7 +6967,7 @@ namespace user
    void interaction::process_graphics_call_queue(::draw2d::graphics_pointer & pgraphics)
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (m_pgraphicscalla)
       {
@@ -6951,13 +7006,13 @@ namespace user
 
       //      auto pszType = typeid(*this).name();
       //
-      //      if(::string(pszType).case_insensitive_contains("line_layout"))
+      //      if(::string(scopedstrType).case_insensitive_contains("line_layout"))
       //      {
       //
       //         information() << "interaction::_000OnDraw line_layout";
       //
       //      }
-      //      else if (::string(pszType).case_insensitive_contains("user::list_box"))
+      //      else if (::string(scopedstrType).case_insensitive_contains("user::list_box"))
       //      {
       //
       //         information() << "interaction::_000OnDraw user::list_box";
@@ -6991,7 +7046,9 @@ namespace user
 
       }
 
-      if (pgraphics->m_bInheritDraw && !this->is_this_visible())
+      bool bIsThisVisible = this->is_this_visible();
+
+      if (pgraphics->m_bInheritDraw && !bIsThisVisible)
       {
 
          //         if (!get_parent())
@@ -7244,7 +7301,7 @@ namespace user
             try
             {
 
-               ///_synchronous_lock synchronouslock(this->synchronization());
+               ///_synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
                //if (m_puserinteractionpointeraChild && m_puserinteractionpointeraChild->has_interaction())
                {
@@ -7516,11 +7573,11 @@ namespace user
          if(get_parent())
          {
 
-            this->call_route_message(e_message_show_window, 1);
+            this->call_route_message(::user::e_message_show_window, 1);
             }
             else
             {
-            this->call_route_message(e_message_show_window, 1);
+            this->call_route_message(::user::e_message_show_window, 1);
             }
 
          }
@@ -7530,11 +7587,11 @@ namespace user
 
 if(get_parent())
 {
-            this->call_route_message(e_message_show_window, 0);
+            this->call_route_message(::user::e_message_show_window, 0);
             }
             else
             {
-            this->call_route_message(e_message_show_window, 0);
+            this->call_route_message(::user::e_message_show_window, 0);
             }
 
          }
@@ -7572,7 +7629,7 @@ if(get_parent())
       if (!pwindowThis)
       {
 
-         __defer_construct_new(m_pusersystem);
+         ødefer_construct_new(m_pusersystem);
 
          m_pusersystem->add(poutputpurpose);
 
@@ -7631,9 +7688,9 @@ if(get_parent())
       if (!pwindowThis)
       {
 
-         __defer_construct_new(m_pusersystem);
+         ødefer_construct_new(m_pusersystem);
 
-         m_pusersystem->add(__allocate::graphics::output_purpose(pparticle, epurpose));
+         m_pusersystem->add(øallocate::graphics::output_purpose(pparticle, epurpose));
 
          return;
 
@@ -8146,7 +8203,7 @@ if(get_parent())
 
       //__matter_send_procedure(this, this, &interaction::interaction_post, procedure);
 
-      auto phappening = __allocate manual_reset_happening();
+      auto phappening = øallocate manual_reset_happening();
 
       host_post([procedure, phappening]
                 {
@@ -8198,7 +8255,7 @@ if(get_parent())
 
       __UNREFERENCED_PARAMETER(pmessage);
 
-      //m_pitemClient = __allocate ::item(e_element_client);
+      //m_pitemClient = øallocate ::item(e_element_client);
 
       if (m_bEnableDragClient || m_bDefaultClickHandling)
       {
@@ -8302,7 +8359,7 @@ if(get_parent())
       if (is_top_level_window() && !is_message_only_window())
       {
 
-         //_synchronous_lock synchronouslock(this->synchronization());
+         //_synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          //if (get_app()->get_context_system() != nullptr)
          //{
@@ -8366,7 +8423,7 @@ if(get_parent())
       if (!is_message_only_window())
       {
 
-         message_call(e_message_change_experience);
+         message_call(::user::e_message_change_experience);
 
       }
 
@@ -9137,7 +9194,7 @@ if(get_parent())
             if (psession->is_key_pressed(::user::e_key_alt))
             {
 
-               post_message(e_message_close);
+               post_message(::user::e_message_close);
 
                pmessage->m_bRet = true;
 
@@ -9438,7 +9495,7 @@ if(get_parent())
 
    //   auto rectangle = layout().sketch().raw_rectangle();
 
-   //   ::int_rectangle_array rectanglea;
+   //   ::int_rectangle_array_base rectanglea;
 
    //   if (rectangle.right() > rectanglePrevious.right())
    //   {
@@ -9655,7 +9712,7 @@ if(get_parent())
    //}
 
 
-   ::user::interaction * interaction::get_child_by_name(const ::string & strName, ::collection::index iItem, int iLevel)
+   ::user::interaction * interaction::get_child_by_name(const ::scoped_string & scopedstrName, ::collection::index iItem, int iLevel)
    {
 
       ::pointer<interaction> pinteraction = top_child();
@@ -9663,7 +9720,7 @@ if(get_parent())
       while (pinteraction != nullptr)
       {
 
-         if (pinteraction->m_strName == strName)
+         if (pinteraction->m_strName == scopedstrName)
          {
 
             if (iItem < 0 || iItem == pinteraction->m_item.m_iItem)
@@ -9696,7 +9753,7 @@ if(get_parent())
          while (pinteractionItem != nullptr)
          {
 
-            pchild = pinteractionItem->get_child_by_name(strName, iItem, iLevel);
+            pchild = pinteractionItem->get_child_by_name(scopedstrName, iItem, iLevel);
 
             if (pchild != nullptr)
             {
@@ -9833,7 +9890,7 @@ if(get_parent())
 
          puserinteractionParent->parent_to_client()(pointClient);
 
-         _synchronous_lock synchronouslock(puserinteractionParent->window()->m_pparticleChildrenSynchronization);
+         _synchronous_lock synchronouslock(puserinteractionParent->window()->m_pparticleChildrenSynchronization, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          auto pacmeuserinteractionaChildren = puserinteractionParent->m_pacmeuserinteractionaChildren;
 
@@ -9897,7 +9954,7 @@ if(get_parent())
 
       }
 
-      _synchronous_lock synchronouslock(window()->m_pparticleChildrenSynchronization);
+      _synchronous_lock synchronouslock(window()->m_pparticleChildrenSynchronization, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       //auto puserinteractionpointeraChild = m_puserinteractionpointeraChild.m_p;
 
@@ -10008,7 +10065,7 @@ if(get_parent())
 
 
 
-   lresult interaction::send_message(::enum_message emessage, ::wparam wparam, ::lparam lparam, const ::int_point & point)
+   lresult interaction::send_message(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam, const ::int_point & point)
    {
 
       //if (window() == nullptr)
@@ -10018,9 +10075,9 @@ if(get_parent())
 
       //}
 
-      auto a = emessage;
+      auto a = eusermessage;
 
-      auto pLresult = __allocate particle_primitive < ::lresult >();
+      auto pLresult = øallocate particle_primitive < ::lresult >();
 
       pLresult->m_t = 0;
 
@@ -10046,7 +10103,7 @@ if(get_parent())
 
       return pLresult->m_t;
 
-      //return window()->send_message(emessage, wparam, lparam);
+      //return window()->send_message(eusermessage, wparam, lparam);
 
    }
 
@@ -10081,10 +10138,10 @@ if(get_parent())
    void interaction::post_message(::message::message * pmessage)
    {
 
-      if (pmessage->m_emessage == e_message_key_down)
+      if (pmessage->m_eusermessage == ::user::e_message_key_down)
       {
 
-         informationf("::user::interaction::post e_message_key_down");
+         informationf("::user::interaction::post ::user::e_message_key_down");
 
       }
 
@@ -10120,12 +10177,12 @@ if(get_parent())
    //   lresult interaction::send_create_message()
    //   {
    //   
-   //      return send_message(e_message_create);
+   //      return send_message(::user::e_message_create);
    //      
    //   }
 
 
-   lresult interaction::message_call(::enum_message emessage, ::wparam wparam, ::lparam lparam, const ::int_point & point)
+   lresult interaction::message_call(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam, const ::int_point & point)
    {
 
       //if (window() == nullptr)
@@ -10135,7 +10192,7 @@ if(get_parent())
 
       //}
 
-      return message_handler(emessage, wparam, lparam);
+      return message_handler(eusermessage, wparam, lparam);
 
    }
 
@@ -10256,7 +10313,7 @@ if(get_parent())
    //}
 
 
-   void interaction::send_message_to_descendants(::enum_message emessage, ::wparam wparam, ::lparam lparam, bool bDeep,
+   void interaction::send_message_to_descendants(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam, bool bDeep,
                                                  bool bOnlyPerm)
    {
 
@@ -10269,7 +10326,7 @@ if(get_parent())
 
       //_synchronous_lock synchronouslock(::user::pointer < ::mutex >_children());
 
-      //_synchronous_lock synchronouslock(this->synchronization());
+      //_synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       //auto children = synchronized_get_children();
 
@@ -10289,7 +10346,7 @@ if(get_parent())
             try
             {
 
-               puserinteraction->send_message(emessage, wparam, lparam);
+               puserinteraction->send_message(eusermessage, wparam, lparam);
 
             }
             catch (...)
@@ -10315,7 +10372,7 @@ if(get_parent())
             try
             {
 
-               puserinteraction->send_message_to_descendants(emessage, wparam, lparam, true, bOnlyPerm);
+               puserinteraction->send_message_to_descendants(eusermessage, wparam, lparam, true, bOnlyPerm);
 
 
             }
@@ -10343,7 +10400,7 @@ if(get_parent())
 
       //auto children = synchronized_get_children();
 
-      // _synchronous_lock synchronouslock(this->synchronization());
+      // _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       // auto puserinteractionpointeraChild = m_puserinteractionpointeraChild;
 
@@ -10386,7 +10443,7 @@ if(get_parent())
 
    //   //::pointer<::message::message>pmessage(pmessage);
 
-   //   //if(pmessage->m_emessage == e_message_key_down)
+   //   //if(pmessage->m_eusermessage == ::user::e_message_key_down)
    //   //{
 
    //   //   auto pkey = pmessage->m_union.m_pkey;
@@ -10511,7 +10568,7 @@ if(get_parent())
    //bool interaction::subclass_window(oswindow posdata)
    //{
    //
-   //      _synchronous_lock synchronouslock(this->synchronization());
+   //      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
    //
    //      if (is_window())
    //      {
@@ -10524,7 +10581,7 @@ if(get_parent())
    //
    //      ::pointer<primitive_impl>pwindowOld = window();
    //
-   //      auto pwindowNew = __øcreate < interaction_impl >();
+   //      auto pwindowNew = øcreate < interaction_impl >();
    //
    //      pwindowNew->m_puserinteraction = this;
    //
@@ -10733,7 +10790,7 @@ if(get_parent())
             //   //else
             //   //{
 
-            //   //   window() = __øcreate < interaction_impl >();
+            //   //   window() = øcreate < interaction_impl >();
 
             //   //}
 
@@ -10805,7 +10862,7 @@ if(get_parent())
 
             //_synchronous_lock synchronouslock(puserinteractionParent == nullptr ? nullptr : puserinteractionParent->synchronization());
 
-            //window() = __create_new<::user::interaction_child>();
+            //window() = øcreate_new<::user::interaction_child>();
 
             //window()->m_puserinteraction = this;
 
@@ -11117,18 +11174,18 @@ if(get_parent())
 
       }
 
-      //m_puserinteraction->send_message(e_message_create, 0, (lparam)(lparam)& pusersystem->m_createstruct);
+      //m_puserinteraction->send_message(::user::e_message_create, 0, (lparam)(lparam)& pusersystem->m_createstruct);
       if (!(m_ewindowflag & ::e_window_flag_window_created))
       {
-         //            auto pmessage = __create_new <::message::create>();
-         //            pmessage->m_emessage = e_message_create;
+         //            auto pmessage = øcreate_new <::message::create>();
+         //            pmessage->m_eusermessage = ::user::e_message_create;
          //            m_puserinteraction->send_message(pmessage);
 
          //            m_puserinteraction->send_create_message();
 
          __check_refdbg
 
-            message_call(e_message_create);
+            message_call(::user::e_message_create);
 
          __check_refdbg
 
@@ -11222,7 +11279,7 @@ if(get_parent())
 
          information() << "on_finished_window_creation of Top Level Window";
 
-         post_message(e_message_after_create);
+         post_message(::user::e_message_after_create);
 
          if (!defer_post_pending_set_need_redraw())
          {
@@ -11428,7 +11485,7 @@ if(get_parent())
    ::user::interaction * interaction::get_first_child_window()
    {
 
-      _synchronous_lock synchronouslock(window()->m_pparticleChildrenSynchronization);
+      _synchronous_lock synchronouslock(window()->m_pparticleChildrenSynchronization, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       auto pacmeuserinteractionaChildren = m_pacmeuserinteractionaChildren;
 
@@ -11458,7 +11515,7 @@ if(get_parent())
 
       }
 
-      _synchronous_lock synchronouslock(pparent->window()->m_pparticleChildrenSynchronization);
+      _synchronous_lock synchronouslock(pparent->window()->m_pparticleChildrenSynchronization, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       auto pacmeuserinteractionaChildren = pparent->m_pacmeuserinteractionaChildren;
 
@@ -11483,7 +11540,7 @@ if(get_parent())
 
       {
 
-         _synchronous_lock synchronouslock(window()->m_pparticleChildrenSynchronization);
+         _synchronous_lock synchronouslock(window()->m_pparticleChildrenSynchronization, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          if (!bIgnoreChildren)
          {
@@ -11528,7 +11585,7 @@ if(get_parent())
 
          }
 
-         _synchronous_lock synchronouslockParent(puserinteractionParent->window()->m_pparticleChildrenSynchronization);
+         _synchronous_lock synchronouslockParent(puserinteractionParent->window()->m_pparticleChildrenSynchronization, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          auto pacmeuserinteractionaChildren = puserinteractionParent->m_pacmeuserinteractionaChildren;
 
@@ -11789,7 +11846,7 @@ if(get_parent())
          while (*psz)
          {
 
-            string strUtf8Character = get_utf8_char(psz);
+            string strUtf8Character = get_utf8_char(scopedstr);
 
             auto iCharacter = unicode_index(strUtf8Character);
 
@@ -11804,15 +11861,15 @@ if(get_parent())
    }
 
 
-   void interaction::set_window_text(const ::string & pszString)
+   void interaction::set_window_text(const ::scoped_string & scopedstrString)
    {
 
       {
 
-         _synchronous_lock synchronouslock(this->synchronization());
+         _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          //m_strWindowText2 = pszString;
-         m_textproperty.set_property(pszString, ::e_source_sync);
+         m_textproperty.set_property(scopedstrString, ::e_source_sync);
 
       }
 
@@ -11862,7 +11919,7 @@ if(get_parent())
       else
       {
 
-         _synchronous_lock synchronouslock(this->synchronization());
+         _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          //return m_strWindowText2;
 
@@ -11880,7 +11937,7 @@ if(get_parent())
    //
    //      character_count n = minimum(nMaxCount, strWindowText.length());
    //
-   //      ansi_count_copy(pszStringBuf, strWindowText, n);
+   //      ansi_count_copy(scopedstrStringBuf, strWindowText, n);
    //
    //      return n;
    //
@@ -11910,7 +11967,7 @@ if(get_parent())
    //   character_count interaction::get_window_text_length()
    //   {
    //
-   //      _synchronous_lock synchronouslock(this->synchronization());
+   //      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
    //
    //      if (window() == nullptr)
    //      {
@@ -12174,7 +12231,7 @@ if(get_parent())
 
       {
 
-         _synchronous_lock synchronouslock(window()->m_pmutexGraphics);
+         _synchronous_lock synchronouslock(window()->m_pmutexGraphics, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          auto pwindow = this->window();
 
@@ -12206,7 +12263,7 @@ if(get_parent())
             auto puserinteractionHold = ::as_pointer(this);
             auto pwindowingwindowHold = ::as_pointer(m_pacmewindowingwindow);
 
-         _synchronous_lock synchronouslock(window()->m_pmutexGraphics);
+         _synchronous_lock synchronouslock(window()->m_pmutexGraphics, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
 
             //
@@ -12269,9 +12326,9 @@ if(get_parent())
 
       }
 
-      message_call(e_message_destroy);
+      message_call(::user::e_message_destroy);
 
-      message_call(e_message_non_client_destroy);
+      message_call(::user::e_message_non_client_destroy);
 
    }
 
@@ -12281,7 +12338,7 @@ if(get_parent())
 
       {
 
-         _synchronous_lock synchronouslock(this->synchronization());
+         _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          try
          {
@@ -12371,7 +12428,7 @@ if(get_parent())
 
       {
 
-         _synchronous_lock synchronouslock(this->synchronization());
+         _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          if (m_puserinteractionpointeraOwned) m_puserinteractionpointeraOwned->destroy();
 
@@ -12409,7 +12466,7 @@ if(get_parent())
 
       {
 
-         _synchronous_lock synchronouslock(this->synchronization());
+         _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          m_puserinteractionpointeraOwned.release();
 
@@ -12450,7 +12507,7 @@ if(get_parent())
 
    //   {
 
-   //      _synchronous_lock synchronouslock(this->synchronization());
+   //      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //      try
    //      {
@@ -12705,7 +12762,7 @@ if(get_parent())
          else
          {
 
-            puserinteraction->call_route_message(e_message_size_parent, 0, (lparam)&sizeparentlayout);
+            puserinteraction->call_route_message(::user::e_message_size_parent, 0, (lparam)&sizeparentlayout);
 
          }
 
@@ -12839,7 +12896,7 @@ if(get_parent())
    void interaction::on_add_owned(::user::interaction_base * pprimitive)
    {
 
-      __defer_construct_new(m_puserinteractionpointeraOwned);
+      ødefer_construct_new(m_puserinteractionpointeraOwned);
 
       m_puserinteractionpointeraOwned->add_interaction(dynamic_cast <::user::interaction *> (pprimitive));
 
@@ -13289,7 +13346,7 @@ if(get_parent())
    ::collection::index interaction::child_zorder(::user::interaction * puserinteraction)
    {
 
-      _synchronous_lock synchronouslock(window()->m_pparticleChildrenSynchronization);
+      _synchronous_lock synchronouslock(window()->m_pparticleChildrenSynchronization, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (!m_pacmeuserinteractionaChildren)
       {
@@ -13315,7 +13372,7 @@ if(get_parent())
 
       }
 
-      _synchronous_lock synchronouslock(window()->m_pparticleChildrenSynchronization);
+      _synchronous_lock synchronouslock(window()->m_pparticleChildrenSynchronization, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (m_pacmeuserinteractionaChildren)
       {
@@ -13335,7 +13392,7 @@ if(get_parent())
                //if (strType.case_insensitive_contains("place_holder"))
                //{
 
-               //   _synchronous_lock synchronouslockChild(pchild->window()->m_pparticleChildrenSynchronization);
+               //   _synchronous_lock synchronouslockChild(pchild->window()->m_pparticleChildrenSynchronization, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
                //   if (pchild->m_puserinteractionpointeraChild
                //      && pchild->m_puserinteractionpointeraChild->has_interaction())
@@ -13798,11 +13855,29 @@ if(get_parent())
    void interaction::layout_children_zorder()
    {
 
+      ::string strType = ::type(this).name();
+
+      ::string strId = this->m_atomMatterId;
+
+      if (strId == "::user::line_layout(1)")
+      {
+
+         information() << "::user::line_layout(1)";
+
+      }
+
       //information() << "interaction::layout_children_zorder";
 
-      _synchronous_lock synchronouslock(window()->m_pparticleChildrenSynchronization);
+      _synchronous_lock synchronouslock(window()->m_pparticleChildrenSynchronization, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-      auto puiptraChildNew = __allocate::pointer_array < ::acme::user::interaction >(*m_pacmeuserinteractionaChildren);
+      //auto preferenceitemaA1 = m_pacmeuserinteractionaChildren->m_preferenceitema;
+
+      auto puiptraChildNew = øallocate ::pointer_array < ::acme::user::interaction >(*m_pacmeuserinteractionaChildren);
+
+      //auto preferenceitemaA2 = m_pacmeuserinteractionaChildren->m_preferenceitema;
+
+
+      //auto preferenceitemaB1 = puiptraChildNew->m_preferenceitema;
 
       zorder_sort(*puiptraChildNew, e_layout_sketch);
 
@@ -13812,13 +13887,10 @@ if(get_parent())
 
       auto pacmeuserinteractionaChildren = m_pacmeuserinteractionaChildren;
 
-      ::string strType = ::type(this).name();
-
       for (auto & pacmeuserinteractionChild  : *pacmeuserinteractionaChildren)
       {
 
          ::cast < ::user::interaction> pchild = pacmeuserinteractionChild;
-
          pchild->layout().sketch()._patch_order(iZOrder);
 
          pchild->layout().sketch().zorder().clear_request();
@@ -14038,7 +14110,7 @@ if(get_parent())
    bool interaction::layout_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       //if (!window() || !window()->m_puserinteraction)
       //{
@@ -14114,7 +14186,7 @@ if(get_parent())
 
       {
 
-         _synchronous_lock synchronouslock(window()->m_pparticleChildrenSynchronization);
+         _synchronous_lock synchronouslock(window()->m_pparticleChildrenSynchronization, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          auto pacmeuserinteractionaChildren = m_pacmeuserinteractionaChildren;
 
@@ -14301,7 +14373,7 @@ if(get_parent())
    void interaction::message_handler(::message::message * pmessage)
    {
 
-      if (pmessage->m_emessage == e_message_post_user)
+      if (pmessage->m_eusermessage == ::user::e_message_post_user)
       {
 
          auto pparticle = pmessage->m_union.m_pparticle;
@@ -14315,14 +14387,14 @@ if(get_parent())
 
          }
 
-         if (pmessagePost->m_emessage == e_message_scroll_y)
+         if (pmessagePost->m_eusermessage == ::user::e_message_scroll_y)
          {
 
-            informationf("e_message_scroll_y");
+            informationf("::user::e_message_scroll_y");
 
 
          }
-         else if (pmessagePost->m_emessage == e_message_text_composition)
+         else if (pmessagePost->m_eusermessage == ::user::e_message_text_composition)
          {
 
             informationf("message text composition");
@@ -14335,7 +14407,7 @@ if(get_parent())
 
       }
 
-      if (is_top_level())
+      if (is_top_level() && !is_child_interaction())
       {
 
          window()->message_handler(pmessage);
@@ -14357,7 +14429,7 @@ if(get_parent())
 
          //}
 
-         //printf_line("interaction::message_handler pmessage->m_emessage %lld", pmessage->m_emessage.as_long_long());
+         //printf_line("interaction::message_handler pmessage->m_eusermessage %lld", pmessage->m_eusermessage.as_long_long());
 
          if (pre_message_handler(pkey, bKeyMessage, pmessage))
          {
@@ -14368,41 +14440,41 @@ if(get_parent())
 
          }
 
-         if (pmessage->m_emessage == e_message_timer)
+         if (pmessage->m_eusermessage == ::user::e_message_timer)
          {
 
             //m_pthread->step_timer();
 
          }
-         else if (pmessage->m_emessage == e_message_left_button_down)
+         else if (pmessage->m_eusermessage == ::user::e_message_left_button_down)
          {
 
-            informationf("user::interaction::message_handler ::e_message_left_button_down");
+            informationf("user::interaction::message_handler ::user::e_message_left_button_down");
 
          }
-         else if (pmessage->m_emessage == e_message_left_button_up)
+         else if (pmessage->m_eusermessage == ::user::e_message_left_button_up)
          {
 
-            informationf("user::interaction::message_handler ::e_message_left_button_up");
+            informationf("user::interaction::message_handler ::user::e_message_left_button_up");
 
          }
-         else if (pmessage->m_emessage == e_message_mouse_move)
+         else if (pmessage->m_eusermessage == ::user::e_message_mouse_move)
          {
 
             //g_iMouseMove++;
 
-            //informationf("user::interaction::message_handler ::e_message_mouse_move");
+            //informationf("user::interaction::message_handler ::user::e_message_mouse_move");
             //printf("g_iMouseMove = %d\n", g_iMouseMove);
 
          }
-         else if (pmessage->m_emessage == e_message_paint)
+         else if (pmessage->m_eusermessage == ::user::e_message_paint)
          {
 
          }
-         else if (pmessage->m_emessage == e_message_left_button_up)
+         else if (pmessage->m_eusermessage == ::user::e_message_left_button_up)
          {
 
-            informationf("e_message_left_button_up (0)");
+            informationf("::user::e_message_left_button_up (0)");
 
          }
 
@@ -14481,7 +14553,7 @@ if(get_parent())
          //
          //         //pwindowing->set(pkey, get_oswindow(), m_pwindow, pkey->m_emessage, pkey->m_wparam, pkey->m_lparam);
          //
-         ////         if(pmessage->m_emessage == e_message_key_down)
+         ////         if(pmessage->m_eusermessage == ::user::e_message_key_down)
          ////         {
          ////
          ////            try
@@ -14496,7 +14568,7 @@ if(get_parent())
          ////            }
          ////
          ////         }
-         ////         else if(pmessage->m_emessage == e_message_key_up)
+         ////         else if(pmessage->m_eusermessage == ::user::e_message_key_up)
          ////         {
          ////
          ////            try
@@ -14516,7 +14588,7 @@ if(get_parent())
 
          pmessage->m_lresult = 0;
 
-         //if (pmessage->m_emessage == e_message_mouse_leave)
+         //if (pmessage->m_eusermessage == ::user::e_message_mouse_leave)
          //{
 
          //   _000OnMouseLeave(pmessage);
@@ -14525,15 +14597,15 @@ if(get_parent())
 
          //}
 
-         if (pmessage->m_emessage == e_message_left_button_down ||
-             pmessage->m_emessage == e_message_left_button_up ||
-             pmessage->m_emessage == e_message_middle_button_down ||
-             pmessage->m_emessage == e_message_middle_button_up ||
-             pmessage->m_emessage == e_message_right_button_down ||
-             pmessage->m_emessage == e_message_right_button_up ||
-             pmessage->m_emessage == e_message_left_button_double_click ||
-             pmessage->m_emessage == e_message_mouse_move ||
-             pmessage->m_emessage == e_message_mouse_wheel)
+         if (pmessage->m_eusermessage == ::user::e_message_left_button_down ||
+             pmessage->m_eusermessage == ::user::e_message_left_button_up ||
+             pmessage->m_eusermessage == ::user::e_message_middle_button_down ||
+             pmessage->m_eusermessage == ::user::e_message_middle_button_up ||
+             pmessage->m_eusermessage == ::user::e_message_right_button_down ||
+             pmessage->m_eusermessage == ::user::e_message_right_button_up ||
+             pmessage->m_eusermessage == ::user::e_message_left_button_double_click ||
+             pmessage->m_eusermessage == ::user::e_message_mouse_move ||
+             pmessage->m_eusermessage == ::user::e_message_mouse_wheel)
          {
 
             ::pointer<::message::mouse> pmouse = pmessage;
@@ -14545,9 +14617,9 @@ if(get_parent())
             return;
 
          }
-         /*      else if(pmessage->m_emessage == e_message_key_down ||
-                       pmessage->m_emessage == e_message_key_up ||
-                       pmessage->m_emessage == e_message_char)*/
+         /*      else if(pmessage->m_eusermessage == ::user::e_message_key_down ||
+                       pmessage->m_eusermessage == ::user::e_message_key_up ||
+                       pmessage->m_eusermessage == ::user::e_message_char)*/
          else if (bKeyMessage)
          {
 
@@ -14588,7 +14660,7 @@ if(get_parent())
 
          }
 
-         if (pmessage->m_emessage == e_message_subject)
+         if (pmessage->m_eusermessage == ::user::e_message_subject)
          {
 
             //if (m_puserinteraction != nullptr)
@@ -14628,13 +14700,13 @@ if(get_parent())
 
          }
 
-         if (pmessage->m_emessage == e_message_create)
+         if (pmessage->m_eusermessage == ::user::e_message_create)
          {
 
             //if (m_puserinteraction->m_procedureOnAfterCreate)
             //{
 
-            //   m_puserinteraction->post_message(e_message_after_create);
+            //   m_puserinteraction->post_message(::user::e_message_after_create);
 
             //}
 
@@ -15086,7 +15158,7 @@ if(get_parent())
    pointer_array<::acme::user::interaction> * interaction::children()
    {
 
-      _synchronous_lock synchronouslock(window()->m_pparticleChildrenSynchronization);
+      _synchronous_lock synchronouslock(window()->m_pparticleChildrenSynchronization, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (::is_null(m_pacmeuserinteractionaChildren))
       {
@@ -15170,7 +15242,7 @@ if(get_parent())
    void interaction::top_down_prefix()
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       ::string strType = ::type(this).name();
 
@@ -15278,7 +15350,7 @@ if(get_parent())
 
       bool bNeedPerformLayoutHere = need_on_perform_layout(pgraphics);
 
-      //_synchronous_lock synchronouslock(this->synchronization());
+      //_synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       //auto children = synchronized_get_children();
 
@@ -16237,7 +16309,7 @@ if(get_parent())
 
    //   }
 
-   //   //psystem->post_to_all_threads(e_message_kick_idle, 0, 0);
+   //   //psystem->post_to_all_threads(::user::e_message_kick_idle, 0, 0);
 
    //   return m_atomModalResult;
 
@@ -16276,7 +16348,7 @@ if(get_parent())
 
    //   }
 
-   //   post_message(e_message_close);
+   //   post_message(::user::e_message_close);
 
    //   if (::is_set(m_ptaskModal))
    //   {
@@ -16297,7 +16369,7 @@ if(get_parent())
    //}
 
 
-   lresult interaction::message_handler(::enum_message emessage, ::wparam wparam, ::lparam lparam)
+   lresult interaction::message_handler(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
    {
 
       // if (::is_null(m_puserinteraction))
@@ -16307,7 +16379,7 @@ if(get_parent())
 
       // }
 
-      // this->interaction_post(__allocate call_message_handler_task(m_puserinteraction, emessage, wparam, lparam));
+      // this->interaction_post(øallocate call_message_handler_task(m_puserinteraction, eusermessage, wparam, lparam));
 
       //auto pmessage
 
@@ -16315,7 +16387,7 @@ if(get_parent())
 
       ::pointer<::message::message>pmessage;
 
-      pmessage = get_message(emessage, wparam, lparam);
+      pmessage = get_message(eusermessage, wparam, lparam);
 
       pmessage->m_pchannel = this;
 
@@ -16328,7 +16400,7 @@ if(get_parent())
    }
 
 
-   lresult interaction::call_route_message(::enum_message emessage, ::wparam wparam, ::lparam lparam)
+   lresult interaction::call_route_message(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
    {
 
       // if (::is_null(m_puserinteraction))
@@ -16338,7 +16410,7 @@ if(get_parent())
 
       // }
 
-      // this->interaction_post(__allocate call_message_handler_task(m_puserinteraction, emessage, wparam, lparam));
+      // this->interaction_post(øallocate call_message_handler_task(m_puserinteraction, eusermessage, wparam, lparam));
 
       //auto pmessage
 
@@ -16346,7 +16418,7 @@ if(get_parent())
 
       ::pointer<::message::message>pmessage;
 
-      pmessage = get_message(emessage, wparam, lparam);
+      pmessage = get_message(eusermessage, wparam, lparam);
 
       pmessage->m_pchannel = this;
 
@@ -16359,7 +16431,7 @@ if(get_parent())
    }
 
 
-   void interaction::post_message(::enum_message emessage, ::wparam wparam, ::lparam lparam)
+   void interaction::post_message(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
    {
 
       if (::is_null(window()))
@@ -16369,23 +16441,23 @@ if(get_parent())
 
       }
 
-      _post([this, emessage, wparam, lparam]()
+      _post([this, eusermessage, wparam, lparam]()
          {
 
-            message_call(emessage, wparam, lparam);
+            message_call(eusermessage, wparam, lparam);
 
             });
-      //return window()->post_message(emessage, wparam, lparam);
+      //return window()->post_message(eusermessage, wparam, lparam);
 
    }
 
 
-   void interaction::post_object(::enum_message emessage, ::wparam wparam, ::lparam lparam)
+   void interaction::post_object(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
    {
 
       //bool bIsWindow = ::is_set(window()) && is_window();
 
-      //if (atom == e_message_quit || !bIsWindow)
+      //if (atom == ::user::e_message_quit || !bIsWindow)
       {
 
          {
@@ -16407,16 +16479,16 @@ if(get_parent())
 
       }
 
-      //return window()->post_message(emessage, wparam, lparam);
+      //return window()->post_message(eusermessage, wparam, lparam);
 
 
    }
 
 
-   //bool interaction::user_post(::enum_message emessage, ::wparam wparam, ::lparam lparam)
+   //bool interaction::user_post(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
    //{
    //
-   //   return user_thread()->post_message(emessage, wparam, lparam);
+   //   return user_thread()->post_message(eusermessage, wparam, lparam);
    //
    //}
 
@@ -17039,7 +17111,7 @@ if(get_parent())
 
 #endif
 
-      //      _synchronous_lock synchronouslock(this->synchronization());
+      //      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       //if (m_bTrackMouseLeave)
       //{
@@ -17136,6 +17208,12 @@ if(get_parent())
          information() << "interaction sketch_to_lading user::list_box";
 
       }
+      else if (strType == "app_core_desk::list_impact")
+      {
+
+         information() << "interaction sketch_to_lading app_core_desk::list_impact";
+
+      }
       // else if(strType.contains("main_frame"))
       // {
       //
@@ -17150,7 +17228,7 @@ if(get_parent())
       //
       // }
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       //      if (get_parent() == nullptr)
       //      {
@@ -17263,9 +17341,13 @@ if(get_parent())
       //
       //      }
 
+      auto &edisplaySketch = layout().sketch().m_edisplay;
+
       layout().lading() = layout().sketch();
 
       layout().sketch().reset_pending();
+
+      auto &edisplayLading = layout().lading().m_edisplay;
 
       if (layout().sketch().m_bImpactUpdateGoingOn)
       {
@@ -17336,7 +17418,7 @@ if(get_parent())
    void interaction::lading_to_layout(bool & bUpdateBuffer, bool & bUpdateWindow)
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       bUpdateBuffer = false;
 
@@ -17828,7 +17910,23 @@ if(get_parent())
    void interaction::layout_to_design()
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+
+
+            ::string strType = ::type(this).name();
+
+      if (strType == "user::list_box")
+      {
+
+         information() << "interaction layout_to_design user::list_box";
+      }
+      else if (strType == "app_core_desk::list_impact")
+      {
+
+         information() << "interaction layout_to_design app_core_desk::list_impact";
+      }
+
+      auto &edisplayOld = layout().design().m_edisplay;
 
       if (!layout().design().visual_state::operator==(layout().layout()))
       {
@@ -17838,6 +17936,8 @@ if(get_parent())
          m_bClipRectangle = false;
 
       }
+
+      auto &edisplayNew = layout().design().m_edisplay;
 
       if (!layout().design().m_zorder.is_change_request() || layout().layout().m_zorder.is_change_request())
       {
@@ -18018,18 +18118,18 @@ if(get_parent())
    //}
 
 
-   void interaction::OnLinkClick(const ::string & psz, const ::string & pszTarget)
+   void interaction::OnLinkClick(const ::scoped_string & scopedstr, const ::scoped_string & scopedstrTarget)
    {
 
-      auto phyperlink = __create_new<::hyperlink>();
+      auto phyperlink = øcreate_new<::hyperlink>();
 
-      phyperlink->m_strLink = psz;
+      phyperlink->m_strLink = scopedstr;
 
-      phyperlink->m_strTarget = pszTarget;
+      phyperlink->m_strTarget = scopedstrTarget;
 
       phyperlink->run();
 
-      //hyperlink.open_link(psz, "", pszTarget);
+      //hyperlink.open_link(scopedstr, "", pszTarget);
 
    }
 
@@ -18085,8 +18185,8 @@ if(get_parent())
             information() << "";
 
 
-            _synchronous_lock synchronouslock(m_puserinteractionParent->window()->m_pparticleChildrenSynchronization);
-            //auto puiptraChildNew = __allocate(
+            _synchronous_lock synchronouslock(m_puserinteractionParent->window()->m_pparticleChildrenSynchronization, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+            //auto puiptraChildNew = øallocate(
 //                    ::user::interaction_array(*m_puserinteractionParent->m_puserinteractionpointeraChild));
             m_puserinteractionParent->m_pacmeuserinteractionaChildren->erase(this);
             //m_puserinteractionParent->m_puserinteractionpointeraChild = puiptraChildNew;
@@ -18157,7 +18257,7 @@ if(get_parent())
    {
 
       //information() << "interaction::on_add_child start\n";
-      _synchronous_lock synchronouslock(window()->m_pparticleChildrenSynchronization);
+      _synchronous_lock synchronouslock(window()->m_pparticleChildrenSynchronization, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       puserinteractionChild->m_pinteractionScaler = m_pinteractionScaler;
 
@@ -18166,13 +18266,13 @@ if(get_parent())
       // if (::is_set(m_puserinteractionpointeraChild))
       // {
 
-      //    puserinteractionpointeraChildNew = __allocate ::user::interaction_array(*m_puserinteractionpointeraChild);
+      //    puserinteractionpointeraChildNew = øallocate ::user::interaction_array(*m_puserinteractionpointeraChild);
 
       // }
       // else
       // {
 
-      __defer_construct_new(m_pacmeuserinteractionaChildren);
+      ødefer_construct_new(m_pacmeuserinteractionaChildren);
 
       // }
 
@@ -18228,16 +18328,16 @@ if(get_parent())
    void interaction::route_as_parent_mouse_message(::message::mouse * pmouse)
    {
 
-      auto emessage = pmouse->m_emessage;
+      auto eusermessage = pmouse->m_eusermessage;
 
       at_end_of_scope
       {
 
-         pmouse->m_emessage = emessage;
+         pmouse->m_eusermessage = eusermessage;
 
       };
 
-      ::make_parent_mouse_message(pmouse->m_emessage);
+      ::make_parent_mouse_message(pmouse->m_eusermessage);
 
       route_message(pmouse);
 
@@ -18275,10 +18375,10 @@ if(get_parent())
    bool interaction::on_mouse_message(::message::mouse * pmouse)
    {
 
-      if (pmouse->m_emessage == e_message_left_button_down)
+      if (pmouse->m_eusermessage == ::user::e_message_left_button_down)
       {
 
-         informationf("on_mouse_message e_message_left_button_down");
+         informationf("on_mouse_message ::user::e_message_left_button_down");
 
       }
 
@@ -18286,8 +18386,8 @@ if(get_parent())
 
       ::user::interaction * pchild = this;
 
-      if (pmouse->m_emessage < e_message_mouse_first
-         || pmouse->m_emessage > e_message_mouse_last)
+      if (pmouse->m_eusermessage < ::user::e_message_mouse_first
+         || pmouse->m_eusermessage > ::user::e_message_mouse_last)
       {
 
          pchild = child_from_point(pmouse->m_pointHost);
@@ -18428,27 +18528,27 @@ if(get_parent())
 
 
 #define _NEW_MESSAGE(TYPE) \
-   auto pmessage = __create_new<TYPE>(); \
+   auto pmessage = øcreate_new<TYPE>(); \
    pmessage->m_pchannel = this; \
    pmessage->m_oswindow = oswindow; \
    pmessage->m_puserinteraction = this; \
    pmessage->m_pwindow = pwindow.m_p; \
-   pmessage->m_emessage = emessage; \
+   pmessage->m_eusermessage = eusermessage; \
    pmessage->m_wparam = wparam; \
    pmessage->m_lparam = lparam; \
    pmessageBase = pmessage
 
 
    ::pointer<::message::message>
-      interaction::get_message(::enum_message emessage, ::wparam wparam, ::lparam lparam, ::message::enum_prototype eprototype)
+      interaction::get_message(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam, ::user::enum_message_prototype eprototype)
    {
 
       ::pointer<::message::message>pmessageBase;
 
-      if (eprototype == ::message::e_prototype_none)
+      if (eprototype == ::user::e_message_prototype_none)
       {
 
-         eprototype = ::message::get_message_prototype(emessage, 0);
+         eprototype = ::user::get_message_prototype(eusermessage, 0);
 
       }
 
@@ -18465,44 +18565,44 @@ if(get_parent())
 
       switch (eprototype)
       {
-      case ::message::e_prototype_none:
+      case ::user::e_message_prototype_none:
       {
 
          _NEW_MESSAGE(::user::message);
 
       }
       break;
-      case ::message::e_prototype_create:
+      case ::user::e_message_prototype_create:
       {
          _NEW_MESSAGE(::message::create);
 
       }
       break;
-      case ::message::e_prototype_enable:
+      case ::user::e_message_prototype_enable:
       {
          _NEW_MESSAGE(::message::enable);
 
       }
       break;
-      case ::message::e_prototype_non_client_activate:
+      case ::user::e_message_prototype_non_client_activate:
       {
          _NEW_MESSAGE(::message::nc_activate);
          {
 
-            //::user::message::set(oswindow, pwindow, emessage, wparam, lparam);
+            //::user::message::set(oswindow, pwindow, eusermessage, wparam, lparam);
 
             pmessage->m_bActive = wparam != false;
 
          }
       }
       break;
-      case ::message::e_prototype_key:
+      case ::user::e_message_prototype_key:
       {
          _NEW_MESSAGE(::message::key);
-         //void key::set(oswindow oswindow, ::windowing::window * pwindow, ::enum_message emessage, ::wparam wparam, ::lparam lparam)
+         //void key::set(oswindow oswindow, ::windowing::window * pwindow, ::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
          {
 
-            // ::user::message::set(oswindow, pwindow, emessage, wparam, lparam);
+            // ::user::message::set(oswindow, pwindow, eusermessage, wparam, lparam);
 
             pmessage->m_nChar = static_cast<unsigned int>(wparam);
 
@@ -18520,10 +18620,10 @@ if(get_parent())
 
       }
       break;
-      case ::message::e_prototype_timer:
+      case ::user::e_message_prototype_timer:
       {
 
-         //throw ::exception(::exception("do not use e_message_timer or Windows set_timer/kill_timer"));
+         //throw ::exception(::exception("do not use ::user::e_message_timer or Windows set_timer/kill_timer"));
 
          _NEW_MESSAGE(::message::timer);
 
@@ -18531,7 +18631,7 @@ if(get_parent())
 
       }
       break;
-      case ::message::e_prototype_show_window:
+      case ::user::e_message_prototype_show_window:
       {
          _NEW_MESSAGE(::message::show_window);
          pmessage->m_bShow = wparam != false;
@@ -18540,12 +18640,12 @@ if(get_parent())
 
       }
       break;
-      case ::message::e_prototype_set_cursor:
+      case ::user::e_message_prototype_set_cursor:
       {
          _NEW_MESSAGE(::message::set_cursor);
       }
       break;
-      case ::message::e_prototype_non_client_hit_test:
+      case ::user::e_message_prototype_non_client_hit_test:
       {
          _NEW_MESSAGE(::message::nc_hit_test);
          pmessage->m_point.x() = lparam_int_x(lparam);
@@ -18553,18 +18653,18 @@ if(get_parent())
          pmessage->m_point.y() = lparam_int_y(lparam);
       }
       break;
-      case ::message::e_prototype_move:
+      case ::user::e_message_prototype_move:
       {
          _NEW_MESSAGE(::message::reposition);
          pmessage->m_point = lparam.point();
       }
       break;
-      case ::message::e_prototype_erase_background:
+      case ::user::e_message_prototype_erase_background:
       {
          _NEW_MESSAGE(::message::erase_bkgnd);
       }
       break;
-      case ::message::e_prototype_scroll:
+      case ::user::e_message_prototype_scroll:
       {
          _NEW_MESSAGE(::message::scroll);
 
@@ -18573,7 +18673,7 @@ if(get_parent())
 
 #endif
 
-         //::user::message::set(oswindow, pwindow, emessage, wparam, lparam);
+         //::user::message::set(oswindow, pwindow, eusermessage, wparam, lparam);
 
          pmessage->m_ecommand = (enum_scroll_command)(short)lower_unsigned_short(wparam);
 
@@ -18581,33 +18681,33 @@ if(get_parent())
 
       }
       break;
-      case ::message::e_prototype_set_focus:
+      case ::user::e_message_prototype_set_focus:
       {
          _NEW_MESSAGE(::message::set_keyboard_focus);
       }
       break;
-      case ::message::e_prototype_kill_focus:
+      case ::user::e_message_prototype_kill_focus:
       {
          _NEW_MESSAGE(::message::kill_keyboard_focus);
          pmessage->m_oswindowNew = (::oswindow)wparam.m_number;
       }
       break;
 #if !defined(UNIVERSAL_WINDOWS) && !defined(LINUX) && !defined(__APPLE__) && !defined(__ANDROID__) && !defined(__BSD__)
-      case ::message::e_prototype_window_pos:
+      case ::user::e_message_prototype_window_pos:
 
       {
          _NEW_MESSAGE(::message::window_pos);
          pmessage->m_pWINDOWPOS = reinterpret_cast<void *>(lparam.m_lparam);
       }
       break;
-      case ::message::e_prototype_non_client_calc_size:
+      case ::user::e_message_prototype_non_client_calc_size:
       {
          _NEW_MESSAGE(::message::nc_calc_size);
          pmessage->m_pNCCALCSIZE_PARAMS = reinterpret_cast<void *>(lparam.m_lparam);
       }
       break;
 #endif
-      case ::message::e_prototype_mouse:
+      case ::user::e_message_prototype_mouse:
       {
          _NEW_MESSAGE(::message::mouse);
          pmessage->m_ebuttonstate = (::user::enum_button_state)wparam.m_number;
@@ -18627,13 +18727,13 @@ if(get_parent())
 
       }
       break;
-      case ::message::e_prototype_object:
+      case ::user::e_message_prototype_object:
       {
          _NEW_MESSAGE(::message::particle);
-         //void particle::set(oswindow oswindow, ::windowing::window * pwindow, ::enum_message emessage, ::wparam wparam, ::lparam lparam)
+         //void particle::set(oswindow oswindow, ::windowing::window * pwindow, ::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
          {
 
-            //::user::message::set(oswindow, pwindow, emessage, wparam, lparam);
+            //::user::message::set(oswindow, pwindow, eusermessage, wparam, lparam);
 
             ::particle_pointer pparticle(lparam);
 
@@ -18644,7 +18744,7 @@ if(get_parent())
          }
       }
       break;
-      case ::message::e_prototype_mouse_wheel:
+      case ::user::e_message_prototype_mouse_wheel:
       {
          _NEW_MESSAGE(::message::mouse_wheel);
 
@@ -18660,7 +18760,7 @@ if(get_parent())
 
       }
       break;
-      case ::message::e_prototype_size:
+      case ::user::e_message_prototype_size:
       {
          _NEW_MESSAGE(::message::size);
 
@@ -18669,15 +18769,15 @@ if(get_parent())
          pmessage->m_size = ::int_size(lparam_int_x(lparam), lparam_int_y(lparam));
       }
       break;
-      case ::message::e_prototype_activate:
+      case ::user::e_message_prototype_activate:
       {
          _NEW_MESSAGE(::message::activate);
          //pmessage = p;
-         //default_set(pmessage, emessage, wparam, lparam)
-         //void activate::set(oswindow oswindow, ::windowing::window * pwindow, ::enum_message emessage, ::wparam wparam, ::lparam lparam)
+         //default_set(pmessage, eusermessage, wparam, lparam)
+         //void activate::set(oswindow oswindow, ::windowing::window * pwindow, ::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
          //{
 
-            //::user::message::set(oswindow, pwindow, emessage, wparam, lparam);
+            //::user::message::set(oswindow, pwindow, eusermessage, wparam, lparam);
 
          pmessage->m_eactivate = (enum_activate)(lower_unsigned_short(wparam));
 
@@ -18715,7 +18815,7 @@ if(get_parent())
 
       }
       break;
-      case ::message::e_prototype_mouse_activate:
+      case ::user::e_message_prototype_mouse_activate:
       {
          _NEW_MESSAGE(::message::mouse_activate);
       }
@@ -18723,7 +18823,7 @@ if(get_parent())
       default:
       {
 
-         auto pmessage = ::channel::get_message(emessage, wparam, lparam, eprototype);
+         auto pmessage = ::channel::get_message(eusermessage, wparam, lparam, eprototype);
 
          pmessageBase = pmessage;
 
@@ -18831,7 +18931,7 @@ if(get_parent())
 
       }
 
-      _synchronous_lock synchronouslock(window()->m_pparticleChildrenSynchronization);
+      _synchronous_lock synchronouslock(window()->m_pparticleChildrenSynchronization, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       auto pacmeuserinteractionaChildren = m_pacmeuserinteractionaChildren;
 
@@ -19309,7 +19409,7 @@ if(get_parent())
    ::user::interaction * interaction::first_child()
    {
 
-      _synchronous_lock synchronouslock(window()->m_pparticleChildrenSynchronization);
+      _synchronous_lock synchronouslock(window()->m_pparticleChildrenSynchronization, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       try
       {
@@ -19345,7 +19445,7 @@ if(get_parent())
    ::user::interaction * interaction::last_child()
    {
 
-      _synchronous_lock synchronouslock(window()->m_pparticleChildrenSynchronization);
+      _synchronous_lock synchronouslock(window()->m_pparticleChildrenSynchronization, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       try
       {
@@ -19406,7 +19506,7 @@ if(get_parent())
    ::user::interaction * interaction::next_sibling(::user::interaction * pinteraction)
    {
 
-      _synchronous_lock synchronouslock(children_synchronization());
+      _synchronous_lock synchronouslock(children_synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       try
       {
@@ -19490,7 +19590,7 @@ if(get_parent())
    ::user::interaction * interaction::previous_sibling(::user::interaction * pinteraction)
    {
 
-      _synchronous_lock synchronouslock(window()->m_pparticleChildrenSynchronization);
+      _synchronous_lock synchronouslock(window()->m_pparticleChildrenSynchronization, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       auto pacmeuserinteractionaChildren = m_pacmeuserinteractionaChildren;
 
@@ -19972,7 +20072,7 @@ if(get_parent())
 
    //{
 
-   //   post_message(e_message_simple_command,(wparam)ecommand,lparam);
+   //   post_message(::user::e_message_simple_command,(wparam)ecommand,lparam);
 
 
    //   return true;
@@ -20136,7 +20236,7 @@ if(get_parent())
          else
          {
 
-            _synchronous_lock synchronouslock(this->synchronization());
+            _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
             auto pthread = m_ptaskTransparentMouseEvents;
 
@@ -20760,7 +20860,7 @@ if(get_parent())
 
       }
 
-      ::int_rectangle_array rectangleaCertainlyDamaged;
+      ::int_rectangle_array_base rectangleaCertainlyDamaged;
 
       ::int_rectangle rectangleBefore;
 
@@ -20768,7 +20868,7 @@ if(get_parent())
 
       {
 
-         synchronous_lock synchronouslock(this->synchronization());
+         synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          auto & layoutstate = layout().m_statea[elayout];
 
@@ -21906,7 +22006,7 @@ if(get_parent())
       if (bSet && !is_empty(rectangleNew) && iMatchingMonitor >= 0)
       {
 
-         _synchronous_lock slUserMutex(synchronization());
+         _synchronous_lock slUserMutex(synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          order(zorderParam);
 
@@ -22020,7 +22120,7 @@ if(get_parent())
       if (bSet && (!is_empty(rectangle) || iMatchingMonitor >= 0))
       {
 
-         _synchronous_lock slUserMutex(synchronization());
+         _synchronous_lock slUserMutex(synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          order(zorderParam);
 
@@ -22241,7 +22341,7 @@ if(get_parent())
             catch (...)
             {
 
-               pexception = __allocate::exception(::error_catch_all_exception, "Failed to create window");
+               pexception = øallocate::exception(::error_catch_all_exception, "Failed to create window");
 
             }
 
@@ -22312,7 +22412,7 @@ if(get_parent())
    ::pointer < ::user::thread > interaction::create_user_thread()
    {
 
-      auto puserthread = __create_new < ::user::thread >();
+      auto puserthread = øcreate_new < ::user::thread >();
 
       puserthread->initialize_user_thread(window());
 
@@ -22328,7 +22428,7 @@ if(get_parent())
    ::pointer < ::user::graphics_thread > interaction::create_user_graphics_thread()
    {
 
-      auto pusergraphicsthread = __øcreate < ::user::graphics_thread >();
+      auto pusergraphicsthread = øcreate < ::user::graphics_thread >();
 
       pusergraphicsthread->initialize_graphics_thread(this);
 
@@ -22341,7 +22441,7 @@ if(get_parent())
    }
 
 
-   void interaction::create_message_queue(const ::string & strName)
+   void interaction::create_message_queue(const ::scoped_string & scopedstrName)
    {
 
       //if (is_window())
@@ -22356,7 +22456,7 @@ if(get_parent())
 
       ////m_bUserElementOk = true;
 
-      ////window() = __øcreate<interaction_impl>();
+      ////window() = øcreate<interaction_impl>();
 
       //if (!window())
       //{
@@ -22369,7 +22469,7 @@ if(get_parent())
 
       m_bMessageOnlyWindow = true;
 
-      m_strName = strName;
+      m_strName = scopedstrName;
 
       create_window();
 
@@ -22440,7 +22540,7 @@ if(get_parent())
       if (bSet && (!::is_empty(rectangleNew) || iMatchingMonitor >= 0))
       {
 
-         _synchronous_lock slUserMutex(synchronization());
+         _synchronous_lock slUserMutex(synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          display(e_display_iconic, useractivation);
 
@@ -23159,7 +23259,7 @@ if(get_parent())
       //3
       //The window's owner window is being restored.
 
-      //_synchronous_lock synchronouslock(mutex_children());
+      //_synchronous_lock synchronouslock(mutex_children(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       //if(m_uiptraChild.has_element())
       //{
@@ -23178,7 +23278,7 @@ if(get_parent())
       //            if (pui && pui->is_this_visible())
       //            {
 
-      //               pui->send_message(e_message_show_window, 1, SW_PARENTOPENING);
+      //               pui->send_message(::user::e_message_show_window, 1, SW_PARENTOPENING);
 
       //            }
 
@@ -23203,7 +23303,7 @@ if(get_parent())
       //            if (uiptra[i].is_set() && uiptra[i]->is_this_visible())
       //            {
 
-      //               uiptra[i]->send_message(e_message_show_window, 0, SW_PARENTCLOSING);
+      //               uiptra[i]->send_message(::user::e_message_show_window, 0, SW_PARENTCLOSING);
 
       //            }
 
@@ -23444,7 +23544,7 @@ if(get_parent())
    // bool interaction::get_child(::pointer<::user::interaction> & pinteraction)
    // {
    //
-   //    _synchronous_lock synchronouslock(window()->m_pparticleChildrenSynchronization);
+   //    _synchronous_lock synchronouslock(window()->m_pparticleChildrenSynchronization, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
    //
    //    auto pacmeuserinteractionaChildren = m_pacmeuserinteractionaChildren;
    //
@@ -23463,7 +23563,7 @@ if(get_parent())
    // bool interaction::rget_child(::pointer<::user::interaction> & pinteraction)
    // {
    //
-   //    _synchronous_lock synchronouslock(window()->m_pparticleChildrenSynchronization);
+   //    _synchronous_lock synchronouslock(window()->m_pparticleChildrenSynchronization, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
    //
    //    auto puserinteractionpointeraChild = m_puserinteractionpointeraChild;
    //
@@ -23721,7 +23821,7 @@ if(get_parent())
    void interaction::kick_queue()
    {
 
-      post_message(e_message_null);
+      post_message(::user::e_message_null);
 
       //      return true;
 
@@ -23790,7 +23890,7 @@ if(get_parent())
    //}
 
 
-   void interaction::show_tooltip(const ::string & str, bool bError)
+   void interaction::show_tooltip(const ::scoped_string & scopedstr, bool bError)
    {
 
       //
@@ -23798,7 +23898,7 @@ if(get_parent())
       //      if (m_ptooltip.is_null())
       //      {
       //
-      //         m_ptooltip = __allocate tooltip(this);
+      //         m_ptooltip = øallocate tooltip(this);
       //
       //
       //         m_ptooltip->create_window_ex(pusersystem);
@@ -24030,7 +24130,7 @@ if(get_parent())
    //      //
    //      //      {
    //      //
-   //      //         _synchronous_lock synchronouslock(this->synchronization());
+   //      //         _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
    //      //
    //      //         for (::collection::index i = 0; i < m_uiptraChild.get_size(); i++)
    //      //         {
@@ -24096,7 +24196,7 @@ if(get_parent())
 
       //#ifdef WINDOWS
 
-      _synchronous_lock synchronouslock(top_level()->synchronization());
+      _synchronous_lock synchronouslock(top_level()->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       auto pwindowThis = window();
 
@@ -24148,7 +24248,7 @@ if(get_parent())
 
       }
 
-      puserinteraction->post_message(e_message_simple_command, e_simple_command_check_transparent_mouse_events);
+      puserinteraction->post_message(::user::e_message_simple_command, e_simple_command_check_transparent_mouse_events);
 
 #endif
 
@@ -24236,11 +24336,11 @@ if(get_parent())
 
    //               m_bMouseHover = true;
 
-   //               auto pmouse = __allocate message::mouse();
+   //               auto pmouse = øallocate message::mouse();
 
    //               pmouse->m_eflagMessage += ::message::flag_synthesized;
 
-   //               pmouse->m_emessage = e_message_mouse_move;
+   //               pmouse->m_emessage = ::user::e_message_mouse_move;
    //               pmouse->m_playeredUserPrimitive = pinteraction;
    //               pmouse->m_point = pointCurrent;
    //               pmouse->m_bTranslated = true;
@@ -24255,7 +24355,7 @@ if(get_parent())
 
    //               get_impl()->mouse_hover_erase(this);
 
-   //               send_message(e_message_mouse_leave);
+   //               send_message(::user::e_message_mouse_leave);
 
    //               set_need_redraw();
 
@@ -24317,7 +24417,7 @@ if(get_parent())
    //
    //#endif
    //
-   //      get_wnd()->send_message(e_message_mouse_move, 0, pointCurrent);
+   //      get_wnd()->send_message(::user::e_message_mouse_move, 0, pointCurrent);
    //
    //   }
 
@@ -24411,16 +24511,16 @@ if(get_parent())
 
       {
 
-         auto pmessageOnClick = __create_new<::message::message>();
+         auto pmessageOnClick = øcreate_new<::message::message>();
 
-         pmessageOnClick->m_emessage = e_message_click;
+         pmessageOnClick->m_eusermessage = ::user::e_message_click;
 
          route_message(pmessageOnClick);
 
          if (pmessageOnClick->m_bRet)
          {
             
-            information() << "interaction::on_click_generation e_message_click returned true";
+            information() << "interaction::on_click_generation ::user::e_message_click returned true";
 
             return true;
 
@@ -24454,7 +24554,7 @@ if(get_parent())
                   || pitem->m_item.m_eelement == ::e_element_switch_icon)
          {
 
-            post_message(e_message_switch);
+            post_message(::user::e_message_switch);
 
             return true;
 
@@ -24487,7 +24587,7 @@ if(get_parent())
 void interaction::on_control_box_close()
 {
    
-   post_message(e_message_close);
+   post_message(::user::e_message_close);
 
 }
 
@@ -24715,7 +24815,7 @@ void interaction::on_control_box_zoom(){
    }
 
 
-   void interaction::set_bitmap_source(const string & strBitmapSource)
+   void interaction::set_bitmap_source(const ::scoped_string & scopedstrBitmapSource)
    {
 
       if (!window())
@@ -24729,7 +24829,7 @@ void interaction::on_control_box_zoom(){
 
       //auto estatus =
 
-      window()->set_bitmap_source(strBitmapSource);
+      window()->set_bitmap_source(scopedstrBitmapSource);
 
       //if (!estatus)
       //{
@@ -24957,7 +25057,7 @@ void interaction::on_control_box_zoom(){
    //
    //      auto strWindowText = _get_window_text();
    //
-   //      strncpy(psz, strWindowText, n);
+   //      strncpy(scopedstr, strWindowText, n);
    //
    //      psz[n - 1] = '\0';
    //
@@ -25013,7 +25113,7 @@ void interaction::on_control_box_zoom(){
    //      if (!g_pmutexChildren)
    //      {
    //
-   //         __raw_construct(g_pmutexChildren);
+   //         øraw_construct(g_pmutexChildren);
    //
    //      }
    //
@@ -25097,19 +25197,19 @@ void interaction::on_control_box_zoom(){
          //      m_bDefaultClickHandling = true;
          //
          //      // this is not needed, user::interaction hooks left_button_down by default.
-         //      //MESSAGE_LINK(e_message_left_button_down, pchannel, this, &interaction::on_message_left_button_down);
+         //      //USER_MESSAGE_LINK(::user::e_message_left_button_down, pchannel, this, &interaction::on_message_left_button_down);
          //
-         //      MESSAGE_LINK(e_message_left_button_up, pchannel, this, &interaction::on_message_left_button_up);
+         //      USER_MESSAGE_LINK(::user::e_message_left_button_up, pchannel, this, &interaction::on_message_left_button_up);
          //
          //
          //#if MOUSE_MIDDLE_BUTTON_MESSAGE_HANDLING_DEBUG
          //
-         //      MESSAGE_LINK(e_message_middle_button_down, pchannel, this, &interaction::on_message_middle_button_down);
-         //      MESSAGE_LINK(e_message_middle_button_up, pchannel, this, &interaction::on_message_middle_button_up);
+         //      USER_MESSAGE_LINK(::user::e_message_middle_button_down, pchannel, this, &interaction::on_message_middle_button_down);
+         //      USER_MESSAGE_LINK(::user::e_message_middle_button_up, pchannel, this, &interaction::on_message_middle_button_up);
          //
          //#endif
-         ////      MESSAGE_LINK(e_message_mouse_move, pchannel, this, &interaction::on_message_mouse_move);
-         ////      MESSAGE_LINK(e_message_mouse_leave, pchannel, this, &interaction::on_message_mouse_leave);
+         ////      USER_MESSAGE_LINK(::user::e_message_mouse_move, pchannel, this, &interaction::on_message_mouse_move);
+         ////      USER_MESSAGE_LINK(::user::e_message_mouse_leave, pchannel, this, &interaction::on_message_mouse_leave);
          //
          //   }
          //
@@ -25119,12 +25219,12 @@ void interaction::on_control_box_zoom(){
          //
          //      m_bDefaultMouseHoverHandling = true;
          //
-         ////      MESSAGE_LINK(e_message_left_button_down, pchannel, this, &interaction::on_message_left_button_down);
-         ////      MESSAGE_LINK(e_message_left_button_up, pchannel, this, &interaction::on_message_left_button_up);
-         ////      MESSAGE_LINK(e_message_middle_button_down, pchannel, this, &interaction::on_message_middle_button_down);
-         ////      MESSAGE_LINK(e_message_middle_button_up, pchannel, this, &interaction::on_message_middle_button_up);
-         //      MESSAGE_LINK(e_message_mouse_move, pchannel, this, &interaction::on_message_mouse_move);
-         //      MESSAGE_LINK(e_message_mouse_leave, pchannel, this, &interaction::on_message_mouse_leave);
+         ////      USER_MESSAGE_LINK(::user::e_message_left_button_down, pchannel, this, &interaction::on_message_left_button_down);
+         ////      USER_MESSAGE_LINK(::user::e_message_left_button_up, pchannel, this, &interaction::on_message_left_button_up);
+         ////      USER_MESSAGE_LINK(::user::e_message_middle_button_down, pchannel, this, &interaction::on_message_middle_button_down);
+         ////      USER_MESSAGE_LINK(::user::e_message_middle_button_up, pchannel, this, &interaction::on_message_middle_button_up);
+         //      USER_MESSAGE_LINK(::user::e_message_mouse_move, pchannel, this, &interaction::on_message_mouse_move);
+         //      USER_MESSAGE_LINK(::user::e_message_mouse_leave, pchannel, this, &interaction::on_message_mouse_leave);
          //
          //   }
 
@@ -25132,8 +25232,8 @@ void interaction::on_control_box_zoom(){
          //void interaction::install_update_data_message_routing(::channel * pchannel)
          //{
 
-         //   MESSAGE_LINK(e_message_need_load_form_data, pchannel, this, &interaction::on_message_need_load_form_data);
-         //   MESSAGE_LINK(e_message_need_save_form_data, pchannel, this, &interaction::on_message_need_save_form_data);
+         //   USER_MESSAGE_LINK(::user::e_message_need_load_form_data, pchannel, this, &interaction::on_message_need_load_form_data);
+         //   USER_MESSAGE_LINK(::user::e_message_need_save_form_data, pchannel, this, &interaction::on_message_need_save_form_data);
 
          //}
 
@@ -25935,7 +26035,7 @@ void interaction::on_control_box_zoom(){
 
       //{
 
-      //   //_synchronous_lock synchronouslock(this->synchronization());
+      //   //_synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       //   pmouse->m_pcursor = get_mouse_cursor();
 
@@ -26987,7 +27087,7 @@ __check_refdbg;
 
          __check_refdbg;
 
-         //_synchronous_lock synchronouslock(this->synchronization());
+         //_synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          user_mouse_set_cursor(pmouse, get_mouse_cursor());
 
@@ -27086,7 +27186,7 @@ __check_refdbg;
             if (window()->m_timeHoverNoiseSuppression.elapsed().m_iSecond > 10000)
             {
 
-               information() << "AiAiAi";
+               //information() << "AiAiAi";
 
             }
 
@@ -27294,24 +27394,24 @@ __check_refdbg;
 
          if (pitemLeftButtonDoubleClick->m_eitemflag & e_item_flag_double_click_as_second_click)
          {
+            
+            ::pointer<::message::mouse> pmouseUp1 = this->øcreate_new_clone(pmouse);
 
-            ::pointer<::message::mouse> pmouseUp1 = this->__create_new_clone(pmouse);
-
-            pmouseUp1->m_emessage = e_message_left_button_up;
+            pmouseUp1->m_eusermessage = ::user::e_message_left_button_up;
 
             get_wnd()->post_message(pmouseUp1);
 
-            ::pointer<::message::mouse> pmouseDown2 = this->__create_new_clone(pmouse);
+            ::pointer<::message::mouse> pmouseDown2 = this->øcreate_new_clone(pmouse);
 
-            pmouseDown2->m_emessage = e_message_left_button_down;
+            pmouseDown2->m_eusermessage = ::user::e_message_left_button_down;
 
             get_wnd()->post_message(pmouseDown2);
 
             preempt(100_ms);
 
-            ::pointer<::message::mouse> pmouseUp2 = this->__create_new_clone(pmouse);
+            ::pointer<::message::mouse> pmouseUp2 = this->øcreate_new_clone(pmouse);
 
-            pmouseUp2->m_emessage = e_message_left_button_up;
+            pmouseUp2->m_eusermessage = ::user::e_message_left_button_up;
 
             get_wnd()->post_message(pmouseUp2);
 
@@ -27548,15 +27648,15 @@ __check_refdbg;
 
       }
 
-      auto pcontextmenu = __allocate::message::context_menu();
+      auto pcontextmenu = øallocate::message::context_menu();
 
       pcontextmenu->m_oswindow = oswindow();
       pcontextmenu->m_pwindow = window();
-      pcontextmenu->m_emessage = e_message_context_menu;
+      pcontextmenu->m_eusermessage = ::user::e_message_context_menu;
       pcontextmenu->m_pointMessage = pmouse->m_pointHost;
 
       //;; pcontextmenu->m_wpar
-      //pcontextmenu->set(oswindow(), window(), e_message_context_menu, (wparam)(iptr)oswindow(), pmouse->m_point.lparam());
+      //pcontextmenu->set(oswindow(), window(), ::user::e_message_context_menu, (wparam)(iptr)oswindow(), pmouse->m_point.lparam());
 
       message_handler(pcontextmenu);
 
@@ -27827,7 +27927,7 @@ __check_refdbg;
 
          }
 
-         ::int_rectangle_array rectanglea;
+         ::int_rectangle_array_base rectanglea;
 
          if (::is_item_set(pitemOldHover))
          {
@@ -28009,7 +28109,7 @@ __check_refdbg;
    ::item_pointer interaction::update_hover_according_to_last_hover_update(e_zorder ezorder)
    {
 
-      auto pmouse = __create_new < ::message::mouse >();
+      auto pmouse = øcreate_new < ::message::mouse >();
 
       pmouse->m_pointHost = host_mouse_cursor_position();
 
@@ -28049,7 +28149,7 @@ __check_refdbg;
    void interaction::on_message_mouse_leave(::message::message * pmessage)
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       ::string strType = ::type(this).name();
 
@@ -28307,12 +28407,12 @@ __check_refdbg;
 
          auto ppath = puseritem->m_ppath;
 
-         if (1)
-         {
-
-            return false;
-
-         }
+//         if (1)
+//         {
+//
+//            return false;
+//
+//         }
 
          auto pgraphics = get_internal_draw2d_graphics();
 
@@ -28383,7 +28483,7 @@ __check_refdbg;
    ::item_pointer interaction::on_items_hit_test(const ::int_point & point, e_zorder ezorder, ::collection::index iIdContainer, ::item_array * pitema)
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       //auto pointScroll = point + m_pointScroll + m_pointBarDragScroll;
 
@@ -28439,7 +28539,7 @@ __check_refdbg;
    void interaction::defer_setup_default_bottom_right_resize_user_item()
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       //information() << "defer_setup_default_bottom_right_resize_user_item";
 
@@ -28525,7 +28625,7 @@ __check_refdbg;
       //if (ezorder & e_zorder_back)
       //{
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       auto pitemClient = stock_item(e_element_client);
 
@@ -28553,7 +28653,7 @@ __check_refdbg;
    void interaction::setup_default_client_area_user_item()
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       auto pitemClient = stock_item(e_element_client);
 
@@ -28603,7 +28703,7 @@ __check_refdbg;
    //}
 
 
-   bool interaction::on_action(const ::string & pszId)
+   bool interaction::on_action(const ::scoped_string & scopedstrId)
    {
 
       auto pinteractionParent = get_parent();
@@ -28611,7 +28711,7 @@ __check_refdbg;
       if (::is_set(pinteractionParent))
       {
 
-         if (pinteractionParent->on_action(pszId))
+         if (pinteractionParent->on_action(scopedstrId))
          {
 
             return true;
@@ -28676,7 +28776,7 @@ __check_refdbg;
 
       //            pgraphics->payload("set_transparent") = "set_transparent";
 
-      //            auto prectangleitem = __create_new < ::geometry2d::rectangle_item >();
+      //            auto prectangleitem = øcreate_new < ::geometry2d::rectangle_item >();
 
       //            pgraphics->get_clip_box(prectangleitem->m_item);
 
@@ -28964,10 +29064,10 @@ __check_refdbg;
    }
 
 
-   //pointer< ::sequence < ::conversation > > interaction::message_box(const ::string& strMessage, const ::string& strTitle, const ::e_message_box& emessagebox)
+   //pointer< ::sequence < ::conversation > > interaction::message_box(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::user::e_message_box& emessagebox)
    //{
 
-   //   auto pmessagebox = __øcreate < ::user::message_box >();
+   //   auto pmessagebox = øcreate < ::user::message_box >();
 
    //   auto psequence = pmessagebox->show(this, strMessage, strTitle, emessagebox);
 
@@ -29052,12 +29152,12 @@ __check_refdbg;
 
 
 
-   void interaction::edit_on_text(string str)
+   void interaction::edit_on_text(const ::scoped_string & scopedstr)
    {
 
       //set_text(str, ::e_source_user);
 
-      m_textproperty.set_text(str, ::e_source_user);
+      m_textproperty.set_text(scopedstr, ::e_source_user);
 
    }
 
@@ -29070,8 +29170,10 @@ __check_refdbg;
    }
 
 
-   void interaction::on_text_composition(string str)
+   void interaction::on_text_composition(const ::scoped_string & scopedstr)
    {
+
+      ::string str(scopedstr);
 
       auto psz = str.c_str();
 
@@ -29268,7 +29370,7 @@ __check_refdbg;
    ::user::interaction * interaction::child_at(::collection::index iIndex)
    {
 
-      _synchronous_lock synchronouslock(window()->m_pparticleChildrenSynchronization);
+      _synchronous_lock synchronouslock(window()->m_pparticleChildrenSynchronization, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (::is_null(m_pacmeuserinteractionaChildren))
       {
@@ -29921,7 +30023,8 @@ __check_refdbg;
       pToolBar->SetButtonStyle(m_nIndex, nNewStyle | TBBS_CHECKBOX);*/
    }
 
-   void control_cmd_ui::SetText(const ::string &)
+
+   void control_cmd_ui::SetText(const ::scoped_string & scopedstr)
    {
       // ignore it
    }
@@ -29930,7 +30033,7 @@ __check_refdbg;
    atom control_cmd_ui::GetControlCommand(atom atom)
    {
       ::atom idCommand;
-      if (m_mapControlCommand.lookup(atom, idCommand))
+      if (m_mapControlCommand.find(atom, idCommand))
       {
          return atom;
       }
@@ -29952,18 +30055,20 @@ __check_refdbg;
    }
 
 
-   string interaction::get_class_style(string strClass)
+   string interaction::get_class_style(const ::scoped_string & scopedstrClass)
    {
 
-      if (strClass.is_empty())
+      if (scopedstrClass.is_empty())
       {
 
          return "";
 
       }
 
-      if (!strClass.contains(','))
+      if (!scopedstrClass.contains(','))
       {
+
+         ::string strClass(scopedstrClass);
 
          strClass.trim();
 
@@ -29994,9 +30099,9 @@ __check_refdbg;
 
       }
 
-      string_array straClass;
+      string_array_base straClass;
 
-      straClass.add_tokens(strClass, ",", false);
+      straClass.add_tokens(scopedstrClass, ",", false);
 
       string strStyle;
 
@@ -30019,17 +30124,17 @@ __check_refdbg;
    }
 
 
-   void interaction::set_class_style(string strClass, string strStyle)
+   void interaction::set_class_style(const ::scoped_string & scopedstrClass, const ::scoped_string & scopedstrStyle)
    {
 
-      if (strClass.contains(","))
+      if (scopedstrClass.contains(","))
       {
 
          throw ::exception(error_bad_argument);
 
       }
 
-      m_mapClassStyle[strClass] = strStyle;
+      m_mapClassStyle[scopedstrClass] = scopedstrStyle;
 
       //return true;
 
@@ -30066,17 +30171,17 @@ __check_refdbg;
    }
 
 
-   void interaction::load_style(string strStyle)
+   void interaction::load_style(const ::scoped_string & scopedstrStyle)
    {
 
-      string_array stra;
+      string_array_base stra;
 
-      stra.explode(";", strStyle);
+      stra.explode(";", scopedstrStyle);
 
       for (auto & str : stra)
       {
 
-         string_array straItem;
+         string_array_base straItem;
 
          straItem.explode(":", str);
 
@@ -31101,7 +31206,7 @@ __check_refdbg;
       //
       //void interaction::pick_multiple_file(
       //   const ::array < ::pair < ::string, ::string > > & filetypes,
-      //   const ::function < void(const ::file::path_array &) >& function)
+      //   const ::function < void(const ::file::path_array_base &) >& function)
       //{
       //
       //   node()->pick_multiple_file(oswindow(),
@@ -31264,5 +31369,3 @@ CLASS_DECL_AURA void __set_bottom_right(const ::int_point & pointBottomRight)
    g_pointAuraBottomRight = pointBottomRight;
 
 }
-
-

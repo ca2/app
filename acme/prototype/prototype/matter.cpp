@@ -266,7 +266,7 @@ bool matter::is_ready_to_quit() const
 //}
 
 
-bool matter::is_thread() const
+bool matter::is_thread_class() const
 {
 
    return false;
@@ -322,7 +322,7 @@ bool matter::thread_is_running() const
 }
 
 
-const char * matter::get_task_tag()
+const_char_pointer matter::get_task_tag()
 {
 
    return nullptr;
@@ -425,7 +425,7 @@ void matter::notify_on_destroy(::property_object * pparticle)
 //
 //   va_copy(ptr1, valist);
 //
-//   str.formatf_arguments(pszFormat, valist);
+//   str.formatf_arguments(scopedstrFormat, valist);
 //
 //   va_end(ptr1);
 //
@@ -682,7 +682,7 @@ CLASS_DECL_ACME void __call(const ::procedure & procedure)
 
 
 
-//::pointer < ::subparticle > matter::message_box(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails)
+//::pointer < ::subparticle > matter::message_box(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::user::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails)
 //{
 //
 //   auto psequence = nano()->message_box(strMessage, strTitle, emessagebox, strDetails);
@@ -697,23 +697,23 @@ CLASS_DECL_ACME void __call(const ::procedure & procedure)
 
 
 
-bool matter::_handle_uri(const ::string & strUri)
+bool matter::_handle_uri(const ::scoped_string & scopedstrUri)
 {
 
-   return handle_uri(strUri);
+   return handle_uri(scopedstrUri);
 
 }
 
 
-bool matter::_handle_call(::payload & payload, const ::string & strObject, const ::string & strMember, ::property_set & propertyset)
+bool matter::_handle_call(::payload & payload, const ::scoped_string & scopedstrObject, const ::scoped_string & scopedstrMember, ::property_set & propertyset)
 {
 
-   return handle_call(payload, strObject, strMember, propertyset);
+   return handle_call(payload, scopedstrObject, scopedstrMember, propertyset);
 
 }
 
 
-//bool matter::_handle_call(::payload & payload, const ::string & strMember, ::property_set & propertyset)
+//bool matter::_handle_call(::payload & payload, const ::scoped_string & scopedstrMember, ::property_set & propertyset)
 //{
 //
 //   return handle_call(payload, blockMember, propertyset);
@@ -721,15 +721,15 @@ bool matter::_handle_call(::payload & payload, const ::string & strObject, const
 //}
 
 
-bool matter::handle_uri(const ::string & stringUri)
+bool matter::handle_uri(const ::scoped_string & scopedstringUri)
 {
 
-   return _handle_uri(stringUri);
+   return _handle_uri(scopedstringUri);
 
 }
 
 
-bool matter::handle_call(::payload & payload, const ::string & strObject, const ::string & strMember, ::property_set & propertyset)
+bool matter::handle_call(::payload & payload, const ::scoped_string & scopedstrObject, const ::scoped_string & scopedstrMember, ::property_set & propertyset)
 {
 
    return false;
@@ -737,7 +737,7 @@ bool matter::handle_call(::payload & payload, const ::string & strObject, const 
 }
 
 //
-//bool matter::handle_call(::payload & payload, const ::string & strMember, ::property_set & propertyset)
+//bool matter::handle_call(::payload & payload, const ::scoped_string & scopedstrMember, ::property_set & propertyset)
 //{
 //
 //   return false;
@@ -749,7 +749,7 @@ bool matter::handle_call(::payload & payload, const ::string & strObject, const 
 //::topic_pointer matter::create_topic(const ::atom & atom)
 //{
 //
-//   auto ptopic = __allocate ::topic(atom);
+//   auto ptopic = øallocate ::topic(atom);
 //
 //   ptopic->m_papplication = system();
 //
@@ -761,16 +761,16 @@ bool matter::handle_call(::payload & payload, const ::string & strObject, const 
 bool matter::__get_posted_payload_synchronously(const ::function < void(const ::procedure &) > & functionPost, const ::function < ::payload(void) > & functionReturn, ::payload & payload)
 {
 
-   auto psynchronizer = __allocate ::parallelization::synchronizer();
+   auto psynchronizer = øallocate ::parallelization::synchronizer();
 
    psynchronizer->set_nok();
 
-   auto function = [functionReturn, &payload, psynchronizer]()
+   auto function = [this, functionReturn, &payload, psynchronizer]()
    {
 
       auto payloadReturn = functionReturn();
 
-      synchronous_lock synchronizationlock(psynchronizer->synchronization());
+      synchronous_lock synchronizationlock(psynchronizer->synchronization(), this, SYNCHRONOUS_LOCK_SUFFIX);
 
       psynchronizer->m_happeningGoingToWrite.set_happening();
 
@@ -818,7 +818,7 @@ bool matter::__get_posted_payload_synchronously(const ::function < void(const ::
 void matter::__send_procedure(const ::function < void(const ::procedure &) > & functionPost, const ::procedure & procedureParam)
 {
 
-   auto psignalization = __allocate ::parallelization::signalization();
+   auto psignalization = øallocate ::parallelization::signalization();
 
    auto procedure = procedureParam;
 

@@ -9,7 +9,7 @@
 #include "impact_host.h"
 #include "pane_tab_impact.h"
 #include "font_impact.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "acme/constant/simple_command.h"
 #include "acme/platform/keep.h"
 #include "acme/platform/system.h"
@@ -17,10 +17,10 @@
 #include "apex/database/_binary_stream.h"
 #include "apex/message/simple_command.h"
 #include "acme/handler/request.h"
-#include "base/user/user/tab_pane.h"
-#include "base/user/user/document.h"
-#include "base/user/user/single_document_template.h"
-#include "base/user/simple/child_frame.h"
+#include "berg/user/user/tab_pane.h"
+#include "berg/user/user/document.h"
+#include "berg/user/user/single_document_template.h"
+#include "berg/user/simple/child_frame.h"
 #include "core/user/user/user.h"
 #include "core/platform/application.h"
 #include "core/platform/session.h"
@@ -98,7 +98,7 @@ namespace userex
 
       ::user::impact::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_create, pchannel, this, &impact_host::on_message_create);
+      USER_MESSAGE_LINK(::user::e_message_create, pchannel, this, &impact_host::on_message_create);
 
    }
 

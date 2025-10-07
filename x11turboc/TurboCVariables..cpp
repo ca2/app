@@ -40,5 +40,5 @@
 #ifdef WITH_X
 #include "graphics.h"
 #endif
-// conio.h has to be last in the list.
+// conio.h has to be last in the list_base.
 #include "conio.h"

@@ -37,13 +37,13 @@ namespace user
    }
 
 
-   //system::system(unsigned int uiExStyle, const ::string & pszClassName, const ::string & pszWindowName, unsigned int uStyle, ::int_rectangle rectangle, ::request * prequest) :
+   //system::system(unsigned int uiExStyle, const ::scoped_string & scopedstrClassName, const ::scoped_string & scopedstrWindowName, unsigned int uStyle, ::int_rectangle rectangle, ::request * prequest) :
    //system(rectangle)
    //{
 
    //   m_createstruct.dwExStyle = uiExStyle;
-   //   set_class_name(pszClassName);
-   //   set_window_name(pszWindowName);
+   //   set_class_name(scopedstrClassName);
+   //   set_window_name(scopedstrWindowName);
    //   m_createstruct.style = uStyle;
    //   m_pcreate = pcreate;
    //   m_puserinteractionOwner = nullptr;
@@ -125,7 +125,7 @@ namespace user
    }
 
 
-   //void system::set_class_name(const ::string & pszClassName)
+   //void system::set_class_name(const ::scoped_string & scopedstrClassName)
    //{
 
    //   m_strClassName = pszClassName;
@@ -135,7 +135,7 @@ namespace user
    //}
 
 
-   //void system::set_window_name(const ::string & pszWindowName)
+   //void system::set_window_name(const ::scoped_string & scopedstrWindowName)
    //{
 
    //   m_strWindowName = pszWindowName;
@@ -225,7 +225,7 @@ namespace user
          __check_refdbg
 
          //estatus =
-         pparticle->__id_construct(pinteraction, m_typeatomNewImpact);
+         pparticle->øid_construct(pinteraction, m_typeatomNewImpact);
 
          __check_refdbg
 

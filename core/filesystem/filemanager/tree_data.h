@@ -46,7 +46,7 @@ namespace filemanager
 
 
 //#ifdef WINDOWS_DESKTOP
-//      map < EFolder, IShellFolder * > m_mapFolder;
+//      map_base < EFolder, IShellFolder * > m_mapFolder;
 //#endif
 
 
@@ -105,14 +105,14 @@ namespace filemanager
       void TakeAnimationSnapshot();
       virtual void StartAnimation();
       DECLARE_MESSAGE_HANDLER(_001OnMainPostMessage);
-      void GetSelectedFilePath(string_array & stra);
+      void GetSelectedFilePath(string_array_base & stra);
       virtual bool _001IsTranslucent() override;
 
 
       void browse_sync(const ::action_context & action_context) override;
       virtual void knowledge(const ::file::path & pathUser, const ::action_context & action_context,bool bOnlyParent);
       virtual void knowledge(const ::file::path& pathUser, const ::action_context& action_context) override;
-      //virtual void filemanager_tree_insert(const ::file::path & strPath,::file::listing & listingUser, ::file::listing & listingFinal, const ::action_context & action_context,bool bOnlyParent = false, bool bVoidTreeDataChangeEvent = true);
+      //virtual void filemanager_tree_insert(const ::file::path & strPath,::file::listing_base & listingUser, ::file::listing_base & listingFinal, const ::action_context & action_context,bool bOnlyParent = false, bool bVoidTreeDataChangeEvent = true);
       void _017EnsureVisible(const ::file::path & pathUser, const ::action_context & action_context);
 
 

@@ -25,14 +25,14 @@ namespace html
 
       void parse(html_data * pdocument, ::const_ansi_range & range);
 
-      style * rear_find(e_tag etag, const ::string & strClass, const ::string & strSubClass, const ::scoped_string & scopedstr);
-      const style * rear_find(e_tag etag, const ::string & strClass, const ::string & strSubClass, const ::scoped_string & scopedstr) const;
+      style * rear_find(e_tag etag, const ::scoped_string & scopedstrClass, const ::scoped_string & scopedstrSubClass, const ::scoped_string & scopedstr);
+      const style * rear_find(e_tag etag, const ::scoped_string & scopedstrClass, const ::scoped_string & scopedstrSubClass, const ::scoped_string & scopedstr) const;
 
-      style * rfind_border_width(e_tag etag, const ::string & strClass, const ::string & strSubClass, const ::scoped_string & scopedstr, float & f);
-      const style * rfind_border_width(e_tag etag, const ::string & strClass, const ::string & strSubClass, const ::scoped_string & scopedstr, float & f) const;
+      style * rfind_border_width(e_tag etag, const ::scoped_string & scopedstrClass, const ::scoped_string & scopedstrSubClass, const ::scoped_string & scopedstr, float & f);
+      const style * rfind_border_width(e_tag etag, const ::scoped_string & scopedstrClass, const ::scoped_string & scopedstrSubClass, const ::scoped_string & scopedstr, float & f) const;
 
-      style * rfind_border_color(e_tag etag, const ::string & strClass, const ::string & strSubClass, const ::scoped_string & scopedstr, ::color::color & color32);
-      const style * rfind_border_color(e_tag etag, const ::string & strClass, const ::string & strSubClass, const ::scoped_string & scopedstr, ::color::color & color32) const;
+      style * rfind_border_color(e_tag etag, const ::scoped_string & scopedstrClass, const ::scoped_string & scopedstrSubClass, const ::scoped_string & scopedstr, ::color::color & color32);
+      const style * rfind_border_color(e_tag etag, const ::scoped_string & scopedstrClass, const ::scoped_string & scopedstrSubClass, const ::scoped_string & scopedstr, ::color::color & color32) const;
 
       style * greater(style * pstyle1, style * pstyle2);
       const style * greater(const style * pstyle1, const style * pstyle2) const;

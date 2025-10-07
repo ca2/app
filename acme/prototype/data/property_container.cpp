@@ -38,7 +38,7 @@ namespace data
    }
 
 
-   bool property_container::set_property(const ::atom_array & atoma, const ::payload & payload, const ::action_context & actioncontext)
+   bool property_container::set_property(const ::atom_array_base & atoma, const ::payload & payload, const ::action_context & actioncontext)
    {
 
       property_change change{ this, atoma, payload, actioncontext };
@@ -59,7 +59,7 @@ namespace data
    }
 
 
-   ::payload property_container::get_property(const ::atom_array & atoma) const
+   ::payload property_container::get_property(const ::atom_array_base & atoma) const
    {
 
       return on_get_property(atoma);
@@ -75,7 +75,7 @@ namespace data
    }
 
 
-   ::payload property_container::on_get_property(const ::atom_array & atoma) const
+   ::payload property_container::on_get_property(const ::atom_array_base & atoma) const
    {
 
       return m_propertyset[atoma];

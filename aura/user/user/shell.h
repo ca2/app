@@ -63,13 +63,13 @@ namespace user
 
          image_key();
          image_key(const image_key & imagekey);
-         image_key(const ::string & strPath, const ::string & strShellThemePrefix, enum_file_attribute eattribute, enum_icon eicon);
+         image_key(const ::scoped_string & scopedstrPath, const ::scoped_string & scopedstrShellThemePrefix, enum_file_attribute eattribute, enum_icon eicon);
          ~image_key();
 
 
          bool operator == (const image_key & key) const;
-         void set_path(const ::string & strPath, bool bSetExtension = true);
-         void set_extension(const ::string & strPath);
+         void set_path(const ::scoped_string & scopedstrPath, bool bSetExtension = true);
+         void set_extension(const ::scoped_string & scopedstrPath);
 
          inline operator ::hash32() const
          {
@@ -101,7 +101,7 @@ namespace user
 
 
       template < typename PAYLOAD, class PAIR = pair < image_key, PAYLOAD > >
-      using image_key_map = map< image_key, PAYLOAD, PAIR >;
+      using image_key_map = map_base< image_key, PAYLOAD, PAIR >;
 
       bool m_bGetFileImageByIconPath : 1;
       bool m_bGetFileImageByFileTypeImage : 1;
@@ -111,7 +111,7 @@ namespace user
 
       ::int_map < ::image::image_list_pointer  >                          m_pimagelist; // int is the int_size
       ::int_map < ::image::image_list_pointer  >                          m_pimagelistHover; // int is the size;
-      map < ::pointer < ::user::interaction >, ::string_array >      m_mapInterest;
+      map_base < ::pointer < ::user::interaction >, ::string_array_base >      m_mapInterest;
 
 
    public:
@@ -147,7 +147,7 @@ namespace user
    protected:
 
 
-      ::int_array                                          m_iaSize;
+      ::int_array_base                                          m_iaSize;
 
 
    public:
@@ -157,7 +157,7 @@ namespace user
       image_key_map < image_key >                        m_imagekeymap;
 
       string                                             m_strShellThemePrefix;
-      string_array                                       m_straThemeableIconName;
+      string_array_base                                       m_straThemeableIconName;
       ::pointer<manual_reset_happening>                     m_pevNewImageKey;
 
       ::collection::index                                              m_iMaxThreadCount;
@@ -199,8 +199,8 @@ namespace user
 
       virtual void on_update_sizes_interest();
 
-      void add_size_interest(::int_array iaSize);
-      void set_size_interest(::int_array iaSize);
+      void add_size_interest(::int_array_base iaSize);
+      void set_size_interest(::int_array_base iaSize);
 
       int _reserve_image(const image_key & key);
 
@@ -216,8 +216,8 @@ namespace user
       
 
       virtual void get_file_extension_image(_get_file_image_ & getfileimage);
-      virtual int create_file_icon_image(const ::string & strPath, enum_file_attribute eattribute, enum_icon eicon, const string & strIcon, _get_file_image_ & getfileimage);
-      virtual int _create_file_icon_image(const ::string & strPath, enum_file_attribute eattribute, enum_icon eicon, const string & strIcon, _get_file_image_ & getfileimage);
+      virtual int create_file_icon_image(const ::scoped_string & scopedstrPath, enum_file_attribute eattribute, enum_icon eicon, const ::scoped_string & scopedstrIcon, _get_file_image_ & getfileimage);
+      virtual int _create_file_icon_image(const ::scoped_string & scopedstrPath, enum_file_attribute eattribute, enum_icon eicon, const ::scoped_string & scopedstrIcon, _get_file_image_ & getfileimage);
 
 
 
@@ -252,8 +252,8 @@ namespace user
       ::image::image_list * GetImageListHover(int iSize);
 
 
-      virtual enum_folder get_folder_type(::particle * pparticle, const ::wstring & wstrPath);
-      virtual enum_folder get_folder_type(::particle * pparticle, const ::string & strPath);
+      //virtual enum_folder get_folder_type(::particle * pparticle, const ::wstring & wstrPath);
+      virtual enum_folder get_folder_type(::particle * pparticle, const ::scoped_string & scopedstrPath);
 
 
 //      void set_image(int iIndex, int iSize, ::image::image *pimage);

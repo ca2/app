@@ -46,66 +46,66 @@ void directory_system::initialize(::particle * pparticle)
 }
 
 
-::file::path directory_system::app(string strPlatform, string strConfiguration)
+::file::path directory_system::app(const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration)
 {
 
 #ifdef WINDOWS
 
-   return stage("ca2 Store", strPlatform, strConfiguration) / "app.exe";
+   return stage("ca2 Store", scopedstrPlatform, scopedstrConfiguration) / "app.exe";
 
 #else
 
-   return stage("ca2 Store", strPlatform, strConfiguration) / "app";
+   return stage("ca2 Store", scopedstrPlatform, scopedstrConfiguration) / "app";
 
 #endif
 
 }
 
 
-::file::path directory_system::app_app_admin(string strPlatform, string strConfiguration)
+::file::path directory_system::app_app_admin(const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration)
 {
 
-   return stage("ca2 Store", strPlatform, strConfiguration) / "app_app_admin.exe";
+   return stage("ca2 Store", scopedstrPlatform, scopedstrConfiguration) / "app_app_admin.exe";
 
 }
 
 
-::file::path directory_system::app_app_nest(string strPlatform, string strConfiguration)
+::file::path directory_system::app_app_nest(const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration)
 {
 
-   return stage("ca2 Store", strPlatform, strConfiguration) / "app_app_nest.exe";
+   return stage("ca2 Store", scopedstrPlatform, scopedstrConfiguration) / "app_app_nest.exe";
 
 }
 
 
-::file::path directory_system::app_app(string strPlatform, string strConfiguration)
+::file::path directory_system::app_app(const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration)
 {
 
 #ifdef WINDOWS
 
-   return stage("ca2 Store", strPlatform, strConfiguration) / "app_app.exe";
+   return stage("ca2 Store", scopedstrPlatform, scopedstrConfiguration) / "app_app.exe";
 
 #else
 
-   return stage("ca2 Store", strPlatform, strConfiguration) / "app_app";
+   return stage("ca2 Store", scopedstrPlatform, scopedstrConfiguration) / "app_app";
 
 #endif
 
 }
 
 
-::file::path directory_system::vcredist(string strPlatform, string strConfiguration)
+::file::path directory_system::vcredist(const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration)
 {
 
-   return stage("ca2 Store", strPlatform, strConfiguration) / "vcredist.exe";
+   return stage("ca2 Store", scopedstrPlatform, scopedstrConfiguration) / "vcredist.exe";
 
 }
 
 
-::file::path directory_system::install_log(string strPlatform, string strConfiguration)
+::file::path directory_system::install_log(const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration)
 {
 
-   return install() / ("install-" + strPlatform + ".log");
+   return install() / ("install-" +scopedstrPlatform + ".log");
 
 }
 
@@ -213,7 +213,7 @@ string directory_system::system_short_name()
 }
 
 
-::file::path directory_system::inplace_install(string strAppId, string strPlatform, string strConfiguration)
+::file::path directory_system::inplace_install(const ::scoped_string & scopedstrAppId, const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration)
 {
 
 #ifdef WINDOWS_DESKTOP
@@ -222,9 +222,9 @@ string directory_system::system_short_name()
 
    string strFolder;
 
-   auto pFind = strAppId.find('/');
+   auto pFind = scopedstrAppId.find('/');
 
-   if (strPlatform.case_insensitive_order("win32") == 0 || strPlatform.case_insensitive_order("x86") == 0)
+   if (scopedstrPlatform.case_insensitive_order("win32") == 0 || scopedstrPlatform.case_insensitive_order("x86") == 0)
    {
 
       path = program_files_x86();
@@ -242,15 +242,15 @@ string directory_system::system_short_name()
    if (::is_null(pFind))
    {
 
-      path /= strAppId;
+      path /= scopedstrAppId;
 
    }
    else
    {
 
-      path /= strAppId(0, pFind);
+      path /= scopedstrAppId(0, pFind);
 
-      path /= strAppId(pFind + 1);
+      path /= scopedstrAppId(pFind + 1);
 
    }
 
@@ -270,7 +270,7 @@ string directory_system::system_short_name()
 }
 
 
-::file::path directory_system::inplace_matter_install(string strAppId, string strPlatform, string strConfiguration)
+::file::path directory_system::inplace_matter_install(const ::scoped_string & scopedstrAppId, const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration)
 {
 
 #ifdef WINDOWS_DESKTOP
@@ -279,7 +279,7 @@ string directory_system::system_short_name()
 
    string strFolder;
 
-   auto pFind = strAppId.find('/');
+   auto pFind = scopedstrAppId.find('/');
 
    path = ca2roaming();
 
@@ -352,15 +352,15 @@ string directory_system::system_short_name()
 
 
 
-::file::path directory_system::stage(string strAppId, string strPlatform, string strConfiguration)
+::file::path directory_system::stage(const ::scoped_string & scopedstrAppId, const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration)
 {
 
    return 
       inplace_install(
-         strAppId,
-         strPlatform,
-         strConfiguration) 
-      / "time" / node()->time_binary_platform(strPlatform) / strConfiguration;
+         scopedstrAppId,
+         scopedstrPlatform,
+         scopedstrConfiguration)
+      / "time" / node()->time_binary_platform(scopedstrPlatform) / scopedstrConfiguration;
 
 }
 
@@ -389,7 +389,7 @@ string directory_system::system_short_name()
 }
 
 
-::file::path directory_system::icloud_container2(const char * psz_iCloudContainerIdentifier)
+::file::path directory_system::icloud_container2(const_char_pointer psz_iCloudContainerIdentifier)
 {
    
    ::string str_iCloudContainerIdentifier;
@@ -405,7 +405,7 @@ string directory_system::system_short_name()
 }
 
 
-::file::path directory_system::icloud_container2_final(const char * psz_iCloudContainerIdentifier)
+::file::path directory_system::icloud_container2_final(const_char_pointer psz_iCloudContainerIdentifier)
 {
    
    throw ::interface_only();
@@ -415,7 +415,7 @@ string directory_system::system_short_name()
 }
 
 
-::file::path directory_system::icloud_container_documents(const char * psz_iCloudContainerIdentifier)
+::file::path directory_system::icloud_container_documents(const_char_pointer psz_iCloudContainerIdentifier)
 {
 
    return icloud_container2(psz_iCloudContainerIdentifier) / "Documents";
@@ -423,7 +423,7 @@ string directory_system::system_short_name()
 }
 
 
-bool directory_system::is_icloud_container(const ::file::path & path, const char * pszContentIdentifier)
+bool directory_system::is_icloud_container(const ::file::path & path, const_char_pointer pszContentIdentifier)
 {
    
    ::file::path pathFolder;
@@ -443,7 +443,7 @@ bool directory_system::is_icloud_container(const ::file::path & path, const char
 }
 
 
-bool directory_system::has_icloud_container(const char * pszContentIdentifier)
+bool directory_system::has_icloud_container(const_char_pointer pszContentIdentifier)
 {
    
    return false;
@@ -467,10 +467,10 @@ bool directory_system::has_icloud_container(const char * pszContentIdentifier)
 }
 
 
-void directory_system::set_path_install_folder(const string & strPath)
+void directory_system::set_path_install_folder(const ::scoped_string & scopedstrPath)
 {
 
-   m_pathInstallFolder = strPath;
+   m_pathInstallFolder = scopedstrPath;
 
 }
 
@@ -671,19 +671,19 @@ void directory_system::set_path_install_folder(const string & strPath)
 
 
 
-::file::path directory_system::pathfind(const string& pszEnv, const string& pszTopic, const string& pszMode)
+::file::path directory_system::pathfind(const ::scoped_string & scopedstrEnv, const ::scoped_string & scopedstrTopic, const ::scoped_string & scopedstrMode)
 {
 
-   ::file::path_array patha;
+   ::file::path_array_base patha;
 
-   patha.add_tokens(pszEnv, ":", false);
+   patha.add_tokens(scopedstrEnv, ":", false);
 
    string strCandidate;
 
    for (int i = 0; i < patha.get_count(); i++)
    {
 
-      strCandidate = patha[i] / pszTopic;
+      strCandidate = patha[i] / scopedstrTopic;
 
       //if (file()->exists(strCandidate))
       if (m_pfilesystem->exists(strCandidate))
@@ -812,11 +812,11 @@ void directory_system::create(const ::file::path & pathParam)
 
    string strName;
 
-   ::file::path pathDir;
+   ::file::path pathFolder;
 
    character_count iLastPo = -1;
 
-   ::file::path_array patha;
+   ::file::path_array_base patha;
 
    ascendants_path(path, patha);
 
@@ -907,10 +907,10 @@ void directory_system::_create2(const ::file::path & pathParam)
 
 }
 
-//string name(string path);
+//string name(const ::scoped_string & scopedstrPath);
 
 
-//void directory_system::enumrls(::file::path_array & stra, const ::scoped_string & scopedstr)
+//void directory_system::enumrls(::file::path_array_base & stra, const ::scoped_string & scopedstr)
 //{
 //
 //   throw ::interface_only();
@@ -918,7 +918,7 @@ void directory_system::_create2(const ::file::path & pathParam)
 //}
 //
 
-//void directory_system::rls_dir(::file::path_array & stra, const ::scoped_string & scopedstr)
+//void directory_system::rls_dir(::file::path_array_base & stra, const ::scoped_string & scopedstr)
 //{
 //
 //   throw ::interface_only();
@@ -928,7 +928,7 @@ void directory_system::_create2(const ::file::path & pathParam)
 //}
 //
 //
-//void directory_system::enumerate(::file::listing & listing, const ::scoped_string & scopedstr, ::file::e_flag eflag, enum_depth edepth)
+//void directory_system::enumerate(::file::listing_base & listing, const ::scoped_string & scopedstr, ::file::e_flag eflag, enum_depth edepth)
 //{
 //
 //   throw ::interface_only();
@@ -936,7 +936,7 @@ void directory_system::_create2(const ::file::path & pathParam)
 //}
 //
 //
-//void directory_system::enumerate(::file::listing & listing, const ::scoped_string & scopedstr, ::file::e_flag eflag, enum_depth edepth)
+//void directory_system::enumerate(::file::listing_base & listing, const ::scoped_string & scopedstr, ::file::e_flag eflag, enum_depth edepth)
 //{
 //
 //   throw ::interface_only();
@@ -944,7 +944,7 @@ void directory_system::_create2(const ::file::path & pathParam)
 //}
 
 
-bool directory_system::enumerate(::file::listing & listing)
+bool directory_system::enumerate(::file::listing_base & listing)
 {
 
    return ::file::enumerator::enumerate(listing);
@@ -952,10 +952,10 @@ bool directory_system::enumerate(::file::listing & listing)
 }
 
 
-bool directory_system::defer_enumerate_media_library(::file::listing& listing)
+bool directory_system::defer_enumerate_media_library(::file::listing_base& listing)
 {
 
-   _synchronous_lock sl(m_pmutexMediaLibrary);
+   _synchronous_lock sl(m_pmutexMediaLibrary, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    for (auto& pair : m_medialibraryitemmap)
    {
@@ -1009,7 +1009,7 @@ bool directory_system::defer_enumerate_media_library(::file::listing& listing)
 }
 
 
-bool directory_system::defer_enumerate_protocol(::file::listing& listing)
+bool directory_system::defer_enumerate_protocol(::file::listing_base& listing)
 {
    
    return node()->defer_enumerate_protocol(listing);
@@ -1020,7 +1020,7 @@ bool directory_system::defer_enumerate_protocol(::file::listing& listing)
 ::media_library::item* directory_system::media_library_item(const ::file::path& path)
 {
 
-   _synchronous_lock sl(m_pmutexMediaLibrary);
+   _synchronous_lock sl(m_pmutexMediaLibrary, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    string strId(path);
 
@@ -1117,15 +1117,15 @@ bool directory_system::defer_media_library_representative_file_name(::file::path
 
 
 
-bool directory_system::list(string_array & stra, const ::scoped_string & scopedstr, ::file::e_flag eflag)
+bool directory_system::list_base(string_array_base & stra, const ::scoped_string & scopedstr, ::file::e_flag eflag)
 {
 
-   return ::file::enumerator::list(stra, scopedstr, eflag);
+   return ::file::enumerator::list_base(stra, scopedstr, eflag);
 
 }
 
 
-::file::listing directory_system::folders(const ::file::path& path)
+::file::listing_base directory_system::folders(const ::file::path& path)
 {
 
    return ::file::enumerator::folders(path);
@@ -1133,7 +1133,7 @@ bool directory_system::list(string_array & stra, const ::scoped_string & scopeds
 }
 
 
-::file::listing directory_system::files(const ::file::path& path)
+::file::listing_base directory_system::files(const ::file::path& path)
 {
 
     return ::file::enumerator::files(path);
@@ -1141,7 +1141,7 @@ bool directory_system::list(string_array & stra, const ::scoped_string & scopeds
 }
 
 
-::file::listing directory_system::folders_and_files(const ::file::path& path)
+::file::listing_base directory_system::folders_and_files(const ::file::path& path)
 {
 
    return ::file::enumerator::folders_and_files(path);
@@ -1150,7 +1150,7 @@ bool directory_system::list(string_array & stra, const ::scoped_string & scopeds
 
 
 
-//void directory_system::enumerate(::file::path_array & stra, const ::scoped_string & scopedstr)
+//void directory_system::enumerate(::file::path_array_base & stra, const ::scoped_string & scopedstr)
 //{
 //
 //   throw ::interface_only();
@@ -1158,7 +1158,7 @@ bool directory_system::list(string_array & stra, const ::scoped_string & scopeds
 //}
 //
 //
-//void directory_system::ls_file(::file::path_array & stra, const ::scoped_string & scopedstr)
+//void directory_system::ls_file(::file::path_array_base & stra, const ::scoped_string & scopedstr)
 //{
 //
 //   throw ::interface_only();
@@ -1166,7 +1166,7 @@ bool directory_system::list(string_array & stra, const ::scoped_string & scopeds
 //}
 //
 
-//         ::file::path pathfind(const string & pszEnv, const string & pszTopic, const string & pszMode);
+//         ::file::path pathfind(const ::scoped_string & scopedstrEnv, const ::scoped_string & scopedstrTopic, const ::scoped_string & scopedstrMode);
 
 
          //::file::path archive();
@@ -1195,17 +1195,17 @@ int directory_system::make_path(const ::scoped_string & scopedstr)
 
 
       //string name(const ::file::path & path);
-      //bool mk(const ::string & strPath);
+      //bool mk(const ::scoped_string & scopedstrPath);
       //bool _mk(const  char * path); // makes a directory path (all intermediates too)
       //bool is(const ::file::path & path);
       //bool _is(const ::file::path & path);
       //bool mk(const  char * path); // makes a directory path (all intermediates too)
       //bool mkdir(const  char * path); // only creates if parent dir already exists
-      //void ls(::file::path_array & patha, const ::file::path & path);
-      //void ls_dir(::file::path_array & patha, const ::file::path & path);
-      //void ls_file(::file::path_array & patha, const ::file::path & path);
-      //void rls(::file::path_array & patha, const ::file::path & path);
-      //void rls_dir(::file::path_array & patha, const ::file::path & path);
+      //void ls(::file::path_array_base & patha, const ::file::path & path);
+      //void ls_dir(::file::path_array_base & patha, const ::file::path & path);
+      //void ls_file(::file::path_array_base & patha, const ::file::path & path);
+      //void rls(::file::path_array_base & patha, const ::file::path & path);
+      //void rls_dir(::file::path_array_base & patha, const ::file::path & path);
 
 
 //::file::path directory_system::module_folder()
@@ -1298,12 +1298,12 @@ void directory_system::erase_recursively(const ::file::path &path)
 }
 
 
-string_to_string directory_system::map_content(const ::file::path & path)
+string_to_string_base directory_system::map_content(const ::file::path & path)
 {
 
-   ::string_to_string stringmap;
+   ::string_to_string_base stringmap;
 
-   ::file::listing listing;
+   ::file::listing_base listing;
 
    listing.set_file_listing(path);
 
@@ -1321,12 +1321,12 @@ string_to_string directory_system::map_content(const ::file::path & path)
 }
 
 
-string_array directory_system::enumerate_content(const ::file::path &path)
+string_array_base directory_system::enumerate_content(const ::file::path &path)
 {
 
-   ::string_array stra;
+   ::string_array_base stra;
 
-   ::file::listing listing;
+   ::file::listing_base listing;
 
    listing.set_file_listing(path);
 
@@ -1388,7 +1388,7 @@ void directory_system::change_to_home()
 void directory_system::add_media_library_item(::media_library::item* pmedialibraryitem)
 {
 
-   _synchronous_lock lock(m_pmutexMediaLibrary);
+   _synchronous_lock lock(m_pmutexMediaLibrary, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    auto emedialibrary = pmedialibraryitem->media_library_type();
 
@@ -1448,7 +1448,7 @@ bool directory_system::is_accessible(const ::file::path & path)
 }
 
 
-bool directory_system::contains_files(const ::file::path& path, const ::string_array& straName, int iMinimumSize)
+bool directory_system::contains_files(const ::file::path& path, const ::string_array_base& straName, int iMinimumSize)
 {
 
    for (auto& strName : straName)
@@ -1575,7 +1575,7 @@ void directory_system::init_system()
 
    }
 
-   //__øconstruct(m_pfilewatcher);
+   //øconstruct(m_pfilewatcher);
 
    pdirectorysystem->create(this->bookmark());
 
@@ -1589,13 +1589,13 @@ void directory_system::init_system()
    //if (m_pziputil == nullptr)
    //{
 
-   //   m_pziputil = __allocate ::zip::util();
+   //   m_pziputil = øallocate ::zip::util();
 
    //}
 
    ::string strAppId = this->appid();
 
-   information() << "directory_system::init_system strAppId : " << strAppId;
+   debug() << "directory_system::init_system strAppId : " << strAppId;
 
    m_pathDefaultAppData = compute_default_app_data_path();
 
@@ -1659,7 +1659,7 @@ void directory_system::init_system()
 
    }
 
-   information() << "m_pathAppData : " << m_pathAppData;
+   debug() << "m_pathAppData : " << m_pathAppData;
 
 }
 
@@ -1761,7 +1761,7 @@ void directory_system::destroy()
 //}
 
 
-//::file::path directory_system::application_installer_folder(const ::file::path& pathExe, string strAppId, const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema)
+//::file::path directory_system::application_installer_folder(const ::file::path& pathExe, const ::scoped_string & scopedstrAppId, const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema)
 //{
 //
 //   return "";
@@ -1769,7 +1769,7 @@ void directory_system::destroy()
 //}
 
 
-//::file::path directory_system::get_application_path(string strAppId, const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration)
+//::file::path directory_system::get_application_path(const ::scoped_string & scopedstrAppId, const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration)
 //{
 //
 //   return "";
@@ -1777,7 +1777,7 @@ void directory_system::destroy()
 //}
 
 
-// ::file::path directory_system::get_last_run_application_path_file(string strAppId)
+// ::file::path directory_system::get_last_run_application_path_file(const ::scoped_string & scopedstrAppId)
 // {
 
 //    return "";
@@ -1785,7 +1785,7 @@ void directory_system::destroy()
 // }
 
 
-// ::file::path directory_system::get_last_run_application_path(string strAppId)
+// ::file::path directory_system::get_last_run_application_path(const ::scoped_string & scopedstrAppId)
 // {
 
 //    return "";

@@ -39,29 +39,29 @@ namespace http
    }
 
 
-   void get_socket::OnDataArrived(const char *, memsize len)
+   void get_socket::OnDataArrived(const_char_pointer ,memsize len)
    {
       __UNREFERENCED_PARAMETER(len);
    }
 
-   void get_socket::OnHeader(atom key, const string & value)
+   void get_socket::OnHeader(const ::atom & atom, const ::scoped_string & scopedstr)
    {
 
-      ::sockets::http_get_socket::OnHeader(key, value);
+      ::sockets::http_get_socket::OnHeader(atom, scopedstr);
 
-      if(key == "location")
+      if(atom == "location")
       {
 
-         m_strHeaderLocation = value;
+         m_strHeaderLocation = scopedstr;
 
       }
-      else if(key == "set-cookie")
+      else if(atom == "set-cookie")
       {
 
          if(m_pcookies != nullptr)
          {
 
-            m_pcookies->add(value);
+            m_pcookies->add(scopedstr);
 
          }
 

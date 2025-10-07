@@ -246,10 +246,10 @@ namespace earth
    }
 
 
-   string zone_time::FormatZone(string & str, const ::string & strFormat) const
+   string zone_time::FormatZone(string & str, const ::scoped_string & scopedstrFormat) const
    {
 
-      str = strFormat;
+      str = scopedstrFormat;
 
       str.replace_with(as_string(GetZoneYear()), "%Y");
       str.replace_with(::str::zero_padded(as_string(GetZoneMonth()), 2), "%m");
@@ -283,12 +283,12 @@ namespace earth
    }
 
 
-   string zone_time::FormatZone(const ::string & strFormat)
+   string zone_time::FormatZone(const ::scoped_string & scopedstrFormat)
    {
    
       string str;
    
-      FormatZone(str, strFormat);
+      FormatZone(str, scopedstrFormat);
    
       return str;
 
@@ -307,11 +307,11 @@ namespace earth
 //   //psz[0] = '\0';
 //
 //   ////   posix_time tmp = zone_time.get_time();
-//   ////   errno_t err = _ctime64_s(psz, sizeof(psz), &tmp);
+//   ////   errno_t err = _ctime64_s(scopedstr, sizeof(scopedstr), &tmp);
 //
 //   //errno_t err = 0;
 //
-//   //if ((err != 0) || (psz[0] == '\0') || (zone_time.get_time() == 0))
+//   //if ((err != 0) || (scopedstr[0] == '\0') || (zone_time.get_time() == 0))
 //   //{
 //   //   dumpcontext << "::earth::zone_time(invalid #" << (iptr)zone_time.get_time() << ")";
 //

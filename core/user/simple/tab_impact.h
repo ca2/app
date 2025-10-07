@@ -1,8 +1,8 @@
 #pragma once
 
 
-#include "base/user/user/tab.h"
-#include "base/user/user/show.h"
+#include "berg/user/user/tab.h"
+#include "berg/user/user/show.h"
 
 
 class CLASS_DECL_CORE simple_tab_impact :

@@ -26,7 +26,7 @@ namespace hardware
 
       auto & pdevicegroup = m_mapdevicegroup[edevice];
 
-      __defer_construct(pdevicegroup);
+      ødefer_construct(pdevicegroup);
 
       pdevicegroup->add(pdevicelistener);
 
@@ -70,7 +70,7 @@ namespace hardware
    void devices::erase_device_group(device_group * pdevicegroup)
    {
 
-      m_mapdevicegroup.erase_item(pdevicegroup->m_edevice);
+      m_mapdevicegroup.erase(pdevicegroup->m_edevice);
 
       if (m_mapdevicegroup.is_empty())
       {

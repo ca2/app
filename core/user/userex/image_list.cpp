@@ -2,7 +2,7 @@
 #include "image_list.h"
 #include "top_edit_impact.h"
 #include "acme/constant/id.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "acme/handler/topic.h"
 #include "acme/platform/message.h"
 #include "acme/filesystem/filesystem/listing.h"
@@ -12,10 +12,10 @@
 #include "aura/graphics/image/drawing.h"
 #include "aura/graphics/image/array.h"
 #include "aura/message/user.h"
-#include "base/user/user/document.h"
-#include "base/user/user/impact.h"
-#include "base/user/user/impact_system.h"
-#include "base/platform/application.h"
+#include "berg/user/user/document.h"
+#include "berg/user/user/impact.h"
+#include "berg/user/user/impact_system.h"
+#include "berg/platform/application.h"
 #include "core/platform/session.h"
 
 
@@ -35,15 +35,15 @@ namespace userex
    }
 
 
-   string_array image_list_impact::get_ls_pattern_stra() const
+   string_array_base image_list_impact::get_ls_pattern_stra() const
    {
 
-      string_array stra;
+      string_array_base stra;
 
       for (auto & filedialogfilteritem : m_filedialogfilter)
       {
 
-         string_array straPattern;
+         string_array_base straPattern;
 
          straPattern.explode(";", filedialogfilteritem.m_strPatternList);
 
@@ -73,8 +73,10 @@ namespace userex
    }
 
 
-   ::file::path image_list_impact::get_link_path(string strLink)
+   ::file::path image_list_impact::get_link_path(const ::scoped_string & scopedstrLink)
    {
+
+      ::string strLink(scopedstrLink);
 
       if (strLink.case_insensitive_begins_eat(get_link_prefix()))
       {
@@ -91,7 +93,7 @@ namespace userex
    void image_list_impact::update_data(bool bSaveAndValidate)
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (bSaveAndValidate)
       {
@@ -102,7 +104,7 @@ namespace userex
       else
       {
 
-         synchronous_lock synchronouslock(this->synchronization());
+         synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          m_pimageaThumb->m_imagea.clear();
 
@@ -113,7 +115,7 @@ namespace userex
          if (m_pathFolder.has_character())
          {
 
-            __defer_construct_new(m_plisting);
+            ødefer_construct_new(m_plisting);
 
             m_plisting->erase_all();
 
@@ -140,7 +142,7 @@ namespace userex
       fork([this]()
       {
 
-         synchronous_lock synchronouslock(this->synchronization());
+         synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          int iForkDib = m_iForkAddDib;
 
@@ -270,11 +272,11 @@ namespace userex
 
       ::user::image_list_impact::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_create, pchannel, this, &image_list_impact::on_message_create);
-      MESSAGE_LINK(e_message_destroy, pchannel, this, &image_list_impact::on_message_destroy);
-//      MESSAGE_LINK(e_message_left_button_down, pchannel, this, &image_list_impact::on_message_left_button_down);
-      //    MESSAGE_LINK(e_message_mouse_move, pchannel, this, &image_list_impact::on_message_mouse_move);
-      //  MESSAGE_LINK(e_message_mouse_leave, pchannel, this, &image_list_impact::on_message_mouse_leave);
+      USER_MESSAGE_LINK(::user::e_message_create, pchannel, this, &image_list_impact::on_message_create);
+      USER_MESSAGE_LINK(::user::e_message_destroy, pchannel, this, &image_list_impact::on_message_destroy);
+//      USER_MESSAGE_LINK(::user::e_message_left_button_down, pchannel, this, &image_list_impact::on_message_left_button_down);
+      //    USER_MESSAGE_LINK(::user::e_message_mouse_move, pchannel, this, &image_list_impact::on_message_mouse_move);
+      //  USER_MESSAGE_LINK(::user::e_message_mouse_leave, pchannel, this, &image_list_impact::on_message_mouse_leave);
 
    }
 
@@ -430,7 +432,7 @@ namespace userex
 
       strLower.make_lower();
 
-      if (m_mapName.lookup(strLower, strMap))
+      if (m_mapName.find(strLower, strMap))
       {
 
          str = strMap;

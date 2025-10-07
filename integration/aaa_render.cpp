@@ -8,7 +8,7 @@
 #include "aura/graphics/image/image.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/draw2d.h"
-#include "base/user/user/impact.h"
+#include "berg/user/user/impact.h"
 #include <math.h>
 
 
@@ -166,7 +166,7 @@ namespace app_integration
    }
 
 
-   ::e_status render::set_font(const ::string & strFont)
+   ::e_status render::set_font(const ::scoped_string & scopedstrFont)
    {
 
       if (strFont.is_empty())
@@ -189,7 +189,7 @@ namespace app_integration
    }
 
 
-   ::e_status render::set_hover_font(const ::string & strHoverFont)
+   ::e_status render::set_hover_font(const ::scoped_string & scopedstrHoverFont)
    {
 
       m_strHoverFont = strHoverFont;
@@ -260,7 +260,7 @@ namespace app_integration
 
       string strTitle;
 
-      auto pbrush = __øcreate < ::draw2d::brush >();
+      auto pbrush = øcreate < ::draw2d::brush >();
 
       auto psystem = system();
 

@@ -1,38 +1,32 @@
 #include "framework.h"
 #include "userfs.h"
+#include "acme/handler/item.h"
+#include "acme/prototype/data/listener.h"
+#include "core/user/user/tree.h"
+#include "core/user/user/user.h"
 #include "list.h"
 #include "list_item.h"
 #include "main_impact.h"
 #include "tree_data.h"
-#include "acme/handler/item.h"
-#include "acme/prototype/data/listener.h"
-#include "core/user/user/user.h"
-#include "core/user/user/tree.h"
 
 
 namespace userfs
 {
 
 
-   userfs::userfs()
+   userfs::userfs() {}
+
+   userfs::~userfs() {}
+
+
+   void userfs::initialize(::particle *pparticle)
    {
 
-   }
+      // auto estatus =
 
-   userfs::~userfs()
-   {
-
-   }
-
-   
-   void userfs::initialize(::particle * pparticle)
-   {
-
-      //auto estatus = 
-      
       ::acme::department::initialize(pparticle);
 
-      //if (!estatus)
+      // if (!estatus)
       //{
 
       //   return estatus;
@@ -40,45 +34,41 @@ namespace userfs
       //}
 
 
-      factory()->add_factory_item <::userfs::main_impact > ();
-      factory()->add_factory_item <::userfs::tree_data > ();
-      factory()->add_factory_item <::userfs::list > ();
-      factory()->add_factory_item <::userfs::list_item > ();
+      factory()->add_factory_item<::userfs::main_impact>();
+      factory()->add_factory_item<::userfs::tree_data>();
+      factory()->add_factory_item<::userfs::list>();
+      factory()->add_factory_item<::userfs::list_item>();
 
       ::acme::department::init();
 
-      //if (!::acme::department::init())
+      // if (!::acme::department::init())
       //{
 
       //   return false;
 
       //}
 
-      //return true;
-
+      // return true;
    }
 
 
    void userfs::init1()
    {
 
-      //return ::success;
-
+      // return ::success;
    }
 
 
-} // namespace aura
-
+} // namespace userfs
 
 
 namespace core
 {
 
-
    //::pointer<::userfs::userfs>user::create_userfs()
    //{
 
-   //  auto puserfs  = __allocate ::userfs::userfs(this);
+   //  auto puserfs  = øallocate ::userfs::userfs(this);
 
    //  return puserfs;
 
@@ -90,13 +80,13 @@ namespace core
 
       information() << "user::userfs_process_init start";
 
-      //m_puserfs = create_userfs();
+      // m_puserfs = create_userfs();
 
-      //auto estatus = 
-      
-      __øconstruct(m_puserfs);
+      // auto estatus =
 
-      //if (!estatus)
+      øconstruct(m_puserfs);
+
+      // if (!estatus)
       //{
 
       //   error() <<".1";
@@ -107,14 +97,13 @@ namespace core
 
       //}
 
-      //m_spobjectUserFs = m_puserfs;
+      // m_spobjectUserFs = m_puserfs;
 
-      //m_puserfs->construct(this);
+      // m_puserfs->construct(this);
 
       information() << "ok";
 
-      //return ::success;
-
+      // return ::success;
    }
 
 
@@ -123,11 +112,11 @@ namespace core
 
       information() << "user::userfs_init1 start";
 
-      //auto estatus =
-      
+      // auto estatus =
+
       m_puserfs->init1();
 
-      //if(!estatus)
+      // if(!estatus)
       //{
 
       //   m_result.add(estatus);
@@ -140,12 +129,8 @@ namespace core
 
       information() << "ok";
 
-      //return ::success;
-
+      // return ::success;
    }
 
 
-} // namespace userfs
-
-
-
+} // namespace core

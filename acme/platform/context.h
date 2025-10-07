@@ -57,8 +57,8 @@ namespace platform
       // ::string                                        m_strSchema;
       //
       //
-      // string_array                                    m_straMatterLocatorPriority;
-      // string_array                                    m_straMatterLocator;
+      // string_array_base                                    m_straMatterLocatorPriority;
+      // string_array_base                                    m_straMatterLocator;
       //
       
       
@@ -94,8 +94,8 @@ namespace platform
          ::string                                        m_strSchema;
 
 
-         string_array                                    m_straMatterLocatorPriority;
-         string_array                                    m_straMatterLocator;
+         string_array_base                                    m_straMatterLocatorPriority;
+         string_array_base                                    m_straMatterLocator;
 
          ::pointer<::platform::http>                     m_phttp;
 
@@ -111,7 +111,7 @@ namespace platform
 
          string                                    m_strStoreServerBaseUrl;
 
-         string_to_string                          m_mapCachedLatestBuild;
+         string_to_string_base                          m_mapCachedLatestBuild;
          //::pointer<::os_context>                 m_poscontext;
 
 
@@ -195,16 +195,16 @@ namespace platform
       virtual ::string get_schema() override;
 
 
-      virtual void locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema) override;
+      virtual void locale_schema_matter(string_array_base & stra, const string_array_base & straMatterLocator, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema) override;
       virtual string get_locale_schema_dir() override;
 
 
 
-      virtual string matter_locator(string strApp) override;
+      virtual string matter_locator(const ::scoped_string & scopedstrApp) override;
       virtual string matter_locator(::platform::application * papp) override;
 
 
-      virtual void add_matter_locator(string strApp) override;
+      virtual void add_matter_locator(const ::scoped_string & scopedstrApp) override;
       virtual void add_matter_locator(::platform::application * papp) override;
 
 
@@ -212,9 +212,9 @@ namespace platform
 
       //virtual ::file::path defer_process_relative_path(const ::file::path & path);
 
-      virtual ::file::path get_matter_path(string strMatter) override;
+      virtual ::file::path get_matter_path(const ::scoped_string & scopedstrMatter) override;
       virtual ::file::path get_matter_cache_path(::file::path path) override;
-      virtual ::file::path side_get_matter_path(string strMatter) override;
+      virtual ::file::path side_get_matter_path(const ::scoped_string & scopedstrMatter) override;
 
 
       virtual bool os_is_alias(const ::file::path & path) override;

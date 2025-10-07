@@ -156,6 +156,6 @@ void
 base_enum<EENUM, edefault>::
 set_by_name(const ::scoped_string & scopedstr)
 {
-   m_evalue = from_name(psz, edefault);
+   m_evalue = from_name(scopedstr, edefault);
 }*/
 

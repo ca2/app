@@ -49,7 +49,7 @@ class fixed_alloc_array;
 ////inline ::hash32 as_hash32 < const ansi_string & >(const ansi_string & ansistr)
 ////{
 ////
-////   return as_hash32 < const ::ansi_character * >(ansistr.c_str());
+////   return as_hash32 < const_char_pointer >(ansistr.c_str());
 ////
 ////}
 ////
@@ -81,7 +81,7 @@ class fixed_alloc_array;
 ////}
 
 
-inline const char * FormatArgument(const string & value) noexcept { return value.c_str(); }
+inline const_char_pointer FormatArgument(const string & value) noexcept { return value.c_str(); }
 
 
 //template < typename TYPE_CHAR >
@@ -97,18 +97,18 @@ inline const char * FormatArgument(const string & value) noexcept { return value
 
 
 //template < primitive_atom ATOM >
-//inline ::string operator +(const ::scoped_string & scopedstr, const ATOM & atom) { return string(psz) + string(atom); }
+//inline ::string operator +(const ::scoped_string & scopedstr, const ATOM & atom) { return string(scopedstr) + string(atom); }
 //
 //
 //template < primitive_payload PAYLOAD >
-//inline ::string operator +(const ::scoped_string & scopedstr, const PAYLOAD & payload) { return string(psz) + string(payload); }
+//inline ::string operator +(const ::scoped_string & scopedstr, const PAYLOAD & payload) { return string(scopedstr) + string(payload); }
 
 //
 //template < primitive_character CHARACTER, primitive_character CHARACTER2 >
 //inline ::string_base < CHARACTER2 > operator +(const CHARACTER * pszLeft, const ::string_base < CHARACTER2 > & strRight)
 //{
 //
-//   ::wstring strLeft(pszLeft);
+//   ::wstring strLeft(scopedstrLeft);
 //
 //   return strLeft + strRight;
 //

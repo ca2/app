@@ -57,12 +57,12 @@ namespace graphics
    //
    //   //{
    //
-   //   //   synchronous_lock lock(synchronization());
+   //   //   synchronous_lock lock(synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
    //
    //   //   if (!m_pimage)
    //   //   {
    //
-   //   //      __øconstruct(m_pimage);
+   //   //      øconstruct(m_pimage);
    //
    //   //   }
    //

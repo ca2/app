@@ -15,7 +15,7 @@ public:
 
 
    // constructor
-   encoding_exception(const ::string & strMessage);
+   encoding_exception(const ::scoped_string & scopedstrMessage);
 
 
 

@@ -29,7 +29,7 @@ ftpfs::~ftpfs()
 }
 
 
-void ftpfs::initialize_ftpfs(::particle * pparticle, const ::string & pszRoot)
+void ftpfs::initialize_ftpfs(::particle * pparticle, const ::scoped_string & scopedstrRoot)
 {
 
    //auto estatus = 
@@ -43,7 +43,7 @@ void ftpfs::initialize_ftpfs(::particle * pparticle, const ::string & pszRoot)
 
    //}
 
-   m_strRoot = pszRoot;
+   m_strRoot = scopedstrRoot;
    m_bInitialized = false;
 
    m_straFtpServer.add("localhost");
@@ -57,7 +57,7 @@ void ftpfs::initialize_ftpfs(::particle * pparticle, const ::string & pszRoot)
 //void ftpfs::initialize(::particle * pparticle)
 //{
 //
-//   auto estatus = __construct_new(this, m_pftpnet);
+//   auto estatus = øconstruct_new(this, m_pftpnet);
 //
 //   return estatus;
 //
@@ -67,7 +67,7 @@ void ftpfs::initialize_ftpfs(::particle * pparticle, const ::string & pszRoot)
 bool ftpfs::fast_has_subdir(const ::file::path & path)
 {
 
-   synchronous_lock synchronouslock(this->synchronization());
+   synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //   ::time tickTimeout;
 
@@ -92,7 +92,7 @@ bool ftpfs::has_subdir(const ::file::path & path)
 
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       dir_listing & dir = m_map[path];
 
@@ -107,7 +107,7 @@ bool ftpfs::has_subdir(const ::file::path & path)
 
    }
 
-   ::file::listing listing;
+   ::file::listing_base listing;
 
    listing.set_listing(path);
 
@@ -118,7 +118,7 @@ bool ftpfs::has_subdir(const ::file::path & path)
 }
 
 
-::file::listing & ftpfs::root_ones(::file::listing & listing)
+::file::listing_base & ftpfs::root_ones(::file::listing_base & listing)
 {
 
    ::file::path path;
@@ -136,7 +136,7 @@ bool ftpfs::has_subdir(const ::file::path & path)
 }
 
 
-bool ftpfs::enumerate(::file::listing & listing)
+bool ftpfs::enumerate(::file::listing_base & listing)
 {
 
    if (listing.m_pathUser == "ftp://")
@@ -167,7 +167,7 @@ bool ftpfs::enumerate(::file::listing & listing)
 
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       dir_listing & dir = m_map[listing.m_pathUser];
 
@@ -187,12 +187,12 @@ bool ftpfs::enumerate(::file::listing & listing)
    listing.clear_results();
 
 
-   //::file::path_array  straDir;
-   //::file::path_array  straDirName;
-   //::file::path_array  straFile;
-   //::file::path_array  straFileName;
-   //long_long_array    iaFileSize;
-   //long_long_array    iaFolderSize;
+   //::file::path_array_base  straDir;
+   //::file::path_array_base  straDirName;
+   //::file::path_array_base  straFile;
+   //::file::path_array_base  straFileName;
+   //long_long_array_base    iaFileSize;
+   //long_long_array_base    iaFolderSize;
    //bool_array     baFileDir;
    //bool_array     baFolderDir;
 
@@ -300,11 +300,11 @@ retry:
 
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       dir_listing & dir = m_map[listing.m_pathUser];
 
-      ((::file::listing &)dir) = listing;
+      ((::file::listing_base &)dir) = listing;
 
       dir.m_timeLast.Now();
 
@@ -368,7 +368,7 @@ retry:
 
    //::time tickTimeout;
 
-   synchronous_lock synchronouslock(this->synchronization());
+   synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    dir_listing & dir = m_map[path.folder()];
 
@@ -377,7 +377,7 @@ retry:
    if (dir.m_timeLast.elapsed() > psystem->m_timeFileListingCache)
    {
 
-      ::file::listing listing;
+      ::file::listing_base listing;
 
       listing.set_listing(path.folder());
 
@@ -400,10 +400,10 @@ retry:
 }
 
 
-bool ftpfs::file_move(const ::file::path & pszDst, const ::file::path & pszSrc)
+bool ftpfs::file_move(const ::file::path & pathTarget, const ::file::path & pathSource)
 {
-   __UNREFERENCED_PARAMETER(pszDst);
-   __UNREFERENCED_PARAMETER(pszSrc);
+   __UNREFERENCED_PARAMETER(pathTarget);
+   __UNREFERENCED_PARAMETER(pathSource);
    return true;
 }
 
@@ -483,7 +483,7 @@ retry:
 
       file_pointer spfile;
 
-      spfile = __allocate ftpfs_file(this, pclient);
+      spfile = øallocate ftpfs_file(this, pclient);
 
       //auto result = 
       
@@ -503,32 +503,32 @@ retry:
 }
 
 
-bool ftpfs::file_exists(const ::file::path & pszPath)
+bool ftpfs::file_exists(const ::file::path & path)
 {
 
-   return ::fs::data::file_exists(pszPath);
+   return ::fs::data::file_exists(path);
 
 }
 
 
-::payload ftpfs::file_length(const ::file::path & pszPath)
+::payload ftpfs::file_length(const ::file::path & path)
 {
 
-   return ::fs::data::file_length(pszPath);
+   return ::fs::data::file_length(path);
 
 }
 
 
-void ftpfs::defer_initialize(::ftp::client_socket ** ppclient, string strPath)
+void ftpfs::defer_initialize(::ftp::client_socket ** ppclient, const ::scoped_string & scopedstrPath)
 {
 
-   auto plogon = __allocate ::ftp::logon();
+   auto plogon = øallocate ::ftp::logon();
 
    auto psystem = system();
 
    auto purl = psystem->url();
 
-   plogon->Hostname() = ::url::get_host(strPath);
+   plogon->Hostname() = ::url::get_host(scopedstrPath);
    //logon.Username() = purl->get_username(listing.m_path);
 
    string strUrl = "ftp://" + plogon->Hostname() + "/";
@@ -544,13 +544,13 @@ void ftpfs::defer_initialize(::ftp::client_socket ** ppclient, string strPath)
    if (!pclient)
    {
 
-      pclient = __allocate ::ftp::client_socket();
+      pclient = øallocate ::ftp::client_socket();
 
       //pclient->initialize_socket(m_pftpnet->m_psockethandler);
 
       ::pointer<::ftp::output>& poutput = m_pftpnet->m_mapOutput[plogon->m_strToken];
 
-      poutput = __allocate ::ftp::output();
+      poutput = øallocate ::ftp::output();
 
       pclient->AttachObserver(poutput);
 
@@ -614,7 +614,7 @@ retry_login:
 
 }
 
-bool ftpfs::is_zero_latency(const ::file::path & psz)
+bool ftpfs::is_zero_latency(const ::file::path & path)
 {
 
    return false;

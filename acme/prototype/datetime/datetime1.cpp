@@ -71,7 +71,7 @@ namespace datetime
 //      __UNREFERENCED_PARAMETER(pparticle);
 //      value time;
 //      time.m_bSpan = true;
-//      string str(pszSpanExpression);
+//      string str(scopedstrSpanExpression);
 //      str.trim();
 //      str += " ";
 //      ::property_set set;
@@ -82,8 +82,8 @@ namespace datetime
 //      string strText1;
 //      for(int i = 0; *psz; unicode_increment(psz))
 //      {
-//         string strChar = ::str::get_utf8_char(psz);
-//         if(unicode_is_whitespace(psz))
+//         string strChar = ::str::get_utf8_char(scopedstr);
+//         if(unicode_is_whitespace(scopedstr))
 //         {
 //            i++;
 //            //if(strNumber.has_character() && strText.has_character())
@@ -185,11 +185,11 @@ namespace datetime
 //            bMinus = true;
 //            strNumber.empty();
 //         }
-//         else if(unicode_is_digit(psz))
+//         else if(unicode_is_digit(scopedstr))
 //         {
 //            strNumber += strChar;
 //         }
-//         else if(unicode_is_letter(psz))
+//         else if(unicode_is_letter(scopedstr))
 //         {
 //            strText1 += strChar;
 //         }
@@ -198,7 +198,7 @@ namespace datetime
 //   }
 //   void parse_br_str(const ::scoped_string & scopedstr,::property_set & set)
 //   {
-//      string src(psz);
+//      string src(scopedstr);
 //      src.trim();
 //      string str;
 //      if(src.length() >= 2)
@@ -267,7 +267,7 @@ namespace datetime
 //   value strtotime(::particle * pparticle, const ::text::context * pcontext,const ::scoped_string & scopedstr,int & iPath,int & iPathCount,bool bUTC)
 //   {
 //      ::earth::time time;
-//      string str(psz);
+//      string str(scopedstr);
 //      str.trim();
 //      str += " ";
 //      ::property_set set;
@@ -397,7 +397,7 @@ namespace datetime
 //
 //      }
 //
-//      string_array stra;
+//      string_array_base stra;
 //
 //      auto pcre1 = system()->create_regular_expression("pcre", "^\\s*((\\d+)\\s*/\\s*(\\d+))((\\d|$)?!)");
 //
@@ -472,7 +472,7 @@ namespace datetime
 //      string str;
 //      if(value.m_bSpan)
 //      {
-//         string_array stra;
+//         string_array_base stra;
 //         string strItem;
 //         if(value.m_iYear != 0)
 //         {

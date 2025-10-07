@@ -27,7 +27,7 @@ namespace sockets
    }
 
 
-   void sip_tcp_client_socket::OnLine(const string & line)
+   void sip_tcp_client_socket::OnLine(const ::scoped_string & scopedstrLine)
    {
       
       sip_base_client_socket::OnLine(line);

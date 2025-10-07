@@ -55,24 +55,24 @@ namespace linux
       //  virtual string matter(const ::scoped_string & scopedstr, const char * lpcsz2 = nullptr);
 
       //virtual ::file::path install();
-//      virtual string matter(const ::string & str);
-//      virtual string matter(const ::string & str, const ::string & str2);
-//      virtual string matter(const ::scoped_string & scopedstr, const ::string & str2);
+//      virtual string matter(const ::scoped_string & scopedstr);
+//      virtual string matter(const ::scoped_string & scopedstr, const ::scoped_string & scopedstr2);
+//      virtual string matter(const ::scoped_string & scopedstr, const ::scoped_string & scopedstr2);
 
-//      virtual string matter(const ::string & str, const ::scoped_string & scopedstr2);
+//      virtual string matter(const ::scoped_string & scopedstr, const ::scoped_string & scopedstr2);
 
 
 //      virtual ::file::path module();
 //      virtual ::file::path ca2module();
       virtual ::file::path time_square() override;
-      virtual ::file::path time_log(const string & pszId) override;
+      virtual ::file::path time_log(const ::scoped_string & scopedstrId) override;
 
 
       virtual ::file::path trash_that_is_not_trash(const ::file::path & psz) override;
 
       virtual ::file::path appdata() override;
       virtual ::file::path commonappdata() override;
-      virtual ::file::path element_commonappdata(const ::string & strElement) override;
+      virtual ::file::path element_commonappdata(const ::scoped_string & scopedstrElement) override;
 
 //      virtual ::file::path usersystemappdata(const string & pcszPrefix);
 

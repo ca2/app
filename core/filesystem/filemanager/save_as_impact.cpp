@@ -135,7 +135,7 @@ namespace filemanager
       if (!m_pedit)
       {
 
-         output_error_message("Could not create file list ::user::impact");
+         output_error_message("Could not create file list_base ::user::impact");
 
       }
 

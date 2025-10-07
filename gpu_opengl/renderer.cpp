@@ -1,10 +1,10 @@
 #include "framework.h"
+#include "_gpu_opengl.h"
 #include "approach.h"
 #include "command_buffer.h"
 #include "context.h"
+#include "cpu_buffer.h"
 #include "device.h"
-#include "gpu_opengl/context.h"
-#include "gpu_opengl/cpu_buffer.h"
 #include "frame.h"
 #include "frame_buffer.h"
 #include "lock.h"
@@ -20,11 +20,11 @@
 #include "bred/gpu/render_state.h"
 #include "bred/user/user/graphics3d.h"
 #include "aura/windowing/window.h"
-#include <glad/glad.h>
+//#include <glad/glad.h>
 
 
 
-const char* blend_vert = R"(
+const_char_pointer blend_vert = R"(
 #version 330 core
 layout(location = 0) in vec2 inPos;
 layout(location = 1) in vec2 inUV;
@@ -35,7 +35,7 @@ void main() {
 }
 )";
 
-const char* blend_frag = R"(
+const_char_pointer blend_frag = R"(
 #version 330 core
 in vec2 texCoord;
 out vec4 fragColor;
@@ -120,16 +120,24 @@ namespace gpu_opengl
    ::pointer < ::gpu::frame > renderer::beginFrame()
    {
 
+      return ::gpu::renderer::beginFrame();
+
+   }
+
+
+   void renderer::on_begin_frame()
+   {
+
       //if (m_pgpucontext != m_pgpucontext->m_pgpudevice->current_context())
-      //{
+//{
 
-      //   throw ::exception(error_wrong_state);
+//   throw ::exception(error_wrong_state);
 
-      //}
+//}
 
-      assert(!isFrameStarted && "Can't call beginFrame while already in progress");
+      //assert(!isFrameStarted && "Can't call beginFrame while already in progress");
 
-      isFrameStarted = true;
+      //isFrameStarted = true;
 
       ::cast < context > pgpucontext = m_pgpucontext;
 
@@ -193,12 +201,12 @@ namespace gpu_opengl
 
       defer_update_renderer();
 
-      if (!m_pgpurendertarget->m_pframe)
-      {
+      //if (!m_pgpurendertarget->m_pgpuframe)
+      //{
 
-         m_pgpurendertarget->m_pframe = __create_new < ::gpu_opengl::frame >();
+      //   øconstruct(m_pgpurendertarget->m_pgpuframe);/* = øcreate_new < ::gpu_opengl::frame >()*/;
 
-      }
+      //}
 
       if (!m_pgpurendertarget->m_bRenderTargetInit)
       {
@@ -209,7 +217,6 @@ namespace gpu_opengl
 
       //pgpucontext->_ensure_layer_framebuffer();
 
-      return ::gpu::renderer::beginFrame();
 
    }
 
@@ -236,7 +243,7 @@ namespace gpu_opengl
 
       int height = r.height();
 
-      ::cast < texture > ptexture = m_pgpurendertarget->current_texture();
+      ::cast < texture > ptexture = m_pgpurendertarget->current_texture(pframe);
 
       if (!ptexture->m_gluFbo)
       {
@@ -254,7 +261,7 @@ namespace gpu_opengl
 
       ptexture->bind_render_target();
 
-      auto pcommandbuffer = getCurrentCommandBuffer2();
+      auto pcommandbuffer = getCurrentCommandBuffer2(::gpu::current_frame());
 
       if (escene == ::gpu::e_scene_2d)
       {
@@ -577,6 +584,8 @@ namespace gpu_opengl
       glFlush();
       GLCheckError("");
 
+      defer_end_frame_layer_copy();
+
       //GLint drawFboId = 0, readFboId = 0;
 
       //glGetIntegerv(GL_DRAW_FRAMEBUFFER_BINDING, &drawFboId);
@@ -669,7 +678,7 @@ namespace gpu_opengl
    //   //   || eoutput == ::gpu::e_output_gpu_buffer)
    //   //{
 
-   //   //   auto poffscreenrendertargetview = __allocate offscreen_render_target();
+   //   //   auto poffscreenrendertargetview = øallocate offscreen_render_target();
    //   //   //#ifdef WINDOWS_DESKTOP
    //   //   //         poffscreenrendertargetview->m_formatImage = VK_FORMAT_B8G8R8A8_UNORM;
    //   //   //#else
@@ -681,7 +690,7 @@ namespace gpu_opengl
    //   //}
    //   //else if (eoutput == ::gpu::e_output_swap_chain)
    //   //{
-   //   //   auto poffscreenrendertargetview = __allocate offscreen_render_target();
+   //   //   auto poffscreenrendertargetview = øallocate offscreen_render_target();
    //   //   //#ifdef WINDOWS_DESKTOP
    //   //   //         poffscreenrendertargetview->m_formatImage = VK_FORMAT_B8G8R8A8_UNORM;
    //   //   //#else
@@ -689,14 +698,14 @@ namespace gpu_opengl
    //   //   //#endif
    //   //   m_pgpurendertarget = poffscreenrendertargetview;
 
-   //   //   //m_prendertargetview = __allocate swap_chain_render_target(this, size, m_prendertargetview);
+   //   //   //m_prendertargetview = øallocate swap_chain_render_target(this, size, m_prendertargetview);
    //   //   //m_prendererResolve.release();
 
    //   //}
    //   ////      else if (eoutput == ::gpu::e_output_gpu_buffer)
    //   ////      {
    //   ////
-   //   ////         auto poffscreenrendertargetview = __allocate offscreen_render_target(this, m_extentRenderer, m_prendertargetview);
+   //   ////         auto poffscreenrendertargetview = øallocate offscreen_render_target(this, m_extentRenderer, m_prendertargetview);
    //   ////#ifdef WINDOWS_DESKTOP
    //   ////         poffscreenrendertargetview->m_formatImage = VK_FORMAT_B8G8R8A8_UNORM;
    //   ////#else
@@ -709,18 +718,18 @@ namespace gpu_opengl
    //   ////      else if (eoutput == ::gpu::e_output_color_and_alpha_accumulation_buffers)
    //   ////      {
    //   ////
-   //   ////         auto paccumulationrendertargetview = __allocate accumulation_render_target(this, m_extentRenderer, m_prendertargetview);
+   //   ////         auto paccumulationrendertargetview = øallocate accumulation_render_target(this, m_extentRenderer, m_prendertargetview);
    //   ////         paccumulationrendertargetview->m_formatImage = VK_FORMAT_R32G32B32A32_SFLOAT;
    //   ////         paccumulationrendertargetview->m_formatAlphaAccumulation = VK_FORMAT_R32_SFLOAT;
    //   ////         m_prendertargetview = paccumulationrendertargetview;
    //   ////
-   //   ////         //__construct_new(m_prendererResolve);
+   //   ////         //øconstruct_new(m_prendererResolve);
    //   ////
    //   ////         //m_prendererResolve->initialize_renderer(m_pgpucontext, ::gpu::e_output_resolve_color_and_alpha_accumulation_buffers);
    //   ////
    //   ////         //m_prendererResolve->set_placement(m_pgpucontext->rectangle);
    //   ////         //
-   //   ////         //            auto poffscreenrendertargetview = __allocate offscreen_render_target(m_pgpucontext, m_extentRenderer, m_prendertargetviewResolve);
+   //   ////         //            auto poffscreenrendertargetview = øallocate offscreen_render_target(m_pgpucontext, m_extentRenderer, m_prendertargetviewResolve);
    //   ////         //#ifdef WINDOWS_DESKTOP
    //   ////         //            poffscreenrendertargetview->m_formatImage = VK_FORMAT_B8G8R8A8_UNORM;
    //   ////         //#else
@@ -731,7 +740,7 @@ namespace gpu_opengl
    //   ////      else if (eoutput == ::gpu::e_output_resolve_color_and_alpha_accumulation_buffers)
    //   ////      {
    //   ////
-   //   ////         auto poffscreenrendertargetview = __allocate offscreen_render_target(this, m_extentRenderer, m_prendertargetview);
+   //   ////         auto poffscreenrendertargetview = øallocate offscreen_render_target(this, m_extentRenderer, m_prendertargetview);
    //   ////#ifdef WINDOWS_DESKTOP
    //   ////         poffscreenrendertargetview->m_formatImage = VK_FORMAT_B8G8R8A8_UNORM;
    //   ////#else
@@ -767,7 +776,7 @@ namespace gpu_opengl
    //::pointer < ::gpu::render_target > renderer::allocate_offscreen_render_target()
    //{
 
-   //   auto poffscreenrendertarget = __allocate offscreen_render_target();
+   //   auto poffscreenrendertarget = øallocate offscreen_render_target();
 
    //   return poffscreenrendertarget;
 
@@ -781,7 +790,7 @@ namespace gpu_opengl
    //      || eoutput == ::gpu::e_output_gpu_buffer)
    //   {
 
-   //      auto poffscreenrendertarget = __allocate offscreen_render_target();
+   //      auto poffscreenrendertarget = øallocate offscreen_render_target();
 
    //      m_pgpurendertarget = poffscreenrendertarget;
 
@@ -1151,7 +1160,7 @@ namespace gpu_opengl
 ////}
 ////)frag";
 ////
-////                     m_pshaderCopyTextureOnEndDraw = __create_new < ::gpu_opengl::shader >();
+////                     m_pshaderCopyTextureOnEndDraw = øcreate_new < ::gpu_opengl::shader >();
 ////
 ////                     m_pshaderCopyTextureOnEndDraw->initialize_shader_with_block(
 ////                        this,
@@ -1320,9 +1329,9 @@ namespace gpu_opengl
       if (!m_pshaderBlend)
       {
 
-         __øconstruct(m_pshaderBlend);
+         øconstruct(m_pshaderBlend);
 
-         const char* quad_vertex_shader = "#version 330 core\n"
+         const_char_pointer quad_vertex_shader = "#version 330 core\n"
             "layout(location = 0) in vec2 pos;\n"
             "layout(location = 1) in vec2 texCoord;\n"
             "out vec2 uv;\n"
@@ -1331,7 +1340,7 @@ namespace gpu_opengl
             "    gl_Position = vec4(pos, 0.0, 1.0);\n"
             "}";
 
-         const char* blend_fragment_shader = "#version 330 core\n"
+         const_char_pointer blend_fragment_shader = "#version 330 core\n"
             "in vec2 uv;\n"
             "uniform sampler2D tex;\n"
             "out vec4 FragColor;\n"
@@ -1473,7 +1482,7 @@ namespace gpu_opengl
       if (!m_pshaderBlend2)
       {
 
-         __construct_new(m_pshaderBlend2);
+         øconstruct_new(m_pshaderBlend2);
 
          m_pshaderBlend2->initialize_shader_with_block(
             this,
@@ -1632,7 +1641,7 @@ namespace gpu_opengl
       if (!m_pshaderBlend2)
       {
 
-         __construct_new(m_pshaderBlend2);
+         øconstruct_new(m_pshaderBlend2);
 
          m_pshaderBlend2->initialize_shader_with_block(
             this,
@@ -1836,7 +1845,7 @@ namespace gpu_opengl
       if (!m_pshaderBlend2)
       {
 
-         __construct_new(m_pshaderBlend2);
+         øconstruct_new(m_pshaderBlend2);
 
          m_pshaderBlend2->initialize_shader_with_block(
             this,

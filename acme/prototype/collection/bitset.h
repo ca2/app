@@ -174,7 +174,7 @@ public:
 	_Construct(_Str, _Pos, _Count, _E0, _E1);
 	}
 
-	explicit bitset(const char *_Ptr)
+	explicit bitset(const_char_pointer _Ptr)
 	{	// initialize from NTBS
 		string _Str(_Ptr);
 		_Construct(_Str, 0, _Str.size(), '0', '1');

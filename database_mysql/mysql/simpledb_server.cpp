@@ -15,14 +15,14 @@ namespace simpledb
    {
    }
 
-   bool server::open(const ::string & pszDatabase)
+   bool server::open(const ::scoped_string & scopedstrDatabase)
    {
       if(m_pbase != nullptr)
          close();
       class base * pusermessage = ___new class base (this);
       if(pusermessage == nullptr)
          return false;
-      pusermessage->setDatabase(pszDatabase);
+      pusermessage->setDatabase(scopedstrDatabase);
       if(pusermessage->connect())
       {
          delete pusermessage;
@@ -42,12 +42,12 @@ namespace simpledb
       return true;
    }
 
-   bool server::sql(const ::string & pszQuery, ::payload & payload)
+   bool server::sql(const ::scoped_string & scopedstrQuery, ::payload & payload)
    {
       if(m_pbase == nullptr)
          return false;
       class ::simpledb::set * pset     = m_pbase->create_dataset();
-      pset->exec(pszQuery);
+      pset->exec(scopedstrQuery);
       payload.propset()["::database::result_set"] = &pset->m_resultset;
       return true;
    }

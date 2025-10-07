@@ -37,7 +37,9 @@
 #elif defined(LINUX) || defined(FREEBSD) || defined(OPENBSD) || defined(NETBSD)
 
 
-#define __GPU_OPENGL_USE_EGL
+//#define __GPU_OPENGL_USE_EGL
+
+#define __GPU_OPENGL_USE_GLAD
 
 
 #ifdef __GPU_OPENGL_USE_EGL
@@ -61,14 +63,14 @@
 //#define GL_GLEXT_PROTOTYPES 1
 //#include <GLES/gl.h>
 //#include <GLES/glext.h>
-//#include <glad.h>
+#include <glad/glad.h>
 
 // OpenGL ES includes
 //#include <GLES2/gl2.h>
 //#include <GLES2/gl2ext.h>
 
 
-#include <GL/gl.h>
+//#include <GL/gl.h>
 
 
 // apt install libosmesa6-dev
@@ -93,12 +95,16 @@
 
 //#include <glad.h>
 //#include <OpenGL/gl.h>
-#include <OpenGL/gl3.h>
-//#include <OpenGL/CGLTypes.h>
-//#include <OpenGL/glu.h>
 //#include <OpenGL/gl3.h>
-#include <OpenGL/glext.h>
+////#include <OpenGL/CGLTypes.h>
+////#include <OpenGL/glu.h>
+////#include <OpenGL/gl3.h>
+//#include <OpenGL/glext.h>
 //#include <OpenGL/gl.h>
+
+#define GLAD_GLAPI_EXPORT
+#include <glad/glad.h>
+//#include <OpenGL/CGLTypes.h>
 
 
 #else
@@ -106,7 +112,9 @@
 
 //#include <gl/glew.h>
 //#include <gl/gl.h>
+#ifndef GLAD_GLAPI_EXPORT
 #define GLAD_GLAPI_EXPORT
+#endif
 #include <glad/glad.h>
 
 
@@ -114,7 +122,7 @@
 
 
 
-CLASS_DECL_GPU_OPENGL const char* opengl_error_string(int iError);
+CLASS_DECL_GPU_OPENGL const_char_pointer opengl_error_string(int iError);
 
 
 
@@ -142,7 +150,7 @@ namespace opengl
       int m_iGlError;
 
 
-      exception(const ::scoped_string& scopestrMessage, int iGLError, const char * pszGlErrorMessage, const ::scoped_string & nameFile, int iLine);
+      exception(const ::scoped_string& scopestrMessage, int iGLError, const_char_pointer pszGlErrorMessage, const ::scoped_string & nameFile, int iLine);
 
       ~exception() override;
       
@@ -156,6 +164,7 @@ namespace opengl
 
    CLASS_DECL_GPU_OPENGL GLenum get_gpu_type_unit_opengl_type(::gpu::enum_type etype);
 
+   CLASS_DECL_GPU_OPENGL GLenum as_gl_draw_mode(::gpu::enum_topology etopology);
 
 
 } // namespace opengl

@@ -10,7 +10,7 @@
 #include "aura/graphics/draw2d/pen.h"
 #include "aura/user/user/frame_interaction.h"
 #include "aura/windowing/windowing.h"
-#include "base/user/experience/control_box.h"
+#include "berg/user/experience/control_box.h"
 
 
 namespace experience_core
@@ -260,7 +260,7 @@ namespace experience_core
       else
       {
 
-         auto pbrush = __øcreate < ::draw2d::brush >();
+         auto pbrush = øcreate < ::draw2d::brush >();
 
          if (pbrush && pgraphics->get_current_pen())
          {
@@ -271,7 +271,7 @@ namespace experience_core
 
          pgraphics->set(pbrush);
 
-         auto ppen = __øcreate < ::draw2d::pen > ();
+         auto ppen = øcreate < ::draw2d::pen > ();
 
          ppen->create_solid(1.0f, ::color::white);
 
@@ -321,7 +321,7 @@ namespace experience_core
 
       }
 
-      __øconstruct(m_pregion);
+      øconstruct(m_pregion);
       
       ::double_ellipse ellipse;
       
@@ -333,7 +333,7 @@ namespace experience_core
 
       auto puseritem = user_item(pitemClient);
 
-      __øconstruct(puseritem->m_ppath);
+      øconstruct(puseritem->m_ppath);
 
       //m_pitemClient->m_item.m_eelement = e_element_client;
 

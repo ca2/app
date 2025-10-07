@@ -51,7 +51,7 @@ int debug_string_iterator()
 //
 //   va_start(argList, pszFormat);
 //
-//   str.formatf_arguments(pszFormat, argList);
+//   str.formatf_arguments(scopedstrFormat, argList);
 //
 //   va_end(argList);
 //
@@ -70,7 +70,7 @@ CLASS_DECL_ACME inline character_count safe_strlen(void * p, character_count n)
 
    }
 
-   auto psz = (const char *)p;
+   auto psz = (const_char_pointer )p;
 
    character_count i = 0;
 
@@ -121,7 +121,7 @@ CLASS_DECL_ACME void erase_sharp_comment(::string& str)
 }
 
 
-CLASS_DECL_ACME void erase_sharp_comment(::string_array& stra)
+CLASS_DECL_ACME void erase_sharp_comment(::string_array_base& stra)
 {
 
    for (auto& str : stra)
@@ -146,25 +146,37 @@ void assert_atom_with_e_range_string_literal(const ::atom& atom)
 
 }
 
-void assert_scoped_string_with_e_range_string2(const ::scoped_string& scopedstr)
-{
 
-
-}
-
-
-void assert_scoped_string_with_e_range_string(const ::scoped_string& scopedstr)
-{
-
-   if (scopedstr.m_erange != e_range_string)
-   {
-
-      //throw "assert_scoped_string_with_e_range_string failed";
-
-   }
-   assert_scoped_string_with_e_range_string2(scopedstr);
-
-}
+//void assert_scoped_string_ok2(const ::scoped_string& scopedstr)
+//{
+//
+/////   if (scopedstr.m_erange & e_range_scoped_ownership)
+////   {
+//
+//      if (!scopedstr.m_pbasedata)
+//      {
+//
+//         throw "assert_scoped_string_with_e_range_string failed";
+//
+//      }
+//
+//   ///}
+//
+//}
+//
+//
+//void assert_scoped_string_ok(const ::scoped_string& scopedstr)
+//{
+//
+//   // if (scopedstr.m_erange != e_range_string)
+//   // {
+//   //
+//   //    //throw "assert_scoped_string_with_e_range_string failed";
+//   //
+//   // }
+//   assert_scoped_string_ok2(scopedstr);
+//
+//}
 
 CLASS_DECL_ACME void log_const_ansi_range_literal(int n)
 {
@@ -176,7 +188,10 @@ CLASS_DECL_ACME void log_const_ansi_range_literal(int n)
 CLASS_DECL_ACME void string_short_test()
 {
 
-   const char* pszStdSchema = strdup("_std");
+
+#if 0
+
+   const_char_pointer pszStdSchema = strdup("_std");
 
    ::atom idSchema;
 
@@ -198,5 +213,6 @@ CLASS_DECL_ACME void string_short_test()
 
    print_line(strTest);
 
+#endif
 
 }

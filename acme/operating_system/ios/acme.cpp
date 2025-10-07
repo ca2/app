@@ -38,7 +38,7 @@
 //char * GetCommandLineA()
 //{
 //
-//   return (char *) (const char *) get_command_line_string();
+//   return (char *) (const_char_pointer )get_command_line_string();
 //
 //}
 //
@@ -222,7 +222,7 @@ CLASS_DECL_ACME bool __node_aura_pos_term()
 //
 //   char * psz = str.get_buffer(len);
 //
-//   _get_exe_path(psz, len);
+//   _get_exe_path(scopedstr, len);
 //
 //   str.ReleaseBuffer(len);
 //

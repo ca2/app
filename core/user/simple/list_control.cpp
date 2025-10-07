@@ -39,7 +39,7 @@ bool simple_list_control::pre_create_window(::user::system * pusersystem)
 }
 
 
-void simple_list_control::set_data(string_array &stra)
+void simple_list_control::set_data(string_array_base &stra)
 {
    
    m_psimplelistdata->set_data(this, stra);
@@ -47,7 +47,7 @@ void simple_list_control::set_data(string_array &stra)
 }
 
 
-void simple_list_control::get_data(string_array &stra)
+void simple_list_control::get_data(string_array_base &stra)
 {
 
    m_psimplelistdata->get_data(stra);

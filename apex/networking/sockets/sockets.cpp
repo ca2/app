@@ -62,7 +62,7 @@ namespace sockets
 
       //}
 
-//      auto paddressdepartment = pparticle->__øcreate<class ::networking::networking>();
+//      auto paddressdepartment = pparticle->øcreate<class ::networking::networking>();
 //
 //      paddressdepartment->increment_reference_count();
 //
@@ -70,11 +70,11 @@ namespace sockets
 //
 //      generate_random_bytes(m_baTicketKey, sizeof(m_baTicketKey));
 //
-      //m_psslinit = __øcreate<::sockets::SSLInitializer>();
+      //m_psslinit = øcreate<::sockets::SSLInitializer>();
 //
-//      //estatus = __construct_new(m_pnet);
+//      //estatus = øconstruct_new(m_pnet);
 //
-//      __construct_new(m_pnet);
+//      øconstruct_new(m_pnet);
 //
 //      if (!m_pnet)
 //      {
@@ -106,7 +106,7 @@ namespace sockets
 ////      {
 ////
 ////#ifdef WINDOWS
-////         __øconstruct(m_pportforward);
+////         øconstruct(m_pportforward);
 ////#endif
 ////
 ////      }
@@ -268,7 +268,7 @@ namespace sockets
    //}
 
 
-   ::pointer<::networking::address>sockets::create_address(const ::string & strHostname)
+   ::pointer<::networking::address>sockets::create_address(const ::scoped_string & scopedstrHostname)
    {
 
       return nullptr;
@@ -329,7 +329,7 @@ namespace sockets
 
 
 ///* Resolve DNS host entry. */
-//string ip_reverse(string str)
+//string ip_reverse(const ::scoped_string & scopedstr)
 //{
 //
 //#if defined(UNIVERSAL_WINDOWS) || defined(LINUX) || defined(__ANDROID__) || defined(__APPLE__) || defined(FREEBSD) || defined(OPENBSD)

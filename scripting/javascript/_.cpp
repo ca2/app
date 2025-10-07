@@ -55,7 +55,7 @@
                    Added object counting a proper tree structure
                        (Allowing pass by object)
                    Allowed JSON output to output IDs, not strings
-                   Added get/set for array indices
+                   Added get/set for array indexes
                    Changed Callbacks to include user data pointer
                    Added some support for objects
                    Added more Java-esque builtin functions
@@ -108,7 +108,7 @@
           length variable cannot be set
           The postfix increment operator returns the current value, not the previous as it should.
           There is no prefix increment operator
-          Arrays are implemented as a linked list - hence a lookup time is O(n)
+          Arrays are implemented as a linked list_base - hence a find time is O(n)
 
     TODO:
           Utility va-args style function in TinyJS for executing a function directly
@@ -136,7 +136,7 @@
 #ifdef _WIN32
 #ifdef _DEBUG
    #ifndef DBG_NEW
-      #define DBG_NEW __allocate<  >( _NORMAL_BLOCK , __FILE__ , __LINE__ )
+      #define DBG_NEW øallocate<  >( _NORMAL_BLOCK , __FILE__ , __LINE__ )
       #define ___new DBG_NEW
    #endif
 #endif //__DEBUG
@@ -155,12 +155,12 @@
 
 bool isWhitespace(char ch);
 bool isNumeric(char ch);
-bool isNumber(const string &str);
+bool isNumber(const ::scoped_string & scopedstr);
 bool isHexadecimal(char ch);
 bool isAlpha(char ch);
 bool isIDString(const ::string &s);
 void replace(string &str, char textFrom, const ::string &textTo);
-bool isAlphaNum(const string &str);
+bool isAlphaNum(const ::scoped_string & scopedstr);
 
 
 
@@ -232,10 +232,10 @@ bool isNumeric(char ch)
 {
    return (ch>='0') && (ch<='9');
 }
-bool isNumber(const string &str)
+bool isNumber(const ::scoped_string & scopedstr)
 {
-   for (character_count i=0; i<str.size(); i++)
-      if (!isNumeric(str[i])) return false;
+   for (character_count i=0; i<scopedstr.size(); i++)
+      if (!isNumeric(scopedstr[i])) return false;
    return true;
 }
 bool isHexadecimal(char ch)
@@ -249,18 +249,20 @@ bool isAlpha(char ch)
    return ((ch>='a') && (ch<='z')) || ((ch>='A') && (ch<='Z')) || ch=='_';
 }
 
-bool isIDString(const ::string &strParam)
+bool isIDString(const ::scoped_string & scopedstrParam)
 {
 
-   auto s = strParam.c_str();
+   ::string strParameter(scopedstrParam);
 
-   if (!isAlpha(*s))
+   auto psz = strParameter.c_str();
+
+   if (!isAlpha(*psz))
       return false;
-   while (*s)
+   while (*psz)
    {
-      if (!(isAlpha(*s) || isNumeric(*s)))
+      if (!(isAlpha(*psz) || isNumeric(*psz)))
          return false;
-      s++;
+      psz++;
    }
    return true;
 }
@@ -277,12 +279,12 @@ void replace(string &str, char textFrom, const ::string &textTo)
 }
 
 /// convert the given string into a quoted string suitable for javascript
-string getJSString(const string &str)
+string getJSString(const ::scoped_string & scopedstr)
 {
-   string nStr = str;
+   string nStr = scopedstr;
    for (character_count i=0; i<nStr.size(); i++)
    {
-      const char *replaceWith = "";
+      const_char_pointer replaceWith = "";
       bool replace = true;
 
       switch (nStr[i])
@@ -315,12 +317,12 @@ string getJSString(const string &str)
 }
 
 /** Is the string alphanumeric */
-bool isAlphaNum(const string &str)
+bool isAlphaNum(const ::scoped_string & scopedstr)
 {
-   if (str.size()==0) return true;
-   if (!isAlpha(str[0])) return false;
-   for (character_count i=0; i<str.size(); i++)
-      if (!(isAlpha(str[i]) || isNumeric(str[i])))
+   if (scopedstr.size()==0) return true;
+   if (!isAlpha(scopedstr[0])) return false;
+   for (character_count i=0; i<scopedstr.size(); i++)
+      if (!(isAlpha(scopedstr[i]) || isNumeric(scopedstr[i])))
          return false;
    return true;
 }
@@ -845,7 +847,7 @@ CScriptVar::CScriptVar()
    flags = SCRIPTVAR_UNDEFINED;
 }
 
-CScriptVar::CScriptVar(const string &str)
+CScriptVar::CScriptVar(const ::scoped_string & scopedstr)
 {
    refs = 0;
 #if DEBUG_MEMORY
@@ -853,7 +855,7 @@ CScriptVar::CScriptVar(const string &str)
 #endif
    init();
    flags = SCRIPTVAR_STRING;
-   data = str;
+   data = scopedstr;
 }
 
 
@@ -1250,11 +1252,11 @@ void CScriptVar::setDouble(double val)
    data = TINYJS_BLANK_DATA;
 }
 
-void CScriptVar::setString(const string &str)
+void CScriptVar::setString(const ::scoped_string & scopedstr)
 {
    // name sure it's not still a number or integer
    flags = (flags&~SCRIPTVAR_VARTYPEMASK) | SCRIPTVAR_STRING;
-   data = str;
+   data = scopedstr;
    intData = 0;
    doubleData = 0;
 }
@@ -1507,7 +1509,7 @@ string CScriptVar::getParsableString()
    {
       string funcStr;
       funcStr += "function (";
-      // get list of parameters
+      // get list_base of parameters
       CScriptVarLink *link = firstChild;
       while (link)
       {
@@ -1532,7 +1534,7 @@ void CScriptVar::getJSON(string &destination, const string linePrefix)
    if (isObject())
    {
       string indentedLinePrefix = linePrefix+"  ";
-      // children - handle with bracketed list
+      // children - handle with bracketed list_base
       destination += "{ \n";
       CScriptVarLink *link = firstChild;
       while (link)
@@ -1636,7 +1638,7 @@ void tinyjs::trace()
 void tinyjs::execute(const string &code)
 {
    CScriptLex *oldLex = l;
-   address_array < CScriptVar * > oldScopes = scopes;
+   address_array_base < CScriptVar * > oldScopes = scopes;
    l = ___new CScriptLex(code);
 #ifdef TINYJS_callstack
    callstack.clear();
@@ -1670,7 +1672,7 @@ void tinyjs::execute(const string &code)
 CScriptVarLink tinyjs::evaluateComplex(const string &code)
 {
    CScriptLex *oldLex = l;
-   address_array < CScriptVar * > oldScopes = scopes;
+   address_array_base < CScriptVar * > oldScopes = scopes;
 
    l = ___new CScriptLex(code);
 #ifdef TINYJS_callstack

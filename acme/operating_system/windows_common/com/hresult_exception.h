@@ -11,7 +11,7 @@ class CLASS_DECL_ACME hresult_exception :
 public:
 
 
-   hresult_exception(HRESULT hresult, const char * pszMessage = nullptr);
+   hresult_exception(HRESULT hresult, const_char_pointer pszMessage = nullptr);
    ~hresult_exception() override;
 
 

@@ -5,7 +5,7 @@ namespace hotplugin
 {
 
 
-   class CLASS_DECL_BASE host :
+   class CLASS_DECL_BERG host :
       virtual public plugin
    {
    public:
@@ -45,7 +45,7 @@ namespace hotplugin
 
       virtual void redraw() override;
 
-      virtual bool open_link(const ::string & strLink,const string & pszTarget) override;
+      virtual bool open_link(const ::scoped_string & scopedstrLink,const ::scoped_string & scopedstrTarget) override;
       virtual bool reload_plugin() override;
 
       // Host location is not the updated url - if there is a way to update the url and
@@ -53,7 +53,7 @@ namespace hotplugin
       // It is the location url of the page that hosts the plugin when the plugin was created.
       virtual string get_host_location_url() override;
 
-      virtual void post_message(::enum_message emessage, ::wparam wparam, ::lparam lparam) override;
+      virtual void post_message(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam) override;
 
       virtual oswindow get_host_user_interaction() override;
 
@@ -92,15 +92,15 @@ namespace hotplugin
       virtual void on_paint(::draw2d::graphics_pointer & pgraphics, const ::int_rectangle & rectangle) override;
 
 
-      virtual int start_app_install(const ::string & pszCommandLine);
+      virtual int start_app_install(const ::scoped_string & scopedstrCommandLine);
 
-      static int s_start_app_install(const ::string & pszCommandLine,::aura::application * papp,host * phost, plugin * pplugin = nullptr);
+      static int s_start_app_install(const ::scoped_string & scopedstrCommandLine,::aura::application * papp,host * phost, plugin * pplugin = nullptr);
 
-      int start_app_install(const ::string & pszCommandLine, ::aura::application * papp, plugin * pplugin = nullptr);
+      int start_app_install(const ::scoped_string & scopedstrCommandLine, ::aura::application * papp, plugin * pplugin = nullptr);
 
-      static int s_host_starter_start_sync(const ::string & pszCommandLine,::aura::application * papp,host * phost,plugin * pplugin = nullptr);
+      static int s_host_starter_start_sync(const ::scoped_string & scopedstrCommandLine,::aura::application * papp,host * phost,plugin * pplugin = nullptr);
 
-      int host_starter_start_sync(const ::string & pszCommandLine, ::aura::application * papp, plugin * pplugin = nullptr);
+      int host_starter_start_sync(const ::scoped_string & scopedstrCommandLine, ::aura::application * papp, plugin * pplugin = nullptr);
 
       virtual void deferred_prodevian_redraw() override;
 
@@ -114,7 +114,7 @@ namespace hotplugin
 
       virtual bool is_ca2_installation_ready();
 
-      virtual void set_status(const ::string & pszStatus) override;
+      virtual void set_status(const ::scoped_string & scopedstrStatus) override;
 
       virtual void set_bitmap(::draw2d::graphics * pimage, const ::int_rectangle & rectangle);
 
@@ -128,7 +128,7 @@ namespace hotplugin
       virtual void translate_mouse_message(int * px, int * py) override;
 
       virtual void message_handler(::user::message * pusermessage) override;
-      virtual void plugin_message_handler(::enum_message emessage, ::wparam wparam, ::lparam lparam, bool bEnsureTx) override;
+      virtual void plugin_message_handler(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam, bool bEnsureTx) override;
 
       virtual void plugin_message_handler(MESSAGE * pmsg, bool bEnsureTx) override;
 

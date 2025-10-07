@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "color_selector_impact.h"
 #include "acme/constant/id.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "acme/graphics/image/image32.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/image/image.h"
@@ -11,7 +11,7 @@
 #include "aura/message/user.h"
 //#include "aura/operating_system/windows_common/graphics.h"
 #include "aura/platform/system.h"
-#include "base/user/user/document.h"
+#include "berg/user/user/document.h"
 
 
 namespace user
@@ -62,7 +62,7 @@ namespace user
 
       ::user::color_selector_control::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_create, pchannel, this, &color_selector_impact::on_message_create);
+      USER_MESSAGE_LINK(::user::e_message_create, pchannel, this, &color_selector_impact::on_message_create);
 
    }
 
@@ -106,7 +106,7 @@ namespace user
 
       //m_pimageBeam->fill(0);
 
-      //auto ppen = __øcreate < ::draw2d::pen > ();
+      //auto ppen = øcreate < ::draw2d::pen > ();
 
       //ppen->create_solid(1.0, argb(255, 255, 255, 255));
 
@@ -298,7 +298,7 @@ namespace user
 
    //   rectangleInner.deflate(sizeBeam.cx() / 4.0, sizeBeam.cy() / 4.0);
 
-   //   auto pbrush = __øcreate < ::draw2d::brush > ();
+   //   auto pbrush = øcreate < ::draw2d::brush > ();
 
    //   pbrush->create_solid(argb(255, 0, 0, 0));
 
@@ -370,7 +370,7 @@ namespace user
 
    //   rectangleOuter.inflate(dSize / 2.0, dSize / 2.0);
 
-   //   auto pbrush = __øcreate < ::draw2d::brush > ();
+   //   auto pbrush = øcreate < ::draw2d::brush > ();
 
    //   pbrush->create_solid(argb(255, 0, 0, 0));
 

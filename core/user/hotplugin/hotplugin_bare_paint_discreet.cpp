@@ -32,11 +32,11 @@ namespace hotplugin
       rectangle.bottom() = cy;
       rectangle.right() = cx;
 
-      auto ppen = __øcreate < ::draw2d::pen > ();
+      auto ppen = øcreate < ::draw2d::pen > ();
 
       ppen->create_solid(1.0, rgb(84, 90, 80));
 
-      auto pbrush = __øcreate < ::draw2d::brush >();
+      auto pbrush = øcreate < ::draw2d::brush >();
 
       pbrush->m_etype = ::draw2d::brush::e_type_null;
 
@@ -113,7 +113,7 @@ namespace hotplugin
 
       int iBorder1 = maximum(cx / iRate1, cy / iRate1);
 
-      auto ppathClip1 = __øcreate < ::draw2d::path >();
+      auto ppathClip1 = øcreate < ::draw2d::path >();
 
       ::int_rectangle rectangleClip1;
 
@@ -157,7 +157,7 @@ namespace hotplugin
 
       int iBorder = 16;
 
-      auto ppathClip = __øcreate < ::draw2d::path >();
+      auto ppathClip = øcreate < ::draw2d::path >();
 
       ::int_rectangle rectangleClip;
 
@@ -185,7 +185,7 @@ namespace hotplugin
 
       //delete pbr;
 
-      auto pbrush = __øcreate < ::draw2d::brush > ();
+      auto pbrush = øcreate < ::draw2d::brush > ();
 
       pbrush->create_solid(argb(49, 184 + 23, 184 + 23, 184 + 19));
 

@@ -9,7 +9,7 @@
 #include "aura/platform/application.h"
 
 
-//CLASS_DECL_AURA void message_queue_post(::windowing::window * pwindow, ::enum_message emessage, ::wparam wparam, ::lparam lparam)
+//CLASS_DECL_AURA void message_queue_post(::windowing::window * pwindow, ::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
 //{
 //
 //   //
@@ -40,7 +40,7 @@
 //
 //   //if (!
 //   
-//   pmq->post_message(pwindow->oswindow(), emessage, wparam, lparam);
+//   pmq->post_message(pwindow->oswindow(), eusermessage, wparam, lparam);
 //   //{
 //
 //   //   return false;
@@ -95,7 +95,7 @@ CLASS_DECL_AURA void mq_erase_window_from_all_queues(::windowing::window * pwind
 
    }
 
-   synchronous_lock ml(pmessagequeue->synchronization());
+   synchronous_lock ml(pmessagequeue->synchronization(), pmessagequeue, SYNCHRONOUS_LOCK_SUFFIX);
 
    pmessagequeue->m_messagea.predicate_erase([=](MESSAGE & message)
    {

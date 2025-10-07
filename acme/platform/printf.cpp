@@ -13,7 +13,7 @@
 #include "acme/parallelization/synchronous_lock.h"
 
 
-int printf_dup(const char *format, ...)
+int printf_dup(const_char_pointer format, ...)
 {
    va_list args;
    va_start(args, format);
@@ -36,7 +36,7 @@ int wprintf_dup(const ::wide_character *format, ...)
 
 
 
-int vprintf_dup(const char *format, va_list args)
+int vprintf_dup(const_char_pointer format, va_list args)
 {
 
    return vprintf(format, args);
@@ -59,14 +59,14 @@ int vwprintf_dup(const ::wide_character *format, va_list args)
 //int ecvt_r(double d, int i, int *__restrict pi1, int *__restrict pi2, char * sz, size_t size) /* LEGACY */
 //{
 //
-//   synchronous_lock ml(g_pmutexCvt);
+//   synchronous_lock ml(g_pmutexCvt, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //   char * psz = ecvt(d, i, pi1, pi2);
 //
-//   if(psz == nullptr)
+//   if(scopedstr == nullptr)
 //      return -1;
 //
-//   if(strlen(psz) > (size - 1))
+//   if(strlen(scopedstr) > (size - 1))
 //      return -1;
 //
 //   strcpy(sz, psz);
@@ -78,14 +78,14 @@ int vwprintf_dup(const ::wide_character *format, va_list args)
 //int fcvt_r(double d, int i, int *__restrict pi1, int *__restrict pi2, char * sz, size_t size) /* LEGACY */
 //{
 //
-//   synchronous_lock ml(g_pmutexCvt);
+//   synchronous_lock ml(g_pmutexCvt, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //   char * psz = fcvt(d, i, pi1, pi2);
 //
-//   if(psz == nullptr)
+//   if(scopedstr == nullptr)
 //      return -1;
 //
-//   if(strlen(psz) > (size - 1))
+//   if(strlen(scopedstr) > (size - 1))
 //      return -1;
 //
 //   strcpy(sz, psz);

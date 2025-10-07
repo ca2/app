@@ -7,7 +7,11 @@
 #include "aura/graphics/image/image.h"
 
 
+#if defined(USE_PORT_FREEIMAGE)
+#include <port_freeimage/FreeImage.h>
+#else
 #include <FreeImage.h>
+#endif
 
 
 CLASS_DECL_APEX void set_bypass_cache_if_empty(::payload& payloadFile);
@@ -159,7 +163,7 @@ namespace imaging_freeimage
 
    ::aura::Resource resource;
 
-   if(!resource.ReadResource(*file.get_memory(), (unsigned int) MAKEINTRESOURCE(pszId), pszType))
+   if(!resource.ReadResource(*file.get_memory(), (unsigned int) MAKEINTRESOURCE(scopedstrId), pszType))
 
    return false;
 
@@ -293,7 +297,7 @@ namespace imaging_freeimage
 
          auto s1 = memory.size();
 
-         const char* psz = (const char *)memory.data();
+         const_char_pointer psz = (const_char_pointer )memory.data();
 
          if (::is_null(psz))
          {
@@ -312,7 +316,7 @@ namespace imaging_freeimage
          char pszPngSignature[] = {(char)137, 80, 78, 71, 13, 10, 26, 10};
 
          bool bPng = size > sizeof(pszPngSignature)
-                     && ansi_ncmp((const char *)pszData, pszPngSignature, sizeof(pszPngSignature)) == 0;
+                     && ansi_ncmp((const_char_pointer )pszData, pszPngSignature, sizeof(pszPngSignature)) == 0;
 
          bool bJpegBegins = memory.begins("\x0FF\x0D8");
 

@@ -100,7 +100,7 @@ namespace ftp
       const string                          mc_strRemoteDirectorySeparator; ///< directory separator character which is used on the FTP server
 
       memory                     m_vBuffer;                  ///< buffer for sending and receiving
-      string_list                m_qResponseBuffer;          ///< buffer for server-responses
+      string_list_base                m_qResponseBuffer;          ///< buffer for server-responses
       ::pointer<representation>        m_apCurrentRepresentation;  ///< representation currently set
 
       //this class is now a tcp_socket and it is this control connection socket
@@ -109,7 +109,7 @@ namespace ftp
       bool                       m_fTransferInProgress;      ///< if true, a file transfer is in progress
       bool                       m_fAbortTransfer;           ///< indicates that a running filetransfer should be canceled
       bool                       m_fResumeIfPossible;        ///< try to resume download/upload if possible
-      observer_array             m_setObserver;              ///< list of observers, which are notified about particular actions
+      observer_array             m_setObserver;              ///< list_base of observers, which are notified about particular actions
       ::pointer<logon>          m_plogon;            ///< logon-info, which was used at the last call of login
 
       enum_state                    m_estate;
@@ -119,7 +119,7 @@ namespace ftp
 
       client_socket(
                     const class time & timeTimeout = 10_s, unsigned int uiBufferSize = 2048,
-                    const class time & timeResponseWait = 0_s, const string& strRemoteDirectorySeparator = "/");
+                    const class time & timeResponseWait = 0_s, const ::scoped_string & scopedstrRemoteDirectorySeparator = "/");
       virtual ~client_socket();
 
       virtual long cert_common_name_check(const ::string & common_name) override;
@@ -137,45 +137,45 @@ namespace ftp
       int  Logout();
       const logon * get_logon() const { return m_plogon; }
 
-      bool List(const string& strPath, string_array& vstrFileList, bool fPasv = false);
-      bool NameList(const string& strPath, string_array& vstrFileList, bool fPasv = false);
+      bool List(const ::scoped_string & scopedstrPath, string_array_base& vstrFileList, bool fPasv = false);
+      bool NameList(const ::scoped_string & scopedstrPath, string_array_base& vstrFileList, bool fPasv = false);
 
-      bool List(const string& strPath, file_status_ptra& vFileList, bool fPasv = false);
-      bool NameList(const string& strPath, file_status_ptra& vFileList, bool fPasv = false);
+      bool List(const ::scoped_string & scopedstrPath, file_status_ptra& vFileList, bool fPasv = false);
+      bool NameList(const ::scoped_string & scopedstrPath, file_status_ptra& vFileList, bool fPasv = false);
 
-      int  Delete(const string& strFile);
-      int  Rename(const string& strOldName, const string& strNewName);
-      int  Move(const string& strFullSourceFilePath, const string& strFullTargetFilePath);
+      int  Delete(const ::scoped_string & scopedstrFile);
+      int  Rename(const ::scoped_string & scopedstrOldName, const ::scoped_string & scopedstrNewName);
+      int  Move(const ::scoped_string & scopedstrFullSourceFilePath, const ::scoped_string & scopedstrFullTargetFilePath);
 
-      bool DownloadFile(const string& strRemoteFile, itransfer_notification& Observer,
+      bool DownloadFile(const ::scoped_string & scopedstrRemoteFile, itransfer_notification& Observer,
                         const representation& repType = representation(type::Image()), bool fPasv = false);
-      bool DownloadFile(const string& strRemoteFile, const string& strLocalFile,
+      bool DownloadFile(const ::scoped_string & scopedstrRemoteFile, const ::scoped_string & scopedstrLocalFile,
                         const representation& repType = representation(type::Image()), bool fPasv = false);
-      bool DownloadFile(const string& strSourceFile, client_socket& TargetFtpServer,
-                        const string& strTargetFile, const representation& repType = representation(type::Image()),
+      bool DownloadFile(const ::scoped_string & scopedstrSourceFile, client_socket& TargetFtpServer,
+                        const ::scoped_string & scopedstrTargetFile, const representation& repType = representation(type::Image()),
                         bool fPasv = true);
 
-      bool UploadFile(itransfer_notification& Observer, const string& strRemoteFile, bool fStoreUnique = false,
+      bool UploadFile(itransfer_notification& Observer, const ::scoped_string & scopedstrRemoteFile, bool fStoreUnique = false,
                       const representation& repType = representation(type::Image()), bool fPasv = false);
-      bool UploadFile(const string& strLocalFile, const string& strRemoteFile, bool fStoreUnique = false,
+      bool UploadFile(const ::scoped_string & scopedstrLocalFile, const ::scoped_string & scopedstrRemoteFile, bool fStoreUnique = false,
                       const representation& repType = representation(type::Image()), bool fPasv = false);
-      bool UploadFile(client_socket& SourceFtpServer, const string& strSourceFile,
-                      const string& strTargetFile, const representation& repType = representation(type::Image()),
+      bool UploadFile(client_socket& SourceFtpServer, const ::scoped_string & scopedstrSourceFile,
+                      const ::scoped_string & scopedstrTargetFile, const representation& repType = representation(type::Image()),
                       bool fPasv = true);
 
-      static bool TransferFile(client_socket& SourceFtpServer, const string& strSourceFile,
-                               client_socket& TargetFtpServer, const string& strTargetFile,
+      static bool TransferFile(client_socket& SourceFtpServer, const ::scoped_string & scopedstrSourceFile,
+                               client_socket& TargetFtpServer, const ::scoped_string & scopedstrTargetFile,
                                const representation& repType = representation(type::Image()), bool fSourcePasv = false);
 
-      int remove_directory(const string& strDirectory);
-      int make_directory(const string& strDirectory);
+      int remove_directory(const ::scoped_string & scopedstrDirectory);
+      int make_directory(const ::scoped_string & scopedstrDirectory);
 
       int PrintWorkingDirectory();
       int ChangeToParentDirectory();
-      int ChangeWorkingDirectory(const string& strDirectory);
+      int ChangeWorkingDirectory(const ::scoped_string & scopedstrDirectory);
 
       int Passive(unsigned int& ulIpAddress, unsigned short& ushPort);
-      int DataPort(const string& strHostIP, unsigned short ushPort);
+      int DataPort(const ::scoped_string & scopedstrHostIP, unsigned short ushPort);
       int _abort();
       int system();
       int Noop();
@@ -183,43 +183,43 @@ namespace ftp
       int FileStructure(const structure& crStructure);
       int TransferMode(const transfer_mode& crTransferMode);
       int Allocate(int iReserveBytes, const int* piMaxPageOrRecordSize = nullptr);
-      int StructureMount(const string& strPath);
-      int SiteParameters(const string& strCmd);
-      int Status(const string& strPath);
-      int Help(const string& strTopic);
+      int StructureMount(const ::scoped_string & scopedstrPath);
+      int SiteParameters(const ::scoped_string & scopedstrCmd);
+      int Status(const ::scoped_string & scopedstrPath);
+      int Help(const ::scoped_string & scopedstrTopic);
 
       int Reinitialize();
       int Restart(unsigned int dwPosition);
 
-      int FileSize(const string& strPath, long& lSize);
-      int FileModificationTime(const string& strPath, struct ::tm& tmModificationTime);
-      int FileModificationTime(const string& strPath, string& strModificationTime);
+      int FileSize(const ::scoped_string & scopedstrPath, long& lSize);
+      int FileModificationTime(const ::scoped_string & scopedstrPath, struct ::tm& tmModificationTime);
+      int FileModificationTime(const ::scoped_string & scopedstrPath, string& strModificationTime);
 
-      bool ExecuteDatachannelCommand(const command& crDatachannelCmd, const string& strPath, const representation& representation,
+      bool ExecuteDatachannelCommand(const command& crDatachannelCmd, const ::scoped_string & scopedstrPath, const representation& representation,
                                      bool fPasv, unsigned int dwByteOffset, itransfer_notification& Observer);
 
       observer_array& GetObservers();
 
       int _RepresentationType(const representation& repType, unsigned int dwSize = 0);
       bool TransferData(const command& crDatachannelCmd, itransfer_notification& Observer, ::sockets::transfer_socket & sckDataConnection);
-      bool OpenActiveDataConnection(::sockets::socket & sckDataConnection, const command& crDatachannelCmd, const string& strPath, unsigned int dwByteOffset);
-      bool OpenPassiveDataConnection(::sockets::socket & sckDataConnection, const command& crDatachannelCmd, const string& strPath, unsigned int dwByteOffset);
+      bool OpenActiveDataConnection(::sockets::socket & sckDataConnection, const command& crDatachannelCmd, const ::scoped_string & scopedstrPath, unsigned int dwByteOffset);
+      bool OpenPassiveDataConnection(::sockets::socket & sckDataConnection, const command& crDatachannelCmd, const ::scoped_string & scopedstrPath, unsigned int dwByteOffset);
       bool SendData(itransfer_notification& Observer, ::sockets::transfer_socket& sckDataConnection);
       bool ReceiveData(itransfer_notification& Observer, ::sockets::transfer_socket& sckDataConnection);
 
       int  SimpleErrorCheck(const reply& Reply);
 
-      bool SendCommand(const command& Command, const string_array & Arguments);
-      bool SendCommand(const command& Command, const string_array & Arguments, reply& Reply);
+      bool SendCommand(const command& Command, const string_array_base & Arguments);
+      bool SendCommand(const command& Command, const string_array_base & Arguments, reply& Reply);
       bool GetResponse(reply& Reply);
       bool GetSingleResponseLine(string& strResponse);
-      void OnLine(const ::string & strLine) override;
+      void OnLine(const ::scoped_string & scopedstrLine) override;
 
-      bool OpenControlChannel(const string& strServerHost, unsigned short ushServerPort = DEFAULT_FTP_PORT);
+      bool OpenControlChannel(const ::scoped_string & scopedstrServerHost, unsigned short ushServerPort = DEFAULT_FTP_PORT);
       void CloseControlChannel();
 
-      void ReportError(const string& strErrorMsg, const string& strFile, unsigned int dwLineNr);
-      bool GetIpAddressFromResponse(const string& strResponse, unsigned int& ulIpAddress, unsigned short& ushPort);
+      void ReportError(const ::scoped_string & scopedstrErrorMsg, const ::scoped_string & scopedstrFile, unsigned int dwLineNr);
+      bool GetIpAddressFromResponse(const ::scoped_string & scopedstrResponse, unsigned int& ulIpAddress, unsigned short& ushPort);
 
    };
 
@@ -244,7 +244,7 @@ namespace ftp
       virtual void OnPostReceiveFile(const string& /*strSourceFile*/, const string& /*strTargetFile*/, long /*lFileSize*/) {}
       virtual void OnPostSendFile(const string& /*strSourceFile*/, const string& /*strTargetFile*/, long /*lFileSize*/) {}
 
-      virtual void OnSendCommand(const command& /*Command*/, const string_array& /*Arguments*/) {}
+      virtual void OnSendCommand(const command& /*Command*/, const string_array_base& /*Arguments*/) {}
       virtual void OnResponse(const reply& /*Reply*/) {}
    };
 

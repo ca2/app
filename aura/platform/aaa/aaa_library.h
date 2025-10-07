@@ -28,9 +28,9 @@ namespace aura
       virtual ~library();
 
       virtual void     initialize(::particle * pparticle);
-      virtual void     initialize_aura_library(::particle * pparticle, int iDesmabi, const ::string & pszRoot = nullptr, const ::string & pszName = nullptr, const ::string & pszFolder = nullptr);
+      virtual void     initialize_aura_library(::particle * pparticle, int iDesmabi, const ::scoped_string & scopedstrRoot = nullptr, const ::scoped_string & scopedstrName = nullptr, const ::scoped_string & scopedstrFolder = nullptr);
 
-      virtual bool open(const ::string & pszPath,bool bAutoClose = true,bool bCa2Path = false);
+      virtual bool open(const ::scoped_string & scopedstrPath,bool bAutoClose = true,bool bCa2Path = false);
 
       virtual bool open_ca2_library(string strTitle = "");
 
@@ -46,23 +46,23 @@ namespace aura
       virtual bool is_closed();
 
       template < typename TARGET >
-      TARGET get(const ::string & pszEntryName)
+      TARGET get(const ::scoped_string & scopedstrEntryName)
       {
-         return reinterpret_cast <TARGET>(raw_get(pszEntryName));
+         return reinterpret_cast <TARGET>(raw_get(scopedstrEntryName));
       }
 
       template < typename TARGET >
-      TARGET & get(TARGET & ptarget, const ::string & pszEntryName)
+      TARGET & get(TARGET & ptarget, const ::scoped_string & scopedstrEntryName)
       {
-         return ptarget = get<TARGET>(pszEntryName);
+         return ptarget = get<TARGET>(scopedstrEntryName);
       }
 
-      void * raw_get(const ::string & pszEntryName);
+      void * raw_get(const ::scoped_string & scopedstrEntryName);
 
 
 
 
-      virtual bool contains_app(const ::string & pszAppId);
+      virtual bool contains_app(const ::scoped_string & scopedstrAppId);
 
 
       virtual void get_create_impact_id_list(::array < atom > & ida);
@@ -72,23 +72,23 @@ namespace aura
 
 
       // impl
-      virtual ::pointer<::aura::application>get_new_application(::particle * pparticle, const ::string & pszAppId);
-      virtual void get_app_list(string_array & stra);
+      virtual ::pointer<::aura::application>get_new_application(::particle * pparticle, const ::scoped_string & scopedstrAppId);
+      virtual void get_app_list(string_array_base & stra);
 
 
-      virtual ::matter* new_object(::object* pparticle, const ::string & pszClass);
+      virtual ::matter* new_object(::object* pparticle, const ::scoped_string & scopedstrClass);
 
 
-      virtual ::pointer<::matter>create_object(::object* pparticle, const ::string & pszClass);
+      virtual ::pointer<::matter>create_object(::object* pparticle, const ::scoped_string & scopedstrClass);
       virtual bool has_object_class(const ::string & lpszClass);
 
 
       virtual string get_library_name();
 
-      virtual string get_app_id(const ::string & pszAppName);
-      virtual string get_app_name(const ::string & pszAppId);
+      virtual string get_app_id(const ::scoped_string & scopedstrAppName);
+      virtual string get_app_name(const ::scoped_string & scopedstrAppId);
 
-      virtual void get_extension_list(string_array & stra);
+      virtual void get_extension_list(string_array_base & stra);
 
 
       virtual ::matter * factory_new(::particle * pparticle, const ::string & lpszClass);
@@ -109,7 +109,7 @@ namespace aura
 
 
 
-   CLASS_DECL_AURA void * open_ca2_library(const ::string & psz);
+   CLASS_DECL_AURA void * open_ca2_library(const ::scoped_string & scopedstr);
 
 
 
@@ -123,7 +123,7 @@ namespace aura
 
       string m_strFileExt;
 
-      single_application_library(const ::string & pszRoot, const ::string & pszFileExtension = nullptr)
+      single_application_library(const ::scoped_string & scopedstrRoot, const ::scoped_string & scopedstrFileExtension = nullptr)
       {
 
          m_strRoot = pszRoot;
@@ -131,10 +131,10 @@ namespace aura
       }
 
       // impl
-      virtual ::pointer<::aura::application>get_new_application(::particle * pparticle, const ::string & pszAppId) override;
+      virtual ::pointer<::aura::application>get_new_application(::particle * pparticle, const ::scoped_string & scopedstrAppId) override;
 
 
-      virtual void get_extension_list(string_array & stra) override;
+      virtual void get_extension_list(string_array_base & stra) override;
 
    };
 
@@ -148,19 +148,19 @@ namespace aura
 
 
 
-CLASS_DECL_AURA void * __node_library_open(const ::string & pszPath, string & strMessage);
-CLASS_DECL_AURA void * __node_library_touch(const ::string & pszPath, string & strMessage);
-CLASS_DECL_AURA void * __node_library_open_ca2(const ::string & pszPath, string & strMessage);
+CLASS_DECL_AURA void * __node_library_open(const ::scoped_string & scopedstrPath, string & strMessage);
+CLASS_DECL_AURA void * __node_library_touch(const ::scoped_string & scopedstrPath, string & strMessage);
+CLASS_DECL_AURA void * __node_library_open_ca2(const ::scoped_string & scopedstrPath, string & strMessage);
 CLASS_DECL_AURA bool __node_library_close(void * plibrary);
-CLASS_DECL_AURA void * __node_library_raw_get(void * plibrary, const ::string & pszEntryName);
+CLASS_DECL_AURA void * __node_library_raw_get(void * plibrary, const ::scoped_string & scopedstrEntryName);
 
 
-CLASS_DECL_AURA ::acme::library * lib(const ::string & psz);
+CLASS_DECL_AURA ::acme::library * lib(const ::scoped_string & scopedstr);
 
 #define LIBCALL(library, entry)  (lib(#library)->get<decltype(&entry)>(#entry))
 
 
-CLASS_DECL_AURA ::file::path library_file_name(const ::string & str);
+CLASS_DECL_AURA ::file::path library_file_name(const ::scoped_string & scopedstr);
 
 
 
@@ -190,7 +190,7 @@ virtual void initialize_factory() override                              \
 {
 
 
-#define CREATE_OBJECT_ENTRY(name, TYPE) m_allocatorptra.add(__allocate library_object_allocator < TYPE > (name));
+#define CREATE_OBJECT_ENTRY(name, TYPE) m_allocatorptra.add(øallocate library_object_allocator < TYPE > (name));
 
 #define END_CREATE_OBJECT }
 

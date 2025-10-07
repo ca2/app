@@ -22,7 +22,7 @@
 //   }
 //
 //
-//   void program::create_program(::particle * pparticle, const string& strVertex, const string& strFragment, const string& strGeometry)
+//   void program::create_program(::particle * pparticle, const ::scoped_string & scopedstrVertex, const ::scoped_string & scopedstrFragment, const ::scoped_string & scopedstrGeometry)
 //   {
 //
 //      m_strProjection = strVertex;
@@ -30,10 +30,10 @@
 //      m_strGeometry = strGeometry;
 //
 //      //::e_status estatus = 
-//      /*::__construct_new(*/
+//      /*::øconstruct_new(*/
 //      
 //      
-//      pparticle->__construct_new(m_pshader);
+//      pparticle->øconstruct_new(m_pshader);
 //
 //
 //      //if (!estatus)

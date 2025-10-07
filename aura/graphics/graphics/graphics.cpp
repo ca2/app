@@ -38,7 +38,7 @@ namespace graphics
       //   pgraphics->m_callbackImage32CpuBuffer = [this](const ::image32_t * pimage32, int cx, int cy, int scan)
       //      {
 
-      //         //_synchronous_lock synchronouslock(this->m_pmutex);
+      //         //_synchronous_lock synchronouslock(this->m_pmutex, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       //         m_pimage2->image32()->copy(cx, cy, m_pimage2->m_iScan, pimage32, scan);
 
@@ -356,7 +356,7 @@ namespace graphics
    }
 
 
-   void graphics::set_bitmap_source(const string & strBitmapSource)
+   void graphics::set_bitmap_source(const ::scoped_string & scopedstrBitmapSource)
    {
 
       information() << "GRAPHICS::SET_BITMAP_SOURCE NOT Implemented";
@@ -419,9 +419,9 @@ namespace graphics
    long long graphics::_001GetTopLeftWeightedOpaqueArea(const ::int_rectangle & rect)
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-      _synchronous_lock synchronouslockMutex(get_screen_item()->m_pmutex);
+      _synchronous_lock synchronouslockMutex(get_screen_item()->m_pmutex, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       return get_screen_item()->m_pimage2->_001GetTopLeftWeightedOpaqueArea(0, rect);
 

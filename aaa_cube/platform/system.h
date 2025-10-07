@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "base/platform/system.h"
+#include "berg/platform/system.h"
 
 
 namespace bred
@@ -9,7 +9,7 @@ namespace bred
 
 
    class CLASS_DECL_BRED system :
-      virtual public ::base::system
+      virtual public ::berg::system
    {
    public:
 

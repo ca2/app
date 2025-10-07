@@ -17,7 +17,7 @@ namespace sip
 
       //void SetCookie(const string & value);
       //string Cookie(const string & name);
-      //list<string> CookieNames() const;
+      //list_base<string> CookieNames() const;
 
       memory_file & file() { return m_memfileBody; }
 

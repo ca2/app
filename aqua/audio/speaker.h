@@ -3,7 +3,6 @@
 
 ////#include "acme/prototype/prototype/object.h"
 
-
 namespace text_to_speech
 {
 
@@ -21,15 +20,15 @@ namespace text_to_speech
       ~speaker() override;
 
 
-      virtual void speak(const ::string & strText);
+      virtual void speak(const ::scoped_string & scopedstrText);
 
-      virtual void speak(const ::string & strLang, const ::string & strText, bool bSynch = false);
+      virtual void speak(const ::scoped_string & scopedstrLang, const ::scoped_string & scopedstrText, enum_synchronicity esynchronicity = e_synchronicity_asynchronous);
 
-      virtual void speak(const ::string & strAttributes, const ::string & strLang, const ::string & strText, bool bSynch = false);
+      virtual void speak(const ::scoped_string & scopedstrAttributes, const ::scoped_string & scopedstrLang, const ::scoped_string & scopedstrText, enum_synchronicity esynchronicity = e_synchronicity_asynchronous);
 
-      virtual void stop(string strLang);
+      virtual void stop(const ::scoped_string & scopedstrLang);
 
-      virtual bool is_speaking(string strLang);
+      virtual bool is_speaking(const ::scoped_string & scopedstrLang);
 
 
    };

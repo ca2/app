@@ -11,7 +11,7 @@ namespace file
 {
 
 
-   //bool enumerator::enumerate(::file::listing & listing)
+   //bool enumerator::enumerate(::file::listing_base & listing)
    //{
 
    //   //if (!_enumerates(listing))
@@ -30,7 +30,7 @@ namespace file
    //}
 
 
-   bool enumerator::enumerate(listing & listing)
+   bool enumerator::enumerate(listing_base & listing)
    {
 
       if (listing.m_pathFinal.is_empty())
@@ -47,9 +47,9 @@ namespace file
 
       }
 
-      string_array stra;
+      string_array_base stra;
 
-      if(list(stra, listing.m_pathFinal, listing.m_eflag))
+      if(list_base(stra, listing.m_pathFinal, listing.m_eflag))
       {
 
          return false;
@@ -85,10 +85,10 @@ namespace file
    }
 
 
-   bool enumerator::list(string_array & stra, const ::scoped_string & scopedstr, ::file::e_flag eflag)
+   bool enumerator::list_base(string_array_base & stra, const ::scoped_string & scopedstr, ::file::e_flag eflag)
    {
 
-      ::file::listing listing;
+      ::file::listing_base listing;
 
       listing.set_listing(scopedstr, e_depth_none, eflag);
 
@@ -120,23 +120,23 @@ namespace file
    }
 
    
-   listing enumerator::get_folders(const ::scoped_string & scopedstr)
+   listing_base enumerator::get_folders(const ::scoped_string & scopedstr)
    {
 
-      ::file::listing listing;
+      ::file::listing_base listing;
 
       listing.set_listing(scopedstr, e_depth_none, e_flag_folder);
 
       if(enumerate(listing))
       {
 
-         listing.m_estatus = success;
+         listing.m_estatusListing = success;
 
       }
       else
       {
 
-         listing.m_estatus = error_failed;
+         listing.m_estatusListing = error_failed;
 
       }
 
@@ -146,10 +146,10 @@ namespace file
 
 
 
-   ::file::listing enumerator::folders(const ::file::path& path)
+   ::file::listing_base enumerator::folders(const ::file::path& path)
    {
       
-      ::file::listing listing;
+      ::file::listing_base listing;
 
       listing.set_listing(path, e_depth_none, ::file::e_flag_folder);
 
@@ -165,10 +165,10 @@ namespace file
    }
 
 
-   ::file::listing enumerator::files(const ::file::path& path)
+   ::file::listing_base enumerator::files(const ::file::path& path)
    {
 
-      ::file::listing listing;
+      ::file::listing_base listing;
 
       listing.set_listing(path, e_depth_none, ::file::e_flag_file);
 
@@ -184,10 +184,10 @@ namespace file
    }
 
 
-   ::file::listing enumerator::folders_and_files(const ::file::path& path)
+   ::file::listing_base enumerator::folders_and_files(const ::file::path& path)
    {
 
-      ::file::listing listing;
+      ::file::listing_base listing;
 
       listing.set_listing(path, e_depth_none, ::file::e_flag_file_or_folder);
 
@@ -204,7 +204,7 @@ namespace file
 
 
 
-   //bool enumerator::enumerate_pattern(::file::listing & listing, const ::file::path & path, const ::string_array & straPattern, ::file::e_flag eflag, enum_depth edepth)
+   //bool enumerator::enumerate_pattern(::file::listing_base & listing, const ::file::path & path, const ::string_array_base & straPattern, ::file::e_flag eflag, enum_depth edepth)
    //{
 
    //   listing.m_straPattern = straPattern;

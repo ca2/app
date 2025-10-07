@@ -7,10 +7,10 @@
 
 void fprint_line(FILE * pfile, const ::scoped_string & scopedstr);
 void fprint_out(FILE * pfile, const ::scoped_string & scopedstr);
-void fprintf_line(FILE * pfile, const ::ansi_character * pszFormat, ...);
-void fprintf_out(FILE * pfile, const ::ansi_character * pszFormat, ...);
-void fprintf_line_arguments(FILE * pfile, const ::ansi_character * pszFormat, va_list arguments);
-void fprintf_out_arguments(FILE * pfile, const ::ansi_character * pszFormat, va_list arguments);
+void fprintf_line(FILE * pfile, const_char_pointer pszFormat, ...);
+void fprintf_out(FILE * pfile, const_char_pointer pszFormat, ...);
+void fprintf_line_arguments(FILE * pfile, const_char_pointer pszFormat, va_list arguments);
+void fprintf_out_arguments(FILE * pfile, const_char_pointer pszFormat, va_list arguments);
 
 
 void fprint_line(FILE * pfile, const ::scoped_string & scopedstr)
@@ -35,7 +35,7 @@ void fprint_out(FILE * pfile, const ::scoped_string & scopedstr)
 }
 
 
-void fprintf_line(FILE * pfile, const ::ansi_character * pszFormat, ...)
+void fprintf_line(FILE * pfile, const_char_pointer pszFormat, ...)
 {
 
    va_list arguments;
@@ -53,7 +53,7 @@ void fprintf_line(FILE * pfile, const ::ansi_character * pszFormat, ...)
 }
 
 
-void fprintf_out(FILE * pfile, const ::ansi_character * pszFormat, ...)
+void fprintf_out(FILE * pfile, const_char_pointer pszFormat, ...)
 {
 
    va_list arguments;
@@ -71,7 +71,7 @@ void fprintf_out(FILE * pfile, const ::ansi_character * pszFormat, ...)
 }
 
 
-void fprintf_line_arguments(FILE * pfile, const ::ansi_character * pszFormat, va_list arguments)
+void fprintf_line_arguments(FILE * pfile, const_char_pointer pszFormat, va_list arguments)
 {
 
    ::string str;
@@ -83,7 +83,7 @@ void fprintf_line_arguments(FILE * pfile, const ::ansi_character * pszFormat, va
 }
 
 
-void fprintf_out_arguments(FILE * pfile, const ::ansi_character * pszFormat, va_list arguments)
+void fprintf_out_arguments(FILE * pfile, const_char_pointer pszFormat, va_list arguments)
 {
 
    ::string str;
@@ -95,7 +95,7 @@ void fprintf_out_arguments(FILE * pfile, const ::ansi_character * pszFormat, va_
 }
 
 
-void printf_line_arguments(const ::ansi_character * pszFormat, va_list arguments)
+void printf_line_arguments(const_char_pointer pszFormat, va_list arguments)
 {
 
    fprintf_line_arguments(stdout, pszFormat, arguments);
@@ -103,7 +103,7 @@ void printf_line_arguments(const ::ansi_character * pszFormat, va_list arguments
 }
 
 
-void printf_out_arguments(const ::ansi_character * pszFormat, va_list arguments)
+void printf_out_arguments(const_char_pointer pszFormat, va_list arguments)
 {
 
    fprintf_out_arguments(stdout, pszFormat, arguments);
@@ -111,7 +111,7 @@ void printf_out_arguments(const ::ansi_character * pszFormat, va_list arguments)
 }
 
 
-void errf_line_arguments(const ::ansi_character * pszFormat, va_list arguments)
+void errf_line_arguments(const_char_pointer pszFormat, va_list arguments)
 {
 
    fprintf_line_arguments(stderr, pszFormat, arguments);
@@ -119,7 +119,7 @@ void errf_line_arguments(const ::ansi_character * pszFormat, va_list arguments)
 }
 
 
-void errf_out_arguments(const ::ansi_character * pszFormat, va_list arguments)
+void errf_out_arguments(const_char_pointer pszFormat, va_list arguments)
 {
 
    fprintf_out_arguments(stderr, pszFormat, arguments);
@@ -143,7 +143,7 @@ void print_out(const ::scoped_string & scopedstr)
 }
 
 
-void printf_line(const ::ansi_character * pszFormat, ...)
+void printf_line(const_char_pointer pszFormat, ...)
 {
 
    va_list arguments;
@@ -157,7 +157,7 @@ void printf_line(const ::ansi_character * pszFormat, ...)
 }
 
 
-void printf_out(const ::ansi_character * pszFormat, ...)
+void printf_out(const_char_pointer pszFormat, ...)
 {
 
    va_list arguments;
@@ -188,7 +188,7 @@ void err_out(const ::scoped_string & scopedstr)
 
 
 
-void errf_line(const ::ansi_character * pszFormat, ...)
+void errf_line(const_char_pointer pszFormat, ...)
 {
 
    va_list arguments;
@@ -202,7 +202,7 @@ void errf_line(const ::ansi_character * pszFormat, ...)
 }
 
 
-void errf_out(const ::ansi_character * pszFormat, ...)
+void errf_out(const_char_pointer pszFormat, ...)
 {
 
    va_list arguments;

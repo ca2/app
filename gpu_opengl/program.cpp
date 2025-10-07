@@ -1,4 +1,5 @@
 #include "framework.h"
+//#include "_gpu_opengl.h"
 #include "program.h"
 //#include "bred/gpu/shader.h"
 //
@@ -19,7 +20,7 @@
 //   }
 //
 //
-//   void program::create_program(::particle * pparticle, const string& strVertex, const string& strFragment, const string& strGeometry)
+//   void program::create_program(::particle * pparticle, const ::scoped_string & scopedstrVertex, const ::scoped_string & scopedstrFragment, const ::scoped_string & scopedstrGeometry)
 //   {
 //
 //      m_strProjection = strVertex;
@@ -28,7 +29,7 @@
 //
 //      //::e_status estatus = 
 //      
-//      pparticle->__øconstruct(m_pshader);
+//      pparticle->øconstruct(m_pshader);
 //
 //      //if (!estatus)
 //      //{

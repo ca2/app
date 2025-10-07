@@ -34,12 +34,12 @@ namespace xml
       void set_value(const ::scoped_string & scopedstrValue);
 
       virtual ::xml::node * export_node(exportable & exportable);
-      virtual ::xml::node * export_node(const ::string & strName, exportable & exportable);
+      virtual ::xml::node * export_node(const ::scoped_string & scopedstrName, exportable & exportable);
 
-      virtual ::xml::node * export_node(const ::string & strName, ::payload payload);
+      virtual ::xml::node * export_node(const ::scoped_string & scopedstrName, ::payload payload);
 
 
-      virtual void set_node_name(const ::string & strName);
+      virtual void set_node_name(const ::scoped_string & scopedstrName);
 
 
    };

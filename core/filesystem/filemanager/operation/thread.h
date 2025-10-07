@@ -26,7 +26,7 @@ namespace filemanager
 
       operation_thread();
 
-      void queue_copy(::file::listing & stra,const ::file::path & pszDest,const ::file::path & pszSrcBase,bool bExpand,bool bReplaceAll,bool bDeleteOriginOnSuccessfulCopy, ::pointer<::user::interaction>puiCallback = nullptr,const ::atom & atom = WM_USER,wparam wparam = 0x1000);
+      void queue_copy(::file::listing_base & stra,const ::file::path & pathDest,const ::file::path & pathSourceBase,bool bExpand,bool bReplaceAll,bool bDeleteOriginOnSuccessfulCopy, ::pointer<::user::interaction>puiCallback = nullptr,const ::atom & atom = WM_USER,wparam wparam = 0x1000);
       void kick();
 
       int get_item_count();

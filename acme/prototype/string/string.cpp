@@ -78,7 +78,7 @@
 //}
 
 
-CLASS_DECL_ACME string string_from_strdup(const ::ansi_character* psz)
+CLASS_DECL_ACME string string_from_strdup(const_char_pointer psz)
 {
 
    if (psz == nullptr)
@@ -117,18 +117,18 @@ CLASS_DECL_ACME string string_from_strdup(const ::ansi_character* psz)
 }
 
 
-CLASS_DECL_ACME ::string localization_get(const ::string & str)
+CLASS_DECL_ACME ::string localization_get(const ::scoped_string & scopedstr)
 {
 
-   return str;
+   return scopedstr;
 
 }
 
 
-CLASS_DECL_ACME ::string _(const ::string & str)
+CLASS_DECL_ACME ::string _(const ::scoped_string & scopedstr)
 {
 
-   return localization_get(str);
+   return localization_get(scopedstr);
 
 }
 

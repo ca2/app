@@ -70,11 +70,11 @@ namespace image
 //
 //
 //   //virtual bool load_image(::payload payloadFile, bool bCache = true, bool bCreateHelperMaps = false)= 0;
-//   //virtual bool load_image(const ::string & pszMatter, bool bCache = true, bool bCreateHelperMaps = false)= 0;
+//   //virtual bool load_image(const ::scoped_string & scopedstrMatter, bool bCache = true, bool bCreateHelperMaps = false)= 0;
 //   ////virtual bool read_from_file(file_pointer  pfile)= 0;
 //
 //
-//   //virtual bool load_matter_icon(string_array & straMatter, string strIcon)= 0;
+//   //virtual bool load_matter_icon(string_array_base & straMatter, const ::scoped_string & scopedstrIcon)= 0;
 //
 //
 //   //virtual bool load_thumbnail(::payload payloadFile, int w, int h)= 0;
@@ -84,12 +84,12 @@ namespace image
 //   //virtual bool save_dib(::payload payloadFile) = 0;
 //
 //   virtual image get_image(::payload payloadFile, bool bSync = false) = 0;
-//   virtual image matter_image(string strMatter, bool bSync = false) = 0;
+//   virtual image matter_image(const ::scoped_string & scopedstrMatter, bool bSync = false) = 0;
 //   virtual image load_image(::payload payloadFile, bool bCreateHelperMaps = false) = 0;
-//   virtual image load_matter_image(const ::string & pszMatter, bool bCache = true, bool bCreateHelperMaps = false) = 0;
-//   virtual image load_matter_icon(string_array & straMatter, string strIcon) = 0;
+//   virtual image load_matter_image(const ::scoped_string & scopedstrMatter, bool bCache = true, bool bCreateHelperMaps = false) = 0;
+//   virtual image load_matter_icon(string_array_base & straMatter, const ::scoped_string & scopedstrIcon) = 0;
 //   virtual image load_thumbnail(::payload payloadFile, int w, int h) = 0;
-//   virtual image load_thumbnail(const ::string & pszPath) = 0;
+//   virtual image load_thumbnail(const ::scoped_string & scopedstrPath) = 0;
 //   virtual image load_dib(const ::file::path & pathDib) = 0;
 //
 //
@@ -153,7 +153,7 @@ namespace image
 //
 //   virtual bool hue_offset(double dRate)= 0;
 //
-//   virtual bool map(bool bApplyAlphaTransform = true) const= 0; // some implementations may requrire to map to m_pcolorref before manipulate it
+//   virtual bool map(bool bApplyAlphaTransform = true) const= 0; // some implementations may requrire to map_base to m_pcolorref before manipulate it
 //   virtual bool unmap() const= 0; // some implementations may require to unmap from m_pcolorref to update *os* bitmap
 //   virtual bool set_mapped()= 0;
 //
@@ -233,7 +233,7 @@ namespace image
 //   virtual bool channel_mask(unsigned char uchFind, unsigned char uchSet, unsigned char uchUnset, ::color::enum_channel echannel)= 0;
 //   virtual bool transparent_color(::color::color color)= 0;
 //
-//   virtual bool create_thumbnail(const ::string & pszPath) = 0;
+//   virtual bool create_thumbnail(const ::scoped_string & scopedstrPath) = 0;
 //
 //   virtual bool create(const ::int_size & size, ::eobject eobjectCreate = DEFAULT_CREATE_IMAGE_OBJECT_FLAG, int iGoodStride = -1)= 0;
 //   virtual bool create(int iWidth, int iHeight, ::eobject eobjectCreate = DEFAULT_CREATE_IMAGE_OBJECT_FLAG, int iGoodStride = -1)= 0;
@@ -310,7 +310,7 @@ namespace image
 //   virtual bool create_nanosvg(char * pszXml, double dDpi = 0.0) = 0;
 //   virtual bool nanosvg(char * pszXml, double dDpi = 0.0)= 0;
 //
-//   virtual bool op(string str)= 0;
+//   virtual bool op(const ::scoped_string & scopedstr)= 0;
 //
 //   //virtual bool from( ::image::image *pimage)= 0;
 //

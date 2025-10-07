@@ -34,7 +34,7 @@ string get_callstack(::particle * pparticle, const ::scoped_string & scopedstrFo
 //   }
 
 
-//   const char * callstack::get_dup(const ::scoped_string & scopedstrFormat, int iSkip, int iCount)
+//   const_char_pointer callstack::get_dup(const ::scoped_string & scopedstrFormat, int iSkip, int iCount)
 //   {
 //
 //      return nullptr;
@@ -48,7 +48,7 @@ string get_callstack(::particle * pparticle, const ::scoped_string & scopedstrFo
 //   //
 //   //   const ::scoped_string & scopedstr;
 //   //
-//   //   synchronous_lock synchronouslock(::exception_engine().mutex());
+//   //   synchronous_lock synchronouslock(::exception_engine().mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //   //
 //   //   ::exception_engine().xxxstack_trace(iSkip, nullptr, m_pszFormat, m_iCount);
 //   //

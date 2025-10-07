@@ -44,7 +44,7 @@ inline char * ansi_concatenate_long_long(char * psz, long long i, int iBase, enu
 //#if defined(LINUX) || defined(__APPLE__) || defined(__ANDROID__) || defined(FREEBSD) || defined(OPENBSD)
    ansi_from_long_long(psz + strlen(psz), i, iBase, edigitcase);
 //#else
-//   _long_longtoa(i, psz + strlen(psz), 10);
+//   _long_longtoa(i, psz + strlen(scopedstr), 10);
 //#endif
    return psz;
 }

@@ -11,7 +11,7 @@ namespace keyboard
    {
 
       ::user::e_key        m_ekey;
-      const char* m_psz;
+      const_char_pointer m_psz;
 
    };
 

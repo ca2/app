@@ -16,7 +16,7 @@ namespace sphere
    }
 
 
-   void library::get_app_list(string_array & stra)
+   void library::get_app_list(string_array_base & stra)
    {
 
       stra.add("calculator");
@@ -27,17 +27,17 @@ namespace sphere
    }
 
 
-   void library::get_extension_list(string_array & stra)
+   void library::get_extension_list(string_array_base & stra)
    {
 
       stra.add("*");
 
    }
 
-   void library::get_extension_app(string_array & straApp, const ::string & pszExtension)
+   void library::get_extension_app(string_array_base & straApp, const ::scoped_string & scopedstrExtension)
    {
 
-      string strExtension(pszExtension);
+      string strExtension(scopedstrExtension);
 
       strExtension.make_lower();
 
@@ -54,27 +54,27 @@ namespace sphere
    }
 
 
-   /*   ::pointer<::aura::application>library::get_new_app(const ::string & pszAppId)
+   /*   ::pointer<::aura::application>library::get_new_app(const ::scoped_string & scopedstrAppId)
       {
 
-         if(case_insensitive_equals(pszAppId, "calculator"))
+         if(case_insensitive_equals(scopedstrAppId, "calculator"))
          {
             return ___new ::calculator::application ();
          }
-         else if(case_insensitive_equals(pszAppId, "command"))
+         else if(case_insensitive_equals(scopedstrAppId, "command"))
          {
             return ___new ::command::application ();
          }
-         else if(case_insensitive_equals(pszAppId, "userstack"))
+         else if(case_insensitive_equals(scopedstrAppId, "userstack"))
          {
             return ___new ::userstack::application ();
          }
-         else if(case_insensitive_equals(pszAppId, "default_file_handler"))
+         else if(case_insensitive_equals(scopedstrAppId, "default_file_handler"))
          {
             return ___new ::filehandler::application ();
          }
 
-         return ::apex::single_application_library < application >::get_new_app(pszAppId);
+         return ::apex::single_application_library < application >::get_new_app(scopedstrAppId);
 
       }*/
 

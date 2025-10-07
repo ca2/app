@@ -60,7 +60,7 @@ namespace windows
          }
 
 
-         bool request::get_response(::nano::http::get * pget)
+         bool request::get_response(::nano::http::get * defer_get)
          {
 
             auto    bResults = WinHttpReceiveResponse(m_hinternet, NULL);/**/
@@ -123,7 +123,7 @@ namespace windows
 
             ::string strHeaders(wstrHeaders);
 
-            pget->payload("out_headers").as_property_set().parse_network_headers(strHeaders);
+            defer_get->payload("out_headers").as_property_set().parse_network_headers(strHeaders);
 
             unsigned long long contentLength = 0;
             DWORD dwContentLengthBufferSize = sizeof(contentLength);
@@ -142,7 +142,7 @@ namespace windows
 
             }
 
-            bool bOnlyHeaders = pget->payload("only_headers").as_bool();
+            bool bOnlyHeaders = defer_get->payload("only_headers").as_bool();
 
             if (bOnlyHeaders)
             {
@@ -153,7 +153,7 @@ namespace windows
 
             transfer_progress_function transferprogressfunction;
 
-            transferprogressfunction = pget->payload("transfer_progress_function");
+            transferprogressfunction = defer_get->payload("transfer_progress_function");
 
             dwSize = 0;
             do
@@ -181,7 +181,7 @@ namespace windows
                // 
                memory.zero();
                // Read the Data.            
-               //ZeroMemory(pszOutBuffer, dwSize + 1);
+               //ZeroMemory(scopedstrOutBuffer, dwSize + 1);
                DWORD dwDownloaded = 0;
                if (!WinHttpReadData(m_hinternet, (LPVOID)memory.data(), dwSize, &dwDownloaded))
                {
@@ -194,7 +194,7 @@ namespace windows
                if (dwDownloaded > 0)
                {
 
-                  pget->get_memory_response()->append(memory);
+                  defer_get->get_memory_response()->append(memory);
 
                   if (transferprogressfunction)
                   {
@@ -202,14 +202,14 @@ namespace windows
                      if (contentLength > 0)
                      {
 
-                        transferprogressfunction((double)pget->get_memory_response()->size() /
-                           (double)contentLength, pget->get_memory_response()->size(),
+                        transferprogressfunction((double)defer_get->get_memory_response()->size() /
+                           (double)contentLength, defer_get->get_memory_response()->size(),
                            contentLength);
                      }
                      else
                      {
 
-                        transferprogressfunction(0., pget->get_memory_response()->size(),
+                        transferprogressfunction(0., defer_get->get_memory_response()->size(),
                            0);
 
                      }

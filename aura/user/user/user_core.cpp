@@ -14,7 +14,7 @@ namespace user
    }
 
 
-   bool core_user_layer::get_fs_size(string& strSize, const ::string& pszPath, bool& bPending)
+   bool core_user_layer::get_fs_size(string& strSize, const ::scoped_string & scopedstrPath, bool& bPending)
    {
 
       return false;
@@ -22,7 +22,7 @@ namespace user
    }
 
 
-   bool core_user_layer::get_fs_size(long long& i64Size, const ::string& pszPath, bool& bPending)
+   bool core_user_layer::get_fs_size(long long& i64Size, const ::scoped_string & scopedstrPath, bool& bPending)
    {
 
       return false;
@@ -51,7 +51,7 @@ namespace user
    }
 
 
-   void core_user_layer::AddToRecentFileList(const ::string& pszPathName)
+   void core_user_layer::AddToRecentFileList(const ::scoped_string & scopedstrPathName)
    {
    }
 
@@ -152,7 +152,7 @@ return nullptr;
    //void core_user_layer::initialize(::particle * pparticle) override{}
 
 
-   //bool core_user_layer::do_prompt_file_name(::payload& payloadFile, string strTitle, unsigned int lFlags, bool bOpenFileDialog, ::user::impact_system* ptemplate, ::user::document* pdocument, const atom & atomFileManager = "file_manager_save"){}
+   //bool core_user_layer::do_prompt_file_name(::payload& payloadFile, const ::scoped_string & scopedstrTitle, unsigned int lFlags, bool bOpenFileDialog, ::user::impact_system* ptemplate, ::user::document* pdocument, const atom & atomFileManager = "file_manager_save"){}
 
 
    void core_user_layer::initialize_userex()
@@ -188,7 +188,7 @@ return nullptr;
    //::type_atom get_simple_child_frame_type_info(){}
 
 
-   //void core_user_layer::on_frame_window_drop_files(::user::interaction* pinteraction, ::file::path_array& patha) override{}
+   //void core_user_layer::on_frame_window_drop_files(::user::interaction* pinteraction, ::file::path_array_base& patha) override{}
 
 
 

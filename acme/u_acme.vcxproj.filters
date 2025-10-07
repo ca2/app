@@ -2163,7 +2163,7 @@
     <ClInclude Include="prototype\collection\runnable_array.h">
       <Filter>Header Files\prototype\collection</Filter>
     </ClInclude>
-    <ClInclude Include="prototype\collection\string_array_base.h">
+    <ClInclude Include="prototype\collection\string_array.h">
       <Filter>Header Files\prototype\collection</Filter>
     </ClInclude>
     <ClInclude Include="prototype\collection\_.h">

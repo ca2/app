@@ -85,7 +85,7 @@ namespace account
       //virtual void  authenticate();
 
 
-      virtual void get_mod(string_array & straHash,string_array & straSource);
+      virtual void get_mod(string_array_base & straHash,string_array_base & straSource);
       virtual string calc_mod_hash();
       virtual string calc_key_hash();
       virtual string calc_ca2_hash();

@@ -1,6 +1,8 @@
 // Created by camilo on 2025-06-12 12:38 <3ThomasBorregaardSørensen!!
 #include "framework.h"
 #include "context.h"
+#include "device.h"
+#include "frame.h"
 #include "layer.h"
 #include "renderer.h"
 #include "render_state.h"
@@ -26,6 +28,22 @@ namespace gpu
    render_target::~render_target()
    {
 
+
+   }
+
+
+   ::pointer_array < ::gpu::texture >* render_target::texturea()
+   {
+
+      return m_ptexturea;
+
+   }
+
+
+   ::pointer_array < ::gpu::texture >* render_target::depth_texturea()
+   {
+
+      return m_ptextureaDepth;
 
    }
 
@@ -61,12 +79,19 @@ namespace gpu
 
       m_bRenderTargetInit = true;
 
-      if (!m_bBackBuffer)
+      if (!m_ptexturea)
       {
 
-         restart_frame_counter();
+         create_images();
 
       }
+
+      //if (!m_bBackBuffer)
+      //{
+
+      //   restart_frame_counter();
+
+      //}
 
       if (m_pgpurenderer->m_pgpucontext->m_escene == ::gpu::e_scene_3d)
       {
@@ -82,14 +107,47 @@ namespace gpu
    }
 
 
+
+   //void render_target::create_images()
+   //{
+
+   //   if (m_ptexturea && m_ptexturea->has_element())
+   //   {
+
+   //      return;
+
+   //   }
+
+   //   ødefer_construct_new(m_ptexturea);
+
+   //   m_ptexturea->set_size(m_pgpurenderer->m_iDefaultFrameCount);
+
+   //   auto pcontext = m_pgpurenderer->m_pgpucontext;
+
+   //   for (int i = 0; i < m_ptexturea->size(); i++)
+   //   {
+
+   //      auto& ptexture = m_ptexturea->element_at(i);
+
+   //      ødefer_construct(ptexture);
+
+   //      ptexture->initialize_image_texture(
+   //         m_pgpurenderer,
+   //         pcontext->m_rectangle, false);
+
+   //   }
+
+
+   //}
+
+
    void render_target::restart_frame_counter()
    {
 
       if (m_pgpurenderer->m_pgpurendertarget->get_frame_count() > 1)
       {
 
-         m_iCurrentFrame2 = -1;
-         m_iFrameSerial2 = -1;
+         m_pgpurenderer->m_pgpucontext->m_pgpudevice->restart_frame_counter();
 
          m_pgpurenderer->m_prenderstate->on_happening(e_happening_reset_frame_counter);
 
@@ -111,12 +169,19 @@ namespace gpu
       if (m_pgpurenderer->m_pgpurendertarget->get_frame_count() > 1)
       {
 
-         assert(m_iFrameSerial2 >= 0
-            && m_iCurrentFrame2 >= 0
-            && m_pgpurenderer->m_prenderstate->m_estate != e_state_initial
+         auto iFrameSerial2 = m_pgpurenderer->m_pgpucontext->m_pgpudevice->m_iFrameSerial2;
+
+         auto iCurrentFrame2 = m_pgpurenderer->m_pgpucontext->m_pgpudevice->m_iCurrentFrame2;
+
+         auto estate = m_pgpurenderer->m_prenderstate->m_estate;
+
+         assert(
+            iFrameSerial2 >= 0 
+            && iCurrentFrame2 >= 0 
+            && estate != e_state_initial
             && "Cannot get frame index when frame not in progress");
 
-         return (int)m_iCurrentFrame2;
+         return (int)m_pgpurenderer->m_pgpucontext->m_pgpudevice->m_iCurrentFrame2;
 
       }
       else
@@ -132,7 +197,7 @@ namespace gpu
    int render_target::get_frame_count()
    {
 
-      return (int)m_texturea.size();
+      return (int)m_ptexturea->size();
 
    }
 
@@ -143,25 +208,50 @@ namespace gpu
    void render_target::on_init()
    {
 
-      createImages();
+      create_images();
 
    }
 
 
-   void render_target::createImages()
+   void render_target::on_resize(const ::int_size& size)
+   {
+
+      if (m_size == size)
+      {
+
+         return;
+
+      }
+
+      m_size = size;
+
+      create_images();
+
+   }
+
+
+   void render_target::create_images()
    {
 
       auto iFrameCount = m_pgpurenderer->m_iDefaultFrameCount;
 
-      m_texturea.set_size(iFrameCount);
+      ødefer_construct_new(m_ptexturea);
 
-      for (auto& ptexture : m_texturea)
+      m_ptexturea->set_size(iFrameCount);
+
+      auto& texturea = *this->texturea();
+
+      for (auto& ptexture : texturea)
       {
 
-         __defer_construct(ptexture);
+         ødefer_construct(ptexture);
 
          if (ptexture->size() != m_size && !m_size.is_empty())
          {
+
+            on_create_render_target_texture(ptexture);
+
+            //ptexture->m_pgpurendertarget = this;
 
             ptexture->initialize_image_texture(m_pgpurenderer, m_size, m_bWithDepth);
 
@@ -172,10 +262,18 @@ namespace gpu
    }
 
 
+   void render_target::on_create_render_target_texture(::gpu::texture* ptexture)
+   {
+
+      ptexture->m_bRenderTarget = true;
+
+   }
+
+
    int render_target::imageCount() 
    {
       
-      return (int) m_texturea.size(); 
+      return (int) m_ptexturea->size(); 
    
    }
 
@@ -196,13 +294,13 @@ namespace gpu
    }
 
 
-   texture * render_target::current_texture()
+   texture * render_target::current_texture(::gpu::frame* pgpuframe)
    {
 
-      if (m_pgpurenderer->m_pgpulayer)
+      if (pgpuframe->m_pgpulayer)
       {
 
-         return m_pgpurenderer->m_pgpulayer->source_texture();
+         return pgpuframe->m_pgpulayer->source_texture();
 
       }
 
@@ -212,22 +310,22 @@ namespace gpu
 
       int iFrameIndex = get_frame_index();
       
-      auto size = m_texturea.size();
+      auto size = m_ptexturea->size();
 
-      auto ptexture = m_texturea[iFrameIndex];
+      auto ptexture = m_ptexturea->element_at(iFrameIndex);
 
       return ptexture;
 
    }
 
 
-   texture* render_target::current_depth_texture()
+   texture* render_target::current_depth_texture(::gpu::frame* pgpuframe)
    {
 
-      if (m_pgpurenderer->m_pgpulayer)
+      if (pgpuframe->m_pgpulayer)
       {
 
-         ::cast < texture > ptexture = m_pgpurenderer->m_pgpulayer->source_texture();
+         ::cast < texture > ptexture = pgpuframe->m_pgpulayer->source_texture();
 
          if (!ptexture)
          {
@@ -255,9 +353,9 @@ namespace gpu
 
       int iFrameIndex = get_frame_index();
 
-      auto size = m_texturea.size();
+      auto size = m_ptexturea->size();
 
-      ::cast < texture > ptexture = m_texturea[iFrameIndex];
+      ::cast < texture > ptexture = m_ptexturea->element_at(iFrameIndex);
 
       if (!ptexture)
       {
@@ -304,24 +402,26 @@ namespace gpu
    //}
 
 
-   void render_target::on_new_frame()
-   {
+   //void render_target::on_new_frame()
+   //{
 
-      auto iFrameCount = get_frame_count();
+   //   auto iFrameCount = get_frame_count();
 
-      m_iFrameSerial2++;
+   //   m_iFrameSerial2++;
 
-      m_iCurrentFrame2 = (m_iCurrentFrame2 + 1) % iFrameCount;
+   //   m_iCurrentFrame2 = (m_iCurrentFrame2 + 1) % iFrameCount;
 
-   }
+   //}
 
 
    bool render_target::is_starting_frame()const
    {
 
-      return m_iFrameSerial2 == m_iCurrentFrame2;
+      return m_pgpurenderer->m_pgpucontext->m_pgpudevice->m_iFrameSerial2 
+         == m_pgpurenderer->m_pgpucontext->m_pgpudevice->m_iCurrentFrame2;
 
    }
+
 
 } // namespace gpu
 

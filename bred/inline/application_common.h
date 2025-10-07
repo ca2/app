@@ -9,14 +9,14 @@
 
 #include "aura/os/binreloc.h"
 
-const char* br_init_get_symbol();
+const_char_pointer br_init_get_symbol();
 
 #endif
 
 
 //CLASS_DECL_AQUA void os_application_system_run(::apex::system* psystem);
 
-//CLASS_DECL_APEX void set_main_app_id(const ::string & pszAppId);
+//CLASS_DECL_APEX void set_main_app_id(const ::scoped_string & scopedstrAppId);
 
 
 void application_common(::apex::system * psystem)

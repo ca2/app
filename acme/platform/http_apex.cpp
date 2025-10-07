@@ -53,7 +53,7 @@ namespace platform
 
 
    bool apex_http_layer::open(::pointer<::sockets::http_session>& psession, const ::url::connect_range & connectrange,
-                              ::property_set & set, const ::string& strVersion)
+                              ::property_set & set, const ::scoped_string & scopedstrVersion)
    {
 
       return false;
@@ -300,7 +300,7 @@ namespace platform
    }
 
 
-   void apex_http_layer::perform(::nano::http::get* pget)
+   void apex_http_layer::perform(::nano::http::get* defer_get)
    {
 
 

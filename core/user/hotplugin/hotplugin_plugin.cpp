@@ -17,7 +17,7 @@
 #if defined(LINUX) || defined(__ANDROID__) || defined(APPLEOS) || defined(SOLARIS)
 iptr get_map_failed();
 void my_munmap(void * pimage32,HANDLE hfile);
-void * my_open_map(const ::string & psz,HANDLE * pfile,bool bRead,bool bWrite,long long int_size);
+void * my_open_map(const ::scoped_string & scopedstr,HANDLE * pfile,bool bRead,bool bWrite,long long int_size);
 #endif
 
 
@@ -79,7 +79,7 @@ namespace hotplugin
    }
 
 
-   bool plugin::open_link(const ::string & strLink, const ::string & strTarget)
+   bool plugin::open_link(const ::scoped_string & scopedstrLink, const ::scoped_string & scopedstrTarget)
    {
 
       if(m_phost != nullptr)
@@ -109,7 +109,7 @@ namespace hotplugin
 
       ::user::interaction::destroy();
 
-      ::base::session::destroy();
+      ::berg::session::destroy();
 
    }
 
@@ -137,12 +137,12 @@ namespace hotplugin
       }
    }
 
-   void plugin::post_message(::enum_message emessage, ::wparam wparam, ::lparam lparam)
+   void plugin::post_message(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
 
    {
       if(m_phost != nullptr)
       {
-         m_phost->post_message(emessage, wparam, lparam);
+         m_phost->post_message(eusermessage, wparam, lparam);
 
       }
    }
@@ -232,7 +232,7 @@ namespace hotplugin
 
 #ifdef WINDOWS
 
-   /*   LRESULT plugin::message_handler(::enum_message emessage, ::wparam wparam, ::lparam lparam)
+   /*   LRESULT plugin::message_handler(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
 
       {
          return 0;
@@ -298,7 +298,7 @@ namespace hotplugin
    bool plugin::plugin_finalize()
    {
 
-      plugin_message_handler(e_message_close,0,0,false);
+      plugin_message_handler(::user::e_message_close,0,0,false);
 
       destroy();
 
@@ -717,7 +717,7 @@ namespace hotplugin
    }
 
 
-   void plugin::set_status(const ::string & pszStatus)
+   void plugin::set_status(const ::scoped_string & scopedstrStatus)
    {
 
       m_strStatus = pszStatus;
@@ -1107,7 +1107,7 @@ pdirectorysystem->create(dir::appdata() / "time" / "aura");
    }
 
 
-   void plugin::plugin_message_handler(::enum_message emessage, ::wparam wparam, ::lparam lparam, bool bEnsureTx)
+   void plugin::plugin_message_handler(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam, bool bEnsureTx)
 
    {
 
@@ -1130,10 +1130,10 @@ pdirectorysystem->create(dir::appdata() / "time" / "aura");
    void plugin::plugin_message_handler(MESSAGE * pmsg,bool bEnsureTx)
    {
 
-      if(pmsg->message == e_message_window_position_changed)
+      if(pmsg->message == ::user::e_message_window_position_changed)
          return;
 
-      if(pmsg->message == e_message_window_position_changing)
+      if(pmsg->message == ::user::e_message_window_position_changing)
          return;
 
 #ifndef UNIVERSAL_WINDOWS

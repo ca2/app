@@ -121,7 +121,7 @@ namespace fs_raw_folder_protocol_dropbox
 
          strError.trim();
 
-         ::string_array straError;
+         ::string_array_base straError;
 
          straError.add_lines(strError);
 
@@ -198,7 +198,7 @@ namespace fs_raw_folder_protocol_dropbox
    }
 
 
-   ::string_array folder_sync::_dropbox_lines(const ::scoped_string & scopedstr, const ::function < void(const ::scoped_string&) >& callbackStatus)
+   ::string_array_base folder_sync::_dropbox_lines(const ::scoped_string & scopedstr, const ::function < void(const ::scoped_string&) >& callbackStatus)
    {
 
       auto str = _dropbox(scopedstr, callbackStatus);
@@ -210,7 +210,7 @@ namespace fs_raw_folder_protocol_dropbox
 
       }
 
-      ::string_array stra;
+      ::string_array_base stra;
 
       stra.add_lines(str);
 
@@ -223,7 +223,7 @@ namespace fs_raw_folder_protocol_dropbox
    }
 
 
-   void folder_sync::wait_folder_contains_files(const ::file::path& pathTargetFolder, const ::string_array& straName,
+   void folder_sync::wait_folder_contains_files(const ::file::path& pathTargetFolder, const ::string_array_base& straName,
                                                 int iMinimumSize,
                                                 const ::function<void(const ::scoped_string&)>& callbackStatus)
    {
@@ -258,7 +258,7 @@ namespace fs_raw_folder_protocol_dropbox
 
       }
 
-      ::string_array lines;
+      ::string_array_base lines;
 
       lines = straName;
 
@@ -356,7 +356,7 @@ namespace fs_raw_folder_protocol_dropbox
 
          auto stra = sync_exclusion_list(callbackStatus);
 
-         //auto stra = _dropbox_lines("exclude list", callbackStatus);
+         //auto stra = _dropbox_lines("exclude list_base", callbackStatus);
 
          if (m_iStableOkCount >= 5)
          {
@@ -428,7 +428,7 @@ namespace fs_raw_folder_protocol_dropbox
 
       }
 
-      ::string_array lines;
+      ::string_array_base lines;
 
       lines.add(pathCloudFile.name());
 
@@ -492,7 +492,7 @@ namespace fs_raw_folder_protocol_dropbox
       int iMinimumFileSize, const ::function<void(const ::scoped_string&)>& callbackStatus)
    {
 
-      ::string_array lines;
+      ::string_array_base lines;
 
       ::file::path pathTarget;
 
@@ -556,7 +556,7 @@ namespace fs_raw_folder_protocol_dropbox
 
 
    void folder_sync::_cloud_ensure_files_are_up_to_date_and_present(
-   const ::file::path& pathFolder, const ::string_array & stra,
+   const ::file::path& pathFolder, const ::string_array_base & stra,
    int iMinimumFileSize, const ::function<void(const ::scoped_string&)>& callbackStatus)
    {
 
@@ -657,7 +657,7 @@ namespace fs_raw_folder_protocol_dropbox
    }
 
 
-   ::string_array folder_sync::ls(const ::file::path& path, const ::function<void(const ::scoped_string&)>& callbackStatus)
+   ::string_array_base folder_sync::ls(const ::file::path& path, const ::function<void(const ::scoped_string&)>& callbackStatus)
    {
 
       ::string str;
@@ -675,7 +675,7 @@ namespace fs_raw_folder_protocol_dropbox
 
       }
 
-      ::string_array stra;
+      ::string_array_base stra;
 
       stra.add_lines(str);
 
@@ -688,7 +688,7 @@ namespace fs_raw_folder_protocol_dropbox
    }
 
 
-   ::string_array folder_sync::ls_folder(const ::file::path& path, const ::function<void(const ::scoped_string&)>& callbackStatus)
+   ::string_array_base folder_sync::ls_folder(const ::file::path& path, const ::function<void(const ::scoped_string&)>& callbackStatus)
    {
 
       auto stra = ls(path, callbackStatus);
@@ -702,10 +702,10 @@ namespace fs_raw_folder_protocol_dropbox
    }
 
 
-   void folder_sync::sync_exclude(const string_array& straExclude, const ::function<void(const ::scoped_string&)>& callbackStatus)
+   void folder_sync::sync_exclude(const string_array_base& straExclude, const ::function<void(const ::scoped_string&)>& callbackStatus)
    {
 
-      ::string_array stra(straExclude);
+      ::string_array_base stra(straExclude);
 
       stra.predicate_each([](auto& str) { str.double_quote(); });
 
@@ -716,10 +716,10 @@ namespace fs_raw_folder_protocol_dropbox
    }
 
 
-   void folder_sync::sync_reinclude(const string_array& straInclude, const ::function<void(const ::scoped_string&)>& callbackStatus)
+   void folder_sync::sync_reinclude(const string_array_base& straInclude, const ::function<void(const ::scoped_string&)>& callbackStatus)
    {
 
-      ::string_array stra(straInclude);
+      ::string_array_base stra(straInclude);
 
       stra.predicate_each([](auto& str) { str.double_quote(); });
 
@@ -730,10 +730,10 @@ namespace fs_raw_folder_protocol_dropbox
    }
 
 
-   string_array folder_sync::sync_exclusion_list(const ::function<void(const ::scoped_string&)>& callbackStatus)
+   string_array_base folder_sync::sync_exclusion_list(const ::function<void(const ::scoped_string&)>& callbackStatus)
    {
 
-      auto stra = _dropbox_lines("exclude list", callbackStatus);
+      auto stra = _dropbox_lines("exclude list_base", callbackStatus);
 
       if (stra.size() == 1 && stra.first().case_insensitive_contains("no directories"))
       {
@@ -795,7 +795,7 @@ namespace fs_raw_folder_protocol_dropbox
    }
 
 
-   ::string_array folder_sync::_cloud_get_file_txt_lines(const ::file::path& pathCloudFile, bool bForce,
+   ::string_array_base folder_sync::_cloud_get_file_txt_lines(const ::file::path& pathCloudFile, bool bForce,
                                                          ::file::path* ppathTarget, ::file::path* ppathSource,
                                                          const ::function<void(const ::scoped_string&)>& callbackStatus)
    {

@@ -101,7 +101,7 @@ path_system::~path_system()
 
 
 
-::string path_system::icloud_container_identifier(const char * psz_iCloudContainerIdentifier)
+::string path_system::icloud_container_identifier(const_char_pointer psz_iCloudContainerIdentifier)
 {
    
    ::string str_iCloudContainerIdentifier(psz_iCloudContainerIdentifier);
@@ -118,10 +118,10 @@ path_system::~path_system()
 }
 
 
-//::string path_system::icloud_container_id_from_app_id(const char * pszAppId)
+//::string path_system::icloud_container_id_from_app_id(const_char_pointer pszAppId)
 //{
 //   
-//   ::string strAppId(pszAppId);
+//   ::string strAppId(scopedstrAppId);
 //   
 //   if(strAppId.is_empty())
 //   {
@@ -142,7 +142,7 @@ path_system::~path_system()
 //}
 
 
-::file::path path_system::defer_get_icloud_container_path(const ::file::path & path, const char * pszAppId)
+::file::path path_system::defer_get_icloud_container_path(const ::file::path & path, const_char_pointer pszAppId)
 {
    
    if(directory_system()->is_icloud_container(path, pszAppId))
@@ -153,7 +153,7 @@ path_system::~path_system()
    }
    
    return directory_system()->icloud_container2(pszAppId) / path;
-   
+
 }
 
 
@@ -181,24 +181,24 @@ void path_system::defer_get_icloud_container_path_name(::string & strName, ::str
 
 
 
-string path_system::from(string str)
+string path_system::from(const ::scoped_string & scopedstr)
 {
 
    string strFsSafe;
 
-   for (::collection::index i = 0; i < str.length(); i++)
+   for (::collection::index i = 0; i < scopedstr.length(); i++)
    {
 
-      if (character_isalnum(str[i]))
+      if (character_isalnum(scopedstr[i]))
       {
 
-         strFsSafe += str[i];
+         strFsSafe += scopedstr[i];
 
       }
       else
       {
 
-         strFsSafe += "-" + ::hex::lower_case_from(str[i]);
+         strFsSafe += "-" + ::hex::lower_case_from(scopedstr[i]);
 
       }
 
@@ -573,7 +573,7 @@ bool path_system::is_absolute_path(const ::scoped_string & scopedstr)
 
       }
 
-      auto plink = __create_new < ::file::link >();
+      auto plink = øcreate_new < ::file::link >();
 
       string strLink = stra[0];
 
@@ -624,7 +624,7 @@ bool path_system::is_absolute_path(const ::scoped_string & scopedstr)
 
 
 
-   if (::is_null(psz))
+   if (::is_null(scopedstr))
    {
 
       return false;
@@ -634,19 +634,19 @@ bool path_system::is_absolute_path(const ::scoped_string & scopedstr)
 
 
 
-   char* pszRealPath = ::realpath(psz, NULL);
+   char* pszRealPath = ::realpath(scopedstr, NULL);
 
-   if (pszRealPath == NULL)
+   if (scopedstrRealPath == NULL)
    {
 
       return false;
 
    }
 
-   if (strcmp(psz, pszRealPath) == 0)
+   if (strcmp(scopedstr, pszRealPath) == 0)
    {
 
-      ::free(pszRealPath);
+      ::free(scopedstrRealPath);
 
       return false;
 
@@ -663,7 +663,7 @@ bool path_system::is_absolute_path(const ::scoped_string & scopedstr)
 
    }
 
-   ::free(pszRealPath);
+   ::free(scopedstrRealPath);
 
    return true;
 
@@ -671,7 +671,7 @@ bool path_system::is_absolute_path(const ::scoped_string & scopedstr)
 
 #else
 
-      auto plink = __create_new < ::file::link >();
+      auto plink = øcreate_new < ::file::link >();
       
       string strLink;
 
@@ -923,7 +923,7 @@ void path_system::determine_executable(::file::path & path)
    if (scopedstrCommand.contains('/'))
    {
 
-      auto PWD = plookupEnvironment->lookup("slashed_pwd");
+      auto PWD = plookupEnvironment->find("slashed_pwd");
 
       auto path = defer_apply_working_directory(scopedstrCommand, PWD);
 
@@ -1058,7 +1058,7 @@ bool path_system::get_next_path(::scoped_string & scopedstr, ::string::BASE_RANG
 
    ::scoped_string scopedstrPath;
 
-   auto PATH = plookupEnvironment->lookup("PATH");
+   auto PATH = plookupEnvironment->find("PATH");
 
    if(PATH.nok())
    {

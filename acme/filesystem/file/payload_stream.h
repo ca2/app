@@ -27,8 +27,8 @@
 //inline void __exchange(::payload_stream & s, ::property & property);
 //inline void __exchange(::payload_stream & s, ::property_set & set);
 //inline void __exchange(::payload_stream & s, ::block & block);
-//inline void __exchange(::payload_stream & s, ::int_array & ia);
-//inline void __exchange(::payload_stream & s, ::string_array & stra);
+//inline void __exchange(::payload_stream & s, ::int_array_base & ia);
+//inline void __exchange(::payload_stream & s, ::string_array_base & stra);
 //inline void __exchange(::payload_stream & s, ::memory & memory);
 //
 //
@@ -43,7 +43,7 @@
 //inline void __exchange(::payload_stream& s, ::pointer<OBJECT> pparticle);
 //
 //template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type t_etypeContainer >
-//inline void __exchange(::payload_stream& stream, ::array_base < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >& array);
+//inline void __exchange(::payload_stream& stream, ::base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >& array);
 //
 //template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type t_etypeContainer >
 //inline void __exchange(::payload_stream& s, const ::raw_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >& array);
@@ -52,7 +52,7 @@
 //inline void __exchange(::payload_stream& s, const ::numeric_array < TYPE, t_etypeContainer >& array);
 //
 //template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-//inline void __exchange(::payload_stream& s, const ::string_array_base < Type, RawType, t_etypeContainer >& array);
+//inline void __exchange(::payload_stream& s, const ::string_base_array < Type, RawType, t_etypeContainer >& array);
 //
 //
 //template < class ARRAY >

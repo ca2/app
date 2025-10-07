@@ -1577,12 +1577,11 @@
     <ClInclude Include="message\handler.h" />
     <ClInclude Include="message\handler_item.h" />
     <ClInclude Include="message\listener_pointer_array.h" />
-    <ClInclude Include="message\message.h" />
     <ClInclude Include="message\predicate_handler.h" />
     <ClInclude Include="message\receiver.h" />
     <ClInclude Include="message\route.h" />
-    <ClInclude Include="message\simple_command.h" />
     <ClInclude Include="message\aaa_timer.h" />
+    <ClInclude Include="message\simple_command.h" />
     <ClInclude Include="message\_.h" />
     <ClInclude Include="message\_impl.h" />
     <ClInclude Include="message\_message.h" />

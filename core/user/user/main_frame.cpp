@@ -30,7 +30,7 @@ namespace user
 
       simple_frame_window::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_create, pchannel, this, &main_frame::on_message_create);
+      USER_MESSAGE_LINK(::user::e_message_create, pchannel, this, &main_frame::on_message_create);
 
    }
 
@@ -72,7 +72,7 @@ namespace user
             if (bCreate)
             {
 
-               __construct_new(m_prichtextformattool);
+               øconstruct_new(m_prichtextformattool);
 
                m_prichtextformattool->m_procedureOnAfterCreate = [this]()
                   {

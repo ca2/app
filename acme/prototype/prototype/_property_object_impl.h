@@ -42,7 +42,7 @@
 //
 //}
 //
-//inline void property_object::defer_propset() { system()->__defer_construct_new(m_ppropertyset); }
+//inline void property_object::defer_propset() { system()->ødefer_construct_new(m_ppropertyset); }
 //
 //
 //
@@ -61,7 +61,7 @@
 //}
 //
 //
-//inline string property_object::find_string(const ::atom & atom, const ::ansi_character * pszDefault) const
+//inline string property_object::find_string(const ::atom & atom, const_char_pointer pszDefault) const
 //{
 //
 //   if (!m_ppropertyset)
@@ -80,7 +80,7 @@
 //
 //   }
 //
-//   return pproperty->string(pszDefault);
+//   return pproperty->string(scopedstrDefault);
 //
 //}
 //
@@ -279,7 +279,7 @@
 //}
 //
 //
-//inline ::long_long_array & material_object::idarray() const { system()->__defer_construct_new(((material_object *)this)->m_pia); return *m_pia; }
+//inline ::long_long_array_base & material_object::idarray() const { system()->ødefer_construct_new(((material_object *)this)->m_pia); return *m_pia; }
 //
 //
 //

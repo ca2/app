@@ -97,7 +97,7 @@ namespace windowing
       
 
       virtual ::pointer<cursor>get_cursor(enum_cursor ecursor);
-      virtual void set_cursor_set_from_matter(::object * pobjectContext, const ::file::path & pathDir);
+      virtual void set_cursor_set_from_matter(::object * pobjectContext, const ::file::path & pathFolder);
 
       
       //inline ::int_point get_cursor_position() { return m_pointCursor; }
@@ -194,8 +194,8 @@ namespace windowing
 
       virtual void load_cursor(::windowing::cursor * pcursor, ::file::path path, bool bSync, bool bCache = true);
 
-      virtual void set(::message::key * pkey, oswindow oswindow, ::windowing::window * pwindow, ::enum_message emessage, ::wparam wparam, ::lparam lparam);
-      virtual void set(::message::mouse * pmouse, oswindow oswindow, ::windowing::window * pwindow, ::enum_message emessage, ::wparam wparam, ::lparam lparam);
+      virtual void set(::message::key * pkey, oswindow oswindow, ::windowing::window * pwindow, ::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam);
+      virtual void set(::message::mouse * pmouse, oswindow oswindow, ::windowing::window * pwindow, ::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam);
 
       virtual void initialize_keyboard(::windowing::keyboard * pkeyboard);
 
@@ -227,7 +227,7 @@ namespace windowing
 #endif
 
 
-      virtual wstring _windows_calc_icon_window_class(::user::interaction* pinteraction, unsigned int dwDefaultStyle, const ::string & pszMatter);
+      virtual wstring _windows_calc_icon_window_class(::user::interaction* pinteraction, unsigned int dwDefaultStyle, const ::scoped_string & scopedstrMatter);
       virtual wstring _windows_get_user_interaction_window_class(::user::interaction* pinteraction);
 
 
@@ -246,9 +246,9 @@ namespace windowing
 #ifdef WINDOWS_DESKTOP
 
 
-      virtual bool _visible_top_level_contains_name(string str) = 0;
-      virtual bool _visible_top_level_contains_all_names(const ::string_array & stra) = 0;
-      virtual bool _top_level_contains_name(string str) = 0;
+      virtual bool _visible_top_level_contains_name(const ::scoped_string & scopedstr) = 0;
+      virtual bool _visible_top_level_contains_all_names(const ::string_array_base & stra) = 0;
+      virtual bool _top_level_contains_name(const ::scoped_string & scopedstr) = 0;
       virtual string _get_window_text_timeout(oswindow oswindow, const class ::time& time = 1_s) = 0;
 
 
@@ -258,9 +258,9 @@ namespace windowing
       virtual void os_menu_item_enable(void * pitem, bool bEnable);
       virtual void os_menu_item_check(void * pitem, bool bCheck);
 
-      virtual void defer_create_main_menu(const string_array & straParent, const string_array & straMenu, const string_array & straId);
+      virtual void defer_create_main_menu(const string_array_base & straParent, const string_array_base & straMenu, const string_array_base & straId);
 
-      virtual ::pointer < ::user::interaction > create_message_window(const ::string & pszName, ::user::interaction_listener * plistener = nullptr);
+      virtual ::pointer < ::user::interaction > create_message_window(const ::scoped_string & scopedstrName, ::user::interaction_listener * plistener = nullptr);
 
 
       virtual void windowing_application_main_loop() override;

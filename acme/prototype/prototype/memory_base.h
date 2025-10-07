@@ -133,8 +133,8 @@ public:
    virtual bool begins_eat(const BLOCK & block);
 
    //virtual bool case_insensitive_begins(const ::scoped_string & scopedstr, character_count iCount = -1) const{ return ((::const_ansi_range *)this)->case_insensitive_begins(scopedstr); }
-   //virtual bool begins(const ::string & str, character_count iCount = -1) const;
-   //virtual bool case_insensitive_begins(const ::string & str, character_count iCount = -1) const;
+   //virtual bool begins(const ::scoped_string & scopedstr, character_count iCount = -1) const;
+   //virtual bool case_insensitive_begins(const ::scoped_string & scopedstr, character_count iCount = -1) const;
 
    //using MEMORY::ends;
    //virtual bool ends(const ::scoped_string & scopedstr) const { return this->ends((const BLOCK &) scopedstr); }
@@ -142,8 +142,8 @@ public:
    //virtual bool case_insensitive_ends(const ::scoped_string & scopedstr) const { return ((::const_ansi_range *)this)->case_insensitive_ends(scopedstr); }
 
    virtual bool ends_eat(const BLOCK & block);
-   //virtual bool ends(const ::string & str, character_count iCount = -1) const;
-   //virtual bool case_insensitive_ends(const ::string & str, character_count iCount = -1) const;
+   //virtual bool ends(const ::scoped_string & scopedstr, character_count iCount = -1) const;
+   //virtual bool case_insensitive_ends(const ::scoped_string & scopedstr, character_count iCount = -1) const;
 
    virtual memory detach_as_primitive_memory();
    //virtual unsigned char * detach_virtual_memory();
@@ -212,7 +212,7 @@ public:
 //   inline const unsigned char * end() const { return m_memory.end(); }
 //   inline unsigned char * end() { return m_memory.end(); }
 
-   //inline const char * c_str() const { return (const char*)data(); }
+   //inline const_char_pointer c_str() const { return (const_char_pointer )data(); }
    //inline char * sz() { return (char*)data(); }
 
    ::block & block() { return *this; }
@@ -313,9 +313,9 @@ public:
    string to_base64(memsize iStart = 0, memsize size = -1);
    void from_base64(const ::scoped_string & scopedstr);
 
-   inline void to_asc(string & str) const { str.assign((const char *) data(), size()); }
+   inline void to_asc(string & str) const { str.assign((const_char_pointer )data(), size()); }
    inline string to_asc() const { string str; to_asc(str); return str; }
-   inline void from_asc(const ::scoped_string & scopedstr) { assign(scopedstr.c_str(), scopedstr.size()); }
+   inline void from_asc(const ::scoped_string & scopedstr) { assign(scopedstr.data(), scopedstr.size()); }
 
    bool operator == (const memory_base & s) const;
    bool operator == (const struct block & block) const ;

@@ -28,7 +28,7 @@ namespace colorertake5
       errorHandler = eh;
    }
 
-   void HRCParserImpl::loadSource(const ::string & pszSourceLocation, const ::string & pszSource)
+   void HRCParserImpl::loadSource(const ::scoped_string & scopedstrSourceLocation, const ::scoped_string & scopedstrSource)
    {
       string strPreviousSourceLocation = m_strCurrentSourceLocation;
       string strPreviousSource = m_strCurrentSource;
@@ -36,7 +36,7 @@ namespace colorertake5
       m_strCurrentSource = pszSource;
       try
       {
-         parseHRC(pszSource);
+         parseHRC(scopedstrSource);
       }
       catch (const ::exception & exception)
       {
@@ -179,11 +179,11 @@ namespace colorertake5
    // protected methods
 
 
-   void HRCParserImpl::parseHRC(const ::string & psz)
+   void HRCParserImpl::parseHRC(const ::scoped_string & scopedstr)
    {
       xml::document doc(this);
       doc.m_pparseinfo->m_chEscapeValue = '\0';
-      doc.load(psz);
+      doc.load(scopedstr);
       if(doc.get_root() == nullptr)
       {
          throw ::exception(HRCParserException(string("main '<hrc>' block not found")));
@@ -432,7 +432,7 @@ namespace colorertake5
                continue;
             };
 
-            class region *region = __allocate< class region(qname1, regionDescr, getRegion(qname2), regionNamesVector.get_size >());
+            class region *region = øallocate< class region(qname1, regionDescr, getRegion(qname2), regionNamesVector.get_size >());
             regionNamesVector.add(region);
             regionNamesHash.set_at(qname1, region);
 
@@ -477,7 +477,7 @@ namespace colorertake5
          };
       };
       string baseSchemeName = qualifyOwnName(type->name);
-      if(baseSchemeName.has_character() && schemeHash.plookup(baseSchemeName) != nullptr)
+      if(baseSchemeName.has_character() && schemeHash.find(baseSchemeName) != nullptr)
       {
          type->baseScheme = schemeHash[baseSchemeName];
       }
@@ -501,7 +501,7 @@ namespace colorertake5
          if (errorHandler != nullptr) errorHandler->error(string("bad scheme name in type '")+parseType->getName()+"'");
          return;
       }
-      if (schemeHash.plookup(qSchemeName) != nullptr ||
+      if (schemeHash.find(qSchemeName) != nullptr ||
             disabledSchemes[qSchemeName] != 0)
       {
          if (errorHandler != nullptr) errorHandler->error(string("duplicate scheme name '")+qSchemeName+"'");
@@ -559,14 +559,14 @@ namespace colorertake5
             }
             else
             {
-               string_map<scheme_impl *>::pair * ppair = schemeHash.plookup(schemeName);
-               if(ppair == nullptr)
+               string_map_base<scheme_impl *>::pair * iterator = schemeHash.find(schemeName);
+               if(iterator == nullptr)
                {
                   next->scheme = nullptr;
                }
                else
                {
-                  next->scheme = ppair->element2();
+                  next->scheme = iterator->element2();
                }
             }
             if (schemeName.has_character())
@@ -871,7 +871,7 @@ namespace colorertake5
       while(structureChanged)
       {
          structureChanged = false;
-         for(string_map<scheme_impl *>::pair * scheme = schemeHash.get_start(); scheme != nullptr; scheme = schemeHash.get_next(scheme))
+         for(string_map_base<scheme_impl *>::pair * scheme = schemeHash.get_start(); scheme != nullptr; scheme = schemeHash.get_next(scheme))
          {
 
             if (!scheme->element2()->fileType->loadDone) continue;
@@ -885,14 +885,14 @@ namespace colorertake5
                   string schemeName = qualifyForeignName(snode->schemeName, QNT_SCHEME, true);
                   if (schemeName.has_character())
                   {
-                     string_map<scheme_impl *>::pair * ppair = schemeHash.plookup(schemeName);
-                     if(ppair == nullptr)
+                     string_map_base<scheme_impl *>::pair * iterator = schemeHash.find(schemeName);
+                     if(iterator == nullptr)
                      {
                         snode->scheme = nullptr;
                      }
                      else
                      {
-                        snode->scheme = ppair->element2();
+                        snode->scheme = iterator->element2();
                      }
                   }
                   else
@@ -916,14 +916,14 @@ namespace colorertake5
                         string vsn = qualifyForeignName(vt->virtSchemeName, QNT_SCHEME, true);
                         if (vsn.has_character())
                         {
-                           string_map<scheme_impl *>::pair * ppair = schemeHash.plookup(vsn);
-                           if(ppair == nullptr)
+                           string_map_base<scheme_impl *>::pair * iterator = schemeHash.find(vsn);
+                           if(iterator == nullptr)
                            {
                               vt->virtScheme = nullptr;
                            }
                            else
                            {
-                              vt->virtScheme = ppair->element2();
+                              vt->virtScheme = iterator->element2();
                            }
                         }
 
@@ -941,14 +941,14 @@ namespace colorertake5
                         string vsn = qualifyForeignName(vt->substSchemeName, QNT_SCHEME, true);
                         if (vsn.has_character())
                         {
-                           string_map<scheme_impl *>::pair * ppair = schemeHash.plookup(vsn);
-                           if(ppair == nullptr)
+                           string_map_base<scheme_impl *>::pair * iterator = schemeHash.find(vsn);
+                           if(iterator == nullptr)
                            {
                               vt->substScheme = nullptr;
                            }
                            else
                            {
-                              vt->substScheme = ppair->element2();
+                              vt->substScheme = iterator->element2();
                            }
                         }
                         else if (errorHandler != nullptr) errorHandler->error(string("cannot virtualize using subst-scheme scheme '")+vt->substSchemeName+"' in scheme '"+scheme->element2()->schemeName+"'");
@@ -965,7 +965,7 @@ namespace colorertake5
 
 
 
-   string HRCParserImpl::qualifyOwnName(const ::string & name)
+   string HRCParserImpl::qualifyOwnName(const ::scoped_string & scopedstrName)
    {
       if (name == nullptr) return "";
       character_count colon = string(name).find(':');
@@ -989,7 +989,7 @@ namespace colorertake5
    }
 
 
-   bool HRCParserImpl::checkNameExist(const ::string & name, file_type_impl *parseType, QualifyNameType qntype, bool logErrors)
+   bool HRCParserImpl::checkNameExist(const ::scoped_string & scopedstrName, file_type_impl *parseType, QualifyNameType qntype, bool logErrors)
    {
       if (qntype == QNT_DEFINE && regionNamesHash[name] == nullptr)
       {
@@ -1014,7 +1014,7 @@ namespace colorertake5
          }
          return false;
       }
-      else if (qntype == QNT_SCHEME && schemeHash.plookup(name) == nullptr)
+      else if (qntype == QNT_SCHEME && schemeHash.find(name) == nullptr)
       {
          if (logErrors)
          {
@@ -1031,7 +1031,7 @@ namespace colorertake5
    }
 
 
-   string HRCParserImpl::qualifyForeignName(const ::string & name, QualifyNameType qntype, bool logErrors)
+   string HRCParserImpl::qualifyForeignName(const ::scoped_string & scopedstrName, QualifyNameType qntype, bool logErrors)
    {
       if (name == nullptr) return "";
       character_count colon = string(name).find(':');
@@ -1071,7 +1071,7 @@ namespace colorertake5
    };
 
 
-   string HRCParserImpl::useEntities(const ::string & name)
+   string HRCParserImpl::useEntities(const ::scoped_string & scopedstrName)
    {
       character_count copypos = 0;
       character_count epos = 0;
@@ -1121,7 +1121,7 @@ namespace colorertake5
       return newname;
    };
 
-   class region* HRCParserImpl::getNCRegion(const ::string & name, bool logErrors)
+   class region* HRCParserImpl::getNCRegion(const ::scoped_string & scopedstrName, bool logErrors)
    {
       if (name == nullptr) return nullptr;
       class region *reg = nullptr;

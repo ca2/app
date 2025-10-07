@@ -42,11 +42,13 @@ namespace gpu_opengl
 
       ::pointer < ::gpu::frame > beginFrame() override;
 
+      void on_begin_frame() override;
+
       //virtual void _ensure_renderer_framebuffer();
 
       void _on_begin_render(::gpu::frame * pframe) override;
 
-      virtual void on_begin_render(::gpu::frame* pframe);
+      void on_begin_render(::gpu::frame* pframe) override;
 
       void Clear() const;
 

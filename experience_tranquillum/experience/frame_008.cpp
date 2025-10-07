@@ -3,11 +3,11 @@
 #include "aura/graphics/draw2d/pen.h"
 #include "frame_008.h"
 #include "aura/user/user/style.h"
-#include "base/user/experience/control_box.h"
-#include "base/user/experience/frame_window.h"
-#include "base/user/experience/size_manager.h"
-#include "base/user/experience/dock_manager.h"
-#include "base/user/experience/move_manager.h"
+#include "berg/user/experience/control_box.h"
+#include "berg/user/experience/frame_window.h"
+#include "berg/user/experience/size_manager.h"
+#include "berg/user/experience/dock_manager.h"
+#include "berg/user/experience/move_manager.h"
 
 
 #define GRIP_CORNER_LARGE_CX 16
@@ -424,11 +424,11 @@ namespace experience_tranquillum
          void frame_008::_on_style_change(::draw2d::graphics_pointer & pgraphics)
          {
 
-            __øconstruct(m_ppenHollow1);
-            __øconstruct(m_ppenHollow2);
-            __øconstruct(m_ppenHollow3);
-            __øconstruct(m_ppenHollow4);
-            __øconstruct(m_ppenHollow5);
+            øconstruct(m_ppenHollow1);
+            øconstruct(m_ppenHollow2);
+            øconstruct(m_ppenHollow3);
+            øconstruct(m_ppenHollow4);
+            øconstruct(m_ppenHollow5);
 
 
             on_style_change_001_and_002(pgraphics);

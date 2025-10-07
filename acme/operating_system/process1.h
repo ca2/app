@@ -19,7 +19,7 @@
 
 
 
-//CLASS_DECL_ACME bool launch_command(::platform::system * psystem, const char * const pszCommand);
+//CLASS_DECL_ACME bool launch_command(::platform::system * psystem, const_char_pointer const pszCommand);
 
 
 
@@ -32,7 +32,7 @@
 
 #ifndef WINDOWS
 
-//CLASS_DECL_ACME string_array cmdline_from_pid(unsigned int pid);
+//CLASS_DECL_ACME string_array_base cmdline_from_pid(unsigned int pid);
 //CLASS_DECL_ACME atom_array app_get_pid(const ::scoped_string & scopedstrModuleName);
 
 
@@ -43,13 +43,13 @@
 
 #ifndef UNIVERSAL_WINDOWS
 //CLASS_DECL_ACME bool process_contains_module(string & strImage, unsigned int processID, const ::scoped_string & scopedstrLibrary);
-//CLASS_DECL_ACME void shared_library_process(dword_array & dwa, string_array & straProcesses, const ::scoped_string & scopedstrLibrary);
+//CLASS_DECL_ACME void shared_library_process(dword_array & dwa, string_array_base & straProcesses, const ::scoped_string & scopedstrLibrary);
 #endif
 
 
 
-//CLASS_DECL_ACME bool is_shared_library_busy(unsigned int processid, const string_array & stra);
-//CLASS_DECL_ACME bool is_shared_library_busy(const string_array & stra);
+//CLASS_DECL_ACME bool is_shared_library_busy(unsigned int processid, const string_array_base & stra);
+//CLASS_DECL_ACME bool is_shared_library_busy(const string_array_base & stra);
 
 
 
@@ -85,7 +85,7 @@
 #include "exit_status.h"
 
 
-//CLASS_DECL_ACME string app_id_to_app_name(string strId);
+//CLASS_DECL_ACME string app_id_to_app_name(const ::scoped_string & scopedstrId);
 
 
 #if !defined(UNIVERSAL_WINDOWS)

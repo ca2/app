@@ -166,7 +166,7 @@ namespace typeface_freetype
       void * get_os_data() const;
 
 
-      bool LoadBitmap(const ::string & lpszResourceName);
+      bool LoadBitmap(const ::scoped_string & scopedstrResourceName);
       bool LoadBitmap(unsigned int nIDResource);
       bool LoadOEMBitmap(unsigned int nIDBitmap); // for OBM_/OCR_/OIC_
       bool CreateBitmap(::draw2d::graphics * pgraphics, int nWidth, int nHeight, unsigned int nPlanes, unsigned int nBitcount, const void * lpBits, int stride);

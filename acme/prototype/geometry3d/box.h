@@ -63,15 +63,15 @@ public:
 
 
 
-   static array < ::int_array > faces()
+   static array < ::int_array_base > faces()
    {
 
-      array < ::int_array > a2;
+      array < ::int_array_base > a2;
 
       // front
       {
 
-         ::int_array a;
+         ::int_array_base a;
 
          a.add(0);
          a.add(1);
@@ -84,7 +84,7 @@ public:
       // right
       {
 
-         ::int_array a;
+         ::int_array_base a;
 
          a.add(1);
          a.add(5);
@@ -97,7 +97,7 @@ public:
       // back
       {
 
-         ::int_array a;
+         ::int_array_base a;
 
          a.add(5);
          a.add(4);
@@ -110,7 +110,7 @@ public:
       // left
       {
 
-         ::int_array a;
+         ::int_array_base a;
 
          a.add(4);
          a.add(0);
@@ -123,7 +123,7 @@ public:
       // down
       {
 
-         ::int_array a;
+         ::int_array_base a;
 
          a.add(2);
          a.add(3);
@@ -136,7 +136,7 @@ public:
       // up
       {
 
-         ::int_array a;
+         ::int_array_base a;
 
          a.add(4);
          a.add(5);
@@ -152,31 +152,31 @@ public:
 
 
 
-   array < array < location_type < NUMBER > > > faces_vertices()
+   array < array < location_type < NUMBER > > > faces_vertexes()
    {
 
-      array < location_type < NUMBER > > v = vertices();
-      array < ::int_array > f = faces();
+      array < location_type < NUMBER > > v = vertexes();
+      array < ::int_array_base > f = faces();
 
       array < array < location_type < NUMBER > > > fv;
-      array < location_type < NUMBER > > vertices;
+      array < location_type < NUMBER > > vertexes;
 
       for (::collection::index i = 0; i < f.get_count(); i++)
       {
-         ::int_array& ia = f[i];
-         vertices.erase_all();
+         ::int_array_base& ia = f[i];
+         vertexes.erase_all();
          for (::collection::index j = 0; j < ia.get_count(); j++)
          {
-            vertices.add(v[ia[j]]);
+            vertexes.add(v[ia[j]]);
          }
-         fv.add(vertices);
+         fv.add(vertexes);
       }
       return fv;
 
 
    }
 
-   array < location_type < NUMBER > > vertices()
+   array < location_type < NUMBER > > vertexes()
    {
 
       array < location_type < NUMBER > >  point;
@@ -203,7 +203,7 @@ public:
    location_type < NUMBER > get_nearest_vertice(location_type < NUMBER > point)
    {
 
-      array < location_type < NUMBER > >  verts = vertices();
+      array < location_type < NUMBER > >  verts = vertexes();
 
       double dMin = sqrt(::sqr(point.x() - verts[0].x()) + sqr(point.y() - verts[0].y()) + sqr(point.z - verts[0].z));
 
@@ -230,7 +230,7 @@ public:
    ::collection::index find_nearest_vertice(location_type < NUMBER > point)
    {
 
-      array < location_type < NUMBER > >  verts = vertices();
+      array < location_type < NUMBER > >  verts = vertexes();
 
       double dMin = sqrt(::sqr(point.x() - verts[0].x()) + sqr(point.y() - verts[0].y()) + sqr(point.z - verts[0].z));
 
@@ -258,7 +258,7 @@ public:
    ::collection::index find_nearest_vertice(int x, int y)
    {
 
-      array < location_type < NUMBER > >  verts = vertices();
+      array < location_type < NUMBER > >  verts = vertexes();
 
       double dMin = sqrt(::sqr(x - verts[0].x()) + sqr(y - verts[0].y()));
 
@@ -306,9 +306,9 @@ public:
 
    }
 
-   //array < location_type < NUMBER > > vertices();
-   //static array < ::int_array > faces();
-   //array < array < location_type < NUMBER > > > faces_vertices();
+   //array < location_type < NUMBER > > vertexes();
+   //static array < ::int_array_base > faces();
+   //array < array < location_type < NUMBER > > > faces_vertexes();
    //location_type < NUMBER > get_nearest_vertice(location_type < NUMBER > point);
    //index find_nearest_vertice(location_type < NUMBER > point);
    //index find_nearest_vertice(int x,int y);

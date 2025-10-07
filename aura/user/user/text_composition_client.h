@@ -35,7 +35,7 @@ namespace user
 
 		void on_text_composition_done() override;
 
-		void on_text_composition(string strMessage) override;
+		void on_text_composition(const ::scoped_string & scopedstrMessage) override;
 
 		void insert_text(const ::scoped_string & scopedstr, bool bForceNewStep, const ::action_context & context) override;
 

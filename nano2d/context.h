@@ -99,7 +99,7 @@ namespace nano2d
 
 
 
-		virtual void get_maximum_width_and_row_height(float& fMaximumWidth, float& fRowHeight, const string_array& straLines);
+		virtual void get_maximum_width_and_row_height(float& fMaximumWidth, float& fRowHeight, const string_array_base& straLines);
 	
 		// Begin drawing a ___new frame
 // Calls to nanovg drawing API should be wrapped in __NANO2D_API(BeginFrame)() & __NANO2D_API(EndFrame)()
@@ -420,7 +420,7 @@ namespace nano2d
 		// While this may sound a little odd, the setup allows you to always render the
 		// same way regardless of scaling. I.e. following works regardless of scaling:
 		//
-		//		const char* txt = "Text me up.";
+		//		const_char_pointer txt = "Text me up.";
 		//		TextBounds)(vg, x,y, txt, NULL, bounds);
 		//		BeginPath)(vg);
 		//		RoundedRect)(vg, bounds[0],bounds[1], bounds[2]-bounds[0], bounds[3]-bounds[1]);
@@ -503,7 +503,7 @@ namespace nano2d
       virtual void text_box_bounds(float x, float y, ::nano2d::text_box * ptextbox, ::float_rectangle* prectangle);
 
 
-		virtual ::collection::count character_metric(::double_array& daLeft, ::double_array& daRight, const ::string& str, character_count iStart = 0, character_count iEnd = -1);
+		virtual ::collection::count character_metric(::double_array& daLeft, ::double_array& daRight, const ::scoped_string & scopedstr, character_count iStart = 0, character_count iEnd = -1);
 
 
 		// Calculates the glyph x positions of the specified text. If end is specified only the sub-string will be used.

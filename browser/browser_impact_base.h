@@ -46,7 +46,7 @@ namespace browser
       ::pointer<render>             m_prender;
 
 
-      musical_tick_array                    m_tickaFrame;
+      musical_tick_array_base                    m_tickaFrame;
 
 
 

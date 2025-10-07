@@ -22,7 +22,7 @@ namespace windowing
       virtual ~exception() throw() {};
 
 
-      virtual const char * what() const throw() { return m_strReason.c_str(); }
+      virtual const_char_pointer what() const throw() { return m_strReason.c_str(); }
 
 
    private:

@@ -26,7 +26,7 @@ namespace menu
 
       virtual void enable(bool bOn, const ::action_context & action_context) override;
       //virtual void set_check(const ::e_check & echeck, const ::action_context & action_context) override;
-      //virtual void set_text(const string & pszText, const ::action_context & action_context) override;
+      //virtual void set_text(const ::scoped_string & scopedstrText, const ::action_context & action_context) override;
       void on_check_changed(::data::check_change & change) override;
 
       void on_text_changed(::data::text_change & change) override;

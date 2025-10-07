@@ -27,7 +27,7 @@ namespace acme
 {
 
 
-   using library_map = string_map < ::pointer < ::acme::library > >;
+   using library_map = string_map_base < ::pointer < ::acme::library > >;
 
    class acme;
 
@@ -38,8 +38,8 @@ namespace factory
 {
 
    using factory_pointer = ::pointer < ::factory::factory >;
-   using factory_map = ::string_map < factory_pointer >;
-   using component_factory_map = ::string_map < factory_map >;
+   using factory_map = ::string_map_base < factory_pointer >;
+   using component_factory_map = ::string_map_base < factory_map >;
 
 } // namespace factory
 
@@ -165,7 +165,10 @@ namespace platform
 
       bool                                                  m_bOutputDebugString;
 
-      string                                                m_strCommandLine;
+      bool                                                  m_bCommandLineCalculated = false;
+      string                                                m_strCommandLineCalculated;
+      bool                                                  m_bCommandLineSystemNative = false;
+      string                                                m_strCommandLineSystemNative;
 
 
       //::critical_section                                    m_criticalsectionTask;
@@ -198,13 +201,17 @@ namespace platform
 
 
       platform();
-      virtual ~platform();
+      ~platform() override;
 
       virtual bool is_console() const;
 
       virtual bool is_desktop_system() const;
 
       virtual bool is_sandboxed() const;
+
+         virtual ::string command_line() const;
+
+         virtual void calculate_command_line();
 
 
       ::critical_section * channel_critical_section()
@@ -236,15 +243,13 @@ namespace platform
 
 #if defined(WINDOWS) && defined(UNICODE)
 
-      void initialize_system(int argc, wchar_t * args[], wchar_t * envp[]);
+      void initialize_system(int argc, wchar_t * args[], wchar_t * envp[]) override;
 
-      void initialize_system(hinstance hinstanceThis, hinstance hinstancePrev, wchar_t * pCmdLine, int nCmdShow);
-
-#else
-
-      void initialize_system(int argc, platform_char ** args, platform_char ** envp) override;
+      void initialize_system(hinstance hinstanceThis, hinstance hinstancePrev, wchar_t * pCmdLine, int nCmdShow) override;
 
 #endif
+
+      void initialize_system(int argc, char ** args, char ** envp) override;
 
 
       void platform_initialize();
@@ -278,11 +283,11 @@ namespace platform
 
       inline ::collection::count get_argument_count1() const { return _get_argc() - 1; }
 
-      string_array get_arguments();
+      string_array_base get_arguments();
 
       ::string get_argument_begins_eat(const ::scoped_string & scopedstrPrefix);
 
-      ::string_array get_argument_options(const ::scoped_string & scopedstrArgument);
+      ::string_array_base get_argument_options(const ::scoped_string & scopedstrArgument);
 
       string get_arg(::collection::index i) const;
       string get_env(const ::scoped_string & scopedstrVariableName) const;
@@ -293,7 +298,7 @@ namespace platform
 
 
 
-      virtual void set_resource_block(const char * pstart, const char * pend);
+      virtual void set_resource_block(const_char_pointer pstart, const_char_pointer pend);
 
       void defer_initialize_platform();
 
@@ -308,10 +313,10 @@ namespace platform
 
 
       ::factory::factory_pointer & factory();
-      ::factory::factory_pointer & factory(const ::string & strLibrary);
-      ::factory::factory_pointer & factory(const ::string & strComponent, const ::string & strImplementation);
-      ::factory::factory* component_factory(const ::string& strComponent);
-      virtual ::string component_factory_implementation_name(const ::string& strComponent);
+      ::factory::factory_pointer & factory(const ::scoped_string & scopedstrLibrary);
+      ::factory::factory_pointer & factory(const ::scoped_string & scopedstrComponent, const ::scoped_string & scopedstrImplementation);
+      ::factory::factory* component_factory(const ::scoped_string & scopedstrComponent);
+      virtual ::string component_factory_implementation_name(const ::scoped_string & scopedstrComponent);
 
 
       ::pointer<::factory::factory_item_interface> & get_factory_item(const ::atom & atom, const ::atom & atomSource);
@@ -330,7 +335,7 @@ namespace platform
       void add_factory_item(const ::atom & atom)
       {
 
-         set_factory(atom, __allocate ::factory::factory_item < TYPE, BASE > ());
+         set_factory(atom, øallocate ::factory::factory_item < TYPE, BASE > ());
 
       }
 
@@ -339,19 +344,19 @@ namespace platform
 
 
 
-      //virtual void set_factory_global(const ::string &pszComponent, const ::string &pszImplementation);
+      //virtual void set_factory_global(const ::scoped_string & scopedstrComponent, const ::scoped_string & scopedstrImplementation);
 
-      //virtual ::pointer<::acme::library> open_component_library(const ::string &pszComponent, const ::string &pszImplementation);
+      //virtual ::pointer<::acme::library> open_component_library(const ::scoped_string & scopedstrComponent, const ::scoped_string & scopedstrImplementation);
 
-      virtual ::pointer<::acme::library> create_library(const ::string & strLibrary);
-      virtual ::pointer<::acme::library> create_library_dynamically(const ::string & strLibrary);
-      virtual ::pointer<::acme::library> create_library_statically(const ::string & strLibrary);
+      virtual ::pointer<::acme::library> create_library(const ::scoped_string & scopedstrLibrary);
+      virtual ::pointer<::acme::library> create_library_dynamically(const ::scoped_string & scopedstrLibrary);
+      virtual ::pointer<::acme::library> create_library_statically(const ::scoped_string & scopedstrLibrary);
 
-      virtual ::pointer<::acme::library> & library(const ::string & str);
+      virtual ::pointer<::acme::library> & library(const ::scoped_string & scopedstr);
 
-      //virtual ::pointer<::acme::library>& library(const ::string& strComponent, const ::string& strImplementation);
+      //virtual ::pointer<::acme::library>& library(const ::scoped_string & scopedstrComponent, const ::scoped_string & scopedstrImplementation);
 
-      virtual ::pointer<::factory::factory> & impact_factory(const ::string & strComponent, const ::string & strImplementation);
+      virtual ::pointer<::factory::factory> & impact_factory(const ::scoped_string & scopedstrComponent, const ::scoped_string & scopedstrImplementation);
 
       //void initialize_memory_counter();
       //void finalize_memory_counter();
@@ -433,11 +438,11 @@ namespace platform
 
 
 
-      //pass_through_function &  __call__allocate_pass_through_function() { return m_passthroughfunction; }
+      //pass_through_function &  __call_allocate_pass_through_function() { return m_passthroughfunction; }
 
 
       //platform * __call__add_referer2(const ::reference_referer & referer) const;
-      release_time_for_project as_release_time_for_project(const char* pszStatic);
+      release_time_for_project as_release_time_for_project(const_char_pointer pszStatic);
 
       //::platform::system* system() { return m_psystem; }
       ::operating_system::dynamic_library* dynamic_library() { return m_pdynamiclibrary; }

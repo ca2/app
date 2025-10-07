@@ -15,14 +15,14 @@ namespace simpledb
    {
    }
 
-   bool session::open(const ::string & pszDatabase)
+   bool session::open(const ::scoped_string & scopedstrDatabase)
    {
       if(m_pserver != nullptr)
          close();
       server * pserver = ___new server(this);
       if(pserver == nullptr)
          return false;
-      if(!pserver->open(pszDatabase))
+      if(!pserver->open(scopedstrDatabase))
       {
          delete pserver;
          return false;
@@ -40,18 +40,18 @@ namespace simpledb
       return true;
    }
 
-   bool session::query(const ::string & pszQuery, ::payload & payload)
+   bool session::query(const ::scoped_string & scopedstrQuery, ::payload & payload)
    {
-      string_array stra;
+      string_array_base stra;
       ::property_set set;
-      set.parse_network_arguments(pszQuery);
+      set.parse_network_arguments(scopedstrQuery);
       if(set["command"] == "open")
       {
          payload = open(set["database"]);
       }
       else if(set["command"] == "sql")
       {
-         if(!m_pserver->sql(pszQuery, payload))
+         if(!m_pserver->sql(scopedstrQuery, payload))
             payload = false;
       }
       else if(set["command"] == "close")

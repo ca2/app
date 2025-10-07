@@ -29,7 +29,7 @@ namespace helloaxis
          bool           m_bNew;
 
          bilbo();
-         bilbo(string strPath);
+         bilbo(const ::scoped_string & scopedstrPath);
          ~bilbo();
 
       };
@@ -89,8 +89,8 @@ namespace helloaxis
       ::image::image_pointer                 m_pimageFast;
 
 
-      string_array                          m_stra23;
-      string_map < ::image::image_pointer >    m_mapDib23;
+      string_array_base                          m_stra23;
+      string_map_base < ::image::image_pointer >    m_mapDib23;
       bool                             m_b23;
       unsigned int                         m_uiCurrent23;
       string                           m_strCurrent23;
@@ -110,12 +110,12 @@ namespace helloaxis
       virtual ~render();
 
 
-      string get_helloaxis() { synchronous_lock slText(m_pmutexText);  string str(m_strHelloAxis.c_str()); return str; }
+      string get_helloaxis() { synchronous_lock slText(m_pmutexText, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);  string str(m_strHelloAxis.c_str()); return str; }
 
 
       virtual int run();
 
-      virtual bool initialize_render(string strId);
+      virtual bool initialize_render(const ::scoped_string & scopedstrId);
 
 
       virtual void full_render();
@@ -132,10 +132,10 @@ namespace helloaxis
 
       virtual void defer_update_bilbo();
 
-      ::image::image_pointer & image23(string strDib);
+      ::image::image_pointer & image23(const ::scoped_string & scopedstrDib);
 
       virtual bool in_anime();
-      virtual void helloaxis_fast_render(const ::string & strHelloAxis);
+      virtual void helloaxis_fast_render(const ::scoped_string & scopedstrHelloAxis);
 
 
    };

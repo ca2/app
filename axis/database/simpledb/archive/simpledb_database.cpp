@@ -49,22 +49,22 @@ namespace simpledb
 
    }
 
-   string database::error1(const ::string & pszPrefix)
+   string database::error1(const ::scoped_string & scopedstrPrefix)
    {
       return "";
    }
 
-   void database::trace_error1(const ::string & pszPrefix)
+   void database::trace_error1(const ::scoped_string & scopedstrPrefix)
    {
 
-      m_strLastError += error1(pszPrefix);
+      m_strLastError += error1(scopedstrPrefix);
 
       informationf("%s", m_strLastError);
 
    }
 
 
-   ::pointer<result>database::query(const ::string & pszSql)
+   ::pointer<result>database::query(const ::scoped_string & scopedstrSql)
    {
 
       return nullptr;
@@ -72,7 +72,7 @@ namespace simpledb
    }
 
 
-   ::payload database::query_item(const ::string & pszSql,::payload varDefault)
+   ::payload database::query_item(const ::scoped_string & scopedstrSql,::payload varDefault)
    {
 
       return ::payload(::e_type_null);
@@ -80,7 +80,7 @@ namespace simpledb
    }
 
 
-   bool database::query_blob(memory_base & memory, const ::string & pszSql)
+   bool database::query_blob(memory_base & memory, const ::scoped_string & scopedstrSql)
    {
 
       return false;
@@ -88,7 +88,7 @@ namespace simpledb
    }
 
 
-   ::payload database::query_items(const ::string & pszSql)
+   ::payload database::query_items(const ::scoped_string & scopedstrSql)
    {
 
       return ::payload(::e_type_null);
@@ -96,7 +96,7 @@ namespace simpledb
    }
 
 
-   ::payload database::query_row(const ::string & pszSql)
+   ::payload database::query_row(const ::scoped_string & scopedstrSql)
    {
 
       return ::payload(::e_type_null);
@@ -104,7 +104,7 @@ namespace simpledb
    }
 
 
-   ::payload database::query_rows(const ::string & pszSql)
+   ::payload database::query_rows(const ::scoped_string & scopedstrSql)
    {
 
       return ::payload(::e_type_null);
@@ -112,7 +112,7 @@ namespace simpledb
    }
 
 
-   ::payload database::query_table_item(const ::string & table, const ::string & item, const ::string &where,::payload notfound)
+   ::payload database::query_table_item(const ::string & table, const ::scoped_string & scopedstrItem, const ::string &where,::payload notfound)
    {
 
       return ::payload(::e_type_null);
@@ -120,7 +120,7 @@ namespace simpledb
    }
 
 
-   ::payload database::get_agent(const ::string & pszTable, const ::string & psz, const ::string & pszUser)
+   ::payload database::get_agent(const ::scoped_string & scopedstrTable, const ::scoped_string & scopedstr, const ::scoped_string & scopedstrUser)
    {
 
       return ::payload(::e_type_null);
@@ -136,7 +136,7 @@ namespace simpledb
    }
 
 
-   string database::escape(const ::string & psz)
+   string database::escape(const ::scoped_string & scopedstr)
    {
 
       return "";

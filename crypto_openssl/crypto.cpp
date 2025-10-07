@@ -586,12 +586,12 @@ namespace crypto_openssl
    //   memory storageDecrypt;
    //   memory storageEncrypt;
    //   memory storageKey;
-   //   if (pszDecrypt == nullptr || strlen(pszDecrypt) == 0)
+   //   if (scopedstrDecrypt == nullptr || strlen(scopedstrDecrypt) == 0)
    //   {
    //      strEncrypt = "";
    //      return 0;
    //   }
-   //   storageDecrypt.from_string(pszDecrypt);
+   //   storageDecrypt.from_string(scopedstrDecrypt);
 
    //   auto psystem = system();
 
@@ -637,7 +637,7 @@ namespace crypto_openssl
    //unsigned int crypto::crc32(unsigned int dwPrevious, const ::scoped_string & scopedstr)
    //{
 
-   //   return (unsigned int)::crc32(dwPrevious, (const Bytef*)psz, (unsigned int)strlen(psz));
+   //   return (unsigned int)::crc32(dwPrevious, (const Bytef*)psz, (unsigned int)strlen(scopedstr));
 
    //}
 
@@ -647,7 +647,7 @@ namespace crypto_openssl
 
    //   memory mem;
 
-   //   mem.assign(psz, strlen(psz));
+   //   mem.assign(scopedstr, strlen(scopedstr));
 
    //   return md5(mem);
 
@@ -659,7 +659,7 @@ namespace crypto_openssl
 
    //   memory mem;
 
-   //   mem.assign(psz, strlen(psz));
+   //   mem.assign(scopedstr, strlen(scopedstr));
 
    //   return sha1(mem);
 
@@ -671,7 +671,7 @@ namespace crypto_openssl
 
    //   memory mem;
 
-   //   mem.assign(psz, strlen(psz));
+   //   mem.assign(scopedstr, strlen(scopedstr));
 
    //   return nessie(mem);
 
@@ -904,7 +904,7 @@ namespace crypto_openssl
    //bool crypto::encrypt(memory& storageEncrypt, const ::scoped_string & scopedstrDecrypt, const ::scoped_string & scopedstrSalt)
    //{
    //   memory memoryDecrypt;
-   //   memoryDecrypt.from_asc(pszDecrypt);
+   //   memoryDecrypt.from_asc(scopedstrDecrypt);
    //   return encrypt(storageEncrypt, memoryDecrypt, pszSalt);
    //}
 
@@ -941,8 +941,8 @@ namespace crypto_openssl
    //// slow hash is more secure for personal attack possibility (strong fast hashs are only good for single transactional operations and not for a possibly lifetime password)
    //string crypto::v5_get_password_hash(const ::scoped_string & scopedstrSalt, const ::scoped_string & scopedstrPassword, int iOrder)
    //{
-   //   string strHash(pszPassword);
-   //   string strSalt(pszSalt);
+   //   string strHash(scopedstrPassword);
+   //   string strSalt(scopedstrSalt);
    //   strSalt = strSalt.left(CA4_CRYPT_V5_SALT_BYTES);
    //   for (int i = iOrder; i < CA4_CRYPT_V5_FINAL_HASH_BYTES - CA4_BASE_HASH_DIGEST_LENGTH; i++)
    //   {
@@ -955,8 +955,8 @@ namespace crypto_openssl
 
    //string crypto::v5_get_passhash(const ::scoped_string & scopedstrSalt, const ::scoped_string & scopedstrPassword, int iMaxOrder)
    //{
-   //   string strHash(pszPassword);
-   //   string strSalt(pszSalt);
+   //   string strHash(scopedstrPassword);
+   //   string strSalt(scopedstrSalt);
    //   strSalt = strSalt.left(CA4_CRYPT_V5_SALT_BYTES);
    //   for (int i = 0; i < iMaxOrder; i++)
    //   {
@@ -969,7 +969,7 @@ namespace crypto_openssl
 
    //bool crypto::v5_compare_password(const ::scoped_string & scopedstrPassword, const ::scoped_string & scopedstrHash, int iOrder)
    //{
-   //   string strHash(pszHash);
+   //   string strHash(scopedstrHash);
    //   string strSalt = strHash.left(CA4_CRYPT_V5_SALT_BYTES);
    //   return strHash == v5_get_password_hash(strSalt, pszPassword, iOrder);
    //}
@@ -977,10 +977,10 @@ namespace crypto_openssl
 
    //bool crypto::v5_validate_plain_password(const ::scoped_string & scopedstrPassword)
    //{
-   //   string str(pszPassword);
+   //   string str(scopedstrPassword);
    //   if (str.length() < 6)
    //      return false;
-   //   return ::str::has_all_v1(pszPassword);
+   //   return ::str::has_all_v1(scopedstrPassword);
    //}
 
 
@@ -1004,14 +1004,14 @@ namespace crypto_openssl
    }
 
 
-   void crypto::hmac(void* result, const string& strMessage, const string& strKey)
+   void crypto::hmac(void* result, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrKey)
    {
 
 #ifndef UNIVERSAL_WINDOWS
 
       unsigned int md_len = 0;
 
-      HMAC(EVP_sha1(), strKey.c_str(), int(strKey.length()), (const unsigned char*)(const char*)strMessage, (size_t)strMessage.length(), (unsigned char*)result, &md_len);
+      HMAC(EVP_sha1(), scopedstrKey.as_string().c_str(), int(scopedstrKey.length()), (const unsigned char*)(const_char_pointer )scopedstrMessage, (size_t)scopedstrMessage.length(), (unsigned char*)result, &md_len);
 
 #endif
 
@@ -1099,7 +1099,7 @@ namespace crypto_openssl
 //               ::winrt::Windows::Security::Cryptography::Core::AsymmetricAlgorithmNames::RsaPkcs1);
 //
 //
-//         return __allocate ::crypto::rsa(get_app(), provider->CreateKeyPair(1024));
+//         return øallocate ::crypto::rsa(get_app(), provider->CreateKeyPair(1024));
 //
 //      }
 //
@@ -1145,15 +1145,15 @@ namespace crypto_openssl
    }
 
 
-   void crypto::np_make_zigbert_rsa(const string& strDir, const string& strSignerPath, const string& strKeyPath, const string& strOthersPath, const string& strSignature)
+   void crypto::np_make_zigbert_rsa(const ::scoped_string & scopedstrDir, const ::scoped_string & scopedstrSignerPath, const ::scoped_string & scopedstrKeyPath, const ::scoped_string & scopedstrOthersPath, const ::scoped_string & scopedstrSignature)
    {
 
 #if !defined(UNIVERSAL_WINDOWS) && defined(HAVE_OPENSSL)
 
       X509* signer = nullptr;
       {
-         string strSigner = file()->as_string(strSignerPath);
-         BIO* pbio = BIO_new_mem_buf((void*)(const char*)strSigner, (int)strSigner.length());
+         string strSigner = file()->as_string(scopedstrSignerPath);
+         BIO* pbio = BIO_new_mem_buf((void*)(const_char_pointer )strSigner, (int)strSigner.length());
          //signer = PEM_read_bio_X509_AUX(pbio, nullptr, 0, nullptr);
          signer = PEM_read_bio_X509(pbio, nullptr, 0, nullptr);
          BIO_free(pbio);
@@ -1161,8 +1161,8 @@ namespace crypto_openssl
 
       EVP_PKEY* pkey;
       {
-         string strKey = file()->as_string(strKeyPath);
-         BIO* pbio = BIO_new_mem_buf((void*)(const char*)strKey, (int)strKey.length());
+         string strKey = file()->as_string(scopedstrKeyPath);
+         BIO* pbio = BIO_new_mem_buf((void*)(const_char_pointer )strKey, (int)strKey.length());
          pkey = PEM_read_bio_PrivateKey(pbio, nullptr, nullptr, nullptr);
          BIO_free(pbio);
       }
@@ -1170,8 +1170,8 @@ namespace crypto_openssl
 
       stack_st_X509* pstack509 = nullptr;
       {
-         string strOthers = file()->as_string(strOthersPath);
-         address_array < X509* > xptra;
+         string strOthers = file()->as_string(scopedstrOthersPath);
+         address_array_base < X509* > xptra;
          character_count iStart = 0;
          character_count iFind;
          string strEnd = "-----END CERTIFICATE-----";
@@ -1206,7 +1206,7 @@ namespace crypto_openssl
          }
       }
 
-      BIO* input = BIO_new_mem_buf((void*)(const char*)strSignature, (int)strSignature.length());
+      BIO* input = BIO_new_mem_buf((void*)(const_char_pointer )scopedstrSignature, (int)scopedstrSignature.length());
 
       PKCS7* pkcs7 = PKCS7_sign(signer, pkey, pstack509, input, PKCS7_BINARY | PKCS7_DETACHED);
 
@@ -1223,7 +1223,7 @@ namespace crypto_openssl
 
       long count = BIO_get_mem_data(output, &pchData);
 
-      file()->put_memory(strDir / "META-INF/zigbert.rsa", { pchData, count });
+      file()->put_memory(scopedstrDir / "META-INF/zigbert.rsa", { pchData, count });
 
       BIO_free(output);
 
@@ -1234,10 +1234,10 @@ namespace crypto_openssl
    }
 
       
-   ::pointer<::crypto::rsa>crypto::create_rsa_key(const ::string& strRsa)
+   ::pointer<::crypto::rsa>crypto::create_rsa_key(const ::scoped_string & scopedstrRsa)
    {
 
-      auto popensslrsa = __allocate ::crypto_openssl::rsa();
+      auto popensslrsa = øallocate ::crypto_openssl::rsa();
 
       throw todo;
 
@@ -1249,7 +1249,7 @@ namespace crypto_openssl
    ::pointer<::crypto::rsa>crypto::generate_rsa_key()
    {
 
-      auto popensslrsa = __allocate ::crypto_openssl::rsa();
+      auto popensslrsa = øallocate ::crypto_openssl::rsa();
 
 #if OPENSSL_VERSION_NUMBER >= 0x30000000
 
@@ -1446,10 +1446,10 @@ namespace crypto_openssl
    }
 
 
-   ::pointer<::crypto::rsa>crypto::read_priv_pem(const string& strFile)
+   ::pointer<::crypto::rsa>crypto::read_priv_pem(const ::scoped_string & scopedstrFile)
    {
 
-      auto memory = file_system()->as_memory(strFile);
+      auto memory = file_system()->as_memory(scopedstrFile);
 
       if (memory.is_empty())
       {
@@ -1458,7 +1458,7 @@ namespace crypto_openssl
 
       }
 
-      auto popensslrsa = __allocate ::crypto_openssl::rsa();
+      auto popensslrsa = øallocate ::crypto_openssl::rsa();
 
 #if OPENSSL_VERSION_NUMBER >= 0x30000000
 
@@ -1485,10 +1485,10 @@ namespace crypto_openssl
    }
 
 
-   ::pointer<::crypto::rsa>crypto::read_pub_pem(const string& strFile)
+   ::pointer<::crypto::rsa>crypto::read_pub_pem(const ::scoped_string & scopedstrFile)
    {
 
-      auto memory = file_system()->as_memory(strFile);
+      auto memory = file_system()->as_memory(scopedstrFile);
 
       if (memory.is_empty())
       {
@@ -1497,7 +1497,7 @@ namespace crypto_openssl
 
       }
 
-      auto popensslrsa = __allocate ::crypto_openssl::rsa();
+      auto popensslrsa = øallocate ::crypto_openssl::rsa();
 
       throw todo;
 
@@ -1520,7 +1520,7 @@ namespace crypto_openssl
    {
 
       //auto estatus = 
-      __defer_construct(m_pinitializer, system()->m_pfactoryCrypto);
+      ødefer_construct(m_pinitializer, system()->m_pfactoryCrypto);
 
       //if (!estatus)
       //{

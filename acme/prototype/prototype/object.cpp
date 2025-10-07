@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "object_meta.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "acme/handler/extended_topic.h"
 //#include "acme/update.h"
 //#if REFERENCING_DEBUGGING
@@ -104,7 +104,7 @@ void object::create_object_meta()
 
    }
 
-   m_pmeta = __raw_new object_meta();
+   m_pmeta = øraw_new object_meta();
 
 }
 
@@ -120,9 +120,9 @@ string object::as_string() const
 //void object::add_composite(::particle * pparticle)
 //{
 //
-//   _synchronous_lock synchronouslock(this->synchronization());
+//   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
-//   __defer_construct_new(m_pcompositea);
+//   ødefer_construct_new(m_pcompositea);
 //
 //   if (!m_pcompositea->add_unique(pelement))
 //   {
@@ -145,9 +145,9 @@ string object::as_string() const
 //void object::add_reference(::particle * pparticle)
 //{
 //
-//   _synchronous_lock synchronouslock(this->synchronization());
+//   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
-//   __defer_construct_new(m_preferencea);
+//   ødefer_construct_new(m_preferencea);
 //
 //   m_preferencea->add_unique(pelement);
 //
@@ -180,7 +180,7 @@ string object::as_string() const
 //
 //   }
 //
-//   _synchronous_lock synchronouslock(this->synchronization());
+//   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //   if (m_pcompositea)
 //   {
@@ -209,7 +209,7 @@ string object::as_string() const
 //
 //   }
 //
-//   _synchronous_lock synchronouslock(this->synchronization());
+//   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //   if (m_pcompositea)
 //   {
@@ -251,7 +251,7 @@ string object::as_string() const
 //
 //   }
 //
-//   _synchronous_lock synchronouslock(this->synchronization());
+//   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //   if (m_preferencea)
 //   {
@@ -303,7 +303,7 @@ string object::as_string() const
 ::extended_topic_pointer object::create_extended_topic(const ::atom & atom)
 {
 
-   auto pextendedtopic = __allocate ::extended_topic(atom);
+   auto pextendedtopic = øallocate ::extended_topic(atom);
 
    pextendedtopic->initialize(this);
 
@@ -312,10 +312,10 @@ string object::as_string() const
 }
 
 
-void object::dev_log(string strMessage)
+void object::dev_log(const ::scoped_string & scopedstrMessage)
 {
 
-   information() << strMessage.c_str();
+   information() << scopedstrMessage.as_string().c_str();
 
 //#ifdef _DEBUG
 //
@@ -337,7 +337,7 @@ void object::dev_log(string strMessage)
 //   //if (m_pmeta)
 //   //{
 //
-//   //   auto p = m_pmeta->m_mapRoutine.plookup(atom);
+//   //   auto p = m_pmeta->m_mapRoutine.find(atom);
 //
 //   //   if (p)
 //   //   {
@@ -359,7 +359,7 @@ void object::dev_log(string strMessage)
 //   if (m_pmeta)
 //   {
 //
-//      auto p = m_pmeta->m_mapProcess.plookup(idProcess);
+//      auto p = m_pmeta->m_mapProcess.find(idProcess);
 //
 //      if (p)
 //      {
@@ -380,9 +380,9 @@ void object::dev_log(string strMessage)
 //
 //   {
 //
-//      _synchronous_lock synchronouslock(this->synchronization());
+//      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
-//      __defer_construct_new(m_pobjecta);
+//      ødefer_construct_new(m_pobjecta);
 //
 //      m_pobjecta->add_unique(pparticle);
 //
@@ -390,9 +390,9 @@ void object::dev_log(string strMessage)
 //
 //   {
 //
-//      _synchronous_lock synchronouslock(this->synchronization());
+//      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
-//      __defer_construct_new(pparticle->m_pobjecta);
+//      ødefer_construct_new(pparticle->m_pobjecta);
 //
 //      pparticle->m_pobjecta->add_unique(this);
 //
@@ -404,7 +404,7 @@ void object::dev_log(string strMessage)
 //void object::on_delete_object(::object* pparticle)
 //{
 //
-//   _synchronous_lock synchronouslock(this->synchronization());
+//   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //   if (m_pobjecta)
 //   {
@@ -655,7 +655,7 @@ void object::add_each_routine_from(const ::atom& atom, ::object* pobjectSource)
 //}
 
 
-//void object::set_topic_text(const ::string& strTopicText)
+//void object::set_topic_text(const ::scoped_string & scopedstrTopicText)
 //{
 //
 //   get_meta()->m_strTopicText = strTopicText;
@@ -688,7 +688,7 @@ string object::get_tag() const
 }
 
 
-bool object::is_thread() const
+bool object::is_thread_class() const
 {
 
    return false;
@@ -704,7 +704,7 @@ bool object::task_get_run() const
 }
 
 
-bool object::is_task_set() const
+bool object::is_task_set2() const
 {
 
    return true;
@@ -741,7 +741,7 @@ void object::branch_send(const ::procedure & procedure, manual_reset_happening *
 //   try
 //   {
 //
-//      auto pelement = running(pszTag);
+//      auto pelement = running(scopedstrTag);
 //
 //      if (pelement.is_null())
 //      {
@@ -761,13 +761,13 @@ void object::branch_send(const ::procedure & procedure, manual_reset_happening *
 //}
 //
 //
-//void object::child_post_quit_and_wait(const ::string & pszTag, const time& time)
+//void object::child_post_quit_and_wait(const ::scoped_string & scopedstrTag, const time& time)
 //{
 //
 //   try
 //   {
 //
-//      auto pelement = running(pszTag);
+//      auto pelement = running(scopedstrTag);
 //
 //      if (pelement.is_null())
 //      {
@@ -778,7 +778,7 @@ void object::branch_send(const ::procedure & procedure, manual_reset_happening *
 //
 //      pelement->destroy();
 //
-//      string strTag(pszTag);
+//      string strTag(scopedstrTag);
 //
 //      predicate_Sleep(time,
 //         [this, strTag]()
@@ -849,7 +849,7 @@ void object::destruct()
 }
 
 
-//void object::system(const ::string & strProjectName)
+//void object::system(const ::scoped_string & scopedstrProjectName)
 //{
 //
 //   __UNREFERENCED_PARAMETER(strProjectName);
@@ -974,7 +974,7 @@ void object::destruct()
 //
 //   //{
 //
-//   //   _synchronous_lock synchronouslock(this->synchronization());
+//   //   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //   //   if (m_pobjecta)
 //   //   {
@@ -1020,7 +1020,7 @@ void object::add_task(::object* pobjectTask)
 
    defer_create_synchronization();
 
-   _synchronous_lock synchronouslockParent1(synchronization());
+   _synchronous_lock synchronouslockParent1(synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    if(is_ascendant_task(pobjectTask))
    {
@@ -1033,9 +1033,9 @@ void object::add_task(::object* pobjectTask)
 
    auto ptaskOldParent = pobjectTask->m_pobjectParentTask;
 
-   _synchronous_lock synchronouslockParent2(ptaskOldParent ? ptaskOldParent->synchronization() : nullptr);
+   _synchronous_lock synchronouslockParent2(ptaskOldParent ? ptaskOldParent->synchronization() : nullptr, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-   _synchronous_lock synchronouslock(pobjectTask->synchronization());
+   _synchronous_lock synchronouslock(pobjectTask->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    if(ptaskOldParent == this
    && m_pparticleaChildrenTask
@@ -1046,7 +1046,7 @@ void object::add_task(::object* pobjectTask)
 
    }
 
-   __defer_construct_new(m_pparticleaChildrenTask);
+   ødefer_construct_new(m_pparticleaChildrenTask);
 
    string strType = ::type(this).name();
 
@@ -1087,9 +1087,9 @@ void object::add_task(::object* pobjectTask)
 void object::erase_task_and_set_task_new_parent(::object* pobjectTask, ::object * pobjectTaskNewParent)
 {
 
-   _synchronous_lock synchronouslock(this->synchronization());
+   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-   _synchronous_lock synchronouslockObject(pobjectTask->synchronization());
+   _synchronous_lock synchronouslockObject(pobjectTask->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
 //#if REFERENCING_DEBUGGING
 //
@@ -1182,13 +1182,13 @@ void object::transfer_tasks_from(::object* ptask)
          if (ptaskTaskTarget)
          {
 
-            _synchronous_lock synchronouslockTask(ptaskTask->synchronization());
+            _synchronous_lock synchronouslockTask(ptaskTask->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
             auto procedurea = ::transfer(ptaskTask->m_procedurea2);
 
             synchronouslockTask.unlock();
 
-            _synchronous_lock synchronouslock(this->synchronization());
+            _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
             ptaskTaskTarget->m_procedurea2.append(procedurea);
 
@@ -1198,7 +1198,7 @@ void object::transfer_tasks_from(::object* ptask)
 
    }
 
-   _synchronous_lock synchronouslockParent2(ptask->synchronization());
+   _synchronous_lock synchronouslockParent2(ptask->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    if(!ptask->m_pparticleaChildrenTask || ptask->m_pparticleaChildrenTask->is_empty())
    {
@@ -1207,7 +1207,7 @@ void object::transfer_tasks_from(::object* ptask)
 
    }
 
-   __defer_construct_new(m_pparticleaChildrenTask);
+   ødefer_construct_new(m_pparticleaChildrenTask);
 
    pointer_array < ::object > objectaChildrenTask;
 
@@ -1220,7 +1220,7 @@ void object::transfer_tasks_from(::object* ptask)
    for (auto pobjectTask : objectaChildrenTask)
    {
 
-      _synchronous_lock synchronouslock(pobjectTask->synchronization());
+      _synchronous_lock synchronouslock(pobjectTask->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       try
       {
@@ -1302,7 +1302,7 @@ bool object::set_children_to_finish_and_check_them_finished()
 
    }
 
-   _synchronous_lock lock(synchronization());
+   _synchronous_lock lock(synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    if (has_flag(e_flag_checking_children_task))
    {
@@ -1475,7 +1475,7 @@ void object::on_notify(::particle * pparticle, enum_id eid)
    if (eid == id_destroy)
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       m_particleaNotify.erase(pparticle);
 
@@ -1520,7 +1520,7 @@ void object::delete_this()
 //
 //   string strTypeName = ::type(this).name();
 //
-//   _synchronous_lock synchronouslock(this->synchronization());
+//   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //   if (m_pcompositea)
 //   {
@@ -1552,7 +1552,7 @@ void object::delete_this()
 //
 //   string strTypeName = ::type(this).name();
 //
-//   _synchronous_lock synchronouslock(this->synchronization());
+//   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //   if (m_preferencea)
 //   {
@@ -1580,7 +1580,7 @@ CLASS_DECL_ACME::pointer < ::mutex >* get_children_mutex();
 //
 //   }
 //
-//   _synchronous_lock synchronouslock(get_children_mutex());
+//   _synchronous_lock synchronouslock(get_children_mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //   if (!m_preferencea)
 //   {
@@ -1640,7 +1640,7 @@ bool object::__is_child_task(::particle * pparticleTask) const
 
    }
 
-   _synchronous_lock lock(synchronization());
+   _synchronous_lock lock(synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    if (!m_pparticleaChildrenTask)
    {
@@ -1715,7 +1715,7 @@ bool object::__is_child_task(::particle * pparticleTask) const
 //}
 
 
-//string object::__get_text(string str)
+//string object::__get_text(const ::scoped_string & scopedstr)
 //{
 //
 //   if (get_app() == nullptr)
@@ -1804,14 +1804,14 @@ void object::branch_each(const ::procedure_array& routinea)
 
    auto ptask = property_set()["thread"][atom].cast < ::task>();
 
-   if(ptask && ptask->is_task_set())
+   if(ptask && ptask->is_task_set2())
    {
 
       return ptask;
 
    }
 
-   ptask = __create_new < task >();
+   ptask = øcreate_new < task >();
 
    ptask->m_procedure = procedure;
 
@@ -1831,12 +1831,12 @@ void object::branch_each(const ::procedure_array& routinea)
 
    defer_create_synchronization();
 
-   _synchronous_lock synchronouslock(this->synchronization());
+   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    if (!m_pqueuemap)
    {
 
-      __construct_new(m_pqueuemap);
+      øconstruct_new(m_pqueuemap);
 
    }
 
@@ -1845,7 +1845,7 @@ void object::branch_each(const ::procedure_array& routinea)
    if (!pqueue)
    {
 
-      __construct_new(pqueue);
+      øconstruct_new(pqueue);
 
       pqueue->m_pobjectFork = this;
 
@@ -1866,7 +1866,7 @@ void object::branch_each(const ::procedure_array& routinea)
 
    }
 
-   auto ptask = __create_new < ::task >();
+   auto ptask = øcreate_new < ::task >();
 
    if (!ptask)
    {
@@ -1900,7 +1900,7 @@ void object::branch_each(const ::procedure_array& routinea)
 
    }
 
-   auto ptask = __create_new < ::task >();
+   auto ptask = øcreate_new < ::task >();
 
    if (!ptask)
    {
@@ -1944,10 +1944,10 @@ void object::branch_each(const ::procedure_array& routinea)
 //}
 
 
-::task_pointer object::run_procedure(bool bSyncronously, const ::procedure & procedure)
+::task_pointer object::run_procedure(enum_synchronicity esynchronicity, const ::procedure & procedure)
 {
 
-   if (bSyncronously)
+   if (esynchronicity == e_synchronicity_synchronous)
    {
 
       procedure();
@@ -2055,7 +2055,7 @@ void object::process_exception(const ::exception& e)
 //::collection::index object::task_add(::task * ptask)
 //{
 //
-//   _synchronous_lock synchronouslock(this->synchronization());
+//   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //   return get_meta()->task_add(this, ptask);
 //
@@ -2065,7 +2065,7 @@ void object::process_exception(const ::exception& e)
 void object::task_erase(::task* ptask)
 {
 
-   //_synchronous_lock synchronouslock(this->synchronization());
+   //_synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //if (m_pmeta)
    //{
@@ -2085,7 +2085,7 @@ void object::task_erase(::task* ptask)
 
       string strThreadChild = ::type(ptask).name();
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (::is_null(ptask))
       {
@@ -2094,7 +2094,7 @@ void object::task_erase(::task* ptask)
 
       }
 
-      //_synchronous_lock slChild(ptask->synchronization());
+      //_synchronous_lock slChild(ptask->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       //if (!m_pcompositea->contains(ptask) && ptask->thread_parent() != this)
       //{
@@ -2146,6 +2146,24 @@ void object::task_erase(::task* ptask)
 
 }
 
+
+void object::notify(::enum_id eid, ::handler_context * phandlercontext)
+{
+
+   auto ptopic = create_topic(eid);
+
+   ptopic->m_pparticle = this;
+
+   for (auto & pnotify : notifya())
+   {
+
+      pnotify->handle(ptopic, phandlercontext);
+
+   }
+
+}
+
+
 // returns false if something like "should exit thread/application/session/system"
 // returns true normally.
 void object::sleep(const class time & time)
@@ -2161,12 +2179,12 @@ void object::sleep(const class time & time)
 
       {
 
-         _synchronous_lock synchronouslock(ptask->synchronization());
+         _synchronous_lock synchronouslock(ptask->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          if (ptask->m_pevSleep.is_null())
          {
 
-            ptask->m_pevSleep = __allocate manual_reset_happening();
+            ptask->m_pevSleep = øallocate manual_reset_happening();
 
             ptask->m_pevSleep->reset_happening();
 
@@ -2260,7 +2278,7 @@ void object::sleep(const class time & time)
 //void object::task_erase_all()
 //{
 //
-//   /*_synchronous_lock synchronouslock(this->synchronization());
+//   /*_synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //   if (m_pmeta)
 //   {
@@ -2274,7 +2292,7 @@ void object::sleep(const class time & time)
 //::task_array * object::task_array_get()
 //{
 //
-//   _synchronous_lock synchronouslock(this->synchronization());
+//   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //   if (!m_pmeta)
 //   {
@@ -2291,7 +2309,7 @@ void object::sleep(const class time & time)
 //const ::task_array* object::task_array_get() const
 //{
 //
-//   _synchronous_lock synchronouslock(this->synchronization());
+//   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //   if (!m_pmeta)
 //   {
@@ -2308,7 +2326,7 @@ void object::sleep(const class time & time)
 //bool object::task_is_empty() const
 //{
 //
-//   _synchronous_lock synchronouslock(this->synchronization());
+//   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //   auto pthreada = task_array_get();
 //
@@ -2344,7 +2362,7 @@ void object::sleep(const class time & time)
 //   unsigned int dwCreateFlags = 0)
 //{
 //
-//   auto pthread = __create_new< ::thread >();
+//   auto pthread = øcreate_new< ::thread >();
 //
 //   ::task::start(pthread);
 //
@@ -2377,12 +2395,12 @@ void object::_001OnUpdate(::message::message* pmessage)
 // void object::install_message_routing(::channel* pchannel)
 // {
 //
-//    //pchannel->add_handler(e_message_system_update, this, &::object::_001OnUpdate);
+//    //pchannel->add_handler(::user::e_message_system_update, this, &::object::_001OnUpdate);
 //
 // }
 
 
-//::particle_pointerobject::running(const ::string & pszTag) const
+//::particle_pointerobject::running(const ::scoped_string & scopedstrTag) const
 //{
 //
 //   //if (m_pcompositea)
@@ -2486,7 +2504,7 @@ void object::_001OnUpdate(::message::message* pmessage)
 //::pointer<::handle::ini>object::appini()
 //{
 //
-//   return __allocate ::handle::ini (         auto psystem = system();
+//   return øallocate ::handle::ini (         auto psystem = system();
 
 //         auto pdirectorysystem = psystem->m_pdirectorysystem;
 //
@@ -2528,9 +2546,9 @@ struct context_object_test_struct :
 //void debug_context_object(::object* pparticle)
 //{
 //
-//   auto p1 = __allocate struct context_object_test_struct (pparticle);
+//   auto p1 = øallocate struct context_object_test_struct (pparticle);
 //
-//   auto p2 = __allocate struct context_object_test_struct (pparticle);
+//   auto p2 = øallocate struct context_object_test_struct (pparticle);
 //
 //   p2 = p1;
 //
@@ -2653,7 +2671,7 @@ void call_sync(const ::procedure_array& methoda)
 //}
 
 
-//pointer< ::extended::sequence < ::conversation > > object::message_box(::user::interaction * puserinteraction, const ::string & strMessage, const ::string & strTitle, const ::e_message_box& emessagebox)
+//pointer< ::extended::sequence < ::conversation > > object::message_box(::user::interaction * puserinteraction, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::user::e_message_box& emessagebox)
 //{
 //
 //   auto psystem = system();
@@ -2665,7 +2683,7 @@ void call_sync(const ::procedure_array& methoda)
 //}
 
 
-//void object::message_box_timeout(const ::string & pszMessage, const ::string & pszTitle, const class time & timeTimeout, const ::e_message_box & emessagebox, const ::future & future)
+//void object::message_box_timeout(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const class time & timeTimeout, const ::user::e_message_box & emessagebox, const ::future & future)
 //{
 //
 //   ::e_status estatus = error_failed;
@@ -2680,7 +2698,7 @@ void call_sync(const ::procedure_array& methoda)
 //   if (!estatus)
 //   {
 //
-////      estatus = ::auto pmessagebox = __initialize_new ::message_box(pszMessage, pszTitle, emessagebox, process);
+////      estatus = ::auto pmessagebox = __initialize_new ::message_box(scopedstrMessage, pszTitle, emessagebox, process);
 
 //pmessagebox->sync();
 //
@@ -3037,7 +3055,7 @@ void object::initialize(::particle * pparticle)
 //::thread_pointer object::launch(const ::procedure & procedure)
 //{
 //
-//   auto pthread = __create_new < ::thread >();
+//   auto pthread = øcreate_new < ::thread >();
 //
 //   pthread->m_pelement = routine;
 //
@@ -3072,7 +3090,7 @@ void object::initialize(::particle * pparticle)
 //
 //}
 
-//void object::set_topic_text(const string& str)
+//void object::set_topic_text(const ::scoped_string & scopedstr)
 //{
 //
 //
@@ -3147,7 +3165,7 @@ void object::initialize(::particle * pparticle)
 // ::user::interaction * get_host_user_interaction();
 
 
-//void object::dev_log(string str) const
+//void object::dev_log(const ::scoped_string & scopedstr) const
 //{
 //
 //
@@ -3173,78 +3191,78 @@ void object::initialize(::particle * pparticle)
 //::image::image_pointer create_image(const ::int_size & size, ::eobject eobjectCreate = OK, int iGoodStride = -1, bool bPreserve = false);
 
 //::image::image_pointer get_image(const ::payload & payloadFile, bool bCache = true, bool bSync = true);
-//::image::image_pointer matter_image(const ::string & strMatter, bool bCache = true, bool bSync = true);
+//::image::image_pointer matter_image(const ::scoped_string & scopedstrMatter, bool bCache = true, bool bSync = true);
 
 //template < typename BASE_TYPE >
-//inline ::pointer<BASE_TYPE>__øcreate();
+//inline ::pointer<BASE_TYPE>øcreate();
 
 //template < typename BASE_TYPE >
-//inline ::pointer<BASE_TYPE>__id_create(const ::atom& atom);
+//inline ::pointer<BASE_TYPE>øid_create(const ::atom& atom);
 
 //template < typename TYPE >
-//inline ::pointer<TYPE>__create_new();
+//inline ::pointer<TYPE>øcreate_new();
 
-//inline void __øconstruct(::pointer<::image::image>& pimage);
+//inline void øconstruct(::pointer<::image::image>& pimage);
 
-//inline void __øconstruct(::pointer<::image::image>& pimage, ::image::image *pimageSource);
+//inline void øconstruct(::pointer<::image::image>& pimage, ::image::image *pimageSource);
 
-//inline void __defer_construct(::pointer<::image::image>& pimage) { return !pimage ? __øconstruct(pimage) : void(::success); }
+//inline void ødefer_construct(::pointer<::image::image>& pimage) { return !pimage ? øconstruct(pimage) : void(::success); }
 
 // for composition (ownership)
 
 //template < typename BASE_TYPE >
-//inline void __øconstruct(::pointer<BASE_TYPE> pusermessage);
+//inline void øconstruct(::pointer<BASE_TYPE> pusermessage);
 
 //template < typename BASE_TYPE, typename SOURCE >
-//inline void __øconstruct(::pointer<BASE_TYPE> pusermessage, const SOURCE* psource);
+//inline void øconstruct(::pointer<BASE_TYPE> pusermessage, const SOURCE* psource);
 
 //template < typename BASE_TYPE, typename SOURCE >
-//inline void __øconstruct(::pointer<BASE_TYPE> pusermessage, const ::pointer<SOURCE>psource);
+//inline void øconstruct(::pointer<BASE_TYPE> pusermessage, const ::pointer<SOURCE>psource);
 
 //template < typename BASE_TYPE >
-//inline void __id_construct(::pointer<BASE_TYPE> pusermessage, const ::atom& atom);
+//inline void øid_construct(::pointer<BASE_TYPE> pusermessage, const ::atom& atom);
 
 //template < typename BASE_TYPE >
-//inline void __raw_construct(::pointer<BASE_TYPE> pusermessage);
+//inline void øraw_construct(::pointer<BASE_TYPE> pusermessage);
 
 //template < typename BASE_TYPE, typename SOURCE >
-//inline void __raw_construct(::pointer<BASE_TYPE> pusermessage, const SOURCE* psource);
+//inline void øraw_construct(::pointer<BASE_TYPE> pusermessage, const SOURCE* psource);
 
 //template < typename BASE_TYPE, typename SOURCE >
-//inline void __raw_construct(::pointer<BASE_TYPE> pusermessage, const ::pointer<SOURCE>psource);
+//inline void øraw_construct(::pointer<BASE_TYPE> pusermessage, const ::pointer<SOURCE>psource);
 
 //template < typename TYPE >
 //inline void __raw_construct_new(::pointer<TYPE> ptype);
 
 //template < typename TYPE >
-//inline void __construct_new(::pointer<TYPE> ptype);
+//inline void øconstruct_new(::pointer<TYPE> ptype);
 
 
 
 
 //template < typename BASE_TYPE >
-//inline void __defer_construct(::pointer<BASE_TYPE> pusermessage) { return !pusermessage ? __øconstruct(pusermessage) : void(::success); }
+//inline void ødefer_construct(::pointer<BASE_TYPE> pusermessage) { return !pusermessage ? øconstruct(pusermessage) : void(::success); }
 
 //template < typename BASE_TYPE >
-//inline void __defer_id_compose(::pointer<BASE_TYPE> pusermessage, const ::atom& atom) { return !pusermessage ? __id_construct(pusermessage) : void(::success); }
+//inline void __defer_id_compose(::pointer<BASE_TYPE> pusermessage, const ::atom& atom) { return !pusermessage ? øid_construct(pusermessage) : void(::success); }
 
 //template < typename TYPE >
 //inline void __defer_raw_compose_new(::pointer<TYPE> ptype) { return !ptype ? __raw_construct_new(ptype) : void(::success); }
 
 //template < typename TYPE >
-//inline void __defer_construct_new(::pointer<TYPE> ptype) { return !ptype ? __construct_new(ptype) : void(::success); }
+//inline void ødefer_construct_new(::pointer<TYPE> ptype) { return !ptype ? øconstruct_new(ptype) : void(::success); }
 
 
 
 
 //template < typename BASE_TYPE >
-//inline void __øconstruct(::pointer<BASE_TYPE> pusermessage);
+//inline void øconstruct(::pointer<BASE_TYPE> pusermessage);
 
 //template < typename BASE_TYPE >
-//inline void __id_construct(::pointer<BASE_TYPE> pusermessage, const ::atom& atom);
+//inline void øid_construct(::pointer<BASE_TYPE> pusermessage, const ::atom& atom);
 
 //template < typename TYPE >
-//inline void __construct_new(::pointer<TYPE> pusermessage);
+//inline void øconstruct_new(::pointer<TYPE> pusermessage);
 
 //template < typename BASE_TYPE >
 //inline void __release(::pointer<BASE_TYPE> pcomposite);
@@ -3294,7 +3312,7 @@ void object::initialize(::particle * pparticle)
 //
 //}
 
-//void object::system(const ::string & pszProjectName)
+//void object::system(const ::scoped_string & scopedstrProjectName)
 //{
 //
 //}
@@ -3395,14 +3413,14 @@ void object::initialize(::particle * pparticle)
 //}
 
 
-//void object::child_post_quit(const ::string & pszTag)
+//void object::child_post_quit(const ::scoped_string & scopedstrTag)
 //{
 //
 //
 //}
 
 
-//void object::child_post_quit_and_wait(const ::string & pszTag, const time& time)
+//void object::child_post_quit_and_wait(const ::scoped_string & scopedstrTag, const time& time)
 //{
 //
 //
@@ -3505,7 +3523,7 @@ void object::initialize(::particle * pparticle)
 //}
 
 
-//pointer< ::extended::future < ::conversation > >  object::message_box(const ::string & pszMessage, const ::string & pszTitle, const ::e_message_box& emessagebox)
+//pointer< ::extended::future < ::conversation > >  object::message_box(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::user::e_message_box& emessagebox)
 //{
 //
 //   return nullptr;
@@ -3518,22 +3536,22 @@ void object::initialize(::particle * pparticle)
 //}
 
 
-// void message_box_timeout(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const class time & timeTimeout = ::time::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, const ::future & future = ::future());
+// void message_box_timeout(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const class time & timeTimeout = ::time::infinite(), const ::user::e_message_box & emessagebox = ::user::e_message_box_ok, const ::future & future = ::future());
 //{
 
 //   return message_box_timeout(nullptr, pszMessage, pszTitle, timeTimeout, emessagebox, process);
 
 //}
 
-// void message_box(::user::interaction_base* puiOwner, const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const ::future & future = ::future());
-// void message_box_timeout(::user::interaction_base* puserinteractionOwner, const ::string & pszMessage, const ::string & pszTitle = nullptr, const class time & timeTimeout = ::time::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, const ::future & future = ::future());
+// void message_box(::user::interaction_base* puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const ::user::e_message_box & emessagebox = ::user::e_message_box_ok, const ::future & future = ::future());
+// void message_box_timeout(::user::interaction_base* puserinteractionOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const class time & timeTimeout = ::time::infinite(), const ::user::e_message_box & emessagebox = ::user::e_message_box_ok, const ::future & future = ::future());
 
 //void object::release_references()
 //{
 //
 //}
 
-//::pointer<::element>object::running(const ::string & pszTag) const
+//::pointer<::element>object::running(const ::scoped_string & scopedstrTag) const
 //{
 //
 //   return nullptr;
@@ -3596,7 +3614,7 @@ void object::initialize(::particle * pparticle)
 //}
 
 
-//string object::lstr(const ::atom& atom, string strDefault)
+//string object::lstr(const ::atom& atom, const ::scoped_string & scopedstrDefault)
 //{
 //
 //   return "";
@@ -3604,7 +3622,7 @@ void object::initialize(::particle * pparticle)
 //}
 //
 //
-//string object::__get_text(string str)
+//string object::__get_text(const ::scoped_string & scopedstr)
 //{
 //
 //   return "";
@@ -3618,7 +3636,7 @@ void object::initialize(::particle * pparticle)
 
 // ::image::image_pointer load_image(const ::payload & payloadFile, bool bSync = true, bool bCache = true, bool bCreateHelperMaps = false);
 // ::image::image_pointer load_matter_image(const ::scoped_string & scopedstrMatter, bool bSync = true, bool bCache = true, bool bCreateHelperMaps = false);
-// ::image::image_pointer load_matter_icon(string_array & straMatter, string strIcon);
+// ::image::image_pointer load_matter_icon(string_array_base & straMatter, const ::scoped_string & scopedstrIcon);
 // ::image::image_pointer load_thumbnail(const ::payload & payloadFile, int w, int h);
 // ::image::image_pointer load_thumbnail(const ::file::path & path);
 // ::image::image_pointer load_dib(const ::file::path & pathDib);
@@ -3718,7 +3736,7 @@ bool object::IsSerializable() const
 
    //   auto ptask = ::get_task();
 
-   //   _synchronous_lock synchronouslock(ptask->synchronization());
+   //   _synchronous_lock synchronouslock(ptask->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //   if (ptask && ptask->m_bIsPredicate)
    //   {
@@ -3765,7 +3783,7 @@ bool object::IsSerializable() const
    //   return nullptr;
 
    //}
-   //::thread_pointer defer_fork(string strThread = "");
+   //::thread_pointer defer_fork(const ::scoped_string & scopedstrThread = "");
 
 //#ifdef __APPLE__
 //    void ns_main_post(dispatch_block_t block);
@@ -3800,7 +3818,7 @@ bool object::IsSerializable() const
 //
 //      va_list valist;
 //      va_start(valist, psz);
-//      format_topic_text_v(psz, valist);
+//      format_topic_text_v(scopedstr, valist);
 //      va_end(valist);
 //
 //   }
@@ -3810,7 +3828,7 @@ bool object::IsSerializable() const
 //   {
 //
 //      string str;
-//      str.formatf_arguments(psz, valist);
+//      str.formatf_arguments(scopedstr, valist);
 //      set_topic_text(str);
 //
 //   }
@@ -3842,7 +3860,7 @@ bool object::IsSerializable() const
 
 
    //template < typename TYPE >
-   //void __øconstruct(::thread_pointer& p, void (TYPE::* pfn)(), enum_priority epriority);
+   //void øconstruct(::thread_pointer& p, void (TYPE::* pfn)(), enum_priority epriority);
 
    //template < typename TYPE >
    //void __construct_below_normal(::thread_pointer& p, void (TYPE::* pfn)());
@@ -3873,7 +3891,7 @@ bool object::IsSerializable() const
 //   }
 //
 //
-//    //ptask = __allocate predicate_task < PRED > (pparticle, pred);
+//    //ptask = øallocate predicate_task < PRED > (pparticle, pred);
 ////
 ////   ptask->branch();
 ////
@@ -3909,7 +3927,7 @@ void object::defer_branch(::task_pointer & ptask, const ::procedure & procedure)
    if (::is_null(ptask))
    {
 
-      __øconstruct(ptask);
+      øconstruct(ptask);
 
       //ptask->m_bAutoRelease = true;
 

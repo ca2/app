@@ -31,7 +31,7 @@ namespace regular_expression_pcre2
 
       void _get_range_array() override;
 
-      //virtual bool replace(string & strFind, const ::string & strReplace, string & strResult) override;
+      //virtual bool replace(string & strFind, const ::scoped_string & scopedstrReplace, string & strResult) override;
 
 
    };

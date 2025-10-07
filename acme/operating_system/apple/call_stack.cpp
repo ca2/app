@@ -110,12 +110,12 @@
 //
 //   }
 //
-//   if (pszMangledName && pszAddress && pszMangledName > pszAddress)
+//   if (scopedstrMangledName && pszAddress && pszMangledName > pszAddress)
 //   {
 //
 //      int status;
 //
-//      acme::malloc < char * > pszRealName = abi::__cxa_demangle(pszMangledName, 0, 0, &status);
+//      acme::malloc < char * > pszRealName = abi::__cxa_demangle(scopedstrMangledName, 0, 0, &status);
 //
 //      if (status == 0)
 //      {
@@ -229,12 +229,12 @@ void apple_backtrace_symbol_parse(string & strSymbolName, string & strAddress, c
 
       acme::malloc < char * > pszRealName = abi::__cxa_demangle(pszMangledName, 0, 0, &status);
 
-      const ::ansi_character * pszSymbolName;
+      const_char_pointer pszSymbolName;
 
       if (status == 0)
       {
 
-         strSymbolName = (const char *) (char *) pszRealName;
+         strSymbolName = (const_char_pointer )(char *) pszRealName;
 
       }
       else

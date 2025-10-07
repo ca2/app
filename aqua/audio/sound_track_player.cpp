@@ -27,7 +27,7 @@ namespace aqua
    }
 
 
-   string sound_track_player::sound_path(const ::string & str)
+   string sound_track_player::sound_path(const ::scoped_string & scopedstr)
    {
 
       return "";
@@ -35,7 +35,7 @@ namespace aqua
    }
 
 
-   file_pointer sound_track_player::sound_file(const ::string & psz)
+   file_pointer sound_track_player::sound_file(const ::scoped_string & scopedstr)
    {
 
 
@@ -44,7 +44,7 @@ namespace aqua
    }
 
 
-   ::pointer<::object>sound_track_player::sound_plugin(const ::string & psz, bool bForceCreate, bool bLoop)
+   ::pointer<::object>sound_track_player::sound_plugin(const ::scoped_string & scopedstr, bool bForceCreate, bool bLoop)
    {
 
       return nullptr;
@@ -59,7 +59,7 @@ namespace aqua
    }
 
 
-   void sound_track_player::mix_sound_file(const ::string & psz)
+   void sound_track_player::mix_sound_file(const ::scoped_string & scopedstr)
    {
 
 

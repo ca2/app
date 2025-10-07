@@ -49,7 +49,7 @@ string get_callstack(::particle * pparticle,  const ::scoped_string & scopedstrF
 //   }
 
 
-//   const char * callstack::get_dup(const ::scoped_string & scopedstrFormat, int iSkip, int iCount)
+//   const_char_pointer callstack::get_dup(const ::scoped_string & scopedstrFormat, int iSkip, int iCount)
 //   {
 //
 //      return nullptr;
@@ -63,7 +63,7 @@ string get_callstack(::particle * pparticle,  const ::scoped_string & scopedstrF
 //   //
 //   //   const ::scoped_string & scopedstr;
 //   //
-//   //   synchronous_lock synchronouslock(::exception_engine().mutex());
+//   //   synchronous_lock synchronouslock(::exception_engine().mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //   //
 //   //   ::exception_engine().xxxstack_trace(iSkip, nullptr, m_pszFormat, m_iCount);
 //   //
@@ -118,7 +118,7 @@ void netbsd_backtrace_symbol_parse(::particle * pparticle, string & strSymbolNam
          pszOffsetEnd = psz;
 
       }
-      else if (psz[0] == ' ' && psz[1] == 'a' && psz[2] == 't' && psz[3] == ' ')
+      else if (scopedstr[0] == ' ' && psz[1] == 'a' && psz[2] == 't' && psz[3] == ' ')
       {
 
          psz+=4;
@@ -129,7 +129,7 @@ void netbsd_backtrace_symbol_parse(::particle * pparticle, string & strSymbolNam
 
    }
 
-   if (pszMangledName && pszOffsetBegin && pszOffsetEnd && pszMangledName < pszOffsetBegin)
+   if (scopedstrMangledName && pszOffsetBegin && pszOffsetEnd && pszMangledName < pszOffsetBegin)
    {
 
       *pszMangledName++ = '\0';
@@ -142,17 +142,17 @@ void netbsd_backtrace_symbol_parse(::particle * pparticle, string & strSymbolNam
 
       auto psynchronization = ::system()->synchronization();
 
-      synchronous_lock sl(psynchronization);
+      synchronous_lock sl(psynchronization, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       try
       {
 
-         //acme::malloc<char *> pszRealName = abi::__cxa_demangle(pszMangledName, 0, 0, &status);
+         //acme::malloc<char *> pszRealName = abi::__cxa_demangle(scopedstrMangledName, 0, 0, &status);
 
 //         if (status == 0)
 //         {
 //
-//            strSymbolName = (const char *) (char *) pszRealName;
+//            strSymbolName = (const_char_pointer )(char *) pszRealName;
 //
 //         }
 //         else

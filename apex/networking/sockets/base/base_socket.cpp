@@ -160,7 +160,7 @@ namespace sockets
    ::pointer < ::sockets::socket_thread > base_socket::create_socket_thread()
    {
 
-      return __øcreate < ::sockets::socket_thread >();
+      return øcreate < ::sockets::socket_thread >();
 
    }
 
@@ -398,7 +398,7 @@ namespace sockets
    //}
 
 
-   ::string_array & base_socket::debugstra()
+   ::string_array_base & base_socket::debugstra()
    {
 
       return base_socket_impl()->debugstra();
@@ -523,7 +523,7 @@ namespace sockets
    }
 
 
-   /*   socket_id base_socket::CreateSocket(int af,int iType, const ::string & strProtocol)
+   /*   socket_id base_socket::CreateSocket(int af,int iType, const ::scoped_string & scopedstrProtocol)
    {
    struct protoent *point = nullptr;
    socket_id s;
@@ -851,10 +851,10 @@ namespace sockets
    }
 
 
-   void base_socket::OnLine(const string & str)
+   void base_socket::OnLine(const ::scoped_string & scopedstrLine)
    {
 
-      base_socket_impl()->OnLine(str);
+      base_socket_impl()->OnLine(scopedstrLine);
 
    }
 
@@ -1176,6 +1176,14 @@ namespace sockets
    }
 
 
+   void base_socket::set_no_ssl_shutdown()
+   {
+
+      base_socket_impl()->set_no_ssl_shutdown();
+
+   }
+
+
    bool base_socket::IsSSLServer()
    {
       
@@ -1260,10 +1268,10 @@ namespace sockets
    }
 
 
-   void base_socket::SetSocketProtocol(const ::string & strProtocol)
+   void base_socket::SetSocketProtocol(const ::scoped_string & scopedstrProtocol)
    {
 
-      base_socket_impl()->SetSocketProtocol(strProtocol);
+      base_socket_impl()->SetSocketProtocol(scopedstrProtocol);
 
    }
 
@@ -1337,7 +1345,7 @@ namespace sockets
 //#if defined(BSD_STYLE_SOCKETS)
 //
 //
-//   void base_socket::SetSocks4Host(const string & host)
+//   void base_socket::SetSocks4Host(const ::scoped_string & scopedstrHost)
 //   {
 //
 //      //auto paddressdepartment = ::networking::address_department();
@@ -1366,9 +1374,11 @@ namespace sockets
    }
 
 
-   void base_socket::SetSocks4Host(const ::string & a)
+   void base_socket::SetSocks4Host(const ::scoped_string & scopedstrAddress)
    {
-   return base_socket_impl()->SetSocks4Host(a);
+
+      return base_socket_impl()->SetSocks4Host(scopedstrAddress);
+
    }
 
 
@@ -1446,7 +1456,7 @@ namespace sockets
 
    //   SetDetached();
 
-   //   auto psocketthread = __allocate socket_thread();
+   //   auto psocketthread = øallocate socket_thread();
 
    //   psocketthread->transfer(passociation, psocketmap);
 
@@ -1527,7 +1537,7 @@ namespace sockets
    //
 
 
-//   int base_socket::Resolve(const string & host,::networking::port_t port)
+//   int base_socket::Resolve(const ::scoped_string & scopedstrHost,::networking::port_t port)
 //   {
 //
 //      return socket_handler()->Resolve(this, host, port);
@@ -1535,7 +1545,7 @@ namespace sockets
 //   }
 
 
-//   int base_socket::Resolve6(const string & host,::networking::port_t port)
+//   int base_socket::Resolve6(const ::scoped_string & scopedstrHost,::networking::port_t port)
 //   {
 //
 //      return socket_handler()->Resolve6(this, host, port);
@@ -2343,11 +2353,11 @@ namespace sockets
 
 //#if defined(SO_BINDTODEVICE) && defined(BSD_STYLE_SOCKETS)
    
-   bool base_socket::SetSoBindtodevice(const string & intf)
+   bool base_socket::SetSoBindtodevice(const ::scoped_string & scopedstrInterface)
    {
-      return base_socket_impl()->SetSoBindtodevice(intf);
+      return base_socket_impl()->SetSoBindtodevice(scopedstrInterface);
    
-      //if (setsockopt(get_socket_id(), SOL_SOCKET, SO_BINDTODEVICE, (char *) (const char *)intf, intf.get_length()) == -1)
+      //if (setsockopt(get_socket_id(), SOL_SOCKET, SO_BINDTODEVICE, (char *) (const_char_pointer )intf, intf.get_length()) == -1)
       //{
 
       //   fatal() <<"setsockopt(SOL_SOCKET, SO_BINDTODEVICE)" << Errno << ", " << bsd_socket_error(Errno);
@@ -3304,7 +3314,7 @@ namespace sockets
 
 //#ifdef BSD_STYLE_SOCKETS
 //
-//      synchronous_lock synchronouslock(this->synchronization());
+//      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //      if (m_psslcontext->m_pclientcontext->get_session() != nullptr)
 //      {
@@ -3321,7 +3331,7 @@ namespace sockets
    void base_socket::get_ssl_session()
    {
 
-      //synchronous_lock synchronouslock(this->synchronization());
+      //synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       base_socket_impl()->get_ssl_session();
 

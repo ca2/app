@@ -8,7 +8,7 @@ class string_to_string_lookup;
 ::string path_get_default_path();
 
 /// get next entry in a PATH-environment-variable-like value
-bool path_get_next_path(::scoped_string & scopedstr, ::string_range < const char * > & rangePath);
+bool path_get_next_path(::scoped_string & scopedstr, ::string_range < const_char_pointer >& rangePath);
 
 
 ::file::path _path_get_path(const scoped_string & scopedstrCommand, const ::scoped_string & scopedstrPath, string_to_string_lookup * plookupEnvironment);

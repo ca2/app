@@ -129,7 +129,7 @@ namespace ios
       return;
 
       /*      unsigned int dwPid;
-       while(get_pid_by_title(pszName, dwPid))
+       while(get_pid_by_title(scopedstrName, dwPid))
        {
        HANDLE hProcess = OpenProcess( PROCESS_QUERY_INFORMATION |
        PROCESS_VM_READ,
@@ -161,7 +161,7 @@ namespace ios
       get_all_processes(dwa);
       for(int i = 0; i < dwa.get_count(); i++)
       {
-         if(get_process_path(dwa[i]).case_insensitive_order(pszName) == 0)
+         if(get_process_path(dwa[i]).case_insensitive_order(scopedstrName) == 0)
          {
             dwPid = dwa[i];
             return true;
@@ -177,7 +177,7 @@ namespace ios
       get_all_processes(dwa);
       for(int i = 0; i < dwa.get_count(); i++)
       {
-         if(get_process_path(dwa[i]).title().case_insensitive_order(pszName) == 0)
+         if(get_process_path(dwa[i]).title().case_insensitive_order(scopedstrName) == 0)
          {
             dwPid = dwa[i];
             return true;
@@ -307,7 +307,7 @@ namespace ios
        registry::Key keyKar(HKEY_LOCAL_IOSHINE, "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
 
 
-       keyKar.SetValue(pszKey, pszCommand);
+       keyKar.SetValue(scopedstrKey, pszCommand);
 
 
        return true;
@@ -324,7 +324,7 @@ namespace ios
       /*    registry::Key keyKar(HKEY_LOCAL_IOSHINE, "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\RunOnce", true);
 
 
-       keyKar.SetValue(pszKey, pszCommand);
+       keyKar.SetValue(scopedstrKey, pszCommand);
        */
 
       return false;
@@ -342,7 +342,7 @@ namespace ios
        registry::Key keyKar(HKEY_CURRENT_USER, "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
 
 
-       keyKar.SetValue(pszKey, pszCommand);
+       keyKar.SetValue(scopedstrKey, pszCommand);
        */
 
       return false;
@@ -360,7 +360,7 @@ namespace ios
        registry::Key keyKar(HKEY_CURRENT_USER, "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\RunOnce", true);
 
 
-       keyKar.SetValue(pszKey, pszCommand);
+       keyKar.SetValue(scopedstrKey, pszCommand);
 
        */
       return false;
@@ -408,7 +408,7 @@ namespace ios
    }
 
 
-   bool os_context::file_extension_get_open_with_list_keys(string_array & straKey, const ::scoped_string & scopedstrExtension)
+   bool os_context::file_extension_get_open_with_list_keys(string_array_base & straKey, const ::scoped_string & scopedstrExtension)
    {
       //   throw ::not_implemented();
       return false;
@@ -433,10 +433,10 @@ namespace ios
    }
 
 
-   bool os_context::file_extension_get_open_with_list_commands(string_array & straCommand, const ::scoped_string & scopedstrExtension)
+   bool os_context::file_extension_get_open_with_list_commands(string_array_base & straCommand, const ::scoped_string & scopedstrExtension)
    {
 
-      string_array straKey;
+      string_array_base straKey;
 
       if(!file_extension_get_open_with_list_keys(straKey, pszExtension))
          return false;
@@ -454,7 +454,7 @@ namespace ios
       return false;
 
       /*
-       string strExtensionNamingClass(pszExtensionNamingClass);
+       string strExtensionNamingClass(scopedstrExtensionNamingClass);
 
        registry::Key keyLink3(HKEY_CLASSES_ROOT, strExtensionNamingClass, true);
        keyLink3.SetValue("DefaultIcon", pszIconPath);
@@ -476,7 +476,7 @@ namespace ios
        strExt = ".";
        strExt += pszExtension;
 
-       string strExtensionNamingClass(pszExtensionNamingClass);
+       string strExtensionNamingClass(scopedstrExtensionNamingClass);
 
        registry::Key key(HKEY_CLASSES_ROOT, strExt, true);
        key.SetValue(nullptr, strExtensionNamingClass);
@@ -524,9 +524,9 @@ namespace ios
        try
        {
 
-       strCommand = ::str::consume_quoted_value(psz);
-       ::str::consume_spaces(psz);
-       ::str::consume(psz, "\"%L\"");
+       strCommand = ::str::consume_quoted_value(scopedstr);
+       ::str::consume_spaces(scopedstr);
+       ::str::consume(scopedstr, "\"%L\"");
        strParam = psz;
 
        }

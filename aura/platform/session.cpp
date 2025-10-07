@@ -194,7 +194,7 @@ namespace aura
 
    //   }
 
-   //   __construct_new(m_puserstyle);
+   //   øconstruct_new(m_puserstyle);
 
    //   m_puserstyle->default_style_construct();
 
@@ -219,7 +219,7 @@ namespace aura
    //}
 
    //
-   // void session::locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema)
+   // void session::locale_schema_matter(string_array_base & stra, const string_array_base & straMatterLocator, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema)
    // {
    //
    //
@@ -259,7 +259,7 @@ namespace aura
       //}
 
 
-      //estatus = __construct_new(m_ptextcontext);
+      //estatus = øconstruct_new(m_ptextcontext);
 
       //if (!estatus)
       //{
@@ -333,10 +333,10 @@ class ::fs::data * session::fs() { return m_pfsdata; }
    }
 
 
-   //bool session::open_by_file_extension(const ::string & pszPathName, ::request * prequest)
+   //bool session::open_by_file_extension(const ::scoped_string & scopedstrPathName, ::request * prequest)
    //{
 
-   //   auto pcreateNew = __create_new < ::create >();
+   //   auto pcreateNew = øcreate_new < ::create >();
 
    //   pcreateNew->m_payloadFile = pszPathName;
 
@@ -395,7 +395,7 @@ class ::fs::data * session::fs() { return m_pfsdata; }
 
          string strExtension = strPathName.final_extension();
 
-         string_array straApp;
+         string_array_base straApp;
 
          throw ::exception(todo, "filehandler");
 
@@ -432,7 +432,7 @@ class ::fs::data * session::fs() { return m_pfsdata; }
    }
 
 
-   bool session::is_licensed(const ::string & pszAppId, bool bInteractive)
+   bool session::is_licensed(const ::scoped_string & scopedstrAppId, bool bInteractive)
    {
 
       if (has_property("install"))
@@ -458,7 +458,7 @@ class ::fs::data * session::fs() { return m_pfsdata; }
 
       //}
 
-      //return m_paccount->is_licensed(pszAppId, bInteractive);
+      //return m_paccount->is_licensed(scopedstrAppId, bInteractive);
 
    }
 
@@ -508,14 +508,14 @@ class ::fs::data * session::fs() { return m_pfsdata; }
 //   }
 
 
-   bool session::get_auth(const string & pszForm, string & strUsername, string & strPassword)
+   bool session::get_auth(const ::scoped_string & scopedstrForm, string & strUsername, string & strPassword)
    {
 
       throw 0;
 
       return false;
 
-      //return account()->get_auth(pszForm, strUsername, strPassword);
+      //return account()->get_auth(scopedstrForm, strUsername, strPassword);
 
    }
 
@@ -830,7 +830,7 @@ class ::fs::data * session::fs() { return m_pfsdata; }
 ////      //         if (pinteraction.is_set())
 ////      //         {
 ////
-////      //            pinteraction->send_message(e_message_kill_focus, (wparam) ( (pkeyboardfocus != nullptr &&
+////      //            pinteraction->send_message(::user::e_message_kill_focus, (wparam) ( (pkeyboardfocus != nullptr &&
 ////      //                              pkeyboardfocus != (::user::interaction_base *) (ulong_ptr) 1 )?
 ////      //                              pkeyboardfocus->get_safe_handle() : nullptr));
 ////
@@ -995,7 +995,7 @@ class ::fs::data * session::fs() { return m_pfsdata; }
 //      //         if (pinteraction.is_set())
 //      //         {
 //
-//      //            pinteraction->send_message(e_message_kill_focus, (wparam) ( (pkeyboardfocus != nullptr &&
+//      //            pinteraction->send_message(::user::e_message_kill_focus, (wparam) ( (pkeyboardfocus != nullptr &&
 //      //                              pkeyboardfocus != (::user::interaction_base *) (ulong_ptr) 1 )?
 //      //                              pkeyboardfocus->get_safe_handle() : nullptr));
 //
@@ -1153,7 +1153,7 @@ class ::fs::data * session::fs() { return m_pfsdata; }
 //      //         if (pinteraction.is_set())
 //      //         {
 //
-//      //            pinteraction->send_message(e_message_kill_focus, (wparam) ( (pkeyboardfocus != nullptr &&
+//      //            pinteraction->send_message(::user::e_message_kill_focus, (wparam) ( (pkeyboardfocus != nullptr &&
 //      //                              pkeyboardfocus != (::user::interaction_base *) (ulong_ptr) 1 )?
 //      //                              pkeyboardfocus->get_safe_handle() : nullptr));
 //
@@ -1353,12 +1353,12 @@ class ::fs::data * session::fs() { return m_pfsdata; }
 
    //   long long iMessage = pmouse->m_emessage;
 
-   //   if(iMessage == e_message_left_button_down
-   //    //|| iMessage == e_message_left_button_up
-   //    || iMessage == e_message_right_button_down
-   //    //|| iMessage == e_message_right_button_up
-   //    || iMessage == e_message_middle_button_down
-   //    //|| iMessage == e_message_middle_button_up
+   //   if(iMessage == ::user::e_message_left_button_down
+   //    //|| iMessage == ::user::e_message_left_button_up
+   //    || iMessage == ::user::e_message_right_button_down
+   //    //|| iMessage == ::user::e_message_right_button_up
+   //    || iMessage == ::user::e_message_middle_button_down
+   //    //|| iMessage == ::user::e_message_middle_button_up
    //    )
    //    {
 
@@ -1369,7 +1369,7 @@ class ::fs::data * session::fs() { return m_pfsdata; }
 
    //         {
 
-   //            synchronous_lock synchronouslock(this->synchronization());
+   //            synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //            ::generic::container::copy(uiptraToolWindow, m_uiptraToolWindow);
 
@@ -1384,7 +1384,7 @@ class ::fs::data * session::fs() { return m_pfsdata; }
    //               if(pinteraction->m_bFocus)
    //               {
 
-   //                  pinteraction->post_message(e_message_kill_focus);
+   //                  pinteraction->post_message(::user::e_message_kill_focus);
 
    //               }
 
@@ -1583,68 +1583,68 @@ return m_psavings;
 //   bool session::is_key_pressed(::user::enum_key ekey)
 //   {
 //
-//      synchronous_lock synchronouslock(this->synchronization());
+//      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //      if (m_pmapKeyPressed == nullptr)
 //      {
 //
-//         m_pmapKeyPressed = aaa_memory_new ::map < ::user::enum_key, bool >;
+//         m_pmapKeyPressed = aaa_memory_new ::map_base < ::user::enum_key, bool >;
 //
 //      }
 //
 //      bool bPressed = false;
 //      if (ekey == ::user::e_key_shift)
 //      {
-//         m_pmapKeyPressed->lookup(::user::e_key_shift, bPressed);
+//         m_pmapKeyPressed->find(::user::e_key_shift, bPressed);
 //         if (bPressed)
 //            goto ret;
-//         m_pmapKeyPressed->lookup(::user::e_key_left_shift, bPressed);
+//         m_pmapKeyPressed->find(::user::e_key_left_shift, bPressed);
 //         if (bPressed)
 //            goto ret;
-//         m_pmapKeyPressed->lookup(::user::e_key_right_shift, bPressed);
+//         m_pmapKeyPressed->find(::user::e_key_right_shift, bPressed);
 //         if (bPressed)
 //            goto ret;
 //      }
 //      else if (ekey == ::user::e_key_command)
 //      {
-//         m_pmapKeyPressed->lookup(::user::e_key_command, bPressed);
+//         m_pmapKeyPressed->find(::user::e_key_command, bPressed);
 //         if (bPressed)
 //            goto ret;
-//         m_pmapKeyPressed->lookup(::user::e_key_left_command, bPressed);
+//         m_pmapKeyPressed->find(::user::e_key_left_command, bPressed);
 //         if (bPressed)
 //            goto ret;
-//         m_pmapKeyPressed->lookup(::user::e_key_right_command, bPressed);
+//         m_pmapKeyPressed->find(::user::e_key_right_command, bPressed);
 //         if (bPressed)
 //            goto ret;
 //      }
 //      else if (ekey == ::user::e_key_control)
 //      {
-//         m_pmapKeyPressed->lookup(::user::e_key_control, bPressed);
+//         m_pmapKeyPressed->find(::user::e_key_control, bPressed);
 //         if (bPressed)
 //            goto ret;
-//         m_pmapKeyPressed->lookup(::user::e_key_left_control, bPressed);
+//         m_pmapKeyPressed->find(::user::e_key_left_control, bPressed);
 //         if (bPressed)
 //            goto ret;
-//         m_pmapKeyPressed->lookup(::user::e_key_right_control, bPressed);
+//         m_pmapKeyPressed->find(::user::e_key_right_control, bPressed);
 //         if (bPressed)
 //            goto ret;
 //      }
 //      else if (ekey == ::user::e_key_alt)
 //      {
-//         m_pmapKeyPressed->lookup(::user::e_key_alt, bPressed);
+//         m_pmapKeyPressed->find(::user::e_key_alt, bPressed);
 //         if (bPressed)
 //            goto ret;
-//         m_pmapKeyPressed->lookup(::user::e_key_left_alt, bPressed);
+//         m_pmapKeyPressed->find(::user::e_key_left_alt, bPressed);
 //         if (bPressed)
 //            goto ret;
-//         m_pmapKeyPressed->lookup(::user::e_key_right_alt, bPressed);
+//         m_pmapKeyPressed->find(::user::e_key_right_alt, bPressed);
 //         if (bPressed)
 //            goto ret;
 //      }
 //      else
 //      {
 //
-//         m_pmapKeyPressed->lookup(ekey, bPressed);
+//         m_pmapKeyPressed->find(ekey, bPressed);
 //
 //      }
 //
@@ -1658,12 +1658,12 @@ return m_psavings;
 //   void session::set_key_pressed(::user::enum_key ekey, bool bPressed)
 //   {
 //
-//      synchronous_lock synchronouslock(this->synchronization());
+//      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //      if (m_pmapKeyPressed == nullptr)
 //      {
 //
-//         m_pmapKeyPressed = aaa_memory_new ::map < ::user::enum_key, bool >;
+//         m_pmapKeyPressed = aaa_memory_new ::map_base < ::user::enum_key, bool >;
 //
 //      }
 //
@@ -1683,16 +1683,16 @@ return m_psavings;
    ::user::interaction_base * session::get_bound_ui(::atom idImpact)
    {
 
-      auto p = m_mapboundui.plookup(idImpact);
+      auto iterator = m_mapboundui.find(idImpact);
 
-      if (!p)
+      if (!iterator)
       {
 
          return nullptr;
 
       }
 
-      return p->m_element2;
+      return iterator->m_element2;
 
    }
 
@@ -1700,7 +1700,7 @@ return m_psavings;
    void session::on_show_user_input_popup(::user::interaction * pinteraction)
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       try
       {
@@ -1740,7 +1740,7 @@ return m_psavings;
 
       //}
 
-      //auto estatus = __construct_new(m_pfs);
+      //auto estatus = øconstruct_new(m_pfs);
 
       //if (!estatus)
       //{
@@ -1759,7 +1759,7 @@ return m_psavings;
       //if (!m_pifs)
       //{
 
-      //   estatus = __øconstruct(m_pifs, __allocate ifs(""));
+      //   estatus = øconstruct(m_pifs, øallocate ifs(""));
 
       //   if (!estatus)
       //   {
@@ -1775,7 +1775,7 @@ return m_psavings;
       //if (!m_premotefs)
       //{
 
-      //   estatus = __øconstruct(m_premotefs, __allocate ::fs::remote_native(""));
+      //   estatus = øconstruct(m_premotefs, øallocate ::fs::remote_native(""));
 
       //   if (!estatus)
       //   {
@@ -1791,17 +1791,17 @@ return m_psavings;
       //if (!m_pfsdata)
       //{
 
-      //   auto pset = __create_new<::fs::set>();
+      //   auto pset = øcreate_new<::fs::set>();
 
-      //   auto plink = __create_new < ::fs::link>();
+      //   auto plink = øcreate_new < ::fs::link>();
 
       //   plink->fill_os_user();
 
       //   pset->m_spafsdata.add(plink);
 
-      //   pset->m_spafsdata.add(__create_new < ::fs::native>());
+      //   pset->m_spafsdata.add(øcreate_new < ::fs::native>());
 
-      //   estatus = __øconstruct(m_pfsdata, pset);
+      //   estatus = øconstruct(m_pfsdata, pset);
 
       //   if (!estatus)
       //   {
@@ -1881,7 +1881,7 @@ return m_psavings;
 ////
 ////      }
 //
-//      auto pcs = __allocate ::user::system(0, nullptr, nullptr, WS_VISIBLE, rectangleScreen);
+//      auto pcs = øallocate ::user::system(0, nullptr, nullptr, WS_VISIBLE, rectangleScreen);
 //
 //      auto puserinteractionHost = __user_interaction(m_puserinteractionHost);
 //
@@ -1948,7 +1948,7 @@ return m_psavings;
 
       //estatus = 
       
-      __construct_new(m_psavings);
+      øconstruct_new(m_psavings);
 
       //return estatus;
 
@@ -1971,7 +1971,7 @@ return m_psavings;
       //   if (m_pfsdata.is_null())
       //   {
 
-      //      __øconstruct(m_pfsdata, __allocate ::fs::set());
+      //      øconstruct(m_pfsdata, øallocate ::fs::set());
 
       //   }
 
@@ -1986,7 +1986,7 @@ return m_psavings;
 
       //   }
 
-      //   ::file::listing patha;
+      //   ::file::listing_base patha;
 
       //   m_pfsdata->root_ones(patha);
 
@@ -2025,7 +2025,7 @@ return m_psavings;
 
    //   m_bUiInit = true;
 
-   //   __construct_new(m_puserstyleDefault);
+   //   øconstruct_new(m_puserstyleDefault);
 
    //   m_puserstyleDefault->default_style_construct();
 
@@ -2175,18 +2175,18 @@ namespace aura
    }
 
 
-   void session::launch_app(const ::string & psz)
+   void session::launch_app(const ::scoped_string & scopedstr)
    {
 
-      __UNREFERENCED_PARAMETER(psz);
+      __UNREFERENCED_PARAMETER(scopedstr);
 
    }
 
 
-   void session::install_app(const ::string & psz)
+   void session::install_app(const ::scoped_string & scopedstr)
    {
 
-      __UNREFERENCED_PARAMETER(psz);
+      __UNREFERENCED_PARAMETER(scopedstr);
 
    }
 
@@ -2264,12 +2264,12 @@ namespace aura
          //if (psetup)
          //{
 
-         //   estatus = __øconstruct(m_puser, psetup->create_new_object());
+         //   estatus = øconstruct(m_puser, psetup->create_new_object());
 
          //   if(!estatus)
          //   {
 
-         //      informationf("\nFailed to __øconstruct(m_puser)");
+         //      informationf("\nFailed to øconstruct(m_puser)");
 
          //   }
 
@@ -2280,7 +2280,7 @@ namespace aura
 
          //estatus =
 
-         __øconstruct(m_puser);
+         øconstruct(m_puser);
 
          information() << "aura::session user type : " << ::type(m_puser).name();
 
@@ -2289,7 +2289,7 @@ namespace aura
          if (!m_puser)
          {
 
-            warningf("Failed to __construct_new(m_puser)");
+            warningf("Failed to øconstruct_new(m_puser)");
 
             error() << ".4";
 
@@ -2446,12 +2446,12 @@ namespace aura
    }
 
 
-   void session::set_app_title(const ::string & strAppId, const ::string & strTitle)
+   void session::set_app_title(const ::scoped_string & scopedstrAppId, const ::scoped_string & scopedstrTitle)
    {
 
       ::pointer<::platform::application>papplication;
 
-      if (m_applicationa.lookup(strAppId, papplication) && papplication)
+      if (m_applicationa.find(scopedstrAppId, papplication) && papplication)
       {
 
          //::pointer<::bergedge::pane_impact>ppaneimpact = get_document()->get_typed_impact < ::bergedge::pane_impact >();
@@ -2459,7 +2459,7 @@ namespace aura
          //if(ppaneimpact != nullptr)
          //{
 
-         //   string strAppName(pszAppId);
+         //   string strAppName(scopedstrAppId);
 
          //   ::user::tab::pane * ppane = ppaneimpact->get_pane_by_id("app:" + strAppName);
 
@@ -2498,16 +2498,16 @@ namespace aura
    }
 
 
-   //string_array session::get_user_wallpaper()
+   //string_array_base session::get_user_wallpaper()
    //{
 
-   //   string_array stra;
+   //   string_array_base stra;
 
    //   auto psession 
 
-   //   string_array straSource = psession->userex()->get_wallpaper();
+   //   string_array_base straSource = psession->userex()->get_wallpaper();
 
-   //   for (string str : straSource)
+   //   for (const ::scoped_string & scopedstr : straSource)
    //   {
 
    //      if (str.case_insensitive_begins_eat("file://"))

@@ -2,7 +2,7 @@
 
 
 #include "acme/user/user/_style.h"
-#include "base/user/experience/frame.h"
+#include "berg/user/experience/frame.h"
 
 
 namespace experience_anthill
@@ -74,7 +74,7 @@ namespace experience_anthill
 
       //virtual void set_style(e_style estyle);
 
-      //virtual void set_style(const ::string & pszStyle) override;
+      //virtual void set_style(const ::scoped_string & scopedstrStyle) override;
 
       //virtual void on_style_change() override;
 

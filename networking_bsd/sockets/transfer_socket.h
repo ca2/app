@@ -68,7 +68,7 @@
 //      transfer_socket();
 //      virtual ~transfer_socket();
 //
-//      int  send_datagram(const char* pch, int nSize, const SOCKADDR * psa, int nSecs);
+//      int  send_datagram(const_char_pointer pch, int nSize, const SOCKADDR * psa, int nSecs);
 //      int  receive_datagram(char* pch, int nSize, SOCKADDR * psa, int nSecs);
 //      bool check_readability(int nSecsPatience); // const
 //      bool check_writability(int nSecsPatience); // const

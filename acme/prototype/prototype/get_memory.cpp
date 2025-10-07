@@ -97,13 +97,13 @@ void * get_memory::get(memsize s)
 }
 
 
-bool get_memory::get_base64(const ::string & str)
+bool get_memory::get_base64(const ::scoped_string & scopedstr)
 {
 
    if (::is_set(m_pmemory))
    {
 
-      m_pmemory->from_base64(str);
+      m_pmemory->from_base64(scopedstr);
 
       return true;
 
@@ -113,7 +113,7 @@ bool get_memory::get_base64(const ::string & str)
 
       ::base64 base64;
 
-      return base64.decode(m_block, str);
+      return base64.decode(m_block, scopedstr);
 
    }
 

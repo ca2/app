@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "base/user/user/style.h"
+#include "berg/user/user/style.h"
 
 
 namespace experience_tranquillum
@@ -10,7 +10,7 @@ namespace experience_tranquillum
 
 
    class CLASS_DECL_APP_EXPERIENCE_TRANQUILLUM style :
-   virtual public ::base::style
+   virtual public ::berg::style
    {
    public:
 

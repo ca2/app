@@ -12,6 +12,7 @@
 #include "acme/prototype/string/str.h"
 #include "apex/platform/context.h"
 #include "apex/platform/system.h"
+#include "apex/platform/node.h"
 
 
 #include "acme/prototype/collection/_array.h"
@@ -23,8 +24,15 @@ bool operating_system_has_ipv6_internet();
 #define log_error(...) TRACE_LOG_ERROR(__VA_ARGS__)
 
 //#include <stdio.h>
-
-
+#ifdef WINDOWS
+#include <winsock2.h>
+#include <ws2tcpip.h>
+#include <windns.h>
+#include <stdio.h>
+#include <string.h>
+#pragma comment(lib, "ws2_32.lib")
+#pragma comment(lib, "dnsapi.lib")
+#endif
 bool defer_initialize_operating_system_networking();
 bool defer_finalize_operating_system_networking();
 
@@ -141,6 +149,8 @@ namespace networking_bsd
 
       m_bInitialized = true;
 
+      m_pmutexReverseCache = node()->create_mutex();
+
       //if(psystem->m_bGudoNetCache)
       {
 
@@ -153,7 +163,7 @@ namespace networking_bsd
 
       //return estatus;
 
-      //auto paddressdepartment = pparticle->__create_new<class ::networking::address_department>();
+      //auto paddressdepartment = pparticle->øcreate_new<class ::networking::address_department>();
 
       //paddressdepartment->increment_reference_count();
 
@@ -161,13 +171,13 @@ namespace networking_bsd
 
       mathematics()->random(m_baTicketKey);
 
-      m_psslinit = __create_new<::sockets_bsd::SSLInitializer>();
+      m_psslinit = øcreate_new<::sockets_bsd::SSLInitializer>();
 
-      __øconstruct(m_pmutexCert);
+      øconstruct(m_pmutexCert);
 
-      //estatus = __construct_new(m_pnet);
+      //estatus = øconstruct_new(m_pnet);
 
-      //__construct_new(m_pnet);
+      //øconstruct_new(m_pnet);
 
       //if (!m_pnet)
       //{
@@ -199,7 +209,7 @@ namespace networking_bsd
    //      {
    //
    //#ifdef WINDOWS
-   //         __øconstruct(m_pportforward);
+   //         øconstruct(m_pportforward);
    //#endif
    //
    //      }
@@ -429,15 +439,15 @@ namespace networking_bsd
    } // rfc1738_decode
 
 
-   bool networking::is_ip4(const string& str)
+   bool networking::is_ip4(const ::scoped_string & scopedstr)
    {
       int dots = 0;
       // %! ignore :port?
-      for (int i = 0; i < str.length(); i++)
+      for (int i = 0; i < scopedstr.length(); i++)
       {
-         if (str[i] == '.')
+         if (scopedstr[i] == '.')
             dots++;
-         else if (!character_isdigit(str[i]))
+         else if (!character_isdigit(scopedstr[i]))
             return false;
       }
       if (dots != 3)
@@ -446,16 +456,16 @@ namespace networking_bsd
    }
 
 
-   bool networking::is_ip6(const string& str)
+   bool networking::is_ip6(const ::scoped_string & scopedstr)
    {
-      if (str.is_empty())
+      if (scopedstr.is_empty())
          return false;
       ::collection::index qc = 0;
       ::collection::index qd = 0;
-      for (int i = 0; i < str.length(); i++)
+      for (int i = 0; i < scopedstr.length(); i++)
       {
-         qc += (str[i] == ':') ? 1 : 0;
-         qd += (str[i] == '.') ? 1 : 0;
+         qc += (scopedstr[i] == ':') ? 1 : 0;
+         qd += (scopedstr[i] == '.') ? 1 : 0;
       }
       if (qc < 2)
          return false;
@@ -468,7 +478,7 @@ namespace networking_bsd
          return false;
       }
 
-      ::parse pa(str, ":."_ansi);
+      ::parse pa(scopedstr, ":."_ansi);
 
       string tmp = pa.getword();
 
@@ -503,15 +513,15 @@ namespace networking_bsd
    }
 
 
-   bool networking::convert(in_addr& l, const string& str, int ai_flags)
+   bool networking::convert(in_addr& l, const ::scoped_string & scopedstr, int ai_flags)
    {
 
-      if (str.is_empty())
+      if (scopedstr.is_empty())
          return false;
 
       single_lock synchronouslock(m_pmutexCache, true);
       dns_cache_item item;
-      if (m_mapCache.lookup(str, item) && (item.m_bOk && (!item.m_bTimeout || ((item.m_timeLastChecked.elapsed()) < (5_minute)))))
+      if (m_mapCache.find(scopedstr, item) && (item.m_bOk && (!item.m_bTimeout || ((item.m_timeLastChecked.elapsed()) < (5_minute)))))
       {
          if (item.m_bOk)
          {
@@ -532,7 +542,7 @@ namespace networking_bsd
 #ifdef NO_GETADDRINFO
       if ((ai_flags & AI_NUMERICHOST) != 0 || isipv4(host))
       {
-         ::parse pa((const char*)host, ".");
+         ::parse pa((const_char_pointer )host, ".");
          union
          {
             struct
@@ -589,27 +599,27 @@ namespace networking_bsd
       hints.ai_socktype = 0;
       hints.ai_protocol = 0;
       struct addrinfo* res;
-      if (is_ip4(str))
+      if (is_ip4(scopedstr))
          hints.ai_flags |= AI_NUMERICHOST;
 
-      int n = getaddrinfo(str, nullptr, &hints, &res);
+      int n = getaddrinfo(scopedstr, nullptr, &hints, &res);
       if (n)
       {
          string strError = "getaddrinfo Error: ";
 #ifndef __CYGWIN__
          strError += gai_strerror(n);
 #endif
-         error() << strError + " for " + str;
+         error() << strError + " for " + scopedstr;
          item.m_bOk = false;
          item.m_bTimeout = true;
          item.m_timeLastChecked.Now();
-         m_mapCache.set_at(str, item);
+         m_mapCache.set_at(scopedstr, item);
 
          return false;
 #endif // NO_GETADDRINFO
       }
       item.m_bOk = true;
-      address_array < addrinfo* > vec;
+      address_array_base < addrinfo* > vec;
       addrinfo* ai = res;
       while (ai)
       {
@@ -626,7 +636,7 @@ namespace networking_bsd
       freeaddrinfo(res);
       item.m_ipaddr = sa.sin_addr;
       item.m_timeLastChecked.Now();
-      m_mapCache.set_at(str, item);
+      m_mapCache.set_at(scopedstr, item);
 
       //if(psystem->m_bGudoNetCache)
       {
@@ -636,7 +646,7 @@ namespace networking_bsd
       }
 
       //      ::time tick2= ::time::now();
-      //      informationf("DNS lookup networking::u2ip " + str + " : %d.%d.%d.%d (%d ms)",
+      //      informationf("DNS find networking::u2ip " + str + " : %d.%d.%d.%d (%d ms)",
          //       (unsigned int)((unsigned char*)&pitem->m_ipaddr)[0],
          //     (unsigned int)((unsigned char*)&pitem->m_ipaddr)[1],
          //   (unsigned int)((unsigned char*)&pitem->m_ipaddr)[2],
@@ -649,7 +659,7 @@ namespace networking_bsd
    }
 
 
-   //bool networking::convert(struct in6_addr& l, const ::string & str, int ai_flags)
+   //bool networking::convert(struct in6_addr& l, const ::scoped_string & scopedstr, int ai_flags)
    //{
 
 
@@ -824,7 +834,7 @@ namespace networking_bsd
          {
             struct sockaddr_in *point = (struct sockaddr_in *)sa;
             ::networking_bsd::address_pointer addr;
-            addr(__allocate< ::networking_bsd::ipv4_address(get_app >(), *int_point));
+            addr(øallocate< ::networking_bsd::ipv4_address(get_app >(), *int_point));
             return addr;
          }
          break;
@@ -833,7 +843,7 @@ namespace networking_bsd
          {
             struct sockaddr_in6 *point = (struct sockaddr_in6 *)sa;
             ::networking_bsd::address_pointer addr;
-            addr(__allocate< ::networking_bsd::ipv6_address(get_app >(), *int_point));
+            addr(øallocate< ::networking_bsd::ipv6_address(get_app >(), *int_point));
             return addr;
          }
          break;
@@ -842,7 +852,7 @@ namespace networking_bsd
    }
    */
 
-   /*   bool networking::convert(in_addr & sa, const string & host, int ai_flags)
+   /*   bool networking::convert(in_addr & sa, const ::scoped_string & scopedstrHost, int ai_flags)
       {
 
          memory_set(&sa, 0, sizeof(sa));
@@ -850,7 +860,7 @@ namespace networking_bsd
    #ifdef NO_GETADDRINFO
          if ((ai_flags & AI_NUMERICHOST) != 0 || isipv4(host))
          {
-            ::parse pa((const char *)host, ".");
+            ::parse pa((const_char_pointer )host, ".");
             union {
                struct {
                   uchar b1;
@@ -936,13 +946,13 @@ namespace networking_bsd
       }*/
 
 
-   bool networking::convert(struct in6_addr& sa, const string& host, int ai_flags)
+   bool networking::convert(struct in6_addr& sa, const ::scoped_string & scopedstrHost, int ai_flags)
    {
 
       try
       {
 
-         auto estatus = ::from_string(sa, host);
+         auto estatus = ::from_string(sa, scopedstrHost);
 
          if (estatus.succeeded())
          {
@@ -982,7 +992,7 @@ namespace networking_bsd
 #ifdef NO_GETADDRINFO
       if ((ai_flags & AI_NUMERICHOST) != 0 || isipv6(host))
       {
-         //         list<string> vec;
+         //         list_base<string> vec;
          ::collection::index x = 0;
          for (::collection::index i = 0; i <= host.get_length(); i++)
          {
@@ -1014,7 +1024,7 @@ namespace networking_bsd
          ::collection::index sz = vec.get_length(); // number of unsigned char pairs
          ::collection::index i = 0; // index in in6_addr.in6_u.u6_addr16[] ( 0 .. 7 )
          unsigned short addr16[8];
-         for (list<string>::iterator it = vec.begin(); it != vec.end(); it++)
+         for (list_base<string>::iterator it = vec.begin(); it != vec.end(); it++)
          {
             string bytepair = *it;
             if (bytepair.get_length())
@@ -1056,9 +1066,9 @@ namespace networking_bsd
       hints.ai_socktype = SOCK_STREAM;
       hints.ai_protocol = IPPROTO_TCP;
       struct addrinfo* res;
-      if (is_ip6(host))
+      if (is_ip6(scopedstrHost))
          hints.ai_flags |= AI_NUMERICHOST;
-      int n = getaddrinfo(host, nullptr, &hints, &res);
+      int n = getaddrinfo(scopedstrHost, nullptr, &hints, &res);
       if (!n)
       {
 
@@ -1091,10 +1101,10 @@ namespace networking_bsd
    }
 
 
-   bool networking::reverse(string& number, const string& hostname)
+   bool networking::reverse(string& number, const ::scoped_string & scopedstrHostname)
    {
 
-      auto paddress = create_address(hostname);
+      auto paddress = create_address(scopedstrHostname);
 
       number = paddress->get_display_number();
 
@@ -1115,7 +1125,7 @@ namespace networking_bsd
 
       {
 
-         _synchronous_lock synchronouslock(this->synchronization());
+         _synchronous_lock synchronouslock(m_pmutexReverseCache, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          m_reversecacheaRequest.add(pitem);
 
@@ -1134,7 +1144,7 @@ namespace networking_bsd
 
                      ::task_set_name("reverse___dns");
 
-                     _single_lock synchronouslock(this->synchronization());
+                     _single_lock synchronouslock(m_pmutexReverseCache);
 
                      while (task_get_run())
                      {
@@ -1148,7 +1158,71 @@ namespace networking_bsd
 
                            synchronouslock.unlock();
 
-                           reverse_sync(pitem);
+                           bool bOk = reverse_sync(pitem);
+
+                           synchronouslock._lock();
+
+                           try
+                           {
+
+                              if (!pitem->is_timeout())
+                              {
+
+                                 auto& pitemToReplace = m_mapReverseCache[pitem->m_paddress->get_display_number()];
+
+                                 if (pitemToReplace.m_p != pitem.m_p)
+                                 {
+
+                                    pitem->m_timeLastChecked2.Now();
+
+                                    pitem->m_bProcessing = false;
+
+                                    pitem->m_bOk = bOk;
+
+                                    if (!bOk)
+                                    {
+
+                                       pitem->m_strReverse = pitem->m_paddress->get_display_number();
+
+                                    }
+
+                                    ::string strReverse = pitem->m_strReverse;
+
+                                    ::string strMessage;
+
+                                    if (bOk)
+                                    {
+
+                                       strMessage << "Reverse of ";
+                                       strMessage << pitem->m_paddress->get_display_number();
+                                       strMessage << " is \"";
+                                       strMessage << strReverse;
+                                       strMessage << "\".";
+
+                                    }
+                                    else
+                                    {
+
+                                       strMessage << "Failed to get reverse of ";
+                                       strMessage << pitem->m_paddress->get_display_number();
+
+                                    }
+
+                                    information() << strMessage;
+
+                                    pitemToReplace = pitem;
+
+                                 }
+
+                              }
+
+                           }
+                           catch (...)
+                           {
+
+                           }
+
+                           synchronouslock.unlock();
 
                         }
                         else
@@ -1178,11 +1252,11 @@ namespace networking_bsd
    bool networking::reverse(string& hostname, ::networking::address* paddress)
    {
 
-      _synchronous_lock synchronouslock(m_pmutexReverseCache);
+      _synchronous_lock synchronouslock(m_pmutexReverseCache, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       auto& pitem = m_mapReverseCache[paddress->get_display_number()];
 
-      if (pitem && !pitem->m_bProcessing && !pitem->m_bTimeout && pitem->m_timeLastChecked.elapsed() < 6_hour)
+      if (pitem && !pitem->is_timeout())
       {
 
          hostname = pitem->m_strReverse;
@@ -1191,22 +1265,64 @@ namespace networking_bsd
 
       }
 
-      __construct_new(pitem);
+      {
 
-      pitem->m_paddress = paddress;
+         ::pointer<reverse_cache_item > pitemWait;
 
-      pitem->m_bTimeout = false;
+         øconstruct_new(pitemWait);
 
-      pitem->m_bProcessing = true;
+         pitemWait->m_paddress = paddress;
 
-      pitem->m_bOk = false;
+         pitemWait->m_bProcessing = true;
 
-      reverse_schedule(pitem);
+         pitemWait->m_bOk = false;
+
+         pitemWait->m_strReverse = paddress->get_display_number();
+
+         pitemWait->m_timeLastChecked2.Now();
+
+         pitem = pitemWait;
+
+      }
+
+      {
+
+         ::pointer<reverse_cache_item > pitemNew;
+
+         øconstruct_new(pitemNew);
+
+         pitemNew->m_paddress = paddress;
+
+         pitemNew->m_bProcessing = true;
+
+         pitemNew->m_bOk = false;
+
+         pitemNew->m_timeLastChecked2.Now();
+
+         reverse_schedule(pitemNew);
+
+      }
+
+      hostname = pitem->m_strReverse;
 
       return true;
 
    }
 
+
+   // Build IPv6 reverse name: nibble-reversed, dot-separated
+   void build_ipv6_reverse(const struct in6_addr* addr, char* out, size_t outlen) {
+      char* p = out;
+      for (int i = 15; i >= 0; i--) {
+         unsigned char byte = addr->s6_addr[i];
+         for (int nib = 0; nib < 2; nib++) {
+            unsigned char val = (nib == 0) ? (byte & 0x0F) : (byte >> 4);
+            *p++ = "0123456789abcdef"[val];
+            *p++ = '.';
+         }
+      }
+      strcpy(p, "ip6.arpa");
+   }
 
    bool networking::reverse_sync(reverse_cache_item* pitem)
    {
@@ -1240,7 +1356,7 @@ namespace networking_bsd
          else
          {
             struct sockaddr_in* sa_in = (struct sockaddr_in*)sa;
-            struct hostent* h = gethostbyaddr((const char*)&sa_in->sin_addr, sizeof(sa_in->sin_addr), AF_INET);
+            struct hostent* h = gethostbyaddr((const_char_pointer )&sa_in->sin_addr, sizeof(sa_in->sin_addr), AF_INET);
             if (h)
             {
                hostname = h->h_name;
@@ -1286,9 +1402,9 @@ namespace networking_bsd
          }
          else
          {
-            // %! TODO: ipv6 reverse lookup
+            // %! TODO: ipv6 reverse find
             struct sockaddr_in6* sa_in = (struct sockaddr_in6*)sa;
-            struct hostent* h = gethostbyaddr((const char*)&sa_in->sin6_addr, sizeof(sa_in->sin6_addr), AF_INET6);
+            struct hostent* h = gethostbyaddr((const_char_pointer )&sa_in->sin6_addr, sizeof(sa_in->sin6_addr), AF_INET6);
             if (h)
             {
                hostname = h->h_name;
@@ -1300,47 +1416,87 @@ namespace networking_bsd
       }
       return false;
 #else
-      char host[NI_MAXHOST];
-      char serv[NI_MAXSERV];
+      char host[NI_MAXHOST *2]{};
+      //char serv[NI_MAXSERV];
       // NI_NOFQDN
       // NI_NUMERICHOST
       // NI_NAMEREQD
       // NI_NUMERICSERV
       // NI_DGRAM
 
+      flags = NI_NAMEREQD;
+
       auto psa = &pitem->m_paddress->u.m_sa;
 
       auto len = pitem->m_paddress->m_iLen;
 
-      int n = getnameinfo(psa, len, host, sizeof(host), serv, sizeof(serv), flags);
-      if (n)
+      //int n = getnameinfo(psa, len, host, sizeof(host), serv, sizeof(serv), flags);
+      int n = getnameinfo(psa, len, host, sizeof(host), nullptr, 0, flags);
+      if (!n)
       {
-         // EAI_AGAIN
-         // EAI_BADFLAGS
-         // EAI_FAIL
-         // EAI_FAMILY
-         // EAI_MEMORY
-         // EAI_NONAME
-         // EAI_OVERFLOW
-         // EAI_SYSTEM
-         return false;
+         pitem->m_strReverse = host;
+         //item.m_strService = serv;
+         pitem->m_timeLastChecked2.Now();
+
+         return true;
       }
+      // EAI_AGAIN
+      // EAI_BADFLAGS
+      // EAI_FAIL
+      // EAI_FAMILY
+      // EAI_MEMORY
+      // EAI_NONAME
+      // EAI_OVERFLOW
+      // EAI_SYSTEM
+      auto pszError = gai_strerror(n);
+      warningf("getnameinfo failed: %s", pszError);
 
+#ifdef WINDOWS_DESKTOP
 
+      // --- Build reverse name for DnsQuery
+      char reverse_ip[256];
+      if (psa->sa_family == AF_INET) {
+         unsigned char* b = (unsigned char*)&((struct sockaddr_in*)psa)->sin_addr;
+         snprintf(reverse_ip, sizeof(reverse_ip),
+            "%d.%d.%d.%d.in-addr.arpa",
+            b[3], b[2], b[1], b[0]);
+      }
+      else {
+         build_ipv6_reverse(&((struct sockaddr_in6*)psa)->sin6_addr,
+            reverse_ip, sizeof(reverse_ip));
+      }
       //   reverse_cache_item item;
 
-      _single_lock synchronouslock(m_pmutexReverseCache, true);
+      //_single_lock synchronouslock(m_pmutexReverseCache, true);
 
-      pitem->m_strReverse = host;
-      //item.m_strService = serv;
-      pitem->m_timeLastChecked.Now();
 
       //single_lock synchronouslock(m_pmutexCache, true);
 
       //m_mapReverseCache.set_at(strIpString, item);
+         // --- DNS PTR Query
+      PDNS_RECORD pDnsRecord = NULL;
+      DNS_STATUS status = DnsQuery_A(reverse_ip, DNS_TYPE_PTR,
+         DNS_QUERY_BYPASS_CACHE, NULL,
+         &pDnsRecord, NULL);
 
-      return true;
-#endif // NO_GETADDRINFO
+      if (status == 0 && pDnsRecord && pDnsRecord->wType == DNS_TYPE_PTR)
+      {
+         wstring wstr(pDnsRecord->Data.PTR.pNameHost);
+         pitem->m_strReverse = wstr;
+         //item.m_strService = serv;
+         pitem->m_timeLastChecked2.Now();
+
+                 DnsRecordListFree(pDnsRecord, DnsFreeRecordListDeep);
+         return true;
+      }
+
+      if (pDnsRecord) DnsRecordListFree(pDnsRecord, DnsFreeRecordListDeep);
+      //return -2;
+
+#endif
+      return false;
+
+#endif
 
    }
 
@@ -1413,17 +1569,17 @@ namespace networking_bsd
    }
 
 
-   int networking::service_port(const string& str, int flags)
+   int networking::service_port(const ::scoped_string & scopedstr, int flags)
    {
 
-      if (::str::is_simple_natural(str))
-         return ::str::to_int(str);
+      if (::str::is_simple_natural(scopedstr))
+         return ::str::to_int(scopedstr);
 
-      if (str.case_insensitive_equals("http"))
+      if (scopedstr.case_insensitive_equals("http"))
       {
          return 80;
       }
-      else if (str.case_insensitive_equals("https"))
+      else if (scopedstr.case_insensitive_equals("https"))
       {
          return 443;
       }
@@ -1432,7 +1588,7 @@ namespace networking_bsd
 
          int service = 0;
 
-         if (!u2service(str, service, 0))
+         if (!u2service(scopedstr, service, 0))
             return 0;
 
          return service;
@@ -1531,7 +1687,7 @@ namespace networking_bsd
       //zero(m_ipaddr);
       //m_timeLastChecked = 0;
       m_bOk = false;
-      m_bTimeout = true;
+      //m_bTimeout = true;
 
    }
 
@@ -1551,16 +1707,16 @@ namespace networking_bsd
       if (this != &item)
       {
 
-         auto paddress = __allocate address();
+         auto paddress = øallocate address();
 
          *paddress = *item.m_paddress;
 
          m_paddress = paddress;
          m_strIpAddress = item.m_strIpAddress;
-         m_timeLastChecked = item.m_timeLastChecked;
+         m_timeLastChecked2 = item.m_timeLastChecked2;
          m_strReverse = item.m_strReverse;
          m_bOk = item.m_bOk;
-         m_bTimeout = item.m_bTimeout;
+         //m_bTimeout = item.m_bTimeout;
          m_bProcessing = item.m_bProcessing;
 
       }
@@ -1841,7 +1997,7 @@ namespace networking_bsd
    //} // rfc1738_decode
 
 
-   //bool networking::is_ip4(const ::string & str)
+   //bool networking::is_ip4(const ::scoped_string & scopedstr)
    //{
    //   int dots = 0;
    //   // %! ignore :port?
@@ -1858,7 +2014,7 @@ namespace networking_bsd
    //}
 
 
-   //bool networking::is_ip6(const ::string & str)
+   //bool networking::is_ip6(const ::scoped_string & scopedstr)
    //{
    //   if (str.is_empty())
    //      return false;
@@ -1904,7 +2060,7 @@ namespace networking_bsd
    //   return true;
    //}
 
-   //   bool networking::convert(in_addr & l, const ::string & str, int ai_flags)
+   //   bool networking::convert(in_addr & l, const ::scoped_string & scopedstr, int ai_flags)
    //   {
    //
    //      if(str.is_empty())
@@ -1912,7 +2068,7 @@ namespace networking_bsd
    //
    //      single_lock synchronouslock(m_pmutexCache, true);
    //      dns_cache_item item;
-   //      if(m_mapCache.lookup(str, item) && (item.m_bOk && (!item.m_bTimeout || ((item.m_timeLastChecked.elapsed()) < (5 * 60 * 1000)))))
+   //      if(m_mapCache.find(str, item) && (item.m_bOk && (!item.m_bTimeout || ((item.m_timeLastChecked.elapsed()) < (5 * 60 * 1000)))))
    //      {
    //         if (item.m_bOk)
    //         {
@@ -1933,7 +2089,7 @@ namespace networking_bsd
    //#ifdef NO_GETADDRINFO
    //      if ((ai_flags & AI_NUMERICHOST) != 0 || isipv4(host))
    //      {
-   //         ::parse pa((const char *)host, ".");
+   //         ::parse pa((const_char_pointer )host, ".");
    //         union
    //         {
    //            struct
@@ -2037,7 +2193,7 @@ namespace networking_bsd
    //   }
    //
    ////      ::time tick2= ::time::now();
-   ////      informationf("DNS lookup networking::u2ip " + str + " : %d.%d.%d.%d (%d ms)",
+   ////      informationf("DNS find networking::u2ip " + str + " : %d.%d.%d.%d (%d ms)",
    //   //       (unsigned int)((unsigned char*)&pitem->m_ipaddr)[0],
    //   //     (unsigned int)((unsigned char*)&pitem->m_ipaddr)[1],
    //   //   (unsigned int)((unsigned char*)&pitem->m_ipaddr)[2],
@@ -2050,7 +2206,7 @@ namespace networking_bsd
    //}
    //
 
-   //bool networking::convert(struct in6_addr& l, const ::string & str, int ai_flags)
+   //bool networking::convert(struct in6_addr& l, const ::scoped_string & scopedstr, int ai_flags)
    //{
 
 
@@ -2200,7 +2356,7 @@ namespace networking_bsd
          {
             struct sockaddr_in *point = (struct sockaddr_in *)sa;
             ::networking_bsd::address_pointer addr;
-            addr(__allocate< ::networking_bsd::ipv4_address(get_app >(), *int_point));
+            addr(øallocate< ::networking_bsd::ipv4_address(get_app >(), *int_point));
             return addr;
          }
          break;
@@ -2209,7 +2365,7 @@ namespace networking_bsd
          {
             struct sockaddr_in6 *point = (struct sockaddr_in6 *)sa;
             ::networking_bsd::address_pointer addr;
-            addr(__allocate< ::networking_bsd::ipv6_address(get_app >(), *int_point));
+            addr(øallocate< ::networking_bsd::ipv6_address(get_app >(), *int_point));
             return addr;
          }
          break;
@@ -2218,7 +2374,7 @@ namespace networking_bsd
    }
    */
 
-   /*   bool networking::convert(in_addr & sa, const string & host, int ai_flags)
+   /*   bool networking::convert(in_addr & sa, const ::scoped_string & scopedstrHost, int ai_flags)
       {
 
          memory_set(&sa, 0, sizeof(sa));
@@ -2226,7 +2382,7 @@ namespace networking_bsd
    #ifdef NO_GETADDRINFO
          if ((ai_flags & AI_NUMERICHOST) != 0 || isipv4(host))
          {
-            ::parse pa((const char *)host, ".");
+            ::parse pa((const_char_pointer )host, ".");
             union {
                struct {
                   uchar b1;
@@ -2312,7 +2468,7 @@ namespace networking_bsd
       }*/
 
 
-      //bool networking::convert(struct in6_addr & sa, const string & host, int ai_flags)
+      //bool networking::convert(struct in6_addr & sa, const ::scoped_string & scopedstrHost, int ai_flags)
       //{
       //
       //   try
@@ -2351,7 +2507,7 @@ namespace networking_bsd
       //#ifdef NO_GETADDRINFO
       //   if ((ai_flags & AI_NUMERICHOST) != 0 || isipv6(host))
       //   {
-      //      //         list<string> vec;
+      //      //         list_base<string> vec;
       //      index x = 0;
       //      for (::collection::index i = 0; i <= host.get_length(); i++)
       //      {
@@ -2383,7 +2539,7 @@ namespace networking_bsd
       //      index sz = vec.get_length(); // number of unsigned char pairs
       //      ::collection::index i = 0; // index in in6_addr.in6_u.u6_addr16[] ( 0 .. 7 )
       //      unsigned short addr16[8];
-      //      for (list<string>::iterator it = vec.begin(); it != vec.end(); it++)
+      //      for (list_base<string>::iterator it = vec.begin(); it != vec.end(); it++)
       //      {
       //         string bytepair = *it;
       //         if (bytepair.get_length())
@@ -2460,7 +2616,7 @@ namespace networking_bsd
       //}
       //
       //
-      //bool networking::reverse(string & number, const string & hostname)
+      //bool networking::reverse(string & number, const ::scoped_string & scopedstrHostname)
       //{
       //
       //   ::networking::address address(hostname);
@@ -2475,7 +2631,7 @@ namespace networking_bsd
       //bool networking::reverse_schedule(reverse_cache_item * pitem)
       //{
       //
-      //   synchronous_lock synchronouslock(this->synchronization());
+      //   synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
       //
       //   m_reversecacheaRequest.add(pitem);
       //
@@ -2551,7 +2707,7 @@ namespace networking_bsd
       //
       //   }
       //
-      //   pitem = __allocate reverse_cache_item();
+      //   pitem = øallocate reverse_cache_item();
       //
       //   pitem->m_address = address;
       //
@@ -2600,7 +2756,7 @@ namespace networking_bsd
       //      else
       //      {
       //         struct sockaddr_in* sa_in = (struct sockaddr_in*)sa;
-      //         struct hostent* h = gethostbyaddr((const char*)&sa_in->sin_addr, sizeof(sa_in->sin_addr), AF_INET);
+      //         struct hostent* h = gethostbyaddr((const_char_pointer )&sa_in->sin_addr, sizeof(sa_in->sin_addr), AF_INET);
       //         if (h)
       //         {
       //            hostname = h->h_name;
@@ -2646,9 +2802,9 @@ namespace networking_bsd
       //      }
       //      else
       //      {
-      //         // %! TODO: ipv6 reverse lookup
+      //         // %! TODO: ipv6 reverse find
       //         struct sockaddr_in6* sa_in = (struct sockaddr_in6*)sa;
-      //         struct hostent* h = gethostbyaddr((const char*)&sa_in->sin6_addr, sizeof(sa_in->sin6_addr), AF_INET6);
+      //         struct hostent* h = gethostbyaddr((const_char_pointer )&sa_in->sin6_addr, sizeof(sa_in->sin6_addr), AF_INET6);
       //         if (h)
       //         {
       //            hostname = h->h_name;
@@ -2766,7 +2922,7 @@ namespace networking_bsd
 //   }
 //
 //
-//   int networking::service_port(const ::string & str, int flags)
+//   int networking::service_port(const ::scoped_string & scopedstr, int flags)
 //   {
 //
 //      if (::str::is_simple_natural(str))
@@ -3196,7 +3352,7 @@ namespace networking_bsd
 //
 //   //}
 //
-//   auto paddressdepartment = pparticle->__create_new<class ::networking::address_department>();
+//   auto paddressdepartment = pparticle->øcreate_new<class ::networking::address_department>();
 //
 //   paddressdepartment->increment_reference_count();
 //
@@ -3204,11 +3360,11 @@ namespace networking_bsd
 //
 //   generate_random_bytes(m_baTicketKey, sizeof(m_baTicketKey));
 //
-//   m_psslinit = __create_new<::networking_bsd::SSLInitializer>();
+//   m_psslinit = øcreate_new<::networking_bsd::SSLInitializer>();
 //
-//   //estatus = __construct_new(m_pnet);
+//   //estatus = øconstruct_new(m_pnet);
 //
-//   __construct_new(m_pnet);
+//   øconstruct_new(m_pnet);
 //
 //   if (!m_pnet)
 //   {
@@ -3240,7 +3396,7 @@ namespace networking_bsd
 ////      {
 ////
 ////#ifdef WINDOWS
-////         __øconstruct(m_pportforward);
+////         øconstruct(m_pportforward);
 ////#endif
 ////
 ////      }
@@ -3304,7 +3460,7 @@ namespace networking_bsd
    ::pointer<address>networking::create_ip4_address(unsigned int u, ::networking::port_t port)
    {
 
-      auto paddress2 = __allocate address();
+      auto paddress2 = øallocate address();
 
 #if defined(BSD_STYLE_SOCKETS)
 
@@ -3337,7 +3493,7 @@ namespace networking_bsd
    ::pointer<address>networking::create_ip6_address(void* p128bits, ::networking::port_t port)
    {
 
-      auto paddress2 = __allocate address();
+      auto paddress2 = øallocate address();
 #if defined(BSD_STYLE_SOCKETS)
 
       auto a = *paddress2;
@@ -3358,20 +3514,20 @@ namespace networking_bsd
    }
 
 
-   bool networking::lookup(::networking_bsd::address* paddress, ::networking::enum_address_type eaddresstypePreferred, const ::string& strAddress)
+   bool networking::find(::networking_bsd::address* paddress, ::networking::enum_address_type eaddresstypePreferred, const ::scoped_string & scopedstrAddress)
    {
 
       if (eaddresstypePreferred == ::networking::e_address_type_ipv4)
       {
 
-         if (lookup_ipv4(paddress, strAddress))
+         if (lookup_ipv4(paddress, scopedstrAddress))
          {
 
             return true;
 
          }
 
-         if (lookup_ipv6(paddress, strAddress))
+         if (lookup_ipv6(paddress, scopedstrAddress))
          {
 
             return true;
@@ -3382,14 +3538,14 @@ namespace networking_bsd
       else
       {
 
-         if (this->has_ip6_internet() && lookup_ipv6(paddress, strAddress))
+         if (this->has_ip6_internet() && lookup_ipv6(paddress, scopedstrAddress))
          {
 
             return true;
 
          }
 
-         if (lookup_ipv4(paddress, strAddress))
+         if (lookup_ipv4(paddress, scopedstrAddress))
          {
 
             return true;
@@ -3403,10 +3559,10 @@ namespace networking_bsd
    }
 
 
-   bool networking::lookup_ipv4(::networking_bsd::address* paddress, const ::string& strAddress)
+   bool networking::lookup_ipv4(::networking_bsd::address* paddress, const ::scoped_string & scopedstrAddress)
    {
 
-      if (convert(paddress->u.m_addr.sin_addr, strAddress))
+      if (convert(paddress->u.m_addr.sin_addr, scopedstrAddress))
       {
 
          paddress->u.s.set_family(AF_INET);
@@ -3430,10 +3586,10 @@ namespace networking_bsd
    }
 
 
-   bool networking::lookup_ipv6(::networking_bsd::address* paddress, const ::string& strAddress)
+   bool networking::lookup_ipv6(::networking_bsd::address* paddress, const ::scoped_string & scopedstrAddress)
    {
 
-      if (convert(paddress->u.m_addr6.sin6_addr, strAddress))
+      if (convert(paddress->u.m_addr6.sin6_addr, scopedstrAddress))
       {
 
          paddress->u.s.set_family(AF_INET6);
@@ -3457,12 +3613,12 @@ namespace networking_bsd
    }
 
 
-   ::pointer<::networking::address> networking::create_address(const ::string& strAddress, ::networking::enum_address_type eaddresstypePreferred, ::networking::port_t port)
+   ::pointer<::networking::address> networking::create_address(const ::scoped_string & scopedstrAddress, ::networking::enum_address_type eaddresstypePreferred, ::networking::port_t port)
    {
 
-      auto paddress = __allocate address();
+      auto paddress = øallocate address();
 
-      if (::from_string(paddress->u.m_addr6.sin6_addr, strAddress) == ::success)
+      if (::from_string(paddress->u.m_addr6.sin6_addr, scopedstrAddress) == ::success)
       {
 
          paddress->u.s.set_family(AF_INET6);
@@ -3482,7 +3638,7 @@ namespace networking_bsd
          return paddress;
 
       }
-      else if (::from_string(paddress->u.m_addr.sin_addr, strAddress) == ::success)
+      else if (::from_string(paddress->u.m_addr.sin_addr, scopedstrAddress) == ::success)
       {
 
          paddress->u.s.set_family(AF_INET);
@@ -3502,7 +3658,7 @@ namespace networking_bsd
          return paddress;
 
       }
-      else if (lookup(paddress, eaddresstypePreferred, strAddress))
+      else if (find(paddress, eaddresstypePreferred, scopedstrAddress))
       {
 
          paddress->set_service_number(port);
@@ -3516,12 +3672,12 @@ namespace networking_bsd
    }
 
 
-   ::pointer<::networking::address>networking::create_ip4_address(const ::string& strAddress, ::networking::port_t port)
+   ::pointer<::networking::address>networking::create_ip4_address(const ::scoped_string & scopedstrAddress, ::networking::port_t port)
    {
 
-      auto paddress = __allocate address();
+      auto paddress = øallocate address();
 
-      if (!convert(paddress->u.m_addr.sin_addr, strAddress))
+      if (!convert(paddress->u.m_addr.sin_addr, scopedstrAddress))
       {
 
          return nullptr;
@@ -3537,12 +3693,12 @@ namespace networking_bsd
    }
 
 
-   ::pointer<::networking::address>networking::create_ip6_address(const ::string& strAddress, ::networking::port_t port)
+   ::pointer<::networking::address>networking::create_ip6_address(const ::scoped_string & scopedstrAddress, ::networking::port_t port)
    {
 
-      auto paddress2 = __allocate address();
+      auto paddress2 = øallocate address();
 
-      if (!convert(paddress2->u.m_addr6.sin6_addr, strAddress))
+      if (!convert(paddress2->u.m_addr6.sin6_addr, scopedstrAddress))
       {
 
          return nullptr;
@@ -3558,7 +3714,7 @@ namespace networking_bsd
    }
 
 
-   //address_pointer networking::create_address(const ::string & strAddress, port_t port)
+   //address_pointer networking::create_address(const ::scoped_string & scopedstrAddress, port_t port)
    //{
 
    //   if (is_ip6(strAddress))
@@ -3717,7 +3873,7 @@ cert::~cert()
    cert* networking::get_cert(const ::scoped_string& keyfile)
    {
 
-      _synchronous_lock synchronouslock(m_pmutexCert);
+      _synchronous_lock synchronouslock(m_pmutexCert, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       auto& pcert = m_certmap[keyfile];
 
@@ -3728,7 +3884,7 @@ cert::~cert()
 
       }
 
-      __construct_new(pcert);
+      øconstruct_new(pcert);
 
       string strCert;
 

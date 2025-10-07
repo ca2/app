@@ -421,6 +421,15 @@
 		9A787DF5264CA9F2003DF8A0 /* command.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A787DEE264CA9F2003DF8A0 /* command.h */; };
 		9A7963492ACD1BD20056777F /* input.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A7963482ACD1B9B0056777F /* input.cpp */; };
 		9A79634A2ACD1BD50056777F /* input.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A7963482ACD1B9B0056777F /* input.cpp */; };
+		9A7FED6A2E7F4CF70082C6FD /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A7FED662E7F4CF70082C6FD /* _.h */; };
+		9A7FED6B2E7F4CF70082C6FD /* approach.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A7FED672E7F4CF70082C6FD /* approach.h */; };
+		9A7FED6C2E7F4CF70082C6FD /* approach.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A7FED682E7F4CF70082C6FD /* approach.cpp */; };
+		9A7FED6D2E7F4CF70082C6FD /* approach.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A7FED682E7F4CF70082C6FD /* approach.cpp */; };
+		9A7FED6E2E7F4CF70082C6FD /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A7FED662E7F4CF70082C6FD /* _.h */; };
+		9A7FED6F2E7F4CF70082C6FD /* approach.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A7FED672E7F4CF70082C6FD /* approach.h */; };
+		9A7FED702E7F4CF70082C6FD /* approach.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A7FED682E7F4CF70082C6FD /* approach.cpp */; };
+		9A7FED712E7F4CF70082C6FD /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A7FED662E7F4CF70082C6FD /* _.h */; };
+		9A7FED722E7F4CF70082C6FD /* approach.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A7FED672E7F4CF70082C6FD /* approach.h */; };
 		9A81ECAA274EDFCA003F38EC /* api.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A81ECA5274EDFCA003F38EC /* api.cpp */; };
 		9A81ECAB274EDFCA003F38EC /* api.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A81ECA5274EDFCA003F38EC /* api.cpp */; };
 		9A81ECAC274EDFCA003F38EC /* api_client.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A81ECA7274EDFCA003F38EC /* api_client.cpp */; };
@@ -1440,6 +1449,9 @@
 		9A787DEE264CA9F2003DF8A0 /* command.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = command.h; sourceTree = "<group>"; };
 		9A7963472ACD1B9B0056777F /* input.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = input.h; sourceTree = "<group>"; };
 		9A7963482ACD1B9B0056777F /* input.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = input.cpp; sourceTree = "<group>"; };
+		9A7FED662E7F4CF70082C6FD /* _.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
+		9A7FED672E7F4CF70082C6FD /* approach.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = approach.h; sourceTree = "<group>"; };
+		9A7FED682E7F4CF70082C6FD /* approach.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = approach.cpp; sourceTree = "<group>"; };
 		9A81ECA5274EDFCA003F38EC /* api.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = api.cpp; sourceTree = "<group>"; };
 		9A81ECA7274EDFCA003F38EC /* api_client.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = api_client.cpp; sourceTree = "<group>"; };
 		9A81ECA8274EDFCA003F38EC /* api_client.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = api_client.h; sourceTree = "<group>"; };
@@ -1803,6 +1815,7 @@
 		9A68B4062511444A008DABD2 /* apex */ = {
 			isa = PBXGroup;
 			children = (
+				9A7FED692E7F4CF70082C6FD /* gpu */,
 				9A68B56D2511444A008DABD2 /* asset */,
 				9AC01918274896BF006BEBCC /* constant */,
 				9A68B40C2511444A008DABD2 /* database */,
@@ -2148,6 +2161,16 @@
 				9ABC22642AEC53B600C2F76E /* mouse_hook.h */,
 			);
 			path = input;
+			sourceTree = "<group>";
+		};
+		9A7FED692E7F4CF70082C6FD /* gpu */ = {
+			isa = PBXGroup;
+			children = (
+				9A7FED662E7F4CF70082C6FD /* _.h */,
+				9A7FED672E7F4CF70082C6FD /* approach.h */,
+				9A7FED682E7F4CF70082C6FD /* approach.cpp */,
+			);
+			path = gpu;
 			sourceTree = "<group>";
 		};
 		9A9230B327EACE7F00B5A78D /* handler */ = {
@@ -2567,6 +2590,8 @@
 				9A68BDFE2511444F008DABD2 /* _application.h in Headers */,
 				9A68BB3E2511444D008DABD2 /* client.h in Headers */,
 				9A68BE0B2511444F008DABD2 /* universal_windows.h in Headers */,
+				9A7FED712E7F4CF70082C6FD /* _.h in Headers */,
+				9A7FED722E7F4CF70082C6FD /* approach.h in Headers */,
 				9A97C06B28C83B0400A43004 /* resolv_server.h in Headers */,
 				9A2898872A652A4E00F46A84 /* language.h in Headers */,
 				9A88AA132990AAE7005FAA4E /* api_client_base.h in Headers */,
@@ -2732,6 +2757,8 @@
 				9AC97F5E2A71B39E00B1BCF3 /* command_ui_probe.h in Headers */,
 				9AC97F5F2A71B39E00B1BCF3 /* _setup.h in Headers */,
 				9AC97F602A71B39E00B1BCF3 /* dispatcher.h in Headers */,
+				9A7FED6A2E7F4CF70082C6FD /* _.h in Headers */,
+				9A7FED6B2E7F4CF70082C6FD /* approach.h in Headers */,
 				9A523E412CD3C377006ED868 /* window_base.h in Headers */,
 				9AC97F612A71B39E00B1BCF3 /* server.h in Headers */,
 				9AC97F632A71B39E00B1BCF3 /* department.h in Headers */,
@@ -2960,6 +2987,8 @@
 				9AD693B4251A754800C0EBD7 /* data.h in Headers */,
 				9A9979702D84613C00A1FC11 /* component.h in Headers */,
 				9AD693B5251A754800C0EBD7 /* launcher.h in Headers */,
+				9A7FED6E2E7F4CF70082C6FD /* _.h in Headers */,
+				9A7FED6F2E7F4CF70082C6FD /* approach.h in Headers */,
 				9AD693B8251A754800C0EBD7 /* _message.h in Headers */,
 				9AD693BE251A754800C0EBD7 /* _draw2d_impl.h in Headers */,
 				9AD693C3251A754800C0EBD7 /* const.h in Headers */,
@@ -3084,7 +3113,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
-				LastUpgradeCheck = 1610;
+				LastUpgradeCheck = 2600;
 				ORGANIZATIONNAME = "ca2 Software Development";
 				TargetAttributes = {
 					9A68A445251143F8008DABD2 = {
@@ -3305,6 +3334,7 @@
 				9A239E6326CDF9AF00F98012 /* cookie.cpp in Sources */,
 				9AE6DFB329655466008A1335 /* application.cpp in Sources */,
 				9AE6DF51296390D4008A1335 /* call.cpp in Sources */,
+				9A7FED702E7F4CF70082C6FD /* approach.cpp in Sources */,
 				9A1FB964287253E90042849A /* socket_handler.cpp in Sources */,
 				9A787D95264C960F003DF8A0 /* service.cpp in Sources */,
 				9A5243012CD48FE6006ED868 /* proxy.cpp in Sources */,
@@ -3469,6 +3499,7 @@
 				9AC980682A71B39E00B1BCF3 /* stream_socket.cpp in Sources */,
 				9AC980692A71B39E00B1BCF3 /* remote_native.cpp in Sources */,
 				9AC9806A2A71B39E00B1BCF3 /* cookie.cpp in Sources */,
+				9A7FED6C2E7F4CF70082C6FD /* approach.cpp in Sources */,
 				9AC9806B2A71B39E00B1BCF3 /* application.cpp in Sources */,
 				9AC9806C2A71B39E00B1BCF3 /* call.cpp in Sources */,
 				9AC9806D2A71B39E00B1BCF3 /* socket_handler.cpp in Sources */,
@@ -3523,6 +3554,7 @@
 				9A2FCDDB2C9D3366000CF701 /* icon.cpp in Sources */,
 				9A2FCDDC2C9D3366000CF701 /* window.cpp in Sources */,
 				9A2FCDDD2C9D3366000CF701 /* innate_ui.cpp in Sources */,
+				9A7FED6D2E7F4CF70082C6FD /* approach.cpp in Sources */,
 				9A2FCDDE2C9D3366000CF701 /* dialog.cpp in Sources */,
 				9A2FCDDF2C9D3366000CF701 /* still.cpp in Sources */,
 				9A0F53BE28E8D8A900025231 /* http_tunnel.cpp in Sources */,
@@ -3717,12 +3749,10 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = NO;
-				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
 				DEAD_CODE_STRIPPING = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEPLOYMENT_POSTPROCESSING = YES;
-				DEVELOPMENT_TEAM = L8N5V6TZE5;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
@@ -3766,27 +3796,21 @@
 				RUN_CLANG_STATIC_ANALYZER = NO;
 				SKIP_INSTALL = YES;
 				STRINGS_FILE_OUTPUT_ENCODING = "UTF-8";
+				STRIP_INSTALLED_PRODUCT = NO;
 				SYSTEM_HEADER_SEARCH_PATHS = (
-					"$(WorkspaceDir)/operating_system",
-					"$(WorkspaceDir)/operating_system/operating_system-$(PLATFORM_MODIFIER)",
-					"$(WorkspaceDir)/operating_system/operating_system-$(PLATFORM_MODIFIER)/include/configuration_selection/$(CONFIGURATION)",
 					"$(WorkspaceDir)/operating_system/operating_system-$(PLATFORM_MODIFIER)/include",
-					"$(WorkspaceDir)/port/_",
 					"$(WorkspaceDir)/port/include",
-					"$(WorkspaceDir)/source/app",
+					"$(WorkspaceDir)/source/app/include",
 				);
 				USER_HEADER_SEARCH_PATHS = (
 					.,
 					"$(WorkspaceDir)/source",
-					"$(WorkspaceDir)/source/include",
 					"$(WorkspaceDir)/source/app",
-					"$(WorkspaceDir)/source/app/include",
+					"$(WorkspaceDir)/source/app/_include",
 					"$(WorkspaceDir)/operating_system",
 					"$(WorkspaceDir)/operating_system/operating_system-$(PLATFORM_MODIFIER)",
-					"$(WorkspaceDir)/operating_system/operating_system-$(PLATFORM_MODIFIER)/include/configuration_selection/$(CONFIGURATION)",
-					"$(WorkspaceDir)/operating_system/operating_system-$(PLATFORM_MODIFIER)/include",
+					"$(WorkspaceDir)/operating_system/operating_system-$(PLATFORM_MODIFIER)/configuration_selection/$(CONFIGURATION)",
 					"$(WorkspaceDir)/port/_",
-					"$(WorkspaceDir)/port/include",
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/..",
 					"$(PROJECT_DIR)/../..",
@@ -3840,12 +3864,10 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = NO;
-				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
 				DEAD_CODE_STRIPPING = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEPLOYMENT_POSTPROCESSING = YES;
-				DEVELOPMENT_TEAM = L8N5V6TZE5;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -3887,27 +3909,21 @@
 				RUN_CLANG_STATIC_ANALYZER = NO;
 				SKIP_INSTALL = YES;
 				STRINGS_FILE_OUTPUT_ENCODING = "UTF-8";
+				STRIP_INSTALLED_PRODUCT = NO;
 				SYSTEM_HEADER_SEARCH_PATHS = (
-					"$(WorkspaceDir)/operating_system",
-					"$(WorkspaceDir)/operating_system/operating_system-$(PLATFORM_MODIFIER)",
-					"$(WorkspaceDir)/operating_system/operating_system-$(PLATFORM_MODIFIER)/include/configuration_selection/$(CONFIGURATION)",
 					"$(WorkspaceDir)/operating_system/operating_system-$(PLATFORM_MODIFIER)/include",
-					"$(WorkspaceDir)/port/_",
 					"$(WorkspaceDir)/port/include",
-					"$(WorkspaceDir)/source/app",
+					"$(WorkspaceDir)/source/app/include",
 				);
 				USER_HEADER_SEARCH_PATHS = (
 					.,
 					"$(WorkspaceDir)/source",
-					"$(WorkspaceDir)/source/include",
 					"$(WorkspaceDir)/source/app",
-					"$(WorkspaceDir)/source/app/include",
+					"$(WorkspaceDir)/source/app/_include",
 					"$(WorkspaceDir)/operating_system",
 					"$(WorkspaceDir)/operating_system/operating_system-$(PLATFORM_MODIFIER)",
-					"$(WorkspaceDir)/operating_system/operating_system-$(PLATFORM_MODIFIER)/include/configuration_selection/$(CONFIGURATION)",
-					"$(WorkspaceDir)/operating_system/operating_system-$(PLATFORM_MODIFIER)/include",
+					"$(WorkspaceDir)/operating_system/operating_system-$(PLATFORM_MODIFIER)/configuration_selection/$(CONFIGURATION)",
 					"$(WorkspaceDir)/port/_",
-					"$(WorkspaceDir)/port/include",
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/..",
 					"$(PROJECT_DIR)/../..",
@@ -3923,14 +3939,10 @@
 		9A68A450251143F8008DABD2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "Mac Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = L8N5V6TZE5;
 				ENABLE_HARDENED_RUNTIME = YES;
 				EXECUTABLE_EXTENSION = dylib;
 				MACH_O_TYPE = mh_dylib;
 				PLATFORM_MODIFIER = macos;
-				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = macosx;
 			};
 			name = Debug;
@@ -3938,14 +3950,10 @@
 		9A68A451251143F8008DABD2 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "Mac Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = L8N5V6TZE5;
 				ENABLE_HARDENED_RUNTIME = YES;
 				EXECUTABLE_EXTENSION = dylib;
 				MACH_O_TYPE = mh_dylib;
 				PLATFORM_MODIFIER = macos;
-				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = macosx;
 			};
 			name = Release;

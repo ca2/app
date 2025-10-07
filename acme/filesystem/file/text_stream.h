@@ -8,10 +8,10 @@
 
 
 
-inline ::string ellipsis(const ::ansi_character * psz, character_count len);
-inline unsigned long long consume_natural(const char*& psz, const ::ansi_character * pszBegin, int iRadix = 10);
-inline long long consume_integer(const char * & psz, const ::ansi_character * pszBegin, int iRadix = 10);
-inline double consume_floating(const char*& psz, const ::ansi_character * pszBegin, int iRadix = 10);
+inline ::string ellipsis(const_char_pointer psz, character_count len);
+inline unsigned long long consume_natural(const_char_pointer &psz, const_char_pointer pszBegin, int iRadix = 10);
+inline long long consume_integer(const_char_pointer &psz, const_char_pointer pszBegin, int iRadix = 10);
+inline double consume_floating(const_char_pointer &psz, const_char_pointer pszBegin, int iRadix = 10);
 
 
 #include "write_text_stream.h"
@@ -242,7 +242,7 @@ public:
 //
 //
 //// template < typename FILE >
-//void text_stream < FILE >::print_number(const ::string& str)
+//void text_stream < FILE >::print_number(const ::scoped_string & scopedstr)
 //{
 //
 //   auto estrflag = this->m_estrflag;
@@ -379,10 +379,10 @@ public:
 
 
 //// template < typename FILE >
-//text_stream < FILE >& text_stream < FILE >::operator <<(const ::ansi_character * psz)
+//text_stream < FILE >& text_stream < FILE >::operator <<(const_char_pointer psz)
 //{
 //
-//   if (::is_null(psz))
+//   if (::is_null(scopedstr))
 //   {
 //
 //      throw_exception(error_io);
@@ -391,7 +391,7 @@ public:
 //   else
 //   {
 //
-//      write(psz, strlen(psz));
+//      write(scopedstr, strlen(scopedstr));
 //
 //   }
 //
@@ -402,7 +402,7 @@ public:
 //
 //
 //// template < typename FILE >
-//text_stream < FILE >& text_stream < FILE >::operator <<(const ::string& str)
+//text_stream < FILE >& text_stream < FILE >::operator <<(const ::scoped_string & scopedstr)
 //{
 //
 //   operator <<(str.c_str());
@@ -415,7 +415,7 @@ public:
 //
 //
 //// template < typename FILE >
-//void text_stream < FILE >::raw_print(const ::string& str)
+//void text_stream < FILE >::raw_print(const ::scoped_string & scopedstr)
 //{
 //
 //   write(str.c_str(), str.size());
@@ -694,7 +694,7 @@ public:
 //inline void text_stream < FILE >::write(const void* psz, character_count s)
 //{
 //
-//   m_pfile->write(psz, s);
+//   m_pfile->write(scopedstr, s);
 //
 //}
 //
@@ -759,7 +759,7 @@ public:
 //}
 
 
-inline read_sz_stream::read_sz_stream(const ::ansi_character * psz, const ::ansi_character * pszBegin) :
+inline read_sz_stream::read_sz_stream(const_char_pointer psz, const_char_pointer pszBegin) :
    m_psz(psz),
    m_pszBegin(!pszBegin ? psz : pszBegin)
 {

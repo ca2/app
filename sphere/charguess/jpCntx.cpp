@@ -155,7 +155,7 @@ float  JapaneseContextAnalysis::GetConfidence()
 }
 
 
-PRInt32 SJISContextAnalysis::GetOrder(const ::string & str, PRunsigned int *charLen)
+PRInt32 SJISContextAnalysis::GetOrder(const ::scoped_string & scopedstr, PRunsigned int *charLen)
 {
   //find out current char's unsigned char length
   if (((unsigned char)*str >= (unsigned char)0x81 && (unsigned char)*str <= (unsigned char)0x9f) ||
@@ -172,7 +172,7 @@ PRInt32 SJISContextAnalysis::GetOrder(const ::string & str, PRunsigned int *char
   return -1;
 }
 
-PRInt32 EUCJPContextAnalysis::GetOrder(const ::string & str, PRunsigned int *charLen)
+PRInt32 EUCJPContextAnalysis::GetOrder(const ::scoped_string & scopedstr, PRunsigned int *charLen)
 {
   //find out current char's unsigned char length
   if ((unsigned char)*str == (unsigned char)0x8e ||

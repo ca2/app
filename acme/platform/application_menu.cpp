@@ -55,7 +55,7 @@ application_menu * application_menu::popup_at(::collection::index & iIndex, cons
 {
 
    auto ppopup = 
-      __initialize(__allocate ::application_menu(scopedstrName, popup_flag_t{}));
+      __initialize(øallocate ::application_menu(scopedstrName, popup_flag_t{}));
 
    this->insert_at(iIndex++, ppopup);
 
@@ -98,7 +98,7 @@ application_menu * application_menu::_item_at(::collection::index & i, bool bSto
 {
 
    auto papplicationmenuItem =
-      __initialize(__allocate ::application_menu(bStockItem, scopedstrName, atom, scopedstrAccelerator, scopedstrDescription));
+      __initialize(øallocate ::application_menu(bStockItem, scopedstrName, atom, scopedstrAccelerator, scopedstrDescription));
 
    this->insert_at(i++, papplicationmenuItem);
 
@@ -113,7 +113,7 @@ application_menu * application_menu::_item(bool bStockItem, const ::scoped_strin
    auto iIndex = this->count();
 
    auto pitem = _item_at(iIndex, bStockItem, scopedstrName, atom, scopedstrAccelerator, scopedstrDescription);
-      //__initialize(__allocate ::application_menu(bStockItem, strName, strId, strMacosAccelerator, strDescription));
+      //__initialize(øallocate ::application_menu(bStockItem, strName, strId, strMacosAccelerator, strDescription));
 
    return pitem;
 
@@ -213,7 +213,7 @@ application_menu * application_menu::separator()
 
 }
 
-   ::collection::index application_menu::find_child_with_name(const char * pszName) const
+   ::collection::index application_menu::find_child_with_name(const_char_pointer pszName) const
    {
       
       return predicate_find_first([pszName](auto & pitem)
@@ -229,7 +229,7 @@ application_menu * application_menu::separator()
    //string simple_frame_window::notification_area_get_xml_menu()
 //{
 //
-//   auto pxmldocument = __create_new < ::xml::document >();
+//   auto pxmldocument = øcreate_new < ::xml::document >();
 //
 //   pxmldocument->create_root("menu");
 //
@@ -277,7 +277,7 @@ application_menu * application_menu::separator()
 
       ::pointer_array < application_menu >::clear();
 
-      ::pointer_array < application_menu >::destroy();
+      ::pointer_array < application_menu >::base_destroy();
 
    }
 //} // namespace apex

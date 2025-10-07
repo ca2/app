@@ -1,12 +1,13 @@
 // Created by camilo on 2025-06-15 18:14 <3ThomasBorregaardSørensen!!
 #include "framework.h"
+#include "_gpu_opengl.h"
 
 
 namespace opengl
 {
 
 
-   exception::exception(const ::scoped_string& scopedstrMessage, int iGLError, const char * pszGlError, const ::scoped_string& nameFile, int iLine):
+   exception::exception(const ::scoped_string& scopedstrMessage, int iGLError, const_char_pointer pszGlError, const ::scoped_string& nameFile, int iLine):
       ::exception(error_open_failed, scopedstrMessage),
       m_iGlError(iGLError)
    {
@@ -60,7 +61,27 @@ namespace opengl
          throw ::exception(error_not_implemented);
 
       }
+
    }
+
+
+   CLASS_DECL_GPU_OPENGL GLenum as_gl_draw_mode(::gpu::enum_topology etopology)
+   {
+
+      switch (etopology)
+      {
+      case ::gpu::e_topology_triangle_list:
+         return GL_TRIANGLES;
+      case ::gpu::e_topology_triangle_strip:
+         return GL_TRIANGLE_STRIP;
+      case ::gpu::e_topology_line_list:
+         return GL_LINES;
+      default:
+         throw ::exception(error_unexpected);
+      }
+
+   }
+
 
 } // namespace opengl
 
@@ -75,7 +96,7 @@ void defer_throw_gl_error()
 
       ::string strOpenGLError;
 
-      strOpenGLError.formatf("OpenGL error %d", strOpenGLError);
+      strOpenGLError.formatf("OpenGL error %d", iGlError);
 
       throw ::exception(error_failed, strOpenGLError);
 

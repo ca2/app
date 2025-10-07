@@ -18,7 +18,7 @@
 #ifdef LINUX
 
 
-const char * br_init_get_symbol();
+const_char_pointer br_init_get_symbol();
 
 void apex_application_run(const ::scoped_string & scopedstrAppName, const ::scoped_string & scopedstrProgName);
 
@@ -30,7 +30,7 @@ void apex_application_run(const ::scoped_string & scopedstrAppName, const ::scop
 
 #include <fcntl.h>
 
-extern const char * g_psz_br_init_symbol_app;
+extern const_char_pointer g_psz_br_init_symbol_app;
 
 #ifndef LINUX_COMMAND_LINE
 
@@ -150,9 +150,9 @@ int WINAPI _tWinMain(HINSTANCE hinstance, HINSTANCE hPrevInstance, char * pCmdLi
 //         //KEEP(thread_flag_prevent_create_thread);
 //
 //
-//         papex = __allocate class apex_apex ();
+//         papex = øallocate class apex_apex ();
 //
-//         pmaindata = __allocate apex_main_data(hinstance, hPrevInstance, pCmdLine, nCmdShow);
+//         pmaindata = øallocate apex_main_data(hinstance, hPrevInstance, pCmdLine, nCmdShow);
 //
 //#ifdef MAIN_RUNNER0
 //

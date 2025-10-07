@@ -28,7 +28,7 @@
 //}
 //
 
-//tokenizer::tokenizer(const ::string & strSrc) :
+//tokenizer::tokenizer(const ::scoped_string & scopedstrSrc) :
 //   m_str(strSrc)
 //{
 //
@@ -272,7 +272,7 @@ bool tokenizer::get_next_token(::string & strToken, const ::scoped_string & scop
 //}
 
 
-bool tokenizer::get_next_smallest_token(string & strToken, const string_array & straSeparator, bool bWithSeparator)
+bool tokenizer::get_next_smallest_token(string & strToken, const string_array_base & straSeparator, bool bWithSeparator)
 {
 
    const_iterator iteratorMinPos = m_end;
@@ -683,11 +683,11 @@ bool tokenizer::_001GetNextToken(string & strToken)
 bool tokenizer::get_next_word(string * pstrToken)
 {
 
-   const ::ansi_character * psz = m_iterator;
+   const_char_pointer psz = m_iterator;
 
-   const ::ansi_character * pszEnd = this->end();
+   const_char_pointer pszEnd = this->end();
 
-   const ::ansi_character * pszStart = nullptr;
+   const_char_pointer pszStart = nullptr;
 
    while(psz < pszEnd)
    {
@@ -750,7 +750,7 @@ bool tokenizer::get_next_word(string * pstrToken)
             
       }
 
-      unicode_increment(psz);
+      psz = (char *) unicode_next(psz);
 
    }
 

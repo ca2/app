@@ -124,7 +124,7 @@ namespace user
       void on_timer(::timer * ptimer) override;
 
 
-      virtual void create_message_queue(const ::string & lpszName);
+      virtual void create_message_queue(const ::scoped_string & scopedstrName);
 
 
       virtual ::acme::user::interaction * acme_user_interaction();
@@ -146,7 +146,7 @@ namespace user
       //virtual ::frequency get_output_per_second();
 
 
-      //::pointer<::message::message>get_message(::enum_message emessage, ::wparam wparam, ::lparam lparam) override;
+      //::pointer<::message::message>get_message(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam) override;
       void destroy() override;
 
       virtual ::user::interaction * get_host_user_interaction();
@@ -207,7 +207,7 @@ namespace user
       virtual ::e_display defer_window_get_best_display_deduction();
 
 
-      virtual void _on_window_simple_action(const char * pszActionName, ::user::activation_token * puseractivationtoken);
+      virtual void _on_window_simple_action(const_char_pointer pszActionName, ::user::activation_token * puseractivationtoken);
 
       
       virtual void on_window_close();
@@ -404,11 +404,11 @@ namespace user
       //virtual lresult send(::message::message * pmessage);
       //virtual bool post(::message::message * pmessage);
 
-      virtual lresult send_message(::enum_message emessage, ::wparam wparam = {}, ::lparam lparam = {}, const ::int_point & point = {});
+      virtual lresult send_message(::user::enum_message eusermessage, ::wparam wparam = {}, ::lparam lparam = {}, const ::int_point & point = {});
 
       virtual lresult send_message(::message::message * pmessage);
 
-      virtual lresult message_call(::enum_message emessage, ::wparam wparam = {}, ::lparam lparam = {}, const ::int_point & point = {});
+      virtual lresult message_call(::user::enum_message eusermessage, ::wparam wparam = {}, ::lparam lparam = {}, const ::int_point & point = {});
       virtual lresult message_call(::message::message * pmessage);
 
       virtual void on_message(::message::message * pmessage);
@@ -419,9 +419,9 @@ namespace user
 
 #endif
 
-      lresult message_handler(::enum_message emessage, ::wparam wparam = {}, ::lparam lparam = {}) override;
+      lresult message_handler(::user::enum_message eusermessage, ::wparam wparam = {}, ::lparam lparam = {}) override;
 
-      virtual void post_message(::enum_message emessage, ::wparam wparam = {}, ::lparam lparam = {});
+      virtual void post_message(::user::enum_message eusermessage, ::wparam wparam = {}, ::lparam lparam = {});
 
       virtual void post_simple_command(const enum_simple_command & ecommand, const ::lparam & lparam = 0);
 
@@ -493,7 +493,7 @@ namespace user
       virtual ::int_rectangle get_rectangle();
       virtual ::int_rectangle get_window_rectangle();
 
-      virtual void set_window_text(const ::string & psz);
+      virtual void set_window_text(const ::scoped_string & scopedstr);
       virtual void set_window_text_source(const ::a_string_function & astringfunction);
 
       virtual character_count get_window_text(char * pszStringBuf, character_count nMaxCount);
@@ -513,9 +513,9 @@ namespace user
       virtual bool _001IsPointInside(const ::int_point & point);
       virtual ::user::interaction * _001FromPoint(::int_point point, bool bTestedIfParentVisible = false);
 
-      virtual void OnLinkClick(const ::string & psz, const ::string & pszTarget = nullptr);
+      virtual void OnLinkClick(const ::scoped_string & scopedstr, const ::scoped_string & scopedstrTarget = nullptr);
 
-      virtual ::user::interaction * get_child_by_name(const ::string & strName, ::collection::index iItem = -1, int iLevel = -1);
+      virtual ::user::interaction * get_child_by_name(const ::scoped_string & scopedstrName, ::collection::index iItem = -1, int iLevel = -1);
       virtual ::user::interaction * get_child_by_id(const ::atom & atom, ::collection::index iItem = -1, int iLevel = -1);
       virtual ::user::element * get_primitive_by_id(const ::atom & atom, ::collection::index iItem = -1, int iLevel = -1);
 
@@ -543,7 +543,7 @@ namespace user
 
       virtual bool is_top_level_window();
 
-      virtual void send_message_to_descendants(::enum_message emessage, ::wparam wparam = {}, ::lparam lparam = {}, bool bDeep = true, bool bOnlyPerm = false);
+      virtual void send_message_to_descendants(::user::enum_message eusermessage, ::wparam wparam = {}, ::lparam lparam = {}, bool bDeep = true, bool bOnlyPerm = false);
 
       virtual void route_message_to_descendants(::message::message * pmessage);
       virtual void pre_translate_message(::message::message * pmessage);
@@ -678,7 +678,7 @@ namespace user
       virtual void on_after_graphical_update();
 
 
-      virtual void set_bitmap_source(const string & strBitmapSource);
+      virtual void set_bitmap_source(const ::scoped_string & scopedstrBitmapSource);
       virtual void clear_bitmap_source();
 
 
@@ -718,8 +718,8 @@ namespace user
       virtual void _001OnAfterExitAppearance();
 
 
-      //virtual lresult send_message(const ::enum_message & emessage, const ::wparam & wparam = 0, const ::lparam & lparam = 0);
-      //virtual bool post_message(const ::enum_message & emessage, const ::wparam & wparam = 0, const ::lparam & lparam = 0);
+      //virtual lresult send_message(const ::user::enum_message & emessage, const ::wparam & wparam = 0, const ::lparam & lparam = 0);
+      //virtual bool post_message(const ::user::enum_message & emessage, const ::wparam & wparam = 0, const ::lparam & lparam = 0);
       //virtual void message_handler(::message::message * pmessage);
       //virtual void pre_translate_message(::message::message * pmessage);
 
@@ -747,7 +747,7 @@ namespace user
 
 
 
-      virtual void set_need_redraw(const ::int_rectangle_array & rectangleaScreenNeedRedraw = {}, ::draw2d::graphics * pgraphics = nullptr, ::function < void() > function = nullptr, bool bAscendants = true);
+      virtual void set_need_redraw(const ::int_rectangle_array_base & rectangleaScreenNeedRedraw = {}, ::draw2d::graphics * pgraphics = nullptr, ::function < void() > function = nullptr, bool bAscendants = true);
       virtual void set_need_load_form_data();
       virtual void set_need_save_form_data();
       virtual void post_redraw(bool bAscendants = true);
@@ -767,7 +767,7 @@ namespace user
       pointer < T > get_typed_parent()
       {
 
-         ASSERT_VALID(this);
+         ASSERT_OK(this);
 
          pointer < T > p;
 
@@ -852,13 +852,13 @@ namespace user
       virtual int get_total_page_count(::handler_context * pcontext);
 
 
-      virtual void edit_on_text(string str);
+      virtual void edit_on_text(const ::scoped_string & scopedstr);
       virtual void edit_on_sel(character_count iBeg, character_count iEnd);
       virtual void insert_text(const ::scoped_string & scopedstr, bool bForceNewStep, const ::action_context & context);
 
 
-      virtual void on_text_composition(string str);
-      virtual void on_text_commit(string str);
+      virtual void on_text_composition(const ::scoped_string & scopedstr);
+      virtual void on_text_commit(const ::scoped_string & scopedstr);
       virtual void on_text_composition_done();
       //virtual bool is_text_composition_active();
 
@@ -870,9 +870,9 @@ namespace user
 
       virtual bool InputConnectionBeginBatchEdit(bool bSuper);
       virtual bool InputConnectionEndBatchEdit(bool bSuper);
-      virtual bool InputConnectionCommitText(const ::string & str, character_count iNewCursorPosition, bool bSuper);
+      virtual bool InputConnectionCommitText(const ::scoped_string & scopedstr, character_count iNewCursorPosition, bool bSuper);
       virtual bool InputConnectionDeleteSurroundingText(character_count iBeforeLength, character_count iAfterLength, bool bSuper);
-      virtual bool InputConnectionSetComposingText(const ::string & str, character_count iNewCursorPosition, bool bSuper);
+      virtual bool InputConnectionSetComposingText(const ::scoped_string & scopedstr, character_count iNewCursorPosition, bool bSuper);
       virtual bool InputConnectionSetComposingRegion(character_count iStart, character_count iEnd, bool bSuper);
       virtual bool InputConnectionSetSelection(character_count iStart, character_count iEnd, bool bSuper);
       virtual bool InputConnectionFinishComposingText(bool bSuper);
@@ -883,10 +883,10 @@ namespace user
 
 
 
-      //virtual void set_window_text(const ::string & pszString);
+      //virtual void set_window_text(const ::scoped_string & scopedstrString);
 
       //virtual void set_check(enum_check echeck, const ::action_context & action_context);
-      //virtual void set_text(const ::string & strText, const ::action_context & action_context);
+      //virtual void set_text(const ::scoped_string & scopedstrText, const ::action_context & action_context);
 
       virtual ::user::element * first_child_user_element();
       virtual ::user::element * top_user_element();

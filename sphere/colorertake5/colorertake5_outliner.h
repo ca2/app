@@ -6,7 +6,7 @@ namespace colorertake5
 
 
    /**
-    * Used to create, store and maintain list or tree of different special regions.
+    * Used to create, store and maintain list_base or tree of different special regions.
     * These can include functions, methods, fields, classes, errors and so on.
     * Works as a filter on input editor stream.
     *
@@ -30,7 +30,7 @@ namespace colorertake5
 
       /**
        * Returns object to item with specified ordinal
-       * index in list of currently generated outline items.
+       * index in list_base of currently generated outline items.
        * Note, that the returned pointer is vaild only between
        * subsequent parser invocations.
        */
@@ -38,7 +38,7 @@ namespace colorertake5
 
       /**
        * Static service method to make easy tree reconstruction
-       * from created list of outline items. This list contains
+       * from created list_base of outline items. This list_base contains
        * unpacked level indexed of item's enclosure in scheme.
        * @param treeStack external array of integer, storing
        *        temporary tree structure. Must not be changed

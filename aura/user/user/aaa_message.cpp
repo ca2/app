@@ -62,7 +62,7 @@ namespace user
       //if(m_puserinteraction != nullptr)
       //{
 
-      //   synchronous_lock synchronouslock(get_ui_destroyed_mutex());
+      //   synchronous_lock synchronouslock(get_ui_destroyed_mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       //   if(m_bDestroyed)
       //   {

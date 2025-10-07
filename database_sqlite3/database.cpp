@@ -50,7 +50,7 @@ namespace sqlite
    //::pointer<::database::dataset>database::dataset()
    //{
 
-   //   return __allocate class dataset (this);
+   //   return øallocate class dataset (this);
 
    //}
 
@@ -154,12 +154,12 @@ namespace sqlite
    }
 
 
-   bool database::exec(const ::string & pszQuery)
+   bool database::exec(const ::scoped_string & scopedstrQuery)
    {
 
       char * errmsg = nullptr;
 
-      int iResult = sqlite3_exec((sqlite3 *) get_handle(), pszQuery, nullptr, nullptr, &errmsg);
+      int iResult = sqlite3_exec((sqlite3 *) get_handle(), scopedstrQuery, nullptr, nullptr, &errmsg);
 
       set_error_code(iResult);
 
@@ -186,7 +186,7 @@ namespace sqlite
    }
 
 
-   ::pointer<::database::result_set>database::query_result(const ::string & pszQuery, ::collection::count iRowCount,
+   ::pointer<::database::result_set>database::query_result(const ::scoped_string & scopedstrQuery, ::collection::count iRowCount,
                                                             ::collection::count iColumnCount)
    {
 
@@ -205,11 +205,11 @@ namespace sqlite
 
       m_strLastError.empty();
 
-      ::pointer<::database::result_set>presultset = __allocate ::database::result_set();
+      ::pointer<::database::result_set>presultset = øallocate ::database::result_set();
 
       char * errmsg = nullptr;
 
-      m_iLastError = sqlite3_exec((sqlite3 *) get_handle(), pszQuery, &database_sqlite3_sqlite_callback, presultset.m_p, &errmsg);
+      m_iLastError = sqlite3_exec((sqlite3 *) get_handle(), scopedstrQuery, &database_sqlite3_sqlite_callback, presultset.m_p, &errmsg);
 
       set_error_code(m_iLastError);
 
@@ -241,10 +241,10 @@ namespace sqlite
    }
 
 
-   ::pointer<::database::result_set>database::query(const ::string & pszQuery, ::collection::count iRowCount, ::collection::count iColumnCount)
+   ::pointer<::database::result_set>database::query(const ::scoped_string & scopedstrQuery, ::collection::count iRowCount, ::collection::count iColumnCount)
    {
 
-      return query_result(pszQuery, iRowCount, iColumnCount);
+      return query_result(scopedstrQuery, iRowCount, iColumnCount);
 
    }
 
@@ -273,45 +273,45 @@ namespace sqlite
    }
 
 
-   ::pointer<class payload_array> database::query_row(const ::string & psz)
+   ::pointer<class payload_array> database::query_row(const ::scoped_string & scopedstr)
    {
 
-      return ::database::database_impl::query_row(psz);
+      return ::database::database_impl::query_row(scopedstr);
 
    }
 
 
-   ::payload database::query_item(const ::string & psz)
+   ::payload database::query_item(const ::scoped_string & scopedstr)
    {
 
-      return ::database::database_impl::query_item(psz);
+      return ::database::database_impl::query_item(scopedstr);
 
    }
 
 
-   ::pointer<payload_array>database::query_items(const ::string & psz)
+   ::pointer<payload_array>database::query_items(const ::scoped_string & scopedstr)
    {
 
-      return ::database::database_impl::query_items(psz);
+      return ::database::database_impl::query_items(scopedstr);
 
    }
 
    void database::connect(
-      const ::string & name,
-      const ::string & host,
-      const ::string & port,
-      const ::string & user,
-      const ::string & pass,
-      const ::string & sckt,
+      const ::scoped_string & scopedstrName,
+      const ::scoped_string & scopedstrHost,
+      const ::scoped_string & scopedstrPort,
+      const ::scoped_string & scopedstrUser,
+      const ::scoped_string & scopedstrPass,
+      const ::scoped_string & scopedstrSckt,
       unsigned long long uConnectionFlags)
    {
 
-      m_strHost = host;
-      m_strPort = port;
-      m_strName = name;
-      m_strUser = user;
-      m_strPass = pass;
-      m_strSckt = sckt;
+      m_strHost = scopedstrHost;
+      m_strPort = scopedstrPort;
+      m_strName = scopedstrName;
+      m_strUser = scopedstrUser;
+      m_strPass = scopedstrPass;
+      m_strSckt = scopedstrSckt;
       m_uConnectionFlags = uConnectionFlags;
 
       //auto estatus = 
@@ -330,15 +330,15 @@ namespace sqlite
    }
 
 
-   pointer< pointer_array < payload_array > > database::query_rows(const ::string & psz)
+   pointer< pointer_array < payload_array > > database::query_rows(const ::scoped_string & scopedstr)
    {
 
-      return ::database::database_impl::query_rows(psz);
+      return ::database::database_impl::query_rows(scopedstr);
 
    }
 
 
-   bool database::memory_query_item(get_memory getmemory, const ::string & psz)
+   bool database::memory_query_item(get_memory getmemory, const ::scoped_string & scopedstr)
    {
 
       return false;
@@ -371,7 +371,7 @@ namespace sqlite
    void database::_connect()
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       disconnect();
 
@@ -394,10 +394,10 @@ namespace sqlite
 //         {
 //            informationf("Error: %s", err);
 //            const ::scoped_string & scopedstrErrorMessage = get_error_message();
-//            if(pszErrorMessage != nullptr)
+//            if(scopedstrErrorMessage != nullptr)
 //            {
 //
-//               information(pszErrorMessage);
+//               information(scopedstrErrorMessage);
 //            }
 //            //throw ::exception(::database::exception(get_error_message()));
 //         }
@@ -426,7 +426,7 @@ namespace sqlite
    void database::disconnect()
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (m_pstmtSelect != nullptr)
       {
@@ -474,10 +474,10 @@ namespace sqlite
 
    }
 
-   string database::add_error_message(const ::string & str)
+   string database::add_error_message(const ::scoped_string & scopedstr)
    {
 
-      m_strError += str;
+      m_strError += scopedstr;
 
       return m_strError;
 
@@ -487,7 +487,7 @@ namespace sqlite
    void database::drop()
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       disconnect();
 
@@ -519,7 +519,7 @@ namespace sqlite
    //long database::nextid(const ::string & sname)
    //{
 
-   //   _synchronous_lock synchronouslock(this->synchronization());
+   //   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //   if(!isActive())
    //   {
@@ -582,7 +582,7 @@ namespace sqlite
    void database::start_transaction()
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (isActive())
       {
@@ -595,7 +595,7 @@ namespace sqlite
    void database::commit_transaction()
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (isActive())
       {
@@ -608,7 +608,7 @@ namespace sqlite
    void database::rollback_transaction()
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (isActive())
       {
@@ -618,10 +618,10 @@ namespace sqlite
 
    }
 
-   string database::escape(const ::string & psz)
+   string database::escape(const ::scoped_string & scopedstr)
    {
       
-      string str(psz);
+      string str(scopedstr);
       
       str.replace_with("\'\'", "\'");
 
@@ -632,17 +632,17 @@ namespace sqlite
    }
 
 
-   //void database::create_long_set(const ::string & strTable)
+   //void database::create_long_set(const ::scoped_string & scopedstrTable)
    //{
 
-   //   _synchronous_lock synchronouslock(this->synchronization());
+   //   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //   try
    //   {
 
    //      dataset dataset(this);
 
-   //      _synchronous_lock synchronouslock(this->synchronization());
+   //      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //      dataset.query("select * from sqlite_master where type like 'table' and name like '" + strTable + "'");
 
@@ -661,17 +661,17 @@ namespace sqlite
    //}
 
 
-   //void database::create_string_set(const ::string & strTable)
+   //void database::create_string_set(const ::scoped_string & scopedstrTable)
    //{
 
-   //   _synchronous_lock synchronouslock(this->synchronization());
+   //   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //   try
    //   {
 
    //      dataset dataset(this);
 
-   //      _synchronous_lock synchronouslock(this->synchronization());
+   //      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //      dataset.query("select * from sqlite_master where type like 'table' and name like '" + strTable + "'");
 
@@ -690,7 +690,7 @@ namespace sqlite
 
    //}
 
-   //string database::error1(const ::string& pszPrefix)
+   //string database::error1(const ::scoped_string & scopedstrPrefix)
    //{
 
    //   return "";
@@ -698,14 +698,14 @@ namespace sqlite
    //}
 
 
-   void database::trace_error1(const ::string& pszPrefix)
+   void database::trace_error1(const ::scoped_string & scopedstrPrefix)
    {
 
 
    }
 
 
-   string database::query_error(const ::string& pszPrefix)
+   string database::query_error(const ::scoped_string & scopedstrPrefix)
    {
 
       return "";
@@ -713,7 +713,7 @@ namespace sqlite
    }
 
 
-   void database::set_id_blob(string strKey, ::block block)
+   void database::set_id_blob(const ::scoped_string & scopedstrKey, ::block block)
    {
 
       try
@@ -729,7 +729,7 @@ namespace sqlite
 
          string str;
 
-         _synchronous_lock slDatabase(synchronization());
+         _synchronous_lock slDatabase(synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          {
 
@@ -767,9 +767,9 @@ namespace sqlite
 
             }
 
-            character_count iLength = strKey.length();
+            character_count iLength = scopedstrKey.length();
 
-            int res = sqlite3_bind_text(m_pstmtReplace, m_iReplaceId, strKey, (int) iLength,
+            int res = sqlite3_bind_text(m_pstmtReplace, m_iReplaceId, scopedstrKey, (int) iLength,
                                         SQLITE_TRANSIENT);
 
             if (res != SQLITE_OK)
@@ -809,7 +809,7 @@ namespace sqlite
    }
 
 
-   bool database::get_id_blob(string strKey, get_memory getmemory)
+   bool database::get_id_blob(const ::scoped_string & scopedstrKey, get_memory getmemory)
    {
       
       if (m_pstmtSelect == nullptr)
@@ -857,9 +857,9 @@ namespace sqlite
 
       }
 
-      int iLength = (int) strKey.length();
+      int iLength = (int) scopedstrKey.length();
 
-      int res = sqlite3_bind_text(m_pstmtSelect, m_iSelectId, strKey, (int) iLength, SQLITE_TRANSIENT);
+      int res = sqlite3_bind_text(m_pstmtSelect, m_iSelectId, scopedstrKey, (int) iLength, SQLITE_TRANSIENT);
 
       if (res != SQLITE_OK)
       {
@@ -892,7 +892,7 @@ namespace sqlite
 
       }
 
-      const char * psz = (const char *) sqlite3_column_blob(m_pstmtSelect, 0);
+      const_char_pointer psz = (const_char_pointer )sqlite3_column_blob(m_pstmtSelect, 0);
 
       character_count iLen = sqlite3_column_bytes(m_pstmtSelect, 0);
 
@@ -924,9 +924,9 @@ int database_sqlite3_sqlite_callback(void * res_ptr,int ncol, char** reslt,char*
 
    auto & prowa = presultset->m_prowa;
 
-   presultset->__defer_construct_new(pfielda);
+   presultset->ødefer_construct_new(pfielda);
 
-   presultset->__defer_construct_new(prowa);
+   presultset->ødefer_construct_new(prowa);
 
    if (pfielda->is_empty())
    {
@@ -936,7 +936,7 @@ int database_sqlite3_sqlite_callback(void * res_ptr,int ncol, char** reslt,char*
       for (::collection::index i = 0; i < ncol; i++)
       {
 
-         presultset->__defer_construct_new(pfielda->element_at(i));
+         presultset->ødefer_construct_new(pfielda->element_at(i));
 
          pfielda->element_at(i)->m_strName = cols[i];
 
@@ -977,7 +977,7 @@ int database_sqlite3_sqlite_callback(void * res_ptr,int ncol, char** reslt,char*
 
       }
 
-      auto prow = __allocate ::database::row();
+      auto prow = øallocate ::database::row();
 
       ::payload payload;
 

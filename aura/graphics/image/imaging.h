@@ -283,7 +283,7 @@ public:
    //inline void load_image(::image::image_pointer & pimage, ::memory_pointer pmemory)
    //{ 
 
-   //   auto estatus = __øconstruct(pimage);
+   //   auto estatus = øconstruct(pimage);
 
    //   if (!estatus)
    //   {
@@ -299,7 +299,7 @@ public:
    //inline void load_image(::image::image_pointer & pimage, ::pointer<image_frame_array>& pframea, ::memory_pointer pmemory)
    //{
 
-   //   auto estatus = __øconstruct(pimage);
+   //   auto estatus = øconstruct(pimage);
 
    //   if (!estatus)
    //   {
@@ -318,7 +318,7 @@ public:
    ::draw2d::graphics *        pdc,
    int                 x,
    int                 y,
-   const char *            pcsz,
+   const_char_pointer           pcsz,
 
    size_t                  cb,
    ::color::color                crText,
@@ -326,9 +326,9 @@ public:
    int                 cx,
    int                 cy);
 
-   //void GetMultiLineTextExtent(HDC hDC, string_array *pArray, LPSIZE32 pSize);
+   //void GetMultiLineTextExtent(HDC hDC, string_array_base *pArray, LPSIZE32 pSize);
 
-   //void DrawMultiLineText(HDC hDC, string_array *pArray);
+   //void DrawMultiLineText(HDC hDC, string_array_base *pArray);
 
 
    ::image::image_pointer get_work_image();

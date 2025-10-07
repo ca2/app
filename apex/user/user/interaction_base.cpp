@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "apex/user/user/interaction_base.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "acme/constant/simple_command.h"
 #include "acme/exception/interface_only.h"
 #include "acme/parallelization/single_lock.h"
@@ -106,7 +106,7 @@ namespace user
 //   }
 //
 //
-//   void interaction_base::RedrawOptimize(int_rectangle_array &array)
+//   void interaction_base::RedrawOptimize(int_rectangle_array_base &array)
 //   {
 //
 //      ::int_rectangle rectangle;
@@ -372,7 +372,7 @@ namespace user
    }
 
 
-   //bool interaction_base::Redraw(int_rectangle_array & recta)
+   //bool interaction_base::Redraw(int_rectangle_array_base & recta)
    //{
 
    //   bool bOk = true;
@@ -831,7 +831,7 @@ namespace user
    //}
 
 
-   //int interaction_base::sync_message_box_timeout(const ::string & pszMessage, ::time timeTimeOut, unsigned int fuStyle)
+   //int interaction_base::sync_message_box_timeout(const ::scoped_string & scopedstrMessage, ::time timeTimeOut, unsigned int fuStyle)
    //{
 
    //   return papp->sync_message_box_timeout(this, pszMessage, get_title(), timeTimeOut, fuStyle);
@@ -870,7 +870,7 @@ namespace user
    //}
 
 
-   //void interaction_base::message_box_timeout(string strMessage, ::time timeTimeout, unsigned int fuStyle)
+   //void interaction_base::message_box_timeout(const ::scoped_string & scopedstrMessage, ::time timeTimeout, unsigned int fuStyle)
    //{
 
    //   fork([=]()
@@ -1057,7 +1057,7 @@ namespace user
    }
 
 
-   ::user::interaction * interaction_base::get_child_by_name(const ::string & strName, ::collection::index iItem, int iLevel)
+   ::user::interaction * interaction_base::get_child_by_name(const ::scoped_string & scopedstrName, ::collection::index iItem, int iLevel)
    {
 
       throw ::interface_only();
@@ -1118,10 +1118,10 @@ namespace user
    }
 
 
-   lresult interaction_base::send_message(::enum_message emessage, ::wparam wparam, ::lparam lparam, const ::int_point& point)
+   lresult interaction_base::send_message(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam, const ::int_point& point)
    {
 
-      return message_call(emessage, wparam, lparam, point);
+      return message_call(eusermessage, wparam, lparam, point);
 
    }
 
@@ -1134,7 +1134,7 @@ namespace user
 //   }
 
 
-   lresult interaction_base::message_call(::enum_message emessage, ::wparam wparam, ::lparam lparam, const ::int_point& point)
+   lresult interaction_base::message_call(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam, const ::int_point& point)
    {
 
       return 0;
@@ -1236,7 +1236,7 @@ namespace user
    //}
 
 
-   void interaction_base::send_message_to_descendants(::enum_message emessage, ::wparam wparam, ::lparam lparam,bool bDeep,bool bOnlyPerm)
+   void interaction_base::send_message_to_descendants(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam,bool bDeep,bool bOnlyPerm)
 
    {
 
@@ -1768,7 +1768,7 @@ namespace user
    }
 
 
-   void interaction_base::set_window_text(const ::string & pszString)
+   void interaction_base::set_window_text(const ::scoped_string & scopedstrString)
    {
 
    }
@@ -2500,7 +2500,7 @@ namespace user
    //}
 
 
-   lresult interaction_base::message_handler(::enum_message emessage, ::wparam wparam, ::lparam lparam)
+   lresult interaction_base::message_handler(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
    {
 
       throw ::interface_only();
@@ -2510,7 +2510,7 @@ namespace user
    }
 
 
-   void interaction_base::post_message(::enum_message emessage, ::wparam wparam, ::lparam lparam)
+   void interaction_base::post_message(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
    {
 
       throw ::interface_only();
@@ -2518,7 +2518,7 @@ namespace user
    }
 
 
-   //bool interaction_base::user_post(::enum_message emessage, ::wparam wparam, ::lparam lparam)
+   //bool interaction_base::user_post(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
    //{
 
    //   throw ::interface_only();
@@ -2704,7 +2704,7 @@ namespace user
    //}
 
 
-   void interaction_base::OnLinkClick(const ::string & psz,const ::string & pszTarget)
+   void interaction_base::OnLinkClick(const ::scoped_string & scopedstr,const ::scoped_string & scopedstrTarget)
    {
 
       throw ::interface_only();
@@ -2755,7 +2755,7 @@ namespace user
    //}
 
 
-   void interaction_base::create_message_queue(const ::string & lpszName)
+   void interaction_base::create_message_queue(const ::scoped_string & scopedstrName)
    {
 
       throw ::interface_only();
@@ -3502,12 +3502,12 @@ namespace user
    }
 
 
-   void interaction_base::set_bitmap_source(const string & strBitmapSource)
+   void interaction_base::set_bitmap_source(const ::scoped_string & scopedstrBitmapSource)
    {
 
       //auto estatus = 
       
-      ::user::element::set_bitmap_source(strBitmapSource);
+      ::user::element::set_bitmap_source(scopedstrBitmapSource);
 
       //if (!estatus)
       //{
@@ -3637,7 +3637,7 @@ namespace user
    void interaction_base::post_simple_command(const enum_simple_command & ecommand, const ::lparam & lparam)
    {
 
-      post_message(e_message_simple_command, (wparam)ecommand, lparam);
+      post_message(::user::e_message_simple_command, (wparam)ecommand, lparam);
 
       //return true;
 
@@ -3694,7 +3694,7 @@ namespace user
    }
 
 
-//   ::pointer<::message::message>interaction_base::get_message(::enum_message emessage, ::wparam wparam, ::lparam lparam)
+//   ::pointer<::message::message>interaction_base::get_message(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
 //   {
 //
 //      ::pointer<::message::message>pmessage;
@@ -3706,124 +3706,124 @@ namespace user
 //      case ::message::PrototypeNone:
 //      {
 //
-//         pmessage = __allocate ::user::message();
+//         pmessage = øallocate ::user::message();
 //
 //      }
 //      break;
 //      case ::message::PrototypeCreate:
 //      {
-//         pmessage = __allocate ::message::create();
+//         pmessage = øallocate ::message::create();
 //      }
 //      break;
 //      case ::message::PrototypeEnable:
 //      {
-//         pmessage = __allocate ::message::enable();
+//         pmessage = øallocate ::message::enable();
 //      }
 //      break;
 //      case ::message::PrototypeNcActivate:
 //      {
-//         pmessage = __allocate ::message::nc_activate();
+//         pmessage = øallocate ::message::nc_activate();
 //      }
 //      break;
 //      case ::message::PrototypeKey:
 //      {
-//         pmessage = __allocate ::message::key();
+//         pmessage = øallocate ::message::key();
 //      }
 //      break;
 //      case ::message::PrototypeTimer:
 //      {
 //         
-//         //throw ::exception(::exception("do not use e_message_timer or Windows set_timer/kill_timer"));
+//         //throw ::exception(::exception("do not use ::user::e_message_timer or Windows set_timer/kill_timer"));
 //         
-//         pmessage = __allocate ::message::timer();
+//         pmessage = øallocate ::message::timer();
 //
 //      }
 //      break;
 //      case ::message::PrototypeShowWindow:
 //      {
-//         pmessage = __allocate ::message::show_window();
+//         pmessage = øallocate ::message::show_window();
 //      }
 //      break;
 //      case ::message::PrototypeSetCursor:
 //      {
-//         pmessage = __allocate ::message::set_cursor();
+//         pmessage = øallocate ::message::set_cursor();
 //      }
 //      break;
 //      case ::message::PrototypeNcHitTest:
 //      {
-//         pmessage = __allocate ::message::nc_hit_test();
+//         pmessage = øallocate ::message::nc_hit_test();
 //      }
 //      break;
 //      case ::message::PrototypeMove:
 //      {
-//         pmessage = __allocate ::message::transfer();
+//         pmessage = øallocate ::message::transfer();
 //      }
 //      break;
 //      case ::message::PrototypeEraseBkgnd:
 //      {
-//         pmessage = __allocate ::message::erase_bkgnd();
+//         pmessage = øallocate ::message::erase_bkgnd();
 //      }
 //      break;
 //      case ::message::PrototypeScroll:
 //      {
-//         pmessage = __allocate ::message::scroll();
+//         pmessage = øallocate ::message::scroll();
 //      }
 //      break;
 //      case ::message::PrototypeSetFocus:
 //      {
-//         pmessage = __allocate ::message::set_keyboard_focus();
+//         pmessage = øallocate ::message::set_keyboard_focus();
 //      }
 //      break;
 //      case ::message::PrototypeKillFocus:
 //      {
-//         pmessage = __allocate ::message::kill_keyboard_focus();
+//         pmessage = øallocate ::message::kill_keyboard_focus();
 //      }
 //      break;
 //#if !defined(UNIVERSAL_WINDOWS) && !defined(LINUX) && !defined(__APPLE__) && !defined(__ANDROID__)
 //      case ::message::PrototypeWindowPos:
 //      {
-//         pmessage = __allocate ::message::window_pos();
+//         pmessage = øallocate ::message::window_pos();
 //      }
 //      break;
 //      case ::message::PrototypeNcCalcSize:
 //      {
-//         pmessage = __allocate ::message::nc_calc_size();
+//         pmessage = øallocate ::message::nc_calc_size();
 //      }
 //      break;
 //#endif
 //      case ::message::PrototypeMouse:
 //      {
-//         pmessage = __allocate ::message::mouse();
+//         pmessage = øallocate ::message::mouse();
 //      }
 //      break;
 //      case ::message::PrototypeMouseWheel:
 //      {
-//         pmessage = __allocate ::message::mouse_wheel();
+//         pmessage = øallocate ::message::mouse_wheel();
 //      }
 //      break;
 //      case ::message::PrototypeSize:
 //      {
-//         pmessage = __allocate ::message::size();
+//         pmessage = øallocate ::message::size();
 //      }
 //      break;
 //      case ::message::PrototypeActivate:
 //      {
-//         pmessage = __allocate ::message::activate();
+//         pmessage = øallocate ::message::activate();
 //      }
 //      break;
 //      case ::message::PrototypeMouseActivate:
 //      {
-//         pmessage = __allocate ::message::mouse_activate();
+//         pmessage = øallocate ::message::mouse_activate();
 //      }
 //      break;
 //      case ::message::PrototypeSimpleCommand:
 //      {
-//         pmessage = __allocate ::message::simple_command();
+//         pmessage = øallocate ::message::simple_command();
 //      }
 //      break;
 //      default:
 //      {
-//         pmessage = __allocate ::message::message();
+//         pmessage = øallocate ::message::message();
 //      }
 //      break;
 //      }
@@ -3835,17 +3835,17 @@ namespace user
 //
 //      }
 //
-//      pmessage->set(get_oswindow(), get_window(), emessage, wparam, lparam);
+//      pmessage->set(get_oswindow(), get_window(), eusermessage, wparam, lparam);
 //
 //      return pmessage;
 //
 //   }
 
 
-   // bool interaction_base::call_message_handler(::enum_message emessage, ::wparam wparam, ::lparam lparam, const ::int_point & point, lresult * plresult)
+   // bool interaction_base::call_message_handler(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam, const ::int_point & point, lresult * plresult)
    // {
       
-   //    if(atom == e_message_post_user)
+   //    if(atom == ::user::e_message_post_user)
    //    {
 
    //       if(wparam==1)
@@ -3873,7 +3873,7 @@ namespace user
 
    //    }
 
-   //    auto pmessage = get_message(emessage, wparam, lparam);
+   //    auto pmessage = get_message(eusermessage, wparam, lparam);
 
    //    try
    //    {
@@ -4026,7 +4026,7 @@ namespace user
    //void interaction_base::add_thread(::thread * pthread)
    //{
 
-   //   synchronous_lock synchronouslock(this->synchronization());
+   //   synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //   m_threadptra.add(pthread);
 
@@ -4036,7 +4036,7 @@ namespace user
    //void interaction_base::erase_thread(::thread * pthread)
    //{
 
-   //   synchronous_lock synchronouslock(this->synchronization());
+   //   synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //   m_threadptra.erase(pthread);
 
@@ -4558,7 +4558,7 @@ namespace user
 
 
 
-   void interaction_base::edit_on_text(string str)
+   void interaction_base::edit_on_text(const ::scoped_string & scopedstr)
    {
 
    }
@@ -4576,13 +4576,13 @@ namespace user
    }
 
 
-   void interaction_base::on_text_composition(string str)
+   void interaction_base::on_text_composition(const ::scoped_string & scopedstr)
    {
 
    }
 
 
-   void interaction_base::on_text_commit(string str)
+   void interaction_base::on_text_commit(const ::scoped_string & scopedstr)
    {
 
    }
@@ -4644,7 +4644,7 @@ namespace user
    //}
 
 
-   //void interaction_base::InputConnectionCommitText(const ::string & str, character_count iNewCursorPosition)
+   //void interaction_base::InputConnectionCommitText(const ::scoped_string & scopedstr, character_count iNewCursorPosition)
    //{
 
 
@@ -4658,7 +4658,7 @@ namespace user
    //}
 
 
-   //void interaction_base::InputConnectionSetComposingText(const ::string & str, character_count iNewCursorPosition)
+   //void interaction_base::InputConnectionSetComposingText(const ::scoped_string & scopedstr, character_count iNewCursorPosition)
    //{
 
 

@@ -47,7 +47,7 @@ namespace calculator
    }
 
 
-   void plain_edit_impact::set_format(const string& strFormat)
+   void plain_edit_impact::set_format(const ::scoped_string & scopedstrFormat)
    {
 
       m_strFormat = strFormat;

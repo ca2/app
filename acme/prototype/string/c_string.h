@@ -17,7 +17,7 @@ namespace c
       {
          m_psz = nullptr;
       }
-      string(const char * psz)
+      string(const_char_pointer psz)
       {
          if (psz)
          {
@@ -28,7 +28,7 @@ namespace c
             m_psz = nullptr;
          }
       }
-      string(const string & str)
+      string(const ::c::string & str)
       {
          if (str.m_psz)
          {
@@ -39,7 +39,7 @@ namespace c
             m_psz = nullptr;
          }
       }
-      string(string && str)
+      string(::c::string && str)
       {
          auto psz = str.m_psz;
          str.m_psz = nullptr;
@@ -60,7 +60,7 @@ namespace c
          destroy(); 
          return *this;
       }
-      string & operator = (const string & str) {
+      string & operator = (const ::c::string & str) {
          if (m_psz != str.m_psz) {
             destroy();
             if (str.m_psz)
@@ -70,7 +70,7 @@ namespace c
          }
          return *this;
       }
-      string & operator = (const char * psz) {
+      string & operator = (const_char_pointer psz) {
          if (psz != m_psz)
          {
             destroy();
@@ -92,14 +92,25 @@ namespace c
 
       }
 
-      operator const char * () const { return m_psz; }
+      operator const_char_pointer () const { return m_psz; }
 
-      bool operator == (const char* psz)
+      bool operator == (const_char_pointer psz)
       {
 
          return !strcmp(m_psz, psz);
       }
+
+      int size() const;
+
+      int find_replace(const_char_pointer search, const_char_pointer replace);
+      int find_replace(char search, char replace);
+
+      string & operator += (const_char_pointer p);
+
    };
 
 } // namespace c
+
+
+
 

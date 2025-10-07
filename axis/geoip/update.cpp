@@ -24,23 +24,23 @@ string GeoIP_get_host_or_proxy ();
  * ------------------------------------------
  * GET must support an optional HTTP Proxy.
  */
-const char *GeoIPUpdateHost = "updates.maxmind.com";
+const_char_pointer GeoIPUpdateHost = "updates.maxmind.com";
 /* This is the direct, or proxy port number. */
 //static int GeoIPHTTPPort = 80;
 /* License-only format (OLD) */
-const char *GeoIPHTTPRequest = "GET %s%s/app/update?license_key=%s&md5=%s HTTP/1.0\nHost: updates.maxmind.com\n\n";
+const_char_pointer GeoIPHTTPRequest = "GET %s%s/app/update?license_key=%s&md5=%s HTTP/1.0\nHost: updates.maxmind.com\n\n";
 /* General DB Types formats */
-const char *GeoIPHTTPRequestFilename = "GET %s%s/app/update_getfilename?product_id=%s HTTP/1.0\nHost: %s\n\n";
-const char *GeoIPHTTPRequestClientIP = "GET %s%s/app/update_getipaddr HTTP/1.0\nHost: %s\n\n";
-const char *GeoIPHTTPRequestMD5 = "GET %s%s/app/update_secure?db_md5=%s&challenge_md5=%s&user_id=%s&edition_id=%s HTTP/1.0\nHost: updates.maxmind.com\n\n";
+const_char_pointer GeoIPHTTPRequestFilename = "GET %s%s/app/update_getfilename?product_id=%s HTTP/1.0\nHost: %s\n\n";
+const_char_pointer GeoIPHTTPRequestClientIP = "GET %s%s/app/update_getipaddr HTTP/1.0\nHost: %s\n\n";
+const_char_pointer GeoIPHTTPRequestMD5 = "GET %s%s/app/update_secure?db_md5=%s&challenge_md5=%s&user_id=%s&edition_id=%s HTTP/1.0\nHost: updates.maxmind.com\n\n";
 
 /* messages */
-const char *NoCurrentDB = "%s can't be opened, proceeding to download database\n";
-const char *MD5Info = "MD5 Digest of installed database is %s\n";
-const char *SavingGzip = "Saving gzip file to %s ... ";
-const char *WritingFile = "Writing uncompressed data to %s ...";
+const_char_pointer NoCurrentDB = "%s can't be opened, proceeding to download database\n";
+const_char_pointer MD5Info = "MD5 Digest of installed database is %s\n";
+const_char_pointer SavingGzip = "Saving gzip file to %s ... ";
+const_char_pointer WritingFile = "Writing uncompressed data to %s ...";
 
-const char * GeoIP_get_error_message(int i) {
+const_char_pointer GeoIP_get_error_message(int i) {
   switch (i) {
   case GEOIP_NO_NEW_UPDATES:
     return "no ___new updates";
@@ -71,7 +71,7 @@ const char * GeoIP_get_error_message(int i) {
   case GEOIP_SANITY_INFO_FAIL:
     return "Sanity check database_info string failed";
   case GEOIP_SANITY_LOOKUP_FAIL:
-    return "Sanity check ip address lookup failed";
+    return "Sanity check ip address find failed";
   case GEOIP_RENAME_ERR:
     return "Rename error while installing db, check errno";
   case GEOIP_USER_ID_INVALID_ERR:
@@ -84,7 +84,7 @@ const char * GeoIP_get_error_message(int i) {
     return "no error";
   }
 }
-int GeoIP_fprintf(int (*f)(FILE *, char *),FILE *fp, const char *str, ...) {
+int GeoIP_fprintf(int (*f)(FILE *, char *),FILE *fp, const_char_pointer str, ...) {
   va_list ap;
   int rc;
   char * f_str;
@@ -112,7 +112,7 @@ int GeoIP_fprintf(int (*f)(FILE *, char *),FILE *fp, const char *str, ...) {
   return(rc);
 }
 
-void GeoIP_printf(void (*f)(char *), const char *str,...) {
+void GeoIP_printf(void (*f)(char *), const_char_pointer str,...) {
   va_list params;
   char * f_str;
   int silence;
@@ -146,9 +146,9 @@ void GeoIP_printf(void (*f)(char *), const char *str,...) {
  */
 
 /* The Protocol is usually "" OR "http://" with a proxy. */
-//static const char * GeoIPProxyHTTP = "";
+//static const_char_pointer GeoIPProxyHTTP = "";
 /* GeoIP Hostname where proxy forwards requests. */
-//static const char * GeoIPProxiedHost = "";
+//static const_char_pointer GeoIPProxiedHost = "";
 
 /* read http_proxy env. ::payload & parse it.
  * -----------------------------------------
@@ -488,9 +488,9 @@ short GeoIP_update_database (char * license_key, int verbose, void (*f)( char * 
 //   if (verbose == 1)
 //      GeoIP_printf(f,"PASS  ");
 //
-//   /* this performs an IP lookup test of a US IP address */
+//   /* this performs an IP find test of a US IP address */
 //   if (verbose == 1)
-//      GeoIP_printf(f,"lookup  ");
+//      GeoIP_printf(f,"find  ");
 //   if (strcmp(GeoIP_country_code_by_addr(gi,"24.24.24.24"), "US") != 0) {
 //      GeoIP_delete(gi);
 //      if (verbose == 1)
@@ -930,9 +930,9 @@ short GeoIP_update_database_general (::particle * pparticle, char * user_id,char
 //         GeoIP_printf(f,"PASS  ");
 //   }
 //
-//   /* this performs an IP lookup test of a US IP address */
+//   /* this performs an IP find test of a US IP address */
 //   if (verbose == 1)
-//      GeoIP_printf(f,"lookup  ");
+//      GeoIP_printf(f,"find  ");
 //   if (dbtype == GEOIP_NETSPEED_EDITION) {
 //      int netspeed = GeoIP_id_by_name(gi,"24.24.24.24");
 //      lookupresult = 0;

@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "base/user/experience/experience.h"
+#include "berg/user/experience/experience.h"
 
 
 namespace experience_core
@@ -24,10 +24,10 @@ namespace experience_core
       virtual void update() override;
 
 
-      virtual void get_frame_list(string_array & stra) override;
+      virtual void get_frame_list(string_array_base & stra) override;
 
 
-      ::pointer < ::experience::frame > frame_experience(const ::string & strFrameSchema) override;
+      ::pointer < ::experience::frame > frame_experience(const ::scoped_string & scopedstrFrameSchema) override;
 
 
    };

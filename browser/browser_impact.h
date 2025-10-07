@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "base/cef_lock.h"
+#include "berg/cef_lock.h"
 #include "include/cef_client.h"
 #include "include/cef_render_handler.h"
 
@@ -177,7 +177,7 @@ namespace browser
 
       //The CefRenderHandler::GetImpactRect() method will be called to retrieve the desired impact rectangle.
       //The CefRenderHandler::OnPaint() method will be called to provide invalid regions and the updated pixel buffer.The cefclient application draws the buffer using OpenGL but your application can use whatever technique you prefer.
-      //To resize the browser call CefBrowserHost::WasResized().This will result in a call to GetImpactRect() to retrieve the __allocate< int_size followed by a call to OnPaint >().
+      //To resize the browser call CefBrowserHost::WasResized().This will result in a call to GetImpactRect() to retrieve the øallocate< int_size followed by a call to OnPaint >().
       //Call the CefBrowserHost::SendXXX() methods to notify the browser of mouse, keyboard and focus happenings.
       //Call CefBrowserHost::CloseBrowser() to destroy browser.
       ::task_pointer m_pthreadBrowser;
@@ -267,7 +267,7 @@ namespace browser
 
       virtual void calc_processed_browser(string & str);
 
-      virtual void set_browser(string strText);
+      virtual void set_browser(const ::scoped_string & scopedstrText);
 
       virtual void defer_check_on_draw_layout();
       virtual void on_draw_image_layer(::draw2d::graphics_pointer & pgraphics);

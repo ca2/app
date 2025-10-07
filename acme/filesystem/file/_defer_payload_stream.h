@@ -3,7 +3,7 @@
 
 
 template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type t_etypeContainer >
-inline void __exchange(::payload_stream& stream, ::array_base < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >& array)
+inline void __exchange(::payload_stream& stream, ::base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >& array)
 {
 
    __exchange_array(stream, array);
@@ -30,7 +30,7 @@ inline void __exchange(::payload_stream& stream, ::numeric_array < TYPE, t_etype
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-inline void __exchange(::payload_stream& stream, ::string_array_base < Type, RawType, t_etypeContainer >& array)
+inline void __exchange(::payload_stream& stream, ::string_base_array < Type, RawType, t_etypeContainer >& array)
 {
 
    __exchange_array(stream, array);
@@ -135,7 +135,7 @@ template < typename OBJECT >
 inline void __exchange(::payload_stream& s, ::pointer<OBJECT> pparticle)
 {
 
-   s.__defer_construct(pparticle);
+   s.ødefer_construct(pparticle);
 
    __exchange(s, *pparticle);
 

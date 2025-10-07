@@ -43,7 +43,7 @@ namespace sockets
    };
 
    
-   using in_link_map = map < link_out_socket *, link_in_socket * >;
+   using in_link_map = map_base < link_out_socket *, link_in_socket * >;
 
 
 } // namespace sockets

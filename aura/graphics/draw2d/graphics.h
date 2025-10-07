@@ -15,6 +15,9 @@
 #include "aura/graphics/draw2d/region.h"
 #include "aura/graphics/draw2d/bitmap.h"
 #include "aura/graphics/draw2d/offset.h"
+
+
+
 namespace gpu
 {
 
@@ -83,7 +86,7 @@ namespace draw2d
       //bool                                         m_bHasCurrentPoint;
       bool                                         m_bOutline;
       void* m_pthis;
-      ::user::interaction* m_puserinteraction;
+      ::pointer < ::user::interaction >            m_puserinteraction;
       ::pointer<::draw2d::host>                    m_pdraw2dhost;
 
       bool                                         m_bPat;
@@ -109,7 +112,7 @@ namespace draw2d
       ::double_point                            m_point;
 
    protected:
-      bool                                   _m_bYFlip;
+      //bool                                   _m_bYFlip;
       enum_alpha_mode                        m_ealphamode;
 
 
@@ -159,6 +162,10 @@ namespace draw2d
       void destroy() override;
       void destroy_os_data() override;
 
+
+      virtual bool is_y_flip();
+
+
       virtual void do_on_context(const ::procedure& procedure);
 
       inline operator ::user::style& ()
@@ -202,7 +209,7 @@ namespace draw2d
       using image_drawer::draw;
       using write_text::drawer::draw;
 
-      virtual ::file::path get_font_path(const ::string& strName, int iWeight, bool bItalic);
+      virtual ::file::path get_font_path(const ::scoped_string & scopedstrName, int iWeight, bool bItalic);
 
       //virtual oswindow get_window_handle() const;
       virtual void defer_snapshot_for_composition();
@@ -312,9 +319,9 @@ namespace draw2d
       virtual unsigned int SetLayout(unsigned int dwLayout);
 
       // Constructors
-      virtual void create_device_context(const ::string& pszDriverName, const ::string& pszDeviceName, const ::string& pszOutput, const void* lpInitData);
+      virtual void create_device_context(const ::scoped_string & scopedstrDriverName, const ::scoped_string & scopedstrDeviceName, const ::scoped_string & scopedstrOutput, const void* lpInitData);
 
-      virtual void create_information_context(const ::string& pszDriverName, const ::string& pszDeviceName, const ::string& pszOutput, const void* lpInitData);
+      virtual void create_information_context(const ::scoped_string & scopedstrDriverName, const ::scoped_string & scopedstrDeviceName, const ::scoped_string & scopedstrOutput, const void* lpInitData);
 
       virtual void create_window_graphics(::windowing::window* pwindow);
       virtual void create_offscreen_graphics_for_swap_chain_blitting(::user::interaction* puserinteraction, const ::int_size& size = {});
@@ -541,7 +548,7 @@ namespace draw2d
 
       virtual void intersect_clip(const ::double_rectangle& double_rectangle);
       virtual void intersect_clip(const ::double_ellipse& ellipse);
-      virtual void intersect_clip(const ::double_polygon& polygon);
+      virtual void intersect_clip(const ::double_polygon_base& polygon);
 
 
       virtual ::draw2d::region* defer_get_os_data(::pointer < ::geometry2d::region >& pregion);
@@ -568,7 +575,7 @@ namespace draw2d
       virtual bool _add_simple_shape(::geometry2d::item* pitem);
       virtual void _add_shape(const ::double_rectangle& rectangle);
       virtual void _add_shape(const ::double_ellipse& ellipse);
-      virtual void _add_shape(const ::double_polygon& polygon);
+      virtual void _add_shape(const ::double_polygon_base& polygon);
 
       //virtual void IntersectClipregion(::draw2d::region * pregion);
       //virtual void IntersectClipRect(double x1, double y1, double x2, double y2);
@@ -683,10 +690,10 @@ namespace draw2d
       //      virtual void DrawState(const ::double_point & point, const ::double_size & ::double_size, hicon hIcon, unsigned int nFlags, HBRUSH hBrush = nullptr);
       //      virtual void DrawState(const ::double_point & point, const ::double_size & ::double_size, hicon hIcon, unsigned int nFlags, ::draw2d::brush* pBrush = nullptr);
       //#endif
-      //      virtual void DrawState(const ::double_point & point, const ::double_size & ::double_size, const ::string & pszText, unsigned int nFlags,
+      //      virtual void DrawState(const ::double_point & point, const ::double_size & ::double_size, const ::scoped_string & scopedstrText, unsigned int nFlags,
 
         //                           void bPrefixText = true, int nTextLen = 0, HBRUSH hBrush = nullptr);
-      //      virtual void DrawState(const ::double_point & point, const ::double_size & ::double_size, const ::string & pszText, unsigned int nFlags,
+      //      virtual void DrawState(const ::double_point & point, const ::double_size & ::double_size, const ::scoped_string & scopedstrText, unsigned int nFlags,
       //
       //                             void bPrefixText = true, int nTextLen = 0, ::draw2d::brush* pBrush = nullptr);
       //#ifdef WINDOWS_DESKTOP
@@ -928,7 +935,7 @@ namespace draw2d
 
 
       // Text Functions
-      //virtual void text_out(double x, double y, const ::string & pszString, character_count nCount);
+      //virtual void text_out(double x, double y, const ::scoped_string & scopedstrString, character_count nCount);
 
       inline void text_out(const ::double_point& point, const ::scoped_string& scopedstr)
       {
@@ -938,13 +945,13 @@ namespace draw2d
       }
 
       virtual void text_out(double x, double y, const ::scoped_string& scopedstr);
-      //virtual void ExtTextOut(double x, double y, unsigned int nOptions, const ::double_rectangle & rectangle, const ::string & pszString, character_count nCount, int * lpDxWidths);
+      //virtual void ExtTextOut(double x, double y, unsigned int nOptions, const ::double_rectangle & rectangle, const ::scoped_string & scopedstrString, character_count nCount, int * lpDxWidths);
 
-      //virtual void ExtTextOut(double x, double y, unsigned int nOptions, const ::double_rectangle & rectangle, const ::string & str, int * lpDxWidths);
+      //virtual void ExtTextOut(double x, double y, unsigned int nOptions, const ::double_rectangle & rectangle, const ::scoped_string & scopedstr, int * lpDxWidths);
 
-      //virtual ::double_size TabbedTextOut(double x, double y, const ::string & pszString, character_count nCount, ::collection::count nTabPositions, int * lpnTabStopPositions, int nTabOrigin);
+      //virtual ::double_size TabbedTextOut(double x, double y, const ::scoped_string & scopedstrString, character_count nCount, ::collection::count nTabPositions, int * lpnTabStopPositions, int nTabOrigin);
 
-      //virtual ::double_size TabbedTextOut(double x, double y, const ::string & str, ::collection::count nTabPositions, int * pnTabStopPositions, int nTabOrigin);
+      //virtual ::double_size TabbedTextOut(double x, double y, const ::scoped_string & scopedstr, ::collection::count nTabPositions, int * pnTabStopPositions, int nTabOrigin);
 
 
       void TextOutRaw(double x, double y, const ::scoped_string& scopedstr) override;
@@ -952,34 +959,38 @@ namespace draw2d
       virtual bool TextOutAlphaBlend(double x, double y, const ::scoped_string& scopedstr);
 
 
-      virtual void _001DrawText(const ::string& str, double_rectangle& prectd, const ::e_align& ealign = e_align_top_left, const ::e_draw_text& edrawtext = e_draw_text_none, bool bMeasure = false);
+      virtual void _001DrawText(const ::scoped_string & scopedstr, double_rectangle& prectd, const ::e_align& ealign = e_align_top_left, const ::e_draw_text& edrawtext = e_draw_text_none, bool bMeasure = false);
 
 
-      virtual void draw_text(const ::string& str, const ::double_rectangle& prectd, const ::e_align& ealign = e_align_top_left, const ::e_draw_text& edrawtext = e_draw_text_none);
+      virtual void draw_text(const ::scoped_string & scopedstr, const ::double_rectangle& prectd, const ::e_align& ealign = e_align_top_left, const ::e_draw_text& edrawtext = e_draw_text_none);
 
-      //virtual void draw_text(const ::string & str, const double_rectangle & prectd, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none);
+      //virtual void draw_text(const ::scoped_string & scopedstr, const double_rectangle & prectd, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none);
 
 
 #ifndef UNIVERSAL_WINDOWS
 
-//      virtual void draw_text_ex(const ::string & str,const ::double_rectangle & prectd, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none,LPDRAWTEXTPARAMS lpDTParams = nullptr);
+//      virtual void draw_text_ex(const ::scoped_string & scopedstr,const ::double_rectangle & prectd, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none,LPDRAWTEXTPARAMS lpDTParams = nullptr);
 
-//      virtual void draw_text_ex(const ::string & str,const double_rectangle & prectd, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none,LPDRAWTEXTPARAMS lpDTParams = nullptr);
+//      virtual void draw_text_ex(const ::scoped_string & scopedstr,const double_rectangle & prectd, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none,LPDRAWTEXTPARAMS lpDTParams = nullptr);
 
-      virtual void draw_text_ex(const ::string& str, const ::double_rectangle& prectd, const ::e_align& ealign = e_align_top_left, const ::e_draw_text& edrawtext = e_draw_text_none);
+      virtual void draw_text_ex(const ::scoped_string & scopedstr, const ::double_rectangle& prectd, const ::e_align& ealign = e_align_top_left, const ::e_draw_text& edrawtext = e_draw_text_none);
 
-      //virtual void draw_text_ex(const ::string & str,const double_rectangle & prectd, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none);
+      //virtual void draw_text_ex(const ::scoped_string & scopedstr,const double_rectangle & prectd, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none);
 
 #endif
 
 
-      virtual ::collection::count get_character_extent(double_array& daLeft, double_array& daRight, const ::string& str, character_count iStart = 0, character_count iCount = -1);
+      virtual ::collection::count get_character_extent(double_array& daLeft, double_array& daRight, const ::scoped_string & scopedstr, character_count iStart = 0, character_count iCount = -1);
 
       //virtual ::double_size get_text_extent(const ::scoped_string & scopedstrString);
 
       ::double_size get_text_extent(const ::scoped_string& scopedstr) override;
 
+      virtual ::double_size _get_text_extent(const ::scoped_string& scopedstr);
+
       virtual ::double_size get_text_extent(const ::scoped_string& scopedstr, ::character_count iIndex);
+
+      virtual ::double_size _get_text_extent(const ::scoped_string& scopedstr, ::character_count iIndex);
 
       virtual ::double_size GetTextBegin(const ::scoped_string& scopedstrString, ::character_count iIndex);
 
@@ -992,14 +1003,14 @@ namespace draw2d
       //virtual void get_text_extent(::double_size & size, const ::scoped_string & scopedstr);
       //virtual ::double_size GetOutputTextExtent(const ::scoped_string & scopedstrString, character_count nCount);
 
-      //virtual ::double_size GetOutputTextExtent(const ::string & str);
+      //virtual ::double_size GetOutputTextExtent(const ::scoped_string & scopedstr);
       //virtual ::double_size GetTabbedTextExtent(const ::scoped_string & scopedstrString, character_count nCount, ::collection::count nTabPositions, int * lpnTabStopPositions);
 
-      //virtual ::double_size GetTabbedTextExtent(const ::string & str, ::collection::count nTabPositions, int * pnTabStopPositions);
+      //virtual ::double_size GetTabbedTextExtent(const ::scoped_string & scopedstr, ::collection::count nTabPositions, int * pnTabStopPositions);
 
-      //virtual ::double_size GetOutputTabbedTextExtent(const ::string & pszString, character_count nCount, ::collection::count nTabPositions, int * lpnTabStopPositions);
+      //virtual ::double_size GetOutputTabbedTextExtent(const ::scoped_string & scopedstrString, character_count nCount, ::collection::count nTabPositions, int * lpnTabStopPositions);
 
-      //virtual ::double_size GetOutputTabbedTextExtent(const ::string & str, ::collection::count nTabPositions, int * pnTabStopPositions);
+      //virtual ::double_size GetOutputTabbedTextExtent(const ::scoped_string & scopedstr, ::collection::count nTabPositions, int * pnTabStopPositions);
 
       //virtual void GrayString(::draw2d::brush* pBrush, void (CALLBACK* pfnOutput)(HDC, lparam, int), lparam lpData, int nCount, double x, double y, int nWidth, int nHeight);
 
@@ -1021,7 +1032,7 @@ namespace draw2d
 
 // #ifdef WINDOWS_DESKTOP
 
-//       virtual unsigned int GetCharacterPlacement(const ::string & pString, character_count nCount, character_count nMaxExtent, LPGCP_RESULTS lpResults, unsigned int dwFlags);
+//       virtual unsigned int GetCharacterPlacement(const ::scoped_string & scopedstrString, character_count nCount, character_count nMaxExtent, LPGCP_RESULTS lpResults, unsigned int dwFlags);
 
 //       virtual unsigned int GetCharacterPlacement(string & str, character_count nMaxExtent, LPGCP_RESULTS pResults, unsigned int dwFlags);
 
@@ -1098,15 +1109,15 @@ namespace draw2d
 //#endif
 
       //// Printer/Device Escape Functions
-      //virtual int Escape(int nEscape, int nCount, const ::string & pszInData, LPVOID lpOutData);
+      //virtual int Escape(int nEscape, int nCount, const ::scoped_string & scopedstrInData, LPVOID lpOutData);
 
-      //virtual int Escape(int nEscape, int nInputSize, const ::string & pszInputData, int nOutputSize, char * pszOutputData);
+      //virtual int Escape(int nEscape, int nInputSize, const ::scoped_string & scopedstrInputData, int nOutputSize, char * pszOutputData);
 
-      //virtual int DrawEscape(int nEscape, int nInputSize, const ::string & pszInputData);
+      //virtual int DrawEscape(int nEscape, int nInputSize, const ::scoped_string & scopedstrInputData);
 
 
       // Escape helpers
-      //virtual int StartDoc(const ::string & pszDocName);  // old Win3.0 version
+      //virtual int StartDoc(const ::scoped_string & scopedstrDocName);  // old Win3.0 version
 
 
 //#ifdef WINDOWS_DESKTOP
@@ -1258,7 +1269,7 @@ namespace draw2d
 
       //virtual void round_rectangle(const ::double_rectangle & rectangle, double radius);
 
-      virtual int _DrawText(const ::string& str, const ::double_rectangle& rectangle, const ::e_align& ealign = e_align_top_left, const ::e_draw_text& edrawtext = e_draw_text_none, ::write_text::font* pfontUnderline = nullptr);
+      virtual int _DrawText(const ::scoped_string & scopedstr, const ::double_rectangle& rectangle, const ::e_align& ealign = e_align_top_left, const ::e_draw_text& edrawtext = e_draw_text_none, ::write_text::font* pfontUnderline = nullptr);
 
       virtual void debug();
 
@@ -1272,7 +1283,7 @@ namespace draw2d
       virtual void nanosvg_drawframe(NSVGimage* pimage, int x, int y, int w, int h);
       // virtual void nanosvg_resizecb(int width, int height, int x, int y, int w, int h);
 
-      virtual void nanosvg(string str, int x, int y, int w, int h);
+      virtual void nanosvg(const ::scoped_string & scopedstr, int x, int y, int w, int h);
 
       virtual void is_valid_update_window_thread();
 
@@ -1347,6 +1358,41 @@ namespace draw2d
      // friend class savedc;
       virtual int save_graphics_context();
       virtual void restore_graphics_context(int nSavedContext);
+
+
+      virtual bool _set(::geometry2d::item * pitem);
+      virtual bool _set(const ::draw2d::enum_item & eitem);
+
+
+      virtual bool _set(const ::double_arc & arc, const ::pointer<::draw2d::region>& pregion);
+      //virtual bool _set(const ::line & line);
+      //virtual bool _set(const ::lines & lines);
+      virtual bool _set(const ::double_rectangle & rectangle, const ::pointer<::draw2d::region>& pregion);
+      virtual bool _set(const ::double_ellipse & ellipse, const ::pointer<::draw2d::region>& pregion);
+      virtual bool _set(const ::double_polygon_base & polygon, const ::pointer<::draw2d::region>& pregion);
+      virtual bool _set(const ::write_text::text_out & textout, const ::pointer<::draw2d::region>& pregion);
+      virtual bool _set(const ::write_text::draw_text & drawtext, const ::pointer<::draw2d::region>& pregion);
+
+
+      virtual bool _set(const ::double_arc & arc, const ::pointer<::draw2d::path>& ppath);
+      virtual bool _set(const ::double_line & line, const ::pointer<::draw2d::path>& ppath);
+      virtual bool _set(const ::double_lines & lines, const ::pointer<::draw2d::path>& ppath);
+      virtual bool _set(const ::double_rectangle & rectangle, const ::pointer<::draw2d::path>& ppath);
+      virtual bool _set(const ::double_ellipse & ellipse, const ::pointer<::draw2d::path>& ppath);
+      virtual bool _set(const ::double_polygon_base & polygon, const ::pointer<::draw2d::path>& ppath);
+      virtual bool _set(const ::write_text::text_out & textout, const ::pointer<::draw2d::path>& ppath);
+      virtual bool _set(const ::write_text::draw_text & drawtext, const ::pointer<::draw2d::path>& ppath);
+
+
+      virtual bool _set(const ::double_arc & arc);
+      virtual bool _set(const ::double_line & line);
+      virtual bool _set(const ::double_lines & lines);
+      virtual bool _set(const ::double_rectangle & rectangle);
+      virtual bool _set(const ::double_ellipse & ellipse);
+      virtual bool _set(const ::double_polygon_base & polygon);
+      virtual bool _set(const ::write_text::text_out & textout);
+      virtual bool _set(const ::write_text::draw_text & drawtext);
+
 
    };
 

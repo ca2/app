@@ -62,7 +62,7 @@ namespace mail
       void InitSSLClient();
 
 
-      void OnLine(const string & );
+      void OnLine(const ::scoped_string & scopedstrLine);
 
 
       void SendPrompt();

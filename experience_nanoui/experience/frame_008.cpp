@@ -2,10 +2,10 @@
 #include "frame_008.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/pen.h"
-#include "base/user/experience/frame_window.h"
-#include "base/user/experience/size_manager.h"
-#include "base/user/experience/dock_manager.h"
-#include "base/user/experience/move_manager.h"
+#include "berg/user/experience/frame_window.h"
+#include "berg/user/experience/size_manager.h"
+#include "berg/user/experience/dock_manager.h"
+#include "berg/user/experience/move_manager.h"
 
 
 #define GRIP_CORNER_LARGE_CX 16
@@ -546,12 +546,12 @@ SizingNone:;
 
       ::color::color color = m_colorMoveableBorderDkShadow;
 
-      __defer_construct(m_ppenHollow0);
-      __defer_construct(m_ppenHollow1);
-      __defer_construct(m_ppenHollow2);
-      __defer_construct(m_ppenHollow3);
-      __defer_construct(m_ppenHollow4);
-      __defer_construct(m_ppenHollow5);
+      ødefer_construct(m_ppenHollow0);
+      ødefer_construct(m_ppenHollow1);
+      ødefer_construct(m_ppenHollow2);
+      ødefer_construct(m_ppenHollow3);
+      ødefer_construct(m_ppenHollow4);
+      ødefer_construct(m_ppenHollow5);
 
       color.set_opacity(8);
 

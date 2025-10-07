@@ -7,14 +7,14 @@
 
 #include "acme/prototype/prototype/property.h"
 #include "acme/prototype/collection/atom_array.h"
-#include "acme/prototype/string/character_range.h"
+#include "acme/prototype/string/_character_range.h"
 //#include "payload_reference.h"
 
 
 // ::property set key is case insensitive
 // PROPERTY_ARRAY Property set ordered
-class CLASS_DECL_ACME property_set :
-   virtual public ::property_holder_array
+class CLASS_DECL_ACME property_set_base :
+   public ::property_holder_array_base
 {
 public:
 
@@ -22,24 +22,26 @@ public:
    //__declare_iterator(name_iterator, &(*this->m_pelement)->id());
    //__declare_iterator(value_iterator, &(*this->m_pelement)->m_var);
 
+   using property_holder_array_base::property_holder_array_base;
+   using property_holder_array_base::operator =;
 
-   property_set() {}
-   property_set(::std::initializer_list < ::payload > list);
-   property_set(const ::property_set & set);
-   property_set(::property_set && set);
-   ~property_set() override;
+   property_set_base(::std::initializer_list < ::payload > list_base);
+   // property_set() {}
+   // property_set(const ::property_set & set);
+   // property_set(::property_set && set);
+   ~property_set_base();
 
 
    ::collection::count erase_by_name(const ::atom & atom);
-   ::collection::count erase_by_name(string_array & straName);
+   ::collection::count erase_by_name(string_array_base & straName);
 
    virtual ::particle * source_channel();
 
    //::payload operator()(const ::atom & atom, const ::payload & payloadDefault = ::error_not_found) const;
 
-   string _001Replace(const ::string & str) const;
+   string _001Replace(const ::scoped_string & scopedstr) const;
 
-   inline string format(const ::string & str) const { return _001Replace(str); }
+   inline string format(const ::scoped_string & scopedstr) const { return _001Replace(scopedstr); }
 
 
    string as_string(const ::scoped_string& scopedstrSeparator1, const ::scoped_string& scopedstrSeparator2);
@@ -49,23 +51,23 @@ public:
    //::property* find_by_text(const ::scoped_string & scopedstr, ::collection::index iStart = 0) const;
 
    ::collection::index index_of(const ::atom& atom, ::collection::index iStart = 0) const;// { return atom.is_text() ? find_text_key((const ::scoped_string &)atom.m_str, iStart) : find_index(atom.m_i)
-   ::property * lookup(const ::atom & atom, ::collection::index iStart = 0) const;// { return atom.is_text() ? find_text_key((const ::scoped_string &)atom.m_str, iStart) : find_index(atom.m_i)
+   ::property * find(const ::atom & atom, ::collection::index iStart = 0) const;// { return atom.is_text() ? find_text_key((const ::scoped_string &)atom.m_str, iStart) : find_index(atom.m_i)
    ::property & property(const ::atom & atom); // { return atom.is_text() ? get_text_key((const ::scoped_string &)atom.m_str, iStart) : get_index(atom.m_i); }
    const ::property& property(const ::atom& atom) const
    {
 
-      return ((::property_set*)this)->property(atom);
+      return ((::property_set_base*)this)->property(atom);
 
    }
 
 
-   //::collection::index find(const ::atom_array& atoma) const;// { return atom.is_text() ? find_text_key((const ::scoped_string &)atom.m_str, iStart) : find_index(atom.m_i); }
-   ::property * lookup(const ::atom_array & atoma) const;// { return atom.is_text() ? find_text_key((const ::scoped_string &)atom.m_str, iStart) : find_index(atom.m_i); }
-   ::property & property(const ::atom_array & atoma); // { return atom.is_text() ? get_text_key((const ::scoped_string &)atom.m_str, iStart) : get_index(atom.m_i); }
-   const ::property& property(const ::atom_array& atoma) const
+   //::collection::index find(const ::atom_array_base& atoma) const;// { return atom.is_text() ? find_text_key((const ::scoped_string &)atom.m_str, iStart) : find_index(atom.m_i); }
+   ::property * find(const ::atom_array_base & atoma) const;// { return atom.is_text() ? find_text_key((const ::scoped_string &)atom.m_str, iStart) : find_index(atom.m_i); }
+   ::property & property(const ::atom_array_base & atoma); // { return atom.is_text() ? get_text_key((const ::scoped_string &)atom.m_str, iStart) : get_index(atom.m_i); }
+   const ::property& property(const ::atom_array_base& atoma) const
    {
 
-      return ((::property_set*)this)->property(atoma);
+      return ((::property_set_base*)this)->property(atoma);
 
    }
 
@@ -93,10 +95,10 @@ public:
    //inline ::property * payload_text_key(const scoped_string & scopedstr, ::collection::index iStart = 0) const { return find_property_text_key(scopedstr, iStart); }
    //inline ::property & payload_text_key(const scoped_string & scopedstr, ::collection::index iStart = 0) { return get_property_text_key(scopedstr, iStart); }
 
-   inline const ::property& operator[](const ::atom_array& atoma) const { return property(atoma); }
+   inline const ::property& operator[](const ::atom_array_base& atoma) const { return property(atoma); }
    inline const ::property& operator[](const ::atom& atom) const { return property(atom); }
 
-   inline ::property & operator[](const ::atom_array & atoma) { return property(atoma); }
+   inline ::property & operator[](const ::atom_array_base & atoma) { return property(atoma); }
    inline ::property & operator[](const ::atom & atom) { return property(atom); }
 
    template < primitive_integral INTEGRAL >
@@ -106,9 +108,9 @@ public:
 
 
 
-   //template < character_range RANGE >
+   //template < primitive_character_range RANGE >
    //inline ::property & operator[](const RANGE & range) { return property(range); }
-   //template < character_range RANGE >
+   //template < primitive_character_range RANGE >
    //inline const ::property & operator[](const RANGE & range) const { return property(range); }
 
    //template < has_get_string HAS_GET_STRING >
@@ -124,11 +126,11 @@ public:
    //inline ::property & operator[](const ::atom & atom) { return payload(atom); }
    //inline const ::property & operator[](const ::atom & atom) const { return payload(atom); }
 
-   //inline ::property & operator[](const ::scoped_string & scopedstrName) { return payload(pszName); }
-   //inline const ::property & operator[](const ::scoped_string & scopedstrName) const { return payload(pszName); }
+   //inline ::property & operator[](const ::scoped_string & scopedstrName) { return payload(scopedstrName); }
+   //inline const ::property & operator[](const ::scoped_string & scopedstrName) const { return payload(scopedstrName); }
 
-   //inline ::property & operator[](const ::string & strName) { return payload(strName); }
-   //inline const ::property & operator[](const ::string & strName) const { return payload(strName); }
+   //inline ::property & operator[](const ::scoped_string & scopedstrName) { return payload(strName); }
+   //inline const ::property & operator[](const ::scoped_string & scopedstrName) const { return payload(strName); }
 
    //inline ::property & operator[](::collection::index iIndex) { return payload(iIndex); }
    //inline const ::property & operator[](::collection::index iIndex) const { return payload(iIndex); }
@@ -148,7 +150,7 @@ public:
    //::payload_reference reference(const atom& atom); { return topic(atom); }
 
    ::payload_reference reference(const atom& atom);
-   ::payload_reference reference(const atom_array & atom);
+   ::payload_reference reference(const atom_array_base & atom);
 
    //::payload & set(const ::atom & atom);
 
@@ -175,10 +177,10 @@ public:
    bool contains_payload_count(const ::payload & payload, ::collection::count countMin = 1, ::collection::count countMax = -1) const;
    bool contains_string_count(const ::scoped_string & scopedstr, ::collection::count countMin = 1, ::collection::count countMax = -1) const;
 
-   bool payload_contains(const ::property_set & set) const;
-   bool string_contains(const ::property_set & set) const;
-   bool contains_keys(const ::property_set & set) const;
-   bool contains(const ::property_set & set) const;
+   bool payload_contains(const ::property_set_base & set) const;
+   bool string_contains(const ::property_set_base & set) const;
+   bool contains_keys(const ::property_set_base & set) const;
+   bool contains(const ::property_set_base & set) const;
 
    bool case_insensitive_erase_first_payload(const ::payload & payload, ::collection::index iStart = 0);
    bool case_insensitive_erase_first_string(const ::scoped_string & scopedstr, ::collection::index iStart = 0);
@@ -198,9 +200,9 @@ public:
 
    bool is_true_or_empty(const ::atom & atom) const;
 
-   bool is_false(const ::atom & atom) const { auto p = lookup(atom); return !p || p->is_false(); }
+   bool is_false(const ::atom & atom) const { auto p = find(atom); return !p || p->is_false(); }
 
-   bool is_set_false(const ::atom & atom) const { auto p = lookup(atom); return p && p->is_set_false(); }
+   bool is_set_false(const ::atom & atom) const { auto p = find(atom); return p && p->is_set_false(); }
 
    bool is_set_empty(::collection::count countMinimum = 1) const;
 
@@ -225,14 +227,20 @@ public:
 
    ::payload get_payload(const ::atom & atom);
 
-   const ::payload & payload(const ::atom & atom) const;
+   const ::payload & get(const ::atom & atom) const;
 
-   ::payload & payload(const ::atom & atom, const ::payload & payloadDefault) const;
+   ::float_array_base get(const ::atom & atom, const ::float_array_base & floata) const;
+   ::double_array_base get(const ::atom& atom, const ::double_array_base& doublea) const;
+   ::string get(const ::atom& atom, const ::scoped_string & scopedstr) const;
+   int get(const ::atom& atom, const int & i) const;
+   long long get(const ::atom& atom, const long long & ll) const;
+   float get(const ::atom& atom, const float & f) const;
+   double get(const ::atom& atom, const double & d) const;
 
    bool get_bool(const ::atom & atom, bool bDefault = false) const;
    int get_int(const ::atom & atom, int iDefault = 0) const;
    unsigned int get_unsigned_int(const ::atom & atom, unsigned int uDefault = 0) const;
-   ::string get_string(const ::atom & atom, const ::string & strDefault = nullptr) const;
+   ::string get_string(const ::atom & atom, const ::scoped_string & scopedstrDefault = nullptr) const;
    ::file::path get_file_path(const ::atom & atom, const ::file::path & pathDefault ={}) const;
 
    //template < typename TYPE >
@@ -310,17 +318,17 @@ public:
 
    bool is_new_or_null(const ::atom & atom) const;
 
-   
+
    //using property_ptra::is_empty;
 
    bool is_empty(const ::atom & atom) const;
-   bool is_empty() const { return ::property_holder_array::is_empty(); }
+   bool is_empty() const { return ::property_holder_array_base::is_empty(); }
    bool has_property() const { return this->has_element(); }
    ::collection::count property_count() const { return this->get_count(); }
-   
-   
+
+
    ::collection::index add_property(const ::atom & atom) { return this->add_item(new ::property(atom)); }
-   ::property * add_property(const ::atom_array & atoma);
+   ::property * add_property(const ::atom_array_base & atoma);
    ::collection::index add_property(const ::property & property) { return this->add_item(new ::property(property)); }
 
 
@@ -342,7 +350,7 @@ public:
    bool _get(const ::atom & atom, TYPE & t)
    {
 
-      auto pproperty = lookup(atom);
+      auto pproperty = find(atom);
 
       if (!pproperty)
       {
@@ -354,44 +362,44 @@ public:
       pproperty->_as(t);
 
       return true;
-  
+
    }
 
 
    void _008ParseCommandLine(const ::scoped_string & scopedstrCmdLine, ::payload & payloadFile);
    void _008ParseCommandFork(const ::scoped_string & scopedstrCmdLine, ::payload & payloadFile, string & strApp);
    void _008Parse(bool bApp, const ::scoped_string & scopedstrCmdLine, ::payload & payloadFile, string & strApp);
-   void _008AddArgumentPairs(::string_array & straArguments);
-   void _008AddArgumentOrFile(::payload & payloadFile, const ::string & strArgument);
-   void _008AddArgument(const ::string & strArgument);
+   void _008AddArgumentPairs(::string_array_base & straArguments);
+   void _008AddArgumentOrFile(::payload & payloadFile, const ::scoped_string & scopedstrArgument);
+   void _008AddArgument(const ::scoped_string & scopedstrArgument);
    void _008Add(const ::scoped_string & scopedstrKey, const ::scoped_string & scopedstrValue);
 
-   void _008ParseCommandArguments(string_array & straArguments, ::payload & payloadFile, string & strApp);
-   void _008ParseArguments(bool bApp, string_array & straArguments, ::payload & payloadFile, string & strApp);
+   void _008ParseCommandArguments(string_array_base & straArguments, ::payload & payloadFile, string & strApp);
+   void _008ParseArguments(bool bApp, string_array_base & straArguments, ::payload & payloadFile, string & strApp);
 
 
    void clear();
 
-   //virtual string eval(const ::string & str);
+   //virtual string eval(const ::scoped_string & scopedstr);
 
-   //virtual string gen_eval(const ::string & str);
+   //virtual string gen_eval(const ::scoped_string & scopedstr);
 
-   //virtual string gen_string(const ::string & str);
-
-
-   string evaluate(const ::string & str) const;
-
-   bool get_evaluation(::string & str, const ::string & strExpression) const;
+   //virtual string gen_string(const ::scoped_string & scopedstr);
 
 
-   void parse_ini(const ::string & strIni);
+   string evaluate(const ::scoped_string & scopedstr) const;
+
+   bool get_evaluation(::string & str, const ::scoped_string & scopedstrExpression) const;
+
+
+   void parse_ini(const ::scoped_string & scopedstrIni);
    ::string get_ini() const;
-   ::string_array get_ini_lines() const;
-   void parse_standard_configuration(const ::string & strStandardConfiguration);
+   ::string_array_base get_ini_lines() const;
+   void parse_standard_configuration(const ::scoped_string & scopedstrStandardConfiguration);
    //void parse_ini_file(const ::file::path& path);
    //void parse_ini_folder(const ::file::path& path);
 
-   void parse_network_payload(const ::string & strNetworkPayload);
+   void parse_network_payload(const ::scoped_string & scopedstrNetworkPayload);
    void parse_network_payload(::ansi_range & range);
    void parse_network_arguments(const ::scoped_string & scopedstrUrl);
    void _parse_network_arguments(const ::scoped_string & scopedstrUrlQuery);
@@ -402,7 +410,7 @@ public:
    string & get_network_payload(string & str, bool bNewLine = true) const;
    string get_network_arguments() const { string str; return get_network_arguments(str); }
    string get_network_payload() const { string str; return get_network_payload(str); }
-   string get_command_line(const string_array & straKeys) const;
+   string get_command_line(const string_array_base & straKeys) const;
    string get_command_line() const;
 
 
@@ -415,19 +423,19 @@ public:
    //::collection::count get_count() const;
 
 
-   ::property_set & operator = (const ::payload & payload);
-   ::property_set & operator = (const ::property_set & set);
-//   ::property_set & operator = (const pair_set_interface & set);
-//   ::property_set & operator = (const str_str_interface & set);
+   ::property_set_base & operator = (const ::payload & payload);
+   //::property_set_base & operator = (const ::property_set_base & set);
+//   ::property_set_base & operator = (const pair_set_interface & set);
+//   ::property_set_base & operator = (const str_str_interface & set);
 
-   ::property_set & operator += (const ::property_set & set);
-   ::property_set & operator |= (const ::property_set & set);
+   ::property_set_base & operator += (const ::property_set_base & set);
+   ::property_set_base & operator |= (const ::property_set_base & set);
 
 
-   ::property_set & append(const ::property_set & set);
-   ::property_set & merge(const ::property_set & set);
+   ::property_set_base & append(const ::property_set_base & set);
+   ::property_set_base & merge(const ::property_set_base & set);
 
-   ::property_set & merge(const ::property & property);
+   ::property_set_base & merge(const ::property & property);
 
 
 
@@ -448,22 +456,22 @@ public:
    }
 
 
-   template < class T >
+   template < primitive_subparticle T >
    T * cast(const ::atom & atom, T * pDefault = nullptr) const
    {
 
-      return ((::property_set *) this)->cast < T >(atom, pDefault);
+      return ((::property_set_base *) this)->cast < T >(atom, pDefault);
 
    }
 
 
-   void parse_environment_variable(const string_array & straEnvironment);
+   void parse_environment_variable(const string_array_base & straEnvironment);
 
 
 };
 
 
-//CLASS_DECL_ACME void property_set_skip_network_payload(const char *& pszJson);
+//CLASS_DECL_ACME void property_set_skip_network_payload(const_char_pointer &pszJson);
 CLASS_DECL_ACME void property_set_skip_network_payload(::ansi_range & range);
 
 
@@ -473,13 +481,13 @@ CLASS_DECL_ACME void property_set_skip_network_payload(::ansi_range & range);
 //inline ::handle::ini operator ""_ini(const ::scoped_string & scopedstr, size_t s);
 
 
-//inline ::pointer<::property_set>localconfigini();
+//inline ::pointer<::property_set_base>localconfigini();
 
 
-inline bool ::property_set::_get_string(string & strResult, const ::atom & atom) const
+inline bool ::property_set_base::_get_string(string & strResult, const ::atom & atom) const
 {
 
-   auto pproperty = lookup(atom);
+   auto pproperty = find(atom);
 
    if (::is_null(pproperty))
    {
@@ -495,6 +503,29 @@ inline bool ::property_set::_get_string(string & strResult, const ::atom & atom)
 }
 
 
+class CLASS_DECL_ACME property_set :
+   public ::array_particle < ::property_set_base >
+{
+public:
+
+
+   using BASE_CLASS = ::array_particle < ::property_set_base >;
+
+
+   using BASE_CLASS::BASE_CLASS;
+   using BASE_CLASS::operator =;
+
+
+   using ::property_set_base::cast;
+   
+   using ::property_set_base::as_string;
+
+
+};
+
+
+
 CLASS_DECL_ACME ::pointer < ::property_set > create_network_arguments_property_set(const ::scoped_string& scopedstrNetworkArguments);
+
 
 

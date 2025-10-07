@@ -289,7 +289,7 @@ namespace micro
    void elemental::resize_to_fit()
    {
 
-      auto pdevice = __øcreate<::nano::graphics::device>();
+      auto pdevice = øcreate<::nano::graphics::device>();
 
       auto size = pdevice->get_text_extents(m_strText, micro_theme()->m_pfont);
 
@@ -442,10 +442,10 @@ namespace micro
          //}
 
 
-         //void elemental::_on_window_simple_action(const char * pszActionName)
+         //void elemental::_on_window_simple_action(const_char_pointer pszActionName)
          //{
 
-         //   ::string strActionName(pszActionName);
+         //   ::string strActionName(scopedstrActionName);
 
          //   if (strActionName == "***move")
          //   {
@@ -471,7 +471,7 @@ namespace micro
          //   else
          //   {
 
-         //      ::acme::user::interaction::_on_window_simple_action(pszActionName);
+         //      ::acme::user::interaction::_on_window_simple_action(scopedstrActionName);
 
          //   }
 
@@ -481,7 +481,7 @@ namespace micro
          //::pointer<::operating_system::a_system_menu> elemental::create_system_menu(bool bContextual)
          //{
 
-         //   auto psystemmenu = __allocate ::operating_system::a_system_menu();
+         //   auto psystemmenu = øallocate ::operating_system::a_system_menu();
 
          //   if (m_bMinimizeBox)
          //   {
@@ -680,7 +680,7 @@ namespace micro
 
    //   do_asynchronously();
 
-   //   auto pmanualresethappening = __allocate manual_reset_happening();
+   //   auto pmanualresethappening = øallocate manual_reset_happening();
 
    //   if (m_psequencer)
    //   {
@@ -775,7 +775,7 @@ namespace micro
 
       pelementalChild->m_pacmeuserinteractionParent = this;
 
-      __defer_construct_new(m_pacmeuserinteractionaChildren);
+      ødefer_construct_new(m_pacmeuserinteractionaChildren);
 
       __refdbg_add_referer
 
@@ -787,7 +787,7 @@ namespace micro
    void elemental::add_button(const ::scoped_string & scopedstrText, enum_dialog_result edialogresult, char chLetter)
    {
 
-      auto pbutton = __allocate::micro::button();
+      auto pbutton = øallocate::micro::button();
 
       pbutton->m_strText = scopedstrText;
       pbutton->id() = edialogresult;
@@ -1887,7 +1887,7 @@ namespace micro
    }
 
 
-   void elemental::display_temporary_file_with_text(const ::string & str)
+   void elemental::display_temporary_file_with_text(const ::scoped_string & scopedstr)
    {
 
       string strAppId;
@@ -1896,7 +1896,7 @@ namespace micro
 
       ::file::path pathFolder = directory_system()->home() / "application" / strAppId / "details";
 
-      auto pathDetails = file_system()->time_put_contents(pathFolder, "details", "txt", str);
+      auto pathDetails = file_system()->time_put_contents(pathFolder, "details", "txt", scopedstr);
 
       node()->shell_open(pathDetails, "");
 
@@ -2140,7 +2140,7 @@ namespace micro
 
    //      }
 
-   //      __øconstruct(acme_windowing_window());
+   //      øconstruct(acme_windowing_window());
 
    //   }
 

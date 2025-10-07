@@ -6,7 +6,7 @@ namespace colorertake5
 
 
    /**
-   * Item in outliner's list.
+   * Item in outliner's list_base.
    * Contans all the information about single
    * structured token with specified type (region object).
    * @ingroup colorer_editor

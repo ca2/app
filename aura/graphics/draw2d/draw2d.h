@@ -50,7 +50,7 @@ namespace draw2d
 
 
       critical_section                                         m_criticalsectionObjectList;
-      numeric_array < ::draw2d::object * >                     m_objecta;
+      numeric_array_base < ::draw2d::object * >                m_objecta;
 
       critical_section                                         m_criticalsectionImageList;
       ::pointer<::image::image_array>                          m_pimagea;
@@ -135,7 +135,7 @@ namespace draw2d
       virtual void embossed_text_out(
          ::draw2d::graphics_pointer & pgraphics,
          const ::int_rectangle & rectangle,
-         string strText,
+         const ::scoped_string & scopedstrText,
          ::image::fastblur & blur,
          ::image::image_pointer & imageBlur,
          ::write_text::font * pfont,

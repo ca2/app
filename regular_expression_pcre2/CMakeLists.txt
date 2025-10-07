@@ -54,7 +54,11 @@ elseif (${LINUX} OR ${__BSD__} OR ${ANDROID})
 
 
     if (${USE_PKGCONFIG})
-        pkg_check_modules(PKGCONFIG libpcre2-8)
+        pkg_check_modules(${PROJECT_NAME}_PKGCONFIG libpcre2-8)
+    else()
+        list(APPEND library_references
+        pcre)
+
     endif ()
 
     message(STATUS "(H) regular_expression_pcre2")

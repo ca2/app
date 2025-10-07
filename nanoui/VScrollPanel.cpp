@@ -173,7 +173,7 @@ namespace nanoui
 
          screen()->m_puserinteraction->set_mouse_capture();
 
-         synchronous_lock lock(screen()->synchronization());
+         synchronous_lock lock(screen()->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          float fScroll = y_coordinate_vertical_scroll(p.y());
 
@@ -239,7 +239,7 @@ namespace nanoui
 
                      {
 
-                        synchronous_lock lock(screen()->synchronization());
+                        synchronous_lock lock(screen()->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
                         auto fScroll = minimum_maximum(m_fScroll + addUp, 0., 1.);
 

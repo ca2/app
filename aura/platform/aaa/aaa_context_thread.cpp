@@ -1,5 +1,5 @@
 #include "framework.h"
-//#include "base/user/user/_component.h"
+//#include "berg/user/user/_component.h"
 
 
 namespace aura
@@ -51,7 +51,7 @@ namespace aura
 
       }
 
-      synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       return m_createaPending.predicate_contains([&pcreate](auto& p) {return p.get() == pcreate; })
       || m_createaHistory.predicate_contains([&pcreate](auto& p) {return p.get() == pcreate; })
@@ -115,7 +115,7 @@ namespace aura
    void context_thread::add_create(::create* pcreate)
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (::is_null(pcreate) || contains(pcreate))
       {
@@ -147,7 +147,7 @@ namespace aura
    create * context_thread::get_create()
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (!m_pcreate || !m_pcreate->m_bNew)
       {

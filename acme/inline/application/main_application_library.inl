@@ -1,0 +1,200 @@
+// From main.inl to main_executable.inl by
+// camilo on 2025-07-31 14:17 <3ThomasBorregaardSørensen!!
+#define CLASS_DECL_APPLICATION_NAMESPACE CLASS_DECL_EXPORT
+#include "acme/inline/application/main.h"
+
+
+#ifdef CUBE
+DO_FACTORY(REFERENCE_FACTORY)
+#endif
+
+
+CLASS_DECL_ACME void string_short_test();
+
+
+namespace APPLICATION_NAMESPACE
+{
+
+   CLASS_DECL_EXPORT void application_factory(::factory::factory* pfactory);
+
+}
+
+#include "acme/_operating_system.h"
+#include "acme/platform/system_setup.h"
+
+
+#include "acme/inline/_include_user_and_system.h"
+
+
+#if defined(LINUX) || defined(__BSD__) || defined(RASPBERRYPIOS)
+extern char _binary__matter_zip_start[];
+extern char _binary__matter_zip_end[];
+#endif
+
+
+#ifdef NETBSD
+#include <signal.h>
+void set_global_exit_code(int iExitCode);
+extern "C" void netbsd_cleanup(int signo);
+#endif
+
+
+CLASS_DECL_ACME bool os_on_init_thread();
+CLASS_DECL_ACME void os_on_term_thread();
+
+
+APPLICATION_NAMESPACE_MAIN_EXPORT void APPLICATION_NAMESPACE_MAIN(create_system)()
+{
+
+   {
+
+      auto psystem = new ::PLATFORM_LAYER_NAME::system();
+
+#ifdef NETBSD
+
+      ::print_line("NETBSD SIGINT installation");
+      ::signal(SIGINT, netbsd_cleanup);
+      ::print_line("NETBSD SIGTERM installation");
+      ::signal(SIGTERM, netbsd_cleanup);
+      ::print_line("NETBSD SIGHUP installation");
+      ::signal(SIGHUP, netbsd_cleanup);
+
+#endif
+
+   }
+
+}
+
+
+#if defined(WINDOWS)
+APPLICATION_NAMESPACE_MAIN_EXPORT void APPLICATION_NAMESPACE_MAIN(initialize_system)(HINSTANCE hinstanceThis, HINSTANCE hinstancePrev, WCHAR* pCmdLine, int nCmdShow)
+#elif defined(__ANDROID__)
+APPLICATION_NAMESPACE_MAIN_EXPORT void APPLICATION_NAMESPACE_MAIN(initialize_system)(int argc, char* argv[], char* envp[], const char* p1, const char* p2)
+#else
+APPLICATION_NAMESPACE_MAIN_EXPORT void APPLICATION_NAMESPACE_MAIN(initialize_system)(int argc, char* argv[], char* envp[])
+#endif
+{
+
+   {
+
+      auto psystem = ::system();
+
+      //if (this->::system()->m_papplication->has_finishing_flag())
+      //{
+
+      //   return ::acme::acme::g_pacme->m_papplication->m_iExitCode;
+
+      //}
+
+#if defined(WINDOWS)
+
+      psystem->initialize_system(hinstanceThis, hinstancePrev, pCmdLine, nCmdShow);
+
+#else
+
+      psystem->initialize_system(argc, argv, envp);
+
+#endif
+
+#if defined(LINUX) || defined(__BSD__) || defined(RASPBERRYPIOS)
+
+      psystem->set_resource_block(_binary__matter_zip_start, _binary__matter_zip_end);
+
+#elif defined(__ANDROID__)
+
+      psystem->set_resource_block(p1, p2);
+
+#endif
+
+      string_short_test();
+
+   }
+
+}
+
+
+#if defined(WINDOWS)
+APPLICATION_NAMESPACE_MAIN_EXPORT void APPLICATION_NAMESPACE_MAIN(initialize_console_system)(int argc, char* argv[], char* envp[])
+#elif defined(__ANDROID__)
+APPLICATION_NAMESPACE_MAIN_EXPORT void APPLICATION_NAMESPACE_MAIN(initialize_console_system)(int argc, char* argv[], char* envp[], const char* p1, const char* p2)
+#else
+APPLICATION_NAMESPACE_MAIN_EXPORT void APPLICATION_NAMESPACE_MAIN(initialize_console_system)(int argc, char* argv[], char* envp[])
+#endif
+{
+
+   {
+
+      auto psystem = ::system();
+
+#if defined(WINDOWS)
+
+      psystem->initialize_system(argc, argv, envp);
+
+#else
+
+      psystem->initialize_system(argc, argv, envp);
+
+#endif
+
+#if defined(LINUX) || defined(__BSD__) || defined(RASPBERRYPIOS)
+
+      psystem->set_resource_block(_binary__matter_zip_start, _binary__matter_zip_end);
+
+#elif defined(__ANDROID__)
+
+      psystem->set_resource_block(p1, p2);
+
+#endif
+
+      string_short_test();
+
+   }
+
+}
+
+
+APPLICATION_NAMESPACE_MAIN_EXPORT int APPLICATION_NAMESPACE_MAIN(main)()
+{
+
+   int iExitCode = -1;
+
+   {
+
+      auto psystem = ::system();
+
+      {
+
+         ::os_on_init_thread();
+
+         set_main_thread();
+
+         ::APPLICATION_NAMESPACE::application_factory(psystem->factory());
+
+         psystem->application_main();
+
+         ::os_on_term_thread();
+
+      }
+
+      iExitCode = psystem->m_iExitCode;
+
+   }
+
+   //system.on_system_before_destroy();
+
+#ifdef NETBSD
+
+   set_global_exit_code(iExitCode);
+
+   netbsd_cleanup(0);
+
+#else
+
+   return iExitCode;
+
+#endif
+
+}
+
+
+

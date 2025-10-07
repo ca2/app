@@ -53,7 +53,7 @@ bool apex_defer_process_x_message(htask htask,MESSAGE * pMsg,oswindow oswindow,b
 ////
 ////   itask idthread = pinteraction->m_pthreadUserInteraction->get_os_int();
 ////
-////   auto pmessagequeue = ::aaa_get_message_queue(idthread, message.message != e_message_quit);
+////   auto pmessagequeue = ::aaa_get_message_queue(idthread, message.message != ::user::e_message_quit);
 ////
 ////   if(pmessagequeue == nullptr)
 ////   {
@@ -130,7 +130,7 @@ bool apex_defer_process_x_message(htask htask,MESSAGE * pMsg,oswindow oswindow,b
 //}
 //
 
-void mq_post_thread_message(::task_index & taskindex, ::enum_message emessage, ::wparam wparam, ::lparam lparam)
+void mq_post_thread_message(::task_index & taskindex, ::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
 {
 
    //if (atom.m_etype != ::atom::e_type_message)
@@ -149,7 +149,7 @@ void mq_post_thread_message(::task_index & taskindex, ::enum_message emessage, :
 
    }
 
-   pmessagequeue->post_message(nullptr, emessage, wparam, lparam);
+   pmessagequeue->post_message(nullptr, eusermessage, wparam, lparam);
 
 }
 

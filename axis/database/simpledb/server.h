@@ -43,11 +43,11 @@ namespace simpledb
       virtual void create_server_dataset();
 
 
-      virtual void initialize_simpledb_server(::particle * pparticle, const ::string & pszDatabase);
+      virtual void initialize_simpledb_server(::particle * pparticle, const ::scoped_string & scopedstrDatabase);
       virtual void destroy() override;
 
 
-      virtual void initialize_user(::database::database * pdatabaseUser, const ::string & pszUser);
+      virtual void initialize_user(::database::database * pdatabaseUser, const ::scoped_string & scopedstrUser);
 
 
       //void destroy() override;

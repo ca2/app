@@ -47,7 +47,7 @@ namespace sockets
    }
 
 
-   void http_put_socket::SetFile(const string & file)
+   void http_put_socket::SetFile(const ::scoped_string & scopedstrFile)
    {
 
       if(file()->exists(file))
@@ -72,7 +72,7 @@ namespace sockets
    }
 
 
-   void http_put_socket::SetContentType(const string & type)
+   void http_put_socket::SetContentType(const ::scoped_string & scopedstrType)
    {
 
       m_content_type = type;

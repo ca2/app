@@ -26,6 +26,8 @@ namespace axis
    class system;
    class session;
    class application;
+
+
    class user;
 
 

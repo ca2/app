@@ -11,7 +11,7 @@ class CLASS_DECL_AXIS numeric_parsing_exception:
 public:
 
 
-   numeric_parsing_exception(const ::string & pszMessage = nullptr);
+   numeric_parsing_exception(const ::scoped_string & scopedstrMessage = nullptr);
    ~numeric_parsing_exception() override;
 
 
@@ -19,7 +19,7 @@ public:
 
 
 CLASS_DECL_AXIS bool should_avoid_numeric_parsing_exception();
-CLASS_DECL_AXIS bool throw_numeric_parsing_exception(const ::string & strMessage);
+CLASS_DECL_AXIS bool throw_numeric_parsing_exception(const ::scoped_string & scopedstrMessage);
 
 
 class CLASS_DECL_AXIS avoid_numeric_parsing_exception : 

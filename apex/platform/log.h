@@ -29,7 +29,7 @@ namespace apex
       bool                                m_bTrace;
       ::pointer<::trace>               m_ptrace;
       ::pointer < ::mutex >                             m_pmutexTrace;
-      string_array                        m_straSeparator;
+      string_array_base                        m_straSeparator;
 //      FILE *                              m_pfile;
 //      ::file_pointer                      m_pfile;
       bool                                m_bInitialized;
@@ -69,7 +69,7 @@ namespace apex
    };
 
 
-   CLASS_DECL_APEX int SimpleDebugReport(int, const char *, int, const char *, const char * pszFormat, va_list list);
+   CLASS_DECL_APEX int SimpleDebugReport(int, const_char_pointer ,int, const_char_pointer ,const_char_pointer pszFormat, va_list list_base);
 
 
 } // namespace apex

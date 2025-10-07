@@ -75,8 +75,8 @@ namespace hellobase
 
       impact_base::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_create,pchannel,this,&impact::on_message_create);
-      MESSAGE_LINK(e_message_destroy, pchannel, this, &impact::on_message_destroy);
+      USER_MESSAGE_LINK(::user::e_message_create,pchannel,this,&impact::on_message_create);
+      USER_MESSAGE_LINK(::user::e_message_destroy, pchannel, this, &impact::on_message_destroy);
 
    }
 
@@ -122,11 +122,11 @@ namespace hellobase
    void impact::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       {
 
-         synchronous_lock slText(m_pmutexText);
+         synchronous_lock slText(m_pmutexText, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          if(m_strNewHelloBase.is_empty())
          {
@@ -237,7 +237,7 @@ namespace hellobase
    string impact::get_processed_hellobase()
    {
 
-      synchronous_lock slText(m_pmutexText);
+      synchronous_lock slText(m_pmutexText, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       string str = get_hellobase();
 
@@ -338,7 +338,7 @@ namespace hellobase
    string impact::get_hellobase()
    {
 
-      synchronous_lock synchronouslock(m_pmutexText);
+      synchronous_lock synchronouslock(m_pmutexText, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if(m_strHelloBase != m_strNewHelloBase)
       {
@@ -396,7 +396,7 @@ namespace hellobase
       if (m_prender != nullptr)
       {
 
-         synchronous_lock synchronouslock(m_pmutexText);
+         synchronous_lock synchronouslock(m_pmutexText, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          if (get_processed_hellobase() != m_prender->m_strHelloBase)
          {

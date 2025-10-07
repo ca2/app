@@ -2,7 +2,7 @@
 #include "impact.h"
 #include "list_impact.h"
 #include "acme/handler/item.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "aura/graphics/image/list.h"
 #include "aura/graphics/image/drawing.h"
 #include "acme/platform/timer.h"
@@ -42,14 +42,14 @@ namespace filemanager
          void list_impact::install_message_routing(::channel * pchannel)
          {
             simple_list_impact::install_message_routing(pchannel);
-            MESSAGE_LINK(e_message_left_button_double_click, pchannel, this, &list_impact::on_message_left_button_double_click);
-//            //MESSAGE_LINK(e_message_timer, pchannel, this, &list_impact::on_timer);
-            MESSAGE_LINK(e_message_size, pchannel, this, &list_impact::on_message_size);
+            USER_MESSAGE_LINK(::user::e_message_left_button_double_click, pchannel, this, &list_impact::on_message_left_button_double_click);
+//            //USER_MESSAGE_LINK(::user::e_message_timer, pchannel, this, &list_impact::on_timer);
+            USER_MESSAGE_LINK(::user::e_message_size, pchannel, this, &list_impact::on_message_size);
 #ifdef WINDOWS_DESKTOP
-            MESSAGE_LINK(e_message_context_menu, pchannel, this, &list_impact::on_message_context_menu);
+            USER_MESSAGE_LINK(::user::e_message_context_menu, pchannel, this, &list_impact::on_message_context_menu);
 #endif
-            //MESSAGE_LINK(e_message_erase_background, pchannel, this, &list_impact::_001OnEraseBkgnd);
-            MESSAGE_LINK(WM_USER + 1217, pchannel, this, &list_impact::_001OnFillTaskResponse);
+            //USER_MESSAGE_LINK(::user::e_message_erase_background, pchannel, this, &list_impact::_001OnEraseBkgnd);
+            USER_MESSAGE_LINK(WM_USER + 1217, pchannel, this, &list_impact::_001OnFillTaskResponse);
 
          }
 
@@ -79,11 +79,11 @@ namespace filemanager
 
             //auto estatus = 
             
-            __construct_new(m_puserlistcache);
+            øconstruct_new(m_puserlistcache);
 
             set_cache_interface(m_puserlistcache);
 
-            m_pimagelist = __create_new< ::image::image_list>();
+            m_pimagelist = øcreate_new< ::image::image_list>();
 
             m_pimagelist->create(16, 16, 0, 0, 0);
 
@@ -502,7 +502,7 @@ namespace filemanager
 
             int iRemove = maximum(30, m_buildhelper.m_iDisplayItemCount);
 
-            ::int_array iaRemove;
+            ::int_array_base iaRemove;
             while(true)
             {
             iItem = m_buildhelper.m_iStep + m_buildhelper.m_iTopIndex;
@@ -557,7 +557,7 @@ namespace filemanager
 
             int iRemove = maximum(30, m_buildhelper.m_iDisplayItemCount);
 
-            ::int_array iaRemove;
+            ::int_array_base iaRemove;
             auto pFind = 0;
             sqlite::CFieldValue fv;
             while(true)
@@ -750,16 +750,16 @@ namespace filemanager
          }
 
 
-         void list_impact::parse(const ::string & strXml)
+         void list_impact::parse(const ::scoped_string & scopedstrXml)
          {
 
             m_itema.erase_all();
 
             update_impact();
 
-            auto pxmldocument = __create_new < xml::document >();
+            auto pxmldocument = øcreate_new < xml::document >();
 
-            pxmldocument->load(strXml);
+            pxmldocument->load(scopedstrXml);
 
             m_iParentFolder = pxmldocument->root()->attribute("id").as_int();
 
@@ -812,7 +812,7 @@ namespace filemanager
                               }
 
                               */
-                  m_itema.add(__allocate Item(item));
+                  m_itema.add(øallocate Item(item));
                   iNode++;
                }
             }
@@ -836,7 +836,7 @@ namespace filemanager
                   item.m_iImage = m_iIconSong;
 
 
-                  m_itema.add(__allocate Item(item));
+                  m_itema.add(øallocate Item(item));
                   iNode++;
                }
             }
@@ -848,7 +848,7 @@ namespace filemanager
          }
 
 
-         /*int ItemArray::FindAbsolute(const ::string & pszId)
+         /*int ItemArray::FindAbsolute(const ::scoped_string & scopedstrId)
 
          {
             for(int i = 0; i < this->get_size(); i++)

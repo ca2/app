@@ -43,7 +43,7 @@ namespace heap
 
    //}
 
-   //void * allocator::allocate(memsize iSize, const char * pszFile, int iLine)
+   //void * allocator::allocate(memsize iSize, const_char_pointer pszFile, int iLine)
    //{
 
    //   throw ::interface_only();
@@ -53,7 +53,7 @@ namespace heap
    //}
 
 
-   void * allocator::allocate(memsize iSize, memsize * psizeAllocated, const char * pszAnnotation)
+   void * allocator::allocate(memsize iSize, memsize * psizeAllocated, const_char_pointer pszAnnotation)
    {
 
       throw ::interface_only();
@@ -71,7 +71,7 @@ namespace heap
    }
 
 
-   void * allocator::reallocate(void * p, memsize s, const char * pszAnnotation)
+   void * allocator::reallocate(void * p, memsize s, const_char_pointer pszAnnotation)
    {
 
       throw ::interface_only();

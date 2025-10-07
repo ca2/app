@@ -3,9 +3,9 @@
 #include <string.h>
 
 
-const char* GeoIP_time_zone_by_country_and_region(const char * country,const char * region)
+const_char_pointer GeoIP_time_zone_by_country_and_region(const_char_pointer country,const_char_pointer region)
 {
-   const char* timezone = nullptr;
+   const_char_pointer timezone = nullptr;
    if (country == nullptr)
    {
       return nullptr;

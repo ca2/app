@@ -86,7 +86,7 @@ namespace sockets
    }
 
 
-   void http_tunnel::OnLine(const ::string & strParam)
+   void http_tunnel::OnLine(const ::scoped_string & scopedstrParam)
    {
 
       if (m_bOk || m_bDirect)
@@ -191,7 +191,7 @@ namespace sockets
    void http_tunnel::OnFirst()
    {
    }
-   void http_tunnel::OnHeader(atom key, const ::string & strValue)
+   void http_tunnel::OnHeader(atom key, const ::scoped_string & scopedstrValue)
    {
       inheader(key) = strValue;
    }
@@ -208,12 +208,12 @@ namespace sockets
    void http_tunnel::OnData(const ::scoped_string & scopedstr, memsize size)
    {
 
-      m_fileBody.write(psz, size);
+      m_fileBody.write(scopedstr, size);
 
    }
 
 
-   bool http_tunnel::proxy_open(const string &host, port_t port)
+   bool http_tunnel::proxy_open(const ::scoped_string & scopedstrHost, port_t port)
    {
 
       m_strProxy = host;

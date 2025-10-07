@@ -9,7 +9,7 @@ CLASS_DECL_ACME void attach_thread_input_to_main_thread(bool bAttach);
 #include "interaction_thread.h"
 //#include "interaction_impl.h"
 #include "interaction.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 ////#include "acme/exception/exception.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/parallelization/message_queue.h"
@@ -18,6 +18,7 @@ CLASS_DECL_ACME void attach_thread_input_to_main_thread(bool bAttach);
 #include "acme/prototype/datetime/_text_stream.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/windowing/window.h"
+//#include "acme/_finish.h"
 
 
 #define MORE_LOG
@@ -136,13 +137,20 @@ namespace user
 
       ::thread::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_redraw, pchannel, this, &graphics_thread::on_message_redraw);
+      USER_MESSAGE_LINK(::user::e_message_redraw, pchannel, this, &graphics_thread::on_message_redraw);
 
    }
 
 
    void graphics_thread::defer_create_graphics_thread()
    {
+
+      if(is_task_set2())
+      {
+
+         return;
+
+      }
 
       //__refer(m_pgraphicsthread, m_puserinteraction->windowing_window()->m_pgraphicsthread);
 
@@ -218,7 +226,7 @@ namespace user
 //
 //            {
 //
-//               _synchronous_lock synchronouslock(pimpl->synchronization());
+//               _synchronous_lock synchronouslock(pimpl->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //               if(pimpl->m_redrawitema.has_element())
 //               {
@@ -280,7 +288,7 @@ namespace user
 //   int graphics_thread::thread_index()
 //   {
 //
-//      _synchronous_lock sl(this->synchronization());
+//      _synchronous_lock sl(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //      auto iTask = ::current_itask();
 //
@@ -416,7 +424,7 @@ namespace user
       //   if (m_puserinteraction->has_destroying_flag())
       //   {
 
-      //     m_puserinteraction->post_message(e_message_destroy_window);
+      //     m_puserinteraction->post_message(::user::e_message_destroy_window);
 
       //   }
 
@@ -454,7 +462,7 @@ namespace user
 
          get_message(&m_message, nullptr, 0, 0);
 
-         if (m_message.m_emessage == e_message_quit)
+         if (m_message.m_eusermessage == ::user::e_message_quit)
          {
 
             ::string strType = type(m_puserinteraction).name();
@@ -467,7 +475,7 @@ namespace user
          
          int iRedrawMessageCount = 0;
          
-         if (m_message.m_emessage == e_message_redraw)
+         if (m_message.m_eusermessage == ::user::e_message_redraw)
          {
 
             iRedrawMessageCount = 1;
@@ -479,7 +487,7 @@ namespace user
          while (peek_message(&m_message, nullptr, 0, 0, true))
          {
 
-            if (m_message.m_emessage == e_message_redraw)
+            if (m_message.m_eusermessage == ::user::e_message_redraw)
             {
 
                iRedrawMessageCount++;
@@ -498,7 +506,7 @@ namespace user
 
 #ifdef EXTRA_PRODEVIAN_ITERATION_LOG
 
-         information() << "Skipped e_message_redraw count "+ as_string(iRedrawMessageCount) + "\n";
+         information() << "Skipped ::user::e_message_redraw count "+ as_string(iRedrawMessageCount) + "\n";
 
 #endif
 
@@ -522,20 +530,20 @@ namespace user
       while (peek_message(&m_message, NULL, 0, 0, true))
       {
 
-         if(m_message.m_emessage == e_message_quit)
+         if(m_message.m_eusermessage == ::user::e_message_quit)
          {
 
             return false;
 
          }
 
-//               if (m_message.m_emessage == e_message_null)
+//               if (m_message.m_emessage == ::user::e_message_null)
 //               {
 //
 //                  return true;
 //
 //               }
-//               else if (m_message.m_emessage != e_message_redraw)
+//               else if (m_message.m_emessage != ::user::e_message_redraw)
 //               {
 //
 //                  return true;
@@ -556,7 +564,7 @@ namespace user
 
       {
 
-         _synchronous_lock synchronouslock(m_puserinteraction->synchronization());
+         _synchronous_lock synchronouslock(m_puserinteraction->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          ASSERT(!(m_puserinteraction->m_ewindowflag & e_window_flag_embedded_graphics_thread_if_child));
 
@@ -625,7 +633,7 @@ namespace user
 //
 //             //}
 //
-//             //while (peek_message(&m_message, nullptr, e_message_redraw, e_message_redraw, true))
+//             //while (peek_message(&m_message, nullptr, ::user::e_message_redraw, ::user::e_message_redraw, true))
 //             //{
 //
 //
@@ -634,13 +642,13 @@ namespace user
 // //            while (peek_message(&m_message, NULL, 0, 0, true))
 // //            {
 // //
-// ////               if (m_message.m_emessage == e_message_null)
+// ////               if (m_message.m_emessage == ::user::e_message_null)
 // ////               {
 // ////
 // ////                  return true;
 // ////
 // ////               }
-// ////               else if (m_message.m_emessage != e_message_redraw)
+// ////               else if (m_message.m_emessage != ::user::e_message_redraw)
 // ////               {
 // ////
 // ////                  return true;
@@ -1020,6 +1028,18 @@ namespace user
 
                         }
 
+                        if (!m_puserinteraction->window()->is_window_visible())
+                        {
+
+                           if (m_puserinteraction->const_layout().sketch().is_screen_visible())
+                           {
+
+                              break;
+
+                           }
+
+                        }
+
                         if (!::task_get_run())
                         {
 
@@ -1178,10 +1198,18 @@ namespace user
       if (m_puserinteraction->has_graphical_output_purpose())
       {
 
-         if (::type(m_puserinteraction.m_p) == "user::list_box")
+         ::string strType = ::type(m_puserinteraction.m_p);
+
+         if (strType == "user::list_box")
          {
 
             information() << "user::list_box graphics_thread_iteration has_graphical_output_purpose";
+
+         }
+         else if (strType.case_insensitive_contains("menu"))
+         {
+
+            debug() << "menu";
 
          }
 
@@ -1201,10 +1229,15 @@ namespace user
 
             }
 
-            if (m_iRedrawMessageCount <= 0)
+            if (is_equivalent(m_puserinteraction->window()->is_window_visible(),
+                              m_puserinteraction->const_layout().sketch().is_screen_visible()))
             {
 
-               return true;
+               if (m_iRedrawMessageCount <= 0)
+               {
+
+                  return true;
+               }
 
             }
 
@@ -1330,7 +1363,7 @@ namespace user
 
       {
 
-         _synchronous_lock sl(synchronization());
+         _synchronous_lock sl(synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          auto timeNow = ::time::now();
 
@@ -1472,7 +1505,7 @@ namespace user
 
          bool bUpdateBuffer = 1;
 
-         post_message(e_message_redraw, bUpdateBuffer ? 1 : 0);
+         post_message(::user::e_message_redraw, bUpdateBuffer ? 1 : 0);
 
       }
 
@@ -1487,7 +1520,7 @@ namespace user
 //      try
 //      {
 //
-//         //         _synchronous_lock synchronouslock(m_puserinteraction->synchronization());
+//         //         _synchronous_lock synchronouslock(m_puserinteraction->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //         //
 //         //         if(!m_puserinteraction)
 //         //         {
@@ -1601,7 +1634,7 @@ namespace user
 //      try
 //      {
 //
-////         _synchronous_lock synchronouslock(m_puserinteraction->synchronization());
+////         _synchronous_lock synchronouslock(m_puserinteraction->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 ////
 ////         if(!m_puserinteraction)
 ////         {
@@ -1728,7 +1761,7 @@ namespace user
       try
       {
 
-         post_message(e_message_redraw);
+         post_message(::user::e_message_redraw);
 
       }
       catch (...)
@@ -1843,7 +1876,7 @@ namespace user
    void graphics_thread::profiling_on_after_update_screen()
    {
 
-      _synchronous_lock sl(synchronization());
+      _synchronous_lock sl(synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
       
       //m_timeLastFrame.Now();
 
@@ -1884,7 +1917,7 @@ namespace user
       if (m_timeLastFrame.elapsed() > (m_timePostRedrawNominal * 3 / 4))
       {
 
-         post_message(e_message_redraw);
+         post_message(::user::e_message_redraw);
 
       }
 

@@ -4,6 +4,7 @@
 #include "shader.h"
 #include "acme/exception/interface_only.h"
 #include "bred/gpu/input_layout.h"
+#include "bred/gpu/pixmap.h"
 //#include "_.h"
 //#include "_gpu.h"
 
@@ -13,7 +14,7 @@ namespace gpu
 
 
 
-   //const char* shader_type_c_str(GLenum etype)
+   //const_char_pointer shader_type_c_str(GLenum etype)
    //{
 
    //   switch (etype)
@@ -34,7 +35,8 @@ namespace gpu
    shader::shader()
    {
 
-      m_bTextureAndSampler = false;
+      m_etopology = e_topology_triangle_list;
+      //m_bTextureAndSampler = false;
       //m_SamplerSlot = -1;
       //m_setbindingCubeSampler = -1;
 
@@ -44,6 +46,14 @@ namespace gpu
    shader::~shader()
    {
 
+
+   }
+
+
+   bool shader::need_rebuild()
+   {
+
+      return false;
 
    }
 
@@ -161,9 +171,18 @@ namespace gpu
    }
 
 
+   void shader::bind_source(::gpu::pixmap* pgpupixmapSource, int iSlot)
+   {
+
+      bind_source(pgpupixmapSource->m_pgputexture, iSlot);
+
+   }
+
+
    void shader::unbind()
    {
 
+      m_pgputextureBound = nullptr;
 
    }
 
@@ -272,7 +291,14 @@ namespace gpu
 
    }
 
+
+   void shader::_bind()
+   {
+
+
+   }
    
+
    //void shader::on_initialize_shader()
    //{
 
@@ -290,6 +316,14 @@ namespace gpu
    void shader::push_properties()
    {
 
+      set_push_properties(m_propertiesPush.m_block);
+
+   }
+
+
+   void shader::set_push_properties(const ::block& block)
+   {
+
 
    }
 
@@ -298,7 +332,7 @@ namespace gpu
    //::gpu::payload * shader::get_payload(const ::scoped_string & scopedstrPayload)
    //{
 
-   //   auto p = m_mapLayout.plookup(scopedstrPayload);
+   //   auto p = m_mapLayout.find(scopedstrPayload);
 
    //   if (!p)
    //   {
@@ -316,12 +350,12 @@ namespace gpu
    //}
 
 
-   void shader::setup_sampler_and_texture(const ::scoped_string& scopedstrName, int i)
-   {
-      
-      m_mapSamplerAndTexture[scopedstrName].m_i = i;
+   //void shader::setup_sampler_and_texture(const ::scoped_string& scopedstrName, int i)
+   //{
+   //   
+   //   m_mapSamplerAndTexture[scopedstrName].m_i = i;
 
-   }
+   //}
 
 
    void shader::set_bool(const ::scoped_string& scopedstrName, bool value)
@@ -356,7 +390,7 @@ namespace gpu
    }
 
 
-   void shader::set_vec2(const ::scoped_string& scopedstrName, float x, float y)
+   void shader::set_seq2(const ::scoped_string& scopedstrName, float x, float y)
    {
 
       ::string strName(scopedstrName);
@@ -369,7 +403,7 @@ namespace gpu
    }
 
 
-   void shader::set_vec2(const ::scoped_string& scopedstrName, const glm::vec2& a)
+   void shader::set_seq2(const ::scoped_string& scopedstrName, const glm::vec2& a)
    {
 
       ::string strName(scopedstrName);
@@ -379,7 +413,7 @@ namespace gpu
    }
 
    
-   void shader::set_vec3(const ::scoped_string& scopedstrName, float x, float y, float z)
+   void shader::set_seq3(const ::scoped_string& scopedstrName, float x, float y, float z)
    {
 
       ::string strName(scopedstrName);
@@ -393,7 +427,7 @@ namespace gpu
    }
 
 
-   void shader::set_vec3(const ::scoped_string& scopedstrName, const glm::vec3& a)
+   void shader::set_seq3(const ::scoped_string& scopedstrName, const glm::vec3& a)
    {
 
       ::string strName(scopedstrName);
@@ -403,7 +437,7 @@ namespace gpu
    }
 
 
-   void shader::set_vec4(const ::scoped_string& scopedstrName, float x, float y, float z, float w)
+   void shader::set_seq4(const ::scoped_string& scopedstrName, float x, float y, float z, float w)
    {
 
       ::string strName(scopedstrName);
@@ -418,21 +452,21 @@ namespace gpu
    }
 
 
-   void shader::set_vec4(const ::scoped_string& scopedstrName, const glm::vec4& a)
+   void shader::set_seq4(const ::scoped_string& scopedstrName, const glm::vec4& a)
    {
 
-      auto p = m_mapConstantBuffer.plookup(scopedstrName);
+      //auto p = m_mapConstantBuffer.find(scopedstrName);
 
-      if (p)
-      {
+      //if (p)
+      //{
 
-         p->m_element2.m_etype = ::gpu::e_type_seq4;
-         p->m_element2.m_memory = ::as_memory_block(a);
+      //   p->m_element2.m_etype = ::gpu::e_type_seq4;
+      //   p->m_element2.m_memory = ::as_memory_block(a);
 
-         on_set_constant_buffer(scopedstrName);
+      //   on_set_constant_buffer(scopedstrName);
 
-      }
-      else
+      //}
+      //else
       {
 
          ::string strName(scopedstrName);
@@ -468,18 +502,18 @@ namespace gpu
    void shader::set_mat4(const ::scoped_string& scopedstrName, const ::glm::mat4& a)
    {
 
-      auto p = m_mapConstantBuffer.plookup(scopedstrName);
+      //auto p = m_mapConstantBuffer.find(scopedstrName);
 
-      if (p)
-      {
+      //if (p)
+      //{
 
-         p->m_element2.m_etype = ::gpu::e_type_mat4;
-         p->m_element2.m_memory = ::as_memory_block(a);
+      //   p->m_element2.m_etype = ::gpu::e_type_mat4;
+      //   p->m_element2.m_memory = ::as_memory_block(a);
 
-         on_set_constant_buffer(scopedstrName);
+      //   on_set_constant_buffer(scopedstrName);
 
-      }
-      else
+      //}
+      //else
       {
 
          ::string strName(scopedstrName);
@@ -487,6 +521,16 @@ namespace gpu
          m_propertiesPush.mat4(strName) = a;
 
       }
+
+   }
+
+
+   void shader::setModelViewProjectionMatrices(glm::mat4 &model, glm::mat4 &view, glm::mat4 &projection)
+   {
+      
+      set_mat4("model", model);
+      set_mat4("view", view);
+      set_mat4("projection", projection);
 
    }
 

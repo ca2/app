@@ -121,10 +121,10 @@ CLASS_DECL_ACME void __trace(enum_trace_level elevel, const ::scoped_string & sc
 
 CLASS_DECL_ACME int DECL_C debug_report(
 int _ReportType,
-const char * _Filename,
+const_char_pointer _Filename,
 int _LineNumber,
-const char * _ModuleName,
-const char * _Format,
+const_char_pointer _ModuleName,
+const_char_pointer _Format,
 ...);
 
 
@@ -320,8 +320,8 @@ typedef struct _MEMORY_STATE
 // inline int FUNCTION_XXDEBUGBOX(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, int iFlags)
 // {
 
-//    __UNREFERENCED_PARAMETER(pszMessage);
-//    __UNREFERENCED_PARAMETER(pszTitle);
+//    __UNREFERENCED_PARAMETER(scopedstrMessage);
+//    __UNREFERENCED_PARAMETER(scopedstrTitle);
 //    __UNREFERENCED_PARAMETER(iFlags);
 
 //    return 0;
@@ -331,8 +331,8 @@ typedef struct _MEMORY_STATE
 // inline int FUNCTION_XXDEBUGBOXW(const WCHAR * pszMessage, const WCHAR * pszTitle, int iFlags)
 // {
 
-//    __UNREFERENCED_PARAMETER(pszMessage);
-//    __UNREFERENCED_PARAMETER(pszTitle);
+//    __UNREFERENCED_PARAMETER(scopedstrMessage);
+//    __UNREFERENCED_PARAMETER(scopedstrTitle);
 //    __UNREFERENCED_PARAMETER(iFlags);
 
 //    return 0;
@@ -368,8 +368,8 @@ typedef struct _MEMORY_STATE
 //
 //
 //
-//   //virtual void sockets_trace(::sockets::base_socket_handler * phandler, ::sockets::base_socket * psocket, enum_trace_level elevel, const ::string & strContext, int iError, const ::string & strContext) override;
-//   //virtual void sockets_trace(::sockets::base_socket_handler * phandler, ::sockets::base_socket * psocket, enum_trace_level elevel, const ::string & strContext, int iError, const ::string & strContext) override;
+//   //virtual void sockets_trace(::sockets::base_socket_handler * phandler, ::sockets::base_socket * psocket, enum_trace_level elevel, const ::scoped_string & scopedstrContext, int iError, const ::scoped_string & scopedstrContext) override;
+//   //virtual void sockets_trace(::sockets::base_socket_handler * phandler, ::sockets::base_socket * psocket, enum_trace_level elevel, const ::scoped_string & scopedstrContext, int iError, const ::scoped_string & scopedstrContext) override;
 //
 //
 //};
@@ -441,7 +441,7 @@ CLASS_DECL_ACME void os_trace(enum_trace_level elevel, const ::scoped_string & s
 //}
 
 //
-//extern const char * g_pszTraceLevelName[];
+//extern const_char_pointer g_pszTraceLevelName[];
 //
 //
 
@@ -452,7 +452,7 @@ CLASS_DECL_ACME enum_trace_level trace_level_constraint(enum_trace_level elevel)
 //
 //// }
 
-CLASS_DECL_ACME const char * trace_level_name(enum_trace_level elevel);
+CLASS_DECL_ACME const_char_pointer trace_level_name(enum_trace_level elevel);
 
 
 //extern char g_chaTraceLevel[];;;

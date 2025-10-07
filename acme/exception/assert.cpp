@@ -9,7 +9,7 @@ assert_exception::assert_exception(const ::scoped_string & scopedstrFile, long l
    ::exception(::error_assert)
 {
 
-   m_strMessage.append_formatf("Assert File=\"%s\" Line=\"%d\"", scopedstrFile.c_str(), lLine);
+   m_strMessage.append_formatf("Assert File=\"%s\" Line=\"%d\"", scopedstrFile.as_string().c_str(), lLine);
 
 }
 
@@ -21,7 +21,7 @@ assert_exception::~assert_exception()
 }
 
 
-CLASS_DECL_ACME int throw_assert_exception(const char * pszFileName,int iLineNumber)
+CLASS_DECL_ACME int throw_assert_exception(const_char_pointer pszFileName,int iLineNumber)
 {
 
    throw assert_exception(pszFileName,iLineNumber);

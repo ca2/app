@@ -44,7 +44,7 @@ namespace aura
 //       //string                                          m_strInstallBuild;
 //       //string                                          m_strHttpUserAgentToken;
 //       //string                                          m_strHttpUserAgentVersion;
-//       //string_array                                    m_straAppCategory;
+//       //string_array_base                                    m_straAppCategory;
 //       //bool                                            m_bLicense;
 //       //bool                                            m_bRequiresInstallation;
 //
@@ -57,7 +57,7 @@ namespace aura
 //
 //       ::pointer<shell_open>                        m_pshellopen;
 //
-//       ::string_array                               m_straOptionsFormMakerLibrary;
+//       ::string_array_base                               m_straOptionsFormMakerLibrary;
 //       ::user::interaction_base *                             m_puiCurrent;
 //       //bool                                            m_bContextTheme;
 //
@@ -83,7 +83,7 @@ namespace aura
 //
 //       //enum_exclusive_instance                              m_eexclusiveinstance;
 //
-//       //string_map < ::pointer<::acme::exclusive >>    m_mapExclusive;
+//       //string_map_base < ::pointer<::acme::exclusive >>    m_mapExclusive;
 //
 //       //bool                                            m_bService;
 //
@@ -94,11 +94,11 @@ namespace aura
 //       ::pointer < ::mutex >                                           m_pmutexMatterLocator;
 //
 //       //::pointer < ::mutex >                                         m_pmutexStr;
-//       //string_table                                    m_stringtable;
-//       //string_table                                    m_stringtableStd;
-//       //map < atom, atom, string, string >                  m_stringmap;
+//       //string_table_base                                    m_stringtable;
+//       //string_table_base                                    m_stringtableStd;
+//       //map_base < atom, atom, string, string >                  m_stringmap;
 //
-//       //atom_map < ::pointer<::channel >>                m_mapNotify;
+//       //atom_map_base < ::pointer<::channel >>                m_mapNotify;
 //
 //       //::pointer<image_context>                       m_pimagecontext;
 //
@@ -146,8 +146,8 @@ namespace aura
 //       ::pointer<::aura::theme>                       m_ptheme;
 //
 //
-//       //string_array                                    m_straAppInterest;
-//       //string_map < oswindow, oswindow >               m_mapAppInterest;
+//       //string_array_base                                    m_straAppInterest;
+//       //string_map_base < oswindow, oswindow >               m_mapAppInterest;
 //
 //       //int                                             m_iGcomBackgroundUpdateMillis;
 //
@@ -184,10 +184,14 @@ namespace aura
 
       virtual void enumerate_composite(matter_array& a) override;
 
-      ::aura::game* game();
+      ::aura::game* game() override;
 
 
       virtual void _001CloseApplication() override;
+
+
+
+      void on_application_message(::platform::message * papplicationmessage) override;
 
 
       //virtual ::user::style* get_user_style() const;
@@ -202,14 +206,14 @@ namespace aura
       //virtual ::database::key calc_data_key() override;
 
 
-      //virtual string load_podata(string strLang, bool bOnlyHeader);
+      //virtual string load_podata(const ::scoped_string & scopedstrLang, bool bOnlyHeader);
 
       //virtual string load_string(const ::atom & atom) override;
       //virtual bool load_string(string & str, const ::atom & atom) override;
       //virtual void load_string_table() override;
       //virtual bool load_cached_string(string & str, const ::atom & atom, bool bLoadStringTable) override;
       //virtual bool load_cached_string_by_id(string & str, const ::atom & atom, bool bLoadStringTable) override;
-      //virtual void load_string_table(const string & pszApp, const string & pszId) override;
+      //virtual void load_string_table(const ::scoped_string & scopedstrApp, const ::scoped_string & scopedstrId) override;
 
 
 
@@ -278,8 +282,8 @@ namespace aura
       virtual void on_uninstall() override;
 
 
-      virtual void update_appmatter(::pointer<::sockets::http_session>& psession, const ::file::path & pszRoot, const string & pszRelative) override;
-      virtual void update_appmatter(::pointer<::sockets::http_session>& psession, const ::file::path & pszRoot, const string & pszRelative, const ::string & strLocale, const ::string & strStyle) override;
+      virtual void update_appmatter(::pointer<::sockets::http_session>& psession, const ::file::path & pathRoot, const ::scoped_string & scopedstrRelative) override;
+      virtual void update_appmatter(::pointer<::sockets::http_session>& psession, const ::file::path & pathRoot, const ::scoped_string & scopedstrRelative, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrStyle) override;
 
       //virtual void SetCurrentHandles() override;
 
@@ -287,7 +291,7 @@ namespace aura
       //virtual void process_exception(const ::exception & e) override;
 
 
-      //virtual ::pointer<::aura::application>assert_running(const ::string & pszAppId) override;
+      //virtual ::pointer<::aura::application>assert_running(const ::scoped_string & scopedstrAppId) override;
 
       //bool is_task_set() const override;
 
@@ -299,7 +303,7 @@ namespace aura
 
       virtual bool assert_user_logged_in() override;
 
-      virtual string matter_as_string(const ::string & pszMatter, const ::string & pszMatter2 = nullptr) override;
+      virtual string matter_as_string(const ::scoped_string & scopedstrMatter, const ::scoped_string & scopedstrMatter2 = nullptr) override;
 
 
 
@@ -345,7 +349,7 @@ namespace aura
       //virtual void set_env_var(const string & payload, const string & value) override;
 
 
-      virtual ::draw2d::printer * get_printer(const ::string & pszDeviceName) override;
+      virtual ::draw2d::printer * get_printer(const ::scoped_string & scopedstrDeviceName) override;
 
 
       virtual ::image::icon * set_icon(::object * pobject, ::image::icon * picon, bool bBigIcon) override;
@@ -359,8 +363,8 @@ namespace aura
       //virtual ::user::interaction * user_interaction_from_oswindow(::windowing::window * pwindow);
 
 
-      //virtual int hotplugin_host_starter_start_sync(const ::string & pszCommandLine, ::aura::application * papp, hotplugin::host * phost, hotplugin::plugin * pplugin = nullptr);
-      //virtual int hotplugin_host_host_starter_start_sync(const ::string & pszCommandLine, ::aura::application * papp, hotplugin::host * phost, hotplugin::plugin * pplugin = nullptr);
+      //virtual int hotplugin_host_starter_start_sync(const ::scoped_string & scopedstrCommandLine, ::aura::application * papp, hotplugin::host * phost, hotplugin::plugin * pplugin = nullptr);
+      //virtual int hotplugin_host_host_starter_start_sync(const ::scoped_string & scopedstrCommandLine, ::aura::application * papp, hotplugin::host * phost, hotplugin::plugin * pplugin = nullptr);
 
       //virtual void on_update_impact(::user::impact * pimpact, ::user::impact * pviewSender, lparam lHint, object * pHint);
 
@@ -379,7 +383,7 @@ namespace aura
 
       //virtual ::html::html * create_html();
 
-      //virtual string http_get(const ::string & strUrl, ::property_set & set) override;
+      //virtual string http_get(const ::scoped_string & scopedstrUrl, ::property_set & set) override;
 
       //virtual bool compress_ungz(const ::stream & os, const ::stream & is) override;
 
@@ -395,7 +399,7 @@ namespace aura
       //application();
       //~ application() override;
       
-      //virtual void locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const ::string & strLocale, const ::string & strSchema);
+      //virtual void locale_schema_matter(string_array_base & stra, const string_array_base & straMatterLocator, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema);
       //virtual string get_locale_schema_dir();
 
 
@@ -424,7 +428,7 @@ namespace aura
 
       void install_message_routing(::channel * pchannel) override;
 
-      virtual string dialog_box(const ::string & pszMatter, ::property_set & propertyset) override;
+      virtual string dialog_box(const ::scoped_string & scopedstrMatter, ::property_set & propertyset) override;
 
       //virtual void application_menu_update() override;
 
@@ -451,12 +455,12 @@ namespace aura
       //virtual bool is_set_finish() const override;
 
 
-      virtual void on_change_theme() override;
-      virtual string get_theme() override;
+      // virtual void on_change_theme() override;
+      // virtual string get_theme() override;
 
 
-      //virtual ::pointer<::acme::exclusive>get_exclusive(string str, LPSECURITY_ATTRIBUTES psa) override;
-      //virtual bool exclusive_fails(string str, LPSECURITY_ATTRIBUTES psa) override;
+      //virtual ::pointer<::acme::exclusive>get_exclusive(const ::scoped_string & scopedstr, LPSECURITY_ATTRIBUTES psa) override;
+      //virtual bool exclusive_fails(const ::scoped_string & scopedstr, LPSECURITY_ATTRIBUTES psa) override;
 
 
       //virtual bool start_application(bool bSynch, ::request * prequest) override;
@@ -478,28 +482,28 @@ namespace aura
       //// os_* functions generally
       //// reserves a lot of surprises from each
       //// operating system specific behavior
-      //virtual void auto pmessagebox = __initialize_new ::message_box(::user::interaction_base * puiOwner, const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
+      //virtual void auto pmessagebox = __initialize_new ::message_box(::user::interaction_base * puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const ::user::e_message_box & emessagebox = ::user::e_message_box_ok, ::callback callback = ::callback());
 
 //pmessagebox->sync();
 
 
-      //virtual void ui_message_box(::user::interaction_base * puiOwner, const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
-      //virtual void ui_message_box_timeout(::user::interaction_base * puiOwner, const ::string & pszMessage, const ::string & pszTitle = nullptr, const class ::time& timeTimeOut = time::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
+      //virtual void ui_message_box(::user::interaction_base * puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const ::user::e_message_box & emessagebox = ::user::e_message_box_ok, ::callback callback = ::callback());
+      //virtual void ui_message_box_timeout(::user::interaction_base * puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const class ::time& timeTimeOut = time::infinite(), const ::user::e_message_box & emessagebox = ::user::e_message_box_ok, ::callback callback = ::callback());
 
 
       //using ::aura::context_thread::message_box;
-      //virtual void message_box(::user::interaction_base * puiOwner, const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
-      //virtual void message_box_timeout(::user::interaction_base * puiOwner, const ::string & pszMessage, const ::string & pszTitle = nullptr, const class ::time& timeTimeOut = time::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
+      //virtual void message_box(::user::interaction_base * puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const ::user::e_message_box & emessagebox = ::user::e_message_box_ok, ::callback callback = ::callback());
+      //virtual void message_box_timeout(::user::interaction_base * puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const class ::time& timeTimeOut = time::infinite(), const ::user::e_message_box & emessagebox = ::user::e_message_box_ok, ::callback callback = ::callback());
 
 
       //virtual void on_file_new() override;
 
 
       //virtual string get_title() override;
-      //virtual string_array get_categories() override;
+      //virtual string_array_base get_categories() override;
 
       virtual void defer_create_keyboard() override;
-      //virtual bool set_keyboard_layout(const ::string & pszPath, const ::action_context & action_context);
+      //virtual bool set_keyboard_layout(const ::scoped_string & scopedstrPath, const ::action_context & action_context);
 
 
       //virtual bool enable_application_events(::particle * pparticle, bool bEnable) override;
@@ -532,8 +536,8 @@ namespace aura
       virtual void on_thread_on_idle(::thread * pthread,int lCount) override;
 
 
-      //virtual bool app_set(string strPath, string strValue) override;
-      //virtual string app_get(string strPath, string strDefault = "") override;
+      //virtual bool app_set(const ::scoped_string & scopedstrPath, const ::scoped_string & scopedstrValue) override;
+      //virtual string app_get(const ::scoped_string & scopedstrPath, const ::scoped_string & scopedstrDefault = "") override;
 
 
       //virtual bool Ex2OnAppInstall();
@@ -615,7 +619,7 @@ namespace aura
       //virtual bool on_install();
       //virtual bool on_uninstall();
 
-      //virtual bool system_add_app_install(const ::string & pszId, const ::string & pszBuild) override;
+      //virtual bool system_add_app_install(const ::scoped_string & scopedstrId, const ::scoped_string & scopedstrBuild) override;
 
       //virtual void TermThread(HINSTANCE hInstTerm);
 
@@ -625,7 +629,7 @@ namespace aura
       //virtual itask get_thread_id();
 
 
-      //virtual bool _001OnDDECommand(const ::string & pcsz) override;
+      //virtual bool _001OnDDECommand(const ::scoped_string & scopedstr) override;
 
       virtual void _001InitializeShellOpen() override;
       virtual void _001OnFileNew(::message::message * pmessage) override;
@@ -635,9 +639,9 @@ namespace aura
       //virtual string multimedia_audio_mixer_get_default_implementation_name() override;
       //virtual string veriwell_multimedia_music_midi_get_default_implementation_name() override;
 
-      //virtual bool get_temp_file_name_template(string & str, const ::string & lpszName, const ::string & pszExtension, const ::string & pszTemplate) override;
+      //virtual bool get_temp_file_name_template(string & str, const ::scoped_string & scopedstrName, const ::scoped_string & scopedstrExtension, const ::scoped_string & scopedstrTemplate) override;
 
-      //virtual bool get_temp_file_name(string & str, const ::string & lpszName, const ::string & pszExtension) override;
+      //virtual bool get_temp_file_name(string & str, const ::scoped_string & scopedstrName, const ::scoped_string & scopedstrExtension) override;
 
       //service_base * get_service();
       //virtual service_base * allocate_new_service() override;
@@ -657,7 +661,7 @@ namespace aura
 
       /// return true if this instance might continue execution
       /// bHandled true if some action was done in response to this ___new additional instance creation
-      //virtual void on_exclusive_instance_conflict(bool & bHandled, enum_exclusive_instance eexclusive, string strId) override;
+      //virtual void on_exclusive_instance_conflict(bool & bHandled, enum_exclusive_instance eexclusive, const ::scoped_string & scopedstrId) override;
 
       /// return true if this instance might continue execution
       /// bHandled true if some action was done in response to this ___new additional instance creation
@@ -665,13 +669,13 @@ namespace aura
 
             /// return true if this instance might continue execution
       /// bHandled true if some action was done in response to this ___new additional instance creation
-      //virtual bool on_exclusive_instance_local_conflict_id(bool & bHandled, string strId) override;
+      //virtual bool on_exclusive_instance_local_conflict_id(bool & bHandled, const ::scoped_string & scopedstrId) override;
 
       /// return true if the external additional instance might continue execution
       /// bHandled true if some action was done in response to the external aaa_memory_new additional instance creation
-      //virtual void on_additional_local_instance(bool & bHandled, string strModule, int iPid, string strCommandLine) override;
+      //virtual void on_additional_local_instance(bool & bHandled, const ::scoped_string & scopedstrModule, int iPid, const ::scoped_string & scopedstrCommandLine) override;
 
-      //virtual void on_new_instance(string strModule, const ::atom & idPid) override;
+      //virtual void on_new_instance(const ::scoped_string & scopedstrModule, const ::atom & idPid) override;
 
       //virtual string get_local_mutex_id() override;
       //virtual string get_global_mutex_id() override;
@@ -702,10 +706,10 @@ namespace aura
       //// name by Mummi (Japanese -> Guddo : from English : Good, ca2 interpretation : Goods).
       //// get/set serializables to user directory
       //template < typename TYPE >
-      //bool gudo_get(const ::string & strKey, TYPE & t);
+      //bool gudo_get(const ::scoped_string & scopedstrKey, TYPE & t);
 
       //template < typename TYPE >
-      //bool gudo_set(const ::string & strKey, const TYPE & t);
+      //bool gudo_set(const ::scoped_string & scopedstrKey, const TYPE & t);
 
 
       //virtual bool assert_user_logged_in();
@@ -720,15 +724,15 @@ namespace aura
 
 
 
-      //virtual string http_get_locale_schema(const ::string & pszUrl, const ::string & pszLocale, const ::string & pszSchema) override;
+      //virtual string http_get_locale_schema(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema) override;
 
       //virtual void on_update_matter_locator() override;
 
-      //virtual void locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const ::string & strLocale, const ::string & strSchema) override;
-      //virtual void matter_locator_locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const ::string & strLocale, const ::string & strSchema) override;
+      //virtual void locale_schema_matter(string_array_base & stra, const string_array_base & straMatterLocator, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema) override;
+      //virtual void matter_locator_locale_schema_matter(string_array_base & stra, const string_array_base & straMatterLocator, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema) override;
 
-      //virtual string get_locale_schema_dir(const ::string & strLocale, const ::string & strSchema) override;
-      //virtual string get_locale_schema_dir(const ::string & strLocale) override;
+      //virtual string get_locale_schema_dir(const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema) override;
+      //virtual string get_locale_schema_dir(const ::scoped_string & scopedstrLocale) override;
       //virtual string get_locale_schema_dir() override;
 
       //virtual void set_locale(const string & pcsz, const ::action_context & action_context) override;
@@ -742,9 +746,9 @@ namespace aura
 
 
       //virtual void fill_locale_schema(::text::international::locale_schema & localeschema) override;
-      //virtual void fill_locale_schema(::text::international::locale_schema & localeschema,const string & pszLocale,const string & pszSchema) override;
+      //virtual void fill_locale_schema(::text::international::locale_schema & localeschema,const ::scoped_string & scopedstrLocale,const ::scoped_string & scopedstrSchema) override;
 
-      //virtual bool platform_open_by_file_extension(::collection::index iEdge, const ::string & pszPathName, ::request * prequest = nullptr) override;
+      //virtual bool platform_open_by_file_extension(::collection::index iEdge, const ::scoped_string & scopedstrPathName, ::request * prequest = nullptr) override;
       //virtual bool platform_open_by_file_extension(::collection::index iEdge,::create * pcc) override;
 
 
@@ -761,7 +765,7 @@ namespace aura
       //virtual void _001FranceExit() override;
 
 
-      //virtual string lstr(const ::atom & atom, string strDefault = "") override;
+      //virtual string lstr(const ::atom & atom, const ::scoped_string & scopedstrDefault = "") override;
 
 
 
@@ -779,7 +783,7 @@ namespace aura
 
       //virtual void play_audio(::payload payloadFile, bool bSynch = false);
 
-      //virtual void post_critical_error_message(const ::string & pszMessage, bool bShowLog = true) override;
+      //virtual void post_critical_error_message(const ::scoped_string & scopedstrMessage, bool bShowLog = true) override;
 
       //virtual void show_critical_error_log() override;
 
@@ -805,13 +809,13 @@ namespace aura
       //virtual string get_app_id(string wstr) override;
 
 
-      //virtual void install_trace(const ::string & str) override;
+      //virtual void install_trace(const ::scoped_string & scopedstr) override;
       //virtual void install_trace(double dRate) override;
       //virtual bool register_spa_file_type() override;
 
-      //virtual bool low_is_app_app_admin_running(string strPlatform, string strConfiguration) override;
-      //virtual void defer_start_program_files_app_app_admin(string strPlatform, string strConfiguration) override;
-      //virtual void start_program_files_app_app_admin(string strPlatform, string strConfiguration) override;
+      //virtual bool low_is_app_app_admin_running(const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration) override;
+      //virtual void defer_start_program_files_app_app_admin(const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration) override;
+      //virtual void start_program_files_app_app_admin(const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration) override;
 
 
 
@@ -831,7 +835,7 @@ namespace aura
       virtual void add_user_interaction(::user::interaction * puserinteraction) override;
       virtual void erase_user_interaction(::user::interaction * puserinteraction) override;
 
-      void send_message_to_windows(::enum_message emessage, ::wparam wparam, ::lparam lparam) override; // with tbs in <3
+      void send_message_to_windows(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam) override; // with tbs in <3
 
       void route_message_to_windows(::message::message * pmessage) override; // with tbs in <3
 
@@ -846,7 +850,7 @@ namespace aura
       // user virtual ::user::document * place_hold(::user::interaction * pinteraction);
 
 
-      virtual void post_message(::enum_message emessage, ::wparam wparam = {}, ::lparam lparam = {}) override;
+      virtual void post_message(::user::enum_message eusermessage, ::wparam wparam = {}, ::lparam lparam = {}) override;
 
 
       //virtual ::image::icon * set_icon(object * pparticle, ::image::icon * picon, bool bBigIcon);
@@ -883,7 +887,7 @@ void initialize_context() override;
       void close_application() override;
 
 
-      //user virtual ::pointer<::user::document>defer_create_impact(string strImpact, ::user::interaction * puiParent, e_window_flag ewindowflag, const ::atom & atom = nullptr);
+      //user virtual ::pointer<::user::document>defer_create_impact(const ::scoped_string & scopedstrImpact, ::user::interaction * puiParent, e_window_flag ewindowflag, const ::atom & atom = nullptr);
 
 
       void HideApplication() override;
@@ -913,9 +917,9 @@ void initialize_context() override;
       //virtual bool is_system() const override;
       //virtual bool is_session() const override;
 
-      //virtual unsigned int guess_code_page(const string& str) override;
+      //virtual unsigned int guess_code_page(const ::scoped_string & scopedstr) override;
 
-      //virtual int _sync_message_box(::user::interaction_base* puiOwner, const ::string & pszMessage, const ::string & pszTitle, unsigned int fuStyle) override;
+      //virtual int _sync_message_box(::user::interaction_base* puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, unsigned int fuStyle) override;
 
       //virtual bool is_serviceable() const override;
 
@@ -940,7 +944,7 @@ void initialize_context() override;
       virtual void process_window_procedure_exception(const ::exception & e, ::message::message* pmessage) override;
 
 //      void EnableModelessEx(bool bEnable);
-//      bool GetResourceData(unsigned int nID, const ::string & lcszType, memory& storage);
+//      bool GetResourceData(unsigned int nID, const ::scoped_string & scopedstrType, memory& storage);
 
 //#ifdef WINDOWS
 //      virtual bool OnMessageWindowMessage(MESSAGE * pmsg);
@@ -949,7 +953,7 @@ void initialize_context() override;
 //      virtual bool OnX11WindowMessage(void* pev);
 //#endif
 
-      bool CreateFileFromRawResource(unsigned int nID, const ::string & lcszType, const ::string & pcszFilePath);
+      bool CreateFileFromRawResource(unsigned int nID, const ::scoped_string & scopedstrType, const ::scoped_string & scopedstrFilePath);
 
       void OnUpdateRecentFileMenu(::message::command* pcommand);
 
@@ -959,7 +963,7 @@ void initialize_context() override;
 
       // set regsitry key name to be used by application's
       // profile member functions; prevents writing to an INI spfile->
-      virtual void SetRegistryKey(const ::string & pszRegistryKey) override;
+      virtual void SetRegistryKey(const ::scoped_string & scopedstrRegistryKey) override;
 
       virtual void SetRegistryKey(unsigned int nIDRegistryKey) override;
 
@@ -1014,10 +1018,10 @@ void initialize_context() override;
 
       virtual int track_popup_menu(::menu::track_popup* ptrackpopup) override;
 
-      virtual bool get_fs_size(string& strSize, const ::string & pszPath, bool& bPending) override;
-      virtual bool get_fs_size(long long& i64Size, const ::string & pszPath, bool& bPending) override;
+      virtual bool get_fs_size(string& strSize, const ::scoped_string & scopedstrPath, bool& bPending) override;
+      virtual bool get_fs_size(long long& i64Size, const ::scoped_string & scopedstrPath, bool& bPending) override;
 
-      virtual void set_title(const ::string & pszTitle) override;
+      virtual void set_title(const ::scoped_string & scopedstrTitle) override;
 
 
       virtual bool _001CloseApplicationByUser(::pointer<::user::interaction>puserinteractionExcept) override;
@@ -1040,7 +1044,7 @@ void initialize_context() override;
       virtual void prepare_form(atom atom, ::form_document* pformdocument) override;
 
 
-      void report_error(const ::exception & exception, int iMessageFlags, const ::string & pszTopic) override;
+      void report_error(const ::exception & exception, int iMessageFlags, const ::scoped_string & scopedstrTopic) override;
 
 
       bool can_close_application() override;
@@ -1053,13 +1057,13 @@ void initialize_context() override;
 
       virtual ::user::interaction* create_menu_interaction() override;
 
-      void on_song_added(const string& str) override;
+      void on_song_added(const ::scoped_string & scopedstr) override;
 
 
       virtual string get_visual_studio_build() override;
 
 
-      string sound_path(const ::string & psz) override;
+      string sound_path(const ::scoped_string & scopedstr) override;
       string get_default_playlist_path() override;
 
       
@@ -1076,19 +1080,19 @@ void initialize_context() override;
       string imaging_get_default_implementation_name() override;
 
 
-      void on_additional_local_instance(bool & bHandled, string strModule, int iPid, string strCommandLine) override;
+      void on_additional_local_instance(bool & bHandled, const ::scoped_string & scopedstrModule, int iPid, const ::scoped_string & scopedstrCommandLine) override;
 
 
       // ::user::user * aurauser() override;
       // ::axis::user * axisuser() override;
-      // ::base::user * baseuser() override;
+      // ::berg::user * baseuser() override;
       // ::bred::user * breduser() override;
       // ::core::user * coreuser() override;
 
       void pick_browse(const ::function < void(const ::file::path & path) > & callback) override;
       
-      void pick_media(const char * pszMediaType) override;
-      
+      void pick_media(const ::scoped_string & scopedstrMediaType) override;
+
       void on_prompt_write_file(::user::controller * pusercontroller) override;
       
       //::pointer < ::innate_ui::icon > innate_ui_icon(const ::int_size & size) override;
@@ -1128,15 +1132,15 @@ void initialize_context() override;
 
 //CLASS_DECL_AURA unsigned int c_cdecl application_thread_procedure(LPVOID pvoid);
 
-//typedef ::pointer<::aura::application>(*LPFN_instantiate_application)(::pointer<::aura::application>appParent, const ::string & pszId);
+//typedef ::pointer<::aura::application>(*LPFN_instantiate_application)(::pointer<::aura::application>appParent, const ::scoped_string & scopedstrId);
 
 //extern CLASS_DECL_AURA LPFN_instantiate_application g_lpfn_instantiate_application;
 
 //#ifdef WINDOWS_DESKTOP
 //
-//CLASS_DECL_AURA BOOL LaunchAppIntoDifferentSession(const ::string & pszProcess, const ::string & pszCommand, const ::string & pszDir, STARTUPINFO* psi, PROCESS_INFORMATION* ppi, int iSession = -1);
+//CLASS_DECL_AURA BOOL LaunchAppIntoDifferentSession(const ::scoped_string & scopedstrProcess, const ::scoped_string & scopedstrCommand, const ::scoped_string & scopedstrDir, STARTUPINFO* psi, PROCESS_INFORMATION* ppi, int iSession = -1);
 //
-//CLASS_DECL_AURA BOOL LaunchAppIntoSystemAcc(const ::string & pszProcess, const ::string & pszCommand, const ::string & pszDir, STARTUPINFO* psi, PROCESS_INFORMATION* ppi);
+//CLASS_DECL_AURA BOOL LaunchAppIntoSystemAcc(const ::scoped_string & scopedstrProcess, const ::scoped_string & scopedstrCommand, const ::scoped_string & scopedstrDir, STARTUPINFO* psi, PROCESS_INFORMATION* ppi);
 //
 //#endif // WINDOWS_DESKTOP
 

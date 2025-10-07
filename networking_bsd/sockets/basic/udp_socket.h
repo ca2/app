@@ -90,7 +90,7 @@ namespace sockets_bsd
       \lparam port Port number
       \lparam range Port range
       \return 0 if bind succeeded */
-      int Bind(const ::string & strHost, ::networking::port_t & port, int range = 1);
+      int Bind(const ::scoped_string & scopedstrHost, ::networking::port_t & port, int range = 1);
       /** To receive data on a specific interface:port, use this.
       \lparam a Ip address
       \lparam port Port number
@@ -119,7 +119,7 @@ namespace sockets_bsd
       \lparam host Hostname
       \lparam port Port number
       \return true if successful */
-      bool open(const string & host, ::networking::port_t port);
+      bool open(const ::scoped_string & scopedstrHost, ::networking::port_t port);
       /** Define remote host.
       \lparam a Address of remote host, ipv6
       \lparam port Port of remote host
@@ -131,22 +131,22 @@ namespace sockets_bsd
       bool open(::networking::address * address);
 
       /** Send to specified host */
-      void SendToBuf(const string &, ::networking::port_t, const char * data, int len, int flags = 0);
+      void SendToBuf(const ::scoped_string & scopedstr, ::networking::port_t, const_char_pointer data, int len, int flags = 0);
       /** Send to specified address */
-      void SendToBuf(const in_addr & a, ::networking::port_t, const char * data, int len, int flags = 0);
+      void SendToBuf(const in_addr & a, ::networking::port_t, const_char_pointer data, int len, int flags = 0);
       /** Send to specified ipv6 address */
-      void SendToBuf(const in6_addr & a, ::networking::port_t, const char * data, int len, int flags = 0);
+      void SendToBuf(const in6_addr & a, ::networking::port_t, const_char_pointer data, int len, int flags = 0);
       /** Send to specified socket address */
-      void SendToBuf(::networking::address * address, const char * data, int len, int flags = 0);
+      void SendToBuf(::networking::address * address, const_char_pointer data, int len, int flags = 0);
 
       /** Send string to specified host */
-      void SendTo(const string &, ::networking::port_t, const string &, int flags = 0);
+      void SendTo(const ::scoped_string & scopedstrHost, ::networking::port_t, const ::scoped_string & scopedstr, int flags = 0);
       /** Send string to specified address */
-      void SendTo(in_addr, ::networking::port_t, const string &, int flags = 0);
+      void SendTo(in_addr, ::networking::port_t, const ::scoped_string & scopedstr, int flags = 0);
       /** Send string to specified ipv6 address */
-      void SendTo(in6_addr, ::networking::port_t, const string &, int flags = 0);
+      void SendTo(in6_addr, ::networking::port_t, const ::scoped_string & scopedstr, int flags = 0);
       /** Send string to specified socket address */
-      void SendTo(::networking::address * address, const string &, int flags = 0);
+      void SendTo(::networking::address * address, const ::scoped_string & scopedstr, int flags = 0);
 
       /** Send to connected address */
       //using ::file::file::write;
@@ -166,8 +166,8 @@ namespace sockets_bsd
       int GetMulticastTTL();
       bool SetMulticastLoop(bool = true);
       bool IsMulticastLoop();
-      void AddMulticastMembership(const string & group, const string & intf = "0.0.0.0", int if_index = 0);
-      void DropMulticastMembership(const string & group, const string & intf = "0.0.0.0", int if_index = 0);
+      void AddMulticastMembership(const ::scoped_string & scopedstrGroup, const ::scoped_string & scopedstrInterface = "0.0.0.0", int if_index = 0);
+      void DropMulticastMembership(const ::scoped_string & scopedstrGroup, const ::scoped_string & scopedstrInterface = "0.0.0.0", int if_index = 0);
       /** multicast, ipv6 only */
       void SetMulticastHops(int = -1);
       /** multicast, ipv6 only */

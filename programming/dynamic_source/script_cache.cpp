@@ -66,24 +66,24 @@ namespace dynamic_source
    }
 
 
-   ::pointer<ds_script>script_cache::create_new_ds_script(const ::string & strName)
+   ::pointer<ds_script>script_cache::create_new_ds_script(const ::scoped_string & scopedstrName)
    {
 
-      auto pscript = __create_new< ds_script >();
+      auto pscript = øcreate_new< ds_script >();
 
       pscript->m_pmanager = m_pmanager;
 
-      pscript->m_strName = strName;
+      pscript->m_strName = scopedstrName;
 
       return ::transfer(pscript);
 
    }
 
 
-   script * script_cache::get(const ::string & lpcszName)
+   script * script_cache::get(const ::scoped_string & scopedstrName)
    {
 
-      string strName(lpcszName);
+      string strName(scopedstrName);
 
 #ifdef WINDOWS
 
@@ -91,28 +91,27 @@ namespace dynamic_source
 
 #endif
 
-      synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-      auto passoc = m_map.get_item(strName);
+      auto & pscript = m_map[strName];
 
-      if (::is_set(passoc)
-         && passoc->element2().is_set()
-         && passoc->element2()->m_strName == strName)
+      if (pscript.is_set()
+         && pscript->m_strName == strName)
       {
 
-         return passoc->element2();
+         return pscript;
 
       }
 
-      return passoc->payload() = create_new_ds_script(strName);
+      return pscript = create_new_ds_script(strName);
 
    }
 
 
-   script * script_cache::register_script(const ::string & lpcszName, script * pscript)
+   script * script_cache::register_script(const ::scoped_string & scopedstrName, script * pscript)
    {
 
-      string strName(lpcszName);
+      string strName(scopedstrName);
 
 #ifdef WINDOWS
 
@@ -122,12 +121,12 @@ namespace dynamic_source
 
       single_lock synchronouslock(synchronization(), true);
 
-      auto ppair = m_map.find_item(strName);
+      auto iterator = m_map.find(strName);
 
-      if(ppair)
+      if(iterator)
       {
 
-         ppair->payload() = pscript;
+         iterator->payload() = pscript;
 
          return pscript;
 
@@ -142,17 +141,17 @@ namespace dynamic_source
    }
 
 
-   ::pointer<script_instance>script_cache::create_instance(const ::string & lpcszName, ::pointer<script> & pscript)
+   ::pointer<script_instance>script_cache::create_instance(const ::scoped_string & scopedstrName, ::pointer<script> & pscript)
    {
 
       pscript = nullptr;
 
-      if(string_begins(lpcszName, "netnode://"))
+      if(string_begins(scopedstrName, "netnode://"))
       {
          
          single_lock synchronouslock(synchronization(), true);
 
-         pscript  = get(lpcszName);
+         pscript  = get(scopedstrName);
 
          synchronouslock.unlock();
 
@@ -160,14 +159,14 @@ namespace dynamic_source
 
       }
 
-      string strName(lpcszName);
+      string strName(scopedstrName);
       
-      strName = m_pmanager->real_path(lpcszName);
+      strName = m_pmanager->real_path(scopedstrName);
       
       if (strName.is_empty())
       {
 
-         strName = m_pmanager->real_path(string(lpcszName) + ".ds");
+         strName = m_pmanager->real_path(string(scopedstrName) + ".ds");
 
       }
       
@@ -189,7 +188,7 @@ namespace dynamic_source
       if (!slScript._wait(5_s))
       {
          
-         throw ::heating_up_exception("Compiling script " + lpcszName);
+         throw ::heating_up_exception("Compiling script " + scopedstrName);
 
       }
 
@@ -235,7 +234,7 @@ namespace dynamic_source
 
       single_lock synchronouslock(synchronization(), true);
 
-      m_map.erase_item(pscript->m_strName);
+      m_map.erase(pscript->m_strName);
 
    }
 
@@ -261,17 +260,17 @@ namespace dynamic_source
    }
 
 
-   void script_cache::set_out_of_date(string str)
+   void script_cache::set_out_of_date(const ::scoped_string & scopedstr)
    {
 
-      if (str.is_empty())
+      if (scopedstr.is_empty())
       {
 
          return;
 
       }
 
-      ::file::path pathChanged = str;
+      ::file::path pathChanged = scopedstr;
 
       single_lock synchronouslock(synchronization(), true);
 

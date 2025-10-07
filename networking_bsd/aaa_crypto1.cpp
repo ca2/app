@@ -673,12 +673,12 @@ namespace crypto
       memory storageDecrypt;
       memory storageEncrypt;
       memory storageKey;
-      if (pszDecrypt == nullptr || strlen(pszDecrypt) == 0)
+      if (scopedstrDecrypt == nullptr || strlen(scopedstrDecrypt) == 0)
       {
          strEncrypt = "";
          return 0;
       }
-      storageDecrypt.from_string(pszDecrypt);
+      storageDecrypt.from_string(scopedstrDecrypt);
 
       auto psystem = system();
 
@@ -724,7 +724,7 @@ namespace crypto
    unsigned int crypto::crc32(unsigned int dwPrevious, const ::scoped_string & scopedstr)
    {
 
-      return (unsigned int)::crc32(dwPrevious, (const Bytef*)psz, (unsigned int)strlen(psz));
+      return (unsigned int)::crc32(dwPrevious, (const Bytef*)psz, (unsigned int)strlen(scopedstr));
 
    }
 
@@ -734,7 +734,7 @@ namespace crypto
 
       memory mem;
 
-      mem.assign(psz, strlen(psz));
+      mem.assign(scopedstr, strlen(scopedstr));
 
       return md5(mem);
 
@@ -746,7 +746,7 @@ namespace crypto
 
       memory mem;
 
-      mem.assign(psz, strlen(psz));
+      mem.assign(scopedstr, strlen(scopedstr));
 
       return sha1(mem);
 
@@ -758,7 +758,7 @@ namespace crypto
 
       memory mem;
 
-      mem.assign(psz, strlen(psz));
+      mem.assign(scopedstr, strlen(scopedstr));
 
       return nessie(mem);
 
@@ -969,7 +969,7 @@ namespace crypto
    bool crypto::encrypt(memory& storageEncrypt, const ::scoped_string & scopedstrDecrypt, const ::scoped_string & scopedstrSalt)
    {
       memory memoryDecrypt;
-      memoryDecrypt.from_asc(pszDecrypt);
+      memoryDecrypt.from_asc(scopedstrDecrypt);
       return encrypt(storageEncrypt, memoryDecrypt, pszSalt);
    }
 
@@ -1004,8 +1004,8 @@ namespace crypto
    // slow hash is more secure for personal attack possibility (strong fast hashs are only good for single transactional operations and not for a possibly lifetime password)
    string crypto::v5_get_password_hash(const ::scoped_string & scopedstrSalt, const ::scoped_string & scopedstrPassword, int iOrder)
    {
-      string strHash(pszPassword);
-      string strSalt(pszSalt);
+      string strHash(scopedstrPassword);
+      string strSalt(scopedstrSalt);
       strSalt = strSalt.left(CA4_CRYPT_V5_SALT_BYTES);
       for (int i = iOrder; i < CA4_CRYPT_V5_FINAL_HASH_BYTES - CA4_BASE_HASH_DIGEST_LENGTH; i++)
       {
@@ -1017,8 +1017,8 @@ namespace crypto
 
    string crypto::v5_get_passhash(const ::scoped_string & scopedstrSalt, const ::scoped_string & scopedstrPassword, int iMaxOrder)
    {
-      string strHash(pszPassword);
-      string strSalt(pszSalt);
+      string strHash(scopedstrPassword);
+      string strSalt(scopedstrSalt);
       strSalt = strSalt.left(CA4_CRYPT_V5_SALT_BYTES);
       for (int i = 0; i < iMaxOrder; i++)
       {
@@ -1030,17 +1030,17 @@ namespace crypto
 
    bool crypto::v5_compare_password(const ::scoped_string & scopedstrPassword, const ::scoped_string & scopedstrHash, int iOrder)
    {
-      string strHash(pszHash);
+      string strHash(scopedstrHash);
       string strSalt = strHash.left(CA4_CRYPT_V5_SALT_BYTES);
       return strHash == v5_get_password_hash(strSalt, pszPassword, iOrder);
    }
 
    bool crypto::v5_validate_plain_password(const ::scoped_string & scopedstrPassword)
    {
-      string str(pszPassword);
+      string str(scopedstrPassword);
       if (str.length() < 6)
          return false;
-      return ::str::has_all_v1(pszPassword);
+      return ::str::has_all_v1(scopedstrPassword);
    }
 
    string crypto::v5_get_password_hash(const ::scoped_string & scopedstrPassword, int iOrder)
@@ -1066,7 +1066,7 @@ namespace crypto
 
 
 
-   void crypto::hmac(void* result, const string& strMessage, const string& strKey)
+   void crypto::hmac(void* result, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrKey)
    {
 
 #ifndef UNIVERSAL_WINDOWS
@@ -1161,7 +1161,7 @@ namespace crypto
             ::winrt::Windows::Security::Cryptography::Core::AsymmetricAlgorithmNames::RsaPkcs1);
 
 
-      return __allocate ::crypto::rsa(get_app(), provider->CreateKeyPair(1024));
+      return øallocate ::crypto::rsa(get_app(), provider->CreateKeyPair(1024));
 
    }
 
@@ -1413,7 +1413,7 @@ namespace crypto
 //   }
 
 
-   string crypto::spa_login_crypt(const ::scoped_string & scopedstr, const string& strRsa)
+   string crypto::spa_login_crypt(const ::scoped_string & scopedstr, const ::scoped_string & scopedstrRsa)
    {
 
       auto prsa = __create_rsa(strRsa);
@@ -1422,7 +1422,7 @@ namespace crypto
 
       ::memory memIn;
 
-      memIn.from_hex(psz);
+      memIn.from_hex(scopedstr);
 
       memory.set_size(2048);
 
@@ -1444,7 +1444,7 @@ namespace crypto
    }
 
 
-   string crypto::spa_login_decrypt(const ::scoped_string & scopedstr, const string& strRsa)
+   string crypto::spa_login_decrypt(const ::scoped_string & scopedstr, const ::scoped_string & scopedstrRsa)
    {
 
       auto prsa = __create_rsa(strRsa);
@@ -1453,7 +1453,7 @@ namespace crypto
 
       ::memory memIn;
 
-      memIn.from_hex(psz);
+      memIn.from_hex(scopedstr);
 
       memory.set_size(2048);
 
@@ -1480,7 +1480,7 @@ namespace crypto
 
       ::memory memIn;
 
-      memIn.from_hex(psz);
+      memIn.from_hex(scopedstr);
 
       memory.set_size(2048);
 
@@ -1501,7 +1501,7 @@ namespace crypto
 
    }
 
-   string crypto::spa_auth_decrypt(const ::scoped_string & scopedstr, const string& strRsa)
+   string crypto::spa_auth_decrypt(const ::scoped_string & scopedstr, const ::scoped_string & scopedstrRsa)
    {
 
       auto prsa = __create_rsa(strRsa);
@@ -1510,7 +1510,7 @@ namespace crypto
 
       ::memory memIn;
 
-      memIn.from_hex(psz);
+      memIn.from_hex(scopedstr);
 
       memory.set_size(2048);
 
@@ -1539,7 +1539,7 @@ namespace crypto
 
       ::memory memIn;
 
-      memIn.from_hex(psz);
+      memIn.from_hex(scopedstr);
 
       memory.set_size(2048);
 
@@ -1561,7 +1561,7 @@ namespace crypto
    }
 
 
-   void crypto::np_make_zigbert_rsa(const string& strDir, const string& strSignerPath, const string& strKeyPath, const string& strOthersPath, const string& strSignature)
+   void crypto::np_make_zigbert_rsa(const ::scoped_string & scopedstrDir, const ::scoped_string & scopedstrSignerPath, const ::scoped_string & scopedstrKeyPath, const ::scoped_string & scopedstrOthersPath, const ::scoped_string & scopedstrSignature)
    {
 
 #if !defined(UNIVERSAL_WINDOWS) && defined(HAVE_OPENSSL)
@@ -1653,7 +1653,7 @@ namespace crypto
 
       ::memory memIn;
 
-      memIn.assign(psz, strlen(psz));
+      memIn.assign(scopedstr, strlen(scopedstr));
 
       memory.set_size(2048);
 
@@ -1682,7 +1682,7 @@ namespace crypto
 
       ::memory memIn;
 
-      memIn.from_hex(psz);
+      memIn.from_hex(scopedstr);
 
       memory.set_size(2048);
 
@@ -1711,7 +1711,7 @@ namespace crypto
    ::pointer<::crypto::rsa>crypto::generate_rsa_key()
    {
 
-      auto popensslrsa = __allocate ::crypto_openssl::rsa();
+      auto popensslrsa = øallocate ::crypto_openssl::rsa();
 
       throw todo;
 
@@ -1804,7 +1804,7 @@ namespace crypto
    }
 
 
-   ::pointer<rsa>crypto::read_priv_pem(const string& strFile)
+   ::pointer<rsa>crypto::read_priv_pem(const ::scoped_string & scopedstrFile)
    {
 
       auto memory = file_system()->as_memory(strFile);
@@ -1816,7 +1816,7 @@ namespace crypto
 
       }
 
-      auto popensslrsa = __allocate ::crypto_openssl::rsa();
+      auto popensslrsa = øallocate ::crypto_openssl::rsa();
 
       throw todo;
 
@@ -1835,7 +1835,7 @@ namespace crypto
    }
 
 
-   ::pointer<rsa>crypto::read_pub_pem(const string& strFile)
+   ::pointer<rsa>crypto::read_pub_pem(const ::scoped_string & scopedstrFile)
    {
 
       auto memory = file_system()->as_memory(strFile);
@@ -1847,7 +1847,7 @@ namespace crypto
 
       }
 
-      auto popensslrsa = __allocate ::openssl::rsa();
+      auto popensslrsa = øallocate ::openssl::rsa();
 
       RSA*& prsa = popensslrsa->m_prsa;
 
@@ -1918,7 +1918,7 @@ bool crypt_file_get(const ::scoped_string & scopedstrFile, string & str, const :
 
 string vsstr;
 
-if(!crypt_file_get(pszFile, vsstr, pszSalt))
+if(!crypt_file_get(scopedstrFile, vsstr, pszSalt))
 return false;
 
 str = vsstr;

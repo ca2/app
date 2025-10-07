@@ -35,14 +35,14 @@ namespace dynamic_source
 #endif
 
       
-      virtual void initialize_dynamic_source_session(const string& strId, ::dynamic_source::script_manager* pmanager);
+      virtual void initialize_dynamic_source_session(const ::scoped_string & scopedstrId, ::dynamic_source::script_manager* pmanager);
 
 
    };
 
 
    class CLASS_DECL_APP_PROGRAMMING session_map :
-      virtual public string_map < ::pointer<session >>
+      virtual public string_map_base < ::pointer<session >>
    {
    public:
 

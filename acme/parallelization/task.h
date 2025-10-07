@@ -14,6 +14,7 @@
 #include "acme/parallelization/types.h"
 #include "acme/platform/implementable.h"
 #include "acme/prototype/data/property_container.h"
+#include "acme/prototype/collection/block_array.h"
 #include "acme/prototype/collection/comparable_eq_list.h"
 #include "acme/prototype/collection/procedure_array.h"
 
@@ -87,9 +88,9 @@ DECLARE_ENUMERATION(e_happening, enum_happening);
 class locale;
 
 typedef pointer_array < ::matter > object_array;
-//typedef map < ::task_index, ::pointer<task >>task_map;
-//typedef map < task *, ::task_index > task_id_map;
-using procedure_list = ::list < procedure >;
+//typedef map_base < ::task_index, ::pointer<task >>task_map;
+//typedef map_base < task *, ::task_index > task_id_map;
+using procedure_list_base = ::list_base < procedure >;
 
 //::task_index task_index(itask itask);
 CLASS_DECL_ACME ::task_index current_task_index();
@@ -98,7 +99,7 @@ CLASS_DECL_ACME ::task_index current_task_index();
 class waiting_call_base;
 
 
-using waiting_call_stack = ::comparable_eq_list < ::waiting_call_base * >;
+using waiting_call_stack = ::comparable_eq_list_base < ::waiting_call_base * >;
 
 
 // TTThomas loves handlers. Jeg elsker dig Thomas.
@@ -203,7 +204,7 @@ public:
 
    
    ::procedure_array                               m_procedurea2;
-   ::procedure_list                                m_procedurelistHandling;
+   ::procedure_list_base                           m_procedurelistHandling;
    
    ::pointer < ::locale >                          m_plocale;
 
@@ -214,10 +215,29 @@ public:
    class ::time                                    m_timeDefaultPostedProcedureTimeout;
    class ::time                                    m_timePostedProcedureTimeout;
 
-   
+
+
    ::waiting_call_stack                            m_waitingcallstack;
 
    int m_iExitCode;
+
+
+
+   struct synchronous_lock_description_t
+   {
+   public:
+
+
+      const ::subparticle *m_psubparticleContext;
+      ::subparticle *m_psubparticleSynchronization;
+      const_char_pointer m_pszFile;
+      int m_iLine;
+   };
+
+
+   ::block_array<synchronous_lock_description_t, 64>
+      m_synchronouslockdescriptiona;
+
 
    task();
    ~task() override;
@@ -231,6 +251,12 @@ public:
    
    //void update_new_main_loop_happening() override;
    //bool has_main_loop_happening() override;
+
+   
+   virtual void on_single_lock_lock(::subparticle *psubparticleSynchronization,
+                                            const ::subparticle *psubparticleContext, const_char_pointer pszFile,
+                                            int iLine);
+   virtual void on_single_lock_unlock(::subparticle *psubparticleSynchronization);
 
 
    virtual void __priority_and_affinity();
@@ -262,7 +288,7 @@ public:
 
 
    ::task * get_task() override;
-   const char * get_task_tag() override;
+   const_char_pointer get_task_tag() override;
    
    
    virtual ::acme::user::interaction * get_active_user_interaction();
@@ -288,7 +314,7 @@ public:
 #endif
 
 
-   bool is_task_set() const override;
+   bool is_task_set2() const override;
    //virtual void register_task();
    //virtual void unregister_task();
    
@@ -378,7 +404,7 @@ public:
 
 
 
-   virtual bool is_thread() const override;
+   virtual bool is_thread_class() const override;
    virtual bool task_get_run() const override;
 
    bool is_ready_to_quit() const override;

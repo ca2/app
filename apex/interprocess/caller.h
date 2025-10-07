@@ -20,11 +20,11 @@ namespace interprocess
 
 
 
-      virtual void open(const ::string & strChannel, ::launcher * plauncher = nullptr);
+      virtual void open(const ::scoped_string & scopedstrChannel, ::launcher * plauncher = nullptr);
       virtual void close();
 
 
-      virtual void call(const ::string & strUri, const class time & timeTimeout);
+      virtual void call(const ::scoped_string & scopedstrUri, const class time & timeTimeout);
       //virtual void send(int message,void * pdata,int len, const class time & timeTimeout);
 
 

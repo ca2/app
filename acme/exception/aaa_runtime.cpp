@@ -2,7 +2,7 @@
 
 
 runtime_exception::runtime_exception(const ::scoped_string & scopedstrMessage):
-   ::exception(pszMessage)
+   ::exception(scopedstrMessage)
 {
 
 }

@@ -2,7 +2,7 @@
 
 
 #include "acme/filesystem/filesystem/file_dialog.h"
-#include "base/user/user/image_list.h"
+#include "berg/user/user/image_list.h"
 
 
 namespace userex
@@ -16,9 +16,9 @@ namespace userex
 
 
       ::file::path                     m_pathFolder;
-      ::pointer<::file::listing>      m_plisting;
-      //string_array                     m_straPattern;
-      //string_array                     m_straPatternNames;
+      ::pointer < ::file::listing >    m_plisting;
+      //string_array_base                   m_straPattern;
+      //string_array_base                   m_straPatternNames;
       ::file::file_dialog_filter       m_filedialogfilter;
       string                           m_strLinkPrefix;
       int                              m_iForkAddDib;
@@ -30,7 +30,7 @@ namespace userex
 //      // void assert_ok() const override;
 //      // void dump(dump_context & dumpcontext) const override;
 
-      virtual string_array get_ls_pattern_stra() const;
+      virtual string_array_base get_ls_pattern_stra() const;
 
       void update_data(bool bSaveAndValidate) override;
 
@@ -53,7 +53,7 @@ namespace userex
 
       virtual string get_link_prefix();
 
-      virtual ::file::path get_link_path(string strLink);
+      virtual ::file::path get_link_path(const ::scoped_string & scopedstrLink);
 
       virtual void on_layout(::draw2d::graphics_pointer & pgraphics) override;
 

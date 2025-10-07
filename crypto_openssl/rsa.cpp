@@ -17,14 +17,14 @@ namespace crypto_openssl
 
 
    rsa::rsa(
-      const string& strN,
-      const string& strE,
-      const string& strD,
-      const string& strP,
-      const string& strQ,
-      const string& strDmp1,
-      const string& strDmq1,
-      const string& strIqmp)
+      const ::scoped_string & scopedstrN,
+      const ::scoped_string & scopedstrE,
+      const ::scoped_string & scopedstrD,
+      const ::scoped_string & scopedstrP,
+      const ::scoped_string & scopedstrQ,
+      const ::scoped_string & scopedstrDmp1,
+      const ::scoped_string & scopedstrDmq1,
+      const ::scoped_string & scopedstrIqmp)
    {
 
       BIGNUM* n = BN_new();
@@ -36,14 +36,14 @@ namespace crypto_openssl
       BIGNUM* dmq1 = BN_new();
       BIGNUM* iqmp = BN_new();
 
-      BN_hex2bn(&n, strN);
-      BN_hex2bn(&e, strE);
-      BN_hex2bn(&d, strD);
-      BN_hex2bn(&p, strP);
-      BN_hex2bn(&q, strQ);
-      BN_hex2bn(&dmp1, strDmp1);
-      BN_hex2bn(&dmq1, strDmq1);
-      BN_hex2bn(&iqmp, strIqmp);
+      BN_hex2bn(&n, scopedstrN);
+      BN_hex2bn(&e, scopedstrE);
+      BN_hex2bn(&d, scopedstrD);
+      BN_hex2bn(&p, scopedstrP);
+      BN_hex2bn(&q, scopedstrQ);
+      BN_hex2bn(&dmp1, scopedstrDmp1);
+      BN_hex2bn(&dmq1, scopedstrDmq1);
+      BN_hex2bn(&iqmp, scopedstrIqmp);
 
 
 #if OPENSSL_VERSION_NUMBER >= 0x30000000
@@ -141,13 +141,15 @@ namespace crypto_openssl
    }
 
 
-   rsa::rsa(const string& nParam)
+   rsa::rsa(const ::scoped_string& scopedstrParam)
    {
+
+      ::string strParameter(scopedstrParam);
 
       BIGNUM* n = BN_new();
       BIGNUM* e = BN_new();
 
-      BN_hex2bn(&n, nParam);
+      BN_hex2bn(&n, strParameter);
       BN_hex2bn(&e, "10001");
 
 #if OPENSSL_VERSION_NUMBER >= 0x30000000
@@ -246,11 +248,11 @@ namespace crypto_openssl
 
       size_t out_len = 0;
 
-      int i = EVP_PKEY_encrypt(pctx, nullptr, &out_len, (const uchar*)(const char*)in.data(), (int)in.size());
+      int i = EVP_PKEY_encrypt(pctx, nullptr, &out_len, (const uchar*)(const_char_pointer )in.data(), (int)in.size());
 
       out.set_size(out_len);
 
-      i = EVP_PKEY_encrypt(pctx, out.data(), &out_len, (const uchar*)(const char*)in.data(), (int)in.size());
+      i = EVP_PKEY_encrypt(pctx, out.data(), &out_len, (const uchar*)(const_char_pointer )in.data(), (int)in.size());
 
       if (i < 0)
       {
@@ -272,7 +274,7 @@ namespace crypto_openssl
 #else
 
 
-      int i = RSA_public_encrypt((int)in.size(), (const uchar*)(const char*)in.data(), out.data(), m_prsa, RSA_PKCS1_PADDING);
+      int i = RSA_public_encrypt((int)in.size(), (const uchar*)(const_char_pointer )in.data(), out.data(), m_prsa, RSA_PKCS1_PADDING);
 
       strError = ERR_error_string(ERR_get_error(), nullptr);
 
@@ -318,11 +320,11 @@ namespace crypto_openssl
 
       size_t out_len = 0;
 
-      int i = EVP_PKEY_decrypt(pctx, nullptr, &out_len, (const uchar*)(const char*)in.data(), (int)in.size());
+      int i = EVP_PKEY_decrypt(pctx, nullptr, &out_len, (const uchar*)(const_char_pointer )in.data(), (int)in.size());
 
       out.set_size(out_len);
 
-      i = EVP_PKEY_decrypt(pctx, out.data(), &out_len, (const uchar*)(const char*)in.data(), (int)in.size());
+      i = EVP_PKEY_decrypt(pctx, out.data(), &out_len, (const uchar*)(const_char_pointer )in.data(), (int)in.size());
 
       if (i < 0)
       {
@@ -465,7 +467,7 @@ namespace crypto_openssl
 
       //auto iInSize = (int)in.size();
 
-      //auto pInData = (const uchar*)(const char*)in.data();
+      //auto pInData = (const uchar*)(const_char_pointer )in.data();
 
       //auto pOutData = out.data();
 
@@ -487,11 +489,11 @@ namespace crypto_openssl
 
       size_t out_len = 0;
 
-      int i = EVP_PKEY_encrypt(pctx, nullptr, &out_len, (const uchar*)(const char*)in.data(), (int)in.size());
+      int i = EVP_PKEY_encrypt(pctx, nullptr, &out_len, (const uchar*)(const_char_pointer )in.data(), (int)in.size());
 
       out.set_size(out_len);
 
-      i = EVP_PKEY_encrypt(pctx, out.data(), &out_len, (const uchar*)(const char*)in.data(), (int)in.size());
+      i = EVP_PKEY_encrypt(pctx, out.data(), &out_len, (const uchar*)(const_char_pointer )in.data(), (int)in.size());
 
       if (i < 0)
       {
@@ -514,7 +516,7 @@ namespace crypto_openssl
 
       auto iInSize = (int)in.size();
 
-      auto pInData = (const uchar*)(const char*)in.data();
+      auto pInData = (const uchar*)(const_char_pointer )in.data();
 
       auto pOutData = out.data();
 
@@ -626,10 +628,10 @@ namespace crypto_openssl
 } //  namespace crypto_openssl
 
 //
-//::pointer<::crypto::rsa>__create_rsa(const string& str)
+//::pointer<::crypto::rsa>__create_rsa(const ::scoped_string & scopedstr)
 //{
 //
-//   return __allocate ::openssl::rsa(str);
+//   return øallocate ::openssl::rsa(str);
 //
 //}
 //

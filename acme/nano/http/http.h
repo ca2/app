@@ -30,7 +30,7 @@ namespace nano
          ~http() override;
          
          
-         inline static const char * represented_component_name()
+         inline static const_char_pointer represented_component_name()
          {
             
             return "nano_http";
@@ -38,12 +38,12 @@ namespace nano
          }
          
 
-         //virtual void sync(::nano::http::get * pget);
+         //virtual void sync(::nano::http::get * defer_get);
          //
          //
-         //virtual void async(::nano::http::get * pget);
+         //virtual void async(::nano::http::get * defer_get);
 
-         virtual void perform(::nano::http::get * pget) override;
+         virtual void perform(::nano::http::get * defer_get) override;
 
 
          // Follow redirects and find final resource.

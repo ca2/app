@@ -14,8 +14,8 @@ public:
    db_stra_set(db_server * pdatacentral, ::database::key & atom);
    
    
-   void get_data(string_array & stra);
-   ::collection::count set_data(string_array & stra);
+   void get_data(string_array_base & stra);
+   ::collection::count set_data(string_array_base & stra);
 
 };
 

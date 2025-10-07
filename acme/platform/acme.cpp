@@ -79,7 +79,7 @@ class plex_heap_alloc_array;
 
 #if OBJECT_TYPE_COUNTER
 
-extern map < const char *, const char *, long long, long long > * g_pmapObjTypCtr;
+extern map_base < const_char_pointer ,const_char_pointer ,long long, long long > * g_pmapObjTypCtr;
 
 #endif
 
@@ -122,7 +122,7 @@ extern double g_machtime_conversion_factor;
 extern CLASS_DECL_ACME ::array<matter *> * g_paAura;
 
 
-extern id_to_id * g_pmapRTL;
+extern id_to_id_base * g_pmapRTL;
 
 
 #if defined(WINDOWS)
@@ -357,7 +357,7 @@ namespace acme
 
 #if OBJECT_TYPE_COUNTER
 
-   map < const char*, const char*, long long, long long >* g_pmapObjTypCtr;
+   map_base < const_char_pointer ,const_char_pointer ,long long, long long >* g_pmapObjTypCtr;
 
 #endif
 
@@ -424,7 +424,7 @@ namespace acme
    ::array < matter* >* g_paAura;
 
 
-   //::map < ::atom, const ::atom&, ::atom, const ::atom& >* g_pmapRTL;
+   //::map_base < ::atom, const ::atom&, ::atom, const ::atom& >* g_pmapRTL;
 
    //plex_heap_alloc_array* g_pheap;
 
@@ -450,7 +450,7 @@ namespace acme
 #endif
 
 
-   //map < itask, itask, itask, itask > * g_pmapThreadOn;
+   //map_base < itask, itask, itask, itask > * g_pmapThreadOn;
 
 
 
@@ -893,7 +893,7 @@ namespace acme
       //__defer_new(m_pelementaddraReleaseOnEnd);
 
 
-      //xxdebug_box("acme.dll base_static_start (0)", "box", e_message_box_ok);
+      //xxdebug_box("acme.dll base_static_start (0)", "box", ::user::e_message_box_ok);
 
       //g_pengine = ___new ::OPERATING_SYSTEM_NAMESPACE::exception_engine ();
 
@@ -930,7 +930,7 @@ namespace acme
 
 #if OBJECT_TYPE_COUNTER
 
-      g_pmapObjTypCtr = memory_new map < const char*, const char*, long long, long long >;
+      g_pmapObjTypCtr = memory_new map_base < const_char_pointer ,const_char_pointer ,long long, long long >;
 
       {
 
@@ -973,7 +973,7 @@ namespace acme
 
       //g_criticalsectionThreadOn = ___new ::critical_section ();
 
-      //g_pmapThreadOn = aaa_memory_new ::map < itask, itask, itask, itask >;
+      //g_pmapThreadOn = aaa_memory_new ::map_base < itask, itask, itask, itask >;
 
       //g_criticalsectionSystemHeap = ___new critical_section();
 
@@ -1002,7 +1002,7 @@ namespace acme
       //}
 
 
-      //g_pmapAura =aaa_memory_new ::map < void *,void *,::platform::application *,::platform::application * >;
+      //g_pmapAura =aaa_memory_new ::map_base < void *,void *,::platform::application *,::platform::application * >;
 
       //g_criticalsectionUiDestroyed = ___new ::critical_section ();
 
@@ -1263,7 +1263,7 @@ namespace acme
       //try
       //{
 
-      //   synchronous_lock synchronouslock(system()->g_mutexLibrary);
+      //   synchronous_lock synchronouslock(system()->g_mutexLibrary, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       //   g_pmapLibCall->erase_all();
 
@@ -1277,7 +1277,7 @@ namespace acme
       //try
       //{
 
-      //   synchronous_lock synchronouslock(system()->g_mutexLibrary);
+      //   synchronous_lock synchronouslock(system()->g_mutexLibrary, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       //   system()->g_mapLibrary.erase_all();
 
@@ -2043,7 +2043,7 @@ CLASS_DECL_ACME::e_status get_last_status()
 //      CLASS_DECL_ACME void init()
 //      {
 //
-//         xxdebug_box("axis.dll axis_static_start (0)", "box", e_message_box_ok);
+//         xxdebug_box("axis.dll axis_static_start (0)", "box", ::user::e_message_box_ok);
 
 //         sqlite3_config(SQLITE_CONFIG_MULTITHREAD);
 

@@ -48,9 +48,9 @@ void defer_term_ui();
 
 //bool is_verbose();
 
-//extern string_map < ::pointer<::acme::library >> g_pmapLibrary;
+//extern string_map_base < ::pointer<::acme::library >> g_pmapLibrary;
 //extern ::pointer< ::mutex > psystem->m_pmutexLibrary;
-//extern string_map < PFN_NEW_AURA_LIBRARY >* g_pmapNewAuraLibrary;
+//extern string_map_base < PFN_NEW_AURA_LIBRARY >* g_pmapNewAuraLibrary;
 
 int_bool point_is_window_origin(::int_point ptHitTest, oswindow oswindowExclude, int iMargin);
 
@@ -195,12 +195,12 @@ namespace axis
    }
 
 
-   //::aura::application * session::application_get(const ::string & pszAppId, bool bCreate, bool bSynch, ::request * prequest)
+   //::aura::application * session::application_get(const ::scoped_string & scopedstrAppId, bool bCreate, bool bSynch, ::request * prequest)
    //{
 
    //   ::pointer<::apex::application>papp;
 
-   //   if (m_applicationa.lookup(pszAppId, papp))
+   //   if (m_applicationa.find(scopedstrAppId, papp))
    //   {
 
    //      return papp;
@@ -221,13 +221,13 @@ namespace axis
    //      try
    //      {
 
-   //         papp = create_application(pszAppId, bSynch, pcreate);
+   //         papp = create_application(scopedstrAppId, bSynch, pcreate);
 
    //      }
    //      catch (const ::exception & e)
    //      {
 
-   //         // aura::session, axis::session and ::base::session, could get more specialized handling in aura::application (aura::system)
+   //         // aura::session, axis::session and ::berg::session, could get more specialized handling in aura::application (aura::system)
    //         // Thank you Mummi (em Santos, cuidando do Lucinho e ajudando um monte a Carou e o Lucio e Eu 2019-01-15) !! Thank you God!! <3tbs
 
    //         handle_exception(pe);
@@ -270,10 +270,10 @@ namespace axis
    //}
 
 
-//   ::pointer<::aura::application>session::get_new_application(::particle * pparticle, const ::string & pszAppId)
+//   ::pointer<::aura::application>session::get_new_application(::particle * pparticle, const ::scoped_string & scopedstrAppId)
 //   {
 //
-//      string strAppId(pszAppId);
+//      string strAppId(scopedstrAppId);
 //
 //      ::pointer<::aura::application>papp;
 //
@@ -307,7 +307,7 @@ namespace axis
 //
 //
 //         }
-//         synchronous_lock synchronouslock(psystem->m_pmutexLibrary);
+//         synchronous_lock synchronouslock(psystem->m_pmutexLibrary, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //         ::pointer<::acme::library>& plibrary = psystem->m_mapLibrary[pszAppId];
 //
@@ -323,7 +323,7 @@ namespace axis
 //            else
 //            {
 //
-//               ::aura_app * pauraapp = ::aura_app::get(pszAppId);
+//               ::aura_app * pauraapp = ::aura_app::get(scopedstrAppId);
 //
 //               if (pauraapp != nullptr)
 //               {
@@ -364,11 +364,11 @@ namespace axis
 //                  else
 //                  {
 //
-//                     plibrary = __allocate ::acme::library();
+//                     plibrary = øallocate ::acme::library();
 //
 //                     plibrary->initialize_aura_library(pparticle, 0, nullptr);
 //
-//                     //g_pmapLibrary[string(pszAppId)] = plibrary;
+//                     //g_pmapLibrary[string(scopedstrAppId)] = plibrary;
 //
 //                     string strLibrary = strAppId;
 //
@@ -515,8 +515,8 @@ namespace axis
 //      if (!papp->is_serviceable() || papp->is_user_service())
 //      {
 //
-//         psystem->m_spmutexUserAppData = __allocate ::pointer < ::mutex > (e_create_new, false, "Local\\ca2.UserAppData");
-//         psystem->m_spmutexSystemAppData = __allocate ::pointer < ::mutex > (e_create_new, false, "Local\\ca2.SystemAppData");
+//         psystem->m_spmutexUserAppData = øallocate ::pointer < ::mutex > (e_create_new, false, "Local\\ca2.UserAppData");
+//         psystem->m_spmutexSystemAppData = øallocate ::pointer < ::mutex > (e_create_new, false, "Local\\ca2.SystemAppData");
 //
 //      }
 //
@@ -550,7 +550,7 @@ namespace axis
    //}
 
 
-   bool session::is_licensed(const ::string & pszAppId, bool bInteractive)
+   bool session::is_licensed(const ::scoped_string & scopedstrAppId, bool bInteractive)
    {
 
       if (has_property("install"))
@@ -574,7 +574,7 @@ namespace axis
 
       }
 
-      return m_paccount->is_licensed(pszAppId, bInteractive);
+      return m_paccount->is_licensed(scopedstrAppId, bInteractive);
 
    }
 
@@ -624,14 +624,14 @@ namespace axis
 //   }
 
 
-   bool session::get_auth(const string & pszForm, string & strUsername, string & strPassword)
+   bool session::get_auth(const ::scoped_string & scopedstrForm, string & strUsername, string & strPassword)
    {
 
       throw 0;
 
       return false;
 
-      //return account()->get_auth(pszForm, strUsername, strPassword);
+      //return account()->get_auth(scopedstrForm, strUsername, strPassword);
 
    }
 
@@ -816,7 +816,7 @@ namespace axis
    //   //   return estatus;
 
    //   //}
-   //   auto estatus = __øconstruct(m_puser);
+   //   auto estatus = øconstruct(m_puser);
 
    //   if (!estatus || !m_puser)
    //   {
@@ -873,7 +873,7 @@ namespace axis
 
 
 
-   //   auto estatus = __construct_new(m_puserex);
+   //   auto estatus = øconstruct_new(m_puserex);
 
    //   if (!estatus)
    //   {
@@ -1202,7 +1202,7 @@ namespace axis
 
       auto puser = pcredentials->m_puser;
 
-      //auto pdialog = ::__create_new<::account::dialog>();
+      //auto pdialog = ::øcreate_new<::account::dialog>();
 
       //pdialog->initialize_account_dialog(pcredentials);
 

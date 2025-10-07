@@ -59,7 +59,7 @@ namespace application_build_helper
 
       ::file::path pathFolder = m_papplication->m_pathFolder / range;
 
-      ::file::listing listing;
+      ::file::listing_base listing;
 
       listing.set_folder_listing(pathFolder);
 
@@ -87,7 +87,7 @@ namespace application_build_helper
 
       }
 
-      ::file::listing listing;
+      ::file::listing_base listing;
 
       listing.set_folder_listing(pathFolder);
 

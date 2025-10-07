@@ -102,7 +102,7 @@ namespace os
 
 
 
-CLASS_DECL_ACME void wm_nodecorations(oswindow w, int map);
+CLASS_DECL_ACME void wm_nodecorations(oswindow w, int map_base);
 
 
 

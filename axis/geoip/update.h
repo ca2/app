@@ -15,14 +15,14 @@ typedef enum {
    GEOIP_SOCKET_READ_ERR         = -19, /* Error reading from socket, see errno */
    GEOIP_SANITY_OPEN_ERR         = -20, /* Sanity check GeoIP_open error */
    GEOIP_SANITY_INFO_FAIL        = -21, /* Sanity check database_info string failed */
-   GEOIP_SANITY_LOOKUP_FAIL      = -22, /* Sanity check ip address lookup failed */
+   GEOIP_SANITY_LOOKUP_FAIL      = -22, /* Sanity check ip address find failed */
    GEOIP_RENAME_ERR              = -23, /* Rename error while installing db, check errno */
    GEOIP_USER_ID_INVALID_ERR     = -24, /* Invalid userID */
    GEOIP_PRODUCT_ID_INVALID_ERR  = -25, /* Invalid product ID or subscription expired */
    GEOIP_INVALID_SERVER_RESPONSE = -26  /* Server returned invalid response */
 } GeoIPUpdateCode;
 
-const char * GeoIP_get_error_message(int i);
+const_char_pointer GeoIP_get_error_message(int i);
 
 /* Original Update Function, just for MaxMind GeoIP Country database */
 short GeoIP_update_database (char * license_key, int verbose, void (*f)( char *));
@@ -31,6 +31,6 @@ short GeoIP_update_database (char * license_key, int verbose, void (*f)( char *)
 short GeoIP_update_database_general (char * user_id, char * license_key,char * data_axis_type, int verbose,char ** client_ipaddr, void (*f)( char *));
 
    /* experimental export */
-   int  GeoIP_fprintf(int (*f)(FILE *, char *),FILE *fp, const char *fmt, ...);
-   void GeoIP_printf(void (*f)(char *), const char *fmt, ...);
+   int  GeoIP_fprintf(int (*f)(FILE *, char *),FILE *fp, const_char_pointer fmt, ...);
+   void GeoIP_printf(void (*f)(char *), const_char_pointer fmt, ...);
 

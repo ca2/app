@@ -115,12 +115,12 @@ public:
    //virtual ::file::path module_folder();
 
 
-   virtual ::file::path app(string strPlatform, string strConfiguration);
-   virtual ::file::path app_app_admin(string strPlatform, string strConfiguration);
-   virtual ::file::path app_app_nest(string strPlatform, string strConfiguration);
-   virtual ::file::path app_app(string strPlatform, string strConfiguration);
-   virtual ::file::path vcredist(string strPlatform, string strConfiguration);
-   virtual ::file::path install_log(string strPlatform, string strConfiguration);
+   virtual ::file::path app(const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration);
+   virtual ::file::path app_app_admin(const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration);
+   virtual ::file::path app_app_nest(const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration);
+   virtual ::file::path app_app(const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration);
+   virtual ::file::path vcredist(const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration);
+   virtual ::file::path install_log(const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration);
 
 
    virtual ::file::path install();
@@ -151,16 +151,16 @@ public:
    virtual ::file::path public_root(); // writable common root (non-bin, non-exe)
    virtual ::file::path bookmark();
    virtual ::file::path home();
-   virtual ::file::path icloud_container2(const char * pszContentIdentifier = nullptr);
-   virtual ::file::path icloud_container_documents(const char * pszContentIdentifier = nullptr);
-   virtual ::file::path icloud_container2_final(const char * pszContentIdentifier = nullptr);
-   virtual bool is_icloud_container(const ::file::path & path, const char * pszContentIdentifier = nullptr);
-   virtual bool has_icloud_container(const char * pszContentIdentifier = nullptr);
-   virtual ::file::path pathfind(const string& pszEnv, const string& pszTopic, const string& pszMode);
+   virtual ::file::path icloud_container2(const_char_pointer pszContentIdentifier = nullptr);
+   virtual ::file::path icloud_container_documents(const_char_pointer pszContentIdentifier = nullptr);
+   virtual ::file::path icloud_container2_final(const_char_pointer pszContentIdentifier = nullptr);
+   virtual bool is_icloud_container(const ::file::path & path, const_char_pointer pszContentIdentifier = nullptr);
+   virtual bool has_icloud_container(const_char_pointer pszContentIdentifier = nullptr);
+   virtual ::file::path pathfind(const ::scoped_string & scopedstrEnv, const ::scoped_string & scopedstrTopic, const ::scoped_string & scopedstrMode);
    virtual ::file::path program_files_x86();
    virtual ::file::path program_files();
    //virtual ::file::path program_data();
-   virtual ::file::path stage(string strAppId, string strPlatform, string strConfiguration);
+   virtual ::file::path stage(const ::scoped_string & scopedstrAppId, const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration);
    virtual ::file::path sys_temp();
    virtual ::file::path temp();
    virtual ::string dir_root();
@@ -174,15 +174,15 @@ public:
    virtual string system_short_name();
 
 
-   //::file::path inplace_install(string strAppId, string strPlatform, string strConfiguration);
-   //virtual ::file::path inplace_install(string strAppId, string strPlatform, string strConfiguration);
-   virtual ::file::path inplace_install(string strAppId, string strPlatform, string strConfiguration);
-   virtual ::file::path inplace_matter_install(string strAppId, string strPlatform, string strConfiguration);
+   //::file::path inplace_install(const ::scoped_string & scopedstrAppId, const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration);
+   //virtual ::file::path inplace_install(const ::scoped_string & scopedstrAppId, const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration);
+   virtual ::file::path inplace_install(const ::scoped_string & scopedstrAppId, const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration);
+   virtual ::file::path inplace_matter_install(const ::scoped_string & scopedstrAppId, const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration);
 
 
-   virtual void set_path_install_folder(const ::string & pszPath);
+   virtual void set_path_install_folder(const ::scoped_string & scopedstrPath);
 
-   //virtual ::file::path pathfind(const string& pszEnv, const string& pszTopic, const string& pszMode);
+   //virtual ::file::path pathfind(const ::scoped_string & scopedstrEnv, const ::scoped_string & scopedstrTopic, const ::scoped_string & scopedstrMode);
 
    virtual ::file::path machine_event_file_path();
 
@@ -227,31 +227,31 @@ public:
          virtual void erase_recursively(const ::file::path & path);
 
 
-         //virtual void enumerate_recursively(::file::path_array & stra, const ::scoped_string & scopedstr);
-         //virtual void enumerate_recursively_directory(::file::path_array & stra, const ::scoped_string & scopedstr);
+         //virtual void enumerate_recursively(::file::path_array_base & stra, const ::scoped_string & scopedstr);
+         //virtual void enumerate_recursively_directory(::file::path_array_base & stra, const ::scoped_string & scopedstr);
 
-         //bool _enumerates(::file::listing & listing) override;
+         //bool _enumerates(::file::listing_base & listing) override;
          
-         bool enumerate(::file::listing & listing) override;
+         bool enumerate(::file::listing_base & listing) override;
 
-         virtual bool defer_enumerate_protocol(::file::listing& listing);
+         virtual bool defer_enumerate_protocol(::file::listing_base& listing);
 
-         virtual bool defer_enumerate_media_library(::file::listing& listing);
+         virtual bool defer_enumerate_media_library(::file::listing_base& listing);
          virtual ::media_library::item* media_library_item(const ::file::path& path);
          virtual bool defer_process_media_library_path(::file::path& path);
          virtual bool defer_media_library_representative_file_name(::file::path & path);
 
-         bool list(::string_array & stra, const ::scoped_string & path, ::file::e_flag eflag = ::file::e_flag_file_or_folder) override;
+         bool list_base(::string_array_base & stra, const ::scoped_string & path, ::file::e_flag eflag = ::file::e_flag_file_or_folder) override;
 
-         virtual ::file::listing folders(const ::file::path & path) override;
-         virtual ::file::listing files(const ::file::path& path) override;
-         virtual ::file::listing folders_and_files(const ::file::path& path) override;
+         virtual ::file::listing_base folders(const ::file::path & path) override;
+         virtual ::file::listing_base files(const ::file::path& path) override;
+         virtual ::file::listing_base folders_and_files(const ::file::path& path) override;
 
 
-         //virtual void enumerate(::file::listing & listing, const ::file::path & path, ::file::e_flag eflag = ::file::e_flag_none, enum_depth edepth = e_depth_none);
-         //virtual void enumerate_pattern(::file::listing & listing, const ::file::path & path, const ::string_array & straNamePattern, ::file::e_flag eflag = ::file::e_flag_none, enum_depth edepth = e_depth_none);
-         //virtual void enumerate_directory(::file::path_array & stra, const ::scoped_string & scopedstr, enum_depth edepth = e_depth_none);
-         //virtual void enumerate_file(::file::path_array & stra, const ::scoped_string & scopedstr, enum_depth edepth = e_depth_none);
+         //virtual void enumerate(::file::listing_base & listing, const ::file::path & path, ::file::e_flag eflag = ::file::e_flag_none, enum_depth edepth = e_depth_none);
+         //virtual void enumerate_pattern(::file::listing_base & listing, const ::file::path & path, const ::string_array_base & straNamePattern, ::file::e_flag eflag = ::file::e_flag_none, enum_depth edepth = e_depth_none);
+         //virtual void enumerate_directory(::file::path_array_base & stra, const ::scoped_string & scopedstr, enum_depth edepth = e_depth_none);
+         //virtual void enumerate_file(::file::path_array_base & stra, const ::scoped_string & scopedstr, enum_depth edepth = e_depth_none);
 
          virtual int make_path(const ::scoped_string & scopedstr);
 
@@ -261,17 +261,17 @@ public:
 
 
             //virtual string name(const ::file::path & path);
-            //virtual bool mk(const ::string & strPath);
+            //virtual bool mk(const ::scoped_string & scopedstrPath);
             //virtual bool _mk(const  char * path); // makes a directory path (all intermediates too)
             //virtual bool is(const ::file::path & path);
             //virtual bool _is(const ::file::path & path);
             //virtual bool mk(const  char * path); // makes a directory path (all intermediates too)
             //virtual bool mkdir(const  char * path); // only creates if parent dir already exists
-            //virtual void ls(::file::path_array & patha, const ::file::path & path);
-            //virtual void ls_dir(::file::path_array & patha, const ::file::path & path);
-            //virtual void ls_file(::file::path_array & patha, const ::file::path & path);
-            //virtual void rls(::file::path_array & patha, const ::file::path & path);
-            //virtual void rls_dir(::file::path_array & patha, const ::file::path & path);
+            //virtual void ls(::file::path_array_base & patha, const ::file::path & path);
+            //virtual void ls_dir(::file::path_array_base & patha, const ::file::path & path);
+            //virtual void ls_file(::file::path_array_base & patha, const ::file::path & path);
+            //virtual void rls(::file::path_array_base & patha, const ::file::path & path);
+            //virtual void rls_dir(::file::path_array_base & patha, const ::file::path & path);
 
 
             //virtual::file::path ca2_module();
@@ -280,8 +280,8 @@ public:
 
          //} // namespace dir
 
-   virtual string_to_string map_content(const ::file::path & path);
-   virtual ::string_array enumerate_content(const ::file::path & path);
+   virtual string_to_string_base map_content(const ::file::path & path);
+   virtual ::string_array_base enumerate_content(const ::file::path & path);
 
 
 
@@ -303,7 +303,7 @@ public:
 
    virtual bool is_accessible(const ::file::path & path);
 
-   virtual bool contains_files(const ::file::path& path, const ::string_array& straName, int iMinimumSize);
+   virtual bool contains_files(const ::file::path& path, const ::string_array_base& straName, int iMinimumSize);
 
 
    //virtual void initialize(::particle * pparticle) override;

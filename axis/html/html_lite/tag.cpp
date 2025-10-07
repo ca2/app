@@ -24,7 +24,7 @@ lite_html_tag::lite_html_tag(lite_html_tag &rSource, bool bCopy)
       try
       {
 
-         m_pcollAttr = __raw_new LiteHTMLAttributes(*rSource.m_pcollAttr, true);
+         m_pcollAttr = øraw_new LiteHTMLAttributes(*rSource.m_pcollAttr, true);
 
       }
       catch(const ::exception & e)
@@ -60,7 +60,7 @@ lite_html_tag::~lite_html_tag()
  * @since 1.0
  * @author Gurmeet S. Kochar
  */
-unsigned int lite_html_tag::parseFromStr(::lite_html_reader * preader, const ::string & strString, character_count iPos,
+unsigned int lite_html_tag::parseFromStr(::lite_html_reader * preader, const ::scoped_string & scopedstrString, character_count iPos,
                                  bool &bIsOpeningTag,
                                  bool &bIsClosingTag,
                                  bool bParseAttrib /* = true */)
@@ -73,9 +73,10 @@ unsigned int lite_html_tag::parseFromStr(::lite_html_reader * preader, const ::s
    string            strTagName;
    unsigned int            nRetVal = 0U,
                    nTemp = 0U;
-   const char *            pszBegin = &strString[iPos];
 
-   const char *            pszEnd = nullptr;
+   const_char_pointer           pszBegin = &scopedstrString[iPos];
+
+   const_char_pointer           pszEnd = nullptr;
 
 
    // skip leading white-space characters
@@ -100,7 +101,7 @@ unsigned int lite_html_tag::parseFromStr(::lite_html_reader * preader, const ::s
       ASSERT(strTagName.is_empty());
       ASSERT(pcollAttr == nullptr);
       ASSERT(!bClosingTag);
-      nRetVal = (unsigned int) (pszBegin - &strString[iPos]);
+      nRetVal = (unsigned int) (pszBegin - &scopedstrString[iPos]);
 
       goto LUpdateAndExit;
    }
@@ -178,7 +179,7 @@ unsigned int lite_html_tag::parseFromStr(::lite_html_reader * preader, const ::s
 
       ASSERT(strTagName.length());
       ASSERT(pcollAttr == nullptr);
-      nRetVal = (unsigned int) (pszEnd - &strString[iPos]);
+      nRetVal = (unsigned int) (pszEnd - &scopedstrString[iPos]);
 
       goto LUpdateAndExit;
    }
@@ -204,7 +205,7 @@ unsigned int lite_html_tag::parseFromStr(::lite_html_reader * preader, const ::s
       {
          ASSERT(pcollAttr == nullptr);
          // instantiate collection ...
-         if ((pcollAttr = __raw_new LiteHTMLAttributes()) == nullptr)
+         if ((pcollAttr = øraw_new LiteHTMLAttributes()) == nullptr)
          {
 //            TRACE0("(Error) lite_html_tag::parseFromStr: Out of memory.\n");
             throw ::exception(error_no_memory);
@@ -212,7 +213,7 @@ unsigned int lite_html_tag::parseFromStr(::lite_html_reader * preader, const ::s
          }
 
          // ... and delegate parsing process
-         nTemp = (unsigned int) pcollAttr->parseFromStr(preader, pszBegin, strString.length() - (pszBegin - (const ::string &) strString));
+         nTemp = (unsigned int) pcollAttr->parseFromStr(preader, pszBegin, scopedstrString.length() - (pszBegin - (const ::string &) scopedstrString));
 
       }
 
@@ -271,7 +272,7 @@ unsigned int lite_html_tag::parseFromStr(::lite_html_reader * preader, const ::s
       pszEnd++;
 
 
-   nRetVal = (unsigned int) (pszEnd - &strString[iPos]);
+   nRetVal = (unsigned int) (pszEnd - &scopedstrString[iPos]);
 
    goto LUpdateAndExit;   // just to show the flow-of-control
 

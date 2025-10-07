@@ -12,7 +12,7 @@ namespace nano2d
 {
 
 
-   void __font_face(::write_text::font * pfont, const char * font);
+   void __font_face(::write_text::font * pfont, const_char_pointer font);
    void __font_size(::write_text::font * pfont, float size);
 
 
@@ -135,7 +135,7 @@ namespace nano2d
 
       ::float_rectangle text(float x, float y, const ::scoped_string & scopedstr) override;
       int text_glyph_positions(float x, float y, const ::scoped_string & scopedstr, ::nano2d::glyphPosition * positions, int maxPositions) override;
-      ::collection::count character_metric(::double_array& daLeft, ::double_array& daRight, const ::string& scopedstr, character_count iStart = 0, character_count iEnd = -1) override;
+      ::collection::count character_metric(::double_array& daLeft, ::double_array& daRight, const ::scoped_string & scopedstr, character_count iStart = 0, character_count iEnd = -1) override;
       float text_bounds(float x, float y, const ::scoped_string & scopedstr, ::float_rectangle * prectangle) override;
       void text_metrics(float * ascender, float * descender, float * lineh) override;
 

@@ -17,7 +17,7 @@ namespace heap
       inline ::heap::allocator* allocator() { return ::acme::get()->m_pheapmanagement->m_pallocator; }
 
 
-      inline TYPE* allocate(::collection::count c, ::collection::count * pcAllocated, const char* pszFile, int iLine)
+      inline TYPE* allocate(::collection::count c, ::collection::count * pcAllocated, const_char_pointer pszFile, int iLine)
       {
 
          memsize sizeAllocated = 0;
@@ -76,7 +76,7 @@ namespace heap
       inline ::heap::memory * memory() { return ::acme::get()->m_pheapmanagement->memory(t_ememory); }
 
 
-      inline TYPE * allocate(::collection::count c, const char * pszFile, int iLine)
+      inline TYPE * allocate(::collection::count c, const_char_pointer pszFile, int iLine)
       {
 
          return (TYPE *)memory()->allocate_debug(sizeof(TYPE) * c, 0, pszFile, iLine);
@@ -378,7 +378,7 @@ namespace allocator
       }
 
 
-      //inline  TYPE * alloc(::collection::count c, const char * pszFile, int iLine)
+      //inline  TYPE * alloc(::collection::count c, const_char_pointer pszFile, int iLine)
       //{
 
       //   return m_ptypedallocator->allocate(c, pszFile, iLine);
@@ -500,7 +500,7 @@ namespace allocator
       }
 
 
-      //inline  TYPE * alloc(::collection::count c, const char * pszFile, int iLine)
+      //inline  TYPE * alloc(::collection::count c, const_char_pointer pszFile, int iLine)
       //{
 
       //   m_ptypedallocator->alloc(c, pszFile, iLine);
@@ -633,7 +633,7 @@ namespace allocator
 
       
       
-  /*    inline  TYPE * alloc(::collection::count c, const char * pszFile, int iLine)
+  /*    inline  TYPE * alloc(::collection::count c, const_char_pointer pszFile, int iLine)
       {
 
          return m_ptypedallocator->alloc(c, pszFile, iLine);
@@ -765,7 +765,7 @@ namespace allocator
       }
 
 
-      //inline  TYPE * alloc(::collection::count c, const char * pszFile, int iLine)
+      //inline  TYPE * alloc(::collection::count c, const_char_pointer pszFile, int iLine)
       //{
 
       //   return m_ptypedallocator->alloc(c, pszFile, iLine);
@@ -900,7 +900,7 @@ namespace allocator
       }
 
 
-      //inline  TYPE * alloc(::collection::count c, const char * pszFile, int iLine)
+      //inline  TYPE * alloc(::collection::count c, const_char_pointer pszFile, int iLine)
       //{
 
       //   return m_ptypedallocator->alloc(c, pszFile, iLine);
@@ -994,7 +994,7 @@ namespace allocator
 //
 //
 //#if MEMDLEAK || defined(__MCRTDBG)
-//      inline  TYPE * alloc(::collection::count c, const char * pszFile, int iLine)
+//      inline  TYPE * alloc(::collection::count c, const_char_pointer pszFile, int iLine)
 //      {
 //
 //         return heap::sys < TYPE >::alloc(c, pszFile, iLine);

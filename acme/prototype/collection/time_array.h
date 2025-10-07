@@ -6,16 +6,22 @@
 //#include "acme/prototype/collection/numeric_array.h"
 
 
-using time_array = numeric_array < class time >;
+using time_array_base = numeric_array_base < class time >;
+
+
+using time_array = ::array_particle < ::time_array_base >;
 
 
 //using integral_microsecond_array = numeric_array < integral_microsecond >;
 //
 //
-//using ::time_array = numeric_array < integral_millisecond >;
+//using ::time_array_base = numeric_array < integral_millisecond >;
 
 
-using time_array_array = ::array < time_array >;
+using time_array_array_base = ::array_base < time_array_base >;
+
+
+
 
 
 

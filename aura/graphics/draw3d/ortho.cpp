@@ -17,16 +17,16 @@ namespace draw3d
 {
 
 
-   ::int_array ortho::draw_ortho_plain_wire_frame(::box_double * pbox,int iHint,int bA,bool bFirst)
+   ::int_array_base ortho::draw_ortho_plain_wire_frame(::box_double * pbox,int iHint,int bA,bool bFirst)
    {
 
       double dA = bA / 255.0;
 
-      auto locationa = pbox->vertices();
+      auto locationa = pbox->vertexes();
 
       m_pdc->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-      auto ppen = __øcreate < ::draw2d::pen > ();
+      auto ppen = øcreate < ::draw2d::pen > ();
 
       double zmin = locationa[0].z();
       double zmax = locationa[0].z();
@@ -76,8 +76,8 @@ namespace draw3d
       }
 
 
-      ::int_array  point1;
-      ::int_array  point2;
+      ::int_array_base  point1;
+      ::int_array_base  point2;
 
 
 
@@ -125,7 +125,7 @@ namespace draw3d
 
       i = 0;
 
-      ::int_array ia;
+      ::int_array_base ia;
 
       while(point1.get_count() > 0)
       {
@@ -225,23 +225,23 @@ namespace draw3d
    }
 
 
-   ::int_array ortho::draw_ortho_plain_fill(::box_double * pbox,int iHint,int bA,bool bFirst,::image::image *pimage)
+   ::int_array_base ortho::draw_ortho_plain_fill(::box_double * pbox,int iHint,int bA,bool bFirst,::image::image *pimage)
    {
 
       ::draw2d::bitmap bm;
 
       ::int_point point2da[3];
 
-      ::int_array ia;
+      ::int_array_base ia;
 
       double dA = bA / 255.0;
 
-      auto locationa = pbox->vertices();
-      array < ::int_array > f = pbox->faces();
+      auto locationa = pbox->vertexes();
+      array < ::int_array_base > f = pbox->faces();
 
       m_pdc->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-      auto ppen = __øcreate < ::draw2d::pen > ();
+      auto ppen = øcreate < ::draw2d::pen > ();
 
       double zmin = 1000000.0;
       double zmax = -1000000.0;
@@ -285,7 +285,7 @@ namespace draw3d
 
       i = 0;
 
-      ::int_array iaf;
+      ::int_array_base iaf;
 
       //throw ::exception(todo);
 

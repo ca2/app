@@ -15,7 +15,7 @@ namespace windowing
 
       bool m_bOsUserThemeColorModified;
       bool m_bInvalidated;
-      string_array m_stra;
+      string_array_base m_stra;
       string m_strTitle;
       string m_strFontName;
 
@@ -72,7 +72,7 @@ namespace windowing
       int m_iResult;
 
 
-      simple_ui_display(const string &strMessage, const string &strTitle, const ::e_message_box &emessagebox);
+      simple_ui_display(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::user::e_message_box &emessagebox);
 
       ~simple_ui_display();
 
@@ -84,7 +84,7 @@ namespace windowing
       virtual long long release();
 
 
-      button * new_button(const ::string & pszLabel, enum_dialog_result edialogresult);
+      button * new_button(const ::scoped_string & scopedstrLabel, enum_dialog_result edialogresult);
 
 
       void common_construct();

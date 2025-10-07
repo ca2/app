@@ -15,13 +15,13 @@
 //
 //#endif
 //
-//   auto psystem = __allocate ::platform::system();
+//   auto psystem = øallocate ::platform::system();
 //
 //   psystem->construct_system(argc, argv);
 //
 ////   return acme_run_system(psystem);
 //
-//   auto psystem = __allocate ::platform::system();
+//   auto psystem = øallocate ::platform::system();
 //
 //   psystem->payload("main_string") = strMainString;
 //
@@ -50,7 +50,7 @@
 //
 //      {
 //
-//         auto psystem = __allocate ::platform::system();
+//         auto psystem = øallocate ::platform::system();
 //
 //         psystem->set_main_struct(&mainstruct);
 //

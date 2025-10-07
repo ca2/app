@@ -492,7 +492,7 @@ bool scalar_source::on_set_real_scalar(enum_scalar escalar,::real d,int iFlags)
 //}
 //
 //
-//string scalar_base::Format(const ::string & strFormat)
+//string scalar_base::Format(const ::scoped_string & scopedstrFormat)
 //{
 //
 //   __UNREFERENCED_PARAMETER(strFormat);
@@ -505,7 +505,7 @@ bool scalar_source::on_set_real_scalar(enum_scalar escalar,::real d,int iFlags)
 ////
 ////
 ////
-////real_scalar::real_scalar(double_scalar_source * psource, enum_scalar escalar, const ::string & strFormat)
+////real_scalar::real_scalar(double_scalar_source * psource, enum_scalar escalar, const ::scoped_string & scopedstrFormat)
 ////{
 ////
 ////   m_psource = psource;
@@ -591,7 +591,7 @@ bool scalar_source::on_set_real_scalar(enum_scalar escalar,::real d,int iFlags)
 ////
 ////}
 ////
-////string real_scalar::Format(const ::string & strFormat)
+////string real_scalar::Format(const ::scoped_string & scopedstrFormat)
 ////{
 ////
 ////   string str;
@@ -602,7 +602,7 @@ bool scalar_source::on_set_real_scalar(enum_scalar escalar,::real d,int iFlags)
 ////
 ////}
 ////
-////int_scalar::int_scalar(int_scalar_source * psource, enum_scalar escalar, const ::string & strFormat)
+////int_scalar::int_scalar(int_scalar_source * psource, enum_scalar escalar, const ::scoped_string & scopedstrFormat)
 ////{
 ////
 ////   m_psource = psource;
@@ -693,7 +693,7 @@ bool scalar_source::on_set_real_scalar(enum_scalar escalar,::real d,int iFlags)
 ////
 ////
 ////
-////string int_scalar::Format(const ::string & strFormat)
+////string int_scalar::Format(const ::scoped_string & scopedstrFormat)
 ////{
 ////
 ////   string str;
@@ -1068,7 +1068,7 @@ bool scalar_source::set_real_scalar_rate(enum_scalar escalar, double dValue, int
 
 
 
-real_scalar::real_scalar(scalar_source* psource, enum_scalar escalar, const ::string& strFormat)
+real_scalar::real_scalar(scalar_source* psource, enum_scalar escalar, const ::scoped_string & scopedstrFormat)
 {
 
    m_psource = psource;
@@ -1187,7 +1187,7 @@ bool real_scalar ::set_rate(double dValue, int iFlags)
 }
 
 
-string real_scalar::printf(const ::string& strFormat)
+string real_scalar::printf(const ::scoped_string & scopedstrFormat)
 {
 
    ::string str;

@@ -23,7 +23,7 @@ namespace acme
    //::pointer<::conversation>node::create_new_message_conversation()
    //{
    //
-   //   return __create_new < ::conversation_message >();
+   //   return øcreate_new < ::conversation_message >();
    //
    //}
 
@@ -47,7 +47,7 @@ namespace acme
 //}
 //
 //
-//::e_message_box message_box::get_conversation_flags()
+//::user::e_message_box message_box::get_conversation_flags()
 //{
 //
 //   return m_emessagebox;
@@ -63,16 +63,18 @@ namespace acme
 //}
 
 
-message_box::message_box(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails, ::nano::graphics::icon * picon)
+message_box::message_box(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::user::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon)
 {
 
-   m_strMessage = strMessage;
+   preempt(30_s);
 
-   m_strTitle = strTitle;
+   m_strMessage = scopedstrMessage;
+
+   m_strTitle = scopedstrTitle;
 
    m_emessagebox = emessagebox;
 
-   m_strDetails = strDetails;
+   m_strDetails = scopedstrDetails;
 
    m_picon = picon;
 
@@ -82,6 +84,8 @@ message_box::message_box(const ::string & strMessage, const ::string & strTitle,
 message_box::message_box(const ::exception & exception, const ::scoped_string & scopedstrMoreDetails)
 {
 
+   preempt(30_s);
+
    m_strMessage = exception.m_strMessage;
 
    m_strTitle = exception.m_strTitle;
@@ -89,25 +93,25 @@ message_box::message_box(const ::exception & exception, const ::scoped_string & 
    if (exception.m_econsequenceUserDefault == e_consequence_fatal)
    {
 
-      m_emessagebox = e_message_box_icon_error;
+      m_emessagebox = ::user::e_message_box_icon_error;
 
    }
    else if (exception.m_econsequenceUserDefault == e_consequence_blocking)
    {
 
-      m_emessagebox = e_message_box_icon_exclamation;
+      m_emessagebox = ::user::e_message_box_icon_exclamation;
 
    }
    else if (exception.m_econsequenceUserDefault == e_consequence_workaroundable)
    {
 
-      m_emessagebox = e_message_box_ok;
+      m_emessagebox = ::user::e_message_box_ok;
 
    }
    else
    {
 
-      m_emessagebox = e_message_box_icon_asterisk;
+      m_emessagebox = ::user::e_message_box_icon_asterisk;
 
    }
 
@@ -125,20 +129,22 @@ message_box::message_box(const ::exception & exception, const ::scoped_string & 
 
 
 
-message_box::message_box(const ::exception & exception, const ::scoped_string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails, ::nano::graphics::icon * picon)
+message_box::message_box(const ::exception & exception, const ::scoped_string & strMessage, const ::scoped_string & scopedstrTitle, const ::user::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon)
 {
+
+   preempt(30_s);
 
    m_strMessage = exception.m_strMessage;
 
    m_strMessage.concatenate_with_separator("\n", strMessage);
 
-   m_strTitle = strTitle;
+   m_strTitle = scopedstrTitle;
 
    m_emessagebox = emessagebox;
 
-   m_strDetails = strDetails;
+   m_strDetails = scopedstrDetails;
 
-   m_strDetails.concatenate_with_separator("\n", strDetails);
+   m_strDetails.concatenate_with_separator("\n", scopedstrDetails);
 
    m_strDetails.concatenate_with_separator("\n\nCallstack:\n", exception.m_strCallStackTrace);
 
@@ -180,7 +186,7 @@ long long message_box::decrement_reference_count()
 //void conversation_message::aggregate(sequence * psequence)
 //{
 //   
-//   //m_psequencer->m_phappening = __create_new < manual_reset_happening >();
+//   //m_psequencer->m_phappening = øcreate_new < manual_reset_happening >();
 //
 //   do_asynchronously();
 //   

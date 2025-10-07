@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "form_mesh.h"
 #include "acme/constant/id.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "acme/constant/user_key.h"
 #include "acme/handler/extended_topic.h"
 #include "acme/handler/item.h"
@@ -30,7 +30,7 @@ namespace user
    }
 
 
-   void form_mesh::get_selection(const ::scoped_string & scopedstrDataKey, ::string_array & straDataKey)
+   void form_mesh::get_selection(const ::scoped_string & scopedstrDataKey, ::string_array_base & straDataKey)
    {
 
       //mesh::get_selection(key,selection);
@@ -40,7 +40,7 @@ namespace user
 
    void form_mesh::install_message_routing(::channel * pchannel)
    {
-      MESSAGE_LINK(e_message_key_down, pchannel, this,&form_mesh::on_message_key_down);
+      USER_MESSAGE_LINK(::user::e_message_key_down, pchannel, this,&form_mesh::on_message_key_down);
 
       form::install_message_routing(pchannel);
       mesh::install_message_routing(pchannel);
@@ -77,13 +77,13 @@ namespace user
             if(pinteraction->get_control_type() == ::user::e_control_type_button)
             {
 
-               auto pextendedtopic = __allocate ::extended_topic(::id_click);
+               auto pextendedtopic = øallocate ::extended_topic(::id_click);
 
                pextendedtopic->m_puserelement         = pinteraction;
 
                m_pitemControl                         = pitem;
 
-               send_message(e_message_subject,0, pextendedtopic);
+               send_message(::user::e_message_subject,0, pextendedtopic);
 
             }
 
@@ -318,7 +318,7 @@ namespace user
    void form_mesh::_001HideEditingControls()
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if(_001GetEditControl() != nullptr)
       {
@@ -507,7 +507,7 @@ namespace user
 
    //   //screen_to_client()(point);
 
-   //   //if(pmouse->m_emessage == e_message_left_button_down)
+   //   //if(pmouse->m_emessage == ::user::e_message_left_button_down)
    //   //{
    //   //
    //   //   int iItem;
@@ -534,7 +534,7 @@ namespace user
    //   //}
    //   //}
    //   //}
-   //   //else if(emessage == e_message_left_button_up)
+   //   //else if(emessage == ::user::e_message_left_button_up)
    //   //{
    //   //int iItem;
    //   //int iSubItem;
@@ -674,7 +674,7 @@ namespace user
    bool form_mesh::_001OnControlSetFocus(::user::interaction * pinteraction)
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       //index iItem;
 
@@ -699,7 +699,7 @@ namespace user
    bool form_mesh::_001OnControlKillFocus(::user::interaction * pinteraction)
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       //index iItem;
 

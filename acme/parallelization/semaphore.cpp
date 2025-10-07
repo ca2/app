@@ -27,7 +27,7 @@
 #endif
 
 
-semaphore::semaphore(int lInitialCount, int lMaxCount, const char * pstrName, security_attributes * psecurityattributes)
+semaphore::semaphore(int lInitialCount, int lMaxCount, const_char_pointer pstrName, security_attributes * psecurityattributes)
 {
 
    ASSERT(lMaxCount > 0);
@@ -263,7 +263,7 @@ bool semaphore::_wait(const class time & timeWait)
 //void semaphore_timer_handler (int signum)
 //{
 //
-//   synchronous_lock synchronouslock(g_pmutexSemaphore);
+//   synchronous_lock synchronouslock(g_pmutexSemaphore, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //   if(g_pthreadaSemaphore != nullptr)
 //   {

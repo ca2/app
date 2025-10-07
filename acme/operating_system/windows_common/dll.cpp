@@ -127,7 +127,7 @@ WCHAR * module_debug_wcsdup(hinstance hinstance, const WCHAR * pwszPrefix = null
 }
 
 
-// void module_debug_box_w(const ::e_message_box & emessagebox, hinstance hinstance, const WCHAR * pwszCaption, WCHAR * pwszSuffix = nullptr)
+// void module_debug_box_w(const ::user::e_message_box & emessagebox, hinstance hinstance, const WCHAR * pwszCaption, WCHAR * pwszSuffix = nullptr)
 // {
 
 //    WCHAR * pwsz = nullptr;
@@ -205,7 +205,7 @@ int_bool CLASS_DECL_ACME _001DefaultDllMain(hinstance hinstance, unsigned int dw
    //if (iLibMainDebugBox & e_library_main_any)
    //{
 
-   //   //module_debug_box_w(e_message_box_icon_information, hinstance, L"_001DefaultDllMain");
+   //   //module_debug_box_w(::user::e_message_box_icon_information, hinstance, L"_001DefaultDllMain");
 
    //}
 
@@ -245,7 +245,7 @@ int_bool CLASS_DECL_ACME _001DefaultDllMain(hinstance hinstance, unsigned int dw
          //if (iLibMainDebugBox & e_library_main_process_attach)
          //{
 
-         //   //module_debug_box_w(e_message_box_icon_information, hinstance, L"_001DefaultDllMain process attach");
+         //   //module_debug_box_w(::user::e_message_box_icon_information, hinstance, L"_001DefaultDllMain process attach");
 
          //}
          //else
@@ -272,7 +272,7 @@ int_bool CLASS_DECL_ACME _001DefaultDllMain(hinstance hinstance, unsigned int dw
       //if (iLibMainDebugBox & e_library_main_process_attach)
       //{
 
-      //   //module_debug_box_w(e_message_box_icon_information, hinstance, L"_001DefaultDllMain process detach");
+      //   //module_debug_box_w(::user::e_message_box_icon_information, hinstance, L"_001DefaultDllMain process detach");
 
       //}
       //else
@@ -297,7 +297,7 @@ int_bool CLASS_DECL_ACME _001DefaultDllMain(hinstance hinstance, unsigned int dw
       //if (iLibMainDebugBox & e_library_main_thread_attach)
       //{
 
-      //   //module_debug_box_w(e_message_box_icon_information, hinstance, L"_001DefaultDllMain thread attach");
+      //   //module_debug_box_w(::user::e_message_box_icon_information, hinstance, L"_001DefaultDllMain thread attach");
 
       //}
       //else
@@ -322,7 +322,7 @@ int_bool CLASS_DECL_ACME _001DefaultDllMain(hinstance hinstance, unsigned int dw
       //if (iLibMainDebugBox & e_library_main_thread_detach)
       //{
 
-      //   //module_debug_box_w(e_message_box_icon_information, hinstance, L"_001DefaultDllMain thread detach");
+      //   //module_debug_box_w(::user::e_message_box_icon_information, hinstance, L"_001DefaultDllMain thread detach");
 
       //}
       //else

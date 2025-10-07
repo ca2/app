@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "base/platform/application.h"
+#include "berg/platform/application.h"
 
 
 namespace app_integration
@@ -19,7 +19,7 @@ namespace app_integration
    };
 
    class CLASS_DECL_APP_INTEGRATION application :
-      virtual public ::base::application
+      virtual public ::berg::application
    {
    public:
 

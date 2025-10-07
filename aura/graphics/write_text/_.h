@@ -28,6 +28,9 @@ namespace write_text
    class internal_font;
 
 
+   class text_metric;
+
+
 } // namespace write_text
 
 

@@ -44,11 +44,11 @@ public:
    // General-ever Log can be done by final handlers at Main Loop and crash handlers
    // Log can be supressed or translated at optional middle-stack handlers.
    // bool                    m_bLog;
-   string                                    m_strLink;
-   string                                    m_strFile;
-   int                                       m_iLine;
-   array_non_particle < error_code >         m_errorcodea;
-   static bool                               s_bEnableCallStackBackTrace;
+   string                                 m_strLink;
+   string                                 m_strFile;
+   int                                    m_iLine;
+   ::array_base < error_code >            m_errorcodea;
+   static bool                            s_bEnableCallStackBackTrace;
 
 
    exception();
@@ -57,7 +57,7 @@ public:
 //#else
    exception(const ::e_status& estatus, const ::scoped_string& scopedstrMessage = {}, const ::scoped_string& scopedstrDetails = {}, int iSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER, void* caller_address = nullptr);
 //#endif
-   exception(const ::e_status& estatus, const ::array_non_particle < error_code >& errorcodea, const ::scoped_string& scopedstrMessage = {}, const ::scoped_string& scopedstrDetails = {}, int iSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER, void* caller_address = nullptr);
+   exception(const ::e_status& estatus, const ::array_base < error_code > & errorcodea, const ::scoped_string& scopedstrMessage = {}, const ::scoped_string& scopedstrDetails = {}, int iSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER, void* caller_address = nullptr);
    exception(const ::exception& exception);
    ~exception() override;
 
@@ -84,7 +84,7 @@ public:
 #define RETURN_OR_THROW(bReturn, ppexception, EXCEPTION, ...) \
    if(bReturn) \
    { \
-      if(ppexception) *ppexception = __allocate EXCEPTION(__VA_ARGS__); \
+      if(ppexception) *ppexception = øallocate EXCEPTION(__VA_ARGS__); \
       return; \
    } \
    throw EXCEPTION(__VA_ARGS__)

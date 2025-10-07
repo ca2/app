@@ -43,7 +43,7 @@ long long fd_get_file_size(int fd)
 
 
 
-//CLASS_DECL_ACME void dll_processes(unsigned_int_array & dwa, string_array & straProcesses, const ::scoped_string & scopedstrDll)
+//CLASS_DECL_ACME void dll_processes(unsigned_int_array & dwa, string_array_base & straProcesses, const ::scoped_string & scopedstrDll)
 //{
 //
 //
@@ -123,7 +123,7 @@ int lockf(int fd, int cmd, off_t ignored_len)
 //}
 //
 //extern "C"
-//const char* android_get_cache_dir()
+//const_char_pointer android_get_cache_dir()
 //{
 //
 //   return ::acmeacmesystem()->m_pathCacheDir;

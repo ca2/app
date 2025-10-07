@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "base/net/net_sockets.h"
+#include "berg/net/net_sockets.h"
 
 
 class CLASS_DECL_AURA db_long_set_item
@@ -51,7 +51,7 @@ public:
    sockets::http_session *                   m_phttpsession;
 
 
-   string_map < db_long_set_item >           m_map;
+   string_map_base < db_long_set_item >           m_map;
    bool                                      m_bIndexed;
 
    ::mysql::database *                       m_pmysqldbUser;
@@ -108,7 +108,7 @@ public:
    virtual int run();
 
 
-   void queue(const ::string & pszKey,long long l);
+   void queue(const ::scoped_string & scopedstrKey,long long l);
 
 };
 
@@ -174,7 +174,7 @@ repeat:;
 
 }
 
-void db_long_sync_queue::queue(const ::string & pszKey,long long l)
+void db_long_sync_queue::queue(const ::scoped_string & scopedstrKey,long long l)
 {
 
    single_lock synchronouslock(m_pmutex, true);
@@ -213,7 +213,7 @@ bool db_long_set::load(const ::string & lpKey, long long * plValue)
 
       db_long_set_item longitem;
 
-      if(m_pcore->m_map.lookup(lpKey,longitem) && longitem.m_timeTimeout > ::get_tick())
+      if(m_pcore->m_map.find(lpKey,longitem) && longitem.m_timeTimeout > ::get_tick())
       {
          *plValue = longitem.m_l;
          return true;
@@ -574,7 +574,7 @@ bool db_long_set::SaveWindowRectangle(const ::string & lpKey, ::windowing::windo
 
 }
 
-/*HRESULT db_long_set::OpenQuery(CDataSource *pdb, const ::string & lpcszSql)
+/*HRESULT db_long_set::OpenQuery(CDataSource *pdb, const ::scoped_string & scopedstrSql)
 {
 CSession   session;
 //      HRESULT      hr;

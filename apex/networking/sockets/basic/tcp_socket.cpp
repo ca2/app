@@ -98,7 +98,7 @@ namespace sockets
       if (!m_ptcpsocketImpl)
       {
 
-         __øconstruct(m_ptcpsocketImpl);
+         øconstruct(m_ptcpsocketImpl);
 
          m_ptcpsocketImpl->m_ptcpsocketInterface = this;
 
@@ -441,10 +441,10 @@ return true;
    }
 
 
-   bool tcp_socket::open(const string &host,::networking::port_t port)
+   bool tcp_socket::open(const ::scoped_string & scopedstrHost,::networking::port_t port)
    {
 
-      return m_ptcpsocketImpl->open(host, port);
+      return m_ptcpsocketImpl->open(scopedstrHost, port);
 
       //SetCloseAndDelete(false);
 
@@ -532,10 +532,10 @@ return true;
    }
 
 
-   void tcp_socket::set_host(const ::string & strHost)
+   void tcp_socket::set_host(const ::scoped_string & scopedstrHost)
    {
 
-      m_ptcpsocketImpl->set_host(strHost);
+      m_ptcpsocketImpl->set_host(scopedstrHost);
 
    }
 
@@ -548,18 +548,18 @@ return true;
    }
 
 
-   void tcp_socket::set_tls_hostname(const ::string & strTlsHostname)
+   void tcp_socket::set_tls_hostname(const ::scoped_string & scopedstrTlsHostname)
    {
 
-      m_ptcpsocketImpl->set_tls_hostname(strTlsHostname);
+      m_ptcpsocketImpl->set_tls_hostname(scopedstrTlsHostname);
 
    }
 
 
-   void tcp_socket::set_connect_host(const ::string & strConnectHost)
+   void tcp_socket::set_connect_host(const ::scoped_string & scopedstrConnectHost)
    {
 
-      m_ptcpsocketImpl->set_connect_host(strConnectHost);
+      m_ptcpsocketImpl->set_connect_host(scopedstrConnectHost);
 
    }
 
@@ -588,10 +588,10 @@ return true;
    }
 
 
-   void tcp_socket::set_url(const ::string & strUrl)
+   void tcp_socket::set_url(const ::scoped_string & scopedstrUrl)
    {
 
-      m_ptcpsocketImpl->set_url(strUrl);
+      m_ptcpsocketImpl->set_url(scopedstrUrl);
 
    }
 
@@ -1115,7 +1115,7 @@ return true;
 ////               SetCloseAndDelete(true);
 ////               SetFlushBeforeClose(false);
 ////               SetLost();
-////               const char *errbuf = ERR_error_string(errnr,nullptr);
+////               const_char_pointer errbuf = ERR_error_string(errnr,nullptr);
 ////
 ////               fatal() <<"OnWrite / SSL_write " << errnr << errbuf;
 ////
@@ -1130,7 +1130,7 @@ return true;
 ////            SetFlushBeforeClose(false);
 ////            SetLost();
 ////            int errnr = SSL_get_error(m_psslcontext->m_ssl,(int)n);
-////            const char *errbuf = ERR_error_string(errnr,nullptr);
+////            const_char_pointer errbuf = ERR_error_string(errnr,nullptr);
 ////            information() << "SSL_write() returns 0: " << errnr << ", " << errbuf;
 ////            //throw ::exception(io_exception(errbuf));
 ////         }
@@ -1144,9 +1144,9 @@ return true;
 ////         int iSocket = get_socket_id();
 ////         n = (int) (::send(iSocket,buf,len,SO_NOSIGPIPE));
 ////#elif defined(SOLARIS)
-////         n = ::send(get_socket_id(),(const char *)buf,(int)len,0);
+////         n = ::send(get_socket_id(),(const_char_pointer )buf,(int)len,0);
 ////#else
-////         n = ::send(get_socket_id(),(const char *)buf,(int)len,MSG_NOSIGNAL);
+////         n = ::send(get_socket_id(),(const_char_pointer )buf,(int)len,MSG_NOSIGNAL);
 ////#endif
 ////         if(n == -1)
 ////         {
@@ -1205,7 +1205,7 @@ return true;
 
       m_ptcpsocketImpl->buffer(pdata, len);
 
-      //const char * buf = (const char *)pdata;
+      //const_char_pointer buf = (const_char_pointer )pdata;
 
       //memsize ptr = 0;
 
@@ -1218,7 +1218,7 @@ return true;
       //   
       //   if(m_obuf_top && (space = m_obuf_top -> Space()) > 0)
       //   {
-      //      const char *pbuf = buf + ptr;
+      //      const_char_pointer pbuf = buf + ptr;
       //      int sz = (int)(len - ptr);
       //      if(space >= sz)
       //      {
@@ -1241,7 +1241,7 @@ return true;
 
       //      }
 
-      //      m_obuf_top = __allocate output(TCP_OUTPUT_CAPACITY);
+      //      m_obuf_top = øallocate output(TCP_OUTPUT_CAPACITY);
 
       //   }
 
@@ -1251,7 +1251,7 @@ return true;
 
 
    /*
-      void tcp_socket::write(const string &str)
+      void tcp_socket::write(const ::scoped_string & scopedstr)
       {
          write(str,  (int) str.length());
       }
@@ -1339,10 +1339,10 @@ return true;
    }
 
 
-   void tcp_socket::OnLine(const string & str)
+   void tcp_socket::OnLine(const ::scoped_string & scopedstrLine)
    {
 
-      m_ptcpsocketImpl->OnLine(str);
+      m_ptcpsocketImpl->OnLine(scopedstrLine);
 
    }
 
@@ -1480,7 +1480,7 @@ return true;
 
 //      SetNonblocking(true);
 //
-//      //synchronous_lock slMap(psystem->sockets().m_clientcontextmap.m_pmutex);
+//      //synchronous_lock slMap(psystem->sockets().m_clientcontextmap.m_pmutex, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //      if (is_true("from_pool"))
 //         return;
@@ -1540,7 +1540,7 @@ return true;
 //      //      if (m_strTlsHostName.has_character())
 //      //      {
 //
-//      //         SSL_set_tlsext_host_name(m_psslcontext->m_ssl, (char *)(const char *)m_strTlsHostName);
+//      //         SSL_set_tlsext_host_name(m_psslcontext->m_ssl, (char *)(const_char_pointer )m_strTlsHostName);
 //
 //      //      }
 //
@@ -1588,7 +1588,7 @@ return true;
 
       SetNonblocking(true);
 
-      //synchronous_lock slMap(psystem->sockets().m_servercontextmap.m_pmutex);
+      //synchronous_lock slMap(psystem->sockets().m_servercontextmap.m_pmutex, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       //{
       //   if(m_psslcontext.is_set()
@@ -1604,7 +1604,7 @@ return true;
       //}
 
 
-      //synchronous_lock synchronouslock(m_pmutexSslCtx);
+      //synchronous_lock synchronouslock(m_pmutexSslCtx, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       //slMap.unlock();
 
@@ -1737,7 +1737,7 @@ return true;
       //   {
 
       //      long error = ERR_get_error();
-      //      const char* error_str = ERR_error_string(error, nullptr);
+      //      const_char_pointer error_str = ERR_error_string(error, nullptr);
       //      warning() <<"could not SSL_connect: " << error_str;
 
       //      int iErrorSsl = SSL_get_error(m_psslcontext->m_ssl,r);
@@ -1910,10 +1910,10 @@ return true;
    }
 
 
-   void tcp_socket::set_init_ssl_client_context(const ::string & strInitSSLClientContext)
+   void tcp_socket::set_init_ssl_client_context(const ::scoped_string & scopedstrInitSSLClientContext)
    {
 
-      m_ptcpsocketImpl->set_init_ssl_client_context(strInitSSLClientContext);
+      m_ptcpsocketImpl->set_init_ssl_client_context(scopedstrInitSSLClientContext);
 
    }
 
@@ -1937,7 +1937,7 @@ return true;
 
    //   ::pointer<ssl_client_context>psslclientcontext = clientcontextmap.get_context(context, pmethod);
 
-   //   m_psslcontext = __allocate ssl_context();
+   //   m_psslcontext = øallocate ssl_context();
 
    //   m_psslcontext->m_pclientcontext = psslclientcontext;
 
@@ -1950,14 +1950,14 @@ return true;
 //      if (m_psslcontext.is_null())
 //      {
 //
-//         m_psslcontext = __allocate ssl_context();
+//         m_psslcontext = øallocate ssl_context();
 //
 //      }
 //
 //      if (m_psslcontext->m_pclientcontext.is_null())
 //      {
 //
-//         m_psslcontext->m_pclientcontext = __allocate(ssl_client_context(meth_in != nullptr ? meth_in : TLS_server_method()));
+//         m_psslcontext->m_pclientcontext = øallocate(ssl_client_context(meth_in != nullptr ? meth_in : TLS_server_method()));
 //
 //         m_psslcontext->m_pclientcontext->initialize(get_app());
 //
@@ -2141,7 +2141,7 @@ return true;
 //
 //
 //      {
-//         synchronous_lock synchronouslock(this->synchronization());
+//         synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //         int i;
 //
 //         auto psystem = system();
@@ -2788,11 +2788,11 @@ return true;
 //
 //#if (defined(LINUX)) && (OPENSSL_API_COMPAT < 0x10100000L)
 //
-//                     string strDnsName((const char *)ASN1_STRING_data(current_name->d.dNSName), ASN1_STRING_length(current_name->d.dNSName));
+//                     string strDnsName((const_char_pointer )ASN1_STRING_data(current_name->d.dNSName), ASN1_STRING_length(current_name->d.dNSName));
 //
 //#else
 //
-//                     string strDnsName((const char *)ASN1_STRING_get0_data(current_name->d.dNSName), ASN1_STRING_length(current_name->d.dNSName));
+//                     string strDnsName((const_char_pointer )ASN1_STRING_get0_data(current_name->d.dNSName), ASN1_STRING_length(current_name->d.dNSName));
 //
 //#endif
 //

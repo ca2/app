@@ -650,11 +650,15 @@ memory_base & memory_base::erase(memsize pos,memsize len)
 
       memory mem;
 
-      mem.set_size(utf_to_utf_length((char *) data(),(const ::wd16_character *)&data()[2],size() - 2));
+      auto srclen = size() - 2;
 
-      utf_to_utf((char *) mem.data(),(const ::wide_character *)&data()[2],(int)(size() - 2));
+      auto lengthSrc = srclen;
 
-      return { (const char *)mem.data(), mem.size() };
+      mem.set_size(utf_to_utf_length2((char *) data(),(const ::wd16_character *)&data()[2], lengthSrc));
+
+      utf_to_utf((char *) mem.data(),(const ::wide_character *)&data()[2],lengthSrc);
+
+      return { (const_char_pointer )mem.data(), mem.size() };
 
    }
    else if(size() >= 3 && data()[0] == 255 && data()[1] == 254 && data()[2] == 0x73)
@@ -662,23 +666,27 @@ memory_base & memory_base::erase(memsize pos,memsize len)
 
       memory mem;
 
-      mem.set_size(utf_to_utf_length((char *) data(),(const ::wd16_character *)&data()[3],size() - 3));
+      auto srclen = size() - 3;
 
-      utf_to_utf((char *)mem.data(),(const ::wd16_character *)&data()[3],(int)(size() - 3));
+      auto lengthSrc = srclen;
 
-      return { (const char *)mem.data(), mem.size() };
+      mem.set_size(utf_to_utf_length2((char *) data(),(const ::wd16_character *)&data()[3],lengthSrc));
+
+      utf_to_utf((char *)mem.data(),(const ::wd16_character *)&data()[3],lengthSrc);
+
+      return { (const_char_pointer )mem.data(), mem.size() };
 
    }
    else if(size() >= 3 && data()[0] == 0xef && data()[1] == 0xbb && data()[2] == 0xbf)
    {
 
-      return { (const char *)data() + 3, size() - 3 };
+      return { (const_char_pointer )data() + 3, size() - 3 };
 
    }
    else
    {
 
-      return { (const char *)data(), size() };
+      return { (const_char_pointer )data(), size() };
 
    }
 
@@ -729,11 +737,15 @@ string memory_base::as_utf8() const
          && data()[1] == 60)
    {
 
-      auto s = utf_to_utf_length(strResult, (::wd16_character*)&data()[2], (int)(size() - 2));
+      auto srclen = size() - 2;
+
+      auto lengthSrc = srclen;
+
+      auto s = utf_to_utf_length2(strResult, (::wd16_character*)&data()[2], lengthSrc);
 
       auto p = strResult.get_buffer(s);
 
-      utf_to_utf(p, (::wd16_character *)&data()[2], (int)(size() - 2));
+      utf_to_utf(p, (::wd16_character *)&data()[2], lengthSrc);
 
       strResult.release_buffer();
 
@@ -752,11 +764,15 @@ string memory_base::as_utf8() const
       //}
 #endif
 
-      auto s = utf_to_utf_length(strResult, (::wd16_character*)&data()[2], (int)(size() - 2));
+      auto srclen = size() - 2;
+
+      auto lengthSrc = srclen;
+
+      auto s = utf_to_utf_length2(strResult, (::wd16_character*)&data()[2], lengthSrc);
 
       auto p = strResult.get_buffer(s);
 
-      utf_to_utf(p, (const ::wd16_character *)&data()[2], (int)(size() - 2));
+      utf_to_utf(p, (const ::wd16_character *)&data()[2], lengthSrc);
 
       strResult.release_buffer();
 
@@ -767,13 +783,13 @@ string memory_base::as_utf8() const
             && data()[2] == 0xbf)
    {
 
-      strResult = string((const char *)&data()[3], (int)(size() - 3));
+      strResult = string((const_char_pointer )&data()[3], (int)(size() - 3));
 
    }
    else
    {
 
-      strResult = string((const char *)data(), (int)size());
+      strResult = string((const_char_pointer )data(), (int)size());
 
    }
 
@@ -817,16 +833,16 @@ string memory_base::as_utf8() const
 //bool memory_base::case_insensitive_begins(const ::scoped_string & scopedstr, character_count iCount) const
 //{
 //
-//   if (::is_null(psz) || *psz == '\0')
+//   if (::is_null(scopedstr) || *psz == '\0')
 //   {
 //
 //      return true;
 //
 //   }
 //
-//   const ::scoped_string & scopedstrThis = (const char *)data();
+//   const ::scoped_string & scopedstrThis = (const_char_pointer )data();
 //
-//   if (::is_null(pszThis))
+//   if (::is_null(scopedstrThis))
 //   {
 //
 //      return false;
@@ -836,7 +852,7 @@ string memory_base::as_utf8() const
 //   if (iCount < 0)
 //   {
 //
-//      iCount += strlen(psz) + 1;
+//      iCount += strlen(scopedstr) + 1;
 //
 //   }
 //
@@ -847,12 +863,12 @@ string memory_base::as_utf8() const
 //
 //   }
 //
-//   return !case_insensitive_ansi_count_compare(pszThis, psz, (size_t) iCount);
+//   return !case_insensitive_ansi_count_compare(scopedstrThis, psz, (size_t) iCount);
 //
 //}
 //
 //
-//bool memory_base::begins(const ::string & str, character_count iCount) const
+//bool memory_base::begins(const ::scoped_string & scopedstr, character_count iCount) const
 //{
 //
 //   if (iCount < 0)
@@ -874,7 +890,7 @@ string memory_base::as_utf8() const
 //}
 //
 //
-//bool memory_base::case_insensitive_begins(const ::string & str, character_count iCount) const
+//bool memory_base::case_insensitive_begins(const ::scoped_string & scopedstr, character_count iCount) const
 //{
 //
 //   if (iCount < 0)
@@ -891,7 +907,7 @@ string memory_base::as_utf8() const
 //
 //   }
 //
-//   return case_insensitive_ansi_count_compare((const char*) data(), str.c_str(), iCount) == 0;
+//   return case_insensitive_ansi_count_compare((const_char_pointer )data(), str.c_str(), iCount) == 0;
 //
 //}
 //
@@ -902,7 +918,7 @@ string memory_base::as_utf8() const
 //   if (iCount < 0)
 //   {
 //
-//      iCount += strlen(psz) + 1;
+//      iCount += strlen(scopedstr) + 1;
 //
 //   }
 //
@@ -921,16 +937,16 @@ string memory_base::as_utf8() const
 //bool memory_base::case_insensitive_ends(const ::scoped_string & scopedstr, character_count iCount) const
 //{
 //
-//   if (::is_null(psz) || *psz == '\0')
+//   if (::is_null(scopedstr) || *psz == '\0')
 //   {
 //
 //      return true;
 //
 //   }
 //
-//   const ::scoped_string & scopedstrThis = (const char *)data();
+//   const ::scoped_string & scopedstrThis = (const_char_pointer )data();
 //
-//   if (::is_null(pszThis))
+//   if (::is_null(scopedstrThis))
 //   {
 //
 //      return false;
@@ -940,7 +956,7 @@ string memory_base::as_utf8() const
 //   if (iCount < 0)
 //   {
 //
-//      iCount += strlen(psz) + 1;
+//      iCount += strlen(scopedstr) + 1;
 //
 //   }
 //
@@ -951,12 +967,12 @@ string memory_base::as_utf8() const
 //
 //   }
 //
-//   return case_insensitive_ansi_count_compare(pszThis + size() - iCount, psz, (size_t) iCount) == 0;
+//   return case_insensitive_ansi_count_compare(scopedstrThis + size() - iCount, psz, (size_t) iCount) == 0;
 //
 //}
 //
 //
-//bool memory_base::ends(const ::string & str, character_count iCount) const
+//bool memory_base::ends(const ::scoped_string & scopedstr, character_count iCount) const
 //{
 //
 //   if (iCount < 0)
@@ -978,7 +994,7 @@ string memory_base::as_utf8() const
 //}
 //
 //
-//bool memory_base::case_insensitive_ends(const ::string & str, character_count iCount) const
+//bool memory_base::case_insensitive_ends(const ::scoped_string & scopedstr, character_count iCount) const
 //{
 //
 //   if (iCount < 0)
@@ -995,7 +1011,7 @@ string memory_base::as_utf8() const
 //
 //   }
 //
-//   return case_insensitive_ansi_count_compare((const char*) data() + size() - iCount, str.c_str(), iCount) == 0;
+//   return case_insensitive_ansi_count_compare((const_char_pointer )data() + size() - iCount, str.c_str(), iCount) == 0;
 //
 //}
 
@@ -1416,9 +1432,9 @@ void memory_base::from_string(const ::scoped_string & scopedstr)
 void memory_base::from_string(const ::string & str)
 {
 
-   set_size(str.length());
+   set_size(str.length_in_bytes());
 
-   ::memory_copy(data(), str, this->size());
+   ::memory_copy(data(), str.data(), this->size());
 
 }
 
@@ -1811,7 +1827,7 @@ void memory_base::assign(memsize iCount, uchar uch)
 //void memory_base::assign(const ::scoped_string & scopedstr)
 //{
 //
-//   return from_string(psz);
+//   return from_string(scopedstr);
 //
 //}
 //
@@ -1819,7 +1835,7 @@ void memory_base::assign(memsize iCount, uchar uch)
 //void memory_base::append(const ::scoped_string & scopedstr)
 //{
 //
-//   return append_from_string(psz);
+//   return append_from_string(scopedstr);
 //
 //}
 
@@ -1969,7 +1985,7 @@ memsize memory_base::length() const
 ::subparticle_pointer memory_base::clone()
 {
 
-   auto pmemory = __allocate ::memory ();
+   auto pmemory = øallocate ::memory ();
 
    pmemory->copy_from(this);
 
@@ -2097,7 +2113,7 @@ void memory_base::patch_line_suffix(const ::block& blockPrefix, const ::block& b
 
       auto ptarget = pdata + iStart;
 
-      auto psource = (const char *) blockSuffix.data();
+      auto psource = (const_char_pointer )blockSuffix.data();
 
       auto c = blockSuffix.size();
 
@@ -2339,7 +2355,7 @@ namespace acme
 //   if (memcontainer.get_memory() == nullptr)
 //   {
 //
-//      memcontainer.set_memory(__allocate memory(&memcontainer));
+//      memcontainer.set_memory(øallocate memory(&memcontainer));
 //
 //   }
 //
@@ -2357,7 +2373,7 @@ namespace acme
 //   if (memcontainer.get_memory() == nullptr)
 //   {
 //
-//      memcontainer.set_memory(__allocate memory(&memcontainer));
+//      memcontainer.set_memory(øallocate memory(&memcontainer));
 //
 //   }
 //
@@ -2392,7 +2408,7 @@ namespace acme
 
 
 
-//const char * matter::type(this).name() const
+//const_char_pointer matter::type(this).name() const
 //{
 //
 //   return ::type(this).name();

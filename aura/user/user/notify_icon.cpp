@@ -89,7 +89,7 @@ namespace user
    //}
 
 
-   //const char * notify_icon::_get_notification_area_action_name(int iIndex)
+   //const_char_pointer notify_icon::_get_notification_area_action_name(int iIndex)
    //{
 
    //   //return m_plistener->_get_notification_area_action_name(iIndex);
@@ -98,7 +98,7 @@ namespace user
    //}
 
 
-   //const char * notify_icon::_get_notification_area_action_id(int iIndex)
+   //const_char_pointer notify_icon::_get_notification_area_action_id(int iIndex)
    //{
 
    //   //return m_plistener->_get_notification_area_action_id(iIndex);
@@ -107,7 +107,7 @@ namespace user
    //}
 
 
-   //const char * notify_icon::_get_notification_area_action_label(int iIndex)
+   //const_char_pointer notify_icon::_get_notification_area_action_label(int iIndex)
    //{
 
    //   //return m_plistener->_get_notification_area_action_label(iIndex);
@@ -116,7 +116,7 @@ namespace user
    //}
 
 
-   //const char * notify_icon::_get_notification_area_action_accelerator(int iIndex)
+   //const_char_pointer notify_icon::_get_notification_area_action_accelerator(int iIndex)
    //{
 
    //   //return m_plistener->_get_notification_area_action_accelerator(iIndex);
@@ -125,7 +125,7 @@ namespace user
    //}
 
 
-   //const char * notify_icon::_get_notification_area_action_description(int iIndex)
+   //const_char_pointer notify_icon::_get_notification_area_action_description(int iIndex)
    //{
 
    //   //return m_plistener->_get_notification_area_action_description(iIndex);
@@ -143,7 +143,7 @@ namespace user
 
       route_command(pcommand);
 
-//      m_plistener->call_notification_area_action(pszId);
+//      m_plistener->call_notification_area_action(scopedstrId);
 
       return pcommand->m_bRet;
 

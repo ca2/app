@@ -34,7 +34,7 @@ namespace draw2d_cairo
 
       informationf("draw2d_cairo::bitmap::CreateBitmap : (%d, %d)", cx, cy);
 
-      _synchronous_lock ml(::draw2d_cairo::mutex());
+      _synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       cy = abs(cy);
 
@@ -146,7 +146,7 @@ namespace draw2d_cairo
 
 #endif
 
-         _synchronous_lock ml(::draw2d_cairo::mutex());
+         _synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
 #ifdef MORE_LOG
 
@@ -328,7 +328,7 @@ namespace draw2d_cairo
       //try
       //{
 
-      synchronous_lock ml(::draw2d_cairo::mutex());
+      synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       destroy();
 
@@ -487,7 +487,7 @@ namespace draw2d_cairo
    }
 
 
-   bool bitmap::LoadBitmap(const ::string & lpszResourceName)
+   bool bitmap::LoadBitmap(const ::scoped_string & scopedstrResourceName)
    {
 
       return false;
@@ -588,7 +588,7 @@ namespace draw2d_cairo
    void get_surface_size (cairo_surface_t * psurface, int * plongWidth, int * plongHeight)
    {
 
-      synchronous_lock ml(::draw2d_cairo::mutex());
+      synchronous_lock ml(::draw2d_cairo::mutex(), ::system(), SYNCHRONOUS_LOCK_SUFFIX);
 
       if(plongWidth != nullptr)
       {
@@ -610,7 +610,7 @@ namespace draw2d_cairo
    void bitmap::attach(void * psurface)
    {
 
-      synchronous_lock ml(::draw2d_cairo::mutex());
+      synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       destroy();
 
@@ -628,7 +628,7 @@ namespace draw2d_cairo
    void bitmap::destroy_os_data()
    {
 
-      _synchronous_lock ml(::draw2d_cairo::mutex());
+      _synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (m_psurface == nullptr)
       {

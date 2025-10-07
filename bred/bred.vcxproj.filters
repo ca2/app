@@ -61,6 +61,18 @@
     <Filter Include="Header Files\typeface\NewFilter1">
       <UniqueIdentifier>{79062294-7684-419e-9562-8c78e94b8f42}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\graphics3d\render_systems">
+      <UniqueIdentifier>{585a08e6-ec61-4c8c-8477-9f7000d6665b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\graphics3d\render_systems">
+      <UniqueIdentifier>{15a92ab9-5e5c-4212-a9ee-14414fe01032}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\prodevian">
+      <UniqueIdentifier>{f9c5d3cb-164e-4319-83a6-7046c3986cd7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\prodevian">
+      <UniqueIdentifier>{d9031de6-c0b7-49bb-9589-a3772f30feef}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -162,9 +174,6 @@
     <ClInclude Include="graphics3d\_.h">
       <Filter>Header Files\graphics3d</Filter>
     </ClInclude>
-    <ClInclude Include="graphics3d\aaa_context.h">
-      <Filter>Header Files\graphics3d</Filter>
-    </ClInclude>
     <ClInclude Include="graphics3d\camera.h">
       <Filter>Header Files\graphics3d</Filter>
     </ClInclude>
@@ -183,7 +192,7 @@
     <ClInclude Include="graphics3d\model.h">
       <Filter>Header Files\graphics3d</Filter>
     </ClInclude>
-    <ClInclude Include="graphics3d\scene.h">
+    <ClInclude Include="graphics3d\scene_base.h">
       <Filter>Header Files\graphics3d</Filter>
     </ClInclude>
     <ClInclude Include="graphics3d\scene_object.h">
@@ -249,6 +258,138 @@
     <ClInclude Include="graphics3d\shape_factory.h">
       <Filter>Header Files\graphics3d</Filter>
     </ClInclude>
+    <ClInclude Include="graphics3d\cube_map.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics3d\mesh.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="gpu\_model.h">
+      <Filter>Header Files\gpu</Filter>
+    </ClInclude>
+    <ClInclude Include="gpu\debug_scope.h">
+      <Filter>Header Files\gpu</Filter>
+    </ClInclude>
+    <ClInclude Include="gpu\frame_storage.h">
+      <Filter>Header Files\gpu</Filter>
+    </ClInclude>
+    <ClInclude Include="gpu\frame_ephemeral.h">
+      <Filter>Header Files\gpu</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics3d\render_systems\skybox_render_system.h">
+      <Filter>Header Files\graphics3d\render_systems</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics3d\render_systems\skybox_ibl_render_system.h">
+      <Filter>Header Files\graphics3d\render_systems</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics3d\render_systems\point_light_render_system.h">
+      <Filter>Header Files\graphics3d\render_systems</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics3d\render_systems\wavefront_obj_render_system.h">
+      <Filter>Header Files\graphics3d\render_systems</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics3d\render_systems\gltf_render_system.h">
+      <Filter>Header Files\graphics3d\render_systems</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics3d\_constant.h">
+      <Filter>Header Files\graphics3d</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics3d\_types.h">
+      <Filter>Header Files\graphics3d</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics3d\asset_manager.h">
+      <Filter>Header Files\graphics3d</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics3d\class_set.h">
+      <Filter>Header Files\graphics3d</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics3d\class_set1.h">
+      <Filter>Header Files\graphics3d</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics3d\entity.h">
+      <Filter>Header Files\graphics3d</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics3d\framework.h">
+      <Filter>Header Files\graphics3d</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics3d\game_object.h">
+      <Filter>Header Files\graphics3d</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics3d\immersion_layer.h">
+      <Filter>Header Files\graphics3d</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics3d\point_light.h">
+      <Filter>Header Files\graphics3d</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics3d\provider.h">
+      <Filter>Header Files\graphics3d</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics3d\render_system.h">
+      <Filter>Header Files\graphics3d</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics3d\renderable.h">
+      <Filter>Header Files\graphics3d</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics3d\renderer.h">
+      <Filter>Header Files\graphics3d</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics3d\resource.h">
+      <Filter>Header Files\graphics3d</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics3d\shapes.h">
+      <Filter>Header Files\graphics3d</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics3d\skybox.h">
+      <Filter>Header Files\graphics3d</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics3d\static_array.h">
+      <Filter>Header Files\graphics3d</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics3d\type.h">
+      <Filter>Header Files\graphics3d</Filter>
+    </ClInclude>
+    <ClInclude Include="gpu\queue.h">
+      <Filter>Header Files\gpu</Filter>
+    </ClInclude>
+    <ClInclude Include="gpu\renderable.h">
+      <Filter>Header Files\gpu</Filter>
+    </ClInclude>
+    <ClInclude Include="prodevian\_.h">
+      <Filter>Header Files\prodevian</Filter>
+    </ClInclude>
+    <ClInclude Include="prodevian\actor.h">
+      <Filter>Header Files\prodevian</Filter>
+    </ClInclude>
+    <ClInclude Include="prodevian\camera.h">
+      <Filter>Header Files\prodevian</Filter>
+    </ClInclude>
+    <ClInclude Include="prodevian\framework.h">
+      <Filter>Header Files\prodevian</Filter>
+    </ClInclude>
+    <ClInclude Include="prodevian\game_object.h">
+      <Filter>Header Files\prodevian</Filter>
+    </ClInclude>
+    <ClInclude Include="prodevian\immersion.h">
+      <Filter>Header Files\prodevian</Filter>
+    </ClInclude>
+    <ClInclude Include="prodevian\player_input.h">
+      <Filter>Header Files\prodevian</Filter>
+    </ClInclude>
+    <ClInclude Include="prodevian\resource.h">
+      <Filter>Header Files\prodevian</Filter>
+    </ClInclude>
+    <ClInclude Include="gpu\_types.h">
+      <Filter>Header Files\gpu</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics3d\render_systems\scene_render_system.h">
+      <Filter>Header Files\graphics3d\render_systems</Filter>
+    </ClInclude>
+    <ClInclude Include="gpu\mesh.h">
+      <Filter>Header Files\gpu</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics3d\scene_renderable.h">
+      <Filter>Header Files\graphics3d</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="platform\application.cpp">
@@ -290,13 +431,10 @@
     <ClCompile Include="graphics3d\model.cpp">
       <Filter>Source Files\graphics3d</Filter>
     </ClCompile>
-    <ClCompile Include="graphics3d\scene.cpp">
+    <ClCompile Include="graphics3d\scene_base.cpp">
       <Filter>Source Files\graphics3d</Filter>
     </ClCompile>
     <ClCompile Include="graphics3d\scene_object.cpp">
-      <Filter>Source Files\graphics3d</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics3d\scene_system.cpp">
       <Filter>Source Files\graphics3d</Filter>
     </ClCompile>
     <ClCompile Include="graphics3d\shader.cpp">
@@ -395,10 +533,79 @@
     <ClCompile Include="gpu\hlsl_context.cpp">
       <Filter>Source Files\gpu</Filter>
     </ClCompile>
-    <ClCompile Include="graphics3d\cube_map.cpp">
+    <ClCompile Include="graphics3d\mesh.cpp">
       <Filter>Source Files\graphics3d</Filter>
     </ClCompile>
-    <ClCompile Include="graphics3d\mesh.cpp">
+    <ClCompile Include="gpu\frame_storage.cpp">
+      <Filter>Source Files\gpu</Filter>
+    </ClCompile>
+    <ClCompile Include="gpu\frame_ephemeral.cpp">
+      <Filter>Source Files\gpu</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics3d\render_systems\wavefront_obj_render_system.cpp">
+      <Filter>Source Files\graphics3d\render_systems</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics3d\render_systems\point_light_render_system.cpp">
+      <Filter>Source Files\graphics3d\render_systems</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics3d\render_systems\skybox_ibl_render_system.cpp">
+      <Filter>Source Files\graphics3d\render_systems</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics3d\render_systems\skybox_render_system.cpp">
+      <Filter>Source Files\graphics3d\render_systems</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics3d\render_system.cpp">
+      <Filter>Source Files\graphics3d</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics3d\asset_manager.cpp">
+      <Filter>Source Files\graphics3d</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics3d\immersion_layer.cpp">
+      <Filter>Source Files\graphics3d</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics3d\point_light.cpp">
+      <Filter>Source Files\graphics3d</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics3d\renderable.cpp">
+      <Filter>Source Files\graphics3d</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics3d\renderer.cpp">
+      <Filter>Source Files\graphics3d</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics3d\skybox.cpp">
+      <Filter>Source Files\graphics3d</Filter>
+    </ClCompile>
+    <ClCompile Include="gpu\queue.cpp">
+      <Filter>Source Files\gpu</Filter>
+    </ClCompile>
+    <ClCompile Include="gpu\renderable.cpp">
+      <Filter>Source Files\gpu</Filter>
+    </ClCompile>
+    <ClCompile Include="prodevian\actor.cpp">
+      <Filter>Source Files\prodevian</Filter>
+    </ClCompile>
+    <ClCompile Include="prodevian\game_object.cpp">
+      <Filter>Source Files\prodevian</Filter>
+    </ClCompile>
+    <ClCompile Include="prodevian\immersion.cpp">
+      <Filter>Source Files\prodevian</Filter>
+    </ClCompile>
+    <ClCompile Include="gpu\types.cpp">
+      <Filter>Source Files\gpu</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics3d\types.cpp">
+      <Filter>Source Files\graphics3d</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics3d\shape_factory.cpp">
+      <Filter>Source Files\graphics3d</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics3d\render_systems\scene_render_system.cpp">
+      <Filter>Source Files\graphics3d\render_systems</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics3d\render_systems\gltf_render_system.cpp">
+      <Filter>Source Files\graphics3d\render_systems</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics3d\scene_renderable.cpp">
       <Filter>Source Files\graphics3d</Filter>
     </ClCompile>
   </ItemGroup>

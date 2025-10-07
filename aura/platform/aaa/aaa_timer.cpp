@@ -51,7 +51,7 @@ timer::~timer()
 bool timer::start(int ::duration, bool bPeriodic)
 {
 
-   synchronous_lock synchronouslock(this->synchronization());
+   synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    if (::is_set(m_pcallback) && !m_pcallback->e_timer_is_ok())
    {
@@ -101,7 +101,7 @@ bool timer::start(int ::duration, bool bPeriodic)
 void timer::call_on_timer()
 {
 
-   synchronous_lock synchronouslock(this->synchronization());
+   synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    __keep_true(m_bHandling);
 
@@ -299,7 +299,7 @@ void timer::term_thread()
 
    {
 
-   synchronous_lock synchronouslock(this->synchronization());
+   synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    try
    {
@@ -327,7 +327,7 @@ void timer::term_thread()
 //
 //   {
 //
-//      synchronous_lock synchronouslock(this->synchronization());
+//      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //  //    if(m_bPeriodic)
 //      //{

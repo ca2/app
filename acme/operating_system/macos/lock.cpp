@@ -25,7 +25,7 @@
 //
 //
 //
-//int _c_lock_is_active(const char * lpszName)
+//int _c_lock_is_active(const_char_pointer lpszName)
 //{
 //
 //   int * pfd;
@@ -41,7 +41,7 @@
 //}
 //
 //
-////int _c_lock(const char * lpszName, void ** pdata)
+////int _c_lock(const_char_pointer lpszName, void ** pdata)
 ////{
 ////
 ////   int fd;
@@ -100,7 +100,7 @@
 ////
 ////
 ////
-////string _lock_get_file_name(const char * lpszName, bool bCreate, int * pfd)
+////string _lock_get_file_name(const_char_pointer lpszName, bool bCreate, int * pfd)
 ////{
 ////
 ////   string str(lpszName);

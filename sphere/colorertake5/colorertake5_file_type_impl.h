@@ -52,19 +52,19 @@ namespace colorertake5
          return paramDescriptionHash[name];
       }
 
-      string getParamValue(const ::string & name)
+      string getParamValue(const ::scoped_string & scopedstrName)
       {
          string val = paramHash[name];
          if(val.is_empty())
             return getParamDefaultValue(name);
          return val;
       }
-      string getParamDefaultValue(const ::string & name)
+      string getParamDefaultValue(const ::scoped_string & scopedstrName)
       {
          return paramDefaultHash[name];
       }
 
-      void setParamValue(const ::string & name, const ::string & value)
+      void setParamValue(const ::scoped_string & scopedstrName, const ::string & value)
       {
          paramHash.set_at(name, value);
       }
@@ -113,11 +113,11 @@ namespace colorertake5
       scheme_impl *baseScheme;
 
       address_array < FileTypeChooser * > chooserVector;
-      string_to_string paramDefaultHash;
-      string_to_string paramHash;
-      string_to_string paramDescriptionHash;
-      string_array paramVector;
-      string_array importVector;
+      string_to_string_base paramDefaultHash;
+      string_to_string_base paramHash;
+      string_to_string_base paramDescriptionHash;
+      string_array_base paramVector;
+      string_array_base importVector;
       string    m_strSourceLocation;
       string    m_strSource;
 

@@ -268,7 +268,7 @@ inline size_t as_size_t(const ::scoped_string& scopedstr, int iBase = 10) { auto
 //inline int as_int(const ::scoped_string & scopedstr, int iBase = 10)
 //{
 //
-//   auto i = as_long_long(psz, iBase);
+//   auto i = as_long_long(scopedstr, iBase);
 //
 //   if (i < INT_MIN || i > INT_MAX)
 //   {
@@ -285,7 +285,7 @@ inline size_t as_size_t(const ::scoped_string& scopedstr, int iBase = 10) { auto
 //inline short as_short(const ::scoped_string & scopedstr, int iBase = 10)
 //{
 //
-//   auto i = as_long_long(psz, iBase);
+//   auto i = as_long_long(scopedstr, iBase);
 //
 //   if (i < SHRT_MIN || i > SHRT_MAX)
 //   {
@@ -302,7 +302,7 @@ inline size_t as_size_t(const ::scoped_string& scopedstr, int iBase = 10) { auto
 //inline char as_char(const ::scoped_string & scopedstr, int iBase = 10)
 //{
 //
-//   auto i = as_long_long(psz, iBase);
+//   auto i = as_long_long(scopedstr, iBase);
 //
 //   if (i < CHAR_MIN || i > CHAR_MAX)
 //   {
@@ -319,7 +319,7 @@ inline size_t as_size_t(const ::scoped_string& scopedstr, int iBase = 10) { auto
 //inline long as_long(const ::scoped_string & scopedstr, int iBase = 10)
 //{
 //
-//   auto i = as_long_long(psz, iBase);
+//   auto i = as_long_long(scopedstr, iBase);
 //
 //   if (i < LONG_MIN || i > LONG_MAX)
 //   {
@@ -337,9 +337,9 @@ inline size_t as_size_t(const ::scoped_string& scopedstr, int iBase = 10) { auto
 //inline unsigned long long as_unsigned_long_long(const ::scoped_string & scopedstr, int iBase = 10)
 //{
 //
-//   const ::scoped_string & scopedstrEnd = nullptr;
+//   const_char_pointer pszEnd = nullptr;
 //
-//   return ansi_to_unsigned_long_long(psz, &pszEnd, iBase);
+//   return ansi_to_unsigned_long_long(scopedstr, &pszEnd, iBase);
 //
 //}
 //
@@ -347,7 +347,7 @@ inline size_t as_size_t(const ::scoped_string& scopedstr, int iBase = 10) { auto
 //inline unsigned int as_unsigned_int(const ::scoped_string & scopedstr, int iBase = 10)
 //{
 //
-//   auto u = as_unsigned_long_long(psz, iBase);
+//   auto u = as_unsigned_long_long(scopedstr, iBase);
 //
 //   if (u > UINT_MAX)
 //   {
@@ -364,7 +364,7 @@ inline size_t as_size_t(const ::scoped_string& scopedstr, int iBase = 10) { auto
 //inline unsigned short as_unsigned_short(const ::scoped_string & scopedstr, int iBase = 10)
 //{
 //
-//   auto u = as_unsigned_long_long(psz, iBase);
+//   auto u = as_unsigned_long_long(scopedstr, iBase);
 //
 //   if (u > USHRT_MAX)
 //   {
@@ -381,7 +381,7 @@ inline size_t as_size_t(const ::scoped_string& scopedstr, int iBase = 10) { auto
 //inline unsigned char as_unsigned_char(const ::scoped_string & scopedstr, int iBase = 10)
 //{
 //
-//   auto u = as_unsigned_long_long(psz, iBase);
+//   auto u = as_unsigned_long_long(scopedstr, iBase);
 //
 //   if (u > UCHAR_MAX)
 //   {
@@ -398,7 +398,7 @@ inline size_t as_size_t(const ::scoped_string& scopedstr, int iBase = 10) { auto
 //inline unsigned long as_unsigned_long(const ::scoped_string & scopedstr, int iBase = 10)
 //{
 //
-//   auto u = as_unsigned_long_long(psz, iBase);
+//   auto u = as_unsigned_long_long(scopedstr, iBase);
 //
 //   if (u > ULONG_MAX)
 //   {
@@ -415,7 +415,7 @@ inline size_t as_size_t(const ::scoped_string& scopedstr, int iBase = 10) { auto
 //inline size_t as_size_t(const ::scoped_string & scopedstr, int iBase = 10)
 //{
 //
-//   auto u = as_unsigned_long_long(psz, iBase);
+//   auto u = as_unsigned_long_long(scopedstr, iBase);
 //
 //   if (u > SIZE_MAX)
 //   {

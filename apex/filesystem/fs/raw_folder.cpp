@@ -111,7 +111,7 @@ namespace fs
    }
 
 
-   bool raw_folder::enumerate(::file::listing & listing)
+   bool raw_folder::enumerate(::file::listing_base & listing)
    {
 
       if (listing.m_pathFinal.is_empty())
@@ -160,7 +160,7 @@ namespace fs
 
 
 
-   /*::file::listing & raw_folder::ls_relative_name(::file::listing & listing)
+   /*::file::listing_base & raw_folder::ls_relative_name(::file::listing_base & listing)
    {
 
       directory()->ls_relative_name(listing);
@@ -179,7 +179,7 @@ namespace fs
    }
 
 
-   ::file::listing & raw_folder::root_ones(::file::listing & listing)
+   ::file::listing_base & raw_folder::root_ones(::file::listing_base & listing)
    {
 
       if (listing.m_pathFinal.is_empty())
@@ -208,15 +208,15 @@ namespace fs
    }
 
 
-   //void raw_folder::get_ascendants_path(const ::file::path & pszPath,::file::path_array & stra)
+   //void raw_folder::get_ascendants_path(const ::file::path & path,::file::path_array_base & stra)
    //{
 
-   //   return file()->get_ascendants_path(pszPath, stra);
+   //   return file()->get_ascendants_path(scopedstrPath, stra);
 
    //}
 
 
-   //void raw_folder::get_ascendants_name(const ::file::path & path,::file::path_array & straParam)
+   //void raw_folder::get_ascendants_name(const ::file::path & path,::file::path_array_base & straParam)
 
    //{
 
@@ -229,7 +229,7 @@ namespace fs
    //string raw_folder::eat_end_level(const ::file::path & path, int iCount)
    //{
 
-   //   string strPath(pszPath);
+   //   string strPath(scopedstrPath);
 
    //   while(iCount > 0)
    //   {
@@ -248,7 +248,7 @@ namespace fs
    //string raw_folder::file_name(const ::file::path & path)
    //{
 
-   //   return file()->name_(pszPath);
+   //   return file()->name_(scopedstrPath);
 
    //}
 
@@ -256,15 +256,15 @@ namespace fs
    //string raw_folder::dir_path(const ::scoped_string & scopedstr1, const ::scoped_string & scopedstr2)
    //{
 
-   //   return ::file::path(psz1) / ::file::path(psz2);
+   //   return ::file::path(scopedstr1) / ::file::path(scopedstr2);
 
    //}
 
 
-   bool raw_folder::file_move(const ::file::path & pszDst,const ::file::path & pszSrc)
+   bool raw_folder::file_move(const ::file::path & pathTarget,const ::file::path & pathSource)
    {
 
-      file()->transfer(raw_path(pszDst), raw_path(pszSrc));
+      file()->transfer(raw_path(pathTarget), raw_path(pathSource));
 
       return true;
 
@@ -279,13 +279,13 @@ namespace fs
       //if (eopen & ::file::e_open_text)
       //{
 
-      //   pfile = __create_new<::stdio_file>();
+      //   pfile = øcreate_new<::stdio_file>();
 
       //}
       //else
       //{
 
-         __øconstruct(pfile);
+         øconstruct(pfile);
 
 //      }
 

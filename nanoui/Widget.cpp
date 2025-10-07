@@ -634,7 +634,7 @@ namespace nanoui
    }
 
 
-   bool Widget::keyboard_event(::user::enum_key, int, int, const ::user::e_key&, const ::string& strText)
+   bool Widget::keyboard_event(::user::enum_key, int, int, const ::user::e_key&, const ::scoped_string & scopedstrText)
    {
 
       return false;
@@ -667,7 +667,7 @@ namespace nanoui
 
       }
 
-      _synchronous_lock lock(screen()->m_puserinteraction->synchronization());
+      _synchronous_lock lock(screen()->m_puserinteraction->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (iIndex > child_count())
       {
@@ -719,7 +719,7 @@ namespace nanoui
    void Widget::erase_child(Widget* pwidget)
    {
 
-      _synchronous_lock lock(screen()->m_puserinteraction->synchronization());
+      _synchronous_lock lock(screen()->m_puserinteraction->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       pwidget->destroy_window();
 
@@ -736,7 +736,7 @@ namespace nanoui
    void Widget::to_top()
    {
 
-      _synchronous_lock lock(screen()->m_puserinteraction->synchronization());
+      _synchronous_lock lock(screen()->m_puserinteraction->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (m_pwidgetParent->m_children.erase(this))
       {
@@ -1422,12 +1422,12 @@ namespace nanoui
 
       ::pointer < Button > pbutton = this;
 
-      if (pbutton)
-      {
-
-         informationf("Button contains");
-
-      }
+//      if (pbutton)
+//      {
+//
+//         informationf("Button contains");
+//
+//      }
 
       //int iAddUp = 0;
 

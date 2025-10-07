@@ -8,7 +8,7 @@ namespace file
 {
 
 
-   listing::listing()
+   listing_base::listing_base()
    {
 
       m_countAddUp = 128;
@@ -20,10 +20,9 @@ namespace file
    }
 
 
-   listing::listing(const listing & listing) :
-      LISTING(listing),
-      path_array(listing),
-      ::string_array_base < ::file::path, string, e_type_string_array >(listing)
+   listing_base::listing_base(const listing_base & listing_base) :
+      LISTING(listing_base),
+      path_array_base(listing_base)
    {
       
       m_countAddUp = 128;
@@ -31,22 +30,21 @@ namespace file
    }
 
 
-   listing::listing(listing&& listing) :
-      LISTING(::transfer(listing)),
-      path_array(::transfer(listing)),
-      ::string_array_base < ::file::path, string, e_type_string_array >(::transfer(listing))
+   listing_base::listing_base(listing_base&& listing_base) :
+      LISTING(::transfer(listing_base)),
+      path_array_base(::transfer(listing_base))
    {
 
    }
 
 
-   listing::~listing()
+   listing_base::~listing_base()
    {
 
    }
 
 
-   bool listing::on_start_enumerating(::file::enumerator * penumerator)
+   bool listing_base::on_start_enumerating(::file::enumerator * penumerator)
    {
 
       if (::is_null(m_penumerator))
@@ -70,7 +68,7 @@ namespace file
    }
 
 
-   ::collection::index listing::case_insensitive_name_find_first(const path & pcsz, ::collection::index find, ::collection::index last ) const
+   ::collection::index listing_base::case_insensitive_name_find_first(const path & pcsz, ::collection::index find, ::collection::index last ) const
    {
 
       if(find < 0)
@@ -89,7 +87,7 @@ namespace file
    }
 
 
-   bool listing::case_insensitive_name_move(const path & pcsz, ::collection::index iIndex)
+   bool listing_base::case_insensitive_name_move(const path & pcsz, ::collection::index iIndex)
    {
 
       ::collection::index i = case_insensitive_name_find_first(pcsz);
@@ -114,7 +112,7 @@ namespace file
    }
 
 
-   bool listing::preferred_name(const path & pcsz)
+   bool listing_base::preferred_name(const path & pcsz)
 
    {
       return case_insensitive_name_move(pcsz,0);
@@ -122,7 +120,7 @@ namespace file
    }
 
 
-   ::collection::count listing::preferred_name(path_array & stra)
+   ::collection::count listing_base::preferred_name(path_array_base & stra)
    {
       ::collection::count count = 0;
       for(::collection::index i = stra.get_upper_bound(); i >= 0; i--)
@@ -134,7 +132,7 @@ namespace file
    }
 
    
-   void listing::defer_add(::file::path & path)
+   void listing_base::defer_add(::file::path & path)
    {
 
       ASSERT((m_eflag & ::file::e_flag_file_or_folder) != 0);
@@ -179,7 +177,7 @@ namespace file
             scoped_restore(m_eextract);
             
             #if defined(_DEBUG) && defined(NETBSD)
-            ::information() << "listing  depth>0:" << path;
+            ::information() << "listing_base  depth>0:" << path;
             #endif
 
             m_pathUser = path;
@@ -198,14 +196,14 @@ namespace file
             {
             
             #if defined(_DEBUG) && defined(NETBSD)
-            ::information() << "listing(2)  depth<=0:" << path;
+            ::information() << "listing_base(2)  depth<=0:" << path;
             #endif
             
          }
          if(::is_null(m_penumerator))
          {
                         #if defined(_DEBUG) && defined(NETBSD)
-            ::information() << "listing(2)  no enumerator:" << path;
+            ::information() << "listing_base(2)  no enumerator:" << path;
             #endif
 
             
@@ -245,8 +243,8 @@ namespace file
    }
 
 
-   relative_name_listing::relative_name_listing(const relative_name_listing & listing) :
-      ::file::listing(listing)
+   relative_name_listing::relative_name_listing(const relative_name_listing & listing_base) :
+      ::file::listing_base(listing_base)
    {
 
    }
@@ -264,7 +262,7 @@ namespace file
 
 
 
-CLASS_DECL_ACME bool matches_wildcard_criteria(const string_array & straCriteria, const ::string & strValue)
+CLASS_DECL_ACME bool matches_wildcard_criteria(const string_array_base & straCriteria, const ::scoped_string & scopedstrValue)
 {
 
    if (straCriteria.is_empty())
@@ -277,7 +275,7 @@ CLASS_DECL_ACME bool matches_wildcard_criteria(const string_array & straCriteria
    for (auto & strCriteria : straCriteria)
    {
 
-      if (matches_wildcard_criteria(strCriteria.c_str(), strValue.c_str()))
+      if (matches_wildcard_criteria(strCriteria.c_str(), scopedstrValue.as_string().c_str()))
       {
 
          return true;
@@ -291,7 +289,7 @@ CLASS_DECL_ACME bool matches_wildcard_criteria(const string_array & straCriteria
 }
 
 
-CLASS_DECL_ACME bool case_insensitive_matches_wildcard_criteria(const string_array & straCriteria, const ::string & strValue)
+CLASS_DECL_ACME bool case_insensitive_matches_wildcard_criteria(const string_array_base & straCriteria, const ::scoped_string & scopedstrValue)
 {
 
    if (straCriteria.is_empty())
@@ -304,14 +302,14 @@ CLASS_DECL_ACME bool case_insensitive_matches_wildcard_criteria(const string_arr
    for (auto & strCriteria : straCriteria)
    {
 
-      if (strValue.case_insensitive_begins("resident"))
+      if (scopedstrValue.case_insensitive_begins("resident"))
       {
 
          //informationf("resident*");
 
       }
 
-      if (case_insensitive_matches_wildcard_criteria(strCriteria.c_str(), strValue.c_str()))
+      if (case_insensitive_matches_wildcard_criteria(strCriteria.c_str(), scopedstrValue.as_string().c_str()))
       {
 
          return true;
@@ -327,10 +325,10 @@ CLASS_DECL_ACME bool case_insensitive_matches_wildcard_criteria(const string_arr
 
 
 
-CLASS_DECL_ACME string normalize_wildcard_criteria(const ::string & strPattern)
+CLASS_DECL_ACME string normalize_wildcard_criteria(const ::scoped_string & scopedstrPattern)
 {
 
-   if (strPattern.is_empty() || strPattern == "*.*")
+   if (scopedstrPattern.is_empty() || scopedstrPattern == "*.*")
    {
 
       return "*";
@@ -339,7 +337,7 @@ CLASS_DECL_ACME string normalize_wildcard_criteria(const ::string & strPattern)
    else
    {
 
-      return strPattern;
+      return scopedstrPattern;
 
    }
 
@@ -352,7 +350,7 @@ namespace file
 {
 
 
-   string listing::title(::collection::index i)
+   string listing_base::title(::collection::index i)
    {
 
       if (i >= 0 && i < m_straTitle.get_count())
@@ -367,7 +365,7 @@ namespace file
    }
 
 
-   string listing::name(::collection::index i)
+   string listing_base::name(::collection::index i)
    {
 
       if (i >= 0 && i < m_straTitle.get_count())
@@ -382,7 +380,7 @@ namespace file
    }
 
 
-   void listing::to_name()
+   void listing_base::to_name()
    {
 
       for (::collection::index i = 0; i < get_size(); i++)
@@ -395,7 +393,7 @@ namespace file
    }
 
 
-   listing & listing::operator = (const listing & listing)
+   listing_base & listing_base::operator = (const listing_base & listing)
    {
 
       if (this == &listing)
@@ -405,7 +403,7 @@ namespace file
 
       }
 
-      path_array::operator         = (listing);
+      path_array_base::operator         = (listing);
       *((LISTING *)this) = (const LISTING &)listing;
       m_pathUser = listing.m_pathUser;
       m_pathFinal = listing.m_pathFinal;
@@ -422,7 +420,7 @@ namespace file
    }
 
    
-   listing& listing::operator = (listing&& listing)
+   listing_base& listing_base::operator = (listing_base&& listing)
    {
 
       if (this == &listing)
@@ -432,7 +430,7 @@ namespace file
 
       }
 
-      path_array::operator         = (::transfer(listing));
+      path_array_base::operator         = (::transfer(listing));
       *((LISTING*)this) = ::transfer((LISTING&&)listing);
       m_pathUser = ::transfer(listing.m_pathUser);
       m_pathFinal = ::transfer(listing.m_pathFinal);

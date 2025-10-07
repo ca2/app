@@ -42,8 +42,8 @@ namespace html
 
       //}
 
-      //__construct_new(this, m_pentitysolver = ___new LiteHTMLEntityResolver(pparticle);
-      __construct_new(m_pentitysolver);
+      //øconstruct_new(this, m_pentitysolver = ___new LiteHTMLEntityResolver(pparticle);
+      øconstruct_new(m_pentitysolver);
 
       m_clrInvalid = color::white;
       m_percentMax = USHRT_MAX;
@@ -225,9 +225,9 @@ namespace html
    }
 
 
-   string html::special_chars(const ::string & psz)
+   string html::special_chars(const ::scoped_string & scopedstr)
    {
-      string str(psz);
+      string str(scopedstr);
       str.replace_with("&amp;"     , "&"     );
       str.replace_with( "&quot;"   , "\""    ); // when ENT_NOQUOTES isn't defined
       str.replace_with("&#039;"    , "'"     ); // only when ENT_QUOTES is defined
@@ -238,10 +238,12 @@ namespace html
 
 
 
-   string html::entities(const ::string & strParam)
+   string html::entities(const ::scoped_string & scopedstrParameter)
    {
+
+      ::string strParameter(scopedstrParameter);
       
-      const char * psz = strParam;
+      const_char_pointer psz = strParameter;
 
       if (psz == nullptr || *psz == '\0')
       {
@@ -284,16 +286,18 @@ namespace html
             strChar.formatf("&#%d;", iChar);
             str += strChar;
          }
-         unicode_increment(psz);
+         psz = unicode_next(psz);
       }
       return str;
    }
 
 
-   string html::htmlpre(const ::string & strParam)
+   string html::htmlpre(const ::scoped_string & scopedstrParameter)
    {
 
-      const char * psz = strParam;
+      ::string strParameter(scopedstrParameter);
+
+      const_char_pointer psz = strParameter;
 
       if (psz == nullptr || *psz == '\0')
       {
@@ -337,25 +341,26 @@ namespace html
             str += strChar;
          }
          
-         unicode_increment(psz);
+         psz = unicode_next(psz);
 
       }
       return str;
    }
 
 
-   int html::resolve_entity(const ::string & pszEntity, string& strChar)
+   int html::resolve_entity(const ::scoped_string & scopedstrEntity, string& strChar)
    {
 
-      return m_pentitysolver->resolveEntity(pszEntity, strChar);
+      return m_pentitysolver->resolveEntity(scopedstrEntity, strChar);
 
 
    }
 
-   string html::resolve_entities(const string& strParam)
+
+   string html::resolve_entities(const ::scoped_string & scopedstrParameter)
    {
 
-      string str(strParam);
+      string str(scopedstrParameter);
 
       string strChar;
 
@@ -406,6 +411,8 @@ namespace html
          && etag != tag_script;
 
    }
+
+
    e_tag html::tag_name_to_id(atom idTag)
    {
 
@@ -838,7 +845,7 @@ namespace axis
       //auto estatus =
          
          
-         __construct_new(m_phtml);
+         øconstruct_new(m_phtml);
 
       //if (!estatus)
       //{

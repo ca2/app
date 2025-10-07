@@ -1,5 +1,6 @@
 // From vk_swapchain by camilo on 2025-05-09 <3ThomasBorregaardSorensen!!
 #include "framework.h"
+#include "_gpu_opengl.h"
 #include "offscreen_render_target.h"
 //#include "initializers.h"
 //#include "physical_device.h"
@@ -39,7 +40,7 @@ namespace gpu_opengl
    void offscreen_render_target::on_init()
    {
 
-      createImages();
+      create_images();
       createRenderPassImpl();
       createImageViews();
       createRenderPass();

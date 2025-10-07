@@ -112,7 +112,7 @@ namespace graphics
 
          //::draw2d::path_pointer ppath;
 
-         //__øconstruct(ppath);
+         //øconstruct(ppath);
 
          //ppath->set_fill_mode(::draw2d::e_fill_mode_alternate);
 
@@ -125,7 +125,7 @@ namespace graphics
          if (!m_pimageCircle || diamRound != m_pimageCircle->width())
          {
 
-            __øconstruct(m_pimageCircle);
+            øconstruct(m_pimageCircle);
 
             m_pimageCircle->create({ diamRound, diamRound });
 
@@ -405,7 +405,7 @@ namespace graphics
 
       context.set_graphics(pgraphics);
 
-      //__defer_construct_new(m_pfontsink);
+      //ødefer_construct_new(m_pfontsink);
 
       //context.set_font_sink(m_pfontsink);
 

@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "message.h"
+#include "apex/message/message.h"
 
 
 namespace message
@@ -30,8 +30,7 @@ namespace message
    };
 
 
-   class CLASS_DECL_APEX application :
-      public ::message::message
+   class CLASS_DECL_APEX application : public ::message::message
    {
    public:
 

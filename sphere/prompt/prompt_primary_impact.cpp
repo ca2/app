@@ -37,7 +37,7 @@ namespace prompt
    {
 
       BASE::install_message_routing(pchannel);
-      MESSAGE_LINK(e_message_context_menu, pchannel, this, &primary_impact::on_message_context_menu);
+      USER_MESSAGE_LINK(::user::e_message_context_menu, pchannel, this, &primary_impact::on_message_context_menu);
 
    }
 
@@ -85,7 +85,7 @@ namespace prompt
                   bOk = true;
 
                }
-               catch(const ::string & psz)
+               catch(const ::scoped_string & scopedstr)
                {
 
                   informationf("error %s", psz);
@@ -99,7 +99,7 @@ namespace prompt
                   if(!bOk)
                   {
 
-                     string_array stra;
+                     string_array_base stra;
 
                      if(cregexp_util::match(stra, strLine, "(.+)\\s*segundos", true, 2) == 1)
                      {
@@ -179,7 +179,7 @@ namespace prompt
                   }
 
                }
-               catch(const ::string & psz)
+               catch(const ::scoped_string & scopedstr)
                {
 
                   informationf("error %s", psz);

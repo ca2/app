@@ -10,7 +10,7 @@ class CLASS_DECL_ACME factory_function
 public:
 
 
-   const char* m_pszName;
+   const_char_pointer m_pszName;
    FACTORY_FUNCTION* m_pfnFactory;
    factory_function* m_pfactoryfunctionNext;
 
@@ -18,7 +18,7 @@ public:
    static factory_function* g_pfactoryfunctionNext;
 
 
-   factory_function(const char * pszName, FACTORY_FUNCTION* pfnFactory);
+   factory_function(const_char_pointer pszName, FACTORY_FUNCTION* pfnFactory);
 
    static FACTORY_FUNCTION* get(const ::scoped_string & scopedstrName);
 

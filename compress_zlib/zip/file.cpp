@@ -34,7 +34,7 @@ namespace zip
 
    }
 
-//   bool file::unzip_open(const char * pcwsz)
+//   bool file::unzip_open(const_char_pointer pcwsz)
 //
 //   {
 //
@@ -81,9 +81,9 @@ namespace zip
       if (iBufferLevel >= 2)
       {
 
-         m_pbuffile1 = __allocate ::file::buffered_file(pfile, 1024 * 32);
+         m_pbuffile1 = øallocate ::file::buffered_file(pfile, 1024 * 32);
 
-         m_pbuffile2 = __allocate ::file::buffered_file(m_pbuffile1, 1024 * 32);
+         m_pbuffile2 = øallocate ::file::buffered_file(m_pbuffile1, 1024 * 32);
 
       }
       else if (iBufferLevel == 1)
@@ -91,7 +91,7 @@ namespace zip
 
          m_pbuffile1 = nullptr;
 
-         m_pbuffile2 = __allocate ::file::buffered_file(pfile, 1024 * 32);
+         m_pbuffile2 = øallocate ::file::buffered_file(pfile, 1024 * 32);
 
       }
       else
@@ -115,13 +115,13 @@ namespace zip
    }
 
 
-   bool file::zip_open(const char * pcwsz)
+   bool file::zip_open(const_char_pointer pcwsz)
 
    {
 
       m_bOwnFile = true;
 
-      auto pfile = system()->__øcreate < ::file::file > ();
+      auto pfile = system()->øcreate < ::file::file > ();
 
       try
       {
@@ -155,9 +155,9 @@ namespace zip
    bool file::zip_open(file_pointer pfile)
    {
 
-      m_pbuffile1 = __allocate ::file::buffered_file(pfile, 1024 * 256);
+      m_pbuffile1 = øallocate ::file::buffered_file(pfile, 1024 * 256);
 
-      m_pbuffile2 = __allocate ::file::buffered_file(m_pbuffile1, 1024 * 256);
+      m_pbuffile2 = øallocate ::file::buffered_file(m_pbuffile1, 1024 * 256);
 
       m_pbuffile2->seek_to_begin();
 
@@ -204,7 +204,7 @@ namespace zip
 //
 //
 //
-//voidpf fileopen_file_func (voidpf opaque, const char* filename, int mode)
+//voidpf fileopen_file_func (voidpf opaque, const_char_pointer filename, int mode)
 //{
 //   __UNREFERENCED_PARAMETER(mode);
 //   __UNREFERENCED_PARAMETER(filename);
@@ -273,7 +273,7 @@ namespace zip
 
 
 
-voidpf c_zip_file_open_file_func (voidpf opaque, const char* filename, int mode)
+voidpf c_zip_file_open_file_func (voidpf opaque, const_char_pointer filename, int mode)
 {
    __UNREFERENCED_PARAMETER(mode);
    __UNREFERENCED_PARAMETER(filename);

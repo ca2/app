@@ -317,7 +317,7 @@ bool  stream_base::is_version(int i)
 //}
 //
 //
-//::atom stream::text_to_factory_id(string strType)
+//::atom stream::text_to_factory_id(const ::scoped_string & scopedstrType)
 //{
 //
 //   return strType;
@@ -504,19 +504,19 @@ bool  stream_base::is_version(int i)
 //
 //
 //
-//void stream::write(const ::ansi_character * psz)
+//void stream::write(const_char_pointer psz)
 //{
 //
-//   auto len = ::str::string_safe_length(psz);
+//   auto len = ::str::string_safe_length(scopedstr);
 //
 //   write_buffer_length(len);
 //
-//   write(psz, len);
+//   write(scopedstr, len);
 //
 //}
 //
 //
-//void stream::write(const ::string & str)
+//void stream::write(const ::scoped_string & scopedstr)
 //{
 //
 //   write_buffer_length(str.length());
@@ -586,7 +586,7 @@ bool  stream_base::is_version(int i)
 ////}
 ////
 ////
-////void stream::set_object_link(const ::matter * preference, const ::string & strLink, bool bReadOnly)
+////void stream::set_object_link(const ::matter * preference, const ::scoped_string & scopedstrLink, bool bReadOnly)
 ////{
 ////
 ////}
@@ -613,7 +613,7 @@ bool  stream_base::is_version(int i)
 ////}
 //
 //
-////void stream::write_link(const ::matter * preference, const ::string & strLink, bool bReadOnly, ::matter * pobjectSaveOptions)
+////void stream::write_link(const ::matter * preference, const ::scoped_string & scopedstrLink, bool bReadOnly, ::matter * pobjectSaveOptions)
 ////{
 ////
 ////   write(bReadOnly);
@@ -923,7 +923,7 @@ bool  stream_base::is_version(int i)
 //   if (!m_pvarOptions)
 //   {
 //
-//      m_pvarOptions = __allocate ::payload();
+//      m_pvarOptions = øallocate ::payload();
 //
 //   }
 //
@@ -932,7 +932,7 @@ bool  stream_base::is_version(int i)
 //}
 //
 //
-//::pointer<::matter>stream::create_object_from_text(string strText)
+//::pointer<::matter>stream::create_object_from_text(const ::scoped_string & scopedstrText)
 //{
 //
 //   if (strText.is_empty())
@@ -944,7 +944,7 @@ bool  stream_base::is_version(int i)
 //
 //   auto atom = text_to_factory_id(strText);
 //
-//   return __id_create < ::matter >(atom);
+//   return øid_create < ::matter >(atom);
 //
 //}
 //
@@ -961,7 +961,7 @@ bool  stream_base::is_version(int i)
 //   else
 //   {
 //
-//      write(string(psz));
+//      write(string(scopedstr));
 //
 //   }
 //

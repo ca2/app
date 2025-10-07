@@ -87,14 +87,14 @@ namespace micro
    }
 
 
-   void popup_button::initialize_popup_button(const ::string & strText, int x, int y, ::acme::user::interaction * pacmeuserinteractionOwner)
+   void popup_button::initialize_popup_button(const ::scoped_string & scopedstrText, int x, int y, ::acme::user::interaction * pacmeuserinteractionOwner)
    {
 
       m_pacmeuserinteractionOwner = pacmeuserinteractionOwner;
 
       calculate_size_and_position(x, y);
 
-      add_button(strText, e_dialog_result_yes, 'y');
+      add_button(scopedstrText, e_dialog_result_yes, 'y');
 
       add_button("Cancel", e_dialog_result_cancel, 'c');
 

@@ -35,10 +35,10 @@ namespace regular_expression_pcre2
    }
 
 
-   void regular_expression::compile(const string& str)
+   void regular_expression::compile(const ::scoped_string & scopedstr)
    {
 
-      m_str = str;
+      m_str = scopedstr;
 
       int e;
 
@@ -46,7 +46,7 @@ namespace regular_expression_pcre2
 
       auto pcontext = (::regular_expression_pcre2::context *) m_papplication->m_pContext;
 
-      m_pcode = pcre2_compile((PCRE2_SPTR)(const char *)m_str, m_str.length(), 0, &e, &eo, pcontext->m_pcompilecontext);
+      m_pcode = pcre2_compile((PCRE2_SPTR)(const_char_pointer )m_str, m_str.length(), 0, &e, &eo, pcontext->m_pcompilecontext);
 
       if (m_pcode == nullptr)
       {
@@ -78,18 +78,18 @@ namespace regular_expression_pcre2
 
 
 
-   ::pointer<::regular_expression::result>regular_expression::run(const string& str)
+   ::pointer<::regular_expression::result>regular_expression::run(const ::scoped_string & scopedstr)
    {
 
-      auto presult = __allocate class result ();
+      auto presult = øallocate class result ();
 
       presult->m_pregularexpression = this;
 
-      presult->m_str = str;
+      presult->m_str = scopedstr;
 
       presult->m_pmatchdata = pcre2_match_data_create(m_iRangeCount + 1, m_pgeneralcontext);
 
-      auto iMatchResult = pcre2_match(m_pcode, (PCRE2_SPTR)str.c_str(), str.length(), 0, 0, presult->m_pmatchdata, nullptr);
+      auto iMatchResult = pcre2_match(m_pcode, (PCRE2_SPTR)scopedstr.data(), scopedstr.length(), 0, 0, presult->m_pmatchdata, nullptr);
 
       if (iMatchResult < 0)
       {
@@ -112,10 +112,10 @@ namespace regular_expression_pcre2
 
 
 
-   bool regular_expression::replace(string& str, const string& strPrefix, string& strRet)
+   bool regular_expression::replace(string& str, const ::scoped_string & scopedstrPrefix, string& strRet)
    {
 
-      size_t s = maximum(256, str.length() + strPrefix.length() * 3);
+      size_t s = maximum(256, str.length() + scopedstrPrefix.length() * 3);
 
       int err;
 
@@ -131,7 +131,7 @@ namespace regular_expression_pcre2
             /*m_pcreContext->m_pimpl->m_pmd*/
             nullptr,
             nullptr,
-            (PCRE2_SPTR8)strPrefix.c_str(), strPrefix.length(),
+            (PCRE2_SPTR8)scopedstrPrefix.data(), scopedstrPrefix.size(),
             (PCRE2_UCHAR8*)strRet.get_buffer(s), &s);
 
          strRet.release_buffer(s);

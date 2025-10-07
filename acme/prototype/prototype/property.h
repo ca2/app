@@ -110,7 +110,7 @@ public:
    }
 
 
-   void* operator new(size_t size, const char* /* pszFileName */, int /* nLine */)
+   void* operator new(size_t size, const_char_pointer /* pszFileName */, int /* nLine */)
    {
 
       return ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_property)->allocate(size, nullptr);
@@ -126,7 +126,7 @@ public:
    }
 
 
-   void operator delete(void * p, const char* /* pszFileName */, int /* nLine */)
+   void operator delete(void * p, const_char_pointer /* pszFileName */, int /* nLine */)
    {
 
       return ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_property)->free(p);
@@ -222,12 +222,12 @@ CLASS_DECL_ACME void property_skip_network_payload_payload(::ansi_range & range)
 #include "acme/prototype/collection/raw_pointer_array.h"
 #include "acme/prototype/prototype/holder.h"
 
-using property_holder_array = ::array < ::holder < ::property > >;
+using property_holder_array_base = ::array_base < ::holder < ::property > >;
 
-//using property_map = map < ::atom, const ::atom &, payload, const ::payload &, ::property >;
+//using property_map = map_base < ::atom, const ::atom &, payload, const ::payload &, ::property >;
 
 
-//inline bool operator == (const ::string & str, const property & prop)
+//inline bool operator == (const ::scoped_string & scopedstr, const property & prop)
 //{
 //
 //   return str == prop.get_string();
@@ -317,22 +317,22 @@ using property_holder_array = ::array < ::holder < ::property > >;
 //}
 //
 
-template < typename ITERATOR_TYPE >
-string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::operator = (const ::property & property)
-{
+//template < typename ITERATOR_TYPE >
+//string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::operator = (const ::property & property)
+//{
+//
+//   return operator=(property.as_string());
+//
+//}
 
-   return operator=(property.as_string());
 
-}
-
-
-template < typename ITERATOR_TYPE >
-string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::operator += (const ::property & property)
-{
-
-   return this->append(property);
-
-}
+// template < typename ITERATOR_TYPE >
+// string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::operator += (const ::property & property)
+// {
+//
+//    return this->append(property);
+//
+// }
 
 
 template < typename ITERATOR_TYPE >

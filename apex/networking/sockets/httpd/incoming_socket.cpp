@@ -107,7 +107,7 @@ namespace httpd
    }*/
 
 
-   //void incoming_socket::Send64(const ::string & str64, const string & type)
+   //void incoming_socket::Send64(const ::scoped_string & scopedstr64, const ::scoped_string & scopedstrType)
    //{
    //   //   Base64 bb;
 
@@ -147,8 +147,8 @@ namespace httpd
    //{
    //   struct tm tp;
    //   posix_time t;
-   //   const char * days[] = { "Sun","Mon","Tue","Wed","Thu","Fri","Sat" };
-   //   const char * months[] = { "Jan","Feb","Mar","Apr","May","Jun",
+   //   const_char_pointer days[] = { "Sun","Mon","Tue","Wed","Thu","Fri","Sat" };
+   //   const_char_pointer months[] = { "Jan","Feb","Mar","Apr","May","Jun",
    //                            "Jul","Aug","Sep","Oct","Nov","Dec"
    //   };
    //   int i;
@@ -222,9 +222,9 @@ namespace httpd
    //}
 
 
-   //map < int, DH * > * g_pmapdh = nullptr;
+   //map_base < int, DH * > * g_pmapdh = nullptr;
 
-   //map < int, DH * > * dh_map()
+   //map_base < int, DH * > * dh_map()
    //{
 
    //   critical_section_lock synchronouslock(::globals_critical_section());
@@ -232,7 +232,7 @@ namespace httpd
    //   if (g_pmapdh == nullptr)
    //   {
 
-   //      g_pmapdh = ___new map < int, DH * > ();
+   //      g_pmapdh = ___new map_base < int, DH * > ();
 
    //   }
 

@@ -2,7 +2,7 @@
 #include "framework.h"
 #include "color_selector_control.h"
 #include "acme/constant/id.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "acme/graphics/image/image32.h"
 #include "aura/graphics/draw2d/draw2d.h"
 #include "aura/graphics/draw2d/graphics.h"
@@ -15,7 +15,7 @@
 #include "aura/message/user.h"
 //#include "aura/operating_system/windows_common/graphics.h"
 #include "aura/platform/system.h"
-#include "base/user/user/document.h"
+#include "berg/user/user/document.h"
 
 
 namespace user
@@ -80,11 +80,11 @@ namespace user
 
       ::user::interaction::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_create, pchannel, this, &color_selector_control::on_message_create);
-      MESSAGE_LINK(e_message_mouse_move, pchannel, this, &color_selector_control::on_message_mouse_move);
-      MESSAGE_LINK(e_message_left_button_down, pchannel, this, &color_selector_control::on_message_left_button_down);
-      MESSAGE_LINK(e_message_left_button_up, pchannel, this, &color_selector_control::on_message_left_button_up);
-      MESSAGE_LINK(e_message_show_window, pchannel, this, &color_selector_control::on_message_show_window);
+      USER_MESSAGE_LINK(::user::e_message_create, pchannel, this, &color_selector_control::on_message_create);
+      USER_MESSAGE_LINK(::user::e_message_mouse_move, pchannel, this, &color_selector_control::on_message_mouse_move);
+      USER_MESSAGE_LINK(::user::e_message_left_button_down, pchannel, this, &color_selector_control::on_message_left_button_down);
+      USER_MESSAGE_LINK(::user::e_message_left_button_up, pchannel, this, &color_selector_control::on_message_left_button_up);
+      USER_MESSAGE_LINK(::user::e_message_show_window, pchannel, this, &color_selector_control::on_message_show_window);
 
    }
 
@@ -150,7 +150,7 @@ namespace user
    {
 
 
-      __øconstruct(m_pfont);
+      øconstruct(m_pfont);
 
       m_pfont->create_font(e_font_sans_ui, 24_pt, e_font_weight_bold);
 
@@ -159,7 +159,7 @@ namespace user
 
       //m_pimageBeam->fill(0);
 
-      //auto ppen = __øcreate < ::draw2d::pen > ();
+      //auto ppen = øcreate < ::draw2d::pen > ();
 
       //ppen->create_solid(1.0, argb(255, 255, 255, 255));
 
@@ -347,7 +347,7 @@ namespace user
 
    //   rectangleInner.deflate(sizeBeam.cx() / 4.0, sizeBeam.cy() / 4.0);
 
-   //   auto pbrush = __øcreate < ::draw2d::brush >();
+   //   auto pbrush = øcreate < ::draw2d::brush >();
 
    //   pbrush->create_solid(argb(255, 0, 0, 0));
 
@@ -419,7 +419,7 @@ namespace user
 
    //   rectangleOuter.inflate(dSize / 2.0, dSize / 2.0);
 
-   //   auto pbrush = __øcreate < ::draw2d::brush >();
+   //   auto pbrush = øcreate < ::draw2d::brush >();
 
    //   pbrush->create_solid(argb(255, 0, 0, 0));
 

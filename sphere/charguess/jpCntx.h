@@ -43,8 +43,8 @@ public:
   PRBool GotEnoughData() {return mTotalRel > ENOUGH_REL_THRESHOLD;};
 
 protected:
-  virtual PRInt32 GetOrder(const ::string & str, PRunsigned int *charLen) = 0;
-  virtual PRInt32 GetOrder(const ::string & str) = 0;
+  virtual PRInt32 GetOrder(const ::scoped_string & scopedstr, PRunsigned int *charLen) = 0;
+  virtual PRInt32 GetOrder(const ::scoped_string & scopedstr) = 0;
 
   //category counters, each interger counts sequence in its category
   PRunsigned int mRelSample[NUM_OF_CATEGORY];
@@ -68,9 +68,9 @@ class SJISContextAnalysis : public JapaneseContextAnalysis
 {
   //SJISContextAnalysis(){};
 protected:
-  PRInt32 GetOrder(const ::string & str, PRunsigned int *charLen);
+  PRInt32 GetOrder(const ::scoped_string & scopedstr, PRunsigned int *charLen);
 
-  PRInt32 GetOrder(const ::string & str)
+  PRInt32 GetOrder(const ::scoped_string & scopedstr)
   {
     //We only interested in Hiragana, so first unsigned char is '\202'
     if (*str == '\202' && 
@@ -84,8 +84,8 @@ protected:
 class EUCJPContextAnalysis : public JapaneseContextAnalysis
 {
 protected:
-  PRInt32 GetOrder(const ::string & str, PRunsigned int *charLen);
-  PRInt32 GetOrder(const ::string & str)
+  PRInt32 GetOrder(const ::scoped_string & scopedstr, PRunsigned int *charLen);
+  PRInt32 GetOrder(const ::scoped_string & scopedstr)
     //We only interested in Hiragana, so first unsigned char is '\244'
   {
     if (*str == '\244' &&

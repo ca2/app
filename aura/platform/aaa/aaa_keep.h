@@ -317,7 +317,7 @@ ___keep < TYPE > keep(TYPE & kept, const TYPE_KEEP & keepValue, const TYPE_KEEP_
 
 #define __task_guard_ret(flag, ret) \
  \
-synchronous_lock synchronouslock(this->synchronization()); \
+synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX); \
  \
 if (flag) \
 { \
@@ -335,7 +335,7 @@ synchronouslock.unlock()
 
 #define __guard_wait_ret(flag, ret) \
  \
-synchronous_lock synchronouslock(this->synchronization()); \
+synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX); \
  \
 while (flag) \
 { \

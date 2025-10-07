@@ -20,8 +20,14 @@ namespace windowing
 
    ::windowing::enum_operating_ambient calculate_edesktop()
    {
-      
-#if defined(APPLE_IOS)
+
+#if defined(__ANDROID__)
+
+      printf_line("calculate_edesktop e_operating_ambient_android");
+
+         return ::windowing::e_operating_ambient_android;
+
+#elif defined(APPLE_IOS)
          
          printf_line("calculate_edesktop e_operating_ambient_ios");
 
@@ -35,7 +41,7 @@ namespace windowing
       
 #else
 
-      const char *pszDesktop = getenv("XDG_CURRENT_DESKTOP");
+      const_char_pointer pszDesktop = getenv("XDG_CURRENT_DESKTOP");
 
       printf_line("XDG_CURRENT_DESKTOP %s", pszDesktop);
 
@@ -96,10 +102,10 @@ namespace windowing
 
       // // uname(&name);
 
-      // if(pszDesktop != nullptr)
+      // if(scopedstrDesktop != nullptr)
       // {
 
-      //    if(strcasecmp(pszDesktop, "Unity") == 0)
+      //    if(strcasecmp(scopedstrDesktop, "Unity") == 0)
       //    {
 
       //       return ::windowing::e_operating_ambient_unity_gnome;

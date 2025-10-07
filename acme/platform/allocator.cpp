@@ -79,7 +79,7 @@ namespace allocator
 
       //auto preferencereferer = ::platform::allocator::__callnew reference_referer (::transfer(referer));
 
-      auto preferencereferer = __raw_new ::reference_referer(referer);
+      auto preferencereferer = øraw_new ::reference_referer(referer);
 
       return preferencereferer;
 
@@ -555,6 +555,15 @@ namespace allocator
    void on_construct_subparticle(::subparticle * pparticle)
    {
 
+      bool bHasProtoFlag = pparticle->has_proto_flag();
+
+      if (bHasProtoFlag)
+      {
+
+         return;
+
+      }
+
       if(!::is_set(t_pStartConstruct) || t_sStartConstruct <= 0)
       {
 
@@ -599,6 +608,10 @@ namespace allocator
 
       if (!bDisableReferencingDebugging)
       {
+
+         //pparticle->m_preferenceitema->m_pitema = { transfer_t{}, new ::comparable_array<::reference_item *>(e_flag_disable_referencing_debugging)};
+
+         //pparticle->m_preferenceitema->m_pitem2a = { transfer_t{}, new ::comparable_array<::reference_item_array *>(e_flag_disable_referencing_debugging)};
 
          if (::is_set(t_psubparticleTrackAllocation)
             && t_psubparticleTrackAllocation->contains_top_track(pparticle))
@@ -688,7 +701,9 @@ namespace allocator
       if(pparticle->is_referencing_debugging_enabled())
       {
 
-         pparticle->m_preferenceitema = __raw_new reference_item_array (pparticle, pparticleParent);
+         //pparticle->m_preferenceitema = øraw_new reference_item_array (pparticle, pparticleParent);
+
+         pparticle->m_preferenceitema = new reference_item_array (pparticle, pparticleParent);
 
          //on_after_construct_particle(pparticle->m_preferenceitema);
 
@@ -909,7 +924,7 @@ namespace allocator
 void subparticle::disable_referencing_debugging()
 {
 
-   m_bReferencingDebuggingEnabled = false;
+   m_bReferencingDebuggingEnabled5 = false;
 
    //m_eflagElement.set(e_flag_no_referencing_debugging);
 

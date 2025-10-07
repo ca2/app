@@ -109,7 +109,7 @@ namespace file
    void file::open(const ::file::path & path, ::file::e_open eopen, ::pointer < ::file::exception > * pfileexception)
    {
 
-//      auto pfile = __øcreate <::file::file>();
+//      auto pfile = øcreate <::file::file>();
 //
 //      if (::is_null(pfile))
 //      {
@@ -311,6 +311,14 @@ namespace file
       memory.from_hex(block);
 
       write(memory);
+
+   }
+
+
+   void file::write_unsigned_char(unsigned char uch)
+   {
+
+      write(&uch, 1);
 
    }
 
@@ -702,36 +710,36 @@ namespace file
 
 
 
-   void file::print(const ::string & str)
+   void file::print(const ::scoped_string & scopedstr)
    {
 
-      write(str);
+      write(scopedstr);
 
    }
 
 
-   void file::println(const ::string & str)
+   void file::println(const ::scoped_string & scopedstr)
    {
 
-      print(str);
+      print(scopedstr);
 
       write({ LINE_SEPARATOR, STATIC_ASCII_STRING_LENGTH(LINE_SEPARATOR) });
 
    }
 
 
-   void file::printf(const char *format, ...)
+   void file::printf(const_char_pointer format, ...)
    {
 
       string strFormat;
 
-      va_list list;
+      va_list list_base;
 
-      va_start(list, format);
+      va_start(list_base, format);
 
-      strFormat.formatf(format, list);
+      strFormat.formatf(format, list_base);
 
-      va_end(list);
+      va_end(list_base);
 
       write(strFormat);
 
@@ -746,7 +754,7 @@ namespace file
    }
 
 
-//   void file::write(const ::string & str)
+//   void file::write(const ::scoped_string & scopedstr)
 //   {
 //
 //      write(str,  str.length());
@@ -1250,7 +1258,7 @@ namespace file
    void file::from_hex(const ::scoped_string & scopedstr)
    {
       memory memory;
-      memory.from_hex(psz);
+      memory.from_hex(scopedstr);
       write(memory.data(), memory.size());
    }*/
 
@@ -1358,7 +1366,7 @@ namespace file
 
    void file::write (const ::scoped_string & scopedstr)
    {
-      __UNREFERENCED_PARAMETER(psz);
+      __UNREFERENCED_PARAMETER(scopedstr);
       throw ::interface_only();
    }
 
@@ -1374,7 +1382,7 @@ namespace file
       throw ::interface_only();
    }
 
-   void file::write (const ::string & str)
+   void file::write (const ::scoped_string & scopedstr)
    {
       __UNREFERENCED_PARAMETER(str);
       throw ::interface_only();
@@ -1485,7 +1493,7 @@ namespace file
    }
 
 
-   void file::put_lines(const string_array& stra)
+   void file::put_lines(const string_array_base& stra)
    {
 
       for (auto& strLine : stra)

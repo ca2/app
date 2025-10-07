@@ -6,7 +6,7 @@
 #include "list_item.h"
 #include "list_column.h"
 #include "acme/constant/id.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "acme/constant/timer.h"
 #include "acme/constant/user_key.h"
 #include "acme/exception/interface_only.h"
@@ -33,7 +33,7 @@
 #include "aura/windowing/window.h"
 #include "aura/message/user.h"
 #include "axis/platform/system.h"
-#include "base/user/user/user.h"
+#include "berg/user/user/user.h"
 #include "core/user/simple/mesh_data.h"
 #include "core/platform/session.h"
 
@@ -48,9 +48,9 @@
 namespace user
 {
 
-   const ::enum_message mesh::MESSAGE_ENDCOLUMNHEADERDRAG = (::enum_message)(WM_USER + 25);
-   const ::enum_message mesh::MESSAGE_COLUMNHEADERTRACK = (::enum_message) (WM_USER + 26);
-   const ::enum_message mesh::MESSAGE_ENDCOLUMNHEADERTRACK = (::enum_message) (WM_USER + 27);
+   const ::user::enum_message mesh::MESSAGE_ENDCOLUMNHEADERDRAG = (::user::enum_message)(WM_USER + 25);
+   const ::user::enum_message mesh::MESSAGE_COLUMNHEADERTRACK = (::user::enum_message) (WM_USER + 26);
+   const ::user::enum_message mesh::MESSAGE_ENDCOLUMNHEADERTRACK = (::user::enum_message) (WM_USER + 27);
 
    mesh::mesh()
    {
@@ -64,9 +64,9 @@ namespace user
 
       m_econtroltype = ::user::e_control_type_mesh;
 
-      __construct_new(m_piconlayout);
+      øconstruct_new(m_piconlayout);
 
-      __construct_new(m_pmeshlayout);
+      øconstruct_new(m_pmeshlayout);
 
       m_piconlayout->m_iaDisplayToStrict.set_empty_a(-1);
       m_piconlayout->m_iaDisplayToStrict.set_empty_b(-1);
@@ -186,27 +186,27 @@ namespace user
       ::user::interaction::install_message_routing(pchannel);
       ::user::scroll_base::install_message_routing(pchannel);
 
-      bool bList = dynamic_cast <list *> (this) != nullptr;
+      bool bList = dynamic_cast <::user::list *> (this) != nullptr;
 
-      MESSAGE_LINK(e_message_size, pchannel, this,&mesh::on_message_size);
-      MESSAGE_LINK(e_message_scroll_y, pchannel, this,&mesh::on_message_scroll_y);
-      MESSAGE_LINK(e_message_scroll_x, pchannel, this,&mesh::on_message_scroll_x);
-      MESSAGE_LINK(e_message_mouse_leave, pchannel, this,&mesh::on_message_mouse_leave);
+      USER_MESSAGE_LINK(::user::e_message_size, pchannel, this,&mesh::on_message_size);
+      USER_MESSAGE_LINK(::user::e_message_scroll_y, pchannel, this,&mesh::on_message_scroll_y);
+      USER_MESSAGE_LINK(::user::e_message_scroll_x, pchannel, this,&mesh::on_message_scroll_x);
+      USER_MESSAGE_LINK(::user::e_message_mouse_leave, pchannel, this,&mesh::on_message_mouse_leave);
 
       if (!bList)
       {
-         MESSAGE_LINK(e_message_left_button_down, pchannel, this, &mesh::on_message_left_button_down);
-         MESSAGE_LINK(e_message_left_button_up, pchannel, this, &mesh::on_message_left_button_up);
-         MESSAGE_LINK(e_message_left_button_double_click, pchannel, this, &mesh::on_message_left_button_double_click);
+         USER_MESSAGE_LINK(::user::e_message_left_button_down, pchannel, this, &mesh::on_message_left_button_down);
+         USER_MESSAGE_LINK(::user::e_message_left_button_up, pchannel, this, &mesh::on_message_left_button_up);
+         USER_MESSAGE_LINK(::user::e_message_left_button_double_click, pchannel, this, &mesh::on_message_left_button_double_click);
       }
-      MESSAGE_LINK(e_message_right_button_down, pchannel, this,&mesh::on_message_right_button_down);
-      MESSAGE_LINK(e_message_right_button_down, pchannel, this, &mesh::on_message_right_button_up);
+      USER_MESSAGE_LINK(::user::e_message_right_button_down, pchannel, this,&mesh::on_message_right_button_down);
+      USER_MESSAGE_LINK(::user::e_message_right_button_down, pchannel, this, &mesh::on_message_right_button_up);
 
-      MESSAGE_LINK(e_message_mouse_move, pchannel, this,&mesh::on_message_mouse_move);
+      USER_MESSAGE_LINK(::user::e_message_mouse_move, pchannel, this,&mesh::on_message_mouse_move);
 
-      MESSAGE_LINK(e_message_key_down, pchannel, this,&mesh::on_message_key_down);
+      USER_MESSAGE_LINK(::user::e_message_key_down, pchannel, this,&mesh::on_message_key_down);
 
-      MESSAGE_LINK(e_message_create, pchannel, this,&mesh::on_message_create);
+      USER_MESSAGE_LINK(::user::e_message_create, pchannel, this,&mesh::on_message_create);
 
       add_command_handler("mesh_impact_auto_arrange", { this,  &mesh::_001OnMeshImpactAutoArrange });
 
@@ -244,7 +244,7 @@ namespace user
 
          auto pstyle = get_style(pgraphics);
 
-         auto pbrushText = __øcreate < ::draw2d::brush > ();
+         auto pbrushText = øcreate < ::draw2d::brush > ();
 
          pbrushText->create_solid(get_color(pstyle, ::e_element_text));
 
@@ -388,7 +388,7 @@ namespace user
          if (!pgroup)
          {
 
-            auto pdrawgroup = __allocate draw_mesh_group();
+            auto pdrawgroup = øallocate draw_mesh_group();
 
             pdrawgroup->initialize_draw_mesh_group(this);
 
@@ -812,7 +812,7 @@ namespace user
       if (!pitem)
       {
 
-         auto pdrawmeshitem = __allocate draw_mesh_item();
+         auto pdrawmeshitem = øallocate draw_mesh_item();
 
          pdrawmeshitem->initialize_draw_mesh_item(this);
 
@@ -845,7 +845,7 @@ namespace user
       if (!psubitem)
       {
 
-         psubitem = __allocate draw_mesh_subitem();
+         psubitem = øallocate draw_mesh_subitem();
 
          psubitem->m_pitem = pitem;
 
@@ -977,7 +977,7 @@ namespace user
    void mesh::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       _001CalculateItemHeight(pgraphics);
 
@@ -1128,7 +1128,7 @@ namespace user
    void mesh::on_update_item_count()
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       //__UNREFERENCED_PARAMETER(dwFlags);
 
@@ -1439,7 +1439,7 @@ namespace user
 
       return;
 
-//      _synchronous_lock synchronouslock(m_pmutexData);
+//      _synchronous_lock synchronouslock(m_pmutexData, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
 //      index iColumn;
 
@@ -1455,7 +1455,7 @@ namespace user
 
    //   int iWidth;
 
-   //   if(!m_mapColumnWidth.lookup((::collection::index) pitem->m_iColumn,iWidth))
+   //   if(!m_mapColumnWidth.find((::collection::index) pitem->m_iColumn,iWidth))
    //   {
 
    //      iWidth = m_iDefaultColumnWidth;
@@ -2923,7 +2923,7 @@ namespace user
 
       pmouse->previous(); // give chance to child control
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       
 
@@ -2980,7 +2980,7 @@ namespace user
 
          auto pointCursor = host_mouse_cursor_position();
 
-         auto pmouse = __create_new < ::message::mouse >();
+         auto pmouse = øcreate_new < ::message::mouse >();
 
          pmouse->m_pointHost = pointCursor;
 
@@ -3035,7 +3035,7 @@ namespace user
 
       host_to_client()(point);
 
-      if(dynamic_cast < list * >(this) == nullptr)
+      if(dynamic_cast < ::user::list * >(this) == nullptr)
       {
 
          auto tickNow = ::time::now();
@@ -3311,19 +3311,19 @@ namespace user
                   if(m_iClick == 1)
                   {
 
-                     on_click(__allocate ::item(::e_element_item, iDisplayItemLButtonUp), pmouse);
+                     on_click(øallocate ::item(::e_element_item, iDisplayItemLButtonUp), pmouse);
 
                   }
                   else
                   {
 
-                      auto pmessage = __create_new < ::message::mouse >();
+                      auto pmessage = øcreate_new < ::message::mouse >();
 
                       pmessage->m_oswindow = oswindow();
 
                       pmessage->m_pwindow = window();
 
-                      pmessage->m_emessage = e_message_left_button_double_click;
+                      pmessage->m_eusermessage = ::user::e_message_left_button_double_click;
 
                       pmessage->m_ebuttonstate = pmouse->m_ebuttonstate;
 
@@ -3446,13 +3446,13 @@ namespace user
       else if(get_form() != nullptr)
       {
 
-         get_form()->send_message(e_message_event,0,(LPARAM)&ev);
+         get_form()->send_message(::user::e_message_event,0,(LPARAM)&ev);
 
       }
       else
       {
 
-         get_parent()->send_message(e_message_event,0,(LPARAM)&ev);
+         get_parent()->send_message(::user::e_message_event,0,(LPARAM)&ev);
 
       }*/
       return true;
@@ -3476,7 +3476,7 @@ namespace user
    }
 
 
-   void mesh::get_data_selection(const ::scoped_string & scopedstrDataKey, ::string_array & straSelection)
+   void mesh::get_data_selection(const ::scoped_string & scopedstrDataKey, ::string_array_base & straSelection)
    {
 
       if (!has_data_key(scopedstrDataKey))
@@ -3662,8 +3662,8 @@ namespace user
    {
 
 
-      __øconstruct(m_ppenFocused);
-      __øconstruct(m_ppenHighlight);
+      øconstruct(m_ppenFocused);
+      øconstruct(m_ppenHighlight);
 
       ::pointer<::message::create>pcreate(pmessage);
 
@@ -3672,7 +3672,7 @@ namespace user
       on_enable_hover_select();
 
 
-      __defer_construct_new(m_pgraphicsextension);
+      ødefer_construct_new(m_pgraphicsextension);
 
       //m_pgraphicsextension->initialize(this);
 
@@ -4945,7 +4945,7 @@ namespace user
    }
 
 
-   void mesh::FilterInclude(::int_array & array)
+   void mesh::FilterInclude(::int_array_base & array)
    {
 
       ASSERT(m_efilterstate == FilterStateSetup);
@@ -5065,7 +5065,7 @@ namespace user
    }
 
 
-   void mesh::Filter1(const string & strFilter)
+   void mesh::Filter1(const ::scoped_string & scopedstrFilter)
    {
 
       if(m_eview == impact_icon)
@@ -5081,9 +5081,9 @@ namespace user
 
       }
 
-      string_array stra;
+      string_array_base stra;
 
-      stra.add_tokens(strFilter," ",false);
+      stra.add_tokens(scopedstrFilter," ",false);
 
       //m_pregexFilter1->setPositionMoves(1);
 
@@ -5385,7 +5385,7 @@ namespace user
 
       auto pointCursor = host_mouse_cursor_position();
 
-      auto pmouse = __create_new < ::message::mouse >();
+      auto pmouse = øcreate_new < ::message::mouse >();
 
       pmouse->m_pointHost = pointCursor;
 
@@ -5438,7 +5438,7 @@ namespace user
    //::item_pointer mesh::update_hover(::user::mouse * pmouse, ::user::e_zorder ezorder)
    //{
 
-   //   ::item_pointer pitemHitTest = __allocate ::item();
+   //   ::item_pointer pitemHitTest = øallocate ::item();
    //   
    //   auto pointClient = screen_to_client().get(pmouse->m_point);
 
@@ -5482,7 +5482,7 @@ namespace user
    ::item_pointer mesh::on_hit_test(const ::int_point& point, e_zorder ezorder)
    {
 
-      ::item_pointer pitemHitTest = __allocate ::item();
+      ::item_pointer pitemHitTest = øallocate ::item();
 
       //auto pointClient = screen_to_client().get(pmouse->m_point);
 
@@ -5682,7 +5682,7 @@ namespace user
 
       pmessage->previous();
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if(m_eview == impact_grid)
       {
@@ -6155,7 +6155,7 @@ namespace user
    //   //if(m_pcolumn->m_bIcon)
    //   //{
    //   //   ::image::icon * picon;
-   //   //   if(m_pcolumn->m_mapIcon.lookup((int)m_iImage,picon))
+   //   //   if(m_pcolumn->m_mapIcon.find((int)m_iImage,picon))
    //   //   {
    //   //      m_pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
    //   //      return m_pgraphics->DrawIcon(m_rectangleImage.top_left(),picon) != false;
@@ -6204,7 +6204,7 @@ namespace user
    void draw_mesh_subitem::set_text_color()
    {
       
-      //auto pbrushText = m_pmesh->__øcreate < ::draw2d::brush > ();
+      //auto pbrushText = m_pmesh->øcreate < ::draw2d::brush > ();
 
       //pbrushText->create_solid(m_colorText);
 
@@ -6230,7 +6230,7 @@ namespace user
             ::image::image_pointer pimage1;
             pimage1 = m_pitem->m_pmesh->image()->create_image(size);
             pimage1->clear(::color::transparent);
-            auto pbrushText = m_pitem->m_pmesh->__øcreate < ::draw2d::brush > ();
+            auto pbrushText = m_pitem->m_pmesh->øcreate < ::draw2d::brush > ();
             pbrushText->create_solid(argb(255,255,255,255));
             pimage1->get_graphics()->set(pbrushText);
             ::image::image_pointer pimage2;
@@ -6278,7 +6278,7 @@ namespace user
          else
          {
 
-            auto pbrushText = m_pitem->m_pmesh->__øcreate < ::draw2d::brush > ();
+            auto pbrushText = m_pitem->m_pmesh->øcreate < ::draw2d::brush > ();
 
             pbrushText->create_solid(m_colorText);
 
@@ -6397,10 +6397,10 @@ namespace user
    }
 
 
-   //::pointer<::user::mesh_data>list::create_mesh_data()
+   //::pointer<::user::mesh_data>list_base::create_mesh_data()
    //{
 
-   //   return __allocate mesh_data();
+   //   return øallocate mesh_data();
 
    //}
 
@@ -6555,12 +6555,12 @@ namespace user
 
    }
 
-   ::collection::index mesh::_001GetItemById(const ::string & pszChar)
+   ::collection::index mesh::_001GetItemById(const ::scoped_string & scopedstrChar)
    {
 
       ::collection::count c = _001GetItemCount();
 
-      string strId(pszChar);
+      string strId(scopedstrChar);
 
       for (::collection::index iItem = 0; iItem < c; iItem++)
       {

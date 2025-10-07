@@ -11,8 +11,8 @@
 //   {
 //
 
-//      void CLASS_DECL_ACME unicode_to_utf8(string_array & stra, string_array & stra);
-  //    void CLASS_DECL_ACME utf8_to_unicode(string_array & stra, string_array & stra);
+//      void CLASS_DECL_ACME unicode_to_utf8(string_array_base & stra, string_array_base & stra);
+  //    void CLASS_DECL_ACME utf8_to_unicode(string_array_base & stra, string_array_base & stra);
 
 
       bool CLASS_DECL_ACME unicode_to_multibyte(unsigned int uCodePage, memory & str, const ::scoped_wstring & scopedwstr);
@@ -43,7 +43,7 @@
 //      bool CLASS_DECL_ACME OemToUtf8(memory & str, const ::scoped_string & scopedstr, character_count nCount);
 
 
-/*      inline void unicode_to_utf8(string_array & stra, string_array & stra)
+/*      inline void unicode_to_utf8(string_array_base & stra, string_array_base & stra)
       {
          string str;
          for(character_count i = 0; i < stra.get_size(); i++)
@@ -53,7 +53,7 @@
          }
       }
 
-      inline void utf8_to_unicode(string_array & stra, string_array & stra)
+      inline void utf8_to_unicode(string_array_base & stra, string_array_base & stra)
       {
          string str;
          for(character_count i = 0; i < stra.get_size(); i++)

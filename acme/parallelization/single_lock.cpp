@@ -2,10 +2,21 @@
 #include "single_lock.h"
 #include "manual_reset_happening.h"
 #include "acme/handler/sequence.h"
+#include "acme/platform/node.h"
 ////#include "acme/exception/exception.h"
+///
+///
+#if defined(_DEBUG)
+#define _SYNCHRONOUS_LOCK_STACK_TRACE 1
+#else
+#define _SYNCHRONOUS_LOCK_STACK_TRACE 0
+#endif // _DEBUG
 
 
-single_lock::single_lock(::subparticle * psubparticleSynchronization, bool bInitialLock) :
+single_lock::single_lock(::subparticle * psubparticleSynchronization, bool bInitialLock, const ::subparticle * psubparticleContext, const_char_pointer pszFile, int iLine) :
+   m_psubparticleContext(psubparticleContext),
+   m_pszFile(pszFile),
+   m_iLine(iLine),
    m_psubparticleSynchronization(psubparticleSynchronization),
    m_bLocked(false)
 {
@@ -59,7 +70,7 @@ void single_lock::_lock()
 bool single_lock::lock(const class ::time & timeWait)
 { 
    
-   return this->wait(timeWait).failed(); 
+   return this->wait(timeWait).succeeded();
 
 }
 
@@ -100,6 +111,12 @@ void single_lock::_wait()
    //m_bAcquired = estatus.signaled();
 
       m_bLocked = true;
+
+#if _SYNCHRONOUS_LOCK_STACK_TRACE
+
+   debug_on_lock();
+
+#endif // _SYNCHRONOUS_LOCK_STACK_TRACE
 
    //return estatus;
 
@@ -152,7 +169,11 @@ bool single_lock::_wait(const class time & timeWait)
 
       m_bLocked = true;
 
+#if _SYNCHRONOUS_LOCK_STACK_TRACE
 
+   debug_on_lock();
+
+#endif // _SYNCHRONOUS_LOCK_STACK_TRACE
 
 //   return estatus;
 
@@ -197,6 +218,12 @@ bool single_lock::_wait(const class time & timeWait)
    {
 
       m_bLocked = true;
+
+#if _SYNCHRONOUS_LOCK_STACK_TRACE
+
+      debug_on_lock();
+
+#endif // _SYNCHRONOUS_LOCK_STACK_TRACE
 
    }
 
@@ -244,6 +271,12 @@ bool single_lock::_wait(const class time & timeWait)
 
       m_bLocked = true;
 
+#if _SYNCHRONOUS_LOCK_STACK_TRACE
+
+      debug_on_lock();
+
+#endif // _SYNCHRONOUS_LOCK_STACK_TRACE
+
    }
 
    return estatus;
@@ -272,8 +305,48 @@ void single_lock::unlock()
 
    m_bLocked = false;
 
+#if _SYNCHRONOUS_LOCK_STACK_TRACE
+
+   debug_on_unlock();
+
+#endif // _SYNCHRONOUS_LOCK_STACK_TRACE
+
    // successfully unlocking means it isn't acquired
    //return !m_bAcquired;
+
+}
+
+
+void single_lock::debug_on_lock()
+{
+
+   m_ptask = ::get_task();
+
+   if (m_ptask)
+   {
+
+      m_ptask->on_single_lock_lock(m_psubparticleSynchronization, m_psubparticleContext, m_pszFile, m_iLine);
+
+   }
+
+}
+
+
+void single_lock::debug_on_unlock()
+{
+
+   if (m_ptask)
+   {
+
+      if (m_ptask != ::get_task())
+      {
+
+         throw ::exception(error_wrong_state);
+      }
+
+      m_ptask->on_single_lock_unlock(m_psubparticleSynchronization);
+
+   }
 
 }
 
@@ -283,7 +356,7 @@ void single_lock::unlock(int lCount, int * pPrevCount /* = nullptr */)
 
    ASSERT(m_psubparticleSynchronization != nullptr);
 
-   if (!m_bLocked)
+   if (m_bLocked)
    {
 
       throw ::exception(error_wrong_state);
@@ -295,6 +368,12 @@ void single_lock::unlock(int lCount, int * pPrevCount /* = nullptr */)
    m_psubparticleSynchronization->unlock(lCount, pPrevCount);
 
    m_bLocked = true;
+
+#if _SYNCHRONOUS_LOCK_STACK_TRACE
+
+   debug_on_lock();
+
+#endif // _SYNCHRONOUS_LOCK_STACK_TRACE
 
    //}
 
@@ -314,7 +393,10 @@ bool single_lock::is_locked() const
 
 
 
-_single_lock::_single_lock(::subparticle * psubparticleSynchronization, bool bInitialLock) :
+_single_lock::_single_lock(::subparticle * psubparticleSynchronization, bool bInitialLock, const ::subparticle * psubparticleContext, const_char_pointer pszFile, int iLine) :
+   m_psubparticleContext(psubparticleContext),
+   m_pszFile(pszFile),
+   m_iLine(iLine),
    m_psubparticleSynchronization(psubparticleSynchronization),
    m_bLocked(false)
 {
@@ -394,6 +476,12 @@ void _single_lock::_wait()
 
    m_bLocked = true;
 
+#if _SYNCHRONOUS_LOCK_STACK_TRACE
+
+   debug_on_lock();
+
+#endif // _SYNCHRONOUS_LOCK_STACK_TRACE
+
    ///return estatus;
 
 }
@@ -445,6 +533,12 @@ bool _single_lock::_wait(const class time & timeWait)
 
       m_bLocked = true;
 
+#if _SYNCHRONOUS_LOCK_STACK_TRACE
+
+      debug_on_lock();
+
+#endif // _SYNCHRONOUS_LOCK_STACK_TRACE
+
    }
 
    //return estatus;
@@ -482,6 +576,12 @@ void _single_lock::unlock()
 
          m_bLocked = false;
 
+#if _SYNCHRONOUS_LOCK_STACK_TRACE
+
+   debug_on_unlock();
+
+#endif // _SYNCHRONOUS_LOCK_STACK_TRACE
+
       //}
 
    //}
@@ -516,6 +616,12 @@ void _single_lock::unlock(int lCount, int * pPrevCount /* = nullptr */)
 
    m_bLocked = true;
 
+#if _SYNCHRONOUS_LOCK_STACK_TRACE
+
+   debug_on_lock();
+
+#endif // _SYNCHRONOUS_LOCK_STACK_TRACE
+
 //   }
 
 
@@ -528,6 +634,40 @@ bool _single_lock::is_locked() const
 {
 
    return m_bLocked;
+
+}
+
+
+void _single_lock::debug_on_lock()
+{
+
+   m_ptask = ::get_task();
+
+   if (m_ptask)
+   {
+
+      m_ptask->on_single_lock_lock(m_psubparticleSynchronization, m_psubparticleContext, m_pszFile, m_iLine);
+
+   }
+
+}
+
+
+void _single_lock::debug_on_unlock()
+{
+
+   if (m_ptask)
+   {
+
+      if (m_ptask != ::get_task())
+      {
+
+         throw ::exception(error_wrong_state);
+      }
+
+      m_ptask->on_single_lock_unlock(m_psubparticleSynchronization);
+
+   }
 
 }
 

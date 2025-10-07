@@ -17,7 +17,7 @@ namespace user
 
       ::collection::index                       m_iUpdate;
       ::pointer<::factory::factory>             m_pfactory;
-      map < ::user::enum_control_type, ::pointer<control_style >>m_controlstyle;
+      map_base < ::user::enum_control_type, ::pointer<control_style >>m_controlstyle;
       //::pointer<::user::plain_edit_style>   m_pplaineditstyel;
 
       ::write_text::font_pointer                 m_pfont;
@@ -28,6 +28,7 @@ namespace user
       ::write_text::font_pointer                 m_pfontStill;
       ::write_text::font_pointer                 m_pfontEdit;
       ::write_text::font_pointer                 m_pfontCombo;
+      ::write_text::font_pointer                 m_pfontTab;
       enum_translucency                         m_etranslucency;
       enum_translucency                         m_etranslucencyButton;
       //::color::color                                m_colorBackground;
@@ -162,7 +163,8 @@ namespace user
       ::color::color get_color(::user::interaction* pinteraction, ::enum_element eelement, ::user::enum_state estate = ::user::e_state_none) override;
       bool get_int(::user::interaction* pinteraction, int & i, ::user::enum_int eint, ::user::enum_state estate = ::user::e_state_none) override;
       bool get_double(::user::interaction* pinteraction, double & d, ::user::enum_double eint, ::user::enum_state estate = ::user::e_state_none) override;
-      //virtual bool get_font(::write_text::font_pointer & sp, e_font efont, style_context * pcontext) override;
+      ::write_text::font_pointer get_font(::user::interaction* pinteraction, ::enum_element eelement, ::user::enum_state estate = ::user::e_state_none) override;
+      //bool get_font(::write_text::font_pointer & sp, e_font efont, style_context * pcontext) override;
       //virtual bool get_translucency(enum_translucency & etranslucency, enum_element matter, style_context * pcontext) override;
       //virtual bool get_flag(bool & bSet, enum_flag eflag, style_context * pcontext) override;
       //virtual bool get_rect(style_rect & rectangle, e_rect erect, style_context * pcontext) override;

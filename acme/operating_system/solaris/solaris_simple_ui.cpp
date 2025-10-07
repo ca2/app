@@ -17,7 +17,7 @@ Display * x11_get_display();
 namespace os
 {
 
-   map < oswindow, oswindow, simple_ui *, simple_ui * > m_windowmap;
+   map_base < oswindow, oswindow, simple_ui *, simple_ui * > m_windowmap;
 
    simple_ui::simple_ui(::pointer<base_application>papp) :
       ::matter(pparticle),
@@ -71,7 +71,7 @@ namespace os
 
       rootwin              =  RootWindow(display, m_iScreen);
 
-      const char * xserver = getenv( "DISPLAY" ) ;
+      const_char_pointer xserver = getenv( "DISPLAY" ) ;
 
       if (display == 0)
       {
@@ -315,11 +315,11 @@ namespace os
                            }
                            else if(e.xbutton.button == Button2)
                            {
-                              //         lpMsg->message = e_message_middle_button_down;
+                              //         lpMsg->message = ::user::e_message_middle_button_down;
                            }
                            else if(e.xbutton.button == Button3)
                            {
-                              //       lpMsg->message = e_message_right_button_down;
+                              //       lpMsg->message = ::user::e_message_right_button_down;
                            }
                            else
                            {
@@ -335,11 +335,11 @@ namespace os
                            }
                            else if(e.xbutton.button == Button2)
                            {
-                              //lpMsg->message = e_message_middle_button_up;
+                              //lpMsg->message = ::user::e_message_middle_button_up;
                            }
                            else if(e.xbutton.button == Button3)
                            {
-                              //lpMsg->message = e_message_right_button_up;
+                              //lpMsg->message = ::user::e_message_right_button_up;
                            }
                            else
                            {
@@ -401,13 +401,13 @@ namespace os
                                  buffer[0] = '\0';
                               }
                            }
-                           // lpMsg->message = e_message_key_down;
+                           // lpMsg->message = ::user::e_message_key_down;
 
                         }
                         else if(e.xkey.type == KeyRelease)
                         {
 
-                           //lpMsg->message = e_message_key_up;
+                           //lpMsg->message = ::user::e_message_key_up;
                            if(keysym == XK_Tab)
                            {
                               //on_key_up(VK_TAB);
@@ -441,7 +441,7 @@ namespace os
                      {
 
                         //lpMsg->hwnd          = oswindow_get(display, e.xbutton.window);
-                        //lpMsg->message       = e_message_mouse_move;
+                        //lpMsg->message       = ::user::e_message_mouse_move;
                         //lpMsg->wParam        = 0;
                         //lpMsg->lParam        = make_int(e.xmotion.x_root, e.xmotion.y_root);
 
@@ -454,7 +454,7 @@ namespace os
                      {
 
                         //lpMsg->hwnd          = oswindow_get(display, e.xdestroywindow.window);
-                        //lpMsg->message       = e_message_destroy;
+                        //lpMsg->message       = ::user::e_message_destroy;
 
                         m_bRunLoop = false;
 
@@ -806,7 +806,7 @@ namespace os
 
 
 
-void wm_nodecorations(oswindow w, int map)
+void wm_nodecorations(oswindow w, int map_base)
 {
    Atom WM_HINTS;
    int set;
@@ -868,7 +868,7 @@ void wm_nodecorations(oswindow w, int map)
                       (unsigned char *)&NET_WMHints, 2);
    }
    XSetTransientForHint(dpy, window, rootw);
-   if(map)
+   if(map_base)
    {
       XUnmapWindow(dpy, window);
       XMapWindow(dpy, window);

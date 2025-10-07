@@ -21,7 +21,7 @@ namespace calculator
       virtual ~plain_edit_impact();
 
 
-      virtual void set_format(const string& strFormat) override;
+      virtual void set_format(const ::scoped_string & scopedstrFormat) override;
       virtual void set_callback(callback* pcallback) override;
 
 

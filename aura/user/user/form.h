@@ -59,7 +59,7 @@ namespace user
 
       virtual bool open_document(const ::payload& payloadFile);
 
-      virtual bool open_html(const ::string& str);
+      virtual bool open_html(const ::scoped_string & scopedstr);
 
       virtual void soft_reload();
 

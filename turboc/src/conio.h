@@ -54,7 +54,7 @@
 
 // Supported text modes for conio.h.  The free Borland C++ 5.5 compiler has
 // lots of video modes that aren't present in Turbo C 2.0, so I've thrown them
-// in also.  EXITMODE is a __allocate< constant I've invented so that textmode >(EXITMODE) 
+// in also.  EXITMODE is a øallocate< constant I've invented so that textmode >(EXITMODE) 
 // can be called at the end of the program to turn off ncurses.
 #define EXITMODE -2
 #define LASTMODE -1
@@ -174,7 +174,7 @@ CLASS_DECL_TURBOC void clrscr (void);
 CLASS_DECL_TURBOC void textmode (int newmode);
 CLASS_DECL_TURBOC int putch (int c);
 CLASS_DECL_TURBOC int getche (void);
-CLASS_DECL_TURBOC int cputs (const ::string &str);
+CLASS_DECL_TURBOC int cputs (const ::scoped_string & scopedstr);
 CLASS_DECL_TURBOC int cprintf (const ::string &format, ...);
 CLASS_DECL_TURBOC void delline (void);
 CLASS_DECL_TURBOC void insline (void);

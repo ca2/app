@@ -1,5 +1,5 @@
 #include "framework.h"
-//#include "base/user/user/_component.h"
+//#include "berg/user/user/_component.h"
 #include "_linux.h"
 #include "_user.h"
 ////#include "sn/sn.h"
@@ -44,7 +44,7 @@ const char * g_pszaNetWmState[]=
 e_net_wm_state net_wm_state(const ::scoped_string & scopedstrText)
 {
 
-   if(::is_null(pszText))
+   if(::is_null(scopedstrText))
    {
 
       return net_wm_state_count;
@@ -58,7 +58,7 @@ e_net_wm_state net_wm_state(const ::scoped_string & scopedstrText)
    while(ppsz[i] != NULL)
    {
 
-      if(!case_insensitive_ansi_compare(pszText, ppsz[i]))
+      if(!case_insensitive_ansi_compare(scopedstrText, ppsz[i]))
       {
 
          break;
@@ -424,7 +424,7 @@ oswindow_data * oswindow_get(Window window)
 bool oswindow_data::bamf_set_icon()
 {
 
-   auto pdesktopfile = __create_new < ::linux::desktop_file >();
+   auto pdesktopfile = øcreate_new < ::linux::desktop_file >();
 
    pfile->bamf_set_icon(papp);
 
@@ -444,7 +444,7 @@ int oswindow_data::x_change_property(Atom property, Atom type, int format, int m
 Atom oswindow_data::intern_atom(const ::scoped_string & scopedstrAtomName, bool bCreate)
 {
 
-   return m_osdisplay->intern_atom(pszAtomName, bCreate);
+   return m_osdisplay->intern_atom(scopedstrAtomName, bCreate);
 
 }
 
@@ -1061,7 +1061,7 @@ void oswindow_data::exit_full_screen()
 void oswindow_data::exit_zoomed()
 {
 
-   synchronous_lock synchronouslock(x11_mutex());
+   synchronous_lock synchronouslock(x11_mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    xdisplay d(display());
 
@@ -1317,7 +1317,7 @@ bool oswindow_data::set_window_position(class ::zorder zorder, int x, int y, int
 bool oswindow_data::_set_window_pos(class ::zorder zorder, int x, int y, int cx, int cy, unsigned int nFlags)
 {
 
-   synchronous_lock synchronouslock(x11_mutex());
+   synchronous_lock synchronouslock(x11_mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    windowing_output_debug_string("::oswindow_data::set_window_position 1");
 

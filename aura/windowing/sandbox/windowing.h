@@ -41,7 +41,7 @@ namespace sandbox_windowing
 //
 //      itask                                         m_itask;
 //
-//      ::procedure_list                                m_procedurelist;
+//      ::procedure_list_base                                m_procedurelist;
 
 
       windowing();

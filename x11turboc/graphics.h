@@ -473,7 +473,7 @@ extern void getaspectratio (int *xasp, int *yasp);
 extern int getbkcolor (void);
 extern int getcolor (void);
 extern const struct palettetype *getdefaultpalette (void);
-extern const char *getdrivername (void);
+extern const_char_pointer getdrivername (void);
 extern void getfillpattern (char *pattern);
 extern void getfillsettings (struct fillsettingstype *fillinfo);
 extern int getgraphmode (void);

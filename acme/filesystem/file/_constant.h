@@ -58,7 +58,13 @@ namespace file
    };
 
 
+enum enum_stream
+{
+   e_stream_none,
+   e_stream_input,
+   e_stream_output,
 
+};
 
    enum fmtflags : unsigned int
    {
@@ -97,7 +103,7 @@ namespace file
 inline ::file::e_flag & fix_file_listing_flag(::file::e_flag & eflag)
 {
 
-   if ((eflag & ::file::e_flag_file_or_folder) == 0)
+   if (!(eflag & ::file::e_flag_file_or_folder))
    {
 
       eflag |= ::file::e_flag_file_or_folder;

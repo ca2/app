@@ -10,7 +10,7 @@
 #include "acme/handler/topic.h"
 #include "acme/parallelization/pool.h"
 #include "acme/parallelization/synchronous_lock.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "acme/user/user/key.h"
 #include "apex/handler/signal.h"
 #include "aura/graphics/image/icon.h"
@@ -53,7 +53,7 @@ namespace user
    void frame_interaction::create_window()
    {
 
-      //__øconstruct(windowing_window());
+      //øconstruct(windowing_window());
 
       //windowing_window()->create_window();
 
@@ -164,7 +164,7 @@ namespace user
 
           //auto estatus =
 
-         //__øconstruct(windowing_window());
+         //øconstruct(windowing_window());
 
          information() << "interaction::create_host(5)";
 
@@ -177,15 +177,15 @@ namespace user
 
                  //#ifdef WINDOWS_DESKTOP
                  //
-                 //            wstring wstrClassName(pszClassName);
+                 //            wstring wstrClassName(scopedstrClassName);
                  //
-                 //            wstring wstrWindowName(pszWindowName);
+                 //            wstring wstrWindowName(scopedstrWindowName);
                  //
                  //            ::user::system pusersystem(0, wstrClassName, wstrWindowName, uStyle, rectangle, pcreate);
                  //
                  //#else
 
-                 //auto pusersystem = __allocate ::user::system(uExStyle, uStyle, rectangle, pcreate);
+                 //auto pusersystem = øallocate ::user::system(uExStyle, uStyle, rectangle, pcreate);
 
                  //#endif
 
@@ -214,7 +214,7 @@ namespace user
          //else
          //{
 
-         //   pprimitiveimplNew = __create_new < ::user::interaction_child >();
+         //   pprimitiveimplNew = øcreate_new < ::user::interaction_child >();
 
          //   //m_pdescriptor.defer_create(this);
 
@@ -325,7 +325,7 @@ namespace user
 
       {
 
-         _synchronous_lock synchronouslock(this->synchronization());
+         _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          if (m_puserinteractionpointeraOwned) m_puserinteractionpointeraOwned->destroy();
 
@@ -377,7 +377,7 @@ namespace user
 
       {
 
-         _synchronous_lock synchronouslock(this->synchronization());
+         _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          m_puserinteractionpointeraOwned.release();
 
@@ -445,9 +445,9 @@ namespace user
       add_command_handler("try_close_application", { this, &frame_interaction::on_message_application_exit });
       
 
-      MESSAGE_LINK(e_message_destroy, pchannel, this, &frame_interaction::on_message_destroy);
-      MESSAGE_LINK(e_message_application_exit, pchannel, this, &frame_interaction::on_message_application_exit);
-      MESSAGE_LINK(e_message_key_down, pchannel, this, &frame_interaction::on_message_key_down);
+      USER_MESSAGE_LINK(::user::e_message_destroy, pchannel, this, &frame_interaction::on_message_destroy);
+      USER_MESSAGE_LINK(::user::e_message_application_exit, pchannel, this, &frame_interaction::on_message_application_exit);
+      USER_MESSAGE_LINK(::user::e_message_key_down, pchannel, this, &frame_interaction::on_message_key_down);
 
       system()->signal(id_operating_system_user_color_change)->add_handler(this);
 //#ifdef WINDOWS_DESKTOP
@@ -455,7 +455,7 @@ namespace user
 //      if (is_frame_window())
 //      {
 //
-//         MESSAGE_LINK((::enum_message)WM_SYSCOMMAND, pchannel, this, &frame_interaction::_001OnSysCommand);
+//         USER_MESSAGE_LINK((::user::enum_message)WM_SYSCOMMAND, pchannel, this, &frame_interaction::_001OnSysCommand);
 //
 //      }
 //
@@ -513,7 +513,7 @@ namespace user
          if(pkey->m_ekey == ::user::e_key_q && session()->is_key_pressed(::user::e_key_command))
          {
             
-            post_message(e_message_close);
+            post_message(::user::e_message_close);
             pmessage->m_bRet = true;
             
          }
@@ -539,7 +539,7 @@ namespace user
    ::task_pool * frame_interaction::taskpool()
    {
 
-      __defer_construct_new(m_ptaskpool);
+      ødefer_construct_new(m_ptaskpool);
 
       return m_ptaskpool;
 
@@ -579,12 +579,12 @@ namespace user
    }
 
 
-   void frame_interaction::add_menu_item(const ::string & strPath, const ::string & strText, const ::string & strId)
+   void frame_interaction::add_menu_item(const ::scoped_string & scopedstrPath, const ::scoped_string & scopedstrText, const ::scoped_string & scopedstrId)
    {
 
-      m_straMenuParent.add(strPath);
-      m_straMenuName.add(strText);
-      m_straMenuId.add(strId);
+      m_straMenuParent.add(scopedstrPath);
+      m_straMenuName.add(scopedstrText);
+      m_straMenuId.add(scopedstrId);
 
       //return ::success;
 
@@ -647,7 +647,7 @@ namespace user
    }
 
 
-//   ::pointer<::utoolbar>frame_interaction::load_toolbar(const ::atom & idToolbar, const ::string & strToolbar, unsigned int dwCtrlStyle, unsigned int uStyle, const ::type_atom & typeatom)
+//   ::pointer<::utoolbar>frame_interaction::load_toolbar(const ::atom & idToolbar, const ::scoped_string & scopedstrToolbar, unsigned int dwCtrlStyle, unsigned int uStyle, const ::type_atom & typeatom)
 //   {
 //
 //      return false;
@@ -712,10 +712,10 @@ namespace user
 
 
 
-   void frame_interaction::set_frame_title(const string& strFrameTitle)
+   void frame_interaction::set_frame_title(const ::scoped_string & scopedstrFrameTitle)
    {
 
-      m_strFrameTitle = strFrameTitle;
+      m_strFrameTitle = scopedstrFrameTitle;
 
       //auto pparent = get_parent();
 
@@ -758,7 +758,7 @@ namespace user
 
       ///auto estatus = 
       
-      __øconstruct(m_pdrawicon);
+      øconstruct(m_pdrawicon);
 
       //if (!estatus)
       //{
@@ -825,10 +825,10 @@ namespace user
    }
 
 
-   ::user::enum_style frame_interaction::translate_user_style(const ::string & pszStyle)
+   ::user::enum_style frame_interaction::translate_user_style(const ::scoped_string & scopedstrStyle)
    {
 
-      string strStyle(pszStyle);
+      string strStyle(scopedstrStyle);
 
       if (strStyle == "TranslucidLightBlue")
       {
@@ -933,12 +933,12 @@ namespace user
    }
 
 
-   void frame_interaction::set_user_style(const ::string & strStyle)
+   void frame_interaction::set_user_style(const ::scoped_string & scopedstrStyle)
    {
 
-      m_strStyle = strStyle;
+      m_strStyle = scopedstrStyle;
 
-      auto estyle = translate_user_style(strStyle);
+      auto estyle = translate_user_style(scopedstrStyle);
 
       set_user_style(estyle);
 
@@ -1148,7 +1148,7 @@ namespace user
       if (puserinteractionParent == nullptr)
       {
 
-         auto pwindowNew = __øcreate<::windowing::window>();
+         auto pwindowNew = øcreate<::windowing::window>();
 
          auto strName = get_window_text();
 
@@ -1167,7 +1167,7 @@ namespace user
 
          //auto rectangleRequest = this->screen_rectangle(::user::e_layout_sketch);
 
-         //auto pusersystem = __allocate ::user::system();
+         //auto pusersystem = øallocate ::user::system();
 
          //pusersystem->add_visible(is_visible(layout().sketch().display()));
 
@@ -1183,7 +1183,7 @@ namespace user
 
          on_set_parent(puserinteractionParent);
 
-         //auto pprimitiveimplNew = __create_new<::user::interaction_child>();
+         //auto pprimitiveimplNew = øcreate_new<::user::interaction_child>();
 
          //pprimitiveimplNew->m_puserinteraction = this;
 

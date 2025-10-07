@@ -41,7 +41,14 @@ namespace windowing
    }
 
 
-   void text_editor_interface::set_editor_text(const ::string& strText)
+   void text_editor_interface::set_editor_text(const ::scoped_string & scopedstrText)
+   {
+
+
+   }
+
+
+   void text_editor_interface::set_editor_text_and_selection(const ::scoped_string & scopedstrText, character_count iStart, character_count iEnd)
    {
 
 

@@ -26,9 +26,11 @@ namespace platform
          if (!p)
          {
 
-            _synchronous_lock(system()->synchronization());
+            auto psystem = system();
 
-            auto pfactory = ::system()->factory();
+            _synchronous_lock synchronouslock(psystem->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+
+            auto pfactory = psystem->factory();
 
             bool bHasFactoryRepresentativeType = pfactory->has<FACTORY_REPRESENTATIVE_TYPE>();
 
@@ -39,11 +41,11 @@ namespace platform
 
                printf_line("Trying to create component \"%s\".", strComponent.c_str());
 
-               system()->defer_component_factory(strComponent);
+               psystem->defer_component_factory(strComponent);
 
             }
 
-            __øconstruct(p);
+            øconstruct(p);
 
          }
 

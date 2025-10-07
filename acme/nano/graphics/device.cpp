@@ -76,7 +76,7 @@ namespace nano
       }
 
 
-      void device::draw_text123(const ::string & str, const ::int_rectangle & rectangleText, const ::e_align & ealign,
+      void device::draw_text123(const ::scoped_string & scopedstr, const ::int_rectangle & rectangleText, const ::e_align & ealign,
                                 const ::e_draw_text & edrawtext, ::nano::graphics::brush * pnanobrushBack,
                                 ::nano::graphics::brush * pnanobrushText, ::nano::graphics::font * pnanofont)
       {
@@ -84,14 +84,14 @@ namespace nano
          if (ealign & e_align_bottom_right_bias)
          {
 
-            _draw_text(str, rectangleText, ealign, edrawtext, pnanobrushBack, pnanobrushText, pnanofont);
+            _draw_text(scopedstr, rectangleText, ealign, edrawtext, pnanobrushBack, pnanobrushText, pnanofont);
 
          } else
          {
 
-            string_array straLines;
+            string_array_base straLines;
 
-            straLines.add_lines(str);
+            straLines.add_lines(scopedstr);
 
             auto r = rectangleText;
 
@@ -119,7 +119,7 @@ namespace nano
       }
 
 
-      void device::_draw_text(const ::string & str, const ::int_rectangle & rectangleText, const ::e_align & ealign,
+      void device::_draw_text(const ::scoped_string & scopedstr, const ::int_rectangle & rectangleText, const ::e_align & ealign,
                               const ::e_draw_text & edrawtext, ::nano::graphics::brush * pnanobrushBack,
                               ::nano::graphics::brush * pnanobrushText, ::nano::graphics::font * pnanofont)
       {
@@ -128,7 +128,7 @@ namespace nano
       }
 
 
-      ::int_size device::get_text_extents(const ::string & str, ::nano::graphics::font * pnanofont)
+      ::int_size device::get_text_extents(const ::scoped_string & scopedstr, ::nano::graphics::font * pnanofont)
       {
 
          return {};

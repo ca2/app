@@ -14,6 +14,7 @@ namespace gpu
       shader_projection,
 
    };
+
    
    struct binding
    {
@@ -21,6 +22,7 @@ namespace gpu
       bool              m_bSet = false;
       unsigned int      m_uSet = 0;
       unsigned int      m_uBinding = 0;
+      ::string          m_strUniform;
 
       void set(unsigned int uBinding = 0)
       {
@@ -31,6 +33,7 @@ namespace gpu
       }
       bool is_set()const { return m_bSet; }
    };
+
 
    class CLASS_DECL_BRED shader :
       virtual public ::matter
@@ -43,6 +46,7 @@ namespace gpu
          e_flag_clear_default_bindings_and_attributes_descriptions = 1,
 
       };
+
 
       /// Trying to following suggestion from:
       /// https://vkguide.dev/docs/chapter-4/descriptors/ "Mental Model"
@@ -61,7 +65,7 @@ namespace gpu
          e_descriptor_set_slot_material,
          e_descriptor_set_slot_local,
          e_descriptor_set_slot_s1,
-         e_descriptor_set_shader_resource_view_and_sampler,
+         //e_descriptor_set_shader_resource_view_and_sampler,
 
       };
       int m_iVertexLevel = -1;
@@ -76,21 +80,22 @@ namespace gpu
          int m_i1FragmentShader = -1;
          int m_i2FragmentShader = -1;
       };
-      ::string_map<constant_buffer> m_mapConstantBuffer;
-      struct sampler_and_texture
-      {
+      //::string_map_base<constant_buffer> m_mapConstantBuffer;
+      //struct sampler_and_texture
+      //{
 
-         int m_i;
-      };
-      ::string_map<sampler_and_texture> m_mapSamplerAndTexture;
+      //   int m_i;
+      //};
+      //::string_map_base<sampler_and_texture> m_mapSamplerAndTexture;
       bool                                m_bClearColor;
       ::color::color                      m_colorClear;
-
+      ::gpu::enum_topology                m_etopology;
       bool m_bDisableDepthTest = false;
       bool m_bDepthTestButNoDepthWrite = false;
       bool m_bLequalDepth = false;
       bool m_bEnableBlend = false;
       bool m_bAccumulationEnable = false;
+      enum_cull_mode m_ecullmode = e_cull_mode_back;
       //bool m_bHasSourceImage = false;
 
       binding m_bindingSampler;
@@ -98,7 +103,7 @@ namespace gpu
 
       string                     m_strError;
 
-      //string_map < payload >     m_mapLayout;
+      //string_map_base < payload >     m_mapLayout;
 
       ::pointer < renderer >     m_pgpurenderer;
 
@@ -117,13 +122,20 @@ namespace gpu
       ::comparable_array<enum_descriptor_set_slot>   m_edescriptorsetslota;
       ::particle_pointer         m_pLocalDescriptorSet;
       ::pointer < input_layout > m_pinputlayout;
+      class ::time               m_timeRetire;
+      //bool m_bTextureAndSampler;
+      int                        m_iPushConstants = -1;
+      ::string                   m_strPushConstantsDebugging;
 
-      bool m_bTextureAndSampler;
+      ::gpu::texture *           m_pgputextureBound = nullptr;
+
 
 
       shader();
       ~shader() override;
 
+
+      virtual bool need_rebuild();
       
       virtual void initialize_shader(
          ::gpu::renderer * pgpurenderer,
@@ -170,18 +182,18 @@ namespace gpu
       //virtual void setMat3(const ::scoped_string & scopedstrName, const float p[3*3]);
       //virtual void setMat4(const ::scoped_string & scopedstrName, const float p[4*4]);
 
-      //virtual shader * create_shader(const ::string & pszVertex, enum_shader eshader);
+      //virtual shader * create_shader(const ::scoped_string & scopedstrVertex, enum_shader eshader);
 
       //static void shader_compile_errors(GLuint shader, enum_shader eshader, string & strSummary);
 
       //static void program_compile_errors(GLuint program, string & strSummary);
 
 
-      //virtual payload * get_uniform(const ::string & strName);
+      //virtual payload * get_uniform(const ::scoped_string & scopedstrName);
 
       //virtual ::gpu::payload * get_payload(const ::scoped_string & scopedstrName);
       virtual void draw();
-
+      virtual void _bind();
       //virtual void on_initialize_shader();
       
       
@@ -191,14 +203,17 @@ namespace gpu
       virtual void bind(::gpu::texture* pgputextureTarget);
       virtual void bind(::gpu::texture * pgputextureTarget, ::gpu::texture* pgputextureSource);
       virtual void bind_source(::gpu::texture* pgputextureSource, int iSlot = 0);
+      virtual void bind_source(::gpu::pixmap* pgpupixmapSource, int iSlot = 0);
       virtual void bind();
       virtual void unbind();
 
 
       virtual void push_properties();
 
+      virtual void set_push_properties(const ::block& block);
 
-      virtual void setup_sampler_and_texture(const ::scoped_string& scopedstrName, int value);
+
+      //virtual void setup_sampler_and_texture(const ::scoped_string& scopedstrName, int value);
 
       virtual void set_bool(const ::scoped_string& scopedstrName, bool value);
 
@@ -206,25 +221,47 @@ namespace gpu
 
       virtual void set_float(const ::scoped_string& scopedstrName, float value);
 
-      virtual void set_vec2(const ::scoped_string& scopedstrName, float x, float y);
-      virtual void set_vec2(const ::scoped_string& scopedstrName, const ::glm::vec2& a);
+      virtual void set_seq2(const ::scoped_string& scopedstrName, float x, float y);
+      virtual void set_seq2(const ::scoped_string& scopedstrName, const ::glm::vec2& a);
 
-      virtual void set_vec3(const ::scoped_string& scopedstrName, float x, float y, float z);
-      virtual void set_vec3(const ::scoped_string& scopedstrName, const ::glm::vec3& a);
+      virtual void set_seq3(const ::scoped_string& scopedstrName, float x, float y, float z);
+      virtual void set_seq3(const ::scoped_string& scopedstrName, const ::glm::vec3& a);
 
-      virtual void set_vec4(const ::scoped_string& scopedstrName, float x, float y, float z, float w);
-      virtual void set_vec4(const ::scoped_string& scopedstrName, const ::glm::vec4& a);
+      virtual void set_seq4(const ::scoped_string& scopedstrName, float x, float y, float z, float w);
+      virtual void set_seq4(const ::scoped_string& scopedstrName, const ::glm::vec4& a);
 
       virtual void set_mat2(const ::scoped_string& scopedstrName, const ::glm::mat2& a);
       virtual void set_mat3(const ::scoped_string& scopedstrName, const ::glm::mat3& a);
       virtual void set_mat4(const ::scoped_string& scopedstrName, const ::glm::mat4& a);
 
-
+      virtual void setModelViewProjectionMatrices(glm::mat4 &model, glm::mat4 &view, glm::mat4 &projection);
 
    };
 
 
 } // namespace gpu
+
+
+inline bool nok(::pointer < ::gpu::shader >& pgpushader)
+{
+
+   if (::is_null(pgpushader))
+   {
+
+      return true;
+
+   }
+
+   if (pgpushader->need_rebuild())
+   {
+
+      return true;
+
+   }
+
+   return false;
+
+}
 
 
 

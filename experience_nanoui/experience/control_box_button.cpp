@@ -5,7 +5,7 @@
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/pen.h"
 #include "aura/user/user/frame_interaction.h"
-#include "base/user/experience/control_box.h"
+#include "berg/user/experience/control_box.h"
 
 
 namespace experience_nanoui
@@ -149,7 +149,7 @@ namespace experience_nanoui
       else
       {
 
-         auto pbrush = __øcreate < ::draw2d::brush >();
+         auto pbrush = øcreate < ::draw2d::brush >();
 
          if (pbrush && pgraphics->get_current_pen())
          {
@@ -160,7 +160,7 @@ namespace experience_nanoui
 
          pgraphics->set(pbrush);
 
-         auto ppen = __øcreate < ::draw2d::pen >();
+         auto ppen = øcreate < ::draw2d::pen >();
 
          ppen->create_solid(1.0f, ::rgba(255, 255, 255, 255));
 
@@ -203,7 +203,7 @@ namespace experience_nanoui
 
       auto rectangleX = this->rectangle();
 
-      __defer_construct(m_pregion);
+      ødefer_construct(m_pregion);
 
       ::double_ellipse ellipse;
 

@@ -83,12 +83,12 @@ namespace nano2d
    void draw2d_context::_create_new_state()
    {
 
-      m_pstate = __allocate state(m_pgraphics);
+      m_pstate = øallocate state(m_pgraphics);
 
       m_pstate->initialize(m_pgraphics);
 
-      m_pgraphics->__øconstruct(m_pstate->m_ppen);
-      m_pgraphics->__øconstruct(m_pstate->m_pbrush);
+      m_pgraphics->øconstruct(m_pstate->m_ppen);
+      m_pgraphics->øconstruct(m_pstate->m_pbrush);
 
       m_pstate->m_ppen->m_epen = ::draw2d::e_pen_solid;
       m_pstate->m_ppen->m_dWidth = 1.0;
@@ -141,7 +141,7 @@ namespace nano2d
       if (stateOld.m_ppath)
       {
 
-         m_pgraphics->__øconstruct(stateNew.m_ppath);
+         m_pgraphics->øconstruct(stateNew.m_ppath);
 
          *stateNew.m_ppath = *stateOld.m_ppath;
 
@@ -167,7 +167,7 @@ namespace nano2d
    void draw2d_context::begin_path()
    {
 
-      m_pgraphics->__øconstruct(m_pstate->m_ppath);
+      m_pgraphics->øconstruct(m_pstate->m_ppath);
 
       m_pstate->m_ppath->begin_figure();
    
@@ -331,7 +331,7 @@ namespace nano2d
 
       auto & paintimage = _create_new_paint_image();
 
-      m_pgraphics->__øconstruct(paintimage.m_pbrush);
+      m_pgraphics->øconstruct(paintimage.m_pbrush);
 
       paintimage.m_pbrush->CreateLinearGradientBrush(
          ::double_point(sx, sy),
@@ -355,7 +355,7 @@ namespace nano2d
 
       auto & paintimage = _create_new_paint_image();
 
-      m_pgraphics->__øconstruct(paintimage.m_pbrush);
+      m_pgraphics->øconstruct(paintimage.m_pbrush);
 
       paintimage.m_pbrush->CreateBoxGradientBrush(
          ::double_point(x, y),
@@ -379,7 +379,7 @@ namespace nano2d
 
       auto & paintimage = _create_new_paint_image();
 
-      m_pgraphics->__øconstruct(paintimage.m_pbrush);
+      m_pgraphics->øconstruct(paintimage.m_pbrush);
 
       paintimage.m_pbrush->CreateRadialGradientBrush(
          ::double_point(cx - inr, cy - outr),
@@ -413,7 +413,7 @@ namespace nano2d
 
       auto & paintimage = _create_new_paint_image();
 
-      //m_pgraphics->__øconstruct(paintimage.m_pbrush);
+      //m_pgraphics->øconstruct(paintimage.m_pbrush);
 
       //paintimage.m_pbrush->CreatePatternBrush(
       //   pimage,
@@ -440,7 +440,7 @@ namespace nano2d
    }
 
 
-   void draw2d_context::font_face(const char * face)
+   void draw2d_context::font_face(const_char_pointer face)
    {
 
       m_pstate->m_strFontFace = face;
@@ -456,7 +456,7 @@ namespace nano2d
    }
 
 
-   void __font_face(::write_text::font * pfont, const char * font)
+   void __font_face(::write_text::font * pfont, const_char_pointer font)
    {
 
       string strFont(font);
@@ -690,7 +690,7 @@ namespace nano2d
    }
 
 
-   float draw2d_context::text(float x, float y, const char * string, const char * end)
+   float draw2d_context::text(float x, float y, const_char_pointer string, const_char_pointer end)
    {
       
       ::string strText(string, end ? end - string : string_safe_length(string));
@@ -738,7 +738,7 @@ namespace nano2d
    }
 
 
-   int draw2d_context::text_glyph_positions(float x, float y, const char * stringParam, const char * end, ::nano2d::glyphPosition * positions, int maxPositions)
+   int draw2d_context::text_glyph_positions(float x, float y, const_char_pointer stringParam, const_char_pointer end, ::nano2d::glyphPosition * positions, int maxPositions)
    {
 
       double_array daLeft;
@@ -791,7 +791,7 @@ namespace nano2d
       while (*psz && iChar < maxPositions)
       {
 
-         int iLen = get_utf8_char_length(psz);
+         int iLen = get_utf8_char_length(scopedstr);
 
          positions[iChar].str = psz;
 
@@ -813,7 +813,7 @@ namespace nano2d
 
 
 
-   float draw2d_context::text_bounds(float x, float y, const char * string, const char * end, float * bounds)
+   float draw2d_context::text_bounds(float x, float y, const_char_pointer string, const_char_pointer end, float * bounds)
    {
 
       ::string strText(string, end ? end - string : string_safe_length(string));
@@ -963,7 +963,7 @@ namespace nano2d
    }
 
 
-   int draw2d_context::create_image(const char * filename, int imageFlags)
+   int draw2d_context::create_image(const_char_pointer filename, int imageFlags)
    {
 
       return m_pgraphics->image()->image_integer(filename);

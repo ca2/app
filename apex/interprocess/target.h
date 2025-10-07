@@ -62,11 +62,11 @@ namespace interprocess
       void on_initialize_particle() override;
 
 
-      virtual void create(const ::string & strChannel);
+      virtual void create(const ::scoped_string & scopedstrChannel);
       void destroy() override;
 
 
-      bool _handle_uri(const ::string & strUri) override;
+      bool _handle_uri(const ::scoped_string & scopedstrUri) override;
       //virtual bool on_interprocess_receive(int message, ::memory && memory);
       //virtual void on_interprocess_post(long long a, long long b);
 

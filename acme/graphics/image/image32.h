@@ -112,6 +112,9 @@ struct CLASS_DECL_ACME image32_t
 
    inline void copy(const ::int_size & size, int iStrideDst, const ::pixmap * ppixmapSrc);
 
+   void set_rectangle(int x, int y, int w, int h, int s, const ::image32_t & source);
+   void blend_rectangle(int x, int y, int w, int h, int s, const ::image32_t & source);
+
 
 };
 

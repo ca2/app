@@ -162,9 +162,9 @@ namespace apex
 
       ::platform::context::initialize_context();
 
-      ///__øconstruct(m_phttp);
+      ///øconstruct(m_phttp);
 
-      //__øconstruct(m_poscontext);
+      //øconstruct(m_poscontext);
 
 
 
@@ -182,7 +182,7 @@ namespace apex
    void context::initialize_http()
    {
 
-      __øconstruct(m_phttp);
+      øconstruct(m_phttp);
 
    }
 
@@ -242,15 +242,17 @@ namespace apex
    }
 
 
-   ::file::path context::defer_make_file_system_url(string str)
+   ::file::path context::defer_make_file_system_url(const ::scoped_string & scopedstr)
    {
 
-      if (str.is_empty())
+      if (scopedstr.is_empty())
       {
 
          return "";
 
       }
+
+      ::string str(scopedstr);
 
       if (directory()->image().has_character() && path_system()->case_insensitive_real_path_begins_eat(str, directory()->image()))
       {
@@ -292,17 +294,17 @@ namespace apex
    }
 
 
-   string context::defer_get_file_title(string strParam)
+   string context::defer_get_file_title(const ::scoped_string & scopedstrParam)
    {
 
-      if (strParam.is_empty())
+      if (scopedstrParam.is_empty())
       {
 
          return "";
 
       }
 
-      ::file::path path = defer_process_path(strParam);
+      ::file::path path = defer_process_path(scopedstrParam);
 
       if (directory()->image().has_character() && path.case_insensitive_order(directory()->image()) == 0)
       {
@@ -442,16 +444,16 @@ namespace apex
    }
 
 
-   bool context::_001IsProtocol(::file::path & path, const ::string & strProtocol)
+   bool context::_001IsProtocol(::file::path & path, const ::scoped_string & scopedstrProtocol)
    {
 
-      if (path.case_insensitive_begins_eat(strProtocol))
+      if (path.case_insensitive_begins_eat(scopedstrProtocol))
       {
 
          return true;
 
       }
-      else if ((path.length() <= strProtocol.length()) && path.case_insensitive_begins(strProtocol(0, strProtocol.length() - 3)))
+      else if ((path.length() <= scopedstrProtocol.size()) && path.case_insensitive_begins(scopedstrProtocol(0, scopedstrProtocol.size() - 3)))
       {
 
          path.clear();
@@ -778,7 +780,7 @@ namespace apex
    //CLASS_DECL_APEX  bool _os_may_have_alias(const ::scoped_string & scopedstr)
    //{
    //
-   //   string str(psz);
+   //   string str(scopedstr);
    //
    //   return str.case_insensitive_ends(".lnk") || str.case_insensitive_contains(".lnk/") || str.case_insensitive_contains(".lnk\\");
    //
@@ -804,9 +806,9 @@ namespace apex
       //
       //    ::pointer < ::file::link > plink;
       //
-      //    ::file::path_array patha;
+      //    ::file::path_array_base patha;
       //
-      //    ::file::path_array pathaRelative;
+      //    ::file::path_array_base pathaRelative;
       //
       //    ascendants_path(path, patha, &pathaRelative);
       //
@@ -874,14 +876,14 @@ namespace apex
 
 //      return node()->is_alias(path);
 
-      //return case_insensitive_string_ends(psz, ".lnk");
+      //return case_insensitive_string_ends(scopedstr, ".lnk");
 
    }
 //
 //#endif
 //
 
-   bool context::enumerate(::file::listing & listing)
+   bool context::enumerate(::file::listing_base & listing)
    {
 
       return directory()->enumerate(listing);
@@ -889,7 +891,7 @@ namespace apex
    }
 
 
-   /*bool context::perform_file_relative_name_listing(::file::listing & listing)
+   /*bool context::perform_file_relative_name_listing(::file::listing_base & listing)
    {
 
       return directory()->ls_relative_name(listing);
@@ -897,7 +899,7 @@ namespace apex
    }*/
 
    //
-   // string context::get(const ::string & strUrl, ::property_set & set)
+   // string context::get(const ::scoped_string & scopedstrUrl, ::property_set & set)
    // {
    //
    //    __UNREFERENCED_PARAMETER(strUrl);
@@ -1116,7 +1118,7 @@ namespace apex
    void context::request(::request * prequest)
    {
 
-      m_prequest = prequest;
+      m_prequestHandler = prequest;
 
       if (m_payloadFile.is_empty())
       {
@@ -1170,7 +1172,7 @@ namespace apex
    //::task_pool* context::taskpool()
    //{
 
-   //   __defer_construct_new(m_ptaskpool);
+   //   ødefer_construct_new(m_ptaskpool);
 
    //   return m_ptaskpool;
 
@@ -1231,7 +1233,7 @@ namespace apex
    }
 
 
-   //bool context::os_is_alias(const char *psz)
+   //bool context::os_is_alias(const_char_pointer psz)
    //{
 
    //   return false;
@@ -1255,10 +1257,10 @@ namespace apex
 //   }
 
    //
-   // void context::perform(::nano::http::get * pget)
+   // void context::perform(::nano::http::get * defer_get)
    // {
    //
-   //    http()->perform(pget);
+   //    http()->perform(defer_get);
    //
    // }
 

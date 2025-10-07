@@ -41,7 +41,7 @@ namespace platform
    }
 
 
-   //void apex_node_layer::defer_create_main_menu(const string_array & straParent, const string_array & straMenu, const string_array & straId){}
+   //void apex_node_layer::defer_create_main_menu(const string_array_base & straParent, const string_array_base & straMenu, const string_array_base & straId){}
 
 
    //      void apex_node_layer::set_main_menu(application_menu * pmenu, ::apex::application * papp){}
@@ -77,7 +77,7 @@ namespace platform
    }
 
 
-   void apex_node_layer::shell_create_link(::file::path pathObj, ::file::path pathLnk, string strDesc, ::file::path pathIco,
+   void apex_node_layer::shell_create_link(::file::path pathObj, ::file::path pathLnk, const ::scoped_string & scopedstrDesc, ::file::path pathIco,
                                   int iIcon)
    {
    }
@@ -136,7 +136,7 @@ namespace platform
    //void set_file_extension_mime_type(::get_file_extension_mime_type * pgetfileextensionmimetype) override{}
 
    //void initialize_wallpaper_fileset(::file::set* pfileset, bool bAddSearch) override{}
-   //void shell_open(const ::file::path & path, const ::string & strParams, const ::file::path & pathFolder) override{}
+   //void shell_open(const ::file::path & path, const ::scoped_string & scopedstrParams, const ::file::path & pathFolder) override{}
 
 
    void apex_node_layer::show_wait_cursor(bool bShow)
@@ -194,12 +194,12 @@ namespace platform
    }
 
 
-   void apex_node_layer::root_ones(::file::listing& listing)
+   void apex_node_layer::root_ones(::file::listing_base& listing)
    {
    }
 
 
-   //      bool apex_node_layer::defer_enumerate_protocol(::file::listing& listing){}
+   //      bool apex_node_layer::defer_enumerate_protocol(::file::listing_base& listing){}
 
    //::string http_get_effective_url(const ::scoped_string & scopedstrUrl) override{}
 

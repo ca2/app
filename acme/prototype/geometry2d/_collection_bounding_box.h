@@ -72,7 +72,7 @@
 
 
 //template < primitive_number NUMBER1, primitive_number NUMBER2 >
-//void expand_bounding_box(::rectangle_type < NUMBER1 > & rectangle, const ::polygon_type < NUMBER2 > & polygon)
+//void expand_bounding_box(::rectangle_type < NUMBER1 > & rectangle, const ::polygon_base < NUMBER2 > & polygon)
 //{
 //
 //   for (auto & point : polygon)
@@ -86,7 +86,7 @@
 
 //
 //template < primitive_number NUMBER1, primitive_number NUMBER2 >
-//void expand_bounding_box(::rectangle_type < NUMBER1 > & rectangle, const ::poly_polygon_type < NUMBER2 > & polypolygon)
+//void expand_bounding_box(::rectangle_type < NUMBER1 > & rectangle, const ::poly_polygon_base < NUMBER2 > & polypolygon)
 //{
 //
 //   for (auto & ppolygon : polypolygon)

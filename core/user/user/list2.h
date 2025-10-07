@@ -40,7 +40,7 @@ namespace user
 
 
 
-      //void parse(const ::string& pszSource);
+      //void parse(const ::scoped_string & scopedstrSource);
 
       //void start_build(int iItem = -1);
 

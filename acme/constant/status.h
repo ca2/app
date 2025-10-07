@@ -130,6 +130,7 @@ enum enum_status : long long
    error_xml_parsing,
    error_encoding,
    error_codec_not_found,
+   error_vkresult,
 
 
 error_time_bag = INT_FAILURE_STATUS(STATUS_RANGE_EXCEPTION),

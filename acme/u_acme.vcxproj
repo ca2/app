@@ -1219,7 +1219,7 @@
     <ClInclude Include="prototype\collection\std_iterator.h" />
     <ClInclude Include="prototype\collection\strid_map.h" />
     <ClInclude Include="prototype\collection\stringl.h" />
-    <ClInclude Include="prototype\collection\string_array_base.h" />
+    <ClInclude Include="prototype\collection\string_array.h" />
     <ClInclude Include="prototype\collection\string_iterable.h" />
     <ClInclude Include="prototype\collection\string_list.h" />
     <ClInclude Include="prototype\collection\string_map.h" />

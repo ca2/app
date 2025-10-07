@@ -27,8 +27,8 @@ numbers:
    public:
 
 
-      const char * input;
-      const char * next_input;
+      const_char_pointer input;
+      const_char_pointer next_input;
       class token * m_ptoken;
 
 
@@ -37,7 +37,7 @@ numbers:
 
 
 
-      void initialize(const ::string & psz);
+      void initialize(const ::scoped_string & scopedstr);
       void peek();
       void next();
       token * look_ahead();

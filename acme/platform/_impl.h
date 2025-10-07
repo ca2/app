@@ -67,14 +67,14 @@ namespace std { enum class align_val_t : std::size_t {}; }
 //   ::pointer<::platform::application>single_application_library < APP > ::get_new_application(::particle * pparticle, const ::scoped_string & scopedstrAppId)
 //   {
 //
-//      if(!contains_app(pszAppId))
+//      if(!contains_app(scopedstrAppId))
 //      {
 //
 //         return error_not_found;
 //
 //      }
 //
-//      auto pappNew = __allocate APP();
+//      auto pappNew = øallocate APP();
 //
 //      if(pappNew == nullptr)
 //      {
@@ -109,7 +109,7 @@ namespace std { enum class align_val_t : std::size_t {}; }
 //
 //
 //   template < class APP >
-//   void single_application_library < APP > ::get_extension_list(string_array & stra)
+//   void single_application_library < APP > ::get_extension_list(string_array_base & stra)
 //   {
 //
 //      if (m_strFileExt.has_character())
@@ -131,7 +131,7 @@ namespace std { enum class align_val_t : std::size_t {}; }
 
 
 template < typename T >
-const char * memory_counter_id(T * pthis)
+const_char_pointer memory_counter_id(T * pthis)
 {
 
    return typeid(*pthis).name();
@@ -148,9 +148,9 @@ const char * memory_counter_id(T * pthis)
 //
 //      auto psz = memory_counter_id(pthis);
 //
-//      _memory_counter_increment(psz);
+//      _memory_counter_increment(scopedstr);
 //
-//      //synchronous_lock synchronouslock(g_pmutexMemoryCounters);
+//      //synchronous_lock synchronouslock(g_pmutexMemoryCounters, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //      //int i = atoi(file_system()->as_string(path));
 //
@@ -169,7 +169,7 @@ const char * memory_counter_id(T * pthis)
 //
 //      auto psz = memory_counter_id(pthis);
 //
-//      _memory_counter_decrement(psz);
+//      _memory_counter_decrement(scopedstr);
 //
 //      //int i = atoi(file_system()->as_string(path));
 //
@@ -431,7 +431,7 @@ const char * memory_counter_id(T * pthis)
 ////   while (c > 0)
 ////   {
 ////
-////      auto p = __allocate TYPE(&a);
+////      auto p = øallocate TYPE(&a);
 ////
 ////      stream >> *p;
 ////
@@ -500,7 +500,7 @@ const char * memory_counter_id(T * pthis)
 
 
 //template < typename T, typename ...Args >
-//inline T * __call__allocate(Args &&... args)
+//inline T * __call_allocate(Args &&... args)
 //{
 //
 //   auto p = ::platform::allocator::__callnew T (::std::forward < Args >(args)...);
@@ -520,7 +520,7 @@ const char * memory_counter_id(T * pthis)
 
 //
 //template < typename T >
-//inline T * __allocate_array(::collection::count c)
+//inline T * øallocate_array(::collection::count c)
 //{
 //
 //   auto p = ::platform::allocator::new  T[c];

@@ -52,7 +52,7 @@ public:
    //}
 
 
-   //void informationf(const ::ansi_character * pszFormat, ...)
+   //void informationf(const_char_pointer pszFormat, ...)
    //{
 
    //   va_list arguments;
@@ -65,7 +65,7 @@ public:
 
    //      statement(e_trace_level_information);
 
-   //      statement.formatf_output_arguments(pszFormat, arguments);
+   //      statement.formatf_output_arguments(scopedstrFormat, arguments);
 
    //   }
 
@@ -74,7 +74,7 @@ public:
    //}
 
 
-   //void warningf(const ::ansi_character * pszFormat, ...)
+   //void warningf(const_char_pointer pszFormat, ...)
    //{
 
    //   va_list arguments;
@@ -87,7 +87,7 @@ public:
 
    //      statement(e_trace_level_warning);
 
-   //      statement.formatf_output_arguments(pszFormat, arguments);
+   //      statement.formatf_output_arguments(scopedstrFormat, arguments);
 
    //   }
 
@@ -96,7 +96,7 @@ public:
    //}
 
 
-   //void errorf(const ::ansi_character * pszFormat, ...)
+   //void errorf(const_char_pointer pszFormat, ...)
    //{
 
    //   va_list arguments;
@@ -109,7 +109,7 @@ public:
 
    //      statement(e_trace_level_error);
 
-   //      statement.formatf_output_arguments(pszFormat, arguments);
+   //      statement.formatf_output_arguments(scopedstrFormat, arguments);
 
    //   }
 
@@ -118,7 +118,7 @@ public:
    //}
 
 
-   //void fatalf(const ::ansi_character * pszFormat, ...)
+   //void fatalf(const_char_pointer pszFormat, ...)
    //{
 
    //   va_list arguments;
@@ -131,7 +131,7 @@ public:
 
    //      statement(e_trace_level_fatal);
 
-   //      statement.formatf_output_arguments(pszFormat, arguments);
+   //      statement.formatf_output_arguments(scopedstrFormat, arguments);
 
    //   }
 

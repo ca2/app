@@ -20,7 +20,7 @@ namespace user
       if (!pcontrolstyle)
       {
 
-         pcontrolstyle = __allocate CONTROL_STYLE();
+         pcontrolstyle = øallocate CONTROL_STYLE();
 
       }
 

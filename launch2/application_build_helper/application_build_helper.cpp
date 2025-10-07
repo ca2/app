@@ -279,7 +279,7 @@ namespace application_build_helper
    //
    //   auto pathApplicationMatterList = m_pathBaseDir / "application_list.txt";
    //
-   //   string_array straApplications;
+   //   string_array_base straApplications;
    //
    //   file()->get_lines(straApplications, pathApplicationMatterList);
    //
@@ -333,7 +333,7 @@ namespace application_build_helper
       catch (const ::exception & e)
       {
 
-         fprintf(stderr, "\n\nFatal! Failed to open package map file: %s\n(Does it exist?)\n\n\n", pathPackageMap.c_str());
+         fprintf(stderr, "\n\nFatal! Failed to open package map_base file: %s\n(Does it exist?)\n\n\n", pathPackageMap.c_str());
 
          throw e;
 
@@ -342,7 +342,7 @@ namespace application_build_helper
       if (::is_null(m_piniPackageMap))
       {
 
-         fprintf(stderr, "\n\nFatal! Failed to open package map file: %s\n(Does it exist?)\n\n\n", pathPackageMap.c_str());
+         fprintf(stderr, "\n\nFatal! Failed to open package map_base file: %s\n(Does it exist?)\n\n\n", pathPackageMap.c_str());
 
          throw ::exception(error_failed);
 
@@ -456,7 +456,7 @@ namespace application_build_helper
 
       }
 
-      string_array stra;
+      string_array_base stra;
 
       stra.explode("/", packagereference.m_strPackage);
 
@@ -597,7 +597,7 @@ namespace application_build_helper
    }
 
 
-   string_array application_build_helper::get_lines(const ::file::path & path, bool bNoExceptionIfNotFound)
+   string_array_base application_build_helper::get_lines(const ::file::path & path, bool bNoExceptionIfNotFound)
    {
 
       auto strInput = file_system()->as_string(path, -1, bNoExceptionIfNotFound);
@@ -609,7 +609,7 @@ namespace application_build_helper
 
       }
 
-      string_array stra;
+      string_array_base stra;
 
       stra.add_lines(strInput, true);
 
@@ -618,7 +618,7 @@ namespace application_build_helper
    }
 
 
-   package_reference_array application_build_helper::get_package_list(const ::string & strList, const ::string & strPackageParam)
+   package_reference_array application_build_helper::get_package_list(const ::scoped_string & scopedstrList, const ::scoped_string & scopedstrPackageParam)
    {
 
       ::file::path path;
@@ -707,7 +707,7 @@ namespace application_build_helper
    }
 
 
-   package_reference_array application_build_helper::get_package_references(const ::string & strPackage)
+   package_reference_array application_build_helper::get_package_references(const ::scoped_string & scopedstrPackage)
    {
 
       return get_package_list("_references", strPackage);
@@ -715,7 +715,7 @@ namespace application_build_helper
    }
 
 
-   package_reference_array application_build_helper::get_package_dependencies(const ::string & strPackage)
+   package_reference_array application_build_helper::get_package_dependencies(const ::scoped_string & scopedstrPackage)
    {
 
       return get_package_list("_dependencies", strPackage);
@@ -723,7 +723,7 @@ namespace application_build_helper
    }
 
 
-   package_reference_array application_build_helper::get_package_extensions(const ::string & strPackage)
+   package_reference_array application_build_helper::get_package_extensions(const ::scoped_string & scopedstrPackage)
    {
 
       return get_package_list("_extensions", strPackage);
@@ -731,7 +731,7 @@ namespace application_build_helper
    }
 
 
-   package_reference_array application_build_helper::get_all_package_dependencies(const ::string & strPackage)
+   package_reference_array application_build_helper::get_all_package_dependencies(const ::scoped_string & scopedstrPackage)
    {
 
       package_reference_array packagereferencea;
@@ -830,7 +830,7 @@ namespace application_build_helper
 
          strApps.trim();
 
-         string_array straApps;
+         string_array_base straApps;
 
          straApps.add_lines(strApps, false);
 
@@ -919,13 +919,13 @@ namespace application_build_helper
 
 
 
-   //void command_system(const char* psz)
+   //void command_system(const_char_pointer psz)
    //{
    //
    //
    //#ifdef WINDOWS_DESKTOP
    //
-   //   string str(psz);
+   //   string str(scopedstr);
    //
    //   wstring wstr;
    //
@@ -946,13 +946,13 @@ namespace application_build_helper
    //#else
    //
    //   printf("%s\n", psz);
-   //   ::system(psz);
+   //   ::system(scopedstr);
    //
    //#endif
    //}
    //
 
-   string application_build_helper::defer_translate_application_name(string strDependency)
+   string application_build_helper::defer_translate_application_name(const ::scoped_string & scopedstrDependency)
    {
 
       ::file::path pathApplicationMatter = m_pathSource / strDependency / "application.txt";
@@ -991,7 +991,7 @@ namespace application_build_helper
    }
 
 
-   string application_build_helper::defer_translate_dependency(string strDependency)
+   string application_build_helper::defer_translate_dependency(const ::scoped_string & scopedstrDependency)
    {
 
       strDependency.trim();
@@ -1106,10 +1106,10 @@ namespace application_build_helper
    }
 
 
-   string application_build_helper::defer_binary_to_project(string strBinary)
+   string application_build_helper::defer_binary_to_project(const ::scoped_string & scopedstrBinary)
    {
 
-      string_array stra;
+      string_array_base stra;
 
       stra.explode("/", strBinary);
 
@@ -1124,18 +1124,18 @@ namespace application_build_helper
 
       string strName = stra[1];
 
-      auto & map = m_mapBinaryToProject[strRoot];
+      auto & map_base = m_mapBinaryToProject[strRoot];
 
-      if (map["(--loaded--)"].is_empty())
+      if (map_base["(--loaded--)"].is_empty())
       {
 
-         load_map(map, "binary_to_project", strRoot);
+         load_map(map_base, "binary_to_project", strRoot);
 
       }
 
       string strRename;
 
-      strRename = map[strBinary];
+      strRename = map_base[strBinary];
 
       if (strRename.is_empty())
       {
@@ -1149,10 +1149,10 @@ namespace application_build_helper
    }
 
 
-   string application_build_helper::defer_project_to_binary(string strProject)
+   string application_build_helper::defer_project_to_binary(const ::scoped_string & scopedstrProject)
    {
 
-      string_array stra;
+      string_array_base stra;
 
       stra.explode("/", strProject);
 
@@ -1167,18 +1167,18 @@ namespace application_build_helper
 
       string strName = stra[1];
 
-      auto & map = m_mapProjectToBinary[strRoot];
+      auto & map_base = m_mapProjectToBinary[strRoot];
 
-      if (map["(--loaded--)"].is_empty())
+      if (map_base["(--loaded--)"].is_empty())
       {
 
-         load_map(map, "project_to_binary", strRoot);
+         load_map(map_base, "project_to_binary", strRoot);
 
       }
 
       string strRename;
 
-      strRename = map[strProject];
+      strRename = map_base[strProject];
 
       if (strRename.is_empty())
       {
@@ -1192,7 +1192,7 @@ namespace application_build_helper
    }
 
 
-   void application_build_helper::load_map(string_to_string & map, string strMap, string strRoot)
+   void application_build_helper::load_map(string_to_string_base & map_base, const ::scoped_string & scopedstrMap, const ::scoped_string & scopedstrRoot)
    {
 
       ::file::path pathMapBase;
@@ -1216,14 +1216,14 @@ namespace application_build_helper
 
       pathMap = pathMapBase / (strMap + ".txt");
 
-      string_array straLines;
+      string_array_base straLines;
 
       straLines = file_system()->lines(pathMap);
 
       for (auto & strLine : straLines)
       {
 
-         string_array stra;
+         string_array_base stra;
 
          stra.explode("=", strLine);
 
@@ -1238,18 +1238,18 @@ namespace application_build_helper
 
             strRename.trim();
 
-            map[strName] = strRename;
+            map_base[strName] = strRename;
 
          }
 
       }
 
-      map["(--loaded--)"] = "true";
+      map_base["(--loaded--)"] = "true";
 
    }
 
 
-   void application_build_helper::static_factory(const ::string & strFileDst, const ::string & strFileSrc)
+   void application_build_helper::static_factory(const ::scoped_string & scopedstrFileDst, const ::scoped_string & scopedstrFileSrc)
    {
 
       //auto estatus =
@@ -1273,7 +1273,7 @@ namespace application_build_helper
 
       //}
 
-      string_array stra;
+      string_array_base stra;
 
       stra.add_lines(strInput, false);
 
@@ -1302,7 +1302,7 @@ namespace application_build_helper
             if (strDependency.has_character())
             {
 
-               string_array stra;
+               string_array_base stra;
 
                stra.explode("/", strDependency);
 
@@ -1372,7 +1372,7 @@ namespace application_build_helper
    }
 
 
-   void application_build_helper::translate_items(const ::string & strFileDst, const ::string & strFileSrc)
+   void application_build_helper::translate_items(const ::scoped_string & scopedstrFileDst, const ::scoped_string & scopedstrFileSrc)
    {
 
       //auto estatus =
@@ -1395,7 +1395,7 @@ namespace application_build_helper
 
       //}
 
-      string_array stra;
+      string_array_base stra;
 
       stra.add_lines(strInput, false);
 

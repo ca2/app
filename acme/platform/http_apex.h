@@ -35,7 +35,7 @@ namespace platform
       //virtual void clean_proxy_auth(::account::user * puser);
 
 
-      virtual bool open(::pointer<::sockets::http_session>& psession, const class ::url::connect_range & connectrange, ::property_set & set, const ::string & strVersion);
+      virtual bool open(::pointer<::sockets::http_session>& psession, const class ::url::connect_range & connectrange, ::property_set & set, const ::scoped_string & scopedstrVersion);
 
 
       virtual bool request(::pointer<::sockets::http_session>& spsession, const class ::url::request_range & requestrange, ::property_set & set);
@@ -96,7 +96,7 @@ namespace platform
       virtual void get(string & str, const ::url::url & url , ::property_set & set);
       virtual void get(memory_base * pmemory, const ::url::url & url, ::property_set & set);
 
-      virtual void perform(::nano::http::get * pget);
+      virtual void perform(::nano::http::get * defer_get);
 
       //virtual bool request(const ::scoped_string & scopedstrRequest, const ::url::url & url, ::property_set & set);
 

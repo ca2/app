@@ -318,7 +318,7 @@ namespace hotplugin
    }
 
 
-   bool composer::open_link(const ::string & strLink,const string & pszTarget)
+   bool composer::open_link(const ::scoped_string & scopedstrLink,const ::scoped_string & scopedstrTarget)
    {
 
       m_strOpenUrl = strLink;
@@ -332,7 +332,7 @@ namespace hotplugin
    }
 
 
-   bool composer::_open_link(const ::string & strLink,const string & pszTarget)
+   bool composer::_open_link(const ::scoped_string & scopedstrLink,const ::scoped_string & scopedstrTarget)
    {
 
       return true;
@@ -452,7 +452,7 @@ namespace hotplugin
 //
 //#endif
 //
-//         xxdebug_box("box1","box1",e_message_box_icon_information);
+//         xxdebug_box("box1","box1",::user::e_message_box_icon_information);
 //
 //         paxissystem->m_bReady = false;
 //

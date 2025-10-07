@@ -22,7 +22,7 @@
 void CLASS_DECL_NANOUI file_dialog_from_platform(
    void * poswindow,
    const ::array<::pair<::string, ::string>> & filetypes,
-   const ::function < void(const ::string_array & ) > & function,
+   const ::function < void(const ::string_array_base & ) > & function,
    bool save, 
    bool multiple);
 
@@ -34,7 +34,7 @@ void CLASS_DECL_NANOUI file_dialog_from_platform(
 
 //#include <nanoui/opengl.h>
 //#include <nanoui/metal.h>
-//#include <map>
+//#include <map_base>
 //#include <thread>
 //#include <chrono>
 //#include <mutex>
@@ -56,10 +56,10 @@ namespace nanoui
 
 
 
-//extern std::map<GLFWwindow *, Screen *> __nanoui_screens;
+//extern std::map_base<GLFWwindow *, Screen *> __nanoui_screens;
 
 #if defined(__APPLE__)
-extern void disable_saved_application_state_osx();
+extern void disable_saved_application_sink_osx();
 #endif
 
 //void init() {
@@ -69,12 +69,12 @@ extern void disable_saved_application_state_osx();
 //#endif
 //
 //#if defined(__APPLE__)
-//   disable_saved_application_state_osx();
+//   disable_saved_application_sink_osx();
 //   glfwInitHint(GLFW_COCOA_CHDIR_RESOURCES, GLFW_FALSE);
 //#endif
 //
 ////   glfwSetErrorCallback(
-////      [](int error, const char * descr) {
+////      [](int error, const_char_pointer descr) {
 ////         if (error == GLFW_NOT_INITIALIZED)
 ////            return; /* Ignore */
 ////         std::cerr << "GLFW error " << error << ": " << descr << std::endl;
@@ -275,10 +275,10 @@ static float emscripten_refresh = 0;
 }
 
 int __nanoui_get_image(::nano2d::context  * pcontext, const ::scoped_string & name, uint8_t * data, uint32_t size) {
-   static string_map < int> icon_cache;
-   auto it = icon_cache.plookup(name);
-   if (it != icon_cache.end())
-      return it->m_element2;
+   static string_map_base < int> icon_cache;
+   auto iterator = icon_cache.find(name);
+   if (iterator)
+      return iterator->m_element2;
    int icon_id = pcontext->create_image_mem(0, data, size);
    if (icon_id == 0)
       throw ::exception(error_failed, "Unable to load resource data.");
@@ -290,7 +290,7 @@ int __nanoui_get_image(::nano2d::context  * pcontext, const ::scoped_string & na
 
 
 
-void CLASS_DECL_NANOUI load_image_directory(::nano2d::context  * pcontext, ::array<::pair<int, ::string>> & images, const ::scoped_string & path)
+void CLASS_DECL_NANOUI load_image_directory(::nano2d::context  * pcontext, ::array<::pair<int, ::string>> & images, const ::scoped_string & scopedstrPath)
 {
 
 //   ::array<::pair<int, ::string> > result;
@@ -300,16 +300,16 @@ void CLASS_DECL_NANOUI load_image_directory(::nano2d::context  * pcontext, ::arr
 //      throw std::runtime_error("Could not open image directory!");
 //   struct dirent * ep;
 //   while ((ep = readdir(dp))) {
-//      const char * fname = ep->d_name;
+//      const_char_pointer fname = ep->d_name;
 //#else
 
    auto pparticle = get_nano2d_object(pcontext);
 
    auto papexcontext = pparticle->m_papplication;
 
-   ::file::listing listing;
+   ::file::listing_base listing;
 
-   listing.set_file_listing(path.c_str());
+   listing.set_file_listing(scopedstrPath);
 
    papexcontext->directory()->enumerate(listing);
 
@@ -336,7 +336,7 @@ void CLASS_DECL_NANOUI load_image_directory(::nano2d::context  * pcontext, ::arr
 //   if (handle == INVALID_HANDLE_VALUE)
 //      throw std::runtime_error("Could not open image directory!");
 //   do {
-//      const char * fname = ffd.cFileName;
+//      const_char_pointer fname = ffd.cFileName;
 //#endif
 //      if (strstr(fname, "png") == nullptr)
 //         continue;

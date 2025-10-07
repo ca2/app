@@ -5,7 +5,74 @@ project(gpu_opengl CXX)
 
 message(STATUS "PROJECT_NAME is ${PROJECT_NAME}")
 
+
+
+# Collect all files in shaders/ directory
+file(GLOB SHADER_FILES
+   "${CMAKE_CURRENT_SOURCE_DIR}/ibl/shaders/*"
+)
+
+message(STATUS "SHADER_FILES: ${SHADER_FILES}")
+
+# Keep only .vert and .frag files
+set(FILTERED_SHADERS "")
+foreach(SHADER ${SHADER_FILES})
+   get_filename_component(EXT ${SHADER} EXT)
+   if(EXT STREQUAL ".vert" OR EXT STREQUAL ".frag")
+      list(APPEND FILTERED_SHADERS ${SHADER})
+   endif()
+endforeach()
+
+
+message(STATUS "FILTERED_SHADERS: ${FILTERED_SHADERS}")
+
+set(GENERATED_HEADERS "")
+
+foreach(SHADER ${FILTERED_SHADERS})
+   get_filename_component(DIR ${SHADER} DIRECTORY)
+   get_filename_component(NAME ${SHADER} NAME)
+   set(OUTPUT_FILE ${DIR}/${NAME}.h)
+
+   add_custom_command(
+      OUTPUT ${OUTPUT_FILE}
+      COMMAND ${APPLICATION_BUILD_HELPER_BINARY} --inline-text ${SHADER}
+      DEPENDS ${SHADER}
+      COMMENT "Generating header from ${SHADER}"
+      VERBATIM
+   )
+
+   list(APPEND IBL_SHADERS_HEADERS ${OUTPUT_FILE})
+endforeach()
+
+
+message(STATUS "IBL_SHADERS_HEADERS: ${IBL_SHADERS_HEADERS}")
+
+# A target that generates all headers
+add_custom_target(${PROJECT_NAME}_generate_ibl_shader_headers ALL DEPENDS ${IBL_SHADERS_HEADERS})
+
 list(APPEND library_source
+   gltf/_constant.h
+   gltf/material.h
+   gltf/mesh.cpp
+   gltf/mesh.h
+   gltf/model.cpp
+   gltf/model.h
+   gltf/vertex.h
+   ${IBL_SHADERS_HEADERS}
+   ibl/brdf_convolution_framebuffer.cpp
+   ibl/brdf_convolution_framebuffer.h
+   ibl/cubemap_framebuffer.cpp
+   ibl/cubemap_framebuffer.h
+   ibl/diffuse_irradiance_map.cpp
+   ibl/diffuse_irradiance_map.h
+   ibl/equirectangular_cubemap.cpp
+   ibl/equirectangular_cubemap.h
+   ibl/hdri_cube.cpp
+   ibl/hdri_cube.h
+   ibl/mipmap_cubemap_framebuffer.cpp
+   ibl/mipmap_cubemap_framebuffer.h
+   ibl/specular_map.cpp
+   ibl/specular_map.h
         _.cpp
         _.h
         _factory.cpp
@@ -16,18 +83,29 @@ list(APPEND library_source
         assimp.cpp
         assimp.h
         command_buffer.cpp
-        command_buffer.h
+   command_buffer.h
         cpu_buffer.cpp
         cpu_buffer.h
         context.cpp
         context.h
+   cube.cpp
+   cube.h
         device.cpp
         device.h
         frame.h
         frame_buffer.cpp
         frame_buffer.h
+   full_screen_quad.cpp
+   full_screen_quad.h
+   #gltf_mesh.cpp
+   #gltf_mesh.h
+
+      #gltf_model.cpp
+   #gltf_model.h
         framework.cpp
         framework.h
+   hdr_texture.cpp
+   hdr_texture.h
         image_opengl.cpp
         input_layout.cpp
         input_layout.h
@@ -71,10 +149,13 @@ endif ()
 
 if(${LINUX} OR ${__BSD__})
     list(APPEND library_source
-            context_egl.cpp
-            context_egl.h
+#            context_egl.cpp
+ #           context_egl.h
             #context_glx.cpp
             #context_glx.h
+       #device_egl.cpp
+       #device_egl.h
+       approach_glx.cpp
             )
 
 endif ()
@@ -96,8 +177,9 @@ list(APPEND library_references
         apex
         aqua
         aura
-        base
+        berg
         bred
+   gpu
         )
 
 
@@ -105,6 +187,8 @@ if(${LINUX} OR ${__BSD__})
 
     list(APPEND library_references
             aura_posix
+       glad
+       ktx
        #windowing_system_x11
             )
 
@@ -117,9 +201,15 @@ else()
 
 endif ()
 
+add_compile_definitions(GLAD_GLAPI_EXPORT)
+
 
 add_library(${PROJECT_NAME} SHARED ${library_source})
 add_library(static_${PROJECT_NAME} STATIC ${library_source})
+
+
+add_dependencies(${PROJECT_NAME} ${PROJECT_NAME}_generate_ibl_shader_headers)
+add_dependencies(static_${PROJECT_NAME} ${PROJECT_NAME}_generate_ibl_shader_headers)
 
 if (NOT ${NO_PRECOMPILED_HEADER})
 
@@ -143,7 +233,7 @@ if (MSVC)
     target_link_options(${PROJECT_NAME} PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
     target_link_options(${PROJECT_NAME} PRIVATE "/IMPLIB:${LIBRARY_OUTPUT_PATH}/${PROJECT_NAME}.lib")
     target_link_options(${PROJECT_NAME} PRIVATE "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/${PROJECT_NAME}.def")
-    target_link_libraries(${PROJECT_NAME} PRIVATE assimp glu32 opengl32)
+    target_link_libraries(${PROJECT_NAME} PRIVATE assimp glu32 opengl32 glad ktx)
     target_link_libraries(${PROJECT_NAME} PRIVATE ${library_references} ${global_library_references})
 
 
@@ -161,16 +251,14 @@ elseif (${LINUX} OR ${__BSD__} OR ${ANDROID})
       list(APPEND extra_pkg_modules gl osmesa)
    endif()
 
-    #if (USE_PKGCONFIG)
-        pkg_check_modules(PKGCONFIG glew egl assimp ${extra_pkg_modules})
+    #if (${USE_PKGCONFIG})
+        pkg_check_modules(${PROJECT_NAME}_PKGCONFIG glew egl assimp ${extra_pkg_modules})
 
     #endif ()
     target_compile_options(${PROJECT_NAME} PRIVATE $<$<COMPILE_LANGUAGE:CXX>:-fpermissive  ${EXTRA_CXX_TARGET_COMPILER_OPTIONS}>)
     target_compile_options(static_${PROJECT_NAME} PRIVATE $<$<COMPILE_LANGUAGE:CXX>:-fpermissive  ${EXTRA_CXX_TARGET_COMPILER_OPTIONS}>)
     target_compile_definitions(static_${PROJECT_NAME} PRIVATE CUBE)
 
-    target_compile_options(${PROJECT_NAME} PRIVATE ${${PROJECT_NAME}_PKGCONFIG_CFLAGS})
-    target_compile_options(static_${PROJECT_NAME} PRIVATE ${${PROJECT_NAME}_PKGCONFIG_CFLAGS})
     target_compile_options(${PROJECT_NAME} PRIVATE ${${PROJECT_NAME}_PKGCONFIG_CFLAGS})
     target_compile_options(static_${PROJECT_NAME} PRIVATE ${${PROJECT_NAME}_PKGCONFIG_CFLAGS})
     target_link_options(${PROJECT_NAME} PRIVATE ${${PROJECT_NAME}_PKGCONFIG_LDFLAGS})

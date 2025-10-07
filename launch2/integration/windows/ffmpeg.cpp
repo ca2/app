@@ -4,7 +4,7 @@
 #include "x264.h"
 #include "application.h"
 #include "acme/constant/id.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "acme/filesystem/filesystem/directory_system.h"
 #include "acme/filesystem/filesystem/file_system.h"
 #include "acme/platform/node.h"
@@ -46,7 +46,7 @@ namespace console_integration
 
          acmenode()->integration_factory();
 
-         __øconstruct(m_papplication);
+         øconstruct(m_papplication);
 
          m_papplication->m_bMsys = true;
 
@@ -228,7 +228,7 @@ namespace console_integration
 
          //}
 
-         //__construct_new(m_px264);
+         //øconstruct_new(m_px264);
 
          //m_px264->m_papplication->m_pathPrefix = m_papplication->m_pathPrefix;
 
@@ -287,7 +287,7 @@ namespace console_integration
 
          }
 
-         //__construct_new(m_px264);
+         //øconstruct_new(m_px264);
 
          //m_px264->m_papplication->m_pathPrefix = m_papplication->m_pathPrefix;
 

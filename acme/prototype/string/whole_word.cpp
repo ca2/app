@@ -20,19 +20,19 @@
 //{
 //
 
-   bool whole_word_contains(string str, string strFind)
+   bool whole_word_contains(const ::scoped_string & scopedstr, const ::scoped_string & scopedstrFind)
    {
 
       ::collection::index iFind = 0;
 
-      while ((iFind = str(iFind).case_insensitive_find_index(strFind)) >= 0)
+      while ((iFind = scopedstr(iFind).case_insensitive_find_index(scopedstrFind)) >= 0)
       {
 
          bool bLowerBound1 = iFind == 0;
-         bool bLowerBound = bLowerBound1 || !ansi_char_isalpha(str[iFind - 1]);
-         character_count iUpperBound = iFind + strFind.length();
-         bool bUpperBound1 = iUpperBound == str.length();
-         bool bUpperBound = bUpperBound1 || !ansi_char_isalpha(str[iUpperBound]);
+         bool bLowerBound = bLowerBound1 || !ansi_char_isalpha(scopedstr[iFind - 1]);
+         character_count iUpperBound = iFind + scopedstrFind.length();
+         bool bUpperBound1 = iUpperBound == scopedstr.length();
+         bool bUpperBound = bUpperBound1 || !ansi_char_isalpha(scopedstr[iUpperBound]);
 
          if (bLowerBound && bUpperBound)
          {
@@ -50,13 +50,13 @@
    }
 
 
-   bool whole_word_find(string_array & stra, string str)
+   bool whole_word_find(string_array_base & stra, const ::scoped_string & scopedstr)
    {
 
       for (auto & strFind : stra)
       {
 
-         if (whole_word_contains(str, strFind))
+         if (whole_word_contains(scopedstr, strFind))
          {
 
             return true;
@@ -71,18 +71,18 @@
 
    /// [Idee:ChrifRachid@liveedutv] erase http:// and https:// from resident speech
 
-   void whole_word_erase(string & str, string strFind)
+   void whole_word_erase(string & str, const ::scoped_string & scopedstrFind)
    {
 
       ::collection::index iFind = 0;
 
-      while ((iFind = str(iFind).case_insensitive_find_index(strFind)) >= 0)
+      while ((iFind = str(iFind).case_insensitive_find_index(scopedstrFind)) >= 0)
       {
 
          if (iFind == 0 || !ansi_char_isalpha(str[iFind - 1]))
          {
 
-            str = str(0, iFind) + str.substr(iFind + strFind.length());
+            str = str(0, iFind) + str.substr(iFind + scopedstrFind.length());
 
          }
          else

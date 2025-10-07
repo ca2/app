@@ -34,7 +34,7 @@ inline bool linux_dir_myspace(char ch)
 
    string strDirs = file_system()->as_string(path);
 
-   string_array stra;
+   string_array_base stra;
 
    stra.add_lines(strDirs);
 
@@ -440,7 +440,7 @@ pdirectorysystem->is(path))
    }
 
 
-   ::file::path directory_context::element_commonappdata(const ::string & strElement)
+   ::file::path directory_context::element_commonappdata(const ::scoped_string & scopedstrElement)
    {
 
       return ::file::path(strElement) / "commonappdata";
@@ -480,7 +480,7 @@ pdirectorysystem->is(path))
    }
 
 
-   ::file::path directory_context::time_log(const string & pszId)
+   ::file::path directory_context::time_log(const ::scoped_string & scopedstrId)
    {
 
       ::file::path strLogBaseDir;
@@ -611,7 +611,7 @@ pdirectorysystem->is(path))
 
          ::file::listing straPath(get_context());
 
-         straPath.ls(psz);
+         straPath.ls(scopedstr);
 
          for(int i = 0; i < straPath.get_count(); i++)
          {
@@ -619,7 +619,7 @@ pdirectorysystem->is(path))
             if(is(straPath[i]))
             {
 
-               rm(psz / straPath[i].name(), true);
+               rm(scopedstr / straPath[i].name(), true);
 
             }
             else
@@ -633,7 +633,7 @@ pdirectorysystem->is(path))
 
       }
 
-      return ::rmdir(psz) != false;
+      return ::rmdir(scopedstr) != false;
 
    }
 
@@ -641,7 +641,7 @@ pdirectorysystem->is(path))
    ::file::path directory_context::trash_that_is_not_trash(const ::file::path & psz)
    {
 
-      if(psz[1] == ':')
+      if(scopedstr[1] == ':')
       {
 
          string strDir = psz.name();
@@ -740,7 +740,7 @@ pdirectorysystem->is(path))
    bool directory_context::is_inside(const ::file::path & pszDir, const ::file::path & pszPath)
    {
 
-      return case_insensitive_string_begins(pszDir, pszPath);
+      return case_insensitive_string_begins(scopedstrDir, pszPath);
 
    }
 
@@ -750,7 +750,7 @@ pdirectorysystem->is(path))
 
       ::file::listing listing(get_context());
 
-      listing.ls_dir(pszDir);
+      listing.ls_dir(scopedstrDir);
 
       return listing.get_size() > 0;
 

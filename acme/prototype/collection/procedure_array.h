@@ -3,7 +3,7 @@
 
 
 #include "acme/prototype/prototype/function.h"
-#include "acme/prototype/collection/array.h"
+#include "acme/prototype/collection/array_base.h"
 #include "acme/prototype/collection/comparable_eq_array.h"
 #include "acme/prototype/collection/comparable_array.h"
 

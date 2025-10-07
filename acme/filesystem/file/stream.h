@@ -97,10 +97,10 @@ template < typename ARRAY >
 inline void __exchange_array(::binary_stream & s, const ARRAY & array) { __exchange_array(s, (ARRAY &)array); }
 
 
-inline void __exchange(::binary_stream & s, const ::file::path_array & patha) { __exchange_array(s, patha); }
+inline void __exchange(::binary_stream & s, const ::file::path_array_base & patha) { __exchange_array(s, patha); }
 
 template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type t_etypeContainer >
-inline void __exchange(::binary_stream & s, const ::array_base < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > & array) { __exchange_array(s, (::array_base < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > &)array); }
+inline void __exchange(::binary_stream & s, const ::base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > & array) { __exchange_array(s, (::base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > &)array); }
 
 template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type t_etypeContainer >
 inline void __exchange(::binary_stream & s, const ::raw_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > & array) { __exchange_array(s, (::raw_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > &)array); }
@@ -109,7 +109,7 @@ template < typename TYPE, ::enum_type t_etypeContainer = e_type_element >
 inline void __exchange(::binary_stream & s, const ::numeric_array < TYPE, t_etypeContainer > & array) { __exchange_array(s, (::numeric_array < TYPE, t_etypeContainer > &) array); }
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-inline void __exchange(::binary_stream & s, const ::string_array_base < Type, RawType, t_etypeContainer > & array) { __exchange_array(s, (::string_array_base < Type, RawType, t_etypeContainer > &) array); }
+inline void __exchange(::binary_stream & s, const ::string_base_array < Type, RawType, t_etypeContainer > & array) { __exchange_array(s, (::string_base_array < Type, RawType, t_etypeContainer > &) array); }
 
 template < typename ARRAY >
 inline void __exchange_save_array(::binary_stream & s, ARRAY & array);
@@ -118,7 +118,7 @@ template < typename ARRAY >
 inline void __exchange_load_array(::binary_stream & s, ARRAY & array);
 
 template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type t_etypeContainer >
-inline void __exchange(::binary_stream & s, ::array_base < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > & array);
+inline void __exchange(::binary_stream & s, ::base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > & array);
 
 template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type t_etypeContainer >
 inline void __exchange(::binary_stream & s, ::raw_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > & array);
@@ -127,7 +127,7 @@ template < typename TYPE, ::enum_type t_etypeContainer = e_type_element >
 inline void __exchange(::binary_stream & s, ::numeric_array < TYPE, t_etypeContainer > & array);
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-inline void __exchange(::binary_stream & s, ::string_array_base < Type, RawType, t_etypeContainer > & array);*/
+inline void __exchange(::binary_stream & s, ::string_base_array < Type, RawType, t_etypeContainer > & array);*/
 
 
 #define FIRST_VERSION 0
@@ -160,6 +160,7 @@ public:
    e_str_flag                       m_estrflag;
    ::file::e_iostate                m_iostate;
    memsize                          m_gcount;
+   ::file::enum_stream              m_estream = ::file::e_stream_none;
 
 
    stream_base()
@@ -231,8 +232,34 @@ public:
 
    //}
 
+
+
 };
 
+template < typename S, typename T >
+void stream_exchange(S & s, T & t)
+{
+
+   if(s.m_estream == ::file::e_stream_output)
+   {
+
+      s << t;
+
+   }
+   else if(s.m_estream == ::file::e_stream_input)
+   {
+
+      s >> t;
+
+   }
+   else
+   {
+
+      throw "wrong state m_estream is bad";
+
+   }
+
+}
 
 
 //template < typename POINTER_TYPE >
@@ -320,7 +347,7 @@ public:
 //   inline void defer_set_storing() { if (!is_storing()) set_storing(); }
 //
 //   virtual string factory_id_to_text(const :: atom & atom);
-//   virtual ::atom text_to_factory_id(string strText);
+//   virtual ::atom text_to_factory_id(const ::scoped_string & scopedstrText);
 //
 //   template < typename TYPE >
 //   void default_exchange(TYPE & t);
@@ -472,7 +499,7 @@ public:
 //   virtual void write(const atom & atom);
 //   virtual void write(const ::payload & payload);
 //   virtual void write(const property & property);
-//   virtual void write(const ::string & str) ;
+//   virtual void write(const ::scoped_string & scopedstr) ;
 //   virtual void write(const ::particle * pparticle);
 //   virtual void write(const ::matter & matter);
 //   virtual void write(const ::property_set & set);
@@ -585,20 +612,20 @@ public:
 //   //virtual void write_file(const ::file::path & path, const ::matter & matter);
 //   //virtual void read_file(const ::file::path & path, ::matter & matter);
 //
-//   //virtual void write_link(const ::string & strLink, ::pointer<::matter>& matter);
-//   //virtual void read_link(const ::string & strLink, ::pointer<::matter>& matter);
+//   //virtual void write_link(const ::scoped_string & scopedstrLink, ::pointer<::matter>& matter);
+//   //virtual void read_link(const ::scoped_string & scopedstrLink, ::pointer<::matter>& matter);
 //
-//   //virtual void write_link(const ::matter * preference, const ::string & strLink, bool bReadOnly, ::matter * pobjectSaveOptions = nullptr);
+//   //virtual void write_link(const ::matter * preference, const ::scoped_string & scopedstrLink, bool bReadOnly, ::matter * pobjectSaveOptions = nullptr);
 //
 //   //virtual bool write_link(const ::matter * preference);
 //   //virtual void read_link(::matter * preference);
 //
 //
 //   //virtual bool get_object_link(const ::matter * preference, string & strLink, bool & bReadOnly);
-//   //virtual void set_object_link(const ::matter * preference, const ::string & strLink, bool bReadOnly);
+//   //virtual void set_object_link(const ::matter * preference, const ::scoped_string & scopedstrLink, bool bReadOnly);
 //
 //
-//   //virtual ::file::path get_link_path(string strLink);
+//   //virtual ::file::path get_link_path(const ::scoped_string & scopedstrLink);
 //
 //   bool is_version(::collection::index i);
 //
@@ -649,7 +676,7 @@ public:
 //   template < typename BASE_TYPE >
 //   inline ::pointer<BASE_TYPE>load_object();
 //
-//   virtual ::pointer<::matter>create_object_from_text(string strText);
+//   virtual ::pointer<::matter>create_object_from_text(const ::scoped_string & scopedstrText);
 //
 //
 //
@@ -762,7 +789,7 @@ public:
 //inline binary_stream & operator >> (binary_stream & s, e_set_loading) { s->set_loading(); return s; }
 //
 //template < class KEY, class ARG_KEY, class PAYLOAD, class ARG_VALUE, class PAIR >
-//inline binary_stream & operator >>(binary_stream & s, map < KEY, ARG_KEY, PAYLOAD, ARG_VALUE, PAIR > & m);
+//inline binary_stream & operator >>(binary_stream & s, map_base < KEY, ARG_KEY, PAYLOAD, ARG_VALUE, PAIR > & m);
 //
 //template <  typename TYPE >
 //inline binary_stream & operator >>(binary_stream & s, pointer_array < TYPE > & a);
@@ -773,7 +800,7 @@ public:
 //
 //inline binary_stream & operator << (binary_stream & s, const ::file::path & path);
 //
-//inline binary_stream & operator << (binary_stream & s, const ::string & str) { s.write(str); return s; }
+//inline binary_stream & operator << (binary_stream & s, const ::scoped_string & scopedstr) { s.write(str); return s; }
 //
 //inline binary_stream & operator << (binary_stream & s, e_set_storing) { s->set_storing(); s; }
 //
@@ -819,7 +846,7 @@ public:
 //
 //inline binary_stream & operator << (binary_stream & s, const ::int_size & size) { s.write(size); return s; }
 //
-//inline binary_stream & operator << (binary_stream & s, const ::scoped_string & scopedstr) { s.write(psz); return s; }
+//inline binary_stream & operator << (binary_stream & s, const ::scoped_string & scopedstr) { s.write(scopedstr); return s; }
 //
 //inline binary_stream & operator << (binary_stream & s, const atom & atom) { s.write(atom); return s; }
 //
@@ -841,7 +868,7 @@ public:
 
 //
 //template < class KEY, class ARG_KEY, class PAYLOAD, class ARG_VALUE, class PAIR >
-//inline binary_stream & operator <<(binary_stream & s, const map < KEY, ARG_KEY, PAYLOAD, ARG_VALUE, PAIR > & m);
+//inline binary_stream & operator <<(binary_stream & s, const map_base < KEY, ARG_KEY, PAYLOAD, ARG_VALUE, PAIR > & m);
 //
 //template < typename TYPE >
 //inline binary_stream & operator <<(binary_stream & s, const pointer_array < TYPE > & a);

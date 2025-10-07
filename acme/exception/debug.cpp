@@ -16,7 +16,7 @@ CLASS_DECL_ACME int is_debugger_attached()
 //CLASS_DECL_ACME void throw_what_exclamation_exclamation(const ::scoped_string & scopedstr)
 //{
 //
-//   throw what_exclamation_exclamation(psz);
+//   throw what_exclamation_exclamation(scopedstr);
 //
 //}
 
@@ -42,7 +42,7 @@ CLASS_DECL_ACME int is_debugger_attached()
 //
 //
 //misc_exception::misc_exception(const ::scoped_string & scopedstrMessage) :
-//   ::exception(pszMessage)
+//   ::exception(scopedstrMessage)
 //{
 //
 //}

@@ -5,7 +5,7 @@
 //
 //#include <d3dcompiler.h>
 //#pragma comment(lib, "d3dcompiler.lib")
-//const char* fullscreen_vertex_shader = R"shader(// fullscreen_vs.hlsl
+//const_char_pointer fullscreen_vertex_shader = R"shader(// fullscreen_vs.hlsl
 //      struct VSOut {
 //         float4 pos : SV_POSITION;
 //         float2 uv : TEXCOORD0;
@@ -30,7 +30,7 @@
 //      }
 //)shader";
 //
-//const char* fullscreen_pixel_shader = R"shader(// fullscreen_ps.hlsl
+//const_char_pointer fullscreen_pixel_shader = R"shader(// fullscreen_ps.hlsl
 //Texture2D tex : register(t0);
 //SamplerState samp : register(s0);
 //
@@ -417,10 +417,10 @@
 //		//createInfo.imageArrayLayers = 1;
 //		//createInfo.imageUsage = VK_IMAGE_USAGE_COLOR_ATTACHMENT_BIT;
 //
-//		//directx11::QueueFamilyIndices indices = m_pgpucontext->m_pgpudevice->m_pphysicaldevice->findQueueFamilies();
-//		//uint32_t queueFamilyIndices[] = { indices.graphicsFamily, indices.presentFamily };
+//		//directx11::QueueFamilyIndices indexes = m_pgpucontext->m_pgpudevice->m_pphysicaldevice->findQueueFamilies();
+//		//uint32_t queueFamilyIndices[] = { indexes.graphicsFamily, indexes.presentFamily };
 //
-//		//if (indices.graphicsFamily != indices.presentFamily) {
+//		//if (indexes.graphicsFamily != indexes.presentFamily) {
 //		//	createInfo.imageSharingMode = VK_SHARING_MODE_CONCURRENT;
 //		//	createInfo.queueFamilyIndexCount = 2;
 //		//	createInfo.pQueueFamilyIndices = queueFamilyIndices;

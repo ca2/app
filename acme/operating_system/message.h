@@ -12,11 +12,11 @@ struct MESSAGE
 
    
    ::oswindow              m_oswindow = nullptr;
-   ::enum_message          m_emessage = e_message_null;
+   ::user::enum_message    m_eusermessage = ::user::e_message_null;
    wparam                  m_wparam;
    lparam                  m_lparam;
    ::int_point             m_point;
-   unsigned long long            m_time = 0;
+   unsigned long long      m_time = 0;
 
 
    MESSAGE() {}
@@ -33,7 +33,7 @@ struct MESSAGE
    {
       
       m_oswindow = message.m_oswindow;
-      m_emessage = message.m_emessage;
+      m_eusermessage = message.m_eusermessage;
       m_wparam = message.m_wparam;
       m_lparam = message.m_lparam;
       m_point = message.m_point;

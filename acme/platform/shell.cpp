@@ -59,7 +59,7 @@ namespace acme
             if (*psz == ' ')
             {
 
-               unicode_increment(psz);
+               psz = (char *) unicode_next(psz);
 
             }
             else if (*psz == '\"')
@@ -67,7 +67,7 @@ namespace acme
 
                quote = '\"';
 
-               unicode_increment(psz);
+               psz = (char *) unicode_next(psz);
 
                argv[argc++] = (char*)psz;
 
@@ -79,7 +79,7 @@ namespace acme
 
                quote = '\'';
 
-               unicode_increment(psz);
+               psz = (char *) unicode_next(psz);
 
                argv[argc++] = (char*)psz;
 
@@ -91,7 +91,7 @@ namespace acme
 
                argv[argc++] = (char*)psz;
 
-               unicode_increment(psz);
+               psz = (char *) unicode_next(psz);
 
                e = state_non_space;
 
@@ -106,13 +106,13 @@ namespace acme
 
                memory_transfer(psz, psz + 1, ansi_len(psz));
 
-               unicode_increment(psz);
+               psz = (char *) unicode_next(psz);
 
             }
             else if (*psz == quote)
             {
 
-               p = unicode_next(psz);
+               p = (char *) unicode_next(psz);
 
                *psz = '\0';
 
@@ -124,7 +124,7 @@ namespace acme
             else
             {
 
-               unicode_increment(psz);
+               psz = (char *) unicode_next(psz);
 
             }
 
@@ -135,7 +135,7 @@ namespace acme
             if (*psz == ' ')
             {
 
-               p = unicode_next(psz);
+               p = (char *) unicode_next(psz);
 
                *psz = '\0';
 
@@ -147,7 +147,7 @@ namespace acme
             else
             {
 
-               unicode_increment(psz);
+               psz = (char *) unicode_next(psz);
 
             }
 
@@ -185,7 +185,7 @@ namespace acme
 
       status_pointer <::string> pstring;
 
-      __construct_new(pstring);
+      øconstruct_new(pstring);
 
       trace_function tracefunction = [pstring](enum_trace_level eTraceLevel, const scoped_string& str, bool bCarriage)
          {
@@ -235,7 +235,7 @@ namespace acme
 
       status_pointer <::string> pstring;
 
-      __construct_new(pstring);
+      øconstruct_new(pstring);
 
       trace_function tracefunction = [pstring](enum_trace_level eTraceLevel, const scoped_string& str, bool bCarriage)
          {
@@ -279,7 +279,7 @@ namespace acme
 
       status_pointer <::string> pstring;
 
-      __construct_new(pstring);
+      øconstruct_new(pstring);
 
       trace_function tracefunction = [pstring](enum_trace_level eTraceLevel, const scoped_string& str, bool bCarriage)
          {
@@ -352,7 +352,7 @@ namespace acme
 
          ::string strCommand;
 
-         strCommand.formatf("command -v %s", scopedstrCommand.c_str());
+         strCommand.formatf("command -v %s", scopedstrCommand.as_string().c_str());
 
          ::string strOutput;
 
@@ -427,7 +427,7 @@ namespace acme
 
             ::string strLine;
             
-            strLine.append_formatf("Retrying to install_posix_shell_command(\"%s\",...) Attempt no. %d...", scopedstr.c_str(), iTry + 2);
+            strLine.append_formatf("Retrying to install_posix_shell_command(\"%s\",...) Attempt no. %d...", scopedstr.as_string().c_str(), iTry + 2);
 
             tracefunction(e_trace_level_warning, strOutput, false);
 
@@ -442,7 +442,7 @@ namespace acme
       ::string strMessage;
 
       strMessage.formatf("Failed to install command \"%s\" after %d attempts with output: \"%s\"",
-         scopedstr.c_str(), iTry, strOutput.c_str());
+         scopedstr.as_string().c_str(), iTry, strOutput.c_str());
 
       tracefunction(e_trace_level_error, strMessage, false);
 
@@ -590,7 +590,7 @@ namespace acme
 
    //   status_pointer <::string> pstring;
 
-   //   __construct_new(pstring);
+   //   øconstruct_new(pstring);
 
    //   trace_function tracefunction = [pstring](enum_trace_level eTraceLevel, const scoped_string& str, bool bCarriage)
    //      {

@@ -3,8 +3,8 @@
 #include <string.h>
 
 
-const char * GeoIP_region_name_by_code(const char * country_code,const char * region_code) {
-  const char * name = nullptr;
+const_char_pointer GeoIP_region_name_by_code(const_char_pointer country_code,const_char_pointer region_code) {
+  const_char_pointer name = nullptr;
   int region_code2 = -1;
   if (region_code == nullptr) { return nullptr; }
 

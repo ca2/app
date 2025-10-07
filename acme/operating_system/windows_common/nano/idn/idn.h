@@ -24,7 +24,7 @@ namespace windows_common
          public:
 
 
-            inline static const char* represented_component_name()
+            inline static const_char_pointer represented_component_name()
             {
 
                return "nano_idn";
@@ -36,8 +36,8 @@ namespace windows_common
             ~idn() override;
 
 
-            string idn_to_punycode(const ::string& str) override;
-            string idn_from_punycode(const ::string& str) override;
+            string idn_to_punycode(const ::scoped_string & scopedstr) override;
+            string idn_from_punycode(const ::scoped_string & scopedstr) override;
 
 
          };

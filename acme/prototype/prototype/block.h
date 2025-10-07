@@ -11,7 +11,7 @@
 
 
 CLASS_DECL_ACME character_count string_get_length(const ::ansi_character* psz) noexcept;
-CLASS_DECL_ACME character_count string_safe_length(const ::ansi_character * psz) noexcept;
+CLASS_DECL_ACME character_count string_safe_length(const_char_pointer psz) noexcept;
 
 
 using BLOCK = ::range < unsigned char * >;
@@ -78,7 +78,7 @@ struct CLASS_DECL_ACME block :
       this->m_end = (unsigned char *) (this->m_begin + c);
 
    }
-   block(const ::ansi_character * psz)
+   block(const_char_pointer psz)
    {
       this->m_begin = (unsigned char *) psz;
       this->m_end = this->m_begin + ::string_safe_length(psz);
@@ -144,6 +144,39 @@ struct CLASS_DECL_ACME block :
       return (TYPE*) begin();
 
    }
+
+
+   template<typename ITERATOR_TYPE>
+   ::range<ITERATOR_TYPE> as_range()
+   {
+      ASSERT(this->size() % sizeof(typename ::range < ITERATOR_TYPE>::ITEM) == 0);
+      return {(ITERATOR_TYPE)begin(), (ITERATOR_TYPE)end()};
+   }
+
+
+   template<typename ITERATOR_TYPE>
+   const ::range < ITERATOR_TYPE > as_range() const
+   {
+      ASSERT(this->size() % sizeof(typename ::range<ITERATOR_TYPE>::ITEM) == 0);
+      return {(ITERATOR_TYPE) begin(), (ITERATOR_TYPE)end()};
+   }
+
+
+   template<typename ITERATOR_TYPE>
+   ::character_range<ITERATOR_TYPE> as_character_range()
+   {
+      ASSERT(this->size() % sizeof(typename ::range < ITERATOR_TYPE>::ITEM) == 0);
+      return {(ITERATOR_TYPE)begin(), (ITERATOR_TYPE)end()};
+   }
+
+
+   template<typename ITERATOR_TYPE>
+   const ::character_range < ITERATOR_TYPE > as_character_range() const
+   {
+      ASSERT(this->size() % sizeof(typename ::range<ITERATOR_TYPE>::ITEM) == 0);
+      return {(ITERATOR_TYPE) begin(), (ITERATOR_TYPE)end()};
+   }
+
 
    template < primitive_aggregate AGGREGATE >
    block & operator = (const AGGREGATE & aggregate)

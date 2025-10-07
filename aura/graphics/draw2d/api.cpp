@@ -114,7 +114,7 @@ namespace draw2d
    const double_rectangle &                    rectangle,
    double                           dRateX,
    double                           dHeight,
-   const char *                     psz,
+   const_char_pointer                    psz,
    int *                            piCharsPositions,
    int                              iCharsPositions,
    int                              iOffset)
@@ -160,7 +160,7 @@ namespace draw2d
 
    void api::embossed_text_out(
    ::draw2d::graphics_pointer & pgraphics,
-   const char *   psz,
+   const_char_pointer psz,
    int            iLeft,
    int            iTop,
    int            iWidth,
@@ -224,7 +224,7 @@ namespace draw2d
    const double_rectangle &                 pcrect,
    double                        dRateX,
    double                        dHeight,
-   const char *                  psz,
+   const_char_pointer                 psz,
    int *                         piCharsPositions,
    int                           iCharsPositions,
    int                           iOffset)
@@ -241,18 +241,18 @@ namespace draw2d
       return;
 
 //      string str;
-//      str = utf8_to_unicode(psz);
+//      str = utf8_to_unicode(scopedstr);
 //      ::TextOutU((HDC)pgraphics->get_os_data(), pcrect.left(), pcrect.top(), str, (int)str.length());
 
    }
 
 
-   void api::embossed_text_out(::draw2d::graphics_pointer & pgraphics, const ::double_rectangle & rectangle, double dHeight, double dRateX, const ::string & psz)
+   void api::embossed_text_out(::draw2d::graphics_pointer & pgraphics, const ::double_rectangle & rectangle, double dHeight, double dRateX, const ::scoped_string & scopedstr)
    {
 
-      pgraphics->text_out(rectangle.left(), rectangle.top(), psz);
+      pgraphics->text_out(rectangle.left(), rectangle.top(), scopedstr);
       pgraphics->begin_path();
-      pgraphics->text_out(rectangle.left(), rectangle.top(), psz);
+      pgraphics->text_out(rectangle.left(), rectangle.top(), scopedstr);
       pgraphics->end_path();
       pgraphics->stroke_path();
 

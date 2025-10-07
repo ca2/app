@@ -3,7 +3,7 @@
 
 #include "selection.h"
 #include "aura/user/user/text_composition_composite.h"
-#include "base/user/user/picture_interaction.h"
+#include "berg/user/user/picture_interaction.h"
 
 
 namespace user
@@ -84,7 +84,7 @@ namespace user
          virtual void get_selection_intersection_format(format * pformat, ::collection::index iSelBeg, ::collection::index iSelEnd);
 
          virtual void _001SetSelFontFormat(const format * pformat, const e_attribute & eattribute);
-         virtual void _001InsertText(const ::string & psz, format * pformatParam = nullptr);
+         virtual void _001InsertText(const ::scoped_string & scopedstr, format * pformatParam = nullptr);
          virtual void _001GetLayoutText(string & str) const;
 
 
@@ -181,7 +181,7 @@ namespace user
 
 
          void get_text_composition_area(::int_rectangle & r) override;
-         void on_text_composition(string str) override;
+         void on_text_composition(const ::scoped_string & scopedstr) override;
          void on_text_composition_done() override;
          bool edit_undo() override;
 

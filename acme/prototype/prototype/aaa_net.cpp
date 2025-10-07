@@ -6,7 +6,7 @@
 //#include "acme/operating_system.h"
 
 
-CLASS_DECL_ACME string url_decode(const ::string & strParam)
+CLASS_DECL_ACME string url_decode(const ::scoped_string & scopedstrParam)
 {
 
    return url_decode(strParam, strParam.length());
@@ -167,9 +167,9 @@ CLASS_DECL_ACME bool url_query_get_param(string & strParam,const ::scoped_string
       strKey += pszKey;
       strKey += "=";
 
-      pszBeg = ansi_find_string(pszUrl,strKey);
+      pszBeg = ansi_find_string(scopedstrUrl,strKey);
 
-      if(pszBeg != nullptr)
+      if(scopedstrBeg != nullptr)
       {
 
          pszBeg += strKey.length();
@@ -188,9 +188,9 @@ CLASS_DECL_ACME bool url_query_get_param(string & strParam,const ::scoped_string
       strKey += pszKey;
       strKey += "=";
 
-      pszBeg = ansi_find_string(pszUrl,strKey);
+      pszBeg = ansi_find_string(scopedstrUrl,strKey);
 
-      if(pszBeg != nullptr)
+      if(scopedstrBeg != nullptr)
       {
 
          pszBeg += strKey.length();
@@ -209,9 +209,9 @@ CLASS_DECL_ACME bool url_query_get_param(string & strParam,const ::scoped_string
       strKey += pszKey;
       strKey += "&";
 
-      pszBeg = ansi_find_string(pszUrl,strKey);
+      pszBeg = ansi_find_string(scopedstrUrl,strKey);
 
-      if(pszBeg != nullptr)
+      if(scopedstrBeg != nullptr)
       {
 
          strParam = "";
@@ -230,9 +230,9 @@ CLASS_DECL_ACME bool url_query_get_param(string & strParam,const ::scoped_string
       strKey += pszKey;
       strKey += "&";
 
-      pszBeg = ansi_find_string(pszUrl,strKey);
+      pszBeg = ansi_find_string(scopedstrUrl,strKey);
 
-      if(pszBeg != nullptr)
+      if(scopedstrBeg != nullptr)
       {
 
          strParam = "";
@@ -247,15 +247,15 @@ CLASS_DECL_ACME bool url_query_get_param(string & strParam,const ::scoped_string
 
 success:
 
-   pszEnd = ansi_find_string(pszBeg,"&");
+   pszEnd = ansi_find_string(scopedstrBeg,"&");
 
-   if(pszEnd == nullptr)
+   if(scopedstrEnd == nullptr)
    {
       strParam = pszBeg;
    }
    else
    {
-      strParam = string(pszBeg,pszEnd - pszBeg);
+      strParam = string(scopedstrBeg,pszEnd - pszBeg);
    }
 
    return true;
@@ -453,11 +453,11 @@ void openURL(const string &url_str)
 //
 //   //string strToken;
 //
-//   credentials.m_strToken = Sys(papp).crypto_md5_text(pszServerName);
+//   credentials.m_strToken = Sys(papp).crypto_md5_text(scopedstrServerName);
 //
 //   //string strTitle;
 //
-//   credentials.m_strTitle = "Enter Credentials for : " + string(pszServerName);
+//   credentials.m_strTitle = "Enter Credentials for : " + string(scopedstrServerName);
 //
 //   credentials.m_bInteractive = bInteractive;
 //
@@ -544,7 +544,7 @@ void openURL(const string &url_str)
 CLASS_DECL_ACME bool is_url(const ::scoped_string & scopedstrCandidate)
 {
 
-   string strCandidate(pszCandidate);
+   string strCandidate(scopedstrCandidate);
 
    character_count iLen = strCandidate.length();
 
@@ -582,7 +582,7 @@ CLASS_DECL_ACME bool is_url(const ::scoped_string & scopedstrCandidate)
 //CLASS_DECL_ACME string url_decode(const ::scoped_string & scopedstr)
 //{
 //
-//   string str(psz);
+//   string str(scopedstr);
 //
 //   string strDecode;
 //
@@ -675,7 +675,7 @@ CLASS_DECL_ACME bool is_url(const ::scoped_string & scopedstrCandidate)
 //         {
 //            i++;
 //            iLen--;
-//            *psz = (char)(uchar)(hex::to(*pszUrl) * 16 + hex::to(*(pszUrl + 1)));
+//            *psz = (char)(uchar)(hex::to(*pszUrl) * 16 + hex::to(*(scopedstrUrl + 1)));
 //
 //            psz++;
 //            pszUrl += 2;
@@ -718,9 +718,9 @@ CLASS_DECL_ACME bool is_url(const ::scoped_string & scopedstrCandidate)
 //      strKey += pszKey;
 //      strKey += "=";
 //
-//      pszBeg = ansi_find_string(pszUrl, strKey);
+//      pszBeg = ansi_find_string(scopedstrUrl, strKey);
 //
-//      if (pszBeg != nullptr)
+//      if (scopedstrBeg != nullptr)
 //      {
 //
 //         pszBeg += strKey.length();
@@ -739,9 +739,9 @@ CLASS_DECL_ACME bool is_url(const ::scoped_string & scopedstrCandidate)
 //      strKey += pszKey;
 //      strKey += "=";
 //
-//      pszBeg = ansi_find_string(pszUrl, strKey);
+//      pszBeg = ansi_find_string(scopedstrUrl, strKey);
 //
-//      if (pszBeg != nullptr)
+//      if (scopedstrBeg != nullptr)
 //      {
 //
 //         pszBeg += strKey.length();
@@ -760,9 +760,9 @@ CLASS_DECL_ACME bool is_url(const ::scoped_string & scopedstrCandidate)
 //      strKey += pszKey;
 //      strKey += "&";
 //
-//      pszBeg = ansi_find_string(pszUrl, strKey);
+//      pszBeg = ansi_find_string(scopedstrUrl, strKey);
 //
-//      if (pszBeg != nullptr)
+//      if (scopedstrBeg != nullptr)
 //      {
 //
 //         strParam = "";
@@ -781,9 +781,9 @@ CLASS_DECL_ACME bool is_url(const ::scoped_string & scopedstrCandidate)
 //      strKey += pszKey;
 //      strKey += "&";
 //
-//      pszBeg = ansi_find_string(pszUrl, strKey);
+//      pszBeg = ansi_find_string(scopedstrUrl, strKey);
 //
-//      if (pszBeg != nullptr)
+//      if (scopedstrBeg != nullptr)
 //      {
 //
 //         strParam = "";
@@ -798,15 +798,15 @@ CLASS_DECL_ACME bool is_url(const ::scoped_string & scopedstrCandidate)
 //
 //success:
 //
-//   pszEnd = ansi_find_string(pszBeg, "&");
+//   pszEnd = ansi_find_string(scopedstrBeg, "&");
 //
-//   if (pszEnd == nullptr)
+//   if (scopedstrEnd == nullptr)
 //   {
 //      strParam = pszBeg;
 //   }
 //   else
 //   {
-//      strParam = string(pszBeg, pszEnd - pszBeg);
+//      strParam = string(scopedstrBeg, pszEnd - pszBeg);
 //   }
 //
 //   return true;
@@ -1021,11 +1021,11 @@ int ui_open_url(const ::scoped_string & scopedstr);
 //
 //   //string strToken;
 //
-//   credentials.m_strToken = Sys(papp).crypto_md5_text(pszServerName);
+//   credentials.m_strToken = Sys(papp).crypto_md5_text(scopedstrServerName);
 //
 //   //string strTitle;
 //
-//   credentials.m_strTitle = "Enter Credentials for : " + string(pszServerName);
+//   credentials.m_strTitle = "Enter Credentials for : " + string(scopedstrServerName);
 //
 //   credentials.m_bInteractive = bInteractive;
 //

@@ -6,7 +6,7 @@
 #include "acme/prototype/collection/int_map.h"
 
 
-template < class T, class T_to_T = map < T, T > >
+template < class T, class T_to_T = map_base < T, T > >
 class biunique :
    virtual public ::matter
 {
@@ -103,20 +103,18 @@ void biunique < T, T_to_T > ::biunivoca(bool b)
 template < class T, class T_to_T >
 T biunique < T, T_to_T > ::get_a (T b) const
 {
-   T a;
-   if(m_ba.lookup(b, a))
-      return a;
-   return m_iEmptyA;
+
+   return m_ba.defer_get(b, m_iEmptyA);
+
 }
 
 
 template < class T, class T_to_T >
 T biunique < T, T_to_T > ::get_b (T a) const
 {
-   T b;
-   if(m_ab.lookup(a, b))
-      return b;
-   return m_iEmptyB;
+
+   return m_ab.defer_get(a, m_iEmptyB);
+
 }
 
 template < class T, class T_to_T >
@@ -128,9 +126,9 @@ T biunique < T, T_to_T > ::erase_a(T a)
 
       T b = get_b(a);
 
-      m_ba.erase_item(b);
+      m_ba.erase(b);
 
-      m_ab.erase_item(a);
+      m_ab.erase(a);
 
       m_iMaxA = calc_max_a();
 
@@ -172,9 +170,9 @@ T biunique < T, T_to_T > ::array_translate_a(T aNew, T aOld)
 
    }
 
-   m_ba.erase_item(bParam);
+   m_ba.erase(bParam);
 
-   m_ab.erase_item(aOld);
+   m_ab.erase(aOld);
 
    m_iMaxA = calc_max_a();
 
@@ -190,8 +188,8 @@ T biunique < T, T_to_T > ::array_translate_a(T aNew, T aOld)
    //      {
    //         break;
    //      }
-   //      m_ba.erase_item(b);
-   //      m_ab.erase_item(a + 1);
+   //      m_ba.erase_key(b);
+   //      m_ab.erase_key(a + 1);
    //      m_ba.set_at(b, a);
    //      m_ab.set_at(a, b);
    //      m_iMaxA = calc_max_a();
@@ -241,9 +239,9 @@ T biunique < T, T_to_T > ::array_translate_a(T aNew, T aOld)
          if (b != m_iEmptyB)
          {
 
-            m_ba.erase_item(b);
+            m_ba.erase(b);
 
-            m_ab.erase_item(a);
+            m_ab.erase(a);
 
             m_ba.set_at(b, a + 1);
 
@@ -280,9 +278,9 @@ T biunique < T, T_to_T > ::erase_b(T b)
 
       T a = get_a(b);
 
-      m_ab.erase_item(a);
+      m_ab.erase(a);
 
-      m_ba.erase_item(b);
+      m_ba.erase(b);
 
       m_iMaxA = calc_max_a();
 
@@ -504,16 +502,14 @@ template < class T, class T_to_T >
 T biunique < T, T_to_T > ::add_unique(T b)
 {
 
-   T a;
-
-   if (m_ba.lookup(b, a))
+   if (auto iterator = m_ba.find(b))
    {
 
-      return a;
+      return iterator->element2();
 
    }
 
-   a = get_max_a() + 1;
+   auto a = get_max_a() + 1;
 
    set(a, b);
 
@@ -552,9 +548,7 @@ template < class T, class T_to_T >
 bool biunique < T, T_to_T > ::has_a(T a) const
 {
 
-   T b;
-
-   return m_ab.lookup(a, b) != false;
+   return m_ab.has(a);
 
 }
 
@@ -563,9 +557,7 @@ template < class T, class T_to_T >
 bool biunique < T, T_to_T > ::has_b(T b) const
 {
    
-   T a;
-
-   return m_ba.lookup(b, a) != false;
+   return m_ba.has(b);
 
 }
 
@@ -641,10 +633,10 @@ biunique < T, T_to_T > & biunique < T, T_to_T > ::operator = (const biunique & i
 
 
 //template < class t1, class t2, class t3, class t4 >
-//void serialize_write(stream & ostream, map < t1, t2, t3, t4 > & m)
+//void serialize_write(stream & ostream, map_base < t1, t2, t3, t4 > & m)
 //{
 //   ::collection::count count = m.get_count();
-//   typename map < t1, t2, t3, t4 >::assoc * passoc = m.get_start();
+//   typename map_base < t1, t2, t3, t4 >::assoc * passoc = m.get_start();
 //   ostream << count;
 //   while(passoc != nullptr)
 //   {
@@ -655,12 +647,12 @@ biunique < T, T_to_T > & biunique < T, T_to_T > ::operator = (const biunique & i
 //}
 //
 //template < class t1, class t2, class t3, class t4 >
-//void serialize_read(stream & istream, map < t1, t2, t3, t4 > & m)
+//void serialize_read(stream & istream, map_base < t1, t2, t3, t4 > & m)
 //{
 //   try
 //   {
 //      t1 iCount;
-////      class map < t1, t2, t3, t4 >::assoc * passoc =
+////      class map_base < t1, t2, t3, t4 >::assoc * passoc =
 //      //       m.get_start();
 //      istream >> iCount;
 //      t1 key;
@@ -676,7 +668,7 @@ biunique < T, T_to_T > & biunique < T, T_to_T > ::operator = (const biunique & i
 //   catch(const ::scoped_string & scopedstr)
 //   {
 //      m.erase_all();
-//      throw ::exception(psz);
+//      throw ::exception(scopedstr);
 //   }
 //}
 //
@@ -744,7 +736,7 @@ biunique < T, T_to_T > & biunique < T, T_to_T > ::operator = (const biunique & i
 //      biunique.m_iEmptyB = -1;
 //      biunique.m_iMaxA = -1;
 //      biunique.m_iMaxB = -1;
-//      throw ::exception(psz);
+//      throw ::exception(scopedstr);
 //   }
 //
 //   return stream;

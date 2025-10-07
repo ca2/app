@@ -209,7 +209,7 @@ void app_core::system_prep()
    if (file_system()->exists(::file::path(APP_CORE_BASE_DIR) / "beg_debug_box.txt"))
    {
 
-      //debug_box("zzzAPPzzz app", "zzzAPPzzz app", e_message_box_icon_information);
+      //debug_box("zzzAPPzzz app", "zzzAPPzzz app", ::user::e_message_box_icon_information);
 
    }
 
@@ -243,7 +243,7 @@ void app_core::system_init()
 
    //   //const ::scoped_string & scopedstr = str1;
 
-   //   //string str = ::str::consume_quoted_value(psz);
+   //   //string str = ::str::consume_quoted_value(scopedstr);
 
    //   //information(str);
 
@@ -262,7 +262,7 @@ void app_core::system_init()
 
 //   string strAppId;
 //
-//   string_array stra1;
+//   string_array_base stra1;
 //
 //#ifdef WINDOWS
 //
@@ -302,11 +302,11 @@ void app_core::system_init()
 //
 //#endif
 //
-//   string_array stra2;
+//   string_array_base stra2;
 //
 //   stra2 = get_c_args_from_string(m_strCommandLine);
 //
-//   string_array stra3;
+//   string_array_base stra3;
 //
 ////#ifdef WINDOWS_DESKTOP
 ////
@@ -322,7 +322,7 @@ void app_core::system_init()
 ////
 ////#endif
 //
-//   //string_array stra5;
+//   //string_array_base stra5;
 //
 //   //if(m_pszMain)
 //   //{
@@ -331,7 +331,7 @@ void app_core::system_init()
 //
 //   //}
 //
-//   //string_array stra4;
+//   //string_array_base stra4;
 //
 //   //string strCommandLine = merge_colon_args(
 //   //   {
@@ -354,12 +354,12 @@ void app_core::system_init()
 //
 //      uid_t uid = atoi(strUid);
 //
-//      output_error_message("going to seteuid to: " + as_string(uid), "going to seteuid", e_message_box_ok);
+//      output_error_message("going to seteuid to: " + as_string(uid), "going to seteuid", ::user::e_message_box_ok);
 //
 //      if (seteuid(uid) == 0)
 //      {
 //
-//         output_error_message("uid=" + as_string(uid), "seteuid success", e_message_box_ok);
+//         output_error_message("uid=" + as_string(uid), "seteuid success", ::user::e_message_box_ok);
 //
 //      }
 //      else
@@ -371,7 +371,7 @@ void app_core::system_init()
 //
 //         strError.formatf("errno=%d uid=%d", iErr);
 //
-//         //message_box(strError, "seteuid failed", e_message_box_icon_exclamation);
+//         //message_box(strError, "seteuid failed", ::user::e_message_box_icon_exclamation);
 //
 //      }
 //
@@ -526,7 +526,7 @@ void app_core::system_init()
    // cold start (never previously called program and its Dlls...)?
    psystem->m_durationMainStart = m_durationStart;
 
-   //xxdebug_box("box1", "box1", e_message_box_icon_information);
+   //xxdebug_box("box1", "box1", ::user::e_message_box_icon_information);
 //
   // ::file::path pathOutputDebugString = directory_system()->system() / strAppId / "information.txt" ;
 
@@ -575,7 +575,7 @@ string app_core::get_command_line()
 //
 //         string strLibrary = ::future::app_id_to_app_name(strAppId);
 //
-//         m_plibrary = __allocate ::acme::library();
+//         m_plibrary = øallocate ::acme::library();
 //
 //         m_plibrary->initialize(psystem);
 //
@@ -649,7 +649,7 @@ string app_core::get_command_line()
 //      //   if (pfnDeferTerm == nullptr)
 //      //   {
 //
-//      //      output_error_message("Missing corresponding defer_*_term for the defer_*_init backbone library." + e_message_box_icon_error);
+//      //      output_error_message("Missing corresponding defer_*_term for the defer_*_init backbone library." + ::user::e_message_box_icon_error);
 //
 //      //      on_result(error_failed);
 //
@@ -879,7 +879,7 @@ void app_core::system_end()
 //CLASS_DECL_APEX long apex_prefix(::apex::system * psystem)
 //{
 //
-//   //pmaindata->m_pappcore = __allocate app_core(pmaindata);
+//   //pmaindata->m_pappcore = øallocate app_core(pmaindata);
 //
 //   if (!psystem->system_prep())
 //   {
@@ -903,7 +903,7 @@ void app_core::system_end()
 //CLASS_DECL_APEX long apex_fork(::apex::system * psystem, PFN_NEW_APEX_APPLICATION pfnNewAuraApplication)
 //{
 //
-//   //pmaindata->m_pappcore = __allocate app_core(pmaindata);
+//   //pmaindata->m_pappcore = øallocate app_core(pmaindata);
 //
 //   if (!psystem->system_prep())
 //   {

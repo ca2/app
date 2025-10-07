@@ -14,12 +14,12 @@
 
 //    }
 
-//    g_pszCacheDir = _strdup(pszDir);
+//    g_pszCacheDir = _strdup(scopedstrDir);
 
 // }
 
 
-// CLASS_DECL_EXPORT const char * android_get_cache_dir()
+// CLASS_DECL_EXPORT const_char_pointer android_get_cache_dir()
 // {
 
 //    return g_pszCacheDir;
@@ -40,12 +40,12 @@
 
 //    }
 
-//    g_pszHome = _strdup(pszDir);
+//    g_pszHome = _strdup(scopedstrDir);
 
 // }
 
 
-// CLASS_DECL_EXPORT const char * nodeos_get_home()
+// CLASS_DECL_EXPORT const_char_pointer nodeos_get_home()
 // {
 
 //    return g_pszHome;
@@ -66,12 +66,12 @@
 
 //    }
 
-//    g_pszTemp = _strdup(pszDir);
+//    g_pszTemp = _strdup(scopedstrDir);
 
 // }
 
 
-// CLASS_DECL_EXPORT const char * nodeos_get_temp()
+// CLASS_DECL_EXPORT const_char_pointer nodeos_get_temp()
 // {
 
 //    return g_pszTemp;

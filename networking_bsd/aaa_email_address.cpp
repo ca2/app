@@ -14,7 +14,7 @@ namespace net
    email_address::email_address(const ::scoped_string & scopedstr)
    {
 
-      operator = (psz);
+      operator = (scopedstr);
 
    }
 
@@ -29,7 +29,7 @@ namespace net
 
    email_address & email_address::operator = (const ::scoped_string & scopedstr)
    {
-      string str_in(psz);
+      string str_in(scopedstr);
       string str = str_in;
       auto i = str.find("<");
       if (i != -1)

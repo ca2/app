@@ -7,10 +7,10 @@
 #include "core/user/userex/pane_tab_impact.h"
 #include "core/user/user/user.h"
 #include "core/platform/session.h"
-#include "base/user/simple/frame_window.h"
-#include "base/user/user/single_document_template.h"
-#include "base/user/user/document.h"
-#include "base/user/form/document.h"
+#include "berg/user/simple/frame_window.h"
+#include "berg/user/user/single_document_template.h"
+#include "berg/user/user/document.h"
+#include "berg/user/form/document.h"
 
 
 namespace filemanager
@@ -67,7 +67,7 @@ namespace filemanager
 
       }
 
-      auto prequest = __create_new< ::request >();
+      auto prequest = øcreate_new< ::request >();
 
       prequest->m_egraphicsoutputpurpose -= ::graphics::e_output_purpose_screen;
 
@@ -137,7 +137,7 @@ namespace filemanager
    //::pointer<::user::impact_kit>file_properties_form::get_impact_kit()
    //{
 
-   //   auto pimpactkit = __create_new < ::user::impact_kit >();
+   //   auto pimpactkit = øcreate_new < ::user::impact_kit >();
 
    //   pimpactkit->add_impact_item(1, "general", this);
 

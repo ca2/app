@@ -27,22 +27,22 @@ namespace version
 {
 
 
-   CLASS_DECL_ACME int compare(string str1, string str2)
+   CLASS_DECL_ACME int compare(const ::scoped_string & scopedstr1, const ::scoped_string & scopedstr2)
    {
 
 
-      string_array stra1;
+      string_array_base stra1;
 
-      string_array stra2;
+      string_array_base stra2;
 
-      string_array straSep;
+      string_array_base straSep;
 
       straSep.add(".");
       straSep.add("_");
 
-      stra1.add_smallest_tokens(str1, straSep);
+      stra1.add_smallest_tokens(scopedstr1, straSep);
 
-      stra2.add_smallest_tokens(str2, straSep);
+      stra2.add_smallest_tokens(scopedstr2, straSep);
 
       int iCmp = 0;
 

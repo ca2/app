@@ -11,7 +11,7 @@
 //   {
 //
 //
-//      m_plocaleschema = __allocate ::text::international::locale_schema();
+//      m_plocaleschema = øallocate ::text::international::locale_schema();
 //
 //
 //      m_pstr = nullptr;
@@ -220,12 +220,12 @@
 //   }
 //
 //
-//   bool ::str::load(const ::string & pszBaseDir)
+//   bool ::str::load(const ::scoped_string & scopedstrBaseDir)
 //   {
 //
 //      return true;
 //
-////      synchronous_lock synchronouslock(this->synchronization());
+////      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 ////
 ////      string strMain = pszBaseDir;
 ////
@@ -263,7 +263,7 @@
 //   }
 //
 //
-//   void ::str::set(const ::atom & atom, const ::atom & idLocale, const ::atom & idSchema, const ::string & psz)
+//   void ::str::set(const ::atom & atom, const ::atom & idLocale, const ::atom & idSchema, const ::scoped_string & scopedstr)
 //   {
 //
 //      (*this)[idLocale][idSchema][atom] = psz;
@@ -390,7 +390,7 @@
 //   }
 //
 //
-//   void ::str::get(string_array & stra, const str_context * pcontext, const ::atom & atom) const
+//   void ::str::get(string_array_base & stra, const str_context * pcontext, const ::atom & atom) const
 //   {
 //
 //      _get(stra, pcontext, atom);
@@ -399,7 +399,7 @@
 //
 //      ::collection::index i = 0;
 //
-//      string_array stra2;
+//      string_array_base stra2;
 //
 //      do
 //      {
@@ -421,7 +421,7 @@
 //   }
 //
 //
-//   void ::str::_get(string_array & stra, const str_context * pcontext, const ::atom & atom) const
+//   void ::str::_get(string_array_base & stra, const str_context * pcontext, const ::atom & atom) const
 //   {
 //
 //      if (pcontext == nullptr)
@@ -528,7 +528,7 @@
 //         stack[m_pos].e = end;
 //         m_pos++; if(m_pos >= 8)
 //         {
-//            merge(pszTopic);
+//            merge(scopedstrTopic);
 //         }
 //      }
 //
@@ -630,19 +630,19 @@
 //   };
 //
 //
-//   bool ::str::load_uistr_file(const ::atom & pszLang, const ::atom & pszStyle, const ::string & pszFilePath)
+//   bool ::str::load_uistr_file(const ::atom & pszLang, const ::atom & pszStyle, const ::scoped_string & scopedstrFilePath)
 //   {
 //
 //      memory mem;
 //
-//      file()->as_memory(pszFilePath,mem);
+//      file()->as_memory(scopedstrFilePath,mem);
 //
 //
 //      character_count len;
 //
 //      char * pszFile = mem.get_psz(len);
 //
-//      ::parse parse(pszFile, len);
+//      ::parse parse(scopedstrFile, len);
 //
 //      string str;
 //
@@ -692,16 +692,16 @@
 //
 //         }
 //
-//         rstr.merge(pszFile);
+//         rstr.merge(scopedstrFile);
 //
 //         char * psz = rstr.m_szMerge;
 //
 //         pszEnd = psz + rstr.m_iSize;
 //
-//         while(unicode_is_whitespace(psz))
+//         while(unicode_is_whitespace(scopedstr))
 //         {
-//            psz += str_uni_len(psz);
-//            if(psz >= pszEnd)
+//            psz += str_uni_len(scopedstr);
+//            if(scopedstr >= pszEnd)
 //               goto cont;
 //         }
 //
@@ -719,17 +719,17 @@
 //
 //         while(*psz != q)
 //         {
-//            psz += str_uni_len(psz);
-//            if(psz >= pszEnd)
+//            psz += str_uni_len(scopedstr);
+//            if(scopedstr >= pszEnd)
 //               goto cont;
 //         }
 //         strRoot.assign(s, psz - s);
 //         psz++;
 //
-//         while(unicode_is_whitespace(psz))
+//         while(unicode_is_whitespace(scopedstr))
 //         {
-//            psz += str_uni_len(psz);
-//            if(psz >= pszEnd)
+//            psz += str_uni_len(scopedstr);
+//            if(scopedstr >= pszEnd)
 //               goto end;
 //         }
 //
@@ -738,10 +738,10 @@
 //
 //         psz++;
 //
-//         while(unicode_is_whitespace(psz))
+//         while(unicode_is_whitespace(scopedstr))
 //         {
-//            psz += str_uni_len(psz);
-//            if(psz >= pszEnd)
+//            psz += str_uni_len(scopedstr);
+//            if(scopedstr >= pszEnd)
 //               goto end;
 //         }
 //
@@ -784,7 +784,7 @@
 //                  goto cont2;
 //               }
 //            }
-//            l = str_uni_len(psz);
+//            l = str_uni_len(scopedstr);
 //            if(wr != rd)
 //            {
 //               while(l > 0)
@@ -823,16 +823,16 @@
 //      return true;
 //   }
 //
-//   string ::str::body(const ::string & psz)
+//   string ::str::body(const ::scoped_string & scopedstr)
 //   {
-//      string str(psz);
+//      string str(scopedstr);
 //      str.replace("\\r", "\r");
 //      str.replace("\\n", "\n");
 //      return str;
 //   }
 //
 //
-//   bool ::str::matches(const str_context * pcontext, const ::atom & atom, const ::string & psz) const
+//   bool ::str::matches(const str_context * pcontext, const ::atom & atom, const ::scoped_string & scopedstr) const
 //   {
 //
 //      static ::atom idEn("en");
@@ -848,7 +848,7 @@
 //         {
 //
 //            str = (*pcontext->m_pschema)[atom];
-//            if(!str.case_insensitive_order(psz))
+//            if(!str.case_insensitive_order(scopedstr))
 //               return true;
 //
 //         }
@@ -856,7 +856,7 @@
 //         if(pcontext->m_pschemaLocale != nullptr)
 //         {
 //            str = (*pcontext->m_pschemaLocale)[atom];
-//            if(!str.case_insensitive_order(psz))
+//            if(!str.case_insensitive_order(scopedstr))
 //               return true;
 //         }
 //
@@ -864,7 +864,7 @@
 //         {
 //
 //            str = (*pcontext->m_schemaptra[i])[atom];
-//            if(!str.case_insensitive_order(psz))
+//            if(!str.case_insensitive_order(scopedstr))
 //               return true;
 //
 //         }
@@ -875,20 +875,20 @@
 //      {
 //
 //         str = (*pcontext->m_pschemaSchemaEn)[atom];// lang=pszStyle style=en
-//         if(!str.case_insensitive_order(psz))
+//         if(!str.case_insensitive_order(scopedstr))
 //            return true;
 //
 //      }
 //
 //      str = (*m_pschemaEn)[atom]; // lang=en style=en
-//      if(!str.case_insensitive_order(psz))
+//      if(!str.case_insensitive_order(scopedstr))
 //         return true;
 //
 //      if(pcontext != nullptr && pcontext->m_pschemaSchemaStd != nullptr)
 //      {
 //
 //         str = (*pcontext->m_pschemaSchemaStd)[atom];// lang=pszStyle style=en
-//         if(!str.case_insensitive_order(psz))
+//         if(!str.case_insensitive_order(scopedstr))
 //            return true;
 //
 //      }
@@ -901,7 +901,7 @@
 //   }
 //
 //
-//   bool string_begins(const str_context * pcontext, const ::string & pszTopic, const ::atom & atom) const
+//   bool string_begins(const str_context * pcontext, const ::scoped_string & scopedstrTopic, const ::atom & atom) const
 //   {
 //
 //      static ::atom idEn("en");
@@ -917,7 +917,7 @@
 //         {
 //
 //            str = (*pcontext->m_pschema)[atom];
-//            if(str.has_character() && case_insensitive_string_begins(pszTopic, str))
+//            if(str.has_character() && case_insensitive_string_begins(scopedstrTopic, str))
 //               return true;
 //
 //         }
@@ -925,7 +925,7 @@
 //         if(pcontext->m_pschemaLocale != nullptr)
 //         {
 //            str = (*pcontext->m_pschemaLocale)[atom];
-//            if(str.has_character() && case_insensitive_string_begins(pszTopic, str))
+//            if(str.has_character() && case_insensitive_string_begins(scopedstrTopic, str))
 //               return true;
 //         }
 //
@@ -933,7 +933,7 @@
 //         {
 //
 //            str = (*pcontext->m_schemaptra[i])[atom];
-//            if(str.has_character() && case_insensitive_string_begins(pszTopic, str))
+//            if(str.has_character() && case_insensitive_string_begins(scopedstrTopic, str))
 //               return true;
 //
 //         }
@@ -944,20 +944,20 @@
 //      {
 //
 //         str = (*pcontext->m_pschemaSchemaEn)[atom];// lang=pszStyle style=en
-//         if(str.has_character() && case_insensitive_string_begins(pszTopic, str))
+//         if(str.has_character() && case_insensitive_string_begins(scopedstrTopic, str))
 //            return true;
 //
 //      }
 //
 //      str = (*m_pschemaEn)[atom]; // lang=en style=en
-//      if(str.has_character() && case_insensitive_string_begins(pszTopic, str))
+//      if(str.has_character() && case_insensitive_string_begins(scopedstrTopic, str))
 //         return true;
 //
 //      if(pcontext != nullptr && pcontext->m_pschemaSchemaStd != nullptr)
 //      {
 //
 //         str = (*pcontext->m_pschemaSchemaStd)[atom];// lang=pszStyle style=en
-//         if(str.has_character() && case_insensitive_string_begins(pszTopic, str))
+//         if(str.has_character() && case_insensitive_string_begins(scopedstrTopic, str))
 //            return true;
 //
 //      }
@@ -1039,12 +1039,12 @@
 //
 //
 //
-//   bool str_context::match(string_array & stra, const ::string & psz, atom idExpression, atom idRoot) const
+//   bool str_context::match(string_array_base & stra, const ::scoped_string & scopedstr, atom idExpression, atom idRoot) const
 //   {
 //
-//      synchronous_lock synchronouslock(this->synchronization());
+//      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
-//      string_array straCandidate;
+//      string_array_base straCandidate;
 //
 //      get(straCandidate,idRoot);
 //
@@ -1059,7 +1059,7 @@
 //
 //         strExp.replace("%1",strCandidate);
 //
-//         string_array straResult;
+//         string_array_base straResult;
 //
 //         auto pregex = ::auraacmesystem()->create_regular_expression("pcre", strExp);
 //

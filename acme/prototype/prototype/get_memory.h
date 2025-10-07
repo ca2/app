@@ -25,7 +25,7 @@ public:
 
    void * get(memsize s);
 
-   bool get_base64(const ::string & str);
+   bool get_base64(const ::scoped_string & scopedstr);
 
    bool get(const void * pdata, memsize s);
    

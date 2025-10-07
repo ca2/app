@@ -149,7 +149,7 @@ namespace acme
                         &uiSize);
 
 
-                     string strVersion(psz, uiSize);
+                     string strVersion(scopedstr, uiSize);
 
 
                      return strVersion;
@@ -363,7 +363,7 @@ namespace acme
 //      /*
 //      char * pszExt = ::PathFindExtension(szBuff);
 
-//      ASSERT(pszExt != nullptr);
+//      ASSERT(scopedstrExt != nullptr);
 
 //      if( pszExt == nullptr )
 
@@ -510,7 +510,7 @@ namespace acme
          if(path.has_character() && !file_system()->exists(path))
          {
 
-            auto pfile = __create_new<::linux::desktop_file>();
+            auto pfile = øcreate_new<::linux::desktop_file>();
 
             pfile->set_app_id(m_strAppId);
 

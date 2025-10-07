@@ -19,7 +19,7 @@ namespace colorertake5
       ~LineRegionsCompactSupport();
    protected:
       /** This method compacts regions while
-      adding them into list structure
+      adding them into list_base structure
       */
       void addLineRegion(index lno, LineRegion *ladd);
    };

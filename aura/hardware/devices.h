@@ -19,7 +19,7 @@ namespace hardware
    public:
 
 
-      map < enum_device, ::pointer< device_group > >  m_mapdevicegroup;
+      map_base < enum_device, ::pointer< device_group > >  m_mapdevicegroup;
 
       devices();
       ~devices() override;

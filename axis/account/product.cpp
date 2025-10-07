@@ -31,29 +31,29 @@ namespace account
    }
 
 
-   void product::license(string strAppId, bool bInteractive)
+   void product::license(const ::scoped_string & scopedstrAppId, bool bInteractive)
    {
 
-      do_license(strAppId, bInteractive);
+      do_license(scopedstrAppId, bInteractive);
 
    }
 
 
-   bool product::do_license(string strAppId, bool bInteractive)
+   bool product::do_license(const ::scoped_string & scopedstrAppId, bool bInteractive)
    {
 
       m_timeRequest = ::earth::time::now();
 
-      m_strAppId = strAppId;
+      m_strAppId = scopedstrAppId;
 
-      _do_license(strAppId, bInteractive);
+      _do_license(scopedstrAppId, bInteractive);
 
       return m_estatusLicensing == ::success_licensed;
 
    }
 
 
-   void product::_do_license(string strAppId, bool bInteractive)
+   void product::_do_license(const ::scoped_string & scopedstrAppId, bool bInteractive)
    {
 
       ::pointer<::axis::application>papp = get_app();
@@ -142,13 +142,13 @@ namespace account
 //
 //         {
 //
-//            ::PostMessage(get_splash(),e_message_close,0,0);
+//            ::PostMessage(get_splash(),::user::e_message_close,0,0);
 //
 //         }
 //
 //#endif // WINDOWS
 //
-//         message_box(nullptr, "No license for using application/feature \"" + string(m_XstrAppId) + "\" by user \"" + puser->m_strLogin + "\".\n\nPlease, subscribe to it at the software gateway <a>\"" + m_strGateway + "\"</a>", nullptr, e_message_box_icon_exclamation);
+//         message_box(nullptr, "No license for using application/feature \"" + string(m_XstrAppId) + "\" by user \"" + puser->m_strLogin + "\".\n\nPlease, subscribe to it at the software gateway <a>\"" + m_strGateway + "\"</a>", nullptr, ::user::e_message_box_icon_exclamation);
 //
 //         return;
 //

@@ -2,7 +2,7 @@
 #include "thread.h"
 #include "operation.h"
 #include "impact.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "acme/parallelization/mutex.h"
 #include "acme/parallelization/single_lock.h"
 #include "acme/platform/keep.h"
@@ -202,10 +202,10 @@ namespace filemanager
    }
 
 
-   void operation_thread::queue_copy(::file::listing & stra,const ::file::path & pszDstBase,const ::file::path & pszSrcBase,bool bExpand,bool bReplaceAll, bool bDeleteOriginOnSuccessfulCopy, ::pointer<::user::interaction>oswindowCallback,const ::atom & atom,wparam wparamCallback)
+   void operation_thread::queue_copy(::file::listing_base & stra,const ::file::path & pathTargetBase,const ::file::path & pathSourceBase,bool bExpand,bool bReplaceAll, bool bDeleteOriginOnSuccessfulCopy, ::pointer<::user::interaction>oswindowCallback,const ::atom & atom,wparam wparamCallback)
    {
 
-      auto poperation  = __allocate ::filemanager::operation();
+      auto poperation  = øallocate ::filemanager::operation();
 
       poperation->m_oswindowCallback = oswindowCallback;
 
@@ -217,13 +217,13 @@ namespace filemanager
       if(bDeleteOriginOnSuccessfulCopy)
       {
 
-         poperation->set_move(stra, pszDstBase);
+         poperation->set_move(stra, pathTargetBase);
 
       }
       else
       {
 
-         poperation->set_copy(stra, pszDstBase, pszSrcBase, bExpand);
+         poperation->set_copy(stra, pathTargetBase, pathSourceBase, bExpand);
 
       }
 
@@ -264,13 +264,13 @@ namespace filemanager
 
          }
 
-         m_pimpact->post_message(e_message_main_post, operation_impact::e_main_post_file_operation);
+         m_pimpact->post_message(::user::e_message_main_post, operation_impact::e_main_post_file_operation);
 
          sleep(millisStepSetSleep);
 
       }
 
-      m_pimpact->post_message(e_message_main_post,  operation_impact::e_main_post_file_operation_final);
+      m_pimpact->post_message(::user::e_message_main_post,  operation_impact::e_main_post_file_operation_final);
 
    }
 

@@ -1,5 +1,6 @@
 // From vk_swapchain by camilo on 2025-05-09 02:01 <3ThomasBorregaardSorensen!!
 #include "framework.h"
+#include "_gpu_opengl.h"
 #include "render_target.h"
 #include "renderer.h"
 
@@ -44,6 +45,14 @@ namespace gpu_opengl
    render_target::~render_target()
    {
 
+
+   }
+
+
+   int render_target::get_frame_index()
+   {
+
+      return 0;
 
    }
 

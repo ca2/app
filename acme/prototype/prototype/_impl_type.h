@@ -15,10 +15,10 @@ inline type_atom::type_atom(const ::std::type_info & typeinfo) :
 }
 
 
-//inline bool type_atom::name_contains(const ::ansi_character * psz) const
+//inline bool type_atom::name_contains(const_char_pointer psz) const
 //{
 //
-//   return m_str.contains(psz);
+//   return m_str.contains(scopedstr);
 //
 //}
 
@@ -80,7 +80,7 @@ inline type_atom::type_atom(const ::pointer<BASE>& p)
 //
 //   auto pszType = typeid(TYPE).name();
 //
-//   string strName = demangle(pszType);
+//   string strName = demangle(scopedstrType);
 //
 //   return strName;
 //
@@ -93,7 +93,7 @@ inline type_atom::type_atom(const ::pointer<BASE>& p)
 //
 //   auto pszType = typeid(*p).name();
 //
-//   string strName = demangle(pszType);
+//   string strName = demangle(scopedstrType);
 //
 //   return strName;
 //
@@ -106,7 +106,7 @@ inline type_atom::type_atom(const ::pointer<BASE>& p)
 //
 //   auto pszType = typeid(t).name();
 //
-//   string strName = demangle(pszType);
+//   string strName = demangle(scopedstrType);
 //
 //   return strName;
 //

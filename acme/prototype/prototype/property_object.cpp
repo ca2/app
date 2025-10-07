@@ -1,7 +1,7 @@
 #include "framework.h"
 //#include "property_object.h"
 //#include "payload.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "acme/filesystem/filesystem/file_context.h"
 #include "acme/platform/application.h"
 #include "acme/platform/node.h"
@@ -100,7 +100,7 @@ string get_message_text(const ::atom & atom, bool bWithNumbers);
 
 CLASS_DECL_ACME void debug_debug_reference()
 {
-   auto message = e_message_create;
+   auto message = ::user::e_message_create;
 #if OSBIT == 64
    wparam wparam = 0x12345678901234;
    lparam lparam = 0x56781234567890;
@@ -191,7 +191,7 @@ CLASS_DECL_ACME void debug_debug_reference()
 //   if (!m_ptraits)
 //   {
 //
-//      m_ptraits = __allocate traits();
+//      m_ptraits = øallocate traits();
 //
 //   }
 //
@@ -581,7 +581,7 @@ void property_object::write_configuration_to_ini(const ::payload & payloadFile)
 //   if (!parray)
 //   {
 //
-//      parray = __allocate pointer_array < ::property_set > ();
+//      parray = øallocate pointer_array < ::property_set > ();
 //
 //      *pproperty = parray;
 //
@@ -592,31 +592,31 @@ void property_object::write_configuration_to_ini(const ::payload & payloadFile)
 //}
 
 
-string property_object::property_set_evaluate(const ::string & str) const
+string property_object::property_set_evaluate(const ::scoped_string & scopedstr) const
 {
 
-   return m_ppropertyset ? m_ppropertyset->evaluate(str) : str;
+   return m_ppropertyset ? m_ppropertyset->evaluate(scopedstr) : ::string(scopedstr);
 
 }
 
 
-string property_object::property_set_get_evaluation(const ::string & str) const
+string property_object::property_set_get_evaluation(const ::scoped_string & scopedstr) const
 {
 
-   return property_set_get_string(str.c_str() + 1);
+   return property_set_get_string(scopedstr.as_string().c_str() + 1);
 
 }
 
 
-bool property_object::property_set_get_evaluation(string & strResult, const string& str) const
+bool property_object::property_set_get_evaluation(string & strResult, const ::scoped_string & scopedstr) const
 {
 
-   return property_set_get_string(strResult, str.c_str() + 1);
+   return property_set_get_string(strResult, scopedstr.as_string().c_str() + 1);
 
 }
 
 
-string property_object::property_set_get_string(const ::string & str) const
+string property_object::property_set_get_string(const ::scoped_string & scopedstr) const
 {
 
    // auto pproperty = on_fetch_property(str);
@@ -635,7 +635,7 @@ string property_object::property_set_get_string(const ::string & str) const
 }
 
 
-bool property_object::property_set_get_string(string & strResult, const string& str) const
+bool property_object::property_set_get_string(string & strResult, const ::scoped_string & scopedstr) const
 {
 
    // auto linkedproperty = on_fetch_property(str);
@@ -708,7 +708,7 @@ void property_object::on_property_changed(::property* pproperty, const action_co
 // }
 
 //
-//string property_object::property_set_get_evaluation(const ::string & str) const
+//string property_object::property_set_get_evaluation(const ::scoped_string & scopedstr) const
 //{
 //
 //   return property_set_get_string(str.c_str() + 1);
@@ -716,7 +716,7 @@ void property_object::on_property_changed(::property* pproperty, const action_co
 //}
 //
 //
-//string property_object::property_set_evaluate(const ::string & strParam) const
+//string property_object::property_set_evaluate(const ::scoped_string & scopedstrParam) const
 //{
 //
 //   return ::lemon::property_set::evaluate(*this, strParam);
@@ -725,7 +725,7 @@ void property_object::on_property_changed(::property* pproperty, const action_co
 //
 //
 //
-//string property_object::property_set_get_string(const ::string & str) const
+//string property_object::property_set_get_string(const ::scoped_string & scopedstr) const
 //{
 //
 //   auto pproperty = on_fetch_property(str);
@@ -833,7 +833,7 @@ void property_object::defer_run_property(const ::atom& atom)
 
 
 bool property_object::has_property(const atom & atom) const { return m_ppropertyset && m_ppropertyset->has_property(atom); }
-property * property_object::lookup_property(const atom& atom) const { return m_ppropertyset ? m_ppropertyset->lookup(atom) : nullptr; }
+property * property_object::lookup_property(const atom& atom) const { return m_ppropertyset ? m_ppropertyset->find(atom) : nullptr; }
 bool property_object::erase_key(const atom & atom) { return m_ppropertyset && m_ppropertyset->erase_by_name(atom); }
 ::property_set & property_object::property_set() { defer_propset(); return *m_ppropertyset; }
 bool property_object::has_property_set() const { return ::is_set(m_ppropertyset); }
@@ -870,7 +870,7 @@ void property_object::defer_propset()
 
 #endif
 
-   m_papplication->__defer_construct_new(m_ppropertyset);
+   m_papplication->ødefer_construct_new(m_ppropertyset);
 
 }
 

@@ -113,7 +113,7 @@ namespace menu
 //
 //      //bool has_pending_graphical_update() override;
 //
-//      virtual bool create_menu(const string_array & straCommand, const string_array & straCommandTitle);
+//      virtual bool create_menu(const string_array_base & straCommand, const string_array_base & straCommandTitle);
 //
 //      void destroy() override;
 //

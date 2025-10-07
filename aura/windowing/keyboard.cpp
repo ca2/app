@@ -68,7 +68,7 @@ namespace windowing
    }
 
 
-   int keyboard::groupLookup(int srcValue, string_array fromText, string_array toText, int count)
+   int keyboard::groupLookup(int srcValue, string_array_base fromText, string_array_base toText, int count)
    {
 
       const string srcText = fromText[srcValue];
@@ -115,7 +115,7 @@ namespace windowing
    }
 
 
-   string_array keyboard::groupNames() const
+   string_array_base keyboard::groupNames() const
    {
 
       return _groupNames;
@@ -123,7 +123,7 @@ namespace windowing
    }
 
 
-   string_array keyboard::groupSymbols() const
+   string_array_base keyboard::groupSymbols() const
    {
 
       return _symbolNames;

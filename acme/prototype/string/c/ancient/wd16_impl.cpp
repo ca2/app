@@ -606,7 +606,7 @@ CLASS_DECL_ACME character_count __wd16cspn(const ::wd16_character * psz1, const 
 
 
 
-CLASS_DECL_ACME character_count wd16_to_ansi_char_len(::wd16_character wch) { return utf_to_utf_length((char *)nullptr, &wch, 1); }
+CLASS_DECL_ACME character_count wd16_to_ansi_char_len(::wd16_character wch) { return utf_to_utf_length1((char *)nullptr, &wch, 1); }
 CLASS_DECL_ACME void wd16_to_ansi_char(char * psz, ::wd16_character wch) { utf_to_utf(psz, &wch, 1); }
 
 

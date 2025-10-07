@@ -93,7 +93,7 @@ namespace ftp
    client_socket::client_socket(
                                 const class time & timeTimeout/*=10*/,
                                 unsigned int uiBufferSize/*=2048*/, const class time & timeResponseWait/*=0*/,
-                                const string& strRemoteDirectorySeparator/*="/"*/) :
+                                const ::scoped_string & scopedstrRemoteDirectorySeparator/*="/"*/) :
       //::sockets::base_socket(handler),
       //::sockets::socket(handler),
       //::sockets::stream_socket(handler),
@@ -101,7 +101,7 @@ namespace ftp
       m_timeTimeout(timeTimeout),
       m_timeResponseWait(timeResponseWait),
       mc_strEolCharacterSequence("\r\n"),
-      mc_strRemoteDirectorySeparator(strRemoteDirectorySeparator),//+# documentation missing
+      mc_strRemoteDirectorySeparator(scopedstrRemoteDirectorySeparator),//+# documentation missing
       m_apFileListParser(__initialize_new file_list_parser()),
       m_fTransferInProgress(false),
       m_fAbortTransfer(false),
@@ -147,7 +147,7 @@ namespace ftp
          m_setObserver.detach_observer(pObserver);
    }
 
-   /// Sets the file list parser which is used for parsing the results of the LIST command.
+   /// Sets the file list_base parser which is used for parsing the results of the LIST command.
    void client_socket::SetFileListParser(::pointer<ifile_list_parser>apFileListParser)
    {
       m_apFileListParser = apFileListParser;
@@ -175,7 +175,7 @@ namespace ftp
    /// Opens the control channel to the FTP server.
    /// @lparam[in] strServerHost IP-::networking::address or name of the server
    /// @lparam[in] iServerPort Port for channel. Usually this is port 21.
-   bool client_socket::OpenControlChannel(const string& strServerHost, unsigned short ushServerPort/*=DEFAULT_FTP_PORT*/)
+   bool client_socket::OpenControlChannel(const ::scoped_string & scopedstrServerHost, unsigned short ushServerPort/*=DEFAULT_FTP_PORT*/)
    {
 
       if (IsConnected() || _is_connected())
@@ -190,7 +190,7 @@ namespace ftp
       try
       {
 
-         if (!open(strServerHost, ushServerPort))
+         if (!open(scopedstrServerHost, ushServerPort))
          {
 
             return false;
@@ -453,10 +453,10 @@ namespace ftp
    /// @lparam[in] strOldName Name of the file to rename.
    /// @lparam[in] strNewName The ___new name for the file.
    /// @return see return values of client_socket::SimpleErrorCheck
-   int client_socket::Rename(const string& strOldName, const string& strNewName)
+   int client_socket::Rename(const ::scoped_string & scopedstrOldName, const ::scoped_string & scopedstrNewName)
    {
       reply Reply;
-      if (!SendCommand(command::RNFR(), { strOldName }, Reply))
+      if (!SendCommand(command::RNFR(), { scopedstrOldName }, Reply))
          return FTP_ERROR;
 
       if (Reply.Code().IsNegativeReply())
@@ -467,7 +467,7 @@ namespace ftp
          return FTP_ERROR;
       }
 
-      if (!SendCommand(command::RNTO(), { strNewName }, Reply))
+      if (!SendCommand(command::RNTO(), { scopedstrNewName }, Reply))
          return FTP_ERROR;
 
       return SimpleErrorCheck(Reply);
@@ -477,64 +477,64 @@ namespace ftp
    /// @lparam[in] strFullSourceFilePath Name of the file which should be moved.
    /// @lparam[in] strFullTargetFilePath The destination where the file should be moved to (file name must be also given).
    /// @return see return values of client_socket::SimpleErrorCheck
-   int client_socket::Move(const string& strFullSourceFilePath, const string& strFullTargetFilePath)
+   int client_socket::Move(const ::scoped_string & scopedstrFullSourceFilePath, const ::scoped_string & scopedstrFullTargetFilePath)
    {
-      return Rename(strFullSourceFilePath, strFullTargetFilePath);
+      return Rename(scopedstrFullSourceFilePath, scopedstrFullTargetFilePath);
    }
 
    /// Gets the directory listing of the FTP server. Sends the LIST command to
    /// the FTP server.
-   /// @lparam[in] strPath Starting path for the list command.
-   /// @lparam[out] vstrFileList Returns a simple list of the files and folders of the specified directory.
+   /// @lparam[in] scopedstrPath Starting path for the list_base command.
+   /// @lparam[out] vstrFileList Returns a simple list_base of the files and folders of the specified directory.
    /// @lparam[in] fPasv see documentation of client_socket::Passive
-   bool client_socket::List(const string& strPath, string_array& vstrFileList, bool fPasv)
+   bool client_socket::List(const ::scoped_string & scopedstrPath, string_array_base& vstrFileList, bool fPasv)
    {
       output_stream outputStream(mc_strEolCharacterSequence, command::LIST().AsString());
-      if (!ExecuteDatachannelCommand(command::LIST(), strPath, representation(type::ASCII()), fPasv, 0, outputStream))
+      if (!ExecuteDatachannelCommand(command::LIST(), scopedstrPath, representation(type::ASCII()), fPasv, 0, outputStream))
          return false;
 
       vstrFileList.clear();
       string strLine;
       outputStream.SetStartPosition();
       while (outputStream.GetNextLine(strLine))
-         vstrFileList.add(strPath + strLine);
+         vstrFileList.add(scopedstrPath + strLine);
 
       return true;
    }
 
    /// Gets the directory listing of the FTP server. Sends the NLST command to
    /// the FTP server.
-   /// @lparam[in] strPath Starting path for the list command.
-   /// @lparam[out] vstrFileList Returns a simple list of the files and folders of the specified the directory.
+   /// @lparam[in] scopedstrPath Starting path for the list_base command.
+   /// @lparam[out] vstrFileList Returns a simple list_base of the files and folders of the specified the directory.
    /// @lparam[in] fPasv see documentation of client_socket::Passive
-   bool client_socket::NameList(const string& strPath, string_array& vstrFileList, bool fPasv)
+   bool client_socket::NameList(const ::scoped_string & scopedstrPath, string_array_base& vstrFileList, bool fPasv)
    {
       output_stream outputStream(mc_strEolCharacterSequence, command::NLST().AsString());
-      if (!ExecuteDatachannelCommand(command::NLST(), strPath, representation(type::ASCII()), fPasv, 0, outputStream))
+      if (!ExecuteDatachannelCommand(command::NLST(), scopedstrPath, representation(type::ASCII()), fPasv, 0, outputStream))
          return false;
 
       vstrFileList.clear();
       string strLine;
       outputStream.SetStartPosition();
       while (outputStream.GetNextLine(strLine))
-         vstrFileList.add(strPath + strLine);
+         vstrFileList.add(scopedstrPath + strLine);
 
       return true;
    }
 
    /// Gets the directory listing of the FTP server. Sends the LIST command to
    /// the FTP server.
-   /// @lparam[in] strPath Starting path for the list command.
-   /// @lparam[out] vFileList Returns a detailed list of the files and folders of the specified directory.
+   /// @lparam[in] scopedstrPath Starting path for the list_base command.
+   /// @lparam[out] vFileList Returns a detailed list_base of the files and folders of the specified directory.
    ///                       vFileList contains file_status-Objects. These Objects provide a lot of
    ///                       information about the file/folder.
    /// @lparam[in] fPasv see documentation of client_socket::Passive
-   bool client_socket::List(const string& strPath, file_status_ptra& vFileList, bool fPasv)
+   bool client_socket::List(const ::scoped_string & scopedstrPath, file_status_ptra& vFileList, bool fPasv)
    {
       ASSERT(m_apFileListParser.is_set());
 
       output_stream outputStream(mc_strEolCharacterSequence, command::LIST().AsString());
-      if (!ExecuteDatachannelCommand(command::LIST(), strPath, representation(type::ASCII()), fPasv, 0, outputStream))
+      if (!ExecuteDatachannelCommand(command::LIST(), scopedstrPath, representation(type::ASCII()), fPasv, 0, outputStream))
          return false;
 
       vFileList.clear();
@@ -542,10 +542,10 @@ namespace ftp
       outputStream.SetStartPosition();
       while (outputStream.GetNextLine(strLine))
       {
-         ::pointer<file_status>spFtpFileStatus(__allocate file_status());
+         ::pointer<file_status>spFtpFileStatus(øallocate file_status());
          if (m_apFileListParser->Parse(*spFtpFileStatus, strLine))
          {
-            spFtpFileStatus->m_strPath = strPath;
+            spFtpFileStatus->m_strPath = scopedstrPath;
             vFileList.add(spFtpFileStatus);
          }
       }
@@ -555,16 +555,16 @@ namespace ftp
 
    /// Gets the directory listing of the FTP server. Sends the NLST command to
    /// the FTP server.
-   /// @lparam[in] strPath Starting path for the list command.
-   /// @lparam[out] vFileList Returns a simple list of the files and folders of the specified directory.
+   /// @lparam[in] scopedstrPath Starting path for the list_base command.
+   /// @lparam[out] vFileList Returns a simple list_base of the files and folders of the specified directory.
    ///                       vFileList contains file_status-Objects. Normally these Objects provide
    ///                       a lot of information about the file/folder. But the NLST-command provide
-   ///                       only a simple list of the directory content (no specific information).
+   ///                       only a simple list_base of the directory content (no specific information).
    /// @lparam[in] fPasv see documentation of client_socket::Passive
-   bool client_socket::NameList(const string& strPath, file_status_ptra& vFileList, bool fPasv)
+   bool client_socket::NameList(const ::scoped_string & scopedstrPath, file_status_ptra& vFileList, bool fPasv)
    {
       output_stream outputStream(mc_strEolCharacterSequence, command::NLST().AsString());
-      if (!ExecuteDatachannelCommand(command::NLST(), strPath, representation(type::ASCII()), fPasv, 0, outputStream))
+      if (!ExecuteDatachannelCommand(command::NLST(), scopedstrPath, representation(type::ASCII()), fPasv, 0, outputStream))
          return false;
 
       vFileList.clear();
@@ -572,8 +572,8 @@ namespace ftp
       outputStream.SetStartPosition();
       while (outputStream.GetNextLine(strLine))
       {
-         ::pointer<file_status>spFtpFileStatus(__allocate file_status());
-         spFtpFileStatus->m_strPath = strPath;
+         ::pointer<file_status>spFtpFileStatus(øallocate file_status());
+         spFtpFileStatus->m_strPath = scopedstrPath;
          spFtpFileStatus->m_strName = strLine;
          vFileList.add(spFtpFileStatus);
       }
@@ -587,12 +587,12 @@ namespace ftp
    /// @lparam[in] strLocalFile Filename of the target file on the local computer.
    /// @lparam[in] repType Representation Type (see documentation of representation)
    /// @lparam[in] fPasv see documentation of client_socket::Passive
-   bool client_socket::DownloadFile(const string& strRemoteFile, const string& strLocalFile, const representation& repType, bool fPasv)
+   bool client_socket::DownloadFile(const ::scoped_string & scopedstrRemoteFile, const ::scoped_string & scopedstrLocalFile, const representation& repType, bool fPasv)
    {
 
       ::ftp::file file;
 
-      if (!file.Open(strLocalFile, (m_fResumeIfPossible ? ::file::e_open_no_truncate : ::file::e_open_create) | ::file::e_open_write
+      if (!file.Open(scopedstrLocalFile, (m_fResumeIfPossible ? ::file::e_open_no_truncate : ::file::e_open_create) | ::file::e_open_write
                      | ::file::e_open_binary | ::file::e_open_defer_create_directory))
       {
          ReportError(c_error_number::s_get_error_description(), __FILE__, __LINE__);
@@ -600,7 +600,7 @@ namespace ftp
       }
       file.Seek(0, ::e_seek_from_end);
 
-      return DownloadFile(strRemoteFile, file, repType, fPasv);
+      return DownloadFile(scopedstrRemoteFile, file, repType, fPasv);
    }
 
    /// Gets a file from the FTP server.
@@ -609,19 +609,19 @@ namespace ftp
    /// @lparam[in] Observer Object which receives the transfer notifications.
    /// @lparam[in] repType Representation Type (see documentation of representation)
    /// @lparam[in] fPasv see documentation of client_socket::Passive
-   bool client_socket::DownloadFile(const string& strRemoteFile, itransfer_notification& Observer, const representation& repType, bool fPasv)
+   bool client_socket::DownloadFile(const ::scoped_string & scopedstrRemoteFile, itransfer_notification& Observer, const representation& repType, bool fPasv)
    {
       long lRemoteFileSize = 0;
-      FileSize(strRemoteFile, lRemoteFileSize);
+      FileSize(scopedstrRemoteFile, lRemoteFileSize);
 
       for (auto * int_point : (observer_array &)m_setObserver)
-         int_point->OnPreReceiveFile(strRemoteFile, Observer.GetLocalStreamName(), lRemoteFileSize);
+         int_point->OnPreReceiveFile(scopedstrRemoteFile, Observer.GetLocalStreamName(), lRemoteFileSize);
 
-      const bool fRet = ExecuteDatachannelCommand(command::RETR(), strRemoteFile, repType, fPasv,
+      const bool fRet = ExecuteDatachannelCommand(command::RETR(), scopedstrRemoteFile, repType, fPasv,
                         m_fResumeIfPossible ? Observer.GetLocalStreamSize() : 0, Observer);
 
       for (auto * int_point : (observer_array &)m_setObserver)
-         int_point->OnPostReceiveFile(strRemoteFile, Observer.GetLocalStreamName(), lRemoteFileSize);
+         int_point->OnPostReceiveFile(scopedstrRemoteFile, Observer.GetLocalStreamName(), lRemoteFileSize);
 
       return fRet;
    }
@@ -634,11 +634,11 @@ namespace ftp
    /// @lparam[in] strTargetFile Filename of the target file on the target FTP server.
    /// @lparam[in] repType Representation Type (see documentation of representation)
    /// @lparam[in] fPasv see documentation of client_socket::Passive
-   bool client_socket::DownloadFile(const string& strSourceFile, client_socket& TargetFtpServer,
-                                    const string& strTargetFile, const representation& repType/*=representation(type::Image())*/,
+   bool client_socket::DownloadFile(const ::scoped_string & scopedstrSourceFile, client_socket& TargetFtpServer,
+                                    const ::scoped_string & scopedstrTargetFile, const representation& repType/*=representation(type::Image())*/,
                                     bool fPasv/*=true*/)
    {
-      return TransferFile(*this, strSourceFile, TargetFtpServer, strTargetFile, repType, fPasv);
+      return TransferFile(*this, scopedstrSourceFile, TargetFtpServer, scopedstrTargetFile, repType, fPasv);
    }
 
    /// Puts a file on the FTP server.
@@ -649,16 +649,16 @@ namespace ftp
    ///                         else the FTP command STOR is used.
    /// @lparam[in] repType Representation Type (see documentation of representation)
    /// @lparam[in] fPasv see documentation of client_socket::Passive
-   bool client_socket::UploadFile(const string& strLocalFile, const string& strRemoteFile, bool fStoreUnique, const representation& repType, bool fPasv)
+   bool client_socket::UploadFile(const ::scoped_string & scopedstrLocalFile, const ::scoped_string & scopedstrRemoteFile, bool fStoreUnique, const representation& repType, bool fPasv)
    {
       ::ftp::file file;
-      if (!file.Open(strLocalFile, ::file::e_open_read | ::file::e_open_binary))
+      if (!file.Open(scopedstrLocalFile, ::file::e_open_read | ::file::e_open_binary))
       {
          ReportError(c_error_number::s_get_error_description(), __FILE__, __LINE__);
          return false;
       }
 
-      return UploadFile(file, strRemoteFile, fStoreUnique, repType, fPasv);
+      return UploadFile(file, scopedstrRemoteFile, fStoreUnique, repType, fPasv);
    }
 
    /// Puts a file on the FTP server.
@@ -669,11 +669,11 @@ namespace ftp
    ///                         else the FTP command STOR is used.
    /// @lparam[in] repType Representation Type (see documentation of representation)
    /// @lparam[in] fPasv see documentation of client_socket::Passive
-   bool client_socket::UploadFile(itransfer_notification& Observer, const string& strRemoteFile, bool fStoreUnique, const representation& repType, bool fPasv)
+   bool client_socket::UploadFile(itransfer_notification& Observer, const ::scoped_string & scopedstrRemoteFile, bool fStoreUnique, const representation& repType, bool fPasv)
    {
       long lRemoteFileSize = 0;
       if (m_fResumeIfPossible)
-         FileSize(strRemoteFile, lRemoteFileSize);
+         FileSize(scopedstrRemoteFile, lRemoteFileSize);
 
       command cmd(command::STOR());
       if (lRemoteFileSize > 0)
@@ -685,12 +685,12 @@ namespace ftp
       Observer.SetLocalStreamOffset((unsigned int) lRemoteFileSize);
 
       for (auto * int_point : (observer_array &)m_setObserver)
-         int_point->OnPreSendFile(Observer.GetLocalStreamName(), strRemoteFile, lLocalFileSize);
+         int_point->OnPreSendFile(Observer.GetLocalStreamName(), scopedstrRemoteFile, lLocalFileSize);
 
-      const bool fRet = ExecuteDatachannelCommand(cmd, strRemoteFile, repType, fPasv, 0, Observer);
+      const bool fRet = ExecuteDatachannelCommand(cmd, scopedstrRemoteFile, repType, fPasv, 0, Observer);
 
       for (auto * int_point : (observer_array &)m_setObserver)
-         int_point->OnPostSendFile(Observer.GetLocalStreamName(), strRemoteFile, lLocalFileSize);
+         int_point->OnPostSendFile(Observer.GetLocalStreamName(), scopedstrRemoteFile, lLocalFileSize);
 
       return fRet;
    }
@@ -703,11 +703,11 @@ namespace ftp
    /// @lparam[in] strTargetFile Filename of the target file on the FTP server.
    /// @lparam[in] repType Representation Type (see documentation of representation)
    /// @lparam[in] fPasv see documentation of client_socket::Passive
-   bool client_socket::UploadFile(client_socket& SourceFtpServer, const string& strSourceFile,
-                                  const string& strTargetFile, const representation& repType/*=representation(type::Image())*/,
+   bool client_socket::UploadFile(client_socket& SourceFtpServer, const ::scoped_string & scopedstrSourceFile,
+                                  const ::scoped_string & scopedstrTargetFile, const representation& repType/*=representation(type::Image())*/,
                                   bool fPasv/*=true*/)
    {
-      return TransferFile(SourceFtpServer, strSourceFile, *this, strTargetFile, repType, !fPasv);
+      return TransferFile(SourceFtpServer, scopedstrSourceFile, *this, scopedstrTargetFile, repType, !fPasv);
    }
 
    /// Transfers a file from a FTP server to another FTP server.
@@ -719,8 +719,8 @@ namespace ftp
    /// @lparam[in] strTargetFile Name of the file on the target FTP server.
    /// @lparam[in] repType Representation Type (see documentation of representation)
    /// @lparam[in] fPasv see documentation of client_socket::Passive
-   /*static*/ bool client_socket::TransferFile(client_socket& SourceFtpServer, const string& strSourceFile,
-         client_socket& TargetFtpServer, const string& strTargetFile,
+   /*static*/ bool client_socket::TransferFile(client_socket& SourceFtpServer, const ::scoped_string & scopedstrSourceFile,
+         client_socket& TargetFtpServer, const ::scoped_string & scopedstrTargetFile,
          const representation& repType/*=representation(type::Image())*/,
          bool fSourcePasv/*=false*/)
    {
@@ -754,11 +754,11 @@ namespace ftp
       if (ActiveServer.DataPort(paddress->get_display_number(), ushSock) != FTP_OK)
          return false;
 
-      if (!SourceFtpServer.SendCommand(command::RETR(), { strSourceFile }))
+      if (!SourceFtpServer.SendCommand(command::RETR(), { scopedstrSourceFile }))
          return false;
 
       reply ReplyTarget;
-      if (!TargetFtpServer.SendCommand(command::STOR(), { strTargetFile }, ReplyTarget) ||
+      if (!TargetFtpServer.SendCommand(command::STOR(), { scopedstrTargetFile }, ReplyTarget) ||
             !ReplyTarget.Code().IsPositivePreliminaryReply())
          return false;
 
@@ -776,12 +776,12 @@ namespace ftp
 
    /// Executes a commando that result in a communication over the data port.
    /// @lparam[in] crDatachannelCmd Command to be executeted.
-   /// @lparam[in] strPath Parameter for the command usually a path.
+   /// @lparam[in] scopedstrPath Parameter for the command usually a path.
    /// @lparam[in] representation see documentation of client_socket::representation
    /// @lparam[in] fPasv see documentation of client_socket::Passive
    /// @lparam[in] dwByteOffset Server marker at which file transfer is to be restarted.
    /// @lparam[in] Observer Object for observing the execution of the command.
-   bool client_socket::ExecuteDatachannelCommand(const command& crDatachannelCmd, const string& strPath, const representation& representation,
+   bool client_socket::ExecuteDatachannelCommand(const command& crDatachannelCmd, const ::scoped_string & scopedstrPath, const representation& representation,
          bool fPasv, unsigned int dwByteOffset, itransfer_notification& Observer)
    {
       if (!crDatachannelCmd.IsDatachannelCommand())
@@ -832,7 +832,7 @@ namespace ftp
 
          pbasesocket = apSckDataConnection;
 
-         if (!OpenPassiveDataConnection(*apSckDataConnection, crDatachannelCmd, strPath, dwByteOffset))
+         if (!OpenPassiveDataConnection(*apSckDataConnection, crDatachannelCmd, scopedstrPath, dwByteOffset))
             return false;
 
          fTransferOK = TransferData(crDatachannelCmd, Observer, *apSckDataConnection);
@@ -872,7 +872,7 @@ namespace ftp
 
          socket_handler()->add(pbasesocket2);
 
-         if (!OpenActiveDataConnection(*apSckDataConnection, crDatachannelCmd, strPath, dwByteOffset))
+         if (!OpenActiveDataConnection(*apSckDataConnection, crDatachannelCmd, scopedstrPath, dwByteOffset))
             return false;
 
          ::pointer<::sockets::transfer_socket>psocket = apSckDataConnection->m_pbasesocket;
@@ -974,9 +974,9 @@ namespace ftp
    /// Opens an active data connection.
    /// @lparam[out] sckDataConnection
    /// @lparam[in] crDatachannelCmd Command to be executeted.
-   /// @lparam[in] strPath Parameter for the command usually a path.
+   /// @lparam[in] scopedstrPath Parameter for the command usually a path.
    /// @lparam[in] dwByteOffset Server marker at which file transfer is to be restarted.
-   bool client_socket::OpenActiveDataConnection(::sockets::socket & sckDataConnectionParam, const command& crDatachannelCmd, const string& strPath, unsigned int dwByteOffset)
+   bool client_socket::OpenActiveDataConnection(::sockets::socket & sckDataConnectionParam, const command& crDatachannelCmd, const ::scoped_string & scopedstrPath, unsigned int dwByteOffset)
    {
       if (!crDatachannelCmd.IsDatachannelCommand())
       {
@@ -1056,7 +1056,7 @@ namespace ftp
 
       // send FTP command RETR/STOR/NLST/LIST to the server
       reply Reply;
-      if (!SendCommand(crDatachannelCmd, { strPath }, Reply) ||
+      if (!SendCommand(crDatachannelCmd, { scopedstrPath }, Reply) ||
             !Reply.Code().IsPositivePreliminaryReply())
          return false;
 
@@ -1074,9 +1074,9 @@ namespace ftp
    /// Opens a passive data connection.
    /// @lparam[out] sckDataConnection
    /// @lparam[in] crDatachannelCmd Command to be executeted.
-   /// @lparam[in] strPath Parameter for the command usually a path.
+   /// @lparam[in] scopedstrPath Parameter for the command usually a path.
    /// @lparam[in] dwByteOffset Server marker at which file transfer is to be restarted.
-   bool client_socket::OpenPassiveDataConnection(::sockets::socket & sckDataConnectionParam, const command& crDatachannelCmd, const string& strPath, unsigned int dwByteOffset)
+   bool client_socket::OpenPassiveDataConnection(::sockets::socket & sckDataConnectionParam, const command& crDatachannelCmd, const ::scoped_string & scopedstrPath, unsigned int dwByteOffset)
    {
 
       if (m_econnectiontype == connection_type_tls_implicit)
@@ -1143,7 +1143,7 @@ namespace ftp
 
       // send FTP command RETR/STOR/NLST/LIST to the server
       reply Reply;
-      if (!SendCommand(crDatachannelCmd, { strPath }, Reply) ||
+      if (!SendCommand(crDatachannelCmd, { scopedstrPath }, Reply) ||
             !Reply.Code().IsPositivePreliminaryReply())
          return false;
 
@@ -1186,7 +1186,7 @@ auto tickStart = ::time::now();
 
             {
 
-               synchronous_lock synchronouslock(sckDataConnection.synchronization());
+               synchronous_lock synchronouslock(sckDataConnection.synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
                sckDataConnection.write(m_vBuffer);
 
@@ -1277,7 +1277,7 @@ auto tickStart = ::time::now();
 
             {
 
-               synchronous_lock synchronouslock(this->synchronization());
+               synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
                iNumRead = sckDataConnection.m_pmemoryfile->erase_begin(m_vBuffer.data(), static_cast<int>(m_vBuffer.size()));
 
@@ -1354,7 +1354,7 @@ auto tickStart = ::time::now();
 
    /// Sends a command to the server.
    /// @lparam[in] Command Command to send.
-   bool client_socket::SendCommand(const command& Command, const string_array & Arguments)
+   bool client_socket::SendCommand(const command& Command, const string_array_base & Arguments)
    {
 
       if (!_is_connected())
@@ -1385,7 +1385,7 @@ auto tickStart = ::time::now();
    /// Sends a command to the server.
    /// @lparam[in]  Command Command to send.
    /// @lparam[out] Reply The Reply of the server to the sent command.
-   bool client_socket::SendCommand(const command& Command, const string_array & Arguments, reply& Reply)
+   bool client_socket::SendCommand(const command& Command, const string_array_base & Arguments, reply& Reply)
    {
       if (!SendCommand(Command, Arguments))
       {
@@ -1429,12 +1429,12 @@ auto tickStart = ::time::now();
       return fRet;
    }
 
-   void client_socket::OnLine(const ::string & strLine)
+   void client_socket::OnLine(const ::scoped_string & scopedstrLine)
    {
 
       single_lock synchronouslock(this->synchronization());
 
-      m_qResponseBuffer.add_tail(strLine);
+      m_qResponseBuffer.add_tail(scopedstrLine);
 
    }
 
@@ -1622,7 +1622,7 @@ auto tickStart = ::time::now();
    /// @lparam[out] ushPort     Buffer for the port information.
    /// @retval true  Everything went ok.
    /// @retval false An error occurred (invalid format).
-   bool client_socket::GetIpAddressFromResponse(const string& strResponse, unsigned int& ulIpAddress, unsigned short& ushPort)
+   bool client_socket::GetIpAddressFromResponse(const ::scoped_string & scopedstrResponse, unsigned int& ulIpAddress, unsigned short& ushPort)
    {
       // parsing of ip-::networking::address and port implemented with a finite state machine
       // ...(192,168,1,1,3,44)...
@@ -1632,9 +1632,9 @@ auto tickStart = ::time::now();
       unsigned short ushTempPort = 0;
       unsigned int  ulTempIpAddress = 0;
       int iCommaCnt = 4;
-      for (character_count i = 0; i < strResponse.length(); i++)
+      for (character_count i = 0; i < scopedstrResponse.length(); i++)
       {
-         char it = strResponse[i];
+         char it = scopedstrResponse[i];
          switch (enState)
          {
          case state0:
@@ -1784,11 +1784,11 @@ auto tickStart = ::time::now();
    /// @lparam[in] strHostIP IP-::networking::address like xxx.xxx.xxx.xxx
    /// @lparam[in] uiPort 16-bit TCP port ::networking::address.
    /// @return see return values of client_socket::SimpleErrorCheck
-   int client_socket::DataPort(const string& strHostIP, unsigned short ushPort)
+   int client_socket::DataPort(const ::scoped_string & scopedstrHostIP, unsigned short ushPort)
    {
       string strPortArguments;
       // convert the port number to 2 bytes + add to the local IP
-      strPortArguments = strHostIP + "," + ::as_string (ushPort >> 8) + "," + ::as_string (ushPort & 0xFF);
+      strPortArguments = scopedstrHostIP + "," + ::as_string (ushPort >> 8) + "," + ::as_string (ushPort & 0xFF);
 
       strPortArguments.find_replace(".", ",");
 
@@ -1815,7 +1815,7 @@ auto tickStart = ::time::now();
       if (iRet == FTP_OK)
       {
          if (m_apCurrentRepresentation.is_null())
-            m_apCurrentRepresentation = __allocate ::ftp::representation(representation);
+            m_apCurrentRepresentation = øallocate ::ftp::representation(representation);
          else
             *m_apCurrentRepresentation = representation;
       }
@@ -1832,7 +1832,7 @@ auto tickStart = ::time::now();
    /// @return see return values of client_socket::SimpleErrorCheck
    int client_socket::_RepresentationType(const representation& representation, unsigned int dwSize)
    {
-      string_array Arguments({ representation.Type().AsString() });
+      string_array_base Arguments({ representation.Type().AsString() });
 
       switch (representation.Type().AsEnum())
       {
@@ -1859,11 +1859,11 @@ auto tickStart = ::time::now();
    /// @lparam[in] strDirectory Pathname specifying a directory or other system
    ///                         dependent file group designator.
    /// @return see return values of client_socket::SimpleErrorCheck
-   int client_socket::ChangeWorkingDirectory(const string& strDirectory)
+   int client_socket::ChangeWorkingDirectory(const ::scoped_string & scopedstrDirectory)
    {
-      ASSERT(strDirectory.has_character());
+      ASSERT(scopedstrDirectory.has_character());
       reply Reply;
-      if (!SendCommand(command::CWD(), { strDirectory }, Reply))
+      if (!SendCommand(command::CWD(), { scopedstrDirectory }, Reply))
          return FTP_ERROR;
       return SimpleErrorCheck(Reply);
    }
@@ -1874,11 +1874,11 @@ auto tickStart = ::time::now();
    /// current working directory (if the pathname is relative).
    /// @pararm[in] strDirectory Pathname specifying a directory to be created.
    /// @return see return values of client_socket::SimpleErrorCheck
-   int client_socket::make_directory(const string& strDirectory)
+   int client_socket::make_directory(const ::scoped_string & scopedstrDirectory)
    {
-      ASSERT(strDirectory.has_character());
+      ASSERT(scopedstrDirectory.has_character());
       reply Reply;
-      if (!SendCommand(command::MKD(), { strDirectory } , Reply))
+      if (!SendCommand(command::MKD(), { scopedstrDirectory } , Reply))
          return FTP_ERROR;
       return SimpleErrorCheck(Reply);
    }
@@ -1891,11 +1891,11 @@ auto tickStart = ::time::now();
    /// SITE command.
    /// @lparam[in] strCmd Command to be executed.
    /// @return see return values of client_socket::SimpleErrorCheck
-   int client_socket::SiteParameters(const string& strCmd)
+   int client_socket::SiteParameters(const ::scoped_string & scopedstrCmd)
    {
-      ASSERT(strCmd.has_character());
+      ASSERT(scopedstrCmd.has_character());
       reply Reply;
-      if (!SendCommand(command::SITE(), { strCmd }, Reply))
+      if (!SendCommand(command::SITE(), { scopedstrCmd }, Reply))
          return FTP_ERROR;
       return SimpleErrorCheck(Reply);
    }
@@ -1910,10 +1910,10 @@ auto tickStart = ::time::now();
    /// response to HELP SITE.
    /// @lparam[in] strTopic Topic of the requested help.
    /// @return see return values of client_socket::SimpleErrorCheck
-   int client_socket::Help(const string& strTopic)
+   int client_socket::Help(const ::scoped_string & scopedstrTopic)
    {
       reply Reply;
-      if (!SendCommand(command::HELP(), { strTopic }, Reply))
+      if (!SendCommand(command::HELP(), { scopedstrTopic }, Reply))
          return FTP_ERROR;
       return SimpleErrorCheck(Reply);
    }
@@ -1924,11 +1924,11 @@ auto tickStart = ::time::now();
    /// "Do you really wish to delete?", it should be provided by the user-FTP process.
    /// @lparam[in] strFile Pathname of the file to delete.
    /// @return see return values of client_socket::SimpleErrorCheck
-   int client_socket::Delete(const string& strFile)
+   int client_socket::Delete(const ::scoped_string & scopedstrFile)
    {
-      ASSERT(strFile.has_character());
+      ASSERT(scopedstrFile.has_character());
       reply Reply;
-      if (!SendCommand(command::DELE(), { strFile }, Reply))
+      if (!SendCommand(command::DELE(), { scopedstrFile }, Reply))
          return FTP_ERROR;
       return SimpleErrorCheck(Reply);
    }
@@ -1939,11 +1939,11 @@ auto tickStart = ::time::now();
    /// current working directory (if the pathname is relative).
    /// @lparam[in] strDirectory Pathname of the directory to delete.
    /// @return see return values of client_socket::SimpleErrorCheck
-   int client_socket::remove_directory(const string& strDirectory)
+   int client_socket::remove_directory(const ::scoped_string & scopedstrDirectory)
    {
-      ASSERT(strDirectory.has_character());
+      ASSERT(scopedstrDirectory.has_character());
       reply Reply;
-      if (!SendCommand(command::RMD(), { strDirectory } , Reply))
+      if (!SendCommand(command::RMD(), { scopedstrDirectory } , Reply))
          return FTP_ERROR;
       return SimpleErrorCheck(Reply);
    }
@@ -1981,19 +1981,19 @@ auto tickStart = ::time::now();
    /// FTP Commands) in which case the server will respond with the status of the
    /// operation in progress, or it may be sent between file transfers. In the
    /// latter case, the command may have an argument field.
-   /// @lparam[in] strPath If the argument is a pathname, the command is analogous
-   ///                    to the "list" command except that data shall be transferred
+   /// @lparam[in] scopedstrPath If the argument is a pathname, the command is analogous
+   ///                    to the "list_base" command except that data shall be transferred
    ///                    over the control connection. If a partial pathname is
-   ///                    given, the server may respond with a list of file names or
+   ///                    given, the server may respond with a list_base of file names or
    ///                    attributes associated with that specification. If no argument
    ///                    is given, the server should return general status information
    ///                    about the server FTP process. This should include current
    ///                    values of all transfer parameters and the status of connections.
    /// @return see return values of client_socket::SimpleErrorCheck
-   int client_socket::Status(const string& strPath)
+   int client_socket::Status(const ::scoped_string & scopedstrPath)
    {
       reply Reply;
-      if (!SendCommand(command::STAT(), { strPath } , Reply))
+      if (!SendCommand(command::STAT(), { scopedstrPath } , Reply))
          return FTP_ERROR;
       return SimpleErrorCheck(Reply);
    }
@@ -2018,7 +2018,7 @@ auto tickStart = ::time::now();
    /// @return see return values of client_socket::SimpleErrorCheck
    int client_socket::Allocate(int iReserveBytes, const int* piMaxPageOrRecordSize/*=nullptr*/)
    {
-      string_array Arguments({ ::as_string(iReserveBytes) });
+      string_array_base Arguments({ ::as_string(iReserveBytes) });
       if (piMaxPageOrRecordSize != nullptr)
       {
          Arguments.add("R");
@@ -2033,10 +2033,10 @@ auto tickStart = ::time::now();
 
    /// Executes the FTP command SMNT ()
    /// @return see return values of client_socket::SimpleErrorCheck
-   int client_socket::StructureMount(const string& strPath)
+   int client_socket::StructureMount(const ::scoped_string & scopedstrPath)
    {
       reply Reply;
-      if (!SendCommand(command::SMNT(), { strPath }, Reply))
+      if (!SendCommand(command::SMNT(), { scopedstrPath }, Reply))
          return FTP_ERROR;
       return SimpleErrorCheck(Reply);
    }
@@ -2097,10 +2097,10 @@ auto tickStart = ::time::now();
    /// @lparam[in] Pathname of a file.
    /// @lparam[out] Size of the file specified in pathname.
    /// @return see return values of client_socket::SimpleErrorCheck
-   int client_socket::FileSize(const string& strPath, long& lSize)
+   int client_socket::FileSize(const ::scoped_string & scopedstrPath, long& lSize)
    {
       reply Reply;
-      if (!SendCommand(command::SIZE(), { strPath } , Reply))
+      if (!SendCommand(command::SIZE(), { scopedstrPath } , Reply))
          return FTP_ERROR;
       lSize = atoi(Reply.Value().substr(4));
       return SimpleErrorCheck(Reply);
@@ -2109,17 +2109,17 @@ auto tickStart = ::time::now();
    /// Executes the FTP command MDTM
    /// Show last modification time of file.
    /// MDTM is not specified in RFC 959.
-   /// @lparam[in] strPath Pathname of a file.
+   /// @lparam[in] scopedstrPath Pathname of a file.
    /// @lparam[out] strModificationTime Modification time of the file specified in pathname.
    /// @return see return values of client_socket::SimpleErrorCheck
-   int client_socket::FileModificationTime(const string& strPath, string& strModificationTime)
+   int client_socket::FileModificationTime(const ::scoped_string & scopedstrPath, string& strModificationTime)
    {
       
       strModificationTime.empty();
 
       reply Reply;
 
-      if (!SendCommand(command::MDTM(), { strPath }, Reply))
+      if (!SendCommand(command::MDTM(), { scopedstrPath }, Reply))
       {
 
          return FTP_ERROR;
@@ -2143,13 +2143,13 @@ auto tickStart = ::time::now();
    }
 
    /// Show last modification time of file.
-   /// @lparam[in] strPath Pathname of a file.
+   /// @lparam[in] scopedstrPath Pathname of a file.
    /// @lparam[out] tmModificationTime Modification time of the file specified in pathname.
    /// @return see return values of client_socket::SimpleErrorCheck
-   int client_socket::FileModificationTime(const string& strPath, struct tm& tmModificationTime)
+   int client_socket::FileModificationTime(const ::scoped_string & scopedstrPath, struct tm& tmModificationTime)
    {
       string strTemp;
-      const int iRet = FileModificationTime(strPath, strTemp);
+      const int iRet = FileModificationTime(scopedstrPath, strTemp);
 
       memory_set(&tmModificationTime, 0, sizeof(tmModificationTime));
       if (iRet == FTP_OK)
@@ -2168,10 +2168,10 @@ auto tickStart = ::time::now();
    /// @lparam[in] strErrorMsg Error message which is reported to all observers.
    /// @lparam[in] Name of the sourcecode file where the error occurred.
    /// @lparam[in] Line number in th sourcecode file where the error occurred.
-   void client_socket::ReportError(const string& strErrorMsg, const string& strFile, unsigned int dwLineNr)
+   void client_socket::ReportError(const ::scoped_string & scopedstrErrorMsg, const ::scoped_string & scopedstrFile, unsigned int dwLineNr)
    {
       for (auto * int_point : (observer_array &)m_setObserver)
-         int_point->OnInternalError(strErrorMsg, strFile, dwLineNr);
+         int_point->OnInternalError(scopedstrErrorMsg, scopedstrFile, dwLineNr);
    }
 
 

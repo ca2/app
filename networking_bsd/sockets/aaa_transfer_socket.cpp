@@ -45,7 +45,7 @@ namespace networking_bsd
 
    transfer_socket_exception::transfer_socket_exception(const ::scoped_string & scopedstrMessage) :
       m_nError(get_error()),
-      ::exception(pszMessage)
+      ::exception(scopedstrMessage)
    {
    }
 
@@ -291,7 +291,7 @@ namespace networking_bsd
    void read_socket::on_read(const void * pdata, iptr n)
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       unsigned char * pbuf = (unsigned char *) pdata;
 
@@ -325,7 +325,7 @@ namespace networking_bsd
 
    //      {
 
-   //         synchronous_lock synchronouslock(this->synchronization());
+   //         synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //         iRead = m_file.erase_begin(&point[nBytesReceived], nSize - nBytesReceived);
 
@@ -399,7 +399,7 @@ namespace networking_bsd
    void write_socket::OnWrite()
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       write(m_file.get_data(), (memsize)m_file.get_size());
 

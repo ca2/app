@@ -139,7 +139,7 @@ namespace dynamic_source
 
       //}
 
-      //estatus = __construct_new(m_pmessagequeue);
+      //estatus = øconstruct_new(m_pmessagequeue);
       //
       //if(!estatus)
       //{
@@ -248,7 +248,7 @@ namespace dynamic_source
 
          //auto estatus = 
 
-         __construct_new(m_pcache);
+         øconstruct_new(m_pcache);
 
          //if (!estatus)
          //{
@@ -259,7 +259,7 @@ namespace dynamic_source
 
          m_pcache->m_pmanager = this;
 
-         m_pcompiler = __allocate script_compiler();
+         m_pcompiler = øallocate script_compiler();
 
          //estatus = 
 
@@ -293,7 +293,7 @@ namespace dynamic_source
 
       {
 
-         auto pwatcher = __allocate clear_include_matches_file_watcher(this);
+         auto pwatcher = øallocate clear_include_matches_file_watcher(this);
 
          pwatcher->m_pmanager = this;
 
@@ -303,7 +303,7 @@ namespace dynamic_source
 
       }
 
-      ::file::listing listing;
+      ::file::listing_base listing;
 
       auto papp = get_app();
 
@@ -317,7 +317,7 @@ namespace dynamic_source
          if (case_insensitive_string_begins(path.title(), "net-"))
          {
 
-            auto pwatcher = __allocate clear_include_matches_file_watcher(this);
+            auto pwatcher = øallocate clear_include_matches_file_watcher(this);
 
             pwatcher->m_pmanager = this;
 
@@ -400,7 +400,7 @@ namespace dynamic_source
 
       }
 
-      auto pmain = __øcreate < script_main >();
+      auto pmain = øcreate < script_main >();
 
       pmain->m_pscript2 = pinstance->m_pscript2;
 
@@ -635,10 +635,10 @@ namespace dynamic_source
    }
 
 
-   ::payload script_manager::get_output_internal(::dynamic_source::script_interface* pinstanceParent, const ::string& strNameParam)
+   ::payload script_manager::get_output_internal(::dynamic_source::script_interface* pinstanceParent, const ::scoped_string & scopedstrNameParam)
    {
 
-      string strName = ::str::get_word(strNameParam, "?");
+      string strName = ::str::get_word(scopedstrNameParam, "?");
 
       if (strName.is_empty())
       {
@@ -711,7 +711,7 @@ namespace dynamic_source
 
                   pimpl = pmain;
 
-                  //pimpl = ::__øcreate < script_interface >();
+                  //pimpl = ::øcreate < script_interface >();
 
                   //pimpl->m_strNote = "impl://" + pinstance->m_strNote;
 
@@ -878,7 +878,7 @@ namespace dynamic_source
       string strNew;
 #ifdef WINDOWS_DESKTOP
       unsigned int dwSize = GetEnvironmentVariableW(L"PATH", nullptr, 0);
-      LPWSTR lpsz = __raw_new wchar_t[dwSize + 1024];
+      LPWSTR lpsz = øraw_new wchar_t[dwSize + 1024];
       dwSize = GetEnvironmentVariableW(L"PATH", lpsz, dwSize + 1024);
       strNew = lpsz;
       delete lpsz;
@@ -966,12 +966,12 @@ namespace dynamic_source
       try
       {
 
-         _synchronous_lock synchronouslock(m_pmutexIncludeMatches);
+         _synchronous_lock synchronouslock(m_pmutexIncludeMatches, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          try
          {
 
-            m_mapIncludeMatchesFileExists2.erase_item(path);
+            m_mapIncludeMatchesFileExists2.erase(path);
 
          }
          catch (...)
@@ -982,7 +982,7 @@ namespace dynamic_source
          try
          {
 
-            m_mapIncludeMatchesIsDir2.erase_item(path);
+            m_mapIncludeMatchesIsDir2.erase(path);
 
          }
          catch (...)
@@ -999,9 +999,9 @@ namespace dynamic_source
       try
       {
 
-         _synchronous_lock synchronouslock(m_pmutexIncludeExpandMd5);
+         _synchronous_lock synchronouslock(m_pmutexIncludeExpandMd5, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-         m_mapIncludeExpandMd5.erase_item(path);
+         m_mapIncludeExpandMd5.erase(path);
 
       }
       catch (...)
@@ -1018,7 +1018,7 @@ namespace dynamic_source
       try
       {
 
-         _synchronous_lock synchronouslock(m_pmutexIncludeMatches);
+         _synchronous_lock synchronouslock(m_pmutexIncludeMatches, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          try
          {
@@ -1051,7 +1051,7 @@ namespace dynamic_source
       try
       {
 
-         _synchronous_lock synchronouslock(m_pmutexIncludeExpandMd5);
+         _synchronous_lock synchronouslock(m_pmutexIncludeExpandMd5, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          m_mapIncludeExpandMd5.erase_all();
 
@@ -1068,7 +1068,7 @@ namespace dynamic_source
    bool script_manager::include_matches_file_exists(const ::scoped_string& scopedstrPath)
    {
 
-      _synchronous_lock synchronouslock(m_pmutexIncludeMatches);
+      _synchronous_lock synchronouslock(m_pmutexIncludeMatches, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       auto & bExists = m_mapIncludeMatchesFileExists2[scopedstrPath];
 
@@ -1087,7 +1087,7 @@ namespace dynamic_source
    void script_manager::set_include_matches_file_exists(const ::scoped_string& scopedstrPath, bool bFileExists)
    {
 
-      _synchronous_lock synchronouslock(m_pmutexIncludeMatches);
+      _synchronous_lock synchronouslock(m_pmutexIncludeMatches, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       m_mapIncludeMatchesFileExists2.set_at(scopedstrPath, bFileExists);
 
@@ -1097,7 +1097,7 @@ namespace dynamic_source
    bool script_manager::include_matches_is_dir(const ::scoped_string& scopedstrPath)
    {
 
-      _synchronous_lock synchronouslock(m_pmutexIncludeMatches);
+      _synchronous_lock synchronouslock(m_pmutexIncludeMatches, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       auto &bIsDir = m_mapIncludeMatchesIsDir2[scopedstrPath];
 
@@ -1123,7 +1123,7 @@ namespace dynamic_source
 
       }
 
-      _synchronous_lock synchronouslock(m_pmutexIncludeHasScript);
+      _synchronous_lock synchronouslock(m_pmutexIncludeHasScript, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       auto &bHasScript = m_mapIncludeHasScript2[scopedstrPath];
 
@@ -1142,7 +1142,7 @@ namespace dynamic_source
    string script_manager::include_expand_md5(const ::scoped_string& scopedstrPath)
    {
       
-      _synchronous_lock synchronouslock(m_pmutexIncludeExpandMd5);
+      _synchronous_lock synchronouslock(m_pmutexIncludeExpandMd5, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       return m_mapIncludeExpandMd5[scopedstrPath];
 
@@ -1152,7 +1152,7 @@ namespace dynamic_source
    void script_manager::set_include_expand_md5(const ::scoped_string& scopedstrPath, const ::scoped_string& scopedstrMd5)
    {
    
-      _synchronous_lock synchronouslock(m_pmutexIncludeExpandMd5);
+      _synchronous_lock synchronouslock(m_pmutexIncludeExpandMd5, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       m_mapIncludeExpandMd5[scopedstrPath] = scopedstrMd5;
 
@@ -1214,7 +1214,7 @@ namespace dynamic_source
       try
       {
 
-         _synchronous_lock synchronouslock(m_pmanager->m_pmutexShouldBuild);
+         _synchronous_lock synchronouslock(m_pmanager->m_pmutexShouldBuild, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          m_pmanager->m_mapShouldBuild2[path] = true;
 
@@ -1239,10 +1239,10 @@ namespace dynamic_source
    }
 
    // #ifdef WINDOWS
-   // #define is_absolute_path(psz) ((isalpha(psz[0]) && psz[1] == ':') \
-   //    || (psz[0] == '\\' && psz[1] == '\\'))
+   // #define is_absolute_path(scopedstr) ((isalpha(scopedstr[0]) && psz[1] == ':') \
+   //    || (scopedstr[0] == '\\' && psz[1] == '\\'))
    // #else
-   // #define is_absolute_path(psz) (psz[0] == '/')
+   // #define is_absolute_path(scopedstr) (scopedstr[0] == '/')
    // #endif
 
 
@@ -1280,9 +1280,9 @@ namespace dynamic_source
    ::pointer<::dynamic_source::session>script_manager::get_session(const ::scoped_string& scopedstrId)
    {
 
-      _synchronous_lock synchronouslock(m_pmutexSession);
+      _synchronous_lock synchronouslock(m_pmutexSession, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-      auto p = m_mapSession.plookup(scopedstrId);
+      auto p = m_mapSession.find(scopedstrId);
 
       if (p)
       {
@@ -1310,7 +1310,7 @@ namespace dynamic_source
 
       }
 
-      auto psession = __allocate ::dynamic_source::session();
+      auto psession = øallocate ::dynamic_source::session();
 
       psession->initialize_dynamic_source_session(scopedstrId, this);
 
@@ -1326,7 +1326,7 @@ namespace dynamic_source
    void script_manager::defer_clean_session()
    {
 
-      _synchronous_lock synchronouslock(m_pmutexSession);
+      _synchronous_lock synchronouslock(m_pmutexSession, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       ::earth::time timeNow;
 
@@ -1334,7 +1334,7 @@ namespace dynamic_source
 
       auto p = m_mapSession.begin();
 
-      while (::is_ok(p))
+      while (!m_mapSession.is_end(p))
       {
 
          auto pNext = p + 1;
@@ -1383,7 +1383,7 @@ namespace dynamic_source
 
       }*/
 
-      _synchronous_lock synchronouslock(m_pmutexRsa);
+      _synchronous_lock synchronouslock(m_pmutexRsa, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       auto psystem = system();
 
@@ -1419,7 +1419,7 @@ namespace dynamic_source
 
       auto prsa = pcrypto->generate_rsa_key();
 
-      _synchronous_lock synchronouslock(m_pmutexRsa);
+      _synchronous_lock synchronouslock(m_pmutexRsa, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       m_rsaptra.add(prsa);
 
@@ -1436,18 +1436,18 @@ namespace dynamic_source
    {
    }
 
-   void script_manager::register_plugin(const ::string& strHost, const ::string& strScript, const ::string& strName, script* pscript)
+   void script_manager::register_plugin(const ::scoped_string & scopedstrHost, const ::scoped_string & scopedstrScript, const ::scoped_string & scopedstrName, script* pscript)
    {
 
       plugin_map_item item;
 
-      item.m_strHost = strHost;
-      item.m_strScript = strScript;
-      item.m_strPlugin = strName;
+      item.m_strHost = scopedstrHost;
+      item.m_strScript = scopedstrScript;
+      item.m_strPlugin = scopedstrName;
 
       m_pluginmapitema.add(___new plugin_map_item(item));
 
-      m_pcache->register_script(strName, pscript);
+      m_pcache->register_script(scopedstrName, pscript);
 
 
    }
@@ -1458,13 +1458,13 @@ namespace dynamic_source
    }
 
 
-   void script_manager::wait_link_out(const ::string& pszServer, ::sockets::link_in_socket* pinsocket)
+   void script_manager::wait_link_out(const ::scoped_string & scopedstrServer, ::sockets::link_in_socket* pinsocket)
    {
 
       while (true)
       {
 
-         if (has_link_out_link(pszServer, pinsocket, nullptr))
+         if (has_link_out_link(scopedstrServer, pinsocket, nullptr))
             break;
 
          sleep(100_ms);
@@ -1474,12 +1474,12 @@ namespace dynamic_source
    }
 
 
-   bool script_manager::has_link_out_link(const ::string& pszServer, ::sockets::link_in_socket* pinsocket, ::httpd::socket* phttpdsocket)
+   bool script_manager::has_link_out_link(const ::scoped_string & scopedstrServer, ::sockets::link_in_socket* pinsocket, ::httpd::socket* phttpdsocket)
    {
 
-      _synchronous_lock synchronouslock(m_pmutexOutLink);
+      _synchronous_lock synchronouslock(m_pmutexOutLink, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-      auto p = m_mapOutLink.plookup(pszServer);
+      auto p = m_mapOutLink.find(scopedstrServer);
 
       ::sockets::link_out_socket* psocket = nullptr;
 
@@ -1512,7 +1512,7 @@ namespace dynamic_source
 
          }
 
-         m_mapOutLink.erase_item(pszServer);
+         m_mapOutLink.erase(scopedstrServer);
 
       }
 
@@ -1523,12 +1523,12 @@ namespace dynamic_source
 
    }
 
-   ::sockets::link_in_socket* script_manager::get_link_in(const ::string& pszServer, ::sockets::link_out_socket* poutsocket)
+   ::sockets::link_in_socket* script_manager::get_link_in(const ::scoped_string & scopedstrServer, ::sockets::link_out_socket* poutsocket)
    {
 
       single_lock sl2(m_pmutexInLink, true);
 
-      auto ppair = m_pmapInLink->plookup(poutsocket);
+      auto iterator = m_pmapInLink->find(poutsocket);
 
       {
 
@@ -1536,31 +1536,31 @@ namespace dynamic_source
 
          tunnel_map_item item;
 
-         item.m_strServer = pszServer;
+         item.m_strServer = scopedstrServer;
          item.m_time.Now();
 
-         m_mapTunnel.set_at(pszServer, item);
+         m_mapTunnel.set_at(scopedstrServer, item);
 
       }
 
-      if (::is_ok(ppair))
+      if (::is_ok(iterator))
          return nullptr;
 
-      ::sockets::link_in_socket* pinsocket = ppair->element2();
+      ::sockets::link_in_socket* pinsocket = iterator->element2();
 
-      m_pmapInLink->erase_item(poutsocket);
+      m_pmapInLink->erase(poutsocket);
 
       return pinsocket;
 
    }
 
 
-   bool script_manager::is_online(const ::string& pszServer)
+   bool script_manager::is_online(const ::scoped_string & scopedstrServer)
    {
 
-      _synchronous_lock synchronouslock(m_pmutexTunnel);
+      _synchronous_lock synchronouslock(m_pmutexTunnel, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-      auto p = m_mapTunnel.plookup(pszServer);
+      auto p = m_mapTunnel.find(scopedstrServer);
 
       if (::is_end(p))
       {
@@ -1581,7 +1581,7 @@ namespace dynamic_source
    }
 
 
-   ::sockets::link_out_socket* script_manager::create_link_out(const ::string& pszServer, ::httpd::socket* phttpdsocket)
+   ::sockets::link_out_socket* script_manager::create_link_out(const ::scoped_string & scopedstrServer, ::httpd::socket* phttpdsocket)
    {
 
       ::sockets::link_out_socket* psocket = ___new sockets::link_out_socket ();
@@ -1592,22 +1592,22 @@ namespace dynamic_source
 
       {
 
-         _synchronous_lock synchronouslock(m_pmutexTunnel);
+         _synchronous_lock synchronouslock(m_pmutexTunnel, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          tunnel_map_item item;
 
-         item.m_strServer = pszServer;
+         item.m_strServer = scopedstrServer;
          item.m_time.Now();
 
-         m_mapTunnel.set_at(pszServer, item);
+         m_mapTunnel.set_at(scopedstrServer, item);
 
       }
 
       {
 
-         _synchronous_lock synchronouslock(m_pmutexOutLink);
+         _synchronous_lock synchronouslock(m_pmutexOutLink, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-         m_mapOutLink.set_at(pszServer, psocket);
+         m_mapOutLink.set_at(scopedstrServer, psocket);
 
       }
 
@@ -1625,7 +1625,7 @@ namespace dynamic_source
 
       ::int_size size;
 
-      if (m_mapImageSize.lookup(strFile, size))
+      if (m_mapImageSize.find(strFile, size))
          return size;
 
       synchronouslock.unlock();
@@ -1800,7 +1800,7 @@ namespace dynamic_source
    }
 
 
-   ::file::path script_manager::get_script_path(const ::file::path& strName, const ::string& strModifier)
+   ::file::path script_manager::get_script_path(const ::file::path& strName, const ::scoped_string & scopedstrModifier)
    {
 
       ::file::path strTransformName = strName;
@@ -1815,11 +1815,11 @@ namespace dynamic_source
 
 #ifdef WINDOWS
 
-      return m_pcompiler->m_pintegrationcontext->m_pathBuildFolder / m_pcompiler->m_strDynamicSourceStage / m_pcompiler->m_pintegrationcontext->m_strPlatform / m_pcompiler->m_strDynamicSourceConfiguration / "dynamic_source" / strTransformName.folder() / strScript + strModifier + ".dll";
+      return m_pcompiler->m_pintegrationcontext->m_pathBuildFolder / m_pcompiler->m_strDynamicSourceStage / m_pcompiler->m_pintegrationcontext->m_strPlatform / m_pcompiler->m_strDynamicSourceConfiguration / "dynamic_source" / strTransformName.folder() / strScript + scopedstrModifier + ".dll";
 
 #else
 
-      return m_pcompiler->m_pintegrationcontext->m_pathBuildFolder / m_pcompiler->m_strDynamicSourceStage / m_pcompiler->m_pintegrationcontext->m_strStagePlatform / m_pcompiler->m_strDynamicSourceConfiguration / "dynamic_source" / strTransformName.folder() / strScript + strModifier + ".so";
+      return m_pcompiler->m_pintegrationcontext->m_pathBuildFolder / m_pcompiler->m_strDynamicSourceStage / m_pcompiler->m_pintegrationcontext->m_strStagePlatform / m_pcompiler->m_strDynamicSourceConfiguration / "dynamic_source" / strTransformName.folder() / strScript + scopedstrModifier + ".so";
 
 #endif
 
@@ -1829,11 +1829,11 @@ namespace dynamic_source
    bool script_manager::should_build(const ::file::path& strScriptPath)
    {
 
-      _synchronous_lock synchronouslock(m_pmutexShouldBuild);
+      _synchronous_lock synchronouslock(m_pmutexShouldBuild, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       ::logic::boolean bShouldBuild = false;
 
-      if (!m_mapShouldBuild2.lookup(strScriptPath, bShouldBuild))
+      if (!m_mapShouldBuild2.find(strScriptPath, bShouldBuild))
          return false;
 
       return bShouldBuild;

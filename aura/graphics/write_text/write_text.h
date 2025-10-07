@@ -21,13 +21,13 @@ namespace write_text
 
 
       critical_section                                m_csFont;
-      //string_to_string                                m_mapFontFaceName;
-      string_map < ::memory_pointer >                 m_mapFileMemory;
+      //string_to_string_base                                m_mapFontFaceName;
+      string_map_base < ::memory_pointer >                 m_mapFileMemory;
 
-      string_map < int_to_string >                    m_mapFontKeyFaceName;
+      string_map_base < int_to_string >                    m_mapFontKeyFaceName;
 
-      ::particle_pointer                        m_pparticleFontTextMapSynchronization;
-      string_map < ::pointer<internal_font >>m_mapInternalFont;
+      //::particle_pointer                        m_pparticleFontTextMapSynchronization;
+      string_map_base < ::pointer<internal_font >>m_mapInternalFont;
 
 
 
@@ -55,7 +55,7 @@ namespace write_text
       virtual memory_pointer get_file_memory(::platform::context * pcontext, const ::file::path & path);
 
       
-      virtual font_descriptor calculate_font_descriptor(const char * face, float size);
+      virtual font_descriptor calculate_font_descriptor(const_char_pointer face, float size);
       virtual string get_font_descriptor_face(const font_descriptor & font_descriptor);
 
       

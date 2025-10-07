@@ -34,7 +34,7 @@ namespace heap
 
       //int                                 m_iMemoryCountersStartable = 0;
 
-      ::map < TYPE, item >       m_mapCounter;
+      ::map_base < TYPE, item >       m_mapCounter;
 
 
       counter()
@@ -66,7 +66,7 @@ namespace heap
 
 
       //template < typename T >
-      //const char* memory_counter_id(T* pthis)
+      //const_char_pointer memory_counter_id(T* pthis)
       //{
 
       //   return typeid(*pthis).name();
@@ -145,7 +145,7 @@ namespace heap
 
 
 //template < typename T >
-//const char * memory_counter_id(T* pthis);
+//const_char_pointer memory_counter_id(T* pthis);
 //
 
 

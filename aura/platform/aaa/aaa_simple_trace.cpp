@@ -9,11 +9,11 @@
 #include "trace_category.h"
 
 
-CLASS_DECL_AURA void __simple_tracea(::particle * pparticle, enum_trace_level elevel, const ::string & pszFunction, const ::string & pszFile, int iLine, const ::string & psz);
-CLASS_DECL_AURA void __simple_tracev(::particle * pparticle, enum_trace_level elevel, const ::string & pszFunction, const ::string & pszFile, int iLine, const ::string & pszFormat, va_list args);
+CLASS_DECL_AURA void __simple_tracea(::particle * pparticle, enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, int iLine, const ::scoped_string & scopedstr);
+CLASS_DECL_AURA void __simple_tracev(::particle * pparticle, enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, int iLine, const ::scoped_string & scopedstrFormat, va_list args);
 
 
-//CLASS_DECL_AURA void FUNCTION_DEBUGBOX(const ::string & pszMessage, const ::string & pszTitle, const ::e_message_box & emessagebox, ::callback callback)
+//CLASS_DECL_AURA void FUNCTION_DEBUGBOX(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::::user::e_message_box & emessagebox, ::callback callback)
 //{
 //
 //   ::auto pmessagebox = __initialize_new ::message_box(nullptr, pszMessage, pszTitle, iFlags, function);
@@ -44,23 +44,23 @@ string FormatMessageFromSystem(unsigned int dwError)
 
 
 extern "C"
-void o_debug_string(const ::string & psz)
+void o_debug_string(const ::scoped_string & scopedstr)
 {
-   information(psz);
+   information(scopedstr);
 }
 
 
-CLASS_DECL_AURA void trace(enum_trace_level elevel, const ::string & pszTag, const ::string & pszText, const ::string & pszFile, int iLine)
+CLASS_DECL_AURA void trace(enum_trace_level elevel, const ::scoped_string & scopedstrTag, const ::scoped_string & scopedstrText, const ::scoped_string & scopedstrFile, int iLine)
 {
 
    character_count iLen;
 
-   iLen = strlen(pszText);
+   iLen = strlen(scopedstrText);
 
-   if (pszFile != nullptr)
+   if (scopedstrFile != nullptr)
    {
 
-      iLen += strlen(pszFile);
+      iLen += strlen(scopedstrFile);
 
       iLen += 30;
 
@@ -77,31 +77,31 @@ CLASS_DECL_AURA void trace(enum_trace_level elevel, const ::string & pszTag, con
 
    char * psz = str.get_buffer(iLen + 8);
 
-   strcpy(psz, pszText);
+   strcpy(scopedstr, pszText);
 
-   if (pszFile != nullptr)
+   if (scopedstrFile != nullptr)
    {
 
-      ansi_concatenate(psz, ", \"");
+      ansi_concatenate(scopedstr, ", \"");
 
-      ansi_concatenate(psz, pszFile);
+      ansi_concatenate(scopedstr, pszFile);
 
       if (iLine >= 1)
       {
 
          char pszNum[30];
 
-         ansi_from_long_long(pszNum, iLine, 10);
+         ansi_from_long_long(scopedstrNum, iLine, 10);
 
-         ansi_concatenate(psz, "(");
+         ansi_concatenate(scopedstr, "(");
 
-         ansi_concatenate(psz, pszNum);
+         ansi_concatenate(scopedstr, pszNum);
 
-         ansi_concatenate(psz, ")");
+         ansi_concatenate(scopedstr, ")");
 
       }
 
-      ansi_concatenate(psz, "\"");
+      ansi_concatenate(scopedstr, "\"");
 
    }
 
@@ -206,7 +206,7 @@ simple_trace::~simple_trace()
 }
 
 
-void simple_trace::__tracea(::particle * pparticle, enum_trace_level elevel, const ::string & pszFunction, const ::string & pszFile, int iLine, const ::string & psz)
+void simple_trace::__tracea(::particle * pparticle, enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, int iLine, const ::scoped_string & scopedstr)
 {
 
    __simple_tracea(pparticle, elevel, pszFunction, pszFile, iLine, psz);

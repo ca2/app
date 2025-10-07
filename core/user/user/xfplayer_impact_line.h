@@ -37,7 +37,7 @@ public:
    string                                          m_str;
    string                                          m_strPrefix;
    string                                          m_strRoot;
-   ::int_array                                       m_iaPosition;
+   ::int_array_base                                       m_iaPosition;
 
    ::int_rectangle                                 m_rectangle;
 
@@ -71,7 +71,7 @@ public:
 
    // Link
    //LOGFONTW                          m_logfontLink;
-   string_array                          m_straLink;
+   string_array_base                          m_straLink;
    index_array                      m_iaLinkStart;
    index_array                      m_iaLinkEnd;
 
@@ -124,7 +124,7 @@ public:
 
    void embossed_text_out(
    ::draw2d::graphics_pointer & pgraphics,
-   const string & str,
+   const ::scoped_string & scopedstr,
 
    int left,
    int top,
@@ -172,7 +172,7 @@ public:
 
    void SetAnimateType(int iAnimateType);
 
-   void OnTimerAnimate(::draw2d::graphics_pointer & pgraphics, int_rectangle_array &   rectaModified);
+   void OnTimerAnimate(::draw2d::graphics_pointer & pgraphics, int_rectangle_array_base &   rectaModified);
 
    void Show(bool bShow = true);
    virtual xfplayer_impact_line & operator = (const xfplayer_impact_line & src);
@@ -187,16 +187,16 @@ public:
 
 
 
-   bool PrepareLine(::draw2d::graphics_pointer & pgraphics, string str, int flags, const ::int_rectangle & rectangle);
+   bool PrepareLine(::draw2d::graphics_pointer & pgraphics, const ::scoped_string & scopedstr, int flags, const ::int_rectangle & rectangle);
 
 
    void add_char(::wide_character wch, character_count &index);
 
    void add_char(::wide_character wch, character_count &index, ::write_text::font * pFont);
 
-   bool _001OnDraw(::draw2d::graphics_pointer & pgraphics, bool bDraw, const ::int_rectangle & rectangle, int_rectangle_array & rectaModified, bool bRecalcLayout);
+   bool _001OnDraw(::draw2d::graphics_pointer & pgraphics, bool bDraw, const ::int_rectangle & rectangle, int_rectangle_array_base & rectaModified, bool bRecalcLayout);
 
-   bool _001OnDraw(::draw2d::graphics_pointer & pgraphics, bool bDraw, const ::int_rectangle & rectangle, int_rectangle_array & rectaModified, character_count * count, bool bRecalcLayout, ::color::color crColor, ::draw2d::pen_pointer sppen);
+   bool _001OnDraw(::draw2d::graphics_pointer & pgraphics, bool bDraw, const ::int_rectangle & rectangle, int_rectangle_array_base & rectaModified, character_count * count, bool bRecalcLayout, ::color::color crColor, ::draw2d::pen_pointer sppen);
 
 
    DECLARE_MESSAGE_HANDLER(OnMouseMove);

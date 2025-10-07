@@ -207,7 +207,7 @@ void app_core::system_prep()
    if (file_system()->exists(::file::path(APP_CORE_BASE_DIR) / "beg_debug_box.txt"))
    {
 
-      //debug_box("zzzAPPzzz app", "zzzAPPzzz app", e_message_box_icon_information);
+      //debug_box("zzzAPPzzz app", "zzzAPPzzz app", ::user::e_message_box_icon_information);
 
    }
 
@@ -240,7 +240,7 @@ void app_core::system_init()
 
       //const ::scoped_string & scopedstr = str1;
 
-      //string str = ::str::consume_quoted_value(psz);
+      //string str = ::str::consume_quoted_value(scopedstr);
 
       //information(str);
 
@@ -257,7 +257,7 @@ void app_core::system_init()
 
    string strAppId;
 
-   string_array stra1;
+   string_array_base stra1;
 
 #ifdef WINDOWS
 
@@ -288,11 +288,11 @@ void app_core::system_init()
 
 #endif
 
-   string_array stra2;
+   string_array_base stra2;
 
    stra2 = get_c_args_from_string(m_strCommandLine);
 
-   string_array stra3;
+   string_array_base stra3;
 
 #ifdef WINDOWS_DESKTOP
 
@@ -308,7 +308,7 @@ void app_core::system_init()
 
 #endif
 
-   string_array stra5;
+   string_array_base stra5;
 
    if(m_pszMain)
    {
@@ -317,7 +317,7 @@ void app_core::system_init()
 
    }
 
-   string_array stra4;
+   string_array_base stra4;
 
    string strCommandLine = merge_colon_args(
       {
@@ -340,14 +340,14 @@ void app_core::system_init()
 
       uid_t uid = atoi(strUid);
 
-      auto pmessagebox = __initialize_new ::message_box(nullptr, "going to seteuid to: " + as_string(uid), "going to seteuid", e_message_box_ok);
+      auto pmessagebox = __initialize_new ::message_box(nullptr, "going to seteuid to: " + as_string(uid), "going to seteuid", ::user::e_message_box_ok);
 
 pmessagebox->sync();
 
       if (seteuid(uid) == 0)
       {
 
-         auto pmessagebox = __initialize_new ::message_box(nullptr, "uid=" + as_string(uid), "seteuid success", e_message_box_ok);
+         auto pmessagebox = __initialize_new ::message_box(nullptr, "uid=" + as_string(uid), "seteuid success", ::user::e_message_box_ok);
 
 pmessagebox->sync();
 
@@ -361,7 +361,7 @@ pmessagebox->sync();
 
          strError.formatf("errno=%d uid=%d", iErr);
 
-         auto pmessagebox = __initialize_new ::message_box(nullptr, strError, "seteuid failed", e_message_box_icon_exclamation);
+         auto pmessagebox = __initialize_new ::message_box(nullptr, strError, "seteuid failed", ::user::e_message_box_icon_exclamation);
 
 pmessagebox->sync();
 
@@ -508,11 +508,11 @@ pmessagebox->sync();
 
    //set_object(get_context_system());
 
-   auto pcreate = __allocate ::create(get_context_system());
+   auto pcreate = øallocate ::create(get_context_system());
 
    pcreate->m_strAppId = strAppId;
 
-   pcreate->m_pcommandline = __allocate command_line(get_context_system(), strCommandLine);
+   pcreate->m_pcommandline = øallocate command_line(get_context_system(), strCommandLine);
 
    //::auraacmesystem()->get_command()->add_create(pcreate);
 
@@ -522,7 +522,7 @@ pmessagebox->sync();
    // cold start (never previously called program and its Dlls...)?
    ::auraacmesystem()->m_durationMainStart = m_durationStart;
 
-   //xxdebug_box("box1", "box1", e_message_box_icon_information);
+   //xxdebug_box("box1", "box1", ::user::e_message_box_icon_information);
 
    ::file::path pathOutputDebugString =          auto psystem = system();
 
@@ -551,7 +551,7 @@ string app_core::get_command_line()
 }
 
 
-void app_core::set_command_line(const ::string & psz)
+void app_core::set_command_line(const ::scoped_string & scopedstr)
 {
 
    m_strCommandLine = psz;
@@ -562,7 +562,7 @@ void app_core::set_command_line(const ::string & psz)
 
 pdirectorysystem->ca2roaming() / "program";
 
-   string strAppId = get_command_line_parameter(psz, "app");
+   string strAppId = get_command_line_parameter(scopedstr, "app");
 
    if (strAppId.has_character())
    {
@@ -573,7 +573,7 @@ pdirectorysystem->ca2roaming() / "program";
 
       file_system()->put_contents(path, get_command_line());
 
-      ::file::path pathExecutable = consume_command_line_parameter(psz, nullptr);
+      ::file::path pathExecutable = consume_command_line_parameter(scopedstr, nullptr);
 
       string strAppTitle = executable_title_from_appid(strAppId);
 
@@ -615,7 +615,7 @@ pdirectorysystem->ca2roaming() / "program";
 //
 //         string strLibrary = ::process::app_id_to_app_name(strAppId);
 //
-//         m_plibrary = __allocate ::acme::library();
+//         m_plibrary = øallocate ::acme::library();
 //
 //         m_plibrary->initialize(get_context_system());
 //
@@ -689,7 +689,7 @@ pdirectorysystem->ca2roaming() / "program";
 //      //   if (pfnDeferTerm == nullptr)
 //      //   {
 //
-//      //      output_error_message("Missing corresponding defer_*_term for the defer_*_init backbone library." + e_message_box_icon_error);
+//      //      output_error_message("Missing corresponding defer_*_term for the defer_*_init backbone library." + ::user::e_message_box_icon_error);
 //
 //      //      on_result(error_failed);
 //
@@ -915,7 +915,7 @@ typedef int_bool DEFER_INIT();
 typedef DEFER_INIT * PFN_DEFER_INIT;
 
 
-//CLASS_DECL_AURA int aura_entry_point(int argc, char * argv[], const ::string & pszMainAppId)
+//CLASS_DECL_AURA int aura_entry_point(int argc, char * argv[], const ::scoped_string & scopedstrMainAppId)
 //{
 //
 //   int iResult = 0;
@@ -929,7 +929,7 @@ typedef DEFER_INIT * PFN_DEFER_INIT;
 //      aura_main_struct.m_bUser = true;
 //      aura_main_struct.m_bUserEx = true;
 //
-//      auto psystem = __allocate ::aura::system();
+//      auto psystem = øallocate ::aura::system();
 //
 //      psystem->system_construct(argc, argv);
 //
@@ -947,7 +947,7 @@ typedef DEFER_INIT * PFN_DEFER_INIT;
 //CLASS_DECL_AURA long aura_prefix(::aura::system * psystem)
 //{
 //
-//   //pmaindata->m_pappcore = __allocate app_core(pmaindata);
+//   //pmaindata->m_pappcore = øallocate app_core(pmaindata);
 //
 //   if (!psystem->system_prep())
 //   {
@@ -971,7 +971,7 @@ typedef DEFER_INIT * PFN_DEFER_INIT;
 //CLASS_DECL_AURA long aura_fork(::aura::system * psystem, PFN_NEW_AURA_APPLICATION pfnNewAuraApplication)
 //{
 //
-//   //pmaindata->m_pappcore = __allocate app_core(pmaindata);
+//   //pmaindata->m_pappcore = øallocate app_core(pmaindata);
 //
 //   if (!psystem->system_prep())
 //   {
@@ -1028,23 +1028,23 @@ struct heap_test_struct :
 
 
 
-string_array get_c_args_from_string(const ::string & psz)
+string_array_base get_c_args_from_string(const ::scoped_string & scopedstr)
 {
 
-   string_array stra;
+   string_array_base stra;
 
-   if (psz == nullptr)
+   if (scopedstr == nullptr)
    {
 
       return stra;
 
    }
 
-   string_array straBeforeColon;
+   string_array_base straBeforeColon;
 
-   string_array straAfterColon;
+   string_array_base straAfterColon;
 
-   const ::ansi_character * pszEnd = psz + strlen(psz);
+   const ::ansi_character * pszEnd = psz + strlen(scopedstr);
 
    string str;
 
@@ -1052,12 +1052,12 @@ string_array get_c_args_from_string(const ::string & psz)
 
    bool bColon = false;
 
-   while (psz < pszEnd)
+   while (scopedstr < pszEnd)
    {
 
-      ::str::consume_spaces(psz, 0, pszEnd);
+      ::str::consume_spaces(scopedstr, 0, pszEnd);
 
-      if (psz >= pszEnd)
+      if (scopedstr >= pszEnd)
       {
 
          break;
@@ -1066,13 +1066,13 @@ string_array get_c_args_from_string(const ::string & psz)
       if (*psz == '\"')
       {
 
-         str = ::str::consume_quoted_value(psz, pszEnd);
+         str = ::str::consume_quoted_value(scopedstr, pszEnd);
 
       }
       else if (*psz == '\'')
       {
 
-         str = ::str::consume_quoted_value(psz, pszEnd);
+         str = ::str::consume_quoted_value(scopedstr, pszEnd);
 
       }
       else
@@ -1080,12 +1080,12 @@ string_array get_c_args_from_string(const ::string & psz)
 
          const ::scoped_string & scopedstrValueStart = psz;
 
-         while (!unicode_is_whitespace(psz))
+         while (!unicode_is_whitespace(scopedstr))
          {
 
-            unicode_increment(psz);
+            unicode_increment(scopedstr);
 
-            if (psz >= pszEnd)
+            if (scopedstr >= pszEnd)
             {
 
                break;
@@ -1095,19 +1095,19 @@ string_array get_c_args_from_string(const ::string & psz)
             if (*psz == '\"')
             {
 
-               ::str::consume_quoted_value_ex(psz, pszEnd);
+               ::str::consume_quoted_value_ex(scopedstr, pszEnd);
 
             }
             else if (*psz == '\'')
             {
 
-               ::str::consume_quoted_value_ex(psz, pszEnd);
+               ::str::consume_quoted_value_ex(scopedstr, pszEnd);
 
             }
 
          }
 
-         str = string(pszValueStart, psz - pszValueStart);
+         str = string(scopedstrValueStart, psz - pszValueStart);
 
       }
 
@@ -1150,23 +1150,23 @@ string_array get_c_args_from_string(const ::string & psz)
 }
 
 
-string_array get_c_args_from_c(const ::string & psz)
+string_array_base get_c_args_from_c(const ::scoped_string & scopedstr)
 {
 
-   string_array stra;
+   string_array_base stra;
 
-   if(psz == nullptr)
+   if(scopedstr == nullptr)
    {
 
       return stra;
 
    }
 
-   string_array straBeforeColon;
+   string_array_base straBeforeColon;
 
-   string_array straAfterColon;
+   string_array_base straAfterColon;
 
-   const ::ansi_character * pszEnd = psz + strlen(psz);
+   const ::ansi_character * pszEnd = psz + strlen(scopedstr);
 
    string str;
 
@@ -1174,12 +1174,12 @@ string_array get_c_args_from_c(const ::string & psz)
 
    bool bColon = false;
 
-   while(psz < pszEnd)
+   while(scopedstr < pszEnd)
    {
 
-      ::str::consume_spaces(psz, 0, pszEnd);
+      ::str::consume_spaces(scopedstr, 0, pszEnd);
 
-      if(psz >= pszEnd)
+      if(scopedstr >= pszEnd)
       {
 
          break;
@@ -1188,13 +1188,13 @@ string_array get_c_args_from_c(const ::string & psz)
       if(*psz == '\"')
       {
 
-         str = ::str::consume_c_quoted_value(psz, pszEnd);
+         str = ::str::consume_c_quoted_value(scopedstr, pszEnd);
 
       }
       else if(*psz == '\'')
       {
 
-         str = ::str::consume_c_quoted_value(psz, pszEnd);
+         str = ::str::consume_c_quoted_value(scopedstr, pszEnd);
 
       }
       else
@@ -1202,12 +1202,12 @@ string_array get_c_args_from_c(const ::string & psz)
 
          const ::scoped_string & scopedstrValueStart = psz;
 
-         while (!unicode_is_whitespace(psz))
+         while (!unicode_is_whitespace(scopedstr))
          {
 
-            unicode_increment(psz);
+            unicode_increment(scopedstr);
 
-            if (psz >= pszEnd)
+            if (scopedstr >= pszEnd)
             {
 
                break;
@@ -1217,19 +1217,19 @@ string_array get_c_args_from_c(const ::string & psz)
             if (*psz == '\"')
             {
 
-               ::str::consume_quoted_value_ex(psz, pszEnd);
+               ::str::consume_quoted_value_ex(scopedstr, pszEnd);
 
             }
             else if (*psz == '\'')
             {
 
-               ::str::consume_quoted_value_ex(psz, pszEnd);
+               ::str::consume_quoted_value_ex(scopedstr, pszEnd);
 
             }
 
          }
 
-         str = string(pszValueStart, psz - pszValueStart);
+         str = string(scopedstrValueStart, psz - pszValueStart);
 
       }
 
@@ -1272,28 +1272,28 @@ string_array get_c_args_from_c(const ::string & psz)
 }
 
 
-string_array get_c_args_for_c(const ::string & psz)
+string_array_base get_c_args_for_c(const ::scoped_string & scopedstr)
 {
 
-   string_array stra;
+   string_array_base stra;
 
-   if(psz == nullptr)
+   if(scopedstr == nullptr)
    {
 
       return stra;
 
    }
 
-   const ::ansi_character * pszEnd = psz + strlen(psz);
+   const ::ansi_character * pszEnd = psz + strlen(scopedstr);
 
    string str;
 
-   while(psz < pszEnd)
+   while(scopedstr < pszEnd)
    {
 
-      ::str::consume_spaces(psz, 0, pszEnd);
+      ::str::consume_spaces(scopedstr, 0, pszEnd);
 
-      if(psz >= pszEnd)
+      if(scopedstr >= pszEnd)
       {
 
          break;
@@ -1303,13 +1303,13 @@ string_array get_c_args_for_c(const ::string & psz)
       if(*psz == '\"')
       {
 
-         str = ::str::consume_c_quoted_value(psz, pszEnd);
+         str = ::str::consume_c_quoted_value(scopedstr, pszEnd);
 
       }
       else if(*psz == '\'')
       {
 
-         str = ::str::consume_c_quoted_value(psz, pszEnd);
+         str = ::str::consume_c_quoted_value(scopedstr, pszEnd);
 
       }
       else
@@ -1317,12 +1317,12 @@ string_array get_c_args_for_c(const ::string & psz)
 
          const ::scoped_string & scopedstrValueStart = psz;
 
-         while(!unicode_is_whitespace(psz))
+         while(!unicode_is_whitespace(scopedstr))
          {
 
-            unicode_increment(psz);
+            unicode_increment(scopedstr);
 
-            if(psz >= pszEnd)
+            if(scopedstr >= pszEnd)
             {
 
                break;
@@ -1332,19 +1332,19 @@ string_array get_c_args_for_c(const ::string & psz)
             if(*psz == '\"')
             {
 
-               ::str::consume_quoted_value_ex(psz, pszEnd);
+               ::str::consume_quoted_value_ex(scopedstr, pszEnd);
 
             }
             else if(*psz == '\'')
             {
 
-               ::str::consume_quoted_value_ex(psz, pszEnd);
+               ::str::consume_quoted_value_ex(scopedstr, pszEnd);
 
             }
 
          }
 
-         str = string(pszValueStart, psz - pszValueStart);
+         str = string(scopedstrValueStart, psz - pszValueStart);
 
       }
 
@@ -1357,12 +1357,12 @@ string_array get_c_args_for_c(const ::string & psz)
 }
 
 
-string_array get_c_args(int argc, char ** argv)
+string_array_base get_c_args(int argc, char ** argv)
 {
 
-   string_array straBeforeColon;
+   string_array_base straBeforeColon;
 
-   string_array straAfterColon;
+   string_array_base straAfterColon;
 
    if(argc > 0)
    {
@@ -1399,7 +1399,7 @@ string_array get_c_args(int argc, char ** argv)
 
    }
 
-   string_array stra;
+   string_array_base stra;
 
    stra = straBeforeColon;
 
@@ -1437,7 +1437,7 @@ string apple_get_bundle_identifier()
 #endif
 
 
-string transform_to_c_arg(const ::string & psz)
+string transform_to_c_arg(const ::scoped_string & scopedstr)
 {
 
    bool bNeedQuote = false;
@@ -1455,7 +1455,7 @@ string transform_to_c_arg(const ::string & psz)
          if(*pszParse == '\\')
          {
 
-            unicode_increment(pszParse);
+            unicode_increment(scopedstrParse);
 
          }
          else if(*pszParse == chQuote)
@@ -1478,7 +1478,7 @@ string transform_to_c_arg(const ::string & psz)
          chQuote = '\"';
 
       }
-      else if(unicode_is_whitespace(pszParse)
+      else if(unicode_is_whitespace(scopedstrParse)
          || character_isspace((unsigned char) *pszParse)
               || *pszParse == ':')
       {
@@ -1489,7 +1489,7 @@ string transform_to_c_arg(const ::string & psz)
 
       }
 
-      unicode_increment(pszParse);
+      unicode_increment(scopedstrParse);
 
    }
 
@@ -1509,12 +1509,12 @@ string transform_to_c_arg(const ::string & psz)
 }
 
 
-string merge_colon_args(const array < string_array > & straa)
+string merge_colon_args(const array < string_array_base > & straa)
 {
 
-   string_array straBeforeColon;
+   string_array_base straBeforeColon;
 
-   string_array straAfterColon;
+   string_array_base straAfterColon;
 
    string strCommandLine;
 
@@ -1827,14 +1827,14 @@ bool app_core::has_aura_application_factory() const
 }
 
 
-::pointer<::aura::application>app_core::get_new_application(::object* pparticle, const ::string & pszAppId)
+::pointer<::aura::application>app_core::get_new_application(::object* pparticle, const ::scoped_string & scopedstrAppId)
 {
 
    ::pointer<::aura::application>papp;
 
    string strAppId = pszAppId;
 
-   synchronous_lock synchronouslock(::auraacmesystem()->m_pmutexLibrary);
+   synchronous_lock synchronouslock(::auraacmesystem()->m_pmutexLibrary, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    ::pointer<::acme::library> plibrary = ::auraacmesystem()->m_mapLibrary[strAppId];
 
@@ -1881,7 +1881,7 @@ bool app_core::has_aura_application_factory() const
             if (strAppId.is_empty())
             {
 
-               papp = ::auraacmesystem()->__øcreate < ::aura::application > ();
+               papp = ::auraacmesystem()->øcreate < ::aura::application > ();
 
                *((::aura_main_struct*)papp) = *((::aura_main_struct*)this);
 
@@ -1903,7 +1903,7 @@ bool app_core::has_aura_application_factory() const
          else
          {
 
-            //plibrary = __allocate ::acme::library();
+            //plibrary = øallocate ::acme::library();
 
             //plibrary->initialize_aura_library(pparticle, 0, nullptr);
 
@@ -1927,7 +1927,7 @@ bool app_core::has_aura_application_factory() const
 
 #ifndef UNIVERSAL_WINDOWS
 
-               output_error_message("papp \"" + strAppId + "\" cannot be created.\n\nThe library \"" + strLibrary + "\" could not be loaded. " + plibrary->m_strMessage, "ca2", e_message_box_icon_error);
+               output_error_message("papp \"" + strAppId + "\" cannot be created.\n\nThe library \"" + strLibrary + "\" could not be loaded. " + plibrary->m_strMessage, "ca2", ::user::e_message_box_icon_error);
 
 #endif
 
@@ -2056,8 +2056,8 @@ bool app_core::has_aura_application_factory() const
    if (!papp->is_serviceable() || papp->is_user_service())
    {
 
-      ::auraacmesystem()->m_spmutexUserAppData = __allocate ::pointer < ::mutex > (e_create_new, false, "Local\\ca2.UserAppData");
-      ::auraacmesystem()->m_spmutexSystemAppData = __allocate ::pointer < ::mutex > (e_create_new, false, "Local\\ca2.SystemAppData");
+      ::auraacmesystem()->m_spmutexUserAppData = øallocate ::pointer < ::mutex > (e_create_new, false, "Local\\ca2.UserAppData");
+      ::auraacmesystem()->m_spmutexSystemAppData = øallocate ::pointer < ::mutex > (e_create_new, false, "Local\\ca2.SystemAppData");
 
    }
 
@@ -2315,7 +2315,7 @@ const char * get_cube_app_id()
 }
 
 
-void cube_set_app_id(const ::string & pszAppId)
+void cube_set_app_id(const ::scoped_string & scopedstrAppId)
 {
 
    g_pszCubeAppId = pszAppId;

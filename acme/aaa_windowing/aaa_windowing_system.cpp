@@ -62,7 +62,7 @@ namespace windowing
 
             system()->do_graphics_and_windowing_system_factory();
 
-            __øconstruct(m_pdisplaybase);
+            øconstruct(m_pdisplaybase);
 
             m_pdisplaybase->open_display();
 
@@ -214,7 +214,7 @@ namespace windowing
 
         }
 
-        auto ptopic = __allocate ::topic(id_application_dark_mode_change);
+        auto ptopic = øallocate ::topic(id_application_dark_mode_change);
 
         for (auto & pwindowbase : m_windowbasea)
         {
@@ -275,7 +275,7 @@ namespace windowing
     void windowing_base::_do_tasks()
     {
 
-       _synchronous_lock synchronouslock(this->synchronization());
+       _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
        auto windowbasea = m_windowbasea;
 

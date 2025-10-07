@@ -41,7 +41,7 @@
 //
 //template < typename ARG_TYPE >
 //class sort_map :
-//   virtual public atom_map < pointer< sort_data < ARG_TYPE > > >
+//   virtual public atom_map_base < pointer< sort_data < ARG_TYPE > > >
 //{
 //public:
 //
@@ -70,7 +70,7 @@
 //   ::pointer<sort_data>         m_psortdata; // from last get_sort call
 //
 //
-//   sort_array() { m_parray = __allocate BASE_ARRAY_TYPE(); }
+//   sort_array() { m_parray = øallocate BASE_ARRAY_TYPE(); }
 //
 //
 //   sort_array(BASE_ARRAY_TYPE * parray) : m_parray(parray) { }
@@ -89,9 +89,9 @@
 //
 //      auto& psortmap = m_map[atom];
 //
-//      __defer_construct_new(psortmap);
+//      ødefer_construct_new(psortmap);
 //
-//      psortmap->m_pless = __allocate less_predicate < ARG_TYPE, PRED > (predLess);
+//      psortmap->m_pless = øallocate less_predicate < ARG_TYPE, PRED > (predLess);
 //
 //   }
 //
@@ -124,11 +124,11 @@
 //   sort_data * get_sort(const ::atom & atom) const
 //   {
 //
-//      auto ppair = m_map.plookup(atom);
+//      auto iterator = m_map.find(atom);
 //
-//      if (!ppair) return nullptr;
+//      if (!iterator) return nullptr;
 //
-//      ((sort_array*)this)->m_psortdata = ppair->m_element2;
+//      ((sort_array*)this)->m_psortdata = iterator->m_element2;
 //
 //      return m_psortdata;
 //
@@ -196,7 +196,7 @@
 //
 //         m_parray = a.m_parray;
 //
-//         ::acme::map::copy(m_map, a.m_map);
+//         ::acme::map_base::copy(m_map, a.m_map);
 //
 //      }
 //

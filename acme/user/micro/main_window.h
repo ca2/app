@@ -155,7 +155,7 @@ namespace micro
          //virtual void resize_to_fit();
 
 
-         //virtual void display_temporary_file_with_text(const ::string & str);
+         //virtual void display_temporary_file_with_text(const ::scoped_string & scopedstr);
 
          //
 // Created by camilo on 2024-09-26 18:50 Odense Time <3ThomasBorregaardSorensen!!
@@ -211,7 +211,7 @@ namespace micro
 
 
          //virtual ::pointer < ::operating_system::a_system_menu > create_system_menu(bool bContextual = true);
-         void _on_window_simple_action(const char * pszActionName, ::user::activation_token * puseractivationtoken) override;
+         void _on_window_simple_action(const_char_pointer pszActionName, ::user::activation_token * puseractivationtoken) override;
          
 
          void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
@@ -334,7 +334,7 @@ namespace micro
          //void add_button(const ::scoped_string & scopedstrText, enum_dialog_result edialogresult, char chLetter);
 
 
-         void display_temporary_file_with_text(const ::string & str) override;
+         void display_temporary_file_with_text(const ::scoped_string & scopedstr) override;
 
          //virtual void on_mouse_move(::user::mouse * pmouse);
          //virtual void on_left_button_down(::user::mouse * pmouse);
@@ -407,7 +407,7 @@ namespace micro
          //void release_mouse_capture() override;
 
 
-         //void _on_window_simple_action(const char * pszActionName) override;
+         //void _on_window_simple_action(const_char_pointer pszActionName) override;
 
 
          //

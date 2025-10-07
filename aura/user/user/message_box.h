@@ -28,7 +28,7 @@ namespace user
       //pointer< ::future < enum_dialog_result > >    m_pprocess;
       bool                                            m_bOsUserThemeColorModified;
       bool                                            m_bInvalidated;
-      string_array                                    m_stra;
+      string_array_base                                    m_stra;
       //string                                          m_strTitle;
       string                                          m_strFontName;
 
@@ -88,13 +88,13 @@ namespace user
       int                                             m_iResult;
 
 
-      //message_box(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox);
+      //message_box(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::user::e_message_box & emessagebox);
       message_box();
       ~message_box() override;
 
 
       // message_box_interface
-      //::pointer < ::subparticle > show(::user::interaction * puserinteraction, const string & strMessage, const string & strTitle, const ::e_message_box & emessagebox) override;
+      //::pointer < ::subparticle > show(::user::interaction * puserinteraction, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::user::e_message_box & emessagebox) override;
       void on_realize(::message_box * pmessagebox) override;
       void add_button(const ::scoped_string & scopedstrTitle, enum_dialog_result edialogresult, char chLetter) override;
 
@@ -178,10 +178,10 @@ namespace user
 //
 //      string                  m_strText;
 //      string                  m_strTitle;
-//      ::e_message_box         m_emessagebox;
+//      ::user::e_message_box         m_emessagebox;
 //
 //
-//      message_box(const string &strText, const string &strTitle, const ::e_message_box &emessagebox);
+//      message_box(const ::scoped_string & scopedstrText, const ::scoped_string & scopedstrTitle, const ::user::e_message_box &emessagebox);
 //      virtual ~message_box();
 //
 //
@@ -194,7 +194,7 @@ namespace user
 //} // namespace user
 //
 //
-////CLASS_DECL_AURA void auto pmessagebox = __initialize_new ::message_box(const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const future & process = ::future());
+////CLASS_DECL_AURA void auto pmessagebox = __initialize_new ::message_box(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const ::user::e_message_box & emessagebox = ::user::e_message_box_ok, const future & process = ::future());
 
 //pmessagebox->sync();
 //

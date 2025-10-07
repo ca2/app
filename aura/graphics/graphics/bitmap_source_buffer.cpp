@@ -51,7 +51,7 @@ namespace graphics
 
          //estatus =
          
-         __øconstruct(m_pmemorymap);
+         øconstruct(m_pmemorymap);
 
          //if (!estatus)
          //{
@@ -83,10 +83,10 @@ namespace graphics
    }
 
 
-   void bitmap_source_buffer::set_bitmap_source(const ::string &strBitmapSource)
+   void bitmap_source_buffer::set_bitmap_source(const ::scoped_string & scopedstrBitmapSource)
    {
 
-      if (m_strBitmapSource == strBitmapSource)
+      if (m_strBitmapSource == scopedstrBitmapSource)
       {
 
          return;
@@ -95,17 +95,17 @@ namespace graphics
 
       clear_bitmap_source();
 
-      m_strBitmapSource = strBitmapSource;
+      m_strBitmapSource = scopedstrBitmapSource;
 
       char szName[] = "Local\\bitmap-source:%s";
 
       string strMutexName;
 
-      strMutexName.formatf(szName, strBitmapSource.c_str());
+      strMutexName.formatf(szName, scopedstrBitmapSource.as_string().c_str());
 
       m_pmutexBitmapSource = node()->create_local_named_mutex(this, false, strMutexName, nullptr);
 
-      synchronous_lock synchronouslock(m_pmutexBitmapSource);
+      synchronous_lock synchronouslock(m_pmutexBitmapSource, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       ::file::path pathFolder;
 
@@ -113,11 +113,11 @@ namespace graphics
 
       ::file::path path;
 
-      path = pathFolder / "bitmap-source" / strBitmapSource;
+      path = pathFolder / "bitmap-source" / scopedstrBitmapSource;
 
       //auto estatus = 
       
-      __øconstruct(m_pmemorymap);
+      øconstruct(m_pmemorymap);
 
       //if (!estatus)
       //{
@@ -150,7 +150,7 @@ namespace graphics
       if (m_pmemorymap)
       {
 
-         synchronous_lock synchronouslock(m_pmutexBitmapSource);
+         synchronous_lock synchronouslock(m_pmutexBitmapSource, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          auto estatus = m_pmemorymap.release();
 
@@ -197,7 +197,7 @@ namespace graphics
 
       }
 
-      synchronous_lock synchronouslock(m_pmutexBitmapSource);
+      synchronous_lock synchronouslock(m_pmutexBitmapSource, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       try
       {

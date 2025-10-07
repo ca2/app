@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "array.h"
+#include "array_base.h"
 //#include "comparable_eq_array.h"
 //#include "comparable_array.h"
 //
@@ -42,44 +42,41 @@ using strsize_range_array = ::array < strsize_range >;
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-class string_array_base :
-   public comparable_array < Type, const Type &, comparable_eq_array < Type, const Type &, array < Type, const Type &, ::typed::def < Type >, ::heap::typed_memory < Type, ::heap::e_memory_array >, t_etypeContainer > > >
+class string_base_array :
+   public comparable_array_base < Type, const Type &, comparable_eq_array_base < Type, const Type &, array_base < Type, const Type &, ::typed::def < Type >, ::heap::typed_memory < Type, ::heap::e_memory_array >, t_etypeContainer > > >
 {
 public:
 
 
-   using BASE_ARRAY = comparable_array < Type, const Type &, comparable_eq_array < Type, const Type &, array < Type, const Type &, ::typed::def < Type >, ::heap::typed_memory < Type, ::heap::e_memory_array >, t_etypeContainer > > >;
-   typedef Type                                                      String;
-   typedef RawType                                                   RawString;
-   typedef string_array_base < RawType, RawType, t_etypeContainer >    RawStringArray;
-   using CHARACTER = typename Type::CHARACTER;
-   using RANGE = typename RawType::RANGE;
-   typedef Type BASE_TYPE;
-   typedef const Type & BASE_ARG_TYPE;
-   using SCOPED_STRING = typename RawType::SCOPED_STRING;
+   using BASE_ARRAY = comparable_array_base < Type, const Type &, comparable_eq_array_base < Type, const Type &, array_base < Type, const Type &, ::typed::def < Type >, ::heap::typed_memory < Type, ::heap::e_memory_array >, t_etypeContainer > > >;
+   using RAW_BASE_ARRAY = typename BASE_ARRAY::RAW_BASE_ARRAY;
+   using BASE_STRING = Type;
+   using BASE_RAW_STRING = RawType;
+   using BASE_RAW_STRING_ARRAY = ::string_base_array < RawType, RawType, t_etypeContainer >;
+   using CHARACTER = typename BASE_STRING::CHARACTER;
+   using RAW_RANGE = typename BASE_RAW_STRING::RANGE;
+   using BASE_TYPE = BASE_STRING;
+   using BASE_ARG_TYPE = const BASE_STRING &;
+   using SCOPED_STRING = typename BASE_STRING::SCOPED_STRING;
 
    using THIS_RAW_RANGE = typename BASE_ARRAY::THIS_RAW_RANGE;
    using CONST_RAW_RANGE = typename BASE_ARRAY::CONST_RAW_RANGE;
+   using this_iterator = typename BASE_ARRAY::this_iterator;
 
-   string_array_base() {}
+   using BASE_ARRAY::BASE_ARRAY;
+   //using BASE_ARRAY::operator =;
 
-   template < typename T >
-   string_array_base(const ::std::initializer_list < T > & l)
+
+   string_base_array(const RAW_BASE_ARRAY& a) : BASE_ARRAY(a) {}
+   string_base_array(CHARACTER * const * ppsz, ::collection::count c);
+   ~string_base_array();
+
+   template < primitive_container CONTAINER >
+   string_base_array & operator = (const CONTAINER & container)
    {
-      for (auto & e : l)
-      {
-         add(e);
-      }
+      this->assign_a_container(container);
+      return *this;
    }
-
-   string_array_base(const string_array_base & array);
-   string_array_base(string_array_base && array);
-   //#ifdef UNIVERSAL_WINDOWS
-   //   string_array_base(Platform::Array < Platform::String ^ > ^ refstra);
-   //#endif
-   string_array_base(CHARACTER * const * ppsz, ::collection::count c);
-   ~string_array_base() override;
-
 
    ::collection::count get_size() const;
    ::collection::count get_count() const;
@@ -142,7 +139,7 @@ public:
    Type & add_get(const Type & newElement);
 
 
-   void copy(const string_array_base & src);
+   void copy(const string_base_array & src);
 
    template < primitive_array ARRAY >
    void copy(const ARRAY & src);
@@ -167,17 +164,18 @@ public:
 
    }
 
-   string_array_base & c_stra(string_array_base & stra) const;
-   string_array_base c_stra() const;
+   string_base_array & c_stra(string_base_array & stra) const;
+   string_base_array c_stra() const;
 
    Type & insert_at(::collection::index nIndex, const Type & strElement);
    void insert_at(::collection::index nIndex, const Type & strElement, ::collection::count nCount);
-   void insert_at(::collection::index nStartIndex, const string_array_base & NewArray);
+   template < primitive_container CONTAINER >
+   void insert_at(::collection::index nStartIndex, const CONTAINER & container);
 
 
-   string_array_base slice(::collection::index iStart, ::collection::count iCount = -1) const;
+   string_base_array slice(::collection::index iStart, ::collection::count iCount = -1) const;
 
-   string_array_base & operator =(const string_array_base & stra);
+   //string_base_array & operator =(const string_base_array & stra);
 
 
    Type & insert_empty(::collection::index nIndex);
@@ -203,8 +201,8 @@ public:
    ::collection::index add_unique(const Type & str);
    ::collection::index case_insensitive_add_unique(const Type & str);
 
-   ::collection::count append_unique(const string_array_base & stra);
-   ::collection::count case_insensitive_append_unique(const string_array_base & stra);
+   ::collection::count append_unique(const string_base_array & stra);
+   ::collection::count case_insensitive_append_unique(const string_base_array & stra);
 
    void make_lower();
    void make_upper();
@@ -221,6 +219,15 @@ public:
       va_end(arguments);
 
       return str;
+
+   }
+
+
+   template<typename... Args>
+   auto & append_format(std::format_string<Args...> fmt, Args&&... args)
+   {
+
+      return this->add_new().format(fmt, std::forward<Args>(args)...);
 
    }
 
@@ -248,10 +255,10 @@ public:
    Type pop_random_element();
 
    Type pop(::collection::index i = -1);
-   void slice(string_array_base & stra, ::collection::index i, ::collection::count ca = -1);
+   void slice(string_base_array & stra, ::collection::index i, ::collection::count ca = -1);
    void erase(::collection::index i, ::collection::count count);
-   void splice(const string_array_base & stra, ::collection::index i, ::collection::count ca = -1);
-   void splice(const string_array_base & stra, ::collection::index i, string_array_base & straRemoved, ::collection::count ca = -1);
+   void splice(const string_base_array & stra, ::collection::index i, ::collection::count ca = -1);
+   void splice(const string_base_array & stra, ::collection::index i, string_base_array & straRemoved, ::collection::count ca = -1);
 
 
    // if Type is found, transfer it to specified position
@@ -261,7 +268,7 @@ public:
    // transfer preferred in order
    bool preferred(const SCOPED_STRING & str);
 
-   ::collection::count preferred(string_array_base & stra);
+   ::collection::count preferred(string_base_array & stra);
 
 
    ::collection::count case_insensitive_count(const SCOPED_STRING & strFind, ::collection::index iFind = 0, ::collection::index iLast = -1) const;
@@ -379,16 +386,16 @@ public:
    ::collection::count search(STRING_ARRAY & stra, const SCOPED_STRING & strSubstring, ::collection::index first = 0, ::collection::index iLast = -1);
 
 
-   //::collection::count case_insensitive_begins(string_array_base & straPrefixed,const SCOPED_STRING &strPrefix,::collection::index first = 0,::collection::index iLast = -1);
-   //::collection::count begins(string_array_base& straPrefixed, const SCOPED_STRING &strPrefix, ::collection::index first = 0, ::collection::index iLast = -1);
+   //::collection::count case_insensitive_begins(string_base_array & straPrefixed,const SCOPED_STRING &strPrefix,::collection::index first = 0,::collection::index iLast = -1);
+   //::collection::count begins(string_base_array& straPrefixed, const SCOPED_STRING &strPrefix, ::collection::index first = 0, ::collection::index iLast = -1);
 
 
-   //::collection::count case_insensitive_ends(string_array_base& straSuffixed, const SCOPED_STRING &strPrefix, ::collection::index first = 0, ::collection::index iLast = -1);
-   //::collection::count ends(string_array_base& straSuffixed, const SCOPED_STRING &strPrefix, ::collection::index first = 0, ::collection::index iLast = -1);
+   //::collection::count case_insensitive_ends(string_base_array& straSuffixed, const SCOPED_STRING &strPrefix, ::collection::index first = 0, ::collection::index iLast = -1);
+   //::collection::count ends(string_base_array& straSuffixed, const SCOPED_STRING &strPrefix, ::collection::index first = 0, ::collection::index iLast = -1);
 
 
-   //::collection::count case_insensitive_search(string_array_base& straResult, const SCOPED_STRING &strSubstring, ::collection::index first = 0, ::collection::index iLast = -1);
-   //::collection::count search(string_array_base& straResult, const SCOPED_STRING &strSubstring, ::collection::index first = 0, ::collection::index iLast = -1);
+   //::collection::count case_insensitive_search(string_base_array& straResult, const SCOPED_STRING &strSubstring, ::collection::index first = 0, ::collection::index iLast = -1);
+   //::collection::count search(string_base_array& straResult, const SCOPED_STRING &strSubstring, ::collection::index first = 0, ::collection::index iLast = -1);
 
 
    ::collection::count case_insensitive_filter_begins(const SCOPED_STRING & strPrefix, ::collection::index first = 0, ::collection::index iLast = -1);
@@ -424,15 +431,18 @@ public:
    ::collection::count erase(const SCOPED_STRING & str, ::collection::index iFind = 0, ::collection::index iLast = -1);
 
 
-   ::collection::count case_insensitive_erase(const string_array_base & stra);
-   ::collection::count erase(const string_array_base & stra);
+   template < primitive_container CONTAINER >
+   ::collection::count case_insensitive_erase(const CONTAINER & container);
 
-   string_array_base & explode(const SCOPED_STRING & strSeparator, const SCOPED_STRING & str, bool bAddEmpty = true);
+   template < primitive_container CONTAINER >
+   ::collection::count erase(const CONTAINER & container);
 
-   string_array_base & _001Explode(const SCOPED_STRING & str);
+   string_base_array & explode(const SCOPED_STRING & strSeparator, const SCOPED_STRING & str, bool bAddEmpty = true);
+
+   string_base_array & _001Explode(const SCOPED_STRING & str);
 
    // csstidy: Same as explode, but not within a Type
-   //string_array_base & csstidy_explode_ws(char sep,const SCOPED_STRING &str);
+   //string_base_array & csstidy_explode_ws(char sep,const SCOPED_STRING &str);
 
 
    //template < typename PRED >
@@ -476,25 +486,25 @@ public:
 
    //   void XFV001Expand();
 
-   //string_array_base & operator =(const ::payload & payload);
-   //   string_array_base & operator =(const string_array_base & stra);
-   //string_array_base & operator =(const long_long_array & ia);
-   //   string_array_base & operator =(const string_array_base & stra);
-   //string_array_base & operator -=(const string_array_base & stra);
-   //string_array_base & operator +=(const string_array_base & stra);
+   //string_base_array & operator =(const ::payload & payload);
+   //   string_base_array & operator =(const string_base_array & stra);
+   //string_base_array & operator =(const long_long_array_base & ia);
+   //   string_base_array & operator =(const string_base_array & stra);
+   //string_base_array & operator -=(const string_base_array & stra);
+   //string_base_array & operator +=(const string_base_array & stra);
 
    using BASE_ARRAY::operator +=;
    //using BASE_ARRAY::operator -=;
 
 
-   //string_array_base operator -(const string_array_base & stra) const;
-   //string_array_base operator +(const string_array_base & stra) const;
-   //   string_array_base operator -(const string_array_base & stra) const;
-   //   string_array_base operator +(const string_array_base & stra) const;
+   //string_base_array operator -(const string_base_array & stra) const;
+   //string_base_array operator +(const string_base_array & stra) const;
+   //   string_base_array operator -(const string_base_array & stra) const;
+   //   string_base_array operator +(const string_base_array & stra) const;
 
 
-   bool operator == (const RawStringArray & a) const;
-   bool operator != (const RawStringArray & a) const;
+   bool operator == (const BASE_RAW_STRING_ARRAY & a) const;
+   bool operator != (const BASE_RAW_STRING_ARRAY & a) const;
 
 
    void replace_with(const SCOPED_STRING & strNew, const SCOPED_STRING & strOld);
@@ -508,7 +518,7 @@ public:
 
    void add_tokens(const SCOPED_STRING & str, const SCOPED_STRING & strSeparator, bool bAddEmpty = true);
 
-   void add_smallest_tokens(const SCOPED_STRING & str, const RawStringArray & straSeparator, bool bAddEmpty = true, bool bWithSeparator = false);
+   void add_smallest_tokens(const SCOPED_STRING & str, const BASE_RAW_STRING_ARRAY & straSeparator, bool bAddEmpty = true, bool bWithSeparator = false);
 
    void add_words(const SCOPED_STRING & str);
 
@@ -602,17 +612,17 @@ public:
    void decode_v16(const SCOPED_STRING & str);
 
    ::collection::count count_except(const SCOPED_STRING & str);
-   ::collection::count count_except(const string_array_base & stra);
+   ::collection::count count_except(const string_base_array & stra);
 
    ::collection::count case_insensitive_count_except(const SCOPED_STRING & str);
-   ::collection::count case_insensitive_count_except(const string_array_base & stra);
+   ::collection::count case_insensitive_count_except(const string_base_array & stra);
 
    Type & get_network_payload(Type & str, bool bNewLine = true) const;
 
 
 
    // c_get
-   ::array < const ::ansi_character * > c_ansi_get(bool bMemoryAlloc = false) const;
+   ::array_base < const_char_pointer >c_ansi_get(bool bMemoryAlloc = false) const;
    //::array < const ::wide_character * > c_wide_get(bool bMemoryAlloc = false) const;
    void c_add(char ** ppsz, ::collection::count iCount, bool bMemoryAlloc = false);
    void c_add(char ** ppsz, bool bMemoryAlloc = false);
@@ -621,7 +631,7 @@ public:
 
    void feed_line(const ::scoped_string& scopedstr, bool bCarriage)
    {
-      if (this->has_flag(e_flag_carriage_return))
+      if (this->m_erange & e_range_array_carriage_return)
       {
          if (this->has_elements())
          {
@@ -633,7 +643,7 @@ public:
          }
          if (!bCarriage)
          {
-            this->clear_flag(e_flag_carriage_return);
+            this->m_erange = (::enum_range) (this->m_erange & ~e_range_array_carriage_return);
          }
       }
       else
@@ -641,13 +651,13 @@ public:
          this->add(scopedstr);
          if (bCarriage)
          {
-            this->set_flag(e_flag_carriage_return);
+            this->m_erange = (::enum_range)(this->m_erange | e_range_array_carriage_return);
          }
 
       }
    }
 
-   string_array_base & intersect(const string_array_base & a)
+   string_base_array & intersect(const string_base_array & a)
    {
 
       for (::collection::index i = 0; i < get_size(); )
@@ -672,7 +682,7 @@ public:
 
    }
 
-   string_array_base & case_insensitive_intersect(const string_array_base & a)
+   string_base_array & case_insensitive_intersect(const string_base_array & a)
    {
 
       for (::collection::index i = 0; i < get_size(); )
@@ -697,7 +707,7 @@ public:
 
    }
 
-   string_array_base & operator &=(const string_array_base & a)
+   string_base_array & operator &=(const string_base_array & a)
    {
 
       return intersect(a);
@@ -716,26 +726,26 @@ public:
 };
 
 
-//typedef CLASS_DECL_ACME string_array_base < string > string_array;
+//typedef CLASS_DECL_ACME string_base_array < string > string_array_base;
 
 
 
-class CLASS_DECL_ACME string_array_array :
-   public ::array < string_array >
+class CLASS_DECL_ACME string_array_array_base :
+   public ::array_base < string_array_base >
 {
 public:
 
 
-   void add_csv(string str);
+   void add_csv(const ::scoped_string & scopedstr);
 
 
 };
 
 
-CLASS_DECL_ACME bool next_csv(string & str, const string_array & stra);
-CLASS_DECL_ACME void add_csv(string_array & stra, const ::string & str);
+CLASS_DECL_ACME bool next_csv(string & str, const string_array_base & stra);
+CLASS_DECL_ACME void add_csv(string_array_base & stra, const ::scoped_string & scopedstr);
 
-CLASS_DECL_ACME string_array string_array_from_strdup_count(const char ** pszaUrl, long lCount);
+CLASS_DECL_ACME string_array_base string_array_from_strdup_count(const_char_pointer *pszaUrl, long lCount);
 
 
 

@@ -13,7 +13,7 @@
 
 
 //#if defined(LINUX) || defined(SOLARIS)
-////#include "base/base/os/x11/x11_keyboard.h"
+////#include "berg/base/os/x11/x11_keyboard.h"
 //string x11_keyboard_get_current_group_symbol();
 //#elif defined(MACOS)
 //string keyboard_input_source();
@@ -284,10 +284,10 @@ namespace user
    }
 
 
-   bool keyboard::load_os_layout(const ::file::path & pszPath)
+   bool keyboard::load_os_layout(const ::file::path & path)
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       //int iCode;
 
@@ -299,10 +299,10 @@ namespace user
 
       // auto pcontext = get_context();
 
-      string str = file()->as_string(pszPath);
+      string str = file()->as_string(path);
 
 
-      informationf(pszPath);
+      informationf(path);
 
       informationf(str);
 
@@ -419,13 +419,13 @@ namespace user
    //   m_playout->process_escape(pnode, set);
    //}
 
-//   bool keyboard::load_layout(const ::string & pszPath, const ::action_context & context)
+//   bool keyboard::load_layout(const ::scoped_string & scopedstrPath, const ::action_context & context)
 //   {
 //
-//      auto playout = __allocate ::user::keyboard_layout();
+//      auto playout = øallocate ::user::keyboard_layout();
 //
 //      string strPath;
-//      if(pszPath == nullptr)
+//      if(scopedstrPath == nullptr)
 //      {
 //         strPath = get_current_system_layout();
 //      }
@@ -508,22 +508,22 @@ namespace user
 
    //}
 
-   //string keyboard::process_char(const ::string & pszKey)
+   //string keyboard::process_char(const ::scoped_string & scopedstrKey)
    //{
    //   if(m_playout == nullptr)
    //   {
    //      return pszKey;
    //   }
-   //   return m_playout->process_char(pszKey);
+   //   return m_playout->process_char(scopedstrKey);
    //}
 
-   //string keyboard::process_escape(const ::string & pszEscape)
+   //string keyboard::process_escape(const ::scoped_string & scopedstrEscape)
    //{
    //   if(m_playout == nullptr)
    //   {
    //      return pszEscape;
    //   }
-   //   return m_playout->process_char(pszEscape);
+   //   return m_playout->process_char(scopedstrEscape);
    //}
 
 
@@ -532,7 +532,7 @@ namespace user
 //
 //      keyboard_layout_ida layoutida;
 //
-//      ::file::path_array patha;
+//      ::file::path_array_base patha;
 //
 //      directory()->matter_ls_file("keyboard layout", patha);
 //
@@ -660,13 +660,13 @@ namespace user
 //   }
 
 
-//   bool keyboard::initialize(keyboard_layout_id * playoutid, const ::string & pszPath)
+//   bool keyboard::initialize(keyboard_layout_id * playoutid, const ::scoped_string & scopedstrPath)
 //   {
 //
-//      if(!file()->exists(pszPath))
+//      if(!file()->exists(scopedstrPath))
 //         return false;
 //
-//      string str = file()->as_string(pszPath);
+//      string str = file()->as_string(scopedstrPath);
 //
 //      if(str.is_empty())
 //         return false;
@@ -686,7 +686,7 @@ namespace user
 ////
 ////      playoutid->m_keylayout = doc.root()->attribute("kl");
 ////
-////      string_array straHkl;
+////      string_array_base straHkl;
 ////
 ////      straHkl.explode(";", doc.root()->attribute("hkla"));
 ////
@@ -726,7 +726,7 @@ namespace user
    void keyboard::translate_os_key_message(key * pkey)
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if(pkey->m_ekey == ::user::e_key_refer_to_text_member
          && pkey->m_strText.has_character())

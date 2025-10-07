@@ -31,10 +31,10 @@ namespace mail
    }
 
 
-   void pop3_socket::OnLine(const string & line)
+   void pop3_socket::OnLine(const ::scoped_string & scopedstrLine)
    {
       string strLine(line);
-      string_array stra;
+      string_array_base stra;
       switch (m_estate)
       {
       case state_disconnected:

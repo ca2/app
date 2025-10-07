@@ -80,7 +80,7 @@ namespace account
 
          //auto estatus = 
          
-         __øconstruct(puser);
+         øconstruct(puser);
 
          //if (!estatus)
          //{
@@ -89,7 +89,7 @@ namespace account
 
          //}
 
-         synchronous_lock synchronouslock(this->synchronization());
+         synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          m_map[strHost] = puser;
 
@@ -145,7 +145,7 @@ namespace account
    ::pointer<user>user_array::allocate_user()
    {
 
-      return __øcreate < ::account::user > ();
+      return øcreate < ::account::user > ();
 
    }
 
@@ -191,7 +191,7 @@ namespace account
    void user_array::cleanup_users()
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       auto map = m_map;
 
@@ -209,7 +209,7 @@ namespace account
 
             synchronouslock.lock();
 
-            m_map.erase_item(pair.element1());
+            m_map.erase(pair.element1());
 
             synchronouslock.unlock();
 
@@ -241,7 +241,7 @@ namespace account
 
       {
 
-         synchronous_lock synchronouslock(this->synchronization());
+         synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          auto & puser = m_map[strHost];
 
@@ -286,7 +286,7 @@ namespace account
       if(etimer == e_timer_slow)
       {
 
-         synchronous_lock synchronouslock(this->synchronization());
+         synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          auto map = m_map;
 

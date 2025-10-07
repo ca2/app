@@ -14,9 +14,9 @@ namespace micro
    {
    public:
 
-      map < char, ::collection::index >         m_mapCharIndex;
+      map_base < char, ::collection::index >         m_mapCharIndex;
       ::array < char >                          m_cha1;
-      ::string_array                            m_stra;
+      ::string_array_base                            m_stra;
       ::pointer < ::micro::dialog >             m_pdialog;
 
 

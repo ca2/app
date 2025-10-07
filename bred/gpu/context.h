@@ -18,6 +18,8 @@ namespace gpu
 {
 
 
+
+
    class renderer;
 
    class image_data
@@ -81,7 +83,8 @@ namespace gpu
 
 
       //int                                    m_iTopicTexture = -1;
-      bool                                   m_bCullFace = false;
+      //bool                                   m_bCullFace = false;
+      ::gpu::enum_cull_mode                  m_ecullmode;
       //bool m_bOffscreen = true;
       int                                    m_iOverrideFrame = -1;
       enum_type                              m_etype;
@@ -97,6 +100,8 @@ namespace gpu
       int_point                              m_pointTranslate;
       ::pointer<::gpu::cpu_buffer>           m_pcpubuffer;
       ::pointer<::gpu::shader>               m_pshader;
+      ::pointer<::gpu::shader>               m_pshaderBound;
+      ::pointer<::gpu::render_target>        m_prendertargetBound;
       bool                                   m_bCreated;
       ::draw3d::matrix                       m_matrixProjection;
       ::draw3d::matrix                       m_matrixImpact;
@@ -110,43 +115,79 @@ namespace gpu
       ::pointer_array < ::gpu::renderer >    m_gpurendereraDraw2d;
       ::pointer < ::graphics3d::engine >     m_pengine;
       ::pointer_array < ::gpu::render >      m_rendera;
-
+      ::pointer < ::gpu::command_buffer >    m_pcommandbufferUpload;
       ::pointer < ::gpu::model_buffer >      m_pmodelbufferFullscreenQuad;
       // size memory buffer
       ::int_map < ::pool <::gpu::memory_buffer > > m_mapPoolMemoryBuffer;
       //::image32_callback                     m_callbackImage32CpuBuffer;
-
+      ::pointer_array < ::gpu::texture >        m_textureaAtlas;
       //::pointer < ::mutex >                  m_pmutexOffscreen;
       //::int_size                             m_sizeOffscreen;
       //int                                    m_iScanOffscreen;
       //::memory                               m_memoryOffscreen;
-      ::pointer < ::gpu::swap_chain >          m_pswapchain;
-      ::string_map < ::pointer < ::gpu::texture > > m_texturemap;
+      ::pointer < ::gpu::swap_chain >          m_pgpuswapchain;
+      ::pointer_array < ::gpu::shader >         m_shaderaRetire;
 
+      ::string_map_base < ::pointer < ::gpu::texture > > m_texturemap;
+      ::string_map_base < ::pointer < ::gpu::texture > > m_texturemapGeneric;
 
       context();
       ~context() override;
 
+      
+      //virtual void gpu_debug_message(const ::scoped_string& scopedstr);
+
+      virtual void manage_retired_objects();
+
+      virtual ::pointer < ::gpu::pixmap > create_gpu_pixmap(const ::int_size& size);
 
       virtual ::gpu::swap_chain* get_swap_chain();
 
-      virtual ::gpu::texture* current_target_texture();
+      virtual ::gpu::texture* current_target_texture(::gpu::frame* pgpuframe);
 
       void _send(const ::procedure& procedure) override;
       //void _post(const ::procedure& procedure) override;
 
+      virtual void construct(::pointer < ::gpu::shader >& pgpushader);
+
+
+      /// loads only image::image (A8R8G8B8)
       virtual ::gpu::texture* texture(const ::file::path& path);
+
+      /// loads different types of image
+      virtual ::gpu::texture* generic_texture(const ::file::path & path, int iAssimpTextureType);
+      virtual void load_generic_texture(::pointer < ::gpu::texture > & ptexture, const ::file::path & path, int iAssimpTextureType);
+
+
+
+      virtual void start_debug_happening(const ::scoped_string& scopedstrDebugHappening);
+      virtual void end_debug_happening();
 
       virtual void load_texture(::pointer < ::gpu::texture > & ptexture, const ::file::path& path);
 
 
+
       virtual void defer_make_current();
+
+      virtual ::pointer < ::gpu::command_buffer > beginSingleTimeCommands(::gpu::queue * pgpuqueue, ::gpu::enum_command_buffer ecommandbuffer = ::gpu::e_command_buffer_graphics);
+      virtual void endSingleTimeCommands(::gpu::command_buffer * pcommandbuffer);
+
+      virtual ::gpu::command_buffer* defer_get_upload_command_buffer();
+      virtual void defer_end_upload_command_buffer();
+
+
+      virtual ::gpu::queue * transfer_queue();
+      virtual ::gpu::queue * graphics_queue();
+      virtual ::gpu::queue * present_queue();
+
 
 
       virtual void _context_lock();
       virtual void _context_unlock();
 
-
+      virtual void defer_bind(::gpu::shader* pgpushader);
+      virtual void defer_unbind(::gpu::shader* pgpushader);
+      virtual void defer_unbind_shader();
       //virtual bool defer_construct_new(::pointer < ::gpu::memory_buffer >& pmemorybuffer, memsize size, memory_buffer::enum_type etype);
       //virtual bool defer_construct_new(::pointer < ::gpu::memory_buffer >& pmemorybuffer, const ::block& block, memory_buffer::enum_type etype);
 
@@ -208,11 +249,11 @@ namespace gpu
 
       //virtual ::gpu::renderer* new_draw2d_renderer();
       //virtual void set_topic_texture(int iIndex);
-      virtual void set_cull_face(bool bSet = true);
+      virtual void set_cull_face(::gpu::enum_cull_mode ecullmode);
 
       virtual ::int_rectangle rectangle();
       virtual void set_placement(const ::int_rectangle & rectanglePlacement);
-      virtual void resize_offscreen_buffer(const ::int_size& size);
+      virtual void on_resize(const ::int_size& size);
 
       virtual string _001GetIntroProjection();
       virtual string _001GetIntroFragment();
@@ -253,12 +294,12 @@ namespace gpu
 
       virtual void translate_shader(string & str);
 
-      virtual void _translate_shader(string_array& stra);
+      virtual void _translate_shader(string_array_base& stra);
 
       //virtual void make_current();
       //virtual void release_current();
 
-      virtual string load_fragment(const ::string & pszPath, enum_shader_source & eshadersource);
+      virtual string load_fragment(const ::scoped_string & scopedstrPath, enum_shader_source & eshadersource);
 
       virtual string get_shader_version_text();
 
@@ -305,14 +346,14 @@ namespace gpu
       //virtual render_target* graphics3d_render_target();
 
       virtual void __bind_draw2d_compositor(::gpu::compositor * pgpucompositor, ::gpu::layer * player);
-      virtual void __soft_unbind_draw2d_compositor(::gpu::compositor* pgpucompositor, ::gpu::layer * player);
+      virtual void __defer_soft_unbind_draw2d_compositor(::gpu::compositor* pgpucompositor, ::gpu::layer * player);
 
 
       virtual ::memory rectangle_shader_vert();
       virtual ::memory rectangle_shader_frag();
 
 
-      virtual void white_to_color_sampler_shader_setup(gpu::shader * pshader);
+      //virtual void white_to_color_sampler_shader_setup(gpu::shader * pshader);
       virtual ::memory white_to_color_sampler_vert();
       virtual ::memory white_to_color_sampler_frag();
 
@@ -322,18 +363,95 @@ namespace gpu
       virtual void initialize_rectangle_shader(::gpu::shader* pshader);
 
 
-      virtual ::gpu::model_buffer* sequence2_uv_fullscreen_quad_model_buffer();
+      virtual ::gpu::model_buffer* sequence2_uv_fullscreen_quad_model_buffer(::gpu::frame* pgpuframe);
 
 
+      //::pointer<::graphics3d::renderable> load_model();
+      virtual ::pointer<::graphics3d::renderable> load_model(const ::gpu::renderable_t & renderable);
+      virtual ::pointer<::gpu::texture> load_cube_map(
+         const ::scoped_string & scopedstrName,
+         const ::file::path & path, 
+         bool b32);
+      virtual ::pointer<::gpu::texture> load_sandbox_texture(const ::scoped_string &scopedstrName,
+                                                             const ::file::path &path,
+                                                             const ::scoped_string &scopedstrImageFormat);
+
+      virtual ::pointer<::gpu::texture> cubemap_from_hdr(const ::file::path & path);
+
+      // // ::pointer<::graphics3d::renderable> loadGLTFmodel(
+      // //    const ::scoped_string &name,
+      // //    const ::scoped_string &filepath,
+      // //    uint32_t gltfFlags,
+      // //    float scale);
+      //
+      //
+      // ::pointer<::graphics3d::renderable> loadObjModel(
+      //      const ::scoped_string &name,
+      //      const ::scoped_string &filepath,
+      //      bool isSkybox
+      //      );
+      //
+      //
+      // ::pointer<::graphics3d::renderable> loadGLTFmodel(
+      //    const ::scoped_string &name,
+      //    const ::scoped_string &filepath,
+      //    uint32_t gltfFlags,
+      //    float scale
+      //    );
+
+      virtual ::pointer<::graphics3d::renderable> load_wavefront_obj_renderable(const ::gpu::renderable_t & model);
+
+      virtual ::pointer<::graphics3d::renderable> _load_wavefront_obj_renderable(const ::gpu::renderable_t & model);
+
+      virtual ::pointer<::graphics3d::renderable> load_gltf_model(const ::gpu::renderable_t & model);
+
+      virtual ::pointer<::graphics3d::renderable> _load_gltf_model(const ::gpu::renderable_t & model);
+
+
+//      /// @brief generatePrefilteredEnvMap
+//      /// @param environmentCubeExisting 
+//      /// @param prenderableSkybox 
+//      /// @return 
+//      virtual ::pointer<::gpu::texture> generatePrefilteredEnvMap(
+//         ::gpu::texture *environmentCubeExisting,
+//         ::graphics3d::renderable *prenderableSkybox);
+//
+//      /// generate irradianceCube
+//      /// @return irradianceCube
+//      virtual ::pointer < ::gpu::texture > generateIrradianceMap(
+////         ::gpu::texture * irradianceCube,
+//         ::gpu::texture * environmentCube,
+//         ::graphics3d::renderable * prenderableSkybox);
+//      // ::pointer<::gpu::texture> loadCubemap(
+//      //    const ::scoped_string& name,
+//      //    const ::scoped_string& ktxFilename,
+//      //    VkFormat format,
+//      //    VkImageUsageFlags usageFlags,
+//      //    VkImageLayout initialLayout);
+//      //    virtual void generateBRDFlut(
+//      //     ::gpu::texture * lutBrdf);
+//      /// generate lutBrdf
+//      /// @return lutBrdf
+//      virtual ::pointer < ::gpu::texture > generateBRDFlut();
+
+
+
+      //::pointer < ::graphics3d::renderable> create_tinyobj_renderable(const ::file::path& path);
+
+      //::pointer < ::graphics3d::renderable > create_tinyobj(const ::file::path& path);
+      // scene_object * get_tinyobj(const ::file::path& path);
+      //
+      // inline scene_object & tinyobj(const ::file::path& path)
+      // {
+      //
+      //    return *get_tinyobj(path);
+      //
+      // }
    };
 
 
 
-
-
-
 } // namespace gpu
-
 
 
 

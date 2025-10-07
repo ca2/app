@@ -49,7 +49,7 @@ namespace programming
 
       node()->integration_factory();
 
-      __øconstruct(m_pintegrationcontext);
+      øconstruct(m_pintegrationcontext);
 
       //if (!estatus)
       //{
@@ -292,7 +292,7 @@ namespace programming
 #ifdef WINDOWS_DESKTOP
 
       unsigned int dwSize = GetEnvironmentVariableW(L"PATH", nullptr, 0);
-      LPWSTR lpsz = __raw_new wchar_t[dwSize + 1];
+      LPWSTR lpsz = øraw_new wchar_t[dwSize + 1];
       dwSize = GetEnvironmentVariableW(L"PATH", lpsz, dwSize + 1);
       str += lpsz;
       delete []lpsz;
@@ -302,10 +302,10 @@ namespace programming
    }
 
 
-   void compiler::prepare1(const ::string& lpcszSource, const ::string& lpcszDest)
+   void compiler::prepare1(const ::scoped_string & scopedstrSource, const ::scoped_string & scopedstrDest)
    {
 
-      string_array stra;
+      string_array_base stra;
 
 
       string strLog;
@@ -481,7 +481,7 @@ namespace programming
       //
       //   //   string strLog;
       //
-      //   //   string_array m_strArray;
+      //   //   string_array_base m_strArray;
       //   //   // Open the process for further operations
       //   //   HANDLE hProcess = CProcessEnvReader::OpenProcessToRead(process->m_iPid);
       //   //   if(hProcess)
@@ -530,7 +530,7 @@ namespace programming
       //   }
       //
       //   strLog += process->read();
-      //   string_array stra;
+      //   string_array_base stra;
       //
       //   stra.add_lines(strLog);
       //
@@ -550,19 +550,19 @@ namespace programming
       //   // Seperate values and variables
       //   CProcessEnvReader::SeparateVariablesAndValues(stra,arrEnvVarVal);
       //
-      //   string_to_string map;
+      //   string_to_string_base map_base;
       //
       //   for(auto pair : arrEnvVarVal)
       //   {
-      //      map[pair.element1()] = pair.element2();
+      //      map_base[pair.element1()] = pair.element2();
       //      SetEnvironmentVariable(pair.element1(),pair.element2());
       //   }
       //
       //
       //
-      //   //SetEnvironmentVariable("INCLUDE",map["INCLUDE"]);
-      //   //SetEnvironmentVariable("LIBPATH",map["LIBPATH"]);
-      //   //SetEnvironmentVariable("PATH",map["PATH"]);
+      //   //SetEnvironmentVariable("INCLUDE",map_base["INCLUDE"]);
+      //   //SetEnvironmentVariable("LIBPATH",map_base["LIBPATH"]);
+      //   //SetEnvironmentVariable("PATH",map_base["PATH"]);
       //
       //   // UpdateProcessMiscInfo( hProcess, pNMItemActivate->iItem);
       //   //CProcessEnvReader::ReleaseHandle(hProcess);
@@ -583,7 +583,7 @@ namespace programming
          strFolder += "/";
       string strTemplate;
       string strSource = "operating_system/operating_system-" OPERATING_SYSTEM_NAME "/_stage/dynamic_source/";
-      strSource += lpcszSource;
+      strSource += scopedstrSource;
 
       //   string strN = m_pmanager->m_strNetnodePath;
             //strN.replace("\\","/");
@@ -611,7 +611,7 @@ namespace programming
 
       m_pintegrationcontext->prepare_compilation_script(str);
 
-      string strDest = m_strDynamicSourceStage / "front" / lpcszDest;
+      string strDest = m_strDynamicSourceStage / "front" / scopedstrDest;
       ::file::path strCmd;
       //#ifdef _DEBUG
       strCmd = strFolder / strDest;

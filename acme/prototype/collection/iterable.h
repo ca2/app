@@ -1079,13 +1079,13 @@ namespace iter
 
 
    //template < typename ITERABLE, typename ITYPE >
-   //bool contains_payload(const ITERABLE & map, const ITYPE & value)
+   //bool contains_payload(const ITERABLE & map_base, const ITYPE & value)
    //{
 
 
-   //   auto it = map.begin();
+   //   auto it = map_base.begin();
 
-   //   for (; it != map.end(); it++)
+   //   for (; it != map_base.end(); it++)
    //   {
 
    //      if (it->element2() == value)
@@ -1740,7 +1740,7 @@ end:
 
 
    //template<class ITYPE, class ARG_ITYPE>
-   //void list<ITYPE, ARG_ITYPE>::erase(iterator & it)
+   //void list_base<ITYPE, ARG_ITYPE>::erase(iterator & it)
    //{
    //
    //   this->erase_at(it);
@@ -2532,7 +2532,7 @@ end:
       for (auto & item : iterable)
       {
 
-         item.trim_left(pszChars);
+         item.trim_left(scopedstrChars);
 
       }
 
@@ -2548,7 +2548,7 @@ end:
       for (auto & item : iterable)
       {
 
-         item.trim_right(pszChars);
+         item.trim_right(scopedstrChars);
 
       }
 
@@ -2564,7 +2564,7 @@ end:
       for (auto & item : iterable)
       {
 
-         item.trim(pszChars);
+         item.trim(scopedstrChars);
 
       }
 
@@ -2733,7 +2733,7 @@ end:
    ITERABLE  & csstidy_explode_ws(ITERABLE & iterable, char sep, const ITYPE & psz)
    {
 
-      ITYPE istring(psz);
+      ITYPE istring(scopedstr);
 
       // 1 = st // 2 = str
       int status = 1;
@@ -2802,7 +2802,7 @@ end:
 
       typedef ITERABLE::BASE_TYPE STRING_TYPE;
 
-      STRING_TYPE strPrefix(pszPrefix);
+      STRING_TYPE strPrefix(scopedstrPrefix);
 
       iterable2.prepare_first_last(first, last);
 
@@ -2821,7 +2821,7 @@ end:
 
       typedef ITERABLE::BASE_TYPE STRING_TYPE;
 
-      STRING_TYPE strSuffix(pszSuffix);
+      STRING_TYPE strSuffix(scopedstrSuffix);
 
       iterable2.prepare_first_last(first, last);
 
@@ -2840,9 +2840,9 @@ end:
 
       typedef ITERABLE::BASE_TYPE STRING_TYPE;
 
-      STRING_TYPE strPrefix(pszPrefix);
+      STRING_TYPE strPrefix(scopedstrPrefix);
 
-      STRING_TYPE strSuffix(pszSuffix);
+      STRING_TYPE strSuffix(scopedstrSuffix);
 
       iterable2.prepare_first_last(first, last);
 
@@ -2862,7 +2862,7 @@ end:
 
       typedef ITERABLE::BASE_TYPE STRING_TYPE;
 
-      STRING_TYPE strPrefix(pszPrefix);
+      STRING_TYPE strPrefix(scopedstrPrefix);
 
       iterable.prepare_first_last(first, last);
 
@@ -2881,7 +2881,7 @@ end:
 
       typedef ITERABLE::BASE_TYPE STRING_TYPE;
 
-      STRING_TYPE strSuffix(pszSuffix);
+      STRING_TYPE strSuffix(scopedstrSuffix);
 
       iterable.prepare_first_last(first, last);
 
@@ -2901,9 +2901,9 @@ end:
 
       typedef ITERABLE::BASE_TYPE STRING_TYPE;
 
-      STRING_TYPE strPrefix(pszPrefix);
+      STRING_TYPE strPrefix(scopedstrPrefix);
 
-      STRING_TYPE strSuffix(pszSuffix);
+      STRING_TYPE strSuffix(scopedstrSuffix);
 
       iterable.prepare_first_last(first, last);
 
@@ -2925,9 +2925,9 @@ end:
 
       typedef ITERABLE::BASE_TYPE STRING_TYPE;
 
-      STRING_TYPE strPrefix(pszPrefix);
+      STRING_TYPE strPrefix(scopedstrPrefix);
 
-      STRING_TYPE strSuffix(pszSuffix);
+      STRING_TYPE strSuffix(scopedstrSuffix);
 
       iterable.prepare_first_last(first, last);
 
@@ -2960,7 +2960,7 @@ end:
    void prefix(const ITERABLE & stra, const ITYPE & pszPrefix, typename ITERABLE::iterator iStart, ::collection::count iCount)
    {
 
-      ITYPE strPrefix(pszPrefix);
+      ITYPE strPrefix(scopedstrPrefix);
 
       character_count iEnd;
 
@@ -2986,7 +2986,7 @@ end:
    void suffix(const ITERABLE & stra, const ITYPE & pszSuffix, typename ITERABLE::iterator iStart, ::collection::count iCount)
    {
 
-      ITYPE strSuffix(pszSuffix);
+      ITYPE strSuffix(scopedstrSuffix);
 
       character_count iEnd;
 
@@ -3012,9 +3012,9 @@ end:
    void surround(const ITERABLE & stra, const ITYPE & pszPrefix, const ITYPE & pszSuffix, typename ITERABLE::iterator iStart, ::collection::count iCount)
    {
 
-      ITYPE strPrefix(pszPrefix);
+      ITYPE strPrefix(scopedstrPrefix);
 
-      ITYPE strSuffix(pszSuffix);
+      ITYPE strSuffix(scopedstrSuffix);
 
       character_count iEnd;
 
@@ -3040,9 +3040,9 @@ end:
    void surround(ITERABLE & iterable, const ITYPE & pszPrefix, const ITYPE & pszSuffix, typename ITERABLE::iterator iStart, ::collection::count iCount)
    {
 
-      ITYPE strPrefix(pszPrefix);
+      ITYPE strPrefix(scopedstrPrefix);
 
-      ITYPE strSuffix(pszSuffix);
+      ITYPE strSuffix(scopedstrSuffix);
 
       character_count iEnd;
 
@@ -3068,7 +3068,7 @@ end:
    void suffix(ITERABLE & iterable, const ITYPE & pszSuffix, typename ITERABLE::iterator iStart, ::collection::count iCount)
    {
 
-      ITYPE strSuffix(pszSuffix);
+      ITYPE strSuffix(scopedstrSuffix);
 
       character_count iEnd;
 
@@ -3097,9 +3097,9 @@ end:
    void surround_and_implode(const ITERABLE & iterable, ITYPE & str, const ITYPE2 & pszSeparator, const ITYPE3 & pszPrefix, const ITYPE & pszSuffix, typename ITERABLE::iterator iStart, ::collection::count iCount)
    {
       ITYPE str;
-      ITYPE strSeparator(pszSeparator);
-      ITYPE strPrefix(pszPrefix);
-      ITYPE strSuffix(pszSuffix);
+      ITYPE strSeparator(scopedstrSeparator);
+      ITYPE strPrefix(scopedstrPrefix);
+      ITYPE strSuffix(scopedstrSuffix);
 
       typename ITERABLE::iterator iEnd;
 
@@ -3464,7 +3464,7 @@ end:
       for (int u = 0; u < iterable.get_count(); u++)
       {
          ITYPE & str = iterable.element_at(u);
-         strEncode += hex::lower_from((const char*)str);
+         strEncode += hex::lower_from((const_char_pointer )str);
          strEncode += "00";
          /*      for(int uj = 0; uj < str.length(); uj++)
          {
@@ -3497,7 +3497,7 @@ end:
    {
       int iSize = 1024;
       char * str = nullptr;
-      if (psz == nullptr)
+      if (scopedstr == nullptr)
          return;
       while (*psz != '\0')
       {
@@ -3822,7 +3822,7 @@ end:
 
          char * psz = *ppsz;
 
-         iterable.add(psz);
+         iterable.add(scopedstr);
 
          free((void *)psz);
 
@@ -3864,7 +3864,7 @@ end:
 
          wchar_t * psz = *ppsz;
 
-         iterable.add(psz);
+         iterable.add(scopedstr);
 
          free((void *)psz);
 
@@ -3907,7 +3907,7 @@ end:
    ITERABLE & copy_from(ITERABLE & iterable, ITERATOR & iterator, ITERATOR & limit)
    {
 
-      ASSERT_VALID(this);
+      ASSERT_OK(this);
 
       iterable.provision(iterator, limit);
 

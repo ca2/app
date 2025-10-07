@@ -137,7 +137,7 @@ public:
    
    bool get_next_token(::string & strToken, const ::scoped_string & scopedstrSeparator, bool bWithSeparator = false);
 
-   bool get_next_smallest_token(::string & strToken, const ::string_array & straSeparator, bool bWithSeparator = false);
+   bool get_next_smallest_token(::string & strToken, const ::string_array_base & straSeparator, bool bWithSeparator = false);
 
    bool get_next_token_ex(::string & strToken, const ::scoped_string & scopedstrSeparator, bool bWithSeparator = false, bool bSkipAdjacent = false);
 

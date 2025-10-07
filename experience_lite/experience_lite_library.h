@@ -23,7 +23,7 @@
             virtual ~library();
 
 
-            virtual ::pointer<::object>alloc(::particle * pparticle, const ::string & pszClass, object * p) override;
+            virtual ::pointer<::object>alloc(::particle * pparticle, const ::scoped_string & scopedstrClass, object * p) override;
 
 
          };

@@ -43,7 +43,7 @@ namespace account
    }
 
 
-//   product * product_array::interactive_get_product(string strAppId)
+//   product * product_array::interactive_get_product(const ::scoped_string & scopedstrAppId)
 //   {
 //
 //      if(get_product22(strAppId) != nullptr)
@@ -58,7 +58,7 @@ namespace account
 //   }
 //
 //
-//   product * product_array::noninteractive_get_product(string strAppId)
+//   product * product_array::noninteractive_get_product(const ::scoped_string & scopedstrAppId)
 //   {
 //
 //      if(get_product22(strAppId) != nullptr)
@@ -73,10 +73,10 @@ namespace account
 //   }
 
 
-   bool product_array::is_licensed(string strAppId, bool bInteractive)
+   bool product_array::is_licensed(const ::scoped_string & scopedstrAppId, bool bInteractive)
    {
 
-      product * pproduct = get_product(strAppId, true, bInteractive);
+      product * pproduct = get_product(scopedstrAppId, true, bInteractive);
 
 //      if(bInteractive)
 //      {
@@ -103,18 +103,18 @@ namespace account
    }
 
 
-   void product_array::_get_product(string strAppId, bool bInteractive)
+   void product_array::_get_product(const ::scoped_string & scopedstrAppId, bool bInteractive)
    {
 
       product * pproduct = nullptr;
 
       {
 
-         synchronous_lock synchronouslock(this->synchronization());
+         synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-         m_map[strAppId] = __allocate ::account::product();
+         m_map[scopedstrAppId] = øallocate ::account::product();
 
-         pproduct = get_product(strAppId);
+         pproduct = get_product(scopedstrAppId);
 
       }
 
@@ -125,13 +125,13 @@ namespace account
 
       }
 
-      pproduct->do_license(strAppId, bInteractive);
+      pproduct->do_license(scopedstrAppId, bInteractive);
 
    }
 
 
 
-//   bool product_array::is_licensed(string strAppId, bool bInteractive)
+//   bool product_array::is_licensed(const ::scoped_string & scopedstrAppId, bool bInteractive)
 //   {
 //
 //      product * pproduct;
@@ -173,27 +173,27 @@ namespace account
    }
 
 
-   bool product_array::clear_cache(string strAppId)
+   bool product_array::clear_cache(const ::scoped_string & scopedstrAppId)
    {
 
-      return m_map.erase_item(strAppId);
+      return m_map.erase(scopedstrAppId);
 
    }
 
 
-   product * product_array::get_product(string strAppId, bool bFetch, bool bInteractive)
+   product * product_array::get_product(const ::scoped_string & scopedstrAppId, bool bFetch, bool bInteractive)
    {
 
-      auto & pproduct = m_map[strAppId];
+      auto & pproduct = m_map[scopedstrAppId];
 
       if(bFetch && pproduct.is_null())
       {
 
-         _get_product(strAppId, bInteractive);
+         _get_product(scopedstrAppId, bInteractive);
 
       }
 
-      return m_map[strAppId];
+      return m_map[scopedstrAppId];
 
    }
 

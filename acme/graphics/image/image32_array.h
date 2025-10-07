@@ -30,7 +30,7 @@ public:
 
    using ::array < ::image32_t >::array;
    
-   ~image32_array() override;
+   ~image32_array();
 
    //void create_web_palette();
 

@@ -19,10 +19,10 @@
 //int get_main_screen_rectangle(::int_rectangle * lprect);
 
 //
-//const char* g_pszMultimediaLibraryName = nullptr;
+//const_char_pointer g_pszMultimediaLibraryName = nullptr;
 //
 //
-//CLASS_DECL_AXIS void multimedia_set_library_name(const ::string & psz)
+//CLASS_DECL_AXIS void multimedia_set_library_name(const ::scoped_string & scopedstr)
 //{
 //
 //   g_pszMultimediaLibraryName = psz;
@@ -49,10 +49,10 @@ CLASS_DECL_AXIS ::user::interaction * create_system_message_window(::particle * 
 #include <sys/time.h>
 #endif
 
-extern string_map < ::pointer<::acme::library >>* g_pmapLibrary;
+extern string_map_base < ::pointer<::acme::library >>* g_pmapLibrary;
 
 
-CLASS_DECL_AXIS void __simple_tracea(::particle * pparticle, enum_trace_level elevel, const ::string & pszFunction, const ::string & pszFile, int iLine, const ::string & psz);
+CLASS_DECL_AXIS void __simple_tracea(::particle * pparticle, enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, int iLine, const ::scoped_string & scopedstr);
 
 
 #ifdef WINDOWS
@@ -73,7 +73,7 @@ void unit_test_primitive_var_aura_block();
 #endif
 
 
-void dappy(const ::string & psz);
+void dappy(const ::scoped_string & scopedstr);
 
 
 
@@ -166,7 +166,7 @@ namespace axis
 
       //estatus = 
       
-      __construct_new(m_pemaildepartment);
+      øconstruct_new(m_pemaildepartment);
 
       //if (!estatus)
       //{
@@ -228,7 +228,7 @@ namespace axis
       //if (!pfactorySimpledb)
       //{
 
-      //   estatus = __construct_new(pfactorySimpledb);
+      //   estatus = øconstruct_new(pfactorySimpledb);
 
       //   if (!estatus)
       //   {
@@ -466,7 +466,7 @@ namespace axis
 
 //#ifdef __ANDROID__
 //
-//   bool system::android_set_user_wallpaper(string strUrl)
+//   bool system::android_set_user_wallpaper(const ::scoped_string & scopedstrUrl)
 //   {
 //
 //      operating_system_driver::get().m_strSetUserWallpaper = strUrl;
@@ -511,10 +511,10 @@ namespace axis
    }
 
 
-//   ::pointer<regex>system::create_regular_expression(const ::string & pszStyle, const string& str)
+//   ::pointer<regex>system::create_regular_expression(const ::scoped_string & scopedstrStyle, const ::scoped_string & scopedstr)
 //   {
 //
-//      string strStyle(pszStyle);
+//      string strStyle(scopedstrStyle);
 //
 //      if (strStyle.case_insensitive_order("pcre") == 0)
 //      {
@@ -528,10 +528,10 @@ namespace axis
 //   }
 //
 //
-//   ::pointer<regex_context>system::create_regular_expression_context(const ::string & pszStyle, int iCount)
+//   ::pointer<regex_context>system::create_regular_expression_context(const ::scoped_string & scopedstrStyle, int iCount)
 //   {
 //
-//      string strStyle(pszStyle);
+//      string strStyle(scopedstrStyle);
 //
 //      if (strStyle.case_insensitive_order("pcre") == 0)
 //      {

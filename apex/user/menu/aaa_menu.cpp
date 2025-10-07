@@ -24,16 +24,16 @@ menu::~menu()
 //
 //      ::user::interaction::install_message_routing(pchannel);
 //
-//      MESSAGE_LINK(e_message_create, pchannel, this, &menu::on_message_create);
-//      MESSAGE_LINK(e_message_destroy, pchannel, this, &menu::on_message_destroy);
-//      MESSAGE_LINK(e_message_non_client_activate, pchannel, this, &menu::_001OnNcActivate);
-//      MESSAGE_LINK(e_message_non_client_calc_size, pchannel, this, &menu::on_message_non_client_calculate_size);
-//      MESSAGE_LINK(e_message_enable, pchannel, this, &menu::_001OnEnable);
-//      MESSAGE_LINK(e_message_show_window, pchannel, this, &menu::on_message_show_window);
-//      MESSAGE_LINK(e_message_close, pchannel, this, &menu::on_message_close);
-//      MESSAGE_LINK(e_message_mouse_activate, pchannel, this, &menu::_001OnMouseActivate);
-//      MESSAGE_LINK(e_message_activate, pchannel, this, &menu::_001OnActivate);
-//      MESSAGE_LINK(e_message_non_client_create, pchannel, this, &menu::_001OnNcCreate);
+//      USER_MESSAGE_LINK(::user::e_message_create, pchannel, this, &menu::on_message_create);
+//      USER_MESSAGE_LINK(::user::e_message_destroy, pchannel, this, &menu::on_message_destroy);
+//      USER_MESSAGE_LINK(::user::e_message_non_client_activate, pchannel, this, &menu::_001OnNcActivate);
+//      USER_MESSAGE_LINK(::user::e_message_non_client_calc_size, pchannel, this, &menu::on_message_non_client_calculate_size);
+//      USER_MESSAGE_LINK(::user::e_message_enable, pchannel, this, &menu::_001OnEnable);
+//      USER_MESSAGE_LINK(::user::e_message_show_window, pchannel, this, &menu::on_message_show_window);
+//      USER_MESSAGE_LINK(::user::e_message_close, pchannel, this, &menu::on_message_close);
+//      USER_MESSAGE_LINK(::user::e_message_mouse_activate, pchannel, this, &menu::_001OnMouseActivate);
+//      USER_MESSAGE_LINK(::user::e_message_activate, pchannel, this, &menu::_001OnActivate);
+//      USER_MESSAGE_LINK(::user::e_message_non_client_create, pchannel, this, &menu::_001OnNcCreate);
 //
 //   }
 //
@@ -66,13 +66,13 @@ menu::~menu()
 //   }
 //
 //
-//   bool menu::create_menu(const string_array & straCommand, const string_array & straCommandTitle)
+//   bool menu::create_menu(const string_array_base & straCommand, const string_array_base & straCommandTitle)
 //   {
 //
 //      if (m_pmenuitem.is_null())
 //      {
 //
-//         m_pmenuitem = __øcreate <  ::menu::item  >();
+//         m_pmenuitem = øcreate <  ::menu::item  >();
 //
 //      }
 //
@@ -100,7 +100,7 @@ menu::~menu()
 ////
 ////         {
 ////
-////            _synchronous_lock synchronouslock(mutex_children());
+////            _synchronous_lock synchronouslock(mutex_children(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 ////
 ////            m_uiptraChild.erase_all();
 ////
@@ -133,11 +133,11 @@ menu::~menu()
 ////
 //      {
 //
-//         // _synchronous_lock synchronouslock(mutex_children());
+//         // _synchronous_lock synchronouslock(mutex_children(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //          // m_uiptraChild.interactiona().erase_all();
 //
-//         _synchronous_lock synchronouslock(this->synchronization());
+//         _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //         m_puserinteractionpointeraChild.release();
 //
@@ -154,7 +154,7 @@ menu::~menu()
 //      if (m_pmenuitem.is_null())
 //      {
 //
-//         m_pmenuitem = __øcreate <  ::menu::item  >();
+//         m_pmenuitem = øcreate <  ::menu::item  >();
 //
 //      }
 //
@@ -190,7 +190,7 @@ menu::~menu()
 //
 //      system()->_xml();
 //
-//      auto pxmldocument = __create_new < ::xml::document >();
+//      auto pxmldocument = øcreate_new < ::xml::document >();
 //
 //      try
 //      {
@@ -366,7 +366,7 @@ menu::~menu()
 //         if (m_pitemClose.is_null())
 //         {
 //
-//            m_pitemClose = __allocate ::menu::item();
+//            m_pitemClose = øallocate ::menu::item();
 //
 //            m_pitemClose->id() = "close_menu";
 //
@@ -435,7 +435,7 @@ menu::~menu()
 //      if (m_pmenuitem.is_null())
 //      {
 //
-//         m_pmenuitem = __øcreate <  ::menu::item  >();
+//         m_pmenuitem = øcreate <  ::menu::item  >();
 //
 //      }
 //
@@ -502,7 +502,7 @@ menu::~menu()
 //         //}
 //
 //#else
-//         //auto pusersystem = __allocate ::user::system(iStyleEx, nullptr, nullptr, 0, nullptr, pcreate);
+//         //auto pusersystem = øallocate ::user::system(iStyleEx, nullptr, nullptr, 0, nullptr, pcreate);
 //
 //         //if (!create_window_ex(pusersystem, puiParent))
 //         //if (!create_host())
@@ -936,7 +936,7 @@ menu::~menu()
 //      if (!m_bInline && !ptopic->m_bRet)
 //      {
 //
-//         post_message(e_message_close);
+//         post_message(::user::e_message_close);
 //
 //         if (m_pmenuParent)
 //         {
@@ -1010,7 +1010,7 @@ menu::~menu()
 //      ////
 //      ////                           m_pmenuitemSub = pitem;
 //      ////
-//      ////                           m_psubmenu = __allocate menu(pitem);
+//      ////                           m_psubmenu = øallocate menu(pitem);
 //      ////
 //      ////                           m_psubmenu->initialize(this);
 //      ////
@@ -1148,7 +1148,7 @@ menu::~menu()
 //
 //               defer_close();
 //
-//               // this may be destroyed by e_message_close above
+//               // this may be destroyed by ::user::e_message_close above
 //
 //               if (::is_set(pchannelNotify))
 //               {
@@ -1188,7 +1188,7 @@ menu::~menu()
 //
 //      hide_sub_menu();
 //
-//      m_pmenuSubMenu = __initialize(__allocate ::user::menu(pmenuitem));
+//      m_pmenuSubMenu = __initialize(øallocate ::user::menu(pmenuitem));
 //
 //      ::int_rectangle rectangle;
 //
@@ -1209,7 +1209,7 @@ menu::~menu()
 //
 //         m_pmenuSubMenu->m_bCloseParentOnClose = false;
 //
-//         m_pmenuSubMenu->post_message(e_message_close);
+//         m_pmenuSubMenu->post_message(::user::e_message_close);
 //
 //         m_pmenuSubMenu = nullptr;
 //         //m_pitemSubMenu.release();
@@ -1303,12 +1303,12 @@ menu::~menu()
 //
 //            //if (m_atomSubMenu.has_character())
 //            //{
-//            //   m_psubmenu->send_message(e_message_close);
+//            //   m_psubmenu->send_message(::user::e_message_close);
 //            //   m_psubmenu = nullptr;
 //            //   m_atomSubMenu.is_empty();
 //            //}
 //
-//            _synchronous_lock synchronouslock(this->synchronization());
+//            _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //            if (m_pmenuitemShowSubMenu2)
 //            {
@@ -1340,7 +1340,7 @@ menu::~menu()
 //
 //            //   m_atomSubMenu = m_atomTimerMenu;
 //
-//            //   m_psubmenu = __allocate menu(pmenuitema->find(m_atomTimerMenu));
+//            //   m_psubmenu = øallocate menu(pmenuitema->find(m_atomTimerMenu));
 //
 //            //   m_psubmenu->initialize(this);
 //
@@ -1362,7 +1362,7 @@ menu::~menu()
 //
 //            {
 //
-//               _synchronous_lock synchronouslock(this->synchronization());
+//               _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //               update_command(m_pmenuitem);
 //
@@ -1384,7 +1384,7 @@ menu::~menu()
 //            //      if(puiTarget != nullptr)
 //            //      {
 //            //         /* xxx if(puserinteractionParent->on_command(0,
-//            //          MAKELONG((int)CN_UPDATE_::message::command, e_message_command+WM_REFLECT_BASE),
+//            //          MAKELONG((int)CN_UPDATE_::message::command, ::user::e_message_command+WM_REFLECT_BASE),
 //            //          &commandui, nullptr))
 //            //          continue;*/
 //            //         if(puiTarget->_001SendUpdateCmdUi(&commandui))
@@ -1444,7 +1444,7 @@ menu::~menu()
 //      //             {
 //      //                /*
 //      //                 if(puserinteractionParent->on_command(0,
-//      //                 MAKELONG((int)CN_UPDATE_::message::command, e_message_command+WM_REFLECT_BASE),
+//      //                 MAKELONG((int)CN_UPDATE_::message::command, ::user::e_message_command+WM_REFLECT_BASE),
 //      //                 &commandui, nullptr))
 //      //                 continue;
 //      //                 */
@@ -1599,7 +1599,7 @@ menu::~menu()
 //               if (m_pmenuParent != nullptr)
 //               {
 //
-//                  m_pmenuParent->post_message(e_message_close);
+//                  m_pmenuParent->post_message(::user::e_message_close);
 //
 //               }
 //
@@ -1713,7 +1713,7 @@ menu::~menu()
 //
 //         }
 //
-//         auto pmenucommand = __create_new< ::user::menu_command>();
+//         auto pmenucommand = øcreate_new< ::user::menu_command>();
 //
 //         pmenucommand->m_pitema = pitemParent->m_pmenuitema;
 //
@@ -1791,7 +1791,7 @@ menu::~menu()
 //
 //         auto pstyle = m_puserinteractionOwner->get_style(pgraphics);
 //
-//         ::pointer<::base::session>psession = get_session();
+//         ::pointer<::berg::session>psession = get_session();
 //
 //         auto puser = user();
 //

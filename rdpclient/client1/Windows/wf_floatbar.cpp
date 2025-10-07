@@ -113,7 +113,7 @@ static int button_hit(Button* button)
 			break;
 
 		case BUTTON_CLOSE:
-			SendMessage(floatbar->parent, e_message_destroy, 0 , 0);
+			SendMessage(floatbar->parent, ::user::e_message_destroy, 0 , 0);
 			break;
 
 		default:
@@ -228,7 +228,7 @@ LRESULT CALLBACK floatbar_proc(HWND hWnd, unsigned int Msg, WPARAM wParam, LPARA
 
 	switch(Msg)
 	{
-		case e_message_create:
+		case ::user::e_message_create:
 			floatbar = (FloatBar *)((CREATESTRUCT *)lParam)->lpCreateParams;
 			floatbar->hwnd = hWnd;
 			floatbar->parent = get_parent(hWnd);
@@ -249,13 +249,13 @@ LRESULT CALLBACK floatbar_proc(HWND hWnd, unsigned int Msg, WPARAM wParam, LPARA
 			set_timer(hWnd, TIMER_HIDE, 3000, nullptr);
 			break;
 
-		case e_message_paint:
+		case ::user::e_message_paint:
 			hdc = BeginPaint(hWnd, &ps);
 			floatbar_paint(floatbar, hdc);
 			EndPaint(hWnd, &ps);
 			break;
 
-		case e_message_left_button_down:
+		case ::user::e_message_left_button_down:
 			pos_x = lParam & 0xffff;
 			pos_y = (lParam >> 16) & 0xffff;
 
@@ -271,7 +271,7 @@ LRESULT CALLBACK floatbar_proc(HWND hWnd, unsigned int Msg, WPARAM wParam, LPARA
 
 			break;
 
-		case e_message_left_button_up:
+		case ::user::e_message_left_button_up:
 			pos_x = lParam & 0xffff;
 			pos_y = (lParam >> 16) & 0xffff;
 
@@ -287,7 +287,7 @@ LRESULT CALLBACK floatbar_proc(HWND hWnd, unsigned int Msg, WPARAM wParam, LPARA
 			}
 			break;
 
-		case e_message_mouse_move:
+		case ::user::e_message_mouse_move:
 			kill_timer(hWnd, TIMER_HIDE);
 			pos_x = lParam & 0xffff;
 			pos_y = (lParam >> 16) & 0xffff;
@@ -324,11 +324,11 @@ LRESULT CALLBACK floatbar_proc(HWND hWnd, unsigned int Msg, WPARAM wParam, LPARA
 			TrackMouseEvent(&tme);
 			break;
 
-		case e_message_capture_changed:
+		case ::user::e_message_capture_changed:
 			dragging = false;
 			break;
 
-		case e_message_mouse_leave:
+		case ::user::e_message_mouse_leave:
 		{
 			int i;
 
@@ -341,7 +341,7 @@ LRESULT CALLBACK floatbar_proc(HWND hWnd, unsigned int Msg, WPARAM wParam, LPARA
 			set_timer(hWnd, TIMER_HIDE, 3000, nullptr);
 			break;
 		}
-		case e_message_timer:
+		case ::user::e_message_timer:
 			switch (wParam)
 			{
 				case TIMER_HIDE:
@@ -380,7 +380,7 @@ LRESULT CALLBACK floatbar_proc(HWND hWnd, unsigned int Msg, WPARAM wParam, LPARA
 			}
 			break;
 
-		case e_message_destroy:
+		case ::user::e_message_destroy:
 			DeleteDC(floatbar->hdcmem);
 			PostQuitMessage(0);
 			break;

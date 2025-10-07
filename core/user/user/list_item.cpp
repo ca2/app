@@ -1,4 +1,4 @@
-// From list.cpp by camilo on 2022-06-29 05:39 <3ThomasBorregaardSorensen!! 
+// From list_base.cpp by camilo on 2022-06-29 05:39 <3ThomasBorregaardSorensen!! 
 #include "framework.h"
 #if !BROAD_PRECOMPILED_HEADER
 //#include "core/user/user/_component.h"
@@ -157,7 +157,7 @@ namespace user
 
          ::image::icon * picon;
 
-         if (m_pcolumn->m_mapIcon.lookup((int)m_iImage, picon))
+         if (m_pcolumn->m_mapIcon.find((int)m_iImage, picon))
          {
 
             pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
@@ -178,7 +178,7 @@ namespace user
       else
       {
 
-         //synchronous_lock synchronouslock(get_image_list()->synchronization());
+         //synchronous_lock synchronouslock(get_image_list()->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          auto pimagelist = get_image_list();
 
@@ -197,7 +197,7 @@ namespace user
 
             auto & pimage = m_pitem->m_pmesh->m_plist->m_mapIconBlur[m_iImage];
 
-            m_pitem->m_pmesh->__defer_construct(pimage);
+            m_pitem->m_pmesh->ødefer_construct(pimage);
 
             int iRate = 3;
 
@@ -255,7 +255,7 @@ namespace user
                   for (::collection::index i = 0; i < m_pitem->m_pmesh->m_plist->m_iIconBlur; i++)
                   {
 
-                     m_pitem->m_pmesh->m_plist->__defer_construct_new(m_pitem->m_pmesh->m_plist->m_pfastblurIcon);
+                     m_pitem->m_pmesh->m_plist->ødefer_construct_new(m_pitem->m_pmesh->m_plist->m_pfastblurIcon);
                      
                      m_pitem->m_pmesh->m_plist->m_pfastblurIcon->initialize(pimage->size(), m_pitem->m_pmesh->m_plist->m_iIconBlurRadius);
 
@@ -453,7 +453,7 @@ namespace user
       if (!pbrushText)
       {
 
-         m_pitem->m_pmesh->m_plist->__øconstruct(pbrushText);
+         m_pitem->m_pmesh->m_plist->øconstruct(pbrushText);
 
       }
 
@@ -517,13 +517,13 @@ namespace user
 
                ::image::image_pointer & pimage2 = m_pitem->m_pmesh->m_plist->m_mapBlur[m_pitem->m_iItem];
 
-               m_pitem->m_pmesh->m_plist->__defer_construct(pimage2);
+               m_pitem->m_pmesh->m_plist->ødefer_construct(pimage2);
 
                auto psystem = m_pitem->m_pmesh->m_plist->system();
 
                auto pdraw2d = psystem->draw2d();
 
-               m_pitem->m_pmesh->m_plist->__defer_construct_new(m_pitem->m_pmesh->m_plist->m_pfastblurIconText);
+               m_pitem->m_pmesh->m_plist->ødefer_construct_new(m_pitem->m_pmesh->m_plist->m_pfastblurIconText);
 
                if (m_pcolumn->m_pdrawlistcolumn->m_ealign == e_align_none)
                {
@@ -532,28 +532,35 @@ namespace user
 
                }
                //if (
-               pdraw2d->embossed_text_out(
-                  m_pitem->m_pdrawlistitem->m_pgraphics,
-                  m_rectangleText,
-                  m_strText,
-                  *m_pitem->m_pmesh->m_plist->m_pfastblurIconText,
-                  pimage2,
-                  m_pitem->m_pdrawlistitem->m_pgraphics->m_pfont,
-                  m_pcolumn->m_pdrawlistcolumn->m_ealign,
-                  m_pcolumn->m_pdrawlistcolumn->m_edrawtext,
-                  m_pitem->m_pmesh->m_plist->m_colorEmbossedText,
-                  m_pitem->m_pmesh->m_plist->m_colorEmbossedTextBackground,
-                  m_pitem->m_pmesh->m_plist->m_iTextSpreadRadius, 
-                  m_pitem->m_pmesh->m_plist->m_iTextBlurRadius,
-                  m_pitem->m_pmesh->m_plist->m_iTextBlur,
-                  m_strText != m_pitem->m_pmesh->m_plist->m_mapText[m_pitem->m_iItem] || m_colorTextBackground != m_pitem->m_pmesh->m_plist->m_mapBackColor[m_pitem->m_iItem]);
 
-               //)
+               bool bRaspiBilbo = m_strText.case_insensitive_begins("bilbo-raspi-");
+
+               //if (bRaspiBilbo)
                {
 
-                  m_pitem->m_pmesh->m_plist->m_mapText[m_pitem->m_iItem] = m_strText;
 
-                  m_pitem->m_pmesh->m_plist->m_mapBackColor[m_pitem->m_iItem] = m_colorTextBackground;
+               }
+               //else
+               {
+
+                  pdraw2d->embossed_text_out(
+                     m_pitem->m_pdrawlistitem->m_pgraphics, m_rectangleText, m_strText,
+                     *m_pitem->m_pmesh->m_plist->m_pfastblurIconText, pimage2,
+                     m_pitem->m_pdrawlistitem->m_pgraphics->m_pfont, m_pcolumn->m_pdrawlistcolumn->m_ealign,
+                     m_pcolumn->m_pdrawlistcolumn->m_edrawtext, m_pitem->m_pmesh->m_plist->m_colorEmbossedText,
+                     m_pitem->m_pmesh->m_plist->m_colorEmbossedTextBackground,
+                     m_pitem->m_pmesh->m_plist->m_iTextSpreadRadius, m_pitem->m_pmesh->m_plist->m_iTextBlurRadius,
+                     m_pitem->m_pmesh->m_plist->m_iTextBlur,
+                     m_strText != m_pitem->m_pmesh->m_plist->m_mapText[m_pitem->m_iItem] ||
+                        m_colorTextBackground != m_pitem->m_pmesh->m_plist->m_mapBackColor[m_pitem->m_iItem]);
+
+                  //)
+                  {
+
+                     m_pitem->m_pmesh->m_plist->m_mapText[m_pitem->m_iItem] = m_strText;
+
+                     m_pitem->m_pmesh->m_plist->m_mapBackColor[m_pitem->m_iItem] = m_colorTextBackground;
+                  }
 
                }
 
@@ -563,7 +570,7 @@ namespace user
          else if (m_strText.has_character())
          {
 
-            //auto pbrushText = __øcreate < ::draw2d::brush > ();
+            //auto pbrushText = øcreate < ::draw2d::brush > ();
 
             update_color(pgraphics);
 

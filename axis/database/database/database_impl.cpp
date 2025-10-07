@@ -23,15 +23,15 @@ namespace database
    }
 
 
-   void database_impl::connect(const ::string & name, const ::string & host, const ::string & port, const ::string & user, const ::string & pass, const ::string & sckt, unsigned long long uConnectionFlags)
+   void database_impl::connect(const ::scoped_string & scopedstrName, const ::scoped_string & scopedstrHost, const ::scoped_string & scopedstrPort, const ::scoped_string & scopedstrUser, const ::scoped_string & scopedstrPass, const ::scoped_string & scopedstrSocket, unsigned long long uConnectionFlags)
    {
 
-      m_strHost = host;
-      m_strPort = port;
-      m_strName = name;
-      m_strUser = user;
-      m_strPass = pass;
-      m_strSckt = sckt;
+      m_strHost = scopedstrHost;
+      m_strPort = scopedstrPort;
+      m_strName = scopedstrName;
+      m_strUser = scopedstrUser;
+      m_strPass = scopedstrPass;
+      m_strSckt = scopedstrSocket;
       m_uConnectionFlags = uConnectionFlags;
 
       _connect();
@@ -69,7 +69,7 @@ namespace database
    }
 
 
-   bool database_impl::exec(const ::string & pszQuery)
+   bool database_impl::exec(const ::scoped_string & scopedstrQuery)
    {
 
       return false;
@@ -77,18 +77,18 @@ namespace database
    }
 
 
-   //::payload database_impl::query(const ::string & pszQuery, ::collection::count iMaxRowCount, ::collection::count iMaxColumnCount)
+   //::payload database_impl::query(const ::scoped_string & scopedstrQuery, ::collection::count iMaxRowCount, ::collection::count iMaxColumnCount)
    //{
 
-   //   return query_rows(pszQuery);
+   //   return query_rows(scopedstrQuery);
 
    //}
 
 
-   string database_impl::escape(const ::string & psz)
+   string database_impl::escape(const ::scoped_string & scopedstr)
    {
 
-      return psz;
+      return scopedstr;
 
    }
 
@@ -109,18 +109,18 @@ namespace database
    }
 
    
-   string database_impl::query_error(const ::string & pszPrefix)
+   string database_impl::query_error(const ::scoped_string & scopedstrPrefix)
    {
 
-      return string(pszPrefix) + " (error)";
+      return string(scopedstrPrefix) + " (error)";
 
    }
 
 
-   void database_impl::trace_error1(const ::string & pszPrefix)
+   void database_impl::trace_error1(const ::scoped_string & scopedstrPrefix)
    {
 
-      m_strLastError += query_error(pszPrefix);
+      m_strLastError += query_error(scopedstrPrefix);
    
       informationf("%s", m_strLastError.c_str());
 
@@ -151,10 +151,10 @@ namespace database
    }
 
 
-   ::pointer<row_array>database_impl::query_rows(const ::string & pszQuery)
+   ::pointer<row_array>database_impl::query_rows(const ::scoped_string & scopedstrQuery)
    {
 
-      auto pset = query_result(pszQuery);
+      auto pset = query_result(scopedstrQuery);
 
       if (pset.is_null())
       {
@@ -168,10 +168,10 @@ namespace database
    }
 
 
-   ::pointer<row>database_impl::query_row(const ::string & pszQuery)
+   ::pointer<row>database_impl::query_row(const ::scoped_string & scopedstrQuery)
    {
 
-      auto pset = query_result(pszQuery, 1);
+      auto pset = query_result(scopedstrQuery, 1);
 
       if (pset.is_null())
       {
@@ -185,10 +185,10 @@ namespace database
    }
 
 
-   ::pointer<payload_array>database_impl::query_items(const ::string & pszQuery)
+   ::pointer<payload_array>database_impl::query_items(const ::scoped_string & scopedstrQuery)
    {
 
-      auto pset = query_result(pszQuery, -1, 1);
+      auto pset = query_result(scopedstrQuery, -1, 1);
 
       if (pset.is_null())
       {
@@ -197,7 +197,7 @@ namespace database
 
       }
 
-      auto pvara = __allocate payload_array();
+      auto pvara = øallocate payload_array();
 
       for (::collection::index i = 0; i < pset->m_prowa->get_count(); i++)
       {
@@ -211,7 +211,7 @@ namespace database
    }
 
 
-   bool database_impl::query_blob(get_memory getmemory, const ::string & pszQuery)
+   bool database_impl::query_blob(get_memory getmemory, const ::scoped_string & scopedstrQuery)
    {
 
       return false;
@@ -219,10 +219,10 @@ namespace database
    }
 
 
-   ::payload database_impl::query_item(const ::string & pszQuery, const ::payload & payloadDefault)
+   ::payload database_impl::query_item(const ::scoped_string & scopedstrQuery, const ::payload & payloadDefault)
    {
 
-      auto pset = query_result(pszQuery, 1, 1);
+      auto pset = query_result(scopedstrQuery, 1, 1);
 
       if (pset.is_null())
       {
@@ -237,10 +237,10 @@ namespace database
 
 
    /*
-      bool database_impl::query_rows(::pointer<row_array>& rows, const ::string & pszQuery)
+      bool database_impl::query_rows(::pointer<row_array>& rows, const ::scoped_string & scopedstrQuery)
       {
 
-         auto pset = query_result(pszQuery);
+         auto pset = query_result(scopedstrQuery);
 
          if (pset.is_null())
          {
@@ -256,10 +256,10 @@ namespace database
       }
 
 
-      bool database_impl::query_row(::pointer<row>& row, const ::string & pszQuery)
+      bool database_impl::query_row(::pointer<row>& row, const ::scoped_string & scopedstrQuery)
       {
 
-         auto pset = query_result(pszQuery);
+         auto pset = query_result(scopedstrQuery);
 
          if (pset.is_null())
          {
@@ -277,7 +277,7 @@ namespace database
 
 
 
-   ::payload database_impl::get_agent(const ::string & pszTable, const ::string & psz, const ::string & pszUser)
+   ::payload database_impl::get_agent(const ::scoped_string & scopedstrTable, const ::scoped_string & scopedstr, const ::scoped_string & scopedstrUser)
    {
 
       return ::payload(::e_type_null);
@@ -285,7 +285,7 @@ namespace database
    }
 
 
-   ::pointer<::database::result_set>database_impl::query_result(const ::string & pszQuery, ::collection::count iRowCount, ::collection::count iColumnCount)
+   ::pointer<::database::result_set>database_impl::query_result(const ::scoped_string & scopedstrQuery, ::collection::count iRowCount, ::collection::count iColumnCount)
    {
 
       return nullptr;
@@ -293,10 +293,10 @@ namespace database
    }
 
 
-   //bool database_impl::query_items(::pointer<payload_array>& pitems, const ::string & pszQuery)
+   //bool database_impl::query_items(::pointer<payload_array>& pitems, const ::scoped_string & scopedstrQuery)
    //{
 
-   //   auto pset = query_result(pszQuery);
+   //   auto pset = query_result(scopedstrQuery);
 
    //   if (pset.is_null())
    //   {
@@ -321,10 +321,10 @@ namespace database
    //}
 
 
-   //bool database_impl::query_item(::payload & item, const ::string & pszQuery)
+   //bool database_impl::query_item(::payload & item, const ::scoped_string & scopedstrQuery)
    //{
 
-   //   auto pset = query_result(pszQuery, 1);
+   //   auto pset = query_result(scopedstrQuery, 1);
 
    //   if (pset.is_null())
    //   {

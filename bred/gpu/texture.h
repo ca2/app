@@ -23,20 +23,26 @@ namespace gpu
 
       };
 
-
+      int                                 m_iAtlasX;
+      int                                 m_iAtlasY;
+      int                                 m_iAtlasCurrentRowHeight;
       enum_type                           m_etype;
       bool                                m_bWithDepth;
       bool                                m_bClearColor;
       ::color::color                      m_colorClear;
       bool                                m_bRenderTarget;
       ::pointer < ::gpu::renderer >       m_pgpurenderer;
+      //::pointer < ::gpu::render_target >  m_pgpurendertarget;
       ::int_rectangle                     m_rectangleTarget;
+      int                                 m_mipLevels;
+      ::int_size                          m_sizeMip;
       bool                                m_bTransferDst;
+      bool                                m_bTransferSrc;
       bool                                m_bCpuRead;
       ::pointer < texture >               m_ptextureDepth;
 
       ::string                            m_strTextureType;
-      ::string                            m_strUniform;
+      //::string                            m_strUniform;
 
       ::file::path                        m_path;
 
@@ -48,13 +54,17 @@ namespace gpu
       virtual int width();
       virtual int height();
 
+
+      void defer_throw_if_cube_map_images_are_not_ok(const ::pointer_array < ::image::image >& imagea);
       
-      virtual void initialize_image_texture(::gpu::renderer* pgpurenderer, const ::int_rectangle& rectangleTarget, bool bWithDepth, ::pixmap * ppixmap = nullptr, enum_type etype = e_type_image);
+      virtual void initialize_hdr_texture_on_memory(::gpu::renderer *prenderer, const ::block & block);
+      virtual void initialize_image_texture(::gpu::renderer* pgpurenderer, const ::int_rectangle& rectangleTarget, bool bWithDepth, const ::pointer_array < ::image::image >& imagea = {}, enum_type etype = e_type_image);
       virtual void initialize_depth_texture(::gpu::renderer* pgpurenderer, const ::int_rectangle& rectangleTarget);
 
       virtual void initialize_image_texture(::gpu::renderer* pgpurenderer, const ::file::path & path);
-      virtual void initialize_image_texture(::gpu::renderer* pgpurenderer, ::image::image * pimage, enum_type etype = e_type_image);
+      virtual void initialize_image_texture(::gpu::renderer* pgpurenderer, const ::pointer_array < ::image::image >& imagea, enum_type etype = e_type_image);
 
+      virtual ::pointer < ::gpu::pixmap > create_gpu_pixmap(const ::int_size & size);
 
       virtual void merge_layers(::pointer_array < ::gpu::layer >* playera);
       virtual void blend(::gpu::layer * player);
@@ -69,7 +79,9 @@ namespace gpu
       virtual texture* get_depth_texture();
 
       virtual ::string texture_type();
+      virtual void set_pixels(const ::int_rectangle& rectangle, const void* data);
 
+      virtual bool is_in_shader_sampling_state();
 
    };
 

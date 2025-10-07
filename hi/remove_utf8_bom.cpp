@@ -13,12 +13,12 @@ namespace console_hello
    void application::remove_utf8_bom_phase1()
    {
 
-      ::file::listing listing;
+      ::file::listing_base listing;
 
       auto pathFolder = directory_system()->get_current();
 
       listing.set_pattern_file_listing(pathFolder, {"*.h", "*.cpp", "*.c", "*.hpp", "*.mm", "*.java" }, e_depth_recursively);
-      ::file::path_array patha;
+      ::file::path_array_base patha;
 
       memory memoryNull;
 

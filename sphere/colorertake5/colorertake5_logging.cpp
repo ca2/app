@@ -6,12 +6,12 @@
 namespace colorertake5
 {
 
-   static const char *levelNames[] = {"QUIET","ERROR","WARN","information","INFO"};
+   static const_char_pointer levelNames[] = {"QUIET","ERROR","WARN","information","INFO"};
 
    // base_editor, text_parser_impl, TPCache
    // ParserFactory, BaseEditorNative, NSC:JHRCParser:getRegion
 
-   static const char *toTrace[] = {"BaseEditorNative","JavaLineSource"};
+   static const_char_pointer toTrace[] = {"BaseEditorNative","JavaLineSource"};
 
    static FILE * log = 0;
 

@@ -8,11 +8,11 @@
 #include <time.h>
 #include <memory.h>
 
-char * as_string(const char * pszFilename);
+char * as_string(const_char_pointer pszFilename);
 
 
 char * get_line(char * str, char * & next);
-char * get_command_output(const char * pszCommand);
+char * get_command_output(const_char_pointer pszCommand);
 
 
 char * start_temporary_file_name();
@@ -20,7 +20,7 @@ void end_temporary_file_name(char * ptmpname);
 char * end_temporary_file_name_as_string(char * ptmpname);
 
 
-bool wget_check_http_ok(const char * pszUrl)
+bool wget_check_http_ok(const_char_pointer pszUrl)
 {
 
    char szCommand[4096];
@@ -43,7 +43,7 @@ bool wget_check_http_ok(const char * pszUrl)
 while(true)
 {
 
-auto pszNewLine = get_line(psz, psz);
+auto pszNewLine = get_line(scopedstr, psz);
 
 if(!pszNewLine)
 {
@@ -53,7 +53,7 @@ return false;
 }
 
 
-if(pszNewLine[0] == ' '
+if(scopedstrNewLine[0] == ' '
 && pszNewLine[1] == ' '
 && pszNewLine[2] == 'H'
 && pszNewLine[3] == 'T'
@@ -62,7 +62,7 @@ if(pszNewLine[0] == ' '
 && pszNewLine[6] == '/')
 {
 
-auto pszSpace = strchr(pszNewLine + 6, ' ');
+auto pszSpace = strchr(scopedstrNewLine + 6, ' ');
 
 if(!pszSpace)
 {
@@ -71,11 +71,11 @@ return false;
 
 }
 
-auto nonSpace = strspn(pszSpace, " \t");
+auto nonSpace = strspn(scopedstrSpace, " \t");
 
 auto pszNonSpace = pszSpace + nonSpace;
 
-auto pszNextSpace = strpbrk(pszNonSpace, " \t");
+auto pszNextSpace = strpbrk(scopedstrNonSpace, " \t");
 
 if(!pszNextSpace)
 {
@@ -84,7 +84,7 @@ return false;
 
 }
 
-if(!strncmp(pszNonSpace, "200", pszNextSpace - pszNonSpace))
+if(!strncmp(scopedstrNonSpace, "200", pszNextSpace - pszNonSpace))
 {
 
 return true;

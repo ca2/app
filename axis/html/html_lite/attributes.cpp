@@ -47,15 +47,18 @@
 * @since 1.0
 * @author Gurmeet S. Kochar
 */
-character_count LiteHTMLElemAttr::parseFromStr(::lite_html_reader * preader, const ::string & pszString)
+character_count LiteHTMLElemAttr::parseFromStr(::lite_html_reader * preader, const ::scoped_string & scopedstrString)
 
 {
-   ASSERT(is_string_ok(pszString));
+   ASSERT(is_string_ok(scopedstrString));
 
+   ::string str(scopedstrString);
 
-   const char *   pszBegin = pszString;
+   const_char_pointer pszString = str;
 
-   const char *   pszEnd;
+   const_char_pointer pszBegin = pszString;
+
+   const_char_pointer pszEnd;
 
    //   char   ch = 0;
 
@@ -232,7 +235,7 @@ character_count LiteHTMLElemAttr::parseFromStr(::lite_html_reader * preader, con
 * @since 1.0
 * @author Gurmeet S. Kochar
 */
-character_count LiteHTMLAttributes::parseFromStr(::lite_html_reader * preader, const ::string & pszString, character_count iLen)
+character_count LiteHTMLAttributes::parseFromStr(::lite_html_reader * preader, const ::scoped_string & scopedstrString, character_count iLen)
 
 {
 
@@ -241,6 +244,10 @@ character_count LiteHTMLAttributes::parseFromStr(::lite_html_reader * preader, c
    const character_count         nStrLen = iLen;
    character_count            nRetVal = 0U,
                        nTemp = 0U;
+
+   ::string str(scopedstrString);
+
+   const_char_pointer pszString = str;
 
    do
    {
@@ -267,7 +274,7 @@ character_count LiteHTMLAttributes::parseFromStr(::lite_html_reader * preader, c
       }
 
       // add attribute/value pair to collection
-      if (pcoll->add(__raw_new LiteHTMLElemAttr(oElemAttr)) < 0)
+      if (pcoll->add(øraw_new LiteHTMLElemAttr(oElemAttr)) < 0)
          goto LError;
 
       // advance seek pointer
@@ -299,22 +306,22 @@ LCleanExit:
    return (nRetVal);
 }
 
-LiteHTMLElemAttr* LiteHTMLAttributes::addAttribute(const ::string & lpszName, const ::string & pszValue)
+LiteHTMLElemAttr* LiteHTMLAttributes::addAttribute(const ::scoped_string & scopedstrName, const ::scoped_string & scopedstrValue)
 
 {
 
-   ASSERT(is_string_ok(lpszName));
+   ASSERT(is_string_ok(scopedstrName));
 
-   ASSERT(is_string_ok(pszValue));
+   ASSERT(is_string_ok(scopedstrValue));
 
 
-   LiteHTMLElemAttr   *pItem = __raw_new LiteHTMLElemAttr(lpszName, pszValue);
+   LiteHTMLElemAttr   *pItem = øraw_new LiteHTMLElemAttr(scopedstrName, scopedstrValue);
 
    if (pItem != nullptr)
    {
       if (m_parrAttrib == nullptr)
       {
-         if ((m_parrAttrib = __raw_new CElemAttrArray()) == nullptr)
+         if ((m_parrAttrib = øraw_new CElemAttrArray()) == nullptr)
          {
             SAFE_DELETE_POINTER(pItem);
             //               TRACE0("(Error) LiteHTMLAttributes::addAttribute: Out of memory.\n");
@@ -331,14 +338,14 @@ LiteHTMLElemAttr* LiteHTMLAttributes::addAttribute(const ::string & lpszName, co
 }
 
 
-void LiteHTMLElemAttr::putValue(::lite_html_reader * preader, const ::string & pszValue)
+void LiteHTMLElemAttr::putValue(::lite_html_reader * preader, const ::scoped_string & scopedstrValue)
 
 {
 
-   ASSERT(is_string_ok(pszValue));
+   ASSERT(is_string_ok(scopedstrValue));
 
 
-   m_strValue = pszValue;
+   m_strValue = scopedstrValue;
 
 
    // ignore leading white-spaces
@@ -414,7 +421,7 @@ bool LiteHTMLElemAttr::isSysColorValue(::lite_html_reader * preader) const
 
       strKey.make_lower();
 
-      if (preader->m_phtml->m_namedcolor.lookup(strKey, color))
+      if (preader->m_phtml->m_namedcolor.find(strKey, color))
       {
 
          return color.m_estatus == ::success_color_index;
@@ -472,7 +479,7 @@ bool LiteHTMLElemAttr::isHexColorValue() const
 
       strKey.make_lower();
 
-      if(preader->m_phtml->m_namedcolor.lookup(strKey, color))
+      if(preader->m_phtml->m_namedcolor.find(strKey, color))
       {
 
          // is this a system named color value?

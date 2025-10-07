@@ -4,7 +4,7 @@
 #include "document.h"
 #include "file_list.h"
 #include "acme/constant/id.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "acme/filesystem/file/item_array.h"
 #include "acme/filesystem/filesystem/directory_context.h"
 #include "acme/filesystem/filesystem/file_context.h"
@@ -28,9 +28,9 @@
 #include "aura/user/user/interaction_array.h"
 #include "aura/user/user/shell.h"
 #include "aura/user/menu/command.h"
-#include "base/user/menu/item.h"
-#include "base/user/menu/item_ptra.h"
-#include "base/user/menu/menu.h"
+#include "berg/user/menu/item.h"
+#include "berg/user/menu/item_ptra.h"
+#include "berg/user/menu/menu.h"
 #include "core/filesystem/userfs/list_data.h"
 #include "core/filesystem/userfs/list_item.h"
 #include "core/filesystem/userfs/list_item_array.h"
@@ -78,12 +78,12 @@ namespace filemanager
 
       ::userfs::list::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_scroll_x, pchannel, this, &file_list::on_message_scroll_x);
-      MESSAGE_LINK(e_message_scroll_y, pchannel, this, &file_list::on_message_scroll_y);
-      MESSAGE_LINK(e_message_right_button_up, pchannel, this, &file_list::on_message_context_menu);
-      MESSAGE_LINK(e_message_show_window, pchannel, this, &file_list::on_message_show_window);
-      MESSAGE_LINK(e_message_set_focus, pchannel, this, &file_list::on_message_set_focus);
-      MESSAGE_LINK(e_message_kill_focus, pchannel, this, &file_list::on_message_kill_focus);
+      USER_MESSAGE_LINK(::user::e_message_scroll_x, pchannel, this, &file_list::on_message_scroll_x);
+      USER_MESSAGE_LINK(::user::e_message_scroll_y, pchannel, this, &file_list::on_message_scroll_y);
+      USER_MESSAGE_LINK(::user::e_message_right_button_up, pchannel, this, &file_list::on_message_context_menu);
+      USER_MESSAGE_LINK(::user::e_message_show_window, pchannel, this, &file_list::on_message_show_window);
+      USER_MESSAGE_LINK(::user::e_message_set_focus, pchannel, this, &file_list::on_message_set_focus);
+      USER_MESSAGE_LINK(::user::e_message_kill_focus, pchannel, this, &file_list::on_message_kill_focus);
 
       add_command_prober("edit_copy", { this,  &file_list::_001OnUpdateEditCopy });
       add_command_handler("edit_copy", { this,  &file_list::_001OnEditCopy });
@@ -167,7 +167,7 @@ namespace filemanager
    void file_list::RenameFile(int iLine, string &wstrNameNew, const ::action_context & context)
    {
 
-      synchronous_lock synchronouslock(fs_list()->synchronization());
+      synchronous_lock synchronouslock(fs_list()->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       ::file::path filepath = fs_list_item(iLine)->final_path();
 
@@ -187,7 +187,7 @@ namespace filemanager
 
       ::pointer<::message::mouse>pcontextmenu(pmessage);
 
-      synchronous_lock synchronouslock(fs_list()->synchronization());
+      synchronous_lock synchronouslock(fs_list()->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       ::collection::index iItem;
 
@@ -389,7 +389,7 @@ namespace filemanager
             else
             {
 
-               psession->m_varTopicFile = (const string_array &) patha;
+               psession->m_varTopicFile = (const string_array_base &) patha;
 
             }
 
@@ -467,7 +467,7 @@ namespace filemanager
 
       ::pointer<::message::command>pcommand(pmessage);
 
-      synchronous_lock synchronouslock(fs_list()->synchronization());
+      synchronous_lock synchronouslock(fs_list()->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       ::file::item_array itema;
 
@@ -501,16 +501,16 @@ namespace filemanager
    void file_list::_017OpenContextMenuFolder(::pointer<::file::item> item, const ::action_context & context)
    {
 
-      string_array straCommand;
+      string_array_base straCommand;
 
-      string_array straCommandTitle;
+      string_array_base straCommandTitle;
 
       filemanager_document()->on_file_manager_open_context_menu_folder(item, straCommand, straCommandTitle, context);
 
       if (straCommand.get_size() > 0)
       {
 
-         auto pmenu = __create_new < ::user::menu >();
+         auto pmenu = øcreate_new < ::user::menu >();
 
          if (pmenu->create_menu(straCommand, straCommandTitle))
          {
@@ -705,7 +705,7 @@ namespace filemanager
 
          string strExt = strPath.final_extension();
 
-         string_array stra;
+         string_array_base stra;
 
          // auto pcontext = get_context();
 
@@ -720,7 +720,7 @@ namespace filemanager
          for (int i = 0; i < iCount; i++)
          {
 
-            auto pmenuitem = __create_new < ::menu::item > ();
+            auto pmenuitem = øcreate_new < ::menu::item > ();
 
             pmenuitem->id() = "open with" + stra[i];
 
@@ -866,9 +866,9 @@ namespace filemanager
 
    //   auto itema = get_selected_items();
 
-   //   string_array stra;
+   //   string_array_base stra;
 
-   //   ::file::listing straSub;
+   //   ::file::listing_base straSub;
 
    //   string strFileList;
    //   string strFileCheck;
@@ -933,15 +933,15 @@ namespace filemanager
    //void file_list::_001OnSpafy2(::message::message * pmessage)
    //{
 
-   //   synchronous_lock synchronouslock(fs_list()->synchronization());
+   //   synchronous_lock synchronouslock(fs_list()->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //   ::pointer<::userfs::list_data>pdata = fs_list();
    //
    //   __UNREFERENCED_PARAMETER(pmessage);
    //
-   //   string_array stra;
+   //   string_array_base stra;
    //
-   //   ::file::listing straSub(get_context());
+   //   ::file::listing_base straSub(get_context());
 
    //   string strFileList;
 
@@ -1035,10 +1035,10 @@ namespace filemanager
    //}
 
 
-   //void file_list::schedule_file_size(const ::string & psz)
+   //void file_list::schedule_file_size(const ::scoped_string & scopedstr)
    //{
 
-   //   __UNREFERENCED_PARAMETER(psz);
+   //   __UNREFERENCED_PARAMETER(scopedstr);
 
    //   if (!is_window_visible())
    //   {
@@ -1076,7 +1076,7 @@ namespace filemanager
 
          ::userfs::list_item item;
 
-         string_array stra;
+         string_array_base stra;
 
          auto papp = ::filemanager_impact_base::get_app();
 
@@ -1084,7 +1084,7 @@ namespace filemanager
 
          pdatabaseclient->datastream()->get(filemanager_data()->m_strDataKeyStatic, stra);
 
-         synchronous_lock lock(fs_list()->synchronization());
+         synchronous_lock lock(fs_list()->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          fs_list()->m_pitema->erase_all();
 
@@ -1131,7 +1131,7 @@ namespace filemanager
 
       set_context_offset({0,0});
 
-      string_array straStrictOrder;
+      string_array_base straStrictOrder;
 
 //      papp->datastream()->get(data_get_current_sort_id() + "." +  data_get_current_list_layout_id() + ".straStrictOrder", straStrictOrder);
 
@@ -1139,7 +1139,7 @@ namespace filemanager
 
       ::pointer<icon_layout>piconlayout;
 
-      __construct_new(piconlayout);
+      øconstruct_new(piconlayout);
 
 //      papp->datastream()->get(data_get_current_sort_id() + "." + data_get_current_list_layout_id(), piconlayout);
 
@@ -1173,11 +1173,11 @@ namespace filemanager
 
          auto pparticleSynchronization = fs_list()->synchronization();
 
-         synchronous_lock lock(pparticleSynchronization);
+         synchronous_lock lock(pparticleSynchronization, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-         ::file::listing & listingUser = filemanager_data()->m_listingUser2;
+         ::file::listing_base & listingUser = filemanager_data()->m_listingUser2;
 
-         ::file::listing & listingFinal = filemanager_data()->m_listingFinal2;
+         ::file::listing_base & listingFinal = filemanager_data()->m_listingFinal2;
 
          auto cItem = listingUser.get_size();
 
@@ -1233,7 +1233,7 @@ namespace filemanager
 
       {
 
-         synchronous_lock lock(fs_list()->synchronization());
+         synchronous_lock lock(fs_list()->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          if (m_eview == impact_icon)
          {
@@ -1357,7 +1357,7 @@ namespace filemanager
 
          {
 
-            auto pinteraction = __create_new <  user::button > ();
+            auto pinteraction = øcreate_new <  user::button > ();
             pinteraction->m_bTransparent = true;
             //pinteraction->set_control_type(user::e_control_type_button);
             //pinteraction->m_type = ::type < ::user::button >();
@@ -1421,7 +1421,7 @@ namespace filemanager
          if (bRenameEdit)
          {
 
-            auto pinteraction = __create_new <  user::plain_edit > ();
+            auto pinteraction = øcreate_new <  user::plain_edit > ();
             //pinteraction->set_control_type(user::e_control_type_edit_plain_text);
             pinteraction->m_strDataKey20 = "FILE_MANAGER_ID_FILE_NAME";
             //pinteraction->id() = _vms::FILE_MANAGER_ID_FILE_NAME;
@@ -1655,7 +1655,7 @@ namespace filemanager
    void file_list::_017OpenContextMenuSelected(const ::action_context & context)
    {
 
-      synchronous_lock synchronouslock(fs_list()->synchronization());
+      synchronous_lock synchronouslock(fs_list()->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       ::file::item_array itema;
 
@@ -1772,7 +1772,7 @@ namespace filemanager
    //void file_list::GetSelected(::file::item_array &itema)
    //{
 
-   //   synchronous_lock synchronouslock(fs_list()->synchronization());
+   //   synchronous_lock synchronouslock(fs_list()->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //   index iItemRange, iItem;
    //   ::user::range range;
@@ -1836,10 +1836,10 @@ namespace filemanager
    }
 
 
-   bool file_list::add_fs_item(::file::path pathUser, ::file::path pathFinal, string strName)
+   bool file_list::add_fs_item(::file::path pathUser, ::file::path pathFinal, const ::scoped_string & scopedstrName)
    {
 
-      synchronous_lock synchronouslock(fs_list()->synchronization());
+      synchronous_lock synchronouslock(fs_list()->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       ::userfs::list_item item;
 
@@ -1847,7 +1847,7 @@ namespace filemanager
 
       item.set_final_path(pathFinal);
 
-      item.m_strName = strName;
+      item.m_strName = scopedstrName;
 
       // auto pcontext = get_context();
 
@@ -1929,7 +1929,7 @@ namespace filemanager
    bool file_list::query_drop(::collection::index iDisplayDrop, ::collection::index iDisplayDrag)
    {
 
-      synchronous_lock synchronouslock(fs_list()->synchronization());
+      synchronous_lock synchronouslock(fs_list()->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (iDisplayDrag < 0)
          return false;
@@ -1970,7 +1970,7 @@ namespace filemanager
    bool file_list::do_drop(::collection::index iDisplayDrop, ::collection::index iDisplayDrag)
    {
 
-      synchronous_lock synchronouslock(fs_list()->synchronization());
+      synchronous_lock synchronouslock(fs_list()->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       ::collection::index strict = display_to_strict(iDisplayDrop);
 
@@ -2071,7 +2071,7 @@ namespace filemanager
       if (m_bStatic && ptopic->id() == id_add_location)
       {
 
-         ::file::path_array filepatha;
+         ::file::path_array_base filepatha;
 
          ::cast < ::database::client > pdatabaseclient = application();
 
@@ -2089,7 +2089,7 @@ namespace filemanager
             if (filepatha.add_unique(filepath) >= 0)
             {
 
-               string_array stra;
+               string_array_base stra;
 
                ::generic::container::copy(stra, filepatha);
 
@@ -2154,7 +2154,7 @@ namespace filemanager
 
          //   {
 
-         //      synchronous_lock synchronouslock(mutex_draw());
+         //      synchronous_lock synchronouslock(mutex_draw(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          //      if (filemanager_data()->m_pholderFileList->m_puserinteractionpointeraChild->has_interaction())
          //      {

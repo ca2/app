@@ -46,7 +46,7 @@ namespace sockets
          int_to_string Method;
          int_to_string header;
          int_to_string Attribute;
-         string_map < int > ResponseHeader;
+         string_map_base < int > ResponseHeader;
 
       };
 
@@ -55,7 +55,7 @@ namespace sockets
       virtual void OnRawData(char *buf, memsize sz) override;
 
       virtual void OnHeader( short atom, short len ) = 0;
-      virtual void OnPacket( const char *buf, memsize sz ) = 0;
+      virtual void OnPacket( const_char_pointer buf, memsize sz ) = 0;
 
    protected:
       uchar get_byte(const ::string &buf, int& ptr);
@@ -66,7 +66,7 @@ namespace sockets
       void put_byte(char *buf, int& ptr, uchar zz);
       void put_boolean(char *buf, int& ptr, bool zz);
       void put_integer(char *buf, int& ptr, short zz);
-      void put_string(char *buf, int& ptr, const ::string & psz);
+      void put_string(char *buf, int& ptr, const ::scoped_string & scopedstr);
 
    };
 

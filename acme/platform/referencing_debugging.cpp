@@ -178,7 +178,7 @@ namespace acme
 
       //m_preferencingdebugging = ::platform::allocator::__callnew referencing_debugging();
 
-      m_preferencingdebugging = __raw_new referencing_debugging();
+      m_preferencingdebugging = øraw_new referencing_debugging();
 
    }
 

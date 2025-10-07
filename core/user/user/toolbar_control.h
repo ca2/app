@@ -19,7 +19,7 @@ namespace user
 
       toolbar_control();
 
-      //bool LoadToolBar(const ::string & pszResourceName);
+      //bool LoadToolBar(const ::scoped_string & scopedstrResourceName);
 
       //bool LoadToolBar(unsigned int nIDResource);
       bool SetButtons(const unsigned int* pIDArray, int nIDCount);
@@ -129,8 +129,8 @@ namespace user
 
 //#ifdef WINDOWS_DESKTOP
 //
-//      void SaveState(HKEY hKeyRoot, const ::string & pszSubKey, const ::string & pszValueName);
-//      void RestoreState(HKEY hKeyRoot, const ::string & pszSubKey, const ::string & pszValueName);
+//      void SaveState(HKEY hKeyRoot, const ::scoped_string & scopedstrSubKey, const ::scoped_string & scopedstrValueName);
+//      void RestoreState(HKEY hKeyRoot, const ::scoped_string & scopedstrSubKey, const ::scoped_string & scopedstrValueName);
 //      void LoadImages(int iBitmapID, HINSTANCE hinst);
 //
 //#endif
@@ -142,7 +142,7 @@ namespace user
       int hit_test(::int_point * ppt);
 
       void Customize();
-      int AddStrings(const ::string & pszStrings);
+      int AddStrings(const ::scoped_string & scopedstrStrings);
 
       void AutoSize();
 

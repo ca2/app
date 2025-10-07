@@ -64,7 +64,7 @@ namespace bred
 //
 //      printf("core::user::initialize\n");
 //
-//      ::base::user::initialize(pparticle);
+//      ::berg::user::initialize(pparticle);
 //
 //      //if (!estatus)
 //      //{
@@ -82,7 +82,7 @@ namespace bred
    {
 
 
-      ::base::user::init1();
+      ::berg::user::user::init1();
 //
 //      factory()->add_factory_item < ::user::picture::picture_impl >();
 //
@@ -113,9 +113,9 @@ namespace bred
 void user::init(){
 //   {
 //
-      ::base::user::init();
+      ::berg::user::user::init();
 //
-//      //if (!::base::user::init())
+//      //if (!::berg::user::init())
 //      //{
 //
 //      //   return ::error_failed;
@@ -255,7 +255,7 @@ void user::init(){
 //
 //      //estatus = 
 //
-//      __øconstruct(m_phtml);
+//      øconstruct(m_phtml);
 //
 //      //if(!estatus)
 //      //{
@@ -385,7 +385,7 @@ void user::init(){
 void user::init2()
 {
 //
-      ::base::user::init2();
+      ::berg::user::user::init2();
 //
 //      //if (!::acme::department::init2())
 //      //{
@@ -445,22 +445,22 @@ void user::destroy()
 //   }
 //
 //
-//   pointer< ::sequence < ::conversation > > user::dialog_box(::particle * pparticle, const ::string & pszMatter, ::property_set & propertyset)
+//   pointer< ::sequence < ::conversation > > user::dialog_box(::particle * pparticle, const ::scoped_string & scopedstrMatter, ::property_set & propertyset)
 //   {
 //
 //      return nullptr;
-//      //auto pbox = pparticle->__create_new < class ::userex::message_box >();
+//      //auto pbox = pparticle->øcreate_new < class ::userex::message_box >();
 //
 //      ////auto pfuture = pbox->::extended::asynchronous< ::future<::conversation > >::future();
 //
 //      //auto psequence = pbox->sequence();
 //
-//      //// todo add property set to list;
+//      //// todo add property set to list_base;
 //      //pbox->get_property_set().merge(propertyset);
 //
 //      ////r
 //
-//      //if (!pbox->show(pszMatter))
+//      //if (!pbox->show(scopedstrMatter))
 //      //{
 //
 //      //   //pfuture->set_status(::error_failed);
@@ -476,12 +476,12 @@ void user::destroy()
 //   }
 //
 //
-//   pointer< ::sequence < ::conversation > > user::ui_message_box(::particle * pparticle, ::user::interaction_base * puiOwner, const ::string & pszMessage, const ::string & pszTitle, const ::e_message_box & emessagebox)
+//   pointer< ::sequence < ::conversation > > user::ui_message_box(::particle * pparticle, ::user::interaction_base * puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::user::e_message_box & emessagebox)
 //   {
 //
 //      return nullptr;
 //
-//      //auto pbox = pparticle->__create_new < ::userex::message_box >();
+//      //auto pbox = pparticle->øcreate_new < ::userex::message_box >();
 //
 //      //auto pfuture = pbox->::extended::asynchronous< ::conversation >::sequence();
 //
@@ -512,15 +512,15 @@ void user::destroy()
 //
 //      //string strMatter;
 //
-//      //auto emessageboxType = emessagebox & e_message_box_type_mask;
+//      //auto emessageboxType = emessagebox & ::user::e_message_box_type_mask;
 //
-//      //if(emessageboxType == e_message_box_yes_no_cancel)
+//      //if(emessageboxType == ::user::e_message_box_yes_no_cancel)
 //      //{
 //
 //      //   strMatter = "system\\user\\message_box\\yesnocancel.xhtml";
 //
 //      //}
-//      //else if (emessageboxType == e_message_box_yes_no)
+//      //else if (emessageboxType == ::user::e_message_box_yes_no)
 //      //{
 //
 //      //   strMatter = "system\\user\\message_box\\yesno.xhtml";
@@ -611,12 +611,12 @@ void user::destroy()
 //   }
 //
 //
-//   pointer< ::sequence < ::conversation > > user::ui_message_box_timeout(::particle * pparticle, ::user::interaction_base * puiOwner, const ::string & pszMessage, const ::string & pszTitle, const class time & timeTimeout, const ::e_message_box & emessagebox)
+//   pointer< ::sequence < ::conversation > > user::ui_message_box_timeout(::particle * pparticle, ::user::interaction_base * puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const class time & timeTimeout, const ::user::e_message_box & emessagebox)
 //   {
 //
 //      //__UNREFERENCED_PARAMETER(puiOwner);
 //
-//      //auto pbox = pparticle->__create_new < ::userex::message_box >();
+//      //auto pbox = pparticle->øcreate_new < ::userex::message_box >();
 //
 //      //auto pfuture = pbox->::extended::asynchronous< ::conversation >::sequence();
 //
@@ -634,9 +634,9 @@ void user::destroy()
 //
 //      //string strMatter;
 //
-//      //auto emessageboxType = emessagebox & e_message_box_type_mask;
+//      //auto emessageboxType = emessagebox & ::user::e_message_box_type_mask;
 //
-//      //if (emessageboxType == e_message_box_yes_no_cancel)
+//      //if (emessageboxType == ::user::e_message_box_yes_no_cancel)
 //      //{
 //
 //      //   strMatter = "system\\user\\message_box_timeout\\yesnocancel.xhtml";
@@ -665,19 +665,19 @@ void user::destroy()
 //   }
 //
 //
-//   int user::track_popup_menu(const ::string & pszMatter, const ::int_point & point, ::pointer<::user::interaction>puie)
+//   int user::track_popup_menu(const ::scoped_string & scopedstrMatter, const ::int_point & point, ::pointer<::user::interaction>puie)
 //   {
 //
-//      //__UNREFERENCED_PARAMETER(pszMatter);
+//      //__UNREFERENCED_PARAMETER(scopedstrMatter);
 //      //__UNREFERENCED_PARAMETER(point);
 //      //__UNREFERENCED_PARAMETER(puie);
 //
-//      return ::bred::user::track_popup_menu(pszMatter, point, puie);
+//      return ::bred::user::track_popup_menu(scopedstrMatter, point, puie);
 //
 //   }
 //
 //
-//   bool user::get_fs_size(string & strSize, const ::string & pszPath, bool & bPending)
+//   bool user::get_fs_size(string & strSize, const ::scoped_string & scopedstrPath, bool & bPending)
 //   {
 //
 //      long long i64Size;
@@ -740,7 +740,7 @@ void user::destroy()
 //   }
 //
 //
-//   bool user::get_fs_size(long long & i64Size, const ::string & pszPath, bool & bPending)
+//   bool user::get_fs_size(long long & i64Size, const ::scoped_string & scopedstrPath, bool & bPending)
 //   {
 //
 //      //db_server * pcentral = dynamic_cast <db_server *> (psystem->m_psimpledb->db());
@@ -837,11 +837,11 @@ void user::destroy()
 //   }
 //
 //
-//   void  user::AddToRecentFileList(const ::string & pszPathName)
+//   void  user::AddToRecentFileList(const ::scoped_string & scopedstrPathName)
 //
 //   {
 //
-//      __UNREFERENCED_PARAMETER(pszPathName);
+//      __UNREFERENCED_PARAMETER(scopedstrPathName);
 //
 //
 //   }
@@ -905,7 +905,7 @@ void user::destroy()
 //
 //   //   //}
 //
-//   //   auto prequest = ::__create_new < ::request >(pparticle);
+//   //   auto prequest = ::øcreate_new < ::request >(pparticle);
 //
 //   //   prequest->m_bMakeVisible = false;
 //
@@ -987,7 +987,7 @@ void user::destroy()
 //
 //   //   }
 //
-//   //   auto prequest = ::__create_new < ::request > (pparticle);
+//   //   auto prequest = ::øcreate_new < ::request > (pparticle);
 //
 //   //   prequest->m_bMakeVisible = true;
 //
@@ -1070,7 +1070,7 @@ void user::destroy()
 //
 //      information() << "default_create_list_header : " << typeListHeader.as_string();
 //
-//      return pparticle->__id_create < ::user::list_header >(typeListHeader);
+//      return pparticle->øid_create < ::user::list_header >(typeListHeader);
 //
 //   }
 //
@@ -1078,7 +1078,7 @@ void user::destroy()
 //   ::pointer<::user::mesh_data>user::default_create_mesh_data(::particle * pparticle)
 //   {
 //
-//      return pparticle->__id_create < ::user::mesh_data >(default_type_list_data());
+//      return pparticle->øid_create < ::user::mesh_data >(default_type_list_data());
 //
 //   }
 //
@@ -1086,7 +1086,7 @@ void user::destroy()
 //   ::pointer<::user::list_data>user::default_create_list_data(::particle * pparticle)
 //   {
 //
-//      return pparticle->__id_create <::user::list_data >(default_type_list_data());
+//      return pparticle->øid_create <::user::list_data >(default_type_list_data());
 //
 //   }
 //
@@ -1123,7 +1123,7 @@ void user::destroy()
 //   //}
 //
 //
-//   //bool user::set_os_desktop_theme(string strTheme)
+//   //bool user::set_os_desktop_theme(const ::scoped_string & scopedstrTheme)
 //   //{
 //
 //   //   return impl_set_os_desktop_theme(strTheme);
@@ -1139,7 +1139,7 @@ void user::destroy()
 //   //}
 //
 //
-//   //bool user::set_wallpaper(::collection::index iScreen, string strWallpaper)
+//   //bool user::set_wallpaper(::collection::index iScreen, const ::scoped_string & scopedstrWallpaper)
 //   //{
 //
 //   //   return impl_set_wallpaper(iScreen, strWallpaper);
@@ -1157,7 +1157,7 @@ void user::destroy()
 //   //}
 //
 //
-//   //bool user::impl_set_wallpaper(::collection::index iScreen, string strLocalImagePath)
+//   //bool user::impl_set_wallpaper(::collection::index iScreen, const ::scoped_string & scopedstrLocalImagePath)
 //   //{
 //
 //   //   return SystemParametersInfoW(SPI_SETDESKWALLPAPER, 0, wstring(strLocalImagePath), SPIF_UPDATEINIFILE | SPIF_SENDCHANGE) != false;
@@ -1193,7 +1193,7 @@ void user::destroy()
 //   //}
 //
 //
-//   //bool user::impl_set_os_desktop_theme(string strTheme)
+//   //bool user::impl_set_os_desktop_theme(const ::scoped_string & scopedstrTheme)
 //   //{
 //
 //   //   __UNREFERENCED_PARAMETER(strTheme);
@@ -1206,7 +1206,7 @@ void user::destroy()
 //#elif defined(LINUX)
 //
 //
-////   bool user::impl_set_os_desktop_theme(string strTheme)
+////   bool user::impl_set_os_desktop_theme(const ::scoped_string & scopedstrTheme)
 ////   {
 ////
 ////      auto pnode = Node;
@@ -1224,7 +1224,7 @@ void user::destroy()
 ////   }
 //
 //
-////   bool user::impl_set_wallpaper(::collection::index iScreen, string strLocalImagePath)
+////   bool user::impl_set_wallpaper(::collection::index iScreen, const ::scoped_string & scopedstrLocalImagePath)
 ////   {
 ////
 ////      // wall-changer sourceforge.net contribution
@@ -1268,14 +1268,14 @@ void user::destroy()
 //
 //#elif defined(APPLE_IOS)
 //
-////   bool user::impl_set_os_desktop_theme(string strTheme)
+////   bool user::impl_set_os_desktop_theme(const ::scoped_string & scopedstrTheme)
 ////   {
 ////
 ////      return false;
 ////
 ////   }
 ////
-////   bool user::impl_set_wallpaper(::collection::index iScreen, string strLocalImagePath)
+////   bool user::impl_set_wallpaper(::collection::index iScreen, const ::scoped_string & scopedstrLocalImagePath)
 ////   {
 ////
 ////      return false;
@@ -1304,7 +1304,7 @@ void user::destroy()
 //
 //#elif defined(__ANDROID__)
 //
-////   bool user::impl_set_wallpaper(::collection::index iScreen, string strLocalImagePath)
+////   bool user::impl_set_wallpaper(::collection::index iScreen, const ::scoped_string & scopedstrLocalImagePath)
 ////   {
 ////
 ////      return psystem->android_set_user_wallpaper(strLocalImagePath);
@@ -1336,7 +1336,7 @@ void user::destroy()
 ////   }
 ////
 ////
-////   bool user::impl_set_os_desktop_theme(string strTheme)
+////   bool user::impl_set_os_desktop_theme(const ::scoped_string & scopedstrTheme)
 ////   {
 ////
 ////      __UNREFERENCED_PARAMETER(strTheme);
@@ -1356,7 +1356,7 @@ void user::destroy()
 ////   }
 //
 //
-////   bool user::impl_set_wallpaper(::collection::index iScreen, string strLocalImagePath)
+////   bool user::impl_set_wallpaper(::collection::index iScreen, const ::scoped_string & scopedstrLocalImagePath)
 ////   {
 ////
 ////      // Someday we will be together...
@@ -1382,7 +1382,7 @@ void user::destroy()
 ////   }
 ////
 ////
-////   bool user::impl_set_os_desktop_theme(string strTheme)
+////   bool user::impl_set_os_desktop_theme(const ::scoped_string & scopedstrTheme)
 ////   {
 ////
 ////      __UNREFERENCED_PARAMETER(strTheme);
@@ -1399,7 +1399,7 @@ void user::destroy()
 ////
 ////   }
 //
-////   bool user::impl_set_wallpaper(::collection::index iScreen, string strLocalImagePath)
+////   bool user::impl_set_wallpaper(::collection::index iScreen, const ::scoped_string & scopedstrLocalImagePath)
 ////   {
 ////
 ////      return macos_set_user_wallpaper((int)iScreen, strLocalImagePath);
@@ -1425,7 +1425,7 @@ void user::destroy()
 ////   }
 ////
 ////
-////   bool user::impl_set_os_desktop_theme(string strTheme)
+////   bool user::impl_set_os_desktop_theme(const ::scoped_string & scopedstrTheme)
 ////   {
 ////
 ////      __UNREFERENCED_PARAMETER(strTheme);
@@ -1465,18 +1465,18 @@ void user::destroy()
 //   //::pointer<::user::user>application::create_userex()
 //   //{
 //
-//   //   return __allocate ::user::user();
+//   //   return øallocate ::user::user();
 //
 //   //}
 //
 //
-//   //int application::sync_message_box(::user::interaction_base * puiOwner, const ::string & pszMessage, unsigned int fuStyle)
+//   //int application::sync_message_box(::user::interaction_base * puiOwner, const ::scoped_string & scopedstrMessage, unsigned int fuStyle)
 //   //{
 //
-//   //   informationf("\n\napp_message_box: " + string(pszMessage) + "\n\n");
+//   //   informationf("\n\napp_message_box: " + string(scopedstrMessage) + "\n\n");
 //
 //   //   if (&Session == nullptr || user() == nullptr)
-//   //      return ::base::application::sync_message_box(puiOwner, pszMessage, fuStyle);
+//   //      return ::berg::application::sync_message_box(puiOwner, pszMessage, fuStyle);
 //
 //   //   return puser->message_box(puiOwner, pszMessage, fuStyle);
 //
@@ -1489,7 +1489,7 @@ void user::destroy()
 //   //   if (user() == nullptr)
 //   //   {
 //
-//   //      return ::base::application::sync_message_box_timeout(puserinteractionOwner, payload, timeTimeOut, fuStyle);
+//   //      return ::berg::application::sync_message_box_timeout(puserinteractionOwner, payload, timeTimeOut, fuStyle);
 //
 //   //   }
 //
@@ -1504,7 +1504,7 @@ void user::destroy()
 //
 //   //   }
 //
-//   //   return ::base::application::sync_message_box_timeout(puserinteractionOwner, payload, timeTimeOut, fuStyle);
+//   //   return ::berg::application::sync_message_box_timeout(puserinteractionOwner, payload, timeTimeOut, fuStyle);
 //
 //   //}
 //
@@ -1575,7 +1575,7 @@ void user::destroy()
 //   //}
 //
 //
-//   void user::on_frame_window_drop_files(::user::interaction * pinteraction, ::file::path_array & patha)
+//   void user::on_frame_window_drop_files(::user::interaction * pinteraction, ::file::path_array_base & patha)
 //   {
 //
 //      for (auto & path : patha)
@@ -1704,7 +1704,7 @@ void user::destroy()
 //   }
 //
 //
-//   //void application::message_box(::user::interaction_base* puiOwner, const ::string & pszMessage, const ::string & pszTitle, unsigned int uFlags, ::function_arg function)
+//   //void application::message_box(::user::interaction_base* puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, unsigned int uFlags, ::function_arg function)
 //   //{
 //
 //   //   auto estatus = ui_message_box(puiOwner->get_safe_handle(), pszMessage, pszTitle, fuStyle, functionarg);
@@ -1747,7 +1747,7 @@ void user::destroy()
 //   }
 //
 //
-//   ::pointer<::user::list_header>list::create_list_header()
+//   ::pointer<::user::list_header>list_base::create_list_header()
 //   {
 //
 //      auto pcontext = m_papplication;
@@ -1761,7 +1761,7 @@ void user::destroy()
 //   }
 //
 //
-//   ::pointer<::user::mesh_data>list::create_mesh_data()
+//   ::pointer<::user::mesh_data>list_base::create_mesh_data()
 //   {
 //
 //      auto pcontext = m_papplication;

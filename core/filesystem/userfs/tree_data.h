@@ -24,7 +24,7 @@ namespace userfs
       bool                                   m_bCreateImageListRedraw;
       int                                    m_iAnimate;
       bool                                   m_bTimer123;
-      string_array                           m_straUpdatePtrFilter;
+      string_array_base                           m_straUpdatePtrFilter;
 
       ::pointer < ::userfs::document >       m_puserfsdocument;
 
@@ -78,7 +78,7 @@ namespace userfs
 
       void TakeAnimationSnapshot();
       virtual void StartAnimation(::user::interaction * pinteraction);
-      void GetSelectedFilePath(string_array & stra);
+      void GetSelectedFilePath(string_array_base & stra);
       virtual bool _001IsTranslucent();
 
       virtual void browse_sync(const ::action_context & action_context);
@@ -88,7 +88,7 @@ namespace userfs
 
       ::data::tree_item<item> * find_absolute(const ::file::path & path, bool bPointerFromPathFromItemFromOwnTree = false, ::data::tree_item<item> * pitemStart = nullptr);
       ::data::tree_item<item> * find_user_path(const ::file::path & pathUser, bool bPointerFromPathFromItemFromOwnTree = false, ::data::tree_item<item> * pitemStart = nullptr);
-      void clear(const ::string & pcszPreserve1, const ::string & lpcszPreserve2);
+      void clear(const ::scoped_string & scopedstrPreserve1, const ::scoped_string & scopedstrPreserve2);
 
       void arrange(::fs::e_arrange earrange);
 

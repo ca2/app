@@ -86,8 +86,8 @@ namespace networking
 
       //::pointer < ::mutex >                                            m_pmutexCache;
       //::pointer < ::mutex >                                            m_pmutexReverseCache;
-      //string_map < dns_cache_item >                      m_mapCache;
-      //string_map < ::pointer<reverse_cache_item >>      m_mapReverseCache;
+      //string_map_base < dns_cache_item >                      m_mapCache;
+      //string_map_base < ::pointer<reverse_cache_item >>      m_mapReverseCache;
       //array < ::pointer<reverse_cache_item >>           m_reversecacheaRequest;
       //::task_pointer                                     m_pthreadReverse;
 
@@ -131,15 +131,15 @@ namespace networking
       */
       virtual string rfc1738_decode(const string& src);
 
-      virtual bool is_ip4(const string& str);
+      virtual bool is_ip4(const ::scoped_string & scopedstr);
 
-      virtual bool is_ip6(const string& str);
+      virtual bool is_ip6(const ::scoped_string & scopedstr);
 
 
-      virtual address_pointer create_address(const ::string & strAddress, enum_address_type eaddresstypePreferred = e_address_type_none, port_t port = 0);
+      virtual address_pointer create_address(const ::scoped_string & scopedstrAddress, enum_address_type eaddresstypePreferred = e_address_type_none, port_t port = 0);
       virtual address_pointer create_ip4_address(int iIp, port_t port = 0);
-      //virtual bool convert(struct ::in_addr& l, const string& str, int ai_flags = 0);
-      //virtual bool convert(struct ::in6_addr& l, const string& str, int ai_flags = 0);
+      //virtual bool convert(struct ::in_addr& l, const ::scoped_string & scopedstr, int ai_flags = 0);
+      //virtual bool convert(struct ::in6_addr& l, const ::scoped_string & scopedstr, int ai_flags = 0);
       //virtual bool convert(string& str, const struct ::in_addr& ip);
       //virtual bool convert(string& str, const struct ::in6_addr& ip, bool mixed = false);
 
@@ -165,13 +165,13 @@ namespace networking
 
       //virtual bool reverse_sync(reverse_cache_item* pitem);
 
-      virtual bool reverse(string& hostname, const string& number);
+      virtual bool reverse(string& hostname, const ::scoped_string & scopedstrNumber);
       
       virtual string ip_reverse(const string & number);
 
       virtual bool u2service(const string& name, int& service, int ai_flags);
 
-      virtual int service_port(const string& str, int flags = 0);
+      virtual int service_port(const ::scoped_string & scopedstr, int flags = 0);
 
       virtual string  service_name(int iPort, int flags = 0);
 
@@ -184,9 +184,9 @@ namespace networking
 
       //virtual int _select(::sockets::socket_handler * psockethandler, const class time & timeWait);
 
-      virtual ::pointer<::networking::address>create_ip4_address(const ::string & strIp4, ::networking::port_t port = 0);
+      virtual ::pointer<::networking::address>create_ip4_address(const ::scoped_string & scopedstrIp4, ::networking::port_t port = 0);
 
-      virtual ::pointer<::networking::address>create_ip6_address(const ::string & strIp6, ::networking::port_t port = 0);
+      virtual ::pointer<::networking::address>create_ip6_address(const ::scoped_string & scopedstrIp6, ::networking::port_t port = 0);
 
       /// item: networking::address
       virtual ::pointer < ::item_array > list_computers();

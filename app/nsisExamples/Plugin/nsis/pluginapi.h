@@ -81,10 +81,10 @@ void NSISCALL setuservariable(const int varnum, LPCTSTR ::payload);
 #define SetUserVariableW(x,y) setuservariable(x,y)
 
 int  NSISCALL PopStringA(char * ansiStr);
-void NSISCALL PushStringA(const char * ansiStr);
+void NSISCALL PushStringA(const_char_pointer ansiStr);
 void NSISCALL GetUserVariableW(const int varnum, LPWSTR wideStr);
 void NSISCALL GetUserVariableA(const int varnum, char * ansiStr);
-void NSISCALL SetUserVariableA(const int varnum, const char * ansiStr);
+void NSISCALL SetUserVariableA(const int varnum, const_char_pointer ansiStr);
 
 #else
 // ANSI defs

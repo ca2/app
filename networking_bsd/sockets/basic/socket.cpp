@@ -4,6 +4,8 @@
 ////#include "acme/exception/exception.h"
 #include "networking_bsd/address.h"
 #include "networking_bsd/sockets/transfer_socket.h"
+#include "acme/operating_system/networking.h"
+
 
 
 #ifdef _WIN32
@@ -59,7 +61,9 @@ namespace sockets_bsd
 
       if (m_socketid != INVALID_SOCKET            && !m_bRetain         )
       {
+         
          close();
+
       }
 
    }
@@ -77,7 +81,7 @@ namespace sockets_bsd
    int socket::close_socket(SOCKET s)
    {
 
-      return ::closesocket(s);
+      return ::_close_socket(s);
 
    }
 
@@ -119,12 +123,13 @@ namespace sockets_bsd
 
       //   m_phandlerSlave->erase_socket(m_socketid);
 
+
       //}
 
-      if (::is_set(socket_handler()))
-      {
+      ::pointer < ::sockets_bsd::socket_handler > phandler = socket_handler();
 
-         ::pointer < ::sockets_bsd::socket_handler > phandler = m_psockethandler;
+      if (::is_set(phandler))
+      {
 
          phandler->erase_socket(m_socketid);
 
@@ -135,7 +140,7 @@ namespace sockets_bsd
    }
 
 
-   SOCKET socket::CreateSocket(int af, int iType, const ::string & strProtocol)
+   SOCKET socket::CreateSocket(int af, int iType, const ::scoped_string & scopedstrProtocol)
    {
 
       SOCKET s;
@@ -144,7 +149,7 @@ namespace sockets_bsd
 
       m_iSocketType = iType;
       
-      m_strSocketProtocol = strProtocol;
+      m_strSocketProtocol = scopedstrProtocol;
 
       int protno;
 
@@ -152,7 +157,7 @@ namespace sockets_bsd
 
       protno = 6;
 
-      if (strProtocol.case_insensitive_order("tcp") == 0)
+      if (scopedstrProtocol.case_insensitive_order("tcp") == 0)
       {
 
          protno = 6;
@@ -167,10 +172,10 @@ namespace sockets_bsd
 
          struct protoent * pprotoent = nullptr;
 
-         if (strProtocol.length())
+         if (scopedstrProtocol.length())
          {
 
-            pprotoent = getprotobyname(strProtocol);
+            pprotoent = getprotobyname(scopedstrProtocol);
 
             if (pprotoent == nullptr)
             {
@@ -202,17 +207,17 @@ namespace sockets_bsd
 
 #ifdef WINDOWS
 
-      s = ::socket(af, iType, protno);
+      s = ::_open_socket(af, iType, protno);
 
 #elif defined(__APPLE__)
       
-      s = ::socket(af, iType, protno);
+      s = ::_open_socket(af, iType, protno);
       
       fcntl(s, O_CLOEXEC);
 
 #else
 
-      s = ::socket(af, iType | SOCK_CLOEXEC, protno);
+      s = ::_open_socket(af, iType | SOCK_CLOEXEC, protno);
 
 #endif
 
@@ -310,7 +315,7 @@ namespace sockets_bsd
       //ASSERT(m_hSocket != INVALID_SOCKET);
 
       // gets the address of the socket at the other end
-      auto paddress = __allocate ::networking_bsd::address();
+      auto paddress = øallocate ::networking_bsd::address();
       socklen_t nLengthAddr = sizeof(sockaddr);
       if (getpeername(GetSocketId(), paddress->sa(), &nLengthAddr) == SOCKET_ERROR)
       {
@@ -330,7 +335,7 @@ namespace sockets_bsd
       //ASSERT(m_hSocket != INVALID_SOCKET);
 
       // gets the address of the socket at this end
-      auto paddress = __allocate ::networking_bsd::address();
+      auto paddress = øallocate ::networking_bsd::address();
       socklen_t nLengthAddr = sizeof(sockaddr);
       if (getsockname(GetSocketId(), paddress->sa(), &nLengthAddr) == SOCKET_ERROR)
       {

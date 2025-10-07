@@ -71,7 +71,7 @@ namespace platform
 
 
    //bool apex_context_layer::http_download(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrFile){}
-   //::string apex_context_layer::http_get(const string& strUrl, ::property_set & set){}
+   //::string apex_context_layer::http_get(const ::scoped_string & scopedstrUrl, ::property_set & set){}
    //::string apex_context_layer::http_get(const ::scoped_string & scopedstrUrl){}
 
    ::string apex_context_layer::get_latest_build_number(const ::scoped_string& scopedstrConfiguration,
@@ -81,14 +81,14 @@ namespace platform
    }
 
 
-   ::file::path apex_context_layer::defer_make_file_system_url(string str)
+   ::file::path apex_context_layer::defer_make_file_system_url(const ::scoped_string & scopedstr)
    {
 
       return {};
    }
 
 
-   ::string apex_context_layer::defer_get_file_title(string str)
+   ::string apex_context_layer::defer_get_file_title(const ::scoped_string & scopedstr)
    {
       return {};
    }
@@ -101,7 +101,7 @@ namespace platform
    //      ::file::path _defer_process_path(::file::path path) override{}
    //      ::file::path __defer_process_path(::file::path path) override{}
 
-   bool apex_context_layer::_001IsProtocol(::file::path& path, const ::string& strProtocol)
+   bool apex_context_layer::_001IsProtocol(::file::path& path, const ::scoped_string & scopedstrProtocol)
    {
       return false;
    }
@@ -158,30 +158,30 @@ namespace platform
    }
 
 
-   //bool _enumerates(::file::listing & listing) override{}
-   //bool enumerate(::file::listing& listing) override{}
-   //bool apex_context_layer::perform_file_relative_name_listing(::file::listing& listing) override{}
+   //bool _enumerates(::file::listing_base & listing) override{}
+   //bool enumerate(::file::listing_base& listing) override{}
+   //bool apex_context_layer::perform_file_relative_name_listing(::file::listing_base& listing) override{}
 
 
    //virtual ::image::image_pointer get_image(const ::payload & payloadFile, bool bCache = true, bool bSync = true){}
-   //virtual ::image::image_pointer matter_image(const ::string & strMatter, bool bCache = true, bool bSync = true){}
+   //virtual ::image::image_pointer matter_image(const ::scoped_string & scopedstrMatter, bool bCache = true, bool bSync = true){}
 
    //virtual ::image::image_pointer load_image(const ::payload & payloadFile, bool bCache = true, bool bSync = true, bool bCreateHelperMaps = false) override{}
-   //virtual ::image::image_pointer load_matter_image(const ::string & strMatter, bool bCache = true, bool bSync = true, bool bCreateHelperMaps = false){}
-   //virtual ::image::image_pointer load_matter_icon(string_array & straMatter, string strIcon) override{}
+   //virtual ::image::image_pointer load_matter_image(const ::scoped_string & scopedstrMatter, bool bCache = true, bool bSync = true, bool bCreateHelperMaps = false){}
+   //virtual ::image::image_pointer load_matter_icon(string_array_base & straMatter, const ::scoped_string & scopedstrIcon) override{}
    //virtual ::image::image_pointer load_thumbnail(const ::payload & payloadFile, int w, int h) override{}
-   //virtual ::image::image_pointer load_thumbnail(const ::string & strPath){}
+   //virtual ::image::image_pointer load_thumbnail(const ::scoped_string & scopedstrPath){}
    //virtual ::image::image_pointer load_dib(const ::file::path & pathDib) override{}
    //virtual ::icon_pointer load_icon(const ::payload & payloadFile){}
 
 
    //void apex_context_layer::_get_image(::image::image *pimage, const ::payload & payloadFile, bool bSync = true){}
-   //void apex_context_layer::_matter_image(::image::image *pimage, const ::string & strMatter, bool bSync = true){}
+   //void apex_context_layer::_matter_image(::image::image *pimage, const ::scoped_string & scopedstrMatter, bool bSync = true){}
 
 
    //void apex_context_layer::_load_image(::image::image *pimage, const ::payload & payloadFile, bool bSync = true, bool bCreateHelperMaps = false){}
-   //void apex_context_layer::_load_matter_image(::image::image *pimage, const string & pszMatter, bool bSync = true, bool bCreateHelperMaps = false){}
-   //void apex_context_layer::_load_matter_icon(::image::image *pimage, string_array & straMatter, string strIcon){}
+   //void apex_context_layer::_load_matter_image(::image::image *pimage, const ::scoped_string & scopedstrMatter, bool bSync = true, bool bCreateHelperMaps = false){}
+   //void apex_context_layer::_load_matter_icon(::image::image *pimage, string_array_base & straMatter, const ::scoped_string & scopedstrIcon){}
    //void apex_context_layer::_load_thumbnail(::image::image *pimage, const ::payload & payloadFile, int w, int h){}
    //void apex_context_layer::_load_thumbnail(::image::image *pimage, const ::payload & payloadFile){}
    //void apex_context_layer::_load_dib(::image::image *pimage, const ::file::path & pathDib){}
@@ -195,11 +195,11 @@ namespace platform
    //void apex_context_layer::_save_to_file(const ::payload & payloadFile, const ::image::image *pimage, const ::payload & varOptions){}
 
 
-   /*::string apex_context_layer::matter_locator(string strApp){}
+   /*::string apex_context_layer::matter_locator(const ::scoped_string & scopedstrApp){}
    ::string apex_context_layer::matter_locator(::apex::application* papp){}
 
 
-   void apex_context_layer::add_matter_locator(string strApp){}
+   void apex_context_layer::add_matter_locator(const ::scoped_string & scopedstrApp){}
    void apex_context_layer::add_matter_locator(::apex::application* papp){}*/
 
 
@@ -247,7 +247,7 @@ namespace platform
    //      using acme::handler_context::http_get{}
    //::pointer < ::nano::http::response > http_get(const ::scoped_string& scopedstrUrl, const ::property_set & set) override{}
 
-   //void apex_context_layer::perform(::nano::http::get * pget){}
+   //void apex_context_layer::perform(::nano::http::get * defer_get){}
 
 
    bool apex_context_layer::defer_process_fs_raw_folder_protocol_path(::file::path & path)

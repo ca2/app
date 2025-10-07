@@ -909,10 +909,10 @@ unsigned int CColor::get_rgb()
 
 #define duplicate_color_nible(nible) ((nible << 4) | (nible))
 
-bool color::parse_color(const ::string & psz)
+bool color::parse_color(const ::scoped_string & scopedstr)
 {
 
-   string str(psz);
+   string str(scopedstr);
    str.trim();
    str += " ";
    if (str.left(1) == "#" && str.length() >= 7 && ishexdigit(str[1]) && ishexdigit(str[2]) && ishexdigit(str[3]) && ishexdigit(str[4])

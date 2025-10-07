@@ -60,7 +60,7 @@ namespace sockets
    }
 
 
-   void http_post_socket::AddMultilineField(const string & name, string_array & value)
+   void http_post_socket::AddMultilineField(const string & name, string_array_base & value)
    {
       
       m_fields[name] = value;
@@ -68,7 +68,7 @@ namespace sockets
    }
 
 
-   void http_post_socket::AddFile(const string & name,const string & filename,const string & type)
+   void http_post_socket::AddFile(const string & name,const string & filename,const ::scoped_string & scopedstrType)
    {
 
       if (file()->exists(filename))
@@ -77,13 +77,13 @@ namespace sockets
          if (m_pmultipart == nullptr)
          {
 
-            m_pmultipart = __allocate multipart(this);
+            m_pmultipart = øallocate multipart(this);
 
          }
          m_pmultipart->m_map[name].m_spfile = file()->get_file(filename, ::file::e_open_binary | ::file::e_open_read | ::file::e_open_share_deny_none);
          //m_mapFiles[name]              = filename;
          m_pmultipart->m_map[name].m_uiContentLength = m_pmultipart->m_map[name].m_spfile->size();
-         m_pmultipart->m_map[name].m_strContentType = type;
+         m_pmultipart->m_map[name].m_strContentType = scopedstrType;
          //m_mapContentLength[filename]  = file()->length(filename);
          //m_mapContentType[filename]    = type;
          //m_bMultipart                  = true;

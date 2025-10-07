@@ -10,7 +10,7 @@ namespace acme
    
 
    class CLASS_DECL_ACME asset_manager :
-      public ::particle
+      virtual public ::particle
    {
    public:
 
@@ -20,7 +20,7 @@ namespace acme
       ~asset_manager() override;
 
 
-      virtual ::pointer<asset>get_asset(const char * path);
+      virtual ::pointer<asset>get_asset(const_char_pointer path);
 
 
    };

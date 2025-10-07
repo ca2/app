@@ -19,6 +19,7 @@
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/parallelization/multiple_lock.h"
 #include "acme/parallelization/task_message_queue.h"
+#include "acme/platform/node.h"
 #include "acme/exception/_text_stream.h"
 #include "acme/_operating_system.h"
 #include "acme/operating_system/parallelization.h"
@@ -68,7 +69,7 @@ extern bool g_bIntermediateThreadReferencingDebugging;
 //CLASS_DECL_ACME void aaa_clear_message_queue(itask idthread);
 
 
-CLASS_DECL_ACME void exception_message_box(::particle * pparticle, ::exception & exception, const ::string & strMoreDetails);
+CLASS_DECL_ACME void exception_message_box(::particle * pparticle, ::exception & exception, const ::scoped_string & scopedstrMoreDetails);
 
 
 task::task()
@@ -195,7 +196,7 @@ void task::on_initialize_particle()
 //::manual_reset_happening * task::new_procedure_posted()
 //{
 //
-//   __defer_construct_new(m_pmanualresethappeningNewProcedurePosted);
+//   ødefer_construct_new(m_pmanualresethappeningNewProcedurePosted);
 //
 //   return m_pmanualresethappeningNewProcedurePosted;
 //
@@ -205,7 +206,7 @@ void task::on_initialize_particle()
 //::manual_reset_happening* task::new_happening()
 //{
 //
-//   __defer_construct_new(m_pmanualresethappeningHappening);
+//   ødefer_construct_new(m_pmanualresethappeningHappening);
 //
 //   return m_pmanualresethappeningHappening;
 //
@@ -237,7 +238,7 @@ string task::task_get_name() const
 }
 
 
-const char * task::get_task_tag()
+const_char_pointer task::get_task_tag()
 {
 
    return m_strTaskTag.c_str();
@@ -266,7 +267,7 @@ void task::set_active_user_interaction(::acme::user::interaction * pacmeuserinte
 bool task::has_main_loop_happening()
 {
 
-   _synchronous_lock synchronouslock(this->synchronization());
+   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    return _has_main_loop_happening_unlocked();
 
@@ -454,10 +455,11 @@ bool task::is_ready_to_quit() const
 //
 
 
-bool task::is_task_set() const
+bool task::is_task_set2() const
 {
 
-   return has_flag(e_flag_running) && m_htask.is_set();
+   //return has_flag(e_flag_running) && m_htask.is_set();
+   return m_htask.is_set() && m_taskindex && m_itask.is_set();
 
 }
 
@@ -508,6 +510,74 @@ void task::set_finish()
    set_happened(e_happening_finish);
 
    kick_idle();
+
+}
+
+
+
+
+void task::on_single_lock_lock(subparticle *psubparticleSynchronization, const subparticle *psubparticleContext,
+                         const_char_pointer pszFile, int iLine)
+{
+
+#ifdef _DEBUG
+
+   auto &description = m_synchronouslockdescriptiona.add_new();
+
+   description.m_psubparticleContext = psubparticleContext;
+
+   description.m_pszFile = pszFile;
+
+   description.m_iLine = iLine;
+
+   description.m_psubparticleSynchronization = psubparticleSynchronization;
+
+   // description.m_strCallstack.format("{} {}", pszFile, iLine);
+
+   // description.m_strCallstack = node()->get_call_stack_trace(call_stack_default_format(),
+   //  CALLSTACK_DEFAULT_SKIP_TRIGGER, nullptr, 3);
+
+#endif
+}
+
+
+void task::on_single_lock_unlock(subparticle *psubparticleSynchronization)
+{
+
+#ifdef _DEBUG
+
+   for (::collection::index i = m_synchronouslockdescriptiona.get_upper_bound(); i >= 0; i--)
+   {
+
+      auto &description = m_synchronouslockdescriptiona[i];
+
+      auto psubparticleSynchronizationItem = description.m_psubparticleSynchronization;
+
+      if (psubparticleSynchronizationItem == psubparticleSynchronization)
+      {
+
+         if (i < m_synchronouslockdescriptiona.get_upper_bound())
+         {
+
+            m_synchronouslockdescriptiona.erase_at(i);
+
+         }
+         else
+         {
+
+            m_synchronouslockdescriptiona.erase_at(i);
+
+         }
+
+         return;
+
+      }
+
+   }
+
+   throw ::exception(error_not_expected);
+
+#endif
 
 }
 
@@ -759,6 +829,8 @@ void task::__priority_and_affinity()
 
 void task::set_task()
 {
+
+   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    auto taskindex = ::current_task_index();
 
@@ -1159,7 +1231,7 @@ void task::stop_task()
    //
    //m_procedureTaskEnded = procedure;
 
-   //__defer_construct_new(m_phappeningFinished2);
+   //ødefer_construct_new(m_phappeningFinished2);
 
    //auto phappeningFinished = m_phappeningFinished2;
 
@@ -1318,7 +1390,7 @@ void task::destroy()
 
 
 
-bool task::is_thread() const
+bool task::is_thread_class() const
 {
 
    return false;
@@ -1375,7 +1447,7 @@ void task::__task_init()
 
       REFDBG_THIS(this);
 
-      __defer_construct(m_pexceptiontranslator);
+      ødefer_construct(m_pexceptiontranslator);
 
       m_pexceptiontranslator->attach();
 
@@ -1574,6 +1646,7 @@ void task::__task_main()
       {
 
          error() << "Exception reached task procedure : " << exception;
+         error() << "Exception call stack : " << exception.m_strCallStackTrace;
 
       }
       catch (...)
@@ -1766,7 +1839,7 @@ void task::_post(const ::procedure & procedure)
 
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       m_procedurea2.add(procedure);
 
@@ -1800,7 +1873,7 @@ void task::_post(const ::procedure & procedure)
 //
 //   {
 //
-//      _synchronous_lock synchronouslock(this->synchronization());
+//      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //      m_procedurea.add([p]()
 //         {
@@ -1837,7 +1910,7 @@ void task::_send(const ::procedure & procedure)
    if (psequence)
    {
 
-      __defer_construct_new(psequence->m_pmanualresethappeningOnEndOfSequence);
+      ødefer_construct_new(psequence->m_pmanualresethappeningOnEndOfSequence);
 
       pmanualresethappeningOnEndOfSequence = psequence->m_pmanualresethappeningOnEndOfSequence;
 
@@ -1845,7 +1918,7 @@ void task::_send(const ::procedure & procedure)
    else
    {
 
-      __construct_new(pmanualresethappeningOnEndOfSequence);
+      øconstruct_new(pmanualresethappeningOnEndOfSequence);
 
       pmanualresethappeningOnEndOfSequenceToSetInProcedure = pmanualresethappeningOnEndOfSequence;
 
@@ -1878,7 +1951,7 @@ void task::_send(const ::procedure & procedure)
                catch (...)
                {
 
-                  pexception = __allocate::exception(error_catch_all_exception);
+                  pexception = øallocate::exception(error_catch_all_exception);
 
                }
 
@@ -1915,7 +1988,7 @@ void task::_send(const ::procedure & procedure)
       catch (...)
       {
 
-         pexception = __allocate::exception(error_catch_all_exception);
+         pexception = øallocate::exception(error_catch_all_exception);
 
       }
 
@@ -1953,7 +2026,7 @@ bool task::pick_next_posted_procedure()
 
    ASSERT(is_current_task());
 
-   _synchronous_lock synchronouslock(this->synchronization());
+   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    while (true)
    {
@@ -1995,7 +2068,7 @@ bool task::pick_next_posted_procedure()
 e_happening task::pick_happening()
 {
 
-   _synchronous_lock synchronouslock(this->synchronization());
+   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    if (m_ehappeninga.is_empty())
    {
@@ -2043,7 +2116,7 @@ void task::handle_posted_procedures()
 //void task::add_notify(::particle * pparticle)
 //{
 //
-//   _synchronous_lock synchronouslock(this->synchronization());
+//   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //   notify_array().add_item(pelement REFERENCING_DEBUGGING_COMMA_THIS_FUNCTION_FILE_LINE);
 //
@@ -2053,7 +2126,7 @@ void task::handle_posted_procedures()
 //void task::erase_notify(::particle * pparticle)
 //{
 //
-//   _synchronous_lock synchronouslock(this->synchronization());
+//   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //   if (m_pnotifya)
 //   {
@@ -2093,7 +2166,7 @@ bool task::on_get_task_name(string & strTaskName)
 void task::set_happened(e_happening ehappening)
 {
 
-   _synchronous_lock synchronouslock(this->synchronization());
+   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    m_ehappeninga.add(ehappening);
 
@@ -2196,7 +2269,7 @@ void task::term_task()
 
    //}
 
-   //_synchronous_lock synchronouslock(this->synchronization());
+   //_synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //if (m_pnotifya)
    //{
@@ -2258,7 +2331,7 @@ void task::term_task()
 //
 //   //   {
 //
-//   //      _synchronous_lock synchronouslock(this->synchronization());
+//   //      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //   //      pelement = m_pelement.m_p;
 //
@@ -2566,7 +2639,7 @@ void task::branch(enum_parallelization eparallelization, const ::create_task_att
    if (::is_null(ptaskhandler))
    {
 
-      ptaskhandler = __raw_new task_handler;
+      ptaskhandler = øraw_new task_handler;
 
    }
    else
@@ -2751,7 +2824,7 @@ void task::branch_synchronously(const ::create_task_attributes_t & createtaskatt
    //if (bSynchInitialization)
    {
 
-      m_phappeningInitialization = __allocate manual_reset_happening();
+      m_phappeningInitialization = øallocate manual_reset_happening();
 
    }
 
@@ -3097,7 +3170,7 @@ bool task::task_sleep(const class time & timeWait)
 //void task::branch(::particle * pparticle, ::enum_priority epriority, unsigned int nStackSize, unsigned int uCreateFlags ARG_SEC_ATTRS)
 //{
 //
-//   auto ptask = __allocate task();
+//   auto ptask = øallocate task();
 //
 //   ptask->branch(pelement, epriority, nStackSize, uCreateFlags ADD_PARAM_SEC_ATTRS);
 //
@@ -3180,7 +3253,7 @@ void task::synchronous_procedure(bool bAtAnotherThread, const procedure & proced
 
    }
 
-   auto pmanualresethappening = __create_new < manual_reset_happening >();
+   auto pmanualresethappening = øcreate_new < manual_reset_happening >();
 
    post([this, procedure, pmanualresethappening]()
       {
@@ -3254,12 +3327,12 @@ CLASS_DECL_ACME bool __task_sleep(task * ptask, const class time & timeWait)
 
       {
 
-         _synchronous_lock synchronouslock(ptask->synchronization());
+         _synchronous_lock synchronouslock(ptask->synchronization(), ptask, SYNCHRONOUS_LOCK_SUFFIX);
 
          if (ptask->m_pevSleep.is_null())
          {
 
-            ptask->m_pevSleep = __allocate manual_reset_happening();
+            ptask->m_pevSleep = øallocate manual_reset_happening();
 
             ptask->m_pevSleep->reset_happening();
 
@@ -3814,7 +3887,7 @@ thread_local ::task_index t_taskindex = new_task_index();
 }
 
 
-//::collection::index task_index()
+//::collection::index current_task_index()
 //{
 
 //   return task_index(::current_itask());
@@ -3994,7 +4067,7 @@ CLASS_DECL_ACME void set_main_thread()
 
    set_main_itask(current_itask());
    
-   set_main_task_index(task_index());
+   set_main_task_index(current_task_index());
 
 }
 
@@ -4012,7 +4085,7 @@ CLASS_DECL_ACME void set_main_thread()
 CLASS_DECL_ACME bool is_main_thread()
 {
 
-	return task_index() == main_task_index();
+	return ::current_task_index() == main_task_index();
 
 //   return current_itask() == main_itask();
 

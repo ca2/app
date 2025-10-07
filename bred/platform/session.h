@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "base/platform/session.h"
+#include "berg/platform/session.h"
 
 
 namespace bred
@@ -9,7 +9,7 @@ namespace bred
 
 
    class CLASS_DECL_BRED session :
-      virtual public ::base::session
+      virtual public ::berg::session
    {
    public:
 
@@ -30,7 +30,7 @@ namespace bred
    };
 
 
-} // namespace base
+} // namespace berg
 
 
 

@@ -30,14 +30,14 @@ namespace nano
    namespace user
    {
       template < typename TYPE >
-      using visual_id_map = map < xcb_visualid_t, TYPE >;
+      using visual_id_map = map_base < xcb_visualid_t, TYPE >;
 
       using visual_pictformat_map = visual_id_map < xcb_render_pictformat_t >;
 
       using visual_depth_map = visual_id_map < uint32_t >;
 
       template < typename TYPE >
-      using pictformat_map = map < xcb_render_pictformat_t, TYPE >;
+      using pictformat_map = map_base < xcb_render_pictformat_t, TYPE >;
 
       using pictformat_info_map = pictformat_map < const xcb_render_pictforminfo_t * >;
 
@@ -71,7 +71,7 @@ namespace nano
          acme::malloc < xcb_render_query_pict_formats_reply_t * > m_prender_query_pict_formats_reply2;
          visual_pictformat_map                                    m_mapVisualPictFormat;
          visual_depth_map                                         m_mapVisualDepth;
-         //map < xcb_visualid_t, FbConfigInfo * >                 m_mapVisualFbConfig;
+         //map_base < xcb_visualid_t, FbConfigInfo * >                 m_mapVisualFbConfig;
          pictformat_info_map                                      m_mapFormatInfo;
 
          static display *                       g_p;

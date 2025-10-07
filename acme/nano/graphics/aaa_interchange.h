@@ -164,7 +164,7 @@ public:
    void add_button(const ::scoped_string & scopedstrText, enum_dialog_result edialogresult, char chLetter);
 
 
-   void display_temporary_file_with_text(const ::string & str);
+   void display_temporary_file_with_text(const ::scoped_string & scopedstr);
 
    
    ::pointer<::nano::graphics::device>create_device();

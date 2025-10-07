@@ -152,7 +152,7 @@ namespace user
    void primitive_impl::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
-      //m_puserinteraction->message_call(e_message_size, 0, process_state().m_size.lparam());
+      //m_puserinteraction->message_call(::user::e_message_size, 0, process_state().m_size.lparam());
 
       //m_puserinteraction->m_timeLastVisualChange.Now();
 
@@ -275,7 +275,7 @@ namespace user
    //      else
    //      {
 
-   //         pinteraction->send_message(e_message_size_parent, 0, (lparam)& sizeparentparams);
+   //         pinteraction->send_message(::user::e_message_size_parent, 0, (lparam)& sizeparentparams);
 
    //      }
 
@@ -551,7 +551,7 @@ namespace user
    }
 
 
-   void primitive_impl::set_bitmap_source(const string& strBitmapSource)
+   void primitive_impl::set_bitmap_source(const ::scoped_string & scopedstrBitmapSource)
    {
 
 
@@ -787,7 +787,7 @@ namespace user
 
 
 #define _NEW_MESSAGE(TYPE) \
-   auto pmessage = __create_new<TYPE>(); \
+   auto pmessage = øcreate_new<TYPE>(); \
    pmessage->m_pchannel = this; \
    pmessage->m_oswindow = oswindow; \
    pmessage->m_pwindow = pwindow; \
@@ -798,7 +798,7 @@ namespace user
 
 
 //#define _NEW_MESSAGE(TYPE) \
-//   auto pmessage = __create_new<TYPE>(); \
+//   auto pmessage = øcreate_new<TYPE>(); \
 //   pmessage->m_pchannel = this; \
 //   pmessage->m_emessage = atom; \
 //   pmessage->m_wparam = wparam; \
@@ -882,7 +882,7 @@ namespace user
       case ::message::e_prototype_timer:
       {
 
-         //throw ::exception(::exception("do not use e_message_timer or Windows set_timer/kill_timer"));
+         //throw ::exception(::exception("do not use ::user::e_message_timer or Windows set_timer/kill_timer"));
 
          _NEW_MESSAGE(::message::timer);
 
@@ -1534,7 +1534,7 @@ namespace user
 ////
 ////      }
 ////
-////      synchronous_lock synchronouslock(m_pmutexLongPtr);
+////      synchronous_lock synchronouslock(m_pmutexLongPtr, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 ////
 ////      m_longptr[nIndex] = lValue;
 ////
@@ -1960,7 +1960,7 @@ namespace user
 
       // }
 
-      // m_puserinteraction->interaction_post(__allocate call_message_handler_task(m_puserinteraction, emessage, wparam, lparam));
+      // m_puserinteraction->interaction_post(øallocate call_message_handler_task(m_puserinteraction, emessage, wparam, lparam));
 
       //auto pmessage
 
@@ -2151,7 +2151,7 @@ namespace user
       if (m_ptimerarray.is_null())
       {
 
-         __construct_new(m_ptimerarray);
+         øconstruct_new(m_ptimerarray);
 
          m_ptimerarray->m_pcallback = m_puserinteraction;
 
@@ -2229,7 +2229,7 @@ namespace user
             if (pwindow)
             {
 
-               synchronous_lock synchronouslock(pwindow->synchronization());
+               synchronous_lock synchronouslock(pwindow->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
                pwindow->m_userinteractionaMouseHover.erase(m_puserinteraction);
 
@@ -2281,7 +2281,7 @@ namespace user
          try
          {
 
-            puiThis->send_message(e_message_destroy);
+            puiThis->send_message(::user::e_message_destroy);
 
          }
          catch (...)
@@ -2292,7 +2292,7 @@ namespace user
          try
          {
 
-            puiThis->send_message(e_message_non_client_destroy);
+            puiThis->send_message(::user::e_message_non_client_destroy);
 
          }
          catch (...)
@@ -2468,7 +2468,7 @@ namespace user
 
       // }
 
-      // m_puserinteraction->interaction_post(__allocate call_message_handler_task(m_puserinteraction, emessage, wparam, lparam));
+      // m_puserinteraction->interaction_post(øallocate call_message_handler_task(m_puserinteraction, emessage, wparam, lparam));
 
       //auto pmessage
 
@@ -2505,7 +2505,7 @@ namespace user
 
       {
 
-         _synchronous_lock synchronouslock(this->synchronization());
+         _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          try
          {
@@ -2645,7 +2645,7 @@ namespace user
    void primitive_impl::on_message_destroy(::message::message * pmessage)
    {
 
-      //synchronous_lock synchronouslock(this->synchronization());
+      //synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       //try
       //{
@@ -2694,10 +2694,10 @@ namespace user
       //}
 
       //g_p->set_at((iptr)this, ::type(m_puserinteraction).name()) + "xxx" + ::type(this).name();
-      MESSAGE_LINK(e_message_show_window, pchannel, this, &primitive_impl::on_message_show_window);
-      MESSAGE_LINK(e_message_destroy, pchannel, this, &primitive_impl::on_message_destroy);
-      MESSAGE_LINK(e_message_non_client_destroy, pchannel, this, &primitive_impl::on_message_non_client_destroy);
-      MESSAGE_LINK(e_message_create, pchannel, this, &primitive_impl::_001OnPrioCreate);
+      USER_MESSAGE_LINK(::user::e_message_show_window, pchannel, this, &primitive_impl::on_message_show_window);
+      USER_MESSAGE_LINK(::user::e_message_destroy, pchannel, this, &primitive_impl::on_message_destroy);
+      USER_MESSAGE_LINK(::user::e_message_non_client_destroy, pchannel, this, &primitive_impl::on_message_non_client_destroy);
+      USER_MESSAGE_LINK(::user::e_message_create, pchannel, this, &primitive_impl::_001OnPrioCreate);
 
       if (m_puserinteraction && ::type(m_puserinteraction).name().contains("notify_icon"))
       {

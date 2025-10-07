@@ -51,7 +51,7 @@
 //////
 //////   const ::scoped_string & scopedstr;
 //////
-//////   synchronous_lock synchronouslock(::exception_engine().mutex());
+//////   synchronous_lock synchronouslock(::exception_engine().mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //////
 //////#if defined(LINUX)
 //////
@@ -197,7 +197,7 @@ namespace platform
 ////
 ////   const ::scoped_string & scopedstr;
 ////
-////   synchronous_lock synchronouslock(::exception_engine().mutex());
+////   synchronous_lock synchronouslock(::exception_engine().mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 ////
 ////#if defined(LINUX)
 ////
@@ -331,7 +331,7 @@ namespace platform
 
          auto process = GetCurrentProcess();
 
-         ::string_array stra;
+         ::string_array_base stra;
 
          character_count maximum_line_length = 0;
 

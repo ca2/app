@@ -1,10 +1,13 @@
 // Created by camilo on 2025-06-11 00:50 <3ThomasBorregaardSørensen!!
 #include "framework.h"
+#include "_gpu_opengl.h"
 #include "context.h"
 #include "device.h"
 #include "memory_buffer.h"
 #include "model_buffer.h"
 #include "renderer.h"
+#include "bred/gpu/context_lock.h"
+#include "bred/gpu/frame.h"
 
 
 namespace gpu_opengl
@@ -36,6 +39,8 @@ namespace gpu_opengl
          return;
 
       }
+
+      ::gpu::context_lock contextlock(m_pcontext);
 
       memsize size;
 
@@ -89,7 +94,7 @@ namespace gpu_opengl
 
       }
 
-      m_pmodelbuffer->bind(m_pcontext->m_pgpurenderer->getCurrentCommandBuffer2());
+      m_pmodelbuffer->bind(m_pcontext->m_pgpurenderer->getCurrentCommandBuffer2(::gpu::current_frame()));
 
       _on_set_memory_buffer(data, size);
 

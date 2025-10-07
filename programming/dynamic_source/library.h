@@ -19,12 +19,12 @@ namespace dynamic_source
       string                                    m_strError;
       ::string_stream                               m_memfileError;
       ::string_stream                               m_memfileLibError;
-      ::file::listing                           m_straLibSourcePath;
-      ::file::path_array                             m_straLibSourceRelPath;
-      ::file::path_array                             m_straLibCppPath;
-      ::file::listing                           m_straLibIncludePath;
-      ::file::path_array                             m_straLibIncludeRelPath;
-      ::file::path_array                             m_straLibHppPath;
+      ::file::listing_base                           m_straLibSourcePath;
+      ::file::path_array_base                             m_straLibSourceRelPath;
+      ::file::path_array_base                             m_straLibCppPath;
+      ::file::listing_base                           m_straLibIncludePath;
+      ::file::path_array_base                             m_straLibIncludeRelPath;
+      ::file::path_array_base                             m_straLibHppPath;
       ::file::path                              m_strLibraryPath;
 
       class ::time                                    m_timeLastLibraryVersionCheck;
@@ -32,9 +32,9 @@ namespace dynamic_source
       ::pointer<::acme::library>               m_plibraryLib;
 
 
-      raw_array < class ::time >                    m_ftaLibCreation;
-      raw_array < class ::time >                    m_ftaLibAccess;
-      raw_array < class ::time >                    m_ftaLibModified;
+      raw_array_base < class ::time >                    m_ftaLibCreation;
+      raw_array_base < class ::time >                    m_ftaLibAccess;
+      raw_array_base < class ::time >                    m_ftaLibModified;
 
       
       library(::particle * pparticle);

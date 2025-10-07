@@ -45,7 +45,7 @@ namespace fs
    }
 
 
-   bool native::enumerate(::file::listing & listing)
+   bool native::enumerate(::file::listing_base & listing)
    {
 
       return directory()->enumerate(listing);
@@ -76,7 +76,7 @@ namespace fs
 
 
 
-   /*::file::listing & native::ls_relative_name(::file::listing & listing)
+   /*::file::listing_base & native::ls_relative_name(::file::listing_base & listing)
    {
 
       directory()->ls_relative_name(listing);
@@ -95,7 +95,7 @@ namespace fs
    }
 
 
-   ::file::listing & native::root_ones(::file::listing & listing)
+   ::file::listing_base & native::root_ones(::file::listing_base & listing)
    {
       
       node()->root_ones(listing);
@@ -105,15 +105,15 @@ namespace fs
    }
 
 
-   //void native::get_ascendants_path(const ::file::path & pszPath,::file::path_array & stra)
+   //void native::get_ascendants_path(const ::file::path & path,::file::path_array_base & stra)
    //{
 
-   //   return file()->get_ascendants_path(pszPath, stra);
+   //   return file()->get_ascendants_path(scopedstrPath, stra);
 
    //}
 
 
-   //void native::get_ascendants_name(const ::file::path & path,::file::path_array & straParam)
+   //void native::get_ascendants_name(const ::file::path & path,::file::path_array_base & straParam)
 
    //{
 
@@ -126,7 +126,7 @@ namespace fs
    //string native::eat_end_level(const ::file::path & path, int iCount)
    //{
 
-   //   string strPath(pszPath);
+   //   string strPath(scopedstrPath);
 
    //   while(iCount > 0)
    //   {
@@ -145,7 +145,7 @@ namespace fs
    //string native::file_name(const ::file::path & path)
    //{
 
-   //   return file()->name_(pszPath);
+   //   return file()->name_(scopedstrPath);
 
    //}
 
@@ -153,15 +153,15 @@ namespace fs
    //string native::dir_path(const ::scoped_string & scopedstr1, const ::scoped_string & scopedstr2)
    //{
 
-   //   return ::file::path(psz1) / ::file::path(psz2);
+   //   return ::file::path(scopedstr1) / ::file::path(scopedstr2);
 
    //}
 
 
-   bool native::file_move(const ::file::path & pszDst,const ::file::path & pszSrc)
+   bool native::file_move(const ::file::path & pathTarget,const ::file::path & pathSource)
    {
 
-      file()->transfer(pszDst, pszSrc);
+      file()->transfer(pathTarget, pathSource);
 
       return true;
 
@@ -176,13 +176,13 @@ namespace fs
       //if (eopen & ::file::e_open_text)
       //{
 
-      //   pfile = __create_new<::stdio_file>();
+      //   pfile = øcreate_new<::stdio_file>();
 
       //}
       //else
       //{
 
-         __øconstruct(pfile);
+         øconstruct(pfile);
 
 //      }
 

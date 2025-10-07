@@ -77,24 +77,24 @@ namespace write_text
    ::subparticle_pointer font_family::clone()
    {
 
-      return __allocate font_family(*this);
+      return øallocate font_family(*this);
 
    }
 
    font_family_pointer::font_family_pointer(enum_font efont):
-      ::pointer<font_family>{ place_t{}, __raw_new font_family(efont) }
+      ::pointer<font_family>{ place_t{}, øraw_new font_family(efont) }
    {
 
    }
 
    //font_family_pointer::font_family_pointer(const ::scoped_string & scopedstrFamilyName, const ::scoped_string & scopedstrBranch) :
-   //   ::pointer<font_family>{ place_t {}, __raw_new font_family(scopedstrFamilyName, scopedstrBranch) }
+   //   ::pointer<font_family>{ place_t {}, øraw_new font_family(scopedstrFamilyName, scopedstrBranch) }
    //{
 
    //}
 
    font_family_pointer::font_family_pointer(const font_family & fontfamily) :
-      ::pointer<font_family>{ place_t {}, __raw_new font_family(fontfamily) }
+      ::pointer<font_family>{ place_t {}, øraw_new font_family(fontfamily) }
    {
 
    }

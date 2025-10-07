@@ -425,7 +425,7 @@ namespace account
 //string department::get_server(::file::path pathUrl, int iRetry)
 //{
 //
-//   string strHost(purl->get_server(pszUrl));
+//   string strHost(purl->get_server(scopedstrUrl));
 //
 //   if(iRetry <= 0)
 //   {
@@ -551,7 +551,7 @@ namespace account
 //   if(strSomeBrothersAndSisters.has_character())
 //   {
 //
-//      string_array straSomeBrothersAndSisters;
+//      string_array_base straSomeBrothersAndSisters;
 //
 //      straSomeBrothersAndSisters.explode(";",strSomeBrothersAndSisters);
 //

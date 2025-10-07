@@ -195,9 +195,9 @@ gdb_check(void)
 
 
 
-////CLASS_DECL_BASE extern fixed_alloc_array * g_pfixedallocaWstring;
+////CLASS_DECL_BERG extern fixed_alloc_array * g_pfixedallocaWstring;
 //
-////CLASS_DECL_BASE fixed_alloc_array * new_wstring_manager();
+////CLASS_DECL_BERG fixed_alloc_array * new_wstring_manager();
 //
 //void CLASS_DECL_ACME __cdecl _ca2_purecall()
 //{

@@ -50,8 +50,8 @@ namespace helloworld
 
       ::user::impact::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_create, pchannel, this, &impact_base::on_message_create);
-      MESSAGE_LINK(e_message_destroy, pchannel, this, &impact_base::on_message_destroy);
+      USER_MESSAGE_LINK(::user::e_message_create, pchannel, this, &impact_base::on_message_create);
+      USER_MESSAGE_LINK(::user::e_message_destroy, pchannel, this, &impact_base::on_message_destroy);
 
    }
 
@@ -365,7 +365,7 @@ pdirectorysystem->system() / "obs.png");
 
             }
 
-            auto ppen = __øcreate < ::draw2d::pen > ();
+            auto ppen = øcreate < ::draw2d::pen > ();
 
             ppen->create_solid(0.5, argb(84, 0, 0, 0));
 

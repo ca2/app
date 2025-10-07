@@ -9,7 +9,7 @@
 #pragma once
 
 
-#include "base/user/user/impact.h"
+#include "berg/user/user/impact.h"
 
 
 namespace userex
@@ -50,8 +50,8 @@ namespace userex
 
 
       ::int_size                                    m_sizeTabbedFrame;
-      string_map < ::pointer<::user::document >>      m_mapdoc;
-      string_map < simple_frame_window * >      m_mapframe;
+      string_map_base < ::pointer<::user::document >>      m_mapdoc;
+      string_map_base < simple_frame_window * >      m_mapframe;
       atom_array                                  m_idaHandledImpacts;
 
       //::pointer<::user::single_document_template>     m_ptemplateTab;

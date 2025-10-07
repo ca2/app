@@ -17,6 +17,9 @@ namespace app_just_message_box
 
       application();
 
+      __DECLARE_APPLICATION_RELEASE_TIME();
+
+
 
       void on_request(::request * prequest) override;
 

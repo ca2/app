@@ -2,7 +2,7 @@
 
 
 template < class TYPE, class ARG_TYPE = const TYPE &, class ALLOCATOR = allocator::nodef < TYPE >, ::enum_type t_etypeContainer = e_type_element >
-inline auto & __array_object(::array_base < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > & a, ::collection::index i);
+inline auto & __array_object(::base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > & a, ::collection::index i);
 
 
 template < typename ARRAY_TYPE, typename T >
@@ -419,7 +419,7 @@ namespace acme
    template < class A >
    void array_makecombination(pointer_array < A > & comb, const A & a, A blindprefixa = A(), ::collection::index idx = 0)
    {
-      comb.add(__allocate A(blindprefixa));
+      comb.add(øallocate A(blindprefixa));
       for(::collection::index i = idx; i < a.get_count(); i++)
       {
          array_makecombination(comb, a, blindprefixa + make_array < A > (a[i]), i + 1);
@@ -446,9 +446,9 @@ namespace acme
    template < class A >
    void array_permute(pointer_array < A > & perm,const A & a);
 
-   CLASS_DECL_ACME string_array x1_decode_ida(const ::scoped_string & scopedstr);
+   CLASS_DECL_ACME string_array_base x1_decode_ida(const ::scoped_string & scopedstr);
 
-   CLASS_DECL_ACME string x1_encode_ida(const string_array & stra);
+   CLASS_DECL_ACME string x1_encode_ida(const string_array_base & stra);
 
 
    template < class A >
@@ -480,7 +480,7 @@ namespace acme
       //::stream & exchange_container(::stream & stream, INITIALIZER * pinitializer, const pointer_array < TYPE > & a);
 
       template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-      ::collection::index add(string_array_base < Type, RawType, t_etypeContainer > & array, const Type & psz)
+      ::collection::index add(string_base_array < Type, RawType, t_etypeContainer > & array, const Type & psz)
       {
 
          auto iIndex = __index(array.m_nSize);
@@ -493,11 +493,11 @@ namespace acme
 
 
       template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-      ::collection::index add(string_array_base < Type, RawType, t_etypeContainer > & array, const ::payload & payload);
+      ::collection::index add(string_base_array < Type, RawType, t_etypeContainer > & array, const ::payload & payload);
 
 
       template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-      ::collection::index unfold_add(string_array_base < Type, RawType, t_etypeContainer > & array, const ::payload & payload);
+      ::collection::index unfold_add(string_base_array < Type, RawType, t_etypeContainer > & array, const ::payload & payload);
 
       template < typename TYPE, ::enum_type t_etypeContainer = e_type_element >
       ::collection::count ensure_sequence(::numeric_array < TYPE, t_etypeContainer > & a, TYPE start, TYPE end, TYPE increment = 1);
@@ -590,20 +590,20 @@ namespace acme
       }
 
 
-      inline ::collection::index add(string_array & stra, const ::scoped_string & scopedstr);
-      inline ::collection::index add(string_array & stra, const char & ch);
-      inline ::collection::index add(string_array & stra, const ansi_string & str);
-      inline ::collection::index add(string_array & stra, const wide_string & str);
-      inline ::collection::index add(string_array & stra, const ::file::path & path);
-      inline ::collection::index add(string_array & stra, const ::payload & payload);
-      inline ::collection::index add(string_array & stra, const ::property & property);
-      inline ::collection::index add(string_array & stra, const ::property_set & propertyset);
+      inline ::collection::index add(string_array_base & stra, const ::scoped_string & scopedstr);
+      inline ::collection::index add(string_array_base & stra, const char & ch);
+      inline ::collection::index add(string_array_base & stra, const ansi_string & str);
+      inline ::collection::index add(string_array_base & stra, const wide_string & str);
+      inline ::collection::index add(string_array_base & stra, const ::file::path & path);
+      inline ::collection::index add(string_array_base & stra, const ::payload & payload);
+      inline ::collection::index add(string_array_base & stra, const ::property & property);
+      inline ::collection::index add(string_array_base & stra, const ::property_set & propertyset);
 
-      inline ::collection::index add(::file::path_array & patha, const ::string & str);
+      inline ::collection::index add(::file::path_array & patha, const ::scoped_string & scopedstr);
 
-      inline ::collection::index add(string_array & stra, const string_array & straSource);
+      inline ::collection::index add(string_array_base & stra, const string_array_base & straSource);
 
-      inline ::collection::index add(::file::path_array & patha, const string_array & stra);
+      inline ::collection::index add(::file::path_array & patha, const string_array_base & stra);
       inline ::collection::index add(::file::path_array & patha, const ::file::path_array & pathaSrc);
       inline ::collection::index add(::file::path_array & patha, const ::file::listing & listing);
 

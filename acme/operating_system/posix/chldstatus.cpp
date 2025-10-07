@@ -29,7 +29,7 @@ void init_chldstatus_cs()
 
    g_pcsChldStatus = ___new critical_section();
 
-   g_pchldstatusmap = __raw_new iptr_map < chldstatus > ();
+   g_pchldstatusmap = øraw_new iptr_map < chldstatus > ();
 
 }
 
@@ -99,7 +99,7 @@ void ansios_sigchld_handler(int sig)
 
          critical_section_lock synchronouslock(get_chldstatus_cs());
 
-         auto p = g_pchldstatusmap->plookup(iPid);
+         auto p = g_pchldstatusmap->find(iPid);
 
          if(p)
          {

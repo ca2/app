@@ -6,7 +6,7 @@ namespace user
 
    extern CLASS_DECL_AURA critical_section * g_pcsImpl;
 
-   extern CLASS_DECL_AURA map < oswindow, ::windowing::window * > * g_pmapImpl;
+   extern CLASS_DECL_AURA map_base < oswindow, ::windowing::window * > * g_pmapImpl;
 
    CLASS_DECL_AURA void init_windowing();
 

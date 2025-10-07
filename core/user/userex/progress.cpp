@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "progress.h"
 //#include "user.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "acme/constant/timer.h"
 #include "acme/platform/timer.h"
 #include "aura/graphics/draw2d/graphics.h"
@@ -11,8 +11,8 @@
 #include "aura/user/user/progress.h"
 #include "aura/windowing/display.h"
 #include "aura/windowing/windowing.h"
-#include "base/user/user/multiple_document_template.h"
-#include "base/user/user/document.h"
+#include "berg/user/user/multiple_document_template.h"
+#include "berg/user/user/document.h"
 #include "core/user/user/user.h"
 
 
@@ -40,10 +40,10 @@ namespace userex
    }
 
 
-   void progress_control::set_progress_title(const ::string & pszTitle)
+   void progress_control::set_progress_title(const ::scoped_string & scopedstrTitle)
    {
 
-      m_pimpact->parent_frame()->set_window_text(pszTitle);
+      m_pimpact->parent_frame()->set_window_text(scopedstrTitle);
 
    }
 
@@ -99,7 +99,7 @@ namespace userex
 
       {
 
-         synchronous_lock synchronouslock(this->synchronization());
+         synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          pdocument = m_pdocument;
 
@@ -130,15 +130,15 @@ namespace userex
    }
 
 
-   void progress_control::defer_show(::user::interaction * puiParent, const ::string & pszTitle, ::collection::count iStepCount)
+   void progress_control::defer_show(::user::interaction * puiParent, const ::scoped_string & scopedstrTitle, ::collection::count iStepCount)
    {
 
-      m_strTitle = pszTitle;
+      m_strTitle = scopedstrTitle;
       m_iStep = 0;
       m_iStepCount = iStepCount;
 
 
-      m_strTitle = pszTitle;
+      m_strTitle = scopedstrTitle;
       m_iStep = 0;
 
       ::pointer<progress_control>pprogressCopy = this;
@@ -231,7 +231,7 @@ namespace userex
 
       ::user::impact::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_create, pchannel, this, &progress_impact::on_message_create);
+      USER_MESSAGE_LINK(::user::e_message_create, pchannel, this, &progress_impact::on_message_create);
 
 
    }
@@ -250,7 +250,7 @@ namespace userex
 
       pmessage->previous();
 
-      __øconstruct(m_pprogress);
+      øconstruct(m_pprogress);
 
       m_pprogress->create_control(this, "progress_control");
 

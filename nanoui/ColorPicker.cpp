@@ -26,7 +26,7 @@ namespace nanoui
    ColorPicker::MyGridWidget::MyGridWidget(nanoui::Widget* p, int cols) :
       nanoui::Widget(p)
    {
-      auto playout = __allocate nanoui::GridLayout(::e_orientation_horizontal, cols,
+      auto playout = øallocate nanoui::GridLayout(::e_orientation_horizontal, cols,
          e_alignment_minimum);
 
       set_layout(playout);
@@ -87,7 +87,7 @@ namespace nanoui
 
       set_background_color(hls);
 
-      m_ppopup->set_layout(__allocate GroupLayout());
+      m_ppopup->set_layout(øallocate GroupLayout());
 
       // initialize callback to do nothing; this is for users to hook into
       // receiving a ___new color value
@@ -97,19 +97,19 @@ namespace nanoui
       
 
       // set the color wheel to the specified color
-      m_color_wheel = __allocate ColorWheel(m_ppopup, hls);
+      m_color_wheel = øallocate ColorWheel(m_ppopup, hls);
 
-      m_ptab = __allocate TabWidget(m_ppopup);
+      m_ptab = øallocate TabWidget(m_ppopup);
 
       m_ptab->set_erase_children(false);
 
-      m_pgridRgb = __allocate MyGridWidget(m_ptab, 2);
+      m_pgridRgb = øallocate MyGridWidget(m_ptab, 2);
 
       {
          
-         __allocate nanoui::Label(m_pgridRgb, "Red", "sans", 14);
+         øallocate nanoui::Label(m_pgridRgb, "Red", "sans", 14);
 
-         auto pedit = __allocate  nanoui::IntBox<int>(m_pgridRgb);
+         auto pedit = øallocate  nanoui::IntBox<int>(m_pgridRgb);
          pedit->set_editable(true);
          pedit->set_font_size(14);
          pedit->set_unit("");
@@ -125,9 +125,9 @@ namespace nanoui
 
       {
 
-         __allocate nanoui::Label(m_pgridRgb, "Green", "sans", 14);
+         øallocate nanoui::Label(m_pgridRgb, "Green", "sans", 14);
 
-         auto pedit = __allocate  nanoui::IntBox<int>(m_pgridRgb);
+         auto pedit = øallocate  nanoui::IntBox<int>(m_pgridRgb);
          pedit->set_editable(true);
          pedit->set_font_size(14);
          pedit->set_unit("");
@@ -144,9 +144,9 @@ namespace nanoui
 
       {
 
-         __allocate nanoui::Label(m_pgridRgb, "Blue", "sans", 14);
+         øallocate nanoui::Label(m_pgridRgb, "Blue", "sans", 14);
 
-         auto pedit = __allocate  nanoui::IntBox<int>(m_pgridRgb);
+         auto pedit = øallocate  nanoui::IntBox<int>(m_pgridRgb);
          pedit->set_editable(true);
          pedit->set_font_size(14);
          pedit->set_unit("");
@@ -162,13 +162,13 @@ namespace nanoui
 
       m_ptab->append_tab("RGB", m_pgridRgb);
 
-      m_pgridHSV = __allocate MyGridWidget(m_ptab, 2);
+      m_pgridHSV = øallocate MyGridWidget(m_ptab, 2);
 
       {
 
-         __allocate nanoui::Label(m_pgridHSV, "Hue", "sans", 14);
+         øallocate nanoui::Label(m_pgridHSV, "Hue", "sans", 14);
 
-         auto pedit = __allocate  nanoui::IntBox<int>(m_pgridHSV);
+         auto pedit = øallocate  nanoui::IntBox<int>(m_pgridHSV);
          pedit->set_editable(true);
          pedit->set_font_size(14);
          pedit->set_unit("");
@@ -184,9 +184,9 @@ namespace nanoui
 
       {
 
-         __allocate nanoui::Label(m_pgridHSV, "Saturation", "sans", 14);
+         øallocate nanoui::Label(m_pgridHSV, "Saturation", "sans", 14);
 
-         auto pedit = __allocate  nanoui::IntBox<int>(m_pgridHSV);
+         auto pedit = øallocate  nanoui::IntBox<int>(m_pgridHSV);
          pedit->set_editable(true);
          pedit->set_font_size(14);
          pedit->set_unit("");
@@ -204,9 +204,9 @@ namespace nanoui
 
       {
 
-         __allocate nanoui::Label(m_pgridHSV, "Brightness", "sans", 14);
+         øallocate nanoui::Label(m_pgridHSV, "Brightness", "sans", 14);
 
-         auto pedit = __allocate  nanoui::IntBox<int>(m_pgridHSV);
+         auto pedit = øallocate  nanoui::IntBox<int>(m_pgridHSV);
          pedit->set_editable(true);
          pedit->set_font_size(14);
          pedit->set_unit("");
@@ -222,13 +222,13 @@ namespace nanoui
 
       m_ptab->append_tab("HSV", m_pgridHSV);
 
-      m_pgridHEX = __allocate MyGridWidget(m_ptab, 2);
+      m_pgridHEX = øallocate MyGridWidget(m_ptab, 2);
 
       {
 
-         __allocate nanoui::Label(m_pgridHEX, "#", "sans", 14);
+         øallocate nanoui::Label(m_pgridHEX, "#", "sans", 14);
 
-         auto pedit = __allocate  nanoui::TextBox(m_pgridHEX);
+         auto pedit = øallocate  nanoui::TextBox(m_pgridHEX);
          pedit->set_editable(true);
          pedit->set_font_size(14);
          pedit->set_fixed_size({ 70,25 });
@@ -244,13 +244,13 @@ namespace nanoui
       ::color::color color(hls);
 
       // set the pick button to the specified color
-      m_pick_button = __allocate Button(m_ppopup, "Pick");
+      m_pick_button = øallocate Button(m_ppopup, "Pick");
       m_pick_button->set_background_color(hls);
       m_pick_button->set_text_color(color.contrasting_color());
       m_pick_button->set_fixed_size({100, 20});
 
       // set the reset button to the specified color
-      m_reset_button = __allocate Button(m_ppopup, "Reset");
+      m_reset_button = øallocate Button(m_ppopup, "Reset");
       m_reset_button->set_background_color(color);
       m_reset_button->set_text_color(color.contrasting_color());
       m_reset_button->set_fixed_size({100, 20});

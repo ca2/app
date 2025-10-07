@@ -20,7 +20,7 @@ namespace text_to_speech
    }
 
 
-   void speaker::speak(const ::string & strText)
+   void speaker::speak(const ::scoped_string & scopedstrText)
    {
 
       if (m_pspeakerFallback.is_null())
@@ -30,45 +30,29 @@ namespace text_to_speech
 
       }
 
-      return m_pspeakerFallback->speak(strText);
+      return m_pspeakerFallback->speak(scopedstrText);
 
    }
 
 
-   void speaker::speak(const ::string & strLang, const ::string & strText, bool bSynch)
-   {
-
-      if (m_pspeakerFallback.is_null())
-      {
-
-         //return false;
-
-         return;
-
-      }
-
-      return m_pspeakerFallback->speak(strLang, strText, bSynch);
-
-   }
-
-
-   void speaker::speak(const ::string & strAttributes, const ::string & strLang, const ::string & strText, bool bSynch)
+   void speaker::speak(const ::scoped_string & scopedstrLang, const ::scoped_string & scopedstrText, enum_synchronicity esynchronicity)
    {
 
       if (m_pspeakerFallback.is_null())
       {
 
          //return false;
+
          return;
 
       }
 
-      return m_pspeakerFallback->speak(strAttributes, strLang, strText, bSynch);
+      return m_pspeakerFallback->speak(scopedstrLang, scopedstrText, esynchronicity);
 
    }
 
 
-   void speaker::stop(string strLang)
+   void speaker::speak(const ::scoped_string & scopedstrAttributes, const ::scoped_string & scopedstrLang, const ::scoped_string & scopedstrText, enum_synchronicity esynchronicity)
    {
 
       if (m_pspeakerFallback.is_null())
@@ -79,12 +63,28 @@ namespace text_to_speech
 
       }
 
-      return m_pspeakerFallback->stop(strLang);
+      return m_pspeakerFallback->speak(scopedstrAttributes, scopedstrLang, scopedstrText, esynchronicity);
 
    }
 
 
-   bool speaker::is_speaking(string strLang)
+   void speaker::stop(const ::scoped_string & scopedstrLang)
+   {
+
+      if (m_pspeakerFallback.is_null())
+      {
+
+         //return false;
+         return;
+
+      }
+
+      return m_pspeakerFallback->stop(scopedstrLang);
+
+   }
+
+
+   bool speaker::is_speaking(const ::scoped_string & scopedstrLang)
    {
 
       if (m_pspeakerFallback.is_null())
@@ -94,7 +94,7 @@ namespace text_to_speech
 
       }
 
-      m_pspeakerFallback->speak(strLang);
+      m_pspeakerFallback->speak(scopedstrLang);
 
       return true;
 

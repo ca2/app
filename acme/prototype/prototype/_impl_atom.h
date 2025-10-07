@@ -6,6 +6,7 @@
 
 #include "acme/constant/id.h"
 #include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 
 
 template < typename ITERATOR_TYPE >
@@ -49,7 +50,7 @@ inline const_string_range < ITERATOR_TYPE > & const_string_range < ITERATOR_TYPE
 
 
 //template < >
-//inline string_range <  const ::ansi_character * >::string_range(const atom & atom)
+//inline string_range <  const_char_pointer >::string_range(const atom & atom)
 //{
 //
 //   if (atom.is_text())
@@ -83,7 +84,7 @@ inline string_range < ITERATOR_TYPE >::string_range(const BLOCK & block) :
 
 
 //template <  >
-//inline string_range < const ::ansi_character * > & string_range <  const ::ansi_character * >::operator = (const atom & atom)
+//inline string_range < const_char_pointer >& string_range <  const_char_pointer >::operator = (const atom & atom)
 //{
 //
 //   if (atom.is_text())
@@ -106,12 +107,12 @@ inline string_range < ITERATOR_TYPE >::string_range(const BLOCK & block) :
 
 
 //template <  >
-//inline string_range < const ::ansi_character * > & string_range <  const ::ansi_character * >::operator = (const block & block)
+//inline string_range < const_char_pointer >& string_range <  const_char_pointer >::operator = (const block & block)
 //{
 //
 //
-//   this->m_begin = (const ::ansi_character *)block.m_begin;
-//   this->m_end = (const ::ansi_character *)block.m_end;
+//   this->m_begin = (const_char_pointer )block.m_begin;
+//   this->m_end = (const_char_pointer )block.m_end;
 //
 //   return *this;
 //
@@ -173,15 +174,15 @@ inline mutable_string_range < ITERATOR_TYPE >::mutable_string_range(const block 
 //}
 
 
-template < typename ITERATOR_TYPE >
-inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::operator = (const ::atom & atom)
-{
-
-   assign_range(atom.as_string());
-
-   return *this;
-
-}
+//template < typename ITERATOR_TYPE >
+//inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::operator = (const ::atom & atom)
+//{
+//
+//   assign_range(atom.as_string());
+//
+//   return *this;
+//
+//}
 
 
 //template < typename ITERATOR_TYPE >
@@ -206,7 +207,7 @@ inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::operator =
 
 
 //template < >
-//inline scoped_string_base < const ::ansi_character * >::scoped_string_base(const ::atom & atom) :
+//inline scoped_string_base < const_char_pointer >::scoped_string_base(const ::atom & atom) :
 //   m_str(no_initialize_t{}), RANGE(no_initialize_t{})
 //{
 //
@@ -227,16 +228,16 @@ inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::operator =
 //}
 
 
-template < typename ITERATOR_TYPE >
-inline string_range < ITERATOR_TYPE > & string_range < ITERATOR_TYPE >::operator = (const block & block)
-{
-
-   this->m_begin = (const CHARACTER *)block.data();
-   this->m_end = (const CHARACTER *)block.end();
-
-   return *this;
-
-}
+// template < typename ITERATOR_TYPE >
+// inline string_range < ITERATOR_TYPE > & string_range < ITERATOR_TYPE >::operator = (const block & block)
+// {
+//
+//    this->m_begin = (const CHARACTER *)block.data();
+//    this->m_end = (const CHARACTER *)block.end();
+//
+//    return *this;
+//
+// }
 
 
 inline atom::atom()
@@ -290,16 +291,20 @@ inline atom::atom(enum_element eelement) :
 // }
 
 
-inline atom::atom(enum_message emessage) :
-        m_etype(e_type_message),
-        m_iLargest((::iptr)emessage) // used m_iLargest to reset 64-bit field
+inline atom::atom(::user::enum_message eusermessage) :
+        m_etype(e_type_user_message),
+        m_iLargest((::iptr)eusermessage) // used m_iLargest to reset 64-bit field
 {
 
+}
+inline atom::atom(::enum_message emessage) :
+    m_etype(e_type_message), m_iLargest((::iptr)emessage) // used m_iLargest to reset 64-bit field
+{
 }
 
 
 // inline atom::atom(ENUM_MESSAGE EMESSAGE) :
-//         atom((::enum_message)EMESSAGE)
+//         atom((::user::enum_message)EMESSAGE)
 // {
 //
 // }
@@ -402,7 +407,7 @@ inline atom::atom(enum_type etypeAdd, const ::atom & atom)
 
       m_etype = (enum_type) (etypeAdd | e_type_text);
 
-      m_str.construct1(atom.m_str);
+      m_str.construct_from_string(atom.m_str);
 
    }
    else if (atom.is_integer())
@@ -432,7 +437,7 @@ inline atom::atom(::atom && atom)
    {
       if (atom.m_etype & e_type_text)
       {
-         m_str.construct1(::transfer(atom.m_str));
+         m_str.construct_from_string(::transfer(atom.m_str));
       }
       else
       {
@@ -452,7 +457,7 @@ inline atom::atom(const atom & atom)
 
       m_etype = atom.m_etype;
 
-      m_str.construct1(atom.m_str);
+      m_str.construct_from_string(atom.m_str);
 
    }
    else
@@ -475,7 +480,7 @@ inline atom::atom(const domain_id & domainid)  :
 
 }
 
-inline atom::atom(const ::ansi_character * psz) :
+inline atom::atom(const_char_pointer psz) :
    m_str(psz)
 {
 
@@ -484,8 +489,8 @@ inline atom::atom(const ::ansi_character * psz) :
 }
 
 
-inline atom::atom(const ::string & str) :
-   m_str(str)
+inline atom::atom(const ::scoped_string & scopedstr) :
+   m_str(scopedstr)
 {
 
    m_etype = e_type_text;
@@ -675,7 +680,7 @@ inline atom & atom::operator = (const atom & atom)
       else if (atom.is_text())
       {
 
-         m_str.construct1(atom.m_str);
+         m_str.construct_from_string(atom.m_str);
 
       }
       else
@@ -694,7 +699,7 @@ inline atom & atom::operator = (const atom & atom)
 }
 
 
-template < character_range RANGE >
+template < primitive_character_range RANGE >
 inline bool atom::operator == (const RANGE & range) const
 {
 
@@ -703,7 +708,7 @@ inline bool atom::operator == (const RANGE & range) const
 }
 
 
-//inline ::std::strong_ordering atom::operator <=>(const ::string & str) const
+//inline ::std::strong_ordering atom::operator <=>(const ::scoped_string & scopedstr) const
 //{
 //
 //   return is_text() ? m_str <=> str : m_etype <=> e_type_text;
@@ -712,7 +717,7 @@ inline bool atom::operator == (const RANGE & range) const
 
 
 
-//inline ::std::strong_ordering atom::operator <=> (const ::string & str) const
+//inline ::std::strong_ordering atom::operator <=> (const ::scoped_string & scopedstr) const
 //{
 //
 //   return order(str);
@@ -720,7 +725,7 @@ inline bool atom::operator == (const RANGE & range) const
 //}
 //
 //
-//inline bool atom::operator < (const ::string & str) const
+//inline bool atom::operator < (const ::scoped_string & scopedstr) const
 //{
 //
 //   return order(str) < 0;
@@ -728,7 +733,7 @@ inline bool atom::operator == (const RANGE & range) const
 //}
 //
 //
-//inline bool atom::operator <= (const ::string & str) const
+//inline bool atom::operator <= (const ::scoped_string & scopedstr) const
 //{
 //
 //   return order(str) <= 0;
@@ -736,7 +741,7 @@ inline bool atom::operator == (const RANGE & range) const
 //}
 //
 //
-//inline bool atom::operator > (const ::string & str) const
+//inline bool atom::operator > (const ::scoped_string & scopedstr) const
 //{
 //
 //   return order(str) > 0;
@@ -744,7 +749,7 @@ inline bool atom::operator == (const RANGE & range) const
 //}
 //
 //
-//inline bool atom::operator >= (const ::string & str) const
+//inline bool atom::operator >= (const ::scoped_string & scopedstr) const
 //{
 //
 //   return order(str) >= 0;
@@ -763,7 +768,7 @@ inline bool atom::operator == (const RANGE & range) const
 //#endif
 
 
-//inline atom::operator const char *() const
+//inline atom::operator const_char_pointer () const
 //{
 //
 //   return is_text() ? m_str.c_str() : nullptr;
@@ -804,7 +809,7 @@ inline bool atom::operator == (CHARACTER_POINTER p) const
 }
 
 
-template < character_range RANGE >
+template < primitive_character_range RANGE >
 inline ::std::strong_ordering atom::operator<=>(const RANGE & range) const
 {
 
@@ -818,7 +823,7 @@ inline ::std::strong_ordering atom::operator<=>(const RANGE & range) const
 //inline bool atom::operator != (const ::scoped_string & scopedstr) const
 //{
 //
-//   return order(psz) != 0;
+//   return order(scopedstr) != 0;
 //
 //
 //}
@@ -826,7 +831,7 @@ inline ::std::strong_ordering atom::operator<=>(const RANGE & range) const
 //inline bool atom::operator < (const ::scoped_string & scopedstr) const
 //{
 //
-//   return order(psz) < 0;
+//   return order(scopedstr) < 0;
 //
 //}
 //
@@ -834,7 +839,7 @@ inline ::std::strong_ordering atom::operator<=>(const RANGE & range) const
 //inline bool atom::operator > (const ::scoped_string & scopedstr) const
 //{
 //
-//   return order(psz) > 0;
+//   return order(scopedstr) > 0;
 //
 //}
 //
@@ -843,7 +848,7 @@ inline ::std::strong_ordering atom::operator<=>(const RANGE & range) const
 //inline bool atom::operator <= (const ::scoped_string & scopedstr) const
 //{
 //
-//   return order(psz) <= 0;
+//   return order(scopedstr) <= 0;
 //
 //}
 //
@@ -851,7 +856,7 @@ inline ::std::strong_ordering atom::operator<=>(const RANGE & range) const
 //inline bool atom::operator >= (const ::scoped_string & scopedstr) const
 //{
 //
-//   return order(psz) >= 0;
+//   return order(scopedstr) >= 0;
 //
 //}
 
@@ -1066,33 +1071,51 @@ inline ::std::strong_ordering atom::operator <=>(const ::domain_id & domainid) c
 //}
 //
 
-inline bool atom::operator == (::enum_message emessage) const
+
+inline bool atom::operator == (::user::enum_message eusermessage) const
 {
 
    return ::comparison::tuple
            (
                    [&]() { return m_etype == e_type_message; },
-                   [&]() { return m_emessage == emessage; }
+                   [&]() { return m_eusermessage == eusermessage; }
            );
 
 }
 
 
 
-inline ::std::strong_ordering atom::operator <=>(::enum_message emessage) const
+inline ::std::strong_ordering atom::operator <=>(::user::enum_message eusermessage) const
 {
 
    return ::comparison::tuple
            (
                    [&]() { return m_etype <=> e_type_message; },
-                   [&]() { return m_emessage <=> emessage; }
+                   [&]() { return m_eusermessage <=> eusermessage; }
            );
 
 }
 
 
 
-//inline bool atom::operator != (::enum_message emessage) const
+
+inline bool atom::operator==(::enum_message emessage) const
+{
+
+   return ::comparison::tuple([&]() { return m_etype == e_type_message; },
+                              [&]() { return m_emessage == emessage; });
+}
+
+
+inline ::std::strong_ordering atom::operator<=>(::enum_message emessage) const
+{
+
+   return ::comparison::tuple([&]() { return m_etype <=> e_type_message; },
+                              [&]() { return m_emessage <=> emessage; });
+}
+
+
+//inline bool atom::operator != (::user::enum_message eusermessage) const
 //{
 //
 //   return order(emessage) != 0;
@@ -1100,7 +1123,7 @@ inline ::std::strong_ordering atom::operator <=>(::enum_message emessage) const
 //}
 //
 //
-//inline bool atom::operator < (::enum_message emessage) const
+//inline bool atom::operator < (::user::enum_message eusermessage) const
 //{
 //
 //   return order(emessage) < 0;
@@ -1108,7 +1131,7 @@ inline ::std::strong_ordering atom::operator <=>(::enum_message emessage) const
 //}
 //
 //
-//inline bool atom::operator <= (::enum_message emessage) const
+//inline bool atom::operator <= (::user::enum_message eusermessage) const
 //{
 //
 //   return order(emessage) <= 0;
@@ -1116,7 +1139,7 @@ inline ::std::strong_ordering atom::operator <=>(::enum_message emessage) const
 //}
 //
 //
-//inline bool atom::operator > (::enum_message emessage) const
+//inline bool atom::operator > (::user::enum_message eusermessage) const
 //{
 //
 //   return order(emessage) > 0;
@@ -1124,7 +1147,7 @@ inline ::std::strong_ordering atom::operator <=>(::enum_message emessage) const
 //}
 //
 //
-//inline bool atom::operator >= (::enum_message emessage) const
+//inline bool atom::operator >= (::user::enum_message eusermessage) const
 //{
 //
 //   return order(emessage) >= 0;
@@ -1341,11 +1364,18 @@ inline ::iptr atom::as_iptr() const
 }
 
 
-inline enum_message atom::as_emessage() const
+inline ::user::enum_message atom::as_eusermessage() const
 {
 
-   return m_etype == e_type_message ? m_emessage : (enum_message) e_message_undefined;
+   return m_etype == e_type_user_message ? m_eusermessage : (::user::enum_message) ::user::e_message_undefined;
 
+}
+
+
+inline ::enum_message atom::as_emessage1() const
+{
+
+   return m_etype == e_type_message ? m_emessage : (::enum_message)::e_message_undefined;
 }
 
 
@@ -1407,7 +1437,7 @@ inline void atom::clear()
 }
 
 
-//inline CLASS_DECL_ACME atom & atom::operator += (const ::scoped_string & scopedstr) { return operator = (string(*this) + string(psz)); }
+//inline CLASS_DECL_ACME atom & atom::operator += (const ::scoped_string & scopedstr) { return operator = (string(*this) + string(scopedstr)); }
 
 
 inline ::std::strong_ordering atom::case_insensitive_order(const ::scoped_string & scopedstr) const
@@ -1618,7 +1648,7 @@ inline bool atom::case_insensitive_ends(const ::scoped_string & scopedstrCandida
 
 
 
-inline void from_string(::atom & atom, const ::ansi_character * psz)
+inline void from_string(::atom & atom, const_char_pointer psz)
 {
 
    atom = psz;
@@ -1626,13 +1656,13 @@ inline void from_string(::atom & atom, const ::ansi_character * psz)
 }
 
 
-//inline atom::atom(const ::ansi_character * psz) :
-//        m_str(psz)
+//inline atom::atom(const_char_pointer psz) :
+//        m_str(scopedstr)
 //{
 //
 //   m_etype = e_type_text;
 //
-//   //m_str.::string::string(psz);
+//   //m_str.::string::string(scopedstr);
 //
 //}
 
@@ -1647,7 +1677,7 @@ inline void from_string(::atom & atom, const ::ansi_character * psz)
 //}
 //
 //
-//inline atom::atom(const ::string& str) :
+//inline atom::atom(const ::scoped_string & scopedstr) :
 //        m_str(str)
 //{
 //
@@ -1700,13 +1730,13 @@ inline void from_string(::atom & atom, const ::ansi_character * psz)
 //}
 
 
-template < typename CHAR >
-string_base < CHAR > & string_base < CHAR >::operator +=(const ::atom & atom)
-{
-
-   return append(atom);
-
-}
+// template < typename CHAR >
+// string_base < CHAR > & string_base < CHAR >::operator +=(const ::atom & atom)
+// {
+//
+//    return append(atom);
+//
+// }
 
 
 //template < typename ITERATOR_TYPE >
@@ -1804,15 +1834,15 @@ string_base < CHAR > & string_base < CHAR >::append(const ::atom & atom)
 //}
 
 
-//inline ::string operator +(const ::ansi_character * psz, const ::atom & atom)
+//inline ::string operator +(const_char_pointer psz, const ::atom & atom)
 //{
 //
-//   return ::string(psz) + atom.as_string();
+//   return ::string(scopedstr) + atom.as_string();
 //
 //}
 
 
-//inline ::string operator +(const ::string & str, const ::atom & atom)
+//inline ::string operator +(const ::scoped_string & scopedstr, const ::atom & atom)
 //{
 //
 //   return str + atom.as_string();
@@ -1925,7 +1955,7 @@ atom::atom(const PAYLOAD & payload)
 //}
 
 
-inline ::string atom::operator +(const ::ansi_character * psz) const
+inline ::string atom::operator +(const_char_pointer psz) const
 {
 
    return this->as_string() + psz;
@@ -1933,10 +1963,10 @@ inline ::string atom::operator +(const ::ansi_character * psz) const
 }
 
 
-inline ::string atom::operator +(const ::string & str) const
+inline ::string atom::operator +(const ::scoped_string & scopedstr) const
 {
 
-   return this->as_string() + str;
+   return this->as_string() + scopedstr;
 
 }
 

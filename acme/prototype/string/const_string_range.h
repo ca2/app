@@ -1,6 +1,10 @@
 // From string_range.h by camilo on 2023-02-20 20:24 <3ThomasBorregaardSorensen!!
 #pragma once
 
+
+#include "acme/prototype/string/character_range.h"
+
+
 #include <algorithm>
 
 
@@ -13,7 +17,7 @@ template < > consteval auto typed_##NAME<char32_t>() { return U##LITERAL; }
 
 
 template<primitive_character CHARACTER>
-constexpr ::range<const CHARACTER *>
+constexpr ::character_range<const CHARACTER *>
 inline _start_count_string_range(const CHARACTER *psz, memsize start, memsize count);
 
 //
@@ -74,16 +78,15 @@ struct end_of_line_and_next_line
 /// <typeparam name="ITERATOR_TYPE"></typeparam>
 template<typename ITERATOR_TYPE>
 class const_string_range :
-   //public ::comparable_range < ::comparable_eq_range < ::array_range < ::range < ITERATOR_TYPE > > > >
-   //public ::array_range < ::range < ITERATOR_TYPE > > >
-   public ::range<ITERATOR_TYPE> {
+   //public ::comparable_range < ::comparable_eq_range < ::array_range < ::character_range < ITERATOR_TYPE > > > >
+   //public ::array_range < ::character_range < ITERATOR_TYPE > > >
+   public ::character_range<ITERATOR_TYPE> {
 public:
 
+   using BASE_RANGE = ::character_range<ITERATOR_TYPE>;
+   using RAW_CHARACTER_RANGE = typename BASE_RANGE::RAW_CHARACTER_RANGE;
 
-   //using BASE_RANGE = ::comparable_range < ::comparable_eq_range < ::array_range < ::range < ITERATOR_TYPE > > > >;
-
-
-   using BASE_RANGE = ::range<ITERATOR_TYPE>;
+   //using BASE_RANGE = ::comparable_range < ::comparable_eq_range < ::array_range < ::character_range < ITERATOR_TYPE > > > >;
 
    using THIS_RANGE = ::const_string_range<ITERATOR_TYPE>;
 
@@ -93,6 +96,8 @@ public:
    using ITEM_POINTER = get_type_item_pointer<ITERATOR_TYPE>;
    using ITEM = non_const<dereference<ITEM_POINTER> >;
    using CHARACTER = ITEM;
+
+   using BASE_DATA = BASE_RANGE::BASE_DATA;
 
 
    using this_iterator = typename BASE_RANGE::this_iterator;
@@ -114,7 +119,14 @@ public:
 
    using STRING = string_base < ITERATOR_TYPE >;
 
-   using STRING_ARRAY = ::string_array_base < STRING, STRING, e_type_string_array >;
+   using STRING_ARRAY = ::string_base_array < STRING, STRING, e_type_string_array >;
+
+
+   const_string_range(no_initialize_t) : BASE_RANGE(no_initialize_t{}) {}
+
+   const_string_range(nullptr_t) : BASE_RANGE(nullptr) {}
+
+   const_string_range() {}
 
 
    //template<character_count n>
@@ -151,23 +163,19 @@ public:
       (this_iterator)(begin + count)) {
    }
 
-   const_string_range(no_initialize_t) : BASE_RANGE(no_initialize_t{}) {}
+   template < typed_range < iterator > TYPED_RANGE >
+   constexpr const_string_range(const TYPED_RANGE & range) 
+      requires(!::std::is_same_v < TYPED_RANGE, THIS_RANGE >) :
+      BASE_RANGE(range.m_begin, range.m_end, range.m_erange) { }
 
-   const_string_range(nullptr_t) : BASE_RANGE(nullptr) {}
+   constexpr const_string_range(const const_string_range & range) :
+      BASE_RANGE(range.m_begin, range.m_end, range.m_erange) { }
 
-   const_string_range() {}
+   constexpr const_string_range(const_string_range && range) :
+      BASE_RANGE(::transfer(range)) { }
 
-   template<typed_range<iterator> RANGE>
-   const_string_range(const RANGE& range) : BASE_RANGE(range) {}
-
-   template<typed_range<const_iterator> RANGE>
-   const_string_range(const RANGE& range) : BASE_RANGE(range) {}
-
-   const_string_range(const THIS_RANGE& range) : BASE_RANGE(range) {}
-
-   const_string_range(THIS_RANGE&& range) : BASE_RANGE(::transfer(range)) {}
-
-   constexpr const_string_range(this_iterator begin, this_iterator end, enum_range erange = e_range_none) : BASE_RANGE(begin, end, erange) {}
+   constexpr const_string_range(this_iterator begin, this_iterator end, enum_range erange = e_range_none, BASE_DATA * pbasedata = nullptr) :
+      BASE_RANGE(begin, end, erange, pbasedata) { }
 
    //explicit const_string_range(const ::atom& atom);
 
@@ -220,12 +228,12 @@ public:
             erange = e_range_none;
 
          }
-         else
-         {
-
-            erange = erange & ~e_range_string;
-
-         }
+         // else
+         // {
+         //
+         //    erange = erange & ~e_range_string;
+         //
+         // }
 
       }
       else if (end != 0)
@@ -241,6 +249,9 @@ public:
       erange};
 
    }
+
+
+   ::collection::count length() const {return this->size();}
 
 
    const_string_range & assign_bounded(ITERATOR_TYPE psz, character_count start, character_count count)
@@ -306,14 +317,12 @@ public:
    constexpr THIS_RANGE _begin_set(ITERATOR_TYPE pbegin) const
    {
 
-      return pbegin == this->m_begin ?
-         *this :
-         THIS_RANGE{
+      return THIS_RANGE{
             pbegin,
             this->m_end,
-            (enum_range)this->m_erange & ~e_range_string
-      }
-      ;
+            (enum_range)this->m_erange,
+            this->m_pbasedata
+      };
 
    }
 
@@ -678,7 +687,7 @@ public:
       return this->is_empty()?
          (::is_empty(psz) ? true :
          false) :
-         (::is_empty(psz) ? false : 
+         (::is_empty(psz) ? false :
             (_case_insensitive_string_count_compare(this->m_begin, psz, sizeThis) == 0
             && psz[sizeThis] == CHARACTER{})
                );
@@ -785,7 +794,7 @@ public:
       return this->is_empty() ?
          (::is_empty(psz) ? ::std::strong_ordering::equal :
             ::std::strong_ordering::less) :
-         (::is_empty(psz) ? ::std::strong_ordering::greater : 
+         (::is_empty(psz) ? ::std::strong_ordering::greater :
             ((ordering = _case_insensitive_string_count_compare(this->m_begin, psz, sizeThis)) == 0 ?
                (psz[sizeThis] == CHARACTER{}?
                   ::std::strong_ordering::equal :
@@ -1166,8 +1175,15 @@ public:
       return this->find_first_character_in(range, ::comparison::comparison<ITEM>());
 
    }
+
    constexpr character_count find_first_character_in_index(const SCOPED_STRING& range, ::character_count start = 0) const {
       return this->index_of((*this)(start).find_first_character_in(range));
+   }
+
+   constexpr bool contains_any_character_in(const SCOPED_STRING& range) const {
+
+      return ::found(this->find_first_character_in(range));
+
    }
 
 
@@ -2418,7 +2434,7 @@ public:
    //inline bool operator==(const ::wd32_string& str) const;
 
 //   template < other_primitive_character < typename string_base < ITERATOR_TYPE >::CHARACTER > OTHER_CHARACTER >
-   inline bool operator==(const ::range < const CHARACTER* >& range) const;
+   inline bool operator==(const ::character_range < const CHARACTER* >& range) const;
 
    template < character_count n >
    inline bool operator==(const CHARACTER(&s)[n]) const
@@ -2429,7 +2445,7 @@ public:
    }
 
    template < typename OTHER_CHARACTER >
-   inline bool operator==(const ::range < const OTHER_CHARACTER* >& range) const
+   inline bool operator==(const ::character_range < const OTHER_CHARACTER* >& range) const
     requires other_primitive_character < OTHER_CHARACTER, CHARACTER >;
 
    //inline bool operator ==(const SCOPED_STRING & scopedstr) const { return this->equals(scopedstr); }
@@ -2454,11 +2470,11 @@ public:
    //inline bool operator>(CHARACTER ch) const;
    //inline bool operator<(const string_base &str2) const;
    //inline bool operator<(CHARACTER ch) const;
-   //inline bool operator!=(const string_base &str) const { return !operator ==(psz); }
+   //inline bool operator!=(const string_base &str) const { return !operator ==(scopedstr); }
    //inline bool operator!=(CHARACTER ch) const { return !operator ==(ch); }
-   //inline bool operator>=(const string_base &str) const { return !operator <(psz); }
+   //inline bool operator>=(const string_base &str) const { return !operator <(scopedstr); }
    //inline bool operator>=(CHARACTER ch) const { return !operator <(ch); }
-   //inline bool operator<=(const CHARACTER * psz) const { return !operator >(psz); }
+   //inline bool operator<=(const CHARACTER * psz) const { return !operator >(scopedstr); }
    //inline bool operator<=(CHARACTER ch) const { return !operator >(ch); }
 
 
@@ -2596,10 +2612,10 @@ public:
 
 
 template<primitive_character CHARACTER>
-constexpr ::range<const CHARACTER*> _string_range(const CHARACTER* psz);
+constexpr ::character_range<const CHARACTER*> _string_range(const CHARACTER* psz);
 
 template<primitive_character CHARACTER>
-constexpr ::range<const CHARACTER*>
+constexpr ::character_range<const CHARACTER*>
 _start_count_string_range(const CHARACTER* psz, memsize start, memsize count);
 
 
@@ -2645,12 +2661,17 @@ class string_literal :
 public:
 
 
-   constexpr string_literal(ITERATOR_TYPE s, std::size_t n)
+   using BASE_RANGE = const_string_range < ITERATOR_TYPE >;
+
+
+   constexpr string_literal(ITERATOR_TYPE s, std::size_t n) :
+   BASE_RANGE(no_initialize_t{})
    {
 
       this->m_begin = s;
       this->m_end = s + n;
-      this->m_erange = e_range_string_literal | e_range_null_terminated;
+      this->m_erange = e_range_string_literal;
+      this->m_pbasedata = nullptr;
 
    }
 
@@ -2658,7 +2679,7 @@ public:
 };
 
 
-constexpr string_literal < const ::ansi_character * > operator ""_ansi(const ::ansi_character * s, std::size_t n)
+constexpr string_literal < const_char_pointer >operator ""_ansi(const_char_pointer s, std::size_t n)
 {
 
    return { s, n };
@@ -2688,10 +2709,7 @@ template < primitive_character CHARACTER, character_count n >
    return
    {
       s,
-      s + (s[n - 1] == CHARACTER{} ? n - 1 : n),
-      (enum_range)
-         (s[n - 1] == CHARACTER{} ?
-               e_range_null_terminated : e_range_none)
+      s + (s[n - 1] == CHARACTER{} ? n - 1 : n)
    };
 
 }

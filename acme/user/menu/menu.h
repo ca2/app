@@ -39,8 +39,8 @@ namespace menu
 //      bool                                   m_bInline;
 //      bool                                   m_bMenuOk;
 //      ::pointer<::menu::item>                   m_pmenuitemSub;
-//      ::int_array                            m_iaColumnWidth;
-//      ::int_array                            m_iaColumnHeight;
+//      ::int_array_base                            m_iaColumnWidth;
+//      ::int_array_base                            m_iaColumnHeight;
 //      bool                                   m_bCloseButton;
 //
 
@@ -113,7 +113,7 @@ namespace menu
 //
 //      //bool has_pending_graphical_update() override;
 //
-//      virtual bool create_menu(const string_array & straCommand, const string_array & straCommandTitle);
+//      virtual bool create_menu(const string_array_base & straCommand, const string_array_base & straCommandTitle);
 //
 //      void destroy() override;
 //

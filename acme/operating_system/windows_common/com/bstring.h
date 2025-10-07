@@ -15,7 +15,12 @@ public:
    bstring() { m_bstr = nullptr; }
    bstring(const OLECHAR * sz) { m_bstr = allocate_string(sz); }
 
-   bstring(const char * psz, int len = -1) { m_bstr = ::is_null(psz) ? nullptr : string_byte_len(psz, len < 0 ? (unsigned int) strlen(psz) : len); }
+   bstring(const ::scoped_string & scopedstr)
+   {
+
+      m_bstr = allocate_string(scopedstr);
+
+   }
 
    ~bstring() { if(m_bstr) allocate_string(m_bstr); m_bstr = nullptr; }
 
@@ -25,11 +30,9 @@ public:
 
    BSTR c_str() const { return m_bstr; }
 
-   static BSTR string_byte_len(const char * psz, character_count i);
-
    static BSTR allocate_string(const OLECHAR * sz);
 
-   static BSTR allocate_string(const char * psz);
+   static BSTR allocate_string(const ::scoped_string & scopedstr);
 
    static void free_string(BSTR bstr);
 

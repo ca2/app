@@ -25,7 +25,7 @@ namespace database
    }
 
 
-   void dataset::set_sql(enum_sql esql, const ::string & pszSql)
+   void dataset::set_sql(enum_sql esql, const ::scoped_string & scopedstrSql)
    {
 
       switch(esql)
@@ -34,19 +34,19 @@ namespace database
       case e_sql_none:
          break;
       case       e_sql_execute:
-         m_strSqlExecute = pszSql;
+         m_strSqlExecute = scopedstrSql;
          break;
       case e_sql_select:
-         m_strSqlSelect = pszSql;
+         m_strSqlSelect = scopedstrSql;
          break;
       case e_sql_update:
-         m_straSqlUpdate.add(pszSql);
+         m_straSqlUpdate.add(scopedstrSql);
          break;
       case e_sql_insert:
-         m_straSqlInsert.add(pszSql);
+         m_straSqlInsert.add(scopedstrSql);
          break;
       case e_sql_delete:
-         m_straSqlDelete.add(pszSql);
+         m_straSqlDelete.add(scopedstrSql);
          break;
       default:
          ASSERT(false);
@@ -112,7 +112,7 @@ namespace database
    }
 
 
-   void dataset::parse_sql(const ::string & sql)
+   void dataset::parse_sql(const ::scoped_string & scopedstrSql)
    {
 
       string fpattern;
@@ -138,7 +138,7 @@ namespace database
       //   sql = pars.replace(fpattern,by_what);
       //}
 
-      //   string_list before_array, after_array;
+      //   string_list_base before_array, after_array;
       //   int tag = 0;
       //   bool eol_reached = false,
       //        was_changed = false,
@@ -314,7 +314,7 @@ namespace database
    }
 
 
-   ::collection::index dataset::field_index(const ::string & name)
+   ::collection::index dataset::field_index(const ::scoped_string & scopedstrName)
    {
 
       for (::collection::index i = 0; i < m_result.m_pfielda->get_count(); i++)
@@ -322,7 +322,7 @@ namespace database
 
          auto & pfield = m_result.m_pfielda->element_at(i);
 
-         if (pfield->m_strName.case_insensitive_order(name) == 0)
+         if (pfield->m_strName.case_insensitive_order(scopedstrName) == 0)
          {
 
             return i;
@@ -336,13 +336,13 @@ namespace database
    }
 
 
-   field * dataset::field(const ::string & name)
+   field * dataset::field(const ::scoped_string & scopedstrName)
    {
 
       for (auto & pfield : *m_result.m_pfielda)
       {
 
-         if (pfield->m_strName.case_insensitive_order(name) == 0)
+         if (pfield->m_strName.case_insensitive_order(scopedstrName) == 0)
          {
 
             return pfield;
@@ -356,10 +356,10 @@ namespace database
    }
 
 
-   ::payload dataset::field_value(const ::string & name)
+   ::payload dataset::field_value(const ::scoped_string & scopedstrName)
    {
 
-      auto pfield = field(name);
+      auto pfield = field(scopedstrName);
 
       if (::is_null(pfield))
       {
@@ -533,12 +533,12 @@ namespace database
    //   return -1;
    //}
 
-   ::pointer<row_array>dataset::query_rows(const ::string & pszQuery)
+   ::pointer<row_array>dataset::query_rows(const ::scoped_string & scopedstrQuery)
    {
 
       ::pointer<row_array>rows;
 
-      if (!query_rows(rows, pszQuery))
+      if (!query_rows(rows, scopedstrQuery))
       {
 
          return nullptr;
@@ -550,10 +550,10 @@ namespace database
    }
 
 
-   bool dataset::query_rows(::pointer<row_array>& rows, const ::string & pszQuery)
+   bool dataset::query_rows(::pointer<row_array>& rows, const ::scoped_string & scopedstrQuery)
    {
 
-      if (!query(pszQuery))
+      if (!query(scopedstrQuery))
       {
 
          informationf("database::query_items::query failed");
@@ -569,12 +569,12 @@ namespace database
    }
 
 
-   ::pointer<payload_array>dataset::query_items(const ::string & pszQuery)
+   ::pointer<payload_array>dataset::query_items(const ::scoped_string & scopedstrQuery)
    {
 
       ::pointer<payload_array>items;
 
-      if (!query_items(items, pszQuery))
+      if (!query_items(items, scopedstrQuery))
       {
 
          return nullptr;
@@ -586,10 +586,10 @@ namespace database
    }
 
 
-   bool dataset::query_items(::pointer<payload_array>& items, const ::string & pszQuery)
+   bool dataset::query_items(::pointer<payload_array>& items, const ::scoped_string & scopedstrQuery)
    {
 
-      if (!query(pszQuery))
+      if (!query(scopedstrQuery))
       {
 
          informationf("database::query_items::query failed");
@@ -610,12 +610,12 @@ namespace database
    }
 
 
-   ::payload dataset::query_item(const ::string & pszQuery)
+   ::payload dataset::query_item(const ::scoped_string & scopedstrQuery)
    {
 
       ::payload item;
 
-      if (!query_item(item, pszQuery) || item.failed())
+      if (!query_item(item, scopedstrQuery) || item.failed())
       {
 
          return false;
@@ -627,10 +627,10 @@ namespace database
    }
 
 
-   bool dataset::query_item(::payload & item, const ::string & pszQuery)
+   bool dataset::query_item(::payload & item, const ::scoped_string & scopedstrQuery)
    {
 
-      if (!query(pszQuery))
+      if (!query(scopedstrQuery))
       {
 
          informationf("database::query_items::query failed");

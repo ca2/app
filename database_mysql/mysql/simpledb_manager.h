@@ -19,22 +19,22 @@ namespace simpledb
       unsigned int                         m_dwBuildTimeWindow;
       unsigned int                         m_dwBuildTimeRandomWindow;
 
-      string_to_string          m_strmapFunUserKey;
+      string_to_string_base          m_strmapFunUserKey;
 
       string                        m_strPersistentError;
 
       critical_section              m_csPersistentStr;
       critical_section              m_csUiRedir;
       ::pointer < ::mutex >                         m_pmutexTagId;
-      string_to_string          m_tagid;
-      string_to_string          m_usersecuretagid;
+      string_to_string_base          m_tagid;
+      string_to_string_base          m_usersecuretagid;
       ::pointer < ::mutex >                         m_pmutexTagName;
-      string_to_string          m_tagname;
+      string_to_string_base          m_tagname;
 
       long long                       m_iDatabaseWaitTimeOut;
 
       ::pointer < ::mutex >                         m_pmutexSession;
-      string_map < ::simpledb::session * >      m_mapSession;
+      string_map_base < ::simpledb::session * >      m_mapSession;
 
 
       manager(::particle * pparticle);
@@ -43,12 +43,12 @@ namespace simpledb
       bool initialize_thread() override;
 
 
-      ::simpledb::session * & get_session(const ::string & pszId);
+      ::simpledb::session * & get_session(const ::scoped_string & scopedstrId);
 
 
       using thread::handle;
       bool handle(socket * psocket);
-      bool get_output_internal(const ::string & lpcszGet, memory & memeory);
+      bool get_output_internal(const ::scoped_string & scopedstrGet, memory & memeory);
 
       virtual void message_queue_message_handler(::message::message * pmessage);
 

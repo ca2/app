@@ -20,8 +20,8 @@ namespace userfs
       
 
 
-      string_array               m_straFileSize;
-      ::file::path_array         m_pathaStrictOrder;
+      string_array_base               m_straFileSize;
+      ::file::path_array_base         m_pathaStrictOrder;
       ::collection::index                      m_iSelectionSubItem;
       ::collection::index                      m_iNameSubItem;
       ::collection::index                      m_iNameSubItemText;
@@ -48,20 +48,20 @@ namespace userfs
 
       virtual list_data * fs_list();
 
-      //void add_fs_item(::file::path pathUser, ::file::path pathFinal, string strName);
+      //void add_fs_item(::file::path pathUser, ::file::path pathFinal, const ::scoped_string & scopedstrName);
 
       void install_message_routing(::channel * pchannel) override;
 
       ::image::image_list * GetActionButtonImageList(::collection::index i);
 
 
-      virtual void get_selected_user_path(::file::path_array & stra);
-      virtual void get_selected_final_path(::file::path_array & stra);
+      virtual void get_selected_user_path(::file::path_array_base & stra);
+      virtual void get_selected_final_path(::file::path_array_base & stra);
       virtual void get_selected_items(::file::item_array & itema);
 
 
-      virtual ::file::path_array get_selected_user_path();
-      virtual ::file::path_array get_selected_final_path();
+      virtual ::file::path_array_base get_selected_user_path();
+      virtual ::file::path_array_base get_selected_final_path();
       virtual ::file::item_array get_selected_items();
       virtual ::file::item * get_first_selected_item();
 
@@ -80,7 +80,7 @@ namespace userfs
       //void TakeAnimationSnapshot();
       //virtual void StartAnimation();
       void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
-      //void GetSelectedFilePath(string_array & array);
+      //void GetSelectedFilePath(string_array_base & array);
       void _001GetSubItemImage(::user::mesh_subitem * psubitem) override;
       void _001GetSubItemText(::user::mesh_subitem * psubitem) override;
       ::collection::count _001GetItemCount() override;

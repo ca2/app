@@ -71,7 +71,7 @@ namespace acme
 
 
 template < class TYPE, class ARG_TYPE = const TYPE &, class TYPED = ::typed::nodef < TYPE >, class MEMORY = ::heap::typed_memory < TYPE, ::heap::e_memory_array >, ::enum_type t_etypeContainer = e_type_element >
-inline auto& __array_object(::array_base < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >& a, ::collection::index i);
+inline auto& __array_object(::base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >& a, ::collection::index i);
 
 
 template < typename ARRAY_TYPE, typename T >
@@ -102,7 +102,7 @@ namespace acme
 
 
       template < class TDST, class TSRC >
-      ::collection::count copy(address_array < TDST >& dsta, const address_array < TSRC >& srca);
+      ::collection::count copy(address_array_base < TDST >& dsta, const address_array_base < TSRC >& srca);
 
       template < class TDST, class TSRC >
       ::collection::count ptrcopy(TDST& dsta, const TSRC& srca);
@@ -462,7 +462,7 @@ namespace acme
    template < class A >
    void array_makecombination(pointer_array < A >& comb, const A& a, A blindprefixa = A(), ::collection::index idx = 0)
    {
-      comb.add(__allocate A(blindprefixa));
+      comb.add(øallocate A(blindprefixa));
       for (::collection::index i = idx; i < a.get_count(); i++)
       {
          array_makecombination(comb, a, blindprefixa + make_array < A >(a[i]), i + 1);
@@ -489,9 +489,9 @@ namespace acme
    template < class A >
    void array_permute(pointer_array < A >& perm, const A& a);
 
-   CLASS_DECL_ACME string_array x1_decode_ida(const ::scoped_string & scopedstr);
+   CLASS_DECL_ACME string_array_base x1_decode_ida(const ::scoped_string & scopedstr);
 
-   CLASS_DECL_ACME string x1_encode_ida(const string_array& stra);
+   CLASS_DECL_ACME string x1_encode_ida(const string_array_base& stra);
 
 
    template < class A >
@@ -523,7 +523,7 @@ namespace acme
       //::stream & exchange_container(::stream & stream, INITIALIZER * pinitializer, const pointer_array < TYPE > & a);
 
       template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-      ::collection::index add(string_array_base < Type, RawType, t_etypeContainer >& array, const Type& psz)
+      ::collection::index add(string_base_array < Type, RawType, t_etypeContainer >& array, const Type& psz)
       {
 
          auto iIndex = __index(array.m_nSize);
@@ -536,20 +536,20 @@ namespace acme
 
 
       template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-      ::collection::index add(string_array_base < Type, RawType, t_etypeContainer >& array, const ::payload& payload);
+      ::collection::index add(string_base_array < Type, RawType, t_etypeContainer >& array, const ::payload& payload);
 
 
       template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-      ::collection::index unfold_add(string_array_base < Type, RawType, t_etypeContainer >& array, const ::payload& payload);
+      ::collection::index unfold_add(string_base_array < Type, RawType, t_etypeContainer >& array, const ::payload& payload);
 
       template < typename TYPE, ::enum_type t_etypeContainer = e_type_element >
-      ::collection::count ensure_sequence(::numeric_array < TYPE, t_etypeContainer >& a, TYPE start, TYPE end, TYPE increment = 1);
+      ::collection::count ensure_sequence(::numeric_array_base < TYPE, t_etypeContainer >& a, TYPE start, TYPE end, TYPE increment = 1);
 
       template < typename TYPE, ::enum_type t_etypeContainer = e_type_element >
-      ::collection::count append_sequence(::numeric_array < TYPE, t_etypeContainer >& a, TYPE iterator, TYPE end, TYPE increment = 1);
+      ::collection::count append_sequence(::numeric_array_base < TYPE, t_etypeContainer >& a, TYPE iterator, TYPE end, TYPE increment = 1);
 
       template < typename TYPE, ::enum_type t_etypeContainer = e_type_element >
-      ::collection::count set_sequence(::numeric_array < TYPE, t_etypeContainer >& a, TYPE start, TYPE end, TYPE increment = 1);
+      ::collection::count set_sequence(::numeric_array_base < TYPE, t_etypeContainer >& a, TYPE start, TYPE end, TYPE increment = 1);
 
       template<class ARRAY>
       bool binary_search(ARRAY& a, typename ARRAY::BASE_ARG_TYPE t, ::collection::index& iIndex, ::collection::index(*fCompare) (typename ARRAY::BASE_ARG_TYPE, typename ARRAY::BASE_ARG_TYPE));
@@ -633,22 +633,22 @@ namespace acme
       }
 
 
-      inline ::collection::index add(string_array& stra, const ::scoped_string & scopedstr);
-      inline ::collection::index add(string_array& stra, const char& ch);
-      inline ::collection::index add(string_array& stra, const ansi_string& str);
-      inline ::collection::index add(string_array& stra, const wide_string& str);
-      inline ::collection::index add(string_array& stra, const ::file::path& path);
-      inline ::collection::index add(string_array& stra, const ::payload& payload);
-      inline ::collection::index add(string_array& stra, const ::property& property);
-      inline ::collection::index add(string_array& stra, const ::property_set& propertyset);
+      inline ::collection::index add(string_array_base& stra, const ::scoped_string & scopedstr);
+      inline ::collection::index add(string_array_base& stra, const char& ch);
+      inline ::collection::index add(string_array_base& stra, const ansi_string& str);
+      inline ::collection::index add(string_array_base& stra, const wide_string& str);
+      inline ::collection::index add(string_array_base& stra, const ::file::path& path);
+      inline ::collection::index add(string_array_base& stra, const ::payload& payload);
+      inline ::collection::index add(string_array_base& stra, const ::property& property);
+      inline ::collection::index add(string_array_base& stra, const ::property_set& propertyset);
 
-      inline ::collection::index add(::file::path_array& patha, const ::string& str);
+      inline ::collection::index add(::file::path_array_base& patha, const ::scoped_string & scopedstr);
 
-      inline ::collection::index add(string_array& stra, const string_array& straSource);
+      inline ::collection::index add(string_array_base& stra, const string_array_base& straSource);
 
-      inline ::collection::index add(::file::path_array& patha, const string_array& stra);
-      inline ::collection::index add(::file::path_array& patha, const ::file::path_array& pathaSrc);
-      inline ::collection::index add(::file::path_array& patha, const ::file::listing& listing);
+      inline ::collection::index add(::file::path_array_base& patha, const string_array_base& stra);
+      inline ::collection::index add(::file::path_array_base& patha, const ::file::path_array_base& pathaSrc);
+      inline ::collection::index add(::file::path_array_base& patha, const ::file::listing_base& listing);
 
       template < typename T >
       inline bool are_all_elements_equal(const pointer_array < T >& a1, const pointer_array < T >& a2);
@@ -685,10 +685,10 @@ namespace acme
 
 
       template < typename A >
-      ::array < const char* > psza(const A& a)
+      ::array < const_char_pointer >psza(const A& a)
       {
 
-         ::array < const char* > pa;
+         ::array < const_char_pointer >pa;
 
          ptra(pa, a);
 
@@ -715,35 +715,35 @@ namespace acme
 
 
    template < typename TYPE, ::enum_type t_etypeContainer = e_type_element >
-   ::collection::count erase_greater_than(::numeric_array < TYPE, t_etypeContainer >& a, TYPE hi);
+   ::collection::count erase_greater_than(::numeric_array_base < TYPE, t_etypeContainer >& a, TYPE hi);
 
 
    template < typename TYPE, ::enum_type t_etypeContainer = e_type_element >
-   ::collection::count erase_greater_than_or_equal(::numeric_array < TYPE, t_etypeContainer >& a, TYPE hi);
+   ::collection::count erase_greater_than_or_equal(::numeric_array_base < TYPE, t_etypeContainer >& a, TYPE hi);
 
 
    template < typename TYPE, ::enum_type t_etypeContainer = e_type_element >
-   ::collection::count erase_lesser_than(::numeric_array < TYPE, t_etypeContainer >& a, TYPE lo);
+   ::collection::count erase_lesser_than(::numeric_array_base < TYPE, t_etypeContainer >& a, TYPE lo);
 
 
    template < typename TYPE, ::enum_type t_etypeContainer = e_type_element >
-   ::collection::count erase_lesser_than_or_equal(::numeric_array < TYPE, t_etypeContainer >& a, TYPE lo);
+   ::collection::count erase_lesser_than_or_equal(::numeric_array_base < TYPE, t_etypeContainer >& a, TYPE lo);
 
 
    template < typename TYPE, ::enum_type t_etypeContainer = e_type_element >
-   ::collection::count erase_lesser_than_or_greater_than(::numeric_array < TYPE, t_etypeContainer >& a, TYPE lo, TYPE hi);
+   ::collection::count erase_lesser_than_or_greater_than(::numeric_array_base < TYPE, t_etypeContainer >& a, TYPE lo, TYPE hi);
 
 
    template < typename TYPE, ::enum_type t_etypeContainer = e_type_element >
-   ::collection::count erase_lesser_than_or_greater_than_or_equal(::numeric_array < TYPE, t_etypeContainer >& a, TYPE lo, TYPE hi);
+   ::collection::count erase_lesser_than_or_greater_than_or_equal(::numeric_array_base < TYPE, t_etypeContainer >& a, TYPE lo, TYPE hi);
 
 
    template < typename TYPE, ::enum_type t_etypeContainer = e_type_element >
-   ::collection::count erase_lesser_than_or_equal_or_greater_than(::numeric_array < TYPE, t_etypeContainer >& a, TYPE lo, TYPE hi);
+   ::collection::count erase_lesser_than_or_equal_or_greater_than(::numeric_array_base < TYPE, t_etypeContainer >& a, TYPE lo, TYPE hi);
 
 
    template < typename TYPE, ::enum_type t_etypeContainer = e_type_element >
-   ::collection::count erase_lesser_than_or_equal_or_greater_than_or_equal(::numeric_array < TYPE, t_etypeContainer >& a, TYPE lo, TYPE hi);
+   ::collection::count erase_lesser_than_or_equal_or_greater_than_or_equal(::numeric_array_base < TYPE, t_etypeContainer >& a, TYPE lo, TYPE hi);
 
 
 }   // namespace acme
@@ -840,7 +840,7 @@ namespace acme
       //      if (!pitem)
       //      {
 
-      //         pitem = __allocate TYPE(&(pointer_array < TYPE > &)a);
+      //         pitem = øallocate TYPE(&(pointer_array < TYPE > &)a);
 
       //      }
 
@@ -885,7 +885,7 @@ namespace acme
 
       //         pinitializer->__initialize(pitem);
 
-      //         //pitem = __allocate TYPE(&(pointer_array < TYPE > &)a);
+      //         //pitem = øallocate TYPE(&(pointer_array < TYPE > &)a);
 
       //      }
 
@@ -935,7 +935,7 @@ namespace acme
 
 
       template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-      ::collection::index add(string_array_base < Type, RawType, t_etypeContainer >& array, const ::payload& payload)
+      ::collection::index add(string_base_array < Type, RawType, t_etypeContainer >& array, const ::payload& payload)
       {
 
          ::collection::index i = -1;
@@ -950,10 +950,10 @@ namespace acme
             i = ::acme::array::add(array, payload.as_string_array());
 
          }
-         else if (payload.cast < string_array_base < Type, RawType, t_etypeContainer > >() != nullptr)
+         else if (payload.cast < string_base_array < Type, RawType, t_etypeContainer > >() != nullptr)
          {
 
-            i = ::acme::array::add(array, *payload.cast < string_array_base < Type, RawType, t_etypeContainer > >());
+            i = ::acme::array::add(array, *payload.cast < string_base_array < Type, RawType, t_etypeContainer > >());
 
          }
          else if (payload.get_type() == ::e_type_payload_array)
@@ -1030,7 +1030,7 @@ namespace acme
       //   while (c > 0)
       //   {
 
-      //      auto p = __allocate TYPE(&a);
+      //      auto p = øallocate TYPE(&a);
 
       //      stream >> *p;
 
@@ -1226,7 +1226,7 @@ namespace acme
 
       for (int i = 0; i < srca.get_size(); i++)
       {
-         dsta.add(__allocate TSRC(srca(i)));
+         dsta.add(øallocate TSRC(srca(i)));
          ca++;
       }
 
@@ -1238,7 +1238,7 @@ namespace acme
    {
 
       template < class TDST, class TSRC >
-      ::collection::count copy(address_array < TDST >& dsta, const address_array < TSRC >& srca)
+      ::collection::count copy(address_array_base < TDST >& dsta, const address_array_base < TSRC >& srca)
       {
 
          ::collection::count ca = 0;
@@ -1316,7 +1316,7 @@ namespace acme
       ::collection::count count = a.get_count();
       if (count == 1)
       {
-         perm.add(__allocate A(a));
+         perm.add(øallocate A(a));
          return;
       }
       A elema;
@@ -1339,7 +1339,7 @@ namespace acme
          array_permute(perm2, topermut);
          for (int j = 0; j < perm2.get_count(); j++)
          {
-            perm.add(__allocate A(elema + perm2[j]));
+            perm.add(øallocate A(elema + perm2[j]));
          }
       }
    }
@@ -1365,23 +1365,23 @@ namespace acme
       ////   Adding ITEM
       ////      to array
 
-      ////inline ::collection::index add(string_array & stra, const ::scoped_string & scopedstr) { return stra.add_item(psz); }
-      ////inline ::collection::index add(string_array & stra, const char & ch) { return stra.add_item(ch); }
-      ////inline ::collection::index add(string_array & stra, const ansi_string & str) { return stra.add_item(str); }
-      ////inline ::collection::index add(string_array & stra, const wd16_string & str) { return stra.add_item(str); }
-      ////inline ::collection::index add(string_array & stra, const wd32_string & str) { return stra.add_item(str); }
-      ////inline ::collection::index add(string_array & stra, const ::file::path & path) { return stra.add_item(path); }
+      ////inline ::collection::index add(string_array_base & stra, const ::scoped_string & scopedstr) { return stra.add_item(scopedstr); }
+      ////inline ::collection::index add(string_array_base & stra, const char & ch) { return stra.add_item(ch); }
+      ////inline ::collection::index add(string_array_base & stra, const ansi_string & str) { return stra.add_item(str); }
+      ////inline ::collection::index add(string_array_base & stra, const wd16_string & str) { return stra.add_item(str); }
+      ////inline ::collection::index add(string_array_base & stra, const wd32_string & str) { return stra.add_item(str); }
+      ////inline ::collection::index add(string_array_base & stra, const ::file::path & path) { return stra.add_item(path); }
 
 
-      ////inline ::collection::index add(::file::path_array & patha, const ::scoped_string & scopedstr) { return patha.add_item(psz); }
-      ////inline ::collection::index add(::file::path_array & patha, const char & ch) { return patha.add_item(ch); }
-      ////inline ::collection::index add(::file::path_array & patha, const ansi_string & str) { return patha.add_item(str); }
-      ////inline ::collection::index add(::file::path_array & patha, const wd16_string & str) { return patha.add_item(str); }
-      ////inline ::collection::index add(::file::path_array & patha, const wd32_string & str) { return patha.add_item(str); }
-      ////inline ::collection::index add(::file::path_array & patha, const ::file::path & path) { return patha.add_item(path); }
+      ////inline ::collection::index add(::file::path_array_base & patha, const ::scoped_string & scopedstr) { return patha.add_item(scopedstr); }
+      ////inline ::collection::index add(::file::path_array_base & patha, const char & ch) { return patha.add_item(ch); }
+      ////inline ::collection::index add(::file::path_array_base & patha, const ansi_string & str) { return patha.add_item(str); }
+      ////inline ::collection::index add(::file::path_array_base & patha, const wd16_string & str) { return patha.add_item(str); }
+      ////inline ::collection::index add(::file::path_array_base & patha, const wd32_string & str) { return patha.add_item(str); }
+      ////inline ::collection::index add(::file::path_array_base & patha, const ::file::path & path) { return patha.add_item(path); }
 
 
-      //inline ::collection::index add(string_array & stra, const ::payload & payload)
+      //inline ::collection::index add(string_array_base & stra, const ::payload & payload)
       //{
 
       //   ::collection::index iInsert = -1;
@@ -1417,14 +1417,14 @@ namespace acme
 
       //}
 
-      //inline ::collection::index add(string_array & stra, const ::property & property)
+      //inline ::collection::index add(string_array_base & stra, const ::property & property)
       //{
 
       //   return add(stra, (const ::payload &)property);
 
       //}
 
-      //inline ::collection::index add(string_array & stra, const ::property_set & propertyset)
+      //inline ::collection::index add(string_array_base & stra, const ::property_set & propertyset)
       //{
 
       //   ::collection::index iInsert = -1;
@@ -1456,20 +1456,20 @@ namespace acme
       //   Appending ARRAY
       //          to array
 
-      //inline ::collection::index add(string_array & stra, const string_array & straSource) { return add_array(stra, straSource); }
+      //inline ::collection::index add(string_array_base & stra, const string_array_base & straSource) { return add_array(stra, straSource); }
 
-      //inline ::collection::index add(::file::path_array & patha, const string_array & stra) { return add_array(patha, stra); }
-      //inline ::collection::index add(::file::path_array & patha, const ::file::path_array & pathaSrc) { return add_array(patha, pathaSrc); }
-      //inline ::collection::index add(::file::path_array & patha, const ::file::listing & listing) { return add_array(patha, listing); }
+      //inline ::collection::index add(::file::path_array_base & patha, const string_array_base & stra) { return add_array(patha, stra); }
+      //inline ::collection::index add(::file::path_array_base & patha, const ::file::path_array_base & pathaSrc) { return add_array(patha, pathaSrc); }
+      //inline ::collection::index add(::file::path_array_base & patha, const ::file::listing_base & listing) { return add_array(patha, listing); }
 
 
       //template < typename TYPE, ::enum_type t_etypeContainer >
-      //::collection::count ensure_sequence(::numeric_array < TYPE, t_etypeContainer > & aParam, TYPE start, TYPE end, TYPE increment)
+      //::collection::count ensure_sequence(::numeric_array_base < TYPE, t_etypeContainer > & aParam, TYPE start, TYPE end, TYPE increment)
       //{
 
       //   ::collection::count c = 0;
 
-      //   ::numeric_array < TYPE, t_etypeContainer > a;
+      //   ::numeric_array_base < TYPE, t_etypeContainer > a;
 
       //   ::acme::array::set_sequence(a, start, end, increment);
 
@@ -1480,7 +1480,7 @@ namespace acme
 
       //      auto pFind = 0;
 
-      //      if (::acme::array::binary_search(a, aParam.element_at(i), iFind, &::numeric_compare < typename ::numeric_array < TYPE, t_etypeContainer >::BASE_ARG_TYPE >))
+      //      if (::acme::array::binary_search(a, aParam.element_at(i), iFind, &::numeric_compare < typename ::numeric_array_base < TYPE, t_etypeContainer >::BASE_ARG_TYPE >))
       //      {
 
       //         a.erase_at(iFind);
@@ -1712,7 +1712,7 @@ namespace acme
 
 
       template < typename TYPE, ::enum_type t_etypeContainer >
-      ::collection::count append_sequence(::numeric_array < TYPE, t_etypeContainer >& a, TYPE iterator, TYPE end, TYPE increment)
+      ::collection::count append_sequence(::numeric_array_base < TYPE, t_etypeContainer >& a, TYPE iterator, TYPE end, TYPE increment)
       {
          if (increment == 0)
          {
@@ -1744,7 +1744,7 @@ namespace acme
 
 
       template < typename TYPE, ::enum_type t_etypeContainer >
-      ::collection::count set_sequence(::numeric_array < TYPE, t_etypeContainer >& a, TYPE start, TYPE end, TYPE increment)
+      ::collection::count set_sequence(::numeric_array_base < TYPE, t_etypeContainer >& a, TYPE start, TYPE end, TYPE increment)
       {
          a.erase_all();
          return append_sequence(a, start, end, increment);

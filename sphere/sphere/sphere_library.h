@@ -15,13 +15,13 @@ namespace sphere
       library(::particle * pparticle);
       
 
-      virtual void get_app_list(string_array & stra);
+      virtual void get_app_list(string_array_base & stra);
 
-      virtual void get_extension_list(string_array & stra);
+      virtual void get_extension_list(string_array_base & stra);
 
-      virtual void get_extension_app(string_array & straApp, const ::string & pszExtension);
+      virtual void get_extension_app(string_array_base & straApp, const ::scoped_string & scopedstrExtension);
 
-//      virtual ::pointer<::aura::application>get_new_app(const ::string & pszAppId);
+//      virtual ::pointer<::aura::application>get_new_app(const ::scoped_string & scopedstrAppId);
 
 
    };

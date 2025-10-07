@@ -90,7 +90,7 @@ void aura_main_data::system_construct(int argc, wchar_t** argv)
 }
 
 
-void aura_main_data::system_construct(const ::string & pszCommandLine, const ::e_display& edisplay)
+void aura_main_data::system_construct(const ::scoped_string & scopedstrCommandLine, const ::e_display& edisplay)
 {
 
    m_strCommandLine = pszCommandLine;
@@ -156,7 +156,7 @@ void aura_main_data::system_construct(Array < String^ >^ refstra)
 
    m_poslocal = nullptr;
 
-   string_array stra(refstra);
+   string_array_base stra(refstra);
 
    m_argc = __argc;
 

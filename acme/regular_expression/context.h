@@ -24,7 +24,7 @@ namespace regular_expression
       virtual ~context();
 
 
-      virtual ::regular_expression_pointer compile(const ::string & str);
+      virtual ::regular_expression_pointer compile(const ::scoped_string & scopedstr);
 
 
 

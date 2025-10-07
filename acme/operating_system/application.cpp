@@ -56,7 +56,7 @@ void application::open_by_module_path(const ::scoped_string & scopedstr)
    void application::post_close()
    {
 
-      auto pmainwindow = __øcreate < ::operating_system::main_window >();
+      auto pmainwindow = øcreate < ::operating_system::main_window >();
 
       pmainwindow->from_application(this);
 
@@ -68,7 +68,7 @@ void application::open_by_module_path(const ::scoped_string & scopedstr)
    void application::post_exit()
    {
 
-      auto pmainwindow = __øcreate < ::operating_system::main_window >();
+      auto pmainwindow = øcreate < ::operating_system::main_window >();
 
       pmainwindow->from_application(this);
 

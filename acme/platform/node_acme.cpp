@@ -18,13 +18,13 @@ namespace platform
    }
 
 
-   void acme_node_layer::call_async(const ::string& pszPath, const ::string& pszParam, const ::string& pszDir,
+   void acme_node_layer::call_async(const ::scoped_string & scopedstrPath, const ::scoped_string & scopedstrParam, const ::scoped_string & scopedstrDir,
                                     ::e_display edisplay, bool bPrivileged, unsigned int* puiPid)
    {
    }
 
 
-   void acme_node_layer::call_sync(const ::string& pszPath, const ::string& pszParam, const ::string& pszDir,
+   void acme_node_layer::call_sync(const ::scoped_string & scopedstrPath, const ::scoped_string & scopedstrParam, const ::scoped_string & scopedstrDir,
                                    ::e_display edisplay, const class time& timeTimeout, ::property_set & set,
                                    int* piExitCode)
    {
@@ -42,7 +42,18 @@ namespace platform
    {
       return id_none;
    }
+//   ::file::path acme_node_layer::synchronously_request_document_folder()
+//   {
+//
+//      return {};
+//
+//   }
 
+    void acme_node_layer::notify_system_started()
+    {
+
+
+    }
 
    //idaPid = pnode->(path, false){}
 
@@ -59,7 +70,7 @@ namespace platform
    }
 
 
-   void acme_node_layer::node_application_on_status(const char* pszStatus, void* p, long long hi)
+   void acme_node_layer::node_application_on_status(const_char_pointer pszStatus, void* p, long long hi)
    {
    }
 
@@ -144,12 +155,12 @@ namespace platform
    }
 
 
-   void acme_node_layer::_launch_macos_app(const ::string& pszAppFolder)
+   void acme_node_layer::_launch_macos_app(const ::scoped_string & scopedstrAppFolder)
    {
    }
 
 
-   void acme_node_layer::_launch_macos_app_args(const ::string& pszAppFolder, const ::string& pszArgs)
+   void acme_node_layer::_launch_macos_app_args(const ::scoped_string & scopedstrAppFolder, const ::scoped_string & scopedstrArgs)
    {
    }
 
@@ -176,7 +187,7 @@ namespace platform
    }
 
 
-   void acme_node_layer::install_crash_dump_reporting(const string& strModuleNameWithTheExeExtension)
+   void acme_node_layer::install_crash_dump_reporting(const ::scoped_string & scopedstrModuleNameWithTheExeExtension)
    {
    }
 
@@ -194,7 +205,7 @@ namespace platform
 
 
    ::pointer<::mutex> acme_node_layer::create_local_named_mutex(::particle* pparticleContext, bool bInitiallyOwned,
-                                                                const ::string& strName,
+                                                                const ::scoped_string & scopedstrName,
                                                                 security_attributes* psecurityattributes)
    {
       return{};
@@ -203,7 +214,7 @@ namespace platform
 
 
    ::pointer<::mutex> acme_node_layer::create_global_named_mutex(::particle* pparticleContext, bool bInitiallyOwned,
-                                                                 const ::string& strName,
+                                                                 const ::scoped_string & scopedstrName,
                                                                  security_attributes* psecurityattributes)
    {
       return{};
@@ -211,29 +222,29 @@ namespace platform
    }
 
 
-   ::pointer<::mutex> acme_node_layer::open_local_named_mutex(::particle* pparticleContext, const ::string& strName)
+   ::pointer<::mutex> acme_node_layer::open_local_named_mutex(::particle* pparticleContext, const ::scoped_string & scopedstrName)
    {
       return{};
 
    }
 
 
-   ::pointer<::mutex> acme_node_layer::open_global_named_mutex(::particle* pparticleContext, const ::string& strName)
+   ::pointer<::mutex> acme_node_layer::open_global_named_mutex(::particle* pparticleContext, const ::scoped_string & scopedstrName)
    {
       return{};
 
    }
 
 
-   ::pointer<::mutex> acme_node_layer::get_install_mutex(::particle* pparticleContext, const ::string& strPlatform,
-                                                         const ::string& strSuffix)
+   ::pointer<::mutex> acme_node_layer::get_install_mutex(::particle* pparticleContext, const ::scoped_string & scopedstrPlatform,
+                                                         const ::scoped_string & scopedstrSuffix)
    {
       return{};
 
    }
 
 
-   ::pointer<::acme::exclusive> acme_node_layer::_get_exclusive(::particle* pparticleContext, const ::string& strName,
+   ::pointer<::acme::exclusive> acme_node_layer::_get_exclusive(::particle* pparticleContext, const ::scoped_string & scopedstrName,
                                                                 ::security_attributes* psecurityattributes)
    {
       return{};
@@ -241,7 +252,7 @@ namespace platform
    }
 
 
-   ::pointer<::acme::exclusive> acme_node_layer::get_exclusive(::particle* pparticleContext, const ::string& strName,
+   ::pointer<::acme::exclusive> acme_node_layer::get_exclusive(::particle* pparticleContext, const ::scoped_string & scopedstrName,
                                                                ::security_attributes* psecurityattributes)
    {
       return{};
@@ -249,7 +260,7 @@ namespace platform
    }
 
 
-   bool acme_node_layer::erase_exclusive(const string& strName)
+   bool acme_node_layer::erase_exclusive(const ::scoped_string & scopedstrName)
    {
       return false;
    }
@@ -260,74 +271,74 @@ namespace platform
    }
 
 
-   bool acme_node_layer::exclusive_fails(::particle* pparticleContext, const string& strName,
+   bool acme_node_layer::exclusive_fails(::particle* pparticleContext, const ::scoped_string & scopedstrName,
                                          security_attributes* psecurityattributes)
    {
       return false;
    }
 
 
-   ::string acme_node_layer::app_id_to_app_name(const ::string& strAppId)
+   ::string acme_node_layer::app_id_to_app_name(const ::scoped_string & scopedstrAppId)
    {
       return{};
    }
 
 
-   ::string acme_node_layer::app_id_to_executable_name(const ::string& strAppId)
+   ::string acme_node_layer::app_id_to_executable_name(const ::scoped_string & scopedstrAppId)
    {
       return{};
    }
 
 
-   bool acme_node_layer::is_application_installed(const ::file::path& pathExe, string strAppId, string& strBuild,
-                                                  const ::string& pszPlatform, const ::string& pszConfiguration,
-                                                  const ::string& pszLocale, const ::string& pszSchema)
+   bool acme_node_layer::is_application_installed(const ::file::path& pathExe, const ::scoped_string & scopedstrAppId, string& strBuild,
+                                                  const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration,
+                                                  const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema)
    {
       return false;
    }
 
 
-   void acme_node_layer::set_application_installed(const ::file::path& pathExe, string strAppId,
-                                                   const ::string& pszBuild,
-                                                   const ::string& pszPlatform, const ::string& pszConfiguration,
-                                                   const ::string& pszLocale, const ::string& pszSchema)
+   void acme_node_layer::set_application_installed(const ::file::path& pathExe, const ::scoped_string & scopedstrAppId,
+                                                   const ::scoped_string & scopedstrBuild,
+                                                   const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration,
+                                                   const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema)
    {
    }
 
 
-   ::file::path acme_node_layer::application_installer_folder(const ::file::path& pathExe, string strAppId,
-                                                              const ::string& pszPlatform,
-                                                              const ::string& pszConfiguration,
-                                                              const ::string& pszLocale, const ::string& pszSchema)
-   {
-      return{};
-
-   }
-
-
-   ::file::path acme_node_layer::get_application_path(string strAppId, const ::string& pszPlatform,
-                                                      const ::string& pszConfiguration)
+   ::file::path acme_node_layer::application_installer_folder(const ::file::path& pathExe, const ::scoped_string & scopedstrAppId,
+                                                              const ::scoped_string & scopedstrPlatform,
+                                                              const ::scoped_string & scopedstrConfiguration,
+                                                              const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema)
    {
       return{};
 
    }
 
 
-   ::file::path acme_node_layer::get_last_run_application_path_file(const ::string& strAppId)
+   ::file::path acme_node_layer::get_application_path(const ::scoped_string & scopedstrAppId, const ::scoped_string & scopedstrPlatform,
+                                                      const ::scoped_string & scopedstrConfiguration)
    {
       return{};
 
    }
 
 
-   ::file::path acme_node_layer::get_last_run_application_path(const ::string& strAppId)
+   ::file::path acme_node_layer::get_last_run_application_path_file(const ::scoped_string & scopedstrAppId)
    {
       return{};
 
    }
 
 
-   void acme_node_layer::set_last_run_application_path(const string& strAppId)
+   ::file::path acme_node_layer::get_last_run_application_path(const ::scoped_string & scopedstrAppId)
+   {
+      return{};
+
+   }
+
+
+   void acme_node_layer::set_last_run_application_path(const ::scoped_string & scopedstrAppId)
    {
    }
 
@@ -401,13 +412,13 @@ namespace platform
 
    //::string acme_node_layer::os_get_user_theme(){}
 
-   //void acme_node_layer::os_set_user_theme(const ::string & strUserTheme){}
+   //void acme_node_layer::os_set_user_theme(const ::scoped_string & scopedstrUserTheme){}
 
-   //void acme_node_layer::os_process_user_theme(string strTheme){}
+   //void acme_node_layer::os_process_user_theme(const ::scoped_string & scopedstrTheme){}
 
-   //void acme_node_layer::os_process_user_icon_theme(string strIconTheme){}
+   //void acme_node_layer::os_process_user_icon_theme(const ::scoped_string & scopedstrIconTheme){}
 
-//   bool acme_node_layer::set_wallpaper(::collection::index iScreen, string strLocalImagePath,
+//   bool acme_node_layer::set_wallpaper(::collection::index iScreen, const ::scoped_string & scopedstrLocalImagePath,
 //                                       ::acme::windowing::display* pwindowingdisplay)
 //   {
 //      return false;
@@ -420,19 +431,19 @@ namespace platform
 //   }
 
 
-   ::string acme_node_layer::get_file_icon_path(const ::string& pszPath, int iSize)
+   ::string acme_node_layer::get_file_icon_path(const ::scoped_string & scopedstrPath, int iSize)
    {
       return{};
    }
 
 
-   ::string acme_node_layer::get_file_content_type(const ::string& pszPath)
+   ::string acme_node_layer::get_file_content_type(const ::scoped_string & scopedstrPath)
    {
       return{};
    }
 
 
-   int acme_node_layer::os_launch_uri(const ::string& pszUri, char* pszError, int iBufferSize)
+   int acme_node_layer::os_launch_uri(const ::scoped_string & scopedstrUri, char* pszError, int iBufferSize)
    {
       return 0;
    }
@@ -537,7 +548,7 @@ namespace platform
    //::string acme_node_layer::font_name(enum_operating_system eoperatingsystem, int iVariant, enum_font efont){}
 
 
-   ::string acme_node_layer::file_memory_map_path_from_name(const string& strName)
+   ::string acme_node_layer::file_memory_map_path_from_name(const ::scoped_string & scopedstrName)
    {
       return{};
    }
@@ -557,7 +568,7 @@ namespace platform
 
    //::string acme_node_layer::get_user_toolkit_id(){}
 
-   void acme_node_layer::launch_app(const ::string& psz, const char** argv, int iFlags)
+   void acme_node_layer::launch_app(const ::scoped_string & scopedstr, const_char_pointer *argv, int iFlags)
    {
    }
 
@@ -583,30 +594,30 @@ namespace platform
    }
 
 
-   ::process_identifier acme_node_layer::create_process(const ::string& pszCommandLine)
+   ::process_identifier acme_node_layer::create_process(const ::scoped_string & scopedstrCommandLine)
    {
       return -1;
    }
 
 
-   void acme_node_layer::run_silent(const ::string& strFunct, const ::string& strstrParams)
+   void acme_node_layer::run_silent(const ::scoped_string & scopedstrFunct, const ::scoped_string & scopedstrstrParams)
    {
    }
 
 
-   ::file::path_array acme_node_layer::process_identifier_modules_paths(::process_identifier processidentifier)
-   {
-      return {};
-   }
-
-
-   ::file::path_array acme_node_layer::modules_paths()
+   ::file::path_array_base acme_node_layer::process_identifier_modules_paths(::process_identifier processidentifier)
    {
       return {};
    }
 
 
-   bool acme_node_layer::load_modules_diff(string_array& straOld, string_array& straNew, const ::string& pszExceptDir)
+   ::file::path_array_base acme_node_layer::modules_paths()
+   {
+      return {};
+   }
+
+
+   bool acme_node_layer::load_modules_diff(string_array_base& straOld, string_array_base& straNew, const ::scoped_string & scopedstrExceptDir)
    {
       return false;
    }
@@ -619,7 +630,7 @@ namespace platform
 
 
    ::process_identifier_array acme_node_layer::module_path_processes_identifiers(
-      const ::string& pszModulePath, bool bModuleNameIsPropertyFormatted)
+      const ::scoped_string & scopedstrModulePath, bool bModuleNameIsPropertyFormatted)
    {
       return {};
    }
@@ -639,19 +650,19 @@ namespace platform
    }
 
 
-   //bool acme_node_layer::is_shared_library_busy(::process_identifier processidentifier, const string_array& stra){}
+   //bool acme_node_layer::is_shared_library_busy(::process_identifier processidentifier, const string_array_base& stra){}
 
-   //bool acme_node_layer::is_shared_library_busy(const string_array& stra){}
+   //bool acme_node_layer::is_shared_library_busy(const string_array_base& stra){}
 
    bool acme_node_layer::process_contains_module(string& strImage, ::process_identifier processidentifier,
-                                                 const ::string& pszLibrary)
+                                                 const ::scoped_string & scopedstrLibrary)
    {
    return false;
    }
 
 
    ::process_identifier_array acme_node_layer::
-   shared_library_process(string_array& straProcesses, const ::string& pszLibrary)
+   shared_library_process(string_array_base& straProcesses, const ::scoped_string & scopedstrLibrary)
    {
       return{};
    }
@@ -698,23 +709,23 @@ namespace platform
    }
 
 
-   void acme_node_layer::register_spa_file_type(const ::string& strAppIdHandler)
+   void acme_node_layer::register_spa_file_type(const ::scoped_string & scopedstrAppIdHandler)
    {
    }
 
 
-   bool acme_node_layer::low_is_app_app_admin_running(string strPlatform, string strConfiguration)
+   bool acme_node_layer::low_is_app_app_admin_running(const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration)
    {
       return false;
    }
 
 
-   void acme_node_layer::defer_start_program_files_app_app_admin(string strPlatform, string strConfiguration)
+   void acme_node_layer::defer_start_program_files_app_app_admin(const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration)
    {
    }
 
 
-   void acme_node_layer::start_program_files_app_app_admin(string strPlatform, string strConfiguration)
+   void acme_node_layer::start_program_files_app_app_admin(const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration)
    {
    }
 
@@ -724,27 +735,27 @@ namespace platform
    }
 
 
-   //::string acme_node_layer::expand_environment_variables(const ::string & str){}
+   //::string acme_node_layer::expand_environment_variables(const ::scoped_string & scopedstr){}
 
-   ::file::path acme_node_layer::command_find_path(const ::string& pszCommand)
+   ::file::path acme_node_layer::command_find_path(const ::scoped_string & scopedstrCommand)
    {
       return{};
    }
 
 
-   void acme_node_layer::launch_application(::particle* pparticle, const ::string& strAppId, const ::string& strParams,
+   void acme_node_layer::launch_application(::particle* pparticle, const ::scoped_string & scopedstrAppId, const ::scoped_string & scopedstrParams,
                                             int iBitCount)
    {
    }
 
 
-   void acme_node_layer::shell_open(const ::file::path& path, const string& strParams ,
+   void acme_node_layer::shell_open(const ::file::path& path, const ::scoped_string & scopedstrParams ,
                                     const ::file::path& pathFolder)
    {
    }
 
 
-   //void acme_node_layer::open_url(const ::string & strUrl){}
+   //void acme_node_layer::open_url(const ::scoped_string & scopedstrUrl){}
 
 
    void acme_node_layer::shell_execute_async(const ::scoped_string& scopedstrFile,
@@ -777,7 +788,7 @@ namespace platform
    }
 
 
-   //::file::path command_find_path(const ::string & pszCommand){}
+   //::file::path command_find_path(const ::scoped_string & scopedstrCommand){}
 
 
    //virtual ::user::enum_operating_ambient calculate_edesktop(){}
@@ -796,7 +807,7 @@ namespace platform
 
 
    void acme_node_layer::report_exception_to_user(::particle* pparticle, ::exception& exception,
-                                                  const ::string& strMoreDetails)
+                                                  const ::scoped_string & scopedstrMoreDetails)
    {
    }
 
@@ -806,15 +817,15 @@ namespace platform
    //virtual ::pointer<::conversation> create_new_message_conversation(){}
 
 
-   //virtual ::pointer < ::subparticle > create_message_box_sequencer(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails, ::nano::graphics::icon * picon){}
+   //virtual ::pointer < ::subparticle > create_message_box_sequencer(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::user::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon){}
 
 
-   //void acme_node_layer::micro::message_box(::sequence < ::conversation > * psequence, const ::string& strMessage, const ::string& strTitle, const ::e_message_box& emessagebox){}
+   //void acme_node_layer::micro::message_box(::sequence < ::conversation > * psequence, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::user::e_message_box& emessagebox){}
 
-   //virtual ::pointer < ::subparticle > create_message_sequencer(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails, ::nano::graphics::icon * picon){}
+   //virtual ::pointer < ::subparticle > create_message_sequencer(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::user::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon){}
 
 
-   void acme_node_layer::shell_launch(const ::string& strAppId)
+   void acme_node_layer::shell_launch(const ::scoped_string & scopedstrAppId)
    {
    }
 
@@ -838,25 +849,25 @@ namespace platform
    //void acme_node_layer::windowing_post(const ::procedure& procedure){}
 
 
-   ::string acme_node_layer::get_local_mutex_name(const ::string& strAppId)
+   ::string acme_node_layer::get_local_mutex_name(const ::scoped_string & scopedstrAppId)
    {
       return{};
    }
 
 
-   ::string acme_node_layer::get_local_id_mutex_name(const ::string& strAppId, const ::string& strId)
+   ::string acme_node_layer::get_local_id_mutex_name(const ::scoped_string & scopedstrAppId, const ::scoped_string & scopedstrId)
    {
       return{};
    }
 
 
-   ::string acme_node_layer::get_global_mutex_name(const ::string& strAppId)
+   ::string acme_node_layer::get_global_mutex_name(const ::scoped_string & scopedstrAppId)
    {
       return{};
    }
 
 
-   ::string acme_node_layer::get_global_id_mutex_name(const ::string& strAppId, const ::string& strId)
+   ::string acme_node_layer::get_global_id_mutex_name(const ::scoped_string & scopedstrAppId, const ::scoped_string & scopedstrId)
    {
       return{};
    }
@@ -949,7 +960,7 @@ namespace platform
    }
 
 
-   //virtual ::pointer<::acme::exclusive> get_exclusive(string str, const security_attributes & securityattributes){}
+   //virtual ::pointer<::acme::exclusive> get_exclusive(const ::scoped_string & scopedstr, const security_attributes & securityattributes){}
 
 
    int  acme_node_layer::get_current_processor_index()
@@ -976,7 +987,7 @@ namespace platform
    }
 
 
-   //CLASS_DECL_ACME string expand_env(string str){}
+   //CLASS_DECL_ACME string expand_env(const ::scoped_string & scopedstr){}
    //CLASS_DECL_ACME string xxxget_environment_variable(const ::scoped_string & scopedstrEnvironmentVariable){}
    //CLASS_DECL_ACME string ca2_command_line(){}
 
@@ -993,19 +1004,19 @@ namespace platform
    }
 
 
-   //::string acme_node_layer::time_binary_platform(string strPlatform){}
+   //::string acme_node_layer::time_binary_platform(const ::scoped_string & scopedstrPlatform){}
 
 
    //
    //#if !defined(UNIVERSAL_WINDOWS)
    //
-   //      //virtual int call_async(const ::string & pszPath, const ::string & pszParam, const ::string & pszDir, ::e_display edisplay, bool bPrivileged, unsigned int * puiPid){}
+   //      //virtual int call_async(const ::scoped_string & scopedstrPath, const ::scoped_string & scopedstrParam, const ::scoped_string & scopedstrDir, ::e_display edisplay, bool bPrivileged, unsigned int * puiPid){}
    //
    //      typedef int CALLSYNCONRETRY(int iTry, uptr dwParam){}
    //
    //      typedef CALLSYNCONRETRY * PFNCALLSYNCONRETRY{}
    //
-   //      //CLASS_DECL_ACME unsigned int call_sync(const ::string & pszPath, const ::string & pszParam, const ::string & pszDir, ::e_display edisplay, const class time & timeTimeout, ::property_set & set){}
+   //      //CLASS_DECL_ACME unsigned int call_sync(const ::scoped_string & scopedstrPath, const ::scoped_string & scopedstrParam, const ::scoped_string & scopedstrDir, ::e_display edisplay, const class time & timeTimeout, ::property_set & set){}
    //
    //#endif
 
@@ -1023,16 +1034,16 @@ namespace platform
    //#endif
 
 
-   //::string acme_node_layer::expand_env(string str){}
+   //::string acme_node_layer::expand_env(const ::scoped_string & scopedstr){}
 
-   //CLASS_DECL_ACME string consume_command_line_parameter(const ::string & pszCommandLine, const ::string * & pszEndPtr){}
-   //CLASS_DECL_ACME bool is_command_line_parameter_true(string& strValue, const ::string & pszCommandLine, const ::string & pszParam, bool bDefault){}
-   //CLASS_DECL_ACME bool get_command_line_parameter(string & strValue, const ::string & pszCommandLine, const ::string & pszParam){}
-   //CLASS_DECL_ACME bool get_command_line_parameter(string & strValue, const ::string & pszCommandLine, const ::string & pszParam, const ::string & pszDefault){}
-   //CLASS_DECL_ACME string get_command_line_parameter(const ::string & pszCommandLine, const ::string & pszParam){}
+   //CLASS_DECL_ACME string consume_command_line_parameter(const ::scoped_string & scopedstrCommandLine, const ::string * & pszEndPtr){}
+   //CLASS_DECL_ACME bool is_command_line_parameter_true(string& strValue, const ::scoped_string & scopedstrCommandLine, const ::scoped_string & scopedstrParam, bool bDefault){}
+   //CLASS_DECL_ACME bool get_command_line_parameter(string & strValue, const ::scoped_string & scopedstrCommandLine, const ::scoped_string & scopedstrParam){}
+   //CLASS_DECL_ACME bool get_command_line_parameter(string & strValue, const ::scoped_string & scopedstrCommandLine, const ::scoped_string & scopedstrParam, const ::scoped_string & scopedstrDefault){}
+   //CLASS_DECL_ACME string get_command_line_parameter(const ::scoped_string & scopedstrCommandLine, const ::scoped_string & scopedstrParam){}
 
 
-   //bool acme_node_layer::launch_command(const ::string & pszCommand){}
+   //bool acme_node_layer::launch_command(const ::scoped_string & scopedstrCommand){}
 
 
    ::string acme_node_layer::process_configuration_name()
@@ -1041,7 +1052,7 @@ namespace platform
    }
 
 
-   ::string acme_node_layer::time_binary_platform(const string& strPlatform)
+   ::string acme_node_layer::time_binary_platform(const ::scoped_string & scopedstrPlatform)
    {
       return{};
    }
@@ -1061,31 +1072,31 @@ namespace platform
    }
 
 
-   ::file::path acme_node_layer::core_app_path(string strApp)
+   ::file::path acme_node_layer::core_app_path(const ::scoped_string & scopedstrApp)
    {
       return{};
    }
 
 
-   //bool acme_node_layer::is_shared_library_busy(::process_identifier processidentifier, const string_array & stra){}
-   //bool acme_node_layer::is_shared_library_busy(const string_array & stra){}
+   //bool acme_node_layer::is_shared_library_busy(::process_identifier processidentifier, const string_array_base & stra){}
+   //bool acme_node_layer::is_shared_library_busy(const string_array_base & stra){}
 
 
-   // bool acme_node_layer::launch_application(::particle * pparticle, const ::string & strAppId, const ::string & strParams, int iBitCount){}
+   // bool acme_node_layer::launch_application(::particle * pparticle, const ::scoped_string & scopedstrAppId, const ::scoped_string & scopedstrParams, int iBitCount){}
 
 
-   //bool acme_node_layer::shell_execute_async(const ::string & pszFile, const ::string & pszParams){}
-   //bool acme_node_layer::shell_execute_sync(const ::string & pszFile, const ::string & pszParams, const class time & timeTimeout){}
+   //bool acme_node_layer::shell_execute_async(const ::scoped_string & scopedstrFile, const ::scoped_string & scopedstrParams){}
+   //bool acme_node_layer::shell_execute_sync(const ::scoped_string & scopedstrFile, const ::scoped_string & scopedstrParams, const class time & timeTimeout){}
 
-   //bool acme_node_layer::root_execute_async(const ::string & pszFile, const ::string & pszParams){}
-   //bool acme_node_layer::root_execute_sync(const ::string & pszFile, const ::string & pszParams, const class time & timeTimeout){}
+   //bool acme_node_layer::root_execute_async(const ::scoped_string & scopedstrFile, const ::scoped_string & scopedstrParams){}
+   //bool acme_node_layer::root_execute_sync(const ::scoped_string & scopedstrFile, const ::scoped_string & scopedstrParams, const class time & timeTimeout){}
 
 
    //CLASS_DECL_ACME bool os_init_application(){}
    //CLASS_DECL_ACME void os_term_application(){}
 
 
-   ::string acme_node_layer::executable_title_from_appid(const string& strAppId)
+   ::string acme_node_layer::executable_title_from_appid(const ::scoped_string & scopedstrAppId)
    {
       return{};
    }
@@ -1268,7 +1279,7 @@ namespace platform
    }
 
 
-   bool acme_node_layer::are_any_shared_libraries_mapped(const ::file::path_array & patha)
+   bool acme_node_layer::are_any_shared_libraries_mapped(const ::file::path_array_base & patha)
    {
       
       return false;
@@ -1281,7 +1292,7 @@ namespace platform
    }
 
 
-   bool acme_node_layer::defer_enumerate_protocol(::file::listing& listing)
+   bool acme_node_layer::defer_enumerate_protocol(::file::listing_base& listing)
    {
       return false;
    }
@@ -1303,7 +1314,7 @@ namespace platform
    }
 
 
-   void acme_node_layer::terminate_processes_by_title(const ::string& strName)
+   void acme_node_layer::terminate_processes_by_title(const ::scoped_string & scopedstrName)
    {
    }
 
@@ -1351,26 +1362,26 @@ void acme_node_layer::open_internet_link(const ::scoped_string& scopedstrUrl, co
 {
 }
 
-   void acme_node_layer::local_machine_set_run(const ::string& strKey, const ::file::path& pathExecutable,
-                                               const ::string& strArguments, bool bSet)
+   void acme_node_layer::local_machine_set_run(const ::scoped_string & scopedstrKey, const ::file::path& pathExecutable,
+                                               const ::scoped_string & scopedstrArguments, bool bSet)
    {
    }
 
 
-   void acme_node_layer::local_machine_set_run_once(const ::string& strKey, const ::file::path& pathExecutable,
-                                                    const ::string& strArguments, bool bSet)
+   void acme_node_layer::local_machine_set_run_once(const ::scoped_string & scopedstrKey, const ::file::path& pathExecutable,
+                                                    const ::scoped_string & scopedstrArguments, bool bSet)
    {
    }
 
 
-   void acme_node_layer::current_user_set_run(const ::string& strKey, const ::file::path& pathExecutable,
-                                              const ::string& strArguments, bool bSet)
+   void acme_node_layer::current_user_set_run(const ::scoped_string & scopedstrKey, const ::file::path& pathExecutable,
+                                              const ::scoped_string & scopedstrArguments, bool bSet)
    {
    }
 
 
-   void acme_node_layer::current_user_set_run_once(const ::string& strKey, const ::file::path& pathExecutable,
-                                                   const ::string& strArguments, bool bSet)
+   void acme_node_layer::current_user_set_run_once(const ::scoped_string & scopedstrKey, const ::file::path& pathExecutable,
+                                                   const ::scoped_string & scopedstrArguments, bool bSet)
    {
    }
 
@@ -1380,45 +1391,45 @@ void acme_node_layer::open_internet_link(const ::scoped_string& scopedstrUrl, co
    }
 
 
-   void acme_node_layer::file_extension_get_open_with_list_keys(string_array& straKey, const ::string& strExtension)
+   void acme_node_layer::file_extension_get_open_with_list_keys(string_array_base& straKey, const ::scoped_string & scopedstrExtension)
    {
    }
 
 
-   void acme_node_layer::file_extension_get_open_with_list_commands(string_array& straCommand,
-                                                                    const ::string& strExtension)
+   void acme_node_layer::file_extension_get_open_with_list_commands(string_array_base& straCommand,
+                                                                    const ::scoped_string & scopedstrExtension)
    {
    }
 
 
-   void acme_node_layer::file_association_set_default_icon(const ::string& strExtension,
-                                                           const ::string& strExtensionNamingClass,
+   void acme_node_layer::file_association_set_default_icon(const ::scoped_string & scopedstrExtension,
+                                                           const ::scoped_string & scopedstrExtensionNamingClass,
                                                            const ::file::path & pathIcon)
    {
    }
 
 
-   void acme_node_layer::file_association_set_shell_open_command(const ::string& strExtension,
-                                                                 const ::string& strExtensionNamingClass,
+   void acme_node_layer::file_association_set_shell_open_command(const ::scoped_string & scopedstrExtension,
+                                                                 const ::scoped_string & scopedstrExtensionNamingClass,
                                                                  const ::file::path & pathExecutable,
-                                                                 const ::string& strParam)
+                                                                 const ::scoped_string & scopedstrParam)
    {
    }
 
 
-   void acme_node_layer::file_association_get_shell_open_command(const ::string& strExtension,
+   void acme_node_layer::file_association_get_shell_open_command(const ::scoped_string & scopedstrExtension,
                                                                  string& strExtensionNamingClass, string& strCommand,
                                                                  string& strParam)
    {
    }
 
 
-   void acme_node_layer::native_full_web_browser(const ::string& str)
+   void acme_node_layer::native_full_web_browser(const ::scoped_string & scopedstr)
    {
    }
 
 
-   void acme_node_layer::native_modern_web_browser(const ::string& str)
+   void acme_node_layer::native_modern_web_browser(const ::scoped_string & scopedstr)
    {
    }
 
@@ -1443,24 +1454,24 @@ void acme_node_layer::open_internet_link(const ::scoped_string& scopedstrUrl, co
    }
 
 
-   void acme_node_layer::enable_service(const ::string& strServiceName, const ::string& strDisplayName,
-                                        const ::string& strCommand, const ::string& strUser ,
-                                        const ::string& strPass )
+   void acme_node_layer::enable_service(const ::scoped_string & scopedstrServiceName, const ::scoped_string & scopedstrDisplayName,
+                                        const ::scoped_string & scopedstrCommand, const ::scoped_string & scopedstrUser ,
+                                        const ::scoped_string & scopedstrPass )
    {
    }
 
 
-   void acme_node_layer::disable_service(const ::string& strServiceName)
+   void acme_node_layer::disable_service(const ::scoped_string & scopedstrServiceName)
    {
    }
 
 
-   void acme_node_layer::start_service(const ::string& strServiceName)
+   void acme_node_layer::start_service(const ::scoped_string & scopedstrServiceName)
    {
    }
 
 
-   void acme_node_layer::stop_service(const ::string& strServiceName)
+   void acme_node_layer::stop_service(const ::scoped_string & scopedstrServiceName)
    {
    }
 
@@ -1504,20 +1515,20 @@ void acme_node_layer::open_internet_link(const ::scoped_string& scopedstrUrl, co
 
    //void acme_node_layer::set_dark_mode(bool bDarkMode){}
 
-   void acme_node_layer::file_open(const ::file::path& path, const ::string& strParams ,
+   void acme_node_layer::file_open(const ::file::path& path, const ::scoped_string & scopedstrParams ,
                                    const ::file::path& pathFolder )
    {
    }
 
 
-   void acme_node_layer::hidden_start(const ::file::path& path, const ::string& strParams ,
+   void acme_node_layer::hidden_start(const ::file::path& path, const ::scoped_string & scopedstrParams ,
                                       const ::file::path& pathFolder )
    {
    }
 
 
    void acme_node_layer::hidden_run(const class time& timeWait, const ::file::path& path,
-                                    const ::string& strParams ,
+                                    const ::scoped_string & scopedstrParams ,
                                     const ::file::path& pathFolder )
    {
    }
@@ -1544,24 +1555,24 @@ void acme_node_layer::open_internet_link(const ::scoped_string& scopedstrUrl, co
    }
 
 
-   void acme_node_layer::set_file_extension_mime_type(string_array& straExtension, string_array& straMimeType)
+   void acme_node_layer::set_file_extension_mime_type(string_array_base& straExtension, string_array_base& straMimeType)
    {
    }
 
 
-   void acme_node_layer::register_user_auto_start(::platform::application* papplication, const string& strArguments,
+   void acme_node_layer::register_user_auto_start(::platform::application* papplication, const ::scoped_string & scopedstrArguments,
                                                   bool bRegister)
    {
    }
 
 
-   bool acme_node_layer::is_user_auto_start(const string& strAppId)
+   bool acme_node_layer::is_user_auto_start(const ::scoped_string & scopedstrAppId)
    {
       return false;
    }
 
 
-   ::file::path acme_node_layer::get_app_path(const ::string& strApp)
+   ::file::path acme_node_layer::get_app_path(const ::scoped_string & scopedstrApp)
    {
       return{};
    }
@@ -1593,12 +1604,12 @@ void acme_node_layer::open_internet_link(const ::scoped_string& scopedstrUrl, co
    //void acme_node_layer::browse_file_or_folder(::property_set & set){}
 
 
-   void acme_node_layer::list_process(::file::path_array& patha, ::process_identifier_array& uaPid)
+   void acme_node_layer::list_process(::file::path_array_base& patha, ::process_identifier_array& uaPid)
    {
    }
 
 
-   ::file::path_array list_process_path()
+   ::file::path_array_base list_process_path()
    {return{};
    }
 
@@ -1612,12 +1623,12 @@ void acme_node_layer::open_internet_link(const ::scoped_string& scopedstrUrl, co
    }
 
 
-   void acme_node_layer::set_this_application_as_default_for_file_extension(const ::string& strExtension)
+   void acme_node_layer::set_this_application_as_default_for_file_extension(const ::scoped_string & scopedstrExtension)
    {
    }
 
 
-   string acme_node_layer::get_file_extension_mime_type(const ::string& strExtension)
+   string acme_node_layer::get_file_extension_mime_type(const ::scoped_string & scopedstrExtension)
    {
       return{};
    }
@@ -1644,7 +1655,7 @@ void acme_node_layer::open_internet_link(const ::scoped_string& scopedstrUrl, co
 #endif
 
 #if !defined(WINDOWS)
-      string_array acme_node_layer::cmdline_from_pid(::process_identifier processidentifier)
+      string_array_base acme_node_layer::cmdline_from_pid(::process_identifier processidentifier)
 {
          
          return {};
@@ -1652,7 +1663,7 @@ void acme_node_layer::open_internet_link(const ::scoped_string& scopedstrUrl, co
       }
 
 
-      atom_array acme_node_layer::app_get_pid(const ::string & pszModuleName)
+      atom_array acme_node_layer::app_get_pid(const ::scoped_string & scopedstrModuleName)
    {
          
          return {};
@@ -1755,7 +1766,7 @@ void acme_node_layer::open_internet_link(const ::scoped_string& scopedstrUrl, co
 #endif
 
    bool acme_node_layer::_is_code_exe_user_path_environment_variable_ok(::string* pstrCorrectPath,
-                                                                        const char* pszPath)
+                                                                        const_char_pointer pszPath)
    {
       return false;
    }
@@ -1845,7 +1856,7 @@ void acme_node_layer::open_internet_link(const ::scoped_string& scopedstrUrl, co
    //
    //
    //      //::string acme_node_layer::module_path_from_pid(::process_identifier processidentifier){}
-   //      //virtual atom_array module_path_get_pid(const ::string & pszModuleName, bool bModuleNameIsPropertyFormatted){}
+   //      //virtual atom_array module_path_get_pid(const ::scoped_string & scopedstrModuleName, bool bModuleNameIsPropertyFormatted){}
    //
    //
    //#ifndef WINDOWS
@@ -1858,12 +1869,12 @@ void acme_node_layer::open_internet_link(const ::scoped_string& scopedstrUrl, co
    //#endif
    //
    //#ifndef UNIVERSAL_WINDOWS
-   //      //bool acme_node_layer::process_contains_module(string & strImage, ::process_identifier processidentifier, const ::string & pszLibrary){}
-   //      //void acme_node_layer::shared_library_process(dword_array & dwa, string_array & straProcesses, const ::string & pszLibrary){}
+   //      //bool acme_node_layer::process_contains_module(string & strImage, ::process_identifier processidentifier, const ::scoped_string & scopedstrLibrary){}
+   //      //void acme_node_layer::shared_library_process(dword_array & dwa, string_array_base & straProcesses, const ::scoped_string & scopedstrLibrary){}
    //#endif
 #if defined(__BSD__) || defined(__APPLE__)
 
-      void acme_node_layer::arp_a(void *p, void(*callback)(void * p, unsigned int uIp, const char * status)){}
+      void acme_node_layer::arp_a(void *p, void(*callback)(void * p, unsigned int uIp, const_char_pointer status)){}
 
 #endif
 
@@ -1957,4 +1968,62 @@ void acme_node_layer::open_internet_link(const ::scoped_string& scopedstrUrl, co
    }
 
 
-}
+   void acme_node_layer::protocol_set_data(const ::file::path & path, const ::block & block)
+   {
+
+      throw ::interface_only();
+
+   }
+
+
+   ::memory acme_node_layer:: protocol_get_data(const ::file::path & path)
+   {
+
+      throw ::interface_only();
+
+      return {};
+
+   }
+
+
+   void acme_node_layer::on_protocol_set_data(const ::scoped_string & scopedstrProtocol, const ::scoped_string & scopedstrPath, const ::block & block)
+   {
+
+      throw ::interface_only();
+
+   }
+
+
+   ::memory acme_node_layer::on_protocol_get_data(const ::scoped_string & scopedstrProtocol, const ::scoped_string & scopedstrPath)
+   {
+
+      throw ::interface_only();
+
+      return {};
+
+   }
+
+
+   void acme_node_layer::post_media_store_operation(::data::block* pdatablock)
+   {
+
+      throw interface_only();
+
+   }
+
+
+   ::memory media_store_get_data(const ::scoped_string & scopedstrPath)
+   {
+
+      throw interface_only();
+
+      return {};
+
+
+   }
+
+
+ } // namespace platform
+
+
+

@@ -7,11 +7,11 @@
 // ansi class names
 
 
-static const char * char_category_names[] = {"Cn","Cc","Cf","Cs","Ll","Lm","Lo","Lt","Lu","Mc","Me","Mn","Nd","Nl","No","Pc","Pd","Pe","Pf","Pi","Po","Ps","Sc","Sk","Sm","So","Zl","Zp","Zs",};
+static const_char_pointer char_category_names[] = {"Cn","Cc","Cf","Cs","Ll","Lm","Lo","Lt","Lu","Mc","Me","Mn","Nd","Nl","No","Pc","Pd","Pe","Pf","Pi","Po","Ps","Sc","Sk","Sm","So","Zl","Zp","Zs",};
 
 
 // ansi class names
-static const char * char_bidi_names[] ={"AL","AN","B","BN","CS","EN","ES","ET","L","LRE","LRO","NSM","ON","PDF","R","RLE","RLO","S","WS",};
+static const_char_pointer char_bidi_names[] ={"AL","AN","B","BN","CS","EN","ES","ET","L","LRE","LRO","NSM","ON","PDF","R","RLE","RLO","S","WS",};
 
 /*
 // unc class names

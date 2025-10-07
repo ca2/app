@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "color_selector.h"
 #include "acme/constant/id.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "acme/graphics/image/image32.h"
 #include "acme/prototype/geometry2d/_text_stream.h"
 #include "aura/graphics/draw2d/graphics.h"
@@ -14,7 +14,7 @@
 #include "aura/message/user.h"
 //#include "aura/operating_system/windows_common/graphics.h"
 #include "aura/platform/system.h"
-#include "base/user/user/document.h"
+#include "berg/user/user/document.h"
 
 
 namespace app_core_flag
@@ -426,11 +426,11 @@ namespace core
 
       //   ::user::impact::install_message_routing(pchannel);
 
-      //   MESSAGE_LINK(e_message_create, pchannel, this, &color_selector::on_message_create);
-      //   MESSAGE_LINK(e_message_mouse_move, pchannel, this, &color_selector::on_message_mouse_move);
-      //   MESSAGE_LINK(e_message_left_button_down, pchannel, this, &color_selector::on_message_left_button_down);
-      //   MESSAGE_LINK(e_message_left_button_up, pchannel, this, &color_selector::on_message_left_button_up);
-      //   MESSAGE_LINK(e_message_show_window, pchannel, this, &color_selector::on_message_show_window);
+      //   USER_MESSAGE_LINK(::user::e_message_create, pchannel, this, &color_selector::on_message_create);
+      //   USER_MESSAGE_LINK(::user::e_message_mouse_move, pchannel, this, &color_selector::on_message_mouse_move);
+      //   USER_MESSAGE_LINK(::user::e_message_left_button_down, pchannel, this, &color_selector::on_message_left_button_down);
+      //   USER_MESSAGE_LINK(::user::e_message_left_button_up, pchannel, this, &color_selector::on_message_left_button_up);
+      //   USER_MESSAGE_LINK(::user::e_message_show_window, pchannel, this, &color_selector::on_message_show_window);
 
       //   m_pimageTemplate = image()->create_image({ 2048,  2048 });
 
@@ -452,7 +452,7 @@ namespace core
 
          m_pimageLuminance = image()->create_image({ 100,  100 });
 
-         if (__defer_construct(m_pfontOk))
+         if (ødefer_construct(m_pfontOk))
          {
 
             m_pfontOk->create_font(e_font_sans_ui, 16_pt, e_font_weight_light);
@@ -502,7 +502,7 @@ namespace core
 
       //   //m_pimageBeam->fill(0);
 
-      //   //auto ppen = __øcreate < ::draw2d::pen > ();
+      //   //auto ppen = øcreate < ::draw2d::pen > ();
 
       //   //ppen->create_solid(1.0, argb(255, 255, 255, 255));
 
@@ -781,7 +781,7 @@ namespace core
 
          rectangleInner.deflate(sizeBeam.cx() / 4.0, sizeBeam.cy() / 4.0);
 
-         auto pbrush = __øcreate < ::draw2d::brush >();
+         auto pbrush = øcreate < ::draw2d::brush >();
 
          pbrush->create_solid(argb(255, 0, 0, 0));
 
@@ -853,7 +853,7 @@ namespace core
 
          rectangleOuter.inflate(dSize / 2.0, dSize / 2.0);
 
-         auto pbrush = __øcreate < ::draw2d::brush >();
+         auto pbrush = øcreate < ::draw2d::brush >();
 
          pbrush->create_solid(argb(255, 0, 0, 0));
 
@@ -1135,7 +1135,7 @@ namespace core
 
          m_rectangleColors = rectangleColors;
 
-         __defer_construct(m_pimage);
+         ødefer_construct(m_pimage);
 
          auto sizeImage = ::int_size(m_rectangleColors.width() / 2, m_rectangleColors.height());
 

@@ -319,10 +319,10 @@ LEndParse:
 * @since 1.0
 * @author Gurmeet S. Kochar
 */
-character_count lite_html_reader::read_form_document(const ::string & str)
+character_count lite_html_reader::read_form_document(const ::scoped_string & scopedstr)
 {
 
-   m_strBuffer    = str;
+   m_strBuffer    = scopedstr;
 
    return parseDocument();
 
@@ -464,10 +464,10 @@ bool lite_html_reader::parseComment(string &rComment)
    if (::ansi_count_compare(&m_strBuffer[m_dwBufPos], "<!--", 4))
       return (false);
 
-   const char *   pszBegin = &m_strBuffer[m_dwBufPos + 4];
+   const_char_pointer pszBegin = &m_strBuffer[m_dwBufPos + 4];
 
    // HTML comments end with two hyphen symbols '--'
-   const char *   pszEnd = ::ansi_str(pszBegin, "--");
+   const_char_pointer pszEnd = ::ansi_str(pszBegin, "--");
 
 
    // comment ending delimeter could not be found?

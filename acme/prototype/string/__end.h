@@ -31,7 +31,7 @@
 #include "acme/memory/malloc.h"
 
 
-//CLASS_DECL_ACME string __get_text(const string& str);
+//CLASS_DECL_ACME string __get_text(const ::scoped_string & scopedstr);
 
 
 

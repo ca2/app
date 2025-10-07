@@ -41,7 +41,7 @@ namespace datetime
 
       //estatus = 
       
-      __construct_new(m_pscanner);
+      øconstruct_new(m_pscanner);
 
       //if (!estatus)
       //{
@@ -69,7 +69,7 @@ namespace datetime
    element * parser::new_node()
    {
 
-      auto pelement = __allocate ::datetime::element();
+      auto pelement = øallocate ::datetime::element();
       
       m_elementa.add(pelement);
 
@@ -77,7 +77,7 @@ namespace datetime
 
    }
 
-   //element * parser::parse(const ::string & psz)
+   //element * parser::parse(const ::scoped_string & scopedstr)
 /********************************************/
 /* Parsing functions */
 
@@ -90,12 +90,12 @@ namespace datetime
 */
 
 
-element * parser::parse(const ::string & psz)
+element * parser::parse(const ::scoped_string & scopedstr)
 {
 
    ::datetime::element *node;
 
-   m_pscanner->initialize_scanner(psz);
+   m_pscanner->initialize_scanner(scopedstr);
 
    node = expr(term(factor()));
 
@@ -275,15 +275,15 @@ element * parser::expr(::datetime::element * pelement1)
    
 
 
-   void parser::syntax_error(const ::string & psz)
+   void parser::syntax_error(const ::scoped_string & scopedstr)
    {
-      error(string("syntax") + psz);
+      error(string("syntax") + scopedstr);
    }
-   void parser::error(const ::string & psz)
+   void parser::error(const ::scoped_string & scopedstr)
    {
       string str;
       str = "error: ";
-      str += psz;
+      str += scopedstr;
       throw_datetime_parsing_exception(str);
 
    }

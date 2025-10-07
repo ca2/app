@@ -13,7 +13,7 @@ namespace mail
       ::object(pparticle)
    {
 
-      m_phandler = __allocate ::sockets::socket_handler(pparticle);
+      m_phandler = øallocate ::sockets::socket_handler(pparticle);
 
    }
 
@@ -29,7 +29,7 @@ namespace mail
    void     pop3::run()
    {
 
-      m_psocket = __allocate pop3_socket(*m_phandler);
+      m_psocket = øallocate pop3_socket(*m_phandler);
 
       m_psocket->m_ppop3 = this;
 

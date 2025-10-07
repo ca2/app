@@ -30,7 +30,7 @@ namespace aura
       bool                       m_bTrace;
       ::pointer<::aura::trace::trace>m_ptrace;
       ::pointer < ::mutex >                    m_pmutexTrace;
-      string_array                    m_straSeparator;
+      string_array_base                    m_straSeparator;
       FILE *                     m_pfile;
       bool                       m_bInitialized;
       string                     m_strLogPath;
@@ -47,7 +47,7 @@ namespace aura
       void load_flags(const ::property_set & set);
 
 
-      virtual void print(const ::string & psz, ...);
+      virtual void print(const ::scoped_string & scopedstr, ...);
 
 
       virtual void initialize_aura_log(enum_trace_level etracelevelMin, const ::atom & atom);
@@ -56,11 +56,11 @@ namespace aura
 
       virtual bool process_init();
 
-      virtual void __tracea(::particle * pparticle, enum_trace_level elevel, const ::string & pszFunction, const ::string & pszFileName, int iLine, const ::string & psz) override;
+      virtual void __tracea(::particle * pparticle, enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFileName, int iLine, const ::scoped_string & scopedstr) override;
 
       void set_trace_category(e_trace_category ecategory, enum_trace_level elevelMin);
 
-      virtual void success(const ::string & psz);
+      virtual void success(const ::scoped_string & scopedstr);
 
       virtual void set_extended_log(bool bSet = true);
       virtual bool get_extended_log();
@@ -69,7 +69,7 @@ namespace aura
    };
 
 
-   CLASS_DECL_AURA int SimpleDebugReport(int, const ::string &, int, const ::string &, const ::string & pszFormat, va_list list);
+   CLASS_DECL_AURA int SimpleDebugReport(int, const ::string &, int, const ::string &, const ::scoped_string & scopedstrFormat, va_list list);
 
 
 } // namespace aura

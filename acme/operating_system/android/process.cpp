@@ -45,9 +45,9 @@ string ca2_module_folder_dup();
 //   if(g_pcsPid2 == nullptr)
 //   {
 //
-//      g_pcsPid2 = __allocate critical_section();
+//      g_pcsPid2 = øallocate critical_section();
 //
-//      g_ppid = __allocate chldstatus_map();
+//      g_ppid = øallocate chldstatus_map();
 //
 //
 //   }
@@ -103,14 +103,14 @@ string ca2_module_folder_dup();
 //
 //         critical_section_lock synchronouslock(get_pid_cs());
 //
-//         auto ppair = g_ppid->plookup(iPid);
+//         auto iterator = g_ppid->find(iPid);
 //
-//         if(ppair != nullptr)
+//         if(iterator != nullptr)
 //         {
 //
-//            ppair->element2().m_bRet = true;
+//            iterator->element2().m_bRet = true;
 //
-//            ppair->element2().m_iExitCode = iExitCode;
+//            iterator->element2().m_iExitCode = iExitCode;
 //
 //         }
 //
@@ -163,18 +163,18 @@ CLASS_DECL_ACME void process_get_os_priority(int * piOsPolicy, sched_param * ppa
 //   bool process::create_child_process(const ::scoped_string & scopedstrCmdLine,bool bPiped,const ::scoped_string & scopedstrDir,int iCa2Priority)
 //   {
 //
-//      if(!::operating_system::process::create_child_process(pszCmdLine,bPiped,pszDir,iCa2Priority))
+//      if(!::operating_system::process::create_child_process(scopedstrCmdLine,bPiped,pszDir,iCa2Priority))
 //         return false;
 //
-//      string_array straParam;
+//      string_array_base straParam;
 //
 //      address_array < char * > argv;
 //
-//      straParam.explode_command_line(pszCmdLine, &argv);
+//      straParam.explode_command_line(scopedstrCmdLine, &argv);
 //
 //      char *   cmd_line;
 //
-//      cmd_line = strdup(pszCmdLine);
+//      cmd_line = strdup(scopedstrCmdLine);
 //
 //      if(cmd_line == nullptr)
 //      {
@@ -341,7 +341,7 @@ CLASS_DECL_ACME void process_get_os_priority(int * piOsPolicy, sched_param * ppa
 //   {
 //
 //
-//      string_array straParam;
+//      string_array_base straParam;
 //
 //      address_array < char * > argv;
 //
@@ -350,19 +350,19 @@ CLASS_DECL_ACME void process_get_os_priority(int * piOsPolicy, sched_param * ppa
 //
 //         m_exitstatus.m_iExitCode = -1;
 //
-//         ::message_box(nullptr,"gksu is not installed, please install gksu.","Please, install gksu.",e_message_box_icon_information);
+//         ::message_box(nullptr,"gksu is not installed, please install gksu.","Please, install gksu.",::user::e_message_box_icon_information);
 //
 //         return false;
 //
 //      }
 //
-//      string pszCmdLine = "/usr/bin/gksu " + string(pszCmdLineParam);
+//      string pszCmdLine = "/usr/bin/gksu " + string(scopedstrCmdLineParam);
 //
-//      straParam.explode_command_line(pszCmdLine, &argv);
+//      straParam.explode_command_line(scopedstrCmdLine, &argv);
 //
 //      char *   cmd_line;
 //
-//      cmd_line = (char *) ::system()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(strlen(pszCmdLine ) + 1 );
+//      cmd_line = (char *) ::system()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(strlen(scopedstrCmdLine ) + 1 );
 //
 //      if(cmd_line == nullptr)
 //      {

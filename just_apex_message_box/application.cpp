@@ -98,7 +98,7 @@ namespace app_just_apex_message_box
 //      {
 //
 //
-//         auto pmessagebox = __initialize_new ::message_box("Showing a message box as requested.\n\nIs it ok?", nullptr, e_message_box_yes_no_cancel);
+//         auto pmessagebox = __initialize_new ::message_box("Showing a message box as requested.\n\nIs it ok?", nullptr, ::user::e_message_box_yes_no_cancel);
 //
 //         pmessagebox->sync();
 //
@@ -115,7 +115,7 @@ namespace app_just_apex_message_box
 //         else  if (result == e_dialog_result_no)
 //         {
 //
-//            auto pmessagebox = __initialize_new ::message_box("No!", nullptr, e_message_box_ok);
+//            auto pmessagebox = __initialize_new ::message_box("No!", nullptr, ::user::e_message_box_ok);
 //
 //            pmessagebox->sync();
 //
@@ -123,7 +123,7 @@ namespace app_just_apex_message_box
 //         else  if (result == e_dialog_result_yes)
 //         {
 //
-//            auto pmessagebox = __initialize_new ::message_box("Yes!!", nullptr, e_message_box_ok);
+//            auto pmessagebox = __initialize_new ::message_box("Yes!!", nullptr, ::user::e_message_box_ok);
 //
 //            pmessagebox->sync();
 //

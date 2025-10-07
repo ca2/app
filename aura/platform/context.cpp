@@ -68,7 +68,7 @@ namespace aura
             try
             {
 
-               __øconstruct(m_pimagecontext);
+               øconstruct(m_pimagecontext);
 
             }
             catch (...)
@@ -94,10 +94,10 @@ namespace aura
    }
 
 
-   //pointer< ::extended::sequence < ::conversation > > context::message_box(::user::interaction * puserinteraction, const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox)
+   //pointer< ::extended::sequence < ::conversation > > context::message_box(::user::interaction * puserinteraction, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::user::e_message_box & emessagebox)
    //{
 
-   //   auto pmessagebox = __øcreate < ::user::message_box >();
+   //   auto pmessagebox = øcreate < ::user::message_box >();
 
    //   auto pfuture = pmessagebox->::extended::asynchronous<::conversation>::sequence();
 
@@ -108,7 +108,7 @@ namespace aura
    //}
 
 
-//   ::file::path context::defer_make_file_system_url(string str)
+//   ::file::path context::defer_make_file_system_url(const ::scoped_string & scopedstr)
 //   {
 //
 //      if (str.is_empty())
@@ -160,7 +160,7 @@ namespace aura
 //   }
 //
 //
-//   string context::defer_get_file_title(string strParam)
+//   string context::defer_get_file_title(const ::scoped_string & scopedstrParam)
 //   {
 //
 //      if (strParam.is_empty())
@@ -401,7 +401,7 @@ namespace aura
 //
 //   }
 //
-//   ::file::path context::get_matter_path(string strMatter)
+//   ::file::path context::get_matter_path(const ::scoped_string & scopedstrMatter)
 //   {
 //
 //      if (strMatter.case_insensitive_begins_eat("appmatter://"))
@@ -416,7 +416,7 @@ namespace aura
 //   }
 //
 //
-//   ::file::path context::side_get_matter_path(string strMatter)
+//   ::file::path context::side_get_matter_path(const ::scoped_string & scopedstrMatter)
 //   {
 //
 //      auto psystem = system();
@@ -673,7 +673,7 @@ namespace aura
 //
 //   }
 //
-//   ::file::listing& context::perform_file_listing(::file::listing& listing)
+//   ::file::listing_base& context::perform_file_listing(::file::listing_base& listing)
 //   {
 //
 //      return directory()->ls(listing);
@@ -681,7 +681,7 @@ namespace aura
 //   }
 //
 //
-//   ::file::listing& context::perform_file_relative_name_listing(::file::listing& listing)
+//   ::file::listing_base& context::perform_file_relative_name_listing(::file::listing_base& listing)
 //   {
 //
 //      return directory()->ls_relative_name(listing);
@@ -689,7 +689,7 @@ namespace aura
 //   }
 //
 //
-//   string context::http_get(const string& strUrl, ::property_set & set)
+//   string context::http_get(const ::scoped_string & scopedstrUrl, ::property_set & set)
 //   {
 //
 //      __UNREFERENCED_PARAMETER(strUrl);
@@ -769,7 +769,7 @@ namespace aura
 //   }
 //
 //
-//   void context::locale_schema_matter(string_array& stra, const string_array& straMatterLocator, const string& strLocale, const string& strSchema)
+//   void context::locale_schema_matter(string_array_base& stra, const string_array_base& straMatterLocator, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema)
 //   {
 //
 //      if (get_app())
@@ -839,7 +839,7 @@ namespace aura
 //   }
 //
 //
-//   bool context::http_download(const ::string & pszUrl, const ::string & pszFile)
+//   bool context::http_download(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrFile)
 //   {
 //
 //      string strUrl = pszUrl;
@@ -855,7 +855,7 @@ namespace aura
 //   }
 //
 //
-//   string context::http_get(const ::string & pszUrl)
+//   string context::http_get(const ::scoped_string & scopedstrUrl)
 //   {
 //
 //      ::property_set set;
@@ -880,7 +880,7 @@ namespace aura
 //   }
 //
 //
-//   bool context::sys_set(string strPath, string strValue)
+//   bool context::sys_set(const ::scoped_string & scopedstrPath, const ::scoped_string & scopedstrValue)
 //   {
 //
 //      return file()->put_text_utf8(directory_system()->config() / strPath, strValue);
@@ -888,7 +888,7 @@ namespace aura
 //   }
 //
 //
-//   string context::sys_get(string strPath, string strDefault)
+//   string context::sys_get(const ::scoped_string & scopedstrPath, const ::scoped_string & scopedstrDefault)
 //   {
 //
 //      string strValue = file()->as_string(directory_system()->config() / strPath);
@@ -905,7 +905,7 @@ namespace aura
 //   }
 //
 //
-//   string context::load_string(const ::string & psz)
+//   string context::load_string(const ::scoped_string & scopedstr)
 //   {
 //
 //      return psz;
@@ -916,7 +916,7 @@ namespace aura
 //   void context::on_update_matter_locator()
 //   {
 //
-//      synchronous_lock synchronouslock(this->synchronization());
+//      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //      m_straMatterLocator.erase_all();
 //
@@ -930,7 +930,7 @@ namespace aura
 //
 //
 //
-//   string context::matter_locator(string strApp)
+//   string context::matter_locator(const ::scoped_string & scopedstrApp)
 //   {
 //
 //      string strMatterLocator = strApp;
@@ -938,7 +938,7 @@ namespace aura
 //      if (!strMatterLocator.case_insensitive_contains("/_matter/"))
 //      {
 //
-//         string_array stra;
+//         string_array_base stra;
 //
 //         stra.explode("/", strMatterLocator);
 //
@@ -964,10 +964,10 @@ namespace aura
 //   }
 //
 //
-//   void context::add_matter_locator(string strApp)
+//   void context::add_matter_locator(const ::scoped_string & scopedstrApp)
 //   {
 //
-//      synchronous_lock synchronouslock(this->synchronization());
+//      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //      string strMatterLocator = matter_locator(strApp);
 //
@@ -984,7 +984,7 @@ namespace aura
 //   void context::add_matter_locator(::apex::application* papp)
 //   {
 //
-//      synchronous_lock synchronouslock(this->synchronization());
+//      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //      string strMatterLocator = matter_locator(papp);
 //
@@ -1033,7 +1033,7 @@ namespace aura
    //::image::image_pointer context::create_image()
    //{
 
-   //   auto pimage = __øcreate < ::image::image >();
+   //   auto pimage = øcreate < ::image::image >();
 
    //   if (!pimage)
    //   {
@@ -1050,7 +1050,7 @@ namespace aura
    //::image::image_pointer context::create_image(const ::int_size & size, const image32_t * pcolor, int iScan, ::enum_flag eflagCreate)
    //{
 
-   //   auto pimage = m_papplication->__øcreate < ::image::image >();
+   //   auto pimage = m_papplication->øcreate < ::image::image >();
 
    //   if (!pimage)
    //   {

@@ -17,6 +17,7 @@
 #include "acme/prototype/prototype/url.h"
 #include "acme/prototype/datetime/datetime.h"
 #include "acme/prototype/string/str.h"
+#include "acme/prototype/string/utf8_character.h"
 #include "acme/prototype/text/context.h"
 #include "acme/filesystem/filesystem/directory_system.h"
 #include "acme/crypto/rsa.h"
@@ -41,16 +42,16 @@
 #include <ctype.h>
 #endif
 
-//unsigned int RunSilent(const ::string & strFunct, const ::string & strstrParams);
+//unsigned int RunSilent(const ::scoped_string & scopedstrFunct, const ::scoped_string & scopedstrstrParams);
 
 
 
 namespace dynamic_source
 {
 
-   string escape(const ::string& pcsz);
+   string escape(const ::scoped_string & scopedstr);
 
-   void add_var_id(string& strResult, character_count& iArroba, string_array& straId, bool bMakeKeyLower = true);
+   void add_var_id(string& strResult, character_count& iArroba, string_array_base& straId, bool bMakeKeyLower = true);
 
 
    script_compiler::script_compiler()
@@ -91,7 +92,7 @@ namespace dynamic_source
 
       //node()->integration_factory();
 
-      //__øconstruct(m_pintegrationcontext);
+      //øconstruct(m_pintegrationcontext);
 
       //m_pintegrationcontext->m_strPlatform = "x64";
 
@@ -302,7 +303,7 @@ namespace dynamic_source
 #ifdef WINDOWS_DESKTOP
 
       unsigned int dwSize = GetEnvironmentVariableW(L"PATH", nullptr, 0);
-      LPWSTR lpsz = __raw_new wchar_t[dwSize + 1];
+      LPWSTR lpsz = øraw_new wchar_t[dwSize + 1];
       dwSize = GetEnvironmentVariableW(L"PATH", lpsz, dwSize + 1);
       str += lpsz;
       delete lpsz;
@@ -315,7 +316,7 @@ namespace dynamic_source
    void script_compiler::compile(ds_script* pscript)
    {
 
-      //synchronous_lock synchronouslock(pscript->synchronization());
+      //synchronous_lock synchronouslock(pscript->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       _synchronous_lock slCompiler(&m_pmanager->m_semCompiler);
 
@@ -392,7 +393,9 @@ namespace dynamic_source
 
       pscript->m_strSourceDir = pscript->m_strSourcePath.folder();
 
-      if (!file()->exists(pscript->m_strSourcePath))
+      auto strSourcePath = pscript->m_strSourcePath;
+
+      if (!file()->exists(strSourcePath))
       {
          ostreamError << "<pre>";
          str.formatf("Source File : \"%s\" does not exist", pscript->m_strSourcePath.c_str());
@@ -944,7 +947,7 @@ namespace dynamic_source
             informationf("Compilation FAILED: or object file is shorter than %lld bytes...", iObjFileMinimumByteCount);
             informationf("%s", strLog.c_str());
 
-            //string_array straLog;
+            //string_array_base straLog;
             //straLog.add_lines(strLog);
             //for(auto & strLine : straLog)
             //{
@@ -1167,9 +1170,9 @@ namespace dynamic_source
 
    }
 
-   string escape(const ::string& pcsz)
+   string escape(const ::scoped_string & scopedstr)
    {
-      string str(pcsz);
+      string str(scopedstr);
       str.find_replace("\\", "\\\\");
       str.find_replace("\"", "\\\"");
       str.find_replace("\r\n", "\\r\\n");
@@ -1219,7 +1222,7 @@ namespace dynamic_source
       pscript->m_strClassName = pscript->m_strClassNamePrefix + "_dynamic_source_script";
 
       character_count iPosId = -1;
-      string_array straId;
+      string_array_base straId;
       string strDest;
       strDest = "";
       strDest += "#include \"netnode_dynamic_source_script_framework.h\"\r\n";
@@ -1308,7 +1311,7 @@ namespace dynamic_source
       strDest += "\r\n";
       strDest += "extern \"C\" __declspec(dllexport) dynamic_source::script_instance * __cdecl create_dynamic_source_script_instance ()\r\n";
       strDest += "{\r\n";
-      strDest += "   return __raw_new " + pscript->m_strClassNamePrefix + "_dynamic_source_script ();\r\n";
+      strDest += "   return øraw_new " + pscript->m_strClassNamePrefix + "_dynamic_source_script ();\r\n";
       strDest += "}\r\n";
       strDest += "\r\n";
       strDest += "void " + pscript->m_strClassNamePrefix + "_dynamic_source_script::script_run()\r\n";
@@ -1389,7 +1392,7 @@ namespace dynamic_source
    void script_compiler::operator()(::file::action* paction)
    {
 
-      synchronous_lock synchronouslock(m_pmutex);
+      synchronous_lock synchronouslock(m_pmutex, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       ::file::path path = paction->m_pathFolder / paction->m_pathFile;
 
@@ -1447,21 +1450,21 @@ namespace dynamic_source
    }
 
 
-   library& script_compiler::lib(const ::string& pszLibrary)
+   library& script_compiler::lib(const ::scoped_string & scopedstrLibrary)
    {
 
       single_lock slLibrary(m_pmutexLibrary, true);
 
-      auto p = m_mapLib.plookup(pszLibrary);
+      auto p = m_mapLib.find(scopedstrLibrary);
 
       if (::is_ok(p))
       {
          return *p->element2();
       }
 
-      m_mapLib[pszLibrary] = __allocate library(this);
+      m_mapLib[scopedstrLibrary] = øallocate library(this);
 
-      library& l = *m_mapLib[pszLibrary];
+      library& l = *m_mapLib[scopedstrLibrary];
 
       auto pathCa2Root = m_pintegrationcontext->m_pathBuildFolder;
 
@@ -1478,7 +1481,7 @@ namespace dynamic_source
 
       //unload_library();
 
-      string strLibrary(pszLibrary);
+      string strLibrary(scopedstrLibrary);
 
       ::file::path strName = strLibrary;
 
@@ -1947,7 +1950,7 @@ namespace dynamic_source
       character_count iStart = 0;
       character_count iPos = 0;
       character_count iLastEnd = 0;
-      string_array straId;
+      string_array_base straId;
       while ((iPos = strSource.find_index("<?", iStart)) >= 0)
       {
          if (iPos > iLastEnd && bCode)
@@ -1986,7 +1989,7 @@ namespace dynamic_source
    }
 
 
-   void add_var_id(string& strResult, character_count& iArroba, string_array& straId, bool bMakeKeyLower)
+   void add_var_id(string& strResult, character_count& iArroba, string_array_base& straId, bool bMakeKeyLower)
    {
       string strKey = strResult.substr(iArroba);
       if (bMakeKeyLower)
@@ -2004,9 +2007,9 @@ namespace dynamic_source
       iArroba = -1;
    }
 
-   string script_compiler::cppize2(const string& psz, bool bScript, string_array& straId)
+   string script_compiler::cppize2(const ::scoped_string & scopedstr, bool bScript, string_array_base& straId)
    {
-      string str(psz);
+      string str(scopedstr);
       str.trim();
       bool bInSimpleQuote = false;
       bool bInDoubleQuote = false;
@@ -2025,45 +2028,49 @@ namespace dynamic_source
       bool bInBrace = false;
       character_count iVar = -1;
       character_count iIdLen = 0;
-      char ch;
-      char chNext;
+      ::utf8_character_range ch2(str);
+      //::utf8_character_range ch2.next()(str, ch2.m_iNext);
       string strResult;
       character_count iLen = str.length();
-      character_count i = 0;
+      //character_count i2 = 0;
+      //character_count iNext2 = 0;
+      //character_count iNext3 = 0;
       bool bInitial = true;
       string strSpec1;
       character_count iOpenParen = 1; // open Parenthesis Count
-      string_array straFunction;
+      string_array_base straFunction;
       index_array iaFunctionParen; // index of the parenthesis of the function
       bool bInserted = false;
       bool bNewLine = true;
       bool bLow = false;
-      while (i < iLen)
+      while (ch2.m_i < iLen)
       {
          bInserted = false;
-         ch = str[i];
-         chNext = str[i + 1];
-         if (string_begins(str.substr(i), "bk_filter_active1"))
+         //iNext2 = i2;
+         //iNext3 = iNext2;
+         //ch2.next().m_i = ch2.m_iNext;
+         //ch2.next().get();
+         if (string_begins(str.substr(ch2.m_i), "bk_filter_active1"))
          {
             //debug_break();
          }
          if (bInSpec1)
          {
-            if (ch == '\r' || ch == '\n')
+            if (ch2 == '\r' || ch2 == '\n')
             {
                bNewLine = true;
-               i++;
+               ch2++;
             }
-            else if (character_isspace(ch))
+            else if (ch2.is_ansi_space())
             {
-               i++;
+               ch2++;
                continue;
             }
-            else if (ch == '(')
+            else if (ch2 == '(')
             {
                strResult += strSpec1 + "(";
                bInSpec1 = false;
-               i++;
+               ch2++;
                bNewLine = false;
                continue;
             }
@@ -2076,22 +2083,22 @@ namespace dynamic_source
          }
          if (bInSpec2)
          {
-            if (ch == '\r' || ch == '\n')
+            if (ch2 == '\r' || ch2 == '\n')
             {
                bNewLine = true;
-               i++;
+               ch2++;
             }
-            else if (character_isspace(ch))
+            else if (ch2.is_ansi_space())
             {
-               i++;
+               ch2++;
                continue;
             }
-            else if (ch == '=')
+            else if (ch2 == '=')
             {
                strResult += ".payloada().add(";
                bInSpec2 = false;
                bInSpec2Close = true;
-               i++;
+               ch2++;
                bNewLine = false;
                continue;
             }
@@ -2102,7 +2109,7 @@ namespace dynamic_source
          }
          if (bServer)
          {
-            if (::character_isalpha(ch) || ::character_isdigit(ch) || ch == '.' || ch == ',' || ch == '-' || ch == '_')
+            if (ch2.is_ansi_alpha() || ch2.is_ansi_digit() || ch2 == '.' || ch2 == ',' || ch2 == '-' || ch2 == '_')
             {
                if (iServer < 0)
                {
@@ -2116,20 +2123,19 @@ namespace dynamic_source
                bServer = false;
                add_var_id(strResult, iServer, straId);
                strResult += "]";
-               while (i < iLen)
+               while (ch2.m_i < iLen)
                {
-                  ch = str[i];
-                  if (character_isspace(ch))
-                     i++;
-                  else if (bWaitQuote && (ch == '\'' || ch == '\"'))
+                  if (ch2.is_ansi_space())
+                     ch2++;
+                  else if (bWaitQuote && (ch2 == '\'' || ch2 == '\"'))
                   {
                      bWaitQuote = false;
                      bWaitCloseBracket = true;
-                     i++;
+                     ch2++;
                   }
-                  else if (bWaitCloseBracket && ch == ']')
+                  else if (bWaitCloseBracket && ch2 == ']')
                   {
-                     i++;
+                     ch2++;
                      break;
                   }
                   else
@@ -2144,13 +2150,13 @@ namespace dynamic_source
             }
             else
             {
-               i++;
+               ch2++;
                continue;
             }
          }
-         if (iBracket > 0 && ch == ']')
+         if (iBracket > 0 && ch2== ']')
          {
-            strResult += ch;
+            strResult += ch2;
             iBracket--;
          }
          else if (bInSimpleQuote)
@@ -2158,21 +2164,21 @@ namespace dynamic_source
             if (bInSlash)
             {
                bInSlash = false;
-               strResult += ch;
+               strResult += ch2;
             }
             else
             {
-               if (ch == '\\')
+               if (ch2 == '\\')
                {
                   bInSlash = true;
-                  if (chNext != '{'
-                     && chNext != '}'
-                     && chNext != '$')
+                  if (ch2.next() != '{'
+                     && ch2.next() != '}'
+                     && ch2.next() != '$')
                   {
-                     strResult += ch;
+                     strResult += ch2;
                   }
                }
-               else if (ch == '\'')
+               else if (ch2 == '\'')
                {
                   bInSimpleQuote = false;
                   //strResult += "\")";
@@ -2181,7 +2187,7 @@ namespace dynamic_source
                else
                {
                   bInSlash = false;
-                  strResult += ch;
+                  strResult += ch2;
                }
             }
          }
@@ -2190,42 +2196,42 @@ namespace dynamic_source
             if (bInSlash)
             {
                bInSlash = false;
-               strResult += ch;
+               strResult += ch2;
             }
             else
             {
-               if (ch == '\\')
+               if (ch2 == '\\')
                {
                   bInSlash = true;
-                  if (chNext != '{'
-                     && chNext != '}'
-                     && chNext != '$')
+                  if (ch2.next() != '{'
+                     && ch2.next() != '}'
+                     && ch2.next() != '$')
                   {
-                     strResult += ch;
+                     strResult += ch2;
                   }
                }
-               else if (ch == '@')
+               else if (ch2 == '@')
                {
                   add_var_id(strResult, iArroba, straId);
                }
                else
                {
                   bInSlash = false;
-                  strResult += ch;
+                  strResult += ch2;
                }
             }
          }
          else if (bInVar)
          {
-            if (ansi_char_isdigit(ch) || ansi_char_isalpha(ch) || ch == '_')
+            if (ch2.is_ansi_digit() || ch2.is_ansi_alpha() || ch2 == '_')
             {
                if (bLow)
                {
-                  strResult += (char) ::character_tolower(ch);
+                  strResult += (char)ch2.ansi_lower();
                }
                else
                {
-                  strResult += ch;
+                  strResult += ch2;
                }
             }
             else
@@ -2234,14 +2240,14 @@ namespace dynamic_source
                bLow = false;
                if (bInDoubleQuote)
                {
-                  if (ch == '$')
+                  if (ch2 == '$')
                   {
                      bInVar = true;
                      add_var_id(strResult, iVar, straId);
                      strResult += ") + gstr(";
                      iVar = strResult.length();
                      bLow = true;
-                     i++;
+                     ch2++;
                      continue;
                   }
                   else
@@ -2249,15 +2255,15 @@ namespace dynamic_source
                      //strResult += "\") + unitext(\"";
                      add_var_id(strResult, iVar, straId);
                      strResult += ") + \"";
-                     if (ch == '\"')
+                     if (ch2 == '\"')
                      {
                         bInDoubleQuote = false;
                         //strResult += "\")";
                         strResult += "\"";
-                        i++;
+                        ch2++;
                         continue;
                      }
-                     else if (ch == '\\')
+                     else if (ch2 == '\\')
                      {
                         bInSlash = true;
                      }
@@ -2265,62 +2271,63 @@ namespace dynamic_source
                }
                else
                {
-                  while (ansi_char_isspace(str[i]) && i < iLen)
+                  while (ch2.is_ansi_space() && ch2.m_i < iLen)
                   {
-                     i++;
+                     ch2++;
                   }
-                  ch = str[i];
-                  if (ch == '[' && chNext != ']')
+                  //ch = str[i];
+                  //ch2.next() = ch2.next();
+                  if (ch2 == '[' && ch2.next() != ']')
                   {
                      iBracket++;
                      add_var_id(strResult, iVar, straId);
                      strResult += ").propset()";
                   }
-                  else if (ch == '-' && chNext == '>')
+                  else if (ch2 == '-' && ch2.next() == '>')
                   {
-                     i += 2;
-                     while (ansi_char_isspace(str[i]) && i < iLen)
+                     ch2.ansi_add(2);
+                     while (ch2.is_ansi_space() && ch2.m_i < iLen)
                      {
-                        i++;
+                        ch2++;
                      }
-                     ch = str[i];
+                     //ch = str[i];
                      string strToken;
-                     if (ansi_char_isalpha(ch) || ch == '_')
+                     if (ch2.is_ansi_alpha() || ch2 == '_')
                      {
-                        strToken += ch;
-                        i++;
+                        strToken += ch2;
+                        ch2++;
                      }
                      else
                      {
                         strResult = "-> error";
                         return strResult;
                      }
-                     ch = str[i];
-                     while (ansi_char_isdigit(ch) || ansi_char_isalpha(ch) || ch == '_')
+                     //ch = str[i];
+                     while (ch2.is_ansi_digit() || ch2.is_ansi_alpha() || ch2 == '_')
                      {
-                        strToken += ch;
-                        i++;
-                        ch = str[i];
+                        strToken += ch2;
+                        ch2++;
+                        //ch = str[i];
                      }
-                     ch = str[i];
-                     while (ansi_char_isspace(ch))
+                     //ch = str[i];
+                     while (ch2.is_ansi_space())
                      {
-                        i++;
-                        ch = str[i];
+                        ch2++;
+                        //ch = str[i];
                      }
-                     if (ch == '(')
+                     if (ch2 == '(')
                      {
-                        i++;
-                        ch = str[i];
+                        ch2++;
+                        //ch = str[i];
                         iaFunctionParen.add(iOpenParen);
                         iOpenParen++;
                         straFunction.add(strToken);
-                        while (ansi_char_isspace(ch))
+                        while (ch2.is_ansi_space())
                         {
-                           i++;
-                           ch = str[i];
+                           ch2++;
+                           //ch = str[i];
                         }
-                        if (ch == ')')
+                        if (ch2 == ')')
                         {
                            add_var_id(strResult, iVar, straId);
                            strResult += ").cast < " + m_pmanager->m_strNamespace + "::object_base >()->call(\"" + strToken + "\" ";
@@ -2344,7 +2351,7 @@ namespace dynamic_source
                      strResult += ")";
                   }
                }
-               if (ch == ';')
+               if (ch2 == ';')
                   goto ch_comma;
                else
                   goto ch_else;
@@ -2356,11 +2363,11 @@ namespace dynamic_source
             if (bInSlash)
             {
                bInSlash = false;
-               strResult += ch;
+               strResult += ch2;
             }
             else
             {
-               if (ch == '$' && (ansi_char_isalpha(chNext) || chNext == '_'))
+               if (ch2 == '$' && (ch2.next().is_ansi_alpha() || ch2.next() == '_'))
                {
                   bInVar = true;
                   //strResult += "\") + glowstr(\"";
@@ -2368,24 +2375,24 @@ namespace dynamic_source
                   iVar = strResult.length();
                   bLow = true;
                }
-               else if (ch == '{')
+               else if (ch2 == '{')
                {
                   bInBrace = true;
                   bInDoubleQuote = false;
                   //strResult += "\") + ";
                   strResult += "\" + ";
                }
-               else if (ch == '\\')
+               else if (ch2 == '\\')
                {
                   bInSlash = true;
-                  if (chNext != '{'
-                     && chNext != '}'
-                     && chNext != '$')
+                  if (ch2.next() != '{'
+                     && ch2.next() != '}'
+                     && ch2.next() != '$')
                   {
-                     strResult += ch;
+                     strResult += ch2;
                   }
                }
-               else if (ch == '\"')
+               else if (ch2 == '\"')
                {
                   bInDoubleQuote = false;
                   //strResult += "\")";
@@ -2394,44 +2401,44 @@ namespace dynamic_source
                else
                {
                   bInSlash = false;
-                  strResult += ch;
+                  strResult += ch2;
                }
             }
          }
-         else if (ch == '\"')
+         else if (ch2 == '\"')
          {
             bInDoubleQuote = true;
             //strResult += "unitext(\"";
             strResult += "\"";
          }
-         else if (ch == '\'')
+         else if (ch2 == '\'')
          {
             bInSimpleQuote = true;
             //strResult += "unitext(\""; // overloads should cope with the possibility of conversion between string to character
             strResult += "\""; // overloads should cope with the possibility of conversion between string to character
             iSimpleQuote = strResult.length();
          }
-         else if (ch == '@')
+         else if (ch2 == '@')
          {
             iArroba = strResult.length();
          }
-         else if (ch == '_' && chNext == '_' && is_id(&str[i], str.length() - i, "__ch", 4, iIdLen))
+         else if (ch2 == '_' && ch2.next() == '_' && is_id(&str[ch2.m_i], str.length() - ch2.m_i, "__ch", 4, iIdLen))
          {
             strResult += "'";
             bInVar = false;
-            i += iIdLen;
-            while (str[i] != '(' && i < iLen)
-               i++;
-            i++;
-            while (str[i] != ')' && i < iLen)
+            ch2.ansi_add(iIdLen);
+            while (ch2 != '(' && ch2.m_i < iLen)
+               ch2++;
+            ch2++;
+            while (ch2 != ')' && ch2.m_i < iLen)
             {
-               strResult += str[i];
-               i++;
+               strResult += ch2;
+               ch2++;
             }
             strResult += "'";
 
          }
-         else if (ch == '$' && (ansi_char_isalpha(chNext) || chNext == '_'))
+         else if (ch2 == '$' && (ch2.next().is_ansi_alpha() || ch2.next() == '_'))
          {
             if (bInVar)
             {
@@ -2460,40 +2467,40 @@ namespace dynamic_source
                }
                else
                {
-                  if (is_id(&str[i + 1], str.length() - i - 1, "_GET", 4, iIdLen))
+                  if (is_id(&str[ch2.m_i + 1], str.length() - ch2.m_i - 1, "_GET", 4, iIdLen))
                   {
                      strResult += "geta()[";
                      bInVar = false;
                      bServer = true;
-                     i += iIdLen + 1;
+                     ch2.ansi_add(iIdLen + 1);
                   }
-                  else if (is_id(&str[i + 1], str.length() - i - 1, "_POST", 5, iIdLen))
+                  else if (is_id(&str[ch2.m_i + 1], str.length() - ch2.m_i - 1, "_POST", 5, iIdLen))
                   {
                      strResult += "posta()[";
                      bInVar = false;
                      bServer = true;
-                     i += iIdLen + 1;
+                     ch2.ansi_add(iIdLen + 1);
                   }
-                  else if (is_id(&str[i + 1], str.length() - i - 1, "_REQUEST", 8, iIdLen))
+                  else if (is_id(&str[ch2.m_i + 1], str.length() - ch2.m_i - 1, "_REQUEST", 8, iIdLen))
                   {
                      strResult += "requesta()[";
                      bInVar = false;
                      bServer = true;
-                     i += iIdLen + 1;
+                     ch2.ansi_add(iIdLen + 1);
                   }
-                  else if (is_id(&str[i + 1], str.length() - i - 1, "_SERVER", 7, iIdLen))
+                  else if (is_id(&str[ch2.m_i + 1], str.length() - ch2.m_i - 1, "_SERVER", 7, iIdLen))
                   {
                      strResult += "inattra()[";
                      bInVar = false;
                      bServer = true;
-                     i += iIdLen + 1;
+                     ch2 += iIdLen + 1;
                   }
-                  else if (is_id(&str[i + 1], str.length() - i - 1, "_COOKIE", 7, iIdLen))
+                  else if (is_id(&str[ch2.m_i + 1], str.length() - ch2.m_i - 1, "_COOKIE", 7, iIdLen))
                   {
                      strResult += "cookies()[";
                      bInVar = false;
                      bServer = true;
-                     i += iIdLen + 1;
+                     ch2 += iIdLen + 1;
                   }
                   else
                   {
@@ -2504,57 +2511,57 @@ namespace dynamic_source
                }
             }
          }
-         else if (ch == ';')
+         else if (ch2 == ';')
          {
          ch_comma:
             if (bInRet)
             {
                bInRet = false;
-               strResult += ch;
+               strResult += ch2;
                strResult += "\r\nreturn;\r\n}\r\n";
             }
             else if (bInSpec1Close)
             {
                bInSpec1Close = false;
                strResult += ")";
-               strResult += ch;
+               strResult += ch2;
             }
             else if (bInSpec2Close)
             {
                bInSpec2Close = false;
                strResult += ")";
-               strResult += ch;
+               strResult += ch2;
             }
             else
             {
-               strResult += ch;
+               strResult += ch2;
             }
             bInitial = true;
          }
-         else if (ch == '(')
+         else if (ch2 == '(')
          {
-            strResult += ch;
+            strResult += ch2;
             iOpenParen++;
          }
-         else if (ch == ')')
+         else if (ch2 == ')')
          {
             iOpenParen--;
             //if(iaFunctionParen.pop_match('');
-            strResult += ch;
+            strResult += ch2;
          }
-         else if (ch == '#')
+         else if (ch2 == '#')
          {
             if (bNewLine)
             {
-               strResult += ch;
-               i++;
-               while (i < iLen)
+               strResult += ch2;
+               ch2++;
+               while (ch2.m_i < iLen)
                {
-                  ch = str[i];
-                  strResult += ch;
-                  if (ch == '\r' || ch == '\n')
+                  //ch = str[i];
+                  strResult += ch2;
+                  if (ch2 == '\r' || ch2 == '\n')
                      break;
-                  i++;
+                  ch2++;
 
                }
 
@@ -2563,36 +2570,36 @@ namespace dynamic_source
          else
          {
          ch_else:
-            if (bScript && str[i - 1] != '_' && is_id(&str[i], str.length() - i, "return", 6, iIdLen) && next_nonspace(str.substr(i + iIdLen))[0] != ';')
+            if (bScript && str[ch2.m_i - 1] != '_' && is_id(&str[ch2.m_i], str.length() - ch2.m_i, "return", 6, iIdLen) && next_nonspace(str.substr(ch2.m_i + iIdLen))[0] != ';')
             {
                bInRet = true;
                strResult += "\r\n{\r\nm_varRet = ";
-               i += iIdLen - 1;
+               ch2.ansi_add(iIdLen - 1);
             }
-            else if (is_id(&str[i], str.length() - i, "include", 7, iIdLen))
+            else if (is_id(&str[ch2.m_i], str.length() - ch2.m_i, "include", 7, iIdLen))
             {
                bInSpec1 = true;
                strSpec1 = "include";
-               i += iIdLen - 1;
+               ch2.ansi_add(iIdLen - 1);
             }
-            else if (is_id(&str[i], str.length() - i, "print", 5, iIdLen))
+            else if (is_id(&str[ch2.m_i], str.length() - ch2.m_i, "print", 5, iIdLen))
             {
                bInSpec1 = true;
                strSpec1 = "print";
-               i += iIdLen - 1;
+               ch2.ansi_add(iIdLen - 1);
             }
-            else if (is_id(&str[i], str.length() - i, "echo", 4, iIdLen))
+            else if (is_id(&str[ch2.m_i], str.length() - ch2.m_i, "echo", 4, iIdLen))
             {
                bInSpec1 = true;
                strSpec1 = "echo";
-               i += iIdLen - 1;
+               ch2.ansi_add(iIdLen - 1);
             }
-            else if (str.substr(i, 2) == "[]")
+            else if (str.substr(ch2.m_i, 2) == "[]")
             {
                bInSpec2 = true;
-               i += 2 - 1;
+               ch2.ansi_add(2 - 1);
             }
-            else if (bInBrace && ch == '}')
+            else if (bInBrace && ch2 == '}')
             {
                bInDoubleQuote = true;
                bInBrace = false;
@@ -2601,12 +2608,12 @@ namespace dynamic_source
             }
             else
             {
-               if (ch == '\r' || ch == '\n')
+               if (ch2 == '\r' || ch2 == '\n')
                {
                   bNewLine = true;
 
                }
-               else if (character_isspace(ch))
+               else if (ch2.is_ansi_space())
                {
                }
                else
@@ -2615,37 +2622,37 @@ namespace dynamic_source
                }
                if (bLow)
                {
-                  strResult += (char) ::character_tolower(ch);
+                  strResult += (char) ch2.ansi_lower();
                }
                else
                {
-                  strResult += ch;
+                  strResult += ch2;
                }
             }
          }
-         i++;
+         ch2++;
       }
       return strResult;
 
    }
 
 
-   bool script_compiler::is_id(const ::string& psz, character_count iLen, const ::string& pszId, character_count iIdLen, character_count& iIdLenRet)
+   bool script_compiler::is_id(const ::scoped_string & scopedstr, character_count iLen, const ::scoped_string & scopedstrId, character_count iIdLen, character_count& iIdLenRet)
    {
       if (iLen < iIdLen)
          return false;
       if (iIdLen == iLen)
       {
-         if (string_compare(psz, pszId) == 0)
+         if (string_compare(scopedstr, scopedstrId) == 0)
          {
             iIdLenRet = iIdLen;
             return true;
          }
       }
-      if (string_begins(psz, pszId)
-         && !::character_isdigit(psz[iIdLen])
-         && !::character_isalpha(psz[iIdLen])
-         && psz[iIdLen] != '_')
+      if (string_begins(scopedstr, scopedstrId)
+         && !::character_isdigit(scopedstr[iIdLen])
+         && !::character_isalpha(scopedstr[iIdLen])
+         && scopedstr[iIdLen] != '_')
       {
          iIdLenRet = iIdLen;
          return true;
@@ -2654,10 +2661,10 @@ namespace dynamic_source
    }
 
 
-   const char* script_compiler::next_nonspace(const ::string& strParam)
+   const_char_pointer script_compiler::next_nonspace(const ::scoped_string & scopedstrParam)
    {
 
-      const ::ansi_character* psz = strParam;
+      const ::ansi_character* psz = scopedstrParam;
 
       while (*psz && character_isspace(*psz))
       {
@@ -2676,7 +2683,7 @@ namespace dynamic_source
 
       string strPath = m_pmanager->m_pathNetseedDsCa2Path / "core/persistent";
 
-      ::file::listing stra;
+      ::file::listing_base stra;
 
       //auto papp = get_app();
 
@@ -2720,7 +2727,7 @@ namespace dynamic_source
       if (pinstance)
       {
 
-         auto pmain = __øcreate < script_main >();
+         auto pmain = øcreate < script_main >();
 
          pmain->m_pmanager2 = m_pmanager;
 
@@ -2775,11 +2782,12 @@ namespace dynamic_source
    }
 
 
-   bool script_compiler::defer_run_persistent(const ::string& psz)
+   bool script_compiler::defer_run_persistent(const ::scoped_string & scopedstr)
    {
-      string str(psz);
 
-      if (::str::case_insensitive_find("pstr_set", psz) && case_insensitive_string_ends(psz, ".txt"))
+      string str(scopedstr);
+
+      if (::str::case_insensitive_find("pstr_set", scopedstr) && case_insensitive_string_ends(scopedstr, ".txt"))
       {
 
          parse_pstr_set();
@@ -2883,7 +2891,7 @@ namespace dynamic_source
 
       single_lock slLibrary(m_pmutex, true);
 
-      __øconstruct(m_plibraryLib);
+      øconstruct(m_plibraryLib);
 
       m_plibraryLib->open(m_strLibraryPath);
       // return;
@@ -2935,9 +2943,9 @@ namespace dynamic_source
       m_plibraryLib->close();
    }
 
-   string script_compiler::get_ds_print(const ::string& psz)
+   string script_compiler::get_ds_print(const ::scoped_string & scopedstr)
    {
-      string strSource(psz);
+      string strSource(scopedstr);
       string strDest;
       while (strSource.length() > 0)
       {
@@ -2962,7 +2970,7 @@ namespace dynamic_source
    void script_compiler::parse_pstr_set()
    {
 
-      ::file::listing straFile;
+      ::file::listing_base straFile;
 
       //auto papp = get_app();
 
@@ -2985,7 +2993,7 @@ namespace dynamic_source
          if (::str::case_insensitive_find(".svn", strFile) >= 0 || !case_insensitive_string_ends(strFile, ".txt"))
             continue;
          strFile = file()->as_string(strFile);
-         string_array straLine;
+         string_array_base straLine;
          straLine.explode("\r\n", strFile);
          string strExtra;
          for (int j = 0; j < straLine.get_count(); j++)
@@ -3045,14 +3053,14 @@ namespace dynamic_source
    }
 
 
-   void script_compiler::pstr_set(atom pszTopic, atom idLocale, atom idSchema, const ::string& psz)
+   void script_compiler::pstr_set(const ::atom & atomTopic, atom idLocale, atom idSchema, const ::scoped_string & scopedstr)
    {
 
-      synchronous_lock synchronouslock(m_pmanager->synchronization());
+      synchronous_lock synchronouslock(m_pmanager->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       auto psystem = system();
 
-      psystem->texttable()->set(pszTopic, idLocale, idSchema, psz);
+      psystem->texttable()->set(atomTopic, idLocale, idSchema, scopedstr);
 
    }
 

@@ -116,7 +116,7 @@ int defer_run_system()
 //int defer_run_system(const ::file::path & path)
 //{
 //
-//   return __start_system_with_file(pszFileName);
+//   return __start_system_with_file(scopedstrFileName);
 //
 //}
 //
@@ -124,7 +124,7 @@ int defer_run_system()
 //int defer_run_system(char ** pszaFileName, int iFileCount)
 //{
 //
-//   return __start_system_with_file((const char **) pszaFileName, iFileCount);
+//   return __start_system_with_file((const_char_pointer *) pszaFileName, iFileCount);
 //
 //}
 //
@@ -164,10 +164,10 @@ string apple_get_executable_path()
 //}
 
 //// iMillisDelay default 500ms good
-//void apple_accumulate_on_open_file(const char ** psza, int iCount, const ::scoped_string & scopedstrExtra)
+//void apple_accumulate_on_open_file(const_char_pointer *psza, int iCount, const ::scoped_string & scopedstrExtra)
 //{
 //
-//   string_array stra;
+//   string_array_base stra;
 //
 //   stra.c_add((char **) psza, iCount, false);
 //
@@ -196,7 +196,7 @@ string apple_get_executable_path()
 
 
 
-//void apple_on_open_file(const char ** psza, int iCount, const ::scoped_string & scopedstrExtra)
+//void apple_on_open_file(const_char_pointer *psza, int iCount, const ::scoped_string & scopedstrExtra)
 //{
 //
 //   if(iCount <= 0)
@@ -208,17 +208,17 @@ string apple_get_executable_path()
 //   else if(iCount == 1)
 //   {
 //
-//      ::acmeacmesystem()->on_open_file(psza[0], pszExtra);
+//      ::acmeacmesystem()->on_open_file(scopedstra[0], pszExtra);
 //
 //      ::free((void *) psza[0]);
 //
-//      ::free(psza);
+//      ::free(scopedstra);
 //
 //   }
 //   else
 //   {
 //
-//      string_array stra;
+//      string_array_base stra;
 //
 //      stra.c_add((char **) psza, iCount, false);
 //

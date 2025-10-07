@@ -49,7 +49,7 @@ namespace interprocess_channel
    //}
 
 
-   bool listener::on_interprocess_handle(handler * phandler, const ::string & strUri)
+   bool listener::on_interprocess_handle(handler * phandler, const ::scoped_string & scopedstrUri)
    {
 
       return true;
@@ -87,13 +87,13 @@ namespace interprocess_channel
 
 
    // calls restart if confirm_tx failed
-   bool interprocess_channel::ensure_tx(const ::string & pszMessage, duration durationTimeout)
+   bool interprocess_channel::ensure_tx(const ::scoped_string & scopedstrMessage, duration durationTimeout)
    {
 
       try
       {
 
-         m_ptx->send(pszMessage, durationTimeout);
+         m_ptx->send(scopedstrMessage, durationTimeout);
 
       }
       catch (...)
@@ -188,7 +188,7 @@ namespace interprocess_channel
 
 
 
-   void caller::open(const ::string & strChannel, launcher * plauncher)
+   void caller::open(const ::scoped_string & scopedstrChannel, launcher * plauncher)
    {
 
       //return true;
@@ -215,7 +215,7 @@ namespace interprocess_channel
    }
 
 
-   void caller::send(const ::string & pszMessage, const duration & durationTimeout)
+   void caller::send(const ::scoped_string & scopedstrMessage, const duration & durationTimeout)
    {
 
       if (!is_tx_ok())
@@ -288,7 +288,7 @@ namespace interprocess_channel
    }
 
 
-   void handler::create(const ::string & strChannel)
+   void handler::create(const ::scoped_string & scopedstrChannel)
    {
 
       //return true;
@@ -307,7 +307,7 @@ namespace interprocess_channel
    }
 
 
-   bool handler::on_interprocess_receive(const ::string & strMessage)
+   bool handler::on_interprocess_receive(const ::scoped_string & scopedstrMessage)
    {
 
       //if (case_insensitive_string_begins(strMessage, "synch_"))
@@ -403,7 +403,7 @@ namespace interprocess_channel
    //void handler::dispatch_message(::string && strMessage)
    //{
 
-   //   auto pdispatchitem = __allocate class dispatch_item (::transfer(strMessage));
+   //   auto pdispatchitem = øallocate class dispatch_item (::transfer(strMessage));
 
    //   dispatch_item(::transfer(pdispatchitem));
 
@@ -413,7 +413,7 @@ namespace interprocess_channel
    //void handler::dispatch_message(unsigned long long uData, ::memory && memory)
    //{
 
-   //   auto pdispatchitem = __allocate class dispatch_item (uData, ::transfer(memory));
+   //   auto pdispatchitem = øallocate class dispatch_item (uData, ::transfer(memory));
 
    //   dispatch_item(::transfer(pdispatchitem));
 
@@ -423,7 +423,7 @@ namespace interprocess_channel
    //void handler::dispatch_item(::pointer<class dispatch_item> && pdispatchitem)
    //{
 
-   //   synchronous_lock synchronouslock(m_pmutexDispatch);
+   //   synchronous_lock synchronouslock(m_pmutexDispatch, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //   bool bWasEmpty = m_dispatchitema.is_empty();
 
@@ -510,7 +510,7 @@ namespace interprocess_channel
    //#ifdef WINDOWS
    //
    //
-   //      bool interprocess_channel::open_ab(const ::string & pszKey, const ::string & pszModule, launcher * plauncher)
+   //      bool interprocess_channel::open_ab(const ::scoped_string & scopedstrKey, const ::scoped_string & scopedstrModule, launcher * plauncher)
    //      {
    //
    //         m_strChannel = pszKey;
@@ -540,7 +540,7 @@ namespace interprocess_channel
    //      }
    //
 
-        /* bool interprocess_channel::open_ba(const ::string & pszKey, const ::string & pszModule, launcher * plauncher)
+        /* bool interprocess_channel::open_ba(const ::scoped_string & scopedstrKey, const ::scoped_string & scopedstrModule, launcher * plauncher)
          {
 
             m_strChannel = pszKey;
@@ -572,7 +572,7 @@ namespace interprocess_channel
    #else*/
 
 
-   bool interprocess_channel::open_ab(const ::string & pszKey, launcher * plauncher)
+   bool interprocess_channel::open_ab(const ::scoped_string & scopedstrKey, launcher * plauncher)
    {
 
       m_strChannel = pszKey;
@@ -592,7 +592,7 @@ namespace interprocess_channel
    }
 
 
-   bool interprocess_channel::open_ba(const ::string & pszKey, launcher * plauncher)
+   bool interprocess_channel::open_ba(const ::scoped_string & scopedstrKey, launcher * plauncher)
    {
 
       m_strChannel = pszKey;

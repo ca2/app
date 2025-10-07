@@ -26,12 +26,12 @@ CLASS_DECL_AXIS int_bool defer_aura_term();
 //
 //
 //
-//   bool extract_sub_string(string& rString, const ::string & strFullString, int iSubString, char chSep)
+//   bool extract_sub_string(string& rString, const ::scoped_string & scopedstrFullString, int iSubString, char chSep)
 //   {
 //
 //      const ::scoped_string & scopedstrFullString = strFullString;
 //
-//      if (pszFullString == nullptr || *pszFullString == '\0')
+//      if (scopedstrFullString == nullptr || *pszFullString == '\0')
 //      {
 //
 //         return false;
@@ -40,9 +40,9 @@ CLASS_DECL_AXIS int_bool defer_aura_term();
 //
 //      while (iSubString--)
 //      {
-//         pszFullString = strchr(pszFullString, chSep);
+//         pszFullString = strchr(scopedstrFullString, chSep);
 //
-//         if (pszFullString == nullptr)
+//         if (scopedstrFullString == nullptr)
 //
 //         {
 //            rString.empty();        // return is_empty string as well
@@ -52,10 +52,10 @@ CLASS_DECL_AXIS int_bool defer_aura_term();
 //
 //      }
 //
-//      const char* pchEnd = strchr(pszFullString, chSep);
+//      const char* pchEnd = strchr(scopedstrFullString, chSep);
 //
 //
-//      character_count nLen = (pchEnd == nullptr) ? strlen(pszFullString) : (int)(pchEnd - pszFullString);
+//      character_count nLen = (pchEnd == nullptr) ? strlen(scopedstrFullString) : (int)(pchEnd - pszFullString);
 //
 //
 //      ASSERT(nLen >= 0);

@@ -80,7 +80,7 @@ namespace crypto
 
       // result is 20-unsigned char digest
       virtual void hmac(void * result,const memory & memMessage,const memory & key) = 0;
-      virtual void hmac(void * result,const string & memMessage,const string & key) = 0;
+      virtual void hmac(void * result,const ::scoped_string & scopedstrMessage,const ::scoped_string & scopedstrKey) = 0;
 
       virtual void file_set(::payload payloadFile,const ::scoped_string & scopedstrData,const ::scoped_string & scopedstrSalt, ::platform::application * papp);
       virtual void file_get(::payload payloadFile,string & str,const ::scoped_string & scopedstrSalt, ::platform::application * papp);
@@ -104,13 +104,13 @@ namespace crypto
       virtual ::memory defer_get_cryptkey();
 
       
-      virtual ::pointer<rsa>create_rsa_key(const ::string & strRsa);
+      virtual ::pointer<rsa>create_rsa_key(const ::scoped_string & scopedstrRsa);
 
       virtual ::pointer<rsa>generate_rsa_key();
 
-      virtual ::pointer<rsa>read_priv_pem(const ::string & strFile);
+      virtual ::pointer<rsa>read_priv_pem(const ::scoped_string & scopedstrFile);
 
-      virtual ::pointer<rsa>read_pub_pem(const ::string & strFile);
+      virtual ::pointer<rsa>read_pub_pem(const ::scoped_string & scopedstrFile);
 
 
       //void err_load_rsa_strings();
@@ -119,17 +119,17 @@ namespace crypto
       //void err_load_crypto_strings();
 
 
-      virtual string spa_login_crypt(const ::scoped_string & scopedstr,const string & pszRsa);
-      virtual string spa_login_decrypt(const ::scoped_string & scopedstr,const string & pszRsa);
+      virtual string spa_login_crypt(const ::scoped_string & scopedstr,const ::scoped_string & scopedstrRsa);
+      virtual string spa_login_decrypt(const ::scoped_string & scopedstr,const ::scoped_string & scopedstrRsa);
 
       virtual string spa_auth_crypt(const ::scoped_string & scopedstr,rsa * prsa);
       virtual string spa_auth_decrypt(const ::scoped_string & scopedstr,rsa * prsa);
-      virtual string spa_auth_decrypt(const ::scoped_string & scopedstr,const string & pszRsa);
+      virtual string spa_auth_decrypt(const ::scoped_string & scopedstr,const ::scoped_string & scopedstrRsa);
 
       virtual string txt_encrypt(const ::scoped_string & scopedstr,rsa * prsa);
       virtual string txt_decrypt(const ::scoped_string & scopedstr,rsa * prsa);
 
-      //virtual void np_make_zigbert_rsa(const ::string & strDir, const ::string & strSignerPath, const ::string & strKeyPath, const ::string & strOthersPath, const ::string & strSignature);
+      //virtual void np_make_zigbert_rsa(const ::scoped_string & scopedstrDir, const ::scoped_string & scopedstrSignerPath, const ::scoped_string & scopedstrKeyPath, const ::scoped_string & scopedstrOthersPath, const ::scoped_string & scopedstrSignature);
 
 
 
@@ -145,9 +145,9 @@ namespace crypto
 
 
 
-CLASS_DECL_ACME void stunCalculateIntegrity_longterm(char* hmac, const char* input, int length, const char *username, const char *realm, const char *password);
+CLASS_DECL_ACME void stunCalculateIntegrity_longterm(char* hmac, const_char_pointer input, int length, const_char_pointer username, const_char_pointer realm, const_char_pointer password);
 
-CLASS_DECL_ACME void stunCalculateIntegrity_shortterm(char* hmac, const char* input, int length, const char* key);
+CLASS_DECL_ACME void stunCalculateIntegrity_shortterm(char* hmac, const_char_pointer input, int length, const_char_pointer key);
 
 
 CLASS_DECL_ACME void hmac_evp_sha1_1234(unsigned char * hmac, unsigned int * hmacSize, const unsigned char * buf, size_t bufLen);

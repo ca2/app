@@ -29,7 +29,7 @@ public:
 
 #endif
 
-   semaphore(int lInitialCount = 1, int lMaxCount = 1, const char * pstrName=nullptr, security_attributes * psecurityattributes = nullptr);
+   semaphore(int lInitialCount = 1, int lMaxCount = 1, const_char_pointer pstrName=nullptr, security_attributes * psecurityattributes = nullptr);
    ~semaphore() override;
 
 

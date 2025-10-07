@@ -240,12 +240,12 @@ namespace nanoui
 
       //
       //   /// Handle a file drop happening
-      //   virtual bool drop_event(const ::string_array & /* filenames */) {
+      //   virtual bool drop_event(const ::string_array_base & /* filenames */) {
       //      return false; /* To be overridden */
       //   }
       //
          /// Default keyboard happening handler
-      virtual bool keyboard_event(::user::enum_key ekey, int scancode, int action, const ::user::e_key& ekeyModifiers, const ::string& strText) override;
+      virtual bool keyboard_event(::user::enum_key ekey, int scancode, int action, const ::user::e_key& ekeyModifiers, const ::scoped_string & scopedstrText) override;
 
       /// Text input happening handler: codepoint is native endian UTF-32 format
       bool keyboard_character_event(unsigned int codepoint) override;
@@ -342,7 +342,7 @@ namespace nanoui
       bool mouse_button_event(const int_point& p, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key& ekeyModifiers) override;
       //   void key_callback_event(int key, int scancode, int action, int mods);
       //   void char_callback_event(unsigned int codepoint);
-      //   void drop_callback_event(int count, const char ** filenames);
+      //   void drop_callback_event(int count, const_char_pointer *filenames);
       //   void scroll_callback_event(double x, double y);
       //   void resize_callback_event(int width, int height);
       //
@@ -384,7 +384,7 @@ namespace nanoui
       bool on_mouse_move(const ::int_point& point, bool bDown, const ::user::e_key& ekeyModifiers) override;
       //bool on_mouse_drag(const ::int_point & point, const ::user::e_key & ekeyModifiers) override;
 
-      bool on_key_down(::user::enum_key ekey, long long scancode, const ::user::e_key& ekeyModifiers, const string& strText) override;
+      bool on_key_down(::user::enum_key ekey, long long scancode, const ::user::e_key& ekeyModifiers, const ::scoped_string & scopedstrText) override;
       bool on_key_up(::user::enum_key ekey, long long scancode, const ::user::e_key& ekeyModifiers) override;
 
       bool on_scroll_event(const ::int_point& point, double x, double y) override;

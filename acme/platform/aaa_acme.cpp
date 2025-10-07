@@ -65,7 +65,7 @@ namespace acme
    //}
 
 
-   void acme::install_crash_dump_reporting(const string& strModuleNameWithTheExeExtension)
+   void acme::install_crash_dump_reporting(const ::scoped_string & scopedstrModuleNameWithTheExeExtension)
    {
 
 

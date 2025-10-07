@@ -106,9 +106,9 @@ namespace user
 
       }
 
-      synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-      auto pmap = m_map.plookup(psubitem->m_pitem->m_iItem);
+      auto pmap = m_map.find(psubitem->m_pitem->m_iItem);
 
       if(!pmap)
       {
@@ -117,7 +117,7 @@ namespace user
 
       }
 
-      auto passoc = pmap->element2().plookup(psubitem->m_pitem->m_iItem);
+      auto passoc = pmap->element2().find(psubitem->m_pitem->m_iItem);
 
       if(!passoc)
       {
@@ -136,7 +136,7 @@ namespace user
    void list_cache::_001Invalidate(::user::mesh * pmesh)
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       m_map.erase_all();
 

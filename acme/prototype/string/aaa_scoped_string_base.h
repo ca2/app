@@ -73,9 +73,9 @@
 ////   scoped_string_base(const ::ansi_character ch) :m_str(ch), RANGE(m_str) { }
 ////   scoped_string_base(const ::wd16_character ch) :m_str(ch), RANGE(m_str) { }
 ////   scoped_string_base(const ::wd32_character ch) :m_str(ch), RANGE(m_str) { }
-//   //scoped_string_base(const ::ansi_character * psz) :m_str(e_zero_initialize), RANGE(e_zero_initialize) { _construct1(psz); }
-//   //scoped_string_base(const ::wd16_character * psz) :m_str(e_zero_initialize), RANGE(e_zero_initialize) { _construct1(psz); }
-//   //scoped_string_base(const ::wd32_character * psz) :m_str(e_zero_initialize), RANGE(e_zero_initialize) { _construct1(psz); }
+//   //scoped_string_base(const ::ansi_character * psz) :m_str(e_zero_initialize), RANGE(e_zero_initialize) { _construct1(scopedstr); }
+//   //scoped_string_base(const ::wd16_character * psz) :m_str(e_zero_initialize), RANGE(e_zero_initialize) { _construct1(scopedstr); }
+//   //scoped_string_base(const ::wd32_character * psz) :m_str(e_zero_initialize), RANGE(e_zero_initialize) { _construct1(scopedstr); }
 ////   scoped_string_base(const ::const_ansi_range & range) :m_str(e_zero_initialize), RANGE(range) { }
 ////   scoped_string_base(const ::const_wd16_range & range) :m_str(e_zero_initialize), RANGE(range) { }
 ////   scoped_string_base(const ::const_wd32_range & range) :m_str(e_zero_initialize), RANGE(range) { }
@@ -189,13 +189,13 @@
 //   //   {
 //
 //   //      this->m_begin = psz;
-//   //      this->m_end = psz + string_safe_length(psz);
+//   //      this->m_end = psz + string_safe_length(scopedstr);
 //
 //   //   }
 //   //   else
 //   //   {
 //
-//   //      this->str(psz);
+//   //      this->str(scopedstr);
 //
 //   //   }
 //
@@ -232,9 +232,9 @@
 //   inline bool operator ==(const ::ansi_string & str) const { return this->equals((const scoped_string_base&)str); }
 //   inline bool operator ==(const ::wd16_string & str) const { return this->equals((const scoped_string_base&)str); }
 //   inline bool operator ==(const ::wd32_string & str) const { return this->equals((const scoped_string_base&)str); }
-//   inline bool operator ==(const ::ansi_character * psz) const { return this->equals(psz); }
-//   inline bool operator ==(const ::wd16_character * psz) const { return this->equals(psz); }
-//   inline bool operator ==(const ::wd32_character * psz) const { return this->equals(psz); }
+//   inline bool operator ==(const ::ansi_character * psz) const { return this->equals(scopedstr); }
+//   inline bool operator ==(const ::wd16_character * psz) const { return this->equals(scopedstr); }
+//   inline bool operator ==(const ::wd32_character * psz) const { return this->equals(scopedstr); }
 //   inline bool operator ==(const ::scoped_ansi_string & str) const { return this->equals((const scoped_string_base&)str); }
 //   inline bool operator ==(const ::scoped_wd16_string & str) const { return this->equals((const scoped_string_base&)str); }
 //   inline bool operator ==(const ::scoped_wd32_string & str) const { return this->equals((const scoped_string_base&)str); }

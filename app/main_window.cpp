@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "main_window.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "acme/handler/item.h"
 #include "acme/platform/node.h"
 #include "acme/platform/system.h"
@@ -49,7 +49,7 @@ namespace app_app
 
       ::user::main_window::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_create, pchannel, this, &main_window::on_message_create);
+      USER_MESSAGE_LINK(::user::e_message_create, pchannel, this, &main_window::on_message_create);
 
    }
 
@@ -239,7 +239,7 @@ namespace app_app
 
             pitemClose->m_rectangle2.bottom() = pitemClose->m_rectangle2.top() + iSize;
 
-//            auto pmouse = __create_new < ::message::mouse >();
+//            auto pmouse = øcreate_new < ::message::mouse >();
 //
 //            pmouse->m_pointHost = host_mouse_cursor_position();
 //

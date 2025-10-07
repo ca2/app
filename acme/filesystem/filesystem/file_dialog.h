@@ -16,7 +16,7 @@ namespace file
 
 
       ::string get_main_extension() const;
-      ::string_array get_preserve_extensions() const;
+      ::string_array_base get_preserve_extensions() const;
 
    };
 
@@ -29,13 +29,13 @@ namespace file
       using ::array < file_dialog_filter_item >::array;
 
       ::collection::index find_first_with_extension(const ::scoped_string & scopedstrExtension);
-      ::string_array get_all_related_extensions() const;
-      ::string_array get_pattern_list() const;
+      ::string_array_base get_all_related_extensions() const;
+      ::string_array_base get_pattern_list() const;
 
    };
 
 
-   //CLASS_DECL_ACME string_array get_pattern_list(const file_dialog_filter & filedialogfiltera);
+   //CLASS_DECL_ACME string_array_base get_pattern_list(const file_dialog_filter & filedialogfiltera);
 
 
    class CLASS_DECL_ACME file_dialog :
@@ -52,7 +52,7 @@ namespace file
       ::file::path                                       m_pathStartFolder;
       bool                                               m_bSave;
       bool                                               m_bMultiple;
-      ::file::path_array                                 m_patha;
+      ::file::path_array_base                                 m_patha;
       ::collection::index                                m_iFilter;
 
       

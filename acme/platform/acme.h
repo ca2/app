@@ -49,15 +49,13 @@ namespace acme
 
 #if defined(WINDOWS) && defined(UNICODE)
 
-      void initialize(int argc, wchar_t * argv[], wchar_t * envp[]);
+      virtual void initialize_system(int argc, wchar_t * argv[], wchar_t * envp[]);
 
-      void initialize(hinstance hinstanceThis, hinstance hinstancePrev, wchar_t * pCmdLine, int nCmdShow);
-
-#else
-
-      virtual void initialize_system(int argc, platform_char ** argv, platform_char ** envp);
+      virtual void initialize_system(hinstance hinstanceThis, hinstance hinstancePrev, wchar_t * pCmdLine, int nCmdShow);
 
 #endif
+
+      virtual void initialize_system(int argc, char ** argv, char ** envp);
 
 
 #if REFERENCING_DEBUGGING

@@ -231,7 +231,7 @@ namespace nano2d
 	}
 
 
-	void context::get_maximum_width_and_row_height(float& fMaximumWidth, float& fRowHeight, const string_array& straLines)
+	void context::get_maximum_width_and_row_height(float& fMaximumWidth, float& fRowHeight, const string_array_base& straLines)
 	{
 
 		::float_rectangle bounds;
@@ -1637,7 +1637,7 @@ void TransformSkewX(float* t, float a)
 	//
 	//	if (w > 0.0f) iw = 1.0f / w;
 	//
-	//	// Calculate which joins needs extra vertices to append, and gather vertex count.
+	//	// Calculate which joins needs extra vertexes to append, and gather vertex count.
 	//	for (i = 0; i < m_ppathcache->npaths; i++) {
 	//		::nano2d::path * path = &m_ppathcache->paths[i];
 	//		NVGpoint * pts = &m_ppathcache->points[path->first];
@@ -1861,7 +1861,7 @@ void TransformSkewX(float* t, float a)
 	//		float rw, lw, woff;
 	//		float ru, lu;
 	//
-	//		// Calculate shape vertices.
+	//		// Calculate shape vertexes.
 	//		woff = 0.5f * aa;
 	//		dst = verts;
 	//		path->fill = dst;
@@ -2353,7 +2353,7 @@ void TransformSkewX(float* t, float a)
 	}
 
 	// Add fonts
-	//int context::CreateFont(const char * name, const char * filename)
+	//int context::CreateFont(const_char_pointer name, const_char_pointer filename)
 	//{
 	//	//return fonsAddFont(fs, name, filename, 0);
 	//	return -1;
@@ -2444,7 +2444,7 @@ void TransformSkewX(float* t, float a)
 	}
 
 
-	//::write_text::font_pointer context::CreateFont(const char * face, float size)
+	//::write_text::font_pointer context::CreateFont(const_char_pointer face, float size)
 	//{
 	//   
 	//   return create_font(face, size);
@@ -2697,9 +2697,9 @@ void TransformSkewX(float* t, float a)
 
 		m_pstate->m_ealignText = ::e_align_left | valign;
       
-      //const char * string = scopedstr.m_begin;
+      //const_char_pointer string = scopedstr.m_begin;
       
-      //const char * end = scopedstr.m_end;
+      //const_char_pointer end = scopedstr.m_end;
 
       //auto rowa = text_break_lines(scopedstr, breakRowWidth);
 		//while ((nrows = ))
@@ -2776,7 +2776,7 @@ void TransformSkewX(float* t, float a)
    ::pointer < ::nano2d::text_box > context::text_box_layout(const ::scoped_string& scopedstr, float breakRowWidth)
    {
 
-      ::pointer < ::nano2d::text_box > ptextbox = __create_new<::nano2d::text_box >();
+      ::pointer < ::nano2d::text_box > ptextbox = øcreate_new<::nano2d::text_box >();
    
       ptextbox->m_fWidth = breakRowWidth;
       
@@ -2791,14 +2791,14 @@ void TransformSkewX(float* t, float a)
       float rowWidth = 0;
       float rowMinX = 0;
       float rowMaxX = 0;
-      const char * string = scopedstr.m_begin;
-      const char * end = scopedstr.m_end;
-      const char * rowStart = NULL;
-      const char * rowEnd = NULL;
-      const char * wordStart = NULL;
+      const_char_pointer string = scopedstr.m_begin;
+      const_char_pointer end = scopedstr.m_end;
+      const_char_pointer rowStart = NULL;
+      const_char_pointer rowEnd = NULL;
+      const_char_pointer wordStart = NULL;
       float wordStartX = 0;
       float wordMinX = 0;
-      const char * breakEnd = NULL;
+      const_char_pointer breakEnd = NULL;
       float breakWidth = 0;
       float breakMaxX = 0;
       int type = NANO2D_SPACE, typePrevious = NANO2D_SPACE;
@@ -2900,7 +2900,7 @@ void TransformSkewX(float* t, float a)
          {
             
             // Always handle ___new lines.
-            auto prow = __create_new <::nano2d::text_row >();
+            auto prow = øcreate_new <::nano2d::text_row >();
             auto start = rowStart != NULL ? rowStart : range.m_begin;
             auto end = rowEnd != NULL ? rowEnd : range.m_begin;
             
@@ -3001,7 +3001,7 @@ void TransformSkewX(float* t, float a)
                   {
                      
                      // The current word is longer than the row length, just break it from here.
-                     auto prow = __create_new <::nano2d::text_row >();
+                     auto prow = øcreate_new <::nano2d::text_row >();
                      prow->m_str.assign(rowStart, range.begin());
                      //prow->end = iter.str;
                      prow->width = rowWidth * invscale;
@@ -3030,7 +3030,7 @@ void TransformSkewX(float* t, float a)
                   {
                      
                      // Break the line from the end of the last word, and start ___new line from the beginning of the ___new.
-                     auto prow = __create_new <::nano2d::text_row >();
+                     auto prow = øcreate_new <::nano2d::text_row >();
                      //prow->start = rowStart;
                      //prow->end = breakEnd;
 							prow->m_str.assign(rowStart, breakEnd);
@@ -3073,7 +3073,7 @@ void TransformSkewX(float* t, float a)
       if (rowStart != NULL)
       {
          
-         auto prow = __create_new <::nano2d::text_row >();
+         auto prow = øcreate_new <::nano2d::text_row >();
          //prow->start = rowStart;
          //prow->end = rowEnd;
 			prow->m_str.assign(rowStart, rowEnd);
@@ -3101,12 +3101,12 @@ void TransformSkewX(float* t, float a)
 		//float rowWidth = 0;
 		//float rowMinX = 0;
 		//float rowMaxX = 0;
-		//const char * rowStart = NULL;
-		//const char * rowEnd = NULL;
-		//const char * wordStart = NULL;
+		//const_char_pointer rowStart = NULL;
+		//const_char_pointer rowEnd = NULL;
+		//const_char_pointer wordStart = NULL;
 		//float wordStartX = 0;
 		//float wordMinX = 0;
-		//const char * breakEnd = NULL;
+		//const_char_pointer breakEnd = NULL;
 		//float breakWidth = 0;
 		//float breakMaxX = 0;
 		//int type = NVG_SPACE, typePrevious = NVG_SPACE;
@@ -3413,7 +3413,7 @@ void TransformSkewX(float* t, float a)
 	}
 
 
-	::collection::count context::character_metric(::double_array& daLeft, ::double_array& daRight, const ::string& str, character_count iStart, character_count iEnd)
+	::collection::count context::character_metric(::double_array& daLeft, ::double_array& daRight, const ::scoped_string & scopedstr, character_count iStart, character_count iEnd)
 	{
 
 		throw ::interface_only();

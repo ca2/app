@@ -8,7 +8,7 @@ namespace acme
    inline bool is_false(const ::scoped_string & scopedstr)
    {
 
-      return ::is_null(psz) || *psz == '\0' || case_insensitive_ansi_compare(psz, "false") == 0 || case_insensitive_ansi_compare(psz, "no") == 0;
+      return ::is_null(scopedstr) || *psz == '\0' || case_insensitive_ansi_compare(scopedstr, "false") == 0 || case_insensitive_ansi_compare(scopedstr, "no") == 0;
 
    }
 
@@ -16,7 +16,7 @@ namespace acme
    inline bool is_true(const ::scoped_string & scopedstr)
    {
 
-      return !is_false(psz);
+      return !is_false(scopedstr);
 
    }
 
@@ -24,7 +24,7 @@ namespace acme
    inline bool is_set_false(const ::scoped_string & scopedstr)
    {
 
-      return ::is_set(psz) && (case_insensitive_ansi_compare(psz, "false") == 0 || case_insensitive_ansi_compare(psz, "no") == 0);
+      return ::is_set(scopedstr) && (case_insensitive_ansi_compare(scopedstr, "false") == 0 || case_insensitive_ansi_compare(scopedstr, "no") == 0);
 
    }
 
@@ -32,12 +32,12 @@ namespace acme
    inline bool is_set_true(const ::scoped_string & scopedstr)
    {
 
-      return ::is_set(psz) && (case_insensitive_ansi_compare(psz, "true") == 0 || case_insensitive_ansi_compare(psz, "yes") == 0);
+      return ::is_set(scopedstr) && (case_insensitive_ansi_compare(scopedstr, "true") == 0 || case_insensitive_ansi_compare(scopedstr, "yes") == 0);
 
    }
 
 
-   inline bool is_false(const ::string & str)
+   inline bool is_false(const ::scoped_string & scopedstr)
    {
 
       return str.is_empty() || str.case_insensitive_order("false") == 0 || str.case_insensitive_order("no") == 0;
@@ -45,7 +45,7 @@ namespace acme
    }
 
 
-   inline bool is_true(const ::string & str)
+   inline bool is_true(const ::scoped_string & scopedstr)
    {
 
       return !is_false(str);
@@ -53,7 +53,7 @@ namespace acme
    }
 
 
-   inline bool is_set_false(const ::string & str)
+   inline bool is_set_false(const ::scoped_string & scopedstr)
    {
 
       return str.case_insensitive_order("false") == 0 || str.case_insensitive_order("no") == 0;
@@ -61,7 +61,7 @@ namespace acme
    }
 
 
-   inline bool is_set_true(const ::string & str)
+   inline bool is_set_true(const ::scoped_string & scopedstr)
    {
 
       return str.case_insensitive_order("true") == 0 || str.case_insensitive_order("yes") == 0;

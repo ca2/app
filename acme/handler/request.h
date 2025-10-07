@@ -96,32 +96,32 @@ public:
    void common_construct();
 
 
-   virtual void initialize_command_line2(const string& strCommandLine);
+   virtual void initialize_command_line2(const ::scoped_string & scopedstrCommandLine);
 
-   virtual void initialize_arguments(::string_array& straArguments);
+   virtual void initialize_arguments(::string_array_base& straArguments);
 
 
    //command_line & operator = (const command_line & commandline);
 
 
-   virtual void ParseParam(const ::string& strParam, bool bFlag, bool bLast);
-   virtual void ParseParamFlag(const ::string& strParam);
-   virtual void ParseParamNotFlag(const ::string& strParam);
+   virtual void ParseParam(const ::scoped_string & scopedstrParam, bool bFlag, bool bLast);
+   virtual void ParseParamFlag(const ::scoped_string & scopedstrParam);
+   virtual void ParseParamNotFlag(const ::scoped_string & scopedstrParam);
    virtual void ParseLast(bool bLast);
 
 
-   virtual void _001ParseCommandLine(const ::string& strCommandLine);
-   virtual void _001ParseCommandLineUri(const ::string& strCommandLine);
+   virtual void _001ParseCommandLine(const ::scoped_string & scopedstrCommandLine);
+   virtual void _001ParseCommandLineUri(const ::scoped_string & scopedstrCommandLine);
 
-   virtual void _001ParseCommandFork(const ::string& strCommandFork);
-   virtual void _001ParseCommandForkUri(const ::string& strCommandFork);
+   virtual void _001ParseCommandFork(const ::scoped_string & scopedstrCommandFork);
+   virtual void _001ParseCommandForkUri(const ::scoped_string & scopedstrCommandFork);
 
 
-   virtual void _001ParseCommandArguments(::string_array& straArguments);
+   virtual void _001ParseCommandArguments(::string_array_base& straArguments);
 
    
    virtual void initialize_create(arguments arguments);
-   virtual void initialize_create(string strAppId, ::payload payloadFile, const ::payload& varOptions = __visible(true), ::user::element * puiParent = nullptr, e_window_flag eflag = e_window_flag_none, ::atom = ::atom());
+   virtual void initialize_create(const ::scoped_string & scopedstrAppId, ::payload payloadFile, const ::payload& varOptions = __visible(true), ::user::element * puiParent = nullptr, e_window_flag eflag = e_window_flag_none, ::atom = ::atom());
    virtual void initialize_create(::data::data * pdata, const ::payload & varOptions = __visible(true), ::user::element * puiParent = nullptr, e_window_flag eflag = e_window_flag_none, ::atom = ::atom());
 
 
@@ -134,7 +134,7 @@ public:
    void finish_initialization();
 
    virtual string get_description();
-   virtual void set_description(string strDescription);
+   virtual void set_description(const ::scoped_string & scopedstrDescription);
 
    virtual ::collection::index get_edge();
    //virtual ::application_bias * get_application_bias();

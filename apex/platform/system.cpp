@@ -18,7 +18,7 @@
 #include "acme/compress/compress.h"
 #include "acme/compress/uncompress.h"
 #include "acme/constant/id.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "acme/crypto/crypto.h"
 #include "acme/exception/dump_context.h"
 #include "acme/exception/interface_only.h"
@@ -65,8 +65,8 @@
 #include "acme/prototype/string/base64.h"
 
 
-int file_put_contents(const ::file::path & path, const char * contents);;
-CLASS_DECL_ACME void exception_message_box(::particle * pparticle, ::exception & exception, const ::string & strMoreDetails);
+int file_put_contents(const ::file::path & path, const_char_pointer contents);;
+CLASS_DECL_ACME void exception_message_box(::particle * pparticle, ::exception & exception, const ::scoped_string & scopedstrMoreDetails);
 
 
 CLASS_DECL_ACME ::string get_operating_system_name();
@@ -86,7 +86,7 @@ void apex_system_update(const ::atom & atom, const ::payload & payload);
 void apex_system_set_modified(const ::atom & atom);
 
 
-// CLASS_DECL_APEX void multimedia_set_library_name(const ::string & psz)
+// CLASS_DECL_APEX void multimedia_set_library_name(const ::scoped_string & scopedstr)
 // {
 
 //    g_pszMultimediaLibraryName = psz;
@@ -113,7 +113,7 @@ extern "C"
 #include <sys/time.h>
 #endif
 
-CLASS_DECL_APEX void __simple_tracea(::particle * pparticle, enum_trace_level elevel, const ::string & pszFunction, const ::string & pszFile, int iLine, const ::string & psz);
+CLASS_DECL_APEX void __simple_tracea(::particle * pparticle, enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, int iLine, const ::scoped_string & scopedstr);
 
 
 #ifdef WINDOWS
@@ -131,7 +131,7 @@ void unit_test_primitive_var_apex_block();
 #endif
 
 
-void dappy(const ::string & psz);
+void dappy(const ::scoped_string & scopedstr);
 
 
 //#ifdef WINDOWS_DESKTOP
@@ -289,12 +289,12 @@ namespace apex
 
       //::platform::context::install_message_routing(pchannel);
 
-      //MESSAGE_LINK(e_message_erase_session, pchannel, this, &system::on_message_erase_session);
+      //USER_MESSAGE_LINK(::user::e_message_erase_session, pchannel, this, &system::on_message_erase_session);
 
    }
 
 
-   // void system::locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema)
+   // void system::locale_schema_matter(string_array_base & stra, const string_array_base & straMatterLocator, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema)
    // {
    //
    //
@@ -350,7 +350,7 @@ namespace apex
    void system::process_init()
    {
 
-      __construct_new(m_pinternet);
+      øconstruct_new(m_pinternet);
 
 
       if (!application()->m_bShowApplicationInformation)
@@ -358,7 +358,9 @@ namespace apex
 
          string strShowApplicationInformation;
 
-         if (is_command_line_parameter_true(strShowApplicationInformation, this->m_strCommandLine, "show_application_information"))
+         ::string strCommandLine = this->command_line();
+
+         if (is_command_line_parameter_true(strShowApplicationInformation, strCommandLine, "show_application_information"))
          {
 
             application()->m_bShowApplicationInformation = true;
@@ -395,7 +397,7 @@ namespace apex
       // cold start (never previously called program and its Dlls...)?
       m_timeMainStart = m_timeStart;
 
-      //xxdebug_box("box1", "box1", e_message_box_icon_information);
+      //xxdebug_box("box1", "box1", ::user::e_message_box_icon_information);
    //
      // ::file::path pathOutputDebugString = directory_system()->system() / strAppId / "information.txt" ;
 
@@ -411,7 +413,7 @@ namespace apex
       //auto estatus =
       ::platform::system::process_init();
 
-      __construct_new(m_pthreading);
+      øconstruct_new(m_pthreading);
 
       thread::s_bAllocReady = true;
 
@@ -449,7 +451,7 @@ namespace apex
 
       //estatus =
 
-      __construct_new(m_pbase64);
+      øconstruct_new(m_pbase64);
 
       //if (!estatus)
       //{
@@ -459,7 +461,7 @@ namespace apex
       //}
 
       //estatus =
-      __construct_new(m_poperatingsystem);
+      øconstruct_new(m_poperatingsystem);
 
       //if (!estatus)
       //{
@@ -484,7 +486,7 @@ namespace apex
 #ifdef _DEBUG
 
       //estatus =
-      //__construct_new(m_pdumpcontext);
+      //øconstruct_new(m_pdumpcontext);
 
       //if (!estatus)
       //{
@@ -504,7 +506,7 @@ namespace apex
       m_nSafetyPoolSize = 512;        // default int_size
 
       //estatus =
-      __construct_new(m_pgeometry);
+      øconstruct_new(m_pgeometry);
 
       //if (!estatus)
       //{
@@ -554,16 +556,16 @@ namespace apex
       factory()->add_factory_item < ::int_array >();
 
       //factory()->add_factory_item < ::file::path_object >();
-      //factory()->add_factory_item < ::long_long_array >();
+      //factory()->add_factory_item < ::long_long_array_base >();
       //factory()->add_factory_item < ::double_array >();
       //factory()->add_factory_item < ::acme::library >();
 
       //factory()->add_factory_item < ::file::path_object >();
 
-      //factory()->add_factory_item < string_array >();
+      //factory()->add_factory_item < string_array_base >();
       //factory()->add_factory_item < memory >();
       //factory()->add_factory_item < memory_file >();
-      //factory()->add_factory_item < ::int_array >();
+      //factory()->add_factory_item < ::int_array_base >();
 
       ///estatus =
 
@@ -623,7 +625,7 @@ namespace apex
 
       // }
 
-      //estatus = __øconstruct(m_papexnode);
+      //estatus = øconstruct(m_papexnode);
 
       //if (!estatus)
       //{
@@ -688,7 +690,7 @@ namespace apex
       //
       //         }
       //
-      //         string_array straLines;
+      //         string_array_base straLines;
       //
       //         {
       //
@@ -724,11 +726,11 @@ namespace apex
       //
       //               char * pszEnvLine = (char *) ::malloc(iSize);
       //
-      //               ::zero(pszEnvLine, iSize);
+      //               ::zero(scopedstrEnvLine, iSize);
       //
-      //               strcpy(pszEnvLine, strLine);
+      //               strcpy(scopedstrEnvLine, strLine);
       //
-      //               ::putenv(pszEnvLine);
+      //               ::putenv(scopedstrEnvLine);
       //
       //            }
       //
@@ -767,7 +769,7 @@ namespace apex
 //
 //      }
 
-      //estatus = __construct_new(m_pxml);
+      //estatus = øconstruct_new(m_pxml);
 
       //if (!estatus)
       //{
@@ -883,7 +885,7 @@ pdirectorysystem->create("/ca2core");
 #ifndef APPLE_IOS
 
          //auto estatus =
-         __construct_new(m_pmachinehappeningcentral);
+         øconstruct_new(m_pmachinehappeningcentral);
 
          //if (!estatus)
          //{
@@ -986,7 +988,7 @@ pdirectorysystem->create("/ca2core");
 //         pfactoryCrypto->merge_to_global_factory();
 //
 //         //estatus =
-//         pfactoryCrypto->__øconstruct(this, m_pcrypto);
+//         pfactoryCrypto->øconstruct(this, m_pcrypto);
 //
 //      }
 
@@ -1147,7 +1149,7 @@ pdirectorysystem->create("/ca2core");
 
       //throw ::exception(todo("filehandler"));
 
-      //estatus = __construct_new(m_pfilehandler);
+      //estatus = øconstruct_new(m_pfilehandler);
 
       //if (!estatus)
       //{
@@ -1298,7 +1300,7 @@ pdirectorysystem->create("/ca2core");
    //}
 
    //estatus =
-      __construct_new(m_ptexttable);
+      øconstruct_new(m_ptexttable);
 
       auto strMain = directory()->install() / "app/_appmatter/main";
 
@@ -1340,7 +1342,7 @@ pdirectorysystem->create("/ca2core");
 
       // estatus =
 
-      __construct_new(m_phistory);
+      øconstruct_new(m_phistory);
 
       //if(!estatus)
       //{
@@ -1591,7 +1593,7 @@ pdirectorysystem->create("/ca2core");
 
    //   //   m_bPostedInitialRequest = true;
 
-   //   //   auto prequest = __create_new< ::request>();
+   //   //   auto prequest = øcreate_new< ::request>();
 
    //   //   string strAppId = application()->m_strAppId;
 
@@ -1609,7 +1611,7 @@ pdirectorysystem->create("/ca2core");
 
    //   //   prequest->m_strAppId = strAppId;
 
-   //   //   //pcreate->m_pcommandline = __create_new < command_line >();
+   //   //   //pcreate->m_pcommandline = øcreate_new < command_line >();
    //   //   post_request(prequest);
 
    //   //}
@@ -1876,10 +1878,10 @@ pdirectorysystem->create("/ca2core");
    //}
 
 
-   //void system::post_to_all_threads(::enum_message emessage, ::wparam wparam, ::lparam lparam)
+   //void system::post_to_all_threads(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
    //{
 
-   //   synchronous_lock synchronouslock(m_pmutexThread);
+   //   synchronous_lock synchronouslock(m_pmutexThread, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //   for (auto& pair : system()->m_threadidmap)
    //   {
@@ -1992,7 +1994,7 @@ pdirectorysystem->create("/ca2core");
       if (!m_pfilewatcher)
       {
 
-         ((system*)this)->__øconstruct(((system *)this)->m_pfilewatcher);
+         ((system*)this)->øconstruct(((system *)this)->m_pfilewatcher);
 
       }
 
@@ -2040,10 +2042,10 @@ pdirectorysystem->create("/ca2core");
    }
 
 
-   unsigned int system::os_post_to_all_threads(::enum_message emessage, ::wparam wparam, ::lparam lparam)
+   unsigned int system::os_post_to_all_threads(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
    {
 
-      post_to_all_threads(emessage, wparam, lparam);
+      post_to_all_threads(eusermessage, wparam, lparam);
 
       return 0;
 
@@ -2058,42 +2060,42 @@ pdirectorysystem->create("/ca2core");
    // }
 
 
-   int system::_001OnDebugReport(int i1, const ::string & psz1, int i2, const ::string & psz2, const ::string & psz3, va_list args)
+   int system::_001OnDebugReport(int i1, const ::scoped_string & scopedstr1, int i2, const ::scoped_string & scopedstr2, const ::scoped_string & scopedstr3, va_list args)
    {
 
-      return _debug_logging_report(i1, psz1, i2, psz2, psz3, args);
+      return _debug_logging_report(i1, scopedstr1, i2, scopedstr2, scopedstr3, args);
 
    }
 
 
-   int system::_debug_logging_report(int iReportType, const ::string & strFileName, int iLineNumber, const ::string & strModuleName, const char * pszFormat, va_list list)
+   int system::_debug_logging_report(int iReportType, const ::scoped_string & scopedstrFileName, int iLineNumber, const ::scoped_string & scopedstrModuleName, const_char_pointer pszFormat, va_list list_base)
    {
 
       //if(!m_ptracelog || !m_ptracelog->m_bExtendedLog)
       //{
 
-      //   return ::apex::SimpleDebugReport(iReportType,pszFileName,iLineNumber,pszModuleName,pszFormat,list);
+      //   return ::apex::SimpleDebugReport(iReportType,pszFileName,iLineNumber,pszModuleName,pszFormat,list_base);
 
       //}
 
       string str;
 
-      if (strFileName.has_character() || strModuleName.has_character())
+      if (scopedstrFileName.has_character() || scopedstrModuleName.has_character())
       {
 
-         string_array stra;
+         string_array_base stra;
 
-         if (strFileName.has_character())
+         if (scopedstrFileName.has_character())
          {
 
-            stra.add(strFileName);
+            stra.add(scopedstrFileName);
 
          }
 
-         if (strModuleName.has_character())
+         if (scopedstrModuleName.has_character())
          {
 
-            stra.add(strModuleName);
+            stra.add(scopedstrModuleName);
 
          }
 
@@ -2108,10 +2110,10 @@ pdirectorysystem->create("/ca2core");
       if (pszFormat != nullptr)
       {
 
-         //         if(list != nullptr)
+         //         if(list_base != nullptr)
          {
 
-            str2.formatf(pszFormat, list);
+            str2.formatf(pszFormat, list_base);
 
          }
          //     else
@@ -2154,10 +2156,10 @@ pdirectorysystem->create("/ca2core");
    }
 
 
-   bool system::assert_failed_line(const ::string & pszFileName, int iLine)
+   bool system::assert_failed_line(const ::scoped_string & scopedstrFileName, int iLine)
    {
 
-      __UNREFERENCED_PARAMETER(pszFileName);
+      __UNREFERENCED_PARAMETER(scopedstrFileName);
 
       __UNREFERENCED_PARAMETER(iLine);
 
@@ -2166,10 +2168,10 @@ pdirectorysystem->create("/ca2core");
    }
 
 
-   bool system::on_assert_failed_line(const ::string & pszFileName, int iLine)
+   bool system::on_assert_failed_line(const ::scoped_string & scopedstrFileName, int iLine)
    {
 
-      __UNREFERENCED_PARAMETER(pszFileName);
+      __UNREFERENCED_PARAMETER(scopedstrFileName);
 
       __UNREFERENCED_PARAMETER(iLine);
 
@@ -2189,18 +2191,18 @@ pdirectorysystem->create("/ca2core");
    //   ::pointer< ::mutex > system::get_openweather_city_mutex()
    //   {
    //
-   //      synchronous_lock synchronouslock(this->synchronization());
+   //      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
    //
    //      if (m_spmutexOpenweatherCity.is_null())
    //      {
    //
    //#ifdef UNIVERSAL_WINDOWS
    //
-   //         m_spmutexOpenweatherCity = __allocate ::pointer < ::mutex > ();
+   //         m_spmutexOpenweatherCity = øallocate ::pointer < ::mutex > ();
    //
    //#else
    //
-   //         m_spmutexOpenweatherCity = __allocate ::pointer < ::mutex > (e_create_new, false, "Global\\ca2_weather_city");
+   //         m_spmutexOpenweatherCity = øallocate ::pointer < ::mutex > (e_create_new, false, "Global\\ca2_weather_city");
    //
    //#endif
    //
@@ -2211,7 +2213,7 @@ pdirectorysystem->create("/ca2core");
    //   }
 
 
-      //void system::on_allocation_error(const ::string & str, ::particle * pparticle)
+      //void system::on_allocation_error(const ::scoped_string & scopedstr, ::particle * pparticle)
       //{
 
       //   string strMessage("Allocation Error!! : ");
@@ -2304,7 +2306,7 @@ pdirectorysystem->create("/ca2core");
    }
 
 
-   void system::initialize_log(const ::string & pszId)
+   void system::initialize_log(const ::scoped_string & scopedstrId)
    {
 
       //if (m_ptracelog)
@@ -2314,7 +2316,7 @@ pdirectorysystem->create("/ca2core");
 
       //}
 
-      //m_ptracelog = __create_new < ::apex::log >();
+      //m_ptracelog = øcreate_new < ::apex::log >();
 
       //if (!m_ptracelog)
       //{
@@ -2355,7 +2357,7 @@ pdirectorysystem->create("/ca2core");
    }
 
 
-   void system::appa_set_locale(const ::string & pszLocale, const ::action_context & context)
+   void system::appa_set_locale(const ::scoped_string & scopedstrLocale, const ::action_context & context)
    {
 
       //retry_single_lock rsl(mutex(),::time(100),::time(100));
@@ -2366,13 +2368,13 @@ pdirectorysystem->create("/ca2core");
       //      for(int i = 0; i < appptra().get_size(); i++)
       //     {
             //       ::application * papp = appptra()(i);
-            //       papp->set_locale(pszLocale,context);
+            //       papp->set_locale(scopedstrLocale,context);
             //    }
 
    }
 
 
-   void system::appa_set_schema(const ::string & pszStyle, const ::action_context & context)
+   void system::appa_set_schema(const ::scoped_string & scopedstrStyle, const ::action_context & context)
    {
 
       //retry_single_lock rsl(mutex(),::time(100),::time(100));
@@ -2383,34 +2385,34 @@ pdirectorysystem->create("/ca2core");
       //      for(int i = 0; i < appptra().get_size(); i++)
             //    {
             //       ::application * papp = appptra()(i);
-            //       papp->set_schema(pszStyle,context);
+            //       papp->set_schema(scopedstrStyle,context);
             //    }
 
    }
 
 
 
-   bool system::assert_running_global(const ::string & pszAppName, const ::string & pszId)
+   bool system::assert_running_global(const ::scoped_string & scopedstrAppName, const ::scoped_string & scopedstrId)
    {
 
-      if (string(pszId).has_character())
+      if (string(scopedstrId).has_character())
       {
 
-         //         HANDLE h = ::OpenMutex(SYNCHRONIZE, false, get_global_id_mutex_name(pszAppName, pszId));
-         auto pmutex = node()->open_global_named_mutex(this, m_pnode->get_global_id_mutex_name(pszAppName, pszId));
+         //         HANDLE h = ::OpenMutex(SYNCHRONIZE, false, get_global_id_mutex_name(scopedstrAppName, pszId));
+         auto pmutex = node()->open_global_named_mutex(this, m_pnode->get_global_id_mutex_name(scopedstrAppName, scopedstrId));
 
          if (pmutex == nullptr)
          {
 
-            string strApp = pszAppName;
+            string strApp = scopedstrAppName;
             strApp += "app.exe";
 
             string strParameters;
-            strParameters = ": global_mutex_id=\"" + string(pszId) + "\"";
+            strParameters = ": global_mutex_id=\"" + string(scopedstrId) + "\"";
 
 #if defined(WINDOWS_DESKTOP) || defined(LINUX) || defined(__APPLE__)
 
-            auto plauncher = __øcreate < ::apex::shell_launcher >();
+            auto plauncher = øcreate < ::apex::shell_launcher >();
 
             plauncher->setup(nullptr, nullptr, directory()->module() / strApp, strParameters, nullptr, e_display_normal);
 
@@ -2432,11 +2434,11 @@ pdirectorysystem->create("/ca2core");
       }
       else
       {
-         //HANDLE h = ::OpenMutex(SYNCHRONIZE, false, get_global_mutex_name(pszAppName));
-         auto pmutex = node()->open_global_named_mutex(this, m_pnode->get_global_mutex_name(pszAppName));
+         //HANDLE h = ::OpenMutex(SYNCHRONIZE, false, get_global_mutex_name(scopedstrAppName));
+         auto pmutex = node()->open_global_named_mutex(this, m_pnode->get_global_mutex_name(scopedstrAppName));
          if (pmutex == nullptr)
          {
-            string strApp = pszAppName;
+            string strApp = scopedstrAppName;
             strApp += "app.exe";
 
 #if defined(UNIVERSAL_WINDOWS)
@@ -2445,7 +2447,7 @@ pdirectorysystem->create("/ca2core");
 
 #else
 
-            auto plauncher = __øcreate < ::apex::shell_launcher >();
+            auto plauncher = øcreate < ::apex::shell_launcher >();
 
             plauncher->setup(nullptr, nullptr, directory()->module() / strApp, nullptr, nullptr, e_display_normal);
 
@@ -2464,14 +2466,15 @@ pdirectorysystem->create("/ca2core");
       }
    }
 
-   bool system::assert_running_local(const ::string & pszAppName, const ::string & pszId)
+
+   bool system::assert_running_local(const ::scoped_string & scopedstrAppName, const ::scoped_string & scopedstrId)
    {
-      string strAppName(pszAppName);
-      string strId(pszId);
+      string strAppName(scopedstrAppName);
+      string strId(scopedstrId);
       if (strId.has_character())
       {
-         //HANDLE h = ::OpenMutex(SYNCHRONIZE, false, get_local_id_mutex_name(pszAppName, strId));
-         auto pmutex = node()->open_local_named_mutex(this, m_pnode->get_local_id_mutex_name(pszAppName, strId));
+         //HANDLE h = ::OpenMutex(SYNCHRONIZE, false, get_local_id_mutex_name(scopedstrAppName, strId));
+         auto pmutex = node()->open_local_named_mutex(this, m_pnode->get_local_id_mutex_name(scopedstrAppName, strId));
          if (pmutex == nullptr)
          {
             string strApp;
@@ -2485,7 +2488,7 @@ pdirectorysystem->create("/ca2core");
 
 #else
 
-            auto plauncher = __øcreate < ::apex::shell_launcher >();
+            auto plauncher = øcreate < ::apex::shell_launcher >();
 
             plauncher->setup(nullptr, nullptr, directory()->module() / strApp, strParameters, nullptr, e_display_normal);
 
@@ -2504,8 +2507,8 @@ pdirectorysystem->create("/ca2core");
       }
       else
       {
-         //         HANDLE h = ::OpenMutex(SYNCHRONIZE, false, get_local_mutex_name(pszAppName));
-         auto pmutex = node()->open_local_named_mutex(this, m_pnode->get_local_mutex_name(pszAppName));
+         //         HANDLE h = ::OpenMutex(SYNCHRONIZE, false, get_local_mutex_name(scopedstrAppName));
+         auto pmutex = node()->open_local_named_mutex(this, m_pnode->get_local_mutex_name(scopedstrAppName));
          if (pmutex == nullptr)
          {
             string strApp;
@@ -2519,7 +2522,7 @@ pdirectorysystem->create("/ca2core");
 
 #else
 
-            auto plauncher = __øcreate < ::apex::shell_launcher >();
+            auto plauncher = øcreate < ::apex::shell_launcher >();
 
             plauncher->setup(nullptr, nullptr, directory()->module() / strApp, strParameters, nullptr, e_display_normal);
 
@@ -2574,7 +2577,7 @@ pdirectorysystem->create("/ca2core");
    }
 
 
-   //string system::crypto_md5_text(const ::string & str)
+   //string system::crypto_md5_text(const ::scoped_string & scopedstr)
    //{
 
    //   throw ::interface_only();
@@ -2644,7 +2647,7 @@ pdirectorysystem->create("/ca2core");
    ////
    ////      string strLibraryId;
    ////
-   ////      ::file::listing straTitle(this);
+   ////      ::file::listing_base straTitle(this);
    ////
    ////      ::file::path pathCa2Module = directory()->ca2module();
    ////
@@ -2710,34 +2713,34 @@ pdirectorysystem->create("/ca2core");
    //   }
 
 
-   //   bool system::map_application_library(const ::string & pszLibrary)
+   //   bool system::map_application_library(const ::scoped_string & scopedstrLibrary)
    //   {
    //
    //      ::acme::library library;
    //
    //      library.initialize_library(this, 0);
    //
-   //      if(!strcmp(pszLibrary,"app_core_rdpclient"))
+   //      if(!strcmp(scopedstrLibrary,"app_core_rdpclient"))
    //      {
    //         INFORMATION("reach");
    //      }
    //
-   //      if(!case_insensitive_ansi_compare(pszLibrary, "app_core_hello_multiverse"))
+   //      if(!case_insensitive_ansi_compare(scopedstrLibrary, "app_core_hello_multiverse"))
    //      {
    //         INFORMATION("reach app_core_hello_multiverse");
    //      }
    //
-   //      if(!case_insensitive_ansi_compare(pszLibrary, "experience_lite"))
+   //      if(!case_insensitive_ansi_compare(scopedstrLibrary, "experience_lite"))
    //      {
    //         INFORMATION("reach experience_lite");
    //      }
    //
-   //      if(!case_insensitive_ansi_compare(pszLibrary, "app_core_hello_multiverse"))
+   //      if(!case_insensitive_ansi_compare(scopedstrLibrary, "app_core_hello_multiverse"))
    //      {
    //         INFORMATION("reach app_core_hello_multiverse");
    //      }
    //
-   //      if(!library.open(pszLibrary, true))
+   //      if(!library.open(scopedstrLibrary, true))
    //      {
    //         INFORMATION("::system::map_application_library Failed to open library :" << pszLibrary);
    //         return false;
@@ -2746,7 +2749,7 @@ pdirectorysystem->create("/ca2core");
    //      //if(!library.open_library())
    //      //{
    //
-   //      //   informationf("::system::map_application_library open_ca2_library(2) Failed :" + string(pszLibrary) + "\n\n");
+   //      //   informationf("::system::map_application_library open_ca2_library(2) Failed :" + string(scopedstrLibrary) + "\n\n");
    //
    //      //   return false;
    //
@@ -2754,7 +2757,7 @@ pdirectorysystem->create("/ca2core");
    //
    //      on_map_application_library(library);
    //
-   //      string_array stra;
+   //      string_array_base stra;
    //
    //      string strRoot = library.get_root();
    //
@@ -2772,7 +2775,7 @@ pdirectorysystem->create("/ca2core");
    //
    //      }
    //
-   //      string strLibrary = ::file::path(pszLibrary).title();
+   //      string strLibrary = ::file::path(scopedstrLibrary).title();
    //
    //#if defined(LINUX) || defined(__APPLE__) || defined(__ANDROID__)
    //
@@ -2834,7 +2837,7 @@ pdirectorysystem->create("/ca2core");
 
 
 
-   //string system::url::encode(const ::string & str)
+   //string system::url::encode(const ::scoped_string & scopedstr)
    //{
 
    //   //throw ::interface_only();
@@ -2845,7 +2848,7 @@ pdirectorysystem->create("/ca2core");
 
 //#ifdef __ANDROID__
 //
-//   bool system::android_set_user_wallpaper(string strUrl)
+//   bool system::android_set_user_wallpaper(const ::scoped_string & scopedstrUrl)
 //   {
 //
 //      //operating_system_driver::get().m_strSetUserWallpaper = strUrl;
@@ -2897,10 +2900,10 @@ pdirectorysystem->create("/ca2core");
    //}
 
 
-   bool system::defer_accumulate_on_open_file(string_array stra, string strExtra)
+   bool system::defer_accumulate_on_open_file(string_array_base stra, const ::scoped_string & scopedstrExtra)
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       m_timeCommandLineLast.Now();
 
@@ -2998,15 +3001,15 @@ pdirectorysystem->create("/ca2core");
 
    //   }
 
-   //   string_array straAccumul = m_straCommandLineAccumul;
+   //   string_array_base straAccumul = m_straCommandLineAccumul;
 
-   //   string_array straExtra = m_straCommandLineExtra;
+   //   string_array_base straExtra = m_straCommandLineExtra;
 
    //   m_straCommandLineAccumul.erase_all();
 
    //   m_straCommandLineExtra.erase_all();
 
-   //   //auto pcreate = __create_new < ::create >();
+   //   //auto pcreate = øcreate_new < ::create >();
 
    //   string strExtra = straExtra.implode(" ");
 
@@ -3053,7 +3056,7 @@ pdirectorysystem->create("/ca2core");
    //}
 
 
-   bool system::on_open_file(::payload payloadFile, string strExtra)
+   bool system::on_open_file(::payload payloadFile, const ::scoped_string & scopedstrExtra)
    {
 
       //
@@ -3100,7 +3103,7 @@ pdirectorysystem->create("/ca2core");
    }
 
 
-   void system::on_open_file(const ::string & pszFile)
+   void system::on_open_file(const ::scoped_string & scopedstrFile)
    {
 
       //file_put_contents("/Users/camilo/debug/on_open_file.txt", pszFile);
@@ -3109,7 +3112,7 @@ pdirectorysystem->create("/ca2core");
 
       ::pointer<::request>prequest(e_create_new, this);
 
-      prequest->m_payloadFile = pszFile;
+      prequest->m_payloadFile = scopedstrFile;
       
       prequest->m_ecommand = e_command_file_open;
       
@@ -3173,7 +3176,7 @@ pdirectorysystem->create("/ca2core");
 
 //#ifndef __ANDROID__
 
-   void system::on_os_text(enum_os_text etext, string strText)
+   void system::on_os_text(enum_os_text etext, const ::scoped_string & scopedstrText)
    {
 
 
@@ -3246,28 +3249,28 @@ pdirectorysystem->create("/ca2core");
    //   }
 
 
-   string system::standalone_setting(string str)
+   string system::standalone_setting(const ::scoped_string & scopedstr)
    {
 
-      return file_system()->as_string(directory()->standalone() / (str + ".txt"));
+      return file_system()->as_string(directory()->standalone() / (scopedstr + ".txt"));
 
    }
 
 
-   void system::set_standalone_setting(string str, string strSetting)
+   void system::set_standalone_setting(const ::scoped_string & scopedstr, const ::scoped_string & scopedstrSetting)
    {
 
-      file_system()->put_contents(directory()->standalone() / (str + ".txt"), strSetting);
+      file_system()->put_contents(directory()->standalone() / (scopedstr + ".txt"), scopedstrSetting);
 
    }
 
 
-   void system::on_extra(string str)
+   void system::on_extra(const ::scoped_string & scopedstr)
    {
 
 //      auto purl = url();
 
-      ::url::url url(str);
+      ::url::url url(scopedstr);
 
       string strProtocol = url.connect().protocol();
 
@@ -3288,7 +3291,7 @@ pdirectorysystem->create("/ca2core");
 
          strMessage.formatf("protocol: ca2project\nbase: %s\nAppId: %s\nquery: %s\n", strBase, strAppId, strQuery);
 
-         //message_box(strMessage, e_message_box_ok);
+         //message_box(strMessage, ::user::e_message_box_ok);
 
          string strParams;
 
@@ -3298,7 +3301,7 @@ pdirectorysystem->create("/ca2core");
 
          strProj = strAppId;
 
-         string_array stra;
+         string_array_base stra;
 
          stra.explode("/", strAppId);
 
@@ -3317,9 +3320,9 @@ pdirectorysystem->create("/ca2core");
       if (strProtocol == "ca2project")
       {
 
-         string strBase = ::url::get_host(str);
+         string strBase = ::url::get_host(scopedstr);
 
-         string strScheme = ::url::get_request_path(str);
+         string strScheme = ::url::get_request_path(scopedstr);
 
          strScheme.begins_eat("/");
 
@@ -3350,7 +3353,7 @@ pdirectorysystem->create("/ca2core");
 
 
 
-   //void system::__tracea(::particle * pparticle, enum_trace_level elevel, const ::string & pszFunction, const ::string & pszFile, int iLine, const ::string & psz)
+   //void system::__tracea(::particle * pparticle, enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, int iLine, const ::scoped_string & scopedstr)
    //{
 
    //   if (m_ptracelog.is_null())
@@ -3415,7 +3418,7 @@ pdirectorysystem->create("/ca2core");
    }
 
 
-   void system::set_user_language(::apex::application * papp, string strLang)
+   void system::set_user_language(::apex::application * papp, const ::scoped_string & scopedstrLang)
    {
 
       auto psession = session();
@@ -3424,9 +3427,9 @@ pdirectorysystem->create("/ca2core");
 
       auto puserlanguagemap = papexapplication->m_puserlanguagemap;
 
-      puserlanguagemap->set_language(papp, strLang);
+      puserlanguagemap->set_language(papp, scopedstrLang);
 
-      set_standalone_setting("current_language", strLang);
+      set_standalone_setting("current_language", scopedstrLang);
 
    }
 
@@ -3472,7 +3475,7 @@ void system::open_internet_link_in_browser(const ::scoped_string & scopedstrUrl,
       if (strProfile.is_empty() && strTarget.is_empty() && strBrowser.is_empty())
       {
 
-         //::auto pmessagebox = __initialize_new ::message_box(NULL, strUrl, strUrl, e_message_box_ok);
+         //::auto pmessagebox = __initialize_new ::message_box(NULL, strUrl, strUrl, ::user::e_message_box_ok);
 
          pmessagebox->sync();
 
@@ -3610,7 +3613,7 @@ void system::open_internet_link_in_browser(const ::scoped_string & scopedstrUrl,
          string * pstrNew = ___new string(strUrl);
 
          ::winrt::Windows::ApplicationModel::Core::CoreApplication::MainImpact->CoreWindow->Dispatcher->RunAsync(::winrt::Windows::UI::Core::CoreDispatcherPriority::Normal,
-            ref __allocate< ::winrt::Windows::UI::Core::DispatchedHandler([pstrNew] >()
+            ref øallocate< ::winrt::Windows::UI::Core::DispatchedHandler([pstrNew] >()
                {
 
                   ::winrt::Windows::Foundation::Uri ^ uri = ref ___new ::winrt::Windows::Foundation::Uri (*pstrNew);
@@ -3706,9 +3709,9 @@ void system::open_internet_link_in_browser(const ::scoped_string & scopedstrUrl,
 
          }
 
-         ::file::path pathDir;
+         ::file::path pathFolder;
 
-         pathDir = path.folder();
+         pathFolder = path.folder();
 
          ::file::path shell;
 
@@ -3741,7 +3744,7 @@ void system::open_internet_link_in_browser(const ::scoped_string & scopedstrUrl,
 
             strParam = " -c \"" + strCmd + "\"";
 
-            //MessageBox(nullptr, strParam, path, e_message_box_ok);
+            //MessageBox(nullptr, strParam, path, ::user::e_message_box_ok);
 
             call_async(shell, strParam, pathHome, e_display_default, false);
 
@@ -3777,7 +3780,7 @@ void system::open_internet_link_in_browser(const ::scoped_string & scopedstrUrl,
 
 
 
-   void system::chromium(string strUrl, string strBrowser, string strId, ::file::path path, string strProfile, string strParam)
+   void system::chromium(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrBrowser, const ::scoped_string & scopedstrId, ::file::path path, const ::scoped_string & scopedstrProfile, const ::scoped_string & scopedstrParam)
    {
 
 #ifdef UNIVERSAL_WINDOWS
@@ -3788,9 +3791,9 @@ void system::open_internet_link_in_browser(const ::scoped_string & scopedstrUrl,
 
 #endif
 
-      ::file::path pathDir;
+      ::file::path pathFolder;
 
-      pathDir = path.folder();
+      pathFolder = path.folder();
 
       ::file::path pathAppDataDir(directory_system()->ca2roaming());
 
@@ -3798,14 +3801,14 @@ void system::open_internet_link_in_browser(const ::scoped_string & scopedstrUrl,
 
       string strBrowserProfile;
 
-      if (strId == "chrome" || strId == "commander")
+      if (scopedstrId == "chrome" || scopedstrId == "commander")
       {
 
          strBrowserProfile = "Chrome";
 
 
       }
-      else if (strId == "vivaldi")
+      else if (scopedstrId == "vivaldi")
       {
 
          strBrowserProfile = "Vivaldi";
@@ -3818,32 +3821,33 @@ void system::open_internet_link_in_browser(const ::scoped_string & scopedstrUrl,
 
       }
 
+      ::string strParam;
 
       try
       {
 
          bool bFound = false;
 
-         pathProfile = pathAppDataDir / strBrowserProfile / "Profile" / strProfile;
+         pathProfile = pathAppDataDir / strBrowserProfile / "Profile" / scopedstrProfile;
 
          if (!bFound)
          {
 
-            if (strUrl.has_character())
+            if (scopedstrUrl.has_character())
             {
 
-               auto iFind = strParam.find_index("%1");
+               auto iFind = scopedstrParam.find_index("%1");
 
                if (::found(iFind))
                {
 
-                  strParam = strParam(0, iFind) + strUrl + strParam.substr(iFind + 2) + " ";
+                  strParam = scopedstrParam(0, iFind) + scopedstrUrl + scopedstrParam.substr(iFind + 2) + " ";
 
                }
                else
                {
 
-                  strParam = "\"" + strUrl + "\" ";
+                  strParam = "\"" + scopedstrUrl + "\" ";
 
                }
 
@@ -3878,13 +3882,13 @@ void system::open_internet_link_in_browser(const ::scoped_string & scopedstrUrl,
 
             auto pnode = node();
 
-            pnode->call_async(path, strParam, pathDir, e_display_default, false);
+            pnode->call_async(path, strParam, pathFolder, e_display_default, false);
 
          }
 
 #elif defined(MACOS)
 
-         string_array sa;
+         string_array_base sa;
 
          sa = get_c_args_for_c(strParam);
 
@@ -3892,7 +3896,7 @@ void system::open_internet_link_in_browser(const ::scoped_string & scopedstrUrl,
 
          string strChrome = file_system()->as_string(directory_system()->localconfig() / "app-core/commander/chrome.txt");
 
-         string_array sa2 = get_c_args_for_c(strChrome);
+         string_array_base sa2 = get_c_args_for_c(strChrome);
 
          sa.append(sa2);
 
@@ -3933,7 +3937,7 @@ void system::open_internet_link_in_browser(const ::scoped_string & scopedstrUrl,
 
          auto pnode = node();
 
-         pnode->call_async(shell, strParam, pathDir, e_display_default, false);
+         pnode->call_async(shell, strParam, pathFolder, e_display_default, false);
 
 #endif
 
@@ -3947,7 +3951,7 @@ void system::open_internet_link_in_browser(const ::scoped_string & scopedstrUrl,
    }
 
 
-   void system::defer_create_firefox_profile(::file::path pathFirefox, string strProfileName, ::file::path pathProfile)
+   void system::defer_create_firefox_profile(::file::path pathFirefox, const ::scoped_string & scopedstrProfileName, ::file::path pathProfile)
    {
 
 #ifdef UNIVERSAL_WINDOWS
@@ -3962,9 +3966,9 @@ void system::open_internet_link_in_browser(const ::scoped_string & scopedstrUrl,
 
       }
 
-      ::file::path pathDir;
+      ::file::path pathFolder;
 
-      pathDir = pathFirefox.folder();
+      pathFolder = pathFirefox.folder();
 
       ::file::path pathProfileDir;
 
@@ -3972,7 +3976,7 @@ void system::open_internet_link_in_browser(const ::scoped_string & scopedstrUrl,
 
       directory()->create(pathProfileDir);
 
-      string strParam = "-no-remote -CreateProfile \"" + strProfileName + " " + pathProfile + "\"";
+      string strParam = "-no-remote -CreateProfile \"" + scopedstrProfileName + " " + pathProfile + "\"";
 
       ::property_set set;
 
@@ -3980,7 +3984,7 @@ void system::open_internet_link_in_browser(const ::scoped_string & scopedstrUrl,
 
       int iExitCode = 0;
 
-      pnode->call_sync(pathFirefox, strParam, pathDir, e_display_default, 3_minute, set, &iExitCode);
+      pnode->call_sync(pathFirefox, strParam, pathFolder, e_display_default, 3_minute, set, &iExitCode);
 
 #endif
 
@@ -3989,7 +3993,7 @@ void system::open_internet_link_in_browser(const ::scoped_string & scopedstrUrl,
 
 
 
-   void system::firefox(string strUrl, string strBrowser, string strProfile, string strParam)
+   void system::firefox(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrBrowser, const ::scoped_string & scopedstrProfile, const ::scoped_string & scopedstrParam)
    {
 
 #ifdef UNIVERSAL_WINDOWS
@@ -4007,12 +4011,14 @@ void system::open_internet_link_in_browser(const ::scoped_string & scopedstrUrl,
 
       ::file::path pathProfile;
 
-      strParam = "-P \"" + strProfile + "\"";
+      ::string strParam(scopedstrParam);
 
-      if (strUrl.has_character())
+      strParam = "-P \"" + scopedstrProfile + "\"";
+
+      if (scopedstrUrl.has_character())
       {
 
-         strParam += " -___new-tab \"" + strUrl + "\"";
+         strParam += " -___new-tab \"" + scopedstrUrl + "\"";
 
       }
 
@@ -4036,9 +4042,9 @@ void system::open_internet_link_in_browser(const ::scoped_string & scopedstrUrl,
 
       strBrowserHelperDir = ::file::path(strBrowserDir) / "uninstall";
 
-      pathProfile = pathAppDataDir / "ca2/Firefox/Profile" / strProfile;
+      pathProfile = pathAppDataDir / "ca2/Firefox/Profile" / scopedstrProfile;
 
-      defer_create_firefox_profile(strBrowserPath, strProfile, pathProfile);
+      defer_create_firefox_profile(strBrowserPath, scopedstrProfile, pathProfile);
 
       bool bFound = false;
 
@@ -4053,10 +4059,10 @@ void system::open_internet_link_in_browser(const ::scoped_string & scopedstrUrl,
 
       }
 
-      if (strBrowser.has_character())
+      if (scopedstrBrowser.has_character())
       {
 
-         file()->put_text_utf8(directory_system()->userconfig() / "browser.txt", strBrowser);
+         file()->put_text_utf8(directory_system()->userconfig() / "browser.txt", scopedstrBrowser);
 
          file()->put_text_utf8(directory_system()->userconfig() / "browser_path.txt", strBrowserPath);
 
@@ -4071,7 +4077,7 @@ void system::open_internet_link_in_browser(const ::scoped_string & scopedstrUrl,
    }
 
 
-   //string system::get_local_mutex_name(const ::string & pszAppName)
+   //string system::get_local_mutex_name(const ::scoped_string & scopedstrAppName)
    //{
 
    //   string strMutex;
@@ -4083,10 +4089,10 @@ void system::open_internet_link_in_browser(const ::scoped_string & scopedstrUrl,
    //}
 
    //
-   //string system::get_local_id_mutex_name(const ::string & pszAppName, const ::string & pszId)
+   //string system::get_local_id_mutex_name(const ::scoped_string & scopedstrAppName, const ::scoped_string & scopedstrId)
    //{
    //
-   //   string strId(pszId);
+   //   string strId(scopedstrId);
    //
    //   string strMutex;
    //
@@ -4097,7 +4103,7 @@ void system::open_internet_link_in_browser(const ::scoped_string & scopedstrUrl,
    //}
 
    //
-   //string system::get_global_mutex_name(const ::string & pszAppName)
+   //string system::get_global_mutex_name(const ::scoped_string & scopedstrAppName)
    //{
    //
    //   string strMutex;
@@ -4109,10 +4115,10 @@ void system::open_internet_link_in_browser(const ::scoped_string & scopedstrUrl,
    //}
 
    //
-   //string system::get_global_id_mutex_name(const ::string & pszAppName, const ::string & pszId)
+   //string system::get_global_id_mutex_name(const ::scoped_string & scopedstrAppName, const ::scoped_string & scopedstrId)
    //{
    //
-   //   string strId(pszId);
+   //   string strId(scopedstrId);
    //
    //   string strMutex;
 
@@ -4133,14 +4139,14 @@ void system::open_internet_link_in_browser(const ::scoped_string & scopedstrUrl,
 
    //   }
 
-   //   synchronous_lock synchronouslock(this->synchronization());
+   //   synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //   auto & threadgroupa = m_taskgroupmap[epriority];
 
    //   if (threadgroupa.is_empty())
    //   {
 
-   //      auto pgroup = __allocate ::task_group(this, epriority);
+   //      auto pgroup = øallocate ::task_group(this, epriority);
 
    //      threadgroupa.add(pgroup);
 
@@ -4154,14 +4160,14 @@ void system::open_internet_link_in_browser(const ::scoped_string & scopedstrUrl,
    //::task_tool * system::task_tool(::enum_task_tool etool)
    //{
 
-   //   synchronous_lock synchronouslock(this->synchronization());
+   //   synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //   auto& threadtoola = m_tasktoolmap[etool];
 
    //   if (threadtoola.is_empty())
    //   {
 
-   //      auto ptool = __allocate ::task_tool();
+   //      auto ptool = øallocate ::task_tool();
 
    //      ptool->id() = etool;
 
@@ -4222,22 +4228,22 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
 
       m_pfactoryCrypto = factory("crypto", "openssl");
 
-      __øconstruct(m_pcrypto, m_pfactoryCrypto);
+      øconstruct(m_pcrypto, m_pfactoryCrypto);
       
    }
 
 
-   string system::crypto_md5_text(const ::string & str)
+   string system::crypto_md5_text(const ::scoped_string & scopedstr)
    {
 
       auto pcrypto = crypto();
 
-      return pcrypto->md5(str);
+      return pcrypto->md5(scopedstr);
 
    }
 
 
-   //string system::url::encode(const ::string & str)
+   //string system::url::encode(const ::scoped_string & scopedstr)
    //{
 
    //   return m_purldepartment->::url::encode(str);
@@ -4254,7 +4260,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
 
 
 
-//#include "base/node/_node.h"
+//#include "berg/node/_node.h"
 
 
 //#ifdef WINDOWS_DESKTOP
@@ -4309,7 +4315,7 @@ namespace apex
    }
 
 
-   ::pointer<::data::node>system::load_xml(const ::string & pszXml)
+   ::pointer<::data::node>system::load_xml(const ::scoped_string & scopedstrXml)
    {
 
       throw ::interface_only();
@@ -4388,7 +4394,7 @@ namespace apex
    {
 
       //auto estatus =
-      //__øconstruct(m_phistory, phistory);
+      //øconstruct(m_phistory, phistory);
 
       m_phistory = phistory;
 
@@ -4404,7 +4410,7 @@ namespace apex
    }
 
 
-   //::acme::library * system::on_get_library(const ::string & pszLibrary)
+   //::acme::library * system::on_get_library(const ::scoped_string & scopedstrLibrary)
    //{
 
    //   ::pointer<::acme::library>plibrary;
@@ -4491,10 +4497,12 @@ namespace apex
    }
 
 
-   void system::on_allocation_error(const ::string & str, ::object * pparticle)
+   void system::on_allocation_error(const ::scoped_string & scopedstr, ::object * pparticle)
    {
 
       string strMessage;
+
+      ::string str(scopedstr);
 
       strMessage.formatf("system::on_allocation_error Implement \"%s\" allocation\n", str.c_str());
 
@@ -4513,8 +4521,8 @@ namespace apex
    //}
 
 
-   //bool system::sync_load_url(string& str, const ::string & pszUrl, ::account::user* puser, ::http::cookies* pcookies)
-   bool system::sync_load_url(string & str, const ::string & pszUrl, ::http::cookies * pcookies)
+   //bool system::sync_load_url(string& str, const ::scoped_string & scopedstrUrl, ::account::user* puser, ::http::cookies* pcookies)
+   bool system::sync_load_url(string & str, const ::scoped_string & scopedstrUrl, ::http::cookies * pcookies)
 
    {
 
@@ -4528,7 +4536,7 @@ namespace apex
 
       try
       {
-         http()->download(pszUrl, filename, set);
+         http()->download(scopedstrUrl, filename, set);
       }
       catch(...)
       {
@@ -4605,7 +4613,7 @@ namespace apex
 
    //   ::apex::session * pbergedge = nullptr;
 
-   //   while(m_pbergedgemap->lookup(iNewEdge,pbergedge))
+   //   while(m_pbergedgemap->find(iNewEdge,pbergedge))
    //   {
 
    //      iNewEdge++;
@@ -4672,7 +4680,7 @@ namespace apex
    }
 
 
-   bool system::is_thread() const
+   bool system::is_thread_class() const
    {
 
       return false;
@@ -4701,10 +4709,10 @@ namespace apex
    //}
 
 
-   //   void system::post_fork_uri(const ::string & pszUri,application_bias * pappbias)
+   //   void system::post_fork_uri(const ::scoped_string & scopedstrUri,application_bias * pappbias)
    //   {
    //
-   //      add_fork_uri(pszUri,pappbias);
+   //      add_fork_uri(scopedstrUri,pappbias);
    //
    //      //if(has_property("version"))
    //      //{
@@ -4813,10 +4821,10 @@ namespace apex
    //}
 
 
-   void system::hist_hist(const ::string & psz)
+   void system::hist_hist(const ::scoped_string & scopedstr)
    {
 
-      hist()->hist(psz);
+      hist()->hist(scopedstr);
 
    }
 
@@ -4913,20 +4921,27 @@ namespace apex
    }
 
 
-   bool system::_handle_uri(const ::string & strUri)
+   bool system::_handle_uri(const ::scoped_string & scopedstrUri)
    {
 
-      if (application() && application()->_handle_uri(strUri))
+      auto papplication = application();
+
+      if (papplication)
       {
 
-         return true;
+         if(papplication->_handle_uri(scopedstrUri))
+         {
+
+            return true;
+
+         }
 
       }
 
       if (!application() || application() != application())
       {
 
-         if (application() && application()->_handle_uri(strUri))
+         if (application() && application()->_handle_uri(scopedstrUri))
          {
 
             return true;
@@ -5039,7 +5054,7 @@ namespace apex
 //
 //#endif
 
-         __øconstruct(m_pinnateui);
+         øconstruct(m_pinnateui);
 
       }
 
@@ -5082,11 +5097,11 @@ namespace apex
 
 
    //
-   //void apex_application_main(int argc, char* argv[], const ::string & pszCommandLine);
+   //void apex_application_main(int argc, char* argv[], const ::scoped_string & scopedstrCommandLine);
 
 
 
-   void system::application_main(int argc, char * argv[], const ::string & pszCommandLine)
+   void system::application_main(int argc, char * argv[], const ::scoped_string & scopedstrCommandLine)
    {
 
       //apex_application_main(argc, argv, pszCommandLine);
@@ -5094,14 +5109,14 @@ namespace apex
    }
 
 
-   //pointer< ::extended::future < ::conversation > > system::_message_box(::particle * pparticle, const ::string & pszText, const ::string & pszTitle, const ::e_message_box & emessagebox)
+   //pointer< ::extended::future < ::conversation > > system::_message_box(::particle * pparticle, const ::scoped_string & scopedstrText, const ::scoped_string & scopedstrTitle, const ::user::e_message_box & emessagebox)
    //{
 
    //   return ::system::_message_box(pparticle, pszText, pszTitle, emessagebox);
 
    //}
 
-   // https://github.com/umpirsky/tld-list/blob/master/data/en/tld.txt
+   // https://github.com/umpirsky/tld-list_base/blob/master/data/en/tld.txt
 
 
    ::string system::fetch_public_internet_domain_extension_list_text()
@@ -5117,7 +5132,7 @@ namespace apex
    }
 
 
-   //void system::get_public_internet_domain_extension_list(string_array& stra)
+   //void system::get_public_internet_domain_extension_list(string_array_base& stra)
    //{
 
    ////   //auto estatus =
@@ -5164,15 +5179,15 @@ namespace apex
          pfactoryNetworking->merge_to_global_factory();
 
          //estatus =
-         pfactoryNetworking->__øconstruct(this, m_pnetworking);
+         pfactoryNetworking->øconstruct(this, m_pnetworking);
 
 
          if (!m_pnetworking)
          {
 
-            //estatus = __construct_new(m_psockets);
+            //estatus = øconstruct_new(m_psockets);
 
-            //__øconstruct(m_pnetworking);
+            //øconstruct(m_pnetworking);
 
             //if (!estatus)
             //{

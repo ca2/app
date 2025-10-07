@@ -14,6 +14,47 @@ namespace write_text
 {
 
 
+   ::mutex *font::s_pmutexFontTextMap = nullptr;
+
+
+            font::text::text()
+            {
+            }
+
+   void font::text::item::set_size(const ::double_size &size)
+   {
+
+      m_size = size;
+
+      m_bHasSize = true;
+   }
+
+   void font::text::item::set_text(const ::scoped_string &scopedstr)
+   {
+
+      m_wstr = scopedstr;
+
+   }
+
+
+   ::wstring font::text::item::get_text() const
+   {
+
+      return m_wstr;
+
+   }
+
+   bool font::text::item::has_size() const { return m_bHasSize; }
+
+   ::double_size font::text::item::get_size() const { return m_size; }
+
+   ::write_text::font::text::item * font::text::get_item(enum_size esize)
+   {
+
+      return &m_itema[esize];
+
+   }
+
    font::font() :
       m_fontsize(12_pt)
    {
@@ -86,7 +127,7 @@ namespace write_text
    }
 
 
-//   bool font::create_point_font(const ::string & pszFacename, double dSize, int iWeight, bool bItalic, bool bUnderline, bool bStrikeOut, double dWidth)
+//   bool font::create_point_font(const ::scoped_string & scopedstrFacename, double dSize, int iWeight, bool bItalic, bool bUnderline, bool bStrikeOut, double dWidth)
 //   {
 //
 //      m_strFontFamilyName = pszFacename;
@@ -148,10 +189,10 @@ namespace write_text
    }
 
 
-   void font::set_family_name(const ::string & pszFamilyName)
+   void font::set_family_name(const ::scoped_string & scopedstrFamilyName)
    {
 
-      m_pfontfamily = font_family_pointer(pszFamilyName);
+      m_pfontfamily = font_family_pointer(scopedstrFamilyName);
 
       set_modified();
 
@@ -603,7 +644,7 @@ namespace write_text
 //   }
 //
 //
-//   void font::AddXFGlyphs(string_array_array  & straaTokens)
+//   void font::AddXFGlyphs(string_array_array_base  & straaTokens)
 //   {
 //      char           ch;
 //      string         str;
@@ -613,7 +654,7 @@ namespace write_text
 //      SelectFont();
 //      for (i = 0; i < straaTokens.get_size(); i++)
 //      {
-//         string_array & straTokens = straaTokens[i];
+//         string_array_base & straTokens = straaTokens[i];
 //         for (j = 0; j < straTokens.get_size(); j++)
 //         {
 //            str = straTokens[j];
@@ -655,7 +696,7 @@ namespace write_text
 //      UnselectFont();
 //   }
 //
-//   void font::AddGlyphs(const ::string & pStr)
+//   void font::AddGlyphs(const ::scoped_string & scopedstrStr)
 
 //   {
 //      string str(pStr);
@@ -887,7 +928,7 @@ namespace write_text
 } // namespace write_text
 
 
-//bool CLASS_DECL_AURA TextOutU(HDC hdc, int x, int y, const ::string & pString, int ca)
+//bool CLASS_DECL_AURA TextOutU(HDC hdc, int x, int y, const ::scoped_string & scopedstrString, int ca)
 //
 //{
 //
@@ -927,7 +968,7 @@ namespace write_text
 //}
 //
 //
-//CLASS_DECL_AURA bool GetTextExtentPoint32U(HDC hdc, const ::string & pString, int ca, LPSIZE32 psizl)
+//CLASS_DECL_AURA bool GetTextExtentPoint32U(HDC hdc, const ::scoped_string & scopedstrString, int ca, LPSIZE32 psizl)
 //
 //{
 //
@@ -957,7 +998,7 @@ namespace write_text
 //}
 //
 //
-//CLASS_DECL_AURA int  DrawTextU(HDC hdc, const ::string & pchText, int cchText, RECT32 * prect, unsigned int format)
+//CLASS_DECL_AURA int  DrawTextU(HDC hdc, const ::scoped_string & scopedstrchText, int cchText, RECT32 * prect, unsigned int format)
 //
 //{
 //

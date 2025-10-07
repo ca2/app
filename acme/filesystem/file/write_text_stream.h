@@ -15,9 +15,9 @@ struct CLASS_DECL_ACME write_text_stream_struct
 
    char                               m_chSeparator = ' ';
 #ifdef WINDOWS
-   const char * m_pszEolSeparator = "\r\n";
+   const_char_pointer m_pszEolSeparator = "\r\n";
 #else
-   const char * m_pszEolSeparator = "\n";
+   const_char_pointer m_pszEolSeparator = "\n";
 #endif
    print_formatting * m_pprintingformat;
 
@@ -104,15 +104,15 @@ public:
 
    void print(const ::range < const ansi_character * > & str);
    void print(::ansi_character ansicharacter) { write(&ansicharacter, 1); }
-   void print(::wd16_character wd16character) { char sz[8]; write((const char *) &sz, wd16_to_ansi(sz, &wd16character, 1)); }
-   void print(::wd32_character wd32character) { char sz[8]; write((const char *) & sz, wd32_to_ansi(sz, &wd32character, 1)); }
+   void print(::wd16_character wd16character) { char sz[8]; write((const_char_pointer )&sz, wd16_to_ansi(sz, &wd16character, 1)); }
+   void print(::wd32_character wd32character) { char sz[8]; write((const_char_pointer )& sz, wd32_to_ansi(sz, &wd32character, 1)); }
 
 
    template < primitive_number NUMBER >
    void write_number(NUMBER number);
 
    template < primitive_number NUMBER >
-   void write_number(NUMBER number, const ::ansi_character * pszFormat);
+   void write_number(NUMBER number, const_char_pointer pszFormat);
 
    /*template < typename TYPE >
    void number_exchange(TYPE& t)
@@ -166,18 +166,18 @@ public:
    template < typename TYPE >
    void exchange(const ::atom & atom, TYPE & t) { ::__string_exchange(*this, t); }*/
 
-   void append_format(const ::ansi_character * pszFormat, ...);
+   void append_format(const_char_pointer pszFormat, ...);
    //    {
    //
    //       ::string strText;
    //
-   //       ASSERT(is_string_ok(pszFormat));
+   //       ASSERT(is_string_ok(scopedstrFormat));
    //
    //       va_list argList;
    //
    //       va_start(argList, pszFormat);
    //
-   //       strText.formatf_arguments(pszFormat, argList);
+   //       strText.formatf_arguments(scopedstrFormat, argList);
    //
    //       va_end(argList);
    //
@@ -470,7 +470,7 @@ public:
        // void write(const ::int_size & size) ;
        // void write(const ::int_rectangle &rectangle) ;
 
-   write_text_stream & operator <<(const ::ansi_character * psz);
+   write_text_stream & operator <<(const_char_pointer psz);
    //    {
    //
    //       if (m_fmtflags & ::file::network_payload)
@@ -480,7 +480,7 @@ public:
    //
    //       }
    //
-   //       print(psz);
+   //       print(scopedstr);
    //
    //       if (m_fmtflags & ::file::network_payload)
    //       {
@@ -500,7 +500,7 @@ public:
    //
    //    }
 
-   write_text_stream & operator <<(const ::range < const char * > & range);
+   write_text_stream & operator <<(const ::range < const_char_pointer >& range);
    //    {
    //
    //       return this->operator <<((const ::scoped_string &)str);
@@ -588,7 +588,7 @@ public:
        // void network_payload_write(const ::matter & matter);
 
 
-   void raw_print(const ::string & str);
+   void raw_print(const ::scoped_string & scopedstr);
    //    {
    //
    //       print(str);
@@ -596,7 +596,7 @@ public:
    //    }
 
 
-       //void print_number(const ::string& str)
+       //void print_number(const ::scoped_string & scopedstr)
        //{
 
        //   print_number(str);
@@ -612,7 +612,7 @@ public:
 
 //    {
 //
-//       m_pfile->write(psz, s);
+//       m_pfile->write(scopedstr, s);
 //
 //    }
 
@@ -657,7 +657,7 @@ inline void write_text_stream::write_number(NUMBER number)
 
 
 template < primitive_number NUMBER >
-inline void write_text_stream::write_number(NUMBER number, const ::ansi_character * pszFormat)
+inline void write_text_stream::write_number(NUMBER number, const_char_pointer pszFormat)
 {
 
    print(as_string(number, pszFormat));

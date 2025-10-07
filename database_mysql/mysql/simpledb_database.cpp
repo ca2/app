@@ -46,12 +46,12 @@ namespace simpledb
       return DB_COMMAND_OK;
    }
 
-   table * database::get_table(const ::string & pszName)
+   table * database::get_table(const ::scoped_string & scopedstrName)
    {
       table * ptable = nullptr;
-      string strName(pszName);
+      string strName(scopedstrName);
       strName.make_lower();
-      if(!m_mapTable.lookup(strName, ptable))
+      if(!m_mapTable.find(strName, ptable))
       {
          ptable = create_table(strName);
          m_mapTable.set_at(strName, ptable);
@@ -59,14 +59,14 @@ namespace simpledb
       return ptable;
    }
 
-   table * database::create_table(const ::string & pszName)
+   table * database::create_table(const ::scoped_string & scopedstrName)
    {
       return ___new table(this, pszName);
    }
 
    ::simpledb::dataset * database::create_dataset() const
    {
-      return __allocate< ::simpledb::dataset(const_cast < ::simpledb::database * >  >(this));
+      return øallocate< ::simpledb::dataset(const_cast < ::simpledb::database * >  >(this));
    }
 
 

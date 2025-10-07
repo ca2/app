@@ -26,7 +26,7 @@ namespace regular_expression_pcre2
       virtual ~context();
 
 
-      virtual ::regular_expression_pointer compile(const ::string & str) override;
+      virtual ::regular_expression_pointer compile(const ::scoped_string & scopedstr) override;
 
 
    };

@@ -34,7 +34,7 @@ namespace user
    struct set_need_redraw
    {
 
-      ::int_rectangle_array      m_rectangleaNeedRedraw;
+      ::int_rectangle_array_base      m_rectangleaNeedRedraw;
       function<void()>           m_function;
       bool                       m_bAscendants;
 
@@ -181,6 +181,8 @@ namespace user
 
       e_interaction                             m_einteraction;
 
+      e_element                                 m_eelementMain;
+
       bool                                      m_bCompositedFrameWindow;
       bool                                      m_bEdgeGestureDisableTouchWhenFullscreen;
       //bool                                      m_bScreenVisible;
@@ -323,11 +325,11 @@ namespace user
       ::property_set                            m_setValue;
       int                                       m_iSubItemDisableCheckBox;
       int                                       m_iSubItemDuplicateCheckBox;
-      ::int_array                               m_iaSubItemDuplicate;
-      ::int_array                               m_iaSubItemDisable;
+      ::int_array_base                               m_iaSubItemDuplicate;
+      ::int_array_base                               m_iaSubItemDisable;
 
       string                                    m_strClass;
-      string_to_string                          m_mapClassStyle;
+      string_to_string_base                          m_mapClassStyle;
       string                                    m_strStyle;
       ::property_set                            m_setStyle;
 
@@ -689,11 +691,11 @@ namespace user
 
       virtual bool is_ok();
 
-      virtual string get_class_style(string strClass);
-      virtual void set_class_style(string strClass, string strStyle);
+      virtual string get_class_style(const ::scoped_string & scopedstrClass);
+      virtual void set_class_style(const ::scoped_string & scopedstrClass, const ::scoped_string & scopedstrStyle);
       virtual void sync_style();
       virtual string get_full_style();
-      virtual void load_style(string strStyle);
+      virtual void load_style(const ::scoped_string & scopedstrStyle);
 
 
       virtual::e_display window_stored_display();
@@ -840,7 +842,7 @@ namespace user
 
       //task_pointer defer_fork(const ::atom& atom, const matter_pointer& pmatter);
 
-      virtual void set_place_child_title(const ::string & pszTitle);
+      virtual void set_place_child_title(const ::scoped_string & scopedstrTitle);
 
       virtual ::user::interaction_base * get_bind_ui();
 
@@ -861,7 +863,7 @@ namespace user
       //void window_move(int x, int y) override;
 
 
-      //auto fps_interest() { return __allocate ::fps_interest(this); }
+      //auto fps_interest() { return øallocate ::fps_interest(this); }
 
       virtual bool should_save_window_rectangle();
       
@@ -929,10 +931,11 @@ namespace user
 
       virtual void set_reposition(bool bSetThis = true);
       virtual void _set_reposition(bool bSetThis = true);
+      virtual void set_need_perform_layout();
       virtual void set_need_layout();
       virtual void set_recalculate_clip_rectangle();
       //void set_need_layout() { m_bNeedLayout = true; }
-      void set_need_redraw(const ::int_rectangle_array& rectangleNeedRedraw = {}, ::draw2d::graphics * pgraphics = nullptr, ::function < void() > function= nullptr, bool bAscendants = true) override;
+      void set_need_redraw(const ::int_rectangle_array_base& rectangleNeedRedraw = {}, ::draw2d::graphics * pgraphics = nullptr, ::function < void() > function= nullptr, bool bAscendants = true) override;
       virtual bool needs_to_draw(::draw2d::graphics * pgraphics, const ::int_rectangle& rectangleNeedsToDraw = {});
       virtual void set_need_load_form_data() override;
       virtual void set_need_save_form_data() override;
@@ -1057,9 +1060,9 @@ namespace user
 
       virtual bool on_child_from_point_mouse_message_routing(::message::mouse * pmouse);
 
-      virtual void create_message_queue(const ::string & strName) override;
+      virtual void create_message_queue(const ::scoped_string & scopedstrName) override;
 
-      virtual ::pointer<::message::message>get_message(::enum_message emessage, ::wparam wparam, ::lparam lparam, ::message::enum_prototype eprototype = ::message::e_prototype_none) override;
+      virtual ::pointer<::message::message>get_message(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam, ::user::enum_message_prototype eprototype = ::user::e_message_prototype_none) override;
 
       virtual bool has_text_input();
 
@@ -1471,7 +1474,7 @@ namespace user
       /// returns true if set_need_redraw was posted
       virtual bool post_pending_set_need_redraw();
 
-      // virtual bool create_interaction(const ::string & pszClassName, const ::string & pszWindowName, unsigned int uStyle, ::user::interaction * puiParent, ::request * prequest = nullptr) override;
+      // virtual bool create_interaction(const ::scoped_string & scopedstrClassName, const ::scoped_string & scopedstrWindowName, unsigned int uStyle, ::user::interaction * puiParent, ::request * prequest = nullptr) override;
 
       //virtual bool create_window_ex(::pointer<::user::system>pcs, ::user::interaction* puiParent = nullptr, const ::atom& atom = ::atom()) override;
       //enum AdjustType { adjustBorder = 0, adjustOutside = 1 };
@@ -1554,12 +1557,12 @@ namespace user
 
       void post_message(::message::message* pmessage) override;
       
-      lresult send_message(::enum_message emessage, ::wparam wparam = {}, ::lparam lparam = {}, const ::int_point & point = {}) override;
+      lresult send_message(::user::enum_message eusermessage, ::wparam wparam = {}, ::lparam lparam = {}, const ::int_point & point = {}) override;
       lresult send_message(::message::message* pmessage) override;
 
       //virtual lresult send_create_message();
 
-      lresult message_call(::enum_message emessage, ::wparam wparam = {}, ::lparam lparam = {}, const ::int_point & point = {}) override;
+      lresult message_call(::user::enum_message eusermessage, ::wparam wparam = {}, ::lparam lparam = {}, const ::int_point & point = {}) override;
       lresult message_call(::message::message * pmessage) override;
 
       
@@ -1572,18 +1575,18 @@ namespace user
 
 #endif
 
-      lresult message_handler(::enum_message emessage, ::wparam wparam = {}, ::lparam lparam = {}) override;
+      lresult message_handler(::user::enum_message eusermessage, ::wparam wparam = {}, ::lparam lparam = {}) override;
 
-      virtual lresult call_route_message(::enum_message emessage, ::wparam wparam = {}, ::lparam lparam = {});
+      virtual lresult call_route_message(::user::enum_message eusermessage, ::wparam wparam = {}, ::lparam lparam = {});
 
       virtual void on_default_window_procedure(::message::message * pmessage);
 
-      void post_message(::enum_message emessage, ::wparam wparam = {}, ::lparam lparam = {}) override;
+      void post_message(::user::enum_message eusermessage, ::wparam wparam = {}, ::lparam lparam = {}) override;
 
-      virtual void post_object(::enum_message emessage, ::wparam wparam = {}, ::lparam lparam = {});
+      virtual void post_object(::user::enum_message eusermessage, ::wparam wparam = {}, ::lparam lparam = {});
 
 
-      //virtual void user_post(::enum_message emessage, ::wparam wparam = {}, ::lparam lparam = {}) override;
+      //virtual void user_post(::user::enum_message eusermessage, ::wparam wparam = {}, ::lparam lparam = {}) override;
 
       //virtual void SetWindowDisplayChanged() override;
 
@@ -1681,11 +1684,11 @@ namespace user
       virtual bool edit_undo();
 
 
-      virtual void edit_on_text(string str) override;
+      virtual void edit_on_text(const ::scoped_string & scopedstr) override;
       virtual void edit_on_sel(character_count iBeg, character_count iEnd) override;
 
       //void get_text_composition_area(::int_rectangle & r) override;
-      virtual void on_text_composition(string str) override;
+      virtual void on_text_composition(const ::scoped_string & scopedstr) override;
       virtual void on_text_composition_done() override;
 
       //void is_text_composition_active() override;
@@ -1693,11 +1696,11 @@ namespace user
       virtual int on_text_composition_message(int iMessage);
 
       void insert_text(const ::scoped_string & scopedstr, bool bForceNewStep, const ::action_context & actioncontext) override;
-      //void insert_text(string str, bool bForceNewStep, const ::action_context & context) override;
+      //void insert_text(const ::scoped_string & scopedstr, bool bForceNewStep, const ::action_context & context) override;
       virtual void get_text_composition_area(::int_rectangle & rectangle);
 
 
-      virtual void set_window_text(const ::string & pszString) override;
+      virtual void set_window_text(const ::scoped_string & scopedstrString) override;
       virtual void set_window_text_source(const ::a_string_function & astringfunction) override;
       virtual void clear_window_text_source();
 
@@ -1888,12 +1891,12 @@ namespace user
 
       ::user::interaction* _001FromPoint(::int_point point, bool bTestedIfParentVisible = false) override;
 
-      void OnLinkClick(const ::string & psz, const ::string & pszTarget = nullptr) override;
+      void OnLinkClick(const ::scoped_string & scopedstr, const ::scoped_string & scopedstrTarget = nullptr) override;
 
       void pre_translate_message(::message::message* pmessage) override;
 
 
-      ::user::interaction * get_child_by_name(const ::string & strName, ::collection::index iItem = -1, int iLevel = -1) override;
+      ::user::interaction * get_child_by_name(const ::scoped_string & scopedstrName, ::collection::index iItem = -1, int iLevel = -1) override;
       ::user::interaction * get_child_by_id(const atom & atom, ::collection::index iItem = -1, int iLevel = -1) override;
       ::user::element * get_primitive_by_id(const atom & atom, ::collection::index iItem, int iLevel) override;
 
@@ -1962,7 +1965,7 @@ namespace user
       //virtual ::user::frame_interaction * top_level_frame() override;
 
 
-      void send_message_to_descendants(::enum_message emessage, ::wparam wparam = {}, ::lparam lparam = {}, bool bDeep = true, bool bOnlyPerm = false) override;
+      void send_message_to_descendants(::user::enum_message eusermessage, ::wparam wparam = {}, ::lparam lparam = {}, bool bDeep = true, bool bOnlyPerm = false) override;
 
       void route_message_to_descendants(::message::message* pmessage) override;
 
@@ -2307,7 +2310,7 @@ namespace user
       void get_text_selection(character_count& iBeg, character_count& iEnd) const override;
 
       
-      virtual bool set_sel_by_name(const ::string & strName);
+      virtual bool set_sel_by_name(const ::scoped_string & scopedstrName);
       virtual string get_sel_by_name();
       virtual string get_hover_by_name();
       virtual void ensure_sel_visible();
@@ -2369,7 +2372,7 @@ namespace user
       bool is_descendant_of_or_owned_by(::user::element * puiAscendantCandidate, bool bIncludeSelf) override;
       bool is_ascendant_or_owner_of(::user::element * puiDescendantCandidate, bool bIncludeSelf) override;
 
-      virtual void show_tooltip(const string& str, bool bError);
+      virtual void show_tooltip(const ::scoped_string & scopedstr, bool bError);
 
       virtual void layout_tooltip(bool bForceShow = false);
 
@@ -2448,7 +2451,7 @@ namespace user
       virtual bool is_window_repositioning();
       virtual bool is_window_docking();
 
-      virtual void set_bitmap_source(const string & strBitmapFileTitle) override;
+      virtual void set_bitmap_source(const ::scoped_string & scopedstrBitmapFileTitle) override;
       virtual void clear_bitmap_source() override;
 
 
@@ -2473,7 +2476,7 @@ namespace user
       virtual void simple_ui_draw_border(::draw2d::graphics_pointer & pgraphics);
 
 
-      virtual bool on_action(const ::string & pszId);
+      virtual bool on_action(const ::scoped_string & scopedstrId);
 
       bool keyboard_focus_is_focusable() override;
 
@@ -2544,7 +2547,7 @@ namespace user
       //virtual bool has_function(enum_control_function econtrolfunction);
       //virtual enum_control_type get_control_type();
       //virtual void _003CallCustomDraw(::draw2d::graphics_pointer& pgraphics, ::aura::draw_context* pitem);
-      //virtual bool _003CallCustomWindowProc(::pointer<::user::interaction>puserinteraction, ::enum_message emessage, ::wparam wparam, ::lparam lparam, lresult& lresult);
+      //virtual bool _003CallCustomWindowProc(::pointer<::user::interaction>puserinteraction, ::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam, lresult& lresult);
       //virtual void _003OnCustomDraw(::draw2d::graphics_pointer& pgraphics, ::aura::draw_context* pitem);
       //virtual void _003CustomWindowProc(::message::message* pmessage);
       //virtual form_list * get_form_list();
@@ -2813,7 +2816,7 @@ namespace user
 //
 //      virtual void pick_multiple_file(
 //         const ::array < ::pair < ::string, ::string > > & filetypes,
-//         const ::function < void(const ::file::path_array &) >& function);
+//         const ::function < void(const ::file::path_array_base &) >& function);
 //     
 //      virtual void pick_single_folder(
 //         //const ::array < ::pair < ::string, ::string > >& filetypes,
@@ -2840,7 +2843,7 @@ namespace user
    public:
 
 
-      id_to_id      m_mapControlCommand;
+      id_to_id_base      m_mapControlCommand;
 
 
       control_cmd_ui();
@@ -2848,7 +2851,7 @@ namespace user
 
       virtual void enable(bool bOn);
       virtual void SetCheck(int nCheck);
-      virtual void SetText(const ::string & pszText);
+      virtual void SetText(const ::scoped_string & scopedstrText);
 
       atom GetControlCommand(atom atom);
 

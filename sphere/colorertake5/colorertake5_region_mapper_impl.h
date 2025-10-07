@@ -30,9 +30,9 @@ namespace colorertake5
 
 
       RegionDefine *getRegionDefine(class region *region);
-      RegionDefine *getRegionDefine(const ::string & name);
+      RegionDefine *getRegionDefine(const ::scoped_string & scopedstrName);
 
-      string_map< RegionDefine *> regionDefines;
+      string_map_base< RegionDefine *> regionDefines;
       address_array < RegionDefine * > regionDefinesVector;
 
       RegionMapperImpl(const RegionMapperImpl&);

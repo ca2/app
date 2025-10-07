@@ -147,7 +147,7 @@ namespace platform
 
       __check_refdbg
 
-      m_ptexttranslator = __allocate ::text::translator();
+      m_ptexttranslator = øallocate ::text::translator();
 
       __check_refdbg
 
@@ -177,7 +177,7 @@ namespace platform
 
       return node()->is_alias(path);
 
-      //return case_insensitive_string_ends(psz, ".lnk");
+      //return case_insensitive_string_ends(scopedstr, ".lnk");
 
    }
 
@@ -199,9 +199,9 @@ namespace platform
 
          ::pointer<::file::link> plink;
 
-         ::file::path_array patha;
+         ::file::path_array_base patha;
 
-         ::file::path_array pathaRelative;
+         ::file::path_array_base pathaRelative;
 
          ascendants_path(path, patha, &pathaRelative);
 
@@ -258,7 +258,7 @@ namespace platform
    void context::initialize_context()
    {
 
-      __construct_new(m_ptexttranslator);
+      øconstruct_new(m_ptexttranslator);
 
 
       //auto estatus =
@@ -272,7 +272,7 @@ namespace platform
       //}
 
       /*estatus = */
-      __øconstruct(m_pfilecontext);
+      øconstruct(m_pfilecontext);
 
       //if (!estatus)
       //{
@@ -282,7 +282,7 @@ namespace platform
       //}
 
       //estatus =
-      __øconstruct(m_pdirectorycontext);
+      øconstruct(m_pdirectorycontext);
 
       //if (!estatus)
       //{
@@ -654,7 +654,7 @@ namespace platform
    //   file_pointer context::get_file(const ::payload& payloadFile, ::file::e_open eopen)
    //   {
    //
-   //      auto pfile = __øcreate < ::file::file >();
+   //      auto pfile = øcreate < ::file::file >();
    //
    //      auto path = payloadFile.file_path();
    //
@@ -847,14 +847,14 @@ namespace platform
 
       ::collection::count cScan = maximum(1, minimum(iCount - iStart, iAffinityOrder));
 
-      auto pcounter = __allocate ::parallelization::counter(cScan, procedureCompletion);
+      auto pcounter = øallocate ::parallelization::counter(cScan, procedureCompletion);
 
       auto ptask = ::get_task();
 
       for (::collection::index iOrder = 0; iOrder < cScan; iOrder++)
       {
 
-         auto ppredtask = __allocate forking_count_task(this, iOrder, iOrder + iStart, cScan, iCount, function);
+         auto ppredtask = øallocate forking_count_task(this, iOrder, iOrder + iStart, cScan, iCount, function);
 
          //if (::is_set(ptask))
          //{
@@ -890,7 +890,7 @@ namespace platform
    }
 
 
-   void context::locale_schema_matter(string_array& stra, const string_array& straMatterLocator,
+   void context::locale_schema_matter(string_array_base& stra, const string_array_base& straMatterLocator,
                                       const ::scoped_string& scopedstrLocale, const ::scoped_string& scopedstrSchema)
    {
 
@@ -951,8 +951,10 @@ namespace platform
    }
 
 
-   ::file::path context::get_matter_path(string strMatter)
+   ::file::path context::get_matter_path(const ::scoped_string & scopedstrMatter)
    {
+
+      ::string strMatter(scopedstrMatter);
 
       if (strMatter.case_insensitive_begins_eat("appmatter:/"))
       {
@@ -961,12 +963,12 @@ namespace platform
 
       }
 
-      return strMatter;
+      return scopedstrMatter;
 
    }
 
 
-   ::file::path context::side_get_matter_path(string strMatter)
+   ::file::path context::side_get_matter_path(const ::scoped_string & scopedstrMatter)
    {
 
       auto psystem = system();
@@ -981,7 +983,7 @@ namespace platform
 
 #endif
 
-      return pathResource / strMatter;
+      return pathResource / scopedstrMatter;
 
    }
 
@@ -1202,15 +1204,15 @@ namespace platform
    }
 
 
-   string context::matter_locator(string strApp)
+   string context::matter_locator(const ::scoped_string & scopedstrApp)
    {
 
-      string strMatterLocator = strApp;
+      string strMatterLocator = scopedstrApp;
 
       if (!strMatterLocator.case_insensitive_contains("/_matter/"))
       {
 
-         string_array stra;
+         string_array_base stra;
 
          stra.explode("/", strMatterLocator);
 
@@ -1236,12 +1238,12 @@ namespace platform
    }
 
 
-   void context::add_matter_locator(string strApp)
+   void context::add_matter_locator(const ::scoped_string & scopedstrApp)
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-      string strMatterLocator = matter_locator(strApp);
+      string strMatterLocator = matter_locator(scopedstrApp);
 
       m_straMatterLocatorPriority.add(strMatterLocator);
 
@@ -1251,7 +1253,7 @@ namespace platform
    void context::add_matter_locator(::platform::application* papp)
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       string strMatterLocator = matter_locator(papp);
 
@@ -1262,18 +1264,18 @@ namespace platform
    }
 
 
-   //void context::http_sync(::nano::http::get * pget)
+   //void context::http_sync(::nano::http::get * defer_get)
    //{
    //
-   //   nano()->http()->sync(pget);
+   //   nano()->http()->sync(defer_get);
    //
    //}
 
 
-   //void context::http_async(::nano::http::get * pget, const ::function < void(::nano::http::get *) > & callback)
+   //void context::http_async(::nano::http::get * defer_get, const ::function < void(::nano::http::get *) > & callback)
    //{
    //
-   //   nano()->http()->async(pget);
+   //   nano()->http()->async(defer_get);
    //
    //}
 

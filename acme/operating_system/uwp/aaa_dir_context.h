@@ -34,15 +34,15 @@ namespace universal_windows
       //virtual string path(const ::scoped_string & scopedstrFolder,character_count iLenFolder,const ::scoped_string & scopedstrRelative,character_count iLenRelative,const ::scoped_string & scopedstr2,character_count iLen2,bool bUrl);
 
       //virtual string relpath(const char * lpcszSource,const char * lpcszRelative,const char * lpcsz2 = nullptr);
-      //virtual bool  ls_pattern(const ::scoped_string & scopedstr,const char * lpcszPattern,string_array * pstraPath = nullptr,string_array * pstraTitle = nullptr,bool_array * pbaIsDir = nullptr,long_long_array * piaSize = nullptr);
+      //virtual bool  ls_pattern(const ::scoped_string & scopedstr,const char * lpcszPattern,string_array_base * pstraPath = nullptr,string_array_base * pstraTitle = nullptr,bool_array * pbaIsDir = nullptr,long_long_array * piaSize = nullptr);
       virtual ::file::listing & ls(::file::listing & listing) override;
-      //virtual bool  rls_pattern(const ::scoped_string & scopedstr,const char * lpcszPattern,string_array * pstraPath = nullptr,string_array * pstraTitle = nullptr,string_array * pstraRelative = nullptr,bool_array * pbaIsDir = nullptr,long_long_array * piaSize = nullptr,enum_extract eextract = e_extract_first);
-      //virtual bool  rls(const ::scoped_string & scopedstr,string_array * pstraPath = nullptr,string_array * pstraTitle = nullptr,string_array * pstraRelative = nullptr,enum_extract eextract = e_extract_first);
-      //virtual bool  rls_dir(const ::scoped_string & scopedstr,string_array * pstraPath = nullptr,string_array * pstraTitle = nullptr,string_array * pstraRelative = nullptr);
-      //virtual bool  ls_dir(const ::scoped_string & scopedstr,string_array * pstraPath = nullptr,string_array * pstraTitle = nullptr);
-      //virtual bool  ls_file(const ::scoped_string & scopedstr,string_array * pstraPath = nullptr,string_array * pstraTitle = nullptr);
+      //virtual bool  rls_pattern(const ::scoped_string & scopedstr,const char * lpcszPattern,string_array_base * pstraPath = nullptr,string_array_base * pstraTitle = nullptr,string_array_base * pstraRelative = nullptr,bool_array * pbaIsDir = nullptr,long_long_array * piaSize = nullptr,enum_extract eextract = e_extract_first);
+      //virtual bool  rls(const ::scoped_string & scopedstr,string_array_base * pstraPath = nullptr,string_array_base * pstraTitle = nullptr,string_array_base * pstraRelative = nullptr,enum_extract eextract = e_extract_first);
+      //virtual bool  rls_dir(const ::scoped_string & scopedstr,string_array_base * pstraPath = nullptr,string_array_base * pstraTitle = nullptr,string_array_base * pstraRelative = nullptr);
+      //virtual bool  ls_dir(const ::scoped_string & scopedstr,string_array_base * pstraPath = nullptr,string_array_base * pstraTitle = nullptr);
+      //virtual bool  ls_file(const ::scoped_string & scopedstr,string_array_base * pstraPath = nullptr,string_array_base * pstraTitle = nullptr);
       virtual bool  is_impl(const ::file::path & path) override;
-      //virtual bool  is(const ::string & str);
+      //virtual bool  is(const ::scoped_string & scopedstr);
       virtual bool  name_is(const ::file::path & str);
       virtual bool  has_subdir( const ::file::path & path);
       virtual bool  is_inside(const ::file::path & pathDir, const ::file::path & path);
@@ -53,7 +53,7 @@ namespace universal_windows
 
 
       //virtual string name(const ::scoped_string & scopedstr);
-      //virtual string name(const ::string & str);
+      //virtual string name(const ::scoped_string & scopedstr);
 
       ::file::path userfolder();
 
@@ -71,20 +71,20 @@ namespace universal_windows
       virtual ::file::path time_square();
       virtual ::file::path time_log();
 
-      ::file::path time_square( const ::string & strPrefix, const ::string & strSuffix);
+      ::file::path time_square( const ::scoped_string & scopedstrPrefix, const ::scoped_string & scopedstrSuffix);
 
       virtual ::file::path trash_that_is_not_trash(const ::file::path & path);
 
       virtual ::file::path appdata();
 
-      //virtual ::file::path usersystemappdata(const ::string & strPrefix);
+      //virtual ::file::path usersystemappdata(const ::scoped_string & scopedstrPrefix);
       //virtual ::file::path userappdata();
       //virtual ::file::path userdata();
       ////virtual ::file::path userfolder();
       //virtual ::file::path default_os_user_path_prefix();
-      //virtual ::file::path default_userappdata(const ::string & strPrefix,const ::string & strLogin);
-      //virtual ::file::path default_userdata(const ::string & strPrefix,const ::string & strLogin);
-      //virtual ::file::path default_userfolder(const ::string & strPrefix,const ::string & strLogin);
+      //virtual ::file::path default_userappdata(const ::scoped_string & scopedstrPrefix,const ::scoped_string & scopedstrLogin);
+      //virtual ::file::path default_userdata(const ::scoped_string & scopedstrPrefix,const ::scoped_string & scopedstrLogin);
+      //virtual ::file::path default_userfolder(const ::scoped_string & scopedstrPrefix,const ::scoped_string & scopedstrLogin);
       virtual ::file::path userquicklaunch();
       virtual ::file::path userprograms();
 

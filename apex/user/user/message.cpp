@@ -25,14 +25,14 @@ namespace user
 
 
 
-   //user::user(oswindow oswindow, ::layered * playeredUserPrimitive, ::enum_message emessage, ::wparam wparam, ::lparam lparam)
+   //user::user(oswindow oswindow, ::layered * playeredUserPrimitive, ::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
    //{
 
    //   m_uiMessageFlags = 0;
    //   m_lresult = 0;
    //   m_bDestroyed = false;
    //   m_bDoSystemDefault = true;
-   //   set(oswindow, playeredUserPrimitive, emessage, wparam, lparam);
+   //   set(oswindow, playeredUserPrimitive, eusermessage, wparam, lparam);
 
 
    //   //papp->tellme_destroyed(puserinteraction, &m_bDestroyed);
@@ -63,7 +63,7 @@ namespace user
       //if(m_puserinteraction != nullptr)
       //{
 
-      //   synchronous_lock synchronouslock(get_ui_destroyed_mutex());
+      //   synchronous_lock synchronouslock(get_ui_destroyed_mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       //   if(m_bDestroyed)
       //   {
@@ -83,12 +83,12 @@ namespace user
    }
 
 
-   //void message::set(oswindow oswindow, ::windowing::window * pwindow, ::enum_message emessage, ::wparam wparam, ::lparam lparam)
+   //void message::set(oswindow oswindow, ::windowing::window * pwindow, ::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
    //{
 
    //   m_pwindow = pwindow;
 
-   //   ::message::message::set(oswindow, pwindow, emessage, wparam, lparam);
+   //   ::message::message::set(oswindow, pwindow, eusermessage, wparam, lparam);
 
    //}
 

@@ -14,7 +14,7 @@
 #include "Screen.h"
 #include "Window.h"
 #include "Popup.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "acme/constant/user_key.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "aura/graphics/image/context.h"
@@ -73,7 +73,7 @@ namespace nanoui
 {
 
    //
-   //std::map<GLFWwindow *, Screen *> __nanoui_screens;
+   //std::map_base<GLFWwindow *, Screen *> __nanoui_screens;
    //
    //#if defined(NANOUI_GLAD)
    //static bool glad_initialized = false;
@@ -351,7 +351,7 @@ namespace nanoui
    //   );
    //
    //   glfwSetDropCallback(m_glfw_window,
-   //      [](GLFWwindow * pwidgetChild, int count, const char ** filenames) {
+   //      [](GLFWwindow * pwidgetChild, int count, const_char_pointer *filenames) {
    //         auto it = __nanoui_screens.find(pwidgetChild);
    //         if (it == __nanoui_screens.end())
    //            return;
@@ -576,9 +576,9 @@ namespace nanoui
    void Screen::common_construct()
    {
 
-      m_pfontsink = m_puserinteraction->__create_new < ::nano2d::font_sink >();
+      m_pfontsink = m_puserinteraction->øcreate_new < ::nano2d::font_sink >();
 
-      set_theme(__allocate Theme());
+      set_theme(øallocate Theme());
 
    }
 
@@ -722,7 +722,7 @@ namespace nanoui
    {
 
 
-      _synchronous_lock lock(m_puserinteraction->synchronization());
+      _synchronous_lock lock(m_puserinteraction->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (m_bNeedLayout)
       {
@@ -849,7 +849,7 @@ namespace nanoui
    }
 
 
-   bool Screen::keyboard_event(::user::enum_key ekey, int scancode, int action, const ::user::e_key& ekeyModifiers, const ::string& strText)
+   bool Screen::keyboard_event(::user::enum_key ekey, int scancode, int action, const ::user::e_key& ekeyModifiers, const ::scoped_string & scopedstrText)
    {
 
       if (m_focus_path.size() > 0)
@@ -860,7 +860,7 @@ namespace nanoui
 
             auto pwidget = m_focus_path[i];
 
-            if (pwidget->keyboard_event(ekey, scancode, action, ekeyModifiers, strText))
+            if (pwidget->keyboard_event(ekey, scancode, action, ekeyModifiers, scopedstrText))
             {
 
                return true;
@@ -925,7 +925,7 @@ namespace nanoui
    bool Screen::on_mouse_move(const ::int_point& point, bool bDown, const ::user::e_key& ekeyModifiers)
    {
 
-      _synchronous_lock lock(this->synchronization());
+      _synchronous_lock lock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
       bool ret = false;
 
       //if (point.x() > m_size.cx() - 10 && point.y() > m_size.cy() - 10)
@@ -1274,8 +1274,8 @@ namespace nanoui
    //   }
    //}
    //
-   //void Screen::drop_callback_event(int count, const char ** filenames) {
-   //   ::string_array arg(count);
+   //void Screen::drop_callback_event(int count, const_char_pointer *filenames) {
+   //   ::string_array_base arg(count);
    //   for (int i = 0; i < count; ++i)
    //      arg[i] = filenames[i];
    //   m_redraw |= drop_event(arg);
@@ -1477,7 +1477,7 @@ namespace nanoui
    void Screen::move_window_to_front(Window* window)
    {
       
-      _synchronous_lock lock(m_puserinteraction->synchronization());
+      _synchronous_lock lock(m_puserinteraction->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (!m_children.contains(window))
       {
@@ -1827,10 +1827,10 @@ namespace nanoui
    //}
 
 
-   bool Screen::on_key_down(::user::enum_key ekey, long long scancode, const ::user::e_key& ekeyModifiers, const ::string& strText)
+   bool Screen::on_key_down(::user::enum_key ekey, long long scancode, const ::user::e_key& ekeyModifiers, const ::scoped_string & scopedstrText)
    {
 
-      return keyboard_event(ekey, (int)scancode, e_message_key_down, ekeyModifiers, strText);
+      return keyboard_event(ekey, (int)scancode, ::user::e_message_key_down, ekeyModifiers, scopedstrText);
 
    }
 
@@ -1838,7 +1838,7 @@ namespace nanoui
    bool Screen::on_key_up(::user::enum_key ekey, long long scancode, const ::user::e_key& ekeyModifiers)
    {
 
-      return keyboard_event(ekey, (int)scancode, e_message_key_up, ekeyModifiers, "");
+      return keyboard_event(ekey, (int)scancode, ::user::e_message_key_up, ekeyModifiers, "");
 
    }
 

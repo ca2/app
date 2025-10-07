@@ -53,7 +53,7 @@ namespace axis
 //      // void dump(dump_context & dumpcontext) const override;
       bool assert_user_logged_in() override;
 
-       string __get_text(string str) override;
+       string __get_text(const ::scoped_string & scopedstr) override;
 
       //virtual ::user::style* get_user_style() const;
     
@@ -137,15 +137,15 @@ namespace axis
 
 
 
-      //virtual string http_get_locale_schema(const ::string & pszUrl, const ::string & pszLocale, const ::string & pszSchema);
+      //virtual string http_get_locale_schema(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema);
 
       //virtual void on_update_matter_locator() override;
 
-      //virtual void locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const ::string & strLocale, const ::string & strSchema) override;
-      //virtual void matter_locator_locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const ::string & strLocale, const ::string & strSchema);
+      //virtual void locale_schema_matter(string_array_base & stra, const string_array_base & straMatterLocator, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema) override;
+      //virtual void matter_locator_locale_schema_matter(string_array_base & stra, const string_array_base & straMatterLocator, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema);
 
-      //virtual string get_locale_schema_dir(const ::string & strLocale, const ::string & strSchema);
-      //virtual string get_locale_schema_dir(const ::string & strLocale);
+      //virtual string get_locale_schema_dir(const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema);
+      //virtual string get_locale_schema_dir(const ::scoped_string & scopedstrLocale);
       //virtual string get_locale_schema_dir() override;
 
       //virtual void set_locale(const string & pcsz, const ::action_context & action_context);
@@ -171,7 +171,7 @@ namespace axis
      
       ::type_atom control_type_from_id(const ::atom& atom, ::user::enum_control_type& econtroltype) override;
       ::user::interaction* create_menu_interaction() override;
-//      void handle_url(const ::string & strUrl) override;
+//      void handle_url(const ::scoped_string & scopedstrUrl) override;
 
       //::user::user * axisuser() override;
 

@@ -40,7 +40,7 @@
 //{
 //
 //
-//   void * default_heap::allocate_debug(memsize size, int nBlockUse, const char * pszFile, int iLine)
+//   void * default_heap::allocate_debug(memsize size, int nBlockUse, const_char_pointer pszFile, int iLine)
 //   {
 //
 //#if MEMDLEAK
@@ -104,7 +104,7 @@
 //#ifdef MEMDLEAK
 //
 //
-//   void * default_heap::reallocate_debug(void * p, memsize size, int nBlockUse, const char * pszFile, int iLine)
+//   void * default_heap::reallocate_debug(void * p, memsize size, int nBlockUse, const_char_pointer pszFile, int iLine)
 //   {
 //
 //#if MEMDLEAK
@@ -124,7 +124,7 @@
 //
 //      //memdleak_block * pblock = &((memdleak_block *)psizeOld)[-1];
 //
-//      //synchronous_lock lock(g_pmutgen);
+//      //synchronous_lock lock(g_pmutgen, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //      //if(s_pmemdleakList == pblock)
 //      //{
@@ -167,7 +167,7 @@
 //         //   string strCallStack;
 //         //   g_ee->xxxstack_trace(1);
 //         //   pblock->m_pszCallStack = strdup(g_ee->_strS);
-//         //   pblock->m_pszFileName = strdup(pszFileName == nullptr ? "" : pszFileName);
+//         //   pblock->m_pszFileName = strdup(scopedstrFileName == nullptr ? "" : pszFileName);
 //         //}
 //
 //         //
@@ -240,7 +240,7 @@
 //            if(s_pmemdleakList != nullptr)
 //            {
 //
-//               synchronous_lock lock(g_pmutgen);
+//               synchronous_lock lock(g_pmutgen, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //               if(s_pmemdleakList == pblock)
 //               {
@@ -276,7 +276,7 @@
 //
 //
 ////typedef DWORD64[64]
-////::collection::count get_mem_info2(int ** ppiUse, const char *** ppszFile, DWORD64 ** ppuiStack[64], long long ** ppiStack, int ** ppiLine, long long ** ppiSize)
+////::collection::count get_mem_info2(int ** ppiUse, const_char_pointer ** ppszFile, DWORD64 ** ppuiStack[64], long long ** ppiStack, int ** ppiLine, long long ** ppiSize)
 ////{
 ////
 ////#ifndef MEMDLEAK
@@ -285,7 +285,7 @@
 ////
 ////#endif
 ////
-////   synchronous_lock lock(g_pmutgen);
+////   synchronous_lock lock(g_pmutgen, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 ////
 ////   memdleak_block * pblock = s_pmemdleakList;
 ////
@@ -302,7 +302,7 @@
 ////
 ////
 ////   int * piUse = (int *)malloc(sizeof(int) * ca);
-////   const char ** pszFile = (const char **)malloc(sizeof(const char *) * ca);
+////   const_char_pointer *pszFile = (const_char_pointer *)malloc(sizeof(const_char_pointer )* ca);
 ////   DWORD64 ** puiStack[64] = (DWORD64 **[64])malloc(sizeof(DWORD64[64]) * ca);
 ////   long long * piStack = (long long *)malloc(sizeof(long long) * ca);
 ////   int * piLine = (int *)malloc(sizeof(int) * ca);
@@ -346,7 +346,7 @@
 //void set_last_block_file_name(const ::scoped_string & scopedstr)
 //{
 //
-//   //t_plastblock->m_pszFileName = strdup(psz == nullptr ? "" : psz);
+//   //t_plastblock->m_pszFileName = strdup(scopedstr == nullptr ? "" : psz);
 //
 //}
 //#endif

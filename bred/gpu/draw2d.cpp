@@ -58,7 +58,7 @@ namespace gpu
 
          system()->initialize_typeface();
 
-         __øconstruct(pface);
+         øconstruct(pface);
 
          pface->m_strFontName = strFontFamilyName;
 

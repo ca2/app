@@ -50,7 +50,7 @@ namespace sockets
    }
 
 
-   http_get_socket::http_get_socket(const string & host,port_t port,const string & url_in) :
+   http_get_socket::http_get_socket(const ::scoped_string & scopedstrHost,port_t port,const string & url_in) :
       //::object(&h),
       //base_socket(h),
       //socket(h),

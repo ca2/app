@@ -19,13 +19,13 @@ public:
 
    struct node
    {
-      node* pNext;   // only valid when in free list
+      node* pNext;   // only valid when in free list_base
    };
 
    ::heap::allocator * m_pallocator;
    unsigned int m_nAllocSize;   // int_size of each block from Alloc
    unsigned int m_nBlockSize;   // number of blocks to get at a time
-   ::plex* m_pBlocks;   // linked list of blocks (is nBlocks*nAllocSize)
+   ::plex* m_pBlocks;   // linked list_base of blocks (is nBlocks*nAllocSize)
    node* m_pnodeFree;   // first free node (nullptr if no free nodes)
 
 
@@ -52,7 +52,7 @@ inline void * fixed_alloc_no_sync::Alloc()
    {
       NewBlock();
    }
-   // erase the first available node from the free list
+   // erase the first available node from the free list_base
    void * pNode = m_pnodeFree;
    m_pnodeFree = m_pnodeFree->pNext;
    return (void *) (((unsigned char *)pNode) + 16);
@@ -63,7 +63,7 @@ inline void fixed_alloc_no_sync::Free(void * p)
    p = (void *) (((unsigned char *)p) - 16);
    if (p != nullptr)
    {
-      // simply return the node to the free list
+      // simply return the node to the free list_base
       node* pNode = (node*)p;
       pNode->pNext = m_pnodeFree;
       m_pnodeFree = pNode;
@@ -77,10 +77,10 @@ public:
 
 
    ::heap::allocator * m_pallocator;
-   int                                       m_i;
-   int                                       m_iShareCount;
-   ::array < ::critical_section >            m_criticalsectiona;
-   address_array < fixed_alloc_no_sync * >   m_allocptra;
+   int                                             m_i;
+   int                                             m_iShareCount;
+   ::array_base < ::critical_section >             m_criticalsectiona;
+   address_array_base < fixed_alloc_no_sync * >    m_allocptra;
 
 
    fixed_alloc_sync(::heap::allocator * pallocator, unsigned int nAllocSize, unsigned int nBlockSize = 64, int iShareCount = 2);
@@ -102,10 +102,10 @@ class CLASS_DECL_ACME fixed_alloc
 public:
 
 
-   ::heap::allocator * m_pallocator;
-   int                                         m_i;
-   int                                         m_iShareCount;
-   address_array < fixed_alloc_sync * >            m_allocptra;
+   ::heap::allocator *                          m_pallocator;
+   int                                          m_i;
+   int                                          m_iShareCount;
+   address_array_base < fixed_alloc_sync * >    m_allocptra;
 
 
    fixed_alloc(::heap::allocator * pallocator, unsigned int nAllocSize, unsigned int nBlockSize = 64);
@@ -120,10 +120,8 @@ public:
 };
 
 
-
-
 class CLASS_DECL_ACME fixed_alloc_array :
-   public address_array < fixed_alloc * >
+   public address_array_base < fixed_alloc * >
 {
 public:
 
@@ -151,8 +149,8 @@ public: \
    void * operator new(size_t) { return s_palloc->Alloc(); } \
    void * operator new(size_t, void * p) { return p; } \
    void operator delete(void * p) { s_palloc->Free(p); } \
-   void * operator new(size_t, const char *, int) { return s_palloc->Alloc(); } \
-   void operator delete(void * p, const char *, int) { s_palloc->Free(p); } \
+   void * operator new(size_t, const_char_pointer ,int) { return s_palloc->Alloc(); } \
+   void operator delete(void * p, const_char_pointer ,int) { s_palloc->Free(p); } \
    static fixed_alloc * s_palloc;
 
 
@@ -162,7 +160,7 @@ fixed_alloc * class_name::s_palloc = nullptr;
 
 
 #define IMPLEMENT_AXIS_FIXED_ALLOC_CONSTRUCTOR(class_name, block_size) \
-class_name::s_palloc = __allocate< fixed_alloc(sizeof >(class_name), block_size);
+class_name::s_palloc = øallocate< fixed_alloc(sizeof >(class_name), block_size);
 
 #define IMPLEMENT_AXIS_FIXED_ALLOC_DESTRUCTOR(class_name) \
 if(class_name::s_palloc != nullptr) \

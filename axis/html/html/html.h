@@ -24,7 +24,7 @@ namespace html
 {
 
 
-   using string_to_color = string_map < status < ::color::color > >;
+   using string_to_color = string_map_base < status < ::color::color > >;
 
 
    using named_color = string_to_color;
@@ -50,12 +50,12 @@ namespace html
       virtual void initialize(::particle * pparticle) override;
 
 
-      string special_chars(const ::string & psz);
-      string entities(const ::string & psz);
-      string htmlpre(const ::string & psz);
-      int resolve_entity(const ::string & pszEntity,string & strChar);
+      string special_chars(const ::scoped_string & scopedstr);
+      string entities(const ::scoped_string & scopedstr);
+      string htmlpre(const ::scoped_string & scopedstr);
+      int resolve_entity(const ::scoped_string & scopedstrEntity,string & strChar);
 
-      string resolve_entities(const ::string & str);
+      string resolve_entities(const ::scoped_string & scopedstr);
 
 
       e_tag tag_name_to_id(atom idTag);

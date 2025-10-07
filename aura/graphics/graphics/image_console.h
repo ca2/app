@@ -19,8 +19,8 @@ namespace graphics
       int                           m_iColor;
       int                           m_iScreenColor;
       int                           m_iBorder;
-      string_array                       m_stra;
-      array < ::int_array >           m_i2aColor;
+      string_array_base                       m_stra;
+      array < ::int_array_base >           m_i2aColor;
       int_map < ::draw2d::pen_pointer >  m_mappen2;
       int_map < ::draw2d::pen_pointer >  m_mappen1;
       int                           m_iLastPenColor;
@@ -37,7 +37,7 @@ namespace graphics
       virtual void SetCursorPosition(int y, int x);
       virtual void SetTextColor(int color);
       virtual void SetScreenColor(int color, int iLineStart = 0, int iLineCount = -1);
-      virtual void write(const ::string & psz);
+      virtual void write(const ::scoped_string & scopedstr);
       virtual void write(const void * pdata, memsize nCount);
 
 

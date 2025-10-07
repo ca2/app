@@ -2,6 +2,7 @@
 //#include "string.h"
 #include "international.h"
 ////#include "acme/exception/exception.h"
+#include "acme/prototype/string/sz/_template.h"
 #include <string.h>
 #include <wchar.h>
 
@@ -50,7 +51,43 @@ character_count wd16_to_ansi_len(const ::wd16_character * pwsz, character_count 
 }
 
 
-character_count utf16_len(const ::wd16_character* pwsz)
+character_count wd16_to_ansi_len2(const ::wd16_character *pwsz, character_count & srclen)
+{
+
+   character_count count = 0;
+
+   auto remainingSrc = srclen;
+
+   while (remainingSrc > 0 && *pwsz != L'\0')
+   {
+
+      auto len = wd16_to_ansi_char_len(&pwsz, &remainingSrc);
+
+      if (len == 0)
+      {
+
+         break;
+
+      }
+      else if (len < 0)
+      {
+
+         throw_encoding_exception("wd16_to_ansi_len2 bad wd16 character encoding");
+
+         break;
+
+      }
+
+      count += len;
+
+   }
+
+   return count;
+
+}
+
+
+character_count utf16_len(const ::wd16_character *pwsz)
 {
 
    if (pwsz == nullptr)
@@ -106,41 +143,41 @@ character_count wd16_to_ansi(char* psz, const ::wd16_character* pwsz, character_
 }
 
 
-character_count ansi_to_wd16_len_len(const ::ansi_character * psz, character_count srclen)
-{
+//character_count ansi_to_wd16_len_len(const_char_pointer psz, character_count srclen)
+//{
+//
+//   character_count len;
+//
+//   character_count utf16len = 0;
+//
+//   while (srclen > 0 && psz != nullptr && *psz != '\0')
+//   {
+//
+//      len = unicode_len(psz);
+//
+//      if (len > srclen)
+//      {
+//
+//         throw ::exception(error_invalid_character, "reached maximum source length");
+//
+//         break;
+//
+//      }
+//
+//      psz += len;
+//
+//      utf16len++;
+//
+//      srclen -= len;
+//
+//   }
+//
+//   return utf16len;
+//
+//}
 
-   character_count len;
 
-   character_count utf16len = 0;
-
-   while (srclen > 0 && psz != nullptr && *psz != '\0')
-   {
-
-      len = unicode_len(psz);
-
-      if (len > srclen)
-      {
-
-         throw ::exception(error_invalid_character, "reached maximum source length");
-
-         break;
-
-      }
-
-      psz += len;
-
-      utf16len++;
-
-      srclen -= len;
-
-   }
-
-   return utf16len;
-
-}
-
-
-//character_count ansi_to_wd16(::wd16_character* pwsz, const ::ansi_character * psz, character_count srclen)
+//character_count ansi_to_wd16(::wd16_character* pwsz, const_char_pointer psz, character_count srclen)
 //{
 //
 //   character_count len;
@@ -170,7 +207,7 @@ character_count ansi_to_wd16_len_len(const ::ansi_character * psz, character_cou
 
 
 
-//::wd16_character* ansi_to_wd16_dup(const char* input, character_count input_size)
+//::wd16_character* ansi_to_wd16_dup(const_char_pointer input, character_count input_size)
 //{
 //
 //   character_count s = ansi_to_wd16_len_len(input, input_size);
@@ -304,7 +341,7 @@ extern "C"
       return strdup(unicode_to_utf8(str));
    }
 
-   wchar_t* c_wide_str(const char* str)
+   wchar_t* c_wide_str(const_char_pointer str)
    {
 #if defined(__APPLE__) || defined(LINUX) || defined(__ANDROID__)
       wchar_t* p = ansi_to_wd32_dup(str);
@@ -325,12 +362,12 @@ extern "C"
 
 
 
-// CLASS_DECL_ACME const char* yoshi_strcat(const ::ansi_character * psz1, const ::ansi_character * psz2, bool bFree2)
+// CLASS_DECL_ACME const_char_pointer yoshi_strcat(const_char_pointer psz1, const_char_pointer psz2, bool bFree2)
 // {
 
-//    character_count iLen1 = psz1 == nullptr ? 0 : strlen(psz1);
+//    character_count iLen1 = psz1 == nullptr ? 0 : strlen(scopedstr1);
 
-//    character_count iLen2 = psz2 == nullptr ? 0 : strlen(psz2);
+//    character_count iLen2 = psz2 == nullptr ? 0 : strlen(scopedstr2);
 
 //    character_count iLen = iLen1 + iLen2 + 1;
 
@@ -338,7 +375,7 @@ extern "C"
 
 //    strcpy(psz, "");
 
-//    if (psz1 != nullptr)
+//    if (scopedstr1 != nullptr)
 //    {
 
 //       ansi_concatenate(psz, psz1);
@@ -347,7 +384,7 @@ extern "C"
 
 //    }
 
-//    if (psz2 != nullptr)
+//    if (scopedstr2 != nullptr)
 //    {
 
 //       ansi_concatenate(psz, psz2);
@@ -685,7 +722,7 @@ extern "C"
 //}
 
 
-character_count ansi_to_wd16_len(const ::ansi_character * psz, character_count srclen)
+character_count ansi_to_wd16_len(const_char_pointer psz, character_count srclen)
 {
 
    character_count utf16len = 0;
@@ -732,7 +769,57 @@ character_count ansi_to_wd16_len(const ::ansi_character * psz, character_count s
 }
 
 
-character_count ansi_to_wd16(::wd16_character* pwsz, const ::ansi_character * psz, character_count srclen)
+character_count ansi_to_wd16_len2(const_char_pointer psz, character_count & srclen)
+{
+
+   character_count utf16len = 0;
+
+   ::wd16_character * pwsz = nullptr;
+
+   character_count count = 0;
+
+   while (count < srclen && *psz != '\0')
+   {
+
+      int len;
+
+      int iChar = unicode_index_length(psz, len);
+
+      if (iChar < 0)
+      {
+
+         // Invalid char 0xFFFD
+
+         utf16len++;
+
+         len = 1;
+
+      }
+      else if (utf32_is_surrogated(iChar))
+      {
+
+         utf16len += 2;
+
+      }
+      else
+      {
+
+         utf16len++;
+
+      }
+
+      psz += len;
+
+      count += len;
+
+   }
+
+   return utf16len;
+
+}
+
+
+character_count ansi_to_wd16(::wd16_character *pwsz, const_char_pointer psz, character_count srclen)
 {
 
    character_count len = 0;
@@ -784,9 +871,7 @@ character_count ansi_to_wd16(::wd16_character* pwsz, const ::ansi_character * ps
 }
 
 
-
-
-::wd16_character* ansi_to_wd16_dup(const char* input, character_count input_size)
+::wd16_character* ansi_to_wd16_dup(const_char_pointer input, character_count input_size)
 {
 
    character_count s = ansi_to_wd16_len(input, input_size);
@@ -975,5 +1060,185 @@ string wd16_to_ansi_str(const ::wd16_character * pwsz, character_count srclen)
 }
 
 
+CLASS_DECL_ACME character_count wd16_to_wd16_len(const wd16_character * psz, character_count srclen)
+{
+
+   return __utftype_to_utftype_len2(psz, srclen);
+
+   //if (input_size < 0)
+   //{
+
+   //   auto p = psz;
+
+   //   int iError = 0;
+
+   //   while (*p)
+   //   {
+
+   //      p = unicode_next(p, &iError);
+
+   //      if (iError > 0)
+   //      {
+
+   //         throw ::exception(error_invalid_character, "wd16_to_wd16_len");
+   //      }
+   //   }
+
+   //   return p - psz;
+   //}
+   //else
+   //{
+
+   //   return wd16_to_wd16_len2(psz, input_size);
+   //}
+}
+
+
+CLASS_DECL_ACME character_count wd16_to_wd16_len2(const wd16_character * psz, character_count & srclen)
+{
+
+   return __utftype_to_utftype_len2(psz, srclen);
+
+   //if (input_size < 0)
+   //{
+
+   //   return wd16_to_wd16_len(psz, -1);
+
+   //}
+   //else
+   //{
+
+   //   auto p = psz;
+
+   //   auto count = 0;
+
+   //   int iError = 0;
+
+   //   while (count < input_size && *p)
+   //   {
+
+   //      auto pNext = unicode_next(p, &iError);
+
+   //      if (iError > 0)
+   //      {
+
+   //         throw ::exception(error_invalid_character, "wd16_to_wd16_len2");
+
+   //      }
+
+   //      auto len = pNext - p;
+
+   //      if (count + len > input_size)
+   //      {
+
+   //         throw ::exception(error_index_out_of_bounds, "wd16_to_wd16_len2 (b)");
+
+   //      }
+
+   //      p = pNext;
+
+   //      count += len;
+
+   //   }
+
+   //   return count;
+
+   //}
+
+}
+
+
+CLASS_DECL_ACME character_count wd16_to_wd16(wd16_character *psz, const wd16_character * pcsz,
+                                             character_count input_size)
+{
+
+   if (input_size < 0)
+   {
+
+      auto pSrc = pcsz;
+
+      auto pDst = psz;
+
+      int iError = 0;
+
+      while (*pSrc)
+      {
+
+         auto pSrcNext = unicode_next(pSrc, &iError);
+
+         if (iError > 0)
+         {
+
+            throw ::exception(error_invalid_character, "wd16_to_wd16_len (a)");
+
+         }
+
+         while (pSrc < pSrcNext)
+         {
+
+            *pDst = *pSrc;
+
+            pSrc++;
+
+            pDst++;
+
+         }
+
+      }
+
+      return pDst - psz;
+   }
+   else
+   {
+
+      auto pSrc = pcsz;
+
+      auto pDst = psz;
+
+      auto count = 0;
+
+      int iError = 0;
+
+      while (count < input_size && *pSrc)
+      {
+
+         auto pSrcNext = unicode_next(pSrc, &iError);
+
+         if (iError > 0)
+         {
+
+            throw ::exception(error_invalid_character, "wd16_to_wd16 (b1)");
+
+         }
+
+         auto len = pSrcNext - pSrc;
+
+         if (count + len > input_size)
+         {
+
+            throw ::exception(error_index_out_of_bounds, "wd16_to_wd16 (b2)");
+
+         }
+
+         while (pSrc < pSrcNext)
+         {
+
+            *pDst = *pSrc;
+
+            pSrc++;
+
+            pDst++;
+
+            count++;
+
+         }
+
+      }
+
+      return count;
+
+   }
+
+}
 
 

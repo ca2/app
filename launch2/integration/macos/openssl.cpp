@@ -2,7 +2,7 @@
 #include "openssl.h"
 #include "application.h"
 #include "acme/constant/id.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "acme/filesystem/filesystem/directory_system.h"
 #include "acme/platform/integration_context.h"
 #include "acme/platform/node.h"
@@ -34,7 +34,7 @@ void openssl::initialize(::particle * pparticle)
    
    acmenode()->integration_factory();
    
-   __øconstruct(m_papplication);
+   øconstruct(m_papplication);
    
    m_papplication->m_bMsys = true;
    

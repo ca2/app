@@ -204,7 +204,7 @@ memory::memory(const ::scoped_string & scopedstr)
 
 
 memory::memory(const ::string & str):
-   memory(str.c_str(), str.length())
+   memory(str.begin(), str.length_in_bytes())
 {
 
 }
@@ -467,7 +467,7 @@ void memory::to_sz(char * sz, character_count len) const
 
    len = minimum(len - 1, size() - 1);
 
-   ansi_ncpy(sz, (const char *) data(), len);
+   ansi_ncpy(sz, (const_char_pointer )data(), len);
 
    sz[len] = '\0';
 

@@ -3,8 +3,8 @@
 #include "acme/constant/id.h"
 #include "acme/handler/request.h"
 #include "aura/user/user/system.h"
-#include "base/user/user/single_document_template.h"
-#include "base/user/user/tab_pane.h"
+#include "berg/user/user/single_document_template.h"
+#include "berg/user/user/tab_pane.h"
 #include "core/user/userex/pane_impact.h"
 
 
@@ -53,7 +53,7 @@ namespace app_build
 
       ::userex::pane_tab_impact::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_create, pchannel, this, &pane_impact::on_message_create);
+      USER_MESSAGE_LINK(::user::e_message_create, pchannel, this, &pane_impact::on_message_create);
 
    }
 

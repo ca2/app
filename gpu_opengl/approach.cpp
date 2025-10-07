@@ -1,16 +1,26 @@
 #include "framework.h"
+#include "_gpu_opengl.h"
 #include "approach.h"
 #include "acme/filesystem/file/file.h"
 #include "acme/filesystem/filesystem/file_context.h"
 #include "acme/platform/application.h"
 #include "bred/gpu/context.h"
+
+
+#if defined(WINDOWS_DESKTOP)
 #include "windowing_win32/window.h"
 #include <glad/glad_wgl.h>
-
 #include <dwmapi.h>
+#endif
+
 
 namespace gpu_opengl
-{//// Helper to create dummy OpenGL context
+{
+
+
+#if defined(WINDOWS_DESKTOP)
+
+   //// Helper to create dummy OpenGL context
    //HGLRC CreateDummyContext(HDC hdc) {
    //   PIXELFORMATDESCRIPTOR pfd = {
    //       sizeof(PIXELFORMATDESCRIPTOR), 1,
@@ -91,15 +101,20 @@ namespace gpu_opengl
    }
 
 
- 
+#endif
+
 
    void approach::_on_before_create_window(::windowing::window* pwindow)
    {
       //::cast < ::gpu_opengl::approach > papproach = m_papplication->get_gpu_approach();
       //papproach->_on_before_create_window(pwindow);
+#if defined(WINDOWS_DESKTOP)
       defer_load_wgl_extensions();
+#endif
 
    }
+
+#if defined(WINDOWS_DESKTOP)
 
    //void opengl_on_create_window(HWND hwnd, HINSTANCE hInstance, HGLRC* outRC, HDC* outDC)
    void opengl_on_create_window(HWND hwnd, HINSTANCE hInstance)
@@ -141,9 +156,12 @@ namespace gpu_opengl
       //::ReleaseDC(hwnd, dc);
    }
 
+#endif
 
    void approach::_on_create_window(::windowing::window* pwindowParam)
    {
+
+#if defined(WINDOWS_DESKTOP)
       
       ::cast < ::windowing_win32::window > pwindow = pwindowParam;
 
@@ -157,6 +175,8 @@ namespace gpu_opengl
       bb.hRgnBlur = hRgn;
       bb.fEnable = TRUE;
       DwmEnableBlurBehindWindow(hwnd, &bb);
+
+#endif
 
    }
 
@@ -277,7 +297,7 @@ namespace gpu_opengl
 //         if (err != GLEW_OK)
 //         {
 //
-//            const ::ansi_character * pszErrorString = (const char *) glewGetErrorString(err);
+//            const_char_pointer pszErrorString = (const_char_pointer )glewGetErrorString(err);
 //
 //            //throw ::exception(error_resource);
 //            // Problem: glewInit failed, something is seriously wrong.

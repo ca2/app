@@ -75,9 +75,9 @@ namespace user
 
       void add(::graphics::output_purpose * pgraphicsoutputpurpose);
 
-      //void set_class_name(const ::string & pszClassName);
+      //void set_class_name(const ::scoped_string & scopedstrClassName);
 
-      //void set_window_name(const ::string & pszWindowName);
+      //void set_window_name(const ::scoped_string & scopedstrWindowName);
 
       //void set_rect(const ::int_rectangle& rectangle);
 

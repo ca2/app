@@ -403,7 +403,7 @@ namespace allocator
 
 
       template < typename T, typename ...Args >
-      ::pointer < T > static __call__allocate(Args &&... args)
+      ::pointer < T > static __call_allocate(Args &&... args)
       {
 
          auto p = ::transfer(__memory_allocate< T >(
@@ -435,7 +435,7 @@ namespace allocator
 
 
       template < typename T, typename ...Args >
-      inline static T * __call__allocate(Args &&... args)
+      inline static T * __call_allocate(Args &&... args)
       {
 
          auto p = __memory_new < T >(
@@ -448,7 +448,7 @@ namespace allocator
 
 
       template < typename T >
-      inline static T * __allocate_array(::collection::count c)
+      inline static T * øallocate_array(::collection::count c)
       {
 
          auto p = __memory_new_array < T >(
@@ -503,11 +503,11 @@ namespace platform
 
 
 //template < typename T, typename ...Args >
-//::pointer < T > __call__allocate(Args &&... args)
+//::pointer < T > __call_allocate(Args &&... args)
 //{
 //
 //   auto p = ::transfer(
-//      ::platform::allocator::__call__allocate< T >(
+//      ::platform::allocator::__call_allocate< T >(
 //         ::std::forward<Args>(args)...));
 //
 //   return ::transfer(p);

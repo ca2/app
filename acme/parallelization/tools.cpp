@@ -49,7 +49,7 @@ task_group::task_group(::matter * pmatter, ::enum_priority epriority)
 
       auto & ptooltask = m_taska[iThread];
 
-      ptooltask = system()->__create_new < ::tool_task >();
+      ptooltask = system()->øcreate_new < ::tool_task >();
 
       ptooltask->initialize_tool_task(this);
 
@@ -87,7 +87,7 @@ task_group::~task_group()
 void task_group::prepare(::enum_task_op etaskop, ::collection::count cIteration)
 {
 
-   synchronous_lock synchronouslock(this->synchronization());
+   synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    for (auto & ptask : m_taska)
    {
@@ -135,7 +135,7 @@ void task_group::prepare(::enum_task_op etaskop, ::collection::count cIteration)
 bool task_group::add_procedure(const ::procedure & procedure)
 {
 
-   synchronous_lock synchronouslock(this->synchronization());
+   synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    if ((m_etaskop != ::e_task_op_predicate && m_etaskop != ::e_task_op_fork_count) || is_full())
    {
@@ -163,7 +163,7 @@ bool task_group::add_procedure(const ::procedure & procedure)
 void task_group::set_ready_to_start()
 {
 
-   synchronous_lock synchronouslock(this->synchronization());
+   synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    if (m_cCount <= 0)
    {
@@ -210,7 +210,7 @@ void task_group::set_ready_to_start()
 ::e_status task_group::wait()
 {
 
-   //synchronous_lock synchronouslock(this->synchronization());
+   //synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //if (m_cCount <= 0)
    //{
@@ -290,8 +290,8 @@ void tool_task::initialize_tool_task(::task_group* pgroup)
    m_pgroup = pgroup;
 
    m_iIndex = 0;
-   m_pevStart = __allocate manual_reset_happening();
-   m_pevReady = __allocate manual_reset_happening();
+   m_pevStart = øallocate manual_reset_happening();
+   m_pevReady = øallocate manual_reset_happening();
 
    //return estatus;
 
@@ -443,7 +443,7 @@ void task_group::select_tool(task_tool* ptool)
 
       auto & pitem = ptool->item_at(i);
 
-      pitem = system()->__id_create(ptool->id());
+      pitem = system()->øid_create(ptool->id());
 
       pitem->m_ptask = ptask;
 

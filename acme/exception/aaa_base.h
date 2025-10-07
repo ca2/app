@@ -25,7 +25,7 @@
 //      virtual string get_message(Punsigned int pnHelpContext = nullptr);
 //
 //
-//      virtual int ReportError(unsigned int nType = e_message_box_ok, const ::scoped_string & scopedstrMessageID = nullptr);
+//      virtual int ReportError(unsigned int nType = ::user::e_message_box_ok, const ::scoped_string & scopedstrMessageID = nullptr);
 //
 //
 //      virtual const char * getMessage() const noexcept;

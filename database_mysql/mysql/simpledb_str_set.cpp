@@ -1,6 +1,6 @@
 #include "framework.h"
 
-#include "base/net/net_sockets.h"
+#include "berg/net/net_sockets.h"
 #include "db_str_set.h"
 
 
@@ -56,7 +56,7 @@ public:
    ::pointer < ::mutex >                                        m_pmutex;
    sockets::socket_handler                      m_handler;
    sockets::http_session *                      m_phttpsession;
-   string_map < db_str_set_item >               m_map;
+   string_map_base < db_str_set_item >               m_map;
    bool                                         m_bIndexed;
    ::mysql::database *                          m_pmysqldbUser;
    string                                       m_strUser;
@@ -116,7 +116,7 @@ public:
 
    virtual int run();
 
-   void queue(const ::string & pszKey, const ::string & psz);
+   void queue(const ::scoped_string & scopedstrKey, const ::scoped_string & scopedstr);
 
 };
 
@@ -223,7 +223,7 @@ repeat:;
 }
 
 
-void db_str_sync_queue::queue(const ::string & pszKey, const ::string & psz)
+void db_str_sync_queue::queue(const ::scoped_string & scopedstrKey, const ::scoped_string & scopedstr)
 {
 
    single_lock synchronouslock(m_pmutex, true);
@@ -275,7 +275,7 @@ bool db_str_set::load(const ::string & lpKey, string & strValue)
 
       papp->assert_user_logged_in();
 
-      synchronous_lock synchronouslock(m_pmutex);
+      synchronous_lock synchronouslock(m_pmutex, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if(m_pcore->m_phttpsession == nullptr)
       {
@@ -286,7 +286,7 @@ bool db_str_set::load(const ::string & lpKey, string & strValue)
 
       db_str_set_item stritem;
 
-      if(m_pcore->m_map.lookup(lpKey,stritem) && stritem.m_timeTimeout > ::get_tick())
+      if(m_pcore->m_map.find(lpKey,stritem) && stritem.m_timeTimeout > ::get_tick())
       {
          strValue = stritem.m_str;
          return true;
@@ -378,7 +378,7 @@ bool db_str_set::load(const ::string & lpKey, string & strValue)
    return true;
 }
 
-bool db_str_set::save(const ::string & lpKey, const ::string & lpcsz)
+bool db_str_set::save(const ::string & lpKey, const ::scoped_string & scopedstr)
 {
 
    if(m_pcore->m_pdataserver == nullptr)

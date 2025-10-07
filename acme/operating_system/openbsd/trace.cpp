@@ -24,9 +24,9 @@ static void TraceDDE(const ::scoped_string & scopedstrPrefix, const MESSAGE* pMs
       }
       ASSERT(hCommands != nullptr);
 
-      const ::scoped_string & scopedstrCommands = (const char *)::GlobalLock(hCommands);
+      const ::scoped_string & scopedstrCommands = (const_char_pointer )::GlobalLock(hCommands);
 
-      ENSURE_THROW(pszCommands != nullptr, ::windows_definition::ThrowMemoryException() );
+      ENSURE_THROW(scopedstrCommands != nullptr, ::windows_definition::ThrowMemoryException() );
 
 //      ::information(::ca2::trace::category_AppMsg, 0, "%s: Execute '%s'.\n", pszPrefix, pszCommands);
 
@@ -89,13 +89,13 @@ static void TraceDDE(const ::scoped_string & scopedstrPrefix, const MESSAGE* pMs
 //void __trace_message(const ::scoped_string & scopedstrPrefix, ::message::message * pmessage)
 
 //{
-////   ENSURE_ARG(::windows_definition::IsValidString(pszPrefix));
+////   ENSURE_ARG(::windows_definition::IsValidString(scopedstrPrefix));
 
 //   ENSURE_ARG(pmessage != nullptr);
 //   ::pointer<::user::message>pusermessage(pmessage);
 //
-//   if (pusermessage->m_emessage == e_message_mouse_move || pusermessage->m_emessage == e_message_non_client_mouse_move ||
-//      pusermessage->m_emessage == e_message_non_client_hit_test || pusermessage->m_emessage == e_message_set_cursor ||
+//   if (pusermessage->m_emessage == ::user::e_message_mouse_move || pusermessage->m_emessage == ::user::e_message_non_client_mouse_move ||
+//      pusermessage->m_emessage == ::user::e_message_non_client_hit_test || pusermessage->m_emessage == ::user::e_message_set_cursor ||
 //      pusermessage->id() == WM_CTLCOLORBTN ||
 //      pusermessage->id() == WM_CTLCOLORDLG ||
 //      pusermessage->id() == WM_CTLCOLOREDIT ||
@@ -146,7 +146,7 @@ static void TraceDDE(const ::scoped_string & scopedstrPrefix, const MESSAGE* pMs
 //      }
 //   }
 //
-//   if (pszMsgName != nullptr)
+//   if (scopedstrMsgName != nullptr)
 
 //   {
 //#ifdef OS64BIT
@@ -177,7 +177,7 @@ static void TraceDDE(const ::scoped_string & scopedstrPrefix, const MESSAGE* pMs
 //   }
 //
 ///*   if (pusermessage->id() >= WM_DDE_FIRST && pusermessage->id() <= WM_DDE_LAST)
-//      TraceDDE(pszPrefix, pMsg);  */
+//      TraceDDE(scopedstrPrefix, pMsg);  */
 
 //}
 //
@@ -186,14 +186,14 @@ static void TraceDDE(const ::scoped_string & scopedstrPrefix, const MESSAGE* pMs
 //void __trace_message(const ::scoped_string & scopedstrPrefix, MESSAGE * lpmsg)
 
 //{
-//   //ENSURE_ARG(::windows_definition::IsValidString(pszPrefix));
+//   //ENSURE_ARG(::windows_definition::IsValidString(scopedstrPrefix));
 
 //   ENSURE_ARG(pmsg != nullptr);
 
 //
-//   if (pmsg->message == e_message_mouse_move || lpmsg->message == e_message_non_client_mouse_move ||
+//   if (pmsg->message == ::user::e_message_mouse_move || lpmsg->message == ::user::e_message_non_client_mouse_move ||
 
-//      pmsg->message == e_message_non_client_hit_test || lpmsg->message == e_message_set_cursor ||
+//      pmsg->message == ::user::e_message_non_client_hit_test || lpmsg->message == ::user::e_message_set_cursor ||
 
 //      pmsg->message == WM_CTLCOLORBTN ||
 
@@ -260,7 +260,7 @@ static void TraceDDE(const ::scoped_string & scopedstrPrefix, const MESSAGE* pMs
 //      }
 //   }
 //
-//   if (pszMsgName != nullptr)
+//   if (scopedstrMsgName != nullptr)
 
 //   {
 //#ifdef WIN64
@@ -294,7 +294,7 @@ static void TraceDDE(const ::scoped_string & scopedstrPrefix, const MESSAGE* pMs
 //
 ///*   if (pmsg->message >= WM_DDE_FIRST && lpmsg->message <= WM_DDE_LAST)
 
-//      TraceDDE(pszPrefix, pMsg);*/
+//      TraceDDE(scopedstrPrefix, pMsg);*/
 
 //}
 //

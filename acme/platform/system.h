@@ -55,17 +55,18 @@ namespace platform
       //::pointer < ::platform::system  >      m_psystemComposite;
 
       ::pointer < ::particle >               m_pparticleHttpTextSynchronization;
-      ::string_map < ::string_to_string >    m_mapText;
+      ::string_map_base < ::string_to_string_base >    m_mapText;
       ::pointer < ::platform::application >  m_papplicationMain;
 
       system();
       ~system() override;
 
+
       virtual ::particle * matter_mutex() override;
       virtual ::particle * http_download_mutex() override;
 
-      virtual ::string_array * http_download_array() override;
-      virtual ::string_array * http_exists_array() override;
+      virtual ::string_array_base * http_download_array() override;
+      virtual ::string_array_base * http_exists_array() override;
 
       virtual class ::time * file_listing_cache_time() override;
 
@@ -77,7 +78,7 @@ namespace platform
 //      void main()
 //      {
 //         
-//         auto pfactoryitem = __allocate ::factory::factory_item < APPLICATION, ::platform::application >;
+//         auto pfactoryitem = øallocate ::factory::factory_item < APPLICATION, ::platform::application >;
 //
 //         this->application_main(pfactoryitem);
 //         
@@ -212,7 +213,7 @@ namespace platform
       //virtual ::http_system * http_system();
 
       virtual string get_system_platform() override;
-      virtual string get_system_configuration() override;
+      //virtual string get_system_configuration() override;
 
 
 
@@ -240,7 +241,7 @@ namespace platform
 
 
       template < typename BASE_TYPE >
-      ::pointer<BASE_TYPE> create(const ::string & strComponent, const ::string & strImplementation)
+      ::pointer<BASE_TYPE> create(const ::scoped_string & scopedstrComponent, const ::scoped_string & scopedstrImplementation)
       {
 
 #if REFERENCING_DEBUGGING
@@ -249,7 +250,7 @@ namespace platform
 
 #endif
 
-         auto & pfactory = this->factory(strComponent, strImplementation);
+         auto & pfactory = this->factory(scopedstrComponent, scopedstrImplementation);
 
          if (!pfactory)
          {
@@ -316,7 +317,7 @@ namespace platform
 
 #elif defined(UNIVERSAL_WINDOWS)
 
-      void system_construct(const ::string_array & stra);
+      void system_construct(const ::string_array_base & stra);
 
       //#else
 
@@ -343,14 +344,14 @@ namespace platform
       virtual void init_system() override;
       virtual void term_system() override;
 
-
+      ::request *application_start_file_open_request() override;
        //virtual void on_start_system() override;
 
 
       //virtual void defer_post_initial_request() override;
 
       void post_application_start() override;
-      void defer_post_file_open() override;
+      void defer_post_application_start_file_open_request() override;
       void post_application_started() override;
 
 
@@ -386,17 +387,17 @@ namespace platform
       virtual class ::time get_update_poll_time(const ::atom & atom) override;
 
 
-      virtual ::acme::library * on_get_library(const ::string & pszLibrary) override;
+      virtual ::acme::library * on_get_library(const ::scoped_string & scopedstrLibrary) override;
 
 
 
 
-      //virtual ::pointer<::acme::library> & library(const ::string &strComponent, const ::string &strImplementation);
+      //virtual ::pointer<::acme::library> & library(const ::scoped_string & scopedstrComponent, const ::scoped_string & scopedstrImplementation);
 
 
       virtual void open_internet_link(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrProfile = {}, const ::scoped_string & scopedstrTarget = {}) override;
       virtual void open_internet_link_in_browser(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrBrowser, const ::scoped_string & scopedstrProfile = {}, const ::scoped_string & scopedstrTarget = {}) override;
-//      virtual void open_url(string strUrl, string strProfile, string strTarget) override;
+//      virtual void open_url(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrProfile, const ::scoped_string & scopedstrTarget) override;
 
 
       bool _handle_uri(const ::block & block) override;
@@ -414,7 +415,7 @@ namespace platform
       void term_task() override;
 
 
-      string __get_text(const string & str) override;
+      string __get_text(const ::scoped_string & scopedstr) override;
 
 #ifdef LINUX
 
@@ -423,7 +424,7 @@ namespace platform
 #endif
 
 
-   //pointer< ::extended::sequence < ::conversation > > message_box(::user::interaction * puserinteraction, const ::string & strMessage, const ::string & strTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok) override;
+   //pointer< ::extended::sequence < ::conversation > > message_box(::user::interaction * puserinteraction, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const ::user::e_message_box & emessagebox = ::user::e_message_box_ok) override;
 
 
    //virtual void on_initialize_window_object();
@@ -431,7 +432,7 @@ namespace platform
 
 //
 //   template < typename ENUM >
-//   inline void set_enum_text(ENUM e, const ::string &psz)
+//   inline void set_enum_text(ENUM e, const ::scoped_string & scopedstr)
 //   {
 //
 //      critical_section_lock synchronouslock(&m_csEnumText);
@@ -455,14 +456,14 @@ namespace platform
 
 //
 //   template < class ENUM >
-//   inline ENUM text_enum(ENUM& e, const ::string &psz, ENUM eDefault = (ENUM)0)
+//   inline ENUM text_enum(ENUM& e, const ::scoped_string & scopedstr, ENUM eDefault = (ENUM)0)
 //   {
 //
 //      critical_section_lock lock(&m_csEnumText);
 //
 //      long long iValue;
 //
-//      if (m_mapTextToEnum[typeid(e).name()].lookup(psz, iValue))
+//      if (m_mapTextToEnum[typeid(e).name()].find(scopedstr, iValue))
 //      {
 //
 //         e = (ENUM)iValue;
@@ -481,7 +482,7 @@ namespace platform
 //
 //
 //   template < class ENUM, ENUM edefault = 0>
-//   inline base_enum < ENUM, edefault >& text_enum(base_enum < ENUM, edefault >& b, const ::string &psz, ENUM eDefault = edefault)
+//   inline base_enum < ENUM, edefault >& text_enum(base_enum < ENUM, edefault >& b, const ::scoped_string & scopedstr, ENUM eDefault = edefault)
 //   {
 //
 //      return b = text_enum(b.m_evalue, psz, eDefault);
@@ -506,7 +507,7 @@ namespace platform
 
       static inline ::atom atom(const ::std::type_info & info);
       static inline ::atom atom(const ::scoped_string & scopedstr);
-      static inline ::atom atom(const string & str);
+      static inline ::atom atom(const ::string & str);
       static inline ::atom atom(long long i);
       //static inline ::atom_space & atom();
       inline ::atom atom(const ::payload & payload);
@@ -514,22 +515,22 @@ namespace platform
 
       virtual void check_exit() override;
 
-      virtual ::regular_expression_pointer create_regular_expression(const ::string & pszStyle, const string & str) override;
-      //virtual ::pointer<::regular_expression::context> create_regular_expression_context(const ::string &pszStyle, int iCount);
-      virtual ::pointer<::regular_expression::context> get_regular_expression_context(const ::string & pszStyle) override;
+      virtual ::regular_expression_pointer create_regular_expression(const ::scoped_string & scopedstrStyle, const ::scoped_string & scopedstr) override;
+      //virtual ::pointer<::regular_expression::context> create_regular_expression_context(const ::scoped_string & scopedstrStyle, int iCount);
+      virtual ::pointer<::regular_expression::context> get_regular_expression_context(const ::scoped_string & scopedstrStyle) override;
 
-      virtual ::regular_expression_pointer compile_pcre(const string & str) override;
+      virtual ::regular_expression_pointer compile_pcre(const ::scoped_string & scopedstr) override;
       virtual ::pointer<::regular_expression::context> get_pcre_context() override;
-      //virtual int system::pcre_add_tokens(string_array& stra, const string& strTopic, const string& strRegexp, int nCount)
+      //virtual int system::pcre_add_tokens(string_array_base& stra, const ::scoped_string & scopedstrTopic, const ::scoped_string & scopedstrRegexp, int nCount)
 
-      virtual void get_public_internet_domain_extension_list(string_array & stra) override;
+      virtual void get_public_internet_domain_extension_list(string_array_base & stra) override;
       virtual ::string fetch_public_internet_domain_extension_list_text() override;
 
       void system_id_update(int iUpdate, long long iPayload) override;
 
       void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
       
-      void call_message(const ::enum_message & emessage, ::wparam wparam, ::lparam lparam, ::particle* pparticle) override;
+      void call_message(const ::user::enum_message & emessage, ::wparam wparam, ::lparam lparam, ::particle* pparticle) override;
     
 
       //virtual void add_handler(::particle * pmatter, bool bPriority = false);
@@ -546,13 +547,13 @@ namespace platform
 
       virtual void on_open_untitled_file() override;
 
-      virtual void on_open_file(const ::string & pszFile) override;
+      virtual void on_open_file(const ::scoped_string & scopedstrFile) override;
 
       //template < typename BASE_TYPE >
       //::pointer<BASE_TYPE> create(const ::scoped_string & scopedstrComponent, const ::scoped_string & scopedstrImplementation)
       //{
 
-      //   auto plibrary = ([a-z0-9_]+)_factory(pszComponent, pszImplementation);
+      //   auto plibrary = ([a-z0-9_]+)_factory(scopedstrComponent, pszImplementation);
 
       //   if (!plibrary)
       //   {
@@ -596,10 +597,10 @@ namespace platform
       void _post(const ::procedure & procedure) override;
 
 
-      bool _handle_call(::payload & payload, const ::string & strObject, const ::string & strMember, ::property_set & propertyset) override;
+      bool _handle_call(::payload & payload, const ::scoped_string & scopedstrObject, const ::scoped_string & scopedstrMember, ::property_set & propertyset) override;
 
 
-      virtual string get_latest_deployment_number(const ::string & strBranch) override;
+      virtual string get_latest_deployment_number(const ::scoped_string & scopedstrBranch) override;
 
 
       void destroy() override;
@@ -612,14 +613,14 @@ namespace platform
 
 
 
-      //::file::path library_file_name(const ::string& str);
+      //::file::path library_file_name(const ::scoped_string & scopedstr);
 
 
       //template < typename ENTRY >
       //ENTRY* library_call(const ::scoped_string & scopedstrLibrary, const ::scoped_string & scopedstrEntry)
       //{
 
-      //   return lib(pszLibrary)->get<decltype(&ENTRY)>(pszEntry));
+      //   return lib(scopedstrLibrary)->get<decltype(&ENTRY)>(scopedstrEntry));
 
       //}
 
@@ -634,9 +635,9 @@ namespace platform
 
 
       virtual ::file::path local_get_matter_cache_path() override;
-      virtual ::file::path local_get_matter_cache_path(string strMatter) override;
+      virtual ::file::path local_get_matter_cache_path(const ::scoped_string & scopedstrMatter) override;
       virtual ::file::path local_get_matter_path() override;
-      virtual ::file::path local_get_matter_path(string strMatter) override;
+      virtual ::file::path local_get_matter_path(const ::scoped_string & scopedstrMatter) override;
 
       virtual void install_progress_add_up(int iAddUp = 1) override;
 
@@ -677,13 +678,13 @@ namespace platform
 
       //::pointer < ::message_box > & realize(::pointer < ::message_box > & pmessagebox);
 
-      //::pointer < ::message_box > message_box(const ::string & strMessage, const ::string & strTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const ::string & strDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
+      //::pointer < ::message_box > message_box(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const ::user::e_message_box & emessagebox = ::user::e_message_box_ok, const ::scoped_string & scopedstrDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
 
-      //::pointer < ::message_box > exception_message_box(const ::exception & exception, const ::string & strMessage = nullptr, const ::string & strTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const ::string & strDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
+      //::pointer < ::message_box > exception_message_box(const ::exception & exception, const ::scoped_string & scopedstrMessage = nullptr, const ::scoped_string & scopedstrTitle = nullptr, const ::user::e_message_box & emessagebox = ::user::e_message_box_ok, const ::scoped_string & scopedstrDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
 
-      //::pointer < ::message_box > message_console(const ::string & strMessage = nullptr, const ::string & strTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const ::string & strDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
+      //::pointer < ::message_box > message_console(const ::scoped_string & scopedstrMessage = nullptr, const ::scoped_string & scopedstrTitle = nullptr, const ::user::e_message_box & emessagebox = ::user::e_message_box_ok, const ::scoped_string & scopedstrDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
 
-      //::pointer < ::message_box > exception_message_console(const ::exception & exception, const ::string & strMessage = nullptr, const ::string & strTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const ::string & strDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
+      //::pointer < ::message_box > exception_message_console(const ::exception & exception, const ::scoped_string & scopedstrMessage = nullptr, const ::scoped_string & scopedstrTitle = nullptr, const ::user::e_message_box & emessagebox = ::user::e_message_box_ok, const ::scoped_string & scopedstrDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
 
 
 
@@ -750,11 +751,11 @@ namespace platform
 //
 //
 //       //virtual string install_get_platform() override;
-//       //virtual void install_set_platform(const ::string & pszPlatform) override;
+//       //virtual void install_set_platform(const ::scoped_string & scopedstrPlatform) override;
 //       //virtual string install_get_version() override;
-//       //virtual void install_set_version(const ::string & pszVersion) override;
-//       //virtual string install_get_latest_build_number(const ::string & pszVersion) override;
-//       //virtual int install_start(const ::string & pszCommandLine, const ::string & pszBuild) override;
+//       //virtual void install_set_version(const ::scoped_string & scopedstrVersion) override;
+//       //virtual string install_get_latest_build_number(const ::scoped_string & scopedstrVersion) override;
+//       //virtual int install_start(const ::scoped_string & scopedstrCommandLine, const ::scoped_string & scopedstrBuild) override;
 //       //virtual int install_progress_app_add_up(int iAddUp = 1) override;
 //
 //       //virtual ::install::canvas * install_create_canvas();
@@ -762,11 +763,11 @@ namespace platform
 //       //virtual int install_canvas_increment_mode();
 //
 //       //virtual string install_get_platform() override;
-//       //virtual void install_set_platform(const ::string & pszPlatform) override;
+//       //virtual void install_set_platform(const ::scoped_string & scopedstrPlatform) override;
 //       //virtual string install_get_version() override;
-//       //virtual void install_set_version(const ::string & pszVersion) override;
-//       //virtual string install_get_latest_build_number(const ::string & pszVersion) override;
-//       //virtual int install_start(const ::string & pszCommandLine, const ::string & pszBuild) override;
+//       //virtual void install_set_version(const ::scoped_string & scopedstrVersion) override;
+//       //virtual string install_get_latest_build_number(const ::scoped_string & scopedstrVersion) override;
+//       //virtual int install_start(const ::scoped_string & scopedstrCommandLine, const ::scoped_string & scopedstrBuild) override;
 //       //virtual int install_progress_app_add_up(int iAddUp = 1) override;
 //
 //       //virtual ::pointer<::factory::factory> & node_factory() override;
@@ -786,7 +787,7 @@ namespace platform
 //
 //
 //
-//       virtual ::pointer<::data::node>load_xml(const ::string & pszXml);
+//       virtual ::pointer<::data::node>load_xml(const ::scoped_string & scopedstrXml);
 //
 //       virtual void verb(); // ambigous inheritance from ::aura::system/::axis::application
 //
@@ -794,11 +795,11 @@ namespace platform
 //       //virtual bool is_system() const override;
 //
 //
-//       virtual string crypto_md5_text(const ::string & str);
+//       virtual string crypto_md5_text(const ::scoped_string & scopedstr);
 //
 //
-//       //virtual pointer< ::extended::future < ::conversation > > _message_box(oswindow oswindow, const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok) override;
-//       //virtual ::enum_dialog_result message_box_timeout(const ::string & pszMessage, const ::string & pszTitle = nullptr, const class time & timeTimeout = ::time::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, const ::future & future = ::future()) override;
+//       //virtual pointer< ::extended::future < ::conversation > > _message_box(oswindow oswindow, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const ::user::e_message_box & emessagebox = ::user::e_message_box_ok) override;
+//       //virtual ::enum_dialog_result message_box_timeout(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const class time & timeTimeout = ::time::infinite(), const ::user::e_message_box & emessagebox = ::user::e_message_box_ok, const ::future & future = ::future()) override;
 //
 //
 //       //virtual void create_html();
@@ -807,7 +808,7 @@ namespace platform
 //
 //       //virtual void on_request(::request * prequest) override;
 //
-//       //virtual void construct(const ::string & pszAppId);
+//       //virtual void construct(const ::scoped_string & scopedstrAppId);
 //
 //       //virtual bool initialize_application() override;
 //
@@ -844,19 +845,19 @@ namespace platform
 //       //virtual string dir_appmatter_locator(::particle * pparticle);
 //
 //
-//       //virtual void hist_hist(const ::string & psz);
+//       //virtual void hist_hist(const ::scoped_string & scopedstr);
 //
 //
 //       //virtual void on_request(::request * prequest) override;
 //
 //
-//       //virtual unsigned int crc32(unsigned int dwPrevious, const ::string & psz);
+//       //virtual unsigned int crc32(unsigned int dwPrevious, const ::scoped_string & scopedstr);
 //
 //
-//       //virtual string ::url::encode(const ::string & str) override;
+//       //virtual string ::url::encode(const ::scoped_string & scopedstr) override;
 //
 //
-//       //virtual void locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema) override;
+//       //virtual void locale_schema_matter(string_array_base & stra, const string_array_base & straMatterLocator, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema) override;
 //       //virtual string get_locale_schema_dir() override;
 //
 //
@@ -870,11 +871,11 @@ namespace platform
 //       //class ::user::window_map                     &  window_map();
 //
 //
-//       //::pointer<::acme::library>open_component_library(const ::string & pszComponent, const ::string & pszImplementation);
+//       //::pointer<::acme::library>open_component_library(const ::scoped_string & scopedstrComponent, const ::scoped_string & scopedstrImplementation);
 //
-//       //void ([a-z0-9_]+)_factory(const ::string & pszComponent, const ::string & pszImplementation);
+//       //void ([a-z0-9_]+)_factory(const ::scoped_string & scopedstrComponent, const ::scoped_string & scopedstrImplementation);
 //
-//       //void ([a-z0-9_]+)_factory(const ::string & pszComponent, const ::string & pszImplementation, PFN_factory pfnFactoryExchange);
+//       //void ([a-z0-9_]+)_factory(const ::scoped_string & scopedstrComponent, const ::scoped_string & scopedstrImplementation, PFN_factory pfnFactoryExchange);
 //
 //
 //       //class ::aura::os                             &  os();
@@ -946,9 +947,9 @@ namespace platform
 //       //::datetime::datetime                 & datetime();
 //
 //
-//       //virtual string ::url::encode(const ::string & str);
+//       //virtual string ::url::encode(const ::scoped_string & scopedstr);
 //
-//       virtual void on_allocation_error(const ::string & strName, ::object * pobjectSometimes);
+//       virtual void on_allocation_error(const ::scoped_string & scopedstrName, ::object * pobjectSometimes);
 //
 //       //::pointer< ::mutex > get_openweather_city_mutex();
 //
@@ -962,18 +963,18 @@ namespace platform
 //       }
 //
 //
-//       //virtual void browser(string strUrl, string strBrowser, string strProfile, string strTarget) override;
-//       //virtual void open_profile_link(string strUrl, string strProfile, string strTarget) override;
-//       //virtual void open_link(string strUrl, string strProfile, string strTarget) override;
-//       //virtual void open_url(string strUrl, string strProfile, string strTarget) override;
+//       //virtual void browser(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrBrowser, const ::scoped_string & scopedstrProfile, const ::scoped_string & scopedstrTarget) override;
+//       //virtual void open_profile_link(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrProfile, const ::scoped_string & scopedstrTarget) override;
+//       //virtual void open_link(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrProfile, const ::scoped_string & scopedstrTarget) override;
+//       //virtual void open_url(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrProfile, const ::scoped_string & scopedstrTarget) override;
 //
 //
 //       //virtual void __set_thread_on() override;
 //
-//       //virtual string get_local_mutex_name(const ::string & pszAppName) override;
-//       //virtual string get_local_id_mutex_name(const ::string & pszAppName, const ::string & pszId) override;
-//       //virtual string get_global_mutex_name(const ::string & pszAppName) override;
-//       //virtual string get_global_id_mutex_name(const ::string & pszAppName, const ::string & pszId) override;
+//       //virtual string get_local_mutex_name(const ::scoped_string & scopedstrAppName) override;
+//       //virtual string get_local_id_mutex_name(const ::scoped_string & scopedstrAppName, const ::scoped_string & scopedstrId) override;
+//       //virtual string get_global_mutex_name(const ::scoped_string & scopedstrAppName) override;
+//       //virtual string get_global_id_mutex_name(const ::scoped_string & scopedstrAppName, const ::scoped_string & scopedstrId) override;
 //
 //
 //       //template < class T >
@@ -993,7 +994,7 @@ namespace platform
 //       //   if(idType.is_empty())
 //       //      return nullptr;
 //
-//       //   synchronous_lock synchronouslock(m_pmutexFactory);
+//       //   synchronous_lock synchronouslock(m_pmutexFactory, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //       //   return m_typemap[idType].m_p;
 //
@@ -1002,7 +1003,7 @@ namespace platform
 //
 //       //virtual void discard_to_factory(::object * pca);
 //
-//       bool on_application_menu_action(const ::string & pszCommand);
+//       bool on_application_menu_action(const ::scoped_string & scopedstrCommand);
 //
 //
 //       //virtual void initialize_sockets();
@@ -1010,9 +1011,9 @@ namespace platform
 //
 //       //virtual bool on_get_thread_name(string& strThreadName) override;
 //
-//       //virtual ::acme::library * on_get_library(const ::string & pszLibrary) override;
+//       //virtual ::acme::library * on_get_library(const ::scoped_string & scopedstrLibrary) override;
 //
-//       //virtual ::acme::library * get_library(const ::string & pszLibrary, bool bOpenCa2 = false) override;
+//       //virtual ::acme::library * get_library(const ::scoped_string & scopedstrLibrary, bool bOpenCa2 = false) override;
 //
 //
 //       //virtual unsigned int os_post_to_all_threads(const ::atom & atom,const ::wparam & wparam = {},const ::lparam & lparam = {}) override;
@@ -1069,41 +1070,41 @@ namespace platform
 //
 //
 //   /*    static inline ::atom atom(const ::std::type_info & info);
-//       static inline ::atom atom(const ::string & psz);
-//       static inline ::atom atom(const ::string & str);
+//       static inline ::atom atom(const ::scoped_string & scopedstr);
+//       static inline ::atom atom(const ::scoped_string & scopedstr);
 //       static inline ::atom atom(long long i);
 //       static inline ::atom_space & atom();
 //       inline ::atom atom(const ::payload & payload);
 //       inline ::atom atom(const property & prop);*/
 //
 //
-//       //virtual int _001OnDebugReport(int i1, const ::string & psz1,int i2, const ::string & psz2, const ::string & psz3,va_list args) override;
-//       //virtual int _debug_logging_report(int iReportType, const ::string & pszFilename, int iLinenumber, const ::string & iModuleName, const ::string & pszFormat, va_list list) override;
-//       //virtual bool assert_failed_line(const ::string & pszFileName,int iLine) override;
+//       //virtual int _001OnDebugReport(int i1, const ::scoped_string & scopedstr1,int i2, const ::scoped_string & scopedstr2, const ::scoped_string & scopedstr3,va_list args) override;
+//       //virtual int _debug_logging_report(int iReportType, const ::scoped_string & scopedstrFilename, int iLinenumber, const ::scoped_string & scopedstrModuleName, const ::scoped_string & scopedstrFormat, va_list list_base) override;
+//       //virtual bool assert_failed_line(const ::scoped_string & scopedstrFileName,int iLine) override;
 //
-//       //virtual bool on_assert_failed_line(const ::string & pszFileName,int iLine) override;
-//
-//
+//       //virtual bool on_assert_failed_line(const ::scoped_string & scopedstrFileName,int iLine) override;
 //
 //
 //
 //
-//       //virtual void initialize_log(const ::string & pszId) override;
+//
+//
+//       //virtual void initialize_log(const ::scoped_string & scopedstrId) override;
 //
 //
 //       //virtual void appa_load_string_table() override;
-//       //virtual void appa_set_locale(const ::string & pszLocale, const ::action_context & action_context) override;
-//       //virtual void appa_set_schema(const ::string & pszStyle, const ::action_context & action_context) override;
+//       //virtual void appa_set_locale(const ::scoped_string & scopedstrLocale, const ::action_context & action_context) override;
+//       //virtual void appa_set_schema(const ::scoped_string & scopedstrStyle, const ::action_context & action_context) override;
 //
-//       //virtual bool assert_running_global(const ::string & pszAppName, const ::string & pszId = nullptr) override;
-//       //virtual bool assert_running_local(const ::string & pszAppName, const ::string & pszId = nullptr) override;
+//       //virtual bool assert_running_global(const ::scoped_string & scopedstrAppName, const ::scoped_string & scopedstrId = nullptr) override;
+//       //virtual bool assert_running_local(const ::scoped_string & scopedstrAppName, const ::scoped_string & scopedstrId = nullptr) override;
 //
-//       //::pointer<application>assert_running(const ::string & pszAppId);
+//       //::pointer<application>assert_running(const ::scoped_string & scopedstrAppId);
 //
 //   /*    virtual ::collection::count get_application_count() override;
 // */
 //
-// //virtual string crypto_md5_text(const ::string & str);
+// //virtual string crypto_md5_text(const ::scoped_string & scopedstr);
 //
 // //inline class ::http::system                  & http()
 // //{
@@ -1116,13 +1117,13 @@ namespace platform
 // //virtual void start() override;
 //
 // //virtual ::file::path local_get_matter_cache_path() override;
-// //virtual ::file::path local_get_matter_cache_path(string strMatter) override;
+// //virtual ::file::path local_get_matter_cache_path(const ::scoped_string & scopedstrMatter) override;
 // //virtual ::file::path local_get_matter_path() override;
-// //virtual ::file::path local_get_matter_path(string strMatter) override;
+// //virtual ::file::path local_get_matter_path(const ::scoped_string & scopedstrMatter) override;
 //
 // //virtual bool find_applications_from_cache() override;
 // //virtual bool find_applications_to_cache(bool bSave = true) override;
-// //virtual bool map_application_library(const ::string & pszLibrary) override;
+// //virtual bool map_application_library(const ::scoped_string & scopedstrLibrary) override;
 //
 //
 // //virtual void install_progress_add_up(int iAddUp = 1) override;
@@ -1135,14 +1136,14 @@ namespace platform
 //
 // //virtual void on_request(::request * prequest) override;
 //
-// //::pointer<regex>create_regular_expression(const ::string & pszStyle, const string& str);
-// //::pointer<regex_context>create_regular_expression_context(const ::string & pszStyle, int iCount);
-// //virtual int pcre_add_tokens(string_array& stra, const string& strTopic, const string& strRegexp, int nCount);
+// //::pointer<regex>create_regular_expression(const ::scoped_string & scopedstrStyle, const ::scoped_string & scopedstr);
+// //::pointer<regex_context>create_regular_expression_context(const ::scoped_string & scopedstrStyle, int iCount);
+// //virtual int pcre_add_tokens(string_array_base& stra, const ::scoped_string & scopedstrTopic, const ::scoped_string & scopedstrRegexp, int nCount);
 //
 //
 // //virtual string get_system_platform() override;
 // //virtual string get_system_configuration() override;
-// //virtual string get_latest_build_number(const ::string & pszConfiguration, const ::string & pszAppId);
+// //virtual string get_latest_build_number(const ::scoped_string & scopedstrConfiguration, const ::scoped_string & scopedstrAppId);
 //
 //
 //
@@ -1169,22 +1170,22 @@ namespace platform
 //
 //       //virtual void defer_check_openweather_city_list();
 //
-//       //virtual openweather_city * openweather_find_city(string strQuery);
-//       //virtual ::collection::index openweather_find_city2(string strQuery, string & strCit, long long & iId, double & dLat, double & dLon);
-//       //virtual ::collection::index openweather_find_city2(string strQ1, string strQ2, string & strCit, long long & iId, double & dLat, double & dLon, bool bPrefix);
+//       //virtual openweather_city * openweather_find_city(const ::scoped_string & scopedstrQuery);
+//       //virtual ::collection::index openweather_find_city2(const ::scoped_string & scopedstrQuery, string & strCit, long long & iId, double & dLat, double & dLon);
+//       //virtual ::collection::index openweather_find_city2(const ::scoped_string & scopedstrQ1, const ::scoped_string & scopedstrQ2, string & strCit, long long & iId, double & dLat, double & dLon, bool bPrefix);
 //
 // //#ifdef __ANDROID__
 // ////#pragma message("at macos??")
-// //      virtual bool android_set_user_wallpaper(string strUrl) override;
+// //      virtual bool android_set_user_wallpaper(const ::scoped_string & scopedstrUrl) override;
 // //      virtual bool android_get_user_wallpaper(string & strUrl) override;
 // //
 // //#endif
 // //
-// //      virtual bool defer_accumulate_on_open_file(string_array stra, string strExtra) override;
+// //      virtual bool defer_accumulate_on_open_file(string_array_base stra, const ::scoped_string & scopedstrExtra) override;
 // //
 // //      virtual bool merge_accumulated_on_open_file(::request * prequest) override;
 // //
-// //      virtual bool on_open_file(::payload payloadFile, string strExtra) override;
+// //      virtual bool on_open_file(::payload payloadFile, const ::scoped_string & scopedstrExtra) override;
 // //
 //       //virtual LPWAVEOUT waveout_open(int iChannel, LPAUDIOFORMAT pformat, LPWAVEOUT_CALLBACK pcallback);
 //
@@ -1193,7 +1194,7 @@ namespace platform
 //       //virtual void * initialize_native_window2(const ::int_rectangle & rectangle);
 //
 //
-//       //virtual void on_os_text(e_os_text etext, string strText) override;
+//       //virtual void on_os_text(e_os_text etext, const ::scoped_string & scopedstrText) override;
 //
 //       //virtual ::windowing::window * impl_from_handle(void * posdata);
 //       //virtual ::user::interaction * ui_from_handle(void * posdata);
@@ -1201,10 +1202,10 @@ namespace platform
 //
 //
 //
-//       //virtual void on_extra(string str) override;
+//       //virtual void on_extra(const ::scoped_string & scopedstr) override;
 //
-//       //virtual string standalone_setting(string str) override;
-//       //virtual bool set_standalone_setting(string str, string strSetting) override;
+//       //virtual string standalone_setting(const ::scoped_string & scopedstr) override;
+//       //virtual bool set_standalone_setting(const ::scoped_string & scopedstr, const ::scoped_string & scopedstrSetting) override;
 //
 //
 //       //virtual void on_event(unsigned long long u, ::particle * pparticle) override;
@@ -1218,14 +1219,14 @@ namespace platform
 //
 //
 //
-//       //virtual void __tracea(enum_trace_level elevel, const ::string & pszFunction, const ::string & pszFile, int iLine, const ::string & psz) const override;
+//       //virtual void __tracea(enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, int iLine, const ::scoped_string & scopedstr) const override;
 //
 //
-//       //void chromium(string strUrl, string strBrowser, string strId, ::file::path path, string strProfile, string strParam);
+//       //void chromium(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrBrowser, const ::scoped_string & scopedstrId, ::file::path path, const ::scoped_string & scopedstrProfile, const ::scoped_string & scopedstrParam);
 //
-//       //void defer_create_firefox_profile(::file::path pathFirefox, string strProfileName, ::file::path pathProfile);
+//       //void defer_create_firefox_profile(::file::path pathFirefox, const ::scoped_string & scopedstrProfileName, ::file::path pathProfile);
 //
-//       //void     firefox(string strUrl, string strBrowser, string strProfile, string strParam);
+//       //void     firefox(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrBrowser, const ::scoped_string & scopedstrProfile, const ::scoped_string & scopedstrParam);
 //       //void     get_firefox_installation_info(string & strPathToExe, string & strInstallDirectory);
 //
 //
@@ -1274,7 +1275,7 @@ namespace platform
 //       //void set_history(::apex::history* phistory);
 //
 //
-//       //::pointer<::acme::library>on_get_library(const ::string & pszLibrary) override;
+//       //::pointer<::acme::library>on_get_library(const ::scoped_string & scopedstrLibrary) override;
 //
 //
 //       //virtual ::aura::session *  get_platform(::collection::index iEdge,application_bias * pbiasCreation = nullptr);
@@ -1290,7 +1291,7 @@ namespace platform
 //
 //       //virtual int main();
 //
-//       //virtual void on_allocation_error(const ::string& str, ::object* pobjectSometimes) override;
+//       //virtual void on_allocation_error(const ::scoped_string & scopedstr, ::object* pobjectSometimes) override;
 //
 //       //virtual ::pointer<::aura::session>on_create_session() override;
 //
@@ -1313,12 +1314,12 @@ namespace platform
 // //
 // //#endif
 //
-//       ////bool sync_load_url(string& str, const ::string & pszUrl, ::account::user* puser = nullptr, ::http::cookies* pcookies = nullptr);
-//       //bool sync_load_url(string& str, const ::string & pszUrl,  ::http::cookies* pcookies = nullptr);
+//       ////bool sync_load_url(string& str, const ::scoped_string & scopedstrUrl, ::account::user* puser = nullptr, ::http::cookies* pcookies = nullptr);
+//       //bool sync_load_url(string& str, const ::scoped_string & scopedstrUrl,  ::http::cookies* pcookies = nullptr);
 //
 //
 //
-//       //      unsigned int guess_code_page(const ::string & str);
+//       //      unsigned int guess_code_page(const ::scoped_string & scopedstr);
 //
 // //#ifdef UNIVERSAL_WINDOWS
 // //
@@ -1327,7 +1328,7 @@ namespace platform
 // //
 // //#endif
 //
-//       //virtual void post_fork_uri(const ::string & pszUri,application_bias * pappbias);
+//       //virtual void post_fork_uri(const ::scoped_string & scopedstrUri,application_bias * pappbias);
 //
 //
 //
@@ -1367,7 +1368,7 @@ namespace platform
 //
 //
 //       //virtual void     main() override;
-//       //virtual void hist_hist(const ::string & psz) override;
+//       //virtual void hist_hist(const ::scoped_string & scopedstr) override;
 //
 //
 //       virtual ::type_atom get_pane_tab_impact_type_info();
@@ -1426,9 +1427,9 @@ namespace platform
 //
 //       virtual void initialize_estamira();
 //
-//       virtual void _001AddPacks(string_to_string & base64map, string & str);
+//       virtual void _001AddPacks(string_to_string_base & base64map, string & str);
 //
-//       //pointer< ::extended::sequence < ::conversation > > message_box(::user::interaction * puserinteraction, const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok) override;
+//       //pointer< ::extended::sequence < ::conversation > > message_box(::user::interaction * puserinteraction, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const ::user::e_message_box & emessagebox = ::user::e_message_box_ok) override;
 //
 //       //void windowing_send(const ::procedure & procedure) override;
 //       //void windowing_post(const ::procedure & procedure) override;

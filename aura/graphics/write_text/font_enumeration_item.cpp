@@ -20,15 +20,15 @@ namespace write_text
    }
 
 
-   font_enumeration_item::font_enumeration_item(const ::string & strName) :
-      m_strName(strName)
+   font_enumeration_item::font_enumeration_item(const ::scoped_string & scopedstrName) :
+      m_strName(scopedstrName)
    {
 
       //m_mapFileName[0] = strName;
 
 #ifdef WINDOWS
 
-      m_wstrName = strName;
+      m_wstrName = scopedstrName;
 
 #endif
 
@@ -53,32 +53,32 @@ namespace write_text
 #endif
 
 
-   font_enumeration_item::font_enumeration_item(const ::string & strFile, const ::string & strName) :
-      m_strName(strName)
+   font_enumeration_item::font_enumeration_item(const ::scoped_string & scopedstrFile, const ::scoped_string & scopedstrName) :
+      m_strName(scopedstrName)
    {
 
-      m_mapFileName[0] = strFile;
+      m_mapFileName[0] = scopedstrFile;
 
 #ifdef WINDOWS
 
-      m_wstrName = strName;
+      m_wstrName = scopedstrName;
 
 #endif
 
    }
 
 
-   font_enumeration_item::font_enumeration_item(const ::string & strFile, const ::string & strBranch, const ::string & strName) :
-      m_strName(strName)
+   font_enumeration_item::font_enumeration_item(const ::scoped_string & scopedstrFile, const ::scoped_string & scopedstrBranch, const ::scoped_string & scopedstrName) :
+      m_strName(scopedstrName)
    {
 
-      m_mapFileName[0] = strFile;
+      m_mapFileName[0] = scopedstrFile;
 
-      m_strBranch = strBranch;
+      m_strBranch = scopedstrBranch;
 
 #ifdef WINDOWS
 
-      m_wstrName = strName;
+      m_wstrName = scopedstrName;
 
 #endif
 

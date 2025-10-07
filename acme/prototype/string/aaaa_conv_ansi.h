@@ -95,7 +95,7 @@ CLASS_DECL_ACME void to_string(string& str, const unsigned long & ul);
 CLASS_DECL_ACME void to_string(string& str, const long int & i);
 
 
-inline void to_string(string& str, const string& strSrc);
+inline void to_string(string& str, const ::scoped_string & scopedstrSrc);
 
 inline ::string as_string(const ::atom & atom);
 

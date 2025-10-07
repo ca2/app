@@ -59,7 +59,7 @@ namespace user
       if (::is_null(pdrag))
       {
 
-         __construct_new(pdrag);
+         øconstruct_new(pdrag);
 
          pdrag->m_pitem = pitem;
 
@@ -84,16 +84,16 @@ namespace user
 
       }
 
-      auto ppair = m_mapDrag.plookup(pitem->m_item);
+      auto iterator = m_mapDrag.find(pitem->m_item);
 
-      if (ppair.is_null())
+      if (!iterator)
       {
 
          return nullptr;
 
       }
 
-      return ppair->payload();
+      return iterator->payload();
 
    }
 

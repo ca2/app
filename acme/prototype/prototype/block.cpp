@@ -12,14 +12,14 @@ block::block(const atom & atom) :
 }
 
 
-//block::block(const ::string & str) :
+//block::block(const ::scoped_string & scopedstr) :
 //   ::block(str.c_str(), str.length())
 //{
 //
 //}
 
 
-//block::block(const ::string & str, ::character_count s) : 
+//block::block(const ::scoped_string & scopedstr, ::character_count s) : 
 //   ::block((const void *)str.c_str(), (long long)(s >= 0 ? s : str.length() + s + 1))
 //{
 //
@@ -31,7 +31,7 @@ block::block(const atom & atom) :
 //void block::to_string(string & str) const
 //{
 //
-//   str.assign((const ::ansi_character *)data(), size());
+//   str.assign((const_char_pointer )data(), size());
 //
 //}
 

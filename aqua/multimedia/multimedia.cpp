@@ -38,7 +38,7 @@ namespace aqua
 
 //#ifdef WINDOWS
 //
-//      estatus = __construct_new(m_pmediafoundation);
+//      estatus = øconstruct_new(m_pmediafoundation);
 //
 //      if (!estatus)
 //      {
@@ -54,28 +54,28 @@ namespace aqua
    }
 
 
-   void multimedia::on_song_added(const string& strId)
+   void multimedia::on_song_added(const ::scoped_string & scopedstrId)
    {
 
    }
 
 
-   string multimedia::get_media_call_title(const ::string & str)
+   string multimedia::get_media_call_title(const ::scoped_string & scopedstr)
    {
 
-      return str;
+      return scopedstr;
 
    }
 
 
-   void multimedia::on_decoder_fill_title_info(::multimedia::decoder * pdecoder, string_array & straTitle, string_array_array & straaTitle)
+   void multimedia::on_decoder_fill_title_info(::multimedia::decoder * pdecoder, string_array_base & straTitle, string_array_array_base & straaTitle)
    {
 
 
    }
 
 
-   ::pointer<::user::controller>multimedia::defer_create_impact(::particle * pparticle, const string& strImpact, ::user::interaction* puiParent, e_window_flag ewindowflag, const ::atom& atom)
+   ::pointer<::user::controller>multimedia::defer_create_impact(::particle * pparticle, const ::scoped_string & scopedstrImpact, ::user::interaction* puiParent, e_window_flag ewindowflag, const ::atom& atom)
    {
 
       return nullptr;
@@ -98,10 +98,10 @@ namespace aqua
    }
 
 
-   string_array multimedia::detect_language(const string& str)
+   string_array_base multimedia::detect_language(const ::scoped_string & scopedstr)
    {
 
-      string_array stra;
+      string_array_base stra;
 
       return stra;
 
@@ -125,7 +125,7 @@ namespace aqua
 //      if (!m_pmediafoundation)
 //      {
 //
-//         auto estatus = __øconstruct(m_pmediafoundation);
+//         auto estatus = øconstruct(m_pmediafoundation);
 //
 //         if (!estatus)
 //         {

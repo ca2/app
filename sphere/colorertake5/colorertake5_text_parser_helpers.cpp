@@ -56,7 +56,7 @@ namespace colorertake5
    }
 
    /////////////////////////////////////////////////////////////////////////
-   // Virtual tables list
+   // Virtual tables list_base
    VTList::VTList()
    {
       vlist = nullptr;
@@ -192,14 +192,14 @@ namespace colorertake5
       if (!nodesnum || last == this)
          return 0;
 
-      store = __allocate_array< VirtualEntryVector* >(nodesnum + 1);
+      store = øallocate_array< VirtualEntryVector* >(nodesnum + 1);
 
-      for(VTList *list = this->next; list; list = list->next)
+      for(VTList *list_base = this->next; list_base; list_base = list_base->next)
       {
 
-         store[i++] = list->vlist;
+         store[i++] = list_base->vlist;
 
-         if (list == this->last)
+         if (list_base == this->last)
             break;
       }
 

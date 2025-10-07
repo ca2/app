@@ -47,11 +47,11 @@ namespace mysql
 
       virtual bool initialize();
 
-      virtual bool exec(const ::string & pszQuery) override;
+      virtual bool exec(const ::scoped_string & scopedstrQuery) override;
 
-      virtual ::pointer<::database::result_set>query_result(const ::string & pszQuery, ::collection::count iRowCount = -1, ::collection::count iColumnCount = -1);
+      virtual ::pointer<::database::result_set>query_result(const ::scoped_string & scopedstrQuery, ::collection::count iRowCount = -1, ::collection::count iColumnCount = -1);
 
-      virtual MYSQL_RES* _mysql_query_result(const ::string & pszSql);
+      virtual MYSQL_RES* _mysql_query_result(const ::scoped_string & scopedstrSql);
       virtual bool _mysql_result_free(MYSQL_RES* pres);
       virtual MYSQL_ROW _mysql_fetch_row(MYSQL_RES* pres);
       virtual unsigned long* _mysql_fetch_lengths(MYSQL_RES* pres);
@@ -65,21 +65,21 @@ namespace mysql
       using database_impl::query_row;
       using database_impl::query_rows;
 
-      //virtual bool query_table_item(::payload& payload, const ::string & table, const ::string & item, const ::string & where) override;
-      virtual bool query_item(::payload & payload, const ::string & pszSql) override;
-      virtual bool query_blob(memory_base& memory, const ::string & pszSql);
-      virtual bool query_items(::pointer<payload_array>& pvara, const ::string & pszSql) override;
-      virtual bool query_row(::pointer<::database::row>& prow, const ::string & pszSql) override;
-      virtual bool query_rows(::pointer<::database::row_array>&prowarray, const ::string & pszSql) override;
+      //virtual bool query_table_item(::payload& payload, const ::string & table, const ::scoped_string & scopedstrItem, const ::string & where) override;
+      virtual bool query_item(::payload & payload, const ::scoped_string & scopedstrSql) override;
+      virtual bool query_blob(memory_base& memory, const ::scoped_string & scopedstrSql);
+      virtual bool query_items(::pointer<payload_array>& pvara, const ::scoped_string & scopedstrSql) override;
+      virtual bool query_row(::pointer<::database::row>& prow, const ::scoped_string & scopedstrSql) override;
+      virtual bool query_rows(::pointer<::database::row_array>&prowarray, const ::scoped_string & scopedstrSql) override;
 
-      virtual ::payload get_agent(const ::string & pszTable, const ::string & pszEmail, const ::string & pszUser);
+      virtual ::payload get_agent(const ::scoped_string & scopedstrTable, const ::scoped_string & scopedstrEmail, const ::scoped_string & scopedstrUser);
 
-      string escape(const char * psz, character_count size);
-      string escape(const ::string & psz);
+      string escape(const_char_pointer psz, character_count size);
+      string escape(const ::scoped_string & scopedstr);
 
       ::payload get_insert_id();
 
-      virtual string query_error(const ::string & pszPrefix = nullptr) override;
+      virtual string query_error(const ::scoped_string & scopedstrPrefix = nullptr) override;
 
 
    };

@@ -7,7 +7,7 @@
 
 CLASS_DECL_ACME void copy(::string & str, const ::payload & payload);
 CLASS_DECL_ACME void copy(::payload & payload, const int & i);
-CLASS_DECL_ACME void copy(::payload & payload, const ::string & str);
+CLASS_DECL_ACME void copy(::payload & payload, const ::scoped_string & scopedstr);
 
 namespace generic
 {
@@ -132,11 +132,11 @@ inline void from_string(::set < ITEM > & set, const ::scoped_string& scopedstr, 
    while (tokenizer.get_next_token(strToken, scopedstrSeparator))
    {
 
-      typename ::set < ITEM >::ITEM item;
+      ITEM item;
 
       ::from_string(item, strToken);
 
-      set.set_at(item);
+      set.set_key(item);
 
    }
 

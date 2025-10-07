@@ -95,7 +95,7 @@ void stdio_file::open(const ::file::path & path, ::file::e_open eopen, ::pointer
 }
 
 
-void stdio_file::open(const ::file::path & path, const ::string & strAttributes, int iShare)
+void stdio_file::open(const ::file::path & path, const ::scoped_string & scopedstrAttributes, int iShare)
 {
 
    m_path = path;
@@ -108,13 +108,13 @@ try_again:
 
    wstring wstrPath(path);
 
-   wstring wstrAttributes(strAttributes);
+   wstring wstrAttributes(scopedstrAttributes);
 
    m_pfile = _wfsopen(wstrPath, wstrAttributes, iShare);
 
 #else
 
-   m_pfile = fopen(path, strAttributes);
+   m_pfile = fopen(path, scopedstrAttributes);
 
 #endif
 
@@ -451,7 +451,7 @@ void stdio_file::throw_exception(const ::scoped_string & scopedstr)
 ::pointer <stdio_file> stdio_open(::particle * pparticle, const ::file::path & pathParam, const ::scoped_string & scopedstrAttrs, int iShare)
 {
 
-   auto pfile = pparticle->application()->__create_new < ::stdio_file >();
+   auto pfile = pparticle->application()->øcreate_new < ::stdio_file >();
 
    if (!pfile)
    {
@@ -473,7 +473,7 @@ void stdio_file::throw_exception(const ::scoped_string & scopedstr)
 memory file_system::as_memory(const ::file::path & pathParam, character_count iReadAtMostByteCount, bool bNoExceptionIfNotFound)
 {
 
-   auto pfile = m_papplication->__create_new < stdio_file >();
+   auto pfile = m_papplication->øcreate_new < stdio_file >();
 
    if (bNoExceptionIfNotFound)
    {
@@ -540,7 +540,7 @@ memory file_system::as_memory(const ::file::path & pathParam, character_count iR
 memory file_system::safe_get_memory(const ::file::path & pathParam, character_count iReadAtMostByteCount, bool bNoExceptionIfNotFound)
 {
 
-   auto pfile = m_papplication->__create_new < stdio_file >();
+   auto pfile = m_papplication->øcreate_new < stdio_file >();
 
    pfile->m_eopen |= ::file::e_open_no_exception_if_not_found;
 
@@ -589,7 +589,14 @@ memory file_system::__safe_get_memory(const ::file::path& pathParam, character_c
       return {};
    }
 
-   fread(data, 1, size, file);
+   auto iRead = fread(data, 1, size, file);
+
+   if (iRead != size)
+   {
+
+      warningf("read %lld bytes from reported size %lld", iRead, size);
+
+   }
    //str.release_buffer(size);
 
    fclose(file);
@@ -604,9 +611,10 @@ memory file_system::__safe_get_memory(const ::file::path& pathParam, character_c
 
 #define BUFFER_SIZE 4096
 
-memsize file_system::__safe_find_string(const ::file::path& path, const char* psz)
+memsize file_system::__safe_find_string(const ::file::path& path, const_char_pointer psz)
 {
-   int targetLength = strlen(psz);
+   
+   auto targetLength = strlen(psz);
 
    if (targetLength >= BUFFER_SIZE)
    {
@@ -621,10 +629,10 @@ memsize file_system::__safe_find_string(const ::file::path& path, const char* ps
    char buffer[BUFFER_SIZE * 2];
    char* found;
    size_t bytesRead;
-   int offset = 0;
+   size_t offset = 0;
    memsize pos=0;
-   int amountToRead = BUFFER_SIZE;
-   int whereToRead = 0;
+   size_t amountToRead = BUFFER_SIZE;
+   size_t whereToRead = 0;
    while ((bytesRead = fread(buffer + whereToRead, 1, amountToRead, file)) > 0) 
    {
       (buffer + whereToRead)[bytesRead] = '\0';
@@ -1073,19 +1081,19 @@ string file_system::line(const ::file::path & pathParam, ::collection::index iLi
 }
 
 
-void file_system::append_wait(const ::string & strFile, const block & block, const class time & time)
+void file_system::append_wait(const ::scoped_string & scopedstrFile, const block & block, const class time & time)
 {
 
-   m_pdirectorysystem->create(::file_path_folder(strFile));
+   m_pdirectorysystem->create(::file_path_folder(scopedstrFile));
 
-   if (!m_pdirectorysystem->is(::file_path_folder(strFile)))
+   if (!m_pdirectorysystem->is(::file_path_folder(scopedstrFile)))
    {
 
       throw ::exception(::error_not_a_directory);
 
    }
 
-   wstring wstr(strFile);
+   wstring wstr(scopedstrFile);
 
    FILE * pfile = nullptr;
 
@@ -1096,7 +1104,7 @@ void file_system::append_wait(const ::string & strFile, const block & block, con
 
 #if defined(__APPLE__) || defined(LINUX) || defined(__ANDROID__) || defined(__BSD__)
 
-      pfile = fopen(strFile.c_str(), "ab");
+      pfile = fopen(scopedstrFile.as_string().c_str(), "ab");
 
 #else
 

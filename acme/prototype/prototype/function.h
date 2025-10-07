@@ -146,7 +146,7 @@ class function_common_base
 {
 public:
 #if FUNCTION_DEBUGGING
-   const char * m_pszDebug;
+   const_char_pointer m_pszDebug;
    long long m_iDebug;
 #endif
 };
@@ -239,7 +239,7 @@ public:
 
       }
 
-      m_pbase = __allocate composite(p, timeTimeout);
+      m_pbase = øallocate composite(p, timeTimeout);
 
    }
 
@@ -252,7 +252,7 @@ public:
       if (!pbase)
       {
 
-         m_pbase = __allocate composite(m_pbase, timeTimeout);
+         m_pbase = øallocate composite(m_pbase, timeTimeout);
 
       }
       else
@@ -501,7 +501,7 @@ public:
       else
       {
 
-         this->m_pbase = __allocate implementation (predicate, timeTimeout);
+         this->m_pbase = øallocate implementation (predicate, timeTimeout);
 
       }
 
@@ -687,7 +687,7 @@ public:
       else
       {
 
-         this->m_pbase = __allocate implementation<PREDICATE >(predicate, timeTimeout);
+         this->m_pbase = øallocate implementation<PREDICATE >(predicate, timeTimeout);
 
       }
 
@@ -915,7 +915,7 @@ public:
       else
       {
 
-         this->m_pbase = __allocate implementation <PREDICATE > (predicate, timeTimeout);
+         this->m_pbase = øallocate implementation <PREDICATE > (predicate, timeTimeout);
 
       }
 
@@ -1016,7 +1016,35 @@ class function_base_4 :
 public:
 
 
-   function_base_4()
+   function_base_4() :
+      ::quantum(),
+      ::subparticle()
+   {
+
+
+   }
+
+
+   function_base_4(const ::e_flag & eflag, const ::e_status & estatus = undefined) :
+      ::quantum(eflag, estatus),
+      ::subparticle(eflag, estatus)
+   {
+
+
+   }
+
+
+   function_base_4(const function_base_4 & functionbase4) :
+      ::quantum(functionbase4),
+      ::subparticle(functionbase4)
+   {
+
+
+   }
+
+   function_base_4(function_base_4&& functionbase4) :
+      ::quantum(::transfer(functionbase4)),
+      ::subparticle(::transfer(functionbase4))
    {
 
 
@@ -1119,6 +1147,12 @@ public:
 };
 
 
+template <typename F, typename... Args>
+concept LambdaWithVoidAndArgs =
+   requires(F f, Args... args) {
+      { f(args...) } -> std::same_as<void>;
+};
+
 template < typename... TYPES >
 class function < void(TYPES...) > :
    public base_function_4 < TYPES... >
@@ -1137,6 +1171,7 @@ public:
    //pointer < base >     m_pbase;
 
    function() { }
+   function(nullptr_t) {}
    template < typename T2 >
    function(transfer_t, T2 * p) :base_function_4 < TYPES... > (place_t{}, p) {}
    template < typename T2 >
@@ -1150,38 +1185,31 @@ public:
 
    template < typename PREDICATE >
    function(PREDICATE predicate, const class ::time & timeTimeout = 0_s) 
+      requires (::std::is_convertible_v<PREDICATE, base* >)
    {
 
-      if constexpr(::std::is_same_v<PREDICATE, nullptr_t>)
-      {
+      this->construct(predicate, timeTimeout);
+
+   }
 
 
-      }
-      else if constexpr (::std::is_convertible_v<PREDICATE, base * >)
-      {
+   template < typename PREDICATE >
+   function(PREDICATE predicate, const class ::time& timeTimeout = 0_s)
+      requires (::std::is_same_v<::std::decay_t<PREDICATE>, payload >
+   || ::std::is_same_v<::std::decay_t <PREDICATE>, property>)
+   {
 
-         this->construct(predicate, timeTimeout);
+      this->construct(dynamic_cast <base*>(as_subparticle(predicate)), timeTimeout);
 
-      }
-      else if constexpr(::std::is_same_v<::std::decay_t<PREDICATE>, payload >
-         || ::std::is_same_v<::std::decay_t <PREDICATE> , property>)
-      {
+   }
 
-         this->construct(dynamic_cast < base * >(as_subparticle(predicate)), timeTimeout);
 
-      }
-      else if constexpr(::std::is_same_v<PREDICATE, const function & >)
-      {
-
-         this->construct(predicate.m_pbase, timeTimeout);
-
-      }
-      else
-      {
-
-         this->m_pbase = __allocate function_4_implementation< PREDICATE, TYPES... >(predicate, timeTimeout);
-
-      }
+   template < typename PREDICATE >
+   function(PREDICATE predicate, const class ::time& timeTimeout = 0_s)
+      requires (LambdaWithVoidAndArgs< PREDICATE, TYPES... >)
+   {
+   
+      this->m_pbase = øallocate function_4_implementation< PREDICATE, TYPES... >(predicate, timeTimeout);
 
    }
 

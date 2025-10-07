@@ -13,8 +13,8 @@ namespace colorertake5
    {
    public:
 
-      HRCParserException(const ::string & pszMessage = nullptr) :
-         exception(pszMessage)
+      HRCParserException(const ::scoped_string & scopedstrMessage = nullptr) :
+         exception(scopedstrMessage)
       {
 
       }
@@ -42,7 +42,7 @@ namespace colorertake5
       real type load must be performed before using with #loadType() method
       @param is input_source stream of HRC file
       */
-      virtual void loadSource(const ::string & pszSourceLocation, const ::string & pszSource) = 0;
+      virtual void loadSource(const ::scoped_string & scopedstrSourceLocation, const ::scoped_string & scopedstrSource) = 0;
 
       /** Enumerates sequentially all prototypes
       @param index index of type.
@@ -53,7 +53,7 @@ namespace colorertake5
       /** @param name Requested type name.
       @return File type, or nullptr, there are no type with specified name.
       */
-      virtual file_type *getFileType(const ::string & name) = 0;
+      virtual file_type *getFileType(const ::scoped_string & scopedstrName) = 0;
 
       /** Searches and returns the best type for specified spfile->
       This method uses fileName and firstLine parameters
@@ -74,7 +74,7 @@ namespace colorertake5
       /** Returns region by name
       @note Also loads referred type, if it is not yet loaded.
       */
-      virtual class region *getRegion(const ::string & name) = 0;
+      virtual class region *getRegion(const ::scoped_string & scopedstrName) = 0;
 
       /** HRC aura version.
       Usually this is the 'version' attribute of 'hrc' matter

@@ -29,7 +29,7 @@ string chunk_split(const string & body,int chunklen,const string & end)
 }
 
 
-//typedef string(*SALT)(::pointer<::aura::application> const ::string &, string_array &);
+//typedef string(*SALT)(::pointer<::aura::application> const ::scoped_string & scopedstr, string_array_base &);
 
 
 namespace account
@@ -43,7 +43,7 @@ namespace account
 
       m_estatus = error_authentication_none;
 
-      m_phttpcookies = __allocate ::http::cookies();
+      m_phttpcookies = øallocate ::http::cookies();
 
       m_estatus = error_none;
 
@@ -85,7 +85,7 @@ namespace account
    }
 
 
-//   string user::get_sessid(const ::string & pszText, bool bInteractive)
+//   string user::get_sessid(const ::scoped_string & scopedstrText, bool bInteractive)
 //   {
 //
 //      if(::is_null(this))
@@ -95,11 +95,11 @@ namespace account
 //
 //      }
 //
-//      if(pszText == nullptr)
+//      if(scopedstrText == nullptr)
 //      {
 //         pszText = "https://ca2.network/";
 //      }
-//      string strText(pszText);
+//      string strText(scopedstrText);
 //      if(strText.is_empty())
 //      {
 //         strText = "https://ca2.network/";
@@ -129,7 +129,7 @@ namespace account
 //
 //      }
 //      class validate authuser(get_app(), "system\\user\\authenticate.xhtml", true, bInteractive);
-//      ::pointer<user>puser = authuser.get_user(pszText);
+//      ::pointer<user>puser = authuser.get_user(scopedstrText);
 //      if(puser == nullptr)
 //         strSessId = "not_auth";
 //      else
@@ -144,13 +144,13 @@ namespace account
 //      return strSessId;
 //   }
 //
-//   void user::set_sessid(const ::string & pszSessid, const ::string & pszText)
+//   void user::set_sessid(const ::scoped_string & scopedstrSessid, const ::scoped_string & scopedstrText)
 //   {
-//      if(pszText == nullptr)
+//      if(scopedstrText == nullptr)
 //      {
 //         pszText = "https://ca2.network/";
 //      }
-//      string strText(pszText);
+//      string strText(scopedstrText);
 //      if(strText.is_empty())
 //      {
 //         strText = "https://ca2.network/";
@@ -160,13 +160,13 @@ namespace account
 //   }
 
 
-//   string user::get_ca2_server(const ::string & pszPrefix)
+//   string user::get_ca2_server(const ::scoped_string & scopedstrPrefix)
 //   {
 //
-//      string strPrefix(pszPrefix);
+//      string strPrefix(scopedstrPrefix);
 //      string strDomain(".ca2.network");
 //
-//      string_array straServer;
+//      string_array_base straServer;
 //
 //      straServer.add(strPrefix + strDomain);
 //      straServer.add("eu-" + strPrefix + strDomain);
@@ -273,7 +273,7 @@ namespace account
 
       m_bDeferRegistration = bInteractive;
 
-      ::pointer<credentials>pcredentials = __allocate credentials();
+      ::pointer<credentials>pcredentials = øallocate credentials();
 
       auto psession = session();
 
@@ -395,10 +395,10 @@ namespace account
 //   }
 
 
-   void user::logon_local(string strAccount)
+   void user::logon_local(const ::scoped_string & scopedstrAccount)
    {
 
-      m_strLogin = strAccount;
+      m_strLogin = scopedstrAccount;
 
       m_strSessId = "local";
 
@@ -410,7 +410,7 @@ namespace account
 
 
 
-   void user::not_auth(string strServer)
+   void user::not_auth(const ::scoped_string & scopedstrServer)
    {
 
       m_strSessId = "not_auth";

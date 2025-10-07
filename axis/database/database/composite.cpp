@@ -54,11 +54,11 @@ namespace database
    }
 
 
-   void composite::connect(const ::string & name, const ::string & host, const ::string & port, const ::string & user, const ::string & pass, const ::string & sckt, unsigned long long uConnectionFlags)
+   void composite::connect(const ::scoped_string & scopedstrName, const ::scoped_string & scopedstrHost, const ::scoped_string & scopedstrPort, const ::scoped_string & scopedstrUser, const ::scoped_string & scopedstrPass, const ::scoped_string & scopedstrSocket, unsigned long long uConnectionFlags)
    {
 
 
-      return m_pdatabase->connect(name, host, port, user, pass, sckt, uConnectionFlags);
+      return m_pdatabase->connect(scopedstrName, scopedstrHost, scopedstrPort, scopedstrUser, scopedstrPass, scopedstrSocket, uConnectionFlags);
 
    }
 
@@ -104,26 +104,26 @@ namespace database
 
 
 
-   bool composite::exec(const ::string & pszQuery)
+   bool composite::exec(const ::scoped_string & scopedstrQuery)
    {
 
-      return m_pdatabase->exec(pszQuery);
+      return m_pdatabase->exec(scopedstrQuery);
 
    }
 
 
-   //::payload composite::query(const ::string & pszQuery, ::collection::count iMaxRowCount, ::collection::count iMaxColumnCount)
+   //::payload composite::query(const ::scoped_string & scopedstrQuery, ::collection::count iMaxRowCount, ::collection::count iMaxColumnCount)
    //{
 
-   //   return query_rows(pszQuery);
+   //   return query_rows(scopedstrQuery);
 
    //}
 
 
-   string composite::escape(const ::string & psz)
+   string composite::escape(const ::scoped_string & scopedstr)
    {
 
-      return m_pdatabase->escape(psz);
+      return m_pdatabase->escape(scopedstr);
 
    }
 
@@ -136,18 +136,18 @@ namespace database
    }
 
 
-   string composite::query_error(const ::string & pszPrefix)
+   string composite::query_error(const ::scoped_string & scopedstrPrefix)
    {
 
-      return m_pdatabase->query_error(pszPrefix);
+      return m_pdatabase->query_error(scopedstrPrefix);
 
    }
 
 
-   void composite::trace_error1(const ::string & pszPrefix)
+   void composite::trace_error1(const ::scoped_string & scopedstrPrefix)
    {
 
-      m_pdatabase->trace_error1(pszPrefix);
+      m_pdatabase->trace_error1(scopedstrPrefix);
 
    }
 
@@ -184,7 +184,7 @@ namespace database
    }
 
 
-   ::payload composite::get_agent(const ::string & pszTable, const ::string & psz, const ::string & pszUser)
+   ::payload composite::get_agent(const ::scoped_string & scopedstrTable, const ::scoped_string & scopedstr, const ::scoped_string & scopedstrUser)
    {
 
       return ::payload(::e_type_null);
@@ -193,69 +193,66 @@ namespace database
 
 
    
-   bool composite::query_table_item(::payload& payload, const ::string & table, const ::string & item, const ::string & where)
+   bool composite::query_table_item(::payload& payload, const ::string & table, const ::scoped_string & scopedstrItem, const ::string & where)
    {
 
-      return m_pdatabase->query_table_item(payload, table, item, where);
+      return m_pdatabase->query_table_item(payload, table, scopedstrItem, where);
 
    }
 
    
-
-
-
-   bool composite::query_rows(::pointer<row_array>& prowaray, const ::string & pszQuery)
+   bool composite::query_rows(::pointer<row_array>& prowaray, const ::scoped_string & scopedstrQuery)
    {
 
-      return m_pdatabase->query_rows(prowaray, pszQuery);
+      return m_pdatabase->query_rows(prowaray, scopedstrQuery);
 
    }
 
 
-   bool composite::query_row(::pointer<row>& prow, const ::string & pszQuery)
+   bool composite::query_row(::pointer<row>& prow, const ::scoped_string & scopedstrQuery)
    {
 
-      return m_pdatabase->query_row(prow, pszQuery);
+      return m_pdatabase->query_row(prow, scopedstrQuery);
 
    }
 
 
-   bool composite::query_items(::pointer<payload_array>& pvara, const ::string & pszQuery)
+   bool composite::query_items(::pointer<payload_array>& pvara, const ::scoped_string & scopedstrQuery)
    {
 
-      return m_pdatabase->query_items(pvara, pszQuery);
+      return m_pdatabase->query_items(pvara, scopedstrQuery);
 
    }
 
 
-   bool composite::query_item(::payload & payload, const ::string & pszQuery)
+   bool composite::query_item(::payload & payload, const ::scoped_string & scopedstrQuery)
    {
 
-      return m_pdatabase->query_item(payload, pszQuery);
+      return m_pdatabase->query_item(payload, scopedstrQuery);
 
    }
 
 
-   bool composite::query_blob(get_memory getmemory, const ::string & pszQuery)
+   bool composite::query_blob(get_memory getmemory, const ::scoped_string & scopedstrQuery)
    {
 
-      return m_pdatabase->query_blob(getmemory, pszQuery);
+      return m_pdatabase->query_blob(getmemory, scopedstrQuery);
 
    }
 
 
-   ::pointer<::database::result_set>composite::query_result(const ::string & pszQuery, ::collection::count iRowCount, ::collection::count iColumnCount)
+   ::pointer<::database::result_set>composite::query_result(const ::scoped_string & scopedstrQuery, ::collection::count iRowCount, ::collection::count iColumnCount)
    {
 
-      return m_pdatabase->query_result(pszQuery, iRowCount, iColumnCount);
+      return m_pdatabase->query_result(scopedstrQuery, iRowCount, iColumnCount);
 
    }
 
 
-   ::pointer<result_set>composite::query(const ::string & pszQuery, ::collection::count iRowCount, ::collection::count iColumnCount)
+   ::pointer<result_set>composite::query(const ::scoped_string & scopedstrQuery, ::collection::count iRowCount, ::collection::count iColumnCount)
    {
       
-      return query_result(pszQuery, iRowCount, iColumnCount);
+      return query_result(scopedstrQuery, iRowCount, iColumnCount);
    
    }
 

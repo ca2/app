@@ -36,7 +36,7 @@ namespace bred
    void application::on_set_platform()
    {
 
-      ::base::application::on_set_platform();
+      ::berg::application::on_set_platform();
 
       factory()->add_factory_item < ::bred::system, ::platform::system >();
 
@@ -69,10 +69,10 @@ namespace bred
    }
 
 
-   //::pointer<progress_control>application::show_progress(::user::interaction* puiParent, const ::string & pszTitle, ::collection::count iProgressCount)
+   //::pointer<progress_control>application::show_progress(::user::interaction* puiParent, const ::scoped_string & scopedstrTitle, ::collection::count iProgressCount)
    //{
 
-   //   auto pprogresscontrol = __create_new <  ::userex::progress_control >();
+   //   auto pprogresscontrol = øcreate_new <  ::userex::progress_control >();
 
    //   pprogresscontrol->defer_show(puiParent, pszTitle, iProgressCount);
 
@@ -92,7 +92,7 @@ namespace bred
    //::pointer < ::graphics3d::application > application::start_graphics3d_aplication()
    //{
 
-   //   auto p3dapplication = __øcreate < graphics3d::application>();
+   //   auto p3dapplication = øcreate < graphics3d::application>();
 
    //   return p3dapplication;
 
@@ -131,7 +131,7 @@ namespace bred
    ::string application::draw2d_get_default_implementation_name()
    {
       
-      auto strName = ::base::application::draw2d_get_default_implementation_name();
+      auto strName = ::berg::application::draw2d_get_default_implementation_name();
 
       return strName;
 
@@ -256,7 +256,7 @@ namespace bred
 
       //auto estatus =
 
-      pfactoryGpu->__øconstruct(this, m_pgpuapproach);
+      pfactoryGpu->øconstruct(this, m_pgpuapproach);
 
 
       m_pgpuapproach->initialize_gpu_approach();

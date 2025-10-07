@@ -1422,7 +1422,7 @@ inline auto & bottom_right(const RECTANGLE& rectangle) { return *(typename RECTA
 
 //
 //template < typename UNIT_TYPE >
-//inline UNIT_TYPE __conv(const ::string & str)
+//inline UNIT_TYPE __conv(const ::scoped_string & scopedstr)
 //{
 //
 //   return (UNIT_TYPE)str;
@@ -1431,7 +1431,7 @@ inline auto & bottom_right(const RECTANGLE& rectangle) { return *(typename RECTA
 //
 //
 //template <  >
-//inline int __conv<int>(const ::string & str)
+//inline int __conv<int>(const ::scoped_string & scopedstr)
 //{
 //
 //   return (int) ::atoi(str);
@@ -1440,7 +1440,7 @@ inline auto & bottom_right(const RECTANGLE& rectangle) { return *(typename RECTA
 //
 //
 //template <  >
-//inline long long __conv<long long>(const ::string & str)
+//inline long long __conv<long long>(const ::scoped_string & scopedstr)
 //{
 //
 //   return (int) ::atoi(str);
@@ -1449,7 +1449,7 @@ inline auto & bottom_right(const RECTANGLE& rectangle) { return *(typename RECTA
 //
 //
 //template <  >
-//inline double __conv<double>(const ::string & str)
+//inline double __conv<double>(const ::scoped_string & scopedstr)
 //{
 //
 //   return (int) ::atoi(str);

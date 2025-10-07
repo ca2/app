@@ -31,8 +31,8 @@ namespace text
          ::string                   m_strLocale;
          ::string                   m_strSchema;
 
-         ::string_array             m_straLocale;
-         ::string_array             m_straSchema;
+         ::string_array_base             m_straLocale;
+         ::string_array_base             m_straSchema;
 
 
          locale_schema();

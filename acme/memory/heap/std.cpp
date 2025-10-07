@@ -40,12 +40,12 @@ namespace heap
       void start_heap() override
       {
 
-         m_pallocarray = __raw_new plex_heap_alloc_array(m_pallocator, m_ememory);
+         m_pallocarray = øraw_new plex_heap_alloc_array(m_pallocator, m_ememory);
 
       }
 
 
-      void * aligned_allocate(memsize size, memsize * psizeAllocated, memsize align, const char * pszAnnotation = nullptr) override
+      void * aligned_allocate(memsize size, memsize * psizeAllocated, memsize align, const_char_pointer pszAnnotation = nullptr) override
       {
 
          if (size < 0)
@@ -115,7 +115,7 @@ namespace heap
       }
 
 
-      void * unaligned_allocate(memsize size, memsize * psizeAllocated, const char * pszAnnotation = nullptr) override
+      void * unaligned_allocate(memsize size, memsize * psizeAllocated, const_char_pointer pszAnnotation = nullptr) override
       {
 
          void * punaligned;
@@ -185,7 +185,7 @@ namespace heap
       }
 
 
-      void * aligned_allocate_debug(memsize size, memsize * psizeAllocated, int nBlockUse, const char * szFileName, int nLine, memsize align, const char * pszAnnotation = nullptr) override
+      void * aligned_allocate_debug(memsize size, memsize * psizeAllocated, int nBlockUse, const_char_pointer szFileName, int nLine, memsize align, const_char_pointer pszAnnotation = nullptr) override
       {
 
          void * paligned;
@@ -258,7 +258,7 @@ namespace heap
       }
 
 
-      void * unaligned_allocate_debug(memsize size, memsize * psizeAllocated, int nBlockUse, const char * szFileName, int nLine, const char * pszAnnotation = nullptr) override
+      void * unaligned_allocate_debug(memsize size, memsize * psizeAllocated, int nBlockUse, const_char_pointer szFileName, int nLine, const_char_pointer pszAnnotation = nullptr) override
       {
 
          void * punaligned;
@@ -332,7 +332,7 @@ namespace heap
       //#undef ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate
 
 
-      void * allocate(memsize size, memsize * psizeAllocated, const char * pszAnnotation = nullptr) override
+      void * allocate(memsize size, memsize * psizeAllocated, const_char_pointer pszAnnotation = nullptr) override
       {
 
          return aligned_allocate(size, psizeAllocated, ALIGN_BYTE_COUNT MEMORY_ANNOTATION_COMMA_ARG);
@@ -356,7 +356,7 @@ namespace heap
       }
 
 
-      void * count_allocate(memsize size, memsize bytes, const char * pszAnnotation = nullptr) override
+      void * count_allocate(memsize size, memsize bytes, const_char_pointer pszAnnotation = nullptr) override
       {
 
          return allocate(size * bytes, nullptr MEMORY_ANNOTATION_COMMA_ARG);
@@ -364,7 +364,7 @@ namespace heap
       }
 
 
-      void * allocate_debug(memsize nSize, int nBlockUse, const char * szFileName, int nLine, const char * pszAnnotation = nullptr) override
+      void * allocate_debug(memsize nSize, int nBlockUse, const_char_pointer szFileName, int nLine, const_char_pointer pszAnnotation = nullptr) override
       {
 
          // return unaligned_memory_allocate_debug(nSize, nBlockUse, szFileName, nLine);
@@ -374,7 +374,7 @@ namespace heap
       }
 
 
-      void * reallocate(void * pmemory, memsize nSize, const char * pszAnnotation = nullptr) override
+      void * reallocate(void * pmemory, memsize nSize, const_char_pointer pszAnnotation = nullptr) override
       {
 
          return reallocate_debug(pmemory, nSize, 0, nullptr, -1 MEMORY_ANNOTATION_COMMA_ARG);
@@ -382,7 +382,7 @@ namespace heap
       }
 
 
-      void * reallocate_debug(void * pmemory, memsize size, int nBlockUse, const char * szFileName, int nLine, const char * pszAnnotation = nullptr) override
+      void * reallocate_debug(void * pmemory, memsize size, int nBlockUse, const_char_pointer szFileName, int nLine, const_char_pointer pszAnnotation = nullptr) override
       {
 
          if (pmemory == nullptr)

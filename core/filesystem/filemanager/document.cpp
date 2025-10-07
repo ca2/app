@@ -18,7 +18,7 @@
 #include "acme/platform/system.h"
 #include "apex/filesystem/fs/set.h"
 #include "aura/graphics/image/icon.h"
-#include "base/user/user/tab_pane.h"
+#include "berg/user/user/tab_pane.h"
 #include "core/user/user/user.h"
 #include "core/platform/session.h"
 #include "core/platform/application.h"
@@ -98,10 +98,10 @@ namespace filemanager
    // }
 
 
-   bool document::do_prompt_file_name(::payload & payloadFile, string nIDSTitle, unsigned int lFlags, bool bOpenFileDialog, ::user::impact_system * ptemplate, ::user::document * pfilemanagerdataOther)
+   bool document::do_prompt_file_name(::payload & payloadFile, const ::scoped_string & scopedstrTitle, unsigned int lFlags, bool bOpenFileDialog, ::user::impact_system * ptemplate, ::user::document * pfilemanagerdataOther)
    {
 
-      __UNREFERENCED_PARAMETER(nIDSTitle);
+      __UNREFERENCED_PARAMETER(scopedstrTitle);
       __UNREFERENCED_PARAMETER(lFlags);
       __UNREFERENCED_PARAMETER(ptemplate);
 
@@ -134,7 +134,7 @@ namespace filemanager
 
 
 
-   void document::on_file_manager_open_context_menu_folder(::pointer<::file::item> item, string_array & straCommand, string_array & straCommandTitle, const ::action_context & context)
+   void document::on_file_manager_open_context_menu_folder(::pointer<::file::item> item, string_array_base & straCommand, string_array_base & straCommandTitle, const ::action_context & context)
    {
 
       auto pfilemanagerdata = filemanager_data();
@@ -282,7 +282,7 @@ namespace filemanager
       else if(itema.has_element())
       {
 
-         auto prequest = __create_new <::request>();
+         auto prequest = øcreate_new <::request>();
 
          prequest->m_payloadFile = itema[0]->user_path();
          
@@ -329,7 +329,7 @@ namespace filemanager
    }
 
 
-   void document::on_file_manager_item_command(const ::string & pszId, const ::file::item_array & itema)
+   void document::on_file_manager_item_command(const ::scoped_string & scopedstrId, const ::file::item_array & itema)
    {
 
       auto pfilemanagerdata = filemanager_data();
@@ -339,7 +339,7 @@ namespace filemanager
       if (pfilemanagerdata->m_pfilemanagercallback != nullptr)
       {
 
-         pfilemanagerdata->m_pfilemanagercallback->on_file_manager_item_command(pfilemanagerdata, pszId, itema);
+         pfilemanagerdata->m_pfilemanagercallback->on_file_manager_item_command(pfilemanagerdata, scopedstrId, itema);
 
       }
 
@@ -392,7 +392,7 @@ namespace filemanager
 
    //   ::file::path pathFinal = m_papplication->defer_process_matter_path(pathUser);
 
-   //   ::pointer<::file::item>pitem = __allocate ::file::item(pathUser, pathFinal);
+   //   ::pointer<::file::item>pitem = øallocate ::file::item(pathUser, pathFinal);
 
    //   browse(pitem, context);
 
@@ -541,7 +541,7 @@ namespace filemanager
    }
 
 
-   // void document::defer_check_manager_id(string strManagerId)
+   // void document::defer_check_manager_id(const ::scoped_string & scopedstrManagerId)
    // {
 
    //    auto pcontext = m_papplication;
@@ -894,7 +894,7 @@ namespace filemanager
    void document::_001OnNewManager(::message::message * pmessage)
    {
 
-      //auto prequest = __create_new <::request>();
+      //auto prequest = øcreate_new <::request>();
 
       //prequest->finish_initialization();
 
@@ -1618,7 +1618,7 @@ namespace filemanager
    //   //   if (ptemplate.is_null())
    //   //   {
 
-   //   //      m_pfilemanagerdata = __allocate data(this);
+   //   //      m_pfilemanagerdata = øallocate data(this);
 
    //   //   }
    //   //   else
@@ -1648,7 +1648,7 @@ namespace filemanager
    ::pointer<::filemanager::data>document::create_file_manager_data(::request * prequest)
    {
 
-      ::pointer<::filemanager::data>pfilemanagerdata(__allocate data());
+      ::pointer<::filemanager::data>pfilemanagerdata(øallocate data());
 
       ::filemanager::callback * pcallback = nullptr;
 

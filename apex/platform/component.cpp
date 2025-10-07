@@ -16,7 +16,7 @@ namespace apex
    void component::_update_enabled_implementations()
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       for (auto & strImplementation : m_straImplementationInstalled)
       {

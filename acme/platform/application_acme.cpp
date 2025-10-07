@@ -239,8 +239,8 @@ void acme_application_layer::start_application()
    }
 
 
-   //bool handle_call(::payload & payload, const ::string & strObject, const ::string & strMember, ::property_set & propertyset) override{}
-   bool acme_application_layer::handle_application_call(::payload& payload, const ::string& strMember,
+   //bool handle_call(::payload & payload, const ::scoped_string & scopedstrObject, const ::scoped_string & scopedstrMember, ::property_set & propertyset) override{}
+   bool acme_application_layer::handle_application_call(::payload& payload, const ::scoped_string & scopedstrMember,
                                                         ::property_set& propertyset)
    {
       return false;
@@ -271,15 +271,22 @@ void acme_application_layer::start_application()
    }
 
 
-   void acme_application_layer::locale_schema_matter(string_array& stra, const string_array& straMatterLocator,
+   void acme_application_layer::on_application_message(::platform::message * pmessage)
+   {
+
+
+   }
+
+
+   void acme_application_layer::locale_schema_matter(string_array_base& stra, const string_array_base& straMatterLocator,
                                                      const ::scoped_string& scopedstrLocale,
                                                      const ::scoped_string& scopedstrSchema)
    {
    }
 
 
-   void acme_application_layer::matter_locator_locale_schema_matter(string_array& stra,
-                                                                    const string_array& straMatterLocator,
+   void acme_application_layer::matter_locator_locale_schema_matter(string_array_base& stra,
+                                                                    const string_array_base& straMatterLocator,
                                                                     const ::scoped_string& scopedstrLocale,
                                                                     const ::scoped_string& scopedstrSchema)
    {
@@ -383,7 +390,7 @@ void acme_application_layer::start_application()
    }
 
 
-   ::string_array acme_application_layer::get_about_box_lines()
+   ::string_array_base acme_application_layer::get_about_box_lines()
    {
       return {};
    }
@@ -428,17 +435,17 @@ void acme_application_layer::start_application()
    }
 
 
-   void acme_application_layer::pick_media(const char* pszMediaType)
+   void acme_application_layer::pick_media(const ::scoped_string & scopedstrMediaType)
    {
    }
 
 
-   void acme_application_layer::did_pick_document_at_url(const char* pszUrl)
+   void acme_application_layer::did_pick_document_at_url(const ::scoped_string & scopedstrUrl)
    {
    }
 
 
-   void acme_application_layer::did_pick_document_at_urls(const ::string_array& stra)
+   void acme_application_layer::did_pick_document_at_urls(const ::string_array_base& stra)
    {
    }
 

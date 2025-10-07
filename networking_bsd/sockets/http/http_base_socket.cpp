@@ -146,7 +146,7 @@ namespace sockets
    }
 
 
-   void http_base_socket::OnData(const char *buf,memsize sz)
+   void http_base_socket::OnData(const_char_pointer buf,memsize sz)
    {
 
       m_request.write( buf, sz );
@@ -297,11 +297,11 @@ namespace sockets
 
 
    //string http_base_socket::set-cookie(
-   //const char * name,
+   //const_char_pointer name,
    //::payload payload,
    //int iExpire,
    //const ::file::path & path,
-   //const char * domain,
+   //const_char_pointer domain,
    //bool bSecure)
    //{
    //   m_request.cookies().set-cookie(
@@ -361,7 +361,7 @@ namespace sockets
    }
 
 
-   bool http_base_socket::read_file(const ::file::path& pcszParam, pointer_array < ::int_array >* prangea, const ::scoped_string & scopedstrContentType)
+   bool http_base_socket::read_file(const ::file::path& pcszParam, pointer_array < ::int_array_base >* prangea, const ::scoped_string & scopedstrContentType)
    {
 
       ::file::path pcsz(pcszParam);
@@ -372,7 +372,7 @@ namespace sockets
 
       string str = strExtension;
       str.make_lower();
-      string strContentType(pszContentType);
+      string strContentType(scopedstrContentType);
 
       string strName(pcsz);
 
@@ -407,7 +407,7 @@ namespace sockets
 
       string strServer = system()->url()->get_server(strReferer);
 
-      string_array straAllowedOrigin;
+      string_array_base straAllowedOrigin;
 
       straAllowedOrigin.add("ca2.network");
       straAllowedOrigin.add("ca2.network");
@@ -768,7 +768,7 @@ namespace sockets
 
       string str;
 
-      string_array stra;
+      string_array_base stra;
 
       file()->get_lines(stra, payloadFile);
 

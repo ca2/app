@@ -14,7 +14,7 @@ public:
 
 
    bool load(const ::string & lpKey, string &strValue);
-   bool save(const ::string & lpKey, const ::string & lpcsz);
+   bool save(const ::string & lpKey, const ::scoped_string & scopedstr);
 
    bool erase(const ::string & lpKey);
 

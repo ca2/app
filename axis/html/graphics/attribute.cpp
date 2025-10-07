@@ -7,10 +7,10 @@ namespace html
 {
 
 
-   void attribute::set_name(atom idName)
+   void attribute::set_name(const ::atom & atom)
    {
 
-      m_atomName = idName;
+      m_atomName = atom;
 
    }
 
@@ -22,10 +22,10 @@ namespace html
    }
 
 
-   void attribute::set_value(const ::string & pszValue)
+   void attribute::set_value(const ::scoped_string & scopedstrValue)
    {
 
-      m_strValue = pszValue;
+      m_strValue = scopedstrValue;
 
    }
 
@@ -38,17 +38,18 @@ namespace html
    }
 
 
-
    // attribute_array
 
-   ::pointer<attribute>attribute_array::get(atom idName)
+   ::pointer<attribute>attribute_array::get(const ::atom & atom)
    {
 
       for(int i = 0; i < this->get_size(); i++)
       {
 
-         if(this->element_at(i)->get_name() == idName)
+         if(this->element_at(i)->get_name() == atom)
+         {
             return this->element_at(i);
+         }
 
       }
 
@@ -57,18 +58,18 @@ namespace html
    }
 
 
-   ::pointer<attribute>attribute_array::get(atom idName) const
+   ::pointer<attribute>attribute_array::get(const ::atom & atom) const
    {
 
-      return const_cast < attribute_array * > (this)->get(idName);
+      return const_cast < attribute_array * > (this)->get(atom);
 
    }
 
 
-   string attribute_array::get_value(atom idName) const
+   string attribute_array::get_value(const ::atom & atom) const
    {
 
-      auto pattribute = get(idName);
+      auto pattribute = get(atom);
 
       if (!pattribute)
       {

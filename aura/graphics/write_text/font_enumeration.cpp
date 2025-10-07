@@ -84,15 +84,15 @@ namespace write_text
    }
 
 
-   bool font_enumeration::has_font_name(const string& str)
+   bool font_enumeration::has_font_name(const ::scoped_string & scopedstr)
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       for (auto& m_pfontenumerationitema : *m_pfontenumerationitema)
       {
 
-         if (m_pfontenumerationitema->m_strName.case_insensitive_order(str) == 0)
+         if (m_pfontenumerationitema->m_strName.case_insensitive_order(scopedstr) == 0)
          {
 
             return true;
@@ -106,10 +106,10 @@ namespace write_text
    }
 
 
-   ::pointer<::write_text::font_enumeration_item>font_enumeration::similar_font(const ::string & psz)
+   ::pointer<::write_text::font_enumeration_item>font_enumeration::similar_font(const ::scoped_string & scopedstr)
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       ::pointer<::write_text::font_enumeration_item>pitemFound;
 
@@ -135,7 +135,7 @@ namespace write_text
 
          int iFound = -1;
 
-         double dSimilarity = pfonts->font_similarity(pitem->m_strName, psz);
+         double dSimilarity = pfonts->font_similarity(pitem->m_strName, scopedstr);
 
          if (dSimilarity > dMaxSimilarity)
          {
@@ -198,7 +198,7 @@ namespace write_text
 
       ::pointer<::write_text::font_enumeration_item_array>pitema;
 
-      pitema = __allocate ::write_text::font_enumeration_item_array();
+      pitema = øallocate ::write_text::font_enumeration_item_array();
 
       auto psystem = system();
 
@@ -241,7 +241,7 @@ namespace write_text
 
       ::pointer<::write_text::font_enumeration_item_array>pitema;
 
-      pitema = __allocate ::write_text::font_enumeration_item_array();
+      pitema = øallocate ::write_text::font_enumeration_item_array();
 
       auto psystem = system();
 

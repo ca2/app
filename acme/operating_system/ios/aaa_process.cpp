@@ -78,7 +78,7 @@ int iShow)
    string strCmdLine;
 
    strCmdLine = pszPath;
-   if(ansi_length(pszParam) > 0)
+   if(ansi_length(scopedstrParam) > 0)
    {
       strCmdLine +=  " ";
       strCmdLine += pszParam;
@@ -105,7 +105,7 @@ unsigned int * puiPid)
    string strCmdLine;
 
    strCmdLine = pszPath;
-   if(ansi_length(pszParam) > 0)
+   if(ansi_length(scopedstrParam) > 0)
    {
       strCmdLine +=  " ";
       strCmdLine += pszParam;
@@ -135,7 +135,7 @@ CLASS_DECL_ACME unsigned int call_sync(const ::file::path & path, const ::scoped
 
    strCmdLine = pszPath;
 
-   if(ansi_length(pszParam) > 0)
+   if(ansi_length(scopedstrParam) > 0)
    {
 
       strCmdLine +=  " ";
@@ -188,14 +188,14 @@ bool shell_execute_sync(const ::scoped_string & scopedstrFile, const ::scoped_st
    
    ::property_set set;
 
-   return call_sync(pszFile, pszParams, ::file::path(pszFile).folder(), ::e_display_none, durationTimeout, set);
+   return call_sync(scopedstrFile, pszParams, ::file::path(scopedstrFile).folder(), ::e_display_none, durationTimeout, set);
 
 }
 
 
 
 
-CLASS_DECL_ACME bool is_shared_library_busy(unsigned int processid, const string_array & stra)
+CLASS_DECL_ACME bool is_shared_library_busy(unsigned int processid, const string_array_base & stra)
 {
 
    return false;
@@ -203,7 +203,7 @@ CLASS_DECL_ACME bool is_shared_library_busy(unsigned int processid, const string
 }
 
 
-CLASS_DECL_ACME bool is_shared_library_busy(const string_array & stra)
+CLASS_DECL_ACME bool is_shared_library_busy(const string_array_base & stra)
 {
 
    return false;

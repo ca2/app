@@ -50,7 +50,7 @@ Function OnClick
 
 	Pop $0 # HWND
 
-	MessageBox e_message_box_ok clicky
+	MessageBox ::user::e_message_box_ok clicky
 
 FunctionEnd
 
@@ -61,7 +61,7 @@ Function OnChange
 	System::Call user32::get_window_text(p$EDIT,t.r0,i${NSIS_MAX_STRLEN})
 
 	${If} $0 == "hello there"
-		MessageBox e_message_box_ok "right back at ya"
+		MessageBox ::user::e_message_box_ok "right back at ya"
 	${EndIf}
 
 FunctionEnd
@@ -77,7 +77,7 @@ Function OnCheckbox
 
 	Pop $0 # HWND
 
-	MessageBox e_message_box_ok "checkbox clicked"
+	MessageBox ::user::e_message_box_ok "checkbox clicked"
 
 FunctionEnd
 

@@ -2,10 +2,10 @@
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/path.h"
 #include "frame_002.h"
-#include "base/user/experience/frame_window.h"
-#include "base/user/experience/size_manager.h"
-#include "base/user/experience/dock_manager.h"
-#include "base/user/experience/move_manager.h"
+#include "berg/user/experience/frame_window.h"
+#include "berg/user/experience/size_manager.h"
+#include "berg/user/experience/dock_manager.h"
+#include "berg/user/experience/move_manager.h"
 
 
 #define GRIP_CORNER_LARGE_CX 16
@@ -565,11 +565,11 @@ namespace experience_core
          pointC.x() -= 3;
             {
 
-            auto ppath = __øcreate  <::draw2d::path>();
+            auto ppath = øcreate  <::draw2d::path>();
 
             {
 
-               auto ppath = __øcreate  <::draw2d::path>();
+               auto ppath = øcreate  <::draw2d::path>();
 
                ppath->set_current_point(pointA);
                ppath->add_line(pointB);
@@ -590,11 +590,11 @@ namespace experience_core
          pointC.y() -= 3;
             {
 
-            auto ppath = __øcreate  <::draw2d::path>();
+            auto ppath = øcreate  <::draw2d::path>();
 
             {
 
-               auto ppath = __øcreate  <::draw2d::path>();
+               auto ppath = øcreate  <::draw2d::path>();
 
                ppath->set_current_point(pointA);
                ppath->add_line(pointB);
@@ -624,7 +624,7 @@ namespace experience_core
          pointC.y() += 4;
             {
 
-            auto ppath = __øcreate  <::draw2d::path>();
+            auto ppath = øcreate  <::draw2d::path>();
 
             ppath->set_current_point(pointA);
             ppath->add_line(pointB);
@@ -695,7 +695,7 @@ namespace experience_core
          pointC.x() -= 12;
             {
 
-            auto ppath = __øcreate  <::draw2d::path>();
+            auto ppath = øcreate  <::draw2d::path>();
 
             ppath->set_current_point(pointA);
             ppath->add_line(pointB);
@@ -712,7 +712,7 @@ namespace experience_core
          pointC.x() -= 4;
             {
 
-            auto ppath = __øcreate  <::draw2d::path>();
+            auto ppath = øcreate  <::draw2d::path>();
 
             ppath->set_current_point(pointA);
             ppath->add_line(pointB);
@@ -740,7 +740,7 @@ namespace experience_core
          pointC.x() += 4;
             {
 
-            auto ppath = __øcreate  <::draw2d::path>();
+            auto ppath = øcreate  <::draw2d::path>();
 
             ppath->set_current_point(pointA);
             ppath->add_line(pointB);
@@ -819,7 +819,7 @@ namespace experience_core
          pointC.y() -= 4;
             {
 
-            auto ppath = __øcreate  <::draw2d::path>();
+            auto ppath = øcreate  <::draw2d::path>();
 
             ppath->set_current_point(pointA);
             ppath->add_line(pointB);
@@ -911,7 +911,7 @@ namespace experience_core
 
             {
 
-            auto ppath = __øcreate  <::draw2d::path>();
+            auto ppath = øcreate  <::draw2d::path>();
 
             ppath->set_current_point(pointA);
             ppath->add_line(pointB);
@@ -929,7 +929,7 @@ namespace experience_core
 
             {
 
-            auto ppath = __øcreate  <::draw2d::path>();
+            auto ppath = øcreate  <::draw2d::path>();
 
             ppath->set_current_point(pointA);
             ppath->add_line(pointB);

@@ -101,7 +101,7 @@ namespace colorertake5
    };
 
    /** Adds or replaces region definition */
-   void StyledHRDMapper::setRegionDefine(const ::string & name, RegionDefine *rd)
+   void StyledHRDMapper::setRegionDefine(const ::scoped_string & scopedstrName, RegionDefine *rd)
    {
       RegionDefine *rd_old = regionDefines[name];
       delete rd_old;

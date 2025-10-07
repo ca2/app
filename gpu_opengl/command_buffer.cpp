@@ -1,10 +1,12 @@
 // Created by camilo on 2025-06-30 22:42 <3ThomasBorregaardSørensen!!
 #include "framework.h"
+#include "_gpu_opengl.h"
 #include "command_buffer.h"
 #include "device.h"
 #include "render_target.h"
 #include "renderer.h"
 #include "texture.h"
+#include "bred/gpu/frame.h"
 
 
 namespace gpu_opengl
@@ -69,7 +71,7 @@ namespace gpu_opengl
 
       ::cast < render_target > prendertarget = m_pgpurendertarget;
 
-      ::cast < texture > ptexture = prendertarget->current_texture();
+      ::cast < texture > ptexture = prendertarget->current_texture(::gpu::current_frame());
 
       if (!ptexture->m_gluFbo)
       {
@@ -88,6 +90,55 @@ namespace gpu_opengl
       ptexture->bind_render_target();
 
    }
+
+   
+   void command_buffer::draw_vertexes(int iVertexCount)
+   {
+
+      GLenum mode = GL_TRIANGLES;
+
+      auto pshaderBound = m_pgpurendertarget->m_pgpurenderer->m_pgpucontext->m_pshaderBound;
+
+      if (pshaderBound)
+      {
+
+         auto etopology = pshaderBound->m_etopology;
+
+         mode = ::opengl::as_gl_draw_mode(etopology);
+
+      }
+
+      glDrawArrays(mode, 0, iVertexCount);
+      GLCheckError("");
+
+   }
+
+
+   void command_buffer::draw_indexes(int iIndexCount)
+   {
+
+      GLenum mode = GL_TRIANGLES;
+
+      auto pshaderBound = m_pgpurendertarget->m_pgpurenderer->m_pgpucontext->m_pshaderBound;
+
+      if (pshaderBound)
+      {
+
+         auto etopology = pshaderBound->m_etopology;
+
+         mode = ::opengl::as_gl_draw_mode(etopology);
+
+      }
+
+      GLenum etype;
+
+      etype = GL_UNSIGNED_INT;
+
+      glDrawElements(mode, iIndexCount, etype, 0);
+      GLCheckError("");
+
+   }
+
 
 
 //   GLuint createFullscreenQuad(GLuint& quadVBO) {

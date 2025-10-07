@@ -16,23 +16,23 @@
 //void init_cairo_mutex()
 //{
 //
-//   ::platform::get()->__raw_construct(s_pmutex);
+//   ::platform::get()->øraw_construct(s_pmutex);
 //
 //#ifdef LINUX
 //
-//   ::platform::get()->__raw_construct(g_pmutexFc);
+//   ::platform::get()->øraw_construct(g_pmutexFc);
 //
-//   g_pmapFontPath = ___new string_to_string();
+//   g_pmapFontPath = ___new string_to_string_base();
 //
 //#endif
 //
-//   g_pmapFontFace = ___new string_map < int_map < FT_Face> >  ();
+//   g_pmapFontFace = ___new string_map_base < int_map < FT_Face> >  ();
 //
-//   g_pmapCairoFontFace = ___new string_map < cairo_font_face_t * >  ();
+//   g_pmapCairoFontFace = ___new string_map_base < cairo_font_face_t * >  ();
 //
-//   g_pmapFontError = ___new string_to_int();
+//   g_pmapFontError = ___new string_to_int_base();
 //
-//   g_pmapFontError2 = ___new string_to_int();
+//   g_pmapFontError2 = ___new string_to_int_base();
 //
 //}
 //
@@ -70,7 +70,7 @@
 //BOOL WINAPI DllMain(HINSTANCE hInstance,unsigned int dwReason,LPVOID lpReserved)
 //{
 //
-//   xxdebug_box("draw2d_cairo.dll DllMain (0)","box",e_message_box_ok);
+//   xxdebug_box("draw2d_cairo.dll DllMain (0)","box",::user::e_message_box_ok);
 //
 //   __UNREFERENCED_PARAMETER(hInstance);
 //   __UNREFERENCED_PARAMETER(lpReserved);
@@ -84,7 +84,7 @@
 //
 //      information(L"draw2d_cairo.dll initializing!\n");
 //
-//      xxdebug_box("draw2d_cairo.dll DllMain","box",e_message_box_ok);
+//      xxdebug_box("draw2d_cairo.dll DllMain","box",::user::e_message_box_ok);
 //
 //   }
 //   else if(dwReason == DLL_PROCESS_DETACH)

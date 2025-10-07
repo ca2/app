@@ -123,41 +123,41 @@
    }
 
 
-   bool os_context::local_machine_set_run(const ::string & pszKey, const ::string & pszCommand, bool bSet)
+   bool os_context::local_machine_set_run(const ::scoped_string & scopedstrKey, const ::scoped_string & scopedstrCommand, bool bSet)
    {
 
-      __UNREFERENCED_PARAMETER(pszKey);
-      __UNREFERENCED_PARAMETER(pszCommand);
+      __UNREFERENCED_PARAMETER(scopedstrKey);
+      __UNREFERENCED_PARAMETER(scopedstrCommand);
 
       return false;
 
    }
 
-   bool os_context::local_machine_set_run_once(const ::string & pszKey, const ::string & pszCommand, bool bSet)
+   bool os_context::local_machine_set_run_once(const ::scoped_string & scopedstrKey, const ::scoped_string & scopedstrCommand, bool bSet)
    {
 
-      __UNREFERENCED_PARAMETER(pszKey);
-      __UNREFERENCED_PARAMETER(pszCommand);
+      __UNREFERENCED_PARAMETER(scopedstrKey);
+      __UNREFERENCED_PARAMETER(scopedstrCommand);
 
       return false;
 
    }
 
-   bool os_context::current_user_set_run(const ::string & pszKey, const ::string & pszCommand, bool bSet)
+   bool os_context::current_user_set_run(const ::scoped_string & scopedstrKey, const ::scoped_string & scopedstrCommand, bool bSet)
    {
 
-      __UNREFERENCED_PARAMETER(pszKey);
-      __UNREFERENCED_PARAMETER(pszCommand);
+      __UNREFERENCED_PARAMETER(scopedstrKey);
+      __UNREFERENCED_PARAMETER(scopedstrCommand);
 
       return false;
 
    }
 
-   bool os_context::current_user_set_run_once(const ::string & pszKey, const ::string & pszCommand, bool bSet)
+   bool os_context::current_user_set_run_once(const ::scoped_string & scopedstrKey, const ::scoped_string & scopedstrCommand, bool bSet)
    {
 
-      __UNREFERENCED_PARAMETER(pszKey);
-      __UNREFERENCED_PARAMETER(pszCommand);
+      __UNREFERENCED_PARAMETER(scopedstrKey);
+      __UNREFERENCED_PARAMETER(scopedstrCommand);
 
       return false;
 
@@ -170,56 +170,56 @@
 
    }
 
-   bool os_context::file_extension_get_open_with_list_keys(string_array & straKey, const ::string & pszExtension)
+   bool os_context::file_extension_get_open_with_list_keys(string_array_base & straKey, const ::scoped_string & scopedstrExtension)
    {
 
       __UNREFERENCED_PARAMETER(straKey);
-      __UNREFERENCED_PARAMETER(pszExtension);
+      __UNREFERENCED_PARAMETER(scopedstrExtension);
 
       return false;
 
    }
 
-   bool os_context::file_extension_get_open_with_list_commands(string_array & straCommand, const ::string & pszExtension)
+   bool os_context::file_extension_get_open_with_list_commands(string_array_base & straCommand, const ::scoped_string & scopedstrExtension)
    {
 
       __UNREFERENCED_PARAMETER(straCommand);
-      __UNREFERENCED_PARAMETER(pszExtension);
+      __UNREFERENCED_PARAMETER(scopedstrExtension);
 
       return false;
 
    }
 
 
-   bool os_context::file_association_set_default_icon(const ::string & pszExtension, const ::string & pszExtensionNamingClass, const ::string & pszIconPath)
+   bool os_context::file_association_set_default_icon(const ::scoped_string & scopedstrExtension, const ::scoped_string & scopedstrExtensionNamingClass, const ::scoped_string & scopedstrIconPath)
    {
 
-      __UNREFERENCED_PARAMETER(pszExtension);
-      __UNREFERENCED_PARAMETER(pszExtensionNamingClass);
-      __UNREFERENCED_PARAMETER(pszIconPath);
+      __UNREFERENCED_PARAMETER(scopedstrExtension);
+      __UNREFERENCED_PARAMETER(scopedstrExtensionNamingClass);
+      __UNREFERENCED_PARAMETER(scopedstrIconPath);
 
       return false;
 
    }
 
 
-   bool os_context::file_association_set_shell_open_command(const ::string & pszExtension, const ::string & pszExtensionNamingClass,  const ::scoped_string & scopedstrCommand, const ::string & pszParam)
+   bool os_context::file_association_set_shell_open_command(const ::scoped_string & scopedstrExtension, const ::scoped_string & scopedstrExtensionNamingClass,  const ::scoped_string & scopedstrCommand, const ::scoped_string & scopedstrParam)
    {
 
-      __UNREFERENCED_PARAMETER(pszExtension);
-      __UNREFERENCED_PARAMETER(pszExtensionNamingClass);
-      __UNREFERENCED_PARAMETER(pszCommand);
-      __UNREFERENCED_PARAMETER(pszParam);
+      __UNREFERENCED_PARAMETER(scopedstrExtension);
+      __UNREFERENCED_PARAMETER(scopedstrExtensionNamingClass);
+      __UNREFERENCED_PARAMETER(scopedstrCommand);
+      __UNREFERENCED_PARAMETER(scopedstrParam);
 
       return false;
 
    }
 
 
-   bool os_context::file_association_get_shell_open_command(const ::string & pszExtension, string & strExtensionNamingClass, string & strCommand, string & strParam)
+   bool os_context::file_association_get_shell_open_command(const ::scoped_string & scopedstrExtension, string & strExtensionNamingClass, string & strCommand, string & strParam)
    {
 
-      __UNREFERENCED_PARAMETER(pszExtension);
+      __UNREFERENCED_PARAMETER(scopedstrExtension);
       __UNREFERENCED_PARAMETER(strExtensionNamingClass);
       __UNREFERENCED_PARAMETER(strCommand);
       __UNREFERENCED_PARAMETER(strParam);
@@ -305,7 +305,7 @@
    }
 
 
-   bool os_context::create_service(const ::string & strServiceName, const ::string & strDisplayName, const ::string & strCommand, const ::string & strUser, const ::string & strPass)
+   bool os_context::create_service(const ::scoped_string & scopedstrServiceName, const ::scoped_string & scopedstrDisplayName, const ::scoped_string & scopedstrCommand, const ::scoped_string & scopedstrUser, const ::scoped_string & scopedstrPass)
    {
 
 
@@ -318,7 +318,7 @@
    }
 
 
-   bool os_context::erase_service(const ::string & strServiceName)
+   bool os_context::erase_service(const ::scoped_string & scopedstrServiceName)
    {
 
 
@@ -331,7 +331,7 @@
    }
 
 
-   bool os_context::start_service(const ::string & strServiceName)
+   bool os_context::start_service(const ::scoped_string & scopedstrServiceName)
    {
 
 
@@ -344,7 +344,7 @@
    }
 
 
-   bool os_context::stop_service(const ::string & strServiceName)
+   bool os_context::stop_service(const ::scoped_string & scopedstrServiceName)
    {
 
 
@@ -376,7 +376,7 @@
    }
 
 
-   void os_context::set_file_status(const ::string & pszFileName, const ::file::file_status& status)
+   void os_context::set_file_status(const ::scoped_string & scopedstrFileName, const ::file::file_status& status)
 
    {
 
@@ -385,7 +385,7 @@
    }
 
 
-   bool os_context::resolve_link(::file::path & path, const ::string & strSource, string * pstrDirectory, string * pstrParams, ::user::interaction_base * puiMessageParentOptional)
+   bool os_context::resolve_link(::file::path & path, const ::scoped_string & scopedstrSource, string * pstrDirectory, string * pstrParams, ::user::interaction_base * puiMessageParentOptional)
    {
 
       if(case_insensitive_string_ends(strSource, ".desktop"))
@@ -393,7 +393,7 @@
 
          string str = file()->as_string(strSource);
 
-         string_array stra;
+         string_array_base stra;
 
          stra.add_lines(str);
 
@@ -506,7 +506,7 @@
    bool os_context::initialize_wallpaper_fileset(::file::set* pfileset, bool bAddSearch)
    {
 
-      ::string_array stra;
+      ::string_array_base stra;
 
       //stra.add("_inheaven_1920x1080_o.JPG");
       //stra.add("02209_stratosphere_1920x1080_o.JPG");
@@ -585,7 +585,7 @@
    }
 
 
-   bool os_context::add_default_program(string_array & straExtension, string_array & straMimeType)
+   bool os_context::add_default_program(string_array_base & straExtension, string_array_base & straMimeType)
    {
 
       __UNREFERENCED_PARAMETER(straExtension);
@@ -612,7 +612,7 @@
    }
 
 
-   ::file::path os_context::get_app_path(const ::string & strApp)
+   ::file::path os_context::get_app_path(const ::scoped_string & scopedstrApp)
    {
 
       return strApp;

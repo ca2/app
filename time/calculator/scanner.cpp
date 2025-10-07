@@ -12,9 +12,9 @@
 namespace datetime
 {
 
-   bool check_end_expression(const ::string & input, const char * & scanner)
+   bool check_end_expression(const ::scoped_string & scopedstrInput, const_char_pointer &scanner)
    {
-      scanner = input;
+      scanner = scopedstrInput;
       while(unicode_is_space_char(scanner) && *scanner != '\0')
          scanner++;
       if(*scanner == '\0')
@@ -25,14 +25,14 @@ namespace datetime
       return false;
    }
 
-   bool check_expression_separator(const ::string & input, const char * & scanner)
+   bool check_expression_separator(const ::scoped_string & scopedstrInput, const_char_pointer &scanner)
    {
-      scanner = input;
+      scanner = scopedstrInput;
       while(unicode_is_space_char(scanner) && *scanner != '\0')
-         unicode_increment(scanner);
+         scanner = unicode_next(scanner);
       if(*scanner == '\0')
          return true;
-      if(scanner == input)
+      if(scanner == scopedstrInput)
       {
          if(unicode_is_letter(scanner))
             return true;
@@ -43,20 +43,20 @@ namespace datetime
          return true;
    }
 
-   string check_unit(const ::text::context * pcontext, const ::string & input, const char * & scanner)
+   string check_unit(const ::text::context * pcontext, const ::scoped_string & scopedstrInput, const_char_pointer &scanner)
    {
       static auto idCalendarDays("calendar:days");
-      scanner = input;
+      scanner = scopedstrInput;
       while(unicode_is_space_char(scanner) && *scanner != '\0')
-         unicode_increment(scanner);
+         scanner = unicode_next(scanner);
       if(*scanner == '\0')
          return "";
-      const char * start = scanner;
+      const_char_pointer start = scanner;
       string strCandidate;
       if(unicode_is_letter(scanner))
       {
          while(unicode_is_letter(scanner))
-            unicode_increment(scanner);
+            scanner = unicode_next(scanner);
          strCandidate = string(start, scanner - start + 1);
          strCandidate.make_lower();
          if(pcontext->matches(idCalendarDays, strCandidate))
@@ -66,7 +66,7 @@ namespace datetime
       }
       else
       {
-         strCandidate = string(input);
+         strCandidate = string(scopedstrInput);
          if(pcontext->begins(idCalendarDays, strCandidate))
          {
             return "days";
@@ -155,17 +155,17 @@ namespace datetime
       return "";
    }
 
-   string check_month(const ::string & input, const char * & scanner)
+   string check_month(const ::scoped_string & scopedstrInput, const_char_pointer &scanner)
    {
-      scanner = input;
+      scanner = scopedstrInput;
       while(ansi_char_isspace(*scanner) && *scanner != '\0')
          scanner++;
       if(*scanner == '\0')
          return "";
-      const char * start = scanner;
+      const_char_pointer start = scanner;
       while(ansi_char_isalpha(*scanner))
          scanner++;
-      ::string strCandidate = input(0, scanner - start);
+      ::string strCandidate = scopedstrInput(0, scanner - start);
       strCandidate.make_lower();
       if(strCandidate == "jan")
       {
@@ -266,17 +266,17 @@ namespace datetime
       return "";
    }
 
-   string check_lang_date(const ::string & input, const char * & scanner)
+   string check_lang_date(const ::scoped_string & scopedstrInput, const_char_pointer &scanner)
    {
-      scanner = input;
+      scanner = scopedstrInput;
       while(unicode_is_whitespace(scanner) && *scanner != '\0')
-         unicode_increment(scanner);
+         scanner = unicode_next(scanner);
       if(*scanner == '\0')
          return "";
-      const char * start = scanner;
+      const_char_pointer start = scanner;
       while(unicode_is_letter(scanner))
-         unicode_increment(scanner);
-      ::string strCandidate = input(0,  scanner - start);
+         scanner = unicode_next(scanner);
+      ::string strCandidate = scopedstrInput(0,  scanner - start);
       strCandidate.make_lower();
       if(strCandidate == "today")
       {
@@ -305,31 +305,31 @@ namespace datetime
       return "";
    }
 
-   string check_natural(const ::string & input, const char * & scanner)
+   string check_natural(const ::scoped_string & scopedstrInput, const_char_pointer &scanner)
    {
-      scanner = input;
+      scanner = scopedstrInput;
       if(*scanner == '\0')
          return "";
       if(!unicode_is_digit(scanner))
          return "";
-      const char * start = scanner;
-      unicode_increment(scanner);
+      const_char_pointer start = scanner;
+      scanner = unicode_next(scanner);
       while(unicode_is_digit(scanner))
       {
-         unicode_increment(scanner);
+         scanner = unicode_next(scanner);
       }
       return string(start, scanner - start);
    }
 
 
-   string check_lang_offset(const ::string & input, const char * & scanner)
+   string check_lang_offset(const ::scoped_string & scopedstrInput, const_char_pointer &scanner)
    {
-      if(check_end_expression(input, scanner))
+      if(check_end_expression(scopedstrInput, scanner))
          return "";
-      const char * start = input;
+      const_char_pointer start = scopedstrInput;
       while(!unicode_is_space_char(scanner) && *scanner != '\0')
-         unicode_increment(scanner);
-      ::string strCandidate = input(0, scanner - start);
+         scanner = unicode_next(scanner);
+      ::string strCandidate = scopedstrInput(0, scanner - start);
       strCandidate.make_lower();
       if(strCandidate == "ago")
       {
@@ -342,9 +342,9 @@ namespace datetime
       return "";
    }
 
-   string check_natural_separator(const ::string & input, const char * & scanner)
+   string check_natural_separator(const ::scoped_string & scopedstrInput, const_char_pointer &scanner)
    {
-      scanner = input;
+      scanner = scopedstrInput;
       if(*scanner == '\0')
          return "";
       if(*scanner == '/')
@@ -368,11 +368,11 @@ namespace datetime
       }
    }
 
-   string check_date(const char * input, const char * & scanner)
+   string check_date(const_char_pointer input, const_char_pointer &scanner)
    {
       if(check_end_expression(input, scanner))
          return "";
-      const char * start = input;
+      const_char_pointer start = input;
       string strNat1 = check_natural(input, scanner);
       if(strNat1.has_character())
       {
@@ -545,7 +545,7 @@ namespace datetime
    }
 
 
-   string check_offset(const ::text::context * pcontext, const char * input, const char * & scanner)
+   string check_offset(const ::text::context * pcontext, const_char_pointer input, const_char_pointer &scanner)
    {
 
       if (check_end_expression(input, scanner))
@@ -555,7 +555,7 @@ namespace datetime
 
       }
 
-      const char * start = input;
+      const_char_pointer start = input;
 
       int32_t iCount = 0;
 
@@ -602,10 +602,10 @@ namespace datetime
    }
 
 
-   string consume_date_expression(const ::text::context * pcontext, const char * & input)
+   string consume_date_expression(const ::text::context * pcontext, const_char_pointer &input)
    {
 
-      const char * scanner;
+      const_char_pointer scanner;
 
       if (check_end_expression(input, scanner))
       {
@@ -614,7 +614,7 @@ namespace datetime
 
       }
 
-      const char * start = input;
+      const_char_pointer start = input;
 
       string strDate = check_date(input, scanner);
 
@@ -807,10 +807,10 @@ namespace datetime
    }
 
 
-   void scanner::initialize_scanner(const ::string & strInput)
+   void scanner::initialize_scanner(const ::scoped_string & scopedstrInput)
    {
 
-      input          = strInput;
+      input          = scopedstrInput;
 
       next_input     = input;
 
@@ -820,7 +820,7 @@ namespace datetime
    void scanner::peek()
    {
 
-      const char *beginning;
+      const_char_pointer beginning;
 
       if (input != next_input && next_input != NULL)
       {
@@ -847,7 +847,7 @@ namespace datetime
    token * scanner::look_ahead()
    {
       token * token;
-      token = __raw_new class token;
+      token = øraw_new class token;
       if(token == NULL)
          throw ::exception(error_no_memory);
       while(ansi_char_isspace(*input))
@@ -903,7 +903,7 @@ namespace datetime
       {
          token->m_str = consume_date_expression(m_ptextcontext, input);
          while(unicode_is_space_char(input))
-            unicode_increment(input);
+            input = unicode_next(input);
          if(*input == '(')
          {
             token->m_etoken = e_token_function;

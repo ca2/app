@@ -18,7 +18,7 @@ CLASS_DECL_ACME void get_call_stack_frames(void ** stack, int & c);
 
 #if MEMDLEAK
 
-::collection::count get_mem_info(int** ppiUse, const char*** ppszFile, const char*** ppszCallStack, unsigned int** ppuiLine, memsize** ppsize);
+::collection::count get_mem_info(int** ppiUse, const_char_pointer ** ppszFile, const_char_pointer ** ppszCallStack, unsigned int** ppuiLine, memsize** ppsize);
 
 #endif
 
@@ -46,7 +46,7 @@ CLASS_DECL_ACME bool __enable_memory_leak_override(bool bEnable);
 // non-DEBUG_ALLOC version that assume everything is OK
 #define __enable_memory_tracking(bTrack) false
 #define __enable_memory_leak_override(bEnable) true
-#define __output_debug_string(psz) ::information(psz)
+#define __output_debug_string(scopedstr) ::information(scopedstr)
 
 
 
@@ -79,10 +79,10 @@ CLASS_DECL_ACME bool __enable_memory_leak_override(bool bEnable);
 #define ENSURE(cond)      ENSURE_THROW(cond, throw_exception(error_bad_argument))
 #define ENSURE_ARG(cond)   ENSURE_THROW(cond, throw_exception(error_bad_argument))
 
-// Debug ASSERT_VALIDs then throws. Retail throws if pOb is nullptr
-#define ENSURE_VALID_THROW(pOb, exception)   \
-   do { ASSERT_VALID(pOb); if (!(pOb)){exception;} } while (false)
-#define ENSURE_VALID(pOb)   ENSURE_VALID_THROW(pOb, throw_exception(error_bad_argument))
+// Debug ASSERT_VALIDs then throws. Retail throws if p is nullptr
+#define ENSURE_VALID_THROW(p, exception)   \
+   do { ASSERT_OK(p); if (!(p)){exception;} } while (false)
+#define ENSURE_VALID(p)   ENSURE_VALID_THROW(p, throw_exception(error_bad_argument))
 
 #define ASSERT_POINTER(p, type) \
    ASSERT(((p) != nullptr) && is_memory_segment_ok((p), sizeof(type), false))
@@ -98,9 +98,9 @@ CLASS_DECL_ACME bool __enable_memory_leak_override(bool bEnable);
 
 
 
-CLASS_DECL_ACME bool __assert_failed_line(const ::ansi_character * pszFileName, int nLine);
+CLASS_DECL_ACME bool __assert_failed_line(const_char_pointer pszFileName, int nLine);
 
-CLASS_DECL_ACME void __assert_particle_ok(const ::particle * pparticle, const ::ansi_character * pszFileName, int nLine);
+CLASS_DECL_ACME void __assert_particle_ok(const ::particle * pparticle, const_char_pointer pszFileName, int nLine);
 
 //CLASS_DECL_ACME void __dump(const ::particle * pparticle);
 

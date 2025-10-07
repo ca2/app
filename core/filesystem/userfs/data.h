@@ -2,7 +2,7 @@
 
 
 #include "acme/prototype/data/data.h"
-#include "base/user/form/document.h"
+#include "berg/user/form/document.h"
 #include "acme/filesystem/filesystem/listing.h"
 
 
@@ -19,11 +19,11 @@ namespace userfs
       ::file::path                              m_pathFolder;
       ::pointer<::fs::set>                      m_pfsset;
       //::pointer<::userfs::list_data>            m_puserfslistdata;
-      ::file::listing                           m_listingRoot2;
-      ::file::listing                           m_listingUser2;
-      ::file::listing                           m_listingFinal2;
-      ::file::listing                           m_listingFolderUser2;
-      ::file::listing                           m_listingFolderFinal2;
+      ::file::listing_base                           m_listingRoot2;
+      ::file::listing_base                           m_listingUser2;
+      ::file::listing_base                           m_listingFinal2;
+      ::file::listing_base                           m_listingFolderUser2;
+      ::file::listing_base                           m_listingFolderFinal2;
       ::userfs::enum_mode                       m_emode;
 
       ::pointer<::file::item>                   m_pitem;
@@ -40,7 +40,7 @@ namespace userfs
 
       ::user::document * get_document();
 
-      //virtual string get_last_browse_path(::particle * pparticle, const ::string & pszDefault = nullptr);
+      //virtual string get_last_browse_path(::particle * pparticle, const ::scoped_string & scopedstrDefault = nullptr);
 
       //virtual ::aura::application * get_app() const override;
 

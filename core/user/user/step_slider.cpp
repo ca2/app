@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "step_slider.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "acme/handler/item.h"
 #include "acme/platform/timer.h"
 #include "aura/graphics/draw2d/graphics.h"
@@ -36,11 +36,11 @@ namespace user
    void step_slider::install_message_routing(::channel * pchannel)
    {
       ::user::interaction::install_message_routing(pchannel);
-      MESSAGE_LINK(e_message_create, pchannel, this, &step_slider::on_message_create);
-//      //MESSAGE_LINK(e_message_timer, pchannel, this, &step_slider::on_timer);
-      MESSAGE_LINK(e_message_left_button_down, pchannel, this, &step_slider::on_message_left_button_down);
-      MESSAGE_LINK(e_message_left_button_up, pchannel, this, &step_slider::on_message_left_button_up);
-      MESSAGE_LINK(e_message_mouse_move, pchannel, this, &step_slider::on_message_mouse_move);
+      USER_MESSAGE_LINK(::user::e_message_create, pchannel, this, &step_slider::on_message_create);
+//      //USER_MESSAGE_LINK(::user::e_message_timer, pchannel, this, &step_slider::on_timer);
+      USER_MESSAGE_LINK(::user::e_message_left_button_down, pchannel, this, &step_slider::on_message_left_button_down);
+      USER_MESSAGE_LINK(::user::e_message_left_button_up, pchannel, this, &step_slider::on_message_left_button_up);
+      USER_MESSAGE_LINK(::user::e_message_mouse_move, pchannel, this, &step_slider::on_message_mouse_move);
    }
 
    void step_slider::on_message_create(::message::message * pmessage)
@@ -102,7 +102,7 @@ namespace user
 
       set_timer(1, 200_ms, nullptr);
 
-      m_pitemHover = __allocate ::item(::e_element_client);
+      m_pitemHover = øallocate ::item(::e_element_client);
 
       //update_hover();
 
@@ -218,7 +218,7 @@ namespace user
       if (rectangleX.width() == 0)
       {
 
-         auto pitemNone = __allocate ::item(e_element_none);
+         auto pitemNone = øallocate ::item(e_element_none);
 
          return pitemNone;
 
@@ -230,7 +230,7 @@ namespace user
 
       iMax = m_scalar.maximum().get_long_long();
 
-      return __allocate ::item(e_element_item, (::collection::index) (iMin + (((point.x() - rectangleX.left()) * (iMax - iMin)) / rectangleX.width())));
+      return øallocate ::item(e_element_item, (::collection::index) (iMin + (((point.x() - rectangleX.left()) * (iMax - iMin)) / rectangleX.width())));
 
    }
 
@@ -253,7 +253,7 @@ namespace user
 //      if (rectangleX.contains(pointCursor))
 //      {
 //
-//         m_pitemHover = __allocate ::item(e_element_client);
+//         m_pitemHover = øallocate ::item(e_element_client);
 //
 //      }
 //      else

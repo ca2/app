@@ -47,7 +47,7 @@ namespace application_build_helper
       string                              m_strOperatingSystem2;
       string                              m_strSystemAmbientRelease;
       package_reference_array             m_packagereferencea;
-      string_array                        m_straIgnorePackage;
+      string_array_base                        m_straIgnorePackage;
 
 
       ::string                            m_strInstallerType;
@@ -75,8 +75,8 @@ namespace application_build_helper
       bool                                m_bTranslateDependency;
 
 
-      string_map < string_to_string >     m_mapBinaryToProject;
-      string_map < string_to_string >     m_mapProjectToBinary;
+      string_map_base < string_to_string_base >     m_mapBinaryToProject;
+      string_map_base < string_to_string_base >     m_mapProjectToBinary;
 
       int                                 m_iExitCode;
 
@@ -103,12 +103,12 @@ namespace application_build_helper
 
       void add_package(package_reference & packagereference);
       void add_package_dependencies(const package_reference & packagereference);
-      string_array get_lines(const ::file::path & path, bool bNoExceptionIfNotFound = true);
-      package_reference_array get_package_list(const ::string & strList, const ::string & strPackage);
-      package_reference_array get_package_references(const ::string & strPackage);
-      package_reference_array get_package_dependencies(const ::string & strPackage);
-      package_reference_array get_package_extensions(const ::string & strPackage);
-      package_reference_array get_all_package_dependencies(const ::string & strPackage);
+      string_array_base get_lines(const ::file::path & path, bool bNoExceptionIfNotFound = true);
+      package_reference_array get_package_list(const ::scoped_string & scopedstrList, const ::scoped_string & scopedstrPackage);
+      package_reference_array get_package_references(const ::scoped_string & scopedstrPackage);
+      package_reference_array get_package_dependencies(const ::scoped_string & scopedstrPackage);
+      package_reference_array get_package_extensions(const ::scoped_string & scopedstrPackage);
+      package_reference_array get_all_package_dependencies(const ::scoped_string & scopedstrPackage);
 
 
       void package();
@@ -124,17 +124,17 @@ namespace application_build_helper
       void generate_deployment_rc();
 
 
-      void translate_items(const ::string & strFileDst, const ::string & strFileSrc);
-      //void static_factory(const ::string& strFileDst, const ::string & strFileFactory, const ::string& strFileSrc);
-      void static_factory(const ::string & strFileDst, const ::string & strFileSrc);
-      string defer_translate_dependency(string strDependency);
-      string defer_binary_to_project(string strBinary);
-      string defer_project_to_binary(string strProject);
+      void translate_items(const ::scoped_string & scopedstrFileDst, const ::scoped_string & scopedstrFileSrc);
+      //void static_factory(const ::scoped_string & scopedstrFileDst, const ::scoped_string & scopedstrFileFactory, const ::scoped_string & scopedstrFileSrc);
+      void static_factory(const ::scoped_string & scopedstrFileDst, const ::scoped_string & scopedstrFileSrc);
+      string defer_translate_dependency(const ::scoped_string & scopedstrDependency);
+      string defer_binary_to_project(const ::scoped_string & scopedstrBinary);
+      string defer_project_to_binary(const ::scoped_string & scopedstrProject);
 
 
-      void load_map(string_to_string & map, string strMap, string strRoot);
+      void load_map(string_to_string_base & map_base, const ::scoped_string & scopedstrMap, const ::scoped_string & scopedstrRoot);
 
-      string defer_translate_application_name(string strDependency);
+      string defer_translate_application_name(const ::scoped_string & scopedstrDependency);
 
 #ifdef LINUX
 

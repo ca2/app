@@ -24,10 +24,10 @@
 #include <errno.h>
 
 
-//void task_set_name(htask htask, const char * psz)
+//void task_set_name(htask htask, const_char_pointer psz)
 //{
 
-//   string strName(psz);
+//   string strName(scopedstr);
 
   // thread_name_abbreviate(strName, 15);
 
@@ -41,7 +41,7 @@
 //}
 
 
-//void task_set_name(const char * psz)
+//void task_set_name(const_char_pointer psz)
 //{
 
   // return task_set_name((htask) pthread_self(), psz);

@@ -14,12 +14,18 @@
 #include "aura/graphics/image/image.h"
 #include "aura/graphics/image/drawing.h"
 #include "aura/graphics/image/context.h"
+#include "aura/graphics/write_text/draw_text.h"
 #include "aura/graphics/write_text/font_enumeration_item.h"
 #include "aura/graphics/write_text/fonts.h"
+#include "aura/graphics/write_text/text_out.h"
 #include "acme/parallelization/single_lock.h"
 #include "acme/prototype/string/str.h"
 #include "aura/user/user/interaction.h"
+#include "aura/user/user/style.h"
 #include "nanosvg.h"
+#include "acme/prototype/geometry2d/_defer_item.h"
+#include "aura/graphics/write_text/_defer_geometry2d_item.h"
+
 
 
 #define IMAGE_OK(pimpl) (::is_set(pimpl) && pimpl->area() > 0)
@@ -62,7 +68,7 @@ namespace draw2d
 {
 
 
-   bool word_break(::draw2d::graphics * pgraphics, const ::string & strSource, const int_rectangle & rectangleParam, string & str1, string & str2, int iEll);
+   bool word_break(::draw2d::graphics * pgraphics, const ::scoped_string & scopedstrSource, const int_rectangle & rectangleParam, string & str1, string & str2, int iEll);
 
 
    character_count _EncodeV033(string & str);
@@ -72,7 +78,7 @@ namespace draw2d
    {
 
       //m_bHasCurrentPoint = false;
-      _m_bYFlip = false;
+      //_m_bYFlip = false;
       m_bForWindowDraw2d = false;
       m_bDraw = true;
       m_puserinteraction = nullptr;
@@ -385,14 +391,14 @@ namespace draw2d
    }
 
 
-   void graphics::create_device_context(const ::string & pszDriverName, const ::string & pszDeviceName, const ::string & pszOutput, const void * pInitData)
+   void graphics::create_device_context(const ::scoped_string & scopedstrDriverName, const ::scoped_string & scopedstrDeviceName, const ::scoped_string & scopedstrOutput, const void * pInitData)
    {
 
-      __UNREFERENCED_PARAMETER(pszDriverName);
+      __UNREFERENCED_PARAMETER(scopedstrDriverName);
 
-      __UNREFERENCED_PARAMETER(pszDeviceName);
+      __UNREFERENCED_PARAMETER(scopedstrDeviceName);
 
-      __UNREFERENCED_PARAMETER(pszOutput);
+      __UNREFERENCED_PARAMETER(scopedstrOutput);
 
       __UNREFERENCED_PARAMETER(pInitData);
 
@@ -401,14 +407,14 @@ namespace draw2d
    }
 
 
-   void graphics::create_information_context(const ::string & pszDriverName, const ::string & pszDeviceName, const ::string & pszOutput, const void * pInitData)
+   void graphics::create_information_context(const ::scoped_string & scopedstrDriverName, const ::scoped_string & scopedstrDeviceName, const ::scoped_string & scopedstrOutput, const void * pInitData)
    {
 
-      __UNREFERENCED_PARAMETER(pszDriverName);
+      __UNREFERENCED_PARAMETER(scopedstrDriverName);
 
-      __UNREFERENCED_PARAMETER(pszDeviceName);
+      __UNREFERENCED_PARAMETER(scopedstrDeviceName);
 
-      __UNREFERENCED_PARAMETER(pszOutput);
+      __UNREFERENCED_PARAMETER(scopedstrOutput);
 
       __UNREFERENCED_PARAMETER(pInitData);
 
@@ -547,7 +553,7 @@ namespace draw2d
 
       auto pstyle = pinteraction->get_style(m_puserstyleGraphics);
 
-      auto pfont = pinteraction->get_font(pstyle, eelement, estate);
+      auto pfont = pstyle->get_font(pinteraction, eelement, estate);
 
       return set(pfont);
 
@@ -557,7 +563,7 @@ namespace draw2d
    void graphics::set_text_color(::color::color color)
    {
 
-      auto pbrush = __øcreate < ::draw2d::brush >();
+      auto pbrush = øcreate < ::draw2d::brush >();
 
       //if (!pbrush)
       //{
@@ -1690,16 +1696,16 @@ namespace draw2d
    }
 
 
-   //void graphics::text_out(double x, double y, const ::string & pszString, character_count nCount)
+   //void graphics::text_out(double x, double y, const ::scoped_string & scopedstrString, character_count nCount)
    //{
 
-   //   return text_out(x, y, string(pszString, nCount));
+   //   return text_out(x, y, string(scopedstrString, nCount));
 
 
    //}
 
 
-   //void graphics::text_out(double x, double y, const ::string & str)
+   //void graphics::text_out(double x, double y, const ::scoped_string & scopedstr)
    //{
 
    //   return text_out((double) x, (double) y, str);
@@ -1707,10 +1713,10 @@ namespace draw2d
    //}
 
 
-   //void graphics::text_out(double x, double y, const ::string & pszString, character_count nCount)
+   //void graphics::text_out(double x, double y, const ::scoped_string & scopedstrString, character_count nCount)
    //{
 
-   //   return text_out(x, y, string(pszString, nCount));
+   //   return text_out(x, y, string(scopedstrString, nCount));
 
    //}
 
@@ -1746,7 +1752,7 @@ namespace draw2d
    void graphics::TextOutRaw(double x, double y, const ::scoped_string & scopedstr)
    {
 
-      //return false;
+      text_out({ x, y }, scopedstr);
 
    }
 
@@ -1769,7 +1775,7 @@ namespace draw2d
    //
    //      ::double_rectangle rectangleIntersect(m_pointAlphaBlend, m_pimageAlphaBlend->get_size());
    //
-   //      const ::int_size & size = ::int_size(get_text_extent((const char *) block.get_data(), block.get_size()));
+   //      const ::int_size & size = ::int_size(get_text_extent((const_char_pointer )block.get_data(), block.get_size()));
    //
    //      ::double_rectangle rectangleText(int_point((int)x, (int)y), size);
    //
@@ -1912,14 +1918,14 @@ namespace draw2d
    }
 
 
-   //void graphics::ExtTextOut(double x, double y, unsigned int nOptions, const ::double_rectangle & rectangle, const ::string & pszString, character_count nCount, int * pDxWidths)
+   //void graphics::ExtTextOut(double x, double y, unsigned int nOptions, const ::double_rectangle & rectangle, const ::scoped_string & scopedstrString, character_count nCount, int * pDxWidths)
    //{
 
    //   __UNREFERENCED_PARAMETER(x);
    //   __UNREFERENCED_PARAMETER(y);
    //   __UNREFERENCED_PARAMETER(nOptions);
    //   __UNREFERENCED_PARAMETER(rectangle);
-   //   __UNREFERENCED_PARAMETER(pszString);
+   //   __UNREFERENCED_PARAMETER(scopedstrString);
    //   __UNREFERENCED_PARAMETER(nCount);
    //   __UNREFERENCED_PARAMETER(pDxWidths);
 
@@ -1928,7 +1934,7 @@ namespace draw2d
    //}
 
 
-   //void graphics::ExtTextOut(double x, double y, unsigned int nOptions, const ::double_rectangle & rectangle, const ::string & str, int * pDxWidths)
+   //void graphics::ExtTextOut(double x, double y, unsigned int nOptions, const ::double_rectangle & rectangle, const ::scoped_string & scopedstr, int * pDxWidths)
    //{
 
    //   __UNREFERENCED_PARAMETER(x);
@@ -1943,12 +1949,12 @@ namespace draw2d
    //}
 
 
-   //double_size graphics::TabbedTextOut(double x, double y, const ::string & pszString, character_count nCount, ::collection::count nTabPositions, int * pnTabStopPositions, int nTabOrigin)
+   //double_size graphics::TabbedTextOut(double x, double y, const ::scoped_string & scopedstrString, character_count nCount, ::collection::count nTabPositions, int * pnTabStopPositions, int nTabOrigin)
    //{
 
    //   __UNREFERENCED_PARAMETER(x);
    //   __UNREFERENCED_PARAMETER(y);
-   //   __UNREFERENCED_PARAMETER(pszString);
+   //   __UNREFERENCED_PARAMETER(scopedstrString);
    //   __UNREFERENCED_PARAMETER(nCount);
    //   __UNREFERENCED_PARAMETER(nTabPositions);
    //   __UNREFERENCED_PARAMETER(pnTabStopPositions);
@@ -1959,7 +1965,7 @@ namespace draw2d
    //}
 
 
-   //double_size graphics::TabbedTextOut(double x, double y, const ::string & str, ::collection::count nTabPositions, int * pnTabStopPositions, int nTabOrigin)
+   //double_size graphics::TabbedTextOut(double x, double y, const ::scoped_string & scopedstr, ::collection::count nTabPositions, int * pnTabStopPositions, int nTabOrigin)
    //{
 
    //   __UNREFERENCED_PARAMETER(x);
@@ -1974,10 +1980,10 @@ namespace draw2d
    //}
 
 
-   //double_size graphics::GetTabbedTextExtent(const ::ansi_character * pszString, character_count nCount, ::collection::count nTabPositions, int * pnTabStopPositions)
+   //double_size graphics::GetTabbedTextExtent(const_char_pointer pszString, character_count nCount, ::collection::count nTabPositions, int * pnTabStopPositions)
    //{
 
-   //   __UNREFERENCED_PARAMETER(pszString);
+   //   __UNREFERENCED_PARAMETER(scopedstrString);
    //   __UNREFERENCED_PARAMETER(nCount);
    //   __UNREFERENCED_PARAMETER(nTabPositions);
    //   __UNREFERENCED_PARAMETER(pnTabStopPositions);
@@ -1987,7 +1993,7 @@ namespace draw2d
    //}
 
 
-   //double_size graphics::GetTabbedTextExtent(const ::string & str, ::collection::count nTabPositions, int * pnTabStopPositions)
+   //double_size graphics::GetTabbedTextExtent(const ::scoped_string & scopedstr, ::collection::count nTabPositions, int * pnTabStopPositions)
    //{
 
    //   __UNREFERENCED_PARAMETER(str);
@@ -1999,10 +2005,10 @@ namespace draw2d
    //}
 
 
-   //double_size graphics::GetOutputTabbedTextExtent(const ::string & pszString, character_count nCount, ::collection::count nTabPositions, int * pnTabStopPositions)
+   //double_size graphics::GetOutputTabbedTextExtent(const ::scoped_string & scopedstrString, character_count nCount, ::collection::count nTabPositions, int * pnTabStopPositions)
    //{
 
-   //   __UNREFERENCED_PARAMETER(pszString);
+   //   __UNREFERENCED_PARAMETER(scopedstrString);
    //   __UNREFERENCED_PARAMETER(nCount);
    //   __UNREFERENCED_PARAMETER(nTabPositions);
    //   __UNREFERENCED_PARAMETER(pnTabStopPositions);
@@ -2012,7 +2018,7 @@ namespace draw2d
    //}
 
 
-   //double_size graphics::GetOutputTabbedTextExtent(const ::string & str, ::collection::count nTabPositions, int * pnTabStopPositions)
+   //double_size graphics::GetOutputTabbedTextExtent(const ::scoped_string & scopedstr, ::collection::count nTabPositions, int * pnTabStopPositions)
    //{
 
    //   __UNREFERENCED_PARAMETER(str);
@@ -2036,7 +2042,7 @@ namespace draw2d
    //{
 
    //   __UNREFERENCED_PARAMETER(nCount);
-   //   __UNREFERENCED_PARAMETER(pszFacename);
+   //   __UNREFERENCED_PARAMETER(scopedstrFacename);
 
    //   return -1;
 
@@ -2408,20 +2414,64 @@ namespace draw2d
    }
 
 
-   void graphics::draw(::draw2d::path * ppath)
+
+   void graphics::draw(::draw2d::path* ppath)
    {
 
-      //return false;
+      draw(ppath, m_ppen);
+      //m_pgraphics->SetSmoothingMode(plusplus::SmoothingModeAntiAlias);
+      //m_pgraphics->SetInterpolationMode(plusplus::InterpolationModeHighQualityBicubic);
+
+
+      //return m_pgraphics->DrawPath(gl2d_pen(),(dynamic_cast < ::draw2d_opengl::path * > (ppath))->get_os_path(m_pgraphics)) == plusplus::Status::Ok;
+      //return true;
 
    }
 
 
-   void graphics::draw(::draw2d::path * ppath, ::draw2d::pen * ppen)
+   void graphics::draw(::draw2d::path* ppath, ::draw2d::pen* ppen)
    {
+      bool bLastPoint = false;
+      ::double_point pointLast;
+      for (int i = 0; i < ppath->m_itema.size(); i++)
+      {
+         auto& pitem = ppath->m_itema[i];
 
-      //return false;
+         auto etype = pitem->type();
+
+         switch (etype)
+         {
+         case  ::draw2d::e_item_line:
+         {
+
+            ::cast< ::geometry2d::line_item> plineitem = pitem;
+            this->line(plineitem->m_item.m_p1, plineitem->m_item.m_p2, ppen);
+            //if (!bLastPoint || !pointLast.is_same_by(0.00001, plineitem->m_item.m_p1))
+            //{
+            //   glVertex3f(
+            //      (float)plineitem->m_item.m_p1.x(),
+            //      (float)plineitem->m_item.m_p1.y(),
+            //      0.0f);
+            //}
+            //glVertex3f(
+            //   (float)plineitem->m_item.m_p2.x(),
+            //   (float)plineitem->m_item.m_p2.y(),
+            //   0.0f);
+            pointLast = plineitem->m_item.m_p2;
+         }
+         break;
+         default:
+            break;
+
+         }
+
+      }
+      //return m_pgraphics->DrawPath((::plusplus::Pen *) ppen->get_os_data(),(dynamic_cast < ::draw2d_opengl::path * > (ppath))->get_os_path(m_pgraphics)) == plusplus::Status::Ok;
+
+      //return true;
 
    }
+
 
 
    void graphics::fill(::draw2d::path * ppath)
@@ -2549,7 +2599,7 @@ namespace draw2d
    void graphics::fill_rectangle(const ::double_rectangle & rectangle, const ::color::color & color)
    {
 
-      auto pbrushSolidColor = __øcreate < ::draw2d::brush >();
+      auto pbrushSolidColor = øcreate < ::draw2d::brush >();
 
       pbrushSolidColor->create_solid(color);
 
@@ -2561,7 +2611,7 @@ namespace draw2d
    void graphics::fill_inset_rectangle(const ::double_rectangle & rectangle, const ::color::color & color)
    {
 
-      auto pbrushSolidColor = __øcreate < ::draw2d::brush >();
+      auto pbrushSolidColor = øcreate < ::draw2d::brush >();
 
       pbrushSolidColor->create_solid(color);
 
@@ -2589,7 +2639,7 @@ namespace draw2d
    void graphics::fill_solid_rectangle(const ::double_rectangle & rectangle, const ::color::color & color)
    {
 
-      auto pbrushSolidColor = __øcreate < ::draw2d::brush >();
+      auto pbrushSolidColor = øcreate < ::draw2d::brush >();
 
       pbrushSolidColor->create_solid(color);
 
@@ -2830,6 +2880,14 @@ namespace draw2d
    }
 
 
+   bool graphics::is_y_flip()
+   {
+
+      return false;
+
+   }
+
+
    void graphics::do_on_context(const ::procedure & procedure)
    {
 
@@ -2848,11 +2906,11 @@ namespace draw2d
    }
 
 
-   //int graphics::StartDoc(const ::string & pszDocName)
+   //int graphics::StartDoc(const ::scoped_string & scopedstrDocName)
 
    //{
 
-   //   __UNREFERENCED_PARAMETER(pszDocName);
+   //   __UNREFERENCED_PARAMETER(scopedstrDocName);
 
 
 
@@ -2987,13 +3045,13 @@ namespace draw2d
 
       auto sizeImpact = impact_size();
 
-      if (_m_bYFlip)
-      {
+      //if (_m_bYFlip)
+      //{
 
-         m_pointOrigin.y() = sizeImpact.height() - (y + h);
+      //   m_pointOrigin.y() = sizeImpact.height() - (y + h);
 
-      }
-      else
+      //}
+      //else
       {
 
          m_pointOrigin.y() = y;
@@ -3340,7 +3398,7 @@ namespace draw2d
    //   int graphics::IntersectClipRect(const ::double_rectangle & rectangleParam)
    //   {
    //
-   //      auto pregion = __øcreate < ::draw2d::region > ();
+   //      auto pregion = øcreate < ::draw2d::region > ();
    //
    //      pregion->create_rect(rectangleParam);
    //
@@ -3349,7 +3407,7 @@ namespace draw2d
    //
    //         auto pregionOld = m_pregion;
    //
-   //         __øconstruct(m_pregion);
+   //         øconstruct(m_pregion);
    //
    //         m_pregion->combine(pregionOld, pregion, ::draw2d::e_combine_intersect, this);
    //
@@ -3570,7 +3628,7 @@ namespace draw2d
       if (!pdraw2dregion)
       {
 
-         __øconstruct(pdraw2dregion);
+         øconstruct(pdraw2dregion);
 
          //pdraw2dregion->m_eregion = pregion->m_eregion;
 
@@ -3858,7 +3916,7 @@ namespace draw2d
    //}
 
 
-   void graphics::_add_shape(const ::double_polygon & polygon)
+   void graphics::_add_shape(const ::double_polygon_base & polygon)
    {
 
       throw ::interface_only();
@@ -3888,7 +3946,7 @@ namespace draw2d
    }
 
 
-   void graphics::intersect_clip(const ::double_polygon & polygon)
+   void graphics::intersect_clip(const ::double_polygon_base & polygon)
    {
 
       _add_shape(polygon);
@@ -3957,7 +4015,7 @@ namespace draw2d
       //}
 
 
-   //   void graphics::intersect_clip(const ::double_polygon & polygon)
+   //   void graphics::intersect_clip(const ::double_polygon_base & polygon)
    //   {
    //
    //      ::pointer<::draw2d::region>pregion;
@@ -3997,7 +4055,7 @@ namespace draw2d
    //
    //         auto pregionOld = m_pregion;
    //
-   //         __øconstruct(m_pregion);
+   //         øconstruct(m_pregion);
    //
    //         m_pregion->combine(pregionOld, pregion, ecombine);
    //
@@ -4042,14 +4100,14 @@ namespace draw2d
    }
 
 
-   ::collection::count graphics::get_character_extent(double_array & daLeft, double_array & daRight, const ::string & str, character_count iStart, character_count iCount)
+   ::collection::count graphics::get_character_extent(double_array & daLeft, double_array & daRight, const ::scoped_string & scopedstr, character_count iStart, character_count iCount)
    {
 
       daLeft.erase_all();
 
       daRight.erase_all();
 
-      if (str.length() <= 0)
+      if (scopedstr.length() <= 0)
       {
 
          return 0;
@@ -4070,7 +4128,7 @@ namespace draw2d
 
       }
 
-      if (iStart > str.length())
+      if (iStart > scopedstr.length())
       {
 
          return 0;
@@ -4080,14 +4138,14 @@ namespace draw2d
       if (iCount < 0)
       {
 
-         iCount = str.length() - iStart;
+         iCount = scopedstr.length() - iStart;
 
       }
 
-      if (iStart + iCount > str.length())
+      if (iStart + iCount > scopedstr.length())
       {
 
-         iCount = str.length() - iStart;
+         iCount = scopedstr.length() - iStart;
 
          if (iCount <= 0)
          {
@@ -4106,16 +4164,16 @@ namespace draw2d
 
       character_count iLen;
 
-      const char * pszStart = str;
+      const_char_pointer pszStart = scopedstr.begin();
 
-      const char * psz = pszStart;
+      const_char_pointer psz = pszStart;
 
       double dLeft = 0.0;
 
       while (*psz && iRange < iStart + iCount)
       {
 
-         const char * pszNext = unicode_next(psz);
+         const_char_pointer pszNext = unicode_next(psz);
 
          if (pszNext == nullptr)
          {
@@ -4135,9 +4193,9 @@ namespace draw2d
             
          }
          
-         ::string_array stra;
+         ::string_array_base stra;
          
-         stra.add_lines({ str.begin(), iAsciiCharCount });
+         stra.add_lines({ scopedstr.begin(), iAsciiCharCount });
          
          ::string strLastLine = stra.last();
          
@@ -4180,7 +4238,7 @@ namespace draw2d
    }
 
 
-   //double_size graphics::get_text_extent(const ::ansi_character * pszString, character_count nCount, character_count iIndex)
+   //double_size graphics::get_text_extent(const_char_pointer pszString, character_count nCount, character_count iIndex)
    //{
 
    //   return get_text_extent(scopedstrString, iIndex);
@@ -4188,7 +4246,7 @@ namespace draw2d
    //}
 
 
-   //double_size graphics::get_text_extent(const ::ansi_character * pszString, character_count nCount)
+   //double_size graphics::get_text_extent(const_char_pointer pszString, character_count nCount)
    //{
 
    //   return get_text_extent(scopedstrString, nCount));
@@ -4196,10 +4254,20 @@ namespace draw2d
    //}
 
 
+   ::double_size graphics::_get_text_extent(const ::scoped_string& scopedstr)
+   {
+
+      throw ::interface_only();
+
+      return {};
+
+   }
+
+
    double_size graphics::get_text_extent(const scoped_string & scopedstr)
    {
 
-      auto size = get_text_extent(scopedstr, scopedstr.size());
+      auto size = _get_text_extent(scopedstr);
 
       return size;
 
@@ -4209,17 +4277,27 @@ namespace draw2d
    double_size graphics::get_text_extent(const scoped_string & scopedstr, ::collection::index iIndex)
    {
 
-      auto size = get_text_extent(scopedstr(0, iIndex));
+      auto size = _get_text_extent(scopedstr, iIndex);
 
       return size;
 
    }
 
 
-   //void graphics::get_text_extent(double_size & size, const ::ansi_character * pszString)
+   double_size graphics::_get_text_extent(const scoped_string & scopedstr, ::collection::index iIndex)
+   {
+
+      auto size = _get_text_extent(scopedstr(0, iIndex));
+
+      return size;
+
+   }
+
+
+   //void graphics::get_text_extent(double_size & size, const_char_pointer pszString)
    //{
 
-   //   ::double_size sz = get_text_extent(string(pszString), nCount, iIndex);
+   //   ::double_size sz = get_text_extent(string(scopedstrString), nCount, iIndex);
 
    //   size.cx() = sz.cx();
    //   size.cy() = sz.cy();
@@ -4229,10 +4307,10 @@ namespace draw2d
    //}
 
 
-   //void graphics::get_text_extent(double_size & size, const ::ansi_character * pszString)
+   //void graphics::get_text_extent(double_size & size, const_char_pointer pszString)
    //{
 
-   //   ::double_size sz = get_text_extent(string(pszString), nCount);
+   //   ::double_size sz = get_text_extent(string(scopedstrString), nCount);
 
    //   size.cx() = sz.cx();
    //   size.cy() = sz.cy();
@@ -4254,10 +4332,10 @@ namespace draw2d
    //}
 
 
-   //double_size graphics::GetOutputTextExtent(const ::ansi_character * pszString, character_count nCount)
+   //double_size graphics::GetOutputTextExtent(const_char_pointer pszString, character_count nCount)
    //{
 
-   //   __UNREFERENCED_PARAMETER(pszString);
+   //   __UNREFERENCED_PARAMETER(scopedstrString);
    //   __UNREFERENCED_PARAMETER(nCount);
 
    //   return double_size(0, 0);
@@ -4265,7 +4343,7 @@ namespace draw2d
    //}
 
 
-   //double_size graphics::GetOutputTextExtent(const ::string & str)
+   //double_size graphics::GetOutputTextExtent(const ::scoped_string & scopedstr)
    //{
 
    //   __UNREFERENCED_PARAMETER(str);
@@ -4275,17 +4353,17 @@ namespace draw2d
    //}
 
 
-   void graphics::draw_text(const ::string & str, const double_rectangle & rectangleParam, const ::e_align & ealign, const ::e_draw_text & edrawtext)
+   void graphics::draw_text(const ::scoped_string & scopedstr, const double_rectangle & rectangleParam, const ::e_align & ealign, const ::e_draw_text & edrawtext)
    {
 
       ::double_rectangle rectangle(rectangleParam);
 
-      _001DrawText(str, rectangle, ealign, edrawtext, false);
+      _001DrawText(scopedstr, rectangle, ealign, edrawtext, false);
 
    }
 
 
-   //void graphics::draw_text(const ::string & strParam, const ::double_rectangle & rectangleParam, const ::e_align & ealign, const ::e_draw_text & edrawtext)
+   //void graphics::draw_text(const ::scoped_string & scopedstrParam, const ::double_rectangle & rectangleParam, const ::e_align & ealign, const ::e_draw_text & edrawtext)
    //{
 
    //   ::double_rectangle rectangle(rectangleParam);
@@ -4295,10 +4373,10 @@ namespace draw2d
    //}
 
 
-   void graphics::_001DrawText(const ::string & strParam, ::double_rectangle & rectangleParam, const ::e_align & ealign, const ::e_draw_text & edrawtext, bool bMeasure)
+   void graphics::_001DrawText(const ::scoped_string & scopedstrParam, ::double_rectangle & rectangleParam, const ::e_align & ealign, const ::e_draw_text & edrawtext, bool bMeasure)
    {
 
-      string str(strParam);
+      string str(scopedstrParam);
 
       double_size size = get_text_extent(str);
 
@@ -4372,7 +4450,7 @@ namespace draw2d
 
          auto size = get_text_extent(str);
 
-         string_array stra;
+         string_array_base stra;
 
          stra.add_lines(str);
 
@@ -4399,10 +4477,10 @@ namespace draw2d
 #ifndef UNIVERSAL_WINDOWS
 
 
-   void graphics::draw_text_ex(const ::string & str, const double_rectangle & rectangle, const ::e_align & ealign, const ::e_draw_text & edrawtext)
+   void graphics::draw_text_ex(const ::scoped_string & scopedstr, const double_rectangle & rectangle, const ::e_align & ealign, const ::e_draw_text & edrawtext)
    {
 
-      __UNREFERENCED_PARAMETER(str);
+      __UNREFERENCED_PARAMETER(scopedstr);
       __UNREFERENCED_PARAMETER(rectangle);
       __UNREFERENCED_PARAMETER(ealign);
       __UNREFERENCED_PARAMETER(edrawtext);
@@ -4488,7 +4566,7 @@ namespace draw2d
    void graphics::set_solid_pen(double dWidth, const ::color::color & color)
    {
 
-      __defer_construct(m_ppen);
+      ødefer_construct(m_ppen);
 
       m_ppen->create_solid(dWidth, color);
 
@@ -4611,7 +4689,7 @@ namespace draw2d
 
       }
 
-      auto ppath = __øcreate < ::draw2d::path >();
+      auto ppath = øcreate < ::draw2d::path >();
 
       ppath->add_round_rectangle(rectangle, dRadius, e_border_all);
 
@@ -4643,7 +4721,7 @@ namespace draw2d
 
          }
 
-         auto ppath = __øcreate < ::draw2d::path >();
+         auto ppath = øcreate < ::draw2d::path >();
 
          ppath->add_round_rectangle(rectangle, dRadius, eborder);
 
@@ -4675,7 +4753,7 @@ namespace draw2d
 
    //   ::double_rectangle rectangle(rectangleParam);
 
-   //   auto ppen = __øcreate < ::draw2d::pen > ();
+   //   auto ppen = øcreate < ::draw2d::pen > ();
 
    //   ppen->create_solid(1.0, color);
 
@@ -4699,7 +4777,7 @@ namespace draw2d
    //void graphics::draw_round_top_left(const ::double_rectangle & rectangle, ::draw2d::pen  * ppen, int radius, const ::e_border & eborder)
    //{
 
-   //   auto ppath = __øcreate < ::draw2d::path > ();
+   //   auto ppath = øcreate < ::draw2d::path > ();
 
    //   //ppath->begin_figure(false, ::draw2d::e_fill_mode_winding);
 
@@ -4723,7 +4801,7 @@ namespace draw2d
 
    //   int dia = 2 * radius;
 
-   //   auto ppen = __øcreate < ::draw2d::pen > ();
+   //   auto ppen = øcreate < ::draw2d::pen > ();
 
    //   ppen->create_solid(1.0, color);
 
@@ -4754,7 +4832,7 @@ namespace draw2d
    //void graphics::draw_round_bottom_right(const ::double_rectangle & rectangle, ::draw2d::pen  * ppen, int radius, const ::e_border & eborder)
    //{
 
-   //   auto ppath = __øcreate < ::draw2d::path > ();
+   //   auto ppath = øcreate < ::draw2d::path > ();
 
    //   //ppath->begin_figure(false, ::draw2d::e_fill_mode_winding);
 
@@ -4780,7 +4858,7 @@ namespace draw2d
 
    //   int dia = 2 * radius;
 
-   //   auto ppen = __øcreate < ::draw2d::pen > ();
+   //   auto ppen = øcreate < ::draw2d::pen > ();
 
    //   ppen->create_solid(1.0, color);
 
@@ -4824,7 +4902,7 @@ namespace draw2d
    void graphics::fill_round_rectangle(const ::double_rectangle & rectangle, const ::color::color & color, double radius)
    {
 
-      auto pbrush = __øcreate < ::draw2d::brush >();
+      auto pbrush = øcreate < ::draw2d::brush >();
 
       pbrush->create_solid(color);
 
@@ -4852,7 +4930,7 @@ namespace draw2d
    void graphics::fill_round_rectangle(const ::double_rectangle & rectangle, ::draw2d::brush * pbrush, double radius)
    {
 
-      auto ppath = __øcreate < ::draw2d::path >();
+      auto ppath = øcreate < ::draw2d::path >();
 
       ppath->begin_figure();
 
@@ -4875,10 +4953,10 @@ namespace draw2d
    }
 
 
-   int graphics::_DrawText(const string & strArg, const double_rectangle & rectangleParam, const ::e_align & ealign, const ::e_draw_text & edrawtext, ::write_text::font * pfontUnderlineParam)
+   int graphics::_DrawText(const ::scoped_string & scopedstrArg, const double_rectangle & rectangleParam, const ::e_align & ealign, const ::e_draw_text & edrawtext, ::write_text::font * pfontUnderlineParam)
    {
 
-      string strParam(strArg);
+      string strParam(scopedstrArg);
 
       strParam = ::str::q_valid(strParam);
 
@@ -4896,17 +4974,18 @@ namespace draw2d
 
       }
 
-      auto paurasystem = system();
 
-      auto pdraw2d = paurasystem->draw2d();
+      //::write_text::font::text * ptext = nullptr;
 
-      auto pwritetext = pdraw2d->write_text();
+      //::write_text::font::text::item * ptextitem = nullptr;
 
-      _synchronous_lock synchronouslock(pwritetext ? pwritetext->m_pparticleFontTextMapSynchronization : nullptr);
+      _synchronous_lock synchronouslock(::write_text::font::s_pmutexFontTextMap);
 
       m_pfont->get_os_data(this);
 
       string str(strParam);
+
+      bool bParamBilboRaspiEtc = strParam.case_insensitive_begins("bilbo-raspi-");
 
       string str2;
 
@@ -4927,10 +5006,25 @@ namespace draw2d
 
       character_count iUnderline = -1;
 
+      bool b1 = false;
+      bool b2 = false;
+      bool b3 = false;
+      bool b4 = false;
+      bool b5 = false;
+      bool b6 = false;
+      bool b7 = false;
+      bool b8 = false;
+      bool b9 = false;
+      bool bA = false;
+
+      ::double_size sizeB8;
+
       if (!(edrawtext & e_draw_text_no_prefix))
       {
 
          iUnderline = _EncodeV033(str);
+
+         b1 = true;
 
       }
 
@@ -4938,23 +5032,44 @@ namespace draw2d
 
       bool bLastLine = false;
 
+
+
       if ((edrawtext & e_draw_text_word_break) != 0)
       {
 
+         b2 = true;
+
+         // if (bParamBilboRaspiEtc)
+         // {
+         //
+         //    information() << "";
+         //
+         // }
+
          bLastLine = !word_break(this, str, rectangleClip, str, str2, (edrawtext & e_draw_text_end_ellipsis));
 
-         auto & text = m_pfont->m_mapFontText[str];
+         _synchronous_lock synchronouslockFontTextMap(::write_text::font::s_pmutexFontTextMap);
 
-         if (text.m_bSize)
+         auto ptext = &m_pfont->m_mapFontText[str];
+
+         auto ptextitem = ptext->get_item(::write_text::font::text::e_size_word_break);
+
+         if (ptextitem->has_size())
          {
 
-            sz = text.m_size;
+            sz = ptextitem->get_size();
+
+            b3 = true;
 
          }
          else
          {
 
-            sz = get_text_extent(str);
+            sz = _get_text_extent(str);
+
+            ptextitem->set_size(sz);
+
+            b4 = true;
 
          }
 
@@ -4962,51 +5077,80 @@ namespace draw2d
       else if ((edrawtext & e_draw_text_end_ellipsis) != 0)
       {
 
-         auto & text = m_pfont->m_mapFontText[str(0, iLen)];
+         // if (bParamBilboRaspiEtc)
+         // {
+         //
+         //    information() << "";
+         //
+         // }
 
-         if (text.m_bSize)
+         _synchronous_lock synchronouslockFontTextMap(::write_text::font::s_pmutexFontTextMap);
+
+         auto ptext = &m_pfont->m_mapFontText[str];
+
+         auto ptextitem = ptext->get_item(::write_text::font::text::e_size_end_ellipsis);
+
+         if (ptextitem->has_size())
          {
 
-            sz = text.m_size;
+            sz = ptextitem->get_size();
+
+            str = ptextitem->get_text();
+
+            b5 = true;
 
          }
          else
          {
 
-            sz = get_text_extent(str(0, iLen));
+            sz = _get_text_extent(str(0, iLen));
 
-         }
+            b6 = true;
 
-         if (sz.cx() > rectangleClip.width())
-         {
-
-            const ::ansi_character * pszStart = str;
-
-            const ::ansi_character * psz = pszStart;
-
-            string strLastSample = "...";
-
-            string strSample;
-
-            while (true)
+            if (sz.cx() > rectangleClip.width())
             {
 
-               unicode_increment(psz);
+               b7 = true;
 
-               strSample = string(pszStart, psz - pszStart) + "...";
+               const_char_pointer pszStart = str;
 
-               sz = get_text_extent(strSample);
+               const_char_pointer psz = pszStart;
 
-               if (sz.cx() > rectangleClip.width())
+               string strLastSample = "...";
+
+               string strSample;
+
+               auto sizeLast = sz;
+
+               while (true)
                {
 
-                  str = strLastSample;
+                  psz = unicode_next(psz);
 
-                  break;
+                  strSample = string(pszStart, psz - pszStart) + "...";
+
+                  auto szHere = _get_text_extent(strSample);
+
+                  if (szHere.cx() > rectangleClip.width())
+                  {
+
+                     str = strLastSample;
+
+                     sz = szHere;
+
+                     ptextitem->set_size(sz);
+
+                     ptextitem->set_text(str);
+
+                     break;
+
+                  }
+
+                  strLastSample = strSample;
+
+                  sizeLast = szHere;
 
                }
-
-               strLastSample = strSample;
 
             }
 
@@ -5016,67 +5160,98 @@ namespace draw2d
       else
       {
 
-         auto & text = m_pfont->m_mapFontText[str];
-
-         if (text.m_bSize)
+         if (bParamBilboRaspiEtc)
          {
 
-            sz = text.m_size;
+             information() << "";
+
+         }
+
+         _synchronous_lock synchronouslockFontTextMap(::write_text::font::s_pmutexFontTextMap);
+
+         auto ptext = &m_pfont->m_mapFontText[str];
+
+         auto ptextitem = ptext->get_item(::write_text::font::text::e_size_case_3);
+
+         if (ptextitem->has_size())
+         {
+
+            sz = ptextitem->get_size();
+
+            str = ptextitem->get_text();
+
+            b8 = true;
+
+            sizeB8 = sz;
 
          }
          else
          {
 
-            sz = get_text_extent(str);
+            ::string strCompute(str);
 
-            //text.m_bSize = true;
+            sz = _get_text_extent(strCompute);
 
-         }
+            b9 = true;
 
-         if (sz.cx() > rectangleClip.width())
-         {
-
-            character_count i = iLen;
-
-            if (i < 0)
+            if (sz.cx() > rectangleClip.width())
             {
 
-               i = 0;
+               bA = true;
 
-            }
+               character_count i = iLen;
 
-            char * psz = str.get_buffer(maximum(0, i));
-
-            while (i > 0)
-            {
-
-               sz = get_text_extent(str(0, i));
-
-               if ((int)sz.cx() > rectangleClip.width())
+               if (i < 0)
                {
 
-                  i = unicode_prior_index(i, str);
+                  i = 0;
 
-                  if (i <= 0)
+               }
+
+               char *psz = strCompute.get_buffer<true>(maximum(0, i));
+
+               while (i > 0)
+               {
+
+                  auto szHere = _get_text_extent(str(0, i));
+
+                  if ((int)szHere.cx() > rectangleClip.width())
                   {
+
+                     i = unicode_prior(psz + i, psz) - psz;
+
+                     if (i <= 0)
+                     {
+
+                        sz = szHere;
+
+                        break;
+
+                     }
+
+                  }
+                  else
+                  {
+
+                     sz  = szHere;
 
                      break;
 
                   }
 
                }
-               else
-               {
 
-                  break;
+               psz[i] = L'\0';
 
-               }
+               strCompute.release_buffer();
+
+               ptextitem->set_size(sz);
+
+               ptextitem->set_text(strCompute);
+
+               str = strCompute;
 
             }
-
-            psz[i] = L'\0';
-
-            str.release_buffer();
 
          }
 
@@ -5097,7 +5272,7 @@ namespace draw2d
          if (!pfontUnderline)
          {
 
-            __øconstruct(pfontUnderline);
+            øconstruct(pfontUnderline);
 
             pfontUnderline->operator=(*get_current_font());
 
@@ -5163,8 +5338,88 @@ namespace draw2d
 
       rectangle.Align(ealign, rectangleParam);
 
+      //bool bBilboRaspiEtc = str.case_insensitive_begins("bilbo-raspi-");
+
+      //bool bBilboRaspi = str.case_insensitive_equals("bilbo-raspi");
+
+      int iLeft = (int) rectangle.left();
+
+      // if (bBilboRaspi)
+      // {
+      //
+      //    if (iLeft != 38)
+      //    {
+      //
+      //       information() << "";
+      //
+      //    }
+      //    else
+      //    {
+      //
+      //       information() << "";
+      //
+      //    }
+      //
+      //    if (rectangleClip.right() != 76)
+      //    {
+      //
+      //       information() << "";
+      //
+      //    }
+      //
+      //    if ((edrawtext & e_draw_text_end_ellipsis))
+      //    {
+      //
+      //
+      //       information() << "";
+      //
+      //    }
+      //    else
+      //    {
+      //
+      //       information() << "";
+      //
+      //    }
+      //
+      // }
+      // else if (bBilboRaspiEtc)
+      // {
+      //
+      //    if (iLeft != 38)
+      //    {
+      //
+      //       information() << "";
+      //
+      //    }
+      //
+      //    if (rectangleClip.right() != 76)
+      //    {
+      //
+      //       information() << "";
+      //    }
+      //
+      //             if ((edrawtext & e_draw_text_end_ellipsis))
+      //    {
+      //
+      //
+      //       information() << "";
+      //    }
+      //    else
+      //    {
+      //
+      //       information() << "";
+      //    }
+      // }
+
       if (iUnderline >= 0 && iUnderline < str.length())
       {
+
+         // if (bBilboRaspi)
+         // {
+         //
+         //    information() << "";
+         //
+         // }
 
          text_out(rectangle.left(), rectangle.top(), { str.c_str(), (int)minimum(iUnderline, str.length()) });
          /*::TextOutU(
@@ -5223,12 +5478,37 @@ namespace draw2d
       else
       {
 
-         text_out(rectangle.left(), rectangle.top(), str);
+         // if (bBilboRaspi)
+         // {
+         //
+         //
+         //
+         // }
+         // else if (bBilboRaspiEtc)
+         // {
+         //
+         //    text_out(rectangle.left(), rectangle.top(), str);
+         //
+         // }
+         // else
+         {
+
+            text_out(rectangle.left(), rectangle.top(), str);
+
+         }
+
 
       }
 
       if (!bLastLine && str2.length() > 0)
       {
+
+         // if (bBilboRaspi)
+         // {
+         //
+         //    information() << "";
+         //
+         // }
 
          rectangleClip.top() = rectangleClip.top() + sz.cy();
 
@@ -5241,7 +5521,7 @@ namespace draw2d
    }
 
 
-   bool word_break(::draw2d::graphics * pgraphics, const ::string & strSource, const int_rectangle & rectangleParam, string & str1, string & str2, int iEll)
+   bool word_break(::draw2d::graphics * pgraphics, const ::scoped_string & scopedstrSource, const int_rectangle & rectangleParam, string & str1, string & str2, int iEll)
    {
 
       ::double_rectangle rectangle(rectangleParam);
@@ -5250,23 +5530,25 @@ namespace draw2d
 
       ::double_rectangle rectangleClip(rectangle);
 
-      const ::ansi_character * pszSource = strSource;
+      ::string strSource(scopedstrSource);
+
+      const_char_pointer pszSource = strSource;
 
       character_count len = strSource.length();
 
-      const ::ansi_character * pszEnd = pszSource + len;
+      const_char_pointer pszEnd = pszSource + len;
 
-      const ::ansi_character * pszStart = unicode_next(pszSource);
+      const_char_pointer pszStart = unicode_next(scopedstrSource.m_begin);
 
       int_size sz;
 
-      const ::ansi_character * pszSpaceStart = nullptr;
+      const_char_pointer pszSpaceStart = nullptr;
 
-      const ::ansi_character * pszSpaceEnd = nullptr;
+      const_char_pointer pszSpaceEnd = nullptr;
 
-      const ::ansi_character * psz = pszStart;
+      const_char_pointer psz = pszStart;
 
-      const ::ansi_character * pszPrevious = pszSource;
+      const_char_pointer pszPrevious = pszSource;
 
       string strChar;
 
@@ -5351,7 +5633,7 @@ namespace draw2d
 
                pszPrevious = psz;
 
-               unicode_increment(psz);
+               psz = unicode_next(psz);
 
             } while (psz != nullptr);
 
@@ -5361,11 +5643,12 @@ namespace draw2d
          {
 
             if (psz == pszStart)
-
             {
+
                pszEnd = pszStart;
 
                break;
+
             }
 
             if (pszSpaceStart != nullptr)
@@ -5379,7 +5662,7 @@ namespace draw2d
                break;
             }
 
-            unicode_decrement(psz, pszSource);
+            psz = unicode_prior(psz, pszSource);
 
             pszEnd = psz;
 
@@ -5389,7 +5672,7 @@ namespace draw2d
 
          pszPrevious = psz;
 
-         unicode_increment(psz);
+         psz = unicode_next(psz);
 
          if (bEnd)
          {
@@ -5408,9 +5691,7 @@ namespace draw2d
 
       str1 = string(pszSource, psz - pszSource);
 
-
       str2 = string(pszEnd);
-
 
       rectangle.top() = y;
 
@@ -5468,7 +5749,7 @@ namespace draw2d
 
          ::pointer<::draw2d::path>ppath;
 
-         __øconstruct(ppath);
+         øconstruct(ppath);
 
          ppath->begin_figure();
          ppath->add_line(rectangle.top_left(), rectangle.bottom_right());
@@ -5502,11 +5783,11 @@ namespace draw2d
       else if (estockicon == e_stock_icon_restore)
       {
 
-         rectangle.deflate(0, rectangle.height() / 7.0);
+         rectangle.deflate(0, rectangle.height() / 6.0);
 
          ::double_rectangle rect1(rectangle);
 
-         rect1.deflate(0, 0, rectangle.width() / 3.0, rectangle.height() / 3.0);
+         rect1.deflate(0, 0, ceil(rectangle.width() / 3.0), ceil(rectangle.height() / 3.0));
 
          ::double_rectangle rect2(rect1);
 
@@ -5514,42 +5795,55 @@ namespace draw2d
 
          draw_rectangle(rect2);
 
-         m_ppen->m_elinecapBeg = ::draw2d::e_line_cap_flat;
-         m_ppen->m_elinecapEnd = ::draw2d::e_line_cap_flat;
+         m_ppen->m_elinecapBeg = ::draw2d::e_line_cap_square;
+         m_ppen->m_elinecapEnd = ::draw2d::e_line_cap_square;
          m_ppen->set_modified();
+
+         auto dPenWidth = m_ppen->m_dWidth;
             
          line(
-            rect2.top_left() + ::double_size(0., (m_ppen->m_dWidth / 2.0)),
-            rect2.top_right() + ::double_size(0., (m_ppen->m_dWidth / 2.0)));
+            rect2.top_left() + ::double_size(0., (dPenWidth / 2.0)),
+            rect2.top_right() + ::double_size(0., (dPenWidth / 2.0)));
 
          line(
-            rect2.top_left() + ::double_size(0., (m_ppen->m_dWidth)),
-            rect2.top_right() + ::double_size(0., (m_ppen->m_dWidth)));
+            rect2.top_left() + ::double_size(0., (dPenWidth)),
+            rect2.top_right() + ::double_size(0., (dPenWidth)));
 
-         line(rect1.top_left(), rect1.top_right());
-
-         line(
-            rect1.top_left() + ::double_size(0., (m_ppen->m_dWidth / 2.0)),
-            rect1.top_right() + ::double_size(0., (m_ppen->m_dWidth / 2.0)));
+         line(rect2.top_left(), rect2.top_right());
 
          line(
-            rect1.top_left() + ::double_size(0., (m_ppen->m_dWidth)),
-            rect1.top_right() + ::double_size(0., (m_ppen->m_dWidth)));
+            rect1.top_left() + ::double_size(0., (dPenWidth / 2.0)),
+            rect1.top_right() + ::double_size(0., (dPenWidth / 2.0)));
+
+         line(
+            rect1.top_left() + ::double_size(0., (dPenWidth)),
+            rect1.top_right() + ::double_size(0., (dPenWidth)));
+         line(
+            rect1.top_left(),
+            rect1.top_right());
 
          m_ppen->m_elinecapBeg = ::draw2d::e_line_cap_square;
          m_ppen->m_elinecapEnd = ::draw2d::e_line_cap_square;
          m_ppen->set_modified();
 
          line(
-            rect1.top_left() + ::double_size(0, (m_ppen->m_dWidth)),
+            rect1.top_left(),
             rect1.bottom_left());
          line(
-            rect1.bottom_left(),
-            rect2.bottom_left());
-
+            rect1.top_right(),
+            { rect1.right(), rect2.top() });
          line(
-            rect1.top_right() + ::double_size(0, (m_ppen->m_dWidth)),
-            double_point(rect1.right(), (int)(rect2.top() - (m_ppen->m_dWidth))));
+            rect1.bottom_left(),
+            { rect2.left(), rect1.bottom() });
+         line(
+            rect2.top_left(),
+            rect2.bottom_left());
+         line(
+            rect2.top_right(),
+            rect2.bottom_right());
+         line(
+            rect2.bottom_left(),
+            rect2.bottom_right());
 
       }
       else if (estockicon == e_stock_icon_iconify)
@@ -5699,7 +5993,7 @@ namespace draw2d
 
          //auto estatus = 
 
-         __øconstruct(pimage);
+         øconstruct(pimage);
 
          //if (!estatus)
          //{
@@ -5866,7 +6160,7 @@ namespace draw2d
 
       ::int_rectangle rectangle(x + b, y + b, x + b + z, y + b + z);
 
-      auto ppen = __øcreate < ::draw2d::pen >();
+      auto ppen = øcreate < ::draw2d::pen >();
 
       ppen->create_solid(1.0, colorBorder);
 
@@ -5890,7 +6184,7 @@ namespace draw2d
    }
 
 
-   ::file::path graphics::get_font_path(const ::string & strName, int iWeight, bool bItalic)
+   ::file::path graphics::get_font_path(const ::scoped_string & scopedstrName, int iWeight, bool bItalic)
    {
 
       auto penumeration = system()->draw2d()->write_text()->fonts()->enumeration("system");
@@ -5899,7 +6193,7 @@ namespace draw2d
 
       critical_section_lock synchronouslock(&system()->draw2d()->write_text()->m_csFont);
 
-      string strFontName(strName);
+      string strFontName(scopedstrName);
 
       strFontName.make_lower();
 
@@ -6077,7 +6371,7 @@ namespace draw2d
 
       ::int_rectangle rectangle(x + bIn + bOut, y + bIn + bOut, x + bIn + bOut + z - 1, y + bIn + bOut + z - 1);
 
-      auto ppen = __øcreate < ::draw2d::pen >();
+      auto ppen = øcreate < ::draw2d::pen >();
 
       ppen->create_solid(1.0, colorIn);
 
@@ -6143,7 +6437,7 @@ namespace draw2d
    ::pointer < ::draw2d::path > graphics::create_path()
    {
 
-      return __øcreate<::draw2d::path>();
+      return øcreate<::draw2d::path>();
 
    }
 
@@ -6151,7 +6445,7 @@ namespace draw2d
    ::pointer < ::draw2d::pen > graphics::create_solid_pen(double dWidth, const ::color::color & color)
    {
 
-      auto ppen  =__øcreate<::draw2d::pen>();
+      auto ppen  =øcreate<::draw2d::pen>();
 
       ppen->create_solid(dWidth, color);
 
@@ -6163,7 +6457,7 @@ namespace draw2d
    ::pointer < ::draw2d::brush > graphics::create_solid_brush(const ::color::color & color)
    {
 
-      auto pbrush  =__øcreate<::draw2d::brush>();
+      auto pbrush  =øcreate<::draw2d::brush>();
 
       pbrush->create_solid(color);
 
@@ -6287,8 +6581,6 @@ namespace draw2d
 
       update_matrix();
 
-      //return true;
-
    }
 
 
@@ -6301,7 +6593,7 @@ namespace draw2d
 
       auto matrix = scaling * m_matrix * translation;
 
-      if (_m_bYFlip)
+      if (is_y_flip())
       {
 
          ::double_size sizeYFlip(1.0, -1.0);
@@ -6451,9 +6743,9 @@ namespace draw2d
    void graphics::nanosvg_drawframe(NSVGimage* pnsvgimage, int x, int y, int w, int h)
    {
 
-      float impact[4], cx, cy, hw, hh, aspect, px;
+      //float impact[4], cx, cy, hw, hh, aspect, px;
 
-      auto ppath = __øcreate < ::draw2d::path >();
+      auto ppath = øcreate < ::draw2d::path >();
 
       ppath->nanosvg_drawframe(pnsvgimage, x, y, w, h);
 
@@ -6461,7 +6753,7 @@ namespace draw2d
 
       place_impact_area(x, y, w, h);
 
-      auto ppen = __øcreate < ::draw2d::pen >();
+      auto ppen = øcreate < ::draw2d::pen >();
 
       ppen->create_solid(1.0, argb(255, 0, 128, 0));
 
@@ -6472,18 +6764,233 @@ namespace draw2d
    }
 
 
-   void graphics::nanosvg(string str, int x, int y, int w, int h)
+   void graphics::nanosvg(const ::scoped_string & scopedstr, int x, int y, int w, int h)
    {
 
       struct NSVGimage* pnsvgimage;
 
-      pnsvgimage = nsvgParse((char*)(const char*)str, "px", 96);
+      pnsvgimage = nsvgParse((char*)(const_char_pointer )scopedstr, "px", 96);
 
       nanosvg_drawframe(pnsvgimage, x, y, w, h);
 
       nsvgDelete(pnsvgimage);
 
    }
+
+
+   bool graphics::_set(::geometry2d::item * pitem)
+   {
+
+      auto eitem = pitem->type();
+
+      switch (eitem)
+      {
+         case ::draw2d::e_item_begin_figure:
+            return _set(::draw2d::e_item_begin_figure);
+         case ::draw2d::e_item_close_figure:
+            return _set(::draw2d::e_item_close_figure);
+         case ::draw2d::e_item_end_figure:
+            return _set(::draw2d::e_item_end_figure);
+         case ::draw2d::e_item_arc:
+            return _set(pitem->cast <::geometry2d::arc_item>()->m_item);
+            //case ::draw2d::e_item_line:
+            //   return _set(pshape->shape < ::line > ());
+         case ::draw2d::e_item_line: {
+
+            auto plineitem=pitem->cast<::geometry2d::line_item>();
+
+            if(::is_null(plineitem))
+            {
+
+               throw ::exception(error_wrong_state);
+
+            }
+
+            return _set(plineitem->m_item);
+
+         }
+            //case ::draw2d::e_item_lines:
+            //   return _set(pshape->shape < ::lines > ());
+         case ::draw2d::e_item_lines:
+            return _set(pitem->cast <::geometry2d::lines_item>()->m_item);
+            //case ::draw2d::e_item_rect:
+            //   return _set(pshape->shape < ::int_rectangle > ());
+         case ::draw2d::e_item_rectangle:
+            return _set(pitem->cast <::geometry2d::rectangle_item>()->m_item);
+            //case ::draw2d::e_item_polygon:
+            //   return _set(pshape->shape < ::int_polygon > ());
+         case ::draw2d::e_item_ellipse:
+            return _set(pitem->cast <::geometry2d::ellipse_item>()->m_item);
+         case ::draw2d::e_item_polygon:
+            return _set(pitem->cast <::geometry2d::polygon_item>()->m_polygon);
+         case ::draw2d::e_item_text_out:
+            return _set(pitem->cast <::geometry2d::text_out_item>()->m_item);
+         case ::draw2d::e_item_draw_text:
+            return _set(pitem->cast <::geometry2d::draw_text_item>()->m_item);
+         default:
+            throw "unexpected simple os graphics matter type";
+      }
+
+      return false;
+
+   }
+
+      bool graphics::_set(const ::draw2d::enum_item & eitem)
+      {
+
+      return false;
+
+      }
+
+
+      bool graphics::_set(const ::double_arc & arc, const ::pointer<::draw2d::region>& pregion)
+      {
+
+         return false;
+
+      }
+//      bool graphics::_set(const ::line & line)
+//      {
+//
+//         return false;
+//
+//      }
+//      bool graphics::_set(const ::lines & lines)
+//      {
+//
+//         return false;
+//
+//      }
+      bool graphics::_set(const ::double_rectangle & rectangle, const ::pointer<::draw2d::region>& pregion)
+      {
+
+         return false;
+
+      }
+      bool graphics::_set(const ::double_ellipse & ellipse, const ::pointer<::draw2d::region>& pregion)
+      {
+
+         return false;
+
+      }
+      bool graphics::_set(const ::double_polygon_base & polygon, const ::pointer<::draw2d::region>& pregion)
+      {
+
+         return false;
+
+      }
+      bool graphics::_set(const ::write_text::text_out & textout, const ::pointer<::draw2d::region>& pregion)
+      {
+
+         return false;
+
+      }
+      bool graphics::_set(const ::write_text::draw_text & drawtext, const ::pointer<::draw2d::region>& pregion)
+      {
+
+         return false;
+
+      }
+
+
+      bool graphics::_set(const ::double_arc & arc, const ::pointer<::draw2d::path>& ppath)
+      {
+
+         return false;
+
+      }
+      bool graphics::_set(const ::double_line & line, const ::pointer<::draw2d::path>& ppath)
+      {
+
+         return false;
+
+      }
+      bool graphics::_set(const ::double_lines & lines, const ::pointer<::draw2d::path>& ppath)
+      {
+
+         return false;
+
+      }
+      bool graphics::_set(const ::double_rectangle & rectangle, const ::pointer<::draw2d::path>& ppath)
+      {
+
+         return false;
+
+      }
+      bool graphics::_set(const ::double_ellipse & ellipse, const ::pointer<::draw2d::path>& ppath)
+      {
+
+         return false;
+
+      }
+      bool graphics::_set(const ::double_polygon_base & polygon, const ::pointer<::draw2d::path>& ppath)
+      {
+
+         return false;
+
+      }
+      bool graphics::_set(const ::write_text::text_out & textout, const ::pointer<::draw2d::path>& ppath)
+      {
+
+         return false;
+
+      }
+      bool graphics::_set(const ::write_text::draw_text & drawtext, const ::pointer<::draw2d::path>& ppath)
+      {
+
+         return false;
+
+      }
+
+
+      bool graphics::_set(const ::double_arc & arc)
+      {
+
+         return false;
+
+      }
+      bool graphics::_set(const ::double_line & line)
+      {
+
+         return false;
+
+      }
+      bool graphics::_set(const ::double_lines & lines)
+      {
+
+         return false;
+
+      }
+      bool graphics::_set(const ::double_rectangle & rectangle)
+      {
+
+         return false;
+
+      }
+      bool graphics::_set(const ::double_ellipse & ellipse)
+      {
+
+         return false;
+
+      }
+      bool graphics::_set(const ::double_polygon_base & polygon)
+      {
+
+         return false;
+
+      }
+      bool graphics::_set(const ::write_text::text_out & textout)
+      {
+
+         return false;
+
+      }
+      bool graphics::_set(const ::write_text::draw_text & drawtext)
+      {
+
+         return false;
+
+      }
 
 
 } // namespace draw2d

@@ -24,7 +24,7 @@ namespace aura
    }
 
 
-   void inteprocess_channel::task::do_task(const ::string & strObject, const ::string & strMember, const payload_array & payloada)
+   void inteprocess_channel::task::do_task(const ::scoped_string & scopedstrObject, const ::scoped_string & scopedstrMember, const payload_array & payloada)
    {
 
       ::aura::ipc::tx & txc = m_pcall->m_pinterprocesscommunication->tx(m_pcall->m_strApp, m_atomPid);
@@ -63,7 +63,7 @@ namespace aura
    }
 
 
-   inteprocess_channel::call::call(inteprocess_channel * pipi, const ::string & strApp, const ::string & strObject, const ::string & strMember) :
+   inteprocess_channel::call::call(inteprocess_channel * pipi, const ::scoped_string & scopedstrApp, const ::scoped_string & scopedstrObject, const ::scoped_string & scopedstrMember) :
       ::object(pipi),
       m_pinterprocesscommunication(pipi),
       m_strApp(strApp),
@@ -158,7 +158,7 @@ namespace aura
    ::pointer<synchronization_array>inteprocess_channel::call::synca()
    {
 
-      auto psynca = __allocate synchronization_array();
+      auto psynca = øallocate synchronization_array();
 
       for (auto & task : this->tasks())
       {
@@ -177,7 +177,7 @@ namespace aura
 
       auto psynca = synca();
 
-      synchronous_lock synchronouslock(psynca);
+      synchronous_lock synchronouslock(psynca, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       return synchronouslock.wait(m_duration);
 
@@ -219,7 +219,7 @@ namespace aura
    }
 
 
-   inteprocess_channel::inteprocess_channel(const ::string & strApp) :
+   inteprocess_channel::inteprocess_channel(const ::scoped_string & scopedstrApp) :
       m_strApp(strApp)
    {
 
@@ -265,7 +265,7 @@ namespace aura
 
       runall(CREATE_ROUTINE);
 
-      estatus = __construct_new(m_prx);
+      estatus = øconstruct_new(m_prx);
 
       if (!estatus)
       {
@@ -317,23 +317,23 @@ namespace aura
 
 
 
-   bool inteprocess_channel::start(const ::string & strApp)
+   bool inteprocess_channel::start(const ::scoped_string & scopedstrApp)
    {
 
-      synchronous_lock sl1(mutex());
+      synchronous_lock sl1(mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       auto & pmutex = m_mapAppMutex[strApp];
 
       if(pmutex.is_null())
       {
 
-         pmutex = __allocate ::pointer < ::mutex > ();
+         pmutex = øallocate ::pointer < ::mutex > ();
 
       }
 
       sl1.unlock();
 
-      synchronous_lock synchronouslock(pmutex);
+      synchronous_lock synchronouslock(pmutex, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       auto idaPid = get_pid(strApp);
 
@@ -399,7 +399,7 @@ started:
       if(m_txmap[strKey].is_null())
       {
 
-         m_txmap[strKey] = __allocate ::aura::ipc::tx();
+         m_txmap[strKey] = øallocate ::aura::ipc::tx();
 
       }
 
@@ -408,7 +408,7 @@ started:
    }
 
 
-   bool inteprocess_channel::connect(const ::string & strApp, const ::atom & idPid)
+   bool inteprocess_channel::connect(const ::scoped_string & scopedstrApp, const ::atom & idPid)
    {
 
       string strKey = strApp + ":" + as_string(idPid);
@@ -416,7 +416,7 @@ started:
       if(m_txmap[strKey].is_null())
       {
 
-         m_txmap[strKey] = __allocate ::aura::ipc::tx();
+         m_txmap[strKey] = øallocate ::aura::ipc::tx();
 
       }
 
@@ -436,7 +436,7 @@ started:
    }
 
 
-   ::aura::ipc::tx & inteprocess_channel::caller(const ::string & strApp, const ::atom & iPid)
+   ::aura::ipc::tx & inteprocess_channel::caller(const ::scoped_string & scopedstrApp, const ::atom & iPid)
    {
 
       string strKey = strApp + ":" + as_string(iPid);
@@ -444,7 +444,7 @@ started:
       if(m_txmap[strKey].is_null())
       {
 
-         m_txmap[strKey] = __allocate ::aura::ipc::tx();
+         m_txmap[strKey] = øallocate ::aura::ipc::tx();
 
       }
 
@@ -543,10 +543,10 @@ pdirectorysystem->system() / "inteprocess_channel" / strApp / as_string(idPid);
    }
 
 
-   void inteprocess_channel::on_ipc_receive(::aura::ipc::rx * prx, const ::string & pszMessage)
+   void inteprocess_channel::on_ipc_receive(::aura::ipc::rx * prx, const ::scoped_string & scopedstrMessage)
    {
 
-      string str(pszMessage);
+      string str(scopedstrMessage);
 
       informationf("interprocess_intercommunication::on_receive %s", pszMessage);
 
@@ -594,7 +594,7 @@ pdirectorysystem->system() / "inteprocess_channel" / strApp / as_string(idPid);
 
       string strMember;
 
-      string_array stra;
+      string_array_base stra;
 
       payload_array payloada;
 
@@ -677,9 +677,9 @@ pdirectorysystem->system() / "inteprocess_channel" / strApp / as_string(idPid);
    ::pointer<class inteprocess_channel::task> inteprocess_channel::create_task(call * pcall, const ::atom & idPid)
    {
 
-      auto pobjectTask = __allocate class task (pcall, idPid, atomic_increment(&m_iTaskSeed));
+      auto pobjectTask = øallocate class task (pcall, idPid, atomic_increment(&m_iTaskSeed));
 
-      synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       m_mapTask[pobjectTask->m_iTask] = pobjectTask;
 
@@ -693,22 +693,22 @@ pdirectorysystem->system() / "inteprocess_channel" / strApp / as_string(idPid);
    ::pointer<class inteprocess_channel::task> inteprocess_channel::get_task(long long iTask)
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       return m_mapTask[iTask];
 
    }
 
 
-   ::pointer<class inteprocess_channel::call> inteprocess_channel::create_call(const ::string & strApp, const ::string & strObject, const ::string & strMember)
+   ::pointer<class inteprocess_channel::call> inteprocess_channel::create_call(const ::scoped_string & scopedstrApp, const ::scoped_string & scopedstrObject, const ::scoped_string & scopedstrMember)
    {
 
-      return __allocate class call (this, strApp, strObject, strMember);
+      return øallocate class call (this, strApp, strObject, strMember);
 
    }
 
 
-   ::pointer<class inteprocess_channel::call> inteprocess_channel::create_call(const ::string & strObject, const ::string & strMember)
+   ::pointer<class inteprocess_channel::call> inteprocess_channel::create_call(const ::scoped_string & scopedstrObject, const ::scoped_string & scopedstrMember)
    {
 
       return create_call(m_strApp, strObject, strMember);
@@ -716,7 +716,7 @@ pdirectorysystem->system() / "inteprocess_channel" / strApp / as_string(idPid);
    }
 
 
-   void inteprocess_channel::on_interprocess_call(::payload & payload, const ::string & strObject, const ::string & strMember, payload_array & payloada)
+   void inteprocess_channel::on_interprocess_call(::payload & payload, const ::scoped_string & scopedstrObject, const ::scoped_string & scopedstrMember, payload_array & payloada)
    {
 
       if(strObject == "application")
@@ -752,7 +752,7 @@ pdirectorysystem->system() / "inteprocess_channel" / strApp / as_string(idPid);
    }
 
 
-   void inteprocess_channel::on_new_instance(const ::string & strModule, const ::atom & idPid)
+   void inteprocess_channel::on_new_instance(const ::scoped_string & scopedstrModule, const ::atom & idPid)
    {
 
       defer_add_module(strModule, idPid);
@@ -762,7 +762,7 @@ pdirectorysystem->system() / "inteprocess_channel" / strApp / as_string(idPid);
    }
 
 
-   atom_array inteprocess_channel::get_pid(const ::string & strApp)
+   atom_array inteprocess_channel::get_pid(const ::scoped_string & scopedstrApp)
    {
 
       atom_array idaPid;
@@ -781,7 +781,7 @@ pdirectorysystem->system() / "inteprocess_channel" / strApp / as_string(idPid);
 
 #else
 
-      string_array stra;
+      string_array_base stra;
 
       ::file::path pathModule;
 
@@ -802,7 +802,7 @@ repeat:
 
       }
 
-      string_array stra2;
+      string_array_base stra2;
 
       ::int_array iaPid2;
 
@@ -812,7 +812,7 @@ repeat:
          if (str.has_character())
          {
 
-            string_array a;
+            string_array_base a;
 
             a.explode("|", str);
 
@@ -866,7 +866,7 @@ repeat:
    }
 
 
-   void inteprocess_channel::defer_add_module(const ::string & strModule, const ::atom & idPid)
+   void inteprocess_channel::defer_add_module(const ::scoped_string & scopedstrModule, const ::atom & idPid)
    {
 
 #ifndef UNIVERSAL_WINDOWS
@@ -885,7 +885,7 @@ repeat:
 
       m_straModule.add_lines(strModuleList);
 
-      string_array stra2;
+      string_array_base stra2;
 
       ::int_array iaPid2;
 
@@ -901,7 +901,7 @@ repeat:
          if (str.has_character())
          {
 
-            string_array a;
+            string_array_base a;
 
             a.explode("|", str);
 
@@ -943,7 +943,7 @@ repeat:
 
       }
 
-      string_array straUnique;
+      string_array_base straUnique;
 
       forallref(m_straModule)
       {

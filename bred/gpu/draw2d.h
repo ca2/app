@@ -17,7 +17,7 @@ namespace gpu
    public:
 
 
-      ::string_map <::int_map<::pointer <::typeface::face>>> m_mapFaceSize;
+      ::string_map_base <::int_map<::pointer <::typeface::face>>> m_mapFaceSize;
 
 
       draw2d();

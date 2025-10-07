@@ -39,8 +39,8 @@ namespace earth
       long long GetZoneDaySig() const noexcept;
 
 
-      string FormatZone(string & str, const ::string & strFormat) const;
-      string FormatZone(const ::string & strFormat);
+      string FormatZone(string & str, const ::scoped_string & scopedstrFormat) const;
+      string FormatZone(const ::scoped_string & scopedstrFormat);
 
       
    };

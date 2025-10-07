@@ -64,13 +64,13 @@ namespace mathematics
 //      int iOpen               = 0;
       //    bool bLeft              = false;
       //  bool bNumber            = false;
-      m_pimpl                 = __raw_new number();
+      m_pimpl                 = øraw_new number();
 //      const ::scoped_string & scopedstrNumber  = nullptr;
       //    value_impl * pimpl      = m_pimpl;
 
       string strNumber;
 //      binary_operation * pbinopNew;
-      address_array < number * > stackptra;
+      address_array_base < number * > stackptra;
 
       throw ::not_implemented();
 
@@ -90,7 +90,7 @@ namespace mathematics
          {
             if(bNumber)
             {
-               string str(pszNumber, psz - pszNumber - 1);
+               string str(scopedstrNumber, psz - pszNumber - 1);
                strNumber = str;
                if(dynamic_cast < binary_operation * > (pimpl) != nullptr)
                {

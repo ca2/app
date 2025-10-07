@@ -95,13 +95,13 @@ namespace httpd
       if (m_typeSocketThread.is_empty())
       {
 
-         return __øcreate < ::sockets::socket_thread >(m_pfactorySocketThread);
+         return øcreate < ::sockets::socket_thread >(m_pfactorySocketThread);
 
       }
       else
       {
 
-         return __id_create(m_typeSocketThread, m_pfactorySocketThread);
+         return øid_create(m_typeSocketThread, m_pfactorySocketThread);
 
       }
 
@@ -115,7 +115,7 @@ namespace httpd
    }
 
 
-   void socket::Send64(const ::string& str64, const string& type)
+   void socket::Send64(const ::scoped_string & scopedstr64, const string& type)
    {
       //   Base64 bb;
 
@@ -134,7 +134,7 @@ namespace httpd
 
          memory mem;
 
-         pbase64->decode(mem, str64);
+         pbase64->decode(mem, scopedstr64);
 
          m_response.attr("http_status_code") = 200;
          m_response.attr("http_status") = "OK";
@@ -155,8 +155,8 @@ namespace httpd
    {
       struct tm tp;
       posix_time t;
-      const char* days[] = { "Sun","Mon","Tue","Wed","Thu","Fri","Sat" };
-      const char* months[] = { "Jan","Feb","Mar","Apr","May","Jun",
+      const_char_pointer days[] = { "Sun","Mon","Tue","Wed","Thu","Fri","Sat" };
+      const_char_pointer months[] = { "Jan","Feb","Mar","Apr","May","Jun",
                                "Jul","Aug","Sep","Oct","Nov","Dec"
       };
       int i;
@@ -206,7 +206,7 @@ namespace httpd
 
       auto timeNow = ::earth::time::now();
 
-      gregoriantime.set(timeNow, ::time::local());
+      gregoriantime.set(timeNow, ::time::local_offset());
 
       char slask[40]; // yyyy-mm-dd hh:mm:ss
 
@@ -230,9 +230,9 @@ namespace httpd
    }
 
 
-   //map < int, DH * > * g_pmapdh = nullptr;
+   //map_base < int, DH * > * g_pmapdh = nullptr;
 
-   //map < int, DH * > * dh_map()
+   //map_base < int, DH * > * dh_map()
    //{
 
    //   critical_section_lock synchronouslock(::globals_critical_section());
@@ -240,7 +240,7 @@ namespace httpd
    //   if (g_pmapdh == nullptr)
    //   {
 
-   //      g_pmapdh = ___new map < int, DH * > ();
+   //      g_pmapdh = ___new map_base < int, DH * > ();
 
    //   }
 
@@ -427,7 +427,7 @@ namespace httpd
    }
 
 
-   bool socket::http_filter_response_header(atom key, string_array& straValue)
+   bool socket::http_filter_response_header(atom key, string_array_base& straValue)
    {
 
       if (key == "location" && straValue.get_count() >= 1)
@@ -468,19 +468,19 @@ namespace httpd
 
 
 
-   //void socket::simple_image_server(const ::string & pszPath, int iMaxWidth, int iMaxHeight)
+   //void socket::simple_image_server(const ::scoped_string & scopedstrPath, int iMaxWidth, int iMaxHeight)
    //{
 
    //   if (iMaxWidth <= 0 && iMaxHeight <= 0)
    //   {
-   //      simple_file_server(pszPath);
+   //      simple_file_server(scopedstrPath);
    //   }
    //   else
    //   {
    //
    //      ::image::image_pointer pimage;
 
-   //      pimage->load_image(pszPath);
+   //      pimage->load_image(scopedstrPath);
 
    //      double dRateW = 1.0;
 
@@ -527,7 +527,7 @@ namespace httpd
 
 
 
-   void socket::simple_file_server(const ::string& pszPath, bool bMatter)
+   void socket::simple_file_server(const ::scoped_string & scopedstrPath, bool bMatter)
    {
 
       pointer_array < ::int_array > rangea;
@@ -544,7 +544,7 @@ namespace httpd
       if (inheader("range").has_character())
       {
 
-         string_array straItem;
+         string_array_base straItem;
 
          straItem.explode("=", inheader("range"));
 
@@ -553,14 +553,14 @@ namespace httpd
 
             string strUnit = straItem[0];
 
-            string_array stra;
+            string_array_base stra;
 
             stra.explode(",", straItem[1]);
 
             for (int i = 0; i < stra.get_count(); i++)
             {
 
-               string_array straRange;
+               string_array_base straRange;
 
                straRange.explode("-", stra[i]);
 
@@ -586,7 +586,7 @@ namespace httpd
 
       }
 
-      read_file(pszPath, &rangea);
+      read_file(scopedstrPath, &rangea);
 
    }
 

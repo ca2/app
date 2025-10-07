@@ -18,8 +18,6 @@ namespace write_text
    fonts::fonts()
    {
 
-      defer_create_synchronization();
-
    }
 
 
@@ -32,18 +30,10 @@ namespace write_text
    void fonts::initialize(::particle * pparticle)
    {
 
-      //auto estatus = 
-      
+
       ::acme::department::initialize(pparticle);
 
-      //if (!estatus)
-      //{
-
-      //   return estatus;
-
-      //}
-
-      //return true;
+      defer_create_synchronization();
 
    }
 
@@ -51,7 +41,7 @@ namespace write_text
    font_enumeration* fonts::enumeration(const ::scoped_string & scopedstrFontBranch)
    {
 
-      _synchronous_lock syncronouslock(synchronization());
+      _synchronous_lock syncronouslock(synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       ::string strFontBranch = scopedstrFontBranch;
 
@@ -83,7 +73,7 @@ namespace write_text
    void fonts::enumerate_fonts(const ::scoped_string & scopedstrFontBranch)
    {
 
-      _synchronous_lock syncronouslock(synchronization());
+      _synchronous_lock syncronouslock(synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       ::pointer < ::write_text::font_enumeration > pfontenumeration;
 
@@ -105,7 +95,7 @@ namespace write_text
       if (strFontBranch == "system")
       {
 
-         pfontenumeration = __øcreate < ::write_text::font_enumeration >();
+         pfontenumeration = øcreate < ::write_text::font_enumeration >();
 
       }
       else
@@ -113,7 +103,7 @@ namespace write_text
 
          auto pfactory = system()->factory("font_enumeration", strFontBranch);
 
-         pfontenumeration = __øcreate < ::write_text::font_enumeration >(pfactory);
+         pfontenumeration = øcreate < ::write_text::font_enumeration >(pfactory);
 
       }
 
@@ -137,7 +127,7 @@ namespace write_text
 
          pfontenumeration->enumerate_fonts();
 
-         _synchronous_lock syncronouslock(synchronization());
+         _synchronous_lock syncronouslock(synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          m_mapFontEnumeration[scopedstrFontBranch] = pfontenumeration;
 
@@ -156,17 +146,17 @@ namespace write_text
    }
 
 
-   double fonts::font_similarity(const ::string & strSystem, const ::string & strUser)
+   double fonts::font_similarity(const ::scoped_string & scopedstrSystem, const ::scoped_string & scopedstrUser)
    {
 
-      if (strSystem.is_empty() || strUser.is_empty())
+      if (scopedstrSystem.is_empty() || scopedstrUser.is_empty())
       {
 
          return 0.0;
 
       }
 
-      if (strSystem.case_insensitive_order(strUser) == 0)
+      if (scopedstrSystem.case_insensitive_order(scopedstrUser) == 0)
       {
 
          return 1.0;

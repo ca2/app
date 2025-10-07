@@ -139,13 +139,13 @@
 ////#endif
 ////
 ////
-////#define C_NEW __allocate<  >(c_class::s_cclass)
+////#define C_NEW øallocate<  >(c_class::s_cclass)
 //
 //
 //#if !defined(NO_ACME_MEMORY_MANAGEMENT)
 //
 //
-//void* MEMORY_DECL operator new(size_t nSize, const char * pszFileName, int nLine) new_throw_spec
+//void* MEMORY_DECL operator new(size_t nSize, const_char_pointer pszFileName, int nLine) new_throw_spec
 //{
 //
 //   return ::operator new(nSize, _NORMAL_BLOCK, pszFileName, nLine);
@@ -153,7 +153,7 @@
 //}
 //
 //
-//void* MEMORY_DECL operator new[](size_t nSize, const char * pszFileName, int nLine) new_throw_spec
+//void* MEMORY_DECL operator new[](size_t nSize, const_char_pointer pszFileName, int nLine) new_throw_spec
 //{
 //
 //   return ::operator new[](nSize, _NORMAL_BLOCK, pszFileName, nLine);
@@ -161,7 +161,7 @@
 //}
 //
 //
-//void MEMORY_DECL operator delete(void* pData, const char * /* pszFileName */, int /* nLine */) del_throw_spec
+//void MEMORY_DECL operator delete(void* pData, const_char_pointer /* pszFileName */, int /* nLine */) del_throw_spec
 //{
 //
 //   ::operator delete(pData, _NORMAL_BLOCK, nullptr, -1);
@@ -169,7 +169,7 @@
 //}
 //
 //
-//void MEMORY_DECL operator delete[](void* pData, const char * /* pszFileName */, int /* nLine */) del_throw_spec
+//void MEMORY_DECL operator delete[](void* pData, const_char_pointer /* pszFileName */, int /* nLine */) del_throw_spec
 //{
 //
 //   ::operator delete(pData, _NORMAL_BLOCK, nullptr, -1);
@@ -177,7 +177,7 @@
 //}
 //
 //
-//void* MEMORY_DECL operator new(size_t nSize, int nType, const char * pszFileName, int nLine)
+//void* MEMORY_DECL operator new(size_t nSize, int nType, const_char_pointer pszFileName, int nLine)
 //{
 //
 //#if MEMDLEAK
@@ -193,7 +193,7 @@
 //}
 //
 //
-//void MEMORY_DECL operator delete(void* p, int nType, const char * /* pszFileName */, int /* nLine */)
+//void MEMORY_DECL operator delete(void* p, int nType, const_char_pointer /* pszFileName */, int /* nLine */)
 //{
 //
 //   memory_free_debug(p, nType);
@@ -201,7 +201,7 @@
 //}
 //
 //
-//void* MEMORY_DECL operator new[](size_t nSize, int nType, const char * pszFileName, int nLine)
+//void* MEMORY_DECL operator new[](size_t nSize, int nType, const_char_pointer pszFileName, int nLine)
 //{
 //
 //   return ::operator new(nSize, nType, pszFileName, nLine);
@@ -209,7 +209,7 @@
 //}
 //
 //
-//void MEMORY_DECL operator delete[](void* p, int nType, const char * pszFileName, int nLine)
+//void MEMORY_DECL operator delete[](void* p, int nType, const_char_pointer pszFileName, int nLine)
 //{
 //
 //   ::operator delete(p, nType, pszFileName, nLine);

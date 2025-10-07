@@ -273,7 +273,7 @@ throw ::interface_only();
 
 ::aura::Resource resource;
 
-if(!resource.ReadResource(*file.get_memory(), (unsigned int) MAKEINTRESOURCE(pszId), pszType))
+if(!resource.ReadResource(*file.get_memory(), (unsigned int) MAKEINTRESOURCE(scopedstrId), pszType))
 
 return false;
 

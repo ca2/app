@@ -44,7 +44,7 @@ namespace acme
 
       //static ::acme::library* loading_library();
 
-      //virtual bool open_library(string strTitle = "");
+      //virtual bool open_library(const ::scoped_string & scopedstrTitle = "");
 
       //library * get_library();
 
@@ -86,8 +86,8 @@ namespace acme
       //virtual string get_root();
 
 
-      //virtual ::pointer<::object>new_application(const ::string & strAppId);
-      //virtual void get_app_list(string_array & stra);
+      //virtual ::pointer<::object>new_application(const ::scoped_string & scopedstrAppId);
+      //virtual void get_app_list(string_array_base & stra);
 
       
       //virtual ::matter* new_object(const ::scoped_string & scopedstrClass);
@@ -98,30 +98,30 @@ namespace acme
       //virtual string get_app_id(const ::scoped_string & scopedstrAppName);
       //virtual string get_app_name(const ::scoped_string & scopedstrAppId);
 
-      //virtual void get_extension_list(string_array & stra);
+      //virtual void get_extension_list(string_array_base & stra);
 
 
-      // virtual ::matter * factory_new(::particle * pparticle, const char * lpszClass);
+      // virtual ::matter * factory_new(::particle * pparticle, const_char_pointer lpszClass);
 
 
-      //virtual ::pointer<::matter>factory_create(const char * lpszClass);
-      //virtual bool factory_has_object_class(const char * lpszClass);
+      //virtual ::pointer<::matter>factory_create(const_char_pointer lpszClass);
+      //virtual bool factory_has_object_class(const_char_pointer lpszClass);
 
-      //library_object_allocator_base * find_allocator(const char * lpszClass);
+      //library_object_allocator_base * find_allocator(const_char_pointer lpszClass);
 
       //virtual void initialize_factory();
 
 
       //virtual bool add_factory_item();
 
-      //virtual ::pointer<::factory::factory>& factory(const ::string & strComponent, const ::string & strImplementation);
+      //virtual ::pointer<::factory::factory>& factory(const ::scoped_string & scopedstrComponent, const ::scoped_string & scopedstrImplementation);
 
-      //virtual ::pointer<::factory::factory>& factory(const ::string & strLibrary);
+      //virtual ::pointer<::factory::factory>& factory(const ::scoped_string & scopedstrLibrary);
 
-      //virtual void _load_factory(::pointer<::factory::factory>& pfactory, const ::string& strComponent);
+      //virtual void _load_factory(::pointer<::factory::factory>& pfactory, const ::scoped_string & scopedstrComponent);
 
-      //virtual void factory_exchange(const ::string & strName = nullptr, ::factory::factory * pfactory = nullptr);
-      //virtual ::pointer<::factory::factory>create_factory(const ::string& strLibrary);
+      //virtual void factory_exchange(const ::scoped_string & scopedstrName = nullptr, ::factory::factory * pfactory = nullptr);
+      //virtual ::pointer<::factory::factory>create_factory(const ::scoped_string & scopedstrLibrary);
 
       virtual ::factory::factory_pointer & factory() const override;
 
@@ -169,7 +169,7 @@ virtual void initialize_factory() override                              \
 {
 
 
-#define CREATE_OBJECT_ENTRY(name, TYPE) m_allocatorptra.add(__allocate library_object_allocator < TYPE > (name));
+#define CREATE_OBJECT_ENTRY(name, TYPE) m_allocatorptra.add(øallocate library_object_allocator < TYPE > (name));
 
 #define END_CREATE_OBJECT }
 
@@ -214,7 +214,7 @@ CLASS_DECL_EXPORT ::acme::library * libname ## _ ## get_new_library(::particle *
 //
 //      }
 //      
-//      auto pfactoryitem = __allocate ::factory::factory_item< TYPE, BASE_TYPE > ();
+//      auto pfactoryitem = øallocate ::factory::factory_item< TYPE, BASE_TYPE > ();
 //
 //      factory_item < BASE_TYPE >(atomSource) = pfactoryitem;
 //
@@ -227,16 +227,16 @@ CLASS_DECL_EXPORT ::acme::library * libname ## _ ## get_new_library(::particle *
 //
 //
 
-CLASS_DECL_ACME string implementation_name(const ::string & strComponent, const ::string & strImplementation);
+CLASS_DECL_ACME string implementation_name(const ::scoped_string & scopedstrComponent, const ::scoped_string & scopedstrImplementation);
 
 
-CLASS_DECL_ACME string library_name(const ::string & strComponent, const ::string & strImplementation);
+CLASS_DECL_ACME string library_name(const ::scoped_string & scopedstrComponent, const ::scoped_string & scopedstrImplementation);
 
 
-CLASS_DECL_ACME string factory_name(const ::string & strLibrary);
+CLASS_DECL_ACME string factory_name(const ::scoped_string & scopedstrLibrary);
 
 
-CLASS_DECL_ACME string library_filter(const ::string & str);
+CLASS_DECL_ACME string library_filter(const ::scoped_string & scopedstr);
 
 
 

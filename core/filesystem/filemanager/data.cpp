@@ -9,8 +9,8 @@
 #include "acme/handler/request.h"
 #include "aura/graphics/image/image.h"
 #include "aura/graphics/write_text/font.h"
-#include "base/user/user/impact.h"
-#include "base/user/user/multiple_document_template.h"
+#include "berg/user/user/impact.h"
+#include "berg/user/user/multiple_document_template.h"
 #include "core/platform/application.h"
 
 
@@ -87,7 +87,7 @@ namespace filemanager
       //   return estatus;
       m_typeatomFileList = ::type < file_list >();
       //}
-      __øconstruct(m_pfont);
+      øconstruct(m_pfont);
 
       m_pfont->create_font("Verdana", 14_px);
 
@@ -378,7 +378,7 @@ browse(pathInitialBrowse, ::e_source_initialize);
 //   }
 
 
-   string data::get_last_browse_path(::particle * pparticle, const ::string & pszDefault)
+   string data::get_last_browse_path(::particle * pparticle, const ::scoped_string & scopedstrDefault)
    {
 
       string strPath;
@@ -417,7 +417,7 @@ browse(pathInitialBrowse, ::e_source_initialize);
 
       }
 
-    /*  if (pszDefault != nullptr && strlen(pszDefault) > 0)
+    /*  if (scopedstrDefault != nullptr && strlen(scopedstrDefault) > 0)
       {
 
          strPath = pszDefault;

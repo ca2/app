@@ -14,8 +14,10 @@ namespace file
 
 
 
-CLASS_DECL_ACME string file_friendly_transform(string str, bool bTransformSlashes)
+CLASS_DECL_ACME string file_friendly_transform(const ::scoped_string & scopedstr, bool bTransformSlashes)
 {
+
+   ::string str(scopedstr);
 
    str.replace_with("_", ":");
    str.replace_with("_", "\\");

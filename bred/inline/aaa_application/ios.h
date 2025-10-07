@@ -25,7 +25,7 @@ int main(int argc, char * argv[])
 
 //      {
 
-         auto psystem = __allocate ::aura::system();
+         auto psystem = øallocate ::aura::system();
          
          psystem->application_initialize();
 

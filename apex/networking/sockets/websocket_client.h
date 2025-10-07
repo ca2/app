@@ -53,17 +53,17 @@ namespace sockets
 
       websocket_client();
       
-      //websocket_client(const string & host, ::networking::port_t port, const string & url);
+      //websocket_client(const ::scoped_string & scopedstrHost, ::networking::port_t port, const string & url);
       ~websocket_client() override;
 
 
-      virtual void initialize_websocket_client(const string & url, const ::string & strProtocol);
+      virtual void initialize_websocket_client(const string & url, const ::scoped_string & scopedstrProtocol);
 
       virtual void InitSSLClient() override;
 
       bool http_request_step() override;
 
-      void OnLine(const string &) override;
+      void OnLine(const ::scoped_string & scopedstrLine) override;
 
       void OnHeaderComplete() override;
 
@@ -82,15 +82,15 @@ namespace sockets
       virtual void OnRawData(char *buf, memsize len) override;
 
       virtual void on_websocket_data(unsigned char * pdata, int len);
-      virtual void on_websocket_data(string str);
+      virtual void on_websocket_data(const ::scoped_string & scopedstr);
 
       virtual bool client_ping_pong_ok();
 
       virtual memory get_client_send(int fin, memory & memory, bool useMask);
-      virtual memory get_client_send(int fin, const char * src);
+      virtual memory get_client_send(int fin, const_char_pointer src);
 
-      virtual memory get_client_send_text(const char * src);
-      virtual memory get_client_send_text(const char * src, bool bMasked);
+      virtual memory get_client_send_text(const_char_pointer src);
+      virtual memory get_client_send_text(const_char_pointer src, bool bMasked);
       virtual memory get_client_send_binary(memory & memory);
 
 

@@ -1,9 +1,9 @@
 #include "framework.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "acme/handler/item.h"
 #include "acme/prototype/data/listener.h"
 #include "aura/graphics/draw2d/printer.h"
-#include "base/user/user/print_task.h"
+#include "berg/user/user/print_task.h"
 #include "core/platform/application.h"
 #include "core/user/simple/printer_list_impact.h"
 #include "core/user/simple/mesh_data.h"
@@ -26,7 +26,7 @@ void simple_printer_list_impact::install_message_routing(::channel * pchannel)
 {
 
    simple_list_impact::install_message_routing(pchannel);
-   MESSAGE_LINK(e_message_create, pchannel, this, &simple_printer_list_impact::on_message_create);
+   USER_MESSAGE_LINK(::user::e_message_create, pchannel, this, &simple_printer_list_impact::on_message_create);
 
 }
 
@@ -58,7 +58,7 @@ void simple_printer_list_impact::on_message_create(::message::message * pmessage
 //   PRINTER_INFO_1  * infoa = (PRINTER_INFO_1 * ) malloc(cbNeeded);
 //   ::EnumPrinters(PRINTER_ENUM_LOCAL | PRINTER_ENUM_CONNECTIONS, nullptr, 1, (unsigned char *) infoa, cbNeeded, &cbNeeded, &cbReturned);
 //
-//   string_array stra;
+//   string_array_base stra;
 //
 //   for(unsigned int i = 0; i < cbReturned; i++)
 //   {
@@ -99,7 +99,7 @@ bool simple_printer_list_impact::on_click(::item * pitem, ::user::mouse * pmouse
 
    ::pointer<::user::print_task>pprinttask;
 
-   __øconstruct(pprinttask);
+   øconstruct(pprinttask);
 
    pprinttask->increment_reference_count();
 

@@ -80,8 +80,8 @@ namespace axis
       ::pointer<::account::user_set>              userset() override;
 
 
-      //virtual ::pointer<regex>create_regular_expression(const ::string & pszStyle, const string& str) override;
-      //virtual ::pointer<regex_context>create_regular_expression_context(const ::string & pszStyle, int iCount) override;
+      //virtual ::pointer<regex>create_regular_expression(const ::scoped_string & scopedstrStyle, const ::scoped_string & scopedstr) override;
+      //virtual ::pointer<regex_context>create_regular_expression_context(const ::scoped_string & scopedstrStyle, int iCount) override;
 
 
       //virtual void thread_loop() override;

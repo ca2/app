@@ -65,8 +65,6 @@ namespace core
       factory()->add_factory_item < ::core::session, ::platform::session >();
       factory()->add_factory_item < ::core::user, ::user::user >();
 
-
-
    }
 
    // ::core::session * application::get_session()
@@ -94,7 +92,7 @@ namespace core
 
       //auto estatus =
 
-      ::base::application::initialize(pparticle);
+      ::berg::application::initialize(pparticle);
 
       //if (!estatus)
       //{
@@ -108,12 +106,12 @@ namespace core
    }
 
 
-   ::pointer<progress::real>application::show_progress(::user::interaction * puiParent, const ::string & pszTitle, ::collection::count iProgressCount)
+   ::pointer<progress::real>application::show_progress(::user::interaction * puiParent, const ::scoped_string & scopedstrTitle, ::collection::count iProgressCount)
    {
 
-      auto pprogresscontrol = __create_new <  ::userex::progress_control >();
+      auto pprogresscontrol = øcreate_new <  ::userex::progress_control >();
 
-      pprogresscontrol->defer_show(puiParent, pszTitle, iProgressCount);
+      pprogresscontrol->defer_show(puiParent, scopedstrTitle, iProgressCount);
 
       return ::transfer(pprogresscontrol);
 
@@ -248,7 +246,7 @@ namespace core
       if (!pfilemanager)
       {
 
-         ((application *)this)->__construct_new(pfilemanager);
+         ((application *)this)->øconstruct_new(pfilemanager);
 
          pfilemanager->initialize_filemanager_component(((application *)this));
 
@@ -262,7 +260,7 @@ namespace core
    void application::create_options_footer(::user::interaction * puserinteraction)
    {
 
-      ::base::application::create_options_footer(puserinteraction);
+      ::berg::application::create_options_footer(puserinteraction);
 
       //if (m_bEnableAutoStartOption)
       //{
@@ -275,13 +273,13 @@ namespace core
 
 
 
-   bool application::handle_call(::payload & payload, const ::string & strObject, const ::string & strMember, ::property_set & propertyset)
+   bool application::handle_call(::payload & payload, const ::scoped_string & scopedstrObject, const ::scoped_string & scopedstrMember, ::property_set & propertyset)
    {
 
-      if (strObject == "pane_tab_impact")
+      if (scopedstrObject == "pane_tab_impact")
       {
 
-         if (strMember == "add_pane_tab_impact_handler_library")
+         if (scopedstrMember == "add_pane_tab_impact_handler_library")
          {
 
             string strLibrary = propertyset["handler_library"];
@@ -294,7 +292,7 @@ namespace core
 
       }
 
-      return ::bred::application::handle_call(payload, strObject, strMember, propertyset);
+      return ::bred::application::handle_call(payload, scopedstrObject, scopedstrMember, propertyset);
 
    }
 

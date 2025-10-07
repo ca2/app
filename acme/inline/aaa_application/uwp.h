@@ -4,7 +4,7 @@
 int main(Array < String ^ > ^ stra)
 {
 
-   auto psystem = __allocate ::platform::system();
+   auto psystem = øallocate ::platform::system();
 
    psystem->application_initialize();
 

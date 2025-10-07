@@ -20,8 +20,8 @@ struct trace_statement_struct
    ::particle *            m_pparticleLogging = nullptr;
    enum_trace_level        m_etracelevel = e_trace_level_information;
    enum_trace_category     m_etracecategory = e_trace_category_general;
-   const char *            m_pszFunction = nullptr;
-   const char *            m_pszFile = nullptr;
+   const_char_pointer           m_pszFunction = nullptr;
+   const_char_pointer           m_pszFile = nullptr;
    int                     m_iLine = -1;
 
    trace_statement_struct(class tracer * ptracer) : m_ptracer(ptracer) {}
@@ -56,7 +56,7 @@ public:
    inline trace_statement & operator()(::particle * pparticle) { m_pparticleLogging = pparticle; return *this; }
    inline trace_statement & operator()(enum_trace_level etracelevel) { m_etracelevel = etracelevel; return *this; }
    inline trace_statement & operator()(enum_trace_category etracecategory) { m_etracecategory = etracecategory; return *this; }
-   inline trace_statement & operator()(const ::ansi_character * pszFunction, const ::ansi_character * pszFile, int iLine)
+   inline trace_statement & operator()(const_char_pointer pszFunction, const_char_pointer pszFile, int iLine)
    {
       m_pszFunction = pszFunction;
       m_pszFile = pszFile;
@@ -65,47 +65,47 @@ public:
    }
 
 
-   void formatf_output_arguments(const ::ansi_character * psz, va_list & arguments);
+   void formatf_output_arguments(const_char_pointer psz, va_list & arguments);
 
-   #if defined(__STD_FORMAT__)
+   ///#if defined(__STD_FORMAT__)
    
-   template<typename... Ts>
-   void format_output(const std::format_string<Ts...> fmt, Ts&&... args)
+   template<typename... Args>
+   void format_output(std::format_string<Args...> fmt, Args&&... args)
    {
 
       string str;
 
-      str.format(fmt, ::std::forward < Ts >(args)...);
+      str.format(fmt, ::std::forward < Args >(args)...);
 
       operator << (str);
 
    }
 
-   //trace_statement & operator()(const ::ansi_character * pszFormat, ...);
+   //trace_statement & operator()(const_char_pointer pszFormat, ...);
 
-   template<typename... Ts>
-   trace_statement & operator()(const std::format_string<Ts...> fmt, Ts&&... args)
+   template<typename... Args>
+   trace_statement & operator()(std::format_string<Args...> fmt, Args&&... args)
    {
 
-      return format_output(fmt, ::std::forward < Ts >(args)...);
+      return format_output(fmt, ::std::forward < Args >(args)...);
 
    }
-   #endif
+   //#endif
    
    
-   //void format_output_arguments(const ::ansi_character * psz, va_list & arguments)
+   //void format_output_arguments(const_char_pointer psz, va_list & arguments)
 //{
 
 //   string str;
 
-//   str.formatf_arguments(psz, arguments);
+//   str.formatf_arguments(scopedstr, arguments);
 
 //   operator << (str);
 
 //}
 
 
-//tracer & format_output(const ::ansi_character * psz, ...)
+//tracer & format_output(const_char_pointer psz, ...)
 //{
 
 //   va_list arguments;
@@ -114,7 +114,7 @@ public:
 
 //   string str;
 
-//   str.formatf_arguments(psz, arguments);
+//   str.formatf_arguments(scopedstr, arguments);
 
 //   operator << (str);
 

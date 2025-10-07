@@ -94,11 +94,11 @@ namespace platform
    //void request(::request * prequest) override{}
 
 
-   //virtual string matter_as_string(const ::string & pszMatter,const ::string & pszMatter2){}
-   //virtual string directory()->matter(const ::string & pszMatter,const ::string & pszMatter2){}
+   //virtual string matter_as_string(const ::scoped_string & scopedstrMatter,const ::scoped_string & scopedstrMatter2){}
+   //virtual string directory()->matter(const ::scoped_string & scopedstrMatter,const ::scoped_string & scopedstrMatter2){}
 
-   //bool apex_session_layer::is_inside_time_dir(const ::string & pszPath){}
-   //bool apex_session_layer::file_is_read_only(const ::string & pszPath){}
+   //bool apex_session_layer::is_inside_time_dir(const ::scoped_string & scopedstrPath){}
+   //bool apex_session_layer::file_is_read_only(const ::scoped_string & scopedstrPath){}
 
    // Long PhRESSing time
    // time in ::times that a pressing is considered a double click
@@ -115,7 +115,7 @@ namespace platform
 
    //bool apex_session_layer::on_create_frame_window(){}
 
-   //virtual string account_get_user_sessid(const ::string & str) override{}
+   //virtual string account_get_user_sessid(const ::scoped_string & scopedstr) override{}
 
    // apex commented
    //void apex_session_layer::translate_os_key_message(::user::key * pkey){}
@@ -132,7 +132,7 @@ namespace platform
    //virtual ::user::style * get_user_style() const{}
 
 
-   //void apex_session_layer::locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema) override{}
+   //void apex_session_layer::locale_schema_matter(string_array_base & stra, const string_array_base & straMatterLocator, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema) override{}
    //virtual string get_locale_schema_dir() override{}
 
 
@@ -176,7 +176,7 @@ namespace platform
    // apex commented
    //::user::keyboard& keyboard(){}
 
-   bool apex_session_layer::open_by_file_extension(const ::string& pszPathName, ::request* prequest)
+   bool apex_session_layer::open_by_file_extension(const ::scoped_string & scopedstrPathName, ::request* prequest)
    {
 
       return false;
@@ -210,7 +210,7 @@ namespace platform
    }
 
 
-   bool apex_session_layer::is_licensed(const ::string& pszId, bool bInteractive)
+   bool apex_session_layer::is_licensed(const ::scoped_string & scopedstrId, bool bInteractive)
    {
 
       return false;
@@ -218,7 +218,7 @@ namespace platform
    }
 
 
-   bool apex_session_layer::get_auth(const string& pszForm, string& strUsername, string& strPassword)
+   bool apex_session_layer::get_auth(const ::scoped_string & scopedstrForm, string& strUsername, string& strPassword)
    {
 
       return false;
@@ -229,7 +229,7 @@ namespace platform
    //void on_instantiate_application(::platform::application* papp) override{}
 
 
-   //::application * application_get(const ::string & pszAppId, bool bCreate, bool bSynch, ::request * prequest) override{}
+   //::application * application_get(const ::scoped_string & scopedstrAppId, bool bCreate, bool bSynch, ::request * prequest) override{}
 
    ::user::e_key apex_session_layer::key_modifiers()
    {
@@ -280,7 +280,7 @@ namespace platform
    // //virtual ::collection::count get_desk_monitor_count(){}
    // //virtual bool  get_desk_monitor_rect(::collection::index iMonitor, ::int_rectangle * prectangle){}
 
-   // virtual void  get_monitor(int_rectangle_array & rectaMonitor, int_rectangle_array & rectaIntersect, const ::int_rectangle & rectangle){}
+   // virtual void  get_monitor(int_rectangle_array_base & rectaMonitor, int_rectangle_array_base & rectaIntersect, const ::int_rectangle & rectangle){}
 
    // // apex commented
    // //virtual ::collection::index initial_frame_position(::int_rectangle * prectangle, const ::int_rectangle & rectangle, bool bMove, ::user::interaction * pinteraction){}
@@ -306,9 +306,9 @@ namespace platform
    //virtual ::collection::index get_ui_workspace(::user::interaction * pinteraction){}
 
 
-   //void apex_session_layer::defer_instantiate_user_theme(const ::string & pszUiInteractionLibrary){}
-   //::pointer<::user::theme>instantiate_user_theme(const ::string & pszExperienceLibrary, ::apex::application * papp){}
-   //::pointer<::user::theme>get_user_theme(const ::string & pszExperienceLibrary, ::apex::application * papp){}
+   //void apex_session_layer::defer_instantiate_user_theme(const ::scoped_string & scopedstrUiInteractionLibrary){}
+   //::pointer<::user::theme>instantiate_user_theme(const ::scoped_string & scopedstrExperienceLibrary, ::apex::application * papp){}
+   //::pointer<::user::theme>get_user_theme(const ::scoped_string & scopedstrExperienceLibrary, ::apex::application * papp){}
 
 
    //void apex_session_layer::_001OnDefaultTabPaneDrawTitle(::user::tab_pane & pane, ::user::tab * ptab, ::draw2d::graphics_pointer & pgraphics, const ::int_rectangle & rectangle, ::draw2d::brush_pointer & pbrushText){}
@@ -382,7 +382,7 @@ namespace platform
    // apex commented
    //virtual ::write_text::font_list* get_single_column_font_list(){}
 
-   //void apex_session_layer::on_frame_window_drop_files(::user::interaction* pinteraction, ::file::path_array& patha){}
+   //void apex_session_layer::on_frame_window_drop_files(::user::interaction* pinteraction, ::file::path_array_base& patha){}
 
 
    //void request(::request * prequest) override{}
@@ -400,12 +400,12 @@ namespace platform
    //void apex_session_layer::check_topic_file_change(){}
 
 
-   void apex_session_layer::launch_app(const ::string& psz)
+   void apex_session_layer::launch_app(const ::scoped_string & scopedstr)
    {
    }
 
 
-   void apex_session_layer::install_app(const ::string& psz)
+   void apex_session_layer::install_app(const ::scoped_string & scopedstr)
    {
    }
 
@@ -442,7 +442,7 @@ namespace platform
    }
 
 
-   void apex_session_layer::set_app_title(const ::string& pszAppId, const ::string& pszTitle)
+   void apex_session_layer::set_app_title(const ::scoped_string & scopedstrAppId, const ::scoped_string & scopedstrTitle)
    {
    }
 
@@ -460,7 +460,7 @@ namespace platform
    }
 
 
-   ::string_array apex_session_layer::get_user_wallpaper()
+   ::string_array_base apex_session_layer::get_user_wallpaper()
    {
 
       return {};

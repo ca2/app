@@ -1,5 +1,6 @@
 // Created by camilo on 2022-04-25 21:02 <3ThomasBorregaardSorensen!!
 #include "framework.h"
+#include "_gpu_opengl.h"
 #include "approach.h"
 #include "device.h"
 #include "object.h"
@@ -10,12 +11,14 @@
 #include "assimp.h"
 #include "approach.h"
 
+
+
 //#include <GLUT/GLUT.h>
 
-//GLuint loadDDS(const char * imagepath);
+//GLuint loadDDS(const_char_pointer imagepath);
 
 
-const char * opengl_error_string(int iError)
+const_char_pointer opengl_error_string(int iError)
 {
    
    switch(iError)
@@ -86,7 +89,7 @@ namespace gpu_opengl
 
 #if !defined(__APPLE__) && !defined(WINDOWS)
        
-      ::assimp::load_obj(memory.data(), memory.size(), m_indices, m_vertices, m_uvs, m_normals);
+      ::assimp::load_obj(memory.data(), memory.size(), m_indexes, m_vertexes, m_uvs, m_normals);
 
 #else
 
@@ -131,22 +134,22 @@ namespace gpu_opengl
 
 
       int iErrorN;
-      const char * pszErrorN = nullptr;
+      const_char_pointer pszErrorN = nullptr;
 
       while ((iErrorN = glGetError()))
       {
        
-         pszErrorN = (const char *)opengl_error_string(iErrorN);
+         pszErrorN = (const_char_pointer )opengl_error_string(iErrorN);
 
       }
 
 #ifdef __APPLE__
-      glGenVertexArraysAPPLE(1, (GLuint *) &m_vao_vertices); // vertext array object
+      glGenVertexArraysAPPLE(1, (GLuint *) &m_vao_vertexes); // vertext array object
 #else
-      glGenVertexArrays(1, (GLuint *) &m_vao_vertices); // vertext array object
+      glGenVertexArrays(1, (GLuint *) &m_vao_vertexes); // vertext array object
 #endif
       int iError2 = glGetError();
-      auto pszError2 = (const char *)opengl_error_string(iError2);
+      auto pszError2 = (const_char_pointer )opengl_error_string(iError2);
       if(pszError2)
       {
          
@@ -154,12 +157,12 @@ namespace gpu_opengl
          
       }
 #ifdef __APPLE__
-      glBindVertexArrayAPPLE(m_vao_vertices);
+      glBindVertexArrayAPPLE(m_vao_vertexes);
 #else
-      glBindVertexArray(m_vao_vertices);
+      glBindVertexArray(m_vao_vertexes);
 #endif
       int iErrorA = glGetError();
-      auto pszErrorA = (const char *)opengl_error_string(iErrorA);
+      auto pszErrorA = (const_char_pointer )opengl_error_string(iErrorA);
       if(pszErrorA)
       {
          
@@ -167,9 +170,9 @@ namespace gpu_opengl
          
       }
 
-      glGenBuffers(1, (GLuint *)&m_vbo_vertices); // vertex buffer object
+      glGenBuffers(1, (GLuint *)&m_vbo_vertexes); // vertex buffer object
       int iError1 = glGetError();
-      auto pszError1 = (const char *) opengl_error_string(iError1);
+      auto pszError1 = (const_char_pointer )opengl_error_string(iError1);
       if(pszError1)
       {
          
@@ -178,9 +181,9 @@ namespace gpu_opengl
       }
 
 
-      glBindBuffer(GL_ARRAY_BUFFER, m_vbo_vertices);
+      glBindBuffer(GL_ARRAY_BUFFER, m_vbo_vertexes);
       int iError5 = glGetError();
-      auto pszError5 = (const char *)opengl_error_string(iError5);
+      auto pszError5 = (const_char_pointer )opengl_error_string(iError5);
       if(pszError5)
       {
          
@@ -188,24 +191,24 @@ namespace gpu_opengl
          
       }
 
-      auto byteCount1 = m_vertices.byte_count();
-      auto data1 = m_vertices.data();
+      auto byteCount1 = m_vertexes.byte_count();
+      auto data1 = m_vertexes.data();
 
       glBufferData(GL_ARRAY_BUFFER, byteCount1, data1, GL_STATIC_DRAW);
       int iError4 = glGetError();
-      auto pszError4 = (const char *)opengl_error_string(iError4);
+      auto pszError4 = (const_char_pointer )opengl_error_string(iError4);
       if(pszError4)
       {
          
          information() << "error " << pszError4;
          
       }
-      //glEnableVertexAttribArray(m_vao_vertices);
+      //glEnableVertexAttribArray(m_vao_vertexes);
       //int iError3 = glGetError();
-      //auto pszError3 = (const char *)gluErrorString(iError3);
+      //auto pszError3 = (const_char_pointer )gluErrorString(iError3);
 
       //glVertexAttribPointer(
-      //   m_vao_vertices,  // attribute
+      //   m_vao_vertexes,  // attribute
       //   4,                  // number of elements per vertex, here (x,y,z,w)
       //   GL_FLOAT,           // the type of each element
       //   GL_FALSE,           // take our values as-is
@@ -213,27 +216,27 @@ namespace gpu_opengl
       //   0                   // offset of first element
       //);
       //int iError6 = glGetError();
-      //auto pszError6 = (const char *)gluErrorString(iError6);
+      //auto pszError6 = (const_char_pointer )gluErrorString(iError6);
 
       //glGenBuffers(1, &m_vbo_normals); // vertex buffer object
       //int iError7 = glGetError();
-      //auto pszError7 = (const char *)gluErrorString(iError7);
+      //auto pszError7 = (const_char_pointer )gluErrorString(iError7);
 
       //glGenVertexArrays(1, &m_vao_normals); // vertext array object
       //int iError8 = glGetError();
-      //auto pszError8 = (const char *)gluErrorString(iError8);
+      //auto pszError8 = (const_char_pointer )gluErrorString(iError8);
 
       //glBindBuffer(GL_ARRAY_BUFFER, m_vbo_normals);
       //int iError11 = glGetError();
-      //auto pszError11 = (const char *)gluErrorString(iError11);
+      //auto pszError11 = (const_char_pointer )gluErrorString(iError11);
 
       //glBufferData(GL_ARRAY_BUFFER, m_normals.byte_count(), m_normals.data(), GL_STATIC_DRAW);
       //int iError10 = glGetError();
-      //auto pszError10 = (const char *)gluErrorString(iError10);
+      //auto pszError10 = (const_char_pointer )gluErrorString(iError10);
 
       //glEnableVertexAttribArray(m_vao_normals);
       //int iError9 = glGetError();
-      //auto pszError9 = (const char *)gluErrorString(iError9);
+      //auto pszError9 = (const_char_pointer )gluErrorString(iError9);
 
       //glVertexAttribPointer(
       //   m_vao_normals, // attribute
@@ -244,13 +247,13 @@ namespace gpu_opengl
       //   0              // offset of first element
       //);
       //int iError12 = glGetError();
-      //auto pszError12 = (const char *)gluErrorString(iError12);
+      //auto pszError12 = (const_char_pointer )gluErrorString(iError12);
 
 
       //GLuint vertexbuffer;
       //glGenBuffers(1, &vertexbuffer);
       //glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer);
-      //glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(glm::vec3), &vertices[0], GL_STATIC_DRAW);
+      //glBufferData(GL_ARRAY_BUFFER, vertexes.size() * sizeof(glm::vec3), &vertexes[0], GL_STATIC_DRAW);
 
 
       auto byteCount2 = m_uvs.byte_count();
@@ -263,19 +266,19 @@ namespace gpu_opengl
 
       //glGenBuffers(1, &m_ibo_elements);
       //int iError13 = glGetError();
-      //auto pszError13 = (const char *)gluErrorString(iError13);
+      //auto pszError13 = (const_char_pointer )gluErrorString(iError13);
 
       //glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_ibo_elements);
       //int iError16 = glGetError();
-      //auto pszError16 = (const char *)gluErrorString(iError16);
+      //auto pszError16 = (const_char_pointer )gluErrorString(iError16);
 
       //glBufferData(GL_ARRAY_BUFFER, m_normals.byte_count(), m_normals.data(), GL_STATIC_DRAW);
       //int iError14 = glGetError();
-      //auto pszError14 = (const char *)gluErrorString(iError14);
+      //auto pszError14 = (const_char_pointer )gluErrorString(iError14);
 
-      //glBufferData(GL_ARRAY_BUFFER, m_vertices.byte_count(), m_vertices.data(), GL_STATIC_DRAW);
+      //glBufferData(GL_ARRAY_BUFFER, m_vertexes.byte_count(), m_vertexes.data(), GL_STATIC_DRAW);
       //int iError15 = glGetError();
-      //auto pszError15 = (const char *)gluErrorString(iError15);
+      //auto pszError15 = (const_char_pointer )gluErrorString(iError15);
 
       // Load the texture
       m_payloadTexture = papproach->get_gpu_device()->load_dds(m_path+ ".uvmap.DDS");
@@ -299,9 +302,9 @@ namespace gpu_opengl
 
       }
 
-      // 1rst attribute buffer : vertices
+      // 1rst attribute buffer : vertexes
       glEnableVertexAttribArray(0);
-      glBindBuffer(GL_ARRAY_BUFFER, m_vbo_vertices);
+      glBindBuffer(GL_ARRAY_BUFFER, m_vbo_vertexes);
       glVertexAttribPointer(
          0,                  // attribute
          3,                  // size
@@ -323,7 +326,7 @@ namespace gpu_opengl
          (void *)0                          // array buffer offset
       );
 
-      auto sizeVertices = m_vertices.size();
+      auto sizeVertices = m_vertexes.size();
       // Draw the triangle !
       glDrawArrays(GL_TRIANGLES, 0, (GLsizei)sizeVertices);
 

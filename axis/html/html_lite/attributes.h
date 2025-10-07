@@ -28,22 +28,27 @@ public:
    string           m_strValue;
 
 
-   LiteHTMLElemAttr(const ::string & pszAttribName = nullptr, const ::string & pszAttribValue = nullptr)
+   LiteHTMLElemAttr(const ::scoped_string & scopedstrAttribName = nullptr, const ::scoped_string & scopedstrAttribValue = nullptr)
 
    {
       Init();
-      m_strName = pszAttribName;
+      m_strName = scopedstrAttribName;
 
-      m_strValue = pszAttribValue;
+      m_strValue = scopedstrAttribValue;
 
    }
+
 
    LiteHTMLElemAttr(const LiteHTMLElemAttr &rSource)
    {
+
       Init();
+
       m_strName = rSource.m_strName;
       m_strValue = rSource.m_strValue;
+
    }
+
 
    static void Init();
 
@@ -218,7 +223,7 @@ public:
     * @since 1.0
     * @author Gurmeet S. Kochar
     */
-   operator const char *() const
+   operator const_char_pointer () const
    { return (m_strValue); }
 
 // Private Operations
@@ -236,13 +241,13 @@ private:
     * @since 1.0
     * @author Gurmeet S. Kochar
     */
-   void putValue(::lite_html_reader * preader, const ::string & pszValue);
+   void putValue(::lite_html_reader * preader, const ::scoped_string & scopedstrValue);
 
 
 // Parsing Helpers
 public:
    // parses an attribute/value pair from the given string
-   character_count parseFromStr(::lite_html_reader * preader, const ::string & pszString);
+   character_count parseFromStr(::lite_html_reader * preader, const ::scoped_string & scopedstrString);
 
 
 };
@@ -298,7 +303,7 @@ public:
             /** DEEP COPY BEGIN */
             for (int iElem = 0; iElem < nElemCount; iElem++)
             {
-               if ((pItem = __raw_new LiteHTMLElemAttr(rSource[iElem])) == nullptr)
+               if ((pItem = øraw_new LiteHTMLElemAttr(rSource[iElem])) == nullptr)
                {
                   eraseAll();
                   throw ::exception(error_no_memory);
@@ -319,7 +324,7 @@ public:
 // Initialization
 public:
    // parses attribute/value pairs from the given string
-   character_count parseFromStr(::lite_html_reader * papp, const ::string & pszString, character_count iLen);
+   character_count parseFromStr(::lite_html_reader * papp, const ::scoped_string & scopedstrString, character_count iLen);
 
 
 
@@ -349,10 +354,10 @@ public:
     * @since 1.0
     * @author Gurmeet S. Kochar
     */
-   int getIndexFromName(const ::string & pszAttributeName) const
+   int getIndexFromName(const ::scoped_string & scopedstrAttributeName) const
 
    {
-      ASSERT(is_string_ok(pszAttributeName));
+      ASSERT(is_string_ok(scopedstrAttributeName));
 
       LiteHTMLElemAttr   *pItem = nullptr;
       for (int iElem = 0; iElem < getCount(); iElem++)
@@ -361,7 +366,7 @@ public:
             continue;
 
          // perform a CASE-INSENSITIVE search
-         if (pItem->m_strName.case_insensitive_order(pszAttributeName) == 0)
+         if (pItem->m_strName.case_insensitive_order(scopedstrAttributeName) == 0)
 
             return (iElem);
       }
@@ -392,12 +397,12 @@ public:
     * @since 1.0
     * @author Gurmeet S. Kochar
     */
-   LiteHTMLElemAttr operator[](const ::string & pszIndex) const
+   LiteHTMLElemAttr operator[](const ::scoped_string & scopedstrIndex) const
 
    {
-      ASSERT(is_string_ok(pszIndex));
+      ASSERT(is_string_ok(scopedstrIndex));
 
-      return ((*this)[getIndexFromName(pszIndex)]);
+      return ((*this)[getIndexFromName(scopedstrIndex)]);
 
    }
 
@@ -418,12 +423,12 @@ public:
     * @since 1.0
     * @author Gurmeet S. Kochar
     */
-   LiteHTMLElemAttr getAttribute(const ::string & pszIndex) const
+   LiteHTMLElemAttr getAttribute(const ::scoped_string & scopedstrIndex) const
 
    {
-      ASSERT(is_string_ok(pszIndex));
+      ASSERT(is_string_ok(scopedstrIndex));
 
-      return ((*this)[getIndexFromName(pszIndex)]);
+      return ((*this)[getIndexFromName(scopedstrIndex)]);
 
    }
 
@@ -454,9 +459,13 @@ public:
     * @since 1.0
     * @author Gurmeet S. Kochar
     */
-   string getValueFromName(const ::string & pszAttributeName) const
+   string getValueFromName(const ::scoped_string & scopedstrAttributeName) const
+   {
 
-   { return ((*this)[pszAttributeName].m_strValue); }
+      return ((*this)[scopedstrAttributeName].m_strValue);
+
+
+   }
 
 
 
@@ -478,7 +487,7 @@ public:
     * @since 1.0
     * @author Gurmeet S. Kochar
     */
-   LiteHTMLElemAttr* addAttribute(const ::string & lpszName, const ::string & pszValue);
+   LiteHTMLElemAttr* addAttribute(const ::scoped_string & scopedstrName, const ::scoped_string & scopedstrValue);
 
 
    /**
@@ -522,6 +531,6 @@ public:
 
 // Data Members
 private:
-   typedef address_array < LiteHTMLElemAttr * >   CElemAttrArray;
+   using CElemAttrArray = address_array_base < LiteHTMLElemAttr * >;
    CElemAttrArray   *m_parrAttrib;   // array of attributes/value pairs
 };

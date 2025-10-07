@@ -24,7 +24,7 @@ virtual public ::operating_system::dynamic_library
 public:
    
    
-   inline static const char *represented_component_name()
+   inline static const_char_pointer represented_component_name()
    {
       
       return "nano_dynamic_library";

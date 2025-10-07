@@ -13,7 +13,7 @@
 //
 //   //   {
 //
-//   //      auto psystem = __allocate ::apex::system();
+//   //      auto psystem = øallocate ::apex::system();
 //
 //   //      psystem->system_construct(&mainstruct, argc, argv);
 //
@@ -23,7 +23,7 @@
 //
 //   //}
 //
-//   auto psystem = __allocate ::apex::system();
+//   auto psystem = øallocate ::apex::system();
 //
 //   psystem->console_initialize();
 //
@@ -158,10 +158,10 @@
 //
 
 
-//static const char * s_pszBinRelocInitGetSymbol = "br_init_get_symbol";
+//static const_char_pointer s_pszBinRelocInitGetSymbol = "br_init_get_symbol";
 //
 //
-//const char * br_init_get_symbol()
+//const_char_pointer br_init_get_symbol()
 //{
 //
 //   return s_pszBinRelocInitGetSymbol;

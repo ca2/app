@@ -95,7 +95,7 @@ namespace linux
 
 
 
-//      int linux::get_file_extension_image(oswindow oswindow, const ::string & strExtension, e_file_attribute eattribute, e_icon eicon, color32_t crBk)
+//      int linux::get_file_extension_image(oswindow oswindow, const ::scoped_string & scopedstrExtension, e_file_attribute eattribute, e_icon eicon, color32_t crBk)
 //      {
 //
 //         int iImage;
@@ -108,7 +108,7 @@ namespace linux
 //
 //         {
 //
-//            synchronous_lock synchronouslock(this->synchronization());
+//            synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //            if (m_imagemap.lookup(imagekey, iImage))
 //            {
@@ -183,7 +183,7 @@ namespace linux
 ////         if (!b48 && shfi48.hIcon != nullptr)
 ////         {
 ////            ::DestroyIcon(shfi48.hIcon);
-////         }         synchronous_lock synchronouslock(this->synchronization());
+////         }         synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 ////
 ////         m_imagemap.set_at(imagekey, iImage);
 ////
@@ -548,7 +548,7 @@ pdirectorysystem->is(strPath))
       void shell::on_update_sizes_interest()
       {
 
-         synchronous_lock synchronouslock(this->synchronization());
+         synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          m_iaSize.erase_all();
 
@@ -647,8 +647,8 @@ pdirectorysystem->is(strPath))
                str.trim();
                /*HICON hicon16 = (HICON) ::LoadImage(nullptr, pcontext->directory()->matter(str + "/mainframe/icon.ico"), IMAGE_ICON, 16, 16, LR_LOADFROMFILE);
                HICON hicon48 = (HICON) ::LoadImage(nullptr, pcontext->directory()->matter(str + "/mainframe/icon.ico"), IMAGE_ICON, 48, 48, LR_LOADFROMFILE);
-               synchronous_lock sl1(m_pil48Hover->mutex());
-               synchronous_lock sl2(m_pil48->mutex());
+               synchronous_lock sl1(m_pil48Hover->mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+               synchronous_lock sl2(m_pil48->mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
                iImage = m_pil16->add_icon_os_data(hicon16);
                m_pil48Hover->add_icon_os_data(hicon48);
 
@@ -720,7 +720,7 @@ pdirectorysystem->is(strPath))
 
             string str = file()->as_string(imagekey.m_strPath);
 
-            string_array stra;
+            string_array_base stra;
 
             stra.add_lines(str);
 
@@ -868,7 +868,7 @@ pdirectorysystem->is(strPath))
 //
 //
 //
-//         synchronous_lock synchronouslock(m_pmutexQueue);
+//         synchronous_lock synchronouslock(m_pmutexQueue, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //         while (task_get_run())
 //         {
@@ -894,7 +894,7 @@ pdirectorysystem->is(strPath))
 //
 //               {
 //
-//                  synchronous_lock s(mutex());
+//                  synchronous_lock s(mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //                  m_imagemap.set_at(*pkey, iImage);
 //
@@ -914,7 +914,7 @@ pdirectorysystem->is(strPath))
 //
 
 
-//      int linux::get_image(oswindow oswindow, const ::string & strPath, e_file_attribute eattribute, e_icon eicon, color32_t crBk)
+//      int linux::get_image(oswindow oswindow, const ::scoped_string & scopedstrPath, e_file_attribute eattribute, e_icon eicon, color32_t crBk)
 //      {
 //
 //         int iImage = I32_MINIMUM;
@@ -947,7 +947,7 @@ pdirectorysystem->is(strPath))
 //
 //            {
 //
-//               synchronous_lock synchronouslock(this->synchronization());
+//               synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //               if (m_imagemap.lookup(imagekey, iImage))
 //               {
@@ -962,7 +962,7 @@ pdirectorysystem->is(strPath))
 //
 //            {
 //
-//               synchronous_lock synchronouslock(m_pmutexQueue);
+//               synchronous_lock synchronouslock(m_pmutexQueue, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //               m_keyptra.add(pstore);
 //
@@ -972,7 +972,7 @@ pdirectorysystem->is(strPath))
 //
 //            iImage = get_foo_image(nullptr, oswindow, imagekey, imagekey.m_cr);
 //
-//            synchronous_lock synchronouslock(this->synchronization());
+//            synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //            m_imagemap.set_at(imagekey, iImage);
 //
@@ -987,7 +987,7 @@ pdirectorysystem->is(strPath))
 
 
       int shell::get_image_by_file_extension(image_key & imagekey)
-      //int linux::get_image_foo(oswindow oswindow, const ::string & strExtension, e_file_attribute eattribute, e_icon eicon, color32_t crBk)
+      //int linux::get_image_foo(oswindow oswindow, const ::scoped_string & scopedstrExtension, e_file_attribute eattribute, e_icon eicon, color32_t crBk)
       {
 
          int iImage = I32_MINIMUM;
@@ -1018,7 +1018,7 @@ pdirectorysystem->is(strPath))
 
             {
 
-               synchronous_lock synchronouslock(this->synchronization());
+               synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
                if (m_imagemap.lookup(imagekey, iImage))
                {
@@ -1031,7 +1031,7 @@ pdirectorysystem->is(strPath))
 
             iImage = get_file_image(imagekey);
 
-            synchronous_lock synchronouslock(this->synchronization());
+            synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
             m_imagemap.set_at(imagekey, iImage);
 

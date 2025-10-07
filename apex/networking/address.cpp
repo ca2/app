@@ -206,7 +206,7 @@ namespace networking
 //#endif
 //
 //
-//   address::address(const string & host, ::networking::port_t port)
+//   address::address(const ::scoped_string & scopedstrHost, ::networking::port_t port)
 //   {
 //
 //      ::zero(this, sizeof(address));
@@ -236,7 +236,7 @@ namespace networking
 //   }
 //
 //
-//   address::address(::particle * pparticle, const string & host, const ::string & strService)
+//   address::address(::particle * pparticle, const ::scoped_string & scopedstrHost, const ::scoped_string & scopedstrService)
 //   {
 //
 //#ifdef BSD_STYLE_SOCKETS
@@ -467,7 +467,7 @@ namespace networking
 //
 //      if (u.s.m_family == AF_INET || u.s.m_family == AF_INET6)
 //      {
-//         m_posdata->m_hostname = ref __allocate< ::winrt::Windows::Networking::HostName(get_display_number >());
+//         m_posdata->m_hostname = ref øallocate< ::winrt::Windows::Networking::HostName(get_display_number >());
 //      }
 //      else if (m_posdata->m_hostname != nullptr)
 //      {
@@ -528,7 +528,7 @@ namespace networking
 //#endif
 //
 
-//   void address::parse_string(const ::string & strAddress)
+//   void address::parse_string(const ::scoped_string & scopedstrAddress)
 //   {
 //
 ////#if defined(BSD_STYLE_SOCKETS)

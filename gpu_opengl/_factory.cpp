@@ -1,13 +1,15 @@
 #include "framework.h"
+#include "_gpu_opengl.h"
 #include "approach.h"
 #include "command_buffer.h"
 #include "context.h"
 #include "cpu_buffer.h"
+#include "cube.h"
 #include "device.h"
-#include "device_win32.h"
 #include "frame_buffer.h"
+#include "full_screen_quad.h"
+#include "hdr_texture.h"
 #include "input_layout.h"
-
 #include "memory_buffer.h"
 #include "model_buffer.h"
 #include "object.h"
@@ -18,9 +20,28 @@
 #include "shader.h"
 #include "swap_chain.h"
 #include "texture.h"
+#include "gltf/mesh.h"
+#include "gltf/model.h"
+#include "bred/gpu/frame.h"
 #include "bred/gpu/layer.h"
+#include "bred/gpu/pixmap.h"
+#include "bred/gpu/frame_ephemeral.h"
+#include "bred/gpu/frame_storage.h"
+#include "gpu/full_screen_quad.h"
+#include "ibl/brdf_convolution_framebuffer.h"
+#include "ibl/diffuse_irradiance_map.h"
+#include "ibl/equirectangular_cubemap.h"
+#include "ibl/specular_map.h"
+#include "ibl/cubemap_framebuffer.h"
+#include "ibl/mipmap_cubemap_framebuffer.h"
+#include "ibl/hdri_cube.h"
 
 
+#if defined(WINDOWS_DESKTOP)
+
+#include "device_win32.h"
+
+#endif
 
 //BEGIN_FACTORY(gpu_opengl)
 //FACTORY_ITEM(::opengl::opengl)
@@ -48,6 +69,8 @@ __FACTORY_EXPORT void gpu_opengl_factory(::factory::factory * pfactory)
 
    pfactory->add_factory_item < ::gpu::layer >();
 
+   pfactory->add_factory_item < ::gpu::frame >();
+
    pfactory->add_factory_item < ::gpu_opengl::input_layout, ::gpu::input_layout >();
 
 #if defined(WINDOWS_DESKTOP)
@@ -59,12 +82,27 @@ __FACTORY_EXPORT void gpu_opengl_factory(::factory::factory * pfactory)
    pfactory->add_factory_item < ::gpu_opengl::offscreen_render_target, ::gpu::render_target >();
    pfactory->add_factory_item < ::gpu_opengl::swap_chain, ::gpu::swap_chain >();
    pfactory->add_factory_item < ::gpu_opengl::command_buffer, ::gpu::command_buffer >();
-   pfactory->add_factory_item < ::gpu_opengl::pixmap, ::gpu::pixmap >();
+   //pfactory->add_factory_item < ::gpu_opengl::pixmap, ::gpu::pixmap >();
+   pfactory->add_factory_item <  ::gpu::pixmap >();
    pfactory->add_factory_item < ::gpu_opengl::model_buffer, ::gpu::model_buffer >();
 
 
    pfactory->add_factory_item < ::gpu_opengl::memory_buffer, ::gpu::memory_buffer >();
+   pfactory->add_factory_item < ::gpu::frame_ephemeral >();
+   pfactory->add_factory_item < ::gpu::frame_storage >();
 
+   pfactory->add_factory_item < ::gpu_opengl::cube, ::gpu::cube >();
+   pfactory->add_factory_item < ::gpu_opengl::full_screen_quad, ::gpu::full_screen_quad >();
+   //pfactory->add_factory_item < ::gpu_opengl::hdr_texture, ::gpu::hdr_texture >();
+   pfactory->add_factory_item < ::gpu_opengl::gltf::mesh, ::gpu::gltf::mesh >();
+   pfactory->add_factory_item < ::gpu_opengl::gltf::model, ::gpu::gltf::model >();
+   pfactory->add_factory_item < ::gpu_opengl::ibl::diffuse_irradiance_map, ::gpu::ibl::diffuse_irradiance_map >();
+   pfactory->add_factory_item < ::gpu_opengl::ibl::specular_map, ::gpu::ibl::specular_map >();
+   pfactory->add_factory_item < ::gpu_opengl::ibl::mipmap_cubemap_framebuffer, ::gpu::ibl::mipmap_cubemap_framebuffer>();
+   pfactory->add_factory_item < ::gpu_opengl::ibl::cubemap_framebuffer, ::gpu::ibl::cubemap_framebuffer>();
+   pfactory->add_factory_item < ::gpu_opengl::ibl::equirectangular_cubemap, ::gpu::ibl::equirectangular_cubemap>();
+   pfactory->add_factory_item < ::gpu_opengl::ibl::brdf_convolution_framebuffer, ::gpu::ibl::brdf_convolution_framebuffer>();
+   pfactory->add_factory_item < ::gpu_opengl::ibl::hdri_cube, ::gpu::ibl::hdri_cube>();
 
 }
 

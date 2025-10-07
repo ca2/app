@@ -8,12 +8,12 @@
 //
 //
 //   template < class T >
-//   bool system::output(::particle * pparticle,const ::scoped_string & scopedstrOutput,T * p,bool (T::*lpfnOuput)(stream &,const char *),const char * lpszSource)
+//   bool system::output(::particle * pparticle,const ::scoped_string & scopedstrOutput,T * p,bool (T::*lpfnOuput)(stream &,const_char_pointer ),const_char_pointer lpszSource)
 //   {
 //
-//      directory()->create(directory()->name(pszOutput),papp);
+//      directory()->create(directory()->name(scopedstrOutput),papp);
 //
-//      file_pointer fileOut = papp->get_session()->file_get_file(pszOutput,::file::e_open_create | ::file::e_open_binary | ::file::e_open_write);
+//      file_pointer fileOut = papp->get_session()->file_get_file(scopedstrOutput,::file::e_open_create | ::file::e_open_binary | ::file::e_open_write);
 //
 //      if(fileOut.is_null())
 //         return false;
@@ -26,12 +26,12 @@
 //
 //
 //   template < class T >
-//   bool system::output(::particle * pparticle,const ::scoped_string & scopedstrOutput,T * p,bool (T::*lpfnOuput)(stream &,stream &),const char * lpszInput)
+//   bool system::output(::particle * pparticle,const ::scoped_string & scopedstrOutput,T * p,bool (T::*lpfnOuput)(stream &,stream &),const_char_pointer lpszInput)
 //   {
 //
-//      directory()->create(directory()->name(pszOutput),papp);
+//      directory()->create(directory()->name(scopedstrOutput),papp);
 //
-//      file_pointer fileOut = papp->get_session()->file_get_file(pszOutput,::file::e_open_create | ::file::e_open_binary | ::file::e_open_write);
+//      file_pointer fileOut = papp->get_session()->file_get_file(scopedstrOutput,::file::e_open_create | ::file::e_open_binary | ::file::e_open_write);
 //
 //      if(fileOut.is_null())
 //         return false;
@@ -54,7 +54,7 @@
 //   bool system::output(::particle * pparticle,const ::scoped_string & scopedstrOutput,T * p,bool (T::*lpfnOuput)(stream &,stream &),stream & istream)
 //   {
 //
-//      stream ostream(get(pszOutput,papp));
+//      stream ostream(get(scopedstrOutput,papp));
 //
 //      return (p->*lpfnOuput)(ostream,istream);
 //

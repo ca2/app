@@ -33,11 +33,11 @@ namespace account
       ~product() override;
       
       
-      virtual void license(string strAppId, bool bInteractive);
+      virtual void license(const ::scoped_string & scopedstrAppId, bool bInteractive);
       
-      virtual bool do_license(string strAppId, bool bInteractive);
+      virtual bool do_license(const ::scoped_string & scopedstrAppId, bool bInteractive);
       
-      virtual void _do_license(string strAppId, bool bInteractive);
+      virtual void _do_license(const ::scoped_string & scopedstrAppId, bool bInteractive);
       
       virtual bool is_ok();
       

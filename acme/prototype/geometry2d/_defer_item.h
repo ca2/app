@@ -20,6 +20,19 @@ namespace geometry2d
 
       TYPE        m_item;
 
+      item_type()
+      {
+
+
+      }
+
+      ~item_type()
+      {
+
+
+
+      }
+
 
       ::draw2d::enum_item type() const override { return t_eitem; }
 
@@ -32,7 +45,7 @@ namespace geometry2d
       ::subparticle_pointer clone() override
       {
 
-         auto pitem = __allocate item_type();
+         auto pitem = øallocate item_type();
 
          pitem->m_item = m_item;
 

@@ -61,7 +61,7 @@ namespace aura
 
 
       shell_launcher(duration durationTimeout = ::one_minute());
-      shell_launcher(oswindow oswindow, const ::string & pszOperation, const ::string & pszFile, const ::string & pszParameters, const ::string & pszDirectory, ::e_display edisplay, duration durationTimeout = ::one_minute());
+      shell_launcher(oswindow oswindow, const ::scoped_string & scopedstrOperation, const ::scoped_string & scopedstrFile, const ::scoped_string & scopedstrParameters, const ::scoped_string & scopedstrDirectory, ::e_display edisplay, duration durationTimeout = ::one_minute());
 
 
       void execute();

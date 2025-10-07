@@ -81,7 +81,7 @@ void popup_button::calculate_size_and_position(int x, int y)
 }
 
 
-void popup_button::initialize_popup_button(const ::string & strText, int x, int y)
+void popup_button::initialize_popup_button(const ::scoped_string & scopedstrText, int x, int y)
 {
 
    calculate_size_and_position(x, y);

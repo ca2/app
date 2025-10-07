@@ -71,16 +71,16 @@ public:
    tiny_http();
    ~tiny_http();
 
-   http_retcode t_put(const char * data, int length, int overwrite, void (*callback)(void *, int, dword_ptr) = nullptr, void * callback_param = nullptr);
+   http_retcode t_put(const_char_pointer data, int length, int overwrite, void (*callback)(void *, int, dword_ptr) = nullptr, void * callback_param = nullptr);
    http_retcode t_get(char ** pdata, int * plength, void (*callback)(void *, int, dword_ptr) = nullptr, void * callback_param = nullptr);
    http_retcode t_delete() ;
    http_retcode t_head(int *plength);
-   http_retcode t_parse_url(const char *url);
+   http_retcode t_parse_url(const_char_pointer url);
 
    int t_read_line (int fd,char *buffer, int maximum) ;
    int t_read_buffer (int fd,char *buffer, int maximum, void (*callback)(void *, int, dword_ptr) = nullptr, void * callback_param = nullptr) ;
 
-   http_retcode t_query(const char *command, const char *url, const char *additional_header, querymode mode, char* data, int length, int *pfd);
+   http_retcode t_query(const_char_pointer command, const_char_pointer url, const_char_pointer additional_header, querymode mode, char* data, int length, int *pfd);
 };
 
 

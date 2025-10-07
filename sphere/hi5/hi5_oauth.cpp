@@ -340,7 +340,7 @@ namespace hi5
    *         rawData - url encoded data. this is used during signature generation.
    *         oauthSignature - base64 and url encoded OAuth signature.
    *
-   * @output: keyValueMap - map in which key-value pairs are populated
+   * @output: keyValueMap - map_base in which key-value pairs are populated
    *
    * @remarks: internal method
    *
@@ -524,7 +524,7 @@ namespace hi5
          post = set["post"].propset();
       }
 
-      /* If URL itself contains ?key=value, then extract and put them in map */
+      /* If URL itself contains ?key=value, then extract and put them in map_base */
 
       ::collection::index nPos = rawUrl.find( "?" );
       if(nPos >= 0)
@@ -576,7 +576,7 @@ namespace hi5
    *
    * @description: this method builds a sorted string from key-value pairs
    *
-   * @input: rawParamMap - key-value pairs map
+   * @input: rawParamMap - key-value pairs map_base
    *         paramsSeperator - sepearator, either & or ,
    *
    * @output: rawParams - sorted string of OAuth parameters
@@ -588,14 +588,14 @@ namespace hi5
          string & rawParams,
          const ::scoped_string & scopedstrSeparator )
    {
-      string strSeparator(pszSeparator);
+      string strSeparator(scopedstrSeparator);
       rawParams =  "";
       if( rawParamMap.get_count() )
       {
          oAuthKeyValueList keyValueList;
          string str( "" );
 
-         /* Push key-value pairs to a list of strings */
+         /* Push key-value pairs to a list_base of strings */
          keyValueList.erase_all();
 
          for(auto property : rawParamMap)
@@ -641,7 +641,7 @@ namespace hi5
          }
 
          /* Now, form a string */
-         rawParams =  keyValueList.implode(pszSeparator);
+         rawParams =  keyValueList.implode(scopedstrSeparator);
 
       }
 

@@ -117,7 +117,7 @@ namespace browser
 
       virtual void term_thread() override;
 
-      virtual bool initialize_render(string strId);
+      virtual bool initialize_render(const ::scoped_string & scopedstrId);
 
 
       virtual void slide_draw(::draw2d::graphics_pointer & pgraphics, ::gcom::slide * pslide);
@@ -136,7 +136,7 @@ namespace browser
       virtual void defer_update_slide_show();
 
       virtual bool in_anime();
-      virtual void browser_fast_render(const ::string & strHelloBrowser);
+      virtual void browser_fast_render(const ::scoped_string & scopedstrHelloBrowser);
 
    };
 

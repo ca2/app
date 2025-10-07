@@ -27,7 +27,7 @@
 #include "conio.h"
 
 int
-cputs (const ::string &str)
+cputs (const ::scoped_string & scopedstr)
 {
   int ReturnValue = 0;
   if (!ConioInitialized)

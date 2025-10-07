@@ -9,14 +9,14 @@
 //   ::pointer<::matter>single_application_library < APP > ::new_application(const ::scoped_string & scopedstrAppId)
 //   {
 //
-//      if(!contains_app(pszAppId))
+//      if(!contains_app(scopedstrAppId))
 //      {
 //
 //         return error_not_found;
 //
 //      }
 //
-//      auto pappNew = __allocate APP();
+//      auto pappNew = øallocate APP();
 //
 //      if(pappNew == nullptr)
 //      {
@@ -51,7 +51,7 @@
 //
 //
 //   template < class APP >
-//   void single_application_library < APP > ::get_extension_list(string_array & stra)
+//   void single_application_library < APP > ::get_extension_list(string_array_base & stra)
 //   {
 //
 //      if (m_strFileExt.has_character())
@@ -109,7 +109,7 @@
 //
 //   }
 //
-//  synchronous_lock synchronouslock(channel_mutex());
+//  synchronous_lock synchronouslock(channel_mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //  ::object* pobjectReceiver = dynamic_cast <::object*> (preceiverDerived);
 //
@@ -175,7 +175,7 @@
 //     if (proutea.is_null())
 //     {
 //
-//        proutea = __allocate ::message::route_array();
+//        proutea = øallocate ::message::route_array();
 //
 //     }
 //
@@ -199,7 +199,7 @@
 //::message::typed_route < MESSAGE > & channel::get_typed_route (const ::atom & atom, RECEIVER * preceiverDerived)
 //{
 //
-//  synchronous_lock synchronouslock(s_pmutexChannel);
+//  synchronous_lock synchronouslock(s_pmutexChannel, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //  ::object * pobjectReceiver = dynamic_cast < ::object * > (preceiverDerived);
 //
@@ -256,7 +256,7 @@
 //     if (proutea.is_null())
 //     {
 //
-//        proutea = __allocate ::message::route_array();
+//        proutea = øallocate ::message::route_array();
 //
 //     }
 //
@@ -326,7 +326,7 @@
 //   while (c > 0)
 //   {
 //
-//      auto p = __allocate TYPE(&a);
+//      auto p = øallocate TYPE(&a);
 //
 //      stream >> *p;
 //
@@ -488,13 +488,13 @@
 //   //   try
 //   //   {
 //   //
-//   //      ::free(pszType);
+//   //      ::free(scopedstrType);
 //   //
 //   //   }
 //   //   catch (...)
 //   //   {
 //   //
-//   //      informationf("exception release ::free(pszType)\n");
+//   //      informationf("exception release ::free(scopedstrType)\n");
 //   //
 //   //   }
 //   //

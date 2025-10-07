@@ -43,24 +43,61 @@ namespace write_text
    public:
 
 
-      class text
+      class CLASS_DECL_AURA text
       {
       public:
 
-         double_size          m_size;
-         bool              m_bSize;
-         wstring           m_wstr;
+
+         enum enum_size
+         {
+            e_size_word_break,
+            e_size_end_ellipsis,
+            e_size_case_3,
+            e_size_unbounded,
+            e_size_backend_draw_text,
+            e_size_count,
+
+         };
+
+         class CLASS_DECL_AURA item
+         {
+         protected:
+            bool m_bHasSize = false;
+            double_size m_size;
+            wstring     m_wstr;
+         public:
+
+            bool has_size() const;
+
+            ::double_size get_size() const;
+
+            void set_size(const ::double_size &size);
+
+            void set_text(const ::scoped_string & scopedstr);
+
+            ::wstring get_text() const;
+
+         };
+
+
+      private:
+
+         item m_itema[e_size_count];
+
+      public:
+
+
          void *            m_osdata[4];
 
-         text()
-         {
+         text();
 
-            m_bSize = false;
+         item * get_item(enum_size esize);
 
-         }
+
 
       };
 
+      static ::mutex *s_pmutexFontTextMap;
 
       //string                        m_strFontFamilyName;
       font_family_pointer           m_pfontfamily;
@@ -80,7 +117,7 @@ namespace write_text
       bool                          m_bCacheLayout;
 
       //bool                          m_bTextMetric;
-      string_map < text >           m_mapFontText;
+      string_map_base < text >           m_mapFontText;
 
 
       font();
@@ -123,7 +160,7 @@ namespace write_text
 
       font & operator = (const font & font);
 
-      virtual void set_family_name(const ::string & pszFamilyName);
+      virtual void set_family_name(const ::scoped_string & scopedstrFamilyName);
       virtual void set_size(const font_size & fontsize);
       virtual void set_bold(bool bBold = true);
       virtual void set_italic(bool bItalic = true);

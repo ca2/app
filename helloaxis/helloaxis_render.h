@@ -76,8 +76,8 @@ namespace helloaxis
                ::image::image_pointer                 m_pimageFast;
 
 
-               string_array                          m_stra23;
-               string_map < ::image::image_pointer >    m_mapDib23;
+               string_array_base                          m_stra23;
+               string_map_base < ::image::image_pointer >    m_mapDib23;
                bool                             m_b23;
                unsigned int                         m_uiCurrent23;
                string                           m_strCurrent23;
@@ -97,12 +97,12 @@ namespace helloaxis
       virtual ~render();
 
 
-      string get_helloaura() { synchronous_lock slText(m_pmutexText);  string str(m_strHelloAxis.c_str()); return str; }
+      string get_helloaura() { synchronous_lock slText(m_pmutexText, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);  string str(m_strHelloAxis.c_str()); return str; }
 
 
       virtual void     run() override;
 
-      virtual bool initialize_render(string strId) override;
+      virtual bool initialize_render(const ::scoped_string & scopedstrId) override;
 
 
       //virtual void full_render();
@@ -119,10 +119,10 @@ namespace helloaxis
 
       virtual void defer_update_bilbo() override;
 
-      ::image::image_pointer & image23(string strDib) override;
+      ::image::image_pointer & image23(const ::scoped_string & scopedstrDib) override;
 
       virtual bool in_anime() override;
-      virtual void helloaura_fast_render(const ::string & strHelloAxis) override;
+      virtual void helloaura_fast_render(const ::scoped_string & scopedstrHelloAxis) override;
 
 
    };

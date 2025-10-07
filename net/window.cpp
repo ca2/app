@@ -47,7 +47,7 @@ namespace app_net
 
       ::user::interaction * p = this;
 
-      __øconstruct(m_pfont);
+      øconstruct(m_pfont);
 
       auto psystem = system();
 
@@ -153,7 +153,7 @@ namespace app_net
 
             {
 
-               synchronous_lock synchronouslock(this->synchronization());
+               synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
                m_strGet = strGet;
 

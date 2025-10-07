@@ -86,7 +86,7 @@ namespace handler
    ::manual_reset_happening * handler::new_main_loop_happening()
    {
 
-      __defer_construct_new(m_pmanualresethappeningMainLoop);
+      ødefer_construct_new(m_pmanualresethappeningMainLoop);
 
       return m_pmanualresethappeningMainLoop;
 
@@ -96,7 +96,7 @@ namespace handler
    bool handler::has_main_loop_happening()
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       return m_requestaPosted.has_element();
 
@@ -106,7 +106,7 @@ namespace handler
    void handler::defer_reset_main_loop_happening()
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (!has_main_loop_happening())
       {
@@ -123,7 +123,7 @@ namespace handler
 
       {
 
-         _synchronous_lock synchronouslock(this->synchronization());
+         _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          if (::is_null(prequest) || contains(prequest))
          {
@@ -164,7 +164,7 @@ namespace handler
          
       }
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       while (true)
       {
@@ -196,7 +196,7 @@ namespace handler
 
          //m_requestaHistory.add(prequest);
 
-         m_prequest = prequest;
+         m_prequestHandler = prequest;
 
          return true;
 
@@ -218,11 +218,11 @@ namespace handler
       while (pick_next_posted_request())
       {
 
-         handle(m_prequest);
+         handle(m_prequestHandler);
 
-         m_requestaHistory.add(m_prequest);
+         m_requestaHistory.add(m_prequestHandler);
 
-         m_prequest.release();
+         m_prequestHandler.release();
 
       }
 
@@ -241,11 +241,11 @@ namespace handler
 
       }
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       return m_requestaPosted.predicate_contains([&prequest](auto& p) { return p.get() == prequest; })
              || m_requestaHistory.predicate_contains([&prequest](auto& p) { return p.get() == prequest; })
-             || m_prequest.get() == prequest;
+             || m_prequestHandler.get() == prequest;
 
    }
 
@@ -253,21 +253,21 @@ namespace handler
    string handler::command_line_text() const
    {
 
-      if (!m_prequest)
+      if (!m_prequestHandler)
       {
 
          return "";
 
       }
 
-      //if (!m_prequest->m_pcommandline)
+      //if (!m_prequestHandler->m_pcommandline)
       //{
 
       //   return "";
 
       //}
 
-      return m_prequest->m_strCommandLine;
+      return m_prequestHandler->m_strCommandLine;
 
    }
 
@@ -332,7 +332,7 @@ namespace handler
 
    //
 
-   void handler::call_message(const ::enum_message & emessage, ::wparam wparam, ::lparam lparam, ::particle* pparticle)
+   void handler::call_message(const ::user::enum_message & emessage, ::wparam wparam, ::lparam lparam, ::particle* pparticle)
    {
 
 
@@ -351,7 +351,7 @@ namespace handler
    // void handler::call(const ::atom& atom, long long wParam, long long lParam, ::matter* pmatter)
    // {
    //
-   //    return __call(this, emessage, wparam, lparam, pmatter);
+   //    return __call(this, eusermessage, wparam, lparam, pmatter);
    //
    // }
 
@@ -373,7 +373,7 @@ namespace handler
    void handler::handle(::request * prequest)
    {
 
-      m_prequest = prequest;
+      m_prequestHandler = prequest;
       
       request(prequest);
 

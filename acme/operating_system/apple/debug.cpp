@@ -82,7 +82,7 @@ int __node_is_debugger_attached()
 //      fwrite(scopedstrOutputString.begin(), 1, scopedstrOutputString.size(), stdout);
 //   }
 //
-////   string strOutputString(pszOutputString);
+////   string strOutputString(scopedstrOutputString);
 ////
 ////   strOutputString.find_replace("\r\n", "\n");
 ////

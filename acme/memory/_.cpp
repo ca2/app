@@ -72,8 +72,8 @@ void * reverse_memmem(const void * l, size_t l_len, const void * s, size_t s_len
 {
 
    char * cur, * last;
-   const char * cl = (const char *)l;
-   const char * cs = (const char *)s;
+   const_char_pointer cl = (const_char_pointer )l;
+   const_char_pointer cs = (const_char_pointer )s;
 
    /* we need something to compare */
    if (l_len == 0 || s_len == 0)
@@ -115,9 +115,9 @@ void * reverse_byte_not_in_block(const void * l, size_t l_len, const void * s, s
 
    char * cur, * last, * curByte;
    char * prev = nullptr;
-   const char * cl = (const char *)l;
-   const char * cs = (const char *)s;
-   const char * ends = (const char *)s + s_len;
+   const_char_pointer cl = (const_char_pointer )l;
+   const_char_pointer cs = (const_char_pointer )s;
+   const_char_pointer ends = (const_char_pointer )s + s_len;
 
    /* we need something to compare */
    if (l_len <= 0)
@@ -484,7 +484,7 @@ CLASS_DECL_ACME void * reverse_memory_copy(void * dst, const void * src, memsize
 
    char * pchDst = (char *)dst;
 
-   const char * pchSrc = (const char *)src;
+   const_char_pointer pchSrc = (const_char_pointer )src;
 
    memsize i = size - 1;
 

@@ -179,7 +179,7 @@ namespace sockets
    } // rfc1738_decode
 
 
-   bool net::isipv4(const ::string & str)
+   bool net::isipv4(const ::scoped_string & scopedstr)
    {
       int dots = 0;
       // %! ignore :port?
@@ -196,7 +196,7 @@ namespace sockets
    }
 
 
-   bool net::isipv6(const ::string & str)
+   bool net::isipv6(const ::scoped_string & scopedstr)
    {
       if(str.is_empty())
          return false;
@@ -242,7 +242,7 @@ namespace sockets
       return true;
    }
 
-//   bool net::convert(in_addr & l, const ::string & str, int ai_flags)
+//   bool net::convert(in_addr & l, const ::scoped_string & scopedstr, int ai_flags)
 //   {
 //
 //      if(str.is_empty())
@@ -388,7 +388,7 @@ namespace sockets
 //}
 //
 
-//bool net::convert(struct in6_addr& l, const ::string & str, int ai_flags)
+//bool net::convert(struct in6_addr& l, const ::scoped_string & scopedstr, int ai_flags)
 //{
 
 
@@ -813,7 +813,7 @@ int net::in6_addr_compare(in6_addr a,in6_addr b)
 //bool net::reverse_schedule(reverse_cache_item * pitem)
 //{
 //
-//   synchronous_lock synchronouslock(this->synchronization());
+//   synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //   m_reversecacheaRequest.add(pitem);
 //
@@ -889,7 +889,7 @@ int net::in6_addr_compare(in6_addr a,in6_addr b)
 //
 //   }
 //
-//   pitem = __allocate reverse_cache_item();
+//   pitem = øallocate reverse_cache_item();
 //
 //   pitem->m_address = address;
 //
@@ -1104,7 +1104,7 @@ bool net::u2service(const string & name, int& service, int ai_flags)
 }
 
 
-int net::service_port(const ::string & str, int flags)
+int net::service_port(const ::scoped_string & scopedstr, int flags)
 {
 
    if(::str::is_simple_natural(str))

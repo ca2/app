@@ -8,7 +8,7 @@
 //{
 //
 
-   class ::time time::local()
+   class ::time time::local_offset()
    {
 
       time_t zero = 0;

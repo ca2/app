@@ -27,7 +27,7 @@ virtual public ::particle
 
    static size_t  s_write_function(void *contents, size_t size, size_t nmemb, void *userp);
 
-      virtual void get(::nano::http::get * pget);
+      virtual void get(::nano::http::get * defer_get);
 
 
 

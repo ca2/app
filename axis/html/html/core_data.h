@@ -168,18 +168,18 @@ namespace html
       ::user::interaction* m_puserinteraction;
       ::pointer<::draw2d::graphics>m_pgraphics;
       ::float_rectangle                              m_box;
-      string                           m_strTitle;
-      layout_state1                    m_layoutstate1;
-      layout_state2                    m_layoutstate2;
-      layout_state3                    m_layoutstate3;
+      string                                 m_strTitle;
+      layout_state1                          m_layoutstate1;
+      layout_state2                          m_layoutstate2;
+      layout_state3                          m_layoutstate3;
 
-      address_array < impl::table* >   m_tableptra;
+      address_array_base < impl::table* >    m_tableptra;
 
-      //string_map < ::image::image_pointer >     m_imagemap;
+      //string_map_base < ::image::image_pointer >     m_imagemap;
 
-      pointer_array < font >                 m_fonta;
+      pointer_array_base < font >            m_fonta;
 
-      ::user::interaction_ptra         m_focusptra;
+      ::user::interaction_ptra               m_focusptra;
 
       style_sheet_array                m_stylesheeta;
       ::file::path                     m_strPathName;
@@ -220,7 +220,7 @@ namespace html
       void initialize_html_data(html_data * pdata) override;
 
 
-      virtual string process_url(const ::string & pszUrl);
+      virtual string process_url(const ::scoped_string & scopedstrUrl);
       //virtual long long increment_reference_count() override;
       //virtual long long decrement_reference_count() override;
 
@@ -228,10 +228,10 @@ namespace html
       bool open_document(const ::payload & payloadFile) override;
 
 
-      bool open_html(const ::string & str) override;
+      bool open_html(const ::scoped_string & scopedstr) override;
 
 
-      bool open_link(const ::string & pszPath) override;
+      bool open_link(const ::scoped_string & scopedstrPath) override;
 
 
       ::user::form* get_form() override;
@@ -240,7 +240,7 @@ namespace html
 
       //virtual bool is_locked();
 
-      void load(const ::string &);
+      void load(const ::scoped_string & scopedstr);
       void implement(::draw2d::graphics_pointer & pgraphics);
       void on_layout(::draw2d::graphics_pointer & pgraphics);
       void _001OnDraw(::draw2d::graphics_pointer & pgraphics);
@@ -251,7 +251,7 @@ namespace html
 
       DECLARE_MESSAGE_HANDLER(on_message_key_down);
 
-      ::image::image_pointer get_image(const ::string & pszUrl);
+      ::image::image_pointer get_image(const ::scoped_string & scopedstrUrl);
       void load_image_asynch(image* pimage);
       bool load_image(image* pimage);
 

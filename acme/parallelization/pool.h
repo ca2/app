@@ -16,7 +16,7 @@ protected:
 public:
 
 
-   atom_map < ::pointer<::task >>  m_map;
+   atom_map_base < ::pointer<::task >>  m_map;
 
 
    task_pool();

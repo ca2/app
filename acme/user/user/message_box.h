@@ -26,7 +26,7 @@ namespace acme
 
          // ::pointer < ::
 
-         //virtual ::pointer < ::subparticle > show(::user::interaction * puserinteraction, const string & strMessage, const string & strTitle, const ::e_message_box & emessagebox);
+         //virtual ::pointer < ::subparticle > show(::user::interaction * puserinteraction, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::user::e_message_box & emessagebox);
          void on_realize(::message_box * pmessagebox) override;
 
 

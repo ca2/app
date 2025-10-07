@@ -2,7 +2,7 @@
 #include "pane_tab_impact.h"
 #include "font_impact.h"
 #include "acme/constant/id.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "acme/handler/topic.h"
 #include "acme/platform/keep.h"
 #include "acme/platform/system.h"
@@ -12,12 +12,12 @@
 #include "aura/message/user.h"
 #include "aura/user/user/interaction_array.h"
 #include "axis/account/credentials.h"
-#include "base/user/user/tab_pane.h"
-#include "base/user/user/frame_window.h"
-#include "base/user/form/impact.h"
-#include "base/user/user/tab_data.h"
-#include "base/user/user/impact_system.h"
-#include "base/user/user/multiple_document_template.h"
+#include "berg/user/user/tab_pane.h"
+#include "berg/user/user/frame_window.h"
+#include "berg/user/form/impact.h"
+#include "berg/user/user/tab_data.h"
+#include "berg/user/user/impact_system.h"
+#include "berg/user/user/multiple_document_template.h"
 #include "core/user/user/font_list.h"
 #include "core/user/user/user.h"
 #include "core/filesystem/filemanager/document.h"
@@ -33,13 +33,8 @@
 namespace core
 {
 
-
-   ::type_atom user::get_pane_tab_impact_type_info()
-   {
-
-      return ::type < ::userex::pane_tab_impact >();
-
-   }
+   
+   ::type_atom user::get_pane_tab_impact_type_info() { return ::type<::userex::pane_tab_impact>(); }
 
 
 } // namespace core
@@ -166,7 +161,7 @@ namespace userex
 
       ::user::tab_impact::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_create, pchannel, this, &pane_tab_impact::on_message_create);
+      USER_MESSAGE_LINK(::user::e_message_create, pchannel, this, &pane_tab_impact::on_message_create);
 
       add_command_handler("file_save_as", { this,  &pane_tab_impact::_001OnFileSaveAs });
       add_command_prober("file_save_as", { this,  &pane_tab_impact::_001OnUpdateFileSaveAs });
@@ -222,12 +217,12 @@ namespace userex
    }
 
 
-   void pane_tab_impact::add_pane_tab_impact_handler_library(const ::string & strLibrary)
+   void pane_tab_impact::add_pane_tab_impact_handler_library(const ::scoped_string & scopedstrLibrary)
    {
 
-      auto & pfactory = system()->factory(strLibrary);
+      auto & pfactory = system()->factory(scopedstrLibrary);
 
-      auto phandler = __øcreate <handler>(pfactory);
+      auto phandler = øcreate <handler>(pfactory);
 
       phandler->initialize(this);
 
@@ -587,7 +582,7 @@ namespace userex
 
       auto psystem = system();
 
-//      if(pimpactdata->id().is_text() && psystem->m_idmapCreateImpactLibrary.lookup(pimpactdata->id(),plibrary) && plibrary != nullptr)
+//      if(pimpactdata->id().is_text() && psystem->m_idmapCreateImpactLibrary.find(pimpactdata->id(),plibrary) && plibrary != nullptr)
 //      {
 //
 //
@@ -645,9 +640,9 @@ namespace userex
 
          puser->will_use_impact_hint(FONTSEL_IMPACT);
 
-         //auto pcreate = __allocate create(this);
+         //auto pcreate = øallocate create(this);
 
-         //pcreate->m_pusersystem = __allocate user::create();
+         //pcreate->m_pusersystem = øallocate user::create();
 
          //pcreate->m_puserinteractionParent = pimpactdata->m_pplaceholder;
 
@@ -795,7 +790,7 @@ namespace userex
          //if(pfilemanagerdata->m_prequest.is_null())
          //{
 
-         //   pfilemanagerdata->m_prequest = __create_new< ::request>();
+         //   pfilemanagerdata->m_prequest = øcreate_new< ::request>();
 
          //   pfilemanagerdata->m_prequest->finish_initialization();
 
@@ -1090,7 +1085,7 @@ namespace userex
 
       ::user::tab_impact::_001OnRemoveTab(ptab);
 
-      m_impactdatamap.erase_item(ptab->id());
+      m_impactdatamap.erase(ptab->id());
 
    }
 

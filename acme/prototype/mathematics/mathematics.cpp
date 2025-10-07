@@ -10,8 +10,8 @@
 #include <wincrypt.h>
 #endif
 #include "mathematics.h"
-//#undef __øconstruct
-//#undef __øcreate
+//#undef øconstruct
+//#undef øcreate
 #include "random_number_generator.h"
 
 namespace mathematics
@@ -302,7 +302,7 @@ namespace mathematics
 
       //}
 
-      __construct_new(m_posdata);
+      øconstruct_new(m_posdata);
 
       //if (!estatus)
       //{
@@ -448,7 +448,7 @@ namespace mathematics
 
    //   char * psz = str.get_buffer(s);
 
-   //   gen_rand_alnum(psz, s);
+   //   gen_rand_alnum(scopedstr, s);
 
    //   str.release_buffer(s);
 
@@ -664,7 +664,7 @@ namespace mathematics
 
    //      g_pmathematics = ___new class mathematics ();
 
-   //      //task_untrack___allocate(g_pmathematics);
+   //      //task_untrack_øallocate(g_pmathematics);
 
    //   }
 

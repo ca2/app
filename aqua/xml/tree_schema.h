@@ -15,7 +15,7 @@ namespace xml
    public:
    
 
-      string_array m_stra;
+      string_array_base m_stra;
       
       
       tree_schema();

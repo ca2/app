@@ -2,22 +2,13 @@
 #pragma once
 
 
+#include "_constant.h"
+
+
 namespace graphics3d
 {
 
 
-   enum enum_mouse
-   {
-      e_mouse_none = 0,
-      e_mouse_updateLook
-   };
-   enum enum_keyboard
-   {
-      e_keyboard_none = 0,
-      e_keyboard_updateMovement,
-      e_keyboard_spaceExplorer
-   };
-   
    class container;
 
 
@@ -25,37 +16,53 @@ namespace graphics3d
 
    class engine;
 
-   template < typename TYPE >
-   class model;
+   //template<typename TYPE>
+   //class model;
 
 
-   template < typename VERTEX >
-   class model_data;
 
-   template < typename VERTEX >
+   template<typename VERTEX>
    class model_instance;
    //class context;
 
    class scene;
    class scene_object;
+   class scene_renderable;
 
    class input;
    class camera;
 
+   class render_system;
    //class shader;
 
-   class simple_render_system;
-   class point_light_system;
+   //class simple_render_system;
+   //class point_light_system;
 
    //class renderer;
+   class asset_manager;
 
-
+   class scene_base;
    class frame;
-   class sky_box;
+   class skybox;
+   class renderable;
 
+   class immersion_layer;
+   class point_light;
+
+
+   using scene_renderable_map = ::string_map<::pointer<scene_renderable>>;
+   using skybox_map = ::string_map<::pointer<skybox>>;
+
+   
+   class gltf_render_system;
+   class wavefront_obj_render_system;
+   class point_light_render_system;
+   class scene_render_system;
+   class skybox_ibl_render_system;
+   class skybox_render_system;
 
 
 } // namespace graphics3d
 
 
-
+#include "_types.h"

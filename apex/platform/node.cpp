@@ -212,9 +212,9 @@ namespace apex
    void node::set_file_extension_mime_type(::get_file_extension_mime_type * pgetfileextensionmimetype)
    {
 
-      string_array straExtension;
+      string_array_base straExtension;
 
-      string_array straMimeType;
+      string_array_base straMimeType;
 
       pgetfileextensionmimetype->file_extension_mime_type(straExtension, straMimeType);
 
@@ -226,7 +226,7 @@ namespace apex
    void node::initialize_wallpaper_fileset(::file::set* pfileset, bool bAddSearch)
    {
 
-      ::string_array stra;
+      ::string_array_base stra;
 
       //stra.add("_inheaven_1920x1080_o.JPG");
       //stra.add("02209_stratosphere_1920x1080_o.JPG");
@@ -261,7 +261,7 @@ namespace apex
 
 
 
-//   void node::defer_create_main_menu(const string_array & straParent, const string_array & straMenu, const string_array & straId)
+//   void node::defer_create_main_menu(const string_array_base & straParent, const string_array_base & straMenu, const string_array_base & straId)
 //   {
 //
 //      //throw ::interface_only();
@@ -368,7 +368,7 @@ namespace apex
    }
 
 
-   void node::shell_create_link(::file::path pathObj, ::file::path pathLnk, string strDesc, ::file::path pathIco, int iIcon)
+   void node::shell_create_link(::file::path pathObj, ::file::path pathLnk, const ::scoped_string & scopedstrDesc, ::file::path pathIco, int iIcon)
    {
 
       throw ::interface_only();
@@ -476,7 +476,7 @@ namespace apex
    }
 
 
-   /*void node::shell_open(const ::file::path & path, const ::string & strParams, const ::file::path & pathFolder)
+   /*void node::shell_open(const ::file::path & path, const ::scoped_string & scopedstrParams, const ::file::path & pathFolder)
    {
 
       node()->file_open(path, strParams, pathFolder);
@@ -498,7 +498,7 @@ namespace apex
    }
 
 
-//   bool node::is_application_installed(const ::file::path & pathExe, string strAppId, string & strBuild,
+//   bool node::is_application_installed(const ::file::path & pathExe, const ::scoped_string & scopedstrAppId, string & strBuild,
 //                                       const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration,
 //                                       const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema)
 //   {
@@ -507,7 +507,7 @@ namespace apex
 //
 //   }
 //
-//   bool node::set_application_installed(const ::file::path & pathExe, string strAppId, const ::scoped_string & scopedstrBuild,
+//   bool node::set_application_installed(const ::file::path & pathExe, const ::scoped_string & scopedstrAppId, const ::scoped_string & scopedstrBuild,
 //                                        const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration,
 //                                        const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema)
 //   {
@@ -518,7 +518,7 @@ namespace apex
 //   }
 //
 //
-//   bool node::set_last_run_application_path(string strAppId)
+//   bool node::set_last_run_application_path(const ::scoped_string & scopedstrAppId)
 //   {
 //
 //      return false;
@@ -640,7 +640,7 @@ namespace apex
       for (auto line : lines)
       {
 
-         ::string_array stra;
+         ::string_array_base stra;
 
          stra.explode("=", line);
 
@@ -663,7 +663,7 @@ namespace apex
    ::pointer < ::input::input > node::create_input()
    {
 
-      return __øcreate < ::input::input > ();
+      return øcreate < ::input::input > ();
 
    }
 
@@ -676,7 +676,7 @@ namespace apex
    }
 
 
-   void node::root_ones(::file::listing &listing)
+   void node::root_ones(::file::listing_base &listing)
    {
       
       auto pfilesystemoptions = application()->m_pfilesystemoptions;
@@ -852,7 +852,7 @@ namespace apex
 
 
 
-//   bool node::defer_enumerate_protocol(::file::listing& listing)
+//   bool node::defer_enumerate_protocol(::file::listing_base& listing)
 //   {
 //      
 //      return false;

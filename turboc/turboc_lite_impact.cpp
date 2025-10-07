@@ -36,7 +36,7 @@ namespace turboc
 
       impact::install_message_handling(pdispatch);
 
-      IGUI_WIN_MSG_LINK(e_message_create,pdispatch,this,&lite_impact::on_message_create);
+      IGUI_WIN_MSG_LINK(::user::e_message_create,pdispatch,this,&lite_impact::on_message_create);
 
    }
 

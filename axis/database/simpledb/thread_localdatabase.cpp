@@ -138,7 +138,7 @@ namespace simpledb
 
                //string str;
 
-               //synchronous_lock slDatabase(pdatabase->synchronization());
+               //synchronous_lock slDatabase(pdatabase->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
                if(pitem)
                {
@@ -238,14 +238,14 @@ namespace simpledb
    }
 
 
-   void thread_localdatabase::queue(const ::string & pszKey, block block)
+   void thread_localdatabase::queue(const ::scoped_string & scopedstrKey, block block)
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-      auto pitem(__allocate queue_item());
+      auto pitem(øallocate queue_item());
 
-      pitem->m_strKey = pszKey;
+      pitem->m_strKey = scopedstrKey;
       pitem->m_memory = block;
 
       m_itema.add(pitem);

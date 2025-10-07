@@ -16,7 +16,7 @@ namespace windowing
 
 
    //void free_c_string_array(char * const * ppszList, int iCount);
-   //char * const * alloc_c_string_array(const string_array & stra);
+   //char * const * alloc_c_string_array(const string_array_base & stra);
 
    menu::menu()
    {
@@ -37,7 +37,7 @@ namespace windowing
    }
 
 
-   // ::pointer<menu_shared>create_menu_shared(::particle * pparticle, const string_array & straParent, const string_array & straMenu, const string_array & straId)
+   // ::pointer<menu_shared>create_menu_shared(::particle * pparticle, const string_array_base & straParent, const string_array_base & straMenu, const string_array_base & straId)
    // {
 
    //    int iCount = (int)straParent.get_count();
@@ -51,12 +51,12 @@ namespace windowing
 
    //    }
 
-   //    auto pmenu = pparticle->__øcreate < menu >();
+   //    auto pmenu = pparticle->øcreate < menu >();
 
    //    for (int i = 0; i < straParent.get_count(); i++)
    //    {
 
-   //       auto pitem = pparticle->__øcreate < ::menu::item >();
+   //       auto pitem = pparticle->øcreate < ::menu::item >();
 
    //       pitem->m_strParent = straParent[i];
    //       pitem->m_strMenu = straMenu[i];
@@ -81,7 +81,7 @@ namespace windowing
    // }
 
 
-   // ::menu::item * menu::find_item(const ::string & pszParent, const ::string & pszId)
+   // ::menu::item * menu::find_item(const ::scoped_string & scopedstrParent, const ::scoped_string & scopedstrId)
    // {
 
    //    for (int i = 0; i < m_itema.get_count(); i++)
@@ -89,10 +89,10 @@ namespace windowing
 
    //       auto pitem = m_itema[i];
 
-   //       if (!strcmp(pszParent, pitem->m_strParent))
+   //       if (!strcmp(scopedstrParent, pitem->m_strParent))
    //       {
 
-   //          if (!strcmp(pszId, pitem->id().to_string()))
+   //          if (!strcmp(scopedstrId, pitem->id().to_string()))
    //          {
 
    //             return pitem;

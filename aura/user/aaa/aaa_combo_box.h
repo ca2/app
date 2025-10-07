@@ -45,8 +45,8 @@ namespace user
 
       bool                       m_bEdit;
       e_data_mode                m_edatamode;
-      string_array                    m_straList;
-      string_array                    m_straValue;
+      string_array_base                    m_straList;
+      string_array_base                    m_straValue;
 
 
       combo_box();
@@ -76,18 +76,18 @@ namespace user
 
       virtual void set_current_item_by_data(uptr u, const ::action_context & action_context);
       
-      virtual void set_current_item_by_string_value(const ::string & strValue, const ::action_context & action_context);
+      virtual void set_current_item_by_string_value(const ::scoped_string & scopedstrValue, const ::action_context & action_context);
       
       virtual string get_current_item_string_value();
 
 
 
       virtual void get_text(string & str) const override;
-      virtual void set_text(const ::string & str, const ::action_context & action_context) override;
+      virtual void set_text(const ::scoped_string & scopedstr, const ::action_context & action_context) override;
 
 
       virtual bool _001GetListText(::collection::index iSel, string & str) const;
-      virtual ::collection::index _001FindListText(const ::string & str) const;
+      virtual ::collection::index _001FindListText(const ::scoped_string & scopedstr) const;
       virtual count _001GetListCount() const;
 
       virtual bool create_control(class control_descriptor * pdescriptor) override;
@@ -165,7 +165,7 @@ namespace user
 
       int SetItemHeight(index nIndex, unsigned int cyItemHeight);
       int GetItemHeight(index nIndex);
-      ::collection::index FindStringExact(index nIndexStart, const ::string & pszFind);
+      ::collection::index FindStringExact(index nIndexStart, const ::scoped_string & scopedstrFind);
 
       int SetExtendedUI(bool bExtended = true);
       bool GetExtendedUI();
@@ -178,16 +178,16 @@ namespace user
       void ShowDropDown(bool bShowIt = true);
 
       // manipulating listbox items
-      virtual ::collection::index AddString(const ::string & pszString, uptr dwItemData = 0);
-      virtual ::collection::index AddString(const ::string & pszString, const string& strValue);
+      virtual ::collection::index AddString(const ::scoped_string & scopedstrString, uptr dwItemData = 0);
+      virtual ::collection::index AddString(const ::scoped_string & scopedstrString, const ::scoped_string & scopedstrValue);
 
 
 
       ::collection::index DeleteString(index nIndex);
-      ::collection::index InsertString(index nIndex, const ::string & pszString);
+      ::collection::index InsertString(index nIndex, const ::scoped_string & scopedstrString);
 
       void reset_content();
-      ::collection::index Dir(index attr, const ::string & pszWildCard);
+      ::collection::index Dir(index attr, const ::scoped_string & scopedstrWildCard);
 
 
 

@@ -5,27 +5,40 @@
 #include "list_iterator.h"
 
 
-template < typename NODE >
+template < typename ITEM >
 class set_node :
-   public NODE
+   public ITEM
 {
 public:
 
 
-   using ITEM = typename NODE::ITEM;
-   using ARG_ITEM = typename NODE::ARG_ITEM;
+   using BASE_NODE = ::set_node < ITEM >;
 
 
-   using node = NODE;
+   using BASE_ITEM = ITEM;
 
 
-   set_node *        m_back;
-   set_node *        m_next;
-   set_node *        m_nextHash;
-   set_node **       m_pbackHash;
+   using KEY = typename BASE_ITEM::KEY;
+   using ARG_KEY = typename BASE_ITEM::ARG_KEY;
+   using PAYLOAD = typename BASE_ITEM::PAYLOAD;
+   using ARG_PAYLOAD = typename BASE_ITEM::ARG_PAYLOAD;
 
 
-   using NODE::NODE;
+   BASE_NODE *          m_back = nullptr;
+   BASE_NODE *          m_next = nullptr;
+   BASE_NODE *          m_nextHash = nullptr;
+   BASE_NODE **         m_pbackHash = nullptr;
+
+
+   using BASE_ITEM::BASE_ITEM;
+
+
+   void defer_set_payload(ARG_PAYLOAD payload)
+   {
+
+      BASE_ITEM::defer_set_payload(payload);
+
+   }
 
 
    auto & back() { return m_back; }
@@ -34,27 +47,11 @@ public:
    auto & next() { return m_next; }
    auto & next() const { return m_next; }
 
-   auto & item() { return NODE::item(); }
-   auto & item() const { return NODE::item(); }
+   auto & item() { return *(BASE_ITEM *)this; }
+   auto & item() const { return *(BASE_ITEM *)this; }
 
-   auto & topic() { return *this; }
-   auto & topic() const { return *this; }
-
-   //operator unsigned int() const { return NODE::operator unsigned int(); }
-
-   //set_node(ARG_TYPE1 element1) :
-   //   pair(element1)
-   //{
-
-   //}
-
-
-   //set_node(ARG_TYPE1 element1, ARG_TYPE2 element2):
-   //   pair(element1, element2)
-   //{
-
-   //}
-
+   auto & node() { return *this; }
+   auto & node() const { return *this; }
 
    ::collection::index index() const
    {

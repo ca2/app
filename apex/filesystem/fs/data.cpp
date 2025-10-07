@@ -28,54 +28,54 @@ namespace fs
 //   }
 
 
-   bool data::has_subdir(const ::file::path & pszPath)
+   bool data::has_subdir(const ::file::path & path)
    {
 
-      __UNREFERENCED_PARAMETER(pszPath);
+      __UNREFERENCED_PARAMETER(path);
 
       return false;
 
    }
 
 
-   bool data::fast_has_subdir(const ::file::path & pszPath)
+   bool data::fast_has_subdir(const ::file::path & path)
    {
-      return has_subdir(pszPath);
+      return has_subdir(path);
    }
 
 
-   //string data::file_name(const ::file::path & pszPath)
+   //string data::file_name(const ::file::path & path)
    //{
-   //   __UNREFERENCED_PARAMETER(pszPath);
+   //   __UNREFERENCED_PARAMETER(scopedstrPath);
    //   return "";
    //}
 
-   bool data::file_move(const ::file::path & pszDst, const ::file::path & pszSrc)
+   bool data::file_move(const ::file::path & pathTarget, const ::file::path & pathSource)
    {
-      __UNREFERENCED_PARAMETER(pszDst);
-      __UNREFERENCED_PARAMETER(pszSrc);
+      __UNREFERENCED_PARAMETER(pathTarget);
+      __UNREFERENCED_PARAMETER(pathSource);
       return false;
    }
 
-   //string data::dir_path(const ::file::path & psz1, const ::file::path & psz2)
+   //string data::dir_path(const ::file::path & path1, const ::file::path & path2)
    //{
-   //   string str(psz1);
+   //   string str(scopedstr1);
    //   if(str.right(1) != '/')
    //      str += "/";
    //   return str + psz2;
    //}
 
 
-   bool data::tree_show_subdir(const ::file::path & pszPath)
+   bool data::tree_show_subdir(const ::file::path & path)
    {
 
       return true;
 
    }
 
-   //string data::eat_end_level(const ::file::path & pszPath, int iCount)
+   //string data::eat_end_level(const ::file::path & path, int iCount)
    //{
-   //   string strPath(pszPath);
+   //   string strPath(scopedstrPath);
    //   auto pFind = 0;
    //   character_count iStart = strPath.length() - 1;
    //   if(iCount <= 0)
@@ -114,7 +114,7 @@ namespace fs
    //}
 
 
-   bool data::enumerate(::file::listing & listing)
+   bool data::enumerate(::file::listing_base & listing)
    {
 
       __UNREFERENCED_PARAMETER(listing);
@@ -124,7 +124,7 @@ namespace fs
    }
 
 
-   //::file::listing & data::ls_relative_name(::file::listing & listing)
+   //::file::listing_base & data::ls_relative_name(::file::listing_base & listing)
    //{
 
    //   __UNREFERENCED_PARAMETER(listing);
@@ -160,7 +160,7 @@ namespace fs
 
    }
 
-   ::file::listing & data::root_ones(::file::listing & listing)
+   ::file::listing_base & data::root_ones(::file::listing_base & listing)
    {
 
       return listing;
@@ -168,10 +168,10 @@ namespace fs
    }
 
 
-   //void data::get_ascendants_path(const ::file::path & path,::file::path_array & straParam)
+   //void data::get_ascendants_path(const ::file::path & path,::file::path_array_base & straParam)
 
    //{
-   //   ::file::path_array stra;
+   //   ::file::path_array_base stra;
    //   get_ascendants_name(pcsz, stra);
 
    //   string str;
@@ -186,10 +186,10 @@ namespace fs
    //   }
    //}
 
-   //void data::get_ascendants_name(const ::file::path & path,::file::path_array & straParam)
+   //void data::get_ascendants_name(const ::file::path & path,::file::path_array_base & straParam)
 
    //{
-   //   string_array straSeparator;
+   //   string_array_base straSeparator;
    //   straSeparator.add("/");
    //   straSeparator.add("\\");
    //   straParam.add_smallest_tokens(pcsz, straSeparator, true);
@@ -227,7 +227,7 @@ namespace fs
    bool data::file_exists(const ::file::path & path)
    {
 
-      ::file::listing listing;
+      ::file::listing_base listing;
 
       listing.set_file_listing(path.folder());
 
@@ -241,7 +241,7 @@ namespace fs
    ::payload data::file_length(const ::file::path & path)
    {
 
-      ::file::listing listing;
+      ::file::listing_base listing;
 
       listing.set_file_listing(path.folder());
 
@@ -261,7 +261,7 @@ namespace fs
    }
 
 
-   ::pointer<data>data::node_path_data(const ::file::path & psz)
+   ::pointer<data>data::node_path_data(const ::file::path & path)
    {
 
       return this;
@@ -277,15 +277,15 @@ namespace fs
    }
 
 
-   bool data::is_link(const ::file::path & psz)
+   bool data::is_link(const ::file::path & path)
    {
 
-      return psz.case_insensitive_ends(".lnk");
+      return path.case_insensitive_ends(".lnk");
 
    }
 
 
-   bool data::is_zero_latency(const ::file::path & psz)
+   bool data::is_zero_latency(const ::file::path & path)
    {
 
       return true;
@@ -293,7 +293,7 @@ namespace fs
    }
 
 
-   //bool data::_enumerateperform_file_listing(::file::listing & listing)
+   //bool data::_enumerateperform_file_listing(::file::listing_base & listing)
    //{
 
    //   return ls(listing);
@@ -301,7 +301,7 @@ namespace fs
    //}
 
 
-   //bool data::perform_file_relative_name_listing(::file::listing & listing)
+   //bool data::perform_file_relative_name_listing(::file::listing_base & listing)
    //{
 
    //   return ls_relative_name(listing);

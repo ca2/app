@@ -73,7 +73,7 @@ namespace app_shader
    void application::on_request(::request * prequest)
    {
 
-      m_pmainwindow = __create_new < ::app_shader::main_window > ();
+      m_pmainwindow = øcreate_new < ::app_shader::main_window > ();
 
       m_pmainwindow->display(e_display_normal);
 
@@ -111,21 +111,21 @@ namespace app_shader
 #endif
 
 
-   string application::get_next_shader_path(const string& strPath)
+   string application::get_next_shader_path(const ::scoped_string & scopedstrPath)
    {
 
-      ::file::listing listing;
+      ::file::listing_base listing;
 
       get_shader_listing(listing);
 
-      auto next = listing.get_next(strPath);
+      auto next = listing.get_next(scopedstrPath);
 
       return ::transfer(next);
 
    }
 
 
-   void application::get_shader_listing(::file::listing & listing)
+   void application::get_shader_listing(::file::listing_base & listing)
    {
 
       auto pcontext = m_papplication;

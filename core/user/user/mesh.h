@@ -132,17 +132,17 @@ namespace user
       public:
 
 
-         raw_array < CSortInfoItem > m_itema;
+         raw_array_base < CSortInfoItem > m_itema;
 
 
       };
 
       //int_size                                   m_sizeTotal;
       ::int_size                                   m_sizePage;
-      ::user::list *                               m_plist; // should be set to this ::user::list if this is a list
+      ::user::list *                               m_plist; // should be set to this ::user::list if this is a list_base
 
       int                                          m_iDefaultColumnWidth;
-      index_map < int >                            m_mapColumnWidth;
+      index_map_base < int >                            m_mapColumnWidth;
 
       CSortInfo                                    m_sortinfo;
       ::int_size                                   m_sizeMaximumImage;
@@ -261,8 +261,8 @@ namespace user
       int                                          m_iLeftMargin;
       int                                          m_iTopMargin;
 
-      index_map < ::pointer<mesh_item >>          m_mapItem;
-      index_map < ::pointer<mesh_group >>         m_mapGroup;
+      index_map_base < ::pointer<mesh_item >>          m_mapItem;
+      index_map_base < ::pointer<mesh_group >>         m_mapGroup;
       ::task_pointer                               m_ptaskHoverSelect;
       class ::time                                   m_timeLastHoverSelect;
       bool                                         m_bPendingHoverSelect;
@@ -337,7 +337,7 @@ namespace user
       virtual void _001OnSort(::collection::index iSubItem);
       virtual void _001OnMeshHeaderItemClick(::collection::index iHeaderItem);
       virtual void _001OnMeshHeaderItemDblClk(::collection::index iHeaderItem);
-      virtual void Filter1(const string & str);
+      virtual void Filter1(const ::scoped_string & scopedstr);
       virtual bool Filter1Step();
 
 
@@ -346,7 +346,7 @@ namespace user
       virtual int _001GetGroupHeight(::collection::index iGroup);
 
 
-      virtual void FilterInclude(::int_array & array);
+      virtual void FilterInclude(::int_array_base & array);
       virtual void FilterInclude(::collection::index iItem);
       virtual void FilterExcludeAll();
       virtual void FilterClose();
@@ -365,7 +365,7 @@ namespace user
       virtual ::collection::index data_key_to_column_key(const ::scoped_string & strDataKey);
       virtual ::collection::index data_key_to_sub_item(const ::scoped_string & strDataKey);
       virtual bool has_data_key(const ::scoped_string & strDataKey);
-      virtual void get_data_selection(const ::scoped_string & scopedstrDataKey,::string_array & straSelection);
+      virtual void get_data_selection(const ::scoped_string & scopedstrDataKey,::string_array_base & straSelection);
 
       virtual void set_data_interface(mesh_data * pinterface);
       virtual void cache_hint();
@@ -597,7 +597,7 @@ namespace user
       ::double_size get_page_size(::user::enum_layout elayout = ::user::e_layout_sketch) override;
 
       virtual string  _001GetItemId(::collection::index iStrictItem);
-      virtual ::collection::index  _001GetItemById(const ::string & pszChar);
+      virtual ::collection::index  _001GetItemById(const ::scoped_string & scopedstrChar);
 
 
    };

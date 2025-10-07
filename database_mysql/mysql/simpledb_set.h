@@ -23,24 +23,24 @@ namespace simpledb
       ~set();
 
 
-      virtual void query_items(string_array & stra, const ::string & pszSql);
+      virtual void query_items(string_array_base & stra, const ::scoped_string & scopedstrSql);
 
-      virtual bool exec(const ::string & pszSql);
+      virtual bool exec(const ::scoped_string & scopedstrSql);
 
 
-      virtual bool sql_do_select(const char * & pszSql);
-      virtual bool sql_do_insert(const char * & pszSql);
+      virtual bool sql_do_select(const_char_pointer &pszSql);
+      virtual bool sql_do_insert(const_char_pointer &pszSql);
 
-      virtual string sql_consume_keyword(const char * & pszSql);
-      virtual string sql_consume_field(const char * & pszSql);
-      virtual string sql_consume_table(const char * & pszSql);
-      virtual string sql_consume_join_on(const char * & pszSql);
-      virtual string sql_consume_value(const char * & pszSql);
+      virtual string sql_consume_keyword(const_char_pointer &pszSql);
+      virtual string sql_consume_field(const_char_pointer &pszSql);
+      virtual string sql_consume_table(const_char_pointer &pszSql);
+      virtual string sql_consume_join_on(const_char_pointer &pszSql);
+      virtual string sql_consume_value(const_char_pointer &pszSql);
 
-      static string consume_quoted_value(const char * & pszXml);
+      static string consume_quoted_value(const_char_pointer &pszXml);
 
       /* Makes direct queries to database */
-      virtual void make_query(string_array &_sql);
+      virtual void make_query(string_array_base &_sql);
       /* Makes direct inserts into database */
       virtual void make_insert();
       /* Edit SQL */
@@ -56,13 +56,13 @@ namespace simpledb
 
       /* opens a query  & then sets a query results */
       virtual void open();
-      virtual void open(const ::string & sql);
+      virtual void open(const ::scoped_string & scopedstrSql);
       /* func. executes a query without results to return */
       virtual bool exec();
-      //     virtual bool exec(const ::string & sql);
+      //     virtual bool exec(const ::scoped_string & scopedstrSql);
       virtual const void * getExecRes();
       /* as open, but with our query exept Sql */
-      virtual bool query(const ::string &query);
+      virtual bool query(const ::scoped_string & scopedstrQuery);
       /* func. closes a query */
       virtual void close();
       /* Cancel changes, made in insert or edit states of set */

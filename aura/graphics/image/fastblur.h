@@ -34,7 +34,7 @@ namespace image
       vector4 * timage;
       vector4 * tsurface;
 
-      // lookup table for clamping pixel offsets
+      // find table for clamping pixel offsets
       // as the kernel passes the right (or lower) edge
       // of the input data
       int * vxmin;
@@ -55,8 +55,8 @@ namespace image
       byte_array           m_uchaA;
       byte_array           m_uchaDiv;
       ::array < rgba_t >   m_rgbaa;
-      long_long_array            m_iaVmin;
-      long_long_array            m_iaVmax;
+      long_long_array_base            m_iaVmin;
+      long_long_array_base            m_iaVmax;
 
 
       fastblur();

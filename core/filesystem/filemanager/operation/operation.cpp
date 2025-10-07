@@ -16,10 +16,10 @@
 namespace filemanager
 {
 
-   bool has_digit(string strName);
-   string get_number_mask(string strName);
-   long long get_number_value(string strName);
-   string set_number_value(string strName, long long iValue);
+   bool has_digit(const ::scoped_string & scopedstrName);
+   string get_number_mask(const ::scoped_string & scopedstrName);
+   long long get_number_value(const ::scoped_string & scopedstrName);
+   string set_number_value(const ::scoped_string & scopedstrName, long long iValue);
 
 
    operation::operation()
@@ -59,7 +59,7 @@ namespace filemanager
    }
 
 
-   bool operation::set_copy(::file::listing & stra,const ::file::path & pszDestBase,const ::file::path & pszSrcBase,bool bExpand)
+   bool operation::set_copy(::file::listing_base & stra,const ::file::path & pathTargetBase,const ::file::path & pathSourceBase,bool bExpand)
    {
 
       set_operation(e_operation_copy);
@@ -67,30 +67,30 @@ namespace filemanager
       if(bExpand)
       {
 
-         expand(m_stra,stra);
+         expand(m_filelisting,stra);
 
       }
       else
       {
 
-         m_stra = stra;
+         m_filelisting = stra;
 
       }
 
-      m_str = pszDestBase;
+      m_path = pathTargetBase;
 
-      string strBase;
+      string pathBase;
 
-      if(pszSrcBase.has_character())
+      if (pathSourceBase.has_character())
       {
 
-         strBase = pszSrcBase;
+         pathBase = pathSourceBase;
 
       }
       else
       {
 
-         strBase = stra[0].folder();
+         pathBase = stra[0].folder();
 
          ::file::path strCompare;
 
@@ -99,13 +99,13 @@ namespace filemanager
             
             strCompare = stra[i].folder();
 
-            for(int j = 0; j < minimum(strCompare.length(),strBase.length()); j++)
+            for(int j = 0; j < minimum(strCompare.length(),pathBase.length()); j++)
             {
 
-               if(strCompare[j] != strBase[j])
+               if(strCompare[j] != pathBase[j])
                {
                   
-                  strBase = ::file::path(strCompare.left(j)).folder();
+                  pathBase = ::file::path(strCompare.left(j)).folder();
 
                   break;
 
@@ -117,7 +117,7 @@ namespace filemanager
 
       }
 
-      m_strBase = strBase;
+      m_pathBase = pathBase;
 
       m_dRead = 0.0;
 
@@ -141,14 +141,14 @@ namespace filemanager
    }
 
 
-   bool operation::set_move(::file::listing & stra,const ::file::path & psz)
+   bool operation::set_move(::file::listing_base & stra,const ::file::path & path)
    {
 
       set_operation(e_operation_move);
 
-      m_stra = stra;
+      m_filelisting = stra;
 
-      m_str = psz;
+      m_path = path;
 
       m_dRead = 0.0;
 
@@ -172,12 +172,12 @@ namespace filemanager
    }
 
 
-   bool operation::set_delete(::file::listing & stra)
+   bool operation::set_delete(::file::listing_base & stra)
    {
 
       set_operation(e_operation_delete);
 
-      m_stra = stra;
+      m_filelisting = stra;
 
       m_dRead = 0.0;
 
@@ -201,26 +201,26 @@ namespace filemanager
    }
 
 
-   bool operation::open_src_dst(const ::file::path & pszSrc,::file::path & strDst,const ::file::path & pszDir)
+   bool operation::open_src_dst(const ::file::path & pathSource,::file::path & pathTarget,const ::file::path & pathFolder)
    {
 
       // auto pcontext = get_context();
 
-      if(directory()->is(pszSrc) && !case_insensitive_string_ends(pszSrc,".zip"))
+      if(directory()->is(pathSource) && !case_insensitive_string_ends(pathSource,".zip"))
       {
 
-         directory()->create(strDst.folder());
+         directory()->create(pathTarget.folder());
 
          return false;
 
       }
 
-      m_fileSrc = file()->get_file(pszSrc,::file::e_open_read | ::file::e_open_binary | ::file::e_open_share_deny_write);
+      m_fileSrc = file()->get_file(pathSource,::file::e_open_read | ::file::e_open_binary | ::file::e_open_share_deny_write);
 
       if(m_fileSrc.is_null())
       {
 
-         information() << "\n Could not open source file(" << m_iFile <<")="<< pszSrc;
+         information() << "\n Could not open source file(" << m_iFile <<")="<< pathSource;
 
          return false;
 
@@ -229,16 +229,16 @@ namespace filemanager
       if(!m_bReplaceAll)
       {
 
-         //if(file()->exists(pszDst))
+         //if(file()->exists(scopedstrDst))
          //{
          //   ::property_set propertyset;
-         //   propertyset["srcfile"].get_value().set_string(pszSrc);
-         //   propertyset["dstfile"].get_value().set_string(pszDst);
+         //   propertyset["srcfile"].get_value().set_string(pathSource);
+         //   propertyset["dstfile"].get_value().set_string(scopedstrDst);
          //   output_error_message("filemanager\\do_you_want_to_replace_the_file.xml", propertyset);
          //   return false;
          //}
 
-         if(file()->exists(strDst) || directory()->is(strDst))
+         if(file()->exists(pathTarget) || directory()->is(pathTarget))
          {
 
             //auto function = function_arg([](::payload& varRet, const ::payload& varVal)
@@ -247,7 +247,7 @@ namespace filemanager
             //      if (varVal == "no")
             //      {
 
-            //         if (!make_duplicate_name(strDst, pszDir))
+            //         if (!make_duplicate_name(pathTarget, pszDir))
             //         {
             //
             //            return false;
@@ -258,7 +258,7 @@ namespace filemanager
 
             //   });
 
-            //papp->sync_output_error_message("Do you want to overwrite?\n\nThere is already a existing file with the same name: " + strDst.name() + e_message_box_icon_question + e_message_box_yes_no_cancel + parent(m_oswindowCallback));
+            //papp->sync_output_error_message("Do you want to overwrite?\n\nThere is already a existing file with the same name: " + pathTarget.name() + ::user::e_message_box_icon_question + ::user::e_message_box_yes_no_cancel + parent(m_oswindowCallback));
 
             //if(iResult == e_dialog_result_yes)
             //{
@@ -267,7 +267,7 @@ namespace filemanager
             //{
 
 
-            //   if (!make_duplicate_name(strDst, pszDir))
+            //   if (!make_duplicate_name(pathTarget, pszDir))
             //   {
 
             //      return false;
@@ -283,20 +283,20 @@ namespace filemanager
 
       }
 
-      directory()->create(strDst.folder());
+      directory()->create(pathTarget.folder());
 
-      m_fileDst = file()->get_file(strDst,::file::e_open_write | ::file::e_open_binary | ::file::e_open_create);
+      m_fileDst = file()->get_file(pathTarget,::file::e_open_write | ::file::e_open_binary | ::file::e_open_create);
 
       auto papp = get_app();
 
       if(m_fileDst.is_null())
       {
 
-         information() << "\n Could not open dest file("<<m_iFile<<")=" << strDst;
+         information() << "\n Could not open dest file("<<m_iFile<<")=" << pathTarget;
 
          ::property_set propertyset;
 
-         propertyset["filepath"] = strDst;
+         propertyset["filepath"] = pathTarget;
 
          papp->dialog_box("filemanager\\not_accessible_destination_file.xhtml",propertyset);
 
@@ -304,7 +304,7 @@ namespace filemanager
 
       }
 
-      information() <<  m_iFile << " Opened "<<pszSrc<<" "<< strDst;
+      information() <<  m_iFile << " Opened "<<pathSource<<" "<< pathTarget;
 
       return true;
 
@@ -323,16 +323,16 @@ namespace filemanager
 
          m_pchBuffer = (char *)malloc(m_iBufferSize);
 
-         ::file::path strName = m_str / m_stra[m_iFile].substr(m_strBase.length());
+         ::file::path strName = m_path / m_filelisting[m_iFile].substr(m_pathBase.length());
 
-         if(m_str == m_strBase)
+         if(m_path == m_pathBase)
          {
 
-            make_duplicate_name(strName,m_str);
+            make_duplicate_name(strName,m_path);
 
          }
 
-         if (!open_src_dst(m_stra[m_iFile], strName, m_str))
+         if (!open_src_dst(m_filelisting[m_iFile], strName, m_path))
          {
 
             throw ::exception(error_failed);
@@ -354,9 +354,9 @@ namespace filemanager
 
          m_pchBuffer = (char *)malloc(m_iBufferSize);
 
-         ::file::path strPath = m_str / m_stra[m_iFile].name();
+         ::file::path strPath = m_path / m_filelisting[m_iFile].name();
 
-         if (!open_src_dst(m_stra[m_iFile], strPath, m_str))
+         if (!open_src_dst(m_filelisting[m_iFile], strPath, m_path))
          {
 
             throw ::exception(error_failed);
@@ -385,7 +385,7 @@ namespace filemanager
       case e_operation_copy:
       {
 
-         if (m_iFile >= m_stra.get_size())
+         if (m_iFile >= m_filelisting.get_size())
          {
 
             return false;
@@ -462,24 +462,24 @@ namespace filemanager
 
             }
             m_iFile++;
-            while(m_iFile < m_stra.get_size() && directory()->is(m_stra[m_iFile]) && !case_insensitive_string_ends(m_stra[m_iFile],".zip"))
+            while(m_iFile < m_filelisting.get_size() && directory()->is(m_filelisting[m_iFile]) && !case_insensitive_string_ends(m_filelisting[m_iFile],".zip"))
             {
                m_iFile++;
             }
 
-            if(m_iFile >= m_stra.get_size())
+            if(m_iFile >= m_filelisting.get_size())
                return false;
 
-            ::file::path strName = m_str / m_stra[m_iFile].substr(m_strBase.length());
+            ::file::path strName = m_path / m_filelisting[m_iFile].substr(m_pathBase.length());
 
-            if(m_str == m_strBase)
+            if(m_path == m_pathBase)
             {
 
-               make_duplicate_name(strName,m_str);
+               make_duplicate_name(strName,m_path);
 
             }
 
-            if(!open_src_dst(m_stra[m_iFile],strName, m_str))
+            if(!open_src_dst(m_filelisting[m_iFile],strName, m_path))
             {
 
                return false;
@@ -490,14 +490,14 @@ namespace filemanager
       case e_operation_delete:
       {
 
-         if (m_iFile >= m_stra.get_size())
+         if (m_iFile >= m_filelisting.get_size())
          {
 
             return false;
 
          }
 
-         file()->erase(m_stra[m_iFile]);
+         file()->erase(m_filelisting[m_iFile]);
 
          m_iFile++;
 
@@ -506,7 +506,7 @@ namespace filemanager
       case e_operation_move:
       {
 
-         if (m_iFile >= m_stra.get_size())
+         if (m_iFile >= m_filelisting.get_size())
          {
 
             return false;
@@ -528,16 +528,16 @@ namespace filemanager
 
             m_fileDst->close();
 
-            file()->erase(m_stra[m_iFile]);
+            file()->erase(m_filelisting[m_iFile]);
 
             m_iFile++;
 
-            if(m_iFile >= m_stra.get_size())
+            if(m_iFile >= m_filelisting.get_size())
                return false;
 
-            ::file::path strPath = m_str / m_stra[m_iFile].name();
+            ::file::path strPath = m_path / m_filelisting[m_iFile].name();
 
-            if(!open_src_dst(m_stra[m_iFile], strPath,m_str))
+            if(!open_src_dst(m_filelisting[m_iFile], strPath,m_path))
                return false;
 
          }
@@ -609,10 +609,10 @@ namespace filemanager
 
       // auto pcontext = get_context();
 
-      for(int i = 0; i < m_stra.get_size(); i++)
+      for(int i = 0; i < m_filelisting.get_size(); i++)
       {
 
-         if(directory()->is(m_stra[i]) && !case_insensitive_string_ends(m_stra[i],".zip"))
+         if(directory()->is(m_filelisting[i]) && !case_insensitive_string_ends(m_filelisting[i],".zip"))
          {
 
             m_daSize.add(0.0);
@@ -623,7 +623,7 @@ namespace filemanager
          else
          {
 
-            varLen = file()->length(m_stra[i]);
+            varLen = file()->length(m_filelisting[i]);
 
             if(varLen.is_null())
             {
@@ -656,7 +656,7 @@ namespace filemanager
    int operation::get_item_count()
    {
 
-      return (int)m_stra.get_size();
+      return (int)m_filelisting.get_size();
 
    }
 
@@ -666,7 +666,7 @@ namespace filemanager
 
       string str;
 
-      str.formatf("Copying %s (%s) to %s", ::string(m_stra[iItem].name()).c_str(), ::string(m_stra[iItem].name()).c_str(),m_str.c_str());
+      str.formatf("Copying %s (%s) to %s", ::string(m_filelisting[iItem].name()).c_str(), ::string(m_filelisting[iItem].name()).c_str(),m_path.c_str());
 
       return str;
 
@@ -715,13 +715,13 @@ namespace filemanager
    }
 
 
-   bool has_digit(string strName)
+   bool has_digit(const ::scoped_string & scopedstrName)
    {
 
-      for(::collection::index i= 0; i < strName.length(); i++)
+      for(::collection::index i= 0; i < scopedstrName.length(); i++)
       {
 
-         if(::ansi_char_isdigit(strName[i]))
+         if(::ansi_char_isdigit(scopedstrName[i]))
          {
 
             return true;
@@ -735,17 +735,17 @@ namespace filemanager
    }
 
 
-   string get_number_mask(string strName)
+   string get_number_mask(const ::scoped_string & scopedstrName)
    {
 
       string strResult;
 
       bool bFirst = true;
 
-      for(::collection::index i= 0; i < strName.length(); i++)
+      for(::collection::index i= 0; i < scopedstrName.length(); i++)
       {
 
-         if(::ansi_char_isdigit(strName[i]))
+         if(::ansi_char_isdigit(scopedstrName[i]))
          {
 
             if(bFirst)
@@ -778,12 +778,12 @@ namespace filemanager
    }
 
 
-   long long get_number_value(string strName)
+   long long get_number_value(const ::scoped_string & scopedstrName)
    {
 
       string strResult;
 
-      string strMask = get_number_mask(strName);
+      string strMask = get_number_mask(scopedstrName);
 
       ::collection::index i;
 
@@ -793,7 +793,7 @@ namespace filemanager
          if(strMask[i] == '1' || strMask[i] == 'X')
          {
 
-            strResult = strName[i] + strResult;
+            strResult = scopedstrName[i] + strResult;
 
          }
 
@@ -811,14 +811,14 @@ namespace filemanager
    }
 
 
-   string set_number_value(string strName, long long iValue)
+   string set_number_value(const ::scoped_string & scopedstrName, long long iValue)
    {
 
       string strValue = as_string(iValue);
 
-      string strResult = strName;
+      string strResult = scopedstrName;
 
-      string strMask = get_number_mask(strName);
+      string strMask = get_number_mask(scopedstrName);
 
       character_count j = strValue.length() - 1;
 
@@ -877,10 +877,10 @@ namespace filemanager
    }
 
 
-   bool operation::make_duplicate_name(::file::path & str,const ::file::path & psz)
+   bool operation::make_duplicate_name(::file::path & str,const ::file::path & path)
    {
 
-      string strDir = psz;
+      string strDir = path;
       string strName = str.substr(strDir.length());
       string strExtension;
       bool bDir;
@@ -928,7 +928,7 @@ namespace filemanager
    }
 
 
-   void operation::expand(::file::listing & listingExpanded,::file::path_array & pathaExpand)
+   void operation::expand(::file::listing_base & listingExpanded,::file::path_array_base & pathaExpand)
    {
 
       auto papplication = m_papplication;

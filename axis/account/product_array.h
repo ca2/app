@@ -16,7 +16,7 @@ namespace account
 
       
       department *                                 m_pdepartment;
-      string_map < ::pointer<product >>            m_map;
+      string_map_base < ::pointer<product >>            m_map;
       
 
       product_array();
@@ -25,22 +25,22 @@ namespace account
 
       virtual void initialize_product_array(department* pdepartment);
       
-      virtual product * get_product(string strAppId, bool bFetch = false, bool bInteractive = true);
-//      virtual product * interactive_get_product(string strAppId);
-//      virtual product * noninteractive_get_product(string strAppId);
+      virtual product * get_product(const ::scoped_string & scopedstrAppId, bool bFetch = false, bool bInteractive = true);
+//      virtual product * interactive_get_product(const ::scoped_string & scopedstrAppId);
+//      virtual product * noninteractive_get_product(const ::scoped_string & scopedstrAppId);
       
       
-      virtual void _get_product(string strAppId, bool bInteractive);
+      virtual void _get_product(const ::scoped_string & scopedstrAppId, bool bInteractive);
 
       
-      bool is_licensed(string strAppId, bool bInteractive = true);
+      bool is_licensed(const ::scoped_string & scopedstrAppId, bool bInteractive = true);
       
       
-      bool _is_licensed(string strAppId, bool bInteractive = true);
+      bool _is_licensed(const ::scoped_string & scopedstrAppId, bool bInteractive = true);
       
 
       ::collection::count clear_all_cache();
-      bool clear_cache(string strAppId);
+      bool clear_cache(const ::scoped_string & scopedstrAppId);
 
 
    };

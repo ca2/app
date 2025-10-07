@@ -4,7 +4,7 @@
 #include "atom.h"
 
 
-CLASS_DECL_ACME string demangle(const char * pszMangledName);
+CLASS_DECL_ACME string demangle(const_char_pointer pszMangledName);
 
 
 #ifdef WINDOWS
@@ -13,7 +13,7 @@ CLASS_DECL_ACME string demangle(const char * pszMangledName);
 #define __c_type_name(t) (c_demangle(typeid(t).name()))
 
 
-inline const char * c_demangle(const ::ansi_character * psz)
+inline const_char_pointer c_demangle(const_char_pointer psz)
 {
 
    if (psz[0] == 'c' &&
@@ -48,10 +48,10 @@ inline const char * c_demangle(const ::ansi_character * psz)
 
 }
 #else
-//inline const char * c_demangle(const ::scoped_string & scopedstr)
+//inline const_char_pointer c_demangle(const ::scoped_string & scopedstr)
 //{
 //
-//   return psz;
+//   return scopedstr;
 //
 //}
 
@@ -104,7 +104,7 @@ public:
 
 
    //type_atom(const ::scoped_string & scopedstrTypeName) :
-   //   atom(pszTypeName)
+   //   atom(scopedstrTypeName)
    //{
    //   
    //}
@@ -161,7 +161,7 @@ public:
 //   bool operator == (const ::type_atom& datatype) const;
 //
 //
-//   bool operator == (const ::string& strType) const;
+//   bool operator == (const ::scoped_string & scopedstrType) const;
 
 
    bool operator == (const ::atom& atom) const;
@@ -185,9 +185,9 @@ public:
 
    inline operator bool() const { return ::atom::has_character(); }
 
-   //inline operator const char * () const { return ::atom::operator const char *(); }
+   //inline operator const_char_pointer () const { return ::atom::operator const_char_pointer (); }
 
-   //bool name_contains(const ::ansi_character * psz) const;
+   //bool name_contains(const_char_pointer psz) const;
 
 
 };

@@ -179,7 +179,24 @@ namespace sockets_bsd
       else
       {
 
-         m_psockethandler = phandler;
+         auto psockethandlerOld = m_psockethandler;
+
+         if (psockethandlerOld != phandler)
+         {
+
+            m_psockethandler = phandler;
+
+            if (psockethandlerOld)
+            {
+
+               psockethandlerOld->erase(this);
+
+            }
+
+         }
+
+
+
 
       }
 
@@ -334,7 +351,7 @@ namespace sockets_bsd
 
    //void base_socket::create_sock
 
-   /*   SOCKET base_socket::CreateSocket(int af,int iType, const ::string & strProtocol)
+   /*   SOCKET base_socket::CreateSocket(int af,int iType, const ::scoped_string & scopedstrProtocol)
    {
    struct protoent *point = nullptr;
    SOCKET s;
@@ -428,7 +445,7 @@ namespace sockets_bsd
 
             ::pointer < ::sockets_bsd::socket_handler > phandler = socket_handler();
 
-            phandler->socket_id_list_modify(m_socketid, e_list_close, bCloseAndDelete);
+            phandler->m_socketlistClose.change(m_socketid, bCloseAndDelete);
 
          }
 
@@ -664,7 +681,7 @@ namespace sockets_bsd
    }
 
 
-   void base_socket::OnLine(const string & )
+   void base_socket::OnLine(const ::scoped_string & scopedstrLine)
    {
    }
 
@@ -909,6 +926,10 @@ namespace sockets_bsd
       m_bSsl = bSslNegotiate;
    }
 
+   void base_socket::set_no_ssl_shutdown()
+   {
+
+   }
 
    bool base_socket::IsSSLServer()
    {
@@ -988,9 +1009,11 @@ namespace sockets_bsd
    }
 
 
-   void base_socket::SetSocketProtocol(const ::string & strProtocol)
+   void base_socket::SetSocketProtocol(const ::scoped_string & scopedstrProtocol)
    {
-      m_strSocketProtocol = strProtocol;
+
+      m_strSocketProtocol = scopedstrProtocol;
+
    }
 
 
@@ -1064,14 +1087,14 @@ namespace sockets_bsd
 #if defined(BSD_STYLE_SOCKETS)
 
 
-   void base_socket::SetSocks4Host(const string & host)
+   void base_socket::SetSocks4Host(const ::scoped_string & scopedstrHost)
    {
 
       //auto pnetworking = system()->networking();
 
       //paddressdepartment->convert(m_socks4_host, host);
 
-      m_socks4_host = host;
+      m_socks4_host = scopedstrHost;
 
    }
 
@@ -1093,7 +1116,7 @@ namespace sockets_bsd
    }
 
 
-   //void base_socket::SetSocks4Host(const ::string & a)
+   //void base_socket::SetSocks4Host(const ::scoped_string & scopedstrAddress)
    //{
    //   m_socks4_host = a;
    //}
@@ -1185,7 +1208,7 @@ namespace sockets_bsd
 
    //   SetDetached();
 
-   //   auto psocketthread = __allocate socket_thread();
+   //   auto psocketthread = øallocate socket_thread();
 
    //   psocketthread->initialize_socket_thread(this);
 
@@ -1242,7 +1265,7 @@ namespace sockets_bsd
    //
 
 
-//   int base_socket::Resolve(const string & host,::networking::port_t port)
+//   int base_socket::Resolve(const ::scoped_string & scopedstrHost,::networking::port_t port)
 //   {
 //
 //      return socket_handler()->Resolve(this, host, port);
@@ -1250,7 +1273,7 @@ namespace sockets_bsd
 //   }
 
 
-//   int base_socket::Resolve6(const string & host,::networking::port_t port)
+//   int base_socket::Resolve6(const ::scoped_string & scopedstrHost,::networking::port_t port)
 //   {
 //
 //      return socket_handler()->Resolve6(this, host, port);
@@ -2021,10 +2044,10 @@ bool base_socket::SetSoKeepalive(bool x)
 
 #if defined(SO_BINDTODEVICE) && defined(BSD_STYLE_SOCKETS)
    
-   bool base_socket::SetSoBindtodevice(const string & intf)
+   bool base_socket::SetSoBindtodevice(const ::scoped_string & scopedstrInterface)
    {
    
-      if (setsockopt(GetSocketId(), SOL_SOCKET, SO_BINDTODEVICE, (char *) (const char *)intf, (unsigned int) intf.length()) == -1)
+      if (setsockopt(GetSocketId(), SOL_SOCKET, SO_BINDTODEVICE, (char *) scopedstrInterface.data(), (unsigned int) scopedstrInterface.size()) == -1)
       {
 
          fatal() <<"setsockopt(SOL_SOCKET, SO_BINDTODEVICE)" << networking_last_error() << ", " << bsd_socket_error(networking_last_error());
@@ -2673,13 +2696,13 @@ bool base_socket::SetSoKeepalive(bool x)
          if (m_timeKeepConnectionAfterLastIO > 0_s)
          {
 
-            phandler->socket_id_list_add(GetSocketId(), e_list_timeout);
+            phandler->m_socketlistTimeout.add_unique(GetSocketId());
 
          }
          else
          {
 
-            phandler->socket_id_list_erase(GetSocketId(), e_list_timeout);
+            phandler->m_socketlistTimeout.erase(GetSocketId());
 
          }
 
@@ -2832,15 +2855,19 @@ bool base_socket::SetSoKeepalive(bool x)
          int x = i;
          for (; i < n && LineProtocol(); i++)
          {
+            auto pNextLine = strpbrk(buf + i, "\r\n");
+            if (pNextLine) i = (int)(pNextLine - buf);
             while ((buf[i] == 13 || buf[i] == 10) && LineProtocol())
             {
                char c = buf[i];
                buf[i] = 0;
                if (buf[x])
                {
-                  m_line += (buf + x);
+
+                  m_strLine += {buf + x, i - x};
+
                }
-               OnLine( m_line );
+               OnLine( m_strLine);
                if(IsCloseAndDelete())
                   break;
                i++;
@@ -2852,7 +2879,7 @@ bool base_socket::SetSoKeepalive(bool x)
                   i++;
                }
                x = i;
-               m_line = "";
+               m_strLine.destroy();
             }
             if (!LineProtocol())
             {
@@ -2891,7 +2918,7 @@ bool base_socket::SetSoKeepalive(bool x)
          else if (buf[x])
          {
 
-            m_line += (buf + x);
+            m_strLine.assign(buf + x, string_safe_length(buf+x));
 
          }
 
@@ -3014,7 +3041,7 @@ bool base_socket::SetSoKeepalive(bool x)
 
 #ifdef BSD_STYLE_SOCKETS
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (m_psslcontext->m_pclientcontext->session() != nullptr)
       {
@@ -3031,7 +3058,7 @@ bool base_socket::SetSoKeepalive(bool x)
    void base_socket::get_ssl_session()
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
 #ifdef BSD_STYLE_SOCKETS
       if (m_psslcontext->m_pclientcontext->m_psslsession == nullptr)
@@ -3045,7 +3072,7 @@ bool base_socket::SetSoKeepalive(bool x)
    }
 
 
-   ::string_array & base_socket::debugstra()
+   ::string_array_base & base_socket::debugstra()
    {
 
       return m_straDebug;

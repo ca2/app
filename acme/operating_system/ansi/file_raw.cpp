@@ -62,7 +62,7 @@ void file_add_contents_raw(const ::file::path & path, const ::scoped_string & sc
 
    ::collection::count iSize = scopedstr.size();
 
-   ::collection::count iRead = fwrite(scopedstr.c_str(), 1, (size_t)iSize, f);
+   ::collection::count iRead = fwrite(scopedstr.as_string().c_str(), 1, (size_t)iSize, f);
 
    fclose(f);
 
@@ -128,7 +128,7 @@ void file_beg_contents_raw(const ::file::path & path, const ::scoped_string & sc
 
    fseek(f, 0, SEEK_SET);
 
-   auto lRead = fwrite(scopedstr.c_str(), 1, lLen, f);
+   auto lRead = fwrite(scopedstr.as_string().c_str(), 1, lLen, f);
 
    if (lRead != lLen)
    {

@@ -34,10 +34,10 @@ public:
    virtual int wait_get_current_port(const ::duration & duration);
 
 
-   virtual void add_handler(const ::string& strPrefix, networking_application_handler* phandler);
+   virtual void add_handler(const ::scoped_string & scopedstrPrefix, networking_application_handler* phandler);
 
 
-   ::e_status on_html_response(::string & strHtml, const ::string& strUrl, const ::property_set& setPost) override;
+   ::e_status on_html_response(::string & strHtml, const ::scoped_string & scopedstrUrl, const ::property_set& setPost) override;
 
 
 };

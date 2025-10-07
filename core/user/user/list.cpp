@@ -7,7 +7,7 @@
 #include "list_data.h"
 #include "mesh_cache_interface.h"
 #include "acme/constant/id.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "acme/constant/timer.h"
 #include "acme/constant/user_key.h"
 #include "acme/exception/interface_only.h"
@@ -35,7 +35,7 @@
 #include "aura/windowing/window.h"
 #include "aura/windowing/windowing.h"
 #include "axis/platform/system.h"
-#include "base/user/user/user.h"
+#include "berg/user/user/user.h"
 #include "core/user/simple/list_data.h"
 #include "core/platform/session.h"
 //#include "acme/_operating_system.h"
@@ -149,22 +149,22 @@ namespace user
 
       ::user::mesh::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_size, pchannel, this, &list::on_message_size);
-      MESSAGE_LINK(e_message_scroll_y, pchannel, this, &list::on_message_scroll_y);
-      MESSAGE_LINK(e_message_scroll_x, pchannel, this, &list::on_message_scroll_x);
-      MESSAGE_LINK(e_message_mouse_leave, pchannel, this, &list::on_message_mouse_leave);
+      USER_MESSAGE_LINK(::user::e_message_size, pchannel, this, &list::on_message_size);
+      USER_MESSAGE_LINK(::user::e_message_scroll_y, pchannel, this, &list::on_message_scroll_y);
+      USER_MESSAGE_LINK(::user::e_message_scroll_x, pchannel, this, &list::on_message_scroll_x);
+      USER_MESSAGE_LINK(::user::e_message_mouse_leave, pchannel, this, &list::on_message_mouse_leave);
 
-      MESSAGE_LINK(e_message_left_button_down, pchannel, this, &list::on_message_left_button_down);
-      MESSAGE_LINK(e_message_left_button_up, pchannel, this, &list::on_message_left_button_up);
-      MESSAGE_LINK(e_message_left_button_double_click, pchannel, this, &list::on_message_left_button_double_click);
-      MESSAGE_LINK(e_message_right_button_down, pchannel, this, &list::on_message_right_button_down);
+      USER_MESSAGE_LINK(::user::e_message_left_button_down, pchannel, this, &list::on_message_left_button_down);
+      USER_MESSAGE_LINK(::user::e_message_left_button_up, pchannel, this, &list::on_message_left_button_up);
+      USER_MESSAGE_LINK(::user::e_message_left_button_double_click, pchannel, this, &list::on_message_left_button_double_click);
+      USER_MESSAGE_LINK(::user::e_message_right_button_down, pchannel, this, &list::on_message_right_button_down);
 
-      MESSAGE_LINK(e_message_mouse_move, pchannel, this, &list::on_message_mouse_move);
+      USER_MESSAGE_LINK(::user::e_message_mouse_move, pchannel, this, &list::on_message_mouse_move);
 
-      MESSAGE_LINK(e_message_key_down, pchannel, this, &list::on_message_key_down);
+      USER_MESSAGE_LINK(::user::e_message_key_down, pchannel, this, &list::on_message_key_down);
 
-      MESSAGE_LINK(e_message_create, pchannel, this, &list::on_message_create);
-      //      //MESSAGE_LINK(e_message_timer,           pchannel, this, &list::on_timer);
+      USER_MESSAGE_LINK(::user::e_message_create, pchannel, this, &list::on_message_create);
+      //      //USER_MESSAGE_LINK(::user::e_message_timer,           pchannel, this, &list::on_timer);
       add_command_handler("list_impact_auto_arrange", { this,  &list::_001OnListImpactAutoArrange });
       add_command_prober("list_impact_auto_arrange", { this,  &list::_001OnUpdateListImpactAutoArrange });
 
@@ -260,7 +260,7 @@ namespace user
 
       }
 
-      _synchronous_lock synchronouslock(m_pmeshdata->synchronization());
+      _synchronous_lock synchronouslock(m_pmeshdata->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       ::int_rectangle rectangleX = this->rectangle();
 
@@ -271,7 +271,7 @@ namespace user
       if (m_bTopText)
       {
 
-         auto pbrushText = __øcreate < ::draw2d::brush > ();
+         auto pbrushText = øcreate < ::draw2d::brush > ();
 
          auto pstyle = get_style(pgraphics);
 
@@ -390,13 +390,13 @@ namespace user
                if (pcolumn->m_pimagelist)
                {
 
-                  slaImageList.add(__allocate now_a_particle < _synchronous_lock > (pcolumn->m_pimagelist));
+                  slaImageList.add(øallocate now_a_particle < _synchronous_lock > (pcolumn->m_pimagelist));
 
                }
                if (pcolumn->m_pimagelistHover)
                {
 
-                  slaImageList.add(__allocate now_a_particle < _synchronous_lock > (pcolumn->m_pimagelist));
+                  slaImageList.add(øallocate now_a_particle < _synchronous_lock > (pcolumn->m_pimagelist));
 
                }
 
@@ -505,7 +505,7 @@ namespace user
          if (!pgroup)
          {
 
-            auto pdrawgroup = __allocate draw_list_group();
+            auto pdrawgroup = øallocate draw_list_group();
 
             pdrawgroup->initialize_draw_list_group(this);
 
@@ -1036,7 +1036,7 @@ namespace user
    void list::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       //m_dItemHeight = m_sizeMaximumItem.cy() + 1;
 
@@ -1189,7 +1189,7 @@ namespace user
 
       //{
 
-      //   _synchronous_lock synchronouslock(this->synchronization());
+      //   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       //   //m_nItemCount = nCount;
 
@@ -1371,7 +1371,7 @@ namespace user
 
             //itemFirst.m_iDisplayItem = 0;
 
-            const char * pszType = typeid(*this).name();
+            const_char_pointer pszType = typeid(*this).name();
 
             index_item_rectangle(*pitem);
 
@@ -1459,7 +1459,7 @@ namespace user
       if (!pitem)
       {
 
-         auto pdrawlistitem = __allocate draw_list_item();
+         auto pdrawlistitem = øallocate draw_list_item();
 
          pdrawlistitem->initialize_draw_list_item(this);
 
@@ -1492,7 +1492,7 @@ namespace user
       if (!psubitem)
       {
 
-         auto pdrawlistsubitem = __allocate draw_list_subitem();
+         auto pdrawlistsubitem = øallocate draw_list_subitem();
 
          pdrawlistsubitem->initialize_draw_list_subitem(*pitem);
 
@@ -1514,7 +1514,7 @@ namespace user
    ::pointer<list_column>list::new_list_column()
    {
 
-      auto pcolumn = __allocate list_column();
+      auto pcolumn = øallocate list_column();
 
       m_pcolumna->add(pcolumn);
 
@@ -3442,7 +3442,7 @@ namespace user
    void list::LayoutHeaderCtrl()
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (m_plistheader == nullptr)
       {
@@ -3483,7 +3483,7 @@ namespace user
       if (pkey->previous()) // give chance to child
          return;
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (pkey->m_ekey == ::user::e_key_down || pkey->m_ekey == ::user::e_key_up ||
             pkey->m_ekey == ::user::e_key_page_down || pkey->m_ekey == ::user::e_key_page_up)
@@ -3596,7 +3596,7 @@ namespace user
 
       host_to_client()(point);
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (m_bDrag)
       {
@@ -3793,7 +3793,7 @@ namespace user
 
       host_to_client()(point);
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       information() << "How many times this is called for a single left button down?";
 
@@ -4155,7 +4155,7 @@ namespace user
 
       kill_timer(224455);
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (m_bDrag)
       {
@@ -4217,7 +4217,7 @@ namespace user
 
                         synchronouslock._lock();
 
-                        string_array stra;
+                        string_array_base stra;
 
                         for (::collection::index a = 0; a <= m_plist->m_piconlayout->m_iaDisplayToStrict.m_iMaxA; a++)
                         {
@@ -4292,13 +4292,13 @@ namespace user
                   else
                   {
 
-                      auto pmessage = __create_new < ::message::mouse >();
+                      auto pmessage = øcreate_new < ::message::mouse >();
 
                       pmessage->m_oswindow = oswindow();
 
                       pmessage->m_pwindow = window();
 
-                      pmessage->m_emessage = e_message_left_button_double_click;
+                      pmessage->m_eusermessage = ::user::e_message_left_button_double_click;
 
                       pmessage->m_ebuttonstate = pmouse->m_ebuttonstate;
 
@@ -4363,7 +4363,7 @@ namespace user
 
       host_to_client()(point);
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (!has_keyboard_focus())
       {
@@ -4431,13 +4431,13 @@ namespace user
       //else if (get_form() != nullptr)
       //{
 
-      //   get_form()->send_message(e_message_event, 0, (LPARAM)&ev);
+      //   get_form()->send_message(::user::e_message_event, 0, (LPARAM)&ev);
 
       //}
       //else
       //{
 
-      //   get_parent()->send_message(e_message_event, 0, (LPARAM)&ev);
+      //   get_parent()->send_message(::user::e_message_event, 0, (LPARAM)&ev);
 
       //}
 
@@ -4502,7 +4502,7 @@ namespace user
    }
 
 
-   void list::get_data_selection(const ::scoped_string & scopedstrDataKey, ::string_array & straSelection)
+   void list::get_data_selection(const ::scoped_string & scopedstrDataKey, ::string_array_base & straSelection)
    {
 
       if (!has_data_key(scopedstrDataKey))
@@ -4957,7 +4957,7 @@ namespace user
 
       ::collection::index iIndex = -1;
 
-      if (!m_mapSubItemIndex.lookup(iSubItem, iIndex))
+      if (!m_mapSubItemIndex.find(iSubItem, iIndex))
       {
 
          for (::collection::index i = 0; i < this->get_size(); i++)
@@ -5576,7 +5576,7 @@ namespace user
 
       {
 
-         _synchronous_lock synchronouslock(this->synchronization());
+         _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          m_pcolumna->erase_all();
 
@@ -5621,7 +5621,7 @@ namespace user
 
       }
 
-      __defer_construct_new(m_pcolumna);
+      ødefer_construct_new(m_pcolumna);
 
       m_pcolumna->Initialize(this);
 
@@ -5689,7 +5689,7 @@ namespace user
       if (pcolumn->m_pimagelist == nullptr)
       {
 
-         pcolumn->m_pimagelist = __allocate ::image::image_list();
+         pcolumn->m_pimagelist = øallocate ::image::image_list();
 
       }
 
@@ -5831,7 +5831,7 @@ namespace user
    void list::cache_hint()
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (m_pmeshcache.is_set())
       {
@@ -6502,7 +6502,7 @@ namespace user
       }
    }
 
-   void list::FilterInclude(::int_array & array)
+   void list::FilterInclude(::int_array_base & array)
    {
       ASSERT(m_efilterstate == FilterStateSetup);
       for (::collection::index i = 0; i < array.get_size(); i++)
@@ -6620,7 +6620,7 @@ namespace user
    }
 
 
-   void list::Filter1(const string & strFilter)
+   void list::Filter1(const ::scoped_string & scopedstrFilter)
    {
 
       if (m_eview == impact_icon)
@@ -6632,9 +6632,9 @@ namespace user
          m_piaFilterMesh->erase_all();
       }
 
-      string_array stra;
+      string_array_base stra;
 
-      stra.add_tokens(strFilter, " ", false);
+      stra.add_tokens(scopedstrFilter, " ", false);
 
       //m_pregexFilter1->setPositionMoves(1);
 
@@ -6895,7 +6895,7 @@ namespace user
    void list::on_change_context_offset(::user::enum_layout elayout)
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       auto point = get_context_offset();
 
@@ -6959,7 +6959,7 @@ namespace user
 
       auto pointCursor = host_mouse_cursor_position();
 
-      auto pmouse = __create_new < ::message::mouse >();
+      auto pmouse = øcreate_new < ::message::mouse >();
 
       pmouse->m_pointHost = pointCursor;
 
@@ -7008,7 +7008,7 @@ namespace user
    //::item_pointer list::update_hover(::user::mouse* pmouse, ::user::e_zorder ezorder)
    //{
 
-   //   auto pitemHitTest = __allocate ::item();
+   //   auto pitemHitTest = øallocate ::item();
    //   
    //   auto pointClient = screen_to_client().get(pmouse->m_point);
 
@@ -7937,7 +7937,7 @@ namespace user
 
       }
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       string strSort(m_pmeshdata ? m_pmeshdata->m_strMeshSort.c_str() : "");
 
@@ -7951,7 +7951,7 @@ namespace user
          // auto pcontext = get_context();
 
          string str = file()->safe_get_string(strSort);
-         string_array stra;
+         string_array_base stra;
          stra.add_lines(str);
          for (::collection::index a = 0; a < stra.get_size(); a++)
          {

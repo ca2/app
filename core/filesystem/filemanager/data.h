@@ -119,7 +119,7 @@ namespace filemanager
 
 
       virtual ::atom get_local_machine_id();
-      virtual string get_last_browse_path(::particle * pparticle, const ::string & pszDefault = nullptr);
+      virtual string get_last_browse_path(::particle * pparticle, const ::scoped_string & scopedstrDefault = nullptr);
       virtual void set_last_browse_path(::particle * pparticle, const ::file::path & path);
 
 

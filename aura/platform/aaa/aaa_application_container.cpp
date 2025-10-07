@@ -1,5 +1,5 @@
 #include "framework.h"
-//#include "base/user/user/_component.h"
+//#include "berg/user/user/_component.h"
 #include "aura/platform/app_core.h"
 
 
@@ -154,7 +154,7 @@ application_array & application_container::applicationa()
 application_array application_container::get_applicationa()
 {
 
-   synchronous_lock synchronouslock(this->synchronization());
+   synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    return m_applicationa;
 
@@ -171,7 +171,7 @@ application_array application_container::get_applicationa()
 //
 //   }
 //
-//   synchronous_lock synchronouslock(this->synchronization());
+//   synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //   if (papp == this)
 //   {
@@ -188,7 +188,7 @@ application_array application_container::get_applicationa()
 //void application_container::app_erase(::aura::application * papp)
 //{
 //
-//   synchronous_lock synchronouslock(this->synchronization());
+//   synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //   if (m_applicationa.is_set())
 //   {
@@ -200,14 +200,14 @@ application_array application_container::get_applicationa()
 //}
 
 
-::pointer<::aura::application>application_container::instantiate_application(const ::string & pszAppId, ::request * prequest)
+::pointer<::aura::application>application_container::instantiate_application(const ::scoped_string & scopedstrAppId, ::request * prequest)
 {
 
    information() << "aura::application::instantiate_application";
 
    ::pointer<::aura::application>papp;
 
-   string strAppId(pszAppId);
+   string strAppId(scopedstrAppId);
 
    if (strAppId == "session")
    {
@@ -291,10 +291,10 @@ application_array application_container::get_applicationa()
 }
 
 
-::pointer<::aura::application>application_container::create_application(const ::string & pszAppId, bool bSynch, ::request * prequest)
+::pointer<::aura::application>application_container::create_application(const ::scoped_string & scopedstrAppId, bool bSynch, ::request * prequest)
 {
 
-   ::pointer<::aura::application>papp = instantiate_application(pszAppId, pcreate);
+   ::pointer<::aura::application>papp = instantiate_application(scopedstrAppId, pcreate);
 
    if (!papp)
    {
@@ -328,16 +328,16 @@ application_array application_container::get_applicationa()
 
 
 
-::pointer<::aura::application>application_container::assert_running(const ::string & pszAppId, const ::string & strLocale, const ::string & strSchema)
+::pointer<::aura::application>application_container::assert_running(const ::scoped_string & scopedstrAppId, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema)
 {
 
   ::pointer<::aura::application>papp;
 
   {
 
-     synchronous_lock synchronouslock(this->synchronization());
+     synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-     papp = m_applicationa.find_running_defer_try_quit_damaged(pszAppId);
+     papp = m_applicationa.find_running_defer_try_quit_damaged(scopedstrAppId);
 
   }
 
@@ -346,7 +346,7 @@ application_array application_container::get_applicationa()
 
      ::pointer<::create>spcreate(e_create_new);
 
-     papp = start_application(pszAppId, spcreate, strLocale, strSchema);
+     papp = start_application(scopedstrAppId, spcreate, strLocale, strSchema);
 
   }
 
@@ -357,10 +357,10 @@ application_array application_container::get_applicationa()
 
 
 
-::pointer<::aura::application>application_container::start_application(const ::string & pszAppId, ::request * prequest, const ::string & strLocale, const ::string & strSchema)
+::pointer<::aura::application>application_container::start_application(const ::scoped_string & scopedstrAppId, ::request * prequest, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema)
 {
 
-   string strApp(pszAppId);
+   string strApp(scopedstrAppId);
 
    auto papp = application_get(strApp, true, true, pcreate);
 
@@ -463,12 +463,12 @@ application_array application_container::get_applicationa()
 
 
 
-::aura::application * application_container::application_get(const ::string & pszAppId, bool bCreate, bool bSynch, ::request * prequest)
+::aura::application * application_container::application_get(const ::scoped_string & scopedstrAppId, bool bCreate, bool bSynch, ::request * prequest)
    {
 
       ::pointer<::aura::application>papp;
 
-      if(m_applicationa.lookup(pszAppId,papp))
+      if(m_applicationa.lookup(scopedstrAppId,papp))
       {
 
          return papp;
@@ -483,7 +483,7 @@ application_array application_container::get_applicationa()
       try
       {
 
-         papp = create_application(pszAppId, bSynch, pcreate);
+         papp = create_application(scopedstrAppId, bSynch, pcreate);
 
       }
       catch (const ::exception & e)

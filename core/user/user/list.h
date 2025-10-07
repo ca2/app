@@ -23,8 +23,8 @@ namespace user
 
       ::pointer<list_header>                      m_plistheader;
 
-      //index_map < ::pointer<draw_list_item >>     m_mapDrawListGroup;
-      //index_map < ::pointer<draw_list_subitem >>  m_mapDrawListSubitem;
+      //index_map_base < ::pointer<draw_list_item >>     m_mapDrawListGroup;
+      //index_map_base < ::pointer<draw_list_subitem >>  m_mapDrawListSubitem;
 
       ::pointer<::user::list_column_array>        m_pcolumna;
 
@@ -32,11 +32,11 @@ namespace user
 
 
       ::pointer<::image::fastblur>                 m_pfastblurIconText;
-      index_map < ::image::image_pointer >         m_mapBlur;
-      index_map < string >                         m_mapText;
-      index_map < ::color::color >                 m_mapBackColor;
+      index_map_base < ::image::image_pointer >         m_mapBlur;
+      index_map_base < string >                         m_mapText;
+      index_map_base < ::color::color >                 m_mapBackColor;
       ::pointer<::image::fastblur>                 m_pfastblurIcon;
-      index_map < ::image::image_pointer >         m_mapIconBlur;
+      index_map_base < ::image::image_pointer >         m_mapIconBlur;
       ::color::color                               m_colorEmbossedText;
       ::color::color                               m_colorEmbossedTextBackground;
       double                                       m_dIconSaturation;
@@ -136,7 +136,7 @@ namespace user
       void _001OnSort(::collection::index iSubItem) override;
       virtual void _001OnListHeaderItemClick(::collection::index iHeaderItem);
       virtual void _001OnListHeaderItemDblClk(::collection::index iHeaderItem);
-      void Filter1(const string & str) override;
+      void Filter1(const ::scoped_string & scopedstr) override;
       bool Filter1Step() override;
 
 
@@ -145,7 +145,7 @@ namespace user
       int _001GetGroupHeight(::collection::index iGroup) override;
 
 
-      void FilterInclude(::int_array & array) override;
+      void FilterInclude(::int_array_base & array) override;
       void FilterInclude(::collection::index iItem) override;
       void FilterExcludeAll() override;
       void FilterClose() override;
@@ -164,7 +164,7 @@ namespace user
       virtual ::collection::index config_id_index(const ::scoped_string & strDataKey);
       ::collection::index data_key_to_sub_item(const ::scoped_string & strDataKey) override;
       bool has_data_key(const ::scoped_string & strDataKey) override;
-      void get_data_selection(const ::scoped_string & scopedstrDataKey, ::string_array & straSelection) override;
+      void get_data_selection(const ::scoped_string & scopedstrDataKey, ::string_array_base & straSelection) override;
 
       virtual void _001SetSingleColumnMode(bool bHeaderCtrl);
       //virtual bool _001InsertColumn(::user::list_column * pcolumn);

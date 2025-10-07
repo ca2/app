@@ -195,7 +195,7 @@ namespace aura
 ////
 ////
 ////#if defined(_DEBUG) && !defined(NO_AURA_MEMORY_MANAGEMENT)
-////#define ACME_NEW __allocate<  >(__FILE__, __LINE__)
+////#define ACME_NEW øallocate<  >(__FILE__, __LINE__)
 ////#else
 ////#define ACME_NEW ___new
 ////#endif
@@ -220,7 +220,7 @@ namespace aura
 ////{
 ////
 ////   int            m_i;
-////   const char* m_psz;
+////   const_char_pointer m_psz;
 ////
 ////};
 ////
@@ -230,16 +230,16 @@ namespace aura
 ////
 ////
 //////CLASS_DECL_AURA void set_last_status(const ::e_status & estatus);
-//////CLASS_DECL_AURA void windowing_output_debug_string(const ::string & pszDebugString);
+//////CLASS_DECL_AURA void windowing_output_debug_string(const ::scoped_string & scopedstrDebugString);
 //////CLASS_DECL_AURA void c_function_call(void * p);
 //////extern CLASS_DECL_AURA int g_bAura;
-//////CLASS_DECL_AURA int __assert_failed_line(const ::string & pszFileName,int iLineNumber);
+//////CLASS_DECL_AURA int __assert_failed_line(const ::scoped_string & scopedstrFileName,int iLineNumber);
 //////CLASS_DECL_AURA int is_debugger_attached(void);
-//////CLASS_DECL_AURA void debug_print(const ::string & psz,...);
+//////CLASS_DECL_AURA void debug_print(const ::scoped_string & scopedstr,...);
 //////
 //////
-//////CLASS_DECL_AURA int throw_assert_exception(const ::string & pszFileName,int iLineNumber);
-//////CLASS_DECL_AURA void throw_what_exclamation_exclamation(const ::string & psz);
+//////CLASS_DECL_AURA int throw_assert_exception(const ::scoped_string & scopedstrFileName,int iLineNumber);
+//////CLASS_DECL_AURA void throw_what_exclamation_exclamation(const ::scoped_string & scopedstr);
 //////
 ////
 ////
@@ -257,7 +257,7 @@ namespace aura
 ////
 ////#define ASSERT(f)          ((void) ((f) || (is_debugger_attached() && !::__assert_failed_line(__FILE__, __LINE__) && (::debug_break(), 0)) || (!is_debugger_attached() && (throw_assert_exception(__FILE__, __LINE__), 0))))
 ////#define _ASSUME(cond)       do { bool _gen__condVal=!!(cond); ASSERT(_gen__condVal); __analysis_assume(_gen__condVal); } while(0)
-////#define ASSERT_VALID(pOb)  ::__assert_particle_ok(pOb, __FILE__, __LINE__)
+////#define ASSERT_OK(p)  ::__assert_particle_ok(p, __FILE__, __LINE__)
 ////
 ////
 ////#else
@@ -266,13 +266,13 @@ namespace aura
 ////#define ASSERT(f)
 ////#define _ASSUME(cond)
 ////#if defined(__ANDROID__)
-////#define ASSERT_VALID(cond)
+////#define ASSERT_OK(cond)
 ////#elif defined(__APPLE__)
-////#define ASSERT_VALID(cond)
+////#define ASSERT_OK(cond)
 ////#elif defined(LINUX)
-////#define ASSERT_VALID(cond)
+////#define ASSERT_OK(cond)
 ////#else
-////#define ASSERT_VALID(cond) __noop;
+////#define ASSERT_OK(cond) __noop;
 ////#endif
 ////#endif
 ////
@@ -482,7 +482,7 @@ namespace aura
 ////typedef struct rdp_freerdp freerdp;
 ////
 ////
-////CLASS_DECL_AURA int_bool freerdp_authenticate(void * instance, char** username,char** password,char** domain, const ::string & pszServerName, int bInteractive);
+////CLASS_DECL_AURA int_bool freerdp_authenticate(void * instance, char** username,char** password,char** domain, const ::scoped_string & scopedstrServerName, int bInteractive);
 ////
 ////
 ////#if !defined(O_BINARY) && !defined(WINDOWS)
@@ -490,11 +490,11 @@ namespace aura
 ////#endif
 ////
 ////
-////CLASS_DECL_AURA int     ansi_open(const ::string & psz,int i);
-////CLASS_DECL_AURA FILE *  ansi_fopen(const ::string & psz, const ::string & pszMode);
+////CLASS_DECL_AURA int     ansi_open(const ::scoped_string & scopedstr,int i);
+////CLASS_DECL_AURA FILE *  ansi_fopen(const ::scoped_string & scopedstr, const ::scoped_string & scopedstrMode);
 ////CLASS_DECL_AURA int     ansi_file_flag(int iFlag);
 ////CLASS_DECL_AURA void    ansi_get_errno(int * perrno);
-////CLASS_DECL_AURA void    ansi_unlink(const ::string & psz);
+////CLASS_DECL_AURA void    ansi_unlink(const ::scoped_string & scopedstr);
 ////
 ////
 ////CLASS_DECL_AURA unsigned int get_last_error();
@@ -502,8 +502,8 @@ namespace aura
 ////
 ////typedef char ::ansi_character;
 ////
-////int CLASS_DECL_AURA MultiByteToWideChar2(unsigned int CodePage, unsigned int dwFlags, const ::ansi_character * pMultByteStr, int cbMultiByte, ::wide_character * pWideCharStr, int cchWideChar);
-////int CLASS_DECL_AURA WideCharToMultiByte2(unsigned int CodePage, unsigned int dwFlags, const ::wide_character * pWideCharStr, int cchWideChar, ::ansi_character * pMultByteStr, int cbMultiByte, const ::string & pDefaultChar, int_bool * pUsedDefaultChar);
+////int CLASS_DECL_AURA MultiByteToWideChar2(unsigned int CodePage, unsigned int dwFlags, const_char_pointer pMultByteStr, int cbMultiByte, ::wide_character * pWideCharStr, int cchWideChar);
+////int CLASS_DECL_AURA WideCharToMultiByte2(unsigned int CodePage, unsigned int dwFlags, const ::wide_character * pWideCharStr, int cchWideChar, ::ansi_character * pMultByteStr, int cbMultiByte, const ::scoped_string & scopedstrDefaultChar, int_bool * pUsedDefaultChar);
 ////
 ////
 ////enum e_image_type
@@ -587,15 +587,15 @@ namespace aura
 ////inline ::matter * context_trace_object() { return general_trace_object(); }
 ////
 ////
-////CLASS_DECL_AURA void __tracea(::particle * pparticle, enum_trace_level elevel, const ::string & pszFunction, const ::string & pszFile, int iLine, const ::string & psz);
-////CLASS_DECL_AURA void __tracef(::particle * pparticle, enum_trace_level elevel, const ::string & pszFunction, const ::string & pszFile, int iLine, const ::string & psz, ...);
-////CLASS_DECL_AURA void __tracev(::particle * pparticle, enum_trace_level elevel, const ::string & pszFunction, const ::string & pszFile, int iLine, const ::string & psz, va_list vargs);
-////CLASS_DECL_AURA const char * trace_category_name(e_trace_category ecategory);
+////CLASS_DECL_AURA void __tracea(::particle * pparticle, enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, int iLine, const ::scoped_string & scopedstr);
+////CLASS_DECL_AURA void __tracef(::particle * pparticle, enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, int iLine, const ::scoped_string & scopedstr, ...);
+////CLASS_DECL_AURA void __tracev(::particle * pparticle, enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, int iLine, const ::scoped_string & scopedstr, va_list vargs);
+////CLASS_DECL_AURA const_char_pointer trace_category_name(e_trace_category ecategory);
 ////
 ////
 ////CLASS_DECL_AURA ::matter * trace_object(e_trace_category ecategory);
 ////
-////const char * topic_text(::particle * pparticle);
+////const_char_pointer topic_text(::particle * pparticle);
 ////
 ////e_trace_category object_trace_category(::particle * pparticle);
 ////
@@ -633,7 +633,7 @@ namespace aura
 ////} // namespace axis
 ////
 ////
-////namespace base
+////namespace berg
 ////{
 ////
 ////
@@ -643,7 +643,7 @@ namespace aura
 ////   class user;
 ////
 ////
-////} // namespace base
+////} // namespace berg
 ////
 ////
 ////namespace core
@@ -846,7 +846,7 @@ namespace aura
 ////
 ////#define _(str) (__get_text(str))
 ////
-////CLASS_DECL_AURA string __get_text(string str);
+////CLASS_DECL_AURA string __get_text(const ::scoped_string & scopedstr);
 ////
 ////
 ////
@@ -1067,7 +1067,7 @@ namespace aura
 ////class pair;
 ////
 ////template < class KEY, class ARG_KEY, class PAYLOAD, ARG_VALUE = argument_of < PAYLOAD >, class PAIR = pair < KEY, PAYLOAD, ARG_KEY, ARG_VALUE > >
-////class map;
+////class map_base;
 ////
 ////template < class ENUM >
 ////class flags;
@@ -1117,16 +1117,16 @@ namespace aura
 //////   class scroll_state;
 //////
 //////
-//////   //using color_map = map < e_color, e_color, ::color::color, ::color::color >;
-//////   //using font_map = map < e_font, e_font, ::write_text::font_pointer >;
+//////   //using color_map = map_base < e_color, e_color, ::color::color, ::color::color >;
+//////   //using font_map = map_base < e_font, e_font, ::write_text::font_pointer >;
 //////   using eflag = flags < enum_flag >;
-//////   //using flag_map = map < enum_flag, enum_flag, bool, bool >;
-//////   //using rect_map = ::map < e_rect, e_rect, style_rect >;
-//////   //using int_map = ::map < e_int, e_int, int, int >;
-//////   //using double_map = ::map < e_double, e_double, double, double >;
-//////   //using color_map = map < e_color, e_color, ::color::color, ::color::color >;
+//////   //using flag_map = map_base < enum_flag, enum_flag, bool, bool >;
+//////   //using rect_map = ::map_base < e_rect, e_rect, style_rect >;
+//////   //using int_map = ::map_base < e_int, e_int, int, int >;
+//////   //using double_map = ::map_base < e_double, e_double, double, double >;
+//////   //using color_map = map_base < e_color, e_color, ::color::color, ::color::color >;
 //////   //using eelement = base_enum < enum_element >;
-//////   //using translucency_map = ::map < enum_element, enum_element, enum_translucency, enum_translucency >;
+//////   //using translucency_map = ::map_base < enum_element, enum_element, enum_translucency, enum_translucency >;
 //////
 //////
 //////
@@ -1218,7 +1218,7 @@ namespace aura
 ////
 ////
 ////// only usable from base and base dependants
-////namespace base
+////namespace berg
 ////{
 ////
 ////   class application;
@@ -1248,7 +1248,7 @@ namespace aura
 //////typedef CREATE_SYSTEM * LPFN_CREATE_SYSTEM;
 ////
 //////CLASS_DECL_AURA extern LPFN_CREATE_SYSTEM g_pfn_create_system;
-//////CLASS_DECL_AURA extern const char * g_pszCooperativeLevel;
+//////CLASS_DECL_AURA extern const_char_pointer g_pszCooperativeLevel;
 //////CLASS_DECL_AURA extern int g_iDerivedApplication; // one-based-index of derived application, zero if Main application
 ////
 ////
@@ -1324,12 +1324,12 @@ namespace aura
 //CLASS_DECL_AURA void __node_aura_pos_term();
 ////
 ////
-//////extern "C" CLASS_DECL_AURA PFN_NEW_AURA_LIBRARY get_get_new_aura_library(const ::string & psz);
-//////extern "C" CLASS_DECL_AURA void register_get_new_aura_library(const ::string & psz, PFN_NEW_AURA_LIBRARY pfnNewAuraLibrary);
+//////extern "C" CLASS_DECL_AURA PFN_NEW_AURA_LIBRARY get_get_new_aura_library(const ::scoped_string & scopedstr);
+//////extern "C" CLASS_DECL_AURA void register_get_new_aura_library(const ::scoped_string & scopedstr, PFN_NEW_AURA_LIBRARY pfnNewAuraLibrary);
 ////
 ////
-//////CLASS_DECL_AURA ::acme::library & get_library(const ::string & psz);
-//////CLASS_DECL_AURA void register_aura_library(const ::string & psz, ::acme::library* plibrary);
+//////CLASS_DECL_AURA ::acme::library & get_library(const ::scoped_string & scopedstr);
+//////CLASS_DECL_AURA void register_aura_library(const ::scoped_string & scopedstr, ::acme::library* plibrary);
 //////
 //////CLASS_DECL_AURA ::handler_context * get_context();
 //////CLASS_DECL_AURA inline ::handler_context * get_context(::particle * pparticle);

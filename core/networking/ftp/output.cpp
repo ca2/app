@@ -17,7 +17,7 @@ namespace ftp
    }
 
 
-   void output::OnSendCommand(const command& command, const string_array& straArguments)
+   void output::OnSendCommand(const command& command, const string_array_base& straArguments)
    {
 
       if (command.AsString().length() == 0)
@@ -60,21 +60,21 @@ namespace ftp
 
    }
 
-   void output::OnInternalError(const string& strErrorMsg, const string& strFileName, unsigned int dwLineNr)
+   void output::OnInternalError(const ::scoped_string & scopedstrErrorMsg, const ::scoped_string & scopedstrFileName, unsigned int dwLineNr)
    {
 
       string strMessage;
 
-      strMessage.formatf(("%s ==> File \"%s\" (%d)"), strErrorMsg.c_str(), strFileName.c_str(), dwLineNr);
+      strMessage.formatf(("%s ==> File \"%s\" (%d)"),scopedstrErrorMsg.as_string().c_str(), scopedstrFileName.as_string().c_str(), dwLineNr);
 
       WriteLine(strMessage, "E");
 
    }
 
-   void output::WriteLine(const ::string & strLine, const string &  strStatus)
+   void output::WriteLine(const ::scoped_string & scopedstrLine, const ::scoped_string & scopedstrStatus)
    {
 
-      informationf("%s: %s", strStatus.c_str(), strLine.c_str());
+      informationf("%s: %s", scopedstrStatus.as_string().c_str(), scopedstrLine.as_string().c_str());
 
    }
 

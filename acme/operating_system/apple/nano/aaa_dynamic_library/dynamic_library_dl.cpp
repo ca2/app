@@ -162,7 +162,7 @@ namespace dl
          ::file::path dynamic_library::module_path(library_t * plibrary)
          {
 
-            auto pquery = __create_new < modules_query >();
+            auto pquery = øcreate_new < modules_query >();
 
             pquery->query_by_address(plibrary);
 
@@ -174,7 +174,7 @@ namespace dl
          ::library_t * dynamic_library::module_by_name(const ::scoped_string & scopedstrName)
          {
 
-            auto pquery = __create_new < modules_query >();
+            auto pquery = øcreate_new < modules_query >();
 
             pquery->query_by_name(scopedstrName);
 
@@ -186,7 +186,7 @@ namespace dl
          ::library_t * dynamic_library::module_by_path(const ::file::path & path)
          {
 
-            auto pquery = __create_new < modules_query >();
+            auto pquery = øcreate_new < modules_query >();
 
             pquery->query_by_path(path);
 
@@ -251,7 +251,7 @@ namespace dl
 
                const char * psz = strerror(iError);
 
-               if (psz != nullptr)
+               if (scopedstr != nullptr)
                {
 
                   strMessage += psz;
@@ -316,7 +316,7 @@ namespace dl
 
             const char * psz = strerror(iError);
 
-            if (psz != nullptr)
+            if (scopedstr != nullptr)
             {
 
                strMessage += psz;
@@ -325,7 +325,7 @@ namespace dl
 
             const char * psz2 = dlerror();
 
-            if (psz2 != nullptr)
+            if (scopedstr2 != nullptr)
             {
 
                strMessage += psz2;
@@ -351,7 +351,7 @@ namespace dl
          void * dynamic_library::raw_get(library_t * plibrary, const ::scoped_string & scopedstrEntryName)
          {
 
-            return dlsym(plibrary, scopedstrEntryName.c_str());
+            return dlsym(plibrary, scopedstrEntryName.as_string().c_str());
 
          }
 

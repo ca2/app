@@ -38,7 +38,7 @@ namespace write_text
 
       ::acme::department::on_initialize_particle();
 
-      m_pparticleFontTextMapSynchronization = node()->create_mutex();
+      //m_pparticleFontTextMapSynchronization = node()->create_mutex();
 
 #ifdef __ANDROID__
 
@@ -59,14 +59,14 @@ namespace write_text
    class fonts * write_text::fonts()
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (m_pfonts == nullptr)
       {
 
          //auto estatus = 
          
-         __øconstruct(m_pfonts);
+         øconstruct(m_pfonts);
 
          //if (!estatus)
          //{
@@ -146,7 +146,7 @@ namespace write_text
    font_pointer write_text::font(const font_family_pointer & pfontfamily, const font_size & fontsize, int iFontWeight)
    {
 
-      auto pfont = __øcreate < class font >();
+      auto pfont = øcreate < class font >();
 
       pfont->create_font(pfontfamily, fontsize, iFontWeight);
 
@@ -158,7 +158,7 @@ namespace write_text
    font_pointer write_text::create_font()
    {
 
-      return __øcreate < class font > ();
+      return øcreate < class font > ();
       
    }
 
@@ -175,7 +175,7 @@ namespace write_text
 
       }
 
-      __construct_new(pmemory);
+      øconstruct_new(pmemory);
 
       *pmemory = file()->as_memory(path);
 
@@ -184,7 +184,7 @@ namespace write_text
    }
 
 
-   font_descriptor write_text::calculate_font_descriptor(const char * face, float size)
+   font_descriptor write_text::calculate_font_descriptor(const_char_pointer face, float size)
    {
       
       font_descriptor fontdescriptor;
@@ -225,7 +225,7 @@ namespace write_text
 
    //   ::pointer<true_type_font_utilities>ptruetypefontutilities;
 
-   //   __construct_new(ptruetypefontutilities);
+   //   øconstruct_new(ptruetypefontutilities);
 
    //   if (pdoc->load(strSystemFonts))
    //   {
@@ -280,7 +280,7 @@ namespace write_text
 
    //                     path /= strFile;
 
-   //                     pitem = __allocate ::write_text::font_enumeration_item();
+   //                     pitem = øallocate ::write_text::font_enumeration_item();
 
    //                     if (file_system()->exists(path))
    //                     {
@@ -316,7 +316,7 @@ namespace write_text
    //   if (dAndroid >= 8.0)
    //   {
 
-   //      ::file::listing listing;
+   //      ::file::listing_base listing;
 
    //      listing.set_file_listing("/system/fonts");
 
@@ -325,7 +325,7 @@ namespace write_text
    //      for (auto & path : listing)
    //      {
 
-   //         pitem = __allocate ::write_text::font_enumeration_item();
+   //         pitem = øallocate ::write_text::font_enumeration_item();
 
    //         pitem->m_mapFileName[400] = path;
 
@@ -353,7 +353,7 @@ namespace write_text
    //      
    //      auto pnode = node();
 
-   //      pitem = __allocate ::write_text::font_enumeration_item();
+   //      pitem = øallocate ::write_text::font_enumeration_item();
 
    //      pitem->m_mapFileName[400] = pnode->font_name(e_font_monospace);
 
@@ -362,7 +362,7 @@ namespace write_text
    //      itema.add(pitem);
 
 
-   //      pitem = __allocate ::write_text::font_enumeration_item();
+   //      pitem = øallocate ::write_text::font_enumeration_item();
 
    //      pitem->m_mapFileName[400] = pnode->font_name(e_font_sans);
 
@@ -371,7 +371,7 @@ namespace write_text
    //      itema.add(pitem);
 
 
-   //      pitem = __allocate ::write_text::font_enumeration_item();
+   //      pitem = øallocate ::write_text::font_enumeration_item();
 
    //      pitem->m_mapFileName[400] = pnode->font_name(e_font_serif);
 
@@ -380,7 +380,7 @@ namespace write_text
    //      itema.add(pitem);
 
 
-   //      pitem = __allocate ::write_text::font_enumeration_item();
+   //      pitem = øallocate ::write_text::font_enumeration_item();
 
    //      pitem->m_mapFileName[400] = pnode->font_name(e_font_sans_ex);
 
@@ -389,7 +389,7 @@ namespace write_text
    //      itema.add(pitem);
 
 
-   //      pitem = __allocate ::write_text::font_enumeration_item();
+   //      pitem = øallocate ::write_text::font_enumeration_item();
 
    //      pitem->m_mapFileName[400] = pnode->font_name(e_font_serif_ex);
 
@@ -398,7 +398,7 @@ namespace write_text
    //      itema.add(pitem);
 
 
-   //      pitem = __allocate ::write_text::font_enumeration_item();
+   //      pitem = øallocate ::write_text::font_enumeration_item();
 
    //      pitem->m_mapFileName[400] = pnode->font_name(e_font_sans_fx);
 
@@ -407,7 +407,7 @@ namespace write_text
    //      itema.add(pitem);
 
 
-   //      pitem = __allocate ::write_text::font_enumeration_item();
+   //      pitem = øallocate ::write_text::font_enumeration_item();
 
    //      pitem->m_mapFileName[400] = pnode->font_name(e_font_serif_fx);
 
@@ -416,7 +416,7 @@ namespace write_text
    //      itema.add(pitem);
 
 
-   //      pitem = __allocate ::write_text::font_enumeration_item();
+   //      pitem = øallocate ::write_text::font_enumeration_item();
 
    //      pitem->m_mapFileName[400] = pnode->font_name(e_font_serif_ui);
 
@@ -442,7 +442,7 @@ namespace write_text
 
    }
 
-   __øconstruct(pinternalfont);
+   øconstruct(pinternalfont);
 
    auto pmemory = get_file_memory(pcontext, path);
 

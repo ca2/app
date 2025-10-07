@@ -79,7 +79,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //            _buf = (char *)m_memory.get_data();
 //         }
 //
-//         output(int iTcpOutputCapacity, const char * buf, int len) :
+//         output(int iTcpOutputCapacity, const_char_pointer buf, int len) :
 //            m_iTcpOuputCapacity(iTcpOutputCapacity),
 //            _b(0), _t(len), _q(len)
 //         {
@@ -96,7 +96,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //         {
 //            return m_iTcpOuputCapacity - _t;
 //         }
-//         void add(const char * buf, int len)
+//         void add(const_char_pointer buf, int len)
 //         {
 //            ::memory_copy(_buf + _t, buf, len);
 //            _t += len;
@@ -108,7 +108,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //            _q -= len;
 //            return _q;
 //         }
-//         const char * Buf()
+//         const_char_pointer Buf()
 //         {
 //            return _buf + _b;
 //         }
@@ -117,7 +117,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //            return _q;
 //         }
 //      };
-//      typedef list<::pointer<output >> output_list;
+//      typedef list_base<::pointer<output >> output_list;
 //
 //      ::file::circular_file ibuf; ///< Circular input buffer
 //      string m_strUrl;
@@ -170,7 +170,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //      /** open connection.
 //      \lparam host Hostname
 //      \lparam port Port number */
-//      bool open(const string & host, ::networking::port_t port);
+//      bool open(const ::scoped_string & scopedstrHost, ::networking::port_t port);
 //
 //      /** Connect timeout callback. */
 //      void on_connection_timeout() override;
@@ -208,7 +208,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //
 //      /** Callback fires when a socket in line protocol has read one full line.
 //      \lparam line Line read */
-//      void OnLine(const string & line) override;
+//      void OnLine(const ::scoped_string & scopedstrLine) override;
 //      /** get counter of number of bytes received. */
 //      unsigned long long GetBytesReceived(bool clear = false) override;
 //      /** get counter of number of bytes sent. */

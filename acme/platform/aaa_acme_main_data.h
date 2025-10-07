@@ -51,7 +51,7 @@ public:
 
 #elif defined(UNIVERSAL_WINDOWS)
 
-   void system_construct(const string_array & stra);
+   void system_construct(const string_array_base & stra);
 
 #else
 

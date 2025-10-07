@@ -25,7 +25,7 @@ namespace regular_expression
    }
 
 
-   ::regular_expression_pointer context::compile(const ::string & str)
+   ::regular_expression_pointer context::compile(const ::scoped_string & scopedstr)
    {
 
       throw ::interface_only();

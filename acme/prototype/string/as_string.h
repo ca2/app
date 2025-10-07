@@ -10,7 +10,7 @@ inline string as_string(const T & t);
 //inline string as_string(const T * & p);
 //
 //
-//inline string as_string(const ::ansi_character * psz);
+//inline string as_string(const_char_pointer psz);
 //
 //
 //inline string as_string(::ansi_character * psz);

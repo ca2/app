@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "tree.h"
 #include "tree_data.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "acme/constant/timer.h"
 #include "acme/exception/interface_only.h"
 #include "acme/prototype/data/item.h"
@@ -14,8 +14,8 @@
 //#include "aura/user/user/primitive_impl.h"
 #include "aura/user/user/scroll_state.h"
 #include "aura/user/user/style.h"
-#include "base/user/user/impact.h"
-#include "base/user/user/document.h"
+#include "berg/user/user/impact.h"
+#include "berg/user/user/document.h"
 
 
 
@@ -78,7 +78,7 @@ namespace user
    void tree::user_tree_common_construct()
    {
 
-      __construct_new(m_ptreeitemptraSelected);
+      øconstruct_new(m_ptreeitemptraSelected);
 
       m_bHover = false;
       m_iHoverAlphaInit = 0;
@@ -138,12 +138,12 @@ namespace user
 
       //estatus = 
 
-      __construct_new(m_pimagelist);
+      øconstruct_new(m_pimagelist);
 
       //if (!estatus)
       //{
 
-      //   pcreate->error() << "Error creating image list at ::user::tree::on_message_create";
+      //   pcreate->error() << "Error creating image list_base at ::user::tree::on_message_create";
 
       //   return;
 
@@ -156,7 +156,7 @@ namespace user
       //if (!estatus)
       //{
 
-      //   pcreate->error() << "Error creating image list (2) at ::user::tree::on_message_create";
+      //   pcreate->error() << "Error creating image list_base (2) at ::user::tree::on_message_create";
 
       //   return;
 
@@ -840,7 +840,7 @@ namespace user
          if (eelement == e_tree_element_expand_box)
          {
 
-            synchronous_lock synchronouslock(this->synchronization());
+            synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
             information() << "user::tree perform_click expand_box";
 
@@ -852,7 +852,7 @@ namespace user
          else if (eelement == e_tree_element_image || eelement == e_tree_element_text)
          {
 
-            synchronous_lock synchronouslock(this->synchronization());
+            synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
             information() << "user::tree perform_click image or text";
 
@@ -1022,24 +1022,26 @@ namespace user
       ::user::interaction::install_message_routing(pchannel);
       ::user::scroll_base::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_create, pchannel, this, &tree::on_message_create);
-      MESSAGE_LINK(e_message_left_button_double_click, pchannel, this, &tree::on_message_left_button_double_click);
-      MESSAGE_LINK(e_message_left_button_up, pchannel, this, &tree::on_message_left_button_up);
-      MESSAGE_LINK(e_message_left_button_down, pchannel, this, &tree::on_message_left_button_down);
-      MESSAGE_LINK(e_message_right_button_up, pchannel, this, &tree::on_message_right_button_up);
-      MESSAGE_LINK(e_message_right_button_down, pchannel, this, &tree::on_message_right_button_down);
-      MESSAGE_LINK(e_message_mouse_move, pchannel, this, &tree::on_message_mouse_move);
-      MESSAGE_LINK(e_message_mouse_leave, pchannel, this, &tree::on_message_mouse_leave);
-      MESSAGE_LINK(e_message_scroll_x, pchannel, this, &tree::on_message_scroll_x);
-      MESSAGE_LINK(e_message_scroll_y, pchannel, this, &tree::on_message_scroll_y);
-      MESSAGE_LINK(e_message_change_experience, pchannel, this, &tree::_001OnChangeExperience);
-      //      //MESSAGE_LINK(e_message_timer         , pchannel, this, &tree::on_timer);
+      USER_MESSAGE_LINK(::user::e_message_create, pchannel, this, &tree::on_message_create);
+      USER_MESSAGE_LINK(::user::e_message_left_button_double_click, pchannel, this, &tree::on_message_left_button_double_click);
+      USER_MESSAGE_LINK(::user::e_message_left_button_up, pchannel, this, &tree::on_message_left_button_up);
+      USER_MESSAGE_LINK(::user::e_message_left_button_down, pchannel, this, &tree::on_message_left_button_down);
+      USER_MESSAGE_LINK(::user::e_message_right_button_up, pchannel, this, &tree::on_message_right_button_up);
+      USER_MESSAGE_LINK(::user::e_message_right_button_down, pchannel, this, &tree::on_message_right_button_down);
+      USER_MESSAGE_LINK(::user::e_message_mouse_move, pchannel, this, &tree::on_message_mouse_move);
+      USER_MESSAGE_LINK(::user::e_message_mouse_leave, pchannel, this, &tree::on_message_mouse_leave);
+      USER_MESSAGE_LINK(::user::e_message_scroll_x, pchannel, this, &tree::on_message_scroll_x);
+      USER_MESSAGE_LINK(::user::e_message_scroll_y, pchannel, this, &tree::on_message_scroll_y);
+      USER_MESSAGE_LINK(::user::e_message_change_experience, pchannel, this, &tree::_001OnChangeExperience);
+      //      //USER_MESSAGE_LINK(::user::e_message_timer         , pchannel, this, &tree::on_timer);
 
    }
 
    
    void tree::update_drawing_objects()
    {
+
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
    
       //      style_context context(this);
 
@@ -1053,19 +1055,17 @@ namespace user
 
       m_colorTreeBackground = get_color(pstyle, ::e_element_background);
 
-      __defer_construct(m_pbrushTextSelectedHighlight);
-      __defer_construct(m_pbrushTextSelected);
-      __defer_construct(m_pbrushTextHighlight);
-      __defer_construct(m_pbrushText);
-
-      __defer_construct(m_pfontTreeItem);
+      ødefer_construct(m_pbrushTextSelectedHighlight);
+      ødefer_construct(m_pbrushTextSelected);
+      ødefer_construct(m_pbrushTextHighlight);
+      ødefer_construct(m_pbrushText);
 
       m_pbrushTextSelectedHighlight->create_solid(get_color(pstyle, ::e_element_hilite_text, ::user::e_state_selected));
       m_pbrushTextSelected->create_solid(get_color(pstyle, ::e_element_item_text, ::user::e_state_selected));
       m_pbrushTextHighlight->create_solid(get_color(pstyle, ::e_element_item_text, ::user::e_state_selected));
       m_pbrushText->create_solid(get_color(pstyle, ::e_element_item_text));
 
-      m_pfontTreeItem = get_font(pstyle);
+      m_pfontTreeItem = pstyle->get_font(this, e_element_none);
 
    }
 
@@ -1387,7 +1387,7 @@ namespace user
       //
       //      auto pointCursor = pwindowing->get_cursor_position();
       //
-      //      auto pmouse = __create_new < ::user::mouse >();
+      //      auto pmouse = øcreate_new < ::user::mouse >();
       //
       //      pmouse->m_point = pointCursor;
       //
@@ -1539,34 +1539,52 @@ namespace user
    }
 
 
-   void tree::_001SetExpandImage(const ::string & pszMatter)
+   void tree::_001SetExpandImage(const ::scoped_string & scopedstrMatter)
    {
 
-      m_iImageExpand = m_pimagelist->add(::image::image_payload(this, pszMatter));
+      auto imagepayloadExpand = ::image::image_payload(this, scopedstrMatter);
+
+      if (!imagepayloadExpand.ok())
+      {
+
+         throw ::exception(error_failed, "failed to load expand image");
+
+      }
+
+      m_iImageExpand = m_pimagelist->add(imagepayloadExpand);
 
    }
 
 
-   void tree::_001SetCollapseImage(const ::string & pszMatter)
+   void tree::_001SetCollapseImage(const ::scoped_string & scopedstrMatter)
    {
 
-      m_iImageCollapse = m_pimagelist->add(::image::image_payload(this, pszMatter));
+      auto imagepayloadCollapse = ::image::image_payload(this, scopedstrMatter);
+
+      if (!imagepayloadCollapse.ok())
+      {
+
+         throw ::exception(error_failed, "failed to load collapse image");
+
+      }
+
+      m_iImageCollapse = m_pimagelist->add(imagepayloadCollapse);
 
    }
 
 
-   void tree::_001SetExpandImageDark(const ::string & pszMatter)
+   void tree::_001SetExpandImageDark(const ::scoped_string & scopedstrMatter)
    {
 
-      m_iImageExpandDark = m_pimagelist->add(::image::image_payload(this, pszMatter));
+      m_iImageExpandDark = m_pimagelist->add(::image::image_payload(this, scopedstrMatter));
 
    }
 
 
-   void tree::_001SetCollapseImageDark(const ::string & pszMatter)
+   void tree::_001SetCollapseImageDark(const ::scoped_string & scopedstrMatter)
    {
 
-      m_iImageCollapseDark = m_pimagelist->add(::image::image_payload(this, pszMatter));
+      m_iImageCollapseDark = m_pimagelist->add(::image::image_payload(this, scopedstrMatter));
 
    }
 
@@ -1760,7 +1778,7 @@ namespace user
 
       //pgraphics->CreateCompatibleDC(nullptr);
 
-      //auto pfont = __øcreate < ::write_text::font > ();
+      //auto pfont = øcreate < ::write_text::font > ();
       //pfont->operator=(*pdraw2d->fonts().GetListCtrlFont());
       //pfont->set_bold();
       //g->set_font(font);
@@ -2356,7 +2374,7 @@ namespace user
    ::collection::index tree::get_proper_item_count()
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (!m_ptreedata)
       {

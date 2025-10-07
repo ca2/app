@@ -37,7 +37,7 @@ namespace user
 //   }
 
 //#ifdef WINDOWS_DESKTOP
-//   void toolbar_control::SaveState(HKEY hKeyRoot, const ::string & pszSubKey,
+//   void toolbar_control::SaveState(HKEY hKeyRoot, const ::scoped_string & scopedstrSubKey,
 //
 //      const ::scoped_string & scopedstrValueName)
 //
@@ -45,14 +45,14 @@ namespace user
 //      ASSERT(is_window());
 //      TBSAVEPARAMSW tbs;
 //      tbs.hkr = hKeyRoot;
-//      tbs.pszSubKey = wstring(pszSubKey);
+//      tbs.pszSubKey = wstring(scopedstrSubKey);
 //
-//      tbs.pszValueName = wstring(pszValueName);
+//      tbs.pszValueName = wstring(scopedstrValueName);
 //
 //      send_message( TB_SAVERESTOREW, (WPARAM)true, (LPARAM)&tbs);
 //   }
 //
-//   void toolbar_control::RestoreState(HKEY hKeyRoot, const ::string & pszSubKey,
+//   void toolbar_control::RestoreState(HKEY hKeyRoot, const ::scoped_string & scopedstrSubKey,
 //
 //      const ::scoped_string & scopedstrValueName)
 //
@@ -60,7 +60,7 @@ namespace user
 //      ASSERT(is_window());
 //      TBSAVEPARAMSW tbs;
 //      tbs.hkr = hKeyRoot;
-//      tbs.pszSubKey = wstring(pszSubKey);
+//      tbs.pszSubKey = wstring(scopedstrSubKey);
 //
 //      tbs.pszValueName =wstring( pszValueName);
 //
@@ -116,15 +116,15 @@ namespace user
       { return (unsigned short*)(this+1); }
    };
 
-   /*bool toolbar_control::LoadToolBar(const ::string & pszResourceName)
+   /*bool toolbar_control::LoadToolBar(const ::scoped_string & scopedstrResourceName)
 
    {
-   ASSERT_VALID(this);
-   ASSERT(pszResourceName != nullptr);
+   ASSERT_OK(this);
+   ASSERT(scopedstrResourceName != nullptr);
 
 
    // determine location of the bitmap in resource fork
-   HINSTANCE hInst = ::aura::FindResourceHandle(pszResourceName, RT_TOOLBAR);
+   HINSTANCE hInst = ::aura::FindResourceHandle(scopedstrResourceName, RT_TOOLBAR);
 
    HRSRC hRsrc = ::FindResource(hInst, pszResourceName, RT_TOOLBAR);
 
@@ -167,7 +167,7 @@ namespace user
    bool toolbar_control::SetButtons(const unsigned int* pIDArray, int nIDCount)
    {
 
-      ASSERT_VALID(this);
+      ASSERT_OK(this);
       ASSERT(nIDCount >= 1);  // must be at least one of them
       ASSERT(pIDArray == nullptr ||
 
@@ -522,7 +522,7 @@ namespace user
 
    // pszStrings are separated by zeroes, last one is marked by two zeroes
 
-   int toolbar_control::AddStrings(const ::string & pszStrings)
+   int toolbar_control::AddStrings(const ::scoped_string & scopedstrStrings)
    {
 
 //#ifdef WINDOWS_DESKTOP

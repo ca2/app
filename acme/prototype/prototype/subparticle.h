@@ -21,6 +21,7 @@ class sequence;
 
 
 
+
 class CLASS_DECL_ACME subparticle :
    virtual public ::quantum
 {
@@ -35,17 +36,64 @@ public:
    subparticle();
 #else
    subparticle() :
+      ::quantum(), 
+      m_countReference(1)
+   {
+
+
+   }
+#endif
+
+
+#if REFERENCING_DEBUGGING
+   subparticle(const ::e_flag & eflag, const ::e_status & estatus = undefined);
+#else
+   subparticle(const ::e_flag & eflag, const ::e_status & estatus = undefined) :
+      ::quantum(eflag, estatus),
       m_countReference(1)
    {
          
          
    }
 #endif
+
+
+#if REFERENCING_DEBUGGING
+   subparticle(const ::subparticle & subparticle);
+#else
+   subparticle(const ::subparticle & subparticle) :
+      ::quantum(subparticle),
+      m_countReference(1)
+   {
+
+   }
+#endif
+#if REFERENCING_DEBUGGING
+   subparticle(::subparticle&& subparticle);
+#else
+   subparticle(::subparticle&& subparticle) :
+      ::quantum(::transfer(subparticle)),
+      m_countReference(::transfer(subparticle.m_countReference))
+   {
+   }
+#endif
+
    ~subparticle() override;
+
+
+#if REFERENCING_DEBUGGING
+
+   void subparticle_referencing_debugging_construct();
+
+#endif
 
 
    virtual void initialize(::particle * pparticle);
    //virtual void finalize();
+
+
+   //virtual bool is_proto() const;
+   inline bool should_disable_referencing_debugging() const { return this->has_proto_flag(); }
 
 
    ::platform::system* system() const;
@@ -121,7 +169,7 @@ public:
    void *                              m_pType = nullptr;
    memsize                             m_sType = sizeof(::subparticle);
    ::reference_referer *               m_prefererTransfer2 = nullptr;
-   bool                                m_bReferencingDebuggingEnabled = true;
+   bool                                m_bReferencingDebuggingEnabled5 = true;
    bool                                m_bIncludeCallStackTrace = false;
 
    void set_size_type(memsize s) { m_sType = s; }
@@ -143,7 +191,7 @@ public:
    bool is_referencing_debugging_enabled() const
    {
 
-      return m_bReferencingDebuggingEnabled;
+      return !this->should_disable_referencing_debugging() && m_bReferencingDebuggingEnabled5;
 
    }
 
@@ -182,10 +230,10 @@ public:
    virtual void destroy_os_data();
 
    template < typename TYPE >
-   ::pointer < TYPE > cast() { return this; }
+   ::cast < TYPE > cast() { return this; }
 
    template < typename TYPE >
-   ::pointer < TYPE > cast() const { return ((::subparticle *)this)->cast < TYPE >() ; }
+   ::cast < TYPE > cast() const { return ((::subparticle *)this)->cast < TYPE >() ; }
 
    virtual ::subparticle_pointer clone();
 
@@ -252,7 +300,95 @@ public:
    virtual void end_notify_lock(::notify_lock * pnotifylock);
 
 };
-
+//
+// template < typename TYPE >
+// class ARRAY_BASE
+// {
+// public:
+//
+//    ARRAY_BASE(){}
+//    ARRAY_BASE(const ARRAY_BASE & base){}
+//
+// };
+//
+//
+// class particle
+// {
+// public:
+//
+//    int flag = 0;
+//
+// };
+//
+//
+// template < typename TYPE, int t_iFlag >
+// class make_particle :
+// public TYPE,
+// virtual public ::particle
+// {
+// public:
+//
+//    using TYPE::TYPE;
+//    using TYPE::operator =;
+//
+// };
 
 inline bool is_nok(const ::subparticle * p) { return !::is_set(p) || !p->_is_ok(); }
 
+//
+//
+//
+// template < typename TYPE >
+// class proto :
+//    public TYPE
+// {
+// public:
+//
+//
+//    using TYPE::TYPE;
+//    using TYPE::operator =;
+//
+//
+//    proto(const ::e_flag & eflag = e_flag_none, const ::e_status & estatus = undefined):
+//       TYPE(eflag | e_flag_proto, estatus),
+//       ::subparticle(eflag | e_flag_proto, estatus),
+//       ::quantum(eflag | e_flag_proto, estatus)
+//    {
+//
+//    }
+//
+//
+//
+//
+//    //
+//    //
+//    // ~no_referencing_debugging() override
+//    // {
+//    //
+//    //
+//    // }
+//
+//    //
+//    // bool is_proto() const override
+//    // {
+//    //
+//    //    // if (!(this->m_eflagElement & e_flag_disable_referencing_debugging))
+//    //    // {
+//    //    //
+//    //    //    ((proto *) this)->m_eflagElement |= e_flag_disable_referencing_debugging;
+//    //    //
+//    //    // }
+//    //    //
+//    //    // if (!this->m_bReferencingDebuggingEnabled3)
+//    //    // {
+//    //    //
+//    //    //    ((proto *) this)->m_bReferencingDebuggingEnabled3 = false;
+//    //    //
+//    //    // }
+//    //
+//    //    return true;
+//    //
+//    // }
+//
+//
+// };

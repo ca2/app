@@ -18,8 +18,10 @@ namespace gpu
    {
    public:
 
+      class ::time m_timeLast5s;
+
       int m_iSentLayerCount = 0;
-      ::pointer<::gpu::layer>                         m_pgpulayer;
+      //::pointer<::gpu::layer>                         m_pgpulayer;
 
       ::collection::count     m_iDefaultFrameCount;
 
@@ -34,13 +36,16 @@ namespace gpu
       //::pointer<::gpu::context>             m_pgpucontextOutput;
       bool                                  m_bDisableDepthStencil = false;
       ::int_size m_sizeRenderer;
+      ::pointer < command_buffer >            m_pcommandbufferLoadAssets;
+      ::pointer < command_buffer >            m_pcommandbufferLoadAssets2;
+
       //::pointer<::gpu::approach>            m_papproach;
       //::image::image_pointer                m_pimageFromGpu;
       ///::pointer<::gpu::shader>              m_pshader;
       //int_rectangle                         m_rectangle;
       //int_size                              m_sizeHost;
       //string                              m_strFont1;
-      //string_map < ::image::image_pointer >      m_pimagemap;
+      //string_map_base < ::image::image_pointer >      m_pimagemap;
       //::image::image_pointer                     m_pimage1;
       //::image::image_pointer                     m_pimage2;
       //::color::hls                        m_hlsText;
@@ -61,6 +66,12 @@ namespace gpu
       ::pointer < render_target >   m_pgpurendertarget;
       ::pointer < swap_chain >      m_pswapchain;
       ::pointer < render_state >    m_prenderstate;
+
+            ::procedure_array m_procedureaOnAfterEndFrame;
+      ::procedure_array m_procedureaPostOnJustBeforeFrameNextStart;
+
+
+
 
       renderer();
       ~renderer() override;
@@ -87,20 +98,22 @@ namespace gpu
       ::particle_array* ongoing_particle_array() override;
 
 
-      virtual ::gpu::texture* current_render_target_texture();
+      virtual ::gpu::texture* current_render_target_texture(::gpu::frame* pgpuframe);
 
       //virtual ::int_rectangle rectangle();
       //virtual int height();
-      virtual ::gpu::command_buffer* getCurrentCommandBuffer2();
+      virtual ::gpu::command_buffer* getCurrentCommandBuffer2(::gpu::frame* pgpuframe);
       virtual ::gpu::command_buffer* getLoadAssetsCommandBuffer();
       virtual bool render_step();
 
       virtual void initialize_gpu_renderer(::gpu::context * pgpucontext);
 
+      virtual void on_resize(const ::int_size& size);
+
       //virtual void initialize_render(::user::interaction * puserinteraction);
       ///// Initialization routines
-      //virtual void set_vertex_source_code(const string & strVertexSourceCode);
-      //virtual void set_fragment_source_code(const string & strFragmentSourceCode);
+      //virtual void set_vertex_source_code(const ::scoped_string & scopedstrVertexSourceCode);
+      //virtual void set_fragment_source_code(const ::scoped_string & scopedstrFragmentSourceCode);
       //virtual void set_model_path(const ::payload & payloadFile);
 
       virtual ::pointer<::gpu::shader> create_shader(
@@ -115,7 +128,7 @@ namespace gpu
 
 
       //string get_font();
-      //::e_status set_font(const string & strFont);
+      //::e_status set_font(const ::scoped_string & scopedstrFont);
 
       //virtual void set_update_shader();
       //virtual void defer_update_shader();
@@ -144,6 +157,10 @@ namespace gpu
       virtual void on_begin_render(frame* pframe);
       virtual void on_end_render(frame* pframe);
 
+
+      virtual void on_final_begin_render();
+
+
       virtual void _on_begin_render(frame* pframe);
       virtual void _on_end_render(frame* pframe);
 
@@ -152,19 +169,23 @@ namespace gpu
 
       virtual bool is_starting_frame()const;
 
-      virtual void on_new_frame();
+      //virtual void on_new_frame();
 
       virtual ::pointer < frame > beginFrame();
 
-
+      virtual void on_begin_frame();
 
       virtual void endFrame();
 
+      virtual void wait_swap_chain_command_buffer_ready();
+
+      virtual void wait_command_buffer_ready();
 
 
       virtual void on_begin_draw();
       virtual void on_end_draw();
 
+      virtual void defer_end_frame_layer_copy();
 
       virtual void draw();
       virtual void read_to_cpu_buffer();
@@ -205,8 +226,9 @@ namespace gpu
       virtual void endDrawEndDraw();
 
 
-      virtual void do_on_frame(bool bForDrawing, const ::procedure& procedure);
-
+      virtual void do_on_frame(bool bForDrawing, const ::function < void(::gpu::frame*) > & on_frame);
+      virtual void frame_prefix();
+      virtual void frame_suffix();
 
       //virtual void start_layer(const ::int_rectangle& rectangleTarget);
       virtual void start_layer();
@@ -225,7 +247,15 @@ namespace gpu
 
       virtual ::pointer < ::gpu::texture > create_image_texture(const ::int_size& size, bool bWithDepth);
       //virtual void take_snapshot(layer* player);
-     
+
+
+      virtual void on_after_load_scene(::graphics3d::scene_base* pscene);
+
+      virtual void post_on_after_end_frame(const ::procedure &procedure);
+
+
+      virtual void post_on_just_before_frame_next_start(const ::procedure &procedure);
+
 
    };
 

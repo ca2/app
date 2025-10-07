@@ -7,7 +7,7 @@
 #include "apex/filesystem/fs/set.h"
 #include "acme/filesystem/filesystem/directory_context.h"
 #include "apex/platform/context.h"
-#include "base/user/user/impact.h"
+#include "berg/user/user/impact.h"
 
 
 namespace userfs
@@ -42,7 +42,7 @@ namespace userfs
 
       //estatus = 
       
-      //__construct_new(m_pfsset);
+      //øconstruct_new(m_pfsset);
 
       //if (!estatus)
       //{
@@ -67,7 +67,7 @@ namespace userfs
    //::aura::application * document::get_app() const
    //{
 
-   //   return dynamic_cast < ::base::session * >(get_app()->m_psession)->m_pappCurrent;
+   //   return dynamic_cast < ::berg::session * >(get_app()->m_psession)->m_pappCurrent;
 
    //}
 
@@ -112,7 +112,7 @@ namespace userfs
       return true;
       //{
 
-      //   synchronous_lock synchronouslock(fs_data()->synchronization());
+      //   synchronous_lock synchronouslock(fs_data()->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       //   m_pathFolder = pitem->user_path();
 
@@ -125,13 +125,13 @@ namespace userfs
 
       //   information() << "::userfs::document getting root listing";
 
-      //   ::file::listing listing;
+      //   ::file::listing_base listing;
 
       //   fs_data()->root_ones(listing);
 
       //   {
 
-      //      synchronous_lock synchronouslock(fs_data()->synchronization());
+      //      synchronous_lock synchronouslock(fs_data()->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       //      m_listingRoot = listing;
 
@@ -146,7 +146,7 @@ namespace userfs
 
       //}
 
-      //::file::listing listingUser;
+      //::file::listing_base listingUser;
 
       //auto papp = get_app();
 
@@ -185,7 +185,7 @@ namespace userfs
 
       //   {
 
-      //      ::file::listing listingUserFormatted;
+      //      ::file::listing_base listingUserFormatted;
 
       //      listingUserFormatted.m_straPattern = listingUser.m_straPattern;
 
@@ -227,7 +227,7 @@ namespace userfs
 
       //}
 
-      //::file::listing listingFinal;
+      //::file::listing_base listingFinal;
 
       //listingFinal.m_straPattern = listingUser.m_straPattern;
 
@@ -263,9 +263,9 @@ namespace userfs
 
       //}
 
-      //::file::listing listingFolderUser;
+      //::file::listing_base listingFolderUser;
 
-      //::file::listing listingFolderFinal;
+      //::file::listing_base listingFolderFinal;
 
       //listingFolderUser.m_eflag = ::file::e_flag_folder;
 
@@ -322,7 +322,7 @@ namespace userfs
 
       //{
 
-      //   synchronous_lock synchronouslock(fs_data()->synchronization());
+      //   synchronous_lock synchronouslock(fs_data()->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       //   m_listingUser2 = listingUser;
 

@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "frame.h"
 #include "tab_impact.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 
 
 namespace filemanager
@@ -44,10 +44,10 @@ namespace filemanager
       simple_frame_window::install_message_routing(pchannel);
 
 //#ifdef WINDOWS_DESKTOP
-//      MESSAGE_LINK(WM_SETTEXT, pchannel, this, &frame::_001OnSetText);
+//      USER_MESSAGE_LINK(WM_SETTEXT, pchannel, this, &frame::_001OnSetText);
 //#endif
 
-      MESSAGE_LINK(e_message_create, pchannel, this, &frame::on_message_create);
+      USER_MESSAGE_LINK(::user::e_message_create, pchannel, this, &frame::on_message_create);
 
    }
 

@@ -554,7 +554,7 @@ namespace universal_windows
 
          library_t * dynamic_library::open_on_context(const ::file::path & path, string & strMessage)
          {
-            /*      string str(psz);
+            /*      string str(scopedstr);
             if(str.find("..") >= 0)
             return false;
             if(str.find(":") >= 0)
@@ -622,7 +622,7 @@ namespace operating_system
    CLASS_DECL_ACME::operating_system::dynamic_library * new_dynamic_library()
    {
 
-      return __raw_new::universal_windows::dynamic_library();
+      return øraw_new::universal_windows::dynamic_library();
 
    }
 

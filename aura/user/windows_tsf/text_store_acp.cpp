@@ -97,7 +97,7 @@ namespace tsf
        //find the advise sink
        if(punkID == m_AdviseSink.punkID)
        {
-           //erase the advise sink from the list
+           //erase the advise sink from the list_base
            _ClearAdviseSink(&m_AdviseSink);
 
            if(m_pServices)
@@ -579,7 +579,7 @@ namespace tsf
 
                    TS_RT_OPAQUE is used to indicate characters or character sequences 
                    that are in the document, but are used privately by the application
-                   and do not map to text.  Runs of text tagged with TS_RT_OPAQUE should
+                   and do not map_base to text.  Runs of text tagged with TS_RT_OPAQUE should
                    NOT be included in the pchPlain or cchPlainOut [out] parameters.
                    */
         

@@ -10,7 +10,7 @@ namespace turboc
       ::thread(this),
       ::aura::application(pparticle),
       ::axis::application(pparticle),
-      ::base::application(pparticle),
+      ::berg::application(pparticle),
       ::aura::application(pparticle),
       ::sphere::application(pparticle) :
       m_pmutexAiFont(this)
@@ -167,7 +167,7 @@ namespace turboc
       set["abc"] = 0;
       set["ebc"] = 0;
 
-      ::MessageBox(NULL,"stop oh yes!!","stop oh yes!!",e_message_box_icon_information);
+      ::MessageBox(NULL,"stop oh yes!!","stop oh yes!!",::user::e_message_box_icon_information);
 
       */
 

@@ -289,26 +289,26 @@ namespace sockets
    }
 
 
-   void http_client_socket::OnHeader(atom key, const string & value)
+   void http_client_socket::OnHeader(const ::atom & atom, const ::scoped_string & scopedstr)
    {
 
 #if HEAVY_HTTP_LOG
-      informationf("OnHeader %s: %s", (const char*)key, (const char*)value);
+      informationf("OnHeader %s: %s", (const_char_pointer )key, (const_char_pointer )value);
 #endif
 
-      m_content += key + ": " + value + "\r\n";
-      m_response.m_propertysetHeader[key] = value;
-      if (key == "content-length")
+      m_content += atom.as_string() + ": " + scopedstr + "\r\n";
+      m_response.m_propertysetHeader[atom] = scopedstr;
+      if (atom == "content-length")
       {
-         m_content_length = atoi(value);
+         m_content_length = atoi(scopedstr);
       }
-      else if (key == "content-type")
+      else if (atom == "content-type")
       {
-         m_content_type = value;
+         m_content_type = scopedstr;
       }
-      else if (key == "set-cookie")
+      else if (atom == "set-cookie")
       {
-         m_response.m_cookies.add(value);
+         m_response.m_cookies.add(scopedstr);
       }
    }
 
@@ -318,7 +318,7 @@ namespace sockets
 
       http_tunnel::OnHeaderComplete();
 
-      __defer_construct_new(m_pmemoryfile);
+      ødefer_construct_new(m_pmemoryfile);
 
       m_pmemoryfile->set_size(0);
 
@@ -429,7 +429,7 @@ namespace sockets
    }
 
 
-   void http_client_socket::OnData(const char *buf,memsize len)
+   void http_client_socket::OnData(const_char_pointer buf,memsize len)
    {
 
       if(m_response.attr("http_status_code").as_int() >= 300 && m_response.attr("http_status_code").as_int() <= 399)
@@ -478,7 +478,7 @@ namespace sockets
    }
 
 
-   void http_client_socket::OnDataArrived(const char * buf, memsize len)
+   void http_client_socket::OnDataArrived(const_char_pointer buf, memsize len)
    {
 
       __UNREFERENCED_PARAMETER(buf);
@@ -751,10 +751,10 @@ namespace sockets
    }
 
 
-   CLASS_DECL_APEX e_http_method string_http_method(const ::string & str)
+   CLASS_DECL_APEX e_http_method string_http_method(const ::scoped_string & scopedstr)
    {
 
-      string strMethod(str);
+      string strMethod(scopedstr);
 
       strMethod.make_lower();
 

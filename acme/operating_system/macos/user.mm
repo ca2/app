@@ -18,7 +18,7 @@ public:
    int m_iButtonCount = 0;
    enum_dialog_result m_edialogresulta[4];
 
-   ns_alert_box(const char * pszMessage, const char * pszTitle, enum_message_box emessagebox)
+   ns_alert_box(const char * pszMessage, const char * pszTitle, ::user::enum_message_box emessagebox)
    {
       m_palert = [[NSAlert alloc] init];
       NSString * strMessage = [[NSString alloc]initWithUTF8String:pszMessage];
@@ -28,21 +28,21 @@ public:
       //    alert.informativeText = "Your changes will be lost if you don't save them."
       //int iButtonCount = 0;
       
-      switch(emessagebox & e_message_box_type_mask)
+      switch(emessagebox & ::user::e_message_box_type_mask)
       {
-         case e_message_box_ok:
+         case ::user::e_message_box_ok:
             add_button(e_dialog_result_ok);
             break;
-         case e_message_box_yes_no:
+         case ::user::e_message_box_yes_no:
             add_button(e_dialog_result_yes);
             add_button(e_dialog_result_no);
             break;
-         case e_message_box_yes_no_cancel:
+         case ::user::e_message_box_yes_no_cancel:
             add_button(e_dialog_result_yes);
             add_button(e_dialog_result_no);
             add_button(e_dialog_result_cancel);
             break;
-         case e_message_box_ok_cancel:
+         case ::user::e_message_box_ok_cancel:
             add_button(e_dialog_result_ok);
             add_button(e_dialog_result_cancel);
             break;
@@ -113,7 +113,7 @@ public:
 };
 
 
-enum_dialog_result ns_alert_box(const char * pszMessage, const char * pszTitle, enum_message_box emessagebox)
+enum_dialog_result ns_alert_box(const char * pszMessage, const char * pszTitle, ::user::enum_message_box emessagebox)
 {
    
    class ns_alert_box nsalertbox(pszMessage, pszTitle, emessagebox);

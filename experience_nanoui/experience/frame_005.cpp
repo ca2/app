@@ -4,11 +4,11 @@
 #include "aura/graphics/draw2d/brush.h"
 #include "aura/graphics/draw2d/draw2d.h"
 #include "aura/platform/system.h"
-#include "base/user/experience/dock_manager.h"
-#include "base/user/experience/frame_window.h"
-#include "base/user/experience/move_manager.h"
-#include "base/user/experience/size_manager.h"
-#include "base/platform/session.h"
+#include "berg/user/experience/dock_manager.h"
+#include "berg/user/experience/frame_window.h"
+#include "berg/user/experience/move_manager.h"
+#include "berg/user/experience/size_manager.h"
+#include "berg/platform/session.h"
 
 
 #define GRIP_CORNER_LARGE_CX 16
@@ -52,8 +52,8 @@ namespace experience_nanoui
    void frame_005::on_initialize_experience_frame()
    {
 
-      __øconstruct(m_pbrushGrip);
-      __øconstruct(m_pbrushTextCaption);
+      øconstruct(m_pbrushGrip);
+      øconstruct(m_pbrushTextCaption);
 
       //m_strStyle = "LightGreen";
 

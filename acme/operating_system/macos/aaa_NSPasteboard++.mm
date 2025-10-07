@@ -125,7 +125,7 @@ void mm_clipboard_set_filea(const char ** psza, long c)
       
       str = [str stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
       
-      if(psz[0] == '/')
+      if(scopedstr[0] == '/')
       {
          
          str = [NSString stringWithFormat:@"file://%@", str];

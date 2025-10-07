@@ -81,7 +81,7 @@ namespace helloaxis
 
 
 
-   bool render::initialize_render(string strId)
+   bool render::initialize_render(const ::scoped_string & scopedstrId)
    {
 
       return ::helloaura::render::initialize_render(strId);
@@ -260,7 +260,7 @@ namespace helloaxis
 //
 //      //      int iCount = 30;
 //
-//      auto pbrushText = __øcreate < ::draw2d::brush > ();
+//      auto pbrushText = øcreate < ::draw2d::brush > ();
 //
 //      double T = 2.3;
 //
@@ -296,7 +296,7 @@ namespace helloaxis
 //
 //      {
 //
-//         synchronous_lock slText(m_pmutexText);
+//         synchronous_lock slText(m_pmutexText, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //         strHelloAXIS = get_helloaura().c_str(); // rationale : string allocation fork *for parallelization*
 //
@@ -327,7 +327,7 @@ namespace helloaxis
 //
 //            {
 //
-//               synchronous_lock slDib(m_pmutexDib);
+//               synchronous_lock slDib(m_pmutexDib, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //               if (m_pimage->initialize(m_cxCache1, m_cyCache1, int (m_dMaxRadius)))
 //               {
@@ -370,7 +370,7 @@ namespace helloaxis
 //
 //      {
 //
-//         synchronous_lock slText(m_pmutexText);
+//         synchronous_lock slText(m_pmutexText, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //         if (strHelloAXIS != get_helloaura() || m_cxCache1 != m_cxTarget || m_cyCache1 != m_cyTarget || m_pimageTemplate->area() <= 0)
 //            return;
@@ -473,7 +473,7 @@ namespace helloaxis
 //      if(!m_bFirstDone)
 //      {
 //
-//         synchronous_lock slText(m_pmutexText);
+//         synchronous_lock slText(m_pmutexText, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //         if (strHelloAXIS == get_helloaura() && m_cxCache1 == m_cxTarget && m_cyCache1 == m_cyTarget)
 //         {
@@ -502,7 +502,7 @@ namespace helloaxis
 //
 //      //      int iCount = 30;
 //
-//      auto pbrushText = __øcreate < ::draw2d::brush > ();
+//      auto pbrushText = øcreate < ::draw2d::brush > ();
 //
 //      double T = 2.3;
 //
@@ -576,7 +576,7 @@ namespace helloaxis
 //
 //      {
 //
-//         synchronous_lock slDib(m_pmutexDib);
+//         synchronous_lock slDib(m_pmutexDib, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //         if (!session()->savings()->is_trying_to_save(::e_resource_display_bandwidth))
 //         {
@@ -895,7 +895,7 @@ namespace helloaxis
 //               if (m_strLast23.has_character())
 //               {
 //
-//                  synchronous_lock synchronouslock(m_pmutexDib23);
+//                  synchronous_lock synchronouslock(m_pmutexDib23, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //                  auto & pimage = image23(m_strLast23);
 //
@@ -913,7 +913,7 @@ namespace helloaxis
 //               if (m_strCurrent23.has_character())
 //               {
 //
-//                  synchronous_lock synchronouslock(m_pmutexDib23);
+//                  synchronous_lock synchronouslock(m_pmutexDib23, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //                  auto & pimage = image23(m_strCurrent23);
 //
@@ -932,7 +932,7 @@ namespace helloaxis
 //            else if (m_strCurrent23.has_character())
 //            {
 //
-//               synchronous_lock synchronouslock(m_pmutexDib23);
+//               synchronous_lock synchronouslock(m_pmutexDib23, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //               auto & pimage = image23(m_strCurrent23);
 //
@@ -977,7 +977,7 @@ namespace helloaxis
 //
 //               float fHeight = 100.0;
 //
-//               auto pfont = __øcreate < ::write_text::font > ();
+//               auto pfont = øcreate < ::write_text::font > ();
 //
 //               pfont->create_pixel_font(pnode->font_name(e_font_sans), fHeight, e_font_weight_bold);
 //
@@ -1003,7 +1003,7 @@ namespace helloaxis
 //
 //            ca.set_hls(fmod(__double(::get_tick()), dPeriod) / dPeriod, 0.49, 0.84);
 //
-//            auto pbrush = __øcreate < ::draw2d::brush >();
+//            auto pbrush = øcreate < ::draw2d::brush >();
 //
 //            pbrush->create_solid(argb(255, ca.m_iR, ca.m_iG, ca.m_iB));
 //
@@ -1030,9 +1030,9 @@ namespace helloaxis
 //      if (m_bFast || !m_bFirstDone || m_timeLastFast.elapsed() < m_timeFastAnime)
 //      {
 //
-////         synchronous_lock sl1(m_pimpact->get_wnd()->synchronization());
+////         synchronous_lock sl1(m_pimpact->get_wnd()->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
-//         synchronous_lock slDraw(m_pmutexDraw);
+//         synchronous_lock slDraw(m_pmutexDraw, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //         if (m_bFast || m_pimageFast->is_null())
 //         {
@@ -1084,9 +1084,9 @@ namespace helloaxis
 
       //::image::image_pointer pimageFast = m_pimageFast;
 
-      //synchronous_lock synchronouslock(m_pmutexDraw);
+      //synchronous_lock synchronouslock(m_pmutexDraw, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-      //synchronous_lock slSwap(m_pmutexSwap);
+      //synchronous_lock slSwap(m_pmutexSwap, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       //pimage = m_pimageOut;
 
@@ -1117,7 +1117,7 @@ namespace helloaxis
    }
 
 
-   ::image::image_pointer & render::image23(string strImage)
+   ::image::image_pointer & render::image23(const ::scoped_string & scopedstrImage)
    {
       return ::helloaura::render::image23(strImage);
       //auto & pimage = m_mapDib23[strImage];
@@ -1156,7 +1156,7 @@ namespace helloaxis
    void render::defer_update_bilbo()
    {
 
-//      synchronous_lock synchronouslock(this->synchronization());
+//      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //      for (auto & bilbo : m_bilboa)
 //      {
@@ -1187,7 +1187,7 @@ namespace helloaxis
 //      for (auto str23 : m_stra23)
 //      {
 //
-//         synchronous_lock synchronouslock(m_pmutexDib23);
+//         synchronous_lock synchronouslock(m_pmutexDib23, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //         image23(str23);
 //
@@ -1209,7 +1209,7 @@ namespace helloaxis
       //return false;
    }
 
-   void render::helloaura_fast_render(const ::string & strHelloAXIS)
+   void render::helloaura_fast_render(const ::scoped_string & scopedstrHelloAXIS)
    {
 
 
@@ -1220,7 +1220,7 @@ namespace helloaxis
 //      if (m_rectangleX.width() <= 0 || m_rectangleX.height() <= 0)
 //         return;
 //
-//      synchronous_lock slDraw(m_pmutexDraw);
+//      synchronous_lock slDraw(m_pmutexDraw, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //      ::int_size sizeNew = ::int_size(m_rectangleX.width(), m_rectangleX.height());
 //
@@ -1239,7 +1239,7 @@ namespace helloaxis
 //
 //      float fHeight = 100.0;
 //
-//      auto pfont = __øcreate < ::write_text::font > ();
+//      auto pfont = øcreate < ::write_text::font > ();
 //
 ////      pfont->create_pixel_font(m_pimpact->m_strFont, fHeight, e_font_weight_bold);
 //
@@ -1263,17 +1263,17 @@ namespace helloaxis
 //
 //      size = pgraphics->get_text_extent(strHelloAXIS);
 //
-//      auto ppath = __øcreate < ::draw2d::path > ();
+//      auto ppath = øcreate < ::draw2d::path > ();
 //
 //      ppath->m_bFill = false;
 //
 //      ppath->add_string((m_rectangleX.width() - size.cx()) / 2, (m_rectangleX.height() - size.cy()) / 2, strHelloAXIS, m_pfont);
 //
-//      auto ppen = __øcreate < ::draw2d::pen > ();
+//      auto ppen = øcreate < ::draw2d::pen > ();
 //
 //      ppen->create_solid(1.0, argb(255, 90, 90, 80));
 //
-//      auto ppenW = __øcreate < ::draw2d::pen > ();
+//      auto ppenW = øcreate < ::draw2d::pen > ();
 //
 //      ppenW->create_solid(3.0, argb(84, 255, 255, 255));
 //

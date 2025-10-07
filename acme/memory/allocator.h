@@ -77,7 +77,7 @@ namespace heap
       //allocator(::acme::acme * pacme);
       //~allocator();
       
-      //virtual void * allocate(memsize iSize, const char * pszFile, int iLine);
+      //virtual void * allocate(memsize iSize, const_char_pointer pszFile, int iLine);
       //virtual void * allocate(memsize iSize);
       //virtual void free(void * p);
       //virtual void zero(void * p);
@@ -85,8 +85,8 @@ namespace heap
       virtual void initialize_allocator(::acme::acme * pacme);
 
       // Core functions
-      void * allocate(memsize size, memsize * psizeActuallyAllocated, const char * pszAnnotation = nullptr) override;
-      void * reallocate(void * p, memsize size, const char * pszAnnotation = nullptr) override;
+      void * allocate(memsize size, memsize * psizeActuallyAllocated, const_char_pointer pszAnnotation = nullptr) override;
+      void * reallocate(void * p, memsize size, const_char_pointer pszAnnotation = nullptr) override;
       void free(void * p) override;
       memsize size(void * p) override;
       bool has_size() const override;

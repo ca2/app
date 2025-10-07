@@ -9,146 +9,66 @@
 
 //
 ///// consecutive items arranged as array of ITEM
-//template < typename RANGE_TYPE >
-//class array_range :
-//   public RANGE_TYPE
-//{
-//public:
-//
-//
-//   using BASE_RANGE = RANGE_TYPE;
-//
-//   using THIS_RANGE = ::array_range < BASE_RANGE >;
-//
-//
-//   using CONST_RAW_RANGE = typename RANGE_TYPE::CONST_RAW_RANGE;
-//
-//
-//   using iterator = typename RANGE_TYPE::iterator;
-//   using const_iterator = typename RANGE_TYPE::const_iterator;
-//
-//
-//   using RAW_RANGE = ::range < iterator >;
-//
-//
-//   using ITEM_POINTER = typename get_type_item_pointer<iterator>::type;
-//
-//
-//   using ITEM = dereference <ITEM_POINTER>;
-//
-//   //using BASE_RANGE::BASE_RANGE;
-//
-//   array_range(no_initialize_t):BASE_RANGE(no_initialize_t{}){}
-//   array_range(nullptr_t):BASE_RANGE(nullptr){}
-//   array_range():BASE_RANGE(){}
-//   array_range(const array_range & array_range) : BASE_RANGE(array_range) {}
-//   array_range(array_range && array_range) : BASE_RANGE(::transfer(array_range)) {}
-//   template<typed_range<iterator> RANGE>
-//   array_range(const RANGE &range) : BASE_RANGE(range) {}
-//   template<typed_range<const_iterator> RANGE>
-//   array_range(const RANGE &range) : BASE_RANGE(range) {}
-//   template < primitive_integral INTEGRAL >
-//   constexpr array_range(const_iterator data, INTEGRAL count) : BASE_RANGE(data, count) { }
-//   constexpr array_range(const_iterator begin, const_iterator end) : BASE_RANGE(begin, end) {}
-//   template < primitive_block BLOCK_TYPE >
-//   array_range(enum_as_block, const BLOCK_TYPE & block) :
-//      BASE_RANGE(no_initialize_t{})
-//   {
-//      assign_block(block);
-//   }
-//   template < typed_block < ITEM > TYPED_BLOCK >
-//   array_range(enum_as_typed_block, const TYPED_BLOCK & block) :
-//      BASE_RANGE(no_initialize_t{})
-//   {
-//      
-//      assign_typed_block(block);
-//
-//   }
-//
-//
-// 
-//   array_range & operator = (const array_range & array_range) { RANGE_TYPE::operator=(array_range); return *this; }
-//   array_range & operator = (array_range && range) { BASE_RANGE::operator=(::transfer(range)); return *this; }
-//
-//
-//   //array_range(const ITEM * data) :range(data) { }
-//   //array_range(const ITEM * begin, const ITEM * end, bool bNullTerminated = false) : range(begin, end, bNullTerminated) { }
-//   //template < primitive_integral INTEGRAL >
-//   //array_range(ITEM * data, INTEGRAL count, bool bNullTerminated = false) :
-//   //   range(data, count, bNullTerminated) { }
-//   //template <std::size_t c>
-//   //array_range(const ITEM(&begin)[c]) : range(begin, begin + c, false) {}
-//
-//   memsize length_in_bytes() const { return ::is_set(this->begin()) ? maximum(0, (const unsigned char *)(const ITEM * )this->end() - (const unsigned char *)(const ITEM *)this->begin()) : 0; }
-//
-//
-//
-//   template < primitive_block BLOCK_TYPE >
-//   void assign_block(const BLOCK_TYPE & block)
-//   {
-//
-//      ASSERT(block.length_in_bytes() % this->item_size() == 0);
-//
-//      this->m_begin = (iterator)block.begin();
-//
-//      this->m_end = (iterator)((unsigned char *)this->begin() + block.length_in_bytes() / this->item_size());
-//
-//
-//   }
-//
-//   template < typed_block < ITEM > TYPED_BLOCK >
-//   void assign_typed_block(TYPED_BLOCK & block)
-//   {
-//
-//      this->m_begin = block.data();
-//      this->m_end = this->m_end + block.size();
-//
-//   }
-//
-//   auto data() { return this->begin(); }
-//   auto data() const { return this->begin(); }
-//
-//   constexpr ::collection::count _size() const { return this->end() - this->begin(); }
-//
-//
-//   bool contains_data(const ITEM * p) const
-//   {
-//
-//      return p >= this->begin() && p < this->end();
-//
-//   }
-//
-//   constexpr bool is_end(iterator iterator) const
-//   {
-//
-//      return iterator >= this->m_end;
-//
-//   }
-//
-//   constexpr bool is_end() const
-//   {
-//
-//      return this->m_begin >= this->m_end;
-//
-//   }
-//
-//   constexpr bool is_ok(iterator iterator) const
-//   {
-//
-//      return iterator < this->m_end;
-//
-//   }
-//
-//
-//   constexpr bool is_ok() const
-//   {
-//
-//      return this->m_begin < this->m_end;
-//
-//   }
-//
-//
-//};
+template < typename TYPE, typename ARG_TYPE >
+class array_range :
+   public ::range < TYPE * >
+{
+public:
+
+   
+   using BASE_RANGE = ::range<TYPE *>;
+   using RAW_BASE_ARRAY = array_range;
+   using BASE_RAW_RANGE = ::range<TYPE *>;
+   using BASE_TYPE = TYPE;
+
+
+   using BASE_RANGE::BASE_RANGE;
+
+
+   constexpr bool array_range_ok() const { return true; }
+
+
+   ::collection::count size() const { return this->m_end - this->m_begin; }
+   ::collection::count get_count() const { return this->size(); }
+
+
+   inline ::collection::index get_lower_bound(::collection::index i = 0) const;
+   inline ::collection::index get_middle_index(::collection::index i = 0) const;
+   inline ::collection::index get_upper_bound(::collection::index i = -1) const;
+   inline ::collection::index lower_bound(::collection::index i = 0) const { return this->get_lower_bound(i); }
+   inline ::collection::index upper_bound(::collection::index i = -1) const { return this->get_upper_bound(i); }
+   inline ::collection::index first_index(::collection::index i = 0) const { return this->lower_bound(i); }
+   inline ::collection::index middle_index(::collection::index i = 0) const { return this->get_middle_index(i); }
+   inline ::collection::index last_index(::collection::index i = -1) const { return this->get_upper_bound(i); }
+   inline bool bounds(::collection::index i) const;
+   inline bool contains_index(::collection::index i) const { return bounds(i); }
+
+
+   inline bool prepare_first_last(::collection::index& first, ::collection::index& last) const;
+   inline bool prepare_first_in_count_last_out(::collection::index& first, ::collection::count& inCountLastOut) const;
+
+
+   inline const TYPE *ptr_at(::collection::index nIndex) const { return this->m_begin + nIndex; }
+   inline TYPE *ptr_at(::collection::index nIndex) { return this->m_begin + nIndex; }
+
+   inline const TYPE &element_at(::collection::index nIndex) const;
+   inline TYPE &element_at(::collection::index nIndex);
+
+   inline TYPE &first(::collection::index n = 0);
+   inline const TYPE &first(::collection::index n = 0) const;
+
+   inline TYPE &last(::collection::index n = -1);
+   inline const TYPE &last(::collection::index n = -1) const;
+
+   inline TYPE &middle(::collection::index n = 0);
+   inline const TYPE &middle(::collection::index n = 0) const;
+
+
+   TYPE &operator[](::collection::index i) { return this->m_begin[i]; }
+   const TYPE &operator[](::collection::index i) const { return this->m_begin[i]; }
+
+
+};
 //
 
 //template < primitive_character CHARACTER >
@@ -511,3 +431,163 @@
 
 
 
+
+
+
+template<typename TYPE, typename ARG_TYPE>
+inline ::collection::index array_range<TYPE, ARG_TYPE>::get_lower_bound(::collection::index i) const
+{
+   return i < this->size() ? i : -1;
+}
+
+template<typename TYPE, typename ARG_TYPE>
+inline ::collection::index
+array_range<TYPE, ARG_TYPE>::get_middle_index(::collection::index iIndex) const
+{
+   return this->size() / 2 + iIndex;
+}
+
+
+template<typename TYPE, typename ARG_TYPE>
+inline ::collection::index
+array_range<TYPE, ARG_TYPE>::get_upper_bound(::collection::index iIndex) const
+{
+   return this->size() + iIndex;
+}
+
+template<typename TYPE, typename ARG_TYPE>
+inline bool array_range<TYPE, ARG_TYPE>::bounds(::collection::index i) const
+{
+   return i >= 0 && i < this->size();
+}
+
+
+
+template<typename TYPE, typename ARG_TYPE>
+bool array_range<TYPE, ARG_TYPE>::prepare_first_last(::collection::index& first,
+   ::collection::index& last) const
+{
+
+   if (first < 0)
+   {
+
+      first += this->array_get_count();
+
+   }
+
+   if (last < 0)
+   {
+
+      last += this->array_get_count();
+
+   }
+
+   return last >= first;
+}
+
+
+template<typename TYPE, typename ARG_TYPE>
+bool array_range<TYPE, ARG_TYPE >::prepare_first_in_count_last_out(
+   ::collection::index& first, ::collection::count& in_count_out_last) const
+{
+
+   if (first < 0)
+   {
+
+      first += this->array_get_count();
+
+   }
+
+   if (first < 0)
+   {
+
+      first = 0;
+
+   }
+
+   if (in_count_out_last < 0)
+   {
+
+      in_count_out_last += this->array_get_count();
+
+   }
+   else
+   {
+
+      in_count_out_last = first + in_count_out_last - 1;
+
+   }
+
+   return in_count_out_last >= first;
+
+}
+
+
+ template<typename TYPE, typename ARG_TYPE>
+inline const TYPE &array_range<TYPE, ARG_TYPE>::element_at(::collection::index nIndex) const
+{
+
+    ASSERT(nIndex >= 0 && nIndex < this->size());
+
+    return this->m_begin[nIndex];
+
+ }
+
+
+ template<typename TYPE, typename ARG_TYPE>
+ inline TYPE &array_range<TYPE, ARG_TYPE>::element_at(::collection::index nIndex)
+ {
+
+    ASSERT(nIndex >= 0 && nIndex < this->size());
+
+    return this->m_begin[nIndex];
+
+ }
+
+
+template<typename TYPE, typename ARG_TYPE>
+inline const TYPE &array_range<TYPE, ARG_TYPE>::first(::collection::index nIndex) const
+{
+
+   return this->element_at(nIndex);
+}
+
+
+template<typename TYPE, typename ARG_TYPE>
+inline TYPE &array_range<TYPE, ARG_TYPE>::first(::collection::index nIndex)
+{
+
+   return this->element_at(nIndex);
+}
+
+
+template<typename TYPE, typename ARG_TYPE>
+inline const TYPE &array_range<TYPE, ARG_TYPE>::last(::collection::index i) const
+{
+
+   return element_at(this->get_upper_bound(i));
+}
+
+
+template<typename TYPE, typename ARG_TYPE>
+inline TYPE &array_range<TYPE, ARG_TYPE>::last(::collection::index i)
+{
+
+   return element_at(this->get_upper_bound(i));
+}
+
+
+template<typename TYPE, typename ARG_TYPE>
+inline const TYPE &array_range<TYPE, ARG_TYPE>::middle(::collection::index i) const
+{
+
+   return element_at(this->get_middle_index(i));
+}
+
+
+template<typename TYPE, typename ARG_TYPE>
+inline TYPE &array_range<TYPE, ARG_TYPE>::middle(::collection::index i)
+{
+
+   return element_at(this->get_middle_index(i));
+}

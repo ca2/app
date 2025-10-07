@@ -13,6 +13,21 @@ namespace geometry2d
 {
 
 
+   item::item()
+   {
+
+
+   }
+
+
+   item::~item()
+   {
+
+
+
+   }
+
+
    ::draw2d::enum_item item::type() const 
    {
       
@@ -43,11 +58,39 @@ namespace geometry2d
    }
 
 
+   begin_figure_item::begin_figure_item()
+   {
+
+
+   }
+
+
+   begin_figure_item::~begin_figure_item()
+   {
+
+
+   }
+
+
    ::draw2d::enum_item begin_figure_item::type() const 
    {
       
       return ::draw2d::e_item_begin_figure; 
    
+   }
+
+
+   close_figure_item::close_figure_item()
+   {
+
+
+   }
+
+
+   close_figure_item::~close_figure_item()
+   {
+
+
    }
 
 
@@ -59,6 +102,21 @@ namespace geometry2d
    }
 
 
+   end_figure_item::end_figure_item()
+   {
+
+
+   }
+
+
+   end_figure_item::~end_figure_item()
+   {
+
+
+
+   }
+
+
    ::draw2d::enum_item end_figure_item::type() const
    {
 
@@ -66,6 +124,18 @@ namespace geometry2d
 
    }
 
+   intersect_clip_item::intersect_clip_item()
+   {
+
+
+   }
+
+
+   intersect_clip_item::~intersect_clip_item()
+   {
+
+
+   }
 
    ::draw2d::enum_item intersect_clip_item::type() const
    {
@@ -253,6 +323,22 @@ namespace geometry2d
 
    //}
 
+   polygon_item::polygon_item()
+   {
+
+
+   }
+
+
+   polygon_item::~polygon_item()
+   {
+
+
+   }
+
+
+
+
 
    ::draw2d::enum_item polygon_item::type() const 
    {
@@ -313,6 +399,19 @@ namespace geometry2d
    //   return ::draw2d::e_item_poly_polygon; 
    //
    //}
+
+   poly_polygon_item::poly_polygon_item()
+   {
+
+
+   }
+
+
+   poly_polygon_item::~poly_polygon_item()
+   {
+
+
+   }
 
    void poly_polygon_item::translate(const ::double_point & point)
    {
@@ -392,6 +491,19 @@ namespace geometry2d
    //   ::expand_bounding_box(rectangle, m_polypolygon);
 
    //}
+
+   combine_item::combine_item()
+   {
+
+
+   }
+
+
+   combine_item::~combine_item()
+   {
+
+
+   }
 
 
    ::draw2d::enum_item combine_item::type() const 
@@ -555,7 +667,7 @@ namespace geometry2d
    ::subparticle_pointer combine_item::clone()
    {
 
-      auto pitem = __allocate combine_item();
+      auto pitem = øallocate combine_item();
 
       pitem->m_pregion1 = m_pregion1->clone();
 

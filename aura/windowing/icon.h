@@ -30,7 +30,7 @@ namespace windowing
       virtual string get_tray_icon_name() const;
 
 
-      virtual void set_tray_icon_name(const ::string & strTrayIconName);
+      virtual void set_tray_icon_name(const ::scoped_string & scopedstrTrayIconName);
 
 
       virtual void get_sizes(::int_size_array & a);
@@ -39,9 +39,9 @@ namespace windowing
       virtual void * get_os_data(const ::int_size & size) const;
 
 
-      virtual void load_matter(const ::string & strPath);
-      virtual void load_app_tray_icon(const ::string & strTrayIconName);
-      virtual void load_file(const ::string & strPath);
+      virtual void load_matter(const ::scoped_string & scopedstrPath);
+      virtual void load_app_tray_icon(const ::scoped_string & scopedstrTrayIconName);
+      virtual void load_file(const ::scoped_string & scopedstrPath);
 
 
       virtual ::image::image_pointer get_image(const ::int_size & size);

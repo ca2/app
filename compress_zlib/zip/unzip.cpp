@@ -245,7 +245,7 @@ uptr *pX)
 
 
 /* My own _strcmpi / strcasecmp */
-static int strcmpcasenosensitive_internal (const char * fileName1, const char * fileName2)
+static int strcmpcasenosensitive_internal (const_char_pointer fileName1, const_char_pointer fileName2)
 {
    for (;;)
    {
@@ -287,8 +287,8 @@ static int strcmpcasenosensitive_internal (const char * fileName1, const char * 
 
 */
 extern int CLASS_DECL_ACME unzStringFileNameCompare (
-const char* fileName1,
-const char* fileName2,
+const_char_pointer fileName1,
+const_char_pointer fileName2,
 int iCaseSensitivity)
 {
    if (iCaseSensitivity==0)
@@ -395,7 +395,7 @@ voidpf filestream)
        of this unzip package.
 */
 extern unzFile CLASS_DECL_ACME unzOpen2 (
-const char *path,
+const_char_pointer path,
 zlib_filefunc_def* pzlib_filefunc_def)
 {
    unz_s us;
@@ -828,7 +828,7 @@ extern int CLASS_DECL_ACME unzGoToNextFile (unzFile file)
 */
 extern int CLASS_DECL_ACME unzLocateFile (
 unzFile file,
-const char *szFileName,
+const_char_pointer szFileName,
 int iCaseSensitivity)
 {
    unz_s* s;
@@ -1055,7 +1055,7 @@ unsigned int  *psize_local_extrafield)
   open for reading data the current file in the zipfile.
   If there is no error and the file is opened, the return value is UNZ_OK.
 */
-extern int CLASS_DECL_ACME unzOpenCurrentFile3 (unzFile file, int * method, int * level, int raw, const char * password)
+extern int CLASS_DECL_ACME unzOpenCurrentFile3 (unzFile file, int * method, int * level, int raw, const_char_pointer password)
 {
    int err=UNZ_OK;
    unsigned int iSizeVar;
@@ -1200,7 +1200,7 @@ unzFile file)
 
 extern int CLASS_DECL_ACME unzOpenCurrentFilePassword (
 unzFile file,
-const char* password)
+const_char_pointer password)
 {
    return unzOpenCurrentFile3(file, nullptr, nullptr, 0, password);
 }

@@ -60,10 +60,10 @@ inline  bool unicode_is_kanji(long long i) { return i >= 0x4E00 && i <= 0x9FBF; 
 inline  bool unicode_is_hiragana(long long i) { return i >= 0x3040 && i <= 0x309F; }
 inline  bool unicode_is_katakana(long long i) { return i >= 0x30A0 && i <= 0x30FF; }
 inline  bool unicode_is_japanese(long long i) { return unicode_is_kanji(i) || unicode_is_hiragana(i) || unicode_is_katakana(i); }
-inline  bool unicode_is_kanji(const ::scoped_string & scopedstrUtf8) { return unicode_is_kanji(unicode_index(pszUtf8)); }
-inline  bool unicode_is_hiragana(const ::scoped_string & scopedstrUtf8) { return unicode_is_hiragana(unicode_index(pszUtf8)); }
-inline  bool unicode_is_katakana(const ::scoped_string & scopedstrUtf8) { return unicode_is_katakana(unicode_index(pszUtf8)); }
-inline  bool unicode_is_japanese(const ::scoped_string & scopedstrUtf8) { return unicode_is_japanese(unicode_index(pszUtf8)); }
+inline  bool unicode_is_kanji(const ::scoped_string & scopedstrUtf8) { return unicode_is_kanji(unicode_index(scopedstrUtf8)); }
+inline  bool unicode_is_hiragana(const ::scoped_string & scopedstrUtf8) { return unicode_is_hiragana(unicode_index(scopedstrUtf8)); }
+inline  bool unicode_is_katakana(const ::scoped_string & scopedstrUtf8) { return unicode_is_katakana(unicode_index(scopedstrUtf8)); }
+inline  bool unicode_is_japanese(const ::scoped_string & scopedstrUtf8) { return unicode_is_japanese(unicode_index(scopedstrUtf8)); }
 
 void * unicode_char_bidi_names_non_usage_warning();
 

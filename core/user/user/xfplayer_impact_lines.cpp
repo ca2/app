@@ -2,7 +2,7 @@
 #include "xfplayer_impact_line.h"
 #include "xfplayer_impact_lines.h"
 #include "xfplayer_impact_line_selection.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "apex/message/channel.h"
 #include "apex/message/message.h"
@@ -30,7 +30,7 @@ xfplayer_impact_linea::~xfplayer_impact_linea()
 void xfplayer_impact_linea::OnChildSetVisible(xfplayer_impact_line * pline, bool bVisible)
 {
 
-   _synchronous_lock synchronouslock(this->synchronization());
+   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    ::collection::index iLineIndex = FindLine(pline);
 
@@ -83,7 +83,7 @@ void xfplayer_impact_linea::OnChildSetVisible(xfplayer_impact_line * pline, bool
 
 void xfplayer_impact_linea::Prepare()
 {
-   _synchronous_lock synchronouslock(this->synchronization());
+   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
    for (int i = 0; i < this->line_count(); i++)
    {
       this->line_at(i)->m_pContainer = this;
@@ -94,7 +94,7 @@ void xfplayer_impact_linea::Prepare()
 void xfplayer_impact_linea::Prepare(xfplayer_impact_line *pImpactLine)
 
 {
-   _synchronous_lock synchronouslock(this->synchronization());
+   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
    pImpactLine->m_pContainer = this;
 
 }
@@ -109,7 +109,7 @@ void xfplayer_impact_linea::Prepare(xfplayer_impact_line *pImpactLine)
 
 void xfplayer_impact_linea::SetEffect(int iEffect)
 {
-   _synchronous_lock synchronouslock(this->synchronization());
+   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
    for (int i = 0; i < this->line_count(); i++)
    {
       this->line_at(i)->SetTextEffect(iEffect);
@@ -123,7 +123,7 @@ void xfplayer_impact_linea::SetEffect(int iEffect)
 
 ::collection::index xfplayer_impact_linea::FindLine(xfplayer_impact_line * pline)
 {
-   _synchronous_lock synchronouslock(this->synchronization());
+   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
    for (int iLine = 0; iLine < this->line_count(); iLine++)
    {
       if (line_at(iLine) == pline)
@@ -134,7 +134,7 @@ void xfplayer_impact_linea::SetEffect(int iEffect)
 
 ::user::enum_line_hit xfplayer_impact_linea::hit_test(const int_point &pointCursor, ::collection::index &iLine, character_count &iChar)
 {
-   _synchronous_lock synchronouslock(this->synchronization());
+   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
    for (::collection::index i = 0; i < this->line_count(); i++)
    {
       ::user::enum_line_hit etest = this->line_at(i)->hit_test(pointCursor, iChar);
@@ -150,16 +150,16 @@ void xfplayer_impact_linea::SetEffect(int iEffect)
 
 void xfplayer_impact_linea::install_message_routing(::channel * pchannel)
 {
-   MESSAGE_LINK(e_message_mouse_move, pchannel, this, &xfplayer_impact_linea::OnMouseMove);
-   MESSAGE_LINK(e_message_set_cursor, pchannel, this, &xfplayer_impact_linea::OnSetCursor);
-   //MESSAGE_LINK(e_message_timer,        pchannel, this, &xfplayer_impact_linea::OnTimer);
-   MESSAGE_LINK(e_message_left_button_down, pchannel, this, &xfplayer_impact_linea::OnLButtonDown);
-   MESSAGE_LINK(e_message_left_button_up, pchannel, this, &xfplayer_impact_linea::OnLButtonUp);
+   USER_MESSAGE_LINK(::user::e_message_mouse_move, pchannel, this, &xfplayer_impact_linea::OnMouseMove);
+   USER_MESSAGE_LINK(::user::e_message_set_cursor, pchannel, this, &xfplayer_impact_linea::OnSetCursor);
+   //USER_MESSAGE_LINK(::user::e_message_timer,        pchannel, this, &xfplayer_impact_linea::OnTimer);
+   USER_MESSAGE_LINK(::user::e_message_left_button_down, pchannel, this, &xfplayer_impact_linea::OnLButtonDown);
+   USER_MESSAGE_LINK(::user::e_message_left_button_up, pchannel, this, &xfplayer_impact_linea::OnLButtonUp);
 }
 
 void xfplayer_impact_linea::OnMouseMove(::message::message * pmessage)
 {
-   _synchronous_lock synchronouslock(this->synchronization());
+   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
    for (int i = 0; i < this->line_count(); i++)
    {
       this->line_at(i)->m_pContainer = this;
@@ -172,7 +172,7 @@ void xfplayer_impact_linea::OnMouseMove(::message::message * pmessage)
 
 void xfplayer_impact_linea::OnLButtonDown(::message::message * pmessage)
 {
-   _synchronous_lock synchronouslock(this->synchronization());
+   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
    for (int i = 0; i < this->line_count(); i++)
    {
       this->line_at(i)->m_pContainer = this;
@@ -185,7 +185,7 @@ void xfplayer_impact_linea::OnLButtonDown(::message::message * pmessage)
 
 void xfplayer_impact_linea::OnLButtonUp(::message::message * pmessage)
 {
-   _synchronous_lock synchronouslock(this->synchronization());
+   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
    for (int i = 0; i < this->line_count(); i++)
    {
       this->line_at(i)->OnLButtonUp(pmessage);
@@ -196,7 +196,7 @@ void xfplayer_impact_linea::OnLButtonUp(::message::message * pmessage)
 
 void xfplayer_impact_linea::on_timer(::timer * ptimer)
 {
-   _synchronous_lock synchronouslock(this->synchronization());
+   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
    for (int i = 0; i < this->line_count(); i++)
    {
       this->line_at(i)->on_timer(ptimer);
@@ -205,7 +205,7 @@ void xfplayer_impact_linea::on_timer(::timer * ptimer)
 
 void xfplayer_impact_linea::OnSetCursor(::message::message * pmessage)
 {
-   _synchronous_lock synchronouslock(this->synchronization());
+   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
    for (int i = 0; i < this->line_count(); i++)
    {
       this->line_at(i)->OnSetCursor(pmessage);
@@ -216,7 +216,7 @@ void xfplayer_impact_linea::OnSetCursor(::message::message * pmessage)
 
 void xfplayer_impact_linea::set_blend(double dBlend)
 {
-   _synchronous_lock synchronouslock(this->synchronization());
+   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
    for (int iLine = 0; iLine < this->line_count(); iLine++)
    {
       line_at(iLine)->set_blend(dBlend);
@@ -232,9 +232,9 @@ xfplayer_impact_line_selection & xfplayer_impact_linea::GetSelection()
 }
 
 
-void xfplayer_impact_linea::get_sel_text(string & strSelText, const ::string & pszLineSeparator)
+void xfplayer_impact_linea::get_sel_text(string & strSelText, const ::scoped_string & scopedstrLineSeparator)
 {
-   _synchronous_lock synchronouslock(this->synchronization());
+   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
    ::collection::index iLineStart;
    ::collection::index iCharStart;
    ::collection::index iLineEnd;
@@ -265,7 +265,7 @@ void xfplayer_impact_linea::get_sel_text(string & strSelText, const ::string & p
          for (::collection::index iLine = iLineStart + 1; iLine < iLineEnd; iLine++)
          {
 
-            strSelText += pszLineSeparator;
+            strSelText += scopedstrLineSeparator;
 
             strSelText += line_at(iLine)->m_str;
 
@@ -274,7 +274,7 @@ void xfplayer_impact_linea::get_sel_text(string & strSelText, const ::string & p
          if (iLineEnd > iLineStart)
          {
 
-            strSelText += pszLineSeparator;
+            strSelText += scopedstrLineSeparator;
 
             strSelText += line_at(iLineEnd)->m_str.substr(0, iCharEnd + 1);
 
@@ -285,21 +285,21 @@ void xfplayer_impact_linea::get_sel_text(string & strSelText, const ::string & p
 
 }
 
-string xfplayer_impact_linea::get_sel_text(const ::string & pszLineSeparator)
+string xfplayer_impact_linea::get_sel_text(const ::scoped_string & scopedstrLineSeparator)
 {
 
    string strSelText;
 
-   get_sel_text(strSelText, pszLineSeparator);
+   get_sel_text(strSelText, scopedstrLineSeparator);
 
    return strSelText;
 
 }
 
 
-void xfplayer_impact_linea::get_text(string & strText, const ::string & pszLineSeparator)
+void xfplayer_impact_linea::get_text(string & strText, const ::scoped_string & scopedstrLineSeparator)
 {
-   _synchronous_lock synchronouslock(this->synchronization());
+   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
    if (line_count() > 0)
    {
 
@@ -310,7 +310,7 @@ void xfplayer_impact_linea::get_text(string & strText, const ::string & pszLineS
    for (int iLine = 1; iLine < line_count(); iLine++)
    {
 
-      strText += pszLineSeparator;
+      strText += scopedstrLineSeparator;
 
       strText += line_at(iLine)->m_str;
 
@@ -318,12 +318,12 @@ void xfplayer_impact_linea::get_text(string & strText, const ::string & pszLineS
 
 }
 
-string xfplayer_impact_linea::get_text(const ::string & pszLineSeparator)
+string xfplayer_impact_linea::get_text(const ::scoped_string & scopedstrLineSeparator)
 {
 
    string strText;
 
-   get_text(strText, pszLineSeparator);
+   //linetext(strText, pszLineSeparator);
 
    return strText;
 

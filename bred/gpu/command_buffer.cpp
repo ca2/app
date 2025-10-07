@@ -1,6 +1,8 @@
 // Created by camilo on 2025-06-23 00:16 <3ThomasBorregaardSørensen!!
 #include "framework.h"
 #include "command_buffer.h"
+#include "frame.h"
+#include "queue.h"
 #include "render_target.h"
 
 
@@ -8,9 +10,31 @@ namespace gpu
 {
 
 
-   command_buffer::command_buffer()
+   scoped_command_buffer::scoped_command_buffer(::gpu::command_buffer* pcommandbufferIn)
    {
 
+      m_pcommandbufferOut = ::gpu::current_frame()->m_pgpucommandbuffer;
+      m_pcommandbufferIn = pcommandbufferIn;
+      ::gpu::current_frame()->m_pgpucommandbuffer = m_pcommandbufferIn;
+
+
+   }
+
+   scoped_command_buffer::~scoped_command_buffer()
+   {
+
+      ::gpu::current_frame()->m_pgpucommandbuffer = m_pcommandbufferOut;
+
+   }
+
+
+
+
+   command_buffer::command_buffer()
+   {
+      m_ecommandbuffer = e_command_buffer_none;
+      m_bLoadingCommandBuffer = false;
+      m_iFrameIndex = -1;
    }
 
 
@@ -26,7 +50,7 @@ namespace gpu
 
    //   ::pointer <command_buffer > pcommandbuffer;
 
-   //   __defer_construct_new(pcommandbuffer);
+   //   ødefer_construct_new(pcommandbuffer);
 
    //   ::cast < device > pdevice= m_pgpucontext->m_pgpudevice;
 
@@ -37,10 +61,21 @@ namespace gpu
    //}
 
 
-   void command_buffer::initialize_command_buffer(::gpu::render_target* pgpurendertarget)
+   void command_buffer::initialize_command_buffer(::gpu::render_target* pgpurendertarget, ::gpu::queue * pqueue, enum_command_buffer ecommandbuffer)
    {
 
       m_pgpurendertarget = pgpurendertarget;
+
+      m_pgpuqueue = pqueue;
+
+      m_ecommandbuffer = ecommandbuffer;
+
+   }
+
+
+   void command_buffer::begin_command_buffer(bool bOneTime)
+   {
+
 
    }
 
@@ -81,7 +116,28 @@ namespace gpu
    }
 
 
+   //void command_buffer::set_primitive_topology_triangle_strip()
+   //{
+
+
+   //}
+
+
    void command_buffer::draw(int a)
+   {
+
+
+   }
+
+
+   void command_buffer::draw_vertexes(int iVertexCount)
+   {
+
+
+   }
+
+
+   void command_buffer::draw_indexes(int iIndexCount)
    {
 
 

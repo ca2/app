@@ -5,7 +5,7 @@ class plex_heap_alloc;
 
 
 class CLASS_DECL_ACME plex_heap_alloc_array :
-   public array_non_particle < plex_heap_alloc *, plex_heap_alloc *, ::typed::def < plex_heap_alloc*  >, ::heap::operating_system_typed_memory < plex_heap_alloc * > >
+   public ::array < plex_heap_alloc *, plex_heap_alloc *, ::typed::def < plex_heap_alloc*  >, ::heap::operating_system_typed_memory < plex_heap_alloc * > >
 {
 public:
 
@@ -27,8 +27,8 @@ public:
 
    void pre_finalize();
 
-   void * alloc_debug(memsize nAllocSize, memsize * psizeAllocated, int nBlockUse, const char * szFileName, int iLine);
-   void * realloc_debug(void * p, memsize nAllocSize, memsize nOldAllocSize, int align, int nBlockUse, const char * szFileName, int iLine);
+   void * alloc_debug(memsize nAllocSize, memsize * psizeAllocated, int nBlockUse, const_char_pointer szFileName, int iLine);
+   void * realloc_debug(void * p, memsize nAllocSize, memsize nOldAllocSize, int align, int nBlockUse, const_char_pointer szFileName, int iLine);
    void free_debug(void * p, memsize nAllocSize);
 
    //static plex_heap_alloc_array * new_plex_heap_alloc_array(::heap::allocator * pallocator, ::heap::enum_memory ememory);

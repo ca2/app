@@ -39,7 +39,7 @@ namespace html
    };
 
 
-   typedef address_array < base * > base_ptr_array;
+   typedef address_array_base < base * > base_ptr_array;
 
 
 } // namespace html

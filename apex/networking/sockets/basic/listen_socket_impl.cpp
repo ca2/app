@@ -134,7 +134,7 @@ namespace sockets
    \lparam intf Interface hostname
    \lparam port Port (0 is random)
    \lparam depth Listen queue depth */
-   int listen_socket_impl::Bind(const string& intf, ::networking::port_t port, int depth)
+   int listen_socket_impl::Bind(const ::scoped_string & scopedstrInterface, ::networking::port_t port, int depth)
    {
 
       throw interface_only();
@@ -163,7 +163,7 @@ namespace sockets
    \lparam port Port (0 is random)
    \lparam protocol Network protocol
    \lparam depth Listen queue depth */
-   int listen_socket_impl::Bind(const string& intf, ::networking::port_t port, const string& protocol, int depth)
+   int listen_socket_impl::Bind(const ::scoped_string & scopedstrInterface, ::networking::port_t port, const string& protocol, int depth)
    {
       //::networking::address ad(intf, port);
       //if (ad.is_valid())
@@ -411,7 +411,7 @@ namespace sockets
       //      {
       //         // %! OnSSLAccept calls SSLNegotiate that can finish in this one call.
       //         // %! If that happens and negotiation fails, the 'tmp' instance is
-      //         // %! still added to the list of active sockets in the sockethandler.
+      //         // %! still added to the list_base of active sockets in the sockethandler.
       //         // %! See bugfix for this in socket_handler::Select - don't set rwx
       //         // %! flags if IsCloseAndDelete() flag is true.
       //         // %! An even better fugbix (see tcp_socket::OnSSLAccept) now avoids
@@ -461,7 +461,7 @@ namespace sockets
 
       socket::initialize(pparticle);
 
-      __øconstruct(m_plistensocketImpl);
+      øconstruct(m_plistensocketImpl);
 
       //m_p2 = m_plistensocketImpl->m_p2;
 
@@ -508,7 +508,7 @@ namespace sockets
    ::pointer<listen_socket_impl>listen_socket_impl::create_listen_socket_impl()
    {
 
-      return __øcreate < listen_socket_impl >();
+      return øcreate < listen_socket_impl >();
 
    }
 
@@ -520,22 +520,22 @@ namespace sockets
 
       return nullptr;
 
-      //return __øcreate < listen_socket_impl >();
+      //return øcreate < listen_socket_impl >();
 
    }
 
-   void listen_socket_impl::set_ssl_catalog(const ::string& strCat)
+   void listen_socket_impl::set_ssl_catalog(const ::scoped_string & scopedstrCat)
    {
 
-      return m_plistensocketInterface->set_ssl_catalog(strCat);
+      return m_plistensocketInterface->set_ssl_catalog(scopedstrCat);
 
    }
 
 
-   void listen_socket_impl::set_ssl_cipher_list(const ::string& strCipherList)
+   void listen_socket_impl::set_ssl_cipher_list(const ::scoped_string & scopedstrCipherList)
    {
 
-      return m_plistensocketInterface->set_ssl_cipher_list(strCipherList);
+      return m_plistensocketInterface->set_ssl_cipher_list(scopedstrCipherList);
 
    }
 

@@ -55,7 +55,7 @@
 //#pragma warning( disable: 4121 )
 //struct CLASS_DECL_APEX __DISPMAP_ENTRY
 //{
-//   const char * lpszName;       // member/property name
+//   const_char_pointer lpszName;       // member/property name
 
 //   long lDispID;           // DISPID (may be DISPID_UNKNOWN)
 //   const ::scoped_string & scopedstrParams;      // member parameter description
@@ -135,7 +135,7 @@ struct CPrintInfo;          // print thumbnail customization info
 
 // flags for interaction_impl::RunModalLoop
 #define MLF_NOIDLEMSG       0x0001  // don't send WM_ENTERIDLE messages
-#define MLF_NOKICKIDLE      0x0002  // don't send e_message_kick_idle messages
+#define MLF_NOKICKIDLE      0x0002  // don't send ::user::e_message_kick_idle messages
 #define MLF_SHOWONIDLE      0x0004  // show interaction_impl if not visible at idle time
 
 // extra apex API defined TTF_ flags for TOOLINFO::uFlags

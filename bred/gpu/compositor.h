@@ -15,12 +15,17 @@ namespace gpu
 
       ::pointer <::gpu::context> m_pgpucontextCompositor2;
 
+#ifdef WINDOWS
+      bool m_bDraw2dNeedsD3D11onD12 = false;
+#endif
+
 
       compositor();
       ~compositor() override;
 
-
-      virtual ::gpu::texture* current_target_texture();
+      //virtual ::gpu::frame* gpu_frame();
+      //virtual void set_gpu_frame(::gpu::frame*);
+      virtual ::gpu::texture* current_target_texture(::gpu::frame* pgpuframe);
 
 
       virtual void set_gpu_context(::gpu::context * pgpucontextCompositor);
@@ -28,13 +33,16 @@ namespace gpu
       virtual void on_set_gpu_context();
 
 
-      virtual void defer_yield_gpu_context(const ::int_rectangle & rectanglePlacement);
+      virtual void on_gpu_context_placement_change(const ::int_rectangle& rectanglePlacement);
+
+
+      //virtual void on_gpu_context_placement_change(const ::int_rectangle & rectanglePlacement);
 
 
       ::gpu::context* gpu_context();
 
       virtual void start_gpu_layer(::gpu::frame* pgpuframe);
-      virtual ::gpu::frame * end_gpu_layer();
+      virtual ::gpu::frame * end_gpu_layer(::gpu::frame* pgpuframe);
 
 
       virtual void gpu_layer_on_after_begin_render();

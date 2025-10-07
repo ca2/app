@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "base/user/experience/frame.h"
+#include "berg/user/experience/frame.h"
 
 
 namespace experience_nanoui
@@ -60,7 +60,7 @@ namespace experience_nanoui
 
       //virtual void set_style(::user::enum_style estyle);
 
-      //virtual enum_style translate_style(const ::string & pszStyle);
+      //virtual enum_style translate_style(const ::scoped_string & scopedstrStyle);
 
       virtual void _on_style_change(::draw2d::graphics_pointer & pgraphics) override;
 

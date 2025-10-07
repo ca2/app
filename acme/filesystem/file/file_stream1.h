@@ -25,7 +25,7 @@
 //      ~file_stream() override;
 //
 //
-//      void open(const ::file::path & pszFileName,unsigned int nOpenFlags,::platform::application * papp = ::get_app());
+//      void open(const ::file::path & pathFileName,unsigned int nOpenFlags,::platform::application * papp = ::get_app());
 //
 //
 //

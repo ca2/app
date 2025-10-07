@@ -17,14 +17,14 @@ namespace filemanager
 
       
       ::pointer<context_menu>            m_pcontextmenu;
-      string_array                        m_straOpenWith;
+      string_array_base                        m_straOpenWith;
       bool                                m_bFileSize;
       bool                                m_bShow;
       ::collection::index                               m_iSizeSubItem;
       class ::time                          m_timeLastFileSizeGet;
 
 
-      //map < icon_key,const icon_key &,icon,icon & > m_iconmap;
+      //map_base < icon_key,const icon_key &,icon,icon & > m_iconmap;
 
 //#ifdef WINDOWS_DESKTOP
 //      IShellFolder *                   m_pshellfolder;
@@ -44,7 +44,7 @@ namespace filemanager
 
 
 
-      //void schedule_file_size(const ::string & psz);
+      //void schedule_file_size(const ::scoped_string & scopedstr);
 
       void _017OpenContextMenuFolder(::pointer<::file::item>item, const ::action_context & action_context) override;
       void _017OpenContextMenuFile(const ::file::item_array &itema, const ::action_context & action_context) override;
@@ -113,7 +113,7 @@ namespace filemanager
 
 
       //virtual ::color::color get_background_color() override;
-      bool add_fs_item(::file::path pathUser, ::file::path pathFinal, string strName);
+      bool add_fs_item(::file::path pathUser, ::file::path pathFinal, const ::scoped_string & scopedstrName);
       virtual void browse_sync(const ::action_context & action_context) override;
 
       ::image::image_list * GetActionButtonImageList(::collection::index i);
@@ -139,11 +139,11 @@ namespace filemanager
       void _001GetSubItemImage(::user::mesh_subitem * psubitem) override;
       void _001GetSubItemText(::user::mesh_subitem * psubitem) override;
       virtual ::collection::count _001GetItemCount() override;
-      void _017Browse(const ::string & pcsz, const ::action_context & action_context);
+      void _017Browse(const ::scoped_string & scopedstr, const ::action_context & action_context);
 
-      void _017UpdateList(const ::string & pcsz, const ::action_context & action_context);
+      void _017UpdateList(const ::scoped_string & scopedstr, const ::action_context & action_context);
 
-      void _017UpdateZipList(const ::string & pcsz, const ::action_context & action_context);
+      void _017UpdateZipList(const ::scoped_string & scopedstr, const ::action_context & action_context);
 
 
       DECLARE_MESSAGE_HANDLER(on_message_scroll_x);

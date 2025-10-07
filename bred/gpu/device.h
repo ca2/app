@@ -18,6 +18,9 @@ namespace gpu
 {
 
 
+   class frame_storage;
+
+
    enum enum_device_target
    {
 
@@ -34,11 +37,14 @@ namespace gpu
    public:
 
 
-      ::gpu::enum_output m_eoutput;
+      ::gpu::enum_output                     m_eoutput;
 
 
-      int m_iLayer;
-      int m_iLayerCount;
+      ::collection::index                    m_iCurrentFrame2 = -1;
+      ::collection::index                    m_iFrameSerial2 = -1;
+      ::collection::count                    m_iFrameCount = 3;
+      int                                    m_iLayer;
+      int                                    m_iLayerCount;
       //::pointer < layer > m_playerComposing;
       //::array<::comptr<ID3D12Resource>>   m_resourceaSnapshot;
       ::pointer < ::pointer_array < layer > >     m_playera;
@@ -73,7 +79,12 @@ namespace gpu
       enum_device_target                        m_edevicetarget;
       ::procedure_array                         m_procedureaOnTopFrameEnd;
       ::pointer_array < pool_group >            m_poolgroupaFrame;
-      ::array < ::pointer_array < ::particle > >m_particleaFrame;
+      ::pointer_array < ::pointer_array < ::particle > >m_particleaFrame;
+
+      ::pointer_array < ::gpu::frame_storage >     m_framestoragea;
+      ::pointer_array < ::gpu::frame_ephemeral >   m_frameephemerala;
+      ::pointer < ::gpu::frame_ephemeral >         m_pframeephemeralStrict;
+
 
       
 
@@ -100,6 +111,16 @@ namespace gpu
 
       virtual void on_initialize_gpu_device();
 
+      virtual void on_new_frame();
+      virtual void on_end_frame();
+      virtual int get_frame_index2();
+      virtual int get_frame_count();
+      virtual void restart_frame_counter();
+      virtual bool is_starting_frame()const;
+
+
+      virtual ::gpu::frame_storage* current_frame_storage();
+      virtual ::gpu::frame_ephemeral* current_frame_ephemeral();
 
 
       virtual ::file::path shader_path(const ::file::path& pathShader);
@@ -168,6 +189,8 @@ namespace gpu
       //virtual void swap_buffers();
 
 
+
+
       //virtual void create_window_buffer(void* pHwnd);
       //virtual void _create_window_buffer(void* pHwnd);
       //virtual void create_offscreen_buffer(const ::int_size& size);
@@ -183,11 +206,11 @@ namespace gpu
 
       virtual void translate_shader(string& str);
 
-      virtual void _translate_shader(string_array& stra);
+      virtual void _translate_shader(string_array_base& stra);
 
       //virtual void make_current();
 
-      virtual string load_fragment(const ::string& pszPath, enum_shader_source& eshadersource);
+      virtual string load_fragment(const ::scoped_string & scopedstrPath, enum_shader_source& eshadersource);
 
       virtual string get_shader_version_text();
 

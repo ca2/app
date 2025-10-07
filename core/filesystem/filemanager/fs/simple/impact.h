@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "base/user/user/split_impact.h"
+#include "berg/user/user/split_impact.h"
 
 
 namespace filemanager
@@ -39,7 +39,7 @@ namespace filemanager
 
             void install_message_routing(::channel * pchannel) override;
 
-            void open_file(long long iFolder, const ::string & pszFileName, const ::string & pszExt);
+            void open_file(long long iFolder, const ::scoped_string & scopedstrFileName, const ::scoped_string & scopedstrExt);
 
             void open_folder(long long iFolder);
             void start_music();

@@ -39,11 +39,11 @@ namespace folder_zip
       //void *                              m_punzfileinfo;
       string                              m_strFileName;
       unsigned long long                                 m_iPosition;
-      string_array                        m_straPath;
+      string_array_base                        m_straPath;
       ::pointer<folder>                  m_pfolder;
       //pointer_array < ::file_container >   m_filea;
       //pointer_array < ::zip::in_file >     m_infilea;
-      string_array                        m_straPrefix;
+      string_array_base                        m_straPrefix;
       e_mode                              m_emode;
       string                              m_strZipFile;
 
@@ -64,18 +64,18 @@ namespace folder_zip
       bool is_in_memory_file() const override { return true; }
 
 
-      //virtual bool zip_open(const char *,unsigned int);
+      //virtual bool zip_open(const_char_pointer ,unsigned int);
       //virtual bool zip_open(::zip::file * pzfile,const ::file::path & path);
 
 
-      //virtual bool unzip_open(::file::file * pfile, const string_array & = {}, int iBufferLevel = 2, ::file::enum_type * petype = nullptr);
+      //virtual bool unzip_open(::file::file * pfile, const string_array_base & = {}, int iBufferLevel = 2, ::file::enum_type * petype = nullptr);
       //virtual bool unzip_open(::zip::file * pzfile,const ::file::path & path);
 
-      //virtual bool unzip_open(const char *, ::file::enum_type * petype = nullptr);
+      //virtual bool unzip_open(const_char_pointer ,::file::enum_type * petype = nullptr);
 
       //virtual bool locate(const ::file::path & path);
 
-      //virtual void add_file(const ::file::path & pszDir,const ::file::path & pszRelative);
+      //virtual void add_file(const ::file::path & pathFolder,const ::file::path & pathRelative);
 
       //bool dump(file_pointer pfile);
 

@@ -18,7 +18,7 @@ namespace graphics
 {
 
 
-   int next_char(char & ch, const char *& psz, int & x, int & y, int cx, int cy)
+   int next_char(char & ch, const_char_pointer &psz, int & x, int & y, int cx, int cy)
    {
 
       if (!*psz)
@@ -181,7 +181,7 @@ namespace graphics
    void console::SetWindowSize(int iHeight, int iWidth)
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       m_sizeWindow.cx() = iWidth;
 
@@ -193,7 +193,7 @@ namespace graphics
 
       m_pimage->g()->m_pdraw2dhost = m_puserinteraction;
 
-      m_papplication->__øconstruct(m_pimage->g()->m_pfont);
+      m_papplication->øconstruct(m_pimage->g()->m_pfont);
 
       m_pimage->g()->m_pfont->create_font(e_font_monospace, ::write_text::font_size(m_sizeTile.cy() * 0.92, e_unit_pixel));
 
@@ -226,7 +226,7 @@ namespace graphics
    {
 
       m_edoscolor = color;
-      //synchronous_lock synchronouslock(m_pmutex);
+      //synchronous_lock synchronouslock(m_pmutex, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       //m_pimage->g()->FillSolidRect(0,iLineStart * m_sizeTile.cy(),m_pimage->width(),m_pimage->height() - iLineStart * m_sizeTile.cy(),console_dos_color(color));
 
@@ -235,10 +235,11 @@ namespace graphics
    }
 
 
-   void console::write(const ::string & strParam)
+   void console::write(const ::scoped_string & scopedstrParam)
    {
-      synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
+      ::string strParam(scopedstrParam);
       auto psz = strParam.c_str();
       string str;
       //int i2 = 2;
@@ -271,7 +272,7 @@ namespace graphics
 
       auto data = (unsigned char *)p;
 
-      string str((const char *)data, minimum(ansi_nlen((const char *)data, (size_t)s), s));
+      string str((const_char_pointer )data, minimum(ansi_nlen((const_char_pointer )data, (size_t)s), s));
 
       write(str);
 
@@ -281,7 +282,7 @@ namespace graphics
    void console::update_image()
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (m_pimage.nok())
       {
@@ -326,7 +327,7 @@ namespace graphics
       if (ppen2.is_null())
       {
 
-         __øconstruct(ppen2);
+         øconstruct(ppen2);
 
          ppen2->create_solid(2.0, console_dos_color(edoscolor));
 
@@ -345,7 +346,7 @@ namespace graphics
       if (ppen1.is_null())
       {
 
-         __øconstruct(ppen1);
+         øconstruct(ppen1);
 
          ppen1->create_solid(1.0, console_dos_color(edoscolor));
 

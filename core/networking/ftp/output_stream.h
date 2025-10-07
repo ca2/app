@@ -20,10 +20,10 @@ namespace ftp
       ::pointer<implementation>     m_pimpl;
 
 
-      output_stream(const string& strEolCharacterSequence, const string& strStreamName);
+      output_stream(const ::scoped_string & scopedstrEolCharacterSequence, const ::scoped_string & scopedstrStreamName);
       virtual ~output_stream();
 
-      void SetBuffer(const string& strBuffer);
+      void SetBuffer(const ::scoped_string & scopedstrBuffer);
       const string& GetBuffer();
       void SetStartPosition();
       bool GetNextLine(string& strLine);
@@ -49,7 +49,7 @@ namespace ftp
       string      m_strStreamName;
 
 
-      implementation(const string& strEolCharacterSequence, const string& strStreamName);
+      implementation(const ::scoped_string & scopedstrEolCharacterSequence, const ::scoped_string & scopedstrStreamName);
 
       virtual bool GetNextLine(string& strLine);
       virtual void OnPreBytesSend(unsigned char * pszBuffer, memsize bufferSize, memsize& bytesToSend);

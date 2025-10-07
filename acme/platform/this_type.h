@@ -21,11 +21,11 @@ class this_type
 public:
    
    
-   const char * m_psz;
+   const_char_pointer m_psz;
    
    
    this_type(const ::scoped_string & scopedstr) :
-   m_psz(psz)
+   m_psz(scopedstr)
    {
    
       this_type_init(m_psz);

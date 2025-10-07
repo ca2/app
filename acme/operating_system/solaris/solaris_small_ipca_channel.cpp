@@ -72,7 +72,7 @@ namespace acme
          data_struct data;
          data.mtype        = 15112000;
          data.request      = 0;
-         data.int_size         = ansi_length(pszMessage);
+         data.int_size         = ansi_length(scopedstrMessage);
          if(data.int_size > 512)
             return false;
 
@@ -100,7 +100,7 @@ namespace acme
          if(!is_tx_ok())
             return false;
 
-         const ::scoped_string & scopedstrMessage = (const char *)pdata;
+         const ::scoped_string & scopedstrMessage = (const_char_pointer )pdata;
 
          ::collection::count c = len;
 
@@ -109,7 +109,7 @@ namespace acme
          data_struct data;
          data.mtype        = 15112000;
          data.request      = I32_MINIMUM;
-         data.int_size         = (int)ansi_length(pszMessage);
+         data.int_size         = (int)ansi_length(scopedstrMessage);
 
          ::collection::count cPos = 0;
 
@@ -376,7 +376,7 @@ namespace acme
             if(data.request == 0)
             {
 
-               on_receive(this,(const char *)mem.get_data());
+               on_receive(this,(const_char_pointer )mem.get_data());
 
             }
             else

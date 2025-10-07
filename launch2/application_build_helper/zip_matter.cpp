@@ -35,7 +35,7 @@ namespace application_build_helper
 
       ::file::path pathMatter = m_pathFolder / "matter.txt";
 
-      //::file::path pathMatterZipList = m_pathFolder + "/_matter-zip-list.txt";
+      //::file::path pathMatterZipList = m_pathFolder + "/_matter-zip-list_base.txt";
 
       //auto estatus = file_system()->ensure_exists(pathMatter);
 
@@ -61,7 +61,7 @@ namespace application_build_helper
 
       strZip.find_replace("\\", "/");
 
-      string_array stra;
+      string_array_base stra;
 
       stra.add_lines(strInput, false);
 
@@ -88,7 +88,7 @@ namespace application_build_helper
 
          ::pointer < ::folder > pfolder;
 
-         pfactoryFolderZip->__øconstruct(this, pfolder);
+         pfactoryFolderZip->øconstruct(this, pfolder);
 
          pfolder->open_for_writing(pwriter);
          //bool bFirst = true;
@@ -144,7 +144,7 @@ namespace application_build_helper
 
          string strFolders;
 
-         ::file::path_array patha;
+         ::file::path_array_base patha;
 
          ::file_pointer preader;
 
@@ -170,7 +170,7 @@ namespace application_build_helper
             if (strLine.has_character())
             {
 
-               string_array straMatter;
+               string_array_base straMatter;
 
                straMatter.explode("/", strLine);
 
@@ -179,9 +179,9 @@ namespace application_build_helper
 
                   ::string strFolder = straMatter[0] + "/_matter/" + straMatter[1];
 
-                  string_array straOutput;
+                  string_array_base straOutput;
 
-                  ::file::listing listing;
+                  ::file::listing_base listing;
 
                   auto pathFolder = pathOutput / strFolder;
 
@@ -292,7 +292,7 @@ namespace application_build_helper
 //      if(iAdding > 0 || iDeleting > 0)
 //      {
 //
-//         ::string_array straStatus;
+//         ::string_array_base straStatus;
 //
 //         if (iAdding > 0) straStatus.append_format("%d added", iAdding);
 //

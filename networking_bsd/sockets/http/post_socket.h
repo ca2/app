@@ -50,7 +50,7 @@ namespace sockets
       };
 
       string                  m_strOverrideBoundary_is_the_bounday_the_issue_i_e_should_it_be_the_same_across_appends;
-      string_map < item >     m_map;
+      string_map_base < item >     m_map;
 
       //multipart(::particle * pparticle): ::object(pparticle) {}
       multipart(::object* pparticle) { initialize(pparticle); }
@@ -82,9 +82,9 @@ namespace sockets
       /** add field to post. */
       void AddField(const string & name,const string & value);
       /** add multiline field to post. */
-      void AddMultilineField(const string & name, string_array & values);
+      void AddMultilineField(const string & name, string_array_base & values);
       /** add file to post. */
-      void AddFile(const string & name,const string & filename,const string & type);
+      void AddFile(const string & name,const string & filename,const ::scoped_string & scopedstrType);
 
       /** use this to post with content-type multipart/form-data.
       // when adding a file to the post, this is the default and only content-type */

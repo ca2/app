@@ -31,7 +31,7 @@
    sclip1(v2, 2); \
    sclip1(v5, 5); \
    sclip1(v8, 8); \
-   strSalt += pszSourceSalt[(l + v1 + v2 + v5 + v8) % strlen(pszSourceSalt)]; \
+   strSalt += pszSourceSalt[(l + v1 + v2 + v5 + v8) % strlen(scopedstrSourceSalt)]; \
    }
 
 
@@ -51,21 +51,21 @@
       sclip2(v2, 2); \
       sclip2(v5, 5); \
       sclip2(v8, 8); \
-      strSalt += pszSourceSalt[(iMod + v1 + v2 + v5 + v8) % strlen(pszSourceSalt)]; \
+      strSalt += pszSourceSalt[(iMod + v1 + v2 + v5 + v8) % strlen(scopedstrSourceSalt)]; \
    }
 
 #define M00(s1, s2, s5, s8) BOOLM1(::IsDebuggerPresent(), s1, s2, s5, s8)
 #define M01(s1, s2, s5, s8) INTM2(s1, s2, s5, s8)
 
 
-string salt(::ca::application * papp, const ::string & pszSourceSalt, string_array & straSourceSalt)
+string salt(::ca::application * papp, const ::scoped_string & scopedstrSourceSalt, string_array_base & straSourceSalt)
 {
-   string_array straSourceHash; 
+   string_array_base straSourceHash;
    straSourceHash.explode(";", pszSourceSalt); 
-   string_array straHash; 
+   string_array_base straHash;
    if(straSourceHash.get_count() == 1)
    {
-      straHash.add(pszSourceSalt);
+      straHash.add(scopedstrSourceSalt);
    }
    else if(straSourceHash.get_count() > 1)
    {
@@ -79,7 +79,7 @@ string salt(::ca::application * papp, const ::string & pszSourceSalt, string_arr
          return ""; 
       } 
       unsigned int dwAlloc = (dwNeeded + sizeof(HMODULE)) * 2;
-      HMODULE * pmodulea = __allocate< HMODULE[dwAlloc / sizeof >(HMODULE)]; 
+      HMODULE * pmodulea = øallocate< HMODULE[dwAlloc / sizeof >(HMODULE)]; 
       if(pmodulea == nullptr) 
          return ""; 
       if(!EnumProcessModules(::GetCurrentProcess(),  pmodulea,  dwAlloc,  &dwNeeded)) 

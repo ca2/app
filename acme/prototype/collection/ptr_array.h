@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "array.h"
+#include "array_base.h"
 #include "acme/prototype/prototype/ptr.h"
 #include "comparable_eq_array.h"
 #include "comparable_array.h"

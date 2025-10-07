@@ -15,7 +15,7 @@ namespace dynamic_source
    public:
 
 
-      string_map < ::pointer<script >>    m_map;
+      string_map_base < ::pointer<script >>    m_map;
       script_manager *                    m_pmanager;
 
 
@@ -27,18 +27,18 @@ namespace dynamic_source
 
       void destroy() override;
 
-      ::pointer<script_instance>create_instance(const ::string & lpcszName, ::pointer<script> & pscript);
+      ::pointer<script_instance>create_instance(const ::scoped_string & scopedstrName, ::pointer<script> & pscript);
 
       void set_all_out_of_date();
 
-      void set_out_of_date(string str);
+      void set_out_of_date(const ::scoped_string & scopedstr);
 
       //void cache(script * pscript);
-      ::pointer<ds_script>create_new_ds_script(const ::string & strName);
+      ::pointer<ds_script>create_new_ds_script(const ::scoped_string & scopedstrName);
       void uncache(script * pscript);
 
-      script * get(const ::string & lpcszName);
-      script * register_script(const ::string & lpcszName, script * pscript);
+      script * get(const ::scoped_string & scopedstrName);
+      script * register_script(const ::scoped_string & scopedstrName, script * pscript);
 
 
    };

@@ -10,11 +10,11 @@
 //public:
 //
 //
-//    const char * m_psz;
-//    const char* m_pszBegin;
+//    const_char_pointer m_psz;
+//    const_char_pointer m_pszBegin;
 
 
-inline read_sz_stream::read_sz_stream(const ::ansi_character * psz, const ::ansi_character * pszBegin = nullptr);
+inline read_sz_stream::read_sz_stream(const_char_pointer psz, const_char_pointer pszBegin = nullptr);
 inline read_sz_stream::read_sz_stream(const read_sz_stream& stream) = delete;
 inline read_sz_stream::~read_sz_stream();
 
@@ -61,14 +61,14 @@ inline    double read_sz_stream::read_floating()
     }
 
 
-inline   ::string read_sz_stream::get_word(const ::ansi_character * pszBreakCharacters = " \n\t\r,;")
+inline   ::string read_sz_stream::get_word(const_char_pointer pszBreakCharacters = " \n\t\r,;")
     {
 
-       return read_find_first_character_in(pszBreakCharacters);
+       return read_find_first_character_in(scopedstrBreakCharacters);
 
     }
 
-inline   ::string read_sz_stream::read_find_first_character_in(const ::ansi_character * pszBreakCharacters)
+inline   ::string read_sz_stream::read_find_first_character_in(const_char_pointer pszBreakCharacters)
     {
 
        auto size = string_find_first_character_in(m_psz, pszBreakCharacters);
@@ -102,9 +102,9 @@ inline   ::string read_sz_stream::read_find_first_character_in(const ::ansi_char
 //   // void write(const ::int_size & size) ;
 //   // void write(const ::int_rectangle &rectangle) ;
 //
-//   text_stream& operator <<(const ::ansi_character * psz);
+//   text_stream& operator <<(const_char_pointer psz);
 //   //text_stream & operator <<(const ::atom & atom) ;
-//   text_stream& operator <<(const ::string& str);
+//   text_stream& operator <<(const ::scoped_string & scopedstr);
 //   //text_stream & operator <<(const ::property_set & set) ;
 //   template < typename TYPE >
 //   void network_payload_write(const TYPE& t);

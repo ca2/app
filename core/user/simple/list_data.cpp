@@ -44,7 +44,7 @@ void simple_list_data::_001GetSubItemText(::user::mesh_subitem * pmeshsubitem)
 
    }
 
-   string_array & stra = m_array(pmeshsubitem->m_iSubItem);
+   auto & stra = *m_array[pmeshsubitem->m_iSubItem];
 
    auto pmeshitem = pmeshsubitem->m_pitem;
 
@@ -69,7 +69,7 @@ void simple_list_data::_001GetSubItemText(::user::mesh_subitem * pmeshsubitem)
 }
 
 
-void simple_list_data::set_item_text(::collection::index iItem, ::collection::index iSubItem, const ::string & pcsz)
+void simple_list_data::set_item_text(::collection::index iItem, ::collection::index iSubItem, const ::scoped_string & scopedstr)
 {
 
    while(iSubItem >= m_array.get_size())
@@ -77,15 +77,15 @@ void simple_list_data::set_item_text(::collection::index iItem, ::collection::in
       m_array.add(___new string_array());
    }
 
-   m_array[iSubItem]->set_at_grow(iItem,pcsz);
+   m_array[iSubItem]->set_at_grow(iItem,scopedstr);
 
 
 }
 
-void simple_list_data::set_item_text(::user::mesh * pmesh, ::collection::index iItem, ::collection::index iSubItem, const ::string & pcsz)
+void simple_list_data::set_item_text(::user::mesh * pmesh, ::collection::index iItem, ::collection::index iSubItem, const ::scoped_string & scopedstr)
 {
 
-   set_item_text(iItem,iSubItem,pcsz);
+   set_item_text(iItem,iSubItem,scopedstr);
 
    pmesh->update_impact();
 
@@ -100,7 +100,7 @@ void simple_list_data::enable(bool bEnable)
 }
 
 
-void simple_list_data::get_column_data(string_array & stra, ::collection::index iColumn)
+void simple_list_data::get_column_data(string_array_base & stra, ::collection::index iColumn)
 {
 
    stra = *m_array[iColumn];
@@ -108,7 +108,7 @@ void simple_list_data::get_column_data(string_array & stra, ::collection::index 
 }
 
 
-void simple_list_data::get_data(string_array &stra)
+void simple_list_data::get_data(string_array_base &stra)
 {
 
    get_column_data(stra,0);
@@ -116,7 +116,7 @@ void simple_list_data::get_data(string_array &stra)
 }
 
 
-void simple_list_data::set_column_data(::user::mesh * pmesh,string_array & stra, ::collection::index iColumn)
+void simple_list_data::set_column_data(::user::mesh * pmesh,string_array_base & stra, ::collection::index iColumn)
 {
    m_array.set_at_grow(iColumn,___new string_array(stra));
    for(int iSubItem = 0; iSubItem < m_array.get_count(); iSubItem++)
@@ -132,7 +132,7 @@ void simple_list_data::set_column_data(::user::mesh * pmesh,string_array & stra,
 }
 
 
-void simple_list_data::set_data(::user::mesh * pmesh,string_array &stra)
+void simple_list_data::set_data(::user::mesh * pmesh,string_array_base &stra)
 {
 
    set_column_data(pmesh,stra,0);

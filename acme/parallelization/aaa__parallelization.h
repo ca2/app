@@ -86,7 +86,7 @@
 //               if (pparticle->task_get_run())
 //               {
 //
-//                  if (pparticle->get_tag().compare(pszTag) == 0)
+//                  if (pparticle->get_tag().compare(scopedstrTag) == 0)
 //                  {
 //
 //                     return pparticle;

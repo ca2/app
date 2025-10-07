@@ -4,21 +4,23 @@
 #include "list.h"
 
 
-template < class TYPE, class ARG_TYPE  = const TYPE&, class LIST_TYPE = ::list < TYPE, ARG_TYPE > >
-class comparable_eq_list :
-   public LIST_TYPE
+template < class TYPE, class ARG_TYPE  = const TYPE&, class LIST_BASE = ::list_base < TYPE, ARG_TYPE > >
+class comparable_eq_list_base :
+   public LIST_BASE
 {
 public:
 
 
-   using node = typename ::list < TYPE, ARG_TYPE >::NODE;
-   using base_list = LIST_TYPE;
-   using iterator = typename base_list::iterator;
-   using const_iterator = typename base_list::const_iterator;
+   using BASE_LIST = LIST_BASE;
+   using node = typename BASE_LIST::NODE;
+   using iterator = typename BASE_LIST::iterator;
+   using const_iterator = typename BASE_LIST::const_iterator;
 
 
-   comparable_eq_list();
-   comparable_eq_list(const comparable_eq_list & array);
+   using BASE_LIST::BASE_LIST;
+   using BASE_LIST::operator =;
+   //comparable_eq_list_base();
+   //comparable_eq_list_base(const comparable_eq_list_base & array);
 
 
    iterator find_first_item(const TYPE &t, iterator start = nullptr, iterator end = nullptr) const;
@@ -27,55 +29,136 @@ public:
    ::collection::count get_count(const TYPE & t, iterator start = nullptr, iterator end = nullptr, ::collection::count countMax = -1) const;
    bool contains(const TYPE & t, iterator start = nullptr, iterator end = nullptr, ::collection::count countMin = 1, ::collection::count countMax = -1) const;
    bool rear_contains(const TYPE & t, iterator start = nullptr, iterator end = nullptr, ::collection::count countMin = 1, ::collection::count countMax = -1) const;
-   bool erase_first_item(const TYPE & t);
-   bool erase_last_item(const TYPE & t);
-   bool erase_first_item(const TYPE & t, iterator & p, iterator end = nullptr);
-   bool erase_last_item(const TYPE & t, iterator & p, iterator end = nullptr);
-   ::collection::count erase_item(const TYPE & t, iterator start = nullptr, iterator end = nullptr, ::collection::count countMin = 0, ::collection::count countMax = -1);
-   ::collection::count rear_erase_item(const TYPE & t, iterator start = nullptr, iterator end = nullptr, ::collection::count countMin = 0, ::collection::count countMax = -1);
-   ::collection::count erase_list(const comparable_eq_list & l);
+   bool erase_first(const TYPE & t);
+   bool erase_last(const TYPE & t);
+   bool erase_first(const TYPE & t, iterator & p, iterator end = nullptr);
+   bool erase_last(const TYPE & t, iterator & p, iterator end = nullptr);
+
+   using BASE_LIST::erase;
+   //::collection::count erase(const TYPE & t, iterator start = nullptr, iterator end = nullptr, ::collection::count countMin = 0, ::collection::count countMax = -1);
+   ::collection::count erase(const TYPE & t, iterator start = nullptr, iterator end = nullptr);
+   //::collection::count rear_erase(const TYPE & t, iterator start = nullptr, iterator end = nullptr, ::collection::count countMin = 0, ::collection::count countMax = -1);
+   template < primitive_container CONTAINER >
+   ::collection::count erase(const CONTAINER & container);
 
 
    bool add_tail_unique(ARG_TYPE t);
    bool add_head_unique(ARG_TYPE t);
 
 
-   void merge_tail(const comparable_eq_list & l); // add_tail
-   void merge_head(const comparable_eq_list & l); // add_tail
-   void intersect(const comparable_eq_list & l);
+   bool add_unique(ARG_TYPE t)
+   {
+
+      auto pFind = this->find_first_item(t);
+
+      if (pFind)
+      {
+
+         return false;
+
+      }
+
+      this->add_tail(t);
+
+      return true;
+
+   }
 
 
-   comparable_eq_list< TYPE, ARG_TYPE, LIST_TYPE > & operator -= (const TYPE & t);
-   comparable_eq_list< TYPE, ARG_TYPE, LIST_TYPE > & operator &= (const comparable_eq_list< TYPE, ARG_TYPE, LIST_TYPE > & l);
-   comparable_eq_list< TYPE, ARG_TYPE, LIST_TYPE > & operator -= (const comparable_eq_list< TYPE, ARG_TYPE, LIST_TYPE > & l);
-   comparable_eq_list< TYPE, ARG_TYPE, LIST_TYPE > & operator |= (const comparable_eq_list< TYPE, ARG_TYPE, LIST_TYPE > & l);
+   void change(ARG_TYPE t, bool bAdd)
+   {
+
+      auto pFind = this->find_first_item(t);
+
+      if(pFind)
+      {
+
+         if (!bAdd)
+         {
+
+            this->erase(pFind);
+
+         }
+
+      }
+      else
+      {
+
+         if (bAdd)
+         {
+
+            this->add(t);
+
+         }
+
+      }
+
+   }
 
 
-   comparable_eq_list< TYPE, ARG_TYPE, LIST_TYPE > operator -(const comparable_eq_list< TYPE, ARG_TYPE, LIST_TYPE > & l) const;
+   void toggle(ARG_TYPE t)
+   {
+
+      auto pFind = this->find_first_item(t);
+
+      if (pFind)
+      {
+
+         this->erase(pFind);
+
+      }
+      else
+      {
+
+         this->add(t);
+
+      }
+
+   }
+
+
+   template < primitive_container CONTAINER >
+   void merge_tail(const CONTAINER & container);
+   template < primitive_container CONTAINER >
+   void merge_head(const CONTAINER & container);
+   template < primitive_container CONTAINER >
+   void intersect(const CONTAINER & container);
+
+
+   comparable_eq_list_base< TYPE, ARG_TYPE, LIST_BASE > & operator -= (const TYPE & t);
+   template < primitive_container CONTAINER >
+   comparable_eq_list_base< TYPE, ARG_TYPE, LIST_BASE > & operator &= (const CONTAINER & container);
+   template < primitive_container CONTAINER >
+   comparable_eq_list_base< TYPE, ARG_TYPE, LIST_BASE > & operator -= (const CONTAINER & container);
+   template < primitive_container CONTAINER >
+   comparable_eq_list_base< TYPE, ARG_TYPE, LIST_BASE > & operator |= (const CONTAINER & container);
+
+   template < primitive_container CONTAINER >
+   comparable_eq_list_base< TYPE, ARG_TYPE, LIST_BASE > operator -(const CONTAINER & container) const;
 
 
 };
 
 
-template < class TYPE, class ARG_TYPE, class LIST_TYPE>
-comparable_eq_list<  TYPE,  ARG_TYPE,  LIST_TYPE>::
-comparable_eq_list()
-{
-
-}
-
-
-template < class TYPE, class ARG_TYPE, class LIST_TYPE>
-comparable_eq_list<  TYPE,  ARG_TYPE,  LIST_TYPE>::
-comparable_eq_list(const comparable_eq_list<  TYPE,  ARG_TYPE,  LIST_TYPE> & l) :
-LIST_TYPE(l)
-{
-
-}
+//template < class TYPE, class ARG_TYPE, class LIST_BASE>
+//comparable_eq_list_base<  TYPE,  ARG_TYPE,  LIST_BASE>::
+//comparable_eq_list_base()
+//{
+//
+//}
 
 
-template <class TYPE, class ARG_TYPE, class LIST_TYPE>
-typename comparable_eq_list < TYPE, ARG_TYPE, LIST_TYPE >::iterator comparable_eq_list < TYPE, ARG_TYPE, LIST_TYPE >::
+//template < class TYPE, class ARG_TYPE, class LIST_BASE>
+//comparable_eq_list_base<  TYPE,  ARG_TYPE,  LIST_BASE>::
+//comparable_eq_list_base(const comparable_eq_list_base<  TYPE,  ARG_TYPE,  LIST_BASE> & l) :
+//LIST_BASE(l)
+//{
+//
+//}
+
+
+template <class TYPE, class ARG_TYPE, class LIST_BASE>
+typename comparable_eq_list_base < TYPE, ARG_TYPE, LIST_BASE >::iterator comparable_eq_list_base < TYPE, ARG_TYPE, LIST_BASE >::
 find_first_item(const TYPE & t, iterator p, iterator end) const
 {
 
@@ -86,7 +169,7 @@ find_first_item(const TYPE & t, iterator p, iterator end) const
 
    }
 
-   while(p != end)
+   while(!::iterator_is_end(p, end))
    {
 
       if(*p == t)
@@ -105,8 +188,8 @@ find_first_item(const TYPE & t, iterator p, iterator end) const
 }
 
 
-template <class TYPE, class ARG_TYPE, class LIST_TYPE>
-typename comparable_eq_list < TYPE, ARG_TYPE, LIST_TYPE >::iterator comparable_eq_list < TYPE, ARG_TYPE, LIST_TYPE >::
+template <class TYPE, class ARG_TYPE, class LIST_BASE>
+typename comparable_eq_list_base < TYPE, ARG_TYPE, LIST_BASE >::iterator comparable_eq_list_base < TYPE, ARG_TYPE, LIST_BASE >::
 find_last_item(const TYPE & t, iterator start, iterator p) const
 {
 
@@ -117,7 +200,7 @@ find_last_item(const TYPE & t, iterator start, iterator p) const
 
    }
 
-   while(p != start)
+   while(p && p != start)
    {
 
       if(*p == t)
@@ -135,18 +218,18 @@ find_last_item(const TYPE & t, iterator start, iterator p) const
 }
 
 
-template <class TYPE, class ARG_TYPE, class LIST_TYPE>
-inline ::collection::count comparable_eq_list < TYPE, ARG_TYPE, LIST_TYPE >::
+template <class TYPE, class ARG_TYPE, class LIST_BASE>
+inline ::collection::count comparable_eq_list_base < TYPE, ARG_TYPE, LIST_BASE >::
 get_count() const
 {
 
-   return LIST_TYPE::get_count();
+   return LIST_BASE::get_count();
 
 }
 
 
-template <class TYPE, class ARG_TYPE, class LIST_TYPE>
-::collection::count comparable_eq_list < TYPE, ARG_TYPE, LIST_TYPE >::
+template <class TYPE, class ARG_TYPE, class LIST_BASE>
+::collection::count comparable_eq_list_base < TYPE, ARG_TYPE, LIST_BASE >::
 get_count(const TYPE & t, iterator start, iterator end, ::collection::count countMax) const
 {
 
@@ -164,8 +247,8 @@ get_count(const TYPE & t, iterator start, iterator end, ::collection::count coun
 }
 
 
-template <class TYPE, class ARG_TYPE, class LIST_TYPE>
-bool comparable_eq_list < TYPE, ARG_TYPE, LIST_TYPE >::
+template <class TYPE, class ARG_TYPE, class LIST_BASE>
+bool comparable_eq_list_base < TYPE, ARG_TYPE, LIST_BASE >::
 contains(const TYPE & t, iterator p, iterator end, ::collection::count countMin, ::collection::count countMax) const
 {
 
@@ -183,8 +266,8 @@ contains(const TYPE & t, iterator p, iterator end, ::collection::count countMin,
 }
 
 
-template <class TYPE, class ARG_TYPE, class LIST_TYPE>
-bool comparable_eq_list < TYPE, ARG_TYPE, LIST_TYPE >::
+template <class TYPE, class ARG_TYPE, class LIST_BASE>
+bool comparable_eq_list_base < TYPE, ARG_TYPE, LIST_BASE >::
 rear_contains(const TYPE & t, iterator p, iterator end, ::collection::count countMin, ::collection::count countMax) const
 {
 
@@ -202,8 +285,8 @@ rear_contains(const TYPE & t, iterator p, iterator end, ::collection::count coun
 }
 
 
-template <class TYPE, class ARG_TYPE, class LIST_TYPE>
-bool comparable_eq_list<TYPE, ARG_TYPE, LIST_TYPE>::add_tail_unique(ARG_TYPE t)
+template <class TYPE, class ARG_TYPE, class LIST_BASE>
+bool comparable_eq_list_base<TYPE, ARG_TYPE, LIST_BASE>::add_tail_unique(ARG_TYPE t)
 {
 
    if(contains(t))
@@ -220,8 +303,8 @@ bool comparable_eq_list<TYPE, ARG_TYPE, LIST_TYPE>::add_tail_unique(ARG_TYPE t)
 }
 
 
-template <class TYPE, class ARG_TYPE, class LIST_TYPE>
-bool comparable_eq_list<TYPE, ARG_TYPE, LIST_TYPE>::add_head_unique(ARG_TYPE t)
+template <class TYPE, class ARG_TYPE, class LIST_BASE>
+bool comparable_eq_list_base<TYPE, ARG_TYPE, LIST_BASE>::add_head_unique(ARG_TYPE t)
 {
 
    if(contains(t))
@@ -238,143 +321,137 @@ bool comparable_eq_list<TYPE, ARG_TYPE, LIST_TYPE>::add_head_unique(ARG_TYPE t)
 }
 
 
-template <class TYPE, class ARG_TYPE, class LIST_TYPE>
-void comparable_eq_list<TYPE, ARG_TYPE, LIST_TYPE>::
-intersect(const comparable_eq_list<TYPE, ARG_TYPE, LIST_TYPE> & a)
+template <class TYPE, class ARG_TYPE, class LIST_BASE>
+template < primitive_container CONTAINER >
+void comparable_eq_list_base<TYPE, ARG_TYPE, LIST_BASE>::
+intersect(const CONTAINER & container)
 {
 
    auto p = this->begin();
 
-   while (p)
-   {
-
-      if(!a.contains(*p))
-      {
-
-         this->erase_item(*p);
-
-      }
-
-      p++;
-
-   }
-
-}
-
-
-template <class TYPE, class ARG_TYPE, class LIST_TYPE>
-void comparable_eq_list<TYPE, ARG_TYPE, LIST_TYPE>::
-merge_tail(const comparable_eq_list<TYPE, ARG_TYPE, LIST_TYPE> & l)
-{
-
-   auto p = l.begin();
-
    while(p)
    {
 
-      if(!contains(*p))
+      if (!::contains(container, *p))
       {
 
-         this->add_tail(*p);
+         this->erase_defer_next(p);
 
       }
+      else
+      {
 
-      p++;
+         p++;
+
+      }
 
    }
 
 }
 
 
-template <class TYPE, class ARG_TYPE, class LIST_TYPE>
-void comparable_eq_list<TYPE, ARG_TYPE, LIST_TYPE>::
-merge_head(const comparable_eq_list<TYPE, ARG_TYPE, LIST_TYPE> & l)
+template <class TYPE, class ARG_TYPE, class LIST_BASE>
+template < primitive_container CONTAINER >
+void comparable_eq_list_base<TYPE, ARG_TYPE, LIST_BASE>::
+merge_tail(const CONTAINER & container)
 {
 
-   auto p = l.end();
-
-   while(p)
+   for (auto& item : container)
    {
 
-      if(!contains(*p))
-      {
-
-         this->add_head(*p);
-
-      }
-
-      p--;
+      this->add_tail_unique(item);
 
    }
 
 }
 
 
-template <class TYPE, class ARG_TYPE, class LIST_TYPE>
-inline comparable_eq_list<TYPE, ARG_TYPE, LIST_TYPE> &  comparable_eq_list<TYPE, ARG_TYPE, LIST_TYPE>::
-operator &= (const comparable_eq_list<TYPE, ARG_TYPE, LIST_TYPE> & l)
+template <class TYPE, class ARG_TYPE, class LIST_BASE>
+template < primitive_container CONTAINER >
+void comparable_eq_list_base<TYPE, ARG_TYPE, LIST_BASE>::
+merge_head(const CONTAINER & container)
 {
 
-   this->intersect(l);
+   for (auto& item : container)
+   {
+
+      this->add_head_unique(item);
+
+   }
+
+}
+
+
+
+template <class TYPE, class ARG_TYPE, class LIST_BASE>
+template < primitive_container CONTAINER >
+inline comparable_eq_list_base<TYPE, ARG_TYPE, LIST_BASE> &  comparable_eq_list_base<TYPE, ARG_TYPE, LIST_BASE>::
+operator &= (const CONTAINER & container)
+{
+
+   this->intersect(container);
 
    return *this;
 
 }
 
 
-template <class TYPE, class ARG_TYPE, class LIST_TYPE>
-inline comparable_eq_list<TYPE, ARG_TYPE, LIST_TYPE> &  comparable_eq_list<TYPE, ARG_TYPE, LIST_TYPE>::
+template <class TYPE, class ARG_TYPE, class LIST_BASE>
+inline comparable_eq_list_base<TYPE, ARG_TYPE, LIST_BASE> &  comparable_eq_list_base<TYPE, ARG_TYPE, LIST_BASE>::
 operator -= (const TYPE & t)
 {
 
-   this->erase_item(t);
+   this->erase(t);
 
    return *this;
 
 }
 
 
-template <class TYPE, class ARG_TYPE, class LIST_TYPE>
-inline comparable_eq_list<TYPE, ARG_TYPE, LIST_TYPE> &  comparable_eq_list<TYPE, ARG_TYPE, LIST_TYPE>::
-operator -= (const comparable_eq_list<TYPE, ARG_TYPE, LIST_TYPE> & l)
+template <class TYPE, class ARG_TYPE, class LIST_BASE>
+template < primitive_container CONTAINER >
+inline comparable_eq_list_base<TYPE, ARG_TYPE, LIST_BASE> &  comparable_eq_list_base<TYPE, ARG_TYPE, LIST_BASE>::
+operator -= (const CONTAINER & container)
 {
 
-   this->erase_list(l);
+   this->erase(container);
 
    return *this;
 
 }
 
 
-template <class TYPE, class ARG_TYPE, class LIST_TYPE>
-inline comparable_eq_list<TYPE, ARG_TYPE, LIST_TYPE> comparable_eq_list<TYPE, ARG_TYPE, LIST_TYPE>::
-operator - (const comparable_eq_list<TYPE, ARG_TYPE, LIST_TYPE> & l) const
+template <class TYPE, class ARG_TYPE, class LIST_BASE>
+template < primitive_container CONTAINER >
+inline comparable_eq_list_base<TYPE, ARG_TYPE, LIST_BASE> comparable_eq_list_base<TYPE, ARG_TYPE, LIST_BASE>::
+operator - (const CONTAINER & container) const
 {
 
-   comparable_eq_list<TYPE, ARG_TYPE, LIST_TYPE> aRet(*this);
+   auto list = *this;
 
-   aRet.erase_list(l);
+   list.erase(container);
 
-   return aRet;
+   return ::transfer(list);
 
 }
 
 
-template <class TYPE, class ARG_TYPE, class LIST_TYPE>
-inline comparable_eq_list<TYPE, ARG_TYPE, LIST_TYPE> &  comparable_eq_list<TYPE, ARG_TYPE, LIST_TYPE>::
-operator |= (const comparable_eq_list<TYPE, ARG_TYPE, LIST_TYPE> & l)
+template <class TYPE, class ARG_TYPE, class LIST_BASE>
+template < primitive_container CONTAINER >
+inline comparable_eq_list_base<TYPE, ARG_TYPE, LIST_BASE> &  comparable_eq_list_base<TYPE, ARG_TYPE, LIST_BASE>::
+operator |= (const CONTAINER & container)
 {
 
-   merge_tail(l);
+   this->merge_tail(container);
 
    return *this;
 
 }
 
 
-template <class TYPE, class ARG_TYPE, class LIST_TYPE>
-bool comparable_eq_list < TYPE, ARG_TYPE , LIST_TYPE >::
-erase_first_item(const TYPE & t)
+template <class TYPE, class ARG_TYPE, class LIST_BASE>
+bool comparable_eq_list_base < TYPE, ARG_TYPE , LIST_BASE >::
+erase_first(const TYPE & t)
 {
 
    iterator p = this->find_first_item(t);
@@ -393,8 +470,8 @@ erase_first_item(const TYPE & t)
 }
 
 
-template <class TYPE, class ARG_TYPE, class LIST_TYPE>
-bool comparable_eq_list < TYPE, ARG_TYPE , LIST_TYPE >::erase_first_item(const TYPE & t, iterator & p, iterator end)
+template <class TYPE, class ARG_TYPE, class LIST_BASE>
+bool comparable_eq_list_base < TYPE, ARG_TYPE , LIST_BASE >::erase_first(const TYPE & t, iterator & p, iterator end)
 {
 
    if((p = this->find_first_item(t, p, end)))
@@ -402,7 +479,7 @@ bool comparable_eq_list < TYPE, ARG_TYPE , LIST_TYPE >::erase_first_item(const T
 
       auto pErase = p;
 
-      p = p + 1;
+      p++;
 
       this->erase(pErase);
 
@@ -415,20 +492,67 @@ bool comparable_eq_list < TYPE, ARG_TYPE , LIST_TYPE >::erase_first_item(const T
 }
 
 
-template <class TYPE, class ARG_TYPE, class LIST_TYPE>
-::collection::count comparable_eq_list < TYPE, ARG_TYPE , LIST_TYPE >::
-erase_item(const TYPE & t, iterator p, iterator end, ::collection::count countMin, ::collection::count countMax)
+//template <class TYPE, class ARG_TYPE, class LIST_BASE>
+//::collection::count comparable_eq_list_base < TYPE, ARG_TYPE , LIST_BASE >::
+//erase(const TYPE & t, iterator p, iterator end, ::collection::count countMin, ::collection::count countMax)
+//{
+//
+//   ::collection::count count = 0;
+//
+//   if(contains(t, p, end, countMin, countMax))
+//   {
+//
+//      while (conditional(countMax >= 0, count < countMax) && erase_first(t, p, end))
+//      {
+//
+//         count++;
+//
+//      }
+//
+//   }
+//
+//   return count;
+//
+//}
+
+
+
+template<class TYPE, class ARG_TYPE, class LIST_BASE>
+::collection::count comparable_eq_list_base<TYPE, ARG_TYPE, LIST_BASE>::erase(const TYPE &t, iterator start, iterator end)
 {
+
+   auto p = start;
+
+   auto begin = this->m_begin;
+
+   if (!p)
+   {
+
+      p = begin;
+
+   }
 
    ::collection::count count = 0;
 
-   if(contains(t, p, end, countMin, countMax))
+   while (!::iterator_is_end(p, end))
    {
 
-      while (conditional(countMax >= 0, count < countMax) && erase_first_item(t, p, end))
+      if (*p == t)
       {
 
+         auto pNext = p + 1;
+
+         this->erase(p);
+
+         p = pNext;
+
          count++;
+
+      }
+      else
+      {
+
+         p++;
 
       }
 
@@ -439,9 +563,9 @@ erase_item(const TYPE & t, iterator p, iterator end, ::collection::count countMi
 }
 
 
-template <class TYPE, class ARG_TYPE, class LIST_TYPE>
-bool comparable_eq_list < TYPE, ARG_TYPE , LIST_TYPE >::
-erase_last_item(const TYPE & t)
+template <class TYPE, class ARG_TYPE, class LIST_BASE>
+bool comparable_eq_list_base < TYPE, ARG_TYPE , LIST_BASE >::
+erase_last(const TYPE & t)
 {
 
    auto p = find_last_item(t);
@@ -460,9 +584,9 @@ erase_last_item(const TYPE & t)
 }
 
 
-template <class TYPE, class ARG_TYPE, class LIST_TYPE>
-bool comparable_eq_list < TYPE, ARG_TYPE , LIST_TYPE >::
-erase_last_item(const TYPE & t, iterator & p, iterator end)
+template <class TYPE, class ARG_TYPE, class LIST_BASE>
+bool comparable_eq_list_base < TYPE, ARG_TYPE , LIST_BASE >::
+erase_last(const TYPE & t, iterator & p, iterator end)
 {
 
    if((p = find_last_item(t, p, end)))
@@ -483,44 +607,41 @@ erase_last_item(const TYPE & t, iterator & p, iterator end)
 }
 
 
-template <class TYPE, class ARG_TYPE, class LIST_TYPE>
-::collection::count comparable_eq_list < TYPE, ARG_TYPE , LIST_TYPE >::
-rear_erase_item(const TYPE & t, iterator p, iterator end, ::collection::count countMin, ::collection::count countMax)
+//template <class TYPE, class ARG_TYPE, class LIST_BASE>
+//::collection::count comparable_eq_list_base < TYPE, ARG_TYPE , LIST_BASE >::
+//rear_erase(const TYPE & t, iterator p, iterator end, ::collection::count countMin, ::collection::count countMax)
+//{
+//
+//   ::collection::count count = 0;
+//
+//   if(contains(t, p, end, countMin, countMax))
+//   {
+//
+//      while (conditional(countMax >= 0, count < countMax) && erase_last(t, p, end))
+//      {
+//
+//         count++;
+//
+//      }
+//
+//   }
+//
+//   return count;
+//
+//}
+
+
+template <class TYPE, class ARG_TYPE, class LIST_BASE>
+template < primitive_container CONTAINER >
+::collection::count comparable_eq_list_base < TYPE, ARG_TYPE , LIST_BASE >::erase(const CONTAINER & container)
 {
 
    ::collection::count count = 0;
 
-   if(contains(t, p, end, countMin, countMax))
+   for(auto & item : container)
    {
 
-      while (conditional(countMax >= 0, count < countMax) && erase_last_item(t, p, end))
-      {
-
-         count++;
-
-      }
-
-   }
-
-   return count;
-
-}
-
-
-template <class TYPE, class ARG_TYPE, class LIST_TYPE>
-::collection::count comparable_eq_list < TYPE, ARG_TYPE , LIST_TYPE >::erase_list(const comparable_eq_list & l)
-{
-
-   ::collection::count count = 0;
-
-   auto p = l.begin();
-
-   while(p)
-   {
-
-      count += erase_item(*p);
-
-      p++;
+      count += this->erase_item(item);
 
    }
 

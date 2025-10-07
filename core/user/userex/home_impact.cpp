@@ -1,9 +1,9 @@
 #include "framework.h"
 #include "home_impact.h"
 #include "acme/constant/id.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "acme/handler/topic.h"
-#include "base/user/user/document.h"
+#include "berg/user/user/document.h"
 #include "aura/user/user/frame_interaction.h"
 #include "aura/message/user.h"
 
@@ -65,11 +65,11 @@ namespace userex
 
       ::user::impact::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_create, pchannel, this, &home_impact::on_message_create);
-      MESSAGE_LINK(e_message_mouse_move, pchannel, this, &home_impact::on_message_mouse_move);
-      MESSAGE_LINK(e_message_left_button_down, pchannel, this, &home_impact::on_message_left_button_down);
-      MESSAGE_LINK(e_message_left_button_up, pchannel, this, &home_impact::on_message_left_button_up);
-      MESSAGE_LINK(e_message_show_window, pchannel, this, &home_impact::on_message_show_window);
+      USER_MESSAGE_LINK(::user::e_message_create, pchannel, this, &home_impact::on_message_create);
+      USER_MESSAGE_LINK(::user::e_message_mouse_move, pchannel, this, &home_impact::on_message_mouse_move);
+      USER_MESSAGE_LINK(::user::e_message_left_button_down, pchannel, this, &home_impact::on_message_left_button_down);
+      USER_MESSAGE_LINK(::user::e_message_left_button_up, pchannel, this, &home_impact::on_message_left_button_up);
+      USER_MESSAGE_LINK(::user::e_message_show_window, pchannel, this, &home_impact::on_message_show_window);
 
    }
 
@@ -97,7 +97,7 @@ namespace userex
 
       //m_pimageBeam->fill(0);
 
-      //auto ppen = __øcreate < ::draw2d::pen > ();
+      //auto ppen = øcreate < ::draw2d::pen > ();
 
       //ppen->create_solid(1.0, argb(255, 255, 255, 255));
 

@@ -16,7 +16,38 @@ public:
    ::e_status                          m_estatus;
 
 
+
+   inline quantum()
+   {
+
+
+   }
+
+
+   inline quantum(const ::e_flag & eflag, const ::e_status & estatus = undefined) :
+      m_eflagElement(eflag),
+      m_estatus(estatus)
+   {
+
+
+   }
+
+
+   inline quantum(const ::quantum & quantum)
+   {
+
+
+   }
+
+   inline quantum(::quantum&& quantum)
+   {
+
+
+   }
+
+
    virtual ~quantum();
+
 
 
 
@@ -29,6 +60,9 @@ public:
    inline void set_ok_flag() { set_flag(e_flag_success); clear_flag(e_flag_timeout); clear_flag(e_flag_failure); }
    inline void set_nok(enum_flag estatusFailure = e_flag_failure) { clear_flag(e_flag_success); set_flag(estatusFailure); }
    inline void set_modified_flag(bool bModified = true) { set_flag(e_flag_changed, bModified); }
+
+
+   [[nodiscard]] inline bool has_proto_flag() const { return has_flag(e_flag_proto); }
 
 
    inline void set_fail_flag() { set_flag(e_flag_failure); clear_flag(e_flag_success); }
@@ -70,6 +104,11 @@ public:
    inline void set_already_exists_flag(bool bSet = true) { set_flag(e_flag_already_exists, bSet); }
    inline void clear_already_exists_flag() { clear_flag(e_flag_already_exists); }
 
+
+
+   [[nodiscard]] inline bool has_running_flag() const { return has_flag(e_flag_running); }
+   inline void set_running_flag() { set_flag(e_flag_running); }
+   inline void clear_running_flag() { clear_flag(e_flag_running); }
 
    // [[nodiscard]] inline bool is_heap_allocated() const { return has_flag(e_flag_heap_allocated); }
    // inline void set_heap_allocated() { set_flag(e_flag_heap_allocated); }
@@ -121,3 +160,4 @@ public:
 
 
 };
+

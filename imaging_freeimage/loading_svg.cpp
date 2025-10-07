@@ -45,12 +45,12 @@ namespace imaging_freeimage
 ////      cairo_t *crender = NULL;
 ////      GError *error = NULL;
 ////
-////      auto pszData = (const char *) memory.get_data();
+////      auto pszData = (const_char_pointer )memory.get_data();
 ////
 ////      auto size = memory.get_size();
 ////
 ////
-////      auto handle = rsvg_handle_new_from_data(pszData, size, &error);
+////      auto handle = rsvg_handle_new_from_data(scopedstrData, size, &error);
 ////      if (error) {
 ////         g_error_free(error);
 ////         return error_invalid_buffer;

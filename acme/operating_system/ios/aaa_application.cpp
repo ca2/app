@@ -368,7 +368,7 @@ namespace acme
 //
 //      ::pointer<::ios2::printer>pprinter = create_object <  ::user::printer  > ();
 //
-//      if(!pprinter->open(pszDeviceName))
+//      if(!pprinter->open(scopedstrDeviceName))
 //      {
 //
 //         return nullptr;

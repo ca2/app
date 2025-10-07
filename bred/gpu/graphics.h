@@ -14,27 +14,32 @@
 namespace gpu
 {
 
-
    class CLASS_DECL_BRED graphics :
       virtual public ::draw2d::graphics,
       virtual public ::gpu::compositor
    {
    public:
 
+      enum enum_transform_context
+      {
 
-      //::pointer < ::gpu::context >           m_pgpucontextDraw2d;
-      //::gpu::enum_output                     m_eoutputOnEndDraw;
-      //::pointer < ::gpu::context >           m_pgpucontextOutput;
-      ::pointer < ::gpu::frame >             m_pgpuframe;
+         e_transform_context_default,
+         e_transform_context_geometry,
+         e_transform_context_text,
+
+
+      };
+
+
       ::geometry2d::matrix                   m_m1;
-      //::pointer < ::draw2d_gpu::end_draw >   m_penddraw;
       ::pointer < ::gpu::shader >               m_pshaderSourceRectangle;
       ::pointer < ::gpu::shader >               m_pshaderBlendRectangle;
-      ::pool <::gpu::model_buffer >             m_poolmodelbufferRectangle;
-      ::pool <::gpu::model_buffer >             m_poolmodelbufferCharacter;
-      ::pool <::gpu::model_buffer >             m_poolmodelbufferLine;
-      //int                                       m_iContextHeight;
+      map_base < ::draw2d::enum_model, ::pool <::gpu::model_buffer > >   m_mapModelBufferPool;
       ::pointer < ::gpu::shader >         m_pgpushaderTextOut;
+      ::pointer < ::gpu::model_buffer >         m_pmodelbufferTextOutDummy;
+      //::pointer < ::gpu::shader >                 m_pshaderLine;
+
+      pool_group* m_ppoolgroupFrame;
 
       graphics();
       ~graphics() override;
@@ -45,39 +50,89 @@ namespace gpu
       
       void on_begin_draw() override;
       void on_end_draw() override;
-
+      virtual void on_new_frame();
+      void gpu_layer_on_before_end_render() override;
 
       void on_set_gpu_context() override;
 
 
+      void on_gpu_context_placement_change(const ::int_rectangle & rectanglePlacement) override;
+
+      virtual ::pool <::gpu::model_buffer >& model_buffer_pool(::draw2d::enum_model epool);
+      virtual ::gpu::model_buffer * model_buffer(::draw2d::enum_model epool);
       void update_matrix() override;
 
-      //void start_gpu_layer() override;
-      //void end_gpu_layer() override;
+      virtual ::geometry2d::matrix context_matrix(enum_transform_context etransformcontext);
+      virtual ::geometry2d::matrix context_scale_matrix();
 
 
-      //virtual ::gpu::renderer* end_draw_renderer_output();
+      template < primitive_point POINT >
+      POINT& __transform(POINT& p)
+      {
+         
+         m_m1.transform(p);
+         
+         //p.y() = m_pgpucontextCompositor2->m_rectangle.height() - p.y();
+         
+         return p;
+
+      }
 
 
-      //virtual void create_end_draw();
+      template < primitive_array POINT_ARRAY >
+      POINT_ARRAY& __transform(POINT_ARRAY& a)
+      {
+         
+         for (auto& p : a)__transform(p);
+
+         return a;
+
+      }
 
 
-      // returns true if it is new
-     
+      template < primitive_point POINT >
+      POINT& context_scale(POINT& p)
+      {
+
+         context_scale_matrix().transform(p);
+
+         return p;
+
+      }
+
+      //
+      // template < primitive_point POINT >
+      // POINT& context_transform(POINT& p)
+      // {
+      //
+      //    context_matrix().transform(p);
+      //
+      //    return p;
+      //
+      // }
+      //
+      //
+      // template < primitive_array POINT_ARRAY >
+      // POINT_ARRAY& context_transform(POINT_ARRAY& a)
+      // {
+      //
+      //    for (auto& p : a)context_transform(p);
+      //
+      //    return a;
+      //
+      // }
+
+
+      //virtual void context_transform(::double_point & p, enum_transform_context etransformcontext);
+
+    
       ::double_size total_size() override;
 
-         //auto& pmodelbuffer = m_pmodelbufferRectangle;
-
-      //void defer_yield_gpu_context() override;
-
-      //::gpu::context* gpu_context() override;
-
-      //void set_hint_window_output() override;
       virtual ::gpu::shader* rectangle_shader();
 
       void thread_select() override;
 
-      void _set(const ::geometry2d::matrix& matrix);
+      void _set(const ::geometry2d::matrix& matrix) override;
 
       void do_on_context(const ::procedure& procedure) override;
 
@@ -89,7 +144,7 @@ namespace gpu
       //      [this, &a, p]()
       //      {
 
-      //         _synchronous_lock synchronouslock(this->synchronization());
+      //         _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       //         a.add(p);
 
@@ -106,16 +161,23 @@ namespace gpu
 
 
       virtual void bind_draw2d_compositor(::gpu::layer * player);
-      virtual void soft_unbind_draw2d_compositor(::gpu::layer* player);
+      virtual void defer_soft_unbind_draw2d_compositor(::gpu::layer* player);
 
 
       virtual void _fill_quad(const ::double_point points[4], const ::color::color& color);
 
-      void fill_rectangle(const ::double_rectangle& rectangle, const ::color::color& color);
+      void fill_rectangle(const ::double_rectangle& rectangle, const ::color::color& color) override;
+
+      using ::draw2d::graphics::line;
+      void line(double x1, double y1, double x2, double y2, ::draw2d::pen* ppen) override;
+
+      //using ::draw2d::graphics::get_text_extent;
+      double_size _get_text_extent(const ::scoped_string& scopedstr) override;
 
 
-      using ::draw2d::graphics::get_text_extent;
-      double_size get_text_extent(const ::scoped_string& scopedstr) override;
+      using ::draw2d::graphics::get_text_metrics;
+      void get_text_metrics(::write_text::text_metric* pmetrics) override;
+
 
       void text_out(double x, double yParam, const ::scoped_string& scopedstr) override;
 

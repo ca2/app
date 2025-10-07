@@ -18,7 +18,7 @@ namespace user
 
       virtual void enable(bool bOn);
       virtual void SetCheck(int nCheck);
-      virtual void SetText(const ::string & pszText);
+      virtual void SetText(const ::scoped_string & scopedstrText);
 
    };
 

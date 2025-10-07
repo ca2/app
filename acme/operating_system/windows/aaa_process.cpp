@@ -119,7 +119,7 @@ struct shell_execute :
       lpFile = m_wstrFile;
 
 
-      if (pszParams)
+      if (scopedstrParams)
       {
 
          m_wstrParams = pszParams;
@@ -213,7 +213,7 @@ struct shell_execute :
 bool shell_execute_async(const ::scoped_string & scopedstrFile, const ::scoped_string & scopedstrParams)
 {
 
-   shell_execute execute(pszFile, pszParams);
+   shell_execute execute(scopedstrFile, pszParams);
 
    return execute.async();
 
@@ -223,7 +223,7 @@ bool shell_execute_async(const ::scoped_string & scopedstrFile, const ::scoped_s
 bool shell_execute_sync(const ::scoped_string & scopedstrFile, const ::scoped_string & scopedstrParams, ::duration durationTimeout)
 {
 
-   shell_execute execute(pszFile, pszParams);
+   shell_execute execute(scopedstrFile, pszParams);
 
    return execute.synchronization(durationTimeout);
 
@@ -233,7 +233,7 @@ bool shell_execute_sync(const ::scoped_string & scopedstrFile, const ::scoped_st
 bool root_execute_async(const ::scoped_string & scopedstrFile, const ::scoped_string & scopedstrParams)
 {
 
-   shell_execute execute(pszFile, pszParams);
+   shell_execute execute(scopedstrFile, pszParams);
 
    execute.lpVerb = L"RunAs";
 
@@ -246,7 +246,7 @@ bool root_execute_async(const ::scoped_string & scopedstrFile, const ::scoped_st
 bool root_execute_sync(const ::scoped_string & scopedstrFile, const ::scoped_string & scopedstrParams, ::duration durationTimeout)
 {
 
-   shell_execute execute(pszFile, pszParams);
+   shell_execute execute(scopedstrFile, pszParams);
 
    execute.lpVerb = L"RunAs";
 
@@ -261,9 +261,9 @@ void call_async(const ::file::path & path, const ::scoped_string & scopedstrPara
 
    SHELLEXECUTEINFOW info = {};
 
-   wstring wstrFile = unicode(pszPath);
-   wstring wstrParam = unicode(pszParam);
-   wstring wstrDir = unicode(pszDir);
+   wstring wstrFile = unicode(scopedstrPath);
+   wstring wstrParam = unicode(scopedstrParam);
+   wstring wstrDir = unicode(scopedstrDir);
 
    info.cbSize = sizeof(SHELLEXECUTEINFOW);
 
@@ -322,9 +322,9 @@ void call_sync(const ::file::path & path, const ::scoped_string & scopedstrParam
 
    memory_set(&infoa, 0, sizeof(infoa));
 
-   wstring wstrFile(pszPath);
-   wstring wstrParam(pszParam);
-   wstring wstrDir(pszDir);
+   wstring wstrFile(scopedstrPath);
+   wstring wstrParam(scopedstrParam);
+   wstring wstrDir(scopedstrDir);
 
    infoa.cbSize = sizeof(infoa);
    infoa.lpFile = wstrFile;

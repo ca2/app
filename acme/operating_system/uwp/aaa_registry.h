@@ -37,9 +37,9 @@ namespace universal_windows
 
          bool DeleteKey();
 
-         ::collection::count EnumKey(string_array & stra);
+         ::collection::count EnumKey(string_array_base & stra);
 
-         ::collection::count EnumValueName(string_array & stra);
+         ::collection::count EnumValueName(string_array_base & stra);
          
          operator HKEY();
 

@@ -101,7 +101,7 @@ namespace userstack
 
          ::pointer<::aura::application>pappTab;
 
-         if(psession->appptra().lookup("application:" + strId, pappTab))
+         if(psession->appptra().find("application:" + strId, pappTab))
          {
             psession->m_pappCurrent = pappTab;
             //psession->m_pappCurrent = pappTab;
@@ -174,7 +174,7 @@ namespace userstack
 
          ::pointer<::aura::application>pappTab;
 
-         if(!psession->appptra().lookup("application:" + strId, pappTab))
+         if(!psession->appptra().find("application:" + strId, pappTab))
          {
 
             application_bias * pappbias = ___new application_bias();
@@ -257,9 +257,9 @@ namespace userstack
    void pane_impact::install_message_routing(::channel * pchannel)
    {
       ::userex::pane_tab_impact::install_message_routing(pchannel);
-      MESSAGE_LINK(e_message_create, pchannel, this, &pane_impact::on_message_create);
-      MESSAGE_LINK(WM_USER + 1122, this, this, &pane_impact::_001OnMenuMessage);
-      MESSAGE_LINK(e_message_right_button_up, pchannel, this, &pane_impact::on_message_right_button_up);
+      USER_MESSAGE_LINK(::user::e_message_create, pchannel, this, &pane_impact::on_message_create);
+      USER_MESSAGE_LINK(WM_USER + 1122, this, this, &pane_impact::_001OnMenuMessage);
+      USER_MESSAGE_LINK(::user::e_message_right_button_up, pchannel, this, &pane_impact::on_message_right_button_up);
       add_command_handler("properties", &pane_impact::_001OnProperties);
    }
 
@@ -290,10 +290,10 @@ namespace userstack
       //get_parent_frame()->hide();
    }*/
 
-   void pane_impact::check_menu_dir(const ::file::path & psz)
+   void pane_impact::check_menu_dir(const ::file::path & path)
    {
 
-      ::file::listing straPath(get_app());
+      ::file::listing_base straPath(get_app());
 
       straPath.rls(directory()->commonprograms());
 
@@ -326,19 +326,19 @@ namespace userstack
    }
 
 
-   void pane_impact::check_3click_dir(const ::file::path & psz)
+   void pane_impact::check_3click_dir(const ::file::path & path)
    {
 
-      if(directory()->is(psz))
+      if(directory()->is(scopedstr))
       {
 
          return;
 
       }
 
-      directory()->create(psz);
+      directory()->create(scopedstr);
 
-      string strDir(psz);
+      string strDir(scopedstr);
 
       POSITION pos = psystem->m_mapAppLibrary.get_start_position();
 
@@ -361,25 +361,25 @@ namespace userstack
       }
 
       //file()->put_contents(directory()->path(strDir, "veriwell Musical Player.ca2"), "ca2prompt\r\nmplite");
-      /*      string_array straPath;
-            string_array straRelative;
+      /*      string_array_base straPath;
+            string_array_base straRelative;
             straPath.erase_all();
             directory()->rls(directory()->userquicklaunch(), &straPath, nullptr, &straRelative);
             for(int i = 0; i < straPath.get_size(); i++)
             {
-               string str = directory()->path(psz, straRelative[i]);
+               string str = directory()->path(scopedstr, straRelative[i]);
                directory()->create(directory()->name(str));
                ::CopyFile(straPath[i], str, true);
             }*/
    }
 
 
-   void pane_impact::check_desktop_dir(const ::file::path & psz)
+   void pane_impact::check_desktop_dir(const ::file::path & path)
    {
 
 #ifdef WINDOWS_DESKTOP
 
-      ::file::listing listing(get_app());
+      ::file::listing_base listing(get_app());
 
 //      wchar_t buf[4096];
 //      memory_set(buf, 0, sizeof(buf));

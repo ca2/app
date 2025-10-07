@@ -26,7 +26,7 @@ namespace sockets
       //socket_map                 m_socketmapAdd; ///< Sockets to be added to sockets map
       //socket_pointer_list        m_delete; ///< Sockets to be deleted (failed when add)
       bool                       m_b_use_mutex; ///< ::pointer < ::mutex > correctly initialized
-      //socket_id                     m_maxsock; ///< Highest file descriptor + 1 in active sockets list
+      //socket_id                     m_maxsock; ///< Highest file descriptor + 1 in active sockets list_base
       //::collection::count                    m_countR;
       //::collection::count                    m_countW;
       //::collection::count                    m_countE;
@@ -38,7 +38,7 @@ namespace sockets
       posix_time                     m_tlast; ///< timeout control
 
       // state lists
-      //socket_id_list                m_socketidlist; ///< Active file descriptor list
+      //socket_id_list                m_socketidlist; ///< Active file descriptor list_base
       //socket_id_list                m_socketidlistErase; ///< File descriptors that are to be erased from m_sockets
       //socket_id_list                m_socketidlistCallOnConnect; ///< checklist CallOnConnect
       //socket_id_list                m_socketidlistDetach; ///< checklist detach
@@ -136,11 +136,11 @@ namespace sockets
       ///** set socks4 server ip that all ___new tcp sockets should use. */
       //void SetSocks4Host(in_addr addr) override;
       ///** set socks4 server hostname that all ___new tcp sockets should use. */
-      //void SetSocks4Host(const string & ) override;
+      //void SetSocks4Host(const ::scoped_string & scopedstrHost) override;
       ///** set socks4 server port number that all ___new tcp sockets should use. */
       //void SetSocks4Port(::networking::port_t) override;
       ///** set optional socks4 userid. */
-      //void SetSocks4Userid(const string & ) override;
+      //void SetSocks4Userid(const ::scoped_string & scopedstrUserId) override;
       /** If connection to socks4 server fails, immediately try direct connection to final host. */
       //void SetSocks4TryDirect(bool x = true) override;
       ///** get socks4 server ip.
@@ -166,9 +166,9 @@ namespace sockets
       /** Queue a dns request.
       \lparam host Hostname to be resolved
       \lparam port Port number will be echoed in base_socket::OnResolved callback */
-      //int Resolve(base_socket *,const string & host,::networking::port_t port) override;
-      //int Resolve6(base_socket *,const string & host,::networking::port_t port) override;
-      /** Do a reverse dns lookup. */
+      //int Resolve(base_socket *,const ::scoped_string & scopedstrHost,::networking::port_t port) override;
+      //int Resolve6(base_socket *,const ::scoped_string & scopedstrHost,::networking::port_t port) override;
+      /** Do a reverse dns find. */
       //int Resolve(base_socket *,in_addr a) override;
       //int Resolve(base_socket *,in6_addr& a) override;
       /** get listen port of asynchronous dns server. */

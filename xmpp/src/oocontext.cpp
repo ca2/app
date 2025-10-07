@@ -48,8 +48,8 @@ void XMPP::Context::free(void *p)
 }
 
 void XMPP::Context::log(const xmpp_log_level_t level,
-			const char * const area,
-			const char * const msg)
+			const_char_pointer const area,
+			const_char_pointer const msg)
 {
     /* do nothing by default */
 }
@@ -77,8 +77,8 @@ void XMPP::Context::callFree(void *p, void * const userdata)
 
 void XMPP::Context::callLog(void * const userdata,
 			    const xmpp_log_level_t level,
-			    const char * const area,
-			    const char * const msg)
+			    const_char_pointer const area,
+			    const_char_pointer const msg)
 {
     reinterpret_cast<Context *>(userdata)->log(level, area, msg);
 }

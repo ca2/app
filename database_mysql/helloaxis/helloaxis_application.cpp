@@ -11,7 +11,7 @@ namespace helloaxis
       ::thread(this),
       ::aura::application(pparticle),
       ::axis::application(pparticle),
-      ::base::application(pparticle),
+      ::berg::application(pparticle),
       ::aura::application(pparticle),
       ::sphere::application(pparticle) :
       m_pmutexAiFont(this)
@@ -151,7 +151,7 @@ namespace helloaxis
    {
       ::int_rectangle rcClient;
       ::this->rectangle(hwnd, rcClient);
-      auto pbrush = __øcreate < ::draw2d::brush > ();
+      auto pbrush = øcreate < ::draw2d::brush > ();
 
       pbrush->create_solid(argb(255, 255, 0, 0));
       pgraphics->SelectObject(br);

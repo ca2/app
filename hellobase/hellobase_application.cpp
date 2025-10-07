@@ -10,7 +10,7 @@ namespace hellobase
       ::thread(this),
       ::aura::application(pparticle),
       ::axis::application(pparticle),
-      ::base::application(pparticle),
+      ::berg::application(pparticle),
       ::aura::application(pparticle),
       ::sphere::application(pparticle)
    {
@@ -44,7 +44,7 @@ namespace hellobase
       add_factory_item <::user::button_impact >();
       add_factory_item <::hellobase::impact >();
 
-      if (!::base::application::init_instance())
+      if (!::berg::application::init_instance())
       {
 
          return false;
@@ -91,7 +91,7 @@ namespace hellobase
 
       ::helloaxis::application::exit_application();
 
-      return ::base::application::exit_application();
+      return ::berg::application::exit_application();
 
    }
 

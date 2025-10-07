@@ -81,7 +81,7 @@ namespace geo
    void geo::defer_check_openweather_city_list()
    {
 
-      _synchronous_lock synchronouslock(get_openweather_city_mutex());
+      _synchronous_lock synchronouslock(get_openweather_city_mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (m_bOpenWeatherCityListLock)
       {
@@ -128,7 +128,7 @@ namespace geo
 
             DEBUGF_LINE("abcxxx3");
 
-            auto pfile = __allocate memory_file(memory);
+            auto pfile = øallocate memory_file(memory);
 
             DEBUGF_LINE("abcxxx4");
 
@@ -293,7 +293,7 @@ namespace geo
 
                DEBUGF_LINE("mnoxxd4");
 
-               string_array stra;
+               string_array_base stra;
 
                stra.add_lines(str);
 
@@ -317,13 +317,13 @@ namespace geo
 
                   }
 
-                  const ::ansi_character * pszJson = strJson;
+                  const_char_pointer pszJson = strJson;
 
                   DEBUGF_OUT("mnoxxd6 Line %09d %s", iLine, pszJson);
 
                   iLine++;
 
-                  //const ::ansi_character * pszJson = "{\"_id\":6322752, \"name\" : \"Curitiba\", \"country\" : \"BR\", \"coord\" : {\"lon\":-49.290821, \"lat\" : -25.50395}}";
+                  //const_char_pointer pszJson = "{\"_id\":6322752, \"name\" : \"Curitiba\", \"country\" : \"BR\", \"coord\" : {\"lon\":-49.290821, \"lat\" : -25.50395}}";
 
                   ::payload v;
 
@@ -401,7 +401,7 @@ namespace geo
 
             DEBUGF_LINE("pqrxxe3");
 
-            auto pmessagebox = __initialize_new::message_box("Unable to download \"https://ca2.network/city-list.json\"");
+            auto pmessagebox = __initialize_new::message_box("Unable to download \"https://ca2.network/city-list_base.json\"");
 
             DEBUGF_LINE("pqrxxe4");
 
@@ -414,18 +414,18 @@ namespace geo
    }
 
 
-   openweather_city* geo::openweather_find_city(string strQuery)
+   openweather_city* geo::openweather_find_city(const ::scoped_string & scopedstrQuery)
    {
 
-      auto& pcity = m_mapCity[strQuery];
+      auto& pcity = m_mapCity[scopedstrQuery];
 
       if (!pcity)
       {
 
-         auto pcityNew = __raw_new openweather_city();
+         auto pcityNew = øraw_new openweather_city();
 
          pcityNew->m_iIndex = openweather_find_city2(
-            strQuery,
+            scopedstrQuery,
             pcityNew->m_strCit,
             pcityNew->m_iId,
             pcityNew->m_dLat,
@@ -449,12 +449,12 @@ namespace geo
    }
 
 
-   ::collection::index geo::openweather_find_city2(string strQuery, string& strCit, long long& iId, double& dLat, double& dLon)
+   ::collection::index geo::openweather_find_city2(const ::scoped_string & scopedstrQuery, string& strCit, long long& iId, double& dLat, double& dLon)
    {
 
-      string_array stra;
+      string_array_base stra;
 
-      stra.explode(",", strQuery);
+      stra.explode(",", scopedstrQuery);
 
       stra.trim();
 
@@ -470,7 +470,7 @@ namespace geo
       if (stra.get_count() == 1)
       {
 
-         return openweather_find_city2(strQuery, "", strCit, iId, dLat, dLon, true);
+         return openweather_find_city2(scopedstrQuery, "", strCit, iId, dLat, dLon, true);
 
       }
 
@@ -509,7 +509,7 @@ namespace geo
 
 
 
-   ::collection::index geo::openweather_find_city2(string strQ1, string strQ2, string& strCit, long long& iId, double& dLat, double& dLon, bool bPrefix)
+   ::collection::index geo::openweather_find_city2(const ::scoped_string & scopedstrQ1, const ::scoped_string & scopedstrQ2, string& strCit, long long& iId, double& dLat, double& dLon, bool bPrefix)
    {
 
       string strQueryLo;
@@ -519,6 +519,10 @@ namespace geo
       string strTry1;
 
       string strTry2;
+
+      ::string strQ1(scopedstrQ1);
+
+      ::string strQ2(scopedstrQ2);
 
       ::collection::index iFind;
 
@@ -560,20 +564,6 @@ namespace geo
          goto found;
 
       }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -724,7 +714,7 @@ namespace geo
 
       }
 
-      const char * pszId =
+      const_char_pointer pszId =
 #include "sensitive/openweather.txt"
          ;
 
@@ -746,9 +736,9 @@ namespace geo
 
       string str = http()->get(strGetUrl, set);
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-      const ::ansi_character * pszJson = str;
+      const_char_pointer pszJson = str;
 
       ::payload v;
 
@@ -775,12 +765,12 @@ namespace geo
    }
 
 
-   bool  geo::locality_sunset(string strCountry, string strLocality, int& iRise, int& iSet)
+   bool  geo::locality_sunset(const ::scoped_string & scopedstrCountry, const ::scoped_string & scopedstrLocality, int& iRise, int& iSet)
    {
 
       auto psystem = system();
 
-      auto pcity = psystem->geo()->openweather_find_city(strLocality + ", " + strCountry);
+      auto pcity = psystem->geo()->openweather_find_city(scopedstrLocality + ", " + scopedstrCountry);
 
       if (pcity == nullptr)
       {
@@ -809,17 +799,17 @@ namespace geo
    }
 
 
-   string  geo::initial_locality_time_zone(string strCountry, string strLocality, double& dZone)
+   string  geo::initial_locality_time_zone(const ::scoped_string & scopedstrCountry, const ::scoped_string & scopedstrLocality, double& dZone)
    {
 
       string str;
 
-      if (strLocality.is_empty())
+      if (scopedstrLocality.is_empty())
       {
 
-         str = initial_country_time_zone(strCountry);
+         str = initial_country_time_zone(scopedstrCountry);
 
-         dZone = time_zone(str, strCountry);
+         dZone = time_zone(str, scopedstrCountry);
 
          return str;
 
@@ -827,14 +817,14 @@ namespace geo
 
       string strQ;
 
-      strQ = strLocality;
+      strQ = scopedstrLocality;
 
-      if (strCountry.has_character())
+      if (scopedstrCountry.has_character())
       {
 
          strQ += ", ";
 
-         strQ += strCountry;
+         strQ += scopedstrCountry;
 
       }
 
@@ -879,14 +869,14 @@ namespace geo
       //         if (str.has_character())
       //         {
       //
-      //            const ::ansi_character * pszJson = str;
+      //            const_char_pointer pszJson = str;
       //
       //            ::payload v;
       //
       //            try
       //            {
       //
-      //               v.parse_network_payload(pszJson);
+      //               v.parse_network_payload(scopedstrJson);
       //
       //               str = v["abbreviation"].get_string().lowered();
       //
@@ -941,7 +931,7 @@ namespace geo
       //
       //         stream os(file);
       //
-      //         ::file::map::write(os, m_countryLocalityTimeZone);
+      //         ::file::map_base::write(os, m_countryLocalityTimeZone);
       //
       //      }
       //
@@ -950,241 +940,238 @@ namespace geo
    }
 
    // remark: initial does mean "official default" is certainly a rough guess
-   string  geo::initial_country_time_zone(string strCountry)
+   string  geo::initial_country_time_zone(const ::scoped_string & scopedstrCountry)
    {
 
-
-
-
-      if (strCountry == "br")
+      if (scopedstrCountry == "br")
       {
 
          return "brt";
 
       }
-      else if (strCountry == "ua")
+      else if (scopedstrCountry == "ua")
       {
 
          return "eest";
 
       }
-      else if (strCountry == "us")
+      else if (scopedstrCountry == "us")
       {
 
          return "pdt";
 
       }
-      else if (strCountry == "jp")
+      else if (scopedstrCountry == "jp")
       {
 
          return "jst";
 
       }
-      else if (strCountry == "de")
+      else if (scopedstrCountry == "de")
       {
 
          return "cest";
 
       }
-      else if (strCountry == "fr")
+      else if (scopedstrCountry == "fr")
       {
 
          return "cest";
 
       }
-      else if (strCountry == "int_point")
+      else if (scopedstrCountry == "int_point")
       {
 
          return "west";
 
       }
-      else if (strCountry == "es")
+      else if (scopedstrCountry == "es")
       {
 
          return "cest";
 
       }
-      else if (strCountry == "it")
+      else if (scopedstrCountry == "it")
       {
 
          return "cest";
 
       }
-      else if (strCountry == "ar")
+      else if (scopedstrCountry == "ar")
       {
 
          return "art";
 
       }
-      else if (strCountry == "cl")
+      else if (scopedstrCountry == "cl")
       {
 
          return "clst";
 
       }
-      else if (strCountry == "uk")
+      else if (scopedstrCountry == "uk")
       {
 
          return "bst";
 
       }
-      else if (strCountry == "nl")
+      else if (scopedstrCountry == "nl")
       {
 
          return "cest";
 
       }
-      else if (strCountry == "cn")
+      else if (scopedstrCountry == "cn")
       {
 
          return "cst";
 
       }
-      else if (strCountry == "tw")
+      else if (scopedstrCountry == "tw")
       {
 
          return "cst";
 
       }
-      else if (strCountry == "ru")
+      else if (scopedstrCountry == "ru")
       {
 
          return "msk";
 
       }
-      else if (strCountry == "pl")
+      else if (scopedstrCountry == "pl")
       {
 
          return "cest";
 
       }
-      else if (strCountry == "am")
+      else if (scopedstrCountry == "am")
       {
 
          return "amt";
 
       }
-      else if (strCountry == "dk")
+      else if (scopedstrCountry == "dk")
       {
 
          return "cest";
 
       }
-      else if (strCountry == "se")
+      else if (scopedstrCountry == "se")
       {
 
          return "cest";
 
       }
-      else if (strCountry == "fi")
+      else if (scopedstrCountry == "fi")
       {
 
          return "eest";
 
       }
-      else if (strCountry == "ua")
+      else if (scopedstrCountry == "ua")
       {
 
          return "eest";
 
       }
-      else if (strCountry == "no")
+      else if (scopedstrCountry == "no")
       {
 
          return "cest";
 
       }
-      else if (strCountry == "no")
+      else if (scopedstrCountry == "no")
       {
 
          return "cest";
 
       }
-      else if (strCountry == "be")
+      else if (scopedstrCountry == "be")
       {
 
          return "cest";
 
       }
-      else if (strCountry == "at")
+      else if (scopedstrCountry == "at")
       {
 
          return "cest";
 
       }
-      else if (strCountry == "lu")
+      else if (scopedstrCountry == "lu")
       {
 
          return "cest";
 
       }
-      else if (strCountry == "li")
+      else if (scopedstrCountry == "li")
       {
 
          return "cest";
 
       }
-      else if (strCountry == "ch")
+      else if (scopedstrCountry == "ch")
       {
 
          return "cest";
 
       }
-      else if (strCountry == "au")
+      else if (scopedstrCountry == "au")
       {
 
          return "aest";
 
       }
-      else if (strCountry == "nz")
+      else if (scopedstrCountry == "nz")
       {
 
          return "nzst";
 
       }
-      else if (strCountry == "kr")
+      else if (scopedstrCountry == "kr")
       {
 
          return "kst";
 
       }
-      else if (strCountry == "ph")
+      else if (scopedstrCountry == "ph")
       {
 
          return "pht";
 
       }
-      else if (strCountry == "my")
+      else if (scopedstrCountry == "my")
       {
 
          return "myt";
 
       }
-      else if (strCountry == "hk")
+      else if (scopedstrCountry == "hk")
       {
 
          return "hkt";
 
       }
-      else if (strCountry == "vn")
+      else if (scopedstrCountry == "vn")
       {
 
          return "ict";
 
       }
-      else if (strCountry == "in")
+      else if (scopedstrCountry == "in")
       {
 
          return "ist";
 
       }
-      else if (strCountry == "ca")
+      else if (scopedstrCountry == "ca")
       {
 
          return "adt";
 
       }
-      else if (strCountry == "bg")
+      else if (scopedstrCountry == "bg")
       {
 
          return "eet";
@@ -1249,9 +1236,12 @@ namespace geo
    }
 
 
-   double geo::time_zone(string str, string strCountryCode)
+   double geo::time_zone(const ::scoped_string & scopedstr, const ::scoped_string & scopedstrCountryCode)
    {
+
+      ::string str(scopedstr);
       str.make_lower();
+      ::string strCountryCode(scopedstrCountryCode);
       strCountryCode.make_lower();
       double dTimeZoneOffset = 0.0;
       //"Moscow Time"(TranslateFromRussian) (UTC+3)
@@ -1519,7 +1509,7 @@ namespace geo
 
                binary_stream reader(pfile);
 
-               _synchronous_lock synchronouslock(m_pmutexCityTimeZone);
+               _synchronous_lock synchronouslock(m_pmutexCityTimeZone, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
                reader >> m_cityTimeZone;
 
@@ -1536,7 +1526,7 @@ namespace geo
       try
       {
 
-         _synchronous_lock synchronouslock(m_pmutexCityTimeZone);
+         _synchronous_lock synchronouslock(m_pmutexCityTimeZone, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          auto& timezone = m_cityTimeZone[iOpenweatherCity];
 
@@ -1603,7 +1593,7 @@ namespace geo
 
                binary_stream reader(pfile);
 
-               _synchronous_lock synchronouslock(m_pmutexLocalityTimeZone);
+               _synchronous_lock synchronouslock(m_pmutexLocalityTimeZone, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
                reader >> m_localityTimeZone;
 
@@ -1624,7 +1614,7 @@ namespace geo
       try
       {
 
-         _synchronous_lock synchronouslock(m_pmutexCityTimeZone);
+         _synchronous_lock synchronouslock(m_pmutexCityTimeZone, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          auto& timezone = m_localityTimeZone[dLat][dLng];
 
@@ -1734,7 +1724,7 @@ namespace geo
 
             binary_stream reader(file);
 
-            _synchronous_lock synchronouslock(m_pmutexCityWeather);
+            _synchronous_lock synchronouslock(m_pmutexCityWeather, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
             reader >> m_cityWeather;
 
@@ -1763,7 +1753,7 @@ namespace geo
       try
       {
 
-         _synchronous_lock synchronouslock(m_pmutexCityTimeZone);
+         _synchronous_lock synchronouslock(m_pmutexCityTimeZone, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          auto& stringtimeout = m_cityWeather[pcity->m_iId];
 
@@ -2030,7 +2020,7 @@ namespace geo
 
             binary_stream writer(pfile);
 
-            _synchronous_lock synchronouslock(m_pmutexCityTimeZone);
+            _synchronous_lock synchronouslock(m_pmutexCityTimeZone, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
             writer << m_cityTimeZone;
 
@@ -2060,7 +2050,7 @@ namespace geo
 
             binary_stream writer(pfile);
 
-            _synchronous_lock synchronouslock(m_pmutexLocalityTimeZone);
+            _synchronous_lock synchronouslock(m_pmutexLocalityTimeZone, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
             writer << m_localityTimeZone;
 
@@ -2087,7 +2077,7 @@ namespace geo
 
          binary_stream writer(pfile);
 
-         _synchronous_lock synchronouslock(m_pmutexCityWeather);
+         _synchronous_lock synchronouslock(m_pmutexCityWeather, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          writer << m_cityWeather;
 

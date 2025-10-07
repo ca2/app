@@ -1,7 +1,7 @@
 #pragma once
 
 
-CLASS_DECL_ACME const char * status_short_description(const ::e_status & estatus);
+CLASS_DECL_ACME const_char_pointer status_short_description(const ::e_status & estatus);
 
 //
 //namespace extended
@@ -37,11 +37,11 @@ CLASS_DECL_ACME const char * status_short_description(const ::e_status & estatus
 //      status();
 //      status(::enum_status estatus) ;
 //      status(const ::e_status & estatus);
-//      status(const std::initializer_list < void >& list);
+//      status(const std::initializer_list < void >& list_base);
 //      status(const status& status);
 //      status(status&& status);
 //      status(const ::exception& e);
-//      status(const std::initializer_list < ::exception >& list);
+//      status(const std::initializer_list < ::exception >& list_base);
 //      ~status();
 //
 //
@@ -59,10 +59,10 @@ CLASS_DECL_ACME const char * status_short_description(const ::e_status & estatus
 //      void add(const ::exception& e);
 //
 //
-//      void add(const std::initializer_list < ::exception >& list);
+//      void add(const std::initializer_list < ::exception >& list_base);
 //      
 //
-//      void add(const std::initializer_list < void     >& list);
+//      void add(const std::initializer_list < void     >& list_base);
 //
 //      //bool get_exception(::exception& e, const ::e_status & estatus);
 //

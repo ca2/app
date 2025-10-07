@@ -9,7 +9,9 @@
 namespace earth
 {
 
-   using time_array = numeric_array < ::earth::time >;
+   using time_array_base = numeric_array_base < ::earth::time >;
+
+   using time_array = ::array_particle < time_array_base >;
 
 
 } // namespace earth

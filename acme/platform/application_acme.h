@@ -18,7 +18,7 @@ namespace platform
 //      // mutable ::aqua::application* m_paquaapplication;
 //      // mutable ::aura::application* m_pauraapplication;
 //      // mutable ::axis::application* m_paxisapplication;
-//      // mutable ::base::application* m_pbaseapplication;
+//      // mutable ::berg::application* m_pbaseapplication;
 //      // mutable ::bred::application* m_pbredapplication;
 //      // mutable ::core::application* m_pcoreapplication;
 //
@@ -72,7 +72,7 @@ namespace platform
 //      string                                          m_strLibraryName;
 //      string                                          m_strBuild;
 //      string                                          m_strInstallToken;
-//      string_array                                    m_straAppCategory;
+//      string_array_base                                    m_straAppCategory;
 //      bool                                            m_bLicense;
 //
 //      enum_application_capability_array               m_eapplicationcapabilitya;
@@ -219,8 +219,8 @@ namespace platform
       virtual void add_capability(enum_application_capability ecapability);
 
 
-      //bool handle_call(::payload & payload, const ::string & strObject, const ::string & strMember, ::property_set & propertyset) override;
-      virtual bool handle_application_call(::payload & payload, const ::string & strMember, ::property_set & propertyset);
+      //bool handle_call(::payload & payload, const ::scoped_string & scopedstrObject, const ::scoped_string & scopedstrMember, ::property_set & propertyset) override;
+      virtual bool handle_application_call(::payload & payload, const ::scoped_string & scopedstrMember, ::property_set & propertyset);
 
 
       virtual ::file::path get_app_localconfig_folder();
@@ -233,8 +233,10 @@ namespace platform
       virtual ::string get_application_name();
 
 
-      virtual void locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema);
-      virtual void matter_locator_locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema);
+      virtual void on_application_message(::platform::message * pmessage);
+
+      virtual void locale_schema_matter(string_array_base & stra, const string_array_base & straMatterLocator, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema);
+      virtual void matter_locator_locale_schema_matter(string_array_base & stra, const string_array_base & straMatterLocator, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema);
 
       virtual string get_locale_schema_dir(const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema);
       virtual string get_locale_schema_dir(const ::scoped_string & scopedstrLocale);
@@ -267,7 +269,7 @@ namespace platform
 
       virtual void term_application();
 
-      virtual ::string_array get_about_box_lines();
+      virtual ::string_array_base get_about_box_lines();
 
       virtual void show_about_box(::user::activation_token * puseractivationtoken);
 
@@ -283,9 +285,9 @@ namespace platform
       virtual get_file_extension_mime_type * get_get_file_extension_mime_type();
 
       virtual void pick_browse(const ::function < void(const ::file::path & path) > & callback);
-      virtual void pick_media(const char * pszMediaType);
-      virtual void did_pick_document_at_url(const char * pszUrl);
-      virtual void did_pick_document_at_urls(const ::string_array & stra);
+      virtual void pick_media(const ::scoped_string & scopedstrMediaType);
+      virtual void did_pick_document_at_url(const ::scoped_string & scopedstrUrl);
+      virtual void did_pick_document_at_urls(const ::string_array_base & stra);
       virtual void on_prompt_write_file(::user::controller * pusercontroller);
       virtual void file_manager_save_as(::user::controller * pusercontroller);
 

@@ -248,7 +248,7 @@ namespace sockets
       virtual void get_ssl_session();
 
 
-      virtual ::string_array & debugstra();
+      virtual ::string_array_base & debugstra();
 
 
       /** Called by listen_socket after accept but before base_socket is added to handler.
@@ -377,7 +377,7 @@ namespace sockets
       //void OnAccept(::winrt::Windows::Foundation::IAsyncAction ^ action, ::winrt::Windows::Foundation::AsyncStatus status);
       /** Called when a complete line has been read and the base_socket is in
       * line protocol mode. */
-      virtual void OnLine(const string & );
+      virtual void OnLine(const ::scoped_string & scopedstrLine);
 
 
       virtual bool on_select_idle();
@@ -574,7 +574,7 @@ namespace sockets
       virtual bool SetSoBsdcompat(bool x = true);
 //#endif
 //#ifdef SO_BINDTODEVICE
-      virtual bool SetSoBindtodevice(const string & intf);
+      virtual bool SetSoBindtodevice(const ::scoped_string & scopedstrInterface);
 //#endif
 //#ifdef SO_PASSCRED
       virtual bool SetSoPasscred(bool x = true);
@@ -644,6 +644,7 @@ namespace sockets
       virtual bool IsSSLNegotiate();
       /** Set flag indicating ssl handshaking still in progress. */
       virtual void SetSSLNegotiate(bool x = true);
+      virtual void set_no_ssl_shutdown();
       /** OnAccept called with SSL Enabled.
       \return true if this is a tcp_socket with an incoming SSL connection */
       virtual bool IsSSLServer();
@@ -668,7 +669,7 @@ namespace sockets
       /** base_socket type from base_socket() call. */
       virtual int GetSocketType();
       /** Protocol type from base_socket() call. */
-      virtual void SetSocketProtocol(const string & x);
+      virtual void SetSocketProtocol(const ::scoped_string & scopedstrSocketProtocol);
       /** Protocol type from base_socket() call. */
       virtual string GetSocketProtocol();
 
@@ -706,7 +707,7 @@ namespace sockets
 ////      //void SetSocks4Host(in_addr a);
 ////#if defined(BSD_STYLE_SOCKETS)
 ////      /** Set socks4 server hostname to use. */
-virtual      void SetSocks4Host(const string & );
+virtual      void SetSocks4Host(const ::scoped_string & scopedstr);
 ////#endif
 ////      /** Socks4 server port to use. */
 virtual      void SetSocks4Port(::networking::port_t int_point);
@@ -728,15 +729,15 @@ virtual string GetSocks4Host();
 //      //\lparam host hostname to be resolved
 //      \lparam port port number passed along for the ride
 //      \return Resolve ID */
-//      //int Resolve(const string & host,::networking::port_t port = 0);
-//      //int Resolve6(const string & host, ::networking::port_t port = 0);
+//      //int Resolve(const ::scoped_string & scopedstrHost,::networking::port_t port = 0);
+//      //int Resolve6(const ::scoped_string & scopedstrHost, ::networking::port_t port = 0);
 //      /** Callback returning a resolved ::networking::address.
 //      \lparam atom Resolve ID from Resolve call
 //      \lparam a resolved ip address/port
 //      \lparam port port number passed to Resolve */
 //      //virtual void OnResolved(int atom, ::networking::address * addr);
 //      //virtual void OnResolved(int atom, in6_addr & a, ::networking::port_t port);
-//      /** Request asynchronous reverse dns lookup.
+//      /** Request asynchronous reverse dns find.
 //      \lparam a in_addr to be translated */
 //      //int Resolve(in_addr a);
 //      //int Resolve(in6_addr& a);
@@ -744,7 +745,7 @@ virtual string GetSocks4Host();
 //      \lparam atom Resolve ID
 //      \lparam name Resolved hostname */
 //      //virtual void OnReverseResolved(int atom,const string & name);
-//      /** Callback indicating failed dns lookup.
+//      /** Callback indicating failed dns find.
 //      \lparam atom Resolve ID */
 //      //virtual void OnResolveFailed(int atom);
 //      //@}
@@ -782,7 +783,7 @@ virtual string GetSocks4Host();
       void write(const void * p, ::memsize s) override;
 
 
-      inline void print(const ::string & str) { write(str); }
+      inline void print(const ::scoped_string & scopedstr) { write(scopedstr); }
 
 
       /** write traffic to an IFile. base_socket will not delete this object. */
@@ -807,7 +808,7 @@ virtual string GetSocks4Host();
       //virtual bool step() override;
 
       //virtual void __tracef(object * pparticle, enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, int iLine, const ::scoped_string & scopedstrFormat, ...);
-      //virtual void __tracef(object * pparticle, enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, int iLine, e_log elog, const ::string & strContext, int err, const ::string & strMessage);
+      //virtual void __tracef(object * pparticle, enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, int iLine, e_log elog, const ::scoped_string & scopedstrContext, int err, const ::scoped_string & scopedstrMessage);
 
       virtual string get_short_description();
 

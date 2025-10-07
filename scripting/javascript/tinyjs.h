@@ -133,7 +133,7 @@ enum SCRIPTVAR_FLAGS
 #define TINYJS_BLANK_DATA ""
 
 /// convert the given string into a quoted string suitable for javascript
-string getJSString(const string &str);
+string getJSString(const ::scoped_string & scopedstr);
 
 class CLASS_DECL_APP_SCRIPTING CScriptException :
    virtual public ::exception
@@ -202,13 +202,13 @@ public:
    void setIntName(int n); ///< set the name as an integer (for arrays)
 };
 
-/// Variable class (containing a doubly-linked list of children)
+/// Variable class (containing a doubly-linked list_base of children)
 class CLASS_DECL_APP_SCRIPTING CScriptVar
 {
 public:
    CScriptVar(); ///< Create undefined
    CScriptVar(const string &varData, int varFlags); ///< User defined
-   CScriptVar(const string &str); ///< Create a string
+   CScriptVar(const ::scoped_string & scopedstr); ///< Create a string
    CScriptVar(double varData);
    CScriptVar(int val);
    ~CScriptVar(void);
@@ -237,7 +237,7 @@ public:
    string getParsableString(); ///< get Data as a parsable javascript string
    void setInt(int num);
    void setDouble(double val);
-   void setString(const string &str);
+   void setString(const ::scoped_string & scopedstr);
    void setUndefined();
    void setArray();
    bool equals(CScriptVar *v);
@@ -340,9 +340,9 @@ public:
    CScriptVar *root;   /// root of symbol table
 private:
    CScriptLex *l;             /// current lexer
-   address_array < CScriptVar * >  scopes; /// stack of scopes when parsing
+   address_array_base < CScriptVar * >  scopes; /// stack of scopes when parsing
 #ifdef TINYJS_callstack
-   string_array callstack; /// Names of places called so we can show when erroring
+   string_array_base callstack; /// Names of places called so we can show when erroring
 #endif
 
    CScriptVar *stringClass; /// Built in string class

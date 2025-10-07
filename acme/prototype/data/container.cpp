@@ -99,7 +99,7 @@ namespace data
    bool data_container_base::erase_data(::data::data * pdata)
    {
 
-      auto bRemove = m_datamap.erase_item(pdata->id());
+      auto bRemove = m_datamap.erase(pdata->id());
 
       return bRemove;
 
@@ -109,9 +109,9 @@ namespace data
    data * data_container_base::get_data(const ::atom & atom)
    {
 
-      auto p = m_datamap.plookup(atom);
+      auto iterator = m_datamap.find(atom);
 
-      if (p.is_null())
+      if (!iterator)
       {
 
          auto & pdata = m_datamap[atom];
@@ -132,11 +132,11 @@ namespace data
 
          }
 
-         p = m_datamap.plookup(atom);
+         iterator = m_datamap.find(atom);
 
       }
 
-      return p->element2();
+      return iterator->payload();
 
    }
 

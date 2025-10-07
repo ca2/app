@@ -7,14 +7,14 @@ namespace interprocess
 {
 
 
-   /*bool handler::on_interprocess_handle(::interprocess::target * ptarget, const ::string & strUri)
+   /*bool handler::on_interprocess_handle(::interprocess::target * ptarget, const ::scoped_string & scopedstrUri)
    {
 
       return true;
 
    }*/
 
-   bool handler::_handle_interprocess(::interprocess::target* ptarget, ::payload& payload, const ::string& strObject, const ::string& strMember, ::property_set& propertyset)
+   bool handler::_handle_interprocess(::interprocess::target* ptarget, ::payload& payload, const ::scoped_string & scopedstrObject, const ::scoped_string & scopedstrMember, ::property_set& propertyset)
    {
 
       if (m_pinterprocesshandlerNext)
@@ -23,8 +23,8 @@ namespace interprocess
          if (m_pinterprocesshandlerNext->_handle_interprocess(
             ptarget,
             payload,
-            strObject,
-            strMember,
+            scopedstrObject,
+            scopedstrMember,
             propertyset
          ))
          {
@@ -38,15 +38,15 @@ namespace interprocess
          return _on_interprocess_handle(
             ptarget,
             payload,
-            strObject,
-            strMember,
+            scopedstrObject,
+            scopedstrMember,
             propertyset
 
          );
 
       }
 
-   bool handler::_on_interprocess_handle(::interprocess::target* ptarget, ::payload& payload, const ::string& strObject, const ::string& strMember, ::property_set& propertyset)
+   bool handler::_on_interprocess_handle(::interprocess::target* ptarget, ::payload& payload, const ::scoped_string & scopedstrObject, const ::scoped_string & scopedstrMember, ::property_set& propertyset)
    {
 
       return false;

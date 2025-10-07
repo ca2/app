@@ -1,7 +1,7 @@
 #pragma once
 
 
-////#include "base/user/user/_component.h"
+////#include "berg/user/user/_component.h"
 //
 //
 //#define SWP_CHANGEVIEWPORTOFFSET  0x100000
@@ -312,7 +312,7 @@
 //
 //
 //   //CLASS_DECL_CORE bool set_wallpaper(string strLocalImagePath);
-//   //CLASS_DECL_CORE string_array get_wallpaper();
+//   //CLASS_DECL_CORE string_array_base get_wallpaper();
 //
 //
 //

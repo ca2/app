@@ -18,7 +18,7 @@ namespace text
    {
 
 
-      m_plocaleschema = __allocate ::text::international::locale_schema();
+      m_plocaleschema = øallocate ::text::international::locale_schema();
 
 
    }
@@ -30,7 +30,7 @@ namespace text
    }
 
 
-   const string_array & context::locale_ex() const
+   const string_array_base & context::locale_ex() const
    {
 
       return m_plocaleschema->m_straLocale;
@@ -38,7 +38,7 @@ namespace text
    }
 
    
-   const string_array & context::schema_ex() const
+   const string_array_base & context::schema_ex() const
    {
 
       return m_plocaleschema->m_straLocale;
@@ -107,7 +107,7 @@ namespace text
 
          }
 
-         string_array straFailedLocale;
+         string_array_base straFailedLocale;
 
          for(int i = 0; i < m_plocaleschema->m_straLocale.get_count(); i++)
          {
@@ -222,25 +222,25 @@ namespace text
 
       return true;
 
-//      synchronous_lock synchronouslock(this->synchronization());
+//      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //      string strMain = pszBaseDir;
 //
-//      ::file::listing locales(this);
+//      ::file::listing_base locales(this);
 //
 //      locales.ignore(".svn").ls_dir(strMain);
 //
 //      for(auto & locale : locales)
 //      {
 //
-//         ::file::listing schemas(this);
+//         ::file::listing_base schemas(this);
 //
 //         schemas.ignore(".svn").ls_dir(locale);
 //
 //         for(auto & schema : schemas)
 //         {
 //
-//            ::file::listing listing(this);
+//            ::file::listing_base listing(this);
 //
 //            listing.ignore(".svn").rls_file(schema / "uistr");
 //
@@ -437,16 +437,21 @@ namespace text
                const schema * pschema = plocale->get_schema(scopedstrSchema);
                if(pschema != nullptr)
                {
-                  table = (*pschema)[atom];
-                  if(table.has_character())
-                     return table;
+                  
+                  auto p = pschema->find(atom);
+                  if (p)
+                  {
+
+                     return p->element2();
+
+                  }
                }
             }
 
             const schema * pschema = plocale->get_schema(scopedstrLocale);
             if(pschema != nullptr)
             {
-               auto ptable = pschema->find_item(atom);
+               auto ptable = pschema->find(atom);
                if(ptable && ptable->element2().has_character())
                   return ptable->element2();
             }
@@ -456,7 +461,7 @@ namespace text
    }
 
 
-   void table::get(string_array & stra, const ::text::context * pcontext, const ::atom & atom) const
+   void table::get(string_array_base & stra, const ::text::context * pcontext, const ::atom & atom) const
    {
 
       _get(stra, pcontext, atom);
@@ -465,7 +470,7 @@ namespace text
 
       ::collection::index i = 0;
 
-      string_array stra2;
+      string_array_base stra2;
 
       do
       {
@@ -487,7 +492,7 @@ namespace text
    }
 
 
-   void table::_get(string_array & stra, const ::text::context * pcontext, const ::atom & atom) const
+   void table::_get(string_array_base & stra, const ::text::context * pcontext, const ::atom & atom) const
    {
 
       if (pcontext == nullptr)
@@ -588,7 +593,7 @@ namespace text
    //      }
    //   }
 
-   //   void append(character_count start,character_count end, ::range < const ::ansi_character * > range)
+   //   void append(character_count start,character_count end, ::range < const_char_pointer >range)
    //   {
    //      stack[m_pos].s = start;
    //      stack[m_pos].e = end;
@@ -599,7 +604,7 @@ namespace text
    //   }
 
 
-   //   void merge(::range < const ::ansi_character * > range)
+   //   void merge(::range < const_char_pointer >range)
    //   {
 
    //      if(m_pos <= 0)
@@ -728,17 +733,17 @@ namespace text
 //
 //      //bool bEof = false;
 //
-//      const char * s;
+//      const_char_pointer s;
 //
 //      char * wr;
 //
-//      const char * rd;
+//      const_char_pointer rd;
 //
 //      character_count l;
 //
 //      string str;
 //
-//      const ::ansi_character * pszEnd;
+//      const_char_pointer pszEnd;
 //
 //      string strRoot;
 //
@@ -768,12 +773,12 @@ namespace text
 //
 //         pszEnd = psz + rstr.m_iSize;
 //
-//         while(unicode_is_whitespace(psz))
+//         while(unicode_is_whitespace(scopedstr))
 //         {
 //            
 //            psz += utf8_unicode_length(*psz);
 //
-//            if (psz >= pszEnd)
+//            if (scopedstr >= pszEnd)
 //            {
 //
 //               goto cont;
@@ -799,7 +804,7 @@ namespace text
 //            
 //            psz += utf8_unicode_length(*psz);
 //
-//            if (psz >= pszEnd)
+//            if (scopedstr >= pszEnd)
 //            {
 //
 //               goto cont;
@@ -809,12 +814,12 @@ namespace text
 //         strRoot.assign(s, psz - s);
 //         psz++;
 //
-//         while(unicode_is_whitespace(psz))
+//         while(unicode_is_whitespace(scopedstr))
 //         {
 //            
 //            psz += utf8_unicode_length(*psz);
 //
-//            if (psz >= pszEnd)
+//            if (scopedstr >= pszEnd)
 //            {
 //
 //               goto end;
@@ -828,12 +833,12 @@ namespace text
 //
 //         psz++;
 //
-//         while(unicode_is_whitespace(psz))
+//         while(unicode_is_whitespace(scopedstr))
 //         {
 //            
 //            psz += utf8_unicode_length(*psz);
 //
-//            if (psz >= pszEnd)
+//            if (scopedstr >= pszEnd)
 //            {
 //            
 //               goto end;
@@ -1000,7 +1005,7 @@ namespace text
    }
 
 
-   bool table::begins(const ::text::context * pcontext, const ::string &strTopic, const ::atom & atom) const
+   bool table::begins(const ::text::context * pcontext, const ::scoped_string & scopedstrTopic, const ::atom & atom) const
    {
 
       static ::atom idEn("en");
@@ -1016,7 +1021,7 @@ namespace text
          {
 
             table = (*pcontext->m_pschema)[atom];
-            if(table.has_character() && case_insensitive_string_begins(strTopic, table))
+            if(table.has_character() && case_insensitive_string_begins(scopedstrTopic, table))
                return true;
 
          }
@@ -1024,7 +1029,7 @@ namespace text
          if(pcontext->m_pschemaLocale != nullptr)
          {
             table = (*pcontext->m_pschemaLocale)[atom];
-            if(table.has_character() && case_insensitive_string_begins(strTopic, table))
+            if(table.has_character() && case_insensitive_string_begins(scopedstrTopic, table))
                return true;
          }
 
@@ -1032,7 +1037,7 @@ namespace text
          {
 
             table = (*pcontext->m_schemaptra[i])[atom];
-            if(table.has_character() && case_insensitive_string_begins(strTopic, table))
+            if(table.has_character() && case_insensitive_string_begins(scopedstrTopic, table))
                return true;
 
          }
@@ -1043,20 +1048,20 @@ namespace text
       {
 
          table = (*pcontext->m_pschemaSchemaEn)[atom];// lang=pszStyle style=en
-         if(table.has_character() && case_insensitive_string_begins(strTopic, table))
+         if(table.has_character() && case_insensitive_string_begins(scopedstrTopic, table))
             return true;
 
       }
 
       table = (*m_pschemaEn)[atom]; // lang=en style=en
-      if(table.has_character() && case_insensitive_string_begins(strTopic, table))
+      if(table.has_character() && case_insensitive_string_begins(scopedstrTopic, table))
          return true;
 
       if(pcontext != nullptr && pcontext->m_pschemaSchemaStd != nullptr)
       {
 
          table = (*pcontext->m_pschemaSchemaStd)[atom];// lang=pszStyle style=en
-         if(table.has_character() && case_insensitive_string_begins(strTopic, table))
+         if(table.has_character() && case_insensitive_string_begins(scopedstrTopic, table))
             return true;
 
       }
@@ -1137,12 +1142,12 @@ namespace text
    }
 
 
-   //bool context::match(string_array & stra, const ::scoped_string & scopedstr, ::atom idExpression, ::atom idRoot) const
+   //bool context::match(string_array_base & stra, const ::scoped_string & scopedstr, ::atom idExpression, ::atom idRoot) const
    //{
 
-   //   synchronous_lock synchronouslock(this->synchronization());
+   //   synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-   //   string_array straCandstrate;
+   //   string_array_base straCandstrate;
 
    //   get(straCandstrate,idRoot);
 
@@ -1159,7 +1164,7 @@ namespace text
 
    //      strExp.replace("%1",strCandstrate);
 
-   //      string_array straResult;
+   //      string_array_base straResult;
 
    //      auto pregex = psystem->create_regular_expression("pcre", strExp);
 

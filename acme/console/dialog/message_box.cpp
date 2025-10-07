@@ -36,13 +36,13 @@ namespace console
 
       string str;
 
-      auto etype = (pmessagebox->m_emessagebox & e_message_box_type_mask);
+      auto etype = (pmessagebox->m_emessagebox & ::user::e_message_box_type_mask);
 
-      if (etype == e_message_box_yes_no_cancel)
+      if (etype == ::user::e_message_box_yes_no_cancel)
       {
          str += "y/n/c";
       }
-      else if (etype == e_message_box_yes_no)
+      else if (etype == ::user::e_message_box_yes_no)
       {
          str += "y/n";
       }
@@ -56,21 +56,21 @@ namespace console
 
       //bool bDefault = false;
 
-      auto edefaultbutton = (pmessagebox->m_emessagebox & e_message_box_default_button_mask);
+      auto edefaultbutton = (pmessagebox->m_emessagebox & ::user::e_message_box_default_button_mask);
 
-      if (edefaultbutton == e_message_box_default_button_1 && str.size() >= 1)
+      if (edefaultbutton == ::user::e_message_box_default_button_1 && str.size() >= 1)
       {
          str.set_at(0, ansi_char_toupper(str[0]));
          edialogresultDefault = e_dialog_result_yes;
          //bDefault = true;
       }
-      else if (edefaultbutton == e_message_box_default_button_2 && str.size() >= 3)
+      else if (edefaultbutton == ::user::e_message_box_default_button_2 && str.size() >= 3)
       {
          str.set_at(2, ansi_char_toupper(str[2]));
          edialogresultDefault = e_dialog_result_no;
          //bDefault = true;
       }
-      else if (edefaultbutton == e_message_box_default_button_3 && str.size() >= 5)
+      else if (edefaultbutton == ::user::e_message_box_default_button_3 && str.size() >= 5)
       {
          str.set_at(4, ansi_char_toupper(str[4]));
          edialogresultDefault = e_dialog_result_cancel;
@@ -96,8 +96,8 @@ namespace console
 
    repeat:
 
-      if ((pmessagebox->m_emessagebox & e_message_box_icon_exclamation)
-         || (pmessagebox->m_emessagebox & e_message_box_icon_stop))
+      if ((pmessagebox->m_emessagebox & ::user::e_message_box_icon_exclamation)
+         || (pmessagebox->m_emessagebox & ::user::e_message_box_icon_stop))
       {
 
          fputs(strLine.c_str(), stderr);
@@ -114,15 +114,15 @@ namespace console
 
       }
 
-      const char * pszAcceptedAnswer = "";
+      const_char_pointer pszAcceptedAnswer = "";
 
-      if (etype == e_message_box_yes_no_cancel)
+      if (etype == ::user::e_message_box_yes_no_cancel)
       {
 
          pszAcceptedAnswer = "ync";
 
       }
-      else if (etype == e_message_box_yes_no)
+      else if (etype == ::user::e_message_box_yes_no)
       {
 
          pszAcceptedAnswer = "yn";

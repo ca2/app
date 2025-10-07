@@ -1,9 +1,9 @@
 #include "framework.h"
 #include "acme/handler/topic.h"
 #include "aura/user/user/interaction.h"
-#include "base/user/form/document.h"
-#include "base/user/form/impact.h"
-#include "base/user/simple/frame_window.h"
+#include "berg/user/form/document.h"
+#include "berg/user/form/impact.h"
+#include "berg/user/simple/frame_window.h"
 #include "core/platform/session.h"
 #include "core/user/user/user.h"
 
@@ -21,12 +21,12 @@ dialog::dialog()
 }
 
 
-dialog::dialog(const ::string & pszMatter, ::pointer<::user::interaction>puiParent)
+dialog::dialog(const ::scoped_string & scopedstrMatter, ::pointer<::user::interaction>puiParent)
 {
 
    initialize(puiParent);
 
-   m_strMatter = pszMatter;
+   m_strMatter = scopedstrMatter;
    m_pformdocument    = nullptr;
    m_pframe       = nullptr;
 
@@ -66,10 +66,10 @@ void dialog::handle(::topic * ptopic, ::handler_context * phandlercontext)
 }
 
 
-bool dialog::show(const ::string & pszMatter)
+bool dialog::show(const ::scoped_string & scopedstrMatter)
 {
 
-   string strMatter(pszMatter);
+   string strMatter(scopedstrMatter);
 
    if(!case_insensitive_string_begins(strMatter, "matter://"))
    {
@@ -103,7 +103,7 @@ bool dialog::show(const ::string & pszMatter)
 
       string str;
 
-      str.formatf("Could not show dialog %s", pszMatter.c_str());
+      str.formatf("Could not show dialog %s", scopedstrMatter.as_string().c_str());
 
       informationf(str);
 
@@ -142,7 +142,7 @@ bool dialog::show(const ::string & pszMatter)
 }
 
 
-void dialog::on_show(const ::string & pszMatter)
+void dialog::on_show(const ::scoped_string & scopedstrMatter)
 {
 
    m_pform->set_need_redraw();

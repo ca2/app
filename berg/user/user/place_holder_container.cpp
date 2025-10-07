@@ -1,0 +1,198 @@
+#include "framework.h"
+#include "place_holder_container.h"
+
+
+namespace user
+{
+
+
+   place_holder_container::place_holder_container()
+   {
+
+
+   }
+
+
+
+   place_holder_container::~place_holder_container()
+   {
+   }
+
+
+   void place_holder_container::destroy()
+   {
+
+      m_placeholdera.clear();
+
+
+      ::user::interaction::destroy();
+
+   }
+
+
+   void place_holder_container::install_message_routing(::channel * pchannel)
+   {
+      ::user::interaction::install_message_routing(pchannel);
+   }
+
+
+   ::user::place_holder * place_holder_container::get_new_place_holder(const ::int_rectangle & rectangleCreate)
+   {
+
+      auto pplaceholder = øcreate_new < ::user::place_holder >();
+
+      if (!pplaceholder)
+      {
+
+         return nullptr;
+
+      }
+
+      pplaceholder->m_bChild = true;
+
+      pplaceholder->display(e_display_normal);
+
+      pplaceholder->place(rectangleCreate);
+
+      pplaceholder->create_child(this);
+
+      //if(!pplaceholder->create_child(this))
+      //{
+
+      //   return nullptr;
+
+      //}
+
+      m_placeholdera.add(pplaceholder);
+
+      return pplaceholder;
+
+   }
+
+
+   bool place_holder_container::erase_place_holder(::user::place_holder * pholder)
+   {
+      bool bRemove = m_placeholdera.erase(pholder) > 0;
+      return bRemove;
+   }
+
+   ::user::place_holder * place_holder_container::place_hold(::user::interaction * pinteraction,const ::int_rectangle & rectangleCreate)
+   {
+      ::pointer<place_holder>pholder = get_new_place_holder(rectangleCreate);
+      if(!on_place_hold(pinteraction, pholder))
+      {
+         erase_place_holder(pholder);
+         return nullptr;
+      }
+      return pholder;
+   }
+
+
+   bool place_holder_container::unplace(::user::interaction * pinteraction)
+   {
+
+      for(int i = 0; i < m_placeholdera.get_count(); i++)
+      {
+
+         if(m_placeholdera[i]->is_place_holding(pinteraction))
+         {
+
+            if(on_unplace(pinteraction, m_placeholdera[i]))
+            {
+
+               m_placeholdera.erase_at(i);
+
+               return true;
+
+            }
+
+            return false;
+
+         }
+
+      }
+
+      return false;
+
+   }
+
+
+   bool place_holder_container::on_place_hold(::user::interaction * pinteraction, ::user::place_holder * pholder)
+   {
+
+      pinteraction->set_parent(pholder);
+
+      return true;
+
+      //if(pholder->can_merge(pinteraction))
+      //{
+
+      //   return pholder->merge(pinteraction);
+
+      //}
+      //else
+      //{
+
+      //   return pholder->place_hold(pinteraction);
+
+      //}
+
+   }
+
+
+   bool place_holder_container::on_unplace(::user::interaction * pinteraction, ::user::place_holder * pholder)
+   {
+
+      return pholder->unplace(pinteraction);
+
+   }
+
+
+   //bool place_holder_container::create_interaction(::user::interaction * puiParent,atom atom)
+   //{
+
+   //   return ::user::interaction::create_interaction(puiParent) != false;
+
+   //}
+
+
+   place_holder_ptra place_holder_container_ptra::place(::user::interaction * pinteraction,const int_rectangle & rectangleCreate)
+   {
+
+      place_holder_ptra holderptra;
+
+      ::pointer<place_holder>pholder;
+
+      for(int i = 0; i < this->get_count(); i++)
+      {
+
+         pholder = this->element_at(i)->place_hold(pinteraction,rectangleCreate);
+
+         if(pholder != nullptr)
+         {
+
+            holderptra.add(pholder);
+
+         }
+
+      }
+
+      return holderptra;
+
+   }
+
+
+   int place_holder_container_ptra::unplace(::user::interaction * pinteraction)
+   {
+      int count = 0;
+      for(int i = 0; i < this->get_count(); i++)
+      {
+         if(this->element_at(i)->unplace(pinteraction))
+         {
+            count++;
+         }
+      }
+      return count;
+   }
+
+} // namespace user

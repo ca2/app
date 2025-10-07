@@ -52,7 +52,7 @@ nsSBCSGroupProber::~nsSBCSGroupProber()
 }
 
 
-const char* nsSBCSGroupProber::GetCharSetName()
+const_char_pointer nsSBCSGroupProber::GetCharSetName()
 {
   //if we have no answer yet
   if (mBestGuess == -1)

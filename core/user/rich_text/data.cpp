@@ -28,7 +28,7 @@ namespace user
 
       void align(line * pline, const ::double_rectangle & rectangle);
 
-      ::collection::count get_vars(strsize_array & ia1, strsize_array & ia2, string str)
+      ::collection::count get_vars(strsize_array & ia1, strsize_array & ia2, const ::scoped_string & scopedstr)
       {
 
          character_count i1 = 0;
@@ -38,7 +38,7 @@ namespace user
          while (true)
          {
 
-            i1 = str.find_index('%', i1);
+            i1 = scopedstr.find_index('%', i1);
 
             if (i1 < 0)
             {
@@ -47,7 +47,7 @@ namespace user
 
             }
 
-            i2 = str.find_index('%', i1 + 1);
+            i2 = scopedstr.find_index('%', i1 + 1);
 
             if (i2 < 0)
             {
@@ -113,7 +113,7 @@ namespace user
 
          //estatus = 
 
-         //__construct_new(m_pformathost);
+         //øconstruct_new(m_pformathost);
 
          //if (!estatus)
          //{
@@ -152,7 +152,7 @@ namespace user
       ::pointer<span>data::create_span()
       {
 
-         return __allocate span(this);
+         return øallocate span(this);
 
       }
 
@@ -160,9 +160,9 @@ namespace user
       ::pointer<span>data::add_span(const span & span)
       {
 
-         synchronous_lock synchronouslock(this->synchronization());
+         synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-         return __allocate class span (this, span);
+         return øallocate class span (this, span);
 
       }
 
@@ -170,7 +170,7 @@ namespace user
       ::pointer<span>data::add_span(::e_align ealignNewLine, bool bEndOfLine)
       {
 
-         synchronous_lock synchronouslock(this->synchronization());
+         synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          auto pspan = create_span();
 
@@ -215,7 +215,7 @@ namespace user
       void data::__update_text()
       {
 
-         _synchronous_lock synchronouslock(this->synchronization());
+         _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          set_text(::user::rich_text::as_text(m_spana), ::e_source_sync);
 
@@ -239,7 +239,7 @@ namespace user
 
          }
 
-         synchronous_lock synchronouslock(this->synchronization());
+         synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          update_span_cache(m_spana);
 
@@ -348,7 +348,7 @@ namespace user
       string data::get_full_text()
       {
 
-         _synchronous_lock synchronouslock(this->synchronization());
+         _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          update_span_cache(m_spana);
 
@@ -357,20 +357,20 @@ namespace user
       }
 
 
-      character_count data::_001InsertText(character_count i1, character_count i2, const ::string & strNewText, format * pformatParam)
+      character_count data::_001InsertText(character_count i1, character_count i2, const ::scoped_string & scopedstrNewText, format * pformatParam)
       {
 
-         ::string strProcess(strNewText);
+         ::string strProcess(scopedstrNewText);
 
          strProcess.find_replace("\r\n", "\n");
 
          strProcess.find_replace("\r", "\n");
 
-         string_array straLines;
+         string_array_base straLines;
 
          straLines.add_lines(strProcess);
 
-         synchronous_lock synchronouslock(this->synchronization());
+         synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          ::collection::index iSelBeg = i1;
 
@@ -540,7 +540,7 @@ namespace user
       void data::_001SetFontFormat(character_count i1, character_count i2, const format * pformat, const e_attribute & eattribute)
       {
 
-         synchronous_lock synchronouslock(this->synchronization());
+         synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          optimize_data();
 
@@ -735,7 +735,7 @@ namespace user
       // unicode_next(str.c_str()) - str.c_str(); // at least one char is the longest pline
 
       // find phrase with greatest word count that fits the x, right constraints
-      ::collection::count longest_pline(string & strSlice, double & d, string_array & straWords, double * pdaPosition, double dPositionLeft, int cx)
+      ::collection::count longest_pline(string & strSlice, double & d, string_array_base & straWords, double * pdaPosition, double dPositionLeft, int cx)
       {
 
          ::collection::count c = straWords.get_count();
@@ -767,12 +767,12 @@ namespace user
       }
 
 
-      int longest_word(string & strSlice, double & dPosition, string strWord, double * pdaPosition, double dPositionLeft, int cx)
+      int longest_word(string & strSlice, double & dPosition, const ::scoped_string & scopedstrWord, double * pdaPosition, double dPositionLeft, int cx)
       {
 
          long l = 1;
 
-         auto u = strWord.length();
+         auto u = scopedstrWord.length();
 
          long m = 1;
 
@@ -799,7 +799,7 @@ namespace user
 
          }
 
-         while (m < strWord.length())
+         while (m < scopedstrWord.length())
          {
 
             dPosition = pdaPosition[m - 1] - dPositionLeft;
@@ -838,7 +838,7 @@ namespace user
 
          }
 
-         strSlice = strWord.left(m);
+         strSlice = scopedstrWord.left(m);
 
          dPosition = pdaPosition[m - 1];
 
@@ -870,7 +870,7 @@ namespace user
       //void data::do_layout()
       //{
 
-      //   synchronous_lock synchronouslock(this->synchronization());
+      //   synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       //   if (m_pgraphics.is_null())
       //   {
@@ -892,7 +892,7 @@ namespace user
       void data::optimize_data()
       {
 
-         synchronous_lock synchronouslock(this->synchronization());
+         synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          {
 
@@ -957,7 +957,7 @@ namespace user
       character_count data::_get_text_length() const
       {
 
-         _synchronous_lock synchronouslock(this->synchronization());
+         _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          if (m_spana.is_empty())
          {
@@ -976,7 +976,7 @@ namespace user
       void data::__initialize(::pointer<::user::rich_text::format> & pformat)
       {
 
-         __defer_construct(pformat);
+         ødefer_construct(pformat);
 
          //auto estatus = 
 
@@ -997,7 +997,7 @@ namespace user
       //void data::write(::binary_stream & stream) const
       //{
 
-      //   synchronous_lock synchronouslock(this->synchronization());
+      //   synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       //   stream << m_pformathost;
 
@@ -1009,7 +1009,7 @@ namespace user
       //void data::read(::binary_stream & stream)
       //{
 
-      //   synchronous_lock synchronouslock(this->synchronization());
+      //   synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       //   m_plinea->erase_all();
 
@@ -1049,7 +1049,7 @@ namespace user
 
             //auto pfactory = system()->factory("text_format", "rtf");
 
-            //auto ptextformat = __øcreate< ::user::rich_text::text_format >(pfactory);
+            //auto ptextformat = øcreate< ::user::rich_text::text_format >(pfactory);
 
             //ptextformat->text_format_read(this, bin);
 
@@ -1075,7 +1075,7 @@ namespace user
 
             //auto pfactory = system()->factory("text_format", "rtf");
 
-            //auto ptextformat = __øcreate< ::user::rich_text::text_format >(pfactory);
+            //auto ptextformat = øcreate< ::user::rich_text::text_format >(pfactory);
 
             //ptextformat->text_format_save(pfile, this);
 
@@ -1091,7 +1091,7 @@ namespace user
 
          auto pfactory = system()->factory("text_format", "rtf");
 
-         auto ptextformat = __øcreate< ::user::rich_text::text_format >(pfactory);
+         auto ptextformat = øcreate< ::user::rich_text::text_format >(pfactory);
 
          ptextformat->text_format_read(this, binarystream);
 
@@ -1103,7 +1103,7 @@ namespace user
 
          auto pfactory = system()->factory("text_format", "rtf");
 
-         auto ptextformat = __øcreate< ::user::rich_text::text_format >(pfactory);
+         auto ptextformat = øcreate< ::user::rich_text::text_format >(pfactory);
 
          ptextformat->text_format_write(binarystream, this);
 

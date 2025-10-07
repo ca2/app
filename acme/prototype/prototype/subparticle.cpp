@@ -9,8 +9,6 @@
 #include "acme/platform/system.h"
 
 
-
-
 #if REFERENCING_DEBUGGING
 
 
@@ -27,18 +25,59 @@ namespace allocator
 bool g_bDefaultEnableObjectReferenceCountDebug = false;
 
 
-//CLASS_DECL_ACME void on_construct_particle(::particle * pparticle);
+thread_local bool t_bDefaultEnableObjectReferenceCountDebug = true;
 
 
 subparticle::subparticle() :
+   ::quantum(),
    m_countReference(1)
+{
+
+   subparticle_referencing_debugging_construct();
+
+}
+
+
+subparticle::subparticle(const ::e_flag & eflag, const ::e_status & estatus) :
+   ::quantum(eflag, estatus),
+   m_countReference(1)
+{
+
+   subparticle_referencing_debugging_construct();
+
+}
+
+
+subparticle::subparticle(const ::subparticle & subparticle) :
+   ::quantum(subparticle),
+   m_countReference(1)
+{
+
+   subparticle_referencing_debugging_construct();
+
+}
+
+
+subparticle::subparticle(::subparticle && subparticle) :
+   ::quantum(::transfer(subparticle)),
+   m_countReference(1)
+{
+
+   subparticle_referencing_debugging_construct();
+
+   ::allocator::on_destruct_subparticle(&subparticle);
+
+}
+
+
+
+void subparticle::subparticle_referencing_debugging_construct()
 {
 
 #if REFERENCING_DEBUGGING
 
-   //m_pstringCallStackTrace = nullptr;
-
-   if (!g_bDefaultEnableObjectReferenceCountDebug)
+   if (!this->is_referencing_debugging_enabled()
+      || !g_bDefaultEnableObjectReferenceCountDebug)
    {
 
       disable_referencing_debugging();
@@ -54,23 +93,7 @@ subparticle::subparticle() :
 }
 
 
-//particle::particle(disable_referencing_debugging_t) :
-//   m_countReference(1)
-//{
-//
-//#if REFERENCING_DEBUGGING
-//
-//   disable_referencing_debugging();
-//
-//#endif
-//
-//   ::allocator::on_construct_particle(this);
-//
-//}
-
-
 #endif
-
 
 
 subparticle::~subparticle()
@@ -547,8 +570,13 @@ void subparticle::_wait()
    {
 
       //try { throw "errorABC1"; } catch(...){}
-
-      printf_line("particle::wait ptask is NULL, going to do NOT transacted wait");
+       
+       if(!is_main_thread())
+       {
+           
+           printf_line("particle::wait ptask is NULL, going to do NOT transacted wait");
+           
+       }
 
       _wait();
 
@@ -918,7 +946,7 @@ void subparticle::get_debug_title(char * sz, character_count c) const
 
    auto psubparticle = (::subparticle *)this;
 
-   ::string_count_copy(sz, ::type(*psubparticle).name(), c);
+   ::string_count_copy(sz, typeid(*psubparticle).name(), c);
 
 }
 

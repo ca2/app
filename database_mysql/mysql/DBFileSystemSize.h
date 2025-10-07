@@ -61,8 +61,8 @@ public:
       void update_size(::particle * pparticle, ::collection::index & iIteration);
       void update_size_recursive(::particle * pparticle, ::collection::index & iIteration);
 
-      item * FindItem(::particle * pparticle, const ::string & pszPath, ::collection::index & iIteration);
-      ::collection::index FindName(::particle * pparticle, const ::string & pszName, ::collection::index & iIteration);
+      item * FindItem(::particle * pparticle, const ::scoped_string & scopedstrPath, ::collection::index & iIteration);
+      ::collection::index FindName(::particle * pparticle, const ::scoped_string & scopedstrName, ::collection::index & iIteration);
 
       string path();
 
@@ -109,11 +109,11 @@ public:
 
 
 
-   bool get_cache_fs_size(long long & i64Size, const ::string & pszPath, bool & bPending);
-   bool get_fs_size(long long & i64Size, const ::string & pszPath, bool & bPending);
+   bool get_cache_fs_size(long long & i64Size, const ::scoped_string & scopedstrPath, bool & bPending);
+   bool get_fs_size(long long & i64Size, const ::scoped_string & scopedstrPath, bool & bPending);
 
 
-   bool get_fs_size(long long & i64Size, const ::string & pszPath, bool & bPending, ::collection::index & iIteration);
+   bool get_fs_size(long long & i64Size, const ::scoped_string & scopedstrPath, bool & bPending, ::collection::index & iIteration);
 
 
 };
@@ -144,7 +144,7 @@ public:
 
 
    class size_map :
-      public string_map < file_size_table::get_fs_size, file_size_table::get_fs_size >
+      public string_map_base < file_size_table::get_fs_size, file_size_table::get_fs_size >
    {
    public:
    };
@@ -168,7 +168,7 @@ public:
 
 
    void ClientStartServer();
-   bool get_fs_size(long long & i64Size, const ::string & pszPath, bool & bPending);
+   bool get_fs_size(long long & i64Size, const ::scoped_string & scopedstrPath, bool & bPending);
 
    void install_message_routing(::channel * pchannel);
 

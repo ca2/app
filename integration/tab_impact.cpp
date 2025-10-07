@@ -4,8 +4,8 @@
 #include "menu.h"
 //#include "render.h"
 #include "menu.h"
-#include "acme/constant/message.h"
-#include "base/user/user/tab_pane.h"
+#include "acme/constant/user_message.h"
+#include "berg/user/user/tab_pane.h"
 
 
 namespace app_integration
@@ -45,7 +45,7 @@ namespace app_integration
 
       ::user::tab_impact::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_create, pchannel, this, &tab_impact::on_message_create);
+      USER_MESSAGE_LINK(::user::e_message_create, pchannel, this, &tab_impact::on_message_create);
 
    }
 
@@ -82,7 +82,7 @@ namespace app_integration
 
       string strId = get_impact_id();
 
-      string_array stra;
+      string_array_base stra;
 
       stra.explode("->:<-",strId);
 

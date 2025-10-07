@@ -230,10 +230,10 @@
 
 // //    }
 
-// //    if (psz)
+// //    if (scopedstr)
 // //    {
 
-// //       ansi_count_copy(psz, img_line.FileName, nCount);
+// //       ansi_count_copy(scopedstr, img_line.FileName, nCount);
 
 // //    }
 
@@ -478,11 +478,11 @@
 // //       if (!check())
 // //          return 0;
 
-// //       engine_symbol(psz, nCount, pdisplacement, address());
+// //       engine_symbol(scopedstr, nCount, pdisplacement, address());
 
-// //       ansi_concatenate(psz, "()");
+// //       ansi_concatenate(scopedstr, "()");
 
-// //       return strlen(psz);
+// //       return strlen(scopedstr);
 
 // //    }
 
@@ -753,8 +753,8 @@
 // //          {
 // //             if (m_szaModule[i] == nullptr)
 // //                return 0;
-// //             ansi_count_copy(psz, m_szaModule[i], nCount);
-// //             return strlen(psz);
+// //             ansi_count_copy(scopedstr, m_szaModule[i], nCount);
+// //             return strlen(scopedstr);
 
 // //          }
 // //       }
@@ -770,7 +770,7 @@
 
 // //       m_ma[m_iMa] = hmodule;
 // //       m_szaModule[m_iMa] = strdup(filename);
-// //       ansi_count_copy(psz, m_szaModule[m_iMa++], nCount);
+// //       ansi_count_copy(scopedstr, m_szaModule[m_iMa++], nCount);
 // //       //unsigned int r = GetModuleFileNameA(hmodule, psz, nCount);
 
 // //       //if(!r)
@@ -779,7 +779,7 @@
 
 
 // //       // find the last '\' mark.
-// //       //char * point = strrchr(psz, '\\');
+// //       //char * point = strrchr(scopedstr, '\\');
 
 // //       //if(point != nullptr)
 // //       //{
@@ -788,7 +788,7 @@
 
 // //       //}
 
-// //       return strlen(psz);
+// //       return strlen(scopedstr);
 
 // //    }
 
@@ -1442,7 +1442,7 @@
 
 //             iLine = 0;
 
-//             char * psz = get_frame(pszFormat, iLine);
+//             char * psz = get_frame(scopedstrFormat, iLine);
 
 //             if (uiSkip == DEFAULT_SE_EXCEPTION_callstack_SKIP)
 //             {
@@ -1510,9 +1510,9 @@
 
 //          iLine = 0;
 
-//          psz = get_frame(pszFormat, iLine);
+//          psz = get_frame(scopedstrFormat, iLine);
 
-//          if (psz == nullptr)
+//          if (scopedstr == nullptr)
 //          {
 
 //             break;
@@ -1759,7 +1759,7 @@
 //    void engine::backtrace(void ** ppui, int &c)
 //    {
 
-//       synchronous_lock synchronouslock(this->synchronization());
+//       synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
 //       unsigned int maxframes = c;
 

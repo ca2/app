@@ -63,7 +63,7 @@ namespace universal_windows
 
 //      psystem->get_session()->m_frameworkview = this;
 
-      m_pdxi = __allocate directx_interaction();
+      m_pdxi = øallocate directx_interaction();
 
    }
 
@@ -292,7 +292,7 @@ namespace universal_windows
 
             string str = eventArgs->Uri->AbsoluteUri;
 
-            auto pcreate = __allocate ::create(system());
+            auto pcreate = øallocate ::create(system());
 
             pcreate->m_ecommand = ::command_protocol;
 
@@ -309,7 +309,7 @@ namespace universal_windows
 
             //}
 
-            system()->post_object(e_message_system, e_system_message_create, pcreate);
+            system()->post_object(::user::e_message_system, e_system_message_create, pcreate);
 
          }
 
@@ -345,11 +345,11 @@ namespace universal_windows
 
       ::pointer<::user::message>spbase;
 
-      auto pkey  = __allocate ::message::key();
+      auto pkey  = øallocate ::message::key();
 
       spbase = pkey;
 
-      pkey->m_emessage = e_message_char;
+      pkey->m_emessage = ::user::e_message_char;
       pkey->m_puserinteraction = session()->m_puserinteractionHost;
       pkey->m_nChar = keycode_to_char(args->KeyCode);
 
@@ -376,7 +376,7 @@ namespace universal_windows
 
       ::pointer<::user::message>spbase;
 
-      auto pkey  = __allocate ::message::key();
+      auto pkey  = øallocate ::message::key();
 
       spbase = pkey;
 
@@ -390,7 +390,7 @@ namespace universal_windows
          || session()->is_key_pressed(::user::e_key_alt))
       {
 
-         pkey->m_emessage                 = e_message_key_down;
+         pkey->m_emessage                 = ::user::e_message_key_down;
          pkey->m_puserinteraction       = session()->m_puserinteractionHost;
          pkey->m_nChar              = virtualkey_to_char(args->VirtualKey);
          pkey->m_ekey               = ekey;
@@ -444,7 +444,7 @@ namespace universal_windows
       if (bSpecialKey || !bTextFocus)
       {
 
-         pkey->m_emessage = e_message_key_up;
+         pkey->m_emessage = ::user::e_message_key_up;
          pkey->m_puserinteraction = session()->m_puserinteractionHost;
          pkey->m_nChar = virtualkey_to_char(args->VirtualKey);
          pkey->m_ekey = ekey;
@@ -540,7 +540,7 @@ namespace universal_windows
 
       pmouse->m_point.x()       = (int) pointerPoint->RawPosition.X;
       pmouse->m_point.y()       = (int) pointerPoint->RawPosition.Y;
-      pmouse->m_emessage            = e_message_mouse_move;
+      pmouse->m_emessage            = ::user::e_message_mouse_move;
       pmouse->m_puserinteraction  = session()->m_puserinteractionHost;
 
       m_pointLastCursor = pointerPoint->RawPosition;
@@ -581,7 +581,7 @@ namespace universal_windows
       if(args->CurrentPoint->Properties->IsLeftButtonPressed && !m_bLeftButton)
       {
 
-         pmouse->m_emessage     = e_message_left_button_down;
+         pmouse->m_emessage     = ::user::e_message_left_button_down;
 
          m_bLeftButton           = true;
          m_bMiddleButton         = false;
@@ -591,7 +591,7 @@ namespace universal_windows
       else if(args->CurrentPoint->Properties->IsRightButtonPressed && !m_bRightButton)
       {
 
-         pmouse->m_emessage     = e_message_right_button_down;
+         pmouse->m_emessage     = ::user::e_message_right_button_down;
 
          m_bLeftButton           = false;
          m_bMiddleButton         = false;
@@ -601,7 +601,7 @@ namespace universal_windows
       else if(args->CurrentPoint->Properties->IsMiddleButtonPressed && !m_bMiddleButton)
       {
 
-         pmouse->m_emessage     = e_message_middle_button_down;
+         pmouse->m_emessage     = ::user::e_message_middle_button_down;
 
          m_bLeftButton           = false;
          m_bMiddleButton         = true;
@@ -645,21 +645,21 @@ namespace universal_windows
       if(m_bLeftButton && !args->CurrentPoint->Properties->IsLeftButtonPressed)
       {
 
-         pmouse->m_emessage     = e_message_left_button_up;
+         pmouse->m_emessage     = ::user::e_message_left_button_up;
          m_bLeftButton           = false;
 
       }
       else if(m_bRightButton && !args->CurrentPoint->Properties->IsRightButtonPressed)
       {
 
-         pmouse->m_emessage     = e_message_right_button_up;
+         pmouse->m_emessage     = ::user::e_message_right_button_up;
          m_bRightButton          = false;
 
       }
       else if(m_bMiddleButton && !args->CurrentPoint->Properties->IsMiddleButtonPressed)
       {
 
-         pmouse->m_emessage     = e_message_middle_button_up;
+         pmouse->m_emessage     = ::user::e_message_middle_button_up;
          m_bMiddleButton         = false;
 
       }
@@ -687,7 +687,7 @@ namespace universal_windows
    }
 
 
-   directx_application_source::directx_application_source(::platform::system * paxissystem, const ::string & strId)
+   directx_application_source::directx_application_source(::platform::system * paxissystem, const ::scoped_string & scopedstrId)
    {
 
       system()     = paxissystem;
@@ -705,7 +705,7 @@ namespace universal_windows
    }
 
 
-   directx_application_source ^ new_directx_application_source(::platform::system * paurasystem, const ::string & strId)
+   directx_application_source ^ new_directx_application_source(::platform::system * paurasystem, const ::scoped_string & scopedstrId)
    {
 
       string str = strId;

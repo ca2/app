@@ -34,11 +34,11 @@ namespace regular_expression
       ~regular_expression() override;
 
 
-      virtual void compile(const string& str);
+      virtual void compile(const ::scoped_string & scopedstr);
 
-      virtual ::pointer<result>run(const ::string & str);
+      virtual ::pointer<result>run(const ::scoped_string & scopedstr);
 
-      virtual bool replace(string & strFind, const ::string & strReplace, string & strResult);
+      virtual bool replace(string & strFind, const ::scoped_string & scopedstrReplace, string & strResult);
 
 
    };

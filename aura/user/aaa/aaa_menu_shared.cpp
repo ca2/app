@@ -5,12 +5,12 @@
 //  Created by Camilo Sasuke Thomas Borregaard Soerensen on 10/08/20.
 //
 #include "framework.h"
-//#include "base/user/user/_component.h"
+//#include "berg/user/user/_component.h"
 #include "menu_shared.h"
 
 
 void free_c_string_array(char * const * ppszList, int iCount);
-char * const * alloc_c_string_array(const string_array & stra);
+char * const * alloc_c_string_array(const string_array_base & stra);
 
  menu_shared::menu_shared()
 {
@@ -32,7 +32,7 @@ char * const * alloc_c_string_array(const string_array & stra);
 }
 
 
-::pointer<menu_shared>create_menu_shared(::particle * pparticle, const string_array & straParent, const string_array & straMenu, const string_array & straId)
+::pointer<menu_shared>create_menu_shared(::particle * pparticle, const string_array_base & straParent, const string_array_base & straMenu, const string_array_base & straId)
 {
 
    int iCount = (int) straParent.get_count();
@@ -46,7 +46,7 @@ char * const * alloc_c_string_array(const string_array & stra);
 
    }
 
-   ::pointer<menu_shared>pmenushared = __allocate menu_shared();
+   ::pointer<menu_shared>pmenushared = øallocate menu_shared();
 
    pmenushared->m_iCount = iCount;
    pmenushared->m_ppszParent = alloc_c_string_array(straParent);
@@ -63,16 +63,16 @@ char * const * alloc_c_string_array(const string_array & stra);
 }
 
 
-void * menu_shared::find_item(const ::string & pszParent, const ::string & pszId)
+void * menu_shared::find_item(const ::scoped_string & scopedstrParent, const ::scoped_string & scopedstrId)
 {
 
    for(int i = 0; i < m_iCount; i++)
    {
 
-      if(!strcmp(pszParent, m_ppszParent[i]))
+      if(!strcmp(scopedstrParent, m_ppszParent[i]))
       {
 
-         if(!strcmp(pszId, m_ppszId[i]))
+         if(!strcmp(scopedstrId, m_ppszId[i]))
          {
 
             return m_ositema[i];
@@ -201,7 +201,7 @@ public: // re-implementations only
       }
    }
 //   virtual void SetRadio(bool bOn = true, const ::action_context & context = ::e_source_system);
-   //virtual void SetText(const ::string & pszText, const ::action_context & context = ::e_source_system);
+   //virtual void SetText(const ::scoped_string & scopedstrText, const ::action_context & context = ::e_source_system);
 
 };
 

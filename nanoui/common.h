@@ -326,7 +326,7 @@ CLASS_DECL_NANOUI void ___save_image(::particle * pparticle, const ::file::path 
 extern CLASS_DECL_NANOUI void pick_multiple_file(
     void * poswindow, 
     const ::array<::pair<::string, ::string>> & filetypes, 
-    ::function < void(const ::string_array &) > promisseFiles);
+    ::function < void(const ::string_array_base &) > promisseFiles);
 
 
 #if defined(__APPLE__) || defined(DOXYGEN_DOCUMENTATION_BUILD)

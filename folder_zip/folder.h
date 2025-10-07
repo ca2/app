@@ -24,6 +24,8 @@ namespace folder_zip
       bool                    m_bOwnFile;
       unz_file_info           m_unzfileinfo;
 
+      ::string m_strLogNotFound;
+
 
       folder();
       ~folder() override;
@@ -38,9 +40,9 @@ namespace folder_zip
 
       bool locate_folder(const ::file::path & path) override;
 
-      bool locate(const ::function < bool(const char*) >& function) override;
+      bool locate(const ::function < bool(const_char_pointer )>& function) override;
 
-      bool has_sub_folder(const ::file::path & pathDir = nullptr) override;
+      bool has_sub_folder(const ::file::path & pathFolder = nullptr) override;
 
       void extract(memory& m, const ::file::path & pathFile = nullptr) override;
 
@@ -52,7 +54,7 @@ namespace folder_zip
 
       ::file_pointer get_file() override;
 
-      void e_extract_all(const ::file::path& pathTargetDir, ::file::path_array* ppatha, string_array* pstraFilter, bool_array* pbaBeginsFilterEat, ::function<bool(const::scoped_string& scopedstr) > functionCallback = {}) override;
+      void e_extract_all(const ::file::path& pathTargetDir, ::file::path_array_base* ppatha, string_array_base* pstraFilter, bool_array* pbaBeginsFilterEat, ::function<bool(const::scoped_string& scopedstr) > functionCallback = {}) override;
       ::file::path e_extract_first_ends(const ::file::path& pathTargetDir, const ::scoped_string& scopedstr) override;
 
 
@@ -62,10 +64,10 @@ namespace folder_zip
       void add_file(const ::file::path & pathRelative, ::file::file * pfile) override;
 
 
-      bool enumerate(::file::listing& listing) override;
-      //bool perform_file_relative_name_listing(::file::listing& listing) override;
+      bool enumerate(::file::listing_base& listing) override;
+      //bool perform_file_relative_name_listing(::file::listing_base& listing) override;
 
-
+      void didnt_locate_file(const_char_pointer pszFile);
 
    };
 

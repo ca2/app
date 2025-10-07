@@ -72,7 +72,7 @@ bool windowing::is_branch_current() const
 //      else
 //      {
 //
-//         pwindow = pimpl->__øcreate < ::windowing::window >();
+//         pwindow = pimpl->øcreate < ::windowing::window >();
 //
 //      }
 //
@@ -120,12 +120,12 @@ void windowing::initialize(::particle * pparticle)
    
    initialize_windowing();
    
-   //auto pdisplay = __øcreate < ::windowing::display >();
+   //auto pdisplay = øcreate < ::windowing::display >();
    
    ////      if(!pdisplay)
    ////      {
    ////
-   ////         informationf("\nFailed to __øcreate < ::windowing::display > at windowing_x11::windowing::initialize");
+   ////         informationf("\nFailed to øcreate < ::windowing::display > at windowing_x11::windowing::initialize");
    ////
    ////         return ::error_no_factory;
    ////
@@ -183,9 +183,9 @@ void windowing::defer_initialize_host_window(const ::int_rectangle* lpcrect)
    //
    //      }
    //
-   //      //__construct_new(m_phostinteraction);
+   //      //øconstruct_new(m_phostinteraction);
    //
-   //      __øconstruct(m_phostinteraction);
+   //      øconstruct(m_phostinteraction);
    //
    //      //m_phostinteraction->place(*lpcrect);
    //
@@ -209,7 +209,7 @@ void windowing::defer_initialize_host_window(const ::int_rectangle* lpcrect)
       
    }
    
-   __øconstruct(m_phostinteraction);
+   øconstruct(m_phostinteraction);
    
    m_phostinteraction->create_window();
    
@@ -301,7 +301,7 @@ bool windowing::targeted_keyboard_messages()
 
 //   }
 
-//   synchronous_lock synchronouslock(this->synchronization());
+//   synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
 //   m_procedurelist.add_tail(procedure);
 
@@ -332,7 +332,7 @@ bool windowing::targeted_keyboard_messages()
 
 //    //}
 
-//    synchronous_lock synchronouslock(this->synchronization());
+//    synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
 //    if (m_procedurelist.is_empty())
 //    {
@@ -391,7 +391,7 @@ bool windowing::targeted_keyboard_messages()
 //::pointer<::windowing::cursor>windowing::load_default_cursor(enum_cursor ecursor)
 //{
 //   
-//   synchronous_lock synchronouslock(this->synchronization());
+//   synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //   
 //   if (!m_pcursormanager)
 //   {
@@ -399,7 +399,7 @@ bool windowing::targeted_keyboard_messages()
 //      //auto estatus =
 //      //
 //      //
-//      __construct_new(m_pcursormanager);
+//      øconstruct_new(m_pcursormanager);
 //      
 //      //         if (!estatus)
 //      //         {
@@ -483,7 +483,7 @@ bool windowing::targeted_keyboard_messages()
 //   
 //   //}
 //   
-//   //synchronous_lock sl(user_synchronization());
+//   //synchronous_lock sl(user_synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //   
 //   windowing_output_debug_string("::x11_GetWindowRect 1");
 //   
@@ -491,7 +491,7 @@ bool windowing::targeted_keyboard_messages()
 //   
 //   //auto cursor = XCreateFontCursor(m_pdisplay->Display(), iCursor);
 //   
-//   //auto pcursorX11 = __øcreate < ::windowing_x11::cursor >();
+//   //auto pcursorX11 = øcreate < ::windowing_x11::cursor >();
 //   
 //   //pcursor = pcursorX11;
 //   
@@ -508,7 +508,7 @@ bool windowing::targeted_keyboard_messages()
 ::acme::windowing::window* windowing::window(oswindow oswindow)
 {
 
-   _synchronous_lock synchronouslock(this->synchronization());
+   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    return m_oswindowmap[oswindow];
 
@@ -623,7 +623,7 @@ bool windowing::defer_release_mouse_capture(::thread * pthread, ::acme::windowin
 //      //
 //      //            pwindow->m_puserinteractionKeyboardGainingFocusIfAny = pwindowGainingFocusIfAny;
 //      //
-//      //            //pwindow->aaa_m_pacmeuserinteractionKeyboardFocus->post_message(e_message_kill_focus);
+//      //            //pwindow->aaa_m_pacmeuserinteractionKeyboardFocus->post_message(::user::e_message_kill_focus);
 //      //
 //      //            pwindow->aaa_m_pacmeuserinteractionKeyboardFocus.release();
 //      
@@ -633,7 +633,7 @@ bool windowing::defer_release_mouse_capture(::thread * pthread, ::acme::windowin
 //      //         if (puserinteraction)
 //      //         {
 //      //
-//      //            puserinteraction->post_message(e_message_kill_focus);
+//      //            puserinteraction->post_message(::user::e_message_kill_focus);
 //      //
 //      //         }
 //      //
@@ -642,7 +642,7 @@ bool windowing::defer_release_mouse_capture(::thread * pthread, ::acme::windowin
 //      //
 //      //         //   pwindow->m_puserinteractionKeyboardGainingFocusIfAny = pwindowGainingFocusIfAny;
 //      //
-//      //         //   pwindow->aaa_m_pacmeuserinteractionKeyboardFocus->post_message(e_message_kill_focus);
+//      //         //   pwindow->aaa_m_pacmeuserinteractionKeyboardFocus->post_message(::user::e_message_kill_focus);
 //      //
 //      //         //}
 //      //

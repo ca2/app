@@ -2,7 +2,7 @@
 #include "multiple_option.h"
 #include "list_box.h"
 #include "acme/constant/id.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "acme/constant/user_key.h"
 #include "acme/handler/item.h"
 #include "acme/handler/topic.h"
@@ -74,7 +74,7 @@ namespace user
    ::subparticle_pointer multiple_option::clone()
    {
 
-      auto pmultipleoptionClone = m_papplication->__create_new < multiple_option >();
+      auto pmultipleoptionClone = m_papplication->øcreate_new < multiple_option >();
 
       return pmultipleoptionClone;
 
@@ -86,16 +86,16 @@ namespace user
 
       ::user::interaction::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_mouse_move, pchannel, this, &multiple_option::on_message_mouse_move);
-      MESSAGE_LINK(e_message_mouse_leave, pchannel, this, &multiple_option::on_message_mouse_leave);
-      MESSAGE_LINK(e_message_left_button_down, pchannel, this, &multiple_option::on_message_left_button_down);
-      MESSAGE_LINK(e_message_left_button_up, pchannel, this, &multiple_option::on_message_left_button_up);
-      MESSAGE_LINK(e_message_key_down,pchannel,this,&multiple_option::on_message_key_down);
-      MESSAGE_LINK(e_message_key_up,pchannel,this,&multiple_option::on_message_key_up);
-      //MESSAGE_LINK(e_message_set_focus,pchannel,this,&multiple_option::on_message_set_focus);
-      //MESSAGE_LINK(e_message_kill_focus, pchannel, this, &multiple_option::on_message_kill_focus);
-      MESSAGE_LINK(e_message_show_window, pchannel, this, &multiple_option::on_message_show_window);
-      MESSAGE_LINK(e_message_reposition, pchannel, this, &multiple_option::on_message_move);
+      USER_MESSAGE_LINK(::user::e_message_mouse_move, pchannel, this, &multiple_option::on_message_mouse_move);
+      USER_MESSAGE_LINK(::user::e_message_mouse_leave, pchannel, this, &multiple_option::on_message_mouse_leave);
+      USER_MESSAGE_LINK(::user::e_message_left_button_down, pchannel, this, &multiple_option::on_message_left_button_down);
+      USER_MESSAGE_LINK(::user::e_message_left_button_up, pchannel, this, &multiple_option::on_message_left_button_up);
+      USER_MESSAGE_LINK(::user::e_message_key_down,pchannel,this,&multiple_option::on_message_key_down);
+      USER_MESSAGE_LINK(::user::e_message_key_up,pchannel,this,&multiple_option::on_message_key_up);
+      //USER_MESSAGE_LINK(::user::e_message_set_focus,pchannel,this,&multiple_option::on_message_set_focus);
+      //USER_MESSAGE_LINK(::user::e_message_kill_focus, pchannel, this, &multiple_option::on_message_kill_focus);
+      USER_MESSAGE_LINK(::user::e_message_show_window, pchannel, this, &multiple_option::on_message_show_window);
+      USER_MESSAGE_LINK(::user::e_message_reposition, pchannel, this, &multiple_option::on_message_move);
 
    }
 
@@ -223,7 +223,7 @@ namespace user
       //   if (rectangleElement.contains(point))
       //   {
 
-      //      auto pitem = __allocate ::item(e_element_drop_down);
+      //      auto pitem = øallocate ::item(e_element_drop_down);
 
       //      auto puseritem = user_item(pitem);
       //      
@@ -240,7 +240,7 @@ namespace user
       //if (rectangleX.contains(point))
       //{
 
-      //   auto pitem = __allocate ::item(e_element_text);
+      //   auto pitem = øallocate ::item(e_element_text);
 
       //   auto puseritem = user_item(pitem);
       //      
@@ -250,7 +250,7 @@ namespace user
 
       //}
       //
-      //auto pitemNone = __allocate ::item(e_element_none);
+      //auto pitemNone = øallocate ::item(e_element_none);
       //
       //return pitemNone;
 
@@ -268,7 +268,7 @@ namespace user
          //if (m_plistbox.is_set() && m_plistbox->is_window())
          //{
 
-         //   m_plistbox->post_message(e_message_close);
+         //   m_plistbox->post_message(::user::e_message_close);
 
          //}
 
@@ -482,7 +482,7 @@ namespace user
       //if (::is_set(m_plistbox) && m_plistbox->is_window())
       //{
 
-      //   m_plistbox->post_message(e_message_close);
+      //   m_plistbox->post_message(::user::e_message_close);
 
       //}
 
@@ -592,7 +592,7 @@ namespace user
 
          }
          
-         auto pitem = __create_new<::item>();
+         auto pitem = øcreate_new<::item>();
 
          pitem->m_item.m_iItem = i;
 
@@ -642,7 +642,7 @@ namespace user
 
    //      auto itemCurrent = _001FindListText(str);
 
-   //      set_current_item(__allocate ::item(e_element_item, itemCurrent), actioncontext);
+   //      set_current_item(øallocate ::item(e_element_item, itemCurrent), actioncontext);
 
    //   }
 
@@ -729,7 +729,7 @@ namespace user
 //         throw ::exception(todo);
 //#endif
 //         break;
-//      case e_message_measure_item:
+//      case ::user::e_message_measure_item:
 //#ifdef WINDOWSEX
 //         MeasureItem((LPMEASUREITEMSTRUCT)pusermessage->m_lparam);
 //#else
@@ -772,7 +772,7 @@ namespace user
    }
 
 
-   ::collection::index multiple_option::insert_item_at(::collection::index nIndex, const ::string & pszString)
+   ::collection::index multiple_option::insert_item_at(::collection::index nIndex, const ::scoped_string & scopedstrString)
    {
 
       //ASSERT(is_window());
@@ -806,7 +806,7 @@ namespace user
    ::collection::index multiple_option::add_item(const ::scoped_string& scopedstr, const ::atom & atom)
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       auto iIndex = m_atomaOptions.add(atom);
 
@@ -816,10 +816,10 @@ namespace user
 
    }
 
-   //::collection::index multiple_option::add_string(const ::string & pszString,uptr dwItemData)
+   //::collection::index multiple_option::add_string(const ::scoped_string & scopedstrString,uptr dwItemData)
    //{
 
-   //   synchronous_lock synchronouslock(this->synchronization());
+   //   synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //   ASSERT(m_edatamode == data_mode_opaque);
 
@@ -832,12 +832,12 @@ namespace user
 
    //   defer_create_list_box();
 
-   //   return m_plistbox->add_item(pszString, dwItemData);
+   //   return m_plistbox->add_item(scopedstrString, dwItemData);
 
    //}
 
 
-   //::collection::index multiple_option::add_string(const ::string & pszString, const ::string & strValue)
+   //::collection::index multiple_option::add_string(const ::scoped_string & scopedstrString, const ::scoped_string & scopedstrValue)
    //{
 
    //   ASSERT(m_edatamode == data_mode_string);
@@ -851,7 +851,7 @@ namespace user
 
    //   defer_create_list_box();
 
-   //   auto iIndex = m_plistbox->add_string(pszString, strValue);
+   //   auto iIndex = m_plistbox->add_string(scopedstrString, strValue);
 
    //   return iIndex;
 

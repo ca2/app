@@ -68,13 +68,13 @@ if (${MSVC})
 elseif (${FREEBSD})
 
 
-    #pkg_check_modules(PKGCONFIG librsvg-2.0 freeimage)
-    pkg_check_modules(PKGCONFIG_${PROJECT_NAME} freeimage)
-    target_compile_options(${PROJECT_NAME} PRIVATE -fpermissive ${PKGCONFIG_${PROJECT_NAME}_CFLAGS})
-    target_compile_options(static_${PROJECT_NAME} PRIVATE -fpermissive ${PKGCONFIG_${PROJECT_NAME}_CFLAGS})
-    target_link_options(${PROJECT_NAME} PRIVATE  ${PKGCONFIG_${PROJECT_NAME}_LDFLAGS})
-    target_link_libraries(${PROJECT_NAME} PRIVATE ${library_references} ${global_library_references} ${PKGCONFIG_${PROJECT_NAME}_LIBRARIES})
-    target_link_libraries(static_${PROJECT_NAME} PRIVATE ${static_library_references} ${PKGCONFIG_${PROJECT_NAME}_LIBRARIES})
+    #pkg_check_modules(${PROJECT_NAME}_PKGCONFIG librsvg-2.0 freeimage)
+    pkg_check_modules(${PROJECT_NAME}_PKGCONFIG_${PROJECT_NAME} freeimage)
+    target_compile_options(${PROJECT_NAME} PRIVATE -fpermissive ${${PROJECT_NAME}_PKGCONFIG_${PROJECT_NAME}_CFLAGS})
+    target_compile_options(static_${PROJECT_NAME} PRIVATE -fpermissive ${${PROJECT_NAME}_PKGCONFIG_${PROJECT_NAME}_CFLAGS})
+    target_link_options(${PROJECT_NAME} PRIVATE  ${${PROJECT_NAME}_PKGCONFIG_${PROJECT_NAME}_LDFLAGS})
+    target_link_libraries(${PROJECT_NAME} PRIVATE ${library_references} ${global_library_references} ${${PROJECT_NAME}_PKGCONFIG_${PROJECT_NAME}_LIBRARIES})
+    target_link_libraries(static_${PROJECT_NAME} PRIVATE ${static_library_references} ${${PROJECT_NAME}_PKGCONFIG_${PROJECT_NAME}_LIBRARIES})
 
 
     target_link_options(${PROJECT_NAME} PRIVATE -Wl,-z,defs)
@@ -89,8 +89,8 @@ elseif (${FREEBSD})
 elseif (${LINUX} OR ${OPENBSD} OR ${NETBSD} OR ${ANDROID})
 
 
-    #if(USE_PKGCONFIG)
-    #    pkg_check_modules(PKGCONFIG_${PROJECT_NAME} librsvg-2.0)
+    #if(${USE_PKGCONFIG})
+    #    pkg_check_modules(${PROJECT_NAME}_PKGCONFIG_${PROJECT_NAME} librsvg-2.0)
     #endif()
 
 
@@ -99,10 +99,16 @@ elseif (${LINUX} OR ${OPENBSD} OR ${NETBSD} OR ${ANDROID})
     target_compile_definitions(static_${PROJECT_NAME} PRIVATE CUBE)
 
 
+    if(${USE_PORT_FREEIMAGE})
+        set(freeimage_library port_freeimage)
+    else()
+        set(freeimage_library freeimage)
+    endif()
 
-    target_compile_options(${PROJECT_NAME} PRIVATE ${PKGCONFIG_${PROJECT_NAME}_CFLAGS})
-    target_link_options(${PROJECT_NAME} PRIVATE ${PKGCONFIG_${PROJECT_NAME}_LDFLAGS})
-    target_link_libraries(${PROJECT_NAME} PRIVATE ${PKGCONFIG_${PROJECT_NAME}_LIBRARIES} freeimage ${library_references} ${global_library_references})
+
+    target_compile_options(${PROJECT_NAME} PRIVATE ${${PROJECT_NAME}_PKGCONFIG_${PROJECT_NAME}_CFLAGS})
+    target_link_options(${PROJECT_NAME} PRIVATE ${${PROJECT_NAME}_PKGCONFIG_${PROJECT_NAME}_LDFLAGS})
+    target_link_libraries(${PROJECT_NAME} PRIVATE ${${PROJECT_NAME}_PKGCONFIG_${PROJECT_NAME}_LIBRARIES} ${freeimage_library} ${library_references} ${global_library_references})
     target_link_options(${PROJECT_NAME} PRIVATE -Wl,-z,defs)
     # target_link_options(static_${PROJECT_NAME} PRIVATE --whole-archive)
 

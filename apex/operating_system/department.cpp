@@ -58,7 +58,7 @@ namespace operating_system
 
       string strRead;
       
-      auto pprocessor = __create_new < process_processor >();
+      auto pprocessor = øcreate_new < process_processor >();
       
       pprocessor->process(scopedstrCmdLine, time, pbPotentialTimeout, &strRead);
 
@@ -71,9 +71,9 @@ namespace operating_system
    exit_status department::retry(const ::scoped_string & scopedstrCmdLine,const class time & time,::e_display edisplay, bool * pbPotentialTimeout)
    {
 
-      //process_processor proc(pszCmdLine, dur, pbPotentialTimeout);
+      //process_processor proc(scopedstrCmdLine, dur, pbPotentialTimeout);
       
-      auto pprocessor = __create_new < process_processor >();
+      auto pprocessor = øcreate_new < process_processor >();
       
       pprocessor->process(scopedstrCmdLine, time, pbPotentialTimeout);
 
@@ -85,7 +85,7 @@ namespace operating_system
    exit_status department::synch(const ::scoped_string & scopedstrCmdLine, ::e_display edisplay, const class time & time, bool * pbPotentialTimeout)
    {
 
-      auto pprocessor = __create_new < process_processor >();
+      auto pprocessor = øcreate_new < process_processor >();
       
       pprocessor->process(scopedstrCmdLine, time, pbPotentialTimeout);
 
@@ -97,7 +97,7 @@ namespace operating_system
    bool department::launch(const ::scoped_string & scopedstrCmdLine,::e_display edisplay, const ::scoped_string & scopedstrDir)
    {
 
-      const ::ansi_character * pszEnd = nullptr;
+      const_char_pointer pszEnd = nullptr;
 
       string strBin = consume_command_line_parameter(scopedstrCmdLine,&pszEnd);
 
@@ -126,11 +126,11 @@ namespace operating_system
    exit_status department::elevated_synch(const ::scoped_string & scopedstrCmdLine,::e_display edisplay,const class time & time,bool * pbPotentialTimeout)
    {
 
-//      process_processor proc(pszCmdLine,dur,pbPotentialTimeout, nullptr, true);
+//      process_processor proc(scopedstrCmdLine,dur,pbPotentialTimeout, nullptr, true);
 //
 //      return proc.m_exitstatus;
       
-      auto pprocessor = __create_new < process_processor >();
+      auto pprocessor = øcreate_new < process_processor >();
       
       pprocessor->process(scopedstrCmdLine, time, pbPotentialTimeout, nullptr, true);
 
@@ -145,14 +145,14 @@ namespace operating_system
    }
 
 
-   void department::process_thread::construct_process_thread(const ::string & strCmdLine, const class time & time, bool * pbPotentialTimeout, string * pstrRead, bool bElevated)
+   void department::process_thread::construct_process_thread(const ::scoped_string & scopedstrCmdLine, const class time & time, bool * pbPotentialTimeout, string * pstrRead, bool bElevated)
    {
 
       //initialize(pobjectParent);
 
-      m_strCmdLine = strCmdLine;
+      m_strCmdLine = scopedstrCmdLine;
       
-      __øconstruct(m_pprocess);
+      øconstruct(m_pprocess);
 
       m_pstrRead = pstrRead;
 
@@ -366,16 +366,16 @@ namespace operating_system
    }
 
 
-   void department::process_processor::process(const ::string & strCmdLine,const class time & dur,bool * pbPotentialTimeout,string * pstrRead,bool bElevated)
+   void department::process_processor::process(const ::scoped_string & scopedstrCmdLine,const class time & dur,bool * pbPotentialTimeout,string * pstrRead,bool bElevated)
    {
 
       m_pbPotentialTimeout = pbPotentialTimeout;
 
       m_bElevated = bElevated;
 
-      m_pthread = __create_new < process_thread > ();
+      m_pthread = øcreate_new < process_thread > ();
 
-      m_pthread->construct_process_thread(strCmdLine, dur, &m_bPotentialTimeout, pstrRead, bElevated);
+      m_pthread->construct_process_thread(scopedstrCmdLine, dur, &m_bPotentialTimeout, pstrRead, bElevated);
 
       //m_pthread->m_bAutoDelete = true;
 

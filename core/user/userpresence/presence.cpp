@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "presence.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "acme/prototype/prototype/url.h"
 #include "acme/filesystem/filesystem/directory_context.h"
 #include "acme/filesystem/filesystem/file_context.h"
@@ -74,7 +74,7 @@ namespace userpresence
         // return;
 
       string strHost = file()->as_string(directory()->appdata() / "database\\text\\last_good_known_account_com.txt");
-      string_array straRequestingServer;
+      string_array_base straRequestingServer;
       straRequestingServer.add("api.ca2.network");
       straRequestingServer.add("eu-api.ca2.network");
       straRequestingServer.add("asia-api.ca2.network");
@@ -99,10 +99,10 @@ namespace userpresence
    {
 
       // user presence status activity reporting
-      if (pmouse->get_message() == e_message_left_button_down
-          || pmouse->get_message() == e_message_right_button_down
-          || pmouse->get_message() == e_message_middle_button_down
-          || pmouse->get_message() == e_message_mouse_move)
+      if (pmouse->get_message() == ::user::e_message_left_button_down
+          || pmouse->get_message() == ::user::e_message_right_button_down
+          || pmouse->get_message() == ::user::e_message_middle_button_down
+          || pmouse->get_message() == ::user::e_message_mouse_move)
       {
 
          auto psession = session();

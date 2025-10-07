@@ -266,7 +266,7 @@ void nsUniversalDetector::Report(const ::string & aCharset)
 	}
 }
 
-const char* nsUniversalDetector::GetCharset(void)
+const_char_pointer nsUniversalDetector::GetCharset(void)
 {
 	if (mDone == PR_TRUE)
 		return (mDetectedCharset);

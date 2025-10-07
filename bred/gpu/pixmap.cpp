@@ -3,6 +3,7 @@
 #include "layer.h"
 #include "renderer.h"
 #include "pixmap.h"
+#include "texture.h"
 #include "acme/exception/interface_only.h"
 
 
@@ -13,6 +14,7 @@ namespace gpu
    pixmap::pixmap()
    {
 
+      m_pgputexture = nullptr;
       //m_bClearColor = false;
       //m_bRenderTarget = false;
       //m_bDepthStencil = false;
@@ -28,13 +30,22 @@ namespace gpu
    }
 
 
-   void pixmap::initialize_gpu_pixmap(::gpu::renderer* pgpurenderer, const ::int_size& size)
+   void pixmap::initialize_gpu_pixmap(::gpu::texture* pgputexture, const ::int_rectangle& rectangle)
    {
 
-      /*m_pgpurenderer = pgpurenderer;
-      m_rectangleTarget = rectangleTarget;*/
+      m_pgputexture = pgputexture;
 
-      m_size = size;
+      m_rectangle = rectangle;
+
+      on_initialize_gpu_pixmap();
+
+   }
+
+
+   void pixmap::on_initialize_gpu_pixmap()
+   {
+
+
 
    }
 
@@ -42,14 +53,15 @@ namespace gpu
    ::int_size pixmap::size()
    {
 
-      return m_size;
+      return m_rectangle.size();
 
    }
 
 
-   void pixmap::set_pixels(const void* data, int w, int h)
+   void pixmap::set_pixels(const void* data)
    {
 
+      m_pgputexture->set_pixels(m_rectangle, data);
 
    }
 

@@ -93,7 +93,7 @@ namespace axis
 
          int h = rectangle.height();
 
-         auto ppen = __øcreate < ::draw2d::pen >();
+         auto ppen = øcreate < ::draw2d::pen >();
 
          bool bHover = pgraphics->m_pdrawcontext != nullptr && pgraphics->m_pdrawcontext->is_control_hover();
 
@@ -165,13 +165,13 @@ namespace axis
 
          pgraphics->set(ppen);
 
-         auto ppath1 = __øcreate < ::draw2d::path>();
+         auto ppath1 = øcreate < ::draw2d::path>();
 
          ppath1->set_current_point(2 * w / 15, 8 * h / 15);
          ppath1->add_line(6 * w / 15, 12 * h / 15);
          ppath1->add_line(13 * w / 15, 5 * h / 15);
 
-         auto ppath2 = __øcreate < ::draw2d::path>();
+         auto ppath2 = øcreate < ::draw2d::path>();
 
          ppath2->set_current_point(2 * w / 15, 9 * h / 15);
          ppath2->add_line(6 * w / 15, 13 * h / 15);
@@ -250,7 +250,7 @@ namespace axis
       //      if (!pbrush)
       //      {
 
-      //         pbrush = __øcreate < ::draw2d::brush >();
+      //         pbrush = øcreate < ::draw2d::brush >();
 
       //         pbrush->create_solid(pinteraction->get_color(this, ::e_element_background, ::user::e_state_hover));
 
@@ -403,7 +403,7 @@ namespace axis
 
       //         {
 
-      //            //auto ppathRound = __øcreate < ::draw2d::path >();
+      //            //auto ppathRound = øcreate < ::draw2d::path >();
 
       //            //ppathRound->begin_figure(true, ::draw2d::e_fill_mode_winding);
 
@@ -437,7 +437,7 @@ namespace axis
 
       //         {
 
-      //            //auto ppathRound = __øcreate < ::draw2d::path >();
+      //            //auto ppathRound = øcreate < ::draw2d::path >();
 
       //            //ppathRound->begin_figure(true, ::draw2d::e_fill_mode_winding);
 
@@ -472,7 +472,7 @@ namespace axis
 
       //         {
 
-      //            //auto ppathRound = __øcreate < ::draw2d::path >();
+      //            //auto ppathRound = øcreate < ::draw2d::path >();
 
       //            //ppathRound->begin_figure(true, ::draw2d::e_fill_mode_winding);
 
@@ -531,7 +531,7 @@ namespace axis
       //   if (!ppen)
       //   {
 
-      //      ppen = __øcreate < ::draw2d::pen >();
+      //      ppen = øcreate < ::draw2d::pen >();
 
       //      ppen->create_solid(1.0, pinteraction->get_color(this, ::e_element_border));
 
@@ -667,7 +667,7 @@ namespace axis
    //   if (userstyle()->m_mapColor.is_null())
    //   {
 
-   //      userstyle()->m_mapColor = __allocate color_map();
+   //      userstyle()->m_mapColor = øallocate color_map();
 
    //   }
 
@@ -678,13 +678,13 @@ namespace axis
    //}
 
 
-  // ::write_text::font_pointer style::create_point_font(e_font efont, const ::string & pszFamilyName, double dFontSize, int iFontWeight)
+  // ::write_text::font_pointer style::create_point_font(e_font efont, const ::scoped_string & scopedstrFamilyName, double dFontSize, int iFontWeight)
   // {
 
   //    if (userstyle()->m_mapFont.is_null())
   //    {
 
-  //       userstyle()->m_mapFont = __allocate font_map();
+  //       userstyle()->m_mapFont = øallocate font_map();
 
   //    }
 
@@ -693,11 +693,11 @@ namespace axis
   ///*    if (font.is_null())
   //    {*/
 
-  //    __defer_construct(font);
+  //    ødefer_construct(font);
 
   //  //  }
 
-  //    pfont->create_point_font(pszFamilyName, dFontSize, iFontWeight);
+  //    pfont->create_point_font(scopedstrFamilyName, dFontSize, iFontWeight);
 
   //    return font;
 
@@ -770,7 +770,7 @@ namespace axis
    //   if (userstyle()->m_mapTranslucency.is_null())
    //   {
 
-   //      userstyle()->m_mapTranslucency = __allocate translucency_map();
+   //      userstyle()->m_mapTranslucency = øallocate translucency_map();
 
    //   }
 
@@ -787,7 +787,7 @@ namespace axis
    //   if (userstyle()->m_mapFlag.is_null())
    //   {
 
-   //      userstyle()->m_mapFlag = __allocate translucency_map();
+   //      userstyle()->m_mapFlag = øallocate translucency_map();
 
    //   }
 
@@ -852,7 +852,7 @@ namespace axis
    //   if (userstyle()->m_mapRect.is_null())
    //   {
 
-   //      userstyle()->m_mapRect = __allocate rect_map();
+   //      userstyle()->m_mapRect = øallocate rect_map();
 
    //   }
 
@@ -885,7 +885,7 @@ namespace axis
    //   if (userstyle()->m_mapInt.is_null())
    //   {
 
-   //      userstyle()->m_mapInt = __allocate ::user::int_map();
+   //      userstyle()->m_mapInt = øallocate ::user::int_map();
 
    //   }
 
@@ -902,7 +902,7 @@ namespace axis
    //   if (userstyle()->m_mapDouble.is_null())
    //   {
 
-   //      userstyle()->m_mapDouble = __allocate ::user::double_map();
+   //      userstyle()->m_mapDouble = øallocate ::user::double_map();
 
    //   }
 
@@ -996,7 +996,7 @@ namespace axis
       //      if (spuserstyle.is_null())
       //      {
 
-      //         spuserstyle = __allocate style(this);
+      //         spuserstyle = øallocate style(this);
 
       //      }
 
@@ -1070,7 +1070,7 @@ namespace axis
 
       //   style_pointer pstyle;
 
-      //   if (m_map.lookup(eschema, pstyle))
+      //   if (m_map.find(eschema, pstyle))
       //   {
 
       //      return pstyle;
@@ -1278,7 +1278,7 @@ namespace axis
    //   if (userstyle()->m_mapColor.is_null())
    //   {
 
-   //      userstyle()->m_mapColor = __allocate color_map();
+   //      userstyle()->m_mapColor = øallocate color_map();
 
    //   }
 
@@ -1289,13 +1289,13 @@ namespace axis
    //}
 
 
-  // ::write_text::font_pointer style::create_point_font(e_font efont, const ::string & pszFamilyName, double dFontSize, int iFontWeight)
+  // ::write_text::font_pointer style::create_point_font(e_font efont, const ::scoped_string & scopedstrFamilyName, double dFontSize, int iFontWeight)
   // {
 
   //    if (userstyle()->m_mapFont.is_null())
   //    {
 
-  //       userstyle()->m_mapFont = __allocate font_map();
+  //       userstyle()->m_mapFont = øallocate font_map();
 
   //    }
 
@@ -1304,11 +1304,11 @@ namespace axis
   ///*    if (font.is_null())
   //    {*/
 
-  //    __defer_construct(font);
+  //    ødefer_construct(font);
 
   //  //  }
 
-  //    pfont->create_point_font(pszFamilyName, dFontSize, iFontWeight);
+  //    pfont->create_point_font(scopedstrFamilyName, dFontSize, iFontWeight);
 
   //    return font;
 
@@ -1381,7 +1381,7 @@ namespace axis
    //   if (userstyle()->m_mapTranslucency.is_null())
    //   {
 
-   //      userstyle()->m_mapTranslucency = __allocate translucency_map();
+   //      userstyle()->m_mapTranslucency = øallocate translucency_map();
 
    //   }
 
@@ -1398,7 +1398,7 @@ namespace axis
    //   if (userstyle()->m_mapFlag.is_null())
    //   {
 
-   //      userstyle()->m_mapFlag = __allocate translucency_map();
+   //      userstyle()->m_mapFlag = øallocate translucency_map();
 
    //   }
 
@@ -1463,7 +1463,7 @@ namespace axis
    //   if (userstyle()->m_mapRect.is_null())
    //   {
 
-   //      userstyle()->m_mapRect = __allocate rect_map();
+   //      userstyle()->m_mapRect = øallocate rect_map();
 
    //   }
 
@@ -1496,7 +1496,7 @@ namespace axis
    //   if (userstyle()->m_mapInt.is_null())
    //   {
 
-   //      userstyle()->m_mapInt = __allocate ::user::int_map();
+   //      userstyle()->m_mapInt = øallocate ::user::int_map();
 
    //   }
 
@@ -1513,7 +1513,7 @@ namespace axis
    //   if (userstyle()->m_mapDouble.is_null())
    //   {
 
-   //      userstyle()->m_mapDouble = __allocate ::user::double_map();
+   //      userstyle()->m_mapDouble = øallocate ::user::double_map();
 
    //   }
 
@@ -1570,7 +1570,7 @@ namespace axis
    //      if (spuserstyle.is_null())
    //      {
 
-   //         spuserstyle = __allocate style(this);
+   //         spuserstyle = øallocate style(this);
 
    //      }
 
@@ -1644,7 +1644,7 @@ namespace axis
 
    //   style_pointer pstyle;
 
-   //   if (m_map.lookup(eschema, pstyle))
+   //   if (m_map.find(eschema, pstyle))
    //   {
 
    //      return pstyle;

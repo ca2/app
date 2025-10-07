@@ -1,18 +1,18 @@
 #include "framework.h"
 #include "group_image_list.h"
 #include "acme/constant/id.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "aura/graphics/image/context.h"
 #include "acme/handler/item.h"
 #include "acme/handler/topic.h"
 #include "acme/user/user/content.h"
 #include "aura/message/user.h"
 #include "aura/platform/context.h"
-#include "base/user/menu/button.h"
-#include "base/user/menu/item.h"
-#include "base/user/menu/item_ptra.h"
-#include "base/user/menu/menu.h"
-#include "base/user/user/user.h"
+#include "berg/user/menu/button.h"
+#include "berg/user/menu/item.h"
+#include "berg/user/menu/item_ptra.h"
+#include "berg/user/menu/menu.h"
+#include "berg/user/user/user.h"
 
 
 namespace userex
@@ -86,24 +86,24 @@ namespace userex
 
       ::user::impact::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_create, pchannel, this, &group_image_list_impact::on_message_create);
+      USER_MESSAGE_LINK(::user::e_message_create, pchannel, this, &group_image_list_impact::on_message_create);
 
 
    }
 
 
-   ::userex::image_list_impact * group_image_list_impact::add_group(::atom idGroup, string strIcon, string strTitle, ::file::path pathFolder)
+   ::userex::image_list_impact * group_image_list_impact::add_group(::atom idGroup, const ::scoped_string & scopedstrIcon, const ::scoped_string & scopedstrTitle, ::file::path pathFolder)
    {
 
-      ::pointer<group>pgroup = __allocate group();
+      ::pointer<group>pgroup = øallocate group();
 
       pgroup->m_iIndex = m_groupa.get_size();
 
       pgroup->m_atomGroup = idGroup;
 
-      pgroup->m_strIcon = strIcon;
+      pgroup->m_strIcon = scopedstrIcon;
 
-      pgroup->m_strTitle = strTitle;
+      pgroup->m_strTitle = scopedstrTitle;
 
       m_atomaHandledCommands.add("menu_item_" + idGroup);
 
@@ -139,7 +139,7 @@ namespace userex
 
       m_atomaHandledCommands.add(id());
 
-      __construct_new(m_pbuttonMenu);
+      øconstruct_new(m_pbuttonMenu);
 
       m_pbuttonMenu->create_control(this, id());
 
@@ -194,7 +194,7 @@ namespace userex
    }
 
 
-   ::file::path group_image_list_impact::get_link_path(string strLink)
+   ::file::path group_image_list_impact::get_link_path(const ::scoped_string & scopedstrLink)
    {
 
       ::file::path path;
@@ -202,7 +202,7 @@ namespace userex
       for (auto & group : m_groupa)
       {
 
-         path = group->m_plist->get_link_path(strLink);
+         path = group->m_plist->get_link_path(scopedstrLink);
 
          if (path.has_character())
          {

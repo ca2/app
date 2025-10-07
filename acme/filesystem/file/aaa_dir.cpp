@@ -69,22 +69,22 @@ namespace dir
       string name(const ::file::path & path1)
       {
          const ::scoped_string & scopedstr = path1 + strlen(path1) - 1;
-         while(psz >= path1)
+         while(scopedstr >= path1)
          {
             if(*psz != '\\' && *psz != '/' && *psz != ':')
                break;
             psz--;
          }
-         while(psz >= path1)
+         while(scopedstr >= path1)
          {
             if(*psz == '\\' || *psz == '/' || *psz == ':')
                break;
             psz--;
          }
-         if(psz >= path1) // strChar == "\\" || strChar == "/"
+         if(scopedstr >= path1) // strChar == "\\" || strChar == "/"
          {
             const ::ansi_character * pszEnd = psz;
-            /*while(psz >= path1)
+            /*while(scopedstr >= path1)
              {
              if(*psz != '\\' && *psz != '/' && *psz != ':')
              break;
@@ -701,7 +701,7 @@ namespace dir
 
 pdirectorysystem->create CreateDirectoryW last error(%d)=%s", dwError, pszError);
 
-            ::LocalFree(pszError);
+            ::LocalFree(scopedstrError);
 
             //m_isdirmap.set(stra[i], false);
 
@@ -947,7 +947,7 @@ pdirectorysystem->create CreateDirectoryW last error(%d)=%s", dwError, pszError)
 
    #if defined(LINUX) || defined(__APPLE__) || defined(__ANDROID__)
 
-      DIR * dirp = opendir(psz);
+      DIR * dirp = opendir(scopedstr);
 
       if(dirp == nullptr)
          return;
@@ -983,7 +983,7 @@ pdirectorysystem->create CreateDirectoryW last error(%d)=%s", dwError, pszError)
       try
       {
 
-         if(string(psz).case_insensitive_order("image://") == 0)
+         if(string(scopedstr).case_insensitive_order("image://") == 0)
          {
 
             strPrefix = "image://";
@@ -1002,7 +1002,7 @@ pdirectorysystem->create CreateDirectoryW last error(%d)=%s", dwError, pszError)
             }
 
          }
-         else if (string(psz).case_insensitive_order("music://") == 0)
+         else if (string(scopedstr).case_insensitive_order("music://") == 0)
          {
 
             strPrefix = "music://";
@@ -1021,7 +1021,7 @@ pdirectorysystem->create CreateDirectoryW last error(%d)=%s", dwError, pszError)
             }
 
          }
-         else if (string(psz).case_insensitive_order("video://") == 0)
+         else if (string(scopedstr).case_insensitive_order("video://") == 0)
          {
 
             strPrefix = "video://";
@@ -1040,7 +1040,7 @@ pdirectorysystem->create CreateDirectoryW last error(%d)=%s", dwError, pszError)
             }
 
          }
-         else if (string(psz).case_insensitive_order("document://") == 0)
+         else if (string(scopedstr).case_insensitive_order("document://") == 0)
          {
 
             strPrefix = "document://";
@@ -1145,7 +1145,7 @@ pdirectorysystem->create CreateDirectoryW last error(%d)=%s", dwError, pszError)
             if (strPrefix.has_character())
             {
 
-               string_array stra;
+               string_array_base stra;
 
                stra.explode("/", str);
 
@@ -1222,7 +1222,7 @@ pdirectorysystem->create CreateDirectoryW last error(%d)=%s", dwError, pszError)
 
       HANDLE hFind;
 
-      hFind = FindFirstFileW(wstring(psz / "*"), &FindFileData);
+      hFind = FindFirstFileW(wstring(scopedstr / "*"), &FindFileData);
 
       if (hFind == INVALID_HANDLE_VALUE)
          return;
@@ -1256,7 +1256,7 @@ pdirectorysystem->create CreateDirectoryW last error(%d)=%s", dwError, pszError)
 
    #if defined(LINUX) || defined(__APPLE__) || defined(__ANDROID__)
 
-      DIR * dirp = opendir(psz);
+      DIR * dirp = opendir(scopedstr);
 
       if(dirp == nullptr)
          return;
@@ -1287,7 +1287,7 @@ pdirectorysystem->create CreateDirectoryW last error(%d)=%s", dwError, pszError)
 
    #elif defined(UNIVERSAL_WINDOWS)
 
-      ::winrt::Windows::Storage::StorageFolder ^ folder = wait(::winrt::Windows::Storage::StorageFolder::GetFolderFromPathAsync(string(psz)));
+      ::winrt::Windows::Storage::StorageFolder ^ folder = wait(::winrt::Windows::Storage::StorageFolder::GetFolderFromPathAsync(string(scopedstr)));
 
       ::winrt::Windows::Foundation::Collections::IVectorView < ::winrt::Windows::Storage::StorageFolder ^ > ^ a = wait(folder->GetFoldersAsync());
 
@@ -1303,7 +1303,7 @@ pdirectorysystem->create CreateDirectoryW last error(%d)=%s", dwError, pszError)
 
       HANDLE hFind;
 
-      hFind = FindFirstFileW(wstring(psz), &FindFileData);
+      hFind = FindFirstFileW(wstring(scopedstr), &FindFileData);
 
       if (hFind == INVALID_HANDLE_VALUE)
          return;
@@ -1338,7 +1338,7 @@ pdirectorysystem->create CreateDirectoryW last error(%d)=%s", dwError, pszError)
 
    #if defined(LINUX) || defined(__APPLE__) || defined(__ANDROID__)
 
-      DIR * dirp = opendir(psz);
+      DIR * dirp = opendir(scopedstr);
 
       if(dirp == nullptr)
          return;
@@ -1369,7 +1369,7 @@ pdirectorysystem->create CreateDirectoryW last error(%d)=%s", dwError, pszError)
 
    #elif defined(UNIVERSAL_WINDOWS)
 
-      ::winrt::Windows::Storage::StorageFolder ^ folder = wait(::winrt::Windows::Storage::StorageFolder::GetFolderFromPathAsync(string(psz)));
+      ::winrt::Windows::Storage::StorageFolder ^ folder = wait(::winrt::Windows::Storage::StorageFolder::GetFolderFromPathAsync(string(scopedstr)));
 
       ::winrt::Windows::Foundation::Collections::IVectorView < ::winrt::Windows::Storage::StorageFolder ^ > ^ a = wait(folder->GetFoldersAsync());
 
@@ -1385,7 +1385,7 @@ pdirectorysystem->create CreateDirectoryW last error(%d)=%s", dwError, pszError)
 
       HANDLE hFind;
 
-      hFind = FindFirstFileW(wstring(psz), &FindFileData);
+      hFind = FindFirstFileW(wstring(scopedstr), &FindFileData);
 
       if (hFind == INVALID_HANDLE_VALUE)
          return;
@@ -1417,12 +1417,12 @@ pdirectorysystem->create CreateDirectoryW last error(%d)=%s", dwError, pszError)
    }
 
 
-   ::file::path pathfind(const string & pszEnv,const string & pszTopic,const string & pszMode)
+   ::file::path pathfind(const ::scoped_string & scopedstrEnv,const ::scoped_string & scopedstrTopic,const ::scoped_string & scopedstrMode)
    {
 
-      string_array stra;
+      string_array_base stra;
 
-      stra.add_tokens(pszEnv, ":");
+      stra.add_tokens(scopedstrEnv, ":");
 
       string strCandidate;
 
@@ -1478,7 +1478,7 @@ extern "C" int make_path(const ::scoped_string & scopedstr)
 
          auto pdirectorysystem = psystem->m_pdirectorysystem;
 
-pdirectorysystem->create(psz) != false;
+pdirectorysystem->create(scopedstr) != false;
 
 }
 

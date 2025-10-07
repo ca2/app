@@ -1151,7 +1151,7 @@ bool macos1_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const 
 
    }
 
-   synchronous_lock synchronouslock(pmutex);
+   synchronous_lock synchronouslock(pmutex, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
 
    return mm1_get_file_image(pcr, cx, cy, iScan, psz);
@@ -1256,14 +1256,14 @@ int_bool delete_hcursor(HCURSOR h)
 double font_similarity(const ::scoped_string & scopedstrSystem, const ::scoped_string & scopedstrUser)
 {
 
-   if (::is_null(pszSystem) || ::is_null(pszUser))
+   if (::is_null(scopedstrSystem) || ::is_null(scopedstrUser))
    {
 
       return 0.0;
 
    }
 
-   if (!stricmp(pszSystem, pszUser))
+   if (!stricmp(scopedstrSystem, pszUser))
    {
 
       return 1.0;

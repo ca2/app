@@ -47,7 +47,7 @@ inline ___keep_task_payload keep_task_payload(const ::atom& atom)
 
 #define __task_guard_ret(flag, ret) \
  \
-synchronous_lock synchronouslock(this->synchronization()); \
+synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX); \
  \
 if (flag) \
 { \
@@ -65,7 +65,7 @@ synchronouslock.unlock()
 
 #define __guard_wait_ret(flag, ret) \
  \
-synchronous_lock synchronouslock(this->synchronization()); \
+synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX); \
  \
 while (flag) \
 { \
@@ -95,7 +95,7 @@ synchronouslock.unlock()
 
 #define __task_guard_ret(flag, ret) \
  \
-synchronous_lock synchronouslock(this->synchronization()); \
+synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX); \
  \
 if (flag) \
 { \
@@ -113,7 +113,7 @@ synchronouslock.unlock()
 
 #define __guard_wait_ret(flag, ret) \
  \
-synchronous_lock synchronouslock(this->synchronization()); \
+synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX); \
  \
 while (flag) \
 { \

@@ -374,7 +374,7 @@ namespace networking_bsd
    }
 
 
-   websocket_client::websocket_client(const string & url_in, const ::string & strProtocol) :
+   websocket_client::websocket_client(const string & url_in, const ::scoped_string & scopedstrProtocol) :
       //::object(&h),
       //base_socket(h),
       //socket(h),
@@ -723,7 +723,7 @@ namespace networking_bsd
    void websocket_client::write(const void *buf, memsize c)
    {
 
-      synchronous_lock synchronouslock(m_pmutexWebsocketWrite);
+      synchronous_lock synchronouslock(m_pmutexWebsocketWrite, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       http_client_socket::write(buf, c);
 

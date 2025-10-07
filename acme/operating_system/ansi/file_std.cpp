@@ -3,7 +3,7 @@
 #include <stdio.h>
 
 
-FILE * FILE_open(const char *path, const char *attr, int iShare)
+FILE * FILE_open(const_char_pointer path, const_char_pointer attr, int iShare)
 {
 
 #if defined(WINDOWS)
@@ -195,7 +195,7 @@ filesize FILE_get_size(FILE * fp)
 int file_touch(const ::scoped_string & scopedstr)
 {
 
-   FILE * pfile = ::fopen(scopedstr.c_str(), "a");
+   FILE * pfile = ::fopen(scopedstr.as_string().c_str(), "a");
 
    if (pfile == nullptr)
    {

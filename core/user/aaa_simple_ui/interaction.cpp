@@ -35,7 +35,7 @@ namespace simple_ui
 //
 //      ::user::interaction::install_message_routing(pchannel);
 //
-//      MESSAGE_LINK(e_message_show_window, pchannel, this, &::user::interaction::on_message_show_window);
+//      USER_MESSAGE_LINK(::user::e_message_show_window, pchannel, this, &::user::interaction::on_message_show_window);
 //
 //   }
 //   
@@ -43,12 +43,12 @@ namespace simple_ui
 //   void interaction::install_simple_ui_default_mouse_handling(::channel * pchannel)
 //   {
 //      
-//      MESSAGE_LINK(e_message_left_button_down  , pchannel, this, &interaction::on_message_left_button_down);
-//      MESSAGE_LINK(e_message_left_button_up    , pchannel, this, &interaction::on_message_left_button_up);
-//      MESSAGE_LINK(e_message_middle_button_down  , pchannel, this, &interaction::on_message_middle_button_down);
-//      MESSAGE_LINK(e_message_middle_button_up    , pchannel, this, &interaction::on_message_middle_button_up);
-//      MESSAGE_LINK(e_message_mouse_move    , pchannel, this, &interaction::on_message_mouse_move);
-//      MESSAGE_LINK(e_message_mouse_leave   , pchannel, this, &interaction::on_message_mouse_leave);
+//      USER_MESSAGE_LINK(::user::e_message_left_button_down  , pchannel, this, &interaction::on_message_left_button_down);
+//      USER_MESSAGE_LINK(::user::e_message_left_button_up    , pchannel, this, &interaction::on_message_left_button_up);
+//      USER_MESSAGE_LINK(::user::e_message_middle_button_down  , pchannel, this, &interaction::on_message_middle_button_down);
+//      USER_MESSAGE_LINK(::user::e_message_middle_button_up    , pchannel, this, &interaction::on_message_middle_button_up);
+//      USER_MESSAGE_LINK(::user::e_message_mouse_move    , pchannel, this, &interaction::on_message_mouse_move);
+//      USER_MESSAGE_LINK(::user::e_message_mouse_leave   , pchannel, this, &interaction::on_message_mouse_leave);
 //
 //   }
 //
@@ -421,7 +421,7 @@ namespace simple_ui
 //   }
 //
 //
-//   bool interaction::on_action(const ::string & pszId)
+//   bool interaction::on_action(const ::scoped_string & scopedstrId)
 //   {
 //
 //      ::user::interaction * pinteraction = get_typed_parent < ::user::interaction >();
@@ -429,7 +429,7 @@ namespace simple_ui
 //      if (pinteraction != nullptr)
 //      {
 //
-//         if(pinteraction->on_action(pszId))
+//         if(pinteraction->on_action(scopedstrId))
 //            return true;
 //
 //      }
@@ -490,7 +490,7 @@ namespace simple_ui
 //
 //      int iBorderH = minimum(rectangle.height() / 2, 49);
 //
-//      auto pbrush = __øcreate < ::draw2d::brush > ();
+//      auto pbrush = øcreate < ::draw2d::brush > ();
 //
 //      pbrush->CreateLinearGradientBrush(rectangle.top_left(), int_point(rectangle.left(), rectangle.top() + iBorderH), crOut, crIn);
 //

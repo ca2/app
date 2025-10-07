@@ -67,12 +67,12 @@ namespace filemanager
       void list_data::_001GetSubItemText(::user::mesh_subitem * psubitem)
       {
 
-         synchronous_lock synchronouslock(this->synchronization());
+         synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          if (psubitem->m_iSubItem == 0)
          {
 
-            string_array stra;
+            string_array_base stra;
 
             if (!datastream()->get(::atom(), stra))
             {
@@ -98,12 +98,12 @@ namespace filemanager
       }
 
 
-      void list_data::GetSel(::user::list * plist, string_array & stra)
+      void list_data::GetSel(::user::list * plist, string_array_base & stra)
       {
 
-         synchronous_lock synchronouslock(this->synchronization());
+         synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-         string_array wstraTotal;
+         string_array_base wstraTotal;
 
          if (!datastream()->get(::atom(), wstraTotal))
          {
@@ -141,9 +141,9 @@ namespace filemanager
       ::collection::count list_data::_001GetItemCount()
       {
 
-         synchronous_lock synchronouslock(this->synchronization());
+         synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-         string_array straTotal;
+         string_array_base straTotal;
 
          if (!datastream()->get(::atom(), straTotal))
          {
@@ -157,12 +157,12 @@ namespace filemanager
       }
 
 
-      bool list_data::add_unique(const string_array & stra)
+      bool list_data::add_unique(const string_array_base & stra)
       {
 
-         synchronous_lock synchronouslock(this->synchronization());
+         synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-         string_array straFolderPath;
+         string_array_base straFolderPath;
 
          datastream()->get(::atom(), straFolderPath);
 
@@ -192,16 +192,16 @@ namespace filemanager
       }
 
 
-      bool list_data::add_unique(const string_array & stra, int_array & baRecursive)
+      bool list_data::add_unique(const string_array_base & stra, int_array_base & baRecursive)
       {
 
-         synchronous_lock synchronouslock(this->synchronization());
+         synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-         string_array straFolderPath;
+         string_array_base straFolderPath;
 
          datastream()->get(::atom(), straFolderPath);
 
-         int_array iaRecursive;
+         int_array_base iaRecursive;
 
          datastream()->get("recursive", iaRecursive);
 
@@ -255,12 +255,12 @@ namespace filemanager
       }
 
 
-      bool list_data::erase(const string_array & stra)
+      bool list_data::erase(const string_array_base & stra)
       {
 
-         synchronous_lock synchronouslock(this->synchronization());
+         synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-         string_array straFolderPath;
+         string_array_base straFolderPath;
 
          if (!datastream()->get(::atom(), straFolderPath))
          {
@@ -269,7 +269,7 @@ namespace filemanager
 
          }
 
-         int_array iaRecursive;
+         int_array_base iaRecursive;
 
          datastream()->get("recursive", iaRecursive);
 
@@ -336,9 +336,9 @@ namespace filemanager
       bool list_data::set_recursive(::collection::index iItem, bool bRecursive)
       {
 
-         synchronous_lock synchronouslock(this->synchronization());
+         synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-         int_array iaRecursive;
+         int_array_base iaRecursive;
 
          try
          {
@@ -374,9 +374,9 @@ namespace filemanager
       bool list_data::get_recursive(::collection::index iItem)
       {
 
-         synchronous_lock synchronouslock(this->synchronization());
+         synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-         int_array iaRecursive;
+         int_array_base iaRecursive;
 
          try
          {

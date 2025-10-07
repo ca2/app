@@ -5,7 +5,7 @@
 #include "acme/handler/extended_topic.h"
 #include "acme/handler/topic.h"
 #include "acme/prototype/prototype/atom.h"
-#include "base/user/form/impact.h"
+#include "berg/user/form/impact.h"
 
 
 namespace userex
@@ -24,10 +24,10 @@ namespace userex
    }
 
 
-   void wait_message_dialog::on_show(const ::string & pszMatter)
+   void wait_message_dialog::on_show(const ::scoped_string & scopedstrMatter)
    {
 
-      ::dialog::on_show(pszMatter);
+      ::dialog::on_show(scopedstrMatter);
 
    }
 

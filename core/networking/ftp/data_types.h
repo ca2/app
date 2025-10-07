@@ -227,13 +227,13 @@ namespace ftp
       format m_Format;
    };
 
-   //class args : public string_array
+   //class args : public string_array_base
    //{
    //public:
    //   args() {}
-   //   args(const string& strArgument) { push_back(strArgument); }
-   //   args(const string& strFirstArgument, const string& strSecondArgument) { push_back(strFirstArgument); push_back(strSecondArgument); }
-   //   args(const string& strFirstArgument, const string& strSecondArgument, const string& strThirdArgument) { push_back(strFirstArgument); push_back(strSecondArgument); push_back(strThirdArgument); }
+   //   args(const ::scoped_string & scopedstrArgument) { push_back(strArgument); }
+   //   args(const ::scoped_string & scopedstrFirstArgument, const ::scoped_string & scopedstrSecondArgument) { push_back(strFirstArgument); push_back(strSecondArgument); }
+   //   args(const ::scoped_string & scopedstrFirstArgument, const ::scoped_string & scopedstrSecondArgument, const ::scoped_string & scopedstrThirdArgument) { push_back(strFirstArgument); push_back(strSecondArgument); push_back(strThirdArgument); }
    //};
 
    class CLASS_DECL_CORE command
@@ -272,7 +272,7 @@ namespace ftp
 
       enum_command AsEnum() const { return m_enCommand; }
       string AsString() const;
-      string AsString(const string_array & Arguments) const;
+      string AsString(const string_array_base & Arguments) const;
       const iextended_info& GetExtendedInfo() const;
 
       bool IsDatachannelReadCommand() const;
@@ -329,10 +329,10 @@ namespace ftp
       typedef command::TSpecificationEnum TSpecificationEnum;
       typedef command::enum_type enum_type;
    public:
-      extended_info(const string& strServerString, const string& strCompleteServerStringSyntax, unsigned int uNumberOfParameters,
+      extended_info(const ::scoped_string & scopedstrServerString, const ::scoped_string & scopedstrCompleteServerStringSyntax, unsigned int uNumberOfParameters,
                     unsigned int uNumberOfOptionalParameters, TSpecificationEnum enSpecification, enum_type enType) :
-         m_strServerString(strServerString),
-         m_strCompleteServerStringSyntax(strCompleteServerStringSyntax),
+         m_strServerString(scopedstrServerString),
+         m_strCompleteServerStringSyntax(scopedstrCompleteServerStringSyntax),
          m_uNumberOfParameters(uNumberOfParameters),
          m_uNumberOfOptionalParameters(uNumberOfOptionalParameters),
          m_enSpecification(enSpecification),
@@ -366,7 +366,7 @@ namespace ftp
    };
 
 
-   class CLASS_DECL_CORE command::info2 : private map<enum_command, ::pointer<extended_info >>
+   class CLASS_DECL_CORE command::info2 : private map_base<enum_command, ::pointer<extended_info >>
    {
    public:
 
@@ -374,7 +374,7 @@ namespace ftp
 
       info2();
 
-      void insert(enum_command enCommand, const string& strServerString, const string& strCompleteServerStringSyntax, unsigned int uNumberOfParameters,
+      void insert(enum_command enCommand, const ::scoped_string & scopedstrServerString, const ::scoped_string & scopedstrCompleteServerStringSyntax, unsigned int uNumberOfParameters,
                   unsigned int uNumberOfOptionalParameters, TSpecificationEnum enSpecification, enum_type enType);
 
       static info2& GetInstance() { if (g_pTheOneAndOnly == nullptr) g_pTheOneAndOnly = new info2 (); return *g_pTheOneAndOnly; }
@@ -393,16 +393,16 @@ namespace ftp
    {
    public:
       logon();
-      logon(const string& strHostname, unsigned short ushHostport=DEFAULT_FTP_PORT, const string& strUsername=ANONYMOUS_USER,
-            const string& strPassword="anonymous@user.com", const string& strAccount="");
-      logon(const string& strHostname, unsigned short ushHostport, const string& strUsername, const string& strPassword,
-            const string& strAccount, const string& strFwHostname, const string& strFwUsername, const string& strFwPassword,
+      logon(const ::scoped_string & scopedstrHostname, unsigned short ushHostport=DEFAULT_FTP_PORT, const ::scoped_string & scopedstrUsername=ANONYMOUS_USER,
+            const ::scoped_string & scopedstrPassword="anonymous@user.com", const ::scoped_string & scopedstrAccount="");
+      logon(const ::scoped_string & scopedstrHostname, unsigned short ushHostport, const ::scoped_string & scopedstrUsername, const ::scoped_string & scopedstrPassword,
+            const ::scoped_string & scopedstrAccount, const ::scoped_string & scopedstrFwHostname, const ::scoped_string & scopedstrFwUsername, const ::scoped_string & scopedstrFwPassword,
             unsigned short ushFwPort, const firewall_type& crFwType);
 
-      void SetHost(const string& strHostname, unsigned short ushHostport=DEFAULT_FTP_PORT, const string& strUsername=ANONYMOUS_USER,
-                   const string& strPassword="anonymous@user.com", const string& strAccount="");
+      void SetHost(const ::scoped_string & scopedstrHostname, unsigned short ushHostport=DEFAULT_FTP_PORT, const ::scoped_string & scopedstrUsername=ANONYMOUS_USER,
+                   const ::scoped_string & scopedstrPassword="anonymous@user.com", const ::scoped_string & scopedstrAccount="");
 
-      void SetFirewall(const string& strFwHostname, const string& strFwUsername, const string& strFwPassword,
+      void SetFirewall(const ::scoped_string & scopedstrFwHostname, const ::scoped_string & scopedstrFwUsername, const ::scoped_string & scopedstrFwPassword,
                        unsigned short ushFwPort, const firewall_type& crFwType);
 
       void DisableFirewall() { m_FwType = firewall_type::None(); }
@@ -445,17 +445,17 @@ namespace ftp
          {
             zero(m_szCode);
          }
-         const char * Value() const { return m_szCode; }
-         bool Set(const string& strCode)
+         const_char_pointer Value() const { return m_szCode; }
+         bool Set(const ::scoped_string & scopedstrCode)
          {
-            if( strCode.length()!=3 ||
-                  strCode[0]<'1' || strCode[0]>'5' ||
-                  strCode[1]<'0' || strCode[1]>'5' )
+            if( scopedstrCode.length()!=3 ||
+                  scopedstrCode[0]<'1' || scopedstrCode[0]>'5' ||
+                  scopedstrCode[1]<'0' || scopedstrCode[1]>'5' )
             {
                zero(m_szCode);
                return false;
             }
-            ansi_cpy(m_szCode, strCode);
+            ansi_cpy(m_szCode, scopedstrCode);
             return true;
          }
 
@@ -476,9 +476,9 @@ namespace ftp
          bool IsRefferingToFileSystem() const                  { return m_szCode[1] == '5'; }
       } m_Code;
    public:
-      bool Set(const string& strResponse)
+      bool Set(const ::scoped_string & scopedstrResponse)
       {
-         m_strResponse = strResponse;
+         m_strResponse = scopedstrResponse;
          if( m_strResponse.length()>2 )
             return m_Code.Set(m_strResponse.substr(0, 3));
          return false;

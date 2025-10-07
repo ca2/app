@@ -30,11 +30,11 @@ namespace sockets
    }
 
 
-   void smtp_socket::OnLine(const string & line)
+   void smtp_socket::OnLine(const ::scoped_string & scopedstrLine)
    {
 
       SetNonblocking(false);
-      ::parse pa(line);
+      ::parse pa(scopedstrLine);
       string code = pa.getword();
 
       code.make_upper();
@@ -53,7 +53,7 @@ namespace sockets
          {
             if(code.case_insensitive_order("250-Auth") == 0 || pa.getword().case_insensitive_order("auth") == 0)
             {
-               string_array stra;
+               string_array_base stra;
                stra.explode(" ", pa.getrest());
                stra.trim();
                if(stra.case_insensitive_contains("login"))
@@ -155,7 +155,7 @@ namespace sockets
             print("\r\n");
             string strBody = m_pemail->m_strBody;
             strBody.replace_with("\n", "\r\n");
-            string_array stra;
+            string_array_base stra;
             stra.add_tokens(strBody, "\n", true);
             for(int i = 0; i < stra.get_count(); i++)
             {

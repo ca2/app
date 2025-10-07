@@ -357,7 +357,7 @@ CLASS_DECL_APEX void from_string(in_addr & addrParam, const ::ansi_character * s
    c_in_addr & addr = (c_in_addr &) addrParam;
 
 
-   string_array stra;
+   string_array_base stra;
 
    stra.add_tokens(string, ".");
 
@@ -407,19 +407,19 @@ inline string ip_to_string(unsigned char b1, unsigned char b2, unsigned char b3,
 
    char * psz = str.get_buffer(20);
 
-   ansi_concatenate_long_long(psz, b1);
+   ansi_concatenate_long_long(scopedstr, b1);
 
-   ansi_concatenate(psz, ".");
+   ansi_concatenate(scopedstr, ".");
 
-   ansi_concatenate_long_long(psz, b2);
+   ansi_concatenate_long_long(scopedstr, b2);
 
-   ansi_concatenate(psz, ".");
+   ansi_concatenate(scopedstr, ".");
 
-   ansi_concatenate_long_long(psz, b3);
+   ansi_concatenate_long_long(scopedstr, b3);
 
-   ansi_concatenate(psz, ".");
+   ansi_concatenate(scopedstr, ".");
 
-   ansi_concatenate_long_long(psz, b4);
+   ansi_concatenate_long_long(scopedstr, b4);
 
    str.release_buffer();
 
@@ -463,7 +463,7 @@ CLASS_DECL_APEX ::string as_string(const sockaddr_in6 &  addr)
 }
 
 
-CLASS_DECL_APEX void from_string(sockaddr_in & addr, const ::string & str)
+CLASS_DECL_APEX void from_string(sockaddr_in & addr, const ::scoped_string & scopedstr)
 {
 
    return from_string(addr.sin_addr, str);
@@ -471,7 +471,7 @@ CLASS_DECL_APEX void from_string(sockaddr_in & addr, const ::string & str)
 }
 
 
-CLASS_DECL_APEX void from_string(sockaddr_in6 & addr, const ::string & str)
+CLASS_DECL_APEX void from_string(sockaddr_in6 & addr, const ::scoped_string & scopedstr)
 {
 
    return from_string(addr.sin6_addr, str);
@@ -620,7 +620,7 @@ CLASS_DECL_APEX const char * c_inet_ntop(int af, const void *src, char *dst, int
 //   {
 //
 //
-//   string_array stra;
+//   string_array_base stra;
 //
 //   stra.add_tokens(src, ".");
 //
@@ -742,7 +742,7 @@ CLASS_DECL_APEX const char * c_inet_ntop(int af, const void *src, char *dst, int
 
 
 
-string get_file_extension_mime_type(const ::string & strExtension)
+string get_file_extension_mime_type(const ::scoped_string & scopedstrExtension)
 {
 
    if(strExtension == "iso")

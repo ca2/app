@@ -34,7 +34,7 @@ namespace core
 
       //auto estatus = 
       
-      ::base::session::initialize(pparticle);
+      ::berg::session::initialize(pparticle);
 
       //if (!estatus)
       //{

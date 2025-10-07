@@ -19,9 +19,9 @@ public:
    ~object_meta();
 
 
-   inline void set_topic_text(const ::string & strTopicText) { m_strTopicText = strTopicText; }
+   inline void set_topic_text(const ::scoped_string & scopedstrTopicText) { m_strTopicText = scopedstrTopicText; }
 
-   inline const char * topic_text() const { return m_strTopicText.c_str(); }
+   inline const_char_pointer topic_text() const { return m_strTopicText.c_str(); }
 
    //void destroy(::object* pReferer);
 

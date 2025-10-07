@@ -201,7 +201,7 @@ namespace database
 
       strKey = dataproperty.atom().as_string();
 
-      const char * pszKey = strKey.c_str();
+      const_char_pointer pszKey = strKey.c_str();
 
       return strKey;
 
@@ -211,7 +211,7 @@ namespace database
    void client::initialize_data_client(server * pserver)
    {
 
-      __defer_construct_new(m_pstream);
+      ødefer_construct_new(m_pstream);
 
       m_pstream->m_pclient = this;
 
@@ -227,7 +227,7 @@ namespace database
       if (m_pdataserver != nullptr)
       {
 
-         _synchronous_lock synchronouslock(m_pdataserver->synchronization());
+         _synchronous_lock synchronouslock(m_pdataserver->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          m_pdataserver->m_clienta.erase_client(this);
 
@@ -236,7 +236,7 @@ namespace database
       if (pserver != nullptr)
       {
 
-         _synchronous_lock synchronouslock(pserver->synchronization());
+         _synchronous_lock synchronouslock(pserver->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          pserver->m_clienta.add_client(this);
 
@@ -262,7 +262,7 @@ namespace database
    //   if (m_pdataserver != nullptr)
    //   {
 
-   //      _synchronous_lock synchronouslock(m_pdataserver->synchronization());
+   //      _synchronous_lock synchronouslock(m_pdataserver->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //      m_pdataserver->m_clienta.erase_client(this);
 
@@ -271,7 +271,7 @@ namespace database
    //   if(pserver != nullptr)
    //   {
 
-   //      _synchronous_lock synchronouslock(pserver->synchronization());
+   //      _synchronous_lock synchronouslock(pserver->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //      pserver->m_clienta.add_client(this);
 
@@ -292,7 +292,7 @@ namespace database
       if(m_pdataserver != nullptr)
       {
 
-         _synchronous_lock synchronouslock(m_pdataserver->synchronization());
+         _synchronous_lock synchronouslock(m_pdataserver->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          try
          {
@@ -346,7 +346,7 @@ namespace database
    }
 
 
-   void client::_data_set(const ::string_array & straKey, const ::payload & payload, ::topic * ptopic)
+   void client::_data_set(const ::string_array_base & straKey, const ::payload & payload, ::topic * ptopic)
    {
 
       if (::is_null(m_pdataserver))
@@ -496,7 +496,7 @@ namespace database
    void client_array::erase_client(client *pclient)
    {
 
-      erase(pclient);
+      this->erase(pclient);
 
    }
 

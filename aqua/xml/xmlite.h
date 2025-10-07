@@ -18,7 +18,7 @@ namespace xml
    // Coder    Date                      Desc
    // bro      2002-10-29
    //========================================================
-   CLASS_DECL_AQUA char * _tcschrs( const ::ansi_character * psz, const ::ansi_character * pszchs );
+   CLASS_DECL_AQUA char * _tcschrs( const_char_pointer psz, const_char_pointer pszchs );
 
    //========================================================
    // Name   : _tcsskip
@@ -62,7 +62,7 @@ namespace xml
    // Coder    Date                      Desc
    // bro      2002-10-29
    //========================================================
-   CLASS_DECL_AQUA void _tcsecpy(char * psz, int escape, const char * srt, const char * end = nullptr);
+   CLASS_DECL_AQUA void _tcsecpy(char * psz, int escape, const_char_pointer srt, const_char_pointer end = nullptr);
    //CLASS_DECL_AQUA void _tcsecpy2(::ansi_range & rangeOut, char escape, const ::const_ansi_range & range);
 
    
@@ -75,7 +75,7 @@ namespace xml
    //// Coder    Date                      Desc
    //// bro      2002-10-29
    ////========================================================
-   //CLASS_DECL_AQUA int _tcsenicmp( const ::ansi_character * psz, const char * str, character_count len, int escape );
+   //CLASS_DECL_AQUA int _tcsenicmp( const_char_pointer psz, const_char_pointer str, character_count len, int escape );
 
    ////========================================================
    //// Name   : _tcsenistr
@@ -86,7 +86,7 @@ namespace xml
    //// Coder    Date                      Desc
    //// bro      2002-10-29
    ////========================================================
-   //CLASS_DECL_AQUA char * _tcsenistr( const ::ansi_character * psz, const char * str, character_count len, int escape );
+   //CLASS_DECL_AQUA char * _tcsenistr( const_char_pointer psz, const_char_pointer str, character_count len, int escape );
 
    //========================================================
    // Name   : _tcseistr
@@ -97,11 +97,11 @@ namespace xml
    // Coder    Date                      Desc
    // bro      2002-10-29
    //========================================================
-   CLASS_DECL_AQUA char * _tcseistr( const ::ansi_character * psz, const char * str, int escape );
+   CLASS_DECL_AQUA char * _tcseistr( const_char_pointer psz, const_char_pointer str, int escape );
 
    //========================================================
    // Name   : _SetString
-   // Desc   : put string of (psz~end) on ps string
+   // Desc   : put string of (scopedstr~end) on ps string
    // Param  : trim - will be trim?
    // Return :
    //--------------------------------------------------------
@@ -167,7 +167,7 @@ namespace xml
 
    //========================================================
    // Name   : _SetString
-   // Desc   : put string of (psz~end) on ps string
+   // Desc   : put string of (scopedstr~end) on ps string
    // Param  : trim - will be trim?
    // Return :
    //--------------------------------------------------------
@@ -245,7 +245,7 @@ namespace xml
    // Coder    Date                      Desc
    // bro      2002-10-29
    //========================================================
-   inline char * _tcschrs(const ::ansi_character * psz,const ::ansi_character * pszchs)
+   inline char * _tcschrs(const_char_pointer psz,const_char_pointer pszchs)
    {
       while(*psz)
       {
@@ -265,7 +265,7 @@ namespace xml
    // Coder    Date                      Desc
    // bro      2002-10-29
    //========================================================
-   //inline char * _tcsskip(const ::ansi_character * psz)
+   //inline char * _tcsskip(const_char_pointer psz)
    //{
 
    //   while(ansi_char_isspace((uchar)*psz)) psz++;
@@ -288,7 +288,7 @@ namespace xml
    //   return ch == ' ' || ch == '/' || ch == '>' || ch == '\t' || ch == '\r' || ch == '\n' || ch == '\0';
    //}
 
-   //inline const char * end_open_tag_name(const ::ansi_character * psz)
+   //inline const_char_pointer end_open_tag_name(const_char_pointer psz)
    //{
    //   while(!is_end_open_tag_name_char(*psz))
    //   {

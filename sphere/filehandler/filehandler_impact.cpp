@@ -28,9 +28,9 @@ namespace filehandler
    {
 
       ::user::form::install_message_routing(pchannel);
-      MESSAGE_LINK(e_message_create, pchannel, this, &impact::on_message_create);
+      USER_MESSAGE_LINK(::user::e_message_create, pchannel, this, &impact::on_message_create);
 //
-      MESSAGE_LINK(e_message_left_button_up, pchannel, this, &impact::on_message_left_button_up);
+      USER_MESSAGE_LINK(::user::e_message_left_button_up, pchannel, this, &impact::on_message_left_button_up);
 
    }
 
@@ -38,7 +38,7 @@ namespace filehandler
    void impact::refresh()
    {
 
-      m_plistWorking = __allocate list(this);
+      m_plistWorking = øallocate list_base(this);
 
       m_plistWorking->parse(psystem->filehandler(), ::file::path(m_strName).extension());
 
@@ -77,7 +77,7 @@ namespace filehandler
    }
 
 
-   void impact::item::parse(const ::string & pszApp)
+   void impact::item::parse(const ::scoped_string & scopedstrApp)
    {
 
       m_strApp = pszApp;
@@ -85,12 +85,12 @@ namespace filehandler
    }
 
 
-   void impact::list::parse(::filehandler::handler * phandler, const ::string & pszTopic)
+   void impact::list_base::parse(::filehandler::handler * phandler, const ::scoped_string & scopedstrTopic)
    {
 
       erase_all();
 
-      string_array straApp;
+      string_array_base straApp;
 
       phandler->get_extension_app(straApp, pszTopic);
 
@@ -100,7 +100,7 @@ namespace filehandler
       {
          item.parse(straApp[i]);
          item.m_iIndex = i;
-         add(__allocate class item (item));
+         add(øallocate class item (item));
       }
 
    }
@@ -111,7 +111,7 @@ namespace filehandler
 
    }
 
-   void impact::item::draw(::pointer<impact>pimpact, ::draw2d::graphics_pointer & pgraphics, list * plist)
+   void impact::item::draw(::pointer<impact>pimpact, ::draw2d::graphics_pointer & pgraphics, list_base * plist)
    {
 
       __UNREFERENCED_PARAMETER(plist);
@@ -153,20 +153,20 @@ namespace filehandler
       }
       pgraphics->draw_inset_3d_rectangle(m_rectangleItem, cr1, cr2);
       color32 |= 0xff000000;
-      auto pbrushText = __øcreate < ::draw2d::brush > ();
+      auto pbrushText = øcreate < ::draw2d::brush > ();
       pbrushText->create_solid(color32);
       //pgraphics->set_color(color32);
       pgraphics->draw_text(m_strApp, m_rectangleName, e_align_bottom_left);
    }
 
 
-   impact::list::list(::particle * pparticle) :
+   impact::list_base::list_base(::particle * pparticle) :
       ::object(pparticle)
    {
       m_iItemHeight = 30;
    }
 
-   void impact::list::on_layout(const ::int_rectangle * lpcrect)
+   void impact::list_base::on_layout(const ::int_rectangle * lpcrect)
    {
       int top = lpcrect->top();
       for(int i = 0; i < get_count(); i++)
@@ -187,7 +187,7 @@ namespace filehandler
       }
    }
 
-   void impact::list::draw(::pointer<impact>pimpact, ::draw2d::graphics_pointer & pgraphics)
+   void impact::list_base::draw(::pointer<impact>pimpact, ::draw2d::graphics_pointer & pgraphics)
    {
       for(int i = 0; i < get_count(); i++)
       {
@@ -207,7 +207,7 @@ namespace filehandler
 
    }
 
-   void impact::layout_list(list * plist)
+   void impact::layout_list(list_base * plist)
    {
 
       auto pgraphics = create_memory_graphics();

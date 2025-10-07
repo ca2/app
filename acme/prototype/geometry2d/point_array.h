@@ -21,24 +21,27 @@ inline bool tolerance_is_equal(double tolerance, double d1, double d2)
 
 template < primitive_number NUMBER >
 class point_array_base :
-   virtual public ::array < ::point_type < NUMBER > >
+   public ::array_base < ::point_type < NUMBER > >
 {
 public:
 
 
+   using BASE_ARRAY = ::array_base < ::point_type < NUMBER > >;
    //using POINT_BASE_TYPE = POINT_TYPE;
    using UNIT_TYPE = NUMBER;
    //using SIZE_TYPE = typename POINT_TYPE::SIZE_TYPE;
    //using RECTANGLE_TYPE = typename POINT_TYPE::RECTANGLE_TYPE;
    //using RECTANGLE_BASE_TYPE = typename RECTANGLE_TYPE::RECTANGLE_BASE_TYPE;
 
+   using BASE_ARRAY::BASE_ARRAY;
+   using BASE_ARRAY::operator =;
 
-   inline point_array_base() : ::array < ::point_type < NUMBER > >() {}
-   template < std::size_t n >
-   inline point_array_base(const ::point_type < NUMBER > p[n]) : ::array < ::point_type < NUMBER > >(p, n){ }
-   inline point_array_base(point_array_base && pointset) : ::array < ::point_type < NUMBER > >(::transfer(pointset)) { }
-   inline point_array_base(const point_array_base & pointset) { operator=(pointset); }
-   ~point_array_base() override { }
+   //inline point_array_base() : ::array < ::point_type < NUMBER > >() {}
+   //template < std::size_t n >
+   //inline point_array_base(const ::point_type < NUMBER > p[n]) : ::array < ::point_type < NUMBER > >(p, n){ }
+   //inline point_array_base(point_array_base && pointset) : ::array < ::point_type < NUMBER > >(::transfer(pointset)) { }
+   //inline point_array_base(const point_array_base & pointset) { operator=(pointset); }
+   //~point_array_base() { }
 
 
    //operator ::point_type < UNIT_TYPE > * () { return this->get_data(); }
@@ -57,8 +60,8 @@ public:
    bool polygon_contains_winding(const ::point_type < UNIT_TYPE > & point) const;
    bool polygon_contains_alternate(const ::point_type < UNIT_TYPE > & point) const;
 
-   inline ::collection::index add(UNIT_TYPE x, UNIT_TYPE y) { return ::array < ::point_type < NUMBER > >::add({x, y}); }
-   inline ::collection::index add(const ::point_type < NUMBER > & point) { return ::array < ::point_type < NUMBER > >::add(point); }
+   inline ::collection::index add(UNIT_TYPE x, UNIT_TYPE y) { return ::array_base < ::point_type < NUMBER > >::add({x, y}); }
+   inline ::collection::index add(const ::point_type < NUMBER > & point) { return ::array_base < ::point_type < NUMBER > >::add(point); }
    inline point_array_base & operator =(const point_array_base & pointset) { this->copy(pointset); return *this; }
 
    inline ::collection::index tolerance_add_unique(UNIT_TYPE tolerance, const ::point_type < NUMBER > & pointAdd)
@@ -79,7 +82,7 @@ public:
 
       }
 
-      return ::array < ::point_type < NUMBER > >::add(pointAdd);
+      return ::array_base < ::point_type < NUMBER > >::add(pointAdd);
 
    }
 
@@ -88,7 +91,7 @@ public:
 
 
    ::collection::count add_unique_range(const ::point_type < NUMBER > & pBeg, const ::point_type < NUMBER > & pointEnd, const ::size_type < NUMBER > & s = e_unit_size);
-   //https://www.geeksforgeeks.org/area-of-a-int_polygon-with-given-n-ordered-vertices/
+   //https://www.geeksforgeeks.org/area-of-a-int_polygon-with-given-n-ordered-vertexes/
       // (X[i], Y[i]) are coordinates of i'th point.
 
    UNIT_TYPE polygon_area()

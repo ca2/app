@@ -82,10 +82,10 @@ void blob::write(FILE * file)
 }
 
 
-blob & blob::operator = (const ::string & psz)
+blob & blob::operator = (const ::scoped_string & scopedstr)
 {
-   m_sizet = ansi_length(psz) + 1;
-   m_pchData = (char *) ansi_duplicate(psz);
+   m_sizet = ansi_length(scopedstr) + 1;
+   m_pchData = (char *) ansi_duplicate(scopedstr);
    return *this;
 }
 

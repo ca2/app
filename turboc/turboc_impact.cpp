@@ -91,7 +91,7 @@ namespace turboc
 
       ::aura::impact::install_message_handling(pdispatch);
 
-      IGUI_WIN_MSG_LINK(e_message_create,pdispatch,this,&impact::on_message_create);
+      IGUI_WIN_MSG_LINK(::user::e_message_create,pdispatch,this,&impact::on_message_create);
 
    }
 
@@ -271,7 +271,7 @@ namespace turboc
       if(m_bFast || !m_bFirstDone || m_timeLastFast.elapsed() < m_timeFastAnime)
       {
 
-         synchronous_lock slDraw(m_pmutexDraw);
+         synchronous_lock slDraw(m_pmutexDraw, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          if(m_bFast || m_pimageFast->is_null())
          {
@@ -314,9 +314,9 @@ namespace turboc
 
       ::image::image_pointer pimageFast = m_pimageFast;
 
-      synchronous_lock synchronouslock(m_pmutexDraw);
+      synchronous_lock synchronouslock(m_pmutexDraw, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-      synchronous_lock slSwap(m_pmutexSwap);
+      synchronous_lock slSwap(m_pmutexSwap, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if(m_bDib1)
       {
@@ -400,13 +400,13 @@ namespace turboc
 
    }
 
-   void impact::turboc_fast_render(const ::string & strHelloMultiverse)
+   void impact::turboc_fast_render(const ::scoped_string & scopedstrHelloMultiverse)
    {
 
       if(m_cx <= 0 || m_cy <= 0)
          return;
 
-      synchronous_lock slDraw(m_pmutexDraw);
+      synchronous_lock slDraw(m_pmutexDraw, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       ::int_size sizeNew = ::int_size(m_cx,m_cy) + ::int_size(100,100);
 
@@ -483,7 +483,7 @@ namespace turboc
 
       {
 
-         synchronous_lock synchronouslock(m_pmutexWork);
+         synchronous_lock synchronouslock(m_pmutexWork, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
 /*         ::image::image_pointer pimage = m_pimageWork;
 
@@ -504,10 +504,10 @@ namespace turboc
       if(m_bNewLayout)
       {
 
-         synchronous_lock sl1(m_spmutex);
-         synchronous_lock sl2(m_pmutexWork);
-         synchronous_lock sl3(m_pmutexDraw);
-         synchronous_lock sl4(m_pmutexSwap);
+         synchronous_lock sl1(m_spmutex, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+         synchronous_lock sl2(m_pmutexWork, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+         synchronous_lock sl3(m_pmutexDraw, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+         synchronous_lock sl4(m_pmutexSwap, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
 /*         bool bNewSize = m_pimage->width() < sizeNew.cx() || m_pimage->m_size.cy() < sizeNew.cy();
 
@@ -583,7 +583,7 @@ namespace turboc
       if(m_bFirstDone)
       {
 
-         synchronous_lock slUser(m_spmutex);
+         synchronous_lock slUser(m_spmutex, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          turboc_draw();
 
@@ -667,7 +667,7 @@ namespace turboc
 
       //_001OnPostProcess(m_pimageWork);
 
-      synchronous_lock slDraw(m_pmutexDraw);
+      synchronous_lock slDraw(m_pmutexDraw, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if(m_bDib1)
       {
@@ -682,7 +682,7 @@ namespace turboc
 
       }
 
-      synchronous_lock slSwap(m_pmutexSwap);
+      synchronous_lock slSwap(m_pmutexSwap, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if(m_bDib1)
       {
@@ -830,7 +830,7 @@ namespace turboc
    string impact::get_turboc()
    {
 
-      synchronous_lock synchronouslock(m_pmutexText);
+      synchronous_lock synchronouslock(m_pmutexText, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if(m_strHelloMultiverse != m_strNewHelloMultiverse)
       {

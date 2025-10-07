@@ -136,8 +136,8 @@ NAMESPACE_END(detail)
       {
          ASSERT(m_pscreen);
          m_pwindow = ___new Window(m_pscreen, title);
-         int_array ia1{ 10, 0, 10, 0 };
-         int_array ia2;
+         int_array_base ia1{ 10, 0, 10, 0 };
+         int_array_base ia2;
          m_playout = ___new AdvancedGridLayout(ia1, ia2);
          m_playout->set_margin(10);
          m_playout->set_col_stretch(2, 1);
@@ -167,8 +167,8 @@ NAMESPACE_END(detail)
             const ::function<Type()> & getter,
                       bool editable = true)
       {
-         Label * plabel_w = __allocate Label(m_pwindow, label, m_label_font_name, m_label_font_size);
-         auto pwidget = __allocate detail::FormWidget<Type> (m_pwindow);
+         Label * plabel_w = øallocate Label(m_pwindow, label, m_label_font_name, m_label_font_size);
+         auto pwidget = øallocate detail::FormWidget<Type> (m_pwindow);
          auto refresh = [pwidget, getter] {
             Type value = getter(), current = pwidget->value();
             if (value != current)
@@ -221,7 +221,7 @@ NAMESPACE_END(detail)
             m_playout->set_anchor(pwidget, AdvancedGridLayout::Anchor(1, m_playout->row_count() - 1, 3, 1));
          }
          else {
-            Label * plabel_w = __allocate Label(m_pwindow, label, m_label_font_name, m_label_font_size);
+            Label * plabel_w = øallocate Label(m_pwindow, label, m_label_font_name, m_label_font_size);
             m_playout->set_anchor(plabel_w, AdvancedGridLayout::Anchor(1, m_playout->row_count() - 1));
             m_playout->set_anchor(pwidget, AdvancedGridLayout::Anchor(3, m_playout->row_count() - 1));
          }

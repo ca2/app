@@ -124,7 +124,7 @@ namespace user
 
       
 
-      virtual void set_bitmap_source(const string& strBitmapSource);
+      virtual void set_bitmap_source(const ::scoped_string & scopedstrBitmapSource);
       virtual void clear_bitmap_source();
 
       virtual void set_tool_window(bool bSet);

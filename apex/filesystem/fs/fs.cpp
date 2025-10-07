@@ -38,7 +38,7 @@ namespace fs
 ///*       
 //         add_factory_item <main_impact > ();
 //         add_factory_item <tree > ();
-//         add_factory_item <list > ();
+//         add_factory_item <list_base > ();
 //*/
 //
 //      }

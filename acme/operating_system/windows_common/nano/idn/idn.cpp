@@ -32,10 +32,10 @@ namespace windows_common
          }
 
 
-         ::string idn::idn_to_punycode(const ::string& str)
+         ::string idn::idn_to_punycode(const ::scoped_string & scopedstr)
          {
 
-            wstring wstr(str);
+            wstring wstr(scopedstr);
 
             int iSize = IdnToAscii(IDN_RAW_PUNYCODE, wstr, (int)wstr.length(), nullptr, 0);
 
@@ -54,10 +54,10 @@ namespace windows_common
          }
 
 
-         ::string idn::idn_from_punycode(const ::string& str)
+         ::string idn::idn_from_punycode(const ::scoped_string & scopedstr)
          {
 
-            wstring wstrSource(str);
+            wstring wstrSource(scopedstr);
 
             int iSize = IdnToUnicode(IDN_RAW_PUNYCODE, wstrSource, (int)wstrSource.length(), nullptr, 0);
 

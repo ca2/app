@@ -75,7 +75,7 @@ namespace fs
    }
 
 
-   bool folder_sync::enumerate(::file::listing& listing)
+   bool folder_sync::enumerate(::file::listing_base& listing)
    {
 
       auto pathLocal(listing.m_pathUser);
@@ -137,7 +137,7 @@ namespace fs
    }
 
 
-   /*::file::listing & folder_sync::ls_relative_name(::file::listing & listing)
+   /*::file::listing_base & folder_sync::ls_relative_name(::file::listing_base & listing)
    {
 
       directory()->ls_relative_name(listing);
@@ -166,7 +166,7 @@ namespace fs
    }
 
 
-   ::file::listing& folder_sync::root_ones(::file::listing& listing)
+   ::file::listing_base& folder_sync::root_ones(::file::listing_base& listing)
    {
 
       auto pathLocal = m_pathProtocol;
@@ -180,15 +180,15 @@ namespace fs
    }
 
 
-   //void folder_sync::get_ascendants_path(const ::file::path & pszPath,::file::path_array & stra)
+   //void folder_sync::get_ascendants_path(const ::file::path & path,::file::path_array_base & stra)
    //{
 
-   //   return file()->get_ascendants_path(pszPath, stra);
+   //   return file()->get_ascendants_path(scopedstrPath, stra);
 
    //}
 
 
-   //void folder_sync::get_ascendants_name(const ::file::path & path,::file::path_array & straParam)
+   //void folder_sync::get_ascendants_name(const ::file::path & path,::file::path_array_base & straParam)
 
    //{
 
@@ -201,7 +201,7 @@ namespace fs
    //string folder_sync::eat_end_level(const ::file::path & path, int iCount)
    //{
 
-   //   string strPath(pszPath);
+   //   string strPath(scopedstrPath);
 
    //   while(iCount > 0)
    //   {
@@ -220,7 +220,7 @@ namespace fs
    //string folder_sync::file_name(const ::file::path & path)
    //{
 
-   //   return file()->name_(pszPath);
+   //   return file()->name_(scopedstrPath);
 
    //}
 
@@ -228,7 +228,7 @@ namespace fs
    //string folder_sync::dir_path(const ::scoped_string & scopedstr1, const ::scoped_string & scopedstr2)
    //{
 
-   //   return ::file::path(psz1) / ::file::path(psz2);
+   //   return ::file::path(scopedstr1) / ::file::path(scopedstr2);
 
    //}
 
@@ -272,7 +272,7 @@ namespace fs
 
    bool folder_sync::check_files(
       const ::file::path& pathSourceFolderParam,
-      const ::string_array& straSource,
+      const ::string_array_base& straSource,
       const ::function<void(const ::scoped_string&)>& callbackStatus)
    {
 
@@ -353,7 +353,7 @@ namespace fs
    void folder_sync::copy_files_out(
       const ::file::path& pathTargetFolder,
       const ::file::path& pathSourceFolderParam,
-      const ::string_array& straSource,
+      const ::string_array_base& straSource,
       const ::function<void(const ::scoped_string&)>& callbackStatus)
    {
 
@@ -526,7 +526,7 @@ namespace fs
    }
 
 
-   void folder_sync::wait_folder_contains_files(const ::file::path& pathTargetFolder, const ::string_array& straName,
+   void folder_sync::wait_folder_contains_files(const ::file::path& pathTargetFolder, const ::string_array_base& straName,
                                                 int iMinimumSize,
                                                 const ::function<void(const ::scoped_string&)>& callbackStatus)
    {
@@ -561,7 +561,7 @@ namespace fs
 
       }
 
-      ::string_array lines;
+      ::string_array_base lines;
 
       lines = straName;
 
@@ -672,32 +672,32 @@ namespace fs
    }
 
 
-   string_array folder_sync::ls(const file::path& pathCloud, const ::function<void(const ::scoped_string&)>& callbackStatus)
+   string_array_base folder_sync::ls(const file::path& pathCloud, const ::function<void(const ::scoped_string&)>& callbackStatus)
    {
       return {};
    }
 
 
-   string_array folder_sync::ls_folder(const file::path& pathCloud, const ::function<void(const ::scoped_string&)>& callbackStatus)
+   string_array_base folder_sync::ls_folder(const file::path& pathCloud, const ::function<void(const ::scoped_string&)>& callbackStatus)
    {
       return {};
    }
 
 
-   void folder_sync::sync_exclude(const string_array& stra, const ::function<void(const ::scoped_string&)>& callbackStatus)
+   void folder_sync::sync_exclude(const string_array_base& stra, const ::function<void(const ::scoped_string&)>& callbackStatus)
    {
 
 
    }
 
 
-   void folder_sync::sync_reinclude(const string_array& stra, const ::function<void(const ::scoped_string&)>& callbackStatus)
+   void folder_sync::sync_reinclude(const string_array_base& stra, const ::function<void(const ::scoped_string&)>& callbackStatus)
    {
 
    }
 
 
-   string_array folder_sync::sync_exclusion_list(const ::function<void(const ::scoped_string&)>& callbackStatus)
+   string_array_base folder_sync::sync_exclusion_list(const ::function<void(const ::scoped_string&)>& callbackStatus)
    {
       return {};
    }
@@ -708,10 +708,10 @@ namespace fs
    }
 
 
-   bool folder_sync::file_move(const ::file::path& pszDst, const ::file::path& pszSrc)
+   bool folder_sync::file_move(const ::file::path & pathTargetParameter, const ::file::path & pathSourceParameter)
    {
 
-      auto pathSource(pszSrc);
+      auto pathSource(pathSourceParameter);
 
       if (!pathSource.case_insensitive_begins_eat(m_pathProtocol))
       {
@@ -722,7 +722,7 @@ namespace fs
 
       pathSource = local_folder_path() / pathSource;
 
-      auto pathTarget(pszDst);
+      auto pathTarget(pathTargetParameter);
 
       if (!pathTarget.case_insensitive_begins_eat(m_pathProtocol))
       {
@@ -760,13 +760,13 @@ namespace fs
       //if (eopen & ::file::e_open_text)
       //{
 
-      //   pfile = __create_new<::stdio_file>();
+      //   pfile = øcreate_new<::stdio_file>();
 
       //}
       //else
       //{
 
-      __øconstruct(pfile);
+      øconstruct(pfile);
 
       //      }
 
@@ -821,7 +821,7 @@ namespace fs
    }
 
 
-   ::string_array folder_sync::_cloud_get_file_txt_lines(const ::file::path& pathCloudFile, bool bForce,
+   ::string_array_base folder_sync::_cloud_get_file_txt_lines(const ::file::path& pathCloudFile, bool bForce,
                                                          ::file::path* ppathTarget, ::file::path* ppathSource,
                                                          const ::function<void(const ::scoped_string&)>& callbackStatus)
    {
@@ -851,7 +851,7 @@ namespace fs
 
 
    void folder_sync::_cloud_ensure_files_are_up_to_date_and_present(
-      const ::file::path& pathFolder, const ::string_array & stra,
+      const ::file::path& pathFolder, const ::string_array_base & stra,
       int iMinimumFileSize, const ::function<void(const ::scoped_string&)>& callbackStatus)
    {
 

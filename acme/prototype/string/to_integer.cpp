@@ -233,7 +233,7 @@ unsigned long long chars_to_unsigned_long_long(const CHAR_TYPE *psz, const CHAR_
          while (true)
          {
 
-            CHAR_TYPE ch = wd32_char_tolower(*psz);
+            auto ch = wd32_char_tolower(*psz);
 
             if (ch == '\0')
             {
@@ -281,10 +281,10 @@ unsigned long long chars_to_unsigned_long_long(const CHAR_TYPE *psz, const CHAR_
 
 
 
-int __ansitoi32(const ::ansi_character *psz, ::ansi_character ** pszEnd, int iBase) { return chars_to_int < ::ansi_character >(psz, (const ::ansi_character **)pszEnd, iBase); }
-unsigned int __ansitou32(const ::ansi_character *psz, ::ansi_character ** pszEnd, int iBase) { return chars_to_unsigned_int < ::ansi_character >(psz, (const ::ansi_character **)pszEnd, iBase); }
-long long __ansitoi64(const ::ansi_character *psz, ::ansi_character ** pszEnd, int iBase) { return chars_to_long_long < ::ansi_character >(psz, (const ::ansi_character **)pszEnd, iBase); }
-unsigned long long __ansitou64(const ::ansi_character *psz, ::ansi_character ** pszEnd, int iBase) { return chars_to_unsigned_long_long < ::ansi_character >(psz, (const ::ansi_character **)pszEnd, iBase); }
+int __ansitoi32(const_char_pointer psz, ::ansi_character ** pszEnd, int iBase) { return chars_to_int < ::ansi_character >(psz, (const_char_pointer *)pszEnd, iBase); }
+unsigned int __ansitou32(const_char_pointer psz, ::ansi_character ** pszEnd, int iBase) { return chars_to_unsigned_int < ::ansi_character >(psz, (const_char_pointer *)pszEnd, iBase); }
+long long __ansitoi64(const_char_pointer psz, ::ansi_character ** pszEnd, int iBase) { return chars_to_long_long < ::ansi_character >(psz, (const_char_pointer *)pszEnd, iBase); }
+unsigned long long __ansitou64(const_char_pointer psz, ::ansi_character ** pszEnd, int iBase) { return chars_to_unsigned_long_long < ::ansi_character >(psz, (const_char_pointer *)pszEnd, iBase); }
 
 
 int __wd16toi32(const ::wd16_character *psz, ::wd16_character ** pszEnd, int iBase) { return chars_to_int < ::wd16_character >(psz, (const ::wd16_character **)pszEnd, iBase); }

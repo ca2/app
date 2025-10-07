@@ -67,7 +67,7 @@ tracer::~tracer()
 //}
 //
 //
-//tracer & tracer::operator()(::platform::context * pcontext, enum_trace_level etracelevel, enum_trace_category etracecategory, const ::ansi_character * pszFunction, const ::ansi_character * pszFile, int iLine, logger * plogger)
+//tracer & tracer::operator()(::platform::context * pcontext, enum_trace_level etracelevel, enum_trace_category etracecategory, const_char_pointer pszFunction, const_char_pointer pszFile, int iLine, logger * plogger)
 //{
 //   
 //   m_papplication = pcontext;
@@ -102,56 +102,56 @@ tracer::~tracer()
 
 
 
-//CLASS_DECL_ACME void trace_log_information(const ::ansi_character * psz, ...)
+//CLASS_DECL_ACME void trace_log_information(const_char_pointer psz, ...)
 //{
 //
 //   va_list arguments;
 //
 //   va_start(arguments, psz);
 //
-//   get_tracer()(::get_task()->m_papplication, e_trace_level_information).format_output_arguments(psz, arguments);
+//   get_tracer()(::get_task()->m_papplication, e_trace_level_information).format_output_arguments(scopedstr, arguments);
 //
 //   va_end(arguments);
 //
 //}
 //
 //
-//CLASS_DECL_ACME void trace_log_warning(const ::ansi_character * psz, ...)
+//CLASS_DECL_ACME void trace_log_warning(const_char_pointer psz, ...)
 //{
 //
 //   va_list arguments;
 //
 //   va_start(arguments, psz);
 //
-//   get_tracer()(::get_task()->m_papplication, e_trace_level_warning).format_output_arguments(psz, arguments);
+//   get_tracer()(::get_task()->m_papplication, e_trace_level_warning).format_output_arguments(scopedstr, arguments);
 //
 //   va_end(arguments);
 //
 //}
 //
 //
-//CLASS_DECL_ACME void trace_log_error(const ::ansi_character * psz, ...)
+//CLASS_DECL_ACME void trace_log_error(const_char_pointer psz, ...)
 //{
 //
 //   va_list arguments;
 //
 //   va_start(arguments, psz);
 //
-//   get_tracer()(::get_task()->m_papplication, e_trace_level_error).format_output_arguments(psz, arguments);
+//   get_tracer()(::get_task()->m_papplication, e_trace_level_error).format_output_arguments(scopedstr, arguments);
 //
 //   va_end(arguments);
 //
 //}
 //
 //
-//CLASS_DECL_ACME void trace_log_fatal(const ::ansi_character * psz, ...)
+//CLASS_DECL_ACME void trace_log_fatal(const_char_pointer psz, ...)
 //{
 //
 //   va_list arguments;
 //
 //   va_start(arguments, psz);
 //
-//   get_tracer()(::get_task()->m_papplication, e_trace_level_fatal).format_output_arguments(psz, arguments);
+//   get_tracer()(::get_task()->m_papplication, e_trace_level_fatal).format_output_arguments(scopedstr, arguments);
 //
 //   va_end(arguments);
 //

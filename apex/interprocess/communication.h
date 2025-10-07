@@ -13,7 +13,7 @@ namespace interprocess
 {
 
 
-   using task_map = atom_map < ::pointer< task > >;
+   using task_map = atom_map_base < ::pointer< task > >;
 
 
    class CLASS_DECL_APEX communication :
@@ -25,10 +25,10 @@ namespace interprocess
       interlocked_count                                        m_iTaskSeed;
       string                                                   m_strApp;
       ::atom                                                   m_atomApp;
-      string_map < ::pointer<::interprocess::caller > >        m_callermap;
-      string_map < ::pointer< ::mutex > >                      m_mapAppMutex;
+      string_map_base < ::pointer<::interprocess::caller > >        m_callermap;
+      string_map_base < ::pointer< ::mutex > >                      m_mapAppMutex;
       ::pointer<::interprocess::target>                        m_ptarget;
-      string_array                                             m_straModule;
+      string_array_base                                             m_straModule;
       ::pointer<::interprocess::handler>                       m_phandler;
 
       // strTask - Task
@@ -45,41 +45,41 @@ namespace interprocess
       ~communication() override;
 
 
-      virtual void initialize_interprocess_communication(::particle * pparticle, const ::string & strApp);
+      virtual void initialize_interprocess_communication(::particle * pparticle, const ::scoped_string & scopedstrApp);
 
 
       void destroy() override;
 
 
-      virtual void defer_add_module(const ::string & strModule, const ::atom & atomPid);
+      virtual void defer_add_module(const ::scoped_string & scopedstrModule, const ::atom & atomPid);
 
       virtual ::pointer<::interprocess::task>create_task(::interprocess::call * pcall, const ::atom & atomPid);
 
       virtual ::pointer<::interprocess::task>get_task(long long iTask);
 
-      virtual ::pointer<::interprocess::call>create_call(const ::string & strApp, const ::string & strObject, const ::string & strMember);
+      virtual ::pointer<::interprocess::call>create_call(const ::scoped_string & scopedstrApp, const ::scoped_string & scopedstrObject, const ::scoped_string & scopedstrMember);
 
-      virtual ::pointer<::interprocess::call>create_call(const ::string & strObject, const ::string & strMember);
+      virtual ::pointer<::interprocess::call>create_call(const ::scoped_string & scopedstrObject, const ::scoped_string & scopedstrMember);
 
-      virtual ::interprocess::caller & caller(const ::string & strApp, const ::atom & atomPid);
+      virtual ::interprocess::caller & caller(const ::scoped_string & scopedstrApp, const ::atom & atomPid);
 
-      virtual ::atom_array get_pid(const ::string & strApp);
+      virtual ::atom_array get_pid(const ::scoped_string & scopedstrApp);
 
-      virtual string key(const string & strApp, const ::atom & atomPid);
+      virtual string key(const ::scoped_string & scopedstrApp, const ::atom & atomPid);
 
       virtual string str_from_va(const payload_array & va);
 
-      bool _handle_uri(const ::string & strUri) override;
+      bool _handle_uri(const ::scoped_string & scopedstrUri) override;
 
       //using ::interprocess::handler::receiver::on_interprocess_receive;
 
-      bool _handle_call(::payload & payload, const ::string & strObject, const ::string & strMember, ::property_set & propertyset) override;
+      bool _handle_call(::payload & payload, const ::scoped_string & scopedstrObject, const ::scoped_string & scopedstrMember, ::property_set & propertyset) override;
 
-      virtual void start(const ::string & strApp);
+      virtual void start(const ::scoped_string & scopedstrApp);
 
-      virtual void connect(const ::string & strApp, const ::atom & atomPid);
+      virtual void connect(const ::scoped_string & scopedstrApp, const ::atom & atomPid);
 
-      virtual void on_new_instance(const ::string & strModule, const ::atom & atomPid);
+      virtual void on_new_instance(const ::scoped_string & scopedstrModule, const ::atom & atomPid);
 
       void interprocess_communication_open(const ::file::path & path);
 

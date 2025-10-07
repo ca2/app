@@ -12,8 +12,8 @@
 #include "acme/handler/topic.h"
 #include "acme/prototype/datetime/datetime.h"
 #include "aura/platform/system.h"
-#include "base/user/user/split_pane.h"
-#include "base/user/user/frame_window.h"
+#include "berg/user/user/split_pane.h"
+#include "berg/user/user/frame_window.h"
 #include "core/platform/application.h"
 
 
@@ -105,7 +105,7 @@ namespace filemanager
       if (!pmainview)
       {
 
-         output_error_message("Could not create file list ::user::impact");
+         output_error_message("Could not create file list_base ::user::impact");
 
       }
 

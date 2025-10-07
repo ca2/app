@@ -3,7 +3,7 @@
 #include "node.h"
 #include "application.h"
 #include "system.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 ////#include "acme/exception/exception.h"
 #include "acme/filesystem/filesystem/path_system.h"
 #include "acme/filesystem/filesystem/file_system.h"
@@ -178,7 +178,7 @@ namespace platform
       //for (auto & papplication : applicationa)
       //{
 
-      //   __construct_new(papplication->m_phappeningFinished);
+      //   øconstruct_new(papplication->m_phappeningFinished);
 
       //   multiplelock.m_synchronizationa.add(papplication->m_phappeningFinished);
 
@@ -265,7 +265,7 @@ namespace platform
    application_array application_container::get_applicationa()
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       return m_applicationa;
 
@@ -282,7 +282,7 @@ namespace platform
    //
    //   }
    //
-   //   synchronous_lock synchronouslock(this->synchronization());
+   //   synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
    //
    //   if (papp == this)
    //   {
@@ -299,7 +299,7 @@ namespace platform
    //void application_container::app_erase(::apex::application * papp)
    //{
    //
-   //   synchronous_lock synchronouslock(this->synchronization());
+   //   synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
    //
    //   if (m_applicationa.is_set())
    //   {
@@ -311,7 +311,7 @@ namespace platform
    //}
 
 
-   ::pointer<::platform::application>application_container::instantiate_application(const ::string& strAppId)
+   ::pointer<::platform::application>application_container::instantiate_application(const ::scoped_string & scopedstrAppId)
    {
 
       information() <<  "apex::application::instantiate_application";
@@ -345,8 +345,8 @@ namespace platform
 
          string strStartupApplicationAppId = psystem->m_papplication->m_strAppId;
 
-         if (strStartupApplicationAppId != strAppId ||
-            !strAppId.begins(strStartupApplicationAppId))
+         if (strStartupApplicationAppId != scopedstrAppId ||
+            !scopedstrAppId.begins(strStartupApplicationAppId))
          {
 
             information() << "Wrong papp Data Type";
@@ -409,10 +409,10 @@ namespace platform
    }
 
 
-   ::pointer<::platform::application>application_container::create_application(const ::string& strAppId)
+   ::pointer<::platform::application>application_container::create_application(const ::scoped_string & scopedstrAppId)
    {
 
-      auto papplication = instantiate_application(strAppId);
+      auto papplication = instantiate_application(scopedstrAppId);
 
       if (!papplication)
       {
@@ -447,23 +447,23 @@ namespace platform
    }
 
 
-   ::pointer<::platform::application>application_container::assert_running(const ::string& strAppId)
+   ::pointer<::platform::application>application_container::assert_running(const ::scoped_string & scopedstrAppId)
    {
 
       ::pointer<::platform::application>papplication;
 
       {
 
-         synchronous_lock synchronouslock(this->synchronization());
+         synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-         papplication = m_applicationa.find_running_defer_try_quit_damaged(strAppId);
+         papplication = m_applicationa.find_running_defer_try_quit_damaged(scopedstrAppId);
 
       }
 
       if (papplication.is_null())
       {
 
-         papplication = create_application(strAppId);
+         papplication = create_application(scopedstrAppId);
 
       }
 
@@ -472,7 +472,7 @@ namespace platform
    }
 
 
-   //   ::pointer<::platform::application>application_container::start_application(const ::string & strAppId, ::request * prequest)
+   //   ::pointer<::platform::application>application_container::start_application(const ::scoped_string & scopedstrAppId, ::request * prequest)
    //   {
    //
    //      auto papplication = application_get(strAppId, true, true, prequest);
@@ -560,7 +560,7 @@ namespace platform
    //      //psystem->merge_accumulated_on_open_file(pcreate);
    //
    //      //papp->do_request(pcreate);
-   //      papp->post_element(e_message_system, e_system_message_create, pcreate);
+   //      papp->post_element(::user::e_message_system, e_system_message_create, pcreate);
    //
    //      //         while (task_get_run())
    //      //         {
@@ -577,12 +577,12 @@ namespace platform
    //   }
 
 
-   ::platform::application* application_container::get_application(const ::string& strAppId, bool bCreate, ::request* prequest)
+   ::platform::application* application_container::get_application(const ::scoped_string & scopedstrAppId, bool bCreate, ::request* prequest)
    {
 
       ::pointer<::platform::application>papplication;
 
-      if (m_applicationa.lookup(strAppId, papplication))
+      if (m_applicationa.find(scopedstrAppId, papplication))
       {
 
          return papplication;
@@ -601,7 +601,7 @@ namespace platform
       try
       {
 
-         papplication = create_application(strAppId);
+         papplication = create_application(scopedstrAppId);
 
       }
       catch (const ::exception& e)

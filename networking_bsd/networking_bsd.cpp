@@ -19,7 +19,7 @@
 #include <netdb.h>
 #endif
 
-unsigned int c_inet_to_ui(const char * src)
+unsigned int c_inet_to_ui(const_char_pointer src)
 {
 
    if(case_insensitive_ansi_begins(src, "0x"))
@@ -92,9 +92,9 @@ static const uchar index_hex[256] =
 //* or 0 if the input is not a valid IPv6 address string.
 //* (Same as inet_pton(AF_INET6, string, addr).)
 //*/
-//CLASS_DECL_NETWORKING_BSD void from_string(in6_addr & addr, const ::ansi_character * string)
+//CLASS_DECL_NETWORKING_BSD void from_string(in6_addr & addr, const_char_pointer string)
 //{
-//   const uchar *s = (const uchar *)(const char *) string;
+//   const uchar *s = (const uchar *)(const_char_pointer )string;
 //   int department = 0;        /* index of the current department (a 16-bit
 //                           * piece of the address */
 //   int double_colon = -1;  /* index of the department after the first
@@ -221,7 +221,7 @@ static const uchar index_hex[256] =
 //
 //#undef XX
 //
-//static const char *basis_hex = "0123456789abcdef";
+//static const_char_pointer basis_hex = "0123456789abcdef";
 
 
 
@@ -362,13 +362,13 @@ struct c_in_addr
 //namespace str
 //{
 
-//CLASS_DECL_NETWORKING_BSD void from_string(in_addr & addrParam, const ::ansi_character * string)
+//CLASS_DECL_NETWORKING_BSD void from_string(in_addr & addrParam, const_char_pointer string)
 //{
 //
 //   c_in_addr & addr = (c_in_addr &) addrParam;
 //
 //
-//   string_array stra;
+//   string_array_base stra;
 //
 //   stra.add_tokens(string, ".");
 //
@@ -418,19 +418,19 @@ struct c_in_addr
 //
 //   char * psz = str.get_buffer(20);
 //
-//   ansi_concatenate_long_long(psz, b1);
+//   ansi_concatenate_long_long(scopedstr, b1);
 //
-//   ansi_concatenate(psz, ".");
+//   ansi_concatenate(scopedstr, ".");
 //
-//   ansi_concatenate_long_long(psz, b2);
+//   ansi_concatenate_long_long(scopedstr, b2);
 //
-//   ansi_concatenate(psz, ".");
+//   ansi_concatenate(scopedstr, ".");
 //
-//   ansi_concatenate_long_long(psz, b3);
+//   ansi_concatenate_long_long(scopedstr, b3);
 //
-//   ansi_concatenate(psz, ".");
+//   ansi_concatenate(scopedstr, ".");
 //
-//   ansi_concatenate_long_long(psz, b4);
+//   ansi_concatenate_long_long(scopedstr, b4);
 //
 //   str.release_buffer();
 //
@@ -572,7 +572,7 @@ CLASS_DECL_NETWORKING_BSD ::string as_string(const sockaddr & addr)
 //} // namespace str
 
 
-CLASS_DECL_NETWORKING_BSD int c_inet_pton(int af, const char *src, void *dst)
+CLASS_DECL_NETWORKING_BSD int c_inet_pton(int af, const_char_pointer src, void *dst)
 {
 
    if(af == AF_INET)
@@ -632,7 +632,7 @@ CLASS_DECL_NETWORKING_BSD int c_inet_pton(int af, const char *src, void *dst)
 //}
 //
 
-CLASS_DECL_NETWORKING_BSD ::e_status from_string(in_addr & addr, const char * src)
+CLASS_DECL_NETWORKING_BSD ::e_status from_string(in_addr & addr, const_char_pointer src)
 {
 
    int iRet = inet_pton(AF_INET, src, &addr);
@@ -659,7 +659,7 @@ CLASS_DECL_NETWORKING_BSD ::e_status from_string(in_addr & addr, const char * sr
 }
 
 
-CLASS_DECL_NETWORKING_BSD ::e_status from_string(in6_addr & addr, const char * src)
+CLASS_DECL_NETWORKING_BSD ::e_status from_string(in6_addr & addr, const_char_pointer src)
 {
 
    int iRet = inet_pton(AF_INET6, src, &addr);
@@ -686,12 +686,12 @@ CLASS_DECL_NETWORKING_BSD ::e_status from_string(in6_addr & addr, const char * s
 }
 
 
-CLASS_DECL_NETWORKING_BSD string c_gethostbyname(const char * hostname)
+CLASS_DECL_NETWORKING_BSD string c_gethostbyname(const_char_pointer hostname)
 {
 
 //#ifdef UNIVERSAL_WINDOWS
 //
-//   return (ref __allocate< ::winrt::Windows::Networking::HostName(string >(hostname)))->DisplayName;
+//   return (ref øallocate< ::winrt::Windows::Networking::HostName(string >(hostname)))->DisplayName;
 //
 //#else
 

@@ -47,7 +47,7 @@ namespace sockets
 
       http_get_socket();
       //http_get_socket(const string & url);
-      //http_get_socket(const string & host,::networking::port_t port,const string & url);
+      //http_get_socket(const ::scoped_string & scopedstrHost,::networking::port_t port,const string & url);
       ~http_get_socket() override;
 
 

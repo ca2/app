@@ -10,7 +10,7 @@ void get_os_priority(int * piPolicy, sched_param * pparam, ::enum_priority eprio
 //   namespace android
 //   {
 //
-//void node::create_process(const char * _cmd_line, int * pprocessId, int * piErrorCode)
+//void node::create_process(const_char_pointer _cmd_line, int * pprocessId, int * piErrorCode)
 //{
 //
 //   char *   exec_path_name = nullptr;
@@ -93,7 +93,7 @@ void get_os_priority(int * piPolicy, sched_param * pparam, ::enum_priority eprio
 //   string strCmdLine;
 //
 //   strCmdLine = pszPath;
-//   if(ansi_length(pszParam) > 0)
+//   if(ansi_length(scopedstrParam) > 0)
 //   {
 //      strCmdLine +=  " ";
 //      strCmdLine += pszParam;
@@ -120,7 +120,7 @@ void get_os_priority(int * piPolicy, sched_param * pparam, ::enum_priority eprio
 //   string strCmdLine;
 //
 //   strCmdLine = pszPath;
-//   if(ansi_length(pszParam) > 0)
+//   if(ansi_length(scopedstrParam) > 0)
 //   {
 //      strCmdLine +=  " ";
 //      strCmdLine += pszParam;
@@ -163,7 +163,7 @@ void get_os_priority(int * piPolicy, sched_param * pparam, ::enum_priority eprio
 CLASS_DECL_ACME bool main_initialize()
 {
 
-//   t_posthread = __allocate os_thread(nullptr,nullptr);
+//   t_posthread = øallocate os_thread(nullptr,nullptr);
 
    //t_posthread->m_bRun = true;
 
@@ -251,7 +251,7 @@ CLASS_DECL_ACME bool main_finalize()
 //
 //   strCmdLine = pszPath;
 //
-//   if (ansi_length(pszParam) > 0)
+//   if (ansi_length(scopedstrParam) > 0)
 //   {
 //
 //      strCmdLine += " ";
@@ -282,7 +282,7 @@ CLASS_DECL_ACME bool main_finalize()
 //}
 
 
-CLASS_DECL_ACME bool is_shared_library_busy(const string_array & stra)
+CLASS_DECL_ACME bool is_shared_library_busy(const string_array_base & stra)
 {
 
    return true;
@@ -290,7 +290,7 @@ CLASS_DECL_ACME bool is_shared_library_busy(const string_array & stra)
 }
 
 //
-//CLASS_DECL_ACME ::file::path core_app_path(string strApp)
+//CLASS_DECL_ACME ::file::path core_app_path(const ::scoped_string & scopedstrApp)
 //{
 //
 //   throw todo();

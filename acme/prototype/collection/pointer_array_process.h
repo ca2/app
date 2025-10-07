@@ -16,9 +16,13 @@ public:
    //using const_ref_iterator = typename POINTER_ARRAY_PROCESS::const_ref_iterator;
 
 
-   pointer_array_process() { }
-   pointer_array_process(const pointer_array_process & array) : BASE_ARRAY(array) { }
-   pointer_array_process(pointer_array_process && array) noexcept : BASE_ARRAY(::transfer(array)) { }
+   using BASE_ARRAY::BASE_ARRAY;
+   using BASE_ARRAY::operator =;
+
+
+   // pointer_array_process() { }
+   // pointer_array_process(const pointer_array_process & array) : BASE_ARRAY(array) { }
+   // pointer_array_process(pointer_array_process && array) noexcept : BASE_ARRAY(::transfer(array)) { }
 
    //inline auto ptra(::collection::index iStart = 0, ::collection::index iEnd = -1) { return ARRAY_BASE::values(iStart, iEnd); }
 
@@ -109,8 +113,8 @@ public:
    }
 
 
-   pointer_array_process & operator=(const pointer_array_process & ptra) { POINTER_ARRAY_PROCESS::operator=(ptra); return *this; }
-   pointer_array_process & operator=(pointer_array_process && ptra) { POINTER_ARRAY_PROCESS::operator=(::transfer(ptra)); return *this; }
+   //pointer_array_process & operator=(const pointer_array_process & ptra) { POINTER_ARRAY_PROCESS::operator=(ptra); return *this; }
+   //pointer_array_process & operator=(pointer_array_process && ptra) { POINTER_ARRAY_PROCESS::operator=(::transfer(ptra)); return *this; }
 
 
 };

@@ -1,8 +1,8 @@
 #pragma once
 
 
-#include "bred/gpu/context.h"
-#include "acme/prototype/prototype/memory.h"
+#include "gpu/context.h"
+//#include "acme/prototype/prototype/memory.h"
 
 
 namespace gpu_opengl
@@ -10,7 +10,7 @@ namespace gpu_opengl
 
 
    class CLASS_DECL_GPU_OPENGL context :
-      virtual public ::gpu::context
+      virtual public ::gpu_gpu::context
    {
    public:
 
@@ -56,19 +56,24 @@ namespace gpu_opengl
 
       void set_bitmap_1(::image::image *pimage) override;
       //void set_topic_texture(int iIndex) override;
-      void set_cull_face(bool bSet = true) override;
+      void set_cull_face(::gpu::enum_cull_mode ecullmode) override;
       //void swap_buffers() override;
 
       void _context_lock() override;
       void _context_unlock() override;
 
       virtual void update_framebuffer(const ::int_size& size);
-
+      //void gpu_debug_message(const ::scoped_string& scopedstrMessage) override;
+      void start_debug_happening(const ::scoped_string& scopedstrMessage) override;
       ::memory rectangle_shader_vert() override;
       ::memory rectangle_shader_frag() override;
 
       ::memory white_to_color_sampler_vert() override;
       ::memory white_to_color_sampler_frag() override;
+
+
+      void load_generic_texture(::pointer < ::gpu::texture > & ptexture, const file::path &path, int iAssimpTextureType) override;
+
 
       //virtual void create_offscreen_buffer(const ::int_size& size);
       //virtual void _create_offscreen_buffer(const ::int_size& size);
@@ -78,11 +83,11 @@ namespace gpu_opengl
 
    /*   virtual void translate_shader(string & str);
 
-      virtual void _translate_shader(string_array& stra);*/
+      virtual void _translate_shader(string_array_base& stra);*/
 
       //virtual void make_current();
 
-      // virtual string load_fragment(const ::string & pszPath, enum_shader_source& eshadersource);
+      // virtual string load_fragment(const ::scoped_string & scopedstrPath, enum_shader_source& eshadersource);
 
       //virtual string get_shader_version_text();
 
@@ -137,18 +142,60 @@ namespace gpu_opengl
 
       string get_shader_version_text() override;
 
-      void _translate_shader(string_array & straFragment) override;
+      void _translate_shader(string_array_base & straFragment) override;
 
       //void swap_buffers() override;
 
       //void copy(::gpu::texture* pgputextureTarget, ::gpu::texture* pgputextureSource) override;
 
+      ::pointer<::graphics3d::renderable> _load_gltf_model(const ::gpu::renderable_t &model) override;
+
+      ::pointer<::gpu::texture> load_cube_map(const ::scoped_string &scopedstrName, const ::file::path &path,
+                                              bool b32) override;
+
+      // ::pointer<::gpu::texture> loadCubemap(
+      //    const ::scoped_string& name,
+      //    const ::scoped_string& ktxFilename,
+      //    VkFormat format,
+      //    VkQueue vkqueueCopy,
+      //    VkImageUsageFlags usageFlags,
+      //    VkImageLayout initialLayout);
+      ::pointer<::gpu::texture> loadCubemap(
+         const ::scoped_string& name,
+         const ::file::path & pathFile,
+         bool b32);
+
+//       /// @brief generatePrefilteredEnvMap
+//       /// @param environmentCubeExisting
+//       /// @param prenderableSkybox
+//       /// @return
+//       virtual ::pointer<::gpu::texture> generatePrefilteredEnvMap(
+//          ::gpu::texture *environmentCubeExisting,
+//          ::graphics3d::renderable *prenderableSkybox);
+//
+//       /// generate irradianceCube
+//       /// @return irradianceCube
+//       virtual ::pointer < ::gpu::texture > generateIrradianceMap(
+// //         ::gpu::texture * irradianceCube,
+//          ::gpu::texture * environmentCube,
+//          ::graphics3d::renderable * prenderableSkybox);
+//       // ::pointer<::gpu::texture> loadCubemap(
+//       //    const ::scoped_string& name,
+//       //    const ::scoped_string& ktxFilename,
+//       //    VkFormat format,
+//       //    VkImageUsageFlags usageFlags,
+//       //    VkImageLayout initialLayout);
+//       //    virtual void generateBRDFlut(
+//       //     ::gpu::texture * lutBrdf);
+//       /// generate lutBrdf
+//       /// @return lutBrdf
+//       virtual ::pointer < ::gpu::texture > generateBRDFlut();
 
    };
 
 
 
-} // namespace gpu
+} // namespace gpu_opengl
 
 
 

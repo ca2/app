@@ -10,6 +10,7 @@
 #include "acme/prototype/prototype/transfer.h"
 #include "acme/prototype/string/string.h"
 #include "acme/prototype/string/string_base.h"
+#include "acme/prototype/string/scoped_string_base.h"
 
 enum enum_id : ::uptr;
 
@@ -40,7 +41,7 @@ class lparam;
 #define __id_is_null_ptr(p) (!(p))
 
 
-inline bool __atom_str_is_empty(const ::ansi_character * psz)
+inline bool __atom_str_is_empty(const_char_pointer psz)
 {
 
    return __id_is_null_ptr(psz) || *psz == '\0';
@@ -78,12 +79,12 @@ int __atom_sgn(T x)
 #define __atom_is_null_ptr(p) (!(p))
 
 
-#define __atom_str_is_empty(psz) (__atom_is_null_ptr(psz) || *psz == '\0')
+#define __atom_str_is_empty(scopedstr) (__atom_is_null_ptr(scopedstr) || *psz == '\0')
 
 
 
 
-//inline int __atom_safe_strcmp(const char * a, const char * b)
+//inline int __atom_safe_strcmp(const_char_pointer a, const_char_pointer b)
 //{
 //
 //   if (__atom_str_is_empty(a))
@@ -119,7 +120,7 @@ int __atom_sgn(T x)
 //}
 //
 //
-//inline int __atom_safe_stricmp(const char * a, const char * b)
+//inline int __atom_safe_stricmp(const_char_pointer a, const_char_pointer b)
 //{
 //
 //   if (__atom_str_is_empty(a))
@@ -154,7 +155,7 @@ int __atom_sgn(T x)
 //
 //}
 //
-//inline bool __atom_str_begins(const char * a, const char * b)
+//inline bool __atom_str_begins(const_char_pointer a, const_char_pointer b)
 //{
 //
 //   if (__atom_str_is_empty(a))
@@ -190,7 +191,7 @@ int __atom_sgn(T x)
 //}
 //
 //
-//inline bool case_insensitive___atom_str_begins(const char * a, const char * b)
+//inline bool case_insensitive___atom_str_begins(const_char_pointer a, const_char_pointer b)
 //{
 //
 //   if (__atom_str_is_empty(a))
@@ -262,6 +263,7 @@ public:
       e_type_check,
       e_type_status,
       e_type_domainid,
+      e_type_user_message,
 
       e_type_not_an_atom = 127,
 
@@ -304,24 +306,25 @@ public:
    union
    {
 
-      enum_id              m_eid;
-      enum_impact          m_eimpact;
-      enum_property        m_eproperty;
-      enum_factory         m_efactory;
-      enum_task_tool       m_etasktool;
-      enum_timer           m_etimer;
-      enum_message         m_emessage;
-      enum_dialog_result   m_edialogresult;
-      enum_happening       m_ehappening;
-      enum_element         m_eelement;
-      e_status             m_estatus;
-      e_command            m_ecommand;
-      e_check              m_echeck;
-      domain_id            m_domainid;
-      ::string             m_str;
-      ::ansi_range         m_range;
-      long long                m_iLargest;
-      unsigned long long                m_uLargest;
+      enum_id                       m_eid;
+      enum_impact                   m_eimpact;
+      enum_property                 m_eproperty;
+      enum_factory                  m_efactory;
+      enum_task_tool                m_etasktool;
+      enum_timer                    m_etimer;
+      ::user::enum_message          m_eusermessage;
+      ::enum_message                m_emessage;
+      enum_dialog_result            m_edialogresult;
+      enum_happening                m_ehappening;
+      enum_element                  m_eelement;
+      e_status                      m_estatus;
+      e_command                     m_ecommand;
+      e_check                       m_echeck;
+      domain_id                     m_domainid;
+      ::string                      m_str;
+      ::ansi_range                  m_range;
+      long long                     m_iLargest;
+      unsigned long long            m_uLargest;
 
    };
 
@@ -344,7 +347,8 @@ public:
    inline atom(enum_element eelement);
    //inline atom(::enum_id EID);
    //inline atom(const ::e_command & ecommand);
-   inline atom(enum_message emessage);
+   inline atom(::user::enum_message eusermessage);
+   inline atom(::enum_message emessage);
    //inline atom(ENUM_MESSAGE EMESSAGE);
    inline atom(enum_impact eimpact);
    inline atom(ENUM_IMPACT EIMPACT);
@@ -360,7 +364,7 @@ public:
    inline atom(enum_type etypeAdd, const atom & atom);
    inline atom(const atom & atom);
    inline atom(const domain_id & domainid);
-   atom(const ::ansi_character * psz);
+   atom(const_char_pointer psz);
    atom(const inline_number_string & inlinenumberstring);
    //template <typename ITERATOR_TYPE2, int t_size >
    //atom(const const_string_range_static_array <ITERATOR_TYPE2, t_size >& a) : atom((const ::string&)a) {}
@@ -372,12 +376,12 @@ public:
    atom(UNSIGNED u);
    template < primitive_enum ENUM >
    atom(ENUM e);
-   atom(const ::string & str);
+   atom(const ::scoped_string & scopedstr);
    //atom(const const_ansi_range & range);
    //atom(const_ansi_range && range);
    //atom(const const_ansi_range && range);
    //atom(const type & type);
-   template < character_range RANGE >
+   template < primitive_character_range RANGE >
    atom(const RANGE & range);
    //template < has_as_string_not_payload HAS_AS_STRING_NOT_PAYLOAD >
    //atom(const HAS_AS_STRING_NOT_PAYLOAD& has_as_string_not_payload);
@@ -508,9 +512,9 @@ public:
    inline bool operator == (const atom& atom) const;
    inline ::std::strong_ordering operator <=> (const atom & atom) const;
 
-   template < character_range RANGE >
+   template < primitive_character_range RANGE >
    inline bool operator == (const RANGE & str) const;
-   template < character_range RANGE >
+   template < primitive_character_range RANGE >
    inline ::std::strong_ordering operator <=> (const RANGE & str) const;
 
    template < character_pointer CHARACTER_POINTER >
@@ -535,13 +539,13 @@ public:
 //#ifndef NO_TEMPLATE
 
 
-   //inline ::std::strong_ordering order(const ::string & str) const;
-   //inline bool operator == (const ::string & str) const;
-   //inline ::std::strong_ordering operator <=>(const ::string & str) const;
-   //inline bool operator < (const ::string & str) const;
-   //inline bool operator <= (const ::string & str) const;
-   //inline bool operator > (const ::string & str) const;
-   //inline bool operator >= (const ::string & str) const;
+   //inline ::std::strong_ordering order(const ::scoped_string & scopedstr) const;
+   //inline bool operator == (const ::scoped_string & scopedstr) const;
+   //inline ::std::strong_ordering operator <=>(const ::scoped_string & scopedstr) const;
+   //inline bool operator < (const ::scoped_string & scopedstr) const;
+   //inline bool operator <= (const ::scoped_string & scopedstr) const;
+   //inline bool operator > (const ::scoped_string & scopedstr) const;
+   //inline bool operator >= (const ::scoped_string & scopedstr) const;
 
 
 
@@ -595,22 +599,24 @@ public:
     inline bool operator == (::ENUM_IMPACT EIMPACT) const { return *this == (::enum_impact)EIMPACT; }
     inline ::std::strong_ordering operator <=> (::ENUM_IMPACT EIMPACT) const { return *this <=> (::enum_impact)EIMPACT; }
 
-    //inline ::std::strong_ordering order(::enum_message emessage) const;
-   inline bool operator == (::enum_message emessage) const;
-   inline ::std::strong_ordering operator <=> (::enum_message emessage) const;
-   //inline bool operator < (::enum_message emessage) const;
-   //inline bool operator <= (::enum_message emessage) const;
-   //inline bool operator > (::enum_message emessage) const;
-   //inline bool operator >= (::enum_message emessage) const;
+    //inline ::std::strong_ordering order(::user::enum_message eusermessage) const;
+   inline bool operator == (::user::enum_message eusermessage) const;
+   inline ::std::strong_ordering operator <=> (::user::enum_message eusermessage) const;
+   inline bool operator==(::enum_message emessage) const;
+   inline ::std::strong_ordering operator<=>(::enum_message emessage) const;
+   // inline bool operator < (::user::enum_message eusermessage) const;
+   //inline bool operator <= (::user::enum_message eusermessage) const;
+   //inline bool operator > (::user::enum_message eusermessage) const;
+   //inline bool operator >= (::user::enum_message eusermessage) const;
 
 
-   // //inline ::std::strong_ordering order(ENUM_MESSAGE EID) const { return order((::enum_message)EID); }
-   // inline bool operator == (ENUM_MESSAGE EID) const { return *this == (::enum_message)EID; }
-   // inline ::std::strong_ordering operator <=> (ENUM_MESSAGE EID) const { return *this <=> (::enum_message)EID; }
-   // //inline bool operator < (ENUM_MESSAGE EID) const { return operator<((::enum_message)EID); }
-   // //inline bool operator <= (ENUM_MESSAGE EID) const { return operator<=((::enum_message)EID); }
-   // //inline bool operator > (ENUM_MESSAGE EID) const { return operator>((::enum_message)EID); }
-   // //inline bool operator >= (ENUM_MESSAGE EID) const { return operator>=((::enum_message)EID); }
+   // //inline ::std::strong_ordering order(ENUM_MESSAGE EID) const { return order((::user::enum_message)EID); }
+   // inline bool operator == (ENUM_MESSAGE EID) const { return *this == (::user::enum_message)EID; }
+   // inline ::std::strong_ordering operator <=> (ENUM_MESSAGE EID) const { return *this <=> (::user::enum_message)EID; }
+   // //inline bool operator < (ENUM_MESSAGE EID) const { return operator<((::user::enum_message)EID); }
+   // //inline bool operator <= (ENUM_MESSAGE EID) const { return operator<=((::user::enum_message)EID); }
+   // //inline bool operator > (ENUM_MESSAGE EID) const { return operator>((::user::enum_message)EID); }
+   // //inline bool operator >= (ENUM_MESSAGE EID) const { return operator>=((::user::enum_message)EID); }
 
 
    //inline int order(::enum_topic etopic) const;
@@ -647,7 +653,7 @@ public:
 //
 //   atom & operator = (const ::payload & payload);
 //   atom & operator = (const property & prop);
-//   atom & operator = (const ::string & str);
+//   atom & operator = (const ::scoped_string & scopedstr);
 //
 //
    //template < primitive_integer INTEGRAL >
@@ -669,7 +675,7 @@ public:
 
 
    //inline operator ::iptr() const { return as_iptr(); }
-   //inline operator ::enum_message () const { return as_emessage(); }
+   //inline operator ::user::enum_message () const { return as_emessage(); }
    
    inline long long as_long_long() const;
    inline ::iptr as_iptr() const;
@@ -677,7 +683,8 @@ public:
    inline unsigned int as_unsigned_int() const { return (unsigned int) as_long_long(); }
    inline ::collection::index as_index() const { return (::collection::index)as_long_long(); }
    inline unsigned int as_umessage() const { return as_unsigned_int(); }
-   inline ::enum_message as_emessage() const;
+   inline ::user::enum_message as_eusermessage() const;
+   inline ::enum_message as_emessage1() const;
    inline ::enum_id as_eid() const;
    //inline ::e_check as_echeck() const { return m_etype == e_type_check ? m_echeck : (::e_check) e_check_undefined; }
    //inline ::e_status as_estatus() const { return m_etype == e_type_status ? m_estatus : (::e_status) e_status_none; }
@@ -700,7 +707,7 @@ public:
 #undef IMPLEMENT_ATOM_ENUMERATION
 
 
-   //inline operator const char* () const;
+   //inline operator const_char_pointer () const;
    //inline operator enum_dialog_result () const;
 
    //inline ::e_check & echeck_reference() { if(m_etype != e_type_check) set_compounded_type(e_type_check); return m_echeck; }
@@ -723,7 +730,7 @@ public:
    inline void clear();
    
 
-   //inline ::std::strong_ordering CompareNoCase(const ::scoped_string & scopedstr) const { return case_insensitive_order(psz); }
+   //inline ::std::strong_ordering CompareNoCase(const ::scoped_string & scopedstr) const { return case_insensitive_order(scopedstr); }
    inline ::std::strong_ordering case_insensitive_order(const ::scoped_string & scopedstr) const;
 
 
@@ -749,8 +756,8 @@ public:
 
 
    //inline string operator +(const atom & atom) const;
-   inline ::string operator +(const ::ansi_character * psz) const;
-   inline ::string operator +(const ::string & str) const;
+   inline ::string operator +(const_char_pointer psz) const;
+   inline ::string operator +(const ::scoped_string & scopedstr) const;
 
 
    operator ::hash32() const

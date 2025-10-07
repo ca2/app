@@ -11,7 +11,7 @@
 #include "acme/filesystem/filesystem/directory_context.h"
 #include "acme/filesystem/filesystem/file_context.h"
 #include "aura/platform/session.h"
-#include "base/user/user/single_document_template.h"
+#include "berg/user/user/single_document_template.h"
 #include "core/user/simple/pane_document.h"
 #include "core/user/user/user.h"
 #ifdef WINDOWS_DESKTOP
@@ -254,7 +254,7 @@ IMPLEMENT_APPLICATION_FACTORY();
 void hellomultiverse_debugging()
 {
 
-   const char * pszFree;
+   const_char_pointer pszFree;
 
    {
 
@@ -270,7 +270,7 @@ void hellomultiverse_debugging()
 
    }
 
-   information(pszFree);
+   information(scopedstrFree);
 
 }
 

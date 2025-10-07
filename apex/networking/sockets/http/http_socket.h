@@ -69,7 +69,7 @@ namespace sockets
       virtual void OnEndChunk();
 
       void OnRawData(char *buf,memsize len) override;
-      void OnLine(const string & line) override;
+      void OnLine(const ::scoped_string & scopedstrLine) override;
 
       /** Callback executes when first line has been received.
       GetMethod, GetUrl/GetUri, and GetHttpVersion are valid when this callback is executed. */
@@ -77,11 +77,11 @@ namespace sockets
       /** For each header line this callback is executed.
       \lparam key Http header name
       \lparam value Http header value */
-      virtual void OnHeader(atom key, const string & value);
+      virtual void OnHeader(const ::atom & atom, const ::scoped_string & scopedstr);
       /** Callback fires when all http headers have been received. */
       virtual void OnHeaderComplete();
       /** Chunk of http body data recevied. */
-      virtual void OnData(const char *, memsize);
+      virtual void OnData(const_char_pointer ,memsize);
       /** The full request/response body has been received. */
       virtual void OnDataComplete();
 

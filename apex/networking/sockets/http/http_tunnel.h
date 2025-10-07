@@ -26,7 +26,7 @@ namespace sockets
       bool        m_bOk;
       //string m_host; ///< Hostname from url_in
       //::networking::port_t m_port; ///< Port from url_in
-      string_array   m_straProxy;
+      string_array_base   m_straProxy;
       enum_state      m_estate;
       string      m_strRequest;
       //memory      m_memoryBody;
@@ -51,19 +51,19 @@ namespace sockets
 
       using ::sockets::http_socket::open;
       virtual bool open(bool bConfigProxy = true);
-      virtual bool proxy_open(const string &host, ::networking::port_t port);
+      virtual bool proxy_open(const ::scoped_string & scopedstrHost, ::networking::port_t port);
 
 
       void OnConnect() override;
 
-      void OnLine(const ::string & strParam) override;
+      void OnLine(const ::scoped_string & scopedstrParam) override;
 
       virtual bool http_request_step();
 
       virtual void OnFirst() override;
-      virtual void OnHeader(atom idKey, const string &) override;
+      virtual void OnHeader(const ::atom & atom, const ::scoped_string & scopedstr) override;
       virtual void OnHeaderComplete() override;
-      virtual void OnData(const char * psz, memsize size) override;
+      virtual void OnData(const_char_pointer psz, memsize size) override;
 
 
    };

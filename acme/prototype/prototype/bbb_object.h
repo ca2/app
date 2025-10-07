@@ -54,8 +54,8 @@ public:
    inline matter_array* _reference_array() { return m_preferencea; }
 
 
-   inline matter_array& composite_array() { ::__defer_construct_new(m_pcompositea); return *m_pcompositea; }
-   inline matter_array& reference_array() { ::__defer_construct_new(m_preferencea); return *m_preferencea; }
+   inline matter_array& composite_array() { ::ødefer_construct_new(m_pcompositea); return *m_pcompositea; }
+   inline matter_array& reference_array() { ::ødefer_construct_new(m_preferencea); return *m_preferencea; }
 
 
 
@@ -108,13 +108,13 @@ public:
    virtual void initialize(::particle * pparticle) override;
    virtual void destroy() override;
 
-   inline const char* topic_text();
+   inline const_char_pointer topic_text();
 
    context& __context(const ::payload& payload);
 
    ::payload __context_value(const ::payload& payload);
 
-   virtual void set_topic_text(const string& str);
+   virtual void set_topic_text(const ::scoped_string & scopedstr);
 
    void create_object_meta();
 
@@ -175,7 +175,7 @@ public:
    //virtual ::user::interaction * get_host_user_interaction();
 
 
-   virtual void dev_log(string str) const;
+   virtual void dev_log(const ::scoped_string & scopedstr) const;
 
    ::object& operator = (const ::payload& payload);
 
@@ -191,77 +191,77 @@ public:
    //::image::image_pointer create_image(const ::int_size & size, ::eobject eobjectCreate = OK, int iGoodStride = -1, bool bPreserve = false);
 
    //::image::image_pointer get_image(const ::payload & payloadFile, bool bCache = true, bool bSync = true);
-   //::image::image_pointer matter_image(const ::string & strMatter, bool bCache = true, bool bSync = true);
+   //::image::image_pointer matter_image(const ::scoped_string & scopedstrMatter, bool bCache = true, bool bSync = true);
 
    //template < typename BASE_TYPE >
-   //inline ::pointer<BASE_TYPE>__øcreate();
+   //inline ::pointer<BASE_TYPE>øcreate();
 
    //template < typename BASE_TYPE >
-   //inline ::pointer<BASE_TYPE>__id_create(const ::atom& atom);
+   //inline ::pointer<BASE_TYPE>øid_create(const ::atom& atom);
 
    //template < typename TYPE >
-   //inline ::pointer<TYPE>__create_new();
+   //inline ::pointer<TYPE>øcreate_new();
 
-   //inline void __øconstruct(::pointer<::image::image>& pimage);
+   //inline void øconstruct(::pointer<::image::image>& pimage);
 
-   //inline void __øconstruct(::pointer<::image::image>& pimage, ::image::image *pimageSource);
+   //inline void øconstruct(::pointer<::image::image>& pimage, ::image::image *pimageSource);
 
-   //inline void __defer_construct(::pointer<::image::image>& pimage) { return !pimage ? __øconstruct(pimage) : void(::success); }
+   //inline void ødefer_construct(::pointer<::image::image>& pimage) { return !pimage ? øconstruct(pimage) : void(::success); }
 
    // for composition (ownership)
 
    template < typename BASE_TYPE >
-   inline void __øconstruct(::pointer<BASE_TYPE> pusermessage);
+   inline void øconstruct(::pointer<BASE_TYPE> pusermessage);
 
    template < typename BASE_TYPE, typename SOURCE >
-   inline void __øconstruct(::pointer<BASE_TYPE> pusermessage, const SOURCE* psource);
+   inline void øconstruct(::pointer<BASE_TYPE> pusermessage, const SOURCE* psource);
 
    template < typename BASE_TYPE, typename SOURCE >
-   inline void __øconstruct(::pointer<BASE_TYPE> pusermessage, const ::pointer<SOURCE>psource);
+   inline void øconstruct(::pointer<BASE_TYPE> pusermessage, const ::pointer<SOURCE>psource);
 
    template < typename BASE_TYPE >
-   inline void __id_construct(::pointer<BASE_TYPE> pusermessage, const ::atom& atom);
+   inline void øid_construct(::pointer<BASE_TYPE> pusermessage, const ::atom& atom);
 
    template < typename BASE_TYPE >
-   inline void __raw_construct(::pointer<BASE_TYPE> pusermessage);
+   inline void øraw_construct(::pointer<BASE_TYPE> pusermessage);
 
    template < typename BASE_TYPE, typename SOURCE >
-   inline void __raw_construct(::pointer<BASE_TYPE> pusermessage, const SOURCE* psource);
+   inline void øraw_construct(::pointer<BASE_TYPE> pusermessage, const SOURCE* psource);
 
    template < typename BASE_TYPE, typename SOURCE >
-   inline void __raw_construct(::pointer<BASE_TYPE> pusermessage, const ::pointer<SOURCE>psource);
+   inline void øraw_construct(::pointer<BASE_TYPE> pusermessage, const ::pointer<SOURCE>psource);
 
    template < typename TYPE >
    inline void __raw_construct_new(::pointer<TYPE> ptype);
 
    template < typename TYPE >
-   inline void __construct_new(::pointer<TYPE> ptype);
+   inline void øconstruct_new(::pointer<TYPE> ptype);
 
 
 
 
    template < typename BASE_TYPE >
-   inline void __defer_construct(::pointer<BASE_TYPE> pusermessage) { return !pusermessage ? __øconstruct(pusermessage) : void(::success); }
+   inline void ødefer_construct(::pointer<BASE_TYPE> pusermessage) { return !pusermessage ? øconstruct(pusermessage) : void(::success); }
 
    template < typename BASE_TYPE >
-   inline void __defer_id_compose(::pointer<BASE_TYPE> pusermessage, const ::atom& atom) { return !pusermessage ? __id_construct(pusermessage) : void(::success); }
+   inline void __defer_id_compose(::pointer<BASE_TYPE> pusermessage, const ::atom& atom) { return !pusermessage ? øid_construct(pusermessage) : void(::success); }
 
    template < typename TYPE >
    inline void __defer_raw_compose_new(::pointer<TYPE> ptype) { return !ptype ? __raw_construct_new(ptype) : void(::success); }
 
    template < typename TYPE >
-   inline void __defer_construct_new(::pointer<TYPE> ptype) { return !ptype ? __construct_new(ptype) : void(::success); }
+   inline void ødefer_construct_new(::pointer<TYPE> ptype) { return !ptype ? øconstruct_new(ptype) : void(::success); }
 
 
 
    //template < typename BASE_TYPE >
-   //inline void __øconstruct(::pointer<BASE_TYPE> pusermessage);
+   //inline void øconstruct(::pointer<BASE_TYPE> pusermessage);
 
    //template < typename BASE_TYPE >
-   //inline void __id_construct(::pointer<BASE_TYPE> pusermessage, const ::atom& atom);
+   //inline void øid_construct(::pointer<BASE_TYPE> pusermessage, const ::atom& atom);
 
    //template < typename TYPE >
-   //inline void __construct_new(::pointer<TYPE> pusermessage);
+   //inline void øconstruct_new(::pointer<TYPE> pusermessage);
 
    template < typename BASE_TYPE >
    inline void __release(::pointer<BASE_TYPE> pcomposite);
@@ -353,7 +353,7 @@ public:
 
    virtual void do_request(::create* pcreate);
 
-   virtual pointer< ::extended::future < ::conversation > >  message_box(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const ::e_message_box& emessagebox = e_message_box_ok);
+   virtual pointer< ::extended::future < ::conversation > >  message_box(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const ::user::e_message_box& emessagebox = ::user::e_message_box_ok);
    //{
    //
    //   return message_box(nullptr, pszMessage, pszTitle, emessagebox, process);
@@ -361,15 +361,15 @@ public:
    //}
 
 
-   //virtual void message_box_timeout(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const class time & timeTimeout = ::time::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, const ::future & future = ::future());
+   //virtual void message_box_timeout(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const class time & timeTimeout = ::time::infinite(), const ::user::e_message_box & emessagebox = ::user::e_message_box_ok, const ::future & future = ::future());
    //{
 
    //   return message_box_timeout(nullptr, pszMessage, pszTitle, timeTimeout, emessagebox, process);
 
    //}
 
-   //virtual void message_box(::user::interaction_base* puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const ::future & future = ::future());
-   //virtual void message_box_timeout(::user::interaction_base* puserinteractionOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const class ::time& timeTimeout = ::time::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, const ::future & future = ::future());
+   //virtual void message_box(::user::interaction_base* puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const ::user::e_message_box & emessagebox = ::user::e_message_box_ok, const ::future & future = ::future());
+   //virtual void message_box_timeout(::user::interaction_base* puserinteractionOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const class ::time& timeTimeout = ::time::infinite(), const ::user::e_message_box & emessagebox = ::user::e_message_box_ok, const ::future & future = ::future());
 
    virtual void release_references();
 
@@ -399,16 +399,16 @@ public:
 
    virtual void run() override;
 
-   virtual string lstr(const ::atom& atom, string strDefault = "");
+   virtual string lstr(const ::atom& atom, const ::scoped_string & scopedstrDefault = "");
 
-   virtual string __get_text(string str);
+   virtual string __get_text(const ::scoped_string & scopedstr);
 
    //template < typename PRED >
    //::image::image_pointer get_image(const ::payload & payloadFile, unsigned long long uTrait, PRED pred);
 
    //virtual ::image::image_pointer load_image(const ::payload & payloadFile, bool bSync = true, bool bCache = true, bool bCreateHelperMaps = false);
    //virtual ::image::image_pointer load_matter_image(const ::scoped_string & scopedstrMatter, bool bSync = true, bool bCache = true, bool bCreateHelperMaps = false);
-   //virtual ::image::image_pointer load_matter_icon(string_array & straMatter, string strIcon);
+   //virtual ::image::image_pointer load_matter_icon(string_array_base & straMatter, const ::scoped_string & scopedstrIcon);
    //virtual ::image::image_pointer load_thumbnail(const ::payload & payloadFile, int w, int h);
    //virtual ::image::image_pointer load_thumbnail(const ::file::path & path);
    //virtual ::image::image_pointer load_dib(const ::file::path & pathDib);
@@ -490,7 +490,7 @@ public:
 
       auto ptask = ::get_task();
 
-      synchronous_lock synchronouslock(ptask->synchronization());
+      synchronous_lock synchronouslock(ptask->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (ptask && ptask->m_bIsPredicate)
       {
@@ -537,7 +537,7 @@ public:
       unsigned int nStackSize = 0,
       unsigned int dwCreateFlags = 0 ARG_SEC_ATTRS_DEF);
 
-   //::thread_pointer defer_fork(string strThread = "");
+   //::thread_pointer defer_fork(const ::scoped_string & scopedstrThread = "");
 
 //#ifdef __APPLE__
 //   virtual void ns_main_async(dispatch_block_t block);
@@ -566,7 +566,7 @@ public:
 //
 //      va_list valist;
 //      va_start(valist, psz);
-//      format_topic_text_v(psz, valist);
+//      format_topic_text_v(scopedstr, valist);
 //      va_end(valist);
 //
 //   }
@@ -576,7 +576,7 @@ public:
 //   {
 //
 //      string str;
-//      str.formatf_arguments(psz, valist);
+//      str.formatf_arguments(scopedstr, valist);
 //      set_topic_text(str);
 //
 //   }
@@ -608,7 +608,7 @@ public:
 
 
    //template < typename TYPE >
-   //void __øconstruct(::thread_pointer& p, void (TYPE::* pfn)(), enum_priority epriority);
+   //void øconstruct(::thread_pointer& p, void (TYPE::* pfn)(), enum_priority epriority);
 
    template < typename TYPE >
    void __construct_below_normal(::thread_pointer& p, void (TYPE::* pfn)());
@@ -637,7 +637,7 @@ do                                                                   \
    if(!pthread)                                                      \
    {                                                                 \
                                                                      \
-      __øconstruct(pthread);                                          \
+      øconstruct(pthread);                                          \
                                                                      \
       pthread->m_pmatter = __routine([this]()                        \
       {                                                              \

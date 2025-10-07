@@ -153,10 +153,10 @@ namespace winrt
 
 
 
-::pointer<::crypto::rsa>__create_rsa(const string& str)
+::pointer<::crypto::rsa>__create_rsa(const ::scoped_string & scopedstr)
 {
 
-   return __allocate ::winrt::rsa(str);
+   return øallocate ::winrt::rsa(str);
 
 }
 

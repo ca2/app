@@ -31,7 +31,7 @@ public:
    virtual ~menu_shared();
    
    
-   void * find_item(const ::string & pszParent, const ::string & pszId);
+   void * find_item(const ::scoped_string & scopedstrParent, const ::scoped_string & scopedstrId);
    
    void on_idle_update();
    

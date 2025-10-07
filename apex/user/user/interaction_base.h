@@ -46,7 +46,7 @@ namespace user
       void on_timer(::timer * ptimer) override;
 
 
-      void create_message_queue(const ::string & lpszName) override;
+      void create_message_queue(const ::scoped_string & scopedstrName) override;
 
 
       ::user::interaction * get_host_user_interaction() override;
@@ -268,10 +268,10 @@ namespace user
 //      virtual lresult send(::message::message * pmessage);
       virtual void post_message(::message::message * pmessage);
 
-      lresult send_message(::enum_message emessage, ::wparam wparam = {}, ::lparam lparam = {}, const ::int_point & point = {}) override;
+      lresult send_message(::user::enum_message eusermessage, ::wparam wparam = {}, ::lparam lparam = {}, const ::int_point & point = {}) override;
       lresult send_message(::message::message * pmessage) override;
 
-      lresult message_call(::enum_message emessage, ::wparam wparam = {}, ::lparam lparam = {}, const ::int_point & point = {}) override;
+      lresult message_call(::user::enum_message eusermessage, ::wparam wparam = {}, ::lparam lparam = {}, const ::int_point & point = {}) override;
       lresult message_call(::message::message * pmessage) override;
 
       
@@ -284,13 +284,13 @@ namespace user
 
 #endif
 
-      lresult message_handler(::enum_message emessage, ::wparam wparam = {}, ::lparam lparam = {})override;
+      lresult message_handler(::user::enum_message eusermessage, ::wparam wparam = {}, ::lparam lparam = {})override;
 
-      void post_message(::enum_message emessage, ::wparam wparam = {}, ::lparam lparam = {})override;
+      void post_message(::user::enum_message eusermessage, ::wparam wparam = {}, ::lparam lparam = {})override;
 
       void post_simple_command(const enum_simple_command & ecommand,const ::lparam & lparam = {}) override;
 
-      //virtual bool user_post(::enum_message emessage, ::wparam wparam = {}, ::lparam lparam = {});
+      //virtual bool user_post(::user::enum_message eusermessage, ::wparam wparam = {}, ::lparam lparam = {});
 
       //virtual bool ModifyStyle(unsigned int dwRemove,unsigned int dwAdd,unsigned int nFlags = 0);
       //virtual bool ModifyStyleEx(unsigned int dwRemove,unsigned int dwAdd,unsigned int nFlags = 0);
@@ -337,7 +337,7 @@ namespace user
       void edit_on_set_focus(::user::interaction* pinteraction) override;
       void edit_on_kill_focus(::user::interaction* pinteraction) override;
 
-      void set_window_text(const ::string & pszString) override;
+      void set_window_text(const ::scoped_string & scopedstrString) override;
       void set_window_text_source(const ::a_string_function & function) override;
 
       character_count get_window_text(char * pszStringBuf,character_count nMaxCount) override;
@@ -357,9 +357,9 @@ namespace user
       bool _001IsPointInside(const ::int_point & point) override;
       ::user::interaction * _001FromPoint(::int_point point,bool bTestedIfParentVisible = false) override;
 
-      void OnLinkClick(const ::string & psz,const ::string & pszTarget = nullptr) override;
+      void OnLinkClick(const ::scoped_string & scopedstr,const ::scoped_string & scopedstrTarget = nullptr) override;
 
-      ::user::interaction * get_child_by_name(const ::string & strName, ::collection::index iItem = -1, int iLevel = -1) override;
+      ::user::interaction * get_child_by_name(const ::scoped_string & scopedstrName, ::collection::index iItem = -1, int iLevel = -1) override;
       ::user::interaction * get_child_by_id(const ::atom & atom, ::collection::index iItem = -1, int iLevel = -1) override;
       ::user::element * get_primitive_by_id(const ::atom & atom, ::collection::index iItem = -1, int iLevel = -1) override;
 
@@ -385,7 +385,7 @@ namespace user
 
       bool is_top_level_window() override;
 
-      void send_message_to_descendants(::enum_message emessage, ::wparam wparam = {}, ::lparam lparam = {},bool bDeep = true,bool bOnlyPerm = false) override;
+      void send_message_to_descendants(::user::enum_message eusermessage, ::wparam wparam = {}, ::lparam lparam = {},bool bDeep = true,bool bOnlyPerm = false) override;
 
       void route_message_to_descendants(::message::message * pmessage) override;
       void pre_translate_message(::message::message * pmessage) override;
@@ -432,7 +432,7 @@ namespace user
       //virtual void default_window_procedure(::message::message * pmessage);
 
 
-      //bool call_message_handler(::enum_message emessage, ::wparam wparam = {}, ::lparam lparam = {}, const ::int_point & point = {},lresult * presult = nullptr) override;
+      //bool call_message_handler(::user::enum_message eusermessage, ::wparam wparam = {}, ::lparam lparam = {}, const ::int_point & point = {},lresult * presult = nullptr) override;
 
 
       //virtual void GuieProc(::message::message * pmessage);
@@ -538,7 +538,7 @@ namespace user
       //bool has_pending_graphical_update() override;
       void on_after_graphical_update() override;
 
-      void set_bitmap_source(const string & strBitmapSource) override;
+      void set_bitmap_source(const ::scoped_string & scopedstrBitmapSource) override;
       void clear_bitmap_source() override;
 
 
@@ -555,8 +555,8 @@ namespace user
       //bool _001OnBeforeExitFullScreen() override;
       //bool _001OnBeforeExitZoomed() override;
 
-      //virtual lresult send_message(::enum_message emessage, ::wparam wparam = {}, ::lparam lparam = {});
-      //virtual bool post_message(::enum_message emessage, ::wparam wparam = {}, ::lparam lparam = {});
+      //virtual lresult send_message(::user::enum_message eusermessage, ::wparam wparam = {}, ::lparam lparam = {});
+      //virtual bool post_message(::user::enum_message eusermessage, ::wparam wparam = {}, ::lparam lparam = {});
       //virtual void message_handler(::message::message * pmessage);
       //virtual void pre_translate_message(::message::message * pmessage);
 
@@ -657,13 +657,13 @@ namespace user
       int get_total_page_count(::handler_context * pcontext) override;
 
 
-      void edit_on_text(string str) override;
+      void edit_on_text(const ::scoped_string & scopedstr) override;
       void edit_on_sel(character_count iBeg, character_count iEnd) override;
       void insert_text(const ::scoped_string & scopedstr, bool bForceNewStep, const ::action_context & context) override;
 
 
-      void on_text_composition(string str) override;
-      void on_text_commit(string str) override;
+      void on_text_composition(const ::scoped_string & scopedstr) override;
+      void on_text_commit(const ::scoped_string & scopedstr) override;
       void on_text_composition_done() override;
       //virtual bool is_text_composition_active();
 
@@ -675,8 +675,8 @@ namespace user
 
       //void InputConnectionBeginBatchEdit() override;
       //void InputConnectionEndBatchEdit() override;
-      //void InputConnectionCommitText(const ::string & str, character_count iNewCursorPosition) override;
-      //void InputConnectionSetComposingText(const ::string & str, character_count iNewCursorPosition) override;
+      //void InputConnectionCommitText(const ::scoped_string & scopedstr, character_count iNewCursorPosition) override;
+      //void InputConnectionSetComposingText(const ::scoped_string & scopedstr, character_count iNewCursorPosition) override;
       //void InputConnectionSetComposingRegion(character_count iStart, character_count iEnd) override;
       //void InputConnectionSetSelection(character_count iStart, character_count iEnd) override;
       //void InputConnectionFinishComposingText() override;
@@ -698,10 +698,10 @@ namespace user
 
       //void on_check_changed() override;
 
-      //virtual void set_window_text(const ::string & pszString);
+      //virtual void set_window_text(const ::scoped_string & scopedstrString);
 
       //virtual void set_check(enum_check echeck, const ::action_context & action_context);
-      //virtual void set_text(const ::string & strText, const ::action_context & action_context);
+      //virtual void set_text(const ::scoped_string & scopedstrText, const ::action_context & action_context);
 
 
       ::user::element * first_child_user_element() override;

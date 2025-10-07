@@ -42,7 +42,7 @@ namespace fs
 
       //estatus = 
       
-      __construct_new(m_plisting);
+      øconstruct_new(m_plisting);
 
       //if (!estatus)
       //{
@@ -76,7 +76,7 @@ namespace fs
    }
 
 
-   bool link::enumerate(::file::listing & listing)
+   bool link::enumerate(::file::listing_base & listing)
    {
 
       listing.clear_results();
@@ -116,7 +116,7 @@ namespace fs
    }
 
 
-   ::file::listing & link::root_ones(::file::listing & listing)
+   ::file::listing_base & link::root_ones(::file::listing_base & listing)
    {
 
       auto & path = listing.add_get(m_plisting->m_pathUser);
@@ -150,17 +150,17 @@ namespace fs
    }
 
 
-   void link::defer_fill_folder(string strTitle, ::file::path pathFolder)
+   void link::defer_fill_folder(const ::scoped_string & scopedstrTitle, ::file::path pathFolder)
    {
 
-      if (strTitle.is_empty() || pathFolder.is_empty())
+      if (scopedstrTitle.is_empty() || pathFolder.is_empty())
       {
 
          return;
 
       }
 
-      m_strTitle = strTitle;
+      m_strTitle = scopedstrTitle;
 
       m_plisting->m_pathUser = pathFolder;
 

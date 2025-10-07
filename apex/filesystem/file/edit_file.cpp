@@ -502,7 +502,7 @@ namespace file
    //::pointer < ::data::tree_item > edit_file::create_tree_item()
    //{
 
-   //   return __create_new < ::data::tree_item < ::file::edit_item_base > >();
+   //   return øcreate_new < ::data::tree_item < ::file::edit_item_base > >();
 
    //}
 
@@ -534,7 +534,7 @@ namespace file
       if(pfile.cast < ::memory_file >().is_null() && pfile.cast < ::file::buffered_file >().is_null())
       {
 
-         auto pbufferedfile = __allocate ::file::buffered_file(pfile);
+         auto pbufferedfile = øallocate ::file::buffered_file(pfile);
 
          pfile = pbufferedfile;
 
@@ -602,7 +602,7 @@ namespace file
 
       //      edit_group_item * pitemgroup = nullptr;
 
-      ::int_array ia;
+      ::int_array_base ia;
 
       m_bRootDirection = calc_root_direction();
 
@@ -842,7 +842,7 @@ namespace file
    {
 
       // ::pointer<insert_item>pinsert;
-      auto pinsert = __allocate ::file::insert_item(m_position, pdata, nCount);
+      auto pinsert = øallocate ::file::insert_item(m_position, pdata, nCount);
    //   pinsert->m_position = m_position;
    //   //pinsert->m_memstorage.set_size(nCount);
    //pinsert->m_memstorage.assign(pdata, nCount);
@@ -852,7 +852,7 @@ m_position += nCount;
 
 
       //::pointer<edit_item>pedit;
-      //pedit = __allocate edit_item();
+      //pedit = øallocate edit_item();
       //pedit->m_position = m_position;
       //pedit->m_memstorage.set_size(nCount);
       //::memory_copy(pedit->m_memstorage.data(),pdata,nCount);
@@ -862,10 +862,12 @@ m_position += nCount;
    }
 
    
-   void edit_file::change_insert_item_data(class insert_item * pinsertitem, const ::string & str)
+   void edit_file::change_insert_item_data(class insert_item * pinsertitem, const ::scoped_string & scopedstr)
    {
 
       memsize iOldLen = pinsertitem->m_size;
+
+      ::string str(scopedstr);
 
       pinsertitem->set_data(str.c_str(), str.size());
 
@@ -878,10 +880,12 @@ m_position += nCount;
    }
 
 
-   void edit_file::append_insert_item_data(class insert_item * pinsertitem, const ::string & str)
+   void edit_file::append_insert_item_data(class insert_item * pinsertitem, const ::scoped_string & scopedstr)
    {
 
       //memsize iOldLen = pinsertitem->m_memstorage.size();
+
+      ::string str(scopedstr);
 
       pinsertitem->append_data(str.c_str(), str.size());
 
@@ -892,7 +896,7 @@ m_position += nCount;
    insert_item * edit_file::Insert(const void * pdata,memsize nCount)
    {
 
-      auto pinsert = __allocate class insert_item (m_position, pdata, nCount);
+      auto pinsert = øallocate class insert_item (m_position, pdata, nCount);
 
       //auto p = (char *) pdata;
 
@@ -923,7 +927,7 @@ m_position += nCount;
 
       }
 
-      pdelete = __allocate delete_item();
+      pdelete = øallocate delete_item();
       pdelete->m_position = m_position;
       pdelete->m_memstorage.set_size(uiCount);
       pdelete->m_pdata = pdelete->m_memstorage.data();
@@ -1087,7 +1091,7 @@ m_position += nCount;
    void edit_file::flush()
    {
       
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       auto pfile = create_memory_file();
 
@@ -1261,7 +1265,7 @@ m_position += nCount;
    void edit_file::MacroBegin()
    {
 
-      auto pgroupitem  = __allocate edit_group_item();
+      auto pgroupitem  = øallocate edit_group_item();
       pgroupitem->m_pgroupitem = m_pgroupitem;
       m_pgroupitem = pgroupitem;
    }

@@ -24,14 +24,14 @@ namespace aura
       }
 
 
-      typedef void ( * PFN_trace_v)(const ::string &pszFileName, int nLine, unsigned int dwCategory, unsigned int nLevel, const ::string & pszFmt, va_list args);
-      CLASS_DECL_AURA void raw_trace_v(const ::string &pszFileName, int nLine, unsigned int dwCategory, unsigned int nLevel, const ::string & pszFmt, va_list args);
+      typedef void ( * PFN_trace_v)(const ::string &pszFileName, int nLine, unsigned int dwCategory, unsigned int nLevel, const ::scoped_string & scopedstrFmt, va_list args);
+      CLASS_DECL_AURA void raw_trace_v(const ::string &pszFileName, int nLine, unsigned int dwCategory, unsigned int nLevel, const ::scoped_string & scopedstrFmt, va_list args);
       CLASS_DECL_AURA PFN_trace_v trace_v = &raw_trace_v;
 
 
-      void trace::TraceV(const ::string &pszFileName, int nLine, e_trace_category ecategory, enum_trace_level elevel, const ::string & pszFormat, va_list args) const
+      void trace::TraceV(const ::string &pszFileName, int nLine, e_trace_category ecategory, enum_trace_level elevel, const ::scoped_string & scopedstrFormat, va_list args) const
       {
-         __UNREFERENCED_PARAMETER(pszFileName);
+         __UNREFERENCED_PARAMETER(scopedstrFileName);
          __UNREFERENCED_PARAMETER(nLine);
          /*      const category *pCategory;
          trace_module * pmodule = nullptr;
@@ -76,7 +76,7 @@ namespace aura
 
          string str;
 
-         str.formatf(pszFormat, args);
+         str.formatf(scopedstrFormat, args);
 
          ::information(str);
 
@@ -105,25 +105,25 @@ namespace aura
       }
 
 
-      CLASS_DECL_AURA void raw_trace_v(const ::string &pszFileName, int nLine, unsigned int dwCategory, unsigned int nLevel, const ::string & pszFmt, va_list args)
+      CLASS_DECL_AURA void raw_trace_v(const ::string &pszFileName, int nLine, unsigned int dwCategory, unsigned int nLevel, const ::scoped_string & scopedstrFmt, va_list args)
       {
 
-         __UNREFERENCED_PARAMETER(pszFileName);
+         __UNREFERENCED_PARAMETER(scopedstrFileName);
          __UNREFERENCED_PARAMETER(nLine);
          __UNREFERENCED_PARAMETER(dwCategory);
          __UNREFERENCED_PARAMETER(nLevel);
 
          string str;
 
-         str.formatf(pszFmt, args);
+         str.formatf(scopedstrFmt, args);
 
          ::information(str);
 
       }
 
-      /*CLASS_DECL_AURA void system_log_trace_v(const ::string &pszFileName, int nLine, unsigned int dwCategory, unsigned int nLevel, const ::string & pszFmt, va_list args)
+      /*CLASS_DECL_AURA void system_log_trace_v(const ::string &pszFileName, int nLine, unsigned int dwCategory, unsigned int nLevel, const ::scoped_string & scopedstrFmt, va_list args)
       {
-      ::auraacmesystem()->log().trace_v(pszFileName, nLine, dwCategory, nLevel, pszFmt, args);
+      ::auraacmesystem()->log().trace_v(scopedstrFileName, nLine, dwCategory, nLevel, pszFmt, args);
       }*/
 
 
@@ -154,27 +154,27 @@ struct MAP_WM_MESSAGE
 
 static const MAP_WM_MESSAGE allMessagesArray[] =
 {
-   DEFINE_MESSAGE(e_message_create),
-   DEFINE_MESSAGE(e_message_destroy),
-   DEFINE_MESSAGE(e_message_reposition),
-   DEFINE_MESSAGE(e_message_size),
-   DEFINE_MESSAGE(e_message_activate),
-   DEFINE_MESSAGE(e_message_set_focus),
-   DEFINE_MESSAGE(e_message_kill_focus),
-   DEFINE_MESSAGE(e_message_enable),
+   DEFINE_MESSAGE(::user::e_message_create),
+   DEFINE_MESSAGE(::user::e_message_destroy),
+   DEFINE_MESSAGE(::user::e_message_reposition),
+   DEFINE_MESSAGE(::user::e_message_size),
+   DEFINE_MESSAGE(::user::e_message_activate),
+   DEFINE_MESSAGE(::user::e_message_set_focus),
+   DEFINE_MESSAGE(::user::e_message_kill_focus),
+   DEFINE_MESSAGE(::user::e_message_enable),
    DEFINE_MESSAGE(WM_SETREDRAW),
    DEFINE_MESSAGE(WM_SETTEXT),
    DEFINE_MESSAGE(WM_GETTEXT),
    DEFINE_MESSAGE(WM_GETTEXTLENGTH),
-   DEFINE_MESSAGE(e_message_paint),
-   DEFINE_MESSAGE(e_message_close),
+   DEFINE_MESSAGE(::user::e_message_paint),
+   DEFINE_MESSAGE(::user::e_message_close),
    DEFINE_MESSAGE(WM_QUERYENDSESSION),
-   DEFINE_MESSAGE(e_message_quit),
+   DEFINE_MESSAGE(::user::e_message_quit),
    DEFINE_MESSAGE(WM_QUERYOPEN),
-   DEFINE_MESSAGE(e_message_erase_background),
+   DEFINE_MESSAGE(::user::e_message_erase_background),
    DEFINE_MESSAGE(WM_SYSCOLORCHANGE),
    DEFINE_MESSAGE(WM_ENDSESSION),
-   DEFINE_MESSAGE(e_message_show_window),
+   DEFINE_MESSAGE(::user::e_message_show_window),
    DEFINE_MESSAGE(WM_CTLCOLORMSGBOX),
    DEFINE_MESSAGE(WM_CTLCOLOREDIT),
    DEFINE_MESSAGE(WM_CTLCOLORLISTBOX),
@@ -189,8 +189,8 @@ static const MAP_WM_MESSAGE allMessagesArray[] =
    DEFINE_MESSAGE(WM_FONTCHANGE),
    DEFINE_MESSAGE(WM_TIMECHANGE),
    DEFINE_MESSAGE(WM_CANCELMODE),
-   DEFINE_MESSAGE(e_message_set_cursor),
-   DEFINE_MESSAGE(e_message_mouse_activate),
+   DEFINE_MESSAGE(::user::e_message_set_cursor),
+   DEFINE_MESSAGE(::user::e_message_mouse_activate),
    DEFINE_MESSAGE(WM_CHILDACTIVATE),
    DEFINE_MESSAGE(WM_QUEUESYNC),
    DEFINE_MESSAGE(WM_GETMINMAXINFO),
@@ -198,7 +198,7 @@ static const MAP_WM_MESSAGE allMessagesArray[] =
    DEFINE_MESSAGE(WM_NEXTDLGCTL),
    DEFINE_MESSAGE(WM_SPOOLERSTATUS),
    DEFINE_MESSAGE(WM_DRAWITEM),
-   DEFINE_MESSAGE(e_message_measure_item),
+   DEFINE_MESSAGE(::user::e_message_measure_item),
    DEFINE_MESSAGE(WM_DELETEITEM),
    DEFINE_MESSAGE(WM_VKEYTOITEM),
    DEFINE_MESSAGE(WM_CHARTOITEM),
@@ -207,16 +207,16 @@ static const MAP_WM_MESSAGE allMessagesArray[] =
    DEFINE_MESSAGE(WM_QUERYDRAGICON),
    DEFINE_MESSAGE(WM_COMPAREITEM),
    DEFINE_MESSAGE(WM_COMPACTING),
-   DEFINE_MESSAGE(e_message_non_client_create),
-   DEFINE_MESSAGE(e_message_non_client_destroy),
-   DEFINE_MESSAGE(e_message_non_client_calcsize),
-   DEFINE_MESSAGE(e_message_non_client_hittest),
-   DEFINE_MESSAGE(e_message_non_client_paint),
-   DEFINE_MESSAGE(e_message_non_client_activate),
+   DEFINE_MESSAGE(::user::e_message_non_client_create),
+   DEFINE_MESSAGE(::user::e_message_non_client_destroy),
+   DEFINE_MESSAGE(::user::e_message_non_client_calcsize),
+   DEFINE_MESSAGE(::user::e_message_non_client_hittest),
+   DEFINE_MESSAGE(::user::e_message_non_client_paint),
+   DEFINE_MESSAGE(::user::e_message_non_client_activate),
    DEFINE_MESSAGE(WM_GETDLGCODE),
-   DEFINE_MESSAGE(e_message_non_client_mouse_move),
-   DEFINE_MESSAGE(e_message_non_client_left_button_down),
-   DEFINE_MESSAGE(e_message_non_client_left_button_up),
+   DEFINE_MESSAGE(::user::e_message_non_client_mouse_move),
+   DEFINE_MESSAGE(::user::e_message_non_client_left_button_down),
+   DEFINE_MESSAGE(::user::e_message_non_client_left_button_up),
    DEFINE_MESSAGE(WM_NCLBUTTONDBLCLK),
    DEFINE_MESSAGE(WM_NCRBUTTONDOWN),
    DEFINE_MESSAGE(WM_NCRBUTTONUP),
@@ -224,37 +224,37 @@ static const MAP_WM_MESSAGE allMessagesArray[] =
    DEFINE_MESSAGE(WM_NCMBUTTONDOWN),
    DEFINE_MESSAGE(WM_NCMBUTTONUP),
    DEFINE_MESSAGE(WM_NCMBUTTONDBLCLK),
-   DEFINE_MESSAGE(e_message_key_down),
-   DEFINE_MESSAGE(e_message_key_up),
-   DEFINE_MESSAGE(e_message_char),
-   DEFINE_MESSAGE(e_message_dead_char),
-   DEFINE_MESSAGE(e_message_sys_key_down),
-   DEFINE_MESSAGE(e_message_sys_key_up),
-   DEFINE_MESSAGE(e_message_sys_char),
-   DEFINE_MESSAGE(e_message_sys_dead_char),
-   DEFINE_MESSAGE(e_message_key_last),
+   DEFINE_MESSAGE(::user::e_message_key_down),
+   DEFINE_MESSAGE(::user::e_message_key_up),
+   DEFINE_MESSAGE(::user::e_message_char),
+   DEFINE_MESSAGE(::user::e_message_dead_char),
+   DEFINE_MESSAGE(::user::e_message_sys_key_down),
+   DEFINE_MESSAGE(::user::e_message_sys_key_up),
+   DEFINE_MESSAGE(::user::e_message_sys_char),
+   DEFINE_MESSAGE(::user::e_message_sys_dead_char),
+   DEFINE_MESSAGE(::user::e_message_key_last),
    DEFINE_MESSAGE(WM_INITDIALOG),
-   DEFINE_MESSAGE(e_message_command),
+   DEFINE_MESSAGE(::user::e_message_command),
    DEFINE_MESSAGE(WM_SYSCOMMAND),
-   DEFINE_MESSAGE(e_message_timer),
-   DEFINE_MESSAGE(e_message_scroll_x),
-   DEFINE_MESSAGE(e_message_scroll_y),
+   DEFINE_MESSAGE(::user::e_message_timer),
+   DEFINE_MESSAGE(::user::e_message_scroll_x),
+   DEFINE_MESSAGE(::user::e_message_scroll_y),
    DEFINE_MESSAGE(WM_INITMENU),
-   DEFINE_MESSAGE(e_message_initialize_menu_popup),
+   DEFINE_MESSAGE(::user::e_message_initialize_menu_popup),
    DEFINE_MESSAGE(WM_MENUSELECT),
    DEFINE_MESSAGE(WM_MENUCHAR),
    DEFINE_MESSAGE(WM_ENTERIDLE),
-   DEFINE_MESSAGE(e_message_mouse_wheel),
-   DEFINE_MESSAGE(e_message_mouse_move),
-   DEFINE_MESSAGE(e_message_left_button_down),
-   DEFINE_MESSAGE(e_message_left_button_up),
-   DEFINE_MESSAGE(e_message_left_button_double_click),
-   DEFINE_MESSAGE(e_message_right_button_down),
-   DEFINE_MESSAGE(e_message_right_button_up),
-   DEFINE_MESSAGE(e_message_right_button_double_click),
-   DEFINE_MESSAGE(e_message_middle_button_down),
-   DEFINE_MESSAGE(e_message_middle_button_up),
-   DEFINE_MESSAGE(e_message_middle_button_double_click),
+   DEFINE_MESSAGE(::user::e_message_mouse_wheel),
+   DEFINE_MESSAGE(::user::e_message_mouse_move),
+   DEFINE_MESSAGE(::user::e_message_left_button_down),
+   DEFINE_MESSAGE(::user::e_message_left_button_up),
+   DEFINE_MESSAGE(::user::e_message_left_button_double_click),
+   DEFINE_MESSAGE(::user::e_message_right_button_down),
+   DEFINE_MESSAGE(::user::e_message_right_button_up),
+   DEFINE_MESSAGE(::user::e_message_right_button_double_click),
+   DEFINE_MESSAGE(::user::e_message_middle_button_down),
+   DEFINE_MESSAGE(::user::e_message_middle_button_up),
+   DEFINE_MESSAGE(::user::e_message_middle_button_double_click),
    DEFINE_MESSAGE(WM_PARENTNOTIFY),
    DEFINE_MESSAGE(WM_MDICREATE),
    DEFINE_MESSAGE(WM_MDIDESTROY),
@@ -277,12 +277,12 @@ static const MAP_WM_MESSAGE allMessagesArray[] =
    DEFINE_MESSAGE(WM_RENDERALLFORMATS),
    DEFINE_MESSAGE(WM_DESTROYCLIPBOARD),
    DEFINE_MESSAGE(WM_DRAWCLIPBOARD),
-   DEFINE_MESSAGE(e_message_paintCLIPBOARD),
-   DEFINE_MESSAGE(e_message_vscrollCLIPBOARD),
+   DEFINE_MESSAGE(::user::e_message_paintCLIPBOARD),
+   DEFINE_MESSAGE(::user::e_message_vscrollCLIPBOARD),
    DEFINE_MESSAGE(WM_SIZECLIPBOARD),
    DEFINE_MESSAGE(WM_ASKCBFORMATNAME),
    DEFINE_MESSAGE(WM_CHANGECBCHAIN),
-   DEFINE_MESSAGE(e_message_hscrollCLIPBOARD),
+   DEFINE_MESSAGE(::user::e_message_hscrollCLIPBOARD),
    DEFINE_MESSAGE(WM_QUERYNEWPALETTE),
    DEFINE_MESSAGE(WM_PALETTEISCHANGING),
    DEFINE_MESSAGE(WM_PALETTECHANGED),
@@ -297,10 +297,10 @@ static const MAP_WM_MESSAGE allMessagesArray[] =
    DEFINE_MESSAGE(WM_DDE_EXECUTE),*/
    DEFINE_MESSAGE(WM_DROPFILES),
    DEFINE_MESSAGE(WM_POWER),
-   DEFINE_MESSAGE(e_message_window_position_changed),
-   DEFINE_MESSAGE(e_message_window_position_changing),
+   DEFINE_MESSAGE(::user::e_message_window_position_changed),
+   DEFINE_MESSAGE(::user::e_message_window_position_changing),
    // ca2 API specific messages
-   DEFINE_MESSAGE(e_message_size_parent),
+   DEFINE_MESSAGE(::user::e_message_size_parent),
    DEFINE_MESSAGE(WM_SETMESSAGESTRING),
    DEFINE_MESSAGE(WM_IDLEUPDATECMDUI),
    DEFINE_MESSAGE(WM_COMMANDHELP),
@@ -308,7 +308,7 @@ static const MAP_WM_MESSAGE allMessagesArray[] =
    DEFINE_MESSAGE(WM_EXITHELPMODE),
    DEFINE_MESSAGE(WM_HELP),
    DEFINE_MESSAGE(WM_NOTIFY),
-   DEFINE_MESSAGE(e_message_context_menu),
+   DEFINE_MESSAGE(::user::e_message_context_menu),
    DEFINE_MESSAGE(WM_TCARD),
    DEFINE_MESSAGE(WM_MDIREFRESHMENU),
    DEFINE_MESSAGE(WM_MOVING),
@@ -323,14 +323,14 @@ static const MAP_WM_MESSAGE allMessagesArray[] =
    DEFINE_MESSAGE(WM_GETICON),
    DEFINE_MESSAGE(WM_EXITMENULOOP),
    DEFINE_MESSAGE(WM_ENTERMENULOOP),
-   DEFINE_MESSAGE(e_message_display_change),
+   DEFINE_MESSAGE(::user::e_message_display_change),
    DEFINE_MESSAGE(WM_STYLECHANGED),
    DEFINE_MESSAGE(WM_STYLECHANGING),
    DEFINE_MESSAGE(WM_GETICON),
    DEFINE_MESSAGE(WM_SETICON),
    DEFINE_MESSAGE(WM_SIZING),
    DEFINE_MESSAGE(WM_MOVING),
-   DEFINE_MESSAGE(e_message_capture_changed),
+   DEFINE_MESSAGE(::user::e_message_capture_changed),
    DEFINE_MESSAGE(WM_DEVICECHANGE),
    {0,nullptr,}    // end of message list
 };
@@ -381,7 +381,7 @@ void set_global_trace_level(enum_trace_level etracelevel)
 }
 
 
-CLASS_DECL_AURA void __simple_tracea(::particle * pparticle, enum_trace_level elevel, const ::string & pszFunction, const ::string &pszFileName, int iLine, const ::string & psz)
+CLASS_DECL_AURA void __simple_tracea(::particle * pparticle, enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::string &pszFileName, int iLine, const ::scoped_string & scopedstr)
 {
 
    if (elevel < get_global_trace_level())
@@ -395,10 +395,10 @@ CLASS_DECL_AURA void __simple_tracea(::particle * pparticle, enum_trace_level el
 
    auto pszTopicText = topic_text(pparticle);
 
-   if (::is_set(pszTopicText) && *pszTopicText != '\0')
+   if (::is_set(scopedstrTopicText) && *pszTopicText != '\0')
    {
 
-      string strTopic(pszTopicText);
+      string strTopic(scopedstrTopicText);
 
       strTopic.case_insensitive_begins_eat("class ");
 
@@ -416,7 +416,7 @@ CLASS_DECL_AURA void __simple_tracea(::particle * pparticle, enum_trace_level el
 
    #if SIMPLE_TRACE_FUNCTION_NAME
 
-   if (::is_set(pszFunction))
+   if (::is_set(scopedstrFunction))
    {
 
       strMessage += "\nFunction: ";
@@ -429,7 +429,7 @@ CLASS_DECL_AURA void __simple_tracea(::particle * pparticle, enum_trace_level el
 
    #if SIMPLE_TRACE_FILE_NAME
 
-   if (::is_set(pszFileName))
+   if (::is_set(scopedstrFileName))
    {
 
       strMessage += "\nFile: ";
@@ -454,13 +454,13 @@ CLASS_DECL_AURA void __simple_tracea(::particle * pparticle, enum_trace_level el
 }
 
 
-CLASS_DECL_AURA void __simple_tracev(::particle * pparticle, enum_trace_level elevel, const ::string & pszFunction, const ::string &pszFileName, int iLine, const ::string & pszFormat, va_list args)
+CLASS_DECL_AURA void __simple_tracev(::particle * pparticle, enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::string &pszFileName, int iLine, const ::scoped_string & scopedstrFormat, va_list args)
 {
 
    //if (s_pstringmanager == nullptr)
    //{
 
-   //   vprintf(pszFormat, args);
+   //   vprintf(scopedstrFormat, args);
 
    //   return;
 
@@ -468,7 +468,7 @@ CLASS_DECL_AURA void __simple_tracev(::particle * pparticle, enum_trace_level el
 
    string strMessage;
 
-   strMessage.formatf_arguments(pszFormat, args);
+   strMessage.formatf_arguments(scopedstrFormat, args);
 
    __simple_tracea(pparticle, elevel, pszFunction, pszFileName, iLine, strMessage);
 

@@ -25,7 +25,9 @@ public:
    ::pointer<::property_set>                        m_ppropertyset;
 
 
-   property_object() { }
+   property_object(const ::e_flag & eflag = e_flag_none, const ::e_status & estatus = undefined) :
+      ::matter(eflag, estatus)
+   { }
    ~property_object() override;
 
 
@@ -186,11 +188,11 @@ public:
    //virtual linked_property parent_lookup_property(const atom & atom) const;
 
    virtual void property_set_replace(string & str) const;
-   virtual string property_set_evaluate(const ::string & str) const;
-   virtual string property_set_get_evaluation(const ::string & str) const;
-   virtual string property_set_get_string(const ::string & str) const;
-   virtual bool property_set_get_string(string & strResult, const string& str) const;
-   virtual bool property_set_get_evaluation(string & strResult, const string& str) const;
+   virtual string property_set_evaluate(const ::scoped_string & scopedstr) const;
+   virtual string property_set_get_evaluation(const ::scoped_string & scopedstr) const;
+   virtual string property_set_get_string(const ::scoped_string & scopedstr) const;
+   virtual bool property_set_get_string(string & strResult, const ::scoped_string & scopedstr) const;
+   virtual bool property_set_get_evaluation(string & strResult, const ::scoped_string & scopedstr) const;
 
    //virtual atom translate_property_id(const ::atom & atom);
 

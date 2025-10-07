@@ -3,10 +3,10 @@
 #include "control_box.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/pen.h"
-#include "base/user/experience/frame_window.h"
-#include "base/user/experience/size_manager.h"
-#include "base/user/experience/dock_manager.h"
-#include "base/user/experience/move_manager.h"
+#include "berg/user/experience/frame_window.h"
+#include "berg/user/experience/size_manager.h"
+#include "berg/user/experience/dock_manager.h"
+#include "berg/user/experience/move_manager.h"
 
 
 #define GRIP_CORNER_LARGE_CX 16
@@ -58,11 +58,11 @@ namespace experience_anthill
       frame::initialize(pparticle);
 
 
-      __øconstruct(m_ppenHollow1);
-      __øconstruct(m_ppenHollow2);
-      __øconstruct(m_ppenHollow3);
-      __øconstruct(m_ppenHollow4);
-      __øconstruct(m_ppenHollow5);
+      øconstruct(m_ppenHollow1);
+      øconstruct(m_ppenHollow2);
+      øconstruct(m_ppenHollow3);
+      øconstruct(m_ppenHollow4);
+      øconstruct(m_ppenHollow5);
 
    }
 
@@ -335,7 +335,7 @@ namespace experience_anthill
          for (::collection::index i = 0; i < 11; i++)
          {
 
-            auto ppen = __øcreate < ::draw2d::pen >();
+            auto ppen = øcreate < ::draw2d::pen >();
 
             ppen->create_solid(1.0, argb((unsigned char)((i + 1) * 10), iR, iG, iB));
 
@@ -548,7 +548,7 @@ namespace experience_anthill
       //      for (::collection::index i = 0; i < 9; i++)
       //      {
 
-      //         auto ppen = __øcreate < ::draw2d::pen > ();
+      //         auto ppen = øcreate < ::draw2d::pen > ();
 
       //         ppen->create_solid(1.0, argb((i+1) * 5, 0, 0, 0));
 

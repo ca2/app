@@ -47,7 +47,7 @@ namespace helloworld
 
       ::userex::pane_tab_impact::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_create, pchannel, this, &pane_impact::on_message_create);
+      USER_MESSAGE_LINK(::user::e_message_create, pchannel, this, &pane_impact::on_message_create);
 
    }
 
@@ -95,7 +95,7 @@ namespace helloworld
 
       ::userex::pane_tab_impact::on_change_cur_sel();
       string strId = get_impact_id();
-      string_array stra;
+      string_array_base stra;
       m_prollfps = nullptr;
       m_checkptraBilbo.erase_all();
 

@@ -69,7 +69,7 @@ void imaging::initialize(::particle * pparticle)
 
    //return estatus;
 
-   __construct_new(m_pimageaWork);
+   øconstruct_new(m_pimageaWork);
 
 }
 
@@ -78,7 +78,7 @@ void imaging::embossed_text_out(
 ::draw2d::graphics *        pgraphics,
 int                 x,
 int                 y,
-const char *            pcsz,
+const_char_pointer           pcsz,
 
 size_t                  cb,
 ::color::color                crText,
@@ -159,7 +159,7 @@ int                 cy)
 }
 
 
-//void imaging::GetMultiLineTextExtent(HDC hDC,string_array * pArray,LPSIZE32 pSize)
+//void imaging::GetMultiLineTextExtent(HDC hDC,string_array_base * pArray,LPSIZE32 pSize)
 //
 //{
 //
@@ -178,7 +178,7 @@ int                 cy)
 //   ::int_size size;
 //   for(nIndex = 0; nIndex < nSize; nIndex++)
 //   {
-//      const string &str = pArray->get_at(nIndex);
+//      const ::scoped_string & scopedstr = pArray->get_at(nIndex);
 //      wstring wstr(str);
 //      GetTextExtentPoint32W(hDC,wstr,(int)wstr.get_length(),&size);
 //      if(size.cx() > pSize->cx())
@@ -204,7 +204,7 @@ int                 cy)
 //}
 //
 
-//void imaging::DrawMultiLineText(HDC hDC,string_array * pArray)
+//void imaging::DrawMultiLineText(HDC hDC,string_array_base * pArray)
 //{
 //
 //#ifdef WINDOWS_DESKTOP
@@ -223,7 +223,7 @@ int                 cy)
 //   for(nIndex = 0; nIndex < nSize; nIndex++)
 //   {
 //
-//      const string &str = pArray->get_at(nIndex);
+//      const ::scoped_string & scopedstr = pArray->get_at(nIndex);
 //      wstring wstr(str);
 //      TextOutW(hDC,0,yPos,wstr,(int)wstr.get_length());
 //
@@ -1549,7 +1549,7 @@ void imaging::BitmapDivBlend(
    ::image::image_pointer pimage;
 
    //auto estatus = 
-   __øconstruct(pimage);
+   øconstruct(pimage);
 
    /*if (!estatus)
    {
@@ -1937,7 +1937,7 @@ return true;
 
 }*/
 
-//   void imaging::SaveJpeg(const ::string & pcszFile,::draw2d::bitmap_pointer pitmap)
+//   void imaging::SaveJpeg(const ::scoped_string & scopedstrFile,::draw2d::bitmap_pointer pitmap)
 
 
 //   {
@@ -1960,7 +1960,7 @@ return true;
 //#endif
 //   }
 //
-//   void imaging::SavePng(const ::string & pcszFile,::draw2d::bitmap_pointer pitmap)
+//   void imaging::SavePng(const ::scoped_string & scopedstrFile,::draw2d::bitmap_pointer pitmap)
 
 
 //   {
@@ -1985,7 +1985,7 @@ return true;
 
 
 
-//   ::draw2d::bitmap_pointer imaging::LoadImageSync(const ::string & pcszImageFilePath,::aura::application * papp)
+//   ::draw2d::bitmap_pointer imaging::LoadImageSync(const ::scoped_string & scopedstrImageFilePath,::aura::application * papp)
 
 //   {
 //#ifdef AXIS_FREEIMAGE
@@ -2282,7 +2282,7 @@ void imaging::blur_32CC(::image::image *pimageDst, ::image::image *pimageSrc,int
 
    unsigned char *pFilter;
 
-   unsigned char * pFilterData = __raw_new  unsigned char[iFilterHeight *iFilterWidth];
+   unsigned char * pFilterData = øraw_new  unsigned char[iFilterHeight *iFilterWidth];
    memory_set(pFilterData,1,iFilterHeight * iFilterWidth);
 
    unsigned char * pSrc = (unsigned char *)pimageSrc->get_data();
@@ -3842,7 +3842,7 @@ void imaging::channel_gray_blur_32CC(::image::image *pimageDst, ::image::image *
 
    unsigned char *pFilter;
 
-   unsigned char * pFilterData = __raw_new unsigned char [iFilterHeight *iFilterWidth];
+   unsigned char * pFilterData = øraw_new unsigned char [iFilterHeight *iFilterWidth];
 
    memory_set(pFilterData,1,iFilterHeight * iFilterWidth);
 
@@ -4728,7 +4728,7 @@ void imaging::alpha_spread_R2_24CC(unsigned char * pDst,int xDest,int yDest,int 
 
    //unsigned char *pFilter;
 
-   unsigned char * pFilterData = __raw_new  unsigned char[iFilterHeight *iFilterWidth];
+   unsigned char * pFilterData = øraw_new  unsigned char[iFilterHeight *iFilterWidth];
    memory_set(pFilterData,1,iFilterHeight * iFilterWidth);
 
    int maxx1 = cx;
@@ -5150,11 +5150,11 @@ void imaging::spread__32CC(::image::image *pimageDst, ::image::image *pimageSrc,
 
    auto pdraw2d = psystem->draw2d();
 
-   synchronous_lock synchronouslock(pdraw2d->synchronization());
+   synchronous_lock synchronouslock(pdraw2d->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    auto & pmemory = pdraw2d->m_alpha_spread__32CC_filterMap[iRadius];
 
-   system()->__construct_new(pmemory);
+   system()->øconstruct_new(pmemory);
 
    if (pmemory->size() != iFilterArea)
    {
@@ -6960,7 +6960,7 @@ void imaging::AlphaTextOut(::draw2d::graphics *pgraphics,int left,int top, const
 
    }
 
-   auto pbrushText = __øcreate < ::draw2d::brush > ();
+   auto pbrushText = øcreate < ::draw2d::brush > ();
 
    if(dBlend >= 1.0)
    {
@@ -7050,7 +7050,7 @@ void image_context::set_cursor_image(const ::image::image *pimage, int xHotSpot,
 ::image::image_pointer imaging::get_work_image()
 {
 
-   synchronous_lock synchronouslock(m_pmutexWork);
+   synchronous_lock synchronouslock(m_pmutexWork, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    if (m_pimageaWork->has_no_image())
    {
@@ -7087,7 +7087,7 @@ void imaging::free_work_image(::image::image *pimage)
 
    }
 
-   synchronous_lock synchronouslock(m_pmutexWork);
+   synchronous_lock synchronouslock(m_pmutexWork, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    m_pimageaWork->m_imagea.push(pimage);
 
@@ -7097,7 +7097,7 @@ void imaging::free_work_image(::image::image *pimage)
 void image_context::load_svg(::image::image *pimage, memory & memory)
 {
 
-   const char * psz = (const char *)memory.data();
+   const_char_pointer psz = (const_char_pointer )memory.data();
 
    auto size = memory.size();
 

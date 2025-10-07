@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "base/net/net_sockets.h"
+#include "berg/net/net_sockets.h"
 #include "simpledb_socket.h"
 #include "simpledb_socket_thread.h"
 
@@ -28,7 +28,7 @@ namespace simpledb
 
    void socket_thread::install_message_routing(::channel * pchannel)
    {
-      MESSAGE_LINK(WM_APP, pchannel, this, &socket_thread::OnApp);
+      USER_MESSAGE_LINK(WM_APP, pchannel, this, &socket_thread::OnApp);
    }
 
 

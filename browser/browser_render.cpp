@@ -113,9 +113,9 @@ namespace browser
       if (m_bNewLayout)
       {
 
-         synchronous_lock sl2(m_pmutexWork);
-         synchronous_lock sl3(m_pmutexDraw);
-         synchronous_lock sl4(m_pmutexSwap);
+         synchronous_lock sl2(m_pmutexWork, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+         synchronous_lock sl3(m_pmutexDraw, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+         synchronous_lock sl4(m_pmutexSwap, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          m_bNewLayout = false;
 
@@ -132,10 +132,10 @@ namespace browser
    }
 
 
-   bool render::initialize_render(string strId)
+   bool render::initialize_render(const ::scoped_string & scopedstrId)
    {
 
-      m_pslideshow = __allocate ::gcom::slide_show(this);
+      m_pslideshow = øallocate ::gcom::slide_show(this);
 
       //      ::database::client::initialize_data_client(&papp->dataserver());
 
@@ -195,7 +195,7 @@ namespace browser
    void render::get_browser(string & strHellomultiverse)
    {
 
-      synchronous_lock synchronouslock(m_pmutexText);
+      synchronous_lock synchronouslock(m_pmutexText, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       strHellomultiverse = m_strHelloBrowser.c_str();
 
@@ -330,7 +330,7 @@ namespace browser
    void render::browser_render()
    {
 
-      synchronous_lock synchronouslock(m_pmutexWork);
+      synchronous_lock synchronouslock(m_pmutexWork, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
 /*      ::image::image_pointer pimage = m_pimageWork;
 
@@ -375,7 +375,7 @@ namespace browser
       if (m_bVoidTransfer)
          return;
 
-      synchronous_lock slDraw(m_pmutexDraw);
+      synchronous_lock slDraw(m_pmutexDraw, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (m_bDib1)
       {
@@ -392,7 +392,7 @@ namespace browser
 
       }
 
-      synchronous_lock slSwap(m_pmutexSwap);
+      synchronous_lock slSwap(m_pmutexSwap, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (m_bDib1)
       {
@@ -431,7 +431,7 @@ namespace browser
 
       rectangleX.bottom() = m_cy;
 
-      auto pbrushText = __øcreate < ::draw2d::brush > ();
+      auto pbrushText = øcreate < ::draw2d::brush > ();
 
       double T = 2.3;
 
@@ -460,7 +460,7 @@ namespace browser
 
       {
 
-         synchronous_lock synchronouslock(m_pmutexText);
+         synchronous_lock synchronouslock(m_pmutexText, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          get_browser(strHelloBrowser);
 
@@ -501,7 +501,7 @@ namespace browser
 
             {
 
-               synchronous_lock slDib(m_pmutexDib);
+               synchronous_lock slDib(m_pmutexDib, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
 /*               m_pimage->create_image(this, ::int_size(m_cxCache1, m_cyCache1));
 
@@ -546,7 +546,7 @@ namespace browser
 
       {
 
-         synchronous_lock synchronouslock(m_pmutexText);
+         synchronous_lock synchronouslock(m_pmutexText, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          get_browser(strGetHelloBrowser);
 
@@ -656,7 +656,7 @@ namespace browser
 
          {
 
-            synchronous_lock synchronouslock(m_pmutexText);
+            synchronous_lock synchronouslock(m_pmutexText, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
             get_browser(strGetHelloBrowser);
 
@@ -695,7 +695,7 @@ namespace browser
 
       //      int iCount = 30;
 
-      auto pbrushText = __øcreate < ::draw2d::brush > ();
+      auto pbrushText = øcreate < ::draw2d::brush > ();
 
       double T = 2.3;
 
@@ -763,7 +763,7 @@ namespace browser
 
       {
 
-         synchronous_lock synchronouslock(m_pmutexText);
+         synchronous_lock synchronouslock(m_pmutexText, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          get_browser(strGetHelloBrowser);
 
@@ -779,7 +779,7 @@ namespace browser
 
       {
 
-         synchronous_lock slDib(m_pmutexDib);
+         synchronous_lock slDib(m_pmutexDib, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          if (!session()->savings()->is_trying_to_save(::e_resource_display_bandwidth))
          {
@@ -1066,7 +1066,7 @@ namespace browser
 
             {
 
-               synchronous_lock synchronouslock(m_pmutexText);
+               synchronous_lock synchronouslock(m_pmutexText, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
                strHelloBrowser = m_pimpact->m_strProcessedHellomultiverse.c_str();
 
@@ -1077,7 +1077,7 @@ namespace browser
 
                float fHeight = 100.0;
 
-               auto pfont = __øcreate < ::write_text::font > ();
+               auto pfont = øcreate < ::write_text::font > ();
 
                pfont->create_pixel_font(pnode->font_name(e_font_sans), fHeight, e_font_weight_bold);
 
@@ -1103,7 +1103,7 @@ namespace browser
 
             ca.set_hls(fmod(__double(::get_tick()), dPeriod) / dPeriod, 0.49, 0.84);
 
-            auto pbrush = __øcreate < ::draw2d::brush >();
+            auto pbrush = øcreate < ::draw2d::brush >();
 
             pbrush->create_solid(a_rgb(255, ca));
 
@@ -1130,9 +1130,9 @@ namespace browser
       if (m_bFast || !m_bFirstDone || m_timeLastFast.elapsed() < m_timeFastAnime)
       {
 
-         synchronous_lock sl1(m_pimpact->get_wnd()->synchronization());
+         synchronous_lock sl1(m_pimpact->get_wnd()->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-         synchronous_lock slDraw(m_pmutexDraw);
+         synchronous_lock slDraw(m_pmutexDraw, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          if (m_bFast || m_pimageFast->is_null())
          {
@@ -1191,9 +1191,9 @@ namespace browser
 
       ::image::image_pointer imageFast = m_pimageFast;
 
-      synchronous_lock synchronouslock(m_pmutexDraw);
+      synchronous_lock synchronouslock(m_pmutexDraw, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-      synchronous_lock slSwap(m_pmutexSwap);
+      synchronous_lock slSwap(m_pmutexSwap, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
 /*      pimage = m_pimageOut;
 
@@ -1224,10 +1224,10 @@ namespace browser
    }
 
 
-   //::image::image_pointer & render::image23(string strImage)
+   //::image::image_pointer & render::image23(const ::scoped_string & scopedstrImage)
    //{
 
-   //   synchronous_lock synchronouslock(this->synchronization());
+   //   synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //   auto & pimage = m_mapDib23[strImage];
 
@@ -1250,7 +1250,7 @@ namespace browser
 
    //         {
 
-   //            synchronous_lock synchronouslock(this->synchronization());
+   //            synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //            pimage = &m_mapDib23[strImage];
 
@@ -1275,7 +1275,7 @@ namespace browser
    void render::defer_update_slide_show()
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       //for (auto & pslide : slideshow())
       //{
@@ -1308,7 +1308,7 @@ namespace browser
    }
 
 
-   void render::browser_fast_render(const ::string & strHelloBrowser)
+   void render::browser_fast_render(const ::scoped_string & scopedstrHelloBrowser)
    {
 
       if (m_cx <= 0 || m_cy <= 0)
@@ -1318,7 +1318,7 @@ namespace browser
 
       }
 
-      synchronous_lock slDraw(m_pmutexDraw);
+      synchronous_lock slDraw(m_pmutexDraw, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       ::int_size sizeNew = ::int_size(m_cx, m_cy);
 
@@ -1333,7 +1333,7 @@ namespace browser
 
       float fHeight = 100.0;
 
-      auto pfont = __øcreate < ::write_text::font > ();
+      auto pfont = øcreate < ::write_text::font > ();
 
       pfont->create_pixel_font(m_pimpact->m_prender->m_strFont, fHeight, e_font_weight_bold);
 
@@ -1357,17 +1357,17 @@ namespace browser
 
       size = pgraphics->get_text_extent(strHelloBrowser);
 
-      auto ppath = __øcreate < ::draw2d::path > ();
+      auto ppath = øcreate < ::draw2d::path > ();
 
       ppath->m_bFill = false;
 
       ppath->add_string((m_cx - size.cx()) / 2, (m_cy - size.cy()) / 2, strHelloBrowser, m_pfont);
 
-      auto ppen = __øcreate < ::draw2d::pen > ();
+      auto ppen = øcreate < ::draw2d::pen > ();
 
       ppen->create_solid(1.0, argb(255, 90, 90, 80));
 
-      auto ppenW = __øcreate < ::draw2d::pen > ();
+      auto ppenW = øcreate < ::draw2d::pen > ();
 
       ppenW->create_solid(3.0, argb(84, 255, 255, 255));
 

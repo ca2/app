@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "base/user/simple/tab_document.h"
+#include "berg/user/simple/tab_document.h"
 
 
 class CLASS_DECL_CORE simple_pane_document :

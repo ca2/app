@@ -7,7 +7,11 @@
 #include "aura/graphics/image/frame_array.h"
 
 
+#if defined(USE_PORT_FREEIMAGE)
+#include <port_freeimage/FreeImage.h>
+#else
 #include <FreeImage.h>
+#endif
 
 
 struct FIBITMAP;
@@ -52,11 +56,11 @@ namespace imaging_freeimage
                for (::collection::index iFrame = 0; iFrame < cFrame; iFrame++)
                {
 
-                  auto pframe = __allocate ::image::image_frame();
+                  auto pframe = øallocate ::image::image_frame();
 
                   pframea->add(pframe);
 
-                  __øconstruct(pframe->m_pimage);
+                  øconstruct(pframe->m_pimage);
 
                   pframe->m_iFrame = iFrame;
 
@@ -278,7 +282,7 @@ namespace imaging_freeimage
 
       //auto estatus = 
       
-      pimageCompose->__øconstruct(pimageFrame);
+      pimageCompose->øconstruct(pimageFrame);
 
       //if (!estatus || !pimageFrame)
       if (!pimageFrame)

@@ -67,7 +67,7 @@ namespace multimedia
    }
 
 
-   void decoder::FillTitleInfo(string_array & wstraFormat, string_array_array & wstr2aTitle)
+   void decoder::FillTitleInfo(string_array_base & wstraFormat, string_array_array_base & wstr2aTitle)
    {
 
       ::payload strAttr;
@@ -86,7 +86,7 @@ namespace multimedia
 
          auto pmultimedia = psystem->multimedia();
 
-         synchronous_lock synchronouslock(pmultimedia->synchronization());
+         synchronous_lock synchronouslock(pmultimedia->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          wstrAttr = pmultimedia->get_media_call_title(strPathOrigin);
 
@@ -197,10 +197,10 @@ namespace multimedia
 
    }
 
-   void decoder::multimedia_set_origin_path(const ::string & strOriginPath)
+   void decoder::multimedia_set_origin_path(const ::scoped_string & scopedstrOriginPath)
    {
 
-      m_pathOrigin = strOriginPath;
+      m_pathOrigin = scopedstrOriginPath;
 
    }
 
@@ -208,7 +208,7 @@ namespace multimedia
    bool decoder::multimedia_get_attribute(::enum_id eattribute, ::payload & payload)
    {
 
-      synchronous_lock lock(synchronization());
+      synchronous_lock lock(synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (eattribute == id_title)
       {

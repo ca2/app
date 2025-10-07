@@ -7,7 +7,7 @@
 ////#include "acme/prototype/collection/numeric_array.h"
 //
 
-//CLASS_DECL_ACME string ::url::decode(const string & str);
+//CLASS_DECL_ACME string ::url::decode(const ::scoped_string & scopedstr);
 
 //CLASS_DECL_ACME::file::path __xxxnode_full_file_path(file::path path);
 
@@ -39,7 +39,7 @@ folder_dialog::~folder_dialog()
 //                                          const ::file::path & pathStartFolder )
 //   {
 //
-////      auto functionHere = [function](const ::file::path_array & stra)
+////      auto functionHere = [function](const ::file::path_array_base & stra)
 ////      {
 ////
 ////         if (stra.size() <= 0)

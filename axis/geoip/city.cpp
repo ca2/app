@@ -71,12 +71,12 @@ GeoIPRecord * _extract_record(GeoIP* gi, unsigned int seek_record, int *next_rec
    {
       if ( gi->charset == GEOIP_CHARSET_UTF8 )
       {
-         record->city = _iso_8859_1__utf8( (const char * ) record_buf );
+         record->city = _iso_8859_1__utf8( (const_char_pointer )record_buf );
       }
       else
       {
          record->city = (char *) malloc(str_length+1);
-         ansi_count_copy(record->city, ( const char * ) record_buf, str_length+1);
+         ansi_count_copy(record->city, ( const_char_pointer )record_buf, str_length+1);
       }
    }
    record_buf += (str_length + 1);
@@ -178,7 +178,7 @@ GeoIPRecord * GeoIP_record_by_ipnum_v6 (GeoIP* gi, geoipv6_t ipnum)
    return _get_record_v6(gi, ipnum);
 }
 
-GeoIPRecord * GeoIP_record_by_addr (GeoIP* gi, const char *addr)
+GeoIPRecord * GeoIP_record_by_addr (GeoIP* gi, const_char_pointer addr)
 {
    unsigned int ipnum;
    if (addr == nullptr)
@@ -189,7 +189,7 @@ GeoIPRecord * GeoIP_record_by_addr (GeoIP* gi, const char *addr)
    return _get_record(gi, ipnum);
 }
 
-GeoIPRecord * GeoIP_record_by_addr_v6 (GeoIP* gi, const char *addr)
+GeoIPRecord * GeoIP_record_by_addr_v6 (GeoIP* gi, const_char_pointer addr)
 {
    geoipv6_t ipnum;
    if (addr == nullptr)
@@ -200,7 +200,7 @@ GeoIPRecord * GeoIP_record_by_addr_v6 (GeoIP* gi, const char *addr)
    return _get_record_v6(gi, ipnum);
 }
 
-GeoIPRecord * GeoIP_record_by_name (GeoIP* gi, const char *name)
+GeoIPRecord * GeoIP_record_by_name (GeoIP* gi, const_char_pointer name)
 {
    unsigned int ipnum;
    if (name == nullptr)
@@ -211,7 +211,7 @@ GeoIPRecord * GeoIP_record_by_name (GeoIP* gi, const char *name)
    return _get_record(gi, ipnum);
 }
 
-GeoIPRecord * GeoIP_record_by_name_v6 (GeoIP* gi, const char *name)
+GeoIPRecord * GeoIP_record_by_name_v6 (GeoIP* gi, const_char_pointer name)
 {
    geoipv6_t ipnum;
    if (name == nullptr)
@@ -222,7 +222,7 @@ GeoIPRecord * GeoIP_record_by_name_v6 (GeoIP* gi, const char *name)
    return _get_record_v6(gi, ipnum);
 }
 
-int GeoIP_record_id_by_addr (GeoIP* gi, const char *addr)
+int GeoIP_record_id_by_addr (GeoIP* gi, const_char_pointer addr)
 {
    unsigned int ipnum;
    if (gi->databaseType != (char) GEOIP_CITY_EDITION_REV0 &&
@@ -239,7 +239,7 @@ int GeoIP_record_id_by_addr (GeoIP* gi, const char *addr)
    return _GeoIP_seek_record(gi, ipnum);
 }
 
-int GeoIP_record_id_by_addr_v6 (GeoIP* gi, const char *addr)
+int GeoIP_record_id_by_addr_v6 (GeoIP* gi, const_char_pointer addr)
 {
    geoipv6_t ipnum;
    if (gi->databaseType != (char) GEOIP_CITY_EDITION_REV0 &&
@@ -283,7 +283,7 @@ void GeoIPRecord_delete (GeoIPRecord *gir)
 
 
 
-char * _iso_8859_1__utf8(const char * iso)
+char * _iso_8859_1__utf8(const_char_pointer iso)
 {
 
    signed char ca;

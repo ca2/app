@@ -8,7 +8,7 @@
 //
 //void CTSFEditWnd::_SaveToFile(char * pszFile)
 //{
-//    if(pszFile)
+//    if(scopedstrFile)
 //    {
 //        HANDLE  hFile;
 //
@@ -181,7 +181,7 @@
 
 //void CTSFEditWnd::_LoadFromFile(char * pszFile)
 //{
-//    if(pszFile)
+//    if(scopedstrFile)
 //    {
 //        HANDLE  hFile;
 //
@@ -288,7 +288,7 @@
 //
 //                /*
 //                Read each property header and property data from the stream. The 
-//                list of properties is terminated by a TF_PERSISTENT_PROPERTY_HEADER_ACP 
+//                list_base of properties is terminated by a TF_PERSISTENT_PROPERTY_HEADER_ACP 
 //                structure with a cb member of zero.
 //                */
 //                hr = pStream->Read(&PropHeader, sizeof(TF_PERSISTENT_PROPERTY_HEADER_ACP), &uRead);

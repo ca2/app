@@ -12,7 +12,8 @@ namespace gpu
    public:
 
 
-      ::int_size                          m_size;
+      ::int_rectangle      m_rectangle;
+      ::gpu::texture *     m_pgputexture;
 
 
       pixmap();
@@ -22,10 +23,10 @@ namespace gpu
       virtual ::int_size size();
 
 
-      virtual void initialize_gpu_pixmap(::gpu::renderer* pgpurenderer, const ::int_size& size);
+      virtual void initialize_gpu_pixmap(::gpu::texture * pgputexture, const ::int_rectangle& rectangle);
+      virtual void on_initialize_gpu_pixmap();
 
-
-      virtual void set_pixels(const void* data, int w, int h);
+      virtual void set_pixels(const void* data);
 
       virtual void bind_texture(::gpu::shader * pgpushader);
       virtual void unbind_texture(::gpu::shader* pgpushader);

@@ -2,7 +2,7 @@
 #include "control_box_button.h"
 #include "control_box.h"
 #include "acme/handler/item.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/prototype/geometry2d/ellipse.h"
 #include "aura/user/user/frame_interaction.h"
@@ -167,7 +167,7 @@ namespace experience_anthill
 
       ::user::button::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_show_window, pchannel, this, &button::on_message_show_window);
+      USER_MESSAGE_LINK(::user::e_message_show_window, pchannel, this, &button::on_message_show_window);
 
    }
 
@@ -197,9 +197,9 @@ namespace experience_anthill
    {
 
 
-      __øconstruct(m_spregion);
-      __øconstruct(m_ppen);
-      __øconstruct(m_pbrush);
+      øconstruct(m_spregion);
+      øconstruct(m_ppen);
+      øconstruct(m_pbrush);
 
 
       auto rectangleX = this->rectangle();
@@ -216,12 +216,12 @@ namespace experience_anthill
    ::item_pointer control_box_button::on_hit_test(const ::int_point & point, ::user::e_zorder ezorder)
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (m_spregion.is_null())
       {
 
-         auto pitemNone = __allocate ::item(e_element_none);
+         auto pitemNone = øallocate ::item(e_element_none);
 
          return pitemNone;
 
@@ -238,13 +238,13 @@ namespace experience_anthill
       if (!m_spregion->contains(point))
       {
 
-         auto pitemNone = __allocate ::item(e_element_none);
+         auto pitemNone = øallocate ::item(e_element_none);
 
          return pitemNone;
 
       }
 
-      return __allocate ::item(::e_element_client);
+      return øallocate ::item(::e_element_client);
 
    }
 

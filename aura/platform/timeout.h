@@ -28,10 +28,10 @@ inline ::payload operator + (::payload payload, const ::timeout& timeout)
 }
 
 
-inline ::payload operator + (const ::string & psz, const ::timeout& timeout)
+inline ::payload operator + (const ::scoped_string & scopedstr, const ::timeout& timeout)
 {
 
-   return ::payload(psz) + timeout;
+   return ::payload(scopedstr) + timeout;
 
 }
 

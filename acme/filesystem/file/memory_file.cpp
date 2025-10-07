@@ -198,7 +198,7 @@ void memory_file::write_from_hex(const ::block & block)
 
    char * pch = (char *)&(pb)[m_position];
 
-   const char * psz = (const char *)block.data();
+   const_char_pointer psz = (const_char_pointer )block.data();
 
    bool bEven = true;
 
@@ -382,7 +382,7 @@ bool memory_file::read_string(memory_base & memory)
 
       (m_pbyte + m_position)[(iLookAhead - 2)] = '\0';
 
-      const unsigned char * p = (const unsigned char *) ansi_pbrk((const char*)(m_pbyte + m_position), "\r\n");
+      const unsigned char * p = (const unsigned char *) ansi_pbrk((const_char_pointer )(m_pbyte + m_position), "\r\n");
 
       (m_pbyte + m_position)[(iLookAhead - 2)] = b;
 
@@ -925,7 +925,7 @@ memory_file & memory_file::operator = (const memory_file & file)
 //CLASS_DECL_ACME memory_file_pointer create_memory_file(::memory_base & memory)
 //{
 //   
-//   return __allocate ::memory_file(memory); 
+//   return øallocate ::memory_file(memory); 
 //
 //}
 //
@@ -933,7 +933,7 @@ memory_file & memory_file::operator = (const memory_file & file)
 //CLASS_DECL_ACME memory_file_pointer create_memory_file(const ::block & block)
 //{
 //   
-//   return __allocate ::memory_file(block); 
+//   return øallocate ::memory_file(block); 
 //
 //}
 //
@@ -941,7 +941,7 @@ memory_file & memory_file::operator = (const memory_file & file)
 //CLASS_DECL_ACME memory_file_pointer create_memory_file_as_copy(const memory & memory) 
 //{
 //   
-//   return __allocate ::memory_file(__initialize_new ::memory (memory)); 
+//   return øallocate ::memory_file(__initialize_new ::memory (memory)); 
 //
 //}
 //

@@ -24,12 +24,12 @@
 //   }
 //
 //
-////   key::key(const std::initializer_list < ::payload > & list)
+////   key::key(const std::initializer_list < ::payload > & list_base)
 ////   {
 ////
 ////      m_bLocalData = false;
 ////
-////      for (auto & payload : list)
+////      for (auto & payload : list_base)
 ////      {
 ////
 ////         if (payload.get_type() == e_type_bool)
@@ -50,7 +50,7 @@
 ////   }
 ////
 ////
-////   key::key(string strDataKey, bool bLocalData)
+////   key::key(const ::scoped_string & scopedstrDataKey, bool bLocalData)
 ////   {
 ////
 ////      m_strDataKey = strDataKey;
@@ -60,7 +60,7 @@
 ////   }
 ////
 ////
-////   key::key(const char * pszDataKey, bool bLocalData)
+////   key::key(const_char_pointer pszDataKey, bool bLocalData)
 ////   {
 ////
 ////      m_strDataKey = pszDataKey;
@@ -155,7 +155,7 @@
 //   }
 //
 //
-//   key & key::operator +=(const ::string & strDataKey)
+//   key & key::operator +=(const ::scoped_string & scopedstrDataKey)
 //   {
 //
 //      if (m_strDataKey.is_empty())
@@ -176,7 +176,7 @@
 //   }
 //
 //
-//   key key::operator + (const ::string & strDataKey) const
+//   key key::operator + (const ::scoped_string & scopedstrDataKey) const
 //   {
 //
 //      ::string strDataKeyAdd(*this);

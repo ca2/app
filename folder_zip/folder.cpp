@@ -162,10 +162,10 @@ namespace folder_zip
    }
 
 
-   void folder::add_file(const ::file::path& pszRelative, ::file::file* pfile)
+   void folder::add_file(const ::file::path & pathRelative, ::file::file* pfile)
    {
 
-      //::file::path strPath(pszDir / pszRelative);
+      //::file::path strPath(scopedstrDir / pszRelative);
 
       zip_fileinfo zipfi;
 
@@ -195,7 +195,7 @@ namespace folder_zip
 
 #endif
 
-      zipOpenNewFileInZip(m_zipfile, pszRelative, &zipfi, nullptr, 0, nullptr, 0, nullptr, Z_DEFLATED, Z_DEFAULT_COMPRESSION);
+      zipOpenNewFileInZip(m_zipfile, pathRelative, &zipfi, nullptr, 0, nullptr, 0, nullptr, Z_DEFLATED, Z_DEFAULT_COMPRESSION);
 
       memory mem;
 
@@ -215,10 +215,10 @@ namespace folder_zip
    }
 
 
-   bool folder::enumerate(::file::listing& listing)
+   bool folder::enumerate(::file::listing_base& listing)
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       unzFile pf = m_unzfile;
 
@@ -233,7 +233,7 @@ namespace folder_zip
 
       string str;
       string wstrFolder;
-      string_array wstraFolder;
+      string_array_base wstraFolder;
 
       unz_file_info unzfileinfo;
 
@@ -321,7 +321,7 @@ namespace folder_zip
    ::file_pointer folder::get_file(const ::file::path& pathFile)
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (pathFile.has_character())
       {
@@ -351,7 +351,7 @@ namespace folder_zip
    ::file_pointer folder::get_file()
    {
 
-      auto pfile = __create_new < ::folder_zip::file >();
+      auto pfile = øcreate_new < ::folder_zip::file >();
 
       pfile->m_pfolder = this;
 
@@ -391,10 +391,10 @@ namespace folder_zip
    }
 
 
-   void didnt_locate_file(const char * pszFile)
+   void folder::didnt_locate_file(const_char_pointer pszFile)
    {
 
-      information("The file \"" + ::string(pszFile) + "\" wasn't find in the zip folder.");
+      m_strLogNotFound.append("The file \"" + ::string(pszFile) + "\" wasn't find in the zip folder.");
 
       //::fflush(stdout);
 
@@ -458,10 +458,10 @@ namespace folder_zip
    }
 
 
-   void folder::e_extract_all(const ::file::path& pathTargetDir, ::file::path_array* ppatha, string_array* pstraFilter, bool_array* pbaBeginsFilterEat, ::function<bool(const::scoped_string& scopedstr) > functionCallback)
+   void folder::e_extract_all(const ::file::path& pathTargetDir, ::file::path_array_base* ppatha, string_array_base* pstraFilter, bool_array* pbaBeginsFilterEat, ::function<bool(const::scoped_string& scopedstr) > functionCallback)
    {
 
-      ::file::listing listing;
+      ::file::listing_base listing;
 
       listing.m_bRecursive = true;
 
@@ -522,7 +522,7 @@ namespace folder_zip
    ::file::path folder::e_extract_first_ends(const ::file::path& pathTargetDir, const ::scoped_string & scopedstrSuffix)
    {
 
-      ::file::listing listing;
+      ::file::listing_base listing;
 
       listing.m_bRecursive = true;
 
@@ -592,15 +592,15 @@ namespace folder_zip
 
       strFile.replace_with("/", "\\");
 
-      if (!locate([strFile](const char* psz) {return strFile.case_insensitive_equals(psz); }))
+      if (!locate([strFile](const_char_pointer psz) {return strFile.case_insensitive_equals(psz); }))
       {
 
          strFile.replace_with("\\", "/");
 
-         if (!locate([strFile](const char* psz) {return strFile.case_insensitive_equals(psz); }))
+         if (!locate([strFile](const_char_pointer psz) {return strFile.case_insensitive_equals(psz); }))
          {
 
-            didnt_locate_file(strFile);
+            //didnt_locate_file(strFile);
 
             return false;
 
@@ -638,10 +638,10 @@ namespace folder_zip
    }
 
 
-   bool folder::locate(const ::function < bool(const char*) >& function)
+   bool folder::locate(const ::function < bool(const_char_pointer )>& function)
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       unzFile pf = m_unzfile;
 
@@ -723,6 +723,13 @@ namespace folder_zip
 
          }
 
+         //if (strstr(szItem, "Thomas Borregaard") != nullptr)
+         //{
+
+         //   output_debug_string("Thommi!!");
+
+         //}
+
          err = unzGoToNextFile(pf);
 
          i++;
@@ -766,7 +773,7 @@ namespace folder_zip
 
       strPrefix.replace_with("/", "\\");
 
-      bool bLocated = locate([strPrefix](const char* pszItem)
+      bool bLocated = locate([strPrefix](const_char_pointer pszItem)
          {
 
             string strItem(pszItem);
@@ -817,7 +824,7 @@ namespace folder_zip
 
       strPrefix.replace_with("/", "\\");
 
-      bool bLocated = locate([strPrefix](const char* pszItem)
+      bool bLocated = locate([strPrefix](const_char_pointer pszItem)
          {
 
             string strItem(pszItem);

@@ -31,11 +31,11 @@
 
 str_helper::str_helper() {work_str = "";}
 
-str_helper::str_helper(const char *s){work_str = s;}
+str_helper::str_helper(const_char_pointer s){work_str = s;}
 
 string str_helper::get_str() {return work_str;} 
 
-void str_helper::set_str(const char *s) {work_str = s; };
+void str_helper::set_str(const_char_pointer s) {work_str = s; };
 
 
 string str_helper::before(string s, bool &is_found)

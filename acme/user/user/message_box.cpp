@@ -22,33 +22,33 @@ namespace acme
       void message_box::on_realize(::message_box * pmessagebox)
       {
 
-         auto emessageboxType = pmessagebox->m_emessagebox & e_message_box_type_mask;
+         auto emessageboxType = pmessagebox->m_emessagebox & ::user::e_message_box_type_mask;
 
          switch (emessageboxType)
          {
-         case e_message_box_ok_cancel:
+         case ::user::e_message_box_ok_cancel:
             add_button("OK", e_dialog_result_ok, 'o');
             add_button("Cancel", e_dialog_result_cancel, 'c');
             break;
-         case e_message_box_abort_retry_ignore:
+         case ::user::e_message_box_abort_retry_ignore:
             add_button("Abort", e_dialog_result_abort, 'a');
             add_button("Retry", e_dialog_result_retry, 'r');
             add_button("Ignore", e_dialog_result_ignore, 'i');
             break;
-         case e_message_box_yes_no_cancel:
+         case ::user::e_message_box_yes_no_cancel:
             add_button("Yes", e_dialog_result_yes, 'y');
             add_button("No", e_dialog_result_no, 'n');
             add_button("Cancel", e_dialog_result_cancel, 'c');
             break;
-         case e_message_box_yes_no:
+         case ::user::e_message_box_yes_no:
             add_button("Yes", e_dialog_result_yes, 'y');
             add_button("No", e_dialog_result_no, 'n');
             break;
-         case e_message_box_retry_cancel:
+         case ::user::e_message_box_retry_cancel:
             add_button("Retry", e_dialog_result_retry, 'r');
             add_button("Cancel", e_dialog_result_cancel, 'c');
             break;
-         case e_message_box_cancel_try_continue:
+         case ::user::e_message_box_cancel_try_continue:
             add_button("Cancel", e_dialog_result_cancel, 'c');
             add_button("Try", e_dialog_result_retry, 't');
             add_button("Continue", e_dialog_result_continue, 'e');

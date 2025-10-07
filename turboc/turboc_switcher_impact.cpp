@@ -75,7 +75,7 @@ namespace turboc
       if(m_pimpact == NULL)
       {
 
-         message_box(NULL,"Could not create file list ::aura::impact");
+         message_box(NULL,"Could not create file list_base ::aura::impact");
 
       }
 
@@ -116,7 +116,7 @@ namespace turboc
             if(m_pimpact == NULL)
             {
 
-               message_box(NULL,"Could not create file list ::aura::impact");
+               message_box(NULL,"Could not create file list_base ::aura::impact");
 
             }
 

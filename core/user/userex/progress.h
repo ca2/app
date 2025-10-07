@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "base/user/user/impact.h"
+#include "berg/user/user/impact.h"
 #include "apex/progress/real.h"
 
 
@@ -31,13 +31,13 @@ namespace userex
 
 
       void create_progress();
-      void set_progress_title(const ::string & pszTitle);
+      void set_progress_title(const ::scoped_string & scopedstrTitle);
       void close_progress() override;
 
 
       void redraw() override;
 
-      virtual void defer_show(::user::interaction * puiParent, const ::string & pszTitle, ::collection::count iStepCount = 0);
+      virtual void defer_show(::user::interaction * puiParent, const ::scoped_string & scopedstrTitle, ::collection::count iStepCount = 0);
 
 
    };

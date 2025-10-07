@@ -22,7 +22,7 @@ interface_only::~interface_only()
 //CLASS_DECL_ACME void throw_interface_only_exception(const ::scoped_string & scopedstr)
 //{
 //
-//   throw ::exception(interface_only_exception(psz));
+//   throw ::exception(interface_only_exception(scopedstr));
 //
 //}
 //

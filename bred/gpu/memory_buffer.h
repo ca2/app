@@ -9,6 +9,9 @@
 namespace gpu
 {
 
+   
+   class frame_storage;
+
 
    class CLASS_DECL_BRED memory_buffer :
       virtual public ::poolable < memory_buffer >
@@ -23,6 +26,7 @@ namespace gpu
          e_type_vertex_buffer,
          e_type_index_buffer,
          e_type_constant_buffer,
+         e_type_shared_dynamic_vertex_buffer,
 
       };
 
@@ -31,10 +35,15 @@ namespace gpu
       
       ::gpu::model_buffer* m_pmodelbuffer;
       ::gpu::context* m_pcontext;
+      ::gpu::frame_storage* m_pframestorage;
       //VkDeviceMemory m_vkdevicememory;
       //VkBuffer m_vkbuffer;
       memsize m_size;
       void* m_pMap;
+      bool m_bDynamic;
+
+      int m_iBufferOffset;
+      int m_iSizeMapped;
 
 
       memory_buffer();
@@ -43,7 +52,7 @@ namespace gpu
 
       virtual void initialize_memory_buffer_with_context(::gpu::context* pcontext, memsize size, ::gpu::memory_buffer::enum_type etype);
 
-      virtual void initialize_memory_buffer_with_model_buffer(::gpu::model_buffer* pmodelbuffer, memsize size, ::gpu::memory_buffer::enum_type etype);
+      virtual void initialize_memory_buffer_with_model_buffer(::gpu::model_buffer* pmodelbuffer, memsize size, ::gpu::memory_buffer::enum_type etype, bool bDynamic = false);
 
       virtual void static_initialize_memory_buffer_with_context(::gpu::context* pcontext, const void * data, memsize size, ::gpu::memory_buffer::enum_type etype);
 
@@ -78,6 +87,9 @@ namespace gpu
 
       virtual void bind();
       virtual void unbind();
+
+
+      virtual void _complete_map_allocate(::gpu::memory_buffer* pmemorybufferSource, ::gpu::frame_storage * pgpuframestorage, int size);
 
 
    };

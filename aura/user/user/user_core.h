@@ -20,9 +20,9 @@ namespace user
       //::user::multiple_document_template *         m_ptemplateProgress2;
 
 
-      //map < ::type, ::user::impact_system * >      m_mapTemplate;
+      //map_base < ::type, ::user::impact_system * >      m_mapTemplate;
 
-      //atom_map < ::user::impact_system * >           m_mapimpactsystem;
+      //atom_map_base < ::user::impact_system * >           m_mapimpactsystem;
 
 
       //::pointer<::userex::userex>             m_puserex;
@@ -32,7 +32,7 @@ namespace user
 
 
 
-      string_array                                 m_straEscape;
+      string_array_base                                 m_straEscape;
 
       ::type_atom                                  m_typeatomDefaultMeshData;
       ::type_atom                                  m_typeatomDefaultListHeader;
@@ -45,7 +45,7 @@ namespace user
       //::pointer<::user::keyboard>             m_pkeyboard;
 
       //index                                      m_iEdge;
-      //::map < ::user::enum_key, ::user::enum_key, bool, bool > *  m_pmapKeyPressed;
+      //::map_base < ::user::enum_key, ::user::enum_key, bool, bool > *  m_pmapKeyPressed;
 
       //bool                                       m_bProgrammerMode;
 
@@ -62,7 +62,7 @@ namespace user
       //e_cursor                                              m_ecursor;
 
       //::pointer<::user::theme>                           m_ptheme;
-      //string_map < ::pointer<::user::theme >>            m_mapTheme;
+      //string_map_base < ::pointer<::user::theme >>            m_mapTheme;
 
       //::user::interaction *                                 m_puiCapture;
       //bool                                                  m_bDrawCursor;
@@ -90,14 +90,14 @@ namespace user
 
 
       //bool                                                  m_bSystemSynchronizedScreen;
-      //int_rectangle_array                                            m_rectangleaMonitor;
-      //int_rectangle_array                                            m_rectangleaWorkspace;
+      //int_rectangle_array_base                                            m_rectangleaMonitor;
+      //int_rectangle_array_base                                            m_rectangleaWorkspace;
       //index                                                 m_iMainMonitor;
       //index                                                 m_iMainWorkspace;
 
 
 
-      //atom_map < ::user::interaction * >                      m_mapboundui;
+      //atom_map_base < ::user::interaction * >                      m_mapboundui;
 
 
 
@@ -133,8 +133,8 @@ namespace user
 
       virtual void on_file_manager_open(::filemanager::data* pdata, ::file::item_array& itema);
 
-      virtual bool get_fs_size(string & strSize, const ::string & pszPath, bool & bPending);
-      virtual bool get_fs_size(long long & i64Size, const ::string & pszPath, bool & bPending);
+      virtual bool get_fs_size(string & strSize, const ::scoped_string & scopedstrPath, bool & bPending);
+      virtual bool get_fs_size(long long & i64Size, const ::scoped_string & scopedstrPath, bool & bPending);
 
       virtual void data_on_after_change(::message::message * pmessage);
 
@@ -142,7 +142,7 @@ namespace user
 
       virtual bool modal_get_color(::user::interaction * puiOwner, ::color::hls & hls);
 
-      virtual void AddToRecentFileList(const ::string & pszPathName);
+      virtual void AddToRecentFileList(const ::scoped_string & scopedstrPathName);
 
 
       virtual void route_command(::message::command * pcommand, bool bRouteToKeyDescendant);
@@ -181,7 +181,7 @@ namespace user
       //virtual void initialize(::particle * pparticle) override;
 
 
-      //virtual bool do_prompt_file_name(::payload& payloadFile, string strTitle, unsigned int lFlags, bool bOpenFileDialog, ::user::impact_system* ptemplate, ::user::document* pdocument, const atom & atomFileManager = "file_manager_save");
+      //virtual bool do_prompt_file_name(::payload& payloadFile, const ::scoped_string & scopedstrTitle, unsigned int lFlags, bool bOpenFileDialog, ::user::impact_system* ptemplate, ::user::document* pdocument, const atom & atomFileManager = "file_manager_save");
 
 
       virtual void initialize_userex();
@@ -201,7 +201,7 @@ namespace user
       //virtual ::type_atom get_simple_child_frame_type_info();
 
 
-      //virtual void on_frame_window_drop_files(::user::interaction* pinteraction, ::file::path_array& patha) override;
+      //virtual void on_frame_window_drop_files(::user::interaction* pinteraction, ::file::path_array_base& patha) override;
 
 
 

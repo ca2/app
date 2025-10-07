@@ -22,7 +22,7 @@ int g_iIgnoreXDisplayError = 0;
 //void x_display_error_trap_pop(SnDisplay * sndisplay, Display * display)
 //{
 //
-//   synchronous_lock synchronouslock(x11_mutex());
+//   synchronous_lock synchronouslock(x11_mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //   g_iIgnoreXDisplayError--;
 //

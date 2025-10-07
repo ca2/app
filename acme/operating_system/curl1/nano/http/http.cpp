@@ -47,10 +47,10 @@ namespace curl
          //   }
 
 
-         void http::async(::nano::http::get * pget)
+         void http::async(::nano::http::get * defer_get)
          {
 
-            auto pgetHold = ::as_pointer(pget);
+            auto pgetHold = ::as_pointer(defer_get);
 
             //      pasynchronoushttpresponse->m_function = [](::pointer < ::nano::asynchronous_http_response > pasynchronoushttpresponse)
             //      {                                s_http_response(pasynchronoushttpresponse);
@@ -60,7 +60,7 @@ namespace curl
             fork([this,pgetHold]()
             {
 
-               auto pcurleasy = __create_new < curl_easy >();
+               auto pcurleasy = øcreate_new < curl_easy >();
 
                pcurleasy->get(pgetHold);
 
@@ -70,7 +70,7 @@ namespace curl
               //pasynchronoushttpresponse->m_function(pasynchronoushttpresponse);
             });
 
-            //nano_asynchronous_http_memory(scopedstrUrl.c_str(), s_http_response, pasynchronoushttpresponse.detach_particle());
+            //nano_asynchronous_http_memory(scopedstrUrl.as_string().c_str(), s_http_response, pasynchronoushttpresponse.detach_particle());
 
          }
 

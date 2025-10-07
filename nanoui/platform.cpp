@@ -28,7 +28,7 @@
 //void file_dialog_from_platform(
 //   void * poswindow,
 //   const ::array < ::pair < ::string, ::string > > & filetypesParam,
-//   const ::function < void(const ::file::path_array &) > & function,
+//   const ::function < void(const ::file::path_array_base &) > & function,
 //   bool save, bool multiple)
 //{
 //
@@ -44,7 +44,7 @@
 //      {
 //
 //
-//         ::file::path_array patha;
+//         ::file::path_array_base patha;
 //
 //
 //#if defined(EMSCRIPTEN)

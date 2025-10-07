@@ -14,12 +14,12 @@ namespace console_hello
    void application::search_special_characters()
    {
 
-      ::file::listing listing;
+      ::file::listing_base listing;
 
       auto pathFolder = directory_system()->get_current();
 
       listing.set_pattern_file_listing(pathFolder, {"*.h", "*.cpp", "*.c", "*.hpp" }, e_depth_recursively);
-      ::file::path_array patha;
+      ::file::path_array_base patha;
       ::string strReports;
 
       listing.m_functionOnNewPath = [this,&patha,&strReports](auto & path)

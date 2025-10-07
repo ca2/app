@@ -7,11 +7,11 @@
 
 template < primitive_number NUMBER >
 class lines_base :
-   virtual public point_array_base < NUMBER >
+   public point_array_base < NUMBER >
 {
 public:
 
-
+   using BASE_ARRAY = point_array_base < NUMBER >;
    //using POLYGON_BASE_TYPE = point_array_base < POINT_TYPE >;
    //using POINT_BASE_TYPE = POINT_TYPE;
    using UNIT_TYPE = NUMBER;
@@ -23,7 +23,7 @@ public:
    lines_base();
    lines_base(const lines_base& lines);
    lines_base(lines_base&& lines);
-   ~lines_base() override;
+   ~lines_base();
 
 
    bool contains(const ::point_type <NUMBER > & point, float epsilon = 0.001f)

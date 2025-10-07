@@ -65,6 +65,8 @@ enum enum_flag : unsigned long long
    e_flag_destroyed = 1ll << 50,
    e_flag_preallocated = 1ll << 51,
 
+   e_flag_proto = 1ll << 52,
+
 };
 
 

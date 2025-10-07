@@ -34,11 +34,11 @@ namespace extended
     //}
 
     //
-    //status::status(const std::initializer_list < void >& list) :
+    //status::status(const std::initializer_list < void >& list_base) :
     //   m_estatus(undefined)
     //{
     //
-    //   add(list);
+    //   add(list_base);
 
     //}
 
@@ -68,11 +68,11 @@ namespace extended
     //}
 
 
-    //status::status(const std::initializer_list < ::exception >& list) :
+    //status::status(const std::initializer_list < ::exception >& list_base) :
     //   m_estatus(undefined)
     //{ 
     //   
-    //   add(list); 
+    //   add(list_base); 
 
     //}
 
@@ -153,7 +153,7 @@ namespace extended
     //   if (m_pexceptiona.is_null())
     //   {
 
-    //      m_pexceptiona = __allocate ::array < ::exception > ();
+    //      m_pexceptiona = øallocate ::array < ::exception > ();
 
     //   }
 
@@ -275,10 +275,10 @@ namespace extended
     //}
 
 
-    ////void status::add(const std::initializer_list < ::exception >& list)
+    ////void status::add(const std::initializer_list < ::exception >& list_base)
     ////{
 
-    ////   for (auto& e : list)
+    ////   for (auto& e : list_base)
     ////   {
 
     ////      add(e);
@@ -288,10 +288,10 @@ namespace extended
     ////}
 
 
-    //void status::add(const std::initializer_list < void     >& list)
+    //void status::add(const std::initializer_list < void     >& list_base)
     //{
 
-    //   for (auto& e : list)
+    //   for (auto& e : list_base)
     //   {
 
     //      add(e);
@@ -301,10 +301,10 @@ namespace extended
     //}
 
 
-    //void status::add(const std::initializer_list < ::exception >& list)
+    //void status::add(const std::initializer_list < ::exception >& list_base)
     //{
 
-    //   for (auto& e : list)
+    //   for (auto& e : list_base)
     //   {
 
     //      add(e);

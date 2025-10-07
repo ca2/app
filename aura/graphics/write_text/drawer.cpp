@@ -136,7 +136,7 @@ namespace write_text
    }
 
 
-   void drawer::split_text(string_array & stra, double w, enum_text_wrap etextwrap)
+   void drawer::split_text(string_array_base & stra, double w, enum_text_wrap etextwrap)
    {
 
       if (etextwrap == e_text_wrap_none)
@@ -162,7 +162,7 @@ namespace write_text
    }
 
 
-   ::collection::count drawer::_split_text(string_array & stra, ::collection::index i, double w, enum_text_wrap etextwrap)
+   ::collection::count drawer::_split_text(string_array_base & stra, ::collection::index i, double w, enum_text_wrap etextwrap)
    {
 
       switch (etextwrap)
@@ -180,7 +180,7 @@ namespace write_text
    }
 
 
-   ::collection::count drawer::_split_text_word(string_array & stra, ::collection::index i, double w)
+   ::collection::count drawer::_split_text_word(string_array_base & stra, ::collection::index i, double w)
    {
 
       return _split_text_character(stra, i, w);
@@ -188,14 +188,14 @@ namespace write_text
    }
 
 
-   ::collection::count drawer::_split_text_word_then_character(string_array & stra, ::collection::index i, double w)
+   ::collection::count drawer::_split_text_word_then_character(string_array_base & stra, ::collection::index i, double w)
    {
 
       ::collection::count c = 0;
 
       string str = stra[i];
 
-      const ::ansi_character * pszStart = str;
+      const_char_pointer pszStart = str;
 
       auto pszEnd = pszStart;
 
@@ -229,7 +229,7 @@ namespace write_text
 
          bWhitespace = bWhitespaceNow;
 
-         pszEnd = unicode_increment(pszEnd);
+         pszEnd = unicode_next(pszEnd);
 
          if (::is_empty(pszEnd))
          {
@@ -316,14 +316,14 @@ namespace write_text
    }
 
 
-   ::collection::count drawer::_split_text_character(string_array & stra, ::collection::index i, double w)
+   ::collection::count drawer::_split_text_character(string_array_base & stra, ::collection::index i, double w)
    {
 
       ::collection::count c = 0;
 
       string str = stra[i];
 
-      const ::ansi_character * pszStart = str;
+      const_char_pointer pszStart = str;
 
       auto pszEnd = pszStart;
 
@@ -334,7 +334,7 @@ namespace write_text
 
          auto pszLast = pszEnd;
 
-         unicode_increment(pszEnd);
+         pszEnd = unicode_next(pszEnd);
 
          string strNow = string(pszStart, pszEnd - pszStart);
          
@@ -395,12 +395,12 @@ namespace write_text
 
 
 
-   void drawer::create_simple_multiline_layout(::write_text::text_out_array & textouta, const string & str, const ::int_rectangle & rectangle, ::write_text::font * pfont, const ::e_align & ealign, enum_text_wrap etextwrap)
+   void drawer::create_simple_multiline_layout(::write_text::text_out_array & textouta, const ::scoped_string & scopedstr, const ::int_rectangle & rectangle, ::write_text::font * pfont, const ::e_align & ealign, enum_text_wrap etextwrap)
    {
 
-      string_array stra;
+      string_array_base stra;
 
-      stra.add_lines(str, true);
+      stra.add_lines(scopedstr, true);
 
       set(pfont);
 
@@ -426,7 +426,7 @@ namespace write_text
          if (strLine.has_character())
          {
 
-            auto ptextout = __create_new < text_out >();
+            auto ptextout = øcreate_new < text_out >();
 
             ptextout->m_strText = strLine;
 

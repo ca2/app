@@ -57,7 +57,7 @@ namespace apex
    void log::initialize_log(enum_trace_level etracelevelMin, const ::atom & atom)
    {
 
-      /*auto estatus = */ __construct_new(m_ptrace);
+      /*auto estatus = */ øconstruct_new(m_ptrace);
 
       //if (!estatus)
       //{
@@ -136,7 +136,7 @@ namespace apex
       //set_trace_category(trace_category_socket, "category_Socket", e_trace_level_warning);       // socket traces
 
 
-      synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (m_bInitialized)
       {
@@ -247,7 +247,7 @@ namespace apex
 
 //   extern ::pointer<::apex::application>g_papp;
 
-   CLASS_DECL_APEX int SimpleDebugReport(int iReportType, const ::file::path & path,int iLine,const char *,const char * pszFormat, va_list list)
+   CLASS_DECL_APEX int SimpleDebugReport(int iReportType, const ::file::path & path,int iLine,const_char_pointer ,const_char_pointer pszFormat, va_list list_base)
    {
 #ifdef WIN32
 
@@ -271,9 +271,9 @@ namespace apex
             strCaption = "Assertion Failed";
 
             informationf(str);
-            /*if(message_box(nullptr, str, strCaption, e_message_box_icon_information | MB_OKCANCEL | MB_DEFBUTTON1) == e_dialog_result_cancel)
+            /*if(message_box(nullptr, str, strCaption, ::user::e_message_box_icon_information | MB_OKCANCEL | MB_DEFBUTTON1) == e_dialog_result_cancel)
             {
-               string strCmdLine = "\"C:\\Program Files (x86)\\Microsoft Visual Studio 11.0\\Common7\\IDE\\devenv.exe\" /edit \""+string(pszFileName)+ "\" /command \"edit.goto "+as_string(iLine)+"\"";
+               string strCmdLine = "\"C:\\Program Files (x86)\\Microsoft Visual Studio 11.0\\Common7\\IDE\\devenv.exe\" /edit \""+string(scopedstrFileName)+ "\" /command \"edit.goto "+as_string(iLine)+"\"";
                ::platform::system(strCmdLine);
                exit(0);
             }
@@ -287,13 +287,13 @@ namespace apex
       {
 
          char buf[2048];
-         vsnprintf_s(buf, sizeof(buf), sizeof(buf), pszFormat, list);
+         vsnprintf_s(buf, sizeof(buf), sizeof(buf), pszFormat, list_base);
          informationf(buf);
 
       }
 
 #else
-      vprintf(pszFormat, list);
+      vprintf(pszFormat, list_base);
 #endif
       return 0;
    }
@@ -313,7 +313,7 @@ namespace apex
 
    //   string str;
 
-   //   str.formatf(pszFormat, args);
+   //   str.formatf(scopedstrFormat, args);
 
    //   alog(ecategory, elevel, pszFunction, pszFile, iLine, str);
 
@@ -325,9 +325,9 @@ namespace apex
 //
 //      //const ::scoped_string & scopedstrTopicText = ::is_set(pparticle) ? pparticle->topic_text() : nullptr;
 //
-//      //synchronous_lock sl2(m_pmutexTrace);
+//      //synchronous_lock sl2(m_pmutexTrace, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
-////      synchronous_lock sl2(synchronization());
+////      synchronous_lock sl2(synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 ////
 ////      ::trace::category * pcategory = nullptr;
 ////
@@ -357,10 +357,10 @@ namespace apex
 ////
 ////            string str;
 ////
-////            if (::is_set(pszTopicText))
+////            if (::is_set(scopedstrTopicText))
 ////            {
 ////
-////               string strTopicText(pszTopicText);
+////               string strTopicText(scopedstrTopicText);
 ////
 ////               if (strTopicText.has_character())
 ////               {
@@ -393,9 +393,9 @@ namespace apex
 ////
 ////      }
 ////
-////      string_array stra;
+////      string_array_base stra;
 ////
-////      stra.add_lines(psz, false);
+////      stra.add_lines(scopedstr, false);
 ////
 ////      string strPre;
 ////
@@ -436,7 +436,7 @@ namespace apex
 ////
 ////      //string strCat(pcategory->m_pszName);
 ////
-////      string strCat(pszTopicText);
+////      string strCat(scopedstrTopicText);
 ////
 ////      string strMiddle;
 ////
@@ -450,14 +450,14 @@ namespace apex
 ////      if (m_bLogFunctionName)
 ////      {
 ////
-////         strMiddle += "[" + string(pszFunction) + "] ";
+////         strMiddle += "[" + string(scopedstrFunction) + "] ";
 ////
 ////      }
 ////
 ////      if (m_bLogFileName)
 ////      {
 ////
-////         strMiddle += "\""+ string(pszFile) + "\"";
+////         strMiddle += "\""+ string(scopedstrFile) + "\"";
 ////
 ////         strMiddle += "(" + as_string(iLine) + "): ";
 ////
@@ -644,13 +644,13 @@ namespace apex
    //void log::print(const ::scoped_string & scopedstrFormat, ...)
    //{
 
-   //   //::trace::log::print_v(pszFormat, valist);
+   //   //::trace::log::print_v(scopedstrFormat, valist);
 
    //   va_list valist;
 
    //   va_start(valist, pszFormat);
 
-   //   print_v(pszFormat, valist);
+   //   print_v(scopedstrFormat, valist);
 
    //   va_end(valist);
 
@@ -660,7 +660,7 @@ namespace apex
    //void log::initialize_apex_log(enum_trace_level etracelevelMin, const ::scoped_string & scopedstrId)
    //{
 
-   //   //if (!initialize(atom(pszId)))
+   //   //if (!initialize(atom(scopedstrId)))
    //   //{
 
    //   //   return false;
@@ -731,7 +731,7 @@ namespace apex
    void log::destroy()
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (m_bInitialized)
       {
@@ -786,7 +786,7 @@ namespace apex
    //   {
    //      va_list ptr;
    //      va_start(ptr, pszFormat);
-   //      vprintf(pszFormat, ptr);
+   //      vprintf(scopedstrFormat, ptr);
    //      va_end(ptr);
    //      return;
    //   }

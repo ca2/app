@@ -153,7 +153,7 @@ namespace micro
       if (m_prealizable->m_strDetails.has_character())
       {
 
-         m_pstillDetails = __allocate::micro::still();
+         m_pstillDetails = øallocate::micro::still();
 
          m_pstillDetails->id() = "details";
 
@@ -168,14 +168,14 @@ namespace micro
    }
 
 
-   ::collection::count get_line_count(const ::string& str)
+   ::collection::count get_line_count(const ::scoped_string & scopedstr)
    {
 
       ::collection::index iFind = 0;
 
       ::collection::count cLine = 1;
 
-      while ((iFind = str(iFind).find_index('\n')) >= 0)
+      while ((iFind = scopedstr(iFind).find_index('\n')) >= 0)
       {
 
          cLine++;
@@ -203,7 +203,7 @@ namespace micro
       //       return;
       //
       //    }
-      //    __construct_new(m_pstillIcon);
+      //    øconstruct_new(m_pstillIcon);
       //
       //    m_pstillIcon->set_icon(picon);
 
@@ -230,33 +230,33 @@ namespace micro
 
       ::acme::user::message_box::on_realize(pmessagebox);
 
-      //auto emessageboxType = m_prealizable->m_emessagebox & e_message_box_type_mask;
+      //auto emessageboxType = m_prealizable->m_emessagebox & ::user::e_message_box_type_mask;
 
       //switch (emessageboxType)
       //{
-      //case e_message_box_ok_cancel:
+      //case ::user::e_message_box_ok_cancel:
       //   add_button("OK", e_dialog_result_ok, 'o');
       //   add_button("Cancel", e_dialog_result_cancel, 'c');
       //   break;
-      //case e_message_box_abort_retry_ignore:
+      //case ::user::e_message_box_abort_retry_ignore:
       //   add_button("Abort", e_dialog_result_abort, 'a');
       //   add_button("Retry", e_dialog_result_retry, 'r');
       //   add_button("Ignore", e_dialog_result_ignore, 'i');
       //   break;
-      //case e_message_box_yes_no_cancel:
+      //case ::user::e_message_box_yes_no_cancel:
       //   add_button("Yes", e_dialog_result_yes, 'y');
       //   add_button("No", e_dialog_result_no, 'n');
       //   add_button("Cancel", e_dialog_result_cancel, 'c');
       //   break;
-      //case e_message_box_yes_no:
+      //case ::user::e_message_box_yes_no:
       //   add_button("Yes", e_dialog_result_yes, 'y');
       //   add_button("No", e_dialog_result_no, 'n');
       //   break;
-      //case e_message_box_retry_cancel:
+      //case ::user::e_message_box_retry_cancel:
       //   add_button("Retry", e_dialog_result_retry, 'r');
       //   add_button("Cancel", e_dialog_result_cancel, 'c');
       //   break;
-      //case e_message_box_cancel_try_continue:
+      //case ::user::e_message_box_cancel_try_continue:
       //   add_button("Cancel", e_dialog_result_cancel, 'c');
       //   add_button("Try", e_dialog_result_try_again, 't');
       //   add_button("Continue", e_dialog_result_continue, 'n');
@@ -272,10 +272,10 @@ namespace micro
 
 
 
-      if (m_prealizable->m_emessagebox & e_message_box_default_button_mask)
+      if (m_prealizable->m_emessagebox & ::user::e_message_box_default_button_mask)
       {
 
-         int iDefaultButtonMask = (int)(m_prealizable->m_emessagebox & e_message_box_default_button_mask);
+         int iDefaultButtonMask = (int)(m_prealizable->m_emessagebox & ::user::e_message_box_default_button_mask);
 
          int iDefaultButtonIndex = iDefaultButtonMask >> 8;
 
@@ -408,7 +408,7 @@ namespace micro
    }
 
 
-   //void message_box::initialize_message_box(const ::string & strMessage, const string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails)
+   //void message_box::initialize_message_box(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::user::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails)
    //{
    //
    //   m_functionClose = [this](micro::interchange * pinterchange)
@@ -429,7 +429,7 @@ namespace micro
    //}
 
 
-   //void message_box::do_message_box(const ::string& strMessage, const string& strTitle, const ::e_message_box& emessagebox, const ::string & strDetails)
+   //void message_box::do_message_box(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::user::e_message_box& emessagebox, const ::scoped_string & scopedstrDetails)
    //{
    //
    //   m_functionClose = [this](micro::interchange* pinterchange)
@@ -491,7 +491,7 @@ namespace micro
          if (!m_prealizable->m_psequence->m_timeLocked.is_null())
          {
 
-            m_pstillTimeout = __allocate::micro::still();
+            m_pstillTimeout = øallocate::micro::still();
 
             m_pstillTimeout->id() = "timeout";
 
@@ -521,10 +521,10 @@ namespace micro
    }
 
 
-   //pointer< ::sequence < ::conversation > > message_box::display(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox)
+   //pointer< ::sequence < ::conversation > > message_box::display(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::user::e_message_box & emessagebox)
    //{
    //
-   //   auto psequence = __allocate ::sequence <::conversation > ();
+   //   auto psequence = øallocate ::sequence <::conversation > ();
    //
    //   psequence->m_p = this;
    //
@@ -552,13 +552,13 @@ namespace micro
 
    //CLASS_DECL_ACME ::platform::system * system();
 #ifdef WINDOWS_DESKTOP
-   CLASS_DECL_ACME int message_box_to_windows_message_box(enum_message_box emessagebox);
-   CLASS_DECL_ACME enum_dialog_result windows_message_box_result_to_dialog_result(int iResult);
+   CLASS_DECL_ACME int message_box_to_windows_message_box(::user::enum_message_box emessagebox);
+   CLASS_DECL_ACME ::enum_dialog_result windows_message_box_result_to_dialog_result(int iResult);
 #endif
 
 #ifdef MACOS
 
-   enum_dialog_result ns_alert_box(const char* pszMessage, const char* pszTitle, enum_message_box emessagebox);
+   enum_dialog_result ns_alert_box(const_char_pointer pszMessage, const_char_pointer pszTitle, ::user::enum_message_box emessagebox);
 
 #endif
 
@@ -573,7 +573,7 @@ namespace micro
    //   ::pointer<::object>                             m_pobject;
    ////   string                                        m_strMessage;
    ////   string                                        m_strTitle;
-   ////   e_message_box                                 m_emessagebox;
+   ////   ::user::e_message_box                                 m_emessagebox;
    ////   string                                        m_strDetails;
 
 
@@ -594,12 +594,12 @@ namespace micro
       if (payload == "details")
       {
 
-         //auto psequencer = __create_new < ::sequencer < ::conversation > >();
+         //auto psequencer = øcreate_new < ::sequencer < ::conversation > >();
 
          auto pmessageboxDetails = __initialize_new::message_box(
             m_prealizable->m_strDetails,
             m_prealizable->m_strTitle + " : Details",
-            e_message_box_ok,
+            ::user::e_message_box_ok,
             m_prealizable->m_strDetails);
 
          pmessageboxDetails->m_bDetails = true;
@@ -607,7 +607,7 @@ namespace micro
 
          //pdetailswindow->m_psequencer = psequencer;
 
-         //pdetailswindow->initialize_conversation(m_strDetails, m_strTitle + " : Details", e_message_box_ok, m_strDetails);
+         //pdetailswindow->initialize_conversation(m_strDetails, m_strTitle + " : Details", ::user::e_message_box_ok, m_strDetails);
 
          //send(pdetailswindow);
 
@@ -660,7 +660,7 @@ namespace micro
    void message_box::on_context_menu(::user::mouse* pmouse)
    {
 
-      auto ppopupbutton = __create_new<popup_button>();
+      auto ppopupbutton = øcreate_new<popup_button>();
 
       //auto pwindowParent = this->acme_windowing_window();
 
@@ -726,7 +726,7 @@ namespace micro
 } // namespace micro
 
 
-//CLASS_DECL_ACME ::pointer < ::subparticle > message_box_sequencer(::particle * pparticle, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon)
+//CLASS_DECL_ACME ::pointer < ::subparticle > message_box_sequencer(::particle * pparticle, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::user::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon)
 //{
 //
 //   if (::is_null(pparticle))
@@ -737,7 +737,7 @@ namespace micro
 //                                                        scopedstrDetails, picon);
 //      
 //      return psequencer;
-////      auto pmessagebox = ::platform::get()->__øcreate < ::operating_system::message_box >();
+////      auto pmessagebox = ::platform::get()->øcreate < ::operating_system::message_box >();
 ////
 ////      return pmessagebox->create_sequencer(scopedstrMessage, scopedstrTitle, emessagebox, scopedstrDetails);
 //
@@ -757,9 +757,9 @@ namespace micro
 //   if(pparticle->::system()->m_bConsole || !is_ui_possible())
 //   {
 //
-//      auto psequencer = pparticle->__create_new < ::sequencer < ::conversation > >();
+//      auto psequencer = pparticle->øcreate_new < ::sequencer < ::conversation > >();
 //
-//      auto pmessagebox = pparticle->__create_new < ::operating_system::console_message_box >();
+//      auto pmessagebox = pparticle->øcreate_new < ::operating_system::console_message_box >();
 //
 //      psequencer->m_psequence = pmessagebox;
 //
@@ -787,7 +787,7 @@ namespace micro
 //   
 //   //auto atomResult = pmessagebox->sync();
 //   
-////   auto pmanualresethappening = __allocate manual_reset_happening();
+////   auto pmanualresethappening = øallocate manual_reset_happening();
 ////
 ////   atom atomResult;
 ////
@@ -802,13 +802,13 @@ namespace micro
 ////
 ////   pmanualresethappening->wait();
 ////
-//////   auto pmessagebox = pparticle->__create_new < message_box >();
+//////   auto pmessagebox = pparticle->øcreate_new < message_box >();
 //////
 //////   atom idResult;
 //////
 //////   manual_reset_happening happening;
 //////
-//////   pmessagebox->display(pszMessage, pszTitle, emessagebox, pszDetails);
+//////   pmessagebox->display(scopedstrMessage, pszTitle, emessagebox, pszDetails);
 //////
 //////   pmessagebox->m_functionClose = [&idResult, &happening](micro::interchange * pinterchange)
 //////   {
@@ -841,7 +841,7 @@ namespace micro
 //
 
 //
-//CLASS_DECL_ACME ::payload message_box_synchronous(::particle * pparticle, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon)
+//CLASS_DECL_ACME ::payload message_box_synchronous(::particle * pparticle, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::user::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon)
 //{
 //
 //   if (::is_null(pparticle))
@@ -889,7 +889,7 @@ namespace micro
 //   
 //   auto atomResult = pmessagebox->sync();
 //   
-////   auto pmanualresethappening = __allocate manual_reset_happening();
+////   auto pmanualresethappening = øallocate manual_reset_happening();
 ////
 ////   atom atomResult;
 ////
@@ -904,13 +904,13 @@ namespace micro
 ////
 ////   pmanualresethappening->wait();
 ////
-//////   auto pmessagebox = pparticle->__create_new < message_box >();
+//////   auto pmessagebox = pparticle->øcreate_new < message_box >();
 //////
 //////   atom idResult;
 //////
 //////   manual_reset_happening happening;
 //////
-//////   pmessagebox->display(pszMessage, pszTitle, emessagebox, pszDetails);
+//////   pmessagebox->display(scopedstrMessage, pszTitle, emessagebox, pszDetails);
 //////
 //////   pmessagebox->m_functionClose = [&idResult, &happening](micro::interchange * pinterchange)
 //////   {
@@ -943,10 +943,10 @@ namespace micro
 //
 //
 //
-//CLASS_DECL_ACME void message_box_asynchronous(::function < void(const ::payload & payload) > function, ::particle * pparticle, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon)
+//CLASS_DECL_ACME void message_box_asynchronous(::function < void(const ::payload & payload) > function, ::particle * pparticle, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::user::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon)
 //{
 //
-//   auto pmessagebox = __allocate ::micro::message_box_conversation_message();
+//   auto pmessagebox = øallocate ::micro::message_box_conversation_message();
 //
 //   pmessagebox->m_pobject = pparticle;
 //   pmessagebox->initialize_conversation(scopedstrMessage,scopedstrTitle, emessagebox, scopedstrDetails, picon);
@@ -987,7 +987,7 @@ namespace micro
 //   //main_asynchronous([ pmessagebox, pparticle ]()
 //   //{
 //
-//      auto pmicromessagebox = pparticle->__create_new < ::micro::message_box >();
+//      auto pmicromessagebox = pparticle->øcreate_new < ::micro::message_box >();
 //   
 //      ::payload idResult;
 //   

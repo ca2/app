@@ -98,7 +98,7 @@ int gdb_check()
 
    }
 
-   for (const char* characterPtr = tracer_pid_ptr + sizeof(tracerPidString) - 1; characterPtr <= buf + num_read; ++characterPtr)
+   for (const_char_pointer characterPtr = tracer_pid_ptr + sizeof(tracerPidString) - 1; characterPtr <= buf + num_read; ++characterPtr)
    {
 
       if (::character_isspace(*characterPtr))
@@ -263,9 +263,9 @@ int gdb_check()
 //}
 
 
-////CLASS_DECL_BASE extern fixed_alloc_array * g_pfixedallocaWstring;
+////CLASS_DECL_BERG extern fixed_alloc_array * g_pfixedallocaWstring;
 //
-////CLASS_DECL_BASE fixed_alloc_array * new_wstring_manager();
+////CLASS_DECL_BERG fixed_alloc_array * new_wstring_manager();
 //
 //void CLASS_DECL_ACME __cdecl _ca2_purecall()
 //{

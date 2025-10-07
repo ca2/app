@@ -7,23 +7,30 @@
 
 
 template < typename POINTER, class ARRAY_TYPE >
-class address_array :
+class address_array_base :
    public ARRAY_TYPE
 {
 public:
 
 
-   inline address_array() {}
-   inline address_array(const address_array & a) { this->operator = (a); }
-   inline address_array(address_array && a) { this->operator = (::transfer(a)); }
+   using BASE_ARRAY = ARRAY_TYPE;
 
 
-   inline address_array & operator = (const address_array & a) { this->ARRAY_TYPE::operator = (a); return *this; }
-   inline address_array & operator = (address_array && a) { this->ARRAY_TYPE::operator = (::transfer(a)); return *this; }
+   using BASE_ARRAY::BASE_ARRAY;
+   using BASE_ARRAY::operator =;
+
+
+   //inline address_array_base() {}
+   //inline address_array_base(const address_array_base & a) { this->operator = (a); }
+   //inline address_array_base(address_array_base && a) { this->operator = (::transfer(a)); }
+
+
+   //inline address_array_base & operator = (const address_array_base & a) { this->ARRAY_TYPE::operator = (a); return *this; }
+   //inline address_array_base & operator = (address_array_base && a) { this->ARRAY_TYPE::operator = (::transfer(a)); return *this; }
 
 
    ::collection::index add(POINTER newElement) { return ARRAY_TYPE::add(newElement); }
-   ::collection::index append(const address_array & src) { return ARRAY_TYPE::append(src); }
+   ::collection::index append(const address_array_base & src) { return ARRAY_TYPE::append(src); }
 
 
    inline POINTER & element_at(::collection::index i) { return (POINTER &)ARRAY_TYPE::element_at(i); }
@@ -50,11 +57,11 @@ public:
 
 
 //class CLASS_DECL_ACME object_ptra :
-//   virtual public ::address_array < matter * >
+//   virtual public ::address_array_base < matter * >
 //{
 //public:
 //
-//   typedef ::address_array < matter * > BASE_TYPE;
+//   typedef ::address_array_base < matter * > BASE_TYPE;
 //
 //   inline object_ptra() {}
 //   inline object_ptra(::particle * pparticle) : ::matter(pparticle) { }

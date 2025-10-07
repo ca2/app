@@ -29,10 +29,10 @@
 ////
 ////   bool var_strict::operator == (const ::scoped_string & scopedstr) const
 ////   {
-////      return m_ppayload->strictly_equal(psz);
+////      return m_ppayload->strictly_equal(scopedstr);
 ////   }
 ////
-////   bool var_strict::operator == (const ::string & str) const
+////   bool var_strict::operator == (const ::scoped_string & scopedstr) const
 ////   {
 ////      return m_ppayload->strictly_equal(str);
 ////   }
@@ -59,10 +59,10 @@
 ////
 ////   bool var_strict::operator != (const ::scoped_string & scopedstr) const
 ////   {
-////      return m_ppayload->strictly_different(psz);
+////      return m_ppayload->strictly_different(scopedstr);
 ////   }
 ////
-////   bool var_strict::operator != (const ::string & str) const
+////   bool var_strict::operator != (const ::scoped_string & scopedstr) const
 ////   {
 ////      return m_ppayload->strictly_different(str);
 ////   }
@@ -84,10 +84,10 @@
 //
 ////   bool operator == (const ::scoped_string & scopedstr, const var_strict & payload)
 ////   {
-////      return strictly_equal(psz, *payload.m_ppayload);
+////      return strictly_equal(scopedstr, *payload.m_ppayload);
 ////   }
 ////
-////   bool operator == (const ::string & str, const var_strict & payload)
+////   bool operator == (const ::scoped_string & scopedstr, const var_strict & payload)
 ////   {
 ////      return strictly_equal(str, *payload.m_ppayload);
 ////   }
@@ -109,10 +109,10 @@
 ////
 ////   bool operator != (const ::scoped_string & scopedstr, const var_strict & payload)
 ////   {
-////      return strictly_different(psz, *payload.m_ppayload);
+////      return strictly_different(scopedstr, *payload.m_ppayload);
 ////   }
 ////
-////   bool operator != (const ::string & str, const var_strict & payload)
+////   bool operator != (const ::scoped_string & scopedstr, const var_strict & payload)
 ////   {
 ////      return strictly_different(str, *payload.m_ppayload);
 ////   }

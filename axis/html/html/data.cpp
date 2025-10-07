@@ -79,7 +79,7 @@ int html_data::create_font(::html::element* pelemental)
 void html_data::delete_contents()
 {
 
-   synchronous_lock lock(synchronization());
+   synchronous_lock lock(synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    destroy();
 
@@ -107,10 +107,10 @@ void html_data::delete_implementation()
 }
 
 
-void html_data::load(const ::string & psz)
+void html_data::load(const ::scoped_string & scopedstr)
 {
 
-   m_pcoredata->load(psz);
+   m_pcoredata->load(scopedstr);
 
 }
 
@@ -195,10 +195,10 @@ html::element* html_data::get_element_by_id(atom atom)
 }
 
 
-::image::image_pointer html_data::get_image(const ::string & pszUrl)
+::image::image_pointer html_data::get_image(const ::scoped_string & scopedstrUrl)
 {
 
-   return m_pcoredata->get_image(pszUrl);
+   return m_pcoredata->get_image(scopedstrUrl);
 
 }
 
@@ -219,10 +219,10 @@ bool html_data::on_create_interaction(::pointer<::user::interaction>pinteraction
 }
 
 
-bool html_data::open_link(const ::string & pszPath)
+bool html_data::open_link(const ::scoped_string & scopedstrPath)
 {
 
-   return m_pcoredata->open_link(pszPath);
+   return m_pcoredata->open_link(scopedstrPath);
 
 }
 
@@ -235,15 +235,15 @@ bool html_data::open_document(const ::payload & payloadFile)
 }
 
 
-bool html_data::open_html(const ::string & str)
+bool html_data::open_html(const ::scoped_string & scopedstr)
 {
 
-   return m_pcoredata->open_html(str);
+   return m_pcoredata->open_html(scopedstr);
 
 }
 
 
-//void html_data::on_before_navigate(::payload & payloadFile, unsigned int nFlags, const ::string & pszTargetFrameName, byte_array& baPostedData, const ::string & pszHeaders, bool* pbCancel)
+//void html_data::on_before_navigate(::payload & payloadFile, unsigned int nFlags, const ::scoped_string & scopedstrTargetFrameName, byte_array& baPostedData, const ::scoped_string & scopedstrHeaders, bool* pbCancel)
 //{
 //
 //   m_pcoredata->on_before_navigate(payloadFile, nFlags, pszTargetFrameName, baPostedData, pszHeaders, pbCancel);

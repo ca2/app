@@ -2,7 +2,7 @@
 
 
 #include "acme/constant/source.h"
-#include "acme/platform/message.h"
+#include "acme/platform/acme_message.h"
 
 
 class CLASS_DECL_ACME action_context

@@ -29,4 +29,4 @@ inline void from_string(CONTAINER& container, const ::scoped_string& scopedstr)
 
 
 
-CLASS_DECL_ACME void erase_sharp_comment(::string_array & stra);
+CLASS_DECL_ACME void erase_sharp_comment(::string_array_base & stra);

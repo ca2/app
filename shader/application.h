@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "aura/platform/application.h"
+#include "bred/platform/application.h"
 
 
 namespace app_shader
@@ -9,7 +9,7 @@ namespace app_shader
 
 
    class CLASS_DECL_APP_SHADER application :
-      virtual public ::aura::application
+      virtual public ::bred::application
    {
    public:
 
@@ -41,9 +41,9 @@ namespace app_shader
 #endif
 
 
-      virtual string get_next_shader_path(const string& strPath);
+      virtual string get_next_shader_path(const ::scoped_string & scopedstrPath);
 
-      virtual void get_shader_listing(::file::listing& listing);
+      virtual void get_shader_listing(::file::listing_base& listing);
 
 
    };

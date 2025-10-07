@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "login.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "acme/crypto/crypto.h"
 #include "axis/user/user/simple_ui_draw.h"
 #include "aura/graphics/image/image.h"
@@ -66,32 +66,32 @@ namespace account
 
       ::user::interaction::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_create, pchannel, this, &login::on_message_create);
+      USER_MESSAGE_LINK(::user::e_message_create, pchannel, this, &login::on_message_create);
 
    }
 
 
-   void login::defer_translate(const ::string & strUser, const ::string & strPass, const ::string & strOpen)
+   void login::defer_translate(const ::scoped_string & scopedstrUser, const ::scoped_string & scopedstrPass, const ::scoped_string & scopedstrOpen)
    {
 
-      if (strUser.has_character())
+      if (scopedstrUser.has_character())
       {
 
-         m_pstillUser->set_window_text(strUser);
+         m_pstillUser->set_window_text(scopedstrUser);
 
       }
 
-      if (strPass.has_character())
+      if (scopedstrPass.has_character())
       {
 
-         m_pstillPassword->set_window_text(strPass);
+         m_pstillPassword->set_window_text(scopedstrPass);
 
       }
 
-      if (strOpen.has_character())
+      if (scopedstrOpen.has_character())
       {
 
-         m_pbutton->set_window_text(strOpen);
+         m_pbutton->set_window_text(scopedstrOpen);
 
       }
 
@@ -114,20 +114,20 @@ namespace account
       //
       m_bSubmitted = false;
 
-      //if (!(estatus = __construct_new(m_pstillUser))) return false;
-      //if(!(estatus = __construct_new(m_peditUser))) return false;
-      //if (!(estatus = __construct_new(m_pstillPassword))) return false;
-      //if (!(estatus = __construct_new(m_peditPassword))) return false;
-      //if (!(estatus = __construct_new(m_pbutton))) return false;
-      //if (!(estatus = __construct_new(m_pbuttonClose))) return false;
+      //if (!(estatus = øconstruct_new(m_pstillUser))) return false;
+      //if(!(estatus = øconstruct_new(m_peditUser))) return false;
+      //if (!(estatus = øconstruct_new(m_pstillPassword))) return false;
+      //if (!(estatus = øconstruct_new(m_peditPassword))) return false;
+      //if (!(estatus = øconstruct_new(m_pbutton))) return false;
+      //if (!(estatus = øconstruct_new(m_pbuttonClose))) return false;
 
 
-      __construct_new(m_pstillUser);
-      __construct_new(m_peditUser);
-      __construct_new(m_pstillPassword);
-      __construct_new(m_peditPassword);
-      __construct_new(m_pbutton);
-      __construct_new(m_pbuttonClose);
+      øconstruct_new(m_pstillUser);
+      øconstruct_new(m_peditUser);
+      øconstruct_new(m_pstillPassword);
+      øconstruct_new(m_peditPassword);
+      øconstruct_new(m_pbutton);
+      øconstruct_new(m_pbuttonClose);
 
       //return estatus;
 
@@ -367,10 +367,10 @@ namespace account
    }
 
 
-   bool login::on_action(const ::string & strId)
+   bool login::on_action(const ::scoped_string & scopedstrId)
    {
 
-      if (strId == "submit")
+      if (scopedstrId == "submit")
       {
 
          if (m_bSubmitted)
@@ -418,7 +418,7 @@ namespace account
          return true;
 
       }
-      else if (strId == "submit_timer")
+      else if (scopedstrId == "submit_timer")
       {
 
          if (m_bSubmitted)
@@ -449,7 +449,7 @@ namespace account
          return true;
 
       }
-      else if (strId == "escape")
+      else if (scopedstrId == "escape")
       {
 
          m_bSubmitted = true;

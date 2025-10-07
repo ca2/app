@@ -59,7 +59,7 @@
 //    if(pfile == nullptr)
 //        return INVALID_HANDLE_VALUE;
 //
-//    HANDLE handle = __allocate win_handle();
+//    HANDLE handle = øallocate win_handle();
 //
 //    handle->m_etype = win_handle::type_file;
 //    handle->m_file.m_pfile = pfile;
@@ -223,7 +223,7 @@
 //bool context::_os_resolve_alias(::file::path & path, const ::scoped_string & scopedstr, bool bNoUI, bool bNoMount)
 //{
 //
-//   if (::is_null(psz))
+//   if (::is_null(scopedstr))
 //   {
 //
 //      return false;
@@ -233,19 +233,19 @@
 //
 //
 //
-//   char * pszRealPath = ::realpath(psz, NULL);
+//   char * pszRealPath = ::realpath(scopedstr, NULL);
 //
-//   if (pszRealPath == NULL)
+//   if (scopedstrRealPath == NULL)
 //   {
 //
 //      return false;
 //
 //   }
 //
-//   if (strcmp(psz, pszRealPath) == 0)
+//   if (strcmp(scopedstr, pszRealPath) == 0)
 //   {
 //
-//      ::free(pszRealPath);
+//      ::free(scopedstrRealPath);
 //
 //      return false;
 //
@@ -262,7 +262,7 @@
 //
 //   }
 //
-//   ::free(pszRealPath);
+//   ::free(scopedstrRealPath);
 //
 //   return true;
 //

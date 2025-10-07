@@ -25,7 +25,7 @@
 #if OPENSSL_VERSION_NUMBER < 0x10100000L
 
 RAND_METHOD rand_meth;
-extern "C" void crypto_initializer_locking_function(int mode, int n, const char* file, int line);
+extern "C" void crypto_initializer_locking_function(int mode, int n, const_char_pointer file, int line);
 extern "C" unsigned long crypto_initializer_id_function();
 
 extern "C" int crypto_initializer_rand_seed(const void* buf, int num);
@@ -44,7 +44,7 @@ namespace crypto_openssl
 #if OPENSSL_VERSION_NUMBER < 0x10100000L
 
 
-   map < int, ::pointer < ::mutex >* >* g_pmapMutex = nullptr;
+   map_base < int, ::pointer < ::mutex >* >* g_pmapMutex = nullptr;
 
 
    ::pointer < ::mutex >* g_pmutexMap = nullptr;
@@ -60,7 +60,7 @@ namespace crypto_openssl
 
       m_rand_size = 1024;
 
-      g_pmapMutex = memory_new map < int, ::pointer < ::mutex >*>;
+      g_pmapMutex = memory_new map_base < int, ::pointer < ::mutex >*>;
 
       g_pmutexMap = ___new ::pointer < ::mutex > ();
 
@@ -155,23 +155,23 @@ namespace crypto_openssl
 #if OPENSSL_VERSION_NUMBER < 0x10100000L
 
 
-extern "C" void crypto_initializer_SSL_locking_function(int mode, int n, const char* file, int line)
+extern "C" void crypto_initializer_SSL_locking_function(int mode, int n, const_char_pointer file, int line)
 {
 
    __UNREFERENCED_PARAMETER(file);
 
    __UNREFERENCED_PARAMETER(line);
 
-   synchronous_lock synchronouslock(::crypto::g_pmutexMap);
+   synchronous_lock synchronouslock(::crypto::g_pmutexMap, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    ::pointer < ::mutex >* pmutex = nullptr;
 
-   if (::crypto::g_pmapMutex != nullptr && !::crypto::g_pmapMutex->lookup(n, pmutex))
+   if (::crypto::g_pmapMutex != nullptr && !::crypto::g_pmapMutex->find(n, pmutex))
    {
 
       ::crypto::g_pmapMutex->operator [](n) = ___new ::pointer < ::mutex > ();
 
-      if (!::crypto::g_pmapMutex->lookup(n, pmutex))
+      if (!::crypto::g_pmapMutex->find(n, pmutex))
       {
 
          return;

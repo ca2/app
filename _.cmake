@@ -90,7 +90,25 @@ set(OPENBSD FALSE)
 set(UBUNTU FALSE)
 set(DEBIAN FALSE)
 set(ANDROID FALSE)
+set(WIN32 FALSE)
+set(UWP FALSE)
 set(HAS_NO_APPINDICATOR FALSE)
+
+
+include_directories(${WORKSPACE_FOLDER})
+include_directories($ENV{HOME}/__config)
+include_directories(${WORKSPACE_FOLDER}/source)
+include_directories(${WORKSPACE_FOLDER}/source/app)
+include_directories(${WORKSPACE_FOLDER}/source/app/include)
+include_directories(${WORKSPACE_FOLDER}/source/app/_include)
+include_directories(${WORKSPACE_FOLDER}/source/include)
+include_directories(${WORKSPACE_FOLDER}/port/_)
+if (NOT ${HAS_SYSTEM_UNAC})
+   include_directories(${WORKSPACE_FOLDER}/port/base/unac/include)
+endif ()
+include_directories(${WORKSPACE_FOLDER}/port/include)
+include_directories(${WORKSPACE_FOLDER}/operating_system)
+
 
 
 message(STATUS "going to include \"operating_system/__.cmake\"")
@@ -127,7 +145,8 @@ add_subdirectory(source/app)
 add_subdirectory(source)
 
 
-add_subdirectory(source/app/launch)
+#add_subdirectory(source/app/launch)
+#add_subdirectory(source/app/store)
 
 
 

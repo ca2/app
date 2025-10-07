@@ -124,6 +124,14 @@ namespace geometry2d
    }
 
 
+   void matrix::transform(sequence2_double* ppoint, ::collection::count c)
+   {
+
+      while (c-- > 0) transform(ppoint[c]);
+
+   }
+
+
    // 6 (six) elements
    void matrix::SetElements(float * fa)
    {

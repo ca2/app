@@ -42,8 +42,8 @@ namespace universal_windows
       virtual bool current_user_set_run_once(const ::scoped_string & scopedstrKey, const ::scoped_string & scopedstrCommand, bool bSet) override;
       virtual bool defer_register_ca2_plugin_for_mozilla() override;
 
-      virtual bool file_extension_get_open_with_list_keys(string_array & straKey, const ::scoped_string & scopedstrExtension) override;
-      virtual bool file_extension_get_open_with_list_commands(string_array & straCommand, const ::scoped_string & scopedstrExtension) override;
+      virtual bool file_extension_get_open_with_list_keys(string_array_base & straKey, const ::scoped_string & scopedstrExtension) override;
+      virtual bool file_extension_get_open_with_list_commands(string_array_base & straCommand, const ::scoped_string & scopedstrExtension) override;
 
       virtual bool file_association_set_default_icon(const ::scoped_string & scopedstrExtension, const ::scoped_string & scopedstrExtensionNamingClass, const ::scoped_string & scopedstrIconPath) override;
       virtual bool file_association_set_shell_open_command(const ::scoped_string & scopedstrExtension, const ::scoped_string & scopedstrExtensionNamingClass,  const ::scoped_string & scopedstrCommand, const ::scoped_string & scopedstrParam) override;
@@ -63,7 +63,7 @@ namespace universal_windows
       virtual void start_service() override;
       virtual void stop_service() override;
 
-      virtual bool resolve_link(string & strTarget, string & strFolder, string & strParams, const ::string & strSource, ::user::interaction_base * puiMessageParentOptional = nullptr);
+      virtual bool resolve_link(string & strTarget, string & strFolder, string & strParams, const ::scoped_string & scopedstrSource, ::user::interaction_base * puiMessageParentOptional = nullptr);
 
       virtual DECLSPEC_NO_RETURN void raise_exception(unsigned int dwExceptionCode, unsigned int dwExceptionFlags = EXCEPTION_NONCONTINUABLE) override;
 

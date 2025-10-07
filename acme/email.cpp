@@ -417,7 +417,7 @@ inline int __QPEncodeGetRequiredLength(int nSrcLen)
 //		// It's the callers responsibility to supply a filename that can readily be
 //		// used for the UUEncode header. We do a basic check here because there does
 //		// not appear to be a real specification.
-//		for (const char * pc = pcszFilename; *pc != 0; ++pc)
+//		for (const_char_pointer pc = pcszFilename; *pc != 0; ++pc)
 //		{
 //			if (*pc >= 32 && *pc < 127)
 //				;

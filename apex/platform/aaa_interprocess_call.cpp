@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-::interprocess::call::interprocess::call(interprocess_intercommunication* pipi, const string& strApp, const string& strObject, const string& strMember) :
+::interprocess::call::interprocess::call(interprocess_intercommunication* pipi, const ::scoped_string & scopedstrApp, const ::scoped_string & scopedstrObject, const ::scoped_string & scopedstrMember) :
    //::object(pipi),
    m_pinterprocesscommunication(pipi),
    m_strApp(strApp),
@@ -109,7 +109,7 @@ void ::interprocess::call::send(const ::atom& idPid)
 ::pointer<synchronization_array>::interprocess::call::synca()
 {
 
-   auto psynca = __allocate synchronization_array();
+   auto psynca = øallocate synchronization_array();
 
    for (auto& ptask : this->m_mapTask.values())
    {
@@ -148,7 +148,7 @@ bool ::interprocess::call::_wait(const class ::wait & wait)
 
    auto psynca = synca();
 
-   synchronous_lock synchronouslock(psynca);
+   synchronous_lock synchronouslock(psynca, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    return synchronouslock.wait(wait);
 

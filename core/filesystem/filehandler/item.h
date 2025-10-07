@@ -26,9 +26,9 @@ namespace filehandler
       
       id_type   m_etopictype;
       string         m_strTopic;
-      string_array        m_straHandlerLibrary;
-      string_array        m_straMenuLibrary;
-      string_array        m_straApp;
+      string_array_base        m_straHandlerLibrary;
+      string_array_base        m_straMenuLibrary;
+      string_array_base        m_straApp;
 
 
       string get_item_text(object * pparticle) const;

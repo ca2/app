@@ -41,7 +41,7 @@ namespace introjection
       //string                                    m_strLibPlatform;
 
 
-      string_array                                   m_straSync;
+      string_array_base                                   m_straSync;
       string                                    m_strLibsLibs;
       //string                                    m_strEnv;
       //string                                    m_strSdk1;
@@ -57,16 +57,16 @@ namespace introjection
 
       ::particle_pointer                                     m_pmutexLibrary;
 
-      string_map < ::pointer<library >>               m_lib;
+      string_map_base < ::pointer<library >>               m_lib;
 
 
       compiler();
       ~compiler() override;
 
-      virtual void initialize_introjection_compiler(::particle * pparticle, const ::string& pszRepos, const ::string& pszApp, const ::string& pszProjectName, const ::file::path & pathProjectDir);
+      virtual void initialize_introjection_compiler(::particle * pparticle, const ::scoped_string & scopedstrRepos, const ::scoped_string & scopedstrApp, const ::scoped_string & scopedstrProjectName, const ::file::path & pathProjectDir);
 
       //void initialize_compiler();
-      //void prepare1(const ::string & lpcszSource, const ::string & lpcszDest);
+      //void prepare1(const ::scoped_string & scopedstrSource, const ::scoped_string & scopedstrDest);
       //void prepare_compile_and_link_environment();
 
       ::acme::library * compile(const ::file::path & path, bool bNew);

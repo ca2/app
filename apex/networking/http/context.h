@@ -18,9 +18,9 @@ namespace http
 
 
       ::pointer < ::mutex >                  m_pmutexPac;
-      string_map < ::pointer<pac >>          m_mapPac;
+      string_map_base < ::pointer<pac >>          m_mapPac;
       ::pointer < ::mutex >                  m_pmutexProxy;
-      string_map < ::pointer<proxy >>        m_mapProxy;
+      string_map_base < ::pointer<proxy >>        m_mapProxy;
 
       // ::property_set                         m_setHttp;
       //
@@ -53,7 +53,7 @@ namespace http
       //virtual void clean_proxy_auth(::account::user * puser);
 
 
-      virtual bool open(::pointer<::sockets::http_session>& psession, const ::url::connect_range & connectrange, ::property_set & set, const ::string & strVersion) override;
+      virtual bool open(::pointer<::sockets::http_session>& psession, const ::url::connect_range & connectrange, ::property_set & set, const ::scoped_string & scopedstrVersion) override;
 
 
       virtual bool request(::pointer<::sockets::http_session>& spsession, const ::url::request_range & requestrange, ::property_set & set) override;
@@ -114,7 +114,7 @@ namespace http
       virtual void get(string & str, const ::url::url & url , ::property_set & set) override;
       virtual void get(memory_base * pmemory, const ::url::url & url, ::property_set & set) override;
       
-      virtual void perform(::nano::http::get * pget) override;
+      virtual void perform(::nano::http::get * defer_get) override;
 
       //virtual bool request(const ::scoped_string & scopedstrRequest, const ::url::url & url, ::property_set & set);
 

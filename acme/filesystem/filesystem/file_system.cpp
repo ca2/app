@@ -21,7 +21,7 @@
 
 
 CLASS_DECL_ACME void exception_message_box(::particle* pparticle, ::exception& exception,
-                                           const ::string& strMoreDetails);
+                                           const ::scoped_string & scopedstrMoreDetails);
 
 
 file_system::file_system()
@@ -57,7 +57,7 @@ void file_system::touch(const ::file::path& path)
 }
 
 
-void file_system::touch_app_cloud(const ::file::path& path, const char* pszContentIdentifier)
+void file_system::touch_app_cloud(const ::file::path& path, const_char_pointer pszContentIdentifier)
 {
 
    touch(path);
@@ -159,7 +159,7 @@ file_pointer file_system::get_file(const ::payload& payloadFile, ::file::e_open 
 
    }
 
-   auto pfile = application()->__øcreate<::file::file>();
+   auto pfile = application()->øcreate<::file::file>();
 
    if (!pfile)
    {
@@ -218,17 +218,17 @@ string file_system::as_string(const ::file::path& pathParam, character_count iRe
    else if (data[0] == '\xEF' && data[1] == '\xBB' && data[2] == '\xBF') // BOM
    {
 
-      return {(const char *)data + 3, size - 3};
+      return {(const_char_pointer )data + 3, size - 3};
 
    }
    else
    {
 
-      return {(const char *)data, size};
+      return {(const_char_pointer )data, size};
 
    }
 
-   //auto pfile = m_papplication->__create_new < stdio_file >();
+   //auto pfile = m_papplication->øcreate_new < stdio_file >();
 
    //if (bNoExceptionIfNotFound)
    //{
@@ -277,7 +277,7 @@ string file_system::as_string(const ::file::path& pathParam, character_count iRe
    //while (iReadAtMostByteCount - iPos > 0)
    //{
 
-   //   auto dwRead = pfile->read(psz + iPos, (size_t)iReadAtMostByteCount - iPos);
+   //   auto dwRead = pfile->read(scopedstr + iPos, (size_t)iReadAtMostByteCount - iPos);
 
    //   if (dwRead <= 0)
    //   {
@@ -320,13 +320,13 @@ string file_system::safe_get_string(const ::file::path& pathParam, character_cou
    else if (data[0] == '\xEF' && data[1] == '\xBB' && data[2] == '\xBF') // BOM
    {
 
-      return {(const char *)data + 3, size - 3};
+      return {(const_char_pointer )data + 3, size - 3};
 
    }
    else
    {
 
-      return {(const char *)data, size};
+      return {(const_char_pointer )data, size};
 
    }
 
@@ -356,13 +356,13 @@ string file_system::__safe_get_string(const ::file::path& pathParam, character_c
    else if (data[0] == '\xEF' && data[1] == '\xBB' && data[2] == '\xBF') // BOM
    {
 
-      return { (const char*)data + 3, size - 3 };
+      return { (const_char_pointer )data + 3, size - 3 };
 
    }
    else
    {
 
-      return { (const char*)data, size };
+      return { (const_char_pointer )data, size };
 
    }
 
@@ -436,7 +436,7 @@ void file_system::append(const ::file::path& pathFile, const block& block)
 bool file_system::append_unique_line(const file::path& pathFile, const scoped_string& scopedstrLine)
 {
 
-   ::string_array lines;
+   ::string_array_base lines;
 
    if (this->exists(pathFile))
    {
@@ -642,7 +642,7 @@ void file_system::find_replace(const ::file::path& path, const ::property_set & 
 }
 
 
-void file_system::put_app_cloud_data(const ::file::path& path, const char* pszContentIdentifier, const ::block& block)
+void file_system::put_app_cloud_data(const ::file::path& path, const_char_pointer pszContentIdentifier, const ::block& block)
 {
 
    auto pathAppCloud = path_system()->defer_get_icloud_container_path(path, pszContentIdentifier);
@@ -652,7 +652,7 @@ void file_system::put_app_cloud_data(const ::file::path& path, const char* pszCo
 }
 
 
-::memory file_system::get_app_cloud_data(const ::file::path& path, const char* pszContentIdentifier)
+::memory file_system::get_app_cloud_data(const ::file::path& path, const_char_pointer pszContentIdentifier)
 {
 
    auto pathAppCloud = path_system()->defer_get_icloud_container_path(path, pszContentIdentifier);
@@ -828,7 +828,7 @@ void file_system::copy(const ::file::path& pathNew, const ::file::path& pathExis
 
       directory_system()->create(pathNew);
 
-      ::file::listing listing;
+      ::file::listing_base listing;
 
       listing.set_listing(pathExisting, e_depth_recursively);
 
@@ -969,9 +969,9 @@ bool file_system::copy_if_text_is_different(const ::file::path& pathTarget, cons
 bool file_system::_memory_map_file_copy(const ::file::path& pathTarget, const ::file::path& pathSource)
 {
 
-   auto pmemorymapSource = __øcreate<::file::memory_map>();
+   auto pmemorymapSource = øcreate<::file::memory_map>();
 
-   auto pmemorymapTarget = __øcreate<::file::memory_map>();
+   auto pmemorymapTarget = øcreate<::file::memory_map>();
 
    if (!pmemorymapSource->open_path(pathSource, true, false, false))
    {
@@ -1111,7 +1111,7 @@ void file_system::synchronize(const ::file::path& path1, const ::file::path& pat
 
       //}
 
-      //estatus = set_modification_time(psz1, time2);
+      //estatus = set_modification_time(scopedstr1, time2);
 
       //if (!estatus)
       //{
@@ -1133,7 +1133,7 @@ void file_system::synchronize(const ::file::path& path1, const ::file::path& pat
 
       //#if !defined(WINDOWS)
       //
-      //estatus = set_modification_time(psz2, time1);
+      //estatus = set_modification_time(scopedstr2, time1);
 
       //if (!estatus)
       //{
@@ -1151,7 +1151,7 @@ void file_system::synchronize(const ::file::path& path1, const ::file::path& pat
 }
 
 
-void file_system::save_stra(const ::file::path& pathName, const string_array& stra)
+void file_system::save_stra(const ::file::path& pathName, const string_array_base& stra)
 {
 
    throw ::interface_only();
@@ -1161,7 +1161,7 @@ void file_system::save_stra(const ::file::path& pathName, const string_array& st
 }
 
 
-void file_system::load_stra(const ::file::path& pathName, string_array& stra, bool bAddEmpty)
+void file_system::load_stra(const ::file::path& pathName, string_array_base& stra, bool bAddEmpty)
 {
 
    throw ::interface_only();
@@ -1196,7 +1196,7 @@ void file_system::put_block(const ::file::path& path, const block& block)
 
    throw interface_only();
 
-   //put_contents(path, (const char *) block.data(), block.size());
+   //put_contents(path, (const_char_pointer )block.data(), block.size());
 
 }
 
@@ -1292,7 +1292,7 @@ string file_system::first_line(const ::file::path& path)
 }
 
 
-string_array file_system::lines(const ::file::path& pathParam)
+string_array_base file_system::lines(const ::file::path& pathParam)
 {
 
    auto path = path_system()->defer_process_relative_path(pathParam);
@@ -1310,7 +1310,7 @@ string_array file_system::lines(const ::file::path& pathParam)
 
       }
 
-      string_array straLines;
+      string_array_base straLines;
 
       string strLine;
 
@@ -1556,7 +1556,7 @@ void file_system::set_line(const ::file::path& pathParam, ::collection::index iL
 //
 //      path /= as_string(i);
 //
-//      path /= (string(lpszName) + "." + string(pszExtension));
+//      path /= (string(lpszName) + "." + string(scopedstrExtension));
 //
 //      if (exists(path))
 //      {
@@ -1676,10 +1676,10 @@ void file_system::set_line(const ::file::path& pathParam, ::collection::index iL
 //}
 
 
-void file_system::append(const ::string& strFile, const block& block)
+void file_system::append(const ::scoped_string & scopedstrFile, const block& block)
 {
 
-   return append_wait(strFile, block, 0_s);
+   return append_wait(scopedstrFile, block, 0_s);
 
 }
 
@@ -1711,8 +1711,8 @@ void file_system::_erase(const ::file::path& path)
 }
 
 
-::file::path file_system::time_put_contents(const ::file::path& pathFolder, const ::string& strPrefix,
-                                            const ::string& strExtension, const ::string& str)
+::file::path file_system::time_put_contents(const ::file::path& pathFolder, const ::scoped_string & scopedstrPrefix,
+                                            const ::scoped_string & scopedstrExtension, const ::scoped_string & scopedstr)
 {
 
    ::file::path path;
@@ -1726,7 +1726,7 @@ void file_system::_erase(const ::file::path& path)
 
       strHexadecimal.formatf("%08x", i);
 
-      path = pathFolder / (strPrefix + "-" + strHexadecimal + "." + strExtension);
+      path = pathFolder / (scopedstrPrefix + "-" + strHexadecimal + "." + scopedstrExtension);
 
       if (exists(path))
       {
@@ -1737,7 +1737,7 @@ void file_system::_erase(const ::file::path& path)
 
       }
 
-      put_contents(path, str);
+      put_contents(path, scopedstr);
 
       break;
 

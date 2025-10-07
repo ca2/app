@@ -270,7 +270,7 @@ const CHARACTER * string_scan(const CHARACTER * psz, const CHARACTER * pszCharac
 consteval auto string_order_folder_first()
 {
 
-   return [](const char * pszA, const char * pszB)
+   return [](const_char_pointer pszA, const_char_pointer pszB)
    {
 
       int i = 0;

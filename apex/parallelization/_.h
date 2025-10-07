@@ -98,7 +98,7 @@
 //               if (pparticle->task_get_run())
 //               {
 //
-//                  if (pparticle->get_tag().compare(pszTag) == 0)
+//                  if (pparticle->get_tag().compare(scopedstrTag) == 0)
 //                  {
 //
 //                     return pparticle;
@@ -246,7 +246,7 @@ class thread_startup;
 //CLASS_DECL_APEX unsigned int random_processor_index_generator();
 
 
-//CLASS_DECL_APEX int_bool post_message(::windowing::window * pwindow, ::enum_message emessage, ::wparam wparam, ::lparam lparam);
+//CLASS_DECL_APEX int_bool post_message(::windowing::window * pwindow, ::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam);
 
 
 

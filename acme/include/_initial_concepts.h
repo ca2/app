@@ -12,6 +12,7 @@ template < typename ITERATOR_TYPE >
 class scoped_string_base;
 
 
+
 template < typename SEQUENCE >
 concept primitive_sequence = ::std::is_same < typename SEQUENCE::sequence_tag, sequence_t >::value;
 
@@ -26,8 +27,6 @@ template < typename BLOCK >
 concept primitive_block = ::std::is_same<typename BLOCK::PRIMITIVE_BLOCK_TAG, PRIMITIVE_BLOCK_TAG_TYPE >::value;
 
 
-template < typename INTEGRAL >
-concept primitive_integral = std::is_integral_v < ::decay < INTEGRAL > >;
 
 //template < typename T >
 //concept primitive_integral_up_to_32_bit =
@@ -78,10 +77,19 @@ class range;
 template < typename T >
 concept primitive_range = ::std::is_base_of_v < ::range< typename T::this_iterator >, T >;
 
+template < typename T >
+concept std_range = requires(const T &t)
+{
+t.begin();
+   t.end();
+
+};
 
 
 template < typename T, typename ITERATOR_TYPE >
-concept typed_range = ::std::is_base_of_v < ::range< ITERATOR_TYPE >, T >;
+concept typed_range = 
+primitive_range < T >
+|| ::std::is_same_v < non_const < ITERATOR_TYPE >, non_const < typename T::this_iterator > >;
 
 
 template < typename FROM, typename TO >
@@ -139,10 +147,10 @@ std::is_same < T, ::ansi_character * >::value ||
 std::is_same < T, ::wd16_character * >::value ||
 std::is_same < T, ::wd32_character * >::value ||
 std::is_same < T, const unsigned char * >::value ||
-std::is_same < T, const char * >::value ||
+std::is_same < T, const_char_pointer >::value ||
 std::is_same < T, const char8_t * >::value ||
 std::is_same < T, const wchar_t * >::value ||
-std::is_same < T, const ::ansi_character * >::value ||
+std::is_same < T, const_char_pointer >::value ||
 std::is_same < T, const ::wd16_character * >::value ||
 std::is_same < T, const ::wd32_character * >::value;
 
@@ -157,10 +165,10 @@ std::is_same < T, ::ansi_character * & >::value ||
 std::is_same < T, ::wd16_character * & >::value ||
 std::is_same < T, ::wd32_character * & >::value ||
 std::is_same < T, const unsigned char * & >::value ||
-std::is_same < T, const char * & >::value ||
+std::is_same < T, const_char_pointer &>::value ||
 std::is_same < T, const char8_t *& >::value ||
 std::is_same < T, const wchar_t * & >::value ||
-std::is_same < T, const ::ansi_character * & >::value ||
+std::is_same < T, const_char_pointer &>::value ||
 std::is_same < T, const ::wd16_character * & >::value ||
 std::is_same < T, const ::wd32_character * & >::value;
 
@@ -217,30 +225,31 @@ concept other_character_pointer =
 //&& ::std::is_array_v<CHARACTER_POINTER>
 //&& ::std::is_same_v < CHARACTER, ::non_const <::erase_pointer<TYPED_CHARACTER_POINTER>>>;
 
-
+template < typename ITERATOR_TYPE >
+class character_range;
 
 
 template < typename CHARACTER_RANGE >
-concept character_range =
-(::std::is_base_of_v < ::range< const typename CHARACTER_RANGE::CHARACTER* >, CHARACTER_RANGE >
+concept primitive_character_range =
+(::std::is_base_of_v < ::character_range< const typename CHARACTER_RANGE::CHARACTER* >, CHARACTER_RANGE >
 && primitive_character < typename CHARACTER_RANGE::CHARACTER > )||
-(::std::is_same_v < ::range< const typename CHARACTER_RANGE::ITEM* >, CHARACTER_RANGE > &&
+(::std::is_same_v < ::character_range< const typename CHARACTER_RANGE::ITEM* >, CHARACTER_RANGE > &&
 primitive_character < typename CHARACTER_RANGE::ITEM >);
 
 
 
 template < typename TYPED_CHARACTER_RANGE, typename CHARACTER >
 concept typed_character_range =
-(::std::is_base_of_v < ::range< const CHARACTER* >, TYPED_CHARACTER_RANGE >
-   || ::std::is_same_v < ::range< const CHARACTER* >, TYPED_CHARACTER_RANGE >)
+(::std::is_base_of_v < ::character_range< const CHARACTER* >, TYPED_CHARACTER_RANGE >
+   || ::std::is_same_v < ::character_range< const CHARACTER* >, TYPED_CHARACTER_RANGE >)
    && primitive_character < CHARACTER >;
 
 
 template < typename OTHER_CHARACTER_RANGE, typename CHARACTER >
 concept other_character_range = 
-(::std::is_base_of_v < ::range< const typename OTHER_CHARACTER_RANGE::CHARACTER* >, OTHER_CHARACTER_RANGE >
+(::std::is_base_of_v < ::character_range< const typename OTHER_CHARACTER_RANGE::CHARACTER* >, OTHER_CHARACTER_RANGE >
    && other_primitive_character < typename OTHER_CHARACTER_RANGE::CHARACTER, CHARACTER >) ||
-   (::std::is_same_v < ::range< const typename OTHER_CHARACTER_RANGE::ITEM* >, OTHER_CHARACTER_RANGE > &&
+   (::std::is_same_v < ::character_range< const typename OTHER_CHARACTER_RANGE::ITEM* >, OTHER_CHARACTER_RANGE > &&
       other_primitive_character < typename OTHER_CHARACTER_RANGE::ITEM, CHARACTER >);
 
 
@@ -260,7 +269,6 @@ namespace comparison
 
    template < typename ORDERING, typename TYPE >
    concept ordering = ::std::is_same<typename ORDERING::ORDERING, for_type < TYPE > >::value;
-
 
    template < typename EQUALITY, typename TYPE >
    concept equality = ::std::is_same<typename EQUALITY::EQUALITY, for_type < TYPE > >::value;
@@ -307,7 +315,7 @@ template < typename ITERATOR >
 class string_base;
 
 
-using ansi_string = string_base < const ::ansi_character * >;
+using ansi_string = string_base < const_char_pointer >;
 using wd16_string = string_base < const ::wd16_character * >;
 using wd32_string = string_base < const ::wd32_character * >;
 using wide_string = string_base < const ::wide_character * >;
@@ -425,11 +433,11 @@ concept primitive_scoped_string = ::std::is_same < typename SCOPED_STRING::PRIMI
 
 
 template < typename T >
-concept character_range_not_string = character_range<T> && !primitive_string<T>;
+concept character_range_not_string = primitive_character_range<T> && !primitive_string<T>;
 
 
 template < typename T >
-concept character_range_not_string_neither_scoped_string = character_range<T> && !primitive_string<T> && !primitive_scoped_string<T>;
+concept character_range_not_string_neither_scoped_string = primitive_character_range<T> && !primitive_string<T> && !primitive_scoped_string<T>;
 
 
 
@@ -598,6 +606,8 @@ class rectangle_type;
 
 
 
+template<typename SUBPARTICLE>
+concept primitive_subparticle = ::std::is_base_of_v<::subparticle, SUBPARTICLE>;
 
 
 
@@ -630,7 +640,7 @@ struct is_raw_pointer_struct
 
 
 template<typename T>
-inline constexpr bool is_raw_pointer = is_raw_pointer_struct < T >::value;
+inline constexpr bool is_raw_pointer = is_raw_pointer_struct < T >::payload;
 
 
 template < typename POINTER >
@@ -693,7 +703,7 @@ concept non_particle = !a_particle < NON_PARTICLE >;
 
 
 //template < typename T, typename ...Args >
-//inline T * __call__allocate(Args &&... args);
+//inline T * __call_allocate(Args &&... args);
 //
 //template < typename T >
 //inline void __call__delete(T * p);
@@ -750,12 +760,31 @@ concept container_type = requires(CONTAINER container)
 
 
 template < typename ARRAY >
-concept primitive_array = requires(ARRAY array, ::collection::index i, ::collection::count c)
+concept primitive_array = requires (const ARRAY & array)
 {
-   array.get_count();
-   array.element_at(i);
-   array.set_size(c);
+
+   array.array_range_ok();
+
 };
+
+
+template < typename LIST >
+concept primitive_list = requires(const LIST & list)
+{
+
+   list.list_base_ok();
+
+};
+
+
+template < typename MAP >
+concept primitive_map = requires(const MAP & map)
+{
+
+   map.pair_map_base_ok();
+
+};
+
 
 template < typename ARRAY >
 concept primitive_raw_type_array = requires(ARRAY array, ::collection::index i, ::collection::count c)
@@ -794,7 +823,10 @@ concept primitive_object_array = requires(ARRAY array, ::collection::index i, ::
 
 
 template < typename CONTAINER >
-concept primitive_container = primitive_array < CONTAINER >;
+concept primitive_container =
+   primitive_array < CONTAINER >
+|| primitive_list < CONTAINER >
+|| primitive_map < CONTAINER >;
 
 template < typename CONTAINER >
 concept non_container = !primitive_container < CONTAINER >;
@@ -803,6 +835,10 @@ concept non_container = !primitive_container < CONTAINER >;
 
 template < primitive_enum ENUM >
 inline long long as_long_long(const ENUM & e) { return (long long)(::raw_enum_of<ENUM>) e; }
+
+
+template<typename ITERATOR_TYPE>
+class character_range;
 
 
 template<typename ITERATOR_TYPE>
@@ -828,12 +864,10 @@ template < typename CONST_STRING_CASTABLE >
 concept const_string_castable =
 ::std::is_convertible < CONST_STRING_CASTABLE, ::string >::value ||
 ::std::is_convertible < CONST_STRING_CASTABLE, ::scoped_string >::value ||
-::std::is_convertible < CONST_STRING_CASTABLE, const char * >::value;
+::std::is_convertible < CONST_STRING_CASTABLE, const_char_pointer >::value;
 
 
 
-template < typename SUBPARTICLE >
-concept primitive_subparticle = ::std::is_base_of_v<::subparticle, SUBPARTICLE>;
 
 
 template < typename NON_SUBPARTICLE >
@@ -841,18 +875,19 @@ concept non_primitive_subparticle = !primitive_subparticle<NON_SUBPARTICLE>;
 
 
 template<typename Type, typename RawType = Type, ::enum_type t_etypeContainer = e_type_element >
-class string_array_base;
+class string_base_array;
 
 
+using string_array_base = string_base_array < string, string, e_type_string_array >;
+using wstring_array_base = string_base_array < wstring, wstring >;
 
-using string_array = string_array_base < string, string, e_type_string_array >;
-using wstring_array = string_array_base < wstring, wstring >;
 
+using string_array = ::comparable_array_particle < string_array_base >;
+using wstring_array = ::comparable_array_particle < wstring_array_base >;
 
 
 template < typename POINTER_BUT_NO_INTEGRAL, typename TYPE >
 concept pointer_but_not_integral = ::std::convertible_to < POINTER_BUT_NO_INTEGRAL, TYPE * > && !primitive_integral < POINTER_BUT_NO_INTEGRAL >;
-
 
 
 template <class>
@@ -873,3 +908,26 @@ constexpr _Ty&& land(_Ty&& t, non_reference < _Ty>&& _Arg) noexcept
    static_assert(!is_lvalue_reference<_Ty>, "bad argument");
    return t = static_cast<_Ty&&>(_Arg);
 }
+
+template < typename T >
+concept generic_range = requires(const T & t)
+{
+
+   t.begin();
+   t.end();
+
+};
+
+
+//template < typename T >
+//concept container_range =
+//::std::is_base_of_v < ::range< typename T::this_iterator >, T >
+//&& !::std::is_base_of_v < ::character_range< typename T::this_iterator >, T >;
+
+
+
+template < typename T >
+concept container_range =
+generic_range < T >
+&& !::std::is_base_of_v < ::character_range< typename T::this_iterator >, T >;
+

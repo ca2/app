@@ -29,7 +29,7 @@ namespace fs
    }
 
 
-   bool remote_native::fast_has_subdir(const ::file::path & pszPath)
+   bool remote_native::fast_has_subdir(const ::file::path & path)
    {
 
       return true;
@@ -37,7 +37,7 @@ namespace fs
    }
 
 
-   bool remote_native::has_subdir(const ::file::path & pszPath)
+   bool remote_native::has_subdir(const ::file::path & path)
    {
 
       defer_initialize();
@@ -48,7 +48,7 @@ namespace fs
 
       //string strUrl;
 
-      //strUrl = "http://fs.veriwell.net/fs/ls?path=" + ::url::encode(pszPath);
+      //strUrl = "http://fs.veriwell.net/fs/ls?path=" + ::url::encode(scopedstrPath);
 
       //string strSource;
 
@@ -77,7 +77,7 @@ namespace fs
 
    }
 
-   ::file::listing & remote_native::root_ones(::file::listing & listing)
+   ::file::listing_base & remote_native::root_ones(::file::listing_base & listing)
    {
 
       ::file::path path;
@@ -95,7 +95,7 @@ namespace fs
    }
 
 
-   bool remote_native::enumerate(::file::listing & listing)
+   bool remote_native::enumerate(::file::listing_base & listing)
    {
 
       try
@@ -223,15 +223,15 @@ namespace fs
 
       defer_initialize();
 
-      class ::time millisLast;
+      class ::time timeLast;
 
-      if(m_mapfileLast.lookup(path, millisLast))
+      if(m_mapfileLast.find(path, timeLast))
       {
 
-         if(millisLast.elapsed() > *system()->file_listing_cache_time())
+         if(timeLast.elapsed() > *system()->file_listing_cache_time())
          {
             
-            ::file::listing listing;
+            ::file::listing_base listing;
 
             listing.set_listing(path);
 
@@ -247,13 +247,13 @@ namespace fs
          
       }
 
-      if(m_mapdirLast.lookup(path, millisLast))
+      if(m_mapdirLast.find(path, timeLast))
       {
          
-         if(millisLast.elapsed() > system()->m_timeFileListingCache)
+         if(timeLast.elapsed() > system()->m_timeFileListingCache)
          {
             
-            ::file::listing listing;
+            ::file::listing_base listing;
 
             listing.set_listing(path);
 
@@ -262,32 +262,40 @@ namespace fs
          }
          else
          {
+
             return 1;
+
          }
+
       }
 
-      if(m_mapfileLast.lookup(path, millisLast))
+      if(m_mapfileLast.find(path, timeLast))
       {
 
-         if(millisLast.elapsed() > system()->m_timeFileListingCache)
+         if(timeLast.elapsed() > system()->m_timeFileListingCache)
          {
+
             return 0;
+
          }
          else
          {
+
             return 1;
+
          }
+
       }
       else
       {
+
          return 0;
+
       }
-
-
 
       /*string strUrl;
 
-      strUrl = "http://fs.veriwell.net/fs/ls?path=" + ::url::encode(pszPath);
+      strUrl = "http://fs.veriwell.net/fs/ls?path=" + ::url::encode(scopedstrPath);
 
       string strSource;
 
@@ -306,10 +314,10 @@ namespace fs
 
    }
 
-   //string remote_native::file_name(const ::file::path & pszPath)
+   //string remote_native::file_name(const ::file::path & path)
    //{
 
-   //   string strPath(pszPath);
+   //   string strPath(scopedstrPath);
 
    //   if(!strPath.case_insensitive_begins_eat("fs://"))
    //   {
@@ -325,10 +333,10 @@ namespace fs
 
    //}
 
-   bool remote_native::file_move(const ::file::path & pszDst,const ::file::path & pszSrc)
+   bool remote_native::file_move(const ::file::path & pathTarget,const ::file::path & pathSource)
    {
-      __UNREFERENCED_PARAMETER(pszDst);
-      __UNREFERENCED_PARAMETER(pszSrc);
+      __UNREFERENCED_PARAMETER(pathTarget);
+      __UNREFERENCED_PARAMETER(pathSource);
       return true;
    }
 
@@ -336,7 +344,7 @@ namespace fs
    file_pointer remote_native::get_file(const ::payload & payloadFile, ::file::e_open eopen, ::pointer < ::file::exception >* ppfileexception)
    {
 
-      file_pointer pfile = __allocate remote_native_file(payloadFile);
+      file_pointer pfile = øallocate remote_native_file(payloadFile);
 
       //auto result =
       pfile->open(payloadFile, eopen, ppfileexception);
@@ -353,10 +361,10 @@ namespace fs
    }
 
 
-   bool remote_native::file_exists(const ::file::path & pszPath)
+   bool remote_native::file_exists(const ::file::path & path)
    {
 
-      return ::fs::data::file_exists(pszPath);
+      return ::fs::data::file_exists(path);
 
    }
 
@@ -372,7 +380,7 @@ namespace fs
 
    }
 
-   bool remote_native::is_zero_latency(const  ::file::path & psz)
+   bool remote_native::is_zero_latency(const ::file::path & path)
    {
 
       return false;

@@ -370,7 +370,7 @@ namespace serial
       /*! Reads in multiple lines until the serial port times out.
        *
        * This requires a timeout > 0 before it can be run. It will read until a
-       * timeout occurs and return a list of strings.
+       * timeout occurs and return a list_base of strings.
        *
        * \lparam int_size A maximum length of combined lines, defaults to 65536 (2^16)
        *
@@ -381,7 +381,7 @@ namespace serial
        * \throw ::exception( serial::port_not_opened_exception
        * \throw ::exception( serial::serial_exception
        */
-      virtual string_array
+      virtual string_array_base
       readlines (size_t size = 65536, string eol = "\n");
 
       /*! Write a string to the serial port.
@@ -696,8 +696,8 @@ namespace serial
 
    //::exception exception(const string& description);
    //::exception io_exception(string file, int line, int errnum);
-   //::exception io_exception_descripton(string file, int line, const char* description);
-   //::exception port_opened_exception_descripton(string file, int line, const char* description);
+   //::exception io_exception_descripton(string file, int line, const_char_pointer description);
+   //::exception port_opened_exception_descripton(string file, int line, const_char_pointer description);
 
    class serial_exception : public ::exception
    {
@@ -718,7 +718,7 @@ namespace serial
       }
    //   serial_exception (const serial_exception& other) : e_what_(other.e_what_) {}
    //   virtual ~serial_exception() noexcept {}
-   //   virtual const char* what () const noexcept
+   //   virtual const_char_pointer what () const noexcept
    //   {
    //      return e_what_.c_str();
    //   }
@@ -750,7 +750,7 @@ namespace serial
 //         e_what_ = str;
       }
 
-      explicit io_exception(string file, int line, const char * description) :
+      explicit io_exception(string file, int line, const_char_pointer description) :
          ::exception(error_serial_io)
       {
 //         ::string_stream str;
@@ -767,7 +767,7 @@ namespace serial
 //         return errno_;
 //      }
 //
-//      virtual const char* what () const noexcept
+//      virtual const_char_pointer what () const noexcept
 //      {
 //         return e_what_.c_str();
 //      }
@@ -779,7 +779,7 @@ namespace serial
    //   const port_not_opened_exception& operator=(port_not_opened_exception);
    //   string e_what_;
    public:
-      port_not_opened_exception (const char * description)
+      port_not_opened_exception (const_char_pointer description)
       {
          //::string_stream str;
          //str << "port_not_opened_exception " << description << " failed.";
@@ -787,7 +787,7 @@ namespace serial
       }
    //   port_not_opened_exception (const port_not_opened_exception& other) : e_what_(other.e_what_) {}
    //   virtual ~port_not_opened_exception() noexcept {}
-   //   virtual const char* what () const noexcept
+   //   virtual const_char_pointer what () const noexcept
    //   {
    //      return e_what_.c_str();
    //   }

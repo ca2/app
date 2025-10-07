@@ -116,14 +116,14 @@ namespace http
    }
 
 
-   void context::perform(::nano::http::get * pget)
+   void context::perform(::nano::http::get * defer_get)
    {
 
-      ::property_set set(pget->property_set());
+      ::property_set set(defer_get->property_set());
       
-      get(pget->get_memory_response(), pget->url(), set);
+      get(defer_get->get_memory_response(), defer_get->url(), set);
       
-      pget->property_set() = set;
+      defer_get->property_set() = set;
    
    }
 
@@ -155,7 +155,7 @@ namespace http
    void context::_get(const ::url::url & url, ::property_set & set)
    {
 
-      auto pmessage = __create_new < ::http::message >();
+      auto pmessage = øcreate_new < ::http::message >();
 
       pmessage->m_ppropertyset = &set;
 
@@ -373,7 +373,7 @@ namespace http
    //bool context::request(const ::scoped_string & scopedstrRequest, const ::url::url & url, ::property_set & set)
    //{
 
-   //   return request(pszRequest, url, process_set(set, url));
+   //   return request(scopedstrRequest, url, process_set(set, url));
 
    //}
 
@@ -432,7 +432,7 @@ namespace http
    string context::get_locale_schema(const ::url::url & url, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema)
    {
 
-      //output_error_message("What?!", nullptr, e_message_box_ok);
+      //output_error_message("What?!", nullptr, ::user::e_message_box_ok);
 
       informationf("What?!");
 
@@ -597,7 +597,7 @@ namespace http
 
       string strHost = file()->as_string(directory()->appdata() / "database\\text\\last_good_known_account_com.txt");
 
-      string_array straRequestingServer;
+      string_array_base straRequestingServer;
 
       straRequestingServer.add("ca2.network");
 
@@ -641,20 +641,20 @@ namespace http
 
       single_lock synchronouslock(m_pmutexPac, true);
 
-      auto ppair = m_mapPac.plookup(url);
+      auto iterator = m_mapPac.find(url);
 
-      if (!ppair || ppair->element2()->m_timeLastChecked.elapsed() > 120_s)
+      if (!iterator || iterator->element2()->m_timeLastChecked.elapsed() > 120_s)
       {
          
-         if (ppair)
+         if (iterator)
          {
             
-            //            delete ppair->element2();
-            m_mapPac.erase_item(url);
+            //            delete iterator->element2();
+            m_mapPac.erase(url);
             
          }
 
-         auto ppac = __create_new < class pac >();
+         auto ppac = øcreate_new < class pac >();
 
          ppac->m_timeLastChecked= ::time::now();
 
@@ -681,9 +681,9 @@ namespace http
          //registerJavascriptFunctions(ppac->m_pjs);
          //ppac->m_pjs->execute(ppac->m_strAutoConfigScript);
 
-         ppair = m_mapPac.plookup(url);
+         iterator = m_mapPac.find(url);
 
-         if (!ppair)
+         if (!iterator)
          {
             
             return nullptr;
@@ -692,14 +692,14 @@ namespace http
 
       }
 
-      if (ppair->element2()->m_strAutoConfigScript.is_empty())
+      if (iterator->element2()->m_strAutoConfigScript.is_empty())
       {
 
          return nullptr;
 
       }
 
-      return ppair->element2();
+      return iterator->element2();
 
    }
 
@@ -710,20 +710,20 @@ namespace http
 
       single_lock synchronouslock(m_pmutexProxy, true);
 
-      auto ppair = m_mapProxy.plookup(url);
+      auto iterator = m_mapProxy.find(url);
 
-      if (!ppair || ppair->element2()->m_timeLastChecked.elapsed() > 120_s)
+      if (!iterator || iterator->element2()->m_timeLastChecked.elapsed() > 120_s)
       {
          
-         if (ppair)
+         if (iterator)
          {
             
-            //            delete ppair->element2();
-            m_mapPac.erase_item(url);
+            //            delete iterator->element2();
+            m_mapPac.erase(url);
             
          }
 
-         auto pproxy = __create_new < class ::http::proxy >();
+         auto pproxy = øcreate_new < class ::http::proxy >();
 
          pproxy->m_timeLastChecked= ::time::now();
 
@@ -737,7 +737,7 @@ namespace http
 
       }
 
-      return ppair->element2();
+      return iterator->element2();
 
    }
 
@@ -803,7 +803,7 @@ namespace http
          
          payload.trim();
 
-         string_array stra;
+         string_array_base stra;
 
          stra.explode(":", payload);
 
@@ -877,7 +877,7 @@ namespace http
       //if (str.has_character() && str.find("<") < 0 && str.find(">") < 0)
       //{
 
-      //   string_array stra;
+      //   string_array_base stra;
 
       //   stra.explode(":", str);
 
@@ -1091,12 +1091,12 @@ namespace http
    //}
 
 
-   bool context::open(::pointer<::sockets::http_session>& psession, const ::url::connect_range & connectrange, ::property_set & set, const string &strVersionParam)
+   bool context::open(::pointer<::sockets::http_session>& psession, const ::url::connect_range & connectrange, ::property_set & set, const ::scoped_string & scopedstrVersionParam)
    {
 
       auto tickTimeProfile1 = ::time::now();
 
-      string strVersion(strVersionParam);
+      string strVersion(scopedstrVersionParam);
 
       //string strHost = connect.host();
 
@@ -1151,7 +1151,7 @@ namespace http
 
       string strSessId;
 
-      psession = __allocate ::sockets::http_session(connectrange);
+      psession = øallocate ::sockets::http_session(connectrange);
 
       /*::pointer<::account::user>puser;
 
@@ -1275,7 +1275,7 @@ namespace http
 //
 //            auto tickBeg = ::time::now();
 //
-//            if (!open(psession, purl->get_server(pszRequest), purl->get_protocol(pszRequest), set, set["http_protocol_version"]))
+//            if (!open(psession, purl->get_server(scopedstrRequest), purl->get_protocol(scopedstrRequest), set, set["http_protocol_version"]))
 //            {
 //
 //               return false;
@@ -1303,9 +1303,9 @@ namespace http
 //
 //         auto papplication = psession->m_psockethandler->get_app();
 //
-//         string strRequest = purl->get_object(pszRequest);
+//         string strRequest = purl->get_object(scopedstrRequest);
 //
-//         string strServer = purl->get_server(pszRequest);
+//         string strServer = purl->get_server(scopedstrRequest);
 //
 //         string strUrl = psession->m_strProtocol + "://" + strServer + strRequest;
 //
@@ -1394,9 +1394,9 @@ namespace http
 //
 //         }
 //
-//         psession->m_host = purl->get_server(pszRequest);
+//         psession->m_host = purl->get_server(scopedstrRequest);
 //
-//         psession->m_strHost = purl->get_server(pszRequest);
+//         psession->m_strHost = purl->get_server(scopedstrRequest);
 //
 //         psession->m_request.m_propertysetHeader["host"] = psession->m_host;
 //
@@ -1676,7 +1676,7 @@ namespace http
 //         if (set.has_property("get_response"))
 //         {
 //
-//            set["get_response"] = string((const char *)psession->GetDataPtr(), psession->GetContentLength());
+//            set["get_response"] = string((const_char_pointer )psession->GetDataPtr(), psession->GetContentLength());
 //
 //         }
 //
@@ -1694,7 +1694,7 @@ namespace http
 //            else
 //            {
 //
-//               set["get_memory"] = __allocate memory(psession->GetDataPtr(), psession->GetContentLength());
+//               set["get_memory"] = øallocate memory(psession->GetDataPtr(), psession->GetContentLength());
 //
 //            }
 //
@@ -1715,7 +1715,7 @@ namespace http
       if (bOk)
       {
 
-         const char * pszData = (const char *)session.m_psocket->GetDataPtr();
+         const_char_pointer pszData = (const_char_pointer )session.m_psocket->GetDataPtr();
 
          character_count iSize = session.m_psocket->GetContentLength();
 
@@ -1934,7 +1934,7 @@ namespace http
 
          //bPut = true;
 
-         auto psocketPut = pobjectCreator->__create_new < ::sockets::http_put_socket>();
+         auto psocketPut = pobjectCreator->øcreate_new < ::sockets::http_put_socket>();
 
          psocketPut->initialize_http_put_socket(url);
 
@@ -1952,7 +1952,7 @@ namespace http
 
          //bPut = false;
 
-         auto psocketPost = pobjectCreator->__create_new < ::sockets::http_post_socket >();
+         auto psocketPost = pobjectCreator->øcreate_new < ::sockets::http_post_socket >();
 
          psocketPost->initialize_http_post_socket(url);
 
@@ -1977,7 +1977,7 @@ namespace http
 
          //bPut = false;
 
-         auto psocketGet = pobjectCreator->__create_new < ::http::get_socket>();
+         auto psocketGet = pobjectCreator->øcreate_new < ::http::get_socket>();
 
          psocketGet->initialize_get_socket(url);
 
@@ -1992,7 +1992,7 @@ namespace http
       if (!psockethandler)
       {
 
-         psockethandler = __øcreate < ::sockets::socket_handler >();
+         psockethandler = øcreate < ::sockets::socket_handler >();
 
          //psocket->SetSocketHandler(psockethandler);
 
@@ -2182,7 +2182,7 @@ namespace http
 
       }
 
-      string_array straProxy;
+      string_array_base straProxy;
 
       if (set.has_property("proxy"))
       {
@@ -2598,7 +2598,7 @@ namespace http
       if (set.has_property("get_response"))
       {
 
-         const char *pszData = (const char *)psocket->GetDataPtr();
+         const_char_pointer pszData = (const_char_pointer )psocket->GetDataPtr();
 
          character_count iSize = psocket->GetContentLength();
 
@@ -2611,12 +2611,12 @@ namespace http
       if (set.has_property("get_memory"))
       {
 
-         memory_base * pmemory = set.cast < memory_base >("get_memory");
+         auto pmemory = set.cast < ::memory_base >("get_memory");
 
          if (pmemory != nullptr)
          {
 
-            const char * pszData = (const char *) psocket->GetDataPtr();
+            const_char_pointer pszData = (const_char_pointer )psocket->GetDataPtr();
 
             auto size = psocket->GetContentLength();
 
@@ -2637,7 +2637,7 @@ namespace http
          else
          {
 
-            set["get_memory"] = __allocate memory(psocket->GetDataPtr(), psocket->GetContentLength());
+            set["get_memory"] = øallocate memory(psocket->GetDataPtr(), psocket->GetContentLength());
 
          }
 
@@ -2664,7 +2664,7 @@ namespace http
 
       //::pointer<message>pmessage(pmessage);
 
-      auto pdomain = __create_new < ::url_domain >();
+      auto pdomain = øcreate_new < ::url_domain >();
 
       pdomain->create(pmessageMessage->m_url.connect().host());
 
@@ -2692,7 +2692,7 @@ namespace http
 
       process_set(*pmessage->m_ppropertyset, pmessageMessage->m_url);
 
-      //auto phandler = __øcreate< ::sockets::socket_handler >();
+      //auto phandler = øcreate< ::sockets::socket_handler >();
 
       ::property_set & set = pmessage->property_set();
 
@@ -2781,7 +2781,7 @@ namespace http
    bool context::download(const ::url::url & url, ::payload payloadFile, ::property_set & set)
    {
 
-      auto phandler = __øcreate < ::sockets::socket_handler >();
+      auto phandler = øcreate < ::sockets::socket_handler >();
 
       ::pointer<::sockets::http_client_socket>psocket;
 
@@ -2854,7 +2854,7 @@ namespace http
 
          synchronouslock.unlock();
 
-         auto phandler = __øcreate < ::sockets::socket_handler >();
+         auto phandler = øcreate < ::sockets::socket_handler >();
 
          set["only_headers"] = true;
 
@@ -2974,11 +2974,11 @@ namespace http
 
       t.m_iSecond = time;
 
-      const char * days[7] = { "Sunday", "Monday",
+      const_char_pointer days[7] = { "Sunday", "Monday",
                              "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"
       };
 
-      const char * months[12] = { "Jan", "Feb", "Mar", "Apr", "May",
+      const_char_pointer months[12] = { "Jan", "Feb", "Mar", "Apr", "May",
                                 "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
       };
 

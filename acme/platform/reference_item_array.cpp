@@ -81,14 +81,18 @@ reference_item_array::~reference_item_array()
 
    if (g_bDefaultEnableObjectReferenceCountDebug)
    {
+      
+      auto psubparticleParent = m_psubparticleParent;
 
-      if (::is_set(m_psubparticleParent))
+      if (::is_set(psubparticleParent))
       {
          
-         if (m_psubparticleParent->m_preferenceitema)
+         auto preferenceitema = psubparticleParent->m_preferenceitema;
+         
+         if (::is_set(preferenceitema))
          {
 
-            m_psubparticleParent->m_preferenceitema->erase_item_array(this);
+            preferenceitema->erase_item_array(this);
 
          }
 
@@ -254,10 +258,14 @@ void reference_item_array::add_referer(::reference_referer * preferer, bool bInc
    //pitem->m_referer = referer;
    if (pitem->m_preferer)
    {
-         pitem->m_strDebug = pitem->m_preferer->m_cstringDebug;
+
+      pitem->m_strDebug = pitem->m_preferer->m_cstringDebug;
+
    }
+
    if (!m_bFirstAllocationInformation)
    {
+
       m_bFirstAllocationInformation = true;
 
       m_strFirstAllocation = pitem->m_preferer->m_cstringType;
@@ -265,11 +273,8 @@ void reference_item_array::add_referer(::reference_referer * preferer, bool bInc
       m_strFirstAllocation += pitem->m_preferer->m_cstringDebug;
 
    }
+
    m_bFirstReference = false;
-
-
-
-
 
    m_itema.add(pitem);
 
@@ -347,9 +352,9 @@ void reference_item_array::add_referer(::reference_referer * preferer, bool bInc
 
       }
 
-      output_debug_string("referer wasn't on list : \n" + strList);
+      output_debug_string("referer wasn't on list_base : \n" + strList);
 
-      throw ::exception(error_debug_warning, "referer wasn't on list (" + strList + ")");
+      throw ::exception(error_debug_warning, "referer wasn't on list_base (" + strList + ")");
 
    }
 
@@ -663,7 +668,7 @@ void reference_item_array::dump_pending_releases(::string & strDump)
 
    //strDump.append_formatf("Serial: %lld, m_iLastReferenceCount=%d\n", m_iSerial, m_iLastReferenceCount);
 
-   strDump.append_formatf("Serial: %lld, refcount=%lld\n", m_iSerial, m_psubparticle->m_countReference);
+   strDump.append_formatf("Serial: %lld, refcount=%lld\n", m_iSerial, (long long )m_psubparticle->m_countReference);
 
    strDump += "deb:"+m_strDebug + "\n";
 
@@ -969,7 +974,7 @@ reference_item_array * subparticle::reference_itema()
    //if (::is_null(m_preferenceitema))
    //{
 
-   //   m_preferenceitema = __allocate reference_item_array(this);
+   //   m_preferenceitema = øallocate reference_item_array(this);
 
    //}
 

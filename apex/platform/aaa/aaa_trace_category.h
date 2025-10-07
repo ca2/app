@@ -18,7 +18,7 @@ public:
 
    trace_category(e_trace_category etracecategory, const ::scoped_string & scopedstrTopicText) :
       m_ecategory(etracecategory),
-      m_strTopicText(pszTopicText)
+      m_strTopicText(scopedstrTopicText)
    {
 
    }

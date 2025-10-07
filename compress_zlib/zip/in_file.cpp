@@ -63,7 +63,7 @@ namespace zip
 
       }
 
-      if(case_insensitive_string_ends(pszFileName,".zip"))
+      if(case_insensitive_string_ends(scopedstrFileName,".zip"))
 
       {
 
@@ -79,7 +79,7 @@ namespace zip
 
       }
 
-      m_filea.add(__allocate ::zip::file());
+      m_filea.add(øallocate ::zip::file());
 
       if(!m_filea.last()->zip_open(m_straPath[0]))
       {
@@ -95,7 +95,7 @@ namespace zip
       for(i = 1; i < m_straPath.get_size(); i++)
       {
 
-         m_infilea.add(__allocate ::zip::in_file());
+         m_infilea.add(øallocate ::zip::in_file());
 
          str = m_straPath[i];
 
@@ -110,7 +110,7 @@ namespace zip
 
          }
 
-         m_filea.add(__allocate ::zip::file());
+         m_filea.add(øallocate ::zip::file());
 
          if(!m_filea.last_pointer()->zip_open((file_pointer) m_infilea.last_pointer()))
          {
@@ -147,7 +147,7 @@ namespace zip
    }
 
 
-   bool in_file::unzip_open(::file::file * pfile, const string_array & straPath, int iBufferLevel, ::file::enum_type * petype)
+   bool in_file::unzip_open(::file::file * pfile, const string_array_base & straPath, int iBufferLevel, ::file::enum_type * petype)
    {
 
       m_filea.erase_all();
@@ -158,7 +158,7 @@ namespace zip
 
       m_straPrefix.erase_all();
 
-      m_filea.add(__allocate ::zip::file());
+      m_filea.add(øallocate ::zip::file());
 
       if(!m_filea.last_pointer()->unzip_open(pfile, iBufferLevel))
       {
@@ -174,7 +174,7 @@ namespace zip
       for(i = 0; i < m_straPath.get_upper_bound(); i++)
       {
 
-         m_infilea.add(__allocate ::zip::in_file());
+         m_infilea.add(øallocate ::zip::in_file());
 
          str = m_straPath[i];
 
@@ -189,7 +189,7 @@ namespace zip
 
          }
 
-         m_filea.add(__allocate ::zip::file());
+         m_filea.add(øallocate ::zip::file());
 
          if(!m_filea.last_pointer()->unzip_open((file_pointer)m_infilea.last_pointer()))
          {
@@ -257,7 +257,7 @@ namespace zip
 
    bool in_file::locate(const ::file::path & path)
    {
-      string strFile(pszFileName);
+      string strFile(scopedstrFileName);
       auto pFind = strFile.find(":");
       if(::is_set(pFind))
          strFile = strFile(0, pFind);
@@ -360,7 +360,7 @@ namespace zip
    memsize in_file::read(void * pdata,memsize nCount)
 
    {
-      //   ASSERT_VALID(this);
+      //   ASSERT_OK(this);
       ASSERT(get_zip_file() != nullptr);
 
       if(nCount == 0)
@@ -383,7 +383,7 @@ namespace zip
       __UNREFERENCED_PARAMETER(pdata);
 
       __UNREFERENCED_PARAMETER(nCount);
-      //ASSERT_VALID(this);
+      //ASSERT_OK(this);
       ASSERT(get_zip_file() != nullptr);
 
       ASSERT(false);
@@ -632,10 +632,10 @@ namespace zip
    }
 
 
-   void in_file::add_file(const ::file::path & pszRelative, ::file::file * pfile)
+   void in_file::add_file(const ::file::path & pathRelative, ::file::file * pfile)
    {
 
-      //::file::path strPath(pszDir / pszRelative);
+      //::file::path strPath(scopedstrDir / pszRelative);
 
       ::file::file_status status;
 
@@ -672,7 +672,7 @@ namespace zip
    }
 
 
-   ::file::listing & in_file::ls(::file::listing & listing)
+   ::file::listing_base & in_file::ls(::file::listing_base & listing)
    {
 
       in_file infile = *this;
@@ -680,7 +680,7 @@ namespace zip
       unzFile pf = infile.get_zip_file()->m_pfUnzip;
       string str;
       string wstrFolder;
-      string_array wstraFolder;
+      string_array_base wstraFolder;
 
       unz_file_info fi;
 
@@ -731,7 +731,7 @@ namespace zip
    }
 
 
-   ::file::listing & in_file::ls_relative_name(::file::listing & listing)
+   ::file::listing_base & in_file::ls_relative_name(::file::listing_base & listing)
    {
 
       in_file infile = *this;
@@ -739,7 +739,7 @@ namespace zip
       unzFile pf = infile.get_zip_file()->m_pfUnzip;
       string str;
       string wstrFolder;
-      string_array wstraFolder;
+      string_array_base wstraFolder;
 
       unz_file_info fi;
 
@@ -790,14 +790,14 @@ namespace zip
    }
 
 
-   ::file::listing & in_file::perform_file_listing(::file::listing & listing)
+   ::file::listing_base & in_file::perform_file_listing(::file::listing_base & listing)
    {
 
       return ls(listing);
 
    }
 
-   ::file::listing & in_file::perform_file_relative_name_listing(::file::listing & listing)
+   ::file::listing_base & in_file::perform_file_relative_name_listing(::file::listing_base & listing)
    {
 
       return ls_relative_name(listing);

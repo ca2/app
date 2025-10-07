@@ -41,7 +41,7 @@ class CLASS_DECL_ACME parse
 public:
 
    // publicy made(camilo already xpced a good public, so i said first :-)
-   const char * m_psz;
+   const_char_pointer m_psz;
    string   pa_splits;
    string   m_strWord;
    character_count  m_iPos;
@@ -53,12 +53,12 @@ public:
    character_count  m_iLen;
 
    parse();
-   parse(::range < const ::ansi_character * > range) : parse(range.begin(), range.size()) {}
-   parse(::range < const ::ansi_character * > range, ::range < const ::ansi_character * > splits):parse(range.begin(), range.size(), splits) {}
-   parse(::range < const ::ansi_character * > range, ::range < const ::ansi_character * > splits, short nospace):parse(range.begin(), range.size(),splits,nospace) {}
-   parse(const ::ansi_character * psz, character_count iLen);
-   parse(const ::ansi_character * psz, character_count iLen, ::range < const ::ansi_character * > splits);
-   parse(const ::ansi_character * psz, character_count iLen, ::range < const ::ansi_character * > splits, short);
+   parse(::character_range < const_char_pointer >range) : parse(range.begin(), range.size(), range.m_erange, range.m_pbasedata) {}
+   parse(::character_range < const_char_pointer >range, ::character_range < const_char_pointer > splits):parse(range.begin(), range.size(), splits, range.m_erange, range.m_pbasedata) {}
+   parse(::character_range < const_char_pointer >range, ::character_range < const_char_pointer > splits, short nospace):parse(range.begin(), range.size(), splits, nospace, range.m_erange, range.m_pbasedata) {}
+   parse(const_char_pointer psz, character_count iLen, enum_range erange = e_range_none, base_data<ansi_character > * pbasedata = nullptr);
+   parse(const_char_pointer psz, character_count iLen, ::character_range < const_char_pointer > splits, enum_range erange = e_range_none, base_data<ansi_character > * pbasedata = nullptr);
+   parse(const_char_pointer psz, character_count iLen, ::character_range < const_char_pointer > splits, short nospace, enum_range erange = e_range_none, base_data<ansi_character > * pbasedata = nullptr);
    ~parse();
    short issplit(const char);
    void getsplit();

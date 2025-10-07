@@ -12,14 +12,14 @@ namespace acme
    {
 
 
-      inline bool get_string(string & strResult, const ::property_object& object, const string& strKey);
+      inline bool get_string(string & strResult, const ::property_object& object, const ::scoped_string & scopedstrKey);
       inline bool get_string(string & strResult, const ::property_object& object, string& strKey);
-      inline bool get_evaluation(string & strResult, const ::property_object& object, const string& strKey);
+      inline bool get_evaluation(string & strResult, const ::property_object& object, const ::scoped_string & scopedstrKey);
       inline bool get_evaluation(string & strResult, const ::property_object& object, string& strKey);
       inline bool get_evaluation(string & strResult, const ::property_set & set, string & strExpression);
 
 
-      inline string get_string(const ::property_set & set, const ::string & strKey)
+      inline string get_string(const ::property_set & set, const ::scoped_string & scopedstrKey)
       {
 
          return set[strKey];
@@ -27,7 +27,7 @@ namespace acme
       }
 
 
-      //inline string get_string(const ::matter & matter, const ::string & strKey)
+      //inline string get_string(const ::matter & matter, const ::scoped_string & scopedstrKey)
       //{
 
       //   return matter.property_set_get_string(strKey);
@@ -35,7 +35,7 @@ namespace acme
       //}
 
 
-      inline bool get_string(string & strResult, const ::property_set & set, const string& strKey)
+      inline bool get_string(string & strResult, const ::property_set & set, const ::scoped_string & scopedstrKey)
       {
 
          return set.get_string(strResult, strKey);
@@ -43,7 +43,7 @@ namespace acme
       }
 
 
-      inline bool get_evaluation(string & strResult, const ::property_set & set, const ::string & strExpression)
+      inline bool get_evaluation(string & strResult, const ::property_set & set, const ::scoped_string & scopedstrExpression)
       {
 
          auto pproperty = set.find_property(strExpression);
@@ -89,7 +89,7 @@ namespace acme
    {
 
 
-      //inline string get_string(const ::property_set & set, const ::string & strKey)
+      //inline string get_string(const ::property_set & set, const ::scoped_string & scopedstrKey)
       //{
 
       //   return set[strKey].get_string();
@@ -97,7 +97,7 @@ namespace acme
       //}
 
 
-      inline string get_string(const ::property_object & object, const ::string & strKey)
+      inline string get_string(const ::property_object & object, const ::scoped_string & scopedstrKey)
       {
 
          return object.property_set_get_string(strKey);
@@ -105,7 +105,7 @@ namespace acme
       }
 
 
-      inline bool get_string(string & strResult, const ::property_object& object, const string& strKey)
+      inline bool get_string(string & strResult, const ::property_object& object, const ::scoped_string & scopedstrKey)
       {
 
          return object.property_set_get_string(strResult, strKey);
@@ -122,7 +122,7 @@ namespace acme
 
 
 
-      inline bool get_evaluation(string & strResult, const ::property_object& object, const string& strKey)
+      inline bool get_evaluation(string & strResult, const ::property_object& object, const ::scoped_string & scopedstrKey)
       {
 
          return object.property_set_get_evaluation(strResult, strKey);
@@ -139,7 +139,7 @@ namespace acme
 
 
 
-      //inline bool get_evaluation(string & strResult, const ::property_set & set, const ::string & strExpression)
+      //inline bool get_evaluation(string & strResult, const ::property_set & set, const ::scoped_string & scopedstrExpression)
       //{
 
       //   auto pproperty = set.find_property(strExpression);
@@ -158,7 +158,7 @@ namespace acme
       //}
 
 
-      inline string get_evaluation(const ::property_object & object, const ::string & strExpression)
+      inline string get_evaluation(const ::property_object & object, const ::scoped_string & scopedstrExpression)
       {
 
          return object.property_set_get_evaluation(strExpression);
@@ -174,7 +174,7 @@ namespace acme
       ////
       //// real-ization: "SELECT field1, field2, field3 FROM table1 WHERE table1.field5 = 'searching value'"
       //template < typename PROPERTY_SOURCE >
-      //string evaluate(const PROPERTY_SOURCE & set, const ::string & strSource)
+      //string evaluate(const PROPERTY_SOURCE & set, const ::scoped_string & scopedstrSource)
       //{
 
       //   string str(strSource);

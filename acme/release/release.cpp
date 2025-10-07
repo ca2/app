@@ -3,7 +3,7 @@
 #include "release.h"
 
 
-CLASS_DECL_ACME::std::strong_ordering compare_release(const ::string_array & straA, const ::string_array & straB)
+CLASS_DECL_ACME::std::strong_ordering compare_release(const ::string_array_base & straA, const ::string_array_base & straB)
 {
 
    if (straA.is_empty())

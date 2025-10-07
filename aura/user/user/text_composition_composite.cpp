@@ -39,7 +39,7 @@ namespace user
 
 		//auto estatus =
 
-		puserinteraction->__øconstruct(m_ptextcompositionclient);
+		puserinteraction->øconstruct(m_ptextcompositionclient);
 
 		//if (!estatus)
 		//{
@@ -65,10 +65,10 @@ namespace user
 	}
 
 
-	void text_composition_composite::on_text_composition(string strMessage)
+	void text_composition_composite::on_text_composition(const ::scoped_string & scopedstrMessage)
 	{
 
-		m_ptextcompositionclient->on_text_composition(strMessage);
+		m_ptextcompositionclient->on_text_composition(scopedstrMessage);
 
 	}
 

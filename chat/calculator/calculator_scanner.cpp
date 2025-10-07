@@ -36,7 +36,7 @@ namespace calculator
    }
 
 
-   void scanner::initialize(const ::string & psz)
+   void scanner::initialize(const ::scoped_string & scopedstr)
    {
       input          = psz;
       next_input     = input;
@@ -45,7 +45,7 @@ namespace calculator
 
    void scanner::peek()
    {
-      const char *beginning;
+      const_char_pointer beginning;
       if(input != next_input && next_input != nullptr)
          return;
       beginning = input;
@@ -72,7 +72,7 @@ namespace calculator
          token->m_etype = token::type_end;
          return token;
       }
-      const char * nextinput = unicode_next(input);
+      const_char_pointer nextinput = unicode_next(input);
 
       if((*input == 'j' || *input == 'i') &&
          unicode_is_digit(nextinput))

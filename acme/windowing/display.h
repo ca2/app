@@ -73,8 +73,8 @@ namespace acme
          virtual void set_wallpaper(::collection::index iScreen, const ::scoped_string & scopedstrWallpaper);
 
 
-         virtual string_array get_wallpaper();
-         virtual void set_wallpaper(const string_array & straWallpaper);
+         virtual string_array_base get_wallpaper();
+         virtual void set_wallpaper(const string_array_base & straWallpaper);
 
 
          virtual ::string _get_wallpaper(::collection::index iScreen);

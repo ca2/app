@@ -9,14 +9,14 @@ namespace aura
 {
 
 
-   bool strn::to(const ::string & psz, int iLen, long long & i)
+   bool strn::to(const ::scoped_string & scopedstr, int iLen, long long & i)
    {
 
       const ::ansi_character * pszEnd;
 
-      long long iConversion = ::ansi_count_to_long_long(psz, &pszEnd, 10, iLen);
+      long long iConversion = ::ansi_count_to_long_long(scopedstr, &pszEnd, 10, iLen);
 
-      if(pszEnd == psz)
+      if(scopedstrEnd == psz)
          return false;
 
       i = iConversion;
@@ -25,14 +25,14 @@ namespace aura
 
    }
 
-   bool strn::to(const ::string & psz, int iLen, int & i)
+   bool strn::to(const ::scoped_string & scopedstr, int iLen, int & i)
    {
 
       char * pszEnd;
 
-      long long iConversion = ::ansi_count_to_long_long(psz, (const ::string &*) &pszEnd, 10, iLen);
+      long long iConversion = ::ansi_count_to_long_long(scopedstr, (const ::string &*) &pszEnd, 10, iLen);
 
-      if(pszEnd == psz)
+      if(scopedstrEnd == psz)
          return false;
 
       if(iConversion > numeric_info< int >::maximum ())
@@ -45,7 +45,7 @@ namespace aura
    }
 
 
-   bool strn::to(const ::string & psz, int iLen, long long & i, int iBase)
+   bool strn::to(const ::scoped_string & scopedstr, int iLen, long long & i, int iBase)
    {
 
       if(iBase < 0 || iBase == 1 || iBase > 36)
@@ -53,9 +53,9 @@ namespace aura
 
       const ::ansi_character * pszEnd;
 
-      long long iConversion = ::ansi_count_to_long_long(psz, &pszEnd, iBase, iLen);
+      long long iConversion = ::ansi_count_to_long_long(scopedstr, &pszEnd, iBase, iLen);
 
-      if(pszEnd == psz)
+      if(scopedstrEnd == psz)
          return false;
 
       i = iConversion;
@@ -64,7 +64,7 @@ namespace aura
 
    }
 
-   bool strn::to(const ::string & psz, int iLen, int & i, int iBase)
+   bool strn::to(const ::scoped_string & scopedstr, int iLen, int & i, int iBase)
    {
 
       if(iBase < 0 || iBase == 1 || iBase > 36)
@@ -72,9 +72,9 @@ namespace aura
 
       const ::ansi_character * pszEnd;
 
-      long long iConversion = ::ansi_count_to_long_long(psz, &pszEnd, iBase, iLen);
+      long long iConversion = ::ansi_count_to_long_long(scopedstr, &pszEnd, iBase, iLen);
 
-      if(pszEnd == psz)
+      if(scopedstrEnd == psz)
          return false;
 
       if(iConversion > numeric_info < int >::maximum ())

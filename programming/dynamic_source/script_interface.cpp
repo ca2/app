@@ -33,7 +33,7 @@ namespace dynamic_source
    }
 
 
-   const char* script_interface::debug_note() const
+   const_char_pointer script_interface::debug_note() const
    {
 
       return m_strNote;
@@ -188,7 +188,7 @@ namespace dynamic_source
    //}
 
 
-   //property & script_interface::get(const ::string & pszKey)
+   //property & script_interface::get(const ::scoped_string & scopedstrKey)
    //{
    //   return netnodesocket()->m_request.form().get()[pszKey];
    //}
@@ -295,15 +295,15 @@ namespace dynamic_source
    }
 
 
-   void script_interface::set_auth_email(const string& strEmail)
+   void script_interface::set_auth_email(const ::scoped_string & scopedstrEmail)
    {
 
-      set_session_payload("auth_email", strEmail);
+      set_session_payload("auth_email", scopedstrEmail);
 
    }
 
 
-   void script_interface::auth(const string& strAuth)
+   void script_interface::auth(const ::scoped_string & scopedstrAuth)
    {
 
       exit(401);
@@ -578,21 +578,21 @@ namespace dynamic_source
 
 
 
-   void script_interface::uri_set_var(string& strUrl, const ::string& pszUrl, const ::string& pszKey, ::payload payload)
+   void script_interface::uri_set_var(string& strUrl, const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrKey, ::payload payload)
    {
 
 
    }
 
 
-   void script_interface::uri_set_param(string& strUrl, const ::string& pszUrl, const ::string& pszKey, const string& strParam)
+   void script_interface::uri_set_param(string& strUrl, const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrKey, const ::scoped_string & scopedstrParam)
    {
 
 
    }
 
 
-   string script_interface::query_get_param(const ::string& pszUrl, const ::string& pszKey)
+   string script_interface::query_get_param(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrKey)
    {
 
       return "";
@@ -600,7 +600,7 @@ namespace dynamic_source
    }
 
 
-   ::payload script_interface::query_get_var(const ::string& pszUrl, const ::string& pszKey)
+   ::payload script_interface::query_get_var(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrKey)
    {
 
       return false;
@@ -744,61 +744,61 @@ namespace dynamic_source
    }
 
 
-   void script_interface::uri_set_var(string& strUrl, const ::string& pszUrl, const ::string& pszKey, ::payload payload)
+   void script_interface::uri_set_var(string& strUrl, const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrKey, ::payload payload)
    {
 
-      ::url::parts parts(pszUrl);
+      ::url::parts parts(scopedstrUrl);
 
-      parts.arguments()[pszKey] = payload;
+      parts.arguments()[scopedstrKey] = payload;
 
       strUrl = parts.as_string();
 
    }
 
 
-   void script_interface::uri_set_param(string& strUrl, const ::string& pszUrl, const ::string& pszKey, const string& strParam)
+   void script_interface::uri_set_param(string& strUrl, const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrKey, const ::scoped_string & scopedstrParam)
    {
 
-      ::url::parts parts(pszUrl);
+      ::url::parts parts(scopedstrUrl);
 
-      parts.arguments()[pszKey] = strParam;
+      parts.arguments()[scopedstrKey] = scopedstrParam;
 
       strUrl = parts.as_string();
 
    }
 
 
-   string script_interface::query_get_param(const ::string& pszUrl, const ::string& pszKey)
+   string script_interface::query_get_param(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrKey)
    {
 
-      ::url::parts parts(pszUrl);
+      ::url::parts parts(scopedstrUrl);
 
-      auto str = parts.arguments()[pszKey].as_string();
+      auto str = parts.arguments()[scopedstrKey].as_string();
 
       return str;
 
    }
 
 
-   ::payload script_interface::query_get_var(const ::string& pszUrl, const ::string& pszKey)
+   ::payload script_interface::query_get_var(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrKey)
    {
 
-      ::url::parts parts(pszUrl);
+      ::url::parts parts(scopedstrUrl);
 
-      auto payload = parts.arguments()[pszKey];
+      auto payload = parts.arguments()[scopedstrKey];
 
       return payload;
 
    }
 
 
-   void script_interface::dprint(const ::string& psz)
+   void script_interface::dprint(const ::scoped_string & scopedstr)
    {
 
       if (m_pmain && m_pmain->m_iDebug > 0)
       {
 
-         print(psz);
+         print(scopedstr);
 
       }
 

@@ -4,7 +4,7 @@
 #include "text_box.h"
 #include "aura/graphics/image/image.h"
 #include "aura/graphics/draw2d/graphics.h"
-#include "acme/_finish.h"
+//#include "acme/_finish.h"
 
 
 namespace write_text
@@ -58,13 +58,13 @@ namespace write_text
    }
 
 
-   void text_box::update(font_list* plist, int iBox, string strText)
+   void text_box::update(font_list* plist, int iBox, const ::scoped_string & scopedstrText)
    {
 
       if (!m_pimage)
       {
 
-         plist->__øconstruct(m_pimage);
+         plist->øconstruct(m_pimage);
 
          if (!m_pimage)
          {
@@ -113,7 +113,7 @@ namespace write_text
 
       m_pimage->g()->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 
-      m_pimage->g()->text_out(plist->m_rectangleMargin.left(), plist->m_rectangleMargin.top(), strText);
+      m_pimage->g()->text_out(plist->m_rectangleMargin.left(), plist->m_rectangleMargin.top(), scopedstrText);
 
 #if 0
 

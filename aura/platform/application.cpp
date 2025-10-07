@@ -2,7 +2,7 @@
 #include "application.h"
 #include "shell_open.h"
 #include "acme/constant/id.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "acme/exception/interface_only.h"
 #include "acme/filesystem/file/folder.h"
 #include "acme/filesystem/file/memory_file.h"
@@ -46,6 +46,11 @@
 #include "aura/windowing/window.h"
 #include "aura/windowing/windowing.h"
 //#include "bred/gpu/approach.h"
+#include "acme/filesystem/file/byte2_stream.h"
+#include "acme/platform/message.h"
+#include "acme/prototype/geometry2d/_byte2_stream.h"
+#include "aura/windowing/display.h"
+#include "aura/windowing/monitor.h"
 
 
 extern "C"
@@ -61,18 +66,18 @@ extern "C"
 //#ifdef WINDOWS_DESKTOP
 //
 //
-//CLASS_DECL_ACME void windows_install_crash_dump_reporting(const ::string & strModuleNameWithTheExeExtension);
+//CLASS_DECL_ACME void windows_install_crash_dump_reporting(const ::scoped_string & scopedstrModuleNameWithTheExeExtension);
 //
 //
 //#endif
 
 
 #ifdef MACOS
-::file::path macos_app_path(string strApp);
+::file::path macos_app_path(const ::scoped_string & scopedstrApp);
 //void ns_app_terminate();
 // 0x00010000 NSWorkspaceLaunchAsync
 // 0x00080000 NSWorkspaceLaunchNewInstance
-void ns_launch_app(const ::scoped_string & scopedstr, const char ** argv, int iFlags);
+void ns_launch_app(const ::scoped_string & scopedstr, const_char_pointer *argv, int iFlags);
 #endif
 
 #if defined(LINUX)
@@ -105,7 +110,7 @@ void ns_launch_app(const ::scoped_string & scopedstr, const char ** argv, int iF
 
 
 #if defined(APPLE_IOS) || defined(UNIVERSAL_WINDOWS)
-CLASS_DECL_AURA int ui_open_url(const ::string & psz);
+CLASS_DECL_AURA int ui_open_url(const ::scoped_string & scopedstr);
 #endif
 
 
@@ -176,7 +181,7 @@ namespace aura
       //m_pimaging = nullptr;
 
 
-      //m_phandler = __allocate ::handler(this);
+      //m_phandler = øallocate ::handler(this);
 
 
       //m_bAuraProcessInitialize = false;
@@ -269,7 +274,7 @@ namespace aura
 
       //estatus =
       
-      __construct_new(m_puserinteractiona);
+      øconstruct_new(m_puserinteractiona);
 
       //if (!estatus)
       //{
@@ -280,7 +285,7 @@ namespace aura
 
       //estatus = 
       
-      __construct_new(m_puserinteractionaFrame);
+      øconstruct_new(m_puserinteractionaFrame);
 
       //if (!estatus)
       //{
@@ -329,7 +334,7 @@ namespace aura
    //   if(m_pappmenu.is_null())
    //   {
 
-   //      m_pappmenu = __allocate application_menu();
+   //      m_pappmenu = øallocate application_menu();
 
    //   }
 
@@ -535,11 +540,11 @@ namespace aura
    }
 
 
-   void application::on_change_theme()
-   {
-
-
-   }
+   // void application::on_change_theme()
+   // {
+   //
+   //
+   // }
 
 
 
@@ -790,7 +795,7 @@ namespace aura
    //}
 
 
-   //void application::message_box_synchronous(::user::interaction_base * puiOwner, const ::string & pszMessage, const ::string & pszTitle, const ::e_message_box & emessagebox, ::callback callback)
+   //void application::message_box_synchronous(::user::interaction_base * puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::user::e_message_box & emessagebox, ::callback callback)
    //{
 
    //   return ::auto pmessagebox = __initialize_new ::message_box(puiOwner->get_safe_handle(), pszMessage, pszTitle, emessagebox, callback);
@@ -800,7 +805,7 @@ namespace aura
    //}
 
 
-   //void application::ui_message_box(::user::interaction_base* puiOwner, const ::string & pszMessage, const ::string & pszTitle, const ::e_message_box & emessagebox, ::callback callback)
+   //void application::ui_message_box(::user::interaction_base* puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::user::e_message_box & emessagebox, ::callback callback)
    //{
 
    //   if (!Session || !psession->userex())
@@ -815,7 +820,7 @@ namespace aura
    //}
 
 
-   //void application::ui_message_box_timeout(::user::interaction_base* puiOwner, const ::string & pszMessage, const ::string & pszTitle, const class time & timeTimeout, const ::e_message_box & emessagebox, ::callback callback)
+   //void application::ui_message_box_timeout(::user::interaction_base* puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const class time & timeTimeout, const ::user::e_message_box & emessagebox, ::callback callback)
    //{
 
    //   if (!Session || !psession->userex())
@@ -830,7 +835,7 @@ namespace aura
    //}
 
 
-   //void application::message_box(::user::interaction_base* puiOwner, const ::string & pszMessage, const ::string & pszTitle, const ::e_message_box & emessagebox, ::callback callback)
+   //void application::message_box(::user::interaction_base* puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::user::e_message_box & emessagebox, ::callback callback)
    //{
 
    //   auto estatus = ui_message_box(puiOwner, pszMessage, pszTitle, emessagebox, callback);
@@ -849,7 +854,7 @@ namespace aura
    //}
 
 
-   //void application::message_box_timeout(::user::interaction_base* puiOwner, const ::string & pszMessage, const ::string & pszTitle, const class time & timeTimeout, const ::e_message_box & emessagebox, ::callback callback)
+   //void application::message_box_timeout(::user::interaction_base* puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const class time & timeTimeout, const ::user::e_message_box & emessagebox, ::callback callback)
    //{
 
    //   auto estatus = ui_message_box_timeout(puiOwner, pszMessage, pszTitle, timeTimeout, emessagebox, callback);
@@ -919,7 +924,7 @@ namespace aura
 
    //// lang string
    //// load string
-   //string application::lstr(const ::atom & atom, string strDefault)
+   //string application::lstr(const ::atom & atom, const ::scoped_string & scopedstrDefault)
    //{
 
    //   string str;
@@ -1014,7 +1019,7 @@ namespace aura
 
    //   string strString;
 
-   //   ::pointer<string_to_string>pmap;
+   //   ::pointer<string_to_string_base>pmap;
 
    //   auto pFind = 0;
 
@@ -1035,12 +1040,12 @@ namespace aura
 
    //   }
 
-   //   _synchronous_lock synchronouslock(m_pmutexStr);
+   //   _synchronous_lock synchronouslock(m_pmutexStr, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-   //   if (m_stringtableStd.lookup(strTable, pmap))
+   //   if (m_stringtableStd.find(strTable, pmap))
    //   {
 
-   //      if (pmap->lookup(strString, str))
+   //      if (pmap->find(strString, str))
    //      {
 
    //         return true;
@@ -1048,10 +1053,10 @@ namespace aura
    //      }
 
    //   }
-   //   else if (m_stringtable.lookup(strTable, pmap))
+   //   else if (m_stringtable.find(strTable, pmap))
    //   {
 
-   //      if (pmap->lookup(strString, str))
+   //      if (pmap->find(strString, str))
    //      {
 
    //         return true;
@@ -1075,7 +1080,7 @@ namespace aura
    //}
 
 
-   //void application::load_string_table(const string & pszApp, const string & pszId)
+   //void application::load_string_table(const ::scoped_string & scopedstrApp, const ::scoped_string & scopedstrId)
    //{
 
    //}
@@ -1145,7 +1150,7 @@ namespace aura
 
 
 
-//   ::file::path command_find_path(const ::string & pszCommand)
+//   ::file::path command_find_path(const ::scoped_string & scopedstrCommand)
 //   {
 //
 //#ifdef UNIVERSAL_WINDOWS
@@ -1156,7 +1161,7 @@ namespace aura
 //
 //      string strPath = getenv("PATH");
 //
-//      string_array straPath;
+//      string_array_base straPath;
 //
 //      straPath.explode(":", strPath);
 //
@@ -1289,7 +1294,7 @@ namespace aura
 
 
 
-   //void application::sync_open_profile_link(string strUrl, string strProfile, string strTarget)
+   //void application::sync_open_profile_link(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrProfile, const ::scoped_string & scopedstrTarget)
    //{
 
    //   browser(strUrl, "", strProfile, strTarget);
@@ -1297,7 +1302,7 @@ namespace aura
    //}
 
 
-   //bool application::open_link(string strLink, string strProfile, string strTarget)
+   //bool application::open_link(const ::scoped_string & scopedstrLink, const ::scoped_string & scopedstrProfile, const ::scoped_string & scopedstrTarget)
    //{
 
    //   if (is_system())
@@ -1340,7 +1345,7 @@ namespace aura
 //#endif
 
 
-   //bool application::_001OnDDECommand(const ::string & pcsz)
+   //bool application::_001OnDDECommand(const ::scoped_string & scopedstr)
 
    //{
 
@@ -1431,7 +1436,7 @@ namespace aura
 //
 //
 
-//   string CLASS_DECL_AURA application::get_cred(const ::string & strRequestUrl, const ::int_rectangle & rectangle, string & strUsername, string & strPassword, string strToken, string strTitle, bool bInteractive)
+//   string CLASS_DECL_AURA application::get_cred(const ::scoped_string & scopedstrRequestUrl, const ::int_rectangle & rectangle, string & strUsername, string & strPassword, const ::scoped_string & scopedstrToken, const ::scoped_string & scopedstrTitle, bool bInteractive)
 // {
 
 //  throw ::not_implemented();
@@ -1441,7 +1446,7 @@ namespace aura
 
 
 
-   //bool application::get_temp_file_name_template(string & strRet, const ::string & lpszName, const ::string & pszExtension, const ::string & pszTemplate)
+   //bool application::get_temp_file_name_template(string & strRet, const ::scoped_string & scopedstrName, const ::scoped_string & scopedstrExtension, const ::scoped_string & scopedstrTemplate)
    //{
 
    //   throw ::not_implemented();
@@ -1451,7 +1456,7 @@ namespace aura
    //}
 
 
-   //bool application::get_temp_file_name(string & strRet, const ::string & lpszName, const ::string & pszExtension)
+   //bool application::get_temp_file_name(string & strRet, const ::scoped_string & scopedstrName, const ::scoped_string & scopedstrExtension)
    //{
 
    //   return get_temp_file_name_template(strRet, lpszName, pszExtension, nullptr);
@@ -1574,7 +1579,7 @@ namespace aura
 ////
 ////         }
 //
-//         //xxdebug_box("pre_run 1 ok", "pre_run 1 ok", e_message_box_icon_information);
+//         //xxdebug_box("pre_run 1 ok", "pre_run 1 ok", ::user::e_message_box_icon_information);
 //
 //         if (!initial_check_directrix())
 //         {
@@ -1762,7 +1767,7 @@ namespace aura
 
    //      application_pos_run();
 
-   //      //xxdebug_box("pre_run 1 ok", "pre_run 1 ok", e_message_box_icon_information);
+   //      //xxdebug_box("pre_run 1 ok", "pre_run 1 ok", ::user::e_message_box_icon_information);
 
    //   }
    //   catch (...)
@@ -2043,7 +2048,7 @@ namespace aura
 
 #ifdef WINDOWS_DESKTOP
       
-      __øconstruct(m_pshellopen);
+      øconstruct(m_pshellopen);
 
       //if (!estatus)
       //{
@@ -2369,7 +2374,7 @@ retry_license:
 //
 //      psystem->install_progress_add_up(); // 2
 //
-//      //xxdebug_box("init1 ok", "init1 ok", e_message_box_icon_information);
+//      //xxdebug_box("init1 ok", "init1 ok", ::user::e_message_box_icon_information);
 //
 //      ping();
 //
@@ -2384,7 +2389,7 @@ retry_license:
 //
 //      psystem->install_progress_add_up(); // 3
 //
-//      //xxdebug_box("init2 ok", "init2 ok", e_message_box_icon_information);
+//      //xxdebug_box("init2 ok", "init2 ok", ::user::e_message_box_icon_information);
 //
 //      ping();
 //
@@ -2399,7 +2404,7 @@ retry_license:
 //
 //      psystem->install_progress_add_up(); // 4
 //
-//      //xxdebug_box("init3 ok", "init3 ok", e_message_box_icon_information);
+//      //xxdebug_box("init3 ok", "init3 ok", ::user::e_message_box_icon_information);
 //
 //      ping();
 //
@@ -2418,10 +2423,10 @@ retry_license:
 //         }
 //
 //      }
-//      catch (const ::string & psz)
+//      catch (const ::scoped_string & scopedstr)
 //      {
 //
-//         if (!strcmp(psz, "You have not logged in! Exiting!"))
+//         if (!strcmp(scopedstr, "You have not logged in! Exiting!"))
 //         {
 //
 //            return false;
@@ -2447,7 +2452,7 @@ retry_license:
    //   try
    //   {
 
-   //      return __allocate ::interprocess::communication(m_strAppName);
+   //      return øallocate ::interprocess::communication(m_strAppName);
 
    //   }
    //   catch (...)
@@ -2480,14 +2485,14 @@ retry_license:
       //{
 
       //   //estatus = 
-      //   __øconstruct(m_pimagecontext);
+      //   øconstruct(m_pimagecontext);
 
       //   //if (!estatus)
       //   //{
 
       //   //   information() << "ERROR: image_context required but missing.";
 
-      //   //   //output_error_message("image_context required but missing.\n\nIs it a image library missing?", get_app_user_friendly_task_bar_name(), ::e_message_box_icon_information);
+      //   //   //output_error_message("image_context required but missing.\n\nIs it a image library missing?", get_app_user_friendly_task_bar_name(), ::user::e_message_box_icon_information);
 
       //   //   return estatus;
 
@@ -2504,14 +2509,14 @@ retry_license:
 
       //    //estatus = 
          
-      //    __construct_new(m_pimagecontext);
+      //    øconstruct_new(m_pimagecontext);
 
       //    //if (!estatus)
       //    //{
 
       //    //   information() << "ERROR: image_context required but missing.";
 
-      //    //   //output_error_message("image_context required but missing.\n\nIs it a image library missing?", get_app_user_friendly_task_bar_name(), ::e_message_box_icon_information);
+      //    //   //output_error_message("image_context required but missing.\n\nIs it a image library missing?", get_app_user_friendly_task_bar_name(), ::user::e_message_box_icon_information);
 
       //    //   return estatus;
 
@@ -2687,7 +2692,7 @@ retry_license:
          //if(::is_set(get_session()))
          //{
 
-         //   get_session()->post_message(e_message_erase_application, 0, this);
+         //   get_session()->post_message(::user::e_message_erase_application, 0, this);
 
          //}
 
@@ -2888,7 +2893,7 @@ retry_license:
    //}
 
 
-   ////int application::sync_message_box_timeout(::user::interaction_base * puserinteractionOwner, ::payload payload, const ::string & pszTitle, ::time timeTimeOut, unsigned int fuStyle)
+   ////int application::sync_message_box_timeout(::user::interaction_base * puserinteractionOwner, ::payload payload, const ::scoped_string & scopedstrTitle, ::time timeTimeOut, unsigned int fuStyle)
    ////{
 
    ////   __UNREFERENCED_PARAMETER(timeTimeOut);
@@ -2905,7 +2910,7 @@ retry_license:
 
 
 
-   //string application::http_get_locale_schema(const ::string & pszUrl, const ::string & pszLocale, const ::string & pszSchema)
+   //string application::http_get_locale_schema(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema)
    //{
 
    //   throw ::interface_only();
@@ -2985,7 +2990,7 @@ retry_license:
    //}
 
 
-   //string application::get_locale_schema_dir(const ::string & strLocale)
+   //string application::get_locale_schema_dir(const ::scoped_string & scopedstrLocale)
    //{
 
    //   return ::str::_001Concat(strLocale.is_empty() ? get_locale() : strLocale, "/", get_schema());
@@ -2993,7 +2998,7 @@ retry_license:
    //}
 
 
-   //void application::matter_locator_locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const ::string & strLocale, const ::string & strSchema)
+   //void application::matter_locator_locale_schema_matter(string_array_base & stra, const string_array_base & straMatterLocator, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema)
    //{
 
    //   if (strLocale.is_empty() || strSchema.is_empty())
@@ -3015,13 +3020,13 @@ retry_license:
    //}
 
 
-   //void application::locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const ::string & strLocale, const ::string & strSchema)
+   //void application::locale_schema_matter(string_array_base & stra, const string_array_base & straMatterLocator, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema)
    //{
 
    //  if (straMatterLocator.has_elements())
    //  {
 
-   //     stra.add_unique(::file::path(straMatterLocator.first()) / get_locale_schema_dir("map", "map"));
+   //     stra.add_unique(::file::path(straMatterLocator.first()) / get_locale_schema_dir("map_base", "map_base"));
 
    //  }
 
@@ -3054,7 +3059,7 @@ retry_license:
    //}
 
 
-   //string application::get_locale_schema_dir(const ::string & strLocale, const ::string & strSchema)
+   //string application::get_locale_schema_dir(const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema)
    //{
 
    //  return ::str::_001Concat(strLocale, "/", strSchema);
@@ -3062,7 +3067,7 @@ retry_license:
    //}
 
 
-   //void application::fill_locale_schema(::text::international::locale_schema & localeschema, const string & pszLocale, const string & pszSchema)
+   //void application::fill_locale_schema(::text::international::locale_schema & localeschema, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema)
    //{
 
 
@@ -3070,8 +3075,8 @@ retry_license:
    //  localeschema.m_straSchema.erase_all();
 
 
-   //  string strLocale(pszLocale);
-   //  string strSchema(pszSchema);
+   //  string strLocale(scopedstrLocale);
+   //  string strSchema(scopedstrSchema);
 
 
    //  localeschema.m_atomLocale = pszLocale;
@@ -3101,14 +3106,14 @@ retry_license:
    //  //localeschema.m_bAddAlternateStyle = true;
 
 
-   //  string_array straLocale;
-   //  string_array straSchema;
+   //  string_array_base straLocale;
+   //  string_array_base straSchema;
 
    //  straLocale.add(get_locale());
    //  straSchema.add(get_schema());
 
 
-   //  string_array stra;
+   //  string_array_base stra;
 
    //  stra = value("locale").stra();
 
@@ -3175,7 +3180,7 @@ retry_license:
 //  }
 
 
-   //bool application::platform_open_by_file_extension(::collection::index iEdge, const ::string & pszPathName, ::request * prequest)
+   //bool application::platform_open_by_file_extension(::collection::index iEdge, const ::scoped_string & scopedstrPathName, ::request * prequest)
    //{
 
    //   return false;
@@ -3193,7 +3198,7 @@ retry_license:
 
 
 
-   ////int application::hotplugin_host_starter_start_sync(const ::string & pszCommandLine, ::aura::application * papp, hotplugin::host * phost, hotplugin::plugin * pplugin)
+   ////int application::hotplugin_host_starter_start_sync(const ::scoped_string & scopedstrCommandLine, ::aura::application * papp, hotplugin::host * phost, hotplugin::plugin * pplugin)
    ////{
 
    //   return -1;
@@ -3262,7 +3267,7 @@ retry_license:
 
    //}
 //
-//   void application::post_critical_error_message(const ::string & pszMessage, bool bShowLog)
+//   void application::post_critical_error_message(const ::scoped_string & scopedstrMessage, bool bShowLog)
 //   {
 //
 //      string strMessage;
@@ -3274,7 +3279,7 @@ retry_license:
 //
 //      {
 //
-//         _synchronous_lock synchronouslock(this->synchronization());
+//         _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //         file()->add_contents(directory()->appdata() / (file()->module().name() + "_log_error.txt"), strMessage);
 //
@@ -3425,7 +3430,7 @@ retry_license:
 
 
 
-   //bool application::app_set(string strPath, string strValue)
+   //bool application::app_set(const ::scoped_string & scopedstrPath, const ::scoped_string & scopedstrValue)
    //{
 
    //   return sys_set(::file::path(m_strAppName) / strPath, strValue);
@@ -3433,7 +3438,7 @@ retry_license:
    //}
 
 
-   //string application::app_get(string strPath, string strDefault)
+   //string application::app_get(const ::scoped_string & scopedstrPath, const ::scoped_string & scopedstrDefault)
    //{
 
    //   return sys_get(::file::path(m_strAppName) / strPath, strDefault);
@@ -3452,10 +3457,10 @@ retry_license:
 
 
 
-   //void application::install_trace(const ::string & str)
+   //void application::install_trace(const ::scoped_string & scopedstr)
    //{
 
-   //   _synchronous_lock synchronouslock(this->synchronization());
+   //   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //   //::install::trace_file(this, m_strInstallTraceLabel).print(str);
 
@@ -3465,7 +3470,7 @@ retry_license:
    //void application::install_trace(double dRate)
    //{
 
-   //   _synchronous_lock synchronouslock(this->synchronization());
+   //   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //   //::install::trace_file(this, m_strInstallTraceLabel).print(dRate);
 
@@ -3558,7 +3563,7 @@ retry_license:
 //   }
 //
 //
-//   bool application::low_is_app_app_admin_running(string strPlatform, string strConfiguration)
+//   bool application::low_is_app_app_admin_running(const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration)
 //   {
 //
 //      ::install::admin_mutex smutex(strPlatform);
@@ -3568,7 +3573,7 @@ retry_license:
 //   }
 //
 //
-//   void application::defer_start_program_files_app_app_admin(string strPlatform, string strConfiguration)
+//   void application::defer_start_program_files_app_app_admin(const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration)
 //   {
 //
 //      if (low_is_app_app_admin_running(strPlatform, strConfiguration))
@@ -3583,7 +3588,7 @@ retry_license:
 //   }
 //
 //
-//   void application::start_program_files_app_app_admin(string strPlatform, string strConfiguration)
+//   void application::start_program_files_app_app_admin(const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration)
 //   {
 //
 //#ifdef WINDOWS_DESKTOP
@@ -3658,7 +3663,7 @@ retry_license:
 //
 //      //const ::scoped_string & scopedstr = doc.GetChildAttrValue("launch", "app");
 //
-//      //if (psz == nullptr || *psz == '\0')
+//      //if (scopedstr == nullptr || *psz == '\0')
 //      //{
 //
 //      //   return "";
@@ -3715,7 +3720,7 @@ retry_license:
             if (puserinteraction)
             {
 
-//                _synchronous_lock synchronouslock(puserinteraction->window()->m_pparticleChildrenSynchronization);
+//                _synchronous_lock synchronouslock(puserinteraction->window()->m_pparticleChildrenSynchronization, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //                auto pacmeuserinteractionaChildren = puserinteraction->m_pacmeuserinteractionaChildren;
 //
@@ -3739,7 +3744,7 @@ retry_license:
 
 #endif
 
-      //_synchronous_lock synchronouslock(m_pmutexFrame);
+      //_synchronous_lock synchronouslock(m_pmutexFrame, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       //_synchronous_lock slChildren(::user::pointer < ::mutex >_children2());
 
@@ -3776,7 +3781,7 @@ retry_license:
 
       }
 
-      _synchronous_lock synchronouslock(m_pmutexFrame); // recursive lock (on m_framea.add(puserinteraction)) but m_puiMain is "cared" by m_frame.m_pmutex
+      _synchronous_lock synchronouslock(m_pmutexFrame, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX); // recursive lock (on m_framea.add(puserinteraction)) but m_puiMain is "cared" by m_frame.m_pmutex
 
       if (m_puserinteractiona->add_unique_interaction(puserinteraction))
       {
@@ -3788,7 +3793,7 @@ retry_license:
 
          }
 
-         information() << "::base::application::add_user_interaction ::user::interaction = 0x" << (::iptr) (puserinteraction) << " (" << typeid(*puserinteraction).name() << ") app=" << ::type(this).name();
+         information() << "::berg::application::add_user_interaction ::user::interaction = 0x" << (::iptr) (puserinteraction) << " (" << typeid(*puserinteraction).name() << ") app=" << ::type(this).name();
 
          if (!(puserinteraction->m_ewindowflag & e_window_flag_satellite_window))
          {
@@ -3811,7 +3816,7 @@ retry_license:
 
             {
 
-               _synchronous_lock synchronouslock(puserinteractionHost->synchronization());
+               _synchronous_lock synchronouslock(puserinteractionHost->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
                puserinteractionHost->m_pacmeuserinteractionaChildren->add_unique(puserinteraction);
 
@@ -3833,7 +3838,7 @@ retry_license:
    void application::erase_user_interaction(::user::interaction * puserinteraction)
    {
 
-      _synchronous_lock synchronouslock(m_pmutexFrame); // recursive lock (on m_framea.erase(puserinteraction)) but m_puiMain is "cared" by m_frame.m_pmutex
+      _synchronous_lock synchronouslock(m_pmutexFrame, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX); // recursive lock (on m_framea.erase(puserinteraction)) but m_puiMain is "cared" by m_frame.m_pmutex
 
       if (m_pacmeuserinteractionMain == puserinteraction)
       {
@@ -3848,7 +3853,7 @@ retry_license:
          if (m_puserinteractiona->erase_interaction(puserinteraction) > 0)
          {
 
-            information() << "::base::application::erase_user_interaction ::user::interaction = 0x"<<(iptr)puserinteraction<<" ("<<typeid(*puserinteraction).name()<<") app=" << ::type(this).name();
+            information() << "::berg::application::erase_user_interaction ::user::interaction = 0x"<<(iptr)puserinteraction<<" ("<<typeid(*puserinteraction).name()<<") app=" << ::type(this).name();
 
          }
 
@@ -3862,7 +3867,7 @@ retry_license:
          if (m_puserinteractionaFrame->erase_interaction(puserinteraction) > 0)
          {
 
-            information() << "::base::application::erase_frame ::user::interaction = 0x"<<(iptr)puserinteraction<<" ("<<typeid(*puserinteraction).name()<<") app=" <<::type(this).name();
+            information() << "::berg::application::erase_frame ::user::interaction = 0x"<<(iptr)puserinteraction<<" ("<<typeid(*puserinteraction).name()<<") app=" <<::type(this).name();
 
          }
 
@@ -3874,7 +3879,7 @@ retry_license:
 
                synchronouslock.unlock();
 
-               get_app()->post_message(e_message_close);
+               get_app()->post_message(::user::e_message_close);
 
             }
 
@@ -3885,7 +3890,7 @@ retry_license:
    }
 
 
-   void application::send_message_to_windows(::enum_message emessage, ::wparam wparam, ::lparam lparam) // with tbs in <3
+   void application::send_message_to_windows(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam) // with tbs in <3
    {
 
       ::pointer<::user::interaction>puserinteraction;
@@ -3905,7 +3910,7 @@ retry_license:
                   try
                   {
 
-                     puserinteraction->send_message(emessage, wparam, lparam);
+                     puserinteraction->send_message(eusermessage, wparam, lparam);
 
                   }
                   catch (...)
@@ -3916,7 +3921,7 @@ retry_license:
                   try
                   {
 
-                     puserinteraction->send_message_to_descendants(emessage, wparam, lparam);
+                     puserinteraction->send_message_to_descendants(eusermessage, wparam, lparam);
 
                   }
                   catch (...)
@@ -4078,7 +4083,7 @@ retry_license:
    //     if (pmsg->id() == 126)
    //     {
 
-   //        information() << "e_message_display_change";
+   //        information() << "::user::e_message_display_change";
 
    //     }
 
@@ -4126,7 +4131,7 @@ retry_license:
 
    //   }
 
-   //   auto pusermessage = __allocate ::user::message();
+   //   auto pusermessage = øallocate ::user::message();
 
    //   if (!pusermessage)
    //   {
@@ -4158,10 +4163,10 @@ retry_license:
    //}
 
 
-   void application::post_message(::enum_message emessage, ::wparam wparam, ::lparam lparam )
+   void application::post_message(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam )
    {
 
-      ::thread::post_message(emessage, wparam, lparam);
+      ::thread::post_message(eusermessage, wparam, lparam);
 
    }
 
@@ -4261,7 +4266,7 @@ retry_license:
 ////
 ////      {
 ////
-////         _synchronous_lock synchronouslock(this->synchronization());
+////         _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 ////
 ////         ptra = m_particleaddressaEventHook;
 ////
@@ -4333,7 +4338,7 @@ retry_license:
    }
 
 
-   //::pointer<::user::document>application::defer_create_impact(string strImpact, ::user::interaction * puiParent, e_window_flag ewindowflag, const ::atom & atom)
+   //::pointer<::user::document>application::defer_create_impact(const ::scoped_string & scopedstrImpact, ::user::interaction * puiParent, e_window_flag ewindowflag, const ::atom & atom)
    //{
 
    //   //auto pcontroller = pmultimedia->defer_create_impact(strImpact, puiParent, ewindowflag, atom);
@@ -4424,7 +4429,7 @@ retry_license:
    //void application::record(::create * pcommand)
    //{
 
-   //   _synchronous_lock synchronouslock(this->synchronization());
+   //   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //   get_command()->m_createa.add(pcommand);
 
@@ -4566,11 +4571,11 @@ retry_license:
    //string application::load_string(const ::atom & atom)
    //{
 
-   //   _synchronous_lock synchronouslock(m_pmutexStr);
+   //   _synchronous_lock synchronouslock(m_pmutexStr, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //   string str;
 
-   //   if (m_stringmap.lookup(atom, str))
+   //   if (m_stringmap.find(atom, str))
    //   {
 
    //      return str;
@@ -4614,7 +4619,7 @@ retry_license:
 
    //   //throw ::exception(todo("xml"));
 
-   //   //auto pdocument = __allocate ::xml::document();
+   //   //auto pdocument = øallocate ::xml::document();
 
    //   //if (!pdocument->load(atom) || !*pdocument)
    //   //{
@@ -4674,14 +4679,14 @@ retry_license:
 
    //   }
 
-   //   _synchronous_lock synchronouslock(m_pmutexStr);
+   //   _synchronous_lock synchronouslock(m_pmutexStr, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-   //   ::pointer<string_to_string>pmap;
+   //   ::pointer<string_to_string_base>pmap;
 
-   //   if (m_stringtableStd.lookup(strTable, pmap))
+   //   if (m_stringtableStd.find(strTable, pmap))
    //   {
 
-   //      if (pmap != nullptr && pmap->lookup(strString, str))
+   //      if (pmap != nullptr && pmap->find(strString, str))
    //      {
 
    //         return true;
@@ -4689,10 +4694,10 @@ retry_license:
    //      }
 
    //   }
-   //   else if (m_stringtable.lookup(strTable, pmap))
+   //   else if (m_stringtable.find(strTable, pmap))
    //   {
 
-   //      if (pmap != nullptr && pmap->lookup(strString, str))
+   //      if (pmap != nullptr && pmap->find(strString, str))
    //      {
 
    //         return true;
@@ -4714,7 +4719,7 @@ retry_license:
    //}
 
 
-   //void application::load_string_table(const string & pszApp, const string & pszId)
+   //void application::load_string_table(const ::scoped_string & scopedstrApp, const ::scoped_string & scopedstrId)
    //{
 
 
@@ -5035,19 +5040,19 @@ retry_license:
    //}
 
 
-   //::pointer<::aura::application>application::assert_running(const ::string & pszAppId)
+   //::pointer<::aura::application>application::assert_running(const ::scoped_string & scopedstrAppId)
    //{
 
    //   ::pointer<::aura::application>papp;
 
-   //   papp = psession->m_applicationa.find_running_defer_try_quit_damaged(pszAppId);
+   //   papp = psession->m_applicationa.find_running_defer_try_quit_damaged(scopedstrAppId);
 
    //   if(papp.is_null())
    //   {
 
    //      ::pointer<::create>spcreate(e_create);
 
-   //      papp = psession->start_application(pszAppId,spcreate);
+   //      papp = psession->start_application(scopedstrAppId,spcreate);
 
    //   }
 
@@ -5107,16 +5112,16 @@ retry_license:
    //}
 
 
-   void application::update_appmatter( ::pointer<::sockets::http_session>& psession, const ::file::path & pszRoot, const string & pszRelative)
+   void application::update_appmatter( ::pointer<::sockets::http_session>& psession, const ::file::path & pathRoot, const ::scoped_string & scopedstrRelative)
    {
 
-      auto plocaleschema = __create_new < ::text::international::locale_schema >();
+      auto plocaleschema = øcreate_new < ::text::international::locale_schema >();
 
       //psession->fill_locale_schema(localeschema);
 
-      bool bIgnoreStdStd = string(pszRoot) == "app" && (string(pszRelative) == "main" || string(pszRelative) == "bergedge");
+      bool bIgnoreStdStd = string(pathRoot) == "app" && (string(scopedstrRelative) == "main" || string(scopedstrRelative) == "bergedge");
 
-      //update_appmatter(h, psession, pszRoot, pszRelative, plocaleschema->m_atomLocale, plocaleschema->m_atomSchema);
+      //update_appmatter(h, psession, pathRoot, pszRelative, plocaleschema->m_atomLocale, plocaleschema->m_atomSchema);
 
       ::collection::count iCount = plocaleschema->m_straLocale.get_count();
 
@@ -5134,7 +5139,7 @@ retry_license:
 
          strSchema = plocaleschema->m_straSchema[i];
 
-         update_appmatter(psession, pszRoot, pszRelative, strLocale, strSchema);
+         update_appmatter(psession, pathRoot, scopedstrRelative, strLocale, strSchema);
 
          auto psystem = system();
 
@@ -5148,16 +5153,16 @@ retry_license:
    }
 
 
-   void application::update_appmatter(::pointer<::sockets::http_session>& psession, const ::file::path & pszRoot, const string & pszRelative, const string & pszLocale, const string & pszStyle)
+   void application::update_appmatter(::pointer<::sockets::http_session>& psession, const ::file::path & pathRoot, const ::scoped_string & scopedstrRelative, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrStyle)
    {
 
       string strLocale;
       
       string strSchema;
 
-      informationf("update_appmatter(root=%s, relative=%s, locale=%s, style=%s)", pszRoot.c_str(), pszRelative.c_str(), pszLocale.c_str(), pszStyle.c_str());
-      
-      ::file::path strRelative = ::file::path(pszRoot) / "_matter" / pszRelative / get_locale_schema_dir(pszLocale, pszStyle) + ".zip";
+      informationf("update_appmatter(root=%s, relative=%s, locale=%s, style=%s)", pathRoot.c_str(), scopedstrRelative.as_string().c_str(), scopedstrLocale.as_string().c_str(), scopedstrStyle.as_string().c_str());
+
+      ::file::path strRelative = ::file::path(pathRoot) / "_matter" / scopedstrRelative / get_locale_schema_dir(scopedstrLocale, scopedstrStyle) + ".zip";
 
       // auto pcontext = get_context();
 
@@ -5300,7 +5305,7 @@ retry_license:
 
 
 
-   string application::matter_as_string(const ::string & pszMatter, const ::string & pszMatter2)
+   string application::matter_as_string(const ::scoped_string & scopedstrMatter, const ::scoped_string & scopedstrMatter2)
    {
 
       ::payload payloadFile;
@@ -5309,7 +5314,7 @@ retry_license:
 
       // auto pcontext = get_context();
 
-      string strMatter = directory()->matter(::file::path(pszMatter) / pszMatter2);
+      string strMatter = directory()->matter(::file::path(scopedstrMatter) / scopedstrMatter2);
 
       payloadFile["url"] = strMatter;
 
@@ -5317,24 +5322,24 @@ retry_license:
 
    }
 
-   //string application::directory()->matter(const ::string & pszMatter, const ::string & pszMatter2)
+   //string application::directory()->matter(const ::scoped_string & scopedstrMatter, const ::scoped_string & scopedstrMatter2)
    //{
 
-   //   return directory()->matter(pszMatter,pszMatter2);
+   //   return directory()->matter(scopedstrMatter,pszMatter2);
 
    //}
 
-   //bool application::is_inside_time_dir(const ::string & pszPath)
+   //bool application::is_inside_time_dir(const ::scoped_string & scopedstrPath)
    //{
-   //   return directory()->is_inside_time(pszPath);
+   //   return directory()->is_inside_time(scopedstrPath);
    //}
 
 
-   //bool application::file_is_read_only(const ::string & pszPath)
+   //bool application::file_is_read_only(const ::scoped_string & scopedstrPath)
    //{
 
    //   return false;
-   //   //return file()->is_read_only(pszPath);
+   //   //return file()->is_read_only(scopedstrPath);
 
    //}
 
@@ -5460,7 +5465,7 @@ retry_license:
 
 
 
-   ::draw2d::printer * application::get_printer(const ::string & pszDeviceName)
+   ::draw2d::printer * application::get_printer(const ::scoped_string & scopedstrDeviceName)
    {
 
       throw ::interface_only();
@@ -5485,7 +5490,7 @@ retry_license:
    //}
 
 
-   string application::dialog_box(const ::string & pszMatter, ::property_set& propertyset)
+   string application::dialog_box(const ::scoped_string & scopedstrMatter, ::property_set& propertyset)
    {
 
       throw ::exception(todo, "core and os");
@@ -5509,7 +5514,7 @@ retry_license:
 
 
 
-   //bool application::get_temp_file_name_template(string & strRet, const ::string & lpszName, const ::string & pszExtension, const ::string & pszTemplate)
+   //bool application::get_temp_file_name_template(string & strRet, const ::scoped_string & scopedstrName, const ::scoped_string & scopedstrExtension, const ::scoped_string & scopedstrTemplate)
    //{
 
    //   throw ::not_implemented();
@@ -5519,7 +5524,7 @@ retry_license:
    //}
 
 
-   //bool application::get_temp_file_name(string & strRet, const ::string & lpszName, const ::string & pszExtension)
+   //bool application::get_temp_file_name(string & strRet, const ::scoped_string & scopedstrName, const ::scoped_string & scopedstrExtension)
    //{
 
    //   return get_temp_file_name_template(strRet,lpszName,pszExtension,nullptr);
@@ -5594,7 +5599,7 @@ retry_license:
 //
 //
 //
-//   int application::hotplugin_host_starter_start_sync(const ::string & pszCommandLine, ::aura::application * papp, hotplugin::host * phost, hotplugin::plugin * pplugin)
+//   int application::hotplugin_host_starter_start_sync(const ::scoped_string & scopedstrCommandLine, ::aura::application * papp, hotplugin::host * phost, hotplugin::plugin * pplugin)
 //   {
 //
 //      {
@@ -5604,7 +5609,7 @@ retry_license:
 //         if (::pointer < ::mutex >.already_exists())
 //         {
 //
-//            //            output_error_message("Could not launch spa installer. It is already running.", e_message_box_ok);
+//            //            output_error_message("Could not launch spa installer. It is already running.", ::user::e_message_box_ok);
 //
 //            return -35;
 //
@@ -5633,13 +5638,13 @@ retry_license:
 //      else
 //      {
 //
-//         return hotplugin_host_host_starter_start_sync(pszCommandLine, get_app(), nullptr);
+//         return hotplugin_host_host_starter_start_sync(scopedstrCommandLine, get_app(), nullptr);
 //
 //      }
 //
 //   }
 //
-//   int application::hotplugin_host_host_starter_start_sync(const ::string & pszCommandLine, ::aura::application * papp, hotplugin::host * phost, hotplugin::plugin * pplugin)
+//   int application::hotplugin_host_host_starter_start_sync(const ::scoped_string & scopedstrCommandLine, ::aura::application * papp, hotplugin::host * phost, hotplugin::plugin * pplugin)
 //   {
 //
 //      return -1;
@@ -5726,21 +5731,21 @@ retry_license:
    //   }
    //
    //
-   //   string application::interactive_get_credentials(string & strUsername, string & strPassword, string strToken)
+   //   string application::interactive_get_credentials(string & strUsername, string & strPassword, const ::scoped_string & scopedstrToken)
    //   {
    //
    //      return ::account::get_cred(this, strUsername, strPassword, strToken);
    //
    //   }
    //
-   //   void application::set_cred(string strToken, const ::string & pszUsername, const ::string & pszPassword)
+   //   void application::set_cred(const ::scoped_string & scopedstrToken, const ::scoped_string & scopedstrUsername, const ::scoped_string & scopedstrPassword)
    //   {
    //
    //      ::account::set_cred(this,strToken, pszUsername, pszPassword);
    //
    //   }
    //
-   //   void application::set_cred_ok(string strToken, bool bOk)
+   //   void application::set_cred_ok(const ::scoped_string & scopedstrToken, bool bOk)
    //   {
    //
    //      ::account::set_cred_ok(this, strToken, bOk);
@@ -5750,12 +5755,12 @@ retry_license:
       //::html::html * application::create_html()
       //{
 
-      //   return __allocate< ::html::html(get_app >());
+      //   return øallocate< ::html::html(get_app >());
 
       //}
 
 
-      //string application::http_get(const ::string & strUrl, ::property_set & set)
+      //string application::http_get(const ::scoped_string & scopedstrUrl, ::property_set & set)
       //{
 
       //   return http()->get(strUrl, set);
@@ -5964,7 +5969,7 @@ namespace aura
    //}
 
 
-   //unsigned int application::guess_code_page(const string& str)
+   //unsigned int application::guess_code_page(const ::scoped_string & scopedstr)
    //{
 
    //   return 0;
@@ -5984,12 +5989,12 @@ namespace aura
    //}
 
 
-   bool application::CreateFileFromRawResource(unsigned int nID, const ::string & pcszType, const ::string & pcszFilePath)
+   bool application::CreateFileFromRawResource(unsigned int nID, const ::scoped_string & scopedstrType, const ::scoped_string & scopedstrFilePath)
    {
 
       __UNREFERENCED_PARAMETER(nID);
-      __UNREFERENCED_PARAMETER(pcszType);
-      __UNREFERENCED_PARAMETER(pcszFilePath);
+      __UNREFERENCED_PARAMETER(scopedstrType);
+      __UNREFERENCED_PARAMETER(scopedstrFilePath);
 
       return false;
 
@@ -6030,7 +6035,7 @@ namespace aura
    }
 
 
-   //bool application::GetResourceData(unsigned int nID, const ::string & pcszType, memory& storage)
+   //bool application::GetResourceData(unsigned int nID, const ::scoped_string & scopedstrType, memory& storage)
 
    //{
 
@@ -6104,10 +6109,10 @@ namespace aura
 
       // handle certain messages in thread
 
-      switch (pusermessage->m_emessage)
+      switch (pusermessage->m_eusermessage)
       {
-         case e_message_create:
-         case e_message_paint:
+         case ::user::e_message_create:
+         case ::user::e_message_paint:
 
             return thread::process_window_procedure_exception(e, pmessage);
 
@@ -6118,9 +6123,9 @@ namespace aura
 
       // handle all the rest
       //linux unsigned int nIDP = __IDP_INTERNAL_FAILURE;   // matter message string
-      const char* nIDP = "Internal Failure";
+      const_char_pointer nIDP = "Internal Failure";
       pusermessage->m_lresult = 0;        // sensible default
-      if (pusermessage->m_emessage == e_message_command)
+      if (pusermessage->m_eusermessage == ::user::e_message_command)
       {
          if (pusermessage->m_lparam == 0)
             //linux nIDP = __IDP_COMMAND_FAILURE; // command (not from a control)
@@ -6131,7 +6136,7 @@ namespace aura
       if (e.estatus() == error_no_memory)
       {
 
-         report_error(e, e_message_box_icon_exclamation | e_message_box_system_modal, nIDP);
+         report_error(e, ::user::e_message_box_icon_exclamation | ::user::e_message_box_system_modal, nIDP);
 
       }
       else if (e.estatus() == error_user)
@@ -6139,7 +6144,7 @@ namespace aura
 
          // ::account::user has not been alerted yet of this catastrophic problem
 
-         report_error(e, e_message_box_icon_stop, nIDP);
+         report_error(e, ::user::e_message_box_icon_stop, nIDP);
 
       }
 
@@ -6171,9 +6176,9 @@ namespace aura
 
 
    /*
-   bool application::hex_to_memory(memory & memory, const ::string & pszHex)
+   bool application::hex_to_memory(memory & memory, const ::scoped_string & scopedstrHex)
    {
-   ::collection::count len = strlen(pszHex);
+   ::collection::count len = strlen(scopedstrHex);
    ::collection::count count = (len + 1) / 2;
    memory.set_size(count);
    ::collection::index i = 0;
@@ -6553,7 +6558,7 @@ namespace aura
    /*   void application::LoadStdProfileSettings(unsigned int nMaxMRU)
    {
    __UNREFERENCED_PARAMETER(nMaxMRU);
-   ASSERT_VALID(this);
+   ASSERT_OK(this);
 
    // 0 by default means not set
    m_nNumThumbnailPages = GetProfileInt(gen_ThumbnailSection, gen_ThumbnailEntry, 0);
@@ -6566,13 +6571,13 @@ namespace aura
    const ::scoped_string & scopedstrParam = __targv[i];
    bool bFlag = false;
    bool bLast = ((i + 1) == __argc);
-   if (pszParam[0] == '-' || pszParam[0] == '/')
+   if (scopedstrParam[0] == '-' || pszParam[0] == '/')
    {
    // erase flag specifier
    bFlag = true;
    ++pszParam;
    }
-   rCmdInfo.ParseParam(pszParam, bFlag, bLast);
+   rCmdInfo.ParseParam(scopedstrParam, bFlag, bLast);
    }
    }*/
 
@@ -6591,27 +6596,27 @@ namespace aura
    {
    }
 
-   void CCommandLineInfo::ParseParam(const ::string & pszParam,bool bFlag,bool bLast)
+   void CCommandLineInfo::ParseParam(const ::scoped_string & scopedstrParam,bool bFlag,bool bLast)
    {
    if (bFlag)
    {
-   const astring strParam(pszParam);
+   const astring strParam(scopedstrParam);
    ParseParamFlag(strParam.GetString());
    }
    else
-   ParseParamNotFlag(pszParam);
+   ParseParamNotFlag(scopedstrParam);
 
    ParseLast(bLast);
    }*/
 
    /*
    #ifdef UNICODE
-   void CCommandLineInfo::ParseParam(const ::string & pszParam, bool bFlag, bool bLast)
+   void CCommandLineInfo::ParseParam(const ::scoped_string & scopedstrParam, bool bFlag, bool bLast)
    {
    if (bFlag)
-   ParseParamFlag(pszParam);
+   ParseParamFlag(scopedstrParam);
    else
-   ParseParamNotFlag(pszParam);
+   ParseParamNotFlag(scopedstrParam);
 
    ParseLast(bLast);
    }
@@ -6619,38 +6624,38 @@ namespace aura
    */
 
    /*
-   void CCommandLineInfo::ParseParamFlag(const ::string & pszParam)
+   void CCommandLineInfo::ParseParamFlag(const ::scoped_string & scopedstrParam)
    {
    // OLE command switches are case insensitive, while
    // shell command switches are case sensitive
 
-   if (lstrcmpA(pszParam, "int_point") == 0)
+   if (lstrcmpA(scopedstrParam, "int_point") == 0)
    m_nShellCommand = FilePrintTo;
-   else if (lstrcmpA(pszParam, "int_point") == 0)
+   else if (lstrcmpA(scopedstrParam, "int_point") == 0)
    m_nShellCommand = FilePrint;
-   else if (::__invariant_stricmp(pszParam, "Register") == 0 ||
-   ::__invariant_stricmp(pszParam, "Regserver") == 0)
+   else if (::__invariant_stricmp(scopedstrParam, "Register") == 0 ||
+   ::__invariant_stricmp(scopedstrParam, "Regserver") == 0)
    m_nShellCommand = AppRegister;
-   else if (::__invariant_stricmp(pszParam, "Unregister") == 0 ||
-   ::__invariant_stricmp(pszParam, "Unregserver") == 0)
+   else if (::__invariant_stricmp(scopedstrParam, "Unregister") == 0 ||
+   ::__invariant_stricmp(scopedstrParam, "Unregserver") == 0)
    m_nShellCommand = AppUnregister;
-   else if (lstrcmpA(pszParam, "dde") == 0)
+   else if (lstrcmpA(scopedstrParam, "dde") == 0)
    {
    m_nShellCommand = FileDDE;
    }
-   else if (::__invariant_stricmp(pszParam, "Embedding") == 0)
+   else if (::__invariant_stricmp(scopedstrParam, "Embedding") == 0)
    {
    m_bRunEmbedded = true;
    m_bShowSplash = false;
    }
-   else if (::__invariant_stricmp(pszParam, "Automation") == 0)
+   else if (::__invariant_stricmp(scopedstrParam, "Automation") == 0)
    {
    m_bRunAutomated = true;
    m_bShowSplash = false;
    }
    }
 
-   void CCommandLineInfo::ParseParamNotFlag(const ::string & pszParam)
+   void CCommandLineInfo::ParseParamNotFlag(const ::scoped_string & scopedstrParam)
    {
    if (m_strFileName.is_empty())
    m_strFileName = pszParam;
@@ -6663,7 +6668,7 @@ namespace aura
    }
 
    #ifdef UNICODE
-   void CCommandLineInfo::ParseParamNotFlag(const ::string & pszParam)
+   void CCommandLineInfo::ParseParamNotFlag(const ::scoped_string & scopedstrParam)
    {
    if (m_strFileName.is_empty())
    m_strFileName = pszParam;
@@ -6692,7 +6697,7 @@ namespace aura
 
    //void application::SaveStdProfileSettings()
    //{
-   //   ASSERT_VALID(this);
+   //   ASSERT_OK(this);
 
 
    //   //      if (m_nNumThumbnailPages != 0)
@@ -6718,7 +6723,7 @@ namespace aura
    //
    //      // return global cast help mode state to false (backward compatibility)
    //      m_bHelpMode = false;
-   //      // trans pMainWnd->PostMessage(e_message_kick_idle); // trigger idle update
+   //      // trans pMainWnd->PostMessage(::user::e_message_kick_idle); // trigger idle update
    //
    //      //trans pMainWnd->WinHelp(dwData, nCmd);
    //   }
@@ -6735,7 +6740,7 @@ namespace aura
    //
    //      // return global cast help mode state to false (backward compatibility)
    //      m_bHelpMode = false;
-   //      // trans pMainWnd->PostMessage(e_message_kick_idle); // trigger idle update
+   //      // trans pMainWnd->PostMessage(::user::e_message_kick_idle); // trigger idle update
    //
    //      // trans pMainWnd->HtmlHelp(dwData, nCmd);
    //   }
@@ -6750,7 +6755,7 @@ namespace aura
    //
    //      // return global cast help mode state to false (backward compatibility)
    //      m_bHelpMode = false;
-   //      // trans pMainWnd->PostMessage(e_message_kick_idle); // trigger idle update
+   //      // trans pMainWnd->PostMessage(::user::e_message_kick_idle); // trigger idle update
    //      // trans pMainWnd->WinHelpInternal(dwData, nCmd);
    //   }
    //
@@ -6816,10 +6821,10 @@ namespace aura
    //}
 
 
-   /*   bool application::open_link(const ::string & pszLink, const ::string & pszTarget)
+   /*   bool application::open_link(const ::scoped_string & scopedstrLink, const ::scoped_string & scopedstrTarget)
    {
-   __UNREFERENCED_PARAMETER(pszLink);
-   __UNREFERENCED_PARAMETER(pszTarget);
+   __UNREFERENCED_PARAMETER(scopedstrLink);
+   __UNREFERENCED_PARAMETER(scopedstrTarget);
    return false;
    }
    */
@@ -6865,19 +6870,19 @@ namespace aura
 
 
 
-   /*void ::aura::FormatString1(string & rString, unsigned int nIDS, const ::string & psz1)
+   /*void ::aura::FormatString1(string & rString, unsigned int nIDS, const ::scoped_string & scopedstr1)
 
    {
    __format_strings(rString, nIDS, &psz1, 1);
 
    }
 
-   void ::aura::FormatString2(string & rString, unsigned int nIDS, const ::string & psz1,
+   void ::aura::FormatString2(string & rString, unsigned int nIDS, const ::scoped_string & scopedstr1,
 
    const ::scoped_string & scopedstr2)
 
    {
-   const char * rgpsz[2];
+   const_char_pointer rgpsz[2];
    rgpsz[0] = psz1;
 
    rgpsz[1] = psz2;
@@ -6959,7 +6964,7 @@ namespace aura
    //   ENSURE(pMainWnd->is_frame_window());
    //   pMainWnd->OnContextHelp();
    //   m_bHelpMode = pMainWnd->m_bHelpMode;
-   //   pMainWnd->PostMessage(e_message_kick_idle); // trigger idle update */
+   //   pMainWnd->PostMessage(::user::e_message_kick_idle); // trigger idle update */
    //}
 
    ///////////////////////////////////////////////////////////////////////////////
@@ -7057,7 +7062,7 @@ namespace aura
 
    //   auto puserinteractionMain = __user_interaction(m_pacmeuserinteractionMain);
 
-   //   puserinteractionMain->m_puiThis->send_message(e_message_close);
+   //   puserinteractionMain->m_puiThis->send_message(::user::e_message_close);
 
    //}
 
@@ -7114,7 +7119,7 @@ namespace aura
    //
    //   {
    //      /*      if (m_pdocmanager != nullptr)
-   //      return document_manager()->OnDDECommand(pszCommand);
+   //      return document_manager()->OnDDECommand(scopedstrCommand);
    //
    //      else*/
    //      return false;
@@ -7196,17 +7201,17 @@ namespace aura
    // application Settings Helpers
 
 
-   void application::SetRegistryKey(const ::string & pszRegistryKey)
+   void application::SetRegistryKey(const ::scoped_string & scopedstrRegistryKey)
 
    {
       //ASSERT(m_pszRegistryKey == nullptr);
-      //ASSERT(pszRegistryKey != nullptr);
+      //ASSERT(scopedstrRegistryKey != nullptr);
 
       //ASSERT(m_strAppName.has_character());
 
       ////bool bEnable = __enable_memory_tracking(false);
       //free((void *)m_pszRegistryKey);
-      //m_pszRegistryKey = strdup(pszRegistryKey);
+      //m_pszRegistryKey = strdup(scopedstrRegistryKey);
 
       //free((void *)m_pszProfileName);
       //m_pszProfileName = strdup(m_strAppName);
@@ -7264,10 +7269,10 @@ namespace aura
    //
    //   // creating it if it doesn't exist.
    //   // responsibility of the caller to call RegCloseKey() on the returned HKEY
-   //   HKEY application::GetSectionKey(const ::string & pszSection)
+   //   HKEY application::GetSectionKey(const ::scoped_string & scopedstrSection)
    //   {
    //
-   //      ASSERT(pszSection != nullptr);
+   //      ASSERT(scopedstrSection != nullptr);
    //
    //      HKEY hSectionKey = nullptr;
    //
@@ -7282,7 +7287,7 @@ namespace aura
    //
    //      DWORD dw;
    //
-   //      RegCreateKeyExW(hAppKey, wstring(pszSection), 0, REG_NONE, REG_OPTION_NON_VOLATILE, KEY_WRITE | KEY_READ, nullptr, &hSectionKey, &dw);
+   //      RegCreateKeyExW(hAppKey, wstring(scopedstrSection), 0, REG_NONE, REG_OPTION_NON_VOLATILE, KEY_WRITE | KEY_READ, nullptr, &hSectionKey, &dw);
    //
    //      RegCloseKey(hAppKey);
    //
@@ -7293,17 +7298,17 @@ namespace aura
    //
    //#endif
 
-   /*   unsigned int application::GetProfileInt(const ::string & pszSection, const ::string & pszEntry,
+   /*   unsigned int application::GetProfileInt(const ::scoped_string & scopedstrSection, const ::scoped_string & scopedstrEntry,
 
    int nDefault)
    {
-   ASSERT(pszSection != nullptr);
+   ASSERT(scopedstrSection != nullptr);
 
-   ASSERT(pszEntry != nullptr);
+   ASSERT(scopedstrEntry != nullptr);
 
    if (m_pszRegistryKey != nullptr) // use registry
    {
-   HKEY hSecKey = GetSectionKey(pszSection);
+   HKEY hSecKey = GetSectionKey(scopedstrSection);
 
    if (hSecKey == nullptr)
    return nDefault;
@@ -7325,24 +7330,24 @@ namespace aura
    else
    {
    ASSERT(m_pszProfileName != nullptr);
-   return ::GetPrivateProfileInt(pszSection, pszEntry, nDefault,
+   return ::GetPrivateProfileInt(scopedstrSection, pszEntry, nDefault,
 
    m_pszProfileName);
    }
    }
 
-   string application::GetProfileString(const ::string & pszSection, const ::string & pszEntry,
+   string application::GetProfileString(const ::scoped_string & scopedstrSection, const ::scoped_string & scopedstrEntry,
 
    const ::scoped_string & scopedstrDefault)
 
    {
-   ASSERT(pszSection != nullptr);
+   ASSERT(scopedstrSection != nullptr);
 
-   ASSERT(pszEntry != nullptr);
+   ASSERT(scopedstrEntry != nullptr);
 
    if (m_pszRegistryKey != nullptr)
    {
-   HKEY hSecKey = GetSectionKey(pszSection);
+   HKEY hSecKey = GetSectionKey(scopedstrSection);
 
    if (hSecKey == nullptr)
    return pszDefault;
@@ -7374,12 +7379,12 @@ namespace aura
    {
    ASSERT(m_pszProfileName != nullptr);
 
-   if (pszDefault == nullptr)
+   if (scopedstrDefault == nullptr)
 
    pszDefault = "";   // don't pass in nullptr
 
    char szT[4096];
-   unsigned int dw = ::GetPrivateProfileString(pszSection, pszEntry,
+   unsigned int dw = ::GetPrivateProfileString(scopedstrSection, pszEntry,
 
    pszDefault, szT, _countof(szT), m_pszProfileName);
 
@@ -7388,13 +7393,13 @@ namespace aura
    }
    }
 
-   bool application::GetProfileBinary(const ::string & pszSection, const ::string & pszEntry,
+   bool application::GetProfileBinary(const ::scoped_string & scopedstrSection, const ::scoped_string & scopedstrEntry,
 
    unsigned char** ppData, unsigned int* pBytes)
    {
-   ASSERT(pszSection != nullptr);
+   ASSERT(scopedstrSection != nullptr);
 
-   ASSERT(pszEntry != nullptr);
+   ASSERT(scopedstrEntry != nullptr);
 
    ASSERT(ppData != nullptr);
    ASSERT(pBytes != nullptr);
@@ -7402,7 +7407,7 @@ namespace aura
    *pBytes = 0;
    if (m_pszRegistryKey != nullptr)
    {
-   HKEY hSecKey = GetSectionKey(pszSection);
+   HKEY hSecKey = GetSectionKey(scopedstrSection);
 
    if (hSecKey == nullptr)
    {
@@ -7442,7 +7447,7 @@ namespace aura
    {
    ASSERT(m_pszProfileName != nullptr);
 
-   string str = GetProfileString(pszSection, pszEntry, nullptr);
+   string str = GetProfileString(scopedstrSection, pszEntry, nullptr);
 
    if (str.is_empty())
    return false;
@@ -7460,17 +7465,17 @@ namespace aura
    }
 
 
-   bool application::WriteProfileInt(const ::string & pszSection, const ::string & pszEntry,
+   bool application::WriteProfileInt(const ::scoped_string & scopedstrSection, const ::scoped_string & scopedstrEntry,
 
    int nValue)
    {
-   ASSERT(pszSection != nullptr);
+   ASSERT(scopedstrSection != nullptr);
 
-   ASSERT(pszEntry != nullptr);
+   ASSERT(scopedstrEntry != nullptr);
 
    if (m_pszRegistryKey != nullptr)
    {
-   HKEY hSecKey = GetSectionKey(pszSection);
+   HKEY hSecKey = GetSectionKey(scopedstrSection);
 
    if (hSecKey == nullptr)
    return false;
@@ -7486,23 +7491,23 @@ namespace aura
 
    char szT[16];
    _stprintf_s(szT, _countof(szT), "%d", nValue);
-   return ::WritePrivateProfileString(pszSection, pszEntry, szT,
+   return ::WritePrivateProfileString(scopedstrSection, pszEntry, szT,
 
    m_pszProfileName);
    }
    }
 
-   bool application::WriteProfileString(const ::string & pszSection, const ::string & pszEntry,
+   bool application::WriteProfileString(const ::scoped_string & scopedstrSection, const ::scoped_string & scopedstrEntry,
 
    const ::scoped_string & scopedstrValue)
 
    {
-   ASSERT(pszSection != nullptr);
+   ASSERT(scopedstrSection != nullptr);
 
    if (m_pszRegistryKey != nullptr)
    {
    int lResult;
-   if (pszEntry == nullptr) //delete whole department
+   if (scopedstrEntry == nullptr) //delete whole department
 
    {
    HKEY hAppKey = GetAppRegistryKey();
@@ -7512,10 +7517,10 @@ namespace aura
 
    RegCloseKey(hAppKey);
    }
-   else if (pszValue == nullptr)
+   else if (scopedstrValue == nullptr)
 
    {
-   HKEY hSecKey = GetSectionKey(pszSection);
+   HKEY hSecKey = GetSectionKey(scopedstrSection);
 
    if (hSecKey == nullptr)
    return false;
@@ -7526,13 +7531,13 @@ namespace aura
    }
    else
    {
-   HKEY hSecKey = GetSectionKey(pszSection);
+   HKEY hSecKey = GetSectionKey(scopedstrSection);
 
    if (hSecKey == nullptr)
    return false;
    lResult = RegSetValueEx(hSecKey, pszEntry, nullptr, REG_SZ,
 
-   (unsigned char *)pszValue, (lstrlen(pszValue)+1)*sizeof(char));
+   (unsigned char *)pszValue, (lstrlen(scopedstrValue)+1)*sizeof(char));
 
    RegCloseKey(hSecKey);
    }
@@ -7542,22 +7547,22 @@ namespace aura
    {
    ASSERT(m_pszProfileName != nullptr);
    ASSERT(lstrlen(m_pszProfileName) < 4095); // can't read in bigger
-   return ::WritePrivateProfileString(pszSection, pszEntry, pszValue,
+   return ::WritePrivateProfileString(scopedstrSection, pszEntry, pszValue,
 
    m_pszProfileName);
    }
    }
 
-   bool application::WriteProfileBinary(const ::string & pszSection, const ::string & pszEntry,
+   bool application::WriteProfileBinary(const ::scoped_string & scopedstrSection, const ::scoped_string & scopedstrEntry,
 
    unsigned char * pData, unsigned int nBytes)
    {
-   ASSERT(pszSection != nullptr);
+   ASSERT(scopedstrSection != nullptr);
 
    if (m_pszRegistryKey != nullptr)
    {
    int lResult;
-   HKEY hSecKey = GetSectionKey(pszSection);
+   HKEY hSecKey = GetSectionKey(scopedstrSection);
 
    if (hSecKey == nullptr)
    return false;
@@ -7584,7 +7589,7 @@ namespace aura
 
    ASSERT(m_pszProfileName != nullptr);
 
-   bool bResult = WriteProfileString(pszSection, pszEntry, psz);
+   bool bResult = WriteProfileString(scopedstrSection, pszEntry, psz);
 
    delete[] psz;
 
@@ -7605,7 +7610,7 @@ namespace aura
    ::property_set * application::existing_propset(object * pparticle)
    {
    single_lock synchronouslock(&m_mapObjectSet, true);
-   auto point = m_mapObjectSet.plookup(pparticle);
+   auto point = m_mapObjectSet.find(pparticle);
    if(point == nullptr)
    return nullptr;
    return &point->m_value;
@@ -7743,7 +7748,7 @@ namespace aura
    //}
 
 
-   //bool application::_001OnDDECommand(const ::string & pcsz)
+   //bool application::_001OnDDECommand(const ::scoped_string & scopedstr)
 
    //{
    //   throw ::interface_only();
@@ -7804,7 +7809,7 @@ namespace aura
    //   //ASSERT(::windows_definition::CurrentInstanceHandle == m_hInstance);
 
    //   /*      if (m_pdocmanager != nullptr)
-   //   ASSERT_VALID(m_pdocmanager);*/
+   //   ASSERT_OK(m_pdocmanager);*/
    //}
 
    //   void application::dump(dump_context& dumpcontext) const
@@ -7866,12 +7871,12 @@ namespace aura
    //}
 
 
-   //string application::sync_message_box(const string & pszMatter, ::property_set & propertyset)
+   //string application::sync_message_box(const ::scoped_string & scopedstrMatter, ::property_set & propertyset)
    //{
    //
    //   __UNREFERENCED_PARAMETER(propertyset);
    //
-   //   __UNREFERENCED_PARAMETER(pszMatter);
+   //   __UNREFERENCED_PARAMETER(scopedstrMatter);
    //
    //   return "";
 
@@ -7940,7 +7945,7 @@ namespace aura
 
       //::pointer<::user::message>pusermessage(pmessage);
 
-      //      if (pmessage->m_emessage == WM_USER + 124 && pmessage->userinteraction() == nullptr)
+      //      if (pmessage->m_eusermessage == WM_USER + 124 && pmessage->userinteraction() == nullptr)
       //      {
       //
       //         /*
@@ -7991,7 +7996,7 @@ namespace aura
    ////      //string strFileName = ::PathFindFileName(strShortName);
    ////      // strip out extension
    ////      //char * pszFileName = strFileName.GetBuffer();
-   ////      //::PathRemoveExtension(pszFileName);
+   ////      //::PathRemoveExtension(scopedstrFileName);
    ////      //strFileName.ReleaseBuffer();
    ////
    ////      //      m_atomApp = ::GlobalAddAtom(strFileName);
@@ -8113,7 +8118,7 @@ namespace aura
    }
 
 
-   //::aura::printer* application::get_printer(const ::string & pszDeviceName)
+   //::aura::printer* application::get_printer(const ::scoped_string & scopedstrDeviceName)
    //{
 
    //   return nullptr;
@@ -8121,10 +8126,10 @@ namespace aura
    //}
 
 
-   //bool application::set_keyboard_layout(const ::string & pszPath, const ::action_context& context)
+   //bool application::set_keyboard_layout(const ::scoped_string & scopedstrPath, const ::action_context& context)
    //{
 
-   //   return psession->keyboard().load_layout(pszPath, context);
+   //   return psession->keyboard().load_layout(scopedstrPath, context);
 
    //}
 
@@ -8139,12 +8144,12 @@ namespace aura
    }
 
 
-   bool application::get_fs_size(string& strSize, const ::string & pszPath, bool& bPending)
+   bool application::get_fs_size(string& strSize, const ::scoped_string & scopedstrPath, bool& bPending)
    {
 
       long long i64Size;
 
-      if (!get_fs_size(i64Size, pszPath, bPending))
+      if (!get_fs_size(i64Size, scopedstrPath, bPending))
       {
 
          strSize.empty();
@@ -8202,7 +8207,7 @@ namespace aura
    }
 
 
-   bool application::get_fs_size(long long& i64Size, const ::string & pszPath, bool& bPending)
+   bool application::get_fs_size(long long& i64Size, const ::scoped_string & scopedstrPath, bool& bPending)
    {
       return false;
       //db_server * pcentral = dynamic_cast <db_server *> (psystem->m_psimpledb->db());
@@ -8219,12 +8224,12 @@ namespace aura
    }
 
 
-   void application::set_title(const ::string & pszTitle)
+   void application::set_title(const ::scoped_string & scopedstrTitle)
    {
 
       auto psession = session();
 
-      psession->set_app_title(m_strAppName, pszTitle);
+      psession->set_app_title(m_strAppName, scopedstrTitle);
 
    }
 
@@ -8255,21 +8260,21 @@ namespace aura
    }
 
 
-   //oswindow application::get_ca2_app_wnd(const ::string & psz)
+   //oswindow application::get_ca2_app_wnd(const ::scoped_string & scopedstr)
    //{
 
-   //   __UNREFERENCED_PARAMETER(psz);
+   //   __UNREFERENCED_PARAMETER(scopedstr);
 
    //   return nullptr;
 
    //}
    //
    //
-   //   int application::send_simple_command(const ::string & psz, void* osdataSender)
+   //   int application::send_simple_command(const ::scoped_string & scopedstr, void* osdataSender)
    //   {
    //      string strApp;
-   //      string_array stra;
-   //      stra.add_tokens(psz, "::", true);
+   //      string_array_base stra;
+   //      stra.add_tokens(scopedstr, "::", true);
    //      if (stra.get_size() > 0)
    //      {
    //         strApp = stra[0];
@@ -8283,7 +8288,7 @@ namespace aura
    //   }
    //
    ////
-   //   int application::send_simple_command(void* osdata, const ::string & psz, void* osdataSender)
+   //   int application::send_simple_command(void* osdata, const ::scoped_string & scopedstr, void* osdataSender)
    //   {
    //#ifdef WINDOWS_DESKTOP
    //      ::windowing::window * pwindow = (::oswindow) osdata;
@@ -8292,7 +8297,7 @@ namespace aura
    //      COPYDATASTRUCT cds;
    //      memory_set(&cds, 0, sizeof(cds));
    //      cds.dwData = 888888;
-   //      cds.cbData = (unsigned int)strlen(psz);
+   //      cds.cbData = (unsigned int)strlen(scopedstr);
    //      cds.lpData = (PVOID)psz;
    //
    //      return (int)SendMessage(oswindow, WM_COPYDATA, (wparam)osdataSender, (lparam)&cds);
@@ -8413,10 +8418,10 @@ namespace aura
    //}
 
 
-   //bool application::platform_open_by_file_extension(int iEdge, const ::string & pszPathName, application_bias * pappbias)
+   //bool application::platform_open_by_file_extension(int iEdge, const ::scoped_string & scopedstrPathName, application_bias * pappbias)
    //{
 
-   //   return psystem->get_platform(iEdge)->open_by_file_extension(pszPathName, pappbias);
+   //   return psystem->get_platform(iEdge)->open_by_file_extension(scopedstrPathName, pappbias);
    //}
 
    //bool application::platform_open_by_file_extension(int iEdge, ::create * pcc)
@@ -8429,7 +8434,7 @@ namespace aura
    //   ::pointer<::apex::application>application::create_platform(::apex::session* psession)
    //   {
    //
-   //      return __allocate ::aura::session();
+   //      return øallocate ::aura::session();
    //
    //   }
 
@@ -8473,12 +8478,12 @@ namespace aura
    }
 
 
-   void application::report_error(const ::exception & e, int iMessageFlags, const ::string & pszTopic)
+   void application::report_error(const ::exception & e, int iMessageFlags, const ::scoped_string & scopedstrTopic)
    {
 
       string strMessage;
 
-      strMessage += pszTopic;
+      strMessage += scopedstrTopic;
 
       strMessage += " : ";
 
@@ -8486,9 +8491,9 @@ namespace aura
 
       auto puserinteractionMain = m_pacmeuserinteractionMain;
 
-      //puserinteractionMain->message_box(strMessage, nullptr, ::enum_message_box(iMessageFlags));
+      //puserinteractionMain->message_box(strMessage, nullptr, ::user::enum_message_box(iMessageFlags));
 
-      output_error_message(strMessage, pszTopic, iMessageFlags);
+      output_error_message(strMessage, scopedstrTopic, iMessageFlags);
 
    }
 
@@ -8556,19 +8561,19 @@ namespace aura
    }
 
 
-   string application::get_theme()
-   {
-
-      if (!m_ptheme)
-      {
-
-         return ::aqua::application::get_theme();
-
-      }
-
-      return m_ptheme->get_theme();
-
-   }
+   // string application::get_theme()
+   // {
+   //
+   //    if (!m_ptheme)
+   //    {
+   //
+   //       return ::aqua::application::get_theme();
+   //
+   //    }
+   //
+   //    return m_ptheme->get_theme();
+   //
+   // }
 
 
    void application::initialize_contextualized_theme()
@@ -8576,7 +8581,7 @@ namespace aura
 
       //auto estatus =
 
-      __construct_new(m_ptheme);
+      øconstruct_new(m_ptheme);
 
       //if (!estatus)
       //{
@@ -8897,7 +8902,7 @@ namespace aura
       //         //pMainWnd = __get_main_window();
       //         //if((m_puiMain != nullptr) && (IsEnterKey(pusermessage) || IsButtonUp(pusermessage)))
       //         //{
-      //         //   //                  pMainWnd->SendMessage(e_message_command, ID_HELP);
+      //         //   //                  pMainWnd->SendMessage(::user::e_message_command, ID_HELP);
       //         //   pusermessage->m_bRet = true;
       //         //   return;
       //         //}
@@ -8908,7 +8913,7 @@ namespace aura
       //case MSGF_DIALOGBOX:    // handles message boxes as well.
       //   //pMainWnd = __get_main_window();
       //   if (code == MSGF_DIALOGBOX && m_puiActive != nullptr &&
-      //      pusermessage->id() >= e_message_key_first && pusermessage->id() <= e_message_key_last)
+      //      pusermessage->id() >= ::user::e_message_key_first && pusermessage->id() <= ::user::e_message_key_last)
       //   {
       //   }
       //   break;
@@ -8937,7 +8942,7 @@ namespace aura
 
 
 
-   /*string application::get_cred(const ::string & strRequestUrlParam,const ::int_rectangle & rectangle,string & strUsername,string & strPassword,string strToken,string strTitle,bool bInteractive)
+   /*string application::get_cred(const ::scoped_string & scopedstrRequestUrlParam,const ::int_rectangle & rectangle,string & strUsername,string & strPassword,const ::scoped_string & scopedstrToken,const ::scoped_string & scopedstrTitle,bool bInteractive)
    {
 
       string str = ::account::get_cred(this,strUsername,strPassword,strToken);
@@ -8974,7 +8979,7 @@ namespace aura
 
       }
 
-      pinteraction = __allocate ::account::simple_ui(this,strRequestUrl);
+      pinteraction = øallocate ::account::simple_ui(this,strRequestUrl);
 
       pinteraction->m_login.m_peditUser->set_window_text(strUsername);
 
@@ -8994,7 +8999,7 @@ namespace aura
    //::pointer<::user::user>application::create_user()
    //{
 
-   //   return __allocate ::user::user();
+   //   return øallocate ::user::user();
 
    //}
 
@@ -9048,7 +9053,7 @@ namespace aura
                //               synchronouslock.unlock();
                try
                {
-                  pinteraction->send_message(e_message_idle_update_command_user_interface, (wparam)true);
+                  pinteraction->send_message(::user::e_message_idle_update_command_user_interface, (wparam)true);
                }
                catch (...)
                {
@@ -9162,7 +9167,7 @@ namespace aura
    }
 
 
-   //::pointer<::user::document>application::defer_create_impact(string strImpact, ::user::interaction* puiParent, e_window_flag ewindowflag, const ::atom& atom)
+   //::pointer<::user::document>application::defer_create_impact(const ::scoped_string & scopedstrImpact, ::user::interaction* puiParent, e_window_flag ewindowflag, const ::atom& atom)
    //{
 
    //   auto pcontroller = ::aura::application::defer_create_impact(strImpact, puiParent, ewindowflag, atom);
@@ -9179,7 +9184,7 @@ namespace aura
    //}
 
 
-   void application::on_song_added(const string& str)
+   void application::on_song_added(const ::scoped_string & scopedstr)
    {
 
    }
@@ -9217,10 +9222,10 @@ namespace aura
    }
 
 
-   string application::sound_path(const ::string & psz)
+   string application::sound_path(const ::scoped_string & scopedstr)
    {
 
-      string strFileName = string(psz) + string(".wav");
+      string strFileName = string(scopedstr) + string(".wav");
 
       string strFilePath = directory()->matter(strFileName);
 
@@ -9274,12 +9279,74 @@ namespace aura
    }
 
 
+   void application::on_application_message(::platform::message * pmessage)
+   {
+
+      aqua::application::on_application_message(pmessage);
+
+      auto emessage = pmessage->m_emessage;
+
+      if(emessage == ::e_message_on_size)
+      {
+
+         int_size size;
+
+         ::input_byte2_stream stream(pmessage->m_memory);
+
+         stream >> size;
+
+         auto psystem = system();
+
+         if (psystem->m_pacmewindowing)
+         {
+
+            auto pwindowing = psystem->windowing();
+
+            auto pdisplay = pwindowing->display();
+
+            if(pdisplay)
+            {
+
+               auto pmonitor = psystem->øcreate_new<::windowing::monitor>();
+
+               pmonitor->m_pdisplay = pdisplay;
+
+               ::int_rectangle r(::int_point(), size);
+
+               pmonitor->
+                  m_rectangle = r;
+               pmonitor->
+                  m_rectangleFixedWorkspace = r;
+               pmonitor->
+                  m_rectangleWorkspace = r;
+
+               pdisplay->m_monitora.set_at_grow(0, pmonitor);
+
+            }
+
+         }
+
+         auto pwindowApplicationHost = system()->get_main_host_window();
+
+         if (::is_set(pwindowApplicationHost))
+         {
+
+            pwindowApplicationHost->on_size(size.cx(), size.cy());
+
+         }
+
+      }
+
+   }
+
+
+
    //   icon_pointer application::load_icon(const ::payload& payloadFile)
    //   {
    //
    //#ifdef WINDOWS_DESKTOP
    //
-   //      string_array straMatter;
+   //      string_array_base straMatter;
    //
    //      straMatter.add("main");
    //
@@ -9299,7 +9366,7 @@ namespace aura
    //
    //      }
    //
-   //      auto picon = __create_new < ::image::icon >();
+   //      auto picon = øcreate_new < ::image::icon >();
    //
    //      if (!picon)
    //      {
@@ -9321,7 +9388,7 @@ namespace aura
    //   }
 
 
-   //bool application::on_application_menu_action(const ::string & pszCommand)
+   //bool application::on_application_menu_action(const ::scoped_string & scopedstrCommand)
    //{
 
    //   if (m_pacmeuserinteractionMain != nullptr)
@@ -9329,7 +9396,7 @@ namespace aura
 
    //      ::message::command command;
 
-   //      command.id() = ::atom(pszCommand);
+   //      command.id() = ::atom(scopedstrCommand);
 
    //      __channel(m_pacmeuserinteractionMain)->route_command_message(&command);
 
@@ -9374,12 +9441,12 @@ namespace aura
    //
 
 
-   void application::on_additional_local_instance(bool & bHandled, string strModule, int iPid, string strCommandLine)
+   void application::on_additional_local_instance(bool & bHandled, const ::scoped_string & scopedstrModule, int iPid, const ::scoped_string & scopedstrCommandLine)
    {
 
-      auto prequest = __create_new<::request >();
+      auto prequest = øcreate_new<::request >();
 
-      prequest->_001ParseCommandLine(strCommandLine);
+      prequest->_001ParseCommandLine(scopedstrCommandLine);
 
       ::cast < ::user::interaction > puserinteraction = m_pacmeuserinteractionMain;
       
@@ -9436,7 +9503,7 @@ namespace aura
    // }
    //
    //
-   // ::base::user * application::user()
+   // ::berg::user * application::user()
    // {
    //
    //    return aurauser();
@@ -9494,7 +9561,7 @@ namespace aura
    }
 
 
-   void application::pick_media(const char *pszMediaType)
+   void application::pick_media(const ::scoped_string & scopedstrMediaType)
    {
 
       auto puserinteraction = m_pacmeuserinteractionMain;
@@ -9515,7 +9582,7 @@ namespace aura
 
       }
 
-      pwindow->pick_media(pszMediaType);
+      pwindow->pick_media(scopedstrMediaType);
 
    }
 
@@ -9585,15 +9652,15 @@ namespace aura
    ////   ::pointer < ::graphics::application> papp = m_papplication;
 
 
-   ////   __construct_new(m_pvkcdevice);
+   ////   øconstruct_new(m_pvkcdevice);
 
    ////   m_pvkcdevice->initialize_device(m_pvkcontainer);
 
-   ////   __construct_new(m_prenderer);
+   ////   øconstruct_new(m_prenderer);
 
    ////   m_prenderer->initialize_renderer(m_pvkcontainer, m_pvkcdevice);
 
-   ////   auto pglobalpoolbuilder = __allocate VkcDescriptorPool::Builder();
+   ////   auto pglobalpoolbuilder = øallocate VkcDescriptorPool::Builder();
 
    ////   pglobalpoolbuilder->initialize_builder(m_pvkcdevice);
    ////   pglobalpoolbuilder->setMaxSets(VkcRenderPass::MAX_FRAMES_IN_FLIGHT);
@@ -9603,14 +9670,14 @@ namespace aura
 
    ////   //m_pglobalpool->initialize_pool(m_pvkcdevice);
 
-   ////   //= __allocate
+   ////   //= øallocate
    ////   //   VkcDescriptorPool::Builder(m_pvkcdevice)
    ////   //   .setMaxSets(VkcSwapChain::MAX_FRAMES_IN_FLIGHT)
    ////   //   .addPoolSize(VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER, VkcSwapChain::MAX_FRAMES_IN_FLIGHT)
    ////   //   .build();
    ////   loadGameObjects();
 
-   ////   //m_pvkcdevice = __allocate VkcDevice(m_pvulkandevice);
+   ////   //m_pvkcdevice = øallocate VkcDevice(m_pvulkandevice);
 
    ////   ::pointer_array<buffer> uboBuffers;
 
@@ -9619,7 +9686,7 @@ namespace aura
    ////   for (int i = 0; i < uboBuffers.size(); i++)
    ////   {
 
-   ////      uboBuffers[i] = __allocate buffer();
+   ////      uboBuffers[i] = øallocate buffer();
 
    ////      uboBuffers[i]->initialize_buffer(
    ////         m_pvkcdevice,
@@ -9976,6 +10043,20 @@ namespace aura
       return m_strGraphics3DImplementation;
 
    }
+
+
+      //::aura::game *application::game() { 
+      //   
+      //   ::cast<::aura::game> pauragame = m_paquagame;
+      //   
+      //   if (!pauragame)
+      //   {
+
+      //      return nullptr;
+      //   }
+      //   return pauragame; 
+      //
+      //}
 
 
 } // namespace aura

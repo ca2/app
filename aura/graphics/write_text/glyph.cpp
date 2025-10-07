@@ -159,7 +159,7 @@ namespace write_text
 //   *  FUNCTION   : AppendPolyLineToBezier
 //   *
 //   *  PURPOSE    : Converts line segments into their Bezier int_point
-//   *               representation and appends them to a list of Bezier points.
+//   *               representation and appends them to a list_base of Bezier points.
 //   *
 //   *               warning - The array must have at least one valid
 //   *               start int_point prior to the address of the matter passed.
@@ -219,7 +219,7 @@ namespace write_text
 //   *  FUNCTION   : AppendQuadBSplineToBezier
 //   *
 //   *  PURPOSE    : Converts Quadratic spline segments into their Bezier int_point
-//   *               representation and appends them to a list of Bezier points.
+//   *               representation and appends them to a list_base of Bezier points.
 //   *
 //   *               warning - The array must have at least one valid
 //   *               start int_point prior to the address of the matter passed.

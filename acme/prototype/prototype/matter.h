@@ -67,7 +67,9 @@ public:
 //   inline matter(::platform::context * pcontext) : m_papplication(pcontext), m_pmutex(nullptr), m_uError(0), m_eobject(e_object_none) { }
 //#endif
 
-   matter() {}
+   matter(const ::e_flag & eflag = e_flag_none, const ::e_status & estatus = undefined) :
+      ::particle(eflag, estatus)
+   { }
    ~matter() override;
 
 
@@ -115,13 +117,13 @@ public:
 
    virtual ::platform::application * _get_app();
 
-   virtual bool is_thread() const;
+   virtual bool is_thread_class() const;
    virtual ::thread * get_thread();
    virtual bool thread_is_running() const;
 
 
    virtual ::task * get_task();
-   virtual const char * get_task_tag();
+   virtual const_char_pointer get_task_tag();
    //virtual ::collection::index task_add(::task* pthread);
    virtual void task_erase(::task* pthread);
 
@@ -255,18 +257,18 @@ public:
 
 
 
-   //::pointer < ::subparticle > message_box(const ::string & strMessage, const ::string & strTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const ::string & strDetails = nullptr);
+   //::pointer < ::subparticle > message_box(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const ::user::e_message_box & emessagebox = ::user::e_message_box_ok, const ::scoped_string & scopedstrDetails = nullptr);
 
 
    //::topic_pointer create_topic(const ::atom & atom);
 
 
-   bool _handle_uri(const ::string & strUri) override;
-   bool _handle_call(::payload & payload, const ::string & strObject, const ::string & strMember, ::property_set & propertyset) override;
+   bool _handle_uri(const ::scoped_string & scopedstrUri) override;
+   bool _handle_call(::payload & payload, const ::scoped_string & scopedstrObject, const ::scoped_string & scopedstrMember, ::property_set & propertyset) override;
 
 
-   virtual bool handle_uri(const ::string & stringUri);
-   virtual bool handle_call(::payload & payload, const ::string & strObject, const ::string & strMember, ::property_set & propertyset);
+   virtual bool handle_uri(const ::scoped_string & scopedstringUri);
+   virtual bool handle_call(::payload & payload, const ::scoped_string & scopedstrObject, const ::scoped_string & scopedstrMember, ::property_set & propertyset);
 
 
    inline ::file_pointer get_reader(const ::payload& payloadFile, ::file::e_open eopen = ::file::e_open());
@@ -340,10 +342,10 @@ inline bool __defer_raw_construct_new(::pointer<TYPE> & ptype)
 
 
 //template < typename TYPE >
-//inline ::pointer<TYPE> matter::__øcreate(::factory::factory * pfactory)
+//inline ::pointer<TYPE> matter::øcreate(::factory::factory * pfactory)
 //{
 //
-//   return ::__øcreate<TYPE>(this, pfactory);
+//   return ::øcreate<TYPE>(this, pfactory);
 //
 //}
 
@@ -351,7 +353,7 @@ inline bool __defer_raw_construct_new(::pointer<TYPE> & ptype)
 
 //
 //template < typename TYPE >
-//inline ::pointer<TYPE>matter::__id_create(const ::atom & atom, ::factory::factory * pfactory)
+//inline ::pointer<TYPE>matter::øid_create(const ::atom & atom, ::factory::factory * pfactory)
 //{
 //
 //   auto pfactoryitem = pfactory->get_factory_item(atom);
@@ -402,20 +404,20 @@ inline bool __defer_raw_construct_new(::pointer<TYPE> & ptype)
 //
 
 //template < typename TYPE >
-//inline ::pointer<TYPE>matter::__create_new()
+//inline ::pointer<TYPE>matter::øcreate_new()
 //{
 //
-//   return ::__create_new<TYPE>(this);
+//   return ::øcreate_new<TYPE>(this);
 //
 //}
 
 
 
 //template < typename BASE_TYPE >
-//inline void matter::__raw_construct(::pointer<BASE_TYPE> & p, ::factory::factory * pfactory)
+//inline void matter::øraw_construct(::pointer<BASE_TYPE> & p, ::factory::factory * pfactory)
 //{
 //
-//   ::__raw_construct(this, p, pfactory);
+//   ::øraw_construct(this, p, pfactory);
 ////   //{
 ////
 ////   auto & pfactory = factory_item < BASE_TYPE >();
@@ -462,10 +464,10 @@ inline bool __defer_raw_construct_new(::pointer<TYPE> & ptype)
 
 //
 //template < typename TYPE >
-//inline void particle::__øconstruct(::pointer<TYPE> & p, ::factory::factory * pfactory)
+//inline void particle::øconstruct(::pointer<TYPE> & p, ::factory::factory * pfactory)
 //{
 //
-//   ::__øconstruct(this, p, pfactory);
+//   ::øconstruct(this, p, pfactory);
 //
 //}
 
@@ -486,7 +488,7 @@ inline bool __defer_raw_construct_new(::pointer<TYPE> & ptype)
 //   if (::is_null(p))
 //   {
 //
-//      error() << "particle::__øconstruct p is null";
+//      error() << "particle::øconstruct p is null";
 //
 //      throw_exception(::error_null_pointer);
 //
@@ -497,7 +499,7 @@ inline bool __defer_raw_construct_new(::pointer<TYPE> & ptype)
 //   if (::is_null(ptype))
 //   {
 //
-//      error() <<"particle::__øconstruct p is null (is assignee type derived from BASE_TYPE?";
+//      error() <<"particle::øconstruct p is null (is assignee type derived from BASE_TYPE?";
 //
 //      throw_exception(::error_null_pointer);
 //
@@ -509,20 +511,20 @@ inline bool __defer_raw_construct_new(::pointer<TYPE> & ptype)
 
 
 //template < typename TYPE >
-//inline void particle::__id_construct(::pointer<TYPE> & p, const ::atom & atom)
+//inline void particle::øid_construct(::pointer<TYPE> & p, const ::atom & atom)
 //{
 //
-//   ::__id_construct(this, p, atom);
+//   ::øid_construct(this, p, atom);
 //
 //}
 
 
 //
 //template < typename TYPE >
-//inline void matter::__construct_new(::pointer<TYPE> & p)
+//inline void matter::øconstruct_new(::pointer<TYPE> & p)
 //{
 //
-//   ::__construct_new(this, p);
+//   ::øconstruct_new(this, p);
 //
 //}
 
@@ -534,7 +536,7 @@ inline bool __defer_raw_construct_new(::pointer<TYPE> & ptype)
 //   if (::is_set(pcomposite))
 //   {
 //
-//      //synchronous_lock synchronouslock(this->synchronization());
+//      //synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //      //if (m_pcompositea)
 //      //{
@@ -562,7 +564,7 @@ inline bool __defer_raw_construct_new(::pointer<TYPE> & ptype)
 //   if (::is_set(preference))
 //   {
 //
-//      //synchronous_lock synchronouslock(this->synchronization());
+//      //synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //      //if (m_preferencea)
 //      //{

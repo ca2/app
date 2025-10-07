@@ -27,7 +27,7 @@ namespace nanoui
 
       set_flags(Flags::ToggleButton | Flags::PopupButton);
 
-      m_ppopup = __allocate Popup(screen(), window());
+      m_ppopup = øallocate Popup(screen(), window());
 
       m_ppopup->set_size({320, 250 });
 

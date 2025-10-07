@@ -16,8 +16,8 @@
 #endif
 
 
-//::string idn_to_punycode(const ::string & str);
-//::string idn_from_punycode(const ::string & str);
+//::string idn_to_punycode(const ::scoped_string & scopedstr);
+//::string idn_from_punycode(const ::scoped_string & scopedstr);
 
 
 namespace url
@@ -593,7 +593,7 @@ namespace url
 
    //   auto pszSecondSlash = pszSlash + 1;
 
-   //   const char* pszHost;
+   //   const_char_pointer pszHost;
 
    //   if (*pszSecondSlash != '/')
    //   {
@@ -629,14 +629,14 @@ namespace url
 
    //   m_rangeHost.m_begin = pszHost;
 
-   //   auto pszRequest = strchr(pszHost, '/');
+   //   auto pszRequest = strchr(scopedstrHost, '/');
 
    //   if (!pszRequest)
    //   {
 
    //      m_rangeHost.m_end = url.m_str.m_end;
 
-   //      auto pszPortColon = strchr(pszHost, ':');
+   //      auto pszPortColon = strchr(scopedstrHost, ':');
 
    //      if (pszPortColon)
    //      {
@@ -663,7 +663,7 @@ namespace url
 
    //   m_bIsUrl = true;
 
-   //   auto pszPortColon = strchr(pszHost, ':');
+   //   auto pszPortColon = strchr(scopedstrHost, ':');
 
    //   if (pszPortColon)
    //   {
@@ -866,40 +866,40 @@ namespace url
 
    ////   auto pszScript = url.m_str.c_str();
 
-   ////   auto pszLastSlashOnScript = strrchr(pszScript, '/');
+   ////   auto pszLastSlashOnScript = strrchr(scopedstrScript, '/');
 
-   ////   const char * pszQuestion = strchr(pszScript, '?');
+   ////   const_char_pointer pszQuestion = strchr(scopedstrScript, '?');
 
-   ////   const char* pszFragment;
+   ////   const_char_pointer pszFragment;
 
-   ////   if (pszQuestion)
+   ////   if (scopedstrQuestion)
    ////   {
 
-   ////      pszFragment = strchr(pszQuestion, '#');
+   ////      pszFragment = strchr(scopedstrQuestion, '#');
 
    ////   }
    ////   else
    ////   {
 
-   ////      pszFragment = strchr(pszScript, '#');
+   ////      pszFragment = strchr(scopedstrScript, '#');
 
    ////   }
 
    ////   m_rangePath.m_begin = pszScript;
 
-   ////   auto pszPathEnd = minimum_non_null(url.m_str.m_end, minimum_non_null(pszQuestion, pszFragment));
+   ////   auto pszPathEnd = minimum_non_null(url.m_str.m_end, minimum_non_null(scopedstrQuestion, pszFragment));
 
    ////   m_rangePath.m_end = pszPathEnd;
 
    ////   m_rangeName.m_end = pszPathEnd;
 
-   ////   if (pszLastSlashOnScript < pszPathEnd)
+   ////   if (scopedstrLastSlashOnScript < pszPathEnd)
    ////   {
 
    ////      m_rangeName.m_begin = pszLastSlashOnScript + 1;
 
    ////   }
-   ////   else if (::is_empty(pszScript))
+   ////   else if (::is_empty(scopedstrScript))
    ////   {
 
    ////      m_rangeName.m_begin = m_rangeName.m_end;
@@ -912,12 +912,12 @@ namespace url
 
    ////   }
 
-   ////   if (pszQuestion)
+   ////   if (scopedstrQuestion)
    ////   {
 
    ////      m_rangeQuery.m_begin = pszQuestion + 1;
 
-   ////      if (pszFragment)
+   ////      if (scopedstrFragment)
    ////      {
 
    ////         m_rangeQuery.m_end = pszFragment;
@@ -932,7 +932,7 @@ namespace url
 
    ////   }
 
-   ////   if (pszFragment)
+   ////   if (scopedstrFragment)
    ////   {
 
    ////      m_rangeFragment.m_begin = pszFragment + 1;
@@ -968,10 +968,10 @@ namespace url
    //url::url(const ::scoped_string& scopedstr) /*:
    //   m_connect(scopedstr),
    //   m_request(m_connect.is_url() ?
-   //      ::range < const char*>(
+   //      ::range < const_char_pointer >(
    //         scopedstr.begin() + m_connect.url.m_str.size(),
    //         scopedstr.size() - m_connect.url.m_str.size()) :
-   //      ::range<const char*>{}) */
+   //      ::range<const_char_pointer >{}) */
    //{
 
    //}
@@ -1090,7 +1090,7 @@ namespace url
 
       auto pszSecondSlash = pszSlash + 1;
 
-      const char* pszHost;
+      const_char_pointer pszHost;
 
       if (*pszSecondSlash != '/')
       {
@@ -1242,9 +1242,9 @@ namespace url
 
       auto pszLastSlashOnScript = strrchr(pszScript, '/');
 
-      const char* pszQuestion = strchr(pszScript, '?');
+      const_char_pointer pszQuestion = strchr(pszScript, '?');
 
-      const char* pszFragment;
+      const_char_pointer pszFragment;
 
       if (pszQuestion)
       {
@@ -1400,7 +1400,7 @@ namespace url
 
       character_count i = 0;
 
-      const ::ansi_character* pszEncoded = (const char*)block.begin();
+      const ::ansi_character* pszEncoded = (const_char_pointer )block.begin();
 
       while (*pszEncoded != '\0' && i < sizeLen)
       {
@@ -1499,7 +1499,7 @@ namespace url
 
       auto pszEncoded = pszEncodedStart;
 
-      auto pszInput = (const char*)block.begin();
+      auto pszInput = (const_char_pointer )block.begin();
 
       memory_set(pszEncoded, 0, block.size() * 5);
 

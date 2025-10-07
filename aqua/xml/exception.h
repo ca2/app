@@ -19,7 +19,7 @@ namespace xml
       ::string                m_strXml;
 
 
-      exception(enum_parse_error eparserror, const ::string & strMessage, const char * xml);
+      exception(enum_parse_error eparserror, const ::scoped_string & scopedstrMessage, const_char_pointer xml);
 
 
    };

@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "base/platform/application.h"
+#include "berg/platform/application.h"
 
 
 
@@ -10,7 +10,7 @@ namespace bred
 
 
    class CLASS_DECL_BRED application :
-      virtual public ::base::application
+      virtual public ::berg::application
    {
    public:
 
@@ -29,7 +29,7 @@ namespace bred
 
 
       void initialize(::particle * pparticle) override;
-      //virtual ::pointer<progress_control>show_progress(::user::interaction* puiParent, const ::string & pszTitle, ::collection::count iProgressCount);
+      //virtual ::pointer<progress_control>show_progress(::user::interaction* puiParent, const ::scoped_string & scopedstrTitle, ::collection::count iProgressCount);
 
       ::file::path get_main_weather_file_path(const ::scoped_string & scopedstringAspect) override;
 

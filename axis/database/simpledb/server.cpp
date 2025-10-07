@@ -28,7 +28,7 @@ namespace simpledb
 
 
 
-   void server::initialize_simpledb_server(::particle * pparticle, const ::string & pszDatabase)
+   void server::initialize_simpledb_server(::particle * pparticle, const ::scoped_string & scopedstrDatabase)
    {
 
       //auto estatus =
@@ -51,7 +51,7 @@ namespace simpledb
 
       }
 
-      ::file::path pathDatabase(pszDatabase);
+      ::file::path pathDatabase(scopedstrDatabase);
 
       //if (!
       directory()->create(pathDatabase.folder());
@@ -75,7 +75,7 @@ namespace simpledb
 
       //}
 
-      pfactoryDatabase->__øconstruct(this, m_pdatabaseLocal);
+      pfactoryDatabase->øconstruct(this, m_pdatabaseLocal);
 
       //if (!estatus)
       //{
@@ -84,7 +84,7 @@ namespace simpledb
 
       //}
 
-      _synchronous_lock synchronouslock(m_pdatabaseLocal->synchronization());
+      _synchronous_lock synchronouslock(m_pdatabaseLocal->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       //estatus = pdatabase->set_finish(this);
 
@@ -108,7 +108,7 @@ namespace simpledb
 
       //estatus = 
       
-      m_pdatabaseLocal->connect(pszDatabase);
+      m_pdatabaseLocal->connect(scopedstrDatabase);
 
  /*     if (!estatus)
       {
@@ -119,7 +119,7 @@ namespace simpledb
 
       //estatus =
       
-      __construct_new(m_psimpledb);
+      øconstruct_new(m_psimpledb);
 
       //if (!estatus)
       //{
@@ -149,7 +149,7 @@ namespace simpledb
 
       //estatus = 
       
-      __construct_new(m_pstorage);
+      øconstruct_new(m_pstorage);
 
       //if (!estatus)
       //{
@@ -169,18 +169,18 @@ namespace simpledb
 
       //}
 
-      //m_pstorage = __allocate storage(this);
+      //m_pstorage = øallocate storage(this);
 
       m_bWorking = true;
 
-      m_strDatabase = pszDatabase;
+      m_strDatabase = scopedstrDatabase;
 
       // return ::success;
 
    }
 
 
-   void server::initialize_user(::database::database * pdatabaseUser, const ::string & pszUser)
+   void server::initialize_user(::database::database * pdatabaseUser, const ::scoped_string & scopedstrUser)
    {
 
       if (::is_null(pdatabaseUser))
@@ -194,11 +194,11 @@ namespace simpledb
 
       m_pdatabaseUser = pdatabaseUser;
 
-      m_strUser = pszUser;
+      m_strUser = scopedstrUser;
 
       //auto estatus = 
       
-      __construct_new(m_psimpledb);
+      øconstruct_new(m_psimpledb);
 
       //if (!estatus)
       //{
@@ -236,7 +236,7 @@ namespace simpledb
       try
       {
 
-         _synchronous_lock synchronouslock(pdatabase->synchronization());
+         _synchronous_lock synchronouslock(pdatabase->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          ::payload item = pdatabase->query_item("select COUNT(*) from sqlite_master where type like 'table' and name like '" + strTable + "'");
 

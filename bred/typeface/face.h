@@ -20,9 +20,9 @@ namespace typeface
 
       int m_iPixelSize;
       ::string m_strFontName;
-      ::string_map<::typeface::character> m_mapCharacter;
+      ::string_map_base<::typeface::character> m_mapCharacter;
 //      unsigned int m_VAO, m_VBO;
-      ::pointer < ::gpu::model_buffer > m_pmodelbufferBox;
+      //::pointer < ::gpu::model_buffer > m_pmodelbufferBox;
 
 
       face();
@@ -34,6 +34,9 @@ namespace typeface
       virtual character& get_character(const ::scoped_string& scopedstr);
 
 
+      virtual void get_text_metric(::write_text::text_metric* ptextmetric);
+
+
       virtual void create_character(character& ch, const ::scoped_string& scopedstr);
 
       //virtual void create_draw_buffers();
@@ -41,7 +44,7 @@ namespace typeface
       virtual void create_texture(character& ch, const unsigned char* p);
 
 
-      virtual ::gpu::model_buffer* box_model_buffer();
+      //virtual ::gpu::model_buffer* box_model_buffer();
 
    };
 

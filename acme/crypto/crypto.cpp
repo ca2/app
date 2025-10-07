@@ -37,7 +37,7 @@ namespace crypto
    void crypto::defer_initialize()
    {
 
-      /*auto estatus = */ __defer_construct(m_pinitializer);
+      /*auto estatus = */ ødefer_construct(m_pinitializer);
 
       //if (!estatus)
       //{
@@ -63,7 +63,7 @@ namespace crypto
 
       //}
 
-      auto palgorithm = __øcreate < ::crypto::hasher_algorithm >(system()->m_pfactoryCrypto);
+      auto palgorithm = øcreate < ::crypto::hasher_algorithm >(system()->m_pfactoryCrypto);
 
       if (!palgorithm)
       {
@@ -233,7 +233,7 @@ namespace crypto
 
       //   memory storageKey;
 
-      //   if (pszDecrypt == nullptr || strlen(pszDecrypt) == 0)
+      //   if (scopedstrDecrypt == nullptr || strlen(scopedstrDecrypt) == 0)
       //   {
 
       //      strEncrypt = "";
@@ -242,7 +242,7 @@ namespace crypto
 
       //   }
 
-      //   storageDecrypt.from_string(pszDecrypt);
+      //   storageDecrypt.from_string(scopedstrDecrypt);
 
       //   auto psystem = system();
 
@@ -292,7 +292,7 @@ namespace crypto
 
       //   return 0;
 
-      //   //return (unsigned int)::crc32(dwPrevious, (const Bytef*)psz, (unsigned int)strlen(psz));
+      //   //return (unsigned int)::crc32(dwPrevious, (const Bytef*)psz, (unsigned int)strlen(scopedstr));
 
       //}
 
@@ -302,7 +302,7 @@ namespace crypto
 
       //   memory mem;
 
-      //   mem.assign(psz, strlen(psz));
+      //   mem.assign(scopedstr, strlen(scopedstr));
 
       //   return md5(mem);
 
@@ -314,7 +314,7 @@ namespace crypto
 
       //   memory mem;
 
-      //   mem.assign(psz, strlen(psz));
+      //   mem.assign(scopedstr, strlen(scopedstr));
 
       //   return sha1(mem);
 
@@ -326,7 +326,7 @@ namespace crypto
 
       //   memory mem;
 
-      //   mem.assign(psz, strlen(psz));
+      //   mem.assign(scopedstr, strlen(scopedstr));
 
       //   return nessie(mem);
 
@@ -749,7 +749,7 @@ namespace crypto
       }
 
 
-      ::pointer<rsa>crypto::create_rsa_key(const ::string& strRsa)
+      ::pointer<rsa>crypto::create_rsa_key(const ::scoped_string & scopedstrRsa)
       {
 
          throw todo;
@@ -769,7 +769,7 @@ namespace crypto
       }
 
       
-      ::pointer<rsa>crypto::read_priv_pem(const ::string& strFile)
+      ::pointer<rsa>crypto::read_priv_pem(const ::scoped_string & scopedstrFile)
       {
 
          throw todo;
@@ -779,7 +779,7 @@ namespace crypto
       }
 
 
-      ::pointer<rsa>crypto::read_pub_pem(const ::string& strFile)
+      ::pointer<rsa>crypto::read_pub_pem(const ::scoped_string & scopedstrFile)
       {
 
          throw todo;
@@ -927,7 +927,7 @@ namespace crypto
       //
       //      auto iInSize = (int)in.get_size();
       //
-      //      auto pInData = (const uchar*)(const char*)in.get_data();
+      //      auto pInData = (const uchar*)(const_char_pointer )in.get_data();
       //
       //      auto pOutData = out.get_data();
       //
@@ -991,10 +991,10 @@ namespace crypto
       //   }
 
 
-      string crypto::spa_login_crypt(const ::scoped_string & scopedstr, const string& strRsa)
+      string crypto::spa_login_crypt(const ::scoped_string & scopedstr, const ::scoped_string & scopedstrRsa)
       {
 
-         auto prsa = create_rsa_key(strRsa);
+         auto prsa = create_rsa_key(scopedstrRsa);
 
          memory memory;
 
@@ -1022,10 +1022,10 @@ namespace crypto
       }
 
 
-      string crypto::spa_login_decrypt(const ::scoped_string & scopedstr, const string& strRsa)
+      string crypto::spa_login_decrypt(const ::scoped_string & scopedstr, const ::scoped_string & scopedstrRsa)
       {
 
-         auto prsa = create_rsa_key(strRsa);
+         auto prsa = create_rsa_key(scopedstrRsa);
 
          memory memory;
 
@@ -1082,10 +1082,10 @@ namespace crypto
       }
 
 
-      string crypto::spa_auth_decrypt(const ::scoped_string & scopedstr, const string& strRsa)
+      string crypto::spa_auth_decrypt(const ::scoped_string & scopedstr, const ::scoped_string & scopedstrRsa)
       {
 
-         auto prsa = create_rsa_key(strRsa);
+         auto prsa = create_rsa_key(scopedstrRsa);
 
          memory memory;
 
@@ -1210,7 +1210,7 @@ namespace crypto
 
    string vsstr;
 
-   if(!crypt_file_get(pszFile, vsstr, pszSalt))
+   if(!crypt_file_get(scopedstrFile, vsstr, pszSalt))
    return false;
 
    str = vsstr;

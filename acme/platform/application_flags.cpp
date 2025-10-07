@@ -99,10 +99,10 @@ APPLICATION_FLAGS::APPLICATION_FLAGS()
 
 
 
-//const char * br_init_get_symbol();
+//const_char_pointer br_init_get_symbol();
 //
 //
-//const char * g_pszAppId = nullptr;
+//const_char_pointer g_pszAppId = nullptr;
 //
 //
 //void executable_set_app_id(const ::scoped_string & scopedstrAppId)
@@ -113,7 +113,7 @@ APPLICATION_FLAGS::APPLICATION_FLAGS()
 //}
 //
 //
-//const char * executable_get_app_id()
+//const_char_pointer executable_get_app_id()
 //{
 //
 //
@@ -127,11 +127,11 @@ APPLICATION_FLAGS::APPLICATION_FLAGS()
 //
 //#ifdef LINUX
 //
-//   br_init_set_symbol(pszAppId);
+//   br_init_set_symbol(scopedstrAppId);
 //
 //#endif
 //
-//   executable_set_app_id(pszAppId);
+//   executable_set_app_id(scopedstrAppId);
 //
 //}
 
@@ -156,16 +156,16 @@ APPLICATION_FLAGS::APPLICATION_FLAGS()
 //app_flag::app_flag(::main & main, const ::scoped_string & scopedstrFlag)
 //{
 //
-//   if(!::is_empty(pszFlag))
+//   if(!::is_empty(scopedstrFlag))
 //   {
 //
-//      if(!strcmp(pszFlag, "no_audio"))
+//      if(!strcmp(scopedstrFlag, "no_audio"))
 //      {
 //
 //         main.m_bAudio = false;
 //
 //      }
-//      else if(!strcmp(pszFlag, "no_imaging"))
+//      else if(!strcmp(scopedstrFlag, "no_imaging"))
 //      {
 //
 //         main.m_bImaging = false;
@@ -461,7 +461,7 @@ APPLICATION_FLAGS::APPLICATION_FLAGS()
 #elif defined(UNIVERSAL_WINDOWS)
 
 //
-//void main::system_construct(const ::string_array & straParam)
+//void main::system_construct(const ::string_array_base & straParam)
 //{
 //
 //   //m_poslocal = nullptr;
@@ -730,7 +730,7 @@ string apple_get_bundle_identifier();
 //   if (file_system()->exists(::file::path(APP_CORE_BASE_DIR) / "beg_debug_box.txt"))
 //   {
 //
-//      //debug_box("zzzAPPzzz app", "zzzAPPzzz app", e_message_box_icon_information);
+//      //debug_box("zzzAPPzzz app", "zzzAPPzzz app", ::user::e_message_box_icon_information);
 //
 //   }
 //
@@ -764,7 +764,7 @@ CLASS_DECL_ACME void set_debug_pointer(void * p);
 //
 //   //   //const ::scoped_string & scopedstr = str1;
 //
-//   //   //string str = ::str::consume_quoted_value(psz);
+//   //   //string str = ::str::consume_quoted_value(scopedstr);
 //
 //   //   //information(str);
 //
@@ -783,7 +783,7 @@ CLASS_DECL_ACME void set_debug_pointer(void * p);
 //
 ////   string strAppId;
 ////
-////   string_array stra1;
+////   string_array_base stra1;
 ////
 ////#ifdef WINDOWS
 ////
@@ -823,11 +823,11 @@ CLASS_DECL_ACME void set_debug_pointer(void * p);
 ////
 ////#endif
 ////
-////   string_array stra2;
+////   string_array_base stra2;
 ////
 ////   stra2 = get_c_args_from_string(m_strCommandLine);
 ////
-////   string_array stra3;
+////   string_array_base stra3;
 ////
 //////#ifdef WINDOWS_DESKTOP
 //////
@@ -843,7 +843,7 @@ CLASS_DECL_ACME void set_debug_pointer(void * p);
 //////
 //////#endif
 ////
-////   //string_array stra5;
+////   //string_array_base stra5;
 ////
 ////   //if(m_pszMain)
 ////   //{
@@ -852,7 +852,7 @@ CLASS_DECL_ACME void set_debug_pointer(void * p);
 ////
 ////   //}
 ////
-////   //string_array stra4;
+////   //string_array_base stra4;
 ////
 ////   //string strCommandLine = merge_colon_args(
 ////   //   {
@@ -875,12 +875,12 @@ CLASS_DECL_ACME void set_debug_pointer(void * p);
 ////
 ////      uid_t uid = atoi(strUid);
 ////
-////      output_error_message("going to seteuid to: " + as_string(uid), "going to seteuid", e_message_box_ok);
+////      output_error_message("going to seteuid to: " + as_string(uid), "going to seteuid", ::user::e_message_box_ok);
 ////
 ////      if (seteuid(uid) == 0)
 ////      {
 ////
-////         output_error_message("uid=" + as_string(uid), "seteuid success", e_message_box_ok);
+////         output_error_message("uid=" + as_string(uid), "seteuid success", ::user::e_message_box_ok);
 ////
 ////      }
 ////      else
@@ -892,7 +892,7 @@ CLASS_DECL_ACME void set_debug_pointer(void * p);
 ////
 ////         strError.formatf("errno=%d uid=%d", iErr);
 ////
-////         //message_box(strError, "seteuid failed", e_message_box_icon_exclamation);
+////         //message_box(strError, "seteuid failed", ::user::e_message_box_icon_exclamation);
 ////
 ////      }
 ////
@@ -1047,7 +1047,7 @@ CLASS_DECL_ACME void set_debug_pointer(void * p);
 //   // cold start (never previously called program and its Dlls...)?
 //   psystem->m_timeMainStart = m_timeStart;
 //
-//   //xxdebug_box("box1", "box1", e_message_box_icon_information);
+//   //xxdebug_box("box1", "box1", ::user::e_message_box_icon_information);
 ////
 //  // ::file::path pathOutputDebugString = directory_system()->system() / strAppId / "information.txt" ;
 //
@@ -1072,7 +1072,7 @@ CLASS_DECL_ACME void set_debug_pointer(void * p);
 
 
 
-//void app_core::defer_load_backbone_libraries(string strAppId)
+//void app_core::defer_load_backbone_libraries(const ::scoped_string & scopedstrAppId)
 //{
 //
 //   if (strAppId.has_character())
@@ -1096,7 +1096,7 @@ CLASS_DECL_ACME void set_debug_pointer(void * p);
 //
 //         string strLibrary = ::future::app_id_to_app_name(strAppId);
 //
-//         m_plibrary = __allocate ::acme::library();
+//         m_plibrary = øallocate ::acme::library();
 //
 //         m_plibrary->initialize(psystem);
 //
@@ -1170,7 +1170,7 @@ CLASS_DECL_ACME void set_debug_pointer(void * p);
 //      //   if (pfnDeferTerm == nullptr)
 //      //   {
 //
-//      //      output_error_message("Missing corresponding defer_*_term for the defer_*_init backbone library." + e_message_box_icon_error);
+//      //      output_error_message("Missing corresponding defer_*_term for the defer_*_init backbone library." + ::user::e_message_box_icon_error);
 //
 //      //      on_result(error_failed);
 //
@@ -1406,7 +1406,7 @@ CLASS_DECL_ACME void set_debug_pointer(void * p);
 //CLASS_DECL_APEX long apex_prefix(::apex::system * psystem)
 //{
 //
-//   //pmaindata->m_pappcore = __allocate app_core(pmaindata);
+//   //pmaindata->m_pappcore = øallocate app_core(pmaindata);
 //
 //   if (!psystem->system_prep())
 //   {
@@ -1430,7 +1430,7 @@ CLASS_DECL_ACME void set_debug_pointer(void * p);
 //CLASS_DECL_APEX long apex_fork(::apex::system * psystem, PFN_NEW_APEX_APPLICATION pfnNewAuraApplication)
 //{
 //
-//   //pmaindata->m_pappcore = __allocate app_core(pmaindata);
+//   //pmaindata->m_pappcore = øallocate app_core(pmaindata);
 //
 //   if (!psystem->system_prep())
 //   {
@@ -1872,10 +1872,10 @@ CLASS_DECL_ACME void set_debug_pointer(void * p);
 //
 ////
 ////
-////static const char * g_pszCubeAppId = nullptr;
+////static const_char_pointer g_pszCubeAppId = nullptr;
 ////
 ////
-////const char * get_cube_app_id()
+////const_char_pointer get_cube_app_id()
 ////{
 ////
 ////   return g_pszCubeAppId;
@@ -1918,13 +1918,13 @@ CLASS_DECL_ACME void set_debug_pointer(void * p);
 //#if !defined(WINDOWS)
 //
 //
-//::string quote_if_has_space(const char *psz)
+//::string quote_if_has_space(const_char_pointer psz)
 //{
 //
-//   if(strchr(psz, ' ') != nullptr)
+//   if(strchr(scopedstr, ' ') != nullptr)
 //   {
 //
-//      return "\"" + string(psz) + "\"";
+//      return "\"" + string(scopedstr) + "\"";
 //
 //   }
 //   else

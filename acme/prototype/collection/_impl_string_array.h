@@ -9,7 +9,7 @@
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 template < typename PRED >
-Type string_array_base < Type, RawType, t_etypeContainer > ::predicate_implode(PRED pred, const SCOPED_STRING& strSeparator, ::collection::index i, ::collection::count inCountLastOut) const
+Type string_base_array < Type, RawType, t_etypeContainer > ::predicate_implode(PRED pred, const SCOPED_STRING& strSeparator, ::collection::index i, ::collection::count inCountLastOut) const
 {
 
    Type str;
@@ -72,26 +72,26 @@ static inline void DestructElement(wstring* pOldData)
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-inline Type& string_array_base < Type, RawType, t_etypeContainer >::last(::collection::index i)
+inline Type& string_base_array < Type, RawType, t_etypeContainer >::last(::collection::index i)
 {
    return this->element_at(get_upper_bound(i));
 }
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-inline Type string_array_base < Type, RawType, t_etypeContainer >::last(::collection::index i) const
+inline Type string_base_array < Type, RawType, t_etypeContainer >::last(::collection::index i) const
 {
    return this->element_at(get_upper_bound(i));
 }
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-inline Type& string_array_base < Type, RawType, t_etypeContainer >::first(::collection::index i)
+inline Type& string_base_array < Type, RawType, t_etypeContainer >::first(::collection::index i)
 {
    return this->element_at(get_lower_bound(i));
 }
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-inline Type string_array_base < Type, RawType, t_etypeContainer >::first(::collection::index i) const
+inline Type string_base_array < Type, RawType, t_etypeContainer >::first(::collection::index i) const
 {
 
    return this->element_at(get_lower_bound(i));
@@ -100,7 +100,7 @@ inline Type string_array_base < Type, RawType, t_etypeContainer >::first(::colle
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-inline ::collection::count string_array_base < Type, RawType, t_etypeContainer >::get_size() const
+inline ::collection::count string_base_array < Type, RawType, t_etypeContainer >::get_size() const
 {
 
    return this->size();
@@ -109,7 +109,7 @@ inline ::collection::count string_array_base < Type, RawType, t_etypeContainer >
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-inline ::collection::count string_array_base < Type, RawType, t_etypeContainer >::get_count() const
+inline ::collection::count string_base_array < Type, RawType, t_etypeContainer >::get_count() const
 {
 
    return this->size();
@@ -117,14 +117,14 @@ inline ::collection::count string_array_base < Type, RawType, t_etypeContainer >
 }
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-inline ::collection::index string_array_base < Type, RawType, t_etypeContainer >::get_lower_bound(::collection::index i) const
+inline ::collection::index string_base_array < Type, RawType, t_etypeContainer >::get_lower_bound(::collection::index i) const
 {
    return i;
 }
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-inline ::collection::index string_array_base < Type, RawType, t_etypeContainer >::get_upper_bound(::collection::index i) const
+inline ::collection::index string_base_array < Type, RawType, t_etypeContainer >::get_upper_bound(::collection::index i) const
 {
 
    return this->size() + i;
@@ -133,7 +133,7 @@ inline ::collection::index string_array_base < Type, RawType, t_etypeContainer >
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-inline ::collection::index string_array_base < Type, RawType, t_etypeContainer >::get_middle_index(::collection::index i) const
+inline ::collection::index string_base_array < Type, RawType, t_etypeContainer >::get_middle_index(::collection::index i) const
 {
 
    return get_upper_bound() / 2 + i;
@@ -147,10 +147,10 @@ inline ::collection::index string_array_base < Type, RawType, t_etypeContainer >
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-string_array_base < Type, RawType, t_etypeContainer >::~string_array_base()
+string_base_array < Type, RawType, t_etypeContainer >::~string_base_array()
 {
 
-   // // ASSERT_VALID(this);
+   // // ASSERT_OK(this);
 
 }
 
@@ -158,19 +158,19 @@ string_array_base < Type, RawType, t_etypeContainer >::~string_array_base()
 
 
 //template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-//::collection::count string_array_base < Type, RawType, t_etypeContainer >::add(const string_array_base < Type, RawType, t_etypeContainer >& src)
+//::collection::count string_base_array < Type, RawType, t_etypeContainer >::add(const string_base_array < Type, RawType, t_etypeContainer >& src)
 //{
 //
 //   if(this == &src)
 //   {
 //
-//      string_array_base < Type, RawType, t_etypeContainer > thisCopy(src);
+//      string_base_array < Type, RawType, t_etypeContainer > thisCopy(src);
 //
 //      return add(thisCopy);
 //
 //   }
 //
-//    // ASSERT_VALID(this);
+//    // ASSERT_OK(this);
 //   ASSERT(this != &src);   // cannot append to itself
 //
 //   ::collection::count nOldSize = this->size();
@@ -187,8 +187,8 @@ string_array_base < Type, RawType, t_etypeContainer >::~string_array_base()
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-string_array_base < Type, RawType, t_etypeContainer >&
-string_array_base < Type, RawType, t_etypeContainer >::c_stra(string_array_base < Type, RawType, t_etypeContainer >& stra) const
+string_base_array < Type, RawType, t_etypeContainer >&
+string_base_array < Type, RawType, t_etypeContainer >::c_stra(string_base_array < Type, RawType, t_etypeContainer >& stra) const
 {
 
    for (auto& str : *this)
@@ -203,11 +203,11 @@ string_array_base < Type, RawType, t_etypeContainer >::c_stra(string_array_base 
 }
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-string_array_base < Type, RawType, t_etypeContainer >
-string_array_base < Type, RawType, t_etypeContainer >::c_stra() const
+string_base_array < Type, RawType, t_etypeContainer >
+string_base_array < Type, RawType, t_etypeContainer >::c_stra() const
 {
 
-   string_array_base < Type, RawType, t_etypeContainer > stra;
+   string_base_array < Type, RawType, t_etypeContainer > stra;
 
    return c_stra(stra);
 
@@ -215,13 +215,13 @@ string_array_base < Type, RawType, t_etypeContainer >::c_stra() const
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-void string_array_base < Type, RawType, t_etypeContainer >::copy(const string_array_base < Type, RawType, t_etypeContainer >& src)
+void string_base_array < Type, RawType, t_etypeContainer >::copy(const string_base_array < Type, RawType, t_etypeContainer >& src)
 {
 
    if (this == &src)
       return;
 
-   // // ASSERT_VALID(this);
+   // // ASSERT_OK(this);
 
    auto nSrcSize = src.size();
 
@@ -234,7 +234,7 @@ void string_array_base < Type, RawType, t_etypeContainer >::copy(const string_ar
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 template < primitive_array ARRAY >
-void string_array_base < Type, RawType, t_etypeContainer >::copy(const ARRAY& src)
+void string_base_array < Type, RawType, t_etypeContainer >::copy(const ARRAY& src)
 {
 
    this->set_size((::collection::count)src.size());
@@ -242,7 +242,7 @@ void string_array_base < Type, RawType, t_etypeContainer >::copy(const ARRAY& sr
    for (::collection::index i = 0; i < this->size(); i++)
    {
 
-      get_data()[i] = as_string(src[i]);
+      *get_data()[i] = as_string(src[i]);
 
    }
 
@@ -250,9 +250,9 @@ void string_array_base < Type, RawType, t_etypeContainer >::copy(const ARRAY& sr
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-Type& string_array_base < Type, RawType, t_etypeContainer >::set_at_grow(::collection::index nIndex, const Type& newElement)
+Type& string_base_array < Type, RawType, t_etypeContainer >::set_at_grow(::collection::index nIndex, const Type& newElement)
 {
-   // // ASSERT_VALID(this);
+   // // ASSERT_OK(this);
    ASSERT(nIndex >= 0);
 
    if (nIndex >= this->size())
@@ -264,7 +264,7 @@ Type& string_array_base < Type, RawType, t_etypeContainer >::set_at_grow(::colle
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-::collection::index string_array_base < Type, RawType, t_etypeContainer >::_007FindLine(const SCOPED_STRING& strKey, ::collection::index iStart) const
+::collection::index string_base_array < Type, RawType, t_etypeContainer >::_007FindLine(const SCOPED_STRING& strKey, ::collection::index iStart) const
 {
 
    for (::collection::index i = iStart; i < get_count(); i++)
@@ -292,7 +292,7 @@ template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-void string_array_base < Type, RawType, t_etypeContainer >::_007SetLine(const SCOPED_STRING& strKey, const SCOPED_STRING& strValue, ::collection::index iStart)
+void string_base_array < Type, RawType, t_etypeContainer >::_007SetLine(const SCOPED_STRING& strKey, const SCOPED_STRING& strValue, ::collection::index iStart)
 {
 
    ::collection::index iKeyIndex = _007FindLine(strKey, iStart);
@@ -316,7 +316,7 @@ void string_array_base < Type, RawType, t_etypeContainer >::_007SetLine(const SC
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-::collection::index string_array_base < Type, RawType, t_etypeContainer >::_007GetLine(RawType& strValue, const SCOPED_STRING& strKey, ::collection::index iStart) const
+::collection::index string_base_array < Type, RawType, t_etypeContainer >::_007GetLine(RawType& strValue, const SCOPED_STRING& strKey, ::collection::index iStart) const
 {
 
    ::collection::index iKeyIndex = _007FindLine(strKey, iStart);
@@ -336,7 +336,7 @@ template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-RawType string_array_base < Type, RawType, t_etypeContainer >::_007GetLine(const SCOPED_STRING& strKey, ::collection::index iStart) const
+RawType string_base_array < Type, RawType, t_etypeContainer >::_007GetLine(const SCOPED_STRING& strKey, ::collection::index iStart) const
 {
 
    RawType strValue;
@@ -354,7 +354,7 @@ RawType string_array_base < Type, RawType, t_etypeContainer >::_007GetLine(const
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-::collection::index string_array_base < Type, RawType, t_etypeContainer >::_007FindSection(const SCOPED_STRING& strSection) const
+::collection::index string_base_array < Type, RawType, t_etypeContainer >::_007FindSection(const SCOPED_STRING& strSection) const
 {
 
    ::collection::index iSectionIndex = this->case_insensitive_find_first_begins(strSection);
@@ -365,7 +365,7 @@ template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-::collection::index string_array_base < Type, RawType, t_etypeContainer >::_007FindLine(const SCOPED_STRING& strSection, const SCOPED_STRING& strKey) const
+::collection::index string_base_array < Type, RawType, t_etypeContainer >::_007FindLine(const SCOPED_STRING& strSection, const SCOPED_STRING& strKey) const
 {
 
    ::collection::index iSectionIndex = this->_007FindSection(strSection);
@@ -383,7 +383,7 @@ template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-::collection::index string_array_base < Type, RawType, t_etypeContainer >::_007OpenSection(const SCOPED_STRING& strSection)
+::collection::index string_base_array < Type, RawType, t_etypeContainer >::_007OpenSection(const SCOPED_STRING& strSection)
 {
 
    ::collection::index iSectionIndex = this->_007FindSection(strSection);
@@ -403,7 +403,7 @@ template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-void string_array_base < Type, RawType, t_etypeContainer >::_007SetLine(const SCOPED_STRING& strSection, const SCOPED_STRING& strKey, const SCOPED_STRING& strValue)
+void string_base_array < Type, RawType, t_etypeContainer >::_007SetLine(const SCOPED_STRING& strSection, const SCOPED_STRING& strKey, const SCOPED_STRING& strValue)
 {
 
    ::collection::index iSectionIndex = this->_007OpenSection(strSection);
@@ -423,7 +423,7 @@ void string_array_base < Type, RawType, t_etypeContainer >::_007SetLine(const SC
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-::collection::index string_array_base < Type, RawType, t_etypeContainer >::_007GetLine(RawType& strValue, const SCOPED_STRING& strSection, const SCOPED_STRING& strKey) const
+::collection::index string_base_array < Type, RawType, t_etypeContainer >::_007GetLine(RawType& strValue, const SCOPED_STRING& strSection, const SCOPED_STRING& strKey) const
 {
 
    ::collection::index iSectionIndex = this->_007FindSection(strSection);
@@ -440,7 +440,7 @@ template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 }
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-RawType string_array_base < Type, RawType, t_etypeContainer >::_007GetLine(const SCOPED_STRING& strSection, const SCOPED_STRING& strKey) const
+RawType string_base_array < Type, RawType, t_etypeContainer >::_007GetLine(const SCOPED_STRING& strSection, const SCOPED_STRING& strKey) const
 {
 
    RawType strValue;
@@ -463,9 +463,9 @@ RawType string_array_base < Type, RawType, t_etypeContainer >::_007GetLine(const
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-void string_array_base < Type, RawType, t_etypeContainer >::insert_empty(::collection::index nIndex, ::collection::count nCount)
+void string_base_array < Type, RawType, t_etypeContainer >::insert_empty(::collection::index nIndex, ::collection::count nCount)
 {
-   // // ASSERT_VALID(this);
+   // // ASSERT_OK(this);
    ASSERT(nIndex >= 0);    // will expand to meet need
    ASSERT(nCount > 0);     // zero or negative int_size not allowed
 
@@ -497,10 +497,10 @@ void string_array_base < Type, RawType, t_etypeContainer >::insert_empty(::colle
 }
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-Type& string_array_base < Type, RawType, t_etypeContainer >::insert_empty(::collection::index nIndex)
+Type& string_base_array < Type, RawType, t_etypeContainer >::insert_empty(::collection::index nIndex)
 {
 
-   //    // ASSERT_VALID(this);
+   //    // ASSERT_OK(this);
 
    ASSERT(nIndex >= 0);    // will expand to meet need
 
@@ -522,7 +522,7 @@ Type& string_array_base < Type, RawType, t_etypeContainer >::insert_empty(::coll
       for (::collection::index i = nIndex; i < nIndex + 1; i++)
       {
 
-         __raw_new (this->ptr_at(nIndex)) RawType();
+         øraw_new (this->ptr_at(nIndex)) RawType();
 
       }
 
@@ -537,7 +537,7 @@ Type& string_array_base < Type, RawType, t_etypeContainer >::insert_empty(::coll
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-Type& string_array_base < Type, RawType, t_etypeContainer >::insert_at(::collection::index nIndex, const Type& strElement)
+Type& string_base_array < Type, RawType, t_etypeContainer >::insert_at(::collection::index nIndex, const Type& strElement)
 {
 
    return insert_empty(nIndex) = strElement;
@@ -546,7 +546,7 @@ Type& string_array_base < Type, RawType, t_etypeContainer >::insert_at(::collect
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-void string_array_base < Type, RawType, t_etypeContainer >::insert_at(::collection::index nIndex, const Type& strElement, ::collection::count nCount)
+void string_base_array < Type, RawType, t_etypeContainer >::insert_at(::collection::index nIndex, const Type& strElement, ::collection::count nCount)
 {
 
    // make room for ___new elements
@@ -564,25 +564,37 @@ void string_array_base < Type, RawType, t_etypeContainer >::insert_at(::collecti
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-void string_array_base < Type, RawType, t_etypeContainer >::insert_at(::collection::index nStartIndex, const string_array_base < Type, RawType, t_etypeContainer >& NewArray)
+template < primitive_container CONTAINER >
+void string_base_array < Type, RawType, t_etypeContainer >::insert_at(::collection::index nStartIndex, const CONTAINER & container)
 {
-   //    // ASSERT_VALID(this);
-   ASSERT(&NewArray != nullptr);
-   //   ASSERT_KINDOF(string_array_base < Type, RawType, t_etypeContainer >, &NewArray);
-   //   ASSERT_VALID(&NewArray);
+   //    // ASSERT_OK(this);
+   ASSERT(&container != nullptr);
+   //   ASSERT_KINDOF(string_base_array < Type, RawType, t_etypeContainer >, &NewArray);
+   //   ASSERT_OK(&NewArray);
    ASSERT(nStartIndex >= 0);
 
-   if (NewArray.get_size() > 0)
+   if (container.size() > 0)
    {
-      insert_at(nStartIndex, NewArray.get_at(0), NewArray.get_size());
-      for (::collection::index i = 0; i < NewArray.get_size(); i++)
-         set_at(nStartIndex + i, NewArray.get_at(i));
+      ::collection::index i = 0;
+      for (auto& item : container)
+      {
+
+         if (i == 0)
+         {
+            this->insert_at(nStartIndex, item, container.size());
+         }
+         else
+         {
+            set_at(nStartIndex + i, item);
+         }
+         i++;
+      }
    }
 }
 
 
 //template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-//void string_array_base < Type, RawType, t_etypeContainer >::dump(dump_context & dumpcontext) const
+//void string_base_array < Type, RawType, t_etypeContainer >::dump(dump_context & dumpcontext) const
 //{
 //   //matter::dump(dumpcontext);
 //
@@ -598,7 +610,7 @@ void string_array_base < Type, RawType, t_etypeContainer >::insert_at(::collecti
 //
 //
 //template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-//void string_array_base < Type, RawType, t_etypeContainer >::assert_ok() const
+//void string_base_array < Type, RawType, t_etypeContainer >::assert_ok() const
 //{
 //
 //   matter::assert_ok();
@@ -626,10 +638,10 @@ void string_array_base < Type, RawType, t_etypeContainer >::insert_at(::collecti
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-string_array_base < Type, RawType, t_etypeContainer > string_array_base < Type, RawType, t_etypeContainer >::slice(::collection::index i, ::collection::count inCountLastOut) const
+string_base_array < Type, RawType, t_etypeContainer > string_base_array < Type, RawType, t_etypeContainer >::slice(::collection::index i, ::collection::count inCountLastOut) const
 {
 
-   string_array_base stra;
+   string_base_array stra;
 
    if (this->prepare_first_in_count_last_out(i, inCountLastOut))
    {
@@ -646,21 +658,21 @@ string_array_base < Type, RawType, t_etypeContainer > string_array_base < Type, 
    return stra;
 
 }
-
-
-template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-string_array_base < Type, RawType, t_etypeContainer >& string_array_base < Type, RawType, t_etypeContainer >::operator =(const string_array_base < Type, RawType, t_etypeContainer >& tokena)
-{
-
-   copy(tokena);
-
-   return *this;
-
-}
+//
+//
+// template < typename Type, typename RawType, ::enum_type t_etypeContainer >
+// string_base_array < Type, RawType, t_etypeContainer >& string_base_array < Type, RawType, t_etypeContainer >::operator =(const string_base_array < Type, RawType, t_etypeContainer >& tokena)
+// {
+//
+//    copy(tokena);
+//
+//    return *this;
+//
+// }
 
 
 //template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-//inline Type & string_array_base < Type, RawType, t_etypeContainer >::add_new()
+//inline Type & string_base_array < Type, RawType, t_etypeContainer >::add_new()
 //{
 //
 //   this->allocate(this->size() + 1);
@@ -671,19 +683,19 @@ string_array_base < Type, RawType, t_etypeContainer >& string_array_base < Type,
 //
 //
 //template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-//::collection::index string_array_base < Type, RawType, t_etypeContainer >::add_new(::collection::count c)
+//::collection::index string_base_array < Type, RawType, t_etypeContainer >::add_new(::collection::count c)
 //{
 //
 //   if(i == -1)
 //   {
 //
-//      return add(Type(psz));
+//      return add(Type(scopedstr));
 //
 //   }
 //   else
 //   {
 //
-//      insert_at(i,Type(psz));
+//      insert_at(i,Type(scopedstr));
 //
 //      return get_upper_bound();
 //
@@ -693,7 +705,7 @@ string_array_base < Type, RawType, t_etypeContainer >& string_array_base < Type,
 
 
 //template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-//Type & string_array_base < Type, RawType, t_etypeContainer >::new_element(::collection::count c)
+//Type & string_base_array < Type, RawType, t_etypeContainer >::new_element(::collection::count c)
 //{
 //
 //   add_new(nullptr,c);
@@ -715,7 +727,7 @@ string_array_base < Type, RawType, t_etypeContainer >& string_array_base < Type,
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-Type& string_array_base < Type, RawType, t_etypeContainer >::add_get(const Type& newElement)
+Type& string_base_array < Type, RawType, t_etypeContainer >::add_get(const Type& newElement)
 {
 
    ::collection::index nIndex = this->size();
@@ -726,7 +738,7 @@ Type& string_array_base < Type, RawType, t_etypeContainer >::add_get(const Type&
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-void string_array_base < Type, RawType, t_etypeContainer >::erase_duplicates()
+void string_base_array < Type, RawType, t_etypeContainer >::erase_duplicates()
 {
 
    for (::collection::index i = 1; i < this->get_size();)
@@ -751,7 +763,7 @@ void string_array_base < Type, RawType, t_etypeContainer >::erase_duplicates()
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-void string_array_base < Type, RawType, t_etypeContainer >::case_insensitive_erase_duplicates()
+void string_base_array < Type, RawType, t_etypeContainer >::case_insensitive_erase_duplicates()
 {
 
    for (::collection::index i = 1; i < this->get_size();)
@@ -776,36 +788,36 @@ void string_array_base < Type, RawType, t_etypeContainer >::case_insensitive_era
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-const Type* string_array_base < Type, RawType, t_etypeContainer >::get_data() const
+const Type* string_base_array < Type, RawType, t_etypeContainer >::get_data() const
 {
    return (const Type*)this->m_begin;
 }
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-Type* string_array_base < Type, RawType, t_etypeContainer >::get_data()
+Type* string_base_array < Type, RawType, t_etypeContainer >::get_data()
 {
    return (Type*)this->m_begin;
 }
 
 
 
-template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-string_array_base < Type, RawType, t_etypeContainer > ::string_array_base(const string_array_base < Type, RawType, t_etypeContainer >& array) :
-   BASE_ARRAY((const BASE_ARRAY&)array)
-{
-}
+// template < typename Type, typename RawType, ::enum_type t_etypeContainer >
+// string_base_array < Type, RawType, t_etypeContainer > ::string_base_array(const string_base_array < Type, RawType, t_etypeContainer >& array) :
+//    BASE_ARRAY((const BASE_ARRAY&)array)
+// {
+// }
+//
+//
+// template < typename Type, typename RawType, ::enum_type t_etypeContainer >
+// string_base_array < Type, RawType, t_etypeContainer > ::string_base_array(string_base_array < Type, RawType, t_etypeContainer >&& array) :
+//    BASE_ARRAY(::transfer(array))
+// {
+// }
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-string_array_base < Type, RawType, t_etypeContainer > ::string_array_base(string_array_base < Type, RawType, t_etypeContainer >&& array) :
-   BASE_ARRAY(::transfer(array))
-{
-}
-
-
-template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-string_array_base < Type, RawType, t_etypeContainer > ::string_array_base(CHARACTER* const* ppsz, ::collection::count c)
+string_base_array < Type, RawType, t_etypeContainer > ::string_base_array(CHARACTER* const* ppsz, ::collection::count c)
 {
 
    this->set_size(c);
@@ -824,7 +836,7 @@ string_array_base < Type, RawType, t_etypeContainer > ::string_array_base(CHARAC
 //
 //
 //template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-//string_array_base < Type, RawType, t_etypeContainer > ::string_array_base(Platform::Array < Platform::String ^ > ^ refstra)
+//string_base_array < Type, RawType, t_etypeContainer > ::string_base_array(Platform::Array < Platform::String ^ > ^ refstra)
 //{
 //
 //   for (unsigned int u = 0; u < refstra->Length; u++)
@@ -848,7 +860,7 @@ string_array_base < Type, RawType, t_etypeContainer > ::string_array_base(CHARAC
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-void string_array_base < Type, RawType, t_etypeContainer > ::add_tokens(const SCOPED_STRING& scopedstr, const SCOPED_STRING& strSeparator, bool bAddEmpty)
+void string_base_array < Type, RawType, t_etypeContainer > ::add_tokens(const SCOPED_STRING& scopedstr, const SCOPED_STRING& strSeparator, bool bAddEmpty)
 {
 
    ::string str(scopedstr);
@@ -863,7 +875,7 @@ void string_array_base < Type, RawType, t_etypeContainer > ::add_tokens(const SC
       while (strTokenizer.get_next_token(strToken, strSeparator, false))
       {
 
-         string_array_base::add(strToken);
+         string_base_array::add(strToken);
 
       }
 
@@ -877,7 +889,7 @@ void string_array_base < Type, RawType, t_etypeContainer > ::add_tokens(const SC
          if (!strToken.is_empty())
          {
 
-            string_array_base::add(strToken);
+            string_base_array::add(strToken);
 
          }
 
@@ -890,7 +902,7 @@ void string_array_base < Type, RawType, t_etypeContainer > ::add_tokens(const SC
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-void string_array_base < Type, RawType, t_etypeContainer > ::_001AddTokens(const SCOPED_STRING& str)
+void string_base_array < Type, RawType, t_etypeContainer > ::_001AddTokens(const SCOPED_STRING& str)
 
 {
 
@@ -902,7 +914,7 @@ void string_array_base < Type, RawType, t_etypeContainer > ::_001AddTokens(const
    while (strTokenizer._001GetNextToken(strToken))
    {
 
-      string_array_base::add(strToken);
+      string_base_array::add(strToken);
 
    }
 
@@ -910,7 +922,7 @@ void string_array_base < Type, RawType, t_etypeContainer > ::_001AddTokens(const
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-void string_array_base < Type, RawType, t_etypeContainer > ::add_smallest_tokens(const SCOPED_STRING& str, const RawStringArray& straSeparator, bool bAddEmpty, bool bWithSeparator)
+void string_base_array < Type, RawType, t_etypeContainer > ::add_smallest_tokens(const SCOPED_STRING& str, const BASE_RAW_STRING_ARRAY & straSeparator, bool bAddEmpty, bool bWithSeparator)
 {
 
    ::tokenizer strTokenizer(str);
@@ -923,7 +935,7 @@ void string_array_base < Type, RawType, t_etypeContainer > ::add_smallest_tokens
       while (strTokenizer.get_next_smallest_token(strToken, straSeparator, bWithSeparator))
       {
 
-         string_array_base::add(strToken);
+         string_base_array::add(strToken);
 
       }
 
@@ -937,7 +949,7 @@ void string_array_base < Type, RawType, t_etypeContainer > ::add_smallest_tokens
          if (!strToken.is_empty())
          {
 
-            string_array_base::add(strToken);
+            string_base_array::add(strToken);
 
          }
 
@@ -949,7 +961,7 @@ void string_array_base < Type, RawType, t_etypeContainer > ::add_smallest_tokens
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-void string_array_base < Type, RawType, t_etypeContainer > ::add_words(const SCOPED_STRING& str)
+void string_base_array < Type, RawType, t_etypeContainer > ::add_words(const SCOPED_STRING& str)
 {
 
    ::tokenizer strTokenizer(str);
@@ -959,7 +971,7 @@ void string_array_base < Type, RawType, t_etypeContainer > ::add_words(const SCO
    while (strTokenizer.get_word(strWord))
    {
 
-      string_array_base::add(strWord);
+      string_base_array::add(strWord);
 
    }
 
@@ -968,7 +980,7 @@ void string_array_base < Type, RawType, t_etypeContainer > ::add_words(const SCO
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 template < bool bAddEmpty >
-typename Type::const_iterator string_array_base < Type, RawType, t_etypeContainer > ::_____add_lines_rn(const SCOPED_STRING& scopedstr, bool bWithEOL)
+typename Type::const_iterator string_base_array < Type, RawType, t_etypeContainer > ::_____add_lines_rn(const SCOPED_STRING& scopedstr, bool bWithEOL)
 {
 
    auto range = scopedstr();
@@ -1027,7 +1039,7 @@ typename Type::const_iterator string_array_base < Type, RawType, t_etypeContaine
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 template < bool bAddEmpty >
-void string_array_base < Type, RawType, t_etypeContainer > ::_add_lines(const SCOPED_STRING& strParam, bool bWithEOL)
+void string_base_array < Type, RawType, t_etypeContainer > ::_add_lines(const SCOPED_STRING& strParam, bool bWithEOL)
 {
 
    auto pN = strParam.find_first('\n');
@@ -1072,7 +1084,7 @@ void string_array_base < Type, RawType, t_etypeContainer > ::_add_lines(const SC
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-void string_array_base < Type, RawType, t_etypeContainer > ::get_format_string(Type& str, const SCOPED_STRING& strSeparator) const
+void string_base_array < Type, RawType, t_etypeContainer > ::get_format_string(Type& str, const SCOPED_STRING& strSeparator) const
 
 {
    str.empty();
@@ -1089,7 +1101,7 @@ void string_array_base < Type, RawType, t_etypeContainer > ::get_format_string(T
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-::collection::index string_array_base < Type, RawType, t_etypeContainer > ::add_unique(const Type& newElement)
+::collection::index string_base_array < Type, RawType, t_etypeContainer > ::add_unique(const Type& newElement)
 {
 
    auto iFind = find_first(newElement);
@@ -1101,13 +1113,13 @@ template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 
    }
 
-   return string_array_base::add(newElement);
+   return string_base_array::add(newElement);
 
 }
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-::collection::count string_array_base < Type, RawType, t_etypeContainer > ::append_unique(const string_array_base& newElements)
+::collection::count string_base_array < Type, RawType, t_etypeContainer > ::append_unique(const string_base_array& newElements)
 {
 
    ::collection::count count = 0;
@@ -1130,7 +1142,7 @@ template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-::collection::index string_array_base < Type, RawType, t_etypeContainer > ::case_insensitive_add_unique(const Type& newElement)
+::collection::index string_base_array < Type, RawType, t_etypeContainer > ::case_insensitive_add_unique(const Type& newElement)
 
 {
 
@@ -1143,7 +1155,7 @@ template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 
    }
 
-   string_array_base::add(newElement);
+   string_base_array::add(newElement);
 
    return get_upper_bound();
 
@@ -1151,7 +1163,7 @@ template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-::collection::count string_array_base < Type, RawType, t_etypeContainer > ::case_insensitive_append_unique(const string_array_base& straNewElements)
+::collection::count string_base_array < Type, RawType, t_etypeContainer > ::case_insensitive_append_unique(const string_base_array& straNewElements)
 {
 
    ::collection::count count = 0;
@@ -1174,7 +1186,7 @@ template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-::collection::index string_array_base < Type, RawType, t_etypeContainer > ::find_first(const SCOPED_STRING& str, ::collection::index iFind, ::collection::index iLast) const
+::collection::index string_base_array < Type, RawType, t_etypeContainer > ::find_first(const SCOPED_STRING& str, ::collection::index iFind, ::collection::index iLast) const
 {
 
    if (this->prepare_first_last(iFind, iLast))
@@ -1200,7 +1212,7 @@ template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-::collection::index string_array_base < Type, RawType, t_etypeContainer > ::case_insensitive_find_first(const SCOPED_STRING& str, ::collection::index iFind, ::collection::index iLast) const
+::collection::index string_base_array < Type, RawType, t_etypeContainer > ::case_insensitive_find_first(const SCOPED_STRING& str, ::collection::index iFind, ::collection::index iLast) const
 {
 
    if (this->prepare_first_last(iFind, iLast))
@@ -1244,7 +1256,7 @@ template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-::collection::index string_array_base < Type, RawType, t_etypeContainer > ::rear_find(const SCOPED_STRING& str, ::collection::index iFind, ::collection::index iLast) const
+::collection::index string_base_array < Type, RawType, t_etypeContainer > ::rear_find(const SCOPED_STRING& str, ::collection::index iFind, ::collection::index iLast) const
 {
 
    if (this->prepare_first_last(iFind, iLast))
@@ -1269,7 +1281,7 @@ template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 }
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-::collection::index string_array_base < Type, RawType, t_etypeContainer > ::case_insensitive_reverse_find(const SCOPED_STRING& str, ::collection::index iFind, ::collection::index iLast) const
+::collection::index string_base_array < Type, RawType, t_etypeContainer > ::case_insensitive_reverse_find(const SCOPED_STRING& str, ::collection::index iFind, ::collection::index iLast) const
 {
 
    if (this->prepare_first_last(iFind, iLast))
@@ -1299,7 +1311,7 @@ template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-::collection::count string_array_base < Type, RawType, t_etypeContainer > ::count(const SCOPED_STRING& str, ::collection::index iFind, ::collection::index iLast) const
+::collection::count string_base_array < Type, RawType, t_etypeContainer > ::count(const SCOPED_STRING& str, ::collection::index iFind, ::collection::index iLast) const
 {
 
    ::collection::count count = 0;
@@ -1327,7 +1339,7 @@ template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-::collection::count string_array_base < Type, RawType, t_etypeContainer > ::case_insensitive_count(const SCOPED_STRING& str, ::collection::index iFind, ::collection::index iLast) const
+::collection::count string_base_array < Type, RawType, t_etypeContainer > ::case_insensitive_count(const SCOPED_STRING& str, ::collection::index iFind, ::collection::index iLast) const
 {
 
    ::collection::count count = 0;
@@ -1357,7 +1369,7 @@ template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-::collection::index string_array_base < Type, RawType, t_etypeContainer > ::case_insensitive_find_last(const SCOPED_STRING& str, ::collection::index iFind, ::collection::index iLast) const
+::collection::index string_base_array < Type, RawType, t_etypeContainer > ::case_insensitive_find_last(const SCOPED_STRING& str, ::collection::index iFind, ::collection::index iLast) const
 {
 
    return case_insensitive_reverse_find(str, iFind, iLast);
@@ -1366,7 +1378,7 @@ template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-::collection::index string_array_base < Type, RawType, t_etypeContainer > ::find_last(const SCOPED_STRING& str, ::collection::index iFind, ::collection::index iLast) const
+::collection::index string_base_array < Type, RawType, t_etypeContainer > ::find_last(const SCOPED_STRING& str, ::collection::index iFind, ::collection::index iLast) const
 {
 
    return rear_find(str, iFind, iLast);
@@ -1375,10 +1387,10 @@ template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-::collection::index string_array_base < Type, RawType, t_etypeContainer > ::_066Find(const SCOPED_STRING& strParam) const
+::collection::index string_base_array < Type, RawType, t_etypeContainer > ::_066Find(const SCOPED_STRING& strParam) const
 {
 
-   RawString str(strParam);
+   BASE_RAW_STRING str(strParam);
 
    ::collection::index iSel = this->find_first(str);
 
@@ -1427,7 +1439,7 @@ template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-::collection::index string_array_base < Type, RawType, t_etypeContainer > ::find_first_contains(const SCOPED_STRING& strSubstring, ::collection::index iFind, ::collection::index iLast, const CHARACTER** ppszBeg, const CHARACTER** ppszEnd) const
+::collection::index string_base_array < Type, RawType, t_etypeContainer > ::find_first_contains(const SCOPED_STRING& strSubstring, ::collection::index iFind, ::collection::index iLast, const CHARACTER** ppszBeg, const CHARACTER** ppszEnd) const
 {
 
    if (this->prepare_first_last(iFind, iLast))
@@ -1443,7 +1455,7 @@ template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-::collection::index string_array_base < Type, RawType, t_etypeContainer > ::_find_first_contains(const SCOPED_STRING& strSubstring, ::collection::index iFind, ::collection::index iLast, const CHARACTER** ppszBeg, const CHARACTER** ppszEnd) const
+::collection::index string_base_array < Type, RawType, t_etypeContainer > ::_find_first_contains(const SCOPED_STRING& strSubstring, ::collection::index iFind, ::collection::index iLast, const CHARACTER** ppszBeg, const CHARACTER** ppszEnd) const
 {
 
    for (; iFind <= iLast; iFind++)
@@ -1466,7 +1478,7 @@ template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-::collection::index string_array_base < Type, RawType, t_etypeContainer > ::case_insensitive_find_first_contains(const SCOPED_STRING& strSubstring, ::collection::index iFind, ::collection::index iLast, const CHARACTER** ppszBeg, const CHARACTER** ppszEnd) const
+::collection::index string_base_array < Type, RawType, t_etypeContainer > ::case_insensitive_find_first_contains(const SCOPED_STRING& strSubstring, ::collection::index iFind, ::collection::index iLast, const CHARACTER** ppszBeg, const CHARACTER** ppszEnd) const
 {
 
    if (this->prepare_first_last(iFind, iLast))
@@ -1482,7 +1494,7 @@ template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-::collection::index string_array_base < Type, RawType, t_etypeContainer > ::_case_insensitive_find_first_contains(const SCOPED_STRING& strSubstring, ::collection::index iFind, ::collection::index iLast, const CHARACTER** ppszBeg, const CHARACTER** ppszEnd) const
+::collection::index string_base_array < Type, RawType, t_etypeContainer > ::_case_insensitive_find_first_contains(const SCOPED_STRING& strSubstring, ::collection::index iFind, ::collection::index iLast, const CHARACTER** ppszBeg, const CHARACTER** ppszEnd) const
 {
 
    for (; iFind <= iLast; iFind++)
@@ -1503,7 +1515,7 @@ template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-::collection::index string_array_base < Type, RawType, t_etypeContainer > ::case_insensitive_prefix_find_first(const SCOPED_STRING& strTopic, ::collection::index iFind, ::collection::index iLast) const
+::collection::index string_base_array < Type, RawType, t_etypeContainer > ::case_insensitive_prefix_find_first(const SCOPED_STRING& strTopic, ::collection::index iFind, ::collection::index iLast) const
 {
 
    if (this->prepare_first_last(iFind, iLast))
@@ -1529,7 +1541,7 @@ template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-::collection::index string_array_base < Type, RawType, t_etypeContainer > ::prefix_find_first(const SCOPED_STRING& strTopic, ::collection::index iFind, ::collection::index iLast) const
+::collection::index string_base_array < Type, RawType, t_etypeContainer > ::prefix_find_first(const SCOPED_STRING& strTopic, ::collection::index iFind, ::collection::index iLast) const
 {
 
    if (this->prepare_first_last(iFind, iLast))
@@ -1557,7 +1569,7 @@ template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-::collection::index string_array_base < Type, RawType, t_etypeContainer > ::substring_find_first(const SCOPED_STRING& strTopic, ::collection::index iFind, ::collection::index iLast, const CHARACTER** ppszBeg, const CHARACTER** ppszEnd) const
+::collection::index string_base_array < Type, RawType, t_etypeContainer > ::substring_find_first(const SCOPED_STRING& strTopic, ::collection::index iFind, ::collection::index iLast, const CHARACTER** ppszBeg, const CHARACTER** ppszEnd) const
 {
 
    if (this->prepare_first_last(iFind, iLast))
@@ -1599,7 +1611,7 @@ template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-::collection::index string_array_base < Type, RawType, t_etypeContainer > ::case_insensitive_substring_find_first(const SCOPED_STRING& strTopic, ::collection::index iFind, ::collection::index iLast, const CHARACTER** ppszBeg, const CHARACTER** ppszEnd) const
+::collection::index string_base_array < Type, RawType, t_etypeContainer > ::case_insensitive_substring_find_first(const SCOPED_STRING& strTopic, ::collection::index iFind, ::collection::index iLast, const CHARACTER** ppszBeg, const CHARACTER** ppszEnd) const
 {
 
    if (this->prepare_first_last(iFind, iLast))
@@ -1643,7 +1655,7 @@ template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-::collection::index string_array_base < Type, RawType, t_etypeContainer > ::case_insensitive_find_first_suffixed(const SCOPED_STRING& strSuffix, ::collection::index iFind, ::collection::index iLast) const
+::collection::index string_base_array < Type, RawType, t_etypeContainer > ::case_insensitive_find_first_suffixed(const SCOPED_STRING& strSuffix, ::collection::index iFind, ::collection::index iLast) const
 {
 
    if (this->prepare_first_last(iFind, iLast))
@@ -1659,7 +1671,7 @@ template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-::collection::index string_array_base < Type, RawType, t_etypeContainer > ::find_first_suffixed(const SCOPED_STRING& strSuffix, ::collection::index iFind, ::collection::index iLast) const
+::collection::index string_base_array < Type, RawType, t_etypeContainer > ::find_first_suffixed(const SCOPED_STRING& strSuffix, ::collection::index iFind, ::collection::index iLast) const
 {
 
    if (this->prepare_first_last(iFind, iLast))
@@ -1675,7 +1687,7 @@ template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-::collection::index string_array_base < Type, RawType, t_etypeContainer > ::find_first_begins_eat(Type& strFoundAndEaten, const SCOPED_STRING& strSuffix, ::collection::index iFind, ::collection::index iLast) const
+::collection::index string_base_array < Type, RawType, t_etypeContainer > ::find_first_begins_eat(Type& strFoundAndEaten, const SCOPED_STRING& strSuffix, ::collection::index iFind, ::collection::index iLast) const
 {
 
    iFind = find_first_begins(strSuffix, iFind, iLast);
@@ -1695,7 +1707,7 @@ template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-::collection::index string_array_base < Type, RawType, t_etypeContainer > ::find_first_with_starting_word_eat(Type& strFoundAndEaten, const SCOPED_STRING& strStartingWord, ::collection::index iFind, ::collection::index iLast) const
+::collection::index string_base_array < Type, RawType, t_etypeContainer > ::find_first_with_starting_word_eat(Type& strFoundAndEaten, const SCOPED_STRING& strStartingWord, ::collection::index iFind, ::collection::index iLast) const
 {
 
    iFind = find_first_with_starting_word(strStartingWord, iFind, iLast);
@@ -1715,7 +1727,7 @@ template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-::collection::index string_array_base < Type, RawType, t_etypeContainer > ::case_insensitive_find_first_begins_eat(Type& strFoundAndEaten, const SCOPED_STRING& strPrefix, ::collection::index iFind, ::collection::index iLast) const
+::collection::index string_base_array < Type, RawType, t_etypeContainer > ::case_insensitive_find_first_begins_eat(Type& strFoundAndEaten, const SCOPED_STRING& strPrefix, ::collection::index iFind, ::collection::index iLast) const
 {
 
    iFind = case_insensitive_find_first_begins(strPrefix, iFind, iLast);
@@ -1737,7 +1749,7 @@ template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-::collection::index string_array_base < Type, RawType, t_etypeContainer > ::find_first_ends_eat(Type& strFoundAndEaten, const SCOPED_STRING& strSuffix, ::collection::index iFind, ::collection::index iLast) const
+::collection::index string_base_array < Type, RawType, t_etypeContainer > ::find_first_ends_eat(Type& strFoundAndEaten, const SCOPED_STRING& strSuffix, ::collection::index iFind, ::collection::index iLast) const
 {
 
    iFind = find_first_ends(strSuffix, iFind, iLast);
@@ -1757,7 +1769,7 @@ template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-::collection::index string_array_base < Type, RawType, t_etypeContainer > ::case_insensitive_find_first_ends_eat(Type& strFoundAndEaten, const SCOPED_STRING& strSuffix, ::collection::index iFind, ::collection::index iLast) const
+::collection::index string_base_array < Type, RawType, t_etypeContainer > ::case_insensitive_find_first_ends_eat(Type& strFoundAndEaten, const SCOPED_STRING& strSuffix, ::collection::index iFind, ::collection::index iLast) const
 {
 
    iFind = case_insensitive_find_first_ends(strSuffix, iFind, iLast);
@@ -1778,7 +1790,7 @@ template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-::collection::index string_array_base < Type, RawType, t_etypeContainer > ::find_first_contains_eat(Type& strFoundAndEaten, const SCOPED_STRING& strSubstring, ::collection::index iFind, ::collection::index iLast) const
+::collection::index string_base_array < Type, RawType, t_etypeContainer > ::find_first_contains_eat(Type& strFoundAndEaten, const SCOPED_STRING& strSubstring, ::collection::index iFind, ::collection::index iLast) const
 {
 
    const CHARACTER* pszBeg = nullptr;
@@ -1804,7 +1816,7 @@ template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-::collection::index string_array_base < Type, RawType, t_etypeContainer > ::case_insensitive_find_first_contains_eat(Type& strFoundAndEaten, const SCOPED_STRING& strTopic, ::collection::index iFind, ::collection::index iLast) const
+::collection::index string_base_array < Type, RawType, t_etypeContainer > ::case_insensitive_find_first_contains_eat(Type& strFoundAndEaten, const SCOPED_STRING& strTopic, ::collection::index iFind, ::collection::index iLast) const
 {
 
    const CHARACTER* pszBeg = nullptr;
@@ -1830,7 +1842,7 @@ template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-::collection::index string_array_base < Type, RawType, t_etypeContainer > ::find_first_prefixed(const SCOPED_STRING& strPrefix, ::collection::index iFind, ::collection::index iLast) const
+::collection::index string_base_array < Type, RawType, t_etypeContainer > ::find_first_prefixed(const SCOPED_STRING& strPrefix, ::collection::index iFind, ::collection::index iLast) const
 {
 
    if (this->prepare_first_last(iFind, iLast))
@@ -1846,7 +1858,7 @@ template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-::collection::index string_array_base < Type, RawType, t_etypeContainer > ::find_first_with_starting_word(const SCOPED_STRING& strPrefix, ::collection::index iFind, ::collection::index iLast) const
+::collection::index string_base_array < Type, RawType, t_etypeContainer > ::find_first_with_starting_word(const SCOPED_STRING& strPrefix, ::collection::index iFind, ::collection::index iLast) const
 {
 
    if (this->prepare_first_last(iFind, iLast))
@@ -1862,7 +1874,7 @@ template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-::collection::index string_array_base < Type, RawType, t_etypeContainer > ::case_insensitive_find_first_prefixed(const SCOPED_STRING& strPrefix, ::collection::index iFind, ::collection::index iLast) const
+::collection::index string_base_array < Type, RawType, t_etypeContainer > ::case_insensitive_find_first_prefixed(const SCOPED_STRING& strPrefix, ::collection::index iFind, ::collection::index iLast) const
 {
 
    if (this->prepare_first_last(iFind, iLast))
@@ -1878,7 +1890,7 @@ template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-::collection::index string_array_base < Type, RawType, t_etypeContainer > ::_find_first_prefixed(const SCOPED_STRING& strPrefix, ::collection::index iFind, ::collection::index iLast) const
+::collection::index string_base_array < Type, RawType, t_etypeContainer > ::_find_first_prefixed(const SCOPED_STRING& strPrefix, ::collection::index iFind, ::collection::index iLast) const
 {
 
    for (; iFind <= iLast; iFind++)
@@ -1899,7 +1911,7 @@ template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-::collection::index string_array_base < Type, RawType, t_etypeContainer > ::_find_first_with_starting_word(const SCOPED_STRING& strStartingWord, ::collection::index iFind, ::collection::index iLast) const
+::collection::index string_base_array < Type, RawType, t_etypeContainer > ::_find_first_with_starting_word(const SCOPED_STRING& strStartingWord, ::collection::index iFind, ::collection::index iLast) const
 {
 
    for (; iFind <= iLast; iFind++)
@@ -1920,7 +1932,7 @@ template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-::collection::index string_array_base < Type, RawType, t_etypeContainer > ::_case_insensitive_find_first_prefixed(const SCOPED_STRING& strPrefix, ::collection::index iFind, ::collection::index iLast) const
+::collection::index string_base_array < Type, RawType, t_etypeContainer > ::_case_insensitive_find_first_prefixed(const SCOPED_STRING& strPrefix, ::collection::index iFind, ::collection::index iLast) const
 {
 
    for (; iFind <= iLast; iFind++)
@@ -1940,7 +1952,7 @@ template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 }
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-bool string_array_base < Type, RawType, t_etypeContainer > ::_067CaseInsensitiveContains(const SCOPED_STRING& str, ::collection::index iFind, ::collection::index iLast, ::collection::count countMin, ::collection::count countMax) const
+bool string_base_array < Type, RawType, t_etypeContainer > ::_067CaseInsensitiveContains(const SCOPED_STRING& str, ::collection::index iFind, ::collection::index iLast, ::collection::count countMin, ::collection::count countMax) const
 {
 
    ::collection::count count = 0;
@@ -1957,7 +1969,7 @@ bool string_array_base < Type, RawType, t_etypeContainer > ::_067CaseInsensitive
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-bool string_array_base < Type, RawType, t_etypeContainer > ::_067Contains(const SCOPED_STRING& str, ::collection::index iFind, ::collection::index iLast, ::collection::count countMin, ::collection::count countMax) const
+bool string_base_array < Type, RawType, t_etypeContainer > ::_067Contains(const SCOPED_STRING& str, ::collection::index iFind, ::collection::index iLast, ::collection::count countMin, ::collection::count countMax) const
 {
 
    ::collection::count count = 0;
@@ -1975,7 +1987,7 @@ bool string_array_base < Type, RawType, t_etypeContainer > ::_067Contains(const 
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-bool string_array_base < Type, RawType, t_etypeContainer > ::_067CaseInsensitiveContainsSubstring(const SCOPED_STRING& str, ::collection::index iFind, ::collection::index iLast, ::collection::count countMin, ::collection::count countMax) const
+bool string_base_array < Type, RawType, t_etypeContainer > ::_067CaseInsensitiveContainsSubstring(const SCOPED_STRING& str, ::collection::index iFind, ::collection::index iLast, ::collection::count countMin, ::collection::count countMax) const
 {
 
    ::collection::count count = 0;
@@ -1993,7 +2005,7 @@ bool string_array_base < Type, RawType, t_etypeContainer > ::_067CaseInsensitive
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-bool string_array_base < Type, RawType, t_etypeContainer > ::_067ContainsSubstring(const SCOPED_STRING& str, ::collection::index iFind, ::collection::index iLast, ::collection::count countMin, ::collection::count countMax) const
+bool string_base_array < Type, RawType, t_etypeContainer > ::_067ContainsSubstring(const SCOPED_STRING& str, ::collection::index iFind, ::collection::index iLast, ::collection::count countMin, ::collection::count countMax) const
 {
 
    ::collection::count count = 0;
@@ -2011,7 +2023,7 @@ bool string_array_base < Type, RawType, t_etypeContainer > ::_067ContainsSubstri
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-::collection::index string_array_base < Type, RawType, t_etypeContainer > ::case_insensitive_erase_first(const SCOPED_STRING& str, ::collection::index iFind, ::collection::index iLast)
+::collection::index string_base_array < Type, RawType, t_etypeContainer > ::case_insensitive_erase_first(const SCOPED_STRING& str, ::collection::index iFind, ::collection::index iLast)
 {
 
    if ((iFind = case_insensitive_find_first(str, iFind, iLast)) >= 0)
@@ -2027,7 +2039,7 @@ template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-::collection::index string_array_base < Type, RawType, t_etypeContainer > ::erase_first(const SCOPED_STRING& str, ::collection::index iFind, ::collection::index iLast)
+::collection::index string_base_array < Type, RawType, t_etypeContainer > ::erase_first(const SCOPED_STRING& str, ::collection::index iFind, ::collection::index iLast)
 {
 
    if ((iFind = find_first(str, iFind, iLast)) >= 0)
@@ -2043,7 +2055,7 @@ template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-::collection::index string_array_base < Type, RawType, t_etypeContainer > ::case_insensitive_erase_last(const SCOPED_STRING& str, ::collection::index iFind, ::collection::index iLast)
+::collection::index string_base_array < Type, RawType, t_etypeContainer > ::case_insensitive_erase_last(const SCOPED_STRING& str, ::collection::index iFind, ::collection::index iLast)
 {
 
    if ((iFind = case_insensitive_find_last(str, iFind, iLast)) >= 0)
@@ -2059,7 +2071,7 @@ template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-::collection::index string_array_base < Type, RawType, t_etypeContainer > ::erase_last(const SCOPED_STRING& str, ::collection::index iFind, ::collection::index iLast)
+::collection::index string_base_array < Type, RawType, t_etypeContainer > ::erase_last(const SCOPED_STRING& str, ::collection::index iFind, ::collection::index iLast)
 {
 
    if ((iFind = find_last(str, iFind, iLast)) >= 0)
@@ -2076,7 +2088,7 @@ template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-::collection::count string_array_base < Type, RawType, t_etypeContainer > ::_067CaseInsensitiveRemove(const SCOPED_STRING& str, ::collection::index iFind, ::collection::index iLast, ::collection::count countMin, ::collection::count countMax)
+::collection::count string_base_array < Type, RawType, t_etypeContainer > ::_067CaseInsensitiveRemove(const SCOPED_STRING& str, ::collection::index iFind, ::collection::index iLast, ::collection::count countMin, ::collection::count countMax)
 {
 
    ::collection::count count = 0;
@@ -2099,7 +2111,7 @@ template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-::collection::count string_array_base < Type, RawType, t_etypeContainer > ::_067Remove(const SCOPED_STRING& str, ::collection::index iFind, ::collection::index iLast, ::collection::count countMin, ::collection::count countMax)
+::collection::count string_base_array < Type, RawType, t_etypeContainer > ::_067Remove(const SCOPED_STRING& str, ::collection::index iFind, ::collection::index iLast, ::collection::count countMin, ::collection::count countMax)
 {
 
    ::collection::count count = 0;
@@ -2121,7 +2133,7 @@ template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-::collection::count string_array_base < Type, RawType, t_etypeContainer > ::case_insensitive_erase(const SCOPED_STRING& str, ::collection::index iFind, ::collection::index iLast)
+::collection::count string_base_array < Type, RawType, t_etypeContainer > ::case_insensitive_erase(const SCOPED_STRING& str, ::collection::index iFind, ::collection::index iLast)
 {
 
    ::collection::count count = 0;
@@ -2139,7 +2151,7 @@ template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-::collection::count string_array_base < Type, RawType, t_etypeContainer > ::erase(const SCOPED_STRING& str, ::collection::index iFind, ::collection::index iLast)
+::collection::count string_base_array < Type, RawType, t_etypeContainer > ::erase(const SCOPED_STRING& str, ::collection::index iFind, ::collection::index iLast)
 {
 
    ::collection::count count = 0;
@@ -2158,15 +2170,16 @@ template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-::collection::count string_array_base < Type, RawType, t_etypeContainer > ::case_insensitive_erase(const string_array_base& stra)
+template < primitive_container CONTAINER >
+::collection::count string_base_array < Type, RawType, t_etypeContainer > ::case_insensitive_erase(const CONTAINER & container)
 {
 
    ::collection::count count = 0;
 
-   for (::collection::index i = 0; i < stra.get_size(); i++)
+   for (auto & item : container)
    {
 
-      count += case_insensitive_erase(stra[i]);
+      count += this->case_insensitive_erase(item);
 
    }
 
@@ -2176,15 +2189,16 @@ template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-::collection::count string_array_base < Type, RawType, t_etypeContainer > ::erase(const string_array_base& stra)
+template < primitive_container CONTAINER >
+::collection::count string_base_array < Type, RawType, t_etypeContainer > ::erase(const CONTAINER & container)
 {
 
    ::collection::count count = 0;
 
-   for (::collection::index i = 0; i < stra.get_size(); i++)
+   for (auto& item : container)
    {
 
-      count += erase(stra[i]);
+      count += this->erase(item);
 
    }
 
@@ -2194,7 +2208,7 @@ template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-void string_array_base < Type, RawType, t_etypeContainer > ::trim_left(const SCOPED_STRING& strChars)
+void string_base_array < Type, RawType, t_etypeContainer > ::trim_left(const SCOPED_STRING& strChars)
 {
    for (::collection::index i = 0; i < this->size(); i++)
    {
@@ -2204,7 +2218,7 @@ void string_array_base < Type, RawType, t_etypeContainer > ::trim_left(const SCO
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-void string_array_base < Type, RawType, t_etypeContainer > ::trim_right(const SCOPED_STRING& strChars)
+void string_base_array < Type, RawType, t_etypeContainer > ::trim_right(const SCOPED_STRING& strChars)
 {
    for (::collection::index i = 0; i < this->size(); i++)
    {
@@ -2214,7 +2228,7 @@ void string_array_base < Type, RawType, t_etypeContainer > ::trim_right(const SC
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-void string_array_base < Type, RawType, t_etypeContainer > ::trim(const SCOPED_STRING& strChars)
+void string_base_array < Type, RawType, t_etypeContainer > ::trim(const SCOPED_STRING& strChars)
 {
    for (::collection::index i = 0; i < this->size(); i++)
    {
@@ -2225,7 +2239,7 @@ void string_array_base < Type, RawType, t_etypeContainer > ::trim(const SCOPED_S
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-void string_array_base < Type, RawType, t_etypeContainer > ::trim_left()
+void string_base_array < Type, RawType, t_etypeContainer > ::trim_left()
 {
    for (::collection::index i = 0; i < this->size(); i++)
    {
@@ -2235,7 +2249,7 @@ void string_array_base < Type, RawType, t_etypeContainer > ::trim_left()
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-void string_array_base < Type, RawType, t_etypeContainer > ::trim_right()
+void string_base_array < Type, RawType, t_etypeContainer > ::trim_right()
 {
    for (::collection::index i = 0; i < this->size(); i++)
    {
@@ -2245,7 +2259,7 @@ void string_array_base < Type, RawType, t_etypeContainer > ::trim_right()
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-void string_array_base < Type, RawType, t_etypeContainer > ::trim()
+void string_base_array < Type, RawType, t_etypeContainer > ::trim()
 {
    for (::collection::index i = 0; i < this->size(); i++)
    {
@@ -2255,16 +2269,16 @@ void string_array_base < Type, RawType, t_etypeContainer > ::trim()
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-::collection::index string_array_base < Type, RawType, t_etypeContainer > ::add_normal(const Type& newElement)
+::collection::index string_base_array < Type, RawType, t_etypeContainer > ::add_normal(const Type& newElement)
 
 {
-   return string_array_base::add(newElement);
+   return string_base_array::add(newElement);
 
 }
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-::collection::count string_array_base < Type, RawType, t_etypeContainer > ::erase_empty()
+::collection::count string_base_array < Type, RawType, t_etypeContainer > ::erase_empty()
 {
 
    ::collection::count count = 0;
@@ -2295,7 +2309,7 @@ template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-::collection::count string_array_base < Type, RawType, t_etypeContainer > ::erase_empty_begin()
+::collection::count string_base_array < Type, RawType, t_etypeContainer > ::erase_empty_begin()
 {
 
    ::collection::count count = 0;
@@ -2316,7 +2330,7 @@ template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 }
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-::collection::count string_array_base < Type, RawType, t_etypeContainer > ::erase_empty_end()
+::collection::count string_base_array < Type, RawType, t_etypeContainer > ::erase_empty_end()
 {
 
    ::collection::count count = 0;
@@ -2338,7 +2352,7 @@ template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-::collection::count string_array_base < Type, RawType, t_etypeContainer > ::erase_empty_trimmed_begin()
+::collection::count string_base_array < Type, RawType, t_etypeContainer > ::erase_empty_trimmed_begin()
 {
    ::collection::count count = 0;
    for (::collection::index i = 0; i < this->get_size();)
@@ -2357,7 +2371,7 @@ template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 }
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-::collection::count string_array_base < Type, RawType, t_etypeContainer > ::erase_empty_trimmed_end()
+::collection::count string_base_array < Type, RawType, t_etypeContainer > ::erase_empty_trimmed_end()
 {
    ::collection::count count = 0;
    ::collection::index i;
@@ -2378,7 +2392,7 @@ template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 
 
 //template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-//string_array_base < Type, RawType, t_etypeContainer >  & string_array_base < Type, RawType, t_etypeContainer > ::operator =(const long_long_array & ia)
+//string_base_array < Type, RawType, t_etypeContainer >  & string_base_array < Type, RawType, t_etypeContainer > ::operator =(const long_long_array_base & ia)
 //{
 //
 //   this->_001CopyContainer(ia);
@@ -2388,7 +2402,7 @@ template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 //}
 
 
-/*::collection::index string_array_base < Type, RawType, t_etypeContainer > ::CountPrefixNoCase(const SCOPED_STRING &strPrefix)
+/*::collection::index string_base_array < Type, RawType, t_etypeContainer > ::CountPrefixNoCase(const SCOPED_STRING &strPrefix)
 
 {
 Type str;
@@ -2419,8 +2433,8 @@ return iCount;
 }
 }*/
 
-/*void string_array_base < Type, RawType, t_etypeContainer > ::ExtractPrefixNoSortNoCase(
-string_array_base < Type, RawType, t_etypeContainer >  &stra,
+/*void string_base_array < Type, RawType, t_etypeContainer > ::ExtractPrefixNoSortNoCase(
+string_base_array < Type, RawType, t_etypeContainer >  &stra,
 const SCOPED_STRING &str,
 
 ::collection::index iLength,
@@ -2468,7 +2482,7 @@ add(strMid);
 
 }
 
-::collection::index string_array_base < Type, RawType, t_etypeContainer > ::FindFirstNoSortNoCase(const SCOPED_STRING &str)
+::collection::index string_base_array < Type, RawType, t_etypeContainer > ::FindFirstNoSortNoCase(const SCOPED_STRING &str)
 
 {
 for(::collection::index i = 0; i < this->get_size(); i++)
@@ -2486,7 +2500,7 @@ return -1;
 
 
 //template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-//inline stream & operator << (stream & ostream, string_array_base < Type, RawType, t_etypeContainer > & a)
+//inline stream & operator << (stream & ostream, string_base_array < Type, RawType, t_etypeContainer > & a)
 //{
 //
 //   return ostream.stream_array(a);
@@ -2495,7 +2509,7 @@ return -1;
 
 
 //template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-//inline stream & operator >> (stream & istream, string_array_base < Type, RawType, t_etypeContainer > & a)
+//inline stream & operator >> (stream & istream, string_base_array < Type, RawType, t_etypeContainer > & a)
 //{
 //
 //   return istream.stream_array(a);
@@ -2508,7 +2522,7 @@ return -1;
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-Type string_array_base < Type, RawType, t_etypeContainer > ::implode(const SCOPED_STRING& strSeparator, ::collection::index i, ::collection::count inCountLastOut) const
+Type string_base_array < Type, RawType, t_etypeContainer > ::implode(const SCOPED_STRING& strSeparator, ::collection::index i, ::collection::count inCountLastOut) const
 {
 
    Type str;
@@ -2546,7 +2560,7 @@ Type string_array_base < Type, RawType, t_etypeContainer > ::implode(const SCOPE
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-Type string_array_base < Type, RawType, t_etypeContainer > ::postfix_implode(const SCOPED_STRING& strSuffix, ::collection::index i, ::collection::count inCountLastOut) const
+Type string_base_array < Type, RawType, t_etypeContainer > ::postfix_implode(const SCOPED_STRING& strSuffix, ::collection::index i, ::collection::count inCountLastOut) const
 {
 
    Type str;
@@ -2576,7 +2590,7 @@ Type string_array_base < Type, RawType, t_etypeContainer > ::postfix_implode(con
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-Type string_array_base < Type, RawType, t_etypeContainer > ::reverse_implode(const SCOPED_STRING& strSeparator, ::collection::index i, ::collection::count inCountLastOut) const
+Type string_base_array < Type, RawType, t_etypeContainer > ::reverse_implode(const SCOPED_STRING& strSeparator, ::collection::index i, ::collection::count inCountLastOut) const
 {
 
    Type str;
@@ -2614,7 +2628,7 @@ Type string_array_base < Type, RawType, t_etypeContainer > ::reverse_implode(con
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-string_array_base < Type, RawType, t_etypeContainer >& string_array_base < Type, RawType, t_etypeContainer > ::explode(const SCOPED_STRING& strSeparator, const SCOPED_STRING& str, bool bAddEmpty)
+string_base_array < Type, RawType, t_etypeContainer >& string_base_array < Type, RawType, t_etypeContainer > ::explode(const SCOPED_STRING& strSeparator, const SCOPED_STRING& str, bool bAddEmpty)
 {
 
    this->erase_all();
@@ -2627,7 +2641,7 @@ string_array_base < Type, RawType, t_etypeContainer >& string_array_base < Type,
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-string_array_base < Type, RawType, t_etypeContainer >& string_array_base < Type, RawType, t_etypeContainer > ::_001Explode(const SCOPED_STRING& str)
+string_base_array < Type, RawType, t_etypeContainer >& string_base_array < Type, RawType, t_etypeContainer > ::_001Explode(const SCOPED_STRING& str)
 {
 
    this->erase_all();
@@ -2639,11 +2653,8 @@ string_array_base < Type, RawType, t_etypeContainer >& string_array_base < Type,
 }
 
 
-
-
-
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-bool string_array_base < Type, RawType, t_etypeContainer > ::operator == (const typename string_array_base < Type, RawType, t_etypeContainer >::RawStringArray& a) const
+bool string_base_array < Type, RawType, t_etypeContainer > ::operator == (const typename string_base_array < Type, RawType, t_etypeContainer >::BASE_RAW_STRING_ARRAY & a) const
 {
 
    if (a.get_size() != get_size())
@@ -2671,7 +2682,7 @@ bool string_array_base < Type, RawType, t_etypeContainer > ::operator == (const 
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-bool string_array_base < Type, RawType, t_etypeContainer > ::operator != (const typename string_array_base < Type, RawType, t_etypeContainer >::RawStringArray& a) const
+bool string_base_array < Type, RawType, t_etypeContainer > ::operator != (const typename string_base_array < Type, RawType, t_etypeContainer >::BASE_RAW_STRING_ARRAY & a) const
 {
 
    return !operator == (a);
@@ -2680,7 +2691,7 @@ bool string_array_base < Type, RawType, t_etypeContainer > ::operator != (const 
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-void string_array_base < Type, RawType, t_etypeContainer > ::replace_with(const SCOPED_STRING& strNew, const SCOPED_STRING& strOld)
+void string_base_array < Type, RawType, t_etypeContainer > ::replace_with(const SCOPED_STRING& strNew, const SCOPED_STRING& strOld)
 {
 
    for (::collection::index i = 0; i < this->get_size(); i++)
@@ -2697,7 +2708,7 @@ void string_array_base < Type, RawType, t_etypeContainer > ::replace_with(const 
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-void string_array_base < Type, RawType, t_etypeContainer > ::surround(const SCOPED_STRING& strPrefix, const SCOPED_STRING& strSuffix, ::collection::index iStart, ::collection::count inCountLastOut)
+void string_base_array < Type, RawType, t_etypeContainer > ::surround(const SCOPED_STRING& strPrefix, const SCOPED_STRING& strSuffix, ::collection::index iStart, ::collection::count inCountLastOut)
 {
 
    if (!this->prepare_first_in_count_last_out(iStart, inCountLastOut))
@@ -2722,7 +2733,7 @@ void string_array_base < Type, RawType, t_etypeContainer > ::surround(const SCOP
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-Type string_array_base < Type, RawType, t_etypeContainer > ::surround_and_implode(const SCOPED_STRING& scopedstrSeparator, const SCOPED_STRING& scopedstrPrefix, const SCOPED_STRING& scopedstrSuffix, ::collection::index iStart, ::collection::count inCountLastOut)
+Type string_base_array < Type, RawType, t_etypeContainer > ::surround_and_implode(const SCOPED_STRING& scopedstrSeparator, const SCOPED_STRING& scopedstrPrefix, const SCOPED_STRING& scopedstrSuffix, ::collection::index iStart, ::collection::count inCountLastOut)
 {
 
    Type str;
@@ -2753,7 +2764,7 @@ Type string_array_base < Type, RawType, t_etypeContainer > ::surround_and_implod
 
 
 //template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-//string_array_base < Type, RawType, t_etypeContainer >  & string_array_base < Type, RawType, t_etypeContainer > ::operator -=(const string_array_base & stra)
+//string_base_array < Type, RawType, t_etypeContainer >  & string_base_array < Type, RawType, t_etypeContainer > ::operator -=(const string_base_array & stra)
 //{
 //
 //   erase(stra);
@@ -2764,7 +2775,7 @@ Type string_array_base < Type, RawType, t_etypeContainer > ::surround_and_implod
 
 
 //template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-//string_array_base < Type, RawType, t_etypeContainer >  & string_array_base < Type, RawType, t_etypeContainer > ::operator +=(const string_array_base & stra)
+//string_base_array < Type, RawType, t_etypeContainer >  & string_base_array < Type, RawType, t_etypeContainer > ::operator +=(const string_base_array & stra)
 //{
 //
 //   add(stra);
@@ -2775,18 +2786,18 @@ Type string_array_base < Type, RawType, t_etypeContainer > ::surround_and_implod
 
 
 //template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-//string_array_base < Type, RawType, t_etypeContainer >  string_array_base < Type, RawType, t_etypeContainer > ::operator -(const string_array_base & straParam) const
+//string_base_array < Type, RawType, t_etypeContainer >  string_base_array < Type, RawType, t_etypeContainer > ::operator -(const string_base_array & straParam) const
 //{
-//   string_array_base < Type, RawType, t_etypeContainer >  stra(*this);
+//   string_base_array < Type, RawType, t_etypeContainer >  stra(*this);
 //   stra -= straParam;
 //   return stra;
 //}
 
 
 //template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-//string_array_base < Type, RawType, t_etypeContainer >  string_array_base < Type, RawType, t_etypeContainer > ::operator +(const string_array_base & straParam) const
+//string_base_array < Type, RawType, t_etypeContainer >  string_base_array < Type, RawType, t_etypeContainer > ::operator +(const string_base_array & straParam) const
 //{
-//   string_array_base < Type, RawType, t_etypeContainer >  stra(*this);
+//   string_base_array < Type, RawType, t_etypeContainer >  stra(*this);
 //   stra += straParam;
 //   return stra;
 //}
@@ -2797,7 +2808,7 @@ Type string_array_base < Type, RawType, t_etypeContainer > ::surround_and_implod
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-bool string_array_base < Type, RawType, t_etypeContainer > ::case_insensitive_move(const SCOPED_STRING& str, ::collection::index iIndex)
+bool string_base_array < Type, RawType, t_etypeContainer > ::case_insensitive_move(const SCOPED_STRING& str, ::collection::index iIndex)
 
 {
    ::collection::index i = case_insensitive_find_first(str);
@@ -2812,7 +2823,7 @@ bool string_array_base < Type, RawType, t_etypeContainer > ::case_insensitive_mo
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-bool string_array_base < Type, RawType, t_etypeContainer > ::preferred(const SCOPED_STRING& str)
+bool string_base_array < Type, RawType, t_etypeContainer > ::preferred(const SCOPED_STRING& str)
 
 {
    return case_insensitive_move(str, 0);
@@ -2821,7 +2832,7 @@ bool string_array_base < Type, RawType, t_etypeContainer > ::preferred(const SCO
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-::collection::count string_array_base < Type, RawType, t_etypeContainer > ::preferred(string_array_base < Type, RawType, t_etypeContainer >& stra)
+::collection::count string_base_array < Type, RawType, t_etypeContainer > ::preferred(string_base_array < Type, RawType, t_etypeContainer >& stra)
 {
    ::collection::count count = 0;
    for (::collection::index i = stra.get_upper_bound(); i >= 0; i--)
@@ -2835,7 +2846,7 @@ template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-Type string_array_base < Type, RawType, t_etypeContainer > ::pop(::collection::index i)
+Type string_base_array < Type, RawType, t_etypeContainer > ::pop(::collection::index i)
 {
    i = get_upper_bound(i);
    Type strRet = this->element_at(i);
@@ -2845,7 +2856,7 @@ Type string_array_base < Type, RawType, t_etypeContainer > ::pop(::collection::i
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-void string_array_base < Type, RawType, t_etypeContainer > ::slice(string_array_base < Type, RawType, t_etypeContainer >& stra, ::collection::index iOffset, ::collection::count count)
+void string_base_array < Type, RawType, t_etypeContainer > ::slice(string_base_array < Type, RawType, t_etypeContainer >& stra, ::collection::index iOffset, ::collection::count count)
 {
 
    ::collection::index iEnd;
@@ -2864,7 +2875,7 @@ void string_array_base < Type, RawType, t_etypeContainer > ::slice(string_array_
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-void string_array_base < Type, RawType, t_etypeContainer > ::erase(::collection::index iOffset, ::collection::count count)
+void string_base_array < Type, RawType, t_etypeContainer > ::erase(::collection::index iOffset, ::collection::count count)
 {
 
    for (::collection::index i = iOffset + count - 1; i >= iOffset; i--)
@@ -2878,7 +2889,7 @@ void string_array_base < Type, RawType, t_etypeContainer > ::erase(::collection:
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-void string_array_base < Type, RawType, t_etypeContainer > ::splice(const string_array_base < Type, RawType, t_etypeContainer >& stra, ::collection::index iOffset, ::collection::count count)
+void string_base_array < Type, RawType, t_etypeContainer > ::splice(const string_base_array < Type, RawType, t_etypeContainer >& stra, ::collection::index iOffset, ::collection::count count)
 {
 
    erase(iOffset, count);
@@ -2890,7 +2901,7 @@ void string_array_base < Type, RawType, t_etypeContainer > ::splice(const string
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-void string_array_base < Type, RawType, t_etypeContainer > ::splice(const string_array_base < Type, RawType, t_etypeContainer >& stra, ::collection::index iOffset, string_array_base < Type, RawType, t_etypeContainer >& straRemoved, ::collection::count count)
+void string_base_array < Type, RawType, t_etypeContainer > ::splice(const string_base_array < Type, RawType, t_etypeContainer >& stra, ::collection::index iOffset, string_base_array < Type, RawType, t_etypeContainer >& straRemoved, ::collection::count count)
 {
 
    slice(straRemoved, iOffset, count);
@@ -2904,7 +2915,7 @@ void string_array_base < Type, RawType, t_etypeContainer > ::splice(const string
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-bool string_array_base < Type, RawType, t_etypeContainer > ::is_empty(::collection::count countMinimum) const
+bool string_base_array < Type, RawType, t_etypeContainer > ::is_empty(::collection::count countMinimum) const
 {
 
    return this->get_size() < countMinimum;
@@ -2913,7 +2924,7 @@ bool string_array_base < Type, RawType, t_etypeContainer > ::is_empty(::collecti
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-bool string_array_base < Type, RawType, t_etypeContainer > ::has_elements(::collection::count countMinimum) const
+bool string_base_array < Type, RawType, t_etypeContainer > ::has_elements(::collection::count countMinimum) const
 {
 
 
@@ -2922,7 +2933,7 @@ bool string_array_base < Type, RawType, t_etypeContainer > ::has_elements(::coll
 
 
 //template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-//::collection::count string_array_base < Type, RawType, t_etypeContainer > ::begins(string_array_base < Type, RawType, t_etypeContainer > & straPrefixed, const SCOPED_STRING &strPrefix, ::collection::index iFirst, ::collection::index iLast)
+//::collection::count string_base_array < Type, RawType, t_etypeContainer > ::begins(string_base_array < Type, RawType, t_etypeContainer > & straPrefixed, const SCOPED_STRING &strPrefix, ::collection::index iFirst, ::collection::index iLast)
 //{
 //
 //   ::collection::count count = 0;
@@ -2959,7 +2970,7 @@ bool string_array_base < Type, RawType, t_etypeContainer > ::has_elements(::coll
 //
 //
 //template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-//::collection::count string_array_base < Type, RawType, t_etypeContainer > ::case_insensitive_begins(string_array_base < Type, RawType, t_etypeContainer > & straPrefixed,const SCOPED_STRING &strPrefix,::collection::index iFirst,::collection::index iLast)
+//::collection::count string_base_array < Type, RawType, t_etypeContainer > ::case_insensitive_begins(string_base_array < Type, RawType, t_etypeContainer > & straPrefixed,const SCOPED_STRING &strPrefix,::collection::index iFirst,::collection::index iLast)
 //{
 //
 //   ::collection::count count = 0;
@@ -2999,7 +3010,7 @@ bool string_array_base < Type, RawType, t_etypeContainer > ::has_elements(::coll
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 template < primitive_array INDEX_ARRAY >
-::collection::count string_array_base < Type, RawType, t_etypeContainer > ::begins(INDEX_ARRAY& iaPrefixed, const SCOPED_STRING& strPrefix, ::collection::index iFirst, ::collection::index iLast)
+::collection::count string_base_array < Type, RawType, t_etypeContainer > ::begins(INDEX_ARRAY& iaPrefixed, const SCOPED_STRING& strPrefix, ::collection::index iFirst, ::collection::index iLast)
 {
 
    ::collection::count count = 0;
@@ -3037,7 +3048,7 @@ template < primitive_array INDEX_ARRAY >
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 template < primitive_array INDEX_ARRAY >
-::collection::count string_array_base < Type, RawType, t_etypeContainer > ::case_insensitive_begins(INDEX_ARRAY& iaPrefixed, const SCOPED_STRING& strPrefix, ::collection::index iFirst, ::collection::index iLast)
+::collection::count string_base_array < Type, RawType, t_etypeContainer > ::case_insensitive_begins(INDEX_ARRAY& iaPrefixed, const SCOPED_STRING& strPrefix, ::collection::index iFirst, ::collection::index iLast)
 {
 
    ::collection::count count = 0;
@@ -3074,7 +3085,7 @@ template < primitive_array INDEX_ARRAY >
 
 
 //template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-//::collection::count string_array_base < Type, RawType, t_etypeContainer > ::ends(string_array_base < Type, RawType, t_etypeContainer >& straSuffixed, const SCOPED_STRING &strSuffix, ::collection::index iFirst, ::collection::index iLast)
+//::collection::count string_base_array < Type, RawType, t_etypeContainer > ::ends(string_base_array < Type, RawType, t_etypeContainer >& straSuffixed, const SCOPED_STRING &strSuffix, ::collection::index iFirst, ::collection::index iLast)
 //{
 //
 //   ::collection::count count = 0;
@@ -3111,7 +3122,7 @@ template < primitive_array INDEX_ARRAY >
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 template < primitive_array STRING_ARRAY >
-::collection::count string_array_base < Type, RawType, t_etypeContainer > ::case_insensitive_ends(STRING_ARRAY& straSuffixed, const SCOPED_STRING& strSuffix, ::collection::index iFirst, ::collection::index iLast)
+::collection::count string_base_array < Type, RawType, t_etypeContainer > ::case_insensitive_ends(STRING_ARRAY& straSuffixed, const SCOPED_STRING& strSuffix, ::collection::index iFirst, ::collection::index iLast)
 {
 
    ::collection::count count = 0;
@@ -3150,7 +3161,7 @@ template < primitive_array STRING_ARRAY >
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 template < primitive_array STRING_ARRAY >
-::collection::count string_array_base < Type, RawType, t_etypeContainer > ::ends(STRING_ARRAY& iaSuffixed, const SCOPED_STRING& strSuffix, ::collection::index iFirst, ::collection::index iLast)
+::collection::count string_base_array < Type, RawType, t_etypeContainer > ::ends(STRING_ARRAY& iaSuffixed, const SCOPED_STRING& strSuffix, ::collection::index iFirst, ::collection::index iLast)
 {
 
    ::collection::count count = 0;
@@ -3187,7 +3198,7 @@ template < primitive_array STRING_ARRAY >
 
 
 //template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-//::collection::count string_array_base < Type, RawType, t_etypeContainer > ::case_insensitive_ends(index_array & iaSuffixed, const SCOPED_STRING &strSuffix, ::collection::index iFirst, ::collection::index iLast)
+//::collection::count string_base_array < Type, RawType, t_etypeContainer > ::case_insensitive_ends(index_array & iaSuffixed, const SCOPED_STRING &strSuffix, ::collection::index iFirst, ::collection::index iLast)
 //{
 //
 //   ::collection::count count = 0;
@@ -3224,7 +3235,7 @@ template < primitive_array STRING_ARRAY >
 //
 //
 //template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-//::collection::count string_array_base < Type, RawType, t_etypeContainer > ::case_insensitive_search(string_array_base < Type, RawType, t_etypeContainer > & stra, const SCOPED_STRING &str, ::collection::index iFirst, ::collection::index iLast)
+//::collection::count string_base_array < Type, RawType, t_etypeContainer > ::case_insensitive_search(string_base_array < Type, RawType, t_etypeContainer > & stra, const SCOPED_STRING &str, ::collection::index iFirst, ::collection::index iLast)
 //{
 //
 //   ::collection::count count = 0;
@@ -3260,7 +3271,7 @@ template < primitive_array STRING_ARRAY >
 //
 //
 //template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-//::collection::count string_array_base < Type, RawType, t_etypeContainer > ::search(string_array_base < Type, RawType, t_etypeContainer > & stra, const SCOPED_STRING &str, ::collection::index iFirst, ::collection::index iLast)
+//::collection::count string_base_array < Type, RawType, t_etypeContainer > ::search(string_base_array < Type, RawType, t_etypeContainer > & stra, const SCOPED_STRING &str, ::collection::index iFirst, ::collection::index iLast)
 //{
 //
 //   ::collection::count count = 0;
@@ -3296,7 +3307,7 @@ template < primitive_array STRING_ARRAY >
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 template < primitive_array STRING_ARRAY >
-::collection::count string_array_base < Type, RawType, t_etypeContainer > ::search(STRING_ARRAY& iaResult, const SCOPED_STRING& strTopic, ::collection::index iFirst, ::collection::index iLast)
+::collection::count string_base_array < Type, RawType, t_etypeContainer > ::search(STRING_ARRAY& iaResult, const SCOPED_STRING& strTopic, ::collection::index iFirst, ::collection::index iLast)
 {
 
    ::collection::count count = 0;
@@ -3334,7 +3345,7 @@ template < primitive_array STRING_ARRAY >
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 template < primitive_array STRING_ARRAY >
-::collection::count string_array_base < Type, RawType, t_etypeContainer > ::case_insensitive_search(STRING_ARRAY& ia, const SCOPED_STRING& strTopic, ::collection::index iFirst, ::collection::index iLast)
+::collection::count string_base_array < Type, RawType, t_etypeContainer > ::case_insensitive_search(STRING_ARRAY& ia, const SCOPED_STRING& strTopic, ::collection::index iFirst, ::collection::index iLast)
 {
 
    ::collection::count count = 0;
@@ -3371,7 +3382,7 @@ template < primitive_array STRING_ARRAY >
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-::collection::count string_array_base < Type, RawType, t_etypeContainer > ::filter_begins(const SCOPED_STRING& str, ::collection::index iFirst, ::collection::index iLast)
+::collection::count string_base_array < Type, RawType, t_etypeContainer > ::filter_begins(const SCOPED_STRING& str, ::collection::index iFirst, ::collection::index iLast)
 {
 
    ::collection::count count = 0;
@@ -3415,7 +3426,7 @@ template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-::collection::count string_array_base < Type, RawType, t_etypeContainer > ::case_insensitive_filter_begins(const SCOPED_STRING& str, ::collection::index iFirst, ::collection::index iLast)
+::collection::count string_base_array < Type, RawType, t_etypeContainer > ::case_insensitive_filter_begins(const SCOPED_STRING& str, ::collection::index iFirst, ::collection::index iLast)
 {
 
    ::collection::count count = 0;
@@ -3460,7 +3471,7 @@ template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 template < typename Pred >
-::collection::count string_array_base < Type, RawType, t_etypeContainer > ::filter(Pred pred, ::collection::index iFirst, ::collection::index iLast)
+::collection::count string_base_array < Type, RawType, t_etypeContainer > ::filter(Pred pred, ::collection::index iFirst, ::collection::index iLast)
 {
 
    ::collection::count count = 0;
@@ -3499,7 +3510,7 @@ template < typename Pred >
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 template < typename Pred >
-::collection::count string_array_base < Type, RawType, t_etypeContainer > ::filter_out(Pred pred, ::collection::index iFirst, ::collection::index iLast)
+::collection::count string_base_array < Type, RawType, t_etypeContainer > ::filter_out(Pred pred, ::collection::index iFirst, ::collection::index iLast)
 {
 
    ::collection::count count = 0;
@@ -3538,7 +3549,7 @@ template < typename Pred >
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 template < typename Pred, typename ArrayOut >
-::collection::count string_array_base < Type, RawType, t_etypeContainer > ::filter_out(Pred pred, ArrayOut& a, ::collection::index iFirst, ::collection::index iLast)
+::collection::count string_base_array < Type, RawType, t_etypeContainer > ::filter_out(Pred pred, ArrayOut& a, ::collection::index iFirst, ::collection::index iLast)
 {
 
    ::collection::count count = 0;
@@ -3578,7 +3589,7 @@ template < typename Pred, typename ArrayOut >
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-::collection::index string_array_base < Type, RawType, t_etypeContainer > ::get_random_index() const
+::collection::index string_base_array < Type, RawType, t_etypeContainer > ::get_random_index() const
 {
 
    if (this->is_empty())
@@ -3594,7 +3605,7 @@ template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-Type& string_array_base < Type, RawType, t_etypeContainer > ::random_element()
+Type& string_base_array < Type, RawType, t_etypeContainer > ::random_element()
 {
 
    if (this->is_empty())
@@ -3610,7 +3621,7 @@ Type& string_array_base < Type, RawType, t_etypeContainer > ::random_element()
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-const Type& string_array_base < Type, RawType, t_etypeContainer > ::random_element() const
+const Type& string_base_array < Type, RawType, t_etypeContainer > ::random_element() const
 {
 
    if (this->is_empty())
@@ -3626,7 +3637,7 @@ const Type& string_array_base < Type, RawType, t_etypeContainer > ::random_eleme
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-Type string_array_base < Type, RawType, t_etypeContainer > ::pop_random_element()
+Type string_base_array < Type, RawType, t_etypeContainer > ::pop_random_element()
 {
 
    if (this->is_empty())
@@ -3648,7 +3659,7 @@ Type string_array_base < Type, RawType, t_etypeContainer > ::pop_random_element(
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-void string_array_base < Type, RawType, t_etypeContainer > ::make_lower()
+void string_base_array < Type, RawType, t_etypeContainer > ::make_lower()
 {
 
    for (::collection::index i = 0; i < this->get_count(); i++)
@@ -3662,7 +3673,7 @@ void string_array_base < Type, RawType, t_etypeContainer > ::make_lower()
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-void string_array_base < Type, RawType, t_etypeContainer > ::make_upper()
+void string_base_array < Type, RawType, t_etypeContainer > ::make_upper()
 {
 
    for (::collection::index i = 0; i < this->get_count(); i++)
@@ -3683,13 +3694,13 @@ void string_array_base < Type, RawType, t_etypeContainer > ::make_upper()
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-Type string_array_base < Type, RawType, t_etypeContainer > ::encode_v16()
+Type string_base_array < Type, RawType, t_etypeContainer > ::encode_v16()
 {
    //Type strEncode;
    //for(::collection::index u = 0; u < this->get_count(); u++)
    //{
    //   Type & str = this->element_at(u);
-   //   strEncode += hex::lower_from((const char*)str,str.length());
+   //   strEncode += hex::lower_from((const_char_pointer )str,str.length());
    //   strEncode += "00";
    //   /*      for(::collection::index uj = 0; uj < str.size(); uj++)
    //   {
@@ -3721,11 +3732,11 @@ Type string_array_base < Type, RawType, t_etypeContainer > ::encode_v16()
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-void string_array_base < Type, RawType, t_etypeContainer > ::decode_v16(const SCOPED_STRING& str)
+void string_base_array < Type, RawType, t_etypeContainer > ::decode_v16(const SCOPED_STRING& str)
 {
    //::collection::index iSize = 1024;
    //char * str = nullptr;
-   //if(psz == nullptr)
+   //if(scopedstr == nullptr)
    //   return;
    //while(*psz != '\0')
    //{
@@ -3772,7 +3783,7 @@ void string_array_base < Type, RawType, t_etypeContainer > ::decode_v16(const SC
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-inline ::collection::count string_array_base < Type, RawType, t_etypeContainer >::count_except(const SCOPED_STRING& str)
+inline ::collection::count string_base_array < Type, RawType, t_etypeContainer >::count_except(const SCOPED_STRING& str)
 {
 
    ::collection::count c = get_count();
@@ -3794,7 +3805,7 @@ inline ::collection::count string_array_base < Type, RawType, t_etypeContainer >
 }
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-inline ::collection::count string_array_base < Type, RawType, t_etypeContainer > ::case_insensitive_count_except(const SCOPED_STRING& str)
+inline ::collection::count string_base_array < Type, RawType, t_etypeContainer > ::case_insensitive_count_except(const SCOPED_STRING& str)
 {
 
    ::collection::count c = get_count();
@@ -3818,7 +3829,7 @@ inline ::collection::count string_array_base < Type, RawType, t_etypeContainer >
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-::collection::count string_array_base < Type, RawType, t_etypeContainer > ::count_except(const string_array_base < Type, RawType, t_etypeContainer >& stra)
+::collection::count string_base_array < Type, RawType, t_etypeContainer > ::count_except(const string_base_array < Type, RawType, t_etypeContainer >& stra)
 {
 
    ::collection::count c = get_count();
@@ -3843,7 +3854,7 @@ template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-::collection::count string_array_base < Type, RawType, t_etypeContainer > ::case_insensitive_count_except(const string_array_base < Type, RawType, t_etypeContainer >& stra)
+::collection::count string_base_array < Type, RawType, t_etypeContainer > ::case_insensitive_count_except(const string_base_array < Type, RawType, t_etypeContainer >& stra)
 {
 
    ::collection::count c = get_count();
@@ -3867,7 +3878,7 @@ template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-Type& string_array_base < Type, RawType, t_etypeContainer > ::get_network_payload(Type& str, bool bNewLine) const
+Type& string_base_array < Type, RawType, t_etypeContainer > ::get_network_payload(Type& str, bool bNewLine) const
 {
 
    str += "[";
@@ -3925,7 +3936,7 @@ Type& string_array_base < Type, RawType, t_etypeContainer > ::get_network_payloa
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-Type string_array_base < Type, RawType, t_etypeContainer > ::_008Implode(const SCOPED_STRING& strSeparator, const SCOPED_STRING& strLastSeparator, ::collection::index iStart, ::collection::count inCountLastOut) const
+Type string_base_array < Type, RawType, t_etypeContainer > ::_008Implode(const SCOPED_STRING& strSeparator, const SCOPED_STRING& strLastSeparator, ::collection::index iStart, ::collection::count inCountLastOut) const
 {
 
    Type str;
@@ -3969,7 +3980,7 @@ Type string_array_base < Type, RawType, t_etypeContainer > ::_008Implode(const S
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-Type string_array_base < Type, RawType, t_etypeContainer > ::_008IfImplode(const SCOPED_STRING& strIfHasElementPrefix, const SCOPED_STRING& strSeparator, const SCOPED_STRING& strLastSeparator, bool bUseLast, ::collection::index iStart, ::collection::count inCountLastOut) const
+Type string_base_array < Type, RawType, t_etypeContainer > ::_008IfImplode(const SCOPED_STRING& strIfHasElementPrefix, const SCOPED_STRING& strSeparator, const SCOPED_STRING& strLastSeparator, bool bUseLast, ::collection::index iStart, ::collection::count inCountLastOut) const
 {
 
    Type str;
@@ -4019,7 +4030,7 @@ Type string_array_base < Type, RawType, t_etypeContainer > ::_008IfImplode(const
 
 
 //template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-//Type string_array_base < Type, RawType, t_etypeContainer > ::_008IfImplode(const SCOPED_STRING &strIfHasElementPrefix, const SCOPED_STRING &strSeparator, const SCOPED_STRING &strLastSeparator, bool bUseLast, ::collection::index iStart, ::collection::index iEnd) const
+//Type string_base_array < Type, RawType, t_etypeContainer > ::_008IfImplode(const SCOPED_STRING &strIfHasElementPrefix, const SCOPED_STRING &strSeparator, const SCOPED_STRING &strLastSeparator, bool bUseLast, ::collection::index iStart, ::collection::index iEnd) const
 //{
 //
 //   Type str;
@@ -4034,10 +4045,10 @@ Type string_array_base < Type, RawType, t_etypeContainer > ::_008IfImplode(const
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-::array < const ::ansi_character* > string_array_base < Type, RawType, t_etypeContainer > ::c_ansi_get(bool bMemoryAlloc) const
+::array_base < const ::ansi_character* > string_base_array < Type, RawType, t_etypeContainer > ::c_ansi_get(bool bMemoryAlloc) const
 {
 
-   ::array < const ::ansi_character* > psza;
+   ::array_base < const ::ansi_character* > psza;
 
    for (::collection::index i = 0; i < get_size(); i++)
    {
@@ -4067,7 +4078,7 @@ template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 
 
 //template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-//::array < const ::wide_character * > string_array_base < Type, RawType, t_etypeContainer > ::c_wide_get(bool bMemoryAlloc) const
+//::array < const ::wide_character * > string_base_array < Type, RawType, t_etypeContainer > ::c_wide_get(bool bMemoryAlloc) const
 //{
 //
 //   ::array < const ::wide_character * > psza;
@@ -4102,7 +4113,7 @@ template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 
 /// expect strings allocated with malloc (sic, not ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate) or strdup and array allocated with malloc (sic, not ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate)
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-void string_array_base < Type, RawType, t_etypeContainer > ::c_add(char** ppsz, ::collection::count c, bool bMemoryAlloc)
+void string_base_array < Type, RawType, t_etypeContainer > ::c_add(char** ppsz, ::collection::count c, bool bMemoryAlloc)
 {
 
    for (::collection::index i = 0; i < c; i++)
@@ -4154,7 +4165,7 @@ void string_array_base < Type, RawType, t_etypeContainer > ::c_add(char** ppsz, 
 
 /// expect strings allocated with malloc (sic, not ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate) or strdup and array allocated with malloc (sic, not ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate)
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-void string_array_base < Type, RawType, t_etypeContainer > ::c_add(char** ppszParam, bool bMemoryAlloc)
+void string_base_array < Type, RawType, t_etypeContainer > ::c_add(char** ppszParam, bool bMemoryAlloc)
 {
 
    auto ppsz = ppszParam;
@@ -4201,7 +4212,7 @@ void string_array_base < Type, RawType, t_etypeContainer > ::c_add(char** ppszPa
 
 /// expect strings allocated with malloc (sic, not ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate) or wcsdup and array allocated with malloc (sic, not ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate)
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-void string_array_base < Type, RawType, t_etypeContainer > ::c_add(wchar_t** ppwsz, ::collection::count c, bool bMemoryAlloc)
+void string_base_array < Type, RawType, t_etypeContainer > ::c_add(wchar_t** ppwsz, ::collection::count c, bool bMemoryAlloc)
 {
 
    for (::collection::index i = 0; i < c; i++)
@@ -4249,7 +4260,7 @@ void string_array_base < Type, RawType, t_etypeContainer > ::c_add(wchar_t** ppw
 
 /// expect strings allocated with malloc (sic, not ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate) or wcsdup and array allocated with malloc (sic, not ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate)
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-void string_array_base < Type, RawType, t_etypeContainer > ::c_add(wchar_t** ppwszParam, bool bMemoryAlloc)
+void string_base_array < Type, RawType, t_etypeContainer > ::c_add(wchar_t** ppwszParam, bool bMemoryAlloc)
 {
 
    auto ppwsz = ppwszParam;
@@ -4301,7 +4312,7 @@ void string_array_base < Type, RawType, t_etypeContainer > ::c_add(wchar_t** ppw
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-void string_array_base < Type, RawType, t_etypeContainer > ::order()
+void string_base_array < Type, RawType, t_etypeContainer > ::order()
 {
 
    this->predicate_sort([](Type& a, Type& b)
@@ -4315,7 +4326,7 @@ void string_array_base < Type, RawType, t_etypeContainer > ::order()
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-void string_array_base < Type, RawType, t_etypeContainer > ::case_insensitive_order()
+void string_base_array < Type, RawType, t_etypeContainer > ::case_insensitive_order()
 {
 
    this->predicate_sort([](Type& a, Type& b)
@@ -4327,7 +4338,7 @@ void string_array_base < Type, RawType, t_etypeContainer > ::case_insensitive_or
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-void string_array_base < Type, RawType, t_etypeContainer > ::collate_order()
+void string_base_array < Type, RawType, t_etypeContainer > ::collate_order()
 {
 
    this->predicate_sort([](Type& a, Type& b)
@@ -4339,7 +4350,7 @@ void string_array_base < Type, RawType, t_etypeContainer > ::collate_order()
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-void string_array_base < Type, RawType, t_etypeContainer > ::case_insensitive_collate_sort()
+void string_base_array < Type, RawType, t_etypeContainer > ::case_insensitive_collate_sort()
 {
 
    this->predicate_sort([](Type& a, Type& b)
@@ -4362,7 +4373,7 @@ void string_array_base < Type, RawType, t_etypeContainer > ::case_insensitive_co
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-Type string_array_base < Type, RawType, t_etypeContainer >::safe_at(::collection::index nIndex, Type tDefault) const
+Type string_base_array < Type, RawType, t_etypeContainer >::safe_at(::collection::index nIndex, Type tDefault) const
 {
 
    if (nIndex < 0 || nIndex >= this->get_size())
@@ -4377,7 +4388,7 @@ Type string_array_base < Type, RawType, t_etypeContainer >::safe_at(::collection
 }
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-Type string_array_base < Type, RawType, t_etypeContainer >::safe_at(::collection::index nIndex, Type tDefault)
+Type string_base_array < Type, RawType, t_etypeContainer >::safe_at(::collection::index nIndex, Type tDefault)
 {
    if (nIndex < 0 || nIndex >= this->get_size())
       return tDefault;
@@ -4388,7 +4399,7 @@ Type string_array_base < Type, RawType, t_etypeContainer >::safe_at(::collection
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-Type string_array_base < Type, RawType, t_etypeContainer >::get_at(::collection::index nIndex) const
+Type string_base_array < Type, RawType, t_etypeContainer >::get_at(::collection::index nIndex) const
 {
    if (nIndex < 0 || nIndex >= this->size())
       throw_exception(error_index_out_of_bounds);
@@ -4396,7 +4407,7 @@ Type string_array_base < Type, RawType, t_etypeContainer >::get_at(::collection:
 }
 
 //template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-//void string_array_base < Type, RawType, t_etypeContainer >::set_at(::collection::index nIndex, const char * newElement)
+//void string_base_array < Type, RawType, t_etypeContainer >::set_at(::collection::index nIndex, const_char_pointer newElement)
 //{
 //   if (nIndex < 0 || nIndex >= this->size())
 //      throw_exception(error_index_out_of_bounds);
@@ -4405,7 +4416,7 @@ Type string_array_base < Type, RawType, t_etypeContainer >::get_at(::collection:
 //
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-void string_array_base < Type, RawType, t_etypeContainer >::set_at(::collection::index nIndex, const Type& newElement)
+void string_base_array < Type, RawType, t_etypeContainer >::set_at(::collection::index nIndex, const Type& newElement)
 {
    if (nIndex < 0 || nIndex >= this->size())
       throw_exception(error_index_out_of_bounds);
@@ -4414,7 +4425,7 @@ void string_array_base < Type, RawType, t_etypeContainer >::set_at(::collection:
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-Type& string_array_base < Type, RawType, t_etypeContainer >::element_at(::collection::index nIndex)
+Type& string_base_array < Type, RawType, t_etypeContainer >::element_at(::collection::index nIndex)
 {
    if (nIndex < 0 || nIndex >= this->size())
       throw_exception(error_index_out_of_bounds);
@@ -4423,7 +4434,7 @@ Type& string_array_base < Type, RawType, t_etypeContainer >::element_at(::collec
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-const Type& string_array_base < Type, RawType, t_etypeContainer >::element_at(::collection::index nIndex) const
+const Type& string_base_array < Type, RawType, t_etypeContainer >::element_at(::collection::index nIndex) const
 {
    if (nIndex < 0 || nIndex >= this->size())
       throw_exception(error_index_out_of_bounds);
@@ -4434,7 +4445,7 @@ const Type& string_array_base < Type, RawType, t_etypeContainer >::element_at(::
 
 //
 //template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-//::collection::index string_array_base < Type, RawType, t_etypeContainer >::add(const property & prop)
+//::collection::index string_base_array < Type, RawType, t_etypeContainer >::add(const property & prop)
 //{
 //
 //   return add(prop.get_value());
@@ -4444,7 +4455,7 @@ const Type& string_array_base < Type, RawType, t_etypeContainer >::element_at(::
 ////#include "acme/prototype/prototype/payload.h"
 
 //template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-//string_array_base < Type, RawType, t_etypeContainer >  & string_array_base < Type, RawType, t_etypeContainer > ::operator = (const ::payload & payload)
+//string_base_array < Type, RawType, t_etypeContainer >  & string_base_array < Type, RawType, t_etypeContainer > ::operator = (const ::payload & payload)
 //{
 //
 //   this->erase_all();
@@ -4479,7 +4490,7 @@ const Type& string_array_base < Type, RawType, t_etypeContainer >::element_at(::
 
 
 //template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-//memory string_array_base < Type, RawType, t_etypeContainer > ::GetFormatV004()
+//memory string_base_array < Type, RawType, t_etypeContainer > ::GetFormatV004()
 //{
 //
 //   character_count iTotalLength = 0;
@@ -4554,7 +4565,7 @@ const Type& string_array_base < Type, RawType, t_etypeContainer >::element_at(::
 
 //template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 //template < typename TYPE >
-//inline ::collection::index string_array_base < Type, RawType, t_etypeContainer > ::add(const TYPE & type)
+//inline ::collection::index string_base_array < Type, RawType, t_etypeContainer > ::add(const TYPE & type)
 //{
 //
 //    return ::acme::array::add(*this, type);
@@ -4564,7 +4575,7 @@ const Type& string_array_base < Type, RawType, t_etypeContainer >::element_at(::
 //
 //template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 //template < primitive_array INDEX_ARRAY >
-//void string_array_base < Type, RawType, t_etypeContainer >::case_insensitive_get_quick_sort(INDEX_ARRAY & ia)
+//void string_base_array < Type, RawType, t_etypeContainer >::case_insensitive_get_quick_sort(INDEX_ARRAY & ia)
 //{
 //
 //   INDEX_ARRAY stackLowerBound;
@@ -4644,7 +4655,7 @@ const Type& string_array_base < Type, RawType, t_etypeContainer >::element_at(::
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-inline void debug_output(::particle* pparticle, string_array_base < Type, RawType, t_etypeContainer >& stra, ::collection::index iStart, ::collection::count inCountLastOut)
+inline void debug_output(::particle* pparticle, string_base_array < Type, RawType, t_etypeContainer >& stra, ::collection::index iStart, ::collection::count inCountLastOut)
 {
 
    pparticle->informationf(stra.implode(STR_NEWLINE, iStart, inCountLastOut));
@@ -4653,7 +4664,7 @@ inline void debug_output(::particle* pparticle, string_array_base < Type, RawTyp
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-::collection::index string_array_base < Type, RawType, t_etypeContainer > ::case_insensitive_suffix_find_first(const SCOPED_STRING& strTopic, ::collection::index iFind, ::collection::index iLast) const
+::collection::index string_base_array < Type, RawType, t_etypeContainer > ::case_insensitive_suffix_find_first(const SCOPED_STRING& strTopic, ::collection::index iFind, ::collection::index iLast) const
 {
 
    if (this->prepare_first_last(iFind, iLast))
@@ -4679,7 +4690,7 @@ template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-::collection::index string_array_base < Type, RawType, t_etypeContainer > ::suffix_find_first(const SCOPED_STRING& strTopic, ::collection::index iFind, ::collection::index iLast) const
+::collection::index string_base_array < Type, RawType, t_etypeContainer > ::suffix_find_first(const SCOPED_STRING& strTopic, ::collection::index iFind, ::collection::index iLast) const
 {
 
    if (this->prepare_first_last(iFind, iLast))
@@ -4705,7 +4716,7 @@ template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-::collection::index string_array_base < Type, RawType, t_etypeContainer > ::_find_first_suffixed(const SCOPED_STRING& strSuffix, ::collection::index iFind, ::collection::index iLast) const
+::collection::index string_base_array < Type, RawType, t_etypeContainer > ::_find_first_suffixed(const SCOPED_STRING& strSuffix, ::collection::index iFind, ::collection::index iLast) const
 {
 
    for (; iFind < iLast; iFind++)
@@ -4726,7 +4737,7 @@ template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-::collection::index string_array_base < Type, RawType, t_etypeContainer > ::_case_insensitive_find_first_suffixed(const SCOPED_STRING& strSuffix, ::collection::index iFind, ::collection::index iLast) const
+::collection::index string_base_array < Type, RawType, t_etypeContainer > ::_case_insensitive_find_first_suffixed(const SCOPED_STRING& strSuffix, ::collection::index iFind, ::collection::index iLast) const
 {
 
    for (; iFind < iLast; iFind++)

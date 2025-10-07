@@ -23,7 +23,7 @@
 //      ~program() override;
 //
 //
-//      virtual void create_program(::particle * pparticle, const string& strVertex, const string& strFragment, const string& strGeometry = "");
+//      virtual void create_program(::particle * pparticle, const ::scoped_string & scopedstrVertex, const ::scoped_string & scopedstrFragment, const ::scoped_string & scopedstrGeometry = "");
 //
 //
 //   };

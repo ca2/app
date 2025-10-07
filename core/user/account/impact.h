@@ -2,7 +2,7 @@
 
 
 #include "acme/parallelization/manual_reset_happening.h"
-#include "base/user/user/impact.h"
+#include "berg/user/user/impact.h"
 
 
 namespace account
@@ -48,11 +48,11 @@ namespace account
 
       void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
 
-      bool on_action(const ::string & pszId) override;
+      bool on_action(const ::scoped_string & scopedstrId) override;
 
       void initialize();
 
-      void defer_translate(const ::string & strUser, const ::string & strPass, const ::string & strOpen);
+      void defer_translate(const ::scoped_string & scopedstrUser, const ::scoped_string & scopedstrPass, const ::scoped_string & scopedstrOpen);
 
       void on_layout(::draw2d::graphics_pointer & pgraphics) override;
 

@@ -14,16 +14,16 @@ public:
    virtual ~pcre_util_impl();
 
 
-   bool compile(const string& str);
+   bool compile(const ::scoped_string & scopedstr);
 
 
-   virtual ::collection::count matches(const string& str, pcre_context*);
+   virtual ::collection::count matches(const ::scoped_string & scopedstr, pcre_context*);
 
-   virtual ::collection::count matches(const ::string & psz, character_count len, pcre_context*);
+   virtual ::collection::count matches(const ::scoped_string & scopedstr, character_count len, pcre_context*);
 
-   virtual ::pointer<::strsize_range_array>matches_ranges(const string& str) override;
+   virtual ::pointer<::strsize_range_array>matches_ranges(const ::scoped_string & scopedstr) override;
 
-   virtual ::pointer<::strsize_range_array>matches_ranges(const ::string & psz, character_count len) override;
+   virtual ::pointer<::strsize_range_array>matches_ranges(const ::scoped_string & scopedstr, character_count len) override;
 
 
 };

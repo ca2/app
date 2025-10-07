@@ -51,11 +51,11 @@ namespace account
 
       virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
 
-      virtual bool on_action(const ::string & pszId) override;
+      virtual bool on_action(const ::scoped_string & scopedstrId) override;
 
       
 
-      void defer_translate(const ::string & strUser, const ::string & strPass, const ::string & strOpen);
+      void defer_translate(const ::scoped_string & scopedstrUser, const ::scoped_string & scopedstrPass, const ::scoped_string & scopedstrOpen);
 
       virtual void on_layout(::draw2d::graphics_pointer & pgraphics) override;
 

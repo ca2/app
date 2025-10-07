@@ -68,7 +68,7 @@ enum_type set_element(::payload & payload, ::subparticle * pelement)
          payload.m_ppropertyset = dynamic_cast <::property_set*>(pelement);
          break;
       case ::e_type_long_long_array:
-         payload.m_pi64a = dynamic_cast <::long_long_array*>(pelement);
+         payload.m_plonglonga = dynamic_cast <::long_long_array*>(pelement);
          break;
       case ::e_type_memory:
          payload.m_pmemory = dynamic_cast <::memory*>(pelement);
@@ -283,7 +283,7 @@ long long payload::payload_release()
                m_preferer = nullptr;
                ::allocator::add_releaser(prefererOld);
 #endif
-               iRelease = ::release(m_pi64a);
+               iRelease = ::release(m_plonglonga);
             }
             break;
             case e_type_memory:

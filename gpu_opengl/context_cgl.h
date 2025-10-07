@@ -9,16 +9,17 @@
 #pragma once
 
 
-#include "context.h"
-
-#include <OpenGL/OpenGL.h>
+#include "gpu_opengl/context.h"
+#include "_gpu_opengl.h"
+//#include <OpenGL/OpenGL.h>
+//#include <CGL/CGL.h>
 
 namespace opengl
 {
 
 
    class CLASS_DECL_GPU_OPENGL context_cgl :
-      virtual public ::opengl::context
+      virtual public ::gpu_opengl::context
    {
    public:
 
@@ -32,15 +33,15 @@ namespace opengl
       virtual ~context_cgl();
       
 
-      virtual void _create_offscreen_buffer(const ::int_size& size) override;
+      virtual void _create_cpu_buffer(const ::int_size& size) override;
       //virtual void resize_offscreen_buffer(const ::int_size& size) override;
-      virtual void destroy_offscreen_buffer() override;
+      virtual void destroy_cpu_buffer() override;
 
-      virtual void make_current() override;
+      virtual void defer_make_current() override;
 
       virtual string get_shader_version_text() override;
 
-      virtual void _translate_shader(string_array& stra) override;
+      virtual void _translate_shader(string_array_base& stra) override;
 
 
    };

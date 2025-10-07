@@ -3,8 +3,8 @@
 #include "acme/platform/node.h"
 #include "acme/platform/system.h"
 #include "acme/user/user/os_theme_colors.h"
-#include "base/user/simple/scroll_bar.h"
-#include "base/user/user/tab_pane.h"
+#include "berg/user/simple/scroll_bar.h"
+#include "berg/user/user/tab_pane.h"
 #include "aura/graphics/draw2d/pen.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/write_text/font.h"
@@ -14,10 +14,10 @@
 #include "aura/graphics/draw2d/brush.h"
 #include "aura/user/user/frame_interaction.h"
 #include "style.h"
-#include "base/user/user/tab.h"
-#include "base/user/user/tab_data.h"
-#include "base/user/user/split_layout.h"
-#include "base/platform/session.h"
+#include "berg/user/user/tab.h"
+#include "berg/user/user/tab_data.h"
+#include "berg/user/user/split_layout.h"
+#include "berg/platform/session.h"
 //#include "core/user/userex/_userex.h"
 // pgraphics->get_text_extent("->:<-"); // oh no!! omg!! The int_size is the int_size of the alien!!
 #define MAGIC_PALACE_TAB_SPLT "->:<-"
@@ -826,7 +826,7 @@ namespace experience_tranquillum
       }
 
 
-      return ::base::style::get_color(pinteraction, eelement, estate);
+      return ::berg::style::get_color(pinteraction, eelement, estate);
 
    }
 
@@ -1201,9 +1201,9 @@ namespace experience_tranquillum
 
       ::collection::index iTab = -1;
 
-      auto pbrushText = __øcreate < ::draw2d::brush >();
+      auto pbrushText = øcreate < ::draw2d::brush >();
 
-      auto ppenBorder = __øcreate < ::draw2d::pen >();
+      auto ppenBorder = øcreate < ::draw2d::pen >();
 
       for (int iPane = 0; iPane < ptab->get_data()->m_tabpanea.get_size(); iPane++)
       {
@@ -1288,7 +1288,7 @@ namespace experience_tranquillum
 
             }
 
-            auto ppath = __øcreate < ::draw2d::path >();
+            auto ppath = øcreate < ::draw2d::path >();
 
             if (true)
             {
@@ -1435,7 +1435,7 @@ namespace experience_tranquillum
             if (true)
             {
 
-               //auto ppath = __øcreate < ::draw2d::path > ();
+               //auto ppath = øcreate < ::draw2d::path > ();
 
                if (ptab->get_data()->m_idaSel.contains(pane.id()))
                {
@@ -1597,7 +1597,7 @@ namespace experience_tranquillum
    void style::_001OnTabPaneDrawTitle(::user::tab_pane& pane, ::user::tab* ptab, ::draw2d::graphics_pointer& pgraphics, const ::int_rectangle& rectangleParam, ::draw2d::brush_pointer& pbrushText, const ::user::e_state& estate)
    {
 
-      string_array& straTitle = pane.m_straTitle;
+      string_array_base& straTitle = pane.m_straTitle;
 
       pgraphics->set(pbrushText);
 
@@ -1850,11 +1850,11 @@ namespace experience_tranquillum
       //            if ((ptoolbar->m_dwCtrlStyle & TBSTYLE_FLAT) == TBSTYLE_FLAT)
       //            {
 
-      //               auto ppen = __øcreate < ::draw2d::pen > ();
+      //               auto ppen = øcreate < ::draw2d::pen > ();
 
       //               ppen->create_solid(1, argb(184, 92, 184, 92));
 
-      //               auto pbrush = __øcreate < ::draw2d::brush >();
+      //               auto pbrush = øcreate < ::draw2d::brush >();
 
       //               pbrush->create_solid(argb(123, 177, 184, 255));
 
@@ -1897,10 +1897,10 @@ namespace experience_tranquillum
       //         if ((ptoolbar->m_dwCtrlStyle & TBSTYLE_FLAT) == TBSTYLE_FLAT)
       //         {
 
-      //            auto ppen = __øcreate < ::draw2d::pen > ();
+      //            auto ppen = øcreate < ::draw2d::pen > ();
 
       //            ppen->create_solid(1, argb(255, 92, 92, 92));
-      //            auto pbrush = __øcreate < ::draw2d::brush >();
+      //            auto pbrush = øcreate < ::draw2d::brush >();
 
       //            pbrush->create_solid(argb(255, 255, 255, 255));
       //            ::draw2d::pen * ppenOld = pgraphics->set(ppen);
@@ -1987,7 +1987,7 @@ namespace experience_tranquillum
 
       //      ::int_rectangle rectangleText;
 
-      //      auto pbrushText = __øcreate < ::draw2d::brush > ();
+      //      auto pbrushText = øcreate < ::draw2d::brush > ();
 
       //      if ((nStyle & e_tool_item_style_disabled) == 0)
       //      {
@@ -2156,10 +2156,10 @@ namespace experience_tranquillum
       //            if ((ptoolbar->m_dwCtrlStyle & TBSTYLE_FLAT) == TBSTYLE_FLAT)
       //            {
 
-      //               auto ppen = __øcreate < ::draw2d::pen > ();
+      //               auto ppen = øcreate < ::draw2d::pen > ();
 
       //               ppen->create_solid(1, ptoolbar->_001GetColor(::user::color_button_background_hover));
-      //               auto pbrush = __øcreate < ::draw2d::brush >();
+      //               auto pbrush = øcreate < ::draw2d::brush >();
 
       //               pbrush->create_solid(ptoolbar->_001GetColor(::user::color_button_background_hover));
       //               ::draw2d::pen * ppenOld = pgraphics->set(ppen);
@@ -2201,10 +2201,10 @@ namespace experience_tranquillum
       //         if ((ptoolbar->m_dwCtrlStyle & TBSTYLE_FLAT) == TBSTYLE_FLAT)
       //         {
 
-      //            auto ppen = __øcreate < ::draw2d::pen > ();
+      //            auto ppen = øcreate < ::draw2d::pen > ();
 
       //            ppen->create_solid(1, ptoolbar->_001GetColor(::user::color_button_background_press));
-      //            auto pbrush = __øcreate < ::draw2d::brush >();
+      //            auto pbrush = øcreate < ::draw2d::brush >();
 
       //            pbrush->create_solid(ptoolbar->_001GetColor(::user::color_button_background_press));
       //            ::draw2d::pen * ppenOld = pgraphics->set(ppen);
@@ -2255,13 +2255,13 @@ namespace experience_tranquillum
       //         if ((ptoolbar->m_dwCtrlStyle & TBSTYLE_FLAT) == TBSTYLE_FLAT)
       //         {
 
-      //            auto ppen = __øcreate < ::draw2d::pen > ();
+      //            auto ppen = øcreate < ::draw2d::pen > ();
 
       //            ppen->create_solid(1, ptoolbar->_001GetColor(
       //                              (nStyle & e_tool_item_style_disabled) == 0 ?
       //                              ::user::color_button_background :
       //                              ::user::color_button_background_disabled));
-      //            auto pbrush = __øcreate < ::draw2d::brush >();
+      //            auto pbrush = øcreate < ::draw2d::brush >();
 
       //            pbrush->create_solid(ptoolbar->_001GetColor(
       //                                (nStyle & e_tool_item_style_disabled) == 0 ?
@@ -2314,7 +2314,7 @@ namespace experience_tranquillum
 
       //      ::int_rectangle rectangleText;
 
-      //      auto pbrushText = __øcreate < ::draw2d::brush > ();
+      //      auto pbrushText = øcreate < ::draw2d::brush > ();
 
       //      if ((nStyle & e_tool_item_style_disabled) == 0)
       //      {

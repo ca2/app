@@ -13,7 +13,6 @@ void list_predicateicate_add(CONTAINER& a, LIST_ITEM&& pitem)
 template < typename LIST_ITEM >
 ::collection::count list_erase_all(LIST_ITEM&& pitem)
 {
-
    ::collection::count c = 0;
 
    auto pprevious = pitem->m_phead;

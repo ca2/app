@@ -44,11 +44,11 @@ namespace console_integration
          ::pointer < lame >         m_plame;
          ::pointer < freetype >     m_pfreetype;
          
-         ::string_array             m_straX264;
-         ::string_array             m_straX265;
-         ::string_array             m_straFdkAac;
-         ::string_array             m_straLame;
-         ::string_array             m_straFreetype;
+         ::string_array_base             m_straX264;
+         ::string_array_base             m_straX265;
+         ::string_array_base             m_straFdkAac;
+         ::string_array_base             m_straLame;
+         ::string_array_base             m_straFreetype;
          
          
          

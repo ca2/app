@@ -65,7 +65,7 @@ namespace html
 
          m_bHasChar = true;
 
-         __defer_construct_new(m_pbutton);
+         ødefer_construct_new(m_pbutton);
 
          m_pbutton->id() = pelemental->m_phtmlbase->get_tag()->get_attr_value("id");
 

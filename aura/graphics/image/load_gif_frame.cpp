@@ -273,7 +273,7 @@ namespace image
    //      //if (uFrameIndex <= 0)
    //      //{
    //
-   //      //   pparticle->__øconstruct(pimageCanvas, pframea->m_size);
+   //      //   pparticle->øconstruct(pimageCanvas, pframea->m_size);
    //
    //      //}
    //

@@ -19,8 +19,8 @@ namespace networking
       address();
       //address(const address& address);
       ////address(int family, ::networking::port_t port = 0);
-      //address(const ::string & strAddress, ::networking::port_t port = 0);
-      //address(::particle * pparticle, const ::string & strAddress, const ::string & strServiceName);
+      //address(const ::scoped_string & scopedstrAddress, ::networking::port_t port = 0);
+      //address(::particle * pparticle, const ::scoped_string & scopedstrAddress, const ::scoped_string & scopedstrServiceName);
 //#if defined(BSD_STYLE_SOCKETS)
 //      address(const in_addr & a, ::networking::port_t port = 0);
 //      address(const in6_addr & a, ::networking::port_t port = 0);
@@ -68,7 +68,7 @@ namespace networking
 //
 //#endif
 
-      //virtual void parse_string(const ::string & strAddress);
+      //virtual void parse_string(const ::scoped_string & scopedstrAddress);
       //virtual string get_string() const;
 
 //#ifdef BSD_STYLE_SOCKETS

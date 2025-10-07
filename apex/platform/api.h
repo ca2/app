@@ -70,7 +70,7 @@ public:
 
    virtual void switch_profile_folder(const ::file::path & pathFolder);
 
-   //virtual void api_login(const ::string & strConfig, const ::string & strProfile);
+   //virtual void api_login(const ::scoped_string & scopedstrConfig, const ::scoped_string & scopedstrProfile);
 
    virtual void api_login();
 
@@ -91,7 +91,7 @@ public:
    virtual void on_login_authentication_failed();
 
    virtual string randomDataBase64url(unsigned int length);
-   virtual memory sha256(string strInput);
+   virtual memory sha256(const ::scoped_string & scopedstrInput);
    virtual string base64urlencodeNoPadding(memory m);
 
 

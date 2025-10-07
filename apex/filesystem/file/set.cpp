@@ -59,7 +59,7 @@ namespace file
    }
 
 
-   void set::add_search(const ::file::path_array & pathaSearchFolder, const bool_array & baRecursive)
+   void set::add_search(const ::file::path_array_base & pathaSearchFolder, const bool_array & baRecursive)
    {
 
       // derived classes may perform specific actions this add_search...
@@ -76,7 +76,7 @@ namespace file
    }
 
 
-   void set::add_filter(string_array & stra)
+   void set::add_filter(string_array_base & stra)
    {
 
       m_straFilter.append(stra);

@@ -21,7 +21,7 @@ namespace sockets
 
 
    CLASS_DECL_APEX string http_method_string(e_http_method emethod);
-   CLASS_DECL_APEX e_http_method string_http_method(const ::string & str);
+   CLASS_DECL_APEX e_http_method string_http_method(const ::scoped_string & scopedstr);
 
 
    /** get http response to file or memory.
@@ -74,10 +74,10 @@ namespace sockets
       void OnFirst() override;
       void OnHeader(atom,const string &) override;
       void OnHeaderComplete() override;
-      void OnData(const char *,memsize) override;
+      void OnData(const_char_pointer ,memsize) override;
       void OnDelete() override;
 
-      virtual void OnDataArrived(const char *,memsize);
+      virtual void OnDataArrived(const_char_pointer ,memsize);
 
       /** New callback method fires when all data is received. */
       virtual void OnContent();
@@ -118,7 +118,7 @@ namespace sockets
       virtual void OnDataComplete() override;
 
 
-      virtual void request_url(string strUrlParam);
+      virtual void request_url(const ::scoped_string & scopedstrUrlParam);
 
 
       virtual void on_set_scalar(enum_scalar escalar,long long iValue,int iFlags) override;

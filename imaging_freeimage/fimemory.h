@@ -4,7 +4,11 @@
 #include "acme/prototype/prototype/memory.h"
 
 
+#if defined(USE_PORT_FREEIMAGE)
+#include <port_freeimage/FreeImage.h>
+#else
 #include <FreeImage.h>
+#endif
 
 
 class fimemory

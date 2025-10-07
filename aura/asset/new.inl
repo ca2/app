@@ -118,7 +118,7 @@ void operator delete(void* ptr, std::align_val_t) noexcept;
 #if !defined(NO_AURA_MEMORY_MANAGEMENT)
 
 
-void* MEMORY_DECL operator new(size_t nSize, const ::string & pszFileName, i32 nLine) new_throw_spec
+void* MEMORY_DECL operator new(size_t nSize, const ::scoped_string & scopedstrFileName, i32 nLine) new_throw_spec
 {
 
    return ::operator new(nSize, _NORMAL_BLOCK, pszFileName, nLine);
@@ -126,7 +126,7 @@ void* MEMORY_DECL operator new(size_t nSize, const ::string & pszFileName, i32 n
 }
 
 
-void* MEMORY_DECL operator new[](size_t nSize, const ::string & pszFileName, i32 nLine) new_throw_spec
+void* MEMORY_DECL operator new[](size_t nSize, const ::scoped_string & scopedstrFileName, i32 nLine) new_throw_spec
 {
 
    return ::operator new[](nSize, _NORMAL_BLOCK, pszFileName, nLine);
@@ -150,7 +150,7 @@ void MEMORY_DECL operator delete[](void* pData, const ::string & /* pszFileName 
 }
 
 
-void* MEMORY_DECL operator new(size_t nSize, i32 nType, const ::string & pszFileName, i32 nLine)
+void* MEMORY_DECL operator new(size_t nSize, i32 nType, const ::scoped_string & scopedstrFileName, i32 nLine)
 {
 
 #if MEMDLEAK
@@ -174,7 +174,7 @@ void MEMORY_DECL operator delete(void* p, i32 nType, const ::string & /* pszFile
 }
 
 
-void* MEMORY_DECL operator new[](size_t nSize, i32 nType, const ::string & pszFileName, i32 nLine)
+void* MEMORY_DECL operator new[](size_t nSize, i32 nType, const ::scoped_string & scopedstrFileName, i32 nLine)
 {
 
    return ::operator new(nSize, nType, pszFileName, nLine);
@@ -182,7 +182,7 @@ void* MEMORY_DECL operator new[](size_t nSize, i32 nType, const ::string & pszFi
 }
 
 
-void MEMORY_DECL operator delete[](void* p, i32 nType, const ::string & pszFileName, i32 nLine)
+void MEMORY_DECL operator delete[](void* p, i32 nType, const ::scoped_string & scopedstrFileName, i32 nLine)
 {
 
    ::operator delete(p, nType, pszFileName, nLine);

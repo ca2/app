@@ -10,7 +10,7 @@ namespace aura
 
 
 
-      void rx::receiver::on_ipc_receive(rx * prx, const ::string & pszMessage)
+      void rx::receiver::on_ipc_receive(rx * prx, const ::scoped_string & scopedstrMessage)
       {
 
       }
@@ -65,10 +65,10 @@ namespace aura
 
 
       // calls restart if confirm_tx failed
-      bool ipc::ensure_tx(const ::string & pszMessage, duration durationTimeout)
+      bool ipc::ensure_tx(const ::scoped_string & scopedstrMessage, duration durationTimeout)
       {
 
-         if(!send(pszMessage, durationTimeout))
+         if(!send(scopedstrMessage, durationTimeout))
          {
 
             restart_aura_ipc();

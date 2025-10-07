@@ -6,10 +6,10 @@
 extern const char* g_pszServerCa2Cc;
 
 
-string context::get_latest_build_number(const ::string & pszConfiguration, const ::string & pszAppId)
+string context::get_latest_build_number(const ::scoped_string & scopedstrConfiguration, const ::scoped_string & scopedstrAppId)
 {
 
-   string strConfiguration(pszConfiguration);
+   string strConfiguration(scopedstrConfiguration);
 
    if (strConfiguration.is_empty())
    {
@@ -55,7 +55,7 @@ RetryBuildNumber:
 
    iRetry++;
 
-   strBuild = http_get(strSpaIgnitionBaseUrl + "/query?node=build&configuration=" + strConfiguration + "&atom=" + string(pszAppId));
+   strBuild = http_get(strSpaIgnitionBaseUrl + "/query?node=build&configuration=" + strConfiguration + "&atom=" + string(scopedstrAppId));
 
    ::str::_008Trim(strBuild);
 
@@ -86,7 +86,7 @@ bool context::is_system() const
 void context::initialize_context()
 {
 
-   auto estatus = __øconstruct(m_phttp);
+   auto estatus = øconstruct(m_phttp);
 
    if(!estatus)
    {
@@ -95,7 +95,7 @@ void context::initialize_context()
 
    }
 
-   estatus = __øconstruct(m_pfile);
+   estatus = øconstruct(m_pfile);
 
    if (!estatus)
    {
@@ -104,7 +104,7 @@ void context::initialize_context()
 
    }
 
-   estatus = __øconstruct(m_pdir);
+   estatus = øconstruct(m_pdir);
 
    if (!estatus)
    {
@@ -165,7 +165,7 @@ void context::initialize_context()
 
    }
 
-   estatus = __øconstruct(m_pos);
+   estatus = øconstruct(m_pos);
 
    if (!estatus)
    {
@@ -773,7 +773,7 @@ file_pointer context::friendly_get_file(::payload payloadFile, unsigned int nOpe
 }
 
 
-string context::http_get(const ::string & strUrl, ::property_set & set)
+string context::http_get(const ::scoped_string & scopedstrUrl, ::property_set & set)
 {
 
    __UNREFERENCED_PARAMETER(strUrl);
@@ -857,7 +857,7 @@ string context::get_schema()
 }
 
 
-void context::locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const ::string & strLocale, const ::string & strSchema)
+void context::locale_schema_matter(string_array_base & stra, const string_array_base & straMatterLocator, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema)
 {
 
    if (get_app())
@@ -913,7 +913,7 @@ string context::get_locale_schema_dir()
 }
 
 
-bool context::http_download(const ::string & pszUrl, const ::string & pszFile)
+bool context::http_download(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrFile)
 {
 
    string strUrl = pszUrl;
@@ -929,7 +929,7 @@ bool context::http_download(const ::string & pszUrl, const ::string & pszFile)
 }
 
 
-string context::http_get(const ::string & pszUrl)
+string context::http_get(const ::scoped_string & scopedstrUrl)
 {
 
    ::property_set set;
@@ -987,7 +987,7 @@ pdirectorysystem->config() / strPath);
 }
 
 
-string context::load_string(const ::string & psz)
+string context::load_string(const ::scoped_string & scopedstr)
 {
 
    return psz;
@@ -998,7 +998,7 @@ string context::load_string(const ::string & psz)
 void context::on_update_matter_locator()
 {
 
-   synchronous_lock synchronouslock(this->synchronization());
+   synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    m_straMatterLocator.erase_all();
 
@@ -1020,7 +1020,7 @@ string context::matter_locator(string strApp)
    if (!strMatterLocator.case_insensitive_contains("/_matter/"))
    {
 
-      string_array stra;
+      string_array_base stra;
 
       stra.explode("/", strMatterLocator);
 
@@ -1049,7 +1049,7 @@ string context::matter_locator(::aura::application * papp)
 void context::add_matter_locator(string strApp)
 {
 
-   synchronous_lock synchronouslock(this->synchronization());
+   synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    string strMatterLocator = matter_locator(strApp);
 
@@ -1066,7 +1066,7 @@ void context::add_matter_locator(string strApp)
 void context::add_matter_locator(::aura::application * papp)
 {
 
-   synchronous_lock synchronouslock(this->synchronization());
+   synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    string strMatterLocator = matter_locator(papp);
 

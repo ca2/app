@@ -12,7 +12,7 @@
 //   class interaction_impl;
 //   class install;
 //
-//   /*CLASS_DECL_BASE void get_plugin_base_library_list(string_array & straFile, const ::string & strVersion);
+//   /*CLASS_DECL_BERG void get_plugin_base_library_list(string_array_base & straFile, const ::scoped_string & scopedstrVersion);
 //*/
 //
 //} // namespace install

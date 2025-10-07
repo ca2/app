@@ -16,7 +16,7 @@ namespace heap
 //   public:
 //
 //#if MEMDLEAK  || defined(__MCRTDBG)
-//      void * alloc(memsize iSize, const char * pszFile, int iLine)  override
+//      void * alloc(memsize iSize, const_char_pointer pszFile, int iLine)  override
 //      {
 //
 //         return system_heap_alloc_debug(iSize, 725, pszFile, iLine);
@@ -50,7 +50,7 @@ namespace heap
 
 #if MEMDLEAK || defined(__MCRTDBG)
 
-      void * alloc(memsize iSize, const char * pszFile, int iLine, const char * pszAnnotation = nullptr) override
+      void * alloc(memsize iSize, const_char_pointer pszFile, int iLine, const_char_pointer pszAnnotation = nullptr) override
       {
 
          return memory_allocate_debug(iSize, 724, pszFile, iLine, pszAnnotation);
@@ -59,7 +59,7 @@ namespace heap
 
 #else
 
-      void * allocate(memsize iSize, memsize * psizeAllocated, const char * pszAnnotation = nullptr) override
+      void * allocate(memsize iSize, memsize * psizeAllocated, const_char_pointer pszAnnotation = nullptr) override
       {
 
          return ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(iSize, psizeAllocated, pszAnnotation);
@@ -126,8 +126,8 @@ namespace heap
       //s_allocatora[::heap::e_allocator_a2] = _new_allocator(::heap::e_allocator_a2);
 
 
-      //m_pallocatorSystemMemory = __allocate system_memory_allocator();
-      //m_pallocatorDefaultMemory = __allocate default_memory_allocator();
+      //m_pallocatorSystemMemory = øallocate system_memory_allocator();
+      //m_pallocatorDefaultMemory = øallocate default_memory_allocator();
 
       for (::collection::index i = 0; i < ::heap::e_memory_count; i++)
       {
@@ -142,11 +142,11 @@ namespace heap
       //s_memorya[::heap::e_memory_property] = new_memory(::heap::e_memory_property);
       //s_memorya[::heap::e_memory_string] = new_memory(::heap::e_memory_string);
 
-      //m_pmemoryallocateMain = __allocate < ::acme::get()->m_pheapmanagement->memory >(::heap::e_memory_main)->allocate);
-      //m_pmemoryallocateSecondary = __allocate < ::acme::get()->m_pheapmanagement->memory >(::heap::e_memory_main)->allocate);
-      //m_pmemoryallocateArray = __allocate < ::acme::get()->m_pheapmanagement->memory >(::heap::e_memory_main)->allocate);
-      //m_pmemoryallocateProperty = __allocate < ::acme::get()->m_pheapmanagement->memory >(::heap::e_memory_main)->allocate);
-      //m_pmemoryallocateString = __allocate < ::acme::get()->m_pheapmanagement->memory >(::heap::e_memory_main)->allocate);
+      //m_pmemoryallocateMain = øallocate < ::acme::get()->m_pheapmanagement->memory >(::heap::e_memory_main)->allocate);
+      //m_pmemoryallocateSecondary = øallocate < ::acme::get()->m_pheapmanagement->memory >(::heap::e_memory_main)->allocate);
+      //m_pmemoryallocateArray = øallocate < ::acme::get()->m_pheapmanagement->memory >(::heap::e_memory_main)->allocate);
+      //m_pmemoryallocateProperty = øallocate < ::acme::get()->m_pheapmanagement->memory >(::heap::e_memory_main)->allocate);
+      //m_pmemoryallocateString = øallocate < ::acme::get()->m_pheapmanagement->memory >(::heap::e_memory_main)->allocate);
 
    }
 

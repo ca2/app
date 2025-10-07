@@ -7,8 +7,8 @@
 #include "frame_013.h"
 #include "frame_Minimal001.h"
 #include "experience.h"
-#include "base/platform/session.h"
-#include "base/user/user/user.h"
+#include "berg/platform/session.h"
+#include "berg/user/user/user.h"
 #include "aura/windowing/windowing.h"
 
 
@@ -67,7 +67,7 @@ namespace experience_nanoui
    {
    }
 
-   void experience::get_frame_list(string_array & stra)
+   void experience::get_frame_list(string_array_base & stra)
    {
 
       stra.add("001");
@@ -81,7 +81,7 @@ namespace experience_nanoui
    }
 
 
-   ::pointer < ::experience::frame > experience::frame_experience(const ::string & strFrameSchema)
+   ::pointer < ::experience::frame > experience::frame_experience(const ::scoped_string & scopedstrFrameSchema)
    {
 
       string strSchema(strFrameSchema);
@@ -89,43 +89,43 @@ namespace experience_nanoui
       if (strSchema == "001")
       {
 
-         return __create_new< ::experience_nanoui::frame_001 >();
+         return øcreate_new< ::experience_nanoui::frame_001 >();
 
       }
       else if (strSchema == "002")
       {
 
-         return __create_new< ::experience_nanoui::frame_002 >();
+         return øcreate_new< ::experience_nanoui::frame_002 >();
 
       }
       else if (strSchema == "005")
       {
 
-         return __create_new< ::experience_nanoui::frame_005 >();
+         return øcreate_new< ::experience_nanoui::frame_005 >();
 
       }
       else if (strSchema == "008")
       {
 
-         return __create_new< ::experience_nanoui::frame_008 >();
+         return øcreate_new< ::experience_nanoui::frame_008 >();
 
       }
       else if (strSchema == "011")
       {
 
-         return __create_new< ::experience_nanoui::frame_011 >();
+         return øcreate_new< ::experience_nanoui::frame_011 >();
 
       }
       else if (strSchema == "013")
       {
 
-         return __create_new< ::experience_nanoui::frame_013 >();
+         return øcreate_new< ::experience_nanoui::frame_013 >();
 
       }
       else if (strSchema == "Minimal001")
       {
 
-         return __create_new< ::experience_nanoui::frame_Minimal001 >();
+         return øcreate_new< ::experience_nanoui::frame_Minimal001 >();
 
       }
 

@@ -143,7 +143,7 @@
 //   void interaction_base::_on_window_simple_action(const char * pszActionName)
 //   {
 //
-//      ::string strActionName(pszActionName);
+//      ::string strActionName(scopedstrActionName);
 //
 //      if(strActionName == "minimize")
 //      {
@@ -204,7 +204,7 @@
 //   ::pointer<::operating_system::a_system_menu> interaction_base::create_system_menu(bool bContextual)
 //   {
 //
-//      auto psystemmenu = __allocate ::operating_system::a_system_menu();
+//      auto psystemmenu = øallocate ::operating_system::a_system_menu();
 //
 //      if (m_bMinimizeBox)
 //      {

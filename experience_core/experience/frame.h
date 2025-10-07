@@ -2,7 +2,7 @@
 
 
 //#include "acme/prototype/geometry2d/_geometry2d.h"
-#include "base/user/experience/frame.h"
+#include "berg/user/experience/frame.h"
 
 
 namespace experience_core
@@ -64,7 +64,7 @@ namespace experience_core
 
       //virtual void set_style(::user::enum_style estyle);
 
-      //virtual enum_style translate_style(const ::string & pszStyle);
+      //virtual enum_style translate_style(const ::scoped_string & scopedstrStyle);
 
       virtual void _on_style_change(::draw2d::graphics_pointer & pgraphics) override;
 

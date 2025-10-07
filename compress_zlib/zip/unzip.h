@@ -123,8 +123,8 @@ typedef struct unz_file_info_s
    tm_unz tmu_date;
 } unz_file_info;
 
-extern int CLASS_DECL_ACME unzStringFileNameCompare OF ((const char* fileName1,
-      const char* fileName2,
+extern int CLASS_DECL_ACME unzStringFileNameCompare OF ((const_char_pointer fileName1,
+      const_char_pointer fileName2,
       int iCaseSensitivity));
 /*
    Compare two filename (fileName1,fileName2).
@@ -136,7 +136,7 @@ extern int CLASS_DECL_ACME unzStringFileNameCompare OF ((const char* fileName1,
 */
 
 
-extern unzFile CLASS_DECL_ACME unzOpen OF((const char *path));
+extern unzFile CLASS_DECL_ACME unzOpen OF((const_char_pointer path));
 /*
   open a Zip spfile-> path contain the full pathname (by example,
      on a Windows XP computer "ca:\\zlib\\zlib113.zip" or on an Unix computer
@@ -147,7 +147,7 @@ extern unzFile CLASS_DECL_ACME unzOpen OF((const char *path));
        of this unzip package.
 */
 
-extern unzFile CLASS_DECL_ACME unzOpen2 OF((const char *path,
+extern unzFile CLASS_DECL_ACME unzOpen2 OF((const_char_pointer path,
       zlib_filefunc_def* pzlib_filefunc_def));
 /*
    open a Zip file, like unzOpen, but provide a set of file low level API
@@ -196,7 +196,7 @@ extern int CLASS_DECL_ACME unzGoToNextFile OF((unzFile file));
 */
 
 extern int CLASS_DECL_ACME unzLocateFile OF((unzFile file,
-      const char *szFileName,
+      const_char_pointer szFileName,
       int iCaseSensitivity));
 /*
   Try locate the file szFileName in the zipfile.
@@ -260,7 +260,7 @@ extern int CLASS_DECL_ACME unzOpenCurrentFile OF((unzFile file));
 */
 
 extern int CLASS_DECL_ACME unzOpenCurrentFilePassword OF((unzFile file,
-      const char* password));
+      const_char_pointer password));
 /*
   open for reading data the current file in the zipfile.
   password is a crypting password
@@ -284,7 +284,7 @@ extern int CLASS_DECL_ACME unzOpenCurrentFile3 OF((unzFile file,
       int* method,
       int* level,
       int raw,
-      const char* password));
+      const_char_pointer password));
 /*
   Same than unzOpenCurrentFile, but open for read raw the file (not uncompress)
     if raw==1

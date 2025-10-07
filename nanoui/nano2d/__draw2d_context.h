@@ -11,7 +11,7 @@ namespace nano2d
 {
 
 
-   void __font_face(::write_text::font * pfont, const char * font);
+   void __font_face(::write_text::font * pfont, const_char_pointer font);
    void __font_size(::write_text::font * pfont, float size);
 
 
@@ -131,7 +131,7 @@ namespace nano2d
 
 
 
-      void font_face(const char * font) override;
+      void font_face(const_char_pointer font) override;
       void font_size(float size) override;
       void fill_color(::nano2d::color color) override;
       void stroke_width(float width) override;
@@ -148,9 +148,9 @@ namespace nano2d
       void reset_scissor() override;
 
 
-      float text(float x, float y, const char * string, const char * end) override;
-      int text_glyph_positions(float x, float y, const char * string, const char * end, ::nano2d::glyphPosition * positions, int maxPositions) override;
-      float text_bounds(float x, float y, const char * string, const char * end, float * bounds) override;
+      float text(float x, float y, const_char_pointer string, const_char_pointer end) override;
+      int text_glyph_positions(float x, float y, const_char_pointer string, const_char_pointer end, ::nano2d::glyphPosition * positions, int maxPositions) override;
+      float text_bounds(float x, float y, const_char_pointer string, const_char_pointer end, float * bounds) override;
 
 
       void move_to(float x, float y) override;
@@ -162,7 +162,7 @@ namespace nano2d
       void arc(float cx, float cy, float r, float a0, float a1, int dir) override;
 
 
-      int create_image(const char * filename, int imageFlags) override;
+      int create_image(const_char_pointer filename, int imageFlags) override;
       int create_image_rgba(int w, int h, int imageFlags, const void * data, int iScan) override;
       void image_size(int image, int * w, int * h) override;
 

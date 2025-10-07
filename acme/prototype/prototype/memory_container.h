@@ -35,7 +35,7 @@ public:
    memory_container(const ::pointer < memory_base > & pmemory);
    memory_container(::pointer < memory_base >&& pmemory);
    template < typename MEMORY>
-   memory_container(const ::pointer<MEMORY> pmemory, ::file::e_open eopen = e_null) : memory_container((MEMORY*)pmemory.get(), eopen) {}
+   memory_container(const ::pointer<MEMORY> pmemory, ::file::e_open eopen = {}) : memory_container((MEMORY*)pmemory.get(), eopen) {}
    virtual ~memory_container();
 
    virtual void create_default_memory();
@@ -100,7 +100,7 @@ public:
 
 
    //string as_string() const;
-   void set_string(const ::string & str);
+   void set_string(const ::scoped_string & scopedstr);
 
 
 };
@@ -167,11 +167,16 @@ inline void memory_container ::from_string(const ::scoped_string & scopedstr)
 
 }
 
+
 inline void memory_container ::from_string(const ::string & str)
 {
 
    if(m_pmemory.is_null())
+   {
+
       m_pmemory = create_memory();
+
+   }
 
    m_pmemory->from_string(str);
 
@@ -208,7 +213,7 @@ inline void memory_container ::from_string(const PAYLOAD & payload)
 inline ::string memory_container::as_string() const
 {
 
-   return { (const ::ansi_character * ) data(), size() };
+   return { (const_char_pointer )data(), size() };
 
 }
 

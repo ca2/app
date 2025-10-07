@@ -140,7 +140,7 @@ namespace http
       if(::is_null(pFind))
       {
 
-         auto pcookie = __allocate class cookie ();
+         auto pcookie = øallocate class cookie ();
 
          pcookie->m_strName = name;
 
@@ -169,7 +169,7 @@ namespace http
 
          ca.m_strNameLow = name;
 
-         add(__allocate class cookie (ca));
+         add(øallocate class cookie (ca));
 
          iFind = find_cookie(name);
 
@@ -184,40 +184,40 @@ namespace http
 
    void cookies::add(const ::scoped_string & scopedstr)
    {
-      ::pointer<class cookie> cookie(__allocate class cookie ());
+      ::pointer<class cookie> cookie(øallocate class cookie ());
       cookie->m_bSecure = false;
-      //string_array stra;
-      //stra.add_tokens(psz, ";", true);
+      //string_array_base stra;
+      //stra.add_tokens(scopedstr, ";", true);
       bool bRun = true;
       int i = 0;
       while(bRun)
       {
-         const ::ansi_character * pszEnd = strchr(psz, ';');
+         const ::ansi_character * pszEnd = strchr(scopedstr, ';');
          bRun = pszEnd != nullptr;
          if(!bRun)
-            pszEnd = psz + strlen(psz);
+            pszEnd = psz + strlen(scopedstr);
 
-         const ::scoped_string & scopedstrEqual = strchr(psz, '=');
-         if(pszEqual > pszEnd)
+         const ::scoped_string & scopedstrEqual = strchr(scopedstr, '=');
+         if(scopedstrEqual > pszEnd)
             pszEqual = nullptr;
          if(i == 0)
          {
-            if(pszEqual != nullptr)
+            if(scopedstrEqual != nullptr)
             {
-               cookie->m_strName = string(psz, pszEqual - psz);
+               cookie->m_strName = string(scopedstr, pszEqual - psz);
                cookie->m_strNameLow = cookie->m_strName;
                cookie->m_strNameLow.make_lower();
-               cookie->m_varValue = string(pszEqual + 1, pszEnd - pszEqual - 1);
+               cookie->m_varValue = string(scopedstrEqual + 1, pszEnd - pszEqual - 1);
             }
             else
             {
                return;
             }
          }
-         else if(pszEqual != nullptr)
+         else if(scopedstrEqual != nullptr)
          {
-            string strKey = string(psz, pszEqual - psz);
-            string strValue = string(pszEqual + 1, pszEnd - pszEqual - 1);
+            string strKey = string(scopedstr, pszEqual - psz);
+            string strValue = string(scopedstrEqual + 1, pszEnd - pszEqual - 1);
             if(strKey == "expires")
             {
                cookie->m_strExpire = strValue;
@@ -233,7 +233,7 @@ namespace http
          }
          else
          {
-            if(string(psz, pszEnd - psz) == "secure")
+            if(string(scopedstr, pszEnd - psz) == "secure")
             {
                cookie->m_bSecure = true;
             }
@@ -340,10 +340,10 @@ namespace http
    void cookies::parse_header(const ::scoped_string & scopedstr)
    {
 
-      if(psz == nullptr)
+      if(scopedstr == nullptr)
          return;
 
-      string_array stra;
+      string_array_base stra;
       const ::scoped_string & scopedstrParam = psz;
       const ::scoped_string & scopedstrParamEnd;
       const ::scoped_string & scopedstrKeyEnd;
@@ -356,15 +356,15 @@ namespace http
          }
          if(*pszParam == '\0')
             break;
-         pszParamEnd = strchr(pszParam, ';');
-         pszKeyEnd = strchr(pszParam, '=');
-         if(pszParamEnd == nullptr)
+         pszParamEnd = strchr(scopedstrParam, ';');
+         pszKeyEnd = strchr(scopedstrParam, '=');
+         if(scopedstrParamEnd == nullptr)
          {
 
-            if(pszKeyEnd == nullptr)
+            if(scopedstrKeyEnd == nullptr)
             {
 
-               auto & cookie = this->cookie(pszParam);
+               auto & cookie = this->cookie(scopedstrParam);
 
                cookie.m_varValue.set_type(::e_type_empty);
 
@@ -372,9 +372,9 @@ namespace http
             else
             {
 
-               auto& cookie = this->cookie(string(pszParam, pszKeyEnd - pszParam));
+               auto& cookie = this->cookie(string(scopedstrParam, pszKeyEnd - pszParam));
 
-               cookie.m_varValue = string(pszKeyEnd + 1);
+               cookie.m_varValue = string(scopedstrKeyEnd + 1);
 
             }
 
@@ -384,10 +384,10 @@ namespace http
          else
          {
 
-            if(pszKeyEnd == nullptr || pszKeyEnd > pszParamEnd)
+            if(scopedstrKeyEnd == nullptr || pszKeyEnd > pszParamEnd)
             {
 
-               auto& cookie = this->cookie(string(pszParam, pszParamEnd - pszParam));
+               auto& cookie = this->cookie(string(scopedstrParam, pszParamEnd - pszParam));
 
                cookie.m_varValue.set_type(::e_type_empty);
 
@@ -395,9 +395,9 @@ namespace http
             else
             {
 
-               auto& cookie = this->cookie(string(pszParam, pszKeyEnd - pszParam));
+               auto& cookie = this->cookie(string(scopedstrParam, pszKeyEnd - pszParam));
 
-               cookie.m_varValue = string(pszKeyEnd + 1, pszParamEnd - (pszKeyEnd + 1));
+               cookie.m_varValue = string(scopedstrKeyEnd + 1, pszParamEnd - (scopedstrKeyEnd + 1));
 
             }
 

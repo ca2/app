@@ -1,4 +1,5 @@
 #include "framework.h"
+//#include "_gpu_opengl.h"
 #include "cpu_buffer.h"
 #include "lock.h"
 #include "texture.h"
@@ -7,6 +8,7 @@
 #include "aura/graphics/image/target.h"
 #include "bred/gpu/context.h"
 #include "bred/gpu/context_lock.h"
+#include "bred/gpu/frame.h"
 
 
 namespace gpu_opengl
@@ -28,7 +30,7 @@ namespace gpu_opengl
    void cpu_buffer::gpu_read()
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (m_pimagetarget->m_pimage.nok())
       {
@@ -39,7 +41,7 @@ namespace gpu_opengl
 
       ::gpu::context_lock contextlock(m_pgpucontext);
 
-      ::cast < texture > ptexture = m_pgpucontext->current_target_texture();
+      ::cast < texture > ptexture = m_pgpucontext->current_target_texture(::gpu::current_frame());
 
       glBindFramebuffer(GL_FRAMEBUFFER, ptexture->m_gluFbo);
 
@@ -57,7 +59,12 @@ namespace gpu_opengl
       
 #if defined(__APPLE__) || defined(__ANDROID__)
 
-      if(data != nullptr)
+      auto targeting = m_pimagetarget->no_padded_targeting(::image::e_copy_disposition_y_swap);
+
+      auto w = targeting.width();
+      auto h = targeting.height();
+      auto p = targeting.data();
+      if(p != nullptr)
       {
          glReadBuffer(GL_FRONT);
 
@@ -65,34 +72,47 @@ namespace gpu_opengl
 {
    glReadPixels(
                 0, 0,
-                cx, cy,
+                w, h,
                 GL_RGBA,
                 GL_UNSIGNED_BYTE,
-                data);
+                p);
    
 }
          
       }
 
       //m_pixmap.mult_alpha();
-      information() << "after glReadPixels cx,cy : " << cx << ", " << cy;
+      information() << "after glReadPixels cx,cy : " << w << ", " << h;
       
       //::memory_set(m_pixmap.m_pimage32Raw, 127, cx * cy * 4);
-
 #elif defined(LINUX) || defined(__BSD__)
 
-      glReadBuffer(GL_FRONT);
-      
+      auto targeting = m_pimagetarget->no_padded_targeting(::image::e_copy_disposition_y_swap);
 
+      auto w = targeting.width();
+      auto h = targeting.height();
+      auto p = targeting.data();
       glReadPixels(
          0, 0,
-         cx, cy,
+         w, h,
          GL_BGRA,
+         //GL_RGBA,
          GL_UNSIGNED_BYTE,
-         m_pixmap.m_pimage32Raw);
-      
-      //m_pixmap.mult_alpha();
-      
+         p);
+      GLCheckError("");
+
+//       glReadBuffer(GL_FRONT);
+//
+//
+//       glReadPixels(
+//          0, 0,
+//          cx, cy,
+//          GL_BGRA,
+//          GL_UNSIGNED_BYTE,
+//          m_pixmap.m_pimage32Raw);
+//
+//       //m_pixmap.mult_alpha();
+//
 #else
 
       //glReadBuffer(GL_FRONT);
@@ -177,7 +197,7 @@ namespace gpu_opengl
    void cpu_buffer::gpu_write()
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (m_pimagetarget->m_pimage.nok())
       {

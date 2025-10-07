@@ -17,11 +17,11 @@ namespace platform
 
 #elif defined(UNIVERSAL_WINDOWS)
 
-      void apex_system_layer::system_construct(const ::string_array & stra){}
+      void apex_system_layer::system_construct(const ::string_array_base & stra){}
 
 #else
 
-      void apex_system_layer::system_construct(const ::string & pszCommandLine, const ::e_display& edisplay)
+      void apex_system_layer::system_construct(const ::scoped_string & scopedstrCommandLine, const ::e_display& edisplay)
 {
          
          
@@ -118,7 +118,7 @@ namespace platform
    //void apex_system_layer::initialize_context(){}
 
 
-   ::pointer<::data::node> apex_system_layer::load_xml(const ::string& pszXml)
+   ::pointer<::data::node> apex_system_layer::load_xml(const ::scoped_string & scopedstrXml)
    {
       return {};
    }
@@ -130,7 +130,7 @@ namespace platform
    //bool apex_system_layer::is_system() const{}
 
 
-   ::string apex_system_layer::crypto_md5_text(const ::string& str)
+   ::string apex_system_layer::crypto_md5_text(const ::scoped_string & scopedstr)
    {
       return {};
    }
@@ -153,15 +153,15 @@ namespace platform
    }
 
 
-   void apex_system_layer::hist_hist(const ::string& psz)
+   void apex_system_layer::hist_hist(const ::scoped_string & scopedstr)
    {
    }
 
 
-   //::string apex_system_layer::url::encode(const ::string & str){}
+   //::string apex_system_layer::url::encode(const ::scoped_string & scopedstr){}
 
 
-   //void apex_system_layer::locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema){}
+   //void apex_system_layer::locale_schema_matter(string_array_base & stra, const string_array_base & straMatterLocator, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema){}
    //::string apex_system_layer::get_locale_schema_dir(){}
 
    ::operating_system::department * apex_system_layer::operating_system()
@@ -196,17 +196,17 @@ namespace platform
    }
 
 
-   void apex_system_layer::on_allocation_error(const ::string& strName, ::object* pobjectSometimes)
+   void apex_system_layer::on_allocation_error(const ::scoped_string & scopedstrName, ::object* pobjectSometimes)
    {
    }
 
 
-   // void apex_system_layer::browser(string strUrl, string strBrowser, string strProfile, string strTarget)
+   // void apex_system_layer::browser(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrBrowser, const ::scoped_string & scopedstrProfile, const ::scoped_string & scopedstrTarget)
    // {
    // }
    //
    //
-   // void apex_system_layer::open_profile_link(string strUrl, string strProfile, string strTarget)
+   // void apex_system_layer::open_profile_link(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrProfile, const ::scoped_string & scopedstrTarget)
    // {
    // }
 
@@ -216,10 +216,10 @@ namespace platform
    // }
 
 
-   //::string apex_system_layer::get_local_mutex_name(const ::string & pszAppName){}
-   //::string apex_system_layer::get_local_id_mutex_name(const ::string & pszAppName, const ::string & pszId){}
-   //::string apex_system_layer::get_global_mutex_name(const ::string & pszAppName){}
-   //::string apex_system_layer::get_global_id_mutex_name(const ::string & pszAppName, const ::string & pszId){}
+   //::string apex_system_layer::get_local_mutex_name(const ::scoped_string & scopedstrAppName){}
+   //::string apex_system_layer::get_local_id_mutex_name(const ::scoped_string & scopedstrAppName, const ::scoped_string & scopedstrId){}
+   //::string apex_system_layer::get_global_mutex_name(const ::scoped_string & scopedstrAppName){}
+   //::string apex_system_layer::get_global_id_mutex_name(const ::scoped_string & scopedstrAppName, const ::scoped_string & scopedstrId){}
 
 
    void apex_system_layer::initialize_networking()
@@ -233,7 +233,7 @@ namespace platform
    // }
 
 
-   unsigned int apex_system_layer::os_post_to_all_threads(::enum_message emessage, ::wparam wparam, ::lparam lparam)
+   unsigned int apex_system_layer::os_post_to_all_threads(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
    {
       return 0;
    }
@@ -280,34 +280,34 @@ namespace platform
    // }
 
 
-   int apex_system_layer::_001OnDebugReport(int i1, const ::string& psz1, int i2, const ::string& psz2,
-                                            const ::string& psz3,
+   int apex_system_layer::_001OnDebugReport(int i1, const ::scoped_string & scopedstr1, int i2, const ::scoped_string & scopedstr2,
+                                            const ::scoped_string & scopedstr3,
                                             va_list args)
    {
       return 0;
    }
 
 
-   int apex_system_layer::_debug_logging_report(int iReportType, const ::string& pszFilename, int iLinenumber,
-                                                const ::string& iModuleName, const char* pszFormat, va_list list)
+   int apex_system_layer::_debug_logging_report(int iReportType, const ::scoped_string & scopedstrFilename, int iLinenumber,
+                                                const ::scoped_string & scopedstrModuleName, const_char_pointer pszFormat, va_list list_base)
    {
       return 0;
    }
 
 
-   bool apex_system_layer::assert_failed_line(const ::string& pszFileName, int iLine)
+   bool apex_system_layer::assert_failed_line(const ::scoped_string & scopedstrFileName, int iLine)
    {
       return false;
    }
 
 
-   bool apex_system_layer::on_assert_failed_line(const ::string& pszFileName, int iLine)
+   bool apex_system_layer::on_assert_failed_line(const ::scoped_string & scopedstrFileName, int iLine)
    {
       return false;
    }
 
 
-   void apex_system_layer::initialize_log(const ::string& pszId)
+   void apex_system_layer::initialize_log(const ::scoped_string & scopedstrId)
    {
    }
 
@@ -317,23 +317,23 @@ namespace platform
    }
 
 
-   void apex_system_layer::appa_set_locale(const ::string& pszLocale, const ::action_context& action_context)
+   void apex_system_layer::appa_set_locale(const ::scoped_string & scopedstrLocale, const ::action_context& action_context)
    {
    }
 
 
-   void apex_system_layer::appa_set_schema(const ::string& pszStyle, const ::action_context& action_context)
+   void apex_system_layer::appa_set_schema(const ::scoped_string & scopedstrStyle, const ::action_context& action_context)
    {
    }
 
 
-   bool apex_system_layer::assert_running_global(const ::string& pszAppName, const ::string& pszId)
+   bool apex_system_layer::assert_running_global(const ::scoped_string & scopedstrAppName, const ::scoped_string & scopedstrId)
    {
       return false;
    }
 
 
-   bool apex_system_layer::assert_running_local(const ::string& pszAppName, const ::string& pszId)
+   bool apex_system_layer::assert_running_local(const ::scoped_string & scopedstrAppName, const ::scoped_string & scopedstrId)
    {
       return false;
    }
@@ -369,12 +369,12 @@ namespace platform
 
 #ifdef __ANDROID__
 //#pragma message("at macos??")
-      bool apex_system_layer::android_set_user_wallpaper(string strUrl){return false;}
+      bool apex_system_layer::android_set_user_wallpaper(const ::scoped_string & scopedstrUrl){return false;}
       bool apex_system_layer::android_get_user_wallpaper(string & strUrl){return false;}
 
 #endif
 
-   bool apex_system_layer::defer_accumulate_on_open_file(string_array stra, string strExtra)
+   bool apex_system_layer::defer_accumulate_on_open_file(string_array_base stra, const ::scoped_string & scopedstrExtra)
    {
       return false;
    }
@@ -382,34 +382,34 @@ namespace platform
 
    //bool apex_system_layer::merge_accumulated_on_open_file(::request * prequest){}
 
-   bool apex_system_layer::on_open_file(::payload payloadFile, string strExtra)
+   bool apex_system_layer::on_open_file(::payload payloadFile, const ::scoped_string & scopedstrExtra)
    {
       return false;
    }
 
 
-   void apex_system_layer::on_open_file(const ::string& pszFile)
+   void apex_system_layer::on_open_file(const ::scoped_string & scopedstrFile)
    {
    }
 
 
-   void apex_system_layer::on_os_text(enum_os_text etext, string strText)
+   void apex_system_layer::on_os_text(enum_os_text etext, const ::scoped_string & scopedstrText)
    {
    }
 
 
-   void apex_system_layer::on_extra(string str)
+   void apex_system_layer::on_extra(const ::scoped_string & scopedstr)
    {
    }
 
 
-   ::string apex_system_layer::standalone_setting(string str)
+   ::string apex_system_layer::standalone_setting(const ::scoped_string & scopedstr)
    {
       return {};
    }
 
 
-   void apex_system_layer::set_standalone_setting(string str, string strSetting)
+   void apex_system_layer::set_standalone_setting(const ::scoped_string & scopedstr, const ::scoped_string & scopedstrSetting)
    {
    }
 
@@ -430,25 +430,25 @@ namespace platform
    }
 
 
-   void apex_system_layer::set_user_language(::apex::application* papp, string strLang)
+   void apex_system_layer::set_user_language(::apex::application* papp, const ::scoped_string & scopedstrLang)
    {
    }
 
 
-   void apex_system_layer::chromium(string strUrl, string strBrowser, string strId, ::file::path path,
-                                    string strProfile,
-                                    string strParam)
+   void apex_system_layer::chromium(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrBrowser, const ::scoped_string & scopedstrId, ::file::path path,
+                                    const ::scoped_string & scopedstrProfile,
+                                    const ::scoped_string & scopedstrParam)
    {
    }
 
 
-   void apex_system_layer::defer_create_firefox_profile(::file::path pathFirefox, string strProfileName,
+   void apex_system_layer::defer_create_firefox_profile(::file::path pathFirefox, const ::scoped_string & scopedstrProfileName,
                                                         ::file::path pathProfile)
    {
    }
 
 
-   void apex_system_layer::firefox(string strUrl, string strBrowser, string strProfile, string strParam)
+   void apex_system_layer::firefox(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrBrowser, const ::scoped_string & scopedstrProfile, const ::scoped_string & scopedstrParam)
    {
    }
 
@@ -472,7 +472,7 @@ namespace platform
    }
 
 
-   bool apex_system_layer::sync_load_url(string& str, const ::string& pszUrl, ::http::cookies* pcookies)
+   bool apex_system_layer::sync_load_url(string& str, const ::scoped_string & scopedstrUrl, ::http::cookies* pcookies)
    {
       return false;
    }
@@ -511,7 +511,7 @@ namespace platform
    }
 
 
-   void apex_system_layer::post_to_all_threads(::enum_message emessage, ::wparam wparam, ::lparam lparam)
+   void apex_system_layer::post_to_all_threads(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
    {
    }
 
@@ -566,7 +566,7 @@ namespace platform
    }
 
 
-   void apex_system_layer::application_main(int argc, char* argv[], const ::string& pszCommandLine)
+   void apex_system_layer::application_main(int argc, char* argv[], const ::scoped_string & scopedstrCommandLine)
    {
    }
 
@@ -577,7 +577,7 @@ namespace platform
    }
 
 
-   //void apex_system_layer::get_public_internet_domain_extension_list(string_array& stra) override{}
+   //void apex_system_layer::get_public_internet_domain_extension_list(string_array_base& stra) override{}
 
 
    ::string apex_system_layer::fetch_public_internet_domain_extension_list_text()

@@ -1,9 +1,9 @@
 #pragma once
 
 
-#include "base/user/simple_ui/simple_ui_style.h"
-#include "base/user/simple_ui/simple_ui_interaction.h"
-#include "base/base/base/session.h"
+#include "berg/user/simple_ui/simple_ui_style.h"
+#include "berg/user/simple_ui/simple_ui_interaction.h"
+#include "berg/base/base/session.h"
 
 
 namespace hotplugin
@@ -13,10 +13,10 @@ namespace hotplugin
    class host;
 
 
-   class CLASS_DECL_BASE plugin :
+   class CLASS_DECL_BERG plugin :
       virtual public ::user::interaction,
       virtual public ::simple_ui::style,
-      virtual public ::base::session,
+      virtual public ::berg::session,
       virtual public ::aura::ipc::ipc
    {
    public:
@@ -47,7 +47,7 @@ namespace hotplugin
       itask                      m_nCa2StarterStartThreadID;
       bool                          m_bReload;
       bool                          m_bInstalling;
-      const char *                  m_pszReloadCommandLine;
+      const_char_pointer                  m_pszReloadCommandLine;
 
       ::pointer< ::mutex >                       m_pmutexBitmap;
       ::int_size                          m_sizeBitmapData;
@@ -65,7 +65,7 @@ namespace hotplugin
       void install_message_routing(::channel * pchannel) override;
 
       // host should implement
-      virtual bool         open_link(const ::string & strLink,const string & pszTarget);
+      virtual bool         open_link(const ::scoped_string & scopedstrLink,const ::scoped_string & scopedstrTarget);
       virtual bool         reload_plugin();
 
       virtual void delete_this() override;
@@ -82,7 +82,7 @@ namespace hotplugin
 
 
       virtual void         redraw();
-      virtual void         post_message(::enum_message emessage, ::wparam wparam, ::lparam lparam);
+      virtual void         post_message(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam);
 
       virtual oswindow         get_host_user_interaction();
 
@@ -140,7 +140,7 @@ namespace hotplugin
       virtual int x11_message_handler(void * pevent);
 #endif
       virtual void message_handler(::user::message * pusermessage) override;
-      virtual void plugin_message_handler(::enum_message emessage, ::wparam wparam, ::lparam lparam, bool bEnsureTx);
+      virtual void plugin_message_handler(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam, bool bEnsureTx);
 
       virtual void plugin_message_handler(MESSAGE * pmsg,bool bEnsureTx);
 
@@ -172,7 +172,7 @@ namespace hotplugin
 
       virtual void set_ca2_installation_ready(bool bReady = true);
 
-      virtual void set_status(const ::string & pszStatus);
+      virtual void set_status(const ::scoped_string & scopedstrStatus);
 
       virtual void restart_aura_ipc() override;
 

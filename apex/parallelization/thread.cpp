@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "acme/memory/counter.h"
 #include "acme/parallelization/counter.h"
 #include "acme/parallelization/message_queue.h"
@@ -272,7 +272,7 @@ htask thread::get_os_handle() const
 }
 
 
-bool thread::is_thread() const
+bool thread::is_thread_class() const
 {
 
    return true;
@@ -413,7 +413,7 @@ bool thread::is_dedicated_thread() const
 //
 //   {
 //
-//      _synchronous_lock synchronouslock(this->synchronization());
+//      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //      if (m_phappeningaWait)
 //      {
@@ -448,7 +448,7 @@ void thread::__task_term()
 
    {
 
-      _synchronous_lock synchronouslock(m_pmutexThreadUiPtra);
+      _synchronous_lock synchronouslock(m_pmutexThreadUiPtra, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (::is_set(m_puserinteractionbaseaThread))
       {
@@ -596,7 +596,7 @@ void thread::__task_term()
 
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (m_phappeningaWait)
       {
@@ -629,7 +629,7 @@ void thread::__task_term()
 
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (m_pevSleep.is_set())
       {
@@ -695,7 +695,7 @@ void thread::on_ping()
 ::task_pool* thread::taskpool()
 {
 
-   __defer_construct_new(m_ptaskpool);
+   ødefer_construct_new(m_ptaskpool);
 
    return m_ptaskpool;
 
@@ -786,6 +786,8 @@ bool thread::handle_messages()
    {
 
    }
+
+   //::preempt(5_min);
 
    update_new_main_loop_happening();
    
@@ -938,7 +940,7 @@ bool thread::handle_messages()
 void thread::run()
 {
 
-   ASSERT_VALID(this);
+   ASSERT_OK(this);
 
    m_eflagElement += e_flag_running;
 
@@ -995,7 +997,7 @@ void thread::on_message_branch(::message::message* pmessage)
 //::pointer<::matter>thread::running(const ::scoped_string & scopedstrTag) const
 //{
 //
-//   auto pmatter = ::channel::running(pszTag);
+//   auto pmatter = ::channel::running(scopedstrTag);
 //
 //   if (pmatter)
 //   {
@@ -1004,7 +1006,7 @@ void thread::on_message_branch(::message::message* pmessage)
 //
 //   }
 //
-//   //_synchronous_lock synchronouslock(this->synchronization());
+//   //_synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //   //for(auto & pcomposite : *m_pcompositea)
 //   //{
@@ -1014,7 +1016,7 @@ void thread::on_message_branch(::message::message* pmessage)
 //
 //   //      const ::scoped_string & scopedstrTaskTag = pcomposite->get_task_tag();
 //
-//   //      if (!strcmp(pszTaskTag, pszTag))
+//   //      if (!strcmp(scopedstrTaskTag, pszTag))
 //   //      {
 //
 //   //         return pcomposite;
@@ -1070,7 +1072,7 @@ bool thread::task_iteration()
       for (auto & m : m_messageaInitialQueue)
       {
 
-         ::PostThreadMessage((DWORD)m_itask.m_i, m.m_emessage, m.m_wparam, m.m_lparam);
+         ::PostThreadMessage((DWORD)m_itask.m_i, m.m_eusermessage, m.m_wparam, m.m_lparam);
 
       }
 
@@ -1156,7 +1158,7 @@ bool thread::task_iteration()
 //
 //      }
 //
-//      if (m_message.m_emessage == e_message_quit)
+//      if (m_message.m_emessage == ::user::e_message_quit)
 //      {
 //
 //         string strType = ::type(this).name();
@@ -1183,9 +1185,9 @@ bool thread::task_iteration()
 //         }
 //
 //         information()(e_trace_category_appmsg) << ::type(this).name() <<
-//            " thread::pump_message - Received e_message_quit.";
+//            " thread::pump_message - Received ::user::e_message_quit.";
 //
-//         information() << ::type(this).name() << " thread::pump_message - Received e_message_quit.";
+//         information() << ::type(this).name() << " thread::pump_message - Received ::user::e_message_quit.";
 //
 //         m_nDisablePumpCount++; // application must die
 //         // Note: prevents calling message loop things in 'exit_thread'
@@ -1196,7 +1198,7 @@ bool thread::task_iteration()
 //      else
 //      {
 //
-//         if (m_message.m_emessage == e_message_destroy_window && m_strDebugType.contains("notify_icon"))
+//         if (m_message.m_emessage == ::user::e_message_destroy_window && m_strDebugType.contains("notify_icon"))
 //         {
 //
 //            information() << "notify_icon";
@@ -1252,7 +1254,7 @@ bool thread::get_message()
 
    get_message(&message, NULL, 0, 0);
 
-   if (m_message.m_emessage == e_message_quit)
+   if (m_message.m_eusermessage == ::user::e_message_quit)
    {
 
       return false;
@@ -1315,9 +1317,9 @@ bool thread::get_message()
 //         }
 //
 //         information()(e_trace_category_appmsg) << "xx" << strType <<
-//            " thread::raw_pump_message - Received e_message_quit";
+//            " thread::raw_pump_message - Received ::user::e_message_quit";
 //
-//         information() << "xx" << strType << " thread::raw_pump_message - Received e_message_quit.";
+//         information() << "xx" << strType << " thread::raw_pump_message - Received ::user::e_message_quit.";
 //
 //         m_nDisablePumpCount++; // application must die
 //         // Note: prevents calling message loop things in 'exit_thread'
@@ -1468,12 +1470,12 @@ bool thread::handle_message(bool & bContinue)
    if (peek_message(&m_message, nullptr, 0, 0, true))
    {
 
-      if (m_message.m_emessage == e_message_quit)
+      if (m_message.m_eusermessage == ::user::e_message_quit)
       {
 
          information(
             "\n\n\nthread::defer_pump_message (1) quitting (wm_quit? {PeekMessage->message : " +
-            ::as_string(m_message.m_emessage == e_message_quit ? 1 : 0) + "!}) : " + ::type(this).name() + " (" +
+            ::as_string(m_message.m_eusermessage == ::user::e_message_quit ? 1 : 0) + "!}) : " + ::type(this).name() + " (" +
             ::as_string((unsigned long long)::current_task_index()) + ")\n\n\n");
          
          bContinue = false;
@@ -1529,7 +1531,7 @@ void thread::Delete()
 void thread::kick_idle()
 {
 
-   if (!is_task_set())
+   if (!is_task_set2())
    {
 
       return;
@@ -1557,7 +1559,7 @@ void thread::kick_idle()
          //   m_bCertainlyTheresWindowsMessageQueue = true;
          //}
 
-         ::PostThreadMessage((DWORD)m_itask.m_i, e_message_kick_idle, 0, 0);
+         ::PostThreadMessage((DWORD)m_itask.m_i, ::user::e_message_kick_idle, 0, 0);
 
       }
 
@@ -1594,7 +1596,7 @@ void thread::post_quit()
 
    }
 
-   if (!is_task_set())
+   if (!is_task_set2())
    {
 
       return;
@@ -1604,7 +1606,7 @@ void thread::post_quit()
    if (m_pmessagequeue)
    {
 
-      m_pmessagequeue->post_message(nullptr, e_message_quit, 0, 0);
+      m_pmessagequeue->post_message(nullptr, ::user::e_message_quit, 0, 0);
 
    }
 
@@ -1613,13 +1615,13 @@ void thread::post_quit()
    try
    {
 
-      if (is_task_set() && !m_bAuraMessageQueue)
+      if (is_task_set2() && !m_bAuraMessageQueue)
       {
 
          if (m_bMessageThread)
          {
 
-            post_message(e_message_quit, 0, 0);
+            post_message(::user::e_message_quit, 0, 0);
 
          }
 
@@ -1637,7 +1639,7 @@ void thread::post_quit()
    // {
 
    //    /// this is quite dangerous
-   //    _synchronous_lock synchronouslock(this->synchronization());
+   //    _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //    ::pointer<manual_reset_happening>pev = m_pevSync;
 
@@ -1658,7 +1660,7 @@ void thread::post_quit()
    {
 
       /// this is quite dangerous
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       ::pointer<manual_reset_happening> pev = m_pevSleep;
 
@@ -1730,7 +1732,7 @@ bool thread::post_quit_message(int nExitCode)
 //
 //      }
 //
-//      _synchronous_lock synchronouslock(this->synchronization());
+//      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //      if (ptask == this)
 //      {
@@ -1746,7 +1748,7 @@ bool thread::post_quit_message(int nExitCode)
 //
 //      }
 //
-//      _synchronous_lock slChild(ptask->synchronization());
+//      _synchronous_lock slChild(ptask->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //      if (::parallelization::is_child(ptask) || ptask->m_pthreadParent)
 //      {
@@ -1789,7 +1791,7 @@ void thread::task_erase(::task* ptask)
 
       string strThreadChild = ::type(ptask).name();
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (::is_null(ptask))
       {
@@ -1798,7 +1800,7 @@ void thread::task_erase(::task* ptask)
 
       }
 
-      //_synchronous_lock slChild(ptask->synchronization());
+      //_synchronous_lock slChild(ptask->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       //if (!m_pcompositea->contains(ptask) && ptask->thread_parent() != this)
       //{
@@ -1949,7 +1951,7 @@ void thread::destroy()
 
    m_puserinteractionbaseaThread.release();
 
-   m_prequest.release();
+   m_prequest2.release();
 
    m_pmessagequeue.defer_destroy();
 
@@ -2617,16 +2619,16 @@ void thread::system_pre_translate_message(::message::message* pmessage)
 void thread::process_window_procedure_exception(const ::exception& e, ::message::message* pmessage)
 {
 
-   if (pmessage->m_emessage == e_message_create)
+   if (pmessage->m_eusermessage == ::user::e_message_create)
    {
 
       pmessage->m_lresult = -1;
 
    }
-   else if (pmessage->m_emessage == e_message_paint)
+   else if (pmessage->m_eusermessage == ::user::e_message_paint)
    {
 
-      // force validation of interaction_impl to prevent getting e_message_paint again
+      // force validation of interaction_impl to prevent getting ::user::e_message_paint again
 
 #ifdef WIDOWSEX
       ValidateRect(pusermessage->m_puserinteraction->get_safe_handle(), nullptr);
@@ -2696,7 +2698,7 @@ size_t engine_symbol(char* sz, int n, DWORD_PTR* pdisplacement, DWORD_PTR dwAddr
 //   if (m_pstartup.is_null())
 //   {
 //
-//      m_pstartup = __allocate thread_startup();
+//      m_pstartup = øallocate thread_startup();
 //
 //   }
 //
@@ -3149,23 +3151,23 @@ namespace apex
    }
 
 
-   void system::post_to_all_threads(::enum_message emessage, ::wparam wparam, ::lparam lparam)
+   void system::post_to_all_threads(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
    {
 
       //#ifdef _DEBUG
       //
-      //      if (atom == e_message_quit)
+      //      if (atom == ::user::e_message_quit)
       //      {
       //
-      //         //!!for e_message_quit please use post_quit_to_all_threads;
+      //         //!!for ::user::e_message_quit please use post_quit_to_all_threads;
       //         throw ::exception(error_bad_argument);
       //
       //      }
       //
       //#endif
 
-      //for e_message_quit please use post_quit_to_all_threads;
-      //if(atom == e_message_quit)
+      //for ::user::e_message_quit please use post_quit_to_all_threads;
+      //if(atom == ::user::e_message_quit)
       //{
 
       //   ::parallelization::post_quit_to_all_threads();
@@ -3176,7 +3178,7 @@ namespace apex
 
       //      auto psystem = system();
       //
-      //      psystem->post_to_all_threads(emessage, wparam, lparam);
+      //      psystem->post_to_all_threads(eusermessage, wparam, lparam);
 
    }
 
@@ -3194,7 +3196,7 @@ namespace apex
 //
 //   }
 //
-//   _synchronous_lock synchronouslock(this->synchronization());
+//   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //   m_procedurea.add(routine);
 //
@@ -3210,12 +3212,12 @@ namespace apex
 //
 //   return __sync_routine(timeTimeout, this, &thread::post, routine);
 //
-//   //return send_object(e_message_system, e_system_message_method, routine, timeTimeout);
+//   //return send_object(::user::e_message_system, e_system_message_method, routine, timeTimeout);
 //
 //}
 
 
-void thread::post_element(const ::enum_message & emessage, const ::wparam & wparam, ::particle* pparticle)
+void thread::post_element(const ::user::enum_message & emessage, const ::wparam & wparam, ::particle* pparticle)
 {
 
    post_message(emessage, wparam, pparticle);
@@ -3223,19 +3225,19 @@ void thread::post_element(const ::enum_message & emessage, const ::wparam & wpar
 }
 
 
-void thread::post_message(::enum_message emessage, ::wparam wparam, ::lparam lparam)
+void thread::post_message(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
 {
 
-   if (emessage == e_message_close)
+   if (eusermessage == ::user::e_message_close)
    {
 
-      informationf("thread::post_message e_message_close");
+      informationf("thread::post_message ::user::e_message_close");
 
    }
-   else if (emessage == e_message_branch)
+   else if (eusermessage == ::user::e_message_branch)
    {
 
-      informationf("thread::post_message e_message_branch");
+      informationf("thread::post_message ::user::e_message_branch");
 
    }
 
@@ -3244,7 +3246,7 @@ void thread::post_message(::enum_message emessage, ::wparam wparam, ::lparam lpa
    if (m_htask.is_set() && !m_bAuraMessageQueue && m_bMessageThread)
    {
 
-      if (emessage == e_message_quit)
+      if (eusermessage == ::user::e_message_quit)
       {
 
          string strType = ::type(this).name();
@@ -3301,14 +3303,14 @@ void thread::post_message(::enum_message emessage, ::wparam wparam, ::lparam lpa
       //   m_bCertainlyTheresWindowsMessageQueue = true;
       //}
 
-      UINT message = emessage;
+      UINT message = eusermessage;
 
       int_bool bOk = ::PostThreadMessageW((DWORD)m_itask.m_i, message, wparam, lparam) != false;
 
       if (!bOk)
       {
          MESSAGE message;
-         message.m_emessage = emessage;
+         message.m_eusermessage = eusermessage;
          message.m_wparam = wparam;
          message.m_lparam = lparam;
          m_messageaInitialQueue.add(message);
@@ -3331,13 +3333,13 @@ void thread::post_message(::enum_message emessage, ::wparam wparam, ::lparam lpa
    if (!pmessagequeue)
    {
 
-      if (!is_task_set())
+      if (!is_task_set2())
       {
 
-         _post([this, emessage, wparam, lparam]()
+         _post([this, eusermessage, wparam, lparam]()
          {
 
-            post_message(emessage, wparam, lparam);
+            post_message(eusermessage, wparam, lparam);
 
          });
 
@@ -3345,20 +3347,22 @@ void thread::post_message(::enum_message emessage, ::wparam wparam, ::lparam lpa
 
       }
 
+      auto pmessagequeue2 = get_message_queue();
+
       throw ::exception(::error_wrong_state);
 
       return;
 
    }
 
-   pmessagequeue->post_message(nullptr, emessage, wparam, lparam);
+   pmessagequeue->post_message(nullptr, eusermessage, wparam, lparam);
 
    new_main_loop_happening()->set_happening();
 
 }
 
 
-void thread::send_element(const ::enum_message & emessage, const ::wparam & wparam, ::particle* pparticle, const class time& time)
+void thread::send_element(const ::user::enum_message & emessage, const ::wparam & wparam, ::particle* pparticle, const class time& time)
 {
 
    //if (m_bThreadClosed)
@@ -3368,7 +3372,7 @@ void thread::send_element(const ::enum_message & emessage, const ::wparam & wpar
 
    //}
 
-   //if (atom == e_message_quit)
+   //if (atom == ::user::e_message_quit)
    //{
 
    //   return false;
@@ -3390,7 +3394,7 @@ void thread::send_element(const ::enum_message & emessage, const ::wparam & wpar
 }
 
 
-void thread::send_message(::enum_message emessage, ::wparam wparam, ::lparam lparam, const class time& time)
+void thread::send_message(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam, const class time& time)
 {
 
    //if (m_bThreadClosed)
@@ -3400,7 +3404,7 @@ void thread::send_message(::enum_message emessage, ::wparam wparam, ::lparam lpa
 
    //}
 
-   //if (atom == e_message_quit)
+   //if (atom == ::user::e_message_quit)
    //{
 
    //   ///wait(durWaitStep);
@@ -3409,15 +3413,15 @@ void thread::send_message(::enum_message emessage, ::wparam wparam, ::lparam lpa
 
    //}
 
-   auto pmessage = __allocate ::send_thread_message(this);
+   auto pmessage = øallocate ::send_thread_message(this);
 
-   pmessage->m_message.m_emessage = emessage;
+   pmessage->m_message.m_eusermessage = eusermessage;
 
    pmessage->m_message.m_wparam = wparam;
 
    pmessage->m_message.m_lparam = lparam;
 
-   post_message(e_message_system, e_system_message_meta, pmessage);
+   post_message(::user::e_message_system, e_system_message_meta, pmessage);
 
    pmessage->m_ev.wait(time);
 
@@ -3554,7 +3558,7 @@ void thread::send_message(::enum_message emessage, ::wparam wparam, ::lparam lpa
 //   ::e_status estatus = ::success;
 //
 //   // else check for thread with message loop
-//   ASSERT_VALID(this);
+//   ASSERT_OK(this);
 //
 //   try
 //   {
@@ -3618,13 +3622,28 @@ void thread::send_message(::enum_message emessage, ::wparam wparam, ::lparam lpa
 //
 //}
 
+message_queue* thread::get_message_queue()
+{
+
+   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+
+   if(m_pmessagequeue)
+   {
+
+      return m_pmessagequeue;
+
+   }
+
+   return _get_message_queue();
+
+}
+
 
 message_queue* thread::_get_message_queue()
 {
 
-   _synchronous_lock synchronouslock(this->synchronization());
+   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-   //if (has_finishing_flag() || m_bThreadClosed)
    if (has_finishing_flag())
    {
 
@@ -3646,14 +3665,22 @@ message_queue* thread::_get_message_queue()
 
    }
 
-   if (!m_taskindex)
+   auto taskindex = this->m_taskindex;
+
+   if (!taskindex)
    {
+
+      auto taskindex2 = this->m_taskindex;
 
       return nullptr;
 
    }
 
-   auto pmessagequeue = ::system()->task_message_queue()->get_message_queue(m_taskindex, true);
+   auto psystem = ::system();
+
+   auto ptaskmessagequeue = psystem->task_message_queue();
+
+   auto pmessagequeue = ptaskmessagequeue->get_message_queue(m_taskindex, true);
 
    if (pmessagequeue->m_bQuit)
    {
@@ -3662,15 +3689,7 @@ message_queue* thread::_get_message_queue()
 
    }
 
-   //auto estatus =
    m_pmessagequeue = pmessagequeue;
-
-   /*if (!estatus)
-   {
-
-      return nullptr;
-
-   }*/
 
    return m_pmessagequeue;
 
@@ -3684,7 +3703,7 @@ bool thread::peek_message(MESSAGE* pMsg, oswindow oswindow, unsigned int wMsgFil
    if (m_pmessagequeue)
    {
 
-      _synchronous_lock synchronouslock(m_pmessagequeue->synchronization());
+      _synchronous_lock synchronouslock(m_pmessagequeue->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (m_pmessagequeue->m_eflagElement & (::enum_flag)(1ll << 37))
       {
@@ -3947,7 +3966,7 @@ bool thread::peek_message(MESSAGE* pMsg, oswindow oswindow, unsigned int wMsgFil
 //
 //   ::e_status estatus = ::success;
 //
-//   _synchronous_lock synchronouslock(this->synchronization());
+//   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //   string strTypeName = ::type(this).name();
 //
@@ -4031,7 +4050,7 @@ void thread::get_message(MESSAGE* pMsg, oswindow oswindow, unsigned int wMsgFilt
 
       get_message_queue()->get_message(pMsg, oswindow, wMsgFilterMin, wMsgFilterMax, 500_ms);
 
-      if (pMsg->m_emessage == e_message_quit)
+      if (pMsg->m_eusermessage == ::user::e_message_quit)
       {
 
          return;
@@ -4050,7 +4069,7 @@ void thread::get_message(MESSAGE* pMsg, oswindow oswindow, unsigned int wMsgFilt
 
          set_finishing_flag();
 
-         if (pMsg->m_emessage == e_message_quit)
+         if (pMsg->m_eusermessage == ::user::e_message_quit)
          {
 
             return;
@@ -4111,16 +4130,16 @@ void thread::get_message(MESSAGE* pMsg, oswindow oswindow, unsigned int wMsgFilt
          msg.message = WM_QUIT;
 
       }
-      else if (msg.message == e_message_quit)
+      else if (msg.message == ::user::e_message_quit)
       {
 
-         informationf("e_message_quit");
+         informationf("::user::e_message_quit");
 
       }
-      else if (msg.message == e_message_destroy_window)
+      else if (msg.message == ::user::e_message_destroy_window)
       {
 
-         informationf("e_message_destroy_window");
+         informationf("::user::e_message_destroy_window");
 
       }
 
@@ -4141,7 +4160,7 @@ void thread::get_message(MESSAGE* pMsg, oswindow oswindow, unsigned int wMsgFilt
 }
 
 
-void thread::post_message(oswindow oswindow, ::enum_message emessage, ::wparam wparam, ::lparam lparam)
+void thread::post_message(oswindow oswindow, ::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
 {
 
    //if (m_bThreadClosed)
@@ -4156,7 +4175,7 @@ void thread::post_message(oswindow oswindow, ::enum_message emessage, ::wparam w
    if (m_htask.is_set() && !m_bAuraMessageQueue)
    {
 
-      if (::PostMessage(as_hwnd(oswindow), (UINT) emessage, wparam, lparam))
+      if (::PostMessage(as_hwnd(oswindow), (UINT) eusermessage, wparam, lparam))
       {
 
          return;
@@ -4167,9 +4186,9 @@ void thread::post_message(oswindow oswindow, ::enum_message emessage, ::wparam w
 
 #endif
 
-   //return get_message_queue()->post_message(oswindow, emessage, wparam, lparam);
+   //return get_message_queue()->post_message(oswindow, eusermessage, wparam, lparam);
 
-   get_message_queue()->post_message(oswindow, emessage, wparam, lparam);
+   get_message_queue()->post_message(oswindow, eusermessage, wparam, lparam);
 
 }
 
@@ -4211,7 +4230,7 @@ void thread::add_task(::object* pobjectTask)
 //
 //   {
 //
-//      _synchronous_lock synchronouslock(m_pmutexThreadUiPtra);
+//      _synchronous_lock synchronouslock(m_pmutexThreadUiPtra, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //      if (::is_set(m_puserinteractionbaseaThread))
 //      {
@@ -4275,7 +4294,7 @@ void thread::post(::message::message* pmessage)
 
    }
 
-   _synchronous_lock synchronouslock(this->synchronization());
+   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    m_messagea.add(pmessage);
 
@@ -4287,7 +4306,7 @@ void thread::post(::message::message* pmessage)
 void thread::handle_posted_messages()
 {
 
-   _synchronous_lock synchronouslock(this->synchronization());
+   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    while (m_messagea.has_elements())
    {
@@ -4299,7 +4318,7 @@ void thread::handle_posted_messages()
       if (m_emessageaGetLast.has_element())
       {
 
-         if (m_emessageaGetLast.contains(pmessage->m_emessage))
+         if (m_emessageaGetLast.contains(pmessage->m_eusermessage))
          {
 
             ::collection::index cIgnoredMessages = 0;
@@ -4307,7 +4326,7 @@ void thread::handle_posted_messages()
             for (::collection::index i = 1; i < m_messagea.size();)
             {
 
-               if (m_messagea[i]->m_emessage == pmessage->m_emessage)
+               if (m_messagea[i]->m_eusermessage == pmessage->m_eusermessage)
                {
 
                   m_messagea.erase_at(iEraseAt);
@@ -4329,7 +4348,7 @@ void thread::handle_posted_messages()
             //            if(cIgnoredMessages > 0)
             //            {
             //
-            //               if(pmessage->m_emessage == e_message_mouse_move)
+            //               if(pmessage->m_eusermessage == ::user::e_message_mouse_move)
             //               {
             //
             //                  information() << cIgnoredMessages << " ignored mouse move message" << (cIgnoredMessages > 1 ? "s" : 0);
@@ -4387,7 +4406,7 @@ bool thread::initialize_message_queue()
    //if(m_spuiptra.is_null())
    //{
 
-   //   m_spuiptra = __allocate ref_array < ::user::interaction_base > ();
+   //   m_spuiptra = øallocate ref_array < ::user::interaction_base > ();
 
    //}
 
@@ -4476,7 +4495,7 @@ bool thread::process_message()
 
 #ifdef WINDOWS_DESKTOP
 
-      if (message.m_oswindow != nullptr || message.m_emessage == e_message_timer)
+      if (message.m_oswindow != nullptr || message.m_eusermessage == ::user::e_message_timer)
       {
 
          MSG msg;
@@ -4493,7 +4512,7 @@ bool thread::process_message()
 
 #endif
 
-      if (message.m_emessage == e_message_event2_trying_to_remove)
+      if (message.m_eusermessage == ::user::e_message_event2_trying_to_remove)
       {
 
          //if(msg.lParam)
@@ -4514,7 +4533,7 @@ bool thread::process_message()
          //}
 
       }
-      else if (message.m_emessage == e_message_system)
+      else if (message.m_eusermessage == ::user::e_message_system)
       {
 
          if (message.m_wparam == e_system_message_create)
@@ -4576,7 +4595,7 @@ bool thread::process_message()
 
       }
 
-      if (message.m_emessage == e_message_kick_idle)
+      if (message.m_eusermessage == ::user::e_message_kick_idle)
       {
 
          return true;
@@ -4826,9 +4845,9 @@ void thread::kick_thread()
 
    //}
 
-   post_message(e_message_null);
+   post_message(::user::e_message_null);
 
-   //if (!post_message(e_message_null))
+   //if (!post_message(::user::e_message_null))
    //{
 
    //   return false;
@@ -4861,7 +4880,7 @@ void thread::post_request(::request* prequest)
 {
 
    ::task::post_request(prequest);
-   //post_element(e_message_system, e_system_message_create, prequest);
+   //post_element(::user::e_message_system, e_system_message_create, prequest);
 
 }
 
@@ -4877,7 +4896,7 @@ void thread::on_request_message(::request* prequest)
 void thread::request(::request* prequest)
 {
 
-   m_prequest = prequest;
+   m_prequest2 = prequest;
 
    on_request(prequest);
 
@@ -4896,18 +4915,18 @@ CLASS_DECL_APEX void forking_count_thread_null_end(int iOrder)
 
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (m_pmutexThreadUiPtra == nullptr)
       {
 
-         __øconstruct(m_pmutexThreadUiPtra);
+         øconstruct(m_pmutexThreadUiPtra);
 
       }
 
    }
 
-   _synchronous_lock synchronouslock(m_pmutexThreadUiPtra);
+   _synchronous_lock synchronouslock(m_pmutexThreadUiPtra, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    if (m_puserinteractionbaseaThread == nullptr)
    {
@@ -4986,7 +5005,7 @@ thread_ptra::~thread_ptra()
 //      if (::is_set(pparticleSynchronization))
 //      {
 //
-//         _synchronous_lock synchronouslock(pparticleSynchronization);
+//         _synchronous_lock synchronouslock(pparticleSynchronization, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //         synchronouslock._wait(waitNow);
 //
@@ -5037,7 +5056,7 @@ thread_ptra::~thread_ptra()
 //   if (::is_null(pthread))
 //   {
 //
-//      auto pthreadNew = __object(pparticle)->__create_new < ::thread > ();
+//      auto pthreadNew = __object(pparticle)->øcreate_new < ::thread > ();
 //
 //      pthreadNew->increment_reference_count(REFERENCING_DEBUGGING_P_NOTE(pparticle, nullptr));
 //
@@ -5045,7 +5064,7 @@ thread_ptra::~thread_ptra()
 //
 //      set_task(pthreadNew);
 //
-//      _synchronous_lock synchronouslock(g_pmutexThreadDeferredCreation);
+//      _synchronous_lock synchronouslock(g_pmutexThreadDeferredCreation, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //      g_pthreadaDeferredCreate->add(pthreadNew);
 //
@@ -5064,9 +5083,9 @@ void thread::add_waiting_happening(happening * phappening)
 
    }
 
-   _synchronous_lock synchronouslock(this->synchronization());
+   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-   __defer_construct_new(m_phappeningaWait);
+   ødefer_construct_new(m_phappeningaWait);
 
    m_phappeningaWait->add(phappening);
 
@@ -5076,7 +5095,7 @@ void thread::add_waiting_happening(happening * phappening)
 void thread::erase_waiting_happening(happening * phappening)
 {
 
-   _synchronous_lock synchronouslock(this->synchronization());
+   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    if (m_phappeningaWait)
    {
@@ -5098,7 +5117,7 @@ thread::file_info* thread::get_file_info()
 
    }
 
-   m_pfileinfo = __allocate file_info();
+   m_pfileinfo = øallocate file_info();
 
    return m_pfileinfo;
 

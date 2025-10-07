@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "tree_impact.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "acme/prototype/data/tree_item.h"
 #include "aura/message/user.h"
 
@@ -21,7 +21,7 @@ void simple_tree_impact::install_message_routing(::channel * pchannel)
 
    ::user::impact::install_message_routing(pchannel);
    ::user::tree::install_message_routing(pchannel);
-   MESSAGE_LINK(e_message_create, pchannel, this, &simple_tree_impact::on_message_create);
+   USER_MESSAGE_LINK(::user::e_message_create, pchannel, this, &simple_tree_impact::on_message_create);
 
 }
 

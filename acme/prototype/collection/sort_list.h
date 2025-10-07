@@ -5,7 +5,7 @@ namespace sort
 {
 
    template <class TYPE, class ARG_TYPE, class ARRAY_TYPE>
-   void QuickSortAsc(comparable_list < TYPE, ARG_TYPE, ARRAY_TYPE > & list)
+   void QuickSortAsc(comparable_list_base < TYPE, ARG_TYPE, ARRAY_TYPE > & list_base)
    {
       ::raw_array < POSITION > stackLowerBound;
       ::raw_array < POSITION > stackUpperBound;
@@ -13,10 +13,10 @@ namespace sort
       POSITION iUpperBound;
       POSITION iLPos, iUPos, iMPos;
 
-      if(list.get_size() >= 2)
+      if(list_base.get_size() >= 2)
       {
-         stackLowerBound.push(list.get_head_position());
-         stackUpperBound.push(list.get_tail_position());
+         stackLowerBound.push(list_base.get_head_position());
+         stackUpperBound.push(list_base.get_tail_position());
          while(true)
          {
             iLowerBound = stackLowerBound.pop();
@@ -30,11 +30,11 @@ namespace sort
                {
                   if(iMPos == iUPos)
                      break;
-                  if(list.get_at(iMPos) < list.get_at(iUPos))
-                     list.get_previous(iUPos);
+                  if(list_base.get_at(iMPos) < list_base.get_at(iUPos))
+                     list_base.get_previous(iUPos);
                   else
                   {
-                     list.__swap(iMPos, iUPos);
+                     list_base.__swap(iMPos, iUPos);
                      break;
                   }
                }
@@ -45,11 +45,11 @@ namespace sort
                {
                   if(iMPos == iLPos)
                      break;
-                  if(list.get_at(iLPos) < list.get_at(iMPos))
-                     list.get_next(iLPos);
+                  if(list_base.get_at(iLPos) < list_base.get_at(iMPos))
+                     list_base.get_next(iLPos);
                   else
                   {
-                     list.__swap(iLPos, iMPos);
+                     list_base.__swap(iLPos, iMPos);
                      break;
                   }
                }
@@ -57,12 +57,12 @@ namespace sort
                   break;
                iMPos = iLPos;
             }
-            if(list.position_index(iLowerBound) < list.position_index(iMPos) - 1)
+            if(list_base.position_index(iLowerBound) < list_base.position_index(iMPos) - 1)
             {
                stackLowerBound.push(iLowerBound);
                stackUpperBound.push(iMPos - 1);
             }
-            if(list.position_index(iMPos) + 1 < list.position_index(iUpperBound))
+            if(list_base.position_index(iMPos) + 1 < list_base.position_index(iUpperBound))
             {
                stackLowerBound.push(iMPos + 1);
                stackUpperBound.push(iUpperBound);
@@ -74,7 +74,7 @@ namespace sort
    }
 
    template <class TYPE, class ARG_TYPE, class ARRAY_TYPE>
-   void QuickSortDesc(comparable_list < TYPE, ARG_TYPE, ARRAY_TYPE > & list)
+   void QuickSortDesc(comparable_list_base < TYPE, ARG_TYPE, ARRAY_TYPE > & list_base)
    {
       ::raw_array < POSITION > stackLowerBound;
       ::raw_array < POSITION > stackUpperBound;
@@ -82,10 +82,10 @@ namespace sort
       POSITION iUpperBound;
       POSITION iLPos, iUPos, iMPos;
 
-      if(list.get_size() >= 2)
+      if(list_base.get_size() >= 2)
       {
-         stackLowerBound.push(list.get_head_position());
-         stackUpperBound.push(list.get_tail_position());
+         stackLowerBound.push(list_base.get_head_position());
+         stackUpperBound.push(list_base.get_tail_position());
          while(true)
          {
             iLowerBound = stackLowerBound.pop();
@@ -99,11 +99,11 @@ namespace sort
                {
                   if(iMPos == iUPos)
                      break;
-                  if(list.get_at(iUPos) < list.get_at(iMPos))
-                     list.get_previous(iUPos);
+                  if(list_base.get_at(iUPos) < list_base.get_at(iMPos))
+                     list_base.get_previous(iUPos);
                   else
                   {
-                     list.__swap(iMPos, iUPos);
+                     list_base.__swap(iMPos, iUPos);
                      break;
                   }
                }
@@ -114,11 +114,11 @@ namespace sort
                {
                   if(iMPos == iLPos)
                      break;
-                  if(list.get_at(iMPos) < list.get_at(iLPos))
-                     list.get_next(iLPos);
+                  if(list_base.get_at(iMPos) < list_base.get_at(iLPos))
+                     list_base.get_next(iLPos);
                   else
                   {
-                     list.__swap(iLPos, iMPos);
+                     list_base.__swap(iLPos, iMPos);
                      break;
                   }
                }
@@ -126,12 +126,12 @@ namespace sort
                   break;
                iMPos = iLPos;
             }
-            if(list.position_index(iLowerBound) < list.position_index(iMPos) - 1)
+            if(list_base.position_index(iLowerBound) < list_base.position_index(iMPos) - 1)
             {
                stackLowerBound.push(iLowerBound);
                stackUpperBound.push(iMPos - 1);
             }
-            if(list.position_index(iMPos) + 1 < list.position_index(iUpperBound))
+            if(list_base.position_index(iMPos) + 1 < list_base.position_index(iUpperBound))
             {
                stackLowerBound.push(iMPos + 1);
                stackUpperBound.push(iUpperBound);
@@ -240,7 +240,7 @@ namespace sort
 
 
 template < class TYPE, class ARG_TYPE, class ARRAY_TYPE>
-void comparable_list<  TYPE,  ARG_TYPE,  ARRAY_TYPE>::
+void comparable_list_base<  TYPE,  ARG_TYPE,  ARRAY_TYPE>::
 quick_sort(bool bAsc)
 {
    if(bAsc)

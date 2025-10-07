@@ -23,7 +23,7 @@ template<class TYPE, TYPE t>
 struct integral_constant
 {
 
-   inline static constexpr TYPE value = t;
+   inline static constexpr TYPE payload = t;
 
 };
 
@@ -50,7 +50,7 @@ struct is_const_struct<const T> : true_type
 
 
 template<class T>
-inline constexpr bool is_const = is_const_struct<T>::value;
+inline constexpr bool is_const = is_const_struct<T>::payload;
 
 
 template<class T>
@@ -72,7 +72,7 @@ struct is_reference_struct<T &&> : true_type
 
 
 template<class T>
-inline constexpr bool is_reference = is_reference_struct<T>::value;
+inline constexpr bool is_reference = is_reference_struct<T>::payload;
 
 
 template<typename TYPE>
@@ -366,7 +366,7 @@ struct is_array_struct<T[N]> : true_type
 
 
 template<class T>
-inline constexpr bool is_array = is_array_struct<T>::value;
+inline constexpr bool is_array = is_array_struct<T>::payload;
 
 
 namespace inner_detail
@@ -532,7 +532,7 @@ struct is_function_struct : ::integral_constant<
 
 
 template<typename T>
-inline constexpr bool is_function = is_function_struct<T>::value;
+inline constexpr bool is_function = is_function_struct<T>::payload;
 
 
 //// primary template
@@ -806,11 +806,11 @@ namespace operating_system
 namespace message
 {
 
-
    class command;
 
-
 } // namespace message
+
+
 class matter;
 
 
@@ -1076,8 +1076,12 @@ namespace desktop_environment_xfce
 
 namespace apex
 {
+
+
    class application;
-}
+
+
+} // namespace apex
 
 
 class thread;
@@ -1094,12 +1098,18 @@ class lparam;
 class time;
 class timer_callback;
 
-
+namespace platform
+{
+   class message;
+} // namespace message
 namespace message
 {
    class message;
-}
-
+} // namespace message
+namespace user
+{
+   class message;
+} // namespace message
 
 class value;
 struct block;
@@ -1407,7 +1417,9 @@ class istring;
 class property_set;
 
 
-class payload_array;
+class payload_array_base;
+
+//using payload_array = ::make_particle < payload_array_base >;
 
 
 class property;
@@ -1582,7 +1594,7 @@ namespace datetime
 namespace file
 {
 
-   class listing;
+   class listing_base;
 
 
    class path;
@@ -1744,11 +1756,11 @@ class create_task_attributes;
 class security_attributes;
 
 
-namespace operating_system
+namespace user
 {
 
 
-   CLASS_DECL_ACME const char* get_message_text(enum_message emessage);
+   CLASS_DECL_ACME const_char_pointer get_message_text(::user::enum_message eusermessage);
 
 
 } // namespace operating_system
@@ -1841,7 +1853,7 @@ namespace apex
    class node;
 
 
-   //   class application;
+   class application;
 
 
 } // namespace apex
@@ -1861,6 +1873,16 @@ namespace aqua
 
 
 } // namespace aqua
+
+
+namespace user
+{
+
+
+   class user;
+
+
+} // namespace user
 
 
 namespace aura
@@ -1913,7 +1935,7 @@ namespace axis
 } // namespace axis
 
 
-namespace base
+namespace berg
 {
 
 
@@ -1928,15 +1950,16 @@ namespace base
 
    class system;
 
-
+   
    class user;
 
 
-} // namespace base
+} // namespace berg
 
 
 namespace bred
 {
+
 
    class system;
 
@@ -1948,6 +1971,7 @@ namespace bred
 
 
    class user;
+
 
 } // namespace bred
 
@@ -1956,9 +1980,6 @@ namespace core
 {
 
 
-   //   class idpool;
-
-
    class application;
 
 
@@ -1966,6 +1987,9 @@ namespace core
 
 
    class system;
+
+   
+   class user;
 
 
 } // namespace core
@@ -2040,7 +2064,7 @@ namespace acme
    class library;
 
 
-   //   using library_map = string_map < ::pointer<::acme::library >>;
+   //   using library_map = string_map_base < ::pointer<::acme::library >>;
 
 } // namespace acme
 
@@ -2364,7 +2388,7 @@ namespace acme
 
 
 // only usable from base and base dependants
-namespace base
+namespace berg
 {
 
    class application;
@@ -2576,8 +2600,8 @@ namespace windowing
 
 
 class get_file_extension_mime_type;
-template<class TYPE, class ARG_TYPE, class ARRAY_TYPE>
-class comparable_array;
+//template<class TYPE, class ARG_TYPE, class ARRAY_TYPE>
+//class comparable_array;
 class application_menu;
 
 

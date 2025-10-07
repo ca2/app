@@ -21,14 +21,14 @@ namespace html
    {
 
 
-      input_text::input_text(const ::string & strType, const ::string & strUnit) 
+      input_text::input_text(const ::scoped_string & scopedstrType, const ::scoped_string & scopedstrUnit) 
       {
 
          m_iFont = -1;
          
-         m_strType = strType;
-         
-         m_strUnit = strUnit;
+         m_strType = scopedstrType;
+
+         m_strUnit = scopedstrUnit;
 
       }
 
@@ -83,7 +83,7 @@ namespace html
             }
             else
             {
-               m_pedit = __allocate ::user::plain_edit();
+               m_pedit = øallocate ::user::plain_edit();
             }
 
             m_pedit->initialize(this);

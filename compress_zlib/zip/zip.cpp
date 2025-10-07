@@ -468,7 +468,7 @@ voidpf filestream)
 
 /************************************************************/
 extern zipFile CLASS_DECL_ACME zipOpen2 (
-const char *pathname,
+const_char_pointer pathname,
 int append,
 zipcharpc* globalcomment,
 zlib_filefunc_def* pzlib_filefunc_def)
@@ -634,7 +634,7 @@ zlib_filefunc_def* pzlib_filefunc_def)
 }
 
 extern zipFile CLASS_DECL_ACME zipOpen (
-const char *pathname,
+const_char_pointer pathname,
 int append)
 {
    return zipOpen2(pathname,append,nullptr,nullptr);
@@ -642,20 +642,20 @@ int append)
 
 extern int CLASS_DECL_ACME zipOpenNewFileInZip3 (
 zipFile file,
-const char* filename,
+const_char_pointer filename,
 const zip_fileinfo* zipfi,
 const void * extrafield_local,
 unsigned int size_extrafield_local,
 const void * extrafield_global,
 unsigned int size_extrafield_global,
-const char* comment,
+const_char_pointer comment,
 int method,
 int level,
 int raw,
 int windowBits,
 int memLevel,
 int strategy,
-const char* password,
+const_char_pointer password,
 unsigned int  crcForCrypting)
 {
    zip_internal* zi;
@@ -756,7 +756,7 @@ unsigned int  crcForCrypting)
 
    for (i=0; i<size_extrafield_global; i++)
       *(zi->ci.central_header+SIZECENTRALHEADER+size_filename+i) =
-      *(((const char*)extrafield_global)+i);
+      *(((const_char_pointer )extrafield_global)+i);
 
    for (i=0; i<size_comment; i++)
       *(zi->ci.central_header+SIZECENTRALHEADER+size_filename+
@@ -846,13 +846,13 @@ unsigned int  crcForCrypting)
 
 extern int CLASS_DECL_ACME zipOpenNewFileInZip2(
 zipFile file,
-const char* filename,
+const_char_pointer filename,
 const zip_fileinfo* zipfi,
 const void * extrafield_local,
 unsigned int size_extrafield_local,
 const void * extrafield_global,
 unsigned int size_extrafield_global,
-const char* comment,
+const_char_pointer comment,
 int method,
 int level,
 int raw)
@@ -867,13 +867,13 @@ int raw)
 
 extern int CLASS_DECL_ACME zipOpenNewFileInZip (
 zipFile file,
-const char* filename,
+const_char_pointer filename,
 const zip_fileinfo* zipfi,
 const void * extrafield_local,
 unsigned int size_extrafield_local,
 const void * extrafield_global,
 unsigned int size_extrafield_global,
-const char* comment,
+const_char_pointer comment,
 int method,
 int level)
 {
@@ -954,7 +954,7 @@ unsigned int len)
             copy_this = zi->ci.stream.avail_out;
          for (i=0; i<copy_this; i++)
             *(((char*)zi->ci.stream.next_out)+i) =
-            *(((const char*)zi->ci.stream.next_in)+i);
+            *(((const_char_pointer )zi->ci.stream.next_in)+i);
          {
             zi->ci.stream.avail_in -= (unsigned int) copy_this;
             zi->ci.stream.avail_out-= (unsigned int) copy_this;
@@ -1074,7 +1074,7 @@ zipFile file)
 
 extern int CLASS_DECL_ACME zipClose (
 zipFile file,
-const char* global_comment)
+const_char_pointer global_comment)
 {
    zip_internal* zi;
    int err = 0;

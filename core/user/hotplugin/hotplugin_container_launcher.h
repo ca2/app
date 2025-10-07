@@ -5,7 +5,7 @@ namespace hotplugin
 {
 
 
-   class CLASS_DECL_BASE container_launcher :
+   class CLASS_DECL_BERG container_launcher :
       virtual public ::launcher
    {
    public:
@@ -14,7 +14,7 @@ namespace hotplugin
       string      m_strChannel;
       string      m_strPlatform;
 
-      container_launcher(string strPlatform, const ::string & pszChannel);
+      container_launcher(const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrChannel);
 
       virtual bool ensure_executable() { return true; }
 

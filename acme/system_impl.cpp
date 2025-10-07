@@ -62,7 +62,7 @@
 //#endif
 
 
-CLASS_DECL_ACME void exception_message_box(::particle * pparticle, ::exception & exception, const ::string & strMoreDetails);
+CLASS_DECL_ACME void exception_message_box(::particle * pparticle, ::exception & exception, const ::scoped_string & scopedstrMoreDetails);
 CLASS_DECL_ACME void trace_category_static_init(::platform::system * psystem);
 CLASS_DECL_ACME void trace_category_static_term();
 
@@ -111,10 +111,10 @@ CLASS_DECL_ACME void trace_category_static_term();
 //static ::platform::system * g_psystem = nullptr;
 
 
-//extern const char * g_pszTopLevelDomainList[];
+//extern const_char_pointer g_pszTopLevelDomainList[];
 
 
-enum_dialog_result message_box_for_console(const ::scoped_string & scopedstr, const ::scoped_string & scopedstrTitle, const ::enum_message_box & emessagebox);
+enum_dialog_result message_box_for_console(const ::scoped_string & scopedstr, const ::scoped_string & scopedstrTitle, const ::user::enum_message_box & emessagebox);
 
 
 
@@ -416,9 +416,9 @@ namespace platform
 
       //::output_debug_string("Going to create simple log\n");
 
-      //m_plogger = __create_new < ::simple_log >();
+      //m_plogger = øcreate_new < ::simple_log >();
 
-      __øconstruct(m_plogger);
+      øconstruct(m_plogger);
 
       //::output_debug_string("output_debug_string : simple log created\n");
 
@@ -489,7 +489,7 @@ namespace platform
 
       //m_bOnInitializeWindowObject = false;
 
-      //m_pcleanuptask = __allocate ::parallelization::cleanup_task();
+      //m_pcleanuptask = øallocate ::parallelization::cleanup_task();
 
       //m_pcleanuptask->begin();
       //factory()->add_factory_item<::acme::idpool>();
@@ -498,9 +498,9 @@ namespace platform
       //m_pdirectorysystem = nullptr;
       //m_ppathsystem = nullptr;
 
-      __defer_construct_new(m_pmathematics);
+      ødefer_construct_new(m_pmathematics);
 
-      __defer_construct_new(m_pprototype);
+      ødefer_construct_new(m_pprototype);
 
       //::plane_system::on_initialize_particle();
 
@@ -540,7 +540,7 @@ namespace platform
 
       //information() << "initialize_system create nano";
 
-      //__øconstruct(m_pnano);
+      //øconstruct(m_pnano);
 
       //m_psystemimpl = ___new system_impl();
 
@@ -688,7 +688,7 @@ namespace platform
       if (!m_psystemfactory)
       {
 
-         __construct_new(m_psystemfactory);
+         øconstruct_new(m_psystemfactory);
 
       }
 
@@ -737,7 +737,7 @@ namespace platform
 
 #if !defined(WINDOWS)
 
-      __øconstruct(m_pexceptiontranslator);
+      øconstruct(m_pexceptiontranslator);
 
       m_pexceptiontranslator->attach();
 
@@ -745,7 +745,7 @@ namespace platform
 
       //information() << "create_os_node going to create node";
 
-      __øconstruct(m_pnode);
+      øconstruct(m_pnode);
 
       m_pnode = m_pnode;
 
@@ -834,19 +834,19 @@ namespace platform
 
 #endif
 
-      __construct_new(m_purlcontext);
+      øconstruct_new(m_purlcontext);
 
       //::acme::idpool::init(this);
 
 //      /// Create/Replace logger
 
-      __construct_new(m_pdatetime);
+      øconstruct_new(m_pdatetime);
 
 
 
       m_pnode->m_htaskSystem = m_htask;
 
-      //auto estatus = __defer_construct_new(m_pfactorysquare);
+      //auto estatus = ødefer_construct_new(m_pfactorysquare);
 
       //if (!estatus)
       //{
@@ -864,7 +864,7 @@ namespace platform
 
       // }
 
-      //estatus = __øconstruct(m_pnode);
+      //estatus = øconstruct(m_pnode);
 
       //if (!m_pnode)
       //{
@@ -873,9 +873,9 @@ namespace platform
 
       //}
 
-      //auto estatus = __raw_construct(m_pdirectorysystem);
+      //auto estatus = øraw_construct(m_pdirectorysystem);
 
-      __raw_construct(m_pdirectorysystem);
+      øraw_construct(m_pdirectorysystem);
 
       /*if (!estatus)
        {
@@ -888,9 +888,9 @@ namespace platform
 
        //    m_pdirectorysystem->increment_reference_count();
 
-       //estatus = __raw_construct(m_pfilesystem);
+       //estatus = øraw_construct(m_pfilesystem);
 
-      __raw_construct(m_pfilesystem);
+      øraw_construct(m_pfilesystem);
 
       //if (!estatus)
       //{
@@ -899,9 +899,9 @@ namespace platform
 
       //}
 
-      //estatus = __raw_construct(m_ppathsystem);
+      //estatus = øraw_construct(m_ppathsystem);
 
-      __raw_construct(m_ppathsystem);
+      øraw_construct(m_ppathsystem);
 
       //if (!estatus)
       //{
@@ -971,12 +971,12 @@ namespace platform
       //if (file_system()->exists(::file::path(APP_CORE_BASE_DIR) / "beg_debug_box.txt"))
       //{
 
-      //   //debug_box("zzzAPPzzz app", "zzzAPPzzz app", e_message_box_icon_information);
+      //   //debug_box("zzzAPPzzz app", "zzzAPPzzz app", ::user::e_message_box_icon_information);
 
       //}
       //estatus =
 
-      __øconstruct(m_pfilesystem);
+      øconstruct(m_pfilesystem);
 
       //if(!estatus)
       //{
@@ -991,7 +991,7 @@ namespace platform
 
       //::allocator::add_referer(REFERENCING_DEBUGGING_THIS_FUNCTION_FILE_LINE);
 
-      __øconstruct(m_pdirectorysystem);
+      øconstruct(m_pdirectorysystem);
 
       //if (!estatus)
       //{
@@ -1057,7 +1057,7 @@ namespace platform
 
          string strExecutable = ::system()->get_executable();
 
-         string_array straArguments;
+         string_array_base straArguments;
 
          for (int i = 0; i < ::system()->get_argument_count1(); i++)
          {
@@ -1082,7 +1082,7 @@ namespace platform
 
       {
 
-         string_array straEnv;
+         string_array_base straEnv;
 #ifdef WINDOWS_DESKTOP
          if (::system()->m_wenvp)
          {
@@ -1197,8 +1197,8 @@ namespace platform
       if (pacmewindowing)
       {
 
-         ::system()->m_pmanualresethappeningReadyToExit = __raw_new manual_reset_happening();
-         ::system()->m_pmanualresethappeningMainLoopEnd = __raw_new manual_reset_happening();
+         ::system()->m_pmanualresethappeningReadyToExit = øraw_new manual_reset_happening();
+         ::system()->m_pmanualresethappeningMainLoopEnd = øraw_new manual_reset_happening();
 
          if (!m_procedureTaskEnded)
          {
@@ -1290,7 +1290,7 @@ namespace platform
    unsigned int system::crc32(unsigned int uCrc, const ::block & block)
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (!m_pcompressZlibCrc32)
       {
@@ -1313,7 +1313,7 @@ namespace platform
    }
 
 
-   void system::open_profile_link(string strUrl, string strProfile, string strTarget)
+   void system::open_profile_link(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrProfile, const ::scoped_string & scopedstrTarget)
    {
 
       throw ::interface_only();
@@ -1321,7 +1321,7 @@ namespace platform
    }
 
 
-   void system::open_link(string strUrl, string strProfile, string strTarget)
+   void system::open_link(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrProfile, const ::scoped_string & scopedstrTarget)
    {
 
       open_profile_link(strUrl, strProfile, strTarget);
@@ -1329,7 +1329,7 @@ namespace platform
    }
 
 
-   void system::open_url(string strUrl, string strProfile, string strTarget)
+   void system::open_url(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrProfile, const ::scoped_string & scopedstrTarget)
    {
 
       throw ::exception(::error_interface_only);
@@ -1343,7 +1343,7 @@ namespace platform
    //   if (!m_ptracelog)
    //   {
 
-   //      ::information(psz);
+   //      ::information(scopedstr);
 
    //      return;
 
@@ -1413,7 +1413,7 @@ namespace platform
 
    }
 
-   string system::__get_text(const ::string & str)
+   string system::__get_text(const ::scoped_string & scopedstr)
    {
 
       return str;
@@ -1421,18 +1421,18 @@ namespace platform
    }
 
 
-   //pointer< ::extended::sequence < ::conversation > > system::message_box(::user::interaction * puserinteraction, const ::string & pszText, const ::string & pszTitle, const ::e_message_box & emessagebox)
+   //pointer< ::extended::sequence < ::conversation > > system::message_box(::user::interaction * puserinteraction, const ::scoped_string & scopedstrText, const ::scoped_string & scopedstrTitle, const ::user::e_message_box & emessagebox)
    //{
 
-   //   auto psequence = __allocate ::sequence < ::conversation > ();
+   //   auto psequence = øallocate ::sequence < ::conversation > ();
 
    //   psequence->set_status(error_interface_only);
 
    //   //return presult;
 
-   //   //auto pprocess = __allocate status < enum_dialog_result > ();
+   //   //auto pprocess = øallocate status < enum_dialog_result > ();
 
-   //   //pprocess->set_result(message_box_for_console(pszText, pszTitle, emessagebox));
+   //   //pprocess->set_result(message_box_for_console(scopedstrText, pszTitle, emessagebox));
 
    //   return psequence;
 
@@ -1512,7 +1512,7 @@ namespace platform
       catch (::exception & exception)
       {
 
-         //auto pmessagebox = __initialize_new ::message_box(exception.m_strMessage, m_strAppId, e_message_box_ok, exception.m_strDetails);
+         //auto pmessagebox = __initialize_new ::message_box(exception.m_strMessage, m_strAppId, ::user::e_message_box_ok, exception.m_strDetails);
 
 //pmessagebox->sync();
 
@@ -1613,7 +1613,7 @@ namespace platform
 
          //initialize_nano_window(factory());
 
-         __construct_new(m_pnano);
+         øconstruct_new(m_pnano);
 
       }
 
@@ -1653,7 +1653,7 @@ namespace platform
    //
    //      initialize_nano_http(factory());
    //
-   //      __øconstruct(m_pnanohttp);
+   //      øconstruct(m_pnanohttp);
    //
    //   }
    //
@@ -1670,7 +1670,7 @@ namespace platform
    //
    //         initialize_nano_http(factory());
    //
-   //         __øconstruct(m_pnanohttp);
+   //         øconstruct(m_pnanohttp);
    //
    //      }
    //
@@ -1749,7 +1749,7 @@ namespace platform
 
 
 
-   //::pointer<::acme::library> system::library(const ::string& strComponent, const ::string& strImplementationParam)
+   //::pointer<::acme::library> system::library(const ::scoped_string & scopedstrComponent, const ::scoped_string & scopedstrImplementationParam)
    //{
 
    //   string strImplementation(strImplementationParam);
@@ -1778,7 +1778,7 @@ namespace platform
 
 
 
-   //::pointer<::acme::library>& system::library(const ::string & strComponent, const ::string & strImplementation)
+   //::pointer<::acme::library>& system::library(const ::scoped_string & scopedstrComponent, const ::scoped_string & scopedstrImplementation)
    //{
 
    //   // Ex. "draw2d" (Component) and implementation: either "draw2dcairo", "cairo", "draw2d_cairo"
@@ -1814,14 +1814,14 @@ namespace platform
    //}
 
 
-   //::pointer<::acme::library>system::open_containerized_component_library(const ::string & pszComponent, const ::string & pszImplementation)
+   //::pointer<::acme::library>system::open_containerized_component_library(const ::scoped_string & scopedstrComponent, const ::scoped_string & scopedstrImplementation)
    //{
 
    //   // Ex. "draw2d" (Component) and implementation: either "draw2dcairo", "cairo", "draw2d_cairo"
 
-   //   string strComponent(pszComponent);
+   //   string strComponent(scopedstrComponent);
 
-   //   string strImplementation(pszImplementation);
+   //   string strImplementation(scopedstrImplementation);
 
    //   strComponent.trim();
 
@@ -1873,7 +1873,7 @@ namespace platform
    //   if (!plibrary)
    //   {
 
-   //      plibrary = __allocate ::acme::library();
+   //      plibrary = øallocate ::acme::library();
 
    //      plibrary->initialize_matter(this);
 
@@ -1908,7 +1908,7 @@ namespace platform
    }
 
 
-   ::acme::library * system::on_get_library(const ::string & pszLibrary)
+   ::acme::library * system::on_get_library(const ::scoped_string & scopedstrLibrary)
    {
 
       return nullptr;
@@ -1916,14 +1916,14 @@ namespace platform
    }
 
 
-   //   ::extended::transport < ::factory::factory > system::([a-z0-9_]+)_factory(const ::string & pszComponent, const ::string & pszImplementation)
+   //   ::extended::transport < ::factory::factory > system::([a-z0-9_]+)_factory(const ::scoped_string & scopedstrComponent, const ::scoped_string & scopedstrImplementation)
    //   {
    //
    //      auto& pfactory = m_mapFactoryMap[strComponent][strImplementation];
    //
-   //      string strComponent(pszComponent);
+   //      string strComponent(scopedstrComponent);
    //
-   //      string strImplementation(pszImplementation);
+   //      string strImplementation(scopedstrImplementation);
    //
    //      strImplementation.case_insensitive_begins_eat(strComponent + "_");
    //
@@ -1942,7 +1942,7 @@ namespace platform
    //
    //#ifdef CUBE
    //
-   //      _synchronous_lock synchronouslock(m_pmutexContainerizedLibrary);
+   //      _synchronous_lock synchronouslock(m_pmutexContainerizedLibrary, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
    //
    //      auto & plibrary = m_mapContainerizedLibrary[strComponent][strImplementation];
    //
@@ -1965,11 +1965,11 @@ namespace platform
    //
    //      }
    //
-   //      plibrary = __allocate ::acme::library();
+   //      plibrary = øallocate ::acme::library();
    //
    //      plibrary->initialize_matter(this);
    //
-   //      __construct_new(plibrary->m_pfactory);
+   //      øconstruct_new(plibrary->m_pfactory);
    //
    //      plibrary->m_pfactory->initialize_matter(this);
    //
@@ -1979,7 +1979,7 @@ namespace platform
    //
    //   #else
    //
-   //      auto plibrary = open_containerized_component_library(pszComponent, pszImplementation);
+   //      auto plibrary = open_containerized_component_library(scopedstrComponent, pszImplementation);
    //
    //      if (!plibrary)
    //      {
@@ -2013,7 +2013,7 @@ namespace platform
    //
    //      }
    //
-   //      __construct_new(pfactory);
+   //      øconstruct_new(pfactory);
    //
    //      plibrary->m_pfactory->initialize_matter(this);
    //
@@ -2033,10 +2033,10 @@ namespace platform
    }
 
 
-   ::regular_expression_pointer system::create_regular_expression(const ::string & pszStyle, const string & str)
+   ::regular_expression_pointer system::create_regular_expression(const ::scoped_string & scopedstrStyle, const ::scoped_string & scopedstr)
    {
 
-      auto pcontext = get_regular_expression_context(pszStyle);
+      auto pcontext = get_regular_expression_context(scopedstrStyle);
 
       if (!pcontext)
       {
@@ -2059,12 +2059,12 @@ namespace platform
    }
 
 
-   ::pointer<::regular_expression::context>system::get_regular_expression_context(const ::string & pszStyle)
+   ::pointer<::regular_expression::context>system::get_regular_expression_context(const ::scoped_string & scopedstrStyle)
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-      __defer_construct_new(m_pmapRegularExpressionContext);
+      ødefer_construct_new(m_pmapRegularExpressionContext);
 
       auto & pcontext = (*m_pmapRegularExpressionContext)[pszStyle];
 
@@ -2080,7 +2080,7 @@ namespace platform
 
          }
 
-         pfactory->__øconstruct(this, pcontext);
+         pfactory->øconstruct(this, pcontext);
 
       }
 
@@ -2089,7 +2089,7 @@ namespace platform
    }
 
 
-   ::regular_expression_pointer system::compile_pcre(const string & str)
+   ::regular_expression_pointer system::compile_pcre(const ::scoped_string & scopedstr)
    {
 
       return create_regular_expression("pcre2", str);
@@ -2105,7 +2105,7 @@ namespace platform
    }
 
 
-   //   int system::pcre_add_tokens(string_array& stra, const string& strTopic, const string& strRegexp, int nCount)
+   //   int system::pcre_add_tokens(string_array_base& stra, const ::scoped_string & scopedstrTopic, const ::scoped_string & scopedstrRegexp, int nCount)
    //   {
    //
    //      throw_todo();
@@ -2125,7 +2125,7 @@ namespace platform
    }
 
 
-   void system::get_public_internet_domain_extension_list(string_array & stra)
+   void system::get_public_internet_domain_extension_list(string_array_base & stra)
    {
 
       //::file::path pathPublicDomainExtensionList = "https://ca2.network/public_internet_domain_extension_list.txt";
@@ -2221,7 +2221,7 @@ namespace platform
       ::pointer<::platform::session>psession;
 
       //auto estatus =
-      __raw_construct(psession);
+      øraw_construct(psession);
 
       psession->set_platform();
 
@@ -2255,7 +2255,7 @@ namespace platform
    ::platform::session * system::session(::collection::index iEdge)
    {
 
-      auto iterator = m_sessionmap.plookup(iEdge);
+      auto iterator = m_sessionmap.find(iEdge);
 
       if (iterator.is_null())
       {
@@ -2425,7 +2425,7 @@ namespace platform
 
          m_bPostedInitialRequest = true;
 
-         auto prequest = __create_new< ::request>();
+         auto prequest = øcreate_new< ::request>();
 
          auto strCommandLine = ::system()->m_strCommandLine;
 
@@ -2453,7 +2453,7 @@ namespace platform
 
             strApp = m_args[0];
 
-            ::string_array straFiles;
+            ::string_array_base straFiles;
 
             for (int iArgument = 1; iArgument < m_argc; )
             {
@@ -2935,9 +2935,9 @@ namespace platform
          if (::is_set(application()))
          {
 
-            auto pszUrl = (const char *)ptopic->payload("wparam").as_iptr();
+            auto pszUrl = (const_char_pointer )ptopic->payload("wparam").as_iptr();
 
-            application()->did_pick_document_at_url(pszUrl);
+            application()->did_pick_document_at_url(scopedstrUrl);
 
          }
 
@@ -3013,7 +3013,7 @@ namespace platform
    }
 
 
-   void system::on_open_file(const ::string & pszFile)
+   void system::on_open_file(const ::scoped_string & scopedstrFile)
    {
 
       throw ::interface_only();
@@ -3253,7 +3253,7 @@ namespace platform
 
 
 
-   //::pointer < ::subparticle > system::message_box(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails)
+   //::pointer < ::subparticle > system::message_box(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::user::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails)
    //{
    //
    //   auto psequencer = nano()->message_box(strMessage, strTitle, emessagebox, strDetails);
@@ -3299,7 +3299,7 @@ namespace platform
          if (strAppId.is_empty() || ::system()->is_console())
          {
 
-            papp = __øcreate < ::platform::application >();
+            papp = øcreate < ::platform::application >();
 
             papp->increment_reference_count();
 
@@ -3329,9 +3329,9 @@ namespace platform
 
 #ifndef UNIVERSAL_WINDOWS
 
-               //            output_error_message("papp \"" + strAppId + "\" cannot be created.\n\nThe library \"" + strLibrary + "\" could not be loaded. " + plibrary->m_strMessage, "ca2", e_message_box_icon_error);
+               //            output_error_message("papp \"" + strAppId + "\" cannot be created.\n\nThe library \"" + strLibrary + "\" could not be loaded. " + plibrary->m_strMessage, "ca2", ::user::e_message_box_icon_error);
 
-               //output_error_message("papp \"" + strAppId + "\" cannot be created.\n\nThe library \"" + strLibrary + "\" could not be loaded. ", "ca2", e_message_box_icon_error);
+               //output_error_message("papp \"" + strAppId + "\" cannot be created.\n\nThe library \"" + strLibrary + "\" could not be loaded. ", "ca2", ::user::e_message_box_icon_error);
 
                informationf("papp \"" + strAppId + "\" cannot be created.\n\nThe library \"" + strLibrary + "\" could not be loaded. " + "ca2");
 
@@ -3375,7 +3375,7 @@ namespace platform
             if (pfactory)
             {
 
-               papp = __øcreate < ::platform::application >(pfactory);
+               papp = øcreate < ::platform::application >(pfactory);
 
                if (!papp)
                {
@@ -3474,7 +3474,7 @@ namespace platform
    }
 
 
-   bool system::_handle_call(::payload & payload, const ::string & strObject, const ::string & strMember, ::property_set & propertyset)
+   bool system::_handle_call(::payload & payload, const ::scoped_string & scopedstrObject, const ::scoped_string & scopedstrMember, ::property_set & propertyset)
    {
 
       try
@@ -3505,7 +3505,7 @@ namespace platform
    }
 
 
-   string system::get_latest_deployment_number(const ::string & strBranch)
+   string system::get_latest_deployment_number(const ::scoped_string & scopedstrBranch)
    {
 
       return "(lastest deployed build)";
@@ -3516,7 +3516,7 @@ namespace platform
    //   void system::windowing_send(const ::procedure & procedure)
    //   {
    //
-   //      auto pmanualresethappening = __allocate manual_reset_happening();
+   //      auto pmanualresethappening = øallocate manual_reset_happening();
    //
    //      windowing_post([pmanualresethappening, procedure]()
    //                     {
@@ -3603,7 +3603,7 @@ namespace platform
    }
 
 
-   ::file::path system::local_get_matter_path(string strMatter)
+   ::file::path system::local_get_matter_path(const ::scoped_string & scopedstrMatter)
    {
 
 #ifdef UNIVERSAL_WINDOWS
@@ -3627,7 +3627,7 @@ namespace platform
    }
 
 
-   ::file::path system::local_get_matter_cache_path(string strMatter)
+   ::file::path system::local_get_matter_cache_path(const ::scoped_string & scopedstrMatter)
    {
 
       return local_get_matter_cache_path() / strMatter;
@@ -3862,7 +3862,7 @@ namespace platform
    void system::on_application_dark_mode_change()
    {
 
-      auto ptopic = __allocate::topic(id_application_dark_mode_change);
+      auto ptopic = øallocate::topic(id_application_dark_mode_change);
 
       application()->handle(ptopic, nullptr);
 
@@ -4025,7 +4025,7 @@ namespace platform
       if (!m_pmicrouser)
       {
 
-         __construct_new(m_pmicrouser);
+         øconstruct_new(m_pmicrouser);
 
       }
 
@@ -4042,7 +4042,7 @@ namespace platform
 
          do_graphics_and_windowing_system_factory();
 
-         __øconstruct(m_pacmewindowing);
+         øconstruct(m_pacmewindowing);
 
       }
 
@@ -4088,9 +4088,9 @@ namespace platform
    //}
 
 
-//   ::pointer < ::message_box > system::message_box(const ::string & strMessage, const ::string & strTitle,
-//                                                       const ::e_message_box & emessagebox,
-//                                                       const ::string & strDetails, ::nano::graphics::icon * picon)
+//   ::pointer < ::message_box > system::message_box(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle,
+//                                                       const ::user::e_message_box & emessagebox,
+//                                                       const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon)
 //   {
 //      
 //      
@@ -4104,9 +4104,9 @@ namespace platform
 
 
    //::pointer < ::message_box > system::exception_message_box(
-   //    const ::exception & exception, const ::string & strMessage, 
-   //   const ::string & strTitle,
-   //    const ::e_message_box & emessagebox, const ::string & strDetails, ::nano::graphics::icon * picon)
+   //    const ::exception & exception, const ::scoped_string & scopedstrMessage, 
+   //   const ::scoped_string & scopedstrTitle,
+   //    const ::user::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon)
    //{
    //   return micro_user()->exception_message_box(
    //exception,
@@ -4119,9 +4119,9 @@ namespace platform
    //}
 
 
-   //::pointer < ::message_box > system::message_console(const ::string & strMessage, const ::string & strTitle,
-   //                                                           const ::e_message_box & emessagebox,
-   //                                                           const ::string & strDetails, ::nano::graphics::icon * picon)
+   //::pointer < ::message_box > system::message_console(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle,
+   //                                                           const ::user::e_message_box & emessagebox,
+   //                                                           const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon)
    //{
    //   
    //   return micro_user()->message_console(
@@ -4135,9 +4135,9 @@ namespace platform
 
 
    //::pointer < ::message_box > system::exception_message_console(
-   //    const ::exception & exception, const ::string & strMessage,
-   //   const ::string & strTitle,
-   //    const ::e_message_box & emessagebox, const ::string & strDetails, ::nano::graphics::icon * picon)
+   //    const ::exception & exception, const ::scoped_string & scopedstrMessage,
+   //   const ::scoped_string & scopedstrTitle,
+   //    const ::user::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon)
    //{
 
    //   return micro_user()->exception_message_console(
@@ -4159,7 +4159,7 @@ namespace platform
 
    //      do_graphics_and_windowing_system_factory();
 
-   //      __øconstruct(m_pwindowingbase);
+   //      øconstruct(m_pwindowingbase);
 
    //   }
 
@@ -4187,7 +4187,7 @@ namespace platform
 ////}
 //
 //
-//CLASS_DECL_ACME string get_latest_deployment_number(const ::string & strBranch)
+//CLASS_DECL_ACME string get_latest_deployment_number(const ::scoped_string & scopedstrBranch)
 //{
 //
 //   return system()->get_latest_deployment_number(strBranch);
@@ -4198,7 +4198,7 @@ namespace platform
 
 
 //
-//CLASS_DECL_ACME string __get_text(const string & str)
+//CLASS_DECL_ACME string __get_text(const ::scoped_string & scopedstr)
 //{
 //
 //   return ::g_psystem->__get_text(str);
@@ -4244,7 +4244,7 @@ void system_id_update(void * pSystem, long long iUpdate, long long iParam)
 
 void node_will_finish_launching(void * pSystem);
 void system_on_open_untitled_file(void * pSystem);
-void system_on_open_file(void * pSystem, const char * pszFile);
+void system_on_open_file(void * pSystem, const_char_pointer pszFile);
 
 
 void node_will_finish_launching(void * pSystem)
@@ -4267,12 +4267,12 @@ void system_on_open_untitled_file(void * pSystem)
 }
 
 
-void system_on_open_file(void * pSystem, const char * pszFile)
+void system_on_open_file(void * pSystem, const_char_pointer pszFile)
 {
 
    auto psystem = (::platform::system *)pSystem;
 
-   psystem->on_open_file(pszFile);
+   psystem->on_open_file(scopedstrFile);
 
 
 }
@@ -4281,7 +4281,7 @@ void system_on_open_file(void * pSystem, const char * pszFile)
 //::pointer<::platform::system>platform_create_system(const ::scoped_string & scopedstrAppId)
 //{
 //
-//   string strAppId(pszAppId);
+//   string strAppId(scopedstrAppId);
 //
 //#if !defined(CUBE)
 //
@@ -4307,7 +4307,7 @@ void system_on_open_file(void * pSystem, const char * pszFile)
 //
 //         //   //auto pfuture = __sync_future();
 //
-//         //   //message_box(strMessage, "Could not open required library. Want to give an yes/no answer insted of pression cancel?", e_message_box_icon_exclamation | e_message_box_yes_no_cancel, pfuture);
+//         //   //message_box(strMessage, "Could not open required library. Want to give an yes/no answer insted of pression cancel?", ::user::e_message_box_icon_exclamation | ::user::e_message_box_yes_no_cancel, pfuture);
 //
 //         //   //pfuture->wait(10_s);
 //

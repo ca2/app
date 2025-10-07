@@ -51,7 +51,7 @@ namespace sockets
    }
 
 
-   resolv_socket::resolv_socket(base_socket *parent, const string & host, port_t port, bool ipv6) :
+   resolv_socket::resolv_socket(base_socket *parent, const ::scoped_string & scopedstrHost, port_t port, bool ipv6) :
       m_bServer(false)
       ,m_parent(parent)
       ,m_resolv_host(host)
@@ -146,7 +146,7 @@ namespace sockets
 
 
 
-   void resolv_socket::OnLine(const string & line)
+   void resolv_socket::OnLine(const ::scoped_string & scopedstrLine)
    {
 
       ::parse pa(line, ":");
@@ -168,7 +168,7 @@ namespace sockets
 
             string result;
 
-            if(system()->sockets().m_resolvcache[m_query].lookup(m_data, result))
+            if(system()->sockets().m_resolvcache[m_query].find(m_data, result))
             {
 
                if (time(nullptr) - system()->sockets().m_resolvtimeout[m_query][m_data] < 3600) // ttl

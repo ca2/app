@@ -28,7 +28,7 @@ ifs::~ifs()
 bool ifs::fast_has_subdir(const ::file::path & path)
 {
 
-   synchronous_lock synchronouslock(this->synchronization());
+   synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    dir_listing & dir = m_map[path];
 
@@ -48,7 +48,7 @@ bool ifs::fast_has_subdir(const ::file::path & path)
 bool ifs::has_subdir(const ::file::path & path)
 {
 
-   synchronous_lock synchronouslock(this->synchronization());
+   synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    dir_listing & dir = m_map[path];
 
@@ -63,7 +63,7 @@ bool ifs::has_subdir(const ::file::path & path)
 
    synchronouslock.unlock();
 
-   ::file::listing listing;
+   ::file::listing_base listing;
 
    listing.set_folder_listing(path);
 
@@ -76,7 +76,7 @@ bool ifs::has_subdir(const ::file::path & path)
 }
 
 
-::file::listing & ifs::root_ones(::file::listing & listing)
+::file::listing_base & ifs::root_ones(::file::listing_base & listing)
 {
 
    ::file::path path;
@@ -94,10 +94,10 @@ bool ifs::has_subdir(const ::file::path & path)
 }
 
 
-bool ifs::enumerate(::file::listing & listing)
+bool ifs::enumerate(::file::listing_base & listing)
 {
 
-   synchronous_lock synchronouslock(this->synchronization());
+   synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    auto & dir = m_map[listing.m_pathUser];
 
@@ -228,29 +228,29 @@ bool ifs::enumerate(::file::listing & listing)
    //listing = dir;
 
    ////   if(m_mapdirFolder[strDir].is_null())
-   ////   m_mapdirFolder[strDir] = __allocate string_array();
+   ////   m_mapdirFolder[strDir] = øallocate string_array_base();
    ////if(m_mapdirFolderName[strDir].is_null())
-   ////   m_mapdirFolderName[strDir] = __allocate string_array();
+   ////   m_mapdirFolderName[strDir] = øallocate string_array_base();
    ////if(m_mapdirFile[strDir].is_null())
-   ////   m_mapdirFile[strDir] = __allocate string_array();
+   ////   m_mapdirFile[strDir] = øallocate string_array_base();
    ////if(m_mapdirFileName[strDir].is_null())
-   ////   m_mapdirFileName[strDir] = __allocate string_array();
+   ////   m_mapdirFileName[strDir] = øallocate string_array_base();
    ////if (m_mapdirFileSize[strDir].is_null())
-   ////   m_mapdirFileSize[strDir] = __allocate long_long_array();
+   ////   m_mapdirFileSize[strDir] = øallocate long_long_array_base();
    ////if (m_mapdirFolderSize[strDir].is_null())
-   ////   m_mapdirFolderSize[strDir] = __allocate long_long_array();
+   ////   m_mapdirFolderSize[strDir] = øallocate long_long_array_base();
    ////if(m_mapdirFileDir[strDir].is_null())
-   ////   m_mapdirFileDir[strDir] = __allocate bool_array();
+   ////   m_mapdirFileDir[strDir] = øallocate bool_array();
    ////if(m_mapdirFolderDir[strDir].is_null())
-   ////   m_mapdirFolderDir[strDir] = __allocate bool_array();
+   ////   m_mapdirFolderDir[strDir] = øallocate bool_array();
 
 
-   ////::file::path_array  & straThisDir         = m_mapdirFolder[strDir];
-   ////::file::path_array  & straThisDirName     = m_mapdirFolderName[strDir];
-   ////::file::path_array  & straThisFile        = m_mapdirFile[strDir];
-   ////::file::path_array  & straThisFileName    = m_mapdirFileName[strDir];
-   ////long_long_array    & iaThisFileSize      = *m_mapdirFileSize[strDir];
-   ////long_long_array    & iaThisFolderSize    = *m_mapdirFolderSize[strDir];
+   ////::file::path_array_base  & straThisDir         = m_mapdirFolder[strDir];
+   ////::file::path_array_base  & straThisDirName     = m_mapdirFolderName[strDir];
+   ////::file::path_array_base  & straThisFile        = m_mapdirFile[strDir];
+   ////::file::path_array_base  & straThisFileName    = m_mapdirFileName[strDir];
+   ////long_long_array_base    & iaThisFileSize      = *m_mapdirFileSize[strDir];
+   ////long_long_array_base    & iaThisFolderSize    = *m_mapdirFolderSize[strDir];
    ////bool_array     & baThisFileDir       = *m_mapdirFileDir[strDir];
    ////bool_array     & baThisFolderDir     = *m_mapdirFolderDir[strDir];
 
@@ -306,7 +306,7 @@ int ifs::is_dir(const ::file::path & path)
 
    defer_initialize();
 
-   synchronous_lock synchronouslock(this->synchronization());
+   synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    dir_listing & dir = m_map[path.folder()];
 
@@ -315,7 +315,7 @@ int ifs::is_dir(const ::file::path & path)
    if(dir.m_timeLast.timeout(psystem->m_timeFileListingCache))
    {
 
-      ::file::listing listing;
+      ::file::listing_base listing;
 
       listing.set_listing(path.folder());
 
@@ -337,10 +337,10 @@ int ifs::is_dir(const ::file::path & path)
 }
 
 
-bool ifs::file_move(const ::file::path & pszDst,const ::file::path & pszSrc)
+bool ifs::file_move(const ::file::path & pathTarget,const ::file::path & pathSource)
 {
-   __UNREFERENCED_PARAMETER(pszDst);
-   __UNREFERENCED_PARAMETER(pszSrc);
+   __UNREFERENCED_PARAMETER(pathTarget);
+   __UNREFERENCED_PARAMETER(pathSource);
    return true;
 }
 
@@ -348,7 +348,7 @@ bool ifs::file_move(const ::file::path & pszDst,const ::file::path & pszSrc)
 file_pointer ifs::get_file(const ::payload & payloadFile, ::file::e_open eopen, ::pointer < ::file::exception >* ppfileexception)
 {
 
-   auto pfile = __allocate ifs_file( payloadFile);
+   auto pfile = øallocate ifs_file( payloadFile);
 
    //auto result =
    
@@ -366,18 +366,18 @@ file_pointer ifs::get_file(const ::payload & payloadFile, ::file::e_open eopen, 
 }
 
 
-bool ifs::file_exists(const ::file::path & pszPath)
+bool ifs::file_exists(const ::file::path & path)
 {
 
-   return ::fs::data::file_exists(pszPath);
+   return ::fs::data::file_exists(path);
 
 }
 
 
-::payload ifs::file_length(const ::file::path & pszPath)
+::payload ifs::file_length(const ::file::path & path)
 {
 
-   return ::fs::data::file_length(pszPath);
+   return ::fs::data::file_length(path);
 
 }
 
@@ -395,7 +395,7 @@ void ifs::defer_initialize()
 
 }
 
-bool ifs::is_zero_latency(const ::file::path & psz)
+bool ifs::is_zero_latency(const ::file::path & path)
 {
 
    return false;

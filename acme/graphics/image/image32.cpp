@@ -31,12 +31,12 @@ void image32_t::vertical_swap_copy(int cxParam, int cyParam, int iStrideDst, con
 
       }
 
-      int wsrc = iStrideSrc / sizeof(::image32_t);
-      int wdst = iStrideDst / sizeof(::image32_t);
+      int wsrc = iStrideSrc;
+      int wdst = iStrideDst;
       int cw = cxParam * sizeof(::image32_t);
 
-      auto * psrc = pimage32Src;
-      auto * pdst = (::image32_t *)((unsigned char *)(pimage32Dst)+iStrideDst * (cyParam - 1));
+      unsigned char * psrc = (unsigned char*)pimage32Src;
+      unsigned char * pdst = ((unsigned char *)(pimage32Dst)+iStrideDst * (cyParam - 1));
 
       for (int i = 0; i < cyParam; i++)
       {
@@ -49,9 +49,7 @@ void image32_t::vertical_swap_copy(int cxParam, int cyParam, int iStrideDst, con
 
       }
 
-
    }
-
    catch (...)
    {
 
@@ -381,6 +379,53 @@ enum_rotate_flip exif_orientation_rotate_flip(int orientation)
 //   copy(size, iStrideDst, ppixmapSrc->image32(), ppixmapSrc->scan_size());
 //
 //}
+
+
+void image32_t::set_rectangle(int x, int y, int w, int h, int s, const ::image32_t & image32Source)
+{
+
+   auto pline = ((unsigned char *) this) + s * y + x * 4;
+
+   for (int i = 0; i < h; i++, pline += s)
+   {
+
+      auto p =(image32_t *) pline;
+
+      for (int j = 0; j < w; j++, p++)
+      {
+
+         *p = image32Source;
+
+      }
+
+   }
+
+}
+
+
+void image32_t::blend_rectangle(int x, int y, int w, int h, int s, const ::image32_t & image32Source)
+{
+
+   auto pline = ((unsigned char *) this) + s * y + x * 4;
+
+   for (int i = 0; i < h; i++, pline += s)
+   {
+
+      auto p =(image32_t *) pline;
+
+      for (int j = 0; j < w; j++, p++)
+      {
+
+         p->m_ua[0] = image32Source.m_ua[0] + ((255 - image32Source.m_ua[3]) * p->m_ua[0] + 127) / 255;
+         p->m_ua[1] = image32Source.m_ua[1] + ((255 - image32Source.m_ua[3]) * p->m_ua[1] + 127) / 255;
+         p->m_ua[2] = image32Source.m_ua[2] + ((255 - image32Source.m_ua[3]) * p->m_ua[2] + 127) / 255;
+         p->m_ua[3] = image32Source.m_ua[3] + ((255 - image32Source.m_ua[3]) * p->m_ua[3] + 127) / 255;
+
+      }
+
+   }
+
+}
 
 
 

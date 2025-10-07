@@ -5,7 +5,7 @@ namespace hotplugin
 {
 
 
-   class CLASS_DECL_BASE composer
+   class CLASS_DECL_BERG composer
    {
    public:
 
@@ -84,9 +84,9 @@ namespace hotplugin
       virtual bool windows_on_paint(::draw2d::graphics_pointer & pgraphics);
 
 
-      virtual bool      open_link(const ::string & strLink,const string & pszTarget);
+      virtual bool      open_link(const ::scoped_string & scopedstrLink,const ::scoped_string & scopedstrTarget);
 
-      virtual bool      _open_link(const ::string & strLink,const string & pszTarget);
+      virtual bool      _open_link(const ::scoped_string & scopedstrLink,const ::scoped_string & scopedstrTarget);
 
       virtual bool is_active();
 

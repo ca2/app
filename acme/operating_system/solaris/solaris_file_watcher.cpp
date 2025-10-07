@@ -65,10 +65,10 @@ namespace file_watcher
    //--------
    os_file_watcher::~os_file_watcher()
    {
-      WatchMap::pair * ppair = m_watchmap.get_start();
-      for(; ppair != nullptr; ppair = m_watchmap.get_next(ppair))
+      WatchMap::pair * iterator = m_watchmap.get_start();
+      for(; iterator != nullptr; iterator = m_watchmap.get_next(iterator))
       {
-         delete ppair->element2();
+         delete iterator->element2();
       }
       m_watchmap.erase_all();
    }
@@ -138,12 +138,12 @@ namespace file_watcher
    //--------
    void os_file_watcher::erase_watch(const vsstring & directory)
    {
-      WatchMap::pair * ppair = m_watchmap.get_start();
-      for(; ppair != nullptr; ppair = m_watchmap.get_next(ppair))
+      WatchMap::pair * iterator = m_watchmap.get_start();
+      for(; iterator != nullptr; iterator = m_watchmap.get_next(iterator))
       {
-         if(directory == ppair->element2()->m_strDirName)
+         if(directory == iterator->element2()->m_strDirName)
          {
-            erase_watch(ppair->element1());
+            erase_watch(iterator->element1());
             return;
          }
       }
@@ -153,13 +153,13 @@ namespace file_watcher
    //--------
    void os_file_watcher::erase_watch(atom watchid)
    {
-      WatchMap::pair * ppair = m_watchmap.plookup(watchid);
+      WatchMap::pair * iterator = m_watchmap.find(watchid);
 
-      if(ppair == nullptr)
+      if(iterator == nullptr)
          return;
 
-      watch_struct* watch = ppair->element2();
-      m_watchmap.erase_key(ppair->element1());
+      watch_struct* watch = iterator->element2();
+      m_watchmap.erase_key(iterator->element1());
 
       inotify_rm_watch(mFD, watchid);
 
@@ -207,7 +207,7 @@ namespace file_watcher
    }
 
    //--------
-   void os_file_watcher::handle_action(watch_struct* watch, const char * filename, unsigned int action)
+   void os_file_watcher::handle_action(watch_struct* watch, const_char_pointer filename, unsigned int action)
    {
 
       if(!watch)

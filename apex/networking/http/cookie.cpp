@@ -103,7 +103,7 @@ namespace http
 
 
 
-   ::collection::index cookies::find_cookie(const char * name)
+   ::collection::index cookies::find_cookie(const_char_pointer name)
    {
 
       string strNameLow(name);
@@ -126,7 +126,7 @@ namespace http
 
    }
 
-   ::collection::index cookies::lowfind_cookie(const char * name)
+   ::collection::index cookies::lowfind_cookie(const_char_pointer name)
    {
       for(int i = 0; i < this->get_size(); i++)
       {
@@ -138,7 +138,7 @@ namespace http
       return -1;
    }
 
-   http::cookie & cookies::cookie(const char * name)
+   http::cookie & cookies::cookie(const_char_pointer name)
    {
 
       auto iFind = find_cookie(name);
@@ -146,7 +146,7 @@ namespace http
       if(not_found(iFind))
       {
 
-         auto pcookie = __allocate class cookie ();
+         auto pcookie = øallocate class cookie ();
 
          pcookie->m_strName = name;
 
@@ -161,7 +161,7 @@ namespace http
    }
 
 
-   http::cookie & cookies::lowcookie(const char * name)
+   http::cookie & cookies::lowcookie(const_char_pointer name)
    {
 
       auto iFind = lowfind_cookie(name);
@@ -175,7 +175,7 @@ namespace http
 
          ca.m_strNameLow = name;
 
-         add(__allocate class cookie (ca));
+         add(øallocate class cookie (ca));
 
          iFind = find_cookie(name);
 
@@ -190,21 +190,21 @@ namespace http
 
    void cookies::add(const ::scoped_string & scopedstr)
    {
-      ::pointer<class cookie> cookie(__allocate class cookie ());
+      ::pointer<class cookie> cookie(øallocate class cookie ());
       cookie->m_bSecure = false;
-      //string_array stra;
-      //stra.add_tokens(psz, ";", true);
+      //string_array_base stra;
+      //stra.add_tokens(scopedstr, ";", true);
       auto psz = scopedstr.begin();
       bool bRun = true;
       int i = 0;
       while(bRun)
       {
-         const ::ansi_character * pszEnd = ansi_chr(psz, ';');
+         const_char_pointer pszEnd = ansi_chr(psz, ';');
          bRun = pszEnd != nullptr;
          if(!bRun)
             pszEnd = psz + ansi_len(psz);
 
-         const ::ansi_character * pszEqual = ansi_chr(psz, '=');
+         const_char_pointer pszEqual = ansi_chr(psz, '=');
          if(pszEqual > pszEnd)
             pszEqual = nullptr;
          if(i == 0)
@@ -278,7 +278,7 @@ namespace http
    }
 
 
-   character_count cookies::get_length( const char * name)
+   character_count cookies::get_length( const_char_pointer name)
    {
 
       return cookie(name).m_payload.as_string().length();
@@ -332,10 +332,10 @@ namespace http
 
 #endif
 
-      const char *days[7] = {"Sunday", "Monday",
+      const_char_pointer days[7] = {"Sunday", "Monday",
                              "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"
                             };
-      const char *months[12] = {"Jan", "Feb", "Mar", "Apr", "May",
+      const_char_pointer months[12] = {"Jan", "Feb", "Mar", "Apr", "May",
                                 "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
                                };
       string strDateTime;
@@ -361,10 +361,10 @@ namespace http
       if(scopedstr.is_empty())
          return;
 
-      string_array stra;
-      const char * pszParam = scopedstr.begin();
-      const char * pszParamEnd;
-      const char * pszKeyEnd;
+      string_array_base stra;
+      const_char_pointer pszParam = scopedstr.begin();
+      const_char_pointer pszParamEnd;
+      const_char_pointer pszKeyEnd;
       class cookie ca;
       while(true)
       {
@@ -427,7 +427,7 @@ namespace http
 
    }
 
-   http::cookie & cookies::operator [](const char * name)
+   http::cookie & cookies::operator [](const_char_pointer name)
    {
       return cookie(name);
    }

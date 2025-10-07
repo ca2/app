@@ -61,7 +61,7 @@ namespace html
 
 
 
-      virtual void set_text(const ::string & str);
+      virtual void set_text(const ::scoped_string & scopedstr);
 
       DECLARE_MESSAGE_HANDLER(OnLButtonDown);
       DECLARE_MESSAGE_HANDLER(OnMouseMove);

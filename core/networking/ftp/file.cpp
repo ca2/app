@@ -19,12 +19,12 @@ namespace ftp
    }
 
 
-   bool file::Open(const string& strFileName, ::file::e_open eopen)
+   bool file::Open(const ::scoped_string & scopedstrFileName, ::file::e_open eopen)
    {
 
-      m_strFileName = strFileName;
+      m_strFileName = scopedstrFileName;
 
-      m_file = ::particle::file()->get_file(strFileName, eopen);
+      m_file = ::particle::file()->get_file(scopedstrFileName, eopen);
 
       return m_file.is_set();
 

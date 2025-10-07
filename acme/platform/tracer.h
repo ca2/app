@@ -26,19 +26,19 @@ public:
    ~tracer();
 
 
-   //void format_output_arguments(const ::ansi_character * psz, va_list & arguments)
+   //void format_output_arguments(const_char_pointer psz, va_list & arguments)
    //{
 
    //   string str;
 
-   //   str.formatf_arguments(psz, arguments);
+   //   str.formatf_arguments(scopedstr, arguments);
 
    //   operator << (str);
 
    //}
 
 
-   //tracer & format_output(const ::ansi_character * psz, ...)
+   //tracer & format_output(const_char_pointer psz, ...)
    //{
 
    //   va_list arguments;
@@ -47,7 +47,7 @@ public:
 
    //   string str;
 
-   //   str.formatf_arguments(psz, arguments);
+   //   str.formatf_arguments(scopedstr, arguments);
 
    //   operator << (str);
 
@@ -78,7 +78,7 @@ public:
    //tracer & operator << (const e_status & estatus);
    //tracer & operator << (const enum_status& estatus);
    //tracer & operator << (const ansi_string & str);
-   //tracer & operator << (const ::ansi_character * psz);
+   //tracer & operator << (const_char_pointer psz);
 //   tracer & operator << (enum_flush);
 //   tracer & operator << (const integral_byte & memsize);
 //
@@ -108,10 +108,10 @@ public:
 };
 
 
-//CLASS_DECL_ACME void trace_log_information() << const ::ansi_character * psz, ...;
-//CLASS_DECL_ACME void trace_log_warning() << const ::ansi_character * psz, ...;
-//CLASS_DECL_ACME void trace_log_error() << const ::ansi_character * psz, ...;
-//CLASS_DECL_ACME void trace_log_fatal() << const ::ansi_character * psz, ...;
+//CLASS_DECL_ACME void trace_log_information() << const_char_pointer psz, ...;
+//CLASS_DECL_ACME void trace_log_warning() << const_char_pointer psz, ...;
+//CLASS_DECL_ACME void trace_log_error() << const_char_pointer psz, ...;
+//CLASS_DECL_ACME void trace_log_fatal() << const_char_pointer psz, ...;
 
 //
 //CLASS_DECL_ACME ::trace_statement log_statement();

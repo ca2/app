@@ -56,7 +56,7 @@ namespace apex
       virtual ::string system_options_main_body() override;
       
       
-      //virtual void defer_create_main_menu(const string_array & straParent, const string_array & straMenu, const string_array & straId);
+      //virtual void defer_create_main_menu(const string_array_base & straParent, const string_array_base & straMenu, const string_array_base & straId);
       
 
 //      virtual void set_main_menu(application_menu * pmenu, ::apex::application * papp);
@@ -86,7 +86,7 @@ namespace apex
       virtual void defer_innate_ui() override;
 
 
-      virtual void shell_create_link(::file::path pathObj, ::file::path pathLnk, string strDesc, ::file::path pathIco = "", int iIcon = -1) override;
+      virtual void shell_create_link(::file::path pathObj, ::file::path pathLnk, const ::scoped_string & scopedstrDesc, ::file::path pathIco = "", int iIcon = -1) override;
 
       virtual bool shell_link_target(::file::path & pathTarget, const ::file::path & pathLnk) override;
       virtual bool shell_link_icon(::file::path & pathIcon, int & iIcon, const ::file::path& pathLnk) override;
@@ -113,7 +113,7 @@ namespace apex
       void set_file_extension_mime_type(::get_file_extension_mime_type * pgetfileextensionmimetype) override;
 
       void initialize_wallpaper_fileset(::file::set* pfileset, bool bAddSearch) override;
-      //void shell_open(const ::file::path & path, const ::string & strParams = "", const ::file::path & pathFolder = "") override;
+      //void shell_open(const ::file::path & path, const ::scoped_string & scopedstrParams = "", const ::file::path & pathFolder = "") override;
 
 
       virtual void show_wait_cursor(bool bShow = true) override;
@@ -147,9 +147,9 @@ namespace apex
       virtual bool is_key_pressed(bool * pbPressed, ::user::enum_key ekey) override;
 
 
-      virtual void root_ones(::file::listing & listing) override;
+      virtual void root_ones(::file::listing_base & listing) override;
       
-//      virtual bool defer_enumerate_protocol(::file::listing& listing);
+//      virtual bool defer_enumerate_protocol(::file::listing_base& listing);
 
        //::string http_get_effective_url(const ::scoped_string & scopedstrUrl) override;
 

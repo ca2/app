@@ -26,7 +26,7 @@ namespace gpu_opengl
 
       void on_initialize_shader() override;
 
-
+      void _bind() override;
       void bind(::gpu::texture* pgputextureTarget, ::gpu::texture* pgputextureSource) override;
       void bind(::gpu::texture* pgputextureTarget) override;
       void bind() override;
@@ -80,17 +80,17 @@ namespace gpu_opengl
       //::gpu::payload * get_payload(const ::scoped_string & scopedestrUniform) override;
 
 
-      void setup_sampler_and_texture(const ::scoped_string& scopedstrName, int value) override;
+      //void setup_sampler_and_texture(const ::scoped_string& scopedstrName, int value) override;
 
-      void _set_bool(const char* name, bool bSet) const;
-      void _set_int(const char* name, int value) const;
-      void _set_float(const char* name, float value) const;
-      void _set_vec2(const char* name, const glm::vec2& value) const;
-      void _set_vec3(const char* name, const glm::vec3& value) const;
-      void _set_vec4(const char* name, const glm::vec4& value) const;
-      void _set_mat2(const char* name, const glm::mat2& matrix) const;
-      void _set_mat3(const char* name, const glm::mat3& matrix) const;
-      void _set_mat4(const char* name, const glm::mat4& matrix) const;
+      void _set_bool(const_char_pointer name, bool bSet) const;
+      void _set_int(const_char_pointer name, int value) const;
+      void _set_float(const_char_pointer name, float value) const;
+      void _set_vec2(const_char_pointer name, const glm::vec2& value) const;
+      void _set_vec3(const_char_pointer name, const glm::vec3& value) const;
+      void _set_vec4(const_char_pointer name, const glm::vec4& value) const;
+      void _set_mat2(const_char_pointer name, const glm::mat2& matrix) const;
+      void _set_mat3(const_char_pointer name, const glm::mat3& matrix) const;
+      void _set_mat4(const_char_pointer name, const glm::mat4& matrix) const;
 
       void push_properties() override;
 
@@ -102,12 +102,12 @@ namespace gpu_opengl
       void set_bool(const ::scoped_string& scopedstrName, bool value) override;
       void set_int(const ::scoped_string& scopedstrName, int value) override;
       void set_float(const ::scoped_string& scopedstrName, float value) override;
-      void set_vec2(const ::scoped_string& scopedstrName, float x, float y) override;
-      void set_vec2(const ::scoped_string& scopedstrName, const ::glm::vec2& a) override;
-      void set_vec3(const ::scoped_string& scopedstrName, float x, float y, float z) override;
-      void set_vec3(const ::scoped_string& scopedstrName, const ::glm::vec3& a) override;
-      void set_vec4(const ::scoped_string& scopedstrName, float x, float y, float z, float w) override;
-      void set_vec4(const ::scoped_string& scopedstrName, const ::glm::vec4& a) override;
+      void set_seq2(const ::scoped_string& scopedstrName, float x, float y) override;
+      void set_seq2(const ::scoped_string& scopedstrName, const ::glm::vec2& a) override;
+      void set_seq3(const ::scoped_string& scopedstrName, float x, float y, float z) override;
+      void set_seq3(const ::scoped_string& scopedstrName, const ::glm::vec3& a) override;
+      void set_seq4(const ::scoped_string& scopedstrName, float x, float y, float z, float w) override;
+      void set_seq4(const ::scoped_string& scopedstrName, const ::glm::vec4& a) override;
       void set_mat2(const ::scoped_string& scopedstrName, const ::glm::mat2& a) override;
       void set_mat3(const ::scoped_string& scopedstrName, const ::glm::mat3& a) override;
       void set_mat4(const ::scoped_string& scopedstrName, const ::glm::mat4& a) override;

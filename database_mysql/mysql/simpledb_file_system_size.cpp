@@ -93,9 +93,9 @@ void file_size_table::item::ls(::particle * pparticle, ::collection::index & iIt
 {
    if(m_bDir)
    {
-      string_array               straPath;
-      string_array               straTitle;
-      long_long_array iaSize;
+      string_array_base               straPath;
+      string_array_base               straTitle;
+      long_long_array_base iaSize;
       bool_array baIsDir;
       if(path().is_empty())
       {
@@ -152,10 +152,10 @@ string file_size_table::item::path()
       return m_pitemParent->path() + "\\" + m_strName;
 }
 
-file_size_table::item * file_size_table::item::FindItem(::particle * pparticle, const ::string & pszPath, ::collection::index & iIteration)
+file_size_table::item * file_size_table::item::FindItem(::particle * pparticle, const ::scoped_string & scopedstrPath, ::collection::index & iIteration)
 {
    string strName;
-   string strPath(pszPath);
+   string strPath(scopedstrPath);
    strPath.replace('/', '\\');
 
    while(strPath.left(1) == "\\")
@@ -180,7 +180,7 @@ file_size_table::item * file_size_table::item::FindItem(::particle * pparticle, 
 }
 
 
-::collection::index file_size_table::item::FindName(::particle * pparticle, const ::string & pszName, ::collection::index & iIteration)
+::collection::index file_size_table::item::FindName(::particle * pparticle, const ::scoped_string & scopedstrName, ::collection::index & iIteration)
 {
    if(m_bPendingLs)
    {
@@ -242,7 +242,7 @@ DBFileSystemSizeSet::~DBFileSystemSizeSet()
 }
 
 
-bool DBFileSystemSizeSet::get_cache_fs_size(long long & i64Size, const ::string & pszPath, bool & bPending)
+bool DBFileSystemSizeSet::get_cache_fs_size(long long & i64Size, const ::scoped_string & scopedstrPath, bool & bPending)
 {
    return false;
    single_lock synchronouslock(m_table.mutex(), false);
@@ -255,11 +255,11 @@ bool DBFileSystemSizeSet::get_cache_fs_size(long long & i64Size, const ::string 
 
    m_table.m_puserinteraction->get_fs_size(i64Size, pszPath, bPending);
    file_size_table::get_fs_size size;
-   FileSystemSizeWnd::size_map::pair * ppair = m_table.m_puserinteraction->m_map.plookup(pszPath);
-   if(ppair != nullptr)
+   FileSystemSizeWnd::size_map::pair * iterator = m_table.m_puserinteraction->m_map.find(scopedstrPath);
+   if(iterator != nullptr)
    {
-      i64Size     = ppair->element2().m_iSize;
-      bPending    = ppair->element2().m_bPending;
+      i64Size     = iterator->element2().m_iSize;
+      bPending    = iterator->element2().m_bPending;
       return true;
    }
    return  false;
@@ -286,7 +286,7 @@ bool DBFileSystemSizeSet::get_cache_fs_size(long long & i64Size, const ::string 
        }*/
 }
 
-bool DBFileSystemSizeSet::get_fs_size(long long & i64Size, const ::string & pszPath, bool & bPending)
+bool DBFileSystemSizeSet::get_fs_size(long long & i64Size, const ::scoped_string & scopedstrPath, bool & bPending)
 {
    ::collection::index iIteration = 0;
    single_lock synchronouslock(m_table.mutex(), false);
@@ -298,7 +298,7 @@ bool DBFileSystemSizeSet::get_fs_size(long long & i64Size, const ::string & pszP
    return true;
 }
 
-bool DBFileSystemSizeSet::get_fs_size(long long & i64Size, const ::string & pszPath, bool & bPending, ::collection::index & iIteration)
+bool DBFileSystemSizeSet::get_fs_size(long long & i64Size, const ::scoped_string & scopedstrPath, bool & bPending, ::collection::index & iIteration)
 {
    single_lock synchronouslock(m_table.mutex(), false);
    if(!synchronouslock.lock(time::zero()))
@@ -308,7 +308,7 @@ bool DBFileSystemSizeSet::get_fs_size(long long & i64Size, const ::string & pszP
       bPending = true;
       return true;
    }
-   string strTitle = file()->name_(pszPath);
+   string strTitle = file()->name_(scopedstrPath);
    file_size_table::item * pitem = m_table.m_item.FindItem(get_app(), pszPath, iIteration);
    if(pitem != nullptr)
    {
@@ -338,8 +338,8 @@ FileSystemSizeWnd::FileSystemSizeWnd(::particle * pparticle) :
 void FileSystemSizeWnd::install_message_routing(::channel * pchannel)
 {
    m_p->install_message_routing(pchannel);
-   MESSAGE_LINK(WM_COPYDATA, pchannel, this, &FileSystemSizeWnd::_001OnCopyData);
-   //MESSAGE_LINK(e_message_timer, pchannel, this, &FileSystemSizeWnd::on_timer);
+   USER_MESSAGE_LINK(WM_COPYDATA, pchannel, this, &FileSystemSizeWnd::_001OnCopyData);
+   //USER_MESSAGE_LINK(::user::e_message_timer, pchannel, this, &FileSystemSizeWnd::on_timer);
 }
 
 bool FileSystemSizeWnd::CreateClient()
@@ -380,7 +380,7 @@ bool FileSystemSizeWnd::CreateServer()
 
 }
 
-bool FileSystemSizeWnd::get_fs_size(long long & i64Size, const ::string & pszPath, bool & bPending)
+bool FileSystemSizeWnd::get_fs_size(long long & i64Size, const ::scoped_string & scopedstrPath, bool & bPending)
 {
 
 #ifdef WINDOWS_DESKTOP

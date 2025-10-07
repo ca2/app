@@ -155,7 +155,7 @@ int get_current_process_affinity_order()
 
 #ifdef WINDOWS_DESKTOP
 
-bool process_modules(string_array & stra, unsigned int processID)
+bool process_modules(string_array_base & stra, unsigned int processID)
 {
 
    HANDLE hProcess;
@@ -209,7 +209,7 @@ bool process_modules(string_array & stra, unsigned int processID)
 
 #ifdef WINDOWS_DESKTOP
 
-bool load_modules_diff(string_array & straOld, string_array & straNew, const ::scoped_string & scopedstrExceptDir)
+bool load_modules_diff(string_array_base & straOld, string_array_base & straNew, const ::scoped_string & scopedstrExceptDir)
 {
 
    bool bFound;
@@ -218,10 +218,10 @@ bool load_modules_diff(string_array & straOld, string_array & straNew, const ::s
 
    size_t iLenExcept;
 
-   if(pszExceptDir != nullptr)
+   if(scopedstrExceptDir != nullptr)
    {
 
-      iLenExcept = ansi_length(pszExceptDir);
+      iLenExcept = ansi_length(scopedstrExceptDir);
 
    }
    else
@@ -325,7 +325,7 @@ unsigned long long translate_processor_affinity(int i)
 //CLASS_DECL_ACME int ui_open_url(const ::scoped_string & scopedstrUrl)
 //{
 //
-//   string strUrl(pszUrl);
+//   string strUrl(scopedstrUrl);
 //
 //   auto uri = ref ___new ::winrt::Windows::Foundation::Uri (strUrl);
 //
@@ -338,7 +338,7 @@ unsigned long long translate_processor_affinity(int i)
 
 
 
-CLASS_DECL_ACME bool is_shared_library_busy(const string_array & stra)
+CLASS_DECL_ACME bool is_shared_library_busy(const string_array_base & stra)
 {
 
    return true;
@@ -351,7 +351,7 @@ bool shell_execute_sync(const ::scoped_string & scopedstrFile, const ::scoped_st
 
    return false;
 
-   //return call_sync(pszFile, pszParams, ::file::path(pszFile).folder(), 0, false, (int)timeTimeout.get_total_milliseconds());
+   //return call_sync(scopedstrFile, pszParams, ::file::path(scopedstrFile).folder(), 0, false, (int)timeTimeout.get_total_milliseconds());
 
 }
 
@@ -359,7 +359,7 @@ bool shell_execute_sync(const ::scoped_string & scopedstrFile, const ::scoped_st
 
 
 
-CLASS_DECL_ACME ::file::path core_app_path(string strApp)
+CLASS_DECL_ACME ::file::path core_app_path(const ::scoped_string & scopedstrApp)
 {
 
    throw ::exception(todo);

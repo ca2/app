@@ -4,7 +4,7 @@
 #include "acme/operating_system/_application.h"
 
 
-CLASS_DECL_ACME int main_uwp(Array < String^ >^ stra, const ::string & strCommandLine)
+CLASS_DECL_ACME int main_uwp(Array < String^ >^ stra, const ::scoped_string & scopedstrCommandLine)
 {
 
    //int iStatus = -1;
@@ -17,7 +17,7 @@ CLASS_DECL_ACME int main_uwp(Array < String^ >^ stra, const ::string & strComman
    //mainstruct.m_bUserEx = true;
    //mainstruct.m_bShowApplicationInformation = false;
 
-   auto psystem = __allocate ::platform::system();
+   auto psystem = øallocate ::platform::system();
 
    psystem->construct_system(stra);
 

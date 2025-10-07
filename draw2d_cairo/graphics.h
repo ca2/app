@@ -5,7 +5,7 @@
 #include "aura/graphics/draw2d/graphics.h"
 
 
-typedef void FN_CAIRO_TEXT(cairo_t *, const char *);
+typedef void FN_CAIRO_TEXT(cairo_t *, const_char_pointer );
 typedef FN_CAIRO_TEXT * PFN_CAIRO_TEXT;
 
 #if defined(USE_PANGO)
@@ -77,8 +77,8 @@ namespace draw2d_cairo
       double get_dpix() override;
 
       // Constructors
-      //bool CreateDC(const ::string & lpszDriverName, const ::string & lpszDeviceName, const ::string & lpszOutput, const void * lpInitData) override;
-      //bool CreateIC(const ::string & lpszDriverName, const ::string & lpszDeviceName, const ::string & lpszOutput, const void * lpInitData) override
+      //bool CreateDC(const ::scoped_string & scopedstrDriverName, const ::scoped_string & scopedstrDeviceName, const ::scoped_string & scopedstrOutput, const void * lpInitData) override;
+      //bool CreateIC(const ::scoped_string & scopedstrDriverName, const ::scoped_string & scopedstrDeviceName, const ::scoped_string & scopedstrOutput, const void * lpInitData) override
       void create_for_window_draw2d(::user::interaction * puserinteraction, const ::int_size& size) override;
       void CreateCompatibleDC(::draw2d::graphics * pgraphics) override;
 
@@ -202,11 +202,11 @@ namespace draw2d_cairo
       //void _intersect_clip() override;
       //void _add_shape(const ::double_rectangle & rectangle) override;
       //void _add_shape(const ::double_ellipse & ellipse) override;
-      //void _add_shape(const ::double_polygon & polygon) override;
+      //void _add_shape(const ::double_polygon_base & polygon) override;
 
       //void intersect_clip(const ::double_rectangle & rectangle) override;
       //void intersect_clip(const ::double_ellipse & rectangle) override;
-      //void intersect_clip(const ::double_polygon & rectangle) override;
+      //void intersect_clip(const ::double_polygon_base & rectangle) override;
 
       //void set_clipping(::draw2d::region* pregion) override;
       //virtual void intersect_clip(const ::draw2d::clip & clip);
@@ -243,13 +243,13 @@ namespace draw2d_cairo
       //virtual void _add_shape(const ::double_ellipse & ellipse) override;
       //void _add_clipping_shape(const ::double_ellipse & ellipse, ::draw2d::region * pregion) override;
       //virtual void _add_shape(const ::int_polygon & int_polygon) override;
-      //void _add_clipping_shape(const ::double_polygon & int_polygon, ::draw2d::region * pregion) override;
+      //void _add_clipping_shape(const ::double_polygon_base & int_polygon, ::draw2d::region * pregion) override;
 
       void _add_shape(const ::double_rectangle & double_rectangle) override;
       //virtual void _add_shape(const ::double_ellipse & ellipse) override;
       void _add_shape(const ::double_ellipse & ellipse) override;
       //virtual void _add_shape(const ::int_polygon & int_polygon) override;
-      void _add_shape(const ::double_polygon & int_polygon) override;
+      void _add_shape(const ::double_polygon_base & int_polygon) override;
 
 
       // Line-Output Functions
@@ -290,9 +290,9 @@ namespace draw2d_cairo
         //             HBRUSH hBrush = nullptr) override;
 //      bool DrawState(const ::double_point & double_point, const ::double_size & double_size, ::draw2d::bitmap* pBitmap, unsigned int nFlags,
 //                     ::draw2d::brush* pBrush = nullptr) override;
-//      bool DrawState(const ::double_point & double_point, const ::double_size & double_size, const ::string & lpszText, unsigned int nFlags,
+//      bool DrawState(const ::double_point & double_point, const ::double_size & double_size, const ::scoped_string & scopedstrText, unsigned int nFlags,
 //                     bool bPrefixText = true, int nTextLen = 0, HBRUSH hBrush = nullptr) override;
-//      bool DrawState(const ::double_point & double_point, const ::double_size & double_size, const ::string & lpszText, unsigned int nFlags,
+//      bool DrawState(const ::double_point & double_point, const ::double_size & double_size, const ::scoped_string & scopedstrText, unsigned int nFlags,
 //                     bool bPrefixText = true, int nTextLen = 0, ::draw2d::brush* pBrush = nullptr) override;
 
 
@@ -369,14 +369,14 @@ namespace draw2d_cairo
         BLENDFUNCTION blend);*/
 
       // Text Functions
-      //virtual bool text_out(double x, double y, const ::string & lpszString, character_count nCount) override;
-      //virtual bool text_out(double x, double y, const ::string & str) override;
+      //virtual bool text_out(double x, double y, const ::scoped_string & scopedstrString, character_count nCount) override;
+      //virtual bool text_out(double x, double y, const ::scoped_string & scopedstr) override;
       void TextOutRaw(double x, double y, const ::scoped_string & scopedstr) override;
-      ///virtual bool text_out(double x, double y, const ::string & str) override;
-      //virtual bool ExtTextOut(double x, double y, unsigned int nOptions, const ::double_rectangle & double_rectangle, const ::string & lpszString, character_count nCount, int * lpDxWidths) override;
-      //virtual bool ExtTextOut(double x, double y, unsigned int nOptions, const ::double_rectangle & double_rectangle, const ::string & str, int * lpDxWidths) override;
-//      virtual double_size TabbedTextOut(double x, double y, const ::string & lpszString, character_count nCount, ::collection::count nTabPositions, int * lpnTabStopPositions, int nTabOrigin) override;
-//      virtual double_size TabbedTextOut(double x, double y, const ::string & str, ::collection::count nTabPositions, int * lpnTabStopPositions, int nTabOrigin) override;
+      ///virtual bool text_out(double x, double y, const ::scoped_string & scopedstr) override;
+      //virtual bool ExtTextOut(double x, double y, unsigned int nOptions, const ::double_rectangle & double_rectangle, const ::scoped_string & scopedstrString, character_count nCount, int * lpDxWidths) override;
+      //virtual bool ExtTextOut(double x, double y, unsigned int nOptions, const ::double_rectangle & double_rectangle, const ::scoped_string & scopedstr, int * lpDxWidths) override;
+//      virtual double_size TabbedTextOut(double x, double y, const ::scoped_string & scopedstrString, character_count nCount, ::collection::count nTabPositions, int * lpnTabStopPositions, int nTabOrigin) override;
+//      virtual double_size TabbedTextOut(double x, double y, const ::scoped_string & scopedstr, ::collection::count nTabPositions, int * lpnTabStopPositions, int nTabOrigin) override;
 
       virtual void internal_draw_text_cairo(const block & block, const ::double_rectangle & double_rectangle, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none, PFN_CAIRO_TEXT pfnText = nullptr);
       virtual void internal_draw_text(const block & block, const ::double_rectangle & double_rectangle, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none);
@@ -386,26 +386,26 @@ namespace draw2d_cairo
 //#else
 //      virtual void internal_draw_text(const block & block, const ::double_rectangle & double_rectangle, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none, PFN_CAIRO_TEXT pfnTtext);
 #endif
-      //virtual bool draw_text(const ::string & lpszString, character_count nCount, const ::double_rectangle & double_rectangle, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none) override;
-      void draw_text(const ::string & str, const ::double_rectangle & double_rectangle, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none) override;
+      //virtual bool draw_text(const ::scoped_string & scopedstrString, character_count nCount, const ::double_rectangle & double_rectangle, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none) override;
+      void draw_text(const ::scoped_string & scopedstr, const ::double_rectangle & double_rectangle, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none) override;
 
       //virtual bool draw_text_ex(char * lpszString, character_count nCount, const ::double_rectangle & double_rectangle, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none, LPDRAWTEXTPARAMS lpDTParams);
-      //virtual bool draw_text_ex(const ::string & str, const ::double_rectangle & double_rectangle, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none, LPDRAWTEXTPARAMS lpDTParams = nullptr) override;
-      void draw_text_ex(const ::string & str, const ::double_rectangle & double_rectangle, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none) override;
+      //virtual bool draw_text_ex(const ::scoped_string & scopedstr, const ::double_rectangle & double_rectangle, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none, LPDRAWTEXTPARAMS lpDTParams = nullptr) override;
+      void draw_text_ex(const ::scoped_string & scopedstr, const ::double_rectangle & double_rectangle, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none) override;
 
-      double_size get_text_extent(const ::scoped_string & scopedstr, character_count iIndex) override;
-      double_size get_text_extent(const ::scoped_string & scopedstr) override;
+      double_size _get_text_extent(const ::scoped_string & scopedstr, character_count iIndex) override;
+      double_size _get_text_extent(const ::scoped_string & scopedstr) override;
       //double_size get_text_extent(const block & block) override;
-      bool _GetTextExtent(double_size & double_size, const char * lpszString, character_count nCount, character_count iIndex);
+      bool _GetTextExtent(double_size & double_size, const_char_pointer lpszString, character_count nCount, character_count iIndex);
       //double_size get_text_extent(const ::scoped_string & scopedstr, character_count iIndex) override;
       //double_size get_text_extent(const ::scoped_string & scopedstr) override;
-      ///double_size get_text_extent(const ::string & str) override;
-      //double_size GetOutputTextExtent(const char * lpszString, character_count nCount) override;
-      //double_size GetOutputTextExtent(const ::string & str) override;
-      //double_size GetTabbedTextExtent(const ::string & lpszString, character_count nCount, ::collection::count nTabPositions, int * lpnTabStopPositions) override;
-      //double_size GetTabbedTextExtent(const ::string & str, ::collection::count nTabPositions, int * lpnTabStopPositions) override;
-      //double_size GetOutputTabbedTextExtent(const ::string & lpszString, character_count nCount, ::collection::count nTabPositions, int * lpnTabStopPositions) override;
-      //double_size GetOutputTabbedTextExtent(const ::string & str, ::collection::count nTabPositions, int * lpnTabStopPositions) override;
+      ///double_size get_text_extent(const ::scoped_string & scopedstr) override;
+      //double_size GetOutputTextExtent(const_char_pointer lpszString, character_count nCount) override;
+      //double_size GetOutputTextExtent(const ::scoped_string & scopedstr) override;
+      //double_size GetTabbedTextExtent(const ::scoped_string & scopedstrString, character_count nCount, ::collection::count nTabPositions, int * lpnTabStopPositions) override;
+      //double_size GetTabbedTextExtent(const ::scoped_string & scopedstr, ::collection::count nTabPositions, int * lpnTabStopPositions) override;
+      //double_size GetOutputTabbedTextExtent(const ::scoped_string & scopedstrString, character_count nCount, ::collection::count nTabPositions, int * lpnTabStopPositions) override;
+      //double_size GetOutputTabbedTextExtent(const ::scoped_string & scopedstr, ::collection::count nTabPositions, int * lpnTabStopPositions) override;
       //virtual bool GrayString(::draw2d::brush* pBrush, bool (CALLBACK* lpfnOutput)(HDC, LPARAM, int), LPARAM lpData, int nCount, double x, double y, double nWidth, double nHeight) override;
       unsigned int GetTextAlign() override;
       unsigned int SetTextAlign(unsigned int nFlags) override;
@@ -463,12 +463,12 @@ namespace draw2d_cairo
 //#endif
 //
 //      // Printer/Device Escape Functions
-//      virtual int Escape(int nEscape, int nCount, const ::string & lpszInData, LPVOID lpOutData) override;
-//      int Escape(int nEscape, int nInputSize, const ::string & lpszInputData, int nOutputSize, char * lpszOutputData) override;
-//      int DrawEscape(int nEscape, int nInputSize, const ::string & lpszInputData) override;
+//      virtual int Escape(int nEscape, int nCount, const ::scoped_string & scopedstrInData, LPVOID lpOutData) override;
+//      int Escape(int nEscape, int nInputSize, const ::scoped_string & scopedstrInputData, int nOutputSize, char * lpszOutputData) override;
+//      int DrawEscape(int nEscape, int nInputSize, const ::scoped_string & scopedstrInputData) override;
 //
       // Escape helpers
-      //int StartDoc(const ::string & lpszDocName) override;  // old Win3.0 version
+      //int StartDoc(const ::scoped_string & scopedstrDocName) override;  // old Win3.0 version
 //xxx      int StartDoc(LPDOCINFO lpDocInfo) override;
       int StartPage() override;
       int EndPage() override;
@@ -561,40 +561,40 @@ namespace draw2d_cairo
 
       //bool _set(___shape<::draw2d::region> * pshape);
       //bool _set(___shape<::draw2d::path> * pshape);
-      bool _set(::geometry2d::item * pitem);
+      bool _set(::geometry2d::item * pitem) override;
       bool _set(::draw2d::region * pregion);
       //bool _set(::draw2d::path * ppath);
-      bool _set(const ::draw2d::enum_item & eitem);
+      bool _set(const ::draw2d::enum_item & eitem) override;
 
 
-      bool _set(const ::double_arc & arc, const ::pointer<::draw2d::region>& pregion);
-      //bool _set(const ::line & line);
-      //bool _set(const ::lines & lines);
-      bool _set(const ::double_rectangle & rectangle, const ::pointer<::draw2d::region>& pregion);
-      bool _set(const ::double_ellipse & ellipse, const ::pointer<::draw2d::region>& pregion);
-      bool _set(const ::double_polygon & polygon, const ::pointer<::draw2d::region>& pregion);
-      bool _set(const ::write_text::text_out & textout, const ::pointer<::draw2d::region>& pregion);
-      bool _set(const ::write_text::draw_text & drawtext, const ::pointer<::draw2d::region>& pregion);
+      bool _set(const ::double_arc & arc, const ::pointer<::draw2d::region>& pregion) override;
+      //bool _set(const ::line & line) override;
+      //bool _set(const ::lines & lines) override;
+      bool _set(const ::double_rectangle & rectangle, const ::pointer<::draw2d::region>& pregion) override;
+      bool _set(const ::double_ellipse & ellipse, const ::pointer<::draw2d::region>& pregion) override;
+      bool _set(const ::double_polygon_base & polygon, const ::pointer<::draw2d::region>& pregion) override;
+      bool _set(const ::write_text::text_out & textout, const ::pointer<::draw2d::region>& pregion) override;
+      bool _set(const ::write_text::draw_text & drawtext, const ::pointer<::draw2d::region>& pregion) override;
 
 
-      bool _set(const ::double_arc & arc, const ::pointer<::draw2d::path>& ppath);
-      bool _set(const ::double_line & line, const ::pointer<::draw2d::path>& ppath);
-      bool _set(const ::double_lines & lines, const ::pointer<::draw2d::path>& ppath);
-      bool _set(const ::double_rectangle & rectangle, const ::pointer<::draw2d::path>& ppath);
-      bool _set(const ::double_ellipse & ellipse, const ::pointer<::draw2d::path>& ppath);
-      bool _set(const ::double_polygon & polygon, const ::pointer<::draw2d::path>& ppath);
-      bool _set(const ::write_text::text_out & textout, const ::pointer<::draw2d::path>& ppath);
-      bool _set(const ::write_text::draw_text & drawtext, const ::pointer<::draw2d::path>& ppath);
+      bool _set(const ::double_arc & arc, const ::pointer<::draw2d::path>& ppath) override;
+      bool _set(const ::double_line & line, const ::pointer<::draw2d::path>& ppath) override;
+      bool _set(const ::double_lines & lines, const ::pointer<::draw2d::path>& ppath) override;
+      bool _set(const ::double_rectangle & rectangle, const ::pointer<::draw2d::path>& ppath) override;
+      bool _set(const ::double_ellipse & ellipse, const ::pointer<::draw2d::path>& ppath) override;
+      bool _set(const ::double_polygon_base & polygon, const ::pointer<::draw2d::path>& ppath) override;
+      bool _set(const ::write_text::text_out & textout, const ::pointer<::draw2d::path>& ppath) override;
+      bool _set(const ::write_text::draw_text & drawtext, const ::pointer<::draw2d::path>& ppath) override;
 
 
-      bool _set(const ::double_arc & arc);
-      bool _set(const ::double_line & line);
-      bool _set(const ::double_lines & lines);
-      bool _set(const ::double_rectangle & rectangle);
-      bool _set(const ::double_ellipse & ellipse);
-      bool _set(const ::double_polygon & polygon);
-      bool _set(const ::write_text::text_out & textout);
-      bool _set(const ::write_text::draw_text & drawtext);
+      bool _set(const ::double_arc & arc) override;
+      bool _set(const ::double_line & line) override;
+      bool _set(const ::double_lines & lines) override;
+      bool _set(const ::double_rectangle & rectangle) override;
+      bool _set(const ::double_ellipse & ellipse) override;
+      bool _set(const ::double_polygon_base & polygon) override;
+      bool _set(const ::write_text::text_out & textout) override;
+      bool _set(const ::write_text::draw_text & drawtext) override;
 
 
       bool fill_and_draw(::draw2d::brush * pbrush, ::draw2d::pen * ppen);
@@ -624,10 +624,10 @@ namespace draw2d_cairo
 
       //virtual void enum_fonts(::write_text::font_enumeration_item_array & itema) override;
 
-      //virtual ::file::path get_font_path(const ::string & strName, int iWeight, bool bItalic) override;
+      //virtual ::file::path get_font_path(const ::scoped_string & scopedstrName, int iWeight, bool bItalic) override;
 
 
-      FT_Face ftface(const ::string & pszFontName, int iWeight, bool bItalic);
+      FT_Face ftface(const ::scoped_string & scopedstrFontName, int iWeight, bool bItalic);
       //FT_Face ftface(const ::block & block);
 
       //virtual void on_apply_clip_region() override;
@@ -636,7 +636,7 @@ namespace draw2d_cairo
    };
 
 
-   CLASS_DECL_AURA string q_valid_string(string str);
+   CLASS_DECL_AURA string q_valid_string(const ::scoped_string & scopedstr);
 
 
 } // namespace win

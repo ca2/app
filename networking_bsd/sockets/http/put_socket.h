@@ -57,9 +57,9 @@ namespace sockets
 
       // these must be specified before connecting / adding to handler
       /** Set filename to send. */
-      void SetFile(const string & );
+      void SetFile(const ::scoped_string & scopedstr);
       /** Set mimetype of file to send. */
-      void SetContentType(const string & );
+      void SetContentType(const ::scoped_string & scopedstr);
 
       /** http put client implemented in OnConnect */
       virtual bool step() override;

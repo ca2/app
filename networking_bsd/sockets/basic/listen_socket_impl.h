@@ -38,10 +38,10 @@ namespace sockets_bsd
 
       void destroy() override;
 
-      void set_ssl_catalog(const ::string & strCat) override;
+      void set_ssl_catalog(const ::scoped_string & scopedstrCat) override;
 
 
-      void set_ssl_cipher_list(const ::string & strCipherList) override;
+      void set_ssl_cipher_list(const ::scoped_string & scopedstrCipherList) override;
 
 
 
@@ -67,14 +67,14 @@ namespace sockets_bsd
       \lparam intf Interface hostname
       \lparam port Port (0 is random)
       \lparam depth Listen queue depth */
-      int Bind(const string & intf,::networking::port_t port,int depth = 4096) override;
+      int Bind(const ::scoped_string & scopedstrInterface,::networking::port_t port,int depth = 4096) override;
 
       /** Bind and listen to specific interface.
       \lparam intf Interface hostname
       \lparam port Port (0 is random)
       \lparam protocol Network protocol
       \lparam depth Listen queue depth */
-      int Bind(const string & intf,::networking::port_t port,const string & protocol,int depth = 4096) override;
+      int Bind(const ::scoped_string & scopedstrInterface,::networking::port_t port,const string & protocol,int depth = 4096) override;
 
       /** Bind and listen to ipv4 interface.
       \lparam a Ipv4 interface address

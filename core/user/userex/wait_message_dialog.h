@@ -26,7 +26,7 @@ namespace userex
 
       //void install_message_routing(::channel * pchannel) override;
 
-      virtual void on_show(const ::string & pszMatter) override;
+      virtual void on_show(const ::scoped_string & scopedstrMatter) override;
 
       void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
 

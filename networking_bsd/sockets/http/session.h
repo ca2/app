@@ -25,7 +25,7 @@ namespace sockets
 
 
 
-      http_session(const string & protocol, const string & host);
+      http_session(const string & protocol, const ::scoped_string & scopedstrHost);
       ~http_session();
 
 
@@ -49,8 +49,8 @@ namespace sockets
 
       using http_client_socket::request;
 
-      virtual void request(const ::string & strMethod, const string & pszRequest);
-      virtual void request(e_http_method emethod, const string & pszRequest);
+      virtual void request(const ::scoped_string & scopedstrMethod, const ::scoped_string & scopedstrRequest);
+      virtual void request(e_http_method emethod, const ::scoped_string & scopedstrRequest);
 
 
       bool step() override;

@@ -20,7 +20,7 @@ namespace write_text
    //protected:
       font_family(enum_font efont);
 
-      template < character_range RANGE >
+      template < primitive_character_range RANGE >
       font_family(const RANGE & rangeFamilyName)
       {
 
@@ -30,7 +30,7 @@ namespace write_text
 
       }
 
-      template < character_range RANGE, character_range RANGE2 >
+      template < primitive_character_range RANGE, primitive_character_range RANGE2 >
       font_family(const RANGE & rangeFamilyName, const RANGE2 & rangeBranch)
       {
 
@@ -99,29 +99,29 @@ namespace write_text
       font_family_pointer(enum_font efont = e_font_default);
 
 
-      template < character_range RANGE >
+      template < primitive_character_range RANGE >
       font_family_pointer(const RANGE & rangeFamilyName):
-         ::pointer < font_family >(__allocate font_family(rangeFamilyName))
+         ::pointer < font_family >(øallocate font_family(rangeFamilyName))
       {
       }
 
-      template < character_range RANGE, character_range RANGE2 >
+      template < primitive_character_range RANGE, primitive_character_range RANGE2 >
       font_family_pointer(const RANGE & rangeFamilyName, const RANGE2 & rangeBranch) :
-         ::pointer < font_family >(__allocate font_family(rangeFamilyName, rangeBranch))
+         ::pointer < font_family >(øallocate font_family(rangeFamilyName, rangeBranch))
       {
       }
 
 
       template < primitive_character CHARACTER >
       font_family_pointer(const CHARACTER * pszFamilyName):
-         ::pointer < font_family >(__allocate font_family(pszFamilyName))
+         ::pointer < font_family >(øallocate font_family(pszFamilyName))
       {
 
       }
 
       template < primitive_character CHARACTER, primitive_character CHARACTER2 >
       font_family_pointer(const CHARACTER * pszFamilyName, const CHARACTER2 * pszBranch) :
-         ::pointer < font_family >(__allocate font_family(pszFamilyName, pszBranch))
+         ::pointer < font_family >(øallocate font_family(pszFamilyName, pszBranch))
       {
 
       }

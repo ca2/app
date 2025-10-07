@@ -10,17 +10,31 @@
 #pragma once
 
 
+template<typename T>
+class pointer;
+
 
 
 
 #include "acme/prototype/prototype/enumeration.h"
 
 
+
+
+//template < typename TYPE, ::enum_flag t_eflag = e_flag_none, ::enum_status t_estatus = undefined >
+template < typename TYPE >
+class make_particle1;
+
+
+template < typename TYPE >
+class array_particle;
+
+
 template < typename ITERATOR_TYPE >
 class scoped_string_base;
 
 
-using scoped_ansi_string = scoped_string_base < const ::ansi_character * >;
+using scoped_ansi_string = scoped_string_base < const_char_pointer >;
 using scoped_wd16_string = scoped_string_base < const ::wd16_character * >;
 using scoped_wd32_string = scoped_string_base < const ::wd32_character * >;
 using scoped_wide_string = scoped_string_base < const ::wide_character * >;
@@ -36,12 +50,21 @@ class binary_stream;
 //// template < typename FILE >
 class write_text_stream;
 
+
+namespace file
+{
+
+   using listing = ::array_particle < listing_base >;
+
+} // namespace file
+
+
 template < typename RESULT >
 class process;
 
 
-template<class T>
-class pointer;
+//template<class T>
+//class pointer;
 
 
 template < typename HOLDEE >
@@ -52,36 +75,12 @@ class holdee
 
 
 
-template<class T>
-class pointer;
+//template<primitive_subparticle T>
+//class pointer;
 
 
 //template<class T>
 //class pointer_array;
-
-
-namespace image
-{
-
-   
-   using image_pointer = ::pointer<::image::image>;
-
-
-} // namespace image
-
-
-using mutex_pointer = ::pointer<::mutex>;
-
-
-namespace write_text
-{
-
-
-   using font_pointer = ::pointer<font>;
-
-
-} // namespace write_text
-
 
 
 
@@ -112,7 +111,7 @@ namespace write_text
 
 template < typename T >
 concept const_c_string =
-std::is_convertible < T, const ::ansi_character * >::value ||
+std::is_convertible < T, const_char_pointer >::value ||
 std::is_convertible < T, const ::wd16_character * >::value ||
 std::is_convertible < T, const ::wd32_character * >::value;
 
@@ -134,9 +133,8 @@ struct base_const_c_string
 
    using type =
       typename if_else <
-      std::is_convertible < T, const ::ansi_character * >::value,
-      const ::ansi_character *,
-      typename if_else <
+      std::is_convertible < T, const_char_pointer >::value,
+      const_char_pointer ,  typename if_else <
       std::is_convertible < T, const ::wd16_character * >::value,
       const ::wd16_character *,
       typename if_else <
@@ -244,6 +242,9 @@ namespace typed
    class def;
 
    template < typename TYPE >
+   class def_with_zero_init;
+
+   template < typename TYPE >
    class nodef;
 
    template < typename TYPE >
@@ -264,10 +265,10 @@ namespace heap
 
 
 template < class TYPE, class ARG_TYPE = const TYPE &, class TYPED = ::typed::nodef < TYPE >, class MEMORY = ::heap::typed_memory < TYPE, ::heap::e_memory_array >, ::enum_type t_etypeContainer = e_type_element >
-class array_base;
+class base_array;
 
-template < class TYPE, class ARG_TYPE = const TYPE &, class TYPED = ::typed::nodef < TYPE >, class MEMORY = ::heap::typed_memory < TYPE, ::heap::e_memory_array >, ::enum_type t_etypeContainer = e_type_element >
-class array_base_quantum;
+//template < class TYPE, class ARG_TYPE = const TYPE &, class TYPED = ::typed::nodef < TYPE >, class MEMORY = ::heap::typed_memory < TYPE, ::heap::e_memory_array >, ::enum_type t_etypeContainer = e_type_element >
+//class base_array_quantum;
 
 template < class TYPE, class ARG_TYPE = const TYPE & >
 class row;
@@ -276,28 +277,27 @@ template < class TYPE, class ARG_TYPE = const TYPE &, class TYPED = ::typed::nod
 class array_2d;
 
 template < class TYPE, class ARG_TYPE = const TYPE &, class TYPED = ::typed::def < TYPE  >, class MEMORY = ::heap::typed_memory < TYPE, ::heap::e_memory_array >, ::enum_type t_etypeContainer = e_type_element >
-class array;
+class array_base;
 
 template < class TYPE, class ARG_TYPE = const TYPE &, class TYPED = ::typed::def < TYPE  >, class MEMORY = ::heap::typed_memory < TYPE, ::heap::e_memory_array >, ::enum_type t_etypeContainer = e_type_element >
-class array_non_particle;
+using array = array_particle < array_base < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > > ;
+
+template < class TYPE, class ARG_TYPE = const TYPE&, class TYPED = ::typed::def_with_zero_init < TYPE  >, class MEMORY = ::heap::typed_memory < TYPE, ::heap::e_memory_array >, ::enum_type t_etypeContainer = e_type_element >
+using array_with_zero_init = array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >;
+
+//template < class TYPE, class ARG_TYPE = const TYPE &, class TYPED = ::typed::def < TYPE  >, class MEMORY = ::heap::typed_memory < TYPE, ::heap::e_memory_array >, ::enum_type t_etypeContainer = e_type_element >
+//class array_non_particle;
 
 
 template < typename ARRAY_BASE, int t_preallocated_array_size >
-class preallocated_array;
-
-
-template < class T, typename ARG_T = const T *, typename ARRAY_BASE = array < ::pointer < T >, ARG_T > >
-class pointer_array;
-
-template < class T, int t_preallocated_array_size, typename ARG_T = const T *, typename ARRAY_BASE = array < ::pointer < T >, ARG_T > >
-using preallocated_pointer_array = pointer_array < T, ARG_T, preallocated_array < ARRAY_BASE, t_preallocated_array_size > >;
+class preallocated_array_base;
 
 
 template < typename FUNCTION >
 class function;
 
 template < class TYPE, class ARG_TYPE = const TYPE & >
-class list;
+class list_base;
 
 
 template < typename T >
@@ -308,25 +308,42 @@ template < typename SINGLE >
 struct make_single ;
 
 
-template < typename NODE >
-class node_set;
+enum enum_allocate
+{
+   e_allocate_normal,
+   e_allocate_malloc,
+};
+
+
+template < typename ITEM, enum_allocate t_eallocate = e_allocate_normal >
+class node_set_base;
 
 
 template < typename KEY, typename NODE = single < KEY > >
-using set = node_set < ::make_single < NODE > >;
+using set = node_set_base < ::make_single < NODE > >;
 
 
 template < typename T1, typename T2 >
 class pair;
 
 
-template < typename PAIR >
-class pair_map;
+template < typename PAIR, enum_allocate t_eallocate = e_allocate_normal >
+class pair_map_base;
+
+
+template < typename TYPE1, typename TYPE2, class PAIR = pair < TYPE1, TYPE2 >, enum_allocate t_eallocate = e_allocate_normal >
+using map_base = pair_map_base < PAIR, t_eallocate >;
+
+template < typename TYPE1, typename TYPE2, enum_allocate t_eallocate = e_allocate_normal, class PAIR = pair < TYPE1, TYPE2 > >
+using map_base2 = pair_map_base < PAIR, t_eallocate >;
+
+
+template<typename MAP_BASE>
+class map_particle;
 
 
 template < typename TYPE1, typename TYPE2, class PAIR = pair < TYPE1, TYPE2 > >
-using map = pair_map < PAIR >;
-
+using map = map_particle < map_base < TYPE1, TYPE2, PAIR > >;
 
 template<class ENUM>
 class flags;
@@ -337,30 +354,39 @@ class base_enum;
 
 
 
-using item_pointer = ::pointer < ::item >;
-
-using memory_pointer = ::pointer < ::memory >;
-
 template < typename TYPE, typename PAIR = pair < ::atom, TYPE > >
-using atom_map = ::map < atom, TYPE, PAIR >;
+using atom_map_base = ::map_base < atom, TYPE, PAIR >;
 
 
+template < typename TYPE >
+class comparable_eq_array_particle;
 
 
-template < class TYPE, class ARG_TYPE = const TYPE &, class ARRAY_TYPE = array < TYPE, ARG_TYPE > >
-class comparable_eq_array;
+template < typename TYPE >
+class comparable_array_particle;
 
 
-template < class TYPE, class ARG_TYPE = TYPE const &, class ARRAY_TYPE = array_non_particle < TYPE, ARG_TYPE > >
-using non_particle_comparable_eq_array = comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE >;
+template < class TYPE, class ARG_TYPE = const TYPE &, class ARRAY_TYPE = array_base < TYPE, ARG_TYPE > >
+class comparable_eq_array_base;
+
+template < class TYPE, class ARG_TYPE = TYPE const &, class ARRAY_TYPE = comparable_eq_array_base < TYPE, ARG_TYPE > >
+using comparable_eq_array = ::comparable_eq_array_particle< comparable_eq_array_base< TYPE, ARG_TYPE, ARRAY_TYPE > >;
 
 
-template < class TYPE, class ARG_TYPE = TYPE const &, class ARRAY_TYPE = comparable_eq_array < TYPE, ARG_TYPE > >
-class comparable_array;
+//template < class TYPE, class ARG_TYPE = TYPE const &, class ARRAY_TYPE = array_non_particle < TYPE, ARG_TYPE > >
+//using non_particle_comparable_eq_array = comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE >;
 
 
-template < class TYPE, class ARG_TYPE = TYPE const &, class ARRAY_TYPE = non_particle_comparable_eq_array < TYPE, ARG_TYPE > >
-using non_particle_comparable_array = comparable_array < TYPE, ARG_TYPE, ARRAY_TYPE >;
+template < class TYPE, class ARG_TYPE = TYPE const &, class ARRAY_TYPE = comparable_eq_array_base < TYPE, ARG_TYPE > >
+class comparable_array_base;
+
+
+template < class TYPE, class ARG_TYPE = TYPE const &, class ARRAY_TYPE = comparable_eq_array_base < TYPE, ARG_TYPE > >
+using comparable_array = ::comparable_array_particle< comparable_array_base< TYPE, ARG_TYPE, ARRAY_TYPE > >;
+
+
+//template < class TYPE, class ARG_TYPE = TYPE const &, class ARRAY_TYPE = non_particle_comparable_eq_array < TYPE, ARG_TYPE > >
+//using non_particle_comparable_array = comparable_array < TYPE, ARG_TYPE, ARRAY_TYPE >;
 
 
 namespace allocator
@@ -393,49 +419,42 @@ namespace allocator
 
 
 template < typename TYPE, typename ARG_TYPE = const TYPE &, class TYPED = ::typed::rawcopy < TYPE  >, class MEMORY = ::heap::typed_memory < TYPE, ::heap::e_memory_array >, ::enum_type t_etypeContainer = e_type_element >
-class raw_array;
+class raw_array_base;
 
 
-template < typename TYPE, typename ARG_TYPE = const TYPE &, class TYPED = ::typed::rawcopy < TYPE  >, class MEMORY = ::heap::typed_memory < TYPE, ::heap::e_memory_array >, ::enum_type t_etypeContainer = e_type_element >
-class raw_array_quantum;
+//template < typename TYPE, typename ARG_TYPE = const TYPE &, class TYPED = ::typed::rawcopy < TYPE  >, class MEMORY = ::heap::typed_memory < TYPE, ::heap::e_memory_array >, ::enum_type t_etypeContainer = e_type_element >
+//class raw_array_quantum;
 
 
-template < typename POINTER, class ARRAY_TYPE = comparable_array < POINTER, POINTER, comparable_eq_array < POINTER, POINTER, raw_array < POINTER, POINTER, ::allocator::zero < POINTER > > > > >
-class address_array;
+template < typename POINTER, class ARRAY_TYPE = comparable_array_base < POINTER, POINTER, comparable_eq_array_base < POINTER, POINTER, raw_array_base < POINTER, POINTER, ::allocator::zero < POINTER > > > > >
+class address_array_base;
 
 
 class exception;
 
 
-using exception_array = ::array < ::exception >;
+using exception_array_base = ::array_base < ::exception >;
 
-
-
-using particle_array = pointer_array < particle >;
-using subparticle_array = pointer_array < subparticle >;
-
-
-
-using regular_expression_pointer = ::pointer<::regular_expression::regular_expression>;
+using exception_array = ::array_particle < ::exception_array_base >;
 
 
 
 
-typedef address_array < const char * > const_char_ptra;
-
-typedef address_array < void * > void_ptra;
 
 
-using particle_address_array = address_array < particle * >;
 
 
-using file_pointer = ::pointer<::file::file>;
+using const_char_ptra_base= address_array_base < const_char_pointer >;
+using const_char_ptra =  ::array_particle < const_char_ptra_base >;
+
+using void_ptra_base =  address_array_base<void *>;
+using void_ptra =  ::array_particle < void_ptra_base >;
 
 
-using memory_file_pointer = ::pointer<::memory_file>;
+using particle_address_array_base = address_array_base < particle * >;
+using particle_address_array = ::array_particle <particle_address_array_base> ;
 
 
-using folder_pointer = ::pointer<::folder>;
 
 
 template < typename T >
@@ -452,25 +471,12 @@ concept an_object = !std::is_pointer < T >::value
                     && !std::is_floating_point < T >::value;
 
 
-template<typename T>
-inline ::pointer < T > pointer_transfer(T * p);
-
-
-template < typename T, typename ...Args >
-inline ::pointer < T > __call__allocate(Args &&... args);
-
 
 
 //template < typename SEQUENCE >
 class sequencer;
 
 
-using manager_pointer = ::pointer<manager>;
-using context_pointer = ::pointer<context>;
-
-
-using topic_pointer = ::pointer<topic>;
-using extended_topic_pointer = ::pointer<extended_topic>;
 
 //template < typename SEQUENCE >
 class sequencer;
@@ -486,9 +492,9 @@ using procedure = ::function < void() >;
 
 class procedure_array;
 
-using procedure_map = ::atom_map < ::procedure_array >;
+using procedure_map = ::atom_map_base < ::procedure_array >;
 
-using procedure_list = ::list < ::procedure >;
+using procedure_list_base = ::list_base < ::procedure >;
 
 
 
@@ -498,34 +504,52 @@ class unique_number_sort_array;
 
 
 template < typename TYPE, ::enum_type t_etypeContainer = e_type_element >
-class numeric_array;
+class numeric_array_base;
 
 
-using char_array = numeric_array < char >;
-using short_array = numeric_array < short >;
-using int_array = numeric_array < int >;
-using long_long_array = numeric_array < long long >;
-
-using unsigned_char_array = numeric_array < unsigned char >;
-using unsigned_short_array = numeric_array < unsigned short >;
-using unsigned_int_array = numeric_array < unsigned int >;
-using u64_array = numeric_array < unsigned long long >;
-
-using float_array = numeric_array < float >;
-using double_array = numeric_array < double >;
+//template < typename TYPE, enum_type t_etypeContainer = e_type_element >
+//using numeric_array = ::array_particle < numeric_base_array < TYPE, t_etypeContainer > >;
 
 
-using int_array_array = ::array < int_array >;
+using char_array_base = numeric_array_base < char >;
+using short_array_base = numeric_array_base < short >;
+using int_array_base = numeric_array_base < int >;
+using long_long_array_base = numeric_array_base < long long >;
 
-using float_array_array = ::array < float_array >;
-using double_array_array = ::array < double_array >;
+using unsigned_char_array_base = numeric_array_base < unsigned char >;
+using unsigned_short_array_base = numeric_array_base < unsigned short >;
+using unsigned_int_array_base = numeric_array_base < unsigned int >;
+using unsigned_long_long_array_base = numeric_array_base < unsigned long long >;
+
+using float_array_base = numeric_array_base < float >;
+using double_array_base = numeric_array_base < double >;
 
 
-using index_array = numeric_array < ::collection::index >;
-using count_array = numeric_array < ::collection::count >;
+
+using char_array = ::array_particle < char_array_base >;
+using short_array = ::array_particle < short_array_base >;
+using int_array = ::array_particle < int_array_base >;
+using long_long_array = ::array_particle < long_long_array_base >;
+
+using unsigned_char_array = ::array_particle < unsigned_char_array_base >;
+using unsigned_short_array = ::array_particle < unsigned_short_array_base >;
+using unsigned_int_array = ::array_particle < unsigned_int_array_base >;
+using unsigned_long_long_array = ::array_particle < unsigned_long_long_array_base >;
+
+using float_array = ::array_particle < float_array_base >;
+using double_array = ::array_particle < double_array_base >;
 
 
-using unsigned_int_array = numeric_array < unsigned int >;
+using index_array_base = numeric_array_base < ::collection::index >;
+using count_array_base = numeric_array_base < ::collection::count >;
+
+using index_array = ::array_particle < index_array_base >;
+using count_array = ::array_particle < count_array_base >;
+
+
+using unsigned_int_array_base = numeric_array_base < unsigned int >;
+
+using unsigned_int_array = ::array_particle < unsigned_int_array_base >;
 
 
 using unique_int_sort_array = unique_number_sort_array < int >;
@@ -535,16 +559,20 @@ using unique_long_long_sort_array = unique_number_sort_array < long long >;
 #ifdef OS64BIT
 
 
-using iptr_array = long_long_array;
-using uptr_array = u64_array;
+using iptr_array_base = long_long_array_base;
+using uptr_array_base = unsigned_long_long_array_base;
+using iptr_array = long_long_array_base;
+using uptr_array = unsigned_long_long_array;
 
 using unique_iptr_sort_array = unique_long_long_sort_array;
 
 
 #else
 
+using iptr_array_base = int_array_base;
+using uptr_array_base = unsigned_int_array_base;
 
-using iptr_array = int_array;
+using iptr_array = int_array_base;
 using uptr_array = unsigned_int_array;
 
 using unique_iptr_sort_array = unique_int_sort_array;
@@ -552,37 +580,21 @@ using unique_iptr_sort_array = unique_int_sort_array;
 
 #endif
 
-using float_array = numeric_array < float >;
-using double_array = numeric_array < double >;
+//using float_array = numeric_array < float >;
+//using double_array = numeric_array < double >;
+
+using strsize_array_base = iptr_array_base;
 
 using strsize_array = iptr_array;
 
-using process_identifier_array = ::numeric_array < process_identifier >;
+using process_identifier_array_base = ::numeric_array_base < process_identifier >;
+
+using process_identifier_array = ::array_particle < process_identifier_array_base >;
 
 //using strsize_ptr_array = ptr_array < character_count *  >;
 
-
+using byte_array_base = unsigned_char_array_base;
 using byte_array = unsigned_char_array;
-
-using task_pointer = ::pointer < task >;
-
-
-//#include "acme/prototype/prototype/_u32hash.h"
-
-
-CLASS_DECL_ACME task_pointer fork(::particle * pparticle, const ::procedure & procedure);
-
-
-namespace draw2d
-{
-
-
-   using graphics_pointer = ::pointer<graphics>;
-
-
-} // namespace draw2d
-
-
 
 
 
@@ -622,10 +634,6 @@ void __swap(A & a, B & b)
    b = aCopy;
 
 }
-
-
-
-typedef pointer_array < ::particle > particle_array;
 
 
 
@@ -782,18 +790,6 @@ public:
 
 
 
-namespace write_text
-{
-
-
-
-   using font_enumeration_item_array = pointer_array < font_enumeration_item >;
-
-
-} // namespace write_text
-
-
-
 
 
 namespace mathematics
@@ -841,13 +837,6 @@ template<typename POINTER_TYPE>
 class ptr_array;
 
 
-using object_ptra = pointer_array < ::matter >; // Please use just for keeping non-member-based references.
-
-using matter_array = pointer_array < ::matter >; // Please use just for keeping non-member-based references.
-
-using task_array = pointer_array < ::task >; // Please use just for keeping non-member-based references.
-
-
 //template < typename SEQUENCE >
 class step;
 
@@ -861,8 +850,6 @@ class cotaskptr_array;
 
 #endif
 
-
-using arguments = payload_array;
 
 
 template<class T>
@@ -928,7 +915,7 @@ using enum_application_capability_array = ::comparable_array < enum_application_
 ////::matter_pointer __handle_function(PREDICATE predicate)
 ////{
 ////
-////   return __allocate han<PREDICATE> (predicate);
+////   return øallocate han<PREDICATE> (predicate);
 ////
 ////}
 
@@ -952,17 +939,8 @@ auto as_non_const(const T * p)
 
 
 template < typename TYPE >
-using index_map = map < ::collection::index, TYPE >;
+using index_map_base = map_base < ::collection::index, TYPE >;
 
-
-namespace platform
-{
-
-
-   using session_map = ::index_map < ::pointer < ::platform::session > >;
-
-
-} // namespace platform
 
 
 
@@ -981,14 +959,14 @@ using dereference = typename dereference_struct < T >::type;
 
 //
 //template < typename T, typename ...Args >
-//inline T * __call__allocate(Args &&... args);
+//inline T * __call_allocate(Args &&... args);
 //
 //template < typename T >
 //inline void __call__delete(T * p);
 //
 //
 //template < typename T >
-//inline T * __allocate_array(::collection::count c);
+//inline T * øallocate_array(::collection::count c);
 
 
 //#if REFERENCING_DEBUGGING
@@ -1034,8 +1012,171 @@ using raw_enum_of = typename raw_enum_of_struct<erase_const_effemeral<ENUM>>::ty
 using enum_application_capability_array = ::comparable_array < enum_application_capability >;
 
 
-template <typename T1, typename T2>
-inline bool is_equivalent(T1 t1, T2 t2);
 
 
 
+class payload_array;
+
+
+
+
+
+
+using arguments = payload_array;
+
+
+
+
+
+
+
+
+
+
+namespace image
+{
+
+
+   using image_pointer = ::pointer<::image::image>;
+
+
+} // namespace image
+
+
+using mutex_pointer = ::pointer<::mutex>;
+
+
+namespace write_text
+{
+
+
+   class font;
+
+   using font_pointer = ::pointer<font>;
+
+
+} // namespace write_text
+
+
+using item_pointer = ::pointer<::item>;
+
+using memory_pointer = ::pointer<::memory>;
+
+
+template<class T, typename ARG_T = const T *, typename ARRAY_BASE = array_base<::pointer<T>, ARG_T>>
+class pointer_array_base;
+
+template<class T, typename ARG_T = const T *, typename ARRAY_BASE = array_base<::pointer<T>, ARG_T>>
+class pointer_array; // = ::array_particle < pointer_array_base < T, ARG_T, ARRAY_BASE > >;
+
+template<typename TYPE, int t_iSize, enum_array t_earray = e_array_none, typename ARG_TYPE = const TYPE &>
+class block_array;
+
+template<typename TYPE, typename ARG_TYPE>
+class array_range;
+
+
+template<class T, int t_preallocated_array_size, typename ARG_T = const T * >
+using preallocated_pointer_array_base = pointer_array_base<T, ARG_T, ::block_array < ::pointer < T >,t_preallocated_array_size, e_array_none, ARG_T > >;
+
+
+using particle_array_base = pointer_array_base<particle>;
+using subparticle_array_base = pointer_array_base<subparticle>;
+
+
+using particle_array = ::array_particle<particle_array_base>;
+using subparticle_array = ::array_particle<subparticle_array_base>;
+
+
+using regular_expression_pointer = ::pointer<::regular_expression::regular_expression>;
+
+
+using file_pointer = ::pointer<::file::file>;
+
+
+using memory_file_pointer = ::pointer<::memory_file>;
+
+
+using folder_pointer = ::pointer<::folder>;
+
+template<typename T>
+inline ::pointer<T> pointer_transfer(T *p);
+
+
+template<typename T, typename... Args>
+inline ::pointer<T> __call_allocate(Args &&...args);
+
+
+using manager_pointer = ::pointer<manager>;
+using context_pointer = ::pointer<context>;
+
+
+using topic_pointer = ::pointer<topic>;
+using extended_topic_pointer = ::pointer<extended_topic>;
+
+
+using int_array_array_base = ::array_base<int_array_base>;
+using float_array_array_base = ::array_base<float_array_base>;
+using double_array_array_base = ::array_base<double_array_base>;
+
+
+using task_pointer = ::pointer<task>;
+
+
+// #include "acme/prototype/prototype/_u32hash.h"
+
+
+CLASS_DECL_ACME task_pointer fork(::particle *pparticle, const ::procedure &procedure);
+
+using task_pointer = ::pointer<task>;
+
+
+// #include "acme/prototype/prototype/_u32hash.h"
+
+
+CLASS_DECL_ACME task_pointer fork(::particle *pparticle, const ::procedure &procedure);
+
+
+namespace draw2d
+{
+
+
+   using graphics_pointer = ::pointer<graphics>;
+
+
+} // namespace draw2d
+
+
+
+
+using particle_array_base = pointer_array_base<::particle>;
+
+
+using particle_array = ::array_particle<::particle_array_base>;
+
+
+namespace write_text
+{
+
+
+   using font_enumeration_item_array = pointer_array<font_enumeration_item>;
+
+
+} // namespace write_text
+
+
+using object_ptra = pointer_array<::matter>; // Please use just for keeping non-member-based references.
+
+using matter_array = pointer_array<::matter>; // Please use just for keeping non-member-based references.
+
+using task_array = pointer_array<::task>; // Please use just for keeping non-member-based references.
+
+
+namespace platform
+{
+
+
+   using session_map = ::index_map_base<::pointer<::platform::session>>;
+
+
+} // namespace platform

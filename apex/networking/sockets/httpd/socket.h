@@ -67,7 +67,7 @@ namespace httpd
 
       ::pointer < ::sockets::socket_thread > create_socket_thread() override;
 
-      //virtual bool read_file(const ::file::path & path,pointer_array < ::int_array > * prangea = nullptr,const ::scoped_string & scopedstrContentType = nullptr);
+      //virtual bool read_file(const ::file::path & path,pointer_array < ::int_array_base > * prangea = nullptr,const ::scoped_string & scopedstrContentType = nullptr);
 
       void on_set_parent_socket() override;
 
@@ -76,7 +76,7 @@ namespace httpd
       /** Decode and send a base64-encoded string.
          \lparam str64 Base64-encoded string
          \lparam type Mime type of content (content-type header) */
-      void Send64(const ::string& str64, const string& type);
+      void Send64(const ::scoped_string & scopedstr64, const string& type);
       string datetime2httpdate(const string& dt);
       string GetDate();
       void Reset() override;
@@ -92,10 +92,10 @@ namespace httpd
 
       virtual void on_send_response();
 
-      virtual bool http_filter_response_header(atom key, string_array& straValue);
+      virtual bool http_filter_response_header(atom key, string_array_base& straValue);
 
 
-      virtual void simple_file_server(const ::string& pszPath, bool bMatter = false);
+      virtual void simple_file_server(const ::scoped_string & scopedstrPath, bool bMatter = false);
 
 
 

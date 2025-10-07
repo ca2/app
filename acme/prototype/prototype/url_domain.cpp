@@ -6,7 +6,7 @@
 #include "acme/nano/nano.h"
 #include "acme/nano/idn/idn.h"
 
-//string idn_from_punycode(const ::string & str);
+//string idn_from_punycode(const ::scoped_string & scopedstr);
 
 
 url_domain_base::url_domain_base()
@@ -37,7 +37,7 @@ void url_domain_base::create(const ::scoped_string & scopedstrServerName)
    m_strOriginalName = scopedstrServerName;
    if(m_strOriginalName.is_empty())
       return;
-   const char * psz = m_strOriginalName;
+   const_char_pointer psz = m_strOriginalName;
    m_iCount = 1;
    while(*psz != '\0')
    {
@@ -52,7 +52,7 @@ void url_domain_base::create(const ::scoped_string & scopedstrServerName)
       psz += 4;
       m_iCount--;
    }
-   const char * pszEnd = ((const char *) m_strOriginalName) + m_strOriginalName.length();
+   const_char_pointer pszEnd = ((const_char_pointer )m_strOriginalName) + m_strOriginalName.length();
    m_pszTopLevel = pszEnd;
    while(m_pszTopLevel > psz && *m_pszTopLevel != '.')
    {
@@ -88,9 +88,9 @@ void url_domain_base::create(const ::scoped_string & scopedstrServerName)
       m_iLenName        = m_iLenDomain;
       return;
    }
-   const char * pszPreTopLevel = m_pszTopLevel - 2;
+   const_char_pointer pszPreTopLevel = m_pszTopLevel - 2;
    int iLenPreTopLevel = 0;
-   while(pszPreTopLevel > psz && *pszPreTopLevel != '.')
+   while (pszPreTopLevel > psz && *pszPreTopLevel != '.')
    {
       pszPreTopLevel--;
       iLenPreTopLevel++;
@@ -105,9 +105,9 @@ void url_domain_base::create(const ::scoped_string & scopedstrServerName)
       throw ::exception(error_wrong_state, "not_expected");
 
    }
-   const char * pszPreTopLevel2 = nullptr;
+   const_char_pointer pszPreTopLevel2 = nullptr;
    int iLenPreTopLevel2 = 0;
-   const char * pszPreTopLevel3 = nullptr;
+   const_char_pointer pszPreTopLevel3 = nullptr;
    //      int iLenPreTopLevel3 = 0;
    if(m_iCount >= 4)
    {
@@ -322,7 +322,7 @@ void url_domain::create(const ::scoped_string & scopedstrServerName)
 }
 
 
-bool CLASS_DECL_ACME server_is_top_domain(const char * pszTop1, character_count blen, const char * pszTop2, character_count alen)
+bool CLASS_DECL_ACME server_is_top_domain(const_char_pointer pszTop1, character_count blen, const_char_pointer pszTop2, character_count alen)
 {
    char a1;
    char a2;
@@ -1081,7 +1081,7 @@ bool CLASS_DECL_ACME server_is_top_domain(const char * pszTop1, character_count 
    return false;
 }
 
-/*      bool url_domain_in(string str, string url)
+/*      bool url_domain_in(const ::scoped_string & scopedstr, string url)
 {
 int iPos = url.rear_find('.');
 if(iPos < 0)

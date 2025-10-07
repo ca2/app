@@ -52,11 +52,11 @@ namespace gpu_opengl
 
    /*   virtual void translate_shader(string & str);
 
-      virtual void _translate_shader(string_array& stra);*/
+      virtual void _translate_shader(string_array_base& stra);*/
 
       //virtual void make_current();
 
-      // virtual string load_fragment(const ::string & pszPath, enum_shader_source& eshadersource);
+      // virtual string load_fragment(const ::scoped_string & scopedstrPath, enum_shader_source& eshadersource);
 
       //virtual string get_shader_version_text();
 
@@ -71,11 +71,14 @@ namespace gpu_opengl
       virtual void _opengl_lock();
       virtual void _opengl_unlock();
 
+      int get_frame_index2() override;
+
+      int get_frame_count() override;
 
    };
 
 
-} // namespace gpu
+} // namespace gpu_opengl
 
 
 

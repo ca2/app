@@ -54,7 +54,7 @@ public:
 
    //::pointer < ::pointer_array< ::subparticle > > m_psynca;
    
-   ::preallocated_pointer_array < ::subparticle, 10 > m_synca;
+   ::preallocated_pointer_array_base < ::subparticle, 10 > m_synca;
    
    
    notify_lock(manual_reset_happening * pmanualresethappening):

@@ -18,7 +18,7 @@ namespace user
       //
       // ::pointer < ::user::interaction_base >                    m_pmousefocusLButtonDown;
       // ::pointer < ::user::interaction_base >                    m_pmousefocusRButtonDown;
-      // string_array                                       m_straEscape;
+      // string_array_base                                       m_straEscape;
       //
       // //::pointer<::user::shell>                         m_pshell;
       //
@@ -29,7 +29,7 @@ namespace user
 
       ::pointer < ::experience::department >             m_pexperience;
 
-      //atom_map < ::pointer < ::user::impact_system > >   m_mapimpactsystem;
+      //atom_map_base < ::pointer < ::user::impact_system > >   m_mapimpactsystem;
 
       //::user::impact_system * m_ptemplateHtmlChildForm1;
 
@@ -74,7 +74,7 @@ namespace user
 
       //virtual void destroy() override;
 
-      //virtual void SendMessageToWindows(::enum_message emessage, ::wparam wparam, ::lparam lparam) override;
+      //virtual void SendMessageToWindows(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam) override;
 
       //virtual void term() override;
 
@@ -108,13 +108,13 @@ namespace user
       //::pointer < ::menu::menu > menu_from_xml(::particle * pparticleContext, const ::scoped_string & scopedstrXml) override;
 
 
-      virtual void defer_instantiate_user_style(const ::string & strExperience = nullptr);
+      virtual void defer_instantiate_user_style(const ::scoped_string & scopedstrExperience = nullptr);
 
 
-      virtual ::user::style_pointer instantiate_user_style(const ::string & strExperience, ::platform::application* papp = nullptr);
+      virtual ::user::style_pointer instantiate_user_style(const ::scoped_string & scopedstrExperience, ::platform::application* papp = nullptr);
 
 
-      virtual ::user::style_pointer get_user_style(const ::string & strExperience, ::platform::application* papp = nullptr);
+      virtual ::user::style_pointer get_user_style(const ::scoped_string & scopedstrExperience, ::platform::application* papp = nullptr);
 
 
       //virtual ::type_atom get_pane_tab_impact_type_info();
@@ -126,7 +126,7 @@ namespace user
       virtual ::type_atom get_simple_child_frame_type_info();
 
 
-      virtual void on_frame_window_drop_files(::user::interaction* pinteraction, ::file::path_array& patha);
+      virtual void on_frame_window_drop_files(::user::interaction* pinteraction, ::file::path_array_base& patha);
 
 
       virtual void initialize_html();

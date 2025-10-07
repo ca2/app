@@ -10,10 +10,10 @@
 
 
 
-using id_to_id = atom_map < atom >;
+using id_to_id_base = atom_map_base < atom >;
 
 
-using id_to_index = atom_map < ::collection::index >;
+using id_to_index_base = atom_map_base < ::collection::index >;
 
 
 

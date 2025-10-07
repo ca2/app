@@ -128,13 +128,14 @@ namespace sockets_bsd
       bool                    m_bLineProtocol; ///< Line protocol mode flag
       bool                    m_skip_c; ///< Skip element2() char of CRLF or LFCR sequence in OnRead
       char                    m_c; ///< First char in CRLF or LFCR sequence
-      string                  m_line; ///< Current line in line protocol mode
+      //scoped_string           m_scopedstrLine; ///< Current line in line protocol mode
+      string                  m_strLine;
 
       ::e_status             m_estatus;
       //class ::time              m_timeStart;
 
 
-      ::string_array          m_straDebug;
+      ::string_array_base          m_straDebug;
 
       int m_iSelectRead;
       int m_iSelectWrite;
@@ -222,7 +223,7 @@ namespace sockets_bsd
       void get_ssl_session() override;
 
 
-      ::string_array & debugstra() override;
+      ::string_array_base & debugstra() override;
       //virtual ::string debug_text();
 
 
@@ -350,7 +351,7 @@ namespace sockets_bsd
       //void OnAccept(::winrt::Windows::Foundation::IAsyncAction ^ action, ::winrt::Windows::Foundation::AsyncStatus status);
       /** Called when a complete line has been read and the base_socket is in
       * line protocol mode. */
-      void OnLine(const string & ) override;
+      void OnLine(const ::scoped_string & scopedstrLine) override;
 
 
       bool on_select_idle() override;
@@ -549,7 +550,7 @@ namespace sockets_bsd
       bool SetSoBsdcompat(bool x = true) override;
 #endif
 #ifdef SO_BINDTODEVICE
-      bool SetSoBindtodevice(const string & intf) override;
+      bool SetSoBindtodevice(const ::scoped_string & scopedstrInterface) override;
 #endif
 #ifdef SO_PASSCRED
       bool SetSoPasscred(bool x = true) override;
@@ -621,6 +622,8 @@ namespace sockets_bsd
       bool IsSSLNegotiate() override;
       /** Set flag indicating ssl handshaking still in progress. */
       void SetSSLNegotiate(bool x = true) override;
+      /** Set flag indicating that ssl shutdown shouldn't be called when stopping the connection. */
+      void set_no_ssl_shutdown() override;
       /** OnAccept called with SSL Enabled.
       \return true if this is a tcp_socket with an incoming SSL connection */
       bool IsSSLServer() override;
@@ -645,7 +648,7 @@ namespace sockets_bsd
       /** base_socket type from base_socket() call. */
       int GetSocketType() override;
       /** Protocol type from base_socket() call. */
-      void SetSocketProtocol(const string & x) override;
+      void SetSocketProtocol(const ::scoped_string & scopedstrProtocol) override;
       /** Protocol type from base_socket() call. */
       string  GetSocketProtocol() override;
 
@@ -681,10 +684,10 @@ namespace sockets_bsd
       void SetSocks4(bool x = true) override;
 
       /** Set socks4 server host address/port to use */
-      void SetSocks4Host(const ::string & a) override;
+      void SetSocks4Host(const ::scoped_string & scopedstrAddress) override;
 //#if defined(BSD_STYLE_SOCKETS)
 //      /** Set socks4 server hostname to use. */
-//      void SetSocks4Host(const string & );
+//      void SetSocks4Host(const ::scoped_string & scopedstr);
 //#endif
       /** Socks4 server port to use. */
       void SetSocks4Port(::networking::port_t int_point) override;
@@ -707,15 +710,15 @@ namespace sockets_bsd
       \lparam host hostname to be resolved
       \lparam port port number passed along for the ride
       \return Resolve ID */
-      //int Resolve(const string & host,::networking::port_t port = 0);
-      //int Resolve6(const string & host, ::networking::port_t port = 0);
+      //int Resolve(const ::scoped_string & scopedstrHost,::networking::port_t port = 0);
+      //int Resolve6(const ::scoped_string & scopedstrHost, ::networking::port_t port = 0);
       /** Callback returning a resolved ::networking::address.
       \lparam atom Resolve ID from Resolve call
       \lparam a resolved ip address/port
       \lparam port port number passed to Resolve */
       //virtual void OnResolved(int atom, ::networking::address * addr);
       //virtual void OnResolved(int atom, in6_addr & a, ::networking::port_t port);
-      /** Request asynchronous reverse dns lookup.
+      /** Request asynchronous reverse dns find.
       \lparam a in_addr to be translated */
       //int Resolve(in_addr a);
       //int Resolve(in6_addr& a);
@@ -723,7 +726,7 @@ namespace sockets_bsd
       \lparam atom Resolve ID
       \lparam name Resolved hostname */
       //virtual void OnReverseResolved(int atom,const string & name);
-      /** Callback indicating failed dns lookup.
+      /** Callback indicating failed dns find.
       \lparam atom Resolve ID */
       //virtual void OnResolveFailed(int atom);
       //@}
@@ -760,7 +763,7 @@ namespace sockets_bsd
 
       using ::sockets::base_socket::write;
       void write(const void * p, ::memsize s) override;
-      //void inline print(const ::string & str) { write(str.c_str(), str.length()); }
+      //void inline print(const ::scoped_string & scopedstr) { write(str.c_str(), str.length()); }
 
 
       /** write traffic to an IFile. base_socket will not delete this object. */
@@ -785,7 +788,7 @@ namespace sockets_bsd
       //bool step() override;
 
       //virtual void __tracef(object * pparticle, enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, int iLine, const ::scoped_string & scopedstrFormat, ...);
-      //virtual void __tracef(object * pparticle, enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, int iLine, e_log elog, const ::string & strContext, int err, const ::string & strMessage);
+      //virtual void __tracef(object * pparticle, enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, int iLine, e_log elog, const ::scoped_string & scopedstrContext, int err, const ::scoped_string & scopedstrMessage);
 
       string get_short_description() override;
 
@@ -808,7 +811,7 @@ __declare_pair_tuple_size(::sockets::socket_map);
 #endif
 
 
-using socket_id_list = ::comparable_list < socket_id >;
+using socket_id_list = ::comparable_list_base < socket_id >;
 
 
 

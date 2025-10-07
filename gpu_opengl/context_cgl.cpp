@@ -7,11 +7,22 @@
 //
 
 #include "framework.h"
+#if defined(MACOS)
+#include <OpenGL/OpenGL.h>
+//#include <glad/glad.h>
+//#include <OpenGL/CGLTypes.h>
+//////#include <OpenGL/glu.h>
+#include <OpenGL/gl3.h>
+#include <OpenGL/glext.h>
+#endif
 #include "cpu_buffer.h"
 #include "context_cgl.h"
-#include "opengl.h"
+//#include "opengl.h"
+#include "acme/platform/application.h"
 #include "aura/graphics/image/image.h"
+#include "aura/graphics/image/target.h"
 #include "aura/platform/system.h"
+
 
 
 namespace opengl
@@ -21,7 +32,7 @@ namespace opengl
    ::pointer <::gpu::context > allocate_cgl_context(::particle * pparticle)
    {
 
-      return pparticle->__create_new < context_cgl >();
+      return pparticle->øcreate_new < context_cgl >();
 
    }
 
@@ -29,7 +40,7 @@ namespace opengl
    context_cgl::context_cgl()
    {
 
-      m_emode = e_mode_egl;
+      //m_emode = e_mode_egl;
       
       m_context = 0;
 
@@ -43,21 +54,21 @@ namespace opengl
    }
 
 
-   void context_cgl::_create_offscreen_buffer(const ::int_size & size)
+   void context_cgl::_create_cpu_buffer(const ::int_size & size)
    {
 
-      auto pgpu = system()->get_gpu();
+      auto pgpuapproach = m_papplication->get_gpu_approach();
 
-      ::pointer<opengl>popengl = pgpu;
-
-      if (::is_null(popengl))
-      {
-
-         return;
-
-      }
+//      ::pointer<opengl>popengl = pgpu;
+//
+//      if (::is_null(popengl))
+//      {
+//
+//         return;
+//
+//      }
       
-      m_itaskGpu = ::current_itask();
+      //m_itaskGpu = ::current_itask();
       
 //      unsigned long target = GL_TEXTURE_2D;
 //
@@ -154,7 +165,7 @@ namespace opengl
          
       }
 
-      make_current();
+      defer_make_current();
       //::e_status estatus = make_current();
 
 //      if(!estatus)
@@ -166,10 +177,10 @@ namespace opengl
 //         
 //      }
       
-      auto cx = context::m_pcpubuffer->m_pixmap.width();
-      auto cy = context::m_pcpubuffer->m_pixmap.height();
-      auto scan = context::m_pcpubuffer->m_pixmap.m_iScan;
-      auto data=context::m_pcpubuffer->m_pixmap.m_pimage32;
+      auto cx = context::m_pcpubuffer->m_pimagetarget->m_pimage->width();
+      auto cy = context::m_pcpubuffer->m_pimagetarget->m_pimage->height();
+      auto scan = context::m_pcpubuffer->m_pimagetarget->m_pimage->m_iScan;
+      auto data=context::m_pcpubuffer->m_pimagetarget->m_pimage->data();
 
       error = CGLSetOffScreen(m_context, cx,
                               cy, scan, data) ;
@@ -188,7 +199,7 @@ namespace opengl
    }
 
 
-   void context_cgl::make_current()
+   void context_cgl::defer_make_current()
    {
 
       CGLError error = CGLSetCurrentContext(m_context);
@@ -211,7 +222,7 @@ namespace opengl
    }
 
 
-   void context_cgl::destroy_offscreen_buffer()
+   void context_cgl::destroy_cpu_buffer()
    {
 
       CGLError error = CGLSetCurrentContext(m_contextOld);
@@ -236,7 +247,7 @@ namespace opengl
    }
 
 
-   void context_cgl::_translate_shader(string_array & stra)
+   void context_cgl::_translate_shader(string_array_base & stra)
    {
 
       character_count iFindPrecision = stra.case_insensitive_find_first_begins("precision ");
@@ -280,7 +291,7 @@ namespace opengl
    }
 
 
-} // namespace gpu
+} // namespace gpu_opengl
 
 
 

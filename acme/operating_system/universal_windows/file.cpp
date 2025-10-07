@@ -24,7 +24,7 @@
 
 
 
-//int_bool file_system()->put_contents(const ::file::path & path, const char* contents, memsize len)
+//int_bool file_system()->put_contents(const ::file::path & path, const_char_pointer contents, memsize len)
 //{
 //
 //            auto psystem = system();
@@ -103,8 +103,8 @@ int_bool file_is_equal_path_dup(const ::scoped_string & scopedstr1, const ::scop
    return file_path_is_equal(scopedstr1, scopedstr2);
 
    //   const int iBufSize = MAX_PATH * 8;
-   //   wstring pwsz1 = utf8_to_unicode(psz1);
-   //   wstring pwsz2 = utf8_to_unicode(psz2);
+   //   wstring pwsz1 = utf8_to_unicode(scopedstr1);
+   //   wstring pwsz2 = utf8_to_unicode(scopedstr2);
    //   int iCmp = pwsz1.case_insensitive_order(pwsz2);
    ///*   unichar * pwszFile1;
    //   unichar * pwszFile2;
@@ -230,9 +230,9 @@ string file_module_path_dup()
 //
 //}
 //
-//void dll_processes(unsigned_int_array & dwa,string_array & straProcesses,const ::scoped_string & scopedstrDll)
+//void dll_processes(unsigned_int_array & dwa,string_array_base & straProcesses,const ::scoped_string & scopedstrDll)
 //{
-//   // Get the list of process identifiers.
+//   // Get the list_base of process identifiers.
 //
 //   unsigned int * aProcesses = ___new unsigned int[1024 * 8];
 //
@@ -327,7 +327,7 @@ string file_module_path_dup()
 
 // //    if(!PathFileExists(csFilePath))
 // //    {
-// //       message_box(nullptr,"Cannot find driver " + csFilePath,"Cannot find driver " + csFilePath,e_message_box_ok);
+// //       message_box(nullptr,"Cannot find driver " + csFilePath,"Cannot find driver " + csFilePath,::user::e_message_box_ok);
 // //       return 0;
 // //    }
 
@@ -488,7 +488,7 @@ string file_module_path_dup()
 // //       return;
 // //    }
 
-// //    // Get the list of all handles in the file_system
+// //    // Get the list_base of all handles in the file_system
 // //    PSYSTEM_HANDLE_INFORMATION pSysHandleInformation = ___new SYSTEM_HANDLE_INFORMATION();
 // //    unsigned int size = sizeof(SYSTEM_HANDLE_INFORMATION);
 // //    unsigned int needed = 0;
@@ -581,7 +581,7 @@ string file_module_path_dup()
 // //       return;
 // //    }
 
-// //    // Walk through the handle list
+// //    // Walk through the handle list_base
 // //    for(unsigned int i = 0; i < pSysHandleInformation->dwCount; i++)
 // //    {
 // //       SYSTEM_HANDLE& sh = pSysHandleInformation->Handles[i];
@@ -882,7 +882,7 @@ int_bool FILE_set_size(FILE* file, size_t iSize)
 //int_bool file_set_length(const ::scoped_string & scopedstrName,size_t iSize)
 //{
 //
-//   wstring wstr(pszName);
+//   wstring wstr(scopedstrName);
 //
 //   HANDLE h = ::CreateFileW(wstr,GENERIC_READ | GENERIC_WRITE,FILE_SHARE_READ,nullptr,OPEN_EXISTING,FILE_ATTRIBUTE_NORMAL,nullptr);
 //
@@ -908,7 +908,7 @@ int_bool FILE_set_size(FILE* file, size_t iSize)
 //
 //
 //
-//int_bool file_move(const char * lpszNewName,const char * lpszOldName)
+//int_bool file_move(const_char_pointer lpszNewName,const_char_pointer lpszOldName)
 //{
 //
 //   if(!::MoveFile((char *)lpszOldName,(char *)lpszNewName))
@@ -918,7 +918,7 @@ int_bool FILE_set_size(FILE* file, size_t iSize)
 //
 //}
 
-//int_bool file_delete(const char* lpszFileName)
+//int_bool file_delete(const_char_pointer lpszFileName)
 //{
 //
 //   wstring wstr(lpszFileName);
@@ -940,10 +940,10 @@ int_bool FILE_set_size(FILE* file, size_t iSize)
 //
 //int_bool file_path_is_equal(const ::scoped_string & scopedstr1,const ::scoped_string & scopedstr2)
 //{
-//   return file_is_equal_path_dup(psz1,psz2);
+//   return file_is_equal_path_dup(scopedstr1,psz2);
 //   /*const int iBufSize = MAX_PATH * 8;
-//   wstring pwsz1 = utf8_to_unicode(psz1);
-//   wstring pwsz2 = utf8_to_unicode(psz2);
+//   wstring pwsz1 = utf8_to_unicode(scopedstr1);
+//   wstring pwsz2 = utf8_to_unicode(scopedstr2);
 //   unichar * pwszFile1;
 //   unichar * pwszFile2;
 //   unichar * pwszPath1 = ___new unichar[iBufSize];
@@ -989,7 +989,7 @@ HANDLE _get_osfhandle(int i)
 return (HANDLE)i;		// FIXME:  This doesn't work under Win64
 }*/
 
-//FILE *FILE_open(const char *path,const char *attrs)
+//FILE *FILE_open(const_char_pointer path,const_char_pointer attrs)
 //{
 //
 //
@@ -1064,7 +1064,7 @@ return (HANDLE)i;		// FIXME:  This doesn't work under Win64
 //}
 //
 //
-//int fprintf_dup(FILE *fp,const char *s,...)
+//int fprintf_dup(FILE *fp,const_char_pointer s,...)
 //{
 //   va_list args;
 //   va_start(args,s);
@@ -1221,7 +1221,7 @@ return (HANDLE)i;		// FIXME:  This doesn't work under Win64
 //   // Text-mode translation is always ANSI!
 //   if(textMode)			// text mode -> translate LF -> CRLF
 //   {
-//      const char *src = (const char*)buffer;
+//      const_char_pointer src = (const_char_pointer )buffer;
 //      size_t startpos = 0,i = 0;
 //      for(i = 0; i < int_size*count; i++)
 //      {
@@ -1242,7 +1242,7 @@ return (HANDLE)i;		// FIXME:  This doesn't work under Win64
 //            }
 //         }
 //
-//         const char *crlf = "\r\n";
+//         const_char_pointer crlf = "\r\n";
 //         WriteFile(hFile,crlf,2,&bw2,0);
 //         bw++;		// one '\n' written
 //
@@ -1260,7 +1260,7 @@ return (HANDLE)i;		// FIXME:  This doesn't work under Win64
 //   else
 //   {
 //      size_t s = int_size * count;
-//      const char *src = (const char*)buffer;
+//      const_char_pointer src = (const_char_pointer )buffer;
 //      size_t dwWritten = 0;
 //      while(s - dwWritten > 0)
 //      {
@@ -1508,7 +1508,7 @@ unsigned int WinGetFileAttributes(const unichar* psz)
    zero(&data, sizeof(data));
 
 
-   if (!::GetFileAttributesExW(psz, GetFileExInfoStandard, &data))
+   if (!::GetFileAttributesExW(scopedstr, GetFileExInfoStandard, &data))
    {
       
       DWORD dwLastError = ::GetLastError();
@@ -1531,7 +1531,7 @@ HANDLE WinFindFirstFileW(const unichar* pwsz, WIN32_FIND_DATAW* pdata)
 
 }
 
-HANDLE WinFindFirstFileA(const char* pwsz, WIN32_FIND_DATAA* pdata)
+HANDLE WinFindFirstFileA(const_char_pointer pwsz, WIN32_FIND_DATAA* pdata)
 {
 
    return FindFirstFileExA(pwsz, FindExInfoStandard, pdata, FindExSearchNameMatch, nullptr, 0);
@@ -1571,7 +1571,7 @@ return true;
 */
 
 
-HANDLE hfile_create(const char* lpcszFileName, unsigned int dwDesiredAcces, unsigned int dwShareMode, LPSECURITY_ATTRIBUTES lpSA, unsigned int dwCreationDisposition, unsigned int dwFlagsAndAttributes, HANDLE hTemplateFile)
+HANDLE hfile_create(const_char_pointer lpcszFileName, unsigned int dwDesiredAcces, unsigned int dwShareMode, LPSECURITY_ATTRIBUTES lpSA, unsigned int dwCreationDisposition, unsigned int dwFlagsAndAttributes, HANDLE hTemplateFile)
 {
 
    CREATEFILE2_EXTENDED_PARAMETERS ps;
@@ -1598,7 +1598,7 @@ HANDLE hfile_create(const char* lpcszFileName, unsigned int dwDesiredAcces, unsi
 //}
 //
 
-//::winrt::Windows::Storage::StorageFolder^ get_os_folder(const char* lpcszDirName)
+//::winrt::Windows::Storage::StorageFolder^ get_os_folder(const_char_pointer lpcszDirName)
 //{
 //
 //   return wait(::winrt::Windows::Storage::StorageFolder::GetFolderFromPathAsync(string(lpcszDirName)));
@@ -1606,7 +1606,7 @@ HANDLE hfile_create(const char* lpcszFileName, unsigned int dwDesiredAcces, unsi
 //}
 //
 //
-//::winrt::Windows::Storage::StorageFile^ get_os_file(const char* lpcszFileName, unsigned int dwDesiredAcces, unsigned int dwShareMode, LPSECURITY_ATTRIBUTES lpSA, unsigned int dwCreationDisposition, unsigned int dwFlagsAndAttributes, HANDLE hTemplateFile)
+//::winrt::Windows::Storage::StorageFile^ get_os_file(const_char_pointer lpcszFileName, unsigned int dwDesiredAcces, unsigned int dwShareMode, LPSECURITY_ATTRIBUTES lpSA, unsigned int dwCreationDisposition, unsigned int dwFlagsAndAttributes, HANDLE hTemplateFile)
 //{
 //
 //   /*
@@ -1764,7 +1764,7 @@ HANDLE hfile_create(const char* lpcszFileName, unsigned int dwDesiredAcces, unsi
 ////
 //
 //
-////int_bool file_system()->put_contents(const ::file::path & path,const char * contents,::collection::count len)
+////int_bool file_system()->put_contents(const ::file::path & path,const_char_pointer contents,::collection::count len)
 ////{
 ////
 ////            auto psystem = system();
@@ -1881,7 +1881,7 @@ HANDLE hfile_create(const char* lpcszFileName, unsigned int dwDesiredAcces, unsi
 //int_bool file_path_is_equal(const ::scoped_string & scopedstr1, const ::scoped_string & scopedstr2)
 //{
 //
-//   return normalize_path(psz1).case_insensitive_order(normalize_path(psz2)) == 0;
+//   return normalize_path(scopedstr1).case_insensitive_order(normalize_path(scopedstr2)) == 0;
 //
 //}
 //
@@ -1911,7 +1911,7 @@ HANDLE hfile_create(const char* lpcszFileName, unsigned int dwDesiredAcces, unsi
 //int_bool file_set_length(const ::scoped_string & scopedstrName, size_t iSize)
 //{
 //
-//   int i = open(pszName, 0);
+//   int i = open(scopedstrName, 0);
 //
 //   ftruncate(i, iSize);
 //
@@ -1932,7 +1932,7 @@ HANDLE hfile_create(const char* lpcszFileName, unsigned int dwDesiredAcces, unsi
 //   try
 //   {
 //
-//      folder = get_os_folder(::file_path_folder(pszNew));
+//      folder = get_os_folder(::file_path_folder(scopedstrNew));
 //
 //      if (folder == nullptr)
 //         return false;
@@ -1951,7 +1951,7 @@ HANDLE hfile_create(const char* lpcszFileName, unsigned int dwDesiredAcces, unsi
 //   try
 //   {
 //
-//      fileSrc = get_os_file(pszSrc, 0, 0, nullptr, OPEN_EXISTING, 0, nullptr);
+//      fileSrc = get_os_file(scopedstrSrc, 0, 0, nullptr, OPEN_EXISTING, 0, nullptr);
 //
 //      if (fileSrc == nullptr)
 //         return false;
@@ -1964,7 +1964,7 @@ HANDLE hfile_create(const char* lpcszFileName, unsigned int dwDesiredAcces, unsi
 //
 //   }
 //
-//   wstring wstrNew(pszNew);
+//   wstring wstrNew(scopedstrNew);
 //
 //   return ::wait(fileSrc->CopyAsync(folder, wstrNew, bOverwrite ?
 //      ::winrt::Windows::Storage::NameCollisionOption::ReplaceExisting :

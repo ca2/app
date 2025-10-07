@@ -27,9 +27,9 @@ public:
    virtual void on_end_draw();
 
 
-   virtual void draw_text123(const ::string & str, const ::int_rectangle & rectangleText, const ::e_align & ealign, const ::e_draw_text & edrawtext, ::nano::graphics::brush * pnanobrushBack, ::nano::graphics::brush * pnanobrushText, ::nano::graphics::font  * pnanofont);
-   virtual void _draw_text(const ::string & str, const ::int_rectangle & rectangleText, const ::e_align & ealign, const ::e_draw_text & edrawtext, ::nano::graphics::brush * pnanobrushBack, ::nano::graphics::brush * pnanobrushText, ::nano::graphics::font  * pnanofont);
-   virtual ::int_size get_text_extents(const ::string & str, ::nano::graphics::font * pnanofont);
+   virtual void draw_text123(const ::scoped_string & scopedstr, const ::int_rectangle & rectangleText, const ::e_align & ealign, const ::e_draw_text & edrawtext, ::nano::graphics::brush * pnanobrushBack, ::nano::graphics::brush * pnanobrushText, ::nano::graphics::font  * pnanofont);
+   virtual void _draw_text(const ::scoped_string & scopedstr, const ::int_rectangle & rectangleText, const ::e_align & ealign, const ::e_draw_text & edrawtext, ::nano::graphics::brush * pnanobrushBack, ::nano::graphics::brush * pnanobrushText, ::nano::graphics::font  * pnanofont);
+   virtual ::int_size get_text_extents(const ::scoped_string & scopedstr, ::nano::graphics::font * pnanofont);
    virtual void rectangle(const ::int_rectangle & rectangle, ::nano::graphics::brush * pnanobrush, ::nano::graphics::pen * pnanopen);
 
    virtual void draw(::nano::graphics::icon * picon, int x, int y, int cx, int cy);

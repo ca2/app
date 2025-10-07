@@ -1,6 +1,8 @@
 // Created by camilo on 2025-06-12 21:07 <3ThomasBorregaardSørensen!!
 #include "framework.h"
 #include "layer.h"
+#include "pixmap.h"
+#include "render_target.h"
 #include "renderer.h"
 #include "texture.h"
 #include "acme/exception/interface_only.h"
@@ -14,10 +16,14 @@ namespace gpu
    texture::texture()
    {
 
+      m_iAtlasX = 0;
+      m_iAtlasY = 0;
+      m_iAtlasCurrentRowHeight = 0;
       m_etype = e_type_none;
       m_bClearColor = false;
       m_bRenderTarget = false;
       m_bTransferDst = false;
+      m_bTransferSrc = false;
       m_bCpuRead = false;
       m_bWithDepth = false;
 
@@ -30,7 +36,15 @@ namespace gpu
    }
 
 
-   void texture::initialize_image_texture(::gpu::renderer * pgpurenderer, const ::int_rectangle& rectangleTarget, bool bWithDepth, ::pixmap * ppixmap, enum_type etype)
+
+   void texture::initialize_hdr_texture_on_memory(::gpu::renderer *prenderer, const ::block & block)
+   {
+
+
+   }
+
+
+   void texture::initialize_image_texture(::gpu::renderer * pgpurenderer, const ::int_rectangle& rectangleTarget, bool bWithDepth, const ::pointer_array < ::image::image >& imagea, enum_type etype)
    {
 
       m_etype = etype;
@@ -80,30 +94,144 @@ namespace gpu
 
       auto pimage = image()->path_image(path);
 
-      initialize_image_texture(pgpurenderer, pimage);
+      ::pointer_array < ::image::image > imagea({ pimage });
+
+      initialize_image_texture(pgpurenderer, imagea);
+
+   }
+
+   
+   void texture::defer_throw_if_cube_map_images_are_not_ok(const ::pointer_array < ::image::image >& imagea)
+   {
+
+      if (imagea.size() != 6)
+      {
+
+         throw ::exception(error_failed, "Cube map texture must have exactly 6 images");
+
+      }
+
+      auto pimageFirst = imagea.first();
+
+      if (pimageFirst->is_empty())
+      {
+
+         throw ::exception(error_failed, "Cube map texture cannot be empty");
+
+      }
+
+      if (pimageFirst->width() != pimageFirst->height())
+      {
+
+         throw ::exception(error_failed, "Cube map texture images must be square");
+
+      }
+
+      for (auto& pimage : imagea)
+      {
+         
+         if (pimage != pimageFirst)
+         {
+
+            if (pimage->size() != pimageFirst->size())
+            {
+               
+               throw ::exception(error_failed, "Cube map texture images must have the same dimensions");
+
+            }
+
+         }
+
+      }
+
+   }
+
+   void texture::initialize_image_texture(::gpu::renderer* pgpurenderer, const ::pointer_array < ::image::image >& imagea, enum_type etype)
+   {
+
+      auto r = imagea.first()->rectangle();
+
+      if (imagea.has_element())
+      {
+
+         if (etype == e_type_cube_map)
+         {
+
+            defer_throw_if_cube_map_images_are_not_ok(imagea);
+
+         }
+
+      }
+
+      initialize_image_texture(pgpurenderer, r, false, imagea, etype);
 
    }
 
 
-   void texture::initialize_image_texture(::gpu::renderer* pgpurenderer, ::image::image * pimage, enum_type etype)
+   ::pointer < ::gpu::pixmap > texture::create_gpu_pixmap(const ::int_size& size)
    {
 
-      if (etype == e_type_cube_map)
+      if (m_iAtlasX >= m_rectangleTarget.width() ||
+         m_iAtlasY >= m_rectangleTarget.height())
       {
 
-         auto r = pimage->rectangle();
-
-         r.right() = r.left() + r.width() / 6;
-
-         initialize_image_texture(pgpurenderer, r, false, pimage, etype);
+         return nullptr;
 
       }
-      else
+
+      int iAtlasX = m_iAtlasX;
+      int iAtlasY = m_iAtlasY;
+      int iAtlasH = m_iAtlasCurrentRowHeight;
+
+      if (size.cx() > m_rectangleTarget.width() - iAtlasX)
       {
 
-         initialize_image_texture(pgpurenderer, pimage->rectangle(), false, pimage, etype);
+         if (iAtlasX <= 0)
+         {
+
+            throw ::exception(error_wrong_state, "pixmap is wider than texture atlas");
+
+         }
+
+         iAtlasX = 0;
+         iAtlasY += iAtlasH;
+         iAtlasH = 0;
 
       }
+
+      if (size.cy() > m_rectangleTarget.height() - iAtlasY)
+      {
+
+         if (iAtlasY <= 0)
+         {
+
+            throw ::exception(error_wrong_state, "pixmap is higher than texture height");
+
+         }
+
+         // this texture atlas would be full with this new image
+
+         return nullptr;
+
+      }
+
+      iAtlasH = maximum(iAtlasH, size.cy());
+
+      m_iAtlasX = iAtlasX;
+      m_iAtlasY = iAtlasY;
+      m_iAtlasCurrentRowHeight = iAtlasH;
+
+      auto ppixmap = øcreate<::gpu::pixmap>();
+
+      ppixmap->initialize_gpu_pixmap(this, 
+         {iAtlasX, iAtlasY,
+         iAtlasX + size.cx(),
+         iAtlasY + size.cy()});
+
+      m_iAtlasX += size.cx();
+      m_iAtlasCurrentRowHeight = maximum(m_iAtlasCurrentRowHeight, size.cy());
+
+      return ppixmap;
 
    }
 
@@ -188,7 +316,7 @@ namespace gpu
 
       }
 
-      __defer_construct(m_ptextureDepth);
+      ødefer_construct(m_ptextureDepth);
 
       m_ptextureDepth->initialize_depth_texture(m_pgpurenderer, m_rectangleTarget);
 
@@ -202,6 +330,22 @@ namespace gpu
       return m_strTextureType;
 
    }
+
+
+   void texture::set_pixels(const ::int_rectangle& rectangle, const void* data)
+   {
+
+
+   }
+
+
+   bool texture::is_in_shader_sampling_state()
+   {
+
+      return true;
+
+   }
+
 
 } // namespace gpu
 

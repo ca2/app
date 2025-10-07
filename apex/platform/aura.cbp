@@ -2639,7 +2639,7 @@
 		<Unit filename="primitive/collection/stack.h" />
 		<Unit filename="primitive/collection/strid_map.h" />
 		<Unit filename="primitive/collection/string_array_base.cpp" />
-		<Unit filename="primitive/collection/string_array_base.h" />
+		<Unit filename="primitive/collection/string_array.h" />
 		<Unit filename="primitive/collection/string_iterable.h" />
 		<Unit filename="primitive/collection/string_list.cpp" />
 		<Unit filename="primitive/collection/string_list.h" />

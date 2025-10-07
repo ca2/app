@@ -17,7 +17,7 @@ public:
    string_map < ::pointer<::interprocess::caller > >   m_callermap;
    string_map < ::pointer< ::mutex > >                                m_mapAppMutex;
    ::pointer<::interprocess::handler>                  m_phandler;
-   string_array                                                      m_straModule;
+   string_array_base                                                      m_straModule;
 
    // strTask - Task
    interprocess_map                                                  m_mapTask;
@@ -33,41 +33,41 @@ public:
    ~interprocess_intercommunication() override;
 
 
-   virtual void initialize_interprocess_communication(::object* pparticle, const ::string& strApp);
+   virtual void initialize_interprocess_communication(::object* pparticle, const ::scoped_string & scopedstrApp);
 
 
    void destroy() override;
 
 
-   virtual void defer_add_module(const ::string& strModule, const ::atom& idPid);
+   virtual void defer_add_module(const ::scoped_string & scopedstrModule, const ::atom& idPid);
 
    virtual ::pointer<::interprocess::task>create_task(::interprocess::call* pcall, const ::atom& idPid);
 
    virtual ::pointer<::interprocess::task>get_task(long long iTask);
 
-   virtual ::pointer<::interprocess::call>create_call(const ::string& strApp, const ::string& strObject, const ::string& strMember);
+   virtual ::pointer<::interprocess::call>create_call(const ::scoped_string & scopedstrApp, const ::scoped_string & scopedstrObject, const ::scoped_string & scopedstrMember);
 
-   virtual ::pointer<::interprocess::call>create_call(const ::string& strObject, const ::string& strMember);
+   virtual ::pointer<::interprocess::call>create_call(const ::scoped_string & scopedstrObject, const ::scoped_string & scopedstrMember);
 
-   virtual ::interprocess::caller & call(const ::string& strApp, const ::atom& idPid);
+   virtual ::interprocess::caller & call(const ::scoped_string & scopedstrApp, const ::atom& idPid);
 
-   virtual atom_array get_pid(const ::string& strApp);
+   virtual atom_array get_pid(const ::scoped_string & scopedstrApp);
 
-   virtual string key(const string& strApp, const ::atom& idPid);
+   virtual string key(const ::scoped_string & scopedstrApp, const ::atom& idPid);
 
    virtual string str_from_va(const payload_array& va);
 
-   virtual void on_interprocess_handle(::payload & payload, const ::string & strObject, const ::string & strMember, ::property_set & propertyset);
+   virtual void on_interprocess_handle(::payload & payload, const ::scoped_string & scopedstrObject, const ::scoped_string & scopedstrMember, ::property_set & propertyset);
 
    //using ::interprocess::handler::receiver::on_interprocess_receive;
 
-   bool on_interprocess_handle(::interprocess::handler* phandler, const ::string & strUri) override;
+   bool on_interprocess_handle(::interprocess::handler* phandler, const ::scoped_string & scopedstrUri) override;
 
-   virtual void start(const ::string& strApp);
+   virtual void start(const ::scoped_string & scopedstrApp);
 
-   virtual void connect(const ::string& strApp, const ::atom& idPid);
+   virtual void connect(const ::scoped_string & scopedstrApp, const ::atom& idPid);
 
-   virtual void on_new_instance(const ::string& strModule, const ::atom& idPid);
+   virtual void on_new_instance(const ::scoped_string & scopedstrModule, const ::atom& idPid);
 
    void interprocess_communication_open(const ::file::path & path);
 

@@ -19,7 +19,7 @@ namespace xml
    static const char chXMLEscape = '\\';   // for m_strValue field escape
 
 
-   document::document(parse_info * pparseinfo, string_to_string * pentitiesHash)
+   document::document(parse_info * pparseinfo, string_to_string_base * pentitiesHash)
       //m_pparseinfo(pparseinfo),
       //m_pentitiesHash
    {
@@ -55,7 +55,7 @@ namespace xml
    }
 
 
-   //void document::load_location(const ::ansi_character * psz)
+   //void document::load_location(const_char_pointer psz)
    //{
 
    //   m_pathLocation = psz;
@@ -64,7 +64,7 @@ namespace xml
 
    //   auto psystem = system();
 
-   //   str = file()->as_string(psz);
+   //   str = file()->as_string(scopedstr);
 
    //   load(str);
 
@@ -87,12 +87,12 @@ namespace xml
    //}
 
 
-   void document::create_root(const ::string & strName)
+   void document::create_root(const ::scoped_string & scopedstrName)
    {
 
       create_root();
 
-      root()->set_name(strName);
+      root()->set_name(scopedstrName);
 
    }
 
@@ -148,7 +148,7 @@ namespace xml
 //// Coder    Date                      Desc
 //// bro      2002-10-29
 ////========================================================
-//   void document::_load(const char * & xml, const ::ansi_character * pszXml, const ::ansi_character * pszEndXml, parse_info * pparseinfo)
+//   void document::_load(const_char_pointer &xml, const_char_pointer pszXml, const_char_pointer pszEndXml, parse_info * pparseinfo)
 //   {
 //
 //      // close it
@@ -173,7 +173,7 @@ namespace xml
 //
 //      // Load Other Node before <Tag>(pparseinfo, comment, CDATA etc)
 //      bool bRet = false;
-//      const char * ret = nullptr;
+//      const_char_pointer ret = nullptr;
 //      ret = LoadOtherNodes(&bRet, xml, pparseinfo);
 //      if (ret != nullptr)
 //         xml = ret;
@@ -214,7 +214,7 @@ namespace xml
 
       }
 
-      auto pnode = __allocate class node ((node *) this);
+      auto pnode = øallocate class node ((node *) this);
 
       m_nodea.add(pnode);
 
@@ -226,12 +226,12 @@ namespace xml
    }
 
 
-   void document::set_name(const ::string & strName)
+   void document::set_name(const ::scoped_string & scopedstrName)
    {
 
       ensure_root();
 
-      root()->set_name(strName);
+      root()->set_name(scopedstrName);
 
 
    }
@@ -253,7 +253,7 @@ namespace xml
    //// Coder    Date                      Desc
    //// bro      2002-10-29
    ////========================================================
-   //void document::parse_xml_text(const ::ansi_character * pszXmlText)
+   //void document::parse_xml_text(const_char_pointer pszXmlText)
    //{
 
    //   m_nodea.erase_all();
@@ -262,27 +262,27 @@ namespace xml
 
    //   m_memoryData.assign(m_strData1.c_str(), m_strData1.get_length_in_bytes_with_null_terminator());
 
-   //   const ::ansi_character * pszXml = (const char *) m_memoryData.data();
+   //   const_char_pointer pszXml = (const_char_pointer )m_memoryData.data();
 
    //   ensure_root();
 
-   //   const ::ansi_character * pszNext = pszXml;
+   //   const_char_pointer pszNext = pszXml;
 
    //   // Load Other Node after </Tag>(pparseinfo, comment, CDATA etc)
-   //   const ::ansi_character * pszRet;
+   //   const_char_pointer pszRet;
 
    //   bool bRet = false;
 
    //   pszRet = LoadOtherNodes(&bRet, pszNext, m_pparseinfo);
 
-   //   if (pszRet != nullptr)
+   //   if (scopedstrRet != nullptr)
    //   {
 
    //      pszNext = pszRet;
 
    //   }
 
-   //   if((pszNext = root()->_load(pszNext, m_pparseinfo )) == nullptr)
+   //   if((scopedstrNext = root()->_load(scopedstrNext, m_pparseinfo )) == nullptr)
    //   {
 
    //      m_nodea.erase_all();
@@ -298,13 +298,13 @@ namespace xml
    //   }
 
    //   // Load Other Node after </Tag>(pparseinfo, comment, CDATA etc)
-   //   //const char * ret;
+   //   //const_char_pointer ret;
 
    //   //bool bRet = false;
 
    //   pszRet = LoadOtherNodes(&bRet, pszNext, m_pparseinfo);
 
-   //   if (pszRet != nullptr)
+   //   if (scopedstrRet != nullptr)
    //   {
 
    //      pszNext = pszRet;
@@ -323,7 +323,7 @@ namespace xml
    //   {
 
    //      // Not found: create one.
-   //      auto pnodeRoot = __allocate ::xml::node((document *)this);
+   //      auto pnodeRoot = øallocate ::xml::node((document *)this);
 
    //      pnodeRoot->set_name("root");
    //      pnodeRoot->m_pnodeParent = (node *)this;
@@ -376,7 +376,7 @@ namespace xml
 
          }
 
-         unicode_increment(rangeXml.m_begin);
+         rangeXml.m_begin = unicode_next(rangeXml.m_begin);
 
       }
 
@@ -455,7 +455,7 @@ namespace xml
       // pszXml must be a valid portion of and int_point to an entity ref in:
       // m_strData of this document
 
-      const ::ansi_character * pszOldData = (const char *) m_memoryData.data();
+      const_char_pointer pszOldData = (const_char_pointer )m_memoryData.data();
 
       character_count iPos = rangeXml.m_begin - pszOldData;
 

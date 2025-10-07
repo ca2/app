@@ -7,7 +7,7 @@
 //#include "acme/prototype/collection/numeric_array.h"
 
 
-void copy_character_per_character(char * pszTarget, const char * pszSource)
+void copy_character_per_character(char * pszTarget, const_char_pointer pszSource)
 {
 
    while(*pszSource)
@@ -297,9 +297,13 @@ CLASS_DECL_ACME bool solve_relative_inplace(string & str, bool & bUrl, bool & bO
 
                   ansi_cpy(&psz[iNewPosition], p);
 
-                  iLen -= p - &psz[iNewPosition];
+                  auto sizeDecrease = p - &psz[iNewPosition];
+
+                  iLen -= sizeDecrease;
 
                   p = &psz[iNewPosition];
+
+                  pend -= sizeDecrease;
 
                }
                else
@@ -442,10 +446,10 @@ ret:
 
 
 
-CLASS_DECL_ACME string solve_relative(const ::string & strParam, bool * pbUrl)
+CLASS_DECL_ACME string solve_relative(const ::scoped_string & scopedstrParam, bool * pbUrl)
 {
 
-   string str(strParam);
+   string str(scopedstrParam);
 
    bool bUrl;
 
@@ -527,10 +531,10 @@ CLASS_DECL_ACME string defer_solve_relative(const ::scoped_string & scopedstrRel
 
 //CLASS_DECL_ACME bool read_resource_as_file(const ::scoped_string & scopedstrFile,HINSTANCE hinst,unsigned int nID,LPCTSTR pcszType);
 
-//const char * string_reverse_find_first_character_in(const ::scoped_string & scopedstr, const ::scoped_string & scopedstrBegin, const ::scoped_string & scopedstrExcluding)
+//const_char_pointer string_reverse_find_first_character_in(const ::scoped_string & scopedstr, const ::scoped_string & pszBegin, const ::scoped_string & scopedstrExcluding)
 //{
 //
-//   while (psz >= pszBegin)
+//   while (scopedstr >= pszBegin)
 //   {
 //
 //      auto pszCheck = pszExcluding;
@@ -558,10 +562,10 @@ CLASS_DECL_ACME string defer_solve_relative(const ::scoped_string & scopedstrRel
 //}
 
 
-//const char * string_reverse_skip_any_character_in(const ::scoped_string & scopedstr, const ::scoped_string & scopedstrBegin, const ::scoped_string & scopedstrIncluding)
+//const_char_pointer string_reverse_skip_any_character_in(const ::scoped_string & scopedstr, const ::scoped_string & pszBegin, const ::scoped_string & scopedstrIncluding)
 //{
 //
-//   while (psz >= pszBegin)
+//   while (scopedstr >= pszBegin)
 //   {
 //
 //      auto pszCheck = pszIncluding;
@@ -662,12 +666,12 @@ CLASS_DECL_ACME string defer_solve_relative(const ::scoped_string & scopedstrRel
 
 //// 1. /folder/name
 //// 2. /name
-//const char * find_last_slash(const ::file::path & path1)
+//const_char_pointer find_last_slash(const ::file::path & path1)
 //{
 //
 //    const ::scoped_string & scopedstr = path1 + string_safe_length(path1) - 1;
 //
-//    auto pszSeparator = string_reverse_find_first_character_in(psz, path1, "\\/");
+//    auto pszSeparator = string_reverse_find_first_character_in(scopedstr, path1, "\\/");
 //
 //// 1. /folder/
 //// 2. /
@@ -679,12 +683,12 @@ CLASS_DECL_ACME string defer_solve_relative(const ::scoped_string & scopedstrRel
 //
 //    }
 //
-//    auto pszLastFolderCharacter = string_reverse_skip_any_character_in(pszSeparator, path1, "\\/");
+//    auto pszLastFolderCharacter = string_reverse_skip_any_character_in(scopedstrSeparator, path1, "\\/");
 //
 //// 1. /folder
 //// 2. nullptr
 //
-//    if(pszLastFolderCharacter)
+//    if(scopedstrLastFolderCharacter)
 //    {
 //
 //        pszSeparator = pszLastFolderCharacter + 1;
@@ -706,9 +710,9 @@ CLASS_DECL_ACME string defer_solve_relative(const ::scoped_string & scopedstrRel
 //   
 //   const ::scoped_string & scopedstrName1 = ansi_find_char_reverse(path, '/');
 //
-//   auto pszName = minimum_non_null(pszName1, pszName2);
+//   auto pszName = minimum_non_null(scopedstrName1, pszName2);
 //
-//   if (pszName == nullptr)
+//   if (scopedstrName == nullptr)
 //   {
 //
 //      return path;
@@ -778,7 +782,7 @@ bool file_path_is_relative(const ::scoped_string & scopedstr)
 
    return !file_path_is_absolute(scopedstr);
 
-   //string strPath(psz);
+   //string strPath(scopedstr);
    //if (strPath.find(':') != -1 && strPath.find(':') < 10)
    //   return false;
    //if (strPath.find('/') == 0 || strPath.find('\\') == 0)
@@ -881,7 +885,7 @@ bool file_path_is_equal(const ::file::path & pathParam1, const ::file::path & pa
 }
 
 
-enum_path file_path_get_type(const ::string & str, enum_path epathForce)
+enum_path file_path_get_type(const ::scoped_string & scopedstr, enum_path epathForce)
 {
 
    if (epathForce != e_path_none)
@@ -890,13 +894,13 @@ enum_path file_path_get_type(const ::string & str, enum_path epathForce)
       return epathForce;
 
    }
-   else if (str.case_insensitive_begins("data:"))
+   else if (scopedstr.case_insensitive_begins("data:"))
    {
 
       return e_path_data;
 
    }
-   else if (::url::is(str))
+   else if (::url::is(scopedstr))
    {
 
       return e_path_url;
@@ -912,8 +916,10 @@ enum_path file_path_get_type(const ::string & str, enum_path epathForce)
 }
 
 
-string file_path_normalize(string strPath, enum_path epath)
+string file_path_normalize(const ::scoped_string & scopedstrPath, enum_path epath)
 {
+
+   ::string strPath(scopedstrPath);
 
    file_path_normalize_inline(strPath, epath);
 
@@ -924,6 +930,13 @@ string file_path_normalize(string strPath, enum_path epath)
 
 bool file_path_normalize_inline(string & strPath, enum_path & epath)
 {
+
+   if (!strPath.find_first_character_in("\\/"))
+   {
+
+      return true;
+
+   }
 
    if (epath == e_path_data)
    {

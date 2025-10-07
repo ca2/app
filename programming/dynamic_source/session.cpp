@@ -41,7 +41,7 @@ namespace dynamic_source
    }
 
 
-   void session::initialize_dynamic_source_session(const string& strSessid, ::dynamic_source::script_manager* pmanager)
+   void session::initialize_dynamic_source_session(const ::scoped_string & scopedstrSessid, ::dynamic_source::script_manager* pmanager)
    {
 
       //auto estatus = 
@@ -55,7 +55,7 @@ namespace dynamic_source
 
       //}
       
-      m_strSessid = strSessid;
+      m_strSessid = scopedstrSessid;
 
       //estatus = 
       

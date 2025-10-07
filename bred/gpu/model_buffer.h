@@ -7,17 +7,55 @@
 #include "bred/graphics3d/types.h"
 #include "bred/gpu/context.h"
 #include "bred/gpu/context_object.h"
+#include "bred/gpu/frame.h"
 #include "bred/gpu/memory_buffer.h"
-
+//#include "bred/graphics3d/model.h"
+//#include "bred/graphics3d/model.h"
+#include "bred/graphics3d/renderable.h"
 
 
 namespace gpu
 {
 
 
+   
+
+   template<typename VERTEX>
+   class model_data
+   {
+   public:
+
+      ::array<VERTEX> m_vertexes;
+      ::array<unsigned int> m_indexes;
+
+
+      //::pointer <::graphics3d::model> create_model(
+      //   ::gpu::renderer* prenderer)
+      //{
+
+      //   auto pmodel = prenderer->øcreate < ::graphics3d::model >();
+
+      //   pmodel->initialize_model(
+      //      prenderer,
+      //      m_vertexes.as_block(),
+      //      m_indexes.as_block());
+
+      //   auto pgpucontext = prenderer->m_pgpucontext;
+
+      //   auto pinputlayout = pgpucontext->input_layout(::gpu_properties< VERTEX >());
+
+      //   pmodel->defer_set_input_layout(pinputlayout);
+
+      //   return pmodel;
+
+      //}
+   };
+
+
    class CLASS_DECL_BRED model_buffer :
       virtual public context_object,
-      virtual public poolable < model_buffer >
+      virtual public poolable < model_buffer >,
+      virtual public ::graphics3d::renderable
    {
    public:
 
@@ -36,7 +74,7 @@ namespace gpu
 
       bool m_bDummy;
       
-
+      ::string m_strDebugString;
 
 
 
@@ -48,7 +86,7 @@ namespace gpu
 
 
       template < typename VERTEX >
-      void create_vertices(int iVertexCount)
+      void create_vertexes(int iVertexCount, bool bDynamic = false)
       {
 
          m_iVertexCount = iVertexCount;
@@ -57,12 +95,12 @@ namespace gpu
 
          auto size = m_iVertexTypeSize * m_iVertexCount;
 
-         __defer_construct(m_pbufferVertex);
+         ødefer_construct(m_pbufferVertex);
 
          m_pbufferVertex->initialize_memory_buffer_with_model_buffer(
             this,
             size, 
-            memory_buffer::e_type_vertex_buffer);
+            memory_buffer::e_type_vertex_buffer, bDynamic);
 
          set_input_layout(m_pgpucontext->input_layout(::gpu_properties< VERTEX >()));
 
@@ -70,7 +108,30 @@ namespace gpu
 
 
       template < typename VERTEX >
-      void static_initialize_vertices(const ::array<VERTEX> & vertexa)
+      void create_vertex_array(int iCount)
+      {
+
+         auto pgpuframe = ::gpu::current_frame();
+
+         initialize_gpu_context_object(pgpuframe->gpu_context());
+
+         auto pcommandbuffer = pgpuframe->m_pgpucommandbuffer;
+
+         bind(pcommandbuffer);
+
+         this->create_vertexes<::graphics3d::sequence2_color >(iCount);
+
+         unbind(pcommandbuffer);
+
+         //defer_set_input_layout(pcontext->input_layout(::gpu_properties < ::graphics::sequence2_color>()));
+
+      }
+
+
+
+
+      template < typename VERTEX >
+      void static_initialize_vertexes(const ::array_base<VERTEX> & vertexa)
       {
 
          static_initialize_vertex_buffer(
@@ -82,14 +143,19 @@ namespace gpu
 
       }
 
+
+      virtual ::gpu::command_buffer* _defer_get_loading_command_buffer();
+
+      virtual void initialize_dummy_model(::gpu::context* pcontext, int iVertexCount);
+
       virtual void static_initialize_vertex_buffer(const void* data, memsize iTypeSize, ::collection::count iVertexCount);
       virtual void static_initialize_index_buffer(const void* data, memsize iTypeSize, ::collection::count iIndexCount);
 
-      virtual void static_initialize_vertices_block(const ::block& blockVertices);
-      virtual void static_initialize_indices_block(const ::block& blockIndices);
+      virtual void static_initialize_vertexes_block(const ::block& blockvertexes);
+      virtual void static_initialize_indexes_block(const ::block& blockindexes);
 
       template < typename INDEX >
-      void create_indices(::collection::count iIndexCount)
+      void create_indexes(::collection::count iIndexCount)
       {
 
          m_iIndexCount = (int) iIndexCount;
@@ -98,7 +164,7 @@ namespace gpu
 
          auto size = m_iIndexTypeSize * m_iIndexCount;
 
-         __defer_construct(m_pbufferIndex);
+         ødefer_construct(m_pbufferIndex);
 
          m_pbufferIndex->initialize_memory_buffer_with_model_buffer(
             this,
@@ -109,7 +175,7 @@ namespace gpu
 
       
       template < typename INDEX >
-      void static_initialize_indices(const ::array<INDEX>& indexa)
+      void static_initialize_indexes(const ::array_base<INDEX>& indexes)
       {
 
          //m_iIndexCount = (int)indexa.count();
@@ -118,7 +184,7 @@ namespace gpu
 
          //auto size = indexa.get_size_in_bytes();
 
-         //__defer_construct(m_pbufferIndex);
+         //ødefer_construct(m_pbufferIndex);
 
          //m_pbufferIndex->static_initialize_memory_buffer_with_model_buffer(
          //   this,
@@ -127,15 +193,15 @@ namespace gpu
          //   memory_buffer::e_type_index_buffer);
 
          static_initialize_index_buffer(
-            indexa.data(),
+            indexes.data(),
             sizeof(INDEX),
-            indexa.size());
+            indexes.size());
 
       }
 
 
       template < typename VERTEX >
-      void set_vertices(const ::array < VERTEX > & vertexa)
+      void set_vertexes(const ::array < VERTEX > & vertexa)
       {
 
          if (sizeof(VERTEX) != m_iVertexTypeSize)
@@ -145,13 +211,17 @@ namespace gpu
 
          }
 
+         m_iVertexCount = (int) vertexa.size();
+
+         m_iVertexByteSize = m_iVertexTypeSize * m_iVertexCount;
+
          m_pbufferVertex->on_set_memory_buffer(vertexa.data(), vertexa.get_size_in_bytes());
 
       }
 
 
       template < typename VERTEX >
-      void _set_vertices(const ::array < VERTEX >& vertexa)
+      void _set_vertexes(const ::array < VERTEX >& vertexa)
       {
 
          if (sizeof(VERTEX) != m_iVertexTypeSize)
@@ -193,7 +263,7 @@ namespace gpu
 
          }
 
-         m_pbufferVertex->_assign(p, sizeof(VERTEX) * iVertexCount);// data = map <VERTEX >();
+         m_pbufferVertex->_assign(p, sizeof(VERTEX) * iVertexCount);// data = map_base <VERTEX >();
 
       }
 
@@ -214,13 +284,38 @@ namespace gpu
       }
 
 
+      virtual void bind_load_assets_command_buffer(::gpu::context *pcontext);
+      virtual void unbind_load_assets_command_buffer(::gpu::context *pcontext);
+
+      template < typename VERTEX >
+      void initialize_model(::gpu::context *pcontext, const ::gpu::model_data<VERTEX> &modeldata)
+      {
+
+         initialize(pcontext);
+      
+         initialize_gpu_context_object(pcontext);
+
+         bind_load_assets_command_buffer(pcontext);
+
+         static_initialize_vertexes(modeldata.m_vertexes);
+
+         static_initialize_indexes(modeldata.m_indexes);
+
+         unbind_load_assets_command_buffer(pcontext);
+
+      }
+
+
+      virtual void initialize_dummy_model(::gpu::renderer *pgpurenderer, int ivertexes);
+
+
       virtual bool is_dummy() const;
 
-      void sequence2_uv_create_fullscreen_quad(::gpu::context* pcontext);
-      void sequence2_color_create_rectangle(::gpu::context* pcontext);
-      void sequence2_color_create_line(::gpu::context* pcontext);
-      void sequence3_color_create_rectangle(::gpu::context* pcontext);
-      void sequence3_color_create_line(::gpu::context* pcontext);
+      void sequence2_uv_create_fullscreen_quad(::gpu::frame* pgpuframe);
+      void sequence2_color_create_rectangle(::gpu::frame* pgpuframe);
+      void sequence2_color_create_line(::gpu::frame* pgpuframe);
+      void sequence3_color_create_rectangle(::gpu::frame* pgpuframe);
+      void sequence3_color_create_line(::gpu::frame* pgpuframe);
 
 
       void sequence3_color_set_rectangle(
@@ -229,9 +324,13 @@ namespace gpu
          const ::double_size& size);
 
       void sequence2_color_set_rectangle(
-         const ::double_point points1[4],
+         const ::double_point * ppoints1 /* [4]tl,tr,br,bl */,
          const ::color::color& color,
          const ::double_size& size);
+
+      void sequence2_color_set_rectangle(
+         const ::double_point* ppoints1 /* [4]tl,tr,br,bl */,
+         const ::color::color& color);
 
       void sequence3_color_set_line(
          const ::double_point& pointA,
@@ -254,7 +353,7 @@ namespace gpu
       }
 
       template < typename INDEX >
-      memory_map < memory_buffer, INDEX > map_indices()
+      memory_map < memory_buffer, INDEX > map_indexes()
       {
 
          return { m_pbufferIndex.m_p, (INDEX*)nullptr };
@@ -264,13 +363,13 @@ namespace gpu
       //virtual void* _map(memsize start, memsize count);
       //virtual void unmap();
 
-      virtual void bind(::gpu::command_buffer* pcommandbuffer);
+      void bind(::gpu::command_buffer* pcommandbuffer) override;
 
-      virtual void draw(::gpu::command_buffer* pcommandbuffer);
+      void draw(::gpu::command_buffer* pcommandbuffer) override;
 
       virtual void draw_lines(::gpu::command_buffer* pcommandbuffer);
 
-      virtual void unbind(::gpu::command_buffer* pcommandbuffer);
+      void unbind(::gpu::command_buffer* pcommandbuffer) override;
 
       virtual void set_input_layout(::gpu::input_layout* pinputlayout);
 

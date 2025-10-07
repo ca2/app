@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "impact.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "acme/crypto/crypto.h"
 #include "aura/graphics/image/image.h"
 #include "aura/graphics/image/icon.h"
@@ -102,22 +102,22 @@ namespace account
 
       ::user::interaction::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_create, pchannel, this, &impact::on_message_create);
+      USER_MESSAGE_LINK(::user::e_message_create, pchannel, this, &impact::on_message_create);
 
    }
 
 
-   void impact::defer_translate(const ::string & strUser, const ::string & strPass, const ::string & strOpen)
+   void impact::defer_translate(const ::scoped_string & scopedstrUser, const ::scoped_string & scopedstrPass, const ::scoped_string & scopedstrOpen)
    {
 
-      if (strUser.has_character())
-         m_pstillUser->set_window_text(strUser);
+      if (scopedstrUser.has_character())
+         m_pstillUser->set_window_text(scopedstrUser);
 
-      if (strPass.has_character())
-         m_pstillPassword->set_window_text(strPass);
+      if (scopedstrPass.has_character())
+         m_pstillPassword->set_window_text(scopedstrPass);
 
-      if (strOpen.has_character())
-         m_pbutton->set_window_text(strOpen);
+      if (scopedstrOpen.has_character())
+         m_pbutton->set_window_text(scopedstrOpen);
 
    }
 
@@ -373,10 +373,10 @@ namespace account
    }
 
 
-   bool impact::on_action(const ::string & pszId)
+   bool impact::on_action(const ::scoped_string & scopedstrId)
    {
 
-      if (!ansi_cmp(pszId, "submit"))
+      if (!ansi_cmp(scopedstrId, "submit"))
       {
 
          if (!m_bCred)
@@ -399,7 +399,7 @@ namespace account
          m_happeningSubmit.set_happening();
 
       }
-      else if (!ansi_cmp(pszId, "escape"))
+      else if (!ansi_cmp(scopedstrId, "escape"))
       {
 
          get_parent()->display(e_display_none);
@@ -560,7 +560,7 @@ namespace account
 
       pcredentials->m_estatus = error_credentials;
 
-      synchronous_lock synchronouslock(m_pmutexResponse);
+      synchronous_lock synchronouslock(m_pmutexResponse, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       m_strRequestUrl = pcredentials->m_puser->m_pathUrl;
 

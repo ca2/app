@@ -2,8 +2,8 @@
 
 #include "aura/windowing/windowing.h"
 #include "experience.h"
-#include "base/platform/session.h"
-#include "base/user/user/user.h"
+#include "berg/platform/session.h"
+#include "berg/user/user/user.h"
 #include "frame_001.h"
 #include "frame_002.h"
 #include "frame_005.h"
@@ -68,7 +68,7 @@ namespace experience_core
    {
    }
 
-   void experience::get_frame_list(string_array & stra)
+   void experience::get_frame_list(string_array_base & stra)
    {
 
       stra.add("001");
@@ -82,51 +82,51 @@ namespace experience_core
    }
 
 
-   ::pointer < ::experience::frame > experience::frame_experience(const ::string & strFrameSchema)
+   ::pointer < ::experience::frame > experience::frame_experience(const ::scoped_string & scopedstrFrameSchema)
    {
 
-      string strSchema(strFrameSchema);
+      string strSchema(scopedstrFrameSchema);
 
       if(strSchema == "001")
       {
 
-         return __create_new< ::experience_core::frame_001 >();
+         return øcreate_new< ::experience_core::frame_001 >();
 
       }
       else if(strSchema == "002")
       {
                
-         return __create_new< ::experience_core::frame_002 >();
+         return øcreate_new< ::experience_core::frame_002 >();
 
       }
       else if(strSchema == "005")
       {
                
-         return __create_new< ::experience_core::frame_005 >();
+         return øcreate_new< ::experience_core::frame_005 >();
 
       }
       else if(strSchema == "008")
       {
                
-         return __create_new< ::experience_core::frame_008 >();
+         return øcreate_new< ::experience_core::frame_008 >();
 
       }
       else if(strSchema == "011")
       {
                
-         return __create_new< ::experience_core::frame_011 >();
+         return øcreate_new< ::experience_core::frame_011 >();
 
       }
       else if (strSchema == "022")
       {
 
-         return __create_new < ::experience_core::frame_022>();
+         return øcreate_new < ::experience_core::frame_022>();
 
       }
       else if(strSchema == "Minimal001")
       {
 
-         return __create_new< ::experience_core::frame_Minimal001 >();
+         return øcreate_new< ::experience_core::frame_Minimal001 >();
 
       }
 

@@ -46,7 +46,7 @@ namespace user
 
    };
 
-   inline enum_line as_enum_line(const char * psz)
+   inline enum_line as_enum_line(const_char_pointer psz)
    {
 
       if (*psz == '\r')
@@ -86,7 +86,7 @@ namespace user
       }
 
    }
-   inline const char * as_string(enum_line eline)
+   inline const_char_pointer as_string(enum_line eline)
    {
 
       if (eline == e_line_end_r_n)
@@ -158,7 +158,7 @@ namespace user
       {
       public:
 
-         virtual void set_expression(const ::string & pszExp)
+         virtual void set_expression(const ::scoped_string & scopedstrExp)
          {
 
          }
@@ -292,7 +292,7 @@ namespace user
       bool                                m_bCustomFrameBefore;
       ::int_rectangle                              m_FullScreenWindowRect;
 
-      string_to_string                    m_base64map;
+      string_to_string_base                    m_base64map;
 
       bool                                m_bPassword;
       bool                                m_bEnterKeyOnPaste;
@@ -307,7 +307,7 @@ namespace user
       bool                                m_bRMouseDown;
       int_point                           m_pointSelStart;
       class ::time                          m_timeCaretPeriod;
-      string_array                        m_straLines;
+      string_array_base                        m_straLines;
       double                              m_dy;
       //bool                                m_bGetTextNeedUpdate;
       bool                                m_bNeedScrollUpdate;
@@ -336,7 +336,7 @@ namespace user
 
 
       //bool                              m_bActionHover;
-      array < double_array >              m_daExtent;
+      array_base < double_array_base >    m_daExtent;
       ::file::insert_item *               m_pinsert;
       ::pointer < plain_text_set_sel_command >       m_ppropertysetsel;
       bool                                m_bParseDataPacks;
@@ -365,7 +365,7 @@ namespace user
 
       virtual bool is_plain_edit_modified() const;
 
-      virtual void set_format(const string& strFormat);
+      virtual void set_format(const ::scoped_string & scopedstrFormat);
       virtual void set_callback(callback* pcallback);
 
 
@@ -374,19 +374,19 @@ namespace user
 
 
       virtual void get_text_composition_area(::int_rectangle & r) override;
-      void edit_on_text(string str) override;
+      void edit_on_text(const ::scoped_string & scopedstr) override;
       void edit_on_sel(character_count iSelBeg, character_count iSelEnd) override;
-      void on_text_composition(string str) override;
-      void on_text_commit(string str) override;
+      void on_text_composition(const ::scoped_string & scopedstr) override;
+      void on_text_commit(const ::scoped_string & scopedstr) override;
       void on_text_composition_done() override;
       void clear_ime_composition() override;
 
 
       bool InputConnectionBeginBatchEdit(bool bSuper) override;
       bool InputConnectionEndBatchEdit(bool bSuper) override;
-      bool InputConnectionCommitText(const ::string & str, character_count iNewCursorPosition, bool bSuper) override;
+      bool InputConnectionCommitText(const ::scoped_string & scopedstr, character_count iNewCursorPosition, bool bSuper) override;
       bool InputConnectionDeleteSurroundingText(character_count iBeforeLength, character_count iAfterLength, bool bSuper) override;
-      bool InputConnectionSetComposingText(const ::string & str, character_count iNewCursorPosition, bool bSuper) override;
+      bool InputConnectionSetComposingText(const ::scoped_string & scopedstr, character_count iNewCursorPosition, bool bSuper) override;
       bool InputConnectionSetComposingRegion(character_count iStart, character_count iEnd, bool bSuper) override;
       bool InputConnectionSetSelection(character_count iStart, character_count iEnd, bool bSuper) override;
       bool InputConnectionFinishComposingText(bool bSuper) override;
@@ -409,8 +409,8 @@ namespace user
       virtual void _001DeleteSel(bool bBackIfSelectionEmpty, const ::action_context & actioncontext);
       ///virtual bool plain_edit_delete_sel(::draw2d::graphics_pointer& pgraphics, bool & bFullUpdate, ::collection::index & iLineUpdate);
 
-      virtual void _001ReplaceSel(const ::string & pszText);
-      virtual bool _001ReplaceSel(const ::string & pszText, bool & bFullUpdate, ::collection::index & iLineUpdate);
+      virtual void _001ReplaceSel(const ::scoped_string & scopedstrText);
+      virtual bool _001ReplaceSel(const ::scoped_string & scopedstrText, bool & bFullUpdate, ::collection::index & iLineUpdate);
 
       virtual void plain_edit_on_end_update(::draw2d::graphics_pointer & pgraphics);
 
@@ -492,7 +492,7 @@ namespace user
       virtual void clipboard_copy();
       virtual void clipboard_paste();
 
-      virtual bool get_line_color(::color::color & crOverride, const ::string & strLine);
+      virtual bool get_line_color(::color::color & crOverride, const ::scoped_string & scopedstrLine);
 
       virtual void pre_translate_message(::message::message * pmessage) override;
 
@@ -543,7 +543,7 @@ namespace user
       ::string get_text() const override;
 
       virtual void on_set_property(::data::property_change & change) override;
-      virtual ::payload on_get_property(const ::atom_array & atoma) const override;
+      virtual ::payload on_get_property(const ::atom_array_base & atoma) const override;
 
       //virtual void get_text(string & str) override;
       //virtual void get_selection_text(string & str) override;
@@ -553,10 +553,10 @@ namespace user
       //void get_text_selection(character_count &iSelStart, character_count &iSelEnd) override;
       //void get_text_selection(character_count & iSelStart, character_count & iSelEnd);
       //void get_text_selection(character_count & iSelBeg, character_count & iSelEnd);
-      //void set_text(const ::string & str, const ::action_context & actioncontext) override;
+      //void set_text(const ::scoped_string & scopedstr, const ::action_context & actioncontext) override;
       void set_text(const ::scoped_string & scopedstr, const ::action_context & actioncontext) override;
       void set_text_and_selection(const ::scoped_string & scopedstr, character_count iSelStart, character_count iSelEnd, const ::action_context & actioncontext) override;
-      //void set_selection_text(const ::string & psz, const ::action_context & actioncontext) override;
+      //void set_selection_text(const ::scoped_string & scopedstr, const ::action_context & actioncontext) override;
       void set_selection_text(const ::scoped_string & scopedstr, const ::action_context & actioncontext);
       //void _001SetSelEnd(character_count iSelEnd, const ::action_context & actioncontext) override;
       void set_selection_end(character_count iSelEnd, const ::action_context & actioncontext);
@@ -606,7 +606,7 @@ namespace user
       void plain_edit_one_line_up(::draw2d::graphics_pointer& pgraphics);
 
       void IndexRegisterDelete(character_count iSel, character_count iCount);
-      void IndexRegisterInsert(character_count iSel, const ::string & pcszWhat);
+      void IndexRegisterInsert(character_count iSel, const ::scoped_string & scopedstrWhat);
 
 
       virtual void MacroBegin();

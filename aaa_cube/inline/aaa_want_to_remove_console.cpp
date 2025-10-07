@@ -63,7 +63,7 @@ console::console(int argc, wchar_t* argv[])
 
 #endif
 
-   auto psystem = __allocate ::aura::system();
+   auto psystem = øallocate ::aura::system();
 
    psystem->system_construct(this, argc, argv);
 
@@ -142,11 +142,11 @@ console::console(int argc, char * argv[])
 
 #endif
 
-   system() = __allocate ::aura::system();
+   system() = øallocate ::aura::system();
 
    system()->construct_system(this, argc, argv, pszCommandLine);
 
-   //m_pmaindata->m_pappcore = __allocate app_graphics3d(m_pmaindata);
+   //m_pmaindata->m_pappcore = øallocate app_graphics3d(m_pmaindata);
 
    if (!system()->system_beg())
    {

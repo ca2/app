@@ -14,7 +14,7 @@ namespace html
    }
 
 
-   style * style_sheet_array::rear_find(e_tag etag, const ::string & strClass, const ::string & strSubClass, const atom & idName)
+   style * style_sheet_array::rear_find(e_tag etag, const ::scoped_string & scopedstrClass, const ::scoped_string & scopedstrSubClass, const atom & idName)
    {
 
       style * pstyle = nullptr;
@@ -26,7 +26,7 @@ namespace html
 
          style_sheet & sheet = *this->element_at(i);
 
-         pstyle = sheet.rear_find(etag, strClass, strSubClass, idName);
+         pstyle = sheet.rear_find(etag, scopedstrClass, scopedstrSubClass, idName);
 
          if(pstyle != nullptr)
             break;
@@ -38,7 +38,7 @@ namespace html
    }
 
 
-   style * style_sheet_array::rfind_border_width(e_tag etag, const ::string & strClass, const ::string & strSubClass, const atom & idName, float & f)
+   style * style_sheet_array::rfind_border_width(e_tag etag, const ::scoped_string & scopedstrClass, const ::scoped_string & scopedstrSubClass, const atom & idName, float & f)
    {
 
       style * pstyle = nullptr;
@@ -50,7 +50,7 @@ namespace html
 
          style_sheet & sheet = *this->element_at(i);
 
-         pstyle = sheet.rfind_border_width(etag, strClass, strSubClass, idName, f);
+         pstyle = sheet.rfind_border_width(etag, scopedstrClass, scopedstrSubClass, idName, f);
 
          if(pstyle != nullptr)
             break;
@@ -62,7 +62,7 @@ namespace html
    }
 
 
-   style * style_sheet_array::rfind_border_color(e_tag etag, const ::string & strClass, const ::string & strSubClass, const atom & idName, ::color::color & color32)
+   style * style_sheet_array::rfind_border_color(e_tag etag, const ::scoped_string & scopedstrClass, const ::scoped_string & scopedstrSubClass, const atom & idName, ::color::color & color32)
    {
 
       style * pstyle = nullptr;
@@ -74,7 +74,7 @@ namespace html
 
          style_sheet & sheet = *this->element_at(i);
 
-         pstyle = sheet.rfind_border_color(etag, strClass, strSubClass, idName, color32);
+         pstyle = sheet.rfind_border_color(etag, scopedstrClass, scopedstrSubClass, idName, color32);
 
          if(pstyle != nullptr)
             break;

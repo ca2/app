@@ -36,7 +36,7 @@ namespace dynamic_source
       script_interface();
       ~script_interface() override;
 
-      virtual const char* debug_note() const override;
+      virtual const_char_pointer debug_note() const override;
 
       virtual void initialize(::particle * pparticle) override;
       virtual void init1();
@@ -48,14 +48,14 @@ namespace dynamic_source
 
 
       virtual void dinit();
-      virtual void dprint(const ::string &);
+      virtual void dprint(const ::scoped_string & scopedstr) override;
       virtual void dprint_recursive(const ::payload & payload);
 
 
       ::property_set& inattra();
 
 
-      //virtual property & get(const ::string & pszKey);
+      //virtual property & get(const ::scoped_string & scopedstrKey);
 
 
 
@@ -78,8 +78,8 @@ namespace dynamic_source
       virtual void set_session_id(const ::scoped_string & scopedstrSessionId);
 
       virtual string get_auth_email();
-      virtual void set_auth_email(const string & strEmail);
-      virtual void auth(const string& strAuth);
+      virtual void set_auth_email(const ::scoped_string & scopedstrEmail);
+      virtual void auth(const ::scoped_string & scopedstrAuth);
       
       ::payload run_script();
 
@@ -92,17 +92,17 @@ namespace dynamic_source
 
 
       virtual void print_r(::payload payload);
-      ::property& request(const ::atom & atom);
-      ::property_set& geta();
-      ::property_set& posta();
-      http::cookies& cookies();
-      ::property_set& requesta();
+      virtual ::property& request(const ::atom & atom);
+      virtual ::property_set& geta();
+      virtual ::property_set& posta();
+      virtual http::cookies& cookies();
+      virtual ::property_set& requesta();
 
-      ::property& inheader(const ::atom & atom);
-      ::property& outheader(const ::atom & atom);
+      virtual ::property& inheader(const ::atom & atom);
+      virtual ::property& outheader(const ::atom & atom);
 
-      ::property& inattr(const ::atom & atom);
-      ::property& outattr(const ::atom & atom);
+      virtual ::property& inattr(const ::atom & atom);
+      virtual ::property& outattr(const ::atom & atom);
 
       virtual string& gstr(const ::atom & atom);
       virtual ::property& gprop(const ::atom & atom);
@@ -112,10 +112,10 @@ namespace dynamic_source
       inline http::cookie& get_cookie(const ::scoped_string & scopedstr);
       inline http::cookie& set_cookie(const ::scoped_string & scopedstr);
 
-      void uri_set_var(string& strUrl, const ::string & pszUrl, const ::string & pszKey, ::payload payload);
-      void uri_set_param(string& strUrl, const ::string & pszUrl, const ::string & pszKey, const string& strParam);
-      string query_get_param(const ::string & pszUrl, const ::string & pszKey);
-      ::payload query_get_var(const ::string & pszUrl, const ::string & pszKey);
+      void uri_set_var(string& strUrl, const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrKey, ::payload payload);
+      void uri_set_param(string& strUrl, const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrKey, const ::scoped_string & scopedstrParam);
+      string query_get_param(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrKey);
+      ::payload query_get_var(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrKey);
 
 
 

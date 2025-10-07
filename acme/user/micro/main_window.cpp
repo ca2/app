@@ -254,7 +254,7 @@ namespace micro
    //void main_window::resize_to_fit()
    //{
 
-   //   auto pdevice = __øcreate < ::nano::graphics::device >();
+   //   auto pdevice = øcreate < ::nano::graphics::device >();
 
    //   auto size = pdevice->get_text_extents(m_strText, micro_theme()->m_pfont);
 
@@ -406,10 +406,10 @@ namespace micro
    //         //}
 
 
-   //void main_window::_on_window_simple_action(const char * pszActionName)
+   //void main_window::_on_window_simple_action(const_char_pointer pszActionName)
    //{
 
-   //   ::string strActionName(pszActionName);
+   //   ::string strActionName(scopedstrActionName);
 
    //   if (strActionName == "minimize")
    //   {
@@ -469,7 +469,7 @@ namespace micro
    //::pointer<::operating_system::a_system_menu> main_window::create_system_menu(bool bContextual)
    //{
 
-   //   auto psystemmenu = __allocate ::operating_system::a_system_menu();
+   //   auto psystemmenu = øallocate ::operating_system::a_system_menu();
 
    //   if (m_bMinimizeBox)
    //   {
@@ -680,7 +680,7 @@ namespace micro
 
    //   //do_modal();
 
-   //   //auto pmanualresethappening = __allocate manual_reset_happening();
+   //   //auto pmanualresethappening = øallocate manual_reset_happening();
 
    //   //if (m_psequencer)
    //   //{
@@ -819,7 +819,7 @@ namespace micro
    //void main_window::add_button(const ::scoped_string & scopedstrText, enum_dialog_result edialogresult, char chLetter)
    //{
 
-   //   auto pbutton = __allocate ::micro::button();
+   //   auto pbutton = øallocate ::micro::button();
 
    //   pbutton->m_strText = scopedstrText;
    //   pbutton->id() = edialogresult;
@@ -1441,7 +1441,7 @@ namespace micro
    }
 
 
-   void main_window::display_temporary_file_with_text(const ::string & str)
+   void main_window::display_temporary_file_with_text(const ::scoped_string & scopedstr)
    {
 
       string strAppId;
@@ -1450,7 +1450,7 @@ namespace micro
 
       ::file::path pathFolder = directory_system()->home() / "application" / strAppId / "details";
 
-      auto pathDetails = file_system()->time_put_contents(pathFolder, "details", "txt", str);
+      auto pathDetails = file_system()->time_put_contents(pathFolder, "details", "txt", scopedstr);
 
       node()->shell_open(pathDetails, "");
 
@@ -1610,7 +1610,7 @@ namespace micro
    }
 
 
-   void main_window::_on_window_simple_action(const char * pszActionName, ::user::activation_token * puseractivationtoken)
+   void main_window::_on_window_simple_action(const_char_pointer pszActionName, ::user::activation_token * puseractivationtoken)
    {
 
       ::string strActionName(pszActionName);
@@ -1730,7 +1730,7 @@ namespace micro
 
          }
 
-         __øconstruct(m_pacmewindowingwindow);
+         øconstruct(m_pacmewindowingwindow);
 
       }
 

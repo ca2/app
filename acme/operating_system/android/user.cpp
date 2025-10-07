@@ -19,7 +19,7 @@
 ////   }
 //
 //
-//   void _os_process_user_theme(string strTheme)
+//   void _os_process_user_theme(const ::scoped_string & scopedstrTheme)
 //   {
 //
 //      __UNREFERENCED_PARAMETER(strTheme);
@@ -130,14 +130,14 @@
 ////
 //
 //
-//int _os_message_box(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::e_message_box & emessagebox)
+//int _os_message_box(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::user::e_message_box & emessagebox)
 //{
 //
 //   int iMessageBox = emessagebox.m_eenum & 0x7f;
 //
-//   wstring wstrText(pszMessage);
+//   wstring wstrText(scopedstrMessage);
 //
-//   wstring wstrTitle(pszTitle);
+//   wstring wstrTitle(scopedstrTitle);
 //
 //   ///int iResult = ::MessageBox(nullptr, wstrText, wstrTitle, iMessageBox);
 //

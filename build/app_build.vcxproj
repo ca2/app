@@ -959,7 +959,7 @@
     <ProjectReference Include="..\..\..\source\app\axis\axis.vcxproj">
       <Project>{a2cbd4ed-ed0f-482b-9b16-f48f21c32835}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\source\app\base\base.vcxproj">
+    <ProjectReference Include="..\..\..\source\app\berg\berg.vcxproj">
       <Project>{a216abd4-26c4-4746-96b3-9d30ed28cf92}</Project>
     </ProjectReference>
     <ProjectReference Include="..\..\..\source\app\bred\bred.vcxproj">

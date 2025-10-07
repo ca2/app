@@ -21,7 +21,7 @@ constexpr int get_bool_int( bool b){return b? 1:0;}
 
 
       constexpr bool equals(const TYPE & a, const TYPE & b) const { return a == b; }
-      constexpr ::std::strong_ordering order(const TYPE & a, const TYPE & b) const { return a <=> b; }
+      constexpr auto order(const TYPE & a, const TYPE & b) const { return a <=> b; }
 
 
    };
@@ -37,8 +37,8 @@ public:
 
 
    constexpr bool equals(bool a, bool b) const { return get_bool_int(a) == get_bool_int(b); }
-   constexpr ::std::strong_ordering order(bool a, bool b) const { return get_bool_int(a) <=> get_bool_int(b); }
-
+   constexpr auto order(bool a, bool b) const { return get_bool_int(a) <=> get_bool_int(b); }
+   
 
 };
 
@@ -54,7 +54,7 @@ public:
 
 
       constexpr bool equals(TYPE a, TYPE b) const { return a == b; }
-      constexpr ::std::strong_ordering order(TYPE a, TYPE b) const { return a <=> b; }
+      constexpr auto order(TYPE a, TYPE b) const { return a <=> b; }
 
 
    };
@@ -147,3 +147,71 @@ public:
 
 
 
+template < typename T1, typename T2>
+T1 as(const T2& t2)
+{
+
+   return (T1)t2;
+
+}
+
+
+inline constexpr std::strong_ordering to_strong_ordering(std::partial_ordering po) {
+   if (po == std::partial_ordering::less) {
+      return std::strong_ordering::less;
+   }
+   else if (po == std::partial_ordering::equivalent) {
+      return std::strong_ordering::equal; // Note: equivalent maps to equal for strong_ordering
+   }
+   else if (po == std::partial_ordering::greater) {
+      return std::strong_ordering::greater;
+   }
+   // Handle the 'unordered' case if it's possible and needs specific handling,
+   // otherwise, this indicates an invalid state for strong_ordering.
+   // For example, you might throw an exception or return a default strong_ordering value
+   // if 'unordered' is not expected.
+   // throw std::runtime_error("Cannot convert unordered partial_ordering to strong_ordering");
+   return std::strong_ordering::equal; // Or some other appropriate default/error handling
+}
+
+
+
+inline constexpr std::partial_ordering to_partial_ordering(std::strong_ordering strongordering) {
+   if (strongordering == std::strong_ordering::less) {
+      return std::partial_ordering::less;
+   }
+   else if (strongordering == std::strong_ordering::equal) {
+      return std::partial_ordering::equivalent; // Note: equivalent maps to equal for strong_ordering
+   }
+   else if (strongordering == std::strong_ordering::greater) {
+      return std::partial_ordering::greater;
+   }
+   // Handle the 'unordered' case if it's possible and needs specific handling,
+   // otherwise, this indicates an invalid state for strong_ordering.
+   // For example, you might throw an exception or return a default strong_ordering value
+   // if 'unordered' is not expected.
+   // throw std::runtime_error("Cannot convert unordered partial_ordering to strong_ordering");
+   return std::partial_ordering::equivalent; // Or some other appropriate default/error handling
+}
+
+
+
+template < >
+inline constexpr std::strong_ordering as <::std::strong_ordering, ::std::partial_ordering >(
+   const std::partial_ordering& partialordering)
+{
+
+   return to_strong_ordering(partialordering);
+
+}
+
+
+
+template < >
+inline constexpr std::partial_ordering as <::std::partial_ordering, ::std::strong_ordering >(
+   const std::strong_ordering& strongordering)
+{
+
+   return to_partial_ordering(strongordering);
+
+}

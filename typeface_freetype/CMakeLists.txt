@@ -19,7 +19,7 @@ list(APPEND library_references
         aqua
         aura
         axis
-        base
+        berg
         bred
         freetype
 )
@@ -38,11 +38,11 @@ if (MSVC)
     target_link_options(${PROJECT_NAME} PRIVATE "/IMPLIB:${LIBRARY_OUTPUT_PATH}/${PROJECT_NAME}.lib")
     #target_link_options(${PROJECT_NAME} PRIVATE "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/${PROJECT_NAME}.def")
     target_link_libraries(${PROJECT_NAME} PRIVATE ${library_references})
-elseif(LINUX)
+elseif(${LINUX})
 
     if(NOT DONT_USE_PKG_CONFIG)
-        #pkg_check_modules(PKGCONFIG glib-2.0 gtk+-3.0 gdk-3.0 appindicator-0.1)
-        pkg_check_modules(PKGCONFIG glib-2.0 freetype2 gtk+-3.0 gdk-3.0)
+        #pkg_check_modules(${PROJECT_NAME}_PKGCONFIG glib-2.0 gtk+-3.0 gdk-3.0 appindicator-0.1)
+        pkg_check_modules(${PROJECT_NAME}_PKGCONFIG glib-2.0 freetype2 gtk+-3.0 gdk-3.0)
     endif()
     target_compile_options(${PROJECT_NAME} PRIVATE ${${PROJECT_NAME}_PKGCONFIG_CFLAGS})
     #target_compile_options(${PROJECT_NAME} PRIVATE -std=c++14)

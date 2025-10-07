@@ -6,15 +6,15 @@
 ////#include "acme/exception/exception.h"
 
 
-const char* wildcard_next_stop(const ::ansi_character * pszCriteria)
+const_char_pointer wildcard_next_stop(const_char_pointer pszCriteria)
 {
 
    if (pszCriteria == nullptr)
       return nullptr;
 
 
-   const ::ansi_character * pszAsterisk = ansi_find_string(pszCriteria, "*");
-   const ::ansi_character * pszQuestion = ansi_find_string(pszCriteria, "?");
+   const_char_pointer pszAsterisk = ansi_find_string(pszCriteria, "*");
+   const_char_pointer pszQuestion = ansi_find_string(pszCriteria, "?");
 
    if (pszAsterisk == nullptr && pszQuestion == nullptr)
       return nullptr;
@@ -31,15 +31,15 @@ const char* wildcard_next_stop(const ::ansi_character * pszCriteria)
 }
 
 
-CLASS_DECL_ACME int_bool matches_wildcard_criteria_dup(const ::ansi_character * pszCriteriaParam, const ::ansi_character * pszValue)
+CLASS_DECL_ACME int_bool matches_wildcard_criteria_dup(const_char_pointer pszCriteriaParam, const_char_pointer pszValue)
 {
 
    string strCriteria(normalize_wildcard_criteria(pszCriteriaParam));
 
-   const ::ansi_character * pszCriteria = strCriteria;
+   const_char_pointer pszCriteria = strCriteria;
 
-   const ::ansi_character * pszFind;
-   const ::ansi_character * pszStop;
+   const_char_pointer pszFind;
+   const_char_pointer pszStop;
 
    iptr iLen;
 
@@ -118,15 +118,15 @@ CLASS_DECL_ACME int_bool matches_wildcard_criteria_dup(const ::ansi_character * 
 }
 
 
-CLASS_DECL_ACME int_bool case_insensitive_matches_wildcard_criteria(const ::ansi_character * pszCriteriaParam, const ::ansi_character * pszValue)
+CLASS_DECL_ACME int_bool case_insensitive_matches_wildcard_criteria(const_char_pointer pszCriteriaParam, const_char_pointer pszValue)
 {
 
    string strCriteria(normalize_wildcard_criteria(pszCriteriaParam));
 
-   const ::ansi_character * pszCriteria = strCriteria;
+   const_char_pointer pszCriteria = strCriteria;
 
-   const ::ansi_character * pszFind;
-   const ::ansi_character * pszStop;
+   const_char_pointer pszFind;
+   const_char_pointer pszStop;
 
    iptr iLen;
 
@@ -212,15 +212,15 @@ CLASS_DECL_ACME int_bool case_insensitive_matches_wildcard_criteria(const ::ansi
 }
 
 
-CLASS_DECL_ACME int_bool matches_wildcard_criteria(const ::ansi_character * pszCriteriaParam, const ::ansi_character * pszValue)
+CLASS_DECL_ACME int_bool matches_wildcard_criteria(const_char_pointer pszCriteriaParam, const_char_pointer pszValue)
 {
 
    string strCriteria(normalize_wildcard_criteria(pszCriteriaParam));
 
-   const ::ansi_character * pszCriteria = strCriteria.c_str();
+   const_char_pointer pszCriteria = strCriteria.c_str();
 
-   const ::ansi_character * pszFind;
-   const ::ansi_character * pszStop;
+   const_char_pointer pszFind;
+   const_char_pointer pszStop;
 
    iptr iLen;
 

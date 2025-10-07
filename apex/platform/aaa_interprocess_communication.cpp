@@ -24,7 +24,7 @@ interprocess_intercommunication::~interprocess_intercommunication()
 }
 
 
-void interprocess_intercommunication::initialize_interprocess_communication(::particle * pparticle, const ::string & strApp)
+void interprocess_intercommunication::initialize_interprocess_communication(::particle * pparticle, const ::scoped_string & scopedstrApp)
 {
 
    ::object::initialize(pparticle);
@@ -52,7 +52,7 @@ void interprocess_intercommunication::initialize_interprocess_communication(::pa
 
    call_routines_with_id(CREATE_ROUTINE);
 
-   /*estatus = */ __øconstruct(m_prx);
+   /*estatus = */ øconstruct(m_prx);
 
    //if (!estatus)
    //{
@@ -109,23 +109,23 @@ void interprocess_intercommunication::destroy()
 }
 
 
-void interprocess_intercommunication::start(const ::string & strApp)
+void interprocess_intercommunication::start(const ::scoped_string & scopedstrApp)
 {
 
-   synchronous_lock sl1(mutex());
+   synchronous_lock sl1(mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    auto & pmutex = m_mapAppMutex[strApp];
 
    if(pmutex.is_null())
    {
 
-      pmutex = __allocate ::pointer < ::mutex > ();
+      pmutex = øallocate ::pointer < ::mutex > ();
 
    }
 
    sl1.unlock();
 
-   synchronous_lock synchronouslock(pmutex);
+   synchronous_lock synchronouslock(pmutex, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    auto idaPid = get_pid(strApp);
 
@@ -143,7 +143,7 @@ void interprocess_intercommunication::start(const ::string & strApp)
 
    }
 
-   auto plauncher = __allocate ::apex::app_launcher();
+   auto plauncher = øallocate ::apex::app_launcher();
    
    plauncher->initialize_app_launcher(this, process_platform_name(), strApp);
 
@@ -201,7 +201,7 @@ started:
    if(m_txmap[strKey].is_null())
    {
 
-      m_txmap[strKey] = __øcreate < ::inteprocess::caller>();
+      m_txmap[strKey] = øcreate < ::inteprocess::caller>();
 
    }
 
@@ -210,7 +210,7 @@ started:
 }
 
 
-void interprocess_intercommunication::connect(const ::string & strApp, const ::atom & idPid)
+void interprocess_intercommunication::connect(const ::scoped_string & scopedstrApp, const ::atom & idPid)
 {
 
    string strKey = strApp + ":" + as_string(idPid);
@@ -218,7 +218,7 @@ void interprocess_intercommunication::connect(const ::string & strApp, const ::a
    if(m_txmap[strKey].is_null())
    {
 
-      m_txmap[strKey] = __øcreate<::inteprocess::caller>();
+      m_txmap[strKey] = øcreate<::inteprocess::caller>();
 
    }
 
@@ -234,7 +234,7 @@ void interprocess_intercommunication::connect(const ::string & strApp, const ::a
 }
 
 
-::inteprocess::caller & interprocess_intercommunication::tx(const ::string & strApp, const ::atom & iPid)
+::inteprocess::caller & interprocess_intercommunication::tx(const ::scoped_string & scopedstrApp, const ::atom & iPid)
 {
 
    string strKey = strApp + ":" + as_string(iPid);
@@ -242,7 +242,7 @@ void interprocess_intercommunication::connect(const ::string & strApp, const ::a
    if(m_txmap[strKey].is_null())
    {
 
-      m_txmap[strKey] = __øcreate < ::inteprocess::caller>();
+      m_txmap[strKey] = øcreate < ::inteprocess::caller>();
 
    }
 
@@ -339,7 +339,7 @@ string interprocess_intercommunication::str_from_va(const payload_array & payloa
 }
 
 
-bool interprocess_intercommunication::on_interprocess_receive(::inteprocess::handler * prx, const ::string & strMessage)
+bool interprocess_intercommunication::on_interprocess_receive(::inteprocess::handler * prx, const ::scoped_string & scopedstrMessage)
 {
 
 
@@ -406,7 +406,7 @@ bool interprocess_intercommunication::on_interprocess_receive(::inteprocess::han
 //
 //   string strMember;
 //
-//   string_array stra;
+//   string_array_base stra;
 //
 //   property_set propertyset;
 //
@@ -520,9 +520,9 @@ bool interprocess_intercommunication::on_interprocess_receive(::inteprocess::han
 ::pointer<::interprocess::task>interprocess_intercommunication::create_task(::interprocess::call * pcall, const ::atom & idPid)
 {
 
-   auto pobjectTask = __allocate ::interprocess::task(pcall, idPid, m_iTaskSeed++);
+   auto pobjectTask = øallocate ::interprocess::task(pcall, idPid, m_iTaskSeed++);
 
-   synchronous_lock synchronouslock(this->synchronization());
+   synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    m_mapTask[pobjectTask->m_iTask] = pobjectTask;
 
@@ -536,22 +536,22 @@ bool interprocess_intercommunication::on_interprocess_receive(::inteprocess::han
 ::pointer<::interprocess::task>interprocess_intercommunication::get_task(long long iTask)
 {
 
-   synchronous_lock synchronouslock(this->synchronization());
+   synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    return m_mapTask[iTask];
 
 }
 
 
-::pointer<::interprocess::call>interprocess_intercommunication::create_call(const ::string & strApp, const ::string & strObject, const ::string & strMember)
+::pointer<::interprocess::call>interprocess_intercommunication::create_call(const ::scoped_string & scopedstrApp, const ::scoped_string & scopedstrObject, const ::scoped_string & scopedstrMember)
 {
 
-   return __allocate ::interprocess::call(this, strApp, strObject, strMember);
+   return øallocate ::interprocess::call(this, strApp, strObject, strMember);
 
 }
 
 
-::pointer<::interprocess::call>interprocess_intercommunication::create_call(const ::string & strObject, const ::string & strMember)
+::pointer<::interprocess::call>interprocess_intercommunication::create_call(const ::scoped_string & scopedstrObject, const ::scoped_string & scopedstrMember)
 {
 
    return create_call(m_strApp, strObject, strMember);
@@ -559,7 +559,7 @@ bool interprocess_intercommunication::on_interprocess_receive(::inteprocess::han
 }
 
 
-bool interprocess_intercommunication::on_interprocess_call(::payload & payload, const ::string & strObject, const ::string & strMember, ::property_set & propertyset)
+bool interprocess_intercommunication::on_interprocess_call(::payload & payload, const ::scoped_string & scopedstrObject, const ::scoped_string & scopedstrMember, ::property_set & propertyset)
 {
 
    if(strObject == "application")
@@ -615,7 +615,7 @@ bool interprocess_intercommunication::on_interprocess_call(::payload & payload, 
 }
 
 
-void interprocess_intercommunication::on_new_instance(const ::string & strModule, const ::atom & idPid)
+void interprocess_intercommunication::on_new_instance(const ::scoped_string & scopedstrModule, const ::atom & idPid)
 {
 
    defer_add_module(strModule, idPid);
@@ -625,7 +625,7 @@ void interprocess_intercommunication::on_new_instance(const ::string & strModule
 }
 
 
-atom_array interprocess_intercommunication::get_pid(const ::string & strApp)
+atom_array interprocess_intercommunication::get_pid(const ::scoped_string & scopedstrApp)
 {
 
    atom_array idaPid;
@@ -648,7 +648,7 @@ atom_array interprocess_intercommunication::get_pid(const ::string & strApp)
 
 #else
 
-   string_array stra;
+   string_array_base stra;
 
    ::file::path pathModule;
 
@@ -669,7 +669,7 @@ repeat:
 
    }
 
-   string_array stra2;
+   string_array_base stra2;
 
    ::int_array iaPid2;
 
@@ -683,7 +683,7 @@ repeat:
       if (str.has_character())
       {
 
-         string_array a;
+         string_array_base a;
 
          a.explode("|", str);
 
@@ -737,7 +737,7 @@ repeat:
 }
 
 
-void interprocess_intercommunication::defer_add_module(const ::string & strModule, const ::atom & idPid)
+void interprocess_intercommunication::defer_add_module(const ::scoped_string & scopedstrModule, const ::atom & idPid)
 {
    
    auto psystem = system();
@@ -760,7 +760,7 @@ void interprocess_intercommunication::defer_add_module(const ::string & strModul
 
    m_straModule.add_lines(strModuleList);
 
-   string_array stra2;
+   string_array_base stra2;
 
    ::int_array iaPid2;
 
@@ -776,7 +776,7 @@ void interprocess_intercommunication::defer_add_module(const ::string & strModul
       if (str.has_character())
       {
 
-         string_array a;
+         string_array_base a;
 
          a.explode("|", str);
 
@@ -818,7 +818,7 @@ void interprocess_intercommunication::defer_add_module(const ::string & strModul
 
    }
 
-   string_array straUnique;
+   string_array_base straUnique;
 
    forallref(m_straModule)
    {

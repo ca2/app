@@ -2,7 +2,7 @@
 #pragma once
 
 
-inline int get_utf8_char_length(const ::ansi_character * psz)
+inline int get_utf8_char_length(const_char_pointer psz)
 {
 
    int len = utf8_unicode_length(*psz);
@@ -47,7 +47,7 @@ inline int get_utf8_char_length(const ::ansi_character * psz)
 
 
 
-//inline int unicode_index(const char *& input, character_count * psrclen)
+//inline int unicode_index(const_char_pointer &input, character_count * psrclen)
 //{
 //
 //   if (*input == 0)
@@ -144,7 +144,7 @@ inline int unicode_index_length(const ::wd32_character *& input, character_count
 }
 
 
-inline int unicode_index_length(const ::ansi_character * pszUtf8, int & len)
+inline int unicode_index_length(const_char_pointer pszUtf8, int & len)
 {
 
    if (is_empty(pszUtf8))
@@ -193,7 +193,7 @@ inline int unicode_index_length(const ::ansi_character * pszUtf8, int & len)
 }
 
 
-inline int consume_unicode_index(const ::ansi_character *& pszUtf8)
+inline int consume_unicode_index(const_char_pointer &pszUtf8)
 {
 
    int len = 0;
@@ -305,7 +305,7 @@ inline int unicode_to_upper_case(int i)
 //
 //   const CHARACTER * psz;
 //
-//   if (_string_scan_prefix(psz, block, blockCharacters))
+//   if (_string_scan_prefix(scopedstr, block, blockCharacters))
 //   {
 //
 //      return psz;
@@ -317,7 +317,7 @@ inline int unicode_to_upper_case(int i)
 //}
 
 
-//inline const ::ansi_character * _string_scan(const array_range < ::ansi_character > & block, const array_range < ::ansi_character > & blockCharacters) noexcept
+//inline const_char_pointer _string_scan(const array_range < ::ansi_character > & block, const array_range < ::ansi_character > & blockCharacters) noexcept
 //{
 //
 //   return ansi_scan(block, blockCharacters);
@@ -520,18 +520,16 @@ inline bool unicode_is_mirrored(int i)
 
 inline int unicode_size_of_tables()
 {
+   
    return sizeof(arr_idxCharInfo) + sizeof(arr_CharInfo) + sizeof(arr_idxCharInfo2) + sizeof(arr_CharInfo2);
+
 }
 
-inline const ::ansi_character * unicode_next(const ::ansi_character * psz)
+
+template < typename CHARACTER, typename CHARACTER_COUNT >
+[[nodiscard]] inline CHARACTER * unicode_next(CHARACTER *psz, CHARACTER_COUNT *piRemaining)
+   requires(sizeof(CHARACTER) == 1)
 {
-
-   if (psz == nullptr)
-   {
-
-      return nullptr;
-
-   }
 
    if (*psz == '\0')
    {
@@ -543,6 +541,15 @@ inline const ::ansi_character * unicode_next(const ::ansi_character * psz)
    char len = 1 + trailingBytesForUTF8(*psz);
 
    if (len == 0) return psz;
+
+   if(piRemaining && len > *piRemaining)
+   {
+
+      throw_encoding_exception("no remaining characters for decoding utf8 encoded string (0)");
+
+      return nullptr;
+
+   }
 
    if (*psz++ == 0)
    {
@@ -553,7 +560,19 @@ inline const ::ansi_character * unicode_next(const ::ansi_character * psz)
 
    }
 
-   if (len == 1) return psz;
+   if (len == 1) 
+   {
+
+      if(piRemaining)
+      {
+      
+         *piRemaining -= 1;
+
+      }
+      
+      return psz;
+
+   }
 
    if (*psz++ == 0)
    {
@@ -564,7 +583,19 @@ inline const ::ansi_character * unicode_next(const ::ansi_character * psz)
 
    }
 
-   if (len == 2) return psz;
+   if (len == 2)
+   {
+
+      if(piRemaining)
+      {
+
+         *piRemaining -= 2;
+
+      }
+   
+      return psz;
+
+   }
 
    if (*psz++ == 0)
    {
@@ -575,7 +606,19 @@ inline const ::ansi_character * unicode_next(const ::ansi_character * psz)
 
    }
 
-   if (len == 3) return psz;
+   if (len == 3)
+   {
+
+      if(piRemaining)
+      {
+
+         *piRemaining -= 3;
+
+      }
+   
+      return psz;
+
+   }
 
    if (*psz++ == 0)
    {
@@ -586,7 +629,19 @@ inline const ::ansi_character * unicode_next(const ::ansi_character * psz)
 
    }
 
-   if (len == 4) return psz;
+   if (len == 4) 
+   {
+
+      if(piRemaining)
+      {
+
+         *piRemaining -= 4;
+
+      }
+      
+      return psz;
+
+   }
 
    if (*psz++ == 0)
    {
@@ -597,7 +652,19 @@ inline const ::ansi_character * unicode_next(const ::ansi_character * psz)
 
    }
 
-   if (len == 5) return psz;
+   if (len == 5) 
+   {
+
+      if(piRemaining)
+      {
+
+         *piRemaining -= 5;
+
+      }
+      
+      return psz;
+
+   }
 
    if (*psz++ == 0)
    {
@@ -608,7 +675,19 @@ inline const ::ansi_character * unicode_next(const ::ansi_character * psz)
 
    }
 
-   if (len == 6) return psz;
+   if (len == 6)
+   {
+
+      if(piRemaining)
+      {
+
+         *piRemaining -= 6;
+
+      }
+      
+      return psz;
+
+   }
 
    throw_encoding_exception("premature end of utf8 encoded string (7)");
 
@@ -617,15 +696,106 @@ inline const ::ansi_character * unicode_next(const ::ansi_character * psz)
 }
 
 
-inline const ::ansi_character * unicode_next(const ::ansi_character * psz, int * piError)
+// inline const_char_pointer unicode_next(const_char_pointer psz, int * piError)
+// {
+
+//    if (psz == nullptr)
+//    {
+
+//       return nullptr;
+
+//    }
+
+//    if (*psz == '\0')
+//    {
+
+//       return psz;
+
+//    }
+
+//    *piError = 0;
+
+//    char len = 1 + trailingBytesForUTF8(*psz);
+
+//    if (len == 0) return psz;
+
+//    if (*psz++ == 0)
+//    {
+
+//       *piError = 1;
+
+//       return nullptr;
+
+//    }
+
+//    if (len == 1) return psz;
+
+//    if (*psz++ == 0)
+//    {
+
+//       *piError = 2;
+
+//       return nullptr;
+
+//    }
+
+//    if (len == 2) return psz;
+
+//    if (*psz++ == 0)
+//    {
+
+//       *piError = 3;
+
+//       return nullptr;
+
+//    }
+
+//    if (len == 3) return psz;
+
+//    if (*psz++ == 0)
+//    {
+
+//       *piError = 4;
+
+//       return nullptr;
+
+//    }
+
+//    if (len == 4) return psz;
+
+//    if (*psz++ == 0)
+//    {
+
+//       *piError = 5;
+
+//       return nullptr;
+
+//    }
+
+//    if (len == 5) return psz;
+
+//    if (*psz++ == 0)
+//    {
+
+//       *piError = 6;
+
+//       return nullptr;
+
+//    }
+
+//    if (len == 6) return psz;
+
+//    *piError = 7;
+
+//    return nullptr;
+
+// }
+
+
+template < typename CHARACTER, typename CHARACTER_COUNT >
+inline CHARACTER * unicode_next(CHARACTER *psz, CHARACTER_COUNT *piRemaining)
+   requires(sizeof(CHARACTER) == 2)
 {
-
-   if (psz == nullptr)
-   {
-
-      return nullptr;
-
-   }
 
    if (*psz == '\0')
    {
@@ -634,115 +804,96 @@ inline const ::ansi_character * unicode_next(const ::ansi_character * psz, int *
 
    }
 
-   *piError = 0;
-
-   char len = 1 + trailingBytesForUTF8(*psz);
-
-   if (len == 0) return psz;
-
-   if (*psz++ == 0)
+   if(piRemaining && *piRemaining < 1)
    {
 
-      *piError = 1;
-
-      return nullptr;
+      throw_encoding_exception("no remaining characters for decoding wd16 encoded string (0)");
 
    }
 
-   if (len == 1) return psz;
+   const ::wd16_character uc = *psz++;
 
-   if (*psz++ == 0)
+   if (!utf16_is_surrogate(uc))
    {
 
-      *piError = 2;
+      if(piRemaining)
+      {
 
-      return nullptr;
+         (*piRemaining)--;
+
+      }
+
+   }
+   else
+   {
+
+      if (utf16_is_1st_surrogate(uc) && utf16_is_2nd_surrogate(*psz))
+      {
+
+         if(piRemaining)
+         {
+
+            if(*piRemaining < 2)
+            {
+
+               throw_encoding_exception("no remaining characters for decoding wd16 encoded string (1)");
+
+            }
+
+            *piRemaining -= 2;
+
+         }
+
+         psz++;
+
+      }
+      else
+      {
+
+         throw_encoding_exception("expected surrogate got bad wd16 surrogate (2)");
+
+      }
 
    }
 
-   if (len == 2) return psz;
-
-   if (*psz++ == 0)
-   {
-
-      *piError = 3;
-
-      return nullptr;
-
-   }
-
-   if (len == 3) return psz;
-
-   if (*psz++ == 0)
-   {
-
-      *piError = 4;
-
-      return nullptr;
-
-   }
-
-   if (len == 4) return psz;
-
-   if (*psz++ == 0)
-   {
-
-      *piError = 5;
-
-      return nullptr;
-
-   }
-
-   if (len == 5) return psz;
-
-   if (*psz++ == 0)
-   {
-
-      *piError = 6;
-
-      return nullptr;
-
-   }
-
-   if (len == 6) return psz;
-
-   *piError = 7;
-
-   return nullptr;
+   return psz;
 
 }
 
 
-inline const ::wd16_character * unicode_next(const ::wd16_character * psz)
+template < typename CHARACTER, typename CHARACTER_COUNT >
+inline CHARACTER *unicode_next(CHARACTER *psz, CHARACTER_COUNT *piRemaining)
+   requires(sizeof(CHARACTER) == 4)
 {
 
-   auto len = wd16_to_wd32_len(psz, 2);
-
-   if (len > 0)
+   if (*psz == '\0')
    {
 
-      return psz + len;
+      return psz;
 
    }
 
-   return nullptr;
+   if(piRemaining && *piRemaining < 1)
+   {
 
-}
+      throw_encoding_exception("no remaining characters for decoding wd32 encoded string (0)");
 
-
-inline const ::wd32_character * unicode_next(const ::wd32_character * psz)
-{
+   }
 
    return psz + 1;
 
 }
 
 
-inline const char * unicode_prior(const ::ansi_character * psz, const ::ansi_character * pszBeg)
+template < typename CHARACTER >
+inline CHARACTER * unicode_prior(CHARACTER *psz, const non_const < CHARACTER > * pszBegin)
+   requires(sizeof(CHARACTER) == 1)
 {
 
-   if (psz <= pszBeg)
+   if (psz <= pszBegin)
    {
+
+      throw_encoding_exception("bad argument for prior decoding utf8 encoded string (A)");
 
       return nullptr;
 
@@ -751,8 +902,19 @@ inline const char * unicode_prior(const ::ansi_character * psz, const ::ansi_cha
    if ((*(psz - 1) & 0x80) == 0x00)
    {
 
-      if ((psz - 1) < pszBeg)
+      if ((psz - 1) < pszBegin)
       {
+
+         throw_encoding_exception("no preceding characters for prior decoding utf8 encoded string (0)");
+
+         return nullptr;
+
+      }
+
+      if(*(psz - 1) == '\0')
+      {
+
+         throw_encoding_exception("first preceding character is nil for prior decoding utf8 encoded string (0)");
 
          return nullptr;
 
@@ -764,8 +926,27 @@ inline const char * unicode_prior(const ::ansi_character * psz, const ::ansi_cha
    else if ((*(psz - 2) & 0xE0) == 0xC0)
    {
 
-      if ((psz - 2) < pszBeg)
+      if ((psz - 2) < pszBegin)
       {
+
+         throw_encoding_exception("not enough preceding characters for prior decoding utf8 encoded string (1)");
+
+         return nullptr;
+
+      }
+
+      if(*(psz - 1) == '\0')
+      {
+
+         throw_encoding_exception("first preceding character is nil for prior decoding utf8 encoded string (1)");
+
+         return nullptr;
+
+      }
+      else if(*(psz - 2) == '\0')
+      {
+
+         throw_encoding_exception("second preceding character is nil for prior decoding utf8 encoded string (1)");
 
          return nullptr;
 
@@ -777,8 +958,35 @@ inline const char * unicode_prior(const ::ansi_character * psz, const ::ansi_cha
    else if ((*(psz - 3) & 0xF0) == 0xE0)
    {
 
-      if ((psz - 3) < pszBeg)
+      if ((psz - 3) < pszBegin)
       {
+
+         throw_encoding_exception("not enough preceding characters for prior decoding utf8 encoded string (2)");
+
+         return nullptr;
+
+      }
+
+      if(*(psz - 1) == '\0')
+      {
+
+         throw_encoding_exception("first preceding character is nil for prior decoding utf8 encoded string (2)");
+
+         return nullptr;
+
+      }
+      else if(*(psz - 2) == '\0')
+      {
+
+         throw_encoding_exception("second preceding character is nil for prior decoding utf8 encoded string (2)");
+
+         return nullptr;
+
+      }
+      else if(*(psz - 3) == '\0')
+      {
+
+         throw_encoding_exception("third preceding character is nil for prior decoding utf8 encoded string (2)");
 
          return nullptr;
 
@@ -790,8 +998,43 @@ inline const char * unicode_prior(const ::ansi_character * psz, const ::ansi_cha
    else if ((*(psz - 4) & 0xF8) == 0xF0)
    {
 
-      if ((psz - 4) < pszBeg)
+      if ((psz - 4) < pszBegin)
       {
+
+         throw_encoding_exception("not enough preceding characters for prior decoding utf8 encoded string (3)");
+
+         return nullptr;
+
+      }
+
+      if(*(psz - 1) == '\0')
+      {
+
+         throw_encoding_exception("first preceding character is nil for prior decoding utf8 encoded string (3)");
+
+         return nullptr;
+
+      }
+      else if(*(psz - 2) == '\0')
+      {
+
+         throw_encoding_exception("second preceding character is nil for prior decoding utf8 encoded string (3)");
+
+         return nullptr;
+
+      }
+      else if(*(psz - 3) == '\0')
+      {
+
+         throw_encoding_exception("third preceding character is nil for prior decoding utf8 encoded string (3)");
+
+         return nullptr;
+
+      }
+      else if(*(psz - 4) == '\0')
+      {
+
+         throw_encoding_exception("fourth preceding character is nil for prior decoding utf8 encoded string (3)");
 
          return nullptr;
 
@@ -803,8 +1046,51 @@ inline const char * unicode_prior(const ::ansi_character * psz, const ::ansi_cha
    else if ((*(psz - 5) & 0xFC) == 0xF8)
    {
 
-      if ((psz - 5) < pszBeg)
+      if ((psz - 5) < pszBegin)
       {
+
+         throw_encoding_exception("not enough preceding characters for prior decoding utf8 encoded string (4)");
+
+         return nullptr;
+
+      }
+
+      if(*(psz - 1) == '\0')
+      {
+
+         throw_encoding_exception("first preceding character is nil for prior decoding utf8 encoded string (4)");
+
+         return nullptr;
+
+      }
+      else if(*(psz - 2) == '\0')
+      {
+
+         throw_encoding_exception("second preceding character is nil for prior decoding utf8 encoded string (4)");
+
+         return nullptr;
+
+      }
+      else if(*(psz - 3) == '\0')
+      {
+
+         throw_encoding_exception("third preceding character is nil for prior decoding utf8 encoded string (4)");
+
+         return nullptr;
+
+      }
+      else if(*(psz - 4) == '\0')
+      {
+
+         throw_encoding_exception("fourth preceding character is nil for prior decoding utf8 encoded string (4)");
+
+         return nullptr;
+
+      }
+      else if(*(psz - 5) == '\0')
+      {
+
+         throw_encoding_exception("fifth preceding character is nil for prior decoding utf8 encoded string (4)");
 
          return nullptr;
 
@@ -816,8 +1102,59 @@ inline const char * unicode_prior(const ::ansi_character * psz, const ::ansi_cha
    else if ((*(psz - 6) & 0xFE) == 0xFC)
    {
 
-      if ((psz - 6) < pszBeg)
+      if ((psz - 6) < pszBegin)
       {
+
+         throw_encoding_exception("not enough preceding characters for prior decoding utf8 encoded string (5)");
+
+         return nullptr;
+
+      }
+
+      if(*(psz - 1) == '\0')
+      {
+
+         throw_encoding_exception("first preceding character is nil for prior decoding utf8 encoded string (5)");
+
+         return nullptr;
+
+      }
+      else if(*(psz - 2) == '\0')
+      {
+
+         throw_encoding_exception("second preceding character is nil for prior decoding utf8 encoded string (5)");
+
+         return nullptr;
+
+      }
+      else if(*(psz - 3) == '\0')
+      {
+
+         throw_encoding_exception("third preceding character is nil for prior decoding utf8 encoded string (5)");
+
+         return nullptr;
+
+      }
+      else if(*(psz - 4) == '\0')
+      {
+
+         throw_encoding_exception("fourth preceding character is nil for prior decoding utf8 encoded string (5)");
+
+         return nullptr;
+
+      }
+      else if(*(psz - 5) == '\0')
+      {
+
+         throw_encoding_exception("fifth preceding character is nil for prior decoding utf8 encoded string (5)");
+
+         return nullptr;
+
+      }
+      else if(*(psz - 6) == '\0')
+      {
+
+         throw_encoding_exception("sixth preceding character is nil for prior decoding utf8 encoded string (5)");
 
          return nullptr;
 
@@ -827,23 +1164,22 @@ inline const char * unicode_prior(const ::ansi_character * psz, const ::ansi_cha
 
    }
 
-   if ((psz - 1) < pszBeg)
-   {
+   throw_encoding_exception("bad utf8 encoding (6)");
 
-      return nullptr;
-
-   }
-
-   return psz - 1;
+   return nullptr;
 
 }
 
 
-inline const ::wd16_character * unicode_prior(const ::wd16_character * psz, const ::wd16_character * pszBeg)
+template < typename CHARACTER >
+inline CHARACTER * unicode_prior(CHARACTER *psz, const non_const < CHARACTER > * pszBegin)
+   requires(sizeof(CHARACTER) == 2)
 {
 
-   if (psz <= pszBeg)
+   if (psz <= pszBegin)
    {
+
+      throw_encoding_exception("no preceding characters for prior decoding wd16 encoded string (0)");
 
       return nullptr;
 
@@ -852,8 +1188,19 @@ inline const ::wd16_character * unicode_prior(const ::wd16_character * psz, cons
    if (utf16_is_2nd_surrogate(*(psz - 1)))
    {
 
-      if (psz - 1 <= pszBeg)
+      if (psz - 2 <= pszBegin)
       {
+
+         throw_encoding_exception("no preceding characters for prior decoding wd16 encoded string (1)");
+
+         return nullptr;
+
+      }
+
+      if(!utf16_is_1st_surrogate(*(psz - 1)))
+      {
+
+         throw_encoding_exception("bad surrogate for prior decoding wd16 encoded string (1)");
 
          return nullptr;
 
@@ -868,10 +1215,12 @@ inline const ::wd16_character * unicode_prior(const ::wd16_character * psz, cons
 }
 
 
-inline const ::wd32_character * unicode_prior(const ::wd32_character * psz, const ::wd32_character * pszBeg)
+template < typename CHARACTER >
+inline CHARACTER * unicode_prior(CHARACTER *psz, const non_const < CHARACTER > * pszBegin)
+   requires(sizeof(CHARACTER) == 4)
 {
 
-   if (psz <= pszBeg)
+   if (psz <= pszBegin)
    {
 
       return nullptr;
@@ -883,7 +1232,7 @@ inline const ::wd32_character * unicode_prior(const ::wd32_character * psz, cons
 }
 
 
-//inline int unicode_index(const ::ansi_character *& pszUtf8)
+//inline int unicode_index(const_char_pointer &pszUtf8)
 //{
 //
 //   if (*pszUtf8 == '\0')
@@ -1073,7 +1422,7 @@ inline TYPE1 equals_ci_get(const TYPE1 & str1, const TYPE2 & str2, const TYPE1 &
 //
 //   auto pszCompare = psz + offset;
 //
-//   return string_count_compare(pszCompare, pszSuffix, lenSuffix) == 0;
+//   return string_count_compare(scopedstrCompare, pszSuffix, lenSuffix) == 0;
 //
 //}
 
@@ -1089,7 +1438,7 @@ inline TYPE1 equals_ci_get(const TYPE1 & str1, const TYPE2 & str2, const TYPE1 &
 //
 //   }
 //
-//   return case_insensitive_string_count_compare(psz, pszPrefix, lenPrefix) == 0;
+//   return case_insensitive_string_count_compare(scopedstr, pszPrefix, lenPrefix) == 0;
 //
 //}
 
@@ -1109,7 +1458,7 @@ inline TYPE1 equals_ci_get(const TYPE1 & str1, const TYPE2 & str2, const TYPE1 &
 //
 //   auto pszCompare = psz + offset;
 //
-//   return case_insensitive_string_count_compare(pszCompare, pszSuffix, lenSuffix) == 0;
+//   return case_insensitive_string_count_compare(scopedstrCompare, pszSuffix, lenSuffix) == 0;
 //
 //}
 
@@ -1197,7 +1546,7 @@ bool string_eat_before_let_separator(string_base < CHAR_TYPE > & strBefore, cons
 
 
 
-inline int unicode_len(const ::ansi_character * pszUtf8)
+inline int unicode_len(const_char_pointer pszUtf8)
 {
 
    int len;
@@ -1212,10 +1561,6 @@ inline int unicode_len(const ::ansi_character * pszUtf8)
    return len;
 
 }
-
-
-
-
 
 
 template < typename CHAR_STRING >
@@ -1239,7 +1584,7 @@ inline bool is_trimmed_string_empty(CHAR_STRING p)
 
       }
 
-      unicode_increment(p);
+      p = unicode_next(p);
 
    }
 

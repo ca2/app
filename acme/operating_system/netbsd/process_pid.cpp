@@ -5,7 +5,7 @@
 #include <stdio.h>
 
 
-int get_process_pid(const char * procNameParam)
+int get_process_pid(const_char_pointer procNameParam)
 {
 
    string procName(procNameParam);

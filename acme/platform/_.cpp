@@ -27,7 +27,7 @@ namespace acme
 
       auto pszFullString = scopedstrFullString.begin();
 
-      if (pszFullString == nullptr)
+      if (scopedstrFullString.is_empty())
       {
 
          return false;
@@ -36,11 +36,11 @@ namespace acme
 
       while (iSubString--)
       {
-         pszFullString = ansi_chr(pszFullString, chSep);
+         pszFullString = ansi_chr(scopedstrFullString, chSep);
 
-         if (pszFullString == nullptr)
-
+         if (scopedstrFullString.is_empty())
          {
+
             rString.empty();        // return is_empty string as well
             return false;
          }
@@ -48,10 +48,10 @@ namespace acme
 
       }
 
-      const char* pchEnd = ansi_chr(pszFullString, chSep);
+      const_char_pointer pchEnd = ansi_chr(scopedstrFullString, chSep);
 
 
-      character_count nLen = (pchEnd == nullptr) ? ansi_len(pszFullString) : (int)(pchEnd - pszFullString);
+      character_count nLen = (pchEnd == nullptr) ? ansi_len(scopedstrFullString) : (int)(pchEnd - pszFullString);
 
 
       ASSERT(nLen >= 0);
@@ -216,7 +216,7 @@ string get_debug_report_type_text(int iType)
 }
 
 
-int __cdecl debug_report(int iType, char const* psz, int iLine, char const* pszModuleName, char const* pszFormat, ...)
+int __cdecl debug_report(int iType, const_char_pointer psz, int iLine, const_char_pointer pszModuleName, const_char_pointer pszFormat, ...)
 {
 
    string strExtra;
@@ -288,7 +288,7 @@ CLASS_DECL_ACME int is_ptr_null(const void* p, size_t s)
 //   lparam lparam = (LPARAM)pparam;
 //
 //
-//   system()->post_message(e_message_event2, (WPARAM)u, lparam);
+//   system()->post_message(::user::e_message_event2, (WPARAM)u, lparam);
 //
 //
 //}

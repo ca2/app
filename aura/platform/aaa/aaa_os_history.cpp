@@ -8,7 +8,7 @@ os_history::os_history(::particle * pparticle) :
 }
 
 
-bool os_history::hist(const ::string & psz)
+bool os_history::hist(const ::scoped_string & scopedstr)
 {
 
 #if !defined(UNIVERSAL_WINDOWS)

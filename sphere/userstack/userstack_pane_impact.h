@@ -38,9 +38,9 @@ namespace userstack
 
       void install_message_routing(::channel * pchannel) override;
 
-      void check_3click_dir(const ::file::path & psz);
-      void check_menu_dir(const ::file::path & psz);
-      void check_desktop_dir(const ::file::path & psz);
+      void check_3click_dir(const ::file::path & path);
+      void check_menu_dir(const ::file::path & path);
+      void check_desktop_dir(const ::file::path & path);
 
       void _001InitializeFormPreData(::user::form * pform) override;
       void handle(::topic * ptopic, ::handler_context * phandlercontext) override;

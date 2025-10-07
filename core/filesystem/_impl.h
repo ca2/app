@@ -19,12 +19,12 @@
 //   inline path & path::operator *= (const property & property) { return operator *=(::file::path(property)); }
 //   inline path path::folder() const { return { ::file_path_folder(*this), m_epath }; }
 //   inline path path::sibling(const path & path) const { return { ::file_path_folder(*this) + sep() + ::sz::trim_left_path_sep(path), m_epath }; }
-//   inline path path::sibling(const ::string & str) const { return { ::file_path_folder(*this) + sep() + ::sz::trim_left_path_sep(str), m_epath }; }
-//   inline path path::sibling(const ::string & psz) const { return { ::file_path_folder(*this) + sep() + ::sz::trim_left_path_sep(psz), m_epath }; }
+//   inline path path::sibling(const ::scoped_string & scopedstr) const { return { ::file_path_folder(*this) + sep() + ::sz::trim_left_path_sep(str), m_epath }; }
+//   inline path path::sibling(const ::scoped_string & scopedstr) const { return { ::file_path_folder(*this) + sep() + ::sz::trim_left_path_sep(scopedstr), m_epath }; }
 //   inline string path::extension() const { return &m_pdata[find_skip_or_length('.', rear_find(sep()) + 1)]; }
-//   inline string path::final_extension() const { return file_path_final_extension(operator const char * ()); }
+//   inline string path::final_extension() const { return file_path_final_extension(operator const_char_pointer ()); }
 //   inline patha path::ascendants_path() const { patha patha; return ascendants_path(patha); }
-//   inline string_array path::ascendants_name() const { string_array patha; return ascendants_name(patha); }
+//   inline string_array_base path::ascendants_name() const { string_array_base patha; return ascendants_name(patha); }
 //   //   inline path path::folder() const { return ::file_path_folder(*this); }
 //   inline bool path::operator == (const ::payload & payload) const { return operator == (string(payload)); }
 //   inline bool path::operator != (const ::payload & payload) const { return operator != (string(payload)); }
@@ -573,17 +573,17 @@
 //} // namespace file
 
 
-//inline ::file::path operator + (const ::string & str,const ::file::path & path) { return ::file::path(str + string(path)); }
-//inline ::file::path operator + (const ::string & psz,const ::file::path & path) {  return ::file::path(psz + string(path)); }
+//inline ::file::path operator + (const ::scoped_string & scopedstr,const ::file::path & path) { return ::file::path(str + string(path)); }
+//inline ::file::path operator + (const ::scoped_string & scopedstr,const ::file::path & path) {  return ::file::path(scopedstr + string(path)); }
 // xxxabc inline ::file::path operator + (const ::payload & payload,const ::file::path & path) { return ::file::path(payload.get_string() + string(path)); }
-//inline ::file::path operator / (const ::string & str,const ::file::path & path) { ::file::path int_point(str);  return point / path; }
-//inline ::file::path operator / (const ::string & psz,const ::file::path & path) { ::file::path int_point(psz);  return point / path; }
+//inline ::file::path operator / (const ::scoped_string & scopedstr,const ::file::path & path) { ::file::path int_point(str);  return point / path; }
+//inline ::file::path operator / (const ::scoped_string & scopedstr,const ::file::path & path) { ::file::path int_point(scopedstr);  return point / path; }
 // xxxabc inline ::file::path operator / (const ::payload & payload,const ::file::path & path) { ::file::path int_point(payload.get_file_path());  return point / path; }
 
 
 
 // template < class ARRAY >
-// bool file_put_array(const ::string & path, ARRAY & a, ::aura::application * papp)
+// bool file_put_array(const ::scoped_string & scopedstrPath, ARRAY & a, ::aura::application * papp)
 // {
 
 
@@ -640,7 +640,7 @@
 
 
 // template < class ARRAY >
-// bool file_as_array(ARRAY & a, const ::string & path, ::aura::application * papp)
+// bool file_as_array(ARRAY & a, const ::scoped_string & scopedstrPath, ::aura::application * papp)
 // {
 
 //   try
@@ -752,7 +752,7 @@
 //
 //
 //
-//inline const char * FormatArgument(const ::file::path & value) noexcept
+//inline const_char_pointer FormatArgument(const ::file::path & value) noexcept
 //{
 //   return value.c_str();
 //}

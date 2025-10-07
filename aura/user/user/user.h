@@ -20,7 +20,9 @@ class front_end_schema;
 namespace core
 {
 
+
    class user;
+
 
 } //namespace core
 
@@ -49,15 +51,15 @@ namespace user
 
 
       //::axis::user* m_paxisuser;
-      //::base::user* m_pbaseuser;
+      //::berg::user* m_pbaseuser;
       //::bred::user* m_pbreduser;
       //::core::user* m_pcoreuser;
 
       // ::pointer<::user::interaction_base>             m_pmousefocusLButtonDown;
       // ::pointer<::user::interaction_base>             m_pmousefocusRButtonDown;
-      // string_array                              m_straEscape;
+      // string_array_base                              m_straEscape;
       // ::user::style_pointer                     m_puserstyle;
-      // string_map < ::user::style_pointer >      m_mapUserStyle;
+      // string_map_base < ::user::style_pointer >      m_mapUserStyle;
       //
       // ::pointer<::html::html>                m_phtml; // defined in upper level
       //
@@ -71,7 +73,7 @@ namespace user
       //
       // ::pointer < ::mutex >                                   m_pmutexRunnable;
       //
-      // ::list < ::pointer<::matter >>           m_listRunnable;
+      // ::list_base < ::pointer<::matter >>           m_listRunnable;
       //
       // ::pointer<::user::shell>               m_pshell;
       //
@@ -154,7 +156,7 @@ namespace user
 
       virtual bool on_ui_mouse_message(::message::mouse_base * pmouse) override;
 
-      virtual void SendMessageToWindows(::enum_message emessage, ::wparam wparam, ::lparam lparam) override;
+      virtual void SendMessageToWindows(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam) override;
 
       virtual void term() override;
 

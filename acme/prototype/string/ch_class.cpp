@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "str.h"
-//#include "string.h"
+#include "acme/prototype/string/utf8_character.h"
 #include "ch_class.h"
 #include "x/x_charcategory2.h"
 #include "x/x_charcategory_names.h"
@@ -21,7 +21,7 @@ void * gen_ch_class_reference_tables()
 
    ch_class::ch_class()
    {
-      infoIndex = __raw_new bit_array * [256];
+      infoIndex = øraw_new bit_array * [256];
       memory_set(infoIndex, 0, 256 * sizeof(bit_array *));
    }
 
@@ -36,14 +36,14 @@ void * gen_ch_class_reference_tables()
      Extensions (comparing to Perl):
      inner class substraction [{L}-[{Lu}]], addition [{L}[1234]], intersection [{L}&[{Lu}]]
    */
-   ch_class *ch_class::createCharClass(const char * ccs, character_count pos, character_count *retPos)
+   ch_class *ch_class::createCharClass(const_char_pointer ccs, character_count pos, character_count *retPos)
    {
       string str = ccs;
       if(str == "(%back;?#1[\\.\\:]|\\^)\\M[^%nname;]+")
       {
          //debug_break();
       }
-      ch_class *cc = __raw_new ch_class();
+      ch_class *cc = øraw_new ch_class();
       ch_class cc_temp;
       bool inverse = false;
       string prev_char;
@@ -64,7 +64,7 @@ void * gen_ch_class_reference_tables()
                *retPos = pos;
             if(inverse)
             {
-               ch_class * newcc = __raw_new ch_class();
+               ch_class * newcc = øraw_new ch_class();
                newcc->fill();
                newcc->clear_class(*cc);
                delete cc;
@@ -138,8 +138,7 @@ void * gen_ch_class_reference_tables()
                break;
             default:
                character_count retEnd;
-               prev_char = unicode_to_utf8(
-                  ::str::get_escaped_char(ccs, pos, retEnd));
+               prev_char = ::utf8_character(::str::get_escaped_char(ccs, pos, retEnd));
                if(prev_char.is_empty())
                   break;
                cc->add_char(prev_char);
@@ -207,7 +206,7 @@ void * gen_ch_class_reference_tables()
 
             character_count retEnd;
 
-            string nextc = unicode_to_utf8(::str::get_escaped_char(ccs, pos+1, retEnd));
+            string nextc = ::utf8_character(::str::get_escaped_char(ccs, pos+1, retEnd));
 
             if(nextc.is_empty())
                break;
@@ -229,19 +228,19 @@ void * gen_ch_class_reference_tables()
       return nullptr;
    }
 
-   void ch_class::add_char(const ::ansi_character * pszUtf8Char)
+   void ch_class::add_char(const_char_pointer pszUtf8Char)
    {
       long long iChar = unicode_index(pszUtf8Char);
       bit_array * tablePos = infoIndex[iChar >> 8];
       if (!tablePos)
       {
-         tablePos = __raw_new bit_array();
+         tablePos = øraw_new bit_array();
          infoIndex[iChar >> 8] = tablePos;
       }
       tablePos->set_bit(iChar & 0xFF);
    }
 
-   void ch_class::clear_char(const ::ansi_character * pszUtf8Char)
+   void ch_class::clear_char(const_char_pointer pszUtf8Char)
    {
       long long iChar = unicode_index(pszUtf8Char);
       bit_array *tablePos = infoIndex[iChar >> 8];
@@ -250,28 +249,28 @@ void * gen_ch_class_reference_tables()
       tablePos->clear_bit(iChar & 0xFF);
    }
 
-   void ch_class::add_range(const char * s, const char * e)
+   void ch_class::add_range(const_char_pointer s, const_char_pointer e)
    {
       long long iCharStart = unicode_index(s);
       long long iCharEnd = unicode_index(e);
       for(long long ti = iCharStart >> 8; ti <= iCharEnd >> 8; ti++)
       {
          if (!infoIndex[ti])
-            infoIndex[ti] = __raw_new bit_array();
+            infoIndex[ti] = øraw_new bit_array();
          infoIndex[ti]->add_range(
             (ti == iCharStart >> 8) ? iCharStart & 0xFF : 0,
             (ti == iCharEnd >> 8)? iCharEnd & 0xFF : 0xFF);
       }
    }
 
-   void ch_class::clear_range(const char * s, const char * e)
+   void ch_class::clear_range(const_char_pointer s, const_char_pointer e)
    {
       long long iCharStart = unicode_index(s);
       long long iCharEnd = unicode_index(e);
       for(long long ti = iCharStart >> 8; ti <= iCharEnd >> 8; ti++)
       {
          if (!infoIndex[ti])
-            infoIndex[ti] = __raw_new bit_array();
+            infoIndex[ti] = øraw_new bit_array();
          infoIndex[ti]->clear_range(
             ti == iCharStart >> 8 ? iCharStart & 0xFF : 0,
             ti == iCharEnd >> 8 ? iCharEnd & 0xFF:0xFF);
@@ -290,7 +289,7 @@ void * gen_ch_class_reference_tables()
          bit_array *tablePos = infoIndex[i];
          if(tablePos == nullptr)
          {
-            tablePos = __raw_new bit_array();
+            tablePos = øraw_new bit_array();
             infoIndex[i] = tablePos;
          }
          tablePos->add_bit_array((char*)(arr_idxCharCategory+pos), 8*4);
@@ -320,7 +319,7 @@ void * gen_ch_class_reference_tables()
          bit_array *tablePos = infoIndex[i];
          if(!tablePos)
          {
-            tablePos = __raw_new bit_array();
+            tablePos = øraw_new bit_array();
             infoIndex[i] = tablePos;
          }
          tablePos->clear_bit_array((char*)(arr_idxCharCategory+pos), 8*4);
@@ -342,7 +341,7 @@ void * gen_ch_class_reference_tables()
       for(int p = 0; p < 256; p++)
       {
          if (infoIndex[p] == nullptr)
-            infoIndex[p] = __raw_new bit_array();
+            infoIndex[p] = øraw_new bit_array();
          infoIndex[p]->add_bit_array(*cclass.infoIndex[p]);
       }
    }
@@ -386,13 +385,13 @@ void * gen_ch_class_reference_tables()
       for(int i = 0; i < 256; i++)
       {
          if(infoIndex[i] == nullptr)
-            infoIndex[i] = __raw_new bit_array();
+            infoIndex[i] = øraw_new bit_array();
          infoIndex[i]->add_range(0, 0xFF);
       }
    }
 
 
-   bool ch_class::in_class(const ::ansi_character * pszUtf8Char) const
+   bool ch_class::in_class(const_char_pointer pszUtf8Char) const
    {
       auto ca = unicode_index(pszUtf8Char);
       if(!is_legal_unicode_index(ca))

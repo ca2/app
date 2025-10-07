@@ -237,9 +237,9 @@ namespace sockets
 
 
    // ---------------------------------------------------------------------------
-   void AjpBaseSocket::put_string(char *buf, int& ptr, const ::string & psz)
+   void AjpBaseSocket::put_string(char *buf, int& ptr, const ::scoped_string & scopedstr)
    {
-      string str(psz);
+      string str(scopedstr);
       put_integer(buf, ptr, (short)str.length() );
       ::memory_copy(buf + ptr, (const ::string &) str);
       ptr += (int)str.length();

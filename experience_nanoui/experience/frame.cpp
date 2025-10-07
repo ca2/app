@@ -8,8 +8,8 @@
 #include "aura/graphics/image/image.h"
 #include "aura/graphics/image/imaging.h"
 #include "aura/platform/system.h"
-#include "base/user/experience/control_box.h"
-#include "base/user/experience/frame_window.h"
+#include "berg/user/experience/control_box.h"
+#include "berg/user/experience/frame_window.h"
 
 
 namespace experience_nanoui
@@ -41,11 +41,11 @@ namespace experience_nanoui
    void frame::on_initialize_experience_frame()
    {
 
-      __øconstruct(m_ppenText1);
-         __øconstruct(m_ppenFace1);
-         __øconstruct(m_ppenHilight1);
-         __øconstruct(m_ppenShadow1);
-         __øconstruct(m_ppenDkShadow1);
+      øconstruct(m_ppenText1);
+         øconstruct(m_ppenFace1);
+         øconstruct(m_ppenHilight1);
+         øconstruct(m_ppenShadow1);
+         øconstruct(m_ppenDkShadow1);
 
 
 /*               auto estyle = translate_style(m_strStyle);
@@ -196,10 +196,10 @@ namespace experience_nanoui
    //}
 
 
-   //frame::e_style frame::translate_style(const ::string & pszStyle)
+   //frame::e_style frame::translate_style(const ::scoped_string & scopedstrStyle)
    //{
 
-   //   string strStyle(pszStyle);
+   //   string strStyle(scopedstrStyle);
 
    //   if(strStyle == "TranslucidLightBlue")
    //   {
@@ -564,7 +564,7 @@ namespace experience_nanoui
       if(eborder & e_border_top || eborder & e_border_left)
       {
 
-         __øconstruct(ppen);
+         øconstruct(ppen);
 
          ppen->create_solid(1.0, colorTopLeft);
 
@@ -575,25 +575,21 @@ namespace experience_nanoui
       if(eborder & e_border_top)
       {
 
-         pgraphics->set_current_point(x,y);
-
-         pgraphics->line_to(x + cx,y);
+         pgraphics->line(x,y, x + cx,y);
 
       }
 
       if(eborder & e_border_left)
       {
 
-         pgraphics->set_current_point(x,y);
-
-         pgraphics->line_to(x,y+cy);
+         pgraphics->line(x,y,x,y+cy);
 
       }
 
       if((eborder & e_border_right || eborder & e_border_bottom) && (!ppen || ppen->m_color != colorBottomRight))
       {
 
-         __øconstruct(ppen);
+         øconstruct(ppen);
 
          ppen->create_solid(1.0,colorBottomRight);
 
@@ -604,18 +600,14 @@ namespace experience_nanoui
       if(eborder & e_border_right)
       {
 
-         pgraphics->set_current_point(x + cx,y);
-
-         pgraphics->line_to(x + cx,y + cy);
+         pgraphics->line(x + cx,y,x + cx,y + cy);
 
       }
 
       if(eborder & e_border_bottom)
       {
 
-         pgraphics->set_current_point(x,y + cy);
-
-         pgraphics->line_to(x + cx,y + cy);
+         pgraphics->line(x,y + cy,x + cx,y + cy);
 
       }
 

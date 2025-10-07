@@ -16,7 +16,7 @@ public:
    
    
    
-   string_exchange &operator = (const ::string & str )const;
+   string_exchange &operator = (const ::scoped_string & scopedstr )const;
    
    
    

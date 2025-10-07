@@ -9,7 +9,7 @@ e_callstack g_ecallstack = callstack_none;
 
 
 callstack::callstack(const ::scoped_string & scopedstrFormat, int iSkip, void * address, int iCount) :
-   m_pszFormat(pszFormat),
+   m_pszFormat(scopedstrFormat),
    m_iCount(iCount),
    m_caller_address(address)
 {
@@ -61,7 +61,7 @@ const char * callstack::get_dup(const ::scoped_string & scopedstrFormat, int iSk
 
    const ::scoped_string & scopedstr;
 
-   synchronous_lock synchronouslock(::exception_engine().mutex());
+   synchronous_lock synchronouslock(::exception_engine().mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
 #if defined(LINUX)
 
@@ -101,7 +101,7 @@ string get_callstack(particle * pparticle, const ::scoped_string & scopedstrForm
 
    }
 
-   auto pcallstack = __allocate callstack(pszFormat, (int)iSkip, caller_address, (int)iCount);
+   auto pcallstack = øallocate callstack(scopedstrFormat, (int)iSkip, caller_address, (int)iCount);
 
    return pcallstack;
 

@@ -14,10 +14,10 @@ namespace sockets_bsd
 
 
    /* type, host, result */
-   typedef string_map < ::string_to_string >       resolv_cache_t;
+   typedef string_map_base < ::string_to_string_base >       resolv_cache_t;
 
    /* type, host, time */
-   typedef string_map < string_map < posix_time > >    resolv_timeout_t;
+   typedef string_map_base < string_map_base < posix_time > >    resolv_timeout_t;
 
 
 } // namespace sockets_bsd
@@ -55,18 +55,18 @@ namespace networking_bsd
       bool           m_local_resolved; ///< ResolveLocal has been called if true
       bool           m_bInitialized;
 
-      string_map<::pointer <cert>>m_certmap;
+      string_map_base<::pointer <cert>>m_certmap;
       ::pointer < ::mutex >                              m_pmutexCert;
 
 
       class CLASS_DECL_NETWORKING_BSD dns_cache_item :
-         virtual public ::object
+         virtual public ::particle
       {
       public:
 
 
          in_addr           m_ipaddr;
-         class ::time m_timeLastChecked;
+         class ::time      m_timeLastChecked;
          bool              m_bOk;
          bool              m_bTimeout;
 
@@ -85,7 +85,7 @@ namespace networking_bsd
 
 
       class CLASS_DECL_NETWORKING_BSD reverse_cache_item :
-         virtual public ::matter
+         virtual public ::particle
       {
       public:
 
@@ -93,9 +93,9 @@ namespace networking_bsd
          ::pointer<::networking_bsd::address>   m_paddress;
          string                                 m_strIpAddress;
          string                                 m_strReverse;
-         class ::time                           m_timeLastChecked;
+         class ::time                           m_timeLastChecked2;
          bool                                   m_bOk;
-         bool                                   m_bTimeout;
+         //bool                                   m_bTimeout;
          bool                                   m_bProcessing;
 
 
@@ -106,13 +106,18 @@ namespace networking_bsd
          //void read(::binary_stream& stream);
 
          reverse_cache_item& operator = (const reverse_cache_item& item);
+         bool is_timeout() const
+         {
 
+            return m_timeLastChecked2.elapsed() > 1_hour;
+
+         }
       };
 
       ::pointer < ::mutex >                              m_pmutexCache;
       ::pointer < ::mutex >                              m_pmutexReverseCache;
-      string_map < dns_cache_item >                      m_mapCache;
-      string_map < ::pointer<reverse_cache_item >>       m_mapReverseCache;
+      string_map_base < dns_cache_item >                      m_mapCache;
+      string_map_base < ::pointer<reverse_cache_item >>       m_mapReverseCache;
       ::pointer_array <reverse_cache_item >              m_reversecacheaRequest;
       ::task_pointer                                     m_pthreadReverse;
       long long                                          m_iListenSocket;
@@ -140,7 +145,7 @@ namespace networking_bsd
 #endif
 
       ::pointer < ::mutex >                              m_pmutexPool;
-      ::sockets_bsd::socket_map                          m_pool; ///< Active sockets map
+      ::sockets_bsd::socket_map                          m_pool; ///< Active sockets map_base
 
 
       networking();
@@ -177,12 +182,12 @@ namespace networking_bsd
       */
       string rfc1738_decode(const string& src) override;
 
-      bool is_ip4(const string& str) override;
+      bool is_ip4(const ::scoped_string & scopedstr) override;
 
-      bool is_ip6(const string& str) override;
+      bool is_ip6(const ::scoped_string & scopedstr) override;
 
-      virtual bool convert(struct ::in_addr& l, const string& str, int ai_flags = 0);
-      virtual bool convert(struct ::in6_addr& l, const string& str, int ai_flags = 0);
+      virtual bool convert(struct ::in_addr& l, const ::scoped_string & scopedstr, int ai_flags = 0);
+      virtual bool convert(struct ::in6_addr& l, const ::scoped_string & scopedstr, int ai_flags = 0);
       virtual bool convert(string& str, const struct ::in_addr& inaddr);
       virtual bool convert(string& str, const struct ::in6_addr& inaddr6);
 
@@ -208,12 +213,12 @@ namespace networking_bsd
 
       virtual bool reverse_sync(reverse_cache_item* pitem);
 
-      bool reverse(string& hostname, const string& number) override;
+      bool reverse(string& hostname, const ::scoped_string & scopedstrNumber) override;
 
 
       bool u2service(const string& name, int& service, int ai_flags) override;
 
-      int service_port(const string& str, int flags = 0) override;
+      int service_port(const ::scoped_string & scopedstr, int flags = 0) override;
 
       string  service_name(int iPort, int flags = 0) override;
 
@@ -226,17 +231,17 @@ namespace networking_bsd
       
       //int _select(::sockets::socket_handler * psockethandler, const class time & timeWait) override;
 
-      ::pointer<::networking::address> create_address(const ::string& strAddress, ::networking::enum_address_type eaddresstypePreferred = ::networking::e_address_type_none, ::networking::port_t port = 0) override;
+      ::pointer<::networking::address> create_address(const ::scoped_string & scopedstrAddress, ::networking::enum_address_type eaddresstypePreferred = ::networking::e_address_type_none, ::networking::port_t port = 0) override;
 
-      bool lookup(::networking_bsd::address * paddress, ::networking::enum_address_type eaddresstypePreferred, const ::string & strAddress);
+      bool find(::networking_bsd::address * paddress, ::networking::enum_address_type eaddresstypePreferred, const ::scoped_string & scopedstrAddress);
 
-      bool lookup_ipv4(::networking_bsd::address * paddress, const ::string & strAddress);
+      bool lookup_ipv4(::networking_bsd::address * paddress, const ::scoped_string & scopedstrAddress);
 
-      bool lookup_ipv6(::networking_bsd::address * paddress, const ::string & strAddress);
+      bool lookup_ipv6(::networking_bsd::address * paddress, const ::scoped_string & scopedstrAddress);
 
-      ::pointer<::networking::address> create_ip4_address(const ::string & strIp4, ::networking::port_t port = 0) override;
+      ::pointer<::networking::address> create_ip4_address(const ::scoped_string & scopedstrIp4, ::networking::port_t port = 0) override;
 
-      ::pointer<::networking::address> create_ip6_address(const ::string & strIp6, ::networking::port_t port = 0) override;
+      ::pointer<::networking::address> create_ip6_address(const ::scoped_string & scopedstrIp6, ::networking::port_t port = 0) override;
 
       ::pointer<address>create_ip4_address(unsigned int u, ::networking::port_t port = 0);
 

@@ -38,7 +38,7 @@ namespace interprocess
    }
 
 
-   void target::create(const ::string & strChannel)
+   void target::create(const ::scoped_string & scopedstrChannel)
    {
 
       //return true;
@@ -57,7 +57,7 @@ namespace interprocess
    }
 
 
-   bool target::_handle_uri(const ::string & strUri)
+   bool target::_handle_uri(const ::scoped_string & scopedstrUri)
    {
 
       for (auto & phandler : m_particleaHandler)
@@ -66,7 +66,7 @@ namespace interprocess
          try
          {
 
-            if (phandler->_handle_uri(strUri))
+            if (phandler->_handle_uri(scopedstrUri))
             {
 
                return true;
@@ -88,7 +88,7 @@ namespace interprocess
    }
 
 
-   //bool target::on_interprocess_handle(const ::string & strUri)
+   //bool target::on_interprocess_handle(const ::scoped_string & scopedstrUri)
    //{
 
    //   string strUri = blockUri;
@@ -155,7 +155,7 @@ namespace interprocess
    //   //
    //   //   string strMember;
    //   //
-   //   //   string_array stra;
+   //   //   string_array_base stra;
    //   //
    //   //   ::property_set propertyset;
    //   //
@@ -266,7 +266,7 @@ namespace interprocess
    //}
 
 
-   //bool target::on_interprocess_handle(const ::string & strUri)
+   //bool target::on_interprocess_handle(const ::scoped_string & scopedstrUri)
    //{
 
    //   //if (case_insensitive_string_begins(strMessage, "synch_"))
@@ -364,7 +364,7 @@ namespace interprocess
    //void target::dispatch_message(::string && strMessage)
    //{
 
-   //   auto pdispatchitem = __allocate class dispatch_item (::transfer(strMessage));
+   //   auto pdispatchitem = øallocate class dispatch_item (::transfer(strMessage));
 
    //   dispatch_item(::transfer(pdispatchitem));
 
@@ -374,7 +374,7 @@ namespace interprocess
    //void target::dispatch_message(unsigned long long uData, ::memory && memory)
    //{
 
-   //   auto pdispatchitem = __allocate class dispatch_item (uData, ::transfer(memory));
+   //   auto pdispatchitem = øallocate class dispatch_item (uData, ::transfer(memory));
 
    //   dispatch_item(::transfer(pdispatchitem));
 
@@ -384,7 +384,7 @@ namespace interprocess
    //void target::dispatch_item(::pointer<class dispatch_item> && pdispatchitem)
    //{
 
-   //   synchronous_lock synchronouslock(m_pmutexDispatch);
+   //   synchronous_lock synchronouslock(m_pmutexDispatch, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //   bool bWasEmpty = m_dispatchitema.is_empty();
 

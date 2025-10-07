@@ -77,7 +77,7 @@ namespace user
       {
       public:
 
-         virtual void set_expression(const ::string & pszExp)
+         virtual void set_expression(const ::scoped_string & scopedstrExp)
          {
 
          }
@@ -206,7 +206,7 @@ namespace user
       bool                                m_bCustomFrameBefore;
       ::int_rectangle                              m_FullScreenWindowRect;
 
-      string_to_string                    m_base64map;
+      string_to_string_base                    m_base64map;
 
       bool                                m_bPassword;
       bool                                m_bEnterKeyOnPaste;
@@ -221,7 +221,7 @@ namespace user
       bool                                m_bRMouseDown;
       int_point                           m_pointSelStart;
       class ::time                          m_timeCaretPeriod;
-      string_array                        m_straLines;
+      string_array_base                        m_straLines;
       double                              m_dy;
       //bool                                m_bGetTextNeedUpdate;
       bool                                m_bNeedScrollUpdate;
@@ -269,7 +269,7 @@ namespace user
 
       virtual bool is_plain_edit_modified() const;
 
-      virtual void set_format(const string& strFormat);
+      virtual void set_format(const ::scoped_string & scopedstrFormat);
       virtual void set_callback(callback* pcallback);
 
 
@@ -278,19 +278,19 @@ namespace user
 
 
       void get_text_composition_area(::int_rectangle & r) override;
-      void edit_on_text(string str) override;
+      void edit_on_text(const ::scoped_string & scopedstr) override;
       void edit_on_sel(character_count iSelBeg, character_count iSelEnd) override;
-      void on_text_composition(string str) override;
-      void on_text_commit(string str) override;
+      void on_text_composition(const ::scoped_string & scopedstr) override;
+      void on_text_commit(const ::scoped_string & scopedstr) override;
       void on_text_composition_done() override;
       void clear_ime_composition() override;
 
 
       bool InputConnectionBeginBatchEdit(bool bSuper) override;
       bool InputConnectionEndBatchEdit(bool bSuper) override;
-      bool InputConnectionCommitText(const ::string & str, character_count iNewCursorPosition, bool bSuper) override;
+      bool InputConnectionCommitText(const ::scoped_string & scopedstr, character_count iNewCursorPosition, bool bSuper) override;
       bool InputConnectionDeleteSurroundingText(character_count iBeforeLength, character_count iAfterLength, bool bSuper) override;
-      bool InputConnectionSetComposingText(const ::string & str, character_count iNewCursorPosition, bool bSuper) override;
+      bool InputConnectionSetComposingText(const ::scoped_string & scopedstr, character_count iNewCursorPosition, bool bSuper) override;
       bool InputConnectionSetComposingRegion(character_count iStart, character_count iEnd, bool bSuper) override;
       bool InputConnectionSetSelection(character_count iStart, character_count iEnd, bool bSuper) override;
       bool InputConnectionFinishComposingText(bool bSuper) override;
@@ -313,8 +313,8 @@ namespace user
       virtual void _001DeleteSel(bool bBackIfSelectionEmpty = false);
       ///virtual bool plain_edit_delete_sel(::draw2d::graphics_pointer& pgraphics, bool & bFullUpdate, ::collection::index & iLineUpdate);
 
-      virtual void _001ReplaceSel(const ::string & pszText);
-      virtual bool _001ReplaceSel(const ::string & pszText, bool & bFullUpdate, ::collection::index & iLineUpdate);
+      virtual void _001ReplaceSel(const ::scoped_string & scopedstrText);
+      virtual bool _001ReplaceSel(const ::scoped_string & scopedstrText, bool & bFullUpdate, ::collection::index & iLineUpdate);
 
       virtual void plain_edit_on_end_update(::draw2d::graphics_pointer & pgraphics);
 
@@ -393,7 +393,7 @@ namespace user
       virtual void clipboard_copy();
       virtual void clipboard_paste();
 
-      virtual bool get_line_color(::color::color & crOverride, const ::string & strLine);
+      virtual bool get_line_color(::color::color & crOverride, const ::scoped_string & scopedstrLine);
 
       virtual void pre_translate_message(::message::message * pmessage) override;
 
@@ -448,8 +448,8 @@ namespace user
       void get_text_selection(character_count &iSelStart, character_count &iSelEnd) override;
       void _001_get_impact_sel(character_count & iSelStart, character_count & iSelEnd);
 
-      void set_text(const ::string & str, const ::action_context & action_context) override;
-      void set_selection_text(const ::string & psz, const ::action_context & action_context) override;
+      void set_text(const ::scoped_string & scopedstr, const ::action_context & action_context) override;
+      void set_selection_text(const ::scoped_string & scopedstr, const ::action_context & action_context) override;
       void _001SetSelEnd(character_count iSelEnd, const ::action_context & action_context) override;
       void _set_sel_end(::draw2d::graphics_pointer& pgraphics, character_count iSelEnd, const ::action_context & action_context);
       void _ensure_selection_visible_x(::draw2d::graphics_pointer & pgraphics);
@@ -492,7 +492,7 @@ namespace user
       void plain_edit_one_line_up(::draw2d::graphics_pointer& pgraphics);
 
       void IndexRegisterDelete(character_count iSel, character_count iCount);
-      void IndexRegisterInsert(character_count iSel, const ::string & pcszWhat);
+      void IndexRegisterInsert(character_count iSel, const ::scoped_string & scopedstrWhat);
 
 
       virtual void MacroBegin() override;
@@ -529,9 +529,9 @@ namespace user
 
       virtual void on_before_change_text();
 
-      virtual void insert_text(string str, bool bForceNewStep, const ::action_context & context) override;
+      virtual void insert_text(const ::scoped_string & scopedstr, bool bForceNewStep, const ::action_context & context) override;
 
-      virtual void insert_text(::draw2d::graphics_pointer& pgraphics, string str, bool bForceNewStep);
+      virtual void insert_text(::draw2d::graphics_pointer& pgraphics, const ::scoped_string & scopedstr, bool bForceNewStep);
 
       virtual void plain_edit_update(::draw2d::graphics_pointer& pgraphics, bool bFullUpdate, ::collection::index iLineUpdate);
 

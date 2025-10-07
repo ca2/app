@@ -28,7 +28,7 @@
 //#if !BROAD_PRECOMPILED_HEADER
 ////#include "axis/html/html_lite/_.h"
 //#endif
-//#include "acme/prototype/string/str.h"
+#include "acme/prototype/string/utf8_character.h"
 #include "entity_resolver.h"
 
 
@@ -148,19 +148,22 @@ LiteHTMLEntityResolver::LiteHTMLEntityResolver()
 }
 
 
-int LiteHTMLEntityResolver::resolveEntity(const ::string & pszEntity, string & strChar)
+int LiteHTMLEntityResolver::resolveEntity(const ::scoped_string & scopedstrEntity, string & strChar)
 
 {
    if (m_CharEntityRefs.get_count() <= 0)
       return 0;
 
    ASSERT(m_CharEntityRefs.get_count());
-   ASSERT(is_string_ok(pszEntity));
+   ASSERT(is_string_ok(scopedstrEntity));
 
+   ::string strEntity(scopedstrEntity);
 
-   const ::ansi_character * pszBegin = pszEntity;
+   const_char_pointer pszEntity = strEntity;
 
-   const ::ansi_character * pszEnd = ::ansi_chr(pszEntity, ';');
+   const_char_pointer pszBegin = pszEntity;
+
+   const_char_pointer pszEnd = ::ansi_chr(scopedstrEntity, ';');
 
    char   chTemp = 0;
 
@@ -207,7 +210,7 @@ int LiteHTMLEntityResolver::resolveEntity(const ::string & pszEntity, string & s
 
          unsigned int  ulNum = (unsigned int) ::strtoul(pszBegin, nullptr, aura);
 
-         strChar = unicode_to_utf8(ulNum);
+         strChar = ::utf8_character(ulNum);
          return (int) (pszEnd - pszEntity + 1);
 
       }
@@ -257,7 +260,7 @@ int LiteHTMLEntityResolver::resolveEntity(const ::string & pszEntity, string & s
       }
 
       // is this a known entity object?
-      if (m_CharEntityRefs.lookup(strKey, chTemp))
+      if (m_CharEntityRefs.find(strKey, chTemp))
       {
          union
          {

@@ -25,7 +25,7 @@ namespace simpledb
 
       void run() override;
 
-      void queue(const ::string & pszKey, block block);
+      void queue(const ::scoped_string & scopedstrKey, block block);
 
 
    };

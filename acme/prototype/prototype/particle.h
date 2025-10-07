@@ -13,6 +13,7 @@
 
 
 #include "acme/platform/allocator.h"
+#include "acme/prototype/string/scoped_string_base.h"
 //#include "acme/prototype/prototype/signal.h"
 //#include "acme/prototype/prototype/post_procedure_continuation.h"
 
@@ -92,15 +93,50 @@ public:
    mutable ::platform::application *            m_papplication;
    mutable ::particle_pointer                   m_pparticleSynchronization;
 
+
 //#if REFERENCING_DEBUGGING
    particle() :
+      ::quantum(),
+      ::subparticle(),
+      ::signal_handler::base(),
+      m_papplication(nullptr),
+      m_pparticleSynchronization(nullptr)
+   {
+
+
+   }
+
+
+   particle(const ::e_flag & eflag, const ::e_status & estatus = undefined) :
+   ::quantum(eflag, estatus),
+   ::subparticle(eflag, estatus),
+   ::signal_handler::base(eflag, estatus),
       m_papplication(nullptr),
       m_pparticleSynchronization(nullptr)
    {
          
          
    }
-   
+
+
+   particle(const ::particle & particle) :
+      ::quantum(particle),
+      ::subparticle(particle),
+      ::signal_handler::base(particle)
+   {
+
+
+   }
+
+   particle(::particle&& particle) :
+      ::quantum(::transfer(particle)),
+      ::subparticle(::transfer(particle)),
+      ::signal_handler::base(::transfer(particle))
+   {
+
+
+   }
+
    
 //#else
 //   particle() : m_countReference(1) {}
@@ -223,9 +259,9 @@ public:
 
 
    virtual ::factory::factory_pointer & factory() const;
-   virtual ::factory::factory_pointer & factory(const ::string& strLibrary) const;
-   virtual ::factory::factory_pointer & factory(const ::string& strComponent, const ::string& strImplementation) const;
-   virtual ::factory::factory * component_factory(const ::string& strComponent) const;
+   virtual ::factory::factory_pointer & factory(const ::scoped_string & scopedstrLibrary) const;
+   virtual ::factory::factory_pointer & factory(const ::scoped_string & scopedstrComponent, const ::scoped_string & scopedstrImplementation) const;
+   virtual ::factory::factory * component_factory(const ::scoped_string & scopedstrComponent) const;
    //::factory::factory* factory(const ::atom& atom);
 
    //virtual void handle(::topic * ptopic, ::handler_context * phandlercontext);
@@ -266,8 +302,8 @@ public:
 
 
 
-   virtual const char * topic_text() const;
-   //virtual const char * raw_class_title() const;
+   virtual const_char_pointer topic_text() const;
+   //virtual const_char_pointer raw_class_title() const;
 
 
 
@@ -300,32 +336,32 @@ public:
 
 
 
-   //virtual void trace_arguments(enum_trace_level etracelevel, enum_trace_category etracecategory, const ::ansi_character * pszFormat, va_list & arguments);
-   //virtual void trace_log_information_arguments(enum_trace_category etracecategory, const ::ansi_character * pszFormat, va_list & arguments);
-   //virtual void trace_log_warning_arguments(enum_trace_category etracecategory, const ::ansi_character * pszFormat, va_list & arguments);
-   //virtual void trace_log_error_arguments(enum_trace_category etracecategory, const ::ansi_character * pszFormat, va_list & arguments);
-   //virtual void trace_log_fatal_arguments(enum_trace_category etracecategory, const ::ansi_character * pszFormat, va_list & arguments);
+   //virtual void trace_arguments(enum_trace_level etracelevel, enum_trace_category etracecategory, const_char_pointer pszFormat, va_list & arguments);
+   //virtual void trace_log_information_arguments(enum_trace_category etracecategory, const_char_pointer pszFormat, va_list & arguments);
+   //virtual void trace_log_warning_arguments(enum_trace_category etracecategory, const_char_pointer pszFormat, va_list & arguments);
+   //virtual void trace_log_error_arguments(enum_trace_category etracecategory, const_char_pointer pszFormat, va_list & arguments);
+   //virtual void trace_log_fatal_arguments(enum_trace_category etracecategory, const_char_pointer pszFormat, va_list & arguments);
 
 
-   //virtual void trace_arguments(enum_trace_level etracelevel, const ::ansi_character * pszFormat, va_list & arguments);
-   //virtual void trace_log_information_arguments(const ::ansi_character * pszFormat, va_list & arguments);
-   //virtual void trace_log_warning_arguments(const ::ansi_character * pszFormat, va_list & arguments);
-   //virtual void trace_log_error_arguments(const ::ansi_character * pszFormat, va_list & arguments);
-   //virtual void trace_log_fatal_arguments(const ::ansi_character * pszFormat, va_list & arguments);
+   //virtual void trace_arguments(enum_trace_level etracelevel, const_char_pointer pszFormat, va_list & arguments);
+   //virtual void trace_log_information_arguments(const_char_pointer pszFormat, va_list & arguments);
+   //virtual void trace_log_warning_arguments(const_char_pointer pszFormat, va_list & arguments);
+   //virtual void trace_log_error_arguments(const_char_pointer pszFormat, va_list & arguments);
+   //virtual void trace_log_fatal_arguments(const_char_pointer pszFormat, va_list & arguments);
 
 
-   //virtual void trace(enum_trace_level etracelevel, enum_trace_category etracecategory, const ::ansi_character * pszFormat, ...);
-   //virtual void trace_log_information() << enum_trace_category etracecategory, const ::ansi_character * pszFormat, ...;
-   //virtual void trace_log_warning() << enum_trace_category etracecategory, const ::ansi_character * pszFormat, ...;
-   //virtual void trace_log_error() << enum_trace_category etracecategory, const ::ansi_character * pszFormat, ...;
-   //virtual void trace_log_fatal() << enum_trace_category etracecategory, const ::ansi_character * pszFormat, ...;
+   //virtual void trace(enum_trace_level etracelevel, enum_trace_category etracecategory, const_char_pointer pszFormat, ...);
+   //virtual void trace_log_information() << enum_trace_category etracecategory, const_char_pointer pszFormat, ...;
+   //virtual void trace_log_warning() << enum_trace_category etracecategory, const_char_pointer pszFormat, ...;
+   //virtual void trace_log_error() << enum_trace_category etracecategory, const_char_pointer pszFormat, ...;
+   //virtual void trace_log_fatal() << enum_trace_category etracecategory, const_char_pointer pszFormat, ...;
 
 
-   //virtual void trace(enum_trace_level etracelevel, const ::ansi_character * pszFormat, ...);
-   //virtual void trace_log_information() << const ::ansi_character * pszFormat, ...;
-   //virtual void trace_log_warning() << const ::ansi_character * pszFormat, ...;
-   //virtual void trace_log_error() << const ::ansi_character * pszFormat, ...;
-   //virtual void trace_log_fatal() << const ::ansi_character * pszFormat, ...;
+   //virtual void trace(enum_trace_level etracelevel, const_char_pointer pszFormat, ...);
+   //virtual void trace_log_information() << const_char_pointer pszFormat, ...;
+   //virtual void trace_log_warning() << const_char_pointer pszFormat, ...;
+   //virtual void trace_log_error() << const_char_pointer pszFormat, ...;
+   //virtual void trace_log_fatal() << const_char_pointer pszFormat, ...;
 
 
    virtual class tracer * tracer() const;
@@ -349,68 +385,73 @@ public:
    virtual ::trace_statement fatal() const;
 
    
-   virtual void tracef(enum_trace_level etracelevel, const ::ansi_character * pszFormat, ...) const;
+   virtual void tracef(enum_trace_level etracelevel, const_char_pointer pszFormat, ...) const;
 
-   virtual void formatf_trace(enum_trace_level etracelevel, const ::ansi_character * pszFormat, va_list & arguments) const;
+   virtual void formatf_trace(enum_trace_level etracelevel, const_char_pointer pszFormat, va_list & arguments) const;
 
    virtual void print_line(const ::scoped_string & scopedstr) const;
    virtual void print_out(const ::scoped_string & scopedstr) const;
-   virtual void printf_line(const ::ansi_character * pszFormat, ...) const;
-   virtual void printf_out(const ::ansi_character * pszFormat, ...) const;
+   virtual void printf_line(const_char_pointer pszFormat, ...) const;
+   virtual void printf_out(const_char_pointer pszFormat, ...) const;
    virtual void err_line(const ::scoped_string & scopedstr) const;
    virtual void err_out(const ::scoped_string & scopedstr) const;
-   virtual void errf_line(const ::ansi_character * pszFormat, ...) const;
-   virtual void errf_out(const ::ansi_character * pszFormat, ...) const;
+   virtual void errf_line(const_char_pointer pszFormat, ...) const;
+   virtual void errf_out(const_char_pointer pszFormat, ...) const;
 
-   virtual void debugf(const ::ansi_character * pszFormat, ...) const;
-   virtual void informationf(const ::ansi_character * pszFormat, ...) const;
-   virtual void warningf(const ::ansi_character * pszFormat, ...) const;
-   virtual void errorf(const ::ansi_character * pszFormat, ...) const;
-   virtual void fatalf(const ::ansi_character * pszFormat, ...) const;
+   virtual void debugf(const_char_pointer pszFormat, ...) const;
+   virtual void informationf(const_char_pointer pszFormat, ...) const;
+   virtual void warningf(const_char_pointer pszFormat, ...) const;
+   virtual void errorf(const_char_pointer pszFormat, ...) const;
+   virtual void fatalf(const_char_pointer pszFormat, ...) const;
 
 
-#if defined(__STD_FORMAT__)
+//#if defined(__STD_FORMAT__)
    
    // With help from speccylad(twitch)/turd(discord) 2023-10-27 ~09:00 BRT
-   template<typename... Ts>
-   void trace(enum_trace_level etracelevel, const std::format_string<Ts...> fmt, Ts&&... args) const
+   template<typename... Args>
+   void trace(enum_trace_level etracelevel, std::format_string<Args...> fmt, Args&&... args) const
    {
 
       auto statement = ::transfer(log_statement());
 
       statement(etracelevel)(trace_category());
 
-      statement.format_output(fmt, ::std::forward<Ts>(args)...);
+      statement.format_output(fmt, ::std::forward<Args>(args)...);
 
    }
 
    // With help from speccylad(twitch)/turd(discord) 2023-10-27 ~09:00 BRT
-   template<typename... Ts>
-   void information(const std::format_string<Ts...> fmt, Ts&&... args) const
+   template<typename... Args>
+   void debug(std::format_string<Args...> fmt, Args &&...args) const
    {
-      trace(e_trace_level_information, fmt, ::std::forward<Ts>(args)...);
+      trace(e_trace_level_debug, fmt, ::std::forward<Args>(args)...);
+   }
+   template<typename... Args>
+   void information(std::format_string<Args...> fmt, Args&&... args) const
+   {
+      trace(e_trace_level_information, fmt, ::std::forward<Args>(args)...);
    }
    // With help from speccylad(twitch)/turd(discord) 2023-10-27 ~09:00 BRT
-   template<typename... Ts>
-   void warning(const std::format_string<Ts...> fmt, Ts&&... args) const
+   template<typename... Args>
+   void warning(std::format_string<Args...> fmt, Args&&... args) const
    {
-      trace(e_trace_level_warning, fmt, ::std::forward<Ts>(args)...);
+      trace(e_trace_level_warning, fmt, ::std::forward<Args>(args)...);
    }
    // With help from speccylad(twitch)/turd(discord) 2023-10-27 ~09:00 BRT
-   template<typename... Ts>
-   void error(const std::format_string<Ts...> fmt, Ts&&... args) const
+   template<typename... Args>
+   void error(std::format_string<Args...> fmt, Args&&... args) const
    {
-      trace(e_trace_level_error, fmt, ::std::forward<Ts>(args)...);
+      trace(e_trace_level_error, fmt, ::std::forward<Args>(args)...);
    }
    // With help from speccylad(twitch)/turd(discord) 2023-10-27 ~09:00 BRT
-   template<typename... Ts>
-   void fatal(const std::format_string<Ts...> fmt, Ts&&... args) const
+   template<typename... Args>
+   void fatal(std::format_string<Args...> fmt, Args&&... args) const
    {
-      trace(e_trace_level_fatal, fmt, ::std::forward<Ts>(args)...);
+      trace(e_trace_level_fatal, fmt, ::std::forward<Args>(args)...);
    }
 
 
-#endif
+//#endif
    
 
    void trace(enum_trace_level etracelevel, const ::scoped_string & scopedstr) const;
@@ -444,7 +485,7 @@ public:
 
 
    // ThomasBorregaardSorensen!! Like handlers
-   virtual lresult message_handler(::enum_message emessage, ::wparam wparam, ::lparam lparam);
+   virtual lresult message_handler(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam);
    virtual void handle(::topic * ptopic, ::handler_context * phandlercontext);
    virtual void handle(const ::call & call);
    virtual void handle_message(::message::message * pmessage);
@@ -452,13 +493,13 @@ public:
 
    using subparticle::call;
    // ThomasBorregaardSorensen!! Like handlers
-   virtual lresult message_call(::enum_message emessage, ::wparam wparam = {}, ::lparam lparam = {});
+   virtual lresult message_call(::user::enum_message eusermessage, ::wparam wparam = {}, ::lparam lparam = {});
    virtual void call_handle(::topic * ptopic, ::handler_context * phandlercontext);
    virtual void call_handle_message(::message::message* pmessage);
    virtual void call_handle_item(::item* pitem);
 
-   virtual bool _handle_uri(const ::string & strUri);
-   virtual bool _handle_call(::payload & payload, const ::string & strObject, const ::string & strMember, ::property_set & propertyset);
+   virtual bool _handle_uri(const ::scoped_string & scopedstrUri);
+   virtual bool _handle_call(::payload & payload, const ::scoped_string & scopedstrObject, const ::scoped_string & scopedstrMember, ::property_set & propertyset);
 
    // <3ThomasBorregaardSorensen__!! likes handler concept...
    //void route(::signal * psignal) override;
@@ -498,21 +539,21 @@ public:
 
 
 
-   virtual const char* debug_note() const;
+   virtual const_char_pointer debug_note() const;
 
 
 
    [[nodiscard]] virtual bool should_run_async() const;
 
 
-   [[nodiscard]] virtual ::pointer < ::message_box > message_box(const ::string & strMessage, const ::string & strTitle = {}, const ::e_message_box & emessagebox = {}, const ::string & strDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
-   [[nodiscard]] virtual ::pointer < ::message_box > message_box(const ::exception & exception, const ::string & strMessage = {}, const ::string & strTitle = {}, const ::e_message_box & emessagebox = {}, const ::string & strDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
+   [[nodiscard]] virtual ::pointer < ::message_box > message_box(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const ::user::e_message_box & emessagebox = {}, const ::scoped_string & scopedstrDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
+   [[nodiscard]] virtual ::pointer < ::message_box > message_box(const ::exception & exception, const ::scoped_string & scopedstrMessage = nullptr, const ::scoped_string & scopedstrTitle = nullptr, const ::user::e_message_box & emessagebox = {}, const ::scoped_string & scopedstrDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
 
 
-   //virtual ::pointer < ::message_box > message_box(const string& strMessage, const ::string& strTitle = nullptr, const ::e_message_box& emessagebox = e_message_box_ok, const ::string& strDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
-   //virtual ::pointer < ::message_box > exception_message_box(const ::exception& exception, const ::string& strMessage = nullptr, const ::string& strTitle = nullptr, const ::e_message_box& emessagebox = e_message_box_ok, const ::string& strDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
-   //virtual ::pointer < ::message_box > message_console(const ::string& strMessage = nullptr, const ::string& strTitle = nullptr, const ::e_message_box& emessagebox = e_message_box_ok, const ::string& strDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
-   //virtual ::pointer < ::message_box > exception_message_console(const ::exception& exception, const ::string& strMessage = nullptr, const ::string& strTitle = nullptr, const ::e_message_box& emessagebox = e_message_box_ok, const ::string& strDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
+   //virtual ::pointer < ::message_box > message_box(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const ::user::e_message_box& emessagebox = ::user::e_message_box_ok, const ::scoped_string & scopedstrDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
+   //virtual ::pointer < ::message_box > exception_message_box(const ::exception& exception, const ::scoped_string & scopedstrMessage = nullptr, const ::scoped_string & scopedstrTitle = nullptr, const ::user::e_message_box& emessagebox = ::user::e_message_box_ok, const ::scoped_string & scopedstrDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
+   //virtual ::pointer < ::message_box > message_console(const ::scoped_string & scopedstrMessage = nullptr, const ::scoped_string & scopedstrTitle = nullptr, const ::user::e_message_box& emessagebox = ::user::e_message_box_ok, const ::scoped_string & scopedstrDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
+   //virtual ::pointer < ::message_box > exception_message_console(const ::exception& exception, const ::scoped_string & scopedstrMessage = nullptr, const ::scoped_string & scopedstrTitle = nullptr, const ::user::e_message_box& emessagebox = ::user::e_message_box_ok, const ::scoped_string & scopedstrDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
 
    //virtual void display(::message_box * pmessagebox);
    //virtual void display_exception(const ::exception& exception, ::message_box * pmessagebox);
@@ -538,7 +579,7 @@ public:
    {
 
       auto p = ::transfer(
-         ::platform::allocator::__call__allocate< T >(
+         øallocate T(
             ::std::forward<Args>(args)...));
 
       p->initialize(this);
@@ -578,7 +619,7 @@ public:
    ::pointer < T > create_clone(const T * pSource)
    {
 
-      auto p = this->__øcreate< T >();
+      auto p = this->øcreate< T >();
 
       if (!p)
       {
@@ -609,7 +650,7 @@ public:
    ::pointer < T > __call__create_new_clone(const T * pSource)
    {
 
-      auto p = this->__create_new< T >();
+      auto p = this->øcreate_new< T >();
 
       if (!p)
       {
@@ -751,7 +792,7 @@ public:
 #endif
    
    
-   virtual void * new_object(const char * psz);
+   virtual void * new_object(const_char_pointer psz);
 
 
    virtual string as_string() const;
@@ -795,12 +836,12 @@ public:
 
    virtual ::user::user * user();
    // virtual ::axis::user * axisuser();
-   // virtual ::base::user * user();
+   // virtual ::berg::user * user();
    // virtual ::bred::user * breduser();
    // virtual ::core::user * coreuser();
 
 
-   virtual void process_owned_procedure_list(::procedure_list & procedurelist, bool & bHandled);
+   virtual void process_owned_procedure_list(::procedure_list_base & procedurelist, bool & bHandled);
 
 
    virtual memory_file_pointer create_memory_file();
@@ -818,11 +859,15 @@ public:
    virtual memory_file_pointer create_memory_file_by_reading(::file::file* pfile);
 
 
-   //template < typename T, typename ...Args >
-   //inline ::pointer < T > __call__allocate(Args &&... args);
+//template < typename T, typename ...Args >
+//inline ::pointer < T > __call__allocate(Args &&... args);
 
 
    //inline ::particle * __call__add_referer(const ::reference_referer & referer) const;
+
+
+   virtual void assert_particle_ok() const;
+
 
 
 };
@@ -1018,10 +1063,10 @@ inline long long global_release(T*& p);
 //CLASS_DECL_ACME ::trace_statement fatal();
 //
 //
-//CLASS_DECL_ACME void informationf(const ::ansi_character * pszFormat, ...);
-//CLASS_DECL_ACME void warningf(const ::ansi_character * pszFormat, ...);
-//CLASS_DECL_ACME void errorf(const ::ansi_character * pszFormat, ...);
-//CLASS_DECL_ACME void fatalf(const ::ansi_character * pszFormat, ...);
+//CLASS_DECL_ACME void informationf(const_char_pointer pszFormat, ...);
+//CLASS_DECL_ACME void warningf(const_char_pointer pszFormat, ...);
+//CLASS_DECL_ACME void errorf(const_char_pointer pszFormat, ...);
+//CLASS_DECL_ACME void fatalf(const_char_pointer pszFormat, ...);
 //
 //
 //inline void information(const ::scoped_string & scopedstr)
@@ -1077,56 +1122,56 @@ inline long long global_release(T*& p);
 //
 //
 //// With help from speccylad(twitch)/turd(discord) 2023-10-27 ~09:00 BRT
-//template<typename... Ts>
-//inline void information(const std::format_string<Ts...> fmt, Ts&&... args)
+//template<typename... Args>
+//inline void information(const std::format_string<Args...> fmt, Args&&... args)
 //{
 //
 //   auto statement = log_statement();
 //
 //   statement(e_trace_level_information);
 //
-//   statement.format_output(fmt, std::forward<Ts>(args)...);
+//   statement.format_output(fmt, std::forward<Args>(args)...);
 //
 //}
 //
 //
 //// With help from speccylad(twitch)/turd(discord) 2023-10-27 ~09:00 BRT
-//template<typename... Ts>
-//inline void warning(const std::format_string<Ts...> fmt, Ts&&... args)
+//template<typename... Args>
+//inline void warning(const std::format_string<Args...> fmt, Args&&... args)
 //{
 //
 //   auto statement = log_statement();
 //
 //   statement(e_trace_level_warning);
 //
-//   statement.format_output(fmt, std::forward<Ts>(args)...);
+//   statement.format_output(fmt, std::forward<Args>(args)...);
 //
 //}
 //
 //// With help from speccylad(twitch)/turd(discord) 2023-10-27 ~09:00 BRT
-//template<typename... Ts>
-//void error(const std::format_string<Ts...> fmt, Ts&&... args)
+//template<typename... Args>
+//void error(const std::format_string<Args...> fmt, Args&&... args)
 //{
 //
 //   auto statement = log_statement();
 //
 //   statement(e_trace_level_error);
 //
-//   statement.format_output(fmt, std::forward<Ts>(args)...);
+//   statement.format_output(fmt, std::forward<Args>(args)...);
 //
 //}
 //
 //
 //// With help from speccylad(twitch)/turd(discord) 2023-10-27 ~09:00 BRT
-//template<typename... Ts>
-//void fatal(const std::format_string<Ts...> fmt, Ts&&... args)
+//template<typename... Args>
+//void fatal(const std::format_string<Args...> fmt, Args&&... args)
 //{
 //
 //   auto statement = log_statement();
 //
 //   statement(e_trace_level_fatal);
 //
-//   statement.format_output(fmt, std::forward<Ts>(args)...);
+//   statement.format_output(fmt, std::forward<Args>(args)...);
 //
 //}
 //
@@ -1286,9 +1331,117 @@ CLASS_DECL_ACME void error(const ::scoped_string& scopedstr);
 CLASS_DECL_ACME void fatal(const ::scoped_string& scopedstr);
 
 
+template <typename... Args>
+void debug(std::string_view fmt, Args&&... args)
+{
+   ::debug(format(fmt, std::make_format_args(args...)));
+}
+template <typename... Args>
+void information(std::string_view fmt, Args&&... args)
+{
+   ::information(format(fmt, std::make_format_args(args...)));
+}
+template <typename... Args>
+void warning(std::string_view fmt, Args&&... args)
+{
+   ::warning(format(fmt, std::make_format_args(args...)));
+}
+template <typename... Args>
+void error(std::string_view fmt, Args&&... args)
+{
+   ::error(format(fmt, std::make_format_args(args...)));
+}
+template <typename... Args>
+void fatal(std::string_view fmt, Args&&... args)
+{
+   ::fatal(format(fmt, std::make_format_args(args...)));
+}
+
+
 CLASS_DECL_ACME void debugf(const ::ansi_character* pszFormat, ...);
 CLASS_DECL_ACME void informationf(const ::ansi_character* pszFormat, ...);
 CLASS_DECL_ACME void warningf(const ::ansi_character* pszFormat, ...);
 CLASS_DECL_ACME void errorf(const ::ansi_character* pszFormat, ...);
 CLASS_DECL_ACME void fatalf(const ::ansi_character* pszFormat, ...);
+
+
+
+// template < typename TYPE, ::enum_flag t_eflag = e_flag_none, ::enum_status t_estatus = undefined >
+// class make_particle :
+//     public TYPE,
+//     virtual public ::particle
+// {
+// public:
+//
+//
+//    // Universal forwarding constructor
+//    template <typename... Args>
+//    make_particle(Args&&... args):
+//       ::particle(t_eflag, t_estatus),
+//       ::quantum(t_eflag, t_estatus),
+//       TYPE(std::forward<Args>(args)...) // forward to TYPE's ctor
+//    {
+//
+//    }
+//
+//
+//    template <typename Arg>
+//    TYPE & operator=(Arg&& arg)
+//    {
+//       return TYPE::operator=(arg);
+//    }
+//
+// };
+
+
+template < primitive_container CONTAINER >
+inline void __assert_container_ok(const CONTAINER * pcontainer, const_char_pointer pszFileName, int nLine)
+{
+
+   if (pcontainer == nullptr)
+   {
+
+      if(!__assert_failed_line(pszFileName, nLine))
+      {
+
+         debug_break();
+
+      }
+
+      return;
+
+   }
+
+   if (!is_memory_segment_ok(pcontainer, sizeof(::particle)))
+   {
+
+      if (__assert_failed_line(pszFileName, nLine))
+      {
+
+         debug_break();
+
+      }
+
+      return;
+
+   }
+
+   if (!is_memory_segment_ok(pcontainer, sizeof(CONTAINER)))
+   {
+
+      if (!__assert_failed_line(pszFileName, nLine))
+      {
+
+         debug_break();
+
+      }
+
+      return;
+
+   }
+
+   pcontainer->container_ok();
+
+}
+
 

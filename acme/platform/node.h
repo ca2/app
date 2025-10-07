@@ -88,8 +88,8 @@ namespace platform
    //    string                                                m_strTheme;
    //    string                                                m_strIconTheme;
    //
-   //    map < enum_character_set, ::string >                  m_mapCharacterSetDefaultSampleText;
-   //    string_map < enum_character_set >                     m_mapCharacterSetEnum;
+   //    map_base < enum_character_set, ::string >                  m_mapCharacterSetDefaultSampleText;
+   //    string_map_base < enum_character_set >                     m_mapCharacterSetEnum;
    //
    //    ::os_theme_colors *                                   m_pthemecolors;
    //
@@ -120,13 +120,13 @@ namespace platform
    //
    //
    //    enum_application_capability_array                     m_eapplicationcapabilitya;
-   //    string_map < ::pointer<::acme::exclusive > >          m_mapExclusive;
+   //    string_map_base < ::pointer<::acme::exclusive > >          m_mapExclusive;
       struct font_t
       {
          ::file::path m_path;
 
  };
-      ::string_map < font_t > m_mapFont;
+      ::string_map_base < font_t > m_mapFont;
 
       node();
       ~node() override;
@@ -142,8 +142,8 @@ namespace platform
       virtual ::string get_file_type_identifier(const ::file::path & path) override;
 
 
-      virtual void call_async(const ::string & pszPath, const ::string & pszParam, const ::string & pszDir, ::e_display edisplay, bool bPrivileged, unsigned int * puiPid = nullptr) override;
-      virtual void call_sync(const ::string & pszPath, const ::string & pszParam, const ::string & pszDir, ::e_display edisplay, const class time & timeTimeout, ::property_set & set, int * piExitCode) override;
+      virtual void call_async(const ::scoped_string & scopedstrPath, const ::scoped_string & scopedstrParam, const ::scoped_string & scopedstrDir, ::e_display edisplay, bool bPrivileged, unsigned int * puiPid = nullptr) override;
+      virtual void call_sync(const ::scoped_string & scopedstrPath, const ::scoped_string & scopedstrParam, const ::scoped_string & scopedstrDir, ::e_display edisplay, const class time & timeTimeout, ::property_set & set, int * piExitCode) override;
 
 
       virtual ::process_identifier_array module_list_file_processes_identifiers(const ::scoped_string & scopedstr) override;
@@ -158,7 +158,7 @@ namespace platform
 
       virtual void initialize(::particle * pparticle) override;
 
-      virtual void node_application_on_status(const char * pszStatus, void * p = nullptr, long long hi = 0) override;
+      virtual void node_application_on_status(const_char_pointer pszStatus, void * p = nullptr, long long hi = 0) override;
       //virtual ::particle_pointer create_quit_particle(::pointer<::platform::node>& pnode);
 
       //virtual ::particle_pointer create_quit_particle();
@@ -198,9 +198,9 @@ namespace platform
       virtual bool is_server_library_registered(::file::path & path, const ::platform::uuid & uuid);
 
 
-      void _launch_macos_app(const ::string & pszAppFolder) override;
+      void _launch_macos_app(const ::scoped_string & scopedstrAppFolder) override;
 
-      void _launch_macos_app_args(const ::string & pszAppFolder, const ::string & pszArgs) override;
+      void _launch_macos_app_args(const ::scoped_string & scopedstrAppFolder, const ::scoped_string & scopedstrArgs) override;
 
       void on_initialize_particle() override;
 
@@ -211,7 +211,7 @@ namespace platform
       void reboot() override;
 
       void defer_show_system_menu(::user::mouse * pmouse) override;
-      void install_crash_dump_reporting(const string& strModuleNameWithTheExeExtension) override;
+      void install_crash_dump_reporting(const ::scoped_string & scopedstrModuleNameWithTheExeExtension) override;
 
 
       ::file::path module_path_source() override;
@@ -220,42 +220,42 @@ namespace platform
       //::file::path update_module_path();
 
 
-      ::pointer < ::mutex > create_local_named_mutex(::particle * pparticleContext, bool bInitiallyOwned, const ::string & strName, security_attributes * psecurityattributes = nullptr) override;
-      ::pointer < ::mutex > create_global_named_mutex(::particle * pparticleContext, bool bInitiallyOwned, const ::string & strName, security_attributes * psecurityattributes = nullptr) override;
+      ::pointer < ::mutex > create_local_named_mutex(::particle * pparticleContext, bool bInitiallyOwned, const ::scoped_string & scopedstrName, security_attributes * psecurityattributes = nullptr) override;
+      ::pointer < ::mutex > create_global_named_mutex(::particle * pparticleContext, bool bInitiallyOwned, const ::scoped_string & scopedstrName, security_attributes * psecurityattributes = nullptr) override;
 
 
-      ::pointer < ::mutex > open_local_named_mutex(::particle * pparticleContext, const ::string & strName) override;
-      ::pointer < ::mutex > open_global_named_mutex(::particle * pparticleContext, const ::string & strName) override;
+      ::pointer < ::mutex > open_local_named_mutex(::particle * pparticleContext, const ::scoped_string & scopedstrName) override;
+      ::pointer < ::mutex > open_global_named_mutex(::particle * pparticleContext, const ::scoped_string & scopedstrName) override;
 
 
-      ::pointer < ::mutex > get_install_mutex(::particle * pparticleContext, const ::string & strPlatform, const ::string & strSuffix) override;
+      ::pointer < ::mutex > get_install_mutex(::particle * pparticleContext, const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrSuffix) override;
 
-      ::pointer < ::acme::exclusive > _get_exclusive(::particle * pparticleContext, const ::string & strName, ::security_attributes * psecurityattributes = nullptr) override;
+      ::pointer < ::acme::exclusive > _get_exclusive(::particle * pparticleContext, const ::scoped_string & scopedstrName, ::security_attributes * psecurityattributes = nullptr) override;
 
-      ::pointer < ::acme::exclusive > get_exclusive(::particle * pparticleContext, const ::string & strName, ::security_attributes * psecurityattributes = nullptr) override;
+      ::pointer < ::acme::exclusive > get_exclusive(::particle * pparticleContext, const ::scoped_string & scopedstrName, ::security_attributes * psecurityattributes = nullptr) override;
 
-      bool erase_exclusive(const string & strName) override;
+      bool erase_exclusive(const ::scoped_string & scopedstrName) override;
 
       void release_exclusive() override;
 
-      bool exclusive_fails(::particle * pparticleContext, const string & strName, security_attributes * psecurityattributes = nullptr) override;
+      bool exclusive_fails(::particle * pparticleContext, const ::scoped_string & scopedstrName, security_attributes * psecurityattributes = nullptr) override;
 
 
-      string app_id_to_app_name(const ::string & strAppId) override;
-      string app_id_to_executable_name(const ::string & strAppId) override;
+      string app_id_to_app_name(const ::scoped_string & scopedstrAppId) override;
+      string app_id_to_executable_name(const ::scoped_string & scopedstrAppId) override;
 
 
-      bool is_application_installed(const ::file::path& pathExe, string strAppId, string& strBuild, const ::string & pszPlatform, const ::string & pszConfiguration, const ::string & pszLocale, const ::string & pszSchema) override;
-      void set_application_installed(const ::file::path& pathExe, string strAppId, const ::string & pszBuild, const ::string & pszPlatform, const ::string & pszConfiguration, const ::string & pszLocale, const ::string & pszSchema) override;
+      bool is_application_installed(const ::file::path& pathExe, const ::scoped_string & scopedstrAppId, string& strBuild, const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema) override;
+      void set_application_installed(const ::file::path& pathExe, const ::scoped_string & scopedstrAppId, const ::scoped_string & scopedstrBuild, const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema) override;
 
 
-      ::file::path application_installer_folder(const ::file::path& pathExe, string strAppId, const ::string & pszPlatform, const ::string & pszConfiguration, const ::string & pszLocale, const ::string & pszSchema) override;
-      ::file::path get_application_path(string strAppId, const ::string & pszPlatform, const ::string & pszConfiguration) override;
+      ::file::path application_installer_folder(const ::file::path& pathExe, const ::scoped_string & scopedstrAppId, const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema) override;
+      ::file::path get_application_path(const ::scoped_string & scopedstrAppId, const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration) override;
 
 
-      ::file::path get_last_run_application_path_file(const ::string & strAppId) override;
-      ::file::path get_last_run_application_path(const ::string & strAppId) override;
-      void  set_last_run_application_path(const string& strAppId) override;
+      ::file::path get_last_run_application_path_file(const ::scoped_string & scopedstrAppId) override;
+      ::file::path get_last_run_application_path(const ::scoped_string & scopedstrAppId) override;
+      void  set_last_run_application_path(const ::scoped_string & scopedstrAppId) override;
 
 
       virtual ::file::path _module_path() override;
@@ -311,17 +311,17 @@ namespace platform
 
       //virtual string os_get_user_theme();
 
-      //virtual void os_set_user_theme(const ::string & strUserTheme);
+      //virtual void os_set_user_theme(const ::scoped_string & scopedstrUserTheme);
 
-      //virtual void os_process_user_theme(string strTheme);
+      //virtual void os_process_user_theme(const ::scoped_string & scopedstrTheme);
 
-      //virtual void os_process_user_icon_theme(string strIconTheme);
+      //virtual void os_process_user_icon_theme(const ::scoped_string & scopedstrIconTheme);
 
-      virtual string get_file_icon_path(const ::string & pszPath, int iSize) override;
+      virtual string get_file_icon_path(const ::scoped_string & scopedstrPath, int iSize) override;
 
-      virtual string get_file_content_type(const ::string & pszPath) override;
+      virtual string get_file_content_type(const ::scoped_string & scopedstrPath) override;
 
-      virtual int os_launch_uri(const ::string & pszUri, char * pszError = NULL, int iBufferSize = 0) override;
+      virtual int os_launch_uri(const ::scoped_string & scopedstrUri, char * pszError = NULL, int iBufferSize = 0) override;
 
       //virtual void enable_wallpaper_change_notification() override;
 
@@ -373,7 +373,7 @@ namespace platform
       //virtual string font_name(enum_operating_system eoperatingsystem, int iVariant, enum_font efont);
 
 
-      virtual string file_memory_map_path_from_name(const string& strName) override;
+      virtual string file_memory_map_path_from_name(const ::scoped_string & scopedstrName) override;
 
       virtual enum_operating_system get_operating_system() const override;
 
@@ -385,37 +385,37 @@ namespace platform
 
       //virtual ::string get_user_toolkit_id();
 
-      virtual void launch_app(const ::string & psz, const char ** argv, int iFlags) override;
+      virtual void launch_app(const ::scoped_string & scopedstr, const_char_pointer *argv, int iFlags) override;
 
       virtual ::file::path get_executable_path_by_app_id(const ::scoped_string & scopedstrAppId, bool bSingleExecutableVersion) override;
       virtual ::file::path get_executable_path_by_app_id(const ::scoped_string & scopedstrRepos, const ::scoped_string & scopedstrApp, bool bSingleExecutableVersion) override;
       virtual void launch_app_by_app_id(const ::scoped_string & scopedstrAppId, bool bSingleExecutableVersion) override;
 
-      virtual ::process_identifier create_process(const ::string & pszCommandLine) override;
+      virtual ::process_identifier create_process(const ::scoped_string & scopedstrCommandLine) override;
 
-      virtual void run_silent(const ::string & strFunct, const ::string & strstrParams) override;
+      virtual void run_silent(const ::scoped_string & scopedstrFunct, const ::scoped_string & scopedstrstrParams) override;
 
-      virtual ::file::path_array process_identifier_modules_paths(::process_identifier processidentifier) override;
+      virtual ::file::path_array_base process_identifier_modules_paths(::process_identifier processidentifier) override;
 
-      virtual ::file::path_array modules_paths() override;
+      virtual ::file::path_array_base modules_paths() override;
 
-      virtual bool load_modules_diff(string_array& straOld, string_array& straNew, const ::string & pszExceptDir) override;
+      virtual bool load_modules_diff(string_array_base& straOld, string_array_base& straNew, const ::scoped_string & scopedstrExceptDir) override;
 
       virtual ::process_identifier_array processes_identifiers() override;
 
-      virtual ::process_identifier_array module_path_processes_identifiers(const ::string & pszModulePath, bool bModuleNameIsPropertyFormatted) override;
+      virtual ::process_identifier_array module_path_processes_identifiers(const ::scoped_string & scopedstrModulePath, bool bModuleNameIsPropertyFormatted) override;
 
       virtual ::file::path process_identifier_module_path(::process_identifier processidentifier) override;
 
       virtual string process_identifier_command_line(::process_identifier processidentifier) override;
 
-      //virtual bool is_shared_library_busy(::process_identifier processidentifier, const string_array& stra);
+      //virtual bool is_shared_library_busy(::process_identifier processidentifier, const string_array_base& stra);
 
-      //virtual bool is_shared_library_busy(const string_array& stra);
+      //virtual bool is_shared_library_busy(const string_array_base& stra);
 
-      virtual bool process_contains_module(string& strImage, ::process_identifier processidentifier, const ::string & pszLibrary) override;
+      virtual bool process_contains_module(string& strImage, ::process_identifier processidentifier, const ::scoped_string & scopedstrLibrary) override;
 
-      virtual ::process_identifier_array shared_library_process(string_array& straProcesses, const ::string & pszLibrary) override;
+      virtual ::process_identifier_array shared_library_process(string_array_base& straProcesses, const ::scoped_string & scopedstrLibrary) override;
 
       virtual bool is_process_running(::process_identifier processidentifier) override;
 
@@ -432,26 +432,26 @@ namespace platform
 
       virtual ::pointer < security_attributes > get_application_exclusivity_security_attributes() override;
 
-      virtual void register_spa_file_type(const ::string & strAppIdHandler) override;
+      virtual void register_spa_file_type(const ::scoped_string & scopedstrAppIdHandler) override;
 
-      virtual bool low_is_app_app_admin_running(string strPlatform, string strConfiguration) override;
-      virtual void defer_start_program_files_app_app_admin(string strPlatform, string strConfiguration) override;
-      virtual void start_program_files_app_app_admin(string strPlatform, string strConfiguration) override;
+      virtual bool low_is_app_app_admin_running(const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration) override;
+      virtual void defer_start_program_files_app_app_admin(const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration) override;
+      virtual void start_program_files_app_app_admin(const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration) override;
 
       virtual void get_folder_path_from_user(::file::path & pathFolder) override;
 
 
-      //virtual ::string expand_environment_variables(const ::string & str);
+      //virtual ::string expand_environment_variables(const ::scoped_string & scopedstr);
 
-      virtual ::file::path command_find_path(const ::string & pszCommand) override;
-
-
-
-      virtual void launch_application(::particle * pparticle, const ::string & strAppId, const ::string & strParams, int iBitCount) override;
+      virtual ::file::path command_find_path(const ::scoped_string & scopedstrCommand) override;
 
 
-       virtual void shell_open(const ::file::path & path, const string & strParams = "", const ::file::path & pathFolder = {}) override;
-      //virtual void open_url(const ::string & strUrl);
+
+      virtual void launch_application(::particle * pparticle, const ::scoped_string & scopedstrAppId, const ::scoped_string & scopedstrParams, int iBitCount) override;
+
+
+       virtual void shell_open(const ::file::path & path, const ::scoped_string & scopedstrParams = "", const ::file::path & pathFolder = {}) override;
+      //virtual void open_url(const ::scoped_string & scopedstrUrl);
 
 
       virtual void shell_execute_async(const ::scoped_string & scopedstrFile, const ::scoped_string & scopedstrParams, const ::file::path& pathWorkingDirectory = {}) override;
@@ -461,7 +461,7 @@ namespace platform
       virtual int root_execute_sync(const ::scoped_string & scopedstrFile, const ::scoped_string & scopedstrParams, const class time & timeTimeout = 1_minute, const ::file::path& pathWorkingDirectory = {}) override;
 
 
-      //::file::path command_find_path(const ::string & pszCommand);
+      //::file::path command_find_path(const ::scoped_string & scopedstrCommand);
 
 
       //virtual ::user::enum_operating_ambient calculate_edesktop();
@@ -475,7 +475,7 @@ namespace platform
       virtual void create_app_shortcut(::platform::application * papplication) override;
 
 
-      virtual void report_exception_to_user(::particle* pparticle, ::exception& exception, const ::string& strMoreDetails) override;
+      virtual void report_exception_to_user(::particle* pparticle, ::exception& exception, const ::scoped_string & scopedstrMoreDetails) override;
 
 
       //virtual ::pointer<::conversation> create_new_message_box_conversation();
@@ -483,16 +483,16 @@ namespace platform
       //virtual ::pointer<::conversation> create_new_message_conversation();
 
 
-      //virtual ::pointer < ::subparticle > create_message_box_sequencer(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails, ::nano::graphics::icon * picon);
+      //virtual ::pointer < ::subparticle > create_message_box_sequencer(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::user::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon);
 
 
-      //virtual void ::micro::message_box(::sequence < ::conversation > * psequence, const ::string& strMessage, const ::string& strTitle, const ::e_message_box& emessagebox);
+      //virtual void ::micro::message_box(::sequence < ::conversation > * psequence, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::user::e_message_box& emessagebox);
 
-      //virtual ::pointer < ::subparticle > create_message_sequencer(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails, ::nano::graphics::icon * picon);
+      //virtual ::pointer < ::subparticle > create_message_sequencer(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::user::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon);
 
 
 
-      virtual void shell_launch(const ::string & strAppId) override;
+      virtual void shell_launch(const ::scoped_string & scopedstrAppId) override;
 
 
       virtual bool has_application_capability(::enum_application_capability ecapability) const override;
@@ -503,10 +503,10 @@ namespace platform
       //virtual void windowing_post(const ::procedure& procedure);
 
 
-      virtual string get_local_mutex_name(const ::string & strAppId) override;
-      virtual string get_local_id_mutex_name(const ::string & strAppId, const ::string & strId) override;
-      virtual string get_global_mutex_name(const ::string & strAppId) override;
-       virtual string get_global_id_mutex_name(const ::string & strAppId, const ::string & strId) override;
+      virtual string get_local_mutex_name(const ::scoped_string & scopedstrAppId) override;
+      virtual string get_local_id_mutex_name(const ::scoped_string & scopedstrAppId, const ::scoped_string & scopedstrId) override;
+      virtual string get_global_mutex_name(const ::scoped_string & scopedstrAppId) override;
+       virtual string get_global_id_mutex_name(const ::scoped_string & scopedstrAppId, const ::scoped_string & scopedstrId) override;
 
 
 
@@ -542,7 +542,7 @@ namespace platform
       virtual ::string get_command_line() override;
 
 
-      //virtual ::pointer<::acme::exclusive> get_exclusive(string str, const security_attributes & securityattributes = nullptr);
+      //virtual ::pointer<::acme::exclusive> get_exclusive(const ::scoped_string & scopedstr, const security_attributes & securityattributes = nullptr);
 
 
       virtual int get_current_processor_index() override;
@@ -550,7 +550,7 @@ namespace platform
       virtual int get_current_process_affinity_order() override;
       virtual unsigned long long translate_processor_affinity(int i) override;
 
-      //CLASS_DECL_ACME string expand_env(string str);
+      //CLASS_DECL_ACME string expand_env(const ::scoped_string & scopedstr);
       //CLASS_DECL_ACME string xxxget_environment_variable(const ::scoped_string & scopedstrEnvironmentVariable);
       //CLASS_DECL_ACME string ca2_command_line();
 
@@ -566,7 +566,7 @@ namespace platform
 
 
 
-      //virtual string time_binary_platform(string strPlatform);
+      //virtual string time_binary_platform(const ::scoped_string & scopedstrPlatform);
 
 
 
@@ -576,13 +576,13 @@ namespace platform
 //
 //#if !defined(UNIVERSAL_WINDOWS)
 //
-//      //virtual int call_async(const ::string & pszPath, const ::string & pszParam, const ::string & pszDir, ::e_display edisplay, bool bPrivileged, unsigned int * puiPid = nullptr);
+//      //virtual int call_async(const ::scoped_string & scopedstrPath, const ::scoped_string & scopedstrParam, const ::scoped_string & scopedstrDir, ::e_display edisplay, bool bPrivileged, unsigned int * puiPid = nullptr);
 //
 //      typedef int CALLSYNCONRETRY(int iTry, uptr dwParam);
 //
 //      typedef CALLSYNCONRETRY * PFNCALLSYNCONRETRY;
 //
-//      //CLASS_DECL_ACME unsigned int call_sync(const ::string & pszPath, const ::string & pszParam, const ::string & pszDir, ::e_display edisplay, const class time & timeTimeout, ::property_set & set);
+//      //CLASS_DECL_ACME unsigned int call_sync(const ::scoped_string & scopedstrPath, const ::scoped_string & scopedstrParam, const ::scoped_string & scopedstrDir, ::e_display edisplay, const class time & timeTimeout, ::property_set & set);
 //
 //#endif
 
@@ -600,43 +600,43 @@ namespace platform
 //#endif
 
 
-      //virtual string expand_env(string str);
+      //virtual string expand_env(const ::scoped_string & scopedstr);
 
-      //CLASS_DECL_ACME string consume_command_line_parameter(const ::string & pszCommandLine, const ::string * & pszEndPtr);
-      //CLASS_DECL_ACME bool is_command_line_parameter_true(string& strValue, const ::string & pszCommandLine, const ::string & pszParam, bool bDefault = false);
-      //CLASS_DECL_ACME bool get_command_line_parameter(string & strValue, const ::string & pszCommandLine, const ::string & pszParam);
-      //CLASS_DECL_ACME bool get_command_line_parameter(string & strValue, const ::string & pszCommandLine, const ::string & pszParam, const ::string & pszDefault);
-      //CLASS_DECL_ACME string get_command_line_parameter(const ::string & pszCommandLine, const ::string & pszParam);
+      //CLASS_DECL_ACME string consume_command_line_parameter(const ::scoped_string & scopedstrCommandLine, const ::string * & pszEndPtr);
+      //CLASS_DECL_ACME bool is_command_line_parameter_true(string& strValue, const ::scoped_string & scopedstrCommandLine, const ::scoped_string & scopedstrParam, bool bDefault = false);
+      //CLASS_DECL_ACME bool get_command_line_parameter(string & strValue, const ::scoped_string & scopedstrCommandLine, const ::scoped_string & scopedstrParam);
+      //CLASS_DECL_ACME bool get_command_line_parameter(string & strValue, const ::scoped_string & scopedstrCommandLine, const ::scoped_string & scopedstrParam, const ::scoped_string & scopedstrDefault);
+      //CLASS_DECL_ACME string get_command_line_parameter(const ::scoped_string & scopedstrCommandLine, const ::scoped_string & scopedstrParam);
 
 
-      //virtual bool launch_command(const ::string & pszCommand);
+      //virtual bool launch_command(const ::scoped_string & scopedstrCommand);
 
 
       virtual string process_configuration_name() override;
 
-      virtual string time_binary_platform(const string & strPlatform) override;
+      virtual string time_binary_platform(const ::scoped_string & scopedstrPlatform) override;
       virtual string process_platform_name() override;
       //virtual string process_platform_name();
       virtual string process_version_dir_name() override;
 
-      virtual ::file::path core_app_path(string strApp) override;
+      virtual ::file::path core_app_path(const ::scoped_string & scopedstrApp) override;
 
 
 
 
-      //virtual bool is_shared_library_busy(::process_identifier processidentifier, const string_array & stra);
-      //virtual bool is_shared_library_busy(const string_array & stra);
+      //virtual bool is_shared_library_busy(::process_identifier processidentifier, const string_array_base & stra);
+      //virtual bool is_shared_library_busy(const string_array_base & stra);
 
 
-      // virtual bool launch_application(::particle * pparticle, const ::string & strAppId, const ::string & strParams, int iBitCount);
+      // virtual bool launch_application(::particle * pparticle, const ::scoped_string & scopedstrAppId, const ::scoped_string & scopedstrParams, int iBitCount);
 
 
 
-      //virtual bool shell_execute_async(const ::string & pszFile, const ::string & pszParams);
-      //virtual bool shell_execute_sync(const ::string & pszFile, const ::string & pszParams, const class time & timeTimeout = 1_minute);
+      //virtual bool shell_execute_async(const ::scoped_string & scopedstrFile, const ::scoped_string & scopedstrParams);
+      //virtual bool shell_execute_sync(const ::scoped_string & scopedstrFile, const ::scoped_string & scopedstrParams, const class time & timeTimeout = 1_minute);
 
-      //virtual bool root_execute_async(const ::string & pszFile, const ::string & pszParams);
-      //virtual bool root_execute_sync(const ::string & pszFile, const ::string & pszParams, const class time & timeTimeout = 1_minute);
+      //virtual bool root_execute_async(const ::scoped_string & scopedstrFile, const ::scoped_string & scopedstrParams);
+      //virtual bool root_execute_sync(const ::scoped_string & scopedstrFile, const ::scoped_string & scopedstrParams, const class time & timeTimeout = 1_minute);
 
 
       //CLASS_DECL_ACME bool os_init_application();
@@ -644,7 +644,7 @@ namespace platform
 
 
 
-      virtual string executable_title_from_appid(const string & strAppId) override;
+      virtual string executable_title_from_appid(const ::scoped_string & scopedstrAppId) override;
 
 
       //CLASS_DECL_ACME unsigned int get_current_process_id();
@@ -729,13 +729,13 @@ namespace platform
 
       bool are_framework_shared_libraries_busy(const ::scoped_string & scopedstrRepos, const ::scoped_string & scopedstrApp) override;
       
-      bool are_any_shared_libraries_mapped(const ::file::path_array & patha) override;
+      bool are_any_shared_libraries_mapped(const ::file::path_array_base & patha) override;
 
 
       ::string get_error_code_message(const ::error_code & errorcode) override;
 
 
-      bool defer_enumerate_protocol(::file::listing& listing) override;
+      bool defer_enumerate_protocol(::file::listing_base& listing) override;
 
       bool defer_process_protocol_path(::file::path & path) override;
 
@@ -747,7 +747,7 @@ namespace platform
    //virtual void reboot();
    void shutdown(bool bPowerOff) override;
 
-   void terminate_processes_by_title(const ::string & strName) override;
+   void terminate_processes_by_title(const ::scoped_string & scopedstrName) override;
 
 //#ifdef WINDOWS
 //      virtual ::file::path get_module_path(HMODULE hmodule);
@@ -770,25 +770,25 @@ namespace platform
    void open_internet_link(const ::scoped_string & scopedstrUrl, const ::scoped_string &
                            scopedstrProfile = {}, const ::scoped_string & scopedstrTarget = {}) override;
 
-   void local_machine_set_run(const ::string & strKey, const ::file::path & pathExecutable, const ::string& strArguments, bool bSet) override;
-   void local_machine_set_run_once(const ::string & strKey, const ::file::path & pathExecutable, const ::string& strArguments, bool bSet) override;
-   void current_user_set_run(const ::string & strKey, const ::file::path & pathExecutable, const ::string & strArguments, bool bSet) override;
-   void current_user_set_run_once(const ::string & strKey, const ::file::path & pathExecutable, const ::string& strArguments, bool bSet) override;
+   void local_machine_set_run(const ::scoped_string & scopedstrKey, const ::file::path & pathExecutable, const ::scoped_string & scopedstrArguments, bool bSet) override;
+   void local_machine_set_run_once(const ::scoped_string & scopedstrKey, const ::file::path & pathExecutable, const ::scoped_string & scopedstrArguments, bool bSet) override;
+   void current_user_set_run(const ::scoped_string & scopedstrKey, const ::file::path & pathExecutable, const ::scoped_string & scopedstrArguments, bool bSet) override;
+   void current_user_set_run_once(const ::scoped_string & scopedstrKey, const ::file::path & pathExecutable, const ::scoped_string & scopedstrArguments, bool bSet) override;
 
    void defer_register_ca2_plugin_for_mozilla() override;
 
 
-   void file_extension_get_open_with_list_keys(string_array & straKey, const ::string & strExtension) override;
-   void file_extension_get_open_with_list_commands(string_array & straCommand, const ::string & strExtension) override;
+   void file_extension_get_open_with_list_keys(string_array_base & straKey, const ::scoped_string & scopedstrExtension) override;
+   void file_extension_get_open_with_list_commands(string_array_base & straCommand, const ::scoped_string & scopedstrExtension) override;
 
-   void file_association_set_default_icon(const ::string & strExtension, const ::string & strExtensionNamingClass, const ::file::path & pathIcon) override;
-   void file_association_set_shell_open_command(const ::string & strExtension, const ::string & strExtensionNamingClass, const ::file::path & pathExecutable, const ::string & strParam) override;
-   void file_association_get_shell_open_command(const ::string & strExtension, string & strExtensionNamingClass, string & strCommand, string & strParam) override;
+   void file_association_set_default_icon(const ::scoped_string & scopedstrExtension, const ::scoped_string & scopedstrExtensionNamingClass, const ::file::path & pathIcon) override;
+   void file_association_set_shell_open_command(const ::scoped_string & scopedstrExtension, const ::scoped_string & scopedstrExtensionNamingClass, const ::file::path & pathExecutable, const ::scoped_string & scopedstrParam) override;
+   void file_association_get_shell_open_command(const ::scoped_string & scopedstrExtension, string & strExtensionNamingClass, string & strCommand, string & strParam) override;
 
-   void native_full_web_browser(const ::string & str) override;
+   void native_full_web_browser(const ::scoped_string & scopedstr) override;
 
 
-   void native_modern_web_browser(const ::string & str) override;
+   void native_modern_web_browser(const ::scoped_string & scopedstr) override;
 
 
    void enable_service() override;
@@ -799,13 +799,13 @@ namespace platform
 
    void stop_service() override;
 
-   void enable_service(const ::string & strServiceName, const ::string & strDisplayName, const ::string & strCommand, const ::string & strUser = "", const ::string & strPass = "") override;
+   void enable_service(const ::scoped_string & scopedstrServiceName, const ::scoped_string & scopedstrDisplayName, const ::scoped_string & scopedstrCommand, const ::scoped_string & scopedstrUser = "", const ::scoped_string & scopedstrPass = "") override;
 
-   void disable_service(const ::string & strServiceName) override;
+   void disable_service(const ::scoped_string & scopedstrServiceName) override;
 
-   void start_service(const ::string & strServiceName) override;
+   void start_service(const ::scoped_string & scopedstrServiceName) override;
 
-   void stop_service(const ::string & strServiceName) override;
+   void stop_service(const ::scoped_string & scopedstrServiceName) override;
 
 //#ifdef WINDOWS
 //      virtual DECLSPEC_NO_RETURN void raise_exception(unsigned int dwExceptionCode, unsigned int dwExceptionFlags = EXCEPTION_NONCONTINUABLE);
@@ -826,9 +826,9 @@ namespace platform
 
    //virtual void set_dark_mode(bool bDarkMode);
 
-   void file_open(const ::file::path & path, const ::string & strParams = "", const ::file::path & pathFolder = "") override;
-   void hidden_start(const ::file::path& path, const ::string& strParams = "", const ::file::path& pathFolder = "") override;
-   void hidden_run(const class time & timeWait, const ::file::path& path, const ::string& strParams = "", const ::file::path& pathFolder = "") override;
+   void file_open(const ::file::path & path, const ::scoped_string & scopedstrParams = "", const ::file::path & pathFolder = "") override;
+   void hidden_start(const ::file::path& path, const ::scoped_string & scopedstrParams = "", const ::file::path& pathFolder = "") override;
+   void hidden_run(const class time & timeWait, const ::file::path& path, const ::scoped_string & scopedstrParams = "", const ::file::path& pathFolder = "") override;
 
    string get_default_browser() override;
 
@@ -838,13 +838,13 @@ namespace platform
 
    void set_file_extension_mime_type(::get_file_extension_mime_type * pgetfileextensionmimetype) override;
 
-   void set_file_extension_mime_type(string_array & straExtension, string_array & straMimeType) override;
+   void set_file_extension_mime_type(string_array_base & straExtension, string_array_base & straMimeType) override;
 
-   void register_user_auto_start(::platform::application * papplication, const string & strArguments, bool bRegister) override;
+   void register_user_auto_start(::platform::application * papplication, const ::scoped_string & scopedstrArguments, bool bRegister) override;
 
-   bool is_user_auto_start(const string & strAppId) override;
+   bool is_user_auto_start(const ::scoped_string & scopedstrAppId) override;
 
-   ::file::path get_app_path(const ::string & strApp) override;
+   ::file::path get_app_path(const ::scoped_string & scopedstrApp) override;
 
    void on_process_request(::request * prequest) override;
 
@@ -869,10 +869,10 @@ namespace platform
    //virtual void browse_file_or_folder(::property_set & set);
 
 
-   void list_process(::file::path_array & patha, ::process_identifier_array& uaPid) override;
+   void list_process(::file::path_array_base & patha, ::process_identifier_array& uaPid) override;
 
 
-   ::file::path_array list_process_path();
+   ::file::path_array_base list_process_path();
 
    //virtual ::icon_pointer load_icon(const ::payload & payloadFile);
 
@@ -881,10 +881,10 @@ namespace platform
    void broadcast_environment_variable_change() override;
 
 
-   void set_this_application_as_default_for_file_extension(const ::string& strExtension) override;
+   void set_this_application_as_default_for_file_extension(const ::scoped_string & scopedstrExtension) override;
 
 
-   string get_file_extension_mime_type(const ::string & strExtension);
+   string get_file_extension_mime_type(const ::scoped_string & scopedstrExtension);
 
 
 #ifdef LINUX
@@ -899,8 +899,8 @@ namespace platform
 #endif
 
 #if !defined(WINDOWS)
-      string_array cmdline_from_pid(::process_identifier processidentifier) override;
-      atom_array app_get_pid(const ::string & pszModuleName) override;
+      string_array_base cmdline_from_pid(::process_identifier processidentifier) override;
+      atom_array app_get_pid(const ::scoped_string & scopedstrModuleName) override;
 
 #endif
 
@@ -954,7 +954,7 @@ namespace platform
 
 #endif
 
-      bool _is_code_exe_user_path_environment_variable_ok(::string *pstrCorrectPath=nullptr, const char * pszPath = nullptr) override;
+      bool _is_code_exe_user_path_environment_variable_ok(::string *pstrCorrectPath=nullptr, const_char_pointer pszPath = nullptr) override;
 
 #if defined(WINDOWS_DESKTOP) || defined(MACOS) || defined(LINUX)
 
@@ -994,7 +994,7 @@ namespace platform
 //
 //
 //      //virtual string module_path_from_pid(::process_identifier processidentifier);
-//      //virtual atom_array module_path_get_pid(const ::string & pszModuleName, bool bModuleNameIsPropertyFormatted = true);
+//      //virtual atom_array module_path_get_pid(const ::scoped_string & scopedstrModuleName, bool bModuleNameIsPropertyFormatted = true);
 //
 //
 //#ifndef WINDOWS
@@ -1007,12 +1007,12 @@ namespace platform
 //#endif
 //
 //#ifndef UNIVERSAL_WINDOWS
-//      //virtual bool process_contains_module(string & strImage, ::process_identifier processidentifier, const ::string & pszLibrary);
-//      //virtual void shared_library_process(dword_array & dwa, string_array & straProcesses, const ::string & pszLibrary);
+//      //virtual bool process_contains_module(string & strImage, ::process_identifier processidentifier, const ::scoped_string & scopedstrLibrary);
+//      //virtual void shared_library_process(dword_array & dwa, string_array_base & straProcesses, const ::scoped_string & scopedstrLibrary);
 //#endif
 #if defined(__BSD__) || defined(__APPLE__)
 
-      void arp_a(void *p, void(*callback)(void * p, unsigned int uIp, const char * status)) override;
+      void arp_a(void *p, void(*callback)(void * p, unsigned int uIp, const_char_pointer status)) override;
 
 #endif
 
@@ -1045,6 +1045,20 @@ namespace platform
 
       virtual ::file::path get_font_path_from_name(const ::scoped_string& scopedstrName);
       virtual ::file::path _get_font_path_from_name(const ::scoped_string& scopedstrName);
+
+
+      void protocol_set_data(const ::file::path & path, const ::block & block) override;
+      ::memory protocol_get_data(const ::file::path & path) override;
+
+
+      void on_protocol_set_data(const ::scoped_string & scopedstrProtocol, const ::scoped_string & scopedstrPath, const ::block & block) override;
+      ::memory on_protocol_get_data(const ::scoped_string & scopedstrProtocol, const ::scoped_string & scopedstrPath) override;
+
+
+//    void media_store_set_data(const ::scoped_string & scopedstrPath, const ::block & block) override;
+//    ::memory media_store_get_data(const ::scoped_string & scopedstrPath) override;
+
+
 
    };
 

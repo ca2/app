@@ -17,7 +17,7 @@ namespace multimedia
 
 
    //::exception(e_exception eexception, const ::e_status & estatus, void     estatusSecond, const ::scoped_string & scopedstrMessage) :
-   //   ::exception(pszMessage, estatus)
+   //   ::exception(scopedstrMessage, estatus)
    //{
 
    //   m_eexception = eexception;

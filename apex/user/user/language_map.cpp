@@ -48,10 +48,10 @@ namespace user
    }
 
 
-   void language_map::parse_podata(string strPoData)
+   void language_map::parse_podata(const ::scoped_string & scopedstrPoData)
    {
 
-      m_planguage->parse_podata(strPoData);
+      m_planguage->parse_podata(scopedstrPoData);
 
    }
 
@@ -80,7 +80,7 @@ namespace user
          {
 
             //estatus =
-            __construct_new(planguage);
+            øconstruct_new(planguage);
 
          }
 
@@ -112,16 +112,16 @@ namespace user
    }
 
 
-   /// return selected language in the list
-   ::collection::index language_map::get_language_list(string_array & stra)
+   /// return selected language in the list_base
+   ::collection::index language_map::get_language_list(string_array_base & stra)
    {
 
       return get_text_list(stra, "IDS_LANGUAGE", false);
 
    }
 
-/// return selected language in the list
-   ::collection::index language_map::get_text_list(string_array & stra, string strId, bool bFull)
+/// return selected language in the list_base
+   ::collection::index language_map::get_text_list(string_array_base & stra, const ::scoped_string & scopedstrId, bool bFull)
    {
 
       ::collection::index iSel = -1;
@@ -152,7 +152,7 @@ namespace user
 
          planguage->defer_load_resource_pofile(!bFull && iSel != i);
 
-         string strText = planguage->m_stringmap[strId];
+         string strText = planguage->m_stringmap[scopedstrId];
 
          stra.add(strText);
 
@@ -163,12 +163,12 @@ namespace user
    }
 
 
-   string_array language_map::get_text_list(string strText, bool bFull)
+   string_array_base language_map::get_text_list(const ::scoped_string & scopedstrText, bool bFull)
    {
 
-      string_array stra;
+      string_array_base stra;
 
-      get_text_list(stra, strText, bFull);
+      get_text_list(stra, scopedstrText, bFull);
 
       return stra;
 
@@ -215,17 +215,17 @@ namespace user
    }
 
 
-   bool language_map::set_language(::apex::application * papp, string strLang)
+   bool language_map::set_language(::apex::application * papp, const ::scoped_string & scopedstrLang)
    {
 
-      if (strLang.is_empty())
+      if (scopedstrLang.is_empty())
       {
 
          return false;
 
       }
 
-      auto & planguage = m_languagemap[strLang];
+      auto & planguage = m_languagemap[scopedstrLang];
 
       ::e_status estatus = ::success;
 
@@ -233,9 +233,9 @@ namespace user
       {
 
          //estatus = 
-         __construct_new(planguage);
+         øconstruct_new(planguage);
 
-         planguage->m_strLanguageCode = strLang;
+         planguage->m_strLanguageCode = scopedstrLang;
 
       }
 
@@ -257,7 +257,7 @@ namespace user
 
             string strLocator = papp->m_straMatterLocator[i];
 
-            string_array straMatterLocator;
+            string_array_base straMatterLocator;
 
             straMatterLocator.add(strLocator);
 
@@ -278,7 +278,7 @@ namespace user
 
       }
 
-      m_strLang = strLang;
+      m_strLang = scopedstrLang;
 
       m_pstringmap = &m_planguage->m_stringmap;
 
@@ -287,22 +287,22 @@ namespace user
    }
 
 
-   string language_map::__get_text(const ::string & strId)
+   string language_map::__get_text(const ::scoped_string & scopedstrId)
    {
 
       if (::is_null(m_pstringmap))
       {
 
-         return strId;
+         return scopedstrId;
 
       }
 
-      string strText = m_pstringmap->operator[](strId);
+      string strText = m_pstringmap->operator[](scopedstrId);
 
       if (strText.is_empty())
       {
 
-         strText = strId;
+         strText = scopedstrId;
 
       }
 
@@ -327,10 +327,10 @@ namespace user
    }
 
 
-   string language_map::load_podata(string strLang, bool bOnlyHeader)
+   string language_map::load_podata(const ::scoped_string & scopedstrLang, bool bOnlyHeader)
    {
 
-      auto planguage = m_languagemap[strLang];
+      auto planguage = m_languagemap[scopedstrLang];
 
       if (!planguage)
       {

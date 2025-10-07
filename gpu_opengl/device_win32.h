@@ -73,7 +73,7 @@ namespace gpu_opengl
 
       string get_shader_version_text() override;
 
-      //void _translate_shader(string_array& straFragment) override;
+      //void _translate_shader(string_array_base& straFragment) override;
 
       //void swap_buffers() override;
 

@@ -56,6 +56,6 @@ void sleep(unsigned int dwMillis)
 void informationf(const ::scoped_string & scopedstr)
 {
 
-   informationf(psz);
+   informationf(scopedstr);
 
 }

@@ -60,6 +60,7 @@ public:
 
 
    inline pointer();
+   inline pointer(no_initialize_t){}
    inline pointer( nullptr_t);
    inline pointer(lparam& lparam);
 
@@ -93,7 +94,7 @@ public:
 
       REFDBG_THIS(this);
 
-      pparticle->__construct_new(*this);
+      pparticle->øconstruct_new(*this);
 
    }
 
@@ -109,7 +110,7 @@ public:
 
       REFDBG_THIS(this);
 
-      pparticle->__øconstruct(*this, pfactory);
+      pparticle->øconstruct(*this, pfactory);
 
    }
 
@@ -363,7 +364,7 @@ public:
    //template < typename OTHER >
    //inline pointer & operator -=(::pointer<OTHER>& p) { m_p->release(p); return *this; }
 
-   //inline static const char * ::type(this).name();
+   //inline static const_char_pointer ::type(this).name();
 
    inline T* operator ->() { return m_p; }
    inline T* operator ->() const { return m_p; }
@@ -540,7 +541,7 @@ public:
    //pointer & merge(const CONTAINER & pcontainer, const OBJECT & pparticle, const ATTRIBUTE & attribute)
    //{
 
-   //   auto pModified = __allocate TYPE(*m_p);
+   //   auto pModified = øallocate TYPE(*m_p);
 
    //   pModified->apply(pparticle, attribute);
 
@@ -746,11 +747,11 @@ inline void destruct(T * p)
 //
 
 template < typename T >
-inline bool is_found(const pointer < T > & p) { return p.is_set(); }
+inline bool is_found(const ::pointer < T > & p) { return p.is_set(); }
 
 
 template < typename T >
-inline bool not_found(const pointer < T > & p) { return p.is_null(); }
+inline bool not_found(const ::pointer < T > & p) { return p.is_null(); }
 
 
 //template < typename T >
@@ -796,7 +797,7 @@ inline void copy(::pointer < TARGET > & pTarget, const ::pointer < SOURCE > & pS
 
 
 //template < typename T, typename ...Args >
-//::pointer < T > __allocate(Args &&... args)
+//::pointer < T > øallocate(Args &&... args)
 //{
 //
 //   ::pointer < T > p{ transfer_t{}, ::new T(::std::forward<Args>(args)...) };
@@ -1464,7 +1465,7 @@ public:
    __pointer_site(const ::reference_referer & referer, ::reference_referer ** pprefererGet = nullptr)
    {
 
-      //m_preferer = __raw_new ::reference_referer(referer);
+      //m_preferer = øraw_new ::reference_referer(referer);
 
       m_preferer = ::allocator::push_referer(referer);
 
@@ -1547,16 +1548,13 @@ public:
 
 #define __preferernew_transfer_as_pointer __pointer_site(__refdbg_function_file_line__preferernew) <<
 
-#define __allocate __transfer_as_pointer new
+#define øallocate __transfer_as_pointer new
 
 #define __preferernew_allocate __preferernew_transfer_as_pointer new
 
 #define __as_pointer __pointer_site(__refdbg_function_file_line__) +=
 
 #define __retain __as_pointer
-
-
-
 
 //#endif
 
@@ -1655,7 +1653,7 @@ class __site
 {
 public:
 
-   CLASS_DECL_ACME ::string operator()(const string & str);
+   CLASS_DECL_ACME ::string operator()(const ::scoped_string & scopedstr);
 
 };
 
@@ -1700,3 +1698,18 @@ static inline __site __;
 //    TYPE * operator->() {return m_p;}
 //
 // };
+
+
+
+
+
+template < typename TYPE, typename ...Args>
+::pointer < TYPE > øcreate_pointer(Args &&... args)
+{
+
+   return  { transfer_t{}, new TYPE(::std::forward<Args>(args)...) };
+
+}
+
+
+

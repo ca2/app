@@ -16,7 +16,7 @@ CLASS_DECL_ACME int ansi_char_isxdigit(int i) { return __ansicharisxdigit(i); }
 CLASS_DECL_ACME int ansi_char_is_hexadecimal(int i) { return __ansicharishexadecimal(i); }
 
 
-CLASS_DECL_ACME const ::ansi_character * ansi_const_last_char(const ::ansi_character * psz);
+CLASS_DECL_ACME const_char_pointer ansi_const_last_char(const_char_pointer psz);
 
 CLASS_DECL_ACME ::ansi_character * ansi_last_char(::ansi_character * psz)
 {
@@ -26,7 +26,7 @@ CLASS_DECL_ACME ::ansi_character * ansi_last_char(::ansi_character * psz)
 }
 
 
-CLASS_DECL_ACME ::ansi_character * ansi_concatenate(::ansi_character * psz, const ::ansi_character * cat)
+CLASS_DECL_ACME ::ansi_character * ansi_concatenate(::ansi_character * psz, const_char_pointer cat)
 {
 
    if (::is_null(psz)) return nullptr;
@@ -39,7 +39,7 @@ CLASS_DECL_ACME ::ansi_character * ansi_concatenate(::ansi_character * psz, cons
 
 
 
-//CLASS_DECL_ACME ::ansi_character * ansi_concatenate(::ansi_character * psz, const ::ansi_character * cat, character_count n)
+//CLASS_DECL_ACME ::ansi_character * ansi_concatenate(::ansi_character * psz, const_char_pointer cat, character_count n)
 //{
 //
 //   auto destination = psz;
@@ -70,7 +70,7 @@ CLASS_DECL_ACME ::ansi_character * ansi_concatenate(::ansi_character * psz, cons
 //}
 //
 
-CLASS_DECL_ACME ::ansi_character * ansi_concatenate(::ansi_character * psz, const ::ansi_character * cat, character_count n)
+CLASS_DECL_ACME ::ansi_character * ansi_concatenate(::ansi_character * psz, const_char_pointer cat, character_count n)
 {
 
   auto destination = psz;
@@ -101,7 +101,7 @@ CLASS_DECL_ACME ::ansi_character * ansi_concatenate(::ansi_character * psz, cons
 }
 
 
-CLASS_DECL_ACME ::ansi_character * ansi_copy(::ansi_character * psz, const ::ansi_character * cpy)
+CLASS_DECL_ACME ::ansi_character * ansi_copy(::ansi_character * psz, const_char_pointer cpy)
 {
 
   if (::is_null(psz)) return nullptr;
@@ -113,7 +113,7 @@ CLASS_DECL_ACME ::ansi_character * ansi_copy(::ansi_character * psz, const ::ans
 }
 
 
-CLASS_DECL_ACME ::ansi_character * ansi_count_copy(::ansi_character * psz, const ::ansi_character * cpy, character_count len)
+CLASS_DECL_ACME ::ansi_character * ansi_count_copy(::ansi_character * psz, const_char_pointer cpy, character_count len)
 {
 
   if (::is_null(psz)) return nullptr;
@@ -127,7 +127,7 @@ CLASS_DECL_ACME ::ansi_character * ansi_count_copy(::ansi_character * psz, const
 }
 
 
-CLASS_DECL_ACME character_count ansi_length(const ::ansi_character * psz)
+CLASS_DECL_ACME character_count ansi_length(const_char_pointer psz)
 {
 
   if (::is_null(psz)) return 0;
@@ -137,7 +137,7 @@ CLASS_DECL_ACME character_count ansi_length(const ::ansi_character * psz)
 }
 
 
-CLASS_DECL_ACME ::ansi_character * ansi_duplicate(const ::ansi_character * psz)
+CLASS_DECL_ACME ::ansi_character * ansi_duplicate(const_char_pointer psz)
 {
 
   if (::is_null(psz)) return nullptr;
@@ -151,7 +151,7 @@ CLASS_DECL_ACME ::ansi_character * ansi_duplicate(const ::ansi_character * psz)
 }
 
 
-CLASS_DECL_ACME ::ansi_character * ansi_count_duplicate(const ::ansi_character * psz, character_count len)
+CLASS_DECL_ACME ::ansi_character * ansi_count_duplicate(const_char_pointer psz, character_count len)
 {
 
   if (::is_null(psz)) return nullptr;
@@ -169,7 +169,7 @@ CLASS_DECL_ACME ::ansi_character * ansi_count_duplicate(const ::ansi_character *
 }
 
 
-CLASS_DECL_ACME const ::ansi_character * ansi_find_string(const ::ansi_character * psz, const ::ansi_character * find)
+CLASS_DECL_ACME const_char_pointer ansi_find_string(const_char_pointer psz, const_char_pointer find)
 {
 
   if (::is_null(psz)) return nullptr;
@@ -182,7 +182,7 @@ CLASS_DECL_ACME const ::ansi_character * ansi_find_string(const ::ansi_character
 
 
 
-CLASS_DECL_ACME const ::ansi_character * case_insensitive_ansi_find_string(const ::ansi_character * psz, const ::ansi_character * find)
+CLASS_DECL_ACME const_char_pointer case_insensitive_ansi_find_string(const_char_pointer psz, const_char_pointer find)
 {
 
   if (::is_null(psz)) return nullptr;
@@ -215,7 +215,7 @@ CLASS_DECL_ACME const ::ansi_character * case_insensitive_ansi_find_string(const
 }
 
 
-CLASS_DECL_ACME const ::ansi_character * ansi_count_find_string(const ::ansi_character * psz, const ::ansi_character * find, character_count len)
+CLASS_DECL_ACME const_char_pointer ansi_count_find_string(const_char_pointer psz, const_char_pointer find, character_count len)
 {
 
   if (::is_null(psz)) return nullptr;
@@ -248,7 +248,7 @@ CLASS_DECL_ACME const ::ansi_character * ansi_count_find_string(const ::ansi_cha
 }
 
 
-CLASS_DECL_ACME const ::ansi_character * case_insensitive_ansi_count_find_string(const ::ansi_character * psz, const ::ansi_character * find, character_count len)
+CLASS_DECL_ACME const_char_pointer case_insensitive_ansi_count_find_string(const_char_pointer psz, const_char_pointer find, character_count len)
 {
 
   if (::is_null(psz)) return nullptr;
@@ -281,7 +281,7 @@ CLASS_DECL_ACME const ::ansi_character * case_insensitive_ansi_count_find_string
 }
 
 
-CLASS_DECL_ACME int ansi_compare(const ::ansi_character * psz, const ::ansi_character * sz2)
+CLASS_DECL_ACME int ansi_compare(const_char_pointer psz, const_char_pointer sz2)
 {
 
   if (::is_null(psz))
@@ -317,7 +317,7 @@ CLASS_DECL_ACME int ansi_compare(const ::ansi_character * psz, const ::ansi_char
 }
 
 
-CLASS_DECL_ACME int case_insensitive_ansi_compare(const ::ansi_character * psz, const ::ansi_character * sz2)
+CLASS_DECL_ACME int case_insensitive_ansi_compare(const_char_pointer psz, const_char_pointer sz2)
 {
 
   if (::is_null(psz))
@@ -353,7 +353,7 @@ CLASS_DECL_ACME int case_insensitive_ansi_compare(const ::ansi_character * psz, 
 }
 
 
-CLASS_DECL_ACME int ansi_count_compare(const ::ansi_character * psz, const ::ansi_character * sz2, character_count len)
+CLASS_DECL_ACME int ansi_count_compare(const_char_pointer psz, const_char_pointer sz2, character_count len)
 {
 
   if (len < 0)
@@ -396,7 +396,7 @@ CLASS_DECL_ACME int ansi_count_compare(const ::ansi_character * psz, const ::ans
 }
 
 
-CLASS_DECL_ACME int case_insensitive_ansi_count_compare(const ::ansi_character * psz, const ::ansi_character * sz2, character_count len)
+CLASS_DECL_ACME int case_insensitive_ansi_count_compare(const_char_pointer psz, const_char_pointer sz2, character_count len)
 {
 
   if (len < 0)
@@ -440,7 +440,7 @@ CLASS_DECL_ACME int case_insensitive_ansi_count_compare(const ::ansi_character *
 
 
 
-CLASS_DECL_ACME int ansi_collate(const ::ansi_character * psz, const ::ansi_character * sz2)
+CLASS_DECL_ACME int ansi_collate(const_char_pointer psz, const_char_pointer sz2)
 {
 
   if (::is_null(psz))
@@ -476,7 +476,7 @@ CLASS_DECL_ACME int ansi_collate(const ::ansi_character * psz, const ::ansi_char
 }
 
 
-CLASS_DECL_ACME int case_insensitive_ansi_collate(const ::ansi_character * psz, const ::ansi_character * sz2)
+CLASS_DECL_ACME int case_insensitive_ansi_collate(const_char_pointer psz, const_char_pointer sz2)
 {
 
   if (::is_null(psz))
@@ -512,7 +512,7 @@ CLASS_DECL_ACME int case_insensitive_ansi_collate(const ::ansi_character * psz, 
 }
 
 
-CLASS_DECL_ACME int ansi_count_collate(const ::ansi_character * psz, const ::ansi_character * sz2, character_count len)
+CLASS_DECL_ACME int ansi_count_collate(const_char_pointer psz, const_char_pointer sz2, character_count len)
 {
 
   if (len < 0)
@@ -555,7 +555,7 @@ CLASS_DECL_ACME int ansi_count_collate(const ::ansi_character * psz, const ::ans
 }
 
 
-CLASS_DECL_ACME int case_insensitive_ansi_count_collate(const ::ansi_character * psz, const ::ansi_character * sz2, character_count len)
+CLASS_DECL_ACME int case_insensitive_ansi_count_collate(const_char_pointer psz, const_char_pointer sz2, character_count len)
 {
 
   if (len < 0)
@@ -598,7 +598,7 @@ CLASS_DECL_ACME int case_insensitive_ansi_count_collate(const ::ansi_character *
 }
 
 
-CLASS_DECL_ACME const ::ansi_character * _ansi_scan(const ::ansi_character * psz, const ::ansi_character * find)
+CLASS_DECL_ACME const_char_pointer _ansi_scan(const_char_pointer psz, const_char_pointer find)
 {
 
   return ansi_pbrk((::ansi_character *) psz, find);
@@ -607,7 +607,7 @@ CLASS_DECL_ACME const ::ansi_character * _ansi_scan(const ::ansi_character * psz
 
 
 
-CLASS_DECL_ACME const ::ansi_character * ansi_scan(const ::ansi_character * psz, const ::ansi_character * find)
+CLASS_DECL_ACME const_char_pointer ansi_scan(const_char_pointer psz, const_char_pointer find)
 {
 
   if (::is_empty(psz)) return psz;
@@ -633,7 +633,7 @@ CLASS_DECL_ACME const ::ansi_character * ansi_scan(const ::ansi_character * psz,
 }
 
 
-//CLASS_DECL_ACME const ::ansi_character * ansi_token(const ::ansi_character * psz, const ::ansi_character * pszSeparators)
+//CLASS_DECL_ACME const_char_pointer ansi_token(const_char_pointer psz, const_char_pointer pszSeparators)
 //{
 //
 //   return string_find_first_in(psz, pszSeparators);
@@ -641,7 +641,7 @@ CLASS_DECL_ACME const ::ansi_character * ansi_scan(const ::ansi_character * psz,
 //}
 //
 //
-//CLASS_DECL_ACME const ::ansi_character * _ansi_find_first_in(const ::ansi_character * psz, const ::ansi_character * pszSeparators)
+//CLASS_DECL_ACME const_char_pointer _ansi_find_first_in(const_char_pointer psz, const_char_pointer pszSeparators)
 //{
 //
 //   return _string_find_first_in(psz, pszSeparators);
@@ -649,7 +649,7 @@ CLASS_DECL_ACME const ::ansi_character * ansi_scan(const ::ansi_character * psz,
 //}
 
 
-CLASS_DECL_ACME ::ansi_character * ansi_first_token(::ansi_character * psz, const ::ansi_character * delimiters, ::ansi_character ** action_context)
+CLASS_DECL_ACME ::ansi_character * ansi_first_token(::ansi_character * psz, const_char_pointer delimiters, ::ansi_character ** action_context)
 {
 
   return ansi_tok_r(psz, delimiters, action_context);
@@ -657,7 +657,7 @@ CLASS_DECL_ACME ::ansi_character * ansi_first_token(::ansi_character * psz, cons
 }
 
 
-CLASS_DECL_ACME ::ansi_character * ansi_next_token(const ::ansi_character * delimiters, ::ansi_character ** action_context)
+CLASS_DECL_ACME ::ansi_character * ansi_next_token(const_char_pointer delimiters, ::ansi_character ** action_context)
 {
 
   return ansi_tok_r(nullptr, delimiters, action_context);
@@ -665,7 +665,7 @@ CLASS_DECL_ACME ::ansi_character * ansi_next_token(const ::ansi_character * deli
 }
 
 
-CLASS_DECL_ACME int ansi_begins(const ::ansi_character * psz, const ::ansi_character * prefix)
+CLASS_DECL_ACME int ansi_begins(const_char_pointer psz, const_char_pointer prefix)
 {
 
   if (::is_null(psz)) return false;
@@ -686,7 +686,7 @@ CLASS_DECL_ACME int ansi_begins(const ::ansi_character * psz, const ::ansi_chara
 }
 
 
-CLASS_DECL_ACME int case_insensitive_ansi_begins(const ::ansi_character * psz, const ::ansi_character * prefix)
+CLASS_DECL_ACME int case_insensitive_ansi_begins(const_char_pointer psz, const_char_pointer prefix)
 {
 
   if (::is_null(psz)) return false;
@@ -698,7 +698,7 @@ CLASS_DECL_ACME int case_insensitive_ansi_begins(const ::ansi_character * psz, c
 }
 
 
-CLASS_DECL_ACME const ::ansi_character * ansi_begins_eat(const ::ansi_character * psz, const ::ansi_character * prefix)
+CLASS_DECL_ACME const_char_pointer ansi_begins_eat(const_char_pointer psz, const_char_pointer prefix)
 {
 
   if (::is_null(psz)) return nullptr;
@@ -719,7 +719,7 @@ CLASS_DECL_ACME const ::ansi_character * ansi_begins_eat(const ::ansi_character 
 }
 
 
-CLASS_DECL_ACME const ::ansi_character * case_insensitive_ansi_begins_eat(const ::ansi_character * psz, const ::ansi_character * prefix)
+CLASS_DECL_ACME const_char_pointer case_insensitive_ansi_begins_eat(const_char_pointer psz, const_char_pointer prefix)
 {
 
   if (::is_null(psz)) return nullptr;
@@ -740,7 +740,7 @@ CLASS_DECL_ACME const ::ansi_character * case_insensitive_ansi_begins_eat(const 
 }
 
 
-CLASS_DECL_ACME int ansi_ends(const ::ansi_character * psz, const ::ansi_character * suffix)
+CLASS_DECL_ACME int ansi_ends(const_char_pointer psz, const_char_pointer suffix)
 {
 
   if (::is_null(psz)) return false;
@@ -763,7 +763,7 @@ CLASS_DECL_ACME int ansi_ends(const ::ansi_character * psz, const ::ansi_charact
 }
 
 
-CLASS_DECL_ACME int case_insensitive_ansi_ends(const ::ansi_character * psz, const ::ansi_character * suffix)
+CLASS_DECL_ACME int case_insensitive_ansi_ends(const_char_pointer psz, const_char_pointer suffix)
 {
 
   if (::is_null(psz)) return false;
@@ -786,7 +786,7 @@ CLASS_DECL_ACME int case_insensitive_ansi_ends(const ::ansi_character * psz, con
 }
 
 
-CLASS_DECL_ACME const ::ansi_character * ansi_find_char(const ::ansi_character * psz, ::ansi_character ch)
+CLASS_DECL_ACME const_char_pointer ansi_find_char(const_char_pointer psz, ::ansi_character ch)
 {
 
   if (::is_null(psz)) return nullptr;
@@ -796,7 +796,7 @@ CLASS_DECL_ACME const ::ansi_character * ansi_find_char(const ::ansi_character *
 }
 
 
-CLASS_DECL_ACME const ::ansi_character * ansi_find_char_reverse(const ::ansi_character * psz, ::ansi_character ch)
+CLASS_DECL_ACME const_char_pointer ansi_find_char_reverse(const_char_pointer psz, ::ansi_character ch)
 {
 
   if (::is_null(psz)) return nullptr;
@@ -806,8 +806,8 @@ CLASS_DECL_ACME const ::ansi_character * ansi_find_char_reverse(const ::ansi_cha
 }
 
 
-//CLASS_DECL_ACME const ::ansi_character * ansi_concatenate_and_duplicate(const ::ansi_character * psz1, const ::ansi_character * psz2);
-//CLASS_DECL_ACME const ::ansi_character * ansi_concatenate_duplicate_and_free(const ::ansi_character * psz1, ::ansi_character * psz2);
+//CLASS_DECL_ACME const_char_pointer ansi_concatenate_and_duplicate(const_char_pointer psz1, const_char_pointer psz2);
+//CLASS_DECL_ACME const_char_pointer ansi_concatenate_duplicate_and_free(const_char_pointer psz1, ::ansi_character * psz2);
 
 
 CLASS_DECL_ACME void ansi_from_unsigned_long_long(::ansi_character * sz, unsigned long long u, int iBase, enum_digit_case edigitcase)
@@ -850,7 +850,7 @@ CLASS_DECL_ACME void ansi_from_i(::ansi_character * sz, int i, int iBase, enum_d
 }
 
 
-CLASS_DECL_ACME long long ansi_count_to_long_long(const ::ansi_character * psz, const ::ansi_character ** ppszEnd, int iBase, character_count srclen)
+CLASS_DECL_ACME long long ansi_count_to_long_long(const_char_pointer psz, const_char_pointer *ppszEnd, int iBase, character_count srclen)
 {
 
   auto len = ansi_length(psz);
@@ -892,7 +892,7 @@ CLASS_DECL_ACME long long ansi_count_to_long_long(const ::ansi_character * psz, 
 }
 
 
-CLASS_DECL_ACME int ansi_count_to_int(const ::ansi_character * psz, const ::ansi_character ** ppszEnd, int iBase, character_count srclen)
+CLASS_DECL_ACME int ansi_count_to_int(const_char_pointer psz, const_char_pointer *ppszEnd, int iBase, character_count srclen)
 {
 
   auto len = ansi_length(psz);
@@ -1019,7 +1019,7 @@ CLASS_DECL_ACME ::ansi_character * ansi_upper(::ansi_character * pch)
 }
 
 
-CLASS_DECL_ACME const ::ansi_character * ansi_concatenate_and_duplicate(const ::ansi_character * psz1, const ::ansi_character * psz2, int iFree1, int iFree2)
+CLASS_DECL_ACME const_char_pointer ansi_concatenate_and_duplicate(const_char_pointer psz1, const_char_pointer psz2, int iFree1, int iFree2)
 {
 
   character_count len1 = ansi_length(psz1);
@@ -1077,7 +1077,7 @@ CLASS_DECL_ACME const ::ansi_character * ansi_concatenate_and_duplicate(const ::
 }
 
 
-//CLASS_DECL_ACME const ::ansi_character * ansi_concatenate_duplicate_and_free(const ::ansi_character * psz1, ::ansi_character * psz2)
+//CLASS_DECL_ACME const_char_pointer ansi_concatenate_duplicate_and_free(const_char_pointer psz1, ::ansi_character * psz2)
 //{
 //
 //   character_count len1 = strlen(psz1);
@@ -1112,7 +1112,7 @@ CLASS_DECL_ACME const ::ansi_character * ansi_concatenate_and_duplicate(const ::
 
 
 
-//CLASS_DECL_ACME const ::ansi_character * ansi_concatenate_free_and_duplicate(::ansi_character * psz1, const ::ansi_character * psz2)
+//CLASS_DECL_ACME const_char_pointer ansi_concatenate_free_and_duplicate(::ansi_character * psz1, const_char_pointer psz2)
 //{
 //
 //   character_count len1 = strlen(psz1);
@@ -1147,7 +1147,7 @@ CLASS_DECL_ACME const ::ansi_character * ansi_concatenate_and_duplicate(const ::
 
 
 
-//CLASS_DECL_ACME const ::ansi_character * ansi_concatenat_free_duplicate_and_free(::ansi_character * psz1, ::ansi_character * psz2)
+//CLASS_DECL_ACME const_char_pointer ansi_concatenat_free_duplicate_and_free(::ansi_character * psz1, ::ansi_character * psz2)
 //{
 //
 //   character_count len1 = strlen(psz1);
@@ -1192,10 +1192,10 @@ CLASS_DECL_ACME const void * memory_find_memory(const void * src, character_coun
 
 
 
-CLASS_DECL_ACME const ::ansi_character *       wildcard_next_stop(const ::ansi_character * pszCriteria);
+CLASS_DECL_ACME const_char_pointer        wildcard_next_stop(const_char_pointer pszCriteria);
 
-CLASS_DECL_ACME int_bool               wildcard_matches_criteria(const ::ansi_character * pszCriteria, const ::ansi_character * pszValue);
-CLASS_DECL_ACME int_bool               case_insensitive_wildcard_matches_criteria(const ::ansi_character * pszCriteria, const ::ansi_character * pszValue);
+CLASS_DECL_ACME int_bool               wildcard_matches_criteria(const_char_pointer pszCriteria, const_char_pointer pszValue);
+CLASS_DECL_ACME int_bool               case_insensitive_wildcard_matches_criteria(const_char_pointer pszCriteria, const_char_pointer pszValue);
 
 
 

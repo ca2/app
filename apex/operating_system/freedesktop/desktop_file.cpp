@@ -44,10 +44,10 @@ namespace freedesktop
    //::auraacmesystem()       ::auraacmesystem() application, "::auraacmesystem() Tools" such as say a log viewer or network monitor
    //Utility      Small utility application, "Accessories"
 
-   string_array desktop_file::registered_categories()
+   string_array_base desktop_file::registered_categories()
    {
 
-      string_array stra;
+      string_array_base stra;
 
       stra.add("AudioVideo");
       stra.add("Audio");
@@ -68,34 +68,34 @@ namespace freedesktop
    }
 
 
-   string desktop_file::proper_category(string str)
+   string desktop_file::proper_category(const ::scoped_string & scopedstr)
    {
 
-      if(str.case_insensitive_order("Multimedia") == 0)
+      if(scopedstr.case_insensitive_order("Multimedia") == 0)
       {
 
          return "AudioVideo";
 
       }
-      else if(str.case_insensitive_order("Accessory") == 0)
+      else if(scopedstr.case_insensitive_order("Accessory") == 0)
       {
 
          return "Utility";
 
       }
-      else if(str.case_insensitive_order("Accessories") == 0)
+      else if(scopedstr.case_insensitive_order("Accessories") == 0)
       {
 
       return "Utility";
 
       }
-      else if(str.case_insensitive_order("Utility") == 0)
+      else if(scopedstr.case_insensitive_order("Utility") == 0)
       {
 
          return "Utility";
 
       }
-      else if(str.case_insensitive_order("Utilities") == 0)
+      else if(scopedstr.case_insensitive_order("Utilities") == 0)
       {
 
          return "Utility";
@@ -104,9 +104,9 @@ namespace freedesktop
       else
       {
 
-         string_array stra = registered_categories();
+         string_array_base stra = registered_categories();
 
-         auto iFind = stra.case_insensitive_find_first(str);
+         auto iFind = stra.case_insensitive_find_first(scopedstr);
 
          if(found(iFind))
          {
@@ -122,10 +122,10 @@ namespace freedesktop
    }
 
 
-   string_array desktop_file::proper_category(string_array straCategoryParam)
+   string_array_base desktop_file::proper_category(string_array_base straCategoryParam)
    {
 
-      string_array straCategory;
+      string_array_base straCategory;
 
       for(auto strCategoryParam : straCategoryParam)
       {
@@ -217,10 +217,10 @@ namespace freedesktop
    }
 
 
-   void desktop_file::set_app_id(const ::string & strAppId)
+   void desktop_file::set_app_id(const ::scoped_string & scopedstrAppId)
    {
 
-      m_strAppId = strAppId;
+      m_strAppId = scopedstrAppId;
 
    }
 
@@ -236,7 +236,7 @@ namespace freedesktop
    void desktop_file::create_default()
    {
 
-      string_array & straLine = m_straLine;
+      string_array_base & straLine = m_straLine;
 
       //string strWMClass = get_wm_class();
 
@@ -292,7 +292,7 @@ namespace freedesktop
 
       string strTitle = papp->title();
 
-      string_array straCategories = proper_category(papp->get_categories());
+      string_array_base straCategories = proper_category(papp->get_categories());
 
       string strWMClass = papp->get_wm_class();
 
@@ -349,7 +349,7 @@ namespace freedesktop
 
       }
 
-      string_array & straLine = m_straLine;
+      string_array_base & straLine = m_straLine;
 
 //      {
 //
@@ -448,9 +448,9 @@ namespace freedesktop
       if(m_pgetfileextensionmimetype)
       {
 
-         ::string_array straExtension;
+         ::string_array_base straExtension;
 
-         ::string_array straMimeType;
+         ::string_array_base straMimeType;
 
          m_pgetfileextensionmimetype->file_extension_mime_type(straExtension, straMimeType);
 

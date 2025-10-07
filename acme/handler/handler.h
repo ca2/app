@@ -23,8 +23,8 @@ namespace handler
    protected:
 
 
-      ::pointer_array < ::request >             m_requestaPosted;
-      ::pointer_array < ::request >             m_requestaHistory;
+      ::pointer_array_base < ::request >        m_requestaPosted;
+      ::pointer_array_base < ::request >        m_requestaHistory;
       ::pointer < ::manual_reset_happening >    m_pmanualresethappeningMainLoop;
 
 
@@ -55,7 +55,7 @@ namespace handler
       };
 
 
-      ::pointer < ::request >             m_prequest;
+      ::pointer < ::request >             m_prequestHandler;
       
       ::pointer < ::request >             m_prequestBeingAttended;
 
@@ -94,7 +94,7 @@ namespace handler
       // ThomasBorregaardSorensen!! Like handlers
       //virtual void call(const enum_message, long long iData = 0, ::matter * pmatter = nullptr);
       //virtual void call(const enum_id, long long iData = 0, ::matter* pmatter = nullptr);
-      virtual void call_message(const ::enum_message & emessage, ::wparam wparam = {}, ::lparam lparam = {}, ::particle * pparticle = nullptr);
+      virtual void call_message(const ::user::enum_message & emessage, ::wparam wparam = {}, ::lparam lparam = {}, ::particle * pparticle = nullptr);
 
 
       // ThomasBorregaardSorensen!! Like handlers

@@ -108,8 +108,8 @@ namespace draw2d
       virtual bool add_line(const double_point & point1, const double_point & point2);
 
 
-      virtual bool add_text_out(const ::double_point & point, const string & strText, ::write_text::font_pointer spfont);
-      virtual bool add_draw_text(const string & strText, const ::double_rectangle & rectangle, const ::e_align & ealign, const ::e_draw_text & edrawtext, ::write_text::font_pointer pfont);
+      virtual bool add_text_out(const ::double_point & point, const ::scoped_string & scopedstrText, ::write_text::font_pointer spfont);
+      virtual bool add_draw_text(const ::scoped_string & scopedstrText, const ::double_rectangle & rectangle, const ::e_align & ealign, const ::e_draw_text & edrawtext, ::write_text::font_pointer pfont);
 
 
       virtual void * detach();
@@ -194,7 +194,7 @@ namespace draw2d
       virtual void nanosvg_drawframe(NSVGimage* pimage, int x, int y, int w, int h);
       // virtual void nanosvg_resizecb(int width, int height, int x, int y, int w, int h);
 
-      virtual void nanosvg(string str, int x, int y, int w, int h);
+      virtual void nanosvg(const ::scoped_string & scopedstr, int x, int y, int w, int h);
 
 
 

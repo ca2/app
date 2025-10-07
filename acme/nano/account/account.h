@@ -22,7 +22,7 @@ namespace nano
       public:
 
 
-         inline static const char *represented_component_name()
+         inline static const_char_pointer represented_component_name()
          {
 
             return "nano_account";
@@ -30,7 +30,7 @@ namespace nano
          }
 
 
-         string_map<::pointer<::nano::account::user>> m_usermap;
+         string_map_base<::pointer<::nano::account::user>> m_usermap;
 
          account();
          ~account() override;

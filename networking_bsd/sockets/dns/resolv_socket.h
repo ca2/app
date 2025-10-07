@@ -31,7 +31,7 @@ namespace sockets
 
 
       resolv_socket();
-      resolv_socket(base_socket *parent, const string & host, port_t port, bool ipv6 = false);
+      resolv_socket(base_socket *parent, const ::scoped_string & scopedstrHost, port_t port, bool ipv6 = false);
       resolv_socket(base_socket *parent, in_addr);
       resolv_socket(base_socket *parent, in6_addr&);
       ~resolv_socket();
@@ -40,7 +40,7 @@ namespace sockets
       virtual void destroy() override;
 
       void OnAccept() override { m_bServer = true; }
-      void OnLine(const string & line) override;
+      void OnLine(const ::scoped_string & scopedstrLine) override;
       void OnDetached() override;
       void OnDelete() override;
 

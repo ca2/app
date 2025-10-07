@@ -89,7 +89,7 @@ inline HRESULT SpGetCategoryFromId(const WCHAR * pszCategoryId, ISpObjectTokenCa
 
    if (SUCCEEDED(hr))
    {
-      hr = pcategory->SetId(pszCategoryId, fCreateIfNotExist);
+      hr = pcategory->SetId(scopedstrCategoryId, fCreateIfNotExist);
    }
 
    if (SUCCEEDED(hr))
@@ -130,7 +130,7 @@ inline HRESULT SpGetDefaultTokenFromCategoryId(
    HRESULT hr;
 
    comptr<ISpObjectTokenCategory> pcategory;
-   hr = SpGetCategoryFromId(pszCategoryId, &pcategory, fCreateCategoryIfNotExist);
+   hr = SpGetCategoryFromId(scopedstrCategoryId, &pcategory, fCreateCategoryIfNotExist);
 
    if (SUCCEEDED(hr))
    {
@@ -138,7 +138,7 @@ inline HRESULT SpGetDefaultTokenFromCategoryId(
       hr = pcategory->GetDefaultTokenId(&pszTokenId);
       if (SUCCEEDED(hr))
       {
-         hr = SpGetTokenFromId(pszTokenId, ppToken);
+         hr = SpGetTokenFromId(scopedstrTokenId, ppToken);
 
       }
    }
@@ -159,9 +159,9 @@ inline bool SpGetDefaultTokenFromCategoryIdAndLang(
 
    comptr<ISpObjectTokenCategory> pcategory;
 
-   hr = SpGetCategoryFromId(pszCategoryId, &pcategory, fCreateCategoryIfNotExist);
+   hr = SpGetCategoryFromId(scopedstrCategoryId, &pcategory, fCreateCategoryIfNotExist);
 
-   string str(pszLang);
+   string str(scopedstrLang);
 
    str.make_lower();
 
@@ -186,12 +186,12 @@ inline bool SpGetDefaultTokenFromCategoryIdAndLang(
 
       string strJson = papp->file()->as_string(papp->directory()->matter("speech/windows/lang.json"));
 
-      const ::ansi_character * pszJson = strJson;
+      const_char_pointer pszJson = strJson;
 
       try
       {
 
-         set.parse_network_payload(pszJson);
+         set.parse_network_payload(scopedstrJson);
 
       }
       catch (...)
@@ -214,9 +214,9 @@ inline bool SpGetDefaultTokenFromCategoryIdAndLang(
 
    }
 
-   string strAttributes(pszAttributes);
+   string strAttributes(scopedstrAttributes);
 
-   string_array straAttributes;
+   string_array_base straAttributes;
 
    straAttributes.add_smallest_tokens(strAttributes, { ";" });
 
@@ -379,7 +379,7 @@ namespace tts_sapi
       //--------------------------------------------------------------------
       // Initializes the text speaker.
       //--------------------------------------------------------------------
-      bool speaker::initialize(string strLang)
+      bool speaker::initialize(const ::scoped_string & scopedstrLang)
       {
 
          //destroy(strLang);
@@ -459,7 +459,7 @@ namespace tts_sapi
       }
 
 
-      bool speaker::initialize_translator(string strLang)
+      bool speaker::initialize_translator(const ::scoped_string & scopedstrLang)
       {
 
          return false;
@@ -467,7 +467,7 @@ namespace tts_sapi
       }
 
 
-      bool speaker::destroy(string strLang)
+      bool speaker::destroy(const ::scoped_string & scopedstrLang)
       {
 
          //fork([&]()
@@ -495,7 +495,7 @@ namespace tts_sapi
       }
 
 
-      bool speaker::finalize_translator(string strLang)
+      bool speaker::finalize_translator(const ::scoped_string & scopedstrLang)
       {
 
          return false;
@@ -507,7 +507,7 @@ namespace tts_sapi
       // Speaks some text.
       // (The input text must not be empty.)
       //--------------------------------------------------------------------
-      bool speaker::speak(const string & text)
+      bool speaker::speak(const ::scoped_string & scopedstrText)
       {
 
          return speak(m_strDefaultLang, text);
@@ -515,13 +515,13 @@ namespace tts_sapi
       }
 
 
-      bool speaker::is_lang_ok(string strLang)
+      bool speaker::is_lang_ok(const ::scoped_string & scopedstrLang)
       {
 
          bool bTts = false;
 
-         //if((!m_tts.lookup(strLang, bTts) || bTts) && m_voice[strLang].is_set() || (!is_speaking(strLang) && m_time.elapsed()[strLang] > 30 * 1000))
-         //if (!m_tts.lookup(strLang, bTts))
+         //if((!m_tts.find(strLang, bTts) || bTts) && m_voice[strLang].is_set() || (!is_speaking(strLang) && m_time.elapsed()[strLang] > 30 * 1000))
+         //if (!m_tts.find(strLang, bTts))
          //{
 
          //   if (initialize(strLang))
@@ -550,7 +550,7 @@ namespace tts_sapi
       // Speaks some text.
       // (The input text must not be empty.)
       //--------------------------------------------------------------------
-      bool speaker::speak(const ::string & strLangParam, const ::string & strTextParam, bool bSync)
+      bool speaker::speak(const ::scoped_string & scopedstrLangParam, const ::scoped_string & scopedstrTextParam, bool bSync)
       {
 
          string strLang(strLangParam);
@@ -575,7 +575,7 @@ namespace tts_sapi
 
          //}
 
-         synchronous_lock synchronouslock(this->synchronization());
+         synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          defer_co_initialize_ex(false);
 
@@ -753,7 +753,7 @@ namespace tts_sapi
       // Speaks some text.
       // (The input text must not be empty.)
       //--------------------------------------------------------------------
-      bool speaker::speak(const ::string & strAttributes, const ::string & strLangParam, const ::string & strTextParam, bool bSync)
+      bool speaker::speak(const ::scoped_string & scopedstrAttributes, const ::scoped_string & scopedstrLangParam, const ::scoped_string & scopedstrTextParam, bool bSync)
       {
 
          string strLang(strLangParam);
@@ -778,7 +778,7 @@ namespace tts_sapi
 
          //}
 
-         synchronous_lock synchronouslock(this->synchronization());
+         synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          defer_co_initialize_ex(false);
 
@@ -952,7 +952,7 @@ namespace tts_sapi
       }
 
 
-      bool speaker::is_speaking(string strLang)
+      bool speaker::is_speaking(const ::scoped_string & scopedstrLang)
       {
 
          if (!is_lang_ok(strLang))
@@ -962,7 +962,7 @@ namespace tts_sapi
 
          }
 
-         synchronous_lock synchronouslock(this->synchronization());
+         synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          if (m_voice[strLang].is_null())
          {
@@ -987,7 +987,7 @@ namespace tts_sapi
       }
 
 
-      bool speaker::stop(string strLang)
+      bool speaker::stop(const ::scoped_string & scopedstrLang)
       {
 
          if (!is_lang_ok(strLang))

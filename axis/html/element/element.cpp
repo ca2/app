@@ -90,7 +90,7 @@ namespace html
 
       m_pdata = phtmldata;
 
-      synchronous_lock lock(phtmldata->synchronization());
+      synchronous_lock lock(phtmldata->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       implement_phase1(phtmldata);
 
@@ -261,19 +261,19 @@ namespace html
             if (m_etag == tag_head || m_etag == tag_html)
             {
 
-               m_pimpl = __allocate ::html::impl::element();
+               m_pimpl = øallocate ::html::impl::element();
 
             }
             else if (m_etag == tag_body)
             {
 
-               m_pimpl = __allocate ::html::impl::text();
+               m_pimpl = øallocate ::html::impl::text();
 
             }
             else
             {
 
-               m_pimpl = __allocate ::html::impl::element();
+               m_pimpl = øallocate ::html::impl::element();
 
             }
 
@@ -286,13 +286,13 @@ namespace html
 
                phtmldata->m_pcoredata->m_strTitle = m_phtmlbase->get_value()->get_value();
 
-               m_pimpl = __allocate ::html::impl::element();
+               m_pimpl = øallocate ::html::impl::element();
 
             }
             else
             {
 
-               m_pimpl = __allocate ::html::impl::element();
+               m_pimpl = øallocate ::html::impl::element();
 
             }
 
@@ -314,37 +314,37 @@ namespace html
             if (strType == "text")
             {
 
-               m_pimpl = __allocate ::html::impl::input_text();
+               m_pimpl = øallocate ::html::impl::input_text();
 
             }
             else if(strType == "calculator")
             {
 
-               m_pimpl = __allocate ::html::impl::input_text("calculator", m_propertyset["unit"]);
+               m_pimpl = øallocate ::html::impl::input_text("calculator", m_propertyset["unit"]);
 
             }
             else if (strType == "password")
             {
 
-               m_pimpl = __allocate ::html::impl::input_text();
+               m_pimpl = øallocate ::html::impl::input_text();
 
             }
             else if (strType == "button")
             {
 
-               m_pimpl = __allocate ::html::impl::input_button();
+               m_pimpl = øallocate ::html::impl::input_button();
 
             }
             else if (strType == "checkbox")
             {
 
-               m_pimpl = __allocate ::html::impl::input_checkbox();
+               m_pimpl = øallocate ::html::impl::input_checkbox();
 
             }
             else
             {
 
-               m_pimpl = __allocate ::html::impl::text();
+               m_pimpl = øallocate ::html::impl::text();
 
             }
 
@@ -352,7 +352,7 @@ namespace html
          else if (m_etag == tag_select)
          {
 
-            m_pimpl = __allocate ::html::impl::select();
+            m_pimpl = øallocate ::html::impl::select();
 
          }
          else if (m_etag == tag_option)
@@ -364,31 +364,31 @@ namespace html
          else if (m_etag == tag_img)
          {
 
-            m_pimpl = __allocate ::html::impl::image();
+            m_pimpl = øallocate ::html::impl::image();
 
          }
          else if (m_etag == tag_table && m_elementalptra.has_elements())
          {
 
-            m_pimpl = __allocate ::html::impl::table();
+            m_pimpl = øallocate ::html::impl::table();
 
          }
          else if (m_etag == tag_tr && m_elementalptra.has_elements())
          {
 
-            m_pimpl = __allocate ::html::impl::table_row();
+            m_pimpl = øallocate ::html::impl::table_row();
 
          }
          else if (m_etag == tag_td && m_elementalptra.has_elements())
          {
 
-            m_pimpl = __allocate ::html::impl::cell();
+            m_pimpl = øallocate ::html::impl::cell();
 
          }
          else
          {
 
-            m_pimpl = __allocate ::html::impl::text();
+            m_pimpl = øallocate ::html::impl::text();
 
          }
 
@@ -945,7 +945,7 @@ namespace html
 
       }
 
-      synchronous_lock lock(phtmldata->m_pcoredata->synchronization());
+      synchronous_lock lock(phtmldata->m_pcoredata->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       m_phtmlbase = phtmlbase;
 
@@ -972,7 +972,7 @@ namespace html
          if (m_atomTagName == "html_link" && get_tag()->get_attr_value("rel").case_insensitive_order("stylesheet") == 0)
          {
 
-            ::pointer<style_sheet>pstylesheet(__create_new < style_sheet > ());
+            ::pointer<style_sheet>pstylesheet(øcreate_new < style_sheet > ());
 
             string strUrl(get_tag()->get_attr_value("href"));
 
@@ -1018,7 +1018,7 @@ namespace html
 
          for (int i = 0; i < ptag->baseptra().get_size(); i++)
          {
-            auto pelemental  = __allocate ::html::element();
+            auto pelemental  = øallocate ::html::element();
 
             pelemental->initialize_html_elemental(phtmldata, this);
             pelemental->load(phtmldata, ptag->baseptra()[i]);
@@ -1037,7 +1037,7 @@ namespace html
          if (m_atomTagName == "html_style")
          {
             
-            ::pointer<style_sheet>pstylesheet(__create_new < style_sheet >());
+            ::pointer<style_sheet>pstylesheet(øcreate_new < style_sheet >());
 
             ::string str(pvalue->get_value());
 
@@ -1052,7 +1052,7 @@ namespace html
                   && m_pparent->get_tag()->get_attr_value("rel").case_insensitive_order("stylesheet") == 0)
          {
             
-            ::pointer<style_sheet>pstylesheet(__create_new < style_sheet > ());
+            ::pointer<style_sheet>pstylesheet(øcreate_new < style_sheet > ());
 
             // auto pcontext = get_context();
 
@@ -1076,7 +1076,7 @@ namespace html
    bool element::parse(html_data * phtmldata, ::ansi_range & range)
    {
 
-      const char * pszStart = range.m_begin;
+      const_char_pointer pszStart = range.m_begin;
 
       // skip white space
       range.consume_spaces(0);
@@ -1100,7 +1100,7 @@ namespace html
       // skip white space
       range.consume_spaces(0);
 
-      const char * pszTag = range.m_begin;
+      const_char_pointer pszTag = range.m_begin;
 
       // skip valid char
       while (*range.m_begin != '\0' && !character_isspace(*range.m_begin) && *range.m_begin != '>')
@@ -1179,12 +1179,12 @@ namespace html
 
       }
 
-      const char * pszBody = range.m_begin;
+      const_char_pointer pszBody = range.m_begin;
 
       while (true)
       {
 
-         ::pointer<element>pelemental = __allocate element();
+         ::pointer<element>pelemental = øallocate element();
 
          pelemental->initialize_html_elemental(phtmldata, this);
 
@@ -1225,7 +1225,7 @@ namespace html
       // skip white space
       range.consume_spaces(0);      
 
-      const char * pszCloseTag = range.m_begin;
+      const_char_pointer pszCloseTag = range.m_begin;
 
       // skip valid char
       while (*range.m_begin != '\0' && !character_isspace(*range.m_begin) && *range.m_begin != '>')
@@ -1276,7 +1276,7 @@ namespace html
 
          }
 
-         const char * pszKey = range.m_begin;
+         const_char_pointer pszKey = range.m_begin;
 
          // skip valid char
          while (*range.m_begin != '\0' && !character_isspace(*range.m_begin) && *range.m_begin != '=' && *range.m_begin != '/' && *range.m_begin != '>')
@@ -1325,7 +1325,7 @@ namespace html
          while (*range.m_begin != '\0' && character_isspace(*range.m_begin))
             range.m_begin++;
 
-         const char * pszValue;
+         const_char_pointer pszValue;
          if (*range.m_begin == '\"' || *range.m_begin == '\'')
          {
             chQuote = *range.m_begin;
@@ -1591,7 +1591,7 @@ namespace html
 
       //}
 
-      m_pstyle = __create_new < ::html::style > ();
+      m_pstyle = øcreate_new < ::html::style > ();
 
       m_pparent = pparent;
       m_pimpl = nullptr;
@@ -1606,7 +1606,7 @@ namespace html
    }
 
 
-   void element::set_text(const ::string & str)
+   void element::set_text(const ::scoped_string & scopedstr)
    {
 
       if (m_phtmlbase->get_type() == ::html::base::type_tag)
@@ -1615,13 +1615,13 @@ namespace html
          if (m_elementalptra.get_size() == 1)
          {
 
-            m_elementalptra[0]->m_strBody = str;
+            m_elementalptra[0]->m_strBody = scopedstr;
 
          }
          else
          {
 
-            m_strBody = str;
+            m_strBody = scopedstr;
 
          }
 
@@ -1629,7 +1629,7 @@ namespace html
       else
       {
 
-         m_strBody = str;
+         m_strBody = scopedstr;
 
       }
 

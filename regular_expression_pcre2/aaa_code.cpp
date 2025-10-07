@@ -18,12 +18,12 @@ namespace regular_expression_pcre2
    }
 
 
-   ::pointer<code> code::compile(pcre_context * m_pcreContext, const ::string & str)
+   ::pointer<code> code::compile(pcre_context * m_pcreContext, const ::scoped_string & scopedstr)
    {
 
       ::pointer<pcre_context_impl> pimpl = m_pcreContext;
 
-      auto pcode = __allocate code_impl(pimpl);
+      auto pcode = øallocate code_impl(pimpl);
 
       pcode->compile(str);
 

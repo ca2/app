@@ -18,8 +18,8 @@
 //
 //
 //   critical_section * g_pcsImpl = nullptr;
-//   map < oswindow, ::windowing::window * > * g_pmapImpl = nullptr;
-//   map < ::windowing::window *, oswindow > * g_pmapHandle = nullptr;
+//   map_base < oswindow, ::windowing::window * > * g_pmapImpl = nullptr;
+//   map_base < ::windowing::window *, oswindow > * g_pmapHandle = nullptr;
 //
 //
 //   CLASS_DECL_AURA void init_windowing()
@@ -27,9 +27,9 @@
 //
 //      g_pcsImpl = ___new critical_section();
 //
-//      g_pmapImpl = memory_new map < oswindow, ::windowing::window * >;
+//      g_pmapImpl = memory_new map_base < oswindow, ::windowing::window * >;
 //
-//      g_pmapHandle = memory_new  map < ::windowing::window *, oswindow >;
+//      g_pmapHandle = memory_new  map_base < ::windowing::window *, oswindow >;
 //      
 ////      
 ////#ifdef WINDOWS_DESKTOP
@@ -170,7 +170,7 @@
 //
 //   {
 //
-//      synchronous_lock slSystem(psystem->synchronization());
+//      synchronous_lock slSystem(psystem->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //      if (psystem->m_pwindowmap->m_map.erase_key(oswindow))
 //      {

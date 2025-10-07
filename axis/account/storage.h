@@ -20,9 +20,9 @@ namespace account
    public:
       
       
-      virtual bool get(string strKey, string strToken, string & strValue) = 0;
+      virtual bool get(const ::scoped_string & scopedstrKey, const ::scoped_string & scopedstrToken, string & strValue) = 0;
       
-      virtual void set(string strKey, string strToken, string strValue) = 0;
+      virtual void set(const ::scoped_string & scopedstrKey, const ::scoped_string & scopedstrToken, const ::scoped_string & scopedstrValue) = 0;
       
       
    };

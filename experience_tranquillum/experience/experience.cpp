@@ -8,8 +8,8 @@
 #include "frame_011.h"
 #include "frame_022.h"
 #include "frame_Minimal001.h"
-#include "base/platform/session.h"
-#include "base/user/user/user.h"
+#include "berg/platform/session.h"
+#include "berg/user/user/user.h"
 
 
 namespace experience_tranquillum
@@ -68,7 +68,7 @@ namespace experience_tranquillum
    }
 
 
-   void experience::get_frame_list(string_array & stra)
+   void experience::get_frame_list(string_array_base & stra)
    {
 
       stra.add("001");
@@ -82,51 +82,51 @@ namespace experience_tranquillum
    }
 
 
-   ::pointer <::experience::frame > experience::frame_experience(const ::string & pszSchema)
+   ::pointer <::experience::frame > experience::frame_experience(const ::scoped_string & scopedstrSchema)
    {
 
-      string strSchema(pszSchema);
+      string strSchema(scopedstrSchema);
 
       if(strSchema == "001")
       {
 
-         return  __allocate frame_001();
+         return  øallocate frame_001();
 
       }
       else if(strSchema == "002")
       {
 
-         return  __allocate frame_002();
+         return  øallocate frame_002();
 
       }
       else if(strSchema == "005")
       {
 
-         return  __allocate frame_005();
+         return  øallocate frame_005();
 
       }
       else if(strSchema == "008")
       {
 
-         return  __allocate frame_008();
+         return  øallocate frame_008();
 
       }
       else if(strSchema == "011")
       {
 
-         return  __allocate frame_011();
+         return  øallocate frame_011();
 
       }
       else if(strSchema == "022")
       {
 
-         return  __allocate frame_022();
+         return  øallocate frame_022();
 
       }
       else if(strSchema == "Minimal001")
       {
 
-         return  __allocate frame_Minimal001();
+         return  øallocate frame_Minimal001();
 
       }
 

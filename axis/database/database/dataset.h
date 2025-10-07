@@ -46,7 +46,7 @@ namespace database
       string            m_strSqlEmpty;       // Executed when result dataset is is_empty
       string            m_strSqlSelect;       // May be only single string ::payload
 
-      string_array           m_straSqlUpdate;       // May be an array in complex queries
+      string_array_base           m_straSqlUpdate;       // May be an array in complex queries
       /* Field values for updating must has prefix :NEW_ and :OLD_ and field name
          Example:
          update  wt_story dataset idobject dataset idobject=:NEW_idobject,body=:NEW_body
@@ -54,14 +54,14 @@ namespace database
          Essentually fields idobject and body must present in the
          result dataset (select_sql statement) */
 
-      string_array           m_straSqlInsert;       // May be an array in complex queries
+      string_array_base           m_straSqlInsert;       // May be an array in complex queries
       /* Field values for inserting must has prefix :NEW_ and field name
          Example:
          insert into wt_story (idobject, body) values (:NEW_idobject, :NEW_body)
          Essentually fields idobject and body must present in the
          result dataset (select_sql statement) */
 
-      string_array           m_straSqlDelete;       // May be an array in complex queries
+      string_array_base           m_straSqlDelete;       // May be an array in complex queries
       /* Field values for deleing must has prefix :OLD_ and field name
          Example:
          delete from wt_story where idobject=:OLD_idobject
@@ -75,7 +75,7 @@ namespace database
 
       virtual void fill_fields()=0;
 
-      void parse_sql(const ::string & sql);
+      void parse_sql(const ::scoped_string & scopedstrSql);
 
       dataset(database * pdatabase);
 
@@ -88,11 +88,11 @@ namespace database
 
       virtual ::collection::count num_rows()= 0;
 
-      virtual void open(const ::string & sql) = 0;
+      virtual void open(const ::scoped_string & scopedstrSql) = 0;
       virtual void open() = 0;
-      virtual bool exec(const ::string & sql) = 0;
+      virtual bool exec(const ::scoped_string & scopedstrSql) = 0;
       virtual bool exec() = 0;
-      virtual bool query(const ::string &sql) = 0;
+      virtual bool query(const ::scoped_string & scopedstrSql) = 0;
 
       virtual void close();
 
@@ -119,12 +119,12 @@ namespace database
 
       //virtual bool set_field_value(const ::string &f, const ::payload &v);
 
-      virtual class field * field(const ::string & name);
-      virtual ::payload field_value(const ::string & name);
+      virtual class field * field(const ::scoped_string & scopedstrName);
+      virtual ::payload field_value(const ::scoped_string & scopedstrName);
       virtual ::payload select_field_value(::collection::index iField);
       virtual ::payload field_value_at(::collection::index i);
 
-      virtual ::collection::index field_index(const ::string & name);
+      virtual ::collection::index field_index(const ::scoped_string & scopedstrName);
 
       virtual void set_autocommit(bool bAutoCommit) { m_bAutoCommit = bAutoCommit; }
       virtual bool get_autocommit() { return m_bAutoCommit; }
@@ -137,19 +137,19 @@ namespace database
 
       enum_dataset get_dataset_state() {return m_edataset; }
 
-      virtual void set_sql(enum_sql esql, const ::string & sql);
+      virtual void set_sql(enum_sql esql, const ::scoped_string & scopedstrSql);
 
       virtual void clear_sql(enum_sql esql);
 
       virtual string get_sql(enum_sql esql);
 
-      virtual ::pointer<row_array>query_rows(const ::string &query);
-      virtual ::pointer<payload_array>query_items(const ::string &query);
-      virtual ::payload query_item(const ::string &query);
+      virtual ::pointer<row_array>query_rows(const ::scoped_string & scopedstrQuery);
+      virtual ::pointer<payload_array>query_items(const ::scoped_string & scopedstrQuery);
+      virtual ::payload query_item(const ::scoped_string & scopedstrQuery);
 
-      virtual bool query_rows(::pointer<row_array>& rows, const ::string &query);
-      virtual bool query_items(::pointer<payload_array>& items, const ::string &query);
-      virtual bool query_item(::payload & item, const ::string &query);
+      virtual bool query_rows(::pointer<row_array>& rows, const ::scoped_string & scopedstrQuery);
+      virtual bool query_items(::pointer<payload_array>& items, const ::scoped_string & scopedstrQuery);
+      virtual bool query_item(::payload & item, const ::scoped_string & scopedstrQuery);
 
    };
 

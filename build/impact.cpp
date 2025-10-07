@@ -58,7 +58,7 @@ namespace app_build
 
       ::user::impact::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_create, pchannel, this, &impact::on_message_create);
+      USER_MESSAGE_LINK(::user::e_message_create, pchannel, this, &impact::on_message_create);
 
    }
 
@@ -77,7 +77,7 @@ namespace app_build
 
       }
 
-      __defer_construct(m_pbuild);
+      ødefer_construct(m_pbuild);
 
       m_pbuild->branch();
 
@@ -147,7 +147,7 @@ namespace app_build
    //pnode->run_silent(pdirectorysystem->system() / "env1.bat", "");
 
    //string strLog = file_system()->as_string(pdirectorysystem->system() / "env.txt");
-   //string_array stra;
+   //string_array_base stra;
    //stra.add_lines(strLog);
 
    ////sleep(10000_ms);
@@ -229,7 +229,7 @@ namespace app_build
 
       pgraphics->fill_rectangle(rectangleX, argb(127, 255, 255, 255));
 
-      //string_array straLine;
+      //string_array_base straLine;
 
       //file()->get_lines(straLine, directory_system()->home() /"build.log");
 

@@ -21,7 +21,7 @@
 
 #ifdef LINUX
 //#include <unistd.h>
-int create_process(const ::string & pszCommandLine, int * pprocessId);
+int create_process(const ::scoped_string & scopedstrCommandLine, int * pprocessId);
 #elif defined(MACOS)
 #include <unistd.h>
 #endif
@@ -48,7 +48,7 @@ string vs_build(::particle * pparticle)
 #endif
 
 
-//unsigned int RunSilent(const ::string & strFunct, const ::string & strstrParams);
+//unsigned int RunSilent(const ::scoped_string & scopedstrFunct, const ::scoped_string & scopedstrstrParams);
 
 
 namespace introjection
@@ -71,7 +71,7 @@ namespace introjection
    }
 
 
-   void compiler::initialize_introjection_compiler(::particle * pparticle, const ::string& pszRepos, const ::string& pszApp, const ::string& pszProjectName, const ::file::path & pathProjectDir)
+   void compiler::initialize_introjection_compiler(::particle * pparticle, const ::scoped_string & scopedstrRepos, const ::scoped_string & scopedstrApp, const ::scoped_string & scopedstrProjectName, const ::file::path & pathProjectDir)
    {
 
       //auto estatus =
@@ -131,7 +131,7 @@ namespace introjection
 //
 //            strMessage = "There is a hole here. You should fill it with fullfillment. Missing f**k " + path;
 //
-//            //message_box(strMessage, strMessage, e_message_box_ok);
+//            //message_box(strMessage, strMessage, ::user::e_message_box_ok);
 //
 //         }
 //
@@ -166,11 +166,11 @@ namespace introjection
 //      m_strDynamicSourceStageFolder = m_pintegrationcontext->m_pathBuildFolder / m_strDynamicSourceStage;
 //
 
-      m_strRepos = pszRepos;
+      m_strRepos = scopedstrRepos;
 
-      m_strApp = pszApp;
+      m_strApp = scopedstrApp;
 
-      m_strProjectName = pszProjectName;
+      m_strProjectName = scopedstrProjectName;
 
       prepare_compile_and_link_environment();
 
@@ -180,7 +180,7 @@ namespace introjection
    }
 
 
-   //void compiler::initialize_compiler(const ::string & pszRepos, const ::string & pszApp, const ::string & pszProjectName)
+   //void compiler::initialize_compiler(const ::scoped_string & scopedstrRepos, const ::scoped_string & scopedstrApp, const ::scoped_string & scopedstrProjectName)
    //{
 
    //   m_strRepos = pszRepos;
@@ -439,7 +439,7 @@ namespace introjection
 //   }
 
 
-//   void compiler::prepare1(const ::string & lpcszSource, const ::string & lpcszDest)
+//   void compiler::prepare1(const ::scoped_string & scopedstrSource, const ::scoped_string & scopedstrDest)
 //   {
 //
 //      //auto papp = get_app();
@@ -486,7 +486,7 @@ namespace introjection
 //
 //      strLog = file_system()->as_string(pdirectorysystem->system() / "env.txt");
 //
-//      string_array stra;
+//      string_array_base stra;
 //
 //      stra.add_lines(strLog);
 //
@@ -577,14 +577,14 @@ namespace introjection
 
       }
 
-      synchronous_lock slCompiler(synchronization());
+      synchronous_lock slCompiler(synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       auto & plibrary = m_lib[pathFile];
 
       if(!plibrary)
       {
 
-         plibrary = __create_new < library > ();
+         plibrary = øcreate_new < library > ();
 
          plibrary->defer_create_synchronization();
 
@@ -935,7 +935,7 @@ pdirectorysystem->create("/var/tmp/ca2/intermediate");
       //      file()->del(lib->m_pathScript + ".old");
       //   }
       //}
-      //catch(string strError)
+      //catch(const ::scoped_string & scopedstrError)
       //{
       //   TRACE0(strError + "\n");
       //}
@@ -946,10 +946,10 @@ pdirectorysystem->create("/var/tmp/ca2/intermediate");
          //   file()->copy(strCppPath,lib->m_pathScript);
          //}
       }
-      catch(string strError)
+      catch(const ::scoped_string & scopedstrError)
       {
 
-         information(strError + "\n");
+         information(scopedstrError + "\n");
 
       }
       //try
@@ -959,7 +959,7 @@ pdirectorysystem->create("/var/tmp/ca2/intermediate");
       //      file()->del(lib->m_pathScript + ".old");
       //   }
       //}
-      //catch(string strError)
+      //catch(const ::scoped_string & scopedstrError)
       //{
       //   TRACE0(strError + "\n");
       //}

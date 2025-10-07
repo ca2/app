@@ -22,10 +22,10 @@
 
 char *sasl_plain(xmpp_ctx_t *ctx, const ::string &authid, const ::string &password);
 char *sasl_digest_md5(xmpp_ctx_t *ctx, const ::string &challenge,
-		      const char *jid, const ::string &password);
+		      const_char_pointer jid, const ::string &password);
 char *sasl_scram_sha1(xmpp_ctx_t *ctx, const ::string &challenge,
-                      const char *first_bare, const ::string &jid,
-                      const char *password);
+                      const_char_pointer first_bare, const ::string &jid,
+                      const_char_pointer password);
 
 
 /** Base64 encoding routines. Implemented according to RFC 3548 */
@@ -36,9 +36,9 @@ char *base64_encode(xmpp_ctx_t *ctx,
 		    const unsigned char * const buffer, const unsigned len);
 
 int base64_decoded_len(xmpp_ctx_t *ctx,
-		       const char * const buffer, const unsigned len);
+		       const_char_pointer const buffer, const unsigned len);
 
 unsigned char *base64_decode(xmpp_ctx_t *ctx,
-			     const char * const buffer, const unsigned  len);
+			     const_char_pointer const buffer, const unsigned  len);
 
 #endif /* _LIBXMPP_SASL_H__ */

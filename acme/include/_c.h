@@ -5,7 +5,7 @@
 inline bool is_set(const void* p, memsize s)
 {
 
-   return ((::iptr)p >= s);
+   return ((::uptr)p >= (::uptr) s);
 
 }
 

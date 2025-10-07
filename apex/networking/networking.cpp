@@ -228,7 +228,7 @@ namespace networking
    //::sockets::listen_socket * networking::new_listen_socket(const ::type_atom& type)
    //{
 
-   //   auto plistensocket = __øcreate< ::sockets::listen_socket >();
+   //   auto plistensocket = øcreate< ::sockets::listen_socket >();
 
    //   plistensocket->initialize_listen_socket(type);
 
@@ -330,15 +330,15 @@ namespace networking
    } // rfc1738_decode
 
 
-   bool networking::is_ip4(const string& str)
+   bool networking::is_ip4(const ::scoped_string & scopedstr)
    {
       int dots = 0;
       // %! ignore :port?
-      for (int i = 0; i < str.length(); i++)
+      for (int i = 0; i < scopedstr.size(); i++)
       {
-         if (str[i] == '.')
+         if (scopedstr[i] == '.')
             dots++;
-         else if (!character_isdigit(str[i]))
+         else if (!character_isdigit(scopedstr[i]))
             return false;
       }
       if (dots != 3)
@@ -347,16 +347,16 @@ namespace networking
    }
 
 
-   bool networking::is_ip6(const string& str)
+   bool networking::is_ip6(const ::scoped_string & scopedstr)
    {
-      if (str.is_empty())
+      if (scopedstr.is_empty())
          return false;
       ::collection::index qc = 0;
       ::collection::index qd = 0;
-      for (int i = 0; i < str.length(); i++)
+      for (int i = 0; i < scopedstr.size(); i++)
       {
-         qc += (str[i] == ':') ? 1 : 0;
-         qd += (str[i] == '.') ? 1 : 0;
+         qc += (scopedstr[i] == ':') ? 1 : 0;
+         qd += (scopedstr[i] == '.') ? 1 : 0;
       }
       if (qc < 2)
          return false;
@@ -369,7 +369,7 @@ namespace networking
          return false;
       }
       
-      ::parse pa(str, ":."_ansi);
+      ::parse pa(scopedstr, ":."_ansi);
 
       string tmp = pa.getword();
       while (tmp.length())
@@ -393,19 +393,19 @@ namespace networking
    }
 
 
-   address_pointer networking::create_address(const ::string & strAddress, enum_address_type eaddresstypePreferred, port_t port)
+   address_pointer networking::create_address(const ::scoped_string & scopedstrAddress, enum_address_type eaddresstypePreferred, port_t port)
    {
 
-      if (is_ip6(strAddress))
+      if (is_ip6(scopedstrAddress))
       {
 
-         return create_ip6_address(strAddress, port);
+         return create_ip6_address(scopedstrAddress, port);
 
       }
-      else if (is_ip4(strAddress))
+      else if (is_ip4(scopedstrAddress))
       {
 
-         return create_ip4_address(strAddress, port);
+         return create_ip4_address(scopedstrAddress, port);
 
       }
       else
@@ -428,7 +428,7 @@ namespace networking
    }
 
 
-//   bool networking::convert(in_addr& l, const string& str, int ai_flags)
+//   bool networking::convert(in_addr& l, const ::scoped_string & scopedstr, int ai_flags)
 //   {
 //
 //      if (str.is_empty())
@@ -436,7 +436,7 @@ namespace networking
 //
 //      single_lock synchronouslock(m_pmutexCache, true);
 //      dns_cache_item item;
-//      if (m_mapCache.lookup(str, item) && (item.m_bOk && (!item.m_bTimeout || ((item.m_timeLastChecked.elapsed()) < (5_minute)))))
+//      if (m_mapCache.find(str, item) && (item.m_bOk && (!item.m_bTimeout || ((item.m_timeLastChecked.elapsed()) < (5_minute)))))
 //      {
 //         if (item.m_bOk)
 //         {
@@ -457,7 +457,7 @@ namespace networking
 //#ifdef NO_GETADDRINFO
 //      if ((ai_flags & AI_NUMERICHOST) != 0 || isipv4(host))
 //      {
-//         ::parse pa((const char*)host, ".");
+//         ::parse pa((const_char_pointer )host, ".");
 //         union
 //         {
 //            struct
@@ -561,7 +561,7 @@ namespace networking
 //      }
 //
 //      //      ::time tick2= ::time::now();
-//      //      informationf("DNS lookup networking::u2ip " + str + " : %d.%d.%d.%d (%d ms)",
+//      //      informationf("DNS find networking::u2ip " + str + " : %d.%d.%d.%d (%d ms)",
 //         //       (unsigned int)((unsigned char*)&pitem->m_ipaddr)[0],
 //         //     (unsigned int)((unsigned char*)&pitem->m_ipaddr)[1],
 //         //   (unsigned int)((unsigned char*)&pitem->m_ipaddr)[2],
@@ -574,7 +574,7 @@ namespace networking
 //   }
 //
 //
-//   //bool networking::convert(struct in6_addr& l, const ::string & str, int ai_flags)
+//   //bool networking::convert(struct in6_addr& l, const ::scoped_string & scopedstr, int ai_flags)
 //   //{
 //
 //
@@ -804,7 +804,7 @@ namespace networking
          {
             struct sockaddr_in *point = (struct sockaddr_in *)sa;
             ::sockets::address_pointer addr;
-            addr(__allocate< ::sockets::ipv4_address(get_app >(), *int_point));
+            addr(øallocate< ::sockets::ipv4_address(get_app >(), *int_point));
             return addr;
          }
          break;
@@ -813,7 +813,7 @@ namespace networking
          {
             struct sockaddr_in6 *point = (struct sockaddr_in6 *)sa;
             ::sockets::address_pointer addr;
-            addr(__allocate< ::sockets::ipv6_address(get_app >(), *int_point));
+            addr(øallocate< ::sockets::ipv6_address(get_app >(), *int_point));
             return addr;
          }
          break;
@@ -822,7 +822,7 @@ namespace networking
    }
    */
 
-   /*   bool networking::convert(in_addr & sa, const string & host, int ai_flags)
+   /*   bool networking::convert(in_addr & sa, const ::scoped_string & scopedstrHost, int ai_flags)
       {
 
          memory_set(&sa, 0, sizeof(sa));
@@ -830,7 +830,7 @@ namespace networking
    #ifdef NO_GETADDRINFO
          if ((ai_flags & AI_NUMERICHOST) != 0 || isipv4(host))
          {
-            ::parse pa((const char *)host, ".");
+            ::parse pa((const_char_pointer )host, ".");
             union {
                struct {
                   uchar b1;
@@ -916,7 +916,7 @@ namespace networking
       }*/
 
 
-//   bool networking::convert(struct in6_addr& sa, const string& host, int ai_flags)
+//   bool networking::convert(struct in6_addr& sa, const ::scoped_string & scopedstrHost, int ai_flags)
 //   {
 //
 //      try
@@ -955,7 +955,7 @@ namespace networking
 //#ifdef NO_GETADDRINFO
 //      if ((ai_flags & AI_NUMERICHOST) != 0 || isipv6(host))
 //      {
-//         //         list<string> vec;
+//         //         list_base<string> vec;
 //         index x = 0;
 //         for (::collection::index i = 0; i <= host.get_length(); i++)
 //         {
@@ -987,7 +987,7 @@ namespace networking
 //         index sz = vec.get_length(); // number of unsigned char pairs
 //         ::collection::index i = 0; // index in in6_addr.in6_u.u6_addr16[] ( 0 .. 7 )
 //         unsigned short addr16[8];
-//         for (list<string>::iterator it = vec.begin(); it != vec.end(); it++)
+//         for (list_base<string>::iterator it = vec.begin(); it != vec.end(); it++)
 //         {
 //            string bytepair = *it;
 //            if (bytepair.get_length())
@@ -1064,7 +1064,7 @@ namespace networking
 //   }
 //
 
-   bool networking::reverse(string& number, const string& hostname)
+   bool networking::reverse(string& number, const ::scoped_string & scopedstrHostname)
    {
 
       //auto paddress = system()->sockets()->create_address(hostname);
@@ -1087,7 +1087,7 @@ namespace networking
    //bool networking::reverse_schedule(reverse_cache_item* pitem)
    //{
 
-   //   synchronous_lock synchronouslock(this->synchronization());
+   //   synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //   m_reversecacheaRequest.add(pitem);
 
@@ -1163,7 +1163,7 @@ namespace networking
 
       //}
 
-      //pitem = __allocate reverse_cache_item();
+      //pitem = øallocate reverse_cache_item();
 
       //pitem->m_address = address;
 
@@ -1212,7 +1212,7 @@ namespace networking
 //         else
 //         {
 //            struct sockaddr_in* sa_in = (struct sockaddr_in*)sa;
-//            struct hostent* h = gethostbyaddr((const char*)&sa_in->sin_addr, sizeof(sa_in->sin_addr), AF_INET);
+//            struct hostent* h = gethostbyaddr((const_char_pointer )&sa_in->sin_addr, sizeof(sa_in->sin_addr), AF_INET);
 //            if (h)
 //            {
 //               hostname = h->h_name;
@@ -1258,9 +1258,9 @@ namespace networking
 //         }
 //         else
 //         {
-//            // %! TODO: ipv6 reverse lookup
+//            // %! TODO: ipv6 reverse find
 //            struct sockaddr_in6* sa_in = (struct sockaddr_in6*)sa;
-//            struct hostent* h = gethostbyaddr((const char*)&sa_in->sin6_addr, sizeof(sa_in->sin6_addr), AF_INET6);
+//            struct hostent* h = gethostbyaddr((const_char_pointer )&sa_in->sin6_addr, sizeof(sa_in->sin6_addr), AF_INET6);
 //            if (h)
 //            {
 //               hostname = h->h_name;
@@ -1380,17 +1380,17 @@ namespace networking
    }
 
 
-   int networking::service_port(const string& str, int flags)
+   int networking::service_port(const ::scoped_string & scopedstr, int flags)
    {
 
-      if (::str::is_simple_natural(str))
-         return ::str::to_int(str);
+      if (::str::is_simple_natural(scopedstr))
+         return ::str::to_int(scopedstr);
 
-      if (str.case_insensitive_equals("http"))
+      if (scopedstr.case_insensitive_equals("http"))
       {
          return 80;
       }
-      else if (str.case_insensitive_equals("https"))
+      else if (scopedstr.case_insensitive_equals("https"))
       {
          return 443;
       }
@@ -1399,7 +1399,7 @@ namespace networking
 
          int service = 0;
 
-         if (!u2service(str, service, 0))
+         if (!u2service(scopedstr, service, 0))
             return 0;
 
          return service;
@@ -1684,7 +1684,7 @@ namespace networking
 //}
 
 
-   ::pointer<::networking::address>networking::create_ip4_address(const ::string & strIp4, ::networking::port_t port)
+   ::pointer<::networking::address>networking::create_ip4_address(const ::scoped_string & scopedstrIp4, ::networking::port_t port)
    {
 
       return nullptr;
@@ -1692,7 +1692,7 @@ namespace networking
    }
 
 
-   ::pointer<::networking::address>networking::create_ip6_address(const ::string & strIp6, ::networking::port_t port)
+   ::pointer<::networking::address>networking::create_ip6_address(const ::scoped_string & scopedstrIp6, ::networking::port_t port)
    {
 
       return nullptr;
@@ -1723,7 +1723,7 @@ namespace networking
 
 
 
-//string get_file_extension_mime_type(const ::string & strExtension)
+//string get_file_extension_mime_type(const ::scoped_string & scopedstrExtension)
 //{
 //
 //   if (strExtension == "iso")

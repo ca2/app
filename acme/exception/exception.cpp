@@ -33,7 +33,7 @@ exception(estatus, {::error_code(e_error_code_type_unknown, 0)}, scopedstrMessag
 
 
 //#else
-exception::exception(const ::e_status & estatus, const ::array_non_particle < error_code > & errorcodea, const ::scoped_string& scopedstrMessage, const ::scoped_string& scopedstrDetails, int iSkip, void * caller_address):
+exception::exception(const ::e_status & estatus, const ::array_base < error_code > & errorcodea, const ::scoped_string& scopedstrMessage, const ::scoped_string& scopedstrDetails, int iSkip, void * caller_address):
 m_errorcodea(errorcodea)
 //#endif
 {
@@ -131,7 +131,7 @@ exception::~exception()
 ::pointer < ::subparticle > exception::clone()
 {
 
-   auto pexception = __allocate::exception(*this);
+   auto pexception = øallocate::exception(*this);
 
    return pexception;
 
@@ -285,7 +285,7 @@ string exception::get_consolidated_details(::particle * pparticle) const
 
 
 
-//   int exception::report_error(unsigned int nType /* = e_message_box_ok */, const ::scoped_string & scopedstrMessageId /* = nullptr */)
+//   int exception::report_error(unsigned int nType /* = ::user::e_message_box_ok */, const ::scoped_string & scopedstrMessageId /* = nullptr */)
 //   {
 //      string   strErrorMessage;
 //      int     nDisposition;
@@ -297,7 +297,7 @@ string exception::get_consolidated_details(::particle * pparticle) const
 //      //   nDisposition = message_box(nullptr, strErrorMessage, nType);
 //      //else
 //      //{
-//      //   if (pszMessageId == 0)
+//      //   if (scopedstrMessageId == 0)
 //      //      //pszMessageId = __IDP_NO_ERROR_AVAILABLE;
 //      //      pszMessageId = "Error message not available";
 //      nDisposition = message_box(nullptr, pszMessageId, nType);
@@ -328,7 +328,7 @@ string exception::get_consolidated_details(::particle * pparticle) const
 //
 //#ifdef __ANDROID__
 //
-//         string_array stra;
+//         string_array_base stra;
 //
 //         stra.add_lines(m_pcallstack->m_pszCallStack);
 //
@@ -379,7 +379,7 @@ string exception::get_consolidated_details(::particle * pparticle) const
 //}
 
 
-CLASS_DECL_ACME const char* status_short_description(const ::e_status & estatus)
+CLASS_DECL_ACME const_char_pointer status_short_description(const ::e_status & estatus)
 {
 
    auto psz = ::file::status_short_description(estatus);
@@ -466,7 +466,7 @@ CLASS_DECL_ACME const char* status_short_description(const ::e_status & estatus)
 //}
 
 
-//CLASS_DECL_ACME void exception_message_box(::particle * pparticle, ::exception & exception, const ::string & strMoreDetails)
+//CLASS_DECL_ACME void exception_message_box(::particle * pparticle, ::exception & exception, const ::scoped_string & scopedstrMoreDetails)
 //{
 //
 //
@@ -509,7 +509,7 @@ CLASS_DECL_ACME const char* status_short_description(const ::e_status & estatus)
 //
 //   }
 //
-//   auto pmessagebox = __initialize_new ::message_box(pparticle, strMessage, strTitle, e_message_box_ok | e_message_box_icon_exclamation, strDetails);
+//   auto pmessagebox = __initialize_new ::message_box(pparticle, strMessage, strTitle, ::user::e_message_box_ok | ::user::e_message_box_icon_exclamation, strDetails);
 
 //pmessagebox->sync();
 //

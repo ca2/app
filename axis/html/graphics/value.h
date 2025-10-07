@@ -25,7 +25,7 @@ namespace html
 
       virtual type get_type();
 
-      void set_value(const ::string & pszValue);
+      void set_value(const ::scoped_string & scopedstrValue);
       string get_value();
 
    };

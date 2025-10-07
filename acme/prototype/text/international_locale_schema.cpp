@@ -12,13 +12,13 @@ namespace text
    {
 
 
-      string_to_string* g_pmapRTL;
+      string_to_string_base* g_pmapRTL;
 
 
       void create_rtl_map()
       {
 
-         g_pmapRTL = ___new string_to_string();
+         g_pmapRTL = ___new string_to_string_base();
 
       }
 
@@ -634,12 +634,12 @@ namespace text
       inline ::string rl_id(const ::scoped_string& scopedstrLocale)
       {
 
-         auto ppair = g_pmapRTL->plookup(scopedstrLocale);
+         auto iterator = g_pmapRTL->find(scopedstrLocale);
 
-         if (::is_ok(ppair))
+         if (iterator)
          {
 
-            return ppair->element2();
+            return iterator->element2();
 
          }
 
@@ -702,8 +702,8 @@ namespace text
          }
 
 
-         ::string_array straLocaleAdd1;
-         ::string_array straSchemaAdd1;
+         ::string_array_base straLocaleAdd1;
+         ::string_array_base straSchemaAdd1;
 
 
          if (bRTLLayout)
@@ -802,7 +802,7 @@ namespace text
 #endif
 
 
-      //bool locale_schema::_add_locale_variant(const ::string& idLocale, const ::string& idStyle)
+      //bool locale_schema::_add_locale_variant(const ::scoped_string & scopedstrIdLocale, const ::scoped_string & scopedstrIdStyle)
       //{
 
       //   if (::is_empty(idLocale.m_str))
@@ -819,10 +819,10 @@ namespace text
       //}
 
 
-      //bool locale_schema::defer_add_locale(const scoped_string& strLocale, character_count iLen, const ::string& idSchema)
+      //bool locale_schema::defer_add_locale(const scoped_string& strLocale, character_count iLen, const ::scoped_string & scopedstrIdSchema)
       //{
 
-      //   return defer_add_locale(localeid(pszLocale, iLen), idSchema);
+      //   return defer_add_locale(localeid(scopedstrLocale, iLen), idSchema);
 
       //}
 

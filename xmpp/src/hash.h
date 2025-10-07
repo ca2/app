@@ -56,6 +56,6 @@ void hash_iter_release(hash_iterator_t *iter);
 
 /** return the next hash table key from the iterator.
     the returned key should not be freed */
-const char * hash_iter_next(hash_iterator_t *iter);
+const_char_pointer hash_iter_next(hash_iterator_t *iter);
 
 #endif /* __LIBXMPPP_HASH_H__ */

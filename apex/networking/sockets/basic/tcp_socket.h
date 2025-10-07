@@ -85,7 +85,7 @@ namespace sockets
             _buf = (char*) m_memory.data();
          }
 
-         output(int iTcpOutputCapacity, const char *buf, int len) :
+         output(int iTcpOutputCapacity, const_char_pointer buf, int len) :
             m_iTcpOuputCapacity(iTcpOutputCapacity), 
             _b(0), _t(len), _q(len)
          {
@@ -102,7 +102,7 @@ namespace sockets
          {
             return m_iTcpOuputCapacity - _t;
          }
-         void add(const char *buf, int len)
+         void add(const_char_pointer buf, int len)
          {
             ::memory_copy(_buf + _t, buf, len);
             _t += len;
@@ -114,7 +114,7 @@ namespace sockets
             _q -= len;
             return _q;
          }
-         const char *Buf()
+         const_char_pointer Buf()
          {
             return _buf + _b;
          }
@@ -123,7 +123,7 @@ namespace sockets
             return _q;
          }
       };
-      typedef list<::pointer<output >> output_list;
+      typedef list_base<::pointer<output >> output_list;
 
       //::file::circular_file ibuf; ///< Circular input buffer
       //string m_strUrl;
@@ -201,24 +201,24 @@ namespace sockets
       /** open connection.
       \lparam host Hostname
       \lparam port Port number */
-      virtual bool open(const string &host,::networking::port_t port);
+      virtual bool open(const ::scoped_string & scopedstrHost,::networking::port_t port);
 
       
       
-      virtual void set_host(const ::string & strHost);
+      virtual void set_host(const ::scoped_string & scopedstrHost);
       virtual string get_host() const;
 
 
-      virtual void set_tls_hostname(const ::string & strTlsHostname);
+      virtual void set_tls_hostname(const ::scoped_string & scopedstrTlsHostname);
 
 
-      virtual void set_connect_host(const ::string & strConnectHost);
+      virtual void set_connect_host(const ::scoped_string & scopedstrConnectHost);
       virtual string get_connect_host() const;
       virtual void set_connect_port(const ::networking::port_t portConnect);
       virtual ::networking::port_t get_connect_port() const;
 
 
-      virtual void set_url(const ::string & strUrl);
+      virtual void set_url(const ::scoped_string & scopedstrUrl);
       virtual string get_url() const;
 
 
@@ -259,7 +259,7 @@ namespace sockets
 
       /** Callback fires when a socket in line protocol has read one full line.
       \lparam line Line read */
-      void OnLine(const string & line) override;
+      void OnLine(const ::scoped_string & scopedstrLine) override;
       /** get counter of number of bytes received. */
       unsigned long long GetBytesReceived(bool clear = false) override;
       /** get counter of number of bytes sent. */
@@ -289,7 +289,7 @@ namespace sockets
       virtual void InitSSLClient();
 
 
-      virtual void set_init_ssl_client_context(const ::string & strInitSSLClientContext);
+      virtual void set_init_ssl_client_context(const ::scoped_string & scopedstrInitSSLClientContext);
 
 
       /** This method must be implemented to initialize

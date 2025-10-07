@@ -3,7 +3,7 @@
 #pragma once
 
 
-#include "base/user/user/user.h"
+#include "berg/user/user/user.h"
 //#include "core/filesystem/filemanager/component.h"
 
 
@@ -12,7 +12,7 @@ namespace bred
 
 
    class CLASS_DECL_BRED user :
-      virtual public ::base::user
+      virtual public ::berg::user
       //,
       //virtual public ::filemanager::component
    {
@@ -39,7 +39,7 @@ namespace bred
 //      
 //
 //
-//      string_array                                 m_straEscape;
+//      string_array_base                                 m_straEscape;
 //
 //      ::type_atom                                  m_typeatomDefaultMeshData;
 //      ::type_atom                                  m_typeatomDefaultListHeader;
@@ -155,20 +155,20 @@ namespace bred
       virtual void init() override;
 
 //
-//      virtual pointer< ::sequence < ::conversation > > dialog_box(::particle * pparticle, const ::string & pszMatter, ::property_set & propertyset);
+//      virtual pointer< ::sequence < ::conversation > > dialog_box(::particle * pparticle, const ::scoped_string & scopedstrMatter, ::property_set & propertyset);
 //
 //
-//      virtual pointer< ::sequence < ::conversation > > ui_message_box(::particle * pparticle, ::user::interaction_base * puiOwner, const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok);
-//      virtual pointer< ::sequence < ::conversation > > ui_message_box_timeout(::particle * pparticle, ::user::interaction_base * puiOwner, const ::string & pszMessage, const ::string & pszTitle = nullptr, const class time & timeTimeout = ::time::infinity(), const ::e_message_box & emessagebox = e_message_box_ok);
-//      //virtual void ui_message_box_timeout(::object* pparticle, ::user::interaction_base* puiOwner, ::payload payload, class ::time timeTimeout, unsigned int fuStyle = e_message_box_ok, ::aura::application* papp = nullptr, const function_arg& functionargResult = function_arg());
+//      virtual pointer< ::sequence < ::conversation > > ui_message_box(::particle * pparticle, ::user::interaction_base * puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const ::::user::e_message_box & emessagebox = ::user::e_message_box_ok);
+//      virtual pointer< ::sequence < ::conversation > > ui_message_box_timeout(::particle * pparticle, ::user::interaction_base * puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const class time & timeTimeout = ::time::infinity(), const ::::user::e_message_box & emessagebox = ::user::e_message_box_ok);
+//      //virtual void ui_message_box_timeout(::object* pparticle, ::user::interaction_base* puiOwner, ::payload payload, class ::time timeTimeout, unsigned int fuStyle = ::user::e_message_box_ok, ::aura::application* papp = nullptr, const function_arg& functionargResult = function_arg());
 //
 //      virtual void on_file_manager_open(::filemanager::data* pdata, ::file::item_array& itema);
 //
-//      int track_popup_menu(const ::string & pszMatter, const ::int_point & point, ::pointer<::user::interaction>puie) override;
+//      int track_popup_menu(const ::scoped_string & scopedstrMatter, const ::int_point & point, ::pointer<::user::interaction>puie) override;
 //
 //
-//      virtual bool get_fs_size(string & strSize, const ::string & pszPath, bool & bPending);
-//      virtual bool get_fs_size(long long & i64Size, const ::string & pszPath, bool & bPending);
+//      virtual bool get_fs_size(string & strSize, const ::scoped_string & scopedstrPath, bool & bPending);
+//      virtual bool get_fs_size(long long & i64Size, const ::scoped_string & scopedstrPath, bool & bPending);
 //
 //      virtual void data_on_after_change(::message::message * pmessage);
 //
@@ -176,7 +176,7 @@ namespace bred
 //
 //      virtual bool modal_get_color(::user::interaction * puiOwner, ::color::hls & hls);
 //
-//      virtual void AddToRecentFileList(const ::string & pszPathName);
+//      virtual void AddToRecentFileList(const ::scoped_string & scopedstrPathName);
 //
 //
 //      virtual void route_command(::message::command * pcommand, bool bRouteToKeyDescendant);
@@ -278,11 +278,11 @@ namespace bred
 //      //virtual void on_request(::request * prequest) override;
 //
 //
-//      ////virtual string matter_as_string(const ::string & pszMatter, const ::string & pszMatter2);
-//      ////virtual string directory()->matter(const ::string & pszMatter, const ::string & pszMatter2);
+//      ////virtual string matter_as_string(const ::scoped_string & scopedstrMatter, const ::scoped_string & scopedstrMatter2);
+//      ////virtual string directory()->matter(const ::scoped_string & scopedstrMatter, const ::scoped_string & scopedstrMatter2);
 //
-//      ////virtual bool is_inside_time_dir(const ::string & pszPath);
-//      ////virtual bool file_is_read_only(const ::string & pszPath);
+//      ////virtual bool is_inside_time_dir(const ::scoped_string & scopedstrPath);
+//      ////virtual bool file_is_read_only(const ::scoped_string & scopedstrPath);
 //
 //      //// Long PhRESSing time
 //      //// time in ::times that a pressing is considered a double click
@@ -294,7 +294,7 @@ namespace bred
 //
 //      //virtual bool on_create_frame_window();
 //
-//      ////virtual string account_get_user_sessid(const ::string & str) override;
+//      ////virtual string account_get_user_sessid(const ::scoped_string & scopedstr) override;
 //
 //      //virtual void translate_os_key_message(::user::key * pkey);
 //
@@ -306,7 +306,7 @@ namespace bred
 //      ////virtual ~session();
 //
 //
-//      //virtual void locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const ::string & strLocale, const ::string & strSchema) override;
+//      //virtual void locale_schema_matter(string_array_base & stra, const string_array_base & straMatterLocator, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema) override;
 //      //virtual string get_locale_schema_dir() override;
 //
 //
@@ -345,11 +345,11 @@ namespace bred
 //
 //      //::user::keyboard& keyboard();
 //
-//      //virtual bool open_by_file_extension(const ::string & pszPathName, ::request * prequest = nullptr);
+//      //virtual bool open_by_file_extension(const ::scoped_string & scopedstrPathName, ::request * prequest = nullptr);
 //
 //      //virtual bool open_by_file_extension(::create * pcc);
 //
-//      ////::pointer<::aura::application>get_new_application(::particle * pparticle, const ::string & pszAppId);
+//      ////::pointer<::aura::application>get_new_application(::particle * pparticle, const ::scoped_string & scopedstrAppId);
 //
 //      //virtual ::pointer<::user::menu_interaction>create_menu_button(::user::style_pointer & pstyle, ::menu::item * pitem) override;
 //
@@ -371,17 +371,17 @@ namespace bred
 //
 //      ////virtual void defer_initialize_user_presence();
 //
-//      //virtual bool is_licensed(const ::string & pszId, bool bInteractive = true);
+//      //virtual bool is_licensed(const ::scoped_string & scopedstrId, bool bInteractive = true);
 //
 //      //virtual void userstyle(::user::style_context * pcontext);
 //
-//      //virtual bool get_auth(const string & pszForm, string & strUsername, string & strPassword);
+//      //virtual bool get_auth(const ::scoped_string & scopedstrForm, string & strUsername, string & strPassword);
 //
 //      //virtual void interactive_credentials(::account::credentials * pcredentials);
 //
 //      ////virtual void on_request(::request * prequest) override;
 //
-//      //::aura::application * application_get(const ::string & pszAppId, bool bCreate, bool bSynch, ::request * prequest) override;
+//      //::aura::application * application_get(const ::scoped_string & scopedstrAppId, bool bCreate, bool bSynch, ::request * prequest) override;
 //
 //      //virtual bool is_key_pressed(::user::enum_key ekey);
 //
@@ -555,8 +555,8 @@ namespace bred
 //      //virtual void check_topic_file_change();
 //
 //
-//      //void launch_app(const ::string & psz);
-//      //void install_app(const ::string & psz);
+//      //void launch_app(const ::scoped_string & scopedstr);
+//      //void install_app(const ::scoped_string & scopedstr);
 //
 //
 //
@@ -589,13 +589,13 @@ namespace bred
 //
 //
 //
-//      //virtual void set_app_title(const ::string & pszAppId, const ::string & pszTitle);
+//      //virtual void set_app_title(const ::scoped_string & scopedstrAppId, const ::scoped_string & scopedstrTitle);
 //
 //      //virtual ::pointer<::aura::session>get_session();
 //
 //      ////virtual void term() override;
 //
-//      ////virtual bool open_by_file_extension(const ::string & pszPathName, ::create* pcreate = nullptr) override;
+//      ////virtual bool open_by_file_extension(const ::scoped_string & scopedstrPathName, ::create* pcreate = nullptr) override;
 //      ////virtual bool open_by_file_extension(::create* pcc) override;
 //
 //      ////virtual bool is_session() const override;
@@ -617,7 +617,7 @@ namespace bred
 //      ////virtual void _001OnDefaultTabPaneDrawTitle(::user::tab_pane& pane, ::user::tab* ptab, ::draw2d::graphics_pointer & pgraphics, const ::int_rectangle& rectangle, ::draw2d::brush_pointer& pbrushText) override;
 //
 //
-//      //virtual string_array get_user_wallpaper();
+//      //virtual string_array_base get_user_wallpaper();
 //
 //
 //
@@ -666,7 +666,7 @@ namespace bred
 //
 //      ::user::interaction_base* m_pmousefocusLButtonDown;
 //      ::user::interaction_base* m_pmousefocusRButtonDown;
-//      //string_array                       m_straEscape;
+//      //string_array_base                       m_straEscape;
 //      //::user::style_pointer              m_puserstyle;
 //
 //

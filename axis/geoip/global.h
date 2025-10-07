@@ -23,12 +23,12 @@ typedef unsigned short ush;
 typedef unsigned int ui;
 
 /* PROTO_LIST is defined depending on how PROTOTYPES is defined above.
-If using PROTOTYPES, then PROTO_LIST returns the list, otherwise it
-  returns an is_empty list.
+If using PROTOTYPES, then PROTO_LIST returns the list_base, otherwise it
+  returns an is_empty list_base.
  */
 #if PROTOTYPES
-#define PROTO_LIST(list) list
+#define PROTO_LIST(list_base) list_base
 #else
-#define PROTO_LIST(list) ()
+#define PROTO_LIST(list_base) ()
 #endif
 

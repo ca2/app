@@ -192,6 +192,99 @@ namespace platform
    }
 
 
+   ::string platform::command_line() const
+   {
+
+      if (m_bCommandLineSystemNative)
+      {
+
+         return m_strCommandLineSystemNative;
+
+      }
+
+      if (!m_bCommandLineCalculated)
+      {
+
+         ((platform*)this)->calculate_command_line();
+
+      }
+
+      return m_strCommandLineCalculated;
+
+   }
+
+
+   void platform::calculate_command_line()
+   {
+
+      m_bCommandLineCalculated = true;
+
+      ::string_array stra;
+
+      auto argc = m_argc;
+
+      auto args = m_args;
+
+#ifdef WINDOWS
+
+      auto wargs = m_wargs;
+
+      if (!args && !wargs)
+      {
+
+         throw ::exception(error_wrong_state);
+
+      }
+
+#elif !defined(ANDROID)
+
+      if (!args)
+      {
+
+         throw ::exception(error_wrong_state);
+
+      }
+
+#endif
+
+      for (int i = 0; i < argc; i++)
+      {
+
+         ::string strArg;
+
+#ifdef WINDOWS
+
+         if (wargs[i])
+         {
+
+            strArg = wargs[i];
+
+         }
+         else
+#endif
+         {
+
+            strArg = args[i];
+
+         }
+
+         if (strArg.contains_any_character_in(" \t\r\n"))
+         {
+
+            strArg.surround("\"");
+
+         }
+
+         stra.add(strArg);
+
+      }
+
+      ::string strCommandLineCalculated = stra.implode(" ");
+
+      m_strCommandLineCalculated = strCommandLineCalculated;
+
+   }
+
 
    void platform::platform_initialize()
    {
@@ -208,7 +301,7 @@ namespace platform
 
       ////factory_init();
 
-::acme::g_paAura = __raw_new ::array < matter* > ();
+::acme::g_paAura = øraw_new ::array < matter* > ();
 
 ////::task_on_after_new_particle(g_paAura);
 #if REFERENCING_DEBUGGING
@@ -298,7 +391,8 @@ namespace platform
       m_hinstanceThis = hinstanceThis;
       m_hinstancePrev = hinstancePrev;
       //m_strCommandLine = pCmdLine; // pCmdLine lacks the executable file path arg[0]
-      m_strCommandLine = ::GetCommandLineW();
+      m_strCommandLineSystemNative = ::GetCommandLineW();
+      m_bCommandLineSystemNative = true;
       m_nCmdShow = nCmdShow;
 
       m_argc = __argc;
@@ -309,10 +403,10 @@ namespace platform
    }
 
 
-#else
+#endif
 
 
-   void platform::initialize_system(int argc, platform_char ** args, platform_char ** envp)
+   void platform::initialize_system(int argc, char ** args, char ** envp)
    {
 
       m_argc = argc;
@@ -321,8 +415,6 @@ namespace platform
 
    }
 
-
-#endif
 
 
    //void platform::initialize_memory_counter()
@@ -437,10 +529,10 @@ namespace platform
    }
 
 
-   string_array platform::get_arguments()
+   string_array_base platform::get_arguments()
    {
 
-      string_array stra;
+      string_array_base stra;
 
       for (::collection::index i = 0; i < m_argc; i++)
       {
@@ -502,7 +594,7 @@ namespace platform
    }
 
 
-   ::string_array platform::get_argument_options(const ::scoped_string & scopedstrArgument)
+   ::string_array_base platform::get_argument_options(const ::scoped_string & scopedstrArgument)
    {
 
       string strArgument = scopedstrArgument;
@@ -520,7 +612,7 @@ namespace platform
 
       }
 
-      ::string_array straOptions;
+      ::string_array_base straOptions;
 
       straOptions.explode(",", strOptions);
 
@@ -619,7 +711,7 @@ namespace platform
       if (!pfactory)
       {
 
-         ::system()->__construct_new(pfactory);
+         ::system()->øconstruct_new(pfactory);
 
       }
 
@@ -736,7 +828,7 @@ namespace platform
    }
 
 
-   void platform::set_resource_block(const char * pstart, const char * pend)
+   void platform::set_resource_block(const_char_pointer pstart, const_char_pointer pend)
    {
 
       m_blockMatter = ::block(pstart, pend);
@@ -750,7 +842,7 @@ namespace platform
       // if (!m_psystem)
       // {
       //
-      //    factory()->__raw_construct(m_psystem);
+      //    factory()->øraw_construct(m_psystem);
       //
       //    m_psystem->set_platform();
       //
@@ -775,15 +867,16 @@ g_bWindowingOutputDebugString = true;
    void platform::factory_initialize()
    {
 
-      m_pfactory = { transfer_t{}, __raw_new::factory::factory() };
+      m_pfactory = { transfer_t{}, øraw_new::factory::factory() };
 
       //__raw_construct_new(m_pfactorymap);
 
       //__raw_construct_new(m_pcomponentfactorymap);
 
-      //m_pfactory = __allocate ::factory::factory();
+      //m_pfactory = øallocate ::factory::factory();
 
-      m_pfactory->InitHashTable(16189);
+
+      m_pfactory->InitHashTable(16381);
 
       //::acme::acme::g_pstaticstatic->m_pfactorya = ___new factory_array();
 
@@ -823,16 +916,16 @@ g_bWindowingOutputDebugString = true;
 
       critical_section_lock cs(&m_criticalsection);
 
-      auto p = m_pfactory->find_item(atom);
+      auto iterator = m_pfactory->find(atom);
 
-      if (!p)
+      if (!iterator)
       {
 
          return false;
 
       }
 
-      if (!p->element2())
+      if (!iterator->payload())
       {
 
          return false;
@@ -875,14 +968,14 @@ g_bWindowingOutputDebugString = true;
 
 
 
-   ::factory::factory_pointer & platform::factory(const ::string & strLibraryRequest)
+   ::factory::factory_pointer & platform::factory(const ::scoped_string & scopedstrLibraryRequest)
    {
 
       critical_section_lock criticalsectionlock(&m_criticalsection);
 
       string strLibrary;
 
-      strLibrary = library_filter(strLibraryRequest);
+      strLibrary = library_filter(scopedstrLibraryRequest);
 
       auto & pfactory = m_factorymap[strLibrary];
 
@@ -912,7 +1005,7 @@ g_bWindowingOutputDebugString = true;
 
          }
 
-         plibrary = system()->__create_new < ::acme::library >();
+         plibrary = system()->øcreate_new < ::acme::library >();
 
          plibrary->m_strName = strLibrary;
 
@@ -940,17 +1033,17 @@ g_bWindowingOutputDebugString = true;
    }
 
 
-   ::factory::factory * platform::component_factory(const ::string& strComponent)
+   ::factory::factory * platform::component_factory(const ::scoped_string & scopedstrComponent)
    {
 
       critical_section_lock criticalsectionlock(&m_criticalsection);
 
-      auto & factorymapComponent = m_componentfactorymap[strComponent];
+      auto & factorymapComponent = m_componentfactorymap[scopedstrComponent];
 
       if (factorymapComponent.size() <= 0)
       {
 
-         debugf("No existing factory for component \"%s\".\n", strComponent.c_str());
+         debugf("No existing factory for component \"%s\".\n", scopedstrComponent.as_string().c_str());
 
          return nullptr;
 
@@ -964,7 +1057,7 @@ g_bWindowingOutputDebugString = true;
       //    if(strComponent == "nano_http")
       //    {
       //
-      //       pfactory = system()->__create_new < ::factory::factory >();
+      //       pfactory = system()->øcreate_new < ::factory::factory >();
       //
       //       initialize_nano_http(pfactory);
       //
@@ -974,7 +1067,7 @@ g_bWindowingOutputDebugString = true;
       //    else if(strComponent == "nano_user")
       //    {
       //
-      //       pfactory = system()->__create_new < ::factory::factory >();
+      //       pfactory = system()->øcreate_new < ::factory::factory >();
       //
       //       initialize_nano_user(pfactory);
       //
@@ -1012,7 +1105,7 @@ g_bWindowingOutputDebugString = true;
       //   if (pfnFactory)
       //   {
 
-      //      pfactory = system()->__create_new < ::factory::factory >();
+      //      pfactory = system()->øcreate_new < ::factory::factory >();
 
       //      pfnFactory(pfactory);
 
@@ -1038,17 +1131,17 @@ g_bWindowingOutputDebugString = true;
    }
 
 
-   ::string platform::component_factory_implementation_name(const ::string& strComponent)
+   ::string platform::component_factory_implementation_name(const ::scoped_string & scopedstrComponent)
    {
 
       critical_section_lock criticalsectionlock(&m_criticalsection);
 
-      auto& factorymapComponent = m_componentfactorymap[strComponent];
+      auto& factorymapComponent = m_componentfactorymap[scopedstrComponent];
 
       if (factorymapComponent.size() <= 0)
       {
 
-         debugf("No existing factory for component \"%s\".\n", strComponent.c_str());
+         debugf("No existing factory for component \"%s\".\n", scopedstrComponent.as_string().c_str());
 
          return nullptr;
 
@@ -1059,21 +1152,21 @@ g_bWindowingOutputDebugString = true;
    }
 
 
-   ::factory::factory_pointer & platform::factory(const ::string & strComponent, const ::string & strImplementation)
+   ::factory::factory_pointer & platform::factory(const ::scoped_string & scopedstrComponent, const ::scoped_string & scopedstrImplementation)
    {
 
       critical_section_lock criticalsectionlock(&m_criticalsection);
 
       //informationf("platform::factory(\"%s\", \"%s\");\n", strComponent.c_str(), strImplementation.c_str());
 
-      auto strImplementationName = implementation_name(strComponent, strImplementation);
+      auto strImplementationName = implementation_name(scopedstrComponent, scopedstrImplementation);
 
-      auto & pfactory = m_componentfactorymap[strComponent][strImplementationName];
+      auto & pfactory = m_componentfactorymap[scopedstrComponent][strImplementationName];
 
       if (pfactory)
       {
 
-         debugf("Returning existing factory \"%s\" - \"%s\".\n", strComponent.c_str(), strImplementation.c_str());
+         debugf("Returning existing factory \"%s\" - \"%s\".\n", scopedstrComponent.as_string().c_str(), scopedstrImplementation.as_string().c_str());
 
          return pfactory;
 
@@ -1085,7 +1178,7 @@ g_bWindowingOutputDebugString = true;
       //    if(strComponent == "nano_http")
       //    {
       //
-      //       pfactory = system()->__create_new < ::factory::factory >();
+      //       pfactory = system()->øcreate_new < ::factory::factory >();
       //
       //       initialize_nano_http(pfactory);
       //
@@ -1095,7 +1188,7 @@ g_bWindowingOutputDebugString = true;
       //    else if(strComponent == "nano_user")
       //    {
       //
-      //       pfactory = system()->__create_new < ::factory::factory >();
+      //       pfactory = system()->øcreate_new < ::factory::factory >();
       //
       //       initialize_nano_user(pfactory);
       //
@@ -1117,7 +1210,7 @@ g_bWindowingOutputDebugString = true;
       string strLibrary;
 
       //strLibrary = library_name(strComponent, strImplementation);
-      strLibrary = strComponent + "_" + strImplementation;
+      strLibrary = scopedstrComponent + "_" + scopedstrImplementation;
 
       //informationf("Getting library \"%s\".", strLibrary.c_str());
 
@@ -1133,7 +1226,7 @@ g_bWindowingOutputDebugString = true;
          if (pfnFactory)
          {
 
-            pfactory = system()->__create_new < ::factory::factory >();
+            pfactory = system()->øcreate_new < ::factory::factory >();
 
             pfnFactory(pfactory);
 
@@ -1146,7 +1239,7 @@ g_bWindowingOutputDebugString = true;
          informationf("Library not found : \"%s\".\n", strLibrary.c_str());
 
          //pfactory = (const ::extended::status&)plibrary;
-         throw ::exception(error_resource, strComponent + "_" + strImplementation + "_factory not found!!");
+         throw ::exception(error_resource, scopedstrComponent + "_" + scopedstrImplementation + "_factory not found!!");
 
       }
 
@@ -1159,7 +1252,7 @@ g_bWindowingOutputDebugString = true;
    }
 
 
-   //::factory::factory_pointer& platform::_factory(const ::string& strLibraryRequest)
+   //::factory::factory_pointer& platform::_factory(const ::scoped_string & scopedstrLibraryRequest)
    ////{
    ////
    ////   critical_section_lock criticalsectionlock(&m_criticalsection);
@@ -1196,7 +1289,7 @@ g_bWindowingOutputDebugString = true;
    ////
    ////      }
    ////
-   ////      plibrary = system()->__create_new < ::acme::library >();
+   ////      plibrary = system()->øcreate_new < ::acme::library >();
    ////
    ////      plibrary->m_strName = strLibrary;
    ////
@@ -1236,17 +1329,17 @@ g_bWindowingOutputDebugString = true;
    }
 
 
-   ::pointer<::factory::factory> & platform::impact_factory(const ::string & strComponent, const ::string & strImplementation)
+   ::pointer<::factory::factory> & platform::impact_factory(const ::scoped_string & scopedstrComponent, const ::scoped_string & scopedstrImplementation)
    {
 
       critical_section_lock criticalsectionlock(&m_criticalsection);
 
-      auto & pfactory = m_componentfactorymap[strComponent][implementation_name(strComponent, strImplementation)];
+      auto & pfactory = m_componentfactorymap[scopedstrComponent][implementation_name(scopedstrComponent, scopedstrImplementation)];
 
       try
       {
 
-         return factory(strComponent, strImplementation);
+         return factory(scopedstrComponent, scopedstrImplementation);
 
       }
       catch (const ::exception & exception)
@@ -1256,7 +1349,7 @@ g_bWindowingOutputDebugString = true;
 
          string strDetails = exception.get_consolidated_details(this);
 
-         auto pmessagebox = __initialize_new_with(this) ::message_box(strMessage, "Library Loading Failure", e_message_box_ok | e_message_box_icon_warning,
+         auto pmessagebox = __initialize_new_with(this) ::message_box(strMessage, "Library Loading Failure", ::user::e_message_box_ok | ::user::e_message_box_icon_warning,
             strDetails);
 
          pmessagebox->async();
@@ -1270,23 +1363,23 @@ g_bWindowingOutputDebugString = true;
    }
 
    
-   ::pointer<::acme::library> platform::create_library_dynamically(const ::string & strLibrary)
+   ::pointer<::acme::library> platform::create_library_dynamically(const ::scoped_string & scopedstrLibrary)
    {
 
       //::allocator::add_referer(REFERENCING_DEBUGGING_THIS_FUNCTION_FILE_LINE);
 
-      auto plibrary = __create_new < ::acme::library >();
+      auto plibrary = øcreate_new < ::acme::library >();
 
       __check_refdbg
       //plibrary->initialize_matter(this);
 
       //auto estatus = plibrary->open(strLibrary);
 
-      debugf("platform::create_library Going to open library \"%s\".", strLibrary.c_str());
+      debugf("platform::create_library Going to open library \"%s\".", scopedstrLibrary.as_string().c_str());
 
       //information() << "platform::create_library Going to open library \"" << strLibrary << "\".";
 
-      plibrary->open(strLibrary);
+      plibrary->open(scopedstrLibrary);
 
       //if (!estatus)
       //{
@@ -1300,9 +1393,9 @@ g_bWindowingOutputDebugString = true;
 
          string strMessage = plibrary->m_strMessage;
 
-         warning() << "Library wasn't opened (\"" << strLibrary << "\") : " << strMessage;
+         warning() << "Library wasn't opened (\"" << scopedstrLibrary << "\") : " << strMessage;
 
-         throw ::exception(error_failed, "Library wasn't opened (\"" + strLibrary + "\")", strMessage);
+         throw ::exception(error_failed, "Library wasn't opened (\"" + scopedstrLibrary + "\")", strMessage);
 
       }
       
@@ -1312,17 +1405,17 @@ g_bWindowingOutputDebugString = true;
       //
       // #endif
 
-      printf_line("Library was opened: \"%s\".", strLibrary.c_str());
+      printf_line("Library was opened: \"%s\".", scopedstrLibrary.as_string().c_str());
 
       return plibrary;
 
    }
 
 
-   ::pointer<::acme::library> platform::create_library_statically(const ::string & strLibrary)
+   ::pointer<::acme::library> platform::create_library_statically(const ::scoped_string & scopedstrLibrary)
    {
 
-      auto pfnFactory = ::factory_function::get(strLibrary);
+      auto pfnFactory = ::factory_function::get(scopedstrLibrary);
 
       if (!pfnFactory)
       {
@@ -1331,9 +1424,9 @@ g_bWindowingOutputDebugString = true;
 
       }
 
-      auto plibrary = __create_new < ::acme::library >();
+      auto plibrary = øcreate_new < ::acme::library >();
 
-      plibrary->m_strName = strLibrary;
+      plibrary->m_strName = scopedstrLibrary;
 
       plibrary->m_pfnFactory = pfnFactory;
 
@@ -1343,12 +1436,12 @@ g_bWindowingOutputDebugString = true;
 
 
 
-   ::pointer<::acme::library> platform::create_library(const ::string & strLibrary)
+   ::pointer<::acme::library> platform::create_library(const ::scoped_string & scopedstrLibrary)
    {
 
 #ifdef CUBE
 
-      return create_library_statically(strLibrary);
+      return create_library_statically(scopedstrLibrary);
 
 #else
 
@@ -1357,14 +1450,14 @@ g_bWindowingOutputDebugString = true;
 //      try
   //    {
 
-         plibrary = create_library_dynamically(strLibrary);
+         plibrary = create_library_dynamically(scopedstrLibrary);
 
     //  }
 //      catch (library_not_loaded& librarynotloaded)
   //    {
 
     //     auto pmessagebox = __initialize_new_with(this) ::message_box(librarynotloaded.get_message(),
-            //"Library not loaded", e_message_box_icon_error, librarynotloaded.m_strDetails);
+            //"Library not loaded", ::user::e_message_box_icon_error, librarynotloaded.m_strDetails);
 
       //   pmessagebox->async();
 
@@ -1378,7 +1471,7 @@ g_bWindowingOutputDebugString = true;
       if (!plibrary)
       {
 
-         plibrary = create_library_statically(strLibrary);
+         plibrary = create_library_statically(scopedstrLibrary);
 
       }
 
@@ -1389,14 +1482,14 @@ g_bWindowingOutputDebugString = true;
    }
 
 
-   ::pointer<::acme::library> & platform::library(const ::string & str)
+   ::pointer<::acme::library> & platform::library(const ::scoped_string & scopedstr)
    {
 
       // Ex. "audio" (library)
 
       //informationf("platform::library \"%s\".", str.c_str());
 
-      if (str.is_empty())
+      if (scopedstr.is_empty())
       {
 
          throw ::exception(error_bad_argument);
@@ -1405,7 +1498,7 @@ g_bWindowingOutputDebugString = true;
 
       critical_section_lock criticalsectionlock(&m_criticalsection);
 
-      string strLibrary = library_filter(str);
+      string strLibrary = library_filter(scopedstr);
 
       auto & plibrary = m_mapLibrary[strLibrary];
 
@@ -1468,7 +1561,7 @@ g_bWindowingOutputDebugString = true;
    //}
 
 
-   release_time_for_project platform::as_release_time_for_project(const char* pszStaticText)
+   release_time_for_project platform::as_release_time_for_project(const_char_pointer pszStaticText)
    {
 
       release_time_for_project releasetimeforproject;

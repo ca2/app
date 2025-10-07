@@ -3,7 +3,7 @@
 
 #include "form_list.h"
 #include "list_impact.h"
-#include "base/user/form/impact.h"
+#include "berg/user/form/impact.h"
 
 
 namespace user
@@ -31,7 +31,7 @@ namespace user
       // ::core::application* get_app();
       // ::core::session* get_session();
       // ::core::system* get_system();
-      // ::base::user * user() override;
+      // ::berg::user * user() override;
 
 
 //      // void assert_ok() const override;

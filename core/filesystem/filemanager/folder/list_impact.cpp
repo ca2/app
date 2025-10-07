@@ -49,7 +49,7 @@ namespace filemanager
 
       }
 
-      void list_impact::initialize_folder_list_impact(string strDataKeyModifier, bool bRecursive)
+      void list_impact::initialize_folder_list_impact(const ::scoped_string & scopedstrDataKeyModifier, bool bRecursive)
       {
 
          m_bRecursive = bRecursive;
@@ -58,9 +58,9 @@ namespace filemanager
 
          update_impact();
 
-         m_pfolderlistdata = __create_new < folder::list_data >();
+         m_pfolderlistdata = øcreate_new < folder::list_data >();
 
-         m_pfolderlistdata->set_data_key_modifier(strDataKeyModifier);
+         m_pfolderlistdata->set_data_key_modifier(scopedstrDataKeyModifier);
 
          set_data_interface(m_pfolderlistdata);
 
@@ -92,7 +92,7 @@ namespace filemanager
             pcolumn->m_iSubItem = 1;
             pcolumn->m_text = m_papplication->__text("text://filemanager/list_impact/recursive/Recursive");
 
-            auto pcheckbox = __create_new <  ::user::check_box >();
+            auto pcheckbox = øcreate_new <  ::user::check_box >();
             pcheckbox->id() = pcolumn->id();
             pcheckbox->add_function(::user::e_control_function_check_box);
             _001AddControl(pcheckbox);
@@ -102,7 +102,7 @@ namespace filemanager
       }
 
 
-      bool list_impact::add_unique(const string_array & stra)
+      bool list_impact::add_unique(const string_array_base & stra)
       {
 
          if (stra.get_size() == 0)
@@ -128,7 +128,7 @@ namespace filemanager
       }
 
 
-      bool list_impact::add_unique(const string_array & stra, ::int_array & baRecursive)
+      bool list_impact::add_unique(const string_array_base & stra, ::int_array_base & baRecursive)
       {
 
          if (stra.get_size() == 0)
@@ -154,7 +154,7 @@ namespace filemanager
       }
 
 
-      bool list_impact::erase(const string_array & stra)
+      bool list_impact::erase(const string_array_base & stra)
       {
 
          if (stra.get_size() == 0)
@@ -183,7 +183,7 @@ namespace filemanager
       }
 
 
-      void list_impact::GetSel(string_array & stra)
+      void list_impact::GetSel(string_array_base & stra)
       {
 
          if (m_pfolderlistdata)

@@ -159,9 +159,9 @@ namespace simple_ui
       character_count iSelEnd;
       character_count lim = 0;
 
-      auto ppenCaret = __øcreate < ::draw2d::pen > ();
+      auto ppenCaret = øcreate < ::draw2d::pen > ();
 
-      auto pbrushText = __øcreate < ::draw2d::brush > ();
+      auto pbrushText = øcreate < ::draw2d::brush > ();
 
       ppenCaret->create_solid(1.0,argb(255,0,0,0));
 
@@ -183,9 +183,9 @@ namespace simple_ui
       ::write_text::text_metric metric;
        pgraphics->get_text_metrics(&metric);
       double dLineHeight = metric.get_line_spacing();
-//      string_array & straLines = m_plines->lines;
-      string_array & straLines = m_straLines;
-      string_array straLineFeed;
+//      string_array_base & straLines = m_plines->lines;
+      string_array_base & straLines = m_straLines;
+      string_array_base straLineFeed;
       string strLine;
       string str1;
       string str2;
@@ -208,7 +208,7 @@ namespace simple_ui
          {
             strLine.empty();
          }
-         string_array stra;
+         string_array_base stra;
          character_count i1 = iSelStart - lim;
          character_count i2 = iSelEnd - lim;
          character_count i3 = iCursor - lim;

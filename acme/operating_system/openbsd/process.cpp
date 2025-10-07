@@ -20,14 +20,14 @@
 //#include <unistd.h>
 //#include "node.h"
 //
-//int create_process6(const char * _cmd_line, int * pprocessId);
+//int create_process6(const_char_pointer _cmd_line, int * pprocessId);
 //
-//CLASS_DECL_ACME void dll_processes(unsigned_int_array & dwa, string_array & straProcesses, const ::scoped_string & scopedstrDll)
+//CLASS_DECL_ACME void dll_processes(unsigned_int_array & dwa, string_array_base & straProcesses, const ::scoped_string & scopedstrDll)
 //{
 //
 //   __UNREFERENCED_PARAMETER(dwa);
 //   __UNREFERENCED_PARAMETER(straProcesses);
-//   __UNREFERENCED_PARAMETER(pszDll);
+//   __UNREFERENCED_PARAMETER(scopedstrDll);
 //
 //}
 //
@@ -37,9 +37,9 @@
 //int create_process(const ::scoped_string & scopedstrCommandLine, int * pprocessId)
 //{
 //
-//   string_array stra;
+//   string_array_base stra;
 //
-//   stra = get_c_args_for_c(pszCommandLine);
+//   stra = get_c_args_for_c(scopedstrCommandLine);
 //
 //   address_array < char * > argv;
 //
@@ -95,7 +95,7 @@
 //}
 //
 //
-//int create_process3(const char * _cmd_line, int * pprocessId)
+//int create_process3(const_char_pointer _cmd_line, int * pprocessId)
 //{
 //
 //   char *   exec_path_name;
@@ -146,9 +146,9 @@
 //int daemonize_process(const ::scoped_string & scopedstrCommandLine, int * pprocessId)
 //{
 //
-//   string_array stra;
+//   string_array_base stra;
 //
-//   stra = get_c_args_for_c(pszCommandLine);
+//   stra = get_c_args_for_c(scopedstrCommandLine);
 //
 //   char ** argv = (char **) malloc(sizeof(char *) * (stra.get_size() + 1));
 //
@@ -252,9 +252,9 @@
 //int create_process4(const ::scoped_string & scopedstrCommandLine, int * pprocessId)
 //{
 //
-//   string_array stra;
+//   string_array_base stra;
 //
-//   stra = get_c_args_for_c(pszCommandLine);
+//   stra = get_c_args_for_c(scopedstrCommandLine);
 //
 //   char ** argv = (char **) malloc(sizeof(char *) * (stra.get_size() + 1));
 //
@@ -330,7 +330,7 @@
 //
 //   strCmdLine = pszPath;
 //
-//   if(ansi_length(pszParam) > 0)
+//   if(ansi_length(scopedstrParam) > 0)
 //   {
 //
 //      strCmdLine +=  " ";
@@ -374,7 +374,7 @@
 //
 //   strCmdLine = pszPath;
 //
-//   if(ansi_length(pszParam) > 0)
+//   if(ansi_length(scopedstrParam) > 0)
 //   {
 //
 //      strCmdLine +=  " ";
@@ -480,17 +480,17 @@
 //
 //   mem.get_data()[s] = '\0';
 //
-//   return (const char *) mem.get_data();
+//   return (const_char_pointer )mem.get_data();
 //
 //}
 //
 //
-//::int_array module_path_get_pid(const ::file::path & path)
+//::int_array_base module_path_get_pid(const ::file::path & path)
 //{
 //
-//   ::int_array ia;
+//   ::int_array_base ia;
 //
-//   ::file::path_array stra;
+//   ::file::path_array_base stra;
 //
 //   ::dir::ls_dir(stra, "/proc/");
 //
@@ -530,19 +530,19 @@
 //      atom_array node::module_path_get_pid(const ::scoped_string & scopedstr)
 //      {
 //
-//         informationf("os/linux_process.cpp app_get_pid (" + string(psz) + ")");
+//         informationf("os/linux_process.cpp app_get_pid (" + string(scopedstr) + ")");
 //
 //         atom_array ia;
 //
-//         ::file::path_array stra;
+//         ::file::path_array_base stra;
 //
 //         ::dir::ls_dir(stra, "/proc/");
 //
-//         string str(psz);
+//         string str(scopedstr);
 //
 //         str = "app=" + str;
 //
-//         string strApp(psz);
+//         string strApp(scopedstr);
 //
 //         strApp.replace("-", "_");
 //
@@ -586,7 +586,7 @@
 //               } else
 //               {
 //
-//                  string_array straCmdLine = cmdline_from_pid(iPid);
+//                  string_array_base straCmdLine = cmdline_from_pid(iPid);
 //
 //                  string strCmdLine;
 //
@@ -613,7 +613,7 @@
 //      string node::command_line_from_pid(unsigned int iPid)
 //      {
 //
-//         string_array stra;
+//         string_array_base stra;
 //
 //         string str;
 //
@@ -671,7 +671,7 @@
 //      }
 //
 //
-//      bool node::is_shared_library_busy(unsigned int processid, const string_array & stra)
+//      bool node::is_shared_library_busy(unsigned int processid, const string_array_base & stra)
 //      {
 //
 //         return false;
@@ -679,7 +679,7 @@
 //      }
 //
 //
-//      bool node::is_shared_library_busy(const string_array & stra)
+//      bool node::is_shared_library_busy(const string_array_base & stra)
 //      {
 //
 //         return false;
@@ -698,7 +698,7 @@
 //
 //   ::property_set set;
 //
-//   return call_sync(pszFile, pszParams, ::file::path(pszFile).folder(), e_display_none, timeTimeout, set);
+//   return call_sync(scopedstrFile, pszParams, ::file::path(scopedstrFile).folder(), e_display_none, timeTimeout, set);
 //
 //}
 //
@@ -714,9 +714,9 @@
 //int create_process2(const ::scoped_string & scopedstrCommandLine, int * pprocessId)
 //{
 //
-//   string_array stra;
+//   string_array_base stra;
 //
-//   stra = get_c_args_for_c(pszCommandLine);
+//   stra = get_c_args_for_c(scopedstrCommandLine);
 //
 //   char ** argv = (char **) malloc(sizeof(char *) * (stra.get_size() + 1));
 //
@@ -790,7 +790,7 @@
 //
 //
 //
-//CLASS_DECL_ACME ::file::path core_app_path(string strApp)
+//CLASS_DECL_ACME ::file::path core_app_path(const ::scoped_string & scopedstrApp)
 //{
 //
 //   strApp.replace("-", "_");

@@ -59,7 +59,7 @@ namespace url
       //if (!urlparts.request().arguments())
       //{
 
-      //   urlparts.m_request.m_psetArguments = __allocate ::property_set ();
+      //   urlparts.m_request.m_psetArguments = øallocate ::property_set ();
 
       //}
 
@@ -838,7 +838,7 @@ namespace url
    }
 
 
-   //string url::protocol(const ::string & strParam)
+   //string url::protocol(const ::scoped_string & scopedstrParam)
    //{
 
    //   string str(strParam);
@@ -857,7 +857,7 @@ namespace url
    //}
 
 
-   //string url::get_root(const ::string & strParam)
+   //string url::get_root(const ::scoped_string & scopedstrParam)
    //{
 
    //   string str(strParam);
@@ -899,7 +899,7 @@ namespace url
    //}
 
 
-   //string url::get_server(const ::string & strParam)
+   //string url::get_server(const ::scoped_string & scopedstrParam)
    //{
 
    //   string strRoot = get_root(strParam);
@@ -918,7 +918,7 @@ namespace url
    //}
 
 
-   //int url::get_port(const ::string & strParam, int iDefault)
+   //int url::get_port(const ::scoped_string & scopedstrParam, int iDefault)
    //{
 
    //   string strRoot = get_root(strParam);
@@ -963,7 +963,7 @@ namespace url
    //}
 
 
-   //string url::get_object(const ::string & strParam)
+   //string url::get_object(const ::scoped_string & scopedstrParam)
    //{
 
    //   string str(strParam);
@@ -1028,7 +1028,7 @@ namespace url
    //}
 
 
-   //string url::object_get_script(const ::string & strParam) // page
+   //string url::object_get_script(const ::scoped_string & scopedstrParam) // page
    //{
 
    //   string str(strParam);
@@ -1051,7 +1051,7 @@ namespace url
    //}
 
 
-   //string url::object_get_query(const ::string & strParam) // id=1
+   //string url::object_get_query(const ::scoped_string & scopedstrParam) // id=1
    //{
 
    //   string str(strParam);
@@ -1074,7 +1074,7 @@ namespace url
    //}
 
 
-   //string url::object_set(const ::string & strObject, const ::string & strKeyParam, ::payload payload)
+   //string url::object_set(const ::scoped_string & scopedstrObject, const ::scoped_string & scopedstrKeyParam, ::payload payload)
    //{
 
    //   string strQuery = object_get_query(strObject);
@@ -1084,7 +1084,7 @@ namespace url
    //}
 
 
-   //string url::get_script(const ::string & strParam) // page
+   //string url::get_script(const ::scoped_string & scopedstrParam) // page
    //{
 
    //   return object_get_script(get_object(strParam));
@@ -1092,7 +1092,7 @@ namespace url
    //}
 
 
-   //string url::get_query(const ::string & strParam) // id=1
+   //string url::get_query(const ::scoped_string & scopedstrParam) // id=1
    //{
 
    //   return object_get_query(get_object(strParam));
@@ -1100,7 +1100,7 @@ namespace url
    //}
 
 //
-//   string url::object(const ::string & strScriptParam, const ::string & strQueryParam)
+//   string url::object(const ::scoped_string & scopedstrScriptParam, const ::scoped_string & scopedstrQueryParam)
 //   {
 //
 //      string strScript(strScriptParam);
@@ -1123,7 +1123,7 @@ namespace url
 //   }
 //
 //
-//   string url::path(const ::string & str1Param, const ::string & str2Param)
+//   string url::path(const ::scoped_string & scopedstr1Param, const ::scoped_string & scopedstr2Param)
 //   {
 //
 //      if (str2Param.is_empty())
@@ -1156,7 +1156,7 @@ namespace url
 //   }
 //
 //
-//   string url::path(const ::string & str1, const ::string & str2, const ::string & str3)
+//   string url::path(const ::scoped_string & scopedstr1, const ::scoped_string & scopedstr2, const ::scoped_string & scopedstr3)
 //   {
 //
 //      return path(path(str1, str2), str3);
@@ -1164,7 +1164,7 @@ namespace url
 //   }
 //
 //
-//   string url::name(const ::string & strParam)
+//   string url::name(const ::scoped_string & scopedstrParam)
 //   {
 //
 //      string str(strParam);
@@ -1194,7 +1194,7 @@ namespace url
 //   }
 //
 //
-//   //string url::url::encode(const ::string & strParam)
+//   //string url::url::encode(const ::scoped_string & scopedstrParam)
 //   //{
 //
 //   //   return ::url::encode(strParam);
@@ -1202,7 +1202,7 @@ namespace url
 //   //}
 //
 //
-//   //string url::url::decode(const ::string & strParam)
+//   //string url::url::decode(const ::scoped_string & scopedstrParam)
 //   //{
 //
 //   //   return ::url::decode(strParam);
@@ -1210,7 +1210,7 @@ namespace url
 //   //}
 //
 //
-//   //string url::url::decode(const ::string & strUrl, character_count iLen)
+//   //string url::url::decode(const ::scoped_string & scopedstrUrl, character_count iLen)
 //   //{
 //
 //   //   return ::url::decode(strUrl,iLen);
@@ -1218,7 +1218,7 @@ namespace url
 //   //}
 //
 //
-//   string url::query_append(const ::string & strUrlParam, const ::string & strQuery)
+//   string url::query_append(const ::scoped_string & scopedstrUrlParam, const ::scoped_string & scopedstrQuery)
 //   {
 //
 //      string strUrl(strUrlParam);
@@ -1263,7 +1263,7 @@ namespace url
 //   }
 //
 //
-//   bool url::is_url(const ::string & strCandidateParam)
+//   bool url::is_url(const ::scoped_string & scopedstrCandidateParam)
 //   {
 //
 //      string strCandidate(strCandidateParam);
@@ -1298,7 +1298,7 @@ namespace url
 //   }
 //
 //
-//   //::payload & url::var_set(::payload & payloadUrl, const ::string & strKeyParam, ::payload payload)
+//   //::payload & url::var_set(::payload & payloadUrl, const ::scoped_string & scopedstrKeyParam, ::payload payload)
 //   //{
 //
 //   //   return payloadUrl = set_key(payloadUrl.as_string(), strKeyParam, payload);
@@ -1306,7 +1306,7 @@ namespace url
 //   //}
 //
 //
-//   //property & url::property_set(property & propUrl, const ::string & strKeyParam, ::payload payload)
+//   //property & url::property_set(property & propUrl, const ::scoped_string & scopedstrKeyParam, ::payload payload)
 //   //{
 //
 //   //   propUrl = set_key(propUrl.as_string(), strKeyParam, payload);
@@ -1316,7 +1316,7 @@ namespace url
 //   //}
 //
 //
-//   //string url::string_set(string & strUrl, const ::string & strKeyParam, ::payload payload)
+//   //string url::string_set(string & strUrl, const ::scoped_string & scopedstrKeyParam, ::payload payload)
 //   //{
 //
 //   //   return strUrl = set_key(strUrl, strKeyParam, payload);
@@ -1324,7 +1324,7 @@ namespace url
 //   //}
 //
 //
-//   //string url::parameters_set_if_empty_at_target(string& strUrl, const ::string & strKey, ::payload payload)
+//   //string url::parameters_set_if_empty_at_target(string& strUrl, const ::scoped_string & scopedstrKey, ::payload payload)
 //   //{
 //
 //   //   if (payload.is_empty())
@@ -1399,7 +1399,7 @@ namespace url
 //   }
 //
 //
-//   //void url::set_key(string & strUrl, const ::string & strUrlParam, const ::string & strKeyParam, ::payload payload)
+//   //void url::set_key(string & strUrl, const ::scoped_string & scopedstrUrlParam, const ::scoped_string & scopedstrKeyParam, ::payload payload)
 //   //{
 //
 //   //   strUrl = strUrlParam;
@@ -1418,7 +1418,7 @@ namespace url
 //   //}
 //
 //
-//  /* void url::set_param(string & strUrlParam, const ::string & strKeyParam, const ::string & strParam)
+//  /* void url::set_param(string & strUrlParam, const ::scoped_string & scopedstrKeyParam, const ::scoped_string & scopedstrParam)
 //   {
 //
 //      string strUrl(strUrlParam);
@@ -1428,7 +1428,7 @@ namespace url
 //   }*/
 //
 ////
-////   void url::set_param(string & strUrl, const ::string & strUrlParam, const ::string & strKeyParam, const ::string & strParam)
+////   void url::set_param(string & strUrl, const ::scoped_string & scopedstrUrlParam, const ::scoped_string & scopedstrKeyParam, const ::scoped_string & scopedstrParam)
 ////   {
 ////
 ////      auto pszQuery = strUrlParam.find('?');
@@ -1443,9 +1443,9 @@ namespace url
 ////
 ////      char * psz = str.get_buffer(iLenUrl + iLenKey + strValue.length() + 2);
 ////
-////      if(pszQuery == nullptr)
+////      if(scopedstrQuery == nullptr)
 ////      {
-////         ansi_cpy(psz, strUrlParam);
+////         ansi_cpy(scopedstr, strUrlParam);
 ////         psz[iLenUrl] = '?';
 ////         ansi_cpy(&psz[iLenUrl + 1], strKey);
 ////         psz[iLenUrl + 1 + iLenKey] = '=';
@@ -1456,18 +1456,18 @@ namespace url
 ////      {
 ////         character_count iFinalLen = pszQuery - strUrlParam;
 //////         int pPos = 0;
-////         ansi_count_copy(psz, strUrlParam, iFinalLen);
+////         ansi_count_copy(scopedstr, strUrlParam, iFinalLen);
 ////         psz[iFinalLen] = '?';
 ////         iFinalLen++;
 ////         pszQuery++;
 ////         bool bRemove = false;
 ////         bool bAlreadyInsertedFirstParam = false;
-////         const ::ansi_character * pszQueryEnd;
+////         const_char_pointer pszQueryEnd;
 ////         bool bInserted = false;
 ////         while(true)
 ////         {
-////            pszQueryEnd = ansi_chr(pszQuery + 1, '&');
-////            if(ansi_count_compare(pszQuery, strKeyParam, iLenKey) == 0 && pszQuery[iLenKey] == '=')
+////            pszQueryEnd = ansi_chr(scopedstrQuery + 1, '&');
+////            if(ansi_count_compare(scopedstrQuery, strKeyParam, iLenKey) == 0 && pszQuery[iLenKey] == '=')
 ////            {
 ////               if(!bRemove)
 ////               {
@@ -1494,10 +1494,10 @@ namespace url
 ////                  psz[iFinalLen] = '&';
 ////                  iFinalLen++;
 ////               }
-////               if(pszQueryEnd == nullptr)
+////               if(scopedstrQueryEnd == nullptr)
 ////               {
-////                  ansi_count_copy(&psz[iFinalLen], pszQuery, iLenUrl - (pszQuery - strUrlParam));
-////                  iFinalLen += iLenUrl - (pszQuery - strUrlParam);
+////                  ansi_count_copy(&psz[iFinalLen], pszQuery, iLenUrl - (scopedstrQuery - strUrlParam));
+////                  iFinalLen += iLenUrl - (scopedstrQuery - strUrlParam);
 ////                  bAlreadyInsertedFirstParam = true;
 ////                  break;
 ////               }
@@ -1509,7 +1509,7 @@ namespace url
 ////               }
 ////            }
 ////            pszQuery = pszQueryEnd;
-////            if(pszQuery == nullptr)
+////            if(scopedstrQuery == nullptr)
 ////               break;
 ////            pszQuery++;
 ////         }
@@ -1541,7 +1541,7 @@ namespace url
 ////   }
 //
 //
-//   //::payload & url::erase_key(::payload & payloadUrl, const ::string & strKeyParam)
+//   //::payload & url::erase_key(::payload & payloadUrl, const ::scoped_string & scopedstrKeyParam)
 //   //{
 //
 //   //   return payloadUrl = erased_key(payloadUrl.as_string(), strKeyParam);
@@ -1549,7 +1549,7 @@ namespace url
 //   //}
 //
 //
-//   //property & url::erase_key(property & propUrl, const ::string & strKeyParam)
+//   //property & url::erase_key(property & propUrl, const ::scoped_string & scopedstrKeyParam)
 //   //{
 //
 //   //   propUrl = erase_key((::payload &) propUrl, strKeyParam);
@@ -1559,7 +1559,7 @@ namespace url
 //   //}
 //
 //
-//   //string & url::erase_key(string & strUrl, const ::string & strKeyParam)
+//   //string & url::erase_key(string & strUrl, const ::scoped_string & scopedstrKeyParam)
 //   //{
 //
 //   //   return strUrl = erased_key(strUrl, strKeyParam);
@@ -1567,7 +1567,7 @@ namespace url
 //   //}
 //
 //
-//   string url::parameter_erased(const ::string & strUrlParam, const ::string & strKeyParam)
+//   string url::parameter_erased(const ::scoped_string & scopedstrUrlParam, const ::scoped_string & scopedstrKeyParam)
 //   {
 //
 //      string strUrl(strUrlParam);
@@ -1582,7 +1582,7 @@ namespace url
 //   }
 //
 //
-//   //::string url::erased_key(const ::string & strUrlParam, const ::string & strKeyParam)
+//   //::string url::erased_key(const ::scoped_string & scopedstrUrlParam, const ::scoped_string & scopedstrKeyParam)
 //   //{
 //
 //   //   string strUrl(strUrlParam);
@@ -1597,7 +1597,7 @@ namespace url
 //   //}
 //
 //
-//   ::payload url::get_parameter(const ::string & strUrlParam, const ::string & strKeyParam)
+//   ::payload url::get_parameter(const ::scoped_string & scopedstrUrlParam, const ::scoped_string & scopedstrKeyParam)
 //   {
 //
 //      string strUrl(strUrlParam);
@@ -1616,7 +1616,7 @@ namespace url
 //   }
 //
 //
-//   bool url::get_parameter(string & strValue, const ::string & strUrl, const ::string & strKey)
+//   bool url::get_parameter(string & strValue, const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrKey)
 //   {
 //
 //      auto pPos = strUrl.find('?');
@@ -1628,7 +1628,7 @@ namespace url
 //
 //   }
 //
-//   bool url::has_param(const ::string & strUrl, const ::string & strKey)
+//   bool url::has_param(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrKey)
 //   {
 //
 //      auto pPos = strUrl.find('?');
@@ -1640,7 +1640,7 @@ namespace url
 //
 //   }
 //
-//   bool url::param_has_char(const ::string & strUrl, const ::string & strKey)
+//   bool url::param_has_char(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrKey)
 //   {
 //
 //      auto pPos = strUrl.find('?');
@@ -1652,7 +1652,7 @@ namespace url
 //   }
 //
 //
-//   bool url::has_param_replace(string & strUrl, const ::string & strKeyParam, const ::string & strValueParam)
+//   bool url::has_param_replace(string & strUrl, const ::scoped_string & scopedstrKeyParam, const ::scoped_string & scopedstrValueParam)
 //   {
 //
 //      auto pPos = strUrl.find('?');
@@ -1676,7 +1676,7 @@ namespace url
 //   }
 //
 //
-//   string url::query_set(const ::string & strQueryParam, const ::string & strKeyParam, ::payload payload)
+//   string url::query_set(const ::scoped_string & scopedstrQueryParam, const ::scoped_string & scopedstrKeyParam, ::payload payload)
 //   {
 //
 //      string strQuery(strQueryParam);
@@ -1760,7 +1760,7 @@ namespace url
 //   }
 //
 //
-//   string url::query_set_param(const ::string & strQueryParam, const ::string & strKeyParam, const ::string & strParam)
+//   string url::query_set_param(const ::scoped_string & scopedstrQueryParam, const ::scoped_string & scopedstrKeyParam, const ::scoped_string & scopedstrParam)
 //   {
 //
 //      string strQuery(strQueryParam);
@@ -1809,7 +1809,7 @@ namespace url
 //   }
 //
 //
-//   string url::query_erase(const ::string & strQueryParam, const ::string & strKeyParam)
+//   string url::query_erase(const ::scoped_string & scopedstrQueryParam, const ::scoped_string & scopedstrKeyParam)
 //   {
 //
 //      ::property_set set;
@@ -1827,7 +1827,7 @@ namespace url
 //   }
 //
 //
-//   string url::__query_erase(const ::string & strQueryParam, const ::string & strAndKeyEqual)
+//   string url::__query_erase(const ::scoped_string & scopedstrQueryParam, const ::scoped_string & scopedstrAndKeyEqual)
 //   {
 //
 //      string strQuery(strQueryParam);
@@ -1866,7 +1866,7 @@ namespace url
 //   }
 //
 //
-//   string url::query_erase(const ::string & strQueryParam, string_array & straKey)
+//   string url::query_erase(const ::scoped_string & scopedstrQueryParam, string_array_base & straKey)
 //   {
 //
 //      ::property_set set;
@@ -1884,7 +1884,7 @@ namespace url
 //   }
 //
 //
-//   ::payload url::query_get_var(const ::string & strQueryParam, const ::string & strKeyParam)
+//   ::payload url::query_get_var(const ::scoped_string & scopedstrQueryParam, const ::scoped_string & scopedstrKeyParam)
 //   {
 //
 //      string strQuery(strQueryParam);
@@ -1981,7 +1981,7 @@ namespace url
 //   }
 //
 //
-//   string url::query_get_param(const ::string & strQuery, const ::string & strKey)
+//   string url::query_get_param(const ::scoped_string & scopedstrQuery, const ::scoped_string & scopedstrKey)
 //   {
 //
 //      string strValue;
@@ -1998,7 +1998,7 @@ namespace url
 //   }
 //
 //
-//   bool url::query_get_param(string & strValue, const ::string & strQuery, const ::string & strKey)
+//   bool url::query_get_param(string & strValue, const ::scoped_string & scopedstrQuery, const ::scoped_string & scopedstrKey)
 //   {
 //
 //      character_count iCmp = strQuery.length() - strKey.length();
@@ -2096,7 +2096,7 @@ namespace url
 //   }
 //
 //
-//   bool url::query_has_param(const ::string & strQuery, const ::string & strKey)
+//   bool url::query_has_param(const ::scoped_string & scopedstrQuery, const ::scoped_string & scopedstrKey)
 //   {
 //
 //      character_count iCmp = strQuery.length() - strKey.length();
@@ -2160,7 +2160,7 @@ namespace url
 //   }
 //
 //
-//   bool url::query_param_has_char(const ::string & strQuery, const ::string & strKey)
+//   bool url::query_param_has_char(const ::scoped_string & scopedstrQuery, const ::scoped_string & scopedstrKey)
 //   {
 //
 //      character_count iCmp = strQuery.length() - strKey.length();
@@ -2250,7 +2250,7 @@ namespace url
 //   }
 //
 //
-//   bool url::query_has_param_replace(string & strQuery, const ::string & strKey, const ::string & strValue)
+//   bool url::query_has_param_replace(string & strQuery, const ::scoped_string & scopedstrKey, const ::scoped_string & scopedstrValue)
 //   {
 //
 //      character_count iCmp = strQuery.length() - strKey.length();
@@ -2349,7 +2349,7 @@ namespace url
 //
 //
 //
-//   bool url::server_ends(string strUrl, string strRoot)
+//   bool url::server_ends(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrRoot)
 //   {
 //
 //      string strServer = get_server(strUrl);
@@ -2374,7 +2374,7 @@ namespace url
 //
 //
 //
-//   string url::set_script(const ::string & strUrl, const ::string & strScript)
+//   string url::set_script(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrScript)
 //   {
 //
 //      return get_protocol(strUrl) + "://" + get_root(strUrl) + string(strScript) + ::str::has_character(get_query(strUrl), "?");
@@ -2382,7 +2382,7 @@ namespace url
 //   }
 //
 //
-//   string url::override_if_empty(const ::string & strDst, const ::string & strSrc, bool bOverrideQuery)
+//   string url::override_if_empty(const ::scoped_string & scopedstrDst, const ::scoped_string & scopedstrSrc, bool bOverrideQuery)
 //   {
 //
 //      string strProtocol = get_protocol(strDst);
@@ -2414,7 +2414,7 @@ namespace url
 //   }
 //
 //
-//   string url::override_if_set_at_source(const ::string & strDst, const ::string & strSrc)
+//   string url::override_if_set_at_source(const ::scoped_string & scopedstrDst, const ::scoped_string & scopedstrSrc)
 //   {
 //
 //      string strProtocol = get_protocol(strDst);
@@ -2445,14 +2445,14 @@ namespace url
 //   }
 //
 //
-//   string url::to_punycode(const ::string & str)
+//   string url::to_punycode(const ::scoped_string & scopedstr)
 //   {
 //
 //      return nano()->idn()->idn_to_punycode(str);
 //
 //   }
 //
-//   string url::from_punycode(const ::string & str)
+//   string url::from_punycode(const ::scoped_string & scopedstr)
 //   {
 //
 //      return nano()->idn()->idn_from_punycode(str);
@@ -2468,7 +2468,7 @@ namespace url
 //   }
 
 
-//   string url::os_fs(string strUrl, bool bPath)
+//   string url::os_fs(const ::scoped_string & scopedstrUrl, bool bPath)
 //   {
 //
 //      strUrl.replace_with("_lt_", "<");
@@ -2497,7 +2497,7 @@ namespace url
 //   }
 //
 //
-//   string url::os_fspath(string strUrl)
+//   string url::os_fspath(const ::scoped_string & scopedstrUrl)
 //   {
 //
 //      return os_fs(strUrl, true);
@@ -2505,7 +2505,7 @@ namespace url
 //   }
 //
 //
-//   string url::os_fsname(string strUrl)
+//   string url::os_fsname(const ::scoped_string & scopedstrUrl)
 //   {
 //
 //      return os_fs(strUrl, false);
@@ -2528,18 +2528,18 @@ namespace url
 
 //
 //
-//bool is_url(const ::scoped_string & scopedstrCandidate, const char** ppszRequest)
+//bool is_url(const ::scoped_string & scopedstrCandidate, const_char_pointer *ppszRequest)
 //{
 //
-//   const ::ansi_character * psz = scopedstrCandidate;
+//   const_char_pointer psz = scopedstrCandidate;
 //
 //   while (*psz != '\0' && (*psz == '.' || *psz == '_' || *psz == '-' || character_isalnum(*psz)))
 //   {
 //      psz++;
 //   }
-//   if (psz == scopedstrCandidate.begin())
+//   if (scopedstr == scopedstrCandidate.begin())
 //      return false;
-//   if (psz == scopedstrCandidate.begin() + 1)
+//   if (scopedstr == scopedstrCandidate.begin() + 1)
 //      return false;
 //   if (*psz != ':')
 //      return false;
@@ -2588,7 +2588,7 @@ namespace url
 //
 //   }
 //
-//   if (*psz == ':' && (psz[1] == '\0' || (psz[1] == '/' && psz[2] == '/' && psz[3] == '\0')))
+//   if (*psz == ':' && (scopedstr[1] == '\0' || (scopedstr[1] == '/' && psz[2] == '/' && psz[3] == '\0')))
 //   {
 //
 //      return true;
@@ -2602,7 +2602,7 @@ namespace url
 //
 //   }
 //
-//   if (*psz == ':' && (psz[1] == '\0' || (psz[1] == '/' && psz[2] == '/' && psz[3] == '\0')))
+//   if (*psz == ':' && (scopedstr[1] == '\0' || (scopedstr[1] == '/' && psz[2] == '/' && psz[3] == '\0')))
 //   {
 //
 //      return true;
@@ -2688,11 +2688,11 @@ namespace url
 //namespace url
 //{
    //
-   //   CLASS_DECL_ACME bool query_get_param(string& strParam, const ::ansi_character * pszKey, const ::ansi_character * pszUrl)
+   //   CLASS_DECL_ACME bool query_get_param(string& strParam, const_char_pointer pszKey, const_char_pointer pszUrl)
    //   {
    //
-   //      const ::ansi_character * pszBeg;
-   //      const ::ansi_character * pszEnd;
+   //      const_char_pointer pszBeg;
+   //      const_char_pointer pszEnd;
    //
    //      {
    //
@@ -2702,9 +2702,9 @@ namespace url
    //         strKey += pszKey;
    //         strKey += "=";
    //
-   //         pszBeg = ansi_find_string(pszUrl, strKey);
+   //         pszBeg = ansi_find_string(scopedstrUrl, strKey);
    //
-   //         if (pszBeg != nullptr)
+   //         if (scopedstrBeg != nullptr)
    //         {
    //
    //            pszBeg += strKey.length();
@@ -2723,9 +2723,9 @@ namespace url
    //         strKey += pszKey;
    //         strKey += "=";
    //
-   //         pszBeg = ansi_find_string(pszUrl, strKey);
+   //         pszBeg = ansi_find_string(scopedstrUrl, strKey);
    //
-   //         if (pszBeg != nullptr)
+   //         if (scopedstrBeg != nullptr)
    //         {
    //
    //            pszBeg += strKey.length();
@@ -2744,9 +2744,9 @@ namespace url
    //         strKey += pszKey;
    //         strKey += "&";
    //
-   //         pszBeg = ansi_find_string(pszUrl, strKey);
+   //         pszBeg = ansi_find_string(scopedstrUrl, strKey);
    //
-   //         if (pszBeg != nullptr)
+   //         if (scopedstrBeg != nullptr)
    //         {
    //
    //            strParam = "";
@@ -2765,9 +2765,9 @@ namespace url
    //         strKey += pszKey;
    //         strKey += "&";
    //
-   //         pszBeg = ansi_find_string(pszUrl, strKey);
+   //         pszBeg = ansi_find_string(scopedstrUrl, strKey);
    //
-   //         if (pszBeg != nullptr)
+   //         if (scopedstrBeg != nullptr)
    //         {
    //
    //            strParam = "";
@@ -2782,7 +2782,7 @@ namespace url
    //
    //   success:
    //
-   //      pszEnd = ansi_find_string(pszBeg, "&");
+   //      pszEnd = ansi_find_string(scopedstrBeg, "&");
    //
    //      if (pszEnd == nullptr)
    //      {
@@ -2790,7 +2790,7 @@ namespace url
    //      }
    //      else
    //      {
-   //         strParam = string(pszBeg, pszEnd - pszBeg);
+   //         strParam = string(scopedstrBeg, pszEnd - pszBeg);
    //      }
    //
    //      return true;
@@ -2825,7 +2825,7 @@ namespace url
    //   }
    //
    //
-   //   bool url::case_insensitive_is_protocol(const ::string & strUrl, const ::string & strProtocolCompare)
+   //   bool url::case_insensitive_is_protocol(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrProtocolCompare)
    //   {
    //
    //      auto strProtocol = get_protocol(strUrl);
@@ -2835,7 +2835,7 @@ namespace url
    //   }
    //
    //   
-   //   bool url::is_http(const ::string & strUrl)
+   //   bool url::is_http(const ::scoped_string & scopedstrUrl)
    //   {
    //
    //      return case_insensitive_is_protocol(strUrl, "http");
@@ -2843,7 +2843,7 @@ namespace url
    //   }
    //
    //
-   //   bool url::is_https(const ::string & strUrl)
+   //   bool url::is_https(const ::scoped_string & scopedstrUrl)
    //   {
    //
    //      return case_insensitive_is_protocol(strUrl, "https");
@@ -2851,7 +2851,7 @@ namespace url
    //   }
    //
    //
-   //   bool url::is_http_or_https(const ::string & strUrl)
+   //   bool url::is_http_or_https(const ::scoped_string & scopedstrUrl)
    //   {
    //
    //      return is_http(strUrl) || is_https(strUrl);
@@ -2859,7 +2859,7 @@ namespace url
    //   }
    //
    //
-   //   bool url::is_ftp(const ::string & strUrl)
+   //   bool url::is_ftp(const ::scoped_string & scopedstrUrl)
    //   {
    //
    //      return case_insensitive_is_protocol(strUrl, "ftp");
@@ -2867,7 +2867,7 @@ namespace url
    //   }
    //
    //
-   //   bool url::is_ftps(const ::string & strUrl)
+   //   bool url::is_ftps(const ::scoped_string & scopedstrUrl)
    //   {
    //
    //      return case_insensitive_is_protocol(strUrl, "ftps");
@@ -2875,7 +2875,7 @@ namespace url
    //   }
    //
    //
-   //   bool url::is_ftp_or_ftps(const ::string & strUrl)
+   //   bool url::is_ftp_or_ftps(const ::scoped_string & scopedstrUrl)
    //   {
    //
    //      return is_ftp(strUrl) || is_ftps(strUrl);
@@ -2883,7 +2883,7 @@ namespace url
    //   }
    //
    //
-   //   bool url::is_common_internet_protocol(const ::string & strUrl)
+   //   bool url::is_common_internet_protocol(const ::scoped_string & scopedstrUrl)
    //   {
    //
    //      return is_http_or_https(strUrl) || is_ftp_or_ftps(strUrl);
@@ -2908,12 +2908,12 @@ namespace url
    //   }
    //
    //
-   //   part::part(const char* psz)
+   //   part::part(const_char_pointer psz)
    //   {
    //
-   //      m_pszLastSlash = strrchr(psz, '/');
+   //      m_pszLastSlash = strrchr(scopedstr, '/');
    //
-   //      m_pszLastQuestionMarkAfterLastSlash = strrchr(psz, '?');
+   //      m_pszLastQuestionMarkAfterLastSlash = strrchr(scopedstr, '?');
    //
    //      if (m_pszLastSlash &&
    //         m_pszLastQuestionMarkAfterLastSlash &&
@@ -3025,7 +3025,7 @@ namespace url
 //
 //void openURL(const string& url_str);
 //
-//int ui_open_url(const ::ansi_character * psz);
+//int ui_open_url(const_char_pointer psz);
 //
 //void openURL(const string& url_str)
 //{
@@ -3061,7 +3061,7 @@ namespace url
 ////#define strdup _strdup
 ////#endif
 ////
-////CLASS_DECL_ACME int_bool freerdp_get_credentials(void * instance, char** username,char** password,char** domain, const ::ansi_character * pszServerName, int bInteractive)
+////CLASS_DECL_ACME int_bool freerdp_get_credentials(void * instance, char** username,char** password,char** domain, const_char_pointer pszServerName, int bInteractive)
 ////{
 ////
 ////   ::platform::application * papp = (::platform::application *) instance;
@@ -3084,11 +3084,11 @@ namespace url
 ////
 ////   //string strToken;
 ////
-////   credentials.m_strToken = Sys(papp).crypto_md5_text(pszServerName);
+////   credentials.m_strToken = Sys(papp).crypto_md5_text(scopedstrServerName);
 ////
 ////   //string strTitle;
 ////
-////   credentials.m_strTitle = "Enter Credentials for : " + string(pszServerName);
+////   credentials.m_strTitle = "Enter Credentials for : " + string(scopedstrServerName);
 ////
 ////   credentials.m_bInteractive = bInteractive;
 ////
@@ -3172,10 +3172,10 @@ namespace url
 //
 //
 //
-////CLASS_DECL_ACME bool is_url(const ::ansi_character * pszCandidate)
+////CLASS_DECL_ACME bool is_url(const_char_pointer pszCandidate)
 ////{
 ////
-////   string strCandidate(pszCandidate);
+////   string strCandidate(scopedstrCandidate);
 ////
 ////   character_count iLen = strCandidate.length();
 ////
@@ -3210,10 +3210,10 @@ namespace url
 //
 //
 //
-////CLASS_DECL_ACME string ::url::decode(const ::ansi_character * psz)
+////CLASS_DECL_ACME string ::url::decode(const_char_pointer psz)
 ////{
 ////
-////   string str(psz);
+////   string str(scopedstr);
 ////
 ////   string strDecode;
 ////
@@ -3265,7 +3265,7 @@ namespace url
 //
 //
 //
-////string ::url::decode(const ::ansi_character * pszUrl, character_count iLen)
+////string ::url::decode(const_char_pointer pszUrl, character_count iLen)
 ////
 ////{
 ////
@@ -3306,7 +3306,7 @@ namespace url
 ////         {
 ////            i++;
 ////            iLen--;
-////            *psz = (char)(uchar)(hex::to(*pszUrl) * 16 + hex::to(*(pszUrl + 1)));
+////            *psz = (char)(uchar)(hex::to(*pszUrl) * 16 + hex::to(*(scopedstrUrl + 1)));
 ////
 ////            psz++;
 ////            pszUrl += 2;
@@ -3335,11 +3335,11 @@ namespace url
 //
 //
 //
-////CLASS_DECL_ACME bool url_query_get_param(string& strParam, const ::ansi_character * pszKey, const ::ansi_character * pszUrl)
+////CLASS_DECL_ACME bool url_query_get_param(string& strParam, const_char_pointer pszKey, const_char_pointer pszUrl)
 ////{
 ////
-////   const ::ansi_character * pszBeg;
-////   const ::ansi_character * pszEnd;
+////   const_char_pointer pszBeg;
+////   const_char_pointer pszEnd;
 ////
 ////   {
 ////
@@ -3349,9 +3349,9 @@ namespace url
 ////      strKey += pszKey;
 ////      strKey += "=";
 ////
-////      pszBeg = ansi_find_string(pszUrl, strKey);
+////      pszBeg = ansi_find_string(scopedstrUrl, strKey);
 ////
-////      if (pszBeg != nullptr)
+////      if (scopedstrBeg != nullptr)
 ////      {
 ////
 ////         pszBeg += strKey.length();
@@ -3370,9 +3370,9 @@ namespace url
 ////      strKey += pszKey;
 ////      strKey += "=";
 ////
-////      pszBeg = ansi_find_string(pszUrl, strKey);
+////      pszBeg = ansi_find_string(scopedstrUrl, strKey);
 ////
-////      if (pszBeg != nullptr)
+////      if (scopedstrBeg != nullptr)
 ////      {
 ////
 ////         pszBeg += strKey.length();
@@ -3391,9 +3391,9 @@ namespace url
 ////      strKey += pszKey;
 ////      strKey += "&";
 ////
-////      pszBeg = ansi_find_string(pszUrl, strKey);
+////      pszBeg = ansi_find_string(scopedstrUrl, strKey);
 ////
-////      if (pszBeg != nullptr)
+////      if (scopedstrBeg != nullptr)
 ////      {
 ////
 ////         strParam = "";
@@ -3412,9 +3412,9 @@ namespace url
 ////      strKey += pszKey;
 ////      strKey += "&";
 ////
-////      pszBeg = ansi_find_string(pszUrl, strKey);
+////      pszBeg = ansi_find_string(scopedstrUrl, strKey);
 ////
-////      if (pszBeg != nullptr)
+////      if (scopedstrBeg != nullptr)
 ////      {
 ////
 ////         strParam = "";
@@ -3429,7 +3429,7 @@ namespace url
 ////
 ////success:
 ////
-////   pszEnd = ansi_find_string(pszBeg, "&");
+////   pszEnd = ansi_find_string(scopedstrBeg, "&");
 ////
 ////   if (pszEnd == nullptr)
 ////   {
@@ -3437,7 +3437,7 @@ namespace url
 ////   }
 ////   else
 ////   {
-////      strParam = string(pszBeg, pszEnd - pszBeg);
+////      strParam = string(scopedstrBeg, pszEnd - pszBeg);
 ////   }
 ////
 ////   return true;
@@ -3464,12 +3464,12 @@ namespace url
 //
 //   int len = 0;
 //
-//   while (psz < pszEnd)
+//   while (scopedstr < pszEnd)
 //   {
 //
-//      auto iCharacter = ::unicode_index_length(psz, len);
+//      auto iCharacter = ::unicode_index_length(scopedstr, len);
 //
-//      if (psz + len > pszEnd)
+//      if (scopedstr + len > pszEnd)
 //      {
 //
 //         break;
@@ -3616,7 +3616,7 @@ namespace url
 //
 //void openURL(const string& url_str);
 //
-//int ui_open_url(const ::ansi_character * psz);
+//int ui_open_url(const_char_pointer psz);
 //
 ////void openURL(const string& url_str)
 ////{
@@ -3652,7 +3652,7 @@ namespace url
 ////#define strdup _strdup
 ////#endif
 ////
-////CLASS_DECL_ACME int_bool freerdp_get_credentials(void * instance, char** username,char** password,char** domain, const ::ansi_character * pszServerName, int bInteractive)
+////CLASS_DECL_ACME int_bool freerdp_get_credentials(void * instance, char** username,char** password,char** domain, const_char_pointer pszServerName, int bInteractive)
 ////{
 ////
 ////   ::application * papp = (::apex::application *) instance;
@@ -3675,11 +3675,11 @@ namespace url
 ////
 ////   //string strToken;
 ////
-////   credentials.m_strToken = Sys(papp).crypto_md5_text(pszServerName);
+////   credentials.m_strToken = Sys(papp).crypto_md5_text(scopedstrServerName);
 ////
 ////   //string strTitle;
 ////
-////   credentials.m_strTitle = "Enter Credentials for : " + string(pszServerName);
+////   credentials.m_strTitle = "Enter Credentials for : " + string(scopedstrServerName);
 ////
 ////   credentials.m_bInteractive = bInteractive;
 ////

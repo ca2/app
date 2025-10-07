@@ -45,13 +45,13 @@ namespace sockets_bsd
 
    //struct OUTPUT {
    //   OUTPUT() : _b(0), _t(0), _q(0) {}
-   //   OUTPUT(const char *buf, memsize len) : _b(0), _t(len), _q(len) {
+   //   OUTPUT(const_char_pointer buf, memsize len) : _b(0), _t(len), _q(len) {
    //      ::memory_copy(_buf, buf, len);
    //   }
    //   memsize Space() {
    //      return TCP_OUTPUT_CAPACITY - _t;
    //   }
-   //   void add(const char *buf, memsize len) {
+   //   void add(const_char_pointer buf, memsize len) {
    //      ::memory_copy(_buf + _t, buf, len);
    //      _t += len;
    //      _q += len;
@@ -61,7 +61,7 @@ namespace sockets_bsd
    //      _q -= len;
    //      return _q;
    //   }
-   //   const char *Buf() {
+   //   const_char_pointer Buf() {
    //      return _buf + _b;
    //   }
    //   memsize Len() {
@@ -74,7 +74,7 @@ namespace sockets_bsd
    //};
 
 
-   //typedef ::list < OUTPUT *> output_list;
+   //typedef ::list_base < OUTPUT *> output_list;
 
 
    /** socket implementation for TCP.
@@ -95,7 +95,7 @@ namespace sockets_bsd
       \ingroup internal */
       string m_strTlsHostName;
       
-      typedef list<::pointer<output >> output_list;
+      typedef list_base<::pointer<output >> output_list;
 
       ::file::circular_file m_ibuf; ///< Circular input buffer
       string m_strUrl;
@@ -151,23 +151,23 @@ namespace sockets_bsd
       /** open connection.
       \lparam host Hostname
       \lparam port Port number */
-      bool open(const string &host,::networking::port_t port) override;
+      bool open(const ::scoped_string & scopedstrHost,::networking::port_t port) override;
 
 
-      void set_host(const ::string & strHost) override;
+      void set_host(const ::scoped_string & scopedstrHost) override;
       ::string get_host() const override;
 
 
-      void set_tls_hostname(const ::string & strTlsHostname) override;
+      void set_tls_hostname(const ::scoped_string & scopedstrTlsHostname) override;
 
 
-      void set_connect_host(const ::string & strConnectHost) override;
+      void set_connect_host(const ::scoped_string & scopedstrConnectHost) override;
       ::string get_connect_host() const override;
       void set_connect_port(const ::networking::port_t portConnect) override;
       ::networking::port_t get_connect_port() const override;
 
 
-      void set_url(const ::string & strUrl) override;
+      void set_url(const ::scoped_string & scopedstrUrl) override;
       string get_url() const override;
 
 
@@ -208,7 +208,7 @@ namespace sockets_bsd
 
       /** Callback fires when a socket in line protocol has read one full line.
       \lparam line Line read */
-      void OnLine(const string & line) override;
+      void OnLine(const ::scoped_string & scopedstrLine) override;
       /** get counter of number of bytes received. */
       unsigned long long GetBytesReceived(bool clear = false) override;
       /** get counter of number of bytes sent. */
@@ -238,7 +238,7 @@ namespace sockets_bsd
       the ssl action_context for an outgoing connection. */
       void InitSSLClient()override;
 
-      void set_init_ssl_client_context(const ::string & strInitSSLClientContext) override;
+      void set_init_ssl_client_context(const ::scoped_string & scopedstrInitSSLClientContext) override;
 
       /** This method must be implemented to initialize
       the ssl action_context for an incoming connection. */
@@ -314,6 +314,7 @@ namespace sockets_bsd
       /** SSL; get ssl password. */
       string GetPassword() override;
 
+      void set_no_ssl_shutdown() override;
 
       string get_url() override;
 

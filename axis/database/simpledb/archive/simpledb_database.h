@@ -13,7 +13,7 @@ namespace simpledb
 
       file_pointer                 m_spfileMeta;
       ::xml::document               m_xmldocumentMeta;
-      string_map < table *, table * > m_mapTable;
+      string_map_base < table *, table * > m_mapTable;
       int                           m_iErrorCode;
 
 
@@ -24,8 +24,8 @@ namespace simpledb
 
       virtual class ::simpledb::dataset * create_dataset();
 
-      table * get_table(const ::string & pszName);
-      table * create_table(const ::string & pszName);
+      table * get_table(const ::scoped_string & scopedstrName);
+      table * create_table(const ::scoped_string & scopedstrName);
 
 
       // class ::database::database

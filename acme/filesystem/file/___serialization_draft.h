@@ -46,7 +46,7 @@ public:
    virtual void read(string & i) {}
 
    virtual void write(const char & i) {}
-   virtual void write(const ::string & str) {}
+   virtual void write(const ::scoped_string & scopedstr) {}
 
    template < typename TYPE >
    void default_exchange(TYPE & t) { is_loading() ? read(t) : write(t); }
@@ -80,7 +80,7 @@ public:
    {
       ::atom idFactory;
       exchange("id", idFactory);
-      auto pparticle = __id_create<::matter>(idFactory);
+      auto pparticle = øid_create<::matter>(idFactory);
       exchange("", pparticle);
       return pparticle;
    }
@@ -99,7 +99,7 @@ public:
    virtual void read(string & i) {}
 
    virtual void write(const char & i) {}
-   virtual void write(const ::string & str) {}
+   virtual void write(const ::scoped_string & scopedstr) {}
 
    template < typename TYPE >
    void default_exchange(const ::atom & atom, TYPE & t) { is_loading() ? t = operator[atom] : operator[atom] = t; }
@@ -114,17 +114,17 @@ public:
 
    virtual void write_object(const ::atom & atom, const ::atom & idFactory, ::particle * pparticle) override
    {
-      payload_stream stream(__allocate< ::payload(&payload()[atom].propset >()));
+      payload_stream stream(øallocate< ::payload(&payload()[atom].propset >()));
       stream.exchange("id", idFactory);
       stream.exchange("", pparticle);
    }
 
    virtual ::pointer<::contex_object>read_object(const ::atom & atom) override
    {
-      payload_stream stream(__allocate< ::payload(&payload()[atom].propset >()));
+      payload_stream stream(øallocate< ::payload(&payload()[atom].propset >()));
       ::atom idFactory;
       stream.exchange("id", idFactory);
-      auto pparticle = __id_create<::matter>(idFactory);
+      auto pparticle = øid_create<::matter>(idFactory);
       stream.exchange("", pparticle);
       return pparticle;
    }
@@ -379,5 +379,5 @@ class exchanger
 
            window new_frame_window()
            {
-              return __allocate frame_window();
+              return øallocate frame_window();
            }

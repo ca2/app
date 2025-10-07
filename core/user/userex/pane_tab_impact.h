@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "base/user/user/tab_impact.h"
+#include "berg/user/user/tab_impact.h"
 #include "apex/platform/app_consumer.h"
 
 
@@ -31,7 +31,7 @@ namespace userex
 
       
       ::pointer<pane_impact>                    m_ppaneimpact;
-      atom_map < ::pointer<::object >>          m_mapFileManager;
+      atom_map_base < ::pointer<::object >>          m_mapFileManager;
       ::pointer<::user::document>               m_pdocAppOptions;
       ::pointer<font_impact>                    m_pfontimpact;
       ::pointer<::user::color_selector_impact>  m_pcolorselectorimpact;
@@ -50,7 +50,7 @@ namespace userex
       virtual ::user::interaction * get_font_interaction();
       virtual ::user::interaction * get_color_interaction();
 
-      void add_pane_tab_impact_handler_library(const ::string & strLibrary);
+      void add_pane_tab_impact_handler_library(const ::scoped_string & scopedstrLibrary);
 
 
       // ::core::application* get_app();

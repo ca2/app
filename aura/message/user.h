@@ -29,11 +29,11 @@ namespace message
       create();
 
 
-      //virtual void set(oswindow oswindow, ::windowing::window * pwindow, ::enum_message emessage, ::wparam wparam, ::lparam lparam) override;
+      //virtual void set(oswindow oswindow, ::windowing::window * pwindow, ::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam) override;
 
-      //virtual void error(const ::string & pcszErrorMessage);
+      //virtual void error(const ::scoped_string & scopedstrErrorMessage);
 
-      virtual void failed(const ::string & pcszErrorMessage);
+      virtual void failed(const ::scoped_string & scopedstrErrorMessage);
 
 //      ::request * get_request();
 //
@@ -59,7 +59,7 @@ namespace message
 
       //// using ::user::message::set;
 
-      //virtual void set(oswindow oswindow, ::windowing::window * pwindow, ::enum_message emessage, ::wparam wparam, ::lparam lparam) override;
+      //virtual void set(oswindow oswindow, ::windowing::window * pwindow, ::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam) override;
 
       inline bool is_active() const
       {
@@ -89,7 +89,7 @@ namespace message
 
       //// using ::user::message::set;
 
-      //virtual void set(oswindow oswindow, ::windowing::window * pwindow, ::enum_message emessage, ::wparam wparam, ::lparam lparam) override;
+      //virtual void set(oswindow oswindow, ::windowing::window * pwindow, ::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam) override;
 
 
    };
@@ -107,7 +107,7 @@ namespace message
 
       // using ::user::message::set;
 
-      //virtual void set(oswindow oswindow, ::windowing::window * pwindow, ::enum_message emessage, ::wparam wparam, ::lparam lparam) override;
+      //virtual void set(oswindow oswindow, ::windowing::window * pwindow, ::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam) override;
 
    };
 
@@ -130,7 +130,7 @@ namespace message
 
       // using ::user::message::set;
 
-      //virtual void set(oswindow oswindow, ::windowing::window * pwindow, ::enum_message emessage, ::wparam wparam, ::lparam lparam) override;
+      //virtual void set(oswindow oswindow, ::windowing::window * pwindow, ::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam) override;
 
 
    };
@@ -161,7 +161,7 @@ namespace message
 
       // using ::user::message::set;
 
-      //virtual void set(oswindow oswindow, ::windowing::window * pwindow, ::enum_message emessage, ::wparam wparam, ::lparam lparam) override;
+      //virtual void set(oswindow oswindow, ::windowing::window * pwindow, ::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam) override;
 
       static mouse * cast(::message::message * pmessage)
       {
@@ -171,7 +171,7 @@ namespace message
       virtual unsigned int get_message() override
       {
          
-         return m_emessage;
+         return m_eusermessage;
 
       }
 
@@ -199,7 +199,7 @@ namespace message
 
       // using ::user::message::set;
 
-      //virtual void set(oswindow oswindow, ::windowing::window * pwindow, ::enum_message emessage, ::wparam wparam, ::lparam lparam) override;
+      //virtual void set(oswindow oswindow, ::windowing::window * pwindow, ::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam) override;
 
    };
 
@@ -220,7 +220,7 @@ namespace message
       virtual ~set_cursor();
 
 
-      //virtual void set(oswindow oswindow, ::windowing::window * pwindow, ::enum_message emessage, ::wparam wparam, ::lparam lparam) override;
+      //virtual void set(oswindow oswindow, ::windowing::window * pwindow, ::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam) override;
 
 
    };
@@ -265,11 +265,12 @@ namespace message
       unsigned int  m_nStatus;
 
 
-      show_window() { }
+      show_window();
+      ~show_window() override;
 
       // using ::user::message::set;
 
-      //virtual void set(oswindow oswindow, ::windowing::window * pwindow, ::enum_message emessage, ::wparam wparam, ::lparam lparam) override;
+      //virtual void set(oswindow oswindow, ::windowing::window * pwindow, ::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam) override;
 
 
    };
@@ -286,7 +287,7 @@ namespace message
 
       // using ::user::message::set;
 
-      //virtual void set(oswindow oswindow, ::windowing::window * pwindow, ::enum_message emessage, ::wparam wparam, ::lparam lparam) override;
+      //virtual void set(oswindow oswindow, ::windowing::window * pwindow, ::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam) override;
 
 
    };
@@ -320,8 +321,8 @@ namespace message
    };
 
 
-   // e_message_paint -> aura
-   // e_message_mouse_leave -> aura
+   // ::user::e_message_paint -> aura
+   // ::user::e_message_mouse_leave -> aura
 
 
    class CLASS_DECL_AURA nc_hit_test : public ::user::message
@@ -333,7 +334,7 @@ namespace message
 
       nc_hit_test() { }
 
-      //virtual void set(oswindow oswindow, ::windowing::window * pwindow, ::enum_message emessage, ::wparam wparam, ::lparam lparam) override;
+      //virtual void set(oswindow oswindow, ::windowing::window * pwindow, ::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam) override;
 
       void set_hit_test(enum_hit_test ehittest) { m_lresult = ehittest; }
 
@@ -352,7 +353,7 @@ namespace message
 
       // using ::user::message::set;
 
-      //virtual void set(oswindow oswindow, ::windowing::window * pwindow, ::enum_message emessage, ::wparam wparam, ::lparam lparam) override;
+      //virtual void set(oswindow oswindow, ::windowing::window * pwindow, ::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam) override;
 
    };
 
@@ -368,7 +369,7 @@ namespace message
       nc_activate();
 
       // using ::user::message::set;
-      //virtual void set(oswindow oswindow, ::windowing::window * pwindow, ::enum_message emessage, ::wparam wparam, ::lparam lparam) override;
+      //virtual void set(oswindow oswindow, ::windowing::window * pwindow, ::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam) override;
 
    };
 
@@ -399,7 +400,7 @@ namespace message
       ~particle() override;
 
 
-      //virtual void set(oswindow oswindow, ::windowing::window * pwindow, ::enum_message emessage, ::wparam wparam, ::lparam lparam) override;
+      //virtual void set(oswindow oswindow, ::windowing::window * pwindow, ::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam) override;
 
 
    };
@@ -429,7 +430,7 @@ namespace message
 
       // using ::user::message::set;
 
-      //virtual void set(oswindow oswindow, ::windowing::window * pwindow, ::enum_message emessage, ::wparam wparam, ::lparam lparam) override;
+      //virtual void set(oswindow oswindow, ::windowing::window * pwindow, ::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam) override;
 
 
    };
@@ -450,7 +451,7 @@ namespace message
 
       // using ::user::message::set;
 
-      //virtual void set(oswindow oswindow, ::windowing::window * pwindow, ::enum_message emessage, ::wparam wparam, ::lparam lparam) override;
+      //virtual void set(oswindow oswindow, ::windowing::window * pwindow, ::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam) override;
 
 
    };
@@ -484,7 +485,7 @@ namespace message
 
       // using ::user::message::set;
 
-      //virtual void set(oswindow oswindow, ::windowing::window * pwindow, ::enum_message emessage, ::wparam wparam, ::lparam lparam) override;
+      //virtual void set(oswindow oswindow, ::windowing::window * pwindow, ::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam) override;
 
 
    };
@@ -510,7 +511,7 @@ namespace message
    public:
 
 
-      drag_and_drop(oswindow oswindow, ::windowing::window * pwindow, ::enum_message emessage);
+      drag_and_drop(oswindow oswindow, ::windowing::window * pwindow, ::user::enum_message eusermessage);
       //
       //#ifdef WINDOWS
       //

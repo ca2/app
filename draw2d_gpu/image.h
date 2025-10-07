@@ -147,7 +147,7 @@ namespace draw2d_gpu
       //double pi();
 
 
-      void map(bool bApplyAlphaTransform = true) const override; // some implementations may requrire to map to m_pcolorref before manipulate it
+      void map(bool bApplyAlphaTransform = true) const override; // some implementations may requrire to map_base to m_pcolorref before manipulate it
       void unmap() const override; // some implementations may require to unmap from m_pcolorref to update *os* bitmap
 
       //virtual bool update_window(::aura::draw_interface * puserinteraction, ::message::message * pmessage, bool bTransferBuffer = true) override;

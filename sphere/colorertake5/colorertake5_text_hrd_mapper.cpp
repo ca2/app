@@ -24,7 +24,7 @@ namespace colorertake5
       string str;
       is >> str;
 
-      ::pointer<::xml::document>hbase = __allocate< xml::document(get_app >());
+      ::pointer<::xml::document>hbase = øallocate< xml::document(get_app >());
       hbase->load(str);
 
       if (hbase->get_name() != "hrd")
@@ -89,7 +89,7 @@ namespace colorertake5
    };
 
    /** Adds or replaces region definition */
-   void TextHRDMapper::setRegionDefine(const ::string & name, RegionDefine *rd)
+   void TextHRDMapper::setRegionDefine(const ::scoped_string & scopedstrName, RegionDefine *rd)
    {
       const TextRegion *rd_new = TextRegion::cast(rd);
       string stext;

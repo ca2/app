@@ -1,9 +1,9 @@
 #pragma once
 
 
-#include "base/user/user/margin.h"
+#include "berg/user/user/margin.h"
 #include "core/user/user/form_list.h"
-#include "base/user/user/show.h"
+#include "berg/user/user/show.h"
 
 
 class CLASS_DECL_CORE simple_form_list_impact :

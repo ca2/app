@@ -5,7 +5,7 @@ int main(int argc char ** argv)
     int fd, bytes;
     unsigned char data[3];
 
-    const char *pDevice = "/dev/input/mice";
+    const_char_pointer pDevice = "/dev/input/mice";
 
     // Open Mouse
     fd = open(pDevice, O_RDWR | O_CLOEXEC);

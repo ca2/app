@@ -54,9 +54,9 @@ namespace sockets
 
       virtual ::pointer<socket>create_attend_socket();
 
-      virtual void set_ssl_catalog(const ::string& strCat);
+      virtual void set_ssl_catalog(const ::scoped_string & scopedstrCat);
 
-      virtual void set_ssl_cipher_list(const ::string& strCipherList);
+      virtual void set_ssl_cipher_list(const ::scoped_string & scopedstrCipherList);
 
       /** close file descriptor. */
       void close() override;
@@ -85,14 +85,14 @@ namespace sockets
       \lparam intf Interface hostname
       \lparam port Port (0 is random)
       \lparam depth Listen queue depth */
-      virtual int Bind(const string& intf, ::networking::port_t port, int depth = 20);
+      virtual int Bind(const ::scoped_string & scopedstrInterface, ::networking::port_t port, int depth = 20);
 
       /** Bind and listen to specific interface.
       \lparam intf Interface hostname
       \lparam port Port (0 is random)
       \lparam protocol Network protocol
       \lparam depth Listen queue depth */
-      virtual int Bind(const string& intf, ::networking::port_t port, const string& protocol, int depth = 20);
+      virtual int Bind(const ::scoped_string & scopedstrInterface, ::networking::port_t port, const string& protocol, int depth = 20);
 
       ///** Bind and listen to ipv4 interface.
       //\lparam a Ipv4 interface address

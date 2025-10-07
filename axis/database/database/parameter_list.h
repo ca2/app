@@ -14,12 +14,12 @@ namespace database
    public:
 
 
-      string_array        m_stra;
+      string_array_base        m_stra;
       row            m_row;
 
 
       ::payload & get_value(::collection::index i);
-      const char * get_key(::collection::index i);
+      const_char_pointer get_key(::collection::index i);
       ::collection::count get_size();
       bool is_empty();
 

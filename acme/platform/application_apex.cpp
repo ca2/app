@@ -20,7 +20,7 @@ namespace platform
    //// void dump(dump_context & dumpcontext) const override{}
 
 
-   ::string apex_application_layer::apex_application_layer::__get_text(string str)
+   ::string apex_application_layer::apex_application_layer::__get_text(const ::scoped_string & scopedstr)
    {
       return {};
    }
@@ -47,7 +47,7 @@ namespace platform
    //virtual ::database::key calc_data_key() override{}
 
 
-   //::string apex_application_layer::apex_application_layer::load_podata(string strLang, bool bOnlyHeader){}
+   //::string apex_application_layer::apex_application_layer::load_podata(const ::scoped_string & scopedstrLang, bool bOnlyHeader){}
 
    // ::string apex_application_layer::apex_application_layer::load_string(const ::atom& atom)
    // {
@@ -78,7 +78,7 @@ namespace platform
    }
 
 
-   void apex_application_layer::load_string_table(const string& pszApp, const string& pszId)
+   void apex_application_layer::load_string_table(const ::scoped_string & scopedstrApp, const ::scoped_string & scopedstrId)
    {
    }
 
@@ -218,16 +218,16 @@ namespace platform
 
 
    void apex_application_layer::update_appmatter(::pointer<::sockets::http_session>& psession,
-                                                 const ::file::path& pszRoot,
-                                                 const string& pszRelative)
+                                                 const ::file::path & pathRoot,
+                                                 const ::scoped_string & scopedstrRelative)
    {
    }
 
 
    void apex_application_layer::update_appmatter(::pointer<::sockets::http_session>& psession,
-                                                 const ::file::path& pszRoot,
-                                                 const string& pszRelative, const ::string& strLocale,
-                                                 const ::string& strStyle)
+                                                 const ::file::path & pathRoot,
+                                                 const ::scoped_string & scopedstrRelative, const ::scoped_string & scopedstrLocale,
+                                                 const ::scoped_string & scopedstrStyle)
    {
    }
 
@@ -250,7 +250,7 @@ namespace platform
 
    //bool pump_runnable(){}
 
-   void apex_application_layer::add_activation_message(const ::string& strMessage)
+   void apex_application_layer::add_activation_message(const ::scoped_string & scopedstrMessage)
    {
    }
 
@@ -277,7 +277,7 @@ namespace platform
 
 
    ::string apex_application_layer::apex_application_layer::matter_as_string(
-      const ::string& pszMatter, const ::string& pszMatter2)
+      const ::scoped_string & scopedstrMatter, const ::scoped_string & scopedstrMatter2)
    {
       return {};
    }
@@ -341,7 +341,7 @@ namespace platform
    //virtual ::user::interaction * user_interaction_from_oswindow(::windowing::window * pwindow){}
 
 
-   void apex_application_layer::hotplugin_host_starter_start_sync(const ::string& pszCommandLine,
+   void apex_application_layer::hotplugin_host_starter_start_sync(const ::scoped_string & scopedstrCommandLine,
                                                                   ::apex::application* papp,
                                                                   hotplugin::host* phost,
                                                                   hotplugin::plugin* pplugin)
@@ -349,7 +349,7 @@ namespace platform
    }
 
 
-   void apex_application_layer::hotplugin_host_host_starter_start_sync(const ::string& pszCommandLine,
+   void apex_application_layer::hotplugin_host_host_starter_start_sync(const ::scoped_string & scopedstrCommandLine,
                                                                        ::apex::application* papp,
                                                                        hotplugin::host* phost,
                                                                        hotplugin::plugin* pplugin)
@@ -393,7 +393,7 @@ namespace platform
    //void install_message_routing(::channel* pchannel) override{}
 
 
-   ::string apex_application_layer::apex_application_layer::dialog_box(const ::string& pszMatter,
+   ::string apex_application_layer::apex_application_layer::dialog_box(const ::scoped_string & scopedstrMatter,
                                                                        ::property_set& propertyset)
    {
       return {};
@@ -433,15 +433,15 @@ namespace platform
    //bool apex_application_layer::is_set_finish() const override{}
 
 
-   void apex_application_layer::on_change_theme()
-   {
-   }
+   // void apex_application_layer::on_change_theme()
+   // {
+   // }
 
 
-   ::string apex_application_layer::apex_application_layer::get_theme()
-   {
-      return {};
-   }
+   // ::string apex_application_layer::apex_application_layer::get_theme()
+   // {
+   //    return {};
+   // }
 
 
    //bool apex_application_layer::start_application(::request * prequest){}
@@ -462,18 +462,18 @@ namespace platform
    //// os_* functions generally
    //// reserves a lot of surprises from each
    //// operating system specific behavior
-   //void apex_application_layer::auto pmessagebox = __initialize_new ::message_box(::user::interaction_base * puiOwner, const ::string apex_application_layer::& pszMessage, const ::string apex_application_layer::& pszTitle, const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback()){}
+   //void apex_application_layer::auto pmessagebox = __initialize_new ::message_box(::user::interaction_base * puiOwner, const ::string apex_application_layer::& pszMessage, const ::string apex_application_layer::& pszTitle, const ::user::e_message_box & emessagebox = ::user::e_message_box_ok, ::callback callback = ::callback()){}
 
    //pmessagebox->sync(){}
 
 
-   //void apex_application_layer::ui_message_box(::user::interaction_base * puiOwner, const ::string apex_application_layer::& pszMessage, const ::string apex_application_layer::& pszTitle, const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback()){}
-   //void apex_application_layer::ui_message_box_timeout(::user::interaction_base * puiOwner, const ::string apex_application_layer::& pszMessage, const ::string apex_application_layer::& pszTitle, const class ::time& timeTimeOut = time::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback()){}
+   //void apex_application_layer::ui_message_box(::user::interaction_base * puiOwner, const ::string apex_application_layer::& pszMessage, const ::string apex_application_layer::& pszTitle, const ::user::e_message_box & emessagebox = ::user::e_message_box_ok, ::callback callback = ::callback()){}
+   //void apex_application_layer::ui_message_box_timeout(::user::interaction_base * puiOwner, const ::string apex_application_layer::& pszMessage, const ::string apex_application_layer::& pszTitle, const class ::time& timeTimeOut = time::infinite(), const ::user::e_message_box & emessagebox = ::user::e_message_box_ok, ::callback callback = ::callback()){}
 
 
    //using ::platform::context::message_box{}
-   //void apex_application_layer::message_box(::user::interaction_base * puiOwner, const ::string apex_application_layer::& pszMessage, const ::string apex_application_layer::& pszTitle, const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback()){}
-   //void apex_application_layer::message_box_timeout(::user::interaction_base * puiOwner, const ::string apex_application_layer::& pszMessage, const ::string apex_application_layer::& pszTitle, const class ::time& timeTimeOut = time::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback()){}
+   //void apex_application_layer::message_box(::user::interaction_base * puiOwner, const ::string apex_application_layer::& pszMessage, const ::string apex_application_layer::& pszTitle, const ::user::e_message_box & emessagebox = ::user::e_message_box_ok, ::callback callback = ::callback()){}
+   //void apex_application_layer::message_box_timeout(::user::interaction_base * puiOwner, const ::string apex_application_layer::& pszMessage, const ::string apex_application_layer::& pszTitle, const class ::time& timeTimeOut = time::infinite(), const ::user::e_message_box & emessagebox = ::user::e_message_box_ok, ::callback callback = ::callback()){}
 
 
    void apex_application_layer::on_file_new()
@@ -487,7 +487,7 @@ namespace platform
    }
 
 
-   string_array apex_application_layer::get_categories()
+   string_array_base apex_application_layer::get_categories()
    {
       return {};
    }
@@ -533,12 +533,12 @@ namespace platform
    //void apex_application_layer::on_thread_on_idle(::thread * pthread, int lCount) override{}
 
 
-   void apex_application_layer::app_set(string strPath, string strValue)
+   void apex_application_layer::app_set(const ::scoped_string & scopedstrPath, const ::scoped_string & scopedstrValue)
    {
    }
 
 
-   ::string apex_application_layer::apex_application_layer::app_get(string strPath, string strDefault)
+   ::string apex_application_layer::apex_application_layer::app_get(const ::scoped_string & scopedstrPath, const ::scoped_string & scopedstrDefault)
    {
       return {};
    }
@@ -669,7 +669,7 @@ namespace platform
    //bool apex_application_layer::on_install(){}
    //bool apex_application_layer::on_uninstall(){}
 
-   bool apex_application_layer::system_add_app_install(const ::string& pszId, const ::string& pszBuild)
+   bool apex_application_layer::system_add_app_install(const ::scoped_string & scopedstrId, const ::scoped_string & scopedstrBuild)
    {
       return false;
    }
@@ -683,7 +683,7 @@ namespace platform
    //virtual itask get_thread_id(){}
 
 
-   bool apex_application_layer::_001OnDDECommand(const ::string& pcsz)
+   bool apex_application_layer::_001OnDDECommand(const ::scoped_string & scopedstr)
    {
       return false;
    }
@@ -699,14 +699,14 @@ namespace platform
    }
 
 
-   void apex_application_layer::get_temp_file_name_template(string& str, const ::string& lpszName,
-                                                            const ::string& pszExtension,
-                                                            const ::string& pszTemplate)
+   void apex_application_layer::get_temp_file_name_template(string& str, const ::scoped_string & scopedstrName,
+                                                            const ::scoped_string & scopedstrExtension,
+                                                            const ::scoped_string & scopedstrTemplate)
    {
    }
 
 
-   void apex_application_layer::get_temp_file_name(string& str, const ::string& lpszName, const ::string& pszExtension)
+   void apex_application_layer::get_temp_file_name(string& str, const ::scoped_string & scopedstrName, const ::scoped_string & scopedstrExtension)
    {
    }
 
@@ -732,7 +732,7 @@ namespace platform
    /// return true if this instance might continue execution
    /// bHandled true if some action was done in response to this ___new additional instance creation
    void apex_application_layer::on_exclusive_instance_conflict(::request* prequest, bool& bHandled,
-                                                               enum_exclusive_instance eexclusive, string strId)
+                                                               enum_exclusive_instance eexclusive, const ::scoped_string & scopedstrId)
    {
    }
 
@@ -747,7 +747,7 @@ namespace platform
    /// return true if this instance might continue execution
    /// bHandled true if some action was done in response to this ___new additional instance creation
    void apex_application_layer::on_exclusive_instance_local_conflict_id(::request* prequest, bool& bHandled,
-                                                                        string strId)
+                                                                        const ::scoped_string & scopedstrId)
    {
    }
 
@@ -759,13 +759,13 @@ namespace platform
 
    /// return true if the external additional instance might continue execution
    /// bHandled true if some action was done in response to the external aaa_memory_new additional instance creation
-   void apex_application_layer::on_additional_local_instance(bool& bHandled, string strModule, int iPid,
-                                                             string strCommandLine)
+   void apex_application_layer::on_additional_local_instance(bool& bHandled, const ::scoped_string & scopedstrModule, int iPid,
+                                                             const ::scoped_string & scopedstrCommandLine)
    {
    }
 
 
-   void apex_application_layer::on_new_instance(string strModule, const ::atom& idPid)
+   void apex_application_layer::on_new_instance(const ::scoped_string & scopedstrModule, const ::atom& idPid)
    {
    }
 
@@ -815,19 +815,19 @@ namespace platform
    }
 
 
-   bool apex_application_layer::erase_exclusive(const ::string& strId)
+   bool apex_application_layer::erase_exclusive(const ::scoped_string & scopedstrId)
    {
       return false;
    }
 
 
-   bool apex_application_layer::exclusive_fails(const ::string& str, security_attributes* psecurityattributes)
+   bool apex_application_layer::exclusive_fails(const ::scoped_string & scopedstr, security_attributes* psecurityattributes)
    {
       return false;
    }
 
 
-   bool apex_application_layer::exclusive_erase(const ::string& str)
+   bool apex_application_layer::exclusive_erase(const ::scoped_string & scopedstr)
    {
       return false;
    }
@@ -878,8 +878,8 @@ namespace platform
 
 
    ::string apex_application_layer::apex_application_layer::http_get_locale_schema(
-      const ::string& pszUrl, const ::string& pszLocale,
-      const ::string& pszSchema)
+      const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrLocale,
+      const ::scoped_string & scopedstrSchema)
    {
       return {};
    }
@@ -887,7 +887,7 @@ namespace platform
 
    //void apex_application_layer::on_update_matter_locator() override{}
 
-   bool apex_application_layer::platform_open_by_file_extension(::collection::index iEdge, const ::string& pszPathName,
+   bool apex_application_layer::platform_open_by_file_extension(::collection::index iEdge, const ::scoped_string & scopedstrPathName,
                                                                 ::request* prequest)
    {
       return false;
@@ -932,7 +932,7 @@ namespace platform
    //void apex_application_layer::_001FranceExit(){}
 
 
-   //::string apex_application_layer::apex_application_layer::lstr(const ::atom & atom, string strDefault) override{}
+   //::string apex_application_layer::apex_application_layer::lstr(const ::atom & atom, const ::scoped_string & scopedstrDefault) override{}
 
 
    //bool apex_application_layer::do_install(){}
@@ -948,7 +948,7 @@ namespace platform
 
    //void apex_application_layer::play_audio(::payload payloadFile, bool bSynch = false){}
 
-   void apex_application_layer::post_critical_error_message(const ::string& pszMessage, bool bShowLog)
+   void apex_application_layer::post_critical_error_message(const ::scoped_string & scopedstrMessage, bool bShowLog)
    {
    }
 
@@ -1009,7 +1009,7 @@ namespace platform
    }
 
 
-   void apex_application_layer::install_trace(const ::string& str)
+   void apex_application_layer::install_trace(const ::scoped_string & scopedstr)
    {
    }
 
@@ -1024,9 +1024,9 @@ namespace platform
    }
 
 
-   //bool apex_application_layer::low_is_app_app_admin_running(string strPlatform, string strConfiguration){}
-   //void apex_application_layer::defer_start_program_files_app_app_admin(string strPlatform, string strConfiguration){}
-   // void apex_application_layer::start_program_files_app_app_admin(string strPlatform, string strConfiguration){}
+   //bool apex_application_layer::low_is_app_app_admin_running(const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration){}
+   //void apex_application_layer::defer_start_program_files_app_app_admin(const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration){}
+   // void apex_application_layer::start_program_files_app_app_admin(const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration){}
 
 
    bool apex_application_layer::keyboard_focus_is_focusable(const ::user::interaction_base* pue)
@@ -1051,7 +1051,7 @@ namespace platform
    //void apex_application_layer::erase_frame(::user::interaction * puserinteraction){}
 
 
-   void apex_application_layer::send_message_to_windows(::enum_message emessage, ::wparam wparam, ::lparam lparam)
+   void apex_application_layer::send_message_to_windows(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
    {
       // return false;
    } // with tbs in <3
@@ -1081,7 +1081,7 @@ namespace platform
    // user virtual ::user::document * place_hold(::user::interaction * pinteraction){}
 
 
-   void apex_application_layer::post_message(::enum_message emessage, ::wparam wparam, ::lparam lparam)
+   void apex_application_layer::post_message(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
    {
    }
 
@@ -1119,7 +1119,7 @@ namespace platform
    }
 
 
-   //user virtual ::pointer<::user::document>defer_create_impact(string strImpact, ::user::interaction * puiParent, e_window_flag ewindowflag, const ::atom & atom){}
+   //user virtual ::pointer<::user::document>defer_create_impact(const ::scoped_string & scopedstrImpact, ::user::interaction * puiParent, e_window_flag ewindowflag, const ::atom & atom){}
 
 
    void apex_application_layer::HideApplication()
@@ -1149,7 +1149,7 @@ namespace platform
    //virtual ::application * get_app() const override{}
 
 
-   //virtual unsigned int guess_code_page(const string& str){}
+   //virtual unsigned int guess_code_page(const ::scoped_string & scopedstr){}
 
    //virtual int _sync_message_box(::user::interaction_base* puiOwner, const ::string apex_application_layer::& pszMessage, const ::string apex_application_layer::& pszTitle, unsigned int fuStyle) override{}
 
@@ -1174,7 +1174,7 @@ namespace platform
 
    // bool apex_application_layer::base_support(){}
 
-   //::string apex_application_layer::apex_application_layer::sync_message_box(const string & pszMatter,::property_set & propertyset) override{}
+   //::string apex_application_layer::apex_application_layer::sync_message_box(const ::scoped_string & scopedstrMatter,::property_set & propertyset) override{}
 
 
    //virtual ::pointer<::user::interaction>uie_from_point(const ::int_point& point){}
@@ -1237,18 +1237,18 @@ namespace platform
    //void route_command(::message::command* pcommand, bool bRouteToKeyDescendant = false) override{}
 
 
-   //virtual pointer< ::extended::future < ::conversation > > message_box(::user::interaction * puserinteraction, const ::string apex_application_layer::& pszMessage, const ::string apex_application_layer::& pszTitle, const ::e_message_box & emessagebox = e_message_box_ok) override{}
-   //virtual ::enum_dialog_result message_box_timeout(const ::string apex_application_layer::& pszMessage, const ::string apex_application_layer::& pszTitle, const class time & timeTimeout = ::time::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, const ::future & future = ::future()) override{}
+   //virtual pointer< ::extended::future < ::conversation > > message_box(::user::interaction * puserinteraction, const ::string apex_application_layer::& pszMessage, const ::string apex_application_layer::& pszTitle, const ::user::e_message_box & emessagebox = ::user::e_message_box_ok) override{}
+   //virtual ::enum_dialog_result message_box_timeout(const ::string apex_application_layer::& pszMessage, const ::string apex_application_layer::& pszTitle, const class time & timeTimeout = ::time::infinite(), const ::user::e_message_box & emessagebox = ::user::e_message_box_ok, const ::future & future = ::future()) override{}
 
 
    //void EnableHtmlHelp(){}
 
 
-   //virtual int sync_message_box_timeout(::user::interaction_base * puiOwner,::payload payload, const ::string apex_application_layer::& pszTitle, class ::time timeTimeout,unsigned int fuStyle = e_message_box_ok) override{}
-   //virtual int sync_message_box(::user::interaction_base * puiOwner,const ::string apex_application_layer::& pszMessage, const ::string apex_application_layer::& pszTitle, unsigned int fuStyle = e_message_box_ok) override{}
+   //virtual int sync_message_box_timeout(::user::interaction_base * puiOwner,::payload payload, const ::string apex_application_layer::& pszTitle, class ::time timeTimeout,unsigned int fuStyle = ::user::e_message_box_ok) override{}
+   //virtual int sync_message_box(::user::interaction_base * puiOwner,const ::string apex_application_layer::& pszMessage, const ::string apex_application_layer::& pszTitle, unsigned int fuStyle = ::user::e_message_box_ok) override{}
 
 
-   //bool on_exclusive_instance_conflict(bool & bHandled, enum_exclusive_instance eexclusive, string strId) override{}
+   //bool on_exclusive_instance_conflict(bool & bHandled, enum_exclusive_instance eexclusive, const ::scoped_string & scopedstrId) override{}
 
    //bool apex_application_layer::process_exception(const ::exception & e) override{}
 
@@ -1347,19 +1347,19 @@ namespace platform
    }
 
 
-   bool apex_application_layer::get_fs_size(string& strSize, const ::string& pszPath, bool& bPending)
+   bool apex_application_layer::get_fs_size(string& strSize, const ::scoped_string & scopedstrPath, bool& bPending)
    {
       return false;
    }
 
 
-   bool apex_application_layer::get_fs_size(long long& i64Size, const ::string& pszPath, bool& bPending)
+   bool apex_application_layer::get_fs_size(long long& i64Size, const ::scoped_string & scopedstrPath, bool& bPending)
    {
       return false;
    }
 
 
-   void apex_application_layer::set_title(const ::string& pszTitle)
+   void apex_application_layer::set_title(const ::scoped_string & scopedstrTitle)
    {
    }
 
@@ -1378,7 +1378,7 @@ namespace platform
    //      virtual ::pointer<::apex::application>create_platform(::apex::session* psession){}
 
 
-   ::pointer<::progress::real> apex_application_layer::show_progress(::user::interaction* puiParent, const ::string& strTitle,
+   ::pointer<::progress::real> apex_application_layer::show_progress(::user::interaction* puiParent, const ::scoped_string & scopedstrTitle,
                                                      ::collection::count iProgressCount)
    {
       return {};
@@ -1399,7 +1399,7 @@ namespace platform
    //                        ::topic* ptopic) override{}
 
 
-   void apex_application_layer::report_error(const ::exception& e, int iMessageFlags, const ::string& pszTopic)
+   void apex_application_layer::report_error(const ::exception& e, int iMessageFlags, const ::scoped_string & scopedstrTopic)
    {
    }
 
@@ -1409,7 +1409,7 @@ namespace platform
    }
 
 
-   void apex_application_layer::on_song_added(const string& str)
+   void apex_application_layer::on_song_added(const ::scoped_string & scopedstr)
    {
    }
 
@@ -1417,7 +1417,7 @@ namespace platform
    //string get_visual_studio_build(){}
 
 
-   ::string apex_application_layer::apex_application_layer::sound_path(const ::string& psz)
+   ::string apex_application_layer::apex_application_layer::sound_path(const ::scoped_string & scopedstr)
    {
       return {};
    }
@@ -1470,11 +1470,11 @@ namespace platform
    }
 
 
-   //::e_status on_html_response(::networking::application_socket* psocket, ::string& strHtml, const ::string& strUrl,
+   //::e_status on_html_response(::networking::application_socket* psocket, ::string& strHtml, const ::scoped_string & scopedstrUrl,
    //const ::property_set& setPost) override{}
 
 
-   //bool _handle_uri(const ::string& strUri) override{}
+   //bool _handle_uri(const ::scoped_string & scopedstrUri) override{}
 
 
    //bool on_interprocess_handle(const ::scoped_string & scopedstrUri) override{}

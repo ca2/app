@@ -195,18 +195,18 @@ void ansi_parse_command_line(char * cmdstart, char ** argv, char * args, int * n
 }
 
 
-string consume_command_line_parameter(const ::scoped_string & scopedstrCommandLine, const char ** pszEndPtr)
+string consume_command_line_parameter(const ::scoped_string & scopedstrCommandLine, const_char_pointer *pszEndPtr)
 {
 
    if(scopedstrCommandLine.is_empty())
       return "";
 
-   const char * psz = scopedstrCommandLine.begin();
+   const_char_pointer psz = scopedstrCommandLine.begin();
 
    while(*psz && ansi_char_isspace(*psz))
       psz++;
 
-   const char * pszStart;
+   const_char_pointer pszStart;
 
    bool bQuoted = *psz == '\"';
 
@@ -224,7 +224,7 @@ string consume_command_line_parameter(const ::scoped_string & scopedstrCommandLi
          psz++;
    }
 
-   const char * pszEnd = psz;
+   const_char_pointer pszEnd = psz;
 
    if(pszEndPtr != nullptr)
    {
@@ -267,15 +267,15 @@ string consume_command_line_parameter(const ::scoped_string & scopedstrCommandLi
 //string get_command_line_parameter(const ::scoped_string & scopedstrCommandLine, const ::scoped_string & scopedstrParam)
 //{
 //
-//   string strParam(pszParam);
+//   string strParam(scopedstrParam);
 //
 //   strParam = strParam + "=";
 //
 //   string strValue;
 //
-//   const ::scoped_string & scopedstrValue = ansi_find_string(pszCommandLine, strParam);
+//   const ::scoped_string & scopedstrValue = ansi_find_string(scopedstrCommandLine, strParam);
 //
-//   if(pszValue == nullptr)
+//   if(scopedstrValue == nullptr)
 //      return "";
 //
 //   pszValue += strParam.length();
@@ -284,30 +284,30 @@ string consume_command_line_parameter(const ::scoped_string & scopedstrCommandLi
 //   if(*pszValue == '"')
 //   {
 //
-//      const ::scoped_string & scopedstrValueEnd = ansi_find_char(pszValue + 1, '"');
+//      const ::scoped_string & scopedstrValueEnd = ansi_find_char(scopedstrValue + 1, '"');
 //
-//      if(pszValueEnd == nullptr)
+//      if(scopedstrValueEnd == nullptr)
 //      {
-//         strValue = string(pszValue);
+//         strValue = string(scopedstrValue);
 //      }
 //      else
 //      {
-//         strValue = string(pszValue, pszValueEnd - pszValue + 1);
+//         strValue = string(scopedstrValue, pszValueEnd - pszValue + 1);
 //      }
 //
 //   }
 //   else
 //   {
 //
-//      const ::scoped_string & scopedstrValueEnd = ansi_find_string(pszValue, " ");
+//      const ::scoped_string & scopedstrValueEnd = ansi_find_string(scopedstrValue, " ");
 //
-//      if(pszValueEnd == nullptr)
+//      if(scopedstrValueEnd == nullptr)
 //      {
-//         strValue = string(pszValue);
+//         strValue = string(scopedstrValue);
 //      }
 //      else
 //      {
-//         strValue = string(pszValue, pszValueEnd - pszValue);
+//         strValue = string(scopedstrValue, pszValueEnd - pszValue);
 //      }
 //
 //   }
@@ -502,23 +502,23 @@ bool get_command_line_parameter(string & wstrValue,const ::scoped_string & scope
 
 
 
-//string_array get_c_args_from_string(const ::scoped_string & scopedstr)
+//string_array_base get_c_args_from_string(const ::scoped_string & scopedstr)
 //{
 //
-//   string_array stra;
+//   string_array_base stra;
 //
-//   if (psz == nullptr)
+//   if (scopedstr == nullptr)
 //   {
 //
 //      return stra;
 //
 //   }
 //
-//   string_array straBeforeColon;
+//   string_array_base straBeforeColon;
 //
-//   string_array straAfterColon;
+//   string_array_base straAfterColon;
 //
-//   const ::ansi_character * pszEnd = psz + strlen(psz);
+//   const_char_pointer pszEnd = psz + strlen(scopedstr);
 //
 //   string str;
 //
@@ -526,12 +526,12 @@ bool get_command_line_parameter(string & wstrValue,const ::scoped_string & scope
 //
 //   bool bColon = false;
 //
-//   while (psz < pszEnd)
+//   while (scopedstr < pszEnd)
 //   {
 //
-//      ::str::consume_spaces(psz, 0, pszEnd);
+//      ::str::consume_spaces(scopedstr, 0, pszEnd);
 //
-//      if (psz >= pszEnd)
+//      if (scopedstr >= pszEnd)
 //      {
 //
 //         break;
@@ -540,13 +540,13 @@ bool get_command_line_parameter(string & wstrValue,const ::scoped_string & scope
 //      if (*psz == '\"')
 //      {
 //
-//         str = ::str::consume_quoted_value(psz, pszEnd);
+//         str = ::str::consume_quoted_value(scopedstr, pszEnd);
 //
 //      }
 //      else if (*psz == '\'')
 //      {
 //
-//         str = ::str::consume_quoted_value(psz, pszEnd);
+//         str = ::str::consume_quoted_value(scopedstr, pszEnd);
 //
 //      }
 //      else
@@ -554,12 +554,12 @@ bool get_command_line_parameter(string & wstrValue,const ::scoped_string & scope
 //
 //         const ::scoped_string & scopedstrValueStart = psz;
 //
-//         while (!unicode_is_whitespace(psz))
+//         while (!unicode_is_whitespace(scopedstr))
 //         {
 //
 //            unicode_increment(psz);
 //
-//            if (psz >= pszEnd)
+//            if (scopedstr >= pszEnd)
 //            {
 //
 //               break;
@@ -569,19 +569,19 @@ bool get_command_line_parameter(string & wstrValue,const ::scoped_string & scope
 //            if (*psz == '\"')
 //            {
 //
-//               ::str::consume_quoted_value_ex(psz, pszEnd);
+//               ::str::consume_quoted_value_ex(scopedstr, pszEnd);
 //
 //            }
 //            else if (*psz == '\'')
 //            {
 //
-//               ::str::consume_quoted_value_ex(psz, pszEnd);
+//               ::str::consume_quoted_value_ex(scopedstr, pszEnd);
 //
 //            }
 //
 //         }
 //
-//         str = string(pszValueStart, psz - pszValueStart);
+//         str = string(scopedstrValueStart, psz - pszValueStart);
 //
 //      }
 //
@@ -624,7 +624,7 @@ bool get_command_line_parameter(string & wstrValue,const ::scoped_string & scope
 //}
 
 
-string_array get_c_args_from_c(const ::scoped_string & scopedstr)
+string_array_base get_c_args_from_c(const ::scoped_string & scopedstr)
 {
    
    if (scopedstr.is_empty())
@@ -636,11 +636,11 @@ string_array get_c_args_from_c(const ::scoped_string & scopedstr)
 
    auto range = scopedstr();
 
-   string_array stra;
+   string_array_base stra;
 
-   string_array straBeforeColon;
+   string_array_base straBeforeColon;
 
-   string_array straAfterColon;
+   string_array_base straAfterColon;
 
    string str;
 
@@ -674,12 +674,12 @@ string_array get_c_args_from_c(const ::scoped_string & scopedstr)
       else
       {
 
-         const char * pszValueStart = range.m_begin;
+         const_char_pointer pszValueStart = range.m_begin;
 
          while (!unicode_is_whitespace(range.m_begin))
          {
 
-            unicode_increment(range.m_begin);
+            range.m_begin = (char *) unicode_next(range.m_begin);
 
             if (range.is_empty())
             {
@@ -746,12 +746,12 @@ string_array get_c_args_from_c(const ::scoped_string & scopedstr)
 }
 
 
-string_array get_c_args_for_c(const ::scoped_string & scopedstr)
+string_array_base get_c_args_for_c(const ::scoped_string & scopedstr)
 {
 
    auto range = scopedstr();
 
-   string_array stra;
+   string_array_base stra;
 
    string str;
 
@@ -782,12 +782,12 @@ string_array get_c_args_for_c(const ::scoped_string & scopedstr)
       else
       {
 
-         const char * pszValueStart = range.m_begin;
+         const_char_pointer pszValueStart = range.m_begin;
 
          while (!unicode_is_whitespace(range.m_begin))
          {
 
-            unicode_increment(range.m_begin);
+            range.m_begin = unicode_next(range.m_begin);
 
             if (range.is_empty())
             {
@@ -824,12 +824,12 @@ string_array get_c_args_for_c(const ::scoped_string & scopedstr)
 }
 
 
-string_array get_c_args(int argc, char** argv)
+string_array_base get_c_args(int argc, char** argv)
 {
 
-   string_array straBeforeColon;
+   string_array_base straBeforeColon;
 
-   string_array straAfterColon;
+   string_array_base straAfterColon;
 
    if (argc > 0)
    {
@@ -866,7 +866,7 @@ string_array get_c_args(int argc, char** argv)
 
    }
 
-   string_array stra;
+   string_array_base stra;
 
    stra = straBeforeColon;
 
@@ -903,9 +903,9 @@ string transform_to_c_arg(const ::scoped_string & scopedstr)
 
    bool bNeedQuote = false;
 
-   const char * psz = scopedstr.begin();
+   const_char_pointer psz = scopedstr.begin();
 
-   const char * pszParse = psz;
+   const_char_pointer pszParse = psz;
 
    char chQuote = '\0';
 
@@ -918,7 +918,7 @@ string transform_to_c_arg(const ::scoped_string & scopedstr)
          if (*pszParse == '\\')
          {
 
-            unicode_increment(pszParse);
+            pszParse = unicode_next(pszParse);
 
          }
          else if (*pszParse == chQuote)
@@ -950,7 +950,7 @@ string transform_to_c_arg(const ::scoped_string & scopedstr)
 
       }
 
-      unicode_increment(pszParse);
+      pszParse = unicode_next(pszParse);
 
    }
 
@@ -984,12 +984,12 @@ string transform_to_quoted_value(const ::scoped_string & scopedstr)
 }
 
 
-string merge_colon_args(const array < string_array >& straa)
+string merge_colon_args(const array < string_array_base >& straa)
 {
 
-   string_array straBeforeColon;
+   string_array_base straBeforeColon;
 
-   string_array straAfterColon;
+   string_array_base straAfterColon;
 
    string strCommandLine;
 

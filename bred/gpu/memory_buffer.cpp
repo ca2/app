@@ -3,6 +3,7 @@
 #include "framework.h"
 #include "context.h"
 #include "device.h"
+#include "frame_storage.h"
 #include "memory_buffer.h"
 #include "model_buffer.h"
 
@@ -14,6 +15,9 @@ namespace gpu
    memory_buffer::memory_buffer()
    {
 
+      m_iBufferOffset = -1;
+      m_iSizeMapped = -1;
+      m_bDynamic = false;
       m_pmodelbuffer = nullptr;
       m_etype = e_type_none;
       m_pcontext = nullptr;
@@ -55,7 +59,7 @@ namespace gpu
 
 
 
-   void memory_buffer::initialize_memory_buffer_with_model_buffer(::gpu::model_buffer* pmodelbuffer, memsize size, enum_type etype)
+   void memory_buffer::initialize_memory_buffer_with_model_buffer(::gpu::model_buffer* pmodelbuffer, memsize size, enum_type etype, bool bDynamic)
    {
 
       m_pmodelbuffer = pmodelbuffer;
@@ -65,6 +69,8 @@ namespace gpu
       m_size = size;
 
       m_etype = etype;
+
+      m_bDynamic = bDynamic;
 
       on_initialize_memory_buffer(nullptr, size);
 
@@ -114,6 +120,11 @@ namespace gpu
    void memory_buffer::on_set_memory_buffer(const void* dataStatic, memsize sizeStatic)
    {
 
+      auto p = map(0, sizeStatic);
+
+      memcpy(p, dataStatic, sizeStatic);
+
+      unmap();
 
    }
 
@@ -358,6 +369,15 @@ namespace gpu
 
    }
 
+
+   void memory_buffer::_complete_map_allocate(::gpu::memory_buffer* pmemorybufferSource, ::gpu::frame_storage* pgpuframestorage, int size)
+   {
+
+      m_pframestorage = pgpuframestorage;
+      m_iBufferOffset = pgpuframestorage->m_iBufferOffset;
+      m_iSizeMapped = size;
+
+   }
 
 
 } // namespace gpu_vulkan

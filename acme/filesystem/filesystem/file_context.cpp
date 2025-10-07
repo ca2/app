@@ -25,6 +25,7 @@
 #include "acme/prototype/datetime/datetime.h"
 #include "acme/prototype/prototype/read_only_memory.h"
 #include "acme/prototype/string/base64.h"
+#include "acme/filesystem/file/protocol_file.h"
 //#include "acme/prototype/string/hex.h"
 #include "acme/prototype/string/str.h"
 //#include "acme/user/user/conversation.h"
@@ -205,7 +206,7 @@ bool file_context::exists(const ::file::path & pathParam)
 
          //::file::path pathZip;
 
-         //string_array straPath;
+         //string_array_base straPath;
 
          //if (!compress.get_patha(pathZip, straPath, path))
          //{
@@ -233,6 +234,34 @@ bool file_context::exists(const ::file::path & pathParam)
 
 ::file::enum_type file_context::safe_get_type(const ::file::path & path, ::payload * pvarQuery)
 {
+
+   if (path.begins("zipresource://"))
+   {
+
+      ::file::path pathInZip(path);
+
+      pathInZip.begins_eat("zipresource://");
+
+         ::folder *pfolder = nullptr;
+
+         {
+
+            _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+
+            pfolder = resource_folder();
+
+            if (::is_null(pfolder))
+            {
+
+               return ::file::e_type_doesnt_exist;
+            }
+         }
+
+         _synchronous_lock synchronouslock(pfolder->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+
+
+         return pfolder->type(pathInZip);
+   }
 
    if (path.begins("http://") || path.begins("https://"))
    {
@@ -278,7 +307,7 @@ bool file_context::exists(const ::file::path & pathParam)
 
          //::file::path pathZip;
 
-         //string_array straPath;
+         //string_array_base straPath;
 
          //if (!compress.get_patha(pathZip, straPath, path))
          //{
@@ -304,10 +333,10 @@ bool file_context::exists(const ::file::path & pathParam)
 }
 
 
-::payload file_context::length(const ::file::path & pszPath)
+::payload file_context::length(const ::file::path & path)
 {
 
-   return length(pszPath, nullptr);
+   return length(path, nullptr);
 
 }
 
@@ -399,36 +428,36 @@ bool file_context::exists(const ::file::path & pathParam)
 //}
 
 
-::file::path file_context::time_square(const string & pszPrefix, const string & pszSuffix)
+::file::path file_context::time_square(const ::scoped_string & scopedstrPrefix, const ::scoped_string & scopedstrSuffix)
 {
 
-   return time(directory()->time_square(), 25, pszPrefix, pszSuffix);
+   return time(directory()->time_square(), 25, scopedstrPrefix, scopedstrSuffix);
 
 }
 
 
-::file::path file_context::time_log(const string & pszId)
+::file::path file_context::time_log(const ::scoped_string & scopedstrId)
 {
-   return time(directory()->time_log(pszId), 9);
+   return time(directory()->time_log(scopedstrId), 9);
 }
 
 
 ::file::path
-file_context::time(const ::file::path & psz, int iMaxLevel, const string & pszPrefix, const string & pszSuffix,
+file_context::time(const ::file::path & pathBase, int iMaxLevel, const ::scoped_string & scopedstrPrefix, const ::scoped_string & scopedstrSuffix,
                    bool bTryDelete)
 {
 
    auto psystem = system();
 
-   _synchronous_lock lockMachineEvent(psystem->synchronization());
+   _synchronous_lock lockMachineEvent(psystem->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    ::file::path str;
 
    ::file::path path;
 
-   string strPrefix(pszPrefix);
+   string strPrefix(scopedstrPrefix);
 
-   string strSuffix(pszSuffix);
+   string strSuffix(scopedstrSuffix);
 
    int iIncLevel = 0;
 
@@ -436,11 +465,11 @@ restart:
 
    str.empty();
 
-   str = psz;
+   str = pathBase;
 
    directory()->create(str);
 
-   ::file::listing listing;
+   ::file::listing_base listing;
 
    string strFormat;
 
@@ -514,7 +543,7 @@ restart:
 
          directory()->enumerate(listing);
 
-         int iMax = bTryDelete ? 0 : filterex_time_square(pszPrefix, listing);
+         int iMax = bTryDelete ? 0 : filterex_time_square(scopedstrPrefix, listing);
 
          do
          {
@@ -582,17 +611,17 @@ restart:
 }
 
 
-int file_context::filterex_time_square(const ::scoped_string & scopedstrPrefix, ::file::path_array & stra)
+int file_context::filterex_time_square(const ::scoped_string & scopedstrPrefix, ::file::path_array_base & patha)
 {
 
    int iMax = -1;
 
    int iIndex;
 
-   for (int i = 0; i < stra.size(); i++)
+   for (int i = 0; i < patha.size(); i++)
    {
 
-      string str = stra[i].name();
+      string str = patha[i].name();
 
       if (str.case_insensitive_begins_eat(scopedstrPrefix))
       {
@@ -600,7 +629,7 @@ int file_context::filterex_time_square(const ::scoped_string & scopedstrPrefix, 
          if (str.length() < 2)
          {
 
-            stra.erase_at(i);
+            patha.erase_at(i);
 
             i--;
 
@@ -611,7 +640,7 @@ int file_context::filterex_time_square(const ::scoped_string & scopedstrPrefix, 
          if (!character_isdigit(str[0]) || !character_isdigit(str[1]))
          {
 
-            stra.erase_at(i);
+            patha.erase_at(i);
 
             i--;
 
@@ -664,7 +693,7 @@ bool file_context::try_create_file(const ::file::path & path, bool bTryDelete)
 
    ::pointer<::file::file>pfile;
 
-   __øconstruct(pfile);
+   øconstruct(pfile);
 
    if (!m_estatus)
    {
@@ -701,7 +730,7 @@ bool file_context::try_create_file(const ::file::path & path, bool bTryDelete)
 
    }
 
-   const char * pszJson = str;
+   const_char_pointer pszJson = str;
 
    ::payload v;
 
@@ -726,7 +755,7 @@ bool file_context::try_create_file(const ::file::path & path, bool bTryDelete)
 
    }
 
-   const char * pszJson = str;
+   const_char_pointer pszJson = str;
 
    ::payload v;
 
@@ -1022,7 +1051,7 @@ memory file_context::beginning(const ::payload & payloadFile, memsize size, bool
 }
 
 
-void file_context::put_lines(const ::payload & payloadFile, const string_array & stra, const plain_text_file_options & options)
+void file_context::put_lines(const ::payload & payloadFile, const string_array_base & stra, const plain_text_file_options & options)
 {
 
    //try
@@ -1059,7 +1088,7 @@ void file_context::put_lines(const ::payload & payloadFile, const string_array &
 }
 
 
-//void file_context::put_lines_utf8(const ::payload &payloadFile, const string_array &stra)
+//void file_context::put_lines_utf8(const ::payload &payloadFile, const string_array_base &stra)
 //{
 //
 //   try
@@ -1091,7 +1120,7 @@ void file_context::put_lines(const ::payload & payloadFile, const string_array &
 //}
 
 
-//void file_context::_put_lines(::file::file *pfile, const string_array &stra)
+//void file_context::_put_lines(::file::file *pfile, const string_array_base &stra)
 //{
 //
 //   if (pfile == nullptr)
@@ -1111,7 +1140,7 @@ void file_context::put_lines(const ::payload & payloadFile, const string_array &
 //}
 
 
-void file_context::get_lines(string_array & stra, const ::payload & payloadFile, bool bAddEmpty, bool bNoExceptionIfFailToOpen)
+void file_context::get_lines(string_array_base & stra, const ::payload & payloadFile, bool bAddEmpty, bool bNoExceptionIfFailToOpen)
 {
 
    file_pointer pfile;
@@ -1429,7 +1458,7 @@ void file_context::calculate_main_resource_memory()
    try
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       auto pfactory = system()->folder_factory();
 
@@ -1458,11 +1487,11 @@ void file_context::calculate_main_resource_memory()
 
       }
 
-      auto pmemory = __allocate read_only_memory(block);
+      auto pmemory = øallocate read_only_memory(block);
 
-      auto pfile = __allocate::memory_file(pmemory);
+      auto pfile = øallocate::memory_file(pmemory);
 
-      system()->folder_factory()->__øconstruct(m_papplication, m_pfolderResource);
+      system()->folder_factory()->øconstruct(m_papplication, m_pfolderResource);
 
       m_pfolderResource->initialize(this);
 
@@ -1495,7 +1524,7 @@ void file_context::calculate_main_resource_memory()
 
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       pfolder = resource_folder();
 
@@ -1508,7 +1537,7 @@ void file_context::calculate_main_resource_memory()
 
    }
 
-   _synchronous_lock synchronouslock(pfolder->synchronization());
+   _synchronous_lock synchronouslock(pfolder->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    string strPath(path);
 
@@ -1584,14 +1613,14 @@ void file_context::calculate_main_resource_memory()
 }
 
 
-::file::enum_type file_context::resource_get_type(const ::file::path & path)
+::file::enum_type file_context::resource_get_type(const ::file::path & path, string * pstrLogNotFound)
 {
 
    ::folder * pfolder = nullptr;
 
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       pfolder = resource_folder();
 
@@ -1604,7 +1633,7 @@ void file_context::calculate_main_resource_memory()
 
    }
 
-   _synchronous_lock synchronouslock(pfolder->synchronization());
+   _synchronous_lock synchronouslock(pfolder->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    string strPath(path);
 
@@ -1642,7 +1671,7 @@ void file_context::copy(::payload varTarget, ::payload varSource, bool bFailIfEx
        (eextract == e_extract_first || eextract == e_extract_all || !(case_insensitive_string_ends(varSource.as_file_path(), ".zip"))))
    {
 
-      ::file::listing listing;
+      ::file::listing_base listing;
 
       listing.set_listing(varSource, e_depth_recursively);
 
@@ -1968,7 +1997,7 @@ void file_context::copy(::payload varTarget, ::payload varSource, bool bFailIfEx
 //
 //}
 
-void file_context::transfer(const ::file::path & pszNew, const ::file::path & psz)
+void file_context::transfer(const ::file::path & pathNew, const ::file::path & path)
 {
 
    throw ::interface_only();
@@ -1978,8 +2007,8 @@ void file_context::transfer(const ::file::path & pszNew, const ::file::path & ps
 //#ifdef WINDOWS_DESKTOP
 //
 //   if (!::MoveFileW(
-//      utf8_to_unicode(psz),
-//      utf8_to_unicode(pszNew)))
+//      utf8_to_unicode(scopedstr),
+//      utf8_to_unicode(scopedstrNew)))
 //   {
 //
 //      DWORD dwError = ::GetLastError();
@@ -1988,12 +2017,12 @@ void file_context::transfer(const ::file::path & pszNew, const ::file::path & ps
 //      {
 //
 //         if (::CopyFileW(
-//            utf8_to_unicode(psz),
-//            utf8_to_unicode(pszNew),
+//            utf8_to_unicode(scopedstr),
+//            utf8_to_unicode(scopedstrNew),
 //            false))
 //         {
 //
-//            if (!::DeleteFileW(utf8_to_unicode(psz)))
+//            if (!::DeleteFileW(utf8_to_unicode(scopedstr)))
 //            {
 //
 //               dwError = ::GetLastError();
@@ -2024,7 +2053,7 @@ void file_context::transfer(const ::file::path & pszNew, const ::file::path & ps
 //
 //#elif defined(UNIVERSAL_WINDOWS)
 //
-//   ::winrt::Windows::Storage::StorageFile ^ file = get_os_file(psz, 0, 0, nullptr, OPEN_EXISTING, 0, nullptr);
+//   ::winrt::Windows::Storage::StorageFile ^ file = get_os_file(scopedstr, 0, 0, nullptr, OPEN_EXISTING, 0, nullptr);
 //
 //   if (file == nullptr)
 //   {
@@ -2066,7 +2095,7 @@ void file_context::transfer(const ::file::path & pszNew, const ::file::path & ps
 //
 //
 //#else
-//   if (::rename(psz, pszNew) != 0)
+//   if (::rename(scopedstr, pszNew) != 0)
 //   {
 //      int err = errno;
 //      string strError;
@@ -2131,7 +2160,7 @@ void file_context::erase(const ::file::path & path)
 //
 //#else
 //
-//   if (unlink(psz) != 0)
+//   if (unlink(scopedstr) != 0)
 //   {
 //      int err = errno;
 //      if (err != ENOENT) // already does not exist - consider removal successful - does not issue an exception
@@ -2148,19 +2177,19 @@ void file_context::erase(const ::file::path & path)
 }
 
 
-::file::path file_context::duplicate(const ::file::path & psz)
+::file::path file_context::duplicate(const ::file::path & path)
 {
    string strCopy("copy");
    string strNew;
-   if (directory()->is(psz))
+   if (directory()->is(path))
    {
       int i = 1;
       while (i <= 100)
       {
-         strNew.formatf("%s-%s-%d", psz.c_str(), strCopy.c_str(), i);
+         strNew.formatf("%s-%s-%d", path.c_str(), strCopy.c_str(), i);
          if (!exists(strNew))
          {
-            copy(strNew, psz, false, e_extract_all);
+            copy(strNew, path, false, e_extract_all);
             return strNew;
          }
          i++;
@@ -2168,7 +2197,7 @@ void file_context::erase(const ::file::path & path)
    }
    else
    {
-      string strExt = psz.final_extension();
+      string strExt = path.final_extension();
       if (!strExt.is_empty())
       {
          strExt = "-" + strExt;
@@ -2176,10 +2205,10 @@ void file_context::erase(const ::file::path & path)
       int i = 1;
       while (i <= 100)
       {
-         strNew.formatf("%s-%s-%d%s", psz.c_str(), strCopy.c_str(), i, strExt.c_str());
+         strNew.formatf("%s-%s-%d%s", path.c_str(), strCopy.c_str(), i, strExt.c_str());
          if (!exists(strNew))
          {
-            copy(strNew, psz, false, e_extract_all);
+            copy(strNew, path, false, e_extract_all);
             return strNew;
          }
          i++;
@@ -2192,11 +2221,11 @@ void file_context::erase(const ::file::path & path)
 ::file::path file_context::paste(const ::file::path & pathLocation, const ::file::path & path)
 {
 
-   ::file::path pathDir = path.folder();
+   ::file::path pathFolder = path.folder();
 
    ::file::path pathDst = pathLocation;
 
-   ::file::path pathSrc = pathDir;
+   ::file::path pathSrc = pathFolder;
 
    if (pathDst == pathSrc)
    {
@@ -2218,37 +2247,37 @@ void file_context::erase(const ::file::path & path)
 }
 
 
-void file_context::trash_that_is_not_trash(const ::file::path & psz)
+void file_context::trash_that_is_not_trash(const ::file::path & path)
 {
 
-   ::file::path strDir = directory()->trash_that_is_not_trash(psz);
+   ::file::path strDir = directory()->trash_that_is_not_trash(path);
 
    directory()->create(strDir);
 
-   transfer(strDir / psz.name(), psz);
+   transfer(strDir / path.name(), path);
 
 }
 
 
 
-void file_context::trash_that_is_not_trash(::file::path_array & stra)
+void file_context::trash_that_is_not_trash(::file::path_array_base & patha)
 {
 
-   if (stra.size() <= 0)
+   if (patha.size() <= 0)
    {
 
       return;
 
    }
 
-   ::file::path strDir = directory()->trash_that_is_not_trash(stra[0]);
+   ::file::path strDir = directory()->trash_that_is_not_trash(patha[0]);
 
    directory()->create(strDir);
 
-   for (int i = 0; i < stra.size(); i++)
+   for (int i = 0; i < patha.size(); i++)
    {
 
-      transfer(strDir / stra[i].name(), stra[i]);
+      transfer(strDir / patha[i].name(), patha[i]);
 
    }
 
@@ -2301,10 +2330,10 @@ void file_context::set_status(const ::file::path & path, const ::file::file_stat
 }
 
 
-void file_context::replace_with(const ::file::path & pathContext, const string & strNew, const string & strOld)
+void file_context::replace_with(const ::file::path & pathContext, const ::scoped_string & scopedstrNew, const ::scoped_string & scopedstrOld)
 {
 
-   ::file::listing listing;
+   ::file::listing_base listing;
 
    string strOldName;
 
@@ -2321,7 +2350,7 @@ void file_context::replace_with(const ::file::path & pathContext, const string &
 
       strNewName = strOldName;
 
-      strNewName.replace_with(strNew, strOld);
+      strNewName.replace_with(scopedstrNew, scopedstrOld);
 
       if (strNewName != strOldName)
       {
@@ -2337,7 +2366,7 @@ void file_context::replace_with(const ::file::path & pathContext, const string &
    }
    //if (strFail.has_character())
    //{
-   //   App(papp).message_box(nullptr, strFail, e_message_box_icon_exclamation);
+   //   App(papp).message_box(nullptr, strFail, ::user::e_message_box_icon_exclamation);
    //}
 
    //return e;
@@ -2367,7 +2396,7 @@ void file_context::transfer(::file::file * pfileOut, ::file::file * pfileIn)
 }
 
 
-bool file_context::is_read_only(const ::file::path & psz)
+bool file_context::is_read_only(const ::file::path & path)
 {
 
    //throw ::interface_only();
@@ -2376,7 +2405,7 @@ bool file_context::is_read_only(const ::file::path & psz)
 
    //#ifdef WINDOWS_DESKTOP
    //
-   //   unsigned int dwAttrib = windows_get_file_attributes(psz);
+   //   unsigned int dwAttrib = windows_get_file_attributes(scopedstr);
    //
    //   if (dwAttrib & FILE_ATTRIBUTE_READONLY)
    //   {
@@ -2395,7 +2424,7 @@ bool file_context::is_read_only(const ::file::path & psz)
    //
    //   struct stat st;
    //
-   //   if (stat(psz, &st) != 0)
+   //   if (stat(scopedstr, &st) != 0)
    //      return true;
    //
    //   return !(st.st_mode & S_IWUSR);
@@ -2466,10 +2495,10 @@ file_pointer file_context::resource_get_file(const ::file::path & path)
 }
 
 
-file_pointer file_context::time_square_file(const string & pszPrefix, const string & pszSuffix)
+file_pointer file_context::time_square_file(const ::scoped_string & scopedstrPrefix, const ::scoped_string & scopedstrSuffix)
 {
 
-   return get(time_square(pszPrefix, pszSuffix));
+   return get(time_square(scopedstrPrefix, scopedstrSuffix));
 
 }
 
@@ -2551,12 +2580,12 @@ file_pointer file_context::get(const ::file::path & path)
 }
 
 
-::file::path file_context::replace_with_extension(const ::string & strExtension, const ::file::path & path)
+::file::path file_context::replace_with_extension(const ::scoped_string & scopedstrExtension, const ::file::path & path)
 {
 
    ::file::path pathNew(path);
 
-   set_extension(pathNew, strExtension);
+   set_extension(pathNew, scopedstrExtension);
 
    return pathNew;
 
@@ -2612,22 +2641,22 @@ void file_context::normalize(string & str)
 }
 
 
-::std::strong_ordering file_context::cmp(const ::file::path & psz1, const ::file::path & psz2)
+::std::strong_ordering file_context::cmp(const ::file::path & path1, const ::file::path & path2)
 {
-   string str1(psz1);
+   string str1(path1);
    normalize(str1);
-   string str2(psz2);
+   string str2(path2);
    normalize(str2);
    return str1.case_insensitive_order(str2);
 }
 
 
-void file_context::rename(const ::file::path & pszNew, const ::file::path & psz)
+void file_context::rename(const ::file::path & pathNew, const ::file::path & path)
 {
 
-   ::file::path strDir = psz.folder();
+   ::file::path strDir = path.folder();
 
-   ::file::path strDirNew = pszNew.folder();
+   ::file::path strDirNew = pathNew.folder();
 
    if (strDir != strDirNew)
    {
@@ -2638,8 +2667,8 @@ void file_context::rename(const ::file::path & pszNew, const ::file::path & psz)
 
    }
 
-   //if (transfer(pszNew, psz).failed())
-   transfer(pszNew, psz);
+   //if (transfer(scopedstrNew, psz).failed())
+   transfer(pathNew, path);
    //{
 
    //   return ::error_failed;
@@ -2651,22 +2680,22 @@ void file_context::rename(const ::file::path & pszNew, const ::file::path & psz)
 }
 
 
-//void file_context::dtf(const ::file::path & pszFile, const ::file::path & pszDir)
+//void file_context::dtf(const ::file::path & pathFile, const ::file::path & pathFolder)
 //{
 //
-//   ::file::listing ls;
+//   ::file::listing_base ls;
 //
 //   directory()->rls(ls, pszDir);
 //
-//   dtf(pszFile, ls);
+//   dtf(scopedstrFile, ls);
 //
 //}
 //
 //
-//void file_context::dtf(const ::file::path & pszFile, ::file::path_array & stra)
+//void file_context::dtf(const ::file::path & pathFile, ::file::path_array_base & patha)
 //{
 //
-//   file_pointer pfile = get_file(pszFile, ::file::e_open_create | ::file::e_open_write | ::file::e_open_binary);
+//   file_pointer pfile = get_file(scopedstrFile, ::file::e_open_create | ::file::e_open_write | ::file::e_open_binary);
 //
 //   if (pfile.is_null())
 //   {
@@ -2685,7 +2714,7 @@ void file_context::rename(const ::file::path & pszNew, const ::file::path & psz)
 //
 //   ::pointer<::file::file>pfile2;
 //
-//   __øconstruct(pfile2);
+//   øconstruct(pfile2);
 //
 //   memsize iBufSize = 1024 * 1024;
 //
@@ -2699,20 +2728,20 @@ void file_context::rename(const ::file::path & pszNew, const ::file::path & psz)
 //
 //   unsigned long long iPos;
 //
-//   for (int i = 0; i < stra.size(); i++)
+//   for (int i = 0; i < patha.size(); i++)
 //   {
-//      if (case_insensitive_string_ends(stra[i], ".zip"))
+//      if (case_insensitive_string_ends(patha[i], ".zip"))
 //      {
 //      }
-//      else if (directory()->is(stra[i]))
+//      else if (directory()->is(patha[i]))
 //         continue;
 //      write_n_number(pfile, nullptr, 1);
 //      iPos = pfile->get_position();
 //      write_gen_string(pfile, nullptr, strMd5);
 //      MD5_Init(&ctx);
-//      string strRelative = stra[i].relative();
+//      string strRelative = patha[i].relative();
 //      write_gen_string(pfile, &ctx, strRelative);
-//      if (pfile2->open(stra[i], ::file::e_open_read | ::file::e_open_binary).failed())
+//      if (pfile2->open(patha[i], ::file::e_open_read | ::file::e_open_binary).failed())
 //         throw ::exception(::exception("failed"));
 //      write_n_number(pfile, &ctx, (int)pfile2->size());
 //      while ((uRead = pfile2->read(buf, iBufSize)) > 0)
@@ -2732,12 +2761,12 @@ void file_context::rename(const ::file::path & pszNew, const ::file::path & psz)
 //}
 //
 //
-//void file_context::ftd(const ::file::path & pszDir, const ::file::path & pszFile)
+//void file_context::ftd(const ::file::path & pathFolder, const ::file::path & pathFile)
 //{
 //
 //   string strVersion;
 //
-//   file_pointer pfile = get_file(pszFile, ::file::e_open_read | ::file::e_open_binary);
+//   file_pointer pfile = get_file(scopedstrFile, ::file::e_open_read | ::file::e_open_binary);
 //
 //   if (pfile.is_null())
 //      throw ::exception(::exception("failed"));
@@ -2755,7 +2784,7 @@ void file_context::rename(const ::file::path & pszNew, const ::file::path & psz)
 //   long long iLen;
 //   MD5_CTX ctx;
 //
-//   auto pfile2 = __øcreate < ::file::file >();
+//   auto pfile2 = øcreate < ::file::file >();
 //
 //   memsize uRead;
 //
@@ -2769,7 +2798,7 @@ void file_context::rename(const ::file::path & pszNew, const ::file::path & psz)
 //         read_gen_string(pfile, nullptr, strMd5);
 //         MD5_Init(&ctx);
 //         read_gen_string(pfile, &ctx, strRelative);
-//         ::file::path strPath = ::file::path(pszDir) / strRelative;
+//         ::file::path strPath = ::file::path(scopedstrDir) / strRelative;
 //         directory()->create(strPath.folder());
 //         if (pfile2->open(strPath, ::file::e_open_create | ::file::e_open_binary | ::file::e_open_write).failed())
 //            throw ::exception(::exception("failed"));
@@ -2802,12 +2831,12 @@ void file_context::rename(const ::file::path & pszNew, const ::file::path & psz)
 //
 //   str.Format("%I64dn", iNumber);
 //
-//   pfile->write((const char *)str);
+//   pfile->write((const_char_pointer )str);
 //
 //   if (pctx != nullptr)
 //   {
 //
-//      MD5_Update((MD5_CTX *)pctx, (const char *)str, (int)str.length());
+//      MD5_Update((MD5_CTX *)pctx, (const_char_pointer )str, (int)str.length());
 //
 //   }
 //
@@ -2854,10 +2883,10 @@ void file_context::rename(const ::file::path & pszNew, const ::file::path & psz)
 //{
 //   ::collection::count iLen = str.length();
 //   write_n_number(pfile, pctx, iLen);
-//   pfile->write((const char *)str);
+//   pfile->write((const_char_pointer )str);
 //   if (pctx != nullptr)
 //   {
-//      MD5_Update((MD5_CTX *)pctx, (const char *)str, (int)str.length());
+//      MD5_Update((MD5_CTX *)pctx, (const_char_pointer )str, (int)str.length());
 //   }
 //}
 
@@ -2867,7 +2896,7 @@ void file_context::rename(const ::file::path & pszNew, const ::file::path & psz)
 //   read_n_number(pfile, pctx, iLen);
 //   char * psz = str.get_buffer((character_count)(iLen + 1));
 //
-//   pfile->read(psz, (memsize)iLen);
+//   pfile->read(scopedstr, (memsize)iLen);
 //
 //   if (pctx != nullptr)
 //   {
@@ -2976,7 +3005,7 @@ string file_context::nessie(const ::payload & payloadFile)
 }
 
 
-void file_context::get_last_write_time(file_time_t * pfile_time, const string & strFilename)
+void file_context::get_last_write_time(file_time_t * pfile_time, const ::scoped_string & scopedstrFilename)
 {
 
    throw ::interface_only();
@@ -3169,7 +3198,7 @@ file_pointer file_context::file_get_file(::file::path path, ::file::e_open eopen
 
    file_pointer pfile;
 
-   __øconstruct(pfile);
+   øconstruct(pfile);
 
    pfile->open(path, eopen);
 
@@ -3210,8 +3239,10 @@ file_pointer file_context::file_get_file(::file::path path, ::file::e_open eopen
 }
 
 
-file_pointer file_context::data_get_file(string strData, ::file::e_open eopen)
+file_pointer file_context::data_get_file(const ::scoped_string & scopedstrData, ::file::e_open eopen)
 {
+
+   ::string strData(scopedstrData);
 
    ASSERT(strData.case_insensitive_begins("data:"));
 
@@ -3238,7 +3269,7 @@ file_pointer file_context::data_get_file(string strData, ::file::e_open eopen)
          if (strEncoding.case_insensitive_order("base64") == 0)
          {
 
-            ::pointer<memory_file>pmemoryfile = __allocate memory_file();
+            ::pointer<memory_file>pmemoryfile = øallocate memory_file();
 
             auto psystem = system();
 
@@ -3281,7 +3312,7 @@ folder_pointer file_context::get_folder(::file::file * pfile, const ::scoped_str
 
    }
 
-   auto pfolder = __øcreate < ::folder >(pfactory);
+   auto pfolder = øcreate < ::folder >(pfactory);
 
    if (!pfolder)
    {
@@ -3335,7 +3366,7 @@ file_pointer file_context::http_get_file(const ::url::url & url, ::file::e_open 
 
    }
 
-   auto pdomain = __create_new < ::url_domain >();
+   auto pdomain = øcreate_new < ::url_domain >();
 
    pdomain->create(url.connect().host());
 
@@ -3401,7 +3432,7 @@ file_pointer file_context::http_get_file(const ::url::url & url, ::file::e_open 
    while_predicateicate_Sleep(60 * 1000, [&]()
    {
 
-      _synchronous_lock synchronouslock(system()->http_download_mutex());
+      _synchronous_lock synchronouslock(system()->http_download_mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       return system()->http_download_array()->contains(url.as_string()) || system()->http_exists_array()->contains(url.as_string());
 
@@ -3415,7 +3446,7 @@ file_pointer file_context::http_get_file(const ::url::url & url, ::file::e_open 
 
    {
 
-      _synchronous_lock synchronouslock(system()->http_download_mutex());
+      _synchronous_lock synchronouslock(system()->http_download_mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (bDoCache && file_system()->exists(pathCache))
       {
@@ -3438,25 +3469,25 @@ file_pointer file_context::http_get_file(const ::url::url & url, ::file::e_open 
    if (bDoCache)
    {
 
-      _synchronous_lock synchronouslock(system()->http_download_mutex());
+      _synchronous_lock synchronouslock(system()->http_download_mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       system()->http_download_array()->add(url.as_string());
 
    }
 
-   auto pget = __øcreate < ::nano::http::get >();
+   auto defer_get = øcreate < ::nano::http::get >();
 
-   pget->m_url = url;
+   defer_get->m_url = url;
 
-   pget->m_timeSyncTimeout = 5_hour;
+   defer_get->m_timeSyncTimeout = 5_hour;
 
    auto pmemoryfile = create_memory_file();
 
-   pget->want_memory_response(pmemoryfile->get_memory());
+   defer_get->want_memory_response(pmemoryfile->get_memory());
 
-   pget->call();
+   defer_get->call();
 
-   const char * pszData = (const char *)pmemoryfile->get_memory()->data();
+   const_char_pointer pszData = (const_char_pointer )pmemoryfile->get_memory()->data();
 
    auto size = static_cast<size_t>(pmemoryfile->get_memory()->size());
 
@@ -3464,7 +3495,7 @@ file_pointer file_context::http_get_file(const ::url::url & url, ::file::e_open 
 
   /// ::property_set & set = payloadFile["http_set"].property_set_reference();
 
-   pmemoryfile->payload("http_set") = ::transfer(pget->property_set());
+   pmemoryfile->payload("http_set") = ::transfer(defer_get->property_set());
    //{
 
    //   return ::error_failed;
@@ -3474,7 +3505,7 @@ file_pointer file_context::http_get_file(const ::url::url & url, ::file::e_open 
    if (bDoCache)
    {
 
-      _synchronous_lock synchronouslock(system()->http_download_mutex());
+      _synchronous_lock synchronouslock(system()->http_download_mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       try
       {
@@ -3654,7 +3685,7 @@ file_pointer file_context::_get_file(const ::payload & payloadFile, ::file::e_op
          if (eopen & ::file::e_open_no_exception_on_open)
          {
 
-            pfile = __allocate::file::file();
+            pfile = øallocate::file::file();
 
             pfile->m_estatus = error_not_a_file;
 
@@ -3734,7 +3765,7 @@ file_pointer file_context::_get_file(const ::payload & payloadFile, ::file::e_op
       if (eopen & ::file::e_open_no_exception_on_open)
       {
 
-         __construct_new(pfile);
+         øconstruct_new(pfile);
 
          pfile->m_estatus = error_file_not_found;
 
@@ -3829,6 +3860,17 @@ file_pointer file_context::_get_file(const ::payload & payloadFile, ::file::e_op
 ::file_pointer file_context::defer_get_protocol_file(const ::scoped_string & scopedstrProtocol, const ::file::path & path, ::file::e_open eopen, ::pointer < ::file::exception > * pfileexception)
 {
 
+   if(scopedstrProtocol == "mediastore")
+   {
+
+      auto pfile = øcreate_new < ::protocol_file >();
+
+      pfile->open(path, eopen, pfileexception);
+
+      return pfile;
+
+   }
+
    return nullptr;
 
 }
@@ -3839,7 +3881,7 @@ file_pointer file_context::_get_file(const ::payload & payloadFile, ::file::e_op
 
    ::file_pointer pfile;
 
-   __øconstruct(pfile);
+   øconstruct(pfile);
 
    pfile->open(path, eopen, pfileexception);
 
@@ -3859,7 +3901,7 @@ file_pointer file_context::_get_file(const ::payload & payloadFile, ::file::e_op
 //bool file_context::transfer(const path & pszOutput, ::file::file * pfileIn)
 //{
 
-//   return output(pszOutput, this, &file_context::transfer, pfileIn);
+//   return output(scopedstrOutput, this, &file_context::transfer, pfileIn);
 
 //}
 
@@ -3867,7 +3909,7 @@ file_pointer file_context::_get_file(const ::payload & payloadFile, ::file::e_op
 //bool file_context::transfer(const path & pszOutput, ::stream & istream)
 //{
 
-//   return output(pszOutput, this, &file_context::transfer, istream);
+//   return output(scopedstrOutput, this, &file_context::transfer, istream);
 
 //}
 
@@ -4011,44 +4053,44 @@ bool file_context::is_link(const ::file::path & path)
 //}
 
 //
-//::extended::status file_context::transfer(const ::file::path & pszNew, const ::file::path & pszOld)
+//::extended::status file_context::transfer(const ::file::path & pathNew, const ::file::path & pathOld)
 //{
 //
-//   return psystem->m_spfile->transfer(pszNew, pszOld, get_app());
+//   return psystem->m_spfile->transfer(scopedstrNew, pszOld, get_app());
 //
 //}
 
 //
-//::extended::status file_context::del(const ::file::path & psz)
+//::extended::status file_context::del(const ::file::path & path)
 //{
-//   return psystem->m_spfile->del(psz, get_app());
+//   return psystem->m_spfile->del(scopedstr, get_app());
 //}
 
-//::extended::status file_context::rename(const ::file::path & pszNew, const ::file::path & pszOld)
+//::extended::status file_context::rename(const ::file::path & pathNew, const ::file::path & pathOld)
 //{
-//   return psystem->m_spfile->rename(pszNew, pszOld, get_app());
+//   return psystem->m_spfile->rename(scopedstrNew, pszOld, get_app());
 //}
 
-//void file_context::trash_that_is_not_trash(const ::file::path & psz)
+//void file_context::trash_that_is_not_trash(const ::file::path & path)
 //{
-//   return psystem->m_spfile->trash_that_is_not_trash(psz, get_app());
+//   return psystem->m_spfile->trash_that_is_not_trash(scopedstr, get_app());
 //}
 //
-//void file_context::trash_that_is_not_trash(::file::path_array & stra)
+//void file_context::trash_that_is_not_trash(::file::path_array_base & patha)
 //{
-//   return psystem->m_spfile->trash_that_is_not_trash(stra, get_app());
+//   return psystem->m_spfile->trash_that_is_not_trash(patha, get_app());
 //}
 
-//::extended::status file_context::replace(const ::file::path & pszContext, const string & pszFind, const string & pszReplace)
+//::extended::status file_context::replace(const ::file::path & pathContext, const ::scoped_string & scopedstrFind, const ::scoped_string & scopedstrReplace)
 //{
-//   return psystem->m_spfile->replace(pszContext, pszFind, pszReplace, get_app());
+//   return psystem->m_spfile->replace(scopedstrContext, pszFind, pszReplace, get_app());
 //}
 
 
-//bool file_context::exists(const ::file::path & pszPath)
+//bool file_context::exists(const ::file::path & path)
 //{
 //
-//   return psystem->m_spfile->exists(pszPath, get_app());
+//   return psystem->m_spfile->exists(scopedstrPath, get_app());
 //
 //}
 
@@ -4087,7 +4129,7 @@ bool file_context::is_link(const ::file::path & path)
 }
 
 
-/*  bool file_context::exists(const ::string & strPath)
+/*  bool file_context::exists(const ::scoped_string & scopedstrPath)
    {
 
       return psystem->m_spfile->exists(strPath, get_app());
@@ -4097,7 +4139,7 @@ bool file_context::is_link(const ::file::path & path)
    bool file_context::exists(const ::payload & payload)
    {
 
-      const ::string & strPath = payload.get_string();
+      const ::scoped_string & scopedstrPath = payload.get_string();
 
 
       return psystem->m_spfile->exists(strPath, get_app());
@@ -4105,15 +4147,15 @@ bool file_context::is_link(const ::file::path & path)
    }*/
 
 
-   //::payload file_context::length(const ::file::path & pszPath)
+   //::payload file_context::length(const ::file::path & path)
    //{
    //
-   //   return psystem->m_spfile->length(pszPath, get_app());
+   //   return psystem->m_spfile->length(scopedstrPath, get_app());
    //
    //}
 
 
-   //::payload file_context::length(const ::string & strPath)
+   //::payload file_context::length(const ::scoped_string & scopedstrPath)
    //{
 
 
@@ -4130,7 +4172,7 @@ bool file_context::is_link(const ::file::path & path)
    //}
 
    //
-   //::file::path file_context::time(const ::file::path & pszBasePath, int iDepth, const string & pszPrefix, const string & pszSuffix)
+   //::file::path file_context::time(const ::file::path & pathBasePath, int iDepth, const ::scoped_string & scopedstrPrefix, const ::scoped_string & scopedstrSuffix)
    //{
    //
    //   return psystem->m_spfile->time(get_app(), pszBasePath, iDepth, pszPrefix, pszSuffix);
@@ -4138,14 +4180,14 @@ bool file_context::is_link(const ::file::path & path)
    //}
 
 
-   //::file::path file_context::time_square(const string & pszPrefix, const string & pszSuffix)
+   //::file::path file_context::time_square(const ::scoped_string & scopedstrPrefix, const ::scoped_string & scopedstrSuffix)
    //{
    //
    //   return psystem->m_spfile->time_square(get_app(), pszPrefix, pszSuffix);
    //
    //}
 
-   //::file::path file_context::time_log(const string & pszId)
+   //::file::path file_context::time_log(const ::scoped_string & scopedstrId)
    //{
    //   return psystem->m_spfile->time_log(get_app(), pszId);
    //}
@@ -4188,17 +4230,17 @@ bool file_context::is_link(const ::file::path & path)
    //}
 
    //
-   //void file_context::lines(string_array & stra, const ::payload & payloadFile)
+   //void file_context::lines(string_array_base & patha, const ::payload & payloadFile)
    //{
    //
-   //   return psystem->m_spfile->lines(stra, payloadFile, get_app());
+   //   return psystem->m_spfile->lines(patha, payloadFile, get_app());
    //
    //}
    //
    //
-   //void file_context::put_lines(const ::payload & payloadFile, const string_array & stra)
+   //void file_context::put_lines(const ::payload & payloadFile, const string_array_base & patha)
    //{
-   //   return psystem->m_spfile->put_lines(payloadFile, stra, get_app());
+   //   return psystem->m_spfile->put_lines(payloadFile, patha, get_app());
    //}
    //
    //bool file_context::put_contents(const ::payload & payloadFile, const void * pvoidContents, ::collection::count count)
@@ -4246,7 +4288,7 @@ bool file_context::is_link(const ::file::path & path)
    //}
 
    //
-   //string file_context::sys_temp(const char * lpszName, const ::scoped_string & scopedstrExtension)
+   //string file_context::sys_temp(const_char_pointer lpszName, const ::scoped_string & scopedstrExtension)
    //{
    //   return psystem->m_spfile->sys_temp(lpszName, pszExtension, get_app());
    //}
@@ -4288,32 +4330,32 @@ bool file_context::is_link(const ::file::path & path)
 
 
 //
-//void file_context::dtf(const ::file::path & pszFile, const ::file::path & pszDir)
+//void file_context::dtf(const ::file::path & pathFile, const ::file::path & pathFolder)
 //{
 //
-//   return psystem->m_spfile->dtf(pszFile, pszDir, get_app());
+//   return psystem->m_spfile->dtf(scopedstrFile, pszDir, get_app());
 //
 //}
 
 //bool file_context::is_read_only(const path & psz)
 //{
 //
-//   return psystem->m_spfile->is_read_only(psz, get_app());
+//   return psystem->m_spfile->is_read_only(scopedstr, get_app());
 //}
 
 
-//void file_context::dtf(const ::file::path & pszFile, ::file::path_array & stra, ::file::path_array & straRelative)
+//void file_context::dtf(const ::file::path & pathFile, ::file::path_array_base & patha, ::file::path_array_base & straRelative)
 //{
 //
-//   return psystem->m_spfile->dtf(pszFile, stra, get_app());
+//   return psystem->m_spfile->dtf(scopedstrFile, patha, get_app());
 //
 //}
 //
 //
-//void file_context::ftd(const ::file::path & pszDir, const ::file::path & pszFile)
+//void file_context::ftd(const ::file::path & pathFolder, const ::file::path & pathFile)
 //{
 //
-//   return psystem->m_spfile->ftd(pszDir, pszFile, get_app());
+//   return psystem->m_spfile->ftd(scopedstrDir, pszFile, get_app());
 //
 //}
 
@@ -4338,7 +4380,7 @@ void file_context::crypto_get(const ::payload & payloadFile, string & str, const
 }
 
 
-void file_context::save_lines(const ::payload & payloadFile, string_array & stra)
+void file_context::save_lines(const ::payload & payloadFile, string_array_base & stra)
 {
 
    string str = stra.implode("\n");
@@ -4350,7 +4392,7 @@ void file_context::save_lines(const ::payload & payloadFile, string_array & stra
 }
 
 
-void file_context::load_lines(string_array & stra, const ::payload & payloadFile)
+void file_context::load_lines(string_array_base & stra, const ::payload & payloadFile)
 {
 
    string str = as_string(payloadFile);
@@ -4616,7 +4658,7 @@ void file_context::unzip_to_folder(const ::file::path & pathFolder, const ::file
 }
 
 
-CLASS_DECL_ACME void * file_as_memory_dup(long & size, const char * psz)
+CLASS_DECL_ACME void * file_as_memory_dup(long & size, const_char_pointer psz)
 {
 
    try

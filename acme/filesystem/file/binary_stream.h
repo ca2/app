@@ -60,7 +60,7 @@ public:
 
 
 
-   //::atom text_to_factory_id(const ::string & str);
+   //::atom text_to_factory_id(const ::scoped_string & scopedstr);
 
 
    //::string factory_id_to_text(const ::atom & atom);
@@ -100,7 +100,7 @@ public:
 
 
    //string factory_id_to_text(const ::atom & atom) ;
-   //::atom text_to_factory_id(string strText) ;
+   //::atom text_to_factory_id(const ::scoped_string & scopedstrText) ;
 
 
    //template < typename TYPE >
@@ -271,7 +271,7 @@ public:
    //binary_stream & operator <<(const atom & atom);
    //binary_stream & operator <<(const ::payload & payload);
    //binary_stream & operator <<(const property & property);
-   //binary_stream & operator <<(const ::string & str);
+   //binary_stream & operator <<(const ::scoped_string & scopedstr);
    ////binary_stream & operator <<(const ::particle * pparticle) ;
    ////binary_stream & operator <<(const matter& matter) ;
    ////binary_stream & operator <<(const ::property_set & set);
@@ -350,20 +350,20 @@ public:
    // void write_file(const ::file::path & path, const ::matter & matter);
    // void read_file(const ::file::path & path, ::matter & matter);
 
-   // void write_link(const ::string & strLink, ::pointer<::matter>& matter);
-   // void read_link(const ::string & strLink, ::pointer<::matter>& matter);
+   // void write_link(const ::scoped_string & scopedstrLink, ::pointer<::matter>& matter);
+   // void read_link(const ::scoped_string & scopedstrLink, ::pointer<::matter>& matter);
 
-   // void write_link(const ::matter * preference, const ::string & strLink, bool bReadOnly, ::matter * pobjectSaveOptions = nullptr);
+   // void write_link(const ::matter * preference, const ::scoped_string & scopedstrLink, bool bReadOnly, ::matter * pobjectSaveOptions = nullptr);
 
    // bool write_link(const ::matter * preference) ;
    // void read_link(::matter * preference) ;
 
 
    // bool get_object_link(const ::matter * preference, string & strLink, bool & bReadOnly) ;
-   // void set_object_link(const ::matter * preference, const ::string & strLink, bool bReadOnly) ;
+   // void set_object_link(const ::matter * preference, const ::scoped_string & scopedstrLink, bool bReadOnly) ;
 
 
-   // ::file::path get_link_path(string strLink);
+   // ::file::path get_link_path(const ::scoped_string & scopedstrLink);
 
    //bool is_version(::collection::index i);
 
@@ -399,7 +399,7 @@ public:
    //template < typename BASE_TYPE >
    //inline ::pointer<BASE_TYPE>load_object();
 
-    //::pointer<::matter>create_object_from_text(string strText);
+    //::pointer<::matter>create_object_from_text(const ::scoped_string & scopedstrText);
 
 
    template < typename BLOCK >
@@ -545,7 +545,7 @@ public:
    virtual string factory_id_to_text(const ::atom & atom);
 
 
-   virtual ::atom text_to_factory_id(const ::string & str);
+   virtual ::atom text_to_factory_id(const ::scoped_string & scopedstr);
 
 
    //bool is_open() const
@@ -670,10 +670,10 @@ public:
    //}
 
 
-   binary_stream & operator <<(const ::ansi_character * psz);
+   binary_stream & operator <<(const_char_pointer psz);
 
 
-   virtual binary_stream & operator <<(const ::range < const char * > & str);
+   virtual binary_stream & operator <<(const ::range < const_char_pointer >& str);
 
 
    //binary_stream & operator <<(const ::particle * pparticle)
@@ -780,7 +780,7 @@ public:
    //}
 
 
-   //void write_link(const ::string & strLink, const ::matter & matter)
+   //void write_link(const ::scoped_string & scopedstrLink, const ::matter & matter)
    //{
    //
    //   ::file::path path = get_link_path(matter);
@@ -812,7 +812,7 @@ public:
    //}
    //
    //
-   //void read_link(const ::string & strLink, ::matter & matter)
+   //void read_link(const ::scoped_string & scopedstrLink, ::matter & matter)
    //{
    //
    //   ::file::path path = get_link_path(strLink);
@@ -852,7 +852,7 @@ public:
    //}
    //
    //
-   //void set_object_link(const ::matter & matter, const ::string & strLink, bool bReadOnly)
+   //void set_object_link(const ::matter & matter, const ::scoped_string & scopedstrLink, bool bReadOnly)
    //{
    //
    //}
@@ -877,7 +877,7 @@ public:
    //}
    //
    //
-   //void write_link(const ::matter & matter, const ::string & strLink, bool bReadOnly)
+   //void write_link(const ::matter & matter, const ::scoped_string & scopedstrLink, bool bReadOnly)
    //{
    //
    //   write(bReadOnly);
@@ -949,7 +949,7 @@ public:
    //}
 
 
-   //void set_object_link(const ::matter * preference, const ::string & strLink, bool bReadOnly)
+   //void set_object_link(const ::matter * preference, const ::scoped_string & scopedstrLink, bool bReadOnly)
    //{
    //
    //}
@@ -976,7 +976,7 @@ public:
    //}
 
 
-   //void write_link(const ::matter * preference, const ::string & strLink, bool bReadOnly, ::matter * pobjectSaveOptions)
+   //void write_link(const ::matter * preference, const ::scoped_string & scopedstrLink, bool bReadOnly, ::matter * pobjectSaveOptions)
    //{
    //
    //   write(bReadOnly);
@@ -1217,14 +1217,14 @@ public:
 
    virtual void read_to_hex(string & str, filesize tickStart, filesize tickEnd);
 
-   virtual ::pointer<::matter>create_object_from_text(::particle * pparticle, string strText);
+   virtual ::pointer<::matter>create_object_from_text(::particle * pparticle, const ::scoped_string & scopedstrText);
 
 
 
 
    //
    //
-   //::atom text_to_factory_id(const ::string & str)
+   //::atom text_to_factory_id(const ::scoped_string & scopedstr)
    //{
    //
    //   return str;

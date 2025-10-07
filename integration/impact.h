@@ -2,7 +2,7 @@
 #pragma once
 
 
-#include "base/user/user/impact.h"
+#include "berg/user/user/impact.h"
 #include "apex/platform/app_consumer.h"
 
 
@@ -15,8 +15,8 @@ namespace app_integration
    {
    public:
 
-      string_array                              m_straName;
-      ::pointer_array < ::string_array >        m_straaOutput;
+      string_array_base                              m_straName;
+      ::pointer_array < ::string_array_base >        m_straaOutput;
 
       ::string          m_strName;
       //::string          m_strRelease;
@@ -27,7 +27,7 @@ namespace app_integration
 
 
       int               m_iExitCode;
-      ::string_array    m_straOutput;
+      ::string_array_base    m_straOutput;
       ::file::path      m_pathIntegration;
 
 

@@ -22,7 +22,7 @@ namespace database
    }
 
 
-   exception::exception(const char * pszFormat, ...)
+   exception::exception(const_char_pointer pszFormat, ...)
    {
 
       string str;
@@ -119,7 +119,7 @@ namespace database
    }
 
 
-   const char * parameter_list::get_key(::collection::index i)
+   const_char_pointer parameter_list::get_key(::collection::index i)
    {
 
       return m_stra[i];

@@ -43,7 +43,7 @@ namespace user
       bool open_document(const ::payload & payloadFile) override;
       //::type controltype_to_typeinfo(::user::enum_control_type econtroltype);
 
-      bool open_html(const ::string & str) override;
+      bool open_html(const ::scoped_string & scopedstr) override;
 
 
       //using ::user::interaction::_001IsPointInside;
@@ -70,7 +70,7 @@ namespace user
       void on_command(::message::command * pcommand) override;
       DECLARE_MESSAGE_HANDLER(_001OnNotify);
       DECLARE_MESSAGE_HANDLER(_001OnMessageNotify);
-      virtual void get_selection(const ::scoped_string & scopedstrDataKey, ::string_array & stra);
+      virtual void get_selection(const ::scoped_string & scopedstrDataKey, ::string_array_base & stra);
       void Update(bool bSave);
       bool _001SetData(atom uId,bool bData);
       bool _001GetData(atom uId,bool & bData);

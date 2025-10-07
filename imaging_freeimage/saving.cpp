@@ -4,9 +4,11 @@
 #include "aura/graphics/image/image.h"
 #include "aura/graphics/image/encoding_options.h"
 
-
+#if defined(USE_PORT_FREEIMAGE)
+#include <port_freeimage/FreeImage.h>
+#else
 #include <FreeImage.h>
-
+#endif
 
 namespace imaging_freeimage
 {

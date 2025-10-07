@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "base/update.h" 
+#include "berg/update.h" 
 
 
 namespace filehandler
@@ -182,8 +182,8 @@ namespace filehandler
    {
       ::userex::pane_tab_impact::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_create, pchannel, this, &pane_impact::on_message_create);
-      MESSAGE_LINK(WM_USER + 1122, pchannel, this, &pane_impact::_001OnMenuMessage);
+      USER_MESSAGE_LINK(::user::e_message_create, pchannel, this, &pane_impact::on_message_create);
+      USER_MESSAGE_LINK(WM_USER + 1122, pchannel, this, &pane_impact::_001OnMenuMessage);
    }
 
 

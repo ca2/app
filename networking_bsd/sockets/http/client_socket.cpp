@@ -51,7 +51,7 @@ string dump_hex(::file::file* pfile)
 
       }
 
-      ::hex::upper_pad_from(psz, &iPos, 4);
+      ::hex::upper_pad_from(scopedstr, &iPos, 4);
 
       psz += 8;
       *psz = ' ';
@@ -63,7 +63,7 @@ string dump_hex(::file::file* pfile)
          if (i < iRead)
          {
 
-            ::hex::upper_pad_from(psz, buf + i, 1);
+            ::hex::upper_pad_from(scopedstr, buf + i, 1);
             psz += 2;
 
          }
@@ -177,7 +177,7 @@ namespace sockets
    }
 
 
-   http_client_socket::http_client_socket(const ::string & strUrlParam) //:
+   http_client_socket::http_client_socket(const ::scoped_string & scopedstrUrlParam) //:
       //::object(&h),
       //base_socket(h),
       //socket(h),
@@ -271,7 +271,7 @@ namespace sockets
    {
 
 #if HEAVY_HTTP_LOG
-      informationf("OnHeader %s: %s", (const char*)key, (const char*)value);
+      informationf("OnHeader %s: %s", (const_char_pointer )key, (const_char_pointer )value);
 #endif
 
       m_content += as_string(key) + ": " + value + "\r\n";
@@ -404,7 +404,7 @@ namespace sockets
    }
 
 
-   void http_client_socket::OnData(const char *buf,memsize len)
+   void http_client_socket::OnData(const_char_pointer buf,memsize len)
    {
 
       if(m_response.attr("http_status_code").as_int() >= 300 && m_response.attr("http_status_code").as_int() <= 399)
@@ -453,7 +453,7 @@ namespace sockets
    }
 
 
-   void http_client_socket::OnDataArrived(const char * buf, memsize len)
+   void http_client_socket::OnDataArrived(const_char_pointer buf, memsize len)
    {
 
       __UNREFERENCED_PARAMETER(buf);
@@ -592,7 +592,7 @@ namespace sockets
    }
 
 
-   void http_client_socket::request_url(string strUrlParam)
+   void http_client_socket::request_url(const ::scoped_string & scopedstrUrlParam)
    {
       string strRequestUri;
 
@@ -709,7 +709,7 @@ namespace sockets
    }
 
 
-   CLASS_DECL_APEX e_http_method string_http_method(const ::string & str)
+   CLASS_DECL_APEX e_http_method string_http_method(const ::scoped_string & scopedstr)
    {
 
       string strMethod(str);

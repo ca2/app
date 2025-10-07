@@ -9,14 +9,14 @@ namespace progress
 {
 
 
-   progress::progress(::user::interaction_base * pprimitiveParent, const ::string & strTitle, ::collection::count iStepCount)
+   progress::progress(::user::interaction_base * pprimitiveParent, const ::scoped_string & scopedstrTitle, ::collection::count iStepCount)
    {
 
       auto puserinteractionTopLevel = pprimitiveParent->_top_level();
 
       auto papp = pprimitiveParent->get_app();
 
-      auto pprogress = papp->show_progress(puserinteractionTopLevel, strTitle, iStepCount);
+      auto pprogress = papp->show_progress(puserinteractionTopLevel, scopedstrTitle, iStepCount);
 
       ::pointer<::progress::real>::operator =(pprogress);
 

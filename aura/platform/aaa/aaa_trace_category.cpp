@@ -71,7 +71,7 @@ void trace_category_static_init()
 
       const ::scoped_string & scopedstrCategory = *p;
 
-      auto pcategory = __allocate trace_category(etracecategory, pszCategory);
+      auto pcategory = øallocate trace_category(etracecategory, pszCategory);
 
       trace_category::s_ptracecategorya->add(pcategory);
 
@@ -92,11 +92,11 @@ void trace_category_static_init()
 //
 //   //::collection::index i = 0;
 //
-//   //while (pszaCategory[i] != NULL && i < g_ptracecategorya->get_size())
+//   //while (scopedstraCategory[i] != NULL && i < g_ptracecategorya->get_size())
 //   //{
 //
 //   //   g_ptracecategorya->element_at(i).m_ecategory = (e_trace_category) i;
-//   //   g_ptracecategorya->element_at(i).raw_set_topic_text(pszaCategory[i]);
+//   //   g_ptracecategorya->element_at(i).raw_set_topic_text(scopedstraCategory[i]);
 //
 //   //}
 //

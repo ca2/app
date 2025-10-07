@@ -488,7 +488,143 @@ namespace typed
       }
 
 
-      //inline  TYPE * alloc(::collection::count c, const char * pszFile, int iLine)
+      //inline  TYPE * alloc(::collection::count c, const_char_pointer pszFile, int iLine)
+      //{
+
+      //   return m_ptypedallocator->allocate(c, pszFile, iLine);
+
+      //}
+      //inline  TYPE * alloc(::collection::count c)
+      //{
+
+      //   return m_ptypedallocator->allocate(c);
+
+      //}
+
+
+
+      //inline  void free(TYPE * p)
+      //{
+
+      //   m_ptypedallocator->free(p);
+
+      //}
+
+
+   };
+
+
+   template < typename TYPE >
+   class def_with_zero_init :
+      protected constructor::zero<TYPE>,
+      protected copier::def<TYPE>,
+      protected destructor::def<TYPE>
+   {
+   public:
+
+
+      inline  void construct(TYPE* p)
+      {
+
+         constructor::zero< TYPE >::construct(p);
+
+      }
+
+
+      inline  void construct_count(TYPE* p, ::collection::count c)
+      {
+
+         constructor::zero< TYPE >::construct_count(p, c);
+
+      }
+
+
+      inline void destruct(TYPE* pointer)
+      {
+
+         destructor::def< TYPE>::destruct(pointer);
+
+      }
+
+
+      inline  void destruct_count(TYPE* pointer, ::collection::count c)
+      {
+
+         destructor::def< TYPE>::destruct_count(pointer, c);
+
+      }
+
+
+      inline  void copy(TYPE* pdst, const TYPE* psrc)
+      {
+
+         copier::def< TYPE >::copy(pdst, psrc);
+
+      }
+
+
+      inline  void copy_count(TYPE* pdst, const TYPE* psrc, ::collection::count c)
+      {
+
+         copier::def< TYPE >::copy_count(pdst, psrc, c);
+
+      }
+
+
+      inline  void copy_construct_count(TYPE* pdst, ::collection::count c, const TYPE& src)
+      {
+
+         while (c > 0)
+         {
+
+            ::new (pdst) TYPE(src);
+
+            pdst++;
+
+            c--;
+
+         }
+
+      }
+
+
+      inline  void copy_construct_count(TYPE* pdst, ::collection::count c, const TYPE* psrc)
+      {
+
+         while (c > 0)
+         {
+
+            ::new (pdst) TYPE(*psrc);
+
+            c--;
+
+            pdst++;
+
+            psrc++;
+
+         }
+
+      }
+
+
+      inline void rear_copy_construct_count(TYPE* pdst, ::collection::count c, const TYPE* psrc)
+      {
+
+         while (c > 0)
+         {
+
+            c--;
+
+            ::new (pdst) TYPE(psrc[c]);
+
+            pdst++;
+
+         }
+
+      }
+
+
+      //inline  TYPE * alloc(::collection::count c, const_char_pointer pszFile, int iLine)
       //{
 
       //   return m_ptypedallocator->allocate(c, pszFile, iLine);
@@ -521,6 +657,7 @@ namespace typed
       public destructor::def< TYPE >
    {
    public:
+
 
 
       inline void construct(TYPE * p)
@@ -607,7 +744,7 @@ namespace typed
       }
 
 
-      //inline  TYPE * alloc(::collection::count c, const char * pszFile, int iLine)
+      //inline  TYPE * alloc(::collection::count c, const_char_pointer pszFile, int iLine)
       //{
 
       //   m_ptypedallocator->alloc(c, pszFile, iLine);
@@ -743,7 +880,7 @@ namespace typed
 
       }
 
-      /*    inline  TYPE * alloc(::collection::count c, const char * pszFile, int iLine)
+      /*    inline  TYPE * alloc(::collection::count c, const_char_pointer pszFile, int iLine)
           {
 
              return m_ptypedallocator->alloc(c, pszFile, iLine);
@@ -855,7 +992,7 @@ namespace typed
          }
 
       }
-      //inline  TYPE * alloc(::collection::count c, const char * pszFile, int iLine)
+      //inline  TYPE * alloc(::collection::count c, const_char_pointer pszFile, int iLine)
       //{
 
       //   return m_ptypedallocator->alloc(c, pszFile, iLine);
@@ -984,7 +1121,7 @@ namespace typed
 
       }
 
-      //inline  TYPE * alloc(::collection::count c, const char * pszFile, int iLine)
+      //inline  TYPE * alloc(::collection::count c, const_char_pointer pszFile, int iLine)
       //{
 
       //   return m_ptypedallocator->alloc(c, pszFile, iLine);
@@ -1078,7 +1215,7 @@ namespace typed
    //
    //
    //#if MEMDLEAK || defined(__MCRTDBG)
-   //      inline  TYPE * alloc(::collection::count c, const char * pszFile, int iLine)
+   //      inline  TYPE * alloc(::collection::count c, const_char_pointer pszFile, int iLine)
    //      {
    //
    //         return heap::sys < TYPE >::alloc(c, pszFile, iLine);

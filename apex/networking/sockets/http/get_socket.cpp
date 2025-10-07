@@ -73,7 +73,7 @@ namespace sockets
 
       ::string strUrl;
 
-      strUrl.formatf("%s://%s%s", scopedstrProtocol.c_str(), scopedstrHost.c_str(), ::string(request.as_string()).c_str());
+      strUrl.formatf("%s://%s%s", scopedstrProtocol.as_string().c_str(), scopedstrHost.as_string().c_str(), ::string(request.as_string()).c_str());
 
       initialize_http_client_socket(strUrl);
 

@@ -16,9 +16,9 @@
 //   int         y;
 //   int         x;
 //   int        style;
-//   const char *      lpszName;
+//   const_char_pointer     lpszName;
 //
-//   const char *      lpszClass;
+//   const_char_pointer     lpszClass;
 //
 //   unsigned int       dwExStyle;
 //} CREATESTRUCTA,*LPCREATESTRUCTA;

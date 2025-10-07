@@ -2,7 +2,7 @@
 #include "font_list.h"
 #include "font_combo_box.h"
 #include "acme/constant/id.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "acme/handler/topic.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/system.h"
@@ -46,7 +46,7 @@ namespace user
 
       ::user::combo_box::install_message_routing(psender);
 
-      MESSAGE_LINK(e_message_create, psender, this, &::user::font_combo_box::on_message_create);
+      USER_MESSAGE_LINK(::user::e_message_create, psender, this, &::user::font_combo_box::on_message_create);
 
    }
 
@@ -110,7 +110,7 @@ namespace user
 
       }
 
-      _synchronous_lock synchronouslock(pfontlist->synchronization());
+      _synchronous_lock synchronouslock(pfontlist->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       pfontlist->m_pfontlist->m_puserinteractionGraphicsContext = pfontlist;
 

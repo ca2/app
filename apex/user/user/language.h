@@ -24,8 +24,8 @@ namespace user
       int                  m_iPo;
 
 
-      string_to_string     m_stringmap;
-      string_to_string     m_stringmapHeader;
+      string_to_string_base     m_stringmap;
+      string_to_string_base     m_stringmapHeader;
       bool                 m_bLoadedDefaultResource;
       bool                 m_bLoadedDefaultResourceHeader;
       bool                 m_bLoadedDefaultResourceRet;
@@ -42,9 +42,9 @@ namespace user
 
       virtual string load_podata(bool bOnlyHeader = false);
 
-      virtual bool parse_podata(string strPoData, bool bOnlyHeader = false);
+      virtual bool parse_podata(const ::scoped_string & scopedstrPoData, bool bOnlyHeader = false);
 
-      virtual string get_text(string strText);
+      virtual string get_text(const ::scoped_string & scopedstrText);
 
 
    };

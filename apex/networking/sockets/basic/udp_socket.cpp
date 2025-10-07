@@ -12,7 +12,7 @@ namespace sockets
       //,
       //base_socket(h)
       //,socket(h)
-      m_ibuf(__raw_new char[ibufsz])
+      m_ibuf(øraw_new char[ibufsz])
       , m_ibufsz(ibufsz)
       , m_bind_ok(false)
       , m_port(0)
@@ -45,7 +45,7 @@ namespace sockets
    //}
 
 
-   //int udp_socket::Bind(const string & intf, ::networking::port_t &port, int range)
+   //int udp_socket::Bind(const ::scoped_string & scopedstrInterface, ::networking::port_t &port, int range)
    //{
 
    //   ::networking::address ad(intf, port);
@@ -125,7 +125,7 @@ namespace sockets
    //}
 
 
-   //bool udp_socket::open(const string & host, ::networking::port_t port)
+   //bool udp_socket::open(const ::scoped_string & scopedstrHost, ::networking::port_t port)
    //{
    //   ::networking::address ad(host, port);
    //   if(!ad.is_valid())
@@ -195,26 +195,26 @@ namespace sockets
 
 
    ///** send to specified address */
-   //void udp_socket::SendToBuf(const string & h, ::networking::port_t p, const char *data, int len, int flags)
+   //void udp_socket::SendToBuf(const ::scoped_string & scopedstrHost, ::networking::port_t p, const_char_pointer data, int len, int flags)
    //{
    //   SendToBuf(::networking::address(h, p), data, len, flags);
    //}
 
 
    ///** send to specified address */
-   //void udp_socket::SendToBuf(const in_addr & a, ::networking::port_t p, const char *data, int len, int flags)
+   //void udp_socket::SendToBuf(const in_addr & a, ::networking::port_t p, const_char_pointer data, int len, int flags)
    //{
    //   SendToBuf(::networking::address(a, p), data, len, flags);
    //}
 
 
-   //void udp_socket::SendToBuf(const in6_addr & a, ::networking::port_t p, const char *data, int len, int flags)
+   //void udp_socket::SendToBuf(const in6_addr & a, ::networking::port_t p, const_char_pointer data, int len, int flags)
    //{
    //   SendToBuf(::networking::address(a, p), data, len, flags);
    //}
 
 
-   void udp_socket::SendToBuf(::networking::address * ad, const char *data, int len, int flags)
+   void udp_socket::SendToBuf(::networking::address * ad, const_char_pointer data, int len, int flags)
    {
       //if (get_socket_id() == INVALID_SOCKET)
       //{
@@ -239,7 +239,7 @@ namespace sockets
    }
 
 
-   //void udp_socket::SendTo(const string & a, ::networking::port_t port, const ::string & str, int flags)
+   //void udp_socket::SendTo(const ::scoped_string & scopedstrAddress, ::networking::port_t port, const ::scoped_string & scopedstr, int flags)
    //{
    //   
    //   SendToBuf(a, port, str, (int)str.length(), flags);
@@ -247,7 +247,7 @@ namespace sockets
    //}
 
 
-   //void udp_socket::SendTo(in_addr a, ::networking::port_t port, const ::string & str, int flags)
+   //void udp_socket::SendTo(in_addr a, ::networking::port_t port, const ::scoped_string & scopedstr, int flags)
    //{
 
    //   SendToBuf(a, port, str, (int)str.length(), flags);
@@ -255,7 +255,7 @@ namespace sockets
    //}
 
 
-   //void udp_socket::SendTo(in6_addr a, ::networking::port_t port, const ::string & str, int flags)
+   //void udp_socket::SendTo(in6_addr a, ::networking::port_t port, const ::scoped_string & scopedstr, int flags)
    //{
    //   
    //   SendToBuf(a, port, str, (int)str.length(), flags);
@@ -263,10 +263,10 @@ namespace sockets
    //}
 
 
-   void udp_socket::SendTo(::networking::address * ad, const ::string & str, int flags)
+   void udp_socket::SendTo(::networking::address * ad, const ::scoped_string & scopedstr, int flags)
    {
 
-      SendToBuf(ad, str, (int)str.length(), flags);
+      SendToBuf(ad, scopedstr, (int)scopedstr.size(), flags);
 
    }
 
@@ -288,7 +288,7 @@ namespace sockets
 
       }
 
-      //if ((m_last_size_written = ::send(get_socket_id(), (const char *) data, (int)len, m_iWriteFlags)) == -1)
+      //if ((m_last_size_written = ::send(get_socket_id(), (const_char_pointer )data, (int)len, m_iWriteFlags)) == -1)
       //{
 
 
@@ -634,7 +634,7 @@ return -1;
    }
 
 
-   void udp_socket::AddMulticastMembership(const string & group, const string & local_if, int if_index)
+   void udp_socket::AddMulticastMembership(const ::scoped_string & scopedstrGroup, const ::scoped_string & scopedstrLocalInterface, int if_index)
    {
       //if (get_socket_id() == INVALID_SOCKET)
       //{
@@ -685,7 +685,7 @@ return -1;
    }
 
 
-   void udp_socket::DropMulticastMembership(const string & group, const string & local_if, int if_index)
+   void udp_socket::DropMulticastMembership(const ::scoped_string & scopedstrGroup, const ::scoped_string & scopedstrLocalInterface, int if_index)
    {
       //if (get_socket_id() == INVALID_SOCKET)
       //{

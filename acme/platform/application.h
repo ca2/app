@@ -70,7 +70,7 @@ namespace platform
       // mutable ::aqua::application* m_paquaapplication;
       // mutable ::aura::application* m_pauraapplication;
       // mutable ::axis::application* m_paxisapplication;
-      // mutable ::base::application* m_pbaseapplication;
+      // mutable ::berg::application* m_pbaseapplication;
       // mutable ::bred::application* m_pbredapplication;
       // mutable ::core::application* m_pcoreapplication;
 
@@ -135,7 +135,7 @@ namespace platform
       string                                          m_strLibraryName;
       string                                          m_strBuild;
       string                                          m_strInstallToken;
-      string_array                                    m_straAppCategory;
+      string_array_base                                    m_straAppCategory;
       bool                                            m_bLicense;
 
       enum_application_capability_array               m_eapplicationcapabilitya;
@@ -152,7 +152,7 @@ namespace platform
       //       // mutable ::aqua::application* m_paquaapplication;
       //       // mutable ::aura::application* m_pauraapplication;
       //       // mutable ::axis::application* m_paxisapplication;
-      //       // mutable ::base::application* m_pbaseapplication;
+      //       // mutable ::berg::application* m_pbaseapplication;
       //       // mutable ::bred::application* m_pbredapplication;
       //       // mutable ::core::application* m_pcoreapplication;
       //
@@ -206,7 +206,7 @@ namespace platform
       //       string                                          m_strLibraryName;
       //       string                                          m_strBuild;
       //       string                                          m_strInstallToken;
-      //       string_array                                    m_straAppCategory;
+      //       string_array_base                                    m_straAppCategory;
       //       bool                                            m_bLicense;
       //
       //       enum_application_capability_array               m_eapplicationcapabilitya;
@@ -254,7 +254,7 @@ namespace platform
       // #endif
       //semaphore                                    m_semCompiler;
       // former ::application_interface // moved on 2015-05-23 Sammstag while listening to RocketBeansTV (a German channel?) at TwitchTV
-      string_array m_straActivationMessage;
+      string_array_base m_straActivationMessage;
 
       unsigned int m_dwInstallGoodToCheckAgain;
 
@@ -276,7 +276,7 @@ namespace platform
       ::pointer<::interprocess::handler> m_pinterprocesshandler;
       //::pointer<service>                         m_pservice;
 
-      //::string_array                               m_straInterprocessCommunicationPendingHandleUri;
+      //::string_array_base                               m_straInterprocessCommunicationPendingHandleUri;
 
 
       // apex commented
@@ -295,9 +295,9 @@ namespace platform
 
       string_table m_stringtable;
       string_table m_stringtableStd;
-      atom_map<string> m_stringmap;
+      atom_map_base<string> m_stringmap;
 
-      atom_map<::pointer<::channel>> m_mapNotify;
+      atom_map_base<::pointer<::channel>> m_mapNotify;
 
       string m_strLicense;
 
@@ -346,13 +346,13 @@ namespace platform
       //::pointer<::apex::theme>                   m_ptheme;
 
 
-      string_array m_straAppInterest;
+      string_array_base m_straAppInterest;
 
       ::pointer<::service_handler> m_pservicehandler;
 
       ::pointer<::networking::application> m_pnetworkingapplication;
 
-      ::string_map<::pointer<::fs::folder_sync>> m_fsfoldersyncmap;
+      ::string_map_base<::pointer<::fs::folder_sync>> m_fsfoldersyncmap;
 
 
       //}; // end apex_application_t
@@ -392,7 +392,7 @@ namespace platform
       //string                                          m_strInstallBuild;
       //string                                          m_strHttpUserAgentToken;
       //string                                          m_strHttpUserAgentVersion;
-      //string_array                                    m_straAppCategory;
+      //string_array_base                                    m_straAppCategory;
       //bool                                            m_bLicense;
       //bool                                            m_bRequiresInstallation;
 
@@ -405,7 +405,7 @@ namespace platform
 
       ::pointer<shell_open>                        m_pshellopen;
 
-      ::string_array                               m_straOptionsFormMakerLibrary;
+      ::string_array_base                               m_straOptionsFormMakerLibrary;
       //::user::interaction_base *                             m_puiCurrent;
       //bool                                            m_bContextTheme;
 
@@ -431,7 +431,7 @@ namespace platform
 
       //enum_exclusive_instance                              m_eexclusiveinstance;
 
-      //string_map < ::pointer<::acme::exclusive >>    m_mapExclusive;
+      //string_map_base < ::pointer<::acme::exclusive >>    m_mapExclusive;
 
       //bool                                            m_bService;
 
@@ -442,11 +442,11 @@ namespace platform
       //::pointer < ::mutex >                                           m_pmutexMatterLocator;
 
       //::pointer < ::mutex >                                         m_pmutexStr;
-      //string_table                                    m_stringtable;
-      //string_table                                    m_stringtableStd;
-      //map < atom, atom, string, string >                  m_stringmap;
+      //string_table_base                                    m_stringtable;
+      //string_table_base                                    m_stringtableStd;
+      //map_base < atom, atom, string, string >                  m_stringmap;
 
-      //atom_map < ::pointer<::channel >>                m_mapNotify;
+      //atom_map_base < ::pointer<::channel >>                m_mapNotify;
 
       //::pointer<image_context>                       m_pimagecontext;
 
@@ -494,8 +494,8 @@ namespace platform
       ::pointer<::aura::theme>                       m_ptheme;
 
 
-      //string_array                                    m_straAppInterest;
-      //string_map < oswindow, oswindow >               m_mapAppInterest;
+      //string_array_base                                    m_straAppInterest;
+      //string_map_base < oswindow, oswindow >               m_mapAppInterest;
 
       //int                                             m_iGcomBackgroundUpdateMillis;
 
@@ -692,39 +692,42 @@ namespace platform
       virtual void add_capability(enum_application_capability ecapability) override;
 
 
-      bool handle_call(::payload& payload, const ::string& strObject, const ::string& strMember, ::property_set& propertyset) override;
-      virtual bool handle_application_call(::payload& payload, const ::string& strMember, ::property_set& propertyset) override;
+      bool handle_call(::payload& payload, const ::scoped_string & scopedstrObject, const ::scoped_string & scopedstrMember, ::property_set& propertyset) override;
+       bool handle_application_call(::payload& payload, const ::scoped_string & scopedstrMember, ::property_set& propertyset) override;
 
 
-      virtual ::file::path get_app_localconfig_folder() override;
-      virtual ::property_set get_ini(const ::scoped_string& scopedstrIniName = {}) override;
+      ::file::path get_app_localconfig_folder() override;
+      ::property_set get_ini(const ::scoped_string& scopedstrIniName = {}) override;
 
 
-      virtual ::string get_visual_studio_build() override;
+      ::string get_visual_studio_build() override;
 
 
-      virtual ::string get_application_name() override;
+      ::string get_application_name() override;
 
 
-      void locale_schema_matter(string_array& stra, const string_array& straMatterLocator, const ::scoped_string& scopedstrLocale, const ::scoped_string& scopedstrSchema) override;
-      virtual void matter_locator_locale_schema_matter(string_array& stra, const string_array& straMatterLocator, const ::scoped_string& scopedstrLocale, const ::scoped_string& scopedstrSchema) override;
+      void on_application_message(::platform::message * pmessage) override;
 
-      virtual string get_locale_schema_dir(const ::scoped_string& scopedstrLocale, const ::scoped_string& scopedstrSchema) override;
-      virtual string get_locale_schema_dir(const ::scoped_string& scopedstrLocale) override;
+
+      void locale_schema_matter(string_array_base& stra, const string_array_base& straMatterLocator, const ::scoped_string& scopedstrLocale, const ::scoped_string& scopedstrSchema) override;
+      void matter_locator_locale_schema_matter(string_array_base& stra, const string_array_base& straMatterLocator, const ::scoped_string& scopedstrLocale, const ::scoped_string& scopedstrSchema) override;
+
+      string get_locale_schema_dir(const ::scoped_string& scopedstrLocale, const ::scoped_string& scopedstrSchema) override;
+      string get_locale_schema_dir(const ::scoped_string& scopedstrLocale) override;
       string get_locale_schema_dir() override;
 
-      virtual void set_locale(const ::scoped_string& scopedstrLocale, const ::action_context& action_context) override;
+      void set_locale(const ::scoped_string& scopedstrLocale, const ::action_context& action_context) override;
 
-      virtual void set_schema(const ::scoped_string& scopedstrSchema, const ::action_context& action_context) override;
+      void set_schema(const ::scoped_string& scopedstrSchema, const ::action_context& action_context) override;
 
-      virtual void on_set_locale(const ::scoped_string& scopedstrLocale, const ::action_context& action_context) override;
+      void on_set_locale(const ::scoped_string& scopedstrLocale, const ::action_context& action_context) override;
 
-      virtual void on_set_schema(const ::scoped_string& scopedstrSchema, const ::action_context& action_context) override;
+      void on_set_schema(const ::scoped_string& scopedstrSchema, const ::action_context& action_context) override;
 
 
 
-      virtual void fill_locale_schema(::text::international::locale_schema& localeschema) override;
-      virtual void fill_locale_schema(::text::international::locale_schema& localeschema, const ::scoped_string& scopedstrLocale, const ::scoped_string& scopedstrSchema) override;
+      void fill_locale_schema(::text::international::locale_schema& localeschema) override;
+      void fill_locale_schema(::text::international::locale_schema& localeschema, const ::scoped_string& scopedstrLocale, const ::scoped_string& scopedstrSchema) override;
 
 
       virtual void process_init() override;
@@ -740,7 +743,7 @@ namespace platform
 
       virtual void term_application() override;
 
-      virtual ::string_array get_about_box_lines() override;
+      virtual ::string_array_base get_about_box_lines() override;
 
       void show_about_box(::user::activation_token* puseractivationtoken) override;
 
@@ -756,9 +759,9 @@ namespace platform
       virtual get_file_extension_mime_type* get_get_file_extension_mime_type() override;
 
       virtual void pick_browse(const ::function < void(const ::file::path& path) >& callback) override;
-      virtual void pick_media(const char* pszMediaType) override;
-      virtual void did_pick_document_at_url(const char* pszUrl) override;
-      virtual void did_pick_document_at_urls(const ::string_array& stra) override;
+      virtual void pick_media(const ::scoped_string & scopedstrMediaType) override;
+      virtual void did_pick_document_at_url(const ::scoped_string & scopedstrUrl) override;
+      virtual void did_pick_document_at_urls(const ::string_array_base& stra) override;
       virtual void on_prompt_write_file(::user::controller* pusercontroller) override;
       virtual void file_manager_save_as(::user::controller* pusercontroller) override;
 

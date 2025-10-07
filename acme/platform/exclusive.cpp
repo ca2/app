@@ -21,7 +21,7 @@ namespace acme
 //#ifdef WINDOWS
 //
 
-   //exclusive::exclusive(::particle * pparticle, string strId ARG_SEC_ATTRS)
+   //exclusive::exclusive(::particle * pparticle, const ::scoped_string & scopedstrId ARG_SEC_ATTRS)
    exclusive::exclusive()
    {
 
@@ -34,7 +34,7 @@ namespace acme
 
       //   m_pmutex = pparticle->node()->create_global_named_mutex(pparticle, false, strId);
 
-      //   //m_pmutex = //__allocate ::pointer < ::mutex > (pparticle, false, strId ADD_PARAM_SEC_ATTRS);
+      //   //m_pmutex = //øallocate ::pointer < ::mutex > (pparticle, false, strId ADD_PARAM_SEC_ATTRS);
 
       //   //m_dwLastError = ::GetLastError();
 
@@ -47,7 +47,7 @@ namespace acme
       //   //try
       //   //{
 
-      //   //   m_pmutex = __allocate ::pointer < ::mutex > (pparticle, false, strId);
+      //   //   m_pmutex = øallocate ::pointer < ::mutex > (pparticle, false, strId);
 
       //   //   m_dwLastError = ::GetLastError();
 
@@ -67,7 +67,7 @@ namespace acme
 //#else
 //
 //
-//   exclusive::exclusive(::particle * pparticle, string strId ARG_SEC_ATTRS)
+//   exclusive::exclusive(::particle * pparticle, const ::scoped_string & scopedstrId ARG_SEC_ATTRS)
 //   {
 //
 //      initialize(pparticle);

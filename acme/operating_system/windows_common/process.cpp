@@ -9,7 +9,7 @@ namespace windows
 {
 
 
-   void enum_processes(dword_array & dwaProcesses)
+   void enum_processes(dword_array_base & dwaProcesses)
    {
 
       dwaProcesses.set_size(4096);
@@ -43,10 +43,10 @@ namespace windows
    }
 
 
-   dword_array enum_processes()
+   dword_array_base enum_processes()
    {
 
-      dword_array dwaProcesses;
+      dword_array_base dwaProcesses;
 
       ::windows::enum_processes(dwaProcesses);
 

@@ -2,7 +2,7 @@
 #include "window.h"
 #include "acme/constant/id.h"
 #include "acme/platform/keep.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "acme/handler/topic.h"
 #include "acme/handler/extended_topic.h"
 #include "acme/include/_c_swap.h"
@@ -509,8 +509,8 @@ namespace user
 
       }
 
-
    }
+
 
    void form_window::_001Update(::user::interaction * pinteraction)
    {
@@ -703,7 +703,7 @@ throw_todo();
             if(typeid(plist->GetDataInterface()) == ::type < ::user::simple_mesh_data >())
             {
                ::user::simple_mesh_data * pdata = dynamic_cast < ::user::simple_mesh_data * > (plist->GetDataInterface());
-               string_array stra;
+               string_array_base stra;
                datastream()->get(pinteraction->m_dataid, stra);
                ASSERT(plist != nullptr);
                pdata->set_data(plist, stra);
@@ -739,7 +739,7 @@ throw_todo();
    bool form_window::_001GetData(const ::atom & atom, bool &bData)
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       ::pointer<interaction>pinteraction = get_child_by_id(atom);
 
@@ -800,7 +800,7 @@ throw_todo();
 
 
 
-   void form_window::get_selection(const ::scoped_string & scopedstrDataKey, string_array & stra)
+   void form_window::get_selection(const ::scoped_string & scopedstrDataKey, string_array_base & stra)
    {
 
       stra.add_item(scopedstrDataKey);
@@ -860,7 +860,7 @@ throw_todo();
    //void form_window::_001RemoveControls()
    //{
 
-   //   synchronous_lock synchronouslock(this->synchronization());
+   //   synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //   //m_controldescriptorset.erase_all();
 
@@ -880,7 +880,7 @@ throw_todo();
    void form_window::data_on_after_change(::database::client* pclient, const ::scoped_string & strDataKey, const ::payload & payload, ::topic * ptopic)
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if(ptopic != nullptr)
       {
@@ -936,7 +936,7 @@ throw_todo();
    void form_window::_001UpdateFunctionStatic()
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       auto papp = get_app();
 
@@ -972,7 +972,7 @@ throw_todo();
    void form_window::WfiOnClose()
    {
 
-      post_message(e_message_close);
+      post_message(::user::e_message_close);
 
    }
 
@@ -1153,7 +1153,7 @@ throw_todo();
 
    //   //}
 
-   //   //auto pinteraction = papp->__id_create <::user::interaction>(pdescriptor->m_type);
+   //   //auto pinteraction = papp->øid_create <::user::interaction>(pdescriptor->m_type);
 
    //   //if(!pinteraction)
    //   //{
@@ -1330,7 +1330,7 @@ throw_todo();
       if(m_bInitialized)
          return true;
 
-      synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       _001InitializeFormPreData();
 
@@ -1391,16 +1391,16 @@ throw_todo();
    //}
 
 
-   //void form_window::on_before_navigate(::payload & payloadFile, unsigned int nFlags, const ::string & pszTargetFrameName, byte_array& baPostedData, const ::string & pszHeaders, bool* pbCancel)
+   //void form_window::on_before_navigate(::payload & payloadFile, unsigned int nFlags, const ::scoped_string & scopedstrTargetFrameName, byte_array& baPostedData, const ::scoped_string & scopedstrHeaders, bool* pbCancel)
 
    //{
 
    //   __UNREFERENCED_PARAMETER(payloadFile);
    //   __UNREFERENCED_PARAMETER(nFlags);
-   //   __UNREFERENCED_PARAMETER(pszTargetFrameName);
+   //   __UNREFERENCED_PARAMETER(scopedstrTargetFrameName);
 
    //   __UNREFERENCED_PARAMETER(baPostedData);
-   //   __UNREFERENCED_PARAMETER(pszHeaders);
+   //   __UNREFERENCED_PARAMETER(scopedstrHeaders);
 
    //   __UNREFERENCED_PARAMETER(pbCancel);
 
@@ -1452,11 +1452,11 @@ throw_todo();
    void form_window::install_message_routing(::channel * pchannel)
    {
       ::user::form_control::install_message_routing(pchannel);
-      MESSAGE_LINK(e_message_create, pchannel, this, &form_window::on_message_create);
-      MESSAGE_LINK(e_message_after_create, pchannel, this, &form_window::_000OnPosCreate);
-      MESSAGE_LINK(e_message_language, pchannel, this, &form_window::_001OnAppLanguage);
-      //MESSAGE_LINK(e_message_key_down, pchannel, this, &::user::interaction::on_message_key_down);
-      //MESSAGE_LINK(e_message_key_up, pchannel, this, &::user::interaction::on_message_key_up);
+      USER_MESSAGE_LINK(::user::e_message_create, pchannel, this, &form_window::on_message_create);
+      USER_MESSAGE_LINK(::user::e_message_after_create, pchannel, this, &form_window::_000OnPosCreate);
+      USER_MESSAGE_LINK(::user::e_message_language, pchannel, this, &form_window::_001OnAppLanguage);
+      //USER_MESSAGE_LINK(::user::e_message_key_down, pchannel, this, &::user::interaction::on_message_key_down);
+      //USER_MESSAGE_LINK(::user::e_message_key_up, pchannel, this, &::user::interaction::on_message_key_up);
 
    }
 

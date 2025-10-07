@@ -25,7 +25,7 @@ public:
    ~handler_manager() override;
 
 
-   virtual void initialize_handler_manager(::particle * pparticleContext, const ::string & strThreadName, int iAliveCount = -1);
+   virtual void initialize_handler_manager(::particle * pparticleContext, const ::scoped_string & scopedstrThreadName, int iAliveCount = -1);
    
 
    virtual void on_start_loop();

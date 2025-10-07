@@ -121,7 +121,7 @@ namespace netserver
    }
 
 
-   bool socket::http_filter_response_header(atom key, string_array & straValue)
+   bool socket::http_filter_response_header(atom key, string_array_base & straValue)
    {
       
       if (key == __id(location) && straValue.get_count() >= 1)
@@ -160,7 +160,7 @@ namespace netserver
    }
 
 
-   void socket::simple_file_server(const ::string & pszPath, bool bMatter)
+   void socket::simple_file_server(const ::scoped_string & scopedstrPath, bool bMatter)
    {
 
       pointer_array < ::int_array > rangea;
@@ -168,7 +168,7 @@ namespace netserver
       if (inheader("range").has_character())
       {
          
-         string_array straItem;
+         string_array_base straItem;
          
          straItem.explode("=", inheader("range"));
 
@@ -177,14 +177,14 @@ namespace netserver
             
             string strUnit = straItem[0];
             
-            string_array stra;
+            string_array_base stra;
             
             stra.explode(",", straItem[1]);
 
             for (int i = 0; i < stra.get_count(); i++)
             {
                
-               string_array straRange;
+               string_array_base straRange;
                
                straRange.explode("-", stra[i]);
 
@@ -210,24 +210,24 @@ namespace netserver
 
       }
 
-      read_file(pszPath, &rangea);
+      read_file(scopedstrPath, &rangea);
 
    }
 
 
-   //void socket::simple_image_server(const ::string & pszPath, int iMaxWidth, int iMaxHeight)
+   //void socket::simple_image_server(const ::scoped_string & scopedstrPath, int iMaxWidth, int iMaxHeight)
    //{
 
    //   if (iMaxWidth <= 0 && iMaxHeight <= 0)
    //   {
-   //      simple_file_server(pszPath);
+   //      simple_file_server(scopedstrPath);
    //   }
    //   else
    //   {
    //
    //      ::image::image_pointer pimage;
 
-   //      pimage->load_image(pszPath);
+   //      pimage->load_image(scopedstrPath);
 
    //      double dRateW = 1.0;
 

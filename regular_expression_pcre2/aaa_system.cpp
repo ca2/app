@@ -6,7 +6,7 @@ namespace axis
 {
 
 
-   ::pointer<regex>system::compile_pcre(const string& str)
+   ::pointer<regex>system::compile_pcre(const ::scoped_string & scopedstr)
    {
 
       return pcre_regex::compile(str);
@@ -20,7 +20,7 @@ namespace axis
    }
 
 
-   int system::pcre_add_tokens(string_array& stra, const string& strTopic, const string& strRegexp, int nCount)
+   int system::pcre_add_tokens(string_array_base& stra, const ::scoped_string & scopedstrTopic, const ::scoped_string & scopedstrRegexp, int nCount)
    {
 
 

@@ -4,31 +4,51 @@
 #include "acme/prototype/collection/map.h"
 
 
+template < class PAYLOAD, typename PAIR = pair < string, PAYLOAD >, enum_allocate t_eallocate = e_allocate_normal >
+class string_map_base :
+   public map_base < string, PAYLOAD, PAIR, t_eallocate >
+{
+public:
+
+   using BASE_PAIR_MAP = map_base < string, PAYLOAD, PAIR, t_eallocate >;
+
+   using BASE_PAIR_MAP::BASE_PAIR_MAP;
+   using BASE_PAIR_MAP::operator = ;
+
+   using iterator = typename BASE_PAIR_MAP::iterator;
+
+
+
+};
+
+
 template < class PAYLOAD, typename PAIR = pair < string, PAYLOAD > >
-using string_map = map < string, PAYLOAD, PAIR >;
+using string_map = map_particle < string_map_base < PAYLOAD, PAIR > >;
 
-using string_to_intptr = string_map < iptr > ;
+using string_to_iptr_base = string_map_base < iptr > ;
 
-using string_to_int =  string_map < int > ;
+using string_to_int_base =  string_map_base < int > ;
 
-using string_to_ptr =  string_map < void * > ;
+using string_to_ptr_base =  string_map_base < void * > ;
 
-using int_ptr_to_string = map < iptr, string >;
+using iptr_to_string_base = map_base < iptr, string >;
 
-using int_ptr_to_int_ptr_to_string = map < iptr, int_ptr_to_string >;
+using iptr_to_iptr_to_string_base = map_base < iptr, iptr_to_string_base >;
 
-using index_string = map < ::collection::index, string >;
+using index_to_string_base = map_base < ::collection::index, string >;
 
-using index_to_index_to_string = map < ::collection::index, index_string >;
+using index_to_index_to_string_base = map_base < ::collection::index, index_to_string_base >;
 
-using base_string_to_string = string_map < string > ;
+using string_to_string_base = string_map_base < string > ;
 
-using string_to_string  =  base_string_to_string;
+using string_to_string = map_particle < string_to_string_base > ;
+
+using string_table_base = string_map_base < string_to_string_base >;
 
 using string_table = string_map < ::pointer < string_to_string > >;
 
 
-#define strmap(T) string_map < T >
+//#define strmap(T) string_map_base < T >
 
 
 

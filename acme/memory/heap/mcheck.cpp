@@ -112,14 +112,14 @@
 //      pblock->m_iStack = sizeof(pblock->m_puiStack) / sizeof(pblock->m_puiStack[0]);
 //      g_ee->backtrace(pblock->m_puiStack, pblock->m_iStack);
 //      pblock->m_pszFileName = nullptr;
-//      //pblock->m_pszFileName = strdup(pszFileName); // not trackable, at least think so certainly causes memory leak
+//      //pblock->m_pszFileName = strdup(scopedstrFileName); // not trackable, at least think so certainly causes memory leak
 //   }
 //
 //   ::acme::set_maximum(pblock->m_uiLine);
 //
 //   pblock->m_size = nAllocSize;
 //
-//   synchronous_lock lock(g_pmutgen);
+//   synchronous_lock lock(g_pmutgen, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //   pblock->m_pprevious = nullptr;
 //
@@ -175,7 +175,7 @@
 //}
 //
 //
-//void * aligned_memory_allocate_debug(size_t size, int nBlockUse, const char * szFileName, int nLine, memsize align)
+//void * aligned_memory_allocate_debug(size_t size, int nBlockUse, const_char_pointer szFileName, int nLine, memsize align)
 //{
 //
 //   void * p;
@@ -240,7 +240,7 @@
 //}
 //
 //
-//void * unaligned_memory_allocate_debug(size_t size, int nBlockUse, const char * szFileName, int nLine)
+//void * unaligned_memory_allocate_debug(size_t size, int nBlockUse, const_char_pointer szFileName, int nLine)
 //{
 //
 //   void * p;
@@ -355,7 +355,7 @@
 //}
 //
 //
-//void * memory_allocate_debug(size_t nSize, int nBlockUse, const char * szFileName, int nLine)
+//void * memory_allocate_debug(size_t nSize, int nBlockUse, const_char_pointer szFileName, int nLine)
 //{
 //#ifdef MCHECK
 //   return ::system()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(nSize);
@@ -380,7 +380,7 @@
 //
 //
 //
-//void * memory_reallocate_debug(void * pmemory, size_t size, int nBlockUse, const char * szFileName, int nLine)
+//void * memory_reallocate_debug(void * pmemory, size_t size, int nBlockUse, const_char_pointer szFileName, int nLine)
 //{
 //
 //#if defined(__VLD)
@@ -400,7 +400,7 @@
 //
 //   memdleak_block * pblock = &((memdleak_block *)pmemory)[-1];
 //
-//   synchronous_lock lock(g_pmutgen);
+//   synchronous_lock lock(g_pmutgen, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //   if (s_pmemdleakList == pblock)
 //   {
@@ -573,7 +573,7 @@
 //#elif MEMDLEAK
 //   memdleak_block * pblock = &((memdleak_block *)pmemory)[-1];
 //
-//   synchronous_lock lock(g_pmutgen);
+//   synchronous_lock lock(g_pmutgen, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //   if (s_pmemdleakList == pblock)
 //   {
@@ -723,14 +723,14 @@
 //}
 //
 //
-//void * aligned_memory_allocate_debug(size_t size, int nBlockUse, const char * szFileName, int nLine, memsize align)
+//void * aligned_memory_allocate_debug(size_t size, int nBlockUse, const_char_pointer szFileName, int nLine, memsize align)
 //{
 //
 //   return system_heap_alloc(size);
 //
 //}
 //
-//void * unaligned_memory_allocate_debug(size_t size, int nBlockUse, const char * szFileName, int nLine)
+//void * unaligned_memory_allocate_debug(size_t size, int nBlockUse, const_char_pointer szFileName, int nLine)
 //{
 //
 //   return system_heap_alloc(size);
@@ -756,7 +756,7 @@
 //}
 //
 //
-//void * memory_allocate_debug(size_t nSize, int nBlockUse, const char * szFileName, int nLine)
+//void * memory_allocate_debug(size_t nSize, int nBlockUse, const_char_pointer szFileName, int nLine)
 //{
 //
 //   return system_heap_alloc(nSize);
@@ -772,7 +772,7 @@
 //}
 //
 //
-//void * memory_reallocate_debug(void * p, size_t size, int nBlockUse, const char * szFileName, int nLine)
+//void * memory_reallocate_debug(void * p, size_t size, int nBlockUse, const_char_pointer szFileName, int nLine)
 //{
 //
 //
@@ -869,7 +869,7 @@
 //}
 //
 //
-//void * _memory_allocate_debug(memsize nSize, int nBlockUse, const char * szFileName, int nLine)
+//void * _memory_allocate_debug(memsize nSize, int nBlockUse, const_char_pointer szFileName, int nLine)
 //{
 //
 //  // return unaligned_memory_allocate_debug(nSize, nBlockUse, szFileName, nLine);
@@ -887,7 +887,7 @@
 //}
 //
 //
-//void * _memory_reallocate_debug(void * pmemory, memsize size, int nBlockUse, const char * szFileName, int nLine)
+//void * _memory_reallocate_debug(void * pmemory, memsize size, int nBlockUse, const_char_pointer szFileName, int nLine)
 //{
 //
 //   if (pmemory == nullptr)

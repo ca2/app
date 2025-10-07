@@ -4,29 +4,29 @@
 #include <wchar.h>
 #include <string.h>
 
-CLASS_DECL_ACME ::ansi_character * ansi_dup(const ::ansi_character * psz) ;
+CLASS_DECL_ACME ::ansi_character * ansi_dup(const_char_pointer psz) ;
 
-CLASS_DECL_ACME character_count ansi_len(const ::ansi_character * psz);
+CLASS_DECL_ACME character_count ansi_len(const_char_pointer psz);
 
-CLASS_DECL_ACME ::ansi_character * ansi_cat(::ansi_character * pszDst, const ::ansi_character * psz) ;
+CLASS_DECL_ACME ::ansi_character * ansi_cat(::ansi_character * pszDst, const_char_pointer psz) ;
 
-CLASS_DECL_ACME ::ansi_character * ansi_cpy(::ansi_character * pszDst, const ::ansi_character * psz) ;
+CLASS_DECL_ACME ::ansi_character * ansi_cpy(::ansi_character * pszDst, const_char_pointer psz) ;
 
-CLASS_DECL_ACME ::ansi_character * ansi_ncpy(::ansi_character * pszDst, const ::ansi_character * psz, character_count len) ;
+CLASS_DECL_ACME ::ansi_character * ansi_ncpy(::ansi_character * pszDst, const_char_pointer psz, character_count len) ;
 
-CLASS_DECL_ACME const ::ansi_character * ansi_chr(const ::ansi_character * psz1, ::ansi_character ch) ;
+CLASS_DECL_ACME const_char_pointer ansi_chr(const_char_pointer psz1, ::ansi_character ch) ;
 
-CLASS_DECL_ACME const ::ansi_character * ansi_pbrk(const ::ansi_character * psz, const ::ansi_character * pszCharsToFind) ;
+CLASS_DECL_ACME const_char_pointer ansi_pbrk(const_char_pointer psz, const_char_pointer pszCharsToFind) ;
 
-CLASS_DECL_ACME ::ansi_character * ansi_tok_r(::ansi_character * psz, const ::ansi_character * sep, ::ansi_character ** state);
+CLASS_DECL_ACME ::ansi_character * ansi_tok_r(::ansi_character * psz, const_char_pointer sep, ::ansi_character ** state);
 
-CLASS_DECL_ACME const ::ansi_character * ansi_rchr(const ::ansi_character * psz1, ::ansi_character ch);
+CLASS_DECL_ACME const_char_pointer ansi_rchr(const_char_pointer psz1, ::ansi_character ch);
 
-CLASS_DECL_ACME int ansi_cmp(const ::ansi_character * psz1, const ::ansi_character * psz2);
+CLASS_DECL_ACME int ansi_cmp(const_char_pointer psz1, const_char_pointer psz2);
 
-CLASS_DECL_ACME int ansi_ncmp(const ::ansi_character * psz1, const ::ansi_character * psz2, character_count s);
+CLASS_DECL_ACME int ansi_ncmp(const_char_pointer psz1, const_char_pointer psz2, character_count s);
 
-CLASS_DECL_ACME const ::ansi_character * ansi_str(const ::ansi_character * psz, const ::ansi_character * pszFind);
+CLASS_DECL_ACME const_char_pointer ansi_str(const_char_pointer psz, const_char_pointer pszFind);
 
 CLASS_DECL_ACME ::ansi_character ansi_tolower(::ansi_character ch) { return __ansitolower(ch); }
 
@@ -54,29 +54,29 @@ CLASS_DECL_ACME ::ansi_character * ansi_upr_s(::ansi_character * psz, character_
 
 #endif
 
-CLASS_DECL_ACME const ::ansi_character * ansi_ichr(const ::ansi_character * psz1, ::ansi_character ch) { return __ansiichr(psz1, ch); }
+CLASS_DECL_ACME const_char_pointer ansi_ichr(const_char_pointer psz1, ::ansi_character ch) { return __ansiichr(psz1, ch); }
 
 
-CLASS_DECL_ACME int ansi_icmp(const ::ansi_character * psz1, const ::ansi_character * psz2);
+CLASS_DECL_ACME int ansi_icmp(const_char_pointer psz1, const_char_pointer psz2);
 
-CLASS_DECL_ACME int ansi_nicmp(const ::ansi_character * psz1, const ::ansi_character * psz2, character_count s);
+CLASS_DECL_ACME int ansi_nicmp(const_char_pointer psz1, const_char_pointer psz2, character_count s);
 
-CLASS_DECL_ACME const ::ansi_character * ansi_istr(const ::ansi_character * psz, const ::ansi_character * pszFind) { return __ansiistr(psz, pszFind); }
+CLASS_DECL_ACME const_char_pointer ansi_istr(const_char_pointer psz, const_char_pointer pszFind) { return __ansiistr(psz, pszFind); }
 
 //CLASS_DECL_ACME ::ansi_character * u64tostr(unsigned long long u, ::ansi_character * buf, int iBase, enum_digit_case edigitcase) { return __u64toansi(u, buf, iBase, edigitcase); }
 
 //CLASS_DECL_ACME ::ansi_character * i64tostr(unsigned long long u, ::ansi_character * buf, int iBase, enum_digit_case edigitcase) { return __long_longtoansi(u, buf, iBase, edigitcase); }
 
-CLASS_DECL_ACME int ansi_coll(const ::ansi_character * psz1, const ::ansi_character * psz2);
-CLASS_DECL_ACME int ansi_ncoll(const ::ansi_character * psz1, const ::ansi_character * psz2, character_count s);
+CLASS_DECL_ACME int ansi_coll(const_char_pointer psz1, const_char_pointer psz2);
+CLASS_DECL_ACME int ansi_ncoll(const_char_pointer psz1, const_char_pointer psz2, character_count s);
 
-CLASS_DECL_ACME int ansi_icoll(const ::ansi_character * psz1, const ::ansi_character * psz2);
+CLASS_DECL_ACME int ansi_icoll(const_char_pointer psz1, const_char_pointer psz2);
 
-CLASS_DECL_ACME int ansi_nicoll(const ::ansi_character * psz1, const ::ansi_character * psz2, character_count s);
+CLASS_DECL_ACME int ansi_nicoll(const_char_pointer psz1, const_char_pointer psz2, character_count s);
 
-CLASS_DECL_ACME character_count ansi_spn(const ::ansi_character * psz1, const ::ansi_character * psz2) ;
+CLASS_DECL_ACME character_count ansi_spn(const_char_pointer psz1, const_char_pointer psz2) ;
 
-CLASS_DECL_ACME character_count ansi_cspn(const ::ansi_character * psz1, const ::ansi_character * psz2) ;
+CLASS_DECL_ACME character_count ansi_cspn(const_char_pointer psz1, const_char_pointer psz2) ;
 
 
 
@@ -133,7 +133,7 @@ CLASS_DECL_ACME const ::wd32_character * wd32_str(const ::wd32_character * psz, 
 CLASS_DECL_ACME ::wd16_character wd16_tolower(::wd16_character ch) { return towlower(ch); }
 CLASS_DECL_ACME ::wd32_character wd32_tolower(::wd32_character ch) { return __wd32tolower(ch); }
 
-CLASS_DECL_ACME ::wd32_character wd16_toupper(::wd16_character ch) { return towupper(ch); }
+CLASS_DECL_ACME ::wd16_character wd16_toupper(::wd16_character ch) { return towupper(ch); }
 CLASS_DECL_ACME ::wd32_character wd32_toupper(::wd32_character ch) { return __wd32toupper(ch); }
 
 CLASS_DECL_ACME ::wd16_character * wd16_lwr(::wd16_character * psz) { return _wcslwr(psz); }
@@ -246,7 +246,7 @@ CLASS_DECL_ACME ::wd16_character wd16_tolower(::wd16_character ch) { return __wd
 CLASS_DECL_ACME ::wd32_character wd32_tolower(::wd32_character ch) { return __wd32tolower(ch); }
 CLASS_DECL_ACME ::wide_character wide_tolower(::wide_character ch) { return __wd32tolower(ch); }
 
-CLASS_DECL_ACME ::wd32_character wd16_toupper(::wd16_character ch) { return __wd16toupper(ch); }
+CLASS_DECL_ACME ::wd16_character wd16_toupper(::wd16_character ch) { return __wd16toupper(ch); }
 CLASS_DECL_ACME ::wd32_character wd32_toupper(::wd32_character ch) { return __wd32toupper(ch); }
 CLASS_DECL_ACME ::wide_character wide_toupper(::wide_character ch) { return __wd32toupper(ch); }
 

@@ -12,7 +12,7 @@
 #include "apex/platform/application.h"
 #include "apex/platform/context.h"
 #include "apex/platform/session.h"
-#include "base/user/user/impact.h"
+#include "berg/user/user/impact.h"
 
 
 namespace userfs
@@ -49,7 +49,7 @@ namespace userfs
 
       //estatus = 
       
-      //__construct_new(m_pfsset);
+      //øconstruct_new(m_pfsset);
 
       //if (!estatus)
       //{
@@ -66,7 +66,7 @@ namespace userfs
    //::aura::application * document::get_app() const
    //{
 
-   //   return dynamic_cast < ::base::session * >(get_app()->m_psession)->m_pappCurrent;
+   //   return dynamic_cast < ::berg::session * >(get_app()->m_psession)->m_pappCurrent;
 
    //}
 
@@ -83,7 +83,7 @@ namespace userfs
 
    //      m_pfsset->m_spafsdata.add(psession->fs());
 
-   //      ::file::listing listing;
+   //      ::file::listing_base listing;
 
    //      m_pfsset->root_ones(listing);
 
@@ -98,7 +98,7 @@ namespace userfs
 
    //   }
 
-   //      m_pitem = __allocate ::file::item(*pitem);
+   //      m_pitem = øallocate ::file::item(*pitem);
 
    //   //   try
    //   //   {
@@ -118,7 +118,7 @@ namespace userfs
 
    //   //      // auto pcontext = get_context();
 
-   //   //      m_pitem = __allocate ::file::item(m_papplication->defer_process_matter_path(strOldPath), strOldPath);
+   //   //      m_pitem = øallocate ::file::item(m_papplication->defer_process_matter_path(strOldPath), strOldPath);
 
    //   //      OnFileManagerBrowse(context + ::e_source_sync);
 
@@ -179,7 +179,7 @@ namespace userfs
 //   }
 
 
-   //string data::get_last_browse_path(::particle * pparticle, const ::string & pszDefault)
+   //string data::get_last_browse_path(::particle * pparticle, const ::scoped_string & scopedstrDefault)
    //{
 
    //   return {};
@@ -282,7 +282,7 @@ namespace userfs
 
       ::file::path pathFinal = m_papplication->defer_process_matter_path(pathUser);
 
-      ::pointer<::file::item>pitem = __allocate ::file::item(pathUser, pathFinal);
+      ::pointer<::file::item>pitem = øallocate ::file::item(pathUser, pathFinal);
 
       browse(pitem, context);
 
@@ -308,7 +308,7 @@ namespace userfs
 
       {
 
-         _synchronous_lock synchronouslock(fs_data()->synchronization());
+         _synchronous_lock synchronouslock(fs_data()->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          m_pathFolder = pitem->user_path();
 
@@ -321,13 +321,13 @@ namespace userfs
 
          information() << "::userfs::document getting root listing";
 
-         ::file::listing listing;
+         ::file::listing_base listing;
 
          fs_data()->root_ones(listing);
 
          {
 
-            _synchronous_lock synchronouslock(fs_data()->synchronization());
+            _synchronous_lock synchronouslock(fs_data()->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
             m_listingRoot2 = listing;
 
@@ -343,7 +343,7 @@ namespace userfs
 
       }
 
-      ::file::listing listingUser;
+      ::file::listing_base listingUser;
 
       auto papp = get_app();
 
@@ -355,7 +355,7 @@ namespace userfs
 
       pathItemUserPath = pitem->user_path();
 
-      //__construct_new(m_puserfslistdata);
+      //øconstruct_new(m_puserfslistdata);
 
       if(pathItemUserPath.is_empty())
       {
@@ -384,7 +384,7 @@ namespace userfs
 
          {
 
-            ::file::listing listingUserFormatted;
+            ::file::listing_base listingUserFormatted;
 
             listingUserFormatted.m_straPattern = listingUser.m_straPattern;
 
@@ -426,7 +426,7 @@ namespace userfs
 
       }
 
-      ::file::listing listingFinal;
+      ::file::listing_base listingFinal;
 
       listingFinal.m_straPattern = listingUser.m_straPattern;
 
@@ -464,9 +464,9 @@ namespace userfs
 
       }
 
-      ::file::listing listingFolderUser;
+      ::file::listing_base listingFolderUser;
 
-      ::file::listing listingFolderFinal;
+      ::file::listing_base listingFolderFinal;
 
       listingFolderUser.m_eflag = ::file::e_flag_folder;
 
@@ -533,7 +533,7 @@ namespace userfs
 
          information() << "folder user : " << pathFolderUser;
 
-         //auto plistitem = __create_new<list_item>();
+         //auto plistitem = øcreate_new<list_item>();
 
          //plistitem->m_pathFinal = pathFinal;
 
@@ -546,7 +546,7 @@ namespace userfs
 
       {
 
-         synchronous_lock synchronouslock(fs_data()->synchronization());
+         synchronous_lock synchronouslock(fs_data()->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          m_listingUser2 = listingUser;
 
@@ -620,7 +620,7 @@ namespace userfs
    ::fs::set * data::fs_data()
    {
 
-      if (__defer_construct_new(m_pfsset))
+      if (ødefer_construct_new(m_pfsset))
       {
 
 

@@ -15,9 +15,9 @@
 //    FILE *         m_pfile;
 //    char           m_chSeparator = ' ';
 //#ifdef WINDOWS
-//    const char* m_pszEolSeparator = "\r\n";
+//    const_char_pointer m_pszEolSeparator = "\r\n";
 //#else
-//    const char* m_pszEolSeparator = "\n";
+//    const_char_pointer m_pszEolSeparator = "\n";
 //#endif
 
 //// template < typename FILE >
@@ -101,7 +101,7 @@
 //    //}
 //
 ////// template < typename FILE >
-////void write_text_stream < FILE >::print(const ::string& str)
+////void write_text_stream < FILE >::print(const ::scoped_string & scopedstr)
 ////{
 ////
 ////   m_pfile->write(str.c_str(), str.length_in_bytes());
@@ -120,7 +120,7 @@
 //
 //// template < typename FILE >
 //template < primitive_number NUMBER >
-//void write_text_stream < FILE >::write_number(NUMBER number, const ::ansi_character * pszFormat)
+//void write_text_stream < FILE >::write_number(NUMBER number, const_char_pointer pszFormat)
 //{
 //
 //   print(as_string(number, pszFormat));
@@ -180,18 +180,18 @@
 //    void exchange(const ::atom & atom, TYPE & t) { ::__string_exchange(*this, t); }*/
 //
 // // template < typename FILE >
-// void write_text_stream < FILE >::append_format(const ::ansi_character * pszFormat, ...)
+// void write_text_stream < FILE >::append_format(const_char_pointer pszFormat, ...)
 // {
 //
 //    ::string strText;
 //
-//    ASSERT(is_string_ok(pszFormat));
+//    ASSERT(is_string_ok(scopedstrFormat));
 //
 //    va_list argList;
 //
 //    va_start(argList, pszFormat);
 //
-//    strText.formatf_arguments(pszFormat, argList);
+//    strText.formatf_arguments(scopedstrFormat, argList);
 //
 //    va_end(argList);
 //
@@ -486,7 +486,7 @@
 //
 //
 //// template < typename FILE >
-//write_text_stream < FILE > & write_text_stream < FILE >::operator <<(const ::ansi_character * psz)
+//write_text_stream < FILE > & write_text_stream < FILE >::operator <<(const_char_pointer psz)
 //{
 //
 //   if (this->fmtflags() & ::file::network_payload)
@@ -496,7 +496,7 @@
 //
 //   }
 //
-//   print(psz);
+//   print(scopedstr);
 //
 //   if (this->fmtflags() & ::file::network_payload)
 //   {
@@ -518,7 +518,7 @@
 //
 //
 //// template < typename FILE >
-//write_text_stream < FILE > & write_text_stream < FILE >::operator <<(const ::string & str)
+//write_text_stream < FILE > & write_text_stream < FILE >::operator <<(const ::scoped_string & scopedstr)
 //    {
 //
 //       return this->operator <<((const ::scoped_string &)str);
@@ -607,7 +607,7 @@
 //
 //
 //// template < typename FILE >
-//void write_text_stream < FILE >::raw_print(const ::string& str)
+//void write_text_stream < FILE >::raw_print(const ::scoped_string & scopedstr)
 //    {
 //
 //       print(str);
@@ -615,7 +615,7 @@
 //    }
 //
 //
-//    //void print_number(const ::string& str)
+//    //void print_number(const ::scoped_string & scopedstr)
 //    //{
 //
 //    //   print_number(str);
@@ -662,7 +662,7 @@
 //
 //
 ////// template < typename FILE >
-////write_text_stream < FILE > & write_text_stream < FILE >::operator <<(const ::ansi_character * psz)
+////write_text_stream < FILE > & write_text_stream < FILE >::operator <<(const_char_pointer psz)
 ////{
 ////
 ////   if (this->fmtflags() & ::file::network_payload)
@@ -672,7 +672,7 @@
 ////
 ////   }
 ////
-////   print(psz);
+////   print(scopedstr);
 ////
 ////   if (this->fmtflags() & ::file::network_payload)
 ////   {
@@ -694,7 +694,7 @@
 //
 //
 ////// template < typename FILE >
-////write_text_stream < FILE > & write_text_stream < FILE >::operator <<(const ::string & str)
+////write_text_stream < FILE > & write_text_stream < FILE >::operator <<(const ::scoped_string & scopedstr)
 ////{
 ////
 ////   return this->operator <<((const ::scoped_string &)str);
@@ -786,7 +786,7 @@
 ////// void network_payload_write(const ::matter & matter);
 ////
 ////// template < typename FILE >
-////void write_text_stream < FILE >::raw_print(const ::string& str)
+////void write_text_stream < FILE >::raw_print(const ::scoped_string & scopedstr)
 ////{
 ////
 ////   print(str);

@@ -17,7 +17,7 @@ namespace internet
    public:
 
 
-      string_array                     m_straPublicDomainExtension;
+      string_array_base                     m_straPublicDomainExtension;
       ::critical_section               m_csPublicDomainExtension;
 
       internet();
@@ -48,10 +48,10 @@ namespace internet
       virtual bool locale_is_central_america(const ::atom& pszLocale);
       virtual bool locale_is_oceania(const ::atom& pszLocale);
 
-      virtual bool is_valid_public_domain(const string& strDomain);
+      virtual bool is_valid_public_domain(const ::scoped_string & scopedstrDomain);
 
-      virtual string to_punycode(const ::string & str);
-      virtual string from_punycode(const ::string & str);
+      virtual string to_punycode(const ::scoped_string & scopedstr);
+      virtual string from_punycode(const ::scoped_string & scopedstr);
 
 
    };

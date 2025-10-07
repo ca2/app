@@ -48,7 +48,7 @@ namespace universal_windows
       return;
    }
 
-   bool file_find::FindFile(const char * pstrName /* = nullptr */, unsigned int dwUnused /* = 0 */)
+   bool file_find::FindFile(const_char_pointer pstrName /* = nullptr */, unsigned int dwUnused /* = 0 */)
    {
       UNUSED_ALWAYS(dwUnused);
       close();
@@ -113,7 +113,7 @@ namespace universal_windows
    bool file_find::MatchesMask(unsigned int dwMask) const
    {
       ASSERT(m_hContext != nullptr);
-      ASSERT_VALID(this);
+      ASSERT_OK(this);
 
       if (m_pFoundInfo != nullptr)
          return (!!(((LPWIN32_FIND_DATAW) m_pFoundInfo)->dwFileAttributes & dwMask));
@@ -125,7 +125,7 @@ namespace universal_windows
    {
       ASSERT(m_hContext != nullptr);
       ASSERT(pTimeStamp != nullptr);
-      ASSERT_VALID(this);
+      ASSERT_OK(this);
 
       if (m_pFoundInfo != nullptr && pTimeStamp != nullptr)
       {
@@ -140,7 +140,7 @@ namespace universal_windows
    {
       ASSERT(m_hContext != nullptr);
       ASSERT(pTimeStamp != nullptr);
-      ASSERT_VALID(this);
+      ASSERT_OK(this);
 
       if (m_pFoundInfo != nullptr && pTimeStamp != nullptr)
       {
@@ -154,7 +154,7 @@ namespace universal_windows
    bool file_find::GetCreationTime(FILETIME* pTimeStamp) const
    {
       ASSERT(m_hContext != nullptr);
-      ASSERT_VALID(this);
+      ASSERT_OK(this);
 
       if (m_pFoundInfo != nullptr && pTimeStamp != nullptr)
       {
@@ -168,7 +168,7 @@ namespace universal_windows
    bool file_find::GetLastAccessTime(::earth::time& refTime) const
    {
       ASSERT(m_hContext != nullptr);
-      ASSERT_VALID(this);
+      ASSERT_OK(this);
 
       if (m_pFoundInfo != nullptr)
       {
@@ -182,7 +182,7 @@ namespace universal_windows
    bool file_find::GetLastWriteTime(::earth::time& refTime) const
    {
       ASSERT(m_hContext != nullptr);
-      ASSERT_VALID(this);
+      ASSERT_OK(this);
 
       if (m_pFoundInfo != nullptr)
       {
@@ -196,7 +196,7 @@ namespace universal_windows
    bool file_find::GetCreationTime(::earth::time& refTime) const
    {
       ASSERT(m_hContext != nullptr);
-      ASSERT_VALID(this);
+      ASSERT_OK(this);
 
       if (m_pFoundInfo != nullptr)
       {
@@ -210,7 +210,7 @@ namespace universal_windows
    bool file_find::IsDots() const
    {
       ASSERT(m_hContext != nullptr);
-      ASSERT_VALID(this);
+      ASSERT_OK(this);
 
       // return true if the file name is "." or ".." and
       // the file is a directory
@@ -242,7 +242,7 @@ namespace universal_windows
       if (m_pFoundInfo == nullptr)
          m_pFoundInfo = ___new WIN32_FIND_DATAW();
 
-      ASSERT_VALID(this);
+      ASSERT_OK(this);
 
       WIN32_FIND_DATAW * pTemp = m_pFoundInfo;
       m_pFoundInfo = m_pNextInfo;
@@ -254,7 +254,7 @@ namespace universal_windows
    string file_find::GetFileURL() const
    {
       ASSERT(m_hContext != nullptr);
-      ASSERT_VALID(this);
+      ASSERT_OK(this);
 
       string strResult(L"file://");
       strResult += GetFilePath();
@@ -264,14 +264,14 @@ namespace universal_windows
    string file_find::GetRoot() const
    {
       ASSERT(m_hContext != nullptr);
-      ASSERT_VALID(this);
+      ASSERT_OK(this);
       return m_strRoot;
    }
 
    string file_find::GetFilePath() const
    {
       ASSERT(m_hContext != nullptr);
-      ASSERT_VALID(this);
+      ASSERT_OK(this);
 
       string strResult = GetRoot();
       if (strResult[strResult.length()-1] != '\\' &&
@@ -284,7 +284,7 @@ namespace universal_windows
    string file_find::GetFileTitle() const
    {
       ASSERT(m_hContext != nullptr);
-      ASSERT_VALID(this);
+      ASSERT_OK(this);
 
       string strFullName = GetFileName();
       string strResult;
@@ -297,7 +297,7 @@ namespace universal_windows
    string file_find::GetFileName() const
    {
       ASSERT(m_hContext != nullptr);
-      ASSERT_VALID(this);
+      ASSERT_OK(this);
 
       string ret;
 
@@ -311,7 +311,7 @@ namespace universal_windows
    long long file_find::get_length() const
    {
       ASSERT(m_hContext != nullptr);
-      ASSERT_VALID(this);
+      ASSERT_OK(this);
 
       if (m_pFoundInfo != nullptr)
          return ((LPWIN32_FIND_DATAW) m_pFoundInfo)->nFileSizeLow +

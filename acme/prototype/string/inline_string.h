@@ -2,13 +2,13 @@
 #pragma once
 
 
-//#include "string_range.h"
+#include "acme/prototype/string/character_range.h"
 
 
 template < primitive_character CHARACTER, character_count m_sizeMaximumLength >
 class inline_string :
    //public ::range < CHARACTER * >
-   public ::range < const CHARACTER * >
+   public ::character_range < const CHARACTER * >
 {
 public:
 
@@ -17,11 +17,13 @@ public:
 
    
    constexpr inline_string() :
-      ::range < const CHARACTER * >(no_initialize_t{})
+      ::character_range < const CHARACTER * >(no_initialize_t{})
    {
       
       this->m_begin = m_sz;
       this->m_end = this->m_begin;
+      this->m_erange = e_range_none;
+      this->m_pbasedata = nullptr;
       m_sz[0] = '\0';
 
    }
@@ -34,7 +36,7 @@ public:
       while (*psz && this->size() < m_sizeMaximumLength)
       {
          
-         *this->m_end = *psz;
+         *((CHARACTER*)this->m_end) = *psz;
          
          this->m_end++;
          
@@ -42,7 +44,7 @@ public:
 
       }
 
-      *this->m_end = '\0';
+      *((CHARACTER*)this->m_end) = '\0';
 
    }
 
@@ -53,6 +55,7 @@ public:
       this->m_begin = m_sz;
       this->m_end = m_sz + inlinestring.size();
       this->m_erange = inlinestring.m_erange;
+      this->m_pbasedata = inlinestring.m_pbasedata;
    }
 
 
@@ -82,7 +85,7 @@ public:
 
 
 template < primitive_number NUMBER >
-inline string as_string(NUMBER number, const ::ansi_character * pszFormat);
+inline string as_string(NUMBER number, const_char_pointer pszFormat);
 
 // template < primitive_unsigned UNSIGNED >
 // inline inline_number_string as_string(UNSIGNED u, int radix = 10, enum_digit_case edigitcase = e_digit_case_lower);

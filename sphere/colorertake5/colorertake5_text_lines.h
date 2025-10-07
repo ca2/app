@@ -17,7 +17,7 @@ namespace colorertake5
       public:
 
 
-         string_array lines;
+         string_array_base lines;
 
 
          /** Empty constructor. Does nothing.

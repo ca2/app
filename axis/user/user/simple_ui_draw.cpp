@@ -40,7 +40,7 @@ namespace simple_ui
 
       pgraphics->set(b);
 
-      auto ppen = __øcreate < ::draw2d::pen > ();
+      auto ppen = øcreate < ::draw2d::pen > ();
 
       ppen->create_solid(1.0, argb(255, 0, 0, 0));
 
@@ -155,7 +155,7 @@ namespace simple_ui
       pgraphics->set_alpha_mode(draw2d::e_alpha_mode_blend);
 
       int iCount = rectangleDraw.height();
-      auto ppen = __øcreate < ::draw2d::pen > ();
+      auto ppen = øcreate < ::draw2d::pen > ();
       for (int i = 0; i < iCount; i += 2)
       {
          double dRate = (double)i / (double)iCount;
@@ -226,7 +226,7 @@ namespace simple_ui
 
          pgraphics->fill_polygon(pb, 4);
 
-         auto ppen = __øcreate < ::draw2d::pen > ();
+         auto ppen = øcreate < ::draw2d::pen > ();
 
          ppen->create_solid(1.0, argb(192, 192, 192, 192));
 
@@ -266,7 +266,7 @@ namespace simple_ui
 
          pgraphics->fill_polygon(pc, 4);
 
-         auto ppen = __øcreate < ::draw2d::pen > ();
+         auto ppen = øcreate < ::draw2d::pen > ();
 
          ppen->create_solid(1.0, argb(180, 180, 177, 177));
 
@@ -292,7 +292,7 @@ namespace simple_ui
 
          pgraphics->fill_polygon(pc, 4);
 
-         auto ppen = __øcreate < ::draw2d::pen > ();
+         auto ppen = øcreate < ::draw2d::pen > ();
 
          ppen->create_solid(1.0, argb(123, 90, 90, 90));
 
@@ -318,7 +318,7 @@ namespace simple_ui
 
          pgraphics->fill_polygon(pc, 4);
 
-         auto ppen = __øcreate < ::draw2d::pen > ();
+         auto ppen = øcreate < ::draw2d::pen > ();
 
          ppen->create_solid(1.0, argb(149, 176, 176, 176));
 
@@ -344,7 +344,7 @@ namespace simple_ui
 
          pgraphics->fill_polygon(pc, 4);
 
-         auto ppen = __øcreate < ::draw2d::pen > ();
+         auto ppen = øcreate < ::draw2d::pen > ();
 
          ppen->create_solid(1.0, argb(90, 120, 120, 123));
 
@@ -361,7 +361,7 @@ namespace simple_ui
 
       {
 
-         auto ppen = __øcreate < ::draw2d::pen > ();
+         auto ppen = øcreate < ::draw2d::pen > ();
 
          ppen->create_solid(1.0, argb(190, 90, 90, 90));
 
@@ -402,7 +402,7 @@ namespace simple_ui
 
       int iBorderH = minimum(rectangle.height() / 2, 49);
 
-      auto pbrush = __øcreate < ::draw2d::brush > ();
+      auto pbrush = øcreate < ::draw2d::brush > ();
 
       pbrush->CreateLinearGradientBrush(rectangle.top_left(), int_point(rectangle.left(), rectangle.top() + iBorderH), crOut, crIn);
 

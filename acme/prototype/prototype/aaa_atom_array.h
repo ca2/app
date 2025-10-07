@@ -10,7 +10,7 @@ using atom_array = ::comparable_array < ::atom >;
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-atom_array __atom_array(const string_array_base < Type, RawType, t_etypeContainer > & a)
+atom_array __atom_array(const string_base_array < Type, RawType, t_etypeContainer > & a)
 {
 
    atom_array atoma;

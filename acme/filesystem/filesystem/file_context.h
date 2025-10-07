@@ -49,7 +49,7 @@ public:
    virtual ::folder* resource_folder();
    virtual ::memory_file_pointer create_resource_file(const ::file::path & path);
    virtual ::memory get_resource_memory(const ::file::path & path);
-   virtual ::file::enum_type resource_get_type(const ::file::path & path);
+   virtual ::file::enum_type resource_get_type(const ::file::path & path, ::string  * pstrLogNotFound = nullptr);
 
 
    virtual void copy(::payload varTarget, ::payload varSource, bool bFailIfExists = false, enum_extract eextract = e_extract_first);
@@ -61,7 +61,7 @@ public:
 
 
    virtual void trash_that_is_not_trash(const ::file::path & path);
-   virtual void trash_that_is_not_trash(::file::path_array & patha);
+   virtual void trash_that_is_not_trash(::file::path_array_base & patha);
 
 
    virtual ::file::path get_filesystem_file(const ::file::path& path);
@@ -74,7 +74,7 @@ public:
    virtual void set_status(const ::file::path & path, const ::file::file_status & status);
 
 
-   virtual void replace_with(const ::file::path & pszContext, const string & pszNew, const string & pszOld);
+   virtual void replace_with(const ::file::path & pathContext, const ::scoped_string & scopedstrNew, const ::scoped_string & scopedstrOld);
 
 
    virtual ::file::enum_type get_type(const ::file::path & path, ::payload * pvarQuery);
@@ -92,19 +92,19 @@ public:
    virtual ::file::path module();
 
    
-   ::file::path time(const ::file::path & pathBasePath, int iDepth = 0, const ::string & strPrefix = nullptr, const ::string & strSuffix = nullptr, bool bTryDelete = false);
-   ::file::path time_square(const ::string & strPrefix = nullptr, const ::string & strSuffix = nullptr);
-   ::file::path time_log(const ::string & str);
+   ::file::path time(const ::file::path & pathBasePath, int iDepth = 0, const ::scoped_string & scopedstrPrefix = nullptr, const ::scoped_string & scopedstrSuffix = nullptr, bool bTryDelete = false);
+   ::file::path time_square(const ::scoped_string & scopedstrPrefix = nullptr, const ::scoped_string & scopedstrSuffix = nullptr);
+   ::file::path time_log(const ::scoped_string & scopedstr);
 
 
-   virtual file_pointer time_square_file(const string & pszPrefix = nullptr, const string & pszSuffix = nullptr);
+   virtual file_pointer time_square_file(const ::scoped_string & scopedstrPrefix = nullptr, const ::scoped_string & scopedstrSuffix = nullptr);
    virtual file_pointer get(const ::file::path & name);
 
    virtual file_pointer get_temporary_upload_file(const ::file::path & pathCurrent);
 
 
    //template < class T >
-   //string time_square(T * p, bool (T:: * pfnOutput)(::stream &, const ::file::path &), const ::file::path & pszSource)
+   //string time_square(T * p, bool (T:: * pfnOutput)(::stream &, const ::file::path &), const ::file::path & pathSource)
    //{
 
    //   string strTime = time_square(p);
@@ -160,7 +160,7 @@ public:
    //}
 
 
-   virtual int filterex_time_square(const ::scoped_string & scopedstrPrefix, ::file::path_array & stra);
+   virtual int filterex_time_square(const ::scoped_string & scopedstrPrefix, ::file::path_array_base & stra);
    virtual bool try_create_file(const ::file::path & path, bool bTryDelete);
 
 
@@ -176,10 +176,10 @@ public:
    virtual memory beginning(const ::payload& payloadFile, memsize size, bool bNoExceptionOnFail = true);
 
 
-   inline string_array lines(const ::payload & payloadFile, bool bAddEmpty = true, bool bNoExceptionOnFail = true)
+   inline string_array_base lines(const ::payload & payloadFile, bool bAddEmpty = true, bool bNoExceptionOnFail = true)
    {
 
-       string_array straLines;
+       string_array_base straLines;
 
        get_lines(straLines, payloadFile, bAddEmpty, bNoExceptionOnFail);
 
@@ -188,9 +188,9 @@ public:
    }
 
 
-   virtual void get_lines(string_array & stra, const ::payload & payloadFile, bool bAddEmpty = true, bool bNoExceptionOnFail = true);
-   virtual void put_lines(const ::payload& payloadFile, const string_array& stra, const plain_text_file_options& options = {});
-   //virtual void put_lines_utf8(const ::payload & payloadFile, const string_array & stra);
+   virtual void get_lines(string_array_base & stra, const ::payload & payloadFile, bool bAddEmpty = true, bool bNoExceptionOnFail = true);
+   virtual void put_lines(const ::payload& payloadFile, const string_array_base& stra, const plain_text_file_options& options = {});
+   //virtual void put_lines_utf8(const ::payload & payloadFile, const string_array_base & stra);
 
 
    virtual ::memory _005Signature(const ::payload & payloadFile);
@@ -208,7 +208,7 @@ public:
    virtual void add_contents(const ::payload & payloadFile, const ::scoped_string & scopedstrContents);
 
 
-   virtual bool is_read_only(const ::file::path & psz);
+   virtual bool is_read_only(const ::file::path & path);
 
    virtual file_pointer resource_get_file(const ::file::path & path);
 
@@ -216,7 +216,7 @@ public:
    virtual ::file::path sys_temp_unique(const ::file::path & lpszName);
 
 
-   virtual ::file::path replace_with_extension(const ::string & strExtension,  const ::file::path & pszFile);
+   virtual ::file::path replace_with_extension(const ::scoped_string & scopedstrExtension,  const ::file::path & pathFile);
    virtual void set_extension(::file::path & str, const ::scoped_string & scopedstrExtension);
 
 
@@ -224,7 +224,7 @@ public:
 
 
    virtual void normalize(string & str);
-   virtual ::std::strong_ordering cmp(const ::file::path & psz1, const ::file::path & psz2);
+   virtual ::std::strong_ordering cmp(const ::file::path & path1, const ::file::path & path2);
 
 
    virtual string get_hash(const ::payload & payloadFile, enum_hash ehash);
@@ -240,13 +240,13 @@ public:
 
    virtual bool is_link(const ::file::path & path);
 
-   virtual void get_last_write_time(file_time_t * pfile_time, const ::string & strFilename);
+   virtual void get_last_write_time(file_time_t * pfile_time, const ::scoped_string & scopedstrFilename);
 
-   //virtual void dtf(const ::file::path & pszFile, const ::file::path & pszDir);
+   //virtual void dtf(const ::file::path & pathFile, const ::file::path & pathFolder);
 
-   //virtual void dtf(const ::file::path & pszFile, ::file::path_array & stra);
+   //virtual void dtf(const ::file::path & pathFile, ::file::path_array_base & stra);
 
-   //virtual void ftd(const ::file::path & pszDir, const ::file::path & pszFile);
+   //virtual void ftd(const ::file::path & pathFolder, const ::file::path & pathFile);
 
    // 'n' (natural) terminated ascii number, example: 245765487n
    // pmd5ctx = openssl/md5.h's MD5_CTX
@@ -258,7 +258,7 @@ public:
 
    virtual ::file_pointer file_get_file(::file::path path, ::file::e_open eopen);
 
-   virtual ::file_pointer data_get_file(string strData, ::file::e_open eopen = ::file::e_open_read | ::file::e_open_binary);
+   virtual ::file_pointer data_get_file(const ::scoped_string & scopedstrData, ::file::e_open eopen = ::file::e_open_read | ::file::e_open_binary);
 
    virtual ::folder_pointer get_folder(::file::file * pfile, const ::scoped_string & scopedstrImplementation, ::file::e_open eopen = ::file::e_open_read | ::file::e_open_binary);
 
@@ -302,24 +302,24 @@ public:
 
 
 //   virtual ::extended::status copy(::payload varTarget, ::payload varSource, bool bFailIfExists = false, enum_extract eextract = e_extract_first);
-   //virtual ::extended::status transfer(const ::file::path & pszNew, const ::file::path & psz);
-   //virtual ::extended::status del(const ::file::path & psz);
-   //virtual ::extended::status rename(const ::file::path & pszNew, const ::file::path & psz);
+   //virtual ::extended::status transfer(const ::file::path & pathNew, const ::file::path & path);
+   //virtual ::extended::status del(const ::file::path & path);
+   //virtual ::extended::status rename(const ::file::path & pathNew, const ::file::path & path);
 
 
-   //virtual void trash_that_is_not_trash(const ::file::path & psz);
-   //virtual void trash_that_is_not_trash(::file::path_array & stra);
+   //virtual void trash_that_is_not_trash(const ::file::path & path);
+   //virtual void trash_that_is_not_trash(::file::path_array_base & stra);
 
 
-   //virtual ::extended::status replace(const ::file::path & pszContext, const string & pszFind, const string & pszReplace);
+   //virtual ::extended::status replace(const ::file::path & pathContext, const ::scoped_string & scopedstrFind, const ::scoped_string & scopedstrReplace);
 
-  virtual bool exists(const ::file::path & pszPath);
-
-
-  // virtual ::payload length(const ::file::path & pszPath);
+  virtual bool exists(const ::file::path & path);
 
 
-   //::file::path time(const ::file::path & pszBasePath, int iDepth = 1, const string & pszPrefix = nullptr, const string & pszSuffix = nullptr);
+  // virtual ::payload length(const ::file::path & path);
+
+
+   //::file::path time(const ::file::path & pathBasePath, int iDepth = 1, const ::scoped_string & scopedstrPrefix = nullptr, const ::scoped_string & scopedstrSuffix = nullptr);
 
 
    //virtual file_pointer time_square_file(const ::scoped_string & scopedstrPrefix = nullptr, const ::scoped_string & scopedstrSuffix = nullptr);
@@ -371,8 +371,8 @@ public:
    //}
 
 
-   //virtual void lines(string_array & stra, const ::payload & payloadFile);
-   //virtual void put_lines(const ::payload & payloadFile, const string_array & stra);
+   //virtual void lines(string_array_base & stra, const ::payload & payloadFile);
+   //virtual void put_lines(const ::payload & payloadFile, const string_array_base & stra);
 
    //virtual bool put_contents(const ::payload & payloadFile, const void * pvoidContents, ::collection::count count);
    //virtual bool put_contents(const ::payload & payloadFile, const ::scoped_string & scopedstrContents);
@@ -385,13 +385,13 @@ public:
    //virtual bool add_contents(const ::payload & payloadFile, const ::scoped_string & scopedstrContents);
 
 
-   string sys_temp(const char * lpszName, const ::scoped_string & scopedstrExtension);
+   string sys_temp(const_char_pointer lpszName, const ::scoped_string & scopedstrExtension);
 
 
    //virtual ::file_pointer get_file(const ::payload & payloadFile, unsigned int nOpenFlags);
 
 
-   //virtual bool is_read_only(const ::file::path & psz);
+   //virtual bool is_read_only(const ::file::path & path);
 
    inline auto open_for_reading(const ::payload & payloadFile, ::file::e_open eopen = ::file::e_open_binary)
    {
@@ -412,9 +412,9 @@ public:
    virtual ::file_pointer friendly_get_file(const ::payload & payloadFile, ::file::e_open eopen);
 
 
-   //void dtf(const ::file::path & pszFile, const ::file::path & pszDir);
-   void dtf(const ::file::path & pszFile, ::file::path_array & stra, ::file::path_array & straRelative);
-   //void ftd(const ::file::path & pszDir, const ::file::path & pszFile);
+   //void dtf(const ::file::path & pathFile, const ::file::path & pathFolder);
+   void dtf(const ::file::path & pathFile, ::file::path_array_base & stra, ::file::path_array_base & straRelative);
+   //void ftd(const ::file::path & pathFolder, const ::file::path & pathFile);
 
 
    virtual void crypto_set(const ::payload & payloadFile, const ::scoped_string & scopedstrData, const ::scoped_string & scopedstrSalt);
@@ -438,8 +438,8 @@ public:
    }
 
 
-   virtual void save_lines(const ::payload & payloadFile, string_array & stra);
-   virtual void load_lines(string_array & stra, const ::payload & payloadFile);
+   virtual void save_lines(const ::payload & payloadFile, string_array_base & stra);
+   virtual void load_lines(string_array_base & stra, const ::payload & payloadFile);
 
 
 

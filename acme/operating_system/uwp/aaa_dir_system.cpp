@@ -86,10 +86,10 @@ namespace universal_windows
    //::file::path directory_system::trash_that_is_not_trash(const ::file::path& psz)
    //{
 
-   //   if (psz == nullptr)
+   //   if (scopedstr == nullptr)
    //      return "";
 
-   //   if (psz[1] == ':')
+   //   if (scopedstr[1] == ':')
    //   {
 
    //      string strDir = psz.folder();
@@ -125,7 +125,7 @@ namespace universal_windows
    //}
 
 
-   //::file::path directory_system::usersystemappdata(::particle * pparticle, const ::string & strPrefix)
+   //::file::path directory_system::usersystemappdata(::particle * pparticle, const ::scoped_string & scopedstrPrefix)
    //{
 
    //   __UNREFERENCED_PARAMETER(pparticle);
@@ -186,7 +186,7 @@ namespace universal_windows
    //}
 
 
-   //::file::path directory_system::default_userfolder(::particle * pparticle,const ::string & strPrefix,const ::string & strLogin)
+   //::file::path directory_system::default_userfolder(::particle * pparticle,const ::scoped_string & scopedstrPrefix,const ::scoped_string & scopedstrLogin)
    //{
 
    //   return userfolder(pparticle) / strPrefix / strLogin;
@@ -229,7 +229,7 @@ namespace universal_windows
    //bool directory_system::is_inside(const ::file::path& pszDir, const ::file::path& strPath)
    //{
 
-   //   return case_insensitive_string_begins(pszDir, strPath);
+   //   return case_insensitive_string_begins(scopedstrDir, strPath);
 
    //}
 

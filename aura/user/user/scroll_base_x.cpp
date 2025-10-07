@@ -2,7 +2,7 @@
 #include "framework.h"
 #include "scroll_bar.h"
 #include "scroll_base_x.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "acme/exception/interface_only.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "aura/message/user.h"
@@ -15,11 +15,11 @@ namespace user
    scroll_base_x::scroll_base_x()
    {
 
-      //m_pscrollstateHorizontal = __allocate scroll_state();
+      //m_pscrollstateHorizontal = øallocate scroll_state();
 
       //m_pscrollstateHorizontal->m_bShowScroll = false;
 
-      m_pscrolllayoutX = __allocate scroll_layout();
+      m_pscrolllayoutX = øallocate scroll_layout();
 
       m_pscrolllayoutX->m_scrollstatea[::user::e_layout_sketch].m_bHasScroll = false;
       m_pscrolllayoutX->m_scrollstatea[::user::e_layout_sketch].m_dPage = 0;
@@ -266,7 +266,7 @@ namespace user
    //void scroll_base_x::on_change_context_offset(::draw2d::graphics_pointer & pgraphics)
    //{
 
-   //   synchronous_lock synchronouslock(this->synchronization());
+   //   synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //   //if (m_pscrollbarX.is_set())
    //   //{
@@ -359,7 +359,7 @@ namespace user
    void scroll_base_x::install_message_routing(::channel * pchannel)
    {
 
-      MESSAGE_LINK(e_message_scroll_x, pchannel, this, &scroll_base_x::on_message_scroll_x);
+      USER_MESSAGE_LINK(::user::e_message_scroll_x, pchannel, this, &scroll_base_x::on_message_scroll_x);
 
    }
 
@@ -439,7 +439,7 @@ namespace user
    void scroll_base_x::send_scroll_x_message(enum_scroll_command ecommand, double dPosition)
    {
 
-      auto pscroll = __allocate ::message::scroll();
+      auto pscroll = øallocate ::message::scroll();
 
       pscroll->m_ecommand = ecommand;
 
@@ -456,7 +456,7 @@ namespace user
 
       //}
 
-      pscroll->m_emessage = e_message_scroll_x;
+      pscroll->m_eusermessage = ::user::e_message_scroll_x;
 
       send_message(pscroll);
 
@@ -473,7 +473,7 @@ namespace user
 
       }
 
-      auto pbar = __øcreate < scroll_bar >();
+      auto pbar = øcreate < scroll_bar >();
 
       pbar->m_eorientation = ::e_orientation_horizontal;
 

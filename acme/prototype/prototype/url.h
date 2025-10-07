@@ -188,10 +188,10 @@ namespace url
    //   };
 
    //   enum_type      m_type;
-   //   const char *   m_pszLastQuestionMarkAfterLastSlash;
-   //   const char *   m_pszLastSlash;
+   //   const_char_pointer m_pszLastQuestionMarkAfterLastSlash;
+   //   const_char_pointer m_pszLastSlash;
 
-   //   part(const char* psz);
+   //   part(const_char_pointer psz);
 
    //};
 
@@ -438,7 +438,7 @@ namespace url
       ::string                m_str;
 
 
-      //const char*             m_pszRequest;
+      //const_char_pointer            m_pszRequest;
 
       
       //bool                    m_bScoped = false;
@@ -506,69 +506,69 @@ namespace url
 
 
       //string set_parameter(const ::scoped_string & scopedstrKey, const scoped_string & scopedstr);
-      //string erase_parameter(const ::string& strKey);
+      //string erase_parameter(const ::scoped_string & scopedstrKey);
 
       //void set_parameter(string & strUrl, const ::scoped_string & scopedstrKey, const ::scoped_string & scopedstr);
-      //void set_param(string & strUrl, const ::string & str, const ::string & strKey, const ::string & strParam);
-      //void set_param(string & strUrl, const ::string & strKey, const ::string & strParam);
-      //string string_set(string & strUrl, const ::string & strKey, ::payload payload);
-      //string string_set_if_not_empty(string& strUrl, const ::string & strKey, ::payload payload);
-      //::payload & var_set(::payload & varUrl, const ::string & strKey, ::payload payload);
-      //property & ::property_set(property & propUrl, const ::string & strKey, ::payload payload);
+      //void set_param(string & strUrl, const ::scoped_string & scopedstr, const ::scoped_string & scopedstrKey, const ::scoped_string & scopedstrParam);
+      //void set_param(string & strUrl, const ::scoped_string & scopedstrKey, const ::scoped_string & scopedstrParam);
+      //string string_set(string & strUrl, const ::scoped_string & scopedstrKey, ::payload payload);
+      //string string_set_if_not_empty(string& strUrl, const ::scoped_string & scopedstrKey, ::payload payload);
+      //::payload & var_set(::payload & varUrl, const ::scoped_string & scopedstrKey, ::payload payload);
+      //property & ::property_set(property & propUrl, const ::scoped_string & scopedstrKey, ::payload payload);
 
-      //string set_script(const ::string & strUrl, const ::string & strScript);
+      //string set_script(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrScript);
       
-      //string parameters_set_if_empty_at_target(const ::string & strDest, const ::string & strSrc, bool bOverrideQuery = false);
-      //string replaced_parameters_if_set_at_source(const ::string & strDest, const ::string & strSrc);
+      //string parameters_set_if_empty_at_target(const ::scoped_string & scopedstrDest, const ::scoped_string & scopedstrSrc, bool bOverrideQuery = false);
+      //string replaced_parameters_if_set_at_source(const ::scoped_string & scopedstrDest, const ::scoped_string & scopedstrSrc);
       
-      //string & erase_key(string & strUrl, const ::string & strKey);
-      //::payload & erase_key(::payload & varUrl, const ::string & strKey);
-      //property & erase_key(property & propUrl, const ::string & strKey);
+      //string & erase_key(string & strUrl, const ::scoped_string & scopedstrKey);
+      //::payload & erase_key(::payload & varUrl, const ::scoped_string & scopedstrKey);
+      //property & erase_key(property & propUrl, const ::scoped_string & scopedstrKey);
 
-      //string object(const ::string & strScript, const ::string & strQuery);
-      //string object_set(const ::string & strObject, const ::string & strKey, ::payload payload);
+      //string object(const ::scoped_string & scopedstrScript, const ::scoped_string & scopedstrQuery);
+      //string object_set(const ::scoped_string & scopedstrObject, const ::scoped_string & scopedstrKey, ::payload payload);
 
-      //string path(const ::string & str1, const ::string & str2);
-      //string path(const ::string & str1, const ::string & str2, const ::string & str3);
-      //string name(const ::string & str);
-      //string ::url::encode(const ::string & str);
-      //string ::url::decode(const ::string & str);
-      //string ::url::decode(const ::string & str, character_count iLen);
+      //string path(const ::scoped_string & scopedstr1, const ::scoped_string & scopedstr2);
+      //string path(const ::scoped_string & scopedstr1, const ::scoped_string & scopedstr2, const ::scoped_string & scopedstr3);
+      //string name(const ::scoped_string & scopedstr);
+      //string ::url::encode(const ::scoped_string & scopedstr);
+      //string ::url::decode(const ::scoped_string & scopedstr);
+      //string ::url::decode(const ::scoped_string & scopedstr, character_count iLen);
 
-      //string query_append(const ::string & strUrl, const ::string & strQuery);
-      //string query_erase(const ::string & strQuery, string_array & straKey);
-      //string query_erase(const ::string & strQuery, const ::string & strKey);
-      ////string query_set(const ::string & strQuery, const ::string & strKey, ::payload payload);
-      //bool query_get_param(string & strValue, const ::string & strUrl, const ::string & strKey);
-      //bool query_has_param(const ::string & strUrl, const ::string & strKey);
-      //bool query_param_has_char(const ::string & strUrl, const ::string & strKey);
+      //string query_append(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrQuery);
+      //string query_erase(const ::scoped_string & scopedstrQuery, string_array_base & straKey);
+      //string query_erase(const ::scoped_string & scopedstrQuery, const ::scoped_string & scopedstrKey);
+      ////string query_set(const ::scoped_string & scopedstrQuery, const ::scoped_string & scopedstrKey, ::payload payload);
+      //bool query_get_param(string & strValue, const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrKey);
+      //bool query_has_param(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrKey);
+      //bool query_param_has_char(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrKey);
 
       // can return false (not_found) or string
-      //::payload get_parameter(const ::string & strQuery, const ::string & strKey);
+      //::payload get_parameter(const ::scoped_string & scopedstrQuery, const ::scoped_string & scopedstrKey);
       // can return false (not_found) or string
-      //::payload query_get_parameter(const ::string & strQuery, const ::string & strKey);
-      //string get_param(const ::string & strQuery, const ::string & strKey);
-      //string query_get_param(const ::string & strQuery, const ::string & strKey);
-      //bool query_has_parameter_replace(string & strQuery, const ::string & strKey, const ::string & strValue);
-      //string __query_erase(const ::string & strQuery, const ::string & strAndKeyEqual);
-      //bool get_parameter(string & strValue, const ::string & strUrl, const ::string & strKey);
-      //bool has_parameter(const ::string & strUrl, const ::string & strKey);
-      //bool parameter_has_char(const ::string & strUrl, const ::string & strKey);
-      //bool has_parameter_replace(string & strUrl, const ::string & strKey, const ::string & strValue);
+      //::payload query_get_parameter(const ::scoped_string & scopedstrQuery, const ::scoped_string & scopedstrKey);
+      //string get_param(const ::scoped_string & scopedstrQuery, const ::scoped_string & scopedstrKey);
+      //string query_get_param(const ::scoped_string & scopedstrQuery, const ::scoped_string & scopedstrKey);
+      //bool query_has_parameter_replace(string & strQuery, const ::scoped_string & scopedstrKey, const ::scoped_string & scopedstrValue);
+      //string __query_erase(const ::scoped_string & scopedstrQuery, const ::scoped_string & scopedstrAndKeyEqual);
+      //bool get_parameter(string & strValue, const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrKey);
+      //bool has_parameter(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrKey);
+      //bool parameter_has_char(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrKey);
+      //bool has_parameter_replace(string & strUrl, const ::scoped_string & scopedstrKey, const ::scoped_string & scopedstrValue);
 
       
       
-      //virtual bool server_ends(string strUrl, string strRoot);
+      //virtual bool server_ends(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrRoot);
 
 
-      //virtual string to_punycode(const ::string & str);
-      //virtual string from_punycode(const ::string & str);
+      //virtual string to_punycode(const ::scoped_string & scopedstr);
+      //virtual string from_punycode(const ::scoped_string & scopedstr);
       
-      //string os_fspath(string strUrl);
+      //string os_fspath(const ::scoped_string & scopedstrUrl);
       
-      //string os_fsname(string strUrl);
+      //string os_fsname(const ::scoped_string & scopedstrUrl);
       
-      //string os_fs(string strUrl, bool bPath);
+      //string os_fs(const ::scoped_string & scopedstrUrl, bool bPath);
       
 
 
@@ -576,13 +576,13 @@ namespace url
       //virtual void defer_raw_http(::property_set & set);
 
 
-      //bool case_insensitive_is_protocol(const ::string & strProtocol) const;
+      //bool case_insensitive_is_protocol(const ::scoped_string & scopedstrProtocol) const;
       //bool is_http() const;
-      //bool is_https(const ::string & strUrl) const;
+      //bool is_https(const ::scoped_string & scopedstrUrl) const;
       //bool is_http_or_https() const;
-      //bool is_ftp(const ::string & strUrl) const;
-      //bool is_ftps(const ::string & strUrl) const;
-      //bool is_ftp_or_ftps(const ::string & strUrl) const;
+      //bool is_ftp(const ::scoped_string & scopedstrUrl) const;
+      //bool is_ftps(const ::scoped_string & scopedstrUrl) const;
+      //bool is_ftp_or_ftps(const ::scoped_string & scopedstrUrl) const;
 
       //string __query_set(const ::scoped_string& scopedstrQuery, const ::scoped_string& scopedstrKey, const ::scoped_string& scopedstr);
 

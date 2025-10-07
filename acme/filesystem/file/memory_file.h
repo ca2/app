@@ -97,11 +97,11 @@ public:
    memory_file(const void * pmemory, memsize dwSize);
    memory_file(const ::block & block);
    template < primitive_payload PAYLOAD >
-   memory_file(PAYLOAD & payload, ::file::e_open eopen = e_null);
-   memory_file(memory_base & memory, ::file::e_open eopen = e_null);
-   memory_file(memory_base * pmemory, ::file::e_open eopen = e_null);
+   memory_file(PAYLOAD & payload, ::file::e_open eopen = {});
+   memory_file(memory_base & memory, ::file::e_open eopen = {});
+   memory_file(memory_base * pmemory, ::file::e_open eopen = {});
    template < typename MEMORY>
-   memory_file(const ::pointer<MEMORY> & pmemory, ::file::e_open eopen = e_null) : memory_file((MEMORY *)pmemory.get(), eopen) {}
+   memory_file(const ::pointer<MEMORY> & pmemory, ::file::e_open eopen = {}) : memory_file((MEMORY *)pmemory.get(), eopen) {}
    ~memory_file() override;
 
 

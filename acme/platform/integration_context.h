@@ -33,7 +33,7 @@ namespace integration
       ::file::path      m_pathOperatingSystemStorageFolder;
       ::file::path      m_pathDownloadURL;
       ::string          m_strGitCloneBranch;
-      ::string_array    m_straOutput;
+      ::string_array_base    m_straOutput;
       ::file::path      m_pathFolder;
       ::file::path      m_pathBase;
       ::file::path      m_pathPlatformConfiguration;
@@ -55,7 +55,7 @@ namespace integration
       ::particle_pointer                  m_pmutexLines;
 
 
-      ::file::listing   m_listingBuild;
+      ::file::listing_base   m_listingBuild;
 
 
       context();

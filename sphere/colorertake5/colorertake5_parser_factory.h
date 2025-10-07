@@ -53,7 +53,7 @@ namespace colorertake5
          ParserFactory(::particle * pparticle, string catalogPath);
          virtual ~ParserFactory();
 
-         static const char *getVersion();
+         static const_char_pointer getVersion();
 
          /**
           * Enumerates all declared hrd classes
@@ -118,9 +118,9 @@ namespace colorertake5
          ::file::path catalogPath;
          stream * catalogFIS;
          ErrorHandler *fileErrorHandler;
-         string_array hrcLocations;
-         string_map < string_map < string_array >, const string_map < string_array > & > hrdLocations;
-         string_to_string hrdDescriptions;
+         string_array_base hrcLocations;
+         string_map_base < string_map_base < string_array_base >, const string_map_base < string_array_base > & > hrdLocations;
+         string_to_string_base hrdDescriptions;
          HRCParser  *hrcParser;
          ::pointer<::xml::node>atalog;
 

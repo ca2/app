@@ -134,7 +134,7 @@ close();
       int    file::create_anonymous_file(memsize size)
       {
          static const char pszTemplate[] = "/weston-shared-XXXXXX";
-         const char * path;
+         const_char_pointer path;
          char * name;
 
          path = getenv("XDG_RUNTIME_DIR");
@@ -264,7 +264,7 @@ char * malloc_get_current_dir_name()
 //
 //
 //
-//int_bool set_file_size(const char * lpszName, size_t iSize)
+//int_bool set_file_size(const_char_pointer lpszName, size_t iSize)
 //{
 //
 //   int fd = ::open(lpszName, O_RDONLY);
@@ -346,7 +346,7 @@ char * malloc_get_current_dir_name()
 //}
 //
 //
-//int_bool file_system()->put_contents(const ::file::path & path, const char * contents, ::collection::count len)
+//int_bool file_system()->put_contents(const ::file::path & path, const_char_pointer contents, ::collection::count len)
 //{
 //
 //   bool bOk = false;
@@ -424,7 +424,7 @@ char * malloc_get_current_dir_name()
 //   char * psz = str.get_buffer(iReadAtMostByteCount);
 //
 //
-//   ::collection::count iRead = fread(psz, 1, iReadAtMostByteCount, f);
+//   ::collection::count iRead = fread(scopedstr, 1, iReadAtMostByteCount, f);
 //
 //   psz[iRead] = '\0';
 //
@@ -438,12 +438,12 @@ char * malloc_get_current_dir_name()
 //
 //}
 //
-//string_array file_as_lines(const ::file::path & path, character_count iReadAtMostByteCount)
+//string_array_base file_as_lines(const ::file::path & path, character_count iReadAtMostByteCount)
 //{
 //
 //   string str = file_system()->as_string(path, iReadAtMostByteCount);
 //
-//   string_array stra;
+//   string_array_base stra;
 //
 //   stra.add_lines(str);
 //
@@ -579,7 +579,7 @@ char * malloc_get_current_dir_name()
 ////
 ////   char * pszModule = nullptr;
 ////
-////   if((pszModule = br_find_exe(nullptr)) == nullptr)
+////   if((scopedstrModule = br_find_exe(nullptr)) == nullptr)
 ////   {
 ////
 ////      if (!br_init_lib(nullptr))
@@ -611,7 +611,7 @@ char * malloc_get_current_dir_name()
 ////
 ////   path = pszModule;
 ////
-////   ::free(pszModule);
+////   ::free(scopedstrModule);
 ////
 ////   return path;
 ////
@@ -627,7 +627,7 @@ char * malloc_get_current_dir_name()
 ////
 ////      return "";
 ////
-////   return string(pszModuleFilePath);
+////   return string(scopedstrModuleFilePath);
 ////
 ////
 ////#elif defined(__APPLE__)
@@ -653,14 +653,14 @@ char * malloc_get_current_dir_name()
 //   int flags = O_RDWR | O_CREAT | O_TRUNC;
 //   if (!bOverwrite)
 //      flags |= O_EXCL;
-//   if ((output = open(pszNew, flags, 0666)) == -1)
+//   if ((output = open(scopedstrNew, flags, 0666)) == -1)
 //   {
 //      fprintf(stderr, "Error: opening file: %s\n", pszNew);
 //      return false;
 //   }
 //
 //
-//   if ((input = open(pszSrc, O_RDONLY)) == -1)
+//   if ((input = open(scopedstrSrc, O_RDONLY)) == -1)
 //   {
 //      fprintf(stderr, "Error: opening file: %s\n", pszSrc);
 //      return false;
@@ -705,7 +705,7 @@ char * malloc_get_current_dir_name()
 //
 //int_bool file_is_equal_path_dup(const ::scoped_string & scopedstr1, const ::scoped_string & scopedstr2)
 //{
-//   if (case_insensitive_ansi_compare(psz1, psz2) == 0)
+//   if (case_insensitive_ansi_compare(scopedstr1, psz2) == 0)
 //      return true;
 //
 //   //throw ::exception(::exception(" // TODO: it should follow links "));
@@ -730,7 +730,7 @@ char * malloc_get_current_dir_name()
 //{
 //
 //
-//   if (::unlink(pszFileName) == -1)
+//   if (::unlink(scopedstrFileName) == -1)
 //
 //   {
 //
@@ -751,8 +751,8 @@ char * malloc_get_current_dir_name()
 //{
 //
 //   const int iBufSize = MAX_PATH * 8;
-//   wstring pwsz1 = utf8_to_unicode(psz1);
-//   wstring pwsz2 = utf8_to_unicode(psz2);
+//   wstring pwsz1 = utf8_to_unicode(scopedstr1);
+//   wstring pwsz2 = utf8_to_unicode(scopedstr2);
 //   //   unichar * pwszFile1;
 //      // unichar * pwszFile2;
 //   ::wide_character * pwszPath1 = ___new ::wide_character[iBufSize];
@@ -785,7 +785,7 @@ char * malloc_get_current_dir_name()
 //int ansi_open(const ::scoped_string & scopedstr, int i)
 //{
 //
-//   return open(psz, i);
+//   return open(scopedstr, i);
 //
 //}
 //
@@ -797,7 +797,7 @@ char * malloc_get_current_dir_name()
 //FILE * ansi_fopen(const ::scoped_string & scopedstr, const ::scoped_string & scopedstrMode)
 //{
 //
-//   return fopen(psz, pszMode);
+//   return fopen(scopedstr, pszMode);
 //
 //}
 //
@@ -846,7 +846,7 @@ char * malloc_get_current_dir_name()
 //void ansi_unlink(const ::scoped_string & scopedstr)
 //{
 //
-//   unlink(psz);
+//   unlink(scopedstr);
 //
 //}
 //
@@ -884,7 +884,7 @@ char * malloc_get_current_dir_name()
 //
 //#ifdef __cplusplus
 //
-//string file_first_line_dup(const ::string & strPath)
+//string file_first_line_dup(const ::scoped_string & scopedstrPath)
 //{
 //
 //   string line;
@@ -1317,11 +1317,11 @@ bool file_exists(const ::file::path & path)
 //
 //   string strName;
 //
-//   ::file::path pathDir;
+//   ::file::path pathFolder;
 //
 //   character_count iLastPos = -1;
 //
-//   ::file::path_array stra;
+//   ::file::path_array_base stra;
 //
 //   ::file::path path(pathParam);
 //
@@ -1379,7 +1379,7 @@ void create_directory(const ::file::path & path)
    
    auto pszPath = path.c_str();
 
-   if (::mkdir(pszPath, S_IRWXU | S_IRWXG | S_IRWXO) != 0)
+   if (::mkdir(path, S_IRWXU | S_IRWXG | S_IRWXO) != 0)
    {
       
       auto cerrornumber = c_error_number();
@@ -1398,6 +1398,8 @@ void create_directory(const ::file::path & path)
          return;
          
       }
+      
+      ::warning() << "Couldn't create_directory(\"" << path << "\");";
 
       throw ::exception(estatus);
 

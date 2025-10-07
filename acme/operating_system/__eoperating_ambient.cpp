@@ -14,6 +14,9 @@ namespace windowing
       
       switch(eoperatingambient)
       {
+         case e_operating_ambient_android:
+            //return "xfce";
+            return "android";
       case e_operating_ambient_xfce:
          //return "xfce";
          return "gtk3";

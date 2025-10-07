@@ -7,15 +7,15 @@ namespace c
 {
 
 
-//   CLASS_DECL_ACME char * strdup(const char * psz)
+//   CLASS_DECL_ACME char * strdup(const_char_pointer psz)
 //   {
 //
-//      return ::strdup(psz);
+//      return ::strdup(scopedstr);
 //
 //   }
 
 
-   CLASS_DECL_ACME char* strdup2(const char* psz1, const char* psz2)
+   CLASS_DECL_ACME char* strdup2(const_char_pointer psz1, const_char_pointer psz2)
    {
 
       auto len1 = string_safe_length(psz1);

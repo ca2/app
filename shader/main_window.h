@@ -19,8 +19,8 @@ namespace app_shader
 
 
       string                                 m_strCurrentShaderPath;
-      // map : shader path - render
-      string_map < ::pointer<render > >      m_maprender;
+      // map_base : shader path - render
+      string_map_base < ::pointer<render > >      m_maprender;
       bool                                   m_bSaveFrame;
 
 
@@ -47,13 +47,13 @@ namespace app_shader
 
       ::user::enum_translucency get_translucency(::user::style* pstyle) override;
 
-      virtual void update_shader(const ::string & strShaderPath);
+      virtual void update_shader(const ::scoped_string & scopedstrShaderPath);
 
       bool on_click(::item * pitem, ::user::mouse * pmouse) override;
 
       virtual void switch_shader();
 
-      string get_next_path(const string& strPath);
+      string get_next_path(const ::scoped_string & scopedstrPath);
 
 
    };

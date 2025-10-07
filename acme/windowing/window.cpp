@@ -157,7 +157,7 @@ namespace acme
 
          //m_ebias = calculate_bias();
 
-         //__øconstruct(m_pacmeuserinteraction);
+         //øconstruct(m_pacmeuserinteraction);
 
          //m_pacmeuserinteraction->m_pacmeuserinteraction = this;
 
@@ -165,7 +165,7 @@ namespace acme
 
          //::user::element::on_initialize_particle();
 
-         //_synchronous_lock synchronouslock(system()->acme_windowing()->synchronization());
+         //_synchronous_lock synchronouslock(system()->acme_windowing()->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          //system()->acme_windowing()->m_windowbasea.add(this);
 
@@ -260,7 +260,7 @@ namespace acme
 
          }
 
-         //_synchronous_lock synchronouslock(system()->acme_windowing()->synchronization());
+         //_synchronous_lock synchronouslock(system()->acme_windowing()->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          //system()->acme_windowing()->m_windowbasea.erase(this);
 
@@ -787,7 +787,7 @@ namespace acme
     //void window::erase_keyboard_focus(::acme::user::interaction * pacmeuserinteractionFocus)
     //{
 
-    //   _synchronous_lock synchronouslock(this->synchronization());
+    //   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
     //   if (pacmeuserinteractionFocus == m_pacmeuserinteractionKeyboardFocus)
     //   {
@@ -1196,7 +1196,7 @@ namespace acme
 
       //   ::user::element::on_initialize_particle();
 
-      //   _synchronous_lock synchronouslock(system()->acme_windowing()->synchronization());
+      //   _synchronous_lock synchronouslock(system()->acme_windowing()->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       //   system()->acme_windowing()->m_windowbasea.add(this);
 
@@ -1208,7 +1208,7 @@ namespace acme
 
       //   ::user::element::destroy();
 
-      //   _synchronous_lock synchronouslock(system()->acme_windowing()->synchronization());
+      //   _synchronous_lock synchronouslock(system()->acme_windowing()->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       //   system()->acme_windowing()->m_windowbasea.erase(this);
 
@@ -1511,7 +1511,7 @@ namespace acme
       //
       //    message_loop();
       //
-      //    // auto pmanualresethappening = __allocate manual_reset_happening();
+      //    // auto pmanualresethappening = øallocate manual_reset_happening();
       //    //
       //    // m_pinterface->m_psequencer->then([ pmanualresethappening](auto psequencer)
       //    // {
@@ -1529,13 +1529,13 @@ namespace acme
       //    //
       //    // }
       //    //
-      //    // //   auto pmessagebox = pparticle->__create_new < message_box >();
+      //    // //   auto pmessagebox = pparticle->øcreate_new < message_box >();
       //    // //
       //    // //   atom idResult;
       //    // //
       //    // //   manual_reset_happening happening;
       //    // //
-      //    // //   pmessagebox->display(pszMessage, pszTitle, emessagebox, pszDetails);
+      //    // //   pmessagebox->display(scopedstrMessage, pszTitle, emessagebox, pszDetails);
       //    // //
       //    // //   pmessagebox->m_functionClose = [&idResult, &happening](micro::window * pwindow)
       //    // //   {
@@ -1593,7 +1593,7 @@ namespace acme
       //}
 
 
-      void window::_on_window_simple_action(const char * pszActionName, ::user::activation_token * puseractivationtoken)
+      void window::_on_window_simple_action(const_char_pointer pszActionName, ::user::activation_token * puseractivationtoken)
       {
 
          if (!m_pacmeuserinteraction)

@@ -91,7 +91,7 @@
 //
 //
 ////template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type t_etypeContainer >
-////binary_stream & binary_stream::operator << (const array_base < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > & a)
+////binary_stream & binary_stream::operator << (const base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > & a)
 ////{
 //
 ////   ::collection::count c = a.get_count();
@@ -106,7 +106,7 @@
 //
 //
 ////template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type t_etypeContainer >
-////binary_stream & binary_stream::operator >> (array_base < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > & a)
+////binary_stream & binary_stream::operator >> (base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > & a)
 ////{
 //
 ////   ::collection::count c = 0;
@@ -168,7 +168,7 @@
 //
 //
 //template < class STREAM, class KEY, class ARG_KEY, class PAYLOAD, class ARG_VALUE, class PAIR >
-//inline void __exchange(STREAM & s, map < KEY, ARG_KEY, PAYLOAD, ARG_VALUE, PAIR > & m)
+//inline void __exchange(STREAM & s, map_base < KEY, ARG_KEY, PAYLOAD, ARG_VALUE, PAIR > & m)
 //{
 //
 //   if (s.is_storing())
@@ -205,8 +205,8 @@
 //      {
 //
 //         c--;
-//         typename map < KEY, ARG_KEY, PAYLOAD, ARG_VALUE, PAIR >::BASE_KEY element1;
-//         //typename map < KEY, ARG_KEY, PAYLOAD, ARG_VALUE, PAIR >::BASE_VALUE element2;
+//         typename map_base < KEY, ARG_KEY, PAYLOAD, ARG_VALUE, PAIR >::BASE_KEY element1;
+//         //typename map_base < KEY, ARG_KEY, PAYLOAD, ARG_VALUE, PAIR >::BASE_VALUE element2;
 //         s >> element1;
 //         //if (s.fail())
 //           // break;
@@ -561,7 +561,7 @@
 ////inline void __io(::binary_stream & s, const enum_type & etype) { s.io(etype); }
 ////
 ////
-////inline void __io(::binary_stream & s, const ::scoped_string & scopedstr) { s.io(psz); }
+////inline void __io(::binary_stream & s, const ::scoped_string & scopedstr) { s.io(scopedstr); }
 ////
 ////
 ////inline void __io(::binary_stream & s, ::ansi_string & str) { s.io(str); }
@@ -697,7 +697,7 @@
 //
 //
 //template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type t_etypeContainer >
-//inline void __exchange(::binary_stream & binary_stream, ::array_base < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > & array)
+//inline void __exchange(::binary_stream & binary_stream, ::base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > & array)
 //{
 //   __exchange_array(binary_stream, array);
 //}
@@ -718,7 +718,7 @@
 //
 //
 //template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-//inline void __exchange(::binary_stream & binary_stream, ::string_array_base < Type, RawType, t_etypeContainer > & array)
+//inline void __exchange(::binary_stream & binary_stream, ::string_base_array < Type, RawType, t_etypeContainer > & array)
 //{
 //   __exchange_array(binary_stream, array);
 //}
@@ -751,7 +751,7 @@
 //
 ////void payload_stream::write_object(const ::atom & atom, ::atom & idFactory, ::particle * pparticle)
 ////{
-////   payload_stream binary_stream(__allocate< ::payload(&payload()[atom].propset >()));
+////   payload_stream binary_stream(øallocate< ::payload(&payload()[atom].propset >()));
 ////   binary_stream.exchange("", idFactory);
 ////   pparticle->exchange(binary_stream);
 ////}
@@ -759,10 +759,10 @@
 ////
 ////::pointer<::matter>payload_stream::read_object(const ::atom & atom)
 ////{
-////   payload_stream binary_stream(__allocate< ::payload(&payload()[atom].propset >()));
+////   payload_stream binary_stream(øallocate< ::payload(&payload()[atom].propset >()));
 ////   ::atom idFactory;
 ////   binary_stream.exchange("", idFactory);
-////   auto pparticle = __id_create<::matter>(idFactory);
+////   auto pparticle = øid_create<::matter>(idFactory);
 ////   pparticle->exchange(binary_stream);
 ////   return pparticle;
 ////}
@@ -818,7 +818,7 @@
 //inline void __exchange(::binary_stream & s, double & d) { s.default_exchange(d); }
 //inline void __exchange(::binary_stream & s, ::earth::time & time) { s.default_exchange(time.m_i); }
 //inline void __exchange(::binary_stream & s, class ::time & time) { s.default_exchange(time.m_iSecond); s.default_exchange(time.m_iNanosecond); }
-//inline void __exchange(::binary_stream & s, const ::scoped_string & scopedstr) { s.write_only(psz); }
+//inline void __exchange(::binary_stream & s, const ::scoped_string & scopedstr) { s.write_only(scopedstr); }
 //inline void __exchange(::binary_stream & s, string & str) { s.default_exchange(str); }
 //inline void __exchange(::binary_stream & s, ::file::path & path) { s.default_exchange(path); }
 //inline void __exchange(::binary_stream & s, ::atom & atom) { s.default_exchange(atom); }

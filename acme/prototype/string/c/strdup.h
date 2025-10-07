@@ -11,7 +11,7 @@
 namespace c
 {
 
-   CLASS_DECL_ACME char * strdup(const char * psz);
+   CLASS_DECL_ACME char * strdup(const_char_pointer psz);
 
 } // namespace c
 

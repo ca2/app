@@ -6,11 +6,11 @@
 #include "acme/filesystem/filesystem/directory_context.h"
 #include "apex/networking/http/context.h"
 #include "axis/user/form/data.h"
-#include "base/user/simple/frame_window.h"
-#include "base/user/user/single_document_template.h"
-#include "base/user/form/impact.h"
-#include "base/user/user/tab_impact.h"
-#include "base/user/form/document.h"
+#include "berg/user/simple/frame_window.h"
+#include "berg/user/user/single_document_template.h"
+#include "berg/user/form/impact.h"
+#include "berg/user/user/tab_impact.h"
+#include "berg/user/form/document.h"
 #include "core/platform/application.h"
 #include "core/platform/session.h"
 #include "core/platform/system.h"
@@ -22,7 +22,7 @@
 //#include <openssl/err.h>
 
 
-//typedef string ( *SALT)(::pointer<::aura::application> const ::string & , string_array &);
+//typedef string ( *SALT)(::pointer<::aura::application> const ::string & , string_array_base &);
 
 namespace hi5
 {
@@ -47,7 +47,7 @@ namespace hi5
       }
 
 
-      void authorization::initialize_twitter_authorization(::object* pparticle, const ::string & pszAuthorizationUrl, const ::string & pszForm, bool bAuth, bool bInteractive)
+      void authorization::initialize_twitter_authorization(::object* pparticle, const ::scoped_string & scopedstrAuthorizationUrl, const ::scoped_string & scopedstrForm, bool bAuth, bool bInteractive)
       {
 
          // auto estatus = 
@@ -61,10 +61,10 @@ namespace hi5
 
          //}
 
-         m_strAuthorizationUrl = pszAuthorizationUrl;
+         m_strAuthorizationUrl = scopedstrAuthorizationUrl;
          m_bInteractive = bInteractive;
          m_bAuth = bAuth;
-         m_strForm = pszForm;
+         m_strForm = scopedstrForm;
 
          auto psystem = system();
 
@@ -251,7 +251,7 @@ namespace hi5
       }
 
 
-      void authorization::pageMessage(const ::string & pszMatter, ::property_set & set)
+      void authorization::pageMessage(const ::scoped_string & scopedstrMatter, ::property_set & set)
       {
 
          ensure_main_document();
@@ -260,7 +260,7 @@ namespace hi5
 
          // auto pcontext = get_context();
 
-         m_pformdocumentAuth->on_open_document(directory()->matter(pszMatter));
+         m_pformdocumentAuth->on_open_document(directory()->matter(scopedstrMatter));
          display_main_frame();
          //m_ptabimpact->get_wnd()->RunModalLoop(MLF_NOIDLEMSG | MLF_NOKICKIDLE);
 

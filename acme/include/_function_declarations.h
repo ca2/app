@@ -2,32 +2,32 @@
 #pragma once
 
 
-//CLASS_DECL_ACME enum_dialog_result message_box_for_console(const ::scoped_string & scopedstr, const ::scoped_string & scopedstrTitle, const ::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails = nullptr);
+//CLASS_DECL_ACME enum_dialog_result message_box_for_console(const ::scoped_string & scopedstr, const ::scoped_string & scopedstrTitle, const ::user::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails = nullptr);
 //
 //
 //CLASS_DECL_ACME void set_last_status(const ::e_status& estatus);
 
-//CLASS_DECL_ACME char * strdup2(const char * psz1, const char * psz2);
+//CLASS_DECL_ACME char * strdup2(const_char_pointer psz1, const_char_pointer psz2);
 
 
-CLASS_DECL_ACME long long ansi_to_long_long(const ::ansi_character * psz, const ::ansi_character ** ppszEnd, int iBase);
+CLASS_DECL_ACME long long ansi_to_long_long(const_char_pointer psz, const_char_pointer *ppszEnd, int iBase);
 
-CLASS_DECL_ACME long long ansi_to_long_long(const ::ansi_character * psz, const ::ansi_character ** ppszEnd, int iBase);
-
-
-CLASS_DECL_ACME unsigned long long ansi_to_unsigned_long_long(const ::ansi_character * psz, const ::ansi_character ** ppszEnd, int iBase);
+CLASS_DECL_ACME long long ansi_to_long_long(const_char_pointer psz, const_char_pointer *ppszEnd, int iBase);
 
 
-CLASS_DECL_ACME int ansi_to_int(const ::ansi_character * psz, const ::ansi_character ** ppszEnd, int iBase);
+CLASS_DECL_ACME unsigned long long ansi_to_unsigned_long_long(const_char_pointer psz, const_char_pointer *ppszEnd, int iBase);
 
 
-CLASS_DECL_ACME unsigned int ansi_to_unsigned_int(const ::ansi_character * psz, const ::ansi_character ** ppszEnd, int iBase);
+CLASS_DECL_ACME int ansi_to_int(const_char_pointer psz, const_char_pointer *ppszEnd, int iBase);
+
+
+CLASS_DECL_ACME unsigned int ansi_to_unsigned_int(const_char_pointer psz, const_char_pointer *ppszEnd, int iBase);
 
 
 CLASS_DECL_ACME void windowing_output_debug_string(const ::scoped_string & scopedstrDebugString);
 
 
-CLASS_DECL_ACME void throw_encoding_exception(const ::scoped_string & scopedstrMessage);
+CLASS_DECL_ACME void throw_encoding_exception(const_char_pointer pszMessage);
 
 
 //CLASS_DECL_ACME::platform::system* system();
@@ -87,11 +87,11 @@ inline const ::particle * context_trace_object();
 
 
 
-CLASS_DECL_ACME const char* trace_category_name(enum_trace_category ecategory);
+CLASS_DECL_ACME const_char_pointer trace_category_name(enum_trace_category ecategory);
 
 CLASS_DECL_ACME const ::particle * trace_object(enum_trace_category ecategory);
 
-CLASS_DECL_ACME const char* topic_text(::particle* pparticle);
+CLASS_DECL_ACME const_char_pointer topic_text(::particle* pparticle);
 
 CLASS_DECL_ACME enum_trace_category object_trace_category(::particle* pparticle);
 
@@ -153,11 +153,11 @@ class e_status;
 
 
 //
-//CLASS_DECL_ACME::atom auto pmessagebox = __initialize_new ::message_box(::particle* ppartcicle, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const e_message_box& emessagebox = e_message_box_ok, const ::scoped_string & scopedstrDetails = nullptr);
+//CLASS_DECL_ACME::atom auto pmessagebox = __initialize_new ::message_box(::particle* ppartcicle, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const ::user::e_message_box& emessagebox = ::user::e_message_box_ok, const ::scoped_string & scopedstrDetails = nullptr);
 
 //pmessagebox->sync();
 //
-//CLASS_DECL_ACME void message_box_asynchronous(::function < void(const ::atom& atom) > function, ::particle* pparticle, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const e_message_box& emessagebox = e_message_box_ok, const ::scoped_string & scopedstrDetails = nullptr);
+//CLASS_DECL_ACME void message_box_asynchronous(::function < void(const ::atom& atom) > function, ::particle* pparticle, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const ::user::e_message_box& emessagebox = ::user::e_message_box_ok, const ::scoped_string & scopedstrDetails = nullptr);
 //
 
 
@@ -187,7 +187,7 @@ int CLASS_DECL_ACME MultiByteToWideChar2(unsigned int CodePage, unsigned int dwF
    ::wide_character* pWideCharStr, int cchWideChar);
 
 int CLASS_DECL_ACME WideCharToMultiByte2(unsigned int CodePage, unsigned int dwFlags, const ::wide_character* pWideCharStr, int cchWideChar,
-   ::ansi_character* pMultByteStr, int cbMultiByte, const char* pDefaultChar,
+   ::ansi_character* pMultByteStr, int cbMultiByte, const_char_pointer pDefaultChar,
    int_bool* pUsedDefaultChar);
 
 
@@ -274,10 +274,10 @@ inline bool exists(const ::file::enum_type& etype);
 // CLASS_DECL_ACME bool is_verbose_log();
 
 
-CLASS_DECL_ACME long long ansi_to_long_long(const ::ansi_character * psz, const ::ansi_character ** ppszEnd, int iBase);
-CLASS_DECL_ACME unsigned long long ansi_to_unsigned_long_long(const ::ansi_character * psz, const ::ansi_character ** ppszEnd, int iBase);
-CLASS_DECL_ACME int ansi_to_int(const ::ansi_character * psz, const ::ansi_character ** ppszEnd, int iBase);
-CLASS_DECL_ACME unsigned int ansi_to_unsigned_int(const ::ansi_character * psz, const ::ansi_character ** ppszEnd, int iBase);
+CLASS_DECL_ACME long long ansi_to_long_long(const_char_pointer psz, const_char_pointer *ppszEnd, int iBase);
+CLASS_DECL_ACME unsigned long long ansi_to_unsigned_long_long(const_char_pointer psz, const_char_pointer *ppszEnd, int iBase);
+CLASS_DECL_ACME int ansi_to_int(const_char_pointer psz, const_char_pointer *ppszEnd, int iBase);
+CLASS_DECL_ACME unsigned int ansi_to_unsigned_int(const_char_pointer psz, const_char_pointer *ppszEnd, int iBase);
 
 
 CLASS_DECL_ACME ::ansi_character * __u64toansi(unsigned long long u, ::ansi_character * buf, int iBase, enum_digit_case edigitcase, ::ansi_character * & end);
@@ -293,7 +293,7 @@ inline void sort_non_negative(T1& t1, T2& t2);
 CLASS_DECL_ACME void application_send_status(::enum_status estatus, ::particle * pparticle = nullptr, long long hi = 0, void * p = nullptr);
 
 
-CLASS_DECL_ACME void node_application_send_status(const char * pszStatus, void * p = nullptr, long long hi = 0);
+CLASS_DECL_ACME void node_application_send_status(const_char_pointer pszStatus, void * p = nullptr, long long hi = 0);
 
 namespace platform
 {

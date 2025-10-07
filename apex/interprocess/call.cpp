@@ -11,12 +11,12 @@ namespace interprocess
 {
 
 
-   call::call(communication * pcommunication, const string & strApp, const string & strObject, const string & strMember) :
+   call::call(communication * pcommunication, const ::scoped_string & scopedstrApp, const ::scoped_string & scopedstrObject, const ::scoped_string & scopedstrMember) :
       //::object(pipi),
       m_pinterprocesscommunication(pcommunication),
-      m_strApp(strApp),
-      m_strObject(strObject),
-      m_strMember(strMember),
+      m_strApp(scopedstrApp),
+      m_strObject(scopedstrObject),
+      m_strMember(scopedstrMember),
       m_bAutoLaunch(false)
    {
 
@@ -119,7 +119,7 @@ namespace interprocess
    ::pointer<synchronization_array>call::synca()
    {
 
-      auto psynca = __allocate synchronization_array();
+      auto psynca = øallocate synchronization_array();
 
       for (auto & ptask : this->m_mapTask.payloads())
       {
@@ -158,7 +158,7 @@ namespace interprocess
 
       auto psynca = synca();
 
-      synchronous_lock synchronouslock(psynca);
+      synchronous_lock synchronouslock(psynca, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       return synchronouslock.wait(timeWait).ok();
 

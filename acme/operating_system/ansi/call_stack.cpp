@@ -46,7 +46,7 @@ void backtrace_symbol_parse(string &strSymbolName, string &strAddress, char *pme
 
 #if !defined(__ANDROID__)
 
-string _ansi_stack_trace(::particle * pparticle, void *const *ppui, int frames, const char *pszFormat, int iSkip)
+string _ansi_stack_trace(::particle * pparticle, void *const *ppui, int frames, const_char_pointer pszFormat, int iSkip)
 {
 
 #if DISABLE_BACKTRACE
@@ -65,8 +65,8 @@ string _ansi_stack_trace(::particle * pparticle, void *const *ppui, int frames, 
 
    //char syscom[1024];
 
-   //const char * func;
-   //const char * file;
+   //const_char_pointer func;
+   //const_char_pointer file;
    //unsigned iLine;
 
    auto ppMessages = messages.get();
@@ -223,12 +223,18 @@ namespace platform
 
 #if !defined(ANDROID)
 
+
+    critical_section g_criticalsectionCallStack;
+
+
     string node::_get_call_stack_trace(void ** stack, int frame_count, const ::scoped_string & strFormat, int iSkip, void *caller_address, int iCount)
     {
 
-       auto psynchronization = ::system()->synchronization();
+       //auto psynchronization = ::system()->synchronization();
 
-       _synchronous_lock sl(psynchronization);
+       //_synchronous_lock sl(psynchronization, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+
+       critical_section_lock criticalsectionlock(&g_criticalsectionCallStack);
 
 #if defined(FREEBSD) || defined(OPENBSD)
        const int iMaximumFramesToCapture = 32;

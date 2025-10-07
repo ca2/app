@@ -68,7 +68,7 @@ bool folder::locate_folder(const ::file::path & pathFolderName)
 }
 
 
-bool folder::locate(const ::function < bool(const char*) >& function)
+bool folder::locate(const ::function < bool(const_char_pointer )>& function)
 {
 
    throw ::interface_only();
@@ -124,7 +124,7 @@ bool folder::is_compressed(const ::file::path & path)
 }
 
 
-void folder::e_extract_all(const ::file::path & pathTargetDir, ::file::path_array * ppatha, string_array* pstraFilter, bool_array* pbaBeginsFilterEat, ::function<bool(const::scoped_string& scopedstr) > functionCallback)
+void folder::e_extract_all(const ::file::path & pathTargetDir, ::file::path_array_base * ppatha, string_array_base* pstraFilter, bool_array* pbaBeginsFilterEat, ::function<bool(const::scoped_string& scopedstr) > functionCallback)
 {
 
    throw ::interface_only();
@@ -146,7 +146,7 @@ void folder::e_extract_all(const ::file::path & pathTargetDir, ::file::path_arra
 }
 
 
-//void folder::e_extract_sub_directory(const ::file::path& pathTargetDir, const ::scoped_string& scopedstrPrefix, ::file::path_array* ppatha, string_array* pstraFilter, bool_array* pbaBeginsFilterEat, ::function<bool(const::scoped_string& scopedstr) > functionCallback)
+//void folder::e_extract_sub_directory(const ::file::path& pathTargetDir, const ::scoped_string& scopedstrPrefix, ::file::path_array_base* ppatha, string_array_base* pstraFilter, bool_array* pbaBeginsFilterEat, ::function<bool(const::scoped_string& scopedstr) > functionCallback)
 //{
 //
 //   throw ::interface_only();
@@ -158,7 +158,7 @@ void folder::e_extract_all(const ::file::path & pathTargetDir, ::file::path_arra
 //}
 
 //
-//bool folder::enumerates(::file::listing & listing)
+//bool folder::enumerates(::file::listing_base & listing)
 //{
 //
 //   return true;
@@ -166,7 +166,7 @@ void folder::e_extract_all(const ::file::path & pathTargetDir, ::file::path_arra
 //}
 
 
-bool folder::enumerate(::file::listing& listing)
+bool folder::enumerate(::file::listing_base& listing)
 {
 
    throw ::interface_only();
@@ -176,7 +176,7 @@ bool folder::enumerate(::file::listing& listing)
 }
 
 
-//bool folder::perform_file_relative_name_listing(::file::listing& listing)
+//bool folder::perform_file_relative_name_listing(::file::listing_base& listing)
 //{
 //
 //   throw ::interface_only();
@@ -196,7 +196,7 @@ void folder::open_for_writing(file_pointer pfile)
 }
 
 
-void folder::add_file(const ::file::path& pszRelative, ::file::file* pfile)
+void folder::add_file(const ::file::path & pathRelative, ::file::file* pfile)
 {
 
    throw ::interface_only();

@@ -35,7 +35,7 @@ int
 MultiByteToWideChar2(
 unsigned int     CodePage,
 unsigned int    dwFlags,
-const char *   pMultiByteStr,
+const_char_pointer pMultiByteStr,
 int      cbMultiByte,
 ::wd16_character *   pWideCharStr,
 int      cchWideChar)
@@ -160,7 +160,7 @@ int
 MultiByteToWideChar2(
 unsigned int     CodePage,
 unsigned int    dwFlags,
-const char *   pMultiByteStr,
+const_char_pointer pMultiByteStr,
 int      cbMultiByte,
 ::wd32_character *   pWideCharStr,
 int      cchWideChar)
@@ -288,7 +288,7 @@ const ::wide_character *  pWideCharStr,
 int      cchWideChar,
 char *   pMultiByteStr,
 int      cbMultiByte,
-const char *   pDefaultChar,
+const_char_pointer pDefaultChar,
 int_bool *  pUsedDefaultChar)
 {
 

@@ -149,25 +149,25 @@ namespace simpledb
       ::sockets::httpd_socket::OnSSLAccept();
    }
 
-   void socket::simple_file_server(const ::file::path & psz, const ::string & pszRelative)
+   void socket::simple_file_server(const ::file::path & path, const ::scoped_string & scopedstrRelative)
    {
-      pointer_array < ::int_array > rangea;
+      pointer_array < ::int_array_base > rangea;
       if(strlen(inheader("range")) > 0)
       {
-         string_array straItem;
+         string_array_base straItem;
          straItem.explode("=", inheader("range"));
          if(straItem.get_count() == 2)
          {
             string strUnit = straItem[0];
-            string_array stra;
+            string_array_base stra;
             stra.explode(",", straItem[1]);
             for(int i = 0; i < stra.get_count(); i++)
             {
-               string_array straRange;
+               string_array_base straRange;
                straRange.explode("-", stra[i]);
                if(straRange.get_count() == 2)
                {
-                  rangea.add(___new ::int_array ());
+                  rangea.add(___new ::int_array_base ());
                   rangea.last_pointer()->add(atoi(straRange[0]));
                   straRange[1].trim();
                   if(strlen(straRange[1]) == 0)
@@ -179,9 +179,9 @@ namespace simpledb
          }
       }
       string strRelative;
-      if(pszRelative != nullptr)
+      if(scopedstrRelative != nullptr)
       {
-         strRelative = string(pszRelative);
+         strRelative = string(scopedstrRelative);
       }
       else
       {
@@ -193,12 +193,12 @@ namespace simpledb
    }
 
 
-   bool socket::read_file(const ::file::path & lpcsz,pointer_array < ::int_array > * prangea, const ::string & pszContentType)
+   bool socket::read_file(const ::file::path & lpcsz,pointer_array < ::int_array_base > * prangea, const ::scoped_string & scopedstrContentType)
    {
       string strExtension = lpcsz.extension();
       string str = strExtension;
       str.make_lower();
-      string strContentType(pszContentType);
+      string strContentType(scopedstrContentType);
       if(strContentType.has_character() && strContentType.case_insensitive_order("unknown") != 0)
       {
          outheader("content-type") = strContentType;

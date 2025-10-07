@@ -22,13 +22,13 @@ namespace aura
    //}
 
 
-   bool history::hist(const ::string & psz)
+   bool history::hist(const ::scoped_string & scopedstr)
    {
 
       if(m_phistory != nullptr)
       {
 
-         return m_phistory->hist(psz);
+         return m_phistory->hist(scopedstr);
 
       }
 

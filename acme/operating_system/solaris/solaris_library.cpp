@@ -19,7 +19,7 @@ namespace ca
 
       m_plibrary = nullptr;
 
-      open(pszOpen);
+      open(scopedstrOpen);
 
    }
 
@@ -35,7 +35,7 @@ namespace ca
    bool library::open(const ::file::path & path)
    {
 
-      vsstring strPath(pszPath);
+      vsstring strPath(scopedstrPath);
 
       if(strPath == "os")
       {
@@ -53,7 +53,7 @@ namespace ca
       if(ansi_find_string(strPath, ".") == nullptr)
          strPath += ".so";
 
-      if(strstr((const char *) strPath, "/") == nullptr && !ansi_begins(strPath, "lib"))
+      if(strstr((const_char_pointer )strPath, "/") == nullptr && !ansi_begins(strPath, "lib"))
          strPath = "lib" + strPath;
 
       m_plibrary = dlopen(strPath, RTLD_LOCAL | RTLD_NOW | RTLD_NODELETE);
@@ -87,7 +87,7 @@ namespace ca
    }
 
    ca2_library::ca2_library(const ::scoped_string & scopedstrOpen) :
-      library(pszOpen)
+      library(scopedstrOpen)
    {
 
    }
@@ -99,7 +99,7 @@ namespace ca
 
    bool ca2_library::open(const ::file::path & path)
    {
-      return library::open(pszPath);
+      return library::open(scopedstrPath);
    }
 
    bool library::is_opened()

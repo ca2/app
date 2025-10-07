@@ -44,12 +44,12 @@ namespace calculator
    }
 
 
-   void scanner::initialize(const ::string & str)
+   void scanner::initialize(const ::scoped_string & scopedstr)
    {
       
       //m_range.m_begin          = psz;
       
-      m_range        = str;
+      m_range        = scopedstr;
       
       next_input     = m_range.m_begin;
       
@@ -58,7 +58,7 @@ namespace calculator
 
    void scanner::peek()
    {
-      const char *beginning;
+      const_char_pointer beginning;
       if(m_range.m_begin != next_input && next_input != nullptr)
          return;
       beginning = m_range.m_begin;
@@ -75,7 +75,7 @@ namespace calculator
    token * scanner::look_ahead()
    {
 
-      m_ptoken = __allocate class token ();
+      m_ptoken = øallocate class token ();
 
       if (m_ptoken.is_null())
       {
@@ -87,7 +87,7 @@ namespace calculator
       while (unicode_is_space_char(m_range.m_begin))
       {
 
-         unicode_increment(m_range.m_begin);
+         m_range.m_begin = unicode_next(m_range.m_begin);
 
       }
 
@@ -100,7 +100,7 @@ namespace calculator
 
       }
 
-      const char * nextinput = unicode_next(m_range.m_begin);
+      const_char_pointer nextinput = unicode_next(m_range.m_begin);
 
       if((*m_range.m_begin == 'j' || *m_range.m_begin == 'i') && unicode_is_digit(nextinput))
       {
@@ -193,7 +193,7 @@ namespace calculator
          while (unicode_is_space_char(m_range.m_begin))
          {
 
-            unicode_increment(m_range.m_begin);
+            m_range.m_begin = unicode_next(m_range.m_begin);
 
          }
          if(*m_range.m_begin == '(')

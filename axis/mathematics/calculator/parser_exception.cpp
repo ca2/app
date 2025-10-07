@@ -3,8 +3,8 @@
 #include "acme/constant/id.h"
 
 
-numeric_parsing_exception::numeric_parsing_exception(const ::string & strMessage):
-   parsing_exception(strMessage)
+numeric_parsing_exception::numeric_parsing_exception(const ::scoped_string & scopedstrMessage):
+   parsing_exception(scopedstrMessage)
 {
 
    informationf("numeric_parsing_exception");
@@ -26,7 +26,7 @@ bool should_avoid_numeric_parsing_exception()
 }
 
 
-CLASS_DECL_AXIS bool throw_numeric_parsing_exception(const ::string & strMessage)
+CLASS_DECL_AXIS bool throw_numeric_parsing_exception(const ::scoped_string & scopedstrMessage)
 {
 
    if (should_avoid_numeric_parsing_exception())
@@ -36,7 +36,7 @@ CLASS_DECL_AXIS bool throw_numeric_parsing_exception(const ::string & strMessage
 
    }
 
-   throw numeric_parsing_exception(strMessage);
+   throw numeric_parsing_exception(scopedstrMessage);
 
    return true;
 

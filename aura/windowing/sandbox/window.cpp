@@ -3,7 +3,7 @@
 // Adapted by Camilo for android 2022-01-05 04:37 <3TBS (Thomas likes number 5), Mummi and bilbo!!
 #include "framework.h"
 #include "_sandbox.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "apex/platform/system.h"
 #include "aura/graphics/image/context.h"
 #include "aura/graphics/image/drawing.h"
@@ -35,306 +35,310 @@ namespace sandbox_windowing
 
    void window::create_window()
 {
+
+      ::windowing::window::create_window();
+
+      return;
       
-      bool bOk = true;
-      
-      auto pwindow = this;
-
-      auto puserinteraction = user_interaction();
-      
-      auto pusersystem = puserinteraction->m_pusersystem;
-      
-      puserinteraction->m_bMessageOnlyWindow = false;
-      
-      auto pwindowing = windowing();
-      
-      auto pwindowingdisplay = pwindowing->display();
-      
-      int x = puserinteraction->const_layout().sketch().origin().x();
-      
-      int y = puserinteraction->const_layout().sketch().origin().y();
-      
-      int cx = puserinteraction->const_layout().sketch().width();
-      
-      int cy = puserinteraction->const_layout().sketch().height();
-      
-      bool bVisible = puserinteraction->const_layout().sketch().is_screen_visible();
-      
-      if (cx <= 0)
-      {
-         
-         cx = 1;
-         
-      }
-      
-      if (cy <= 0)
-      {
-         
-         cy = 1;
-         
-      }
-      
-      //m_pwindow = pimpl;
-      
-      //pimpl->m_pwindow = this;
-      
-      set_oswindow(this);
-      
-      //pimpl->m_puserinteraction->m_pinteractionimpl = pimpl;
-      
-      __refdbg_add_referer
-      
-      puserinteraction->increment_reference_count();
-      
-      auto papp = get_app();
-      
-      if (!(puserinteraction->m_ewindowflag & e_window_flag_satellite_window))
-      {
-         
-         auto psystem = system();
-         
-         string strApplicationServerName = psystem->get_application_server_name();
-         
-         //set_wm_class(strApplicationServerName);
-         
-         //         XClassHint * pupdate = XAllocClassHint();
-         //
-         //         auto psystem = system();
-         //
-         //         string strApplicationServerName = psystem->get_application_server_name();
-         //
-         //         pupdate->res_class = (char *) (const char *) strApplicationServerName;
-         //
-         //         pupdate->res_name = (char *) (const char *) strApplicationServerName;
-         //
-         //         XSetClassHint(display, window, pupdate);
-         //
-         //         XFree(pupdate);
-         
-      }
-      
-
-      
-
-      //#ifndef RASPBERRYPIOS
-      //
-      //      if (pwindowing->m_pSnLauncheeContext != nullptr && !papp->m_bSnLauncheeSetup)
-      //      {
-      //
-      //         papp->os_on_start_application();
-      //
-      //         on_sn_launch_context(pwindowing->m_pSnLauncheeContext, window);
-      //
-      //         papp->m_bSnLauncheeSetup = true;
-      //
-      //      }
-      //
-      //#endif
-
-            //if (pimpl->m_puserinteraction->m_ewindowflag & e_window_flag_dock_window)
-            //{
-
-            //   wm_dockwindow(true);
-
-            //}
-            //else if (pimpl->m_puserinteraction->m_ewindowflag & e_window_flag_desktop_window)
-            //{
-
-            //   wm_desktopwindow(true);
-
-            //}
-            //else if (pimpl->m_puserinteraction->layout().sketch().activation() & ::user::e_activation_on_center_of_screen)
-            //{
-
-            //   wm_centerwindow(true);
-
-            //}
-            //else if (pimpl->m_puserinteraction->m_ewindowflag & e_window_flag_satellite_window
-            //   || pimpl->m_puserinteraction->m_bToolWindow)
-            //{
-
-            //   wm_toolwindow(true);
-
-            //}
-            //else
-            //{
-
-            //   wm_normalwindow();
-
-            //}
-
-            ////m_px11data->m_pgdkwindow = gdk_x11_window_foreign_new_for_display(gdk_display_get_default(), window);
-
-            //::Window root = 0;
-
-            //::Window * pchildren = nullptr;
-
-            //unsigned int ncount = 0;
-
-            //XQueryTree(display, window, &root, &m_parent, &pchildren, &ncount);
-
-            //if (pchildren != nullptr)
-            //{
-
-            //   XFree(pchildren);
-
-            //}
-
-            //htask htask = ::current_htask();
-
-            //m_htask = htask;
-
-            //if (!XGetWindowAttributes(Display(), Window(), &m_px11data->m_attr))
-            //{
-
-            //   information() << "freebsd::interaction_impl::_native_create_window_ex XGetWindowAttributes failed.";
-
-            //}
-
-            //int event_base, error_base, major_version, minor_version;
-
-            //pimpl->m_bComposite = XGetSelectionOwner(Display(), x11_display()->intern_atom("_NET_WM_CM_S0", True));
-
-            //string strName;
-
-            ////      if (pusersystem && pusersystem->m_createstruct.lpszName != nullptr && strlen(pusersystem->m_createstruct.lpszName) > 0)
-            ////      {
-            ////
-            ////         strName = pusersystem->m_createstruct.lpszName;
-            ////
-            ////      }
-
-            ////if(strName.is_empty())
-            ////{
-
-      string strWindowText = puserinteraction->get_window_text();
-
-      //if (strWindowText.has_character())
-      //{
-
-      //   strName = strWindowText;
-
-      //}
-
-      //}
-
-      //if (strName.has_character())
-      //{
-
-      //   XStoreName(Display(), Window(), strName);
-
-      //}
-
-      //bamf_set_icon();
-
-      //_wm_nodecorations(0);
-
-      //if (pusersystem->m_createstruct.style & WS_VISIBLE)
-      //if (bVisible)
-      //{
-
-      //   map_window();
-
-      //}
-      //else
-      //{
-
-      //   pimpl->m_puserinteraction->layout().window().display() = e_display_none;
-
-      //}
-
-      ////if(m_px11data->m_attr.map_state != IsUnmapped)
-      //{
-
-      //   if (!attr.override_redirect)
-      //   {
-
-      //      if (is_docking_appearance(pimpl->m_puserinteraction->layout().sketch().display()))
-      //      {
-
-      //         // window managers generally "don't like" windows that starts "docked/snapped".
-      //         // initial (XCreateWindow) int_size and position maybe not be honored.
-      //         // so requesting the same change again in a effort to set the "docked/snapped" int_size and position.
-
-      //         //set_window_position(e_zorder_top, pusersystem->m_createstruct.x(), pusersystem->m_createstruct.y(),
-      //         //                  pusersystem->m_createstruct.cx(), pusersystem->m_createstruct.cy(), SWP_SHOWWINDOW);
-
-      //         set_window_position(e_zorder_top, x, y, cx, cy, SWP_SHOWWINDOW);
-
-      //      }
-
-      //   }
-
-      //}
-
-      //displaylock.unlock();
-
-      //if(pshowwindow->m_bShow)
-      {
-
-         //::int_rectangle rect32;
-
-         //(::window_rectangle((oswindow) get_handle(), rect32))
-         {
-
-
-            if (session() != nullptr)
-            {
-
-               // Initial position of window below the cursor position
-               // with invalid (empty) size.
-               // (Hinting for monitor placement, if no stored information
-               // available).
-
-               if (puserinteraction->const_layout().sketch().display() == e_display_undefined)
-               {
-
-                  auto pointCursor = puserinteraction->mouse_cursor_position();
-
-                  puserinteraction->set_position(pointCursor);
-
-                  puserinteraction->set_size({0, 0});
-
-               }
-
-            }
-
-         }
-
-         //   }
-
-         //});
-         //}
-
-      }
-
-      if (bOk)
-      {
-
-         //auto lresult = pimpl->m_puserinteraction->send_message(e_message_create, 0, (lparam) &pusersystem->m_createstruct);
-
-         auto lresult = puserinteraction->send_message(e_message_create, 0, 0);
-
-         if (lresult == -1)
-         {
-
-            throw ::exception(error_failed);
-
-         }
-
-         puserinteraction->m_ewindowflag |= e_window_flag_window_created;
-
-         puserinteraction->set_flag(e_flag_task_started);
-
-      }
-
-      if (!bOk)
-      {
-
-         throw ::exception(error_failed);
-
-      }
-
+//      bool bOk = true;
+//
+//      auto pwindow = this;
+//
+//      auto puserinteraction = user_interaction();
+//
+//      auto pusersystem = puserinteraction->m_pusersystem;
+//
+//      puserinteraction->m_bMessageOnlyWindow = false;
+//
+//      auto pwindowing = windowing();
+//
+//      auto pwindowingdisplay = pwindowing->display();
+//
+//      int x = puserinteraction->const_layout().sketch().origin().x();
+//
+//      int y = puserinteraction->const_layout().sketch().origin().y();
+//
+//      int cx = puserinteraction->const_layout().sketch().width();
+//
+//      int cy = puserinteraction->const_layout().sketch().height();
+//
+//      bool bVisible = puserinteraction->const_layout().sketch().is_screen_visible();
+//
+//      if (cx <= 0)
+//      {
+//
+//         cx = 1;
+//
+//      }
+//
+//      if (cy <= 0)
+//      {
+//
+//         cy = 1;
+//
+//      }
+//
+//      //m_pwindow = pimpl;
+//
+//      //pimpl->m_pwindow = this;
+//
+//      set_oswindow(this);
+//
+//      //pimpl->m_puserinteraction->m_pinteractionimpl = pimpl;
+//
+//      __refdbg_add_referer
+//
+//      puserinteraction->increment_reference_count();
+//
+//      auto papp = get_app();
+//
+//      if (!(puserinteraction->m_ewindowflag & e_window_flag_satellite_window))
+//      {
+//
+//         auto psystem = system();
+//
+//         string strApplicationServerName = psystem->get_application_server_name();
+//
+//         //set_wm_class(strApplicationServerName);
+//
+//         //         XClassHint * pupdate = XAllocClassHint();
+//         //
+//         //         auto psystem = system();
+//         //
+//         //         string strApplicationServerName = psystem->get_application_server_name();
+//         //
+//         //         pupdate->res_class = (char *) (const_char_pointer )strApplicationServerName;
+//         //
+//         //         pupdate->res_name = (char *) (const_char_pointer )strApplicationServerName;
+//         //
+//         //         XSetClassHint(display, window, pupdate);
+//         //
+//         //         XFree(pupdate);
+//
+//      }
+//
+//
+//
+//
+//      //#ifndef RASPBERRYPIOS
+//      //
+//      //      if (pwindowing->m_pSnLauncheeContext != nullptr && !papp->m_bSnLauncheeSetup)
+//      //      {
+//      //
+//      //         papp->os_on_start_application();
+//      //
+//      //         on_sn_launch_context(pwindowing->m_pSnLauncheeContext, window);
+//      //
+//      //         papp->m_bSnLauncheeSetup = true;
+//      //
+//      //      }
+//      //
+//      //#endif
+//
+//            //if (pimpl->m_puserinteraction->m_ewindowflag & e_window_flag_dock_window)
+//            //{
+//
+//            //   wm_dockwindow(true);
+//
+//            //}
+//            //else if (pimpl->m_puserinteraction->m_ewindowflag & e_window_flag_desktop_window)
+//            //{
+//
+//            //   wm_desktopwindow(true);
+//
+//            //}
+//            //else if (pimpl->m_puserinteraction->layout().sketch().activation() & ::user::e_activation_on_center_of_screen)
+//            //{
+//
+//            //   wm_centerwindow(true);
+//
+//            //}
+//            //else if (pimpl->m_puserinteraction->m_ewindowflag & e_window_flag_satellite_window
+//            //   || pimpl->m_puserinteraction->m_bToolWindow)
+//            //{
+//
+//            //   wm_toolwindow(true);
+//
+//            //}
+//            //else
+//            //{
+//
+//            //   wm_normalwindow();
+//
+//            //}
+//
+//            ////m_px11data->m_pgdkwindow = gdk_x11_window_foreign_new_for_display(gdk_display_get_default(), window);
+//
+//            //::Window root = 0;
+//
+//            //::Window * pchildren = nullptr;
+//
+//            //unsigned int ncount = 0;
+//
+//            //XQueryTree(display, window, &root, &m_parent, &pchildren, &ncount);
+//
+//            //if (pchildren != nullptr)
+//            //{
+//
+//            //   XFree(pchildren);
+//
+//            //}
+//
+//            //htask htask = ::current_htask();
+//
+//            //m_htask = htask;
+//
+//            //if (!XGetWindowAttributes(Display(), Window(), &m_px11data->m_attr))
+//            //{
+//
+//            //   information() << "freebsd::interaction_impl::_native_create_window_ex XGetWindowAttributes failed.";
+//
+//            //}
+//
+//            //int event_base, error_base, major_version, minor_version;
+//
+//            //pimpl->m_bComposite = XGetSelectionOwner(Display(), x11_display()->intern_atom("_NET_WM_CM_S0", True));
+//
+//            //string strName;
+//
+//            ////      if (pusersystem && pusersystem->m_createstruct.lpszName != nullptr && strlen(pusersystem->m_createstruct.lpszName) > 0)
+//            ////      {
+//            ////
+//            ////         strName = pusersystem->m_createstruct.lpszName;
+//            ////
+//            ////      }
+//
+//            ////if(strName.is_empty())
+//            ////{
+//
+//      string strWindowText = puserinteraction->get_window_text();
+//
+//      //if (strWindowText.has_character())
+//      //{
+//
+//      //   strName = strWindowText;
+//
+//      //}
+//
+//      //}
+//
+//      //if (strName.has_character())
+//      //{
+//
+//      //   XStoreName(Display(), Window(), strName);
+//
+//      //}
+//
+//      //bamf_set_icon();
+//
+//      //_wm_nodecorations(0);
+//
+//      //if (pusersystem->m_createstruct.style & WS_VISIBLE)
+//      //if (bVisible)
+//      //{
+//
+//      //   map_window();
+//
+//      //}
+//      //else
+//      //{
+//
+//      //   pimpl->m_puserinteraction->layout().window().display() = e_display_none;
+//
+//      //}
+//
+//      ////if(m_px11data->m_attr.map_state != IsUnmapped)
+//      //{
+//
+//      //   if (!attr.override_redirect)
+//      //   {
+//
+//      //      if (is_docking_appearance(pimpl->m_puserinteraction->layout().sketch().display()))
+//      //      {
+//
+//      //         // window managers generally "don't like" windows that starts "docked/snapped".
+//      //         // initial (XCreateWindow) int_size and position maybe not be honored.
+//      //         // so requesting the same change again in a effort to set the "docked/snapped" int_size and position.
+//
+//      //         //set_window_position(e_zorder_top, pusersystem->m_createstruct.x(), pusersystem->m_createstruct.y(),
+//      //         //                  pusersystem->m_createstruct.cx(), pusersystem->m_createstruct.cy(), SWP_SHOWWINDOW);
+//
+//      //         set_window_position(e_zorder_top, x, y, cx, cy, SWP_SHOWWINDOW);
+//
+//      //      }
+//
+//      //   }
+//
+//      //}
+//
+//      //displaylock.unlock();
+//
+//      //if(pshowwindow->m_bShow)
+//      {
+//
+//         //::int_rectangle rect32;
+//
+//         //(::window_rectangle((oswindow) get_handle(), rect32))
+//         {
+//
+//
+//            if (session() != nullptr)
+//            {
+//
+//               // Initial position of window below the cursor position
+//               // with invalid (empty) size.
+//               // (Hinting for monitor placement, if no stored information
+//               // available).
+//
+//               if (puserinteraction->const_layout().sketch().display() == e_display_undefined)
+//               {
+//
+//                  auto pointCursor = puserinteraction->mouse_cursor_position();
+//
+//                  puserinteraction->set_position(pointCursor);
+//
+//                  puserinteraction->set_size({0, 0});
+//
+//               }
+//
+//            }
+//
+//         }
+//
+//         //   }
+//
+//         //});
+//         //}
+//
+//      }
+//
+//      if (bOk)
+//      {
+//
+//         //auto lresult = pimpl->m_puserinteraction->send_message(::user::e_message_create, 0, (lparam) &pusersystem->m_createstruct);
+//
+//         auto lresult = puserinteraction->send_message(::user::e_message_create, 0, 0);
+//
+//         if (lresult == -1)
+//         {
+//
+//            throw ::exception(error_failed);
+//
+//         }
+//
+//         puserinteraction->m_ewindowflag |= e_window_flag_window_created;
+//
+//         puserinteraction->set_flag(e_flag_task_started);
+//
+//      }
+//
+//      if (!bOk)
+//      {
+//
+//         throw ::exception(error_failed);
+//
+//      }
+//
    }
 
 
@@ -374,7 +378,7 @@ namespace sandbox_windowing
    //void window::set_wm_class(const ::scoped_string & scopedstr)
    //{
 
-   //   synchronous_lock synchronouslock(user_synchronization());
+   //   synchronous_lock synchronouslock(user_synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //   m_strWMClass = psz;
 
@@ -396,7 +400,7 @@ namespace sandbox_windowing
 
    //   int i = 0;
 
-   //   synchronous_lock synchronouslock(user_synchronization());
+   //   synchronous_lock synchronouslock(user_synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //   {
 
@@ -442,7 +446,7 @@ namespace sandbox_windowing
    //int window::unmap_window(bool bWithdraw)
    //{
 
-   //   synchronous_lock synchronouslock(user_synchronization());
+   //   synchronous_lock synchronouslock(user_synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //   windowing_output_debug_string("\nwindow::unmap_window");
 
@@ -740,7 +744,7 @@ namespace sandbox_windowing
    //bool window::bamf_set_icon()
    //{
 
-   //   synchronous_lock synchronouslock(user_synchronization());
+   //   synchronous_lock synchronouslock(user_synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //   auto psystem = system();
 
@@ -769,7 +773,7 @@ namespace sandbox_windowing
    //      ixa,
    //      8,
    //      PropModeReplace,
-   //      (const unsigned char *)(const char *)path,
+   //      (const unsigned char *)(const_char_pointer )path,
    //      path.get_length());
 
    //   informationf("\nfreebsd::interaction_impl::bamf_set_icon END");
@@ -797,10 +801,10 @@ namespace sandbox_windowing
    //}
 
 
-   //   Atom window::x11_display()->intern_atom(const char *pszAtomName, bool bCreate)
+   //   Atom window::x11_display()->intern_atom(const_char_pointer pszAtomName, bool bCreate)
    //   {
    //
-   //      return m_osdisplay->x11_display()->intern_atom(pszAtomName, bCreate);
+   //      return m_osdisplay->x11_display()->intern_atom(scopedstrAtomName, bCreate);
    //
    //   }
 
@@ -900,7 +904,7 @@ namespace sandbox_windowing
 //
 //      windowing_output_debug_string("\nwindow::set_icon");
 //
-//      //synchronous_lock synchronouslock(user_synchronization());
+//      //synchronous_lock synchronouslock(user_synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //      //display_lock displaylock(x11_display()->Display());
 //
@@ -1018,7 +1022,7 @@ namespace sandbox_windowing
 
    //   windowing_output_debug_string("\nwindow::store_name");
 
-   //   synchronous_lock synchronouslock(user_synchronization());
+   //   synchronous_lock synchronouslock(user_synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //   display_lock displaylock(x11_display()->Display());
 
@@ -1036,7 +1040,7 @@ namespace sandbox_windowing
 
    //   windowing_output_debug_string("\nwindow::select_input");
 
-   //   synchronous_lock synchronouslock(user_synchronization());
+   //   synchronous_lock synchronouslock(user_synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //   display_lock displaylock(x11_display()->Display());
 
@@ -1054,7 +1058,7 @@ namespace sandbox_windowing
 
    //   windowing_output_debug_string("\nwindow::select_all_input");
 
-   //   synchronous_lock synchronouslock(user_synchronization());
+   //   synchronous_lock synchronouslock(user_synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //   display_lock displaylock(x11_display()->Display());
 
@@ -1206,7 +1210,7 @@ namespace sandbox_windowing
 
       }
 
-      //synchronous_lock synchronouslock(user_synchronization());
+      //synchronous_lock synchronouslock(user_synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       //display_lock displaylock(x11_display()->Display());
 
@@ -1260,7 +1264,7 @@ namespace sandbox_windowing
 //   void window::mapped_net_state_raw(bool add, int iScreen, Atom state1, Atom state2)
 //   {
 //
-//      synchronous_lock synchronouslock(user_synchronization());
+//      synchronous_lock synchronouslock(user_synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //      XClientMessageEvent xclient;
 //
@@ -1288,7 +1292,7 @@ namespace sandbox_windowing
 //   void window::unmapped_net_state_raw(Atom atom1, ...)
 //   {
 //
-//      synchronous_lock synchronouslock(user_synchronization());
+//      synchronous_lock synchronouslock(user_synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //      XEvent xevent;
 //
@@ -1363,7 +1367,7 @@ namespace sandbox_windowing
    //
    //            windowing_output_debug_string("::window::show_window 1");
    //
-   //            synchronous_lock synchronouslock(user_synchronization());
+   //            synchronous_lock synchronouslock(user_synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
    //
    //            display_lock displaylock(x11_display()->Display());
    //
@@ -1446,7 +1450,7 @@ namespace sandbox_windowing
    //
    //      windowing_output_debug_string("::window::full_screen 1");
    //
-   //      synchronous_lock synchronouslock(user_synchronization());
+   //      synchronous_lock synchronouslock(user_synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
    //
    //      display_lock displaylock(x11_display()->Display());
    //
@@ -1515,7 +1519,7 @@ namespace sandbox_windowing
    void window::exit_iconify()
    {
 
-      //synchronous_lock synchronouslock(user_synchronization());
+      //synchronous_lock synchronouslock(user_synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       //display_lock displaylock(x11_display()->Display());
 
@@ -1547,7 +1551,7 @@ namespace sandbox_windowing
    void window::exit_full_screen()
    {
 
-      //synchronous_lock synchronouslock(user_synchronization());
+      //synchronous_lock synchronouslock(user_synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       //display_lock displaylock(x11_display()->Display());
 
@@ -1579,7 +1583,7 @@ namespace sandbox_windowing
    void window::exit_zoomed()
    {
 
-      //synchronous_lock sl(user_synchronization());
+      //synchronous_lock sl(user_synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       //display_lock displaylock(x11_display()->Display());
 
@@ -1665,7 +1669,7 @@ namespace sandbox_windowing
 
    //   windowing_output_debug_string("::window::get_state 1");
 
-   //   synchronous_lock synchronouslock(user_synchronization());
+   //   synchronous_lock synchronouslock(user_synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //   display_lock displaylock(x11_display()->Display());
 
@@ -1753,7 +1757,7 @@ namespace sandbox_windowing
 
       //windowing_output_debug_string("::window::is_window_visible 1");
 
-      //synchronous_lock synchronouslock(user_synchronization());
+      //synchronous_lock synchronouslock(user_synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       //display_lock displaylock(x11_display()->Display());
 
@@ -1845,7 +1849,7 @@ namespace sandbox_windowing
       //   ixa,
       //   8,
       //   PropModeReplace,
-      //   (const unsigned char *)(const char *)path,
+      //   (const unsigned char *)(const_char_pointer )path,
       //   path.get_length());
 
       //informationf("\nfreebsd::interaction_impl::bamf_set_icon END");
@@ -2006,7 +2010,7 @@ namespace sandbox_windowing
    //   if (pmessagequeue == nullptr)
    //   {
 
-   //      if (message.m_emessage == e_message_quit)
+   //      if (message.m_emessage == ::user::e_message_quit)
    //      {
 
    //         return false;
@@ -2024,25 +2028,25 @@ namespace sandbox_windowing
 
    //   }
 
-   //   synchronous_lock ml(pmessagequeue->synchronization());
+   //   synchronous_lock ml(pmessagequeue->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-   //   if (message.m_emessage == e_message_quit)
+   //   if (message.m_emessage == ::user::e_message_quit)
    //   {
 
-   //      informationf("e_message_quit thread");
+   //      informationf("::user::e_message_quit thread");
 
    //   }
 
-   //   if (message.m_emessage == e_message_left_button_down)
+   //   if (message.m_emessage == ::user::e_message_left_button_down)
    //   {
 
-   //      informationf("post_ui_message::e_message_left_button_down\n");
+   //      informationf("post_ui_message::user::e_message_left_button_down\n");
 
    //   }
-   //   else if (message.m_emessage == e_message_left_button_up)
+   //   else if (message.m_emessage == ::user::e_message_left_button_up)
    //   {
 
-   //      informationf("post_ui_message::e_message_left_button_up\n");
+   //      informationf("post_ui_message::user::e_message_left_button_up\n");
 
    //   }
 
@@ -2085,7 +2089,7 @@ namespace sandbox_windowing
 
    //   }
 
-   //   synchronous_lock ml(pmq->synchronization());
+   //   synchronous_lock ml(pmq->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //   pmq->m_messagea.predicate_erase([this](MESSAGE & item)
    //      {
@@ -2103,7 +2107,7 @@ namespace sandbox_windowing
    bool window::_set_window_position(const class ::zorder & zorder, int x, int y, int cx, int cy, const ::user::activation & useractivation, bool bNoZorder, bool bNoMove, bool bNoSize, ::e_display edisplay, unsigned int nOverrideFlags)
    {
 
-      //synchronous_lock sl(user_synchronization());
+      //synchronous_lock sl(user_synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       windowing_output_debug_string("::window::set_window_pos 1");
 
@@ -2381,7 +2385,7 @@ namespace sandbox_windowing
 
             //x11_store_name(m_oswindow, m_strWindowText);
 
-      //x11_store_name(pszString);
+      //x11_store_name(scopedstrString);
 
       //windowing_output_debug_string("\nfreebsd::interaction_impl::set_window_text END");
 
@@ -2403,7 +2407,7 @@ namespace sandbox_windowing
    void window::set_mouse_cursor2(::windowing::cursor* pcursor)
    {
 
-      //synchronous_lock synchronouslock(user_synchronization());
+      //synchronous_lock synchronouslock(user_synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       //display_lock displaylock(x11_display()->Display());
 
@@ -2422,7 +2426,7 @@ namespace sandbox_windowing
       //   ixa,
       //   8,
       //   PropModeReplace,
-      //   (const unsigned char *)(const char *)path,
+      //   (const unsigned char *)(const_char_pointer )path,
       //   path.get_length());
 
       //informationf("\nfreebsd::interaction_impl::bamf_set_icon END");
@@ -2488,7 +2492,7 @@ namespace sandbox_windowing
       //m_pwindowing->windowing_post([this, pcursorx11]()
       //   {
 
-      //      synchronous_lock sl(user_synchronization());
+      //      synchronous_lock sl(user_synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       //      windowing_output_debug_string("::SetCursor 1");
 
@@ -2545,10 +2549,10 @@ namespace sandbox_windowing
    //}
 
 
-//   void window::upper_window_rects(int_rectangle_array & ra)
+//   void window::upper_window_rects(int_rectangle_array_base & ra)
 //   {
 //
-//      synchronous_lock synchronouslock(user_synchronization());
+//      synchronous_lock synchronouslock(user_synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //      ra.erase_all();
 //
@@ -2616,7 +2620,7 @@ namespace sandbox_windowing
 
    }
 
-   //   synchronous_lock synchronouslock(user_synchronization());
+   //   synchronous_lock synchronouslock(user_synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //   {
 
@@ -2777,7 +2781,7 @@ namespace sandbox_windowing
    //::windowing::window * window::get_window(enum_relative erelative)
    //{
 
-   //   synchronous_lock synchronouslock(user_synchronization());
+   //   synchronous_lock synchronouslock(user_synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //   ::Window window = 0;
 
@@ -2928,11 +2932,11 @@ namespace sandbox_windowing
          if (::is_set(puserinteraction))
          {
 
-            puserinteraction->send_message(e_message_destroy, 0, 0);
+            puserinteraction->send_message(::user::e_message_destroy, 0, 0);
 
             //mq_remove_window_from_all_queues();
 
-            puserinteraction->send_message(e_message_non_client_destroy, 0, 0);
+            puserinteraction->send_message(::user::e_message_non_client_destroy, 0, 0);
 
          }
          else
@@ -2960,7 +2964,7 @@ namespace sandbox_windowing
       //      x11_fork([window]()
       //               {
 
-      //synchronous_lock synchronouslock(user_synchronization());
+      //synchronous_lock synchronouslock(user_synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       //Display *Display() = Display();
 
@@ -3012,7 +3016,7 @@ namespace sandbox_windowing
 
    //   comparable_array < Atom >atoma;
 
-   //   synchronous_lock synchronouslock(user_synchronization());
+   //   synchronous_lock synchronouslock(user_synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //   if (atomList == None)
    //   {
@@ -3049,7 +3053,7 @@ namespace sandbox_windowing
    //int window::wm_test_list_raw(Atom atomList, Atom atomFlag)
    //{
 
-   //   synchronous_lock synchronouslock(user_synchronization());
+   //   synchronous_lock synchronouslock(user_synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //   Atom actual_type;
 
@@ -3076,14 +3080,14 @@ namespace sandbox_windowing
    //int window::wm_test_state_raw(const ::scoped_string & scopedstrNetStateFlag)
    //{
 
-   //   synchronous_lock synchronouslock(user_synchronization());
+   //   synchronous_lock synchronouslock(user_synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-   //   Atom atomFlag = x11_display()->intern_atom(pszNetStateFlag, 1);
+   //   Atom atomFlag = x11_display()->intern_atom(scopedstrNetStateFlag, 1);
 
    //   if (atomFlag == None)
    //   {
 
-   //      windowing_output_debug_string("ERROR: cannot find atom for " + string(pszNetStateFlag) + "!\n");
+   //      windowing_output_debug_string("ERROR: cannot find atom for " + string(scopedstrNetStateFlag) + "!\n");
 
    //      return 0;
 
@@ -3108,7 +3112,7 @@ namespace sandbox_windowing
    //int window::wm_test_state(const ::scoped_string & scopedstrNetStateFlag)
    //{
 
-   //   synchronous_lock synchronouslock(user_synchronization());
+   //   synchronous_lock synchronouslock(user_synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //   windowing_output_debug_string("::wm_test_state 1");
 
@@ -3123,7 +3127,7 @@ namespace sandbox_windowing
 
    //   }
 
-   //   int i = wm_test_state_raw(pszNetStateFlag);
+   //   int i = wm_test_state_raw(scopedstrNetStateFlag);
 
    //   windowing_output_debug_string("::wm_test_state 2");
 
@@ -3135,7 +3139,7 @@ namespace sandbox_windowing
    //bool window::wm_add_remove_list_raw(Atom atomList, Atom atomFlag, bool bSet)
    //{
 
-   //   synchronous_lock synchronouslock(user_synchronization());
+   //   synchronous_lock synchronouslock(user_synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //   if (atomFlag == None)
    //   {
@@ -3219,7 +3223,7 @@ namespace sandbox_windowing
    void window::set_foreground_window(::user::activation_token * puseractivationtoken)
    {
 
-      //synchronous_lock synchronouslock(user_synchronization());
+      //synchronous_lock synchronouslock(user_synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       //display_lock displaylock(x11_display()->Display());
 
@@ -3338,7 +3342,7 @@ namespace sandbox_windowing
    //::e_status window::x11_store_name(const ::scoped_string & scopedstrName)
    //{
 
-   //   synchronous_lock synchronouslock(user_synchronization());
+   //   synchronous_lock synchronouslock(user_synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //   display_lock displaylock(x11_display()->Display());
 
@@ -3410,7 +3414,7 @@ namespace sandbox_windowing
    //   int_bool window::this->rectangle(::int_rectangle *prectangle)
    //   {
    //
-   //      synchronous_lock synchronouslock(user_synchronization());
+   //      synchronous_lock synchronouslock(user_synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
    //
    //      display_lock displaylock(x11_display()->Display());
    //
@@ -3664,7 +3668,7 @@ namespace sandbox_windowing
          //if (puserinteraction)
          //{
 
-         //   puserinteraction->post_message(e_message_set_focus);
+         //   puserinteraction->post_message(::user::e_message_set_focus);
 
          //}
 
@@ -3744,7 +3748,7 @@ namespace sandbox_windowing
 //      //      if (puserinteraction->keyboard_focus_is_focusable())
 //      //      {
 //
-//      //         //puserinteraction->post_message(e_message_set_focus);
+//      //         //puserinteraction->post_message(::user::e_message_set_focus);
 //
 //      //
 //
@@ -3814,7 +3818,7 @@ namespace sandbox_windowing
    void window::bring_to_front()
    {
 
-      //synchronous_lock synchronouslock(user_synchronization());
+      //synchronous_lock synchronouslock(user_synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       //if (Window() == 0)
       //{

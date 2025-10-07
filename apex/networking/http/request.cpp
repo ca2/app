@@ -12,7 +12,7 @@ namespace http
 
 
    request::request() :
-      m_binarystreamOutput(m_pmemfileBody=__allocate memory_file ())
+      m_binarystreamOutput(m_pmemfileBody=øallocate memory_file ())
    {
 
    }
@@ -57,7 +57,7 @@ namespace http
 
 
    // --------------------------------------------------------------------------------------
-   void request::write( const char *buf, memsize sz )
+   void request::write( const_char_pointer buf, memsize sz )
    {
       m_pmemfileBody->write({ buf, sz });
    }

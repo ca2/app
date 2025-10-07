@@ -35,7 +35,7 @@ namespace data
 
 
    template < class PAYLOAD, class PAIR = pair < listener *, PAYLOAD > >
-   using listener_map = ::map < listener *, PAYLOAD, PAIR >;
+   using listener_map = ::map_base < listener *, PAYLOAD, PAIR >;
 
 
 } // namespace data

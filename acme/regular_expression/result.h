@@ -30,7 +30,7 @@ namespace regular_expression
       ~result() override;
 
 
-      //virtual void compile(const ::string & strExpression);
+      //virtual void compile(const ::scoped_string & scopedstrExpression);
 
 
       virtual ::collection::count get_count() const;
@@ -50,21 +50,21 @@ namespace regular_expression
 
       //virtual bool matches(const ::scoped_string & scopedstr, character_count len) = 0;
 
-      //virtual ::collection::count match_count(const ::string & str) = 0;
+      //virtual ::collection::count match_count(const ::scoped_string & scopedstr) = 0;
 
       //virtual ::collection::count match_count(const ::scoped_string & scopedstr, character_count len) = 0;
 
       //virtual ::pointer<::strsize_range_array>
 
-      //matches_ranges(const ::string & str) = 0;
+      //matches_ranges(const ::scoped_string & scopedstr) = 0;
 
       //virtual ::pointer<::strsize_range_array>
 
       //matches_ranges(const ::scoped_string & scopedstr, character_count len) = 0;
 
-      //virtual bool replace(string & strFind, const ::string & strReplace, string & strResult);
+      //virtual bool replace(string & strFind, const ::scoped_string & scopedstrReplace, string & strResult);
 
-      //virtual ::collection::count matches(string_array & stra, const ::string & str);
+      //virtual ::collection::count matches(string_array_base & stra, const ::scoped_string & scopedstr);
 
 
    };

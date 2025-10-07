@@ -1,6 +1,7 @@
 // from device_win32 by
 // camilo on 2025-05-30 03:37 <3ThomasBorregaardSorensen!!
 #include "framework.h"
+#include "_gpu_opengl.h"
 #include "context.h"
 #include "device_win32.h"
 #include "approach.h"
@@ -24,7 +25,7 @@ namespace gpu_opengl
    //::pointer < ::gpu::context > allocate_system_context(::particle* pparticle)
    //{
 
-   //   return pparticle->__create_new <context_win32>();
+   //   return pparticle->øcreate_new <context_win32>();
 
    //}
 
@@ -310,10 +311,10 @@ namespace gpu_opengl
 
       //pgpuapproach->defer_init_gpu_library();
 
-      //auto pszVersion = (const char*)glGetString(GL_VERSION);
+      //auto pszVersion = (const_char_pointer )glGetString(GL_VERSION);
       ////::e_status estatus = 
 
-      //::string strVersion(pszVersion);
+      //::string strVersion(scopedstrVersion);
 
       //if (strVersion.case_insensitive_contains("mesa"))
       //{
@@ -362,7 +363,7 @@ HDC hdc = GetDC(m_hwnd);
 //    0
 //};
 
-int_array pixelAttribs;
+int_array_base pixelAttribs;
 
 
 pixelAttribs.append({ WGL_DRAW_TO_WINDOW_ARB, GL_TRUE });
@@ -419,7 +420,7 @@ HGLRC hglrc = loaded_wglCreateContextAttribsARB(hdc, 0, contextAttribs);
 
       pgpuapproach->defer_init_gpu_library();
 
-      auto pszVersion = (const char*)glGetString(GL_VERSION);
+      auto pszVersion = (const_char_pointer )glGetString(GL_VERSION);
       //::e_status estatus = 
 
       ::string strVersion(pszVersion);
@@ -604,10 +605,10 @@ HGLRC hglrc = loaded_wglCreateContextAttribsARB(hdc, 0, contextAttribs);
 
    //         m_pgpudevice->m_pgpuapproach->defer_init_gpu_library();
 
-   //         auto pszVersion = (const char*)glGetString(GL_VERSION);
+   //         auto pszVersion = (const_char_pointer )glGetString(GL_VERSION);
    //         //::e_status estatus = 
 
-   //         ::string strVersion(pszVersion);
+   //         ::string strVersion(scopedstrVersion);
 
    //         if (strVersion.case_insensitive_contains("mesa"))
    //         {
@@ -775,7 +776,7 @@ HGLRC hglrc = loaded_wglCreateContextAttribsARB(hdc, 0, contextAttribs);
 
       ::pointer < ::gpu::context > pgpucontext;
 
-      __øconstruct(pgpucontext);
+      øconstruct(pgpucontext);
 
       return pgpucontext;
 
@@ -1047,7 +1048,7 @@ HGLRC hglrc = loaded_wglCreateContextAttribsARB(hdc, 0, contextAttribs);
    }
 
 
-   //void device_win32::_translate_shader(string_array& stra)
+   //void device_win32::_translate_shader(string_array_base& stra)
    //{
 
    //   context::_translate_shader(stra);

@@ -129,7 +129,7 @@ namespace filemanager
 
                //   });
 
-               auto pmessagebox = __initialize_new ::message_box("Do you want to replace the existing file " + strPath + "?", nullptr, e_message_box_yes_no);
+               auto pmessagebox = __initialize_new ::message_box("Do you want to replace the existing file " + strPath + "?", nullptr, ::user::e_message_box_yes_no);
 
                pmessagebox->async()
                   << [this, pmessagebox, strPath]()
@@ -188,7 +188,7 @@ namespace filemanager
 
          //ptopic->id() = id_topic_saved;
 
-         //pupdate->m_pfileitem = __allocate ::file::item(path, path);
+         //pupdate->m_pfileitem = øallocate ::file::item(path, path);
 
       }
       else

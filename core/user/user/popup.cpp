@@ -1,7 +1,7 @@
 // Created by camilo on 2023-10-09 ~12:00 <3ThomasBorregaardSorensen!!
 #include "framework.h"
 #include "popup.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 
 
 namespace user
@@ -28,7 +28,7 @@ namespace user
    void popup::install_message_routing(::channel * pchannel)
    {
 
-      MESSAGE_LINK(e_message_kill_focus, pchannel, this, &popup::on_message_kill_focus);
+      USER_MESSAGE_LINK(::user::e_message_kill_focus, pchannel, this, &popup::on_message_kill_focus);
 
    }
 

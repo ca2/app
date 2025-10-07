@@ -88,7 +88,7 @@ namespace user
       while(*pinteraction != 0xffffffff)
       {
          tbb.idCommand = *pinteraction;
-         if(m_rel.lookup(*pinteraction, user))
+         if(m_rel.find(*pinteraction, user))
          {
             tbb.iBitmap = user;
          }

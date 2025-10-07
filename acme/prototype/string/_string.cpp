@@ -66,7 +66,7 @@ void replace_tab(character_count iOffset, string & strParam, int iWidth, strsize
 
          }
 
-         //str.append(psz, pszNext - psz);
+         //str.append(scopedstr, pszNext - psz);
 
          iOffset++;
 
@@ -96,8 +96,10 @@ void replace_tab(character_count iOffset, string & strParam, int iWidth, ::array
 }
 
 
-string _002Underscore(string str)
+string _002Underscore(const ::scoped_string & scopedstr)
 {
+
+   ::string str(scopedstr);
 
    str.replace_with("_", "-");
 
@@ -110,10 +112,10 @@ string _002Underscore(string str)
 }
 
 
-CLASS_DECL_ACME::string _(const ::scoped_string & scopedstr)
+CLASS_DECL_ACME::string _(const ::string & str)
 {
 
-   return scopedstr;
+   return str;
 
 }
 

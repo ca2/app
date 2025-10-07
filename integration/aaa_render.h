@@ -16,7 +16,7 @@
 //
 //#define __END_PROPERTIES2(xxx) }; \
 //xxx ## _properties & properties() {return *m_pobjectproperties;} \
-//inline void create_object_properties() { m_pobjectproperties = m_ppropertyset = __allocate(xxx ## _properties(this));} \
+//inline void create_object_properties() { m_pobjectproperties = m_ppropertyset = øallocate(xxx ## _properties(this));} \
 //__pointer(xxx ## _properties) m_pobjectproperties
 //
 //
@@ -59,9 +59,9 @@ namespace app_integration
 
       string get_font();
 
-      ::e_status set_font(const string& strFont);
+      ::e_status set_font(const ::scoped_string & scopedstrFont);
 
-      ::e_status set_hover_font(const string& strHoverFont);
+      ::e_status set_hover_font(const ::scoped_string & scopedstrHoverFont);
 
       virtual void initialize_simple_drawing(int iDrawing);
 

@@ -23,7 +23,7 @@ namespace interprocess
 
 
 
-   //CLASS_DECL_APEX string app_install(string strPlatform = "");
+   //CLASS_DECL_APEX string app_install(const ::scoped_string & scopedstrPlatform = "");
 
 
 } // namespace interprocess

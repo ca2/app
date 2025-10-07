@@ -6,7 +6,7 @@
 #undef USE_MISC
 
 
-string get_callstack(::particle * pparticle, const ::ansi_character * pszFormat, int iSkip, void * caller_address, int iCount)
+string get_callstack(::particle * pparticle, const_char_pointer pszFormat, int iSkip, void * caller_address, int iCount)
 {
 
    const size_t iMaximumFramesToCapture = 64;
@@ -73,7 +73,7 @@ public:
 
 
 /* globals retained across calls to resolve. */
-static const char * moda[]= {"/ca2/stage/x86/libapex.so", "/ca2/stage/x86/libbase.so", "/ca2/stage/x86/libcore.so", nullptr};
+static const_char_pointer moda[]= {"/ca2/stage/x86/libapex.so", "/ca2/stage/x86/libbase.so", "/ca2/stage/x86/libcore.so", nullptr};
 static bfd* abfda[64];
 static asymbol **symsa[64];
 static asection *texta[64];
@@ -102,7 +102,7 @@ int free_resolve_addr_file_func_line()
 
 }
 
-bool prep_resolve_addr_file_func_line(const char * f)
+bool prep_resolve_addr_file_func_line(const_char_pointer f)
 {
 
    int i = free_resolve_addr_file_func_line();
@@ -180,7 +180,7 @@ void init_resolve_addr_file_func_line()
 
    prep_resolve_addr_file_func_line(ename);
 
-   const char ** point = (const char **) moda;
+   const_char_pointer *point = (const_char_pointer *) moda;
 
    while(*point)
    {
@@ -197,7 +197,7 @@ void init_resolve_addr_file_func_line()
 
 }
 
-bool resolve_addr_file_func_line1(bfd* abfd, asymbol **syms, asection *text, void *address, const char * * filename, const char ** func, unsigned & iLine)
+bool resolve_addr_file_func_line1(bfd* abfd, asymbol **syms, asection *text, void *address, const_char_pointer *filename, const_char_pointer *func, unsigned & iLine)
 {
    long offset = ((long)address) - text->vma;
    if (offset > 0)
@@ -213,7 +213,7 @@ bool resolve_addr_file_func_line1(bfd* abfd, asymbol **syms, asection *text, voi
 }
 
 
-bool resolve_addr_file_func_line(void *address, const char * * filename, const char ** func, unsigned & iLine)
+bool resolve_addr_file_func_line(void *address, const_char_pointer *filename, const_char_pointer *func, unsigned & iLine)
 {
    int i;
    while(i < bfdcount)

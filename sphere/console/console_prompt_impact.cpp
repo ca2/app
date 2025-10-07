@@ -34,10 +34,10 @@ namespace console
 
       ::user::impact::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_create,pchannel,this,&prompt_impact::on_message_create);
-      MESSAGE_LINK(e_message_key_down,pchannel,this,&prompt_impact::on_message_key_down);
-      MESSAGE_LINK(e_message_key_up,pchannel,this,&prompt_impact::on_message_key_up);
-      MESSAGE_LINK(e_message_show_window,pchannel,this,&prompt_impact::on_message_show_window);
+      USER_MESSAGE_LINK(::user::e_message_create,pchannel,this,&prompt_impact::on_message_create);
+      USER_MESSAGE_LINK(::user::e_message_key_down,pchannel,this,&prompt_impact::on_message_key_down);
+      USER_MESSAGE_LINK(::user::e_message_key_up,pchannel,this,&prompt_impact::on_message_key_up);
+      USER_MESSAGE_LINK(::user::e_message_show_window,pchannel,this,&prompt_impact::on_message_show_window);
 
    }
 
@@ -149,9 +149,9 @@ namespace console
          if(m_iCursor <= 0)
             return;
 
-         const char * lpsz = &m_strCommand[m_iCursor];
+         const_char_pointer lpsz = &m_strCommand[m_iCursor];
 
-         const char * lpszDec = ::str::utf8_dec(m_strCommand, lpsz);
+         const_char_pointer lpszDec = ::str::utf8_dec(m_strCommand, lpsz);
 
          if(lpsz - lpszDec > 0)
          {
@@ -171,9 +171,9 @@ namespace console
          if(m_iCursor >= m_strCommand.utf8.length())
             return;
 
-         const char * lpsz = &m_strCommand[m_iCursor];
+         const_char_pointer lpsz = &m_strCommand[m_iCursor];
 
-         const char * lpszInc = unicode_next(lpsz);
+         const_char_pointer lpszInc = unicode_next(lpsz);
 
          if(lpszInc - lpsz > 0)
          {

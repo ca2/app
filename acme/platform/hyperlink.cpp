@@ -18,7 +18,7 @@ hyperlink::~hyperlink()
 }
 
 
-//bool hyperlink::open_link(string strLink, string strProfile, string strTarget)
+//bool hyperlink::open_link(const ::scoped_string & scopedstrLink, const ::scoped_string & scopedstrProfile, const ::scoped_string & scopedstrTarget)
 //{
 //
 //   system()->open_profile_link(strLink, strProfile, strTarget);

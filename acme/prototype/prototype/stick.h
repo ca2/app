@@ -11,7 +11,7 @@ public:
 
 
    stick(const ::scoped_string & scopedstr = nullptr) :
-      m_sticker(psz)
+      m_sticker(scopedstr)
    {
 
       m_psticker = &m_sticker;

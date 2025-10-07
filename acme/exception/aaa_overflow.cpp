@@ -2,7 +2,7 @@
 
 
 overflow_exception::overflow_exception(const ::scoped_string & scopedstrMessage):
-   ::exception(pszMessage)
+   ::exception(scopedstrMessage)
 {
 
 

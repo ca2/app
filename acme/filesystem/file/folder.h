@@ -40,26 +40,26 @@ public:
    
    ::file::enum_type type(const ::file::path & pathItem = nullptr);
 
-   virtual bool has_sub_folder(const ::file::path & pathDir = nullptr);
+   virtual bool has_sub_folder(const ::file::path & pathFolder = nullptr);
    virtual void extract(memory& m, const ::file::path & pathFile = nullptr);
    virtual bool is_compressed(const ::file::path & pathItem = nullptr);
 
-   virtual bool locate(const ::function < bool(const char *) > & function);
+   virtual bool locate(const ::function < bool(const_char_pointer )> & function);
 
-   virtual void e_extract_all(const ::file::path & pathTargetDir, ::file::path_array * ppatha = nullptr, string_array* pstraFilter = nullptr, bool_array* pbaBeginsFilterEat = nullptr, ::function<bool(const::scoped_string& scopedstr) > functionCallback = {});
+   virtual void e_extract_all(const ::file::path & pathTargetDir, ::file::path_array_base * ppatha = nullptr, string_array_base* pstraFilter = nullptr, bool_array* pbaBeginsFilterEat = nullptr, ::function<bool(const::scoped_string& scopedstr) > functionCallback = {});
    virtual ::file::path e_extract_first_ends(const ::file::path& pathTargetDir, const ::scoped_string & scopedstr);
 
-   //bool _enumerates(::file::listing & listing) override;
-   bool enumerate(::file::listing& listing) override;
+   //bool _enumerates(::file::listing_base & listing) override;
+   bool enumerate(::file::listing_base& listing) override;
 
 
-   //bool perform_file_relative_name_listing(::file::listing& listing) override;
+   //bool perform_file_relative_name_listing(::file::listing_base& listing) override;
 
 
    virtual void open_for_writing(file_pointer pfile);
 
 
-   virtual void add_file(const ::file::path& pszRelative, ::file::file* pfile);
+   virtual void add_file(const ::file::path & pathRelative, ::file::file* pfile);
 
 
 };

@@ -16,7 +16,7 @@ namespace microsoft
       ~visual_studio() override;
 
 
-      ::string_array get_instances();
+      ::string_array_base get_instances();
 
 
       ::string get_a_visual_studio_2022_instance();

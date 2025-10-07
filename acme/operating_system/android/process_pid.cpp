@@ -3,7 +3,7 @@
 
 ::e_status fgets_string(string& str, FILE* pfile, memsize iBufferSize);
 
-int get_process_pid(const char * procNameParam)
+int get_process_pid(const_char_pointer procNameParam)
 {
 
    string procName(procNameParam);
@@ -72,7 +72,7 @@ string module_path_from_pid(unsigned int iPid)
    str = "/proc/" + as_string(iPid) + "/exe";
 
    /* the easiest case: we are in linux */
-   ssize_t s = readlink(pszBuffer,(char *) (const char *) path,iSize);
+   ssize_t s = readlink(pszBuffer,(char *) (const_char_pointer )path,iSize);
 
    if(s == -1)
    {
@@ -90,12 +90,12 @@ string module_path_from_pid(unsigned int iPid)
 
 
 
-//::int_array module_path_get_pid(const ::file::path & path)
+//::int_array_base module_path_get_pid(const ::file::path & path)
 //{
 //
-//   ::int_array ia;
+//   ::int_array_base ia;
 //
-//   ::file::path_array stra;
+//   ::file::path_array_base stra;
 //
 //   ::dir::ls_dir(stra,"/proc/");
 //
@@ -130,15 +130,15 @@ string module_path_from_pid(unsigned int iPid)
 //
 //   atom_array ia;
 //
-//   ::file::path_array stra;
+//   ::file::path_array_base stra;
 //
 //   ::dir::ls_dir(stra,"/proc/");
 //
-//   string str(psz);
+//   string str(scopedstr);
 //
 //   str = "app=" + str;
 //
-//   string strApp(psz);
+//   string strApp(scopedstr);
 //
 //   strApp.replace("-","_");
 //
@@ -163,7 +163,7 @@ string module_path_from_pid(unsigned int iPid)
 //         else
 //         {
 //
-//            string_array straCmdLine = cmdline_from_pid(iPid);
+//            string_array_base straCmdLine = cmdline_from_pid(iPid);
 //
 //            string strCmdLine;
 //
@@ -188,10 +188,10 @@ string module_path_from_pid(unsigned int iPid)
 //
 //
 //
-//string_array cmdline_from_pid(unsigned int iPid)
+//string_array_base cmdline_from_pid(unsigned int iPid)
 //{
 //
-//   string_array stra;
+//   string_array_base stra;
 //
 //   string str;
 //

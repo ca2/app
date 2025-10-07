@@ -25,18 +25,18 @@ const ::text::context* html_file::textcontext()
 }
 
 
-void html_file::print(const ::string& str)
+void html_file::print(const ::scoped_string & scopedstr)
 {
 
-   raw_print(str);
+   raw_print(scopedstr);
 
 }
 
 
-void html_file::raw_print(const ::string& str)
+void html_file::raw_print(const ::scoped_string & scopedstr)
 {
 
-   print(str);
+   print(scopedstr);
 
 }
 
@@ -44,20 +44,20 @@ void html_file::raw_print(const ::string& str)
 #ifndef VARIADIC_TEMPLATE_FORMAT
 
 
-void html_file::printf(string str, ...)
+void html_file::printf(const_char_pointer pszFormat, ...)
 {
 
-   __UNREFERENCED_PARAMETER(str);
+   __UNREFERENCED_PARAMETER(pszFormat);
 
    throw ::interface_only();
 
 }
 
 
-void html_file::printstr(string str, ...)
+void html_file::printstr(const_char_pointer pszFormat, ...)
 {
 
-   __UNREFERENCED_PARAMETER(str);
+   __UNREFERENCED_PARAMETER(pszFormat);
 
    throw ::interface_only();
 
@@ -70,7 +70,7 @@ void html_file::printstr(string str, ...)
 void html_file::trace(void*, const ::scoped_string & scopedstr)
 {
 
-   print(psz);
+   print(scopedstr);
 
 }
 

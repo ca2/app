@@ -18,10 +18,10 @@ namespace data
    public:
 
 
-      ::property_set                                        m_propertyset;
-      ::pointer_array < ::data::property_listener >         m_propertylistenera;
-      ::comparable_array < ::data::property_will_change >   m_propertywillchangea;
-      ::comparable_array < ::data::property_changed >       m_propertychangeda;
+      ::property_set                                              m_propertyset;
+      ::pointer_array < ::data::property_listener >               m_propertylistenera;
+      ::comparable_array < ::data::property_will_change >         m_propertywillchangea;
+      ::comparable_array < ::data::property_changed >             m_propertychangeda;
 
 
       property_container();
@@ -31,11 +31,11 @@ namespace data
       void destroy() override;
 
 
-      virtual bool set_property(const ::atom_array & atoma, const ::payload & payload, const ::action_context & context = {});
-      virtual ::payload get_property(const ::atom_array & atoma) const;
+      virtual bool set_property(const ::atom_array_base & atoma, const ::payload & payload, const ::action_context & context = {});
+      virtual ::payload get_property(const ::atom_array_base & atoma) const;
 
       virtual void on_set_property(::data::property_change & change);
-      virtual ::payload on_get_property(const ::atom_array & atoma) const;
+      virtual ::payload on_get_property(const ::atom_array_base & atoma) const;
 
       virtual bool on_property_will_change(::data::property_change & change);
       virtual void on_property_changed(::data::property_change & change);

@@ -78,12 +78,12 @@ namespace user
    }
 
 
-   bool copydesk::string_to_filea(::file::path_array * ppatha, const ::string & str)
+   bool copydesk::string_to_filea(::file::path_array_base * ppatha, const ::scoped_string & scopedstr)
    {
 
-      string_array stra;
+      string_array_base stra;
 
-      stra.add_lines(str);
+      stra.add_lines(scopedstr);
 
       // auto pcontext = get_context();
 
@@ -160,7 +160,7 @@ namespace user
    }
 
 
-   bool copydesk::get_filea(::file::path_array & patha, enum_op & eop)
+   bool copydesk::get_filea(::file::path_array_base & patha, enum_op & eop)
    {
 
       if(_get_filea(patha, eop))
@@ -191,7 +191,7 @@ namespace user
    }
 
 
-   bool copydesk::set_filea(const ::file::path_array & patha, enum_op eop)
+   bool copydesk::set_filea(const ::file::path_array_base & patha, enum_op eop)
    {
 
       return _set_filea(patha, eop);
@@ -199,17 +199,17 @@ namespace user
    }
 
 
-   bool copydesk::set_plain_text(const ::string & str, bool bForceSetIfEmpty)
+   bool copydesk::set_plain_text(const ::scoped_string & scopedstr, bool bForceSetIfEmpty)
    {
 
-      if(str.is_empty() && !bForceSetIfEmpty)
+      if(scopedstr.is_empty() && !bForceSetIfEmpty)
       {
 
          return false;
 
       }
 
-      return _set_plain_text(str);
+      return _set_plain_text(scopedstr);
 
    }
 
@@ -273,7 +273,7 @@ namespace user
             if(get_plain_text(strPlainText, e_flag_prevent_data_blob))
             {
 
-               string_array straLines;
+               string_array_base straLines;
 
                straLines.add_lines(strPlainText);
 
@@ -330,7 +330,7 @@ namespace user
 
          enum_op eop = e_op_copy;
 
-         ::file::path_array patha;
+         ::file::path_array_base patha;
 
          if(get_filea(patha, eop))
          {
@@ -383,7 +383,7 @@ namespace user
       if (_has_image())
       {
 
-         m_pwindow->__øconstruct(pimage);
+         m_pwindow->øconstruct(pimage);
 
          if (_desk_to_image(pimage))
          {
@@ -432,7 +432,7 @@ namespace user
                //
                //auto estatus = 
             
-            __øconstruct(pimage);
+            øconstruct(pimage);
 
                //if(estatus.succeeded())
                //{
@@ -453,7 +453,7 @@ namespace user
                      if (s.area() > 0.)
                      {
 
-                         __øconstruct(pimage);
+                         øconstruct(pimage);
 
                         //if(estatus.succeeded())
                         {
@@ -534,7 +534,7 @@ namespace user
    }
 
 
-   bool copydesk::_get_filea(::file::path_array & stra, enum_op & eop)
+   bool copydesk::_get_filea(::file::path_array_base & stra, enum_op & eop)
    {
 
       __UNREFERENCED_PARAMETER(stra);
@@ -546,7 +546,7 @@ namespace user
    }
 
 
-   bool copydesk::_set_filea(const ::file::path_array & patha, enum_op eop)
+   bool copydesk::_set_filea(const ::file::path_array_base & patha, enum_op eop)
    {
 
       __UNREFERENCED_PARAMETER(patha);
@@ -558,10 +558,10 @@ namespace user
    }
 
 
-   bool copydesk::_set_plain_text(const ::string & str)
+   bool copydesk::_set_plain_text(const ::scoped_string & scopedstr)
    {
 
-      __UNREFERENCED_PARAMETER(str);
+      __UNREFERENCED_PARAMETER(scopedstr);
 
       throw ::interface_only();
 

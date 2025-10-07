@@ -19,7 +19,7 @@ namespace colorertake5
 
       void setErrorHandler(ErrorHandler *eh);
 
-      void loadSource(const ::string & pszSourceLocation, const ::string & pszSource);
+      void loadSource(const ::scoped_string & scopedstrSourceLocation, const ::scoped_string & scopedstrSource);
       file_type *getFileType(const ::string &name);
       file_type *enumerateFileTypes(int index);
       file_type *chooseFileType(const ::string &fileName, const ::string &firstLine, int typeNo = 0);
@@ -36,16 +36,16 @@ namespace colorertake5
       enum QualifyNameType { QNT_DEFINE, QNT_SCHEME, QNT_ENTITY };
 
       // types and packages
-      string_map<file_type_impl *>       fileTypeHash;
+      string_map_base<file_type_impl *>       fileTypeHash;
       // types, not packages
       address_array < file_type_impl * >       fileTypeVector;
 
-      string_map<scheme_impl *>          schemeHash;
-      string_map<int>                   disabledSchemes;
+      string_map_base<scheme_impl *>          schemeHash;
+      string_map_base<int>                   disabledSchemes;
 
       address_array < region * >   regionNamesVector;
-      string_map<region *>   regionNamesHash;
-      string_to_string              schemeEntitiesHash;
+      string_map_base<region *>   regionNamesHash;
+      string_to_string_base              schemeEntitiesHash;
 
       string versionName;
 
@@ -61,7 +61,7 @@ namespace colorertake5
 
       void loadFileType(file_type *filetype);
 
-      void parseHRC(const ::string & psz);
+      void parseHRC(const ::scoped_string & scopedstr);
       void addPrototype(::pointer<::xml::node>lem);
       void addType(::pointer<::xml::node>lem);
 
@@ -76,7 +76,7 @@ namespace colorertake5
       string qualifyForeignName(const ::string &name, QualifyNameType qntype, bool logErrors);
 
       void updateLinks();
-      string useEntities(const ::string & name);
+      string useEntities(const ::scoped_string & scopedstrName);
       class region *getNCRegion(::pointer<::xml::node>l, const ::string & tag);
       class region *getNCRegion(const ::string &name, bool logErrors);
 

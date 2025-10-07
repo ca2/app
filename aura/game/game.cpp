@@ -38,10 +38,10 @@ namespace aura
    }
 
 
-   string game::sound_path(const ::string & psz)
+   string game::sound_path(const ::scoped_string & scopedstr)
    {
    
-      string strFileName = string(psz) + string(".wav");
+      string strFileName = string(scopedstr) + string(".wav");
 
       string strFilePath = directory()->matter(strFileName);
 

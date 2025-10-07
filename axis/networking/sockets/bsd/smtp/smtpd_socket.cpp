@@ -28,7 +28,7 @@ namespace sockets
    }
 
 
-   void smtpd_socket::OnLine(const string & line)
+   void smtpd_socket::OnLine(const ::scoped_string & scopedstrLine)
    {
 
       if (m_data)
@@ -37,7 +37,7 @@ namespace sockets
          if (m_header)
          {
 
-            if (!line.length())
+            if (!scopedstrLine.length())
             {
                if (m_header_line.length())
                {
@@ -51,9 +51,9 @@ namespace sockets
                OnHeaderComplete();
             }
             else
-            if (line[0] == ' ' || line[0] == '\t')
+            if (scopedstrLine[0] == ' ' || scopedstrLine[0] == '\t')
             {
-               m_header_line += line;
+               m_header_line += scopedstrLine;
             }
             else
             {
@@ -65,11 +65,11 @@ namespace sockets
                   string value = pa.getrest();
                   OnHeader(key, value);
                }
-               m_header_line = line;
+               m_header_line = scopedstrLine;
             }
          }
          else
-         if (line == ".")
+         if (scopedstrLine == ".")
          {
             m_data = false;
             if (OnDataComplete())
@@ -78,17 +78,17 @@ namespace sockets
                print("550 Failed\r\n");
          }
          else
-         if (line.length() && line[0] == '.')
+         if (scopedstrLine.length() && scopedstrLine[0] == '.')
          {
-            OnData(line.substr(1));
+            OnData(scopedstrLine.substr(1));
          }
          else
          {
-            OnData(line);
+            OnData(scopedstrLine);
          }
          return;
       }
-      ::parse pa(line);
+      ::parse pa(scopedstrLine);
       string cmd = pa.getword();
       cmd.make_upper();
       if (cmd == "EHLO")
@@ -125,7 +125,7 @@ namespace sockets
       else
       if (cmd == "MAIL") // mail from:
       {
-         ::parse pa(line, ":"_ansi);
+         ::parse pa(scopedstrLine, ":"_ansi);
          pa.getword(); // 'mail'
          pa.getword(); // 'from'
 
@@ -160,7 +160,7 @@ namespace sockets
       }
       else if (cmd == "RCPT") // rcpt to:
       {
-         ::parse pa(line, ":"_ansi);
+         ::parse pa(scopedstrLine, ":"_ansi);
          pa.getword(); // 'rcpt'
          pa.getword(); // 'to'
 

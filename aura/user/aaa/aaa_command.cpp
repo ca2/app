@@ -1,5 +1,5 @@
 #include "framework.h"
-//#include "base/user/user/_component.h"
+//#include "berg/user/user/_component.h"
 
 
 namespace user
@@ -24,7 +24,7 @@ namespace user
    {
 
       common_construct();
-      m_emessage           = ::e_message_system_command;
+      m_emessage           = ::::user::e_message_system_command;
       id()                          = atom;
       m_bRadioChanged               = false;
 
@@ -215,7 +215,7 @@ namespace user
 
    }
 
-   void ::message::command::SetText(const ::string & pszText, const ::action_context & context)
+   void ::message::command::SetText(const ::scoped_string & scopedstrText, const ::action_context & context)
 
    {
 
@@ -229,7 +229,7 @@ namespace user
       if (m_puiOther != nullptr)
       {
 
-         m_puiOther->set_window_text(pszText);
+         m_puiOther->set_window_text(scopedstrText);
 
 
       }

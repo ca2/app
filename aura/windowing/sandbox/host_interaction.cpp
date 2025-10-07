@@ -78,7 +78,7 @@ namespace sandbox_windowing
 
       ::user::interaction::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_create, pchannel, this, &host_interaction::on_message_create);
+      USER_MESSAGE_LINK(::user::e_message_create, pchannel, this, &host_interaction::on_message_create);
 
    }
 
@@ -138,7 +138,11 @@ namespace sandbox_windowing
 
       auto pwindow = window();
 
+      m_ewindowflag |= e_window_flag_root;
+
       pwindowing->m_pwindowApplicationHost = pwindow;
+
+      display(e_display_normal);
       
       window()->show_window();
 

@@ -90,12 +90,12 @@ namespace sockets
       */
       string rfc1738_decode(const string & src);
 
-      bool isipv4(const ::string & str);
+      bool isipv4(const ::scoped_string & scopedstr);
 
-      bool isipv6(const ::string & str);
+      bool isipv6(const ::scoped_string & scopedstr);
 
-      //bool convert(struct ::in_addr& l, const ::string & str, int ai_flags = 0);
-      //bool convert(struct ::in6_addr& l, const ::string & str, int ai_flags = 0);
+      //bool convert(struct ::in_addr& l, const ::scoped_string & scopedstr, int ai_flags = 0);
+      //bool convert(struct ::in6_addr& l, const ::scoped_string & scopedstr, int ai_flags = 0);
       //bool convert(string & str, const struct ::in_addr& ip);
       //bool convert(string & str, const struct ::in6_addr& ip, bool mixed = false);
 
@@ -123,7 +123,7 @@ namespace sockets
 
       bool u2service(const string & name, int& service, int ai_flags);
 
-      int service_port(const ::string & str, int flags = 0);
+      int service_port(const ::scoped_string & scopedstr, int flags = 0);
 
       //string  service_name(int iPort, int flags = 0);
 

@@ -5,8 +5,8 @@ namespace colorertake5
 {
 
 
-   ::exception(const ::string & pszMessage) :
-      ::exception(pszMessage)
+   ::exception(const ::scoped_string & scopedstrMessage) :
+      ::exception(scopedstrMessage)
    {
 
    }

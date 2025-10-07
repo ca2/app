@@ -70,7 +70,7 @@ namespace user
       bool                       m_bTipEnable;     // set if the tip is enabled
 
       int_point                      m_point;             // coordinates fo the cursor position used to track changes in cursor position
-      CToolMap                   m_toolmap;        // map of tool index to tool pointers
+      CToolMap                   m_toolmap;        // map_base of tool index to tool pointers
 
       tool_tip_window();
       virtual ~tool_tip_window();
@@ -91,7 +91,7 @@ namespace user
       void EnableTip(bool bEnable = true);
       bool HideTip();
       //virtual bool create(::user::interaction * puserinteraction, const atom & atom);
-      bool CalcRect(::draw2d::graphics_pointer & pgraphics, ::int_rectangle * prectangle, const ::int_rectangle & lprectToolScreen, const ::string & pcsz);
+      bool CalcRect(::draw2d::graphics_pointer & pgraphics, ::int_rectangle * prectangle, const ::int_rectangle & lprectToolScreen, const ::scoped_string & scopedstr);
 
       void ShowTip(int iTool, bool bForce = false);
       void SetPositionHint(::user::interaction * puserinteraction, enum_position eposition);

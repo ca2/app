@@ -25,14 +25,14 @@ namespace universal_windows
       /*      if(::file::system::FullPath(str, pszFileIn))
 
       return true;*/
-      if (case_insensitive_string_begins(pszFileIn, "http://"))
+      if (case_insensitive_string_begins(scopedstrFileIn, "http://"))
 
       {
          str = pszFileIn;
 
          return true;
       }
-      else if (case_insensitive_string_begins(pszFileIn, "https://"))
+      else if (case_insensitive_string_begins(scopedstrFileIn, "https://"))
 
       {
          str = pszFileIn;
@@ -40,7 +40,7 @@ namespace universal_windows
          return true;
       }
       wstring wstrFileIn;
-      wstrFileIn = utf8_to_unicode(pszFileIn);
+      wstrFileIn = utf8_to_unicode(scopedstrFileIn);
 
       wstring wstrFileOut;
       //      bool b = windows_full_path(wstrFileOut.alloc(MAX_PATH * 8), wstrFileIn) != false;
@@ -81,7 +81,7 @@ namespace universal_windows
    {
       int nMax = MAX_PATH * 8;
       wstring wstrPathName;
-      wstrPathName = utf8_to_unicode(pszPathName);
+      wstrPathName = utf8_to_unicode(scopedstrPathName);
 
       wstring wstrTitle;
       //unsigned int user = vfxGetFileName(wstrPathName, wstrTitle.alloc(nMax), nMax);
@@ -135,7 +135,7 @@ namespace universal_windows
       if (folder != nullptr)
       {
 
-         auto pbuffer = __allocate ::universal_windows::native_buffer();
+         auto pbuffer = øallocate ::universal_windows::native_buffer();
 
          //::extended::status ::extended::status = spfile->open(folder, strPath,nOpenFlags);
 

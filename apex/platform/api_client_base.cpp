@@ -166,7 +166,7 @@ api_client_base::~api_client_base()
 
    }
 
-   auto papi = m_pparticleContext->__øcreate < ::api >(pfactory);
+   auto papi = m_pparticleContext->øcreate < ::api >(pfactory);
 
    if (!papi)
    {
@@ -188,7 +188,7 @@ api_client_base::~api_client_base()
 
 
 
-//void api_client_base::api_get(::string & str, const string & strUrl, ::property_set & set)
+//void api_client_base::api_get(::string & str, const ::scoped_string & scopedstrUrl, ::property_set & set)
 //{
 //
 //   int iTryCount = 3;
@@ -226,7 +226,7 @@ api_client_base::~api_client_base()
 //}
 //
 //
-//void api_client_base::api_get(::payload & payload, const string & strUrl, ::property_set & set)
+//void api_client_base::api_get(::payload & payload, const ::scoped_string & scopedstrUrl, ::property_set & set)
 //{
 //
 //   defer_api();
@@ -243,7 +243,7 @@ api_client_base::~api_client_base()
 //}
 //
 //
-//void api_client_base::api_download(string strGet, const ::file::path & path, ::property_set & set)
+//void api_client_base::api_download(const ::scoped_string & scopedstrGet, const ::file::path & path, ::property_set & set)
 //{
 //
 //   defer_api();

@@ -376,7 +376,7 @@ AdvancedGridLayout::Anchor::operator ::string() const
    {
 
       /* Compute minimum row / column sizes */
-      ::int_array grid[2];
+      ::int_array_base grid[2];
 
       compute_layout(pcontext, pwidget, grid, bRecalcTextSize);
 
@@ -401,7 +401,7 @@ AdvancedGridLayout::Anchor::operator ::string() const
    }
 
 
-   void GridLayout::compute_layout(::nano2d::context * pcontext, Widget* pwidget, ::int_array * grid, bool bRecalcTextSize) const
+   void GridLayout::compute_layout(::nano2d::context * pcontext, Widget* pwidget, ::int_array_base * grid, bool bRecalcTextSize) const
    {
 
       auto iAxisIndex1 = index_of(m_eorientation);
@@ -501,7 +501,7 @@ AdvancedGridLayout::Anchor::operator ::string() const
       auto container_size = sizeFixed.prefer_self_coordinate_if_set(pwidget->size());
 
       /* Compute minimum row / column sizes */
-      ::int_array grid[2];
+      ::int_array_base grid[2];
 
       compute_layout(pcontext, pwidget, grid, bRecalcTextSize);
 
@@ -611,7 +611,7 @@ AdvancedGridLayout::Anchor::operator ::string() const
       }
    }
 
-   AdvancedGridLayout::AdvancedGridLayout(const ::int_array& cols, const ::int_array& rows, int margin)
+   AdvancedGridLayout::AdvancedGridLayout(const ::int_array_base& cols, const ::int_array_base& rows, int margin)
       : m_cols(cols), m_rows(rows), m_iMargin(margin) {
       m_col_stretch.resize(m_cols.size(), 0);
       m_row_stretch.resize(m_rows.size(), 0);
@@ -622,7 +622,7 @@ AdvancedGridLayout::Anchor::operator ::string() const
    {
 
       /* Compute minimum row / column sizes */
-      ::int_array grid[2];
+      ::int_array_base grid[2];
 
       compute_layout(pcontext, pwidget, grid);
 
@@ -647,7 +647,7 @@ AdvancedGridLayout::Anchor::operator ::string() const
    void AdvancedGridLayout::perform_layout(::nano2d::context * pcontext, Widget* pwidget, bool bRecalcTextSize)
    {
 
-      ::int_array grid[2];
+      ::int_array_base grid[2];
       compute_layout(pcontext, pwidget, grid);
 
       grid[0].insert_at(0, m_iMargin);
@@ -735,7 +735,7 @@ AdvancedGridLayout::Anchor::operator ::string() const
 
    }
 
-   void AdvancedGridLayout::compute_layout(::nano2d::context * pcontext, Widget* pwidget, ::int_array* _grid)
+   void AdvancedGridLayout::compute_layout(::nano2d::context * pcontext, Widget* pwidget, ::int_array_base* _grid)
    {
 
       sequence2_int fs_w = pwidget->fixed_size();
@@ -752,8 +752,8 @@ AdvancedGridLayout::Anchor::operator ::string() const
       container_size -= extra;
 
       for (int iAxisIndex = 0; iAxisIndex < 2; ++iAxisIndex) {
-         ::int_array& grid = _grid[iAxisIndex];
-         ::int_array& sizes = iAxisIndex == 0 ? m_cols : m_rows;
+         ::int_array_base& grid = _grid[iAxisIndex];
+         ::int_array_base& sizes = iAxisIndex == 0 ? m_cols : m_rows;
          ::float_array& stretch = iAxisIndex == 0 ? m_col_stretch : m_row_stretch;
          grid = sizes;
 

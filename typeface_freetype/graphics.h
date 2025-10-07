@@ -123,9 +123,9 @@ namespace typeface_freetype
 
       // Constructors
       bool CreateDC(const ::scoped_string & lpszDriverName, const ::scoped_string & lpszDeviceName,
-                    const char * lpszOutput, const void * lpInitData);
+                    const_char_pointer lpszOutput, const void * lpInitData);
       bool CreateIC(const ::scoped_string & lpszDriverName, const ::scoped_string & lpszDeviceName,
-                    const char * lpszOutput, const void * lpInitData);
+                    const_char_pointer lpszOutput, const void * lpInitData);
       void create_memory_graphics(const ::int_size & size = {}) override;
       void create_window_graphics(::windowing::window * pwindow) override;
       void CreateCompatibleDC(::draw2d::graphics * pgraphics) override;
@@ -423,7 +423,7 @@ namespace typeface_freetype
 
       void draw_text(const ::scoped_string & str,const ::double_rectangle & rectangle, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none);
 
-      //void draw_text_ex(const ::string & str, const ::double_rectangle & prectd, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none) override;
+      //void draw_text_ex(const ::scoped_string & scopedstr, const ::double_rectangle & prectd, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none) override;
 
       //virtual double_size get_text_extent(const ::scoped_string & lpszString, character_count nCount, character_count iIndex) override;
       //virtual double_size get_text_extent(const ::scoped_string & lpszString, character_count nCount) override;
@@ -501,7 +501,7 @@ namespace typeface_freetype
 
       // Printer/Device Escape Functions
       virtual int Escape(int nEscape, int nCount, const ::scoped_string & lpszInData, LPVOID lpOutData);
-      int Escape(int nEscape, int nInputSize,  const char * lpszInputData,int nOutputSize, char * lpszOutputData);
+      int Escape(int nEscape, int nInputSize,  const_char_pointer lpszInputData,int nOutputSize, char * lpszOutputData);
       int DrawEscape(int nEscape, int nInputSize, const ::scoped_string & lpszInputData);
 
       // Escape helpers

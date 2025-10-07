@@ -7,7 +7,7 @@
 #include "core/user/rich_text/data.h"
 #include "core/user/rich_text/edit_impl.h"
 #include "acme/prototype/collection/_array_binary_stream.h"
-#include "base/user/user/_binary_stream.h"
+#include "berg/user/user/_binary_stream.h"
 
 
 // template < typename FILE >
@@ -105,7 +105,7 @@
 ::binary_stream & operator <<(::binary_stream & stream, const ::user::rich_text::data & data)
 {
 
-   synchronous_lock synchronouslock(data.synchronization());
+   synchronous_lock synchronouslock(data.synchronization(), ::system(), SYNCHRONOUS_LOCK_SUFFIX);
 
    stream << (const ::pointer_array< ::user::rich_text::format > &) data;
 
@@ -120,7 +120,7 @@
 ::binary_stream & operator >>(::binary_stream & stream, ::user::rich_text::data & data)
 {
 
-   synchronous_lock synchronouslock(data.synchronization());
+   synchronous_lock synchronouslock(data.synchronization(), ::system(), SYNCHRONOUS_LOCK_SUFFIX);
 
    //data.m_plinea->erase_all();
 

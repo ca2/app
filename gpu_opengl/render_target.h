@@ -22,7 +22,7 @@ namespace gpu_opengl
 
       GLuint m_gluDepthStencilTex;
 
-      ::int_array imageAvailable;
+      ::int_array_base imageAvailable;
 
       bool  m_bNeedRebuild;
 
@@ -48,6 +48,9 @@ namespace gpu_opengl
       virtual void createRenderPass();
       virtual void createFramebuffers();
       virtual void createSyncObjects();
+
+
+      int get_frame_index() override;
 
 
    };

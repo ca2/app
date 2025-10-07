@@ -156,6 +156,8 @@ namespace file
 
       using ::file::writable::write;
       void write(const void * p, memsize s) override;
+
+      virtual void write_unsigned_char(unsigned char uch);
       
       using ::file::writable::defer_write;
       memsize defer_write(const void * dataToWrite, memsize amountToWrite) override;
@@ -223,9 +225,9 @@ namespace file
       //virtual ::string right_string();
       //virtual void right_string(::string & str);
 
-      virtual void print(const ::string & str);
-      virtual void println(const ::string & str);
-      virtual void printf(const char * format, ...);
+      virtual void print(const ::scoped_string & scopedstr);
+      virtual void println(const ::scoped_string & scopedstr);
+      virtual void printf(const_char_pointer format, ...);
 
       ///virtual void write(const string &);
       virtual bool full_read(const ::block & block);
@@ -245,20 +247,20 @@ namespace file
       virtual void open(const ::file::path & path, ::file::e_open eopen, ::pointer < ::file::exception > * pfileexception = nullptr);
       
       
-      inline void open_for_reading(const ::file::path& pszFileName, ::file::e_open eopen =
+      inline void open_for_reading(const ::file::path& path, ::file::e_open eopen =
          ::file::e_open_binary, ::pointer < ::file::exception > * pfileexception = nullptr)
       {
 
-         open(pszFileName, eopen | ::file::e_open_read); 
+         open(path, eopen | ::file::e_open_read); 
 
       }
       
 
-      virtual void open_for_writing(const ::file::path& pszFileName, ::file::e_open eopen =
+      virtual void open_for_writing(const ::file::path& path, ::file::e_open eopen =
          ::file::e_open_binary | ::file::e_open_defer_create_directory, ::pointer < ::file::exception > * pfileexception = nullptr)
       {
 
-         open(pszFileName, eopen | ::file::e_open_write);
+         open(path, eopen | ::file::e_open_write);
 
       }
 
@@ -286,7 +288,7 @@ namespace file
       virtual bool is_opened() const;
 
 
-      virtual void put_lines(const string_array& stra);
+      virtual void put_lines(const string_array_base& stra);
 
       virtual class ::time modification_time();
       virtual void set_modification_time(const class ::time & time);

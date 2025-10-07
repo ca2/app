@@ -29,9 +29,9 @@
 #include <freerdp/client/rdpgfx.h>
 #include <freerdp/client/encomsp.h>
 
-int wlf_on_channel_connected(freerdp* instance, const ::string & name,
+int wlf_on_channel_connected(freerdp* instance, const ::scoped_string & scopedstrName,
                              void* pInterface);
-int wlf_on_channel_disconnected(freerdp* instance, const ::string & name,
+int wlf_on_channel_disconnected(freerdp* instance, const ::scoped_string & scopedstrName,
                                 void* pInterface);
 
 void wlf_OnChannelConnectedEventHandler(rdpContext* action_context,

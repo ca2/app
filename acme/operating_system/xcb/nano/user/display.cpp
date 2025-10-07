@@ -143,7 +143,7 @@ namespace xcb
 
                }
 
-               atom = intern_atom(pszName, bCreate);
+               atom = intern_atom(scopedstrName, bCreate);
 
                m_atoma[eatom] = atom;
 
@@ -228,7 +228,7 @@ namespace xcb
 
             windowing_output_debug_string("\nwindow::select_input");
 
-            synchronous_lock synchronouslock(this->synchronization());
+            synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
             //display_lock displaylock(xcb_display());
 
@@ -263,7 +263,7 @@ namespace xcb
          //
          //      defer_create_synchronization();
          //
-         //      synchronous_lock synchronouslock(this->synchronization());
+         //      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
          //
          //      m_routineaPost.add(routine);
          //
@@ -275,7 +275,7 @@ namespace xcb
          //   bool display::aaa_display_posted_routine_step()
          //   {
          //
-         //      synchronous_lock synchronouslock(this->synchronization());
+         //      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
          //
          //      if (m_routineaPost.has_element())
          //      {
@@ -396,7 +396,7 @@ namespace xcb
 
                pparticle->information() << "xcb nano display::get (2)";
 
-               auto p = __allocate display();
+               auto p = øallocate display();
 
                p->initialize(pparticle);
 
@@ -437,7 +437,7 @@ namespace xcb
          void display::add_listener(event_listener * plistener)
          {
 
-            synchronous_lock synchronouslock(this->synchronization());
+            synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
             m_happeninglistenera.add(plistener);
 
@@ -447,7 +447,7 @@ namespace xcb
          void display::add_window(::xcb::micro::elemental * pwindow)
          {
 
-            synchronous_lock synchronouslock(this->synchronization());
+            synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
             m_windowa.add(pwindow);
 
@@ -457,7 +457,7 @@ namespace xcb
          void display::erase_listener(event_listener * plistener)
          {
 
-            synchronous_lock synchronouslock(this->synchronization());
+            synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
             m_happeninglistenera.erase(plistener);
 
@@ -467,7 +467,7 @@ namespace xcb
          void display::erase_window(micro::interchange * pwindow)
          {
 
-            synchronous_lock synchronouslock(this->synchronization());
+            synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
             m_windowa.erase(pwindow);
 
@@ -938,7 +938,7 @@ namespace xcb
                            false,
                            m_windowHelper,
                            XCB_EVENT_MASK_NO_EVENT,
-                           reinterpret_cast<const char *>(&happening));
+                           reinterpret_cast<const_char_pointer >(&happening));
 
             auto estatus = _request_check(cookie);
 
@@ -1089,7 +1089,7 @@ namespace xcb
                window1,
                false,
                XCB_EVENT_MASK_SUBSTRUCTURE_REDIRECT | XCB_EVENT_MASK_STRUCTURE_NOTIFY,
-               (const char *) &happening);
+               (const_char_pointer )&happening);
 
             auto estatus = _request_check(cookie);
 

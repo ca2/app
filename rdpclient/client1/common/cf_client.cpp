@@ -503,7 +503,7 @@ CLASS_DECL_EXPORT BOOL af_pre_connect(freerdp* instance)
 //	nullptr
 //};
 
-//static BOOL af_authenticate_raw(freerdp* instance, const ::string & title,
+//static BOOL af_authenticate_raw(freerdp* instance, const ::scoped_string & scopedstrTitle,
 //		char** username, char** password, char** domain)
 //{
 //   //PubSub_Subscribe(instance->context->pubSub,"ConnectionResult",(pEventHandler)rdpclient_connection_result);
@@ -781,17 +781,17 @@ CLASS_DECL_EXPORT BOOL af_pre_connect(freerdp* instance)
 //
 //			if (instance->settings->EmbeddedWindow)
 //			{
-//				if ((msg.message == e_message_set_focus) && (msg.lParam == 1))
+//				if ((msg.message == ::user::e_message_set_focus) && (msg.lParam == 1))
 //				{
-//					PostMessage(wfc->hwnd, e_message_set_focus, 0, 0);
+//					PostMessage(wfc->hwnd, ::user::e_message_set_focus, 0, 0);
 //				}
-//				else if ((msg.message == e_message_kill_focus) && (msg.lParam == 1))
+//				else if ((msg.message == ::user::e_message_kill_focus) && (msg.lParam == 1))
 //				{
-//					PostMessage(wfc->hwnd, e_message_kill_focus, 0, 0);
+//					PostMessage(wfc->hwnd, ::user::e_message_kill_focus, 0, 0);
 //				}
 //			}
 //
-//			if (msg.message == e_message_size)
+//			if (msg.message == ::user::e_message_size)
 //			{
 //				width = LOWORD(msg.lParam);
 //				height = HIWORD(msg.lParam);
@@ -890,13 +890,13 @@ rdpSettings* freerdp_client_get_settings(rdp_context* wfc)
 
 //int freerdp_client_focus_in(wfContext* wfc)
 //{
-//   postthreadmessage(wfc->mainThreadId,e_message_set_focus,0,1);
+//   postthreadmessage(wfc->mainThreadId,::user::e_message_set_focus,0,1);
 //   return 0;
 //}
 //
 //int freerdp_client_focus_out(wfContext* wfc)
 //{
-//   postthreadmessage(wfc->mainThreadId,e_message_kill_focus,0,1);
+//   postthreadmessage(wfc->mainThreadId,::user::e_message_kill_focus,0,1);
 //   return 0;
 //}
 
@@ -906,7 +906,7 @@ rdpSettings* freerdp_client_get_settings(rdp_context* wfc)
 //
 //   if((width != wfc->client_width) || (height != wfc->client_height))
 //   {
-//      postthreadmessage(wfc->mainThreadId,e_message_size,SIZE_RESTORED,((unsigned int)height << 16) | (unsigned int)width);
+//      postthreadmessage(wfc->mainThreadId,::user::e_message_size,SIZE_RESTORED,((unsigned int)height << 16) | (unsigned int)width);
 //   }
 //
 //   return 0;
@@ -1174,7 +1174,7 @@ rdpSettings* freerdp_client_get_settings(rdp_context* wfc)
 //
 //   if(wfc->thread)
 //   {
-//      postthreadmessage(wfc->mainThreadId,e_message_quit,0,0);
+//      postthreadmessage(wfc->mainThreadId,::user::e_message_quit,0,0);
 //
 //      WaitForSingleObject(wfc->thread,U32_INFINITE_TIMEOUT);
 //      CloseHandle(wfc->thread);
@@ -1184,7 +1184,7 @@ rdpSettings* freerdp_client_get_settings(rdp_context* wfc)
 //
 //   if(wfc->keyboardThread)
 //   {
-//      postthreadmessage(wfc->keyboardThreadId,e_message_quit,0,0);
+//      postthreadmessage(wfc->keyboardThreadId,::user::e_message_quit,0,0);
 //
 //      WaitForSingleObject(wfc->keyboardThread,U32_INFINITE_TIMEOUT);
 //      CloseHandle(wfc->keyboardThread);

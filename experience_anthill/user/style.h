@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "base/user/user/style.h"
+#include "berg/user/user/style.h"
 
 
 namespace experience_anthill
@@ -9,7 +9,7 @@ namespace experience_anthill
 
 
    class CLASS_DECL_APP_EXPERIENCE_ANTHILL style :
-      virtual public ::base::style
+      virtual public ::berg::style
    {
    public:
 

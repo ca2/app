@@ -35,10 +35,10 @@ namespace sip
    }
 
 
-   void request::add_cookie(const ::string & pszSetCookie)
+   void request::add_cookie(const ::scoped_string & scopedstrSetCookie)
    {
 
-      m_cookies.add(pszSetCookie);
+      m_cookies.add(scopedstrSetCookie);
 
    }
 
@@ -56,7 +56,7 @@ namespace sip
    }
 
 
-   void request::write( const char *buf, size_t sz )
+   void request::write( const_char_pointer buf, size_t sz )
    {
 
       m_file.write(buf, sz);

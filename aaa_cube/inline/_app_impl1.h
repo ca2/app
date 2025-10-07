@@ -20,7 +20,7 @@
 
 const char * br_init_get_symbol();
 
-void apex_application_run(const ::string & pszAppName, const ::string & pszProgName);
+void apex_application_run(const ::scoped_string & scopedstrAppName, const ::scoped_string & scopedstrProgName);
 
 
 
@@ -150,9 +150,9 @@ int WINAPI _tWinMain(HINSTANCE hinstance, HINSTANCE hPrevInstance, char * pCmdLi
 //         //KEEP(thread_flag_prevent_create_thread);
 //
 //
-//         paura = __allocate class aura_aura ();
+//         paura = øallocate class aura_aura ();
 //
-//         pmaindata = __allocate aura_main_data(hinstance, hPrevInstance, pCmdLine, nCmdShow);
+//         pmaindata = øallocate aura_main_data(hinstance, hPrevInstance, pCmdLine, nCmdShow);
 //
 //#ifdef MAIN_RUNNER0
 //

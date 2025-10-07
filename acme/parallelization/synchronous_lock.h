@@ -4,6 +4,9 @@
 #include "acme/parallelization/single_lock.h"
 ////#include "acme/prototype/prototype/matter.h"
 
+#define SYNCHRONOUS_LOCK_SUFFIX __FILE__, __LINE__
+#define DEFAULT_SYNCHRONOUS_LOCK_SUFFIX this, __FILE__, __LINE__
+
 
 class CLASS_DECL_ACME synchronous_lock :
    public single_lock
@@ -11,8 +14,8 @@ class CLASS_DECL_ACME synchronous_lock :
 public:
 
 
-   explicit synchronous_lock(particle * pparticle) :
-      single_lock(pparticle, true)
+   explicit synchronous_lock(particle * pparticle, const ::subparticle * psubparticleContext = nullptr, const_char_pointer pszFile = nullptr, int iLine = -1) :
+      single_lock(pparticle, true, psubparticleContext, pszFile, iLine)
    {
 
 
@@ -29,8 +32,8 @@ class CLASS_DECL_ACME _synchronous_lock :
 public:
 
 
-   explicit _synchronous_lock(::particle * pparticle) :
-      _single_lock(pparticle, true)
+   explicit _synchronous_lock(::particle * pparticle, const ::subparticle * psubparticleContext = nullptr, const_char_pointer pszFile = nullptr, int iLine = -1) :
+      _single_lock(pparticle, true, psubparticleContext, pszFile, iLine)
    {
 
 

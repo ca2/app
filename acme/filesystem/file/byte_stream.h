@@ -32,7 +32,7 @@
 //
 //
 //   using stream::write;
-//   virtual stream & write(const string& str) override;
+//   virtual stream & write(const ::scoped_string & scopedstr) override;
 //
 //
 //};

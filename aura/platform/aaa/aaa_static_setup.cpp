@@ -3,8 +3,8 @@
 
 ::system_setup * system_setup::s_psetupList = nullptr;
 
-system_setup::system_setup(::system_setup::enum_flag eflag, const ::string & pszName) :
-   m_pszName(pszName),
+system_setup::system_setup(::system_setup::enum_flag eflag, const ::scoped_string & scopedstrName) :
+   m_pszName(scopedstrName),
    //m_pfnNewAuraApplication(nullptr),
    //m_pfnNewAuraLibrary(nullptr),
    m_eflag(eflag)
@@ -48,7 +48,7 @@ void system_setup::construct()
 }
 
 
-system_setup* system_setup::get_first(::system_setup::enum_flag eflag, const ::string & pszName)
+system_setup* system_setup::get_first(::system_setup::enum_flag eflag, const ::scoped_string & scopedstrName)
 {
 
    auto psetup = s_psetupList;
@@ -57,7 +57,7 @@ system_setup* system_setup::get_first(::system_setup::enum_flag eflag, const ::s
    {
 
       if ((int)(psetup->m_eflag & eflag) == (int)eflag
-         && (string(pszName).is_empty() || (!stricmp(pszName, psetup->m_pszName))))
+         && (string(scopedstrName).is_empty() || (!stricmp(scopedstrName, psetup->m_pszName))))
       {
 
          return psetup;

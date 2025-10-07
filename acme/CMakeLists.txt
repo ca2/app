@@ -84,7 +84,7 @@ list(APPEND library_source
         #prototype/promise_predicate/synchronized_predicate_routine.h
         #process/_.cpp
         _.cpp
-        _finish.h
+        #_finish.h
 
         #__matter_ca2.cpp
         compress/_.h
@@ -106,9 +106,11 @@ list(APPEND library_source
         constant/code_page.h
         constant/earth.h
         constant/element.h
+   constant/message.h
         #constant/idpool.cpp
         constant/library.h
-        constant/message_box.h
+        constant/user_message_box.h
+   constant/user_message_prototype.h
         crypto/_.h
         crypto/_crypto.h
         crypto/crypto.cpp
@@ -494,8 +496,12 @@ list(APPEND library_source
         platform/_synchronization.h
         platform/acme.cpp
         platform/acme.h
+   platform/acme_message.cpp
+   platform/acme_message.h
         platform/allocator.cpp
         platform/allocator.h
+        platform/application_sink.cpp
+        platform/application_sink.h
         platform/asset.cpp
         platform/asset.h
         platform/asset_manager.cpp
@@ -504,8 +510,6 @@ list(APPEND library_source
         platform/component.h
         platform/component_implementation.cpp
         platform/component_implementation.h
-        platform/driver.cpp
-        platform/driver.h
         #platform/acme_main_struct.cpp
         #platform/acme_main_struct.h
         #platform/apex_main_data.cpp
@@ -616,6 +620,8 @@ list(APPEND library_source
         platform/message.h
         platform/message_box.cpp
         platform/message_box.h
+   platform/message_sink.cpp
+   platform/message_sink.h
         #platform/muldiv64.cpp
         #   platform/nano_http.cpp
         #   platform/nano_http.h
@@ -719,6 +725,7 @@ list(APPEND library_source
         #prototype/collection/point_array.cpp
         prototype/collection/procedure_array.cpp
         prototype/collection/procedure_array.h
+        prototype/collection/property_set.cpp
         prototype/collection/property_set.h
         #prototype/collection/rectangle_array.cpp
         prototype/collection/sort.cpp
@@ -736,6 +743,8 @@ list(APPEND library_source
         #prototype/data/_data.h
         prototype/data/_impl.h
         prototype/data/_tree.h
+        prototype/data/block.cpp
+        prototype/data/block.h
         prototype/data/check_property.cpp
         prototype/data/check_property.h
         prototype/data/container.cpp
@@ -1005,7 +1014,6 @@ list(APPEND library_source
         prototype/prototype/property_object.cpp
         prototype/prototype/property_object.h
         prototype/prototype/property_object.h
-        prototype/prototype/property_set.cpp
         #prototype/prototype/property_set_composite.cpp
         #prototype/prototype/property_set_papaya.cpp
         prototype/prototype/property_set_papaya.h
@@ -1163,9 +1171,13 @@ list(APPEND library_source
         #prototype/string/ch.h
         prototype/string/ch_class.cpp
         prototype/string/ch_class.h
-        prototype/string/command_line.cpp
+   prototype/string/character.cpp
+   prototype/string/character_range.h
+
+   prototype/string/command_line.cpp
         prototype/string/command_line.h
         prototype/string/composite.h
+   prototype/string/c_string.cpp
         prototype/string/c_string.h
         #prototype/string/dup.cpp
         prototype/string/encoding_exception.cpp
@@ -1183,6 +1195,7 @@ list(APPEND library_source
         prototype/string/network_payload.h
         prototype/string/parse.cpp
         prototype/string/parse.h
+        prototype/string/scoped_string_base.h
         #prototype/string/simple.cpp
         prototype/string/static_string.h
         #prototype/string/stdstring.h
@@ -1204,12 +1217,12 @@ list(APPEND library_source
         #prototype/string/to_string.cpp
         prototype/string/tokenizer.cpp
         prototype/string/tokenizer.h
+   prototype/string/utf8_character.cpp
+   prototype/string/utf8_character.h
         prototype/string/unicode.cpp
         prototype/string/unicode16.cpp
         prototype/string/unicode16_32.cpp
         prototype/string/unicode32.cpp
-        prototype/string/character.cpp
-        prototype/string/utf8_character.h
         prototype/string/wildcard.cpp
         #prototype/string/wstring_adaptor.h
         #prototype/string/x.cpp
@@ -1302,7 +1315,7 @@ list(APPEND library_source
         #   user/nano/device.h
         #   user/nano/device.h
         #   user/nano/display.cpp
-        #   user/nano/display.h
+        #   user/nano/display.heer
         #   user/nano/font.cpp
         #   user/nano/font.h
         #   user/nano/message_box.cpp
@@ -1682,6 +1695,8 @@ list(APPEND library_source
         filesystem/file/_serializable_impl.h
         filesystem/file/_stream_process_impl.h
         filesystem/file/_text_stream_impl.h
+   filesystem/file/byte2_stream.cpp
+   filesystem/file/byte2_stream.h
         filesystem/file/binary_stream.h
         filesystem/file/buffer.h
         filesystem/file/buffered_file.h
@@ -1703,6 +1718,8 @@ list(APPEND library_source
         filesystem/file/ostream_flush.h
         filesystem/file/path.h
         filesystem/file/payload_stream.h
+        filesystem/file/protocol_file.cpp
+        filesystem/file/protocol_file.h
         filesystem/file/prototype.h
         filesystem/file/read_sz_stream.h
         filesystem/file/serialize.h
@@ -1807,6 +1824,8 @@ list(APPEND library_source
         operating_system/file.h
         operating_system/graphics.h
         operating_system/memory.cpp
+   operating_system/networking.cpp
+   operating_system/networking.h
         operating_system/os_windowing2.h
         operating_system/parallelization.h
         operating_system/pipe.cpp
@@ -1972,10 +1991,10 @@ list(APPEND library_source
         prototype/collection/_papaya_heap.h
         prototype/collection/_sort.h
         prototype/collection/address_array.h
-        prototype/collection/array.h
         prototype/collection/array_base.h
         prototype/collection/attrib_map.h
         prototype/collection/back_insert_iterator.h
+         prototype/collection/base_array.h
         prototype/collection/base_enum.h
         prototype/collection/bit_array.h
         prototype/collection/bitset.h
@@ -2151,7 +2170,7 @@ if (UWP)
 endif ()
 
 
-if (WIN32)
+if (${WIN32})
 
     list(APPEND library_source
             #      operating_system/windows/console.cpp
@@ -2353,6 +2372,7 @@ if (${WIN32} OR ${UWP})
             operating_system/windows_common/nano/idn/idn.cpp
             operating_system/windows_common/nano/idn/idn.h
             #      operating_system/windows_common/_dll.cpp
+       operating_system/windows_common/acme.cpp
             #      operating_system/windows_common/aura.cpp
             #      operating_system/windows_common/base.cpp
             #      operating_system/windows_common/bstring.cpp
@@ -2997,6 +3017,8 @@ if (${LINUX} OR ${__BSD__} OR ${NETBSD} OR ${OPENBSD} OR ${ANDROID})
             operating_system/posix/__edesktop_calculate.cpp
             operating_system/posix/__edisplaytype_initialize.cpp
             operating_system/posix/__etoolkit_calculate.cpp
+       operating_system/posix/networking.cpp
+       operating_system/posix/networking.h
     )
 
 endif ()
@@ -3058,8 +3080,7 @@ if (${LINUX} OR ${__BSD__})
 endif ()
 
 
-add_library(${PROJECT_NAME} SHARED ${library_source}
-        operating_system/windows_common/nano/compress/_factory.cpp)
+add_library(${PROJECT_NAME} SHARED ${library_source})
 
 
 add_library(static_${PROJECT_NAME} STATIC ${library_source}
@@ -3118,7 +3139,7 @@ elseif (${LINUX} OR ${__BSD__} OR ${ANDROID})
         list(APPEND static_this_system_libraries z pthread iconv kvm c)
         message(STATUS "OPENBSD acme this_system_libraries ${this_system_libraries}")
     elseif (${FREEBSD})
-        message(SEND_ERROR "test is really freebsd?!")
+        message(STATUS "test is really freebsd?!")
         list(APPEND this_system_libraries z dl pthread iconv execinfo elf)
         list(APPEND static_this_system_libraries z pthread iconv execinfo elf)
         message(STATUS "FREEBSD acme this_system_libraries ${this_system_libraries}")

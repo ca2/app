@@ -244,7 +244,7 @@ namespace sockets
    }
 
 
-   void http_socket::OnLine(const string &line)
+   void http_socket::OnLine(const ::scoped_string & scopedstrLine)
    {
 
       if (m_bFirst)
@@ -258,7 +258,7 @@ namespace sockets
 
          m_timeFirstTime.Now();
 
-         ::parse pa(line);
+         ::parse pa(scopedstrLine);
 
          string str = pa.getword();
 
@@ -335,7 +335,7 @@ namespace sockets
 
       }
 
-      if (!line.length())
+      if (!scopedstrLine.size())
       {
 
          if (m_body_size_left || !m_b_keepalive || m_bChunked)
@@ -363,26 +363,26 @@ namespace sockets
       atom key;
       string strKey;
       string value;
-      auto iFind = line.find_index(':');
+      auto iFind = scopedstrLine.find_index(':');
       if (::not_found(iFind))
       {
-         strKey = line;
+         strKey = scopedstrLine;
       }
       else
       {
-         strKey = line(0, iFind);
+         strKey = scopedstrLine(0, iFind);
          strKey.trim();
          iFind++;
-         while (character_isspace(line[iFind]) && iFind < line.length())
+         while (character_isspace(scopedstrLine[iFind]) && iFind < scopedstrLine.size())
          {
             iFind++;
          }
-         character_count iLen = line.length();
-         while (iLen >= iFind && character_isspace(line[iLen - 1]))
+         character_count iLen = scopedstrLine.size();
+         while (iLen >= iFind && character_isspace(scopedstrLine[iLen - 1]))
          {
             iLen--;
          }
-         value = line.substr(iFind, iLen - iFind);
+         value = scopedstrLine.substr(iFind, iLen - iFind);
       }
 
       strKey.make_lower();
@@ -562,7 +562,7 @@ namespace sockets
 
          string strKey = pproperty->name();
 
-         ::string_array straValue;
+         ::string_array_base straValue;
 
          if (pproperty->array_get_count() > 1)
          {
@@ -918,7 +918,7 @@ namespace sockets
    {
    }
 
-   void http_socket::OnHeader(atom key, const string &value)
+   void http_socket::OnHeader(const ::atom & atom, const ::scoped_string & scopedstr)
    {
 
 
@@ -926,12 +926,12 @@ namespace sockets
       //http_socket::OnHeader(key, value);
       /*if(key.case_insensitive_order("user-agent") == 0)
       {
-         informationf("  (request)OnHeader %s: %s\n", (const char *) key, (const char *) value);
+         informationf("  (request)OnHeader %s: %s\n", (const_char_pointer )key, (const_char_pointer )value);
       }*/
-      m_request.header(key) = value;
-      if (key.as_string().case_insensitive_equals("cookie"))
+      m_request.header(atom) = scopedstr;
+      if (atom.as_string().case_insensitive_equals("cookie"))
       {
-         m_request.cookies().parse_header(value);
+         m_request.cookies().parse_header(scopedstr);
          //m_response.cookies().parse_header(value);
       }
 
@@ -980,7 +980,7 @@ namespace sockets
    }
 
 
-   void http_socket::OnData(const char *, memsize)
+   void http_socket::OnData(const_char_pointer ,memsize)
    {
 
    }

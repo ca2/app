@@ -226,7 +226,7 @@ void apex_main_data::on_system_construct()
 #elif defined(UNIVERSAL_WINDOWS)
 
 
-void apex_main_data::system_construct(const ::string_array & straParam)
+void apex_main_data::system_construct(const ::string_array_base & straParam)
 {
 
    //m_poslocal = nullptr;
@@ -323,7 +323,7 @@ string apex_main_data::get_env(const ::scoped_string & scopedstrVariableName) co
    if (m_wenvp)
    {
 
-      wstring wstrPrefix(pszVariableName);
+      wstring wstrPrefix(scopedstrVariableName);
 
       wstrPrefix += "=";
 
@@ -347,7 +347,7 @@ string apex_main_data::get_env(const ::scoped_string & scopedstrVariableName) co
    else if (m_envp)
    {
 
-      string strPrefix(pszVariableName);
+      string strPrefix(scopedstrVariableName);
 
       strPrefix += "=";
 

@@ -22,7 +22,7 @@
 
    This code support the "Traditional PKWARE Encryption".
 
-   The __allocate< AES encryption added on Zip format by Winzip  >(see the page
+   The øallocate< AES encryption added on Zip format by Winzip  >(see the page
    http://www.winzip.com/aes_info.htm ) and PKWare PKZip 5.x() Strong
    Encryption is not supported.
 */
@@ -80,9 +80,9 @@ static int update_keys(unsigned int * pkeys, const uLongf * pcrc_32_tab, int ca)
  * the given password.
  */
 #if defined(WINDOWS) || defined(LINUX)
-static void init_keys(const char* passwd, unsigned int * pkeys,const z_crc_t * pcrc_32_tab)
+static void init_keys(const_char_pointer passwd, unsigned int * pkeys,const z_crc_t * pcrc_32_tab)
 #else
-static void init_keys(const char* passwd, unsigned int * pkeys, const uLongf * pcrc_32_tab)
+static void init_keys(const_char_pointer passwd, unsigned int * pkeys, const uLongf * pcrc_32_tab)
 #endif
 {
    *(pkeys+0) = 305419896L;
@@ -110,7 +110,7 @@ static void init_keys(const char* passwd, unsigned int * pkeys, const uLongf * p
 #  endif
 
 inline int crypthead(
-const char *passwd,         /* password string */
+const_char_pointer passwd,         /* password string */
 uchar *buf,         /* where to write header */
 int bufSize,
 unsigned int * pkeys,

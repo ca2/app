@@ -25,15 +25,15 @@ namespace interprocess
       ~channel() override;
 
 
-      virtual bool open_ab(const ::string & strChannel, launcher * plauncher = nullptr);
-      virtual bool open_ba(const ::string & strChannel, launcher * plauncher = nullptr);
+      virtual bool open_ab(const ::scoped_string & scopedstrChannel, launcher * plauncher = nullptr);
+      virtual bool open_ba(const ::scoped_string & scopedstrChannel, launcher * plauncher = nullptr);
       virtual bool close();
 
 
       virtual void restart_apex_ipc();
 
 
-      virtual bool ensure_caller(const ::string & strUri, const class time & timeTimeout = 1_hour);
+      virtual bool ensure_caller(const ::scoped_string & scopedstrUri, const class time & timeTimeout = 1_hour);
       //virtual bool ensure_caller(int message, void * pdata, int len, const class time & timeTimeout = hour());
 
 

@@ -4,7 +4,7 @@
 #include "tree_data.h"
 #include "core/user/user/tree.h"
 #include "acme/constant/id.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "acme/handler/topic.h"
 #include "acme/platform/application.h"
 #include "acme/platform/session.h"
@@ -13,7 +13,7 @@
 #include "acme/platform/system.h"
 #include "acme/prototype/data/listener.h"
 #include "aura/user/user/interaction.h"
-#include "base/user/user/impact.h"
+#include "berg/user/user/impact.h"
 #include "core/user/user/tree_data.h"
 
 
@@ -149,9 +149,9 @@ namespace userfs
    void tree_data::install_message_routing(::channel * pchannel)
    {
 
-      MESSAGE_LINK(e_message_create, pchannel, this, &tree_data::on_message_create);
-      MESSAGE_LINK(e_message_left_button_double_click, pchannel, this, &tree_data::on_message_left_button_double_click);
-      MESSAGE_LINK(e_message_context_menu, pchannel, this, &tree_data::on_message_context_menu);
+      USER_MESSAGE_LINK(::user::e_message_create, pchannel, this, &tree_data::on_message_create);
+      USER_MESSAGE_LINK(::user::e_message_left_button_double_click, pchannel, this, &tree_data::on_message_left_button_double_click);
+      USER_MESSAGE_LINK(::user::e_message_context_menu, pchannel, this, &tree_data::on_message_context_menu);
 
    }
 
@@ -350,7 +350,7 @@ namespace userfs
 
    }
 
-   void tree_data::GetSelectedFilePath(string_array & stra)
+   void tree_data::GetSelectedFilePath(string_array_base & stra)
    {
 
       ::data::tree_item_ptr_array<::userfs::item> itemptraSelected;
@@ -378,7 +378,7 @@ namespace userfs
    {
    IShellFolder * psf;
 
-   if(m_mapFolder.lookup(efolder, psf))
+   if(m_mapFolder.find(efolder, psf))
    {
    return psf;
    }
@@ -455,7 +455,7 @@ namespace userfs
    void tree_data::_001OnOpenItem(::data::tree_item_base * ptreeitembase, const ::action_context & context)
    {
 
-      auto pitem = __allocate ::file::item(*dynamic_cast < ::userfs::item*>(ptreeitembase->_item()));
+      auto pitem = øallocate ::file::item(*dynamic_cast < ::userfs::item*>(ptreeitembase->_item()));
 
       m_puserfsdocument->browse(pitem, context);
 

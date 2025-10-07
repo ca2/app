@@ -322,9 +322,9 @@ bool image::host(::pixmap* ppixmap, ::windowing::window * pwindow)
 
    //destroy();
 
-   __defer_construct(m_pbitmap);
+   ødefer_construct(m_pbitmap);
 
-   __defer_construct(m_pgraphics);
+   ødefer_construct(m_pgraphics);
 
    //if (m_pbitmap.is_null())
    //{
@@ -1858,11 +1858,11 @@ void image::fork_blend(const ::int_point& pointDstParam, ::image::image* pimageS
 
    auto pgroup = psystem->task_group();
 
-   synchronous_lock slGroup(pgroup->synchronization());
+   synchronous_lock slGroup(pgroup->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    auto ptool = psystem->task_tool(::e_task_tool_draw2d);
 
-   synchronous_lock slTool(ptool->synchronization());
+   synchronous_lock slTool(ptool->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    if (!pgroup || !ptool)
    {
@@ -2908,7 +2908,7 @@ void image::mult_alpha(const ::int_point& pointDstParam, const ::int_size& sizeP
 }
 
 
-void image::create_thumbnail(const ::string & psz)
+void image::create_thumbnail(const ::scoped_string & scopedstr)
 {
 
    //return false;
@@ -4015,10 +4015,10 @@ void image::color_blend(::color::color color, unsigned char bAlpha)
 }
 
 
-void image::op(string str)
+void image::op(const ::scoped_string & scopedstr)
 {
 
-   if (str == "horz-__swap")
+   if (scopedstr == "horz-__swap")
    {
 
       map();
@@ -9251,7 +9251,7 @@ void image::gradient_fill(::color::color color1, ::color::color color2, const in
 
          //auto estatus =
          
-         __øconstruct(pimage);
+         øconstruct(pimage);
 
          //if (!estatus)
          //{
@@ -9283,7 +9283,7 @@ void image::gradient_fill(::color::color color1, ::color::color color2, const in
 
          //auto estatus =
          
-         __øconstruct(pimage);
+         øconstruct(pimage);
 
          //if (!estatus)
          //{
@@ -9651,7 +9651,7 @@ void image_copy(::image::image* pimagethis, ::image::image* pimage)
 //void image_create(::object* pparticle, ::image::image_pointer& pimage)
 //{
 //
-//   __øconstruct(pimage, pparticle);
+//   øconstruct(pimage, pparticle);
 //
 //}
 
@@ -9880,7 +9880,7 @@ void image::on_exif_orientation()
 //}
 //
 
-//void image::load_matter_icon(string_array & straMatter, string strIcon)
+//void image::load_matter_icon(string_array_base & straMatter, const ::scoped_string & scopedstrIcon)
 //{
 //
 //   ::file::path path;
@@ -10415,7 +10415,7 @@ CLASS_DECL_AURA void draw_freetype_bitmap(::image::image* m_p, int Δx, int Δy,
 ::subparticle_pointer image::clone()
 {
 
-   auto pimage = this->__øcreate<::image::image>();
+   auto pimage = this->øcreate<::image::image>();
 
    pimage->copy_from((::image::image *) this);
 
@@ -10479,11 +10479,11 @@ CLASS_DECL_AURA void draw_freetype_bitmap(::image::image* m_p, int Δx, int Δy,
 http://www.sparkhound.com/blog/detect-image-file-types-through-unsigned char-arrays
 ::payload bmp = Encoding.ASCII.GetBytes("BM"); // BMP
 ::payload gif = Encoding.ASCII.GetBytes("GIF"); // GIF
-::payload png = __allocate_array< unsigned char >(){ 137, 80, 78, 71 }; // PNG
-::payload tiff = __allocate_array< unsigned char >(){ 73, 73, 42 }; // TIFF
-::payload tiff2 = __allocate_array< unsigned char >(){ 77, 80, 42 }; // TIFF
-::payload jpeg = __allocate_array< unsigned char >(){ 255, 216, 255, 224 }; // jpeg
-::payload jpeg2 = __allocate_array< unsigned char >(){ 255, 216, 255, 225 }; // jpeg canon
+::payload png = øallocate_array< unsigned char >(){ 137, 80, 78, 71 }; // PNG
+::payload tiff = øallocate_array< unsigned char >(){ 73, 73, 42 }; // TIFF
+::payload tiff2 = øallocate_array< unsigned char >(){ 77, 80, 42 }; // TIFF
+::payload jpeg = øallocate_array< unsigned char >(){ 255, 216, 255, 224 }; // jpeg
+::payload jpeg2 = øallocate_array< unsigned char >(){ 255, 216, 255, 225 }; // jpeg canon
 */
 
 
@@ -10574,7 +10574,7 @@ void image::_unmap()
    if (::is_null(m_pextension))
    {
 
-      __construct_new(m_pextension);
+      øconstruct_new(m_pextension);
 
    }
 
@@ -10622,7 +10622,7 @@ void image::draw(const ::image::image_drawing & imagedrawing)
 
          auto pextension = get_extension();
 
-         __construct_new(pextension->m_pframea);
+         øconstruct_new(pextension->m_pframea);
 
          pextension->m_pframea->m_size = this->m_size;
 
@@ -10670,7 +10670,7 @@ void image::_draw_raw(const ::image::image_drawing& imagedrawing)
 
    ::image::image_pointer pimage;
 
-   m_papplication->__øconstruct(pimage);
+   m_papplication->øconstruct(pimage);
 
    pimage->create(size);
 

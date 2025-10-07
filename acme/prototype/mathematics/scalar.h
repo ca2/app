@@ -405,7 +405,7 @@ inline string get_default_integer_scalar_format()
 //{
 //
 //   template < typename FORMATABLE >
-//   inline string printf(const ::string & strFormat, const FORMATABLE & f)
+//   inline string printf(const ::scoped_string & scopedstrFormat, const FORMATABLE & f)
 //   {
 //
 //      string str;
@@ -503,7 +503,7 @@ public:
 
    virtual bool set_rate(double dRate, int iFlags);
 
-   //string Format(const ::string & strFormat);
+   //string Format(const ::scoped_string & scopedstrFormat);
 
    //string to_string() { return Format(m_strFormat); }
    bool is_null() const { return m_psource == nullptr || m_escalar == e_scalar_none; }
@@ -519,7 +519,7 @@ public:
    number maximum();
    number minimum();
 
-   //virtual string printf(const ::string& strFormat);
+   //virtual string printf(const ::scoped_string & scopedstrFormat);
 
    void increment(number number = 1) { set(get() + number); }
    void decrement(number number = 1) { set(get() - number); }
@@ -536,7 +536,7 @@ public:
 //public:
 //
 //
-//   real_scalar(scalar_source * psource = nullptr,enum_scalar ereal_scalar = e_scalar_none,const ::string & strFormat = ::get_default_real_scalar_format());
+//   real_scalar(scalar_source * psource = nullptr,enum_scalar ereal_scalar = e_scalar_none,const ::scoped_string & scopedstrFormat = ::get_default_real_scalar_format());
 //
 //
 //   void set(::real dValue);
@@ -557,7 +557,7 @@ public:
 //
 //   real_scalar & operator = (::real dValue) { set(dValue); return *this; }
 //
-//   virtual string printf(const ::string & strFormat);
+//   virtual string printf(const ::scoped_string & scopedstrFormat);
 //
 //   void increment(::real iValue = ::numeric_info<::real>::unitary()) { set(get() + iValue); }
 //   void decrement(::real iValue = ::numeric_info<::real>::unitary()) { set(get() - iValue); }
@@ -577,7 +577,7 @@ public:
 //public:
 //
 //
-//   integer_scalar(scalar_source* psource = nullptr, enum_scalar einteger_scalar = e_scalar_none, const ::string& strFormat = ::get_default_integer_scalar_format());
+//   integer_scalar(scalar_source* psource = nullptr, enum_scalar einteger_scalar = e_scalar_none, const ::scoped_string & scopedstrFormat = ::get_default_integer_scalar_format());
 //
 //
 //   void set(::integer dValue);
@@ -596,7 +596,7 @@ public:
 //
 //   integer_scalar& operator = (::integer dValue) { set(dValue); return *this; }
 //
-//   virtual string printf(const ::string& strFormat);
+//   virtual string printf(const ::scoped_string & scopedstrFormat);
 //
 //   void increment(::integer iValue = ::numeric_info<::integer>::unitary()) { set(get() + iValue); }
 //   void decrement(::integer iValue = ::numeric_info<::integer>::unitary()) { set(get() - iValue); }

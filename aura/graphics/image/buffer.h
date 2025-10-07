@@ -29,7 +29,7 @@ namespace image
       virtual buffer * no_padding_lock(enum_copy_disposition ecopydisposition, ::pixmap* ppixmapLock);
       virtual buffer * source_lock(enum_copy_disposition ecopydisposition, ::pixmap* ppixmapLock);
       
-      void unlock();
+      void unlock() override;
 
 
    };

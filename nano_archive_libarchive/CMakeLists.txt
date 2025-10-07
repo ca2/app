@@ -42,7 +42,12 @@ if (MSVC)
 elseif (${LINUX} OR ${__BSD__} OR ${ANDROID})
 
 
-    pkg_check_modules(PKGCONFIG libarchive)
+    if(${USE_PKGCONFIG})
+    pkg_check_modules(${PROJECT_NAME}_PKGCONFIG libarchive)
+    else()
+        list(APPEND library_references
+        archive)
+        endif()
 
    target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_20)
    #set_target_properties(${PROJECT_NAME} PROPERTIES CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)

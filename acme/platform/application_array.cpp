@@ -71,10 +71,10 @@ namespace platform
    }
 
 
-   ::platform::application * application_array::find_by_app_id(const string & strAppId)
+   ::platform::application * application_array::find_by_app_id(const ::scoped_string & scopedstrAppId)
    {
 
-      //synchronous_lock synchronouslock(this->synchronization());
+      //synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    restart:
 
@@ -93,7 +93,7 @@ namespace platform
 
             }
 
-            if (papplication->m_strAppId == strAppId)
+            if (papplication->m_strAppId == scopedstrAppId)
             {
 
                return papplication;
@@ -113,10 +113,10 @@ namespace platform
    }
 
 
-   ::platform::application * application_array::find_running_defer_try_quit_damaged(const string & strAppId)
+   ::platform::application * application_array::find_running_defer_try_quit_damaged(const ::scoped_string & scopedstrAppId)
    {
 
-      auto papplication = find_by_app_id(strAppId);
+      auto papplication = find_by_app_id(scopedstrAppId);
 
       if (::is_null(papplication))
       {
@@ -161,10 +161,10 @@ namespace platform
    }
 
 
-   bool application_array::lookup(const string & strAppId, ::pointer<::platform::application>& papp)
+   bool application_array::find(const ::scoped_string & scopedstrAppId, ::pointer<::platform::application>& papp)
    {
 
-      papp = find_running_defer_try_quit_damaged(strAppId);
+      papp = find_running_defer_try_quit_damaged(scopedstrAppId);
 
       return papp.is_set();
 

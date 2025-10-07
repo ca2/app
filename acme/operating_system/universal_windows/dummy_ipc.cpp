@@ -59,7 +59,7 @@
 //      bool tx::open(const ::scoped_string & scopedstrKey,launcher * plauncher)
 //      {
 //
-//         m_strBaseChannel = "acme\\appdata\\inteprocess_channel\\" + string(pszKey);
+//         m_strBaseChannel = "acme\\appdata\\inteprocess_channel\\" + string(scopedstrKey);
 //
 //         if(m_strBaseChannel.is_empty())
 //         {
@@ -172,7 +172,7 @@
 //            g_pfnChangeWindowMessageFilter(WM_COPYDATA,MSGFLT_ADD);
 //         }
 //
-//         m_strBaseChannel = "acme\\appdata\\inteprocess_channel\\" + string(pszKey);
+//         m_strBaseChannel = "acme\\appdata\\inteprocess_channel\\" + string(scopedstrKey);
 //
 //         if(m_strBaseChannel.is_empty())
 //         {
@@ -216,7 +216,7 @@
 //
 //         m_pp->result = m_pp->folderTopic->CreateFileQuery();
 //
-//         m_pp->result->ContentsChanged += ref __allocate< TypedEventHandler < ::winrt::Windows::Storage::Search::IStorageQueryResultBase ^,Object ^ >([this] >(::winrt::Windows::Storage::Search::IStorageQueryResultBase ^ result,Object ^ o)
+//         m_pp->result->ContentsChanged += ref øallocate< TypedEventHandler < ::winrt::Windows::Storage::Search::IStorageQueryResultBase ^,Object ^ >([this] >(::winrt::Windows::Storage::Search::IStorageQueryResultBase ^ result,Object ^ o)
 //         {
 //
 //            ::winrt::Windows::Storage::StorageFile ^ f = ::wait(result->Folder->GetFileAsync(wstring("acme.topic")));
@@ -228,7 +228,7 @@
 //
 //               ::wait(f->DeleteAsync());
 //
-//               string_array stra;
+//               string_array_base stra;
 //
 //               stra.add_lines(str);
 //
@@ -250,7 +250,7 @@
 //
 //         ::wait(m_pp->result->GetFilesAsync());
 //
-//         //HINSTANCE hinstance = ::GetModuleHandleA(pszWindowProcModule);
+//         //HINSTANCE hinstance = ::GetModuleHandleA(scopedstrWindowProcModule);
 //
 //         //ATOM atom = register_class(hinstance);
 //
@@ -340,7 +340,7 @@
 //      }
 //
 //
-//      //LRESULT CALLBACK rx::s_message_queue_proc(oswindow oswindow,::enum_message emessage, ::wparam wparam, ::lparam lparam)
+//      //LRESULT CALLBACK rx::s_message_queue_proc(oswindow oswindow,::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
 //      //{
 //
 //      //   //int iRet = 0;
@@ -390,7 +390,7 @@
 //      //}
 //
 //
-//      //LRESULT rx::message_queue_proc(::enum_message emessage, ::wparam wparam, ::lparam lparam)
+//      //LRESULT rx::message_queue_proc(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
 //      //{
 //
 //      //   //if(message == WM_USER + 100)
@@ -413,7 +413,7 @@
 //      //   //   else if(pcds->dwData == I32_MINIMUM)
 //      //   //   {
 //
-//      //   //      string strMessage((const char *)pcds->lpData,pcds->cbData);
+//      //   //      string strMessage((const_char_pointer )pcds->lpData,pcds->cbData);
 //
 //      //   //      on_receive(this,strMessage.c_str());
 //

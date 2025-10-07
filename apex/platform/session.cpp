@@ -6,7 +6,7 @@
 //#include "os_context.h"
 #include "acme/constant/id.h"
 #include "acme/constant/user_key.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 ////#include "acme/exception/exception.h"
 #include "acme/prototype/prototype/url.h"
 #include "acme/parallelization/synchronous_lock.h"
@@ -170,7 +170,7 @@ namespace apex
 
       //::platform::context::install_message_routing(pchannel);
       
-      //MESSAGE_LINK(e_message_erase_application, pchannel, this, &session::on_message_erase_application);
+      //USER_MESSAGE_LINK(::user::e_message_erase_application, pchannel, this, &session::on_message_erase_application);
 
    }
 
@@ -209,7 +209,7 @@ namespace apex
    //}
 
    //
-   // void session::locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema)
+   // void session::locale_schema_matter(string_array_base & stra, const string_array_base & straMatterLocator, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema)
    // {
    //
    //
@@ -375,7 +375,7 @@ namespace apex
    //}
 
 
-   //void session::get_monitor(int_rectangle_array& rectaMonitor, int_rectangle_array& rectaIntersect, const ::int_rectangle& rectangle)
+   //void session::get_monitor(int_rectangle_array_base& rectaMonitor, int_rectangle_array_base& rectaIntersect, const ::int_rectangle& rectangle)
    //{
 
 
@@ -597,12 +597,12 @@ class ::fs::data * session::fs()
    }
 
 
-   bool session::open_by_file_extension(const ::string & pszPathName, ::request * prequest)
+   bool session::open_by_file_extension(const ::scoped_string & scopedstrPathName, ::request * prequest)
    {
 
-      auto prequestNew = __create_new < ::request >();
+      auto prequestNew = øcreate_new < ::request >();
 
-      prequestNew->m_payloadFile = pszPathName;
+      prequestNew->m_payloadFile = scopedstrPathName;
 
       prequestNew->m_puserelementParent = prequest->m_puserelementParent;
 
@@ -659,7 +659,7 @@ class ::fs::data * session::fs()
 
          string strExtension = strPathName.final_extension();
 
-         string_array straApp;
+         string_array_base straApp;
 
          throw ::exception(todo, "filehandler");
 
@@ -709,12 +709,12 @@ class ::fs::data * session::fs()
    }
 
 
-   //::application * session::application_get(const ::string & pszAppId, bool bCreate, bool bSynch, ::request * prequest)
+   //::application * session::application_get(const ::scoped_string & scopedstrAppId, bool bCreate, bool bSynch, ::request * prequest)
    //{
 
    //   ::pointer<::apex::application>papp;
 
-   //   if (m_applicationa.lookup(pszAppId, papp))
+   //   if (m_applicationa.find(scopedstrAppId, papp))
    //   {
 
    //      return papp;
@@ -735,13 +735,13 @@ class ::fs::data * session::fs()
    //      try
    //      {
 
-   //         papp = create_application(pszAppId, bSynch, pcreate);
+   //         papp = create_application(scopedstrAppId, bSynch, pcreate);
 
    //      }
    //      catch (const ::exception & e)
    //      {
 
-   //         // apex::session, axis::session and ::base::session, could get more specialized handling in apex::application (apex::system)
+   //         // apex::session, axis::session and ::berg::session, could get more specialized handling in apex::application (apex::system)
    //         // Thank you Mummi (em Santos, cuidando do Lucinho e ajudando um monte a Carou e o Lucio e Eu 2019-01-15) !! Thank you God!! <3tbs
 
    //         handle_exception(e);
@@ -784,7 +784,7 @@ class ::fs::data * session::fs()
    //}
 
 
-   bool session::is_licensed(const ::string & pszAppId, bool bInteractive)
+   bool session::is_licensed(const ::scoped_string & scopedstrAppId, bool bInteractive)
    {
 
       if (has_property("install"))
@@ -806,14 +806,14 @@ class ::fs::data * session::fs()
    }
 
 
-   bool session::get_auth(const string & pszForm, string & strUsername, string & strPassword)
+   bool session::get_auth(const ::scoped_string & scopedstrForm, string & strUsername, string & strPassword)
    {
 
       throw 0;
 
       return false;
 
-      //return account()->get_auth(pszForm, strUsername, strPassword);
+      //return account()->get_auth(scopedstrForm, strUsername, strPassword);
 
    }
 
@@ -945,12 +945,12 @@ class ::fs::data * session::fs()
 
       }
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (!m_pmapKeyPressed)
       {
 
-         __construct_new(m_pmapKeyPressed);
+         øconstruct_new(m_pmapKeyPressed);
 
       }
 
@@ -959,13 +959,13 @@ class ::fs::data * session::fs()
       if (ekey == ::user::e_key_shift)
       {
 
-         m_pmapKeyPressed->lookup(::user::e_key_shift, bPressed);
+         m_pmapKeyPressed->find(::user::e_key_shift, bPressed);
          if (bPressed)
             goto ret;
-         m_pmapKeyPressed->lookup(::user::e_key_left_shift, bPressed);
+         m_pmapKeyPressed->find(::user::e_key_left_shift, bPressed);
          if (bPressed)
             goto ret;
-         m_pmapKeyPressed->lookup(::user::e_key_right_shift, bPressed);
+         m_pmapKeyPressed->find(::user::e_key_right_shift, bPressed);
          if (bPressed)
             goto ret;
       }
@@ -975,13 +975,13 @@ class ::fs::data * session::fs()
 #endif
          )
       {
-         m_pmapKeyPressed->lookup(::user::e_key_command, bPressed);
+         m_pmapKeyPressed->find(::user::e_key_command, bPressed);
          if (bPressed)
             goto ret;
-         m_pmapKeyPressed->lookup(::user::e_key_left_command, bPressed);
+         m_pmapKeyPressed->find(::user::e_key_left_command, bPressed);
          if (bPressed)
             goto ret;
-         m_pmapKeyPressed->lookup(::user::e_key_right_command, bPressed);
+         m_pmapKeyPressed->find(::user::e_key_right_command, bPressed);
          if (bPressed)
             goto ret;
       }
@@ -991,32 +991,32 @@ class ::fs::data * session::fs()
 #endif
          )
       {
-         m_pmapKeyPressed->lookup(::user::e_key_control, bPressed);
+         m_pmapKeyPressed->find(::user::e_key_control, bPressed);
          if (bPressed)
             goto ret;
-         m_pmapKeyPressed->lookup(::user::e_key_left_control, bPressed);
+         m_pmapKeyPressed->find(::user::e_key_left_control, bPressed);
          if (bPressed)
             goto ret;
-         m_pmapKeyPressed->lookup(::user::e_key_right_control, bPressed);
+         m_pmapKeyPressed->find(::user::e_key_right_control, bPressed);
          if (bPressed)
             goto ret;
       }
       else if (ekey == ::user::e_key_alt)
       {
-         m_pmapKeyPressed->lookup(::user::e_key_alt, bPressed);
+         m_pmapKeyPressed->find(::user::e_key_alt, bPressed);
          if (bPressed)
             goto ret;
-         m_pmapKeyPressed->lookup(::user::e_key_left_alt, bPressed);
+         m_pmapKeyPressed->find(::user::e_key_left_alt, bPressed);
          if (bPressed)
             goto ret;
-         m_pmapKeyPressed->lookup(::user::e_key_right_alt, bPressed);
+         m_pmapKeyPressed->find(::user::e_key_right_alt, bPressed);
          if (bPressed)
             goto ret;
       }
       else
       {
 
-         m_pmapKeyPressed->lookup(ekey, bPressed);
+         m_pmapKeyPressed->find(ekey, bPressed);
 
       }
 
@@ -1030,12 +1030,12 @@ ret:
    void session::set_key_pressed(::user::enum_key ekey, bool bPressed)
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (!m_pmapKeyPressed)
       {
 
-         __construct_new(m_pmapKeyPressed);
+         øconstruct_new(m_pmapKeyPressed);
 
       }
 
@@ -1064,7 +1064,7 @@ ret:
       //}
 
       //estatus = 
-      __construct_new(m_pfs);
+      øconstruct_new(m_pfs);
 
 
       __check_refdbg
@@ -1073,7 +1073,7 @@ ret:
       //if (!estatus)
       //{
 
-      //   informationf("\nFailed to __construct_new(m_pfs)");
+      //   informationf("\nFailed to øconstruct_new(m_pfs)");
 
       //   m_result.add(estatus);
 
@@ -1096,7 +1096,7 @@ ret:
 
       //}
 
-      //estatus = __construct_new(m_puserpresence);
+      //estatus = øconstruct_new(m_puserpresence);
 
       //if (!estatus)
       //{
@@ -1153,7 +1153,7 @@ ret:
       //if (!m_pftpfs)
       //{
 
-      //   auto pftpfs = __allocate ftpfs();
+      //   auto pftpfs = øallocate ftpfs();
 
       //   auto estatus = pftpfs->initialize_ftpfs(this, "");
 
@@ -1166,7 +1166,7 @@ ret:
 
       //   }
 
-      //   __øconstruct(m_pftpfs, pftpfs);
+      //   øconstruct(m_pftpfs, pftpfs);
 
       //}
 
@@ -1175,11 +1175,11 @@ ret:
 
          __check_refdbg
 
-         auto pset = __create_new<::fs::set>();
+         auto pset = øcreate_new<::fs::set>();
 
          __check_refdbg
 
-         auto plink = __create_new < ::fs::link>();
+         auto plink = øcreate_new < ::fs::link>();
 
          __check_refdbg
 
@@ -1195,7 +1195,7 @@ ret:
 
          __check_refdbg
 
-         ::pointer < ::fs::data > pfsdataNative = __create_new < ::fs::native>();
+         ::pointer < ::fs::data > pfsdataNative = øcreate_new < ::fs::native>();
 
          __check_refdbg
 
@@ -1249,7 +1249,7 @@ ret:
          //if (!m_paccount)
          //{
 
-         //   estatus = __construct_new(m_paccount);
+         //   estatus = øconstruct_new(m_paccount);
 
          //   if (!estatus)
          //   {
@@ -1458,18 +1458,18 @@ namespace apex
    }
 
 
-   void session::launch_app(const ::string & psz)
+   void session::launch_app(const ::scoped_string & scopedstr)
    {
 
-      __UNREFERENCED_PARAMETER(psz);
+      __UNREFERENCED_PARAMETER(scopedstr);
 
    }
 
 
-   void session::install_app(const ::string & psz)
+   void session::install_app(const ::scoped_string & scopedstr)
    {
 
-      __UNREFERENCED_PARAMETER(psz);
+      __UNREFERENCED_PARAMETER(scopedstr);
 
    }
 
@@ -1656,12 +1656,12 @@ namespace apex
 
 
 
-   void session::set_app_title(const ::string & pszAppId, const ::string & pszTitle)
+   void session::set_app_title(const ::scoped_string & scopedstrAppId, const ::scoped_string & scopedstrTitle)
    {
 
       ::pointer<::platform::application>papplication;
 
-      if (m_applicationa.lookup(pszAppId, papplication) && papplication)
+      if (m_applicationa.find(scopedstrAppId, papplication) && papplication)
       {
 
          //::pointer<::bergedge::pane_impact>ppaneimpact = get_document()->get_typed_impact < ::bergedge::pane_impact >();
@@ -1669,7 +1669,7 @@ namespace apex
          //if(ppaneimpact != nullptr)
          //{
 
-         //   string strAppName(pszAppId);
+         //   string strAppName(scopedstrAppId);
 
          //   ::user::tab::pane * ppane = ppaneimpact->get_pane_by_id("app:" + strAppName);
 
@@ -1790,7 +1790,7 @@ namespace apex
    //   if(psystem->m_pbergedgemap == nullptr)
    //      return nullptr;
 
-   //   if(!psystem->m_pbergedgemap->lookup(0,psession))
+   //   if(!psystem->m_pbergedgemap->find(0,psession))
    //   {
    //      return nullptr;
    //   }
@@ -1881,7 +1881,7 @@ namespace apex
 //
 //      auto puser = pcredentials->m_puser;
 //
-//      //auto pdialog = ::__create_new<::account::dialog>();
+//      //auto pdialog = ::øcreate_new<::account::dialog>();
 //
 //      //pdialog->initialize_account_dialog(pcredentials);
 //
@@ -1896,7 +1896,7 @@ namespace apex
    //void session::_001OnDefaultTabPaneDrawTitle(::user::tab_pane& pane, ::user::tab* ptab, ::draw2d::graphics_pointer & pgraphics, const ::int_rectangle& rectangle, ::draw2d::brush_pointer& pbrushText)
    //{
 
-   //   string_array& straTitle = pane.m_straTitle;
+   //   string_array_base& straTitle = pane.m_straTitle;
 
    //   pgraphics->set(pbrushText);
 
@@ -1954,14 +1954,14 @@ namespace apex
    //}
 
 
-   string_array session::get_user_wallpaper()
+   string_array_base session::get_user_wallpaper()
    {
 
-      string_array stra;
+      string_array_base stra;
 
-      //string_array straSource = psession->userex()->get_wallpaper();
+      //string_array_base straSource = psession->userex()->get_wallpaper();
 
-      //for (string str : straSource)
+      //for (const ::scoped_string & scopedstr : straSource)
       //{
 
       //   if (str.case_insensitive_begins_eat("file://"))
@@ -2021,8 +2021,8 @@ namespace apex
    void session::frame_pre_translate_message(::message::message* pmessage)
    {
 
-//      if (pmessage->m_emessage == WM_GETTEXT
-//         || pmessage->m_emessage == WM_GETTEXTLENGTH
+//      if (pmessage->m_eusermessage == WM_GETTEXT
+//         || pmessage->m_eusermessage == WM_GETTEXTLENGTH
 //         )
 //      {
 //
@@ -2032,7 +2032,7 @@ namespace apex
 //         return;
 //
 //      }
-      //else if (pmessage->m_emessage == e_message_mouse_move)
+      //else if (pmessage->m_eusermessage == ::user::e_message_mouse_move)
       //{
 
       //   pmessage->m_uiMessageFlags |= 0; // message considered pre translated

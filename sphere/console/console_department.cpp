@@ -30,7 +30,7 @@ namespace console
          return false;
 
 
-      m_spprompt = __allocate prompt(this);
+      m_spprompt = øallocate prompt(this);
 
       console_prompt().impact(false);
 
@@ -48,7 +48,7 @@ namespace console
 
       if(pusermessage != nullptr)
       {
-         if(pusermessage->m_emessage == e_message_key_down)
+         if(pusermessage->m_emessage == ::user::e_message_key_down)
          {
 
             auto pkey = pmessage->m_union.m_pkey;

@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "calculator_edit.h"
 #include "acme/constant/id.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "acme/handler/topic.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "axis/mathematics/calculator/parser.h"
@@ -56,7 +56,7 @@ namespace calculator
     
       ::user::plain_edit::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_create, pchannel, this, &edit::on_message_create);
+      USER_MESSAGE_LINK(::user::e_message_create, pchannel, this, &edit::on_message_create);
       
    }
 
@@ -77,10 +77,10 @@ namespace calculator
    }
 
 
-   void edit::set_format(const string& strFormat)
+   void edit::set_format(const ::scoped_string & scopedstrFormat)
    {
 
-      m_strFormat = strFormat;
+      m_strFormat = scopedstrFormat;
 
    }
 
@@ -107,7 +107,7 @@ namespace calculator
 
             strExp = as_text();
 
-            auto pparser = __create_new< parser >();
+            auto pparser = øcreate_new< parser >();
 
             ::pointer < ::user::plain_edit_error > perror;
 
@@ -275,7 +275,7 @@ namespace calculator
             catch (const ::exception & exception)
             {
 
-               perror = __create_new < ::user::plain_edit_error >();
+               perror = øcreate_new < ::user::plain_edit_error >();
                
                perror->m_strMessage = exception.get_message();
                perror->m_iStart = 0;
@@ -369,7 +369,7 @@ namespace calculator
                {
                   if (!perror)
                   {
-                     perror = __create_new < ::user::plain_edit_error >();
+                     perror = øcreate_new < ::user::plain_edit_error >();
 
                   }
                   perror->m_strMessage = "(unknown conversion)";
@@ -389,7 +389,7 @@ namespace calculator
                if (!perror)
                {
 
-                  perror = __create_new < ::user::plain_edit_error >();
+                  perror = øcreate_new < ::user::plain_edit_error >();
 
                }
                perror->m_iStart = ::string(strExp + string(" ")).length();

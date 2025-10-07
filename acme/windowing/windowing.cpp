@@ -37,6 +37,7 @@ namespace acme
       windowing::windowing()
       {
 
+         m_bKeepRunningPostedProcedures = true;
          m_ewindowing = ::windowing::e_windowing_none;
          m_ewindowingbias = ::windowing::e_bias_unknown;
 
@@ -48,7 +49,7 @@ namespace acme
       }
 
 
-      //::pointer < ::subparticle > windowing::nano()->message_box(const ::string& strMessage, const ::string& strTitle, const ::e_message_box& emessagebox, const ::string& strDetails)
+      //::pointer < ::subparticle > windowing::nano()->message_box(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::user::e_message_box& emessagebox, const ::scoped_string & scopedstrDetails)
       //{
 
       //   auto psequencer = node()->nano()->message_box(strMessage, strTitle, emessagebox, strDetails);
@@ -58,7 +59,7 @@ namespace acme
       //}
 
 
-      //::pointer < ::subparticle > windowing::nano()->message_console(const ::string& strMessage, const ::string& strTitle, const ::e_message_box& emessagebox, const ::string& strDetails)
+      //::pointer < ::subparticle > windowing::nano()->message_console(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::user::e_message_box& emessagebox, const ::scoped_string & scopedstrDetails)
       //{
 
       //   auto psequencer = node()->nano()->message_console(strMessage, strTitle, emessagebox, strDetails);
@@ -67,9 +68,9 @@ namespace acme
 
       //}
 
-      //::pointer < ::subparticle > windowing::message_box(const ::string & strMessage, const ::string & strTitle,
-      //                                                       const ::e_message_box & emessagebox,
-      //                                                       const ::string & strDetails, ::nano::graphics::icon * picon)
+      //::pointer < ::subparticle > windowing::message_box(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle,
+      //                                                       const ::user::e_message_box & emessagebox,
+      //                                                       const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon)
       //{
       //   auto pnode = node();
 
@@ -80,8 +81,8 @@ namespace acme
 
 
       //::pointer < ::subparticle > windowing::exception_message_box(
-      //    const ::exception & exception, const ::string & strMessageParam, const ::string & strTitleParam,
-      //    const ::e_message_box & emessagebox, const ::string & strDetailsParam, ::nano::graphics::icon * picon)
+      //    const ::exception & exception, const ::scoped_string & scopedstrMessageParam, const ::scoped_string & scopedstrTitleParam,
+      //    const ::user::e_message_box & emessagebox, const ::scoped_string & scopedstrDetailsParam, ::nano::graphics::icon * picon)
       //{
       //   string strExceptionDetails = exception.get_consolidated_details(this);
 
@@ -122,9 +123,9 @@ namespace acme
       //}
 
 
-      //::pointer < ::subparticle > windowing::message_console(const ::string & strMessage, const ::string & strTitle,
-      //                                                           const ::e_message_box & emessagebox,
-      //                                                           const ::string & strDetails, ::nano::graphics::icon * picon)
+      //::pointer < ::subparticle > windowing::message_console(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle,
+      //                                                           const ::user::e_message_box & emessagebox,
+      //                                                           const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon)
       //{
       //   auto psequencer = node()->create_message_sequencer(strMessage, strTitle, emessagebox, strDetails, picon);
 
@@ -133,8 +134,8 @@ namespace acme
 
 
       //::pointer < ::subparticle > windowing::exception_message_console(
-      //    const ::exception & exception, const ::string & strMessage, const ::string & strTitle,
-      //    const ::e_message_box & emessagebox, const ::string & strDetails, ::nano::graphics::icon * picon)
+      //    const ::exception & exception, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle,
+      //    const ::user::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon)
       //{
       //   string strExceptionDetails = exception.get_consolidated_details(this);
 
@@ -167,7 +168,7 @@ namespace acme
       }
 
 
-      void windowing::set_clipboard_text(const char* psz)
+      void windowing::set_clipboard_text(const_char_pointer psz)
       {
 
 
@@ -362,7 +363,7 @@ namespace acme
 
             system()->do_graphics_and_windowing_factory();
 
-            __øconstruct(m_pacmedisplay);
+            øconstruct(m_pacmedisplay);
 
             m_pacmedisplay->open_display();
 
@@ -376,6 +377,16 @@ namespace acme
       void windowing::on_start_system()
       {
 
+
+      }
+
+
+      void windowing::on_start_windowing_application()
+      {
+
+         system()->post_application_start();
+         system()->defer_post_application_start_file_open_request();
+         system()->post_application_started();
 
       }
 
@@ -421,7 +432,7 @@ namespace acme
       void windowing::on_create_window_object(::acme::user::interaction* puserinteraction)
       {
 
-         puserinteraction->__defer_construct(puserinteraction->m_pacmewindowingwindow);
+         puserinteraction->ødefer_construct(puserinteraction->m_pacmewindowingwindow);
 
       }
 
@@ -569,7 +580,7 @@ namespace acme
 
          }
 
-         auto ptopic = __allocate ::topic(id_application_dark_mode_change);
+         auto ptopic = øallocate ::topic(id_application_dark_mode_change);
 
          for (auto& pwindow: m_windowa)
          {
@@ -641,7 +652,7 @@ namespace acme
       void windowing::_do_tasks()
       {
 
-         _synchronous_lock synchronouslock(this->synchronization());
+         _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          auto interchangea = m_windowa;
 
@@ -771,7 +782,7 @@ namespace acme
 //      }
 //
 //
-//      bool windowing::set_wallpaper(::collection::index iScreen, string strLocalImagePath, ::acme::windowing::display * pwindowingdisplay)
+//      bool windowing::set_wallpaper(::collection::index iScreen, const ::scoped_string & scopedstrLocalImagePath, ::acme::windowing::display * pwindowingdisplay)
 //      {
 //
 //         throw interface_only();

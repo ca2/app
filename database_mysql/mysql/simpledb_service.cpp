@@ -1,6 +1,6 @@
 #include "framework.h"
 
-#include "base/net/net_sockets.h"
+#include "berg/net/net_sockets.h"
 #include "aura/database/simpledb/simpledb_socket_thread.h"
 
 #ifdef WINDOWS
@@ -45,7 +45,7 @@ namespace simpledb
       }*/
 
 
-      string_array stra;
+      string_array_base stra;
       stra = psystem->m_simpledb.db().data_load(nullptr, "simpledb");
       for(int i = 0; i < stra.get_size(); i++)
       {

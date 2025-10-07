@@ -29,10 +29,10 @@ inline oswindow as_oswindow(HWND hwnd)
 CLASS_DECL_ACME void attach_thread_input_to_main_thread(bool bAttach);
 
 
-CLASS_DECL_ACME bool process_modules(string_array & stra, unsigned int processID);
+CLASS_DECL_ACME bool process_modules(string_array_base & stra, unsigned int processID);
 
 
-CLASS_DECL_ACME bool load_modules_diff(string_array & straOld, string_array & straNew, const ::scoped_string & scopedstrExceptDir);
+CLASS_DECL_ACME bool load_modules_diff(string_array_base & straOld, string_array_base & straNew, const ::scoped_string & scopedstrExceptDir);
 
 
 //CLASS_DECL_ACME bool check_msys2_at_c_msys64(::particle* pparticle);
@@ -58,7 +58,7 @@ inline void copy(MESSAGE & message, const MSG & msg)
 {
 
    message.m_oswindow = (oswindow)(msg.hwnd);
-   message.m_emessage = (enum_message)msg.message;
+   message.m_eusermessage = (::user::enum_message)msg.message;
    message.m_wparam = msg.wParam;
    message.m_lparam = msg.lParam;
    message.m_point.x() = msg.pt.x;
@@ -73,7 +73,7 @@ inline void copy(MSG & msg, const MESSAGE & message)
 {
 
    msg.hwnd = (HWND)(message.m_oswindow);
-   msg.message = (UINT)message.m_emessage;
+   msg.message = (UINT)message.m_eusermessage;
    msg.wParam = message.m_wparam;
    msg.lParam = message.m_lparam;
    msg.pt.x = message.m_point.x();

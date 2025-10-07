@@ -39,13 +39,13 @@ namespace draw2d_gpu
 
 
       //__creatable_from_base(draw2d, ::draw2d::draw2d);
-      //string_map < ::pointer<private_font >>m_mapPrivateFont;
+      //string_map_base < ::pointer<private_font >>m_mapPrivateFont;
 
       //bool        m_bGladInitialized;
 
       //::pointer<::opengl::context>          m_popenglcontext;
 
-      ::string_map <::int_map<::pointer <face>>> m_mapFaceSize;
+      ::string_map_base <::int_map<::pointer <face>>> m_mapFaceSize;
       draw2d();
       ~draw2d() override;
 

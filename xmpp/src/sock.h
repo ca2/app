@@ -42,7 +42,7 @@ int sock_is_recoverable(const int error);
 int sock_connect_error(const sock_t sock);
 
 int sock_srv_lookup(const ::string &service, const ::string &proto,
-		     const char *domain, char *resulttarget,
+		     const_char_pointer domain, char *resulttarget,
 		     int resulttargetlength, int *resultport);
 
 #endif /* __LIBSTROPHE_SOCK_H__ */

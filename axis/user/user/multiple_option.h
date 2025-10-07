@@ -20,7 +20,7 @@ namespace user
 
       ::atom_array                  m_atomaOptions;
       ::pointer_array < ::image::image >   m_imagea;
-      ::string_array                m_straName;
+      ::string_array_base                m_straName;
 
       
 
@@ -102,7 +102,7 @@ namespace user
 
       virtual ::collection::index add_item(const ::scoped_string & scopedstr, const ::atom & atom);
       virtual ::collection::index erase_item_at(::collection::index nIndex);
-      virtual ::collection::index insert_item_at(::collection::index nIndex, const ::string & pszString);
+      virtual ::collection::index insert_item_at(::collection::index nIndex, const ::scoped_string & scopedstrString);
 
       virtual void reset_content();
       

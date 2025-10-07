@@ -20,7 +20,7 @@ namespace windows
    public:
 
       
-      map < ::oswindow, ::pointer < ::windows::window > >     m_windowmap;
+      map_base < ::oswindow, ::pointer < ::windows::window > >     m_windowmap;
 
 
       windowing();

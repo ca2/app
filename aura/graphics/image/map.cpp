@@ -8,7 +8,7 @@ namespace image
 {
 
 
-   ::image::image * image_descriptor_map::operator[](const image_header & key)
+   ::image::image_pointer & image_descriptor_map_base::operator[](const image_header & key)
    {
 
       while (get_count() > m_iLimitCount)
@@ -18,12 +18,12 @@ namespace image
 
       }
 
-      auto & pimage = image_descriptor_map_base::operator [](key);
+      auto & pimage = BASE_PAIR_MAP::operator [](key);
 
       if (pimage->is_null())
       {
 
-         system()->__øconstruct(pimage);
+         system()->øconstruct(pimage);
 
          pimage->create(key.m_size);
 
@@ -35,7 +35,7 @@ namespace image
 
 
 
-   void image_descriptor_map::erase_bigger()
+   void image_descriptor_map_base::erase_bigger()
    {
 
       image_header itemFind;
@@ -63,20 +63,20 @@ namespace image
       if (uAreaMax > 0)
       {
 
-         erase_item(itemFind);
+         erase(itemFind);
 
       }
       else
       {
 
-         erase_item(this->begin()->item());
+         erase(this->begin()->key());
 
       }
 
    }
 
 
-   ::image::image_pointer & size_image::operator[](const ::int_size & size)
+   ::image::image_pointer & size_image_base::operator[](const ::int_size & size)
    {
 
       bool bExists;
@@ -86,15 +86,15 @@ namespace image
    }
 
 
-   ::image::image_pointer & size_image::get(const ::int_size & size, bool & bExists)
+   ::image::image_pointer & size_image_base::get(const ::int_size & size, bool & bExists)
    {
 
-      auto & pimage = ::map < ::int_size, ::image::image_pointer >::operator [](size);
+      auto & pimage = ::map_base < ::int_size, ::image::image_pointer >::operator [](size);
 
       if (pimage->is_null())
       {
 
-         system()->__øconstruct(pimage);
+         system()->øconstruct(pimage);
 
          pimage->create(size);
 

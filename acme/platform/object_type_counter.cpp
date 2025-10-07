@@ -7,7 +7,7 @@ long long g_iObjTypCtr = 0;
 
 critical_section g_csObjTypCtr;
 
-map < const char*, const char*, long long, long long > * g_pmapObjTypCtr = nullptr;
+map_base < const_char_pointer ,const_char_pointer ,long long, long long > * g_pmapObjTypCtr = nullptr;
 
 void object_type_counter_increment(::particle * pparticle)
 {
@@ -23,7 +23,7 @@ void object_type_counter_increment(::particle * pparticle)
 
    const ::scoped_string & scopedstr = typeid(*pparticle).name();
 
-   auto i = atomic_increment(&g_pmapObjTypCtr->operator[](psz));
+   auto i = atomic_increment(&g_pmapObjTypCtr->operator[](scopedstr));
 
    if (i >= 1024)
    {
@@ -31,7 +31,7 @@ void object_type_counter_increment(::particle * pparticle)
       if (i % 128 == 0)
       {
 
-         informationf("OMG too much of this: " + as_string(psz) + " (" + as_string(i) + ")\n");
+         informationf("OMG too much of this: " + as_string(scopedstr) + " (" + as_string(i) + ")\n");
 
       }
 
@@ -53,7 +53,7 @@ void object_type_counter_decrement(::particle * pparticle)
    critical_section_lock synchronouslock(&g_csObjTypCtr);
    const ::scoped_string & scopedstr = typeid(*pparticle).name();
 
-   auto i = atomic_decrement(&g_pmapObjTypCtr->operator[](psz));
+   auto i = atomic_decrement(&g_pmapObjTypCtr->operator[](scopedstr));
 
    atomic_decrement(&g_iObjTypCtr);
 

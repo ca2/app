@@ -3,13 +3,13 @@
 #include "acme/prototype/string/str.h"
 
 
-payload_array::payload_array()
+payload_array_base::payload_array_base()
 {
 
 }
 
 
-payload_array::payload_array(const std::initializer_list < ::payload > & varlist)
+payload_array_base::payload_array_base(const std::initializer_list < ::payload > & varlist)
 {
 
    for (auto & payload : varlist)
@@ -21,39 +21,39 @@ payload_array::payload_array(const std::initializer_list < ::payload > & varlist
 
 }
 
-payload_array::payload_array(const string_array & stra)
+payload_array_base::payload_array_base(const string_array_base & stra)
 {
    operator = (stra);
 }
 
-payload_array::payload_array(const ::int_array & ia)
+payload_array_base::payload_array_base(const ::int_array_base & ia)
 {
    operator = (ia);
 }
 
-payload_array::payload_array(const ::property_set & propset)
+payload_array_base::payload_array_base(const ::property_set & propset)
 {
    operator = (propset);
 }
 
-payload_array::payload_array(const payload_array & payloada) :
+payload_array_base::payload_array_base(const payload_array_base & payloada) :
 BASE_ARRAY(payloada)
 {
 }
 
-payload_array::payload_array(payload_array && payloada) :
+payload_array_base::payload_array_base(payload_array_base && payloada) :
 BASE_ARRAY(::transfer(payloada))
 {
 
 }
 
-payload_array::~payload_array()
+payload_array_base::~payload_array_base()
 {
 
 }
 
 
-::collection::index payload_array::add(const ::payload & payload)
+::collection::index payload_array_base::add(const ::payload & payload)
 {
 
    //if(payload.is_empty())
@@ -68,7 +68,7 @@ payload_array::~payload_array()
 }
 
 
-::collection::count payload_array::append(const payload_array & payloada)
+::collection::count payload_array_base::append(const payload_array_base & payloada)
 {
 
    for(int i = 0; i < payloada.get_size(); i++)
@@ -83,12 +83,12 @@ payload_array::~payload_array()
 }
 
 
-::collection::index payload_array::append(const std::initializer_list < ::payload > & list)
+::collection::index payload_array_base::append(const std::initializer_list < ::payload > & list_base)
 {
 
    ::collection::index i = -1;
 
-   for(auto & payload : list)
+   for(auto & payload : list_base)
    {
 
       auto iItem = add(payload);
@@ -103,7 +103,7 @@ payload_array::~payload_array()
 
 
 
-::collection::count payload_array::append_unique(const payload_array & payloada)
+::collection::count payload_array_base::append_unique(const payload_array_base & payloada)
 {
 
    ::collection::count c = 0;
@@ -127,7 +127,7 @@ payload_array::~payload_array()
 }
 
 
-string payload_array::implode(const ::scoped_string & scopedstrGlue) const
+string payload_array_base::implode(const ::scoped_string & scopedstrGlue) const
 {
 
    string str;
@@ -151,7 +151,7 @@ string payload_array::implode(const ::scoped_string & scopedstrGlue) const
 }
 
 
-::collection::index payload_array::find_first(const ::scoped_string & scopedstr, ::collection::index find, ::collection::index last) const
+::collection::index payload_array_base::find_first(const ::scoped_string & scopedstr, ::collection::index find, ::collection::index last) const
 {
 
    if (find < 0)
@@ -185,16 +185,16 @@ string payload_array::implode(const ::scoped_string & scopedstrGlue) const
 }
 
 
-::collection::index payload_array::case_insensitive_find_first(const ::scoped_string & scopedstr, ::collection::index find,::collection::index last) const
+::collection::index payload_array_base::case_insensitive_find_first(const ::scoped_string & scopedstr, ::collection::index find,::collection::index last) const
 {
-   
+
    if (find < 0)
    {
 
       find += this->get_count();
 
    }
-   
+
    if (last < 0)
    {
 
@@ -219,7 +219,7 @@ string payload_array::implode(const ::scoped_string & scopedstrGlue) const
 }
 
 
-::collection::index payload_array::find_first(const ::payload & payload, ::collection::index find, ::collection::index last) const
+::collection::index payload_array_base::find_first(const ::payload & payload, ::collection::index find, ::collection::index last) const
 {
 
    if (find < 0)
@@ -252,7 +252,7 @@ string payload_array::implode(const ::scoped_string & scopedstrGlue) const
 }
 
 
-bool payload_array::case_insensitive_contains(const ::scoped_string & scopedstr, ::collection::index find, ::collection::index last, ::collection::count countMin, ::collection::count countMax) const
+bool payload_array_base::case_insensitive_contains(const ::scoped_string & scopedstr, ::collection::index find, ::collection::index last, ::collection::count countMin, ::collection::count countMax) const
 {
 
    ::collection::count count = 0;
@@ -265,7 +265,7 @@ bool payload_array::case_insensitive_contains(const ::scoped_string & scopedstr,
 }
 
 
-bool payload_array::contains(const ::scoped_string & scopedstr, ::collection::index find, ::collection::index last, ::collection::count countMin, ::collection::count countMax) const
+bool payload_array_base::contains(const ::scoped_string & scopedstr, ::collection::index find, ::collection::index last, ::collection::count countMin, ::collection::count countMax) const
 {
 
    ::collection::count count = 0;
@@ -279,7 +279,7 @@ bool payload_array::contains(const ::scoped_string & scopedstr, ::collection::in
 }
 
 
-bool payload_array::contains(const ::payload & payload, ::collection::index find, ::collection::index last, ::collection::count countMin, ::collection::count countMax) const
+bool payload_array_base::contains(const ::payload & payload, ::collection::index find, ::collection::index last, ::collection::count countMin, ::collection::count countMax) const
 {
 
    ::collection::count count = 0;
@@ -293,7 +293,7 @@ bool payload_array::contains(const ::payload & payload, ::collection::index find
 }
 
 
-::collection::count payload_array::case_insensitive_erase_first(const ::scoped_string & scopedstr, ::collection::index find, ::collection::index last)
+::collection::count payload_array_base::case_insensitive_erase_first(const ::scoped_string & scopedstr, ::collection::index find, ::collection::index last)
 {
 
    if ((find = case_insensitive_find_first(scopedstr, find, last)) >= 0)
@@ -308,7 +308,7 @@ bool payload_array::contains(const ::payload & payload, ::collection::index find
 }
 
 
-::collection::count payload_array::erase_first(const ::scoped_string & scopedstr, ::collection::index find, ::collection::index last)
+::collection::count payload_array_base::erase_first(const ::scoped_string & scopedstr, ::collection::index find, ::collection::index last)
 {
 
    if ((find = find_first(scopedstr, find, last)) >= 0)
@@ -323,7 +323,7 @@ bool payload_array::contains(const ::payload & payload, ::collection::index find
 }
 
 
-::collection::count payload_array::erase_first(const ::payload & payload, ::collection::index find, ::collection::index last)
+::collection::count payload_array_base::erase_first(const ::payload & payload, ::collection::index find, ::collection::index last)
 {
 
    if ((find = find_first(payload, find, last)) >= 0)
@@ -338,14 +338,14 @@ bool payload_array::contains(const ::payload & payload, ::collection::index find
 }
 
 
-::collection::count payload_array::case_insensitive_erase(const ::scoped_string & scopedstr, ::collection::index find, ::collection::index last, ::collection::count countMin, ::collection::count countMax)
+::collection::count payload_array_base::case_insensitive_erase(const ::scoped_string & scopedstr, ::collection::index find, ::collection::index last, ::collection::count countMin, ::collection::count countMax)
 {
 
    ::collection::count count = 0;
 
    if (case_insensitive_contains(scopedstr, find, last, countMin, countMax))
    {
-    
+
       while (conditional(countMax >= 0, count < countMax)
          && (find = case_insensitive_erase_first(scopedstr, find, last)) >= 0)
       {
@@ -361,7 +361,7 @@ bool payload_array::contains(const ::payload & payload, ::collection::index find
 }
 
 
-::collection::count payload_array::erase(const ::scoped_string & scopedstr, ::collection::index find, ::collection::index last, ::collection::count countMin, ::collection::count countMax)
+::collection::count payload_array_base::erase(const ::scoped_string & scopedstr, ::collection::index find, ::collection::index last, ::collection::count countMin, ::collection::count countMax)
 {
 
    ::collection::count count = 0;
@@ -384,9 +384,9 @@ bool payload_array::contains(const ::payload & payload, ::collection::index find
 }
 
 
-::collection::count payload_array::erase(const ::payload & payload, ::collection::index find, ::collection::index last, ::collection::count countMin, ::collection::count countMax)
+::collection::count payload_array_base::erase(const ::payload & payload, ::collection::index find, ::collection::index last, ::collection::count countMin, ::collection::count countMax)
 {
-   
+
    ::collection::count count = 0;
 
    if (contains(payload, find, last, countMin, countMax))
@@ -407,7 +407,7 @@ bool payload_array::contains(const ::payload & payload, ::collection::index find
 }
 
 
-::collection::count payload_array::erase(const payload_array & payloada)
+::collection::count payload_array_base::erase(const payload_array_base & payloada)
 {
 
    if(&payloada == this)
@@ -425,13 +425,13 @@ bool payload_array::contains(const ::payload & payload, ::collection::index find
       count += erase(payloada[i]);
 
    }
-   
+
    return count;
 
 }
 
 
-payload_array & payload_array::operator -=(const ::payload & payload)
+payload_array_base & payload_array_base::operator -=(const ::payload & payload)
 {
 
    erase(payload);
@@ -441,7 +441,7 @@ payload_array & payload_array::operator -=(const ::payload & payload)
 }
 
 
-payload_array & payload_array::operator -=(const payload_array & payloada)
+payload_array_base & payload_array_base::operator -=(const payload_array_base & payloada)
 {
 
    erase(payloada);
@@ -451,10 +451,10 @@ payload_array & payload_array::operator -=(const payload_array & payloada)
 }
 
 
-payload_array payload_array::operator -(const ::payload & payload) const
+payload_array_base payload_array_base::operator -(const ::payload & payload) const
 {
 
-   payload_array payloada(*this);
+   payload_array_base payloada(*this);
 
    payloada.erase(payload);
 
@@ -463,10 +463,10 @@ payload_array payload_array::operator -(const ::payload & payload) const
 }
 
 
-payload_array payload_array::operator -(const payload_array & payloadaParam) const
+payload_array_base payload_array_base::operator -(const payload_array_base & payloadaParam) const
 {
 
-   payload_array payloada(*this);
+   payload_array_base payloada(*this);
 
    payloada.erase(payloadaParam);
 
@@ -475,7 +475,7 @@ payload_array payload_array::operator -(const payload_array & payloadaParam) con
 }
 
 
-payload_array & payload_array::operator +=(const ::payload & payload)
+payload_array_base & payload_array_base::operator +=(const ::payload & payload)
 {
 
    add(payload);
@@ -485,27 +485,27 @@ payload_array & payload_array::operator +=(const ::payload & payload)
 }
 
 
-payload_array & payload_array::operator +=(const payload_array & payloada)
+payload_array_base & payload_array_base::operator +=(const payload_array_base & payloada)
 {
    append(payloada);
    return *this;
 }
 
-payload_array payload_array::operator +(const ::payload & payload) const
+payload_array_base payload_array_base::operator +(const ::payload & payload) const
 {
-   payload_array payloada(*this);
+   payload_array_base payloada(*this);
    payloada.add(payload);
    return payloada;
 }
 
-payload_array payload_array::operator +(const payload_array & payloadaParam) const
+payload_array_base payload_array_base::operator +(const payload_array_base & payloadaParam) const
 {
-   payload_array payloada(*this);
+   payload_array_base payloada(*this);
    payloada.append(payloadaParam);
    return payloada;
 }
 
-payload_array & payload_array::operator = (const string_array & stra)
+payload_array_base & payload_array_base::operator = (const string_array_base & stra)
 {
    erase_all();
    for(int i = 0; i < stra.get_count(); i++)
@@ -515,7 +515,7 @@ payload_array & payload_array::operator = (const string_array & stra)
    return *this;
 }
 
-payload_array & payload_array::operator = (const ::int_array & inta)
+payload_array_base & payload_array_base::operator = (const ::int_array_base & inta)
 {
    erase_all();
    for(int i = 0; i < inta.get_count(); i++)
@@ -526,7 +526,7 @@ payload_array & payload_array::operator = (const ::int_array & inta)
 }
 
 
-payload_array & payload_array::operator = (const ::property_set & propertyset)
+payload_array_base & payload_array_base::operator = (const ::property_set & propertyset)
 {
 
    erase_all();
@@ -545,7 +545,7 @@ payload_array & payload_array::operator = (const ::property_set & propertyset)
 }
 
 
-payload_array & payload_array::operator = (const payload_array & payloada)
+payload_array_base & payload_array_base::operator = (const payload_array_base & payloada)
 {
    if(this != &payloada)
    {
@@ -559,7 +559,7 @@ payload_array & payload_array::operator = (const payload_array & payloada)
 }
 
 
-//void payload_array::parse_network_payload(::const_ansi_range & range)
+//void payload_array_base::parse_network_payload(::const_ansi_range & range)
 //{
 //
 //   parse_network_payload(range);
@@ -569,7 +569,7 @@ payload_array & payload_array::operator = (const payload_array & payloada)
 int g_iRandomNumberGenerator = 0;
 
 
-void payload_array::parse_network_payload(::ansi_range & range)
+void payload_array_base::parse_network_payload(::ansi_range & range)
 {
 
    if(range.is_empty())
@@ -599,7 +599,7 @@ void payload_array::parse_network_payload(::ansi_range & range)
    while(true)
    {
 
-      
+
       //throw ::exception(todo("thread"));
      /* g_iRandomNumberGenerator++;
 
@@ -659,49 +659,49 @@ void payload_array::parse_network_payload(::ansi_range & range)
 }
 
 
-//void var_array_skip_network_payload(const char *& pszJson)
+//void var_array_skip_network_payload(const_char_pointer &pszJson)
 //{
 //
-//   var_array_skip_network_payload(pszJson, pszJson + strlen(pszJson) - 1);
+//   var_array_skip_network_payload(scopedstrJson, pszJson + strlen(scopedstrJson) - 1);
 //
 //}
 
 
 void payload_array_skip_network_payload(::ansi_range & range)
 {
-   
+
    range.consume_spaces(0);
-   
+
    range.consume("[");
 
    while (true)
    {
-      
+
       payload_skip_network_payload(range);
-      
+
       range.consume_spaces(0);
 
       if (*range.m_begin == ',')
       {
-         
+
          range.m_begin++;
-         
+
          continue;
 
       }
       else if (*range.m_begin == ']')
       {
-         
+
          range.m_begin++;
-         
+
          return;
 
       }
       else
       {
-         
+
          string str = "not expected character : ";
-         
+
          str += range.m_begin;
 
          throw_exception(error_parsing, str);
@@ -713,7 +713,7 @@ void payload_array_skip_network_payload(::ansi_range & range)
 }
 
 
-string & payload_array::get_network_payload(string & str, bool bNewLine) const
+string & payload_array_base::get_network_payload(string & str, bool bNewLine) const
 {
 
    str +="[";
@@ -760,7 +760,7 @@ string & payload_array::get_network_payload(string & str, bool bNewLine) const
 
 
 
-std::strong_ordering payload_array::order(const ::payload_array & payloada) const
+std::strong_ordering payload_array_base::order(const ::payload_array_base & payloada) const
 {
 
    auto iMinimumSize = minimum(this->size(), payloada.size());
@@ -784,7 +784,7 @@ std::strong_ordering payload_array::order(const ::payload_array & payloada) cons
 }
 
 
-std::strong_ordering payload_array::case_insensitive_order(const ::payload_array & payloada) const
+std::strong_ordering payload_array_base::case_insensitive_order(const ::payload_array_base & payloada) const
 {
 
    return stra().case_insensitive_order(payloada.stra());

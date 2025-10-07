@@ -20,17 +20,17 @@ namespace xml
    public:
 
 
-      ::pointer<string_to_string>  m_pentitiesHash;
-      ::pointer<string_to_string>  m_pentitiesExtHash;
-      ::pointer<parse_info>        m_pparseinfo;
-      ::file::path                  m_pathLocation;
-      string                        m_strData1;
-      ::pointer<::xml::edit>       m_pedit;
-      memory                        m_memoryData;
+      ::pointer<::map_particle < string_to_string_base >>   m_pentitiesHash;
+      ::pointer<::map_particle < string_to_string_base >>   m_pentitiesExtHash;
+      ::pointer<parse_info>                                 m_pparseinfo;
+      ::file::path                                          m_pathLocation;
+      string                                                m_strData1;
+      ::pointer<::xml::edit>                                m_pedit;
+      memory                                                m_memoryData;
       //::pointer<node>              m_pnodeRoot;
 
 
-      document(parse_info * pparseinfo = nullptr, string_to_string * pentitiesHash = nullptr);
+      document(parse_info * pparseinfo = nullptr, string_to_string_base * pentitiesHash = nullptr);
       ~document() override;
 
 
@@ -39,7 +39,7 @@ namespace xml
 
       virtual void ensure_root();
       void create_root();
-      void create_root(const ::string & strName);
+      void create_root(const ::scoped_string & scopedstrName);
 
    
       string consume_entity_ref(::ansi_range & rangeXml, string & strName, bool useExtEnt, bool & bExt, ::platform::context * pacmecontext);
@@ -55,7 +55,7 @@ namespace xml
       inline operator bool() const { return ::is_set(this) && root(); }
       inline bool operator !() const { return !operator bool(); }
 
-      void set_name(const ::string & strName) override;
+      void set_name(const ::scoped_string & scopedstrName) override;
 
       document & operator = (const document & document);
 

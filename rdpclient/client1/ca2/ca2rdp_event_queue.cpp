@@ -18,7 +18,7 @@ typedef array < rdp_event_item > rdp_event_itema;
 
 ::pointer< ::mutex > g_pmutexRdpEvent = nullptr;
 
-map < void *,void *,rdp_event_itema> g_eventmap;
+map_base < void *,void *,rdp_event_itema> g_eventmap;
 
 CLASS_DECL_AXIS_RDPCLIENT void ca2rdp_send_event(void * input,int bKey,int down,unsigned int scancode,const ::atom & atom,::int_point pt);
 
@@ -40,7 +40,7 @@ CLASS_DECL_AXIS_RDPCLIENT void ca2rdp_send_event(void * input,int bKey,int down,
 CLASS_DECL_AXIS_RDPCLIENT void ca2rdp_queue_event(void * input,int bKey,int down,unsigned int scancode,const ::atom & atom,::int_point pt)
 {
 
-   synchronous_lock synchronouslock(ca2rdp_get_event_queue_mutex());
+   synchronous_lock synchronouslock(ca2rdp_get_event_queue_mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    rdp_event_item item;
    item.input = input;
@@ -56,7 +56,7 @@ CLASS_DECL_AXIS_RDPCLIENT void ca2rdp_queue_event(void * input,int bKey,int down
 CLASS_DECL_AXIS_RDPCLIENT int  ca2rdp_get_event(rdp_event_item & item,void* input)
 {
 
-   synchronous_lock synchronouslock(ca2rdp_get_event_queue_mutex());
+   synchronous_lock synchronouslock(ca2rdp_get_event_queue_mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    if(g_eventmap[input].has_elements())
    {

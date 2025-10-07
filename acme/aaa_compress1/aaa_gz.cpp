@@ -252,7 +252,7 @@ stop1:
 //   unsigned int crypto::crc32(unsigned int dwPrevious, const ::scoped_string & scopedstr)
 //   {
 //
-//      return (unsigned int) ::crc32(dwPrevious, (const unsigned char *)psz, (unsigned int)strlen(psz));
+//      return (unsigned int) ::crc32(dwPrevious, (const unsigned char *)psz, (unsigned int)strlen(scopedstr));
 //
 //   }
 //

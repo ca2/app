@@ -71,9 +71,9 @@ namespace image
       // inline int add(::windowing::icon * picon) { return set(iItem, picon, x, y); }
 
       //int add_file(::payload payloadFile, int iItem = -1);
-      ///int add_matter(const ::string & pcsz, ::particle * pparticle = nullptr, int iItem = -1);
+      ///int add_matter(const ::scoped_string & scopedstr, ::particle * pparticle = nullptr, int iItem = -1);
 
-      //int add_std_matter(const ::string & pcsz, int iItem = -1);
+      //int add_std_matter(const ::scoped_string & scopedstr, int iItem = -1);
 
       //int add_image(image_list * pil, int iImage, int iItem = - 1);
 

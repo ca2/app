@@ -57,7 +57,7 @@ namespace filemanager
          //   if(m_strPath == "filemanager_add_location_lfs.xhtml")
          //   {
          //      
-         //      string_array stra;
+         //      string_array_base stra;
 
          //      auto papp = ::user::form_impact::get_app();
 

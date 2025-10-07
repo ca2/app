@@ -20,8 +20,9 @@ namespace windowing
 
    ::windowing::enum_toolkit calculate_etoolkit()
    {
-      
-#if defined(MACOS)
+#if defined(__ANDROID__)
+      return ::windowing::e_toolkit_android;
+#elif defined(MACOS)
       return ::windowing::e_toolkit_appkit;
 #elif defined(APPLE_IOS)
       return ::windowing::e_toolkit_uikit;

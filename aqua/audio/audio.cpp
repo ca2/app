@@ -26,7 +26,7 @@ namespace aqua
    }
 
 
-   void audio::play_audio(const ::payload& payloadFile, bool bSynch)
+   void audio::play_audio(const ::payload& payloadFile, enum_synchronicity esynchronicity)
    {
 
       auto pfile = file() -> get_reader(payloadFile);
@@ -38,12 +38,12 @@ namespace aqua
 
       }
 
-      _play_audio(pfile, bSynch);
+      _play_audio(pfile, esynchronicity);
 
    }
 
 
-   void audio::_play_audio(::file::file * pfile, bool bSynch)
+   void audio::_play_audio(::file::file * pfile, enum_synchronicity esynchronicity)
    {
 
       throw ::interface_only();
@@ -77,7 +77,7 @@ namespace aqua
    }
 
 
-   void audio::text_to_speech_implementation(const ::string & strTtsImplementation)
+   void audio::text_to_speech_implementation(const ::scoped_string & scopedstrTtsImplementation)
    {
 
       if (!m_bTtsOptionInitialized)
@@ -91,7 +91,7 @@ namespace aqua
 
       pathImplementation = directory()->config() / "config/system/text_to_speech.txt";
 
-      file()->put_text(pathImplementation, strTtsImplementation);
+      file()->put_text(pathImplementation, scopedstrTtsImplementation);
 
       m_strTtsImplementation = file()->as_string(pathImplementation);
 
@@ -100,10 +100,10 @@ namespace aqua
    }
 
 
-   ::pointer<::text_to_speech::speaker>audio::create_text_to_speech_speaker(const ::string & strImplementation)
+   ::pointer<::text_to_speech::speaker>audio::create_text_to_speech_speaker(const ::scoped_string & scopedstrImplementation)
    {
 
-      __UNREFERENCED_PARAMETER(strImplementation);
+      __UNREFERENCED_PARAMETER(scopedstrImplementation);
 
       throw ::interface_only();
 
@@ -112,7 +112,7 @@ namespace aqua
    }
 
 
-   void audio::speak(const ::string & strText)
+   void audio::speak(const ::scoped_string & scopedstrText)
    {
 
       throw ::interface_only();
@@ -120,7 +120,7 @@ namespace aqua
    }
 
 
-   void audio::speak(const ::string & strLang, const ::string & strText, bool bSynch, const ::string & strImplementation)
+   void audio::speak(const ::scoped_string & scopedstrLang, const ::scoped_string & scopedstrText, enum_synchronicity esynchronicity, const ::scoped_string & scopedstrImplementation)
    {
 
       throw ::interface_only();
@@ -128,7 +128,7 @@ namespace aqua
    }
 
 
-   //void audio::trans_speak(const ::string & strLang, const ::string & strText, bool bSynch)
+   //void audio::trans_speak(const ::scoped_string & scopedstrLang, const ::scoped_string & scopedstrText, bool bSynch)
    //{
 
    //   throw ::interface_only();
@@ -136,7 +136,7 @@ namespace aqua
    //}
 
 
-   //void audio::google_speak(const ::string & strLang, const ::string & strText, bool bSynch)
+   //void audio::google_speak(const ::scoped_string & scopedstrLang, const ::scoped_string & scopedstrText, bool bSynch)
    //{
 
    //   throw ::interface_only();
@@ -144,7 +144,7 @@ namespace aqua
    //}
 
 
-   LPFN_NEW_MULTIMEDIA_DECODER audio::get_multimedia_decoder_factory(const ::string & strTitle)
+   LPFN_NEW_MULTIMEDIA_DECODER audio::get_multimedia_decoder_factory(const ::scoped_string & scopedstrTitle)
    {
    
       return nullptr;

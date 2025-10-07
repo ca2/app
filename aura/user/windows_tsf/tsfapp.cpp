@@ -75,13 +75,13 @@ int WINAPI WinMain( HINSTANCE hInstance,
                     BOOL    fEaten;
 
                     /*
-                    Get the next message in the queue. fResult receives false if e_message_quit is encountered
+                    Get the next message in the queue. fResult receives false if ::user::e_message_quit is encountered
                     */
                     if(FAILED(pMsgPump->GetMessage(&msg, NULL, 0, 0, &fResult)))
                     {
                         fResult = false;
                     }
-                    else if(e_message_key_down == msg.message)
+                    else if(::user::e_message_key_down == msg.message)
                     {
                         // does an ime want it?
                         if (pKeyMgr->TestKeyDown(msg.wParam, msg.lParam, &fEaten) == S_OK && fEaten &&
@@ -90,7 +90,7 @@ int WINAPI WinMain( HINSTANCE hInstance,
                             continue;
                         }
                     }
-                    else if(e_message_key_up == msg.message)
+                    else if(::user::e_message_key_up == msg.message)
                     {
                         // does an ime want it?
                         if (pKeyMgr->TestKeyUp(msg.wParam, msg.lParam, &fEaten) == S_OK && fEaten &&
@@ -106,7 +106,7 @@ int WINAPI WinMain( HINSTANCE hInstance,
                         DispatchMessage(&msg);
                     }
 
-                    if(e_message_quit == msg.message)
+                    if(::user::e_message_quit == msg.message)
                     {
                         nReturn = (int)msg.wParam;
                     }

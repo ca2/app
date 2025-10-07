@@ -2,19 +2,19 @@
 
 
 //#include "pointer_array_process.h"
-#include  "acme/prototype/collection/array.h"
+#include  "acme/prototype/collection/array_base.h"
 //#include "acme/prototype/prototype/pointer.h"
 //#include "comparable_eq_array.h"
 //#include "comparable_array.h"
 
 
 template < class T, typename ARG_T, typename ARRAY_BASE >
-class pointer_array :
-   public pointer_array_process < comparable_array < ::pointer < T >, ARG_T, comparable_eq_array <  ::pointer < T >, ARG_T, ARRAY_BASE > > , T >
+class pointer_array_base :
+   public pointer_array_process < comparable_array_base < ::pointer < T >, ARG_T, comparable_eq_array_base <  ::pointer < T >, ARG_T, ARRAY_BASE > > , T >
 {
 public:
 
-   using BASE_ARRAY = pointer_array_process < comparable_array < ::pointer < T >, ARG_T, comparable_eq_array <  ::pointer < T >, ARG_T, ARRAY_BASE > > , T >;
+   using BASE_ARRAY = pointer_array_process < comparable_array_base < ::pointer < T >, ARG_T, comparable_eq_array_base <  ::pointer < T >, ARG_T, ARRAY_BASE > > , T >;
 
    //using ref_iterator = typename ARRAY_BASE::ref_iterator;
    ///using ref_iterator_range = typename ARRAY_BASE::ref_iterator_range;
@@ -26,33 +26,36 @@ public:
 //   using comparable_array < ::pointer<T > > ::operator ==;
 //   using comparable_array < ::pointer<T > > ::operator !=;
 
-   pointer_array()
-   {
+   using BASE_ARRAY::BASE_ARRAY;
+   using BASE_ARRAY::operator =;
 
-   }
-
-
-   explicit pointer_array(nullptr_t)
-   {
-
-   }
-
-
-   virtual ~pointer_array()
-   {
-
-      this->erase_all();
-
-   }
-
-
-   pointer_array(const pointer_array & a) : BASE_ARRAY(a) { }
-
-   pointer_array(pointer_array && a) : BASE_ARRAY(::transfer(a)) { }
+   // pointer_array_base()
+   // {
+   //
+   // }
+   //
+   //
+   // explicit pointer_array_base(nullptr_t)
+   // {
+   //
+   // }
+   //
+   //
+   // virtual ~pointer_array_base()
+   // {
+   //
+   //    this->erase_all();
+   //
+   // }
+   //
+   //
+   // pointer_array_base(const pointer_array_base & a) : BASE_ARRAY(a) { }
+   //
+   // pointer_array_base(pointer_array_base && a) : BASE_ARRAY(::transfer(a)) { }
 
 
    template < typename OTHER >
-   pointer_array(const pointer_array < OTHER > & a)
+   pointer_array_base(const pointer_array_base < OTHER > & a)
    {
 
       for(auto & p : a)
@@ -72,17 +75,17 @@ public:
    }
 
 
-   pointer_array(const std::initializer_list < ::pointer<T >>& list)
-   {
-
-      for(auto & p : list)
-      {
-
-         add(p);
-
-      }
-
-   }
+   // pointer_array_base(const std::initializer_list < ::pointer<T >>& list_base)
+   // {
+   //
+   //    for(auto & p : list_base)
+   //    {
+   //
+   //       add(p);
+   //
+   //    }
+   //
+   // }
 
 
    pointer < T >& add_new()
@@ -99,7 +102,7 @@ public:
 
       pointer < T > & p = BASE_ARRAY::add_new();
 
-      pparticle->__øconstruct(p);
+      pparticle->øconstruct(p);
 
       return p;
 
@@ -184,8 +187,7 @@ public:
       return nIndex;
 
    }
-   
-
+ 
    template < primitive_container CONTAINER >
    ::collection::index append(const CONTAINER & a)
    {
@@ -254,8 +256,25 @@ public:
 
 
    /// consumes a referer
-   bool add_unique(T * p)
+   template < typename T2 >
+   bool add_unique(const T2 * p2)
    {
+
+      if (::is_null(p2))
+      {
+
+         return false;
+
+      }
+
+      auto p = dynamic_cast <T*> ((T2*)p2);
+
+      if (::is_null(p))
+      {
+
+         return false;
+
+      }
 
       if (contains(p))
       {
@@ -267,6 +286,39 @@ public:
       this->add_item(p);
 
       return true;
+
+   }
+
+
+   /// consumes a referer
+   template < typename T2 >
+   bool add_unique(const ::pointer < T2 > & p2)
+   {
+
+      return this->add_unique(p2.m_p);
+
+   }
+
+
+   template < typename T2 >
+   ::collection::count add_unique(const pointer_array_base < T2 > & a)
+   {
+
+      ::collection::count c = 0;
+
+      for(auto & p : a)
+      {
+
+         if (this->add_unique(p))
+         {
+          
+            c++;
+
+         }
+
+      }
+
+      return c;
 
    }
 
@@ -310,22 +362,6 @@ public:
 
    }
 
-   ::collection::count add_unique(const pointer_array & a)
-   {
-
-      ::collection::count c = 0;
-
-      for (::collection::index i = 0; i < a.get_count(); i++)
-      {
-
-         if (add_unique((T *) a[i]))
-            c++;
-
-      }
-
-      return c;
-
-   }
 
    bool contains(const T * p, ::collection::index iStart = 0, ::collection::count nCount = -1) const
    {
@@ -414,15 +450,15 @@ public:
    }
 
 
-   template < class DERIVED >
-   pointer_array & operator -= (DERIVED * p)
-   {
-
-      this->erase(dynamic_cast < T * > (p));
-
-      return *this;
-
-   }
+   // template < class DERIVED >
+   // pointer_array_base & operator -= (DERIVED * p)
+   // {
+   //
+   //    this->erase(dynamic_cast < T * > (p));
+   //
+   //    return *this;
+   //
+   // }
 
    
    /// consumes a releaser
@@ -653,7 +689,7 @@ public:
    T * get_first_pointer(::collection::index n = 0) const
    {
 
-      return this->is_empty() ? nullptr : this->comparable_array < ::pointer<T >, const T *> ::first(n);
+      return this->is_empty() ? nullptr : this->comparable_array_base < ::pointer<T >, const T *> ::first(n);
 
    }
 
@@ -811,7 +847,7 @@ public:
    }
 
 
-   ::collection::count append(const pointer_array & a)
+   ::collection::count append(const pointer_array_base & a)
    {
 
       ::collection::count c = a.get_count(); // allow to append to itself one time
@@ -844,7 +880,7 @@ public:
    }
 
    //template < class ARRAY >
-   //pointer_array & copy(const ARRAY * pa)
+   //pointer_array_base & copy(const ARRAY * pa)
    //{
 
    //   if(pa == dynamic_cast < ARRAY * > (this))
@@ -859,7 +895,7 @@ public:
    //}
 
    template < class ARRAY >
-   pointer_array & copy(const ::pointer<ARRAY>& pa)
+   pointer_array_base & copy(const ::pointer<ARRAY>& pa)
    {
 
       if(pa == dynamic_cast < ARRAY * > (this))
@@ -907,7 +943,7 @@ public:
    }
 
    //template < class ARRAY >
-   //pointer_array & copy(const ARRAY & a)
+   //pointer_array_base & copy(const ARRAY & a)
    //{
 
    //   this->erase_all();
@@ -918,7 +954,7 @@ public:
 
    //}
 
-   pointer_array & copy(const pointer_array & a)
+   pointer_array_base & copy(const pointer_array_base & a)
    {
 
       if(&a == this)
@@ -933,7 +969,7 @@ public:
    }
 
    template < class ARRAY >
-   pointer_array & copy_ptra(const ARRAY * pptra)
+   pointer_array_base & copy_ptra(const ARRAY * pptra)
    {
 
       if(pptra == dynamic_cast < ARRAY * > (this))
@@ -948,27 +984,7 @@ public:
    }
 
 
-
-   inline pointer_array & operator = (const pointer_array & a)
-   {
-
-      copy(a);
-
-      return *this;
-
-   }
-
-
-   inline pointer_array & operator = (pointer_array && a)
-   {
-
-      BASE_ARRAY ::operator = (::transfer(a));
-
-      return *this;
-
-   }
-
-   void destroy() override
+   void base_destroy()
    {
 
       for (auto& p : *this)
@@ -979,6 +995,7 @@ public:
       }
 
    }
+
 
 };
 
@@ -1778,17 +1795,17 @@ public:
 //
 //};
 
-//#define sspa(TYPE) array_base < ::pointer<TYPE >>
+//#define sspa(TYPE) base_array < ::pointer<TYPE >>
 //#define spa2(TYPE) ::smart_pointer_array2 < TYPE >
-///#define __xmlspa(TYPE) ::pointer_array < TYPE >
+///#define __xmlspa(TYPE) ::pointer_array_base < TYPE >
 
-typedef pointer_array < matter > object_pointera;
+typedef pointer_array_base < matter > object_pointera;
 
-typedef pointer_array < matter > simple_object_pointera;
+typedef pointer_array_base < matter > simple_object_pointera;
 
 
 template < class T, typename ARG_T, typename ARRAY_BASE >
-bool pointer_array < T, ARG_T, ARRAY_BASE > ::insert_unique_at(::collection::index i, T * p)
+bool pointer_array_base < T, ARG_T, ARRAY_BASE > ::insert_unique_at(::collection::index i, T * p)
 {
 
    if (i < 0 || i > this->get_size())
@@ -1835,7 +1852,7 @@ bool pointer_array < T, ARG_T, ARRAY_BASE > ::insert_unique_at(::collection::ind
 
 template < class T, typename ARG_T, typename ARRAY_BASE >
 template < typename OBJECT >
-::collection::count pointer_array < T, ARG_T, ARRAY_BASE > ::set_size_create(OBJECT * pparticle, ::collection::count nNewSize, ::collection::count nGrowBy)
+::collection::count pointer_array_base < T, ARG_T, ARRAY_BASE > ::set_size_create(OBJECT * pparticle, ::collection::count nNewSize, ::collection::count nGrowBy)
 {
 
    ::collection::index i = this->get_size();
@@ -1847,7 +1864,7 @@ template < typename OBJECT >
    for (; i < c; i++)
    {
 
-      pparticle->__øconstruct(this->element_at(i));
+      pparticle->øconstruct(this->element_at(i));
 
    }
 
@@ -1856,4 +1873,26 @@ template < typename OBJECT >
 }
 
 
+template < class T, typename ARG_T, typename ARRAY_BASE >
+class pointer_array :
+   public ::array_particle < pointer_array_base < T, ARG_T, ARRAY_BASE > >
+{
+public:
 
+
+   using POINTER_ARRAY_BASE = ::pointer_array_base < T, ARG_T, ARRAY_BASE >;
+
+
+   using BASE_ARRAY = ::array_particle < POINTER_ARRAY_BASE >;
+
+
+   using BASE_ARRAY::BASE_ARRAY;
+   using BASE_ARRAY::operator =;
+
+   using POINTER_ARRAY_BASE::operator[];
+   using POINTER_ARRAY_BASE::operator();
+
+   using POINTER_ARRAY_BASE::call_member;
+
+
+};

@@ -41,8 +41,8 @@
 #include "acme/handler/request.h"
 #include "aura/graphics/image/icon.h"
 #include "aura/user/user/shell.h"
-#include "base/user/user/multiple_document_template.h"
-#include "base/user/user/user.h"
+#include "berg/user/user/multiple_document_template.h"
+#include "berg/user/user/user.h"
 #include "core/user/simple/form_impact.h"
 #include "core/user/user/tree.h"
 #include "core/platform/session.h"
@@ -87,10 +87,12 @@ namespace filemanager
    }
 
 
-   bool is_valid_manager_id(const ::string & strParam)
+   bool is_valid_manager_id(const ::scoped_string & scopedstrParam)
    {
 
-      const ::ansi_character * psz = strParam;
+      ::string strParameter(scopedstrParam);
+
+      const_char_pointer psz = strParameter;
 
       ::collection::count c = 0;
 
@@ -130,10 +132,12 @@ namespace filemanager
    }
 
 
-   bool is_valid_filemanager_project_entry(const ::string & strParam)
+   bool is_valid_filemanager_project_entry(const ::scoped_string & scopedstrParam)
    {
 
-      const ::ansi_character * psz = strParam;
+      ::string strParameter(scopedstrParam);
+
+      const_char_pointer psz = strParameter;
 
       ::collection::count c = 0;
 
@@ -183,15 +187,15 @@ namespace filemanager
    }
 
 
-   ::file::path filemanager_project_entry(string & strManagerId, const ::string & str, ::aura::context * pcontext)
+   ::file::path filemanager_project_entry(string & strManagerId, const ::scoped_string & scopedstr, ::aura::context * pcontext)
    {
 
-      if (is_valid_filemanager_project_entry(str))
+      if (is_valid_filemanager_project_entry(scopedstr))
       {
 
-         strManagerId = str(0, get_manager_id_len());
+         strManagerId = scopedstr(0, get_manager_id_len());
 
-         return str(get_manager_id_len() + 1);
+         return scopedstr(get_manager_id_len() + 1);
 
       }
       else
@@ -199,7 +203,7 @@ namespace filemanager
 
          strManagerId = create_manager_id(pcontext);
 
-         return str;
+         return scopedstr;
 
       }
 
@@ -257,7 +261,7 @@ namespace filemanager
       //factory()->add_factory_item <fs::simple::list_impact >();
       //factory()->add_factory_item <fs::simple::tree >();
 
-      //__construct_new(this, m_pmap);
+      //øconstruct_new(this, m_pmap);
 
       //auto& user = User;
 
@@ -278,7 +282,7 @@ namespace filemanager
          ::type < form_child_frame >(),
          ::type < form >()));
 
-      //__øconstruct(m_pimpactsystemForm, pmulti);
+      //øconstruct(m_pimpactsystemForm, pmulti);
 
     /*  
 
@@ -291,7 +295,7 @@ namespace filemanager
          ::type < operation_child_frame >(),
          ::type < operation_impact >()));
 
-      //__øconstruct(m_pimpactsystemOperation, psingle);
+      //øconstruct(m_pimpactsystemOperation, psingle);
 
       //psession->add_document_template(psingle);
 
@@ -356,7 +360,7 @@ namespace filemanager
 
    //   }
 
-   //   auto pdata = __create_new<data>();
+   //   auto pdata = øcreate_new<data>();
 
    //   pdata->initialize_filemanager_data(this);
 
@@ -429,7 +433,7 @@ namespace filemanager
 
       //}
 
-      auto pdata = __create_new<data>();
+      auto pdata = øcreate_new<data>();
 
       pdata->initialize_filemanager_data(this);
 
@@ -520,7 +524,7 @@ namespace filemanager
    }
 
 
-   void document::InitializeFileManager(const ::string & strMatter)
+   void document::InitializeFileManager(const ::scoped_string & scopedstrMatter)
    {
 
       m_pfilemanagerdata->m_pfilelistcallback = this;
@@ -559,13 +563,13 @@ namespace filemanager
 
          }
 
-         string_array stra;
+         string_array_base stra;
 
          {
 
             auto pmutexGlobal = node()->create_global_named_mutex(this, false, "ca2-filemanagers");
 
-            synchronous_lock synchronouslock(pmutexGlobal);
+            synchronous_lock synchronouslock(pmutexGlobal, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
             stra.add_lines(file()->as_string(m_pathFilemanagerProject), true);
 
@@ -683,7 +687,7 @@ namespace filemanager
 
       }
 
-      //string_array stra;
+      //string_array_base stra;
 
       //document * pdocument;
 
@@ -783,7 +787,7 @@ namespace filemanager
       //if (pcreate == nullptr)
       //{
 
-      //   pcreate = __allocate ::create(papp->handler(), payloadFile, true);
+      //   pcreate = øallocate ::create(papp->handler(), payloadFile, true);
 
       //}
 
@@ -940,7 +944,7 @@ namespace filemanager
    //   if (pcreate == nullptr)
    //   {
 
-   //      pcreate = __allocate ::create(pappOnBehalfOf->handler());
+   //      pcreate = øallocate ::create(pappOnBehalfOf->handler());
 
    //   }
    //   else
@@ -1071,7 +1075,7 @@ namespace filemanager
    //   if (pcreate.is_null())
    //   {
 
-   //      pcreate = __allocate ::create(pappOnBehalfOf->handler());
+   //      pcreate = øallocate ::create(pappOnBehalfOf->handler());
 
    //   }
    //   else
@@ -1192,7 +1196,7 @@ namespace filemanager
    //   if (pfilemanagerdata == nullptr)
    //   {
 
-   //      pfilemanagerdata = __allocate ::filemanager::data(this);
+   //      pfilemanagerdata = øallocate ::filemanager::data(this);
 
    //   }
 
@@ -1246,7 +1250,7 @@ namespace filemanager
    //   if (pfilemanagerdata == nullptr)
    //   {
 
-   //      pfilemanagerdata = __allocate ::filemanager::data(this);
+   //      pfilemanagerdata = øallocate ::filemanager::data(this);
 
    //   }
 
@@ -1304,7 +1308,7 @@ namespace filemanager
    //   if (pfilemanagerdata == nullptr)
    //   {
 
-   //      pfilemanagerdata = __allocate ::filemanager::data(this);
+   //      pfilemanagerdata = øallocate ::filemanager::data(this);
 
    //   }
 

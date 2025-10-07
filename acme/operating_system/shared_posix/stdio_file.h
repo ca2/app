@@ -40,7 +40,7 @@ public:
 
 
    void open(const ::file::path & path, ::file::e_open eopen, ::pointer < ::file::exception > * pfileexception = nullptr) override;
-   virtual void open(const ::file::path & path, const ::string & strAttributes, int iShare);
+   virtual void open(const ::file::path & path, const ::scoped_string & scopedstrAttributes, int iShare);
 
    
    void translate(filesize offset, ::enum_seek eseek) override;

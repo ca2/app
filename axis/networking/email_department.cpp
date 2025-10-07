@@ -23,9 +23,9 @@ namespace networking
    bool email_department::utf8_mail(class ::networking::email * pemail)
    {
 
-      auto phandler = __øcreate < ::sockets::socket_handler >();
+      auto phandler = øcreate < ::sockets::socket_handler >();
 
-      auto psocket = __create_new < ::sockets::smtp_socket >();
+      auto psocket = øcreate_new < ::sockets::smtp_socket >();
 
       string strHost = file()->as_string(directory()->home() / ".sensitive/sensitive/seed/default_sendmail_host.txt");
 
@@ -73,10 +73,10 @@ namespace networking
    }
 
 
-   bool email_department::syntax_is_valid(const ::string & strEmailAddress)
+   bool email_department::syntax_is_valid(const ::scoped_string & scopedstrEmailAddress)
    {
 
-      auto iAt = strEmailAddress.find_index('@');
+      auto iAt = scopedstrEmailAddress.find_index('@');
 
       if (iAt < 0)
       {
@@ -85,14 +85,14 @@ namespace networking
 
       }
 
-      if (iAt >= strEmailAddress.length() - 1)
+      if (iAt >= scopedstrEmailAddress.length() - 1)
       {
 
          return false;
 
       }
 
-      string strDomain = strEmailAddress.substr(iAt + 1);
+      string strDomain = scopedstrEmailAddress.substr(iAt + 1);
 
       if (strDomain.is_empty())
       {
@@ -115,10 +115,10 @@ namespace networking
    }
 
 
-   bool email_department::is_valid_public_address(const string& strEmailAddress)
+   bool email_department::is_valid_public_address(const ::scoped_string & scopedstrEmailAddress)
    {
 
-      auto iAt = strEmailAddress.find_index('@');
+      auto iAt = scopedstrEmailAddress.find_index('@');
 
       if (iAt < 0)
       {
@@ -127,14 +127,14 @@ namespace networking
 
       }
 
-      if (iAt >= strEmailAddress.length() - 1)
+      if (iAt >= scopedstrEmailAddress.length() - 1)
       {
 
          return false;
 
       }
 
-      string strDomain = strEmailAddress.substr(iAt + 1);
+      string strDomain = scopedstrEmailAddress.substr(iAt + 1);
 
       if (strDomain.is_empty())
       {
@@ -164,9 +164,7 @@ namespace networking
    }
 
 
-
-} // namespace axis
-
+} // namespace networking
 
 
 

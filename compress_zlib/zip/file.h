@@ -27,11 +27,11 @@ namespace zip
       void write_to_file(file_pointer  pfile, const ::wide_character * pcsz);
 
 
-      //bool unzip_open(const char * pcwsz);
+      //bool unzip_open(const_char_pointer pcwsz);
 
       bool unzip_open(file_pointer pfile, int iBufferLevel = 2);
 
-      bool zip_open(const char * pcwsz);
+      bool zip_open(const_char_pointer pcwsz);
 
       bool zip_open(file_pointer pfile);
 
@@ -44,7 +44,7 @@ namespace zip
 
 
 
-void *         c_zip_file_open_file_func        (void * opaque, const char* filename, int mode);
+void *         c_zip_file_open_file_func        (void * opaque, const_char_pointer filename, int mode);
 uptr       c_zip_file_read_file_func        (void * opaque, void * stream, void * buf, uptr size);
 uptr       c_zip_file_write_file_func       (void * opaque, void * stream, const void * buf, uptr size);
 long           c_zip_file_tell_file_func        (void * opaque, void * stream);

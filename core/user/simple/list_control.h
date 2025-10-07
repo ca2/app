@@ -21,8 +21,8 @@ public:
    bool erase_item(int iItem);
    bool erase_item(::user::range & range);
    bool erase_item(::user::item_range & range);
-   void get_data(string_array & stra);
-   void set_data(string_array & stra);
+   void get_data(string_array_base & stra);
+   void set_data(string_array_base & stra);
    virtual ~simple_list_control();
 
    void install_message_routing(::channel * pchannel) override;

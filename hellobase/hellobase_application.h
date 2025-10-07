@@ -8,7 +8,7 @@ namespace hellobase
 
    class CLASS_DECL_APP_HELLO_BASE application :
       virtual public ::helloaxis::application,
-      virtual public ::base::application
+      virtual public ::berg::application
    {
    public:
 

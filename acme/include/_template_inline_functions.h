@@ -186,7 +186,7 @@ constexpr auto as_absolute_unsigned(SIGNED i)
 //inline bool is_string_ok(const ::scoped_string & scopedstr, memsize nMaxLength)
 //{
 //
-//   return ::is_memory_segment_ok(psz, nMaxLength);
+//   return ::is_memory_segment_ok(scopedstr, nMaxLength);
 //
 //}
 //
@@ -205,7 +205,7 @@ constexpr auto as_absolute_unsigned(SIGNED i)
 //template < typename TYPE > inline TYPE*& __defer_new(TYPE*& p)
 //{
 //
-//   if (!p) p = __allocate TYPE();
+//   if (!p) p = øallocate TYPE();
 //
 //   return p;
 //
@@ -380,31 +380,31 @@ inline bool __sort(T1& t1, T2& t2)
 //
 //
 //
-//inline long long ansi_to_long_long(const ::ansi_character * psz, const ::ansi_character ** ppszEnd, int iBase)
+//inline long long ansi_to_long_long(const_char_pointer psz, const_char_pointer *ppszEnd, int iBase)
 //{
 //
-//   return strtoll(psz, (::ansi_character **) ppszEnd, iBase);
+//   return strtoll(scopedstr, (::ansi_character **) ppszEnd, iBase);
 //
 //}
 //
-//inline unsigned long long ansi_to_unsigned_long_long(const ::ansi_character * psz, const ::ansi_character ** ppszEnd, int iBase)
+//inline unsigned long long ansi_to_unsigned_long_long(const_char_pointer psz, const_char_pointer *ppszEnd, int iBase)
 //{
 //
-//   return strtoull(psz, (::ansi_character **) ppszEnd, iBase);
+//   return strtoull(scopedstr, (::ansi_character **) ppszEnd, iBase);
 //
 //}
 //
 //
-//inline int ansi_to_int(const ::ansi_character * psz, const ::ansi_character ** ppszEnd, int iBase)
+//inline int ansi_to_int(const_char_pointer psz, const_char_pointer *ppszEnd, int iBase)
 //{
 //
 //#ifdef WINDOWS
 //
-//   return strtol(psz, (::ansi_character **) ppszEnd, iBase);
+//   return strtol(scopedstr, (::ansi_character **) ppszEnd, iBase);
 //
 //#else
 //
-//   long l = strtol(psz, (::ansi_character **) ppszEnd, iBase);
+//   long l = strtol(scopedstr, (::ansi_character **) ppszEnd, iBase);
 //
 //   if(l > INT_MAX)
 //   {
@@ -430,16 +430,16 @@ inline bool __sort(T1& t1, T2& t2)
 //}
 //
 //
-//inline unsigned int ansi_to_unsigned_int(const ::ansi_character * psz, const ::ansi_character ** ppszEnd, int iBase)
+//inline unsigned int ansi_to_unsigned_int(const_char_pointer psz, const_char_pointer *ppszEnd, int iBase)
 //{
 //
 //#ifdef WINDOWS
 //
-//   return strtoul(psz, (::ansi_character **) ppszEnd, iBase);
+//   return strtoul(scopedstr, (::ansi_character **) ppszEnd, iBase);
 //
 //#else
 //
-//   unsigned long ul = strtoul(psz, (::ansi_character **) ppszEnd, iBase);
+//   unsigned long ul = strtoul(scopedstr, (::ansi_character **) ppszEnd, iBase);
 //
 //   if(ul > UINT_MAX)
 //   {
@@ -578,7 +578,6 @@ constexpr void append_and_step_if_true(bool b, CHARACTER *& p, CHARACTER charact
 }
 
 
-
 template < primitive_iterator ITERATOR, primitive_iterator BEGIN >
 constexpr bool iterator_is_before_begin(ITERATOR p, BEGIN)
 {
@@ -590,19 +589,19 @@ constexpr bool iterator_is_before_begin(ITERATOR p, BEGIN)
 
 
 template < primitive_iterator ITERATOR, primitive_iterator END >
-constexpr bool iterator_is_end(ITERATOR p, END)
+constexpr bool iterator_is_end(ITERATOR p, END pend)
 {
 
-   return p.is_null();
+   return p.is_null() || p == pend;
 
 }
 
 
 template < primitive_iterator ITERATOR, primitive_iterator BEGIN, primitive_iterator END >
-constexpr bool iterator_is_ok(ITERATOR p, BEGIN, END)
+constexpr bool iterator_is_ok(ITERATOR p, BEGIN, END pend)
 {
 
-   return p.is_ok();
+   return p.is_ok() && p != pend;
 
 }
 
@@ -818,7 +817,7 @@ bool not_found(const T * p)
 
 
 //template < primitive_floating FLOATING, int len >
-//inline ::string as_string(FLOATING f, const ::ansi_character * pszFormat = "%f");
+//inline ::string as_string(FLOATING f, const_char_pointer pszFormat = "%f");
 
 
 template < typename BOOLEAN, typename ASSIGNED, typename ASSIGNEE >

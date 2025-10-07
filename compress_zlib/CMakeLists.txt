@@ -60,7 +60,9 @@ elseif (${LINUX} OR ${__BSD__} OR ${ANDROID})
 
 
     if(${USE_PKGCONFIG})
-        pkg_check_modules(PKGCONFIG zlib)
+        pkg_check_modules(${PROJECT_NAME}_PKGCONFIG zlib)
+    else()
+        list(APPEND library_references zlib)
     endif()
 
 

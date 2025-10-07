@@ -16,7 +16,7 @@
 //   }
 //
 //
-//   ini::ini(const ::string & str)
+//   ini::ini(const ::scoped_string & scopedstr)
 //   {
 //
 //      parse_ini(str);

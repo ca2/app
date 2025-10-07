@@ -57,7 +57,7 @@ namespace networking
       factory()->add_factory_item < ::networking::application_socket>();
       factory()->add_factory_item < ::networking::application_incoming_socket>();
 
-      m_psocketthread = __create_new< ::networking::application_incoming_socket_thread >();
+      m_psocketthread = øcreate_new< ::networking::application_incoming_socket_thread >();
 
       m_psocketthread->m_pnetworkingapplication = this;
 
@@ -113,7 +113,7 @@ namespace networking
    }
 
 
-   void application::add_handler(const ::string& strPrefix, ::networking::application_handler* phandler)
+   void application::add_handler(const ::scoped_string & scopedstrPrefix, ::networking::application_handler* phandler)
    {
 
       if (::is_null(phandler))
@@ -123,7 +123,7 @@ namespace networking
 
       }
 
-      auto& phandlerMapped = m_maphandler[strPrefix];
+      auto& phandlerMapped = m_maphandler[scopedstrPrefix];
 
       phandlerMapped = phandler;
 
@@ -132,10 +132,10 @@ namespace networking
    }
 
 
-   ::e_status application::on_html_response(::networking::application_socket * psocket, ::string & strHtml, const ::string& strUrl, const ::property_set& setPost)
+   ::e_status application::on_html_response(::networking::application_socket * psocket, ::string & strHtml, const ::scoped_string & scopedstrUrl, const ::property_set& setPost)
    {
 
-      ::url::url url(strUrl);
+      ::url::url url(scopedstrUrl);
 
       string strPath = url.request().path();
 
@@ -158,7 +158,7 @@ namespace networking
                || strPath.case_insensitive_begins(strScript + "?"))
             {
 
-               auto estatus = phandler->on_html_response(psocket, strHtml, strUrl, setPost);
+               auto estatus = phandler->on_html_response(psocket, strHtml, scopedstrUrl, setPost);
 
                if (estatus.succeeded())
                {

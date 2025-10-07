@@ -88,9 +88,9 @@ CLASS_DECL_ACME void __node_acme_pos_term()
 //
 //   char * psz = mm_ca2_command_line();
 //
-//   string str(psz);
+//   string str(scopedstr);
 //
-//   free(psz);
+//   free(scopedstr);
 //
 //   return str;
 //

@@ -23,7 +23,7 @@ void trace_category_static_init(::platform::system * psystem)
 
    trace_category::s_ptracecategorya = ___new pointer_array < trace_category > ();
 
-   const ::ansi_character * psza[] =
+   const_char_pointer psza[] =
    {
    "general",
       "com",
@@ -43,7 +43,7 @@ void trace_category_static_init(::platform::system * psystem)
       "cache",
       "stencil",
       "string",
-      "map",
+      "map_base",
       "util",
       "security",
       "synchronization",
@@ -79,7 +79,7 @@ void trace_category_static_init(::platform::system * psystem)
 
       const ::scoped_string & scopedstrCategory = *p;
 
-      auto pcategory = __allocate trace_category(etracecategory, scopedstrCategory);
+      auto pcategory = øallocate trace_category(etracecategory, scopedstrCategory);
 
       pcategory->initialize(psystem);
 
@@ -102,11 +102,11 @@ void trace_category_static_init(::platform::system * psystem)
 //
 //   //::collection::index i = 0;
 //
-//   //while (pszaCategory[i] != NULL && i < g_ptracecategorya->get_size())
+//   //while (scopedstraCategory[i] != NULL && i < g_ptracecategorya->get_size())
 //   //{
 //
 //   //   g_ptracecategorya->element_at(i).m_ecategory = (e_trace_category) i;
-//   //   g_ptracecategorya->element_at(i).raw_set_topic_text(pszaCategory[i]);
+//   //   g_ptracecategorya->element_at(i).raw_set_topic_text(scopedstraCategory[i]);
 //
 //   //}
 //
@@ -132,7 +132,7 @@ void trace_category_static_term()
 
 
 
-CLASS_DECL_ACME const char* trace_category_name(enum_trace_category etracecategory)
+CLASS_DECL_ACME const_char_pointer trace_category_name(enum_trace_category etracecategory)
 {
 
    if (etracecategory < e_trace_category_first && etracecategory < e_trace_category_count)
@@ -188,7 +188,7 @@ CLASS_DECL_ACME const ::particle * trace_object(enum_trace_category etracecatego
 }
 
 
-const char* g_pszTraceLevelName[] =
+const_char_pointer g_pszTraceLevelName[] =
 {
 
    "none",
@@ -222,7 +222,7 @@ enum_trace_category object_trace_category(::particle * pparticle)
 }
 
 
-const char* topic_text(::particle * pparticle)
+const_char_pointer topic_text(::particle * pparticle)
 {
 
    if (::is_null(pparticle))

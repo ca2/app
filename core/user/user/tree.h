@@ -63,8 +63,8 @@ namespace user
 
       manual_reset_happening                                   m_happeningExpand;
       manual_reset_happening                                   m_happeningOpen;
-      raw_pointer_array < ::data::tree_item_base >             m_treeitemaExpand;
-      raw_pointer_array < ::data::tree_item_base >             m_treeitemaOpen;
+      raw_pointer_array_base < ::data::tree_item_base >        m_treeitemaExpand;
+      raw_pointer_array_base < ::data::tree_item_base >        m_treeitemaOpen;
 
 
 
@@ -104,10 +104,10 @@ namespace user
       void _001SelectItem(::data::tree_item_base * ptreeitem);
       ::collection::count _001GetProperItemCount();
       ::collection::count _001GetVisibleItemCount();
-      void _001SetCollapseImage(const ::string & pszMatter);
-      void _001SetExpandImage(const ::string & pszMatter);
-      void _001SetCollapseImageDark(const ::string & pszMatter);
-      void _001SetExpandImageDark(const ::string & pszMatter);
+      void _001SetCollapseImage(const ::scoped_string & scopedstrMatter);
+      void _001SetExpandImage(const ::scoped_string & scopedstrMatter);
+      void _001SetCollapseImageDark(const ::scoped_string & scopedstrMatter);
+      void _001SetExpandImageDark(const ::scoped_string & scopedstrMatter);
       void update_tree_hover();
       void update_tree_hover(int_point point);
       virtual void _001OnOpenItem(::data::tree_item_base * ptreeitem, const ::action_context & action_context);

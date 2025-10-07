@@ -9,7 +9,7 @@ public:
 
    
    static void copy(BSTR &bstrDest, const BSTR bstrSrc);
-   static void copy(BSTR &bstrDest, const string &strSrc);
+   static void copy(BSTR &bstrDest, const ::scoped_string & scopedstrSrc);
    static void copy(string &strDest, const BSTR bstrSrc);
    static bool IsEqual(const BSTR bstrA, const BSTR bstrB);
 

@@ -145,10 +145,10 @@ namespace colorertake5
 
    }
 
-   void LineRegionsSupport::clearLine(index lno, const ::string & pszLine)
+   void LineRegionsSupport::clearLine(index lno, const ::scoped_string & scopedstrLine)
    {
 
-      __UNREFERENCED_PARAMETER(pszLine);
+      __UNREFERENCED_PARAMETER(scopedstrLine);
 
       if(!checkLine(lno))
          return;
@@ -162,7 +162,7 @@ namespace colorertake5
          ln = lnn;
       }
 
-      LineRegion *lfirst = __allocate< LineRegion(*schemeStack.last >());
+      LineRegion *lfirst = øallocate< LineRegion(*schemeStack.last >());
       lfirst->start = 0;
       lfirst->end = -1;
       lfirst->next = nullptr;
@@ -253,7 +253,7 @@ namespace colorertake5
       // we have to skip transparent regions
       if (scheme_region != nullptr)
       {
-         LineRegion *lr = __allocate< LineRegion(*schemeStack.last >());
+         LineRegion *lr = øallocate< LineRegion(*schemeStack.last >());
          lr->start = ex;
          lr->end = -1;
          flowBackground->end = lr->start;

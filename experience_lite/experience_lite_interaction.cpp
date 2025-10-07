@@ -37,7 +37,7 @@
          {
          }
 
-         void experience::get_frame_list(string_array & stra)
+         void experience::get_frame_list(string_array_base & stra)
          {
 
             stra.add("001");
@@ -51,38 +51,38 @@
          }
 
 
-         ::pointer<::experience::frame>experience::get_frame(const ::string & pszSchema)
+         ::pointer<::experience::frame>experience::get_frame(const ::scoped_string & scopedstrSchema)
          {
 
-            string strSchema(pszSchema);
+            string strSchema(scopedstrSchema);
 
             if(strSchema == "001")
             {
-               return  __allocate ::experience::experience_lite::frame_001(this);
+               return  øallocate ::experience::experience_lite::frame_001(this);
             }
             else if(strSchema == "002")
             {
-               return  __allocate ::experience::experience_lite::frame_002(this);
+               return  øallocate ::experience::experience_lite::frame_002(this);
             }
             else if(strSchema == "005")
             {
-               return  __allocate ::experience::experience_lite::frame_005(this);
+               return  øallocate ::experience::experience_lite::frame_005(this);
             }
             else if(strSchema == "008")
             {
-               return  __allocate ::experience::experience_lite::frame_008(this);
+               return  øallocate ::experience::experience_lite::frame_008(this);
             }
             else if(strSchema == "011")
             {
-               return  __allocate ::experience::experience_lite::frame_011(this);
+               return  øallocate ::experience::experience_lite::frame_011(this);
             }
             else if(strSchema == "013")
             {
-               return  __allocate ::experience::experience_lite::frame_013(this);
+               return  øallocate ::experience::experience_lite::frame_013(this);
             }
             else if(strSchema == "Minimal001")
             {
-               return  __allocate ::experience::experience_lite::frame_Minimal001(this);
+               return  øallocate ::experience::experience_lite::frame_Minimal001(this);
             }
 
             return nullptr;

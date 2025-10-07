@@ -7,7 +7,7 @@ namespace hi5
 {
 
 
-   string prepare_basic_authentication(::particle * pparticle, const ::string & inParam1, const ::string & inParam2 );
+   string prepare_basic_authentication(::particle * pparticle, const ::scoped_string & scopedstrInputParameter1, const ::scoped_string & scopedstrInputParameter2 );
 
 
    namespace oAuthTwitterApiUrls
@@ -233,7 +233,7 @@ namespace hi5
    }
 
 
-   string twit::mediaUpload(file_pointer pfile, string strMimeType, string strCategory)
+   string twit::mediaUpload(file_pointer pfile, const ::scoped_string & scopedstrMimeType, const ::scoped_string & scopedstrCategory)
    {
 
       m_strError = "";
@@ -478,7 +478,7 @@ namespace hi5
    }
 
 
-   string twit::mediaUploadInit(int iTotalSize, string strMimeType, string strCategory)
+   string twit::mediaUploadInit(int iTotalSize, const ::scoped_string & scopedstrMimeType, const ::scoped_string & scopedstrCategory)
    {
 
       m_strRequest = "REQUEST: mediaUploadInit(" + as_string(iTotalSize) + ", \"" + strMimeType + "\", \"" + strCategory + "\")";
@@ -508,7 +508,7 @@ namespace hi5
 
       ::payload v;
 
-      const char * p = m_strResponse;
+      const_char_pointer p= m_strResponse;
 
       m_strError = m_strResponse;
 
@@ -557,7 +557,7 @@ namespace hi5
    }
 
 
-   bool twit::mediaUploadAppend(string strMediaId, ::collection::index iIndex, file_pointer pfile, int iSize, string strMimeType, string & boundary_is_the_bounday_the_issue_i_e_should_it_be_the_same_across_appends)
+   bool twit::mediaUploadAppend(const ::scoped_string & scopedstrMediaId, ::collection::index iIndex, file_pointer pfile, int iSize, const ::scoped_string & scopedstrMimeType, string & boundary_is_the_bounday_the_issue_i_e_should_it_be_the_same_across_appends)
    {
 
       log_line("mediaUploadAppend(\"" + strMediaId + "\", " + as_string(iIndex) + ", memory(size=" + as_string(iSize) + "))");
@@ -609,7 +609,7 @@ namespace hi5
    }
 
 
-   ::payload twit::mediaUploadFinalize(string strMediaId)
+   ::payload twit::mediaUploadFinalize(const ::scoped_string & scopedstrMediaId)
    {
 
       log_line("mediaUploadFinalize(\"" + strMediaId + "\")");
@@ -628,7 +628,7 @@ namespace hi5
 
       ::payload v;
 
-      const char * p = m_strResponse;
+      const_char_pointer p= m_strResponse;
 
       m_strError = m_strResponse;
 
@@ -677,7 +677,7 @@ namespace hi5
    }
 
 
-   ::payload twit::mediaUploadStatus(string strMediaId)
+   ::payload twit::mediaUploadStatus(const ::scoped_string & scopedstrMediaId)
    {
 
       log_line("mediaUploadFinalize(\"" + strMediaId + "\")");
@@ -692,7 +692,7 @@ namespace hi5
 
       ::payload v;
 
-      const char * p = m_strResponse;
+      const_char_pointer p= m_strResponse;
 
       m_strError = m_strResponse;
 
@@ -752,7 +752,7 @@ namespace hi5
    *          response by twitter. Use get_response() for that.
    *
    *--*/
-   bool twit::statusUpdate( string & newStatus, string_array straMediaIds, string strReplyStatusId)
+   bool twit::statusUpdate( string & newStatus, string_array_base straMediaIds, const ::scoped_string & scopedstrReplyStatusId)
    {
 
       m_strRequest = "hi5::twit::statusUpdate(\"" + newStatus + "\", {" + straMediaIds.implode(", ")+"})" ;
@@ -1219,7 +1219,7 @@ namespace hi5
    /*++
    * @method: twit::friendshipDestroy
    *
-   * @description: method to delete a twitter user from friend list (unfollow a user)
+   * @description: method to delete a twitter user from friend list_base (unfollow a user)
    *
    * @input: userInfo - user atom or screen name of a user
    *         isUserId - true if userInfo contains a user atom instead of screen name
@@ -2075,7 +2075,7 @@ namespace hi5
    * @remarks: internal method
    *
    *--*/
-   string twit::prepare_basic_authentication(const ::string & inParam1, const ::string & inParam2)
+   string twit::prepare_basic_authentication(const ::scoped_string & scopedstrInputParameter1, const ::scoped_string & scopedstrInputParameter2)
    {
       string outStr = inParam1;
       outStr += TWIT_COLON;
@@ -2098,7 +2098,7 @@ namespace hi5
    * @remarks: internal method
    *
    *--*/
-   string twit::build_url( const char * baseUrl, const ::string & userInfo, bool isUserId )
+   string twit::build_url( const_char_pointer baseUrl, const ::scoped_string & scopedstrUserInfo, bool isUserId )
    {
       /* Copy base URL */
       string outUrl = baseUrl;

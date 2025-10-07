@@ -19,7 +19,7 @@
 #if !defined(APPLE_IOS)
 
 
-//void command_system(string_array & straOutput, int& iExitCode, const ::scoped_string & scopedstr, enum_command_system ecommandsystem, const class time & timeTimeout, ::particle * pparticleSynchronization, ::file::file * pfileLog)
+//void command_system(string_array_base & straOutput, int& iExitCode, const ::scoped_string & scopedstr, enum_command_system ecommandsystem, const class time & timeTimeout, ::particle * pparticleSynchronization, ::file::file * pfileLog)
 //{
 //
 //   single_lock singlelock(pparticleSynchronization);
@@ -60,7 +60,7 @@
 //
 //   string strError;
 //
-//   auto pszCommandLine = strdup(psz);
+//   auto pszCommandLine = strdup(scopedstr);
 //
 //   const pid_t pid = fork();
 //
@@ -81,9 +81,9 @@
 //
 //      wordexp_t we{};
 //
-//      wordexp(pszCommandLine, &we, 0);
+//      wordexp(scopedstrCommandLine, &we, 0);
 //
-//      char ** argv = __allocate_array< char * >(we.we_wordc+1);
+//      char ** argv = øallocate_array< char * >(we.we_wordc+1);
 //
 //      ::memory_copy(argv, we.we_wordv, we.we_wordc * sizeof(char*));
 //
@@ -102,7 +102,7 @@
 //
 //      wordfree(&we);
 //
-//      free(pszCommandLine);
+//      free(scopedstrCommandLine);
 //
 //      _exit(iErrNo);
 //
@@ -307,7 +307,7 @@ critical_section * get_pid_cs()
 
 string get_current_directory_name();
 
-::file::path deduct_module_path_from_current_directory(const char * pszOptionalExecutableRelativePath)
+::file::path deduct_module_path_from_current_directory(const_char_pointer pszOptionalExecutableRelativePath)
 {
 	
    ::string strName(pszOptionalExecutableRelativePath);

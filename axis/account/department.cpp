@@ -49,7 +49,7 @@ namespace account
 //   credentials * department::create_credentials()
 //   {
 //
-//      return __allocate network_credentials(m_pstorage);
+//      return øallocate network_credentials(m_pstorage);
 //
 //   }
 //
@@ -94,15 +94,15 @@ namespace account
    }
 
 
-   product * department::get_product(string strAppId, bool bFetch, bool bInteractive)
+   product * department::get_product(const ::scoped_string & scopedstrAppId, bool bFetch, bool bInteractive)
    {
 
-      return m_pproducta->get_product(strAppId, bFetch, bInteractive);
+      return m_pproducta->get_product(scopedstrAppId, bFetch, bInteractive);
 
    }
 
 
-//   product * department::interactive_get_product(string strAppId)
+//   product * department::interactive_get_product(const ::scoped_string & scopedstrAppId)
 //   {
 //
 //      return m_pproducta->interactive_get_product(strAppId);
@@ -110,7 +110,7 @@ namespace account
 //   }
 //
 //
-//   product * department::noninteractive_get_product(string strAppId)
+//   product * department::noninteractive_get_product(const ::scoped_string & scopedstrAppId)
 //   {
 //
 //      return m_pproducta->noninteractive_get_product(strAppId);
@@ -118,10 +118,10 @@ namespace account
 //   }
 //
 
-   bool department::is_licensed(string strAppId, bool bInteractive)
+   bool department::is_licensed(const ::scoped_string & scopedstrAppId, bool bInteractive)
    {
 
-      return m_pproducta->is_licensed(strAppId, bInteractive);
+      return m_pproducta->is_licensed(scopedstrAppId, bInteractive);
 
    }
 
@@ -265,7 +265,7 @@ namespace account
 
       //estatus = 
       
-      __construct_new(m_ptaskpool);
+      øconstruct_new(m_ptaskpool);
 
       //if (!estatus)
       //{
@@ -274,7 +274,7 @@ namespace account
 
       //}
 
-      auto pstorage = __allocate system_storage();
+      auto pstorage = øallocate system_storage();
 
       m_pstorage = pstorage;
 
@@ -289,9 +289,9 @@ namespace account
 
       //}
 
-      m_pauthenticator = __create_new< network_authenticator >();
+      m_pauthenticator = øcreate_new< network_authenticator >();
 
-      auto pusera = __allocate user_array();
+      auto pusera = øallocate user_array();
       
       m_pusera = pusera;
 
@@ -306,7 +306,7 @@ namespace account
 
       //}
 
-      m_pproducta = __allocate product_array();
+      m_pproducta = øallocate product_array();
 
       //estatus = 
       
@@ -335,7 +335,7 @@ namespace account
    void department::not_auth(::file::path pathUrl)
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       auto puser = get_user(pathUrl);
 

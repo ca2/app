@@ -103,7 +103,7 @@ namespace color
        set rectangle [expr {(($int_rectangle-1)*$s+1)*$l}]
        set g [expr {(($g-1)*$s+1)*$l}]
        set b [expr {(($b-1)*$s+1)*$l}]
-       return [list $int_rectangle $g $b]
+       return [list_base $int_rectangle $g $b]
    }
 
 
@@ -1603,7 +1603,7 @@ CLASS_DECL_ACME::color::color as_color(const ::scoped_string & scopedstr)
 namespace color
 {
 
-   CLASS_DECL_ACME::color::color hex_to_color(const char* psz)
+   CLASS_DECL_ACME::color::color hex_to_color(const_char_pointer psz)
    {
 
       ::string str(psz);
@@ -1617,7 +1617,7 @@ namespace color
 
       str.make_upper();
 
-      ::string_array straPermitted;
+      ::string_array_base straPermitted;
 
       straPermitted.add("0");
       straPermitted.add("1");

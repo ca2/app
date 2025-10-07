@@ -5,7 +5,7 @@
 #include "apex/platform/system.h"
 #include "networking_bsd/address.h"
 #include "networking_bsd/networking.h"
-
+#include "acme/operating_system/networking.h"
 
 #undef ERROR
 #define log_error(...) TRACE_LOG_ERROR(__VA_ARGS__)
@@ -21,7 +21,7 @@
 #include <cstring>
 
 // Demangle C++ symbols using __cxa_demangle
-void demangle_and_print(const char *mangled_name) {
+void demangle_and_print(const_char_pointer mangled_name) {
     int status = 0;
     char *demangled_name = abi::__cxa_demangle(mangled_name, nullptr, nullptr, &status);
     
@@ -117,19 +117,22 @@ namespace sockets_bsd
    }
 
 
-   void listen_socket_impl::set_ssl_catalog(const ::string & strCat)
+   void listen_socket_impl::set_ssl_catalog(const ::scoped_string & scopedstrCat)
    {
 
-      m_strCat = strCat;
+      m_strCat = scopedstrCat;
 
    }
 
-   void listen_socket_impl::set_ssl_cipher_list(const ::string & strCipherList)
+
+   void listen_socket_impl::set_ssl_cipher_list(const ::scoped_string & scopedstrCipherList)
    {
 
-      m_strCipherList = strCipherList;
+      m_strCipherList = scopedstrCipherList;
 
    }
+
+
    /** close file descriptor. */
    void listen_socket_impl::close()
    {
@@ -150,14 +153,14 @@ namespace sockets_bsd
    {
       if (IsIpv6())
       {
-         auto paddress = __allocate ::networking_bsd::address();
+         auto paddress = øallocate ::networking_bsd::address();
          paddress->set_family(AF_INET6, port);
          //::networking::address ad(AF_INET6, port);
          return Bind(paddress.m_p, depth);
       }
       else
       {
-         auto paddress = __allocate ::networking_bsd::address();
+         auto paddress = øallocate ::networking_bsd::address();
          paddress->set_family(AF_INET, port);
          return Bind(paddress.m_p, depth);
       }
@@ -182,13 +185,13 @@ namespace sockets_bsd
    {
       if (IsIpv6())
       {
-         auto paddress = __allocate ::networking_bsd::address();
+         auto paddress = øallocate ::networking_bsd::address();
          paddress->set_family(AF_INET6, port);
          return Bind(paddress->u.m_addr6.sin6_addr, port, protocol, depth);
       }
       else
       {
-         auto paddress = __allocate ::networking_bsd::address();
+         auto paddress = øallocate ::networking_bsd::address();
          paddress->set_family(AF_INET, port);
          return Bind(paddress->u.m_addr.sin_addr, port, protocol, depth);
       }
@@ -198,10 +201,10 @@ namespace sockets_bsd
    \lparam intf Interface hostname
    \lparam port Port (0 is random)
    \lparam depth Listen queue depth */
-   int listen_socket_impl::Bind(const string & intf,::networking::port_t port,int depth)
+   int listen_socket_impl::Bind(const ::scoped_string & scopedstrInterface,::networking::port_t port,int depth)
    {
       
-      auto paddress = __SystemNetworking(system())->create_address(intf, preferred_address_type(), port);
+      auto paddress = __SystemNetworking(system())->create_address(scopedstrInterface, preferred_address_type(), port);
 
       if (paddress->is_valid())
       {
@@ -222,10 +225,10 @@ namespace sockets_bsd
    \lparam port Port (0 is random)
    \lparam protocol Network protocol
    \lparam depth Listen queue depth */
-   int listen_socket_impl::Bind(const string & intf,::networking::port_t port,const string & protocol,int depth)
+   int listen_socket_impl::Bind(const ::scoped_string & scopedstrInterface,::networking::port_t port,const string & protocol,int depth)
    {
 
-      auto paddress = __SystemNetworking(system())->create_address(intf, preferred_address_type(), port);
+      auto paddress = __SystemNetworking(system())->create_address(scopedstrInterface, preferred_address_type(), port);
 
       if (paddress->is_valid())
       {
@@ -248,7 +251,7 @@ namespace sockets_bsd
    int listen_socket_impl::Bind(in_addr a,::networking::port_t port,int depth)
    {
 
-      auto paddress = __allocate ::networking_bsd::address();
+      auto paddress = øallocate ::networking_bsd::address();
 
       paddress->set_address(a, port);
 
@@ -271,7 +274,7 @@ namespace sockets_bsd
    int listen_socket_impl::Bind(in_addr a,::networking::port_t port,const string & protocol,int depth)
    {
 
-      auto paddress = __allocate ::networking_bsd::address();
+      auto paddress = øallocate ::networking_bsd::address();
 
       paddress->set_address(a, port);
 
@@ -286,7 +289,7 @@ namespace sockets_bsd
    int listen_socket_impl::Bind(in6_addr a,::networking::port_t port,int depth)
    {
 
-      auto paddress = __allocate ::networking_bsd::address();
+      auto paddress = øallocate ::networking_bsd::address();
 
       paddress->set_address(a, port);
 
@@ -310,7 +313,7 @@ namespace sockets_bsd
    int listen_socket_impl::Bind(in6_addr a,::networking::port_t port,const string & protocol,int depth)
    {
 
-      auto paddress = __allocate ::networking_bsd::address();
+      auto paddress = øallocate ::networking_bsd::address();
 
       paddress->set_address(a, port);
 
@@ -485,7 +488,7 @@ namespace sockets_bsd
 
       socklen_t sockaddr_len = sizeof(sockaddr_union);
 
-      SOCKET socketAccept = accept(socketid, &sockaddr.c, &sockaddr_len);
+      SOCKET socketAccept = _accept_socket(socketid, &sockaddr.c, &sockaddr_len);
 
       if (socketAccept == INVALID_SOCKET)
       {
@@ -566,7 +569,7 @@ namespace sockets_bsd
       psocketImpl->OnOptions(m_iFamily, m_iSocketType, m_iProtocolType, socketAccept);
       printf_line("listen_socket_impl::OnRead 4");
       //psocketImpl-> SetNonblocking(true);
-      auto paddressRemote = __allocate ::networking_bsd::address();
+      auto paddressRemote = øallocate ::networking_bsd::address();
       paddressRemote->set_address(sockaddr.c, sockaddr_len);
       printf_line("listen_socket_impl::OnRead 5");
       //tmp->SetRemoteHostname(::networking::address(*psa));
@@ -584,7 +587,7 @@ namespace sockets_bsd
       {
          // %! OnSSLAccept calls SSLNegotiate that can finish in this one call.
          // %! If that happens and negotiation fails, the 'tmp' instance is
-         // %! still added to the list of active networking_bsd in the sockethandler.
+         // %! still added to the list_base of active networking_bsd in the sockethandler.
          // %! See bugfix for this in socket_handler::Select - don't set rwx
          // %! flags if IsCloseAndDelete() flag is true.
          // %! An even better fugbix (see tcp_socket::OnSSLAccept) now avoids
@@ -624,9 +627,13 @@ namespace sockets_bsd
 
    /** Please don't use this method.
    "accept()" is handled automatically in the OnRead() method. */
+#if defined(__ANDROID__) || defined(__BSD__) || defined(__APPLE__)
    SOCKET listen_socket_impl::Accept(SOCKET socket, struct sockaddr *saptr, socklen_t *lenptr)
+#else
+   SOCKET listen_socket_impl::Accept(SOCKET socket, struct sockaddr *saptr, int *lenptr)
+#endif
    {
-      return accept(socket, saptr, lenptr);
+      return ::_accept_socket(socket, saptr, lenptr);
    }
 
    bool listen_socket_impl:: HasCreator()

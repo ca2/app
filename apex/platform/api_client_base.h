@@ -11,7 +11,7 @@ class CLASS_DECL_APEX api_client_base :
 public:
 
 
-   string_map < ::pointer < ::api > >     m_mapapi;
+   string_map_base < ::pointer < ::api > >     m_mapapi;
    //string                                 m_strImplementation; 
    //string                               m_strProfileStore;
    //string                               m_strApiClientConfig;
@@ -38,13 +38,13 @@ public:
    //virtual ::pointer < ::api > create_api(const ::scoped_string & strImplementation);
 
 
-   //virtual void api_get(::string & str, const string & strUrl, ::property_set & set);
+   //virtual void api_get(::string & str, const ::scoped_string & scopedstrUrl, ::property_set & set);
 
 
-   //virtual void api_get(::payload & payload, const string & strUrl, ::property_set & set);
+   //virtual void api_get(::payload & payload, const ::scoped_string & scopedstrUrl, ::property_set & set);
 
 
-   //virtual void api_download(string strGet, const ::file::path & path, ::property_set & set);
+   //virtual void api_download(const ::scoped_string & scopedstrGet, const ::file::path & path, ::property_set & set);
 
 
 };

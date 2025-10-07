@@ -25,7 +25,7 @@
 //   virtual void reboot();
 //   virtual void shutdown(bool bPowerOff);
 //
-//   virtual void terminate_processes_by_title(const ::string & strName);
+//   virtual void terminate_processes_by_title(const ::scoped_string & scopedstrName);
 //
 ////#ifdef WINDOWS
 ////      virtual ::file::path get_module_path(HMODULE hmodule);
@@ -42,27 +42,27 @@
 //   virtual ::payload connection_settings_get_auto_detect();
 //   virtual ::payload connection_settings_get_auto_config_url();
 //
-//   virtual void link_open(const string & strUrl, const string & strProfile);
+//   virtual void link_open(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrProfile);
 //
-//   virtual void local_machine_set_run(const ::string & strKey, const ::file::path & pathExecutable, const ::string& strArguments, bool bSet);
-//   virtual void local_machine_set_run_once(const ::string & strKey, const ::file::path & pathExecutable, const ::string& strArguments, bool bSet);
-//   virtual void current_user_set_run(const ::string & strKey, const ::file::path & pathExecutable, const ::string & strArguments, bool bSet);
-//   virtual void current_user_set_run_once(const ::string & strKey, const ::file::path & pathExecutable, const ::string& strArguments, bool bSet);
+//   virtual void local_machine_set_run(const ::scoped_string & scopedstrKey, const ::file::path & pathExecutable, const ::scoped_string & scopedstrArguments, bool bSet);
+//   virtual void local_machine_set_run_once(const ::scoped_string & scopedstrKey, const ::file::path & pathExecutable, const ::scoped_string & scopedstrArguments, bool bSet);
+//   virtual void current_user_set_run(const ::scoped_string & scopedstrKey, const ::file::path & pathExecutable, const ::scoped_string & scopedstrArguments, bool bSet);
+//   virtual void current_user_set_run_once(const ::scoped_string & scopedstrKey, const ::file::path & pathExecutable, const ::scoped_string & scopedstrArguments, bool bSet);
 //
 //   virtual void defer_register_ca2_plugin_for_mozilla();
 //
 //
-//   virtual void file_extension_get_open_with_list_keys(string_array & straKey, const ::string & strExtension);
-//   virtual void file_extension_get_open_with_list_commands(string_array & straCommand, const ::string & strExtension);
+//   virtual void file_extension_get_open_with_list_keys(string_array_base & straKey, const ::scoped_string & scopedstrExtension);
+//   virtual void file_extension_get_open_with_list_commands(string_array_base & straCommand, const ::scoped_string & scopedstrExtension);
 //
-//   virtual void file_association_set_default_icon(const ::string & strExtension, const ::string & strExtensionNamingClass, const ::string & strIconPath);
-//   virtual void file_association_set_shell_open_command(const ::string & strExtension, const ::string & strExtensionNamingClass, const ::string & strCommand, const ::string & strParam);
-//   virtual void file_association_get_shell_open_command(const ::string & strExtension, string & strExtensionNamingClass, string & strCommand, string & strParam);
+//   virtual void file_association_set_default_icon(const ::scoped_string & scopedstrExtension, const ::scoped_string & scopedstrExtensionNamingClass, const ::scoped_string & scopedstrIconPath);
+//   virtual void file_association_set_shell_open_command(const ::scoped_string & scopedstrExtension, const ::scoped_string & scopedstrExtensionNamingClass, const ::scoped_string & scopedstrCommand, const ::scoped_string & scopedstrParam);
+//   virtual void file_association_get_shell_open_command(const ::scoped_string & scopedstrExtension, string & strExtensionNamingClass, string & strCommand, string & strParam);
 //
-//   virtual void native_full_web_browser(const ::string & str);
+//   virtual void native_full_web_browser(const ::scoped_string & scopedstr);
 //
 //
-//   virtual void native_modern_web_browser(const ::string & str);
+//   virtual void native_modern_web_browser(const ::scoped_string & scopedstr);
 //
 //
 //   virtual void enable_service();
@@ -73,13 +73,13 @@
 //
 //   virtual void stop_service();
 //
-//   virtual void enable_service(const ::string & strServiceName, const ::string & strDisplayName, const ::string & strCommand, const ::string & strUser = "", const ::string & strPass = "");
+//   virtual void enable_service(const ::scoped_string & scopedstrServiceName, const ::scoped_string & scopedstrDisplayName, const ::scoped_string & scopedstrCommand, const ::scoped_string & scopedstrUser = "", const ::scoped_string & scopedstrPass = "");
 //
-//   virtual void disable_service(const ::string & strServiceName);
+//   virtual void disable_service(const ::scoped_string & scopedstrServiceName);
 //
-//   virtual void start_service(const ::string & strServiceName);
+//   virtual void start_service(const ::scoped_string & scopedstrServiceName);
 //
-//   virtual void stop_service(const ::string & strServiceName);
+//   virtual void stop_service(const ::scoped_string & scopedstrServiceName);
 //
 ////#ifdef WINDOWS
 ////      virtual DECLSPEC_NO_RETURN void raise_exception(unsigned int dwExceptionCode, unsigned int dwExceptionFlags = EXCEPTION_NONCONTINUABLE);
@@ -100,9 +100,9 @@
 //
 //   virtual void set_dark_mode(bool bDarkMode);
 //
-//   virtual void file_open(const ::file::path & path, const ::string & strParams = "", const ::file::path & pathFolder = "");
-//   virtual void hidden_start(const ::file::path& path, const ::string& strParams = "", const ::file::path& pathFolder = "");
-//   virtual void hidden_run(const class time & timeWait, const ::file::path& path, const ::string& strParams = "", const ::file::path& pathFolder = "");
+//   virtual void file_open(const ::file::path & path, const ::scoped_string & scopedstrParams = "", const ::file::path & pathFolder = "");
+//   virtual void hidden_start(const ::file::path& path, const ::scoped_string & scopedstrParams = "", const ::file::path& pathFolder = "");
+//   virtual void hidden_run(const class time & timeWait, const ::file::path& path, const ::scoped_string & scopedstrParams = "", const ::file::path& pathFolder = "");
 //
 //   virtual string get_default_browser();
 //
@@ -112,13 +112,13 @@
 //
 //   virtual void set_file_extension_mime_type(::get_file_extension_mime_type * pgetfileextensionmimetype);
 //
-//   virtual void set_file_extension_mime_type(string_array & straExtension, string_array & straMimeType);
+//   virtual void set_file_extension_mime_type(string_array_base & straExtension, string_array_base & straMimeType);
 //
-//   virtual void register_user_auto_start(const string & strAppId, const ::file::path & pathExecutable, const string & strArguments, bool bRegister);
+//   virtual void register_user_auto_start(const ::scoped_string & scopedstrAppId, const ::file::path & pathExecutable, const ::scoped_string & scopedstrArguments, bool bRegister);
 //
-//   virtual bool is_user_auto_start(const string & strAppId);
+//   virtual bool is_user_auto_start(const ::scoped_string & scopedstrAppId);
 //
-//   virtual ::file::path get_app_path(const ::string & strApp);
+//   virtual ::file::path get_app_path(const ::scoped_string & scopedstrApp);
 //
 //   virtual void on_process_request(::request * prequest);
 //
@@ -155,10 +155,10 @@
 //   virtual void broadcast_environment_variable_change();
 //
 //
-//   virtual void set_this_application_as_default_for_file_extension(const ::string& strExtension);
+//   virtual void set_this_application_as_default_for_file_extension(const ::scoped_string & scopedstrExtension);
 //
 //
-//   string get_file_extension_mime_type(const ::string & strExtension);
+//   string get_file_extension_mime_type(const ::scoped_string & scopedstrExtension);
 //
 //
 //};

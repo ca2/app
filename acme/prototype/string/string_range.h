@@ -13,10 +13,12 @@ class string_range :
 {
 public:
 
+   
+   using BASE_RANGE = ::const_string_range < ITERATOR_TYPE >;
+   using RAW_CHARACTER_RANGE = typename BASE_RANGE::RAW_CHARACTER_RANGE;
+
 
    //using BASE_RANGE = ::comparable_range < ::comparable_eq_range < ::array_range < ::range < ITERATOR_TYPE > > > >;
-
-   using BASE_RANGE = ::const_string_range < ITERATOR_TYPE >;
 
    using THIS_RANGE = ::string_range < ITERATOR_TYPE >;
 
@@ -61,15 +63,16 @@ public:
 
    string_range() {}
 
-   template<typed_range<iterator> RANGE>
-   explicit string_range(const RANGE & range) : BASE_RANGE(range) {}
+   template<typed_range<iterator> TYPED_RANGE>
+   constexpr string_range(const TYPED_RANGE& range) 
+      requires(!::std::is_same_v < TYPED_RANGE, THIS_RANGE >) :
+      BASE_RANGE(range) { }
 
-   template<typed_range<const_iterator> RANGE>
-   explicit string_range(const RANGE & range) : BASE_RANGE(range) {}
+   constexpr string_range(const string_range & range) :
+      BASE_RANGE(range) { }
 
-   string_range(const THIS_RANGE & range) : BASE_RANGE(range) {}
-
-   string_range(THIS_RANGE && range) : BASE_RANGE(::transfer(range)) {}
+   constexpr string_range(string_range && range) :
+      BASE_RANGE(::transfer(range)) { }
 
    string_range(this_iterator begin, this_iterator end) : BASE_RANGE(begin, end) {}
    string_range(this_iterator begin, this_iterator end, enum_range erange) : BASE_RANGE(begin, end, erange) {}
@@ -90,9 +93,9 @@ public:
 
 
    template < character_pointer CHARACTER_POINTER >
-   string_range(CHARACTER_POINTER start) : BASE_RANGE(start, start + string_safe_length(start), e_range_null_terminated) {}
+   string_range(CHARACTER_POINTER start) : BASE_RANGE(start, start + string_safe_length(start)) {}
 
-   //explicit string_range(ITERATOR_TYPE psz) : string_range(psz, 0, string_safe_length(psz)) {}
+   //explicit string_range(ITERATOR_TYPE psz) : string_range(scopedstr, 0, string_safe_length(scopedstr)) {}
 
    string_range(ITERATOR_TYPE psz, character_count len) : string_range(psz, 0, len) {}
 
@@ -188,18 +191,18 @@ public:
             this->m_erange = e_range_none;
 
          }
-         else
-         {
-
-            this->m_erange =(enum_range) ( this->m_erange & ~e_range_string);
-         }
-
-      }
-      else if(e != this->m_end)
-      {
-         this->m_erange = (enum_range)(this->m_erange & ~e_range_null_terminated);
+         // else
+         // {
+         //
+         //    this->m_erange =(enum_range) ( this->m_erange & ~e_range_string);
+         //}
 
       }
+      // else if(e != this->m_end)
+      // {
+      //    this->m_erange = (enum_range)(this->m_erange & ~e_range_null_terminated);
+      //
+      // }
       this->m_begin = s;
       this->m_end = e;
       return *this;
@@ -236,20 +239,63 @@ public:
    //    character_count offset_of(const CHARACTER *p) const { return ::offset_of(p, data()); }
 
 
-   string_range & operator=(const THIS_RANGE & range)
+
+   string_range &operator =(const string_range & range)
    {
       BASE_RANGE::operator=(range);
       return *this;
    }
 
-   string_range & operator=(string_range && range) {
-      BASE_RANGE::operator=(::transfer(range));
+   template < primitive_range SOME_RANGE >
+   string_range &operator=(SOME_RANGE && range) requires
+   (sizeof(typename SOME_RANGE::ITEM) == sizeof(ITEM))
+   {
+
+      auto pbasedataOld = this->m_pbasedata;
+
+      BASE_RANGE::operator=(range);
+
+      if (pbasedataOld)
+      {
+
+         ::release_base_data(pbasedataOld);
+
+      }
+
+      // if (range.m_erange & e_range_string)
+      // {
+      //
+      //    ((STRING_BASE*)&range)->__destroy();
+      //
+      // }
+
+      range.m_begin = nullptr;
+
+      range.m_end = nullptr;
+
+      range.m_erange = e_range_none;
+
+      range.m_pbasedata = nullptr;
+
       return *this;
+
    }
 
-   //string_range & operator=(const atom & atom);
 
-   string_range & operator=(const block & block);
+   // string_range & operator=(const THIS_RANGE & range)
+   // {
+   //    BASE_RANGE::operator=(range);
+   //    return *this;
+   // }
+   //
+   // string_range & operator=(string_range && range) {
+   //    BASE_RANGE::operator=(::transfer(range));
+   //    return *this;
+   // }
+   //
+   // //string_range & operator=(const atom & atom);
+   //
+   // string_range & operator=(const block & block);
 
 
 
@@ -1500,11 +1546,11 @@ public:
    //           inline bool operator==(const ::wd32_string &str) const;
    //
    //    //inline bool operator ==(const SCOPED_STRING & scopedstr) const { return this->equals(scopedstr); }
-   //    inline bool operator==(const ::ansi_character *psz) const { return this->equals(psz); }
+   //    inline bool operator==(const_char_pointer psz) const { return this->equals(scopedstr); }
    //
-   //    inline bool operator==(const ::wd16_character *psz) const { return this->equals(psz); }
+   //    inline bool operator==(const ::wd16_character *psz) const { return this->equals(scopedstr); }
    //
-   //    inline bool operator==(const ::wd32_character *psz) const { return this->equals(psz); }
+   //    inline bool operator==(const ::wd32_character *psz) const { return this->equals(scopedstr); }
    //
    //    inline bool operator==(const ::inline_number_string &inline_number_string) const {
    //       return this->equals((const SCOPED_STRING &) inline_number_string);
@@ -1520,11 +1566,11 @@ public:
    //    //inline bool operator>(CHARACTER ch) const;
    //    //inline bool operator<(const string_base &str2) const;
    //    //inline bool operator<(CHARACTER ch) const;
-   //    //inline bool operator!=(const string_base &str) const { return !operator ==(psz); }
+   //    //inline bool operator!=(const string_base &str) const { return !operator ==(scopedstr); }
    //    //inline bool operator!=(CHARACTER ch) const { return !operator ==(ch); }
-   //    //inline bool operator>=(const string_base &str) const { return !operator <(psz); }
+   //    //inline bool operator>=(const string_base &str) const { return !operator <(scopedstr); }
    //    //inline bool operator>=(CHARACTER ch) const { return !operator <(ch); }
-   //    //inline bool operator<=(const CHARACTER * psz) const { return !operator >(psz); }
+   //    //inline bool operator<=(const CHARACTER * psz) const { return !operator >(scopedstr); }
    //    //inline bool operator<=(CHARACTER ch) const { return !operator >(ch); }
    //
    //
@@ -1548,7 +1594,7 @@ public:
      //    ::character_count count_left(const SCOPED_STRING& range = "\t\r\n ") const RELEASENOTHROW { return this->skip_any_character_in(range) - this->begin(); }
 
 
-   void add_to_begin(::character_count size)
+   void shift_begin(::character_count size)
    {
 
       if(size)
@@ -1556,14 +1602,14 @@ public:
 
          this->m_begin += size;
 
-         this->m_erange = (enum_range)(this->m_erange & ~e_range_string);
+         //this->m_erange = (enum_range)(this->m_erange & ~e_range_string);
 
       }
 
    }
 
 
-   void add_to_end(::character_count size)
+   void shift_end(::character_count size)
    {
 
       if(size)
@@ -1571,7 +1617,7 @@ public:
 
          this->m_end += size;
 
-         this->m_erange = (enum_range)(this->m_erange & ~(e_range_string | e_range_null_terminated));
+         //this->m_erange = (enum_range)(this->m_erange & ~(e_range_string | e_range_null_terminated));
 
       }
 
@@ -1586,7 +1632,7 @@ public:
 
          this->m_begin = p;
 
-         this->m_erange = (enum_range) (this->m_erange  & ~e_range_string);
+         //this->m_erange = (enum_range) (this->m_erange  & ~e_range_string);
 
       }
 
@@ -1601,14 +1647,14 @@ public:
 
          this->m_end = p;
 
-         this->m_erange = (enum_range)(this->m_erange & ~(e_range_string | e_range_null_terminated));
+         //this->m_erange = (enum_range)(this->m_erange & ~(e_range_string));
 
       }
 
    }
 
 
-   string_range & trim_left(const SCOPED_STRING & range) RELEASENOTHROW { add_to_begin(this->count_left(range));
+   string_range & trim_left(const SCOPED_STRING & range) RELEASENOTHROW { shift_begin(this->count_left(range));
          return *this; }
 
    //    const_iterator rear_find_first_whitespace() const RELEASENOTHROW { return this->rear_find_first_character_in("\t\r\n "); }
@@ -1617,7 +1663,7 @@ public:
    //
    //    ::character_count count_right(const SCOPED_STRING& range = "\t\r\n ") const RELEASENOTHROW { return this->m_end - this->rear_skip_any_character_in(range); }
 
-   string_range & trim_right(const SCOPED_STRING & range) RELEASENOTHROW { add_to_end(-this->count_right(range)); return *this; }
+   string_range & trim_right(const SCOPED_STRING & range) RELEASENOTHROW { shift_end(-this->count_right(range)); return *this; }
 
    //    ::character_count count_left_and_right(const SCOPED_STRING& range = "\t\r\n ") const RELEASENOTHROW { ::character_count c; return ((c = count_left(range)) == this->size()) ? c : c + count_right(range); }
 
@@ -1640,9 +1686,9 @@ public:
 
       }
 
-      this->add_to_begin(1);
+      this->shift_begin(1);
 
-      this->add_to_end(-1);
+      this->shift_end(-1);
 
       return true;
 
@@ -1860,8 +1906,8 @@ public:
    bool ends_eat(const ::scoped_string & scopedstr);
    bool case_insensitive_begins_eat(const ::scoped_string & scopedstr);
    bool case_insensitive_ends_eat(const ::scoped_string & scopedstr);
-   void consume(const ::ansi_character * pszToConsume);
-   //static void consume(::const_ansi_range & range, const ::ansi_character * psz);
+   void consume(const_char_pointer pszToConsume);
+   //static void consume(::const_ansi_range & range, const_char_pointer psz);
    void consume(const ::scoped_string & scopedstr);
    //void consume_spaces(::collection::count iMinimumCount = 1);
    unsigned long long consume_natural(unsigned long long uiMax = ((unsigned long long)-1), unsigned long long uiMin = 0);
@@ -1871,7 +1917,7 @@ public:
    string_range consume_non_spaces();
    //::string_base < ITERATOR_TYPE > consume_non_spaces(::const_ansi_range & range);
    string_range consume_nc_name();
-   //  ::string_base < ITERATOR_TYPE > consume_quoted_value(const ::ansi_character * & pszParse);
+   //  ::string_base < ITERATOR_TYPE > consume_quoted_value(const_char_pointer &pszParse);
    //static void no_escape_consume_quoted_value(::const_ansi_range & range, ::ansi_character ** ppsz, character_count & iBufferSize);
    string_base<ITERATOR_TYPE> no_escape_consume_quoted_value();
    void no_escape_skip_quoted_value();
@@ -1883,13 +1929,13 @@ public:
    string_base<ITERATOR_TYPE> consume_quoted_value_ex();
    void skip_quoted_value_ex();
    //static ::string_base < ITERATOR_TYPE > consume_spaced_value(string & str);
-   //::string_base < ITERATOR_TYPE > consume_spaced_value(const ::ansi_character *& pszParse);
+   //::string_base < ITERATOR_TYPE > consume_spaced_value(const_char_pointer &pszParse);
    string_range consume_spaced_value();
    //static ::string_base < ITERATOR_TYPE > consume_command_line_argument(string & str);
-   //::string_base < ITERATOR_TYPE > consume_command_line_argument(const ::ansi_character *& pszParse);
+   //::string_base < ITERATOR_TYPE > consume_command_line_argument(const_char_pointer &pszParse);
    string_base<ITERATOR_TYPE> consume_command_line_argument();
    void consume_until_any_character_in(const ::scoped_string & scopedstr);
-   //static bool begins_consume(::const_ansi_range & range, const ::string & psz);
+   //static bool begins_consume(::const_ansi_range & range, const ::scoped_string & scopedstr);
 
    string_range xml_consume_comment();
 
@@ -1925,7 +1971,7 @@ public:
    /// Coder    Date                      Desc
    /// bro      2002-10-29
    ///========================================================
-   void escape_skip_to_first_character_in(const char * chset, int escape);
+   void escape_skip_to_first_character_in(const_char_pointer chset, int escape);
 
 
    ///========================================================
@@ -2008,7 +2054,7 @@ public:
 
 
 
-using ansi_range = ::string_range< const ::ansi_character *>;
+using ansi_range = ::string_range< const_char_pointer >;
 using wd16_range = ::string_range< const ::wd16_character *>;
 using wd32_range = ::string_range< const ::wd32_character *>;
 using wide_range = ::string_range< const ::wide_character *>;
@@ -2026,9 +2072,7 @@ template < primitive_character CHARACTER, primitive_integral INTEGRAL >
 
    return {
       p,
-      p + n,
-      p[n] == CHARACTER{} ?
-      e_range_null_terminated : e_range_none
+      p + n
    };
 
 }

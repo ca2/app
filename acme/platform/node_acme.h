@@ -80,8 +80,8 @@ namespace platform
       string m_strTheme;
       string m_strIconTheme;
 
-      map<enum_character_set, ::string> m_mapCharacterSetDefaultSampleText;
-      string_map<enum_character_set> m_mapCharacterSetEnum;
+      map_base<enum_character_set, ::string> m_mapCharacterSetDefaultSampleText;
+      string_map_base<enum_character_set> m_mapCharacterSetEnum;
 
       ::os_theme_colors* m_pthemecolors;
 
@@ -112,7 +112,7 @@ namespace platform
 
 
       enum_application_capability_array m_eapplicationcapabilitya;
-      string_map<::pointer<::acme::exclusive>> m_mapExclusive;
+      string_map_base<::pointer<::acme::exclusive>> m_mapExclusive;
 
 
    };
@@ -126,11 +126,11 @@ namespace platform
       virtual ::string get_file_type_identifier(const ::file::path& path);
 
 
-      virtual void call_async(const ::string& pszPath, const ::string& pszParam, const ::string& pszDir,
+      virtual void call_async(const ::scoped_string & scopedstrPath, const ::scoped_string & scopedstrParam, const ::scoped_string & scopedstrDir,
                               ::e_display edisplay, bool bPrivileged, unsigned int* puiPid = nullptr);
 
 
-      virtual void call_sync(const ::string& pszPath, const ::string& pszParam, const ::string& pszDir,
+      virtual void call_sync(const ::scoped_string & scopedstrPath, const ::scoped_string & scopedstrParam, const ::scoped_string & scopedstrDir,
                              ::e_display edisplay, const class time& timeTimeout, ::property_set & set, int* piExitCode);
 
 
@@ -138,8 +138,9 @@ namespace platform
 
 
       virtual ::enum_id key_command(::user::enum_key ekey, ::user::key_state* pkeystate);
+      //virtual ::file::path synchronously_request_document_folder();
 
-
+      virtual void notify_system_started();
       //idaPid = pnode->(path, false);
 
 
@@ -149,7 +150,7 @@ namespace platform
       virtual void initialize(::particle* pparticle);
 
 
-      virtual void node_application_on_status(const char* pszStatus, void* p = nullptr, long long hi = 0);
+      virtual void node_application_on_status(const_char_pointer pszStatus, void* p = nullptr, long long hi = 0);
 
 
       //virtual ::particle_pointer create_quit_particle(::pointer<::platform::node>& pnode);
@@ -198,10 +199,10 @@ namespace platform
       virtual string veriwell_multimedia_music_midi_get_default_implementation_name();
 
 
-      virtual void _launch_macos_app(const ::string& pszAppFolder);
+      virtual void _launch_macos_app(const ::scoped_string & scopedstrAppFolder);
 
 
-      virtual void _launch_macos_app_args(const ::string& pszAppFolder, const ::string& pszArgs);
+      virtual void _launch_macos_app_args(const ::scoped_string & scopedstrAppFolder, const ::scoped_string & scopedstrArgs);
 
 
       //void on_initialize_particle() override;
@@ -218,7 +219,7 @@ namespace platform
       virtual void defer_show_system_menu(::user::mouse* pmouse);
 
 
-      virtual void install_crash_dump_reporting(const string& strModuleNameWithTheExeExtension);
+      virtual void install_crash_dump_reporting(const ::scoped_string & scopedstrModuleNameWithTheExeExtension);
 
 
       virtual ::file::path module_path_source();
@@ -230,75 +231,75 @@ namespace platform
 
 
       virtual ::pointer<::mutex> create_local_named_mutex(::particle* pparticleContext, bool bInitiallyOwned,
-                                                          const ::string& strName,
+                                                          const ::scoped_string & scopedstrName,
                                                           security_attributes* psecurityattributes = nullptr);
 
 
       virtual ::pointer<::mutex> create_global_named_mutex(::particle* pparticleContext, bool bInitiallyOwned,
-                                                           const ::string& strName,
+                                                           const ::scoped_string & scopedstrName,
                                                            security_attributes* psecurityattributes = nullptr);
 
 
-      virtual ::pointer<::mutex> open_local_named_mutex(::particle* pparticleContext, const ::string& strName);
+      virtual ::pointer<::mutex> open_local_named_mutex(::particle* pparticleContext, const ::scoped_string & scopedstrName);
 
 
-      virtual ::pointer<::mutex> open_global_named_mutex(::particle* pparticleContext, const ::string& strName);
+      virtual ::pointer<::mutex> open_global_named_mutex(::particle* pparticleContext, const ::scoped_string & scopedstrName);
 
 
-      virtual ::pointer<::mutex> get_install_mutex(::particle* pparticleContext, const ::string& strPlatform,
-                                                   const ::string& strSuffix);
+      virtual ::pointer<::mutex> get_install_mutex(::particle* pparticleContext, const ::scoped_string & scopedstrPlatform,
+                                                   const ::scoped_string & scopedstrSuffix);
 
 
-      virtual ::pointer<::acme::exclusive> _get_exclusive(::particle* pparticleContext, const ::string& strName,
+      virtual ::pointer<::acme::exclusive> _get_exclusive(::particle* pparticleContext, const ::scoped_string & scopedstrName,
                                                           ::security_attributes* psecurityattributes = nullptr);
 
 
-      virtual ::pointer<::acme::exclusive> get_exclusive(::particle* pparticleContext, const ::string& strName,
+      virtual ::pointer<::acme::exclusive> get_exclusive(::particle* pparticleContext, const ::scoped_string & scopedstrName,
                                                          ::security_attributes* psecurityattributes = nullptr);
 
 
-      virtual bool erase_exclusive(const string& strName);
+      virtual bool erase_exclusive(const ::scoped_string & scopedstrName);
 
 
       virtual void release_exclusive();
 
 
-      virtual bool exclusive_fails(::particle* pparticleContext, const string& strName,
+      virtual bool exclusive_fails(::particle* pparticleContext, const ::scoped_string & scopedstrName,
                                    security_attributes* psecurityattributes = nullptr);
 
 
-      virtual string app_id_to_app_name(const ::string& strAppId);
+      virtual string app_id_to_app_name(const ::scoped_string & scopedstrAppId);
 
 
-      virtual string app_id_to_executable_name(const ::string& strAppId);
+      virtual string app_id_to_executable_name(const ::scoped_string & scopedstrAppId);
 
 
-      virtual bool is_application_installed(const ::file::path& pathExe, string strAppId, string& strBuild,
-                                            const ::string& pszPlatform, const ::string& pszConfiguration,
-                                            const ::string& pszLocale, const ::string& pszSchema);
+      virtual bool is_application_installed(const ::file::path& pathExe, const ::scoped_string & scopedstrAppId, string& strBuild,
+                                            const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration,
+                                            const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema);
 
 
-      virtual void set_application_installed(const ::file::path& pathExe, string strAppId, const ::string& pszBuild,
-                                             const ::string& pszPlatform, const ::string& pszConfiguration,
-                                             const ::string& pszLocale, const ::string& pszSchema);
+      virtual void set_application_installed(const ::file::path& pathExe, const ::scoped_string & scopedstrAppId, const ::scoped_string & scopedstrBuild,
+                                             const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration,
+                                             const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema);
 
 
-      virtual ::file::path application_installer_folder(const ::file::path& pathExe, string strAppId,
-                                                        const ::string& pszPlatform, const ::string& pszConfiguration,
-                                                        const ::string& pszLocale, const ::string& pszSchema);
+      virtual ::file::path application_installer_folder(const ::file::path& pathExe, const ::scoped_string & scopedstrAppId,
+                                                        const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration,
+                                                        const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema);
 
 
-      virtual ::file::path get_application_path(string strAppId, const ::string& pszPlatform,
-                                                const ::string& pszConfiguration);
+      virtual ::file::path get_application_path(const ::scoped_string & scopedstrAppId, const ::scoped_string & scopedstrPlatform,
+                                                const ::scoped_string & scopedstrConfiguration);
 
 
-      virtual ::file::path get_last_run_application_path_file(const ::string& strAppId);
+      virtual ::file::path get_last_run_application_path_file(const ::scoped_string & scopedstrAppId);
 
 
-      virtual ::file::path get_last_run_application_path(const ::string& strAppId);
+      virtual ::file::path get_last_run_application_path(const ::scoped_string & scopedstrAppId);
 
 
-      virtual void set_last_run_application_path(const string& strAppId);
+      virtual void set_last_run_application_path(const ::scoped_string & scopedstrAppId);
 
 
       virtual ::file::path _module_path();
@@ -357,26 +358,26 @@ namespace platform
 
       //virtual string os_get_user_theme();
 
-      //virtual void os_set_user_theme(const ::string & strUserTheme);
+      //virtual void os_set_user_theme(const ::scoped_string & scopedstrUserTheme);
 
-      //virtual void os_process_user_theme(string strTheme);
+      //virtual void os_process_user_theme(const ::scoped_string & scopedstrTheme);
 
-      //virtual void os_process_user_icon_theme(string strIconTheme);
+      //virtual void os_process_user_icon_theme(const ::scoped_string & scopedstrIconTheme);
 
-//      virtual bool set_wallpaper(::collection::index iScreen, string strLocalImagePath,
+//      virtual bool set_wallpaper(::collection::index iScreen, const ::scoped_string & scopedstrLocalImagePath,
 //                                 ::acme::windowing::display* pwindowingdisplay);
 //
 //
 //      virtual string get_wallpaper(::collection::index iScreen, ::acme::windowing::display* pwindowingdisplay);
 
 
-      virtual string get_file_icon_path(const ::string& pszPath, int iSize);
+      virtual string get_file_icon_path(const ::scoped_string & scopedstrPath, int iSize);
 
 
-      virtual string get_file_content_type(const ::string& pszPath);
+      virtual string get_file_content_type(const ::scoped_string & scopedstrPath);
 
 
-      virtual int os_launch_uri(const ::string& pszUri, char* pszError = NULL, int iBufferSize = 0);
+      virtual int os_launch_uri(const ::scoped_string & scopedstrUri, char* pszError = NULL, int iBufferSize = 0);
 
 
 //      virtual void enable_wallpaper_change_notification();
@@ -439,7 +440,7 @@ namespace platform
       //virtual string font_name(enum_operating_system eoperatingsystem, int iVariant, enum_font efont);
 
 
-      virtual string file_memory_map_path_from_name(const string& strName);
+      virtual string file_memory_map_path_from_name(const ::scoped_string & scopedstrName);
 
 
       virtual enum_operating_system get_operating_system() const;
@@ -453,7 +454,7 @@ namespace platform
 
       //virtual ::string get_user_toolkit_id();
 
-      virtual void launch_app(const ::string& psz, const char** argv, int iFlags);
+      virtual void launch_app(const ::scoped_string & scopedstr, const_char_pointer *argv, int iFlags);
 
 
       virtual ::file::path get_executable_path_by_app_id(const ::scoped_string& scopedstrAppId,
@@ -468,26 +469,26 @@ namespace platform
       virtual void launch_app_by_app_id(const ::scoped_string& scopedstrAppId, bool bSingleExecutableVersion);
 
 
-      virtual ::process_identifier create_process(const ::string& pszCommandLine);
+      virtual ::process_identifier create_process(const ::scoped_string & scopedstrCommandLine);
 
 
-      virtual void run_silent(const ::string& strFunct, const ::string& strstrParams);
+      virtual void run_silent(const ::scoped_string & scopedstrFunct, const ::scoped_string & scopedstrstrParams);
 
 
-      virtual ::file::path_array process_identifier_modules_paths(::process_identifier processidentifier);
+      virtual ::file::path_array_base process_identifier_modules_paths(::process_identifier processidentifier);
 
 
-      virtual ::file::path_array modules_paths();
+      virtual ::file::path_array_base modules_paths();
 
 
-      virtual bool load_modules_diff(string_array& straOld, string_array& straNew, const ::string& pszExceptDir);
+      virtual bool load_modules_diff(string_array_base& straOld, string_array_base& straNew, const ::scoped_string & scopedstrExceptDir);
 
 
       virtual ::process_identifier_array processes_identifiers();
 
 
       virtual ::process_identifier_array module_path_processes_identifiers(
-         const ::string& pszModulePath, bool bModuleNameIsPropertyFormatted);
+         const ::scoped_string & scopedstrModulePath, bool bModuleNameIsPropertyFormatted);
 
 
       virtual ::file::path process_identifier_module_path(::process_identifier processidentifier);
@@ -496,16 +497,16 @@ namespace platform
       virtual string process_identifier_command_line(::process_identifier processidentifier);
 
 
-      //virtual bool is_shared_library_busy(::process_identifier processidentifier, const string_array& stra);
+      //virtual bool is_shared_library_busy(::process_identifier processidentifier, const string_array_base& stra);
 
-      //virtual bool is_shared_library_busy(const string_array& stra);
+      //virtual bool is_shared_library_busy(const string_array_base& stra);
 
       virtual bool process_contains_module(string& strImage, ::process_identifier processidentifier,
-                                           const ::string& pszLibrary);
+                                           const ::scoped_string & scopedstrLibrary);
 
 
       virtual ::process_identifier_array
-      shared_library_process(string_array& straProcesses, const ::string& pszLibrary);
+      shared_library_process(string_array_base& straProcesses, const ::scoped_string & scopedstrLibrary);
 
 
       virtual bool is_process_running(::process_identifier processidentifier);
@@ -530,35 +531,35 @@ namespace platform
       virtual ::pointer<security_attributes> get_application_exclusivity_security_attributes();
 
 
-      virtual void register_spa_file_type(const ::string& strAppIdHandler);
+      virtual void register_spa_file_type(const ::scoped_string & scopedstrAppIdHandler);
 
 
-      virtual bool low_is_app_app_admin_running(string strPlatform, string strConfiguration);
+      virtual bool low_is_app_app_admin_running(const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration);
 
 
-      virtual void defer_start_program_files_app_app_admin(string strPlatform, string strConfiguration);
+      virtual void defer_start_program_files_app_app_admin(const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration);
 
 
-      virtual void start_program_files_app_app_admin(string strPlatform, string strConfiguration);
+      virtual void start_program_files_app_app_admin(const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration);
 
 
       virtual void get_folder_path_from_user(::file::path& pathFolder);
 
 
-      //virtual ::string expand_environment_variables(const ::string & str);
+      //virtual ::string expand_environment_variables(const ::scoped_string & scopedstr);
 
-      virtual ::file::path command_find_path(const ::string& pszCommand);
+      virtual ::file::path command_find_path(const ::scoped_string & scopedstrCommand);
 
 
-      virtual void launch_application(::particle* pparticle, const ::string& strAppId, const ::string& strParams,
+      virtual void launch_application(::particle* pparticle, const ::scoped_string & scopedstrAppId, const ::scoped_string & scopedstrParams,
                                       int iBitCount);
 
 
-      virtual void shell_open(const ::file::path& path, const string& strParams = "",
+      virtual void shell_open(const ::file::path& path, const ::scoped_string & scopedstrParams = "",
                               const ::file::path& pathFolder = {});
 
 
-      //virtual void open_url(const ::string & strUrl);
+      //virtual void open_url(const ::scoped_string & scopedstrUrl);
 
 
       virtual void shell_execute_async(const ::scoped_string& scopedstrFile, const ::scoped_string& scopedstrParams,
@@ -579,7 +580,7 @@ namespace platform
                                     const ::file::path& pathWorkingDirectory = {});
 
 
-      //::file::path command_find_path(const ::string & pszCommand);
+      //::file::path command_find_path(const ::scoped_string & scopedstrCommand);
 
 
       //virtual ::user::enum_operating_ambient calculate_edesktop();
@@ -594,7 +595,7 @@ namespace platform
 
 
       virtual void report_exception_to_user(::particle* pparticle, ::exception& exception,
-                                            const ::string& strMoreDetails);
+                                            const ::scoped_string & scopedstrMoreDetails);
 
 
       //virtual ::pointer<::conversation> create_new_message_box_conversation();
@@ -602,15 +603,15 @@ namespace platform
       //virtual ::pointer<::conversation> create_new_message_conversation();
 
 
-      //virtual ::pointer < ::subparticle > create_message_box_sequencer(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails, ::nano::graphics::icon * picon);
+      //virtual ::pointer < ::subparticle > create_message_box_sequencer(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::user::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon);
 
 
-      //virtual void ::micro::message_box(::sequence < ::conversation > * psequence, const ::string& strMessage, const ::string& strTitle, const ::e_message_box& emessagebox);
+      //virtual void ::micro::message_box(::sequence < ::conversation > * psequence, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::user::e_message_box& emessagebox);
 
-      //virtual ::pointer < ::subparticle > create_message_sequencer(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails, ::nano::graphics::icon * picon);
+      //virtual ::pointer < ::subparticle > create_message_sequencer(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::user::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon);
 
 
-      virtual void shell_launch(const ::string& strAppId);
+      virtual void shell_launch(const ::scoped_string & scopedstrAppId);
 
 
       virtual bool has_application_capability(::enum_application_capability ecapability) const;
@@ -625,16 +626,16 @@ namespace platform
       //virtual void windowing_post(const ::procedure& procedure);
 
 
-      virtual string get_local_mutex_name(const ::string& strAppId);
+      virtual string get_local_mutex_name(const ::scoped_string & scopedstrAppId);
 
 
-      virtual string get_local_id_mutex_name(const ::string& strAppId, const ::string& strId);
+      virtual string get_local_id_mutex_name(const ::scoped_string & scopedstrAppId, const ::scoped_string & scopedstrId);
 
 
-      virtual string get_global_mutex_name(const ::string& strAppId);
+      virtual string get_global_mutex_name(const ::scoped_string & scopedstrAppId);
 
 
-      virtual string get_global_id_mutex_name(const ::string& strAppId, const ::string& strId);
+      virtual string get_global_id_mutex_name(const ::scoped_string & scopedstrAppId, const ::scoped_string & scopedstrId);
 
 
       //      virtual ::string get_call_stack();
@@ -690,7 +691,7 @@ namespace platform
         virtual ::string get_command_line();
 
 
-      //virtual ::pointer<::acme::exclusive> get_exclusive(string str, const security_attributes & securityattributes = nullptr);
+      //virtual ::pointer<::acme::exclusive> get_exclusive(const ::scoped_string & scopedstr, const security_attributes & securityattributes = nullptr);
 
 
       virtual int get_current_processor_index();
@@ -705,7 +706,7 @@ namespace platform
       virtual unsigned long long translate_processor_affinity(int i);
 
 
-      //CLASS_DECL_ACME string expand_env(string str);
+      //CLASS_DECL_ACME string expand_env(const ::scoped_string & scopedstr);
       //CLASS_DECL_ACME string xxxget_environment_variable(const ::scoped_string & scopedstrEnvironmentVariable);
       //CLASS_DECL_ACME string ca2_command_line();
 
@@ -719,19 +720,19 @@ namespace platform
       virtual bool set_process_priority(::enum_priority epriority);
 
 
-      //virtual string time_binary_platform(string strPlatform);
+      //virtual string time_binary_platform(const ::scoped_string & scopedstrPlatform);
 
 
       //
       //#if !defined(UNIVERSAL_WINDOWS)
       //
-      //      //virtual int call_async(const ::string & pszPath, const ::string & pszParam, const ::string & pszDir, ::e_display edisplay, bool bPrivileged, unsigned int * puiPid = nullptr);
+      //      //virtual int call_async(const ::scoped_string & scopedstrPath, const ::scoped_string & scopedstrParam, const ::scoped_string & scopedstrDir, ::e_display edisplay, bool bPrivileged, unsigned int * puiPid = nullptr);
       //
       //      typedef int CALLSYNCONRETRY(int iTry, uptr dwParam);
       //
       //      typedef CALLSYNCONRETRY * PFNCALLSYNCONRETRY;
       //
-      //      //CLASS_DECL_ACME unsigned int call_sync(const ::string & pszPath, const ::string & pszParam, const ::string & pszDir, ::e_display edisplay, const class time & timeTimeout, ::property_set & set);
+      //      //CLASS_DECL_ACME unsigned int call_sync(const ::scoped_string & scopedstrPath, const ::scoped_string & scopedstrParam, const ::scoped_string & scopedstrDir, ::e_display edisplay, const class time & timeTimeout, ::property_set & set);
       //
       //#endif
 
@@ -749,22 +750,22 @@ namespace platform
       //#endif
 
 
-      //virtual string expand_env(string str);
+      //virtual string expand_env(const ::scoped_string & scopedstr);
 
-      //CLASS_DECL_ACME string consume_command_line_parameter(const ::string & pszCommandLine, const ::string * & pszEndPtr);
-      //CLASS_DECL_ACME bool is_command_line_parameter_true(string& strValue, const ::string & pszCommandLine, const ::string & pszParam, bool bDefault = false);
-      //CLASS_DECL_ACME bool get_command_line_parameter(string & strValue, const ::string & pszCommandLine, const ::string & pszParam);
-      //CLASS_DECL_ACME bool get_command_line_parameter(string & strValue, const ::string & pszCommandLine, const ::string & pszParam, const ::string & pszDefault);
-      //CLASS_DECL_ACME string get_command_line_parameter(const ::string & pszCommandLine, const ::string & pszParam);
+      //CLASS_DECL_ACME string consume_command_line_parameter(const ::scoped_string & scopedstrCommandLine, const ::string * & pszEndPtr);
+      //CLASS_DECL_ACME bool is_command_line_parameter_true(string& strValue, const ::scoped_string & scopedstrCommandLine, const ::scoped_string & scopedstrParam, bool bDefault = false);
+      //CLASS_DECL_ACME bool get_command_line_parameter(string & strValue, const ::scoped_string & scopedstrCommandLine, const ::scoped_string & scopedstrParam);
+      //CLASS_DECL_ACME bool get_command_line_parameter(string & strValue, const ::scoped_string & scopedstrCommandLine, const ::scoped_string & scopedstrParam, const ::scoped_string & scopedstrDefault);
+      //CLASS_DECL_ACME string get_command_line_parameter(const ::scoped_string & scopedstrCommandLine, const ::scoped_string & scopedstrParam);
 
 
-      //virtual bool launch_command(const ::string & pszCommand);
+      //virtual bool launch_command(const ::scoped_string & scopedstrCommand);
 
 
       virtual string process_configuration_name();
 
 
-      virtual string time_binary_platform(const string& strPlatform);
+      virtual string time_binary_platform(const ::scoped_string & scopedstrPlatform);
 
 
       virtual string process_platform_name();
@@ -774,28 +775,28 @@ namespace platform
       virtual string process_version_dir_name();
 
 
-      virtual ::file::path core_app_path(string strApp);
+      virtual ::file::path core_app_path(const ::scoped_string & scopedstrApp);
 
 
-      //virtual bool is_shared_library_busy(::process_identifier processidentifier, const string_array & stra);
-      //virtual bool is_shared_library_busy(const string_array & stra);
+      //virtual bool is_shared_library_busy(::process_identifier processidentifier, const string_array_base & stra);
+      //virtual bool is_shared_library_busy(const string_array_base & stra);
 
 
-      // virtual bool launch_application(::particle * pparticle, const ::string & strAppId, const ::string & strParams, int iBitCount);
+      // virtual bool launch_application(::particle * pparticle, const ::scoped_string & scopedstrAppId, const ::scoped_string & scopedstrParams, int iBitCount);
 
 
-      //virtual bool shell_execute_async(const ::string & pszFile, const ::string & pszParams);
-      //virtual bool shell_execute_sync(const ::string & pszFile, const ::string & pszParams, const class time & timeTimeout = 1_minute);
+      //virtual bool shell_execute_async(const ::scoped_string & scopedstrFile, const ::scoped_string & scopedstrParams);
+      //virtual bool shell_execute_sync(const ::scoped_string & scopedstrFile, const ::scoped_string & scopedstrParams, const class time & timeTimeout = 1_minute);
 
-      //virtual bool root_execute_async(const ::string & pszFile, const ::string & pszParams);
-      //virtual bool root_execute_sync(const ::string & pszFile, const ::string & pszParams, const class time & timeTimeout = 1_minute);
+      //virtual bool root_execute_async(const ::scoped_string & scopedstrFile, const ::scoped_string & scopedstrParams);
+      //virtual bool root_execute_sync(const ::scoped_string & scopedstrFile, const ::scoped_string & scopedstrParams, const class time & timeTimeout = 1_minute);
 
 
       //CLASS_DECL_ACME bool os_init_application();
       //CLASS_DECL_ACME void os_term_application();
 
 
-      virtual string executable_title_from_appid(const string& strAppId);
+      virtual string executable_title_from_appid(const ::scoped_string & scopedstrAppId);
 
 
       //CLASS_DECL_ACME unsigned int get_current_process_id();
@@ -901,13 +902,13 @@ namespace platform
       virtual bool are_framework_shared_libraries_busy(const ::scoped_string& scopedstrRepos,
                                                        const ::scoped_string& scopedstrApp);
                                                        
-      virtual bool are_any_shared_libraries_mapped(const ::file::path_array & patha);
+      virtual bool are_any_shared_libraries_mapped(const ::file::path_array_base & patha);
 
 
       virtual ::string get_error_code_message(const ::error_code& errorcode);
 
 
-      virtual bool defer_enumerate_protocol(::file::listing& listing);
+      virtual bool defer_enumerate_protocol(::file::listing_base& listing);
 
 
       virtual bool defer_process_protocol_path(::file::path& path);
@@ -921,7 +922,7 @@ namespace platform
       virtual void shutdown(bool bPowerOff);
 
 
-      virtual void terminate_processes_by_title(const ::string& strName);
+      virtual void terminate_processes_by_title(const ::scoped_string & scopedstrName);
 
 
       //#ifdef WINDOWS
@@ -952,51 +953,51 @@ namespace platform
       virtual void open_internet_link(const ::scoped_string& scopedstrUrl, const ::scoped_string& scopedstrProfile = {}, const ::scoped_string & scopedstrTarget = {});
 
 
-      virtual void local_machine_set_run(const ::string& strKey, const ::file::path& pathExecutable,
-                                         const ::string& strArguments, bool bSet);
+      virtual void local_machine_set_run(const ::scoped_string & scopedstrKey, const ::file::path& pathExecutable,
+                                         const ::scoped_string & scopedstrArguments, bool bSet);
 
 
-      virtual void local_machine_set_run_once(const ::string& strKey, const ::file::path& pathExecutable,
-                                              const ::string& strArguments, bool bSet);
+      virtual void local_machine_set_run_once(const ::scoped_string & scopedstrKey, const ::file::path& pathExecutable,
+                                              const ::scoped_string & scopedstrArguments, bool bSet);
 
 
-      virtual void current_user_set_run(const ::string& strKey, const ::file::path& pathExecutable,
-                                        const ::string& strArguments, bool bSet);
+      virtual void current_user_set_run(const ::scoped_string & scopedstrKey, const ::file::path& pathExecutable,
+                                        const ::scoped_string & scopedstrArguments, bool bSet);
 
 
-      virtual void current_user_set_run_once(const ::string& strKey, const ::file::path& pathExecutable,
-                                             const ::string& strArguments, bool bSet);
+      virtual void current_user_set_run_once(const ::scoped_string & scopedstrKey, const ::file::path& pathExecutable,
+                                             const ::scoped_string & scopedstrArguments, bool bSet);
 
 
       virtual void defer_register_ca2_plugin_for_mozilla();
 
 
-      virtual void file_extension_get_open_with_list_keys(string_array& straKey, const ::string& strExtension);
+      virtual void file_extension_get_open_with_list_keys(string_array_base& straKey, const ::scoped_string& scopedstrExtension);
 
 
-      virtual void file_extension_get_open_with_list_commands(string_array& straCommand, const ::string& strExtension);
+      virtual void file_extension_get_open_with_list_commands(string_array_base& straCommand, const ::scoped_string& scopedstrExtension);
 
 
-      virtual void file_association_set_default_icon(const ::string& strExtension,
-                                                     const ::string& strExtensionNamingClass,
+      virtual void file_association_set_default_icon(const ::scoped_string& scopedstrExtension,
+                                                     const ::scoped_string& scopedstrExtensionNamingClass,
                                                      const ::file::path & pathIconPath);
 
 
-      virtual void file_association_set_shell_open_command(const ::string& strExtension,
-                                                           const ::string& strExtensionNamingClass,
+      virtual void file_association_set_shell_open_command(const ::scoped_string& scopedstrExtension,
+                                                           const ::scoped_string& scopedstrExtensionNamingClass,
                                                            const ::file::path & pathExecutable,
-                                                           const ::string& strParam);
+                                                           const ::scoped_string & scopedstrParam);
 
 
-      virtual void file_association_get_shell_open_command(const ::string& strExtension,
+      virtual void file_association_get_shell_open_command(const ::scoped_string& scopedstrExtension,
                                                            string& strExtensionNamingClass, string& strCommand,
                                                            string& strParam);
 
 
-      virtual void native_full_web_browser(const ::string& str);
+      virtual void native_full_web_browser(const ::scoped_string & scopedstr);
 
 
-      virtual void native_modern_web_browser(const ::string& str);
+      virtual void native_modern_web_browser(const ::scoped_string & scopedstr);
 
 
       virtual void enable_service();
@@ -1011,18 +1012,18 @@ namespace platform
       virtual void stop_service();
 
 
-      virtual void enable_service(const ::string& strServiceName, const ::string& strDisplayName,
-                                  const ::string& strCommand, const ::string& strUser = "",
-                                  const ::string& strPass = "");
+      virtual void enable_service(const ::scoped_string & scopedstrServiceName, const ::scoped_string & scopedstrDisplayName,
+                                  const ::scoped_string & scopedstrCommand, const ::scoped_string & scopedstrUser = "",
+                                  const ::scoped_string & scopedstrPass = "");
 
 
-      virtual void disable_service(const ::string& strServiceName);
+      virtual void disable_service(const ::scoped_string & scopedstrServiceName);
 
 
-      virtual void start_service(const ::string& strServiceName);
+      virtual void start_service(const ::scoped_string & scopedstrServiceName);
 
 
-      virtual void stop_service(const ::string& strServiceName);
+      virtual void stop_service(const ::scoped_string & scopedstrServiceName);
 
 
       //#ifdef WINDOWS
@@ -1050,15 +1051,15 @@ namespace platform
 
       //virtual void set_dark_mode(bool bDarkMode);
 
-      virtual void file_open(const ::file::path& path, const ::string& strParams = "",
+      virtual void file_open(const ::file::path& path, const ::scoped_string & scopedstrParams = "",
                              const ::file::path& pathFolder = "");
 
 
-      virtual void hidden_start(const ::file::path& path, const ::string& strParams = "",
+      virtual void hidden_start(const ::file::path& path, const ::scoped_string & scopedstrParams = "",
                                 const ::file::path& pathFolder = "");
 
 
-      virtual void hidden_run(const class time& timeWait, const ::file::path& path, const ::string& strParams = "",
+      virtual void hidden_run(const class time& timeWait, const ::file::path& path, const ::scoped_string & scopedstrParams = "",
                               const ::file::path& pathFolder = "");
 
 
@@ -1074,17 +1075,17 @@ namespace platform
       virtual void set_file_extension_mime_type(::get_file_extension_mime_type* pgetfileextensionmimetype);
 
 
-      virtual void set_file_extension_mime_type(string_array& straExtension, string_array& straMimeType);
+      virtual void set_file_extension_mime_type(string_array_base& straExtension, string_array_base& straMimeType);
 
 
-      virtual void register_user_auto_start(::platform::application* papplication, const string& strArguments,
+      virtual void register_user_auto_start(::platform::application* papplication, const ::scoped_string & scopedstrArguments,
                                             bool bRegister);
 
 
-      virtual bool is_user_auto_start(const string& strAppId);
+      virtual bool is_user_auto_start(const ::scoped_string & scopedstrAppId);
 
 
-      virtual ::file::path get_app_path(const ::string& strApp);
+      virtual ::file::path get_app_path(const ::scoped_string & scopedstrApp);
 
 
       virtual void on_process_request(::request* prequest);
@@ -1111,10 +1112,10 @@ namespace platform
       //virtual void browse_file_or_folder(::property_set & set);
 
 
-      virtual void list_process(::file::path_array& patha, ::process_identifier_array& uaPid);
+      virtual void list_process(::file::path_array_base& patha, ::process_identifier_array& uaPid);
 
 
-      ::file::path_array list_process_path();
+      ::file::path_array_base list_process_path();
 
 
       //virtual ::icon_pointer load_icon(const ::payload & payloadFile);
@@ -1124,10 +1125,10 @@ namespace platform
       virtual void broadcast_environment_variable_change();
 
 
-      virtual void set_this_application_as_default_for_file_extension(const ::string& strExtension);
+      virtual void set_this_application_as_default_for_file_extension(const ::scoped_string & scopedstrExtension);
 
 
-      string get_file_extension_mime_type(const ::string& strExtension);
+      string get_file_extension_mime_type(const ::scoped_string & scopedstrExtension);
 
 
 #ifdef LINUX
@@ -1142,8 +1143,8 @@ namespace platform
 #endif
 
 #if !defined(WINDOWS)
-      virtual string_array cmdline_from_pid(::process_identifier processidentifier);
-      virtual atom_array app_get_pid(const ::string & pszModuleName);
+      virtual string_array_base cmdline_from_pid(::process_identifier processidentifier);
+      virtual atom_array app_get_pid(const ::scoped_string & scopedstrModuleName);
 
 #endif
 
@@ -1205,7 +1206,7 @@ namespace platform
 #endif
 
       virtual bool _is_code_exe_user_path_environment_variable_ok(::string* pstrCorrectPath = nullptr,
-                                                                  const char* pszPath = nullptr);
+                                                                  const_char_pointer pszPath = nullptr);
 
 #if defined(WINDOWS_DESKTOP) || defined(MACOS) || defined(LINUX)
 
@@ -1255,7 +1256,7 @@ namespace platform
       //
       //
       //      //virtual string module_path_from_pid(::process_identifier processidentifier);
-      //      //virtual atom_array module_path_get_pid(const ::string & pszModuleName, bool bModuleNameIsPropertyFormatted = true);
+      //      //virtual atom_array module_path_get_pid(const ::scoped_string & scopedstrModuleName, bool bModuleNameIsPropertyFormatted = true);
       //
       //
       //#ifndef WINDOWS
@@ -1268,12 +1269,12 @@ namespace platform
       //#endif
       //
       //#ifndef UNIVERSAL_WINDOWS
-      //      //virtual bool process_contains_module(string & strImage, ::process_identifier processidentifier, const ::string & pszLibrary);
-      //      //virtual void shared_library_process(dword_array & dwa, string_array & straProcesses, const ::string & pszLibrary);
+      //      //virtual bool process_contains_module(string & strImage, ::process_identifier processidentifier, const ::scoped_string & scopedstrLibrary);
+      //      //virtual void shared_library_process(dword_array & dwa, string_array_base & straProcesses, const ::scoped_string & scopedstrLibrary);
       //#endif
 #if defined(__BSD__) || defined(__APPLE__)
 
-      virtual void arp_a(void *p, void(*callback)(void * p, unsigned int uIp, const char * status));
+      virtual void arp_a(void *p, void(*callback)(void * p, unsigned int uIp, const_char_pointer status));
 
 #endif
 
@@ -1316,6 +1317,17 @@ namespace platform
       virtual ::string system_name();
       virtual ::string system_release();
       virtual ::string system_architecture();
+
+
+      virtual void protocol_set_data(const ::file::path & path, const ::block & block);
+      virtual ::memory protocol_get_data(const ::file::path & path);
+
+
+      virtual void on_protocol_set_data(const ::scoped_string & scopedstrProtocol, const ::scoped_string & scopedstrPath, const ::block & block);
+      virtual ::memory on_protocol_get_data(const ::scoped_string & scopedstrProtocol, const ::scoped_string & scopedstrPath);
+
+
+      virtual void post_media_store_operation(::data::block * pdatablock);
 
 
    };

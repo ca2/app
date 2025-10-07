@@ -34,7 +34,7 @@ namespace core
 
 
       virtual void initialize(::particle * pparticle) override;
-      ::pointer<::progress::real>show_progress(::user::interaction* puiParent, const ::string & pszTitle, ::collection::count iProgressCount) override;
+      ::pointer<::progress::real>show_progress(::user::interaction* puiParent, const ::scoped_string & scopedstrTitle, ::collection::count iProgressCount) override;
 
 
       void initialize_rich_text_kit() override;
@@ -54,7 +54,7 @@ namespace core
       void create_options_footer(::user::interaction * pparent) override;
 
 
-      bool handle_call(::payload & payload, const ::string & strObject, const ::string & strMember, ::property_set & propertyset) override;
+      bool handle_call(::payload & payload, const ::scoped_string & scopedstrObject, const ::scoped_string & scopedstrMember, ::property_set & propertyset) override;
 
 
       void create_auto_start_option(::user::interaction * pparent) override;

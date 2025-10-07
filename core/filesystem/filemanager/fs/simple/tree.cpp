@@ -47,7 +47,7 @@ namespace filemanager
 
             //}
 
-            __construct_new(m_pimagelist);
+            øconstruct_new(m_pimagelist);
 
             m_pimagelist->create(16, 16);
 
@@ -89,14 +89,14 @@ namespace filemanager
 //         }
 
 
-         void tree::parse(const ::string & pszSource)
+         void tree::parse(const ::scoped_string & scopedstrSource)
          {
 
             string str;
 
-            auto pxmldocument = __create_new < ::xml::document >();
+            auto pxmldocument = øcreate_new < ::xml::document >();
 
-            pxmldocument->load(pszSource);
+            pxmldocument->load(scopedstrSource);
 
             m_iParentFolder = pxmldocument->root()->attribute("id");
 
@@ -144,7 +144,7 @@ namespace filemanager
                if (iNewItem < 0)
                {
 
-                  pfolder = __create_new<folder>();
+                  pfolder = øcreate_new<folder>();
 
                   m_foldera.add(pfolder);
 
@@ -203,14 +203,14 @@ namespace filemanager
                if(ptreeitemChild)
                {
 
-                  ptreeitemChild = insert_item(__allocate ::data::simple_item(this), ::data::e_relative_last_child, ptreeitemParent);
+                  ptreeitemChild = insert_item(øallocate ::data::simple_item(this), ::data::e_relative_last_child, ptreeitemParent);
 
                }
 
                if(!ptreeitemChild->m_pitem)
                {
 
-                  ptreeitemChild->m_pitem = __allocate ::data::simple_item(this);
+                  ptreeitemChild->m_pitem = øallocate ::data::simple_item(this);
 
                }
 

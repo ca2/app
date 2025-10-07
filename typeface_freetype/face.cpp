@@ -72,7 +72,7 @@ namespace typeface_freetype
          // Roboto - Regular.ttf
             // load font as face
 
-         if (FT_New_Memory_Face(g_freetype, m.data(), m.size(), 0, &m_face))
+         if (FT_New_Memory_Face(g_freetype, m.data(),(FT_Long) m.size(), 0, &m_face))
          {
             error() << "ERROR::FREETYPE: Failed to load font";
             throw ::exception(error_failed, "Failed to load font");

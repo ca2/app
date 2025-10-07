@@ -62,7 +62,7 @@ namespace sockets
       ~sip_base_client_socket();
 
       void OnRawData(char *buf,size_t len);
-      void OnLine(const string & line);
+      void OnLine(const ::scoped_string & scopedstrLine);
 
       /** Callback executes when first line has been received.
          GetMethod, GetUrl/GetUri, and GetHttpVersion are valid when this callback is executed. */
@@ -74,7 +74,7 @@ namespace sockets
       /** Callback fires when all http headers have been received. */
       virtual void OnHeaderComplete();
       /** Chunk of http body data recevied. */
-      virtual void OnData(const ::string &,size_t);
+      virtual void OnData(const ::scoped_string & scopedstr,size_t);
       /** The full request/response body has been received. */
       virtual void OnDataComplete();
 
@@ -100,16 +100,16 @@ namespace sockets
       /** Transfer coding 'chunked' */
       bool IsChunked() { return m_b_chunked; }
 
-      property & inattr(const ::string & pszName);
+      property & inattr(const ::scoped_string & scopedstrName);
       ::property_set & inattrs();
 
-      property & inheader(const ::string & pszName);
+      property & inheader(const ::scoped_string & scopedstrName);
       ::property_set & inheaders();
 
-      property & outattr(const ::string & pszName);
+      property & outattr(const ::scoped_string & scopedstrName);
       ::property_set & outattrs();
 
-      property & outheader(const ::string & pszName);
+      property & outheader(const ::scoped_string & scopedstrName);
       ::property_set & outheaders();
 
       sip::request & request();

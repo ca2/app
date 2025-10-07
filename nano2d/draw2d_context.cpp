@@ -90,12 +90,12 @@ namespace nano2d
    ::pointer < ::nano2d::state > draw2d_context::create_new_state()
    {
 
-      auto pstate = __allocate draw2d_state(m_pgraphics);
+      auto pstate = øallocate draw2d_state(m_pgraphics);
 
       pstate->initialize(m_pgraphics);
 
-      m_pgraphics->__øconstruct(pstate->m_ppen);
-      m_pgraphics->__øconstruct(pstate->m_pbrush);
+      m_pgraphics->øconstruct(pstate->m_ppen);
+      m_pgraphics->øconstruct(pstate->m_pbrush);
 
       pstate->m_ppen->m_epen = ::draw2d::e_pen_solid;
       pstate->m_ppen->m_dWidth = 1.0;
@@ -148,7 +148,7 @@ namespace nano2d
       if (pstateOld->m_ppath)
       {
 
-         m_pgraphics->__øconstruct(pstateNew->m_ppath);
+         m_pgraphics->øconstruct(pstateNew->m_ppath);
 
          *pstateNew->m_ppath = *pstateOld->m_ppath;
 
@@ -176,7 +176,7 @@ namespace nano2d
       
       ::pointer < draw2d_state > pstate = m_pstate;
 
-      m_pgraphics->__øconstruct(pstate->m_ppath);
+      m_pgraphics->øconstruct(pstate->m_ppath);
       
       pstate->m_ppath->begin_figure();
    
@@ -361,7 +361,7 @@ namespace nano2d
 
       auto & paintimage = _create_new_paint_image();
 
-      m_pgraphics->__øconstruct(paintimage.m_pbrush);
+      m_pgraphics->øconstruct(paintimage.m_pbrush);
 
       paintimage.m_pbrush->CreateLinearGradientBrush(
          ::double_point(sx, sy),
@@ -385,7 +385,7 @@ namespace nano2d
 
       auto & paintimage = _create_new_paint_image();
 
-      m_pgraphics->__øconstruct(paintimage.m_pbrush);
+      m_pgraphics->øconstruct(paintimage.m_pbrush);
 
       paintimage.m_pbrush->CreateBoxGradientBrush(
          ::double_point(x, y),
@@ -409,7 +409,7 @@ namespace nano2d
 
       auto & paintimage = _create_new_paint_image();
 
-      m_pgraphics->__øconstruct(paintimage.m_pbrush);
+      m_pgraphics->øconstruct(paintimage.m_pbrush);
 
       paintimage.m_pbrush->CreateRadialGradientBrush(
          ::double_point(cx - inr, cy - outr),
@@ -491,7 +491,7 @@ namespace nano2d
    }
 
 
-   void __font_face(::write_text::font * pfont, const char * font)
+   void __font_face(::write_text::font * pfont, const_char_pointer font)
    {
 
       string strFont(font);
@@ -840,24 +840,41 @@ pstate->m_ppen->m_color = color;
 
       character_metric(daLeft, daRight, scopedstr);
 
-      auto pszStart = scopedstr.begin();
+      const char * pszStart = scopedstr.begin();
 
-      auto psz = pszStart;
+      const char * psz = pszStart;
+       
+      const char * pszEnd = scopedstr.end();
 
       int iChar = 0;
 
-      while (psz < scopedstr.end() && iChar < maxPositions)
+      while (psz < pszEnd && iChar < maxPositions)
       {
 
          int iLen = get_utf8_char_length(psz);
+         
+         if(iLen < 0)
+         {
+            
+            break;
+            
+         }
+         
+         auto & position = positions[iChar];
+         
+         auto iIndex = psz - pszStart;
+         
+         auto dLeft = daLeft[iIndex];
+         
+         auto dRight = daRight[iIndex];
 
-         positions[iChar].str = psz;
+         position.str = psz;
 
-         positions[iChar].x = (float) (x+ offsetx+daLeft[psz - pszStart]);
+         position.x = (float) (x + offsetx + dLeft);
 
-         positions[iChar].minx = (float) (x + offsetx + daLeft[psz - pszStart]);
+         position.minx = (float) (x + offsetx + dLeft);
 
-         positions[iChar].maxx = (float) (x + offsetx + daRight[psz - pszStart]);
+         position.maxx = (float) (x + offsetx + dRight);
 
          psz += iLen;
 
@@ -1195,7 +1212,7 @@ void draw2d_context::text_metrics(float * pfAscender, float * pfDescender, float
    }
 
 
-   ::collection::count draw2d_context::character_metric(::double_array& daLeft, ::double_array& daRight, const ::string& scopedstr, character_count iStart, character_count iEnd)
+   ::collection::count draw2d_context::character_metric(::double_array& daLeft, ::double_array& daRight, const ::scoped_string & scopedstr, character_count iStart, character_count iEnd)
    {
 
       __set_current_font();

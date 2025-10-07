@@ -33,11 +33,11 @@ namespace image
 
 
       int_map < string > m_mapIntPath;
-      string_map < int > m_mapPathInt;
-      string_map < ::image::image_pointer > m_mapPathImage;
+      string_map_base < int > m_mapPathInt;
+      string_map_base < ::image::image_pointer > m_mapPathImage;
       int         m_iImageSeed;
       ::particle_pointer         m_pparticleImageSynchronization;
-      map < int_size, ::pointer_array < ::image::image > > m_imagepool;
+      map_base < int_size, ::pointer_array < ::image::image > > m_imagepool;
 
 
 
@@ -51,6 +51,25 @@ namespace image
       void destroy() override;
 
 
+      /// @brief  it always returns 4 channels!!
+      /// @param buffer 
+      /// @param len 
+      /// @param x 
+      /// @param y 
+      /// @param channels_in_file 
+      /// @param desired_channels 
+      /// @return 
+      virtual unsigned char * like_stbi_load_from_memory(
+         const unsigned char *buffer,
+         int len, 
+         int *x,
+         int *y,
+         int *channels_in_file,
+         int desired_channels);
+
+      virtual void like_stbi_image_free(void *data);
+
+
       inline ::particle* image_synchronization() { return m_pparticleImageSynchronization; }
 
 
@@ -58,7 +77,7 @@ namespace image
 
 
       ::image::enum_format file_extension_to_format(const ::payload & payloadFile);
-      ::image::enum_format text_to_format(string str);
+      ::image::enum_format text_to_format(const ::scoped_string & scopedstr);
 
 
       //virtual void set_finish_composites(::property_object* pcontextobjectRootFinishingInitiator) override;
@@ -80,17 +99,20 @@ namespace image
       virtual int create_image_integer(int w, int h, const image32_t * pcolor, int iScan = -1);
       virtual ::image::image_pointer integer_image(int i);
       virtual ::image::image_pointer path_image(const ::file::path & pathImage);
+      virtual ::image::image_pointer
+      image_from_file(const ::payload &payloadFile, const ::image::load_options &loadoptions = ::image::load_options());
+
 
 
       virtual ::image::icon_pointer get_icon(const ::payload & payloadFile, const ::image::load_options & loadoptions = ::image::load_options());
       virtual ::image::image_pointer get_image(const ::payload & payloadFile, const ::image::load_options & loadoptions = ::image::load_options());
-      virtual ::image::image_pointer matter_image(const ::string & strMatter, const ::image::load_options & loadoptions = ::image::load_options());
+      virtual ::image::image_pointer matter_image(const ::scoped_string & scopedstrMatter, const ::image::load_options & loadoptions = ::image::load_options());
 
       virtual ::image::image_pointer load_image(const ::payload & payloadFile, const ::image::load_options & loadoptions = ::image::load_options());
-      virtual ::image::image_pointer load_matter_image(const ::string & strMatter, const ::image::load_options & loadoptions = ::image::load_options());
-      virtual ::image::image_pointer load_matter_icon(string_array & straMatter, string strIcon);
+      virtual ::image::image_pointer load_matter_image(const ::scoped_string & scopedstrMatter, const ::image::load_options & loadoptions = ::image::load_options());
+      virtual ::image::image_pointer load_matter_icon(string_array_base & straMatter, const ::scoped_string & scopedstrIcon);
       virtual ::image::image_pointer load_thumbnail(const ::payload & payloadFile, int w, int h);
-      virtual ::image::image_pointer load_thumbnail(const ::string & strPath);
+      virtual ::image::image_pointer load_thumbnail(const ::scoped_string & scopedstrPath);
       virtual ::image::image_pointer load_dib(const ::file::path & pathDib);
       //virtual ::icon_pointer load_icon(const ::payload & payloadFile);
 
@@ -102,12 +124,12 @@ namespace image
 
 
       virtual void _get_image(::image::image *pimage, const ::payload & payloadFile, const ::image::load_options & options = ::image::load_options());
-      virtual void _matter_image(::image::image *pimage, const ::string & strMatter, const ::image::load_options & options = ::image::load_options());
+      virtual void _matter_image(::image::image *pimage, const ::scoped_string & scopedstrMatter, const ::image::load_options & options = ::image::load_options());
 
 
       virtual void _load_image(::image::image *pimage, const ::payload & payloadFile, const ::image::load_options & options = ::image::load_options());
-      virtual void _load_matter_image(::image::image *pimage, const string & pszMatter, const ::image::load_options & loadoptions = ::image::load_options());
-      virtual void _load_matter_icon(::image::image *pimage, string_array & straMatter, string strIcon);
+      virtual void _load_matter_image(::image::image *pimage, const ::scoped_string & scopedstrMatter, const ::image::load_options & loadoptions = ::image::load_options());
+      virtual void _load_matter_icon(::image::image *pimage, string_array_base & straMatter, const ::scoped_string & scopedstrIcon);
       virtual void _load_thumbnail(::image::image *pimage, const ::payload & payloadFile, int w, int h);
       virtual void _load_thumbnail(::image::image *pimage, const ::payload & payloadFile);
       virtual void _load_dib(::image::image *pimage, const ::file::path & pathDib);
@@ -145,10 +167,10 @@ namespace image
 
 
       ::image::image_pointer get_cache_image(const ::payload & payloadFile);
-      ::image::image_pointer matter_cache_image(const ::string & strMatter);
+      ::image::image_pointer matter_cache_image(const ::scoped_string & scopedstrMatter);
 
       //::image::image_pointer get_image(const ::payload & payloadFile, const ::image::load_options & loadoptions = ::image::load_options());
-      //::image::image_pointer matter_image(const ::string & strMatter, const ::image::load_options & loadoptions = ::image::load_options());
+      //::image::image_pointer matter_image(const ::scoped_string & scopedstrMatter, const ::image::load_options & loadoptions = ::image::load_options());
 
 
    };

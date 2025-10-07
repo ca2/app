@@ -25,28 +25,28 @@
          }
 
 
-         ::pointer<::object>library::alloc(::particle * pparticle, const ::string & pszClass, object * p)
+         ::pointer<::object>library::alloc(::particle * pparticle, const ::scoped_string & scopedstrClass, object * p)
          {
 
-            if(string(pszClass) == "experience")
+            if(string(scopedstrClass) == "experience")
             {
 
                return ___new experience(pparticle);
 
             }
-            else if(string(pszClass) == "control_box")
+            else if(string(scopedstrClass) == "control_box")
             {
 
                return ___new control_box(pparticle);
 
             }
-            else if(string(pszClass) == "control_box_button")
+            else if(string(scopedstrClass) == "control_box_button")
             {
 
                return ___new button(pparticle);
 
             }
-            else if(string(pszClass) == "user_theme")
+            else if(string(scopedstrClass) == "user_theme")
             {
 
                return ___new ::experience_lite::theme (pparticle);

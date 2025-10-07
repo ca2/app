@@ -30,7 +30,7 @@ public:
   nsLatin1Prober(void){Reset();};
   virtual ~nsLatin1Prober(void){};
   nsProbingState HandleData(const ::string & aBuf, PRunsigned int aLen);
-  const char* GetCharSetName() {return "windows-1252";};
+  const_char_pointer GetCharSetName() {return "windows-1252";};
   nsProbingState GetState(void) {return mState;};
   void      Reset(void);
   float     GetConfidence(void);

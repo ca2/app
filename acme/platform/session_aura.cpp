@@ -78,11 +78,11 @@ return nullptr;
    // virtual void on_request(::request* prequest) override{}
 
 
-   //virtual string matter_as_string(const ::string & pszMatter, const ::string & pszMatter2){}
-   //virtual string directory()->matter(const ::string & pszMatter, const ::string & pszMatter2){}
+   //virtual string matter_as_string(const ::scoped_string & scopedstrMatter, const ::scoped_string & scopedstrMatter2){}
+   //virtual string directory()->matter(const ::scoped_string & scopedstrMatter, const ::scoped_string & scopedstrMatter2){}
 
-   //virtual bool is_inside_time_dir(const ::string & pszPath){}
-   //virtual bool file_is_read_only(const ::string & pszPath){}
+   //virtual bool is_inside_time_dir(const ::scoped_string & scopedstrPath){}
+   //virtual bool file_is_read_only(const ::scoped_string & scopedstrPath){}
 
    // Long PhRESSing time
    // time in ::times that a pressing is considered a double click
@@ -98,7 +98,7 @@ return nullptr;
    }
 
 
-   //virtual string account_get_user_sessid(const ::string & str) override{}
+   //virtual string account_get_user_sessid(const ::scoped_string & scopedstr) override{}
 
    //virtual void translate_os_key_message(::user::key * pkey){}
 
@@ -118,7 +118,7 @@ return nullptr;
    //bool simple_ui_draw_focus_rect(::user::interaction * pinteraction, ::draw2d::graphics_pointer& pgraphics) override{}
 
 
-   //virtual void locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema) override{}
+   //virtual void locale_schema_matter(string_array_base & stra, const string_array_base & straMatterLocator, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema) override{}
    //virtual string get_locale_schema_dir() override{}
 
 
@@ -156,11 +156,11 @@ return nullptr;
    // virtual void process_term() override{}
 
 
-   //virtual bool open_by_file_extension(const ::string & pszPathName, ::request * prequest = nullptr) override{}
+   //virtual bool open_by_file_extension(const ::scoped_string & scopedstrPathName, ::request * prequest = nullptr) override{}
 
    //virtual bool open_by_file_extension(::request * prequest) override{}
 
-   //::pointer<::aura::application>get_new_application(::particle * pparticle, const ::string & pszAppId){}
+   //::pointer<::aura::application>get_new_application(::particle * pparticle, const ::scoped_string & scopedstrAppId){}
 
 
    ::apex::savings * aura_session_layer::savings()
@@ -185,13 +185,13 @@ return nullptr;
 
    //virtual void on_erase_user(::account::user * puser){}
 
-   //virtual bool is_licensed(const ::string & pszId, bool bInteractive = true) override{}
+   //virtual bool is_licensed(const ::scoped_string & scopedstrId, bool bInteractive = true) override{}
 
-   //virtual bool get_auth(const string & pszForm, string & strUsername, string & strPassword) override{}
+   //virtual bool get_auth(const ::scoped_string & scopedstrForm, string & strUsername, string & strPassword) override{}
 
    //virtual void interactive_credentials(::account::credentials * pcredentials){}
 
-   //::aura::application * application_get(const ::string & pszAppId, bool bCreate, bool bSynch, ::request * prequest) override{}
+   //::aura::application * application_get(const ::scoped_string & scopedstrAppId, bool bCreate, bool bSynch, ::request * prequest) override{}
 
    //virtual bool is_key_pressed(::user::enum_key ekey) override{}
 
@@ -245,9 +245,9 @@ return nullptr;
    //virtual ::collection::index get_ui_workspace(::user::interaction * pinteraction){}
 
 
-   //virtual void defer_instantiate_user_theme(const ::string & pszUiInteractionLibrary = nullptr){}
-   //::pointer<::user::theme>instantiate_user_theme(const ::string & pszExperienceLibrary, ::aura::application * papp = nullptr){}
-   //::pointer<::user::theme>get_user_theme(const ::string & pszExperienceLibrary, ::aura::application * papp = nullptr){}
+   //virtual void defer_instantiate_user_theme(const ::scoped_string & scopedstrUiInteractionLibrary = nullptr){}
+   //::pointer<::user::theme>instantiate_user_theme(const ::scoped_string & scopedstrExperienceLibrary, ::aura::application * papp = nullptr){}
+   //::pointer<::user::theme>get_user_theme(const ::scoped_string & scopedstrExperienceLibrary, ::aura::application * papp = nullptr){}
 
 
    //virtual void _001OnDefaultTabPaneDrawTitle(::user::tab_pane & pane, ::user::tab * ptab, ::draw2d::graphics_pointer & pgraphics, const ::int_rectangle & rectangle, ::draw2d::brush_pointer & pbrushText){}
@@ -339,7 +339,7 @@ return nullptr;
    }
 
 
-   //virtual void on_frame_window_drop_files(::user::interaction* pinteraction, ::file::path_array& patha){}
+   //virtual void on_frame_window_drop_files(::user::interaction* pinteraction, ::file::path_array_base& patha){}
 
 
    //virtual void do_request(::request* prequest) override{}
@@ -365,8 +365,8 @@ return nullptr;
    //virtual void check_topic_file_change() override{}
 
 
-   // void launch_app(const ::string & psz) override{}
-   // void install_app(const ::string & psz) override{}
+   // void launch_app(const ::scoped_string & scopedstr) override{}
+   // void install_app(const ::scoped_string & scopedstr) override{}
 
 
    //user ::pointer<::user::document>                  get_document(){}
@@ -399,11 +399,11 @@ return nullptr;
    //::pointer<::aura::application>get_current_application(){}
 
 
-   //virtual void set_app_title(const ::string & pszAppId, const ::string & pszTitle) override{}
+   //virtual void set_app_title(const ::scoped_string & scopedstrAppId, const ::scoped_string & scopedstrTitle) override{}
 
    //virtual void term() override{}
 
-   //virtual bool open_by_file_extension(const ::string & pszPathName, ::create* pcreate = nullptr) override{}
+   //virtual bool open_by_file_extension(const ::scoped_string & scopedstrPathName, ::create* pcreate = nullptr) override{}
    //virtual bool open_by_file_extension(::create* pcc) override{}
 
    //virtual bool is_session() const override{}
@@ -417,7 +417,7 @@ return nullptr;
    //virtual bool is_remote_session() override{}
 
 
-   //virtual string_array get_user_wallpaper() override{}
+   //virtual string_array_base get_user_wallpaper() override{}
 
 
    //::user::user* user() override{}

@@ -19,14 +19,14 @@
 //
 ////#if OBJECT_TYPE_COUNTER
 ////
-////   extern map < const char*, const ::string &, long long, long long >* g_pmapObjTypCtr;
+////   extern map_base < const_char_pointer ,const ::scoped_string & scopedstr, long long, long long >* g_pmapObjTypCtr;
 ////
 ////#endif
 //
 //
 //   //extern CLASS_DECL_AURA critical_section* g_pcsGlobal;
 //
-//   extern CLASS_DECL_AURA string_map < int_to_string > * g_pmapFontFaceName;
+//   extern CLASS_DECL_AURA string_map_base < int_to_string > * g_pmapFontFaceName;
 //
 //   extern CLASS_DECL_AURA critical_section* g_pcsFont;
 //
@@ -43,8 +43,8 @@
 //
 //   extern ::pointer< ::mutex > g_pmutexChildren;
 //   //extern ::pointer< ::mutex > g_pmutexThreadWaitClose;
-//   //extern string_map < ::pointer<::acme::library >> g_pmapLibrary;
-//   //extern string_map < PFN_NEW_AURA_LIBRARY >* g_pmapNewAuraLibrary;
+//   //extern string_map_base < ::pointer<::acme::library >> g_pmapLibrary;
+//   //extern string_map_base < PFN_NEW_AURA_LIBRARY >* g_pmapNewAuraLibrary;
 //
 //
 //////#if !defined(WINDOWS)
@@ -105,7 +105,7 @@
 //   //extern CLASS_DECL_AURA array < matter* >* g_paAura;
 //
 //
-//   //extern ::map < ::atom, const ::atom&, ::atom, const ::atom& >* g_pmapRTL;
+//   //extern ::map_base < ::atom, const ::atom&, ::atom, const ::atom& >* g_pmapRTL;
 //
 //   //extern plex_heap_alloc_array* g_pheap;
 //
@@ -121,7 +121,7 @@
 ////
 ////#endif
 //
-//   //extern map < itask, itask, itask, itask > * g_pmapThreadOn;
+//   //extern map_base < itask, itask, itask, itask > * g_pmapThreadOn;
 //
 ////#ifdef WINDOWS
 ////

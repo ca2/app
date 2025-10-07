@@ -60,7 +60,7 @@ namespace database
 
 
       virtual void _data_set(const ::scoped_string & strKey, const ::payload & payload, ::topic * ptopic = nullptr);
-      virtual void _data_set(const ::string_array & straKey, const ::payload & payload, ::topic * ptopic = nullptr);
+      virtual void _data_set(const ::string_array_base & straKey, const ::payload & payload, ::topic * ptopic = nullptr);
 
 
       inline stream * datastream() { return m_pstream; }
@@ -191,13 +191,13 @@ namespace database
 
 
    class CLASS_DECL_APEX client_array :
-      public address_array < client * >
+      public address_array_base < client * >
    {
    public:
 
 
       client_array();
-      virtual ~client_array();
+      ~client_array();
 
 
       virtual void add_client(client * pclient);

@@ -285,14 +285,14 @@ pdirectorysystem->is(stra[i]))
    //   {
    //      if(bRecursive)
    //      {
-   //         string_array straPath;
-   //         string_array straTitle;
+   //         string_array_base straPath;
+   //         string_array_base straTitle;
    //         ls(papp, psz, &straPath, &straTitle);
    //         for(int i = 0; i < straPath.get_count(); i++)
    //         {
    //            if(is(straPath[i], papp))
    //            {
-   //               rm(papp, path(psz, straTitle[i]), true);
+   //               rm(papp, path(scopedstr, straTitle[i]), true);
    //            }
    //            else
    //            {
@@ -300,29 +300,29 @@ pdirectorysystem->is(stra[i]))
    //            }
    //         }
    //      }
-   //      return ::rmdir(psz) != false;
+   //      return ::rmdir(scopedstr) != false;
    //   }
    //
    //
    //   string ::file_path_folder(const ::file::path & path1)
    //   {
    //      const ::scoped_string & scopedstr = path1 + strlen(path1) - 1;
-   //      while(psz >= path1)
+   //      while(scopedstr >= path1)
    //      {
    //         if(*psz != '\\' && *psz != '/' && *psz != ':')
    //            break;
    //         psz--;
    //      }
-   //      while(psz >= path1)
+   //      while(scopedstr >= path1)
    //      {
    //         if(*psz == '\\' || *psz == '/' || *psz == ':')
    //            break;
    //         psz--;
    //      }
-   //      if(psz >= path1) // strChar == "\\" || strChar == "/"
+   //      if(scopedstr >= path1) // strChar == "\\" || strChar == "/"
    //      {
    //         const ::ansi_character * pszEnd = psz;
-   //         /*while(psz >= path1)
+   //         /*while(scopedstr >= path1)
    //          {
    //          if(*psz != '\\' && *psz != '/' && *psz != ':')
    //          break;
@@ -336,7 +336,7 @@ pdirectorysystem->is(stra[i]))
    //      }
    //   }
    //
-   //   string ::file_path_folder(const ::string & str)
+   //   string ::file_path_folder(const ::scoped_string & scopedstr)
    //   {
    //
    //      character_count iLast = str.length() - 1;
@@ -379,12 +379,12 @@ pdirectorysystem->is(stra[i]))
 
 //   ::file::path directory_context::trash_that_is_not_trash(const ::file::path & psz)
 //   {
-//      if(psz == nullptr)
+//      if(scopedstr == nullptr)
 //         return "";
 //
-//      if(psz[1] == ':')
+//      if(scopedstr[1] == ':')
 //      {
-//         string strDir = name(psz);
+//         string strDir = name(scopedstr);
 //         string str;
 //         str = strDir.left(2);
 //         str += "\\trash_that_is_not_trash\\";
@@ -411,7 +411,7 @@ pdirectorysystem->is(stra[i]))
    bool directory_context::has_subdir(const ::file::path & pszDir)
    {
       ::file::listing stra(get_context());
-      stra.ls_dir(pszDir);
+      stra.ls_dir(scopedstrDir);
       return stra.get_size() > 0;
 
    }
@@ -468,7 +468,7 @@ pdirectorysystem->is(stra[i]))
    }
 
 
-   ::file::path directory_context::time_square(const ::string & strPrefix,const ::string & strSuffix)
+   ::file::path directory_context::time_square(const ::scoped_string & scopedstrPrefix,const ::scoped_string & scopedstrSuffix)
    {
 
       __UNREFERENCED_PARAMETER(strPrefix);
@@ -490,12 +490,12 @@ pdirectorysystem->is(stra[i]))
       if(bRecursive)
       {
          ::file::listing patha(get_context());
-         patha.ls(psz);
+         patha.ls(scopedstr);
          for(auto & path : patha)
          {
             if(is(path))
             {
-               rm(psz / path.name(), true);
+               rm(scopedstr / path.name(), true);
             }
             else
             {
@@ -503,7 +503,7 @@ pdirectorysystem->is(stra[i]))
             }
          }
       }
-      return ::rmdir(psz) == 0;
+      return ::rmdir(scopedstr) == 0;
    }
 
 
@@ -576,7 +576,7 @@ pdirectorysystem->is(stra[i]))
 
          char * psz = str.get_buffer(uiSize);
 
-         _ui_library_dir(psz, &uiSize);
+         _ui_library_dir(scopedstr, &uiSize);
 
          str.release_buffer(uiSize);
 
@@ -750,7 +750,7 @@ pdirectorysystem->is(stra[i]))
    bool directory_context::is_inside(const ::file::path & pszDir, const ::file::path & pszPath)
    {
 
-      return case_insensitive_string_begins(pszDir, pszPath);
+      return case_insensitive_string_begins(scopedstrDir, pszPath);
 
    }
 

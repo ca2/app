@@ -50,7 +50,7 @@ namespace platform
       // ::aqua::session* m_paquasession;
       // ::aura::session* m_paurasession;
       // ::axis::session* m_paxissession;
-      // ::base::session* m_pbasesession;
+      // ::berg::session* m_pbasesession;
       // ::bred::session* m_pbredsession;
       // ::core::session* m_pcoresession;
 

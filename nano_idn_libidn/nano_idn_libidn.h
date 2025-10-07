@@ -28,8 +28,8 @@ namespace libidn
                 ~idn() override;
 
 
-               virtual string idn_to_punycode(const ::string & str) override;
-               virtual string idn_from_punycode(const ::string & str) override;
+               virtual string idn_to_punycode(const ::scoped_string & scopedstr) override;
+               virtual string idn_from_punycode(const ::scoped_string & scopedstr) override;
 
 
             };

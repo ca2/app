@@ -5,7 +5,7 @@
 #include "acme/platform/application.h"
 
 
-namespace app_launch
+namespace launch
 {
 
 
@@ -49,10 +49,10 @@ namespace app_launch
 
       ::string calculate_download_url();
 
-      //bool check_http_ok(const char * pszUrl);
+      //bool check_http_ok(const_char_pointer pszUrl);
 
 
-      //void log_system(const char * psz);
+      //void log_system(const_char_pointer psz);
       void install_dependencies();
 
 
@@ -60,7 +60,7 @@ namespace app_launch
 
 
 
-} // namespace app_launch
+} // namespace launch
 
 
 

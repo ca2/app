@@ -21,7 +21,7 @@ namespace operating_system
 
 
 
-   //CLASS_DECL_ACME string app_id_to_app_name(string strId);
+   //CLASS_DECL_ACME string app_id_to_app_name(const ::scoped_string & scopedstrId);
 
 
 } // namespace operating_system

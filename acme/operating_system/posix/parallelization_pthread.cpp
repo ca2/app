@@ -115,7 +115,7 @@ t_phappeningNotifyLock;
             if (::is_set(pmq))
             {
 
-               synchronous_lock synchronouslock(pmq->synchronization());
+               synchronous_lock synchronouslock(pmq->synchronization(), pmq, SYNCHRONOUS_LOCK_SUFFIX);
 
                if (pmq->m_messagea.get_count() > 0)
                {
@@ -184,7 +184,7 @@ t_phappeningNotifyLock;
          t_phappeningNotifyLock->reset_happening();
          
       }
-      //auto pnotifylock = __allocate notify_lock(t_phappeningNotifyLock);
+      //auto pnotifylock = øallocate notify_lock(t_phappeningNotifyLock);
       notify_lock notifylock(t_phappeningNotifyLock);
 
          if (::is_set(pmq))
@@ -448,7 +448,7 @@ int g_iDebug_post_thread_msg_time;
 //CLASS_DECL_ACME int_bool WINAPI mq_post(message_queue * pmq, unsigned int Msg, WPARAM wParam, LPARAM lParam)
 //{
 //
-//   synchronous_lock ml(pmq->synchronization());
+//   synchronous_lock ml(pmq->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //   MESSAGE msg;
 //
@@ -459,10 +459,10 @@ int g_iDebug_post_thread_msg_time;
 //   msg.pt.y() = I32_MINIMUM;
 //   msg.hwnd = nullptr;
 //
-//   if (msg.message == e_message_quit)
+//   if (msg.message == ::user::e_message_quit)
 //   {
 //
-//      informationf("e_message_quit thread");
+//      informationf("::user::e_message_quit thread");
 //
 //   }
 //
@@ -647,7 +647,7 @@ string task_get_name()
 //using htask = void *;
 
 //extern "C"
-//int   imp_stubs_pthread_setname_np(pthread_t,const char*);
+//int   imp_stubs_pthread_setname_np(pthread_t,const_char_pointer );
 
 //
 //void task_set_name(htask htask, const ::scoped_string & scopedstrTaskName)

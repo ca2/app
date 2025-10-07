@@ -31,19 +31,19 @@ namespace aqua
 
       virtual void initialize_multimedia(::particle * pparticle);
 
-      virtual void on_song_added(const string& strId);
+      virtual void on_song_added(const ::scoped_string & scopedstrId);
 
-      virtual string get_media_call_title(const string& str);
+      virtual string get_media_call_title(const ::scoped_string & scopedstr);
 
-      virtual void on_decoder_fill_title_info(::multimedia::decoder * pdecoder, string_array & straTitle, string_array_array & straaTitle);
+      virtual void on_decoder_fill_title_info(::multimedia::decoder * pdecoder, string_array_base & straTitle, string_array_array_base & straaTitle);
 
-      virtual ::pointer<::user::controller>defer_create_impact(::particle * pparticle, const ::string & strImpact, ::user::interaction* puiParent, e_window_flag ewindowflag = e_window_flag_none, const ::atom& atom = nullptr);
+      virtual ::pointer<::user::controller>defer_create_impact(::particle * pparticle, const ::scoped_string & scopedstrImpact, ::user::interaction* puiParent, e_window_flag ewindowflag = e_window_flag_none, const ::atom& atom = nullptr);
 
       virtual void exit_application();
 
       virtual void on_command(::message::command* pcommand);
 
-      string_array detect_language(const string& str);
+      string_array_base detect_language(const ::scoped_string & scopedstr);
 
 
       virtual void get_file_information(::file::file* pfile, ::multimedia::information& information);

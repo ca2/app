@@ -25,7 +25,7 @@ namespace sockets
    }
 
 
-   int SctpSocket::Bind(const string & a,::networking::port_t int_point)
+   int SctpSocket::Bind(const ::scoped_string & scopedstrAddress,::networking::port_t int_point)
    {
 #ifdef ENABLE_IPV6
 #ifdef IPPROTO_IPV6
@@ -68,7 +68,7 @@ namespace sockets
    }
 
 
-   int SctpSocket::AddAddress(const string & a,::networking::port_t int_point)
+   int SctpSocket::AddAddress(const ::scoped_string & scopedstrAddress,::networking::port_t int_point)
    {
 #ifdef ENABLE_IPV6
 #ifdef IPPROTO_IPV6
@@ -105,7 +105,7 @@ namespace sockets
    }
 
 
-   int SctpSocket::RemoveAddress(const string & a,::networking::port_t int_point)
+   int SctpSocket::RemoveAddress(const ::scoped_string & scopedstrAddress,::networking::port_t int_point)
    {
 #ifdef ENABLE_IPV6
 #ifdef IPPROTO_IPV6
@@ -142,7 +142,7 @@ namespace sockets
    }
 
 
-   int SctpSocket::open(const string & a,::networking::port_t int_point)
+   int SctpSocket::open(const ::scoped_string & scopedstrAddress,::networking::port_t int_point)
    {
 #ifdef ENABLE_IPV6
 #ifdef IPPROTO_IPV6
@@ -200,7 +200,7 @@ namespace sockets
 
 
 #ifndef SOLARIS
-   int SctpSocket::AddConnection(const string & a,::networking::port_t int_point)
+   int SctpSocket::AddConnection(const ::scoped_string & scopedstrAddress,::networking::port_t int_point)
    {
 #ifdef ENABLE_IPV6
 #ifdef IPPROTO_IPV6
@@ -242,7 +242,7 @@ namespace sockets
 #endif
 
 
-   int SctpSocket::getpaddrs(sctp_assoc_t atom,list<string>& vec)
+   int SctpSocket::getpaddrs(sctp_assoc_t atom,list_base<string>& vec)
    {
       struct sockaddr *point = nullptr;
       int n = sctp_getpaddrs(get_socket_id(), atom, &point);
@@ -260,7 +260,7 @@ namespace sockets
    }
 
 
-   int SctpSocket::getladdrs(sctp_assoc_t atom,list<string>& vec)
+   int SctpSocket::getladdrs(sctp_assoc_t atom,list_base<string>& vec)
    {
       struct sockaddr *point = nullptr;
       int n = sctp_getladdrs(get_socket_id(), atom, &point);
@@ -330,7 +330,7 @@ namespace sockets
    }
 
 
-   void SctpSocket::OnReceiveMessage(const char *buf,memsize sz,struct sockaddr *sa,socklen_t sa_len,struct sctp_sndrcvinfo *sinfo,int msg_flags)
+   void SctpSocket::OnReceiveMessage(const_char_pointer buf,memsize sz,struct sockaddr *sa,socklen_t sa_len,struct sctp_sndrcvinfo *sinfo,int msg_flags)
    {
    }
 

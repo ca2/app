@@ -56,7 +56,7 @@ template < typename CALLING >
 inline auto as_waiting_call(const CALLING & calling)
 {
 
-   auto pwaitingcall = __allocate::waiting_call<CALLING>(calling);
+   auto pwaitingcall = øallocate::waiting_call<CALLING>(calling);
 
    return ::transfer(pwaitingcall);
 

@@ -71,7 +71,7 @@ namespace user
    public:
 
 
-      index_map < ::pointer<draw_list_subitem >>     m_mapSubItem;
+      index_map_base < ::pointer<draw_list_subitem >>     m_mapSubItem;
 
 
       draw_list_item();
@@ -109,7 +109,7 @@ namespace user
    public:
 
 
-      //index_map < ::pointer<draw_list_subitem >>     m_mapSubItem;
+      //index_map_base < ::pointer<draw_list_subitem >>     m_mapSubItem;
 
 
       draw_list_group();

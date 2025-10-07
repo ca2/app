@@ -44,7 +44,7 @@ namespace sockets
 
       http_get_socket();
       http_get_socket(const string & url);
-      http_get_socket(const string & host,port_t port,const string & url);
+      http_get_socket(const ::scoped_string & scopedstrHost,port_t port,const string & url);
       ~http_get_socket() override;
 
       virtual bool step() override;

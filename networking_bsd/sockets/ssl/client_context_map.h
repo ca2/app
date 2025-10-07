@@ -16,14 +16,14 @@ namespace sockets_bsd
    public:
 
 
-      string_map < map < const SSL_METHOD *, ::pointer<ssl_client_context >>> m_map;
+      string_map_base < map_base < const SSL_METHOD *, ::pointer<ssl_client_context >>> m_map;
 
 
       ssl_client_context_map();
       virtual ~ssl_client_context_map();
 
 
-      ::pointer<ssl_client_context> get_context(string strContext, const SSL_METHOD * pmethod);
+      ::pointer<ssl_client_context> get_context(const ::scoped_string & scopedstrContext, const SSL_METHOD * pmethod);
 
 
    };

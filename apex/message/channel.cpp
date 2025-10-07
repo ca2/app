@@ -288,12 +288,12 @@ void channel::transfer_command_probe_handler(::channel * pchannelReceiver, ::par
 
 
 
-::particle * channel::add_message_handler(::enum_message emessage, const ::message::dispatcher & dispatcher)
+::particle * channel::add_message_handler(::user::enum_message eusermessage, const ::message::dispatcher & dispatcher)
 {
 
    auto pdispatchermap = get_message_map();
 
-   auto & dispatchera = (*pdispatchermap)[emessage];
+   auto & dispatchera = (*pdispatchermap)[eusermessage];
 
    // Try to not add already added dispatcher
    for (::collection::index i = 0; i < dispatchera.get_count(); i++)
@@ -380,7 +380,7 @@ void channel::transfer_command_probe_handler(::channel * pchannelReceiver, ::par
 void channel::route_message(::message::message * pmessage)
 {
 
-   if (::is_null(pmessage)) { ASSERT(false); return; } { critical_section_lock synchronouslock(::system()->channel_critical_section()); pmessage->m_pdispatchera = get_message_map()->pget(pmessage->m_emessage); } if (pmessage->m_pdispatchera == nullptr || pmessage->m_pdispatchera->is_empty()) return;
+   if (::is_null(pmessage)) { ASSERT(false); return; } { critical_section_lock synchronouslock(::system()->channel_critical_section()); pmessage->m_pdispatchera = get_message_map()->defer_get(pmessage->m_eusermessage); } if (pmessage->m_pdispatchera == nullptr || pmessage->m_pdispatchera->is_empty()) return;
 
    for (pmessage->m_pchannel = this, pmessage->m_iRouteIndex = pmessage->m_pdispatchera->get_upper_bound(); pmessage->m_pdispatchera && pmessage->m_iRouteIndex >= 0; pmessage->m_iRouteIndex--)
    {
@@ -406,7 +406,7 @@ void channel::_route_command(::message::command * pcommand)
 
    ASSERT(!pcommand->m_bProbing);
 
-   if (::is_null(pcommand)) { ASSERT(false); return; } { critical_section_lock synchronouslock(::system()->channel_critical_section()); pcommand->m_pdispatchera = get_command_map()->pget(pcommand->command_id()); } if (pcommand->m_pdispatchera == nullptr || pcommand->m_pdispatchera->is_empty()) return;
+   if (::is_null(pcommand)) { ASSERT(false); return; } { critical_section_lock synchronouslock(::system()->channel_critical_section()); pcommand->m_pdispatchera = get_command_map()->defer_get(pcommand->command_id()); } if (pcommand->m_pdispatchera == nullptr || pcommand->m_pdispatchera->is_empty()) return;
 
    for (pcommand->m_pchannel = this, pcommand->m_iRouteIndex = pcommand->m_pdispatchera->get_upper_bound(); pcommand->m_pdispatchera && pcommand->m_iRouteIndex >= 0; pcommand->m_iRouteIndex--)
    {
@@ -432,7 +432,7 @@ void channel::_route_command_probe(::message::command * pcommand)
 
    ASSERT(pcommand->m_bProbing);
 
-   if (::is_null(pcommand)) { ASSERT(false); return; } { critical_section_lock synchronouslock(::system()->channel_critical_section()); pcommand->m_pdispatchera = get_command_probe_map()->pget(pcommand->command_id()); } if (pcommand->m_pdispatchera == nullptr || pcommand->m_pdispatchera->is_empty()) return;
+   if (::is_null(pcommand)) { ASSERT(false); return; } { critical_section_lock synchronouslock(::system()->channel_critical_section()); pcommand->m_pdispatchera = get_command_probe_map()->defer_get(pcommand->command_id()); } if (pcommand->m_pdispatchera == nullptr || pcommand->m_pdispatchera->is_empty()) return;
 
    for (pcommand->m_pchannel = this, pcommand->m_iRouteIndex = pcommand->m_pdispatchera->get_upper_bound(); pcommand->m_pdispatchera && pcommand->m_iRouteIndex >= 0; pcommand->m_iRouteIndex--)
    {
@@ -456,10 +456,10 @@ void channel::_route_command_probe(::message::command * pcommand)
 ::pointer<::message::message>channel::get_message(MESSAGE * pmessage)
 {
 
-   auto pmessagemessage = __allocate::message::message();
+   auto pmessagemessage = øallocate::message::message();
 
    pmessagemessage->m_oswindow = pmessage->m_oswindow;
-   pmessagemessage->m_emessage = pmessage->m_emessage;
+   pmessagemessage->m_eusermessage = pmessage->m_eusermessage;
    pmessagemessage->m_wparam = pmessage->m_wparam;
    pmessagemessage->m_lparam = pmessage->m_lparam;
 
@@ -467,34 +467,34 @@ void channel::_route_command_probe(::message::command * pcommand)
 
 }
 #define _NEW_MESSAGE(TYPE) \
-   auto pmessage = __allocate TYPE(); \
+   auto pmessage = øallocate TYPE(); \
    pmessageBase = pmessage; \
-   pmessage->m_emessage = emessage; \
+   pmessage->m_eusermessage = eusermessage; \
    pmessage->m_wparam = wparam; \
    pmessage->m_lparam = lparam;
 
 
-//::pointer<::message::message>channel::get_message(::enum_message emessage, ::wparam wparam, ::lparam lparam, const ::int_point & point)
-::pointer<::message::message>channel::get_message(::enum_message emessage, ::wparam wparam, ::lparam lparam, ::message::enum_prototype eprototype)
+//::pointer<::message::message>channel::get_message(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam, const ::int_point & point)
+::pointer<::message::message>channel::get_message(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam, ::user::enum_message_prototype eprototype)
 {
 
    ::pointer<::message::message>pmessageBase;
 
-   if (eprototype == ::message::e_prototype_none)
+   if (eprototype == ::user::e_message_prototype_none)
    {
 
-      eprototype = ::message::get_message_prototype(emessage, 0);
+      eprototype = ::user::get_message_prototype(eusermessage, 0);
 
    }
 
    switch (eprototype)
    {
-   case ::message::e_prototype_simple_command:
+   case ::user::e_message_prototype_simple_command:
    {
       _NEW_MESSAGE(::message::simple_command);
    }
    break;
-   //case ::message::e_prototype_object:
+   //case ::user::e_message_prototype_object:
    //{
    //   _NEW_MESSAGE(::message::particle);
    //}
@@ -507,7 +507,7 @@ void channel::_route_command_probe(::message::command * pcommand)
    }
 
 
-   //auto pmessagemessage = __allocate ::message::message();
+   //auto pmessagemessage = øallocate ::message::message();
 
    //pmessagemessage->id() = atom;
    //pmessagemessage->m_wparam = wparam;
@@ -518,7 +518,7 @@ void channel::_route_command_probe(::message::command * pcommand)
 }
 
 
-//::pointer<::user::message>channel::get_message_base(::windowing::window * pwindow, ::enum_message emessage, ::wparam wparam, ::lparam lparam)
+//::pointer<::user::message>channel::get_message_base(::windowing::window * pwindow, ::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
 //{
 //
 //   if (atom.m_etype != ::atom::e_type_message)
@@ -620,7 +620,7 @@ void channel::erase_all_routes()
 //               try
 //               {
 //
-//                  synchronous_lock synchronouslock(route->m_preceiver->m_pmutexChannel);
+//                  synchronous_lock synchronouslock(route->m_preceiver->m_pmutexChannel, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //                  route->m_preceiver->m_sendera.erase(this);
 //
@@ -817,7 +817,7 @@ void channel::command_handler(::message::command * pcommand)
          && !pcommand->m_bHasCommandHandler)
       {
 
-         if (on_command_final(pcommand->m_emessage, pcommand->user_activation_token()))
+         if (on_command_final(pcommand->m_eusermessage, pcommand->user_activation_token()))
          {
 
             pcommand->m_bRet = true;
@@ -856,16 +856,16 @@ bool channel::has_command_handler(::message::command * pcommand)
    //
    //   }
 
-   auto passociation = m_commandmap.plookup(pcommand->command_id());
+   auto iteratorAssociation = m_commandmap.find(pcommand->command_id());
 
-   if (passociation.is_null())
+   if (iteratorAssociation.is_null())
    {
 
       return false;
 
    }
 
-   if (passociation->m_element2.is_empty())
+   if (iteratorAssociation->m_element2.is_empty())
    {
 
       return false;

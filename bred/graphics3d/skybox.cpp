@@ -1,0 +1,285 @@
+#include "framework.h"
+#include "immersion_layer.h"
+#include "scene_base.h"
+#include "skybox.h"
+#include "engine.h"
+#include "bred/gpu/device.h"
+#include "bred/gpu/frame.h"
+#include "bred/gpu/render_target.h"
+#include "bred/gpu/texture.h"
+#include "acme/filesystem/filesystem/file_context.h"
+#include "aura/graphics/image/context.h"
+#include "aura/platform/application.h"
+#include <stb/stb_image.h>
+#include <iostream>
+
+#include "gpu/command_buffer.h"
+
+
+namespace graphics3d
+{
+
+
+   // Constructor
+   skybox::skybox()
+   {
+
+
+   }
+
+
+   // Destructor
+   skybox::~skybox() {
+      //glDeleteVertexArrays(1, &skyboxVAO);
+      //glDeleteBuffers(1, &skyboxVBO);
+      //glDeleteTextures(1, &cubemapTexture);
+   }
+
+
+   void skybox::initialize_sky_box(::graphics3d::scene_base * pscene, const ::scoped_string & scopedstrName)
+   {
+
+      ::graphics3d::scene_object::initialize_scene_object(pscene);
+
+      cube cube;
+
+      cube.add(::file::path("matter://textures") / scopedstrName / "right.png");
+      cube.add(::file::path("matter://textures") / scopedstrName / "left.png");
+      cube.add(::file::path("matter://textures") / scopedstrName / "top.png");
+      cube.add(::file::path("matter://textures") / scopedstrName / "bottom.png");
+      cube.add(::file::path("matter://textures") / scopedstrName / "front.png");
+      cube.add(::file::path("matter://textures") / scopedstrName / "back.png");
+
+      m_cube = cube;
+
+      //m_pengine = pengine;
+
+
+      auto modeldataCube = ::graphics3d::shape_factory::create_cube(32.0f);
+
+      //øconstruct(m_pmodelCube);
+
+      auto pmodelCube = øcreate<::gpu::model_buffer>();
+
+      pmodelCube->initialize_model(pscene->m_pimmersionlayer->m_pengine->
+         gpu_context(), modeldataCube);
+
+      m_pmodelCube = pmodelCube;
+
+      //m_pmodelCube->initialize_model();
+      
+      initialize(pscene->m_pimmersionlayer->m_pengine->gpu_context());
+      
+      SetupSkybox();
+
+   }
+
+   // Setup the skybox (VAO, VBO, EBO, and cubemap textures)
+   void skybox::SetupSkybox() 
+   {
+      //// Generate buffers
+      //glGenVertexArrays(1, &skyboxVAO);
+      //glGenBuffers(1, &skyboxVBO);
+
+      //glBindVertexArray(skyboxVAO);
+
+      //glBindBuffer(GL_ARRAY_BUFFER, skyboxVBO);
+      ////glBufferData(GL_ARRAY_BUFFER, sizeof(skyboxVertices), &skyboxVertices, GL_STATIC_DRAW);
+
+      //// Set the vertex attribute pointer for the graphics3d vertexes
+      //glEnableVertexAttribArray(0);
+      //glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
+
+
+      load_cube_map_images();
+
+      // Load cubemap textures
+      load_cube_map_textures();
+
+      //glBindVertexArray(0);  // Unbind VAO
+   }
+
+
+   void skybox::load_cube_map_images()
+   {
+
+      m_sizeSquare.cx() = 0;
+      m_sizeSquare.cy() = 0;
+
+      for(auto & face : m_cube)
+      {
+         
+         //         unsigned char* data = stbi_load(facesCubemap[i].c_str(), &width, &height, &nrChannels, 0);
+               //   auto mem = file()->as_memory();
+         auto pimage = image()->path_image(face.m_path.c_str());
+
+         auto sizeSquare = pimage->size();
+         //unsigned char* data = stbi_load_from_memory(
+         //   (const stbi_uc*)mem.data(),
+         //   mem.size(), &width, &height, &nrChannels, 0);
+         if (sizeSquare.is_empty())
+         {
+            
+            throw ::exception(error_wrong_state, "All images in skybox shouldn't be empty");
+
+         }
+         else if (sizeSquare.cx() != sizeSquare.cy())
+         {
+
+            throw ::exception(error_wrong_state, "All images in skybox should be a square");
+
+         }
+
+         if (m_sizeSquare.is_empty())
+         {
+
+            m_sizeSquare = sizeSquare;
+
+         }
+         else
+         {
+
+            if (m_sizeSquare != sizeSquare)
+            {
+
+               throw ::exception(error_wrong_state, "All images in skybox should be same size");
+
+            }
+
+         }
+
+         face.m_pimage = pimage;
+
+      }
+
+      m_sizeSquare = m_cube.first().m_pimage->size();
+
+   }
+
+
+   // Load cubemap textures
+   void skybox::load_cube_map_textures()
+   {
+      //glGenTextures(1, &cubemapTexture);
+      //glBindTexture(GL_TEXTURE_CUBE_MAP, cubemapTexture);
+
+      //int w = 0;
+      //int h = 0;
+    
+      //auto pimageCubeMap = image()->create_image({ m_sizeSquare.width() * 6, m_sizeSquare.height()});
+
+      //pimageCubeMap->map();
+
+      auto sizeItem = m_sizeSquare;
+
+      //auto scanCubeMap = pimageCubeMap->m_iScan;
+
+      ::int_point point;
+
+      ::pointer_array < ::image::image > imagea;
+
+      for(auto & face : m_cube)
+      {
+
+         auto pimage = face.m_pimage;
+
+         imagea.add(pimage);
+
+         //auto scan = pimage->m_iScan;
+
+         //auto pimage32 = pimage->image32();
+
+         //pimageCubeMap->image32()->copy(point, sizeItem, scanCubeMap, pimage32, scan);
+
+         //point.x() += m_sizeSquare.width();
+
+      }
+
+      ødefer_construct(m_ptexture);
+
+      m_ptexture->m_bTransferDst = true;
+
+      auto prenderer = m_pscene->m_pimmersionlayer->m_pengine->gpu_context()->m_pgpurenderer;
+
+      m_ptexture->initialize_image_texture(
+         prenderer,
+         imagea, ::gpu::texture::e_type_cube_map);
+
+      //m_pshader->set_int("skybox", 0);
+
+      //int width, height, nrChannels;
+
+      //   if (data) {
+      //      // Load the texture data into the cubemap
+      //      glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i,
+      //         0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
+      //      stbi_image_free(data);
+      //   }
+      //   else if (data) {
+      //      glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i,
+      //         0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
+      //      stbi_image_free(data);
+      //   }
+      //   else {
+      //      std::cout << "Failed to load cubemap texture at path: " << facesCubemap[i] << std::endl;
+      //      stbi_image_free(data);
+      //   }
+      //}
+
+      //// Set texture parameters for cubemap
+      //glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+      //glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+      //glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+      //glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+      //glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_R, GL_CLAMP_TO_EDGE);
+   }
+
+
+   void skybox::bind(::gpu::command_buffer* pgpucommandbuffer)
+   {
+
+
+      //auto view = m_pengine->m_pimmersionlayer->m_pscene->m_pcameraCurrent->getView();
+      //glm::mat4 skyboxView = glm::mat4(glm::mat3(view)); // <-- drop translation
+      //m_pshader->set_mat4("view", skyboxView);
+      //auto projection = m_pengine->m_pimmersionlayer->m_pscene->m_pcameraCurrent->getProjection();
+      //m_pshader->set_mat4("projection", projection);
+      //m_pshader->bind_source(m_ptextureCubeMap);
+      m_prenderable->bind(pgpucommandbuffer);
+
+   }
+
+
+   void skybox::draw(::gpu::command_buffer* pgpucommandbuffer)
+   {
+
+      m_pmodelCube->draw(pgpucommandbuffer);
+
+   }
+
+
+   void skybox::unbind(::gpu::command_buffer* pgpucommandbuffer)
+   {
+
+      m_pmodelCube->unbind(pgpucommandbuffer);
+      //m_pshader->unbind();
+
+   }
+
+   //
+   // void skybox::on_render(::gpu::context* pgpucontext, ::graphics3d::scene_base* pscene)
+   // {
+   //
+   //    auto pcommandbuffer = pgpucontext->m_pgpurenderer->getCurrentCommandBuffer2(::gpu::current_frame());
+   //
+   //    bind(pcommandbuffer);
+   //    draw(pcommandbuffer);
+   //    unbind(pcommandbuffer);
+   //
+   // }
+
+
+} // namespace graphics3d
+
+
+

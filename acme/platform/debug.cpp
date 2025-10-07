@@ -82,7 +82,7 @@ void debug_object_event_promisse_predicate()
 //}
 
 
-CLASS_DECL_ACME void debug_print(const char * pszFormat, ...)
+CLASS_DECL_ACME void debug_print(const_char_pointer pszFormat, ...)
 {
 
    if (::is_set(pszFormat, 1024))

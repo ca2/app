@@ -79,7 +79,7 @@ message_queue * task_message_queue::get_message_queue(const ::task_index & taski
       if (bCreate)
       {
 
-         pmessagequeue = __create_new < message_queue>();
+         pmessagequeue = øcreate_new < message_queue>();
 
          pmessagequeue->m_itask = pthreadstorage->m_itask;
 
@@ -130,7 +130,7 @@ void task_message_queue::clear_message_queue(const ::task_index & taskindex)
 ::message_queue * task_message_queue::current_task_message_queue(bool bCreate)
 {
 
-   return get_message_queue(task_index(), bCreate);
+   return get_message_queue(::current_task_index(), bCreate);
 
 }
 
@@ -151,7 +151,7 @@ namespace platform
 
       }
 
-      __construct_new(m_ptaskmessagequeue);
+      øconstruct_new(m_ptaskmessagequeue);
 
    }
 

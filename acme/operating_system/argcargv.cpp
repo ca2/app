@@ -23,10 +23,10 @@
 
 
 
-string_array get_c_args_from_string(const ::scoped_string & scopedstr)
+string_array_base get_c_args_from_string(const ::scoped_string & scopedstr)
 {
 
-   string_array stra;
+   string_array_base stra;
 
    if (scopedstr.is_empty())
    {
@@ -67,12 +67,12 @@ string_array get_c_args_from_string(const ::scoped_string & scopedstr)
       else
       {
 
-         const char * pszValueStart = range.begin();
+         const_char_pointer pszValueStart = range.begin();
 
          while (!unicode_is_whitespace(range.m_begin))
          {
 
-            unicode_increment(range.m_begin);
+            range.m_begin = unicode_next(range.m_begin);
 
             if (range.is_empty())
             {
@@ -111,10 +111,10 @@ string_array get_c_args_from_string(const ::scoped_string & scopedstr)
 }
 
 
-string_array no_escape_get_c_args_from_string(const ::scoped_string & scopedstr)
+string_array_base no_escape_get_c_args_from_string(const ::scoped_string & scopedstr)
 {
 
-   string_array stra;
+   string_array_base stra;
 
    if (scopedstr.is_empty())
    {
@@ -123,9 +123,9 @@ string_array no_escape_get_c_args_from_string(const ::scoped_string & scopedstr)
 
    }
 
-   string_array straBeforeColon;
+   string_array_base straBeforeColon;
 
-   string_array straAfterColon;
+   string_array_base straAfterColon;
 
    auto range = scopedstr();
 
@@ -161,14 +161,14 @@ string_array no_escape_get_c_args_from_string(const ::scoped_string & scopedstr)
       else
       {
 
-         const char * pszValueStart = range.m_begin;
+         const_char_pointer pszValueStart = range.m_begin;
 
          char chQuote = '\0';
 
          while (!unicode_is_whitespace(range.m_begin))
          {
 
-            unicode_increment(range.m_begin);
+            range.m_begin = unicode_next(range.m_begin);
 
             if (range.is_empty())
             {
@@ -195,7 +195,7 @@ string_array no_escape_get_c_args_from_string(const ::scoped_string & scopedstr)
                else
                {
 
-                  //::str::no_escape_consume_quoted_value(psz, pszEnd);
+                  //::str::no_escape_consume_quoted_value(scopedstr, pszEnd);
 
                   throw ::parsing_exception("Quote character not expected here");
 
@@ -220,13 +220,13 @@ string_array no_escape_get_c_args_from_string(const ::scoped_string & scopedstr)
                else
                {
 
-                  //::str::no_escape_consume_quoted_value(psz, pszEnd);
+                  //::str::no_escape_consume_quoted_value(scopedstr, pszEnd);
 
                   throw ::parsing_exception("Quote character not expected here");
 
                }
 
-               ////::str::no_escape_consume_quoted_value(psz, pszEnd);
+               ////::str::no_escape_consume_quoted_value(scopedstr, pszEnd);
 
                //throw ::parsing_exception("Quote character not expected here");
 
@@ -283,14 +283,16 @@ string_array no_escape_get_c_args_from_string(const ::scoped_string & scopedstr)
 //          proc_pidinfo((pid_t) uiPid, PROC_PIDTASKALLINFO, SHOW_ZOMBIES, &info, sizeof(struct proc_taskallinfo));
 // return info.pbsd.pbi_comm;
 // )
-string_array command_arguments_from_command_line(const ::string & strCommandLine)
+string_array_base command_arguments_from_command_line(const ::scoped_string & scopedstrCommandLine)
 {
 
-   string_array stra;
+   string_array_base stra;
 
    string strArg;
 
-   const char * psz = strCommandLine.begin();
+   ::string strCommandLine(scopedstrCommandLine);
+
+   const_char_pointer psz = strCommandLine.begin();
 
    string strChar;
 

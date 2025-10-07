@@ -29,7 +29,7 @@ public:
 
    virtual void ensure_exists(const ::file::path & path);
    virtual void touch(const ::file::path & path);
-   virtual void touch_app_cloud(const ::file::path & path, const char * pszContentIdentifier = nullptr);
+   virtual void touch_app_cloud(const ::file::path & path, const_char_pointer pszContentIdentifier = nullptr);
    virtual void clear_read_only(const ::file::path & path);
 
 
@@ -76,9 +76,9 @@ public:
    virtual void find_replace(const ::file::path & path, const ::property_set & set);
 
    
-   virtual void put_app_cloud_data(const ::file::path & path, const char * pszContentIdentifier, const ::block & block);
+   virtual void put_app_cloud_data(const ::file::path & path, const_char_pointer pszContentIdentifier, const ::block & block);
    
-   virtual ::memory get_app_cloud_data(const ::file::path & path, const char * pszContentIdentifier);
+   virtual ::memory get_app_cloud_data(const ::file::path & path, const_char_pointer pszContentIdentifier);
    
    virtual void put_documents_cloud_data(const ::file::path & path, const ::block & block);
    
@@ -142,8 +142,8 @@ public:
    virtual void synchronize(const ::file::path & path1, const ::file::path & path2);
 
 
-   virtual void save_stra(const ::file::path & pathName, const string_array & stra);
-   virtual void load_stra(const ::file::path & pathName, string_array & stra, bool bAddEmpty = true);
+   virtual void save_stra(const ::file::path & pathName, const string_array_base & stra);
+   virtual void load_stra(const ::file::path & pathName, string_array_base & stra, bool bAddEmpty = true);
 
 
    virtual void put_contents(const ::file::path & path, const block & block);
@@ -182,7 +182,7 @@ public:
    virtual memsize as_memory(const ::file::path & path, void * p, memsize s);
    virtual memory safe_get_memory(const file::path & path, character_count iReadAtMostByteCount = -1, bool bNoExceptionOnOpen = true);
    virtual memory __safe_get_memory(const file::path& path, character_count iReadAtMostByteCount = -1, bool bNoExceptionOnOpen = true);
-   virtual memsize __safe_find_string(const ::file::path& path, const char* psz);
+   virtual memsize __safe_find_string(const ::file::path& path, const_char_pointer psz);
    virtual string as_string(const ::file::path & path, character_count iReadAtMostByteCount = -1, bool bNoExceptionOnOpen = true);
    virtual string safe_get_string(const ::file::path & path, character_count iReadAtMostByteCount = -1, bool bNoExceptionOnOpen = true);
    virtual string __safe_get_string(const ::file::path& path, character_count iReadAtMostByteCount = -1, bool bNoExceptionOnOpen = true);
@@ -203,10 +203,10 @@ public:
    // on 2021-08-10 00:46
 
 
-   //virtual string_array file_as_lines(const ::file::path & path, character_count iReadAtMostByteCount = -1);
+   //virtual string_array_base file_as_lines(const ::file::path & path, character_count iReadAtMostByteCount = -1);
    virtual string first_line(const ::file::path & path);
    virtual string line(const ::file::path & path, ::collection::index iLine);
-   virtual string_array lines(const ::file::path & path);
+   virtual string_array_base lines(const ::file::path & path);
    virtual void set_line(const ::file::path & path, ::collection::index iLine, const ::scoped_string & scopedstrLine);
    //virtual string file_extension_dup(const ::file::path & path);
    virtual string get_temporary_file_name(const ::scoped_string & scopedstrName, const ::scoped_string & scopedstrExtension);
@@ -215,12 +215,12 @@ public:
 
    //virtual string file_path_final_extension(const ::file::path & path);
    //virtual string url_dir_name_for_relative(const ::file::path & path);
-   //virtual string solve_relative(const ::string & str, bool * pbUrl = nullptr);
+   //virtual string solve_relative(const ::scoped_string & scopedstr, bool * pbUrl = nullptr);
    //virtual bool solve_relative_inline(string & str, bool & bUrl, bool & bOnlyNativeFileSep, character_count * iaSlash, int * piSlashCount); // returns true if original string had trailing slash
    //virtual string defer_solve_relative(const ::scoped_string & scopedstrRelative, const ::scoped_string & scopedstrCurrent);
-   virtual void append(const ::string & strFile, const block & block);
-   virtual void append_wait(const ::string & strFile, const block & block, const class time & timeWait = ::time::infinity());
-   //virtual bool file_append_wait(const ::string & strFile, const ::scoped_string & scopedstr, character_count s, const class ::time & millisTimeout = ::time::infinite());
+   virtual void append(const ::scoped_string & scopedstrFile, const block & block);
+   virtual void append_wait(const ::scoped_string & scopedstrFile, const block & block, const class time & timeWait = ::time::infinity());
+   //virtual bool file_append_wait(const ::scoped_string & scopedstrFile, const ::scoped_string & scopedstr, character_count s, const class ::time & millisTimeout = ::time::infinite());
 
    //virtual void write(FILE * file, const void * pdata, memsize nCount, memsize * puiWritten);
 
@@ -230,7 +230,7 @@ public:
 
 
 
-   virtual ::file::path time_put_contents(const ::file::path& pathFolder, const ::string& strPrefix, const ::string& strExtension, const ::string& str);
+   virtual ::file::path time_put_contents(const ::file::path& pathFolder, const ::scoped_string & scopedstrPrefix, const ::scoped_string & scopedstrExtension, const ::scoped_string & scopedstr);
 
 
 
@@ -242,9 +242,9 @@ public:
    //virtual void update_module_path();
 
 
-   //virtual ::file::path get_last_run_application_path_file(string strAppId);
-   //virtual ::file::path get_last_run_application_path(string strAppId);
-   //virtual bool set_last_run_application_path(string strAppId);
+   //virtual ::file::path get_last_run_application_path_file(const ::scoped_string & scopedstrAppId);
+   //virtual ::file::path get_last_run_application_path(const ::scoped_string & scopedstrAppId);
+   //virtual bool set_last_run_application_path(const ::scoped_string & scopedstrAppId);
 
 };
 

@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "control_box_button.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "acme/handler/item.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/prototype/geometry2d/ellipse.h"
@@ -10,7 +10,7 @@
 #include "aura/graphics/draw2d/brush.h"
 #include "aura/graphics/draw2d/pen.h"
 #include "aura/message/user.h"
-#include "base/user/experience/control_box.h"
+#include "berg/user/experience/control_box.h"
 
 
 namespace experience_tranquillum
@@ -162,8 +162,8 @@ namespace experience_tranquillum
 
       ::experience::button::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_create, pchannel, this, &control_box_button::on_message_create);
-      MESSAGE_LINK(e_message_show_window, pchannel, this, &control_box_button::on_message_show_window);
+      USER_MESSAGE_LINK(::user::e_message_create, pchannel, this, &control_box_button::on_message_create);
+      USER_MESSAGE_LINK(::user::e_message_show_window, pchannel, this, &control_box_button::on_message_show_window);
 
    }
 
@@ -182,9 +182,9 @@ namespace experience_tranquillum
 
       }
 
-      __øconstruct(m_ppen);
+      øconstruct(m_ppen);
       
-      __øconstruct(m_pbrush);
+      øconstruct(m_pbrush);
 
    }
 
@@ -214,9 +214,9 @@ namespace experience_tranquillum
 
       ::experience::button::on_layout(pgraphics);
 
-      //__øconstruct(m_spregion);
-      //__øconstruct(m_ppen);
-      //__øconstruct(m_pbrush);
+      //øconstruct(m_spregion);
+      //øconstruct(m_ppen);
+      //øconstruct(m_pbrush);
       //   
       //auto rectangleX = this->rectangle();
       //
@@ -234,12 +234,12 @@ namespace experience_tranquillum
 
       return ::experience::button::on_hit_test(point, ezorder);
 
-      //synchronous_lock synchronouslock(this->synchronization());
+      //synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       //if (m_spregion.is_null())
       //{
 
-      //   auto pitemNone = __allocate ::item(e_element_none);
+      //   auto pitemNone = øallocate ::item(e_element_none);
 
       //   return pitemNone;
 
@@ -248,13 +248,13 @@ namespace experience_tranquillum
       //if (!m_spregion->contains(point))
       //{
 
-      //   auto pitemNone = __allocate ::item(e_element_none);
+      //   auto pitemNone = øallocate ::item(e_element_none);
 
       //   return pitemNone;
 
       //}
 
-      //return __allocate ::item(::e_element_client);
+      //return øallocate ::item(::e_element_client);
 
    }
 

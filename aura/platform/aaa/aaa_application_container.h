@@ -22,13 +22,13 @@ public:
    virtual ~application_container();
 
 
-   virtual ::aura::application * application_get(const ::string & pszAppId, bool bCreate = true, bool bSynch = true, ::request * prequest = nullptr);
+   virtual ::aura::application * application_get(const ::scoped_string & scopedstrAppId, bool bCreate = true, bool bSynch = true, ::request * prequest = nullptr);
 
 
-   virtual ::pointer<::aura::application>instantiate_application(const ::string & pszAppId, ::request * prequest);
-   virtual ::pointer<::aura::application>create_application(const ::string & pszAppId, bool bSynch, ::request * prequest);
+   virtual ::pointer<::aura::application>instantiate_application(const ::scoped_string & scopedstrAppId, ::request * prequest);
+   virtual ::pointer<::aura::application>create_application(const ::scoped_string & scopedstrAppId, bool bSynch, ::request * prequest);
    virtual ::pointer<::aura::application>create_platform(::aura::session * psession);
-   virtual ::pointer<::aura::application>start_application(const ::string & pszAppId, ::request * prequest, const ::string & strLocale, const ::string & strSchema);
+   virtual ::pointer<::aura::application>start_application(const ::scoped_string & scopedstrAppId, ::request * prequest, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema);
 
    virtual void request_exit();
 
@@ -40,7 +40,7 @@ public:
    virtual void app_erase(::aura::application * papp);
 
 
-   ::pointer<::aura::application>assert_running(const ::string & pszAppId, const ::string & strLocale, const ::string & strSchema);
+   ::pointer<::aura::application>assert_running(const ::scoped_string & scopedstrAppId, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema);
 
 
 };

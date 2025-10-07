@@ -61,7 +61,7 @@ namespace sockets
 
 
 
-      //virtual bool read_file(const ::file::path & path,pointer_array < ::int_array > * prangea = nullptr,const ::scoped_string & scopedstrContentType = nullptr);
+      //virtual bool read_file(const ::file::path & path,pointer_array < ::int_array_base > * prangea = nullptr,const ::scoped_string & scopedstrContentType = nullptr);
 
 
 
@@ -70,7 +70,7 @@ namespace sockets
       /** Decode and send a base64-encoded string.
          \lparam str64 Base64-encoded string
          \lparam type Mime type of content (content-type header) */
-      void Send64(const ::string & str64, const string & type);
+      void Send64(const ::scoped_string & scopedstr64, const ::scoped_string & scopedstrType);
       string datetime2httpdate(const string & dt);
       string GetDate();
       void Reset();

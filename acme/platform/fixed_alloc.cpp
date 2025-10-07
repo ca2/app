@@ -46,7 +46,7 @@ void fixed_alloc_no_sync::NewBlock()
    // add another block
    auto pNewBlock = ::plex::create(m_pBlocks, m_nBlockSize, nAllocSize, m_pallocator);
 
-   // chain them into _free list
+   // chain them into _free list_base
    node* pNode = (node*)pNewBlock->data();
    // _free in reverse order to make it easier to debug
    (unsigned char*&)pNode += (nAllocSize * m_nBlockSize) - nAllocSize;
@@ -79,7 +79,7 @@ fixed_alloc_sync::fixed_alloc_sync(::heap::allocator * pallocator, unsigned int 
    for(int i = 0; i < m_allocptra.get_count(); i++)
    {
       
-      m_allocptra[i] = __raw_new fixed_alloc_no_sync(m_pallocator, (unsigned int) (nAllocSize + sizeof(fixed_alloc_no_sync)), nBlockSize);
+      m_allocptra[i] = øraw_new fixed_alloc_no_sync(m_pallocator, (unsigned int) (nAllocSize + sizeof(fixed_alloc_no_sync)), nBlockSize);
       
    }
 
@@ -173,7 +173,7 @@ fixed_alloc::fixed_alloc(::heap::allocator * pallocator,unsigned int nAllocSize,
    for(int i = 0; i < m_allocptra.get_count(); i++)
    {
       
-      m_allocptra[i] = __raw_new fixed_alloc_sync (m_pallocator, (unsigned int) (nAllocSize + sizeof(fixed_alloc_sync)), nBlockSize, 12);
+      m_allocptra[i] = øraw_new fixed_alloc_sync (m_pallocator, (unsigned int) (nAllocSize + sizeof(fixed_alloc_sync)), nBlockSize, 12);
       
    }
 

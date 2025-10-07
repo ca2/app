@@ -230,7 +230,7 @@ namespace sockets
    }
 
 
-   void http_socket::OnLine(const string & line)
+   void http_socket::OnLine(const ::scoped_string & scopedstrLine)
    {
 
       if (m_bFirst)
@@ -432,7 +432,7 @@ namespace sockets
    }
 
 
-   bool http_socket::http_filter_response_header(string & strKey, string_array & straValue)
+   bool http_socket::http_filter_response_header(string & strKey, string_array_base & straValue)
    {
       __UNREFERENCED_PARAMETER(strKey);
       __UNREFERENCED_PARAMETER(straValue);
@@ -489,7 +489,7 @@ namespace sockets
 
          string strKey = pproperty->name();
 
-         string_array & straValue = pproperty->as_stra();
+         string_array_base & straValue = pproperty->as_stra();
 
          if (!http_filter_response_header(strKey, straValue))
          {
@@ -685,7 +685,7 @@ namespace sockets
 
 
 
-   void http_socket::url_this(string strUrl, string & strProtocol, string & strHost, port_t & port, string & strRequestUri, string & strFile)
+   void http_socket::url_this(const ::scoped_string & scopedstrUrl, string & strProtocol, string & strHost, port_t & port, string & strRequestUri, string & strFile)
    {
 
       if (!strUrl.eat_before(strProtocol, "://"))
@@ -752,7 +752,7 @@ namespace sockets
       //http_socket::OnHeader(key, value);
       /*if(key.case_insensitive_order("user-agent") == 0)
       {
-         informationf("  (request)OnHeader %s: %s\n", (const char *) key, (const char *) value);
+         informationf("  (request)OnHeader %s: %s\n", (const_char_pointer )key, (const_char_pointer )value);
       }*/
       if(key == "cookie")
       {
@@ -796,7 +796,7 @@ namespace sockets
    }
 
 
-   void http_socket::OnData(const char *, memsize)
+   void http_socket::OnData(const_char_pointer ,memsize)
    {
 
    }

@@ -19,9 +19,9 @@ namespace file
 
       ::pointer< ::file::path_array >  m_ppathaSearch;
       ::pointer< bool_array >          m_pbaRecursive;
-      string_array                     m_straFilter;
-      ::file::listing                  m_listing;
-      ::file::listing                  m_listingAddUp;
+      string_array_base                m_straFilter;
+      ::file::listing_base             m_listing;
+      ::file::listing_base             m_listingAddUp;
 
 
       set();
@@ -33,8 +33,8 @@ namespace file
 
       // reference
       virtual void add_search(const ::file::path & pathSearchFolder, bool bRecursive);
-      virtual void add_search(const ::file::path_array & pathaSearchFolder, const bool_array & baRecursive);
-      virtual void add_filter(string_array & stra);
+      virtual void add_search(const ::file::path_array_base & pathaSearchFolder, const bool_array & baRecursive);
+      virtual void add_filter(string_array_base & stra);
       virtual ::collection::count get_file_count();
       virtual void file_at(::collection::index i, string & str);
       virtual ::collection::index find_first_file(const ::scoped_string & scopedstrFilePath, ::collection::index iStart = 0);

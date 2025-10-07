@@ -80,7 +80,7 @@ namespace sockets
    }
 
 
-   void httpd_socket::Send64(const ::string & str64, const string & type)
+   void httpd_socket::Send64(const ::scoped_string & scopedstr64, const ::scoped_string & scopedstrType)
    {
       //   Base64 bb;
 
@@ -118,8 +118,8 @@ namespace sockets
    {
       struct tm tp;
       posix_time t;
-      const char *days[] = { "Sun","Mon","Tue","Wed","Thu","Fri","Sat" };
-      const char *months[] = { "Jan","Feb","Mar","Apr","May","Jun",
+      const_char_pointer days[] = { "Sun","Mon","Tue","Wed","Thu","Fri","Sat" };
+      const_char_pointer months[] = { "Jan","Feb","Mar","Apr","May","Jun",
                                "Jul","Aug","Sep","Oct","Nov","Dec"
                              };
       int i;
@@ -188,17 +188,17 @@ namespace sockets
    }
 
 
-   map < int, DH * > * g_pmapdh = nullptr;
+   map_base < int, DH * > * g_pmapdh = nullptr;
 
-   map < int, DH * > * dh_map()
+   map_base < int, DH * > * dh_map()
    {
 
-      synchronous_lock synchronouslock(::globals_critical_section());
+      synchronous_lock synchronouslock(::globals_critical_section(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (g_pmapdh == nullptr)
       {
 
-         g_pmapdh = ___new map < int, DH * > ();
+         g_pmapdh = ___new map_base < int, DH * > ();
 
       }
 
@@ -210,7 +210,7 @@ namespace sockets
    DH * get_dh(int keylength)
    {
 
-      synchronous_lock synchronouslock(::globals_critical_section());
+      synchronous_lock synchronouslock(::globals_critical_section(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       return dh_map()->operator[](keylength);
 
@@ -220,7 +220,7 @@ namespace sockets
    void set_dh(int keylength, DH * pdh)
    {
 
-      synchronous_lock synchronouslock(::globals_critical_section());
+      synchronous_lock synchronouslock(::globals_critical_section(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       dh_map()->operator[](keylength) = pdh;
 
@@ -276,7 +276,7 @@ namespace sockets
       //if (strCipherList.find("DH") >= 0)
       //{
 
-      //   ::int_array ia;
+      //   ::int_array_base ia;
 
       //   ia.add(512);
       //   ia.add(1024);
@@ -335,7 +335,7 @@ namespace sockets
 
          //SSL_CTX_set_tmp_ecdh(m_psslcontext->m_pclientcontext->m_psslcontext, ecdh);
 
-         int_array iaCurves;
+         int_array_base iaCurves;
          //int* curves_new;
          char* cs = NULL;
          //char* p, * q;
@@ -344,7 +344,7 @@ namespace sockets
 
 
 #define TLS_ECDHE_CURVES	"X25519,P-256,P-384"
-         //const char* curves = NID_secp384r1;
+         //const_char_pointer curves = NID_secp384r1;
 
          //free(config->ecdhecurves);
          //config->ecdhecurves = NULL;

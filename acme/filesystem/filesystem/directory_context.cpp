@@ -22,6 +22,7 @@
 #include "acme/platform/http.h"
 #include "acme/platform/system.h"
 #include "acme/filesystem/filesystem/directory_system.h"
+#include "acme/filesystem/filesystem/path.h"
 //#include "apex/networking/http/context.h"
 #include "acme/platform/node.h"
 
@@ -150,13 +151,13 @@ inline bool myspace(char ch)
 #define string_STRCAT2_beg_char_end(strCat, ch, str1, str2, beg1, end1, beg2, end2) \
 { \
    string & psz = strCat.get_buffer(end1 - beg1 + 1 + end2 - beg2 + 1 + 1); \
-   ansi_count_copy(psz, &((const string &)str1)[beg1], end1 - beg1 + 1); \
+   ansi_count_copy(scopedstr, &((const string &)str1)[beg1], end1 - beg1 + 1); \
    psz[end1 - beg1 + 1] = ch; \
    ansi_count_copy(&psz[end1 - beg1 + 2], &((const string &)str2)[beg2], end2 - beg2 + 1); \
    strPath.ReleaseBuffer(end1 - beg1 + 1 + end2 - beg2 + 1 + 1); \
 }
 
-//::file::path directory_context::simple_path(const ::string & strFolder, const ::string & strRelative)
+//::file::path directory_context::simple_path(const ::scoped_string & scopedstrFolder, const ::scoped_string & scopedstrRelative)
 //{
 
 //   if(strRelative.is_empty())
@@ -214,7 +215,7 @@ inline bool myspace(char ch)
 //   else
 //   {
 //      string & psz = strPath.get_buffer(iRelativeEnd - iRelativeBeg + 1 + iFolderEnd - iFolderBeg + 1 + 1);
-//      ansi_count_copy(psz, &((const string &)strFolder)[iFolderBeg], iFolderEnd - iFolderBeg + 1);
+//      ansi_count_copy(scopedstr, &((const string &)strFolder)[iFolderBeg], iFolderEnd - iFolderBeg + 1);
 //      #if defined(LINUX) || defined(__APPLE__)
 //      psz[iFolderEnd - iFolderBeg + 1] = '/';
 //      #else
@@ -228,7 +229,7 @@ inline bool myspace(char ch)
 //   return strPath;
 //}
 
-//::file::path directory_context::simple_path(const ::string & strFolder, const ::string & strRelative, const ::string & str2)
+//::file::path directory_context::simple_path(const ::scoped_string & scopedstrFolder, const ::scoped_string & scopedstrRelative, const ::scoped_string & scopedstr2)
 //{
 
 //   if(strRelative.is_empty())
@@ -373,7 +374,7 @@ inline bool myspace(char ch)
 //   string strPath;
 
 //   string & psz = strPath.get_buffer(iEnd2 - iBeg2 + 1 + iRelativeEnd - iRelativeBeg + 1 + iFolderEnd - iFolderBeg + 1 + 1 + 1);
-//   ansi_count_copy(psz, &((const string &)strFolder)[iFolderBeg], iFolderEnd - iFolderBeg + 1);
+//   ansi_count_copy(scopedstr, &((const string &)strFolder)[iFolderBeg], iFolderEnd - iFolderBeg + 1);
 //   #if defined(LINUX) || defined(__APPLE__)
 //   psz[iFolderEnd - iFolderBeg + 1] = '/';
 //   #else
@@ -404,19 +405,19 @@ inline bool myspace(char ch)
 //}
 
 
-//::file::path directory_context::relpath(const string & pcszSource, const string & lpcszRelative, const string & psz2)
+//::file::path directory_context::relpath(const string & pcszSource, const string & lpcszRelative, const ::scoped_string & scopedstr2)
 
 //{
 //   __UNREFERENCED_PARAMETER(pcszSource);
 
 //   __UNREFERENCED_PARAMETER(pcszRelative);
 
-//   __UNREFERENCED_PARAMETER(psz2);
+//   __UNREFERENCED_PARAMETER(scopedstr2);
 //   throw ::interface_only("this is an interface");
 //}
 
 
-::file::listing& directory_context::root_ones(::file::listing& listing)
+::file::listing_base& directory_context::root_ones(::file::listing_base& listing)
 {
 
    throw ::interface_only("this is an interface");
@@ -426,7 +427,7 @@ inline bool myspace(char ch)
 }
 
 
-//bool directory_context::enumerate(::file::listing & listing, const ::file::path & path, ::file::e_flag eflag, enum_depth edepth)
+//bool directory_context::enumerate(::file::listing_base & listing, const ::file::path & path, ::file::e_flag eflag, enum_depth edepth)
 //{
 //
 //   listing.m_pathUser = path;
@@ -440,7 +441,7 @@ inline bool myspace(char ch)
 //}
 //
 //
-//bool directory_context::enumerate_pattern(::file::listing & listing, const ::file::path & path, const ::string_array & straPattern, ::file::e_flag eflag, enum_depth edepth)
+//bool directory_context::enumerate_pattern(::file::listing_base & listing, const ::file::path & path, const ::string_array_base & straPattern, ::file::e_flag eflag, enum_depth edepth)
 //{
 //
 //   listing.m_straPattern = straPattern;
@@ -450,7 +451,7 @@ inline bool myspace(char ch)
 //}
 
 
-//bool directory_context::enumerates(::file::listing & listing)
+//bool directory_context::enumerates(::file::listing_base & listing)
 //{
 //
 //
@@ -459,7 +460,7 @@ inline bool myspace(char ch)
 //}
 
 
-bool directory_context::enumerate(::file::listing& listing)
+bool directory_context::enumerate(::file::listing_base& listing)
 {
 
    if (_enumerate(listing))
@@ -474,7 +475,7 @@ bool directory_context::enumerate(::file::listing& listing)
 }
 
 
-bool directory_context::_enumerate(::file::listing& listing)
+bool directory_context::_enumerate(::file::listing_base& listing)
 {
 
    __check_refdbg
@@ -581,7 +582,7 @@ bool directory_context::_enumerate(::file::listing& listing)
       else
       {
 
-         auto pfolder = __øcreate < ::folder >(pfactory);
+         auto pfolder = øcreate < ::folder >(pfactory);
 
          if (!pfolder)
          {
@@ -623,7 +624,7 @@ bool directory_context::_enumerate(::file::listing& listing)
 }
 
 
-//bool directory_context::ls_relative_name(::file::listing & listing)
+//bool directory_context::ls_relative_name(::file::listing_base & listing)
 //{
 //
 //   if (listing.m_bRecursive)
@@ -702,7 +703,7 @@ bool directory_context::_enumerate(::file::listing& listing)
 //}
 
 
-//bool directory_context::rls(::file::listing& listing)
+//bool directory_context::rls(::file::listing_base& listing)
 //{
 //
 //   listing.m_bRecursive = true;
@@ -716,7 +717,7 @@ bool directory_context::_enumerate(::file::listing& listing)
 //}
 //
 //
-//bool directory_context::rls_relative_name(::file::listing& listing)
+//bool directory_context::rls_relative_name(::file::listing_base& listing)
 //{
 //
 //   listing.m_bRecursive = true;
@@ -730,7 +731,7 @@ bool directory_context::_enumerate(::file::listing& listing)
 //}
 //
 //
-//bool directory_context::ls_pattern(::file::listing& listing, const ::file::path& path, const string_array& straPattern)
+//bool directory_context::ls_pattern(::file::listing_base& listing, const ::file::path& path, const string_array_base& straPattern)
 //{
 //
 //   listing.m_pathUser = path;
@@ -748,7 +749,7 @@ bool directory_context::_enumerate(::file::listing& listing)
 //}
 //
 //
-//bool directory_context::ls_file_pattern(::file::listing& listing, const ::file::path& path, const string_array& straPattern)
+//bool directory_context::ls_file_pattern(::file::listing_base& listing, const ::file::path& path, const string_array_base& straPattern)
 //{
 //
 //   listing.m_pathUser = path;
@@ -766,7 +767,7 @@ bool directory_context::_enumerate(::file::listing& listing)
 //}
 //
 //
-//bool directory_context::rls_pattern(::file::listing& listing, const ::file::path& path, const string_array& straPattern)
+//bool directory_context::rls_pattern(::file::listing_base& listing, const ::file::path& path, const string_array_base& straPattern)
 //{
 //
 //   listing.m_pathUser = path;
@@ -784,7 +785,7 @@ bool directory_context::_enumerate(::file::listing& listing)
 //}
 //
 //
-//bool directory_context::rls_file_pattern(::file::listing& listing, const ::file::path& path, const string_array& straPattern)
+//bool directory_context::rls_file_pattern(::file::listing_base& listing, const ::file::path& path, const string_array_base& straPattern)
 //{
 //
 //   listing.m_pathUser = path;
@@ -802,7 +803,7 @@ bool directory_context::_enumerate(::file::listing& listing)
 //}
 //
 //
-//bool directory_context::ls_file(::file::listing& listing)
+//bool directory_context::ls_file(::file::listing_base& listing)
 //{
 //
 //   listing.m_bRecursive = false;
@@ -818,7 +819,7 @@ bool directory_context::_enumerate(::file::listing& listing)
 //}
 //
 //
-//bool directory_context::ls_dir(::file::listing& listing)
+//bool directory_context::ls_dir(::file::listing_base& listing)
 //{
 //
 //   listing.m_bRecursive = false;
@@ -834,7 +835,7 @@ bool directory_context::_enumerate(::file::listing& listing)
 //}
 //
 //
-//bool directory_context::rls_file(::file::listing& listing)
+//bool directory_context::rls_file(::file::listing_base& listing)
 //{
 //
 //   listing.m_bRecursive = true;
@@ -850,7 +851,7 @@ bool directory_context::_enumerate(::file::listing& listing)
 //}
 //
 //
-//bool directory_context::rls_dir(::file::listing& listing)
+//bool directory_context::rls_dir(::file::listing_base& listing)
 //{
 //
 //   listing.m_bRecursive = true;
@@ -869,7 +870,7 @@ bool directory_context::_enumerate(::file::listing& listing)
 bool directory_context::has_subdir(const ::file::path& pathFolder)
 {
 
-   ::file::listing listing;
+   ::file::listing_base listing;
 
    listing.set_folder_listing(pathFolder);
 
@@ -981,7 +982,7 @@ bool directory_context::fast_has_subdir(const ::file::path& path)
 
    //         unsigned int dwLastError;
 
-            //if (!m_isdirmap.lookup(pcszPath, bHasSubFolder, dwLastError))
+            //if (!m_isdirmap.find(pcszPath, bHasSubFolder, dwLastError))
 
             //{
             //   return false;
@@ -1119,7 +1120,7 @@ bool directory_context::fast_has_subdir(const ::file::path& path)
 //   //   else
 //   //   {
 //
-//   //      auto pfolder = __øcreate< ::folder >(pfactory);
+//   //      auto pfolder = øcreate< ::folder >(pfactory);
 //
 //   //      if (!pfolder)
 //   //      {
@@ -1321,7 +1322,7 @@ bool directory_context::fast_has_subdir(const ::file::path& path)
       else
       {
 
-         auto pfolder = __øcreate< ::folder >(pfactory);
+         auto pfolder = øcreate< ::folder >(pfactory);
 
          if (!pfolder)
          {
@@ -1411,7 +1412,7 @@ bool directory_context::name_is(const ::file::path& strPath)
       else
       {
 
-         auto pfolder = __øcreate < ::folder >(pfactory);
+         auto pfolder = øcreate < ::folder >(pfactory);
 
          if (!pfolder)
          {
@@ -1446,7 +1447,7 @@ bool directory_context::name_is(const ::file::path& strPath)
 
       //      zip_context zip(this);
             //            unsigned int dwLastError;
-                        //if (m_isdirmap.lookup(strPath, bHasSubFolder, dwLastError))
+                        //if (m_isdirmap.find(strPath, bHasSubFolder, dwLastError))
                         //   return bHasSubFolder;
         //    bHasSubFolder = zip.has_sub_folder(strPath);
             //m_isdirmap.set(strPath, bHasSubFolder, get_last_error());
@@ -1466,15 +1467,15 @@ bool directory_context::name_is(const ::file::path& strPath)
 //      }
 //
 //
-//      bool directory_context::is_dir_map::lookup(const ::file::path & path, bool &bIsDir, unsigned int & dwLastError)
+//      bool directory_context::is_dir_map::find(const ::file::path & path, bool &bIsDir, unsigned int & dwLastError)
 //      {
 //
-//         return lookup(path, bIsDir, dwLastError, (int) path.length());
+//         return find(path, bIsDir, dwLastError, (int) path.length());
 //
 //      }
 //
 //
-//      bool directory_context::is_dir_map::lookup(const ::file::path & path, bool &bIsDir, unsigned int &dwLastError, int iLastChar)
+//      bool directory_context::is_dir_map::find(const ::file::path & path, bool &bIsDir, unsigned int &dwLastError, int iLastChar)
 //      {
 //
 //         if (path.get_length() <= 0)
@@ -1592,7 +1593,7 @@ bool directory_context::name_is(const ::file::path& strPath)
 //      bool directory_context::is_dir_map::lookup_small(const ::file::path & path,bool &bIsDir,unsigned int &dwLastError, int iLastChar)
 //      {
 //
-//         const ::ansi_character * pszEnd = path.c_str() + iLastChar;
+//         const_char_pointer pszEnd = path.c_str() + iLastChar;
 //
 //         char sz[2048];
 //
@@ -1606,16 +1607,16 @@ bool directory_context::name_is(const ::file::path& strPath)
 //
 //         char * psz3 = find.m_psz;
 //
-//         while (psz3 != nullptr && psz3 < pszEnd)
+//         while (scopedstr3 != nullptr && psz3 < pszEnd)
 //         {
 //
 //            char * psz1 = strchr(find.m_psz, '/');
 //
 //            char * psz2 = strchr(find.m_psz, '\\');
 //
-//            psz3 = min_non_null(psz1, psz2);
+//            psz3 = min_non_null(scopedstr1, psz2);
 //
-//            if (psz3 != nullptr)
+//            if (scopedstr3 != nullptr)
 //            {
 //
 //               *psz3 = '\0';
@@ -1640,13 +1641,13 @@ bool directory_context::name_is(const ::file::path& strPath)
 //
 //            find.m_psz = psz3 + 1;
 //
-//            if (psz1 == nullptr)
+//            if (scopedstr1 == nullptr)
 //            {
 //
 //               goto lookup_backslash;
 //
 //            }
-//            else if (psz2 == nullptr)
+//            else if (scopedstr2 == nullptr)
 //            {
 //
 //               goto lookup_slash;
@@ -1659,12 +1660,12 @@ bool directory_context::name_is(const ::file::path& strPath)
 //
 //lookup_slash:
 //
-//         while (psz3 != nullptr && psz3 < pszEnd)
+//         while (scopedstr3 != nullptr && psz3 < pszEnd)
 //         {
 //
 //            psz3 = strchr(find.m_psz, '/');
 //
-//            if (psz3 != nullptr)
+//            if (scopedstr3 != nullptr)
 //            {
 //
 //               *psz3 = '\0';
@@ -1694,12 +1695,12 @@ bool directory_context::name_is(const ::file::path& strPath)
 //         goto end;
 //
 //lookup_backslash:
-//         while (psz3 != nullptr && psz3 < pszEnd)
+//         while (scopedstr3 != nullptr && psz3 < pszEnd)
 //         {
 //
 //            psz3 = strchr(find.m_psz, '\\');
 //
-//            if (psz3 != nullptr)
+//            if (scopedstr3 != nullptr)
 //            {
 //
 //               *psz3 = '\0';
@@ -1759,7 +1760,7 @@ bool directory_context::name_is(const ::file::path& strPath)
 //
 //         is_dir * pdir = this;
 //
-//         ::pointer<is_dir>pfind(__allocate is_dir());
+//         ::pointer<is_dir>pfind(øallocate is_dir());
 //
 //         index iFind0 = 0;
 //         index iFind3 = 0;
@@ -1826,7 +1827,7 @@ bool directory_context::name_is(const ::file::path& strPath)
 //
 //                  pdir = pfind;
 //
-//                  pfind = __allocate is_dir();
+//                  pfind = øallocate is_dir();
 //                  iFind0 = iFind3 + 1;
 //               }
 //            }
@@ -1931,7 +1932,7 @@ bool directory_context::name_is(const ::file::path& strPath)
 ::file::path directory_context::install()
 {
 
-   _synchronous_lock synchronouslock(this->synchronization());
+   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    auto psystem = system();
 
@@ -1943,7 +1944,7 @@ bool directory_context::name_is(const ::file::path& strPath)
 ::file::path directory_context::config()
 {
 
-   _synchronous_lock synchronouslock(this->synchronization());
+   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    auto psystem = system();
 
@@ -1955,7 +1956,7 @@ bool directory_context::name_is(const ::file::path& strPath)
 ::file::path directory_context::home()
 {
 
-   _synchronous_lock synchronouslock(this->synchronization());
+   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    auto psystem = system();
 
@@ -1969,7 +1970,7 @@ bool directory_context::name_is(const ::file::path& strPath)
 
 //   __UNREFERENCED_PARAMETER(pparticle);
 
-//   _synchronous_lock synchronouslock(this->synchronization());
+//   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
 //   return m_pathUser;
 
@@ -1979,7 +1980,7 @@ bool directory_context::name_is(const ::file::path& strPath)
 ::file::path directory_context::module()
 {
 
-   //_synchronous_lock synchronouslock(this->synchronization());
+   //_synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    auto papplication = application();
 
@@ -1991,7 +1992,7 @@ bool directory_context::name_is(const ::file::path& strPath)
 //::file::path directory_context::ca2module()
 //{
 //
-//   _synchronous_lock synchronouslock(this->synchronization());
+//   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //   auto psystem = system();
 //
@@ -2008,10 +2009,10 @@ bool directory_context::name_is(const ::file::path& strPath)
 }
 
 
-::file::path directory_context::time_log(const string& pszId)
+::file::path directory_context::time_log(const ::scoped_string & scopedstrId)
 {
 
-   __UNREFERENCED_PARAMETER(pszId);
+   __UNREFERENCED_PARAMETER(scopedstrId);
 
    throw ::interface_only("this is an interface");
 
@@ -2036,7 +2037,7 @@ void directory_context::erase(const ::file::path& path, bool bRecursive)
    if (bRecursive)
    {
 
-      ::file::listing listing;
+      ::file::listing_base listing;
 
       listing.set_listing(path);
 
@@ -2067,10 +2068,10 @@ void directory_context::erase(const ::file::path& path, bool bRecursive)
 }
 
 
-void directory_context::get_matter_locator(string_array& straMatterLocator, bool bIncludeMain)
+void directory_context::get_matter_locator(string_array_base& straMatterLocator, bool bIncludeMain)
 {
 
-   _synchronous_lock synchronouslock(this->synchronization());
+   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    straMatterLocator.erase_all();
 
@@ -2086,10 +2087,10 @@ void directory_context::get_matter_locator(string_array& straMatterLocator, bool
 }
 
 
-::file::path directory_context::locale_schema_matter(const ::string& strLocale, const ::string& strSchema, const ::file::path& pathRoot, const ::file::path& pathDomain)
+::file::path directory_context::locale_schema_matter(const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema, const ::file::path& pathRoot, const ::file::path& pathDomain)
 {
 
-   string strHint = pathRoot / "_matter" / pathDomain / get_app()->get_locale_schema_dir(strLocale, strSchema);
+   string strHint = pathRoot / "_matter" / pathDomain / get_app()->get_locale_schema_dir(scopedstrLocale, scopedstrSchema);
 
    return strHint;
 
@@ -2106,7 +2107,7 @@ void directory_context::get_matter_locator(string_array& straMatterLocator, bool
 }
 
 
-bool directory_context::matter_enumerate(const ::file::path& path, ::file::listing& listing, ::file::e_flag eflag, enum_depth edepth)
+bool directory_context::matter_enumerate(const ::file::path& path, ::file::listing_base& listing, ::file::e_flag eflag, enum_depth edepth)
 {
 
    auto psystem = system();
@@ -2142,7 +2143,7 @@ bool directory_context::matter_enumerate(const ::file::path& path, ::file::listi
 
       }
 
-      _synchronous_lock synchronouslock(psystem->matter_mutex());
+      _synchronous_lock synchronouslock(psystem->matter_mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       ::property_set set;
 
@@ -2188,9 +2189,9 @@ bool directory_context::matter_enumerate(const ::file::path& path, ::file::listi
 
       }
 
-      string_array straLocaleSchema;
+      string_array_base straLocaleSchema;
 
-      string_array straSep;
+      string_array_base straSep;
 
       straSep.add("\r");
       straSep.add("\n");
@@ -2265,7 +2266,7 @@ bool directory_context::matter_enumerate(const ::file::path& path, ::file::listi
 }
 
 
-//bool directory_context::matter_ls_file(const ::file::path & str, ::file::listing & stra)
+//bool directory_context::matter_ls_file(const ::file::path & str, ::file::listing_base & stra)
 //{
 //
 //   ::file::path strDir = matter(str, true);
@@ -2303,9 +2304,9 @@ bool directory_context::matter_enumerate(const ::file::path& path, ::file::listi
 //      }
 //
 //
-//      ::file::path_array straLocaleSchema;
+//      ::file::path_array_base straLocaleSchema;
 //
-//      string_array straSep;
+//      string_array_base straSep;
 //
 //      straSep.add("\r");
 //      straSep.add("\n");
@@ -2337,7 +2338,7 @@ bool directory_context::matter_enumerate(const ::file::path& path, ::file::listi
 //}
 
 
-::file::path directory_context::matter_from_locator(const ::file::path_array& patha, const string_array& straMatterLocator)
+::file::path directory_context::matter_from_locator(const ::file::path_array_base& patha, const string_array_base& straMatterLocator)
 {
 
    bool bOk = true;
@@ -2381,7 +2382,7 @@ bool directory_context::matter_enumerate(const ::file::path& path, ::file::listi
 
          pathCache = psystem->directory_system()->m_pathLocalAppMatterCacheFolder / pathLs0 / (patha[0] + ".map_question");
 
-         information() << "cache map path: " << pathCache;
+         information() << "cache map_base path: " << pathCache;
 
          path = file()->as_string(pathCache);
 
@@ -2443,7 +2444,7 @@ bool directory_context::matter_enumerate(const ::file::path& path, ::file::listi
 
    string strSchema;
 
-   string_array straLocaleSchema;
+   string_array_base straLocaleSchema;
 
    application()->locale_schema_matter(straLocaleSchema, straMatterLocator, strLocale, strSchema);
 
@@ -2456,10 +2457,12 @@ bool directory_context::matter_enumerate(const ::file::path& path, ::file::listi
 
    //}
 
+   ::string strLogNotFound;
+
    if (psystem->directory_system()->m_bMatterFromHttpCache)
    {
 
-      string_array stra;
+      string_array_base stra;
 
       string strMatter;
 
@@ -2602,12 +2605,14 @@ bool directory_context::matter_enumerate(const ::file::path& path, ::file::listi
 
             strMatter.replace_with("/", "\\");
 
-            auto etype = file()->resource_get_type(strMatter);
+            auto etype = file()->resource_get_type(strMatter, &strLogNotFound);
 
             if (::is_existing_file_or_folder(etype))
             {
 
                path = "zipresource://" + strMatter;
+
+               informationf("The file %s was found in zip folder.", path.c_str());
 
                path.m_etype = etype;
 
@@ -2653,6 +2658,8 @@ bool directory_context::matter_enumerate(const ::file::path& path, ::file::listi
    }
 
    bOk = false;
+
+   information(strLogNotFound);
 
    path = "itdoesntexist." + ::as_string(::long_long_millisecond());
 
@@ -2712,10 +2719,10 @@ ret:
 }
 
 
-::file::path directory_context::matter_from_locator(::file::path path, const string_array& straMatterLocator)
+::file::path directory_context::matter_from_locator(::file::path path, const string_array_base& straMatterLocator)
 {
 
-   ::file::path_array patha;
+   ::file::path_array_base patha;
 
    path.case_insensitive_begins_eat("matter://");
 
@@ -2728,13 +2735,13 @@ ret:
 }
 
 
-::file::path directory_context::matter(const ::file::path_array& patha)
+::file::path directory_context::matter(const ::file::path_array_base& patha)
 {
 
-   string_array straMatterLocator;
+   string_array_base straMatterLocator;
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       straMatterLocator = get_app()->m_straMatterLocator;
 
@@ -2748,7 +2755,7 @@ ret:
 ::file::path directory_context::matter(::file::path path)
 {
 
-   string_array straMatterLocator;
+   string_array_base straMatterLocator;
 
    get_matter_locator(straMatterLocator, true);
 
@@ -2760,7 +2767,7 @@ ret:
 ::file::path directory_context::appmatter(::file::path path)
 {
 
-   string_array straMatterLocator;
+   string_array_base straMatterLocator;
 
    get_matter_locator(straMatterLocator, false);
 
@@ -2769,23 +2776,27 @@ ret:
 }
 
 
-::file::path directory_context::appmatter(string strApp, ::file::path pathRel)
+::file::path directory_context::appmatter(const ::scoped_string & scopedstrApp, ::file::path pathRel)
 {
 
-   auto iFind = strApp.find_index('/');
+   auto iFind = scopedstrApp.find_index('/');
 
-   string strRepo;
+   ::string strRepo;
+
+   ::string strApp;
 
    if (iFind > 0)
    {
 
-      strRepo = strApp(0, iFind);
+      strRepo = scopedstrApp(0, iFind);
 
-      strApp = strApp(iFind + 1);
+      strApp = scopedstrApp(iFind + 1);
 
    }
    else
    {
+
+      strApp = scopedstrApp;
 
       strApp.replace_with("_", "-");
 
@@ -2837,7 +2848,7 @@ ret:
 //::file::path directory_context::commonappdata(const ::scoped_string& scopedstrAppId, const ::scoped_string& scopedstrBuild, const ::scoped_string& scopedstrPlatform, const ::scoped_string& scopedstrConfiguration)
 //{
 //
-//   _synchronous_lock synchronouslock(this->synchronization());
+//   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //   string strAppId(scopedstrAppId);
 //
@@ -2877,7 +2888,7 @@ ret:
 //   const ::scoped_string& scopedstrSchema)
 //{
 //
-//   _synchronous_lock synchronouslock(this->synchronization());
+//   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //   string strLocale(scopedstrLocale);
 //
@@ -2902,10 +2913,10 @@ ret:
 //}
 
 
-::file::path directory_context::trash_that_is_not_trash(const ::file::path& psz)
+::file::path directory_context::trash_that_is_not_trash(const ::file::path & path)
 {
 
-   __UNREFERENCED_PARAMETER(psz);
+   __UNREFERENCED_PARAMETER(path);
 
    throw ::interface_only("this is an interface");
 
@@ -2914,10 +2925,10 @@ ret:
 }
 
 
-::file::path directory_context::appdata(const ::string& strAppIdParameter)
+::file::path directory_context::appdata(const ::scoped_string & scopedstrAppIdParameter)
 {
 
-   ::string strAppId(strAppIdParameter);
+   ::string strAppId(scopedstrAppIdParameter);
 
    if (strAppId.is_empty())
    {
@@ -2955,12 +2966,12 @@ ret:
 }
 
 
-::file::path directory_context::element_commonappdata(const ::string& strElement)
+::file::path directory_context::element_commonappdata(const ::scoped_string & scopedstrElement)
 {
 
    string strRelative;
 
-   strRelative = strElement;
+   strRelative = scopedstrElement;
 
    auto pFind = strRelative.find(':');
 
@@ -3094,10 +3105,10 @@ ret:
 }
 
 
-bool directory_context::is_inside_time(const ::file::path& pszPath)
+bool directory_context::is_inside_time(const ::file::path & path)
 {
 
-   __UNREFERENCED_PARAMETER(pszPath);
+   __UNREFERENCED_PARAMETER(path);
 
    throw ::interface_only("this is an interface");
 
@@ -3106,11 +3117,11 @@ bool directory_context::is_inside_time(const ::file::path& pszPath)
 }
 
 
-bool directory_context::is_inside(const ::file::path& pszDir, const ::file::path& pszPath)
+bool directory_context::is_inside(const ::file::path & pathFolder, const ::file::path & path)
 {
 
-   __UNREFERENCED_PARAMETER(pszDir);
-   __UNREFERENCED_PARAMETER(pszPath);
+   __UNREFERENCED_PARAMETER(pathFolder);
+   __UNREFERENCED_PARAMETER(path);
 
    throw ::interface_only("this is an interface");
 
@@ -3129,12 +3140,12 @@ bool directory_context::is_inside(const ::file::path& pszDir, const ::file::path
 // }
 
 
-//::file::path directory_context::pathfind(const string & pszEnv, const string & pszTopic, const string & pszMode)
+//::file::path directory_context::pathfind(const ::scoped_string & scopedstrEnv, const ::scoped_string & scopedstrTopic, const ::scoped_string & scopedstrMode)
 //{
 //
-//   ::file::path_array stra;
+//   ::file::path_array_base stra;
 //
-//   stra.add_tokens(pszEnv, ":", false);
+//   stra.add_tokens(scopedstrEnv, ":", false);
 //
 //   string strCandidate;
 //
@@ -3160,7 +3171,7 @@ bool directory_context::is_inside(const ::file::path& pszDir, const ::file::path
 //         if(m_strApiCc.has_character())
 //            return m_strApiCc;
 //
-//         _synchronous_lock synchronouslock(m_pmutex);
+//         _synchronous_lock synchronouslock(m_pmutex, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //
 //
@@ -3498,7 +3509,7 @@ bool directory_context::is_inside(const ::file::path& pszDir, const ::file::path
 // }
 //
 
-//string_array directory_context::locale_schema_matter(string & strLocale, const ::string & strStyle)
+//string_array_base directory_context::locale_schema_matter(string & strLocale, const ::scoped_string & scopedstrStyle)
 //{
 
 //   return psystem->m_spdir->locale_schema_matter(get_app(), strLocale, strStyle);
@@ -3506,7 +3517,7 @@ bool directory_context::is_inside(const ::file::path& pszDir, const ::file::path
 //}
 
 
-//string_array directory_context::locale_schema_matter(string & strLocale, const ::string & strStyle, const string & pathRoot, const ::file::path & pathDomain)
+//string_array_base directory_context::locale_schema_matter(string & strLocale, const ::scoped_string & scopedstrStyle, const string & pathRoot, const ::file::path & pathDomain)
 //{
 
 //   return psystem->m_spdir->locale_schema_matter(get_app(), strLocale, strStyle, pathRoot, pathDomain);
@@ -3514,7 +3525,7 @@ bool directory_context::is_inside(const ::file::path& pszDir, const ::file::path
 //}
 
 //
-//string directory_context::matter(const ::file::path_array & patha, bool bDir)
+//string directory_context::matter(const ::file::path_array_base & patha, bool bDir)
 //{
 //
 //   return psystem->m_spdir->matter(get_app(), patha, bDir);
@@ -3530,12 +3541,12 @@ bool directory_context::is_inside(const ::file::path& pszDir, const ::file::path
 //}
 ////
 //
-//void directory_context::matter_ls(const ::file::path & str, ::file::path_array & stra)
+//void directory_context::matter_ls(const ::file::path & str, ::file::path_array_base & stra)
 //{
 //   psystem->m_spdir->matter_ls(get_app(), str, stra);
 //}
 //
-//void directory_context::matter_ls_file(const ::file::path & str, ::file::path_array & stra)
+//void directory_context::matter_ls_file(const ::file::path & str, ::file::path_array_base & stra)
 //{
 //   psystem->m_spdir->matter_ls_file(get_app(), str, stra);
 //}
@@ -3569,14 +3580,14 @@ bool directory_context::is_inside(const ::file::path& pszDir, const ::file::path
 //}
 
 
-//::file::listing & directory_context::ls(listing & listing)
+//::file::listing_base & directory_context::ls(listing & listing)
 //{
 //
 //   return psystem->m_spdir.m_p->ls(get_app(), listing);
 //
 //}
 
-//::file::listing & directory_context::ls_relative_name(listing & listing)
+//::file::listing_base & directory_context::ls_relative_name(listing & listing)
 //{
 //
 //   return psystem->m_spdir.m_p->ls_relative_name(get_app(), listing);
@@ -3604,7 +3615,7 @@ bool directory_context::is_inside(const ::file::path& pszDir, const ::file::path
 //}
 //
 
-//bool directory_context::is_inside(const ::file::path & pathDir, const ::file::path & lpcszPath)
+//bool directory_context::is_inside(const ::file::path & pathFolder, const ::file::path & lpcszPath)
 //
 //{
 //
@@ -3622,7 +3633,7 @@ bool directory_context::is_inside(const ::file::path& pszDir, const ::file::path
 //}
 
 
-//::file::listing & directory_context::root_ones(::file::listing & listing)
+//::file::listing_base & directory_context::root_ones(::file::listing_base & listing)
 //{
 //   return psystem->m_spdir.m_p->root_ones(listing, get_app());
 //}
@@ -3651,10 +3662,10 @@ bool directory_context::is_inside(const ::file::path& pszDir, const ::file::path
 //}
 
 
-::file::path directory_context::pathfind(const string& pszEnv, const string& pszTopic, const string& pszMode)
+::file::path directory_context::pathfind(const ::scoped_string & scopedstrEnv, const ::scoped_string & scopedstrTopic, const ::scoped_string & scopedstrMode)
 {
 
-   return directory_system()->pathfind(pszEnv, pszTopic, pszMode);
+   return directory_system()->pathfind(scopedstrEnv, scopedstrTopic, scopedstrMode);
 
 }
 

@@ -18,10 +18,10 @@ namespace calculator
 
    ::calculator::matter * parser::new_node()
    {
-      return m_elementa.add(__allocate ::calculator::matter());
+      return m_elementa.add(øallocate ::calculator::matter());
    }
 
-   //::calculator::matter * parser::parse(const ::string & psz)
+   //::calculator::matter * parser::parse(const ::scoped_string & scopedstr)
    /********************************************/
    /* Parsing functions */
 
@@ -34,10 +34,10 @@ namespace calculator
    */
 
 
-   ::calculator::matter * parser::parse(const ::string & psz)
+   ::calculator::matter * parser::parse(const ::scoped_string & scopedstr)
    {
       ::calculator::matter *node;
-      m_scanner.initialize(psz);
+      m_scanner.initialize(scopedstr);
       node = expr(term(factor()));
       if(m_scanner.m_ptoken->m_etype != token::type_end)
          syntax_error("Possible errors: illegal character, missing beginning parenthesis or missing operation");
@@ -222,14 +222,14 @@ namespace calculator
    }
 
 
-   void parser::syntax_error(const ::string & psz)
+   void parser::syntax_error(const ::scoped_string & scopedstr)
    {
       error(string("syntax") + psz);
    }
 
 
 
-   void parser::error(const ::string & psz)
+   void parser::error(const ::scoped_string & scopedstr)
    {
       string str;
       str = "error: ";

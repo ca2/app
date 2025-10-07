@@ -19,7 +19,7 @@ public:
       m_pbitmap(pmap)
    {
 
-      map(rectangle);
+      map_base(rectangle);
 
    }
 
@@ -38,7 +38,7 @@ public:
 
    }
 
-   bool map(::int_rectangle rectangleMap)
+   bool map_base(::int_rectangle rectangleMap)
    {
 
       if (m_bMapped)

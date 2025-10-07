@@ -4998,6 +4998,18 @@
 		9AEA1BB226794D5B006F4A68 /* color32.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEA1BAD26794D5A006F4A68 /* color32.h */; };
 		9AEA1BB326794D5B006F4A68 /* opacity.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEA1BAE26794D5A006F4A68 /* opacity.h */; };
 		9AEA1BB426794D5B006F4A68 /* opacity.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEA1BAE26794D5A006F4A68 /* opacity.h */; };
+		9AEE7CAC2E94C56C00743FB0 /* networking.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEE7CAB2E94C56C00743FB0 /* networking.cpp */; };
+		9AEE7CAD2E94C56C00743FB0 /* networking.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEE7CAA2E94C56C00743FB0 /* networking.h */; };
+		9AEE7CAE2E94C56C00743FB0 /* networking.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEE7CAA2E94C56C00743FB0 /* networking.h */; };
+		9AEE7CAF2E94C56C00743FB0 /* networking.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEE7CAB2E94C56C00743FB0 /* networking.cpp */; };
+		9AEE7CB02E94C56C00743FB0 /* networking.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEE7CAA2E94C56C00743FB0 /* networking.h */; };
+		9AEE7CB12E94C56C00743FB0 /* networking.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEE7CAB2E94C56C00743FB0 /* networking.cpp */; };
+		9AEE7CB42E94C5A000743FB0 /* networking.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEE7CB32E94C5A000743FB0 /* networking.cpp */; };
+		9AEE7CB52E94C5A000743FB0 /* networking.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEE7CB22E94C5A000743FB0 /* networking.h */; };
+		9AEE7CB62E94C5A000743FB0 /* networking.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEE7CB22E94C5A000743FB0 /* networking.h */; };
+		9AEE7CB72E94C5A000743FB0 /* networking.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEE7CB32E94C5A000743FB0 /* networking.cpp */; };
+		9AEE7CB82E94C5A000743FB0 /* networking.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEE7CB22E94C5A000743FB0 /* networking.h */; };
+		9AEE7CB92E94C5A000743FB0 /* networking.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEE7CB32E94C5A000743FB0 /* networking.cpp */; };
 		9AF5BA592B01D35C00A33826 /* source.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AF5BA562B01D35A00A33826 /* source.h */; };
 		9AFC61A72D5330E6005ED062 /* task_handler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AFC61A62D5330E6005ED062 /* task_handler.cpp */; };
 		9AFC61A82D5330E6005ED062 /* task_handler.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AFC61A52D5330E6005ED062 /* task_handler.h */; };
@@ -6924,6 +6936,10 @@
 		9AEA1BAB26794D59006F4A68 /* _system_color.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _system_color.h; sourceTree = "<group>"; };
 		9AEA1BAD26794D5A006F4A68 /* color32.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = color32.h; sourceTree = "<group>"; };
 		9AEA1BAE26794D5A006F4A68 /* opacity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = opacity.h; sourceTree = "<group>"; };
+		9AEE7CAA2E94C56C00743FB0 /* networking.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = networking.h; sourceTree = "<group>"; };
+		9AEE7CAB2E94C56C00743FB0 /* networking.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = networking.cpp; sourceTree = "<group>"; };
+		9AEE7CB22E94C5A000743FB0 /* networking.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = networking.h; sourceTree = "<group>"; };
+		9AEE7CB32E94C5A000743FB0 /* networking.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = networking.cpp; sourceTree = "<group>"; };
 		9AF174C32A2D90D900F2AEFA /* _random.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _random.h; sourceTree = "<group>"; };
 		9AF5BA562B01D35A00A33826 /* source.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = source.h; sourceTree = "<group>"; };
 		9AF5BA582B01D35B00A33826 /* source.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = source.cpp; sourceTree = "<group>"; };
@@ -9138,9 +9154,16 @@
 			isa = PBXGroup;
 			children = (
 				9A878D952D6C0AC400A2193B /* pthread */,
+				9A5405012CE72C170009869E /* strict_posix */,
+				9AA8F9E527BA7296008FF9AA /* ansi */,
+				9AA8F92E27BA7295008FF9AA /* apple */,
+				9A00AEC92BF9894E00616364 /* darwin */,
+				9AA8FA8227BA7296008FF9AA /* ios */,
+				9AA8F99D27BA7295008FF9AA /* macos */,
+				9AA8F98427BA7295008FF9AA /* posix */,
+				9A7993592A57940500261F46 /* shared_posix */,
 				9A97A7862CFBCF98000A2F7C /* __eoperating_ambient.cpp */,
 				9AA1FE482D18DB2300DB0C45 /* __operating_system.cpp */,
-				9A5405012CE72C170009869E /* strict_posix */,
 				9A523FD62CD43440006ED868 /* console_message_box.h */,
 				9A523FD72CD43440006ED868 /* console_message_box.cpp */,
 				9A523FDA2CD43440006ED868 /* dostime.h */,
@@ -9150,15 +9173,10 @@
 				9A523FDE2CD43440006ED868 /* environment.h */,
 				9A523FDF2CD43440006ED868 /* environment.cpp */,
 				9A523FE02CD43440006ED868 /* errno.h */,
+				9AEE7CAA2E94C56C00743FB0 /* networking.h */,
+				9AEE7CAB2E94C56C00743FB0 /* networking.cpp */,
 				9A523FE12CD43440006ED868 /* path.h */,
 				9A523FE22CD43440006ED868 /* path.cpp */,
-				9AA8F9E527BA7296008FF9AA /* ansi */,
-				9AA8F92E27BA7295008FF9AA /* apple */,
-				9A00AEC92BF9894E00616364 /* darwin */,
-				9AA8FA8227BA7296008FF9AA /* ios */,
-				9AA8F99D27BA7295008FF9AA /* macos */,
-				9AA8F98427BA7295008FF9AA /* posix */,
-				9A7993592A57940500261F46 /* shared_posix */,
 				9AA8FB2027BA7296008FF9AA /* _.cpp */,
 				9AA8FC9727BA7297008FF9AA /* _.h */,
 				9AA8FA8127BA7296008FF9AA /* _aaa_c.h */,
@@ -9269,6 +9287,8 @@
 		9AA8F98427BA7295008FF9AA /* posix */ = {
 			isa = PBXGroup;
 			children = (
+				9AEE7CB22E94C5A000743FB0 /* networking.h */,
+				9AEE7CB32E94C5A000743FB0 /* networking.cpp */,
 				9A5403EA2CE7094A0009869E /* __edesktop_calculate.cpp */,
 				9A5403EB2CE7094A0009869E /* __edisplaytype_initialize.cpp */,
 				9A5403EC2CE7094A0009869E /* __etoolkit_calculate.cpp */,
@@ -10298,6 +10318,7 @@
 				9A68AE7D25114435008DABD2 /* match.h in Headers */,
 				9A83A850294D4CC90074C712 /* array_iterator.h in Headers */,
 				9A68ADC425114434008DABD2 /* pointer_array.h in Headers */,
+				9AEE7CB62E94C5A000743FB0 /* networking.h in Headers */,
 				9A68AC9925114434008DABD2 /* procedure.h in Headers */,
 				9A72EEF32A3D5903009743AD /* trace_statement.h in Headers */,
 				9A15A745264B6F2D0080670E /* _tree.h in Headers */,
@@ -10612,6 +10633,7 @@
 				9A892DF826CD9062008D6412 /* timer.h in Headers */,
 				9A68AFC225114436008DABD2 /* file_stream1.h in Headers */,
 				9A68B3B825114438008DABD2 /* _c.h in Headers */,
+				9AEE7CB02E94C56C00743FB0 /* networking.h in Headers */,
 				9A15A6DE264B59EF0080670E /* set_event_on_exit.h in Headers */,
 				9A0841EB2935DD5C009F7FF4 /* _.h in Headers */,
 				9A523ED42CD42623006ED868 /* directory_context.h in Headers */,
@@ -10821,6 +10843,7 @@
 				9A2706942D921F9200D20305 /* _impl_path.h in Headers */,
 				9AC101392B6AC9BD0053DB45 /* serial.h in Headers */,
 				9AC1013A2B6AC9BD0053DB45 /* _datetime.h in Headers */,
+				9AEE7CB52E94C5A000743FB0 /* networking.h in Headers */,
 				9AC1013B2B6AC9BD0053DB45 /* _.h in Headers */,
 				9AC1013C2B6AC9BD0053DB45 /* timer_task.h in Headers */,
 				9AC1013D2B6AC9BD0053DB45 /* synchronous_lock.h in Headers */,
@@ -11551,6 +11574,7 @@
 				9AC103BC2B6AC9BD0053DB45 /* sync_io_error.h in Headers */,
 				9A2FCDF92C9D33AB000CF701 /* a_system_menu.h in Headers */,
 				9AC103BD2B6AC9BD0053DB45 /* interlocked_count.h in Headers */,
+				9AEE7CAD2E94C56C00743FB0 /* networking.h in Headers */,
 				9AC103BE2B6AC9BD0053DB45 /* microsecond.h in Headers */,
 				9AC103BF2B6AC9BD0053DB45 /* insert_iterator.h in Headers */,
 				9AC103C02B6AC9BD0053DB45 /* aaa_topic.h in Headers */,
@@ -12277,6 +12301,7 @@
 				9AD68FCA251A753A00C0EBD7 /* action_context.h in Headers */,
 				9A0841EC2935DD5C009F7FF4 /* _.h in Headers */,
 				9A0843BD29366D8F009F7FF4 /* _u32hash.h in Headers */,
+				9AEE7CAE2E94C56C00743FB0 /* networking.h in Headers */,
 				9A08418B2935C1FD009F7FF4 /* _forward_declaration.h in Headers */,
 				9A0842A82935E694009F7FF4 /* aaa_procedure_array.h in Headers */,
 				9AA8033627BA72A9008FF9AA /* _common.h in Headers */,
@@ -12477,6 +12502,7 @@
 				9AA8006027BA72A1008FF9AA /* _const_console.h in Headers */,
 				9AD69062251A753A00C0EBD7 /* comparable_eq_list.h in Headers */,
 				9AD69064251A753A00C0EBD7 /* set.h in Headers */,
+				9AEE7CB82E94C5A000743FB0 /* networking.h in Headers */,
 				9A08422C2935DD6E009F7FF4 /* _.h in Headers */,
 				9AA8FD5C27BA729A008FF9AA /* _posix2.h in Headers */,
 				9A8F43972A23022C00097EE1 /* types.h in Headers */,
@@ -13046,6 +13072,7 @@
 				9A5240BE2CD47440006ED868 /* extended_topic.cpp in Sources */,
 				9A5240BF2CD47440006ED868 /* handler.cpp in Sources */,
 				9A5240C02CD47440006ED868 /* item.cpp in Sources */,
+				9AEE7CB72E94C5A000743FB0 /* networking.cpp in Sources */,
 				9A5240C12CD47440006ED868 /* item_container.cpp in Sources */,
 				9A5240C22CD47440006ED868 /* item_container_map.cpp in Sources */,
 				9A5240C32CD47440006ED868 /* request.cpp in Sources */,
@@ -13343,6 +13370,7 @@
 				9A5241E52CD47440006ED868 /* tracing.cpp in Sources */,
 				9A5241E62CD47440006ED868 /* transport_payload.cpp in Sources */,
 				9A5241E72CD47440006ED868 /* url_context.cpp in Sources */,
+				9AEE7CB12E94C56C00743FB0 /* networking.cpp in Sources */,
 				9A5241E82CD47440006ED868 /* version.cpp in Sources */,
 				9A5241E92CD47440006ED868 /* procedure_array.cpp in Sources */,
 				9A5241EA2CD47440006ED868 /* __payload_array.cpp in Sources */,
@@ -13959,6 +13987,7 @@
 				9AC105BF2B6AC9BD0053DB45 /* exit_status.cpp in Sources */,
 				9AC105C02B6AC9BD0053DB45 /* strw.cpp in Sources */,
 				9AC105C12B6AC9BD0053DB45 /* watcher.cpp in Sources */,
+				9AEE7CB42E94C5A000743FB0 /* networking.cpp in Sources */,
 				9AA1061A2D19450600DB0C45 /* release.cpp in Sources */,
 				9AC105C22B6AC9BD0053DB45 /* wd32.cpp in Sources */,
 				9AC105C32B6AC9BD0053DB45 /* file_system.cpp in Sources */,
@@ -14125,6 +14154,7 @@
 				9AC106522B6AC9BD0053DB45 /* exception.cpp in Sources */,
 				9AC106542B6AC9BD0053DB45 /* process.cpp in Sources */,
 				9AC106552B6AC9BD0053DB45 /* synchronization_array.cpp in Sources */,
+				9AEE7CAC2E94C56C00743FB0 /* networking.cpp in Sources */,
 				9AC106562B6AC9BD0053DB45 /* screen.mm in Sources */,
 				9AC106572B6AC9BD0053DB45 /* rsa.cpp in Sources */,
 				9AC106582B6AC9BD0053DB45 /* nanosecond_timer.cpp in Sources */,
@@ -14559,6 +14589,7 @@
 				9A54050E2CE7698A0009869E /* user.cpp in Sources */,
 				9AA8FE3027BA729C008FF9AA /* file_raw.cpp in Sources */,
 				9A15A572264B0ECB0080670E /* microsecond_sleep.cpp in Sources */,
+				9AEE7CB92E94C5A000743FB0 /* networking.cpp in Sources */,
 				9A818F4C2A720AF4008F470C /* transport_payload.cpp in Sources */,
 				9A0843F029366DF5009F7FF4 /* network_payload.cpp in Sources */,
 				9AD69250251A753A00C0EBD7 /* dump_floating_point.cpp in Sources */,
@@ -14716,6 +14747,7 @@
 				9A754FB12B212C3A00FFB669 /* vld.cpp in Sources */,
 				9AD69289251A753A00C0EBD7 /* exception.cpp in Sources */,
 				9ACD71612C172B0200E392FF /* text_property.cpp in Sources */,
+				9AEE7CAF2E94C56C00743FB0 /* networking.cpp in Sources */,
 				9A1625FA26EFCCC1003D9CB9 /* streamable_composite.cpp in Sources */,
 				9A882EF32844C315004113D1 /* new.cpp in Sources */,
 				9A818E672A71DB54008F470C /* LaunchServicesWrapper.mm in Sources */,

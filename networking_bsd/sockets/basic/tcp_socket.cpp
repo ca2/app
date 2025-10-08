@@ -3,6 +3,7 @@
 #include "networking_bsd/address.h"
 #include "networking_bsd/networking.h"
 #include "socket_handler.h"
+#include "acme/operating_system/networking.h"
 #include "acme/operating_system/shared_posix/c_error_number.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/crypto/crypto.h"
@@ -631,7 +632,7 @@ m_ibuf(isize)
 
          SetCloseAndDelete();
 
-         ::closesocket(s);
+         ::_close_socket(s);
 
          return false;
 
@@ -717,33 +718,47 @@ m_ibuf(isize)
          }
          else if (Socks4() && ::pointer < sockets_bsd::socket_handler >(socket_handler())->Socks4TryDirect()) // retry
          {
-            ::closesocket(s);
+            
+            ::_close_socket(s);
+
             return open(paddress, true);
+
          }
          else if (Reconnect())
          {
+            
             string strError = bsd_socket_error(iError);
 
             information() << "connect: failed, reconnect pending " << iError << bsd_socket_error(iError);
 
             attach(s);
+
             set_connecting(true); // this flag will control fd_set's
+
          }
          else
          {
+
             string strError = bsd_socket_error(iError);
 
             fatal() << "connect: failed " << iError << bsd_socket_error(iError);
 
             SetCloseAndDelete();
-            ::closesocket(s);
+
+            ::_close_socket(s);
+
             return false;
+
          }
+
       }
       else
       {
+
          attach(s);
+
          set_call_on_connect(); // base_socket_handler must call OnConnect
+
       }
 
       set_connection_start_time();
@@ -755,6 +770,7 @@ m_ibuf(isize)
       // 'true' means connected or connecting(not yet connected)
       // 'false' means something failed
       return true; //!is_connecting();
+
    }
 
 

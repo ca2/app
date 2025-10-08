@@ -108,7 +108,7 @@ namespace sockets
    //   if (m_hSocket == INVALID_SOCKET)
    //      return;
 
-   //   VERIFY(closesocket(m_hSocket) != SOCKET_ERROR);
+   //   VERIFY(::_close_socket(m_hSocket) != SOCKET_ERROR);
 
    //   m_hSocket = INVALID_SOCKET;
    //}
@@ -168,7 +168,7 @@ namespace sockets
 
    //void transfer_socket::close()
    //{
-   //   if (m_hSocket != INVALID_SOCKET && closesocket(m_hSocket) == SOCKET_ERROR)
+   //   if (m_hSocket != INVALID_SOCKET && ::_close_socket(m_hSocket) == SOCKET_ERROR)
    //   {
    //      // should be OK to close if closed already
    //      throw ::exception(transfer_socket_exception(_T("Close")));

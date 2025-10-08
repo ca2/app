@@ -269,6 +269,9 @@ namespace networking_bsd
       ::pointer < ::item_array > list_network_interfaces() override;
 
 
+      ::string so_error_description(long long llError) override;
+
+
    };
 
    //CLASS_DECL_NETWORKING_BSD class address_department * address_department();

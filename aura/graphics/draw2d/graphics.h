@@ -15,6 +15,9 @@
 #include "aura/graphics/draw2d/region.h"
 #include "aura/graphics/draw2d/bitmap.h"
 #include "aura/graphics/draw2d/offset.h"
+
+
+
 namespace gpu
 {
 
@@ -986,6 +989,8 @@ namespace draw2d
       virtual ::double_size _get_text_extent(const ::scoped_string& scopedstr);
 
       virtual ::double_size get_text_extent(const ::scoped_string& scopedstr, ::character_count iIndex);
+
+      virtual ::double_size _get_text_extent(const ::scoped_string& scopedstr, ::character_count iIndex);
 
       virtual ::double_size GetTextBegin(const ::scoped_string& scopedstrString, ::character_count iIndex);
 

@@ -627,7 +627,11 @@ namespace sockets_bsd
 
    /** Please don't use this method.
    "accept()" is handled automatically in the OnRead() method. */
+#if defined(__ANDROID__) || defined(__BSD__) || defined(__APPLE__)
    SOCKET listen_socket_impl::Accept(SOCKET socket, struct sockaddr *saptr, socklen_t *lenptr)
+#else
+   SOCKET listen_socket_impl::Accept(SOCKET socket, struct sockaddr *saptr, int *lenptr)
+#endif
    {
       return ::_accept_socket(socket, saptr, lenptr);
    }

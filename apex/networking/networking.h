@@ -106,6 +106,9 @@ namespace networking
       virtual ::string _last_error_message(long long llError);
       virtual long long last_error();
 
+
+      virtual ::string so_error_description(long long llError);
+
       virtual bool has_ip4_internet();
       virtual bool has_ip6_internet();
 

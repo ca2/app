@@ -65,6 +65,8 @@ list(APPEND library_source
    ibl/cubemap_framebuffer.h
    ibl/diffuse_irradiance_map.cpp
    ibl/diffuse_irradiance_map.h
+   ibl/equirectangular_cubemap.cpp
+   ibl/equirectangular_cubemap.h
    ibl/hdri_cube.cpp
    ibl/hdri_cube.h
    ibl/mipmap_cubemap_framebuffer.cpp
@@ -186,6 +188,7 @@ if(${LINUX} OR ${__BSD__})
     list(APPEND library_references
             aura_posix
        glad
+       ktx
        #windowing_system_x11
             )
 
@@ -256,8 +259,6 @@ elseif (${LINUX} OR ${__BSD__} OR ${ANDROID})
     target_compile_options(static_${PROJECT_NAME} PRIVATE $<$<COMPILE_LANGUAGE:CXX>:-fpermissive  ${EXTRA_CXX_TARGET_COMPILER_OPTIONS}>)
     target_compile_definitions(static_${PROJECT_NAME} PRIVATE CUBE)
 
-    target_compile_options(${PROJECT_NAME} PRIVATE ${${PROJECT_NAME}_PKGCONFIG_CFLAGS})
-    target_compile_options(static_${PROJECT_NAME} PRIVATE ${${PROJECT_NAME}_PKGCONFIG_CFLAGS})
     target_compile_options(${PROJECT_NAME} PRIVATE ${${PROJECT_NAME}_PKGCONFIG_CFLAGS})
     target_compile_options(static_${PROJECT_NAME} PRIVATE ${${PROJECT_NAME}_PKGCONFIG_CFLAGS})
     target_link_options(${PROJECT_NAME} PRIVATE ${${PROJECT_NAME}_PKGCONFIG_LDFLAGS})

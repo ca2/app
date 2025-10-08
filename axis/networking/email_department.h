@@ -17,7 +17,7 @@ namespace networking
       email_department();
 
 
-      bool utf8_mail(class ::networking::email * pemail);
+      bool utf8_mail(class ::networking::email * pemail, ::string & strError);
 
 
       virtual bool syntax_is_valid(const ::scoped_string & scopedstrEmailAddress);

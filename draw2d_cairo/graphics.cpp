@@ -4377,7 +4377,7 @@ namespace draw2d_cairo
 //   }
 
 
-   ::double_size graphics::get_text_extent(const ::scoped_string & scopedstr, character_count iIndex)
+   ::double_size graphics::_get_text_extent(const ::scoped_string & scopedstr, character_count iIndex)
    {
 
       string str(scopedstr.m_begin, minimum_non_negative(iIndex, scopedstr.size()));
@@ -4639,7 +4639,7 @@ namespace draw2d_cairo
    }
 
 
-   ::double_size graphics::get_text_extent(const ::scoped_string & scopedstr)
+   ::double_size graphics::_get_text_extent(const ::scoped_string & scopedstr)
    {
 
       return get_text_extent(scopedstr, -1);

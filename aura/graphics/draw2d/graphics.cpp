@@ -4277,7 +4277,17 @@ namespace draw2d
    double_size graphics::get_text_extent(const scoped_string & scopedstr, ::collection::index iIndex)
    {
 
-      auto size = get_text_extent(scopedstr(0, iIndex));
+      auto size = _get_text_extent(scopedstr, iIndex);
+
+      return size;
+
+   }
+
+
+   double_size graphics::_get_text_extent(const scoped_string & scopedstr, ::collection::index iIndex)
+   {
+
+      auto size = _get_text_extent(scopedstr(0, iIndex));
 
       return size;
 

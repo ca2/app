@@ -323,7 +323,7 @@
 		<Unit filename="/home/camilo/solution/basis/source/app-core/userdatetime/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\source\app-core\userdatetime\"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/basis/source/app-core/multimedia/CMakeLists.txt">
+		<Unit filename="/home/camilo/solution/basis/source/app-multimedia/multimedia/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\source\app-core\multimedia\"/>
 		</Unit>
 		<Unit filename="/home/camilo/solution/basis/source/app-core/resident/CMakeLists.txt">

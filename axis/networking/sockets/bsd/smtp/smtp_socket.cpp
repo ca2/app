@@ -122,7 +122,7 @@ namespace sockets
 	}
 
 
-	void smtp_socket::OnLine(const string& line)
+	void smtp_socket::OnLine(const ::scoped_string& line)
 	{
 
 		SetNonblocking(false);

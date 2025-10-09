@@ -132,6 +132,8 @@ namespace sockets_bsd
       bool                       m_bClientSessionSet;
       string                     m_strInitSSLClientContext;
 
+
+
       /** Constructor with standard values on input/output buffers. */
       tcp_socket();
       /** Constructor with custom values for i/o buffer.

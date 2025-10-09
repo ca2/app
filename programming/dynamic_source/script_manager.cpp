@@ -373,6 +373,8 @@ namespace dynamic_source
 
       pdssocket->m_timeWaitingToBuild += timeGetHere;
 
+      pdssocket->m_timegetherea.add({m_strSeed, timeGetHere});
+
       if (!pinstance)
       {
 
@@ -696,6 +698,7 @@ namespace dynamic_source
                {
 
                   pinstanceParent->m_pmain->netnodesocket()->m_timeWaitingToBuild += timeGetHere;
+                  pinstanceParent->m_pmain->netnodesocket()->m_timegetherea.add({strName, timeGetHere});
 
                }
 

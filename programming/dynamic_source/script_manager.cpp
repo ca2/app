@@ -699,7 +699,8 @@ namespace dynamic_source
 
                   if (strName.begins_eat(m_pathNetnodePath))
                   {
-                     strName.begins_eat("/");
+
+                     strName.begins_eat("/net/");
 
                   }
 

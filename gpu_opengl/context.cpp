@@ -2866,6 +2866,8 @@ color = vec4(c.r,c.g, c.b, c.a);
 
       auto pmodel = øcreate_new<::gpu_opengl::gltf::model>();
 
+      (*(::gpu::renderable_t *)pmodel) = model;
+
       //::cast<::gpu_opvulkan::queue> pqueueGraphics = graphics_queue();
 
       //pmodel->loadFromFile(model.m_path.c_str(), this, pqueueGraphics->m_vkqueue, model.m_iFlags, model.m_fScale);

@@ -3,13 +3,10 @@
 
 #pragma once
 
+#include "gpu/gltf/model_base.h"
 #include <assimp/Importer.hpp>
-#include <assimp/pbrmaterial.h>
 #include <assimp/postprocess.h>
 #include <assimp/scene.h>
-//#include "stb_image/stb_image.h"
-
-//#include <map>
 #include "gpu/gltf/mesh.h"
 
 
@@ -23,18 +20,13 @@ namespace gpu
        * A collection of meshes.
        */
       class CLASS_DECL_GPU model :
-         virtual public context_object,
-         virtual public ::graphics3d::renderable
+         virtual public ::gpu::gltf::model_base
       {
       public:
 
 
          // data
          ::pointer_array<mesh>                     m_mesha;
-         ::string                                  m_strDirectory;
-         ::string_map<::pointer<::gpu::texture> >  m_mapTexture;
-         ::pointer<material>                       m_pmaterialOverride;
-         bool m_bExternalPbr = false;
 
          /**
           * Load a glTF 2.0 model.

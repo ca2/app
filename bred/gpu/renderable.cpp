@@ -65,7 +65,7 @@ namespace gpu
 
       set_type(entry["type"].as_string("obj"));
 
-      m_path = "matter://models/" + entry["path"].as_file_path();
+      m_pathRenderable = "matter://models/" + entry["path"].as_file_path();
 
       set_usage(entry["usage"].as_string(""));
 

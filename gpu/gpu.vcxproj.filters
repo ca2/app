@@ -222,6 +222,9 @@
     <ClInclude Include="_ktx.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="gltf\model_base.h">
+      <Filter>Header Files\gpu</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="framework.cpp">
@@ -274,6 +277,9 @@
     </ClCompile>
     <ClCompile Include="_ktx.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="gltf\model_base.cpp">
+      <Filter>Source Files\gltf</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

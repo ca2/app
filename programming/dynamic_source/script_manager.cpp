@@ -697,6 +697,12 @@ namespace dynamic_source
                if (pinstanceParent)
                {
 
+                  if (strName.begins_eat(m_pathNetnodePath))
+                  {
+                     strName.begins_eat("/");
+
+                  }
+
                   pinstanceParent->m_pmain->netnodesocket()->m_timeWaitingToBuild += timeGetHere;
                   pinstanceParent->m_pmain->netnodesocket()->m_timegetherea.add({strName, timeGetHere});
 

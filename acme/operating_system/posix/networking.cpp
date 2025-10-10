@@ -38,7 +38,7 @@ int _close_socket(int s)
 }
 
 
-#if defined(__BSD__) || defined(__ANDROID__) || defined(__APPLE__)
+#if defined(__BSD__) || defined(__ANDROID__) || defined(__APPLE__) || defined(LINUX)
 int _accept_socket(int s, sockaddr* addr, socklen_t* addrlen)
 #else
 int _accept_socket(int s, sockaddr* addr, int* addrlen)

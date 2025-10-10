@@ -2480,13 +2480,13 @@ m_ibuf(isize)
             information() << "Number of opened sockets: " << get_count_of_opened_sockets();
 
             ::cast < ::sockets::tcp_socket > ptcpsocket = base_socket_interface();
-            if (ptcpsocket->m_timegetherea.get_size() > 0)
+            if (ptcpsocket && ptcpsocket->m_timegetherea.get_size() > 0)
             {
                for (auto& timegethere : ptcpsocket->m_timegetherea)
                {
 
                   information() << "script(1): " << timegethere.m_strPath;
-                  informationf("time(1): %02d", timegethere.m_timeGetHere.floating_millisecond());
+                  informationf("time(1): %0.2fms", timegethere.m_timeGetHere.floating_millisecond());
                }
 
             }
@@ -2497,7 +2497,7 @@ m_ibuf(isize)
                {
 
                   information() << "script(2): " << timegethere.m_strPath;
-                  informationf("time(2): %02d", timegethere.m_timeGetHere.floating_millisecond());
+                  informationf("time(2): %0.2fms", timegethere.m_timeGetHere.floating_millisecond());
                }
 
 

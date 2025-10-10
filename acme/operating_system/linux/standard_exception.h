@@ -211,7 +211,12 @@ class standard_sigfpe : public standard_exception
    public:
       standard_sigfpe (int iSignal, siginfo_t * psiginfo, void * pc) :
 #ifdef _LP64
+
+#if defined(__aarch64__)
+         standard_exception(iSignal, psiginfo, pc, 3, (void *) ((sig_ucontext_t *) pc)->uc_mcontext.pc)
+#else
          standard_exception(iSignal, psiginfo, pc, 3, (void *) ((sig_ucontext_t *) pc)->uc_mcontext.rip)
+#endif
          //::callstack(3, (void *) ((sig_ucontext_t *) pc)->uc_mcontext.rip),
 #else
 #ifdef __arm__

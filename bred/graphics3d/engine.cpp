@@ -1,9 +1,10 @@
 // Created by camilo on 2025-05-17 04:14 <3ThomasBorregaardSorensen!!
 #include "framework.h"
 #include "engine.h"
+#include "immersion_layer.h"
 #include "input.h"
-#include "scene.h"
-//#include "shader.h"
+#include "model.h"
+#include "scene_base.h"
 #include "types.h"
 #include "acme/exception/interface_only.h"
 #include "acme/parallelization/synchronous_lock.h"
@@ -12,6 +13,7 @@
 #include "apex/database/client.h"
 #include "apex/database/stream.h"
 #include "bred/gpu/bred_approach.h"
+#include "bred/gpu/command_buffer.h"
 #include "bred/gpu/context.h"
 #include "bred/gpu/cpu_buffer.h"
 #include "bred/gpu/device.h"
@@ -30,7 +32,6 @@
 #include <glm/gtc/quaternion.hpp>
 #include <glm/gtx/quaternion.hpp>
 
-#include "immersion_layer.h"
 // Function to flip a mat4 along the Z-axis
 glm::mat4 flipZMat4(const glm::mat4& mat) {
    // Create a rotation matrix that flips along the Y-axis (180 degrees)
@@ -113,12 +114,16 @@ namespace graphics3d
 
             _synchronous_lock synchronouslock(pscene->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-            if (pscene->global_ubo().size() > 0)
+            if (pscene->global_ubo().size(true) > 0)
             {
 
                update_global_ubo(gpu_context());
 
             }
+
+            int iFrameIndex = gpu_context()->m_pgpurenderer->m_pgpurendertarget->get_frame_index();
+
+            pframe->m_pgpucommandbuffer->m_iFrameIndex = iFrameIndex;
 
             pscene->on_render(gpu_context());
 
@@ -147,7 +152,7 @@ namespace graphics3d
    void engine::create_global_ubo(::gpu::context* pgpucontext)
    {
 
-      auto iGlobalUboSize = m_pimmersionlayer->m_pscene->global_ubo().size();
+      auto iGlobalUboSize = m_pimmersionlayer->m_pscene->global_ubo().size(true);
 
       if (iGlobalUboSize > 0)
       {
@@ -631,13 +636,13 @@ namespace graphics3d
       get_gpu_context()->_send([this, rectanglePlacement]()
       {
 
-            auto pgpurenderer = gpu_context()->get_gpu_renderer();
+            auto pcontext = gpu_context();
+
+            auto pgpurenderer = pcontext->get_gpu_renderer();
 
             pgpurenderer->on_resize(rectanglePlacement.size());
 
             m_pusergraphics3d->on_load_engine();
-
-            auto pcontext = gpu_context();
 
             pcontext->m_pengine = this;
 
@@ -660,14 +665,14 @@ namespace graphics3d
 
       auto pscene = m_pimmersionlayer->m_pscene;
 
-      if (pscene->global_ubo().size() > 0)
+      if (pscene->global_ubo().size(true) > 0)
       {
 
          pscene->on_update(pgpucontext);
          
          auto pcontext = gpu_context();
 
-         pcontext->update_global_ubo(pscene->global_ubo().m_block);
+         pcontext->update_global_ubo(pscene->global_ubo().m_blockWithSamplers);
 
       }
 
@@ -704,7 +709,7 @@ namespace graphics3d
    }
 
 
-   void engine::engine_on_after_load_scene(::graphics3d::scene* pscene)
+   void engine::engine_on_after_load_scene(::graphics3d::scene_base* pscene)
    {
 
       auto pcontext = gpu_context();
@@ -719,7 +724,7 @@ namespace graphics3d
    }
 
 
-   ::graphics3d::scene * engine::current_scene()
+   ::graphics3d::scene_base * engine::current_scene()
    {
 
       return m_pimmersionlayer->m_pscene;
@@ -990,7 +995,7 @@ namespace graphics3d
 
          m_bCreatedGlobalUbo = true;
 
-         auto iGlobalUboSize = pscene->global_ubo().size();
+         auto iGlobalUboSize = pscene->global_ubo().size(true);
 
          if (iGlobalUboSize > 0)
          {
@@ -1090,18 +1095,20 @@ namespace graphics3d
    }
 
 
-   ::pointer < ::graphics3d::renderable > engine::_load_wavefront_obj_renderable(const ::file::path& path)
+   ::pointer<::graphics3d::renderable> engine::_load_wavefront_obj_renderable(const ::gpu::renderable_t &model)
    {
 
       tinyobjloader_Builder builder{};
 
       auto pcontext = gpu_context();
 
-      builder.loadModel(pcontext, path);
+      builder.loadModel(pcontext, model.m_pathRenderable);
 
       ::pointer < ::gpu::model_buffer > pmodel;
 
       øconstruct(pmodel);
+
+      (*(::gpu::renderable_t *)pmodel) = model;
 
       pmodel->initialize_model(pcontext, builder);
 
@@ -1112,7 +1119,7 @@ namespace graphics3d
 
 
    //
-   // void engine::add_scene(::graphics3d::scene* pscene)
+   // void engine::add_scene(::graphics3d::scene_base* pscene)
    // {
    //
    //    m_mapScene[pscene->m_strName] = pscene;
@@ -1120,7 +1127,7 @@ namespace graphics3d
    // }
    //
    //
-   // void engine::set_current_scene(::graphics3d::scene* pscene)
+   // void engine::set_current_scene(::graphics3d::scene_base* pscene)
    // {
    //
    //    m_pscene = pscene;

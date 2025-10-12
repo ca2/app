@@ -132,6 +132,8 @@ namespace sockets_bsd
       bool                       m_bClientSessionSet;
       string                     m_strInitSSLClientContext;
 
+
+
       /** Constructor with standard values on input/output buffers. */
       tcp_socket();
       /** Constructor with custom values for i/o buffer.
@@ -314,6 +316,7 @@ namespace sockets_bsd
       /** SSL; get ssl password. */
       string GetPassword() override;
 
+      void set_no_ssl_shutdown() override;
 
       string get_url() override;
 

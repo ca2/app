@@ -204,7 +204,7 @@ namespace filemanager
       ////add_factory_item <fs::simple::impact >();
       ////add_factory_item <fs::simple::list_impact >();
 
-      ////__construct_new(this, m_pmap);
+      ////øconstruct_new(this, m_pmap);
 
       //throw ::exception(todo("core"));
       ////psession->userex()->shell()->initialize(&Session);
@@ -215,7 +215,7 @@ namespace filemanager
       ////                   ::type < form_child_frame >(),
       ////                   ::type < form >()));
 
-      ////__øconstruct(m_pimpactsystemForm, pmulti);
+      ////øconstruct(m_pimpactsystemForm, pmulti);
 
       ////psession->add_document_template(pmulti);
 
@@ -225,7 +225,7 @@ namespace filemanager
       ////                    ::type < operation_child_frame >(),
       ////                    ::type < operation_impact >()));
       ////
-      ////__øconstruct(m_pimpactsystemOperation, psingle);
+      ////øconstruct(m_pimpactsystemOperation, psingle);
 
       ////psession->add_document_template(psingle);
 
@@ -335,7 +335,7 @@ namespace filemanager
       throw ::exception(todo("core"));
       //add_reference(pdata);
 
-      //__øconstruct(datamap()[atom], pdata);
+      //øconstruct(datamap()[atom], pdata);
 
    }
 
@@ -767,7 +767,7 @@ pdirectorysystem->localconfig() / "user.component";
  /*     if (!pdata)
       {
 
-         __øconstruct(pdata, filemanager_create_data(atom));
+         øconstruct(pdata, filemanager_create_data(atom));
 
       }*/
 

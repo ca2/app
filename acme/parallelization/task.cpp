@@ -1646,6 +1646,7 @@ void task::__task_main()
       {
 
          error() << "Exception reached task procedure : " << exception;
+         error() << "Exception call stack : " << exception.m_strCallStackTrace;
 
       }
       catch (...)
@@ -2638,7 +2639,7 @@ void task::branch(enum_parallelization eparallelization, const ::create_task_att
    if (::is_null(ptaskhandler))
    {
 
-      ptaskhandler = __raw_new task_handler;
+      ptaskhandler = øraw_new task_handler;
 
    }
    else

@@ -7,13 +7,18 @@ set(__APPLE__ FALSE)
 
 set(CMAKE_CXX_STANDARD 20)
 
+message(STATUS "CMAKE_SYSTEM_PROCESSOR is ${CMAKE_SYSTEM_PROCESSOR}")
 
 if (CMAKE_SYSTEM_PROCESSOR MATCHES "(x86)|(X86)|(amd64)|(AMD64)")
    message(STATUS "Target system is x86 or x86_64 architecture.")
    # You can set a variable or perform specific actions here
    set(IS_X86_ARCH TRUE)
+elseif (CMAKE_SYSTEM_PROCESSOR MATCHES "(aarch64)")
+   message(STATUS "Target system is aarch64 architecture.")
+   # You can set a variable or perform specific actions here
+   set(IS_AARCH64_ARCH TRUE)
 else()
-   message(STATUS "Target system is not x86 or x86_64 architecture.")
+   message(STATUS "Target system is not x86 or x86_64 or aarch64 architecture.")
    set(IS_X86_ARCH FALSE)
 endif()
 
@@ -93,6 +98,22 @@ set(ANDROID FALSE)
 set(WIN32 FALSE)
 set(UWP FALSE)
 set(HAS_NO_APPINDICATOR FALSE)
+
+
+include_directories(${WORKSPACE_FOLDER})
+include_directories($ENV{HOME}/__config)
+include_directories(${WORKSPACE_FOLDER}/source)
+include_directories(${WORKSPACE_FOLDER}/source/app)
+include_directories(${WORKSPACE_FOLDER}/source/app/include)
+include_directories(${WORKSPACE_FOLDER}/source/app/_include)
+include_directories(${WORKSPACE_FOLDER}/source/include)
+include_directories(${WORKSPACE_FOLDER}/port/_)
+if (NOT ${HAS_SYSTEM_UNAC})
+   include_directories(${WORKSPACE_FOLDER}/port/base/unac/include)
+endif ()
+include_directories(${WORKSPACE_FOLDER}/port/include)
+include_directories(${WORKSPACE_FOLDER}/operating_system)
+
 
 
 message(STATUS "going to include \"operating_system/__.cmake\"")

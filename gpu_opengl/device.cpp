@@ -1,6 +1,7 @@
 // From gpu_opengl::device by
 // camilo on 2025-05-27 06:11 <3ThomasBorregaardSorensen!!
 #include "framework.h"
+#include "_gpu_opengl.h"
 #include "device.h"
 #include "program.h"
 #include "shader.h"

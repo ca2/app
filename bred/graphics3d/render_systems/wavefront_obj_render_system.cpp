@@ -6,10 +6,10 @@
 //#include "port/graphics/freetype/include/freetype/internal/fttrace.h"
 #include "bred/gpu/shader.h"
 #include "bred/graphics3d/model.h"
-#include "bred/graphics3d/scene_object.h"
+#include "bred/graphics3d/scene_renderable.h"
 #include "bred/graphics3d/frame.h"
 #include "graphics3d/immersion_layer.h"
-#include "graphics3d/scene.h"
+#include "graphics3d/scene_base.h"
 // // External
 // #define GLM_FORCE_RADIANS
 // #define GLM_FORCE_DEPTH_ZERO_TO_ONE
@@ -199,32 +199,33 @@ namespace graphics3d
 	}
 
 
-	void wavefront_obj_render_system::on_update(::gpu::context* pgpucontext, ::graphics3d::scene* pscene)
+	void wavefront_obj_render_system::on_update(::gpu::context* pgpucontext, ::graphics3d::scene_base* pscene)
 	{
 
 
 	}
 
 
-	void wavefront_obj_render_system::on_render(::gpu::context * pgpucontext, ::graphics3d::scene* pscene)
+	void wavefront_obj_render_system::on_render(::gpu::context * pgpucontext, ::graphics3d::scene_base* pscene)
 	{
 
 
-		m_pshader->bind(pgpucontext->current_target_texture(::gpu::current_frame()));
+		m_pshader->bind(
+         ::gpu::current_frame()->m_pgpucommandbuffer, pgpucontext->current_target_texture(::gpu::current_frame()));
 
 	   auto pgamelayer = m_pengine->m_pimmersionlayer;
 
-		for (auto &[strName, psceneobject]: pscene->scene_objects())
+		for (auto &[strName, pscenerenderable]: pscene->scene_renderables())
 		{
 
-         if (!psceneobject)
+         if (!pscenerenderable)
          {
 
             continue;
 
          }
 
-         if (psceneobject->m_erendersystem != ::graphics3d::e_render_system_wavefront_obj)
+         if (pscenerenderable->m_erendersystem != ::graphics3d::e_render_system_wavefront_obj)
          {
 
             continue;
@@ -242,7 +243,7 @@ namespace graphics3d
 			//	sizeof(SimplePushConstantData),
 			//	&push);
 
-		   auto prenderable = psceneobject->renderable();
+		   auto prenderable = pscenerenderable->renderable();
 
 			if (prenderable && prenderable->m_erenderabletype ==
             ::gpu::e_renderable_type_wavefront_obj)
@@ -250,19 +251,19 @@ namespace graphics3d
 
 				//auto pszPath = obj->m_strPath.c_str();
 
-				auto modelMatrix = m_pengine->model_matrix(psceneobject->m_transform);
+				auto modelMatrix = m_pengine->model_matrix(pscenerenderable->m_transform);
 
 				m_pshader->m_propertiesPush["modelMatrix"] = modelMatrix;
 
-				auto normalMatrix = m_pengine->normal_matrix(psceneobject->m_transform);
+				auto normalMatrix = m_pengine->normal_matrix(pscenerenderable->m_transform);
 
 				m_pshader->m_propertiesPush["normalMatrix"] = normalMatrix;
 
-				m_pshader->push_properties();
-
 				auto pcommandbuffer = pgpucontext->m_pgpurenderer->getCurrentCommandBuffer2(::gpu::current_frame());
 
-				prenderable->bind(pcommandbuffer);
+				m_pshader->push_properties(pcommandbuffer);
+
+            prenderable->bind(pcommandbuffer);
 
 				prenderable->draw(pcommandbuffer);
 
@@ -272,7 +273,7 @@ namespace graphics3d
 
 		}
 
-		m_pshader->unbind();
+		m_pshader->unbind(::gpu::current_frame()->m_pgpucommandbuffer);
 
 	}
 

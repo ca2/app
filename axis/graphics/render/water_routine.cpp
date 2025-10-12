@@ -50,8 +50,8 @@ namespace draw2d
          delete [] m_iHeightField2;
 
       // create our height fields
-      m_iHeightField1 = __raw_new int[iWidth*iHeight];
-      m_iHeightField2 = __raw_new int[iWidth*iHeight];
+      m_iHeightField1 = øraw_new int[iWidth*iHeight];
+      m_iHeightField2 = øraw_new int[iWidth*iHeight];
 
       // clear our height fields
       memory_set(m_iHeightField1,0,(iWidth*iHeight)*sizeof(int));

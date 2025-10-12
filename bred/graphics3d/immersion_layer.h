@@ -13,8 +13,8 @@ namespace graphics3d
 
 
 	   ::pointer < ::graphics3d::engine >                          m_pengine;
-	   ::string_map_base < ::pointer < ::graphics3d::scene > >		m_mapScene;
-	   ::pointer < ::graphics3d::scene >								   m_pscene;
+	   ::string_map_base < ::pointer < ::graphics3d::scene_base > >		m_mapScene;
+	   ::pointer < ::graphics3d::scene_base >								   m_pscene;
 	   ::pointer < ::graphics3d::camera >			                  m_pcamera;
 	   ::pointer < ::graphics3d::asset_manager >			            m_passetmanager;
 
@@ -29,15 +29,15 @@ namespace graphics3d
 
 	   virtual void on_initialize_immersion_layer();
 
-	   virtual void add_scene(::graphics3d::scene* pscene);
+	   virtual void add_scene(::graphics3d::scene_base* pscene);
 
-	   virtual void set_current_scene(::graphics3d::scene* pscene);
+	   virtual void set_current_scene(::graphics3d::scene_base* pscene);
 
       virtual ::graphics3d::camera *camera();
 
       virtual ::graphics3d::asset_manager *asset_manager();
 
-		virtual ::pointer < ::graphics3d::scene > create_main_scene();
+		virtual ::pointer < ::graphics3d::scene_base > create_main_scene();
 		// virtual void onUpdate(float deltaTime);
 		// virtual void on_render(::gpu::frame & frame);
 		//virtual IScene& getSceneInterface() = 0;

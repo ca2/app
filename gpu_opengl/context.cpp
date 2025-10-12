@@ -1,8 +1,11 @@
 #include "framework.h"
+#define STB_USE_HUNTER
+#include "_gpu_opengl.h"
 #include "command_buffer.h"
 #include "context.h"
 #include "device.h"
 #include "frame_buffer.h"
+#include "gltf/model.h"
 #include "lock.h"
 #include "model_buffer.h"
 #include "program.h"
@@ -10,6 +13,7 @@
 #include "render_target.h"
 #include "shader.h"
 #include "texture.h"
+#include "acme/filesystem/filesystem/file_context.h"
 #include "aura/graphics/image/image.h"
 #include "bred/gpu/command_buffer.h"
 #include "bred/gpu/context_lock.h"
@@ -17,19 +21,48 @@
 #include "bred/gpu/layer.h"
 #include "bred/gpu/types.h"
 #include "glm/mat4x4.hpp"
+//#include <assimp/Common/StbCommon.h>
 
+
+// ```cpp
+// #include <iostream>
+// #include <vector>
+// #include <fstream>
+//
+// #include <GL/glew.h>       // or glad, depending on your setup
+// #include <GLFW/glfw3.h>
+//
+#include <ktx/ktx.h>
+//#include <ktxvulkan.h>     // not needed for GL, but included in libktx installs
+//
+// // Utility: load whole file into memory
+// std::vector<unsigned char> loadFile(const char* filename) {
+//    std::ifstream file(filename, std::ios::binary | std::ios::ate);
+//    if (!file) throw std::runtime_error("Failed to open file");
+//    std::streamsize size = file.tellg();
+//    file.seekg(0, std::ios::beg);
+//
+//    std::vector<unsigned char> buffer(size);
+//    if (!file.read(reinterpret_cast<char*>(buffer.data()), size))
+//       throw std::runtime_error("Failed to read file");
+//    return buffer;
+// }
 
 #if defined(WINDOWS_DESKTOP)
 #include "device_win32.h"
 #endif
+#include <assimp/material.h>
+
+#include <stb/stb_image.h>
 
 
 namespace gpu_opengl
 {
 
-   void vertex2f(const ::double_rectangle& rectangle, float fZ);
+   void vertex2f(const ::double_rectangle &rectangle, float fZ);
 
-   void vertex2f(const ::double_polygon& a, float fZ);
+
+   void vertex2f(const ::double_polygon &a, float fZ);
 
 
    context::context()
@@ -71,7 +104,7 @@ namespace gpu_opengl
 
 #if defined(WINDOWS_DESKTOP)
 
-      ::cast < device_win32 > pgpudevice = m_pgpudevice;
+      ::cast<device_win32> pgpudevice = m_pgpudevice;
 
       if (pgpudevice->m_itaskCurrentGpuContext != ::current_itask())
       {
@@ -90,21 +123,21 @@ namespace gpu_opengl
 
       }
       //glGenBuffers(1, &VAO);
-//      float vertexes[] = {
-         // positions         // colors
-  //        0.5f, -0.5f, 0.0f,  1.0f, 0.0f, 0.0f,   // bottom right
-    //     -0.5f, -0.5f, 0.0f,  0.0f, 1.0f, 0.0f,   // bottom left
+      //      float vertexes[] = {
+      // positions         // colors
+      //        0.5f, -0.5f, 0.0f,  1.0f, 0.0f, 0.0f,   // bottom right
+      //     -0.5f, -0.5f, 0.0f,  0.0f, 1.0f, 0.0f,   // bottom left
       //    0.0f,  0.5f, 0.0f,  0.0f, 0.0f, 1.0f    // top
       //};
       float vertexes[] = {
          // first triangle
-          1.f,  1.f, 0.0f,  // top right
-          1.f, -1.f, 0.0f,  // bottom right
-         -1.f,  1.f, 0.0f,  // top left
+         1.f, 1.f, 0.0f, // top right
+         1.f, -1.f, 0.0f, // bottom right
+         -1.f, 1.f, 0.0f, // top left
          // second triangle
-          1.f, -1.f, 0.0f,  // bottom right
-         -1.f, -1.f, 0.0f,  // bottom left
-         -1.f,  1.f, 0.0f   // top left
+         1.f, -1.f, 0.0f, // bottom right
+         -1.f, -1.f, 0.0f, // bottom left
+         -1.f, 1.f, 0.0f // top left
       };
 
 #if defined(__APPLE__)
@@ -134,7 +167,7 @@ namespace gpu_opengl
       glBufferData(GL_ARRAY_BUFFER, sizeof(vertexes), vertexes, GL_STATIC_DRAW);
 
       // position attribute
-      glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
+      glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void *)0);
       glEnableVertexAttribArray(0);
       // color attribute
       //glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)(3 * sizeof(float)));
@@ -150,19 +183,19 @@ namespace gpu_opengl
       ::gpu::context_lock contextlock(this);
 
       //glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_ibo_elements);
-//int iError16 = glGetError();
+      //int iError16 = glGetError();
 
-//int size = 0; 
-//glGetBufferParameteriv(GL_ELEMENT_ARRAY_BUFFER, GL_BUFFER_SIZE, &size);
-//int iError17 = glGetError();
+      //int size = 0;
+      //glGetBufferParameteriv(GL_ELEMENT_ARRAY_BUFFER, GL_BUFFER_SIZE, &size);
+      //int iError17 = glGetError();
 
-//glDrawElements(GL_TRIANGLES, size / sizeof(GLushort), GL_UNSIGNED_SHORT, 0);
-//int iError18 = glGetError();
+      //glDrawElements(GL_TRIANGLES, size / sizeof(GLushort), GL_UNSIGNED_SHORT, 0);
+      //int iError18 = glGetError();
 
 
 #if defined(WINDOWS_DESKTOP)
 
-      ::cast < device_win32 > pgpudevice = m_pgpudevice;
+      ::cast<device_win32> pgpudevice = m_pgpudevice;
 
       if (pgpudevice->m_itaskCurrentGpuContext != ::current_itask())
       {
@@ -175,7 +208,7 @@ namespace gpu_opengl
 
       //      glClearColor(0.0f, 0.0f, 0.4f, 0.0f);
 
-            // Clear the screen
+      // Clear the screen
       glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
       //glClear(GL_COLOR_BUFFER_BIT);
@@ -183,7 +216,7 @@ namespace gpu_opengl
       if (m_pshader)
       {
 
-         m_pshader->bind();
+         m_pshader->bind(nullptr);
 
       }
       // Use our shader
@@ -203,7 +236,6 @@ namespace gpu_opengl
    }
 
 
-
    void context::global_transform()
    {
 
@@ -217,12 +249,12 @@ namespace gpu_opengl
 
          // Compute the MVP matrix from keyboard and mouse input
          //computeMatricesFromInputs();
-         ::glm::mat4 matrixProjection = (::glm::mat4&)projection_matrix();
-         ::glm::mat4 matrixView = (::glm::mat4&)view_matrix();
+         ::glm::mat4 matrixProjection = (::glm::mat4 &)projection_matrix();
+         ::glm::mat4 matrixView = (::glm::mat4 &)view_matrix();
          ::glm::mat4 matrixModel = glm::mat4(1.0);
          ::glm::mat4 matrixMVP = matrixProjection * matrixView * matrixModel;
 
-         // Send our transformation to the currently bound shader, 
+         // Send our transformation to the currently bound shader,
          // in the "MVP" uniform
          glUniformMatrix4fv(m_iMatrixUniform, 1, GL_FALSE, &matrixMVP[0][0]);
 
@@ -249,7 +281,6 @@ namespace gpu_opengl
       //float mouseSpeed = 0.005f;
 
 
-
    }
 
 
@@ -260,7 +291,7 @@ namespace gpu_opengl
 
 #if defined(WINDOWS_DESKTOP)
 
-      ::cast < device_win32 > pgpudevice = m_pgpudevice;
+      ::cast<device_win32> pgpudevice = m_pgpudevice;
 
       if (pgpudevice->m_itaskCurrentGpuContext != ::current_itask())
       {
@@ -274,7 +305,7 @@ namespace gpu_opengl
 
       //#ifdef __APPLE__
 
-            //glBindVertexArrayAPPLE(m_VAO);
+      //glBindVertexArrayAPPLE(m_VAO);
 
       //#else
 
@@ -303,10 +334,10 @@ namespace gpu_opengl
          glGenFramebuffers(1, &readFboId);
          glBindFramebuffer(GL_READ_FRAMEBUFFER, readFboId);
          glFramebufferTexture2D(GL_READ_FRAMEBUFFER, GL_COLOR_ATTACHMENT0,
-            GL_TEXTURE_2D, m_gluTextureBitmap1, 0);
+                                GL_TEXTURE_2D, m_gluTextureBitmap1, 0);
          glBlitFramebuffer(0, 0, m_sizeBitmap1.cx(), m_sizeBitmap1.cy(),
-            0, 0, m_rectangle.width(), m_rectangle.height(),
-            GL_COLOR_BUFFER_BIT, GL_LINEAR);
+                           0, 0, m_rectangle.width(), m_rectangle.height(),
+                           GL_COLOR_BUFFER_BIT, GL_LINEAR);
          glBindFramebuffer(GL_READ_FRAMEBUFFER, 0);
          glDeleteFramebuffers(1, &readFboId);
       }
@@ -328,14 +359,14 @@ namespace gpu_opengl
    }
 
 
-   void context::set_bitmap_1(::image::image* pimage)
+   void context::set_bitmap_1(::image::image *pimage)
    {
 
       ::gpu::context_lock contextlock(this);
 
 #if defined(WINDOWS_DESKTOP)
 
-      ::cast < device_win32 > pgpudevice = m_pgpudevice;
+      ::cast<device_win32> pgpudevice = m_pgpudevice;
 
       if (pgpudevice->m_itaskCurrentGpuContext != ::current_itask())
       {
@@ -354,17 +385,20 @@ namespace gpu_opengl
          glEnable(GL_TEXTURE_2D);
          glBindTexture(GL_TEXTURE_2D, m_gluTextureBitmap1);
 
-         glPixelStorei(GL_UNPACK_ALIGNMENT, 1); // set alignment of data in memory (a good thing to do before glTexImage)
+         glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
+         // set alignment of data in memory (a good thing to do before glTexImage)
 
          //#if defined(__APPLE__) || defined(__ANDROID__)
          //         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
          //         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE); // set clamp (GL_CLAMP_TO_EDGE would be better)
          //#else
          glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE); // set clamp (GL_CLAMP_TO_EDGE would be better)
+         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+         // set clamp (GL_CLAMP_TO_EDGE would be better)
          //#endif
          glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR); // set linear filtering (so you can scale your image)
+         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+         // set linear filtering (so you can scale your image)
 
       }
 
@@ -390,7 +424,7 @@ namespace gpu_opengl
          m_memorySwap.set_size(m_sizeBitmap1.area() * 4);
 
          //vertical_swap_copy_image32_swap_red_blue(
-         ((image32_t*)m_memorySwap.data())->vertical_swap_copy_swap_red_blue(
+         ((image32_t *)m_memorySwap.data())->vertical_swap_copy_swap_red_blue(
             m_sizeBitmap1.cx(),
             m_sizeBitmap1.cy(),
             m_sizeBitmap1.cx() * 4,
@@ -398,13 +432,10 @@ namespace gpu_opengl
             pimage->m_iScan);
 
          glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA,
-            m_sizeBitmap1.cx(),
-            m_sizeBitmap1.cy(),
-            0, GL_RGBA, GL_UNSIGNED_BYTE,
-            m_memorySwap.data()); // upload image data to the textur
-
-
-
+                      m_sizeBitmap1.cx(),
+                      m_sizeBitmap1.cy(),
+                      0, GL_RGBA, GL_UNSIGNED_BYTE,
+                      m_memorySwap.data()); // upload image data to the textur
 
 
       }
@@ -461,17 +492,18 @@ namespace gpu_opengl
          //Edit
          if (m_ecullmode == ::gpu::e_cull_mode_back)
          {
-            glCullFace(GL_BACK);   // cull back faces (default)
+            glCullFace(GL_BACK); // cull back faces (default)
          }
          else
          {
-            glCullFace(GL_FRONT);  // cull front faces
+            glCullFace(GL_FRONT); // cull front faces
             //glCullFace(GL_FRONT_AND_BACK); // cull both
          }
 
       }
 
    }
+
 
    //void context::swap_buffers()
    //{
@@ -483,10 +515,7 @@ namespace gpu_opengl
    //}
 
 
-
-
-
-   void context::update_framebuffer(const ::int_size& size)
+   void context::update_framebuffer(const ::int_size &size)
    {
 
       if (m_eoutput == ::gpu::e_output_swap_chain)
@@ -552,7 +581,7 @@ namespace gpu_opengl
       //auto status = glCheckFramebufferStatus(GL_FRAMEBUFFER);
       //if (status != GL_FRAMEBUFFER_COMPLETE)
       //{
-      // 
+      //
       //   warning() << "ERROR::FRAMEBUFFER:: Framebuffer is not complete! " << status;
 
       //}
@@ -650,7 +679,6 @@ namespace gpu_opengl
    //}
 
 
-
    //void context::make_current()
    //{
 
@@ -712,6 +740,113 @@ namespace gpu_opengl
 
    }
 
+
+   ::pointer<::gpu::texture> context::load_cube_map(const ::scoped_string &scopedstrName, const ::file::path &path,
+                                                 bool b32)
+   {
+
+      ::gpu::context_lock contextlock(this);
+
+      ::pointer<::gpu::texture> ptexture;
+
+      // VkFormat vkformat;
+      //
+      // if (!b32)
+      // {
+      //
+      //    vkformat = VK_FORMAT_R16G16B16A16_SFLOAT;
+      // }
+      // else
+      // {
+      //
+      //    vkformat = VK_FORMAT_R32G32B32A32_SFLOAT;
+      // }
+
+      //::cast<gpu_vulkan::context> pcontext = m_pgpurenderer->m_pgpucontext;
+      //::cast<gpu_vulkan::queue> pqueueCopy = pcontext->transfer_queue();
+
+      //auto vkqueueCopy = pqueueCopy->m_vkqueue;
+
+      //VkImageUsageFlags usageFlags = VK_IMAGE_USAGE_SAMPLED_BIT | VK_IMAGE_USAGE_TRANSFER_DST_BIT;
+
+      //VkImageLayout initialLayout = VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL;
+
+      //auto ptexture = loadCubemap(scopedstrName, path, vkformat, vkqueueCopy, usageFlags, initialLayout);
+
+      ptexture = loadCubemap(scopedstrName, path, b32);
+
+      return ptexture;
+
+   }
+
+
+   ::pointer<::gpu::texture> context::loadCubemap(const ::scoped_string &name, const ::file::path & pathFile,
+      bool b32)
+//                                               VkFormat format, VkQueue vkqueueCopy, VkImageUsageFlags usageFlags,
+  //                                             VkImageLayout initialLayout)
+   {
+      // if (auto it = m_textures.find(name); it != m_textures.end())
+      // return it->element2();
+
+      ///::cast<::gpu_opengl::queue> pqueueGraphics = this->graphics_queue();
+      ///
+
+      auto pqueueGraphics = this->graphics_queue();
+
+      if (pathFile.case_insensitive_ends(".ktx"))
+      {
+
+         auto tex = øcreate<::gpu::texture>();
+
+         // tex->m_pDevice = &m_pgpudevice;
+
+         ::cast<::gpu_opengl::texture> ptexture = tex;
+
+         ptexture->m_pgpurenderer = m_pgpurenderer;
+
+         try
+         {
+
+            // ptexture->KtxLoadCubemapFromFile(name, ktxFilename, format, pqueueGraphics->m_vkqueue, usageFlags,
+            // initialLayout);
+
+            ptexture->KtxLoadCubemapFromFile(name, pathFile, b32);
+
+         }
+         catch (const ::exception &e)
+         {
+            
+            throw ::exception(e.m_estatus, "Failed to load HDR cubemap '" + name + "': " + e.get_message());
+
+         }
+
+         return tex;
+
+      }
+      else if (pathFile.case_insensitive_ends(".hdr"))
+      {
+
+         try
+         {
+
+            // ptexture->KtxLoadCubemapFromFile(name, ktxFilename, format, pqueueGraphics->m_vkqueue, usageFlags,
+            // initialLayout);
+
+            auto ptexture = cubemap_from_hdr(pathFile);
+
+            return ptexture;
+
+         }
+         catch (const ::exception &e)
+         {
+            throw ::exception(e.m_estatus, "Failed to load HDR cubemap '" + name + "': " + e.get_message());
+         }
+      }
+      // registerTextureIfNeeded(name, tex, m_textures, m_textureIndexMap, m_textureList);
+      
+   }
+
+
    //   string context::load_fragment(const ::scoped_string & scopedstrPath, enum_shader & eshader)
    //   {
    //
@@ -771,49 +906,49 @@ namespace gpu_opengl
    //   }
 
 
-      //string context::get_shader_version_text()
-      //{
+   //string context::get_shader_version_text()
+   //{
 
-      //   return "version 330 core";
+   //   return "version 330 core";
 
-      //}
+   //}
 
-      //void context::translate_shader(string& strFragment)
-      //{
+   //void context::translate_shader(string& strFragment)
+   //{
 
-      //   string_array_base stra;
+   //   string_array_base stra;
 
-      //   stra.add_lines(strFragment);
+   //   stra.add_lines(strFragment);
 
-      //   auto pFind = stra.case_insensitive_find_first_begins("#version ");
+   //   auto pFind = stra.case_insensitive_find_first_begins("#version ");
 
-      //   if (::is_set(pFind))
-      //   {
+   //   if (::is_set(pFind))
+   //   {
 
-      //      stra[iFind] = get_shader_version_text();
+   //      stra[iFind] = get_shader_version_text();
 
-      //   }
-      //   else
-      //   {
+   //   }
+   //   else
+   //   {
 
-      //      stra.insert_at(0, get_shader_version_text());
+   //      stra.insert_at(0, get_shader_version_text());
 
-      //   }
+   //   }
 
-      //   _translate_shader(stra);
+   //   _translate_shader(stra);
 
-      //   strFragment = stra.implode("\n");
+   //   strFragment = stra.implode("\n");
 
-      //}
-
-
-      //void context::_translate_shader(string_array_base& stra)
-      //{
-
-      //}
+   //}
 
 
-   void context::set_matrix_uniform(const ::gpu::payload& uniformMatrix)
+   //void context::_translate_shader(string_array_base& stra)
+   //{
+
+   //}
+
+
+   void context::set_matrix_uniform(const ::gpu::payload &uniformMatrix)
    {
 
       m_iMatrixUniform = uniformMatrix.m_iUniform;
@@ -821,14 +956,14 @@ namespace gpu_opengl
    }
 
 
-   void context::clear(const ::color::color& color)
+   void context::clear(const ::color::color &color)
    {
 
       ::gpu::context_lock contextlock(this);
-      // Clear the screen 
+      // Clear the screen
       GLCheckError("");
       //   glClearColor(0.678f, 0.847f, 0.902f, 1.0f);//
-      glClearColor(color.f32_red(), color.f32_green(), color.f32_blue(), color.f32_opacity());//
+      glClearColor(color.f32_red(), color.f32_green(), color.f32_blue(), color.f32_opacity()); //
       glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
       GLCheckError("");
 
@@ -842,16 +977,21 @@ namespace gpu_opengl
 
       // Create the UBO
       glGenBuffers(1, &m_globalUBO);
+      GLCheckError("");
       glBindBuffer(GL_UNIFORM_BUFFER, m_globalUBO);
+      GLCheckError("");
       glBufferData(GL_UNIFORM_BUFFER, iGlobalUboSize, NULL, GL_STATIC_DRAW); // For 2 mat4s = 2 * sizeof(float) * 16
+      GLCheckError("");
       unsigned int uUboBindingPoint = 0;
       glBindBufferBase(GL_UNIFORM_BUFFER, uUboBindingPoint, m_globalUBO);
+      GLCheckError("");
       glBindBuffer(GL_UNIFORM_BUFFER, 0);
+      GLCheckError("");
 
    }
 
 
-   void context::update_global_ubo(const ::block& block)
+   void context::update_global_ubo(const ::block &block)
    {
 
       ::gpu::context_lock contextlock(this);
@@ -860,7 +1000,7 @@ namespace gpu_opengl
       GLCheckError("");
 
       // Map the entire buffer for writing
-      void* p = glMapBufferRange(
+      void *p = glMapBufferRange(
          GL_UNIFORM_BUFFER,
          0, block.size(),
          GL_MAP_WRITE_BIT | GL_MAP_INVALIDATE_BUFFER_BIT);
@@ -914,7 +1054,7 @@ namespace gpu_opengl
    //}
 
 
-   void context::copy(::gpu::texture* ptextureParam)
+   void context::copy(::gpu::texture *ptextureParam)
    {
 
       _copy_using_shader(ptextureParam);
@@ -922,7 +1062,7 @@ namespace gpu_opengl
    }
 
 
-   void context::_copy_using_shader(::gpu::texture* ptextureParam)
+   void context::_copy_using_shader(::gpu::texture *ptextureParam)
    {
 
       ::gpu::context_lock contextlock(this);
@@ -963,12 +1103,12 @@ void main() {
 
       auto pmodelbufferFullScreenQuad = sequence2_uv_fullscreen_quad_model_buffer(::gpu::current_frame());
 
-    /*  if (!m_vaoFullScreenQuad)
-      {
+      /*  if (!m_vaoFullScreenQuad)
+        {
 
-         createFullscreenQuad(&m_vaoFullScreenQuad, &m_vboFullScreenQuad);
+           createFullscreenQuad(&m_vaoFullScreenQuad, &m_vboFullScreenQuad);
 
-      }*/
+        }*/
       glBindFramebuffer(GL_DRAW_FRAMEBUFFER, 0);
       //glDisable(GL_BLEND);                    // Ensure no blending
 
@@ -978,12 +1118,11 @@ void main() {
       //glClearColor(0.1, 0.1, 0.1, 1.0);
       //glClear(GL_COLOR_BUFFER_BIT);
 
-      
-      m_pshaderCopy->bind();
-
-      m_pshaderCopy->bind_source(ptextureParam, 0);
-
       auto pcommandbuffer = m_pgpurenderer->getCurrentCommandBuffer2(::gpu::current_frame());
+
+      m_pshaderCopy->bind(pcommandbuffer);
+
+      m_pshaderCopy->bind_source(pcommandbuffer, ptextureParam, 0);
 
       pmodelbufferFullScreenQuad->bind(pcommandbuffer);
 
@@ -1001,13 +1140,13 @@ void main() {
 
       //glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
 
-      m_pshaderCopy->unbind();
+      m_pshaderCopy->unbind(pcommandbuffer);
 
    }
 
-   
+
    //void context::gpu_debug_message(const ::scoped_string& scopedstrMessage)
-   void context::start_debug_happening(const ::scoped_string& scopedstrMessage)
+   void context::start_debug_happening(const ::scoped_string &scopedstrMessage)
    {
 
       {
@@ -1015,18 +1154,18 @@ void main() {
          ::string strMessage(scopedstrMessage);
 
          glDebugMessageInsert(GL_DEBUG_SOURCE_APPLICATION,
-            GL_DEBUG_TYPE_MARKER,
-            0,
-            GL_DEBUG_SEVERITY_NOTIFICATION,
-            -1,
-            strMessage);
+                              GL_DEBUG_TYPE_MARKER,
+                              0,
+                              GL_DEBUG_SEVERITY_NOTIFICATION,
+                              -1,
+                              strMessage);
 
       }
 
    }
 
 
-   void context::on_end_layer(::gpu::layer* player)
+   void context::on_end_layer(::gpu::layer *player)
    {
 
       {
@@ -1036,11 +1175,11 @@ void main() {
          strMessage.formatf("ø gpu_opengl::context::on_end_layer");
 
          glDebugMessageInsert(GL_DEBUG_SOURCE_APPLICATION,
-            GL_DEBUG_TYPE_MARKER,
-            0,
-            GL_DEBUG_SEVERITY_NOTIFICATION,
-            -1,
-            strMessage);
+                              GL_DEBUG_TYPE_MARKER,
+                              0,
+                              GL_DEBUG_SEVERITY_NOTIFICATION,
+                              -1,
+                              strMessage);
 
       }
 
@@ -1059,7 +1198,7 @@ void main() {
    }
 
 
-   void context::merge_layers(::gpu::texture* ptextureTarget, ::pointer_array < ::gpu::layer >* playera)
+   void context::merge_layers(::gpu::texture *ptextureTarget, ::pointer_array<::gpu::layer> *playera)
    {
 
       ::gpu::context_lock contextlock(this);
@@ -1126,7 +1265,7 @@ void main() {
             //m_pshaderBlend3->m_pgpurenderer = this;
             //m_pshaderBlend3->m_setbindingSampler = 0;
             // Image Blend descriptors
-   //if (!m_psetdescriptorlayoutImageBlend)
+            //if (!m_psetdescriptorlayoutImageBlend)
 
             //m_pshaderBlend3->m_bClearColor = true;
             //m_pshaderBlend3->m_colorClear = ::color::transparent;
@@ -1146,7 +1285,7 @@ void main() {
                // the full screen shader is embed in the shader code
                ::gpu::shader::e_flag_clear_default_bindings_and_attributes_descriptions
 
-            );
+               );
 
          }
 
@@ -1173,13 +1312,14 @@ void main() {
 
          //}
 
-         ::cast < renderer > prenderer = m_pgpurenderer;
+         ::cast<renderer> prenderer = m_pgpurenderer;
 
-         ::cast < ::gpu_opengl::command_buffer > pcommandbuffer = prenderer->getCurrentCommandBuffer2(::gpu::current_frame());
+         ::cast<::gpu_opengl::command_buffer> pcommandbuffer = prenderer->getCurrentCommandBuffer2(
+            ::gpu::current_frame());
 
          //auto vkcommandbuffer = pcommandbuffer->m_vkcommandbuffer;
 
-         ::cast < ::gpu_opengl::texture > ptextureDst = ptextureTarget;
+         ::cast<::gpu_opengl::texture> ptextureDst = ptextureTarget;
 
          int iH = ptextureDst->m_pgpurenderer->m_pgpucontext->m_rectangle.height();
 
@@ -1202,11 +1342,11 @@ void main() {
             strMessage.formatf("ø clear drawFbo=%d readFbo=%d tex=%d", drawFbo, readFbo, ptextureDst->m_gluTextureID);
 
             glDebugMessageInsert(GL_DEBUG_SOURCE_APPLICATION,
-               GL_DEBUG_TYPE_MARKER,
-               0,
-               GL_DEBUG_SEVERITY_NOTIFICATION,
-               -1,
-               strMessage);
+                                 GL_DEBUG_TYPE_MARKER,
+                                 0,
+                                 GL_DEBUG_SEVERITY_NOTIFICATION,
+                                 -1,
+                                 strMessage);
 
          }
 
@@ -1216,17 +1356,17 @@ void main() {
 
          if (1)
          {
-            
+
             int iLayer = 0;
 
-            for (auto player : *playera)
+            for (auto player: *playera)
             {
 
                //if (iLayer == 2)
                {
 
 
-                  ::cast < ::gpu_opengl::texture > ptextureSrc = player->texture();
+                  ::cast<::gpu_opengl::texture> ptextureSrc = player->texture();
 
                   //ptextureSrc->_new_state(
                   //   pcommandbuffer,
@@ -1235,7 +1375,7 @@ void main() {
                   //   VK_PIPELINE_STAGE_FRAGMENT_SHADER_BIT
                   //);
 
-                  m_pshaderBlend3->bind(ptextureDst, ptextureSrc);
+                  m_pshaderBlend3->bind(nullptr, ptextureDst, ptextureSrc);
 
                   auto r = ptextureSrc->m_rectangleTarget;
 
@@ -1266,14 +1406,15 @@ void main() {
 
                      ::string strMessage;
 
-                     strMessage.formatf("ø merge%d drawFbo=%d readFbo=%d texDst=%d", iLayer, drawFbo, readFbo, ptextureDst->m_gluTextureID);
+                     strMessage.formatf("ø merge%d drawFbo=%d readFbo=%d texDst=%d", iLayer, drawFbo, readFbo,
+                                        ptextureDst->m_gluTextureID);
 
                      glDebugMessageInsert(GL_DEBUG_SOURCE_APPLICATION,
-                        GL_DEBUG_TYPE_MARKER,
-                        0,
-                        GL_DEBUG_SEVERITY_NOTIFICATION,
-                        -1,
-                        strMessage);
+                                          GL_DEBUG_TYPE_MARKER,
+                                          0,
+                                          GL_DEBUG_SEVERITY_NOTIFICATION,
+                                          -1,
+                                          strMessage);
 
                   }
 
@@ -1290,11 +1431,11 @@ void main() {
                      strMessage.formatf("ø merge%d activeTex=%d samplerTex=%d", iLayer, activeTex, samplerTex);
 
                      glDebugMessageInsert(GL_DEBUG_SOURCE_APPLICATION,
-                        GL_DEBUG_TYPE_MARKER,
-                        0,
-                        GL_DEBUG_SEVERITY_NOTIFICATION,
-                        -1,
-                        strMessage);
+                                          GL_DEBUG_TYPE_MARKER,
+                                          0,
+                                          GL_DEBUG_SEVERITY_NOTIFICATION,
+                                          -1,
+                                          strMessage);
 
                   }
 
@@ -1307,7 +1448,7 @@ void main() {
                   //ID3D11ShaderResourceView* sharedresourceviewa[] =
                   //{ ptexture->m_pshaderresourceview };
 
-                                 // 1. Define viewport and scissor rectangle
+                  // 1. Define viewport and scissor rectangle
                   //D3D12_VIEWPORT viewport = {};
                   //viewport.TopLeftX = ptextureSrc->m_rectangleTarget.left();
                   //viewport.TopLeftY = ptextureSrc->m_rectangleTarget.top();
@@ -1341,7 +1482,7 @@ void main() {
 
                   //pcommandlist->IASetPrimitiveTopology(D3D_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
                   //vkCmdDraw(vkcommandbuffer, 3, 1, 0, 0);
-                  m_pshaderBlend3->unbind();
+                  m_pshaderBlend3->unbind(pcommandbuffer);
                }
                iLayer++;
 
@@ -1351,19 +1492,18 @@ void main() {
          //}
 
 
-
          ////::cast <texture > ptextureDst = ptextureTarget;
          //{
-         //   
+         //
          //   float clearColor2[4] = { 0.95f * 0.5f, 0.75f * 0.5f, 0.95f * 0.5f, 0.5f }; // Clear to transparent
-         //   
+         //
          //   D3D12_RECT r[1];
-         //   
+         //
          //   r[0].left = 100;
          //   r[0].top = 200;
          //   r[0].right = 200;
          //   r[0].bottom = 300;
-         //   
+         //
          //   pcommandlist->ClearRenderTargetView(
          //      ptextureDst->m_pheapRenderTargetView->GetCPUDescriptorHandleForHeapStart(),
          //      clearColor2,
@@ -1433,12 +1573,10 @@ void main() {
       ////GLCheckError("glDeleteFramebuffers");
 
 
-
-
    }
 
 
-   void context::on_start_layer(::gpu::layer* player)
+   void context::on_start_layer(::gpu::layer *player)
    {
 
       ::gpu::context::on_start_layer(player);
@@ -1530,12 +1668,12 @@ void main() {
    //}
 
 
-   void context::_copy_using_blit(::gpu::texture* ptextureParam)
+   void context::_copy_using_blit(::gpu::texture *ptextureParam)
    {
 
       ::gpu::context_lock contextlock(this);
 
-      ::cast < ::gpu_opengl::texture > ptexture = ptextureParam;
+      ::cast<::gpu_opengl::texture> ptexture = ptextureParam;
 
 
       GLuint framebuffer;
@@ -1548,7 +1686,8 @@ void main() {
          ptexture->m_gluTextureID,
          0);
 
-      if (glCheckFramebufferStatus(GL_READ_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE) {
+      if (glCheckFramebufferStatus(GL_READ_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
+      {
          printf("Framebuffer not complete!\n");
          glDeleteFramebuffers(1, &framebuffer);
          return;
@@ -1574,7 +1713,7 @@ void main() {
          0,
          m_rectangle.width(),
          m_rectangle.height()
-      );
+         );
 
 
       // Blit from source to default framebuffer
@@ -1654,7 +1793,8 @@ void main() {
    //}
 
 
-   void context::on_create_context(::gpu::device* pgpudevice, const ::gpu::enum_output& eoutput, ::windowing::window* pwindow, const ::int_size& size)
+   void context::on_create_context(::gpu::device *pgpudevice, const ::gpu::enum_output &eoutput,
+                                   ::windowing::window *pwindow, const ::int_size &size)
    {
 
       if (eoutput == ::gpu::e_output_cpu_buffer)
@@ -1682,17 +1822,17 @@ void main() {
       {
 
          auto r = ::int_rectangle(::int_point{}, size);
-         //         
-           //       ::gpu::rear_guard guard(this);
+         //
+         //       ::gpu::rear_guard guard(this);
 
          send([this, r]()
-            {
+         {
 
-               _create_cpu_buffer(r.size());
+            _create_cpu_buffer(r.size());
 
-               //::gpu::context_guard guard(this);
+            //::gpu::context_guard guard(this);
 
-            });
+         });
 
       }
 
@@ -1700,14 +1840,14 @@ void main() {
    }
 
 
-   void context::copy(::gpu::texture* ptextureTarget, ::gpu::texture* ptextureSource)
+   void context::copy(::gpu::texture *ptextureTarget, ::gpu::texture *ptextureSource)
    {
 
       ::gpu::context_lock contextlock(this);
 
-      ::cast < ::gpu_opengl::texture > ptextureDst = ptextureTarget;
+      ::cast<::gpu_opengl::texture> ptextureDst = ptextureTarget;
 
-      ::cast < ::gpu_opengl::texture > ptextureSrc = ptextureSource;
+      ::cast<::gpu_opengl::texture> ptextureSrc = ptextureSource;
 
       auto textureSrc = ptextureSrc->m_gluTextureID;
 
@@ -1747,10 +1887,10 @@ void main() {
       auto gluDstFbo = ptextureDst->m_gluFbo;
       glBindFramebuffer(GL_DRAW_FRAMEBUFFER, gluDstFbo);
       GLCheckError("");
-      
+
       glDrawBuffer(GL_COLOR_ATTACHMENT0);
       GLCheckError("");
-      
+
       //glFramebufferTexture2D(GL_DRAW_FRAMEBUFFER, GL_COLOR_ATTACHMENT0,
       //   GL_TEXTURE_2D, textureDst, 0);
       //GLCheckError("");
@@ -1766,11 +1906,11 @@ void main() {
          strMessage.formatf("ø texDst=%d texSrc=%d", texDst, texSrc);
 
          glDebugMessageInsert(GL_DEBUG_SOURCE_APPLICATION,
-            GL_DEBUG_TYPE_MARKER,
-            0,
-            GL_DEBUG_SEVERITY_NOTIFICATION,
-            -1,
-            strMessage);
+                              GL_DEBUG_TYPE_MARKER,
+                              0,
+                              GL_DEBUG_SEVERITY_NOTIFICATION,
+                              -1,
+                              strMessage);
 
       }
 
@@ -1787,11 +1927,11 @@ void main() {
          strMessage.formatf("ø copy drawFbo=%d readFbo=%d", drawFbo, readFbo);
 
          glDebugMessageInsert(GL_DEBUG_SOURCE_APPLICATION,
-            GL_DEBUG_TYPE_MARKER,
-            0,
-            GL_DEBUG_SEVERITY_NOTIFICATION,
-            -1,
-            strMessage);
+                              GL_DEBUG_TYPE_MARKER,
+                              0,
+                              GL_DEBUG_SEVERITY_NOTIFICATION,
+                              -1,
+                              strMessage);
 
       }
 
@@ -1800,18 +1940,18 @@ void main() {
          GLint textureDrawFbo = 0;
          glGetFramebufferAttachmentParameteriv(
             GL_DRAW_FRAMEBUFFER,
-            GL_COLOR_ATTACHMENT0,               // or GL_DEPTH_ATTACHMENT, etc.
+            GL_COLOR_ATTACHMENT0, // or GL_DEPTH_ATTACHMENT, etc.
             GL_FRAMEBUFFER_ATTACHMENT_OBJECT_NAME,
             &textureDrawFbo
-         );
+            );
 
          GLint textureReadFbo = 0;
          glGetFramebufferAttachmentParameteriv(
             GL_READ_FRAMEBUFFER,
-            GL_COLOR_ATTACHMENT0,               // or GL_DEPTH_ATTACHMENT, etc.
+            GL_COLOR_ATTACHMENT0, // or GL_DEPTH_ATTACHMENT, etc.
             GL_FRAMEBUFFER_ATTACHMENT_OBJECT_NAME,
             &textureReadFbo
-         );
+            );
 
 
          ::string strMessage;
@@ -1819,11 +1959,11 @@ void main() {
          strMessage.formatf("ø copy drawFboTex=%d readFboText=%d", textureDrawFbo, textureReadFbo);
 
          glDebugMessageInsert(GL_DEBUG_SOURCE_APPLICATION,
-            GL_DEBUG_TYPE_MARKER,
-            0,
-            GL_DEBUG_SEVERITY_NOTIFICATION,
-            -1,
-            strMessage);
+                              GL_DEBUG_TYPE_MARKER,
+                              0,
+                              GL_DEBUG_SEVERITY_NOTIFICATION,
+                              -1,
+                              strMessage);
 
       }
 
@@ -1835,7 +1975,7 @@ void main() {
          0, 0, sizeSrc.cx(), sizeSrc.cy(),
          0, 0, sizeDst.cx(), sizeDst.cy(),
          GL_COLOR_BUFFER_BIT, GL_NEAREST
-      );
+         );
       GLCheckError("");
 #ifdef SHOW_DEBUG_DRAWING
       {
@@ -1886,12 +2026,12 @@ void main() {
    }
 
 
-   void context::_create_offscreen_window(const ::int_size& size)
+   void context::_create_offscreen_window(const ::int_size &size)
    {
 
 #if defined(WINDOWS_DESKTOP)
 
-      ::cast < device_win32 > pdevice = m_pgpudevice;
+      ::cast<device_win32> pdevice = m_pgpudevice;
 
       pdevice->_defer_create_offscreen_window(size);
 
@@ -1966,7 +2106,7 @@ void main() {
 
 #if defined(WINDOWS_DESKTOP)
 
-      ::cast < device_win32 > pdevice = m_pgpudevice;
+      ::cast<device_win32> pdevice = m_pgpudevice;
 
       pdevice->_create_device(m_rectangle.size());
 
@@ -2086,7 +2226,7 @@ void main() {
       //   pgpuapproach->defer_init_gpu_library();
 
       //   auto pszVersion = (const_char_pointer )glGetString(GL_VERSION);
-      //   //::e_status estatus = 
+      //   //::e_status estatus =
 
       //   ::string strVersion(scopedstrVersion);
 
@@ -2130,7 +2270,7 @@ void main() {
    }
 
 
-   void context::_create_window_context(::windowing::window* pwindowParam)
+   void context::_create_window_context(::windowing::window *pwindowParam)
    {
 
       //   ::cast < ::windowing_win32::window > pwindow = pwindowParam;
@@ -2274,7 +2414,7 @@ void main() {
       //         m_pgpudevice->m_pgpuapproach->defer_init_gpu_library();
 
       //         auto pszVersion = (const_char_pointer )glGetString(GL_VERSION);
-      //         //::e_status estatus = 
+      //         //::e_status estatus =
 
       //         ::string strVersion(scopedstrVersion);
 
@@ -2352,7 +2492,7 @@ void main() {
    }
 
 
-   void context::_create_cpu_buffer(const ::int_size& size)
+   void context::_create_cpu_buffer(const ::int_size &size)
    {
 
       _create_offscreen_window(size);
@@ -2362,7 +2502,7 @@ void main() {
    }
 
 
-   void context::defer_create_window_context(::windowing::window* pwindow)
+   void context::defer_create_window_context(::windowing::window *pwindow)
    {
 
       //if (m_hrc)
@@ -2377,7 +2517,7 @@ void main() {
    }
 
 
-   void context::_defer_create_window_context(::windowing::window* pwindow)
+   void context::_defer_create_window_context(::windowing::window *pwindow)
    {
 
       //_create_window_context(pwindow);
@@ -2385,7 +2525,7 @@ void main() {
    }
 
 
-   void context::resize_cpu_buffer(const ::int_size& sizeParam)
+   void context::resize_cpu_buffer(const ::int_size &sizeParam)
    {
 
       //if (m_papplication->m_bUseSwapChainWindow)
@@ -2398,42 +2538,42 @@ void main() {
       auto size(sizeParam);
 
       send([this, size]()
-         {
-            //if (!m_pcpubuffer)
+      {
+         //if (!m_pcpubuffer)
 
-            create_cpu_buffer(size);
+         create_cpu_buffer(size);
 
-            ::gpu::context_lock contextlock(this);
-            ///m_pcpubuffer->m_pixmap.create(m_pcpubuffer->m_memory, size);
+         ::gpu::context_lock contextlock(this);
+         ///m_pcpubuffer->m_pixmap.create(m_pcpubuffer->m_memory, size);
 
-      //#ifdef WINDOWS_DESKTOP
-      //
-      //      ::SetWindowPos(m_hwnd, 0, 0, 0, size.cx(), size.cy(), SWP_NOZORDER | SWP_NOMOVE | SWP_HIDEWINDOW);
-      //
-      //#else
+         //#ifdef WINDOWS_DESKTOP
+         //
+         //      ::SetWindowPos(m_hwnd, 0, 0, 0, size.cx(), size.cy(), SWP_NOZORDER | SWP_NOMOVE | SWP_HIDEWINDOW);
+         //
+         //#else
 
-      //      destroy_offscreen_buffer();
-      //
-      //      if(!create_offscreen_buffer(size))
-      //      {
-      //
-      //         return error_failed;
-      //
-      //      }
+         //      destroy_offscreen_buffer();
+         //
+         //      if(!create_offscreen_buffer(size))
+         //      {
+         //
+         //         return error_failed;
+         //
+         //      }
 
-      //#endif
+         //#endif
 
-            //make_current();
+         //make_current();
 
-            glViewport(0, 0, size.cx(), size.cy());
-            //glMatrixMode(GL_PROJECTION);
-            //glLoadIdentity();
-            //glOrtho(0, size.cx(), 0, size.cy(), -10, 10);
-            //glMatrixMode(GL_MODELVIEW);
-            //glutPostRedisplay();
+         glViewport(0, 0, size.cx(), size.cy());
+         //glMatrixMode(GL_PROJECTION);
+         //glLoadIdentity();
+         //glOrtho(0, size.cx(), 0, size.cy(), -10, 10);
+         //glMatrixMode(GL_MODELVIEW);
+         //glutPostRedisplay();
 
-            //return ::success;
-         });
+         //return ::success;
+      });
 
 
    }
@@ -2449,11 +2589,11 @@ void main() {
          {
 
             m_pgpudevice->m_pgpucontextCurrent4->_send([this]()
-               {
+            {
 
-                  ///m_pgpudevice->release_current(m_pgpudevice->m_pgpucontextCurrent4);
+               ///m_pgpudevice->release_current(m_pgpudevice->m_pgpucontextCurrent4);
 
-               });
+            });
 
          }
 
@@ -2480,7 +2620,7 @@ void main() {
    //   }
    //   else if(m_eoutput == ::gpu::e_output_swap_chain)
    //   {
-   //      
+   //
    //      // If using swap chain, no need to bind framebuffer
 
    //      GLint drawFboId = 0, readFboId = 0;
@@ -2520,7 +2660,7 @@ void main() {
    void context::_context_lock()
    {
 
-      ::cast < device > pdevice = m_pgpudevice;
+      ::cast<device> pdevice = m_pgpudevice;
 
       pdevice->_opengl_lock();
 
@@ -2530,7 +2670,7 @@ void main() {
    void context::_context_unlock()
    {
 
-      ::cast < device > pdevice = m_pgpudevice;
+      ::cast<device> pdevice = m_pgpudevice;
 
       pdevice->_opengl_unlock();
 
@@ -2542,7 +2682,7 @@ void main() {
 
 #if defined(WINDOWS_DESKTOP)
 
-      ::cast < device_win32 > pgpudevice = m_pgpudevice;
+      ::cast<device_win32> pgpudevice = m_pgpudevice;
 
       if (pgpudevice->m_itaskCurrentGpuContext != ::current_itask())
       {
@@ -2586,7 +2726,7 @@ void main() {
    }
 
 
-   void context::_translate_shader(string_array_base& stra)
+   void context::_translate_shader(string_array_base &stra)
    {
 
       ::gpu::context::_translate_shader(stra);
@@ -2702,7 +2842,7 @@ uniform sampler2D text;
 uniform vec4 textColor;
 
 void main()
-{    
+{
     vec4 sampled = texture(text, TexCoords).rgba;
 vec4 c = vec4(textColor) * sampled;
     //color = vec4(sqrt(c.r),sqrt(c.g), sqrt(c.b), sqrt(c.a));
@@ -2716,7 +2856,164 @@ color = vec4(c.r,c.g, c.b, c.a);
    }
 
 
+   ::pointer<::graphics3d::renderable> context::_load_gltf_model(const ::gpu::renderable_t &model)
+   {
+      // if (auto it = m_mapgltfModel.find(name); it != m_mapgltfModel.end())
+      //  return it->element2();
+
+      ::gpu::context_lock contextlock(this);
+
+      auto pmodel = øcreate_new<::gpu_opengl::gltf::model>();
+
+      (*(::gpu::renderable_t *)pmodel) = model;
+
+      //::cast<::gpu_opvulkan::queue> pqueueGraphics = graphics_queue();
+
+      //pmodel->loadFromFile(model.m_path.c_str(), this, pqueueGraphics->m_vkqueue, model.m_iFlags, model.m_fScale);
+
+      pmodel->initialize_gpu_gltf_model(this, model);
+
+      // m_mapgltfModel[name] = model;
+      return pmodel;
+   }
+
+
+   void context::load_generic_texture(::pointer<::gpu::texture> &ptexture, const ::file::path &path,
+                                      int iAssimpTextureType)
+   {
+
+      ødefer_construct(ptexture);
+
+      auto memory = file()->as_memory(path);
+
+      //         ::string relativePath = fileName;
+      //       ::string path = directory + '/' + relativePath;
+
+      auto inputData = memory.data();
+
+      auto inputSize = memory.size();
+
+      GLuint textureId = 0;
+      GLenum glTarget = 0;
+      
+      if (path.case_insensitive_ends(".hdr"))
+      {
+
+
+      }
+      else if (path.case_insensitive_ends(".ktx"))
+      {
+         // Create ktxTexture from memory
+         ktxTexture *kTexture = nullptr;
+         KTX_error_code result = ktxTexture_CreateFromMemory(
+            inputData, inputSize,
+            KTX_TEXTURE_CREATE_LOAD_IMAGE_DATA_BIT,
+            &kTexture);
+
+         if (result != KTX_SUCCESS)
+         {
+            warning() << "Failed to load KTX from memory\n";
+            return;
+         }
+         ktxTexture1* tex1 = (ktxTexture1*)kTexture;
+         information() << "Width=" << kTexture->baseWidth
+                   << " Height=" << kTexture->baseHeight
+                   << " Levels=" << kTexture->numLevels
+                   << " glInternalFormat=" << tex1->glInternalformat << "\n";
+
+         // Upload to OpenGL
+         GLenum glerror = 0;
+         //auto result2 = ktxTexture_GLUpload(kTexture, &textureId, nullptr, &glerror);
+         auto result2 = ktxTexture_GLUpload(kTexture, &textureId, &glTarget, &glerror);
+
+         if (result2 != KTX_SUCCESS)
+         {
+            warning() << "Failed to upload KTX to OpenGL\n";
+            ktxTexture_Destroy(kTexture);
+            return;
+         }
+
+         information() << "Texture uploaded to OpenGL with ID " << textureId << "\n";
+
+         // Cleanup ktx object (OpenGL texture stays alive)
+         ktxTexture_Destroy(kTexture);
+
+      }
+      else
+      {
+         int width, height, numChannels;
+
+
+
+         unsigned char *data = stbi_load_from_memory(inputData, inputSize, &width, &height, &numChannels, 0);
+
+         if (!data)
+         {
+            information() << "Failed to load texture data";
+            stbi_image_free(data);
+
+            return;
+         }
+
+         GLenum format;
+
+         switch (numChannels)
+         {
+            case 1:
+               format = GL_RED;
+               break;
+            case 3:
+               format = GL_RGB;
+               break;
+            case 4:
+               format = GL_RGBA;
+               break;
+         }
+
+         GLenum internalFormat = format;
+
+         // account for sRGB textures here
+         //
+         // diffuse textures are in sRGB space (non-linear)
+         // metallic/roughness/normals are usually in linear
+         // AO depends
+         if (iAssimpTextureType == aiTextureType_DIFFUSE)
+         {
+            if (internalFormat == GL_RGB)
+            {
+               internalFormat = GL_SRGB;
+            }
+            else if (internalFormat == GL_RGBA)
+            {
+               internalFormat = GL_SRGB_ALPHA;
+            }
+         }
+
+         glGenTextures(1, &textureId);
+         glBindTexture(GL_TEXTURE_2D, textureId);
+         glTarget = GL_TEXTURE_2D;
+         // generate the texture
+         glTexImage2D(GL_TEXTURE_2D, 0, internalFormat, width, height, 0, format, GL_UNSIGNED_BYTE, data);
+         glGenerateMipmap(GL_TEXTURE_2D);
+
+         // texture wrapping/filtering options
+         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR); // image is resized using bilinear filtering
+         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR); // image is enlarged using bilinear filtering
+
+         // free the image data
+         stbi_image_free(data);
+
+      }
+
+      ::cast<::gpu_opengl::texture> popengltexture = ptexture;
+      popengltexture->m_gluType = glTarget;
+      popengltexture->m_gluTextureID = textureId;
+      ptexture->m_path = path;
+
+
+   }
+
+
 } // namespace gpu_opengl
-
-
-

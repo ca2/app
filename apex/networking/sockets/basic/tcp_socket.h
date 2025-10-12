@@ -57,6 +57,15 @@ namespace sockets
       ::pointer<tcp_socket>         m_ptcpsocketImpl;
       tcp_socket *                  m_ptcpsocketInterface;
       bool                          m_bImpl;
+      struct time_get_here
+      {
+
+         ::string          m_strPath;
+         class ::time      m_timeGetHere;
+
+      };
+      ::array_base < time_get_here > m_timegetherea;
+
       //static bool s_bReuseSession; // Default psystem Wide Setting
       //::memory_file                 m_memoryfileBuffer;
  

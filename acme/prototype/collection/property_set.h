@@ -517,6 +517,8 @@ public:
 
 
    using ::property_set_base::cast;
+   
+   using ::property_set_base::as_string;
 
 
 };

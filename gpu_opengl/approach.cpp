@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "_gpu_opengl.h"
 #include "approach.h"
 #include "acme/filesystem/file/file.h"
 #include "acme/filesystem/filesystem/file_context.h"

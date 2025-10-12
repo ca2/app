@@ -181,12 +181,12 @@ namespace httpd
 
                         }
 
-                        if (session()->get_applicationa().is_empty())
-                        {
+                        //if (session()->get_applicationa().is_empty())
+                        //{
 
-                           goto end_listening;
+                        //   goto end_listening;
 
-                        }
+                        //}
 
                      }
                      catch (...)

@@ -59,17 +59,17 @@ namespace user
 
       }
 
-      MESSAGE_LINK(::user::e_message_mouse_move, pchannel, this, &combo_box::on_message_mouse_move);
-      MESSAGE_LINK(::user::e_message_mouse_leave, pchannel, this, &combo_box::on_message_mouse_leave);
-      MESSAGE_LINK(::user::e_message_left_button_down, pchannel, this, &combo_box::on_message_left_button_down);
-      MESSAGE_LINK(::user::e_message_left_button_up, pchannel, this, &combo_box::on_message_left_button_up);
-      MESSAGE_LINK(::user::e_message_left_button_double_click, pchannel, this, &combo_box::on_message_left_button_double_click);
-      MESSAGE_LINK(::user::e_message_key_down,pchannel,this,&combo_box::on_message_key_down);
-      MESSAGE_LINK(::user::e_message_key_up,pchannel,this,&combo_box::on_message_key_up);
-      MESSAGE_LINK(::user::e_message_set_focus,pchannel,this,&combo_box::on_message_set_focus);
-      MESSAGE_LINK(::user::e_message_kill_focus, pchannel, this, &combo_box::on_message_kill_focus);
-      MESSAGE_LINK(::user::e_message_show_window, pchannel, this, &combo_box::on_message_show_window);
-      MESSAGE_LINK(::user::e_message_reposition, pchannel, this, &combo_box::on_message_move);
+      USER_MESSAGE_LINK(::user::e_message_mouse_move, pchannel, this, &combo_box::on_message_mouse_move);
+      USER_MESSAGE_LINK(::user::e_message_mouse_leave, pchannel, this, &combo_box::on_message_mouse_leave);
+      USER_MESSAGE_LINK(::user::e_message_left_button_down, pchannel, this, &combo_box::on_message_left_button_down);
+      USER_MESSAGE_LINK(::user::e_message_left_button_up, pchannel, this, &combo_box::on_message_left_button_up);
+      USER_MESSAGE_LINK(::user::e_message_left_button_double_click, pchannel, this, &combo_box::on_message_left_button_double_click);
+      USER_MESSAGE_LINK(::user::e_message_key_down,pchannel,this,&combo_box::on_message_key_down);
+      USER_MESSAGE_LINK(::user::e_message_key_up,pchannel,this,&combo_box::on_message_key_up);
+      USER_MESSAGE_LINK(::user::e_message_set_focus,pchannel,this,&combo_box::on_message_set_focus);
+      USER_MESSAGE_LINK(::user::e_message_kill_focus, pchannel, this, &combo_box::on_message_kill_focus);
+      USER_MESSAGE_LINK(::user::e_message_show_window, pchannel, this, &combo_box::on_message_show_window);
+      USER_MESSAGE_LINK(::user::e_message_reposition, pchannel, this, &combo_box::on_message_move);
 
    }
 
@@ -188,7 +188,7 @@ namespace user
 
       this->rectangle(rectangleX);
 
-      auto pbrush = __øcreate < ::draw2d::brush > ();
+      auto pbrush = øcreate < ::draw2d::brush > ();
 
       if(m_bEdit)
       {
@@ -305,7 +305,7 @@ namespace user
 
       pgraphics->fill_rectangle(rectangleDropIn);
 
-      auto ppath = __øcreate < ::draw2d::path > ();
+      auto ppath = øcreate < ::draw2d::path > ();
 
       point_array pointa;
 

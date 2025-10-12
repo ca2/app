@@ -126,9 +126,10 @@ namespace gpu
       //int                                    m_iScanOffscreen;
       //::memory                               m_memoryOffscreen;
       ::pointer < ::gpu::swap_chain >          m_pgpuswapchain;
-      ::string_map_base < ::pointer < ::gpu::texture > > m_texturemap;
       ::pointer_array < ::gpu::shader >         m_shaderaRetire;
 
+      ::string_map_base < ::pointer < ::gpu::texture > > m_texturemap;
+      ::string_map_base < ::pointer < ::gpu::texture > > m_texturemapGeneric;
 
       context();
       ~context() override;
@@ -149,13 +150,20 @@ namespace gpu
 
       virtual void construct(::pointer < ::gpu::shader >& pgpushader);
 
+
+      /// loads only image::image (A8R8G8B8)
       virtual ::gpu::texture* texture(const ::file::path& path);
+
+      /// loads different types of image
+      virtual ::gpu::texture* generic_texture(const ::file::path & path, int iAssimpTextureType);
+      virtual void load_generic_texture(::pointer < ::gpu::texture > & ptexture, const ::file::path & path, int iAssimpTextureType);
+
 
 
       virtual void start_debug_happening(const ::scoped_string& scopedstrDebugHappening);
       virtual void end_debug_happening();
 
-      virtual void load_texture(::pointer < ::gpu::texture > & ptexture, const ::file::path& path);
+      virtual void load_texture(::pointer < ::gpu::texture > & ptexture, const ::file::path& path, bool bIsSrgb);
 
 
 
@@ -201,6 +209,8 @@ namespace gpu
       virtual void on_create_context(::gpu::device * pgpudevice, const ::gpu::enum_output & eoutput, ::windowing::window* pwindow, const ::int_size & size);
 
       virtual void engine_on_frame_context_initialization();
+
+      virtual void onBeforePreloadGlobalAssets();
 
       //bool task_iteration() override;
 
@@ -368,6 +378,8 @@ namespace gpu
                                                              const ::file::path &path,
                                                              const ::scoped_string &scopedstrImageFormat);
 
+      virtual ::pointer<::gpu::texture> cubemap_from_hdr(const ::file::path & path);
+
       // // ::pointer<::graphics3d::renderable> loadGLTFmodel(
       // //    const ::scoped_string &name,
       // //    const ::scoped_string &filepath,
@@ -398,31 +410,31 @@ namespace gpu
       virtual ::pointer<::graphics3d::renderable> _load_gltf_model(const ::gpu::renderable_t & model);
 
 
-      /// @brief generatePrefilteredEnvMap
-      /// @param environmentCubeExisting 
-      /// @param prenderableSkybox 
-      /// @return 
-      virtual ::pointer<::gpu::texture> generatePrefilteredEnvMap(
-         ::gpu::texture *environmentCubeExisting,
-         ::graphics3d::renderable *prenderableSkybox);
-
-      /// generate irradianceCube
-      /// @return irradianceCube
-      virtual ::pointer < ::gpu::texture > generateIrradianceMap(
-//         ::gpu::texture * irradianceCube,
-         ::gpu::texture * environmentCube,
-         ::graphics3d::renderable * prenderableSkybox);
-      // ::pointer<::gpu::texture> loadCubemap(
-      //    const ::scoped_string& name,
-      //    const ::scoped_string& ktxFilename,
-      //    VkFormat format,
-      //    VkImageUsageFlags usageFlags,
-      //    VkImageLayout initialLayout);
-      //    virtual void generateBRDFlut(
-      //     ::gpu::texture * lutBrdf);
-      /// generate lutBrdf
-      /// @return lutBrdf
-      virtual ::pointer < ::gpu::texture > generateBRDFlut();
+//      /// @brief generatePrefilteredEnvMap
+//      /// @param environmentCubeExisting 
+//      /// @param prenderableSkybox 
+//      /// @return 
+//      virtual ::pointer<::gpu::texture> generatePrefilteredEnvMap(
+//         ::gpu::texture *environmentCubeExisting,
+//         ::graphics3d::renderable *prenderableSkybox);
+//
+//      /// generate irradianceCube
+//      /// @return irradianceCube
+//      virtual ::pointer < ::gpu::texture > generateIrradianceMap(
+////         ::gpu::texture * irradianceCube,
+//         ::gpu::texture * environmentCube,
+//         ::graphics3d::renderable * prenderableSkybox);
+//      // ::pointer<::gpu::texture> loadCubemap(
+//      //    const ::scoped_string& name,
+//      //    const ::scoped_string& ktxFilename,
+//      //    VkFormat format,
+//      //    VkImageUsageFlags usageFlags,
+//      //    VkImageLayout initialLayout);
+//      //    virtual void generateBRDFlut(
+//      //     ::gpu::texture * lutBrdf);
+//      /// generate lutBrdf
+//      /// @return lutBrdf
+//      virtual ::pointer < ::gpu::texture > generateBRDFlut();
 
 
 

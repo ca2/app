@@ -594,10 +594,10 @@ namespace platform
       //virtual bool is_set_finish() const override;
 
 
-      virtual void on_change_theme();
+      //virtual void on_change_theme();
 
 
-      virtual string get_theme();
+      //virtual string get_theme();
 
 
       //virtual bool start_application(::request * prequest);

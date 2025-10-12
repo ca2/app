@@ -62,7 +62,7 @@ namespace windowing
 
             system()->do_graphics_and_windowing_system_factory();
 
-            __øconstruct(m_pdisplaybase);
+            øconstruct(m_pdisplaybase);
 
             m_pdisplaybase->open_display();
 

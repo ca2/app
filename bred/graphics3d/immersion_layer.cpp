@@ -2,9 +2,10 @@
 // Created by camilo on 2025-08-22 06:48 <3ThomasBorregaardSorensen!!
 //
 #include "framework.h"
+#include "asset_manager.h"
+#include "engine.h"
 #include "immersion_layer.h"
-#include "scene.h"
-#include "bred/graphics3d/engine.h"
+#include "scene_base.h"
 
 
 namespace graphics3d
@@ -45,7 +46,7 @@ namespace graphics3d
    }
 
 
-   void immersion_layer::add_scene(::graphics3d::scene* pscene)
+   void immersion_layer::add_scene(::graphics3d::scene_base* pscene)
    {
 
       m_mapScene[pscene->m_strSceneName] = pscene;
@@ -53,7 +54,7 @@ namespace graphics3d
    }
 
 
-   void immersion_layer::set_current_scene(::graphics3d::scene* pscene)
+   void immersion_layer::set_current_scene(::graphics3d::scene_base* pscene)
    {
 
       m_pscene = pscene;
@@ -78,7 +79,7 @@ namespace graphics3d
 
 
 
-   ::pointer < ::graphics3d::scene > immersion_layer::create_main_scene()
+   ::pointer < ::graphics3d::scene_base > immersion_layer::create_main_scene()
    {
 
       return {};

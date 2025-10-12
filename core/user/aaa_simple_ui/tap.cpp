@@ -36,14 +36,14 @@ namespace simple_ui
       //   END_IMH
       ::user::interaction::install_message_routing(pchannel);
 
-      MESSAGE_LINK(::user::e_message_create, pchannel, this, &tap::on_message_create);
-      MESSAGE_LINK(::user::e_message_key_down, pchannel, this, &tap::on_message_key_down);
-      MESSAGE_LINK(::user::e_message_left_button_down, pchannel, this, &tap::on_message_left_button_down);
-      MESSAGE_LINK(::user::e_message_left_button_up, pchannel, this, &tap::on_message_left_button_up);
-      MESSAGE_LINK(::user::e_message_mouse_move, pchannel, this, &tap::on_message_mouse_move);
-      MESSAGE_LINK(::user::e_message_mouse_leave, pchannel, this, &tap::on_message_mouse_leave);
-      //MESSAGE_LINK(::user::e_message_create, pchannel, this, &tap::on_message_create);
-      //MESSAGE_LINK(::user::e_message_create, pchannel, this, &tap::on_message_create);
+      USER_MESSAGE_LINK(::user::e_message_create, pchannel, this, &tap::on_message_create);
+      USER_MESSAGE_LINK(::user::e_message_key_down, pchannel, this, &tap::on_message_key_down);
+      USER_MESSAGE_LINK(::user::e_message_left_button_down, pchannel, this, &tap::on_message_left_button_down);
+      USER_MESSAGE_LINK(::user::e_message_left_button_up, pchannel, this, &tap::on_message_left_button_up);
+      USER_MESSAGE_LINK(::user::e_message_mouse_move, pchannel, this, &tap::on_message_mouse_move);
+      USER_MESSAGE_LINK(::user::e_message_mouse_leave, pchannel, this, &tap::on_message_mouse_leave);
+      //USER_MESSAGE_LINK(::user::e_message_create, pchannel, this, &tap::on_message_create);
+      //USER_MESSAGE_LINK(::user::e_message_create, pchannel, this, &tap::on_message_create);
 
 
    }
@@ -203,7 +203,7 @@ auto pwindowing = windowing();
 
          pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-         auto pbrush = __øcreate < ::draw2d::brush > ();
+         auto pbrush = øcreate < ::draw2d::brush > ();
 
 #if CA2_PLATFORM_VERSION == CA2_BASIS
 
@@ -360,7 +360,7 @@ auto pwindowing = windowing();
 
             //pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
-            auto pbrush = __øcreate < ::draw2d::brush > ();
+            auto pbrush = øcreate < ::draw2d::brush > ();
 
             pbrush->create_solid(crBorderIn);
 
@@ -368,7 +368,7 @@ auto pwindowing = windowing();
 
             pgraphics->fill_rectangle(rectangleX,br);
 
-            auto ppen = __øcreate < ::draw2d::pen > ();
+            auto ppen = øcreate < ::draw2d::pen > ();
 
             ppen->create_solid(m_dStockIconPenWidth,crBorderOut);
 
@@ -382,7 +382,7 @@ auto pwindowing = windowing();
 
          int iBorderH = rectangleX.height() / 2;
 
-         auto pbrush = __øcreate < ::draw2d::brush > ();
+         auto pbrush = øcreate < ::draw2d::brush > ();
 
          pbrush->CreateLinearGradientBrush(int_point(rectangleX.left(), rectangleX.top() - 1), int_point(rectangleX.left(), rectangleX.top() + iBorderH + 2), crOut, crIn);
 
@@ -396,7 +396,7 @@ auto pwindowing = windowing();
 
          graphics2.DrawRectangle(&ppen1, rectangleX.left(), rectangleX.top(), rectangleX.width(), iBorderH * 2);*/
 
-         auto ppen = __øcreate < ::draw2d::pen > ();
+         auto ppen = øcreate < ::draw2d::pen > ();
 
          ppen->create_solid(1.0, crBorderIn);
 

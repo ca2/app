@@ -373,6 +373,8 @@ namespace dynamic_source
 
       pdssocket->m_timeWaitingToBuild += timeGetHere;
 
+      pdssocket->m_timegetherea.add({m_strSeed, timeGetHere});
+
       if (!pinstance)
       {
 
@@ -695,7 +697,15 @@ namespace dynamic_source
                if (pinstanceParent)
                {
 
+                  if (strName.begins_eat(m_pathNetnodePath))
+                  {
+
+                     strName.begins_eat("/net/");
+
+                  }
+
                   pinstanceParent->m_pmain->netnodesocket()->m_timeWaitingToBuild += timeGetHere;
+                  pinstanceParent->m_pmain->netnodesocket()->m_timegetherea.add({strName, timeGetHere});
 
                }
 
@@ -878,7 +888,7 @@ namespace dynamic_source
       string strNew;
 #ifdef WINDOWS_DESKTOP
       unsigned int dwSize = GetEnvironmentVariableW(L"PATH", nullptr, 0);
-      LPWSTR lpsz = __raw_new wchar_t[dwSize + 1024];
+      LPWSTR lpsz = øraw_new wchar_t[dwSize + 1024];
       dwSize = GetEnvironmentVariableW(L"PATH", lpsz, dwSize + 1024);
       strNew = lpsz;
       delete lpsz;
@@ -1834,7 +1844,11 @@ namespace dynamic_source
       ::logic::boolean bShouldBuild = false;
 
       if (!m_mapShouldBuild2.find(strScriptPath, bShouldBuild))
+      {
+
          return false;
+
+      }
 
       return bShouldBuild;
 

@@ -4251,6 +4251,12 @@
     <ClInclude Include="prototype\collection\block_array.h">
       <Filter>Header Files\prototype\collection</Filter>
     </ClInclude>
+    <ClInclude Include="operating_system\networking.h">
+      <Filter>Header Files\operating_system</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\windows_common\networking.h">
+      <Filter>Header Files\operating_system\windows_common</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="prototype\prototype\bit.cpp">
@@ -6082,6 +6088,12 @@
     </ClCompile>
     <ClCompile Include="prototype\string\utf8_character.cpp">
       <Filter>Source Files\prototype\string</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\networking.cpp">
+      <Filter>Header Files\operating_system</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\windows_common\networking.cpp">
+      <Filter>Source Files\operating_system\windows_common</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

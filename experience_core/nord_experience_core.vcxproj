@@ -189,7 +189,7 @@
     <ProjectReference Include="..\axis\nord_axis.vcxproj">
       <Project>{6f5c86b4-07bb-45a5-9fb9-b7921bcbbf36}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\base\nord_base.vcxproj">
+    <ProjectReference Include="..\base\nord_berg.vcxproj">
       <Project>{15ccba90-45f6-46fa-a1fd-af4c40595697}</Project>
     </ProjectReference>
   </ItemGroup>

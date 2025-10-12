@@ -5,11 +5,13 @@
 #include "aura/platform/application.h"
 #include "bred/graphics3d/engine.h"
 #include "bred/gpu/command_buffer.h"
+#include "bred/gpu/model_buffer.h"
 #include "bred/gpu/properties.h"
+#include "bred/gpu/renderer.h"
 #include "bred/gpu/shader.h"
 #include "bred/graphics3d/camera.h"
 #include "bred/graphics3d/frame.h"
-#include "bred/graphics3d/scene.h"
+#include "bred/graphics3d/scene_base.h"
 #include "bred/graphics3d/game_object.h"
 #include "bred/graphics3d/point_light.h"
 //#include "SceneFoundry/graphics3d/game_object.h"
@@ -151,7 +153,7 @@ namespace graphics3d
    //     );
    // }
 
-   void point_light_render_system::on_render(::gpu::context* pgpucontext, ::graphics3d::scene * pscene)
+   void point_light_render_system::on_render(::gpu::context* pgpucontext, ::graphics3d::scene_base * pscene)
    {
       //::map<float, uint32_t> sorted;
 
@@ -194,7 +196,7 @@ namespace graphics3d
             ppointlight->m_fLightIntensity);
          pushconstants.radius = ppointlight->transform().m_vec3Scale.x;
 
-         m_pshader->set_push_properties(::as_memory_block(pushconstants));
+         m_pshader->set_push_properties(pframe->m_pgpucommandbuffer, ::as_memory_block(pushconstants));
 
          // vkCmdPushConstants(
          //     frame.m_pcommandbuffer,
@@ -204,8 +206,10 @@ namespace graphics3d
          //     sizeof(PointLightPushConstants),
          //     &push
          // );
-         pframe->m_pgpucommandbuffer->draw_vertexes(6);
+         //pframe->m_pgpucommandbuffer->draw_vertexes(6);
          //vkCmdDraw(frame.m_pcommandbuffer, 6, 1, 0, 0);
+         m_pmodelDummy->bind(pframe->m_pgpucommandbuffer);
+         m_pmodelDummy->draw(pframe->m_pgpucommandbuffer);
       }
 
       pgpucontext->defer_unbind(m_pshader);
@@ -213,7 +217,7 @@ namespace graphics3d
    }
 
 
-   void point_light_render_system::on_update(::gpu::context* pgpucontext, ::graphics3d::scene * pscene)
+   void point_light_render_system::on_update(::gpu::context* pgpucontext, ::graphics3d::scene_base * pscene)
    {
 
       auto dt = m_pengine->dt();

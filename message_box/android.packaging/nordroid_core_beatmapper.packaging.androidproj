@@ -76,7 +76,7 @@
     <ProjectReference Include="..\..\..\..\app\aqua\nord_aqua.vcxproj" />
     <ProjectReference Include="..\..\..\..\app\aura\nord_aura.vcxproj" />
     <ProjectReference Include="..\..\..\..\app\axis\nord_axis.vcxproj" />
-    <ProjectReference Include="..\..\..\..\app\base\nord_base.vcxproj" />
+    <ProjectReference Include="..\..\..\..\app\base\nord_berg.vcxproj" />
     <ProjectReference Include="..\..\..\..\app\aura\nord_core.vcxproj" />
     <ProjectReference Include="..\..\..\..\app\draw2d_cairo\nord_draw2d_cairo.vcxproj" />
     <ProjectReference Include="..\..\..\..\app\aura\charguess\nord_auracharguess.vcxproj" />

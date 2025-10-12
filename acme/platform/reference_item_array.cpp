@@ -81,14 +81,18 @@ reference_item_array::~reference_item_array()
 
    if (g_bDefaultEnableObjectReferenceCountDebug)
    {
+      
+      auto psubparticleParent = m_psubparticleParent;
 
-      if (::is_set(m_psubparticleParent))
+      if (::is_set(psubparticleParent))
       {
          
-         if (m_psubparticleParent->m_preferenceitema)
+         auto preferenceitema = psubparticleParent->m_preferenceitema;
+         
+         if (::is_set(preferenceitema))
          {
 
-            m_psubparticleParent->m_preferenceitema->erase_item_array(this);
+            preferenceitema->erase_item_array(this);
 
          }
 
@@ -664,7 +668,7 @@ void reference_item_array::dump_pending_releases(::string & strDump)
 
    //strDump.append_formatf("Serial: %lld, m_iLastReferenceCount=%d\n", m_iSerial, m_iLastReferenceCount);
 
-   strDump.append_formatf("Serial: %lld, refcount=%lld\n", m_iSerial, m_psubparticle->m_countReference);
+   strDump.append_formatf("Serial: %lld, refcount=%lld\n", m_iSerial, (long long )m_psubparticle->m_countReference);
 
    strDump += "deb:"+m_strDebug + "\n";
 

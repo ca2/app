@@ -498,7 +498,7 @@ namespace interprocess
 
 #elif defined(__APPLE__)
 
-      string strAppId(strApp);
+      string strAppId(scopedstrApp);
 
 //      strAppId.find_replace("\\", "-");
 //

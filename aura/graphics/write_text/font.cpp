@@ -14,6 +14,47 @@ namespace write_text
 {
 
 
+   ::mutex *font::s_pmutexFontTextMap = nullptr;
+
+
+            font::text::text()
+            {
+            }
+
+   void font::text::item::set_size(const ::double_size &size)
+   {
+
+      m_size = size;
+
+      m_bHasSize = true;
+   }
+
+   void font::text::item::set_text(const ::scoped_string &scopedstr)
+   {
+
+      m_wstr = scopedstr;
+
+   }
+
+
+   ::wstring font::text::item::get_text() const
+   {
+
+      return m_wstr;
+
+   }
+
+   bool font::text::item::has_size() const { return m_bHasSize; }
+
+   ::double_size font::text::item::get_size() const { return m_size; }
+
+   ::write_text::font::text::item * font::text::get_item(enum_size esize)
+   {
+
+      return &m_itema[esize];
+
+   }
+
    font::font() :
       m_fontsize(12_pt)
    {

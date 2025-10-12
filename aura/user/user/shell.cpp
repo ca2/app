@@ -516,7 +516,7 @@ namespace user
    shell::_get_file_image_ * shell::new_get_file_image()
    {
 
-      return __raw_new _get_file_image_();
+      return øraw_new _get_file_image_();
 
    }
 

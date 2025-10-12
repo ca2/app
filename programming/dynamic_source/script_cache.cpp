@@ -66,7 +66,7 @@ namespace dynamic_source
    }
 
 
-   ::pointer<ds_script>script_cache::create_new_ds_script(const ::scoped_string & scopedstrName)
+   ::pointer<ds_script>script_cache::allocate_ds_script(const ::scoped_string & scopedstrName)
    {
 
       auto pscript = øcreate_new< ds_script >();
@@ -91,7 +91,7 @@ namespace dynamic_source
 
 #endif
 
-      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       auto & pscript = m_map[strName];
 
@@ -103,7 +103,7 @@ namespace dynamic_source
 
       }
 
-      return pscript = create_new_ds_script(strName);
+      return pscript = allocate_ds_script(strName);
 
    }
 
@@ -183,34 +183,29 @@ namespace dynamic_source
 
       }
 
-      _single_lock slScript(pscript->synchronization());
-
-      if (!slScript._wait(5_s))
       {
-         
-         throw ::heating_up_exception("Compiling script " + scopedstrName);
+
+         _single_lock slScript(pscript->synchronization());
+
+         if (!slScript._wait(5_s))
+         {
+
+            throw ::heating_up_exception("Compiling script " + scopedstrName);
+
+         }
 
       }
 
-      int iTry = 0;
-
-      while(!pscript->m_bNew && pscript->ShouldBuild())
+      if(!pscript->m_bNew && pscript->ShouldBuild())
       {
 
-         slScript.unlock();
+         pscript = allocate_ds_script(strName);
 
-         pscript = create_new_ds_script(strName);
+         _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-         slScript._lock();
+         m_map[strName] = pscript;
 
-         iTry++;
-
-         if (iTry > 5)
-         {
-
-            return nullptr;
-
-         }
+         return pscript->create_instance();
 
       }
 

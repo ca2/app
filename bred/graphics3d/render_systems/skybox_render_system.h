@@ -98,7 +98,7 @@ namespace graphics3d
       virtual void draw(::gpu::command_buffer* pgpucommandbuffer);
       virtual void unbind(::gpu::command_buffer* pgpucommandbuffer);
 
-      void on_render(::gpu::context* pgpucontext, ::graphics3d::scene* pscene) override;
+      void on_render(::gpu::context* pgpucontext, ::graphics3d::scene_base* pscene) override;
 
 
 

@@ -2,7 +2,11 @@
 #include "acme/filesystem/file/file.h"
 
 
+#if defined(USE_PORT_FREEIMAGE)
+#include <port_freeimage/FreeImage.h>
+#else
 #include <FreeImage.h>
+#endif
 
 
 unsigned DLL_CALLCONV __ReadProc2(void * buffer, unsigned size, unsigned count, fi_handle handle)

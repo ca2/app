@@ -5,7 +5,7 @@
 #include "apex/platform/system.h"
 #include "networking_bsd/address.h"
 #include "networking_bsd/networking.h"
-
+#include "acme/operating_system/networking.h"
 
 #undef ERROR
 #define log_error(...) TRACE_LOG_ERROR(__VA_ARGS__)
@@ -488,7 +488,7 @@ namespace sockets_bsd
 
       socklen_t sockaddr_len = sizeof(sockaddr_union);
 
-      SOCKET socketAccept = accept(socketid, &sockaddr.c, &sockaddr_len);
+      SOCKET socketAccept = _accept_socket(socketid, &sockaddr.c, &sockaddr_len);
 
       if (socketAccept == INVALID_SOCKET)
       {
@@ -627,9 +627,13 @@ namespace sockets_bsd
 
    /** Please don't use this method.
    "accept()" is handled automatically in the OnRead() method. */
+#if defined(__ANDROID__) || defined(__BSD__) || defined(__APPLE__)
    SOCKET listen_socket_impl::Accept(SOCKET socket, struct sockaddr *saptr, socklen_t *lenptr)
+#else
+   SOCKET listen_socket_impl::Accept(SOCKET socket, struct sockaddr *saptr, int *lenptr)
+#endif
    {
-      return accept(socket, saptr, lenptr);
+      return ::_accept_socket(socket, saptr, lenptr);
    }
 
    bool listen_socket_impl:: HasCreator()

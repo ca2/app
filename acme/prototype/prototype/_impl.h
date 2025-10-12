@@ -1796,11 +1796,11 @@ constexpr long long posix_time::days() const { return m_iSecond / (24 * 60 * 60)
 
 
 //template < typename T, typename ...Args >
-//inline ::pointer < T > particle::__calløallocate(Args &&... args)
+//inline ::pointer < T > particle::__call_allocate(Args &&... args)
 //{
 //
 //   auto p = ::transfer(
-//      ::platform::allocator::__calløallocate< T >(
+//      ::platform::allocator::__call_allocate< T >(
 //         ::std::forward<Args>(args)...));
 //
 //   return ::transfer(p);

@@ -165,10 +165,10 @@ void apple_backtrace_symbol_parse(string & strSymbolName, string & strAddress, c
       if (*psz == ' ')
       {
 
-         if(::is_null(scopedstrMangledNameEnd))
+         if(::is_null(pszMangledNameEnd))
          {
 
-            if(::is_set(scopedstrMangledName))
+            if(::is_set(pszMangledName))
             {
 
                pszMangledNameEnd = psz;
@@ -208,10 +208,10 @@ void apple_backtrace_symbol_parse(string & strSymbolName, string & strAddress, c
 
    }
 
-   if(::is_null(scopedstrMangledNameEnd))
+   if(::is_null(pszMangledNameEnd))
    {
 
-      if(::is_set(scopedstrMangledName))
+      if(::is_set(pszMangledName))
       {
 
          pszMangledNameEnd = psz;
@@ -220,14 +220,14 @@ void apple_backtrace_symbol_parse(string & strSymbolName, string & strAddress, c
 
    }
 
-   if (scopedstrMangledName)
+   if (pszMangledName)
    {
 
       *pszMangledNameEnd = '\0';
 
       int status;
 
-      acme::malloc < char * > pszRealName = abi::__cxa_demangle(scopedstrMangledName, 0, 0, &status);
+      acme::malloc < char * > pszRealName = abi::__cxa_demangle(pszMangledName, 0, 0, &status);
 
       const_char_pointer pszSymbolName;
 

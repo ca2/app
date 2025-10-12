@@ -132,11 +132,11 @@ inline void from_string(::set < ITEM > & set, const ::scoped_string& scopedstr, 
    while (tokenizer.get_next_token(strToken, scopedstrSeparator))
    {
 
-      typename ::set < ITEM >::ITEM item;
+      ITEM item;
 
       ::from_string(item, strToken);
 
-      set.set_at(item);
+      set.set_key(item);
 
    }
 

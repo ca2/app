@@ -24,25 +24,25 @@ void html_form_impact::install_message_routing(::channel * pchannel)
 
    ::user::show < ::html_form>::install_message_routing(pchannel);
 
-   //MESSAGE_LINK(::user::e_message_destroy, pchannel, this, &html_form_impact::on_message_destroy);
-   //MESSAGE_LINK(::user::e_message_size, pchannel, this, &html_form_impact::on_message_size);
+   //USER_MESSAGE_LINK(::user::e_message_destroy, pchannel, this, &html_form_impact::on_message_destroy);
+   //USER_MESSAGE_LINK(::user::e_message_size, pchannel, this, &html_form_impact::on_message_size);
 
-   //MESSAGE_LINK(WM_USER + 177     , this, this, &html_form_impact::_001OnTabClick);
+   //USER_MESSAGE_LINK(WM_USER + 177     , this, this, &html_form_impact::_001OnTabClick);
    //add_command_handler(ID_FILE_PRINT, ::user::form_impact::OnFilePrint)
    //add_command_handler(ID_FILE_PRINT_DIRECT, ::user::form_impact::OnFilePrint)
    //add_command_handler(ID_FILE_PRINT_PREVIEW, ::user::form_impact::OnFilePrintThumbnail)
-   //MESSAGE_LINK(::user::e_message_left_button_down, pchannel, this, &::user::interaction::on_message_left_button_down);
-   //MESSAGE_LINK(::user::e_message_left_button_up, pchannel, this, &::user::interaction::on_message_left_button_up);
-   //MESSAGE_LINK(::user::e_message_key_down, pchannel, this, &::user::interaction::on_message_key_down);
-   //MESSAGE_LINK(::user::e_message_key_up, pchannel, this, &::user::interaction::on_message_key_up);
+   //USER_MESSAGE_LINK(::user::e_message_left_button_down, pchannel, this, &::user::interaction::on_message_left_button_down);
+   //USER_MESSAGE_LINK(::user::e_message_left_button_up, pchannel, this, &::user::interaction::on_message_left_button_up);
+   //USER_MESSAGE_LINK(::user::e_message_key_down, pchannel, this, &::user::interaction::on_message_key_down);
+   //USER_MESSAGE_LINK(::user::e_message_key_up, pchannel, this, &::user::interaction::on_message_key_up);
 
-   //MESSAGE_LINK(::user::e_message_left_button_down, pchannel, this, &html_form_impact::on_message_left_button_down);
-   //MESSAGE_LINK(::user::e_message_mouse_move, pchannel, this, &html_form_impact::on_message_mouse_move);
-   //MESSAGE_LINK(::user::e_message_left_button_up, pchannel, this, &html_form_impact::on_message_left_button_up);
-   //MESSAGE_LINK(::user::e_message_key_down, pchannel, this, &html_form_impact::on_message_key_down);
-   MESSAGE_LINK(::user::e_message_set_focus, pchannel, this, &html_form_impact::on_message_set_focus);
-   MESSAGE_LINK(::user::e_message_kill_focus, pchannel, this, &html_form_impact::on_message_kill_focus);
-   //MESSAGE_LINK(::user::e_message_create, pchannel, this, &html_form_impact::on_message_create);
+   //USER_MESSAGE_LINK(::user::e_message_left_button_down, pchannel, this, &html_form_impact::on_message_left_button_down);
+   //USER_MESSAGE_LINK(::user::e_message_mouse_move, pchannel, this, &html_form_impact::on_message_mouse_move);
+   //USER_MESSAGE_LINK(::user::e_message_left_button_up, pchannel, this, &html_form_impact::on_message_left_button_up);
+   //USER_MESSAGE_LINK(::user::e_message_key_down, pchannel, this, &html_form_impact::on_message_key_down);
+   USER_MESSAGE_LINK(::user::e_message_set_focus, pchannel, this, &html_form_impact::on_message_set_focus);
+   USER_MESSAGE_LINK(::user::e_message_kill_focus, pchannel, this, &html_form_impact::on_message_kill_focus);
+   //USER_MESSAGE_LINK(::user::e_message_create, pchannel, this, &html_form_impact::on_message_create);
 
 }
 

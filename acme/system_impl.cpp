@@ -1197,8 +1197,8 @@ namespace platform
       if (pacmewindowing)
       {
 
-         ::system()->m_pmanualresethappeningReadyToExit = __raw_new manual_reset_happening();
-         ::system()->m_pmanualresethappeningMainLoopEnd = __raw_new manual_reset_happening();
+         ::system()->m_pmanualresethappeningReadyToExit = øraw_new manual_reset_happening();
+         ::system()->m_pmanualresethappeningMainLoopEnd = øraw_new manual_reset_happening();
 
          if (!m_procedureTaskEnded)
          {

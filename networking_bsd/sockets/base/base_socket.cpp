@@ -926,6 +926,10 @@ namespace sockets_bsd
       m_bSsl = bSslNegotiate;
    }
 
+   void base_socket::set_no_ssl_shutdown()
+   {
+
+   }
 
    bool base_socket::IsSSLServer()
    {

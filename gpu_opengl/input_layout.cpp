@@ -5,6 +5,7 @@
 // From gpu_vulkan/input_layout.cpp by camilo on 2025-06-29 03:55 <3ThomasBorregaardSørensen!!
 #include "framework.h"
 #include "input_layout.h"
+#include "bred/gpu/context_lock.h"
 
 
 namespace gpu_opengl
@@ -28,6 +29,8 @@ namespace gpu_opengl
    void input_layout::__do_opengl_vao_vbo_and_ebo_input_layout(GLuint gluVAO, GLuint gluVBO, GLuint gluEBO)
 	{
 
+      ::gpu::context_lock contextlock(m_pgpucontext);
+
 		//glBindVertexArray(gluVAO);
 		//GLCheckError("");
 
@@ -48,7 +51,7 @@ namespace gpu_opengl
 		//glEnableVertexAttribArray(3);
 		//glVertexAttribPointer(3, 2, GL_FLOAT, GL_FALSE, sizeof(::gpu::Vertex), (void*)offsetof(::gpu::Vertex, uv));
 
-      int sizeVertex = (int) this->size();
+      int sizeVertex = (int) this->size(true);
 
 		auto countInputLayout = this->count();
 

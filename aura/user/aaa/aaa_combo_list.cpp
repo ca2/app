@@ -56,19 +56,19 @@ namespace user
 
       install_simple_ui_default_mouse_handling(pchannel);
 
-      MESSAGE_LINK(::user::e_message_set_focus, pchannel, this, &list_box::on_message_set_focus);
-      MESSAGE_LINK(::user::e_message_kill_focus, pchannel, this, &list_box::on_message_kill_focus);
-      MESSAGE_LINK(::user::e_message_close, pchannel, this, &list_box::on_message_close);
-      MESSAGE_LINK(::user::e_message_mouse_activate, pchannel, this, &list_box::_001OnMouseActivate);
-      MESSAGE_LINK(::user::e_message_key_down, pchannel, this, &list_box::on_message_key_down);
-      MESSAGE_LINK(::user::e_message_key_up, pchannel, this, &list_box::on_message_key_up);
-      MESSAGE_LINK(::user::e_message_left_button_down, pchannel, this, &list_box::on_message_left_button_down);
-      MESSAGE_LINK(::user::e_message_non_client_left_button_down, pchannel, this, &list_box::on_message_left_button_down);
-      MESSAGE_LINK(::user::e_message_left_button_up, pchannel, this, &list_box::on_message_left_button_up);
-      MESSAGE_LINK(::user::e_message_middle_button_down, pchannel, this, &list_box::on_message_middle_button_down);
-      MESSAGE_LINK(::user::e_message_right_button_down, pchannel, this, &list_box::on_message_right_button_down);
-      MESSAGE_LINK(::user::e_message_mouse_move, pchannel, this, &list_box::on_message_mouse_move);
-      MESSAGE_LINK(::user::e_message_show_window, pchannel, this, &list_box::on_message_show_window);
+      USER_MESSAGE_LINK(::user::e_message_set_focus, pchannel, this, &list_box::on_message_set_focus);
+      USER_MESSAGE_LINK(::user::e_message_kill_focus, pchannel, this, &list_box::on_message_kill_focus);
+      USER_MESSAGE_LINK(::user::e_message_close, pchannel, this, &list_box::on_message_close);
+      USER_MESSAGE_LINK(::user::e_message_mouse_activate, pchannel, this, &list_box::_001OnMouseActivate);
+      USER_MESSAGE_LINK(::user::e_message_key_down, pchannel, this, &list_box::on_message_key_down);
+      USER_MESSAGE_LINK(::user::e_message_key_up, pchannel, this, &list_box::on_message_key_up);
+      USER_MESSAGE_LINK(::user::e_message_left_button_down, pchannel, this, &list_box::on_message_left_button_down);
+      USER_MESSAGE_LINK(::user::e_message_non_client_left_button_down, pchannel, this, &list_box::on_message_left_button_down);
+      USER_MESSAGE_LINK(::user::e_message_left_button_up, pchannel, this, &list_box::on_message_left_button_up);
+      USER_MESSAGE_LINK(::user::e_message_middle_button_down, pchannel, this, &list_box::on_message_middle_button_down);
+      USER_MESSAGE_LINK(::user::e_message_right_button_down, pchannel, this, &list_box::on_message_right_button_down);
+      USER_MESSAGE_LINK(::user::e_message_mouse_move, pchannel, this, &list_box::on_message_mouse_move);
+      USER_MESSAGE_LINK(::user::e_message_show_window, pchannel, this, &list_box::on_message_show_window);
 
    }
 
@@ -107,7 +107,7 @@ namespace user
 
       layout().this->rectangle(rectangleX, ::user::e_layout_design);
 
-      auto pbrushBk = __øcreate < ::draw2d::brush > ();
+      auto pbrushBk = øcreate < ::draw2d::brush > ();
 
       pbrushBk->create_solid(argb(230, 255, 255, 255));
 
@@ -140,7 +140,7 @@ namespace user
 
       ::collection::index iCurSel = current_item();
 
-      auto pbrush = __øcreate < ::draw2d::brush > ();
+      auto pbrush = øcreate < ::draw2d::brush > ();
 
       for (::collection::index iItem = 0; iItem < iListItemCount; iItem++)
       {
@@ -233,7 +233,7 @@ namespace user
 
       color32_t crBorder = argb(255, 0, 0, 0);
 
-      auto ppen = __øcreate < ::draw2d::pen > ();
+      auto ppen = øcreate < ::draw2d::pen > ();
 
       ppen->create_solid(1.0, crBorder);
 

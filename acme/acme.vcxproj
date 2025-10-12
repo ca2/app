@@ -1750,6 +1750,8 @@
     <ClInclude Include="constant\user_message.h" />
     <ClInclude Include="filesystem\file\byte2_stream.h" />
     <ClInclude Include="filesystem\file\protocol_file.h" />
+    <ClInclude Include="operating_system\networking.h" />
+    <ClInclude Include="operating_system\windows_common\networking.h" />
     <ClInclude Include="platform\acme_message.h" />
     <ClInclude Include="platform\http.h" />
     <ClInclude Include="prototype\collection\base_array.h" />
@@ -2757,6 +2759,7 @@
     <ClCompile Include="operating_system\memory.cpp" />
     <ClCompile Include="operating_system\message.cpp" />
     <ClCompile Include="operating_system\message_box.cpp" />
+    <ClCompile Include="operating_system\networking.cpp" />
     <ClCompile Include="operating_system\parallelization.cpp" />
     <ClCompile Include="operating_system\pipe.cpp" />
     <ClCompile Include="operating_system\process.cpp" />
@@ -2819,6 +2822,7 @@
     <ClCompile Include="operating_system\windows_common\nano\compress\_factory.cpp" />
     <ClCompile Include="operating_system\windows_common\nano\idn\idn.cpp" />
     <ClCompile Include="operating_system\windows_common\nano\idn\_idn.cpp" />
+    <ClCompile Include="operating_system\windows_common\networking.cpp" />
     <ClCompile Include="operating_system\windows_common\parallelization.cpp" />
     <ClCompile Include="operating_system\windows_common\process.cpp" />
     <ClCompile Include="operating_system\windows_common\time.cpp" />

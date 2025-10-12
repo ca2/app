@@ -22,7 +22,7 @@
 		07DA480F1B71F081006F27E6 /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A574D2B16AAB99E000CC4EF /* framework.cpp */; };
 		9A331F011D4BE25E00255105 /* libaura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A331F001D4BE25E00255105 /* libaura.dylib */; };
 		9A331F041D4BE26500255105 /* libaxis.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A331F031D4BE26500255105 /* libaxis.dylib */; };
-		9A331F061D4BE26C00255105 /* libbase.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A331F051D4BE26C00255105 /* libbase.dylib */; };
+		9A331F061D4BE26C00255105 /* libberg.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A331F051D4BE26C00255105 /* libberg.dylib */; };
 		9A4BE0ED1FFEDBAB00DED594 /* _charguess.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AD186D71F9C3FB5001CEA8E /* _charguess.cpp */; };
 		9A4BE0F61FFEDBB100DED594 /* _colorertake5.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AD186891F9C3FB5001CEA8E /* _colorertake5.cpp */; };
 		9A4BE0F71FFEDBB700DED594 /* _mail.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AD1872B1F9C3FB6001CEA8E /* _mail.cpp */; };
@@ -248,7 +248,7 @@
 		9A259F1F1D25EC080044727D /* libios_aura.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libios_aura.dylib; path = "../../../../Users/camilo/Library/Developer/Xcode/DerivedData/basic-ios-gidstxlhclvvknehqfkxlzuwomwq/Build/Products/Debug-iphonesimulator/libios_aura.dylib"; sourceTree = "<group>"; };
 		9A331F001D4BE25E00255105 /* libaura.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libaura.dylib; path = "../../../../Users/camilo/Library/Developer/Xcode/DerivedData/aura-osx-dyhrstllhpqabhamryoxyuxzxxbr/Build/Products/Debug/libaura.dylib"; sourceTree = "<group>"; };
 		9A331F031D4BE26500255105 /* libaxis.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libaxis.dylib; path = "../../../../Users/camilo/Library/Developer/Xcode/DerivedData/aura-osx-dyhrstllhpqabhamryoxyuxzxxbr/Build/Products/Debug/libaxis.dylib"; sourceTree = "<group>"; };
-		9A331F051D4BE26C00255105 /* libbase.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libbase.dylib; path = "../../../../Users/camilo/Library/Developer/Xcode/DerivedData/aura-osx-dyhrstllhpqabhamryoxyuxzxxbr/Build/Products/Debug/libbase.dylib"; sourceTree = "<group>"; };
+		9A331F051D4BE26C00255105 /* libberg.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libberg.dylib; path = "../../../../Users/camilo/Library/Developer/Xcode/DerivedData/aura-osx-dyhrstllhpqabhamryoxyuxzxxbr/Build/Products/Debug/libberg.dylib"; sourceTree = "<group>"; };
 		9A4BE0FA1FFEDC5300DED594 /* libaxisopenssl.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libaxisopenssl.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A4BE0FC1FFEDC5900DED594 /* libaxiscrypto.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libaxiscrypto.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A574B9816AAB906000CC4EF /* libsphere.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libsphere.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -535,7 +535,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9A8C493D1F60695E004A5BA4 /* libace.dylib in Frameworks */,
-				9A331F061D4BE26C00255105 /* libbase.dylib in Frameworks */,
+				9A331F061D4BE26C00255105 /* libberg.dylib in Frameworks */,
 				9A331F041D4BE26500255105 /* libaxis.dylib in Frameworks */,
 				9A331F011D4BE25E00255105 /* libaura.dylib in Frameworks */,
 				07DA478D1B71EE85006F27E6 /* libcore.dylib in Frameworks */,
@@ -555,7 +555,7 @@
 				9AF75DE61F83EADF00FDE7CC /* libios_axis.dylib */,
 				9AF75DE31F83EAD400FDE7CC /* libios_aura.dylib */,
 				9A8C493C1F60695E004A5BA4 /* libace.dylib */,
-				9A331F051D4BE26C00255105 /* libbase.dylib */,
+				9A331F051D4BE26C00255105 /* libberg.dylib */,
 				9A331F031D4BE26500255105 /* libaxis.dylib */,
 				9A331F001D4BE25E00255105 /* libaura.dylib */,
 				9A259F1F1D25EC080044727D /* libios_aura.dylib */,

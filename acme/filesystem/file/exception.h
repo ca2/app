@@ -16,14 +16,18 @@ namespace file
 
    //   int                m_lOsError;
    //   int                  m_iErrNo;
-   //   ::file::path         m_path;
+      ::file::path            m_path;
    //   string               m_strAdd;
-   //   ::file::e_open        m_eopen;
+      ::file::e_open          m_eopen;
 
 
       exception(const ::e_status& estatus, const ::error_code& errorcode, const ::file::path& path, ::file::e_open eopen = {}, const ::scoped_string& strMessage = nullptr, const ::scoped_string& scopedstrDetails = nullptr);
+      exception(const ::e_status &estatus, const ::file::path &path, ::file::e_open eopen = {}, const ::scoped_string &strMessage = nullptr, const ::scoped_string &scopedstrDetails = nullptr);
       exception(const ::file::exception& exception);
       ~exception() override;
+
+
+      void construct_file_exception();
 
       ::pointer < ::subparticle > clone() override;
 

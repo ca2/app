@@ -24,6 +24,8 @@ namespace sockets_bsd
 
    {
 
+      m_bNoSslShutdown = false;
+
    }
 
 
@@ -37,7 +39,7 @@ namespace sockets_bsd
    void ssl_context::close()
    {
 
-      if (m_ssl)
+      if (m_ssl && !m_bNoSslShutdown)
       {
          //#ifdef LINUX
          //  signal(SIGPIPE, &::sockets::ssl_sigpipe_handle);

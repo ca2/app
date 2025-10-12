@@ -1824,6 +1824,8 @@ list(APPEND library_source
         operating_system/file.h
         operating_system/graphics.h
         operating_system/memory.cpp
+   operating_system/networking.cpp
+   operating_system/networking.h
         operating_system/os_windowing2.h
         operating_system/parallelization.h
         operating_system/pipe.cpp
@@ -3015,6 +3017,8 @@ if (${LINUX} OR ${__BSD__} OR ${NETBSD} OR ${OPENBSD} OR ${ANDROID})
             operating_system/posix/__edesktop_calculate.cpp
             operating_system/posix/__edisplaytype_initialize.cpp
             operating_system/posix/__etoolkit_calculate.cpp
+       operating_system/posix/networking.cpp
+       operating_system/posix/networking.h
     )
 
 endif ()

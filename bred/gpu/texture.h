@@ -32,9 +32,12 @@ namespace gpu
       ::color::color                      m_colorClear;
       bool                                m_bRenderTarget;
       ::pointer < ::gpu::renderer >       m_pgpurenderer;
+      int                                 m_iLayerCount;
+      ::collection::index                 m_iIndex;
       //::pointer < ::gpu::render_target >  m_pgpurendertarget;
       ::int_rectangle                     m_rectangleTarget;
-      int                                 m_mipLevels;
+      int                                 m_mipsLevel;
+      ::int_size                          m_sizeMip;
       bool                                m_bTransferDst;
       bool                                m_bTransferSrc;
       bool                                m_bCpuRead;
@@ -56,10 +59,11 @@ namespace gpu
 
       void defer_throw_if_cube_map_images_are_not_ok(const ::pointer_array < ::image::image >& imagea);
       
+      virtual void initialize_hdr_texture_on_memory(::gpu::renderer *prenderer, const ::block & block);
       virtual void initialize_image_texture(::gpu::renderer* pgpurenderer, const ::int_rectangle& rectangleTarget, bool bWithDepth, const ::pointer_array < ::image::image >& imagea = {}, enum_type etype = e_type_image);
       virtual void initialize_depth_texture(::gpu::renderer* pgpurenderer, const ::int_rectangle& rectangleTarget);
 
-      virtual void initialize_image_texture(::gpu::renderer* pgpurenderer, const ::file::path & path);
+      virtual void initialize_image_texture(::gpu::renderer* pgpurenderer, const ::file::path & path, bool bIsSrgb);
       virtual void initialize_image_texture(::gpu::renderer* pgpurenderer, const ::pointer_array < ::image::image >& imagea, enum_type etype = e_type_image);
 
       virtual ::pointer < ::gpu::pixmap > create_gpu_pixmap(const ::int_size & size);

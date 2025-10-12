@@ -1,5 +1,5 @@
 #include "framework.h"
-//#include "lock.h"
+//#include "_gpu_opengl.h"
 #include "input_layout.h"
 #include "render_target.h"
 #include "renderer.h"
@@ -57,7 +57,7 @@ namespace gpu_opengl
    unsigned int shader::create_shader(const ::block& blockSource, GLenum type)
    {
 
-      ::gpu::context_lock contextlock(m_pgpurenderer->m_pgpucontext);
+      //::gpu::context_lock contextlock(m_pgpurenderer->m_pgpucontext);
 
       unsigned int uShader;
 
@@ -112,17 +112,21 @@ namespace gpu_opengl
    void shader::on_initialize_shader()
    {
 
+      ::gpu::context_lock contextlock(m_pgpurenderer->m_pgpucontext);
+
       if (m_memoryVertex.is_empty())
       {
 
-         m_memoryVertex = file()->as_memory(m_pgpurenderer->m_pgpucontext->m_pgpudevice->shader_path(m_pathVertex));
+         auto pathVertex = m_pgpurenderer->m_pgpucontext->m_pgpudevice->shader_path(m_pathVertex);
+         m_memoryVertex = file()->as_memory(pathVertex);
 
       }
 
       if (m_memoryFragment.is_empty())
       {
 
-         m_memoryFragment = file()->as_memory(m_pgpurenderer->m_pgpucontext->m_pgpudevice->shader_path(m_pathFragment));
+         auto pathFragment = m_pgpurenderer->m_pgpucontext->m_pgpudevice->shader_path(m_pathFragment);
+         m_memoryFragment = file()->as_memory(pathFragment);
 
       }
 
@@ -146,10 +150,13 @@ namespace gpu_opengl
       //#endif
 
       m_ProgramID = glCreateProgram();
+      GLCheckError("Couldn't create opengl program");
 
       glAttachShader(m_ProgramID, uVertex);
+      GLCheckError("Couldn't attach vertex shader to program");
 
       glAttachShader(m_ProgramID, uFragment);
+      GLCheckError("Couldn't attach fragment shader to program");
 
       //#if !defined(__APPLE__) && !defined(__ANDROID__)
       //
@@ -206,31 +213,32 @@ namespace gpu_opengl
 
    // activate the shader
    // ------------------------------------------------------------------------
-   void shader::bind(::gpu::texture* pgputextureTarget, ::gpu::texture* pgputextureSource)
+   void shader::bind(::gpu::command_buffer *pgpucommandbuffer, ::gpu::texture *pgputextureTarget,
+                     ::gpu::texture *pgputextureSource)
    {
 
-      bind(pgputextureTarget);
+      bind(pgpucommandbuffer, pgputextureTarget);
 
-      bind_source(pgputextureSource, 0);
+      bind_source(pgpucommandbuffer, pgputextureSource, 0);
 
    }
 
-   void shader::bind()
+   void shader::bind(::gpu::command_buffer *pgpucommandbuffer)
    {
 
       ::cast < render_target> prendertarget = m_pgpurenderer->m_pgpurendertarget;
 
       ::cast < texture > ptexture = prendertarget->current_texture(::gpu::current_frame());
 
-      bind(ptexture);
+      bind(pgpucommandbuffer, ptexture);
 
    }
 
 
-   void shader::bind(::gpu::texture* pgputextureTarget)
+   void shader::bind(::gpu::command_buffer *pgpucommandbuffer, ::gpu::texture *pgputextureTarget)
    {
 
-      _bind();
+      _bind(pgpucommandbuffer);
 
       ::cast < texture > ptexture = pgputextureTarget;
 
@@ -280,7 +288,7 @@ namespace gpu_opengl
    }
 
 
-   void shader::_bind()
+   void shader::_bind(::gpu::command_buffer *pgpucommandbuffer)
    {
 
       auto pgpucontext = m_pgpurenderer->m_pgpucontext;
@@ -352,7 +360,7 @@ namespace gpu_opengl
 
 
 
-   void shader::unbind()
+   void shader::unbind(::gpu::command_buffer *pgpucommandbuffer)
    {
 
       if (m_ptextureBound)
@@ -373,7 +381,7 @@ namespace gpu_opengl
    }
 
 
-   void shader::bind_source(::gpu::texture* pgputexture, int iSlot)
+   void shader::bind_source(::gpu::command_buffer *pgpucommandbuffer, ::gpu::texture *pgputexture, int iSlot)
    {
 
       glActiveTexture(GL_TEXTURE0);
@@ -801,7 +809,7 @@ namespace gpu_opengl
    }
 
 
-   void shader::push_properties()
+   void shader::push_properties(::gpu::command_buffer *pgpucommandbuffer)
    {
 
       auto p = m_propertiesPush.m_pproperties;
@@ -818,31 +826,35 @@ namespace gpu_opengl
 
          }
 
+         ::string strName = p->m_pszName;
+
+         strName.begins_eat("sampler:");
+
          switch (p->m_etype)
          {
          case ::gpu::e_type_int:
-            _set_int(p->m_pszName, *(int*)(m_propertiesPush.data() + iLen));
+               _set_int(strName, *(int *)(m_propertiesPush.data(true) + iLen));
             break;
          case ::gpu::e_type_float:
-            _set_float(p->m_pszName, *(float*)(m_propertiesPush.data() + iLen));
+            _set_float(strName, *(float *)(m_propertiesPush.data(true) + iLen));
             break;
          case ::gpu::e_type_seq2:
-            _set_vec2(p->m_pszName, *(glm::vec2*)(m_propertiesPush.data() + iLen));
+            _set_vec2(strName, *(glm::vec2 *)(m_propertiesPush.data(true) + iLen));
             break;
          case ::gpu::e_type_seq3:
-            _set_vec3(p->m_pszName, *(glm::vec3*)(m_propertiesPush.data() + iLen));
+            _set_vec3(strName, *(glm::vec3 *)(m_propertiesPush.data(true) + iLen));
             break;
          case ::gpu::e_type_seq4:
-            _set_vec4(p->m_pszName, *(glm::vec4*)(m_propertiesPush.data() + iLen));
+            _set_vec4(strName, *(glm::vec4 *)(m_propertiesPush.data(true) + iLen));
             break;
          case ::gpu::e_type_mat2:
-            _set_mat2(p->m_pszName, *(glm::mat2*)(m_propertiesPush.data() + iLen));
+            _set_mat2(strName, *(glm::mat2 *)(m_propertiesPush.data(true) + iLen));
             break;
          case ::gpu::e_type_mat3:
-            _set_mat3(p->m_pszName, *(glm::mat3*)(m_propertiesPush.data() + iLen));
+            _set_mat3(strName, *(glm::mat3 *)(m_propertiesPush.data(true) + iLen));
             break;
          case ::gpu::e_type_mat4:
-            _set_mat4(p->m_pszName, *(glm::mat4*)(m_propertiesPush.data() + iLen));
+            _set_mat4(strName, *(glm::mat4 *)(m_propertiesPush.data(true) + iLen));
             break;
         default:
         throw ::exception(error_not_expected);
@@ -952,13 +964,13 @@ namespace gpu_opengl
    }
    
    
-   void shader::set_vec2(const ::scoped_string& scopedstrName, float x, float y)
+   void shader::set_seq2(const ::scoped_string& scopedstrName, float x, float y)
    {
 
       if (m_propertiesPush.m_pproperties)
       {
 
-         ::gpu::shader::set_vec2(scopedstrName, x, y);
+         ::gpu::shader::set_seq2(scopedstrName, x, y);
 
       }
       else
@@ -971,13 +983,13 @@ namespace gpu_opengl
    }
    
    
-   void shader::set_vec2(const ::scoped_string& scopedstrName, const ::glm::vec2& a)
+   void shader::set_seq2(const ::scoped_string& scopedstrName, const ::glm::vec2& a)
    {
 
       if (m_propertiesPush.m_pproperties)
       {
 
-         ::gpu::shader::set_vec2(scopedstrName, a);
+         ::gpu::shader::set_seq2(scopedstrName, a);
 
       }
       else
@@ -990,13 +1002,13 @@ namespace gpu_opengl
    }
    
    
-   void shader::set_vec3(const ::scoped_string& scopedstrName, float x, float y, float z)
+   void shader::set_seq3(const ::scoped_string& scopedstrName, float x, float y, float z)
    {
 
       if (m_propertiesPush.m_pproperties)
       {
 
-         ::gpu::shader::set_vec3(scopedstrName, x, y, z);
+         ::gpu::shader::set_seq3(scopedstrName, x, y, z);
 
       }
       else
@@ -1009,13 +1021,13 @@ namespace gpu_opengl
    }
    
    
-   void shader::set_vec3(const ::scoped_string& scopedstrName, const ::glm::vec3& a)
+   void shader::set_seq3(const ::scoped_string& scopedstrName, const ::glm::vec3& a)
    {
 
       if (m_propertiesPush.m_pproperties)
       {
 
-         ::gpu::shader::set_vec3(scopedstrName, a);
+         ::gpu::shader::set_seq3(scopedstrName, a);
 
       }
       else
@@ -1028,13 +1040,13 @@ namespace gpu_opengl
    }
 
 
-   void shader::set_vec4(const ::scoped_string& scopedstrName, float x, float y, float z, float w)
+   void shader::set_seq4(const ::scoped_string& scopedstrName, float x, float y, float z, float w)
    {
 
       if (m_propertiesPush.m_pproperties)
       {
 
-         ::gpu::shader::set_vec4(scopedstrName, x, y, z, w);
+         ::gpu::shader::set_seq4(scopedstrName, x, y, z, w);
 
       }
       else
@@ -1047,13 +1059,13 @@ namespace gpu_opengl
    }
 
 
-   void shader::set_vec4(const ::scoped_string& scopedstrName, const ::glm::vec4& a)
+   void shader::set_seq4(const ::scoped_string& scopedstrName, const ::glm::vec4& a)
    {
 
       if (m_propertiesPush.m_pproperties)
       {
 
-         ::gpu::shader::set_vec4(scopedstrName, a);
+         ::gpu::shader::set_seq4(scopedstrName, a);
 
       }
       else

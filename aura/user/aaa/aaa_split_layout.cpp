@@ -34,8 +34,8 @@ namespace user
 
       place_holder_container::install_message_routing(pchannel);
 
-      MESSAGE_LINK(::user::e_message_create, pchannel, this, &split_layout::on_message_create);
-      MESSAGE_LINK(::user::e_message_show_window, pchannel, this, &split_layout::on_message_show_window);
+      USER_MESSAGE_LINK(::user::e_message_create, pchannel, this, &split_layout::on_message_create);
+      USER_MESSAGE_LINK(::user::e_message_show_window, pchannel, this, &split_layout::on_message_show_window);
 
    }
 
@@ -147,7 +147,7 @@ namespace user
          if(!m_splitbara[i])
          {
             
-            auto estatus = __øconstruct(m_splitbara[i]);
+            auto estatus = øconstruct(m_splitbara[i]);
 
             if (!estatus)
             {
@@ -899,7 +899,7 @@ namespace user
       for(i = 0; i < iSplitBarCount; i++)
       {
 
-         auto  pbar =__create_new<split_bar>();
+         auto  pbar =øcreate_new<split_bar>();
 
          m_splitbara.insert_at(iIndex, pbar);
 

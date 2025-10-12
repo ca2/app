@@ -89,7 +89,7 @@ namespace draw2d_gpu
          return;
       }
 
-      auto ppixmap = __øcreate < ::gpu::pixmap >();
+      auto ppixmap = øcreate < ::gpu::pixmap >();
 
 
       ppixmap->initialize(m_pgpurenderer,

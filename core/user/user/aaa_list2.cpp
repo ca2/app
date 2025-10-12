@@ -139,22 +139,22 @@ namespace user
 
       ::user::mesh::install_message_routing(pchannel);
 
-      MESSAGE_LINK(::user::e_message_size, pchannel, this, &list2::on_message_size);
-      MESSAGE_LINK(::user::e_message_scroll_y, pchannel, this, &list2::on_message_scroll_y);
-      MESSAGE_LINK(::user::e_message_scroll_x, pchannel, this, &list2::on_message_scroll_x);
-      MESSAGE_LINK(::user::e_message_mouse_leave, pchannel, this, &list2::on_message_mouse_leave);
+      USER_MESSAGE_LINK(::user::e_message_size, pchannel, this, &list2::on_message_size);
+      USER_MESSAGE_LINK(::user::e_message_scroll_y, pchannel, this, &list2::on_message_scroll_y);
+      USER_MESSAGE_LINK(::user::e_message_scroll_x, pchannel, this, &list2::on_message_scroll_x);
+      USER_MESSAGE_LINK(::user::e_message_mouse_leave, pchannel, this, &list2::on_message_mouse_leave);
 
-      MESSAGE_LINK(::user::e_message_left_button_down, pchannel, this, &list2::on_message_left_button_down);
-      MESSAGE_LINK(::user::e_message_left_button_up, pchannel, this, &list2::on_message_left_button_up);
-      MESSAGE_LINK(::user::e_message_left_button_double_click, pchannel, this, &list2::on_message_left_button_double_click);
-      MESSAGE_LINK(::user::e_message_right_button_down, pchannel, this, &list2::on_message_right_button_down);
+      USER_MESSAGE_LINK(::user::e_message_left_button_down, pchannel, this, &list2::on_message_left_button_down);
+      USER_MESSAGE_LINK(::user::e_message_left_button_up, pchannel, this, &list2::on_message_left_button_up);
+      USER_MESSAGE_LINK(::user::e_message_left_button_double_click, pchannel, this, &list2::on_message_left_button_double_click);
+      USER_MESSAGE_LINK(::user::e_message_right_button_down, pchannel, this, &list2::on_message_right_button_down);
 
-      MESSAGE_LINK(::user::e_message_mouse_move, pchannel, this, &list2::on_message_mouse_move);
+      USER_MESSAGE_LINK(::user::e_message_mouse_move, pchannel, this, &list2::on_message_mouse_move);
 
-      MESSAGE_LINK(::user::e_message_key_down, pchannel, this, &list2::on_message_key_down);
+      USER_MESSAGE_LINK(::user::e_message_key_down, pchannel, this, &list2::on_message_key_down);
 
-      MESSAGE_LINK(::user::e_message_create, pchannel, this, &list2::on_message_create);
-      //      //MESSAGE_LINK(::user::e_message_timer,           pchannel, this, &list2::on_timer);
+      USER_MESSAGE_LINK(::user::e_message_create, pchannel, this, &list2::on_message_create);
+      //      //USER_MESSAGE_LINK(::user::e_message_timer,           pchannel, this, &list2::on_timer);
       add_command_handler("list_impact_auto_arrange", { this,  &list2::_001OnListImpactAutoArrange });
       add_command_prober("list_impact_auto_arrange", { this,  &list2::_001OnUpdateListImpactAutoArrange });
 
@@ -251,7 +251,7 @@ namespace user
       if (m_bTopText)
       {
 
-         auto pbrushText = __øcreate < ::draw2d::brush >();
+         auto pbrushText = øcreate < ::draw2d::brush >();
 
          auto pstyle = get_style(pgraphics);
 
@@ -4133,7 +4133,7 @@ namespace user
                   else
                   {
 
-                     auto pmessage = __create_new < ::message::mouse >();
+                     auto pmessage = øcreate_new < ::message::mouse >();
 
                      pmessage->m_oswindow = oswindow();
 
@@ -6760,7 +6760,7 @@ namespace user
 
       auto pointCursor = get_cursor_position();
 
-      auto pmouse = __create_new < ::user::mouse >();
+      auto pmouse = øcreate_new < ::user::mouse >();
 
       pmouse->m_point = pointCursor;
 

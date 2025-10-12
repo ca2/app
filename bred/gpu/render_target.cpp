@@ -297,6 +297,13 @@ namespace gpu
    texture * render_target::current_texture(::gpu::frame* pgpuframe)
    {
 
+      if (::is_null(pgpuframe))
+      {
+
+         return nullptr;
+
+      }
+
       if (pgpuframe->m_pgpulayer)
       {
 

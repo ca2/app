@@ -545,12 +545,12 @@ namespace nanoui
 
       pcontext->text(text_pos.x(), text_pos.y() + 1, m_strCaption);
       
-      if (m_strCaption == "Load Presets")
-      {
-
-         informationf("Drawing Load Presets");
-
-      }
+//      if (m_strCaption == "Load Presets")
+//      {
+//
+//         informationf("Drawing Load Presets");
+//
+//      }
 
    }
 

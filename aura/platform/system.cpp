@@ -1133,6 +1133,17 @@ namespace aura
             m_pfactoryDraw2d->merge_to_global_factory();
 
          }
+
+         auto p = node()->create_mutex();
+
+         __refdbg_add_referer
+
+         p->increment_reference_count();
+
+         ::write_text::font::s_pmutexFontTextMap = dynamic_cast < ::mutex *>( p.m_p);
+
+         information() << "creating write_text::font";
+
          //else
          //{
 

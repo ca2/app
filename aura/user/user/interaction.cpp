@@ -17208,6 +17208,12 @@ if(get_parent())
          information() << "interaction sketch_to_lading user::list_box";
 
       }
+      else if (strType == "app_core_desk::list_impact")
+      {
+
+         information() << "interaction sketch_to_lading app_core_desk::list_impact";
+
+      }
       // else if(strType.contains("main_frame"))
       // {
       //
@@ -17335,9 +17341,13 @@ if(get_parent())
       //
       //      }
 
+      auto &edisplaySketch = layout().sketch().m_edisplay;
+
       layout().lading() = layout().sketch();
 
       layout().sketch().reset_pending();
+
+      auto &edisplayLading = layout().lading().m_edisplay;
 
       if (layout().sketch().m_bImpactUpdateGoingOn)
       {
@@ -17902,6 +17912,22 @@ if(get_parent())
 
       _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
+
+            ::string strType = ::type(this).name();
+
+      if (strType == "user::list_box")
+      {
+
+         information() << "interaction layout_to_design user::list_box";
+      }
+      else if (strType == "app_core_desk::list_impact")
+      {
+
+         information() << "interaction layout_to_design app_core_desk::list_impact";
+      }
+
+      auto &edisplayOld = layout().design().m_edisplay;
+
       if (!layout().design().visual_state::operator==(layout().layout()))
       {
 
@@ -17910,6 +17936,8 @@ if(get_parent())
          m_bClipRectangle = false;
 
       }
+
+      auto &edisplayNew = layout().design().m_edisplay;
 
       if (!layout().design().m_zorder.is_change_request() || layout().layout().m_zorder.is_change_request())
       {

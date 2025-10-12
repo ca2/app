@@ -840,24 +840,41 @@ pstate->m_ppen->m_color = color;
 
       character_metric(daLeft, daRight, scopedstr);
 
-      auto pszStart = scopedstr.begin();
+      const char * pszStart = scopedstr.begin();
 
-      auto psz = pszStart;
+      const char * psz = pszStart;
+       
+      const char * pszEnd = scopedstr.end();
 
       int iChar = 0;
 
-      while (psz < scopedstr.end() && iChar < maxPositions)
+      while (psz < pszEnd && iChar < maxPositions)
       {
 
-         int iLen = get_utf8_char_length(scopedstr);
+         int iLen = get_utf8_char_length(psz);
+         
+         if(iLen < 0)
+         {
+            
+            break;
+            
+         }
+         
+         auto & position = positions[iChar];
+         
+         auto iIndex = psz - pszStart;
+         
+         auto dLeft = daLeft[iIndex];
+         
+         auto dRight = daRight[iIndex];
 
-         positions[iChar].str = psz;
+         position.str = psz;
 
-         positions[iChar].x = (float) (x+ offsetx+daLeft[psz - pszStart]);
+         position.x = (float) (x + offsetx + dLeft);
 
-         positions[iChar].minx = (float) (x + offsetx + daLeft[psz - pszStart]);
+         position.minx = (float) (x + offsetx + dLeft);
 
-         positions[iChar].maxx = (float) (x + offsetx + daRight[psz - pszStart]);
+         position.maxx = (float) (x + offsetx + dRight);
 
          psz += iLen;
 

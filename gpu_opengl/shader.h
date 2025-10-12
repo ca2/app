@@ -26,11 +26,12 @@ namespace gpu_opengl
 
       void on_initialize_shader() override;
 
-      void _bind() override;
-      void bind(::gpu::texture* pgputextureTarget, ::gpu::texture* pgputextureSource) override;
-      void bind(::gpu::texture* pgputextureTarget) override;
-      void bind() override;
-      void unbind() override;
+      void _bind(::gpu::command_buffer *pgpucommandbuffer) override;
+      void bind(::gpu::command_buffer *pgpucommandbuffer, ::gpu::texture *pgputextureTarget,
+                ::gpu::texture *pgputextureSource) override;
+      void bind(::gpu::command_buffer *pgpucommandbuffer, ::gpu::texture *pgputextureTarget) override;
+      void bind(::gpu::command_buffer * pgpucommandbuffer) override;
+      void unbind(::gpu::command_buffer *pgpucommandbuffer) override;
       
       //virtual void initialize_shader(
       //   ::gpu::context* pgpucontext,
@@ -92,22 +93,22 @@ namespace gpu_opengl
       void _set_mat3(const_char_pointer name, const glm::mat3& matrix) const;
       void _set_mat4(const_char_pointer name, const glm::mat4& matrix) const;
 
-      void push_properties() override;
+      void push_properties(::gpu::command_buffer *pgpucommandbuffer) override;
 
       //void draw() override;
 
-      void bind_source(::gpu::texture* pgputexture, int iSlot) override;
+      void bind_source(::gpu::command_buffer *pgpucommandbuffer, ::gpu::texture *pgputexture, int iSlot) override;
 
 
       void set_bool(const ::scoped_string& scopedstrName, bool value) override;
       void set_int(const ::scoped_string& scopedstrName, int value) override;
       void set_float(const ::scoped_string& scopedstrName, float value) override;
-      void set_vec2(const ::scoped_string& scopedstrName, float x, float y) override;
-      void set_vec2(const ::scoped_string& scopedstrName, const ::glm::vec2& a) override;
-      void set_vec3(const ::scoped_string& scopedstrName, float x, float y, float z) override;
-      void set_vec3(const ::scoped_string& scopedstrName, const ::glm::vec3& a) override;
-      void set_vec4(const ::scoped_string& scopedstrName, float x, float y, float z, float w) override;
-      void set_vec4(const ::scoped_string& scopedstrName, const ::glm::vec4& a) override;
+      void set_seq2(const ::scoped_string& scopedstrName, float x, float y) override;
+      void set_seq2(const ::scoped_string& scopedstrName, const ::glm::vec2& a) override;
+      void set_seq3(const ::scoped_string& scopedstrName, float x, float y, float z) override;
+      void set_seq3(const ::scoped_string& scopedstrName, const ::glm::vec3& a) override;
+      void set_seq4(const ::scoped_string& scopedstrName, float x, float y, float z, float w) override;
+      void set_seq4(const ::scoped_string& scopedstrName, const ::glm::vec4& a) override;
       void set_mat2(const ::scoped_string& scopedstrName, const ::glm::mat2& a) override;
       void set_mat3(const ::scoped_string& scopedstrName, const ::glm::mat3& a) override;
       void set_mat4(const ::scoped_string& scopedstrName, const ::glm::mat4& a) override;

@@ -74,7 +74,7 @@ public:
          else
          {
 
-            m_ppHash = __raw_new BASE_NODE *[nHashSize];
+            m_ppHash = øraw_new BASE_NODE *[nHashSize];
 
             ENSURE(m_ppHash != nullptr);
 

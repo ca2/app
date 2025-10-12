@@ -3,7 +3,6 @@
 #include "context.h"
 #include "debug_scope.h"
 #include "device.h"
-#include "context_lock.h"
 #include "cpu_buffer.h"
 #include "guard.h"
 #include "input_layout.h"
@@ -373,7 +372,6 @@ namespace gpu
    }
 
 
-
    ::gpu::texture* context::texture(const ::file::path& path)
    {
 
@@ -384,7 +382,7 @@ namespace gpu
       if (!ptexture)
       {
 
-         load_texture(ptexture, path);
+         load_texture(ptexture, path, false);
 
       }
 
@@ -393,18 +391,64 @@ namespace gpu
    }
 
 
-   void context::load_texture(::pointer < ::gpu::texture >& ptexture, const ::file::path& path)
+   void context::load_texture(::pointer < ::gpu::texture >& ptexture, const ::file::path& path, bool bIsSrgb)
    {
 
       if (ødefer_construct(ptexture))
       {
 
-         ptexture->initialize_image_texture(m_pgpurenderer, path);
+         ptexture->initialize_image_texture(m_pgpurenderer, path, bIsSrgb);
 
       }
 
    }
 
+
+   ::gpu::texture* context::generic_texture(const ::file::path& path, int iAssimpTextureType)
+   {
+
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+
+      auto pnode = m_texturemapGeneric.find(path);
+
+      if (!pnode)
+      {
+
+         pnode = m_texturemapGeneric.get(path);
+
+         try
+         {
+
+            load_generic_texture(pnode->element2(), path, iAssimpTextureType);
+
+         }
+         catch (...)
+         {
+
+            pnode->element2() = nullptr;
+
+         }
+
+      }
+
+      return pnode->element2();
+
+   }
+
+
+   void context::load_generic_texture(::pointer < ::gpu::texture >& ptexture, const ::file::path& path, int iAssimpTextureType)
+   {
+
+      throw interface_only();
+
+      // if (ødefer_construct(ptexture))
+      // {
+      //
+      //    ptexture->initialize_image_texture(m_pgpurenderer, path);
+      //
+      // }
+
+   }
 
    void context::defer_make_current()
    {
@@ -454,7 +498,7 @@ namespace gpu
 
       auto prenderable = _load_wavefront_obj_renderable(model);
 
-      *((::gpu::renderable_t*)prenderable) = model;
+      
       // // 3) cache & return
       // m_mapObjectModel[name] = model;
       return prenderable;
@@ -465,7 +509,7 @@ namespace gpu
    ::pointer<::graphics3d::renderable> context::_load_wavefront_obj_renderable(const ::gpu::renderable_t & model)
    {
 
-      auto prenderable = m_pengine->_load_wavefront_obj_renderable(model.m_path);
+      auto prenderable = m_pengine->_load_wavefront_obj_renderable(model);
 
       return prenderable;
 
@@ -476,7 +520,6 @@ namespace gpu
    {
       ASSERT(model.m_erenderabletype == ::gpu::e_renderable_type_gltf);
       auto prenderable = _load_gltf_model(model);
-      *((::gpu::renderable_t*)prenderable) = model;
       return prenderable;
 
       // //if (auto it = m_mapGltfModel.find(name); it != m_mapGltfModel.end())
@@ -585,12 +628,12 @@ return {};
 
          end_debug_happening();
 
-         m_pshaderBound->unbind();
+         m_pshaderBound->unbind(::gpu::current_frame()->m_pgpucommandbuffer);
 
       }
       start_debug_happening("shader changing");
 
-      pgpushader->bind();
+      pgpushader->bind(::gpu::current_frame()->m_pgpucommandbuffer);
 
       m_pshaderBound = pgpushader;
 
@@ -614,7 +657,7 @@ return {};
 
          m_pshaderBound.release();
 
-         pshaderBound->unbind();
+         pshaderBound->unbind(::gpu::current_frame()->m_pgpucommandbuffer);
 
          end_debug_happening();
 
@@ -870,6 +913,13 @@ return {};
    }
 
 
+   void context::onBeforePreloadGlobalAssets()
+   {
+
+
+   }
+
+
    //bool context::task_iteration()
    //{
 
@@ -1046,6 +1096,8 @@ return {};
       //::gpu::rear_guard rear_guard(this);
 
       auto procedure = procedureParam;
+
+      procedure.set_timeout(5_min);
 
       _send([this, procedure]()
          {
@@ -1757,7 +1809,7 @@ return {};
    void context::on_end_layer(::gpu::layer* player)
    {
 
-      ::gpu::context_lock contextlock(this);
+      //::gpu::context_lock contextlock(this);
 
       defer_unbind_shader();
 
@@ -2027,9 +2079,9 @@ return {};
          else
          {
 
-            warning("[context::load_model] Unknown model type '{}' for asset '{}'",
-               model.m_strRenderableType1,
-               model.m_strName);
+            warningf("[context::load_model] Unknown model type '%s' for asset '%s'",
+               model.m_strRenderableType1.c_str(),
+               model.m_strName.c_str());
 
          }
 
@@ -2037,7 +2089,7 @@ return {};
       catch (const ::exception &e)
       {
 
-         error("[asset_manager] Failed to load model '{}': {}", model.m_strName, e.get_message());
+         errorf("[asset_manager] Failed to load model '%s': %s", model.m_strName.c_str(), e.get_message().c_str());
 
       }
 
@@ -2076,8 +2128,15 @@ return {};
 
       return {};
 
-         }
+   }
 
+   
+   ::pointer<::gpu::texture> context::cubemap_from_hdr(const ::file::path & path)
+   {
+
+      return {};
+
+   }
 
 
    // ::pointer < ::graphics3d::renderable> context::create_tinyobj_renderable(const ::file::path& path)
@@ -2090,32 +2149,6 @@ return {};
    // }
 
 
-   ::pointer < ::gpu::texture > context::generateBRDFlut()
-   {
-
-      return {};
-
-   }
-
-
-   ::pointer<::gpu::texture> context::generatePrefilteredEnvMap(
-      ::gpu::texture *environmentCubeExisting,
-      ::graphics3d::renderable *prenderableSkybox)
-   {
-
-      return {};
-
-   }
-
-
-   ::pointer < ::gpu::texture > context::generateIrradianceMap(
-//         ::gpu::texture * irradianceCube,
-   ::gpu::texture * environmentCube, ::graphics3d::renderable *prenderableSkybox)
-   {
-
-      return {};
-
-   }
 
 
 } // namespace gpu

@@ -479,11 +479,11 @@ namespace apex
    }
 
 
-   void application::on_change_theme()
-   {
-
-
-   }
+   // void application::on_change_theme()
+   // {
+   //
+   //
+   // }
 
 
    //string application::get_theme()
@@ -3883,27 +3883,32 @@ namespace apex
       memory memorySecurityAttributes;
 
       auto psecurityattributes = pnode->get_application_exclusivity_security_attributes();
-
-      bool bGlobalExclusiveFail = exclusive_fails(get_global_mutex_name(), psecurityattributes);
-
-      if (bGlobalExclusiveFail && m_eexclusiveinstance == e_exclusive_instance_global)
+      
+      if(m_eexclusiveinstance == e_exclusive_instance_global)
       {
-
-         information() << "A instance of the application:<br><br> - " << m_strAppName << +"<br><br>seems to be already running at the same machine<br>Only one instance of this application can run globally: at the same machine.<br><br>Exiting this ___new instance.";
-
-         try
+         
+         bool bGlobalExclusiveFail = exclusive_fails(get_global_mutex_name(), psecurityattributes);
+         
+         if (bGlobalExclusiveFail)
          {
-
-            on_exclusive_instance_conflict(prequest, bHandled, e_exclusive_instance_global, "");
-
+            
+            information() << "A instance of the application:<br><br> - " << m_strAppName << +"<br><br>seems to be already running at the same machine<br>Only one instance of this application can run globally: at the same machine.<br><br>Exiting this ___new instance.";
+            
+            try
+            {
+               
+               on_exclusive_instance_conflict(prequest, bHandled, e_exclusive_instance_global, "");
+               
+            }
+            catch (...)
+            {
+               
+            }
+            
+            return false;
+            
          }
-         catch (...)
-         {
-
-         }
-
-         return false;
-
+         
       }
 
       if (m_eexclusiveinstance == e_exclusive_instance_global_id)
@@ -3932,18 +3937,23 @@ namespace apex
          }
 
       }
-
-      bool bLocalExclusiveFail = exclusive_fails(get_local_mutex_name(), psecurityattributes);
-
-      if (bLocalExclusiveFail && m_eexclusiveinstance == e_exclusive_instance_local)
+      
+      if(m_eexclusiveinstance == e_exclusive_instance_local)
       {
-
-         information() << "A instance of the application:<br><br>-" << m_strAppName << "<br><br>seems to be already running at the same account.<br>Only one instance of this application can run locally: at the same account.<br><br>Exiting this ___new instance.";
-
-         on_exclusive_instance_conflict(prequest, bHandled, e_exclusive_instance_local, "");
-
-         return false;
-
+         
+         bool bLocalExclusiveFail = exclusive_fails(get_local_mutex_name(), psecurityattributes);
+         
+         if (bLocalExclusiveFail)
+         {
+            
+            information() << "A instance of the application:<br><br>-" << m_strAppName << "<br><br>seems to be already running at the same account.<br>Only one instance of this application can run locally: at the same account.<br><br>Exiting this ___new instance.";
+            
+            on_exclusive_instance_conflict(prequest, bHandled, e_exclusive_instance_local, "");
+            
+            return false;
+            
+         }
+         
       }
 
       if (m_eexclusiveinstance == e_exclusive_instance_local_id)
@@ -10015,12 +10025,12 @@ namespace apex
    }
 
 
-   string application::get_theme()
-   {
-
-      return "";
-
-   }
+   // string application::get_theme()
+   // {
+   //
+   //    return "";
+   //
+   // }
 
 
    void application::initialize_contextualized_theme()

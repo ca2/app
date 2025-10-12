@@ -194,6 +194,13 @@ namespace dynamic_source
 
       }
 
+      if (m_timeLastShouldBuildCheck.is_time_out_ok_with_update(2_s))
+      {
+
+         return false;
+
+      }
+
       bool bManagerShouldBuild = m_pmanager->should_build(m_strSourcePath);
 
       if (bManagerShouldBuild)
@@ -212,6 +219,7 @@ namespace dynamic_source
       return bShouldBuild || bHasDelayedTempError || bDoesntMatchVersion;
 
    }
+
 
    void ds_script::on_start_build()
    {

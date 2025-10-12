@@ -9006,7 +9006,7 @@ namespace windowing
 
          }
 
-         m_pcsDisplay = __raw_new critical_section();
+         m_pcsDisplay = øraw_new critical_section();
 
          information() << "interaction_impl m_pgraphics alloc : " << strType;
 
@@ -9325,7 +9325,7 @@ namespace windowing
       if (!strType.case_insensitive_contains("main_frame"))
       {
 
-         information() << "not main_frame";
+         //information() << "not main_frame";
 
       }
 

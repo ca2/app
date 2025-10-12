@@ -479,7 +479,7 @@ public:
 
          this->m_end = end;
 
-         this->m_erange = (enum_range) (erange & ~e_range_scoped_ownership);
+         //this->m_erange = (enum_range) (erange & ~e_range_scoped_ownership);
 
          this->m_pbasedata = pbasedata;
 
@@ -1035,7 +1035,7 @@ public:
 
          this->m_end = range.m_end;
 
-         this->m_erange = (enum_range)(range.m_erange & ~e_range_scoped_ownership);
+         //this->m_erange = (enum_range)(range.m_erange & ~e_range_scoped_ownership);
 
          this->m_pbasedata = range.m_pbasedata;
 
@@ -1111,7 +1111,7 @@ public:
 
          this->m_end = range.m_end;
 
-         this->m_erange = (enum_range) (range.m_erange & ~e_range_scoped_ownership);
+         //this->m_erange = (enum_range) (range.m_erange & ~e_range_scoped_ownership);
 
          this->m_pbasedata = range.m_pbasedata;
 
@@ -1675,7 +1675,7 @@ public:
 
       auto old_size = this->size();
 
-      auto lengthNew = characterCount;
+      auto lengthNew = characterCount < 0 ? old_size + characterCount + 1 : characterCount;
 
       auto pbasedataOld = this->m_pbasedata;
 

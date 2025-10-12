@@ -2,7 +2,7 @@
 #pragma once
 
 
-#include "bred/_.h"
+#include "gpu/_.h"
 
 
 #if defined(WINDOWS_DESKTOP)
@@ -18,8 +18,8 @@
 #define CLASS_DECL_GPU_OPENGL  CLASS_DECL_IMPORT
 #endif
 
-#include "_gpu_opengl.h"
 
+//#include "_gpu_opengl.h"
 
 
 namespace gpu_opengl

@@ -214,7 +214,25 @@ public:
 
    inline class time elapsed() const { return elapsed(now()); }
    constexpr class time elapsed(const class time & time ) const { return time - *this; }
+   inline bool is_time_out_ok_with_update(const class time& timeOut) 
+   {
 
+      auto timeNow = now();
+      
+      auto timeElapsed = this->elapsed(timeNow);
+
+      if (timeElapsed < timeOut)
+      {
+
+         return true;
+
+      }
+
+      *this = timeNow;
+
+      return false;
+   
+   }
 
    inline time update_elapsed() { return update_elapsed(now()); }
 

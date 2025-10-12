@@ -3,6 +3,7 @@
 #include "networking_bsd/address.h"
 #include "networking_bsd/networking.h"
 #include "socket_handler.h"
+#include "acme/operating_system/networking.h"
 #include "acme/operating_system/shared_posix/c_error_number.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/crypto/crypto.h"
@@ -18,6 +19,7 @@
 
 //::std::strong_ordering memory_order(const void * m1, const void * m2, memsize s);
 
+CLASS_DECL_ACME::collection::count get_count_of_opened_sockets();
 
 #if defined(LINUX) || defined(__BSD__)
 #undef USE_MISC
@@ -630,7 +632,7 @@ m_ibuf(isize)
 
          SetCloseAndDelete();
 
-         ::closesocket(s);
+         ::_close_socket(s);
 
          return false;
 
@@ -716,33 +718,47 @@ m_ibuf(isize)
          }
          else if (Socks4() && ::pointer < sockets_bsd::socket_handler >(socket_handler())->Socks4TryDirect()) // retry
          {
-            ::closesocket(s);
+            
+            ::_close_socket(s);
+
             return open(paddress, true);
+
          }
          else if (Reconnect())
          {
+            
             string strError = bsd_socket_error(iError);
 
             information() << "connect: failed, reconnect pending " << iError << bsd_socket_error(iError);
 
             attach(s);
+
             set_connecting(true); // this flag will control fd_set's
+
          }
          else
          {
+
             string strError = bsd_socket_error(iError);
 
             fatal() << "connect: failed " << iError << bsd_socket_error(iError);
 
             SetCloseAndDelete();
-            ::closesocket(s);
+
+            ::_close_socket(s);
+
             return false;
+
          }
+
       }
       else
       {
+
          attach(s);
+
          set_call_on_connect(); // base_socket_handler must call OnConnect
+
       }
 
       set_connection_start_time();
@@ -754,6 +770,7 @@ m_ibuf(isize)
       // 'true' means connected or connecting(not yet connected)
       // 'false' means something failed
       return true; //!is_connecting();
+
    }
 
 
@@ -2361,6 +2378,23 @@ m_ibuf(isize)
    }
 
 
+   void tcp_socket::set_no_ssl_shutdown()
+   {
+
+      if (!m_psslcontext)
+      {
+
+         warning() << "tcp_socket::set_no_ssl_shutdown: SSL Context is nullptr";
+
+         return;
+
+      }
+
+      m_psslcontext->m_bNoSslShutdown = true;
+
+   }
+
+
    bool tcp_socket::SSLNegotiate_Server()
    {
 
@@ -2432,6 +2466,50 @@ m_ibuf(isize)
          {
 
             information() << "SSL_accept return code is SSL_ERROR_WANT_ACCEPT";
+
+         }
+         else if (iSslError == SSL_ERROR_SSL)
+         {
+
+            // According to OpenSSL documentation, if SSL_ERROR_SSL 
+            // error has happened, a fatal error occurred and 
+            // SSL_shutdown shouldn't be called.
+
+            information() << "SSLNegotiate SSL_accept() failed with SSL_ERROR_SSL (1) network error = : " << iError;
+
+            information() << "Number of opened sockets: " << get_count_of_opened_sockets();
+
+            ::cast < ::sockets::tcp_socket > ptcpsocket = base_socket_interface();
+            if (ptcpsocket && ptcpsocket->m_timegetherea.get_size() > 0)
+            {
+               for (auto& timegethere : ptcpsocket->m_timegetherea)
+               {
+
+                  information() << "script(1): " << timegethere.m_strPath;
+                  informationf("time(1): %0.2fms", timegethere.m_timeGetHere.floating_millisecond());
+               }
+
+            }
+            else if (m_timegetherea.get_size() > 0)
+            {
+
+               for (auto& timegethere : m_timegetherea)
+               {
+
+                  information() << "script(2): " << timegethere.m_strPath;
+                  informationf("time(2): %0.2fms", timegethere.m_timeGetHere.floating_millisecond());
+               }
+
+
+            }
+
+            set_no_ssl_shutdown();
+
+            SetSSLNegotiate(false);
+
+            SetCloseAndDelete(true);
+
+            OnSSLAcceptFailed();
 
          }
          else

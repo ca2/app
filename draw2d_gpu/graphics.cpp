@@ -1315,11 +1315,11 @@ void main() {
          color,
          pgpucontext->m_rectangle.size());
 
-
-      pshader->bind();
-
-      //vkCmdBeginRenderPass(cmd, &renderPassInfo, VK_SUBPASS_CONTENTS_INLINE);
+      // vkCmdBeginRenderPass(cmd, &renderPassInfo, VK_SUBPASS_CONTENTS_INLINE);
       auto pcommandbuffer = prenderer->getCurrentCommandBuffer2(::gpu::current_frame());
+
+      pshader->bind(pcommandbuffer);
+
       //VkDeviceSize offset = 0;
       ///vkCmdBindPipeline(pcommandbuffer->m_vkcommandbuffer, VK_PIPELINE_BIND_POINT_GRAPHICS, graphicsPipeline);
       //vkCmdBindVertexBuffers(pcommandbuffer->m_vkcommandbuffer, 0, 1, &pmodelbuffer->m_vertexBuffer, &offset);
@@ -1332,7 +1332,7 @@ void main() {
       //vkCmdEndRenderPass(cmd);
 
 
-      pshader->unbind();
+      pshader->unbind(pcommandbuffer);
       //vkvg_rectangle(m_pdc, rectangle.left(), rectangle.top(), rectangle.right() - rectangle.left(),
         // rectangle.bottom() - rectangle.top());
 
@@ -5841,11 +5841,11 @@ color = vec4(c.r,c.g, c.b, c.a);
          
       }
 
-      m_pgpushaderTextOut->bind();
+      m_pgpushaderTextOut->bind(::gpu::current_frame()->m_pgpucommandbuffer);
       auto color = m_pbrush->m_color;
       //shader.use();
       ::cast<::gpu::shader>pshader = m_pgpushaderTextOut;
-      pshader->set_vec4("textColor", { __expand_float_pre_rgba(color) });
+      pshader->set_seq4("textColor", { __expand_float_pre_rgba(color) });
       // glUniform3f(glGetUniformLocation(shader.ID, "textColor"), color.x, color.y, color.z);
 
       //auto pcontext = gpu_context();
@@ -5902,7 +5902,7 @@ color = vec4(c.r,c.g, c.b, c.a);
       //auto pcontext = gpu_context();
 
       point.y() = pcontext->m_rectangle.height() - point.y() - pface->m_iPixelSize;
-
+      auto pcommandbuffer = ::gpu::current_frame()->m_pgpucommandbuffer;
       //glEnable(GL_CULL_FACE);
       //GLCheckError("");
       //glEnable(GL_BLEND);
@@ -5955,8 +5955,6 @@ color = vec4(c.r,c.g, c.b, c.a);
             // 
             // 
 
-            auto pcommandbuffer = gpu_context()->m_pgpurenderer->getCurrentCommandBuffer2(::gpu::current_frame());
-
             pcommandbuffer->draw(ch.m_ppixmap);
             //glBindTexture(GL_TEXTURE_2D, ch.TextureID);
             //GLCheckError("");
@@ -5982,7 +5980,7 @@ color = vec4(c.r,c.g, c.b, c.a);
       //GLCheckError("");
       //glDisable(GL_CULL_FACE);
       //GLCheckError("");
-      m_pgpushaderTextOut->unbind();
+      m_pgpushaderTextOut->unbind(pcommandbuffer);
    }
 
 

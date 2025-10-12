@@ -1176,6 +1176,14 @@ namespace sockets
    }
 
 
+   void base_socket::set_no_ssl_shutdown()
+   {
+
+      base_socket_impl()->set_no_ssl_shutdown();
+
+   }
+
+
    bool base_socket::IsSSLServer()
    {
       

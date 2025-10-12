@@ -540,11 +540,11 @@ namespace aura
    }
 
 
-   void application::on_change_theme()
-   {
-
-
-   }
+   // void application::on_change_theme()
+   // {
+   //
+   //
+   // }
 
 
 
@@ -8561,19 +8561,19 @@ namespace aura
    }
 
 
-   string application::get_theme()
-   {
-
-      if (!m_ptheme)
-      {
-
-         return ::aqua::application::get_theme();
-
-      }
-
-      return m_ptheme->get_theme();
-
-   }
+   // string application::get_theme()
+   // {
+   //
+   //    if (!m_ptheme)
+   //    {
+   //
+   //       return ::aqua::application::get_theme();
+   //
+   //    }
+   //
+   //    return m_ptheme->get_theme();
+   //
+   // }
 
 
    void application::initialize_contextualized_theme()

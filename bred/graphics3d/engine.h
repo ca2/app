@@ -87,7 +87,7 @@ namespace graphics3d
 
 
 
-		virtual void engine_on_after_load_scene(::graphics3d::scene* pscene);
+		virtual void engine_on_after_load_scene(::graphics3d::scene_base* pscene);
 
 
 		float dt() { return m_fFrameTime; }
@@ -103,7 +103,7 @@ namespace graphics3d
 		
       virtual void _001OnDraw(::draw2d::graphics_pointer& pgraphics);
 
-      virtual ::graphics3d::scene * current_scene();
+      virtual ::graphics3d::scene_base * current_scene();
 
 
 		virtual void do_frame_step(::gpu::context * pgpucontextUpper);
@@ -126,7 +126,7 @@ namespace graphics3d
 
 		virtual void on_update_frame();
 
-		virtual ::pointer < ::graphics3d::renderable > _load_wavefront_obj_renderable(const ::file::path& path);
+		virtual ::pointer<::graphics3d::renderable> _load_wavefront_obj_renderable(const ::gpu::renderable_t &model);
 
 		//virtual void on_offscreen_frame_pixels(const ::image32_t* pimage32, int w, int h, int stride);
 

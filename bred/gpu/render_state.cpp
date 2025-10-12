@@ -40,7 +40,11 @@ namespace gpu
       //   break;
       case e_happening_begin_frame:
 //         ASSERT(m_estate == e_state_new_frame);
-         ASSERT(m_estate == e_state_initial || m_estate == e_state_ended_frame);
+         if (!(m_estate == e_state_initial || m_estate == e_state_ended_frame))
+         {
+
+            information() << "Wrong state when e_happening_begin_frame";
+         }
          m_estate = e_state_began_frame;
          break;
       case e_happening_begin_render:

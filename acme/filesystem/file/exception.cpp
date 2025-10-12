@@ -85,7 +85,9 @@ namespace file
       //}
 
       exception::exception(const ::e_status & estatus, const ::error_code & errorcode, const ::file::path & path, ::file::e_open eopen, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrDetails) :
-         ::exception(estatus, scopedstrMessage, scopedstrDetails)
+       ::exception(estatus, scopedstrMessage, scopedstrDetails), 
+         m_path(path), 
+         m_eopen(eopen)
          //::io_exception(::error_io, nullptr, should_ignore_file_exception_callstack(estatus) ? SKIP_CALLSTACK : CALLSTACK_DEFAULT_SKIP)
       {
 
@@ -101,7 +103,9 @@ namespace file
 
          //m_bDumpBackTrace = DUMP_FILE_EXCEPTION_BACK_TRACE != 0 && !(m_eopen & ::file::e_open_no_callstack);
 
-         const_char_pointer psz = ::file::status_short_description(estatus);
+         construct_file_exception();
+
+         /*const_char_pointer psz = ::file::status_short_description(estatus);
 
          if (psz == NULL)
          {
@@ -118,10 +122,77 @@ namespace file
 
          strException.formatf("path = \"%s\"\nstatus = \"%s\"\nstatus_code = (%" PRId64 ")\nos_error = \"%s\"", path.c_str(), psz, estatus.as_long_long(), strErrorCodeMessage.c_str());
 
-         m_strMessage += strException;
+         m_strMessage += strException;*/
 
       }
 
+      exception::exception(const ::e_status &estatus, const ::file::path &path,
+                           ::file::e_open eopen, const ::scoped_string &scopedstrMessage,
+                           const ::scoped_string &scopedstrDetails) :
+          ::exception(estatus, scopedstrMessage, scopedstrDetails),
+         m_path(path), 
+         m_eopen(eopen)
+      //::io_exception(::error_io, nullptr, should_ignore_file_exception_callstack(estatus) ? SKIP_CALLSTACK :
+      //: CALLSTACK_DEFAULT_SKIP)
+      {
+
+         //m_estatus = estatus;
+
+         // m_errorcodea.add(errorcode);
+
+         //         m_iErrNo = iErrNo;
+
+         //         m_eopen = eopen;
+
+         //m_path = path;
+
+         // m_bDumpBackTrace = DUMP_FILE_EXCEPTION_BACK_TRACE != 0 && !(m_eopen & ::file::e_open_no_callstack);
+
+         construct_file_exception();
+
+      }
+
+
+      void exception::construct_file_exception()
+      {
+
+         const_char_pointer psz = ::file::status_short_description(m_estatus);
+
+         if (psz == NULL)
+         {
+
+            psz = ::file::status_short_description(error_file);
+         }
+
+         string strErrorCodeMessage;
+
+         if (m_errorcodea.has_element())
+         {
+
+            ::get_message(strErrorCodeMessage, m_errorcodea.first());
+
+         }
+
+         string strException;
+
+         if (strErrorCodeMessage.has_character())
+         {
+
+            strException.formatf("path = \"%s\"\nstatus = \"%s\"\nstatus_code = (%" PRId64 ")\nos_error_message = \"%s\"",
+                                 m_path.c_str(), psz, m_estatus.as_long_long(), strErrorCodeMessage.c_str());
+
+         }
+         else
+         {
+
+            strException.formatf("path = \"%s\"\nstatus = \"%s\"\nstatus_code = (%" PRId64 ")",
+                                 m_path.c_str(), psz, m_estatus.as_long_long());
+
+         }
+
+         m_strMessage += strException;
+
+      }
 
       exception::exception(const ::file::exception & exception) :
          ::exception(exception)

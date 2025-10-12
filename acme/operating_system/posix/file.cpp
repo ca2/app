@@ -1398,6 +1398,8 @@ void create_directory(const ::file::path & path)
          return;
          
       }
+      
+      ::warning() << "Couldn't create_directory(\"" << path << "\");";
 
       throw ::exception(estatus);
 

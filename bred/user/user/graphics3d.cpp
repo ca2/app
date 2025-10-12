@@ -3,9 +3,10 @@
 #include "acme/exception/interface_only.h"
 #include "bred/gpu/context.h"
 #include "bred/gpu/frame.h"
+#include "bred/graphics3d/asset_manager.h"
 #include "bred/graphics3d/engine.h"
 #include "bred/graphics3d/input.h"
-#include "bred/graphics3d/scene.h"
+#include "bred/graphics3d/scene_base.h"
 #include "acme/constant/user_message.h"
 #include "acme/graphics/image/image32.h"
 #include "acme/handler/topic.h"
@@ -200,6 +201,10 @@ namespace user
 
       m_pengine->m_pimmersionlayer->m_pscene = psceneMain;
 
+      psceneMain->m_pgpucontext = pgpucontextEngine;
+
+      //psceneMain->generateIbl();
+
       //auto pimmersion = create_immersion();
 
       // auto psceneMain = create_main_scene();
@@ -248,9 +253,11 @@ namespace user
 
       host_to_client()(point);
 
-      m_pengine->m_pinput->m_mousestate.m_position.x = (float) point.x();
-      m_pengine->m_pinput->m_mousestate.m_position.y = (float) point.y();
-      m_pengine->m_pinput->m_mousestate.m_buttons.left = true;
+      auto &mousestate = m_pengine->m_pinput->m_mousestate;
+
+      mousestate.m_position.x = (float) point.x();
+      mousestate.m_position.y = (float) point.y();
+      mousestate.m_buttons.left = true;
 
       set_mouse_capture();
 

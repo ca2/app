@@ -1,8 +1,11 @@
 #include "framework.h"
 //#include "bred/gpu/gltf_model.h"
 #include "gltf_render_system.h"
+#include "bred/gpu/context.h"
 #include "bred/gpu/frame.h"
-#include "bred/graphics3d/scene.h"
+#include "bred/gpu/renderer.h"
+#include "bred/graphics3d/scene_base.h"
+#include "bred/graphics3d/types.h"
 //#include "graphics3d/_.h"
 //#include <stdexcept>
 
@@ -83,8 +86,6 @@ namespace graphics3d
 
    void gltf_render_system::on_prepare(::gpu::context *pgpucontext)
    {
-
-
 
       auto prenderer = pgpucontext->m_pgpurenderer;
 
@@ -205,7 +206,7 @@ namespace graphics3d
    // }
 
 
-   void gltf_render_system::on_render(::gpu::context* pgpucontext, ::graphics3d::scene* pscene)
+   void gltf_render_system::on_render(::gpu::context* pgpucontext, ::graphics3d::scene_base* pscene)
    {
 
       // vkCmdBindDescriptorSets(

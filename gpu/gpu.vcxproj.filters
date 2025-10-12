@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{5a52cb6c-76f6-41e2-8d96-4d5f2abad324}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{ef06b4aa-aea8-481f-a357-14ec7fd18d55}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\include">
+      <UniqueIdentifier>{e73b9bb9-c726-4abb-98a4-7737f7c0ecc6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\inline">
+      <UniqueIdentifier>{cf6c72f9-3368-440e-b488-f352a9cf92ac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\platform">
+      <UniqueIdentifier>{36ce9182-dffc-4368-ad02-15d228e1b348}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\user">
+      <UniqueIdentifier>{168ea230-ce83-4199-a897-712f155b8049}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\game">
+      <UniqueIdentifier>{906a8a0b-f60b-4fa7-9981-ddd212c9e981}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\operating_system">
+      <UniqueIdentifier>{d77e15ab-fc03-42af-855b-f31189092ab1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\operating_system\windows">
+      <UniqueIdentifier>{bc8bf4fa-94f8-41d2-87f2-5079dc0646af}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\constant">
+      <UniqueIdentifier>{6fc21995-1225-4b7b-8d36-166f83dba56d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{e61edb41-436c-4e0f-812d-d34bddf4617c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\include">
+      <UniqueIdentifier>{585c3aae-09f8-4632-839e-aa82f9bc11a9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\user">
+      <UniqueIdentifier>{0a84bbef-ff11-4ea1-867a-2a3aa6ed4b67}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\game">
+      <UniqueIdentifier>{a7fafa56-be62-4b65-8e63-2449a2d57b82}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\constant">
+      <UniqueIdentifier>{28e5c993-7608-46fa-ad2a-2011b35072ee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\gpu">
+      <UniqueIdentifier>{b4f1d8eb-4d51-4ffa-9aaa-1ff0ab7ae826}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ibl">
+      <UniqueIdentifier>{ed0212c8-4764-4da3-bd29-a8d00feeaabf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\ibl">
+      <UniqueIdentifier>{1e4332f9-c214-4eca-9d50-d238a9f96556}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\gltf">
+      <UniqueIdentifier>{ec397ecc-99f7-4462-acd1-f141d9fd298b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\gltf\NewFilter1">
+      <UniqueIdentifier>{b150058f-ca82-46d5-a5fd-02b2e7cc65d7}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="platform\application.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\session.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\system.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\_platform.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="user\controller.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="framework.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="_.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="__defer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="console.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="id.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="library.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="game\_.h">
+      <Filter>Header Files\game</Filter>
+    </ClInclude>
+    <ClInclude Include="include\_.h">
+      <Filter>Header Files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="inline\__debug_box_clear_impl.h">
+      <Filter>Header Files\inline</Filter>
+    </ClInclude>
+    <ClInclude Include="inline\__debug_box_set_impl.h">
+      <Filter>Header Files\inline</Filter>
+    </ClInclude>
+    <ClInclude Include="inline\_acid_app_impl.h">
+      <Filter>Header Files\inline</Filter>
+    </ClInclude>
+    <ClInclude Include="inline\_app_impl1.h">
+      <Filter>Header Files\inline</Filter>
+    </ClInclude>
+    <ClInclude Include="inline\_application.h">
+      <Filter>Header Files\inline</Filter>
+    </ClInclude>
+    <ClInclude Include="inline\_console_old.h">
+      <Filter>Header Files\inline</Filter>
+    </ClInclude>
+    <ClInclude Include="inline\_draw2d_impl.h">
+      <Filter>Header Files\inline</Filter>
+    </ClInclude>
+    <ClInclude Include="inline\_new_impl.h">
+      <Filter>Header Files\inline</Filter>
+    </ClInclude>
+    <ClInclude Include="inline\application.h">
+      <Filter>Header Files\inline</Filter>
+    </ClInclude>
+    <ClInclude Include="inline\application_common.h">
+      <Filter>Header Files\inline</Filter>
+    </ClInclude>
+    <ClInclude Include="inline\console.h">
+      <Filter>Header Files\inline</Filter>
+    </ClInclude>
+    <ClInclude Include="inline\console_common.h">
+      <Filter>Header Files\inline</Filter>
+    </ClInclude>
+    <ClInclude Include="inline\library.h">
+      <Filter>Header Files\inline</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\_impl.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\windows\_windows.h">
+      <Filter>Header Files\operating_system\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\windows\system.h">
+      <Filter>Header Files\operating_system\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\_.h">
+      <Filter>Header Files\operating_system</Filter>
+    </ClInclude>
+    <ClInclude Include="constant\idpool.h">
+      <Filter>Header Files\constant</Filter>
+    </ClInclude>
+    <ClInclude Include="user\_.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\hwid.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\byte_order.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\tinyexpr.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="cube.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="hdr_texture.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="gltf\vertex.h">
+      <Filter>Header Files\gpu</Filter>
+    </ClInclude>
+    <ClInclude Include="gltf\model.h">
+      <Filter>Header Files\gpu</Filter>
+    </ClInclude>
+    <ClInclude Include="gltf\mesh.h">
+      <Filter>Header Files\gpu</Filter>
+    </ClInclude>
+    <ClInclude Include="gltf\material.h">
+      <Filter>Header Files\gpu</Filter>
+    </ClInclude>
+    <ClInclude Include="gltf\_constant.h">
+      <Filter>Header Files\gpu</Filter>
+    </ClInclude>
+    <ClInclude Include="ibl\specular_map.h">
+      <Filter>Header Files\ibl</Filter>
+    </ClInclude>
+    <ClInclude Include="ibl\mipmap_cubemap_framebuffer.h">
+      <Filter>Header Files\ibl</Filter>
+    </ClInclude>
+    <ClInclude Include="ibl\hdri_cube.h">
+      <Filter>Header Files\ibl</Filter>
+    </ClInclude>
+    <ClInclude Include="ibl\equirectangular_cubemap.h">
+      <Filter>Header Files\ibl</Filter>
+    </ClInclude>
+    <ClInclude Include="ibl\diffuse_irradiance_map.h">
+      <Filter>Header Files\ibl</Filter>
+    </ClInclude>
+    <ClInclude Include="ibl\cubemap_framebuffer.h">
+      <Filter>Header Files\ibl</Filter>
+    </ClInclude>
+    <ClInclude Include="ibl\brdf_convolution_framebuffer.h">
+      <Filter>Header Files\ibl</Filter>
+    </ClInclude>
+    <ClInclude Include="ibl\_.h">
+      <Filter>Header Files\ibl</Filter>
+    </ClInclude>
+    <ClInclude Include="full_screen_quad.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="context.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="_ktx.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="gltf\model_base.h">
+      <Filter>Header Files\gpu</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="framework.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="_.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="constant\idpool.cpp">
+      <Filter>Source Files\constant</Filter>
+    </ClCompile>
+    <ClCompile Include="cube.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="hdr_texture.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ibl\brdf_convolution_framebuffer.cpp">
+      <Filter>Source Files\ibl</Filter>
+    </ClCompile>
+    <ClCompile Include="ibl\cubemap_framebuffer.cpp">
+      <Filter>Source Files\ibl</Filter>
+    </ClCompile>
+    <ClCompile Include="ibl\diffuse_irradiance_map.cpp">
+      <Filter>Source Files\ibl</Filter>
+    </ClCompile>
+    <ClCompile Include="ibl\equirectangular_cubemap.cpp">
+      <Filter>Source Files\ibl</Filter>
+    </ClCompile>
+    <ClCompile Include="ibl\hdri_cube.cpp">
+      <Filter>Source Files\ibl</Filter>
+    </ClCompile>
+    <ClCompile Include="ibl\mipmap_cubemap_framebuffer.cpp">
+      <Filter>Source Files\ibl</Filter>
+    </ClCompile>
+    <ClCompile Include="ibl\specular_map.cpp">
+      <Filter>Source Files\ibl</Filter>
+    </ClCompile>
+    <ClCompile Include="full_screen_quad.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="gltf\mesh.cpp">
+      <Filter>Source Files\gltf</Filter>
+    </ClCompile>
+    <ClCompile Include="gltf\model.cpp">
+      <Filter>Source Files\gltf</Filter>
+    </ClCompile>
+    <ClCompile Include="context.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="_ktx.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="gltf\model_base.cpp">
+      <Filter>Source Files\gltf</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="deployment.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+</Project>

@@ -99,7 +99,7 @@ elseif (${LINUX} OR ${OPENBSD} OR ${NETBSD} OR ${ANDROID})
     target_compile_definitions(static_${PROJECT_NAME} PRIVATE CUBE)
 
 
-    if(${ARCH_LIKE})
+    if(${USE_PORT_FREEIMAGE})
         set(freeimage_library port_freeimage)
     else()
         set(freeimage_library freeimage)

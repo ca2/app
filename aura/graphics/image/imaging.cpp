@@ -2282,7 +2282,7 @@ void imaging::blur_32CC(::image::image *pimageDst, ::image::image *pimageSrc,int
 
    unsigned char *pFilter;
 
-   unsigned char * pFilterData = __raw_new  unsigned char[iFilterHeight *iFilterWidth];
+   unsigned char * pFilterData = øraw_new  unsigned char[iFilterHeight *iFilterWidth];
    memory_set(pFilterData,1,iFilterHeight * iFilterWidth);
 
    unsigned char * pSrc = (unsigned char *)pimageSrc->get_data();
@@ -3842,7 +3842,7 @@ void imaging::channel_gray_blur_32CC(::image::image *pimageDst, ::image::image *
 
    unsigned char *pFilter;
 
-   unsigned char * pFilterData = __raw_new unsigned char [iFilterHeight *iFilterWidth];
+   unsigned char * pFilterData = øraw_new unsigned char [iFilterHeight *iFilterWidth];
 
    memory_set(pFilterData,1,iFilterHeight * iFilterWidth);
 
@@ -4728,7 +4728,7 @@ void imaging::alpha_spread_R2_24CC(unsigned char * pDst,int xDest,int yDest,int 
 
    //unsigned char *pFilter;
 
-   unsigned char * pFilterData = __raw_new  unsigned char[iFilterHeight *iFilterWidth];
+   unsigned char * pFilterData = øraw_new  unsigned char[iFilterHeight *iFilterWidth];
    memory_set(pFilterData,1,iFilterHeight * iFilterWidth);
 
    int maxx1 = cx;

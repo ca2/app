@@ -1422,12 +1422,12 @@ namespace nanoui
 
       ::pointer < Button > pbutton = this;
 
-      if (pbutton)
-      {
-
-         informationf("Button contains");
-
-      }
+//      if (pbutton)
+//      {
+//
+//         informationf("Button contains");
+//
+//      }
 
       //int iAddUp = 0;
 

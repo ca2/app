@@ -102,7 +102,7 @@ namespace sockets
 
 
    // WIN32 adapt
-#define closesocket close
+#define aaaclosesocket close
 #define INVALID_SOCKET -1
 #define SOCKET_ERROR -1
 

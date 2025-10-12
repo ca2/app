@@ -4,6 +4,8 @@
 ////#include "acme/exception/exception.h"
 #include "networking_bsd/address.h"
 #include "networking_bsd/sockets/transfer_socket.h"
+#include "acme/operating_system/networking.h"
+
 
 
 #ifdef _WIN32
@@ -59,7 +61,9 @@ namespace sockets_bsd
 
       if (m_socketid != INVALID_SOCKET            && !m_bRetain         )
       {
+         
          close();
+
       }
 
    }
@@ -77,7 +81,7 @@ namespace sockets_bsd
    int socket::close_socket(SOCKET s)
    {
 
-      return ::closesocket(s);
+      return ::_close_socket(s);
 
    }
 
@@ -203,17 +207,17 @@ namespace sockets_bsd
 
 #ifdef WINDOWS
 
-      s = ::socket(af, iType, protno);
+      s = ::_open_socket(af, iType, protno);
 
 #elif defined(__APPLE__)
       
-      s = ::socket(af, iType, protno);
+      s = ::_open_socket(af, iType, protno);
       
       fcntl(s, O_CLOEXEC);
 
 #else
 
-      s = ::socket(af, iType | SOCK_CLOEXEC, protno);
+      s = ::_open_socket(af, iType | SOCK_CLOEXEC, protno);
 
 #endif
 

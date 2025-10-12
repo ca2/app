@@ -29,7 +29,7 @@ void init_chldstatus_cs()
 
    g_pcsChldStatus = ___new critical_section();
 
-   g_pchldstatusmap = __raw_new iptr_map < chldstatus > ();
+   g_pchldstatusmap = øraw_new iptr_map < chldstatus > ();
 
 }
 

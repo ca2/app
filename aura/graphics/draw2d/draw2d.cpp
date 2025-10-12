@@ -513,18 +513,14 @@ namespace draw2d
 
       };
 
-      emboss_predicate(
-         pgraphics,
-         rectangle,
-         pred,
-         blur,
-         imageBlur,
-         colorGlow,
-         iSpreadRadius,
-         iBlurRadius,
-         iBlur,
-         bUpdate,
-         colorfilter);
+      ///bool bRaspiBilbo = scopedstrText.case_insensitive_begins("bilbo-raspi-");
+
+      //if (!bRaspiBilbo)
+      {
+
+         emboss_predicate(pgraphics, rectangle, pred, blur, imageBlur, colorGlow, iSpreadRadius, iBlurRadius, iBlur,
+                          bUpdate, colorfilter);
+      }
 
       auto opacity = colorfilter.opacity();
 

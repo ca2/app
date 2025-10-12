@@ -10,7 +10,7 @@ waiting_call_base::waiting_call_base() :
    m_ptask(::get_task())
 {
    //initialize(ptask);
-   //__construct(m_pmanualresethappening);
+   //øconstruct(m_pmanualresethappening);
 
 
 }

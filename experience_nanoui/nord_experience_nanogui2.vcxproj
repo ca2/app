@@ -115,7 +115,7 @@
     <ProjectReference Include="..\..\..\source\app\axis\nord_axis.vcxproj">
       <Project>{03207bc4-c08b-4a2d-b754-f3bd46ad3098}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\source\app\base\nord_base.vcxproj">
+    <ProjectReference Include="..\..\..\source\app\base\nord_berg.vcxproj">
       <Project>{04207bc4-c08b-4a2d-b754-f3bd46ad3098}</Project>
     </ProjectReference>
     <ProjectReference Include="..\..\..\source\app\aura\nord_core.vcxproj">

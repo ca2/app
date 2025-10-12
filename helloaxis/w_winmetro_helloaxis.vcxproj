@@ -353,7 +353,7 @@
     <ProjectReference Include="..\..\..\source\app\axis\w_axis.vcxproj">
       <Project>{b3a245f9-c92f-4487-aef7-cb0531f665bd}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\source\app\base\w_base.vcxproj">
+    <ProjectReference Include="..\..\..\source\app\base\w_berg.vcxproj">
       <Project>{bd7d3626-ada6-4ca2-9566-ed7b131e3d51}</Project>
     </ProjectReference>
     <ProjectReference Include="..\..\..\source\app\aura\w_core.vcxproj">

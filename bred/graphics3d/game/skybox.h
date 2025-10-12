@@ -5,15 +5,15 @@
 #ifndef SKYBOX_H
 #define SKYBOX_H
 
-namespace graphics3d {
-
-class skybox :
-   {
-public:
-
-
-};
-
-} // graphics3d
+//namespace graphics3d {
+//
+//class skybox :
+//   {
+//public:
+//
+//
+//};
+//
+//} // graphics3d
 
 #endif //SKYBOX_H

@@ -52,7 +52,7 @@ void interprocess_intercommunication::initialize_interprocess_communication(::pa
 
    call_routines_with_id(CREATE_ROUTINE);
 
-   /*estatus = */ __øconstruct(m_prx);
+   /*estatus = */ øconstruct(m_prx);
 
    //if (!estatus)
    //{
@@ -201,7 +201,7 @@ started:
    if(m_txmap[strKey].is_null())
    {
 
-      m_txmap[strKey] = __øcreate < ::inteprocess::caller>();
+      m_txmap[strKey] = øcreate < ::inteprocess::caller>();
 
    }
 
@@ -218,7 +218,7 @@ void interprocess_intercommunication::connect(const ::scoped_string & scopedstrA
    if(m_txmap[strKey].is_null())
    {
 
-      m_txmap[strKey] = __øcreate<::inteprocess::caller>();
+      m_txmap[strKey] = øcreate<::inteprocess::caller>();
 
    }
 
@@ -242,7 +242,7 @@ void interprocess_intercommunication::connect(const ::scoped_string & scopedstrA
    if(m_txmap[strKey].is_null())
    {
 
-      m_txmap[strKey] = __øcreate < ::inteprocess::caller>();
+      m_txmap[strKey] = øcreate < ::inteprocess::caller>();
 
    }
 

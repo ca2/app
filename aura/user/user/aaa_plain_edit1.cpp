@@ -322,27 +322,27 @@ namespace user
       //, virtual public imm_client
 #endif
 #endif
-      MESSAGE_LINK(::user::e_message_create, pchannel, this, &plain_edit::on_message_create);
-      MESSAGE_LINK(::user::e_message_left_button_down, pchannel, this, &plain_edit::on_message_left_button_down);
-      MESSAGE_LINK(::user::e_message_left_button_up, pchannel, this, &plain_edit::on_message_left_button_up);
-      MESSAGE_LINK(::user::e_message_left_button_double_click, pchannel, this, &plain_edit::on_message_left_button_double_click);
-      MESSAGE_LINK(::user::e_message_right_button_down, pchannel, this, &plain_edit::on_message_right_button_down);
-      MESSAGE_LINK(::user::e_message_right_button_up, pchannel, this, &plain_edit::on_message_right_button_up);
-      MESSAGE_LINK(::user::e_message_mouse_move, pchannel, this, &plain_edit::on_message_mouse_move);
-      MESSAGE_LINK(::user::e_message_mouse_leave, pchannel, this, &plain_edit::on_message_mouse_leave);
-      MESSAGE_LINK(::user::e_message_key_down, pchannel, this, &plain_edit::on_message_key_down);
-      MESSAGE_LINK(::user::e_message_key_up, pchannel, this, &plain_edit::on_message_key_up);
-      MESSAGE_LINK(::user::e_message_uni_char, pchannel, this, &plain_edit::_001OnUniChar);
-      MESSAGE_LINK(::user::e_message_char, pchannel, this, &plain_edit::on_message_char);
+      USER_MESSAGE_LINK(::user::e_message_create, pchannel, this, &plain_edit::on_message_create);
+      USER_MESSAGE_LINK(::user::e_message_left_button_down, pchannel, this, &plain_edit::on_message_left_button_down);
+      USER_MESSAGE_LINK(::user::e_message_left_button_up, pchannel, this, &plain_edit::on_message_left_button_up);
+      USER_MESSAGE_LINK(::user::e_message_left_button_double_click, pchannel, this, &plain_edit::on_message_left_button_double_click);
+      USER_MESSAGE_LINK(::user::e_message_right_button_down, pchannel, this, &plain_edit::on_message_right_button_down);
+      USER_MESSAGE_LINK(::user::e_message_right_button_up, pchannel, this, &plain_edit::on_message_right_button_up);
+      USER_MESSAGE_LINK(::user::e_message_mouse_move, pchannel, this, &plain_edit::on_message_mouse_move);
+      USER_MESSAGE_LINK(::user::e_message_mouse_leave, pchannel, this, &plain_edit::on_message_mouse_leave);
+      USER_MESSAGE_LINK(::user::e_message_key_down, pchannel, this, &plain_edit::on_message_key_down);
+      USER_MESSAGE_LINK(::user::e_message_key_up, pchannel, this, &plain_edit::on_message_key_up);
+      USER_MESSAGE_LINK(::user::e_message_uni_char, pchannel, this, &plain_edit::_001OnUniChar);
+      USER_MESSAGE_LINK(::user::e_message_char, pchannel, this, &plain_edit::on_message_char);
 
-      MESSAGE_LINK(::user::e_message_size, pchannel, this, &::user::plain_edit::on_message_size);
+      USER_MESSAGE_LINK(::user::e_message_size, pchannel, this, &::user::plain_edit::on_message_size);
 
-      //MESSAGE_LINK(::user::e_message_set_focus, pchannel, this, &::user::plain_edit::on_message_set_focus);
-      //MESSAGE_LINK(::user::e_message_kill_focus, pchannel, this, &::user::plain_edit::on_message_kill_focus);
+      //USER_MESSAGE_LINK(::user::e_message_set_focus, pchannel, this, &::user::plain_edit::on_message_set_focus);
+      //USER_MESSAGE_LINK(::user::e_message_kill_focus, pchannel, this, &::user::plain_edit::on_message_kill_focus);
 
 
-      MESSAGE_LINK(::user::e_message_scroll_y, pchannel, this, &::user::plain_edit::on_message_scroll_y);
-      MESSAGE_LINK(::user::e_message_scroll_x, pchannel, this, &::user::plain_edit::on_message_scroll_x);
+      USER_MESSAGE_LINK(::user::e_message_scroll_y, pchannel, this, &::user::plain_edit::on_message_scroll_y);
+      USER_MESSAGE_LINK(::user::e_message_scroll_x, pchannel, this, &::user::plain_edit::on_message_scroll_x);
 
 
 
@@ -970,7 +970,7 @@ namespace user
 
                double xB = plain_edit_get_line_extent(pgraphics, iLine, minimum(iErrorEnd, strExtent1.length()));
 
-               auto ppen = __øcreate < ::draw2d::pen >();
+               auto ppen = øcreate < ::draw2d::pen >();
 
                ppen->create_solid(1.0, argb((unsigned char)iErrorA, 255, 0, 0));
 
@@ -8930,7 +8930,7 @@ namespace user
 
       }
 
-      __øconstruct(m_ptree, pdata);
+      øconstruct(m_ptree, pdata);
 
       m_ptreeitem = m_ptree->get_base_item();
 
@@ -9489,15 +9489,15 @@ namespace user
 
       m_pbrushTextEmpty.release();
 
-      puserinteraction->__øconstruct(m_ppenCaret);
+      puserinteraction->øconstruct(m_ppenCaret);
 
-      puserinteraction->__øconstruct(m_pbrushText);
+      puserinteraction->øconstruct(m_pbrushText);
 
-      puserinteraction->__øconstruct(m_pbrushTextCr);
+      puserinteraction->øconstruct(m_pbrushTextCr);
 
-      puserinteraction->__øconstruct(m_pbrushTextSel);
+      puserinteraction->øconstruct(m_pbrushTextSel);
 
-      puserinteraction->__øconstruct(m_pbrushTextEmpty);
+      puserinteraction->øconstruct(m_pbrushTextEmpty);
 
       auto color = puserinteraction->get_color(pstyle, e_element_text);
 

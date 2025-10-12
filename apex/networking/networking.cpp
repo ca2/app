@@ -201,6 +201,18 @@ namespace networking
    }
 
 
+   ::string networking::so_error_description(long long llError)
+   {
+
+       ::string strSocketError;
+
+       strSocketError.formatf("Socket Error %d", llError);
+
+       return strSocketError;
+
+   }
+
+
 
    void networking::on_socket_thread_start()
    {

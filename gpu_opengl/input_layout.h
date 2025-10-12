@@ -7,6 +7,7 @@
 
 
 #include "bred/gpu/input_layout.h"
+#include "_gpu_opengl.h"
 
 
 namespace gpu_opengl

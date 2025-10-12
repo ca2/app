@@ -138,7 +138,7 @@ void message_box::set_icon(::nano::graphics::icon* picon)
 //       return;
 //
 //    }
-//    __construct_new(m_pstillIcon);
+//    øconstruct_new(m_pstillIcon);
 //
 //    m_pstillIcon->set_icon(picon);
 }
@@ -418,9 +418,9 @@ void message_box::on_click(const ::payload& payload, ::user::mouse * pmouse)
    if (payload == "details")
    {
 
-      auto psequencer = __create_new < ::sequencer < ::conversation > >();
+      auto psequencer = øcreate_new < ::sequencer < ::conversation > >();
 
-      auto pdetailswindow = __create_new < ::micro::details_window >();
+      auto pdetailswindow = øcreate_new < ::micro::details_window >();
 
       psequencer->m_psequence = pdetailswindow;
 
@@ -455,7 +455,7 @@ void message_box::on_right_click(const ::payload& payload, ::user::mouse * pmous
 
    }
 
-   auto pbutton = __create_new < popup_button >();
+   auto pbutton = øcreate_new < popup_button >();
 
    pbutton->m_functionClose = [this](::micro::elemental * pinterchange)
    {
@@ -507,7 +507,7 @@ CLASS_DECL_ACME ::pointer < ::subparticle > message_box_sequencer(::particle * p
                                                         scopedstrDetails, picon);
       
       return psequencer;
-//      auto pmessagebox = ::platform::get()->__øcreate < ::operating_system::message_box >();
+//      auto pmessagebox = ::platform::get()->øcreate < ::operating_system::message_box >();
 //
 //      return pmessagebox->create_sequencer(scopedstrMessage, scopedstrTitle, emessagebox, scopedstrDetails);
 
@@ -527,9 +527,9 @@ CLASS_DECL_ACME ::pointer < ::subparticle > message_box_sequencer(::particle * p
    if(pparticle->::system()->m_bConsole || !is_ui_possible())
    {
 
-      auto psequencer = pparticle->__create_new < ::sequencer < ::conversation > >();
+      auto psequencer = pparticle->øcreate_new < ::sequencer < ::conversation > >();
 
-      auto pmessagebox = pparticle->__create_new < ::operating_system::console_message_box >();
+      auto pmessagebox = pparticle->øcreate_new < ::operating_system::console_message_box >();
 
       psequencer->m_psequence = pmessagebox;
 
@@ -572,7 +572,7 @@ CLASS_DECL_ACME ::pointer < ::subparticle > message_box_sequencer(::particle * p
 //
 //   pmanualresethappening->wait();
 //
-////   auto pmessagebox = pparticle->__create_new < message_box >();
+////   auto pmessagebox = pparticle->øcreate_new < message_box >();
 ////
 ////   atom idResult;
 ////
@@ -672,7 +672,7 @@ CLASS_DECL_ACME ::payload message_box_synchronous(::particle * pparticle, const 
 //
 //   pmanualresethappening->wait();
 //
-////   auto pmessagebox = pparticle->__create_new < message_box >();
+////   auto pmessagebox = pparticle->øcreate_new < message_box >();
 ////
 ////   atom idResult;
 ////
@@ -755,7 +755,7 @@ CLASS_DECL_ACME void message_box_asynchronous(::function < void(const ::payload 
    //main_asynchronous([ pmessagebox, pparticle ]()
    //{
 
-      auto pnanomessagebox = pparticle->__create_new < ::micro::message_box >();
+      auto pnanomessagebox = pparticle->øcreate_new < ::micro::message_box >();
    
       ::payload idResult;
    

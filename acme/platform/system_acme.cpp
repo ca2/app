@@ -904,8 +904,8 @@ namespace platform
    //       if (pacmewindowing)
    //       {
    //
-   //          ::acme::get()->m_pmanualresethappeningReadyToExit = __raw_new manual_reset_happening();
-   //          ::acme::get()->m_pmanualresethappeningMainLoopEnd = __raw_new manual_reset_happening();
+   //          ::acme::get()->m_pmanualresethappeningReadyToExit = øraw_new manual_reset_happening();
+   //          ::acme::get()->m_pmanualresethappeningMainLoopEnd = øraw_new manual_reset_happening();
    //
    //          if (!m_procedureTaskEnded)
    //          {

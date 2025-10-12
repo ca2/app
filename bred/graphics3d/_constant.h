@@ -57,8 +57,8 @@ enum class KeyAction {
    e_render_system_skybox,
    e_render_system_skybox_ibl,
    e_render_system_wavefront_obj,
-   e_render_system_scene,
-   e_render_system_gltf,
+   e_render_system_gltf_scene,
+   e_render_system_gltf_ibl,
    e_render_system_point_light,
 
 };

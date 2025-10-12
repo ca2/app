@@ -10,7 +10,7 @@
 		9A415C5F247393F100EF2BCD /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8F890E240C031B0097E249 /* framework.cpp */; };
 		9A4E5CB62519348700CC6817 /* libacme.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A4E5CB52519348700CC6817 /* libacme.dylib */; };
 		9A4E5CB82519348700CC6817 /* libapex.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A4E5CB72519348700CC6817 /* libapex.dylib */; };
-		9A833BC924F5428700C079FB /* libbase.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A833BAB24F5423900C079FB /* libbase.dylib */; };
+		9A833BC924F5428700C079FB /* libberg.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A833BAB24F5423900C079FB /* libberg.dylib */; };
 		9A87ECA9284B5EF50084AA05 /* control_box_button.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A927DFC27F10FDE002BCA3C /* control_box_button.cpp */; };
 		9A87ECAA284B5EF50084AA05 /* control_box.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A927DF827F10FDE002BCA3C /* control_box.cpp */; };
 		9A87ECAB284B5EF50084AA05 /* experience.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A927E0827F10FDE002BCA3C /* experience.cpp */; };
@@ -52,28 +52,28 @@
 /* Begin PBXContainerItemProxy section */
 		9A1EAA64284B04E4000F05A8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 9A833BA624F5423900C079FB /* base.xcodeproj */;
+			containerPortal = 9A833BA624F5423900C079FB /* berg.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 9A93B6FA2846EB33005ACD11;
 			remoteInfo = ios_base;
 		};
 		9A833BAA24F5423900C079FB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 9A833BA624F5423900C079FB /* base.xcodeproj */;
+			containerPortal = 9A833BA624F5423900C079FB /* berg.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 9AD117F324F51BE400177261;
 			remoteInfo = base;
 		};
 		9A833BC524F5427300C079FB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 9A833BA624F5423900C079FB /* base.xcodeproj */;
+			containerPortal = 9A833BA624F5423900C079FB /* berg.xcodeproj */;
 			proxyType = 1;
 			remoteGlobalIDString = 9AD117F224F51BE400177261;
 			remoteInfo = base;
 		};
 		9A87ECA7284B5EE00084AA05 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 9A833BA624F5423900C079FB /* base.xcodeproj */;
+			containerPortal = 9A833BA624F5423900C079FB /* berg.xcodeproj */;
 			proxyType = 1;
 			remoteGlobalIDString = 9A93B6992846EB33005ACD11;
 			remoteInfo = ios_base;
@@ -90,7 +90,7 @@
 /* Begin PBXFileReference section */
 		077A022E1B4D5B2C001C85FF /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.4.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		0793EA2A1CA4063B001374D8 /* libaura.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libaura.dylib; path = ../../app/aura/build/Debug/libaura.dylib; sourceTree = "<group>"; };
-		0793EA2C1CA40726001374D8 /* libbase.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libbase.dylib; path = ../../app/base/build/Debug/libbase.dylib; sourceTree = "<group>"; };
+		0793EA2C1CA40726001374D8 /* libberg.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libberg.dylib; path = ../../app/base/build/Debug/libberg.dylib; sourceTree = "<group>"; };
 		0793EA2E1CA4074C001374D8 /* libaxis.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libaxis.dylib; path = ../../app/axis/build/Debug/libaxis.dylib; sourceTree = "<group>"; };
 		9A4E5CB52519348700CC6817 /* libacme.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libacme.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A4E5CB72519348700CC6817 /* libapex.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libapex.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -103,10 +103,10 @@
 		9A6630541D210AD200664CE3 /* libios_base.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libios_base.dylib; path = "../../app/base/build/Debug-iphoneos/libios_base.dylib"; sourceTree = "<group>"; };
 		9A6630561D210AF800664CE3 /* libios_axis.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libios_axis.dylib; path = "../../../../macos/app/axis/build/Debug-iphoneos/libios_axis.dylib"; sourceTree = "<group>"; };
 		9A6630581D210B0200664CE3 /* libios_aura.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libios_aura.dylib; path = "../../app/aura/build/Debug-iphoneos/libios_aura.dylib"; sourceTree = "<group>"; };
-		9A6716831D1558630069A961 /* libbase.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libbase.dylib; path = "../../app/base/build/Debug-iphoneos/libbase.dylib"; sourceTree = "<group>"; };
+		9A6716831D1558630069A961 /* libberg.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libberg.dylib; path = "../../app/base/build/Debug-iphoneos/libberg.dylib"; sourceTree = "<group>"; };
 		9A6716861D15586E0069A961 /* libaxis.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libaxis.dylib; path = "../../app/axis/build/Debug-iphoneos/libaxis.dylib"; sourceTree = "<group>"; };
 		9A6716881D1558770069A961 /* libaura.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libaura.dylib; path = "../../../../Users/camilo/Library/Developer/Xcode/DerivedData/all-ios-hcjyrbebieoraofrrypdpkveyzyc/Build/Products/Debug-iphonesimulator/libaura.dylib"; sourceTree = "<group>"; };
-		9A833BA624F5423900C079FB /* base.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = base.xcodeproj; path = ../base/base.xcodeproj; sourceTree = SOURCE_ROOT; };
+		9A833BA624F5423900C079FB /* berg.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = berg.xcodeproj; path = ../berg/berg.xcodeproj; sourceTree = SOURCE_ROOT; };
 		9A8C7DE427D1449200025329 /* _factory.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = _factory.cpp; sourceTree = "<group>"; };
 		9A8EB48B24498E390056E362 /* _.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
 		9A8F890E240C031B0097E249 /* framework.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = framework.cpp; sourceTree = "<group>"; };
@@ -169,7 +169,7 @@
 				9AE649FF252A679E00BED5B8 /* libaura.dylib in Frameworks */,
 				9A4E5CB62519348700CC6817 /* libacme.dylib in Frameworks */,
 				9A4E5CB82519348700CC6817 /* libapex.dylib in Frameworks */,
-				9A833BC924F5428700C079FB /* libbase.dylib in Frameworks */,
+				9A833BC924F5428700C079FB /* libberg.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -179,7 +179,7 @@
 		9A833BA724F5423900C079FB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9A833BAB24F5423900C079FB /* libbase.dylib */,
+				9A833BAB24F5423900C079FB /* libberg.dylib */,
 				9A1EAA65284B04E4000F05A8 /* libios_base.a */,
 			);
 			name = Products;
@@ -257,9 +257,9 @@
 				9A5CDDA91D20FEC60093150A /* libios_core.dylib */,
 				9A6716881D1558770069A961 /* libaura.dylib */,
 				9A6716861D15586E0069A961 /* libaxis.dylib */,
-				9A6716831D1558630069A961 /* libbase.dylib */,
+				9A6716831D1558630069A961 /* libberg.dylib */,
 				0793EA2E1CA4074C001374D8 /* libaxis.dylib */,
-				0793EA2C1CA40726001374D8 /* libbase.dylib */,
+				0793EA2C1CA40726001374D8 /* libberg.dylib */,
 				0793EA2A1CA4063B001374D8 /* libaura.dylib */,
 				077A022E1B4D5B2C001C85FF /* UIKit.framework */,
 				9AE24E5C1904CFE2001AEFFB /* Foundation.framework */,
@@ -272,7 +272,7 @@
 		9AEB75EB16F78EDC0085103B = {
 			isa = PBXGroup;
 			children = (
-				9A833BA624F5423900C079FB /* base.xcodeproj */,
+				9A833BA624F5423900C079FB /* berg.xcodeproj */,
 				9A8F8901240C031B0097E249 /* experience_anthill */,
 				9AE24E5B1904CFE2001AEFFB /* Frameworks */,
 				9AEB75F516F78EDC0085103B /* Products */,
@@ -386,7 +386,7 @@
 			projectReferences = (
 				{
 					ProductGroup = 9A833BA724F5423900C079FB /* Products */;
-					ProjectRef = 9A833BA624F5423900C079FB /* base.xcodeproj */;
+					ProjectRef = 9A833BA624F5423900C079FB /* berg.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -406,10 +406,10 @@
 			remoteRef = 9A1EAA64284B04E4000F05A8 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		9A833BAB24F5423900C079FB /* libbase.dylib */ = {
+		9A833BAB24F5423900C079FB /* libberg.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
-			path = libbase.dylib;
+			path = libberg.dylib;
 			remoteRef = 9A833BAA24F5423900C079FB /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -670,18 +670,20 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
+				SYSTEM_HEADER_SEARCH_PATHS = (
+					"$(WorkspaceDir)/operating_system/operating_system-$(PLATFORM_MODIFIER)/include",
+					"$(WorkspaceDir)/port/include",
+					"$(WorkspaceDir)/source/app/include",
+				);
 				USER_HEADER_SEARCH_PATHS = (
 					.,
 					"$(WorkspaceDir)/source",
-					"$(WorkspaceDir)/source/include",
 					"$(WorkspaceDir)/source/app",
-					"$(WorkspaceDir)/source/app/include",
+					"$(WorkspaceDir)/source/app/_include",
 					"$(WorkspaceDir)/operating_system",
 					"$(WorkspaceDir)/operating_system/operating_system-$(PLATFORM_MODIFIER)",
-					"$(WorkspaceDir)/operating_system/operating_system-$(PLATFORM_MODIFIER)/include/configuration_selection/$(CONFIGURATION)",
-					"$(WorkspaceDir)/operating_system/operating_system-$(PLATFORM_MODIFIER)/include",
+					"$(WorkspaceDir)/operating_system/operating_system-$(PLATFORM_MODIFIER)/configuration_selection/$(CONFIGURATION)",
 					"$(WorkspaceDir)/port/_",
-					"$(WorkspaceDir)/port/include",
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/..",
 					"$(PROJECT_DIR)/../..",
@@ -756,18 +758,20 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
+				SYSTEM_HEADER_SEARCH_PATHS = (
+					"$(WorkspaceDir)/operating_system/operating_system-$(PLATFORM_MODIFIER)/include",
+					"$(WorkspaceDir)/port/include",
+					"$(WorkspaceDir)/source/app/include",
+				);
 				USER_HEADER_SEARCH_PATHS = (
 					.,
 					"$(WorkspaceDir)/source",
-					"$(WorkspaceDir)/source/include",
 					"$(WorkspaceDir)/source/app",
-					"$(WorkspaceDir)/source/app/include",
+					"$(WorkspaceDir)/source/app/_include",
 					"$(WorkspaceDir)/operating_system",
 					"$(WorkspaceDir)/operating_system/operating_system-$(PLATFORM_MODIFIER)",
-					"$(WorkspaceDir)/operating_system/operating_system-$(PLATFORM_MODIFIER)/include/configuration_selection/$(CONFIGURATION)",
-					"$(WorkspaceDir)/operating_system/operating_system-$(PLATFORM_MODIFIER)/include",
+					"$(WorkspaceDir)/operating_system/operating_system-$(PLATFORM_MODIFIER)/configuration_selection/$(CONFIGURATION)",
 					"$(WorkspaceDir)/port/_",
-					"$(WorkspaceDir)/port/include",
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/..",
 					"$(PROJECT_DIR)/../..",

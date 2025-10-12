@@ -1,5 +1,6 @@
 // Created by camilo on 2025-06-11 01:08 <3ThomasBorregaardSørensen!!
 #include "framework.h"
+#include "_gpu_opengl.h"
 #include "command_buffer.h"
 #include "context.h"
 #include "input_layout.h"
@@ -7,6 +8,7 @@
 #include "model_buffer.h"
 #include "acme/prototype/geometry2d/matrix.h"
 #include "acme/prototype/prototype/call.h"
+#include "bred/gpu/context_lock.h"
 #include "bred/gpu/types.h"
 #include "bred/graphics3d/types.h"
 
@@ -46,6 +48,8 @@ namespace gpu_opengl
       if (!m_gluVao)
       {
 
+         ::gpu::context_lock contextlock(m_pgpucontext);
+
          glGenVertexArrays(1, &m_gluVao);
          GLCheckError("");
 
@@ -81,6 +85,8 @@ namespace gpu_opengl
 
    void model_buffer::bind(::gpu::command_buffer* pgpucommandbuffer)
    {
+
+      ::gpu::context_lock contextlock(m_pgpucontext);
 
       if (m_pbufferVertex)
       {

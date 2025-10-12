@@ -38,7 +38,7 @@ namespace write_text
 
       ::acme::department::on_initialize_particle();
 
-      m_pparticleFontTextMapSynchronization = node()->create_mutex();
+      //m_pparticleFontTextMapSynchronization = node()->create_mutex();
 
 #ifdef __ANDROID__
 

@@ -24,7 +24,7 @@ namespace graphics3d
 
 
         //VkDescriptorSetLayout m_skyboxLayout;
-
+       bool m_bHdr = true;
        ::pointer<::gpu::texture> m_pgputextureSkybox;
         //::pointer<::gpu_vulkan::pipeline> m_ppipeline;
         //VkPipelineLayout m_pipelineLayout;
@@ -54,7 +54,7 @@ namespace graphics3d
         //void on_render() override;
 
        void on_prepare(gpu::context *pgpucontext) override;
-       void on_render(::gpu::context* pgpucontext, ::graphics3d::scene* pscene) override;
+       void on_render(::gpu::context* pgpucontext, ::graphics3d::scene_base* pscene) override;
 
         //
        virtual void setCubemapTexture(::gpu::texture *pgputexture);

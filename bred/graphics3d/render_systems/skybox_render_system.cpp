@@ -6,7 +6,7 @@
 #include "bred/gpu/texture.h"
 #include "bred/graphics3d/engine.h"
 #include "bred/graphics3d/immersion_layer.h"
-#include "bred/graphics3d/scene.h"
+#include "bred/graphics3d/scene_base.h"
 #include "bred/graphics3d/skybox.h"
 #include "acme/filesystem/filesystem/file_context.h"
 #include "aura/graphics/image/context.h"
@@ -259,7 +259,7 @@ namespace graphics3d
 
       auto pscene = pimmersionlayer->m_pscene;
 
-      auto pskybox = pscene->m_pskyboxCurrent;
+      auto pskybox = pscene->current_skybox();
 
       if (::is_null(pskybox))
       {
@@ -275,7 +275,8 @@ namespace graphics3d
       m_pshader->m_bindingCubeSampler.m_strUniform = "skybox";
 
      
-      m_pshader->bind(ptextureDst, pskybox->m_ptexture); // Make sure to bind the shader first
+      m_pshader->bind(::gpu::current_frame()->m_pgpucommandbuffer, ptextureDst,
+                      pskybox->m_ptexture); // Make sure to bind the shader first
       //auto view = m_pengine->m_pcamera->getView();
       //glm::mat4 skyboxView = glm::mat4(glm::mat3(view)); // <-- drop translation
       //m_pshader->set_mat4("view", skyboxView);
@@ -289,13 +290,14 @@ namespace graphics3d
 
    void skybox_render_system::draw(::gpu::command_buffer* pgpucommandbuffer)
    {
+
       auto pengine = m_pengine;
 
       auto pimmersionlayer = pengine->m_pimmersionlayer;
 
       auto pscene = pimmersionlayer->m_pscene;
 
-      auto pskybox = pscene->m_pskyboxCurrent;
+      auto pskybox = pscene->current_skybox();
 
       if (::is_null(pskybox))
       {
@@ -312,14 +314,13 @@ namespace graphics3d
    void skybox_render_system::unbind(::gpu::command_buffer* pgpucommandbuffer)
    {
 
-
       auto pengine = m_pengine;
 
       auto pimmersionlayer = pengine->m_pimmersionlayer;
 
       auto pscene = pimmersionlayer->m_pscene;
 
-      auto pskybox = pscene->m_pskyboxCurrent;
+      auto pskybox = pscene->current_skybox();
 
       if (::is_null(pskybox))
       {
@@ -327,13 +328,15 @@ namespace graphics3d
          return;
 
       }
+
       pskybox->m_pmodelCube->unbind(pgpucommandbuffer);
-      m_pshader->unbind();
+
+      m_pshader->unbind(::gpu::current_frame()->m_pgpucommandbuffer);
 
    }
 
 
-   void skybox_render_system::on_render(::gpu::context* pgpucontext, ::graphics3d::scene* pscene)
+   void skybox_render_system::on_render(::gpu::context* pgpucontext, ::graphics3d::scene_base* pscene)
    {
 
       auto pcommandbuffer = pgpucontext->m_pgpurenderer->getCurrentCommandBuffer2(::gpu::current_frame());

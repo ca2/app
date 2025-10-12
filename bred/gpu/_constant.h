@@ -124,6 +124,19 @@ namespace gpu
    };
 
 
+   enum enum_gltf_texture
+   {
+
+      e_gltf_texture_albedo, 
+      e_gltf_texture_metallic_roughness,
+      e_gltf_texture_normal,
+      e_gltf_texture_ambient_occlusion,
+      e_gltf_texture_emissive,
+
+   };
+
+
+
 } // namespace gpu
 
 

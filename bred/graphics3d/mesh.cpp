@@ -66,7 +66,7 @@ namespace graphics3d
          
          auto ptexture = m_texturea[i];
          
-         pshader->bind_source(ptexture, i);
+         pshader->bind_source(::gpu::current_frame()->m_pgpucommandbuffer, ptexture, i);
 
          //glActiveTexture(GL_TEXTURE0 + i); // active proper texture unit before binding
          //// retrieve texture number (the N in diffuse_textureN)

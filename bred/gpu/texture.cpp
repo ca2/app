@@ -26,12 +26,21 @@ namespace gpu
       m_bTransferSrc = false;
       m_bCpuRead = false;
       m_bWithDepth = false;
+      m_iLayerCount = 0;
 
    }
 
 
    texture::~texture()
    {
+
+   }
+
+
+
+   void texture::initialize_hdr_texture_on_memory(::gpu::renderer *prenderer, const ::block & block)
+   {
+
 
    }
 
@@ -81,7 +90,7 @@ namespace gpu
    }
 
 
-   void texture::initialize_image_texture(::gpu::renderer* pgpurenderer, const ::file::path& path)
+   void texture::initialize_image_texture(::gpu::renderer* pgpurenderer, const ::file::path& path, bool bIsSrgb)
    {
 
       auto pimage = image()->path_image(path);

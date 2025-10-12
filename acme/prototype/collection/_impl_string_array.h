@@ -522,7 +522,7 @@ Type& string_base_array < Type, RawType, t_etypeContainer >::insert_empty(::coll
       for (::collection::index i = nIndex; i < nIndex + 1; i++)
       {
 
-         __raw_new (this->ptr_at(nIndex)) RawType();
+         øraw_new (this->ptr_at(nIndex)) RawType();
 
       }
 

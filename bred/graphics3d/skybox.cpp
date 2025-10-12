@@ -1,12 +1,12 @@
 #include "framework.h"
+#include "immersion_layer.h"
+#include "scene_base.h"
 #include "skybox.h"
 #include "engine.h"
 #include "bred/gpu/device.h"
 #include "bred/gpu/frame.h"
 #include "bred/gpu/render_target.h"
 #include "bred/gpu/texture.h"
-#include "bred/graphics3d/immersion_layer.h"
-#include "bred/graphics3d/scene.h"
 #include "acme/filesystem/filesystem/file_context.h"
 #include "aura/graphics/image/context.h"
 #include "aura/platform/application.h"
@@ -36,7 +36,7 @@ namespace graphics3d
    }
 
 
-   void skybox::initialize_sky_box(::graphics3d::scene * pscene, const ::scoped_string & scopedstrName)
+   void skybox::initialize_sky_box(::graphics3d::scene_base * pscene, const ::scoped_string & scopedstrName)
    {
 
       ::graphics3d::scene_object::initialize_scene_object(pscene);
@@ -267,7 +267,7 @@ namespace graphics3d
    }
 
    //
-   // void skybox::on_render(::gpu::context* pgpucontext, ::graphics3d::scene* pscene)
+   // void skybox::on_render(::gpu::context* pgpucontext, ::graphics3d::scene_base* pscene)
    // {
    //
    //    auto pcommandbuffer = pgpucontext->m_pgpurenderer->getCurrentCommandBuffer2(::gpu::current_frame());

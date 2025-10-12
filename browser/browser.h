@@ -2,7 +2,7 @@
 
 
 #include "aura/_.h"
-#include "app-core/gcom/gcom/gcom.h"
+#include "app-graphics/gcom/gcom/gcom.h"
 
 
 #if defined(_app_browser_project)

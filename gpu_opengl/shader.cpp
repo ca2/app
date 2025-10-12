@@ -213,31 +213,32 @@ namespace gpu_opengl
 
    // activate the shader
    // ------------------------------------------------------------------------
-   void shader::bind(::gpu::texture* pgputextureTarget, ::gpu::texture* pgputextureSource)
+   void shader::bind(::gpu::command_buffer *pgpucommandbuffer, ::gpu::texture *pgputextureTarget,
+                     ::gpu::texture *pgputextureSource)
    {
 
-      bind(pgputextureTarget);
+      bind(pgpucommandbuffer, pgputextureTarget);
 
-      bind_source(pgputextureSource, 0);
+      bind_source(pgpucommandbuffer, pgputextureSource, 0);
 
    }
 
-   void shader::bind()
+   void shader::bind(::gpu::command_buffer *pgpucommandbuffer)
    {
 
       ::cast < render_target> prendertarget = m_pgpurenderer->m_pgpurendertarget;
 
       ::cast < texture > ptexture = prendertarget->current_texture(::gpu::current_frame());
 
-      bind(ptexture);
+      bind(pgpucommandbuffer, ptexture);
 
    }
 
 
-   void shader::bind(::gpu::texture* pgputextureTarget)
+   void shader::bind(::gpu::command_buffer *pgpucommandbuffer, ::gpu::texture *pgputextureTarget)
    {
 
-      _bind();
+      _bind(pgpucommandbuffer);
 
       ::cast < texture > ptexture = pgputextureTarget;
 
@@ -287,7 +288,7 @@ namespace gpu_opengl
    }
 
 
-   void shader::_bind()
+   void shader::_bind(::gpu::command_buffer *pgpucommandbuffer)
    {
 
       auto pgpucontext = m_pgpurenderer->m_pgpucontext;
@@ -359,7 +360,7 @@ namespace gpu_opengl
 
 
 
-   void shader::unbind()
+   void shader::unbind(::gpu::command_buffer *pgpucommandbuffer)
    {
 
       if (m_ptextureBound)
@@ -380,7 +381,7 @@ namespace gpu_opengl
    }
 
 
-   void shader::bind_source(::gpu::texture* pgputexture, int iSlot)
+   void shader::bind_source(::gpu::command_buffer *pgpucommandbuffer, ::gpu::texture *pgputexture, int iSlot)
    {
 
       glActiveTexture(GL_TEXTURE0);
@@ -808,7 +809,7 @@ namespace gpu_opengl
    }
 
 
-   void shader::push_properties()
+   void shader::push_properties(::gpu::command_buffer *pgpucommandbuffer)
    {
 
       auto p = m_propertiesPush.m_pproperties;
@@ -825,31 +826,35 @@ namespace gpu_opengl
 
          }
 
+         ::string strName = p->m_pszName;
+
+         strName.begins_eat("sampler:");
+
          switch (p->m_etype)
          {
          case ::gpu::e_type_int:
-            _set_int(p->m_pszName, *(int*)(m_propertiesPush.data() + iLen));
+               _set_int(strName, *(int *)(m_propertiesPush.data(true) + iLen));
             break;
          case ::gpu::e_type_float:
-            _set_float(p->m_pszName, *(float*)(m_propertiesPush.data() + iLen));
+            _set_float(strName, *(float *)(m_propertiesPush.data(true) + iLen));
             break;
          case ::gpu::e_type_seq2:
-            _set_vec2(p->m_pszName, *(glm::vec2*)(m_propertiesPush.data() + iLen));
+            _set_vec2(strName, *(glm::vec2 *)(m_propertiesPush.data(true) + iLen));
             break;
          case ::gpu::e_type_seq3:
-            _set_vec3(p->m_pszName, *(glm::vec3*)(m_propertiesPush.data() + iLen));
+            _set_vec3(strName, *(glm::vec3 *)(m_propertiesPush.data(true) + iLen));
             break;
          case ::gpu::e_type_seq4:
-            _set_vec4(p->m_pszName, *(glm::vec4*)(m_propertiesPush.data() + iLen));
+            _set_vec4(strName, *(glm::vec4 *)(m_propertiesPush.data(true) + iLen));
             break;
          case ::gpu::e_type_mat2:
-            _set_mat2(p->m_pszName, *(glm::mat2*)(m_propertiesPush.data() + iLen));
+            _set_mat2(strName, *(glm::mat2 *)(m_propertiesPush.data(true) + iLen));
             break;
          case ::gpu::e_type_mat3:
-            _set_mat3(p->m_pszName, *(glm::mat3*)(m_propertiesPush.data() + iLen));
+            _set_mat3(strName, *(glm::mat3 *)(m_propertiesPush.data(true) + iLen));
             break;
          case ::gpu::e_type_mat4:
-            _set_mat4(p->m_pszName, *(glm::mat4*)(m_propertiesPush.data() + iLen));
+            _set_mat4(strName, *(glm::mat4 *)(m_propertiesPush.data(true) + iLen));
             break;
         default:
         throw ::exception(error_not_expected);

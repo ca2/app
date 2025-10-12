@@ -275,7 +275,8 @@ namespace graphics3d
       m_pshader->m_bindingCubeSampler.m_strUniform = "skybox";
 
      
-      m_pshader->bind(ptextureDst, pskybox->m_ptexture); // Make sure to bind the shader first
+      m_pshader->bind(::gpu::current_frame()->m_pgpucommandbuffer, ptextureDst,
+                      pskybox->m_ptexture); // Make sure to bind the shader first
       //auto view = m_pengine->m_pcamera->getView();
       //glm::mat4 skyboxView = glm::mat4(glm::mat3(view)); // <-- drop translation
       //m_pshader->set_mat4("view", skyboxView);
@@ -330,7 +331,7 @@ namespace graphics3d
 
       pskybox->m_pmodelCube->unbind(pgpucommandbuffer);
 
-      m_pshader->unbind();
+      m_pshader->unbind(::gpu::current_frame()->m_pgpucommandbuffer);
 
    }
 

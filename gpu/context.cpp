@@ -2924,15 +2924,23 @@ namespace gpu_gpu
 
    ::pointer<::gpu::texture> context::cubemap_from_hdr_on_memory(const ::block & block)
    {
-      
-      // Pre-compute IBL stuff
-      auto piblequirectangularcubemap = øcreate<::gpu::ibl::equirectangular_cubemap>();
 
-      piblequirectangularcubemap->initialize_equirectangular_cubemap_with_hdr_on_memory(this, block);
+      ::pointer<::gpu::texture> pgputexture;
+        
+      {
 
-      piblequirectangularcubemap->compute();
+         // Pre-compute IBL stuff
+         auto piblequirectangularcubemap = øcreate<::gpu::ibl::equirectangular_cubemap>();
 
-      return piblequirectangularcubemap->m_pframebuffer->m_ptexture;
+         piblequirectangularcubemap->initialize_equirectangular_cubemap_with_hdr_on_memory(this, block);
+
+         piblequirectangularcubemap->compute();
+
+         pgputexture = piblequirectangularcubemap->m_pframebuffer->m_ptexture;
+
+      }
+
+      return pgputexture;
 
    }
 

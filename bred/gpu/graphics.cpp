@@ -1441,7 +1441,7 @@ namespace gpu
 
               // pgputexture = ppixmap->m_pgputexture;
 
-               pshader->bind_source(ppixmap);
+               pshader->bind_source(pcommandbuffer, ppixmap);
 
             //}
 
@@ -1491,7 +1491,7 @@ namespace gpu
 
             }
 
-            pshader->push_properties();
+            pshader->push_properties(pcommandbuffer);
 
             //glBindTexture(GL_TEXTURE_2D, ch.TextureID);
             //GLCheckError("");

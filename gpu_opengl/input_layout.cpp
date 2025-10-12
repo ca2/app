@@ -51,7 +51,7 @@ namespace gpu_opengl
 		//glEnableVertexAttribArray(3);
 		//glVertexAttribPointer(3, 2, GL_FLOAT, GL_FALSE, sizeof(::gpu::Vertex), (void*)offsetof(::gpu::Vertex, uv));
 
-      int sizeVertex = (int) this->size();
+      int sizeVertex = (int) this->size(true);
 
 		auto countInputLayout = this->count();
 

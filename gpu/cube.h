@@ -5,6 +5,7 @@
 
  #include "bred/gpu/context_object.h"
  #include "bred/graphics3d/renderable.h"
+#include "bred/gpu/model_buffer.h"
 
 
  namespace gpu
@@ -22,7 +23,7 @@
 
        //unsigned int m_uVAO, m_uVBO;
 
-       ::float_array_base m_vertexa;
+       ::gpu::model_data < ::glm::vec3 > m_modeldata;
 
 
        cube();

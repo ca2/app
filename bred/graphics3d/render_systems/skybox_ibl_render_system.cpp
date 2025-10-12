@@ -235,7 +235,7 @@ namespace graphics3d
       //auto ptextureCubeMap = prenderableSkyboxModel->get_target_texture();
       //auto ptextureCubeMap = pscene->current_sky_box_texture();
 
-	   m_pshader->bind(ptextureDst, ptextureSkybox);
+	   m_pshader->bind(::gpu::current_frame()->m_pgpucommandbuffer, ptextureDst, ptextureSkybox);
 		//IGameObject * skyObj = skyOpt->get();
 
 		//sASSERT(m_skyboxDescriptorSet != VK_NULL_HANDLE && "Skybox descriptor set is not allocated!");

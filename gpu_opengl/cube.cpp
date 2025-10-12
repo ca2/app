@@ -27,7 +27,7 @@
           throw ::exception(error_wrong_state);
 
        }
-       if (m_vertexa.is_empty())
+       if (m_modeldata.m_vertexes.is_empty())
        {
 
           throw ::exception(error_wrong_state);
@@ -36,7 +36,7 @@
        // draw mesh
        glBindVertexArray(m_uVAO);
        GLCheckError("");
-       glDrawArrays(GL_TRIANGLES, 0, m_vertexa.size());
+       glDrawArrays(GL_TRIANGLES, 0, m_modeldata.m_vertexes.size());
        GLCheckError("");
        glBindVertexArray(0);
        GLCheckError("");
@@ -56,9 +56,13 @@
        glBindVertexArray(m_uVAO); // use this VAO for subsequent calls
        GLCheckError("");
 
+       int iSizeItem = sizeof(m_modeldata.m_vertexes[0]);
+       int iSize = m_modeldata.m_vertexes.size();
+
        glBindBuffer(GL_ARRAY_BUFFER, m_uVBO); // use this VBO for subsequent calls
        GLCheckError("");
-       glBufferData(GL_ARRAY_BUFFER, m_vertexa.size() * sizeof(float),m_vertexa.data(), GL_STATIC_DRAW); // copy over the vertex data
+       glBufferData(GL_ARRAY_BUFFER, iSize * sizeof(float) * 3, m_modeldata.m_vertexes.data(),
+                    GL_STATIC_DRAW); // copy over the vertex data
        GLCheckError("");
 
        // setup the locations of vertex data

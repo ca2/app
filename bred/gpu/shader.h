@@ -98,6 +98,7 @@ namespace gpu
       enum_cull_mode m_ecullmode = e_cull_mode_back;
       //bool m_bHasSourceImage = false;
 
+      binding m_bindingUbo;
       binding m_bindingSampler;
       binding m_bindingCubeSampler;
 
@@ -193,24 +194,27 @@ namespace gpu
 
       //virtual ::gpu::payload * get_payload(const ::scoped_string & scopedstrName);
       virtual void draw();
-      virtual void _bind();
+      virtual void _bind(::gpu::command_buffer *pgpucommandbuffer);
       //virtual void on_initialize_shader();
       
       
       virtual void on_set_constant_buffer(const ::scoped_string& scopedstrName);
 
 
-      virtual void bind(::gpu::texture* pgputextureTarget);
-      virtual void bind(::gpu::texture * pgputextureTarget, ::gpu::texture* pgputextureSource);
-      virtual void bind_source(::gpu::texture* pgputextureSource, int iSlot = 0);
-      virtual void bind_source(::gpu::pixmap* pgpupixmapSource, int iSlot = 0);
-      virtual void bind();
-      virtual void unbind();
+      virtual void bind(::gpu::command_buffer * pgpucommandbuffer, ::gpu::texture* pgputextureTarget);
+      virtual void bind(::gpu::command_buffer *pgpucommandbuffer, ::gpu::texture *pgputextureTarget,
+                        ::gpu::texture *pgputextureSource);
+      virtual void bind_source(::gpu::command_buffer *pgpucommandbuffer, ::gpu::texture *pgputextureSource,
+                               int iSlot = 0);
+      virtual void bind_source(::gpu::command_buffer *pgpucommandbuffer, ::gpu::pixmap *pgpupixmapSource,
+                               int iSlot = 0);
+      virtual void bind(::gpu::command_buffer *pgpucommandbuffer);
+      virtual void unbind(::gpu::command_buffer *pgpucommandbuffer);
 
 
-      virtual void push_properties();
+      virtual void push_properties(::gpu::command_buffer *pgpucommandbuffer);
 
-      virtual void set_push_properties(const ::block& block);
+      virtual void set_push_properties(::gpu::command_buffer *pgpucommandbuffer, const ::block &block);
 
 
       //virtual void setup_sampler_and_texture(const ::scoped_string& scopedstrName, int value);

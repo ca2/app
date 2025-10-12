@@ -114,7 +114,7 @@ namespace graphics3d
 
             _synchronous_lock synchronouslock(pscene->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-            if (pscene->global_ubo().size() > 0)
+            if (pscene->global_ubo().size(true) > 0)
             {
 
                update_global_ubo(gpu_context());
@@ -152,7 +152,7 @@ namespace graphics3d
    void engine::create_global_ubo(::gpu::context* pgpucontext)
    {
 
-      auto iGlobalUboSize = m_pimmersionlayer->m_pscene->global_ubo().size();
+      auto iGlobalUboSize = m_pimmersionlayer->m_pscene->global_ubo().size(true);
 
       if (iGlobalUboSize > 0)
       {
@@ -665,14 +665,14 @@ namespace graphics3d
 
       auto pscene = m_pimmersionlayer->m_pscene;
 
-      if (pscene->global_ubo().size() > 0)
+      if (pscene->global_ubo().size(true) > 0)
       {
 
          pscene->on_update(pgpucontext);
          
          auto pcontext = gpu_context();
 
-         pcontext->update_global_ubo(pscene->global_ubo().m_block);
+         pcontext->update_global_ubo(pscene->global_ubo().m_blockWithSamplers);
 
       }
 
@@ -995,7 +995,7 @@ namespace graphics3d
 
          m_bCreatedGlobalUbo = true;
 
-         auto iGlobalUboSize = pscene->global_ubo().size();
+         auto iGlobalUboSize = pscene->global_ubo().size(true);
 
          if (iGlobalUboSize > 0)
          {

@@ -210,7 +210,8 @@ namespace graphics3d
 	{
 
 
-		m_pshader->bind(pgpucontext->current_target_texture(::gpu::current_frame()));
+		m_pshader->bind(
+         ::gpu::current_frame()->m_pgpucommandbuffer, pgpucontext->current_target_texture(::gpu::current_frame()));
 
 	   auto pgamelayer = m_pengine->m_pimmersionlayer;
 
@@ -258,11 +259,11 @@ namespace graphics3d
 
 				m_pshader->m_propertiesPush["normalMatrix"] = normalMatrix;
 
-				m_pshader->push_properties();
-
 				auto pcommandbuffer = pgpucontext->m_pgpurenderer->getCurrentCommandBuffer2(::gpu::current_frame());
 
-				prenderable->bind(pcommandbuffer);
+				m_pshader->push_properties(pcommandbuffer);
+
+            prenderable->bind(pcommandbuffer);
 
 				prenderable->draw(pcommandbuffer);
 
@@ -272,7 +273,7 @@ namespace graphics3d
 
 		}
 
-		m_pshader->unbind();
+		m_pshader->unbind(::gpu::current_frame()->m_pgpucommandbuffer);
 
 	}
 

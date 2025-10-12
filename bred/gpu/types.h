@@ -44,8 +44,21 @@ namespace gpu
 
 	};
 
+   struct model_view_projection_hdriSampler
+   {
+      glm::mat4 model;
+      glm::mat4 view;
+      glm::mat4 projection;
+      int hdri;
+   };
 
-
+   struct model_view_projection_environmentCubeSampler
+   {
+      glm::mat4 model;
+      glm::mat4 view;
+      glm::mat4 projection;
+      int environmentCube;
+   };
 
 
 } // namespace gpu
@@ -53,3 +66,5 @@ namespace gpu
 
 DECLARE_GPU_PROPERTIES(CLASS_DECL_BRED, ::gpu::projection_quad_texcoords_textColor)
 DECLARE_GPU_PROPERTIES(CLASS_DECL_BRED, ::gpu::quad_texcoords_textColor)
+DECLARE_GPU_PROPERTIES(CLASS_DECL_BRED, ::gpu::model_view_projection_hdriSampler)
+DECLARE_GPU_PROPERTIES(CLASS_DECL_BRED, ::gpu::model_view_projection_environmentCubeSampler)

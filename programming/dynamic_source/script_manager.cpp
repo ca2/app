@@ -1844,7 +1844,11 @@ namespace dynamic_source
       ::logic::boolean bShouldBuild = false;
 
       if (!m_mapShouldBuild2.find(strScriptPath, bShouldBuild))
+      {
+
          return false;
+
+      }
 
       return bShouldBuild;
 

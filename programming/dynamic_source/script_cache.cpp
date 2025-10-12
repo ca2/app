@@ -66,7 +66,7 @@ namespace dynamic_source
    }
 
 
-   ::pointer<ds_script>script_cache::create_new_ds_script(const ::scoped_string & scopedstrName)
+   ::pointer<ds_script>script_cache::allocate_ds_script(const ::scoped_string & scopedstrName)
    {
 
       auto pscript = øcreate_new< ds_script >();
@@ -91,7 +91,7 @@ namespace dynamic_source
 
 #endif
 
-      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       auto & pscript = m_map[strName];
 
@@ -103,7 +103,7 @@ namespace dynamic_source
 
       }
 
-      return pscript = create_new_ds_script(strName);
+      return pscript = allocate_ds_script(strName);
 
    }
 
@@ -199,7 +199,7 @@ namespace dynamic_source
 
          slScript.unlock();
 
-         pscript = create_new_ds_script(strName);
+         pscript = allocate_ds_script(strName);
 
          slScript._lock();
 

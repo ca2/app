@@ -31,6 +31,7 @@ namespace dynamic_source
       ::string                         m_strClassName;
       bool                             m_bLastVersionCheck;
       class ::time                     m_timeLastVersionCheck;
+      class ::time                     m_timeLastShouldBuildCheck;
       ::file::path                     m_strSourcePath;
       ::file::path                     m_strSourceDir;
       ::file::path                     m_strCppPath;

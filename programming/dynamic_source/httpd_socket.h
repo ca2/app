@@ -22,7 +22,7 @@ namespace dynamic_source
       class ::time                                 m_timeMainRunEnd;
       class ::time                                 m_timeWaitingToBuild;
 
-
+      class ::time                                 m_timeLastHandRootPrefix;
 
       httpd_socket();
       ~httpd_socket() override;

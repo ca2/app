@@ -183,34 +183,29 @@ namespace dynamic_source
 
       }
 
-      _single_lock slScript(pscript->synchronization());
-
-      if (!slScript._wait(5_s))
       {
-         
-         throw ::heating_up_exception("Compiling script " + scopedstrName);
+
+         _single_lock slScript(pscript->synchronization());
+
+         if (!slScript._wait(5_s))
+         {
+
+            throw ::heating_up_exception("Compiling script " + scopedstrName);
+
+         }
 
       }
 
-      int iTry = 0;
-
-      while(!pscript->m_bNew && pscript->ShouldBuild())
+      if(!pscript->m_bNew && pscript->ShouldBuild())
       {
-
-         slScript.unlock();
 
          pscript = allocate_ds_script(strName);
 
-         slScript._lock();
+         _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-         iTry++;
+         m_map[strName] = pscript;
 
-         if (iTry > 5)
-         {
-
-            return nullptr;
-
-         }
+         return pscript->create_instance();
 
       }
 

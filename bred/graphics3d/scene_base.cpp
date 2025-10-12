@@ -664,7 +664,7 @@ namespace graphics3d
 
       model.m_strName = scopedstr;
 
-      model.m_path = path;
+      model.m_pathRenderable = path;
 
       if (path.case_insensitive_ends(".obj"))
       {

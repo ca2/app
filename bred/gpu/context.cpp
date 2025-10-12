@@ -382,7 +382,7 @@ namespace gpu
       if (!ptexture)
       {
 
-         load_texture(ptexture, path);
+         load_texture(ptexture, path, false);
 
       }
 
@@ -391,13 +391,13 @@ namespace gpu
    }
 
 
-   void context::load_texture(::pointer < ::gpu::texture >& ptexture, const ::file::path& path)
+   void context::load_texture(::pointer < ::gpu::texture >& ptexture, const ::file::path& path, bool bIsSrgb)
    {
 
       if (ødefer_construct(ptexture))
       {
 
-         ptexture->initialize_image_texture(m_pgpurenderer, path);
+         ptexture->initialize_image_texture(m_pgpurenderer, path, bIsSrgb);
 
       }
 
@@ -409,16 +409,29 @@ namespace gpu
 
       _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-      auto& ptexture = m_texturemapGeneric[path];
+      auto pnode = m_texturemapGeneric.find(path);
 
-      if (!ptexture)
+      if (!pnode)
       {
 
-         load_generic_texture(ptexture, path, iAssimpTextureType);
+         pnode = m_texturemapGeneric.get(path);
+
+         try
+         {
+
+            load_generic_texture(pnode->element2(), path, iAssimpTextureType);
+
+         }
+         catch (...)
+         {
+
+            pnode->element2() = nullptr;
+
+         }
 
       }
 
-      return ptexture;
+      return pnode->element2();
 
    }
 
@@ -485,7 +498,7 @@ namespace gpu
 
       auto prenderable = _load_wavefront_obj_renderable(model);
 
-      *((::gpu::renderable_t*)prenderable) = model;
+      
       // // 3) cache & return
       // m_mapObjectModel[name] = model;
       return prenderable;
@@ -496,7 +509,7 @@ namespace gpu
    ::pointer<::graphics3d::renderable> context::_load_wavefront_obj_renderable(const ::gpu::renderable_t & model)
    {
 
-      auto prenderable = m_pengine->_load_wavefront_obj_renderable(model.m_path);
+      auto prenderable = m_pengine->_load_wavefront_obj_renderable(model);
 
       return prenderable;
 
@@ -507,7 +520,6 @@ namespace gpu
    {
       ASSERT(model.m_erenderabletype == ::gpu::e_renderable_type_gltf);
       auto prenderable = _load_gltf_model(model);
-      *((::gpu::renderable_t*)prenderable) = model;
       return prenderable;
 
       // //if (auto it = m_mapGltfModel.find(name); it != m_mapGltfModel.end())
@@ -896,6 +908,13 @@ return {};
    void context::engine_on_frame_context_initialization()
    {
 
+
+
+   }
+
+
+   void context::onBeforePreloadGlobalAssets()
+   {
 
 
    }

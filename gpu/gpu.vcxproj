@@ -85,6 +85,7 @@
     <ClInclude Include="gltf\material.h" />
     <ClInclude Include="gltf\mesh.h" />
     <ClInclude Include="gltf\model.h" />
+    <ClInclude Include="gltf\model_base.h" />
     <ClInclude Include="gltf\vertex.h" />
     <ClInclude Include="gltf\_constant.h" />
     <ClInclude Include="hdr_texture.h" />
@@ -156,6 +157,7 @@
     <ClCompile Include="full_screen_quad.cpp" />
     <ClCompile Include="gltf\mesh.cpp" />
     <ClCompile Include="gltf\model.cpp" />
+    <ClCompile Include="gltf\model_base.cpp" />
     <ClCompile Include="hdr_texture.cpp" />
     <ClCompile Include="ibl\brdf_convolution_framebuffer.cpp" />
     <ClCompile Include="ibl\cubemap_framebuffer.cpp" />

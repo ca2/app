@@ -77,7 +77,7 @@ namespace gpu
 
          initialize_gpu_context_object(pgpucontext);
 
-         loadModel(model.m_path, true, model.m_bExternalPbr);
+         loadModel(model.m_pathRenderable, true, model.m_bExternalPbr);
 
       }
 

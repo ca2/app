@@ -13,6 +13,7 @@
 #include "apex/database/client.h"
 #include "apex/database/stream.h"
 #include "bred/gpu/bred_approach.h"
+#include "bred/gpu/command_buffer.h"
 #include "bred/gpu/context.h"
 #include "bred/gpu/cpu_buffer.h"
 #include "bred/gpu/device.h"
@@ -119,6 +120,10 @@ namespace graphics3d
                update_global_ubo(gpu_context());
 
             }
+
+            int iFrameIndex = gpu_context()->m_pgpurenderer->m_pgpurendertarget->get_frame_index();
+
+            pframe->m_pgpucommandbuffer->m_iFrameIndex = iFrameIndex;
 
             pscene->on_render(gpu_context());
 
@@ -1090,18 +1095,20 @@ namespace graphics3d
    }
 
 
-   ::pointer < ::graphics3d::renderable > engine::_load_wavefront_obj_renderable(const ::file::path& path)
+   ::pointer<::graphics3d::renderable> engine::_load_wavefront_obj_renderable(const ::gpu::renderable_t &model)
    {
 
       tinyobjloader_Builder builder{};
 
       auto pcontext = gpu_context();
 
-      builder.loadModel(pcontext, path);
+      builder.loadModel(pcontext, model.m_pathRenderable);
 
       ::pointer < ::gpu::model_buffer > pmodel;
 
       øconstruct(pmodel);
+
+      (*(::gpu::renderable_t *)pmodel) = model;
 
       pmodel->initialize_model(pcontext, builder);
 

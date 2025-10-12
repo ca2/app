@@ -163,7 +163,7 @@ namespace gpu
       virtual void start_debug_happening(const ::scoped_string& scopedstrDebugHappening);
       virtual void end_debug_happening();
 
-      virtual void load_texture(::pointer < ::gpu::texture > & ptexture, const ::file::path& path);
+      virtual void load_texture(::pointer < ::gpu::texture > & ptexture, const ::file::path& path, bool bIsSrgb);
 
 
 
@@ -209,6 +209,8 @@ namespace gpu
       virtual void on_create_context(::gpu::device * pgpudevice, const ::gpu::enum_output & eoutput, ::windowing::window* pwindow, const ::int_size & size);
 
       virtual void engine_on_frame_context_initialization();
+
+      virtual void onBeforePreloadGlobalAssets();
 
       //bool task_iteration() override;
 

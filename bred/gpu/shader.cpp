@@ -134,14 +134,14 @@ namespace gpu
 
    // activate the shader
    // ------------------------------------------------------------------------
-   void shader::bind()
+   void shader::bind(::gpu::command_buffer *pgpucommandbuffer)
    {
 
 
    }
 
 
-   void shader::bind(::gpu::texture* pgputextureTarget, ::gpu::texture* pgputextureSource)
+   void shader::bind(::gpu::command_buffer * pgpucommandbuffer, ::gpu::texture* pgputextureTarget, ::gpu::texture* pgputextureSource)
    {
 
       throw ::interface_only("shader::bind(::gpu::texture*, ::gpu::texture*) not implemented at this shader implementation");
@@ -155,7 +155,7 @@ namespace gpu
       
    }
 
-   void shader::bind(::gpu::texture* pgputextureTarget)
+   void shader::bind(::gpu::command_buffer *pgpucommandbuffer, ::gpu::texture *pgputextureTarget)
    {
 
       throw ::interface_only("shader::bind(::gpu::texture*) not implemented at this shader implementation");
@@ -163,7 +163,7 @@ namespace gpu
    }
 
 
-   void shader::bind_source(::gpu::texture* pgputextureSource, int iSlot)
+   void shader::bind_source(::gpu::command_buffer *pgpucommandbuffer, ::gpu::texture *pgputextureSource, int iSlot)
    {
 
       throw ::interface_only("shader::bind_source(::gpu::texture*) not implemented at this shader implementation");
@@ -171,15 +171,15 @@ namespace gpu
    }
 
 
-   void shader::bind_source(::gpu::pixmap* pgpupixmapSource, int iSlot)
+   void shader::bind_source(::gpu::command_buffer *pgpucommandbuffer, ::gpu::pixmap *pgpupixmapSource, int iSlot)
    {
 
-      bind_source(pgpupixmapSource->m_pgputexture, iSlot);
+      bind_source(pgpucommandbuffer, pgpupixmapSource->m_pgputexture, iSlot);
 
    }
 
 
-   void shader::unbind()
+   void shader::unbind(::gpu::command_buffer *pgpucommandbuffer)
    {
 
       m_pgputextureBound = nullptr;
@@ -292,7 +292,7 @@ namespace gpu
    }
 
 
-   void shader::_bind()
+   void shader::_bind(::gpu::command_buffer *pgpucommandbuffer)
    {
 
 
@@ -313,15 +313,15 @@ namespace gpu
    //}
 
 
-   void shader::push_properties()
+   void shader::push_properties(::gpu::command_buffer *pgpucommandbuffer)
    {
 
-      set_push_properties(m_propertiesPush.m_block);
+      
 
    }
 
 
-   void shader::set_push_properties(const ::block& block)
+   void shader::set_push_properties(::gpu::command_buffer *pgpucommandbuffer, const ::block &block)
    {
 
 

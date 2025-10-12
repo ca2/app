@@ -684,13 +684,47 @@ public:
 
       auto sizeThis = this->size();
 
-      return this->is_empty()?
-         (::is_empty(psz) ? true :
-         false) :
-         (::is_empty(psz) ? false :
-            (_case_insensitive_string_count_compare(this->m_begin, psz, sizeThis) == 0
-            && psz[sizeThis] == CHARACTER{})
-               );
+      if (this->is_empty())
+      {
+
+         if (::is_empty(psz))
+         {
+
+            return true;
+
+         }
+         else
+         {
+
+            return false;
+
+         }
+
+      }
+      else if (::is_empty(psz))
+      {
+
+         return false;
+
+      }
+      else if (0 != _case_insensitive_string_count_compare(this->m_begin, psz, sizeThis))
+      {
+
+         return false;
+
+      }
+      else if (psz[sizeThis] != CHARACTER{})
+      {
+
+         return false;
+
+      }
+      else
+      {
+
+         return true;
+
+      }
 
    }
 

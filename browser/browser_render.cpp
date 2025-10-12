@@ -7,7 +7,7 @@
 //
 #include "framework.h"
 #include <math.h>
-#include "app-core/gcom/gcom/gcom_slide.h"
+#include "app-graphics/gcom/gcom/gcom_slide.h"
 
 
 namespace browser

@@ -112,7 +112,7 @@ namespace gpu_opengl
          glViewport(0, 0, m_udiffuse_irradiance_mapWidth, m_udiffuse_irradiance_mapHeight);
          GLCheckError("");
          //m_pdiffuseIrradianceFramebuffer->bind();
-         m_pshaderDiffuseIrradiance->bind(m_pdiffuseIrradianceFramebuffer->m_ptexture);
+         m_pshaderDiffuseIrradiance->bind(nullptr, m_pdiffuseIrradianceFramebuffer->m_ptexture);
 
 
          
@@ -130,12 +130,12 @@ namespace gpu_opengl
          for (auto i = 0; i < 6; i++)
          {
             m_pshaderDiffuseIrradiance->setModelViewProjectionMatrices(model, cameraAngles[i], projection);
-            m_pdiffuseIrradianceFramebuffer->setCubeFace(i);
+            m_pdiffuseIrradianceFramebuffer->setCubeFace(i, m_pshaderDiffuseIrradiance);
 
             glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
             GLCheckError("");
 
-            m_pshaderDiffuseIrradiance->set_int("environmentCubemap", 0);
+            //m_pshaderDiffuseIrradiance->set_int("environmentCubemap", 0);
             glBindTexture(GL_TEXTURE_CUBE_MAP, ptextureSkybox->m_gluTextureID);
             // pgpucommandbuffer->m_erendersystem = ::graphics3d::e_render_system_skybox_ibl;
             pcube->bind(pgpucommandbuffer);

@@ -300,9 +300,9 @@ void main() {
             auto pmodelbufferFullscreenQuad =
                m_pgpucontext->sequence2_uv_fullscreen_quad_model_buffer(::gpu::current_frame());
 
-            m_pshaderCopyTextureOnEndDraw->_bind();
+            m_pshaderCopyTextureOnEndDraw->_bind(pcommandbuffer);
 
-            m_pshaderCopyTextureOnEndDraw->bind_source(pgputexture);
+            m_pshaderCopyTextureOnEndDraw->bind_source(pcommandbuffer, pgputexture);
 
             pmodelbufferFullscreenQuad->bind(pcommandbuffer);
 
@@ -364,7 +364,7 @@ void main() {
 
             // debug() << "gl error";
 
-            m_pshaderCopyTextureOnEndDraw->unbind();
+            m_pshaderCopyTextureOnEndDraw->unbind(pcommandbuffer);
          }
 
 

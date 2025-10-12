@@ -3,7 +3,7 @@
 #include "framework.h"
 #include "cubemap_framebuffer.h"
 #include "bred/gpu/context_lock.h"
-
+#include "bred/gpu/shader.h"
 #include <glad/glad.h>
 
 #include "texture.h"
@@ -60,8 +60,11 @@ namespace gpu_opengl
          // cubemap
          glGenTextures(1, &ptexture->m_gluTextureID);
          GLCheckError("");
-         glBindTexture(GL_TEXTURE_CUBE_MAP, ptexture->m_gluTextureID);
+         glBindTexture(ptexture->m_gluType, ptexture->m_gluTextureID);
          GLCheckError("");
+
+         int width = ptexture->m_rectangleTarget.width();
+         int height = ptexture->m_rectangleTarget.height();
 
          // specify/allocate each face for the cubemap
          for (auto i = 0; i < 6; i++)
@@ -71,8 +74,8 @@ namespace gpu_opengl
                GL_TEXTURE_CUBE_MAP_POSITIVE_X + i,
                0,
                GL_RGB16F,
-               ptexture->m_rectangleTarget.width(),
-               ptexture->m_rectangleTarget.height(),
+               width,
+               height,
                0,
                GL_RGB,
                GL_FLOAT,
@@ -81,15 +84,15 @@ namespace gpu_opengl
 
          }
 
-         glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+         glTexParameteri(ptexture->m_gluType, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
          GLCheckError("");
-         glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+         glTexParameteri(ptexture->m_gluType, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
          GLCheckError("");
-         glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_R, GL_CLAMP_TO_EDGE);
+         glTexParameteri(ptexture->m_gluType, GL_TEXTURE_WRAP_R, GL_CLAMP_TO_EDGE);
          GLCheckError("");
-         glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+         glTexParameteri(ptexture->m_gluType, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
          GLCheckError("");
-         glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+         glTexParameteri(ptexture->m_gluType, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
          GLCheckError("");
 
          GLenum status = glCheckFramebufferStatus(GL_FRAMEBUFFER);
@@ -106,7 +109,7 @@ namespace gpu_opengl
       }
 
 
-      void cubemap_framebuffer::bind()
+      void cubemap_framebuffer::bind(::gpu::command_buffer *pgpucommandbuffer)
       {::cast < gpu_opengl::texture>ptexture = m_ptexture;
          glBindFramebuffer(GL_FRAMEBUFFER, ptexture->m_gluFbo);
          GLCheckError("");
@@ -125,7 +128,7 @@ namespace gpu_opengl
       }
 
 
-      void cubemap_framebuffer::setCubeFace(unsigned int index)
+      void cubemap_framebuffer::setCubeFace(unsigned int index, ::gpu::shader * pgpushader)
       {
          ::cast < gpu_opengl::texture>ptexture = m_ptexture;
          glFramebufferTexture2D(
@@ -135,6 +138,12 @@ namespace gpu_opengl
             ptexture->m_gluTextureID,
             0);
          GLCheckError("");
+         
+         //if (m_strSamplerUniform.has_character())
+         //{
+         //   pgpushader->set_int(m_strSamplerUniform, 0);
+         //}
+
       }
 
 

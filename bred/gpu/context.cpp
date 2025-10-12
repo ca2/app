@@ -628,12 +628,12 @@ return {};
 
          end_debug_happening();
 
-         m_pshaderBound->unbind();
+         m_pshaderBound->unbind(::gpu::current_frame()->m_pgpucommandbuffer);
 
       }
       start_debug_happening("shader changing");
 
-      pgpushader->bind();
+      pgpushader->bind(::gpu::current_frame()->m_pgpucommandbuffer);
 
       m_pshaderBound = pgpushader;
 
@@ -657,7 +657,7 @@ return {};
 
          m_pshaderBound.release();
 
-         pshaderBound->unbind();
+         pshaderBound->unbind(::gpu::current_frame()->m_pgpucommandbuffer);
 
          end_debug_happening();
 

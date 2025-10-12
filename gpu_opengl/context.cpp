@@ -216,7 +216,7 @@ namespace gpu_opengl
       if (m_pshader)
       {
 
-         m_pshader->bind();
+         m_pshader->bind(nullptr);
 
       }
       // Use our shader
@@ -1118,12 +1118,11 @@ void main() {
       //glClearColor(0.1, 0.1, 0.1, 1.0);
       //glClear(GL_COLOR_BUFFER_BIT);
 
-
-      m_pshaderCopy->bind();
-
-      m_pshaderCopy->bind_source(ptextureParam, 0);
-
       auto pcommandbuffer = m_pgpurenderer->getCurrentCommandBuffer2(::gpu::current_frame());
+
+      m_pshaderCopy->bind(pcommandbuffer);
+
+      m_pshaderCopy->bind_source(pcommandbuffer, ptextureParam, 0);
 
       pmodelbufferFullScreenQuad->bind(pcommandbuffer);
 
@@ -1141,7 +1140,7 @@ void main() {
 
       //glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
 
-      m_pshaderCopy->unbind();
+      m_pshaderCopy->unbind(pcommandbuffer);
 
    }
 
@@ -1376,7 +1375,7 @@ void main() {
                   //   VK_PIPELINE_STAGE_FRAGMENT_SHADER_BIT
                   //);
 
-                  m_pshaderBlend3->bind(ptextureDst, ptextureSrc);
+                  m_pshaderBlend3->bind(nullptr, ptextureDst, ptextureSrc);
 
                   auto r = ptextureSrc->m_rectangleTarget;
 
@@ -1483,7 +1482,7 @@ void main() {
 
                   //pcommandlist->IASetPrimitiveTopology(D3D_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
                   //vkCmdDraw(vkcommandbuffer, 3, 1, 0, 0);
-                  m_pshaderBlend3->unbind();
+                  m_pshaderBlend3->unbind(pcommandbuffer);
                }
                iLayer++;
 

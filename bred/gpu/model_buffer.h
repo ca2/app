@@ -25,8 +25,8 @@ namespace gpu
    {
    public:
 
-      ::array<VERTEX> m_vertexes;
-      ::array<unsigned int> m_indexes;
+      ::array_base<VERTEX> m_vertexes;
+      ::array_base<unsigned int> m_indexes;
 
 
       //::pointer <::graphics3d::model> create_model(
@@ -299,7 +299,12 @@ namespace gpu
 
          static_initialize_vertexes(modeldata.m_vertexes);
 
-         static_initialize_indexes(modeldata.m_indexes);
+         if (modeldata.m_indexes.has_elements())
+         {
+
+            static_initialize_indexes(modeldata.m_indexes);
+
+         }
 
          unbind_load_assets_command_buffer(pcontext);
 

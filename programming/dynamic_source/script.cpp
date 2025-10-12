@@ -194,7 +194,7 @@ namespace dynamic_source
 
       }
 
-      if (m_timeLastShouldBuildCheck.has_timed_out_update(2_s))
+      if (m_timeLastShouldBuildCheck.is_time_out_ok_with_update(2_s))
       {
 
          return false;

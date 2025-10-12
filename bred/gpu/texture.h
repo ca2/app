@@ -36,7 +36,7 @@ namespace gpu
       ::collection::index                 m_iIndex;
       //::pointer < ::gpu::render_target >  m_pgpurendertarget;
       ::int_rectangle                     m_rectangleTarget;
-      int                                 m_mipLevels;
+      int                                 m_mipsLevel;
       ::int_size                          m_sizeMip;
       bool                                m_bTransferDst;
       bool                                m_bTransferSrc;

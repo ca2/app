@@ -20,6 +20,9 @@ namespace gpu
       {
       public:
 
+         
+         ::string m_strSamplerUniform;
+
 
          //int m_uWidth, m_uHeight;
          ::pointer < ::gpu::texture > m_ptexture;
@@ -39,7 +42,7 @@ namespace gpu
          virtual void on_initialize_cubemap_framebuffer();
 
 
-         virtual void bind();
+         virtual void bind(::gpu::command_buffer * pgpucommandbuffer);
 
 
          virtual void generateMipmap();
@@ -49,7 +52,7 @@ namespace gpu
           * Set which cube face texture to render to.
           * @param index
           */
-         virtual void setCubeFace(unsigned int index);
+         virtual void setCubeFace(unsigned int index, ::gpu::shader * pgpushader);
 
 
          //virtual unsigned int getCubemapTextureId();

@@ -146,7 +146,7 @@ namespace gpu_opengl
 
          //m_pframebufferPrefilteredEnvMap->bind();
          //m_pshaderPrefilteredEnvMap->_bind();
-         m_pshaderPrefilteredEnvMap->bind(m_pframebufferPrefilteredEnvMap->m_ptexture);
+         m_pshaderPrefilteredEnvMap->bind(nullptr, m_pframebufferPrefilteredEnvMap->m_ptexture);
          //m_pshaderPrefilteredEnvMap->set_int("environmentCubemap", 0);
 
          for (auto mipLevel = 0; mipLevel < m_uPrefilteredEnvMapMipLevels; mipLevel++)
@@ -227,7 +227,7 @@ namespace gpu_opengl
          //auto ptexture = pskybox->m_ptexture;
          
          //m_pshaderBrdfConvolution->bind(m_pbrdfconvolutionframebuffer->m_ptexture, ptexture);
-         m_pshaderBrdfConvolution->bind(m_pbrdfconvolutionframebuffer->m_ptexture);
+         m_pshaderBrdfConvolution->bind(nullptr, m_pbrdfconvolutionframebuffer->m_ptexture);
          //m_pshaderPrefilteredEnvMap->set_int("environmentCubemap", 0);
 
          glViewport(0, 0, m_uBrdfConvolutionMapWidth, m_uBrdfConvolutionMapHeight);

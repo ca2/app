@@ -196,7 +196,7 @@ namespace graphics3d
             ppointlight->m_fLightIntensity);
          pushconstants.radius = ppointlight->transform().m_vec3Scale.x;
 
-         m_pshader->set_push_properties(::as_memory_block(pushconstants));
+         m_pshader->set_push_properties(pframe->m_pgpucommandbuffer, ::as_memory_block(pushconstants));
 
          // vkCmdPushConstants(
          //     frame.m_pcommandbuffer,

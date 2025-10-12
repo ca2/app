@@ -22,7 +22,7 @@ namespace gpu
 	void properties_reference::_set_mat4(const ::glm::mat4 & mat4)
 	{
 
-		t_pgpudevice->set_mat4(m_block.data(), mat4);
+		t_pgpudevice->set_mat4(m_blockWithSamplers.data(), mat4);
 
 	}
 		
@@ -30,14 +30,14 @@ namespace gpu
 	void properties_reference::_set_vec4(const ::glm::vec4& vec4)
 	{
 
-		*((::glm::vec4*)m_block.data()) = vec4;
+		*((::glm::vec4 *)m_blockWithSamplers.data()) = vec4;
 
 	}
 
 	void properties_reference::_set_int(const int& i)
 	{
 
-		*((int*)m_block.data()) = i;
+		*((int *)m_blockWithSamplers.data()) = i;
 
 	}
 

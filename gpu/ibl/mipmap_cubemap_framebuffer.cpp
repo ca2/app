@@ -50,7 +50,7 @@ namespace gpu
          m_ptexture->m_rectangleTarget.top()=0;
          m_ptexture->m_rectangleTarget.right()=width;
          m_ptexture->m_rectangleTarget.bottom()=height;
-         m_ptexture->m_mipLevels=0;
+         m_ptexture->m_mipsLevel=0;
 
          on_initialize_mipmap_cubemap_framebuffer();
 
@@ -111,13 +111,13 @@ namespace gpu
 
       void mipmap_cubemap_framebuffer::setMipLevel(unsigned int level)
       {
-         m_ptexture->m_mipLevels = level;
+         m_ptexture->m_mipsLevel = level;
          m_ptexture->m_sizeMip.cx() =
             (unsigned int)((double) m_ptexture->m_rectangleTarget.width() *
-               ::pow((double)0.5, (double) m_ptexture->m_mipLevels));
+               ::pow((double)0.5, (double) m_ptexture->m_mipsLevel));
          m_ptexture->m_sizeMip.cy() =
             (unsigned int)((double) m_ptexture->m_rectangleTarget.height() *
-               ::pow((double)0.5, (double) m_ptexture->m_mipLevels));
+               ::pow((double)0.5, (double) m_ptexture->m_mipsLevel));
          //
          // glBindRenderbuffer(GL_RENDERBUFFER, m_uDepthRenderbufferId);
          // glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT24, m_uMipWidth, m_uMipHeight);

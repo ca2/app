@@ -1408,7 +1408,7 @@ namespace gpu_opengl
          ::cast < ::gpu_opengl::context > pcontextSource = prendererSource->m_pgpucontext;
 
          //glUseProgram(blendShader);
-         m_pshaderBlend->bind();
+         m_pshaderBlend->bind(nullptr);
          glActiveTexture(GL_TEXTURE0);
          auto texture = pcontextSource->m_pframebuffer->m_tex;
          glBindTexture(GL_TEXTURE_2D, texture);
@@ -1422,7 +1422,7 @@ namespace gpu_opengl
          glEnable(GL_BLEND);
          glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
          glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
-         m_pshaderBlend->unbind();
+         m_pshaderBlend->unbind(nullptr);
          //}
 
       }
@@ -1553,7 +1553,7 @@ namespace gpu_opengl
 
       }
 
-      m_pshaderBlend2->bind();
+      m_pshaderBlend2->bind(nullptr);
 
       glActiveTexture(GL_TEXTURE0);
       glBindTexture(GL_TEXTURE_2D, ptextureSrc->m_gluTextureID);
@@ -1565,7 +1565,7 @@ namespace gpu_opengl
       glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
       //}
 
-      m_pshaderBlend2->unbind();
+      m_pshaderBlend2->unbind(nullptr);
 
 #if SHOW_DEBUG_DRAWING
 
@@ -1695,7 +1695,7 @@ namespace gpu_opengl
       glEnableVertexAttribArray(1); // texcoord
       glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)(2 * sizeof(float)));
 
-      m_pshaderBlend2->bind();
+      m_pshaderBlend2->bind(nullptr);
 
       GLint uTexture = glGetUniformLocation(m_pshaderBlend2->m_ProgramID, "uTexture");
 
@@ -1709,7 +1709,7 @@ namespace gpu_opengl
       glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
       //}
 
-      m_pshaderBlend2->unbind();
+      m_pshaderBlend2->unbind(nullptr);
 
 
 #if SHOW_DEBUG_DRAWING
@@ -1899,7 +1899,7 @@ namespace gpu_opengl
       glEnableVertexAttribArray(1); // texcoord
       glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)(2 * sizeof(float)));
 
-      m_pshaderBlend2->bind();
+      m_pshaderBlend2->bind(nullptr);
 
       GLint uTexture = glGetUniformLocation(m_pshaderBlend2->m_ProgramID, "uTexture");
 
@@ -1913,7 +1913,7 @@ namespace gpu_opengl
       glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
       //}
 
-      m_pshaderBlend2->unbind();
+      m_pshaderBlend2->unbind(nullptr);
 
 
       {

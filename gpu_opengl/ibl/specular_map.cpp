@@ -8,6 +8,7 @@
 #include "bred/gpu/command_buffer.h"
 #include "bred/gpu/context.h"
 #include "bred/gpu/context_lock.h"
+#include "bred/gpu/device.h"
 #include "gpu_opengl/_gpu_opengl.h"
 #include "gpu_opengl/texture.h"
 #include "gpu/cube.h"
@@ -113,8 +114,7 @@ namespace gpu_opengl
 
          ::gpu::context_lock contextlock(m_pgpucontext);
 
-
-         auto pgpucommandbuffer = m_pgpucontext->beginSingleTimeCommands(m_pgpucontext->graphics_queue());
+         auto pgpucommandbuffer = m_pgpucontext->beginSingleTimeCommands(m_pgpucontext->m_pgpudevice->graphics_queue());
 
          glm::mat4 model = ::gpu::gltf::mIndentity4;
          glm::mat4 cameraAngles[] =
@@ -213,7 +213,7 @@ namespace gpu_opengl
 
          ::gpu::context_lock contextlock(m_pgpucontext);
 
-         auto pcommandbuffer = m_pgpucontext->beginSingleTimeCommands(m_pgpucontext->graphics_queue());
+         auto pcommandbuffer = m_pgpucontext->beginSingleTimeCommands(m_pgpucontext->m_pgpudevice->graphics_queue());
 
          auto pfullscreenquad = øcreate<::gpu::full_screen_quad>();
 

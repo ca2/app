@@ -176,9 +176,6 @@ namespace gpu
       virtual void defer_end_upload_command_buffer();
 
 
-      virtual ::gpu::queue * transfer_queue();
-      virtual ::gpu::queue * graphics_queue();
-      virtual ::gpu::queue * present_queue();
 
 
 

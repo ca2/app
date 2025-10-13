@@ -292,7 +292,7 @@ namespace gpu
    }
 
 
-   void shader::_bind(::gpu::command_buffer *pgpucommandbuffer)
+   void shader::_bind(::gpu::command_buffer *pgpucommandbuffer, ::gpu::enum_scene escene)
    {
 
 

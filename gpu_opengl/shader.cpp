@@ -238,7 +238,7 @@ namespace gpu_opengl
    void shader::bind(::gpu::command_buffer *pgpucommandbuffer, ::gpu::texture *pgputextureTarget)
    {
 
-      _bind(pgpucommandbuffer);
+      _bind(pgpucommandbuffer, ::gpu::e_scene_none);
 
       ::cast < texture > ptexture = pgputextureTarget;
 
@@ -288,7 +288,7 @@ namespace gpu_opengl
    }
 
 
-   void shader::_bind(::gpu::command_buffer *pgpucommandbuffer)
+   void shader::_bind(::gpu::command_buffer *pgpucommandbuffer, ::gpu::enum_scene escene)
    {
 
       auto pgpucontext = m_pgpurenderer->m_pgpucontext;

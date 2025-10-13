@@ -225,6 +225,9 @@
     <ClInclude Include="gltf\model_base.h">
       <Filter>Header Files\gpu</Filter>
     </ClInclude>
+    <ClInclude Include="timer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="framework.cpp">
@@ -280,6 +283,9 @@
     </ClCompile>
     <ClCompile Include="gltf\model_base.cpp">
       <Filter>Source Files\gltf</Filter>
+    </ClCompile>
+    <ClCompile Include="timer.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

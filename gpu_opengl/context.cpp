@@ -791,7 +791,7 @@ namespace gpu_opengl
       ///::cast<::gpu_opengl::queue> pqueueGraphics = this->graphics_queue();
       ///
 
-      auto pqueueGraphics = this->graphics_queue();
+      auto pqueueGraphics = m_pgpudevice->graphics_queue();
 
       if (pathFile.case_insensitive_ends(".ktx"))
       {

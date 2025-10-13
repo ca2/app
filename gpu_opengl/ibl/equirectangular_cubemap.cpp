@@ -4,7 +4,7 @@
 #include "equirectangular_cubemap.h"
 #include "bred/gpu/context.h"
 #include "bred/graphics3d/skybox.h"
-
+#include "bred/gpu/device.h"
 #include <glm/gtc/matrix_transform.hpp>
 #include "glad/glad.h"
 #include "glm/glm.hpp"
@@ -66,7 +66,7 @@ namespace gpu_opengl
       {
          // Timer timer;
 
-         auto pgpucommandbuffer = m_pgpucontext->beginSingleTimeCommands(m_pgpucontext->graphics_queue());
+         auto pgpucommandbuffer = m_pgpucontext->beginSingleTimeCommands(m_pgpucontext->m_pgpudevice->graphics_queue());
          glm::mat4 model = ::gpu::gltf::mIndentity4;
          glm::mat4 cameraAngles[] = {glm::lookAt(::gpu::gltf::origin, ::gpu::gltf::unitX, -::gpu::gltf::unitY),
                                      glm::lookAt(::gpu::gltf::origin, -::gpu::gltf::unitX, -::gpu::gltf::unitY),

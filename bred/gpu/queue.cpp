@@ -2,7 +2,7 @@
 // Created by camilo on 2025-08-22 09:37 <3ThomasBorregaardSorensen!!
 //
 #include "framework.h"
-#include "context.h"
+#include "device.h"
 #include "queue.h"
 
 
@@ -24,10 +24,10 @@ namespace gpu
    }
 
 
-   void queue::initialize_gpu_queue(::gpu::context * pgpucontext)
+   void queue::initialize_gpu_queue(::gpu::device * pgpudevice)
    {
 
-      m_pgpucontext = pgpucontext;
+      m_pgpudevice = pgpudevice;
 
    }
 

@@ -2,6 +2,7 @@
 
 
 #include "bred/gpu/properties.h"
+#include "acme/constant/gpu.h"
 
 
 namespace gpu
@@ -194,7 +195,7 @@ namespace gpu
 
       //virtual ::gpu::payload * get_payload(const ::scoped_string & scopedstrName);
       virtual void draw();
-      virtual void _bind(::gpu::command_buffer *pgpucommandbuffer);
+      virtual void _bind(::gpu::command_buffer *pgpucommandbuffer, ::gpu::enum_scene escene);
       //virtual void on_initialize_shader();
       
       

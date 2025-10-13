@@ -72,7 +72,7 @@ namespace gpu
 
          m_pshaderHdri->m_bindingSampler.set(1);
          m_pshaderHdri->m_bindingSampler.m_strUniform = "hdri";
-
+         m_pshaderHdri->m_bDisableDepthTest = true;
 
          m_pshaderHdri->initialize_shader_with_block(
             m_pgpucontext->m_pgpurenderer,

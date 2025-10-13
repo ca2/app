@@ -7,20 +7,21 @@
 namespace gpu
 {
 
+
    class CLASS_DECL_BRED queue :
       virtual public ::particle
    {
    public:
 
 
-      ::pointer < ::gpu::context >        m_pgpucontext;
+      ::pointer < ::gpu::device >        m_pgpudevice;
 
 
       queue();
       ~queue() override;
 
 
-      virtual void initialize_gpu_queue(::gpu::context * pgpucontext);
+      virtual void initialize_gpu_queue(::gpu::device * pgpudevice);
 
 
    };

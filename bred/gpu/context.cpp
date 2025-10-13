@@ -549,7 +549,7 @@ return {};
       if (!m_pcommandbufferUpload)
       {
 
-         m_pcommandbufferUpload = beginSingleTimeCommands(transfer_queue());
+         m_pcommandbufferUpload = beginSingleTimeCommands(m_pgpudevice->transfer_queue());
 
       }
 
@@ -571,31 +571,6 @@ return {};
       }
 
    }
-
-
-   ::gpu::queue * context::transfer_queue()
-   {
-
-      return nullptr;
-
-   }
-
-
-   ::gpu::queue * context::graphics_queue()
-   {
-
-      return nullptr;
-
-   }
-
-
-   ::gpu::queue * context::present_queue()
-   {
-
-      return nullptr;
-
-   }
-
 
 
    void context::_context_lock()

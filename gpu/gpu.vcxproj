@@ -124,6 +124,7 @@
     <ClInclude Include="platform\tinyexpr.h" />
     <ClInclude Include="platform\_impl.h" />
     <ClInclude Include="platform\_platform.h" />
+    <ClInclude Include="timer.h" />
     <ClInclude Include="user\controller.h" />
     <ClInclude Include="user\_.h" />
     <ClInclude Include="_.h" />
@@ -166,6 +167,7 @@
     <ClCompile Include="ibl\hdri_cube.cpp" />
     <ClCompile Include="ibl\mipmap_cubemap_framebuffer.cpp" />
     <ClCompile Include="ibl\specular_map.cpp" />
+    <ClCompile Include="timer.cpp" />
     <ClCompile Include="_.cpp" />
     <ClCompile Include="_ktx.cpp" />
   </ItemGroup>

@@ -41,9 +41,9 @@ namespace gpu_opengl
 
       auto size = block.size();
 
-      int w, h, numChannels;
+      int width, height, channels;
 
-      auto imagedata = stbi_loadf_from_memory(data, size, &w, &h, &numChannels, 0);
+      auto imagedata = stbi_loadf_from_memory(data, size, &width, &height, &channels, 0);
 
       if (!imagedata)
       {
@@ -57,7 +57,7 @@ namespace gpu_opengl
       }
 
       // m_etype = etype;
-      m_rectangleTarget = ::int_rectangle(::int_size(w, h));
+      m_rectangleTarget = ::int_rectangle(::int_size(width, height));
 
       m_bWithDepth = false;
 
@@ -68,7 +68,25 @@ namespace gpu_opengl
       glBindTexture(m_gluType, m_gluTextureID);
       GLCheckError("");
 
-      glTexImage2D(m_gluType, 0, GL_RGB16F, w, h, 0, GL_RGB, GL_FLOAT, imagedata);
+      float *rgbaData = nullptr;
+      if (channels == 3)
+      {
+
+         size_t pixelCount = (size_t)width * height;
+         rgbaData = (float *)malloc(pixelCount * 4 * sizeof(float));
+
+         for (size_t i = 0; i < pixelCount; ++i)
+         {
+            rgbaData[i * 4 + 0] = imagedata[i * 3 + 0];
+            rgbaData[i * 4 + 1] = imagedata[i * 3 + 1];
+            rgbaData[i * 4 + 2] = imagedata[i * 3 + 2];
+            rgbaData[i * 4 + 3] = 1.0f; // synthesized alpha
+         }
+         channels = 4;
+      }
+
+      //glTexImage2D(m_gluType, 0, GL_RGB16F, w, h, 0, GL_RGB, GL_FLOAT, imagedata);
+      glTexImage2D(m_gluType, 0, GL_RGBA32F, width, height, 0, GL_RGBA, GL_FLOAT, rgbaData ? rgbaData : imagedata);
       GLCheckError("");
 
       glTexParameteri(m_gluType, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
@@ -82,6 +100,13 @@ namespace gpu_opengl
 
 
       stbi_image_free(imagedata);
+
+      if (rgbaData)
+      {
+
+         free(rgbaData);
+
+      }
 
    }
 

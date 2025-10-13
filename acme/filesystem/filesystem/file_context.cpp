@@ -1635,20 +1635,14 @@ void file_context::calculate_main_resource_memory()
 
    _synchronous_lock synchronouslock(pfolder->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-   string strPath(path);
-
-   strPath.replace_with("/", "\\");
-
-   strPath.trim_right("\\/");
-
-   if (pfolder->locate_file(strPath))
+   if (pfolder->locate_file(path))
    {
 
       return ::file::e_type_existent_file;
 
    }
 
-   if (pfolder->locate_folder(strPath))
+   if (pfolder->locate_folder(path))
    {
 
       return ::file::e_type_existent_folder;

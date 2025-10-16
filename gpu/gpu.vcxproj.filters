@@ -61,6 +61,12 @@
     <Filter Include="Source Files\gltf\NewFilter1">
       <UniqueIdentifier>{b150058f-ca82-46d5-a5fd-02b2e7cc65d7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\ibl\hlsl">
+      <UniqueIdentifier>{feab7de8-76aa-4ed8-940c-cf9bec94febc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ibl\hlsl">
+      <UniqueIdentifier>{90d2f089-f04d-46b6-8705-6c9a2b3d0216}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="platform\application.h">
@@ -228,6 +234,39 @@
     <ClInclude Include="timer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="ibl\hlsl\specularenv.frag.h">
+      <Filter>Header Files\ibl\hlsl</Filter>
+    </ClInclude>
+    <ClInclude Include="ibl\hlsl\specularenv.vert.h">
+      <Filter>Header Files\ibl\hlsl</Filter>
+    </ClInclude>
+    <ClInclude Include="ibl\_hlsl.h">
+      <Filter>Header Files\ibl</Filter>
+    </ClInclude>
+    <ClInclude Include="ibl\hlsl\hdricube.frag.h">
+      <Filter>Header Files\ibl\hlsl</Filter>
+    </ClInclude>
+    <ClInclude Include="ibl\hlsl\hdricube.vert.h">
+      <Filter>Header Files\ibl\hlsl</Filter>
+    </ClInclude>
+    <ClInclude Include="ibl\hlsl\pbr.frag.h">
+      <Filter>Header Files\ibl\hlsl</Filter>
+    </ClInclude>
+    <ClInclude Include="ibl\hlsl\pbr.vert.h">
+      <Filter>Header Files\ibl\hlsl</Filter>
+    </ClInclude>
+    <ClInclude Include="ibl\hlsl\brdfconvolution.frag.h">
+      <Filter>Header Files\ibl\hlsl</Filter>
+    </ClInclude>
+    <ClInclude Include="ibl\hlsl\brdfconvolution.vert.h">
+      <Filter>Header Files\ibl\hlsl</Filter>
+    </ClInclude>
+    <ClInclude Include="ibl\hlsl\diffuseirradiance.frag.h">
+      <Filter>Header Files\ibl\hlsl</Filter>
+    </ClInclude>
+    <ClInclude Include="ibl\hlsl\diffuseirradiance.vert.h">
+      <Filter>Header Files\ibl\hlsl</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="framework.cpp">
@@ -287,10 +326,45 @@
     <ClCompile Include="timer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ibl\_hlsl.cpp">
+      <Filter>Source Files\ibl</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="deployment.rc">
       <Filter>Resource Files</Filter>
     </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="ibl\hlsl\specularenv.vert">
+      <Filter>Source Files\ibl\hlsl</Filter>
+    </CustomBuild>
+    <CustomBuild Include="ibl\hlsl\specularenv.frag">
+      <Filter>Source Files\ibl\hlsl</Filter>
+    </CustomBuild>
+    <CustomBuild Include="ibl\hlsl\hdricube.frag">
+      <Filter>Source Files\ibl\hlsl</Filter>
+    </CustomBuild>
+    <CustomBuild Include="ibl\hlsl\hdricube.vert">
+      <Filter>Source Files\ibl\hlsl</Filter>
+    </CustomBuild>
+    <CustomBuild Include="ibl\hlsl\pbr.vert">
+      <Filter>Source Files\ibl\hlsl</Filter>
+    </CustomBuild>
+    <CustomBuild Include="ibl\hlsl\pbr.frag">
+      <Filter>Source Files\ibl\hlsl</Filter>
+    </CustomBuild>
+    <CustomBuild Include="ibl\hlsl\diffuseirradiance.vert">
+      <Filter>Source Files\ibl\hlsl</Filter>
+    </CustomBuild>
+    <CustomBuild Include="ibl\hlsl\diffuseirradiance.frag">
+      <Filter>Source Files\ibl\hlsl</Filter>
+    </CustomBuild>
+    <CustomBuild Include="ibl\hlsl\brdfconvolution.vert">
+      <Filter>Source Files\ibl\hlsl</Filter>
+    </CustomBuild>
+    <CustomBuild Include="ibl\hlsl\brdfconvolution.frag">
+      <Filter>Source Files\ibl\hlsl</Filter>
+    </CustomBuild>
   </ItemGroup>
 </Project>

@@ -19,7 +19,9 @@ namespace gpu
       mipmap_cubemap_framebuffer::mipmap_cubemap_framebuffer()
       {
 
-
+         m_uCurrentMip = 0;
+            
+            m_uCurrentFace = 0;
       }
 
 

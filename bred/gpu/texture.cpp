@@ -47,6 +47,17 @@ namespace gpu
    }
 
 
+   void texture::initialize_with_image_data(::gpu::renderer * pgpurenderer,
+                                              const ::int_rectangle & rectangleTarget,
+                                     int numChannels, bool bSrgb, const void * pdata,
+                                     enum_type etype)
+   {
+
+
+         }
+
+
+
    void texture::initialize_image_texture(::gpu::renderer * pgpurenderer, const ::int_rectangle& rectangleTarget, bool bWithDepth, const ::pointer_array < ::image::image >& imagea, enum_type etype)
    {
 

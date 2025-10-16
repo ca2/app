@@ -188,6 +188,11 @@ namespace gpu_gpu
 //      /// @return lutBrdf
 //      virtual ::pointer < ::gpu::texture > generateBRDFlut();
 
+      
+      ::pointer<::graphics3d::renderable> _load_gltf_model(const ::gpu::renderable_t &model) override;
+      void load_generic_texture(::pointer<::gpu::texture> &ptexture, const ::file::path &path, int iAssimpTextureType) override;
+
+
    };
 
 

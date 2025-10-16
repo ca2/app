@@ -60,6 +60,12 @@ namespace gpu
       int environmentCube;
    };
 
+   struct model_normal
+   {
+      glm::mat4 modelMatrix;
+      glm::mat4 normalMatrix;
+   };
+
 
 } // namespace gpu
 
@@ -68,3 +74,4 @@ DECLARE_GPU_PROPERTIES(CLASS_DECL_BRED, ::gpu::projection_quad_texcoords_textCol
 DECLARE_GPU_PROPERTIES(CLASS_DECL_BRED, ::gpu::quad_texcoords_textColor)
 DECLARE_GPU_PROPERTIES(CLASS_DECL_BRED, ::gpu::model_view_projection_hdriSampler)
 DECLARE_GPU_PROPERTIES(CLASS_DECL_BRED, ::gpu::model_view_projection_environmentCubeSampler)
+DECLARE_GPU_PROPERTIES(CLASS_DECL_BRED, ::gpu::model_normal)

@@ -183,12 +183,15 @@ namespace graphics3d
 
 		auto prenderer = pgpucontext->m_pgpurenderer;
 
-		m_pshader = prenderer->create_shader(
-			"matter://shaders/vert.vert",
+      m_pshader = øcreate<::gpu::shader>();
+      m_pshader->m_propertiesPushShared.set_properties(simple_render_properties());
+      pgpucontext->layout_push_constants(
+         m_pshader->m_propertiesPushShared);
+      m_pshader->initialize_shader(
+         pgpucontext->m_pgpurenderer, "matter://shaders/vert.vert",
 			"matter://shaders/frag.frag",
 			{ ::gpu::shader::e_descriptor_set_slot_global,
 			::gpu::shader::e_descriptor_set_slot_local }, {},
-			simple_render_properties(),
 			pgpucontext->input_layout<::graphics3d::Vertex>()
 
 		);
@@ -253,11 +256,11 @@ namespace graphics3d
 
 				auto modelMatrix = m_pengine->model_matrix(pscenerenderable->m_transform);
 
-				m_pshader->m_propertiesPush["modelMatrix"] = modelMatrix;
+				m_pshader->m_propertiesPushShared["modelMatrix"] = modelMatrix;
 
 				auto normalMatrix = m_pengine->normal_matrix(pscenerenderable->m_transform);
 
-				m_pshader->m_propertiesPush["normalMatrix"] = normalMatrix;
+				m_pshader->m_propertiesPushShared["normalMatrix"] = normalMatrix;
 
 				auto pcommandbuffer = pgpucontext->m_pgpurenderer->getCurrentCommandBuffer2(::gpu::current_frame());
 

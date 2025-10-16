@@ -370,9 +370,7 @@ namespace gpu
 
          pmesh->initialize_gpu_gltf_mesh(vertices, indices, pmaterial);
 
-
-
-return pmesh;
+         return pmesh;
 
       }
 

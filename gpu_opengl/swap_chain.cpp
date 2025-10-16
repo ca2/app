@@ -267,7 +267,7 @@ void main() {
             m_pshaderCopyTextureOnEndDraw->m_bDisableDepthTest = true;
 
             m_pshaderCopyTextureOnEndDraw->initialize_shader_with_block(
-               m_pgpurenderer, pvertexshader, pfragmentshader, {}, {}, {},
+               m_pgpurenderer, pvertexshader, pfragmentshader, {}, {},
                m_pgpucontext->input_layout(::gpu_properties<::graphics3d::sequence2_uv>()));
          }
 

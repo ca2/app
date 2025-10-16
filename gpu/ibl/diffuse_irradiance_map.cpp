@@ -73,11 +73,12 @@ namespace gpu
 
          øconstruct(m_pshaderDiffuseIrradiance);
 
+         //::gpu_properties<::gpu::model_view_projection_environmentCubeSampler>()
+
          m_pshaderDiffuseIrradiance->initialize_shader_with_block(
             m_pgpucontext->m_pgpurenderer,
             embedded_diffuse_irradiance_vert(),
-            embedded_diffuse_irradiance_frag(), {}, {},
-            ::gpu_properties < ::gpu::model_view_projection_environmentCubeSampler >());
+            embedded_diffuse_irradiance_frag());
 
          m_pshaderDiffuseIrradiance->m_bindingCubeSampler.set(0);
          m_pshaderDiffuseIrradiance->m_bindingCubeSampler.m_strUniform = "environmentCubemap";

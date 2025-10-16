@@ -165,7 +165,9 @@ namespace gpu
 
       virtual void load_texture(::pointer < ::gpu::texture > & ptexture, const ::file::path& path, bool bIsSrgb);
 
-
+      virtual void layout_input_layout_properties(::gpu::properties *pproperties);
+      virtual void layout_push_constants(::gpu::properties & properties);
+      virtual void layout_properties_default(::gpu::properties &properties);
 
       virtual void defer_make_current();
 
@@ -216,7 +218,7 @@ namespace gpu
 
       virtual ::gpu::enum_output get_eoutput();
 
-      virtual ::pointer < ::gpu::input_layout > input_layout(const ::gpu::properties & properties);
+      virtual ::pointer < ::gpu::input_layout > input_layout(const ::gpu::property * pproperty);
 
       template < typename VERTEX >
       ::pointer < ::gpu::input_layout > input_layout()

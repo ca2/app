@@ -78,7 +78,6 @@ namespace graphics3d
          "matter://shaders/skybox.frag",
          {::gpu::shader::e_descriptor_set_slot_global},
          nullptr,
-         nullptr,
          pengine->gpu_context()->input_layout<::graphics3d::shape_factory::Vertex>()
       );
       

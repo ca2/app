@@ -450,6 +450,137 @@ namespace gpu
 
    }
 
+   
+   void context::layout_input_layout_properties(::gpu::properties * pproperties)
+   {
+
+      layout_properties_default(*pproperties);
+
+      //auto &properties = *pproperties;
+
+      //auto pproperty = properties.m_pproperties;
+
+      //::collection::index i = 0;
+
+      //int iSizeWithSamplers = 0;
+
+      //int iSizeWithoutSamplers = 0;
+
+      //while (pproperty->m_pszName)
+      //{
+
+      //   int iItemSize = pproperty->get_item_size(true);
+
+      //   int iSize = iItemSize;
+
+      //   //if (pproperty->m_etype == ::gpu::e_type_seq3)
+      //   //{
+
+      //   //   if (iSizeWithSamplers % 16 != 0)
+      //   //   {
+
+      //   //      iSizeWithSamplers += 16 - iSizeWithSamplers % 16;
+      //   //   }
+
+      //   //   // iSize = 16;
+      //   //}
+
+      //   ::gpu::property_data data;
+
+      //   data.m_iOffset = iSizeWithSamplers;
+
+      //   properties.m_propertydataa.set_at_grow(i, data);
+
+      //   i++;
+
+      //   iSizeWithSamplers += iSize;
+
+      //   ::string strName(pproperty->m_pszName);
+
+      //   if (!strName.begins("sampler:"))
+      //   {
+
+      //      iSizeWithoutSamplers = iSizeWithSamplers;
+      //   }
+
+      //   pproperty++;
+      //}
+
+      //properties.m_memory.set_size(iSizeWithSamplers);
+      //properties.m_blockWithoutSamplers = properties.m_memory(0, iSizeWithoutSamplers);
+      //properties.m_blockWithSamplers = properties.m_memory;
+
+
+
+   }
+
+
+   void context::layout_properties_default(::gpu::properties & properties)
+   {
+
+      auto pproperty = properties.m_pproperties;
+
+      ::collection::index i = 0;
+
+      int iSizeWithSamplers = 0;
+
+      int iSizeWithoutSamplers = 0;
+
+      while (pproperty->m_pszName)
+      {
+
+         int iItemSize = pproperty->get_item_size(true);
+
+         int iSize = iItemSize;
+
+         // if (pproperty->m_etype == ::gpu::e_type_seq3)
+         //{
+
+         //   if (iSizeWithSamplers % 16 != 0)
+         //   {
+
+         //      iSizeWithSamplers += 16 - iSizeWithSamplers % 16;
+         //   }
+
+         //   // iSize = 16;
+         //}
+
+         ::gpu::property_data data;
+
+         data.m_iOffset = iSizeWithSamplers;
+
+         properties.m_propertydataa.set_at_grow(i, data);
+
+         i++;
+
+         iSizeWithSamplers += iSize;
+
+         ::string strName(pproperty->m_pszName);
+
+         if (!strName.begins("sampler:"))
+         {
+
+            iSizeWithoutSamplers = iSizeWithSamplers;
+         }
+
+         pproperty++;
+      }
+
+      properties.m_memory.set_size(iSizeWithSamplers);
+      properties.m_blockWithoutSamplers = properties.m_memory(0, iSizeWithoutSamplers);
+      properties.m_blockWithSamplers = properties.m_memory;
+
+   }
+
+
+   void context::layout_push_constants(::gpu::properties & properties)
+   {
+
+      layout_properties_default(properties);
+
+   }
+
+
    void context::defer_make_current()
    {
 
@@ -946,12 +1077,12 @@ return {};
    }
 
 
-   ::pointer < ::gpu::input_layout > context::input_layout(const ::gpu::properties & properties)
+   ::pointer<::gpu::input_layout> context::input_layout(const ::gpu::property *pproperties)
    {
 
       auto pinputlayout = øcreate<::gpu::input_layout>();
 
-      pinputlayout->initialize_input_layout(this, properties);
+      pinputlayout->initialize_input_layout(this, pproperties);
 
       return pinputlayout;
 
@@ -1966,14 +2097,12 @@ return {};
    {
 
       //auto pcontext = gpu_context();
-
       //::cast < ::gpu_vulkan::device > pgpudevice = pgpucontext->m_pgpudevice;
       pshader->initialize_shader_with_block(
          m_pgpurenderer,
          rectangle_shader_vert(),
          //as_memory_block(g_uaAccumulationFragmentShader),
          rectangle_shader_frag(),
-         {},
          {},
          {},
          this->input_layout < ::graphics3d::sequence2_color>()

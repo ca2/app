@@ -70,15 +70,16 @@ namespace gpu
          //m_pshaderHdri->m_bindingUbo.set(0);
          //m_pshaderHdri->m_bindingUbo.m_strUniform = "ubo";
 
-         m_pshaderHdri->m_bindingSampler.set(1);
+         m_pshaderHdri->m_bindingSampler.set(0);
          m_pshaderHdri->m_bindingSampler.m_strUniform = "hdri";
          m_pshaderHdri->m_bDisableDepthTest = true;
-
+         m_pshaderHdri->m_propertiesPushShared.set_properties(
+            ::gpu_properties<::gpu::model_view_projection_hdriSampler>());
+         m_pgpucontext->layout_push_constants(m_pshaderHdri->m_propertiesPushShared);
          m_pshaderHdri->initialize_shader_with_block(
             m_pgpucontext->m_pgpurenderer,
             embedded_ibl_hdri_cube_vert(),            
             embedded_ibl_hdri_cube_frag(), {}, {},
-            ::gpu_properties < ::gpu::model_view_projection_hdriSampler>(),
             pgpucontext->input_layout(::gpu_properties<::glm::vec3>()));
 
          øconstruct(m_phdricube);

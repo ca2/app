@@ -23,6 +23,8 @@ namespace gpu
 
       };
 
+      bool m_bSrgb = false;
+
       int                                 m_iAtlasX;
       int                                 m_iAtlasY;
       int                                 m_iAtlasCurrentRowHeight;

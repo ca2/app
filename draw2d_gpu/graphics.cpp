@@ -1198,7 +1198,6 @@ void main() {
                as_memory_block(proto_frag),
                {},
                {},
-               {},
                pcontext->input_layout<::graphics3d::sequence2_color>()
             );
 
@@ -1241,7 +1240,6 @@ void main() {
                as_memory_block(proto_vert),
                //as_memory_block(g_uaAccumulationFragmentShader),
                as_memory_block(proto_frag),
-               { },
                {},
                {},
                pcontext->input_layout<::graphics3d::sequence2_color>());

@@ -17,7 +17,7 @@ namespace gpu
       e_type_mat2 = 6,
       e_type_mat3 = 7,
       e_type_mat4 = 8,
-      e_type_properties_array = 0,
+      e_type_array = 9,
 
    };
 

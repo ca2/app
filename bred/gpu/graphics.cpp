@@ -1286,13 +1286,17 @@ namespace gpu
          
          //pcontext->white_to_color_sampler_shader_setup(m_pgpushaderTextOut);
 
+         m_pgpushaderTextOut->m_propertiesPushShared
+            .set_properties(::gpu_properties<::gpu::quad_texcoords_textColor>());
+         pcontext->layout_push_constants(m_pgpushaderTextOut->m_propertiesPushShared);
+
          m_pgpushaderTextOut->initialize_shader_with_block(
             pcontext->m_pgpurenderer,
             pcontext->white_to_color_sampler_vert(),
             pcontext->white_to_color_sampler_frag(),
             { ::gpu::shader::e_descriptor_set_slot_local },
-            {},
-            ::gpu_properties <::gpu::quad_texcoords_textColor >() //,
+            {}//,
+             //,
             //pcontext->input_layout<::graphics3d::sequence2_uv>()
          );
 

@@ -118,7 +118,9 @@ namespace gpu
       memory                     m_memoryGeometry;
 
       //::gpu::properties          m_propertiesInputLayout;
-      ::gpu::properties          m_propertiesPush;
+      ::gpu::properties          m_propertiesPushShared;
+      ::gpu::properties          m_propertiesPushVertex;
+      ::gpu::properties          m_propertiesPushFragment;
 
       enum_flag                  m_eflag;
       ::comparable_array<enum_descriptor_set_slot>   m_edescriptorsetslota;
@@ -130,7 +132,6 @@ namespace gpu
       ::string                   m_strPushConstantsDebugging;
 
       ::gpu::texture *           m_pgputextureBound = nullptr;
-
 
 
       shader();
@@ -146,7 +147,7 @@ namespace gpu
          const ::array<enum_descriptor_set_slot>& eslota = {},
          const ::particle_pointer& pLocalDescriptorSet = {},
          //const ::particle_pointer& pVertexInput = {},
-         const ::gpu::property* ppropertiesPush = nullptr,
+         //const ::gpu::property* ppropertiesPush = nullptr,
          ::gpu::input_layout* pinputlayout = nullptr,
          enum_flag eflag = e_flag_none);
 
@@ -157,7 +158,7 @@ namespace gpu
          const ::array<enum_descriptor_set_slot>& eslota = {},
          const ::particle_pointer& pLocalDescriptorSet = {},
          //const ::particle_pointer& pVertexInput = {},
-         const ::gpu::property* ppropertiesPush = nullptr,
+         //const ::gpu::property* ppropertiesPush = nullptr,
          ::gpu::input_layout * pinputlayout = nullptr,
          enum_flag eflag = e_flag_none);
 

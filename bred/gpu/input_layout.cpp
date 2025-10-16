@@ -23,12 +23,16 @@ namespace gpu
    }
 
 
-   void input_layout::initialize_input_layout(::gpu::context * pgpucontext, const properties& properties)
+   void input_layout::initialize_input_layout(::gpu::context * pgpucontext, const ::gpu::property * pproperties)
    {
 
       m_pgpucontext = pgpucontext;
 
-      set_properties(properties.m_pproperties);
+      m_pproperties = pproperties;
+
+      pgpucontext->layout_input_layout_properties(this);
+
+      //set_properties(properties.m_pproperties);
 
       on_initialize_input_layout();
 

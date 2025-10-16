@@ -12,6 +12,8 @@ namespace graphics3d
    public:
 
 
+      ::graphics3d::enum_render_system m_erendersystem;
+
       ::pointer<::graphics3d::engine> m_pengine;
 
 

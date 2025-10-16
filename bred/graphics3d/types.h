@@ -188,6 +188,9 @@
 //
 //
 
+
+
+
 DECLARE_GPU_PROPERTIES(CLASS_DECL_BRED, ::graphics3d::sequence2_uv)
 DECLARE_GPU_PROPERTIES(CLASS_DECL_BRED, ::glm::vec3)
 DECLARE_GPU_PROPERTIES(CLASS_DECL_BRED, ::graphics3d::sequence3_color)

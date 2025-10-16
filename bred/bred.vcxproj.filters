@@ -390,6 +390,9 @@
     <ClInclude Include="graphics3d\scene_renderable.h">
       <Filter>Header Files\graphics3d</Filter>
     </ClInclude>
+    <ClInclude Include="graphics3d\global_ubo.h">
+      <Filter>Header Files\graphics3d</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="platform\application.cpp">
@@ -606,6 +609,9 @@
       <Filter>Source Files\graphics3d\render_systems</Filter>
     </ClCompile>
     <ClCompile Include="graphics3d\scene_renderable.cpp">
+      <Filter>Source Files\graphics3d</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics3d\global_ubo.cpp">
       <Filter>Source Files\graphics3d</Filter>
     </ClCompile>
   </ItemGroup>

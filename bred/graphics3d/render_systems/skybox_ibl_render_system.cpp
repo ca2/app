@@ -26,8 +26,8 @@
       Normal,
       UV,
       Color,
-      Joint0,
-      Weight0,
+      //Joint0,
+      //Weight0,
       Tangent,
    };
 
@@ -37,8 +37,8 @@
       glm::vec3 normal;
       glm::vec2 uv;
       glm::vec4 color;
-      glm::vec4 joint0;
-      glm::vec4 weight0;
+      //glm::vec4 joint0;
+      //glm::vec4 weight0;
       glm::vec4 tangent;
     
    };
@@ -50,8 +50,8 @@ GPU_PROPERTY("position", ::gpu::e_type_seq3)
 GPU_PROPERTY("normal", ::gpu::e_type_seq3)
 GPU_PROPERTY("uv", ::gpu::e_type_seq2)
 GPU_PROPERTY("color", ::gpu::e_type_seq4)
-GPU_PROPERTY("joint0", ::gpu::e_type_seq4)
-GPU_PROPERTY("weight0", ::gpu::e_type_seq4)
+//GPU_PROPERTY("joint0", ::gpu::e_type_seq4)
+//GPU_PROPERTY("weight0", ::gpu::e_type_seq4)
 GPU_PROPERTY("tangent", ::gpu::e_type_seq4)
 END_GPU_PROPERTIES()
 
@@ -151,22 +151,29 @@ namespace graphics3d
 	   m_pshader->m_bDepthTestButNoDepthWrite = true;
 	   m_pshader->m_bLequalDepth = true;
 	   m_pshader->m_bEnableBlend = true;
+      //m_pshader->m_bDisableDepthTest = true;
 	   m_pshader->m_ecullmode = ::gpu::e_cull_mode_none;
+      m_pshader->m_bindingCubeSampler.m_strUniform = "skybox";
+      //m_pshader->m_bindingCubeSampler.m_uSet = 1;
+
 	   m_pshader->m_bindingCubeSampler.set();
 
-      if (m_bHdr)
+      auto iSize = sizeof(::gltf::CubeVertex);
+
+      //if (false)
+      if(m_bHdr)
       {
 
          m_pshader->initialize_shader(pgpucontext->m_pgpurenderer, "matter://shaders/skybox_ibl.vert",
                                       "matter://shaders/skybox_ibl_hdr.frag", {::gpu::shader::e_descriptor_set_slot_global},
-                                      nullptr, nullptr, pgpucontext->input_layout<::gltf::CubeVertex>());
+                                      nullptr, pgpucontext->input_layout<::gltf::CubeVertex>());
       }
       else
       {
 
          m_pshader->initialize_shader(pgpucontext->m_pgpurenderer, "matter://shaders/skybox_ibl.vert",
                                       "matter://shaders/skybox_ibl.frag", {::gpu::shader::e_descriptor_set_slot_global},
-                                      nullptr, nullptr, pgpucontext->input_layout<::gltf::CubeVertex>());
+                                      nullptr, pgpucontext->input_layout<::gltf::CubeVertex>());
 
       }
 
@@ -227,9 +234,7 @@ namespace graphics3d
 
 	   auto ptextureDst = pgpurenderer->current_render_target_texture(::gpu::current_frame());
 
-	   m_pshader->m_bindingCubeSampler.m_strUniform = "skybox";
-      m_pshader->m_bindingCubeSampler.m_uSet = 1;
-
+	   
 	   //auto pskybox = pscene->m_psceneobjectSkybox;
 
       //auto ptextureCubeMap = prenderableSkyboxModel->get_target_texture();
@@ -268,7 +273,9 @@ namespace graphics3d
 	   if (prenderable)
 		{
 
-         pframe->m_pgpucommandbuffer->m_erendersystem = ::graphics3d::e_render_system_skybox_ibl;
+         m_erendersystem = ::graphics3d::e_render_system_skybox_ibl;
+
+         pframe->m_pgpucommandbuffer->m_prendersystem = this;
 
 			prenderable->bind(pframe->m_pgpucommandbuffer);
 

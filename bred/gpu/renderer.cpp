@@ -227,25 +227,25 @@ namespace gpu
    }
 
 
-   ::pointer<::gpu::shader> renderer::create_shader(
-      const ::file::path& pathVert,
-      const ::file::path& pathFrag,
-      const ::array<::gpu::shader::enum_descriptor_set_slot>& eslota,
-      const ::particle_pointer& pLocalDescriptorSet,
-      //const ::particle_pointer& pVertexInput,
-      const ::gpu::property* ppropertiesPush,
-      ::gpu::input_layout* pinputlayout,
-      ::gpu::shader::enum_flag eflag)
-   {
+   //::pointer<::gpu::shader> renderer::create_shader(
+   //   const ::file::path& pathVert,
+   //   const ::file::path& pathFrag,
+   //   const ::array<::gpu::shader::enum_descriptor_set_slot>& eslota,
+   //   const ::particle_pointer& pLocalDescriptorSet,
+   //   //const ::particle_pointer& pVertexInput,
+   //   const ::gpu::property* ppropertiesPush,
+   //   ::gpu::input_layout* pinputlayout,
+   //   ::gpu::shader::enum_flag eflag)
+   //{
 
-      auto pshader = øcreate < ::gpu::shader >();
-      pshader->initialize_shader(this,
-         pathVert, pathFrag, eslota,
-         pLocalDescriptorSet, ppropertiesPush, pinputlayout, eflag);
+   //   auto pshader = øcreate < ::gpu::shader >();
+   //   pshader->initialize_shader(this,
+   //      pathVert, pathFrag, eslota,
+   //      pLocalDescriptorSet, ppropertiesPush, pinputlayout, eflag);
 
-      return pshader;
+   //   return pshader;
 
-   }
+   //}
 
 
 

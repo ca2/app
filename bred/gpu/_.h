@@ -69,6 +69,8 @@ namespace gpu
 
    class frame;
 
+   //class property_descriptor;
+   //class property_data;
    class property;
    class properties;
 

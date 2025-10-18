@@ -2,7 +2,7 @@
 // camilo on 2025-09-26 18:28 <3ThomasBorregaardSorensen!!
 #include "framework.h"
 #include "mesh.h"
-#include "gpu/gltf/vertex.h"
+#include "bred/gltf/vertex.h"
 #include "gpu_opengl/texture.h"
 #include "bred/gpu/command_buffer.h"
 #include "bred/gpu/context.h"
@@ -397,19 +397,19 @@ namespace gpu_opengl
 
          // normals
          glEnableVertexAttribArray(1);
-         glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(::gpu::gltf::vertex), (void *)offsetof(::gpu::gltf::vertex, mNormal));
+         glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(::gpu::gltf::vertex), (void *)offsetof(::gpu::gltf::vertex, normal));
 
          // texture coordinates
          glEnableVertexAttribArray(2);
-         glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, sizeof(::gpu::gltf::vertex), (void *)offsetof(::gpu::gltf::vertex, mTextureCoordinates));
+         glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, sizeof(::gpu::gltf::vertex), (void *)offsetof(::gpu::gltf::vertex, uv));
 
-         // tangents
+         // color
          glEnableVertexAttribArray(3);
-         glVertexAttribPointer(3, 4, GL_FLOAT, GL_FALSE, sizeof(::gpu::gltf::vertex), (void *)offsetof(::gpu::gltf::vertex, mColor));
+         glVertexAttribPointer(3, 4, GL_FLOAT, GL_FALSE, sizeof(::gpu::gltf::vertex), (void *)offsetof(::gpu::gltf::vertex, color));
 
-         // bitangents
+         // tangent with .w = handness
          glEnableVertexAttribArray(4);
-         glVertexAttribPointer(4, 4, GL_FLOAT, GL_FALSE, sizeof(::gpu::gltf::vertex), (void *)offsetof(::gpu::gltf::vertex, mTangent));
+         glVertexAttribPointer(4, 4, GL_FLOAT, GL_FALSE, sizeof(::gpu::gltf::vertex), (void *)offsetof(::gpu::gltf::vertex, tangent));
 
          glBindVertexArray(0);
       }

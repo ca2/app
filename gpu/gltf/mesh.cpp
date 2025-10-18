@@ -2,7 +2,7 @@
 // camilo on 2025-09-26 18:28 <3ThomasBorregaardSorensen!!
 #include "framework.h"
 #include "mesh.h"
-#include "vertex.h"
+#include "bred/gltf/vertex.h"
 #include "bred/gpu/command_buffer.h"
 #include "bred/gpu/context.h"
 

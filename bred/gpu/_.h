@@ -36,6 +36,8 @@ namespace gpu
 
    CLASS_DECL_BRED int get_type_unit_count(::gpu::enum_type e);
 
+   CLASS_DECL_BRED ::gpu::enum_type get_type_unit_type(::gpu::enum_type e);
+
 
    //using uniform = int;
    struct payload

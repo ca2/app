@@ -28,7 +28,7 @@ namespace graphics3d
 	{
 	public:
 
-      
+      ::graphics3d::scene_renderable *m_pscenerenderableCurrent;
       bool m_bDisableAlbedo = false;
       bool m_bDisableMetallicRoughness = false;
       bool m_bDisableNormal = false;

@@ -112,7 +112,7 @@ namespace gpu_opengl
       void set_matrix_uniform(const ::gpu::payload & uniformMatrix) override;
 
 
-      void clear(const ::color::color& color) override;
+      void clear(::gpu::texture * pgputexture, const ::color::color& color) override;
       void create_global_ubo(int iSize, int iFrameCount) override;
       void update_global_ubo(const ::block& block) override;
 

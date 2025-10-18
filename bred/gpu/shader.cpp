@@ -62,7 +62,7 @@ namespace gpu
       ::gpu::renderer * pgpurenderer,
       const ::file::path& pathVertex,
       const ::file::path& pathFragment,
-      const ::array<enum_descriptor_set_slot>& eslota,
+      const ::array_base<enum_descriptor_set_slot>& eslota,
       const ::particle_pointer& pLocalDescriptorSet,
       //const ::particle_pointer& pVertexInput,
       //const ::gpu::property* ppropertiesPush,
@@ -95,7 +95,7 @@ namespace gpu
       ::gpu::renderer * pgpurenderer,
       const ::block& blockVertex,
       const ::block& blockFragment,
-      const ::array<enum_descriptor_set_slot>& eslota,
+      const ::array_base<enum_descriptor_set_slot>& eslota,
       const ::particle_pointer& pLocalDescriptorSet,
       //const ::particle_pointer& pVertexInput,
       //const ::gpu::property* ppropertiesPush,
@@ -709,17 +709,17 @@ namespace gpu
       if (m_propertiesPushShared.contains(scopedstrName))
       {
 
-         m_propertiesPushShared.mat4(strName) = a;
+         m_propertiesPushShared.mat4(strName) = m_pgpurenderer->m_pgpucontext->defer_transpose(a);
       }
       else if (m_propertiesPushVertex.contains(scopedstrName))
       {
 
-         m_propertiesPushVertex.mat4(strName) = a;
+         m_propertiesPushVertex.mat4(strName) = m_pgpurenderer->m_pgpucontext->defer_transpose(a);
       }
       else if (m_propertiesPushFragment.contains(scopedstrName))
       {
 
-         m_propertiesPushFragment.mat4(strName) = a;
+         m_propertiesPushFragment.mat4(strName) = m_pgpurenderer->m_pgpucontext->defer_transpose(a);
       }
 
 

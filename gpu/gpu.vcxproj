@@ -87,6 +87,7 @@
     <ClInclude Include="gltf\model.h" />
     <ClInclude Include="gltf\model_base.h" />
     <ClInclude Include="gltf\vertex.h" />
+    <ClInclude Include="gltf\_.h" />
     <ClInclude Include="gltf\_constant.h" />
     <ClInclude Include="hdr_texture.h" />
     <ClInclude Include="ibl\brdf_convolution_framebuffer.h" />

@@ -5,7 +5,7 @@
 
 const char g_psz_specularenv_vert[] = R"vert_text(// DirectX 11 HLSL Vertex Shader
 
-cbuffer MatrixBuffer : register(b0)
+cbuffer MatrixBuffer : register(b1)
 {
     float4x4 model;
     float4x4 view;

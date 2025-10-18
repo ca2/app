@@ -7,7 +7,7 @@
 //#include "device.h"
 //#include "frame_buffer.h"
 #include "gltf/model.h"
-#include "gltf/vertex.h"
+#include "bred/gltf/vertex.h"
 #include "ibl/brdf_convolution_framebuffer.h"
 #include "ibl/equirectangular_cubemap.h"
 // #include "lock.h"
@@ -2951,6 +2951,8 @@ namespace gpu_gpu
    {
 
       ødefer_construct(ptexture);
+
+      ptexture->m_bShaderResourceView = true;
 
       auto memory = file()->as_memory(path);
 

@@ -15,6 +15,11 @@ static const float FACE_RESOLUTION = 512.0f;
 // Put uniforms into a cbuffer. Only roughness is required here.
 cbuffer Params : register(b1)
 {
+
+    float4x4 model;
+    float4x4 view;
+    float4x4 projection;
+
     float roughness;
     float _pad0;
     float _pad1;
@@ -24,6 +29,8 @@ cbuffer Params : register(b1)
 // Input from vertex shader
 struct PS_INPUT
 {
+    float4 position : SV_POSITION;
+
     float3 modelCoordinates : TEXCOORD0;
 };
 

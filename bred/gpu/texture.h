@@ -44,10 +44,11 @@ namespace gpu
       bool                                m_bTransferSrc;
       bool                                m_bCpuRead;
       ::pointer < texture >               m_ptextureDepth;
-
+      bool                                m_bShaderResourceView;
       ::string                            m_strTextureType;
       //::string                            m_strUniform;
-
+      bool m_bRedGreen;
+      bool m_bFloat;
       ::file::path                        m_path;
 
       texture();

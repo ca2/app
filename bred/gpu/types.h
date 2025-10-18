@@ -66,6 +66,19 @@ namespace gpu
       glm::mat4 normalMatrix;
    };
 
+   struct position3
+   {
+      glm::vec3 position;
+
+      position3() {}
+      position3(float x, float y, float z) : position(x, y, z) {}
+   };
+
+   struct position2_uv
+   {
+      glm::vec2 position;
+      glm::vec2 uv;
+   };
 
 } // namespace gpu
 
@@ -75,3 +88,5 @@ DECLARE_GPU_PROPERTIES(CLASS_DECL_BRED, ::gpu::quad_texcoords_textColor)
 DECLARE_GPU_PROPERTIES(CLASS_DECL_BRED, ::gpu::model_view_projection_hdriSampler)
 DECLARE_GPU_PROPERTIES(CLASS_DECL_BRED, ::gpu::model_view_projection_environmentCubeSampler)
 DECLARE_GPU_PROPERTIES(CLASS_DECL_BRED, ::gpu::model_normal)
+DECLARE_GPU_PROPERTIES(CLASS_DECL_BRED, ::gpu::position3)
+DECLARE_GPU_PROPERTIES(CLASS_DECL_BRED, ::gpu::position2_uv)

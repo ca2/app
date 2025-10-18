@@ -1,6 +1,7 @@
 #include "framework.h"
 //#include "pipeline.h"
 #include "skybox_ibl_render_system.h"
+#include "bred/gltf/vertex.h"
 #include "bred/gpu/command_buffer.h"
 #include "bred/gpu/device.h"
 #include "bred/gpu/frame.h"
@@ -13,47 +14,48 @@
 #include "bred/graphics3d/scene_base.h"
 #include "bred/graphics3d/shape_factory.h"
 #include "bred/graphics3d/skybox.h"
+#include "bred/graphics3d/skybox.h"
 
+//
+//   namespace gltf
+//{
+//   /*
+//      gltf default vertex layout with easy Vulkan mapping functions
+//   */
+//   enum class CubeVertexComponent
+//   {
+//      Position,
+//      Normal,
+//      UV,
+//      Color,
+//      //Joint0,
+//      //Weight0,
+//      Tangent,
+//   };
+//
+//   struct CubeVertex
+//   {
+//      glm::vec3 pos;
+//      glm::vec3 normal;
+//      glm::vec2 uv;
+//      glm::vec4 color;
+//      //glm::vec4 joint0;
+//      //glm::vec4 weight0;
+//      glm::vec4 tangent;
+//    
+//   };
+//
+//} // namespace gltf
 
-   namespace gltf
-{
-   /*
-      gltf default vertex layout with easy Vulkan mapping functions
-   */
-   enum class CubeVertexComponent
-   {
-      Position,
-      Normal,
-      UV,
-      Color,
-      //Joint0,
-      //Weight0,
-      Tangent,
-   };
-
-   struct CubeVertex
-   {
-      glm::vec3 pos;
-      glm::vec3 normal;
-      glm::vec2 uv;
-      glm::vec4 color;
-      //glm::vec4 joint0;
-      //glm::vec4 weight0;
-      glm::vec4 tangent;
-    
-   };
-
-} // namespace gltf
-
-BEGIN_GPU_PROPERTIES(::gltf::CubeVertex)
-GPU_PROPERTY("position", ::gpu::e_type_seq3)
-GPU_PROPERTY("normal", ::gpu::e_type_seq3)
-GPU_PROPERTY("uv", ::gpu::e_type_seq2)
-GPU_PROPERTY("color", ::gpu::e_type_seq4)
-//GPU_PROPERTY("joint0", ::gpu::e_type_seq4)
-//GPU_PROPERTY("weight0", ::gpu::e_type_seq4)
-GPU_PROPERTY("tangent", ::gpu::e_type_seq4)
-END_GPU_PROPERTIES()
+//BEGIN_GPU_PROPERTIES(::gltf::CubeVertex)
+//GPU_PROPERTY("position", ::gpu::e_type_seq3)
+//GPU_PROPERTY("normal", ::gpu::e_type_seq3)
+//GPU_PROPERTY("uv", ::gpu::e_type_seq2)
+//GPU_PROPERTY("color", ::gpu::e_type_seq4)
+////GPU_PROPERTY("joint0", ::gpu::e_type_seq4)
+////GPU_PROPERTY("weight0", ::gpu::e_type_seq4)
+//GPU_PROPERTY("tangent", ::gpu::e_type_seq4)
+//END_GPU_PROPERTIES()
 
 namespace graphics3d
 {
@@ -158,22 +160,21 @@ namespace graphics3d
 
 	   m_pshader->m_bindingCubeSampler.set();
 
-      auto iSize = sizeof(::gltf::CubeVertex);
+      auto iSize = sizeof(::gpu::gltf::vertex);
 
       //if (false)
       if(m_bHdr)
       {
 
          m_pshader->initialize_shader(pgpucontext->m_pgpurenderer, "matter://shaders/skybox_ibl.vert",
-                                      "matter://shaders/skybox_ibl_hdr.frag", {::gpu::shader::e_descriptor_set_slot_global},
-                                      nullptr, pgpucontext->input_layout<::gltf::CubeVertex>());
+                                      "matter://shaders/skybox_ibl_hdr.frag", {::gpu::shader::e_descriptor_set_slot_global}, nullptr, pgpucontext->input_layout<::gpu::gltf::vertex>());
       }
       else
       {
 
          m_pshader->initialize_shader(pgpucontext->m_pgpurenderer, "matter://shaders/skybox_ibl.vert",
                                       "matter://shaders/skybox_ibl.frag", {::gpu::shader::e_descriptor_set_slot_global},
-                                      nullptr, pgpucontext->input_layout<::gltf::CubeVertex>());
+                                      nullptr, pgpucontext->input_layout<::gpu::gltf::vertex>());
 
       }
 
@@ -190,6 +191,7 @@ namespace graphics3d
 
    void skybox_ibl_render_system::on_render(::gpu::context* pgpucontext, ::graphics3d::scene_base* pscene)
 	{
+
 
 		//if (!m_bHasCubemap) return;
 
@@ -234,7 +236,8 @@ namespace graphics3d
 
 	   auto ptextureDst = pgpurenderer->current_render_target_texture(::gpu::current_frame());
 
-	   
+      pgpucontext->start_debug_happening("skybox_ibl_render_system on_render");
+
 	   //auto pskybox = pscene->m_psceneobjectSkybox;
 
       //auto ptextureCubeMap = prenderableSkyboxModel->get_target_texture();
@@ -284,6 +287,8 @@ namespace graphics3d
          prenderable->unbind(pframe->m_pgpucommandbuffer);
 
 		}
+
+      pgpucontext->end_debug_happening();
 
 
 	}

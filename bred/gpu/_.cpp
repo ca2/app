@@ -47,6 +47,31 @@ namespace gpu
 
    }
 
+   CLASS_DECL_BRED ::gpu::enum_type get_type_unit_type(::gpu::enum_type e)
+   {
+
+      switch (e)
+      {
+         case e_type_int:
+            return e_type_int;
+         case e_type_float:
+            return e_type_float;
+         case e_type_seq2:
+            return e_type_float;
+         case e_type_seq3:
+            return e_type_float;
+         case e_type_seq4:
+            return e_type_float;
+         case e_type_mat2:
+            return e_type_float;
+         case e_type_mat3:
+            return e_type_float;
+         case e_type_mat4:
+            return e_type_float;
+         default:
+            throw ::exception(error_not_implemented);
+      }
+   }
 
 
 } // namespace gpu

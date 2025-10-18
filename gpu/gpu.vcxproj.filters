@@ -34,20 +34,8 @@
     <Filter Include="Source Files">
       <UniqueIdentifier>{e61edb41-436c-4e0f-812d-d34bddf4617c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\include">
-      <UniqueIdentifier>{585c3aae-09f8-4632-839e-aa82f9bc11a9}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\user">
-      <UniqueIdentifier>{0a84bbef-ff11-4ea1-867a-2a3aa6ed4b67}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\game">
-      <UniqueIdentifier>{a7fafa56-be62-4b65-8e63-2449a2d57b82}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\constant">
       <UniqueIdentifier>{28e5c993-7608-46fa-ad2a-2011b35072ee}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\gpu">
-      <UniqueIdentifier>{b4f1d8eb-4d51-4ffa-9aaa-1ff0ab7ae826}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\ibl">
       <UniqueIdentifier>{ed0212c8-4764-4da3-bd29-a8d00feeaabf}</UniqueIdentifier>
@@ -58,14 +46,14 @@
     <Filter Include="Source Files\gltf">
       <UniqueIdentifier>{ec397ecc-99f7-4462-acd1-f141d9fd298b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\gltf\NewFilter1">
-      <UniqueIdentifier>{b150058f-ca82-46d5-a5fd-02b2e7cc65d7}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\ibl\hlsl">
       <UniqueIdentifier>{feab7de8-76aa-4ed8-940c-cf9bec94febc}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\ibl\hlsl">
       <UniqueIdentifier>{90d2f089-f04d-46b6-8705-6c9a2b3d0216}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\gltf">
+      <UniqueIdentifier>{a775e29d-1366-45fa-acb2-7b2e99974a3e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -180,21 +168,6 @@
     <ClInclude Include="hdr_texture.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="gltf\vertex.h">
-      <Filter>Header Files\gpu</Filter>
-    </ClInclude>
-    <ClInclude Include="gltf\model.h">
-      <Filter>Header Files\gpu</Filter>
-    </ClInclude>
-    <ClInclude Include="gltf\mesh.h">
-      <Filter>Header Files\gpu</Filter>
-    </ClInclude>
-    <ClInclude Include="gltf\material.h">
-      <Filter>Header Files\gpu</Filter>
-    </ClInclude>
-    <ClInclude Include="gltf\_constant.h">
-      <Filter>Header Files\gpu</Filter>
-    </ClInclude>
     <ClInclude Include="ibl\specular_map.h">
       <Filter>Header Files\ibl</Filter>
     </ClInclude>
@@ -227,9 +200,6 @@
     </ClInclude>
     <ClInclude Include="_ktx.h">
       <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="gltf\model_base.h">
-      <Filter>Header Files\gpu</Filter>
     </ClInclude>
     <ClInclude Include="timer.h">
       <Filter>Header Files</Filter>
@@ -266,6 +236,27 @@
     </ClInclude>
     <ClInclude Include="ibl\hlsl\diffuseirradiance.vert.h">
       <Filter>Header Files\ibl\hlsl</Filter>
+    </ClInclude>
+    <ClInclude Include="gltf\_.h">
+      <Filter>Header Files\gltf</Filter>
+    </ClInclude>
+    <ClInclude Include="gltf\vertex.h">
+      <Filter>Header Files\gltf</Filter>
+    </ClInclude>
+    <ClInclude Include="gltf\model_base.h">
+      <Filter>Header Files\gltf</Filter>
+    </ClInclude>
+    <ClInclude Include="gltf\model.h">
+      <Filter>Header Files\gltf</Filter>
+    </ClInclude>
+    <ClInclude Include="gltf\mesh.h">
+      <Filter>Header Files\gltf</Filter>
+    </ClInclude>
+    <ClInclude Include="gltf\material.h">
+      <Filter>Header Files\gltf</Filter>
+    </ClInclude>
+    <ClInclude Include="gltf\_constant.h">
+      <Filter>Header Files\gltf</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -342,9 +333,6 @@
     <CustomBuild Include="ibl\hlsl\specularenv.frag">
       <Filter>Source Files\ibl\hlsl</Filter>
     </CustomBuild>
-    <CustomBuild Include="ibl\hlsl\hdricube.frag">
-      <Filter>Source Files\ibl\hlsl</Filter>
-    </CustomBuild>
     <CustomBuild Include="ibl\hlsl\hdricube.vert">
       <Filter>Source Files\ibl\hlsl</Filter>
     </CustomBuild>
@@ -365,6 +353,9 @@
     </CustomBuild>
     <CustomBuild Include="ibl\hlsl\brdfconvolution.frag">
       <Filter>Source Files\ibl\hlsl</Filter>
+    </CustomBuild>
+    <CustomBuild Include="ibl\hlsl\hdricube.frag">
+      <Filter>Source Files\ibl</Filter>
     </CustomBuild>
   </ItemGroup>
 </Project>

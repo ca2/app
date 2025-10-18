@@ -956,7 +956,7 @@ namespace gpu_opengl
    }
 
 
-   void context::clear(const ::color::color &color)
+   void context::clear(::gpu::texture * pgputexture, const ::color::color &color)
    {
 
       ::gpu::context_lock contextlock(this);

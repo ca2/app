@@ -20,59 +20,39 @@ struct PSInput
 
 float4 main(PSInput input) : SV_TARGET
 {
-    float3 normal = normalize(input.modelCoordinates);
-    float3 tangent = normalize(cross(up, normal));
-    float3 bitangent = normalize(cross(normal, tangent));
+    float3 N = normalize(input.modelCoordinates);
+    float3 T = normalize(cross(up, N));
+    float3 B = cross(N, T);
 
     float3 irradiance = 0.0f.xxx;
+    float weightSum = 0.0f;
 
-    float numSamples = 0.0f;
-    float delta = 0.025f;
+    float delta = 0.2f; // drastically larger step
 
-    // integrate over hemisphere
     for (float phi = 0.0f; phi < 2.0f * PI; phi += delta)
     {
+        float cosPhi = cos(phi);
+        float sinPhi = sin(phi);
+
         for (float theta = 0.0f; theta < (PI * 0.5f); theta += delta)
         {
-            float3 sampleDirectionTangent = float3(
-                sin(theta) * cos(phi),
-                sin(theta) * sin(phi),
-                cos(theta)
-            );
+            float cosTheta = cos(theta);
+            float sinTheta = sin(theta);
 
-            float3 sampleDirectionWorld =
-                sampleDirectionTangent.x * tangent +
-                sampleDirectionTangent.y * bitangent +
-                sampleDirectionTangent.z * normal;
+            float3 tangentSample = float3(sinTheta * cosPhi, sinTheta * sinPhi, cosTheta);
+            float3 sampleVec = tangentSample.x * T + tangentSample.y * B + tangentSample.z * N;
 
-            float3 hdrColor = environmentCubemap.Sample(samplerLinear, sampleDirectionWorld).rgb;
+            float3 color = environmentCubemap.Sample(samplerLinear, sampleVec).rgb;
 
-            // ACES filmic tonemap
-            float a = 2.51f;
-            float b = 0.03f;
-            float c = 2.43f;
-            float d = 0.59f;
-            float e = 0.14f;
-            float3 mapped = saturate((hdrColor * (a * hdrColor + b)) / (hdrColor * (c * hdrColor + d) + e));
-
-            // gamma correction (linear -> sRGB)
-            float3 sampleValue = pow(mapped, 1.0f / 2.2f);
-
-            // compensate for solid angle
-            sampleValue *= sin(theta);
-
-            // Lambertian cosine weighting
-            sampleValue *= cos(theta);
-
-            irradiance += sampleValue;
-            numSamples += 1.0f;
+            float weight = sinTheta * cosTheta;
+            irradiance += color * weight;
+            weightSum += weight;
         }
     }
 
-    irradiance = PI * irradiance * (1.0f / numSamples);
+    irradiance = PI * irradiance / max(weightSum, 1e-4f);
     return float4(irradiance, 1.0f);
-}
-)frag_text";
+})frag_text";
 
 
 

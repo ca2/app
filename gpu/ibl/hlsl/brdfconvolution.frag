@@ -1,99 +1,108 @@
-// prefilter_brdf_ps.hlsl
-// Converted from GLSL (version 330 core) to HLSL for DirectX 11
+// === HLSL Conversion of the OpenGL Shader ===
 
-static const float PI = 3.14159265359f;
-static const uint SAMPLE_COUNT = 1024u;
-
-// Radical inverse of Van der Corput sequence
-float radicalInverseVanDerCorput(uint bits)
+cbuffer Constants : register(b0)
 {
-    bits = (bits << 16) | (bits >> 16);
-    bits = ((bits & 0x55555555) << 1) | ((bits & 0xAAAAAAAA) >> 1);
-    bits = ((bits & 0x33333333) << 2) | ((bits & 0xCCCCCCCC) >> 2);
-    bits = ((bits & 0x0F0F0F0F) << 4) | ((bits & 0xF0F0F0F0) >> 4);
-    bits = ((bits & 0x00FF00FF) << 8) | ((bits & 0xFF00FF00) >> 8);
-    return float(bits) * 2.3283064365386963e-10f;
-}
-
-// Hammersley sequence on [0,1)^2
-float2 hammersley(uint i, uint N)
-{
-    return float2(float(i) / float(N), radicalInverseVanDerCorput(i));
-}
-
-// Importance sample GGX
-float3 importanceSampleGGX(float2 Xi, float3 N, float roughness)
-{
-    float alpha = roughness * roughness;
-
-    float phi = 2.0f * PI * Xi.x;
-    float cosTheta = sqrt((1.0f - Xi.y) / (1.0f + (alpha * alpha - 1.0f) * Xi.y));
-    float sinTheta = sqrt(1.0f - cosTheta * cosTheta);
-
-    // Spherical to Cartesian
-    float3 H;
-    H.x = cos(phi) * sinTheta;
-    H.y = sin(phi) * sinTheta;
-    H.z = cosTheta;
-
-    // Tangent space to world
-    float3 up = abs(N.z) < 0.999f ? float3(0.0f, 0.0f, 1.0f) : float3(1.0f, 0.0f, 0.0f);
-    float3 tangent = normalize(cross(up, N));
-    float3 bitangent = cross(N, tangent);
-
-    float3 sampleVec = tangent * H.x + bitangent * H.y + N * H.z;
-    return normalize(sampleVec);
-}
-
-// Geometry functions
-float geometrySchlickGGX(float nDotV, float k)
-{
-    return nDotV / (nDotV * (1.0f - k) + k);
-}
-
-float geometrySmith(float3 N, float3 V, float3 L, float roughness)
-{
-    float k = (roughness * roughness) / 2.0f;
-    float nDotV = max(dot(N, V), 0.0f);
-    float nDotL = max(dot(N, L), 0.0f);
-    return geometrySchlickGGX(nDotV, k) * geometrySchlickGGX(nDotL, k);
+    static const float PI = 3.14159265359;
+    static const uint SAMPLE_COUNT = 1024;
 }
 
 struct PSInput
 {
     float4 position : SV_POSITION;
-    float2 textureCoordinates : TEXCOORD0;
+    float2 texcoord : TEXCOORD0;
 };
 
-float2 main(PSInput input) : SV_TARGET
+
+// regular output
+struct PSOutput
 {
-    float NdotV = input.textureCoordinates.x;
-    float roughness = input.textureCoordinates.y;
+    float2 brdfcolor : SV_Target0;
+    //float4 BloomColor : SV_Target1; // output to be used by bloom shader
+};
 
-    float3 N = float3(0.0f, 0.0f, 1.0f);
-    float3 V = float3(sqrt(1.0f - NdotV * NdotV), 0.0f, NdotV);
+float radicalInverseVanDerCorput(uint bits)
+{
+    bits = (bits << 16) | (bits >> 16);
+    bits = ((bits & 0x55555555u) << 1) | ((bits & 0xAAAAAAAAu) >> 1);
+    bits = ((bits & 0x33333333u) << 2) | ((bits & 0xCCCCCCCCu) >> 2);
+    bits = ((bits & 0x0F0F0F0Fu) << 4) | ((bits & 0xF0F0F0F0u) >> 4);
+    bits = ((bits & 0x00FF00FFu) << 8) | ((bits & 0xFF00FF00u) >> 8);
+    return float(bits) * 2.3283064365386963e-10;
+}
 
-    float F0Scale = 0.0f;
-    float F0Bias = 0.0f;
+float2 hammersley(uint i, uint N)
+{
+    return float2(float(i) / float(N), radicalInverseVanDerCorput(i));
+}
+
+float3 importanceSampleGGX(float2 unitSquareSample, float3 N, float roughness)
+{
+    float alpha = roughness * roughness;
+
+    float phi = 2.0 * PI * unitSquareSample.x;
+    float cosTheta = sqrt((1.0 - unitSquareSample.y) /
+                          (1.0 + (alpha * alpha - 1.0) * unitSquareSample.y));
+    float sinTheta = sqrt(1.0 - cosTheta * cosTheta);
+
+    float3 H;
+    H.x = cos(phi) * sinTheta;
+    H.y = sin(phi) * sinTheta;
+    H.z = cosTheta;
+
+    float3 up = abs(N.z) < 0.999 ? float3(0.0, 0.0, 1.0) : float3(1.0, 0.0, 0.0);
+    float3 tangent = normalize(cross(up, N));
+    float3 bitangent = cross(N, tangent);
+
+    float3 sampleVector = tangent * H.x + bitangent * H.y + N * H.z;
+    return normalize(sampleVector);
+}
+
+float geometrySchlickGGX(float3 n, float3 v, float k)
+{
+    float nDotV = max(dot(n, v), 0.0);
+    float numerator = nDotV;
+    float denominator = nDotV * (1.0 - k) + k;
+    return numerator / denominator;
+}
+
+float geometrySmith(float3 n, float3 v, float3 l, float roughness)
+{
+    float k = (roughness * roughness) / 2.0;
+    return geometrySchlickGGX(n, v, k) * geometrySchlickGGX(n, l, k);
+}
+
+
+PSOutput main(PSInput input)
+{
+    
+    PSOutput output;
+    float NdotV = input.texcoord.x;
+    float roughness = input.texcoord.y;
+
+    float3 N = float3(0.0, 0.0, 1.0);
+    float3 V = float3(sqrt(1.0 - NdotV * NdotV), 0.0, NdotV);
+
+    float F0Scale = 0.0;
+    float F0Bias = 0.0;
 
     [loop]
-    for (uint i = 0u; i < SAMPLE_COUNT; i++)
+    for (uint i = 0; i < SAMPLE_COUNT; i++)
     {
-        float2 Xi = hammersley(i, SAMPLE_COUNT);
-        float3 H = importanceSampleGGX(Xi, N, roughness);
-        float3 L = normalize(2.0f * dot(V, H) * H - V);
+        float2 unitSquareSample = hammersley(i, SAMPLE_COUNT);
+        float3 H = importanceSampleGGX(unitSquareSample, N, roughness);
+        float3 L = normalize(2.0 * dot(V, H) * H - V);
 
-        float NdotL = max(L.z, 0.0f);
-        float NdotH = max(H.z, 0.0f);
-        float VdotH = max(dot(V, H), 0.0f);
+        float NdotL = max(L.z, 0.0);
+        float NdotH = max(H.z, 0.0);
+        float VdotH = max(dot(V, H), 0.0);
 
-        if (NdotL > 0.0f)
+        if (NdotL > 0.0)
         {
             float G = geometrySmith(N, V, L, roughness);
             float GVis = (G * VdotH) / (NdotH * NdotV);
-            float partialFresnel = pow(1.0f - VdotH, 5.0f);
+            float partialFresnel = pow(1.0 - VdotH, 5.0);
 
-            F0Scale += GVis * (1.0f - partialFresnel);
+            F0Scale += GVis * (1.0 - partialFresnel);
             F0Bias += GVis * partialFresnel;
         }
     }
@@ -101,5 +110,13 @@ float2 main(PSInput input) : SV_TARGET
     F0Scale /= SAMPLE_COUNT;
     F0Bias /= SAMPLE_COUNT;
 
-    return float2(F0Scale, F0Bias);
+    output.brdfcolor= float2(F0Scale, F0Bias);
+
+    //output.brdfcolor= float2(0.5, 0.5);
+
+    return output;
+
 }
+
+
+

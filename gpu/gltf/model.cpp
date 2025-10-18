@@ -2,7 +2,7 @@
 // camilo on 2025-09-26 18:14 <3ThomasBorregaardSorensen!!
 #include "framework.h"
 #include "model.h"
-#include "gpu/gltf/vertex.h"
+#include "bred/gltf/vertex.h"
 #include "bred/gpu/texture.h"
 
 #include <stb/stb_image.h>
@@ -197,7 +197,7 @@ namespace gpu
             position.y = mesh->mVertices[i].y;
             position.z = mesh->mVertices[i].z;
 
-            vertex.mPosition = position;
+            vertex.position = position;
 
             // normal
             glm::vec3 normal;
@@ -205,7 +205,7 @@ namespace gpu
             normal.y = mesh->mNormals[i].y;
             normal.z = mesh->mNormals[i].z;
 
-            vertex.mNormal = normal;
+            vertex.normal = normal;
 
             // texture coordinates
             if (mesh->mTextureCoords[0])
@@ -213,27 +213,27 @@ namespace gpu
                glm::vec2 textureCoordinates;
                textureCoordinates.x = mesh->mTextureCoords[0][i].x;
                textureCoordinates.y = mesh->mTextureCoords[0][i].y;
-               vertex.mTextureCoordinates = textureCoordinates;
+               vertex.uv = textureCoordinates;
             }
             else
             {
-               vertex.mTextureCoordinates = glm::vec2(0.0f, 0.0f);
+               vertex.uv = glm::vec2(0.0f, 0.0f);
             }
 
-                        // tangents
-            glm::vec4 color;
-            if (mesh->mColors[0])
-            {
-               color.x = mesh->mColors[0]->r;
-               color.y = mesh->mColors[0]->g;
-               color.z = mesh->mColors[0]->b;
-               color.w = mesh->mColors[0]->a;
-            }
-            else
-            {
-               color = glm::vec4(1.0f);
-            }
-            vertex.mColor = color;
+            //            // tangents
+            //glm::vec4 color;
+            //if (mesh->mColors[0])
+            //{
+            //   color.x = mesh->mColors[0]->r;
+            //   color.y = mesh->mColors[0]->g;
+            //   color.z = mesh->mColors[0]->b;
+            //   color.w = mesh->mColors[0]->a;
+            //}
+            //else
+            //{
+            //   color = glm::vec4(1.0f);
+            //}
+            //vertex.color = color;
 
             // tangents
             glm::vec4 tangent4;
@@ -249,14 +249,14 @@ namespace gpu
             tangent4.y = tangent.y;
             tangent4.z = tangent.z;
             tangent4.w = (::glm::dot(::glm::cross(normal, tangent), bitangent) < 0.0f) ? -1.0f : 1.0f;
-            vertex.mTangent = tangent4;
+            vertex.tangent = tangent4;
 
-            //// bitangents
+            ////// bitangents
             //glm::vec3 bitangent;
             //bitangent.x = mesh->mBitangents[0].x;
             //bitangent.y = mesh->mBitangents[0].y;
             //bitangent.z = mesh->mBitangents[0].z;
-            //vertex.mBitangent = bitangent;
+            //vertex.bitangent = bitangent;
 
             vertices.add(vertex);
          }
@@ -367,6 +367,8 @@ namespace gpu
          }
 
          auto pmesh = øcreate<::gpu::gltf::mesh>();
+
+         pmesh->m_pgpucontext = m_pgpucontext;
 
          pmesh->initialize_gpu_gltf_mesh(vertices, indices, pmaterial);
 

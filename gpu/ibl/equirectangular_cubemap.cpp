@@ -80,7 +80,7 @@ namespace gpu
             m_pgpucontext->m_pgpurenderer,
             embedded_ibl_hdri_cube_vert(),            
             embedded_ibl_hdri_cube_frag(), {}, {},
-            pgpucontext->input_layout(::gpu_properties<::glm::vec3>()));
+            pgpucontext->input_layout(::gpu_properties<::gpu::position3>()));
 
          øconstruct(m_phdricube);
 

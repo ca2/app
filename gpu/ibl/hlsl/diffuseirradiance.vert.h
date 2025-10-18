@@ -6,7 +6,7 @@
 const char g_psz_diffuseirradiance_vert[] = R"vert_text(// diffuseirradiance_vs.hlsl
 // Converted from OpenGL GLSL (version 330 core) to HLSL for DirectX 11
 
-cbuffer MatrixBuffer : register(b0)
+cbuffer MatrixBuffer : register(b1)
 {
     float4x4 model;
     float4x4 view;

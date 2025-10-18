@@ -171,6 +171,8 @@ namespace gpu
 
       virtual void defer_make_current();
 
+      virtual ::glm::mat4 defer_transpose(const ::glm::mat4 & m);
+
       virtual ::pointer < ::gpu::command_buffer > beginSingleTimeCommands(::gpu::queue * pgpuqueue, ::gpu::enum_command_buffer ecommandbuffer = ::gpu::e_command_buffer_graphics);
       virtual void endSingleTimeCommands(::gpu::command_buffer * pcommandbuffer);
 
@@ -311,7 +313,7 @@ namespace gpu
       virtual class image_data image32(const ::payload & payloadFile);
 
 
-      virtual void clear(const ::color::color& color);
+      virtual void clear(::gpu::texture * ptexture, const ::color::color& color);
 
 
       virtual void create_global_ubo(int iSize, int iFrameCount);
@@ -407,7 +409,7 @@ namespace gpu
       virtual ::pointer<::graphics3d::renderable> load_gltf_model(const ::gpu::renderable_t & model);
 
       virtual ::pointer<::graphics3d::renderable> _load_gltf_model(const ::gpu::renderable_t & model);
-
+      virtual void set_viewport(::gpu::command_buffer *pgpucommandbuffer, const ::int_rectangle &rectangle);
 
 //      /// @brief generatePrefilteredEnvMap
 //      /// @param environmentCubeExisting 

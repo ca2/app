@@ -3,55 +3,102 @@
 #pragma once
 
 
-const char g_psz_pbr_vert[] = R"vert_text(// HLSL Vertex Shader equivalent of your GLSL version
+const char g_psz_pbr_vert[] = R"vert_text(// Converted from Vulkan GLSL to HLSL
+// Matches the PBR fragment shader above
+// by Camilo <3ThomasBorregaardSorensen!!
+// Shader Model 5.0+ recommended
 
-cbuffer MatrixBuffer : register(b0)
+// ---------- Input vertex attributes ----------
+struct VSInput
 {
-    float4x4 model;
-    float4x4 view;
-    float4x4 projection;
+    float3 aPos               : POSITION;   // location = 0
+    float3 aNormal            : NORMAL;     // location = 1
+    float2 aTextureCoordinates: TEXCOORD0;  // location = 2
+    float4 aColor             : COLOR;      // location = 3
+    float4 aTangent           : TEXCOORD1;    // location = 4
 };
 
-struct VS_INPUT
+// ---------- Outputs to fragment shader ----------
+struct VSOutput
 {
-    float3 position  : POSITION;   // layout(location = 0)
-    float3 normal    : NORMAL;     // layout(location = 1)
-    float2 texcoord  : TEXCOORD0;  // layout(location = 2)
-    float3 tangent   : TANGENT;    // layout(location = 3)
-    float3 bitangent : BINORMAL;   // layout(location = 4)
-};
-
-struct VS_OUTPUT
-{
-    float4 position          : SV_POSITION;
-    float2 textureCoordinates: TEXCOORD0;
-    float3 worldCoordinates  : TEXCOORD1;
+    float4 Position          : SV_Position;
+    float3 worldCoordinates  : TEXCOORD0;
+    float2 textureCoordinates: TEXCOORD1;
     float3 tangent           : TEXCOORD2;
     float3 bitangent         : TEXCOORD3;
     float3 normal            : TEXCOORD4;
 };
 
-VS_OUTPUT main(VS_INPUT input)
+// Must match fragment shader
+struct PointLight
 {
-    VS_OUTPUT output;
+    float4 position;
+    float4 color;
+};
 
-    // Convert to homogeneous coordinates
-    float4 worldPos = mul(float4(input.position, 1.0f), model);
+// ---------- Global UBO (set = 0, binding = 0) ----------
+cbuffer GlobalUbo : register(b0)
+{
+    float4x4 projection;
+    float4x4 view;
+    float4x4 invView;
+    float4 ambientLightColor;
+    float4 viewPos;
+    PointLight pointLights[10];
+    int numLights;
+    int padding1;
+    int padding2;
+    int padding3;
+};
+
+// ---------- Push constants (model transforms) ----------
+// ---------- Push constants (converted to another cbuffer) ----------
+cbuffer PushConsts : register(b1)
+{
+    float4x4 modelMatrix;
+    float4x4 normalMatrix; // inverse-transpose of model
+
+    int useTextureAlbedo;
+    int useTextureMetallicRoughness;
+    int useTextureNormal;
+    int useTextureAmbientOcclusion;
+    int useTextureEmissive;
+
+    float3 albedo;
+    float metallic;
+    float roughness;
+    float ambientOcclusion;
+    float3 emissive;
+
+    float3 cameraPosition;
+    float bloomBrightnessCutoff;
+};
+
+VSOutput main(VSInput input)
+{
+    VSOutput output;
+
+    // Transform position to world space
+    float4 worldPos = mul(float4(input.aPos, 1.0), modelMatrix);
     output.worldCoordinates = worldPos.xyz;
 
-    // Row-major multiplication order in HLSL
-    float4 viewPos = mul(worldPos, view);
-    output.position = mul(viewPos, projection);
+    // Final clip-space position
+    output.Position = mul(worldPos, view);
+    output.Position = mul(output.Position, projection);
 
-    output.textureCoordinates = input.texcoord;
+    // Pass through texture coordinates
+    output.textureCoordinates = input.aTextureCoordinates;
 
-    // Build normal matrix (inverse-transpose of upper-left 3x3 of model)
-    float3x3 normalMatrix = (float3x3)model;
-    normalMatrix = transpose(invert(normalMatrix));
+    // Normal, tangent, bitangent in world space
+    float3x3 normalMat = transpose((float3x3)normalMatrix);
 
-    output.tangent   = normalize(mul(input.tangent, normalMatrix));
-    output.bitangent = normalize(mul(input.bitangent, normalMatrix));
-    output.normal    = normalize(mul(input.normal, normalMatrix));
+    float3 N = normalize(mul(input.aNormal, normalMat));
+    float3 T = normalize(mul(input.aTangent.xyz, normalMat));
+    float3 B = normalize(cross(N, T)) * input.aTangent.w;
+
+    output.normal = N;
+    output.tangent = T;
+    output.bitangent = B;
 
     return output;
 }

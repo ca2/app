@@ -1,9 +1,12 @@
 // Created by camilo on 2025-06-23 00:16 <3ThomasBorregaardSørensen!!
 #include "framework.h"
 #include "command_buffer.h"
+#include "context.h"
 #include "frame.h"
 #include "queue.h"
+#include "renderer.h"
 #include "render_target.h"
+
 
 
 namespace gpu
@@ -97,7 +100,7 @@ namespace gpu
    void command_buffer::set_viewport(const ::int_rectangle& rectangle)
    {
 
-
+      m_pgpurendertarget->m_pgpurenderer->m_pgpucontext->set_viewport(this, rectangle);
    }
 
 

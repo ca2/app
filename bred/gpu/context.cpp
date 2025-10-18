@@ -587,6 +587,14 @@ namespace gpu
 
    }
 
+   ::glm::mat4 context::defer_transpose(const ::glm::mat4 & m)
+   {
+
+      return m;
+
+   }
+
+
 
    ::pointer < ::gpu::command_buffer >context::beginSingleTimeCommands(::gpu::queue * pqueue, ::gpu::enum_command_buffer ecommandbuffer)
    {
@@ -670,6 +678,13 @@ namespace gpu
    {
 
 return {};
+
+   }
+
+
+   void context::set_viewport(::gpu::command_buffer * pgpucommandbuffer, const ::int_rectangle & rectangle)
+   {
+
 
    }
 
@@ -1860,7 +1875,7 @@ return {};
    }
 
 
-   void context::clear(const ::color::color& color)
+   void context::clear(::gpu::texture * pgputexture, const ::color::color& color)
    {
 
 

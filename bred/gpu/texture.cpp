@@ -26,9 +26,12 @@ namespace gpu
       m_bTransferSrc = false;
       m_bCpuRead = false;
       m_bWithDepth = false;
+      m_bShaderResourceView = false;
       m_iLayerCount = 1;
       m_mipsLevel = 1;
       m_iIndex = -1;
+      m_bRedGreen = false;
+      m_bFloat = false;
 
    }
 

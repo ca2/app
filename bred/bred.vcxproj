@@ -339,6 +339,7 @@
   <ItemGroup>
     <ClInclude Include="const\idpool.h" />
     <ClInclude Include="framework.h" />
+    <ClInclude Include="gltf\vertex.h" />
     <ClInclude Include="gpu\aaaa_gpu.h" />
     <ClInclude Include="gpu\aaa_end_draw.h" />
     <ClInclude Include="gpu\bred_approach.h" />
@@ -362,6 +363,7 @@
     <ClInclude Include="gpu\memory_buffer.h" />
     <ClInclude Include="gpu\mesh.h" />
     <ClInclude Include="gpu\model_buffer.h" />
+    <ClInclude Include="gpu\model_data.h" />
     <ClInclude Include="gpu\object.h" />
     <ClInclude Include="gpu\pixmap.h" />
     <ClInclude Include="gpu\program.h" />
@@ -476,6 +478,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="gltf\vertex.cpp" />
     <ClCompile Include="gpu\bred_approach.cpp" />
     <ClCompile Include="gpu\command_buffer.cpp" />
     <ClCompile Include="gpu\compositor.cpp" />

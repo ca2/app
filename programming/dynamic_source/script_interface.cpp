@@ -220,10 +220,10 @@ namespace dynamic_source
    }
 
 
-   programming::real_path script_interface::get_script_path(const ::scoped_string& scopedstrName)
+   ::file_system_cache_item script_interface::netnode_file_path(const ::scoped_string& scopedstrName)
    {
 
-      return m_pscript2->get_script_path(scopedstrName);
+      return m_pscript2->netnode_file_path(scopedstrName);
 
    }
 

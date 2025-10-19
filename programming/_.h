@@ -19,7 +19,7 @@
 
 #define DS_INCLUDE(NAME) \
 {       \
-   static ::file::real_path s_realpath = get_script_path((NAME)); \
+   static ::file_system_cache_item s_realpath = netnode_file_path((NAME)); \
    include(s_realpath); \
 }      
 

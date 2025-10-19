@@ -80,24 +80,24 @@ namespace dynamic_source
    //}
 
 
-   ::pointer<ds_script>script_cache::allocate_ds_script(const programming::real_path& realpath)
+   ::pointer<ds_script>script_cache::allocate_ds_script(const ::file_system_cache_item& filesystemcacheitem)
    {
 
       auto pscript = øcreate_new< ds_script >();
 
-      pscript->m_pmanager = m_pmanager;
+      pscript->set_manager(m_pmanager);
 
-      pscript->m_path = realpath.m_pathReal;
+      pscript->m_path = filesystemcacheitem.path();
 
       return ::transfer(pscript);
 
    }
 
-   script * script_cache::get(const programming::real_path & realpath)
+   script * script_cache::get(const ::file_system_cache_item & filesystemcacheitem)
    {
 
 
-      auto pathReal = realpath.m_pathReal;
+      auto pathReal = filesystemcacheitem.path();
 //      string strName(scopedstrName);
 //
 //#ifdef WINDOWS
@@ -111,19 +111,19 @@ namespace dynamic_source
       auto & pscript = m_map[pathReal];
 
       if (pscript.is_set()
-         && pscript->m_path == realpath.m_pathReal)
+         && pscript->m_path == filesystemcacheitem.path())
       {
 
          return pscript;
 
       }
 
-      return pscript = allocate_ds_script(realpath);
+      return pscript = allocate_ds_script(filesystemcacheitem);
 
    }
 
 
-   script * script_cache::register_script(const programming::real_path & realpath, script * pscript)
+   script * script_cache::register_script(const ::file_system_cache_item & filesystemcacheitem, script * pscript)
    {
 
 //      string strName(scopedstrName);
@@ -136,7 +136,7 @@ namespace dynamic_source
 
       _single_lock synchronouslock(this->synchronization(), true);
 
-      auto iterator = m_map.find(realpath.m_pathReal);
+      auto iterator = m_map.find(filesystemcacheitem.path());
 
       if(iterator)
       {
@@ -147,16 +147,16 @@ namespace dynamic_source
 
       }
 
-      pscript->m_pmanager = m_pmanager;
+      pscript->set_manager(m_pmanager);
 
-      pscript->m_path = realpath.m_pathReal;
+      pscript->m_path = filesystemcacheitem.path();
 
       return pscript;
 
    }
 
 
-   ::pointer<script_instance>script_cache::create_instance(const programming::real_path & realpath, ::pointer<script> & pscript)
+   ::pointer<script_instance>script_cache::create_instance(const ::file_system_cache_item & filesystemcacheitem, ::pointer<script> & pscript)
    {
 
       pscript = nullptr;
@@ -175,7 +175,7 @@ namespace dynamic_source
       //}
 
 
-      pscript = get(realpath);
+      pscript = get(filesystemcacheitem);
 
       if (::is_null(pscript))
       {
@@ -191,7 +191,7 @@ namespace dynamic_source
          if (!slScript._wait(5_s))
          {
 
-            throw ::heating_up_exception("Compiling script " + realpath.m_pathReal);
+            throw ::heating_up_exception("Compiling script " + filesystemcacheitem.path());
 
          }
 
@@ -200,11 +200,11 @@ namespace dynamic_source
       if(!pscript->m_bNew && pscript->ShouldBuild())
       {
 
-         pscript = allocate_ds_script(realpath);
+         pscript = allocate_ds_script(filesystemcacheitem);
 
          _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-         m_map[realpath.m_pathReal] = pscript;
+         m_map[filesystemcacheitem.path()] = pscript;
 
          return pscript->create_instance();
 

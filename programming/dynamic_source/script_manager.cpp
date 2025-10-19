@@ -30,8 +30,9 @@
 
 #include "acme/_operating_system.h"
 #include "programming/dynamic_source/httpd_socket.h"
-#include "programming/file_system_cache.h"
+#include "acme/filesystem/filesystem/file_system_cache.h"
 #include "programming/heating_up_exception.h"
+
 
 namespace dynamic_source
 {
@@ -110,7 +111,7 @@ namespace dynamic_source
       defer_create_synchronization();
 
 
-      øconstruct_new(m_pfilesystemcache);
+      //øconstruct_new(m_pfilesystemcache);
 
 
       //if (!estatus)
@@ -316,43 +317,43 @@ namespace dynamic_source
 
 
 
-   ::pointer<script_instance>script_manager::get(const programming::real_path & realpath)
+   ::pointer<script_instance>script_manager::get(const ::file_system_cache_item & filesystemcacheitem)
    {
 
       ::pointer<script>pscript;
 
-      return get(realpath, pscript);
+      return get(filesystemcacheitem, pscript);
 
    }
 
 
-   programming::real_path script_manager::get_script_path(const ::scoped_string& scopedstrName)
+   ::file_system_cache_item script_manager::netnode_file_path(const ::scoped_string& scopedstrName)
    {
 
-      auto realpath = _real_path(scopedstrName);
+      auto filesystemcacheitem = file_system_item(scopedstrName);
 
-      if (!realpath.is_ok())
+      if (!filesystemcacheitem.is_ok())
       {
 
-         realpath = _real_path(string(scopedstrName) + ".ds");
+         filesystemcacheitem = file_system_item(string(scopedstrName) + ".ds");
 
       }
 
-      realpath.m_strName = scopedstrName;
+      filesystemcacheitem.m_strName2 = scopedstrName;
 
-      realpath.m_strName.find_replace("\\", "/");
+      filesystemcacheitem.m_strName2.find_replace("\\", "/");
 
-      fs_cache()->include_has_script(realpath);
+      //include_has_script(filesystemcacheitem);
 
-      return realpath;
+      return filesystemcacheitem;
 
    }
 
 
-   ::pointer<script_instance>script_manager::get(const programming::real_path & realpath, ::pointer<script>& pscript)
+   ::pointer<script_instance>script_manager::get(const ::file_system_cache_item & filesystemcacheitem, ::pointer<script>& pscript)
    {
 
-      return m_pcache->create_instance(realpath, pscript);
+      return m_pcache->create_instance(filesystemcacheitem, pscript);
 
    }
 
@@ -368,14 +369,14 @@ namespace dynamic_source
 
       timeGetHereStart.Now();
 
-      if (!m_realpathSeed.is_ok())
+      if (!m_filesystemcacheitemSeed.is_ok())
       {
 
-         m_realpathSeed = get_script_path(m_strSeed1);
+         m_filesystemcacheitemSeed = netnode_file_path(m_strSeed1);
 
       }
 
-      ::pointer<script_instance>pinstance = get(m_realpathSeed);
+      ::pointer<script_instance>pinstance = get(m_filesystemcacheitemSeed);
 
       timeGetHereEnd.Now();
 
@@ -383,7 +384,7 @@ namespace dynamic_source
 
       pdssocket->m_timeWaitingToBuild += timeGetHere;
 
-      pdssocket->m_timegetherea.add({m_realpathSeed.m_strName, timeGetHere});
+      pdssocket->m_timegetherea.add({m_filesystemcacheitemSeed.m_strName2, timeGetHere});
 
       if (!pinstance)
       {
@@ -474,7 +475,7 @@ namespace dynamic_source
 
          }
 
-         pinstance->m_strDebugThisScript = m_realpathSeed.m_strName;
+         pinstance->m_strDebugThisScript = m_filesystemcacheitemSeed.m_strName2;
 
          pinstance->dinit();
 
@@ -647,13 +648,13 @@ namespace dynamic_source
    }
 
 
-   ::payload script_manager::get_output_internal(::dynamic_source::script_interface* pinstanceParent, const programming::real_path& realpath)
+   ::payload script_manager::get_output_internal(::dynamic_source::script_interface* pinstanceParent, const ::file_system_cache_item& filesystemcacheitem)
    {
 
 //      string strName = ::str::get_word(scopedstrNameParam, "?");
 
 
-      if (!realpath.is_ok())
+      if (!filesystemcacheitem.is_ok())
       {
 
          if (pinstanceParent != nullptr)
@@ -699,7 +700,7 @@ namespace dynamic_source
 
                timeGetHereStart.Now();
 
-               pinstance = get(realpath, pscript);
+               pinstance = get(filesystemcacheitem, pscript);
 
                timeGetHereEnd.Now();
 
@@ -708,14 +709,14 @@ namespace dynamic_source
                if (pinstanceParent)
                {
 
-                  //if (realpath.begins_eat(m_pathNetnodePath))
+                  //if (filesystemcacheitem.begins_eat(m_pathNetnodePath))
                   //{
 
                   //   strName.begins_eat("/net/");
 
                   //}
 
-                  ::string strName = realpath.m_strName;
+                  ::string strName = filesystemcacheitem.m_strName2;
 
                   if (strName.begins_eat(m_pathNetnodePath))
                   {
@@ -777,7 +778,7 @@ namespace dynamic_source
 
                      pinstanceParent->m_strDebugRequestUri = pinstanceParent->m_pmain->netnodesocket()->m_request.m_strRequestUri;
 
-                     pinstanceParent->m_strDebugThisScript = realpath.m_strName;
+                     pinstanceParent->m_strDebugThisScript = filesystemcacheitem.m_strName2;
 
                      ::pointer<::dynamic_source::ds_script>pdsscript = pscript;
 
@@ -950,12 +951,12 @@ namespace dynamic_source
    }
 
 
-   void script_manager::run(const programming::real_path& realpath)
+   void script_manager::run(const ::file_system_cache_item& filesystemcacheitem)
    {
 
       auto pmemfile = create_memory_file();
 
-      script_instance* pinstance = get(realpath);
+      script_instance* pinstance = get(filesystemcacheitem);
 
       if (pinstance != nullptr)
       {
@@ -1036,7 +1037,7 @@ namespace dynamic_source
       try
       {
 
-         m_pmanager->fs_cache()->clear_include_matches(path);
+         m_pmanager->clear_file_system_cache_item(path);
 
       }
       catch (...)
@@ -1060,19 +1061,21 @@ namespace dynamic_source
    }
 
 
-   ::file::real_path script_manager::_real_path2(const ::file::path& strBase, const ::file::path& str)
+   ::file_system_cache_item script_manager::get_real_path2(const ::file::path& strBase, const ::file::path& str)
    {
       
       ::file::path strRealPath = strBase / str;
 
-      auto realpath = get_script_path(strRealPath);
+      auto filesystemcacheitem = netnode_file_path(strRealPath);
 
-      if (fs_cache()->include_matches_file_exists(realpath))
-         return realpath;
-      else if (fs_cache()->include_matches_is_dir(realpath))
-         return realpath;
-      else
-         return {};
+      return filesystemcacheitem;
+
+      //if (include_matches_file_exists(filesystemcacheitem))
+      //   return filesystemcacheitem;
+      //else if (include_matches_is_dir(filesystemcacheitem))
+      //   return filesystemcacheitem;
+      //else
+      //   return {};
    }
 
    // #ifdef WINDOWS
@@ -1083,7 +1086,7 @@ namespace dynamic_source
    // #endif
 
 
-   ::file::real_path script_manager::_real_path(const ::file::path& str)
+   ::file_system_cache_item script_manager::_real_path(const ::file::path& str)
    {
 
       //#ifdef WINDOWS
@@ -1103,16 +1106,16 @@ namespace dynamic_source
       if (file_path_is_absolute(str))
       {
 
-         ::file::real_path realpath;
+         ::file_system_cache_item filesystemcacheitem;
 
-         realpath.m_pathReal = str;
+         filesystemcacheitem.m_pathReal = str;
 
-         realpath.m_strName = str;
+         filesystemcacheitem.m_strName = str;
 
-         if (fs_cache()->include_matches_file_exists(realpath))
+         if (include_matches_file_exists(filesystemcacheitem))
          {
           
-            return realpath;
+            return filesystemcacheitem;
 
          }
 
@@ -1129,15 +1132,6 @@ namespace dynamic_source
    }
 
    
-   ::programming::file_system_cache* script_manager::fs_cache()
-   {
-
-      return m_pfilesystemcache;
-
-   }
-
-
-
    ::pointer<::dynamic_source::session>script_manager::get_session(const ::scoped_string& scopedstrId)
    {
 
@@ -1297,18 +1291,18 @@ namespace dynamic_source
    {
    }
 
-   void script_manager::register_plugin(const ::scoped_string & scopedstrHost, const programming::real_path& realpath, script* pscript)
+   void script_manager::register_plugin(const ::scoped_string & scopedstrHost, const ::file_system_cache_item& filesystemcacheitem, script* pscript)
    {
 
       plugin_map_item item;
 
       item.m_strHost = scopedstrHost;
-      item.m_strScript = realpath.m_pathReal;
-      item.m_strPlugin = realpath.m_strName;
+      item.m_strScript = filesystemcacheitem.m_pathReal;
+      item.m_strPlugin = filesystemcacheitem.m_strName;
 
       m_pluginmapitema.add(___new plugin_map_item(item));
 
-      m_pcache->register_script(realpath, pscript);
+      m_pcache->register_script(filesystemcacheitem, pscript);
 
 
    }
@@ -1661,7 +1655,7 @@ namespace dynamic_source
    }
 
 
-   ::file::path script_manager::get_script_path(const ::file::path& strName, const ::scoped_string & scopedstrModifier)
+   ::file::path script_manager::netnode_file_path(const ::file::path& strName, const ::scoped_string & scopedstrModifier)
    {
 
       ::file::path strTransformName = strName;

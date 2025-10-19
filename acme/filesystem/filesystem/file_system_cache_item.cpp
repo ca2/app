@@ -1,11 +1,24 @@
 // Created by camilo on 2025-10-19 17:01 <3ThomasBorregaardSørensen!! ThomasKanGodLideTalFem.
 // From programming by camilo on 2025-10-19 17:27 <3ThomasBorregaardSørensen!! ThomasKanGodLideTalFem.
 #include "framework.h"
-#include "real_path.h"
+#include "file_system_cache_item.h"
 
 
-namespace programming
+
+
+file_system_cache_item::file_system_cache_item()
 {
+
+
+}
+   
+
+file_system_cache_item::~file_system_cache_item()
+{
+
+
+}
+
 
 
    //class CLASS_DECL_APP_PROGRAMMING real_path
@@ -27,10 +40,5 @@ namespace programming
    //   }
 
    //};
-
-
-} // namespace programming
-
-
 
 

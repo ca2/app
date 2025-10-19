@@ -62,7 +62,7 @@ namespace dynamic_source
       virtual ::file::file * output_file();
 
 
-      virtual programming::real_path get_script_path(const ::scoped_string& scopedstrName);
+      virtual ::file_system_cache_item netnode_file_path(const ::scoped_string& scopedstrName);
 
 
 

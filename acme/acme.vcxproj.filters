@@ -1188,12 +1188,6 @@
     <ClInclude Include="prototype\mathematics\mathematics.h">
       <Filter>Header Files\prototype\mathematics</Filter>
     </ClInclude>
-    <ClInclude Include="filesystem\filesystem\acme_directory.h">
-      <Filter>Header Files\filesystem\filesystem</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\filesystem\acme_path.h">
-      <Filter>Header Files\filesystem\filesystem</Filter>
-    </ClInclude>
     <ClInclude Include="memory\counter.h">
       <Filter>Header Files\memory</Filter>
     </ClInclude>
@@ -1310,9 +1304,6 @@
     </ClInclude>
     <ClInclude Include="memory\_config.h">
       <Filter>Header Files\memory</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\filesystem\acme_file.h">
-      <Filter>Header Files\filesystem\filesystem</Filter>
     </ClInclude>
     <ClInclude Include="filesystem\filesystem\file_path.h">
       <Filter>Header Files\filesystem\filesystem</Filter>
@@ -3360,12 +3351,6 @@
     <ClInclude Include="filesystem\filesystem\_impl2.h">
       <Filter>Header Files\filesystem\filesystem</Filter>
     </ClInclude>
-    <ClInclude Include="filesystem\filesystem\dir_context.h">
-      <Filter>Header Files\filesystem\filesystem</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\filesystem\dir_system.h">
-      <Filter>Header Files\filesystem\filesystem</Filter>
-    </ClInclude>
     <ClInclude Include="filesystem\filesystem\dir_system_heap.h">
       <Filter>Header Files\filesystem\filesystem</Filter>
     </ClInclude>
@@ -4257,10 +4242,37 @@
     <ClInclude Include="operating_system\windows_common\networking.h">
       <Filter>Header Files\operating_system\windows_common</Filter>
     </ClInclude>
-    <ClInclude Include="filesystem\filesystem\real_path.h">
+    <ClInclude Include="filesystem\filesystem\file_system_cache_item.h">
       <Filter>Header Files\filesystem\filesystem</Filter>
     </ClInclude>
     <ClInclude Include="filesystem\filesystem\file_system_cache.h">
+      <Filter>Header Files\filesystem\filesystem</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filesystem\file_system_interface.h">
+      <Filter>Header Files\filesystem\filesystem</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filesystem\file_system_composite.h">
+      <Filter>Header Files\filesystem\filesystem</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filesystem\file_system_item.h">
+      <Filter>Header Files\filesystem\filesystem</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filesystem\_format.h">
+      <Filter>Header Files\filesystem\filesystem</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filesystem\aaa_dir_system.h">
+      <Filter>Header Files\filesystem\filesystem</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filesystem\aaa_file_system.h">
+      <Filter>Header Files\filesystem\filesystem</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filesystem\directory_context.h">
+      <Filter>Header Files\filesystem\filesystem</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filesystem\directory_system.h">
+      <Filter>Header Files\filesystem\filesystem</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filesystem\path_system.h">
       <Filter>Header Files\filesystem\filesystem</Filter>
     </ClInclude>
   </ItemGroup>
@@ -6104,7 +6116,16 @@
     <ClCompile Include="filesystem\filesystem\file_system_cache.cpp">
       <Filter>Source Files\filesystem\filesystem</Filter>
     </ClCompile>
-    <ClCompile Include="filesystem\filesystem\real_path.cpp">
+    <ClCompile Include="filesystem\filesystem\file_system_cache_item.cpp">
+      <Filter>Source Files\filesystem\filesystem</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filesystem\file_system_interface.cpp">
+      <Filter>Source Files\filesystem\filesystem</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filesystem\file_system_composite.cpp">
+      <Filter>Source Files\filesystem\filesystem</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filesystem\file_system_item.cpp">
       <Filter>Source Files\filesystem\filesystem</Filter>
     </ClCompile>
   </ItemGroup>

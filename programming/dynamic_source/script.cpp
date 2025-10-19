@@ -41,7 +41,7 @@ namespace dynamic_source
    script::script()
    {
 
-      m_pmanager = nullptr;
+      m_pmanager2 = nullptr;
 
       m_bNew = true;
 
@@ -120,40 +120,50 @@ namespace dynamic_source
    }
 
 
-   programming::real_path script::get_script_path(const ::scoped_string& scopedstrName)
+   void script::set_manager(script_manager* pmanager)
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      m_pmanager2 = pmanager;
 
-      auto & realpath = m_mapScriptPath[scopedstrName];
-
-      if (!realpath.is_ok())
-      {
-
-         realpath = m_pmanager->get_script_path(scopedstrName);
-
-      }
-
-      return realpath;
+      m_pfilesysteminterface = pmanager;
 
    }
 
 
-   programming::real_path script::real_path2(const ::scoped_string& scopedstrBase, const ::scoped_string& scopedstr)
+   ::file_system_cache_item script::netnode_file_path(const ::scoped_string& scopedstrName)
    {
 
       _synchronous_lock synchronouslock(this->synchronization());
 
-      auto& realpath = m_mapRealPath2[scopedstrBase][scopedstr];
+      auto & filesystemcacheitem = m_mapScriptPath[scopedstrName];
 
-      if (!realpath.is_ok())
+      if (!filesystemcacheitem.is_ok())
       {
 
-         realpath = m_pmanager->_real_path2(scopedstrBase, scopedstr);
+         filesystemcacheitem = m_pmanager2->netnode_file_path(scopedstrName);
 
       }
 
-      return realpath;
+      return filesystemcacheitem;
+
+   }
+
+
+   ::file_system_cache_item script::real_path2(const ::scoped_string& scopedstrBase, const ::scoped_string& scopedstr)
+   {
+
+      _synchronous_lock synchronouslock(this->synchronization());
+
+      auto& filesystemcacheitem = m_mapRealPath2[scopedstrBase][scopedstr];
+
+      if (!filesystemcacheitem.is_ok())
+      {
+
+         filesystemcacheitem = m_pmanager2->_real_path2(scopedstrBase, scopedstr);
+
+      }
+
+      return filesystemcacheitem;
 
    }
 
@@ -240,7 +250,7 @@ namespace dynamic_source
 
       }
 
-      bool bManagerShouldBuild = m_pmanager->should_build(m_strSourcePath);
+      bool bManagerShouldBuild = m_pmanager2->should_build(m_strSourcePath);
 
       if (bManagerShouldBuild)
       {
@@ -290,8 +300,8 @@ namespace dynamic_source
       auto pprimitive = psystem->prototype();
 
       return (m_timeLastBuildTime.elapsed()) > 
-         m_pmanager->m_timeBuildInterval +
-         pprimitive->random(0_s, m_pmanager->m_timeTimeRandomInterval);
+         m_pmanager2->m_timeBuildInterval +
+         pprimitive->random(0_s, m_pmanager2->m_timeTimeRandomInterval);
    }
 
 
@@ -457,7 +467,7 @@ namespace dynamic_source
 
          øconstruct(m_plibrary);
 
-         string strStagePath = m_pmanager->get_full_stage_path(m_strScriptPath);
+         string strStagePath = m_pmanager2->get_full_stage_path(m_strScriptPath);
 
          file_system()->copy(strStagePath, m_strScriptPath, true);
 
@@ -540,7 +550,7 @@ namespace dynamic_source
 
          m_plibrary->close();
 
-         string strStagePath = m_pmanager->get_stage_path(m_strScriptPath);
+         string strStagePath = m_pmanager2->get_stage_path(m_strScriptPath);
 
          m_lpfnCreateInstance = (NET_NODE_CREATE_INSTANCE_PROC) nullptr;
 
@@ -662,7 +672,7 @@ namespace dynamic_source
 
          }
 
-         m_pmanager->m_pcompiler->compile(this);
+         m_pmanager2->m_pcompiler->compile(this);
 
          str = m_strError;
 
@@ -718,9 +728,9 @@ namespace dynamic_source
 
       {
 
-         _synchronous_lock synchronouslock(m_pmanager->m_pmutexShouldBuild, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+         _synchronous_lock synchronouslock(m_pmanager2->m_pmutexShouldBuild, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-         m_pmanager->m_mapShouldBuild2[m_strSourcePath] = false;
+         m_pmanager2->m_mapShouldBuild2[m_strSourcePath] = false;
 
       }
 

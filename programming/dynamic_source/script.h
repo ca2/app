@@ -2,7 +2,8 @@
 
 
 ////#include "acme/prototype/prototype/object.h"
-#include "programming/real_path.h"
+#include "acme/filesystem/filesystem/file_system_cache.h"
+#include "acme/filesystem/filesystem/file_system_cache_item.h"
 
 
 namespace dynamic_source
@@ -10,21 +11,22 @@ namespace dynamic_source
 
 
    class CLASS_DECL_APP_PROGRAMMING script :
-      virtual public ::object
+      virtual public ::object,
+      virtual public ::file_system_cache
    {
    public:
 
 
-      script_manager *                                   m_pmanager;
+      script_manager *                                   m_pmanager2;
       //string                                             m_strName;
       ::file::path                                       m_path;
       memory_file_pointer                                m_pfileError;
       ::write_text_stream                                m_textstreamError;
       string                                             m_strError;
       bool                                               m_bNew;
-      ::string_map < programming::real_path >                       m_mapScriptPath;
-      ::string_map < programming::real_path >                       m_mapRealPath1;
-      ::string_map < ::string_map < programming::real_path > >      m_mapRealPath2;
+      ::string_map < ::file_system_cache_item >                       m_mapScriptPath;
+      ::string_map < ::file_system_cache_item >                       m_mapRealPath1;
+      ::string_map < ::string_map < ::file_system_cache_item > >      m_mapRealPath2;
 
       script();
       ~script() override;
@@ -44,8 +46,11 @@ namespace dynamic_source
       virtual bool HasCompileOrLinkError();
 
 
-      virtual programming::real_path get_script_path(const ::scoped_string& scopedstrName);
-      virtual programming::real_path real_path2(const ::scoped_string& scopedstrBase, const ::scoped_string& scopedstr);
+      virtual void set_manager(script_manager* pmanager);
+
+
+      virtual ::file_system_cache_item netnode_file_path(const ::scoped_string& scopedstrName);
+      virtual ::file_system_cache_item real_path2(const ::scoped_string& scopedstrBase, const ::scoped_string& scopedstr);
 
    };
 

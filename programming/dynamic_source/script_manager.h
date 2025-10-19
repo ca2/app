@@ -6,7 +6,8 @@
 #include "acme/prototype/geometry2d/size.h"
 #include "apex/message/channel.h"
 #include "acme/filesystem/watcher/listener.h"
-#include "programming/real_path.h"
+#include "acme/filesystem/filesystem/file_system_cache_item.h"
+#include "acme/filesystem/filesystem/file_system_cache.h"
 
 
 namespace dynamic_source
@@ -16,7 +17,8 @@ namespace dynamic_source
 
 
    class CLASS_DECL_APP_PROGRAMMING script_manager :
-      virtual public ::channel
+      virtual public ::channel,
+      virtual public ::file_system_cache
    {
    public:
 
@@ -136,12 +138,12 @@ namespace dynamic_source
 
 
       string                                                m_strSeed1;
-      programming::real_path                                           m_realpathSeed;
+      ::file_system_cache_item                              m_filesystemcacheitemSeed;
 
 
       bool                                                  m_bCompiler;
       class ::time                                          m_timeSessionExpiration;
-      ::pointer < ::programming::file_system_cache >        m_pfilesystemcache;
+      ///::pointer < ::programming::file_system_cache >        m_pfilesystemcache;
 
       script_manager();
       ~script_manager() override;
@@ -157,20 +159,20 @@ namespace dynamic_source
 
 
 
-      virtual ::programming::file_system_cache* fs_cache();
+      //virtual ::programming::file_system_cache* fs_cache();
 
       ::pointer<::dynamic_source::session>get_session(const ::scoped_string & scopedstrId);
 
-      virtual programming::real_path get_script_path(const ::scoped_string& scopedstrName);
+      virtual ::file_system_cache_item netnode_file_path(const ::scoped_string& scopedstrName);
 
       //::pointer<script_instance>get(const ::scoped_string & scopedstrName);
       //::pointer<script_instance>get(const ::scoped_string & scopedstrName, ::pointer<script> & pscript);
-      ::pointer<script_instance>get(const programming::real_path & realpath);
-      ::pointer<script_instance>get(const programming::real_path & realpath, ::pointer<script>& pscript);
+      ::pointer<script_instance>get(const ::file_system_cache_item & filesystemcacheitem);
+      ::pointer<script_instance>get(const ::file_system_cache_item & filesystemcacheitem, ::pointer<script>& pscript);
       virtual void handle(::dynamic_source::httpd_socket * psocket);
       //::payload get_output_internal(::dynamic_source::script_interface * pinstanceParent, const ::scoped_string & scopedstrName);
-      ::payload get_output_internal(::dynamic_source::script_interface* pinstanceParent, const programming::real_path& realpath);
-      void run(const programming::real_path& realpath);
+      ::payload get_output_internal(::dynamic_source::script_interface* pinstanceParent, const ::file_system_cache_item& filesystemcacheitem);
+      void run(const ::file_system_cache_item& filesystemcacheitem);
 
       void LoadEnv();
 
@@ -179,8 +181,9 @@ namespace dynamic_source
 
       //static unsigned int c_cdecl clear_include_matches_FolderWatchThread(LPVOID lpParam); // thread procedure
 
-      virtual ::file::real_path _real_path(const ::file::path & str);
-      virtual ::file::real_path _real_path2(const ::file::path & strBase,const ::file::path & str);
+      ::file::path get_real_path(const ::scoped_string& scopedstrName) override;
+      //virtual ::file_system_cache_item _real_path(const ::file::path & str);
+      virtual ::file::path get_real_path2(const ::file::path & strBase,const ::file::path & str);
 
 
       ::pointer<::crypto::rsa>get_rsa_key();
@@ -192,7 +195,7 @@ namespace dynamic_source
 
       virtual void on_load_env();
 
-      virtual void register_plugin(const ::scoped_string & scopedstrHost, const programming::real_path& realpath, script * pscript);
+      virtual void register_plugin(const ::scoped_string & scopedstrHost, const ::file_system_cache_item& filesystemcacheitem, script * pscript);
 
 
       virtual string get_root_plugin();
@@ -215,7 +218,7 @@ namespace dynamic_source
 
       virtual bool should_build(const ::file::path & strScript);
 
-      virtual ::file::path get_script_path(const ::file::path & strName, const ::scoped_string & scopedstrModifier);
+      virtual ::file::path netnode_file_path(const ::file::path & strName, const ::scoped_string & scopedstrModifier);
 
    };
 

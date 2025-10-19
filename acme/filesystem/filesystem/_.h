@@ -17,17 +17,9 @@ namespace filesystem
 } // namespace filesystem
 
 
+class file_system_interface;
 class file_system_cache;
-
-
-namespace file
-{
-
-   
-   class real_path;
-
-
-} // namespace file
+class file_system_cache_item;
 
 
 

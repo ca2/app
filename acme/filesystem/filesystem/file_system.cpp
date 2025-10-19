@@ -27,6 +27,8 @@ CLASS_DECL_ACME void exception_message_box(::particle* pparticle, ::exception& e
 file_system::file_system()
 {
 
+   m_mapFileSystemItem.InitHashTable(256 * 1024 - 1);
+
 }
 
 
@@ -1763,11 +1765,16 @@ void file_system::_erase(const ::file::path& path)
 // }
 //
 
+
+
+
 void file_system::initialize(::particle* pparticle)
 {
 
    /*auto estatus = */
    ::object::initialize(pparticle);
+
+   defer_create_synchronization();
 
    //if(!estatus)
    //{
@@ -1810,3 +1817,29 @@ void file_system::init_system()
 //   return ::success;
 //
 //}
+
+
+::file_system_cache_item file_system::file_system_item(const ::scoped_string& scopedstrName, ::file_system_interface* pfilesysteminterface)
+{
+
+   _synchronous_lock synchronouslock(m_pmutexFileSystemItem, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+
+   auto& pfilesystemitem = m_mapFileSystemItem[scopedstrName];
+
+   if (!pfilesystemitem)
+   {
+
+      øconstruct_new(pfilesystemitem);
+
+      pfilesystemitem->m_pathReal2 = pfilesysteminterface->get_real_path(scopedstrName);
+
+      pfilesystemitem->m_pfilesysteminterface = pfilesysteminterface;
+
+   }
+
+   return { scopedstrName, pfilesystemitem};
+
+}
+
+
+

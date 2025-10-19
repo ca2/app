@@ -529,7 +529,7 @@ namespace dynamic_source
 
 #endif
 
-      pscript->m_strScriptPath = m_pmanager->get_script_path(strName, strRndTitle);
+      pscript->m_strScriptPath = m_pmanager->netnode_file_path(strName, strRndTitle);
 
       try
       {
@@ -2742,9 +2742,9 @@ namespace dynamic_source
 
       strInclude.case_insensitive_ends_eat(".ds");
 
-      auto realpath = m_pmanager->get_script_path(strInclude);
+      auto filesystemcacheitem = m_pmanager->netnode_file_path(strInclude);
 
-      ::pointer<script_instance>pinstance = m_pmanager->get(realpath);
+      ::pointer<script_instance>pinstance = m_pmanager->get(filesystemcacheitem);
 
       if (pinstance)
       {

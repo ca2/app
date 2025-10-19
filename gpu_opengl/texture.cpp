@@ -41,9 +41,9 @@ namespace gpu_opengl
 
       auto size = block.size();
 
-      int w, h, numChannels;
+      int width, height, channels;
 
-      auto imagedata = stbi_loadf_from_memory(data, size, &w, &h, &numChannels, 0);
+      auto imagedata = stbi_loadf_from_memory(data, size, &width, &height, &channels, 0);
 
       if (!imagedata)
       {
@@ -57,7 +57,7 @@ namespace gpu_opengl
       }
 
       // m_etype = etype;
-      m_rectangleTarget = ::int_rectangle(::int_size(w, h));
+      m_rectangleTarget = ::int_rectangle(::int_size(width, height));
 
       m_bWithDepth = false;
 
@@ -68,7 +68,25 @@ namespace gpu_opengl
       glBindTexture(m_gluType, m_gluTextureID);
       GLCheckError("");
 
-      glTexImage2D(m_gluType, 0, GL_RGB16F, w, h, 0, GL_RGB, GL_FLOAT, imagedata);
+      float *rgbaData = nullptr;
+      if (channels == 3)
+      {
+
+         size_t pixelCount = (size_t)width * height;
+         rgbaData = (float *)malloc(pixelCount * 4 * sizeof(float));
+
+         for (size_t i = 0; i < pixelCount; ++i)
+         {
+            rgbaData[i * 4 + 0] = imagedata[i * 3 + 0];
+            rgbaData[i * 4 + 1] = imagedata[i * 3 + 1];
+            rgbaData[i * 4 + 2] = imagedata[i * 3 + 2];
+            rgbaData[i * 4 + 3] = 1.0f; // synthesized alpha
+         }
+         channels = 4;
+      }
+
+      //glTexImage2D(m_gluType, 0, GL_RGB16F, w, h, 0, GL_RGB, GL_FLOAT, imagedata);
+      glTexImage2D(m_gluType, 0, GL_RGBA32F, width, height, 0, GL_RGBA, GL_FLOAT, rgbaData ? rgbaData : imagedata);
       GLCheckError("");
 
       glTexParameteri(m_gluType, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
@@ -83,8 +101,96 @@ namespace gpu_opengl
 
       stbi_image_free(imagedata);
 
+      if (rgbaData)
+      {
+
+         free(rgbaData);
+
+      }
+
    }
 
+   
+   void texture::initialize_with_image_data(::gpu::renderer *pgpurenderer, const ::int_rectangle &rectangleTarget,
+                                            int numChannels, bool bSrgb, const void *pdata, enum_type etype)
+   {
+
+      //  if (m_rectangleTarget == rectangleTarget)
+      //{
+
+      //   return;
+      //}
+
+                GLenum format;
+      
+          switch (numChannels)
+          {
+             case 1:
+                format = GL_RED;
+                break;
+             case 3:
+                format = GL_RGB;
+                break;
+             case 4:
+                format = GL_RGBA;
+                break;
+          }
+      
+          GLenum internalFormat = format;
+      
+          // account for sRGB textures here
+          //
+          // diffuse textures are in sRGB space (non-linear)
+          // metallic/roughness/normals are usually in linear
+          // AO depends
+          if (bSrgb)
+          {
+             if (internalFormat == GL_RGB)
+             {
+                internalFormat = GL_SRGB;
+             }
+             else if (internalFormat == GL_RGBA)
+             {
+                internalFormat = GL_SRGB_ALPHA;
+             }
+          }
+      
+
+      if (etype == e_type_cube_map)
+      {
+
+         m_gluType = GL_TEXTURE_CUBE_MAP;
+      }
+      else
+      {
+
+         m_gluType = GL_TEXTURE_2D;
+      }
+
+      auto sizeCurrent = m_rectangleTarget.size();
+
+      ::gpu::texture::initialize_image_texture(pgpurenderer, rectangleTarget, false, {} , etype);
+
+      ::gpu::context_lock contextlock(m_pgpurenderer->m_pgpucontext);
+
+
+      glGenTextures(1, &m_gluTextureID);
+      glBindTexture(GL_TEXTURE_2D, m_gluTextureID);
+      m_gluType = GL_TEXTURE_2D;
+      // generate the texture
+      glTexImage2D(GL_TEXTURE_2D, 0, internalFormat, m_rectangleTarget.width(), m_rectangleTarget.height(), 0,
+                   format, GL_UNSIGNED_BYTE,
+                   pdata);
+       glGenerateMipmap(GL_TEXTURE_2D);
+
+      // texture wrapping/filtering options
+       glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+       glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+       glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR); // image is resized using bilinear filtering
+       glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR); // image is enlarged using bilinear filtering
+
+
+   }
 
    void texture::initialize_image_texture(::gpu::renderer *prenderer, const ::int_rectangle &rectangleTarget,
                                           bool bWithDepth, const ::pointer_array<::image::image> &imagea,

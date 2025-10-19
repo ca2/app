@@ -19,7 +19,9 @@ namespace gpu
       mipmap_cubemap_framebuffer::mipmap_cubemap_framebuffer()
       {
 
-
+         m_uCurrentMip = 0;
+            
+            m_uCurrentFace = 0;
       }
 
 
@@ -51,6 +53,8 @@ namespace gpu
          m_ptexture->m_rectangleTarget.right()=width;
          m_ptexture->m_rectangleTarget.bottom()=height;
          m_ptexture->m_mipsLevel=0;
+         m_ptexture->m_bRenderTarget = true;
+         m_ptexture->m_bShaderResourceView = true;
 
          on_initialize_mipmap_cubemap_framebuffer();
 

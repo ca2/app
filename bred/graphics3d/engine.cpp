@@ -152,7 +152,9 @@ namespace graphics3d
    void engine::create_global_ubo(::gpu::context* pgpucontext)
    {
 
-      auto iGlobalUboSize = m_pimmersionlayer->m_pscene->global_ubo().size(true);
+      pgpucontext->layout_push_constants(m_pimmersionlayer->m_pscene->global_ubo());
+
+      auto iGlobalUboSize = m_pimmersionlayer->m_pscene->global_ubo().m_blockWithoutSamplers.size();
 
       if (iGlobalUboSize > 0)
       {
@@ -672,7 +674,7 @@ namespace graphics3d
          
          auto pcontext = gpu_context();
 
-         pcontext->update_global_ubo(pscene->global_ubo().m_blockWithSamplers);
+         pcontext->update_global_ubo(pscene->global_ubo().block_with_samplers());
 
       }
 

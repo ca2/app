@@ -4,7 +4,7 @@
 
 
 #include "bred/graphics3d/scene_object.h"
-
+#include "bred/gpu/properties.h"
 
 //#include "gpu/ibl/brdfconvolutionframebuffer.h"
 //#include "gpu/ibl/mipmap_cubemap_framebuffer.h"
@@ -29,6 +29,19 @@ namespace gpu
          virtual public ::graphics3d::scene_object
       {
       public:
+
+         struct specular_env_map_push_constants
+         {
+            
+            ::glm::mat4 model;
+            ::glm::mat4 view;
+            ::glm::mat4 projection;
+
+            float roughness;
+            float padding1;
+            float padding2;
+            float padding3;
+         };
 
 
          // prefiltered environment map
@@ -79,7 +92,7 @@ namespace gpu
          /**
           * Render the pre-filtered environment map.
           */
-         virtual void computePrefilteredEnvMap();
+         virtual void computePrefilteredEnvMap(::gpu::command_buffer *pgpucommandbuffer);
 
 
          /**
@@ -112,3 +125,4 @@ namespace gpu
 
 
 
+DECLARE_GPU_PROPERTIES(CLASS_DECL_GPU, ::gpu::ibl::specular_map::specular_env_map_push_constants);

@@ -238,7 +238,7 @@ namespace gpu_opengl
    void shader::bind(::gpu::command_buffer *pgpucommandbuffer, ::gpu::texture *pgputextureTarget)
    {
 
-      _bind(pgpucommandbuffer);
+      _bind(pgpucommandbuffer, ::gpu::e_scene_none);
 
       ::cast < texture > ptexture = pgputextureTarget;
 
@@ -288,7 +288,7 @@ namespace gpu_opengl
    }
 
 
-   void shader::_bind(::gpu::command_buffer *pgpucommandbuffer)
+   void shader::_bind(::gpu::command_buffer *pgpucommandbuffer, ::gpu::enum_scene escene)
    {
 
       auto pgpucontext = m_pgpurenderer->m_pgpucontext;
@@ -812,7 +812,7 @@ namespace gpu_opengl
    void shader::push_properties(::gpu::command_buffer *pgpucommandbuffer)
    {
 
-      auto p = m_propertiesPush.m_pproperties;
+      auto p = m_propertiesPushShared.m_pproperties;
 
       int iLen = 0;
 
@@ -833,28 +833,28 @@ namespace gpu_opengl
          switch (p->m_etype)
          {
          case ::gpu::e_type_int:
-               _set_int(strName, *(int *)(m_propertiesPush.data(true) + iLen));
+               _set_int(strName, *(int *)(m_propertiesPushShared.data(true) + iLen));
             break;
          case ::gpu::e_type_float:
-            _set_float(strName, *(float *)(m_propertiesPush.data(true) + iLen));
+            _set_float(strName, *(float *)(m_propertiesPushShared.data(true) + iLen));
             break;
          case ::gpu::e_type_seq2:
-            _set_vec2(strName, *(glm::vec2 *)(m_propertiesPush.data(true) + iLen));
+            _set_vec2(strName, *(glm::vec2 *)(m_propertiesPushShared.data(true) + iLen));
             break;
          case ::gpu::e_type_seq3:
-            _set_vec3(strName, *(glm::vec3 *)(m_propertiesPush.data(true) + iLen));
+            _set_vec3(strName, *(glm::vec3 *)(m_propertiesPushShared.data(true) + iLen));
             break;
          case ::gpu::e_type_seq4:
-            _set_vec4(strName, *(glm::vec4 *)(m_propertiesPush.data(true) + iLen));
+            _set_vec4(strName, *(glm::vec4 *)(m_propertiesPushShared.data(true) + iLen));
             break;
          case ::gpu::e_type_mat2:
-            _set_mat2(strName, *(glm::mat2 *)(m_propertiesPush.data(true) + iLen));
+            _set_mat2(strName, *(glm::mat2 *)(m_propertiesPushShared.data(true) + iLen));
             break;
          case ::gpu::e_type_mat3:
-            _set_mat3(strName, *(glm::mat3 *)(m_propertiesPush.data(true) + iLen));
+            _set_mat3(strName, *(glm::mat3 *)(m_propertiesPushShared.data(true) + iLen));
             break;
          case ::gpu::e_type_mat4:
-            _set_mat4(strName, *(glm::mat4 *)(m_propertiesPush.data(true) + iLen));
+            _set_mat4(strName, *(glm::mat4 *)(m_propertiesPushShared.data(true) + iLen));
             break;
         default:
         throw ::exception(error_not_expected);
@@ -910,7 +910,7 @@ namespace gpu_opengl
    void shader::set_bool(const ::scoped_string& scopedstrName, bool value)
    {
 
-      if (m_propertiesPush.m_pproperties)
+      if (m_propertiesPushShared.m_pproperties)
       {
 
          ::gpu::shader::set_bool(scopedstrName, value);
@@ -929,7 +929,7 @@ namespace gpu_opengl
    void shader::set_int(const ::scoped_string& scopedstrName, int value)
    {
 
-      if (m_propertiesPush.m_pproperties)
+      if (m_propertiesPushShared.m_pproperties)
       {
 
          ::gpu::shader::set_int(scopedstrName, value);
@@ -948,7 +948,7 @@ namespace gpu_opengl
    void shader::set_float(const ::scoped_string& scopedstrName, float value)
    {
 
-      if (m_propertiesPush.m_pproperties)
+      if (m_propertiesPushShared.m_pproperties)
       {
 
          ::gpu::shader::set_float(scopedstrName, value);
@@ -967,7 +967,7 @@ namespace gpu_opengl
    void shader::set_seq2(const ::scoped_string& scopedstrName, float x, float y)
    {
 
-      if (m_propertiesPush.m_pproperties)
+      if (m_propertiesPushShared.m_pproperties)
       {
 
          ::gpu::shader::set_seq2(scopedstrName, x, y);
@@ -986,7 +986,7 @@ namespace gpu_opengl
    void shader::set_seq2(const ::scoped_string& scopedstrName, const ::glm::vec2& a)
    {
 
-      if (m_propertiesPush.m_pproperties)
+      if (m_propertiesPushShared.m_pproperties)
       {
 
          ::gpu::shader::set_seq2(scopedstrName, a);
@@ -1005,7 +1005,7 @@ namespace gpu_opengl
    void shader::set_seq3(const ::scoped_string& scopedstrName, float x, float y, float z)
    {
 
-      if (m_propertiesPush.m_pproperties)
+      if (m_propertiesPushShared.m_pproperties)
       {
 
          ::gpu::shader::set_seq3(scopedstrName, x, y, z);
@@ -1024,7 +1024,7 @@ namespace gpu_opengl
    void shader::set_seq3(const ::scoped_string& scopedstrName, const ::glm::vec3& a)
    {
 
-      if (m_propertiesPush.m_pproperties)
+      if (m_propertiesPushShared.m_pproperties)
       {
 
          ::gpu::shader::set_seq3(scopedstrName, a);
@@ -1043,7 +1043,7 @@ namespace gpu_opengl
    void shader::set_seq4(const ::scoped_string& scopedstrName, float x, float y, float z, float w)
    {
 
-      if (m_propertiesPush.m_pproperties)
+      if (m_propertiesPushShared.m_pproperties)
       {
 
          ::gpu::shader::set_seq4(scopedstrName, x, y, z, w);
@@ -1062,7 +1062,7 @@ namespace gpu_opengl
    void shader::set_seq4(const ::scoped_string& scopedstrName, const ::glm::vec4& a)
    {
 
-      if (m_propertiesPush.m_pproperties)
+      if (m_propertiesPushShared.m_pproperties)
       {
 
          ::gpu::shader::set_seq4(scopedstrName, a);
@@ -1081,7 +1081,7 @@ namespace gpu_opengl
    void shader::set_mat2(const ::scoped_string& scopedstrName, const ::glm::mat2& a)
    {
 
-      if (m_propertiesPush.m_pproperties)
+      if (m_propertiesPushShared.m_pproperties)
       {
 
          ::gpu::shader::set_mat2(scopedstrName, a);
@@ -1100,7 +1100,7 @@ namespace gpu_opengl
    void shader::set_mat3(const ::scoped_string& scopedstrName, const ::glm::mat3& a)
    {
 
-      if (m_propertiesPush.m_pproperties)
+      if (m_propertiesPushShared.m_pproperties)
       {
 
          ::gpu::shader::set_mat3(scopedstrName, a);
@@ -1119,7 +1119,7 @@ namespace gpu_opengl
    void shader::set_mat4(const ::scoped_string& scopedstrName, const ::glm::mat4& a)
    {
 
-      if (m_propertiesPush.m_pproperties)
+      if (m_propertiesPushShared.m_pproperties)
       {
 
          ::gpu::shader::set_mat4(scopedstrName, a);

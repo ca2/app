@@ -116,15 +116,15 @@ namespace gpu
       //virtual void set_fragment_source_code(const ::scoped_string & scopedstrFragmentSourceCode);
       //virtual void set_model_path(const ::payload & payloadFile);
 
-      virtual ::pointer<::gpu::shader> create_shader(
-         const ::file::path& pathVert,
-         const ::file::path& pathFrag,
-         const ::array<::gpu::shader::enum_descriptor_set_slot>& eslota = {},
-         const ::particle_pointer& pLocalDescriptorSet = {},
-         //const ::particle_pointer& pVertexInput = {},
-         const ::gpu::property* ppropertiesPush = nullptr,
-         ::gpu::input_layout * pinputlayout = nullptr,
-         ::gpu::shader::enum_flag eflag = ::gpu::shader::e_flag_none);
+      //virtual ::pointer<::gpu::shader> create_shader(
+      //   const ::file::path& pathVert,
+      //   const ::file::path& pathFrag,
+      //   const ::array<::gpu::shader::enum_descriptor_set_slot>& eslota = {},
+      //   const ::particle_pointer& pLocalDescriptorSet = {},
+      //   //const ::particle_pointer& pVertexInput = {},
+      //   //const ::gpu::property* ppropertiesPush = nullptr,
+      //   ::gpu::input_layout * pinputlayout = nullptr,
+      //   ::gpu::shader::enum_flag eflag = ::gpu::shader::e_flag_none);
 
 
       //string get_font();

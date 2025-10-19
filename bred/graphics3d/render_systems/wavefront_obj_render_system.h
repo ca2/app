@@ -16,10 +16,10 @@ namespace graphics3d
 
 
 
-   inline ::gpu::properties simple_render_properties()
+   inline const ::gpu::property * simple_render_properties()
    {
 
-      static ::gpu::property s_properties[] =
+      static ::gpu::property s_propertya[] =
       {
          {"modelMatrix", ::gpu::e_type_mat4},
          {"normalMatrix", ::gpu::e_type_mat4},
@@ -27,7 +27,7 @@ namespace graphics3d
 
       };
 
-      return s_properties;
+      return s_propertya;
 
    }
 

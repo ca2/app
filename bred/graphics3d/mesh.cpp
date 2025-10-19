@@ -1,6 +1,7 @@
 #include "framework.h"
 //#include "GLFW/glfw3.h" 
 #include "mesh.h"
+#include "bred/gpu/command_buffer.h"
 #include "bred/gpu/frame.h"
 #include "bred/gpu/texture.h"
 #include "bred/gpu/shader.h"
@@ -66,7 +67,7 @@ namespace graphics3d
          
          auto ptexture = m_texturea[i];
          
-         pshader->bind_source(::gpu::current_frame()->m_pgpucommandbuffer, ptexture, i);
+         pshader->bind_source(::gpu::current_command_buffer(), ptexture, i);
 
          //glActiveTexture(GL_TEXTURE0 + i); // active proper texture unit before binding
          //// retrieve texture number (the N in diffuse_textureN)

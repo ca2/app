@@ -703,14 +703,14 @@ namespace folder_zip
          //
          //         }
 
-         if (strstr(szItem, "certificate") != nullptr)
+     /*    if (strstr(szItem, "certificate") != nullptr)
          {
 
             output_debug_string("certificate!!");
 
          }
 
-         information() << "zipresource://" << szItem;
+         information() << "zipresource://" << szItem;*/
 
          if (function(szItem))
          {

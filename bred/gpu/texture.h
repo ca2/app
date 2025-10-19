@@ -23,6 +23,8 @@ namespace gpu
 
       };
 
+      bool m_bSrgb = false;
+
       int                                 m_iAtlasX;
       int                                 m_iAtlasY;
       int                                 m_iAtlasCurrentRowHeight;
@@ -42,10 +44,11 @@ namespace gpu
       bool                                m_bTransferSrc;
       bool                                m_bCpuRead;
       ::pointer < texture >               m_ptextureDepth;
-
+      bool                                m_bShaderResourceView;
       ::string                            m_strTextureType;
       //::string                            m_strUniform;
-
+      bool m_bRedGreen;
+      bool m_bFloat;
       ::file::path                        m_path;
 
       texture();
@@ -60,6 +63,13 @@ namespace gpu
       void defer_throw_if_cube_map_images_are_not_ok(const ::pointer_array < ::image::image >& imagea);
       
       virtual void initialize_hdr_texture_on_memory(::gpu::renderer *prenderer, const ::block & block);
+      virtual void initialize_with_image_data(
+         ::gpu::renderer *pgpurenderer, 
+         const ::int_rectangle &rectangleTarget,
+         int numChannels,
+         bool bSrgb,
+         const void * pdata,
+         enum_type etype = e_type_image);
       virtual void initialize_image_texture(::gpu::renderer* pgpurenderer, const ::int_rectangle& rectangleTarget, bool bWithDepth, const ::pointer_array < ::image::image >& imagea = {}, enum_type etype = e_type_image);
       virtual void initialize_depth_texture(::gpu::renderer* pgpurenderer, const ::int_rectangle& rectangleTarget);
 

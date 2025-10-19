@@ -2,9 +2,6 @@
 // camilo on 2025-09-26 18:14 <3ThomasBorregaardSorensen!!
 #include "framework.h"
 #include "model.h"
-
-//#include <iostream>
-
 #include "glad/glad.h"
 
 

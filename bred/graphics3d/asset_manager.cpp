@@ -186,7 +186,6 @@ namespace graphics3d
 
       auto pgpucontext = m_pengine->gpu_context();
 
-
       pgpucontext->onBeforePreloadGlobalAssets();
 
       //::property_set modelJson;

@@ -24,6 +24,8 @@ namespace gpu
          //unsigned int m_uWidth, m_uHeight;
          //unsigned int m_uMipWidth, m_uMipHeight;
          //unsigned int m_uMipLevel;
+         unsigned int m_uCurrentMip;
+         unsigned int m_uCurrentFace;
 
          ::pointer < ::gpu::texture > m_ptexture;
 

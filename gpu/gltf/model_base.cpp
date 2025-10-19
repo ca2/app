@@ -1,7 +1,7 @@
 // From model_base.cpp by camilo on 2025-10-10 <3ThomasBorregaardSorensen!!
 #include "framework.h"
 #include "bred/gpu/texture.h"
-#include "gpu/gltf/vertex.h"
+#include "bred/gltf/vertex.h"
 #include "model_base.h"
 
 #include <stb/stb_image.h>

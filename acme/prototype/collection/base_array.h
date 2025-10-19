@@ -1067,6 +1067,9 @@ public:
    TYPE & insert_at(::collection::index nIndex, const TYPE & newElement, ::collection::count nCount = 1);
    TYPE * insert_at(::collection::index nStartIndex, const TYPE * p, ::collection::count nCount = 1);
 
+   TYPE & insert_at_grow(::collection::index nIndex, const TYPE &newElement, ::collection::count nCount = 1);
+   TYPE * insert_at_grow(::collection::index nStartIndex, const TYPE *p, ::collection::count nCount = 1);
+
    TYPE * insert_array_at(::collection::index nStartIndex, const base_array * pNewArray);
 
 
@@ -1989,7 +1992,7 @@ TYPE & base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::insert_at
 }
 
 
-template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
+template<typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY, ::enum_type t_etypeContainer>
 TYPE * base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::insert_at(::collection::index i, const TYPE * pelements, ::collection::count c)
 {
 
@@ -2002,7 +2005,44 @@ TYPE * base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::insert_at
 }
 
 
-template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
+template<typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY, ::enum_type t_etypeContainer>
+TYPE &base_array<TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer>::insert_at_grow(::collection::index i, const TYPE &element,
+                                                                             ::collection::count c)
+{
+
+   ASSERT(i >= 0);
+
+   if (i > this->size())
+   {
+
+      this->set_size(i);
+
+   }
+
+   return this->insert_at(i, element, c);
+
+}
+
+
+template<typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY, ::enum_type t_etypeContainer>
+TYPE *base_array<TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer>::insert_at_grow(::collection::index i,
+                                                                             const TYPE *pelements,
+                                                                             ::collection::count c)
+{
+
+   ASSERT(i >= 0);
+
+   if (i > this->size())
+   {
+
+      this->set_size(i);
+   }
+
+   return this->insert_at(i, pelements, c);
+}
+
+
+template<typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY, ::enum_type t_etypeContainer>
 TYPE * base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::insert_array_at(::collection::index i, const base_array * p)
 {
 

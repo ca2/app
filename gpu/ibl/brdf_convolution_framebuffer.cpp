@@ -44,6 +44,11 @@ namespace gpu
          m_ptexture->m_rectangleTarget.top()=0;
          m_ptexture->m_rectangleTarget.right()=width;
          m_ptexture->m_rectangleTarget.bottom()=height;
+         m_ptexture->m_bRenderTarget = true;
+         m_ptexture->m_bRedGreen = true;
+         m_ptexture->m_bFloat = true;
+         //m_ptexture->m_bWithDepth = true;
+         m_ptexture->m_bShaderResourceView = true;
 
          on_initialize_BrdfConvolutionFramebuffer();
 
@@ -77,7 +82,8 @@ namespace gpu
       void brdf_convolution_framebuffer::on_initialize_BrdfConvolutionFramebuffer()
       {
 
-
+         m_ptexture->initialize_image_texture(m_pgpucontext->m_pgpurenderer, 
+            m_ptexture->m_rectangleTarget, true, {});
 
       }
 

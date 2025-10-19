@@ -26,6 +26,7 @@ namespace gpu
       e_scene_none,
       e_scene_2d,
       e_scene_3d,
+      e_scene_srgb,
 
    };
 

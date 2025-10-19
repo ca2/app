@@ -26,7 +26,12 @@ namespace gpu
       m_bTransferSrc = false;
       m_bCpuRead = false;
       m_bWithDepth = false;
-      m_iLayerCount = 0;
+      m_bShaderResourceView = false;
+      m_iLayerCount = 1;
+      m_mipsLevel = 1;
+      m_iIndex = -1;
+      m_bRedGreen = false;
+      m_bFloat = false;
 
    }
 
@@ -43,6 +48,17 @@ namespace gpu
 
 
    }
+
+
+   void texture::initialize_with_image_data(::gpu::renderer * pgpurenderer,
+                                              const ::int_rectangle & rectangleTarget,
+                                     int numChannels, bool bSrgb, const void * pdata,
+                                     enum_type etype)
+   {
+
+
+         }
+
 
 
    void texture::initialize_image_texture(::gpu::renderer * pgpurenderer, const ::int_rectangle& rectangleTarget, bool bWithDepth, const ::pointer_array < ::image::image >& imagea, enum_type etype)

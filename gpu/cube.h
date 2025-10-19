@@ -23,7 +23,8 @@
 
        //unsigned int m_uVAO, m_uVBO;
 
-       ::gpu::model_data < ::glm::vec3 > m_modeldata;
+       ::gpu::model_data < ::gpu::position3 > m_modeldata;
+       ::pointer<::gpu::model_buffer> m_pmodelbuffer;
 
 
        cube();

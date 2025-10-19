@@ -791,7 +791,7 @@ namespace gpu_opengl
       ///::cast<::gpu_opengl::queue> pqueueGraphics = this->graphics_queue();
       ///
 
-      auto pqueueGraphics = this->graphics_queue();
+      auto pqueueGraphics = m_pgpudevice->graphics_queue();
 
       if (pathFile.case_insensitive_ends(".ktx"))
       {
@@ -956,7 +956,7 @@ namespace gpu_opengl
    }
 
 
-   void context::clear(const ::color::color &color)
+   void context::clear(::gpu::texture * pgputexture, const ::color::color &color)
    {
 
       ::gpu::context_lock contextlock(this);
@@ -1146,7 +1146,7 @@ void main() {
 
 
    //void context::gpu_debug_message(const ::scoped_string& scopedstrMessage)
-   void context::start_debug_happening(const ::scoped_string &scopedstrMessage)
+   void context::start_debug_happening(::gpu::command_buffer * pgpucommandbuffer, const ::scoped_string &scopedstrMessage)
    {
 
       {
@@ -1277,7 +1277,6 @@ void main() {
                m_pgpurenderer,
                ::as_block(full_screen_triangle_vertex_shader),
                ::as_block(full_screen_triangle_fragment_shader),
-               {},
                {},
                {},
                {},

@@ -45,7 +45,6 @@ namespace dynamic_source
 
       m_bNew = true;
 
-      defer_create_synchronization();
 
    }
 
@@ -61,6 +60,9 @@ namespace dynamic_source
    {
 
       //auto estatus = 
+
+      defer_create_synchronization();
+
       
       ::object::on_initialize_particle();
 
@@ -117,6 +119,43 @@ namespace dynamic_source
 
    }
 
+
+   programming::real_path script::get_script_path(const ::scoped_string& scopedstrName)
+   {
+
+      _synchronous_lock synchronouslock(this->synchronization());
+
+      auto & realpath = m_mapScriptPath[scopedstrName];
+
+      if (!realpath.is_ok())
+      {
+
+         realpath = m_pmanager->get_script_path(scopedstrName);
+
+      }
+
+      return realpath;
+
+   }
+
+
+   programming::real_path script::real_path2(const ::scoped_string& scopedstrBase, const ::scoped_string& scopedstr)
+   {
+
+      _synchronous_lock synchronouslock(this->synchronization());
+
+      auto& realpath = m_mapRealPath2[scopedstrBase][scopedstr];
+
+      if (!realpath.is_ok())
+      {
+
+         realpath = m_pmanager->_real_path2(scopedstrBase, scopedstr);
+
+      }
+
+      return realpath;
+
+   }
 
    ds_script::ds_script()
    {
@@ -537,7 +576,7 @@ namespace dynamic_source
 
       }
 
-      pinstance->m_strNote = m_strName;
+      pinstance->m_strNote = m_path;
 
       pinstance->m_pscript2 = this;
 
@@ -630,14 +669,14 @@ namespace dynamic_source
          if (iRetry == 0)
          {
 
-            information() << "Build: " << m_strName;
+            information() << "Build: " << m_path;
             informationf(str);
 
          }
          else
          {
 
-            information() << "Retry("<<iRetry<<"): "<<m_strName<<"\nError: " << str.c_str();
+            information() << "Retry("<<iRetry<<"): "<<m_path<<"\nError: " << str.c_str();
 
          }
 

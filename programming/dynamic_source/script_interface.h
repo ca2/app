@@ -46,7 +46,6 @@ namespace dynamic_source
       void destroy() override;
       virtual void     run() override;
 
-
       virtual void dinit();
       virtual void dprint(const ::scoped_string & scopedstr) override;
       virtual void dprint_recursive(const ::payload & payload);
@@ -61,6 +60,10 @@ namespace dynamic_source
 
 
       virtual ::file::file * output_file();
+
+
+      virtual programming::real_path get_script_path(const ::scoped_string& scopedstrName);
+
 
 
       virtual void on_initialize();

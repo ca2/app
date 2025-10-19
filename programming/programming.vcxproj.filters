@@ -107,6 +107,12 @@
     <ClInclude Include="heating_up_exception.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="file_system_cache.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="real_path.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dynamic_source\exit_exception.cpp">
@@ -162,6 +168,12 @@
     </ClCompile>
     <ClCompile Include="dynamic_source\httpd_listen_socket.cpp">
       <Filter>Source Files\dynamic_source</Filter>
+    </ClCompile>
+    <ClCompile Include="file_system_cache.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="real_path.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

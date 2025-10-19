@@ -38,6 +38,7 @@ namespace dynamic_source
    class session;
 
 
+
 } // namespace dynamic_source
 
 
@@ -67,36 +68,5 @@ namespace netnode
 
 } // namespace netnode
 
-//
-//#include "exit_exception.h"
-//
-//#include "session.h"
-//
-//
-//#include "apex/filesystem/file/html_file.h"
-//
-//
-//#include "library.h"
-//
-//
-//#include "script_interface.h"
-//#include "script_composite.h"
-//#include "script_instance.h"
-//#include "script_main.h"
-//
-//
-//#include "script.h"
-//#include "script_cache.h"
-//#include "script_compiler.h"
-//
-//
-//#include "httpd_socket.h"
-//
-//
-//#include "script_manager.h"
-//
-//
-//#include "_impl.h"
-//
-//
-//
+
+

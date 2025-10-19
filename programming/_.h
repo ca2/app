@@ -17,5 +17,20 @@
 
 #include "introjection/_.h"
 
+#define DS_INCLUDE(NAME) \
+{       \
+   static ::programming::real_path s_realpath = get_script_path((NAME)); \
+   include(s_realpath); \
+}      
 
+
+namespace programming
+{
+
+   
+   class file_system_cache;
+   class real_path;
+
+
+} // namespace programming
 

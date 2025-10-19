@@ -1069,6 +1069,7 @@
     <ClInclude Include="dynamic_source\session.h" />
     <ClInclude Include="dynamic_source\_.h" />
     <ClInclude Include="dynamic_source\_impl.h" />
+    <ClInclude Include="file_system_cache.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="heating_up_exception.h" />
     <ClInclude Include="introjection\compiler.h" />
@@ -1077,6 +1078,7 @@
     <ClInclude Include="programming\compiler.h" />
     <ClInclude Include="programming\_.h" />
     <ClInclude Include="programming\_programming.h" />
+    <ClInclude Include="real_path.h" />
     <ClInclude Include="_.h" />
     <ClInclude Include="_library.h" />
   </ItemGroup>
@@ -1094,6 +1096,7 @@
     <ClCompile Include="dynamic_source\script_main.cpp" />
     <ClCompile Include="dynamic_source\script_manager.cpp" />
     <ClCompile Include="dynamic_source\session.cpp" />
+    <ClCompile Include="file_system_cache.cpp" />
     <ClCompile Include="framework.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='DebugWithInlOpt|Win32'">Create</PrecompiledHeader>
@@ -1113,6 +1116,7 @@
     <ClCompile Include="introjection\compiler.cpp" />
     <ClCompile Include="introjection\library.cpp" />
     <ClCompile Include="programming\compiler.cpp" />
+    <ClCompile Include="real_path.cpp" />
     <ClCompile Include="_.cpp" />
   </ItemGroup>
   <ItemGroup>

@@ -30,29 +30,12 @@
 
 #include "acme/_operating_system.h"
 #include "programming/dynamic_source/httpd_socket.h"
+#include "programming/file_system_cache.h"
 #include "programming/heating_up_exception.h"
 
 namespace dynamic_source
 {
 
-
-   //unsigned int ThreadProcRsa(void  lp);
-
-
-   //script_instance * get_seed_instance()
-   //{
-   //   
-   //   return thread_property(id_thread_dynamic_source_script_instance).cast < script_instance >();
-
-   //}
-
-
-   //void set_seed_instance(script_instance * pinstance)
-   //{
-
-   //   thread_property(id_thread_dynamic_source_script_instance) = pinstance;
-
-   //}
 
 
    script_manager::plugin_map_item::plugin_map_item()
@@ -86,7 +69,6 @@ namespace dynamic_source
 
       m_pnetnodescriptmanager = nullptr;
 
-      defer_create_synchronization();
 
       m_bCompiler = true;
 
@@ -94,10 +76,6 @@ namespace dynamic_source
       m_timeTimeRandomInterval = 30_s;
       m_timeDatabaseWaitTimeOut = 15_minutes;
 
-      m_mapIncludeMatchesFileExists2.InitHashTable(256 * 1024-1);
-      m_mapIncludeMatchesIsDir2.InitHashTable(256 * 1024-1);
-      m_mapIncludeHasScript2.InitHashTable(256 * 1024-1);
-      m_mapIncludeExpandMd5.InitHashTable(256 * 1024-1);
       m_mapSession.InitHashTable(256 * 1024-1);
 
       m_strRepos = "app-core";
@@ -108,7 +86,7 @@ namespace dynamic_source
       m_iTunnelPluginCount = 0;
 
 
-      m_strSeed = "system/seed";
+      m_strSeed1 = "system/seed";
 
       m_timeSessionExpiration = 10_min;
 
@@ -129,7 +107,10 @@ namespace dynamic_source
 
       ::channel::initialize(pparticle);
 
+      defer_create_synchronization();
 
+
+      øconstruct_new(m_pfilesystemcache);
 
 
       //if (!estatus)
@@ -166,11 +147,8 @@ namespace dynamic_source
       m_pathNetseedPath = m_pathBase / "netnodenet/net";
       m_pathNetseedDsCa2Path = m_pathBase / "netnodenet/net";
 
-      m_pmutexSession = node()->create_mutex();
-      m_pmutexIncludeMatches = node()->create_mutex();
-      m_pmutexIncludeHasScript = node()->create_mutex();
       m_pmutexShouldBuild = node()->create_mutex();
-      m_pmutexIncludeExpandMd5 = node()->create_mutex();
+      m_pmutexSession = node()->create_mutex();
       m_pmutexOutLink = node()->create_mutex();
       m_pmutexInLink = node()->create_mutex();
       m_pmutexTunnel = node()->create_mutex();
@@ -336,20 +314,45 @@ namespace dynamic_source
    }
 
 
-   ::pointer<script_instance>script_manager::get(const ::scoped_string& scopedstrName)
+
+
+   ::pointer<script_instance>script_manager::get(const programming::real_path & realpath)
    {
 
       ::pointer<script>pscript;
 
-      return get(scopedstrName, pscript);
+      return get(realpath, pscript);
 
    }
 
 
-   ::pointer<script_instance>script_manager::get(const ::scoped_string& scopedstrName, ::pointer<script>& pscript)
+   programming::real_path script_manager::get_script_path(const ::scoped_string& scopedstrName)
    {
 
-      return m_pcache->create_instance(scopedstrName, pscript);
+      auto realpath = _real_path(scopedstrName);
+
+      if (!realpath.is_ok())
+      {
+
+         realpath = _real_path(string(scopedstrName) + ".ds");
+
+      }
+
+      realpath.m_strName = scopedstrName;
+
+      realpath.m_strName.find_replace("\\", "/");
+
+      fs_cache()->include_has_script(realpath);
+
+      return realpath;
+
+   }
+
+
+   ::pointer<script_instance>script_manager::get(const programming::real_path & realpath, ::pointer<script>& pscript)
+   {
+
+      return m_pcache->create_instance(realpath, pscript);
 
    }
 
@@ -365,7 +368,14 @@ namespace dynamic_source
 
       timeGetHereStart.Now();
 
-      ::pointer<script_instance>pinstance = get(m_strSeed);
+      if (!m_realpathSeed.is_ok())
+      {
+
+         m_realpathSeed = get_script_path(m_strSeed1);
+
+      }
+
+      ::pointer<script_instance>pinstance = get(m_realpathSeed);
 
       timeGetHereEnd.Now();
 
@@ -373,7 +383,7 @@ namespace dynamic_source
 
       pdssocket->m_timeWaitingToBuild += timeGetHere;
 
-      pdssocket->m_timegetherea.add({m_strSeed, timeGetHere});
+      pdssocket->m_timegetherea.add({m_realpathSeed.m_strName, timeGetHere});
 
       if (!pinstance)
       {
@@ -464,7 +474,7 @@ namespace dynamic_source
 
          }
 
-         pinstance->m_strDebugThisScript = m_strSeed;
+         pinstance->m_strDebugThisScript = m_realpathSeed.m_strName;
 
          pinstance->dinit();
 
@@ -637,12 +647,13 @@ namespace dynamic_source
    }
 
 
-   ::payload script_manager::get_output_internal(::dynamic_source::script_interface* pinstanceParent, const ::scoped_string & scopedstrNameParam)
+   ::payload script_manager::get_output_internal(::dynamic_source::script_interface* pinstanceParent, const programming::real_path& realpath)
    {
 
-      string strName = ::str::get_word(scopedstrNameParam, "?");
+//      string strName = ::str::get_word(scopedstrNameParam, "?");
 
-      if (strName.is_empty())
+
+      if (!realpath.is_ok())
       {
 
          if (pinstanceParent != nullptr)
@@ -654,7 +665,7 @@ namespace dynamic_source
                if (pinstanceParent->m_pscript2->m_textstreamError.m_pfile->size() > 0)
                {
 
-                  pinstanceParent->m_pmain->netnodesocket()->response().m_pmemfileBody->print("script_manager::get_output_internal is_empty script parent" + pinstanceParent->m_pscript2->m_strName);
+                  pinstanceParent->m_pmain->netnodesocket()->response().m_pmemfileBody->print("script_manager::get_output_internal is_empty script parent" + pinstanceParent->m_pscript2->m_path);
 
                }
 
@@ -688,7 +699,7 @@ namespace dynamic_source
 
                timeGetHereStart.Now();
 
-               pinstance = get(strName, pscript);
+               pinstance = get(realpath, pscript);
 
                timeGetHereEnd.Now();
 
@@ -696,6 +707,15 @@ namespace dynamic_source
                
                if (pinstanceParent)
                {
+
+                  //if (realpath.begins_eat(m_pathNetnodePath))
+                  //{
+
+                  //   strName.begins_eat("/net/");
+
+                  //}
+
+                  ::string strName = realpath.m_strName;
 
                   if (strName.begins_eat(m_pathNetnodePath))
                   {
@@ -757,7 +777,7 @@ namespace dynamic_source
 
                      pinstanceParent->m_strDebugRequestUri = pinstanceParent->m_pmain->netnodesocket()->m_request.m_strRequestUri;
 
-                     pinstanceParent->m_strDebugThisScript = strName;
+                     pinstanceParent->m_strDebugThisScript = realpath.m_strName;
 
                      ::pointer<::dynamic_source::ds_script>pdsscript = pscript;
 
@@ -930,12 +950,12 @@ namespace dynamic_source
    }
 
 
-   void script_manager::run(const ::scoped_string& scopedstrName)
+   void script_manager::run(const programming::real_path& realpath)
    {
 
       auto pmemfile = create_memory_file();
 
-      script_instance* pinstance = get(scopedstrName);
+      script_instance* pinstance = get(realpath);
 
       if (pinstance != nullptr)
       {
@@ -970,203 +990,6 @@ namespace dynamic_source
    }
 
 
-   void script_manager::clear_include_matches(::file::path path)
-   {
-
-      try
-      {
-
-         _synchronous_lock synchronouslock(m_pmutexIncludeMatches, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
-
-         try
-         {
-
-            m_mapIncludeMatchesFileExists2.erase(path);
-
-         }
-         catch (...)
-         {
-
-         }
-
-         try
-         {
-
-            m_mapIncludeMatchesIsDir2.erase(path);
-
-         }
-         catch (...)
-         {
-
-         }
-
-      }
-      catch (...)
-      {
-
-      }
-
-      try
-      {
-
-         _synchronous_lock synchronouslock(m_pmutexIncludeExpandMd5, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
-
-         m_mapIncludeExpandMd5.erase(path);
-
-      }
-      catch (...)
-      {
-
-      }
-
-   }
-
-
-   void script_manager::clear_include_matches()
-   {
-
-      try
-      {
-
-         _synchronous_lock synchronouslock(m_pmutexIncludeMatches, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
-
-         try
-         {
-
-            m_mapIncludeMatchesFileExists2.erase_all();
-
-         }
-         catch (...)
-         {
-
-         }
-
-         try
-         {
-
-            m_mapIncludeMatchesIsDir2.erase_all();
-
-         }
-         catch (...)
-         {
-
-         }
-
-      }
-      catch (...)
-      {
-
-      }
-
-      try
-      {
-
-         _synchronous_lock synchronouslock(m_pmutexIncludeExpandMd5, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
-
-         m_mapIncludeExpandMd5.erase_all();
-
-      }
-      catch (...)
-      {
-
-      }
-
-
-   }
-
-   
-   bool script_manager::include_matches_file_exists(const ::scoped_string& scopedstrPath)
-   {
-
-      _synchronous_lock synchronouslock(m_pmutexIncludeMatches, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
-
-      auto & bExists = m_mapIncludeMatchesFileExists2[scopedstrPath];
-
-      if (!bExists.is_set())
-      {
-
-         bExists = file_system()->__exists(scopedstrPath);
-
-      }
-
-      return bExists;
-
-   }
-
-
-   void script_manager::set_include_matches_file_exists(const ::scoped_string& scopedstrPath, bool bFileExists)
-   {
-
-      _synchronous_lock synchronouslock(m_pmutexIncludeMatches, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
-
-      m_mapIncludeMatchesFileExists2.set_at(scopedstrPath, bFileExists);
-
-   }
-
-
-   bool script_manager::include_matches_is_dir(const ::scoped_string& scopedstrPath)
-   {
-
-      _synchronous_lock synchronouslock(m_pmutexIncludeMatches, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
-
-      auto &bIsDir = m_mapIncludeMatchesIsDir2[scopedstrPath];
-
-      if (!bIsDir.is_set())
-      {
-
-         bIsDir = directory_system()->__is(scopedstrPath);
-
-      }
-
-      return bIsDir;
-
-   }
-
-
-   bool script_manager::include_has_script(const ::scoped_string& scopedstrPath)
-   {
-
-      if (scopedstrPath.is_empty())
-      {
-
-         return false;
-
-      }
-
-      _synchronous_lock synchronouslock(m_pmutexIncludeHasScript, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
-
-      auto &bHasScript = m_mapIncludeHasScript2[scopedstrPath];
-
-      if (!bHasScript.is_set())
-      {
-
-         bHasScript = file_system()->__safe_find_string(scopedstrPath, "<?") >= 0;
-
-      }
-
-      return bHasScript;
-
-   }
-
-
-   string script_manager::include_expand_md5(const ::scoped_string& scopedstrPath)
-   {
-      
-      _synchronous_lock synchronouslock(m_pmutexIncludeExpandMd5, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
-
-      return m_mapIncludeExpandMd5[scopedstrPath];
-
-   }
-
-
-   void script_manager::set_include_expand_md5(const ::scoped_string& scopedstrPath, const ::scoped_string& scopedstrMd5)
-   {
-   
-      _synchronous_lock synchronouslock(m_pmutexIncludeExpandMd5, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
-
-      m_mapIncludeExpandMd5[scopedstrPath] = scopedstrMd5;
-
-   }
 
 
    script_manager::clear_include_matches_file_watcher::clear_include_matches_file_watcher(::particle* pparticle)
@@ -1213,7 +1036,7 @@ namespace dynamic_source
       try
       {
 
-         m_pmanager->clear_include_matches(path);
+         m_pmanager->fs_cache()->clear_include_matches(path);
 
       }
       catch (...)
@@ -1237,15 +1060,19 @@ namespace dynamic_source
    }
 
 
-   ::file::path script_manager::real_path(const ::file::path& strBase, const ::file::path& str)
+   ::programming::real_path script_manager::_real_path2(const ::file::path& strBase, const ::file::path& str)
    {
+      
       ::file::path strRealPath = strBase / str;
-      if (include_matches_file_exists(strRealPath))
-         return strRealPath;
-      else if (include_matches_is_dir(strRealPath))
-         return strRealPath;
+
+      auto realpath = get_script_path(strRealPath);
+
+      if (fs_cache()->include_matches_file_exists(realpath))
+         return realpath;
+      else if (fs_cache()->include_matches_is_dir(realpath))
+         return realpath;
       else
-         return "";
+         return {};
    }
 
    // #ifdef WINDOWS
@@ -1256,7 +1083,7 @@ namespace dynamic_source
    // #endif
 
 
-   ::file::path script_manager::real_path(const ::file::path& str)
+   ::programming::real_path script_manager::_real_path(const ::file::path& str)
    {
 
       //#ifdef WINDOWS
@@ -1275,16 +1102,40 @@ namespace dynamic_source
       //#else
       if (file_path_is_absolute(str))
       {
-         if (include_matches_file_exists(str))
-            return str;
-         return real_path(m_pathNetseedDsCa2Path, str);
+
+         ::programming::real_path realpath;
+
+         realpath.m_pathReal = str;
+
+         realpath.m_strName = str;
+
+         if (fs_cache()->include_matches_file_exists(realpath))
+         {
+          
+            return realpath;
+
+         }
+
+         return _real_path2(m_pathNetseedDsCa2Path, str);
+
       }
       else
       {
-         return real_path(m_pathNetseedDsCa2Path, str);
+         
+         return _real_path2(m_pathNetseedDsCa2Path, str);
+
       }
-      //#endif
+      
    }
+
+   
+   ::programming::file_system_cache* script_manager::fs_cache()
+   {
+
+      return m_pfilesystemcache;
+
+   }
+
 
 
    ::pointer<::dynamic_source::session>script_manager::get_session(const ::scoped_string& scopedstrId)
@@ -1446,18 +1297,18 @@ namespace dynamic_source
    {
    }
 
-   void script_manager::register_plugin(const ::scoped_string & scopedstrHost, const ::scoped_string & scopedstrScript, const ::scoped_string & scopedstrName, script* pscript)
+   void script_manager::register_plugin(const ::scoped_string & scopedstrHost, const programming::real_path& realpath, script* pscript)
    {
 
       plugin_map_item item;
 
       item.m_strHost = scopedstrHost;
-      item.m_strScript = scopedstrScript;
-      item.m_strPlugin = scopedstrName;
+      item.m_strScript = realpath.m_pathReal;
+      item.m_strPlugin = realpath.m_strName;
 
       m_pluginmapitema.add(___new plugin_map_item(item));
 
-      m_pcache->register_script(scopedstrName, pscript);
+      m_pcache->register_script(realpath, pscript);
 
 
    }

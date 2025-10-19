@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "script.h"
 #include "script_interface.h"
 #include "script_main.h"
 #include "httpd_socket.h"
@@ -217,6 +218,16 @@ namespace dynamic_source
       }
 
    }
+
+
+   programming::real_path script_interface::get_script_path(const ::scoped_string& scopedstrName)
+   {
+
+      return m_pscript2->get_script_path(scopedstrName);
+
+   }
+
+
 
 
    void script_interface::on_initialize()

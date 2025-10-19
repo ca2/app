@@ -57,7 +57,7 @@ namespace gpu_opengl
          /**
           * Render the diffuse irradiance map.
           */
-         void compute() override;
+        void computeIrradianceMap(::gpu::command_buffer *pgpucommandbuffer) override;
 
 
          /**

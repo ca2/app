@@ -608,6 +608,12 @@
       <Outputs Condition="'$(Configuration)|$(Platform)'=='StaticReleaseWithDbgInfo|x64'">$(ProjectDir)ibl\hlsl\%(Filename)%(Extension).h</Outputs>
     </CustomBuild>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="ibl\hlsl\pbr1.frag" />
+    <None Include="ibl\hlsl\pbr1.vert" />
+    <None Include="ibl\hlsl\pbr2.frag" />
+    <None Include="ibl\hlsl\pbr2.vert" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>

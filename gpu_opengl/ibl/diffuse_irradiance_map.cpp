@@ -79,14 +79,14 @@ namespace gpu_opengl
 
 
 
-      void diffuse_irradiance_map::compute()
+      void diffuse_irradiance_map::computeIrradianceMap(::gpu::command_buffer *pgpucommandbuffer)
       {
 
          ::gpu::context_lock contextlock(m_pgpucontext);
 
          //Timer timer;
 
-         auto pgpucommandbuffer = m_pgpucontext->beginSingleTimeCommands(m_pgpucontext->m_pgpudevice->graphics_queue());
+         //auto pgpucommandbuffer = m_pgpucontext->beginSingleTimeCommands(m_pgpucontext->m_pgpudevice->graphics_queue());
 
          glm::mat4 model = ::gpu::gltf::mIndentity4;
          glm::mat4 cameraAngles[] =
@@ -135,6 +135,8 @@ namespace gpu_opengl
 
             glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
             GLCheckError("");
+
+            m_pshaderDiffuseIrradiance->push_properties(pgpucommandbuffer);
 
             //m_pshaderDiffuseIrradiance->set_int("environmentCubemap", 0);
             glBindTexture(GL_TEXTURE_CUBE_MAP, ptextureSkybox->m_gluTextureID);

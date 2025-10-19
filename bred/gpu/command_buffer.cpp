@@ -198,6 +198,31 @@ namespace gpu
    //}
 
 
+   CLASS_DECL_BRED::gpu::command_buffer * current_command_buffer()
+   {
+
+      auto pframe = ::gpu::current_frame();
+
+      if (::is_null(pframe))
+      {
+
+         return nullptr;
+
+      }
+
+      auto pgpucommandbuffer = pframe->m_pgpucommandbuffer;
+
+      if (::is_null(pgpucommandbuffer))
+      {
+
+         return nullptr;
+
+      }
+
+
+      return pgpucommandbuffer;
+
+   }
 
 
 } // namespace gpu

@@ -64,7 +64,7 @@ namespace gpu_opengl
 
       virtual void update_framebuffer(const ::int_size& size);
       //void gpu_debug_message(const ::scoped_string& scopedstrMessage) override;
-      void start_debug_happening(const ::scoped_string& scopedstrMessage) override;
+      void start_debug_happening(::gpu::command_buffer * pgpucommandbuffer, const ::scoped_string& scopedstrMessage) override;
       ::memory rectangle_shader_vert() override;
       ::memory rectangle_shader_frag() override;
 

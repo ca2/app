@@ -357,14 +357,14 @@ namespace gpu
    }
 
 
-   void context::start_debug_happening(const ::scoped_string& scopedstrDebugHappening)
+   void context::start_debug_happening(::gpu::command_buffer * pgpucommandbuffer, const ::scoped_string& scopedstrDebugHappening)
    {
 
 
    }
    
    
-   void context::end_debug_happening()
+   void context::end_debug_happening(::gpu::command_buffer * pgpucommandbuffer)
    {
 
 
@@ -595,6 +595,19 @@ namespace gpu
    }
 
 
+   ::glm::mat4 context::defer_clip_remap_projection(const ::glm::mat4 & m)
+   { return m;
+
+   }
+
+
+   ::glm::mat4 context::defer_remap_impact_matrix(const ::glm::mat4 &m) {
+   
+      return m;
+   
+   }
+
+
 
    ::pointer < ::gpu::command_buffer >context::beginSingleTimeCommands(::gpu::queue * pqueue, ::gpu::enum_command_buffer ecommandbuffer)
    {
@@ -747,14 +760,14 @@ return {};
       if (m_pshaderBound)
       {
 
-         end_debug_happening();
+         end_debug_happening(::gpu::current_command_buffer());
 
-         m_pshaderBound->unbind(::gpu::current_frame()->m_pgpucommandbuffer);
+         m_pshaderBound->unbind(::gpu::current_command_buffer());
 
       }
-      start_debug_happening("shader changing");
+      start_debug_happening(::gpu::current_command_buffer(),"shader changing");
 
-      pgpushader->bind(::gpu::current_frame()->m_pgpucommandbuffer);
+      pgpushader->bind(::gpu::current_command_buffer());
 
       m_pshaderBound = pgpushader;
 
@@ -778,9 +791,9 @@ return {};
 
          m_pshaderBound.release();
 
-         pshaderBound->unbind(::gpu::current_frame()->m_pgpucommandbuffer);
+         pshaderBound->unbind(::gpu::current_command_buffer());
 
-         end_debug_happening();
+         end_debug_happening(::gpu::current_command_buffer());
 
       }
 

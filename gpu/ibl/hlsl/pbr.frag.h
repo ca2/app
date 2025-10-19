@@ -3,7 +3,8 @@
 #pragma once
 
 
-const char g_psz_pbr_frag[] = R"frag_text(// Converted from Vulkan GLSL to HLSL
+const char g_psz_pbr_frag[] = R"frag_text(// pbr1.frag
+// Converted from Vulkan GLSL to HLSL
 // Maintains original comments and structure
 // by Camilo <3ThomasBorregaardSorensen!!
 // Shader Model 5.0+ recommended

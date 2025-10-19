@@ -91,7 +91,8 @@ __FACTORY_EXPORT void gpu_opengl_factory(::factory::factory * pfactory)
    pfactory->add_factory_item < ::gpu::frame_ephemeral >();
    pfactory->add_factory_item < ::gpu::frame_storage >();
 
-   pfactory->add_factory_item < ::gpu_opengl::cube, ::gpu::cube >();
+   //pfactory->add_factory_item < ::gpu_opengl::cube, ::gpu::cube >();
+   pfactory->add_factory_item < ::gpu::cube >();
    //pfactory->add_factory_item < ::gpu_opengl::full_screen_quad, ::gpu::full_screen_quad >();
    pfactory->add_factory_item < ::gpu::full_screen_quad >();
    //pfactory->add_factory_item < ::gpu_opengl::hdr_texture, ::gpu::hdr_texture >();

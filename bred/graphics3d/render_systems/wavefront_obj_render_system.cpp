@@ -4,6 +4,7 @@
 //#include "pipeline.h"
 #include "bred/graphics3d/engine.h"
 //#include "port/graphics/freetype/include/freetype/internal/fttrace.h"
+#include "bred/gpu/command_buffer.h"
 #include "bred/gpu/shader.h"
 #include "bred/graphics3d/model.h"
 #include "bred/graphics3d/scene_renderable.h"
@@ -214,7 +215,7 @@ namespace graphics3d
 
 
 		m_pshader->bind(
-         ::gpu::current_frame()->m_pgpucommandbuffer, pgpucontext->current_target_texture(::gpu::current_frame()));
+         ::gpu::current_command_buffer(), pgpucontext->current_target_texture(::gpu::current_frame()));
 
 	   auto pgamelayer = m_pengine->m_pimmersionlayer;
 
@@ -276,7 +277,7 @@ namespace graphics3d
 
 		}
 
-		m_pshader->unbind(::gpu::current_frame()->m_pgpucommandbuffer);
+		m_pshader->unbind(::gpu::current_command_buffer());
 
 	}
 

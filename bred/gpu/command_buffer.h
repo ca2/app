@@ -79,7 +79,7 @@ namespace gpu
    };
 
 
-
+   CLASS_DECL_BRED ::gpu::command_buffer *current_command_buffer();
 
 
 } // namespace gpu

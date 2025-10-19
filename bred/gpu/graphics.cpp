@@ -660,8 +660,7 @@ namespace gpu
    void graphics::_fill_quad(const ::double_point points[4], const ::color::color& color)
    {
 
-      ::gpu::debug_scope debugscopeFillQuad(
-         m_pgpucontextCompositor2,
+      ::gpu::debug_scope debugscopeFillQuad(::gpu::current_command_buffer(),
          "ødebug123 _fill_quad",
          false
       );
@@ -1061,8 +1060,7 @@ namespace gpu
       pmodelbuffer->set_vertexes(quadVertices);
 
 
-      ::gpu::debug_scope debugscopeLine(
-         m_pgpucontextCompositor2,
+      ::gpu::debug_scope debugscopeLine(::gpu::current_command_buffer(),
          "ødebug line:" + pmodelbuffer->m_strDebugString,
          false
       );
@@ -1310,7 +1308,7 @@ namespace gpu
       ::string str(scopedstr);
 
       strMessage.formatf("bound text out shader '%s'", str.c_str());
-      ::gpu::debug_scope debugscopeBoundTextOutShader(pcontext, strMessage);
+      ::gpu::debug_scope debugscopeBoundTextOutShader(::gpu::current_command_buffer(), strMessage);
       //pcontext->gpu_debug_message(strMessage);
 
       auto color = m_pbrush->m_color;
@@ -1521,7 +1519,7 @@ namespace gpu
 
             strMessage.formatf("char bound '%s' (%d, %d)%s", strChar.c_str(), w, h, pshader->m_strPushConstantsDebugging.c_str());
 
-            ::gpu::debug_scope debugscope(pcontext, strMessage);
+            ::gpu::debug_scope debugscope(::gpu::current_command_buffer(), strMessage);
 
             //pcontext->gpu_debug_message(strMessage);
 

@@ -92,7 +92,7 @@ namespace gpu
          /**
           * Render the pre-filtered environment map.
           */
-         virtual void computePrefilteredEnvMap();
+         virtual void computePrefilteredEnvMap(::gpu::command_buffer *pgpucommandbuffer);
 
 
          /**

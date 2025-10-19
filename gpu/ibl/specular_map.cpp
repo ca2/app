@@ -146,7 +146,7 @@ return {};
       }
 
 
-      void specular_map::computePrefilteredEnvMap()
+      void specular_map::computePrefilteredEnvMap(::gpu::command_buffer *pgpucommandbuffer)
       {
          // Timer timer;
          //
@@ -216,7 +216,7 @@ return {};
 
          auto pcommandbuffer = m_pgpucontext->beginSingleTimeCommands(m_pgpucontext->m_pgpudevice->graphics_queue());
 
-         m_pgpucontext->start_debug_happening("computeBrdfConvolutionMap");
+         m_pgpucontext->start_debug_happening(pcommandbuffer, "computeBrdfConvolutionMap");
 
          auto pfullscreenquad = øcreate<::gpu::full_screen_quad>();
 
@@ -264,7 +264,7 @@ return {};
 
          // glBindFramebuffer(GL_FRAMEBUFFER, 0);
          // GLCheckError("");
-         m_pgpucontext->end_debug_happening();
+         m_pgpucontext->end_debug_happening(pcommandbuffer);
 
 
          // Timer timer;

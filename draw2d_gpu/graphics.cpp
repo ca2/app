@@ -5839,7 +5839,7 @@ color = vec4(c.r,c.g, c.b, c.a);
          
       }
 
-      m_pgpushaderTextOut->bind(::gpu::current_frame()->m_pgpucommandbuffer);
+      m_pgpushaderTextOut->bind(::gpu::current_command_buffer());
       auto color = m_pbrush->m_color;
       //shader.use();
       ::cast<::gpu::shader>pshader = m_pgpushaderTextOut;
@@ -5900,7 +5900,7 @@ color = vec4(c.r,c.g, c.b, c.a);
       //auto pcontext = gpu_context();
 
       point.y() = pcontext->m_rectangle.height() - point.y() - pface->m_iPixelSize;
-      auto pcommandbuffer = ::gpu::current_frame()->m_pgpucommandbuffer;
+      auto pcommandbuffer = ::gpu::current_command_buffer();
       //glEnable(GL_CULL_FACE);
       //GLCheckError("");
       //glEnable(GL_BLEND);

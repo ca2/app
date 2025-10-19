@@ -358,4 +358,18 @@
       <Filter>Source Files\ibl</Filter>
     </CustomBuild>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="ibl\hlsl\pbr1.vert">
+      <Filter>Source Files\ibl\hlsl</Filter>
+    </None>
+    <None Include="ibl\hlsl\pbr1.frag">
+      <Filter>Source Files\ibl\hlsl</Filter>
+    </None>
+    <None Include="ibl\hlsl\pbr2.vert">
+      <Filter>Source Files\ibl\hlsl</Filter>
+    </None>
+    <None Include="ibl\hlsl\pbr2.frag">
+      <Filter>Source Files\ibl\hlsl</Filter>
+    </None>
+  </ItemGroup>
 </Project>

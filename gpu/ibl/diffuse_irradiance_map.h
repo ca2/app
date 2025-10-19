@@ -70,7 +70,7 @@ namespace gpu
          /**
           * Render the diffuse irradiance map.
           */
-         virtual void compute();
+         virtual void computeIrradianceMap(::gpu::command_buffer * pgpucommandbuffer);
 
 
          /**

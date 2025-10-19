@@ -3,7 +3,8 @@
 #pragma once
 
 
-const char g_psz_pbr_vert[] = R"vert_text(// Converted from Vulkan GLSL to HLSL
+const char g_psz_pbr_vert[] = R"vert_text(// pbr1.vert
+// Converted from Vulkan GLSL to HLSL
 // Matches the PBR fragment shader above
 // by Camilo <3ThomasBorregaardSorensen!!
 // Shader Model 5.0+ recommended

@@ -96,7 +96,7 @@ namespace gpu
 
          øconstruct(m_pdiffuseIrradianceFramebuffer);
 
-         m_pdiffuseIrradianceFramebuffer->m_strSamplerUniform = "environmentCube";
+         m_pdiffuseIrradianceFramebuffer->m_strSamplerUniform = "environmentCubemap";
 
          m_pdiffuseIrradianceFramebuffer->initialize_cubemap_framebuffer(
             m_pgpucontext, m_udiffuse_irradiance_mapWidth, m_udiffuse_irradiance_mapHeight);
@@ -104,7 +104,7 @@ namespace gpu
       }
 
 
-      void diffuse_irradiance_map::compute()
+      void diffuse_irradiance_map::computeIrradianceMap(::gpu::command_buffer *pgpucommandbuffer)
       {
 
          // Timer timer;

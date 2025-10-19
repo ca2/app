@@ -160,8 +160,9 @@ namespace gpu
 
 
 
-      virtual void start_debug_happening(const ::scoped_string& scopedstrDebugHappening);
-      virtual void end_debug_happening();
+      virtual void start_debug_happening(::gpu::command_buffer *pgpucommandbuffer,
+                                         const ::scoped_string &scopedstrDebugHappening);
+      virtual void end_debug_happening(::gpu::command_buffer *pgpucommandbuffer);
 
       virtual void load_texture(::pointer < ::gpu::texture > & ptexture, const ::file::path& path, bool bIsSrgb);
 
@@ -172,6 +173,9 @@ namespace gpu
       virtual void defer_make_current();
 
       virtual ::glm::mat4 defer_transpose(const ::glm::mat4 & m);
+      virtual ::glm::mat4 defer_clip_remap_projection(const ::glm::mat4 &m);
+      virtual ::glm::mat4 defer_remap_impact_matrix(const ::glm::mat4 &m);
+
 
       virtual ::pointer < ::gpu::command_buffer > beginSingleTimeCommands(::gpu::queue * pgpuqueue, ::gpu::enum_command_buffer ecommandbuffer = ::gpu::e_command_buffer_graphics);
       virtual void endSingleTimeCommands(::gpu::command_buffer * pcommandbuffer);

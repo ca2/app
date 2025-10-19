@@ -236,14 +236,15 @@ namespace graphics3d
 
 	   auto ptextureDst = pgpurenderer->current_render_target_texture(::gpu::current_frame());
 
-      pgpucontext->start_debug_happening("skybox_ibl_render_system on_render");
+      pgpucontext->start_debug_happening(::gpu::current_command_buffer()
+                                         , "skybox_ibl_render_system on_render");
 
 	   //auto pskybox = pscene->m_psceneobjectSkybox;
 
       //auto ptextureCubeMap = prenderableSkyboxModel->get_target_texture();
       //auto ptextureCubeMap = pscene->current_sky_box_texture();
 
-	   m_pshader->bind(::gpu::current_frame()->m_pgpucommandbuffer, ptextureDst, ptextureSkybox);
+	   m_pshader->bind(::gpu::current_command_buffer(), ptextureDst, ptextureSkybox);
 		//IGameObject * skyObj = skyOpt->get();
 
 		//sASSERT(m_skyboxDescriptorSet != VK_NULL_HANDLE && "Skybox descriptor set is not allocated!");
@@ -288,7 +289,7 @@ namespace graphics3d
 
 		}
 
-      pgpucontext->end_debug_happening();
+      pgpucontext->end_debug_happening(::gpu::current_command_buffer());
 
 
 	}

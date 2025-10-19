@@ -19,7 +19,7 @@
 
 #define DS_INCLUDE(NAME) \
 {       \
-   static ::programming::real_path s_realpath = get_script_path((NAME)); \
+   static ::file::real_path s_realpath = get_script_path((NAME)); \
    include(s_realpath); \
 }      
 

@@ -1666,6 +1666,7 @@
     <ClCompile Include="filesystem\filesystem\file_dialog.cpp" />
     <ClCompile Include="filesystem\filesystem\file_path.cpp" />
     <ClCompile Include="filesystem\filesystem\file_system.cpp" />
+    <ClCompile Include="filesystem\filesystem\file_system_cache.cpp" />
     <ClCompile Include="filesystem\filesystem\file_system_options.cpp" />
     <ClCompile Include="filesystem\filesystem\folder_dialog.cpp" />
     <ClCompile Include="filesystem\filesystem\link.cpp" />
@@ -1673,6 +1674,7 @@
     <ClCompile Include="filesystem\filesystem\path_array.cpp" />
     <ClCompile Include="filesystem\filesystem\path_object.cpp" />
     <ClCompile Include="filesystem\filesystem\path_system.cpp" />
+    <ClCompile Include="filesystem\filesystem\real_path.cpp" />
     <ClCompile Include="filesystem\filesystem\windows_path.cpp" />
     <ClCompile Include="filesystem\file\binary_stream.cpp" />
     <ClCompile Include="filesystem\file\buffered_buffer.cpp" />
@@ -1748,6 +1750,8 @@
     <ClInclude Include="constant\call.h" />
     <ClInclude Include="constant\message.h" />
     <ClInclude Include="constant\user_message.h" />
+    <ClInclude Include="filesystem\filesystem\file_system_cache.h" />
+    <ClInclude Include="filesystem\filesystem\real_path.h" />
     <ClInclude Include="filesystem\file\byte2_stream.h" />
     <ClInclude Include="filesystem\file\protocol_file.h" />
     <ClInclude Include="operating_system\networking.h" />

@@ -179,8 +179,8 @@ namespace dynamic_source
 
       //static unsigned int c_cdecl clear_include_matches_FolderWatchThread(LPVOID lpParam); // thread procedure
 
-      virtual ::programming::real_path _real_path(const ::file::path & str);
-      virtual ::programming::real_path _real_path2(const ::file::path & strBase,const ::file::path & str);
+      virtual ::file::real_path _real_path(const ::file::path & str);
+      virtual ::file::real_path _real_path2(const ::file::path & strBase,const ::file::path & str);
 
 
       ::pointer<::crypto::rsa>get_rsa_key();

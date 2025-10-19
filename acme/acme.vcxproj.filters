@@ -4257,6 +4257,12 @@
     <ClInclude Include="operating_system\windows_common\networking.h">
       <Filter>Header Files\operating_system\windows_common</Filter>
     </ClInclude>
+    <ClInclude Include="filesystem\filesystem\real_path.h">
+      <Filter>Header Files\filesystem\filesystem</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filesystem\file_system_cache.h">
+      <Filter>Header Files\filesystem\filesystem</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="prototype\prototype\bit.cpp">
@@ -6094,6 +6100,12 @@
     </ClCompile>
     <ClCompile Include="operating_system\windows_common\networking.cpp">
       <Filter>Source Files\operating_system\windows_common</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filesystem\file_system_cache.cpp">
+      <Filter>Source Files\filesystem\filesystem</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filesystem\real_path.cpp">
+      <Filter>Source Files\filesystem\filesystem</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

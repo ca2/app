@@ -1,12 +1,13 @@
 // Created by camilo on 2025-10-19 17:00 <3ThomasBorregaardSørensen!! ThomasKanGodLideTalFem.
+// From programming by camilo on 2025-10-19 17:27 <3ThomasBorregaardSørensen!! ThomasKanGodLideTalFem.
 #pragma once
 
 
-namespace programming
+namespace file
 {
 
 
-   class CLASS_DECL_APP_PROGRAMMING real_path
+   class CLASS_DECL_ACME real_path
    {
    public:
 

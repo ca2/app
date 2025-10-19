@@ -1060,7 +1060,7 @@ namespace dynamic_source
    }
 
 
-   ::programming::real_path script_manager::_real_path2(const ::file::path& strBase, const ::file::path& str)
+   ::file::real_path script_manager::_real_path2(const ::file::path& strBase, const ::file::path& str)
    {
       
       ::file::path strRealPath = strBase / str;
@@ -1083,7 +1083,7 @@ namespace dynamic_source
    // #endif
 
 
-   ::programming::real_path script_manager::_real_path(const ::file::path& str)
+   ::file::real_path script_manager::_real_path(const ::file::path& str)
    {
 
       //#ifdef WINDOWS
@@ -1103,7 +1103,7 @@ namespace dynamic_source
       if (file_path_is_absolute(str))
       {
 
-         ::programming::real_path realpath;
+         ::file::real_path realpath;
 
          realpath.m_pathReal = str;
 

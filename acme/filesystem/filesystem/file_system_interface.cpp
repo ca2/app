@@ -172,6 +172,25 @@ bool file_system_interface::_file_system_has_script(::file_system_item* pfilesys
 }
 
 
+::file::path file_system_interface::file_system_item_path(const ::scoped_string& scopedstrName, ::file_system_real_path_interface* pfilesystemrealpathinterface)
+{
+
+    auto pfilesystemitem = file_system_item(scopedstrName, pfilesystemrealpathinterface);
+
+    if (::is_null(pfilesystemitem))
+    {
+
+       return { };
+
+    }
+
+    auto path = pfilesystemitem->path();
+
+    return path;
+
+}
+
+
 class ::file_system_item* file_system_interface::get_file_system_item(const ::scoped_string& scopedstrName, ::file_system_real_path_interface* pfilesystemrealpathinterface)
 {
 

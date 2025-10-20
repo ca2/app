@@ -330,6 +330,7 @@ namespace file
 
       constexpr e_type type() const { return m_etype; }
       e_type & type() { return m_etype; }
+      bool is_unknown_type() const { return this->type() == ::file::e_type_unknown; }
       void set_type(e_type etype) { m_etype = etype; }
 
 

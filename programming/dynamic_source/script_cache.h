@@ -35,11 +35,11 @@ namespace dynamic_source
 
       //void cache(script * pscript);
       //::pointer<ds_script> allocate_ds_script(const ::scoped_string & scopedstrName);
-      ::pointer<ds_script> allocate_ds_script(const ::file_system_cache_item& filesystemcacheitem);
+      ::pointer<ds_script> allocate_ds_script(::file_system_item* pfilesystemitem);
       void uncache(script * pscript);
 
-      script * get(const ::file_system_cache_item & filesystemcacheitem);
-      script * register_script(const ::file_system_cache_item& filesystemcacheitem, script * pscript);
+      script * get(::file_system_item * pfilesystemitem);
+      script * register_script(::file_system_item * pfilesystemitem, script * pscript);
 
 
    };

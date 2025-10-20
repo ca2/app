@@ -733,7 +733,7 @@ namespace dynamic_source
 
                   //}
 
-                  ::string strName = filesystemcacheitem.m_strName2;
+                  ::string strName = pfilesystemitem->path();
 
                   if (strName.begins_eat(m_pathNetnodePath))
                   {
@@ -795,7 +795,7 @@ namespace dynamic_source
 
                      pinstanceParent->m_strDebugRequestUri = pinstanceParent->m_pmain->netnodesocket()->m_request.m_strRequestUri;
 
-                     pinstanceParent->m_strDebugThisScript = filesystemcacheitem.m_strName2;
+                     pinstanceParent->m_strDebugThisScript = pfilesystemitem->path();
 
                      ::pointer<::dynamic_source::ds_script>pdsscript = pscript;
 

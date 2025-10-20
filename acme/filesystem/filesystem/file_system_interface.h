@@ -34,6 +34,8 @@ public:
 
    virtual class ::file_system_cache_item file_system_item(const ::scoped_string& scopedstrName, ::file_system_real_path_interface* pfilesystemrealpathinterface = nullptr);
 
+   virtual ::file::path file_system_item_path(const ::scoped_string& scopedstrName, ::file_system_real_path_interface* pfilesystemrealpathinterface = nullptr);
+
 
    virtual ::file_system_item* get_file_system_item(const ::scoped_string& scopedstr, ::file_system_real_path_interface* pfilesystemrealpathinterface = nullptr);
 

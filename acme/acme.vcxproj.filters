@@ -4278,7 +4278,7 @@
     <ClInclude Include="filesystem\filesystem\file_system_real_path_interface.h">
       <Filter>Header Files\filesystem\filesystem</Filter>
     </ClInclude>
-    <ClInclude Include="prototype\prototype\static_index.h">
+    <ClInclude Include="prototype\prototype\unique_index.h">
       <Filter>Header Files\prototype\prototype</Filter>
     </ClInclude>
   </ItemGroup>
@@ -6137,7 +6137,7 @@
     <ClCompile Include="filesystem\filesystem\file_system_real_path_interface.cpp">
       <Filter>Source Files\filesystem\filesystem</Filter>
     </ClCompile>
-    <ClCompile Include="prototype\prototype\static_index.cpp">
+    <ClCompile Include="prototype\prototype\unique_index.cpp">
       <Filter>Source Files\prototype\prototype</Filter>
     </ClCompile>
   </ItemGroup>

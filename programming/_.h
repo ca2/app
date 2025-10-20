@@ -19,8 +19,8 @@
 
 #define DS_INCLUDE(NAME) \
 {       \
-   static auto s_staticindex = create_static_index(); \
-   include(file_system_cache_item(s_staticindex)); \
+   static auto s_uniqueindex = create_unique_index(); \
+   include(file_system_cache_item(s_uniqueindex)); \
 }      
 
 

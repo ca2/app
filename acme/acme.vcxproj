@@ -2355,7 +2355,7 @@
     <ClInclude Include="prototype\prototype\prototype.h" />
     <ClInclude Include="prototype\prototype\quantum.h" />
     <ClInclude Include="prototype\prototype\referenceable.h" />
-    <ClInclude Include="prototype\prototype\static_index.h" />
+    <ClInclude Include="prototype\prototype\unique_index.h" />
     <ClInclude Include="prototype\prototype\subparticle.h" />
     <ClInclude Include="prototype\prototype\subparticle_flags.h" />
     <ClInclude Include="prototype\prototype\hash32.h" />
@@ -3363,7 +3363,7 @@
     <ClCompile Include="prototype\prototype\payload.cpp" />
     <ClCompile Include="prototype\prototype\quantum.cpp" />
     <ClCompile Include="prototype\prototype\read_only_memory.cpp" />
-    <ClCompile Include="prototype\prototype\static_index.cpp" />
+    <ClCompile Include="prototype\prototype\unique_index.cpp" />
     <ClCompile Include="prototype\prototype\subparticle.cpp" />
     <ClCompile Include="prototype\prototype\subparticle_flags.cpp" />
     <ClCompile Include="prototype\prototype\url.cpp" />

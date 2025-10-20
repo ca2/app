@@ -6,11 +6,12 @@
 
 #include "acme/filesystem/filesystem/file_system_cache_item.h"
 #include "acme/prototype/collection/int_map.h"
-#include "acme/prototype/prototype/static_index.h"
+#include "acme/prototype/prototype/unique_index.h"
 
 
 class CLASS_DECL_ACME file_system_interface :
-   virtual public ::particle
+   virtual public ::particle,
+   virtual public ::unique_index_domain
 {
 public:
 
@@ -30,12 +31,13 @@ public:
    virtual ::file_system_real_path_interface* get_file_system_real_path_interface();
 
 
-   ::file_system_cache_item& file_system_cache_item(const ::static_index& staticindex)
+
+   ::file_system_cache_item& file_system_cache_item(const ::unique_index& uniqueindex)
    {
 
       critical_section_lock criticalsectionlock(&m_criticalsectionFileSystemCacheItem);
 
-      return m_mapFileSystemCacheItem[staticindex.index()];
+      return m_mapFileSystemCacheItem[uniqueindex.index()];
 
    }
 

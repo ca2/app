@@ -2,8 +2,10 @@
 #pragma once
 
 
+class static_index;
 
-class CLASS_DECL_ACME static_index_seed
+
+class CLASS_DECL_ACME static_index_source
 {
 public:
 
@@ -11,25 +13,49 @@ public:
    ::interlocked_count m_count;
 
 
+   static_index create_static_index();
+
+
 };
 
 
 class CLASS_DECL_ACME static_index
 {
-public:
+protected:
+
+   
+   friend class static_index_source;
 
 
    ::collection::index m_iStaticIndex;
 
-   static_index(static_index_seed& staticindexseed)
+   static_index(static_index_source* pstaticindexsource)
    {
 
-      m_iStaticIndex = staticindexseed.m_count++;
+      m_iStaticIndex = pstaticindexsource->m_count++;
 
    }
 
 
+public:
+
+
+   ::collection::index index() const
+   {
+
+      return m_iStaticIndex;
+
+   }
+
 };
+
+
+static_index static_index_source::create_static_index()
+{
+
+   return this;
+
+}
 
 
 

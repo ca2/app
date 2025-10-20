@@ -10,12 +10,13 @@
 
 
 class CLASS_DECL_ACME file_system_interface :
-   virtual public ::particle
+   virtual public ::particle,
+   virtual public ::static_index_source
 {
 public:
 
 
-   ::pointer < ::mutex >                           m_pmutexFileSystemCacheItem;
+   critical_section                                m_criticalsectionFileSystemCacheItem;
    index_map_base < ::file_system_cache_item >     m_mapFileSystemCacheItem;
 
 
@@ -33,9 +34,9 @@ public:
    ::file_system_cache_item& file_system_cache_item(const ::static_index& staticindex)
    {
 
-      _synchronous_lock synchronouslock(m_pmutexFileSystemCacheItem);
+      critical_section_lock criticalsectionlock(&m_criticalsectionFileSystemCacheItem);
 
-      return m_mapFileSystemCacheItem[staticindex.m_iStaticIndex];
+      return m_mapFileSystemCacheItem[staticindex.index()];
 
    }
 

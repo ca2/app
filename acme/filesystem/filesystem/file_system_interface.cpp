@@ -34,8 +34,6 @@ void file_system_interface::on_initialize_particle()
 
    defer_create_synchronization();
 
-   m_pmutexFileSystemCacheItem = node()->create_mutex();
-
 }
 
 

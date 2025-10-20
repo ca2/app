@@ -3,18 +3,13 @@
 #include "static_index.h"
 
 
-static_index static_index_source::create_static_index()
+::interlocked_count static_index::s_count;
+
+
+static_index::static_index()
 {
 
-   return this;
-
-}
-
-
-static_index::static_index(static_index_source* pstaticindexsource)
-{
-
-   m_iStaticIndex = pstaticindexsource->m_count++;
+   m_iStaticIndex = s_count++;
 
 }
 

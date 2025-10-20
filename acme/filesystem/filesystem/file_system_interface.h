@@ -10,8 +10,7 @@
 
 
 class CLASS_DECL_ACME file_system_interface :
-   virtual public ::particle,
-   virtual public ::static_index_source
+   virtual public ::particle
 {
 public:
 

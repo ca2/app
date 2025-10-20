@@ -2,37 +2,19 @@
 #pragma once
 
 
-class static_index;
-
-
-class CLASS_DECL_ACME static_index_source
-{
-public:
-
-   
-   ::interlocked_count m_count;
-
-
-   static_index create_static_index();
-
-
-};
-
-
 class CLASS_DECL_ACME static_index
 {
 protected:
 
    
-   friend class static_index_source;
-
+   static ::interlocked_count s_count;
 
    ::collection::index m_iStaticIndex;
 
-   static_index(static_index_source* pstaticindexsource);
-
-
 public:
+
+
+   static_index();
 
 
    ::collection::index index() const

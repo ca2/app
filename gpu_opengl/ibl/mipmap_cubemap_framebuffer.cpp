@@ -123,10 +123,10 @@ namespace gpu_opengl
       }
 
 
-      void mipmap_cubemap_framebuffer::setMipLevel(unsigned int level)
+      void mipmap_cubemap_framebuffer::set_current_mip(int iCurrentMip)
       {
 
-         ::gpu::ibl::mipmap_cubemap_framebuffer::setMipLevel(level);
+         ::gpu::ibl::mipmap_cubemap_framebuffer::set_current_mip(iCurrentMip);
          // mipLevel = level;
          // mipWidth = ptexture->m_rectangleTarget.width() * std::pow(0.5, mipLevel);
          // mipHeight = ptexture->m_rectangleTarget.height() * std::pow(0.5, mipLevel);
@@ -149,18 +149,22 @@ namespace gpu_opengl
       //     return mipHeight;
       // }
 
-      void mipmap_cubemap_framebuffer::setCubeFace(unsigned int faceIndex)
+      void mipmap_cubemap_framebuffer::set_cube_face(int iFace)
       {
 
-         ::gpu::ibl::mipmap_cubemap_framebuffer::setCubeFace(faceIndex);
+         ::gpu::ibl::mipmap_cubemap_framebuffer::set_cube_face(iFace);
+
          ::cast < ::gpu_opengl::texture>ptexture = m_ptexture;
+
          glFramebufferTexture2D(
             GL_FRAMEBUFFER,
             GL_COLOR_ATTACHMENT0,
-            GL_TEXTURE_CUBE_MAP_POSITIVE_X + faceIndex,
+            GL_TEXTURE_CUBE_MAP_POSITIVE_X + iFace,
             ptexture->m_gluTextureID,
-            ptexture->m_mipsLevel);
+            ptexture->m_iMipCount);
+
          GLCheckError("");
+
       }
 
 

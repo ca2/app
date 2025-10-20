@@ -19,9 +19,6 @@ namespace gpu
       mipmap_cubemap_framebuffer::mipmap_cubemap_framebuffer()
       {
 
-         m_uCurrentMip = 0;
-            
-            m_uCurrentFace = 0;
       }
 
 
@@ -33,7 +30,7 @@ namespace gpu
 
 
       void mipmap_cubemap_framebuffer::initialize_mipmap_cubemap_framebuffer(::graphics3d::scene_base *pscenebase,
-                                                                             unsigned int width, unsigned int height)
+                                                                             int iWidth, int iHeight, int iMipCount)
 
       {
 
@@ -50,9 +47,9 @@ namespace gpu
 
          m_ptexture->m_rectangleTarget.left()=0;
          m_ptexture->m_rectangleTarget.top()=0;
-         m_ptexture->m_rectangleTarget.right()=width;
-         m_ptexture->m_rectangleTarget.bottom()=height;
-         m_ptexture->m_mipsLevel=0;
+         m_ptexture->m_rectangleTarget.right()= iWidth;
+         m_ptexture->m_rectangleTarget.bottom()= iHeight;
+         m_ptexture->m_iMipCount=iMipCount;
          m_ptexture->m_bRenderTarget = true;
          m_ptexture->m_bShaderResourceView = true;
 
@@ -113,34 +110,35 @@ namespace gpu
       }
 
 
-      void mipmap_cubemap_framebuffer::setMipLevel(unsigned int level)
+      void mipmap_cubemap_framebuffer::set_current_mip(int iCurrentMip)
       {
-         m_ptexture->m_mipsLevel = level;
+
+         m_ptexture->m_iCurrentMip = iCurrentMip;
          m_ptexture->m_sizeMip.cx() =
-            (unsigned int)((double) m_ptexture->m_rectangleTarget.width() *
-               ::pow((double)0.5, (double) m_ptexture->m_mipsLevel));
+            (int)((double) m_ptexture->m_rectangleTarget.width() * ::pow((double)0.5, (double)iCurrentMip));
          m_ptexture->m_sizeMip.cy() =
-            (unsigned int)((double) m_ptexture->m_rectangleTarget.height() *
-               ::pow((double)0.5, (double) m_ptexture->m_mipsLevel));
-         //
-         // glBindRenderbuffer(GL_RENDERBUFFER, m_uDepthRenderbufferId);
-         // glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT24, m_uMipWidth, m_uMipHeight);
+            (int)((double) m_ptexture->m_rectangleTarget.height() * ::pow((double)0.5, (double)iCurrentMip));
+
       }
 
 
-      unsigned int mipmap_cubemap_framebuffer::getWidth()
+      int mipmap_cubemap_framebuffer::mip_width()
       {
+
          return m_ptexture->m_sizeMip.width();
+
       }
 
 
-      unsigned int mipmap_cubemap_framebuffer::getHeight()
+      int mipmap_cubemap_framebuffer::mip_height()
       {
+
          return m_ptexture->m_sizeMip.height();
+
       }
 
 
-      void mipmap_cubemap_framebuffer::setCubeFace(unsigned int faceIndex)
+      void mipmap_cubemap_framebuffer::set_cube_face(int iFace)
       {
          // glFramebufferTexture2D(
          //    GL_FRAMEBUFFER,

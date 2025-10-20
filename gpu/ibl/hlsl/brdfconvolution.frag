@@ -77,7 +77,7 @@ PSOutput main(PSInput input)
     
     PSOutput output;
     float NdotV = input.texcoord.x;
-    float roughness = input.texcoord.y;
+    float roughness = 1.0 - input.texcoord.y;
 
     float3 N = float3(0.0, 0.0, 1.0);
     float3 V = float3(sqrt(1.0 - NdotV * NdotV), 0.0, NdotV);

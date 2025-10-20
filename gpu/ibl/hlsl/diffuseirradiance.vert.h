@@ -32,7 +32,7 @@ VSOutput main(VSInput input)
     float4 viewPosition = mul(worldPosition, view);
     output.position = mul(viewPosition, projection);
 
-    output.modelCoordinates = input.aPos;
+    output.modelCoordinates = float3(input.aPos.x, -input.aPos.y, input.aPos.z);
 
     return output;
 }

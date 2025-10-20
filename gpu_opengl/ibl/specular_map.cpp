@@ -150,21 +150,22 @@ namespace gpu_opengl
          m_pshaderPrefilteredEnvMap->bind(nullptr, m_pframebufferPrefilteredEnvMap->m_ptexture);
          //m_pshaderPrefilteredEnvMap->set_int("environmentCubemap", 0);
 
-         for (auto mipLevel = 0; mipLevel < m_uPrefilteredEnvMapMipLevels; mipLevel++)
+         for (auto iCurrentMip = 0; iCurrentMip < m_iPrefilteredEnvMapMipCount; iCurrentMip++)
          {
-            m_pframebufferPrefilteredEnvMap->setMipLevel(mipLevel);
 
-            glViewport(0, 0, m_pframebufferPrefilteredEnvMap->getWidth(), m_pframebufferPrefilteredEnvMap->getHeight());
+            m_pframebufferPrefilteredEnvMap->set_current_mip(iCurrentMip);
+
+            glViewport(0, 0, m_pframebufferPrefilteredEnvMap->mip_width(), m_pframebufferPrefilteredEnvMap->mip_height());
             GLCheckError("");
             // each mip level has increasing roughness
-            float roughness = (float)mipLevel / (float)(m_uPrefilteredEnvMapMipLevels - 1);
+            float roughness = (float)iCurrentMip / (float)(m_iPrefilteredEnvMapMipCount - 1);
             m_pshaderPrefilteredEnvMap->set_float("roughness", roughness);
 
             // render to each side of the cubemap
-            for (auto i = 0; i < 6; i++)
+            for (auto iFace = 0; iFace < 6; iFace++)
             {
-               m_pshaderPrefilteredEnvMap->setModelViewProjectionMatrices(model, cameraAngles[i], projection);
-               m_pframebufferPrefilteredEnvMap->setCubeFace(i);
+               m_pshaderPrefilteredEnvMap->setModelViewProjectionMatrices(model, cameraAngles[iFace], projection);
+               m_pframebufferPrefilteredEnvMap->set_cube_face(iFace);
 
                glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
                GLCheckError("");

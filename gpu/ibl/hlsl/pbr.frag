@@ -117,6 +117,7 @@ float3 getNormal(float3 interpNormal, float2 texCoord, float3 tangent, float3 bi
     {
         float3 tangentNormal = textureNormal.Sample(samplerMaterial, texCoord).rgb;
         float3 norm = normalize(tangentNormal * 2.0 - 1.0);
+        //norm.y = -norm.y;
         float3x3 TBN = float3x3(tangent, bitangent, normal);
         n = normalize(mul(norm, TBN));
     }

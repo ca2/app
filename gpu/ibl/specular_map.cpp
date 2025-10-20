@@ -122,7 +122,10 @@ return {};
 
          øconstruct(m_pframebufferPrefilteredEnvMap);
          m_pframebufferPrefilteredEnvMap->initialize_mipmap_cubemap_framebuffer(
-            m_pscene, m_uPrefilteredEnvMapWidth, m_uPrefilteredEnvMapHeight);
+            m_pscene, 
+            m_uPrefilteredEnvMapWidth, 
+            m_uPrefilteredEnvMapHeight,
+            m_iPrefilteredEnvMapMipCount);
 
          // // BRDF convolution
          // ::file::path pathBrdfConvolutionVertexShader= "matter://shaders/ibl_brdfconvolution.vert";

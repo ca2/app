@@ -45,7 +45,7 @@ namespace gpu
 
 
          // prefiltered environment map
-         const unsigned int m_uPrefilteredEnvMapMipLevels = 5;
+         const unsigned int m_iPrefilteredEnvMapMipCount = 5;
          const unsigned int m_uPrefilteredEnvMapWidth = 128;
          const unsigned int m_uPrefilteredEnvMapHeight = 128;
 

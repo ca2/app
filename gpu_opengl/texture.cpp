@@ -518,7 +518,7 @@ namespace gpu_opengl
       // //this->m_pDevice = pdevice;
       // m_rectangleTarget.right() = ktxTexture->baseWidth;
       // m_rectangleTarget.bottom() = ktxTexture->baseHeight;
-      // m_mipsLevel = ktxTexture->numLevels;
+      // m_iMipCount = ktxTexture->numLevels;
       //
       // ktx_uint8_t *ktxTextureData = ktxTexture_GetData(ktxTexture);
       // ktx_size_t ktxTextureSize = ktxTexture_GetDataSize(ktxTexture);
@@ -560,7 +560,7 @@ namespace gpu_opengl
       //
       // for (uint32_t face = 0; face < 6; face++)
       // {
-      //    for (uint32_t level = 0; level < m_mipsLevel; level++)
+      //    for (uint32_t level = 0; level < m_iMipCount; level++)
       //    {
       //       ktx_size_t offset;
       //       KTX_error_code result = ktxTexture_GetImageOffset(ktxTexture, level, 0, face, &offset);
@@ -584,7 +584,7 @@ namespace gpu_opengl
       // VkImageCreateInfo imageCreateInfo = vkinit::imageCreateInfo();
       // imageCreateInfo.imageType = VK_IMAGE_TYPE_2D;
       // imageCreateInfo.format = format;
-      // imageCreateInfo.mipLevels = m_mipsLevel;
+      // imageCreateInfo.mipLevels = m_iMipCount;
       // imageCreateInfo.samples = VK_SAMPLE_COUNT_1_BIT;
       // imageCreateInfo.tiling = VK_IMAGE_TILING_OPTIMAL;
       // imageCreateInfo.sharingMode = VK_SHARING_MODE_EXCLUSIVE;
@@ -631,7 +631,7 @@ namespace gpu_opengl
       // VkImageSubresourceRange subresourceRange = {};
       // subresourceRange.aspectMask = VK_IMAGE_ASPECT_COLOR_BIT;
       // subresourceRange.baseMipLevel = 0;
-      // subresourceRange.levelCount = m_mipsLevel;
+      // subresourceRange.levelCount = m_iMipCount;
       // subresourceRange.layerCount = 6;
       //
       // vulkan::setImageLayout(pcommandbufferCopy->m_vkcommandbuffer, m_vkimage, VK_IMAGE_LAYOUT_UNDEFINED,
@@ -669,7 +669,7 @@ namespace gpu_opengl
       //    pphysicaldevice->m_vkphysicaldevicefeatures.samplerAnisotropy ? VK_TRUE : VK_FALSE;
       // samplerCreateInfo.compareOp = VK_COMPARE_OP_NEVER;
       // samplerCreateInfo.minLod = 0.0f;
-      // samplerCreateInfo.maxLod = (float)m_mipsLevel;
+      // samplerCreateInfo.maxLod = (float)m_iMipCount;
       // samplerCreateInfo.borderColor = VK_BORDER_COLOR_FLOAT_OPAQUE_WHITE;
       // VK_CHECK_RESULT(vkCreateSampler(pcontext->logicalDevice(), &samplerCreateInfo, nullptr,
       // &m_vksamplerDedicated));
@@ -680,7 +680,7 @@ namespace gpu_opengl
       // viewCreateInfo.format = format;
       // viewCreateInfo.subresourceRange.aspectMask = VK_IMAGE_ASPECT_COLOR_BIT;
       // viewCreateInfo.subresourceRange.baseMipLevel = 0;
-      // viewCreateInfo.subresourceRange.levelCount = m_mipsLevel;
+      // viewCreateInfo.subresourceRange.levelCount = m_iMipCount;
       // viewCreateInfo.subresourceRange.baseArrayLayer = 0;
       // viewCreateInfo.subresourceRange.layerCount = 6;
       // viewCreateInfo.image = m_vkimage;

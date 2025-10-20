@@ -35,7 +35,7 @@ VS_OUTPUT main(VS_INPUT input)
     worldPosition = mul(worldPosition, projection);
 
     output.position = worldPosition;
-    output.modelCoordinates = input.position;
+    output.modelCoordinates = float3(input.position.x, -input.position.y, input.position.z);
 
     return output;
 }

@@ -36,9 +36,11 @@ namespace gpu
       ::pointer < ::gpu::renderer >       m_pgpurenderer;
       int                                 m_iLayerCount;
       ::collection::index                 m_iIndex;
+      int                                 m_iCurrentMip;
+      int                                 m_iCurrentFace;
       //::pointer < ::gpu::render_target >  m_pgpurendertarget;
       ::int_rectangle                     m_rectangleTarget;
-      int                                 m_mipsLevel;
+      int                                 m_iMipCount;
       ::int_size                          m_sizeMip;
       bool                                m_bTransferDst;
       bool                                m_bTransferSrc;
@@ -55,10 +57,16 @@ namespace gpu
       ~texture() override;
 
 
-      virtual ::int_size size();
-      virtual int width();
-      virtual int height();
+      virtual ::int_size size() const;
+      virtual int width() const;
+      virtual int height() const;
 
+      virtual int mip_width_for_mip(int baseWidth, int iMip) const;
+      virtual int mip_height_for_mip(int baseHeight, int iMip) const;
+      virtual int mip_width() const;
+      virtual int mip_height() const;
+      virtual int render_target_view_index(int iFace, int iMip) const;
+      virtual int current_render_target_view_index() const;
 
       void defer_throw_if_cube_map_images_are_not_ok(const ::pointer_array < ::image::image >& imagea);
       

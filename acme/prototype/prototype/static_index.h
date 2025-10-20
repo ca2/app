@@ -29,12 +29,7 @@ protected:
 
    ::collection::index m_iStaticIndex;
 
-   static_index(static_index_source* pstaticindexsource)
-   {
-
-      m_iStaticIndex = pstaticindexsource->m_count++;
-
-   }
+   static_index(static_index_source* pstaticindexsource);
 
 
 public:
@@ -48,14 +43,5 @@ public:
    }
 
 };
-
-
-static_index static_index_source::create_static_index()
-{
-
-   return this;
-
-}
-
 
 

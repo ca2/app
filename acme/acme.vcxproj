@@ -3363,6 +3363,7 @@
     <ClCompile Include="prototype\prototype\payload.cpp" />
     <ClCompile Include="prototype\prototype\quantum.cpp" />
     <ClCompile Include="prototype\prototype\read_only_memory.cpp" />
+    <ClCompile Include="prototype\prototype\static_index.cpp" />
     <ClCompile Include="prototype\prototype\subparticle.cpp" />
     <ClCompile Include="prototype\prototype\subparticle_flags.cpp" />
     <ClCompile Include="prototype\prototype\url.cpp" />

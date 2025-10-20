@@ -347,22 +347,22 @@ namespace dynamic_source
    ::file_system_cache_item script_manager::netnode_file_path(const ::scoped_string& scopedstrName)
    {
 
-      auto filesystemcacheitem = file_system_item(scopedstrName);
+      auto pfilesystemcacheitem = file_system_item(scopedstrName);
 
-      if (!filesystemcacheitem.is_ok())
+      if (!pfilesystemcacheitem.is_ok())
       {
 
-         filesystemcacheitem = file_system_item(string(scopedstrName) + ".ds");
+         pfilesystemcacheitem = file_system_item(string(scopedstrName) + ".ds");
 
       }
 
-      filesystemcacheitem.m_strName2 = scopedstrName;
+      pfilesystemcacheitem.m_strName2 = scopedstrName;
 
-      filesystemcacheitem.m_strName2.find_replace("\\", "/");
+      pfilesystemcacheitem.m_strName2.find_replace("\\", "/");
 
-      //file_system_has_script(filesystemcacheitem);
+      //file_system_has_script(pfilesystemcacheitem);
 
-      return filesystemcacheitem;
+      return pfilesystemcacheitem;
 
    }
 
@@ -726,7 +726,7 @@ namespace dynamic_source
                if (pinstanceParent)
                {
 
-                  //if (filesystemcacheitem.begins_eat(m_pathNetnodePath))
+                  //if (pfilesystemcacheitem.begins_eat(m_pathNetnodePath))
                   //{
 
                   //   strName.begins_eat("/net/");
@@ -968,12 +968,12 @@ namespace dynamic_source
    }
 
 
-   void script_manager::run(const ::file_system_cache_item& filesystemcacheitem)
+   void script_manager::run(const ::file_system_cache_item& pfilesystemcacheitem)
    {
 
       auto pmemfile = create_memory_file();
 
-      script_instance* pinstance = get(filesystemcacheitem);
+      script_instance* pinstance = get(pfilesystemcacheitem);
 
       if (pinstance != nullptr)
       {
@@ -1087,10 +1087,10 @@ namespace dynamic_source
 
       return path;
 
-      //if (file_system_file_exists(filesystemcacheitem))
-      //   return filesystemcacheitem;
-      //else if (file_system_is_folder(filesystemcacheitem))
-      //   return filesystemcacheitem;
+      //if (file_system_file_exists(pfilesystemcacheitem))
+      //   return pfilesystemcacheitem;
+      //else if (file_system_is_folder(pfilesystemcacheitem))
+      //   return pfilesystemcacheitem;
       //else
       //   return {};
    }
@@ -1303,18 +1303,18 @@ namespace dynamic_source
    {
    }
 
-   void script_manager::register_plugin(const ::scoped_string & scopedstrHost, const ::file_system_cache_item& filesystemcacheitem, script* pscript)
+   void script_manager::register_plugin(const ::scoped_string & scopedstrHost, const ::file_system_cache_item& pfilesystemcacheitem, script* pscript)
    {
 
       plugin_map_item item;
 
       item.m_strHost = scopedstrHost;
-      item.m_strScript = filesystemcacheitem.path();
-      item.m_strPlugin = filesystemcacheitem.m_strName2;
+      item.m_strScript = pfilesystemcacheitem.path();
+      item.m_strPlugin = pfilesystemcacheitem.m_strName2;
 
       m_pluginmapitema.add(___new plugin_map_item(item));
 
-      m_pcache->register_script(filesystemcacheitem, pscript);
+      m_pcache->register_script(pfilesystemcacheitem, pscript);
 
 
    }

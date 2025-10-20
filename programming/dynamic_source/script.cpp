@@ -135,16 +135,16 @@ namespace dynamic_source
 
       _synchronous_lock synchronouslock(this->synchronization());
 
-      auto & filesystemcacheitem = m_mapScriptPath[scopedstrName];
+      auto & pfilesystemcacheitem = m_mapScriptPath[scopedstrName];
 
-      if (!filesystemcacheitem.is_ok())
+      if (!pfilesystemcacheitem.is_ok())
       {
 
-         filesystemcacheitem = m_pmanager2->netnode_file_path(scopedstrName);
+         pfilesystemcacheitem = m_pmanager2->netnode_file_path(scopedstrName);
 
       }
 
-      return filesystemcacheitem;
+      return pfilesystemcacheitem;
 
    }
 
@@ -154,16 +154,16 @@ namespace dynamic_source
 
    //   _synchronous_lock synchronouslock(this->synchronization());
 
-   //   auto& filesystemcacheitem = m_mapRealPath2[scopedstrBase][scopedstr];
+   //   auto& pfilesystemcacheitem = m_mapRealPath2[scopedstrBase][scopedstr];
 
-   //   if (!filesystemcacheitem.is_ok())
+   //   if (!pfilesystemcacheitem.is_ok())
    //   {
 
-   //      filesystemcacheitem = m_pmanager2->_real_path2(scopedstrBase, scopedstr);
+   //      pfilesystemcacheitem = m_pmanager2->_real_path2(scopedstrBase, scopedstr);
 
    //   }
 
-   //   return filesystemcacheitem;
+   //   return pfilesystemcacheitem;
 
    //}
 

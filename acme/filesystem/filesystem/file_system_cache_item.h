@@ -33,32 +33,13 @@ public:
    }
 
 
-   void set_path(const ::file::path & path)
-   {
-
-      m_strName2 = path;
-
-      m_p->set_path(path);
-
-   }
-
-
-   void set_path2(const ::scoped_string& scopedstrName, const ::file::path & path)
-   {
-
-      m_strName2 = scopedstrName;
-
-      m_p->set_path(path);
-
-   }
-
-
    const ::file::path& path() const
    {
 
       return m_p->path();
 
    }
+
 
 };
 

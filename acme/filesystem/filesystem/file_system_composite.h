@@ -22,10 +22,10 @@ public:
 
 
 
-   //bool file_system_file_exists(const ::file_system_cache_item& filesystemcacheitem) override;
-   //bool file_system_is_folder(const ::file_system_cache_item& filesystemcacheitem) override;
-   //bool file_system_has_script(const ::file_system_cache_item& filesystemcacheitem) override;
-   //string file_system_expanded_md5(const ::file_system_cache_item& filesystemcacheitem) override;
+   //bool file_system_file_exists(const ::file_system_cache_item& pfilesystemcacheitem) override;
+   //bool file_system_is_folder(const ::file_system_cache_item& pfilesystemcacheitem) override;
+   //bool file_system_has_script(const ::file_system_cache_item& pfilesystemcacheitem) override;
+   //string file_system_expanded_md5(const ::file_system_cache_item& pfilesystemcacheitem) override;
 
    class ::file_system_cache_item file_system_item(const ::scoped_string& scopedstrName, ::file_system_real_path_interface* pfilesystemrealpathinterface = nullptr) override;
 

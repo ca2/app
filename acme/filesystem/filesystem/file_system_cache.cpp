@@ -98,46 +98,46 @@ void file_system_cache::clear_file_system_cache()
 }
 
 
-//bool file_system_cache::file_system_file_exists(const ::file_system_cache_item& filesystemcacheitem)
+//bool file_system_cache::file_system_file_exists(const ::file_system_cache_item& pfilesystemcacheitem)
 //{
 //
 //   _synchronous_lock synchronouslock(m_pmutexRealPath, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
-//   auto& filesystemcacheitem = m_mapRealPath[filesystemcacheitem.path()];
+//   auto& pfilesystemcacheitem = m_mapRealPath[pfilesystemcacheitem.path()];
 //
-//   if (!filesystemcacheitem.m_bFileExists2.is_set())
+//   if (!pfilesystemcacheitem.m_bFileExists2.is_set())
 //   {
 //
-//      filesystemcacheitem.m_bFileExists2 = m_pfilesysteminterface->file_system_file_exists(filesystemcacheitem);
+//      pfilesystemcacheitem.m_bFileExists2 = m_pfilesysteminterface->file_system_file_exists(pfilesystemcacheitem);
 //
 //   }
 //
-//   return filesystemcacheitem.m_bFileExists2;
+//   return pfilesystemcacheitem.m_bFileExists2;
 //
 //}
 //
 //
-//void file_system_cache::set_include_matches_file_exists(const ::file_system_cache_item& filesystemcacheitem, bool bFileExists)
+//void file_system_cache::set_include_matches_file_exists(const ::file_system_cache_item& pfilesystemcacheitem, bool bFileExists)
 //{
 //
 //   _synchronous_lock synchronouslock(m_pmutexRealPath, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
-//   m_mapIncludeMatchesFileExists2.set_at(filesystemcacheitem.m_pathReal, bFileExists);
+//   m_mapIncludeMatchesFileExists2.set_at(pfilesystemcacheitem.m_pathReal, bFileExists);
 //
 //}
 //
 //
-//bool file_system_cache::file_system_is_folder(const ::file_system_cache_item& filesystemcacheitem)
+//bool file_system_cache::file_system_is_folder(const ::file_system_cache_item& pfilesystemcacheitem)
 //{
 //
 //   _synchronous_lock synchronouslock(m_pmutexRealPath, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
-//   auto& bIsDir = m_mapIncludeMatchesIsDir2[filesystemcacheitem.m_pathReal];
+//   auto& bIsDir = m_mapIncludeMatchesIsDir2[pfilesystemcacheitem.m_pathReal];
 //
 //   if (!bIsDir.is_set())
 //   {
 //
-//      bIsDir = m_pfilesysteminterface->file_system_is_folder(filesystemcacheitem);
+//      bIsDir = m_pfilesysteminterface->file_system_is_folder(pfilesystemcacheitem);
 //
 //   }
 //
@@ -146,10 +146,10 @@ void file_system_cache::clear_file_system_cache()
 //}
 //
 //
-//bool file_system_cache::file_system_has_script(const ::file_system_cache_item& filesystemcacheitem)
+//bool file_system_cache::file_system_has_script(const ::file_system_cache_item& pfilesystemcacheitem)
 //{
 //
-//   if (!filesystemcacheitem.is_ok())
+//   if (!pfilesystemcacheitem.is_ok())
 //   {
 //
 //      return false;
@@ -158,12 +158,12 @@ void file_system_cache::clear_file_system_cache()
 //
 //   _synchronous_lock synchronouslock(m_pmutexIncludeHasScript, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
-//   auto& bHasScript = m_mapIncludeHasScript2[filesystemcacheitem.m_pathReal];
+//   auto& bHasScript = m_mapIncludeHasScript2[pfilesystemcacheitem.m_pathReal];
 //
 //   if (!bHasScript.is_set())
 //   {
 //
-//      bHasScript = m_pfilesysteminterface->file_system_has_script(filesystemcacheitem);
+//      bHasScript = m_pfilesysteminterface->file_system_has_script(pfilesystemcacheitem);
 //
 //   }
 //
@@ -172,22 +172,22 @@ void file_system_cache::clear_file_system_cache()
 //}
 //
 //
-//string file_system_cache::file_system_expanded_md5(const ::file_system_cache_item& filesystemcacheitem)
+//string file_system_cache::file_system_expanded_md5(const ::file_system_cache_item& pfilesystemcacheitem)
 //{
 //
 //   _synchronous_lock synchronouslock(m_pmutexRealPath, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
-//   return m_mapIncludeExpandMd5[filesystemcacheitem.m_pathReal];
+//   return m_mapIncludeExpandMd5[pfilesystemcacheitem.m_pathReal];
 //
 //}
 //
 //
-//void file_system_cache::set_include_expand_md5(const ::file_system_cache_item& filesystemcacheitem, const ::scoped_string& scopedstrMd5)
+//void file_system_cache::set_include_expand_md5(const ::file_system_cache_item& pfilesystemcacheitem, const ::scoped_string& scopedstrMd5)
 //{
 //
 //   _synchronous_lock synchronouslock(m_pmutexRealPath, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
-//   m_mapIncludeExpandMd5[filesystemcacheitem.m_pathReal] = scopedstrMd5;
+//   m_mapIncludeExpandMd5[pfilesystemcacheitem.m_pathReal] = scopedstrMd5;
 //
 //}
 

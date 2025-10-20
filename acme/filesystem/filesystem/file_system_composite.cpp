@@ -21,35 +21,35 @@ file_system_composite::~file_system_composite()
 
 
 
-//bool file_system_composite::file_system_file_exists(const ::file_system_cache_item& filesystemcacheitem)
+//bool file_system_composite::file_system_file_exists(const ::file_system_cache_item& pfilesystemcacheitem)
 //{
 //
-//   return m_pfilesysteminterface->file_system_file_exists(filesystemcacheitem);
+//   return m_pfilesysteminterface->file_system_file_exists(pfilesystemcacheitem);
 //
 //}
 //
 //
 //
-//bool file_system_composite::file_system_is_folder(const ::file_system_cache_item& filesystemcacheitem)
+//bool file_system_composite::file_system_is_folder(const ::file_system_cache_item& pfilesystemcacheitem)
 //{
 //
-//   return m_pfilesysteminterface->file_system_is_folder(filesystemcacheitem);
+//   return m_pfilesysteminterface->file_system_is_folder(pfilesystemcacheitem);
 //
 //}
 //
 //
-//bool file_system_composite::file_system_has_script(const ::file_system_cache_item& filesystemcacheitem)
+//bool file_system_composite::file_system_has_script(const ::file_system_cache_item& pfilesystemcacheitem)
 //{
 //
-//   return m_pfilesysteminterface->file_system_has_script(filesystemcacheitem);
+//   return m_pfilesysteminterface->file_system_has_script(pfilesystemcacheitem);
 //
 //}
 //
 //
-//string file_system_composite::file_system_expanded_md5(const ::file_system_cache_item& filesystemcacheitem)
+//string file_system_composite::file_system_expanded_md5(const ::file_system_cache_item& pfilesystemcacheitem)
 //{
 //
-//   return m_pfilesysteminterface->file_system_expanded_md5(filesystemcacheitem);
+//   return m_pfilesysteminterface->file_system_expanded_md5(pfilesystemcacheitem);
 //
 //}
 //

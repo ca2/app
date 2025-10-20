@@ -21,10 +21,10 @@ public:
 
    void on_initialize_particle() override;
 
-   //virtual bool file_system_file_exists(const ::file_system_cache_item& filesystemcacheitem);
-   //virtual bool file_system_is_folder(const ::file_system_cache_item& filesystemcacheitem);
-   //virtual bool file_system_has_script(const ::file_system_cache_item& filesystemcacheitem);
-   //virtual string file_system_expanded_md5(const ::file_system_cache_item& filesystemcacheitem);
+   //virtual bool file_system_file_exists(const ::file_system_cache_item& pfilesystemcacheitem);
+   //virtual bool file_system_is_folder(const ::file_system_cache_item& pfilesystemcacheitem);
+   //virtual bool file_system_has_script(const ::file_system_cache_item& pfilesystemcacheitem);
+   //virtual string file_system_expanded_md5(const ::file_system_cache_item& pfilesystemcacheitem);
 
 
    //virtual class ::file_system_cache_item file_system_item(const ::scoped_string& scopedstrName, ::file_system_interface* pfilesysteminterface = nullptr);

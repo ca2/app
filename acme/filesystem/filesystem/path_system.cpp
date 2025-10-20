@@ -634,7 +634,7 @@ bool path_system::is_absolute_path(const ::scoped_string & scopedstr)
 
 
 
-   char* pszRealPath = ::filesystemcacheitem(scopedstr, NULL);
+   char* pszRealPath = ::pfilesystemcacheitem(scopedstr, NULL);
 
    if (scopedstrRealPath == NULL)
    {

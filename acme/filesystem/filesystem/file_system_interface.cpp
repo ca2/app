@@ -159,15 +159,15 @@ bool file_system_interface::_file_system_has_script(::file_system_item* pfilesys
 ::file_system_cache_item file_system_interface::file_system_item(const ::scoped_string& scopedstrName, ::file_system_real_path_interface* pfilesystemrealpathinterface)
 {
 
-   auto filesystemcacheitem = file_system()->file_system_item(
+   auto pfilesystemcacheitem = file_system()->file_system_item(
       scopedstrName,
       ::is_set(pfilesystemrealpathinterface) ?
       pfilesystemrealpathinterface :
       get_file_system_real_path_interface());
 
-   filesystemcacheitem->m_pfilesysteminterface = this;
+   pfilesystemcacheitem->m_pfilesysteminterface = this;
 
-   return filesystemcacheitem;
+   return pfilesystemcacheitem;
 
 }
 

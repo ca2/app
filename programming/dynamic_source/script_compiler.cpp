@@ -2742,9 +2742,9 @@ namespace dynamic_source
 
       strInclude.case_insensitive_ends_eat(".ds");
 
-      auto filesystemcacheitem = m_pmanager->netnode_file_path(strInclude);
+      auto pfilesystemcacheitem = m_pmanager->netnode_file_path(strInclude);
 
-      ::pointer<script_instance>pinstance = m_pmanager->get(filesystemcacheitem);
+      ::pointer<script_instance>pinstance = m_pmanager->get(pfilesystemcacheitem);
 
       if (pinstance)
       {

@@ -177,7 +177,7 @@ namespace dynamic_source
       virtual void handle(::dynamic_source::httpd_socket * psocket);
       //::payload get_output_internal(::dynamic_source::script_interface * pinstanceParent, const ::scoped_string & scopedstrName);
       ::payload get_output_internal(::dynamic_source::script_interface* pinstanceParent, ::file_system_item * pfilesystemitem);
-      void run(const ::file_system_cache_item& filesystemcacheitem);
+      void run(const ::file_system_cache_item& pfilesystemcacheitem);
 
       void LoadEnv();
 
@@ -200,7 +200,7 @@ namespace dynamic_source
 
       virtual void on_load_env();
 
-      virtual void register_plugin(const ::scoped_string & scopedstrHost, const ::file_system_cache_item& filesystemcacheitem, script * pscript);
+      virtual void register_plugin(const ::scoped_string & scopedstrHost, const ::file_system_cache_item& pfilesystemcacheitem, script * pscript);
 
 
       virtual string get_root_plugin();

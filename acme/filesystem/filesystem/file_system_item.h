@@ -7,11 +7,20 @@
 class CLASS_DECL_ACME file_system_item :
    virtual public ::subparticle
 {
+protected:
+
+
+   friend class file_system_item;
+   friend class file_system;
+
+
+   ::file::path                  m_pathReal2;
+
+
 public:
 
 
    ::file_system_interface *     m_pfilesysteminterface;
-   ::file::path                  m_pathReal2;
    class ::time                  m_timeLastCheck2;
    ::logic::boolean              m_bFileExists2;
    ::logic::boolean              m_bIsDir2;
@@ -24,21 +33,13 @@ public:
    file_system_item();
    ~file_system_item() override;
 
+
    bool is_ok() const
    {
 
       return m_pathReal2.has_character();
 
    }
-
-
-   void set_path(const ::file::path& path)
-   {
-
-      m_pathReal2 = path;
-
-   }
-
 
 
    const ::file::path& path() const

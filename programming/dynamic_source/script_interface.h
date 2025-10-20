@@ -46,6 +46,9 @@ namespace dynamic_source
       virtual void init1();
 
 
+      void on_initialize_particle() override;
+
+
       ::file_system_real_path_interface* get_file_system_real_path_interface() override;
     
       //void finalize() override;

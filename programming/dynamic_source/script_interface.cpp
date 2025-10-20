@@ -129,6 +129,16 @@ namespace dynamic_source
    }
 
 
+   void script_interface::on_initialize_particle()
+   {
+
+      ::html_file::on_initialize_particle();
+      ::file_system_interface::on_initialize_particle();
+      ::file_system_real_path_interface::on_initialize_particle();
+
+   }
+
+
    ::file_system_real_path_interface* script_interface::get_file_system_real_path_interface()
    {
 

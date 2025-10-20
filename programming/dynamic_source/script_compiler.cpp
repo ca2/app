@@ -320,11 +320,11 @@ namespace dynamic_source
 
       _synchronous_lock slCompiler(&m_pmanager->m_semCompiler);
 
-      informationf("Compiling script %s", pscript->m_strName.c_str());
+      informationf("Compiling script %s", pscript->m_path.c_str());
 
       auto& ostreamError = pscript->m_textstreamError;
 
-      ::file::path strName(pscript->m_strName);
+      ::file::path strName(pscript->m_path);
 
       if (strName.case_insensitive_ends("\\auth3.ds"))
       {
@@ -529,7 +529,7 @@ namespace dynamic_source
 
 #endif
 
-      pscript->m_strScriptPath = m_pmanager->get_script_path(strName, strRndTitle);
+      pscript->m_strScriptPath = m_pmanager->netnode_file_path(strName, strRndTitle);
 
       try
       {
@@ -2037,6 +2037,7 @@ namespace dynamic_source
       //character_count iNext3 = 0;
       bool bInitial = true;
       string strSpec1;
+      string strSpec1Macro;
       character_count iOpenParen = 1; // open Parenthesis Count
       string_array_base straFunction;
       index_array iaFunctionParen; // index of the parenthesis of the function
@@ -2068,7 +2069,15 @@ namespace dynamic_source
             }
             else if (ch2 == '(')
             {
-               strResult += strSpec1 + "(";
+               if (strSpec1Macro.has_character())
+               {
+                  strResult += strSpec1Macro + "(";
+               }
+               else
+               {
+
+                  strResult += strSpec1 + "(";
+               }
                bInSpec1 = false;
                ch2++;
                bNewLine = false;
@@ -2076,7 +2085,15 @@ namespace dynamic_source
             }
             else
             {
-               strResult += strSpec1 + "(";
+               if (strSpec1Macro.has_character())
+               {
+                  strResult += strSpec1Macro + "(";
+               }
+               else
+               {
+
+                  strResult += strSpec1 + "(";
+               }
                bInSpec1Close = true;
                bInSpec1 = false;
             }
@@ -2580,18 +2597,21 @@ namespace dynamic_source
             {
                bInSpec1 = true;
                strSpec1 = "include";
+               strSpec1Macro = "DS_INCLUDE";
                ch2.ansi_add(iIdLen - 1);
             }
             else if (is_id(&str[ch2.m_i], str.length() - ch2.m_i, "print", 5, iIdLen))
             {
                bInSpec1 = true;
                strSpec1 = "print";
+               strSpec1Macro = "";
                ch2.ansi_add(iIdLen - 1);
             }
             else if (is_id(&str[ch2.m_i], str.length() - ch2.m_i, "echo", 4, iIdLen))
             {
                bInSpec1 = true;
                strSpec1 = "echo";
+               strSpec1Macro = "";
                ch2.ansi_add(iIdLen - 1);
             }
             else if (str.substr(ch2.m_i, 2) == "[]")
@@ -2722,7 +2742,9 @@ namespace dynamic_source
 
       strInclude.case_insensitive_ends_eat(".ds");
 
-      ::pointer<script_instance>pinstance = m_pmanager->get(strInclude);
+      auto filesystemcacheitem = m_pmanager->netnode_file_path(strInclude);
+
+      ::pointer<script_instance>pinstance = m_pmanager->get(filesystemcacheitem);
 
       if (pinstance)
       {

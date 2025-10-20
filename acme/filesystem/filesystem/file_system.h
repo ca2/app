@@ -3,10 +3,12 @@
 
 
 #include "acme/platform/department.h"
+#include "acme/filesystem/filesystem/file_system_interface.h"
 
 
 class CLASS_DECL_ACME file_system :
-   virtual public ::acme::department
+   virtual public ::acme::department,
+   virtual public ::file_system_interface
 {
 public:
 
@@ -16,15 +18,24 @@ public:
    ::file::path         m_pathModule;
 
 
-   ::IDENTIFIER_SUFFIX_OPERATING_SYSTEM(acme_)::file_system *       m_pplatformfile;
-   ::directory_system *                                             m_pdirectorysystem;
-   ::path_system *                                                  m_ppathsystem;
+   ::IDENTIFIER_SUFFIX_OPERATING_SYSTEM(acme_)::file_system *     m_pplatformfile;
+   ::directory_system *                                           m_pdirectorysystem;
+   ::path_system *                                                m_ppathsystem;
 
    ::file::path                                                   m_pathExecutable;
+
+   ::pointer < ::mutex >                                          m_pmutexFileSystemItem;
+   string_map_base < ::pointer < ::file_system_item > >           m_mapFileSystemItem;
 
 
    file_system();
    ~file_system() override;
+
+
+   virtual void initialize(::particle* pparticle) override;
+
+   virtual void init_system();
+
 
 
    virtual void ensure_exists(const ::file::path & path);
@@ -235,9 +246,6 @@ public:
 
 
 
-   virtual void initialize(::particle * pparticle) override;
-
-   virtual void init_system();
 
    //virtual void update_module_path();
 
@@ -245,6 +253,16 @@ public:
    //virtual ::file::path get_last_run_application_path_file(const ::scoped_string & scopedstrAppId);
    //virtual ::file::path get_last_run_application_path(const ::scoped_string & scopedstrAppId);
    //virtual bool set_last_run_application_path(const ::scoped_string & scopedstrAppId);
+
+   
+   bool _file_system_file_exists(::file_system_item* pfilesystemitem) override;
+   bool _file_system_is_folder(::file_system_item* pfilesystemitem) override;
+   bool _file_system_has_script(::file_system_item* pfilesystemitem) override;
+   ::string _file_system_expanded_md5(::file_system_item* pfilesystemitem) override;
+
+
+   ::file_system_item * get_file_system_item(const ::scoped_string& scopedstrName, ::file_system_real_path_interface * pfilesystemrealpathinterface) override;
+   //::file::path _calculate_real_path(const ::scoped_string& scopedstrName, ::file_system_interface* pfilesysteminterface = nullptr) override;
 
 };
 

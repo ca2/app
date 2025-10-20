@@ -6,14 +6,21 @@
 #include "acme/prototype/geometry2d/size.h"
 #include "apex/message/channel.h"
 #include "acme/filesystem/watcher/listener.h"
+#include "acme/filesystem/filesystem/file_system_cache_item.h"
+#include "acme/filesystem/filesystem/file_system_cache.h"
+#include "acme/filesystem/filesystem/file_system_real_path_interface.h"
 
 
 namespace dynamic_source
 {
 
 
+
+
    class CLASS_DECL_APP_PROGRAMMING script_manager :
-      virtual public ::channel
+      virtual public ::channel,
+      virtual public ::file_system_cache,
+      virtual public ::file_system_real_path_interface
    {
    public:
 
@@ -72,15 +79,6 @@ namespace dynamic_source
       pointer_array < plugin_map_item >                     m_pluginmapitema;
 
       ::semaphore                                           m_semCompiler;
-      ::pointer < ::mutex >                                 m_pmutexIncludeMatches;
-      string_map_base < ::logic::boolean >                       m_mapIncludeMatchesFileExists2;
-      string_map_base < ::logic::boolean >                       m_mapIncludeMatchesIsDir2;
-      ::pointer < ::mutex >                                 m_pmutexIncludeHasScript;
-      string_map_base < ::logic::boolean >                       m_mapIncludeHasScript2;
-      ::pointer < ::mutex >                                 m_pmutexShouldBuild;
-      string_map_base < ::logic::boolean >                       m_mapShouldBuild2;
-      ::pointer < ::mutex >                                 m_pmutexIncludeExpandMd5;
-      string_to_string_base                                      m_mapIncludeExpandMd5;
       //::pointer<::user::message_window>                  m_pmessagequeue;
 
       int                                                   m_iTunnelPluginCount;
@@ -113,6 +111,8 @@ namespace dynamic_source
 
       class ::time                                          m_timeLastRsa;
 
+      ::pointer < ::mutex >                                 m_pmutexShouldBuild;
+      string_map_base < ::logic::boolean >                       m_mapShouldBuild2;
 
 
       class ::time                                          m_timeDatabaseWaitTimeOut;
@@ -139,12 +139,13 @@ namespace dynamic_source
       string_to_string_base                                      m_tagname;
 
 
-      string                                                m_strSeed;
+      string                                                m_strSeed1;
+      ::file_system_cache_item                              m_filesystemcacheitemSeed;
 
 
       bool                                                  m_bCompiler;
       class ::time                                          m_timeSessionExpiration;
-
+      ///::pointer < ::programming::file_system_cache >        m_pfilesystemcache;
 
       script_manager();
       ~script_manager() override;
@@ -153,38 +154,41 @@ namespace dynamic_source
       void initialize(::particle * pparticle) override;
 
 
+      void on_initialize_particle() override;
+
+
       void destroy() override;
 
 
       virtual void init1();
 
 
-      virtual bool include_matches_file_exists(const ::scoped_string & scopedstrPath);
-      void set_include_matches_file_exists(const ::scoped_string & scopedstrPath, bool bFileExists);
-      bool include_matches_is_dir(const ::scoped_string & scopedstrPath);
-      bool include_has_script(const ::scoped_string & scopedstrPath);
-      string include_expand_md5(const ::scoped_string & scopedstrPath);
-      void set_include_expand_md5(const ::scoped_string & scopedstrPath, const ::scoped_string & scopedstrMd5);
+      ::file_system_real_path_interface* get_file_system_real_path_interface() override;
+      //virtual ::programming::file_system_cache* fs_cache();
 
       ::pointer<::dynamic_source::session>get_session(const ::scoped_string & scopedstrId);
 
-      ::pointer<script_instance>get(const ::scoped_string & scopedstrName);
-      ::pointer<script_instance>get(const ::scoped_string & scopedstrName, ::pointer<script> & pscript);
+      virtual ::file_system_cache_item netnode_file_path(const ::scoped_string& scopedstrName);
+
+      //::pointer<script_instance>get(const ::scoped_string & scopedstrName);
+      //::pointer<script_instance>get(const ::scoped_string & scopedstrName, ::pointer<script> & pscript);
+      ::pointer<script_instance>get(::file_system_item * pfilesystemitem);
+      ::pointer<script_instance>get(::file_system_item* pfilesystemitem, ::pointer<script>& pscript);
       virtual void handle(::dynamic_source::httpd_socket * psocket);
-      ::payload get_output_internal(::dynamic_source::script_interface * pinstanceParent, const ::scoped_string & scopedstrName);
-      void run(const ::scoped_string & scopedstrName);
+      //::payload get_output_internal(::dynamic_source::script_interface * pinstanceParent, const ::scoped_string & scopedstrName);
+      ::payload get_output_internal(::dynamic_source::script_interface* pinstanceParent, ::file_system_item * pfilesystemitem);
+      void run(const ::file_system_cache_item& filesystemcacheitem);
 
       void LoadEnv();
 
       string get_library_build_log();
 
 
-      virtual void clear_include_matches(::file::path path);
-      virtual void clear_include_matches();
       //static unsigned int c_cdecl clear_include_matches_FolderWatchThread(LPVOID lpParam); // thread procedure
 
-      virtual ::file::path real_path(const ::file::path & str);
-      virtual ::file::path real_path(const ::file::path & strBase,const ::file::path & str);
+      ::file::path _real_path1(const ::scoped_string& scopedstrName) override;
+      //virtual ::file_system_cache_item _real_path(const ::file::path & str);
+      virtual ::file::path _real_path2(const ::file::path & strBase,const ::file::path & str);
 
 
       ::pointer<::crypto::rsa>get_rsa_key();
@@ -196,7 +200,7 @@ namespace dynamic_source
 
       virtual void on_load_env();
 
-      virtual void register_plugin(const ::scoped_string & scopedstrHost, const ::scoped_string & scopedstrScript, const ::scoped_string & scopedstrName, script * pscript);
+      virtual void register_plugin(const ::scoped_string & scopedstrHost, const ::file_system_cache_item& filesystemcacheitem, script * pscript);
 
 
       virtual string get_root_plugin();
@@ -219,7 +223,7 @@ namespace dynamic_source
 
       virtual bool should_build(const ::file::path & strScript);
 
-      virtual ::file::path get_script_path(const ::file::path & strName, const ::scoped_string & scopedstrModifier);
+      virtual ::file::path netnode_file_path(const ::file::path & strName, const ::scoped_string & scopedstrModifier);
 
    };
 

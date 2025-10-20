@@ -17,5 +17,20 @@
 
 #include "introjection/_.h"
 
+#define DS_INCLUDE(NAME) \
+{       \
+   static ::file_system_cache_item s_realpath = netnode_file_path((NAME)); \
+   include(s_realpath); \
+}      
 
+
+namespace programming
+{
+
+   
+   class file_system_cache;
+   class real_path;
+
+
+} // namespace programming
 

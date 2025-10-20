@@ -66,62 +66,77 @@ namespace dynamic_source
    }
 
 
-   ::pointer<ds_script>script_cache::allocate_ds_script(const ::scoped_string & scopedstrName)
+   //::pointer<ds_script>script_cache::allocate_ds_script(const ::scoped_string & scopedstrName)
+   //{
+
+   //   auto pscript = øcreate_new< ds_script >();
+
+   //   pscript->m_pmanager = m_pmanager;
+
+   //   pscript->m_strName = scopedstrName;
+
+   //   return ::transfer(pscript);
+
+   //}
+
+
+   ::pointer<ds_script>script_cache::allocate_ds_script(::file_system_item* pfilesystemitem)
    {
 
       auto pscript = øcreate_new< ds_script >();
 
-      pscript->m_pmanager = m_pmanager;
+      pscript->set_manager(m_pmanager);
 
-      pscript->m_strName = scopedstrName;
+      pscript->m_path = pfilesystemitem->path();
 
       return ::transfer(pscript);
 
    }
 
-
-   script * script_cache::get(const ::scoped_string & scopedstrName)
+   script * script_cache::get(::file_system_item * pfilesystemitem)
    {
 
-      string strName(scopedstrName);
 
-#ifdef WINDOWS
-
-      strName.replace_with("\\", "/");
-
-#endif
+      auto pathReal = pfilesystemitem->path();
+//      string strName(scopedstrName);
+//
+//#ifdef WINDOWS
+//
+//      strName.replace_with("\\", "/");
+//
+//#endif
 
       _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-      auto & pscript = m_map[strName];
+      auto & pscript = m_map[pathReal];
 
       if (pscript.is_set()
-         && pscript->m_strName == strName)
+         && pscript->m_path == pfilesystemitem->path())
       {
 
          return pscript;
 
       }
 
-      return pscript = allocate_ds_script(strName);
+      return pscript = allocate_ds_script(pfilesystemitem);
 
    }
 
 
-   script * script_cache::register_script(const ::scoped_string & scopedstrName, script * pscript)
+   script * script_cache::register_script(::file_system_item* pfilesystemitem, script * pscript)
    {
 
-      string strName(scopedstrName);
+//      string strName(scopedstrName);
+//
+//#ifdef WINDOWS
+//
+//      strName.find_replace("/", "\\");
+//
+//#endif
 
-#ifdef WINDOWS
+      _single_lock synchronouslock(this->synchronization(), true);
 
-      strName.find_replace("/", "\\");
-
-#endif
-
-      single_lock synchronouslock(synchronization(), true);
-
-      auto iterator = m_map.find(strName);
+      auto iterator = m_map.find(pfilesystemitem->path());
 
       if(iterator)
       {
@@ -132,49 +147,35 @@ namespace dynamic_source
 
       }
 
-      pscript->m_pmanager = m_pmanager;
+      pscript->set_manager(m_pmanager);
 
-      pscript->m_strName = strName;
+      pscript->m_path = pfilesystemitem->path();
 
       return pscript;
 
    }
 
 
-   ::pointer<script_instance>script_cache::create_instance(const ::scoped_string & scopedstrName, ::pointer<script> & pscript)
+   ::pointer<script_instance>script_cache::create_instance(::file_system_item * pfilesystemitem, ::pointer<script> & pscript)
    {
 
       pscript = nullptr;
 
-      if(string_begins(scopedstrName, "netnode://"))
-      {
-         
-         single_lock synchronouslock(synchronization(), true);
+      //if(string_begins(scopedstrName, "netnode://"))
+      //{
+      //   
+      //   single_lock synchronouslock(synchronization(), true);
 
-         pscript  = get(scopedstrName);
+      //   pscript  = get(scopedstrName);
 
-         synchronouslock.unlock();
+      //   synchronouslock.unlock();
 
-         return pscript->create_instance();
+      //   return pscript->create_instance();
 
-      }
+      //}
 
-      string strName(scopedstrName);
-      
-      strName = m_pmanager->real_path(scopedstrName);
-      
-      if (strName.is_empty())
-      {
 
-         strName = m_pmanager->real_path(string(scopedstrName) + ".ds");
-
-      }
-      
-      strName.find_replace("\\", "/");
-
-      m_pmanager->include_has_script(strName);
-
-      pscript = get(strName);
+      pscript = get(pfilesystemitem);
 
       if (::is_null(pscript))
       {
@@ -190,7 +191,7 @@ namespace dynamic_source
          if (!slScript._wait(5_s))
          {
 
-            throw ::heating_up_exception("Compiling script " + scopedstrName);
+            throw ::heating_up_exception("Compiling script " + pfilesystemitem->path());
 
          }
 
@@ -199,11 +200,11 @@ namespace dynamic_source
       if(!pscript->m_bNew && pscript->ShouldBuild())
       {
 
-         pscript = allocate_ds_script(strName);
+         pscript = allocate_ds_script(pfilesystemitem);
 
          _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-         m_map[strName] = pscript;
+         m_map[pfilesystemitem->path()] = pscript;
 
          return pscript->create_instance();
 
@@ -229,7 +230,7 @@ namespace dynamic_source
 
       single_lock synchronouslock(synchronization(), true);
 
-      m_map.erase(pscript->m_strName);
+      m_map.erase(pscript->m_path);
 
    }
 

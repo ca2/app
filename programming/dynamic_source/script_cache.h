@@ -27,18 +27,19 @@ namespace dynamic_source
 
       void destroy() override;
 
-      ::pointer<script_instance>create_instance(const ::scoped_string & scopedstrName, ::pointer<script> & pscript);
+      virtual ::pointer<script_instance>create_instance(::file_system_item* pfilesystemitem, ::pointer<script> & pscript);
 
       void set_all_out_of_date();
 
       void set_out_of_date(const ::scoped_string & scopedstr);
 
       //void cache(script * pscript);
-      ::pointer<ds_script> allocate_ds_script(const ::scoped_string & scopedstrName);
+      //::pointer<ds_script> allocate_ds_script(const ::scoped_string & scopedstrName);
+      ::pointer<ds_script> allocate_ds_script(::file_system_item* pfilesystemitem);
       void uncache(script * pscript);
 
-      script * get(const ::scoped_string & scopedstrName);
-      script * register_script(const ::scoped_string & scopedstrName, script * pscript);
+      script * get(::file_system_item * pfilesystemitem);
+      script * register_script(::file_system_item * pfilesystemitem, script * pscript);
 
 
    };

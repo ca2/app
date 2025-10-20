@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "script.h"
 #include "script_interface.h"
 #include "script_main.h"
 #include "httpd_socket.h"
@@ -128,6 +129,15 @@ namespace dynamic_source
    }
 
 
+   ::file_system_real_path_interface* script_interface::get_file_system_real_path_interface()
+   {
+
+      return this;
+
+   }
+
+
+
    //void script_interface::destroy()
    //{
 
@@ -217,6 +227,16 @@ namespace dynamic_source
       }
 
    }
+
+
+   ::file_system_cache_item script_interface::netnode_file_path(const ::scoped_string& scopedstrName)
+   {
+
+      return m_pscript2->netnode_file_path(scopedstrName);
+
+   }
+
+
 
 
    void script_interface::on_initialize()

@@ -41,11 +41,10 @@ namespace dynamic_source
    script::script()
    {
 
-      m_pmanager = nullptr;
+      m_pmanager2 = nullptr;
 
       m_bNew = true;
 
-      defer_create_synchronization();
 
    }
 
@@ -61,6 +60,9 @@ namespace dynamic_source
    {
 
       //auto estatus = 
+
+      defer_create_synchronization();
+
       
       ::object::on_initialize_particle();
 
@@ -117,6 +119,53 @@ namespace dynamic_source
 
    }
 
+
+   void script::set_manager(script_manager* pmanager)
+   {
+
+      m_pmanager2 = pmanager;
+
+      m_pfilesysteminterface = pmanager;
+
+   }
+
+
+   ::file_system_cache_item script::netnode_file_path(const ::scoped_string& scopedstrName)
+   {
+
+      _synchronous_lock synchronouslock(this->synchronization());
+
+      auto & filesystemcacheitem = m_mapScriptPath[scopedstrName];
+
+      if (!filesystemcacheitem.is_ok())
+      {
+
+         filesystemcacheitem = m_pmanager2->netnode_file_path(scopedstrName);
+
+      }
+
+      return filesystemcacheitem;
+
+   }
+
+
+   //::file_system_cache_item script::real_path2(const ::scoped_string& scopedstrBase, const ::scoped_string& scopedstr)
+   //{
+
+   //   _synchronous_lock synchronouslock(this->synchronization());
+
+   //   auto& filesystemcacheitem = m_mapRealPath2[scopedstrBase][scopedstr];
+
+   //   if (!filesystemcacheitem.is_ok())
+   //   {
+
+   //      filesystemcacheitem = m_pmanager2->_real_path2(scopedstrBase, scopedstr);
+
+   //   }
+
+   //   return filesystemcacheitem;
+
+   //}
 
    ds_script::ds_script()
    {
@@ -201,7 +250,7 @@ namespace dynamic_source
 
       }
 
-      bool bManagerShouldBuild = m_pmanager->should_build(m_strSourcePath);
+      bool bManagerShouldBuild = m_pmanager2->should_build(m_strSourcePath);
 
       if (bManagerShouldBuild)
       {
@@ -251,8 +300,8 @@ namespace dynamic_source
       auto pprimitive = psystem->prototype();
 
       return (m_timeLastBuildTime.elapsed()) > 
-         m_pmanager->m_timeBuildInterval +
-         pprimitive->random(0_s, m_pmanager->m_timeTimeRandomInterval);
+         m_pmanager2->m_timeBuildInterval +
+         pprimitive->random(0_s, m_pmanager2->m_timeTimeRandomInterval);
    }
 
 
@@ -418,7 +467,7 @@ namespace dynamic_source
 
          øconstruct(m_plibrary);
 
-         string strStagePath = m_pmanager->get_full_stage_path(m_strScriptPath);
+         string strStagePath = m_pmanager2->get_full_stage_path(m_strScriptPath);
 
          file_system()->copy(strStagePath, m_strScriptPath, true);
 
@@ -501,7 +550,7 @@ namespace dynamic_source
 
          m_plibrary->close();
 
-         string strStagePath = m_pmanager->get_stage_path(m_strScriptPath);
+         string strStagePath = m_pmanager2->get_stage_path(m_strScriptPath);
 
          m_lpfnCreateInstance = (NET_NODE_CREATE_INSTANCE_PROC) nullptr;
 
@@ -537,7 +586,7 @@ namespace dynamic_source
 
       }
 
-      pinstance->m_strNote = m_strName;
+      pinstance->m_strNote = m_path;
 
       pinstance->m_pscript2 = this;
 
@@ -623,21 +672,21 @@ namespace dynamic_source
 
          }
 
-         m_pmanager->m_pcompiler->compile(this);
+         m_pmanager2->m_pcompiler->compile(this);
 
          str = m_strError;
 
          if (iRetry == 0)
          {
 
-            information() << "Build: " << m_strName;
+            information() << "Build: " << m_path;
             informationf(str);
 
          }
          else
          {
 
-            information() << "Retry("<<iRetry<<"): "<<m_strName<<"\nError: " << str.c_str();
+            information() << "Retry("<<iRetry<<"): "<<m_path<<"\nError: " << str.c_str();
 
          }
 
@@ -679,9 +728,9 @@ namespace dynamic_source
 
       {
 
-         _synchronous_lock synchronouslock(m_pmanager->m_pmutexShouldBuild, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+         _synchronous_lock synchronouslock(m_pmanager2->m_pmutexShouldBuild, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-         m_pmanager->m_mapShouldBuild2[m_strSourcePath] = false;
+         m_pmanager2->m_mapShouldBuild2[m_strSourcePath] = false;
 
       }
 

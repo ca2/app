@@ -4275,6 +4275,9 @@
     <ClInclude Include="filesystem\filesystem\path_system.h">
       <Filter>Header Files\filesystem\filesystem</Filter>
     </ClInclude>
+    <ClInclude Include="filesystem\filesystem\file_system_real_path_interface.h">
+      <Filter>Header Files\filesystem\filesystem</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="prototype\prototype\bit.cpp">
@@ -6126,6 +6129,9 @@
       <Filter>Source Files\filesystem\filesystem</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\filesystem\file_system_item.cpp">
+      <Filter>Source Files\filesystem\filesystem</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filesystem\file_system_real_path_interface.cpp">
       <Filter>Source Files\filesystem\filesystem</Filter>
     </ClCompile>
   </ItemGroup>

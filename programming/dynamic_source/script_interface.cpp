@@ -129,6 +129,15 @@ namespace dynamic_source
    }
 
 
+   ::file_system_real_path_interface* script_interface::get_file_system_real_path_interface()
+   {
+
+      return this;
+
+   }
+
+
+
    //void script_interface::destroy()
    //{
 

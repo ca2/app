@@ -149,23 +149,23 @@ namespace dynamic_source
    }
 
 
-   ::file_system_cache_item script::real_path2(const ::scoped_string& scopedstrBase, const ::scoped_string& scopedstr)
-   {
+   //::file_system_cache_item script::real_path2(const ::scoped_string& scopedstrBase, const ::scoped_string& scopedstr)
+   //{
 
-      _synchronous_lock synchronouslock(this->synchronization());
+   //   _synchronous_lock synchronouslock(this->synchronization());
 
-      auto& filesystemcacheitem = m_mapRealPath2[scopedstrBase][scopedstr];
+   //   auto& filesystemcacheitem = m_mapRealPath2[scopedstrBase][scopedstr];
 
-      if (!filesystemcacheitem.is_ok())
-      {
+   //   if (!filesystemcacheitem.is_ok())
+   //   {
 
-         filesystemcacheitem = m_pmanager2->_real_path2(scopedstrBase, scopedstr);
+   //      filesystemcacheitem = m_pmanager2->_real_path2(scopedstrBase, scopedstr);
 
-      }
+   //   }
 
-      return filesystemcacheitem;
+   //   return filesystemcacheitem;
 
-   }
+   //}
 
    ds_script::ds_script()
    {

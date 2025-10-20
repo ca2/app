@@ -32,12 +32,12 @@ public:
    void on_initialize_particle() override;
 
 
-   //bool include_matches_file_exists(const ::file_system_cache_item& filesystemcacheitem) override;
-   //bool include_matches_is_dir(const ::file_system_cache_item& filesystemcacheitem) override;
-   //bool include_has_script(const ::file_system_cache_item& filesystemcacheitem) override;
-   //string include_expand_md5(const ::file_system_cache_item& filesystemcacheitem) override;
+   //bool file_system_file_exists(const ::file_system_cache_item& filesystemcacheitem) override;
+   //bool file_system_is_folder(const ::file_system_cache_item& filesystemcacheitem) override;
+   //bool file_system_has_script(const ::file_system_cache_item& filesystemcacheitem) override;
+   //string file_system_expanded_md5(const ::file_system_cache_item& filesystemcacheitem) override;
 
-   ::file_system_cache_item file_system_item(const ::scoped_string & scopedstrName, ::file_system_interface* pfilesysteminterface = nullptr) override;
+   ::file_system_cache_item file_system_item(const ::scoped_string & scopedstrName, ::file_system_real_path_interface* pfilesystemrealpathinterface = nullptr) override;
 
 
    //virtual void set_include_matches_file_exists(const ::file_system_cache_item& filesystemcacheitem, bool bFileExists);

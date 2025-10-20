@@ -11,6 +11,7 @@
 #include "acme/filesystem/file/memory_file.h"
 #include "acme/filesystem/filesystem/directory_system.h"
 #include "acme/filesystem/filesystem/file_system.h"
+#include "acme/filesystem/filesystem/path_system.h"
 #include "acme/filesystem/filesystem/listing.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/node.h"
@@ -206,6 +207,16 @@ namespace dynamic_source
 
    }
 
+   
+   void script_manager::on_initialize_particle()
+   {
+
+      ::channel::on_initialize_particle();
+      ::file_system_cache::on_initialize_particle();
+      ::file_system_real_path_interface::on_initialize_particle();
+
+   }
+
 
    void script_manager::destroy()
    {
@@ -315,14 +326,20 @@ namespace dynamic_source
    }
 
 
+   ::file_system_real_path_interface* script_manager::get_file_system_real_path_interface()
+   {
+
+      return this;
+
+   }
 
 
-   ::pointer<script_instance>script_manager::get(const ::file_system_cache_item & filesystemcacheitem)
+   ::pointer<script_instance>script_manager::get(::file_system_item* pfilesystemitem)
    {
 
       ::pointer<script>pscript;
 
-      return get(filesystemcacheitem, pscript);
+      return get(pfilesystemitem, pscript);
 
    }
 
@@ -343,17 +360,17 @@ namespace dynamic_source
 
       filesystemcacheitem.m_strName2.find_replace("\\", "/");
 
-      //include_has_script(filesystemcacheitem);
+      //file_system_has_script(filesystemcacheitem);
 
       return filesystemcacheitem;
 
    }
 
 
-   ::pointer<script_instance>script_manager::get(const ::file_system_cache_item & filesystemcacheitem, ::pointer<script>& pscript)
+   ::pointer<script_instance>script_manager::get(::file_system_item* pfilesystemitem, ::pointer<script>& pscript)
    {
 
-      return m_pcache->create_instance(filesystemcacheitem, pscript);
+      return m_pcache->create_instance(pfilesystemitem, pscript);
 
    }
 
@@ -648,13 +665,13 @@ namespace dynamic_source
    }
 
 
-   ::payload script_manager::get_output_internal(::dynamic_source::script_interface* pinstanceParent, const ::file_system_cache_item& filesystemcacheitem)
+   ::payload script_manager::get_output_internal(::dynamic_source::script_interface* pinstanceParent, ::file_system_item * pfilesystemitem)
    {
 
 //      string strName = ::str::get_word(scopedstrNameParam, "?");
 
 
-      if (!filesystemcacheitem.is_ok())
+      if (!pfilesystemitem->is_ok())
       {
 
          if (pinstanceParent != nullptr)
@@ -700,7 +717,7 @@ namespace dynamic_source
 
                timeGetHereStart.Now();
 
-               pinstance = get(filesystemcacheitem, pscript);
+               pinstance = get(pfilesystemitem, pscript);
 
                timeGetHereEnd.Now();
 
@@ -1061,18 +1078,18 @@ namespace dynamic_source
    }
 
 
-   ::file_system_cache_item script_manager::get_real_path2(const ::file::path& strBase, const ::file::path& str)
+   ::file::path script_manager::_real_path2(const ::file::path& strBase, const ::file::path& str)
    {
       
       ::file::path strRealPath = strBase / str;
 
-      auto filesystemcacheitem = netnode_file_path(strRealPath);
+      auto path = _real_path1(strRealPath);
 
-      return filesystemcacheitem;
+      return path;
 
-      //if (include_matches_file_exists(filesystemcacheitem))
+      //if (file_system_file_exists(filesystemcacheitem))
       //   return filesystemcacheitem;
-      //else if (include_matches_is_dir(filesystemcacheitem))
+      //else if (file_system_is_folder(filesystemcacheitem))
       //   return filesystemcacheitem;
       //else
       //   return {};
@@ -1086,7 +1103,7 @@ namespace dynamic_source
    // #endif
 
 
-   ::file_system_cache_item script_manager::_real_path(const ::file::path& str)
+   ::file::path script_manager::_real_path1(const ::scoped_string & scopedstrName)
    {
 
       //#ifdef WINDOWS
@@ -1094,7 +1111,7 @@ namespace dynamic_source
       //      if(file_path_is_absolute(str))
       //      {
       //
-      //         if(include_matches_file_exists(str))
+      //         if(file_system_file_exists(str))
       //            return str;
       //         return "";
       //      }
@@ -1103,31 +1120,26 @@ namespace dynamic_source
       //         return real_path(m_pathNetseedDsCa2Path, str);
       //      }
       //#else
-      if (file_path_is_absolute(str))
+
+      ::file::path path;
+
+      if (file_path_is_absolute(scopedstrName))
       {
 
-         ::file_system_cache_item filesystemcacheitem;
-
-         filesystemcacheitem.m_pathReal = str;
-
-         filesystemcacheitem.m_strName = str;
-
-         if (include_matches_file_exists(filesystemcacheitem))
-         {
-          
-            return filesystemcacheitem;
-
-         }
-
-         return _real_path2(m_pathNetseedDsCa2Path, str);
+         path = path_system()->real_path(scopedstrName);
 
       }
-      else
+
+      if (path.has_character())
       {
-         
-         return _real_path2(m_pathNetseedDsCa2Path, str);
+
+         return path;
 
       }
+
+      path = _real_path2(m_pathNetseedDsCa2Path, scopedstrName);
+
+      return path;
       
    }
 
@@ -1297,8 +1309,8 @@ namespace dynamic_source
       plugin_map_item item;
 
       item.m_strHost = scopedstrHost;
-      item.m_strScript = filesystemcacheitem.m_pathReal;
-      item.m_strPlugin = filesystemcacheitem.m_strName;
+      item.m_strScript = filesystemcacheitem.path();
+      item.m_strPlugin = filesystemcacheitem.m_strName2;
 
       m_pluginmapitema.add(___new plugin_map_item(item));
 

@@ -2,6 +2,8 @@
 
 
 #include "apex/filesystem/file/html_file.h"
+#include "acme/filesystem/filesystem/file_system_interface.h"
+#include "acme/filesystem/filesystem/file_system_real_path_interface.h"
 
 
 namespace dynamic_source
@@ -9,7 +11,9 @@ namespace dynamic_source
 
 
    class CLASS_DECL_APP_PROGRAMMING script_interface :
-      virtual public ::html_file
+      virtual public ::html_file,
+      virtual public ::file_system_interface,
+      virtual public ::file_system_real_path_interface
    {
    public:
 
@@ -41,6 +45,9 @@ namespace dynamic_source
       virtual void initialize(::particle * pparticle) override;
       virtual void init1();
 
+
+      ::file_system_real_path_interface* get_file_system_real_path_interface() override;
+    
       //void finalize() override;
 
       void destroy() override;

@@ -255,8 +255,14 @@ public:
    //virtual bool set_last_run_application_path(const ::scoped_string & scopedstrAppId);
 
    
-   ::file_system_cache_item file_system_item(const ::scoped_string& scopedstr, ::file_system_interface * pfilesysteminterface) override;
+   bool _file_system_file_exists(::file_system_item* pfilesystemitem) override;
+   bool _file_system_is_folder(::file_system_item* pfilesystemitem) override;
+   bool _file_system_has_script(::file_system_item* pfilesystemitem) override;
+   ::string _file_system_expanded_md5(::file_system_item* pfilesystemitem) override;
 
+
+   ::file_system_item * get_file_system_item(const ::scoped_string& scopedstrName, ::file_system_real_path_interface * pfilesystemrealpathinterface) override;
+   //::file::path _calculate_real_path(const ::scoped_string& scopedstrName, ::file_system_interface* pfilesysteminterface = nullptr) override;
 
 };
 

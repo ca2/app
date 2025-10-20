@@ -1671,6 +1671,7 @@
     <ClCompile Include="filesystem\filesystem\file_system_interface.cpp" />
     <ClCompile Include="filesystem\filesystem\file_system_item.cpp" />
     <ClCompile Include="filesystem\filesystem\file_system_options.cpp" />
+    <ClCompile Include="filesystem\filesystem\file_system_real_path_interface.cpp" />
     <ClCompile Include="filesystem\filesystem\folder_dialog.cpp" />
     <ClCompile Include="filesystem\filesystem\link.cpp" />
     <ClCompile Include="filesystem\filesystem\path.cpp" />
@@ -1762,6 +1763,7 @@
     <ClInclude Include="filesystem\filesystem\file_system_interface.h" />
     <ClInclude Include="filesystem\filesystem\file_system_cache_item.h" />
     <ClInclude Include="filesystem\filesystem\file_system_item.h" />
+    <ClInclude Include="filesystem\filesystem\file_system_real_path_interface.h" />
     <ClInclude Include="filesystem\filesystem\path_system.h" />
     <ClInclude Include="filesystem\filesystem\_format.h" />
     <ClInclude Include="filesystem\file\byte2_stream.h" />

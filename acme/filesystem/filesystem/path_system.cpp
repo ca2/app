@@ -292,7 +292,7 @@ void path_system::safe_real_path(::file::path & path)
    if (pathFull.is_empty())
    {
 
-      return path;
+      return {};
 
    }
 

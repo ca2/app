@@ -4,8 +4,10 @@
 #include "framework.h"
 #include "file_system.h"
 #include "directory_system.h"
-#include "path_system.h"
+#include "file_system_real_path_interface.h"
 #include "listing.h"
+#include "path_system.h"
+#include "acme/crypto/crypto.h"
 #include "acme/exception/interface_only.h"
 #include "acme/exception/io.h"
 #include "acme/filesystem/file/file.h"
@@ -1819,7 +1821,63 @@ void file_system::init_system()
 //}
 
 
-::file_system_cache_item file_system::file_system_item(const ::scoped_string& scopedstrName, ::file_system_interface* pfilesysteminterface)
+//::file::path file_system::_calculate_real_path(const ::scoped_string& scopedstrName, ::file_system_interface* pfilesysteminterface)
+//{
+//
+//   ::file::path path;
+//
+//   if (pfilesysteminterface != nullptr)
+//   {
+//
+//      path = pfilesysteminterface->_calculate_real_path(scopedstrName);
+//
+//   }
+//   else
+//   {
+//
+//      path = this->path_system()->real_path(scopedstrName);
+//
+//   }
+//
+//
+//   return path;
+//
+//}
+
+
+bool file_system::_file_system_file_exists(::file_system_item* pfilesystemitem)
+{
+
+   return __exists(pfilesystemitem->path());
+
+}
+
+
+bool file_system::_file_system_is_folder(::file_system_item* pfilesystemitem)
+{
+
+   return directory_system()->__is(pfilesystemitem->path());
+
+}
+
+
+bool file_system::_file_system_has_script(::file_system_item* pfilesystemitem)
+{
+
+   return this->__safe_find_string(pfilesystemitem->path(), "<?") >= 0;
+
+}
+
+
+::string file_system::_file_system_expanded_md5(::file_system_item* pfilesystemitem)
+{
+
+   return this->crypto()->md5(pfilesystemitem->path());
+
+}
+
+
+::file_system_item * file_system::get_file_system_item(const ::scoped_string& scopedstrName, ::file_system_real_path_interface* pfilesystemrealpathinterface)
 {
 
    _synchronous_lock synchronouslock(m_pmutexFileSystemItem, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
@@ -1831,13 +1889,28 @@ void file_system::init_system()
 
       øconstruct_new(pfilesystemitem);
 
-      pfilesystemitem->m_pathReal2 = pfilesysteminterface->get_real_path(scopedstrName);
+      ::file::path path;
 
-      pfilesystemitem->m_pfilesysteminterface = pfilesysteminterface;
+      if (::is_set(pfilesystemrealpathinterface))
+      {
+
+         path = pfilesystemrealpathinterface->real_path(scopedstrName);
+
+      }
+      else
+      {
+
+         path = this->path_system()->real_path(scopedstrName);
+
+      }
+
+      pfilesystemitem->m_pathReal2 = path;
+
+      pfilesystemitem->m_pfilesysteminterface = this;
 
    }
 
-   return { scopedstrName, pfilesystemitem};
+   return pfilesystemitem;
 
 }
 

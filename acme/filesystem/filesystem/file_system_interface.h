@@ -18,20 +18,31 @@ public:
    ~file_system_interface() override;
 
 
-
-   //virtual bool include_matches_file_exists(const ::file_system_cache_item& filesystemcacheitem);
-   //virtual bool include_matches_is_dir(const ::file_system_cache_item& filesystemcacheitem);
-   //virtual bool include_has_script(const ::file_system_cache_item& filesystemcacheitem);
-   //virtual string include_expand_md5(const ::file_system_cache_item& filesystemcacheitem);
+   virtual ::file_system_real_path_interface* get_file_system_real_path_interface();
 
 
-   virtual class ::file_system_cache_item file_system_item(const ::scoped_string& scopedstrName, ::file_system_interface* pfilesysteminterface = nullptr);
-   virtual class ::file_system_item * _file_system_item(const ::scoped_string& scopedstrName, ::file_system_interface * pfilesysteminterface = nullptr);
+   virtual bool file_system_file_exists(::file_system_item * pfilesystemitem);
+   virtual bool file_system_is_folder(::file_system_item* pfilesystemitem);
+   virtual bool file_system_has_script(::file_system_item* pfilesystemitem);
+   virtual string file_system_expanded_md5(::file_system_item* pfilesystemitem);
+
+   virtual bool _file_system_file_exists(::file_system_item* pfilesystemitem);
+   virtual bool _file_system_is_folder(::file_system_item* pfilesystemitem);
+   virtual bool _file_system_has_script(::file_system_item* pfilesystemitem);
+   virtual string _file_system_expanded_md5(::file_system_item* pfilesystemitem);
 
 
-   virtual ::file::path get_real_path(const ::scoped_string& scopedstr);
+   virtual class ::file_system_cache_item file_system_item(const ::scoped_string& scopedstrName, ::file_system_real_path_interface* pfilesystemrealpathinterface = nullptr);
+
+
+   virtual ::file_system_item* get_file_system_item(const ::scoped_string& scopedstr, ::file_system_real_path_interface* pfilesystemrealpathinterface = nullptr);
+
+
+   //virtual ::file::path _calculate_real_path(const ::scoped_string& scopedstrName, ::file_system_interface* pfilesysteminterface = nullptr);
+
 
 };
+
 
 
 

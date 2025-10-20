@@ -98,7 +98,7 @@ void file_system_cache::clear_file_system_cache()
 }
 
 
-//bool file_system_cache::include_matches_file_exists(const ::file_system_cache_item& filesystemcacheitem)
+//bool file_system_cache::file_system_file_exists(const ::file_system_cache_item& filesystemcacheitem)
 //{
 //
 //   _synchronous_lock synchronouslock(m_pmutexRealPath, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
@@ -108,7 +108,7 @@ void file_system_cache::clear_file_system_cache()
 //   if (!filesystemcacheitem.m_bFileExists2.is_set())
 //   {
 //
-//      filesystemcacheitem.m_bFileExists2 = m_pfilesysteminterface->include_matches_file_exists(filesystemcacheitem);
+//      filesystemcacheitem.m_bFileExists2 = m_pfilesysteminterface->file_system_file_exists(filesystemcacheitem);
 //
 //   }
 //
@@ -127,7 +127,7 @@ void file_system_cache::clear_file_system_cache()
 //}
 //
 //
-//bool file_system_cache::include_matches_is_dir(const ::file_system_cache_item& filesystemcacheitem)
+//bool file_system_cache::file_system_is_folder(const ::file_system_cache_item& filesystemcacheitem)
 //{
 //
 //   _synchronous_lock synchronouslock(m_pmutexRealPath, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
@@ -137,7 +137,7 @@ void file_system_cache::clear_file_system_cache()
 //   if (!bIsDir.is_set())
 //   {
 //
-//      bIsDir = m_pfilesysteminterface->include_matches_is_dir(filesystemcacheitem);
+//      bIsDir = m_pfilesysteminterface->file_system_is_folder(filesystemcacheitem);
 //
 //   }
 //
@@ -146,7 +146,7 @@ void file_system_cache::clear_file_system_cache()
 //}
 //
 //
-//bool file_system_cache::include_has_script(const ::file_system_cache_item& filesystemcacheitem)
+//bool file_system_cache::file_system_has_script(const ::file_system_cache_item& filesystemcacheitem)
 //{
 //
 //   if (!filesystemcacheitem.is_ok())
@@ -163,7 +163,7 @@ void file_system_cache::clear_file_system_cache()
 //   if (!bHasScript.is_set())
 //   {
 //
-//      bHasScript = m_pfilesysteminterface->include_has_script(filesystemcacheitem);
+//      bHasScript = m_pfilesysteminterface->file_system_has_script(filesystemcacheitem);
 //
 //   }
 //
@@ -172,7 +172,7 @@ void file_system_cache::clear_file_system_cache()
 //}
 //
 //
-//string file_system_cache::include_expand_md5(const ::file_system_cache_item& filesystemcacheitem)
+//string file_system_cache::file_system_expanded_md5(const ::file_system_cache_item& filesystemcacheitem)
 //{
 //
 //   _synchronous_lock synchronouslock(m_pmutexRealPath, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
@@ -192,7 +192,7 @@ void file_system_cache::clear_file_system_cache()
 //}
 
 
-file_system_cache_item file_system_cache::file_system_item(const ::scoped_string & scopedstrName, ::file_system_interface* pfilesysteminterface)
+file_system_cache_item file_system_cache::file_system_item(const ::scoped_string & scopedstrName, ::file_system_real_path_interface* pfilesystemrealpathinterface)
 {
 
    _synchronous_lock synchronouslock(m_pmutexFileSystemItem, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
@@ -202,7 +202,7 @@ file_system_cache_item file_system_cache::file_system_item(const ::scoped_string
    if (!pfilesystemitem)
    {
 
-      pfilesystemitem = _file_system_item(scopedstrName, pfilesysteminterface);
+      pfilesystemitem = get_file_system_item(scopedstrName, pfilesystemrealpathinterface);
       
    }
 

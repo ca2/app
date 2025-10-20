@@ -24,9 +24,8 @@ namespace dynamic_source
       ::write_text_stream                                m_textstreamError;
       string                                             m_strError;
       bool                                               m_bNew;
-      ::string_map < ::file_system_cache_item >                       m_mapScriptPath;
-      ::string_map < ::file_system_cache_item >                       m_mapRealPath1;
-      ::string_map < ::string_map < ::file_system_cache_item > >      m_mapRealPath2;
+      ::string_map < ::file_system_cache_item >          m_mapScriptPath;
+
 
       script();
       ~script() override;
@@ -50,7 +49,7 @@ namespace dynamic_source
 
 
       virtual ::file_system_cache_item netnode_file_path(const ::scoped_string& scopedstrName);
-      virtual ::file_system_cache_item real_path2(const ::scoped_string& scopedstrBase, const ::scoped_string& scopedstr);
+      //virtual ::file_system_cache_item _calculate_real_path(const ::scoped_string& scopedstrBase, ::f);
 
    };
 

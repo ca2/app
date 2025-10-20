@@ -213,7 +213,12 @@ class ::file_system_item* file_system_interface::get_file_system_item(const ::sc
       pfilesystemrealpathinterface :
       get_file_system_real_path_interface());
 
-   pfilesystemitem->m_pfilesysteminterface = this;
+   if (::is_set(pfilesystemitem))
+   {
+
+      pfilesystemitem->m_pfilesysteminterface = this;
+
+   }
 
    return pfilesystemitem;
 

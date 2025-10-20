@@ -37,6 +37,13 @@ public:
    bool is_ok() const
    {
 
+      if (::is_null(this))
+      {
+
+         return false;
+
+      }
+
       return m_pathReal2.has_character() && m_pathReal2.is_existent_file_or_folder();
 
    }
@@ -45,13 +52,27 @@ public:
    bool ok() const
    {
 
+      if (::is_null(this))
+      {
+
+         return false;
+
+      }
+
       return this->is_ok();
       
    }
 
 
-   const ::file::path& path() const
+   ::file::path path() const
    {
+
+      if (::is_null(this))
+      {
+
+         return {};
+
+      }
 
       return m_pathReal2;
 

@@ -1895,6 +1895,13 @@ bool file_system::_file_system_has_script(::file_system_item* pfilesystemitem)
 
    }
 
+   if (path.is_empty() || path.is_unknown_type())
+   {
+
+      return nullptr;
+
+   }
+
    _synchronous_lock synchronouslock(m_pmutexFileSystemItem, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    auto& pfilesystemitem = m_mapFileSystemItem[path];

@@ -294,7 +294,7 @@ requires (sizeof(SAME_SIZE_CHARACTER) == sizeof(CHARACTER))
 
       }
 
-      ::memory_transfer((void*) this->m_begin, pszSource, lengthNew);
+      ::memory_transfer((void*) this->m_begin, pszSource, lengthNew * sizeof(CHARACTER));
 
       this->_set_length(lengthNew);
 

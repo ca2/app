@@ -1137,7 +1137,9 @@ namespace dynamic_source
 
       }
 
-      path = _real_path2(m_pathNetseedDsCa2Path, scopedstrName);
+      auto path2 = m_pathNetseedDsCa2Path / scopedstrName;
+
+      path = path_system()->real_path(path2);
 
       return path;
       

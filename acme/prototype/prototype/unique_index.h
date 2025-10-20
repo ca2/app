@@ -7,6 +7,9 @@ class unique_index;
 
 class CLASS_DECL_ACME unique_index_domain
 {
+protected:
+
+   friend class unique_index;
 
    ::interlocked_count m_count;
 
@@ -24,6 +27,10 @@ protected:
 
    
    ::collection::index m_iUniqueIndex;
+
+
+   friend class unique_index_domain;
+
 
    unique_index(unique_index_domain* puniqueindexdomain);
    

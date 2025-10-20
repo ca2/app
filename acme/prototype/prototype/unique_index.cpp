@@ -4,7 +4,7 @@
 
 
 
-unique_index unique_index_domain::unique_index()
+unique_index unique_index_domain::create_unique_index()
 {
 
    return this;

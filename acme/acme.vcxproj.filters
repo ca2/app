@@ -4278,6 +4278,9 @@
     <ClInclude Include="filesystem\filesystem\file_system_real_path_interface.h">
       <Filter>Header Files\filesystem\filesystem</Filter>
     </ClInclude>
+    <ClInclude Include="prototype\prototype\static_index.h">
+      <Filter>Header Files\prototype\prototype</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="prototype\prototype\bit.cpp">

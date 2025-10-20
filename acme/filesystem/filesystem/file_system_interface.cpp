@@ -7,12 +7,14 @@
 #include "file_system.h"
 #include "file_system_cache_item.h"
 #include "path_system.h"
-
+#include "acme/platform/node.h"
 
 
 
 file_system_interface::file_system_interface()
 {
+
+   m_mapFileSystemCacheItem.InitHashTable(256 * 1024 - 1);
 
 }
 
@@ -20,6 +22,19 @@ file_system_interface::file_system_interface()
 file_system_interface::~file_system_interface()
 {
 
+
+}
+
+
+
+void file_system_interface::on_initialize_particle()
+{
+
+   ::particle::on_initialize_particle();
+
+   defer_create_synchronization();
+
+   m_pmutexFileSystemCacheItem = node()->create_mutex();
 
 }
 

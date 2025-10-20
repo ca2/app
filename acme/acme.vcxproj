@@ -2355,6 +2355,7 @@
     <ClInclude Include="prototype\prototype\prototype.h" />
     <ClInclude Include="prototype\prototype\quantum.h" />
     <ClInclude Include="prototype\prototype\referenceable.h" />
+    <ClInclude Include="prototype\prototype\static_index.h" />
     <ClInclude Include="prototype\prototype\subparticle.h" />
     <ClInclude Include="prototype\prototype\subparticle_flags.h" />
     <ClInclude Include="prototype\prototype\hash32.h" />

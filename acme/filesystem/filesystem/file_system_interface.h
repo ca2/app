@@ -5,6 +5,8 @@
 
 
 #include "acme/filesystem/filesystem/file_system_cache_item.h"
+#include "acme/prototype/collection/int_map.h"
+#include "acme/prototype/prototype/static_index.h"
 
 
 class CLASS_DECL_ACME file_system_interface :
@@ -13,12 +15,29 @@ class CLASS_DECL_ACME file_system_interface :
 public:
 
 
+   ::pointer < ::mutex >                           m_pmutexFileSystemCacheItem;
+   index_map_base < ::file_system_cache_item >     m_mapFileSystemCacheItem;
+
+
 
    file_system_interface();
    ~file_system_interface() override;
 
 
+   void on_initialize_particle() override;
+
+
    virtual ::file_system_real_path_interface* get_file_system_real_path_interface();
+
+
+   ::file_system_cache_item& file_system_cache_item(const ::static_index& staticindex)
+   {
+
+      _synchronous_lock synchronouslock(m_pmutexFileSystemCacheItem);
+
+      return m_mapFileSystemCacheItem[staticindex.m_iStaticIndex];
+
+   }
 
 
    virtual bool file_system_file_exists(::file_system_item * pfilesystemitem);

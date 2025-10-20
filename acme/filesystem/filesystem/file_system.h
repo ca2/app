@@ -262,7 +262,7 @@ public:
 
 
    ::file_system_item * get_file_system_item(const ::scoped_string& scopedstrName, ::file_system_real_path_interface * pfilesystemrealpathinterface) override;
-   //::file::path _calculate_real_path(const ::scoped_string& scopedstrName, ::file_system_interface* pfilesysteminterface = nullptr) override;
+
 
 };
 

@@ -1880,29 +1880,29 @@ bool file_system::_file_system_has_script(::file_system_item* pfilesystemitem)
 ::file_system_item * file_system::get_file_system_item(const ::scoped_string& scopedstrName, ::file_system_real_path_interface* pfilesystemrealpathinterface)
 {
 
+   ::file::path path;
+
+   if (::is_set(pfilesystemrealpathinterface))
+   {
+
+      path = pfilesystemrealpathinterface->real_path(scopedstrName);
+
+   }
+   else
+   {
+
+      path = this->path_system()->real_path(scopedstrName);
+
+   }
+
    _synchronous_lock synchronouslock(m_pmutexFileSystemItem, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-   auto& pfilesystemitem = m_mapFileSystemItem[scopedstrName];
+   auto& pfilesystemitem = m_mapFileSystemItem[path];
 
    if (!pfilesystemitem)
    {
 
       øconstruct_new(pfilesystemitem);
-
-      ::file::path path;
-
-      if (::is_set(pfilesystemrealpathinterface))
-      {
-
-         path = pfilesystemrealpathinterface->real_path(scopedstrName);
-
-      }
-      else
-      {
-
-         path = this->path_system()->real_path(scopedstrName);
-
-      }
 
       pfilesystemitem->m_pathReal2 = path;
 

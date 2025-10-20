@@ -37,8 +37,16 @@ public:
    bool is_ok() const
    {
 
-      return m_pathReal2.has_character();
+      return m_pathReal2.has_character() && m_pathReal2.is_existent_file_or_folder();
 
+   }
+
+
+   bool ok() const
+   {
+
+      return this->is_ok();
+      
    }
 
 

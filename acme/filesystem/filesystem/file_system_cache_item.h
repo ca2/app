@@ -33,6 +33,14 @@ public:
    }
 
 
+   bool ok() const
+   {
+
+      return this->is_ok();
+
+   }
+
+
    const ::file::path& path() const
    {
 

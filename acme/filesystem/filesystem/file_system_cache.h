@@ -23,6 +23,8 @@ public:
    //string_map_base < ::logic::boolean >                  m_mapIncludeMatchesIsDir2;
    //string_map_base < ::logic::boolean >                  m_mapIncludeHasScript2;
    //string_to_string_base                                 m_mapIncludeExpandMd5;
+   critical_section                                         m_criticalsectionFileSystemCacheItem;
+   index_map_base < ::file_system_cache_item >              m_mapFileSystemCacheItem;
 
    
    file_system_cache();
@@ -30,6 +32,27 @@ public:
 
 
    void on_initialize_particle() override;
+
+
+   ::file_system_cache_item& file_system_cache_item(const ::scoped_string& scopedstrName, const ::unique_index& uniqueindex)
+   {
+
+      critical_section_lock criticalsectionlock(&m_criticalsectionFileSystemCacheItem);
+
+      auto& pfilesystemcacheitem = m_mapFileSystemCacheItem[uniqueindex.index()];
+
+      if (!pfilesystemcacheitem)
+      {
+
+         pfilesystemcacheitem = file_system_item(scopedstrName);
+
+      }
+
+      return pfilesystemcacheitem;
+
+   }
+
+
 
 
    //bool file_system_file_exists(const ::file_system_cache_item& pfilesystemcacheitem) override;

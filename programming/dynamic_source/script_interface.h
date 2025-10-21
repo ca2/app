@@ -49,8 +49,6 @@ namespace dynamic_source
       void on_initialize_particle() override;
 
 
-      ::file_system_real_path_interface* get_file_system_real_path_interface() override;
-    
       //void finalize() override;
 
       void destroy() override;
@@ -74,7 +72,9 @@ namespace dynamic_source
 
       virtual ::file_system_cache_item netnode_file_path(const ::scoped_string& scopedstrName);
 
-
+      ::file_system_real_path_interface* get_file_system_real_path_interface() override;
+      
+      virtual ::file_system_cache_item & netnode_include_file_system_cache_item(const ::scoped_string& scopedstrName, const ::unique_index& uniqueindex);
 
       virtual void on_initialize();
       //virtual void initialize_dynamic_source_script_interface(script_interface * pinterfaceMain, script_interface * pinterfaceParent, httpd_socket * pdssocket, script_manager * pmanager);

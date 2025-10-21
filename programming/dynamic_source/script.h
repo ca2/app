@@ -25,6 +25,10 @@ namespace dynamic_source
       string                                             m_strError;
       bool                                               m_bNew;
       ::string_map < ::file_system_cache_item >          m_mapScriptPath;
+      critical_section                                   m_criticalsectionFileSystemCacheItem;
+      index_map_base < ::file_system_cache_item >        m_mapFileSystemCacheItem;
+      critical_section                                   m_criticalsectionFileSystemItem;
+      ::string_map < ::pointer < ::file_system_item > >  m_mapFileSystemItem;
 
 
       script();

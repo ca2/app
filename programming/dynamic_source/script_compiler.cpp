@@ -2597,7 +2597,7 @@ namespace dynamic_source
             {
                bInSpec1 = true;
                strSpec1 = "include";
-               strSpec1Macro = "DS_INCLUDE";
+               strSpec1Macro = "ds_include";
                ch2.ansi_add(iIdLen - 1);
             }
             else if (is_id(&str[ch2.m_i], str.length() - ch2.m_i, "print", 5, iIdLen))

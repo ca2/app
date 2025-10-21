@@ -14,8 +14,6 @@
 file_system_interface::file_system_interface()
 {
 
-   m_mapFileSystemCacheItem.InitHashTable(256 * 1024 - 1);
-
 }
 
 
@@ -51,7 +49,7 @@ bool file_system_interface::file_system_file_exists(::file_system_item * pfilesy
    if (::is_null(pfilesystemitem))
    {
 
-      throw ::exception(error_null_pointer);
+      return false;
 
    }
 
@@ -71,7 +69,7 @@ bool file_system_interface::file_system_file_exists(::file_system_item * pfilesy
 bool file_system_interface::_file_system_file_exists(::file_system_item* pfilesystemitem)
 {
 
-   return false;
+   return file_system()->_file_system_file_exists(pfilesystemitem);
 
 }
 
@@ -82,7 +80,7 @@ bool file_system_interface::file_system_is_folder(::file_system_item* pfilesyste
    if (::is_null(pfilesystemitem))
    {
 
-      throw ::exception(error_null_pointer);
+      return false;
 
    }
 
@@ -102,7 +100,7 @@ bool file_system_interface::file_system_is_folder(::file_system_item* pfilesyste
 bool file_system_interface::_file_system_is_folder(::file_system_item* pfilesystemitem)
 {
 
-   return false;
+   return file_system()->_file_system_is_folder(pfilesystemitem);
 
 }
 
@@ -133,7 +131,7 @@ bool file_system_interface::file_system_has_script(::file_system_item * pfilesys
 bool file_system_interface::_file_system_has_script(::file_system_item* pfilesystemitem)
 {
 
-   return {};
+   return file_system()->_file_system_has_script(pfilesystemitem);
 
 }
 
@@ -164,7 +162,7 @@ bool file_system_interface::_file_system_has_script(::file_system_item* pfilesys
 ::string file_system_interface::_file_system_expanded_md5(::file_system_item* pfilesystemitem)
 {
 
-   return {};
+   return file_system()->_file_system_expanded_md5(pfilesystemitem);
 
 }
 
@@ -177,6 +175,13 @@ bool file_system_interface::_file_system_has_script(::file_system_item* pfilesys
       ::is_set(pfilesystemrealpathinterface) ?
       pfilesystemrealpathinterface :
       get_file_system_real_path_interface());
+
+   if (::is_null(pfilesystemcacheitem))
+   {
+
+      return { scopedstrName , nullptr};
+
+   }
 
    pfilesystemcacheitem->m_pfilesysteminterface = this;
 

@@ -261,6 +261,8 @@ public:
    ::string _file_system_expanded_md5(::file_system_item* pfilesystemitem) override;
 
 
+   ::file_system_cache_item file_system_item(const ::scoped_string& scopedstrName, ::file_system_real_path_interface* pfilesystemrealpathinterface) override;
+
    ::file_system_item * get_file_system_item(const ::scoped_string& scopedstrName, ::file_system_real_path_interface * pfilesystemrealpathinterface) override;
 
 

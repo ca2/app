@@ -16,8 +16,8 @@ class CLASS_DECL_ACME file_system_interface :
 public:
 
 
-   critical_section                                m_criticalsectionFileSystemCacheItem;
-   index_map_base < ::file_system_cache_item >     m_mapFileSystemCacheItem;
+   //critical_section                                m_criticalsectionFileSystemCacheItem;
+   //index_map_base < ::file_system_cache_item >     m_mapFileSystemCacheItem;
 
 
 
@@ -31,15 +31,6 @@ public:
    virtual ::file_system_real_path_interface* get_file_system_real_path_interface();
 
 
-
-   ::file_system_cache_item& file_system_cache_item(const ::unique_index& uniqueindex)
-   {
-
-      critical_section_lock criticalsectionlock(&m_criticalsectionFileSystemCacheItem);
-
-      return m_mapFileSystemCacheItem[uniqueindex.index()];
-
-   }
 
 
    virtual bool file_system_file_exists(::file_system_item * pfilesystemitem);

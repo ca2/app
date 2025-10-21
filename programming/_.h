@@ -17,11 +17,12 @@
 
 #include "introjection/_.h"
 
-#define DS_INCLUDE(NAME) \
-{       \
-   static auto s_uniqueindex = create_unique_index(); \
-   include(file_system_cache_item(s_uniqueindex)); \
-}      
+//#define DS_INCLUDE(NAME) \
+//{       \
+//   static auto s_uniqueindex = create_unique_index(); \
+//   auto pfilesystemcacheitem = netnode_include_file_system_cache_item(NAME, s_uniqueindex); \
+//   include(pfilesystemcacheitem); \
+//}      
 
 
 namespace programming

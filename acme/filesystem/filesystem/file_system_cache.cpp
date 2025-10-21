@@ -9,6 +9,11 @@
 file_system_cache::file_system_cache()
 {
 
+
+   m_mapFileSystemCacheItem.InitHashTable(256 * 1024 - 1);
+
+
+
    m_mapFileSystemItem.InitHashTable(256 * 1024 - 1);
    //m_mapIncludeMatchesFileExists2.InitHashTable(256 * 1024 - 1);
    //m_mapIncludeMatchesIsDir2.InitHashTable(256 * 1024 - 1);

@@ -139,15 +139,6 @@ namespace dynamic_source
    }
 
 
-   ::file_system_real_path_interface* script_interface::get_file_system_real_path_interface()
-   {
-
-      return this;
-
-   }
-
-
-
    //void script_interface::destroy()
    //{
 
@@ -247,6 +238,57 @@ namespace dynamic_source
    }
 
 
+   ::file_system_real_path_interface* script_interface::get_file_system_real_path_interface()
+   {
+
+      return this;
+
+   }
+
+
+   ::file_system_cache_item & script_interface::netnode_include_file_system_cache_item(const ::scoped_string& scopedstrName, const ::unique_index& uniqueindex)
+   {
+
+      critical_section_lock criticalsectionlock(&m_pscript2->m_criticalsectionFileSystemCacheItem);
+       
+      auto& pfilesystemcacheitem = m_pscript2->m_mapFileSystemCacheItem[uniqueindex.index()];
+
+      if (pfilesystemcacheitem.is_ok())
+      {
+
+         return pfilesystemcacheitem;
+
+      }
+
+      pfilesystemcacheitem = file_system_item(scopedstrName);
+
+      if (pfilesystemcacheitem.is_ok())
+      {
+
+         return pfilesystemcacheitem;
+
+      }
+
+      // as this function has "include" semantic,
+      // if name doesn't end with .ds file extension...
+      if (!scopedstrName.case_insensitive_ends(".ds"))
+      {
+
+         // try with .ds file extension appended
+         pfilesystemcacheitem = file_system_item(scopedstrName + ".ds");
+
+         if (pfilesystemcacheitem.is_ok())
+         {
+
+            return pfilesystemcacheitem;
+
+         }
+
+      }
+
+      return pfilesystemcacheitem;
+
+   }
 
 
    void script_interface::on_initialize()

@@ -1877,6 +1877,30 @@ bool file_system::_file_system_has_script(::file_system_item* pfilesystemitem)
 }
 
 
+::file_system_cache_item file_system::file_system_item(const ::scoped_string& scopedstrName, ::file_system_real_path_interface* pfilesystemrealpathinterface)
+{
+
+   auto pfilesystemitem = get_file_system_item(
+      scopedstrName,
+      ::is_set(pfilesystemrealpathinterface) ?
+      pfilesystemrealpathinterface :
+      get_file_system_real_path_interface());
+
+   if (::is_null(pfilesystemitem))
+   {
+
+      return { scopedstrName , nullptr};
+
+   }
+
+   pfilesystemitem->m_pfilesysteminterface = this;
+
+   return { scopedstrName, pfilesystemitem };
+
+}
+
+
+
 ::file_system_item * file_system::get_file_system_item(const ::scoped_string& scopedstrName, ::file_system_real_path_interface* pfilesystemrealpathinterface)
 {
 

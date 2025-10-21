@@ -145,9 +145,9 @@ namespace dynamic_source
 
 //#endif
 
-      m_pathNetnodePath = m_pathBase / "netnodenet";
-      m_pathNetseedPath = m_pathBase / "netnodenet/net";
-      m_pathNetseedDsCa2Path = m_pathBase / "netnodenet/net";
+      m_pathNetnodePath = path_system()->real_path(m_pathBase / "netnodenet");
+      m_pathNetseedPath = path_system()->real_path(m_pathBase / "netnodenet/net");
+      m_pathNetseedDsCa2Path = path_system()->real_path(m_pathBase / "netnodenet/net");
 
       m_pmutexShouldBuild = node()->create_mutex();
       m_pmutexSession = node()->create_mutex();

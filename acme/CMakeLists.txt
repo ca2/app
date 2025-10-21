@@ -208,7 +208,18 @@ list(APPEND library_source
         filesystem/filesystem/file_context.h
         filesystem/filesystem/file_context_interface.cpp
         filesystem/filesystem/file_context_interface.h
+        filesystem/filesystem/file_system_cache.cpp
+        filesystem/filesystem/file_system_cache.h
+        filesystem/filesystem/file_system_cache_item.cpp
+        filesystem/filesystem/file_system_cache_item.h
+        filesystem/filesystem/file_system_interface.cpp
+        filesystem/filesystem/file_system_interface.h
+        filesystem/filesystem/file_system_item.cpp
+        filesystem/filesystem/file_system_item.h
         filesystem/filesystem/file_system_options.cpp
+        filesystem/filesystem/file_system_options.h
+        filesystem/filesystem/file_system_real_path_interface.cpp
+        filesystem/filesystem/file_system_real_path_interface.h
         filesystem/filesystem/file_system_options.h
         filesystem/filesystem/file_system.cpp
         filesystem/filesystem/file_system.h

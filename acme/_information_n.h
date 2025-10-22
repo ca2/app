@@ -16,6 +16,7 @@ public:
    class ::time      m_timeLookUpElapsed;
    class ::time      m_timeLock2Elapsed;
    class ::time      m_timeShouldBuildElapsed;
+   class ::time      m_timeCreateInstanceElapsed;
 
 
    item_n40585();

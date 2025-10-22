@@ -207,6 +207,10 @@ namespace dynamic_source
 
       //}
 
+      class ::time timeShouldBuild;
+
+      class ::time timeCreateInstance;
+
       item_n40585 itemN40585;
 
       itemN40585.m_strPath = pfilesystemcacheitem.m_strName2;
@@ -267,15 +271,23 @@ namespace dynamic_source
 
          }
 
-         class ::time timeShouldBuild;
-
          timeShouldBuild.Now();
 
          itemN40585.m_timeShouldBuildElapsed = timeShouldBuild - timeLock2;
 
       }
+      else
+      {
+
+         timeShouldBuild = timeLock2;
+
+      }
 
       auto pscriptinstance = pscript->create_instance();
+
+      timeCreateInstance.Now();
+
+      itemN40585.m_timeCreateInstanceElapsed = timeCreateInstance - timeShouldBuild;
 
       pscriptinstance->m_itemN40585 = itemN40585;
 

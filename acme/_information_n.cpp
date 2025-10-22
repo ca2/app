@@ -43,12 +43,13 @@ item_n40585::~item_n40585()
 
    str << m_strPath;
 
-   str.append_format(" time:{} lk:{} map:{} lk:{} bld:{}",
+   str.append_format(" time:{} lk:{} map:{} lk:{} bld:{} cr:{}",
       _017Time(m_timeGetHere),
       _017Time(m_timeLockElapsed),
       _017Time(m_timeLookUpElapsed),
       _017Time(m_timeLock2Elapsed),
-      _017Time(m_timeShouldBuildElapsed)
+      _017Time(m_timeShouldBuildElapsed),
+      _017Time(m_timeCreateInstanceElapsed)
       );
 
    return str;

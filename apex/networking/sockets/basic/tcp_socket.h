@@ -41,6 +41,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 namespace sockets
 {
 
+
+
+
+
    class tcp_socket_impl;
 
    /** socket implementation for TCP.
@@ -57,14 +61,10 @@ namespace sockets
       ::pointer<tcp_socket>         m_ptcpsocketImpl;
       tcp_socket *                  m_ptcpsocketInterface;
       bool                          m_bImpl;
-      struct time_get_here
-      {
 
-         ::string          m_strPath;
-         class ::time      m_timeGetHere;
 
-      };
-      ::array_base < time_get_here > m_timegetherea;
+
+      ::particle_pointer            m_pInformationN40585;
 
       //static bool s_bReuseSession; // Default psystem Wide Setting
       //::memory_file                 m_memoryfileBuffer;

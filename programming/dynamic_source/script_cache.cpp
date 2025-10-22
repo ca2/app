@@ -1,6 +1,7 @@
 #include "framework.h"
 #include "script_cache.h"
 #include "script_manager.h"
+#include "script_instance.h"
 #include "ds_script.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/crypto/rsa.h"
@@ -52,14 +53,14 @@ namespace dynamic_source
 
       //m_pmanager.release();
 
-      for (auto& pscript : m_map.payloads())
+      for (auto& pscript : m_mapScript.payloads())
       {
 
          pscript.defer_destroy();
 
       }
 
-      m_map.clear();
+      m_mapScript.clear();
 
       ::object::destroy();
 
@@ -80,24 +81,32 @@ namespace dynamic_source
    //}
 
 
-   ::pointer<ds_script>script_cache::allocate_ds_script(::file_system_item* pfilesystemitem)
+   ::pointer<ds_script>script_cache::allocate_ds_script(const ::file_system_cache_item & pfilesystemcacheitem)
    {
 
       auto pscript = øcreate_new< ds_script >();
 
       pscript->set_manager(m_pmanager);
 
-      pscript->m_path = pfilesystemitem->path();
+      pscript->m_pfilesystemcacheitem = pfilesystemcacheitem;
+
+      //pscript->m_path1 = pfilesystemcacheitem->path();
+
+      //pscript->m_pfilesystemitem = pfilesystemcacheitem;
 
       return ::transfer(pscript);
 
    }
 
-   script * script_cache::get(::file_system_item * pfilesystemitem)
+   
+   script * script_cache::get(const ::file_system_cache_item & pfilesystemcacheitem, class ::time& timeLockElapsed, class ::time& timeLookUpElapsed)
    {
 
+      class ::time timeStart;
 
-      auto pathReal = pfilesystemitem->path();
+      timeStart.Now();
+
+      //auto pathReal = pfilesystemcacheitem->path();
 //      string strName(scopedstrName);
 //
 //#ifdef WINDOWS
@@ -106,24 +115,40 @@ namespace dynamic_source
 //
 //#endif
 
-      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+      //_synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-      auto & pscript = m_map[pathReal];
+      critical_section_lock criticalsectionlock(&m_criticalsectionScript);
 
-      if (pscript.is_set()
-         && pscript->m_path == pfilesystemitem->path())
+      class ::time timeLock;
+
+      timeLock.Now();
+
+      timeLockElapsed = timeLock - timeStart;
+
+      //auto & pscript = m_map[pathReal];
+      auto& pscript = m_mapScript[pfilesystemcacheitem];
+
+      class ::time timeLookUp;
+
+      timeLookUp.Now();
+
+      timeLookUpElapsed = timeLookUp - timeLock;
+
+      //if (pscript.is_set()
+        // && pscript->m_path == pfilesystemcacheitem->path())
+      if (pscript.is_set())
       {
 
          return pscript;
 
       }
 
-      return pscript = allocate_ds_script(pfilesystemitem);
+      return pscript = allocate_ds_script(pfilesystemcacheitem);
 
    }
 
 
-   script * script_cache::register_script(::file_system_item* pfilesystemitem, script * pscript)
+   script * script_cache::register_script(const ::file_system_cache_item & pfilesystemcacheitem, script * pscript)
    {
 
 //      string strName(scopedstrName);
@@ -134,9 +159,13 @@ namespace dynamic_source
 //
 //#endif
 
-      _single_lock synchronouslock(this->synchronization(), true);
+      //_single_lock synchronouslock(this->synchronization(), true);
 
-      auto iterator = m_map.find(pfilesystemitem->path());
+      critical_section_lock criticalsectionlock(&m_criticalsectionScript);
+
+      //auto iterator = m_map.find(pfilesystemcacheitem->path());
+
+      auto iterator = m_mapScript.find(pfilesystemcacheitem);
 
       if(iterator)
       {
@@ -149,14 +178,18 @@ namespace dynamic_source
 
       pscript->set_manager(m_pmanager);
 
-      pscript->m_path = pfilesystemitem->path();
+      pscript->m_pfilesystemcacheitem = pfilesystemcacheitem;
+
+      //pscript->m_path1 = pfilesystemcacheitem->path();
+
+      //pscript->m_pfilesystemitem = pfilesystemcacheitem;
 
       return pscript;
 
    }
 
 
-   ::pointer<script_instance>script_cache::create_instance(::file_system_item * pfilesystemitem, ::pointer<script> & pscript)
+   ::pointer<script_instance>script_cache::create_instance(const ::file_system_cache_item & pfilesystemcacheitem, ::pointer<script> & pscript)
    {
 
       pscript = nullptr;
@@ -174,8 +207,11 @@ namespace dynamic_source
 
       //}
 
+      item_n40585 itemN40585;
 
-      pscript = get(pfilesystemitem);
+      itemN40585.m_strPath = pfilesystemcacheitem.m_strName2;
+
+      pscript = get(pfilesystemcacheitem, itemN40585.m_timeLockElapsed, itemN40585.m_timeLookUpElapsed);
 
       if (::is_null(pscript))
       {
@@ -184,6 +220,10 @@ namespace dynamic_source
 
       }
 
+      class ::time timeStart;
+
+      timeStart.Now();
+
       {
 
          _single_lock slScript(pscript->synchronization());
@@ -191,26 +231,63 @@ namespace dynamic_source
          if (!slScript._wait(5_s))
          {
 
-            throw ::heating_up_exception("Compiling script " + pfilesystemitem->path());
+            throw ::heating_up_exception("Compiling script " + pfilesystemcacheitem->path());
 
          }
 
       }
 
-      if(!pscript->m_bNew && pscript->ShouldBuild())
+      class ::time timeLock2;
+
+      timeLock2.Now();
+
+      itemN40585.m_timeLock2Elapsed = timeLock2 - timeStart;
+
+      if (!pscript->m_bNew)
       {
 
-         pscript = allocate_ds_script(pfilesystemitem);
+         if (pscript->ShouldBuild())
+         {
 
-         _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+            pscript = allocate_ds_script(pfilesystemcacheitem);
 
-         m_map[pfilesystemitem->path()] = pscript;
+            //_synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-         return pscript->create_instance();
+            //m_map[pfilesystemcacheitem->path()] = pscript;
+
+            {
+
+               critical_section_lock criticalsectionlock(&m_criticalsectionScript);
+
+               m_mapScript[pfilesystemcacheitem] = pscript;
+
+            }
+
+            return pscript->create_instance();
+
+         }
+
+         class ::time timeShouldBuild;
+
+         timeShouldBuild.Now();
+
+         itemN40585.m_timeShouldBuildElapsed = timeShouldBuild - timeLock2;
 
       }
 
-      return pscript->create_instance();
+      auto pscriptinstance = pscript->create_instance();
+
+      pscriptinstance->m_itemN40585 = itemN40585;
+
+      //pscriptinstance->m_timeLockElapsed = timeLockElapsed;
+
+      //pscriptinstance->m_timeLookUpElapsed = timeLookUpElapsed;
+
+      //pscriptinstance->m_timeLock2Elapsed = timeLock2Elapsed;
+
+      //pscriptinstance->m_timeShouldBuildElapsed = timeShouldBuildElapsed;
+
+      return pscriptinstance;
 
    }
 
@@ -228,9 +305,14 @@ namespace dynamic_source
    void script_cache::uncache(script * pscript)
    {
 
-      single_lock synchronouslock(synchronization(), true);
+      //_single_lock synchronouslock(synchronization(), true);
 
-      m_map.erase(pscript->m_path);
+      critical_section_lock criticalsectionlock(&m_criticalsectionScript);
+
+      //m_map.erase(pscript->m_path);
+      //m_map.erase(pscript->m_pfilesystemitem);
+      //m_mapScript.erase(pscript->m_pfilesystemitem)
+      m_mapScript.erase(pscript->m_pfilesystemcacheitem);
 
    }
 
@@ -268,9 +350,11 @@ namespace dynamic_source
 
       ::file::path pathChanged = scopedstr;
 
-      single_lock synchronouslock(synchronization(), true);
+      //single_lock synchronouslock(synchronization(), true);
 
-      for (auto & pair : m_map)
+      critical_section_lock criticalsectionlock(&m_criticalsectionScript);
+
+      for (auto & pair : m_mapScript)
       {
 
          ::pointer<ds_script>pdsscript = pair.element2();
@@ -293,6 +377,8 @@ namespace dynamic_source
 
    }
 
+
 } // namespace dynamic_source
+
 
 

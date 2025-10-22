@@ -172,11 +172,11 @@ namespace dynamic_source
 
       //::pointer<script_instance>get(const ::scoped_string & scopedstrName);
       //::pointer<script_instance>get(const ::scoped_string & scopedstrName, ::pointer<script> & pscript);
-      ::pointer<script_instance>get(::file_system_item * pfilesystemitem);
-      ::pointer<script_instance>get(::file_system_item* pfilesystemitem, ::pointer<script>& pscript);
+      ::pointer<script_instance>get(const ::file_system_cache_item & pfilesystemcacheitem);
+      ::pointer<script_instance>get(const ::file_system_cache_item & pfilesystemcacheitem, ::pointer<script>& pscript);
       virtual void handle(::dynamic_source::httpd_socket * psocket);
       //::payload get_output_internal(::dynamic_source::script_interface * pinstanceParent, const ::scoped_string & scopedstrName);
-      ::payload get_output_internal(::dynamic_source::script_interface* pinstanceParent, ::file_system_item * pfilesystemitem);
+      ::payload get_output_internal(::dynamic_source::script_interface* pinstanceParent, const ::file_system_cache_item & pfilesystemcacheitem);
       void run(const ::file_system_cache_item& pfilesystemcacheitem);
 
       void LoadEnv();

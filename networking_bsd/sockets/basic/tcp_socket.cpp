@@ -15,11 +15,13 @@
 #if OPENSSL_VERSION_NUMBER >= 0x30000000
 #include <openssl/core_names.h>
 #endif
+#include "acme/_information_n.h"
 //#define OPENSSL_VERSION_NUMBER 123
 
 //::std::strong_ordering memory_order(const void * m1, const void * m2, memsize s);
 
 CLASS_DECL_ACME::collection::count get_count_of_opened_sockets();
+CLASS_DECL_ACME::string _017Time(class ::time& time);
 
 #if defined(LINUX) || defined(__BSD__)
 #undef USE_MISC
@@ -27,7 +29,6 @@ CLASS_DECL_ACME::collection::count get_count_of_opened_sockets();
 #include <sys/types.h>
 #include <sys/socket.h>
 #endif
-
 
 #include <fcntl.h>
 //#include <assert.h>
@@ -2480,26 +2481,21 @@ m_ibuf(isize)
             information() << "Number of opened sockets: " << get_count_of_opened_sockets();
 
             ::cast < ::sockets::tcp_socket > ptcpsocket = base_socket_interface();
-            if (ptcpsocket && ptcpsocket->m_timegetherea.get_size() > 0)
-            {
-               for (auto& timegethere : ptcpsocket->m_timegetherea)
-               {
 
-                  information() << "script(1): " << timegethere.m_strPath;
-                  informationf("time(1): %0.2fms", timegethere.m_timeGetHere.floating_millisecond());
-               }
+            if (ptcpsocket && ptcpsocket->m_pInformationN40585)
+            {
+
+               ::cast < information_n40585 > pinformation = ptcpsocket->m_pInformationN40585;
+
+               information() << pinformation->as_string();
 
             }
-            else if (m_timegetherea.get_size() > 0)
+            else if (ptcpsocket->m_pInformationN40585)
             {
 
-               for (auto& timegethere : m_timegetherea)
-               {
+               ::cast < information_n40585 > pinformation = ptcpsocket->m_pInformationN40585;
 
-                  information() << "script(2): " << timegethere.m_strPath;
-                  informationf("time(2): %0.2fms", timegethere.m_timeGetHere.floating_millisecond());
-               }
-
+               information() << pinformation->as_string();
 
             }
 

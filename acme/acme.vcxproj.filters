@@ -4281,6 +4281,9 @@
     <ClInclude Include="prototype\prototype\unique_index.h">
       <Filter>Header Files\prototype\prototype</Filter>
     </ClInclude>
+    <ClInclude Include="_information_n.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="prototype\prototype\bit.cpp">
@@ -6139,6 +6142,9 @@
     </ClCompile>
     <ClCompile Include="prototype\prototype\unique_index.cpp">
       <Filter>Source Files\prototype\prototype</Filter>
+    </ClCompile>
+    <ClCompile Include="_information_n.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

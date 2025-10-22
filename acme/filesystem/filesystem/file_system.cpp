@@ -1845,34 +1845,34 @@ void file_system::init_system()
 //}
 
 
-bool file_system::_file_system_file_exists(::file_system_item* pfilesystemitem)
+bool file_system::_file_system_file_exists(const ::file_system_cache_item & pfilesystemcacheitem)
 {
 
-   return __exists(pfilesystemitem->path());
+   return __exists(pfilesystemcacheitem->path());
 
 }
 
 
-bool file_system::_file_system_is_folder(::file_system_item* pfilesystemitem)
+bool file_system::_file_system_is_folder(const ::file_system_cache_item & pfilesystemcacheitem)
 {
 
-   return directory_system()->__is(pfilesystemitem->path());
+   return directory_system()->__is(pfilesystemcacheitem->path());
 
 }
 
 
-bool file_system::_file_system_has_script(::file_system_item* pfilesystemitem)
+bool file_system::_file_system_has_script(const ::file_system_cache_item & pfilesystemcacheitem)
 {
 
-   return this->__safe_find_string(pfilesystemitem->path(), "<?") >= 0;
+   return this->__safe_find_string(pfilesystemcacheitem->path(), "<?") >= 0;
 
 }
 
 
-::string file_system::_file_system_expanded_md5(::file_system_item* pfilesystemitem)
+::string file_system::_file_system_expanded_md5(const ::file_system_cache_item & pfilesystemcacheitem)
 {
 
-   return this->crypto()->md5(pfilesystemitem->path());
+   return this->crypto()->md5(pfilesystemcacheitem->path());
 
 }
 

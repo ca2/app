@@ -1744,6 +1744,7 @@
     <ClCompile Include="handler\source.cpp" />
     <ClCompile Include="handler\task_handler.cpp" />
     <ClCompile Include="handler\topic.cpp" />
+    <ClCompile Include="_information_n.cpp" />
     <ClInclude Include="..\..\..\operating_system\operating_system-windows\operating_system\system.h" />
     <ClInclude Include="..\..\..\operating_system\operating_system-windows\operating_system\types.h" />
     <ClInclude Include="aaa_id.h" />
@@ -2421,6 +2422,7 @@
     <ClInclude Include="windowing\windowing.h" />
     <ClInclude Include="windowing\_.h" />
     <ClInclude Include="_greek.h" />
+    <ClInclude Include="_information_n.h" />
     <ClInclude Include="_iostream.h" />
     <ClInclude Include="graphics\draw2d\color32.h" />
     <ClInclude Include="graphics\draw2d\color_array.h" />

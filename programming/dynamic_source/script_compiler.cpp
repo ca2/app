@@ -320,11 +320,11 @@ namespace dynamic_source
 
       _synchronous_lock slCompiler(&m_pmanager->m_semCompiler);
 
-      informationf("Compiling script %s", pscript->m_path.c_str());
+      information("Compiling script {}", pscript->m_pfilesystemcacheitem->path());
 
       auto& ostreamError = pscript->m_textstreamError;
 
-      ::file::path strName(pscript->m_path);
+      ::file::path strName(pscript->m_pfilesystemcacheitem->path());
 
       if (strName.case_insensitive_ends("\\auth3.ds"))
       {

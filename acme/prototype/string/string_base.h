@@ -2427,11 +2427,22 @@ public:
 
    }
 
-   template<typename... Args>
-   string_base & append_format(std::format_string<Args...> fmt, Args&&... args)
+   //template<typename... Args>
+   //string_base & append_format(std::format_string<Args...> fmt, Args&&... args)
+   //{
+
+   //   return this->operator +=(std::format(fmt, std::forward<Args>(args)...));
+
+   //}
+
+
+   template <typename... Args>
+   string_base& append_format(std::format_string<Args...> fmt, Args&&... args)
    {
 
-      return this->operator +=(std::format(fmt, std::forward<Args>(args)...));
+      auto str = std::format(fmt, std::forward<Args>(args)...);
+      
+      return this->append(str.c_str(), str.size());
 
    }
 

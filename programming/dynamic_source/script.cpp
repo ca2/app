@@ -41,6 +41,8 @@ namespace dynamic_source
    script::script()
    {
 
+      //m_pfilesystemitem = nullptr;
+
       m_pmanager2 = nullptr;
 
       m_bNew = true;
@@ -586,7 +588,7 @@ namespace dynamic_source
 
       }
 
-      pinstance->m_strNote = m_path;
+      pinstance->m_strNote = m_pfilesystemcacheitem->path();
 
       pinstance->m_pscript2 = this;
 
@@ -679,14 +681,14 @@ namespace dynamic_source
          if (iRetry == 0)
          {
 
-            information() << "Build: " << m_path;
+            information() << "Build: " << m_pfilesystemcacheitem->path();
             informationf(str);
 
          }
          else
          {
 
-            information() << "Retry("<<iRetry<<"): "<<m_path<<"\nError: " << str.c_str();
+            information() << "Retry("<<iRetry<<"): "<< m_pfilesystemcacheitem->path() <<"\nError: " << str.c_str();
 
          }
 

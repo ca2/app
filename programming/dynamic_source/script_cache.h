@@ -15,8 +15,10 @@ namespace dynamic_source
    public:
 
 
-      string_map_base < ::pointer<script >>    m_map;
-      script_manager *                    m_pmanager;
+      //string_map_base < ::pointer<script >>    m_map;
+      critical_section                                            m_criticalsectionScript;
+      map_base < ::file_system_item*, ::pointer< script > >       m_mapScript;
+      script_manager *                                            m_pmanager;
 
 
       script_cache();
@@ -27,7 +29,7 @@ namespace dynamic_source
 
       void destroy() override;
 
-      virtual ::pointer<script_instance>create_instance(::file_system_item* pfilesystemitem, ::pointer<script> & pscript);
+      virtual ::pointer<script_instance>create_instance(const ::file_system_cache_item & pfilesystemcacheitem, ::pointer<script> & pscript);
 
       void set_all_out_of_date();
 
@@ -35,11 +37,11 @@ namespace dynamic_source
 
       //void cache(script * pscript);
       //::pointer<ds_script> allocate_ds_script(const ::scoped_string & scopedstrName);
-      ::pointer<ds_script> allocate_ds_script(::file_system_item* pfilesystemitem);
+      ::pointer<ds_script> allocate_ds_script(const ::file_system_cache_item & pfilesystemcacheitem);
       void uncache(script * pscript);
 
-      script * get(::file_system_item * pfilesystemitem);
-      script * register_script(::file_system_item * pfilesystemitem, script * pscript);
+      script * get(const ::file_system_cache_item & pfilesystemcacheitem, class ::time& timeLockElapsed, class ::time& timeLookUpElapsed);
+      script * register_script(const ::file_system_cache_item & pfilesystemcacheitem, script * pscript);
 
 
    };

@@ -43,126 +43,126 @@ void file_system_interface::on_initialize_particle()
 }
 
 
-bool file_system_interface::file_system_file_exists(::file_system_item * pfilesystemitem)
+bool file_system_interface::file_system_file_exists(const ::file_system_cache_item & pfilesystemcacheitem)
 {
 
-   if (::is_null(pfilesystemitem))
+   if (pfilesystemcacheitem.nok())
    {
 
       return false;
 
    }
 
-   if (::is_set(pfilesystemitem->m_pfilesysteminterface)
-      && pfilesystemitem->m_pfilesysteminterface != this)
+   if (::is_set(pfilesystemcacheitem->m_pfilesysteminterface)
+      && pfilesystemcacheitem->m_pfilesysteminterface != this)
    {
 
-      return pfilesystemitem->m_pfilesysteminterface->file_system_file_exists(pfilesystemitem);
+      return pfilesystemcacheitem->m_pfilesysteminterface->file_system_file_exists(pfilesystemcacheitem);
 
    }
 
-   return _file_system_file_exists(pfilesystemitem);
+   return _file_system_file_exists(pfilesystemcacheitem);
 
 }
 
 
-bool file_system_interface::_file_system_file_exists(::file_system_item* pfilesystemitem)
+bool file_system_interface::_file_system_file_exists(const ::file_system_cache_item & pfilesystemcacheitem)
 {
 
-   return file_system()->_file_system_file_exists(pfilesystemitem);
+   return file_system()->_file_system_file_exists(pfilesystemcacheitem);
 
 }
 
 
-bool file_system_interface::file_system_is_folder(::file_system_item* pfilesystemitem)
+bool file_system_interface::file_system_is_folder(const ::file_system_cache_item & pfilesystemcacheitem)
 {
 
-   if (::is_null(pfilesystemitem))
+   if (pfilesystemcacheitem.nok())
    {
 
       return false;
 
    }
 
-   if (::is_set(pfilesystemitem->m_pfilesysteminterface)
-      && pfilesystemitem->m_pfilesysteminterface != this)
+   if (::is_set(pfilesystemcacheitem->m_pfilesysteminterface)
+      && pfilesystemcacheitem->m_pfilesysteminterface != this)
    {
 
-      return pfilesystemitem->m_pfilesysteminterface->file_system_is_folder(pfilesystemitem);
+      return pfilesystemcacheitem->m_pfilesysteminterface->file_system_is_folder(pfilesystemcacheitem);
 
    }
 
-   return _file_system_is_folder(pfilesystemitem);
+   return _file_system_is_folder(pfilesystemcacheitem);
 
 }
 
 
-bool file_system_interface::_file_system_is_folder(::file_system_item* pfilesystemitem)
+bool file_system_interface::_file_system_is_folder(const ::file_system_cache_item & pfilesystemcacheitem)
 {
 
-   return file_system()->_file_system_is_folder(pfilesystemitem);
+   return file_system()->_file_system_is_folder(pfilesystemcacheitem);
 
 }
 
 
-bool file_system_interface::file_system_has_script(::file_system_item * pfilesystemitem)
+bool file_system_interface::file_system_has_script(const ::file_system_cache_item & pfilesystemcacheitem)
 {
 
-   if (::is_null(pfilesystemitem))
-   {
-
-      throw ::exception(error_null_pointer);
-
-   }
-
-   if (::is_set(pfilesystemitem->m_pfilesysteminterface)
-      && pfilesystemitem->m_pfilesysteminterface != this)
-   {
-
-      return pfilesystemitem->m_pfilesysteminterface->file_system_has_script(pfilesystemitem);
-
-   }
-
-   return _file_system_has_script(pfilesystemitem);
-
-}
-
-
-bool file_system_interface::_file_system_has_script(::file_system_item* pfilesystemitem)
-{
-
-   return file_system()->_file_system_has_script(pfilesystemitem);
-
-}
-
-
-::string file_system_interface::file_system_expanded_md5(::file_system_item* pfilesystemitem)
-{
-
-   if (::is_null(pfilesystemitem))
+   if (pfilesystemcacheitem.nok())
    {
 
       throw ::exception(error_null_pointer);
 
    }
 
-   if (::is_set(pfilesystemitem->m_pfilesysteminterface)
-      && pfilesystemitem->m_pfilesysteminterface != this)
+   if (::is_set(pfilesystemcacheitem->m_pfilesysteminterface)
+      && pfilesystemcacheitem->m_pfilesysteminterface != this)
    {
 
-      return pfilesystemitem->m_pfilesysteminterface->file_system_expanded_md5(pfilesystemitem);
+      return pfilesystemcacheitem->m_pfilesysteminterface->file_system_has_script(pfilesystemcacheitem);
 
    }
 
-   return _file_system_expanded_md5(pfilesystemitem);
+   return _file_system_has_script(pfilesystemcacheitem);
 
 }
 
 
-::string file_system_interface::_file_system_expanded_md5(::file_system_item* pfilesystemitem)
+bool file_system_interface::_file_system_has_script(const ::file_system_cache_item & pfilesystemcacheitem)
 {
 
-   return file_system()->_file_system_expanded_md5(pfilesystemitem);
+   return file_system()->_file_system_has_script(pfilesystemcacheitem);
+
+}
+
+
+::string file_system_interface::file_system_expanded_md5(const ::file_system_cache_item & pfilesystemcacheitem)
+{
+
+   if (pfilesystemcacheitem.nok())
+   {
+
+      throw ::exception(error_null_pointer);
+
+   }
+
+   if (::is_set(pfilesystemcacheitem->m_pfilesysteminterface)
+      && pfilesystemcacheitem->m_pfilesysteminterface != this)
+   {
+
+      return pfilesystemcacheitem->m_pfilesysteminterface->file_system_expanded_md5(pfilesystemcacheitem);
+
+   }
+
+   return _file_system_expanded_md5(pfilesystemcacheitem);
+
+}
+
+
+::string file_system_interface::_file_system_expanded_md5(const ::file_system_cache_item & pfilesystemcacheitem)
+{
+
+   return file_system()->_file_system_expanded_md5(pfilesystemcacheitem);
 
 }
 

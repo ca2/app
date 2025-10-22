@@ -19,7 +19,9 @@ namespace dynamic_source
 
       script_manager *                                   m_pmanager2;
       //string                                             m_strName;
-      ::file::path                                       m_path;
+      //::file::path                                       m_path1;
+      //::file_system_item *                               m_pfilesystemitem;
+      ::file_system_cache_item                           m_pfilesystemcacheitem;
       memory_file_pointer                                m_pfileError;
       ::write_text_stream                                m_textstreamError;
       string                                             m_strError;

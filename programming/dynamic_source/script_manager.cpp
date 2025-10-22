@@ -27,7 +27,7 @@
 #include "apex/networking/sockets/link_out_socket.h"
 #include "acme/constant/id.h"
 #include "axis/platform/system.h"
-
+#include "acme/_information_n.h"
 
 #include "acme/_operating_system.h"
 #include "programming/dynamic_source/httpd_socket.h"
@@ -334,12 +334,12 @@ namespace dynamic_source
    }
 
 
-   ::pointer<script_instance>script_manager::get(::file_system_item* pfilesystemitem)
+   ::pointer<script_instance>script_manager::get(const ::file_system_cache_item & pfilesystemcacheitem)
    {
 
       ::pointer<script>pscript;
 
-      return get(pfilesystemitem, pscript);
+      return get(pfilesystemcacheitem, pscript);
 
    }
 
@@ -367,10 +367,10 @@ namespace dynamic_source
    }
 
 
-   ::pointer<script_instance>script_manager::get(::file_system_item* pfilesystemitem, ::pointer<script>& pscript)
+   ::pointer<script_instance>script_manager::get(const ::file_system_cache_item & pfilesystemcacheitem, ::pointer<script>& pscript)
    {
 
-      return m_pcache->create_instance(pfilesystemitem, pscript);
+      return m_pcache->create_instance(pfilesystemcacheitem, pscript);
 
    }
 
@@ -397,11 +397,13 @@ namespace dynamic_source
 
       timeGetHereEnd.Now();
 
-      auto timeGetHere = timeGetHereEnd - timeGetHereStart;
+      pinstance->m_itemN40585.m_timeGetHere = timeGetHereEnd - timeGetHereStart;
 
-      pdssocket->m_timeWaitingToBuild += timeGetHere;
+      pdssocket->m_timeWaitingToBuild += pinstance->m_itemN40585.m_timeGetHere;
 
-      pdssocket->m_timegetherea.add({m_filesystemcacheitemSeed.m_strName2, timeGetHere});
+      auto pinformation = pdssocket->m_pInformationN40585.defer_get_new< information_n40585 >(this);
+
+      pinformation->m_itema.add(pinstance->m_itemN40585);
 
       if (!pinstance)
       {
@@ -665,13 +667,13 @@ namespace dynamic_source
    }
 
 
-   ::payload script_manager::get_output_internal(::dynamic_source::script_interface* pinstanceParent, ::file_system_item * pfilesystemitem)
+   ::payload script_manager::get_output_internal(::dynamic_source::script_interface* pinstanceParent, const ::file_system_cache_item & pfilesystemcacheitem)
    {
 
 //      string strName = ::str::get_word(scopedstrNameParam, "?");
 
 
-      if (!pfilesystemitem->is_ok())
+      if (!pfilesystemcacheitem->is_ok())
       {
 
          if (pinstanceParent != nullptr)
@@ -683,7 +685,7 @@ namespace dynamic_source
                if (pinstanceParent->m_pscript2->m_textstreamError.m_pfile->size() > 0)
                {
 
-                  pinstanceParent->m_pmain->netnodesocket()->response().m_pmemfileBody->print("script_manager::get_output_internal is_empty script parent" + pinstanceParent->m_pscript2->m_path);
+                  pinstanceParent->m_pmain->netnodesocket()->response().m_pmemfileBody->print("script_manager::get_output_internal is_empty script parent" + pinstanceParent->m_pscript2->m_pfilesystemcacheitem->path());
 
                }
 
@@ -717,11 +719,11 @@ namespace dynamic_source
 
                timeGetHereStart.Now();
 
-               pinstance = get(pfilesystemitem, pscript);
+               pinstance = get(pfilesystemcacheitem, pscript);
 
                timeGetHereEnd.Now();
 
-               auto timeGetHere = timeGetHereEnd - timeGetHereStart;
+               pinstance->m_itemN40585.m_timeGetHere = timeGetHereEnd - timeGetHereStart;
                
                if (pinstanceParent)
                {
@@ -733,7 +735,7 @@ namespace dynamic_source
 
                   //}
 
-                  ::string strName = pfilesystemitem->path();
+                  ::string strName = pfilesystemcacheitem->path();
 
                   if (strName.begins_eat(m_pathNetnodePath))
                   {
@@ -742,8 +744,11 @@ namespace dynamic_source
 
                   }
 
-                  pinstanceParent->m_pmain->netnodesocket()->m_timeWaitingToBuild += timeGetHere;
-                  pinstanceParent->m_pmain->netnodesocket()->m_timegetherea.add({strName, timeGetHere});
+                  pinstanceParent->m_pmain->netnodesocket()->m_timeWaitingToBuild += pinstance->m_itemN40585.m_timeGetHere;
+
+                  auto pinformation = pinstanceParent->m_pmain->netnodesocket()->m_pInformationN40585.defer_get_new< information_n40585 >(this);
+
+                  pinformation->m_itema.add(pinstance->m_itemN40585);
 
                }
 
@@ -795,7 +800,7 @@ namespace dynamic_source
 
                      pinstanceParent->m_strDebugRequestUri = pinstanceParent->m_pmain->netnodesocket()->m_request.m_strRequestUri;
 
-                     pinstanceParent->m_strDebugThisScript = pfilesystemitem->path();
+                     pinstanceParent->m_strDebugThisScript = pfilesystemcacheitem->path();
 
                      ::pointer<::dynamic_source::ds_script>pdsscript = pscript;
 

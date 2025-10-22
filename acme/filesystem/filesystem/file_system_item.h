@@ -10,7 +10,6 @@ class CLASS_DECL_ACME file_system_item :
 protected:
 
 
-   friend class file_system_item;
    friend class file_system;
 
 
@@ -64,15 +63,8 @@ public:
    }
 
 
-   ::file::path path() const
+   const ::file::path & path() const
    {
-
-      if (::is_null(this))
-      {
-
-         return {};
-
-      }
 
       return m_pathReal2;
 

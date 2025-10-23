@@ -177,6 +177,7 @@ namespace gpu_opengl
                ::graphics3d::render_system rendersystemScope;
                rendersystemScope.m_erendersystem = ::graphics3d::e_render_system_skybox_ibl;
                pgpucommandbuffer->m_prendersystem = &rendersystemScope;
+               m_pshaderPrefilteredEnvMap->push_properties(pgpucommandbuffer);
                pcube->bind(pgpucommandbuffer);
                pcube->draw(pgpucommandbuffer);
                pcube->unbind(pgpucommandbuffer);

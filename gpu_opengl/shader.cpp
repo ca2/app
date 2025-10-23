@@ -692,6 +692,15 @@ namespace gpu_opengl
 
    GLint shader::_get_uniform_location(const_char_pointer name, const_char_pointer debug) const
    {
+
+      ::string strName(name);
+
+      if (strName.case_insensitive_begins("padding"))
+      {
+
+         return -1;
+
+      }
       
       GLint location = glGetUniformLocation(m_ProgramID, name);
       GLCheckError("");
@@ -832,35 +841,40 @@ namespace gpu_opengl
 
          strName.begins_eat("sampler:");
 
-         switch (p->m_etype)
+         if (!strName.case_insensitive_begins("padding"))
          {
-         case ::gpu::e_type_int:
-               _set_int(strName, *(int *)(m_propertiesPushShared.data(true) + iLen));
-            break;
-         case ::gpu::e_type_float:
-            _set_float(strName, *(float *)(m_propertiesPushShared.data(true) + iLen));
-            break;
-         case ::gpu::e_type_seq2:
-            _set_seq2(strName, *(glm::vec2 *)(m_propertiesPushShared.data(true) + iLen));
-            break;
-         case ::gpu::e_type_seq3:
-            _set_seq3(strName, *(glm::vec3 *)(m_propertiesPushShared.data(true) + iLen));
-            break;
-         case ::gpu::e_type_seq4:
-            _set_seq4(strName, *(glm::vec4 *)(m_propertiesPushShared.data(true) + iLen));
-            break;
-         case ::gpu::e_type_mat2:
-            _set_mat2(strName, *(glm::mat2 *)(m_propertiesPushShared.data(true) + iLen));
-            break;
-         case ::gpu::e_type_mat3:
-            _set_mat3(strName, *(glm::mat3 *)(m_propertiesPushShared.data(true) + iLen));
-            break;
-         case ::gpu::e_type_mat4:
-            _set_mat4(strName, *(glm::mat4 *)(m_propertiesPushShared.data(true) + iLen));
-            break;
-        default:
-        throw ::exception(error_not_expected);
-        break;
+
+            switch (p->m_etype)
+            {
+               case ::gpu::e_type_int:
+                  _set_int(strName, *(int *)(m_propertiesPushShared.data(true) + iLen));
+                  break;
+               case ::gpu::e_type_float:
+                  _set_float(strName, *(float *)(m_propertiesPushShared.data(true) + iLen));
+                  break;
+               case ::gpu::e_type_seq2:
+                  _set_seq2(strName, *(glm::vec2 *)(m_propertiesPushShared.data(true) + iLen));
+                  break;
+               case ::gpu::e_type_seq3:
+                  _set_seq3(strName, *(glm::vec3 *)(m_propertiesPushShared.data(true) + iLen));
+                  break;
+               case ::gpu::e_type_seq4:
+                  _set_seq4(strName, *(glm::vec4 *)(m_propertiesPushShared.data(true) + iLen));
+                  break;
+               case ::gpu::e_type_mat2:
+                  _set_mat2(strName, *(glm::mat2 *)(m_propertiesPushShared.data(true) + iLen));
+                  break;
+               case ::gpu::e_type_mat3:
+                  _set_mat3(strName, *(glm::mat3 *)(m_propertiesPushShared.data(true) + iLen));
+                  break;
+               case ::gpu::e_type_mat4:
+                  _set_mat4(strName, *(glm::mat4 *)(m_propertiesPushShared.data(true) + iLen));
+                  break;
+               default:
+                  throw ::exception(error_not_expected);
+                  break;
+            }
+
          }
 
          auto iLenItem = ::gpu::get_type_size(p->m_etype);

@@ -215,6 +215,15 @@ namespace dynamic_source
 
       itemN40585.m_strPath = pfilesystemcacheitem.m_strName2;
 
+      auto pathNetnode = m_pmanager->m_pathNetnodePath;
+
+      if (itemN40585.m_strPath.case_insensitive_begins_eat(pathNetnode))
+      {
+
+         itemN40585.m_strPath.case_insensitive_begins_eat("/net/");
+
+      }
+
       pscript = get(pfilesystemcacheitem, itemN40585.m_timeLockElapsed, itemN40585.m_timeLookUpElapsed);
 
       if (::is_null(pscript))
@@ -285,19 +294,26 @@ namespace dynamic_source
 
       auto pscriptinstance = pscript->create_instance();
 
-      timeCreateInstance.Now();
+      if (pscriptinstance)
+      {
 
-      itemN40585.m_timeCreateInstanceElapsed = timeCreateInstance - timeShouldBuild;
+         timeCreateInstance.Now();
 
-      pscriptinstance->m_itemN40585 = itemN40585;
+         itemN40585.m_timeCreateInstanceElapsed = timeCreateInstance - timeShouldBuild;
 
-      //pscriptinstance->m_timeLockElapsed = timeLockElapsed;
+         //s      itemN40585.m_timeRealPathMapAllocationElapsed = pscriptinstance->m_timeRealPathMapAllocationElapsed;
 
-      //pscriptinstance->m_timeLookUpElapsed = timeLookUpElapsed;
+         pscriptinstance->m_itemN40585 = itemN40585;
 
-      //pscriptinstance->m_timeLock2Elapsed = timeLock2Elapsed;
+         //pscriptinstance->m_timeLockElapsed = timeLockElapsed;
 
-      //pscriptinstance->m_timeShouldBuildElapsed = timeShouldBuildElapsed;
+         //pscriptinstance->m_timeLookUpElapsed = timeLookUpElapsed;
+
+         //pscriptinstance->m_timeLock2Elapsed = timeLock2Elapsed;
+
+         //pscriptinstance->m_timeShouldBuildElapsed = timeShouldBuildElapsed;
+
+      }
 
       return pscriptinstance;
 

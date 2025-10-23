@@ -4,6 +4,7 @@
 ////#include "acme/prototype/prototype/object.h"
 #include "acme/filesystem/filesystem/file_system_cache.h"
 #include "acme/filesystem/filesystem/file_system_cache_item.h"
+#include "acme/filesystem/filesystem/file_system_real_path_interface_cache.h"
 
 
 namespace dynamic_source
@@ -12,7 +13,8 @@ namespace dynamic_source
 
    class CLASS_DECL_APP_PROGRAMMING script :
       virtual public ::object,
-      virtual public ::file_system_cache
+      virtual public ::file_system_cache,
+      virtual public ::file_system_real_path_interface_cache
    {
    public:
 

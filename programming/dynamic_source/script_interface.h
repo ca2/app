@@ -12,6 +12,7 @@ namespace dynamic_source
 
    class CLASS_DECL_APP_PROGRAMMING script_interface :
       virtual public ::html_file,
+      virtual public ::object,
       virtual public ::file_system_interface,
       virtual public ::file_system_real_path_interface
    {

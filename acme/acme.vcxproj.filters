@@ -4284,6 +4284,9 @@
     <ClInclude Include="_information_n.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="filesystem\filesystem\file_system_real_path_interface_cache.h">
+      <Filter>Header Files\filesystem\filesystem</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="prototype\prototype\bit.cpp">
@@ -6145,6 +6148,9 @@
     </ClCompile>
     <ClCompile Include="_information_n.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filesystem\file_system_real_path_interface_cache.cpp">
+      <Filter>Source Files\filesystem\filesystem</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

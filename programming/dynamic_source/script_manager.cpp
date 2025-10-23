@@ -432,6 +432,10 @@ namespace dynamic_source
 
       }
 
+      class ::time timeStart;
+
+      timeStart.Now();
+
       auto pmain = øcreate < script_main >();
 
       pmain->m_pscript2 = pinstance->m_pscript2;
@@ -514,6 +518,12 @@ namespace dynamic_source
 
          if (!pinstance->m_pscript2->HasCompileOrLinkError())
          {
+
+            class ::time timeMainRunPrefix;
+
+            timeMainRunPrefix.Now();
+
+            pdssocket->m_timeMainRunPrefixElapsed = timeMainRunPrefix - timeStart;
 
             pdssocket->m_timeMainRunStart.Now();
 
@@ -723,7 +733,14 @@ namespace dynamic_source
 
                timeGetHereEnd.Now();
 
-               pinstance->m_itemN40585.m_timeGetHere = timeGetHereEnd - timeGetHereStart;
+               auto timeGetHere = timeGetHereEnd - timeGetHereStart;
+
+               if (pinstance)
+               {
+
+                  pinstance->m_itemN40585.m_timeGetHere = timeGetHere;
+
+               }
                
                if (pinstanceParent)
                {
@@ -744,7 +761,7 @@ namespace dynamic_source
 
                   }
 
-                  pinstanceParent->m_pmain->netnodesocket()->m_timeWaitingToBuild += pinstance->m_itemN40585.m_timeGetHere;
+                  pinstanceParent->m_pmain->netnodesocket()->m_timeWaitingToBuild += timeGetHere;
 
                   auto pinformation = pinstanceParent->m_pmain->netnodesocket()->m_pInformationN40585.defer_get_new< information_n40585 >(this);
 

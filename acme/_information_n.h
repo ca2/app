@@ -17,6 +17,7 @@ public:
    class ::time      m_timeLock2Elapsed;
    class ::time      m_timeShouldBuildElapsed;
    class ::time      m_timeCreateInstanceElapsed;
+   ///class ::time      m_timeRealPathMapAllocationElapsed;
 
 
    item_n40585();
@@ -44,6 +45,10 @@ public:
 
 
    ::array_base < item_n40585 > m_itema;
+
+   
+   class ::time         m_timeHandleRootHandleLocaleElapsed;
+
 
    ::string as_string() const;
 

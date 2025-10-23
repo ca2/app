@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "fallback_script_instance.h"
 #include "script.h"
 #include "script_instance.h"
 #include "ds_script.h"
@@ -570,17 +571,15 @@ namespace dynamic_source
 
       ::pointer<script_instance>pinstance;
 
-      if(m_lpfnCreateInstance == nullptr)
-      {
-
-         return nullptr;
-
-      }
-
       try
       {
 
-         pinstance = ::pointer_transfer(m_lpfnCreateInstance());
+         if (::is_set(m_lpfnCreateInstance))
+         {
+
+            pinstance = ::pointer_transfer(m_lpfnCreateInstance());
+
+         }
 
       }
       catch (...)
@@ -588,9 +587,18 @@ namespace dynamic_source
 
       }
 
+      if (!pinstance)
+      {
+
+         pinstance = øcreate_new<fallback_script_instance>();
+
+      }
+
       pinstance->m_strNote = m_pfilesystemcacheitem->path();
 
       pinstance->m_pscript2 = this;
+
+      pinstance->m_prealpathinterfacecache = this;
 
       pinstance->m_timeCreate.Now();
 

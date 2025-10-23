@@ -12,9 +12,8 @@ class CLASS_DECL_ACME file_system_real_path_interface :
 public:
 
 
-   ::pointer < ::mutex >                              m_pmutexRealPath;
-   ::string_map < ::file::path >                      m_mapRealPath;
-
+   ::pointer < ::file_system_real_path_interface_cache > m_prealpathinterfacecache;
+   
 
    file_system_real_path_interface();
    ~file_system_real_path_interface() override;

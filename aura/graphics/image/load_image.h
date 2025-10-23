@@ -16,9 +16,9 @@ class CLASS_DECL_AURA load_image :
 public:
 
 
-   ::payload                        m_payload;
-   ::image::image_pointer                  m_pimage;
-   ::pointer<::image::image_context>       m_pimagecontext;
+   ::payload                                 m_payload;
+   ::image::image_pointer                    m_pimage;
+   ::pointer<::image::image_context>         m_pimagecontext;
    ::function < void(::image::image *) >     m_functionLoaded;
 
 

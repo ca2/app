@@ -107,7 +107,7 @@ namespace datetime
                      iDayOfWeek = 1;
                }
                pfile->raw_print("<td>");
-               pfile->printf("%s", GetTinyWeekDay(pfile->textcontext(), iDayOfWeek).c_str());
+               pfile->print_format("{}", GetTinyWeekDay(pfile->textcontext(), iDayOfWeek).c_str());
                pfile->raw_print("</td>");
             }
             pfile->raw_print("</tr>");
@@ -198,16 +198,16 @@ namespace datetime
                }
                if (iWeek == 1 && iDayOfWeek < iFirstDayOfWeek)
                {
-                  pfile->printf("%d", iLastDayPreviousMonth + iDayOfWeek - iFirstDayOfWeek + 1);
+                  pfile->print_format("{}", iLastDayPreviousMonth + iDayOfWeek - iFirstDayOfWeek + 1);
                   iDay = 1;
                }
                else if (iWeek == iLineCount && iDayOfWeek > iLastDayOfWeek)
                {
-                  pfile->printf("%d", iDayOfWeek - iLastDayOfWeek);
+                  pfile->print_format("{}", iDayOfWeek - iLastDayOfWeek);
                }
                else
                {
-                  pfile->printf("%d", iDay);
+                  pfile->print_format("{}", iDay);
                   iDay++;
                }
                pfile->raw_print("</div></td>");

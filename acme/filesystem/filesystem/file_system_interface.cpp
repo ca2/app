@@ -115,15 +115,22 @@ bool file_system_interface::file_system_has_script(const ::file_system_cache_ite
 
    }
 
+   if (pfilesystemcacheitem->m_bHasScript2.is_set())
+   {
+
+      return pfilesystemcacheitem->m_bHasScript2.is_set_true();
+
+   }
+
    if (::is_set(pfilesystemcacheitem->m_pfilesysteminterface)
       && pfilesystemcacheitem->m_pfilesysteminterface != this)
    {
 
-      return pfilesystemcacheitem->m_pfilesysteminterface->file_system_has_script(pfilesystemcacheitem);
+      return pfilesystemcacheitem->m_bHasScript2 = pfilesystemcacheitem->m_pfilesysteminterface->file_system_has_script(pfilesystemcacheitem);
 
    }
 
-   return _file_system_has_script(pfilesystemcacheitem);
+   return pfilesystemcacheitem->m_bHasScript2 = _file_system_has_script(pfilesystemcacheitem);
 
 }
 

@@ -1813,6 +1813,34 @@ void file_system::init_system()
 }
 
 
+int file_system::file_system_item_slot_index(const ::scoped_string& scopedstrSlotName)
+{
+
+   _synchronous_lock synchronouslock(this->synchronization());
+
+   auto i = m_straFileSystemItemSlot.find_first(scopedstrSlotName);
+
+   if (i >= 0)
+   {
+
+      return i;
+
+   }
+
+   if (m_straFileSystemItemSlot.get_size() >= 8)
+   {
+
+      throw ::exception(error_failed);
+
+   }
+
+   i = m_straFileSystemItemSlot.add(scopedstrSlotName);
+
+   return i;
+
+}
+
+
 //void file_system::update_module_path()
 //{
 //

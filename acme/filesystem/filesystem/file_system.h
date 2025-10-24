@@ -16,6 +16,7 @@ public:
 
    //::file::path         m_pathCa2Module;
    ::file::path         m_pathModule;
+   ::string_array       m_straFileSystemItemSlot;
 
 
    ::IDENTIFIER_SUFFIX_OPERATING_SYSTEM(acme_)::file_system *     m_pplatformfile;
@@ -36,6 +37,7 @@ public:
 
    virtual void init_system();
 
+   virtual int file_system_item_slot_index(const ::scoped_string& scopedstrSlotName);
 
 
    virtual void ensure_exists(const ::file::path & path);

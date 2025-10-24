@@ -76,6 +76,13 @@
 CLASS_DECL_ACME ::string _017Time(const class ::time& time)
 {
 
+   if (time.is_null())
+   {
+
+      return "0";
+
+   }
+
    auto dMillis = time.floating_millisecond();
 
    if (dMillis >= 1'000.0)

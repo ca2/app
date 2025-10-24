@@ -88,6 +88,8 @@ namespace dynamic_source
 
       pscript->set_manager(m_pmanager);
 
+      pfilesystemcacheitem->m_particlea[m_pmanager->m_iFileSystemScriptSlotIndex] = pscript;
+
       pscript->m_pfilesystemcacheitem = pfilesystemcacheitem;
 
       //pscript->m_path1 = pfilesystemcacheitem->path();
@@ -192,7 +194,7 @@ namespace dynamic_source
    ::pointer<script_instance>script_cache::create_instance(const ::file_system_cache_item & pfilesystemcacheitem, ::pointer<script> & pscript)
    {
 
-      pscript = nullptr;
+      pscript = pfilesystemcacheitem->m_particlea[m_pmanager->m_iFileSystemScriptSlotIndex];
 
       //if(string_begins(scopedstrName, "netnode://"))
       //{
@@ -215,21 +217,26 @@ namespace dynamic_source
 
       itemN40585.m_strPath = pfilesystemcacheitem.m_strName2;
 
-      auto pathNetnode = m_pmanager->m_pathNetnodePath;
-
-      if (itemN40585.m_strPath.case_insensitive_begins_eat(pathNetnode))
+      if (!pscript)
       {
 
-         itemN40585.m_strPath.case_insensitive_begins_eat("/net/");
+         auto pathNetnode = m_pmanager->m_pathNetnodePath;
 
-      }
+         if (itemN40585.m_strPath.case_insensitive_begins_eat(pathNetnode))
+         {
 
-      pscript = get(pfilesystemcacheitem, itemN40585.m_timeLockElapsed, itemN40585.m_timeLookUpElapsed);
+            itemN40585.m_strPath.case_insensitive_begins_eat("/net/");
 
-      if (::is_null(pscript))
-      {
+         }
 
-         return nullptr;
+         pscript = get(pfilesystemcacheitem, itemN40585.m_timeLockElapsed, itemN40585.m_timeLookUpElapsed);
+
+         if (::is_null(pscript))
+         {
+
+            return nullptr;
+
+         }
 
       }
 

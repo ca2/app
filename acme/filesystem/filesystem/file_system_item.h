@@ -25,6 +25,7 @@ public:
    ::logic::boolean              m_bIsDir2;
    ::logic::boolean              m_bHasScript2;
    ::string                      m_strExpandMd5;
+   ::particle_pointer            m_particlea[8];
 
    //bool           m_bHasScript = false;
    //bool           m_bHasScriptCalculated = false;

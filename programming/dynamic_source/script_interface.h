@@ -37,6 +37,9 @@ namespace dynamic_source
       string                              m_strDebugRequestUri;
       string                              m_strDebugThisScript;
 
+      class ::time m_timeLastIncludingChildElapsed;
+
+
 
       script_interface();
       ~script_interface() override;

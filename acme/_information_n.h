@@ -18,7 +18,12 @@ public:
    class ::time      m_timeShouldBuildElapsed;
    class ::time      m_timeCreateInstanceElapsed;
    ///class ::time      m_timeRealPathMapAllocationElapsed;
-
+   class ::time      m_timeT1;
+   class ::time      m_timeInitializeElapsed;
+   class ::time      m_timeRunCreateElapsed;
+   class ::time      m_timeCallCreateElapsed;
+   class ::time      m_timeInitElapsed;
+   class ::time      m_timeRunElapsed;
 
    item_n40585();
    item_n40585(
@@ -48,9 +53,22 @@ public:
 
    
    class ::time         m_timeHandleRootHandleLocaleElapsed;
+   class ::time         m_timeHandleRootPadding1Elapsed;
+   class ::time         m_timeHandleRootRootInitElapsed;
+   class ::time         m_timeHandleRootPadding2Elapsed;
+   class ::time         m_timeHandleRootDateTimeElapsed;
+   class ::time         m_timeHandleRootMainElapsed;
+   class ::time         m_timeHandleRootOnBeforeIncludeElapsed;
+   class ::time         m_timeHandleRootSiteOnBeforeIncludeElapsed;
+   class ::time         m_timeHandleRootSubdomainOnBeforeIncludeElapsed;
+   ::string             m_strHandleRootRootInit;
+   ::string             m_strHandleRootRootInitSiteStandardRoot;
+   ::string             m_strHandleRootSiteOnBeforeInclude;
 
 
    ::string as_string() const;
+
+   ::string handle_locale_as_string() const;
 
 
 };

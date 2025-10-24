@@ -111,6 +111,7 @@ namespace dynamic_source
 
       defer_create_synchronization();
 
+      m_iFileSystemScriptSlotIndex = file_system()->file_system_item_slot_index("dynamic_source::script");
 
       //øconstruct_new(m_pfilesystemcache);
 
@@ -403,8 +404,6 @@ namespace dynamic_source
 
       auto pinformation = pdssocket->m_pInformationN40585.defer_get_new< information_n40585 >(this);
 
-      pinformation->m_itema.add(pinstance->m_itemN40585);
-
       if (!pinstance)
       {
 
@@ -432,9 +431,7 @@ namespace dynamic_source
 
       }
 
-      class ::time timeStart;
-
-      timeStart.Now();
+      auto timeT1 = ::time::now();
 
       auto pmain = øcreate < script_main >();
 
@@ -464,13 +461,27 @@ namespace dynamic_source
 
       pdssocket->m_pscript = pinstance;
 
+      pinstance->m_itemN40585.m_timeT1 = timeT1.elapsed();
+
+      auto timeInitialize = ::time::now();
+
       pinstance->initialize(pmain);
 
+      auto timeRunCreate = ::time::now();
+
       pinstance->defer_run_property(id_create);
+
+      auto timeCallCreate = ::time::now();
 
       pinstance->call_procedures(id_create);
 
       auto pthread = pdssocket->get_thread();
+
+      pinstance->m_itemN40585.m_timeCallCreateElapsed = timeCallCreate.elapsed();
+
+      pinstance->m_itemN40585.m_timeRunCreateElapsed = timeCallCreate - timeRunCreate;
+
+      pinstance->m_itemN40585.m_timeInitializeElapsed = timeRunCreate - timeInitialize;
 
       if (::is_set(pthread))
       {
@@ -486,85 +497,83 @@ namespace dynamic_source
 
       }
 
-      if (pinstance != nullptr)
+      pinstance->m_strDebugRequestUri = pdssocket->inattr("request_uri");
+
+      if (pinstance->m_strDebugRequestUri.case_insensitive_find_index("google") > 0)
       {
 
-         pinstance->m_strDebugRequestUri = pdssocket->inattr("request_uri");
-
-         if (pinstance->m_strDebugRequestUri.case_insensitive_find_index("google") > 0)
-         {
-
-            informationf("resident");
-
-         }
-
-         pinstance->m_strDebugThisScript = m_filesystemcacheitemSeed.m_strName2;
-
-         pinstance->dinit();
+         informationf("resident");
 
       }
 
-      if (pinstance != nullptr)
+      pinstance->m_strDebugThisScript = m_filesystemcacheitemSeed.m_strName2;
+
+      auto timeDinit = ::time::now();
+
+      pinstance->dinit();
+
+      pinstance->m_pmain->main_initialize();
+
+      if (pinstance->m_iDebug > 0)
       {
 
-         pinstance->m_pmain->main_initialize();
+         pinstance->print(pinstance->m_pscript2->m_strError);
 
-         if (pinstance->m_iDebug > 0)
+      }
+
+      if (!pinstance->m_pscript2->HasCompileOrLinkError())
+      {
+
+         class ::time timeMainRunPrefix;
+
+         timeMainRunPrefix.Now();
+
+         //pdssocket->m_timeMainRunPrefixElapsed = timeMainRunPrefix - timeStart;
+
+         pdssocket->m_timeMainRunStart.Now();
+
+         auto timeRun = ::time::now();
+
+         try
          {
 
-            pinstance->print(pinstance->m_pscript2->m_strError);
+            pinstance->run();
+
+            pinstance->m_itemN40585.m_timeRunElapsed = timeRun.elapsed();
+
+            pinstance->m_itemN40585.m_timeInitElapsed = timeRun - timeDinit;
+
+         }
+         catch (const ::heating_up_exception& e)
+         {
+
+            throw e;
+
+         }
+         catch (const exit_exception&)
+         {
+
+         }
+         catch (const ::exception& e)
+         {
+
+            string str = e.get_message();
+
+            pinstance->dprint("str");
+
+            informationf("Error: exception * at script_manager::handle run");
+
+            informationf("%s", str.c_str());
+
+         }
+         catch (...)
+         {
+
+            informationf("Error: Exception at script_manager::handle run");
 
          }
 
-         if (!pinstance->m_pscript2->HasCompileOrLinkError())
-         {
-
-            class ::time timeMainRunPrefix;
-
-            timeMainRunPrefix.Now();
-
-            pdssocket->m_timeMainRunPrefixElapsed = timeMainRunPrefix - timeStart;
-
-            pdssocket->m_timeMainRunStart.Now();
-
-            try
-            {
-
-               pinstance->run();
-
-            }
-            catch (const ::heating_up_exception& e)
-            {
-
-               throw e;
-
-            }
-            catch (const exit_exception&)
-            {
-
-            }
-            catch (const ::exception& e)
-            {
-
-               string str = e.get_message();
-
-               pinstance->dprint("str");
-
-               informationf("Error: exception * at script_manager::handle run");
-
-               informationf("%s", str.c_str());
-
-            }
-            catch (...)
-            {
-
-               informationf("Error: Exception at script_manager::handle run");
-
-            }
-
-            pdssocket->m_timeMainRunEnd.Now();
-
-         }
+         pdssocket->m_timeMainRunEnd.Now();
 
          try
          {
@@ -582,6 +591,25 @@ namespace dynamic_source
          {
 
             informationf("Error: Exception at script_manager::handle main_finalize");
+
+         }
+
+         try
+         {
+
+            pinformation->m_itema.add(pinstance->m_itemN40585);
+
+         }
+         catch (const ::exception&)
+         {
+
+            informationf("Error: exception at script_manager::handle pinformation");
+
+         }
+         catch (...)
+         {
+
+            informationf("Error: Exception at script_manager::handle pinformation");
 
          }
 
@@ -763,10 +791,6 @@ namespace dynamic_source
 
                   pinstanceParent->m_pmain->netnodesocket()->m_timeWaitingToBuild += timeGetHere;
 
-                  auto pinformation = pinstanceParent->m_pmain->netnodesocket()->m_pInformationN40585.defer_get_new< information_n40585 >(this);
-
-                  pinformation->m_itema.add(pinstance->m_itemN40585);
-
                }
 
                if (pinstance == nullptr || pscript == nullptr)
@@ -804,13 +828,27 @@ namespace dynamic_source
 
                   }
 
+                  pinstance->m_itemN40585.m_timeT1 = pinstanceParent->m_timeLastIncludingChildElapsed;
+
+                  auto timeInitialize = ::time::now();
+
                   pinstance->initialize(pimpl);
+
+                  auto timeRunCreate = ::time::now();
 
                   pinstance->m_pinstanceParent2 = pinstanceParent;
 
                   pinstance->defer_run_property(id_create);
 
+                  auto timeCallCreate = ::time::now();
+
                   pinstance->call_procedures(id_create);
+
+                  pinstance->m_itemN40585.m_timeCallCreateElapsed = timeCallCreate.elapsed();
+                  
+                  pinstance->m_itemN40585.m_timeRunCreateElapsed = timeCallCreate - timeRunCreate;
+
+                  pinstance->m_itemN40585.m_timeInitializeElapsed = timeRunCreate - timeInitialize;
 
                   if (pinstanceParent->m_pmain->m_iDebug > 0)
                   {
@@ -864,14 +902,35 @@ namespace dynamic_source
 
                }
 
+               auto timeDinit = ::time::now();
+
                pinstance->dinit();
 
+               auto timeRun = ::time::now();
+
                payload = pinstance->run_script();
+
+               pinstance->m_itemN40585.m_timeRunElapsed = timeRun.elapsed();
+
+               pinstance->m_itemN40585.m_timeInitElapsed = timeRun - timeDinit;
 
                try
                {
 
                   pinstance->destroy();
+
+               }
+               catch (...)
+               {
+
+               }
+
+               try
+               {
+
+                  auto pinformation = pinstanceParent->m_pmain->netnodesocket()->m_pInformationN40585.defer_get_new< information_n40585 >(this);
+
+                  pinformation->m_itema.add(pinstance->m_itemN40585);
 
                }
                catch (...)

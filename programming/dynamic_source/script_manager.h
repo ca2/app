@@ -75,7 +75,7 @@ namespace dynamic_source
 
       ::netnode::script_manager *                           m_pnetnodescriptmanager;
 
-
+      int m_iFileSystemScriptSlotIndex = -1;
       pointer_array < plugin_map_item >                     m_pluginmapitema;
 
       ::semaphore                                           m_semCompiler;

@@ -690,6 +690,41 @@ namespace gpu_opengl
    //}
 
 
+   GLint shader::_get_uniform_location(const_char_pointer name, const_char_pointer debug) const
+   {
+
+      ::string strName(name);
+
+      if (strName.case_insensitive_begins("padding"))
+      {
+
+         return -1;
+
+      }
+      
+      GLint location = glGetUniformLocation(m_ProgramID, name);
+      GLCheckError("");
+
+      if (location == -1)
+      {
+
+         ::string strMessage;
+
+         strMessage << "Uniform " << name << " not found (to get an " << debug << ")!";
+
+         warning() << strMessage;
+
+         throw ::exception(error_not_found, strMessage);
+
+         return - 1;
+
+      }
+
+      return location;
+
+   }
+
+
    void shader::_set_bool(const_char_pointer name, bool b) const
    {
 
@@ -700,112 +735,88 @@ namespace gpu_opengl
 
    void shader::_set_int(const_char_pointer name, int i) const
    {
-      //Bind();  // Ensure the shader program is bound
-      GLint location = glGetUniformLocation(m_ProgramID, name);
-      GLCheckError("");
-      if (location == -1) {
-         warning() << "Uniform " << name << " not found!";
-         throw ::exception(error_not_found);
-         return;
-      }
-      glUniform1i(location, i);
-      int iGlErrorSetInt = glGetError();
-      GLCheckError("");
-      if (iGlErrorSetInt != 0)
-      {
-         warning() << "Uniform " << name << " not set!";
 
-      }
+      auto location = _get_uniform_location(name, "int");
+
+      glUniform1i(location, i);
+      GLCheckError("");
+
    }
+
+
    void shader::_set_float(const_char_pointer name, float value) const
    {
-      //Bind();  // Ensure the shader program is bound
-      GLint location = glGetUniformLocation(m_ProgramID, name);
-      GLCheckError("");
-      if (location == -1) {
-         warning() << "Uniform " << name << " not found!";
-         throw ::exception(error_not_found);
-         return;
-      }
+
+      auto location = _get_uniform_location(name, "float");
+      
       glUniform1f(location, value);
       GLCheckError("");
+
    }
-   void shader::_set_vec2(const_char_pointer name, const glm::vec2& value) const {
-      //Bind();  // Ensure the shader program is bound
-      GLint location = glGetUniformLocation(m_ProgramID, name);
-      GLCheckError("");
-      if (location == -1) {
-         warning() << "Uniform " << name << " not found!";
-         throw ::exception(error_not_found);
-         return;
-      }
+
+
+   void shader::_set_seq2(const_char_pointer name, const glm::vec2& value) const 
+   {
+
+      auto location = _get_uniform_location(name, "seq2");
+      
       glUniform2f(location, value.x, value.y);
       GLCheckError("");
+
    }
-   void shader::_set_vec3(const_char_pointer name, const glm::vec3& value) const {
-      //Bind();  // Ensure the shader program is bound
-      GLint location = glGetUniformLocation(m_ProgramID, name);
-      GLCheckError("");
-      if (location == -1) {
-         warning() << "Uniform " << name << " not found!";
-         throw ::exception(error_not_found);
-         return;
-      }
+
+
+   void shader::_set_seq3(const_char_pointer name, const glm::vec3& value) const
+   {
+
+      auto location = _get_uniform_location(name, "seq3");
+
       glUniform3f(location, value.x, value.y, value.z);
       GLCheckError("");
-   }
-   void shader::_set_vec4(const_char_pointer name, const glm::vec4& value) const {
-      //Bind();  // Ensure the shader program is bound
-      GLint location = glGetUniformLocation(m_ProgramID, name);
-      //GLCheckError("");
-      if (location == -1) {
-         warning() << "Uniform " << name << " not found!";
-         throw ::exception(error_not_found);
 
-         return;
-      }
+   }
+
+
+   void shader::_set_seq4(const_char_pointer name, const glm::vec4& value) const 
+   {
+      
+      auto location = _get_uniform_location(name, "seq4");
       glUniform4f(location, value.x, value.y, value.z, value.w);
       GLCheckError("");
+
    }
+
 
    void shader::_set_mat2(const_char_pointer name, const glm::mat2& matrix) const
    {
-      GLint location = glGetUniformLocation(m_ProgramID, name);
-      GLCheckError("");
-      if (location == -1) {
-         warning() << "Uniform " << name << " not found!";
-         throw ::exception(error_not_found);
-         return;
-      }
+
+      auto location = _get_uniform_location(name, "mat2"); 
+
       glUniformMatrix2fv(location, 1, GL_FALSE, glm::value_ptr(matrix));
       GLCheckError("");
+
    }
 
 
    void shader::_set_mat3(const_char_pointer name, const glm::mat3& matrix) const
    {
-      GLint location = glGetUniformLocation(m_ProgramID, name);
-      GLCheckError("");
-      if (location == -1) {
-         warning() << "Uniform " << name << " not found!";
-         throw ::exception(error_not_found);
-         return;
-      }
+
+      auto location = _get_uniform_location(name, "mat3");
+
       glUniformMatrix3fv(location, 1, GL_FALSE, glm::value_ptr(matrix));
       GLCheckError("");
+
    }
+
 
    void shader::_set_mat4(const_char_pointer name, const glm::mat4& matrix) const
    {
-      GLint location = glGetUniformLocation(m_ProgramID, name);
-      GLCheckError("");
-      if (location == -1) {
-         warning() << "Uniform " << name << " not found!";
-         throw ::exception(error_not_found);
-         return;
-      }
+
+      auto location = _get_uniform_location(name, "mat4");
+
       glUniformMatrix4fv(location, 1, GL_FALSE, glm::value_ptr(matrix));
       GLCheckError("");
+
    }
 
 
@@ -830,35 +841,40 @@ namespace gpu_opengl
 
          strName.begins_eat("sampler:");
 
-         switch (p->m_etype)
+         if (!strName.case_insensitive_begins("padding"))
          {
-         case ::gpu::e_type_int:
-               _set_int(strName, *(int *)(m_propertiesPushShared.data(true) + iLen));
-            break;
-         case ::gpu::e_type_float:
-            _set_float(strName, *(float *)(m_propertiesPushShared.data(true) + iLen));
-            break;
-         case ::gpu::e_type_seq2:
-            _set_vec2(strName, *(glm::vec2 *)(m_propertiesPushShared.data(true) + iLen));
-            break;
-         case ::gpu::e_type_seq3:
-            _set_vec3(strName, *(glm::vec3 *)(m_propertiesPushShared.data(true) + iLen));
-            break;
-         case ::gpu::e_type_seq4:
-            _set_vec4(strName, *(glm::vec4 *)(m_propertiesPushShared.data(true) + iLen));
-            break;
-         case ::gpu::e_type_mat2:
-            _set_mat2(strName, *(glm::mat2 *)(m_propertiesPushShared.data(true) + iLen));
-            break;
-         case ::gpu::e_type_mat3:
-            _set_mat3(strName, *(glm::mat3 *)(m_propertiesPushShared.data(true) + iLen));
-            break;
-         case ::gpu::e_type_mat4:
-            _set_mat4(strName, *(glm::mat4 *)(m_propertiesPushShared.data(true) + iLen));
-            break;
-        default:
-        throw ::exception(error_not_expected);
-        break;
+
+            switch (p->m_etype)
+            {
+               case ::gpu::e_type_int:
+                  _set_int(strName, *(int *)(m_propertiesPushShared.data(true) + iLen));
+                  break;
+               case ::gpu::e_type_float:
+                  _set_float(strName, *(float *)(m_propertiesPushShared.data(true) + iLen));
+                  break;
+               case ::gpu::e_type_seq2:
+                  _set_seq2(strName, *(glm::vec2 *)(m_propertiesPushShared.data(true) + iLen));
+                  break;
+               case ::gpu::e_type_seq3:
+                  _set_seq3(strName, *(glm::vec3 *)(m_propertiesPushShared.data(true) + iLen));
+                  break;
+               case ::gpu::e_type_seq4:
+                  _set_seq4(strName, *(glm::vec4 *)(m_propertiesPushShared.data(true) + iLen));
+                  break;
+               case ::gpu::e_type_mat2:
+                  _set_mat2(strName, *(glm::mat2 *)(m_propertiesPushShared.data(true) + iLen));
+                  break;
+               case ::gpu::e_type_mat3:
+                  _set_mat3(strName, *(glm::mat3 *)(m_propertiesPushShared.data(true) + iLen));
+                  break;
+               case ::gpu::e_type_mat4:
+                  _set_mat4(strName, *(glm::mat4 *)(m_propertiesPushShared.data(true) + iLen));
+                  break;
+               default:
+                  throw ::exception(error_not_expected);
+                  break;
+            }
+
          }
 
          auto iLenItem = ::gpu::get_type_size(p->m_etype);
@@ -976,7 +992,7 @@ namespace gpu_opengl
       else
       {
 
-         _set_vec2(::string(scopedstrName), { x, y });
+         _set_seq2(::string(scopedstrName), { x, y });
 
       }
 
@@ -995,7 +1011,7 @@ namespace gpu_opengl
       else
       {
 
-         _set_vec2(::string(scopedstrName), a);
+         _set_seq2(::string(scopedstrName), a);
 
       }
 
@@ -1014,7 +1030,7 @@ namespace gpu_opengl
       else
       {
 
-         _set_vec3(::string(scopedstrName), { x, y, z });
+         _set_seq3(::string(scopedstrName), { x, y, z });
 
       }
 
@@ -1033,7 +1049,7 @@ namespace gpu_opengl
       else
       {
 
-         _set_vec3(::string(scopedstrName), a);
+         _set_seq3(::string(scopedstrName), a);
 
       }
 
@@ -1052,7 +1068,7 @@ namespace gpu_opengl
       else
       {
 
-         _set_vec4(::string(scopedstrName), { x, y, z, w });
+         _set_seq4(::string(scopedstrName), { x, y, z, w });
 
       }
 
@@ -1071,7 +1087,7 @@ namespace gpu_opengl
       else
       {
 
-         _set_vec4(::string(scopedstrName), a);
+         _set_seq4(::string(scopedstrName), a);
 
       }
 

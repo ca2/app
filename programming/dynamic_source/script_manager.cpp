@@ -263,7 +263,7 @@ namespace dynamic_source
 
          //}
 
-         m_pcompiler->m_pmanager = this;
+         m_pcompiler->m_pscriptmanager2 = this;
 
          //estatus = 
 
@@ -376,7 +376,7 @@ namespace dynamic_source
    }
 
 
-   void script_manager::handle(::dynamic_source::httpd_socket* pdssocket)
+   void script_manager::handle(::dynamic_source::httpd_socket* phttpdsocket1)
    {
 
       string strHead;
@@ -400,9 +400,9 @@ namespace dynamic_source
 
       pinstance->m_itemN40585.m_timeGetHere = timeGetHereEnd - timeGetHereStart;
 
-      pdssocket->m_timeWaitingToBuild += pinstance->m_itemN40585.m_timeGetHere;
+      phttpdsocket1->m_timeWaitingToBuild += pinstance->m_itemN40585.m_timeGetHere;
 
-      auto pinformation = pdssocket->m_pInformationN40585.defer_get_new< information_n40585 >(this);
+      auto pinformation = phttpdsocket1->m_pInformationN40585.defer_get_new< information_n40585 >(this);
 
       if (!pinstance)
       {
@@ -425,7 +425,7 @@ namespace dynamic_source
          strHtml += "</body>";
          strHtml += "</html>";
 
-         pdssocket->m_response.file()->print(strHtml);
+         phttpdsocket1->m_response.file()->print(strHtml);
 
          return;
 
@@ -433,19 +433,21 @@ namespace dynamic_source
 
       auto timeT1 = ::time::now();
 
-      auto pmain = øcreate < script_main >();
+      auto pscriptmain1 = øcreate < script_main >();
 
-      pmain->m_pscript2 = pinstance->m_pscript2;
+      pinstance->m_pscriptmain1 = pscriptmain1;
 
-      pmain->defer_run_property(id_create);
+      pscriptmain1->initialize_script_main(this, phttpdsocket1, pinstance->m_pscript1);
 
-      pmain->call_procedures(id_create);
+      pscriptmain1->defer_run_property(id_create);
 
-      pmain->m_pmain = pmain;
+      pscriptmain1->call_procedures(id_create);
 
-      pmain->m_psocket2 = pdssocket;
+      //pscriptmain1->m_pscriptmain1 = pscriptmain1;
 
-      pmain->m_pmanager2 = this;
+      //pscriptmain1->m_phttpdsocket1 = ;
+
+      //pscriptmain1->m_pscriptmanager1 = this;
 
       //::string strUrl;
 
@@ -453,19 +455,15 @@ namespace dynamic_source
 
       //pmain->m_url = strUrl;
 
-      pmain->m_pscript2 = pinstance->m_pscript2;
+      pscriptmain1->init1();
 
-      pmain->init1();
-
-      pinstance->m_pmain = pmain;
-
-      pdssocket->m_pscript = pinstance;
+      phttpdsocket1->m_pscript = pinstance;
 
       pinstance->m_itemN40585.m_timeT1 = timeT1.elapsed();
 
       auto timeInitialize = ::time::now();
 
-      pinstance->initialize(pmain);
+      pinstance->initialize_script_instance(pscriptmain1);
 
       auto timeRunCreate = ::time::now();
 
@@ -475,7 +473,7 @@ namespace dynamic_source
 
       pinstance->call_procedures(id_create);
 
-      auto pthread = pdssocket->get_thread();
+      auto pthread = phttpdsocket1->get_thread();
 
       pinstance->m_itemN40585.m_timeCallCreateElapsed = timeCallCreate.elapsed();
 
@@ -497,7 +495,7 @@ namespace dynamic_source
 
       }
 
-      pinstance->m_strDebugRequestUri = pdssocket->inattr("request_uri");
+      pinstance->m_strDebugRequestUri = phttpdsocket1->inattr("request_uri");
 
       if (pinstance->m_strDebugRequestUri.case_insensitive_find_index("google") > 0)
       {
@@ -512,16 +510,16 @@ namespace dynamic_source
 
       pinstance->dinit();
 
-      pinstance->m_pmain->main_initialize();
+      pinstance->m_pscriptmain1->main_initialize();
 
       if (pinstance->m_iDebug > 0)
       {
 
-         pinstance->print(pinstance->m_pscript2->m_strError);
+         pinstance->print(pinstance->m_pscript1->m_strError);
 
       }
 
-      if (!pinstance->m_pscript2->HasCompileOrLinkError())
+      if (!pinstance->m_pscript1->HasCompileOrLinkError())
       {
 
          class ::time timeMainRunPrefix;
@@ -530,7 +528,7 @@ namespace dynamic_source
 
          //pdssocket->m_timeMainRunPrefixElapsed = timeMainRunPrefix - timeStart;
 
-         pdssocket->m_timeMainRunStart.Now();
+         phttpdsocket1->m_timeMainRunStart.Now();
 
          auto timeRun = ::time::now();
 
@@ -573,12 +571,12 @@ namespace dynamic_source
 
          }
 
-         pdssocket->m_timeMainRunEnd.Now();
+         phttpdsocket1->m_timeMainRunEnd.Now();
 
          try
          {
 
-            pinstance->m_pmain->main_finalize();
+            pinstance->m_pscriptmain1->main_finalize();
 
          }
          catch (const ::exception&)
@@ -691,7 +689,7 @@ namespace dynamic_source
 
       //}
 
-      ::defer_destroy_and_release(pmain);
+      ::defer_destroy_and_release(pscriptmain1);
 
       ::defer_destroy_and_release(pinstance);
 
@@ -717,13 +715,13 @@ namespace dynamic_source
          if (pinstanceParent != nullptr)
          {
 
-            if (pinstanceParent->m_pmain->m_iDebug > 0)
+            if (pinstanceParent->m_pscriptmain1->m_iDebug > 0)
             {
 
-               if (pinstanceParent->m_pscript2->m_textstreamError.m_pfile->size() > 0)
+               if (pinstanceParent->m_pscript1->m_textstreamError.m_pfile->size() > 0)
                {
 
-                  pinstanceParent->m_pmain->netnodesocket()->response().m_pmemfileBody->print("script_manager::get_output_internal is_empty script parent" + pinstanceParent->m_pscript2->m_pfilesystemcacheitem->path());
+                  pinstanceParent->m_pscriptmain1->netnodesocket()->response().m_pmemfileBody->print("script_manager::get_output_internal is_empty script parent" + pinstanceParent->m_pscript1->m_pfilesystemcacheitem->path());
 
                }
 
@@ -749,7 +747,7 @@ namespace dynamic_source
 
             {
 
-               auto pmain = pinstanceParent->main();
+               auto pscriptmain1 = pinstanceParent->main();
 
                class ::time timeGetHereStart;
 
@@ -789,7 +787,7 @@ namespace dynamic_source
 
                   }
 
-                  pinstanceParent->m_pmain->netnodesocket()->m_timeWaitingToBuild += timeGetHere;
+                  pinstanceParent->m_pscriptmain1->netnodesocket()->m_timeWaitingToBuild += timeGetHere;
 
                }
 
@@ -803,7 +801,7 @@ namespace dynamic_source
                if (pinstance && pinstanceParent && pscript)
                {
 
-                  pimpl = pmain;
+                  pimpl = pscriptmain1;
 
                   //pimpl = ::øcreate < script_interface >();
 
@@ -819,12 +817,14 @@ namespace dynamic_source
 
                   //pimpl->init1();
 
-                  pinstance->m_pmain = pmain;
+                  pinstance->initialize_script_instance(pinstanceParent);
 
-                  if (pinstanceParent->m_bOnTopicInclude && !pmain->m_pscriptinterfaceTopic)
+                  //pinstance->m_pscriptmain1 = pscriptmain1;
+
+                  if (pinstanceParent->m_bOnTopicInclude && !pscriptmain1->m_pscriptinterfaceTopic)
                   {
 
-                     pmain->m_pscriptinterfaceTopic = pinstance;
+                     pscriptmain1->m_pscriptinterfaceTopic = pinstance;
 
                   }
 
@@ -836,7 +836,7 @@ namespace dynamic_source
 
                   auto timeRunCreate = ::time::now();
 
-                  pinstance->m_pinstanceParent2 = pinstanceParent;
+                  pinstance->m_pinstanceParent1 = pinstanceParent;
 
                   pinstance->defer_run_property(id_create);
 
@@ -850,10 +850,10 @@ namespace dynamic_source
 
                   pinstance->m_itemN40585.m_timeInitializeElapsed = timeRunCreate - timeInitialize;
 
-                  if (pinstanceParent->m_pmain->m_iDebug > 0)
+                  if (pinstanceParent->m_pscriptmain1->m_iDebug > 0)
                   {
 
-                     pinstanceParent->m_strDebugRequestUri = pinstanceParent->m_pmain->netnodesocket()->m_request.m_strRequestUri;
+                     pinstanceParent->m_strDebugRequestUri = pinstanceParent->m_pscriptmain1->netnodesocket()->m_request.m_strRequestUri;
 
                      pinstanceParent->m_strDebugThisScript = pfilesystemcacheitem->path();
 
@@ -928,7 +928,7 @@ namespace dynamic_source
                try
                {
 
-                  auto pinformation = pinstanceParent->m_pmain->netnodesocket()->m_pInformationN40585.defer_get_new< information_n40585 >(this);
+                  auto pinformation = pinstanceParent->m_pscriptmain1->netnodesocket()->m_pInformationN40585.defer_get_new< information_n40585 >(this);
 
                   pinformation->m_itema.add(pinstance->m_itemN40585);
 
@@ -1059,7 +1059,7 @@ namespace dynamic_source
       if (pinstance != nullptr)
       {
 
-         pinstance->m_pscript2->run(pinstance);
+         pinstance->m_pscript1->run(pinstance);
 
       }
 

@@ -33,20 +33,20 @@ public:
 
 
 
-   virtual bool file_system_file_exists(const ::file_system_cache_item & pfilesystemcacheitem);
-   virtual bool file_system_is_folder(const ::file_system_cache_item & pfilesystemcacheitem);
+   //virtual bool file_system_file_exists(const ::file_system_cache_item & pfilesystemcacheitem);
+   //virtual bool file_system_is_folder(const ::file_system_cache_item & pfilesystemcacheitem);
    virtual bool file_system_has_script(const ::file_system_cache_item & pfilesystemcacheitem);
    virtual string file_system_expanded_md5(const ::file_system_cache_item & pfilesystemcacheitem);
 
-   virtual bool _file_system_file_exists(const ::file_system_cache_item & pfilesystemcacheitem);
-   virtual bool _file_system_is_folder(const ::file_system_cache_item & pfilesystemcacheitem);
+   //virtual bool _file_system_file_exists(const ::file_system_cache_item & pfilesystemcacheitem);
+   //virtual bool _file_system_is_folder(const ::file_system_cache_item & pfilesystemcacheitem);
    virtual bool _file_system_has_script(const ::file_system_cache_item & pfilesystemcacheitem);
    virtual string _file_system_expanded_md5(const ::file_system_cache_item & pfilesystemcacheitem);
 
 
    virtual class ::file_system_cache_item file_system_item(const ::scoped_string& scopedstrName, ::file_system_real_path_interface* pfilesystemrealpathinterface = nullptr);
 
-   virtual ::file::path file_system_item_path(const ::scoped_string& scopedstrName, ::file_system_real_path_interface* pfilesystemrealpathinterface = nullptr);
+   //virtual ::file::path file_system_item_path(const ::scoped_string& scopedstrName, ::file_system_real_path_interface* pfilesystemrealpathinterface = nullptr);
 
 
    virtual ::file_system_item* get_file_system_item(const ::scoped_string& scopedstr, ::file_system_real_path_interface* pfilesystemrealpathinterface = nullptr);

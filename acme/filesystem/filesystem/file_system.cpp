@@ -1873,20 +1873,20 @@ int file_system::file_system_item_slot_index(const ::scoped_string& scopedstrSlo
 //}
 
 
-bool file_system::_file_system_file_exists(const ::file_system_cache_item & pfilesystemcacheitem)
-{
-
-   return __exists(pfilesystemcacheitem->path());
-
-}
-
-
-bool file_system::_file_system_is_folder(const ::file_system_cache_item & pfilesystemcacheitem)
-{
-
-   return directory_system()->__is(pfilesystemcacheitem->path());
-
-}
+//bool file_system::_file_system_file_exists(const ::file_system_cache_item & pfilesystemcacheitem)
+//{
+//
+//   return __exists(pfilesystemcacheitem->path());
+//
+//}
+//
+//
+//bool file_system::_file_system_is_folder(const ::file_system_cache_item & pfilesystemcacheitem)
+//{
+//
+//   return directory_system()->__is(pfilesystemcacheitem->path());
+//
+//}
 
 
 bool file_system::_file_system_has_script(const ::file_system_cache_item & pfilesystemcacheitem)
@@ -1966,6 +1966,10 @@ bool file_system::_file_system_has_script(const ::file_system_cache_item & pfile
       pfilesystemitem->m_pathReal2 = path;
 
       pfilesystemitem->m_pfilesysteminterface = this;
+
+      auto etype = path.type();
+
+      pfilesystemitem->m_etype = etype;
 
    }
 

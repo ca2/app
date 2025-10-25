@@ -1055,6 +1055,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="dynamic_source\aaa_cache_item.h" />
+    <ClInclude Include="dynamic_source\data_object.h" />
     <ClInclude Include="dynamic_source\exit_exception.h" />
     <ClInclude Include="dynamic_source\httpd_socket.h" />
     <ClInclude Include="dynamic_source\httpd_incoming_socket.h" />

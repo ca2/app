@@ -48,6 +48,7 @@ namespace file
       //::pointer < ::file::watch>   m_watchLast;
 
       bool                 m_bCreateWatchThread;
+      bool                 m_bCreatingWatchThread;
 
 
       watcher();

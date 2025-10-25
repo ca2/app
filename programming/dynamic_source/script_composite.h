@@ -23,6 +23,10 @@ namespace dynamic_source
 
       void initialize(::particle * pparticle) override;
 
+      virtual void initialize_script_composite(script_interface* pscriptinterface);
+
+      void initialize_with_socket_thread(::httpd::socket_thread* psocketthread);
+
       //void finalize() override;
 
       void destroy() override;

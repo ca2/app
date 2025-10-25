@@ -58,6 +58,7 @@ public:
    class ::time         m_timeHandleRootPadding2Elapsed;
    class ::time         m_timeHandleRootDateTimeElapsed;
    class ::time         m_timeHandleRootMainElapsed;
+   class ::time         m_timeHandleRootSysIncludePathElapsed;
    class ::time         m_timeHandleRootOnBeforeIncludeElapsed;
    class ::time         m_timeHandleRootSiteOnBeforeIncludeElapsed;
    class ::time         m_timeHandleRootSubdomainOnBeforeIncludeElapsed;

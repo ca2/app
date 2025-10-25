@@ -19,26 +19,28 @@ namespace dynamic_source
    public:
 
 
-      bool                                m_bOnTopicInclude;
+      bool                                               m_bOnTopicInclude;
 
-      ::netnode::script_interface *       m_pnetnodescriptinterface;
-      ::netnode::script_impl *            m_pnetnodescriptimpl;
+      ::pointer < ::netnode::script_interface >          m_pnetnodescriptinterface;
+      ::pointer < ::netnode::script_impl >               m_pnetnodescriptimpl;
 
-      string                              m_strNote;
+      ::pointer<httpd_socket>                            m_phttpdsocket1;
+      ::pointer < ::dynamic_source::script_manager >     m_pscriptmanager1;
 
-      ::pointer<script_main>              m_pmain;
-      ::pointer<script_interface>         m_pinstanceParent2;
-      ::pointer<script>                   m_pscript2;
+      string                                             m_strNote;
 
-      int                                 m_iDebug;
+      ::pointer < script_main >                          m_pscriptmain1;
+      ::pointer<script_interface>                        m_pinstanceParent1;
+      ::pointer<script>                                  m_pscript1;
 
-      ::payload                           m_varRet;
+      int                                                m_iDebug;
 
-      string                              m_strDebugRequestUri;
-      string                              m_strDebugThisScript;
+      ::payload                                          m_varRet;
 
-      class ::time m_timeLastIncludingChildElapsed;
+      string                                             m_strDebugRequestUri;
+      string                                             m_strDebugThisScript;
 
+      class ::time                                       m_timeLastIncludingChildElapsed;
 
 
       script_interface();
@@ -46,7 +48,8 @@ namespace dynamic_source
 
       virtual const_char_pointer debug_note() const override;
 
-      virtual void initialize(::particle * pparticle) override;
+      void initialize(::particle * pparticle) override;
+      virtual void initialize_with_socket_thread(::httpd::socket_thread* psocketthread);
       virtual void init1();
 
 
@@ -68,7 +71,8 @@ namespace dynamic_source
 
       //virtual property & get(const ::scoped_string & scopedstrKey);
 
-
+      //virtual void transfer_proper_data_to_parent_script();
+      virtual void transfer_proper_data_to_data_object(::dynamic_source::data_object * pdataobject);
 
 
       virtual ::file::file * output_file();
@@ -83,10 +87,10 @@ namespace dynamic_source
       virtual void on_initialize();
       //virtual void initialize_dynamic_source_script_interface(script_interface * pinterfaceMain, script_interface * pinterfaceParent, httpd_socket * pdssocket, script_manager * pmanager);
 
-      script_main * main() { return m_pmain; }
-      script_interface * parent() { return m_pinstanceParent2; }
-      httpd_socket* netnodesocket();
-      script_manager* manager();
+      inline script_main * main() { return m_pscriptmain1; }
+      script_interface * parent() { return m_pinstanceParent1; }
+      httpd_socket* netnodesocket() { return m_phttpdsocket1; }
+      script_manager* manager() { return m_pscriptmanager1; }
 
 
       virtual void set_session_payload(const ::atom & atom, const ::payload & payload);

@@ -29,6 +29,14 @@ namespace dynamic_source
       ~script_instance() override;
 
 
+      virtual void initialize_script_instance_script(
+         ::dynamic_source::script* pscript1);
+
+
+      virtual void initialize_script_instance(
+         ::dynamic_source::script_interface* pscriptinterfaceParent1);
+
+
       virtual bool ShouldBuild();
       
       

@@ -49,15 +49,15 @@ namespace dynamic_source
       //string      m_strLibPlatform;
 
 
-      string_array_base                                   m_straSync;
+      string_array_base                           m_straSync;
 //      map_string_to_ptr                         m_mapLib;
-      string                                    m_strLibsLibs;
+      string                                      m_strLibsLibs;
       //string                                    m_strEnv;
-      ::pointer<script_manager>                       m_pmanager;
+      ::pointer<script_manager>                   m_pscriptmanager2;
       //string                                    m_strSdk1;
       //string                                    m_strPlatform;
       //string                                    m_strStagePlatform;
-      ::pointer < ::file::watch >                        m_filewatcherid;
+      ::pointer < ::file::watch >                 m_filewatcherid;
 
       //string                                    m_strPlat1;
       //string                                    m_strPlat2;

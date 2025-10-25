@@ -29,6 +29,8 @@ namespace dynamic_source
 
       void destroy() override;
 
+      virtual ::pointer<script_instance>create_instance_2025(const ::file_system_cache_item& pfilesystemcacheitem, ::pointer<script>& pscript);
+
       virtual ::pointer<script_instance>create_instance(const ::file_system_cache_item & pfilesystemcacheitem, ::pointer<script> & pscript);
 
       void set_all_out_of_date();

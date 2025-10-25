@@ -43,66 +43,66 @@ void file_system_interface::on_initialize_particle()
 }
 
 
-bool file_system_interface::file_system_file_exists(const ::file_system_cache_item & pfilesystemcacheitem)
-{
-
-   if (pfilesystemcacheitem.nok())
-   {
-
-      return false;
-
-   }
-
-   if (::is_set(pfilesystemcacheitem->m_pfilesysteminterface)
-      && pfilesystemcacheitem->m_pfilesysteminterface != this)
-   {
-
-      return pfilesystemcacheitem->m_pfilesysteminterface->file_system_file_exists(pfilesystemcacheitem);
-
-   }
-
-   return _file_system_file_exists(pfilesystemcacheitem);
-
-}
-
-
-bool file_system_interface::_file_system_file_exists(const ::file_system_cache_item & pfilesystemcacheitem)
-{
-
-   return file_system()->_file_system_file_exists(pfilesystemcacheitem);
-
-}
-
-
-bool file_system_interface::file_system_is_folder(const ::file_system_cache_item & pfilesystemcacheitem)
-{
-
-   if (pfilesystemcacheitem.nok())
-   {
-
-      return false;
-
-   }
-
-   if (::is_set(pfilesystemcacheitem->m_pfilesysteminterface)
-      && pfilesystemcacheitem->m_pfilesysteminterface != this)
-   {
-
-      return pfilesystemcacheitem->m_pfilesysteminterface->file_system_is_folder(pfilesystemcacheitem);
-
-   }
-
-   return _file_system_is_folder(pfilesystemcacheitem);
-
-}
-
-
-bool file_system_interface::_file_system_is_folder(const ::file_system_cache_item & pfilesystemcacheitem)
-{
-
-   return file_system()->_file_system_is_folder(pfilesystemcacheitem);
-
-}
+//bool file_system_interface::file_system_file_exists(const ::file_system_cache_item & pfilesystemcacheitem)
+//{
+//
+//   if (pfilesystemcacheitem.nok())
+//   {
+//
+//      return false;
+//
+//   }
+//
+//   if (::is_set(pfilesystemcacheitem->m_pfilesysteminterface)
+//      && pfilesystemcacheitem->m_pfilesysteminterface != this)
+//   {
+//
+//      return pfilesystemcacheitem->m_pfilesysteminterface->file_system_file_exists(pfilesystemcacheitem);
+//
+//   }
+//
+//   return _file_system_file_exists(pfilesystemcacheitem);
+//
+//}
+//
+//
+//bool file_system_interface::_file_system_file_exists(const ::file_system_cache_item & pfilesystemcacheitem)
+//{
+//
+//   return file_system()->_file_system_file_exists(pfilesystemcacheitem);
+//
+//}
+//
+//
+//bool file_system_interface::file_system_is_folder(const ::file_system_cache_item & pfilesystemcacheitem)
+//{
+//
+//   if (pfilesystemcacheitem.nok())
+//   {
+//
+//      return false;
+//
+//   }
+//
+//   if (::is_set(pfilesystemcacheitem->m_pfilesysteminterface)
+//      && pfilesystemcacheitem->m_pfilesysteminterface != this)
+//   {
+//
+//      return pfilesystemcacheitem->m_pfilesysteminterface->file_system_is_folder(pfilesystemcacheitem);
+//
+//   }
+//
+//   return _file_system_is_folder(pfilesystemcacheitem);
+//
+//}
+//
+//
+//bool file_system_interface::_file_system_is_folder(const ::file_system_cache_item & pfilesystemcacheitem)
+//{
+//
+//   return file_system()->_file_system_is_folder(pfilesystemcacheitem);
+//
+//}
 
 
 bool file_system_interface::file_system_has_script(const ::file_system_cache_item & pfilesystemcacheitem)
@@ -197,23 +197,23 @@ bool file_system_interface::_file_system_has_script(const ::file_system_cache_it
 }
 
 
-::file::path file_system_interface::file_system_item_path(const ::scoped_string& scopedstrName, ::file_system_real_path_interface* pfilesystemrealpathinterface)
-{
-
-    auto pfilesystemitem = file_system_item(scopedstrName, pfilesystemrealpathinterface);
-
-    if (::is_null(pfilesystemitem))
-    {
-
-       return { };
-
-    }
-
-    auto path = pfilesystemitem->path();
-
-    return path;
-
-}
+//::file::path file_system_interface::file_system_item_path(const ::scoped_string& scopedstrName, ::file_system_real_path_interface* pfilesystemrealpathinterface)
+//{
+//
+//    auto pfilesystemitem = file_system_item(scopedstrName, pfilesystemrealpathinterface);
+//
+//    if (::is_null(pfilesystemitem))
+//    {
+//
+//       return { };
+//
+//    }
+//
+//    auto path = pfilesystemitem->path();
+//
+//    return path;
+//
+//}
 
 
 class ::file_system_item* file_system_interface::get_file_system_item(const ::scoped_string& scopedstrName, ::file_system_real_path_interface* pfilesystemrealpathinterface)

@@ -191,7 +191,7 @@ namespace dynamic_source
    }
 
 
-   ::pointer<script_instance>script_cache::create_instance(const ::file_system_cache_item & pfilesystemcacheitem, ::pointer<script> & pscript)
+   ::pointer<script_instance>script_cache::create_instance_2025(const ::file_system_cache_item& pfilesystemcacheitem, ::pointer<script>& pscript)
    {
 
       pscript = pfilesystemcacheitem->m_particlea[m_pmanager->m_iFileSystemScriptSlotIndex];
@@ -307,6 +307,165 @@ namespace dynamic_source
          timeCreateInstance.Now();
 
          itemN40585.m_timeCreateInstanceElapsed = timeCreateInstance - timeShouldBuild;
+
+         //s      itemN40585.m_timeRealPathMapAllocationElapsed = pscriptinstance->m_timeRealPathMapAllocationElapsed;
+
+         pscriptinstance->m_itemN40585 = itemN40585;
+
+         //pscriptinstance->m_timeLockElapsed = timeLockElapsed;
+
+         //pscriptinstance->m_timeLookUpElapsed = timeLookUpElapsed;
+
+         //pscriptinstance->m_timeLock2Elapsed = timeLock2Elapsed;
+
+         //pscriptinstance->m_timeShouldBuildElapsed = timeShouldBuildElapsed;
+
+      }
+
+      return pscriptinstance;
+
+   }
+
+
+   ::pointer<script_instance>script_cache::create_instance(const ::file_system_cache_item & pfilesystemcacheitem, ::pointer<script> & pscript)
+   {
+
+      pscript = pfilesystemcacheitem->m_particlea[m_pmanager->m_iFileSystemScriptSlotIndex];
+
+      //if(string_begins(scopedstrName, "netnode://"))
+      //{
+      //   
+      //   single_lock synchronouslock(synchronization(), true);
+
+      //   pscript  = get(scopedstrName);
+
+      //   synchronouslock.unlock();
+
+      //   return pscript->create_instance();
+
+      //}
+
+      //class ::time timeShouldBuild;
+
+      class ::time timeCreateInstance;
+
+      item_n40585 itemN40585;
+
+      itemN40585.m_strPath = pfilesystemcacheitem.m_strName2;
+
+      auto pathNetnode = m_pmanager->m_pathNetnodePath;
+
+      if (itemN40585.m_strPath.case_insensitive_begins_eat(pathNetnode))
+      {
+
+         itemN40585.m_strPath.case_insensitive_begins_eat("/net/");
+
+      }
+
+      if (!pscript)
+      {
+
+         pscript = get(pfilesystemcacheitem, itemN40585.m_timeLockElapsed, itemN40585.m_timeLookUpElapsed);
+
+         if (::is_null(pscript))
+         {
+
+            return nullptr;
+
+         }
+
+      }
+
+      //class ::time timeStart;
+
+      //timeStart.Now();
+
+      //{
+
+      //   _single_lock slScript(pscript->synchronization());
+
+      //   if (!slScript._wait(5_s))
+      //   {
+
+      //      throw ::heating_up_exception("Compiling script " + pfilesystemcacheitem->path());
+
+      //   }
+
+      //}
+
+      //class ::time timeLock2;
+
+      //timeLock2.Now();
+
+      //itemN40585.m_timeLock2Elapsed = timeLock2 - timeStart;
+
+      if (pscript->m_bNew)
+      {
+
+         {
+
+            _single_lock slScript(pscript->synchronization());
+
+            if (!slScript._wait(5_s))
+            {
+
+               throw ::heating_up_exception("Compiling script " + pfilesystemcacheitem->path());
+
+            }
+
+         }
+
+         pscript->m_bBuilding = true;
+
+         pscript->defer_build();
+
+         pscript->m_bBuilding = false;
+
+         //   if (pscript->ShouldBuild())
+         //   {
+
+         //      pscript = allocate_ds_script(pfilesystemcacheitem);
+
+         //      //_synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+
+         //      //m_map[pfilesystemcacheitem->path()] = pscript;
+
+         //      {
+
+         //         critical_section_lock criticalsectionlock(&m_criticalsectionScript);
+
+         //         m_mapScript[pfilesystemcacheitem] = pscript;
+
+         //      }
+
+         //      return pscript->create_instance();
+
+         //   }
+
+         //   //timeShouldBuild.Now();
+
+         //   //itemN40585.m_timeShouldBuildElapsed = timeShouldBuild - timeLock2;
+
+         //}
+         //else
+         //{
+
+         //   timeShouldBuild = timeLock2;
+
+         //}
+
+      }
+
+      timeCreateInstance.Now();
+
+      auto pscriptinstance = pscript->create_instance();
+
+      if (pscriptinstance)
+      {
+
+         //itemN40585.m_timeCreateInstanceElapsed = timeCreateInstance - timeShouldBuild;
+
+         itemN40585.m_timeCreateInstanceElapsed = timeCreateInstance.elapsed();
 
          //s      itemN40585.m_timeRealPathMapAllocationElapsed = pscriptinstance->m_timeRealPathMapAllocationElapsed;
 

@@ -12,6 +12,7 @@
 #include "acme/filesystem/file/memory_file.h"
 //#include "acme/filesystem/file/text_stream.h"
 #include "acme/filesystem/filesystem/file_system.h"
+#include "acme/filesystem/filesystem/path_system.h"
 #include "acme/operating_system/process.h"
 #include "acme/platform/node.h"
 #include "acme/prototype/prototype/url.h"
@@ -28,7 +29,7 @@
 #include "apex/networking/http/context.h"
 #include "aura/platform/application.h"
 #include "axis/platform/system.h"
-
+#include "programming/heating_up_exception.h"
 
 #include "acme/_operating_system.h"
 #include <sys/stat.h>
@@ -316,11 +317,23 @@ namespace dynamic_source
    void script_compiler::compile(ds_script* pscript)
    {
 
-      //synchronous_lock synchronouslock(pscript->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+      _single_lock slCompiler(&m_pscriptmanager2->m_semCompiler);
 
-      _synchronous_lock slCompiler(&m_pscriptmanager2->m_semCompiler);
+      if (!slCompiler._wait(0_s))
+      {
+
+         throw ::heating_up_exception("Compiling script " + pscript->m_pfilesystemcacheitem->path());
+
+      }
 
       information("Compiling script {}", pscript->m_pfilesystemcacheitem->path());
+
+      if (pscript->m_pfilesystemcacheitem->path().case_insensitive_contains("monitor"))
+      {
+
+         information() << "monitor";
+
+      }
 
       auto& ostreamError = pscript->m_textstreamError;
 
@@ -422,13 +435,13 @@ namespace dynamic_source
 
       strRndTitle = "_" + pdatetime->format("%Y-%m-%d_%H-%M-%S") + "_" + strMillis;
 
-      string strTime = m_pathTime;
+      auto pathTime = path_system()->logical_path(m_pathTime);
 
-      pscript->m_strCppPath.formatf(m_pathTime / "dynamic_source/%s.cpp", strTransformName.c_str());
+      pscript->m_strCppPath.formatf(pathTime / "dynamic_source/%s.cpp", strTransformName.c_str());
 
       //auto pathCa2Root = m_pintegrationcontext->m_pathBuildFolder ;
 
-      auto pathProjectDir = m_pintegrationcontext->m_pathBuildFolder;
+      auto pathBuildFolder = path_system()->logical_path(m_pintegrationcontext->m_pathBuildFolder);
 
       //string strCompileLogUnique;
 
@@ -445,38 +458,40 @@ namespace dynamic_source
 
       }
 
-      pathClog = string().formatf(m_pathTime / "dynamic_source/%s-compile-log-%s.txt", strTransformName.c_str(), strCompileLogUnique.c_str());
-      pathLlog = string().formatf(m_pathTime / "dynamic_source/%s-link-log.txt", strTransformName.c_str());
+      pathClog = string().formatf(pathTime / "dynamic_source/%s-compile-log-%s.txt", strTransformName.c_str(), strCompileLogUnique.c_str());
+      pathLlog = string().formatf(pathTime / "dynamic_source/%s-link-log.txt", strTransformName.c_str());
 
       string strPathCompiler;
-      strPathCompiler.formatf(m_pathTime / "dynamic_source/%s-compiler.txt", strTransformName.c_str());
+      strPathCompiler.formatf(pathTime / "dynamic_source/%s-compiler.txt", strTransformName.c_str());
       ::file::path pathCompiler(strPathCompiler);
 
       string strPathLinker;
-      strPathLinker.formatf(m_pathTime / "dynamic_source/%s-linker.txt", strTransformName.c_str());
+      strPathLinker.formatf(pathTime / "dynamic_source/%s-linker.txt", strTransformName.c_str());
       ::file::path pathLinker(strPathLinker);
 
       //#ifdef _DEBUG
 #ifdef LINUX
       //strB = m_pintegrationcontext->m_pathBuildFolder  / m_strDynamicSourceStage / "front\\dynamic_source\\BuildBat" / strTransformName.name() / strTransformName + ".bat";
-      strO = ::file::path(m_pathTime) / "intermediate" / m_pintegrationcontext->m_strPlatform / m_pscriptmanager2->m_strNamespace + "_dynamic_source_script" / strTransformName / strTransformName.name() + ".o";
+      strO = ::file::path(pathTime) / "intermediate" / m_pintegrationcontext->m_strPlatform / m_pscriptmanager2->m_strNamespace + "_dynamic_source_script" / strTransformName / strTransformName.name() + ".o";
 #else
 
       //strB = m_strDynamicSourceStageFolder / "front\\dynamic_source\\BuildBat" / strTransformName.name() / strTransformName + ".bat";
 
-      strP = m_strDynamicSourceStageFolder / m_pintegrationcontext->m_strPlatform / "dynamic_source" / strTransformName.sibling(strScript.name()) + ".pdb";
+      auto pathDynamicSourceStageFolder = path_system()->logical_path(m_strDynamicSourceStageFolder);
 
-      strL = m_strDynamicSourceStageFolder / m_pintegrationcontext->m_strPlatform / "dynamic_source" / strTransformName.sibling(strScript.name()) + ".lib";
+      strP = pathDynamicSourceStageFolder / m_pintegrationcontext->m_strPlatform / "dynamic_source" / strTransformName.sibling(strScript.name()) + ".pdb";
 
-      strE = m_strDynamicSourceStageFolder / m_pintegrationcontext->m_strPlatform / "dynamic_source" / strTransformName.sibling(strScript.name()) + ".exp";
+      strL = pathDynamicSourceStageFolder / m_pintegrationcontext->m_strPlatform / "dynamic_source" / strTransformName.sibling(strScript.name()) + ".lib";
 
-      ::file::path strDynamicSourceScriptFolder = m_pathTime / "intermediate" / m_pintegrationcontext->m_strPlatform / m_strDynamicSourceConfiguration / m_pscriptmanager2->m_strRepos / m_pscriptmanager2->m_strNamespace + "_dynamic_source_script";
+      strE = pathDynamicSourceStageFolder / m_pintegrationcontext->m_strPlatform / "dynamic_source" / strTransformName.sibling(strScript.name()) + ".exp";
+
+      ::file::path pathDynamicSourceScriptFolder = pathTime / "intermediate" / m_pintegrationcontext->m_strPlatform / m_strDynamicSourceConfiguration / m_pscriptmanager2->m_strRepos / m_pscriptmanager2->m_strNamespace + "_dynamic_source_script";
 
       //strDVI = strDynamicSourceScriptFolder / strTransformName / m_strSdk1 + ".idb";
 
       //::file::path pathSourceDVP = strDynamicSourceScriptFolder / strTransformName / m_strSdk1 + ".pdb";
 
-      ::file::path pathSourceNetnodeDSS = m_pintegrationcontext->m_pathBuildFolder / "time-" OPERATING_SYSTEM_NAME "/intermediate/x64" / m_strDynamicSourceConfiguration / "app-core/netnode_dynamic_source_script";
+      ::file::path pathSourceNetnodeDSS = pathBuildFolder / "time-" OPERATING_SYSTEM_NAME "/intermediate/x64" / m_strDynamicSourceConfiguration / "app-core/netnode_dynamic_source_script";
 
       ::string strSDK1 = m_pintegrationcontext->payload("sdk1").as_string();
 
@@ -490,7 +505,7 @@ namespace dynamic_source
 
          string strHelper1 = pathHelper1 + "-" + m_pintegrationcontext->payload("sdk1").as_string() + ".pdb";
 
-         auto pathDVP0 = m_strDynamicSourceStageFolder / m_pintegrationcontext->m_strPlatform / "dynamic_source" / pathHelper1.folder() / strHelper1;
+         auto pathDVP0 = pathDynamicSourceStageFolder / m_pintegrationcontext->m_strPlatform / "dynamic_source" / pathHelper1.folder() / strHelper1;
 
          string strCompiler = pathHelper1 + "-compiler.txt";
 
@@ -523,9 +538,9 @@ namespace dynamic_source
       //strSO1 = strDynamicSourceScriptFolder / "framework.obj";
       //strSO2 = strDynamicSourceScriptFolder / m_pscriptmanager2->m_strNamespace + "_dynamic_source_script.obj";
 
-      pathObj = strDynamicSourceScriptFolder / strTransformName / strTransformName.name() + ".obj";
+      pathObj = pathDynamicSourceScriptFolder / strTransformName / strTransformName.name() + ".obj";
 
-      strO = strDynamicSourceScriptFolder / strTransformName.name() / strTransformName + ".bat";
+      strO = pathDynamicSourceScriptFolder / strTransformName.name() / strTransformName + ".bat";
 
 #endif
 
@@ -769,12 +784,12 @@ namespace dynamic_source
 
       //auto pathCa2Root = m_pintegrationcontext->m_pathBuildFolder ;
 
-      string strV(pathProjectDir);
+      string strV(pathBuildFolder);
       strV.find_replace("\\", "/");
       if (!string_ends(strV, "/") && !string_ends(strV, "\\"))
          strV += "/";
 
-      string strN = m_pscriptmanager2->m_pathNetnodePath;
+      string strN = path_system()->logical_path(m_pscriptmanager2->m_pathNetnodePath);
       strN.find_replace("\\", "/");
       if (!string_ends(strN, "/") && !string_ends(strN, "\\"))
          strN += "/";
@@ -811,9 +826,9 @@ namespace dynamic_source
       string strBuildCmd;
 
 #if defined(LINUX) || defined(MACOS) || defined(FREEBSD) || defined(OPENBSD)
-      strBuildCmd = m_pintegrationcontext->m_pathBuildFolder / "operating_system" / "operating_system-" OPERATING_SYSTEM_NAME "\\_stage\\dynamic_source" / m_strDynamicSourceConfiguration + "_cl_" + m_pintegrationcontext->m_strPlatform + ".bash";
+      strBuildCmd = pathBuildFolder / "operating_system" / "operating_system-" OPERATING_SYSTEM_NAME "\\_stage\\dynamic_source" / m_strDynamicSourceConfiguration + "_cl_" + m_pintegrationcontext->m_strPlatform + ".bash";
 #else
-      strBuildCmd = m_pintegrationcontext->m_pathBuildFolder / "operating_system" / "operating_system-" OPERATING_SYSTEM_NAME "\\_stage\\dynamic_source" / m_pintegrationcontext->payload("vstools").as_string() / m_strDynamicSourceConfiguration + "_c_" + m_pintegrationcontext->m_strPlatform + ".bat";
+      strBuildCmd = pathBuildFolder / "operating_system" / "operating_system-" OPERATING_SYSTEM_NAME "\\_stage\\dynamic_source" / m_pintegrationcontext->payload("vstools").as_string() / m_strDynamicSourceConfiguration + "_c_" + m_pintegrationcontext->m_strPlatform + ".bat";
 #endif
 
       str = file()->as_string(strBuildCmd);
@@ -977,9 +992,9 @@ namespace dynamic_source
          //strBuildCmd;
 
 #if defined(LINUX) || defined(MACOS) || defined(FREEBSD) || defined(OPENBSD)
-         strBuildCmd = m_pintegrationcontext->m_pathBuildFolder / "operating_system" / "operating_system-" OPERATING_SYSTEM_NAME"\\_stage\\dynamic_source" / m_strDynamicSourceConfiguration + "_cl_" + m_pintegrationcontext->m_strPlatform + ".bash";
+         strBuildCmd = pathBuildFolder / "operating_system" / "operating_system-" OPERATING_SYSTEM_NAME"\\_stage\\dynamic_source" / m_strDynamicSourceConfiguration + "_cl_" + m_pintegrationcontext->m_strPlatform + ".bash";
 #else
-         strBuildCmd = m_pintegrationcontext->m_pathBuildFolder / "operating_system" / "operating_system-" OPERATING_SYSTEM_NAME "\\_stage\\dynamic_source" / m_pintegrationcontext->payload("vstools").as_string() / m_strDynamicSourceConfiguration + "_l_" + m_pintegrationcontext->m_strPlatform + ".bat";
+         strBuildCmd = pathBuildFolder / "operating_system" / "operating_system-" OPERATING_SYSTEM_NAME "\\_stage\\dynamic_source" / m_pintegrationcontext->payload("vstools").as_string() / m_strDynamicSourceConfiguration + "_l_" + m_pintegrationcontext->m_strPlatform + ".bat";
 #endif
 
          str = file()->as_string(strBuildCmd);
@@ -1297,13 +1312,14 @@ namespace dynamic_source
       strDest += "\r\n";
       strDest += "\r\n";
       strDest += "\r\n";
-      strDest += "class " + pscript->m_strClassNamePrefix + "_dynamic_source_script : virtual public ::app_consumer < ::netnode::application, ::" + m_pscriptmanager2->m_strNamespace + "::script_instance >\r\n";
+      //strDest += "class " + pscript->m_strClassNamePrefix + "_dynamic_source_script : virtual public ::app_consumer < ::netnode::application, ::" + m_pscriptmanager2->m_strNamespace + "::script_instance >\r\n";
+      strDest += "class " + pscript->m_strClassNamePrefix + "_dynamic_source_script : virtual public ::" + m_pscriptmanager2->m_strNamespace + "::script_instance\r\n";
       strDest += "{\r\n";
       strDest += "public:\r\n";
       //strDest += "   " + pscript->m_strClassNamePrefix + "_dynamic_source_script(dynamic_source::script * pscript) : ::object(pscript->get_app()), dynamic_source::script_instance(pscript), ::" + pscript->m_strClassNamePrefix + "::script_instance(pscript), ::" + pscript->m_strClassNamePrefix + "::script_impl(pscript) {};  \r\n";
-      strDest += "   " + pscript->m_strClassNamePrefix + "_dynamic_source_script() {};\r\n";
-      strDest += "   virtual ~" + pscript->m_strClassNamePrefix + "_dynamic_source_script() {};\r\n";
-      strDest += "   virtual void     run() { script_run(); };\r\n";
+      strDest += "   " + pscript->m_strClassNamePrefix + "_dynamic_source_script() { }\r\n";
+      strDest += "   ~" + pscript->m_strClassNamePrefix + "_dynamic_source_script() override { }\r\n";
+      strDest += "   void run() override { script_run(); }\r\n";
       strDest += "   virtual void script_run();\r\n";
       strDest += "   \r\n\r\n";
       strDest += strDs;
@@ -2743,7 +2759,7 @@ namespace dynamic_source
 
       strInclude.case_insensitive_ends_eat(".ds");
 
-      auto pfilesystemcacheitem = m_pscriptmanager2->netnode_file_path(strInclude);
+      auto pfilesystemcacheitem = m_pscriptmanager2->netnode_file_path(strInclude, m_pscriptmanager2);
 
       ::pointer<script_instance>pinstance = m_pscriptmanager2->get(pfilesystemcacheitem);
 

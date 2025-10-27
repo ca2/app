@@ -1940,6 +1940,9 @@ public:
    string_base& erase_end(character_count start) { return this->erase(start, (::character_count)this->index_of(this->end())); }
 
 
+   string_base& erase_count_end(character_count count) { return this->erase(this->size() - count, count); }
+
+
    string_base & erase(character_count start, character_count count);
 
    /// erase count characters from start

@@ -12,7 +12,7 @@ public:
    ::pointer<::text::context>          m_ptextcontext;
 
 
-   html_file();
+   html_file() { }
    ~html_file() override;
 
 

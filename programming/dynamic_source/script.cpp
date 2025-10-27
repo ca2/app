@@ -48,7 +48,7 @@ namespace dynamic_source
 
       //m_pscriptmanager1 = nullptr;
 
-      m_bNew = true;
+      m_bShouldBuild = true;
 
       //m_bShouldRunOnAfterCreate = true;
 
@@ -139,7 +139,7 @@ namespace dynamic_source
 
       m_pscriptmanager1 = pscriptmanager1;
 
-      m_pfilesysteminterface = pscriptmanager1;
+      //m_pfilesysteminterface = pscriptmanager1;
 
    }
 
@@ -150,7 +150,7 @@ namespace dynamic_source
 
    }
 
-   ::file_system_cache_item script::netnode_file_path(const ::scoped_string& scopedstrName)
+   ::file_system_cache_item script::netnode_file_path(const ::scoped_string& scopedstrName, ::file_system_interface * pfilesysteminterface)
    {
 
       _synchronous_lock synchronouslock(this->synchronization());
@@ -160,7 +160,7 @@ namespace dynamic_source
       if (!pfilesystemcacheitem.is_ok())
       {
 
-         pfilesystemcacheitem = m_pscriptmanager1->netnode_file_path(scopedstrName);
+         pfilesystemcacheitem = m_pscriptmanager1->netnode_file_path(scopedstrName, pfilesysteminterface);
 
       }
 
@@ -582,9 +582,14 @@ namespace dynamic_source
    ::pointer<script_instance>ds_script::create_instance()
    {
 
-      ///defer_build();
+      if (m_bShouldBuild)
+      {
 
-//      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+         return {};
+
+      }
+
+      auto timeCreateInstance = ::time::now();
 
       ::pointer<script_instance>pinstance;
 
@@ -604,6 +609,9 @@ namespace dynamic_source
 
       }
 
+
+      auto timeInit1 = ::time::now();
+
       if (!pinstance)
       {
 
@@ -613,22 +621,43 @@ namespace dynamic_source
 
       pinstance->m_strNote = m_pfilesystemcacheitem->path();
 
-      pinstance->initialize(this);
 
-      pinstance->initialize_script_instance_script(this);
+
+
+
+      // this call is expensive... trying to not call it...
+      //pinstance->initialize(this);
+
+
+      // surgical initialization after profiling/measurements hard work...
+      pinstance->m_papplication = m_papplication;
+      // netnode::script_interface app_consumer m_papp should be initialized where
+      // netnode is accessible...
+      //pinstance->initialize_script_instance_script(this);:
+      pinstance->m_pscriptmanager1 = m_pscriptmanager1;
+      pinstance->m_pscript1 = this;
+
+
+      auto timeInit2 = ::time::now();
 
       //pinstance->initialize_script_instance(this, pscriptinterfaceParent1);
+
+      //pinstance->m_timeInit2Elapsed = timeInit2.elapsed();
+
+      pinstance->m_timeInit1Elapsed = timeInit2 - timeInit1;
+
+      pinstance->m_timeCreateInstanceElapsed = timeInit1 - timeCreateInstance;
 
       pinstance->m_prealpathinterfacecache = this;
 
       pinstance->m_timeCreate.Now();
 
-      if (m_bNew)
-      {
+      //if (m_bNew)
+      //{
 
-         m_bNew = false;
+      //   m_bNew = false;
 
-      }
+      //}
 
       return pinstance;
 
@@ -692,14 +721,21 @@ namespace dynamic_source
       do
       {
 
-
          if (iRetry > 0)
          {
+
             synchronouslock.unlock();
 
             preempt(system()->prototype()->random(2._s, 4._s));
 
             synchronouslock._lock();
+
+         }
+
+         if (m_strSourcePath.case_insensitive_contains("monitor"))
+         {
+
+            information() << "monitor";
 
          }
 

@@ -197,17 +197,28 @@ void file_system_cache::clear_file_system_cache()
 //}
 
 
-file_system_cache_item file_system_cache::file_system_item(const ::scoped_string & scopedstrName, ::file_system_real_path_interface* pfilesystemrealpathinterface)
+file_system_cache_item file_system_cache::file_system_item(
+   const ::scoped_string & scopedstrName, 
+   ::file_system_real_path_interface* pfilesystemrealpathinterface,
+   ::file_system_interface* pfilesysteminterface)
 {
 
    _synchronous_lock synchronouslock(m_pmutexFileSystemItem, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    auto & pfilesystemitem = m_mapFileSystemItem[scopedstrName];
 
-   if (!pfilesystemitem)
+   if (pfilesystemitem.m_estatus != success_already_set)
    {
 
-      pfilesystemitem = get_file_system_item(scopedstrName, pfilesystemrealpathinterface);
+      synchronouslock.unlock();
+
+      auto pfilesystemitemNew = pfilesysteminterface->file_system_item(scopedstrName, pfilesystemrealpathinterface);
+
+      synchronouslock._lock();
+
+      pfilesystemitem = pfilesystemitemNew;
+
+      pfilesystemitem.m_estatus = success_already_set;
       
    }
 

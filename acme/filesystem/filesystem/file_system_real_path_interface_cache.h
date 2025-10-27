@@ -6,14 +6,17 @@
 #pragma once
 
 
+#include "acme/filesystem/filesystem/real_and_logical_path.h"
+
+
 class CLASS_DECL_ACME file_system_real_path_interface_cache :
    virtual public ::particle
 {
 public:
 
 
-   ::pointer < ::mutex >                              m_pmutexRealPath;
-   ::string_map < ::file::path >                      m_mapRealPath;
+   critical_section                                   m_criticalsection;
+   ::string_map < ::file::real_and_logical_path >     m_mapRealPath;
    class ::time                                       m_timeRealPathMapAllocationElapsed;
 
 
@@ -24,7 +27,7 @@ public:
    virtual void on_initialize_particle() override;
 
    
-   virtual ::file::path _real_path1(const ::scoped_string& scopedstrName, file_system_real_path_interface * prealpathinterface);
+   virtual ::file::real_and_logical_path _real_path1(const ::scoped_string& scopedstrName, file_system_real_path_interface * prealpathinterface);
 
 
 };

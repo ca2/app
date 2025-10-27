@@ -11,24 +11,19 @@
 #include "acme/platform/system.h"
 #include "apex/networking/sockets/httpd/socket_thread.h"
 #include "programming/heating_up_exception.h"
+#include "_impl.h"
 
 
 namespace dynamic_source
 {
 
 
-   script_interface::script_interface()
-   {
+   //script_interface::script_interface()
+   //{
 
-      m_pscriptmain1 = nullptr;
+   //   m_iDebug = 0;
 
-      m_pnetnodescriptimpl = nullptr;
-
-      m_pnetnodescriptinterface = nullptr;
-
-      m_iDebug = 0;
-
-   }
+   //}
 
 
    script_interface::~script_interface()
@@ -209,10 +204,10 @@ namespace dynamic_source
    }
 
 
-   ::file_system_cache_item script_interface::netnode_file_path(const ::scoped_string& scopedstrName)
+   ::file_system_cache_item script_interface::netnode_file_path(const ::scoped_string& scopedstrName, ::file_system_interface * pfilesysteminterface)
    {
 
-      return m_pscript1->netnode_file_path(scopedstrName);
+      return m_pscript1->netnode_file_path(scopedstrName, pfilesysteminterface);
 
    }
 
@@ -850,7 +845,7 @@ namespace dynamic_source
    void script_interface::dprint(const ::scoped_string & scopedstr)
    {
 
-      if (m_pscriptmain1 && m_pscriptmain1->m_iDebug > 0)
+      if (is_debug())
       {
 
          print(scopedstr);

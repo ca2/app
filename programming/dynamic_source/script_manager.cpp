@@ -35,6 +35,9 @@
 #include "programming/heating_up_exception.h"
 
 
+int get_processor_count();
+
+
 namespace dynamic_source
 {
 
@@ -66,7 +69,8 @@ namespace dynamic_source
    }
 
 
-   script_manager::script_manager()
+   script_manager::script_manager() :
+      m_semCompiler(get_processor_count(), get_processor_count())
    {
 
       m_pnetnodescriptmanager = nullptr;
@@ -113,6 +117,8 @@ namespace dynamic_source
 
       m_iFileSystemScriptSlotIndex = file_system()->file_system_item_slot_index("dynamic_source::script");
 
+      m_prealpathinterfacecache = øcreate_new < ::file_system_real_path_interface_cache >();
+
       //øconstruct_new(m_pfilesystemcache);
 
 
@@ -146,9 +152,9 @@ namespace dynamic_source
 
 //#endif
 
-      m_pathNetnodePath = path_system()->real_path(m_pathBase / "netnodenet");
-      m_pathNetseedPath = path_system()->real_path(m_pathBase / "netnodenet/net");
-      m_pathNetseedDsCa2Path = path_system()->real_path(m_pathBase / "netnodenet/net");
+      m_pathNetnodePath = path_system()->logical_path(m_pathBase / "netnodenet");
+      m_pathNetseedPath = path_system()->logical_path(m_pathBase / "netnodenet/net");
+      m_pathNetseedDsCa2Path = path_system()->logical_path(m_pathBase / "netnodenet/net");
 
       m_pmutexShouldBuild = node()->create_mutex();
       m_pmutexSession = node()->create_mutex();
@@ -345,15 +351,15 @@ namespace dynamic_source
    }
 
 
-   ::file_system_cache_item script_manager::netnode_file_path(const ::scoped_string& scopedstrName)
+   ::file_system_cache_item script_manager::netnode_file_path(const ::scoped_string& scopedstrName, ::file_system_interface* pfilesysteminterface)
    {
 
-      auto pfilesystemcacheitem = file_system_item(scopedstrName);
+      auto pfilesystemcacheitem = pfilesysteminterface->file_system_item(scopedstrName);
 
       if (!pfilesystemcacheitem.is_ok())
       {
 
-         pfilesystemcacheitem = file_system_item(string(scopedstrName) + ".ds");
+         pfilesystemcacheitem = pfilesysteminterface->file_system_item(string(scopedstrName) + ".ds");
 
       }
 
@@ -390,7 +396,7 @@ namespace dynamic_source
       if (!m_filesystemcacheitemSeed.is_ok())
       {
 
-         m_filesystemcacheitemSeed = netnode_file_path(m_strSeed1);
+         m_filesystemcacheitemSeed = netnode_file_path(m_strSeed1, this);
 
       }
 
@@ -398,9 +404,14 @@ namespace dynamic_source
 
       timeGetHereEnd.Now();
 
-      pinstance->m_itemN40585.m_timeGetHere = timeGetHereEnd - timeGetHereStart;
+      if (pinstance)
+      {
 
-      phttpdsocket1->m_timeWaitingToBuild += pinstance->m_itemN40585.m_timeGetHere;
+         pinstance->m_itemN40585.m_timeGetHere = timeGetHereEnd - timeGetHereStart;
+
+         phttpdsocket1->m_timeWaitingToBuild += pinstance->m_itemN40585.m_timeGetHere;
+
+      }
 
       auto pinformation = phttpdsocket1->m_pInformationN40585.defer_get_new< information_n40585 >(this);
 
@@ -420,7 +431,7 @@ namespace dynamic_source
          strHtml += "Try again soon";
          strHtml += "</h1>";
          strHtml += "<p>";
-         strHtml += "Root Script (seed) failed to compile.";
+         strHtml += "Root Script (seed) is compiling/building or failed to compile.";
          strHtml += "</p>";
          strHtml += "</body>";
          strHtml += "</html>";
@@ -439,9 +450,9 @@ namespace dynamic_source
 
       pscriptmain1->initialize_script_main(this, phttpdsocket1, pinstance->m_pscript1);
 
-      pscriptmain1->defer_run_property(id_create);
+      //pscriptmain1->defer_run_property(id_create);
 
-      pscriptmain1->call_procedures(id_create);
+      //pscriptmain1->call_procedures(id_create);
 
       //pscriptmain1->m_pscriptmain1 = pscriptmain1;
 
@@ -834,21 +845,21 @@ namespace dynamic_source
 
                   pinstance->initialize(pimpl);
 
-                  auto timeRunCreate = ::time::now();
+                  //auto timeRunCreate = ::time::now();
 
                   pinstance->m_pinstanceParent1 = pinstanceParent;
 
-                  pinstance->defer_run_property(id_create);
+                  //pinstance->defer_run_property(id_create);
 
-                  auto timeCallCreate = ::time::now();
+                  //auto timeCallCreate = ::time::now();
 
-                  pinstance->call_procedures(id_create);
+                  //pinstance->call_procedures(id_create);
 
-                  pinstance->m_itemN40585.m_timeCallCreateElapsed = timeCallCreate.elapsed();
+                  //pinstance->m_itemN40585.m_timeCallCreateElapsed = timeCallCreate.elapsed();
                   
-                  pinstance->m_itemN40585.m_timeRunCreateElapsed = timeCallCreate - timeRunCreate;
+                  //pinstance->m_itemN40585.m_timeRunCreateElapsed = timeCallCreate - timeRunCreate;
 
-                  pinstance->m_itemN40585.m_timeInitializeElapsed = timeRunCreate - timeInitialize;
+                  pinstance->m_itemN40585.m_timeInitializeElapsed = timeInitialize.elapsed();
 
                   if (pinstanceParent->m_pscriptmain1->m_iDebug > 0)
                   {
@@ -1159,14 +1170,14 @@ namespace dynamic_source
    }
 
 
-   ::file::path script_manager::_real_path2(const ::file::path& strBase, const ::file::path& str)
+   ::file::real_and_logical_path script_manager::_real_path2(const ::file::path& strBase, const ::file::path& str)
    {
       
       ::file::path strRealPath = strBase / str;
 
-      auto path = _real_path1(strRealPath);
+      auto realandlogicalpath = _real_path1(strRealPath);
 
-      return path;
+      return realandlogicalpath;
 
       //if (file_system_file_exists(pfilesystemcacheitem))
       //   return pfilesystemcacheitem;
@@ -1184,7 +1195,7 @@ namespace dynamic_source
    // #endif
 
 
-   ::file::path script_manager::_real_path1(const ::scoped_string & scopedstrName)
+   ::file::real_and_logical_path script_manager::_real_path1(const ::scoped_string & scopedstrName)
    {
 
       //#ifdef WINDOWS
@@ -1214,15 +1225,15 @@ namespace dynamic_source
       if (path.has_character())
       {
 
-         return path;
+         return { path, scopedstrName };
 
       }
 
-      auto path2 = m_pathNetseedDsCa2Path / scopedstrName;
+      auto pathLogical = m_pathNetseedDsCa2Path / scopedstrName;
 
-      path = path_system()->real_path(path2);
+      path = path_system()->real_path(pathLogical);
 
-      return path;
+      return { path, pathLogical };
       
    }
 
@@ -1763,13 +1774,15 @@ namespace dynamic_source
 
       //// auto pcontext = get_context();
 
+      auto pathBuildFolder = path_system()->logical_path(m_pcompiler->m_pintegrationcontext->m_pathBuildFolder);
+
 #ifdef WINDOWS
 
-      return m_pcompiler->m_pintegrationcontext->m_pathBuildFolder / m_pcompiler->m_strDynamicSourceStage / m_pcompiler->m_pintegrationcontext->m_strPlatform / m_pcompiler->m_strDynamicSourceConfiguration / "dynamic_source" / strTransformName.folder() / strScript + scopedstrModifier + ".dll";
+      return pathBuildFolder / m_pcompiler->m_strDynamicSourceStage / m_pcompiler->m_pintegrationcontext->m_strPlatform / m_pcompiler->m_strDynamicSourceConfiguration / "dynamic_source" / strTransformName.folder() / strScript + scopedstrModifier + ".dll";
 
 #else
 
-      return m_pcompiler->m_pintegrationcontext->m_pathBuildFolder / m_pcompiler->m_strDynamicSourceStage / m_pcompiler->m_pintegrationcontext->m_strStagePlatform / m_pcompiler->m_strDynamicSourceConfiguration / "dynamic_source" / strTransformName.folder() / strScript + scopedstrModifier + ".so";
+      return pathBuildFolder / m_pcompiler->m_strDynamicSourceStage / m_pcompiler->m_pintegrationcontext->m_strStagePlatform / m_pcompiler->m_strDynamicSourceConfiguration / "dynamic_source" / strTransformName.folder() / strScript + scopedstrModifier + ".so";
 
 #endif
 

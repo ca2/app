@@ -5,6 +5,8 @@
 #pragma once
 
 
+#include "acme/filesystem/filesystem/real_and_logical_path.h"
+
 
 class CLASS_DECL_ACME file_system_real_path_interface :
    virtual public ::particle
@@ -15,7 +17,7 @@ public:
    ::pointer < ::file_system_real_path_interface_cache > m_prealpathinterfacecache;
    
 
-   file_system_real_path_interface();
+   file_system_real_path_interface() { }
    ~file_system_real_path_interface() override;
 
    void on_initialize_particle() override;
@@ -30,8 +32,8 @@ public:
 
 
    //virtual ::file_system_item* get_file_system_item(const ::scoped_string& scopedstr, ::file_system_interface* pfilesysteminterface = nullptr);
-   virtual ::file::path real_path(const ::scoped_string& scopedstrName);
-   virtual ::file::path _real_path1(const ::scoped_string& scopedstrName);
+   virtual ::file::real_and_logical_path real_path(const ::scoped_string& scopedstrName);
+   virtual ::file::real_and_logical_path _real_path1(const ::scoped_string& scopedstrName);
 
 
 };

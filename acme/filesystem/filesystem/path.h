@@ -90,28 +90,47 @@ namespace file
 
          m_iSize = iSize;
 
-         if (epath == e_path_none)
+         if (etype == e_type_doesnt_exist)
          {
 
-            m_epath = file_path_get_type(*this, epath);
+            m_etype = etype;
+
+            m_epath = epath;
 
          }
          else
          {
 
-            m_epath = epath;
-
-         }
-
-         if (bNormalizePath)
-         {
-
-            bool bCertainlySyntathicallyDir = file_path_normalize_inline(*this, m_epath);
-
-            if (bCertainlySyntathicallyDir)
+            if (epath == e_path_none)
             {
 
-               m_etype = (enum_type)((etype | e_type_folder2) & ~e_type_file2);
+               m_epath = file_path_get_type(*this, epath);
+
+            }
+            else
+            {
+
+               m_epath = epath;
+
+            }
+
+            if (bNormalizePath)
+            {
+
+               bool bCertainlySyntathicallyDir = file_path_normalize_inline(*this, m_epath);
+
+               if (bCertainlySyntathicallyDir)
+               {
+
+                  m_etype = (enum_type)((etype | e_type_folder2) & ~e_type_file2);
+
+               }
+               else
+               {
+
+                  m_etype = etype;
+
+               }
 
             }
             else
@@ -120,12 +139,6 @@ namespace file
                m_etype = etype;
 
             }
-
-         }
-         else
-         {
-
-            m_etype = etype;
 
          }
 
@@ -397,17 +410,18 @@ namespace file
 
       path & operator = (const ::file::path & path);
 
-      template < primitive_character CHARACTER2 >
-      path & operator = (const ::character_range < const CHARACTER2 *> & range)
-      {
+      //template < primitive_character CHARACTER2 >
+      //path & operator = (const ::character_range < const CHARACTER2 *> & range)
+      //   requires()
+      //{
 
-         auto path = ::file::path(range);
+      //   auto path = ::file::path(range);
 
-         path.::file::path_meta::operator=(*this);
+      //   path.::file::path_meta::operator=(*this);
 
-         return operator=(path);
+      //   return operator=(path);
 
-      }
+      //}
 
 
       //path & operator = (const ::ansi_string & str);

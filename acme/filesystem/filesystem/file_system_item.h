@@ -7,15 +7,6 @@
 class CLASS_DECL_ACME file_system_item :
    virtual public ::subparticle
 {
-protected:
-
-
-   friend class file_system;
-
-
-   ::file::path                  m_pathReal2;
-
-
 public:
 
 
@@ -26,7 +17,11 @@ public:
    //::logic::boolean              m_bIsDir2;
    ::logic::boolean              m_bHasScript2;
    ::string                      m_strExpandMd5;
-   ::particle_pointer            m_particlea[8];
+   ::particle_pointer            m_particlea[MAX_FILE_SYSTEM_ITEM_SLOT_COUNT];
+   ::file::path                  m_pathReal1;
+   ::file::path                  m_pathLogical1;
+
+
 
    //bool           m_bHasScript = false;
    //bool           m_bHasScriptCalculated = false;
@@ -45,7 +40,7 @@ public:
 
       }
 
-      return m_pathReal2.has_character() && m_pathReal2.is_existent_file_or_folder();
+      return m_pathReal1.has_character() && m_pathReal1.is_existent_file_or_folder();
 
    }
 
@@ -68,7 +63,7 @@ public:
    const ::file::path & path() const
    {
 
-      return m_pathReal2;
+      return m_pathLogical1;
 
    }
 

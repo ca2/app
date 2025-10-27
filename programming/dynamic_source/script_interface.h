@@ -6,6 +6,7 @@
 #include "acme/filesystem/filesystem/file_system_real_path_interface.h"
 
 
+
 namespace dynamic_source
 {
 
@@ -43,7 +44,7 @@ namespace dynamic_source
       class ::time                                       m_timeLastIncludingChildElapsed;
 
 
-      script_interface();
+      script_interface() { m_iDebug = 0; }
       ~script_interface() override;
 
       virtual const_char_pointer debug_note() const override;
@@ -55,7 +56,7 @@ namespace dynamic_source
 
       void on_initialize_particle() override;
 
-
+      inline bool is_debug() const;
       //void finalize() override;
 
       void destroy() override;
@@ -78,7 +79,7 @@ namespace dynamic_source
       virtual ::file::file * output_file();
 
 
-      virtual ::file_system_cache_item netnode_file_path(const ::scoped_string& scopedstrName);
+      virtual ::file_system_cache_item netnode_file_path(const ::scoped_string& scopedstrName, ::file_system_interface * pfilesysteminterface);
 
       ::file_system_real_path_interface* get_file_system_real_path_interface() override;
       
@@ -144,6 +145,5 @@ namespace dynamic_source
 
 
 } // namespace dynamic_source
-
 
 

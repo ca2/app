@@ -15,6 +15,12 @@ namespace dynamic_source
    public:
 
 
+      class ::time                  m_timeInit2Elapsed;
+
+      class ::time                  m_timeInit1Elapsed;
+
+      class ::time                  m_timeCreateInstanceElapsed;
+
       class ::time                  m_timeCreate;
 
       item_n40585                   m_itemN40585;
@@ -25,7 +31,7 @@ namespace dynamic_source
       //class ::time               m_timeShouldBuildElapsed;
 
 
-      script_instance();
+      script_instance() { }
       ~script_instance() override;
 
 

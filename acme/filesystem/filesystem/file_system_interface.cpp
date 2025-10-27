@@ -11,10 +11,10 @@
 
 
 
-file_system_interface::file_system_interface()
-{
-
-}
+//file_system_interface::file_system_interface()
+//{
+//
+//}
 
 
 file_system_interface::~file_system_interface()
@@ -30,7 +30,7 @@ void file_system_interface::on_initialize_particle()
 
    ::particle::on_initialize_particle();
 
-   defer_create_synchronization();
+   //defer_create_synchronization();
 
 }
 

@@ -1823,11 +1823,11 @@ int file_system::file_system_item_slot_index(const ::scoped_string& scopedstrSlo
    if (i >= 0)
    {
 
-      return i;
+      return (int) i;
 
    }
 
-   if (m_straFileSystemItemSlot.get_size() >= 8)
+   if (m_straFileSystemItemSlot.get_size() >= MAX_FILE_SYSTEM_ITEM_SLOT_COUNT)
    {
 
       throw ::exception(error_failed);
@@ -1836,7 +1836,7 @@ int file_system::file_system_item_slot_index(const ::scoped_string& scopedstrSlo
 
    i = m_straFileSystemItemSlot.add(scopedstrSlotName);
 
-   return i;
+   return (int) i;
 
 }
 
@@ -1932,22 +1932,22 @@ bool file_system::_file_system_has_script(const ::file_system_cache_item & pfile
 ::file_system_item * file_system::get_file_system_item(const ::scoped_string& scopedstrName, ::file_system_real_path_interface* pfilesystemrealpathinterface)
 {
 
-   ::file::path path;
+   ::file::real_and_logical_path realandlogicalpath;
 
    if (::is_set(pfilesystemrealpathinterface))
    {
 
-      path = pfilesystemrealpathinterface->real_path(scopedstrName);
+      realandlogicalpath = pfilesystemrealpathinterface->real_path(scopedstrName);
 
    }
    else
    {
 
-      path = this->path_system()->real_path(scopedstrName);
+      realandlogicalpath = { this->path_system()->real_path(scopedstrName), scopedstrName };
 
    }
 
-   if (path.is_empty() || path.is_unknown_type())
+   if (!realandlogicalpath.is_ok())
    {
 
       return nullptr;
@@ -1956,20 +1956,24 @@ bool file_system::_file_system_has_script(const ::file_system_cache_item & pfile
 
    _synchronous_lock synchronouslock(m_pmutexFileSystemItem, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-   auto& pfilesystemitem = m_mapFileSystemItem[path];
+   auto& pfilesystemitem = m_mapFileSystemItem[realandlogicalpath.m_pathReal1];
 
-   if (!pfilesystemitem)
+   if (pfilesystemitem.m_estatus != success_already_set)
    {
 
       øconstruct_new(pfilesystemitem);
 
-      pfilesystemitem->m_pathReal2 = path;
+      pfilesystemitem->m_pathReal1 = realandlogicalpath.m_pathReal1;
+
+      pfilesystemitem->m_pathLogical1 = realandlogicalpath.m_pathLogical1;
 
       pfilesystemitem->m_pfilesysteminterface = this;
 
-      auto etype = path.type();
+      auto etype = realandlogicalpath.m_pathReal1.type();
 
       pfilesystemitem->m_etype = etype;
+
+      pfilesystemitem.m_estatus = success_already_set;
 
    }
 

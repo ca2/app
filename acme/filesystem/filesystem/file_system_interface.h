@@ -21,7 +21,7 @@ public:
 
 
 
-   file_system_interface();
+   file_system_interface() { }
    ~file_system_interface() override;
 
 

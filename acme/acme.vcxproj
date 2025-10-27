@@ -1768,6 +1768,7 @@
     <ClInclude Include="filesystem\filesystem\file_system_real_path_interface.h" />
     <ClInclude Include="filesystem\filesystem\file_system_real_path_interface_cache.h" />
     <ClInclude Include="filesystem\filesystem\path_system.h" />
+    <ClInclude Include="filesystem\filesystem\real_and_logical_path.h" />
     <ClInclude Include="filesystem\filesystem\_format.h" />
     <ClInclude Include="filesystem\file\byte2_stream.h" />
     <ClInclude Include="filesystem\file\protocol_file.h" />

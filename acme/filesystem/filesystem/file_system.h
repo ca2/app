@@ -17,6 +17,7 @@ public:
    //::file::path         m_pathCa2Module;
    ::file::path         m_pathModule;
    ::string_array       m_straFileSystemItemSlot;
+   critical_section     m_criticalsectionaFileSystemItemSlot[MAX_FILE_SYSTEM_ITEM_SLOT_COUNT];
 
 
    ::IDENTIFIER_SUFFIX_OPERATING_SYSTEM(acme_)::file_system *     m_pplatformfile;

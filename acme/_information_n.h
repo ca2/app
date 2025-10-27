@@ -17,6 +17,10 @@ public:
    class ::time      m_timeLock2Elapsed;
    class ::time      m_timeShouldBuildElapsed;
    class ::time      m_timeCreateInstanceElapsed;
+   class ::time      m_timeInit2Elapsed;
+   class ::time      m_timeInit1Elapsed;
+   class ::time      m_timeCreateInstanceStrictElapsed;
+
    ///class ::time      m_timeRealPathMapAllocationElapsed;
    class ::time      m_timeT1;
    class ::time      m_timeInitializeElapsed;
@@ -25,7 +29,7 @@ public:
    class ::time      m_timeInitElapsed;
    class ::time      m_timeRunElapsed;
 
-   item_n40585();
+   item_n40585() { }
    item_n40585(
       const ::scoped_string& scopedstrName,
       const class ::time& timeGetHere,

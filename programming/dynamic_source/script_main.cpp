@@ -75,8 +75,9 @@ namespace dynamic_source
 
       }
 
-
       m_pscript1 = pscript1;
+
+      m_prealpathinterfacecache = m_pscript1;
 
       m_pscriptmain1 = this;
 

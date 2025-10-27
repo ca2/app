@@ -7,10 +7,10 @@ namespace dynamic_source
 {
 
 
-   script_composite::script_composite()
-   {
+   //script_composite::script_composite()
+   //{
 
-   }
+   //}
 
 
    script_composite::~script_composite()

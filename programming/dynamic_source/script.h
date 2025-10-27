@@ -15,6 +15,7 @@ namespace dynamic_source
    class CLASS_DECL_APP_PROGRAMMING script :
       virtual public data_object,
       virtual public ::file_system_cache,
+      virtual public ::file_system_interface,
       virtual public ::file_system_real_path_interface_cache
    {
    public:
@@ -28,7 +29,7 @@ namespace dynamic_source
       memory_file_pointer                                m_pfileError;
       ::write_text_stream                                m_textstreamError;
       string                                             m_strError;
-      bool                                               m_bNew;
+      bool                                               m_bShouldBuild;
       bool                                               m_bBuilding;
       ::string_map < ::file_system_cache_item >          m_mapScriptPath;
       critical_section                                   m_criticalsectionFileSystemCacheItem;
@@ -66,13 +67,15 @@ namespace dynamic_source
 
       virtual bool HasCompileOrLinkError();
 
+      using file_system_interface::file_system_item;
+      using file_system_cache::file_system_item;
 
       virtual void set_manager(script_manager* pmanager);
 
       //virtual void on_after_create();
       virtual void load_stringtable(const ::scoped_string& scopedstrLoad);
 
-      virtual ::file_system_cache_item netnode_file_path(const ::scoped_string& scopedstrName);
+      virtual ::file_system_cache_item netnode_file_path(const ::scoped_string& scopedstrName, ::file_system_interface * pfilesysteminterface);
       //virtual ::file_system_cache_item _calculate_real_path(const ::scoped_string& scopedstrBase, ::f);
 
    };

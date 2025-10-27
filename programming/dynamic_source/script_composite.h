@@ -17,7 +17,7 @@ namespace dynamic_source
       ::pointer<script_interface>      m_pinterface;
 
 
-      script_composite();
+      script_composite() { }
       ~script_composite() override;
 
 

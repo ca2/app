@@ -5,6 +5,9 @@
 #include "_2.h"
 
 
+#define MAX_FILE_SYSTEM_ITEM_SLOT_COUNT 8
+
+
 namespace filesystem
 {
 

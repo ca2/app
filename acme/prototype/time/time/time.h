@@ -49,40 +49,18 @@ public:
 
    static time s_timeFirst;
 
-   constexpr time()
-      //posix{}
-   {
+   constexpr time() { }
 
-   }
+   constexpr time(zero_t) : posix_time(zero_t{}) { }
 
-   constexpr time(zero_t) :
-      posix_time(zero_t{})
-   {
+   time(now_t) : posix_time(no_initialize_t{}), nanosecond(no_initialize_t{}) { Now(); }
 
-   }
-
-
-   time(now_t) :
-      posix_time(no_initialize_t{}),
-      nanosecond(no_initialize_t{})
-   {
-
-      Now();
-
-   }
-
-
-   constexpr time(infinite_t)
-   {
-
-      Infinite();
-
-   }
-
-
+   constexpr time(infinite_t) { Infinite(); }
 
    constexpr time(const class ::time& time) : posix_time(time),nanosecond(time) { }
+
    explicit time(const ::earth::gregorian_time & time);
+
    explicit time(const ::file_time & filetime);
 
    template < primitive_integer INTEGER >

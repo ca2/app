@@ -9,7 +9,7 @@ public:
 
 
    heating_up_exception(const ::scoped_string& scopedstrMessage) :
-      ::exception(error_time_bag, scopedstrMessage)
+      ::exception(error_time_bag, scopedstrMessage, {}, SKIP_CALLSTACK)
    {
 
    }

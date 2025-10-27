@@ -3,11 +3,11 @@
 #include "_information_n.h"
 
 
-item_n40585::item_n40585()
-{
-
-
-}
+//item_n40585::item_n40585()
+//{
+//
+//
+//}
 
 
 item_n40585::item_n40585(
@@ -43,14 +43,21 @@ item_n40585::~item_n40585()
 
    str << m_strPath;
 
-   str.append_format(": {} lk:{} map:{} lk:{} bld:{} cr:{}",
+   //str.append_format(": {} lk:{} map:{} lk:{} bld:{} cr:{}",
+   //   _017Time(m_timeGetHere),
+   //   _017Time(m_timeLockElapsed),
+   //   _017Time(m_timeLookUpElapsed),
+   //   _017Time(m_timeLock2Elapsed),
+   //   _017Time(m_timeShouldBuildElapsed),
+   //   _017Time(m_timeCreateInstanceElapsed)
+   //   );
+   str.append_format(": {} cr:{}: cr:{} in1:{} in2:{}",
       _017Time(m_timeGetHere),
-      _017Time(m_timeLockElapsed),
-      _017Time(m_timeLookUpElapsed),
-      _017Time(m_timeLock2Elapsed),
-      _017Time(m_timeShouldBuildElapsed),
-      _017Time(m_timeCreateInstanceElapsed)
-      );
+      _017Time(m_timeCreateInstanceElapsed),
+      _017Time(m_timeCreateInstanceStrictElapsed),
+      _017Time(m_timeInit1Elapsed),
+      _017Time(m_timeInit2Elapsed)
+   );
    str.append_format("\n        t1:{} ini:{} rcrt:{} ccrt:{} init:{} run:{}",
       _017Time(m_timeT1),
       _017Time(m_timeInitializeElapsed),

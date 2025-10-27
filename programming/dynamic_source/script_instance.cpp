@@ -8,10 +8,10 @@ namespace dynamic_source
 {
 
 
-   script_instance::script_instance()
-   {
+   //script_instance::script_instance()
+   //{
 
-   }
+   //}
 
 
    script_instance::~script_instance()

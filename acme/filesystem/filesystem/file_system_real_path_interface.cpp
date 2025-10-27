@@ -7,11 +7,11 @@
 #include "acme/platform/node.h"
 
 
-file_system_real_path_interface::file_system_real_path_interface()
-{
-
-
-}
+//file_system_real_path_interface::file_system_real_path_interface()
+//{
+//
+//
+//}
 
 
 file_system_real_path_interface::~file_system_real_path_interface()
@@ -24,14 +24,14 @@ file_system_real_path_interface::~file_system_real_path_interface()
 void file_system_real_path_interface::on_initialize_particle()
 {
 
-   defer_create_synchronization();
+   //defer_create_synchronization();
 
    ::particle::on_initialize_particle();
 
 }
 
 
-::file::path file_system_real_path_interface::real_path(const ::scoped_string& scopedstrName)
+::file::real_and_logical_path file_system_real_path_interface::real_path(const ::scoped_string& scopedstrName)
 {
 
    if (m_prealpathinterfacecache)
@@ -46,7 +46,7 @@ void file_system_real_path_interface::on_initialize_particle()
 }
 
 
-::file::path file_system_real_path_interface::_real_path1(const ::scoped_string& scopedstrName)
+::file::real_and_logical_path file_system_real_path_interface::_real_path1(const ::scoped_string& scopedstrName)
 {
 
    return {};

@@ -31,30 +31,32 @@ file_system_real_path_interface_cache::~file_system_real_path_interface_cache()
 void file_system_real_path_interface_cache::on_initialize_particle()
 {
 
-   defer_create_synchronization();
-
    ::particle::on_initialize_particle();
-
-   m_pmutexRealPath = node()->create_mutex();
 
 }
 
 
-::file::path file_system_real_path_interface_cache::_real_path1(const ::scoped_string& scopedstrName, file_system_real_path_interface* prealpathinterface)
+::file::real_and_logical_path file_system_real_path_interface_cache::_real_path1(const ::scoped_string& scopedstrName, file_system_real_path_interface* prealpathinterface)
 {
 
-   _synchronous_lock synchronouslock(m_pmutexRealPath, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+   critical_section_lock criticalsectionlock(&m_criticalsection);
 
-   auto& path = m_mapRealPath[scopedstrName];
+   auto& realandlogicalpath = m_mapRealPath[scopedstrName];
 
-   if (path.type() == ::file::e_type_unknown)
+   if (realandlogicalpath.m_pathReal1.type() == ::file::e_type_unknown)
    {
 
-      path = prealpathinterface->_real_path1(scopedstrName);
+      criticalsectionlock.unlock();
+
+      auto realandlogicalpathNew = prealpathinterface->_real_path1(scopedstrName);
+
+      criticalsectionlock.lock();
+
+      realandlogicalpath = realandlogicalpathNew;
 
    }
 
-   return path;
+   return realandlogicalpath;
 
 }
 

@@ -95,28 +95,19 @@ public:
 
 
 //#if REFERENCING_DEBUGGING
-   particle() :
-      ::quantum(),
-      ::subparticle(),
-      ::signal_handler::base(),
-      m_papplication(nullptr),
-      m_pparticleSynchronization(nullptr)
-   {
+   particle() : m_papplication(nullptr), m_pparticleSynchronization(nullptr) { }
 
 
-   }
-
-
-   particle(const ::e_flag & eflag, const ::e_status & estatus = undefined) :
-   ::quantum(eflag, estatus),
-   ::subparticle(eflag, estatus),
-   ::signal_handler::base(eflag, estatus),
-      m_papplication(nullptr),
-      m_pparticleSynchronization(nullptr)
-   {
-         
-         
-   }
+   //particle(const ::e_flag & eflag, const ::e_status & estatus = undefined) :
+   //::quantum(eflag, estatus),
+   //::subparticle(eflag, estatus),
+   //::signal_handler::base(eflag, estatus),
+   //   m_papplication(nullptr),
+   //   m_pparticleSynchronization(nullptr)
+   //{
+   //      
+   //      
+   //}
 
 
    particle(const ::particle & particle) :
@@ -158,6 +149,8 @@ public:
 
 
    void initialize(::particle * pparticle) override;
+   void _initialize_particle(::particle* pparticle);
+   virtual void _on_initialize_app_consumer();
    //void finalize() override;
 
 
@@ -752,6 +745,9 @@ public:
 
    template < typename TYPE >
    inline bool __call__defer_construct_new(::pointer<TYPE>& ptype);
+
+   template < typename TYPE >
+   inline bool __call__defer_raw_construct_new(::pointer<TYPE>& ptype);
 
    template < typename BASE_TYPE >
    inline void __call__construct(::pointer<BASE_TYPE>& ptype, ::factory::factory * pfactory = nullptr);

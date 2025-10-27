@@ -3,9 +3,11 @@
 #include "script_manager.h"
 #include "script_instance.h"
 #include "ds_script.h"
-#include "acme/parallelization/synchronous_lock.h"
 #include "acme/crypto/rsa.h"
+#include "acme/filesystem/filesystem/file_system.h"
+#include "acme/parallelization/synchronous_lock.h"
 #include "programming/heating_up_exception.h"
+
 
 namespace dynamic_source
 {
@@ -88,7 +90,7 @@ namespace dynamic_source
 
       pscript->set_manager(m_pmanager);
 
-      pfilesystemcacheitem->m_particlea[m_pmanager->m_iFileSystemScriptSlotIndex] = pscript;
+      //pfilesystemcacheitem->m_particlea[m_pmanager->m_iFileSystemScriptSlotIndex] = pscript;
 
       pscript->m_pfilesystemcacheitem = pfilesystemcacheitem;
 
@@ -240,9 +242,9 @@ namespace dynamic_source
 
       }
 
-      class ::time timeStart;
+      class ::time timeLock2;
 
-      timeStart.Now();
+      timeLock2.Now();
 
       {
 
@@ -257,14 +259,12 @@ namespace dynamic_source
 
       }
 
-      class ::time timeLock2;
+      itemN40585.m_timeLock2Elapsed = timeLock2.elapsed();
 
-      timeLock2.Now();
-
-      itemN40585.m_timeLock2Elapsed = timeLock2 - timeStart;
-
-      if (!pscript->m_bNew)
+      if (!pscript->m_bShouldBuild)
       {
+
+         timeShouldBuild.Now();
 
          if (pscript->ShouldBuild())
          {
@@ -287,26 +287,18 @@ namespace dynamic_source
 
          }
 
-         timeShouldBuild.Now();
-
-         itemN40585.m_timeShouldBuildElapsed = timeShouldBuild - timeLock2;
+         itemN40585.m_timeShouldBuildElapsed = timeShouldBuild.elapsed();
 
       }
-      else
-      {
 
-         timeShouldBuild = timeLock2;
-
-      }
+      timeCreateInstance.Now();
 
       auto pscriptinstance = pscript->create_instance();
 
       if (pscriptinstance)
       {
 
-         timeCreateInstance.Now();
-
-         itemN40585.m_timeCreateInstanceElapsed = timeCreateInstance - timeShouldBuild;
+         itemN40585.m_timeCreateInstanceElapsed = timeCreateInstance.elapsed();
 
          //s      itemN40585.m_timeRealPathMapAllocationElapsed = pscriptinstance->m_timeRealPathMapAllocationElapsed;
 
@@ -330,7 +322,17 @@ namespace dynamic_source
    ::pointer<script_instance>script_cache::create_instance(const ::file_system_cache_item & pfilesystemcacheitem, ::pointer<script> & pscript)
    {
 
-      pscript = pfilesystemcacheitem->m_particlea[m_pmanager->m_iFileSystemScriptSlotIndex];
+      critical_section_lock criticalsectionlock(&file_system()->m_criticalsectionaFileSystemItemSlot[m_pmanager->m_iFileSystemScriptSlotIndex]);
+
+      const char* pszReal = pfilesystemcacheitem->m_pathReal1.c_str();
+
+      const char* pszLogical = pfilesystemcacheitem->m_pathLogical1.c_str();
+
+      auto & pparticleFileSystemItem = pfilesystemcacheitem->m_particlea[m_pmanager->m_iFileSystemScriptSlotIndex];
+
+      pscript = pparticleFileSystemItem;
+
+      criticalsectionlock.unlock();
 
       //if(string_begins(scopedstrName, "netnode://"))
       //{
@@ -362,19 +364,35 @@ namespace dynamic_source
 
       }
 
+      if (itemN40585.m_strPath.case_insensitive_contains("monitor"))
+      {
+
+         information() << "monitor";
+
+      }
+
       if (!pscript)
       {
 
-         pscript = get(pfilesystemcacheitem, itemN40585.m_timeLockElapsed, itemN40585.m_timeLookUpElapsed);
+         auto pscriptNew = get(pfilesystemcacheitem, itemN40585.m_timeLockElapsed, itemN40585.m_timeLookUpElapsed);
 
-         if (::is_null(pscript))
+         if (::is_null(pscriptNew))
          {
 
             return nullptr;
 
          }
 
+         criticalsectionlock.lock();
+
+         pscript = pscriptNew;
+
+         pparticleFileSystemItem = pscript;
+
+         criticalsectionlock.unlock();
+
       }
+
 
       //class ::time timeStart;
 
@@ -399,27 +417,90 @@ namespace dynamic_source
 
       //itemN40585.m_timeLock2Elapsed = timeLock2 - timeStart;
 
-      if (pscript->m_bNew)
+      if (pscript->m_bShouldBuild)
       {
 
+         _single_lock slScript(pscript->synchronization());
+
+         if (!slScript._wait(5_s))
          {
 
-            _single_lock slScript(pscript->synchronization());
+            throw ::heating_up_exception("script couldn't be locked in 5s");
 
-            if (!slScript._wait(5_s))
-            {
+            return nullptr;
 
-               throw ::heating_up_exception("Compiling script " + pfilesystemcacheitem->path());
+         }
 
-            }
+         if (pscript->m_bBuilding)
+         {
+
+            throw ::heating_up_exception("script is building");
+
+            return nullptr;
 
          }
 
          pscript->m_bBuilding = true;
 
-         pscript->defer_build();
+         slScript.unlock();
 
-         pscript->m_bBuilding = false;
+         try
+         {
+
+            if (pfilesystemcacheitem.m_strName2.case_insensitive_contains("monitor"))
+            {
+
+               information() << "monitor";
+
+            }
+            else if (pfilesystemcacheitem.m_strName2.case_insensitive_contains("cc/ca2"))
+            {
+
+               information() << "cc/ca2";
+
+            }
+
+            pscript->defer_build();
+
+            pscript->m_bBuilding = false;
+
+            pscript->m_bShouldBuild = false;
+
+         }
+         catch (const heating_up_exception& exception)
+         {
+
+            slScript._lock();
+
+            pscript->m_bBuilding = false;
+
+            throw exception;
+
+         }
+         catch (const ::exception& exception)
+         {
+
+            slScript._lock();
+
+            pscript->m_bBuilding = false;
+
+            return nullptr;
+
+         }
+         catch (...)
+         {
+
+            slScript._lock();
+
+            pscript->m_bBuilding = false;
+
+            return nullptr;
+
+         }
+
+         //slScript._lock();
+
+         //pscript->m_bBuilding = false;
 
          //   if (pscript->ShouldBuild())
          //   {
@@ -466,6 +547,12 @@ namespace dynamic_source
          //itemN40585.m_timeCreateInstanceElapsed = timeCreateInstance - timeShouldBuild;
 
          itemN40585.m_timeCreateInstanceElapsed = timeCreateInstance.elapsed();
+
+         itemN40585.m_timeCreateInstanceStrictElapsed = pscriptinstance->m_timeCreateInstanceElapsed;
+
+         itemN40585.m_timeInit1Elapsed = pscriptinstance->m_timeInit1Elapsed;
+
+         itemN40585.m_timeInit2Elapsed = pscriptinstance->m_timeInit2Elapsed;
 
          //s      itemN40585.m_timeRealPathMapAllocationElapsed = pscriptinstance->m_timeRealPathMapAllocationElapsed;
 

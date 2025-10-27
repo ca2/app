@@ -1,6 +1,6 @@
 // Created by camilo on 2025-10-22 19:58 <3ThomasBorregaardSorensen!!
-#include "framework.h"
-#include "fallback_script_instance.h"
+#include "../framework.h"
+#include "../fallback_script_instance.h"
 
 
 namespace dynamic_source

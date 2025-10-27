@@ -84,6 +84,8 @@ list(APPEND library_source
         #prototype/promise_predicate/synchronized_predicate_routine.h
         #process/_.cpp
         _.cpp
+   _information_n.cpp
+   _information_n.h
         #_finish.h
 
         #__matter_ca2.cpp

@@ -596,7 +596,7 @@ namespace dynamic_source
       try
       {
 
-         if (::is_set(m_lpfnCreateInstance))
+         if (m_lpfnCreateInstance)
          {
 
             pinstance = ::pointer_transfer(m_lpfnCreateInstance());

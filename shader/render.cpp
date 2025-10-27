@@ -210,11 +210,11 @@ namespace app_shader
 
       //pgpucontext->m_pgpuprogram = m_pgpuprogram;
 
-      m_pgpushader->bind();
+      m_pgpushader->bind(nullptr, nullptr);
 
       m_pgpushader->draw();
 
-      m_pgpushader->unbind();
+      m_pgpushader->unbind(nullptr);
 
       //unsigned int texture1;
 

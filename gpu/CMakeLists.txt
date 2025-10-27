@@ -6,6 +6,8 @@ list(APPEND library_source
    gltf/material.h
    gltf/mesh.cpp
    gltf/mesh.h
+   gltf/model_base.cpp
+   gltf/model_base.h
    gltf/model.cpp
    gltf/model.h
    #gltf/vertex.h

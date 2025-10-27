@@ -222,6 +222,8 @@ list(APPEND library_source
         filesystem/filesystem/file_system_options.h
         filesystem/filesystem/file_system_real_path_interface.cpp
         filesystem/filesystem/file_system_real_path_interface.h
+        filesystem/filesystem/file_system_real_path_interface_cache.cpp
+        filesystem/filesystem/file_system_real_path_interface_cache.h
         filesystem/filesystem/file_system_options.h
         filesystem/filesystem/file_system.cpp
         filesystem/filesystem/file_system.h

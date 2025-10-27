@@ -25,8 +25,8 @@ LANGUAGE LANG_NEUTRAL, SUBLANG_DEFAULT
 //
 
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION 2025,1002,1405,05
- PRODUCTVERSION 2025,1002,1405,05
+ FILEVERSION 2025,1027,0517,27
+ PRODUCTVERSION 2025,1027,0517,27
  FILEFLAGSMASK 0x3fL
 #ifdef _DEBUG
  FILEFLAGS 0x1L
@@ -43,9 +43,9 @@ BEGIN
         BEGIN
 			VALUE "CompanyName", "app"
 			VALUE "FileDescription", "app_just_acme_message_box"
-            VALUE "FileVersion", "2025.1002.1405.05"
-            VALUE "LegalCopyright", "Copyright (C) 2025-10-02-14-05-05"
-            VALUE "ProductVersion", "2025.1002.1405.05"
+            VALUE "FileVersion", "2025.1027.0517.27"
+            VALUE "LegalCopyright", "Copyright (C) 2025-10-27-05-17-27"
+            VALUE "ProductVersion", "2025.1027.0517.27"
         END
     END
     BLOCK "VarFileInfo"

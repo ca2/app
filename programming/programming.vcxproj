@@ -1057,6 +1057,7 @@
     <ClInclude Include="dynamic_source\aaa_cache_item.h" />
     <ClInclude Include="dynamic_source\data_object.h" />
     <ClInclude Include="dynamic_source\exit_exception.h" />
+    <ClInclude Include="dynamic_source\fallback_script_instance.h" />
     <ClInclude Include="dynamic_source\httpd_socket.h" />
     <ClInclude Include="dynamic_source\httpd_incoming_socket.h" />
     <ClInclude Include="dynamic_source\library.h" />
@@ -1071,7 +1072,6 @@
     <ClInclude Include="dynamic_source\session.h" />
     <ClInclude Include="dynamic_source\_.h" />
     <ClInclude Include="dynamic_source\_impl.h" />
-    <ClInclude Include="fallback_script_instance.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="heating_up_exception.h" />
     <ClInclude Include="introjection\compiler.h" />
@@ -1085,6 +1085,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dynamic_source\exit_exception.cpp" />
+    <ClCompile Include="dynamic_source\fallback_script_instance.cpp" />
     <ClCompile Include="dynamic_source\httpd_listen_socket.cpp" />
     <ClCompile Include="dynamic_source\httpd_incoming_socket.cpp" />
     <ClCompile Include="dynamic_source\library.cpp" />
@@ -1097,7 +1098,6 @@
     <ClCompile Include="dynamic_source\script_main.cpp" />
     <ClCompile Include="dynamic_source\script_manager.cpp" />
     <ClCompile Include="dynamic_source\session.cpp" />
-    <ClCompile Include="fallback_script_instance.cpp" />
     <ClCompile Include="framework.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='DebugWithInlOpt|Win32'">Create</PrecompiledHeader>

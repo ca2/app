@@ -107,13 +107,13 @@
     <ClInclude Include="heating_up_exception.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="fallback_script_instance.h">
-      <Filter>Header Files\dynamic_source</Filter>
-    </ClInclude>
     <ClInclude Include="dynamic_source\aaa_cache_item.h">
       <Filter>Header Files\dynamic_source</Filter>
     </ClInclude>
     <ClInclude Include="dynamic_source\data_object.h">
+      <Filter>Header Files\dynamic_source</Filter>
+    </ClInclude>
+    <ClInclude Include="dynamic_source\fallback_script_instance.h">
       <Filter>Header Files\dynamic_source</Filter>
     </ClInclude>
   </ItemGroup>
@@ -172,7 +172,7 @@
     <ClCompile Include="dynamic_source\httpd_listen_socket.cpp">
       <Filter>Source Files\dynamic_source</Filter>
     </ClCompile>
-    <ClCompile Include="fallback_script_instance.cpp">
+    <ClCompile Include="dynamic_source\fallback_script_instance.cpp">
       <Filter>Source Files\dynamic_source</Filter>
     </ClCompile>
   </ItemGroup>

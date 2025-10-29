@@ -6,6 +6,7 @@
 #include "aura/user/user/frame_interaction.h"
 #include "placement_log.h"
 #include "acme/constant/user_message.h"
+#include "acme/constant/windowing2.h"
 #include "acme/exception/interface_only.h"
 #include "acme/graphics/graphics/output_purpose.h"
 #include "acme/handler/request.h"

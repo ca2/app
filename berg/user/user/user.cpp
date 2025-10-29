@@ -1136,7 +1136,7 @@ namespace berg
       {
 
          pmenuitem->m_pmenu = pmenu;
-         pmenuitem->m_atomItem = papplicationmenu->m_atomMenu;
+         pmenuitem->id() = papplicationmenu->m_atomMenu;
          pmenuitem->m_strTitle = papplicationmenu->m_strName;
 
       }

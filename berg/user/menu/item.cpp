@@ -225,7 +225,7 @@ namespace menu
 
          //atom = translate_property_id(atom);
 
-         m_atomItem = atom;
+         id() = atom;
 
          string strText;
 

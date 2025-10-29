@@ -1672,6 +1672,7 @@
     <ClCompile Include="filesystem\filesystem\file_system_item.cpp" />
     <ClCompile Include="filesystem\filesystem\file_system_options.cpp" />
     <ClCompile Include="filesystem\filesystem\file_system_real_path_interface.cpp" />
+    <ClCompile Include="filesystem\filesystem\file_system_real_path_interface_cache.cpp" />
     <ClCompile Include="filesystem\filesystem\folder_dialog.cpp" />
     <ClCompile Include="filesystem\filesystem\link.cpp" />
     <ClCompile Include="filesystem\filesystem\path.cpp" />
@@ -1744,6 +1745,7 @@
     <ClCompile Include="handler\source.cpp" />
     <ClCompile Include="handler\task_handler.cpp" />
     <ClCompile Include="handler\topic.cpp" />
+    <ClCompile Include="_information_n.cpp" />
     <ClInclude Include="..\..\..\operating_system\operating_system-windows\operating_system\system.h" />
     <ClInclude Include="..\..\..\operating_system\operating_system-windows\operating_system\types.h" />
     <ClInclude Include="aaa_id.h" />
@@ -1764,7 +1766,9 @@
     <ClInclude Include="filesystem\filesystem\file_system_cache_item.h" />
     <ClInclude Include="filesystem\filesystem\file_system_item.h" />
     <ClInclude Include="filesystem\filesystem\file_system_real_path_interface.h" />
+    <ClInclude Include="filesystem\filesystem\file_system_real_path_interface_cache.h" />
     <ClInclude Include="filesystem\filesystem\path_system.h" />
+    <ClInclude Include="filesystem\filesystem\real_and_logical_path.h" />
     <ClInclude Include="filesystem\filesystem\_format.h" />
     <ClInclude Include="filesystem\file\byte2_stream.h" />
     <ClInclude Include="filesystem\file\protocol_file.h" />
@@ -2421,6 +2425,7 @@
     <ClInclude Include="windowing\windowing.h" />
     <ClInclude Include="windowing\_.h" />
     <ClInclude Include="_greek.h" />
+    <ClInclude Include="_information_n.h" />
     <ClInclude Include="_iostream.h" />
     <ClInclude Include="graphics\draw2d\color32.h" />
     <ClInclude Include="graphics\draw2d\color_array.h" />

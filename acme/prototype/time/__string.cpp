@@ -73,4 +73,55 @@
 //}
 
 
+CLASS_DECL_ACME ::string _017Time(const class ::time& time)
+{
+
+   if (time.is_null())
+   {
+
+      return "0";
+
+   }
+
+   auto dMillis = time.floating_millisecond();
+
+   if (dMillis >= 1'000.0)
+   {
+
+      auto dSeconds = dMillis / 1'000.0;
+
+      return ::string_formatf("%0.2fs", dSeconds);
+
+   }
+   else if (dMillis >= 1.0)
+   {
+
+      return ::string_formatf("%0.2fms", dMillis);
+
+   }
+   else
+   {
+
+      auto dMicros = dMillis * 1'000.0;
+
+      if (dMicros >= 1.0)
+      {
+
+         return ::string_formatf("%0.2fμs", dMicros);
+
+      }
+      else
+      {
+
+         auto dNanos = dMicros * 1'000.0;
+
+         return ::string_formatf("%0.2fηs", dNanos);
+
+      }
+
+   }
+
+}
+
+
 

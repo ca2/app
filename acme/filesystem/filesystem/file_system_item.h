@@ -7,24 +7,21 @@
 class CLASS_DECL_ACME file_system_item :
    virtual public ::subparticle
 {
-protected:
-
-
-   friend class file_system;
-
-
-   ::file::path                  m_pathReal2;
-
-
 public:
 
 
    ::file_system_interface *     m_pfilesysteminterface;
    class ::time                  m_timeLastCheck2;
-   ::logic::boolean              m_bFileExists2;
-   ::logic::boolean              m_bIsDir2;
+   ::file::e_type                m_etype;
+   //::logic::boolean              m_bFileExists2;
+   //::logic::boolean              m_bIsDir2;
    ::logic::boolean              m_bHasScript2;
    ::string                      m_strExpandMd5;
+   ::particle_pointer            m_particlea[MAX_FILE_SYSTEM_ITEM_SLOT_COUNT];
+   ::file::path                  m_pathReal1;
+   ::file::path                  m_pathLogical1;
+
+
 
    //bool           m_bHasScript = false;
    //bool           m_bHasScriptCalculated = false;
@@ -43,7 +40,7 @@ public:
 
       }
 
-      return m_pathReal2.has_character() && m_pathReal2.is_existent_file_or_folder();
+      return m_pathReal1.has_character() && m_pathReal1.is_existent_file_or_folder();
 
    }
 
@@ -66,7 +63,35 @@ public:
    const ::file::path & path() const
    {
 
-      return m_pathReal2;
+      return m_pathLogical1;
+
+   }
+
+   bool is_folder() const
+   {
+
+      if (::is_null(this))
+      {
+
+         return false;
+
+      }
+
+      return (m_etype & ::file::e_type_existent_folder) == ::file::e_type_existent_folder;
+
+   }
+
+   bool is_file() const
+   {
+
+      if (::is_null(this))
+      {
+
+         return false;
+
+      }
+
+      return (m_etype & ::file::e_type_existent_file) == ::file::e_type_existent_file;
 
    }
 

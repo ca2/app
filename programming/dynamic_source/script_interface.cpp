@@ -1,6 +1,7 @@
 #include "framework.h"
 #include "script.h"
 #include "script_interface.h"
+#include "script_instance.h"
 #include "script_main.h"
 #include "httpd_socket.h"
 #include "exit_exception.h"
@@ -10,22 +11,19 @@
 #include "acme/platform/system.h"
 #include "apex/networking/sockets/httpd/socket_thread.h"
 #include "programming/heating_up_exception.h"
+#include "_impl.h"
 
 
 namespace dynamic_source
 {
 
 
-   script_interface::script_interface()
-   {
+   //script_interface::script_interface()
+   //{
 
-      m_pnetnodescriptimpl = nullptr;
+   //   m_iDebug = 0;
 
-      m_pnetnodescriptinterface = nullptr;
-
-      m_iDebug = 0;
-
-   }
+   //}
 
 
    script_interface::~script_interface()
@@ -58,62 +56,56 @@ namespace dynamic_source
 
       auto pinterface = dynamic_cast <script_interface*>(pparticle);
 
-      if (pinterface)
-      {
+      //if (pinterface)
+      //{
 
-         if (!m_pmain)
-         {
+      //   if (!m_pmain)
+      //   {
 
-            //tracking_note_assign(m_pmain, pinterface->m_pmain.get() REFERENCING_DEBUGGING_COMMA_THIS_NOTE("scptiface:init:referer://"+ m_strNote));
+      //      //tracking_note_assign(m_pmain, pinterface->m_pmain.get() REFERENCING_DEBUGGING_COMMA_THIS_NOTE("scptiface:init:referer://"+ m_strNote));
 
-         }
+      //   }
 
-      }
+      //}
 
       //return estatus;
 
    }
 
 
-   void script_interface::init1()
-      //void script_interface::init1()
+   void script_interface::initialize_with_socket_thread(::httpd::socket_thread* psocketthread)
    {
 
-      if (!m_pmain)
+      auto psocket = psocketthread->m_psocket;
+
+      if (psocket)
       {
 
-         ::pointer < ::httpd::socket_thread > pthread = ::get_task();
+         ::pointer < ::dynamic_source::httpd_socket > phttpdsocket = psocket;
 
-         if (pthread)
+         if (phttpdsocket)
          {
 
-            auto psocket = pthread->m_psocket;
+            auto pscript = phttpdsocket->m_pscript;
 
-            if (psocket)
+            if (pscript)
             {
 
-               ::pointer < ::dynamic_source::httpd_socket > phttpdsocket = psocket;
+               m_pscriptmain1 = pscript->m_pscriptmain1;
 
-               if (phttpdsocket)
+               if (m_pscriptmain1)
                {
 
-                  auto pscript = phttpdsocket->m_pscript;
-
-                  if (pscript)
-                  {
-
-                     m_pmain = pscript->m_pmain;
-
-                     if (m_pmain)
-                     {
-
-                        m_pmain->m_interfacea.add_unique(this);
-
-                     }
-
-                  }
+                  m_pscriptmain1->m_interfacea.add_unique(this);
 
                }
+
+               m_phttpdsocket1 = psocket;
+
+               m_pscriptmanager1 = m_pscriptmain1->m_pscriptmanager1;
+
+               // ... a fair good guess for a parent instance
+               m_pinstanceParent1 = m_pscriptmain1->m_pscriptinstanceLastlyInstantiated;
 
             }
 
@@ -121,10 +113,25 @@ namespace dynamic_source
 
       }
 
-      //m_pmain = ::dynamic_source::script_interface::m_pmain;
-      //m_pinstanceParent2 = ::dynamic_source::script_interface::m_pinstanceParent2;
+   }
 
-      // return estatus;
+
+   void script_interface::init1()
+   {
+
+      if (!m_pscriptmain1)
+      {
+
+         ::pointer < ::httpd::socket_thread > pthread = ::get_task();
+
+         if (pthread)
+         {
+
+            initialize_with_socket_thread(pthread);
+
+         }
+
+      }
 
    }
 
@@ -139,27 +146,12 @@ namespace dynamic_source
    }
 
 
-   //void script_interface::destroy()
-   //{
-
-   //   auto estatus = ::html_file::destroy();
-
-   //   m_pmain.release();
-   //   m_pinstanceParent2.release();
-   //   m_pscript2.release();
-
-   //   return estatus;
-
-   //}
-
-
    void script_interface::destroy()
    {
 
-      m_pmain.release();
-      m_pinstanceParent2.release();
-      m_pscript2.release();
-
+      m_pscriptmain1 = nullptr;
+      m_pinstanceParent1.release();
+      m_pscript1.release();
       m_varRet.unset();
 
       ::html_file::destroy();
@@ -167,22 +159,8 @@ namespace dynamic_source
    }
 
 
-   //void script_interface::destroy()
-   //{
-
-   //   m_pmain.release();
-   //   m_pinstanceParent2.release();
-   //   m_pscript2.release();
-
-   //   ::html_file::destroy();
-
-   //}
-
-
-   void     script_interface::run()
+   void script_interface::run()
    {
-
-      //return ::success;
 
    }
 
@@ -193,25 +171,21 @@ namespace dynamic_source
    }
 
 
-   //void script_interface::dprint(const ::string &)
-   //{
+   void script_interface::transfer_proper_data_to_data_object(::dynamic_source::data_object * pdataobject)
+   {
 
-   //}
+      // todo :)
 
-
-   //property & script_interface::get(const ::scoped_string & scopedstrKey)
-   //{
-   //   return netnodesocket()->m_request.form().get()[pszKey];
-   //}
+   }
 
 
    ::file::file* script_interface::output_file()
    {
 
-      if (m_pmain)
+      if (m_pscriptmain1)
       {
 
-         return m_pmain->output_file();
+         return m_pscriptmain1->output_file();
 
       }
       else if (netnodesocket())
@@ -230,10 +204,10 @@ namespace dynamic_source
    }
 
 
-   ::file_system_cache_item script_interface::netnode_file_path(const ::scoped_string& scopedstrName)
+   ::file_system_cache_item script_interface::netnode_file_path(const ::scoped_string& scopedstrName, ::file_system_interface * pfilesysteminterface)
    {
 
-      return m_pscript2->netnode_file_path(scopedstrName);
+      return m_pscript1->netnode_file_path(scopedstrName, pfilesysteminterface);
 
    }
 
@@ -249,9 +223,9 @@ namespace dynamic_source
    ::file_system_cache_item & script_interface::netnode_include_file_system_cache_item(const ::scoped_string& scopedstrName, const ::unique_index& uniqueindex)
    {
 
-      critical_section_lock criticalsectionlock(&m_pscript2->m_criticalsectionFileSystemCacheItem);
+      critical_section_lock criticalsectionlock(&m_pscript1->m_criticalsectionFileSystemCacheItem);
        
-      auto& pfilesystemcacheitem = m_pscript2->m_mapFileSystemCacheItem[uniqueindex.index()];
+      auto& pfilesystemcacheitem = m_pscript1->m_mapFileSystemCacheItem[uniqueindex.index()];
 
       if (pfilesystemcacheitem.is_ok())
       {
@@ -685,7 +659,7 @@ namespace dynamic_source
    void script_interface::dprint_recursive(const ::payload& payload)
    {
 
-      if (m_pmain != nullptr && m_pmain->m_iDebug > 0)
+      if (m_pscriptmain1 != nullptr && m_pscriptmain1->m_iDebug > 0)
       {
 
          print_r(payload);
@@ -769,7 +743,11 @@ namespace dynamic_source
    ::property_set& script_interface::inattra()
    {
 
-      return netnodesocket()->inattrs();
+      auto psocket = netnodesocket();
+
+      auto& set = psocket->inattrs();
+
+      return set;
 
    }
 
@@ -867,7 +845,7 @@ namespace dynamic_source
    void script_interface::dprint(const ::scoped_string & scopedstr)
    {
 
-      if (m_pmain && m_pmain->m_iDebug > 0)
+      if (is_debug())
       {
 
          print(scopedstr);
@@ -881,29 +859,27 @@ namespace dynamic_source
    property& script_interface::gprop(const ::atom& atom)
    {
 
-      auto& set = m_pmain->property_set();
+      auto& set = m_pscriptmain1->property_set();
 
       return set.property(atom);
 
    }
 
 
-   httpd_socket* script_interface::netnodesocket()
-   {
+   //httpd_socket* script_interface::netnodesocket()
+   //{
+
+   //   return m_pscriptmain1->m_psocket2;
+
+   //}
 
 
-      return m_pmain->m_psocket2;
+   //script_manager* script_interface::manager()
+   //{
 
-   }
+   //   return m_pmanager2;
 
-
-   script_manager* script_interface::manager()
-   {
-
-      return m_pmain->m_pmanager2;
-
-   }
-
+   //}
 
 
 } // namespace dynamic_source

@@ -88,14 +88,6 @@ CLASS_DECL_ACME  void copy(::payload & payload, const ::scoped_string & scopedst
 #endif
 
 
-payload::payload() :
-   m_etype(e_type_new)
-#if REFERENCING_DEBUGGING
-   ,m_preferer(nullptr)
-#endif
-{
-
-}
 
 
 payload::payload(enum_type etype) :

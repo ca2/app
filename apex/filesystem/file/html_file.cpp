@@ -5,10 +5,10 @@
 
 
 
-html_file::html_file()
-{
-
-}
+//html_file::html_file()
+//{
+//
+//}
 
 
 html_file::~html_file()
@@ -41,43 +41,6 @@ void html_file::raw_print(const ::scoped_string & scopedstr)
 }
 
 
-#ifndef VARIADIC_TEMPLATE_FORMAT
-
-
-void html_file::printf(const_char_pointer pszFormat, ...)
-{
-
-   __UNREFERENCED_PARAMETER(pszFormat);
-
-   throw ::interface_only();
-
-}
-
-
-void html_file::printstr(const_char_pointer pszFormat, ...)
-{
-
-   __UNREFERENCED_PARAMETER(pszFormat);
-
-   throw ::interface_only();
-
-}
-
-
-#else
-
-
-void html_file::trace(void*, const ::scoped_string & scopedstr)
-{
-
-   print(scopedstr);
-
-}
-
-
-#endif
-
-
 void html_file::dprint(const ::scoped_string & scopedstr)
 {
 
@@ -87,8 +50,6 @@ void html_file::dprint(const ::scoped_string & scopedstr)
 
 }
 
-
-///} // namespace html
 
 
 

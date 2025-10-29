@@ -20,6 +20,7 @@ namespace dynamic_source
    class CLASS_DECL_APP_PROGRAMMING script_manager :
       virtual public ::channel,
       virtual public ::file_system_cache,
+      virtual public ::file_system_interface,
       virtual public ::file_system_real_path_interface
    {
    public:
@@ -75,7 +76,7 @@ namespace dynamic_source
 
       ::netnode::script_manager *                           m_pnetnodescriptmanager;
 
-
+      int m_iFileSystemScriptSlotIndex = -1;
       pointer_array < plugin_map_item >                     m_pluginmapitema;
 
       ::semaphore                                           m_semCompiler;
@@ -168,15 +169,19 @@ namespace dynamic_source
 
       ::pointer<::dynamic_source::session>get_session(const ::scoped_string & scopedstrId);
 
-      virtual ::file_system_cache_item netnode_file_path(const ::scoped_string& scopedstrName);
+      virtual ::file_system_cache_item netnode_file_path(const ::scoped_string& scopedstrName, ::file_system_interface * pfilesysteminterface);
+
+      using file_system_interface::file_system_item;
+      using file_system_cache::file_system_item;
+
 
       //::pointer<script_instance>get(const ::scoped_string & scopedstrName);
       //::pointer<script_instance>get(const ::scoped_string & scopedstrName, ::pointer<script> & pscript);
-      ::pointer<script_instance>get(::file_system_item * pfilesystemitem);
-      ::pointer<script_instance>get(::file_system_item* pfilesystemitem, ::pointer<script>& pscript);
+      ::pointer<script_instance>get(const ::file_system_cache_item & pfilesystemcacheitem);
+      ::pointer<script_instance>get(const ::file_system_cache_item & pfilesystemcacheitem, ::pointer<script>& pscript);
       virtual void handle(::dynamic_source::httpd_socket * psocket);
       //::payload get_output_internal(::dynamic_source::script_interface * pinstanceParent, const ::scoped_string & scopedstrName);
-      ::payload get_output_internal(::dynamic_source::script_interface* pinstanceParent, ::file_system_item * pfilesystemitem);
+      ::payload get_output_internal(::dynamic_source::script_interface* pinstanceParent, const ::file_system_cache_item & pfilesystemcacheitem);
       void run(const ::file_system_cache_item& pfilesystemcacheitem);
 
       void LoadEnv();
@@ -186,9 +191,9 @@ namespace dynamic_source
 
       //static unsigned int c_cdecl clear_include_matches_FolderWatchThread(LPVOID lpParam); // thread procedure
 
-      ::file::path _real_path1(const ::scoped_string& scopedstrName) override;
+      ::file::real_and_logical_path _real_path1(const ::scoped_string& scopedstrName) override;
       //virtual ::file_system_cache_item _real_path(const ::file::path & str);
-      virtual ::file::path _real_path2(const ::file::path & strBase,const ::file::path & str);
+      virtual ::file::real_and_logical_path _real_path2(const ::file::path & strBase,const ::file::path & str);
 
 
       ::pointer<::crypto::rsa>get_rsa_key();

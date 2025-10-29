@@ -3,12 +3,13 @@
 #pragma once
 
 
-#include "acme/filesystem/filesystem/file_system_composite.h"
+#include "acme/filesystem/filesystem/file_system_interface.h"
 #include "acme/filesystem/filesystem/file_system_cache_item.h"
 
 
 class CLASS_DECL_ACME file_system_cache :
-   virtual public ::file_system_composite
+   virtual public ::particle,
+   virtual public ::unique_index_domain
 {
 public:
 
@@ -44,7 +45,13 @@ public:
       if (!pfilesystemcacheitem)
       {
 
-         pfilesystemcacheitem = file_system_item(scopedstrName);
+         criticalsectionlock.unlock();
+
+         auto pfilesystemcacheitemNew = file_system_item(scopedstrName);
+
+         criticalsectionlock.lock();
+
+         pfilesystemcacheitem = pfilesystemcacheitemNew;
 
       }
 
@@ -60,7 +67,10 @@ public:
    //bool file_system_has_script(const ::file_system_cache_item& pfilesystemcacheitem) override;
    //string file_system_expanded_md5(const ::file_system_cache_item& pfilesystemcacheitem) override;
 
-   ::file_system_cache_item file_system_item(const ::scoped_string & scopedstrName, ::file_system_real_path_interface* pfilesystemrealpathinterface = nullptr) override;
+   virtual ::file_system_cache_item file_system_item(
+      const ::scoped_string & scopedstrName, 
+      ::file_system_real_path_interface* pfilesystemrealpathinterface = nullptr,
+      ::file_system_interface* pfilesysteminterface = nullptr);
 
 
    //virtual void set_include_matches_file_exists(const ::file_system_cache_item& pfilesystemcacheitem, bool bFileExists);

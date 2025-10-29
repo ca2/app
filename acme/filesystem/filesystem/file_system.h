@@ -16,6 +16,8 @@ public:
 
    //::file::path         m_pathCa2Module;
    ::file::path         m_pathModule;
+   ::string_array       m_straFileSystemItemSlot;
+   critical_section     m_criticalsectionaFileSystemItemSlot[MAX_FILE_SYSTEM_ITEM_SLOT_COUNT];
 
 
    ::IDENTIFIER_SUFFIX_OPERATING_SYSTEM(acme_)::file_system *     m_pplatformfile;
@@ -36,6 +38,7 @@ public:
 
    virtual void init_system();
 
+   virtual int file_system_item_slot_index(const ::scoped_string& scopedstrSlotName);
 
 
    virtual void ensure_exists(const ::file::path & path);
@@ -255,10 +258,10 @@ public:
    //virtual bool set_last_run_application_path(const ::scoped_string & scopedstrAppId);
 
    
-   bool _file_system_file_exists(::file_system_item* pfilesystemitem) override;
-   bool _file_system_is_folder(::file_system_item* pfilesystemitem) override;
-   bool _file_system_has_script(::file_system_item* pfilesystemitem) override;
-   ::string _file_system_expanded_md5(::file_system_item* pfilesystemitem) override;
+   //bool _file_system_file_exists(const ::file_system_cache_item & pfilesystemcacheitem) override;
+   //bool _file_system_is_folder(const ::file_system_cache_item & pfilesystemcacheitem) override;
+   bool _file_system_has_script(const ::file_system_cache_item & pfilesystemcacheitem) override;
+   ::string _file_system_expanded_md5(const ::file_system_cache_item & pfilesystemcacheitem) override;
 
 
    ::file_system_cache_item file_system_item(const ::scoped_string& scopedstrName, ::file_system_real_path_interface* pfilesystemrealpathinterface) override;

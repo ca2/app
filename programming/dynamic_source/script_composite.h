@@ -17,11 +17,15 @@ namespace dynamic_source
       ::pointer<script_interface>      m_pinterface;
 
 
-      script_composite();
+      script_composite() { }
       ~script_composite() override;
 
 
       void initialize(::particle * pparticle) override;
+
+      virtual void initialize_script_composite(script_interface* pscriptinterface);
+
+      void initialize_with_socket_thread(::httpd::socket_thread* psocketthread);
 
       //void finalize() override;
 

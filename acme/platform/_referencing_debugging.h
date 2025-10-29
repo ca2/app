@@ -45,6 +45,7 @@ CLASS_DECL_ACME::subparticle * refdbg_this();
 #define ødefer_construct __call__add_referer2({ refdbg_this(), __FUNCTION_FILE_LINE__ })->__call__defer_construct
 #define øcreate_new_clone __call__add_referer2({ refdbg_this(), __FUNCTION_FILE_LINE__ })->__call__create_new_clone
 #define ødefer_construct_new __call__add_referer2({ refdbg_this(), __FUNCTION_FILE_LINE__ })->__call__defer_construct_new
+#define ødefer_raw_construct_new __call__add_referer2({ refdbg_this(), __FUNCTION_FILE_LINE__ })->__call__defer_raw_construct_new
 
 
 //#define __raw_construct_new(C) __construct_site(C, { refdbg_this(), __FUNCTION_FILE_LINE__ })
@@ -187,6 +188,7 @@ CLASS_DECL_ACME ::reference_referer* refdbg_get_top_releaser();
 #define ødefer_construct __call__defer_construct
 #define øcreate_new_clone __call__create_new_clone
 #define ødefer_construct_new __call__defer_construct_new
+#define ødefer_raw_construct_new __call__defer_raw_construct_new
 
 
 #define øallocate__prefix(x) 

@@ -27,12 +27,15 @@
 #include "apex/networking/sockets/link_out_socket.h"
 #include "acme/constant/id.h"
 #include "axis/platform/system.h"
-
+#include "acme/_information_n.h"
 
 #include "acme/_operating_system.h"
 #include "programming/dynamic_source/httpd_socket.h"
 #include "acme/filesystem/filesystem/file_system_cache.h"
 #include "programming/heating_up_exception.h"
+
+
+int get_processor_count();
 
 
 namespace dynamic_source
@@ -66,7 +69,8 @@ namespace dynamic_source
    }
 
 
-   script_manager::script_manager()
+   script_manager::script_manager() :
+      m_semCompiler(get_processor_count(), get_processor_count())
    {
 
       m_pnetnodescriptmanager = nullptr;
@@ -111,6 +115,9 @@ namespace dynamic_source
 
       defer_create_synchronization();
 
+      m_iFileSystemScriptSlotIndex = file_system()->file_system_item_slot_index("dynamic_source::script");
+
+      m_prealpathinterfacecache = øcreate_new < ::file_system_real_path_interface_cache >();
 
       //øconstruct_new(m_pfilesystemcache);
 
@@ -145,9 +152,9 @@ namespace dynamic_source
 
 //#endif
 
-      m_pathNetnodePath = path_system()->real_path(m_pathBase / "netnodenet");
-      m_pathNetseedPath = path_system()->real_path(m_pathBase / "netnodenet/net");
-      m_pathNetseedDsCa2Path = path_system()->real_path(m_pathBase / "netnodenet/net");
+      m_pathNetnodePath = path_system()->logical_path(m_pathBase / "netnodenet");
+      m_pathNetseedPath = path_system()->logical_path(m_pathBase / "netnodenet/net");
+      m_pathNetseedDsCa2Path = path_system()->logical_path(m_pathBase / "netnodenet/net");
 
       m_pmutexShouldBuild = node()->create_mutex();
       m_pmutexSession = node()->create_mutex();
@@ -262,7 +269,7 @@ namespace dynamic_source
 
          //}
 
-         m_pcompiler->m_pmanager = this;
+         m_pcompiler->m_pscriptmanager2 = this;
 
          //estatus = 
 
@@ -334,25 +341,25 @@ namespace dynamic_source
    }
 
 
-   ::pointer<script_instance>script_manager::get(::file_system_item* pfilesystemitem)
+   ::pointer<script_instance>script_manager::get(const ::file_system_cache_item & pfilesystemcacheitem)
    {
 
       ::pointer<script>pscript;
 
-      return get(pfilesystemitem, pscript);
+      return get(pfilesystemcacheitem, pscript);
 
    }
 
 
-   ::file_system_cache_item script_manager::netnode_file_path(const ::scoped_string& scopedstrName)
+   ::file_system_cache_item script_manager::netnode_file_path(const ::scoped_string& scopedstrName, ::file_system_interface* pfilesysteminterface)
    {
 
-      auto pfilesystemcacheitem = file_system_item(scopedstrName);
+      auto pfilesystemcacheitem = pfilesysteminterface->file_system_item(scopedstrName);
 
       if (!pfilesystemcacheitem.is_ok())
       {
 
-         pfilesystemcacheitem = file_system_item(string(scopedstrName) + ".ds");
+         pfilesystemcacheitem = pfilesysteminterface->file_system_item(string(scopedstrName) + ".ds");
 
       }
 
@@ -367,15 +374,15 @@ namespace dynamic_source
    }
 
 
-   ::pointer<script_instance>script_manager::get(::file_system_item* pfilesystemitem, ::pointer<script>& pscript)
+   ::pointer<script_instance>script_manager::get(const ::file_system_cache_item & pfilesystemcacheitem, ::pointer<script>& pscript)
    {
 
-      return m_pcache->create_instance(pfilesystemitem, pscript);
+      return m_pcache->create_instance(pfilesystemcacheitem, pscript);
 
    }
 
 
-   void script_manager::handle(::dynamic_source::httpd_socket* pdssocket)
+   void script_manager::handle(::dynamic_source::httpd_socket* phttpdsocket1)
    {
 
       string strHead;
@@ -389,7 +396,7 @@ namespace dynamic_source
       if (!m_filesystemcacheitemSeed.is_ok())
       {
 
-         m_filesystemcacheitemSeed = netnode_file_path(m_strSeed1);
+         m_filesystemcacheitemSeed = netnode_file_path(m_strSeed1, this);
 
       }
 
@@ -397,11 +404,16 @@ namespace dynamic_source
 
       timeGetHereEnd.Now();
 
-      auto timeGetHere = timeGetHereEnd - timeGetHereStart;
+      if (pinstance)
+      {
 
-      pdssocket->m_timeWaitingToBuild += timeGetHere;
+         pinstance->m_itemN40585.m_timeGetHere = timeGetHereEnd - timeGetHereStart;
 
-      pdssocket->m_timegetherea.add({m_filesystemcacheitemSeed.m_strName2, timeGetHere});
+         phttpdsocket1->m_timeWaitingToBuild += pinstance->m_itemN40585.m_timeGetHere;
+
+      }
+
+      auto pinformation = phttpdsocket1->m_pInformationN40585.defer_get_new< information_n40585 >(this);
 
       if (!pinstance)
       {
@@ -419,30 +431,34 @@ namespace dynamic_source
          strHtml += "Try again soon";
          strHtml += "</h1>";
          strHtml += "<p>";
-         strHtml += "Root Script (seed) failed to compile.";
+         strHtml += "Root Script (seed) is compiling/building or failed to compile.";
          strHtml += "</p>";
          strHtml += "</body>";
          strHtml += "</html>";
 
-         pdssocket->m_response.file()->print(strHtml);
+         phttpdsocket1->m_response.file()->print(strHtml);
 
          return;
 
       }
 
-      auto pmain = øcreate < script_main >();
+      auto timeT1 = ::time::now();
 
-      pmain->m_pscript2 = pinstance->m_pscript2;
+      auto pscriptmain1 = øcreate < script_main >();
 
-      pmain->defer_run_property(id_create);
+      pinstance->m_pscriptmain1 = pscriptmain1;
 
-      pmain->call_procedures(id_create);
+      pscriptmain1->initialize_script_main(this, phttpdsocket1, pinstance->m_pscript1);
 
-      pmain->m_pmain = pmain;
+      //pscriptmain1->defer_run_property(id_create);
 
-      pmain->m_psocket2 = pdssocket;
+      //pscriptmain1->call_procedures(id_create);
 
-      pmain->m_pmanager2 = this;
+      //pscriptmain1->m_pscriptmain1 = pscriptmain1;
+
+      //pscriptmain1->m_phttpdsocket1 = ;
+
+      //pscriptmain1->m_pscriptmanager1 = this;
 
       //::string strUrl;
 
@@ -450,21 +466,31 @@ namespace dynamic_source
 
       //pmain->m_url = strUrl;
 
-      pmain->m_pscript2 = pinstance->m_pscript2;
+      pscriptmain1->init1();
 
-      pmain->init1();
+      phttpdsocket1->m_pscript = pinstance;
 
-      pinstance->m_pmain = pmain;
+      pinstance->m_itemN40585.m_timeT1 = timeT1.elapsed();
 
-      pdssocket->m_pscript = pinstance;
+      auto timeInitialize = ::time::now();
 
-      pinstance->initialize(pmain);
+      pinstance->initialize_script_instance(pscriptmain1);
+
+      auto timeRunCreate = ::time::now();
 
       pinstance->defer_run_property(id_create);
 
+      auto timeCallCreate = ::time::now();
+
       pinstance->call_procedures(id_create);
 
-      auto pthread = pdssocket->get_thread();
+      auto pthread = phttpdsocket1->get_thread();
+
+      pinstance->m_itemN40585.m_timeCallCreateElapsed = timeCallCreate.elapsed();
+
+      pinstance->m_itemN40585.m_timeRunCreateElapsed = timeCallCreate - timeRunCreate;
+
+      pinstance->m_itemN40585.m_timeInitializeElapsed = timeRunCreate - timeInitialize;
 
       if (::is_set(pthread))
       {
@@ -480,84 +506,88 @@ namespace dynamic_source
 
       }
 
-      if (pinstance != nullptr)
+      pinstance->m_strDebugRequestUri = phttpdsocket1->inattr("request_uri");
+
+      if (pinstance->m_strDebugRequestUri.case_insensitive_find_index("google") > 0)
       {
 
-         pinstance->m_strDebugRequestUri = pdssocket->inattr("request_uri");
-
-         if (pinstance->m_strDebugRequestUri.case_insensitive_find_index("google") > 0)
-         {
-
-            informationf("resident");
-
-         }
-
-         pinstance->m_strDebugThisScript = m_filesystemcacheitemSeed.m_strName2;
-
-         pinstance->dinit();
+         informationf("resident");
 
       }
 
-      if (pinstance != nullptr)
+      pinstance->m_strDebugThisScript = m_filesystemcacheitemSeed.m_strName2;
+
+      auto timeDinit = ::time::now();
+
+      pinstance->dinit();
+
+      pinstance->m_pscriptmain1->main_initialize();
+
+      if (pinstance->m_iDebug > 0)
       {
 
-         pinstance->m_pmain->main_initialize();
+         pinstance->print(pinstance->m_pscript1->m_strError);
 
-         if (pinstance->m_iDebug > 0)
-         {
+      }
 
-            pinstance->print(pinstance->m_pscript2->m_strError);
+      if (!pinstance->m_pscript1->HasCompileOrLinkError())
+      {
 
-         }
+         class ::time timeMainRunPrefix;
 
-         if (!pinstance->m_pscript2->HasCompileOrLinkError())
-         {
+         timeMainRunPrefix.Now();
 
-            pdssocket->m_timeMainRunStart.Now();
+         //pdssocket->m_timeMainRunPrefixElapsed = timeMainRunPrefix - timeStart;
 
-            try
-            {
+         phttpdsocket1->m_timeMainRunStart.Now();
 
-               pinstance->run();
-
-            }
-            catch (const ::heating_up_exception& e)
-            {
-
-               throw e;
-
-            }
-            catch (const exit_exception&)
-            {
-
-            }
-            catch (const ::exception& e)
-            {
-
-               string str = e.get_message();
-
-               pinstance->dprint("str");
-
-               informationf("Error: exception * at script_manager::handle run");
-
-               informationf("%s", str.c_str());
-
-            }
-            catch (...)
-            {
-
-               informationf("Error: Exception at script_manager::handle run");
-
-            }
-
-            pdssocket->m_timeMainRunEnd.Now();
-
-         }
+         auto timeRun = ::time::now();
 
          try
          {
 
-            pinstance->m_pmain->main_finalize();
+            pinstance->run();
+
+            pinstance->m_itemN40585.m_timeRunElapsed = timeRun.elapsed();
+
+            pinstance->m_itemN40585.m_timeInitElapsed = timeRun - timeDinit;
+
+         }
+         catch (const ::heating_up_exception& e)
+         {
+
+            throw e;
+
+         }
+         catch (const exit_exception&)
+         {
+
+         }
+         catch (const ::exception& e)
+         {
+
+            string str = e.get_message();
+
+            pinstance->dprint("str");
+
+            informationf("Error: exception * at script_manager::handle run");
+
+            informationf("%s", str.c_str());
+
+         }
+         catch (...)
+         {
+
+            informationf("Error: Exception at script_manager::handle run");
+
+         }
+
+         phttpdsocket1->m_timeMainRunEnd.Now();
+
+         try
+         {
+
+            pinstance->m_pscriptmain1->main_finalize();
 
          }
          catch (const ::exception&)
@@ -570,6 +600,25 @@ namespace dynamic_source
          {
 
             informationf("Error: Exception at script_manager::handle main_finalize");
+
+         }
+
+         try
+         {
+
+            pinformation->m_itema.add(pinstance->m_itemN40585);
+
+         }
+         catch (const ::exception&)
+         {
+
+            informationf("Error: exception at script_manager::handle pinformation");
+
+         }
+         catch (...)
+         {
+
+            informationf("Error: Exception at script_manager::handle pinformation");
 
          }
 
@@ -651,7 +700,7 @@ namespace dynamic_source
 
       //}
 
-      ::defer_destroy_and_release(pmain);
+      ::defer_destroy_and_release(pscriptmain1);
 
       ::defer_destroy_and_release(pinstance);
 
@@ -665,25 +714,25 @@ namespace dynamic_source
    }
 
 
-   ::payload script_manager::get_output_internal(::dynamic_source::script_interface* pinstanceParent, ::file_system_item * pfilesystemitem)
+   ::payload script_manager::get_output_internal(::dynamic_source::script_interface* pinstanceParent, const ::file_system_cache_item & pfilesystemcacheitem)
    {
 
 //      string strName = ::str::get_word(scopedstrNameParam, "?");
 
 
-      if (!pfilesystemitem->is_ok())
+      if (!pfilesystemcacheitem->is_ok())
       {
 
          if (pinstanceParent != nullptr)
          {
 
-            if (pinstanceParent->m_pmain->m_iDebug > 0)
+            if (pinstanceParent->m_pscriptmain1->m_iDebug > 0)
             {
 
-               if (pinstanceParent->m_pscript2->m_textstreamError.m_pfile->size() > 0)
+               if (pinstanceParent->m_pscript1->m_textstreamError.m_pfile->size() > 0)
                {
 
-                  pinstanceParent->m_pmain->netnodesocket()->response().m_pmemfileBody->print("script_manager::get_output_internal is_empty script parent" + pinstanceParent->m_pscript2->m_path);
+                  pinstanceParent->m_pscriptmain1->netnodesocket()->response().m_pmemfileBody->print("script_manager::get_output_internal is_empty script parent" + pinstanceParent->m_pscript1->m_pfilesystemcacheitem->path());
 
                }
 
@@ -709,7 +758,7 @@ namespace dynamic_source
 
             {
 
-               auto pmain = pinstanceParent->main();
+               auto pscriptmain1 = pinstanceParent->main();
 
                class ::time timeGetHereStart;
 
@@ -717,11 +766,18 @@ namespace dynamic_source
 
                timeGetHereStart.Now();
 
-               pinstance = get(pfilesystemitem, pscript);
+               pinstance = get(pfilesystemcacheitem, pscript);
 
                timeGetHereEnd.Now();
 
                auto timeGetHere = timeGetHereEnd - timeGetHereStart;
+
+               if (pinstance)
+               {
+
+                  pinstance->m_itemN40585.m_timeGetHere = timeGetHere;
+
+               }
                
                if (pinstanceParent)
                {
@@ -733,7 +789,7 @@ namespace dynamic_source
 
                   //}
 
-                  ::string strName = pfilesystemitem->path();
+                  ::string strName = pfilesystemcacheitem->path();
 
                   if (strName.begins_eat(m_pathNetnodePath))
                   {
@@ -742,8 +798,7 @@ namespace dynamic_source
 
                   }
 
-                  pinstanceParent->m_pmain->netnodesocket()->m_timeWaitingToBuild += timeGetHere;
-                  pinstanceParent->m_pmain->netnodesocket()->m_timegetherea.add({strName, timeGetHere});
+                  pinstanceParent->m_pscriptmain1->netnodesocket()->m_timeWaitingToBuild += timeGetHere;
 
                }
 
@@ -757,7 +812,7 @@ namespace dynamic_source
                if (pinstance && pinstanceParent && pscript)
                {
 
-                  pimpl = pmain;
+                  pimpl = pscriptmain1;
 
                   //pimpl = ::øcreate < script_interface >();
 
@@ -773,29 +828,45 @@ namespace dynamic_source
 
                   //pimpl->init1();
 
-                  pinstance->m_pmain = pmain;
+                  pinstance->initialize_script_instance(pinstanceParent);
 
-                  if (pinstanceParent->m_bOnTopicInclude && !pmain->m_pscriptinterfaceTopic)
+                  //pinstance->m_pscriptmain1 = pscriptmain1;
+
+                  if (pinstanceParent->m_bOnTopicInclude && !pscriptmain1->m_pscriptinterfaceTopic)
                   {
 
-                     pmain->m_pscriptinterfaceTopic = pinstance;
+                     pscriptmain1->m_pscriptinterfaceTopic = pinstance;
 
                   }
 
+                  pinstance->m_itemN40585.m_timeT1 = pinstanceParent->m_timeLastIncludingChildElapsed;
+
+                  auto timeInitialize = ::time::now();
+
                   pinstance->initialize(pimpl);
 
-                  pinstance->m_pinstanceParent2 = pinstanceParent;
+                  //auto timeRunCreate = ::time::now();
 
-                  pinstance->defer_run_property(id_create);
+                  pinstance->m_pinstanceParent1 = pinstanceParent;
 
-                  pinstance->call_procedures(id_create);
+                  //pinstance->defer_run_property(id_create);
 
-                  if (pinstanceParent->m_pmain->m_iDebug > 0)
+                  //auto timeCallCreate = ::time::now();
+
+                  //pinstance->call_procedures(id_create);
+
+                  //pinstance->m_itemN40585.m_timeCallCreateElapsed = timeCallCreate.elapsed();
+                  
+                  //pinstance->m_itemN40585.m_timeRunCreateElapsed = timeCallCreate - timeRunCreate;
+
+                  pinstance->m_itemN40585.m_timeInitializeElapsed = timeInitialize.elapsed();
+
+                  if (pinstanceParent->m_pscriptmain1->m_iDebug > 0)
                   {
 
-                     pinstanceParent->m_strDebugRequestUri = pinstanceParent->m_pmain->netnodesocket()->m_request.m_strRequestUri;
+                     pinstanceParent->m_strDebugRequestUri = pinstanceParent->m_pscriptmain1->netnodesocket()->m_request.m_strRequestUri;
 
-                     pinstanceParent->m_strDebugThisScript = pfilesystemitem->path();
+                     pinstanceParent->m_strDebugThisScript = pfilesystemcacheitem->path();
 
                      ::pointer<::dynamic_source::ds_script>pdsscript = pscript;
 
@@ -842,14 +913,35 @@ namespace dynamic_source
 
                }
 
+               auto timeDinit = ::time::now();
+
                pinstance->dinit();
 
+               auto timeRun = ::time::now();
+
                payload = pinstance->run_script();
+
+               pinstance->m_itemN40585.m_timeRunElapsed = timeRun.elapsed();
+
+               pinstance->m_itemN40585.m_timeInitElapsed = timeRun - timeDinit;
 
                try
                {
 
                   pinstance->destroy();
+
+               }
+               catch (...)
+               {
+
+               }
+
+               try
+               {
+
+                  auto pinformation = pinstanceParent->m_pscriptmain1->netnodesocket()->m_pInformationN40585.defer_get_new< information_n40585 >(this);
+
+                  pinformation->m_itema.add(pinstance->m_itemN40585);
 
                }
                catch (...)
@@ -978,7 +1070,7 @@ namespace dynamic_source
       if (pinstance != nullptr)
       {
 
-         pinstance->m_pscript2->run(pinstance);
+         pinstance->m_pscript1->run(pinstance);
 
       }
 
@@ -1078,14 +1170,14 @@ namespace dynamic_source
    }
 
 
-   ::file::path script_manager::_real_path2(const ::file::path& strBase, const ::file::path& str)
+   ::file::real_and_logical_path script_manager::_real_path2(const ::file::path& strBase, const ::file::path& str)
    {
       
       ::file::path strRealPath = strBase / str;
 
-      auto path = _real_path1(strRealPath);
+      auto realandlogicalpath = _real_path1(strRealPath);
 
-      return path;
+      return realandlogicalpath;
 
       //if (file_system_file_exists(pfilesystemcacheitem))
       //   return pfilesystemcacheitem;
@@ -1103,7 +1195,7 @@ namespace dynamic_source
    // #endif
 
 
-   ::file::path script_manager::_real_path1(const ::scoped_string & scopedstrName)
+   ::file::real_and_logical_path script_manager::_real_path1(const ::scoped_string & scopedstrName)
    {
 
       //#ifdef WINDOWS
@@ -1133,15 +1225,15 @@ namespace dynamic_source
       if (path.has_character())
       {
 
-         return path;
+         return { path, scopedstrName };
 
       }
 
-      auto path2 = m_pathNetseedDsCa2Path / scopedstrName;
+      auto pathLogical = m_pathNetseedDsCa2Path / scopedstrName;
 
-      path = path_system()->real_path(path2);
+      path = path_system()->real_path(pathLogical);
 
-      return path;
+      return { path, pathLogical };
       
    }
 
@@ -1682,13 +1774,15 @@ namespace dynamic_source
 
       //// auto pcontext = get_context();
 
+      auto pathBuildFolder = path_system()->logical_path(m_pcompiler->m_pintegrationcontext->m_pathBuildFolder);
+
 #ifdef WINDOWS
 
-      return m_pcompiler->m_pintegrationcontext->m_pathBuildFolder / m_pcompiler->m_strDynamicSourceStage / m_pcompiler->m_pintegrationcontext->m_strPlatform / m_pcompiler->m_strDynamicSourceConfiguration / "dynamic_source" / strTransformName.folder() / strScript + scopedstrModifier + ".dll";
+      return pathBuildFolder / m_pcompiler->m_strDynamicSourceStage / m_pcompiler->m_pintegrationcontext->m_strPlatform / m_pcompiler->m_strDynamicSourceConfiguration / "dynamic_source" / strTransformName.folder() / strScript + scopedstrModifier + ".dll";
 
 #else
 
-      return m_pcompiler->m_pintegrationcontext->m_pathBuildFolder / m_pcompiler->m_strDynamicSourceStage / m_pcompiler->m_pintegrationcontext->m_strStagePlatform / m_pcompiler->m_strDynamicSourceConfiguration / "dynamic_source" / strTransformName.folder() / strScript + scopedstrModifier + ".so";
+      return pathBuildFolder / m_pcompiler->m_strDynamicSourceStage / m_pcompiler->m_pintegrationcontext->m_strStagePlatform / m_pcompiler->m_strDynamicSourceConfiguration / "dynamic_source" / strTransformName.folder() / strScript + scopedstrModifier + ".so";
 
 #endif
 

@@ -25,9 +25,7 @@ public:
    ::pointer<::property_set>                        m_ppropertyset;
 
 
-   property_object(const ::e_flag & eflag = e_flag_none, const ::e_status & estatus = undefined) :
-      ::matter(eflag, estatus)
-   { }
+   property_object() { }
    ~property_object() override;
 
 

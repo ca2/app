@@ -2,6 +2,7 @@
 
 
 #include "script_composite.h"
+#include "acme/_information_n.h"
 
 
 namespace dynamic_source
@@ -14,11 +15,32 @@ namespace dynamic_source
    public:
 
 
-      class ::time                m_timeCreate;
+      class ::time                  m_timeInit2Elapsed;
+
+      class ::time                  m_timeInit1Elapsed;
+
+      class ::time                  m_timeCreateInstanceElapsed;
+
+      class ::time                  m_timeCreate;
+
+      item_n40585                   m_itemN40585;
+      //class ::time               m_timeCreate;
+      //class ::time               m_timeLockElapsed;
+      //class ::time               m_timeLookUpElapsed;
+      //class ::time               m_timeLock2Elapsed;
+      //class ::time               m_timeShouldBuildElapsed;
 
 
-      script_instance();
+      script_instance() { }
       ~script_instance() override;
+
+
+      virtual void initialize_script_instance_script(
+         ::dynamic_source::script* pscript1);
+
+
+      virtual void initialize_script_instance(
+         ::dynamic_source::script_interface* pscriptinterfaceParent1);
 
 
       virtual bool ShouldBuild();

@@ -48,7 +48,7 @@ public:
 
    virtual ::file::path _real_path(const ::file::path & path);
 
-
+   virtual ::file::path logical_path(const ::file::path& path);
 
    virtual bool case_insensitive_real_path_begins_eat(string & str, const ::scoped_string & scopedstrPrefix);
 

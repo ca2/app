@@ -6,9 +6,11 @@ list(APPEND library_source
    gltf/material.h
    gltf/mesh.cpp
    gltf/mesh.h
+   gltf/model_base.cpp
+   gltf/model_base.h
    gltf/model.cpp
    gltf/model.h
-   gltf/vertex.h
+   #gltf/vertex.h
    ibl/brdf_convolution_framebuffer.cpp
    ibl/brdf_convolution_framebuffer.h
    ibl/cubemap_framebuffer.cpp
@@ -27,6 +29,8 @@ list(APPEND library_source
    ibl/_.h
    gltf/_.h
    _.cpp
+   _ktx.cpp
+   _ktx.h
    assimp_iosystem.h
    framework.cpp
    framework.h
@@ -74,9 +78,7 @@ list(APPEND static_library_references ${library_references})
 list(TRANSFORM static_library_references PREPEND static_)
 
 
-add_library(${PROJECT_NAME} SHARED ${library_source}
-   _ktx.cpp
-   _ktx.h)
+add_library(${PROJECT_NAME} SHARED ${library_source})
 add_library(static_${PROJECT_NAME} STATIC ${library_source})
 
 

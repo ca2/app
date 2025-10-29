@@ -39,6 +39,21 @@ particle::~particle()
 }
 
 
+void particle::_initialize_particle(::particle* pparticle)
+{
+
+   m_papplication = pparticle->m_papplication;
+
+}
+
+
+void particle::_on_initialize_app_consumer()
+{
+
+
+}
+
+
 void particle::initialize(::particle * pparticle)
 {
 

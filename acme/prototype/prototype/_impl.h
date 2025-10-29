@@ -1781,6 +1781,29 @@ inline bool particle::__call__defer_construct_new(::pointer<TYPE> & p)
 }
 
 
+template < typename TYPE >
+inline bool particle::__call__defer_raw_construct_new(::pointer<TYPE>& p)
+{
+
+   if (::is_set(p))
+   {
+#if REFERENCING_DEBUGGING
+
+      ::allocator::defer_erase_referer();
+#endif
+      return false;
+
+   }
+
+   // in REFERENCING_DEBUGGING Mode set referer should
+   //    already be called when this function was called.
+   __call__raw_construct_new(p);
+
+   return true;
+
+}
+
+
 constexpr ::e_status e_status::worst(const ::e_status & e) const
 {
 

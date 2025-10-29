@@ -74,6 +74,12 @@ namespace graphics
    //}
 
 
+   void double_buffer::_on_configure_window(buffer_item * pbufferitem)
+   {
+
+
+   }
+
    bool double_buffer::_on_begin_draw(buffer_item * pitem)
    {
 
@@ -416,6 +422,8 @@ namespace graphics
             warning() << "pitemScreen->m_pimage2 not ok!";
 
          }
+
+         _on_configure_window(pitemScreen);
 
          return;
 

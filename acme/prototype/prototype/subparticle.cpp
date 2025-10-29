@@ -38,15 +38,15 @@ subparticle::subparticle() :
 }
 
 
-subparticle::subparticle(const ::e_flag & eflag, const ::e_status & estatus) :
-   ::quantum(eflag, estatus),
-   m_countReference(1)
-{
-
-   subparticle_referencing_debugging_construct();
-
-}
-
+// subparticle::subparticle(const ::e_flag & eflag, const ::e_status & estatus) :
+//    ::quantum(eflag, estatus),
+//    m_countReference(1)
+// {
+//
+//    subparticle_referencing_debugging_construct();
+//
+// }
+//
 
 subparticle::subparticle(const ::subparticle & subparticle) :
    ::quantum(subparticle),

@@ -466,7 +466,11 @@ public:
 
    operator ::block() const { return { (unsigned char*)this->m_begin, this->length_in_bytes() }; }
 
-   inline CHARACTER character_at(character_count i) const { return this->data()[i]; }
+   inline CHARACTER _character_at(character_count i) const { return this->data()[i]; }
+   inline CHARACTER character_at(character_count i) const
+   { 
+      return i < 0 || i >= this->size() ? CHARACTER{} : this->_character_at(i);
+   }
 
 
 
@@ -501,10 +505,26 @@ public:
    }
 
 
+   const_string_range trimmed_left(const SCOPED_STRING& scopedstr) const
+   {
+
+      return _begin_set(skip_any_character_in(scopedstr));
+
+   }
+
+
    const_string_range trimmed_right() const
    {
 
       return _end_set(rear_skip_any_character_in(typed_whitespace<CHARACTER>()));
+
+   }
+
+
+   const_string_range trimmed_right(const SCOPED_STRING & scopedstr) const
+   {
+
+      return _end_set(rear_skip_any_character_in(scopedstr));
 
    }
 
@@ -516,6 +536,13 @@ public:
 
    }
 
+
+   const_string_range trimmed(const SCOPED_STRING& scopedstr) const
+   {
+
+      return trimmed_right(scopedstr).trimmed_left(scopedstr);
+
+   }
 
 
    //    string_range &operator=(const THIS_RANGE &range)
@@ -645,6 +672,28 @@ public:
 
       return _string_count_compare(this->m_begin, psz, sizeThis) == 0
          && psz[sizeThis] == CHARACTER{};
+
+   }
+
+
+   constexpr bool has_file_extension_without_dot(const SCOPED_STRING& scopedstrFileExtensionWithoutDot) const
+   {
+
+      if (this->character_at(this->size() - scopedstrFileExtensionWithoutDot.size() - 1) != '.')
+      {
+
+         return false;
+
+      }
+
+      if (!this->case_insensitive_ends(scopedstrFileExtensionWithoutDot))
+      {
+
+         return false;
+
+      }
+
+      return true;
 
    }
 
@@ -2220,6 +2269,19 @@ public:
    //
    //    }
 
+       const_string_range begins_bitten(const SCOPED_STRING & scopedstrPrefix) const
+       {
+   
+          if (this->begins(scopedstrPrefix))
+          {
+   
+             return {this->begin() + scopedstrPrefix.size(), this->end()};
+   
+          }
+   
+          return *this;
+   
+       }
 
    //    bool defer_consume_character(CHARACTER & character)
    //    {

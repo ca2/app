@@ -165,8 +165,8 @@ public:
 #endif
 
 
-   payload();
-   payload(no_initialize_t) {}
+   payload() : m_etype(e_type_new) REFDBG(, m_preferer(nullptr)) { }
+   payload(no_initialize_t) { }
    payload(enum_type etype);
    payload(nullptr_t);
    payload(const ::payload & payload);

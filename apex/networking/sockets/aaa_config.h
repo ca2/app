@@ -100,9 +100,9 @@ namespace sockets
 
 
    // WIN32 adapt
-#define closesocket close
-#define INVALID_SOCKET -1
-#define SOCKET_ERROR -1
+//#define closesocket close
+//#define INVALID_SOCKET -1
+//#define SOCKET_ERROR -1
 
 #ifndef INADDR_NONE
 #define INADDR_NONE ((unsigned long) -1)

@@ -25,8 +25,8 @@ LANGUAGE LANG_NEUTRAL, SUBLANG_DEFAULT
 //
 
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION 2025,0607,1524,36
- PRODUCTVERSION 2025,0607,1524,36
+ FILEVERSION 2025,1027,0517,27
+ PRODUCTVERSION 2025,1027,0517,27
  FILEFLAGSMASK 0x3fL
 #ifdef _DEBUG
  FILEFLAGS 0x1L
@@ -41,11 +41,11 @@ BEGIN
     BEGIN
         BLOCK "040904b0"
         BEGIN
-			VALUE "CompanyName", "app-core"
-			VALUE "FileDescription", "app_core_database_mysql"
-            VALUE "FileVersion", "2025.0607.1524.36"
-            VALUE "LegalCopyright", "Copyright (C) 2025-06-07-15-24-36"
-            VALUE "ProductVersion", "2025.0607.1524.36"
+			VALUE "CompanyName", "app"
+			VALUE "FileDescription", "app_database_mysql"
+            VALUE "FileVersion", "2025.1027.0517.27"
+            VALUE "LegalCopyright", "Copyright (C) 2025-10-27-05-17-27"
+            VALUE "ProductVersion", "2025.1027.0517.27"
         END
     END
     BLOCK "VarFileInfo"

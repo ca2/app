@@ -1813,6 +1813,34 @@ void file_system::init_system()
 }
 
 
+int file_system::file_system_item_slot_index(const ::scoped_string& scopedstrSlotName)
+{
+
+   _synchronous_lock synchronouslock(this->synchronization());
+
+   auto i = m_straFileSystemItemSlot.find_first(scopedstrSlotName);
+
+   if (i >= 0)
+   {
+
+      return (int) i;
+
+   }
+
+   if (m_straFileSystemItemSlot.get_size() >= MAX_FILE_SYSTEM_ITEM_SLOT_COUNT)
+   {
+
+      throw ::exception(error_failed);
+
+   }
+
+   i = m_straFileSystemItemSlot.add(scopedstrSlotName);
+
+   return (int) i;
+
+}
+
+
 //void file_system::update_module_path()
 //{
 //
@@ -1845,34 +1873,34 @@ void file_system::init_system()
 //}
 
 
-bool file_system::_file_system_file_exists(::file_system_item* pfilesystemitem)
+//bool file_system::_file_system_file_exists(const ::file_system_cache_item & pfilesystemcacheitem)
+//{
+//
+//   return __exists(pfilesystemcacheitem->path());
+//
+//}
+//
+//
+//bool file_system::_file_system_is_folder(const ::file_system_cache_item & pfilesystemcacheitem)
+//{
+//
+//   return directory_system()->__is(pfilesystemcacheitem->path());
+//
+//}
+
+
+bool file_system::_file_system_has_script(const ::file_system_cache_item & pfilesystemcacheitem)
 {
 
-   return __exists(pfilesystemitem->path());
+   return this->__safe_find_string(pfilesystemcacheitem->path(), "<?") >= 0;
 
 }
 
 
-bool file_system::_file_system_is_folder(::file_system_item* pfilesystemitem)
+::string file_system::_file_system_expanded_md5(const ::file_system_cache_item & pfilesystemcacheitem)
 {
 
-   return directory_system()->__is(pfilesystemitem->path());
-
-}
-
-
-bool file_system::_file_system_has_script(::file_system_item* pfilesystemitem)
-{
-
-   return this->__safe_find_string(pfilesystemitem->path(), "<?") >= 0;
-
-}
-
-
-::string file_system::_file_system_expanded_md5(::file_system_item* pfilesystemitem)
-{
-
-   return this->crypto()->md5(pfilesystemitem->path());
+   return this->crypto()->md5(pfilesystemcacheitem->path());
 
 }
 
@@ -1904,22 +1932,22 @@ bool file_system::_file_system_has_script(::file_system_item* pfilesystemitem)
 ::file_system_item * file_system::get_file_system_item(const ::scoped_string& scopedstrName, ::file_system_real_path_interface* pfilesystemrealpathinterface)
 {
 
-   ::file::path path;
+   ::file::real_and_logical_path realandlogicalpath;
 
    if (::is_set(pfilesystemrealpathinterface))
    {
 
-      path = pfilesystemrealpathinterface->real_path(scopedstrName);
+      realandlogicalpath = pfilesystemrealpathinterface->real_path(scopedstrName);
 
    }
    else
    {
 
-      path = this->path_system()->real_path(scopedstrName);
+      realandlogicalpath = { this->path_system()->real_path(scopedstrName), scopedstrName };
 
    }
 
-   if (path.is_empty() || path.is_unknown_type())
+   if (!realandlogicalpath.is_ok())
    {
 
       return nullptr;
@@ -1928,16 +1956,24 @@ bool file_system::_file_system_has_script(::file_system_item* pfilesystemitem)
 
    _synchronous_lock synchronouslock(m_pmutexFileSystemItem, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-   auto& pfilesystemitem = m_mapFileSystemItem[path];
+   auto& pfilesystemitem = m_mapFileSystemItem[realandlogicalpath.m_pathReal1];
 
-   if (!pfilesystemitem)
+   if (pfilesystemitem.m_estatus != success_already_set)
    {
 
       øconstruct_new(pfilesystemitem);
 
-      pfilesystemitem->m_pathReal2 = path;
+      pfilesystemitem->m_pathReal1 = realandlogicalpath.m_pathReal1;
+
+      pfilesystemitem->m_pathLogical1 = realandlogicalpath.m_pathLogical1;
 
       pfilesystemitem->m_pfilesysteminterface = this;
+
+      auto etype = realandlogicalpath.m_pathReal1.type();
+
+      pfilesystemitem->m_etype = etype;
+
+      pfilesystemitem.m_estatus = success_already_set;
 
    }
 

@@ -21,6 +21,7 @@ namespace dynamic_source
    class httpd_socket;
    class httpd_listen_socket;
    class script_main;
+   class data_object;
 
 
    typedef script_instance* (*NET_NODE_CREATE_INSTANCE_PROC)();

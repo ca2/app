@@ -4281,6 +4281,15 @@
     <ClInclude Include="prototype\prototype\unique_index.h">
       <Filter>Header Files\prototype\prototype</Filter>
     </ClInclude>
+    <ClInclude Include="_information_n.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filesystem\file_system_real_path_interface_cache.h">
+      <Filter>Header Files\filesystem\filesystem</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filesystem\real_and_logical_path.h">
+      <Filter>Header Files\filesystem\filesystem</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="prototype\prototype\bit.cpp">
@@ -6139,6 +6148,12 @@
     </ClCompile>
     <ClCompile Include="prototype\prototype\unique_index.cpp">
       <Filter>Source Files\prototype\prototype</Filter>
+    </ClCompile>
+    <ClCompile Include="_information_n.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filesystem\file_system_real_path_interface_cache.cpp">
+      <Filter>Source Files\filesystem\filesystem</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

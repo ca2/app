@@ -164,3 +164,25 @@ enum enum_exit
 };
 
 
+
+
+namespace windowing
+{
+
+
+   enum enum_operating_ambient : long long;
+
+   enum enum_toolkit : long long;
+
+   enum enum_windowing : long long;
+
+   enum enum_display_type : long long;
+
+   enum enum_bias : long long;
+
+
+} // namespace windowing
+
+
+
+

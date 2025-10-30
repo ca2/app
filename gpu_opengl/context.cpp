@@ -842,6 +842,18 @@ namespace gpu_opengl
             throw ::exception(e.m_estatus, "Failed to load HDR cubemap '" + name + "': " + e.get_message());
          }
       }
+      else
+      {
+
+         ::string strMessage;
+
+         strMessage.format("loadCubemap doesn't yet support this file extension (path: \"{}\")", pathFile);
+
+         error() << strMessage;
+
+         throw ::not_implemented( strMessage);
+
+      }
       // registerTextureIfNeeded(name, tex, m_textures, m_textureIndexMap, m_textureList);
       
    }

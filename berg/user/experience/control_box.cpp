@@ -7,6 +7,7 @@
 #include "acme/constant/user_message.h"
 #include "acme/constant/windowing2.h"
 #include "acme/constant/timer.h"
+#include "acme/constant/windowing2.h"
 #include "acme/platform/system.h"
 #include "acme/platform/timer.h"
 #include "acme/prototype/geometry2d/_text_stream.h"

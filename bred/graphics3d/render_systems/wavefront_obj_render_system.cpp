@@ -4,6 +4,7 @@
 //#include "pipeline.h"
 #include "bred/graphics3d/engine.h"
 //#include "port/graphics/freetype/include/freetype/internal/fttrace.h"
+#include "bred/gpu/command_buffer.h"
 #include "bred/gpu/shader.h"
 #include "bred/graphics3d/model.h"
 #include "bred/graphics3d/scene_renderable.h"
@@ -183,12 +184,15 @@ namespace graphics3d
 
 		auto prenderer = pgpucontext->m_pgpurenderer;
 
-		m_pshader = prenderer->create_shader(
-			"matter://shaders/vert.vert",
+      m_pshader = øcreate<::gpu::shader>();
+      m_pshader->m_propertiesPushShared.set_properties(simple_render_properties());
+      pgpucontext->layout_push_constants(
+         m_pshader->m_propertiesPushShared);
+      m_pshader->initialize_shader(
+         pgpucontext->m_pgpurenderer, "matter://shaders/vert.vert",
 			"matter://shaders/frag.frag",
 			{ ::gpu::shader::e_descriptor_set_slot_global,
 			::gpu::shader::e_descriptor_set_slot_local }, {},
-			simple_render_properties(),
 			pgpucontext->input_layout<::graphics3d::Vertex>()
 
 		);
@@ -210,7 +214,8 @@ namespace graphics3d
 	{
 
 
-		m_pshader->bind(pgpucontext->current_target_texture(::gpu::current_frame()));
+		m_pshader->bind(
+         ::gpu::current_command_buffer(), pgpucontext->current_target_texture(::gpu::current_frame()));
 
 	   auto pgamelayer = m_pengine->m_pimmersionlayer;
 
@@ -252,17 +257,17 @@ namespace graphics3d
 
 				auto modelMatrix = m_pengine->model_matrix(pscenerenderable->m_transform);
 
-				m_pshader->m_propertiesPush["modelMatrix"] = modelMatrix;
+				m_pshader->m_propertiesPushShared["modelMatrix"] = modelMatrix;
 
 				auto normalMatrix = m_pengine->normal_matrix(pscenerenderable->m_transform);
 
-				m_pshader->m_propertiesPush["normalMatrix"] = normalMatrix;
-
-				m_pshader->push_properties();
+				m_pshader->m_propertiesPushShared["normalMatrix"] = normalMatrix;
 
 				auto pcommandbuffer = pgpucontext->m_pgpurenderer->getCurrentCommandBuffer2(::gpu::current_frame());
 
-				prenderable->bind(pcommandbuffer);
+				m_pshader->push_properties(pcommandbuffer);
+
+            prenderable->bind(pcommandbuffer);
 
 				prenderable->draw(pcommandbuffer);
 
@@ -272,7 +277,7 @@ namespace graphics3d
 
 		}
 
-		m_pshader->unbind();
+		m_pshader->unbind(::gpu::current_command_buffer());
 
 	}
 

@@ -216,7 +216,7 @@ namespace gpu_opengl
       if (m_pshader)
       {
 
-         m_pshader->bind();
+         m_pshader->bind(nullptr);
 
       }
       // Use our shader
@@ -791,7 +791,7 @@ namespace gpu_opengl
       ///::cast<::gpu_opengl::queue> pqueueGraphics = this->graphics_queue();
       ///
 
-      auto pqueueGraphics = this->graphics_queue();
+      auto pqueueGraphics = m_pgpudevice->graphics_queue();
 
       if (pathFile.case_insensitive_ends(".ktx"))
       {
@@ -841,6 +841,18 @@ namespace gpu_opengl
          {
             throw ::exception(e.m_estatus, "Failed to load HDR cubemap '" + name + "': " + e.get_message());
          }
+      }
+      else
+      {
+
+         ::string strMessage;
+
+         strMessage.format("loadCubemap doesn't yet support this file extension (path: \"{}\")", pathFile);
+
+         error() << strMessage;
+
+         throw ::not_implemented( strMessage);
+
       }
       // registerTextureIfNeeded(name, tex, m_textures, m_textureIndexMap, m_textureList);
       
@@ -956,7 +968,7 @@ namespace gpu_opengl
    }
 
 
-   void context::clear(const ::color::color &color)
+   void context::clear(::gpu::texture * pgputexture, const ::color::color &color)
    {
 
       ::gpu::context_lock contextlock(this);
@@ -1118,12 +1130,11 @@ void main() {
       //glClearColor(0.1, 0.1, 0.1, 1.0);
       //glClear(GL_COLOR_BUFFER_BIT);
 
-
-      m_pshaderCopy->bind();
-
-      m_pshaderCopy->bind_source(ptextureParam, 0);
-
       auto pcommandbuffer = m_pgpurenderer->getCurrentCommandBuffer2(::gpu::current_frame());
+
+      m_pshaderCopy->bind(pcommandbuffer);
+
+      m_pshaderCopy->bind_source(pcommandbuffer, ptextureParam, 0);
 
       pmodelbufferFullScreenQuad->bind(pcommandbuffer);
 
@@ -1141,13 +1152,13 @@ void main() {
 
       //glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
 
-      m_pshaderCopy->unbind();
+      m_pshaderCopy->unbind(pcommandbuffer);
 
    }
 
 
    //void context::gpu_debug_message(const ::scoped_string& scopedstrMessage)
-   void context::start_debug_happening(const ::scoped_string &scopedstrMessage)
+   void context::start_debug_happening(::gpu::command_buffer * pgpucommandbuffer, const ::scoped_string &scopedstrMessage)
    {
 
       {
@@ -1281,7 +1292,6 @@ void main() {
                {},
                {},
                {},
-               {},
                // this means the vertex input layout will be null/empty
                // the full screen shader is embed in the shader code
                ::gpu::shader::e_flag_clear_default_bindings_and_attributes_descriptions
@@ -1376,7 +1386,7 @@ void main() {
                   //   VK_PIPELINE_STAGE_FRAGMENT_SHADER_BIT
                   //);
 
-                  m_pshaderBlend3->bind(ptextureDst, ptextureSrc);
+                  m_pshaderBlend3->bind(nullptr, ptextureDst, ptextureSrc);
 
                   auto r = ptextureSrc->m_rectangleTarget;
 
@@ -1483,7 +1493,7 @@ void main() {
 
                   //pcommandlist->IASetPrimitiveTopology(D3D_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
                   //vkCmdDraw(vkcommandbuffer, 3, 1, 0, 0);
-                  m_pshaderBlend3->unbind();
+                  m_pshaderBlend3->unbind(pcommandbuffer);
                }
                iLayer++;
 
@@ -2865,6 +2875,8 @@ color = vec4(c.r,c.g, c.b, c.a);
       ::gpu::context_lock contextlock(this);
 
       auto pmodel = øcreate_new<::gpu_opengl::gltf::model>();
+
+      (*(::gpu::renderable_t *)pmodel) = model;
 
       //::cast<::gpu_opvulkan::queue> pqueueGraphics = graphics_queue();
 

@@ -28,6 +28,8 @@ namespace gpu_opengl
 
 
       void initialize_hdr_texture_on_memory(::gpu::renderer *prenderer, const ::block & block) override;
+      void initialize_with_image_data(::gpu::renderer *pgpurenderer, const ::int_rectangle &rectangleTarget,
+                                      int numChannels, bool bSrgb, const void *pdata, enum_type etype) override;
       void initialize_image_texture(::gpu::renderer* prenderer, const ::int_rectangle & rectangleTarget, bool bWithDepth, const ::pointer_array < ::image::image >& imagea, enum_type etype) override;
 
       //void blend(::gpu::texture* ptexture, const ::int_rectangle& rectangleTarget) override;

@@ -46,6 +46,8 @@ namespace gpu
          virtual ::block embedded_ibl_hdri_cube_vert();
          virtual ::block embedded_ibl_hdri_cube_frag();
 
+         
+
          //virtual void initialize_equirectangular_cubemap(::gpu::context * pgpucontext, const ::file::path & pathHdri);
          /// it uses current skybox renderable in pscenebase
          //virtual void initialize_equirectangular_cubemap(::gpu::context * pgpucontext, ::graphics3d::skybox * pskybox);

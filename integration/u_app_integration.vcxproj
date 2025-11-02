@@ -130,7 +130,7 @@
     <ProjectReference Include="..\..\..\source\app\axis\u_axis.vcxproj">
       <Project>{0412ea6f-50d0-4baa-99e3-ac14fc63a879}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\source\app\base\u_base.vcxproj">
+    <ProjectReference Include="..\..\..\source\app\base\u_berg.vcxproj">
       <Project>{0680a465-39a7-4e1b-8dc1-0607a3243ea2}</Project>
     </ProjectReference>
   </ItemGroup>

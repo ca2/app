@@ -3976,6 +3976,15 @@ cert::~cert()
    }
 
 
+   ::string networking::so_error_description(long long llError)
+   {
+       int iError = (int) llError;
+
+       return bsd_socket_error(iError);
+
+   }
+
+
    } // namespace networking_bsd
 
 

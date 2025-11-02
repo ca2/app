@@ -4,12 +4,6 @@
 #include "acme/handler/extended_topic.h"
 
 
-handler_context::handler_context()
-{
-
-   m_uUpdateSerial = 0;
-
-}
 
 
 handler_context::~handler_context()

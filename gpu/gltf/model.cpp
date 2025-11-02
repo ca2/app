@@ -2,7 +2,7 @@
 // camilo on 2025-09-26 18:14 <3ThomasBorregaardSorensen!!
 #include "framework.h"
 #include "model.h"
-#include "gpu/gltf/vertex.h"
+#include "bred/gltf/vertex.h"
 #include "bred/gpu/texture.h"
 
 #include <stb/stb_image.h>
@@ -77,7 +77,7 @@ namespace gpu
 
          initialize_gpu_context_object(pgpucontext);
 
-         loadModel(model.m_path, true, model.m_bExternalPbr);
+         loadModel(model.m_pathRenderable, true, model.m_bExternalPbr);
 
       }
 
@@ -121,7 +121,9 @@ namespace gpu
             stbi_set_flip_vertically_on_load(flipTexturesVertically);
             //importer.SetIOHandler(get_assimp_iosystem());
             const aiScene *scene =
-               get_assimp_importer()->ReadFile(path, aiProcess_Triangulate | aiProcess_FlipUVs | aiProcess_CalcTangentSpace);
+               //get_assimp_importer()->ReadFile(path, aiProcess_Triangulate | aiProcess_FlipUVs | aiProcess_CalcTangentSpace);
+               get_assimp_importer()->ReadFile(path,
+                                               aiProcess_Triangulate | aiProcess_FlipUVs);
 
             if (!scene || scene->mFlags & AI_SCENE_FLAGS_INCOMPLETE || !scene->mRootNode)
             {
@@ -168,6 +170,65 @@ namespace gpu
       }
 
 
+         // Compute tangents from indexed mesh data
+      void computeTangents(::array_base<gltf::vertex> &vertices, const ::array_base<unsigned int> &indices) 
+      {
+         array_base<glm::vec3> tan1;
+         array_base<glm::vec3> tan2;
+
+         tan1.set_size(vertices.size());
+         tan2.set_size(vertices.size());
+
+         for (size_t i = 0; i < indices.size(); i += 3)
+         {
+            uint32_t i1 = indices[i + 0];
+            uint32_t i2 = indices[i + 1];
+            uint32_t i3 = indices[i + 2];
+
+            const glm::vec3 &v1 = vertices[i1].position;
+            const glm::vec3 &v2 = vertices[i2].position;
+            const glm::vec3 &v3 = vertices[i3].position;
+
+            const glm::vec2 &w1 = vertices[i1].uv;
+            const glm::vec2 &w2 = vertices[i2].uv;
+            const glm::vec2 &w3 = vertices[i3].uv;
+
+            glm::vec3 e1 = v2 - v1;
+            glm::vec3 e2 = v3 - v1;
+
+            float s1 = w2.x - w1.x;
+            float s2 = w3.x - w1.x;
+            float t1 = w2.y - w1.y;
+            float t2 = w3.y - w1.y;
+
+            float det = s1 * t2 - s2 * t1;
+            if (fabs(det) < 1e-10f)
+               continue;
+            float r = 1.0f / det;
+
+            glm::vec3 sdir = (e1 * t2 - e2 * t1) * r;
+            glm::vec3 tdir = (e2 * s1 - e1 * s2) * r;
+
+            tan1[i1] += sdir;
+            tan1[i2] += sdir;
+            tan1[i3] += sdir;
+            tan2[i1] += tdir;
+            tan2[i2] += tdir;
+            tan2[i3] += tdir;
+         }
+
+         for (size_t i = 0; i < vertices.size(); ++i)
+         {
+            const glm::vec3 &n = vertices[i].normal;
+            const glm::vec3 &t = tan1[i];
+
+            glm::vec3 tangent = glm::normalize(t - n * glm::dot(n, t));
+            float sign = (glm::dot(glm::cross(n, t), tan2[i]) < 0.0f) ? -1.0f : 1.0f;
+
+            vertices[i].tangent = glm::vec4(tangent, sign);
+         }
+      }
+
       // convert assimp mesh to our own mesh class
       ::pointer <::gpu::gltf::mesh > model::processMesh(aiMesh *mesh, const aiScene *scene)
       {
@@ -186,6 +247,8 @@ namespace gpu
 
          }
 
+         bool bHasTangentsAndBitangents = mesh->HasTangentsAndBitangents();
+
          // vertices
          for (unsigned int i = 0; i < mesh->mNumVertices; i++)
          {
@@ -197,7 +260,7 @@ namespace gpu
             position.y = mesh->mVertices[i].y;
             position.z = mesh->mVertices[i].z;
 
-            vertex.mPosition = position;
+            vertex.position = position;
 
             // normal
             glm::vec3 normal;
@@ -205,7 +268,7 @@ namespace gpu
             normal.y = mesh->mNormals[i].y;
             normal.z = mesh->mNormals[i].z;
 
-            vertex.mNormal = normal;
+            vertex.normal = normal;
 
             // texture coordinates
             if (mesh->mTextureCoords[0])
@@ -213,50 +276,53 @@ namespace gpu
                glm::vec2 textureCoordinates;
                textureCoordinates.x = mesh->mTextureCoords[0][i].x;
                textureCoordinates.y = mesh->mTextureCoords[0][i].y;
-               vertex.mTextureCoordinates = textureCoordinates;
+               vertex.uv = textureCoordinates;
             }
             else
             {
-               vertex.mTextureCoordinates = glm::vec2(0.0f, 0.0f);
+               vertex.uv = glm::vec2(0.0f, 0.0f);
             }
 
-                        // tangents
-            glm::vec4 color;
-            if (mesh->mColors[0])
+            //            // tangents
+            //glm::vec4 color;
+            //if (mesh->mColors[0])
+            //{
+            //   color.x = mesh->mColors[0]->r;
+            //   color.y = mesh->mColors[0]->g;
+            //   color.z = mesh->mColors[0]->b;
+            //   color.w = mesh->mColors[0]->a;
+            //}
+            //else
+            //{
+            //   color = glm::vec4(1.0f);
+            //}
+            //vertex.color = color;
+
+            if (bHasTangentsAndBitangents)
             {
-               color.x = mesh->mColors[0]->r;
-               color.y = mesh->mColors[0]->g;
-               color.z = mesh->mColors[0]->b;
-               color.w = mesh->mColors[0]->a;
+               // tangents
+               glm::vec4 tangent4;
+               glm::vec3 tangent;
+               tangent.x = mesh->mTangents[0].x;
+               tangent.y = mesh->mTangents[0].y;
+               tangent.z = mesh->mTangents[0].z;
+               glm::vec3 bitangent;
+               bitangent.x = mesh->mBitangents[0].x;
+               bitangent.y = mesh->mBitangents[0].y;
+               bitangent.z = mesh->mBitangents[0].z;
+               tangent4.x = tangent.x;
+               tangent4.y = tangent.y;
+               tangent4.z = tangent.z;
+               tangent4.w = (::glm::dot(::glm::cross(normal, tangent), bitangent) < 0.0f) ? -1.0f : 1.0f;
+               vertex.tangent = tangent4;
             }
-            else
-            {
-               color = glm::vec4(1.0f);
-            }
-            vertex.mColor = color;
 
-            // tangents
-            glm::vec4 tangent4;
-            glm::vec3 tangent;
-            tangent.x = mesh->mTangents[0].x;
-            tangent.y = mesh->mTangents[0].y;
-            tangent.z = mesh->mTangents[0].z;
-            glm::vec3 bitangent;
-            bitangent.x = mesh->mBitangents[0].x;
-            bitangent.y = mesh->mBitangents[0].y;
-            bitangent.z = mesh->mBitangents[0].z;
-            tangent4.x = tangent.x;
-            tangent4.y = tangent.y;
-            tangent4.z = tangent.z;
-            tangent4.w = (::glm::dot(::glm::cross(normal, tangent), bitangent) < 0.0f) ? -1.0f : 1.0f;
-            vertex.mTangent = tangent4;
-
-            //// bitangents
+            ////// bitangents
             //glm::vec3 bitangent;
             //bitangent.x = mesh->mBitangents[0].x;
             //bitangent.y = mesh->mBitangents[0].y;
             //bitangent.z = mesh->mBitangents[0].z;
-            //vertex.mBitangent = bitangent;
+            //vertex.bitangent = bitangent;
 
             vertices.add(vertex);
          }
@@ -272,6 +338,15 @@ namespace gpu
                indices.add(face.mIndices[j]);
 
             }
+
+         }
+
+         if (!bHasTangentsAndBitangents)
+         {
+
+
+               // Compute tangents from indexed mesh data
+            computeTangents(vertices, indices);
 
          }
 
@@ -368,11 +443,11 @@ namespace gpu
 
          auto pmesh = øcreate<::gpu::gltf::mesh>();
 
+         pmesh->m_pgpucontext = m_pgpucontext;
+
          pmesh->initialize_gpu_gltf_mesh(vertices, indices, pmaterial);
 
-
-
-return pmesh;
+         return pmesh;
 
       }
 

@@ -5,6 +5,8 @@ project(bred CXX)
 list(APPEND library_source
    const/idpool.cpp
    const/idpool.h
+   gltf/vertex.cpp
+   gltf/vertex.h
    gpu/_.cpp
    gpu/_.h
    gpu/_constant.h

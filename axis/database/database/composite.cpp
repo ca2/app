@@ -123,7 +123,7 @@ namespace database
    string composite::escape(const ::scoped_string & scopedstr)
    {
 
-      return scopedstr;
+      return m_pdatabase->escape(scopedstr);
 
    }
 

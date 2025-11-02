@@ -267,7 +267,7 @@ void main() {
             m_pshaderCopyTextureOnEndDraw->m_bDisableDepthTest = true;
 
             m_pshaderCopyTextureOnEndDraw->initialize_shader_with_block(
-               m_pgpurenderer, pvertexshader, pfragmentshader, {}, {}, {},
+               m_pgpurenderer, pvertexshader, pfragmentshader, {}, {},
                m_pgpucontext->input_layout(::gpu_properties<::graphics3d::sequence2_uv>()));
          }
 
@@ -300,9 +300,9 @@ void main() {
             auto pmodelbufferFullscreenQuad =
                m_pgpucontext->sequence2_uv_fullscreen_quad_model_buffer(::gpu::current_frame());
 
-            m_pshaderCopyTextureOnEndDraw->_bind();
+            m_pshaderCopyTextureOnEndDraw->_bind(pcommandbuffer, ::gpu::e_scene_none);
 
-            m_pshaderCopyTextureOnEndDraw->bind_source(pgputexture);
+            m_pshaderCopyTextureOnEndDraw->bind_source(pcommandbuffer, pgputexture);
 
             pmodelbufferFullscreenQuad->bind(pcommandbuffer);
 
@@ -364,7 +364,7 @@ void main() {
 
             // debug() << "gl error";
 
-            m_pshaderCopyTextureOnEndDraw->unbind();
+            m_pshaderCopyTextureOnEndDraw->unbind(pcommandbuffer);
          }
 
 

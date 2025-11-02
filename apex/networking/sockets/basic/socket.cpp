@@ -62,7 +62,7 @@ namespace sockets
    //int socket::close_socket(socket_id s)
    //{
 
-   //   return ::closesocket(s);
+   //   return ::_close_socket(s);
 
    //}
 

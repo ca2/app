@@ -4,8 +4,10 @@
 #include "framework.h"
 #include "file_system.h"
 #include "directory_system.h"
-#include "path_system.h"
+#include "file_system_real_path_interface.h"
 #include "listing.h"
+#include "path_system.h"
+#include "acme/crypto/crypto.h"
 #include "acme/exception/interface_only.h"
 #include "acme/exception/io.h"
 #include "acme/filesystem/file/file.h"
@@ -26,6 +28,8 @@ CLASS_DECL_ACME void exception_message_box(::particle* pparticle, ::exception& e
 
 file_system::file_system()
 {
+
+   m_mapFileSystemItem.InitHashTable(256 * 1024 - 1);
 
 }
 
@@ -1763,11 +1767,16 @@ void file_system::_erase(const ::file::path& path)
 // }
 //
 
+
+
+
 void file_system::initialize(::particle* pparticle)
 {
 
    /*auto estatus = */
    ::object::initialize(pparticle);
+
+   defer_create_synchronization();
 
    //if(!estatus)
    //{
@@ -1804,9 +1813,173 @@ void file_system::init_system()
 }
 
 
+int file_system::file_system_item_slot_index(const ::scoped_string& scopedstrSlotName)
+{
+
+   _synchronous_lock synchronouslock(this->synchronization());
+
+   auto i = m_straFileSystemItemSlot.find_first(scopedstrSlotName);
+
+   if (i >= 0)
+   {
+
+      return (int) i;
+
+   }
+
+   if (m_straFileSystemItemSlot.get_size() >= MAX_FILE_SYSTEM_ITEM_SLOT_COUNT)
+   {
+
+      throw ::exception(error_failed);
+
+   }
+
+   i = m_straFileSystemItemSlot.add(scopedstrSlotName);
+
+   return (int) i;
+
+}
+
+
 //void file_system::update_module_path()
 //{
 //
 //   return ::success;
 //
 //}
+
+
+//::file::path file_system::_calculate_real_path(const ::scoped_string& scopedstrName, ::file_system_interface* pfilesysteminterface)
+//{
+//
+//   ::file::path path;
+//
+//   if (pfilesysteminterface != nullptr)
+//   {
+//
+//      path = pfilesysteminterface->_calculate_real_path(scopedstrName);
+//
+//   }
+//   else
+//   {
+//
+//      path = this->path_system()->real_path(scopedstrName);
+//
+//   }
+//
+//
+//   return path;
+//
+//}
+
+
+//bool file_system::_file_system_file_exists(const ::file_system_cache_item & pfilesystemcacheitem)
+//{
+//
+//   return __exists(pfilesystemcacheitem->path());
+//
+//}
+//
+//
+//bool file_system::_file_system_is_folder(const ::file_system_cache_item & pfilesystemcacheitem)
+//{
+//
+//   return directory_system()->__is(pfilesystemcacheitem->path());
+//
+//}
+
+
+bool file_system::_file_system_has_script(const ::file_system_cache_item & pfilesystemcacheitem)
+{
+
+   return this->__safe_find_string(pfilesystemcacheitem->path(), "<?") >= 0;
+
+}
+
+
+::string file_system::_file_system_expanded_md5(const ::file_system_cache_item & pfilesystemcacheitem)
+{
+
+   return this->crypto()->md5(pfilesystemcacheitem->path());
+
+}
+
+
+::file_system_cache_item file_system::file_system_item(const ::scoped_string& scopedstrName, ::file_system_real_path_interface* pfilesystemrealpathinterface)
+{
+
+   auto pfilesystemitem = get_file_system_item(
+      scopedstrName,
+      ::is_set(pfilesystemrealpathinterface) ?
+      pfilesystemrealpathinterface :
+      get_file_system_real_path_interface());
+
+   if (::is_null(pfilesystemitem))
+   {
+
+      return { scopedstrName , nullptr};
+
+   }
+
+   pfilesystemitem->m_pfilesysteminterface = this;
+
+   return { scopedstrName, pfilesystemitem };
+
+}
+
+
+
+::file_system_item * file_system::get_file_system_item(const ::scoped_string& scopedstrName, ::file_system_real_path_interface* pfilesystemrealpathinterface)
+{
+
+   ::file::real_and_logical_path realandlogicalpath;
+
+   if (::is_set(pfilesystemrealpathinterface))
+   {
+
+      realandlogicalpath = pfilesystemrealpathinterface->real_path(scopedstrName);
+
+   }
+   else
+   {
+
+      realandlogicalpath = { this->path_system()->real_path(scopedstrName), scopedstrName };
+
+   }
+
+   if (!realandlogicalpath.is_ok())
+   {
+
+      return nullptr;
+
+   }
+
+   _synchronous_lock synchronouslock(m_pmutexFileSystemItem, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+
+   auto& pfilesystemitem = m_mapFileSystemItem[realandlogicalpath.m_pathReal1];
+
+   if (pfilesystemitem.m_estatus != success_already_set)
+   {
+
+      øconstruct_new(pfilesystemitem);
+
+      pfilesystemitem->m_pathReal1 = realandlogicalpath.m_pathReal1;
+
+      pfilesystemitem->m_pathLogical1 = realandlogicalpath.m_pathLogical1;
+
+      pfilesystemitem->m_pfilesysteminterface = this;
+
+      auto etype = realandlogicalpath.m_pathReal1.type();
+
+      pfilesystemitem->m_etype = etype;
+
+      pfilesystemitem.m_estatus = success_already_set;
+
+   }
+
+   return pfilesystemitem;
+
+}
+
+
+

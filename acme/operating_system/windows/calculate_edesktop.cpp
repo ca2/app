@@ -2,6 +2,7 @@
 // Created by camilo on 2024-10-20 00:03 <3ThomasBorregaardSorensen!!
 //
 #include "framework.h"
+#include "acme/constant/windowing2.h"
 
 
 namespace windowing

@@ -1054,7 +1054,10 @@
     </ResourceCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="dynamic_source\aaa_cache_item.h" />
+    <ClInclude Include="dynamic_source\data_object.h" />
     <ClInclude Include="dynamic_source\exit_exception.h" />
+    <ClInclude Include="dynamic_source\fallback_script_instance.h" />
     <ClInclude Include="dynamic_source\httpd_socket.h" />
     <ClInclude Include="dynamic_source\httpd_incoming_socket.h" />
     <ClInclude Include="dynamic_source\library.h" />
@@ -1082,6 +1085,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dynamic_source\exit_exception.cpp" />
+    <ClCompile Include="dynamic_source\fallback_script_instance.cpp" />
     <ClCompile Include="dynamic_source\httpd_listen_socket.cpp" />
     <ClCompile Include="dynamic_source\httpd_incoming_socket.cpp" />
     <ClCompile Include="dynamic_source\library.cpp" />

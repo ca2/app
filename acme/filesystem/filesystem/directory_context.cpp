@@ -2603,7 +2603,7 @@ bool directory_context::matter_enumerate(const ::file::path& path, ::file::listi
 
             strMatter = strLs / pathItem;
 
-            strMatter.replace_with("/", "\\");
+            //strMatter.replace_with("/", "\\");
 
             auto etype = file()->resource_get_type(strMatter, &strLogNotFound);
 

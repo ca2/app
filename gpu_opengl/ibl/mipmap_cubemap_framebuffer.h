@@ -45,7 +45,7 @@ namespace gpu_opengl
           * Set the mip level to render with.
           * @param mipLevel
           */
-         void setMipLevel(unsigned int level) override;
+         void set_current_mip(int iCurrentMip) override;
 
 
          // /**
@@ -66,7 +66,7 @@ namespace gpu_opengl
           * Set which cube face texture to render to.
           * @param index
           */
-         void setCubeFace(unsigned int faceIndex) override;
+         void set_cube_face(int iFace) override;
 
 
          unsigned int getCubemapTextureId();

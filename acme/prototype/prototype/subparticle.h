@@ -35,27 +35,21 @@ public:
 #if REFERENCING_DEBUGGING
    subparticle();
 #else
-   subparticle() :
-      ::quantum(), 
-      m_countReference(1)
-   {
-
-
-   }
+   subparticle() : m_countReference(1) { }
 #endif
 
-
-#if REFERENCING_DEBUGGING
-   subparticle(const ::e_flag & eflag, const ::e_status & estatus = undefined);
-#else
-   subparticle(const ::e_flag & eflag, const ::e_status & estatus = undefined) :
-      ::quantum(eflag, estatus),
-      m_countReference(1)
-   {
-         
-         
-   }
-#endif
+//
+//#if REFERENCING_DEBUGGING
+//   subparticle(const ::e_flag & eflag, const ::e_status & estatus = undefined);
+//#else
+//   subparticle(const ::e_flag & eflag, const ::e_status & estatus = undefined) :
+//      ::quantum(eflag, estatus),
+//      m_countReference(1)
+//   {
+//         
+//         
+//   }
+//#endif
 
 
 #if REFERENCING_DEBUGGING

@@ -24,6 +24,7 @@
 #include "acme/platform/node.h"
 #include "acme/platform/department.h"
 #include "acme/platform/system.h"
+#include "acme/constant/windowing2.h"
 
 
 namespace acme

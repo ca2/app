@@ -20,8 +20,8 @@ protected:
    ::pointer < ::map_particle < atom_map_base < ::pointer < ::parallelization::queue > > > >    m_pqueuemap;
 
 
-   ::procedure_array                                                    m_procedureaDestroying;
-   ::comparable_array< ::particle * >                                   m_particleaNotify;
+   ::pointer < ::procedure_array >                                      m_pprocedureaDestroying;
+   ::pointer < ::comparable_array< ::particle * > >                     m_pparticleaNotify;
 
 
 public:
@@ -32,17 +32,8 @@ public:
    ::object_meta *               m_pmeta;
 
 
-   object(const ::e_flag & eflag = e_flag_none, const ::e_status & estatus = undefined) :
-      property_object(eflag, estatus),
-      m_pmeta(nullptr) 
-   {
-      
-      m_pobjectParentTask = nullptr;
-      m_pparticleContext = nullptr;
-
-   }
+   object() : m_pmeta(nullptr), m_pparticleContext(nullptr) { }
    ~object() override;
-
 
 
 #ifdef _DEBUG
@@ -64,8 +55,10 @@ public:
 #endif
 
 
-   ::procedure_array & destroyinga() { return m_procedureaDestroying; }
-   ::comparable_array< ::particle * > & notifya() { return m_particleaNotify; }
+   ::procedure_array_base& destroyinga() { ødefer_raw_construct_new(m_pprocedureaDestroying);
+   return *m_pprocedureaDestroying; }
+   ::comparable_array_base< ::particle* >& notifya() { ødefer_raw_construct_new(m_pparticleaNotify);
+   return *m_pparticleaNotify; }
    void on_notify(::particle * pparticle, enum_id eid) override;
 
 

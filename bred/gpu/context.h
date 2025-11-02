@@ -160,14 +160,22 @@ namespace gpu
 
 
 
-      virtual void start_debug_happening(const ::scoped_string& scopedstrDebugHappening);
-      virtual void end_debug_happening();
+      virtual void start_debug_happening(::gpu::command_buffer *pgpucommandbuffer,
+                                         const ::scoped_string &scopedstrDebugHappening);
+      virtual void end_debug_happening(::gpu::command_buffer *pgpucommandbuffer);
 
-      virtual void load_texture(::pointer < ::gpu::texture > & ptexture, const ::file::path& path);
+      virtual void load_texture(::pointer < ::gpu::texture > & ptexture, const ::file::path& path, bool bIsSrgb);
 
-
+      virtual void layout_input_layout_properties(::gpu::properties *pproperties);
+      virtual void layout_push_constants(::gpu::properties & properties);
+      virtual void layout_properties_default(::gpu::properties &properties);
 
       virtual void defer_make_current();
+
+      virtual ::glm::mat4 defer_transpose(const ::glm::mat4 & m);
+      virtual ::glm::mat4 defer_clip_remap_projection(const ::glm::mat4 &m);
+      virtual ::glm::mat4 defer_remap_impact_matrix(const ::glm::mat4 &m);
+
 
       virtual ::pointer < ::gpu::command_buffer > beginSingleTimeCommands(::gpu::queue * pgpuqueue, ::gpu::enum_command_buffer ecommandbuffer = ::gpu::e_command_buffer_graphics);
       virtual void endSingleTimeCommands(::gpu::command_buffer * pcommandbuffer);
@@ -176,9 +184,6 @@ namespace gpu
       virtual void defer_end_upload_command_buffer();
 
 
-      virtual ::gpu::queue * transfer_queue();
-      virtual ::gpu::queue * graphics_queue();
-      virtual ::gpu::queue * present_queue();
 
 
 
@@ -210,6 +215,8 @@ namespace gpu
 
       virtual void engine_on_frame_context_initialization();
 
+      virtual void onBeforePreloadGlobalAssets();
+
       //bool task_iteration() override;
 
       virtual void lock_context();
@@ -217,7 +224,7 @@ namespace gpu
 
       virtual ::gpu::enum_output get_eoutput();
 
-      virtual ::pointer < ::gpu::input_layout > input_layout(const ::gpu::properties & properties);
+      virtual ::pointer < ::gpu::input_layout > input_layout(const ::gpu::property * pproperty);
 
       template < typename VERTEX >
       ::pointer < ::gpu::input_layout > input_layout()
@@ -310,7 +317,7 @@ namespace gpu
       virtual class image_data image32(const ::payload & payloadFile);
 
 
-      virtual void clear(const ::color::color& color);
+      virtual void clear(::gpu::texture * ptexture, const ::color::color& color);
 
 
       virtual void create_global_ubo(int iSize, int iFrameCount);
@@ -406,7 +413,7 @@ namespace gpu
       virtual ::pointer<::graphics3d::renderable> load_gltf_model(const ::gpu::renderable_t & model);
 
       virtual ::pointer<::graphics3d::renderable> _load_gltf_model(const ::gpu::renderable_t & model);
-
+      virtual void set_viewport(::gpu::command_buffer *pgpucommandbuffer, const ::int_rectangle &rectangle);
 
 //      /// @brief generatePrefilteredEnvMap
 //      /// @param environmentCubeExisting 

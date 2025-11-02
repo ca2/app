@@ -28,7 +28,8 @@ namespace gpu
 		::gpu::enum_type		m_etype =::gpu::e_type_none;
 		const property* m_pproperties = nullptr;
 		int m_iArraySize = 0;
-		int m_iCachedSize = -1;
+		int m_iCachedSizeWithSamplers = -1;
+      int m_iCachedSizeWithoutSamplers = -1;
 		int m_iCachedOffset = -1;
 
 		property() {}
@@ -41,31 +42,34 @@ namespace gpu
 		}
 
 		property(const_char_pointer pszName, const property * pproperty, int iSize = 1);
-		property(const property& property):
-			m_pszName(property.m_pszName),
-			m_etype(property.m_etype),
-			m_pproperties(property.m_pproperties),
-			m_iArraySize(property.m_iArraySize),
-			m_iCachedSize(property.m_iCachedSize),
-			m_iCachedOffset(property.m_iCachedOffset)
+      property(const property &property) :
+         m_pszName(property.m_pszName), 
+         m_etype(property.m_etype),
+         m_pproperties(property.m_pproperties),
+         m_iArraySize(property.m_iArraySize), 
+         m_iCachedSizeWithSamplers(property.m_iCachedSizeWithSamplers),
+         m_iCachedSizeWithoutSamplers(property.m_iCachedSizeWithoutSamplers),
+         m_iCachedOffset(property.m_iCachedOffset)
 		{
 		}
 
 
 		inline const property* find(const_char_pointer pszName) const;
 
-		inline int get_size() const;
+		inline int get_size(bool bWithSamplers) const;
 
 		inline ::collection::count count() const;
 
 		inline int get_offset(const_char_pointer pszName) const;
 
-		inline int get_item_size() const
+      inline int find_index(const_char_pointer pszName) const;
+
+		inline int get_item_size(bool bWithSamplers) const
 		{
-			if (m_etype == e_type_properties_array)
+			if (m_etype == e_type_array)
 			{
 
-				return m_pproperties->get_size() * m_iArraySize;
+				return m_pproperties->get_size(bWithSamplers) * m_iArraySize;
 			}
 			else
 			{
@@ -93,7 +97,11 @@ namespace gpu
 
 			}
 
-			auto iLenItem = p->get_item_size();
+         ::string strName(p->m_pszName);
+
+         strName.begins_eat("sampler:");
+
+         auto iLenItem = p->get_item_size(true);
 
 			if (p->m_iCachedOffset < 0)
 			{
@@ -102,14 +110,14 @@ namespace gpu
 
 			}
 
-			if (p->m_iCachedSize < 0)
+			if (p->m_iCachedSizeWithSamplers < 0)
 			{
 
-				((property*)p)->m_iCachedSize = iLenItem;
+				((property*)p)->m_iCachedSizeWithSamplers = iLenItem;
 
 			}
 
-			if (!strcmp(p->m_pszName, pszName))
+			if (strName == pszName)
 			{
 
 				return p;
@@ -125,7 +133,7 @@ namespace gpu
 	}
 
 
-	inline int property::get_size() const
+	inline int property::get_size(bool bWithSamplers) const
 	{
 		auto p = this;
 		int iLen = 0;
@@ -140,9 +148,18 @@ namespace gpu
 
 			}
 
-			auto iLenItem = p->get_item_size();
+         ::string strName(p->m_pszName);
 
-			iLen += iLenItem;
+         bool bSampler = strName.begins("sampler:");
+
+			auto iLenItem = p->get_item_size(bWithSamplers);
+
+         if (bWithSamplers || !bSampler)
+         {
+
+            iLen += iLenItem;
+
+         }
 
 			p++;
 
@@ -192,14 +209,18 @@ namespace gpu
 
 			}
 
-			if (!::strcmp(p->m_pszName, pszName))
+         ::string strName(p->m_pszName);
+
+         strName.begins_eat("sampler:");
+
+			if (strName == pszName)
 			{
 
 				return iLen;
 
 			}
 
-			auto iLenItem = p->get_item_size();
+			auto iLenItem = p->get_item_size(true);
 
 			iLen += iLenItem;
 
@@ -210,6 +231,52 @@ namespace gpu
 
 	}
 
+	inline int property::find_index(const_char_pointer pszName) const
+   {
+      auto p = this;
+      int iLen = 0;
+      int iIndex = 0;
+
+      while (true)
+      {
+
+         if (::is_null(p->m_pszName))
+         {
+
+            return iIndex;
+         }
+
+         ::string strName(p->m_pszName);
+
+         strName.begins_eat("sampler:");
+
+         if (strName == pszName)
+         {
+
+            return iIndex;
+         }
+
+         auto iLenItem = p->get_item_size(true);
+
+         iLen += iLenItem;
+
+         p++;
+         iIndex++;
+      }
+
+      
+   }
+
+   class property_data
+   {
+   public:
+
+
+      memsize m_iOffset;
+
+
+   };
+
 
 	class properties_reference;
 
@@ -217,9 +284,12 @@ namespace gpu
 	{
 	public:
 		
-		::block    m_block;
+		::block     m_blockWithSamplers;
+      ::block     m_blockWithoutSamplers;
 		
 		const ::gpu::property* m_pproperties;
+
+      ::array_base<property_data> m_propertydataa;
 
 		properties_interface()
 		{
@@ -231,15 +301,15 @@ namespace gpu
 		properties_interface(const ::gpu::properties_interface& properties) :
 			m_pproperties(properties.m_pproperties)
 		{
-			m_block = properties.m_block;
+			m_blockWithSamplers = properties.m_blockWithSamplers;
+         m_blockWithoutSamplers = properties.m_blockWithoutSamplers;
 
 		}
 		properties_interface(const ::gpu::property* pproperties)
 		{
 			set(pproperties);
 		}
-		properties_interface(const ::gpu::property* pproperties, const ::block & block):
-			m_block(block)
+      properties_interface(const ::gpu::property *pproperties, const ::block &blockWithSamplers, const ::block &blockWithoutSamplers) :			m_blockWithSamplers(blockWithSamplers), m_blockWithoutSamplers(blockWithoutSamplers)
 		{
 			set(pproperties);
 		}
@@ -248,14 +318,31 @@ namespace gpu
 			m_pproperties = pproperties;
 
 		}
-		memsize size() const { return m_block.size(); }
+		memsize size(bool bWithSamplers) const { return bWithSamplers? m_blockWithSamplers.size():m_blockWithoutSamplers.size(); }
 		::collection::count count() const { return ::is_null(m_pproperties) ? 0:m_pproperties->count(); }
-		unsigned char* data() const { return m_block.data(); }
+      unsigned char *data(bool bWithSamplers) const { return bWithSamplers ? m_blockWithSamplers.data():m_blockWithoutSamplers.data(); }
 		void* find(const_char_pointer pszName) {
-			auto iOffset = m_pproperties->get_offset(pszName);
-			return m_block.data() + iOffset;
+         auto iIndex = m_pproperties->find_index(pszName);
+         if (iIndex < 0)
+         {
+            throw ::exception(error_not_found);
+
+         }
+         if (iIndex >= m_propertydataa.count())
+         {
+            throw ::exception(error_wrong_state);
+
+         }
+         auto iOffset = m_propertydataa[iIndex].m_iOffset;
+         return m_blockWithSamplers.data() + iOffset;
 		}
-		template < typename T>
+      bool contains(const_char_pointer pszName) const
+      {
+         if (::is_null(m_pproperties))
+            return false;
+         return ::is_set(m_pproperties->find(pszName));
+      }
+      template<typename T>
 		T& as(const_char_pointer pszName) { return *(T*)find(pszName); }
 		float& as_float(const_char_pointer pszName) { return as<float>(pszName); }
 		int& as_int(const_char_pointer pszName) { return as<int>(pszName); }
@@ -284,8 +371,8 @@ namespace gpu
 			}
 
 			return { pproperty->m_pproperties,
-				m_block(pproperty->m_iCachedOffset,
-					pproperty->m_iCachedSize) };
+				m_blockWithSamplers(pproperty->m_iCachedOffset, pproperty->m_iCachedSizeWithSamplers),
+                 m_blockWithoutSamplers(pproperty->m_iCachedOffset, pproperty->m_iCachedSizeWithoutSamplers)};
 
 		}
 
@@ -300,9 +387,12 @@ namespace gpu
 	public:
 		
 		
-		properties_reference(const property* pproperty, const ::block& block)
+		properties_reference(const property *pproperty, const ::block &blockWithSamplers,
+                           const ::block &blockWithoutSamplers)
 		{
-			m_block = block;
+			m_blockWithSamplers = blockWithSamplers;
+         m_blockWithoutSamplers = blockWithoutSamplers;
+         
 			m_pproperties = pproperty;
 
 			//m_propertya.add(*pproperty);
@@ -389,12 +479,15 @@ namespace gpu
 		void set_properties(const ::gpu::property* pproperties)
 		{
 			properties_interface::set(pproperties);
-			m_memory.set_size(m_pproperties->get_size());
-			m_block.begin() = m_memory.data();
-			m_block.end() = m_memory.end();
+			m_memory.set_size(m_pproperties->get_size(true));
+			m_blockWithSamplers.begin() = m_memory.data();
+         m_blockWithSamplers.end() = m_memory.end();
+         m_blockWithoutSamplers.begin() = m_memory.data();
+         m_blockWithoutSamplers.end() = m_blockWithoutSamplers.begin() + m_pproperties->get_size(false);
 
 		}
-
+      ::block block_with_samplers() { return m_blockWithSamplers; }
+      ::block block_without_samplers() { return m_blockWithoutSamplers; }
 		
 		template < typename TYPE >
 		void set()
@@ -410,7 +503,7 @@ namespace gpu
 
 	inline property::property(const_char_pointer pszName,  const property * pproperty, int iSize):
 		m_pszName(pszName), 
-		m_etype(::gpu::e_type_properties_array),
+		m_etype(::gpu::e_type_array),
 		m_pproperties(pproperty),
 		m_iArraySize(iSize)
 	{
@@ -424,14 +517,15 @@ namespace gpu
 		auto pproperty = m_pproperties->find(pszName);
 
 		return { pproperty,
-			m_block(pproperty->m_iCachedOffset,
-				pproperty->m_iCachedSize) };
+			m_blockWithSamplers(pproperty->m_iCachedOffset,
+				pproperty->m_iCachedSizeWithSamplers),
+              m_blockWithoutSamplers(pproperty->m_iCachedOffset, pproperty->m_iCachedSizeWithoutSamplers)};
 	}
 
 	inline properties_reference properties_interface::operator[](::collection::index i)
 	{
 
-		if (m_pproperties->m_etype != ::gpu::e_type_properties_array)
+		if (m_pproperties->m_etype != ::gpu::e_type_array)
 		{
 
 			throw ::exception(error_wrong_state);
@@ -446,10 +540,12 @@ namespace gpu
 
 		auto pproperty = m_pproperties;
 
-		int iSize = pproperty->m_pproperties->get_size();
-		int iOffset = iSize * (int) i;
+		int iSizeWithSamplers = pproperty->m_pproperties->get_size(true);
+      int iOffset = iSizeWithSamplers * (int)i;
 
-		return { pproperty->m_pproperties, m_block(iOffset, iSize) };
+		return { pproperty->m_pproperties, 
+         m_blockWithSamplers(iOffset, iSizeWithSamplers),
+              m_blockWithoutSamplers(iOffset, iSizeWithSamplers)};
 
 
 	}

@@ -4,7 +4,7 @@
 #include "equirectangular_cubemap.h"
 #include "bred/gpu/context.h"
 #include "bred/graphics3d/skybox.h"
-
+#include "bred/gpu/device.h"
 #include <glm/gtc/matrix_transform.hpp>
 #include "glad/glad.h"
 #include "glm/glm.hpp"
@@ -66,7 +66,7 @@ namespace gpu_opengl
       {
          // Timer timer;
 
-         auto pgpucommandbuffer = m_pgpucontext->beginSingleTimeCommands(m_pgpucontext->graphics_queue());
+         auto pgpucommandbuffer = m_pgpucontext->beginSingleTimeCommands(m_pgpucontext->m_pgpudevice->graphics_queue());
          glm::mat4 model = ::gpu::gltf::mIndentity4;
          glm::mat4 cameraAngles[] = {glm::lookAt(::gpu::gltf::origin, ::gpu::gltf::unitX, -::gpu::gltf::unitY),
                                      glm::lookAt(::gpu::gltf::origin, -::gpu::gltf::unitX, -::gpu::gltf::unitY),
@@ -82,7 +82,7 @@ namespace gpu_opengl
 
          // render the equirectangular HDR texture to a cubemap
          //m_pframebuffer->bind();
-         m_pshaderHdri->bind(m_pframebuffer->m_ptexture);
+         m_pshaderHdri->bind(nullptr, m_pframebuffer->m_ptexture);
 
          // render to each side of the cubemap
          for (auto i = 0; i < 6; i++)
@@ -90,7 +90,10 @@ namespace gpu_opengl
             
             m_pshaderHdri->setModelViewProjectionMatrices(model, cameraAngles[i], projection);
             
-            m_pframebuffer->setCubeFace(i);
+            m_pframebuffer->setCubeFace(i, m_pshaderHdri);
+            
+            m_pshaderHdri->push_properties(pgpucommandbuffer);
+
 
             glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
             
@@ -99,7 +102,7 @@ namespace gpu_opengl
                 // auto pshader = pcommandbuffer->m_pgpurendertarget->m_pgpurenderer->m_pgpucontext->
             //   m_pshaderBound;
 
-            m_pshaderHdri->set_int("hdri", 0);
+            //m_pshaderHdri->set_int("hdri", 0);
 
 
             m_phdricube->draw(pgpucommandbuffer);

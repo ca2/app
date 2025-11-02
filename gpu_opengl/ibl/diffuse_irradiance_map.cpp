@@ -5,6 +5,7 @@
 #include "bred/gpu/command_buffer.h"
 #include "bred/gpu/context.h"
 #include "bred/gpu/context_lock.h"
+#include "bred/gpu/device.h"
 #include "bred/graphics3d/renderable.h"
 #include "bred/graphics3d/scene_base.h"
 #include "bred/graphics3d/skybox.h"
@@ -78,14 +79,14 @@ namespace gpu_opengl
 
 
 
-      void diffuse_irradiance_map::compute()
+      void diffuse_irradiance_map::computeIrradianceMap(::gpu::command_buffer *pgpucommandbuffer)
       {
 
          ::gpu::context_lock contextlock(m_pgpucontext);
 
          //Timer timer;
 
-         auto pgpucommandbuffer = m_pgpucontext->beginSingleTimeCommands(m_pgpucontext->graphics_queue());
+         //auto pgpucommandbuffer = m_pgpucontext->beginSingleTimeCommands(m_pgpucontext->m_pgpudevice->graphics_queue());
 
          glm::mat4 model = ::gpu::gltf::mIndentity4;
          glm::mat4 cameraAngles[] =
@@ -112,7 +113,7 @@ namespace gpu_opengl
          glViewport(0, 0, m_udiffuse_irradiance_mapWidth, m_udiffuse_irradiance_mapHeight);
          GLCheckError("");
          //m_pdiffuseIrradianceFramebuffer->bind();
-         m_pshaderDiffuseIrradiance->bind(m_pdiffuseIrradianceFramebuffer->m_ptexture);
+         m_pshaderDiffuseIrradiance->bind(nullptr, m_pdiffuseIrradianceFramebuffer->m_ptexture);
 
 
          
@@ -130,12 +131,14 @@ namespace gpu_opengl
          for (auto i = 0; i < 6; i++)
          {
             m_pshaderDiffuseIrradiance->setModelViewProjectionMatrices(model, cameraAngles[i], projection);
-            m_pdiffuseIrradianceFramebuffer->setCubeFace(i);
+            m_pdiffuseIrradianceFramebuffer->setCubeFace(i, m_pshaderDiffuseIrradiance);
 
             glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
             GLCheckError("");
 
-            m_pshaderDiffuseIrradiance->set_int("environmentCubemap", 0);
+            m_pshaderDiffuseIrradiance->push_properties(pgpucommandbuffer);
+
+            //m_pshaderDiffuseIrradiance->set_int("environmentCubemap", 0);
             glBindTexture(GL_TEXTURE_CUBE_MAP, ptextureSkybox->m_gluTextureID);
             // pgpucommandbuffer->m_erendersystem = ::graphics3d::e_render_system_skybox_ibl;
             pcube->bind(pgpucommandbuffer);

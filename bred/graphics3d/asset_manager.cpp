@@ -186,6 +186,8 @@ namespace graphics3d
 
       auto pgpucontext = m_pengine->gpu_context();
 
+      pgpucontext->onBeforePreloadGlobalAssets();
+
       //::property_set modelJson;
       // modelJson.parse_network_payload()
 
@@ -214,7 +216,7 @@ namespace graphics3d
                   {
                      // auto model = loadObjModel(name, path, false);
                      informationf("[asset_manager] Successfully loaded OBJ model '%s' from '%s'", prenderable->m_strName.c_str(),
-                                 prenderable->m_path.c_str());
+                                 prenderable->m_pathRenderable.c_str());
                   }
                   else if (prenderable->renderable_type() == ::gpu::e_renderable_type_gltf)
                   {
@@ -231,13 +233,13 @@ namespace graphics3d
                      //   m_prenderableSkybox = prenderable;
                      //}
                      informationf("[asset_manager] Successfully loaded glTF model '%s' from '%s'",
-                                 prenderable->m_strName.c_str(), prenderable->m_path.c_str());
+                                 prenderable->m_strName.c_str(), prenderable->m_pathRenderable.c_str());
                   }
                   else
                   {
 
                      warningf("[asset_manager] Unknown model type '%s' for asset '%s'",
-                             prenderable->m_strRenderableType1.c_str(), prenderable->m_path.c_str());
+                             prenderable->m_strRenderableType1.c_str(), prenderable->m_pathRenderable.c_str());
                   }
                }
                catch (const ::exception &e)

@@ -9,6 +9,8 @@ namespace graphics3d
    render_system::render_system()
    {
 
+      m_erendersystem = ::graphics3d::e_render_system_none;
+
    }
 
 

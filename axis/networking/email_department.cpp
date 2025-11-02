@@ -20,7 +20,7 @@ namespace networking
    }
 
 
-   bool email_department::utf8_mail(class ::networking::email * pemail)
+   bool email_department::utf8_mail(class ::networking::email * pemail, ::string & strError)
    {
 
       auto phandler = øcreate < ::sockets::socket_handler >();
@@ -32,8 +32,12 @@ namespace networking
       psocket->EnableSSL();
       // psocket->SetSSLNegotiate();
 
-      if (!psocket->open(strHost, (port_t)465))
+      int iPort = 465;
+
+      if (!psocket->open(strHost, (port_t)iPort))
       {
+
+          strError.formatf("Couldn't open socket connection to host '%s' at port %d", strHost.c_str(), iPort);
 
          return false;
 
@@ -47,12 +51,16 @@ namespace networking
 
       phandler->add(psocket);
 
-      while (true)
+      while (!psocket->m_bEnded)
       {
 
          phandler->select(8,0);
 
+#ifdef _DEBUG
+         if (tickStart.elapsed() > 15_min)
+#else
          if (tickStart.elapsed() > 15_s)
+#endif
          {
 
             break;
@@ -67,6 +75,8 @@ namespace networking
          }
 
       }
+
+      strError = psocket->m_strError;
 
       return psocket->m_estate == ::sockets::smtp_socket::state_sent || psocket->m_estate == ::sockets::smtp_socket::state_quit || psocket->m_estate == ::sockets::smtp_socket::state_end;
 

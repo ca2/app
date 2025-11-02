@@ -26,8 +26,10 @@ standard_exception::standard_exception(int iSignal, void * psiginfo, void * pc, 
 }
 
 standard_access_violation::standard_access_violation (int signal, void * psiginfo, void * pc) :
-#ifdef __ARM_ARCH
-standard_exception(signal, psiginfo, pc, 3, (void *) ((sig_ucontext_t *) pc)->uc_mcontext.arm_pc)
+#if defined(__arm__)
+    standard_exception(signal, psiginfo, pc, 3, (void *) ((sig_ucontext_t *) pc)->uc_mcontext.arm_pc)
+#elif defined(__aarch64__)
+    standard_exception(signal, psiginfo, pc, 3, (void *) ((sig_ucontext_t *) pc)->uc_mcontext.pc)
 #else
 #ifdef _LP64
 standard_exception(signal, psiginfo, pc, 6, (void *) ((sig_ucontext_t *) pc)->uc_mcontext.rip)

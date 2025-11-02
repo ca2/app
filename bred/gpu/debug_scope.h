@@ -2,6 +2,11 @@
 #pragma once
 
 
+#include "bred/gpu/command_buffer.h"
+#include "bred/gpu/render_target.h"
+#include "bred/gpu/renderer.h"
+
+
 namespace gpu
 {
 
@@ -10,12 +15,13 @@ namespace gpu
    public:
 
 
-      ::gpu::context* m_pgpucontext;
+      ::gpu::command_buffer* m_pgpucommandbuffer;
       bool m_bStarted;
       ::string m_strDebugHappening;
 
-      debug_scope(::gpu::context* pgpucontext, const ::scoped_string& scopedstrDebugHappening, bool bStart = true) :
-         m_pgpucontext(pgpucontext),
+      debug_scope(::gpu::command_buffer *pgpucommandbuffer, const ::scoped_string &scopedstrDebugHappening,
+                  bool bStart = true) :
+          m_pgpucommandbuffer(pgpucommandbuffer),
          m_bStarted(false),
          m_strDebugHappening(scopedstrDebugHappening)
       {
@@ -41,7 +47,8 @@ namespace gpu
 
 
             m_bStarted = true;
-            m_pgpucontext->start_debug_happening(m_strDebugHappening);
+            m_pgpucommandbuffer->m_pgpurendertarget->m_pgpurenderer->m_pgpucontext->start_debug_happening(
+               m_pgpucommandbuffer, m_strDebugHappening);
 
          }
 
@@ -52,7 +59,8 @@ namespace gpu
          if (m_bStarted)
          {
             m_bStarted = false;
-            m_pgpucontext->end_debug_happening();
+            m_pgpucommandbuffer->m_pgpurendertarget->m_pgpurenderer->m_pgpucontext->end_debug_happening(
+               m_pgpucommandbuffer);
          }
 
       }

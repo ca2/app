@@ -3,6 +3,7 @@
 #include "networking_bsd/address.h"
 #include "networking_bsd/networking.h"
 #include "socket_handler.h"
+#include "acme/operating_system/networking.h"
 #include "acme/operating_system/shared_posix/c_error_number.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/crypto/crypto.h"
@@ -14,11 +15,13 @@
 #if OPENSSL_VERSION_NUMBER >= 0x30000000
 #include <openssl/core_names.h>
 #endif
+#include "acme/_information_n.h"
 //#define OPENSSL_VERSION_NUMBER 123
 
 //::std::strong_ordering memory_order(const void * m1, const void * m2, memsize s);
 
 CLASS_DECL_ACME::collection::count get_count_of_opened_sockets();
+CLASS_DECL_ACME::string _017Time(class ::time& time);
 
 #if defined(LINUX) || defined(__BSD__)
 #undef USE_MISC
@@ -26,7 +29,6 @@ CLASS_DECL_ACME::collection::count get_count_of_opened_sockets();
 #include <sys/types.h>
 #include <sys/socket.h>
 #endif
-
 
 #include <fcntl.h>
 //#include <assert.h>
@@ -631,7 +633,7 @@ m_ibuf(isize)
 
          SetCloseAndDelete();
 
-         ::closesocket(s);
+         ::_close_socket(s);
 
          return false;
 
@@ -717,33 +719,47 @@ m_ibuf(isize)
          }
          else if (Socks4() && ::pointer < sockets_bsd::socket_handler >(socket_handler())->Socks4TryDirect()) // retry
          {
-            ::closesocket(s);
+            
+            ::_close_socket(s);
+
             return open(paddress, true);
+
          }
          else if (Reconnect())
          {
+            
             string strError = bsd_socket_error(iError);
 
             information() << "connect: failed, reconnect pending " << iError << bsd_socket_error(iError);
 
             attach(s);
+
             set_connecting(true); // this flag will control fd_set's
+
          }
          else
          {
+
             string strError = bsd_socket_error(iError);
 
             fatal() << "connect: failed " << iError << bsd_socket_error(iError);
 
             SetCloseAndDelete();
-            ::closesocket(s);
+
+            ::_close_socket(s);
+
             return false;
+
          }
+
       }
       else
       {
+
          attach(s);
+
          set_call_on_connect(); // base_socket_handler must call OnConnect
+
       }
 
       set_connection_start_time();
@@ -755,6 +771,7 @@ m_ibuf(isize)
       // 'true' means connected or connecting(not yet connected)
       // 'false' means something failed
       return true; //!is_connecting();
+
    }
 
 
@@ -2462,6 +2479,25 @@ m_ibuf(isize)
             information() << "SSLNegotiate SSL_accept() failed with SSL_ERROR_SSL (1) network error = : " << iError;
 
             information() << "Number of opened sockets: " << get_count_of_opened_sockets();
+
+            ::cast < ::sockets::tcp_socket > ptcpsocket = base_socket_interface();
+
+            if (ptcpsocket && ptcpsocket->m_pInformationN40585)
+            {
+
+               ::cast < information_n40585 > pinformation = ptcpsocket->m_pInformationN40585;
+
+               information() << pinformation->as_string();
+
+            }
+            else if (ptcpsocket->m_pInformationN40585)
+            {
+
+               ::cast < information_n40585 > pinformation = ptcpsocket->m_pInformationN40585;
+
+               information() << pinformation->as_string();
+
+            }
 
             set_no_ssl_shutdown();
 

@@ -233,7 +233,7 @@
     <ProjectReference Include="..\..\..\app\axis\nord_axis.vcxproj">
       <Project>{6f5c86b4-07bb-45a5-9fb9-b7921bcbbf36}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\app\base\nord_base.vcxproj">
+    <ProjectReference Include="..\..\..\app\base\nord_berg.vcxproj">
       <Project>{15ccba90-45f6-46fa-a1fd-af4c40595697}</Project>
     </ProjectReference>
     <ProjectReference Include="..\..\..\app\crypto_openssl\nord_crypto_openssl.vcxproj">

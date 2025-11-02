@@ -1016,22 +1016,16 @@ class function_base_4 :
 public:
 
 
-   function_base_4() :
-      ::quantum(),
-      ::subparticle()
-   {
+   function_base_4() { }
 
 
-   }
+   //function_base_4(const ::e_flag & eflag, const ::e_status & estatus = undefined) :
+   //   ::quantum(eflag, estatus),
+   //   ::subparticle(eflag, estatus)
+   //{
 
 
-   function_base_4(const ::e_flag & eflag, const ::e_status & estatus = undefined) :
-      ::quantum(eflag, estatus),
-      ::subparticle(eflag, estatus)
-   {
-
-
-   }
+   //}
 
 
    function_base_4(const function_base_4 & functionbase4) :

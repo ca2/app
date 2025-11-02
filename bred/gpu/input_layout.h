@@ -10,7 +10,7 @@ namespace gpu
 
 
    class CLASS_DECL_BRED input_layout :
-      virtual public properties,
+      virtual public ::gpu::properties,
       virtual public ::particle
    {
    public:
@@ -23,7 +23,7 @@ namespace gpu
       ~input_layout() override;
 
 
-      virtual void initialize_input_layout(::gpu::context * pgpucontext, const properties & properties);
+      virtual void initialize_input_layout(::gpu::context * pgpucontext, const ::gpu::property * pproperties);
 
       virtual void on_initialize_input_layout();
 

@@ -8,7 +8,7 @@ GPU_PROPERTY("position", ::gpu::e_type_seq2)
 GPU_PROPERTY("uv", ::gpu::e_type_seq2)
 END_GPU_PROPERTIES()
 
-BEGIN_GPU_PROPERTIES(::glm::vec3)
+BEGIN_GPU_PROPERTIES(::gpu::position3)
 GPU_PROPERTY("position", ::gpu::e_type_seq3)
 END_GPU_PROPERTIES()
 
@@ -31,6 +31,10 @@ GPU_PROPERTY("normal", ::gpu::e_type_seq3)
 GPU_PROPERTY("uv", ::gpu::e_type_seq2)
 END_GPU_PROPERTIES()
 
+BEGIN_GPU_PROPERTIES(::gpu::position2_uv)
+GPU_PROPERTY("position", ::gpu::e_type_seq2)
+GPU_PROPERTY("uv", ::gpu::e_type_seq2)
+END_GPU_PROPERTIES()
 
 namespace graphics3d
 {

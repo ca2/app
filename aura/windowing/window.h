@@ -175,7 +175,8 @@ namespace windowing
       ::int_size                                m_sizeDrawnBuffer;
 
       //      ::int_rectangle_array_base                     m_rectangleaNeedRedraw;
-      ::pointer_array < ::user::redraw_item > m_redrawitema;
+      ::pointer < ::mutex >                     m_pmutexRedrawItem;
+      ::pointer_array < ::user::redraw_item >   m_redrawitema;
 
       ::pointer < ::user::interaction >         m_puiLastLButtonDown;
       ::item_pointer                            m_pitemLButtonDown;

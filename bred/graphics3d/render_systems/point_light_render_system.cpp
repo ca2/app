@@ -94,13 +94,19 @@ namespace graphics3d
 
       auto prenderer = pgpucontext->m_pgpurenderer;
 
-      m_pshader = prenderer->create_shader(
+      m_pshader = øcreate<::gpu::shader>();
+
+      m_pshader->m_propertiesPushShared.set_properties(::gpu_properties<::gpu::point_light_push_constants>());
+      
+      pgpucontext->layout_push_constants(m_pshader->m_propertiesPushShared);
+
+      m_pshader->initialize_shader(
+         pgpucontext->m_pgpurenderer,
          "matter://shaders/point_light.vert",
          "matter://shaders/point_light.frag",
          { ::gpu::shader::e_descriptor_set_slot_global,
          ::gpu::shader::e_descriptor_set_slot_local },
          nullptr,
-         ::gpu_properties<::gpu::point_light_push_constants>(),
          pgpucontext->input_layout<::graphics3d::Vertex>(),
          ::gpu::shader::e_flag_clear_default_bindings_and_attributes_descriptions
       );
@@ -196,7 +202,7 @@ namespace graphics3d
             ppointlight->m_fLightIntensity);
          pushconstants.radius = ppointlight->transform().m_vec3Scale.x;
 
-         m_pshader->set_push_properties(::as_memory_block(pushconstants));
+         m_pshader->set_push_properties(pframe->m_pgpucommandbuffer, ::as_memory_block(pushconstants));
 
          // vkCmdPushConstants(
          //     frame.m_pcommandbuffer,
@@ -240,7 +246,8 @@ namespace graphics3d
             glm::vec3(rotateLight * glm::vec4(ppointlight->m_transform.m_vec3Position, 1.f));
 
          // copy light to ubo
-         globalubo["pointLights"][lightIndex]["position"] = glm::vec4(ppointlight->m_transform.m_vec3Position, 1.f);
+         globalubo["pointLights"][lightIndex]["position"] =
+            glm::vec4(ppointlight->m_transform.m_vec3Position, 1.f);
          globalubo["pointLights"][lightIndex]["color"] =
             glm::vec4(ppointlight->m_color.f32_red(),
             ppointlight->m_color.f32_green(),

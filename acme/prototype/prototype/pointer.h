@@ -402,6 +402,10 @@ public:
    inline pointer & operator = (::pointer<T2> && t);
 
 
+   template < typename T2 >
+   inline pointer < T2 > defer_get_new(::particle* pparticle);
+
+
    //template < typename T2 >
    //pointer & operator = (const ptr < T2 > & p);
    //template < typename T2 >

@@ -18,7 +18,7 @@ namespace gpu
    {
 
       ::string m_strName;
-      ::file::path m_path;
+      ::file::path m_pathRenderable;
       ::string m_strRenderableType1;
       enum_renderable_type m_erenderabletype;
       ::string m_strRenderableUsage1;

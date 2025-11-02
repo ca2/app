@@ -556,7 +556,12 @@ namespace windows
 
       wstrFinal.release_buffer(nCharacterCount);
 
-      ///wstrFinal.begins_eat(L"\\\\?\\");
+      if (!wstrFinal.begins(L"\\\\?\\UNC\\"))
+      {
+
+         wstrFinal.begins_eat(L"\\\\?\\");
+
+      }
 
       return wstrFinal;
 

@@ -119,6 +119,10 @@ namespace gpu
       virtual bool is_starting_frame()const;
 
 
+      virtual ::gpu::queue *transfer_queue();
+      virtual ::gpu::queue *graphics_queue();
+      virtual ::gpu::queue *present_queue();
+
       virtual ::gpu::frame_storage* current_frame_storage();
       virtual ::gpu::frame_ephemeral* current_frame_ephemeral();
 

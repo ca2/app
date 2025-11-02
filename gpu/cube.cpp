@@ -19,60 +19,61 @@
 
     void cube::draw(::gpu::command_buffer *pcommandbuffer)
     {
-       // draw mesh
-       // glBindVertexArray(mVAO);
-       // glDrawArrays(GL_TRIANGLES, 0, mVertices.size());
+
+       // if (m_uVAO == 0)
+       //{
+
+       //   throw ::exception(error_wrong_state);
+
+       //}
+       if (m_modeldata.m_vertexes.is_empty())
+       {
+
+          throw ::exception(error_wrong_state);
+       }
+
+       m_pmodelbuffer->bind(pcommandbuffer);
+       m_pmodelbuffer->draw(pcommandbuffer);
+       m_pmodelbuffer->unbind(pcommandbuffer);
+       //// draw mesh
+       // glBindVertexArray(m_uVAO);
+       // GLCheckError("");
+       // glDrawArrays(GL_TRIANGLES, 0, m_vertexa.size());
+       // GLCheckError("");
        // glBindVertexArray(0);
+       // GLCheckError("");
     }
 
 
     void cube::initialize_gpu_cube(::gpu::context* pgpucontext)
     {
 
-       m_vertexa = {
+       m_modeldata.m_vertexes = {
           // positions
-          -1.0f, 1.0f, -1.0f,
-          -1.0f, -1.0f, -1.0f,
-          1.0f, -1.0f, -1.0f,
-          1.0f, -1.0f, -1.0f,
-          1.0f, 1.0f, -1.0f,
-          -1.0f, 1.0f, -1.0f,
+                      {-1.0f, 1.0f, -1.0f}, {-1.0f, -1.0f, -1.0f}, {1.0f, -1.0f, -1.0f}, {1.0f, -1.0f, -1.0f}, {1.0f, 1.0f, -1.0f},
+          {-1.0f, 1.0f, -1.0f},
 
-          -1.0f, -1.0f, 1.0f,
-          -1.0f, -1.0f, -1.0f,
-          -1.0f, 1.0f, -1.0f,
-          -1.0f, 1.0f, -1.0f,
-          -1.0f, 1.0f, 1.0f,
-          -1.0f, -1.0f, 1.0f,
+          {-1.0f, -1.0f, 1.0f}, {-1.0f, -1.0f, -1.0f}, {-1.0f, 1.0f, -1.0f}, {-1.0f, 1.0f, -1.0f}, {-1.0f, 1.0f, 1.0f},
+          {-1.0f, -1.0f, 1.0f},
 
-          1.0f, -1.0f, -1.0f,
-          1.0f, -1.0f, 1.0f,
-          1.0f, 1.0f, 1.0f,
-          1.0f, 1.0f, 1.0f,
-          1.0f, 1.0f, -1.0f,
-          1.0f, -1.0f, -1.0f,
+          {1.0f, -1.0f, -1.0f}, {1.0f, -1.0f, 1.0f}, {1.0f, 1.0f, 1.0f}, {1.0f, 1.0f, 1.0f}, {1.0f, 1.0f, -1.0f},
+          {1.0f, -1.0f, -1.0f},
 
-          -1.0f, -1.0f, 1.0f,
-          -1.0f, 1.0f, 1.0f,
-          1.0f, 1.0f, 1.0f,
-          1.0f, 1.0f, 1.0f,
-          1.0f, -1.0f, 1.0f,
-          -1.0f, -1.0f, 1.0f,
+          {-1.0f, -1.0f, 1.0f}, {-1.0f, 1.0f, 1.0f}, {1.0f, 1.0f, 1.0f}, {1.0f, 1.0f, 1.0f}, {1.0f, -1.0f, 1.0f},
+          {-1.0f, -1.0f, 1.0f},
 
-          -1.0f, 1.0f, -1.0f,
-          1.0f, 1.0f, -1.0f,
-          1.0f, 1.0f, 1.0f,
-          1.0f, 1.0f, 1.0f,
-          -1.0f, 1.0f, 1.0f,
-          -1.0f, 1.0f, -1.0f,
+          {-1.0f, 1.0f, -1.0f}, {1.0f, 1.0f, -1.0f}, {1.0f, 1.0f, 1.0f}, {1.0f, 1.0f, 1.0f}, {-1.0f, 1.0f, 1.0f},
+          {-1.0f, 1.0f, -1.0f},
 
-          -1.0f, -1.0f, -1.0f,
-          -1.0f, -1.0f, 1.0f,
-          1.0f, -1.0f, -1.0f,
-          1.0f, -1.0f, -1.0f,
-          -1.0f, -1.0f, 1.0f,
-          1.0f, -1.0f, 1.0f
+          {-1.0f, -1.0f, -1.0f}, {-1.0f, -1.0f, 1.0f}, {1.0f, -1.0f, -1.0f}, {1.0f, -1.0f, -1.0f}, {-1.0f, -1.0f, 1.0f},  {1.0f, -1.0f, 1.0f}
        };
+
+
+              øconstruct(m_pmodelbuffer);
+
+
+       m_pmodelbuffer->initialize_model(pgpucontext, m_modeldata);
+
 
        //// create our data structures
        //glGenVertexArrays(1, &mVAO);

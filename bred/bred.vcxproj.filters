@@ -73,6 +73,12 @@
     <Filter Include="Header Files\prodevian">
       <UniqueIdentifier>{d9031de6-c0b7-49bb-9589-a3772f30feef}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\gltf">
+      <UniqueIdentifier>{4ddd4869-e69e-4979-af66-37340f3dd06c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\gltf">
+      <UniqueIdentifier>{e4e1f53a-b7d3-4b11-bca8-275b742258e9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -390,6 +396,15 @@
     <ClInclude Include="graphics3d\scene_renderable.h">
       <Filter>Header Files\graphics3d</Filter>
     </ClInclude>
+    <ClInclude Include="graphics3d\global_ubo.h">
+      <Filter>Header Files\graphics3d</Filter>
+    </ClInclude>
+    <ClInclude Include="gltf\vertex.h">
+      <Filter>Header Files\gltf</Filter>
+    </ClInclude>
+    <ClInclude Include="gpu\model_data.h">
+      <Filter>Header Files\gpu</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="platform\application.cpp">
@@ -607,6 +622,12 @@
     </ClCompile>
     <ClCompile Include="graphics3d\scene_renderable.cpp">
       <Filter>Source Files\graphics3d</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics3d\global_ubo.cpp">
+      <Filter>Source Files\graphics3d</Filter>
+    </ClCompile>
+    <ClCompile Include="gltf\vertex.cpp">
+      <Filter>Source Files\gltf</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

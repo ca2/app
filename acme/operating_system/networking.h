@@ -4,7 +4,7 @@
 
 #if defined(WINDOWS)
 #include "acme/operating_system/windows_common/networking.h"
-#elif defined(LINUX) || defined(__BSD__)
+#elif defined(LINUX) || defined(__BSD__) || defined(__ANDROID__) || defined(__APPLE__)
 #include "acme/operating_system/posix/networking.h"
 #endif
 

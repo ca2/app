@@ -9,47 +9,13 @@
 #include "bred/gpu/context_object.h"
 #include "bred/gpu/frame.h"
 #include "bred/gpu/memory_buffer.h"
-//#include "bred/graphics3d/model.h"
+#include "bred/gpu/model_data.h"
 //#include "bred/graphics3d/model.h"
 #include "bred/graphics3d/renderable.h"
 
 
 namespace gpu
 {
-
-
-   
-
-   template<typename VERTEX>
-   class model_data
-   {
-   public:
-
-      ::array<VERTEX> m_vertexes;
-      ::array<unsigned int> m_indexes;
-
-
-      //::pointer <::graphics3d::model> create_model(
-      //   ::gpu::renderer* prenderer)
-      //{
-
-      //   auto pmodel = prenderer->øcreate < ::graphics3d::model >();
-
-      //   pmodel->initialize_model(
-      //      prenderer,
-      //      m_vertexes.as_block(),
-      //      m_indexes.as_block());
-
-      //   auto pgpucontext = prenderer->m_pgpucontext;
-
-      //   auto pinputlayout = pgpucontext->input_layout(::gpu_properties< VERTEX >());
-
-      //   pmodel->defer_set_input_layout(pinputlayout);
-
-      //   return pmodel;
-
-      //}
-   };
 
 
    class CLASS_DECL_BRED model_buffer :
@@ -299,7 +265,12 @@ namespace gpu
 
          static_initialize_vertexes(modeldata.m_vertexes);
 
-         static_initialize_indexes(modeldata.m_indexes);
+         if (modeldata.m_indexes.has_elements())
+         {
+
+            static_initialize_indexes(modeldata.m_indexes);
+
+         }
 
          unbind_load_assets_command_buffer(pcontext);
 

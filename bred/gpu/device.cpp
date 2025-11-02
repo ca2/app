@@ -1393,6 +1393,15 @@ namespace gpu
    }
 
 
+   ::gpu::queue *device::transfer_queue() { return nullptr; }
+
+
+   ::gpu::queue *device::graphics_queue() { return nullptr; }
+
+
+   ::gpu::queue *device::present_queue() { return nullptr; }
+
+
    frame_storage* device::current_frame_storage()
    {
 

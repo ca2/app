@@ -6,6 +6,7 @@
 #include "aura/user/user/frame_interaction.h"
 #include "placement_log.h"
 #include "acme/constant/user_message.h"
+#include "acme/constant/windowing2.h"
 #include "acme/exception/interface_only.h"
 #include "acme/graphics/graphics/output_purpose.h"
 #include "acme/handler/request.h"
@@ -154,6 +155,8 @@ namespace windowing
 
       ::channel::on_initialize_particle();
 
+      m_pmutexRedrawItem = node()->create_mutex();
+
    }
 
 
@@ -213,7 +216,12 @@ namespace windowing
       //m_pwindowParent.release();
       m_pmessagequeue.release();
       m_pdisplay.release();
-      m_redrawitema.destroy();
+      {
+         _synchronous_lock synchronouslockRedrawItem(m_pmutexRedrawItem);
+
+         m_redrawitema.destroy();
+         m_pmutexRedrawItem.release();
+      }
 
       //::channel::destroy();
 
@@ -7944,7 +7952,7 @@ namespace windowing
          bool bAscendants)
    {
 
-      synchronous_lock synchronouslock(synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+      _synchronous_lock synchronouslockRedrawItem(m_pmutexRedrawItem);
 
       if (rectangleaHostNeedRedraw.is_empty())
       {
@@ -8088,63 +8096,69 @@ namespace windowing
 
       }
 
-      if (bFullRedraw)
-      {
+      //{
 
-         if (m_redrawitema.is_empty())
+         //_synchronous_lock synchronouslockRedrawItem(m_pmutexRedrawItem);
+
+         if (bFullRedraw)
          {
 
-            auto predrawitem = øcreate_new<::user::redraw_item>();
-
-            if (function)
+            if (m_redrawitema.is_empty())
             {
 
-               predrawitem->m_functiona.add(function);
+               auto predrawitem = øcreate_new<::user::redraw_item>();
+
+               if (function)
+               {
+
+                  predrawitem->m_functiona.add(function);
+
+               }
+
+               m_redrawitema.add(predrawitem);
+
+            }
+            else
+            {
+
+               for (::collection::index i = m_redrawitema.get_upper_bound(); i >= 1; i--)
+               {
+
+                  m_redrawitema.first()->m_functiona.append(m_redrawitema[i]->m_functiona);
+
+                  m_redrawitema.erase_at(i);
+
+               }
+
+               m_redrawitema.first()->m_rectanglea.clear();
+
+               if (function)
+               {
+
+                  m_redrawitema.first()->m_functiona.add(function);
+
+               }
 
             }
 
-            m_redrawitema.add(predrawitem);
+            return;
 
          }
-         else
+
+         auto predrawitem = øcreate_new<::user::redraw_item>();
+
+         predrawitem->m_rectanglea.append(rectangleaHostNeedRedraw);
+
+         if (function)
          {
 
-            for (::collection::index i = m_redrawitema.get_upper_bound(); i >= 1; i--)
-            {
-
-               m_redrawitema.first()->m_functiona.append(m_redrawitema[i]->m_functiona);
-
-               m_redrawitema.erase_at(i);
-
-            }
-
-            m_redrawitema.first()->m_rectanglea.clear();
-
-            if (function)
-            {
-
-               m_redrawitema.first()->m_functiona.add(function);
-
-            }
+            predrawitem->m_functiona.add(function);
 
          }
 
-         return;
+         m_redrawitema.add(predrawitem);
 
-      }
-
-      auto predrawitem = øcreate_new<::user::redraw_item>();
-
-      predrawitem->m_rectanglea.append(rectangleaHostNeedRedraw);
-
-      if (function)
-      {
-
-         predrawitem->m_functiona.add(function);
-
-      }
-
-      m_redrawitema.add(predrawitem);
+      //}
 
       //information() << node()->get_callstack();
 
@@ -9503,7 +9517,7 @@ namespace windowing
 
                   {
 
-                     synchronous_lock synchronouslock(synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+                     _synchronous_lock synchronouslock(m_pmutexRedrawItem);
 
                      if (pgraphics->ødefer_construct_new(pgraphics->m_puserredraw))
                      {

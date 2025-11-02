@@ -84,6 +84,8 @@ list(APPEND library_source
         #prototype/promise_predicate/synchronized_predicate_routine.h
         #process/_.cpp
         _.cpp
+   _information_n.cpp
+   _information_n.h
         #_finish.h
 
         #__matter_ca2.cpp
@@ -208,7 +210,20 @@ list(APPEND library_source
         filesystem/filesystem/file_context.h
         filesystem/filesystem/file_context_interface.cpp
         filesystem/filesystem/file_context_interface.h
+        filesystem/filesystem/file_system_cache.cpp
+        filesystem/filesystem/file_system_cache.h
+        filesystem/filesystem/file_system_cache_item.cpp
+        filesystem/filesystem/file_system_cache_item.h
+        filesystem/filesystem/file_system_interface.cpp
+        filesystem/filesystem/file_system_interface.h
+        filesystem/filesystem/file_system_item.cpp
+        filesystem/filesystem/file_system_item.h
         filesystem/filesystem/file_system_options.cpp
+        filesystem/filesystem/file_system_options.h
+        filesystem/filesystem/file_system_real_path_interface.cpp
+        filesystem/filesystem/file_system_real_path_interface.h
+        filesystem/filesystem/file_system_real_path_interface_cache.cpp
+        filesystem/filesystem/file_system_real_path_interface_cache.h
         filesystem/filesystem/file_system_options.h
         filesystem/filesystem/file_system.cpp
         filesystem/filesystem/file_system.h
@@ -1994,7 +2009,7 @@ list(APPEND library_source
         prototype/collection/array_base.h
         prototype/collection/attrib_map.h
         prototype/collection/back_insert_iterator.h
-         prototype/collection/base_array.h
+        prototype/collection/base_array.h
         prototype/collection/base_enum.h
         prototype/collection/bit_array.h
         prototype/collection/bitset.h
@@ -2395,6 +2410,7 @@ if (${WIN32} OR ${UWP})
             operating_system/windows_common/last_error_exception.h
             operating_system/windows_common/library.cpp
             operating_system/windows_common/memory.cpp
+            operating_system/windows_common/networking.cpp
             operating_system/windows_common/parallelization.cpp
             operating_system/windows_common/process.cpp
             operating_system/windows_common/time.cpp

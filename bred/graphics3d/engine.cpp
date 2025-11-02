@@ -13,6 +13,7 @@
 #include "apex/database/client.h"
 #include "apex/database/stream.h"
 #include "bred/gpu/bred_approach.h"
+#include "bred/gpu/command_buffer.h"
 #include "bred/gpu/context.h"
 #include "bred/gpu/cpu_buffer.h"
 #include "bred/gpu/device.h"
@@ -113,12 +114,16 @@ namespace graphics3d
 
             _synchronous_lock synchronouslock(pscene->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-            if (pscene->global_ubo().size() > 0)
+            if (pscene->global_ubo().size(true) > 0)
             {
 
                update_global_ubo(gpu_context());
 
             }
+
+            int iFrameIndex = gpu_context()->m_pgpurenderer->m_pgpurendertarget->get_frame_index();
+
+            pframe->m_pgpucommandbuffer->m_iFrameIndex = iFrameIndex;
 
             pscene->on_render(gpu_context());
 
@@ -147,7 +152,9 @@ namespace graphics3d
    void engine::create_global_ubo(::gpu::context* pgpucontext)
    {
 
-      auto iGlobalUboSize = m_pimmersionlayer->m_pscene->global_ubo().size();
+      pgpucontext->layout_push_constants(m_pimmersionlayer->m_pscene->global_ubo());
+
+      auto iGlobalUboSize = m_pimmersionlayer->m_pscene->global_ubo().m_blockWithoutSamplers.size();
 
       if (iGlobalUboSize > 0)
       {
@@ -660,14 +667,14 @@ namespace graphics3d
 
       auto pscene = m_pimmersionlayer->m_pscene;
 
-      if (pscene->global_ubo().size() > 0)
+      if (pscene->global_ubo().size(true) > 0)
       {
 
          pscene->on_update(pgpucontext);
          
          auto pcontext = gpu_context();
 
-         pcontext->update_global_ubo(pscene->global_ubo().m_block);
+         pcontext->update_global_ubo(pscene->global_ubo().block_with_samplers());
 
       }
 
@@ -990,7 +997,7 @@ namespace graphics3d
 
          m_bCreatedGlobalUbo = true;
 
-         auto iGlobalUboSize = pscene->global_ubo().size();
+         auto iGlobalUboSize = pscene->global_ubo().size(true);
 
          if (iGlobalUboSize > 0)
          {
@@ -1090,18 +1097,20 @@ namespace graphics3d
    }
 
 
-   ::pointer < ::graphics3d::renderable > engine::_load_wavefront_obj_renderable(const ::file::path& path)
+   ::pointer<::graphics3d::renderable> engine::_load_wavefront_obj_renderable(const ::gpu::renderable_t &model)
    {
 
       tinyobjloader_Builder builder{};
 
       auto pcontext = gpu_context();
 
-      builder.loadModel(pcontext, path);
+      builder.loadModel(pcontext, model.m_pathRenderable);
 
       ::pointer < ::gpu::model_buffer > pmodel;
 
       øconstruct(pmodel);
+
+      (*(::gpu::renderable_t *)pmodel) = model;
 
       pmodel->initialize_model(pcontext, builder);
 

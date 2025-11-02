@@ -5,6 +5,9 @@
 #include "_2.h"
 
 
+#define MAX_FILE_SYSTEM_ITEM_SLOT_COUNT 8
+
+
 namespace filesystem
 {
 
@@ -16,6 +19,13 @@ namespace filesystem
 
 } // namespace filesystem
 
+
+class file_system_real_path_interface;
+class file_system_real_path_interface_cache;
+class file_system_interface;
+class file_system_cache;
+class file_system_cache_item;
+class file_system_item;
 
 
 

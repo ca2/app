@@ -12,6 +12,7 @@
 #include "acme/filesystem/file/memory_file.h"
 //#include "acme/filesystem/file/text_stream.h"
 #include "acme/filesystem/filesystem/file_system.h"
+#include "acme/filesystem/filesystem/path_system.h"
 #include "acme/operating_system/process.h"
 #include "acme/platform/node.h"
 #include "acme/prototype/prototype/url.h"
@@ -28,7 +29,7 @@
 #include "apex/networking/http/context.h"
 #include "aura/platform/application.h"
 #include "axis/platform/system.h"
-
+#include "programming/heating_up_exception.h"
 
 #include "acme/_operating_system.h"
 #include <sys/stat.h>
@@ -66,12 +67,12 @@ namespace dynamic_source
    }
 
 
-   void script_compiler::initialize_dynamic_source_script_compiler(script_manager* pscriptmanager)
+   void script_compiler::initialize_dynamic_source_script_compiler(script_manager* pscriptmanager2)
    {
 
       //auto estatus = 
 
-      initialize_programming_compiler(pscriptmanager, pscriptmanager->m_pathNetnodePath);
+      initialize_programming_compiler(pscriptmanager2, pscriptmanager2->m_pathNetnodePath);
 
       //if (!estatus)
       //{
@@ -80,7 +81,7 @@ namespace dynamic_source
 
       //}
 
-      m_pmanager = pscriptmanager;
+      m_pscriptmanager2 = pscriptmanager2;
 
       //return estatus;
 
@@ -316,15 +317,27 @@ namespace dynamic_source
    void script_compiler::compile(ds_script* pscript)
    {
 
-      //synchronous_lock synchronouslock(pscript->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+      _single_lock slCompiler(&m_pscriptmanager2->m_semCompiler);
 
-      _synchronous_lock slCompiler(&m_pmanager->m_semCompiler);
+      if (!slCompiler._wait(0_s))
+      {
 
-      informationf("Compiling script %s", pscript->m_strName.c_str());
+         throw ::heating_up_exception("Compiling script " + pscript->m_pfilesystemcacheitem->path());
+
+      }
+
+      information("Compiling script {}", pscript->m_pfilesystemcacheitem->path());
+
+      if (pscript->m_pfilesystemcacheitem->path().case_insensitive_contains("monitor"))
+      {
+
+         information() << "monitor";
+
+      }
 
       auto& ostreamError = pscript->m_textstreamError;
 
-      ::file::path strName(pscript->m_strName);
+      ::file::path strName(pscript->m_pfilesystemcacheitem->path());
 
       if (strName.case_insensitive_ends("\\auth3.ds"))
       {
@@ -368,7 +381,7 @@ namespace dynamic_source
       /*string strScript(strName);
       strScript.replace("\\", ",");
       strScript.replace("/", ",");
-      strScript = "ca2" + m_pmanager->m_strNamespace + "_script." + strScript;*/
+      strScript = "ca2" + m_pscriptmanager2->m_strNamespace + "_script." + strScript;*/
 
       ::file::path strScript;
 
@@ -387,7 +400,7 @@ namespace dynamic_source
       else
       {
 
-         pscript->m_strSourcePath.formatf(m_pmanager->m_pathNetnodePath / "net/%s", strName.c_str());
+         pscript->m_strSourcePath.formatf(m_pscriptmanager2->m_pathNetnodePath / "net/%s", strName.c_str());
 
       }
 
@@ -422,13 +435,13 @@ namespace dynamic_source
 
       strRndTitle = "_" + pdatetime->format("%Y-%m-%d_%H-%M-%S") + "_" + strMillis;
 
-      string strTime = m_pathTime;
+      auto pathTime = path_system()->logical_path(m_pathTime);
 
-      pscript->m_strCppPath.formatf(m_pathTime / "dynamic_source/%s.cpp", strTransformName.c_str());
+      pscript->m_strCppPath.formatf(pathTime / "dynamic_source/%s.cpp", strTransformName.c_str());
 
       //auto pathCa2Root = m_pintegrationcontext->m_pathBuildFolder ;
 
-      auto pathProjectDir = m_pintegrationcontext->m_pathBuildFolder;
+      auto pathBuildFolder = path_system()->logical_path(m_pintegrationcontext->m_pathBuildFolder);
 
       //string strCompileLogUnique;
 
@@ -445,38 +458,40 @@ namespace dynamic_source
 
       }
 
-      pathClog = string().formatf(m_pathTime / "dynamic_source/%s-compile-log-%s.txt", strTransformName.c_str(), strCompileLogUnique.c_str());
-      pathLlog = string().formatf(m_pathTime / "dynamic_source/%s-link-log.txt", strTransformName.c_str());
+      pathClog = string().formatf(pathTime / "dynamic_source/%s-compile-log-%s.txt", strTransformName.c_str(), strCompileLogUnique.c_str());
+      pathLlog = string().formatf(pathTime / "dynamic_source/%s-link-log.txt", strTransformName.c_str());
 
       string strPathCompiler;
-      strPathCompiler.formatf(m_pathTime / "dynamic_source/%s-compiler.txt", strTransformName.c_str());
+      strPathCompiler.formatf(pathTime / "dynamic_source/%s-compiler.txt", strTransformName.c_str());
       ::file::path pathCompiler(strPathCompiler);
 
       string strPathLinker;
-      strPathLinker.formatf(m_pathTime / "dynamic_source/%s-linker.txt", strTransformName.c_str());
+      strPathLinker.formatf(pathTime / "dynamic_source/%s-linker.txt", strTransformName.c_str());
       ::file::path pathLinker(strPathLinker);
 
       //#ifdef _DEBUG
 #ifdef LINUX
       //strB = m_pintegrationcontext->m_pathBuildFolder  / m_strDynamicSourceStage / "front\\dynamic_source\\BuildBat" / strTransformName.name() / strTransformName + ".bat";
-      strO = ::file::path(m_pathTime) / "intermediate" / m_pintegrationcontext->m_strPlatform / m_pmanager->m_strNamespace + "_dynamic_source_script" / strTransformName / strTransformName.name() + ".o";
+      strO = ::file::path(pathTime) / "intermediate" / m_pintegrationcontext->m_strPlatform / m_pscriptmanager2->m_strNamespace + "_dynamic_source_script" / strTransformName / strTransformName.name() + ".o";
 #else
 
       //strB = m_strDynamicSourceStageFolder / "front\\dynamic_source\\BuildBat" / strTransformName.name() / strTransformName + ".bat";
 
-      strP = m_strDynamicSourceStageFolder / m_pintegrationcontext->m_strPlatform / "dynamic_source" / strTransformName.sibling(strScript.name()) + ".pdb";
+      auto pathDynamicSourceStageFolder = path_system()->logical_path(m_strDynamicSourceStageFolder);
 
-      strL = m_strDynamicSourceStageFolder / m_pintegrationcontext->m_strPlatform / "dynamic_source" / strTransformName.sibling(strScript.name()) + ".lib";
+      strP = pathDynamicSourceStageFolder / m_pintegrationcontext->m_strPlatform / "dynamic_source" / strTransformName.sibling(strScript.name()) + ".pdb";
 
-      strE = m_strDynamicSourceStageFolder / m_pintegrationcontext->m_strPlatform / "dynamic_source" / strTransformName.sibling(strScript.name()) + ".exp";
+      strL = pathDynamicSourceStageFolder / m_pintegrationcontext->m_strPlatform / "dynamic_source" / strTransformName.sibling(strScript.name()) + ".lib";
 
-      ::file::path strDynamicSourceScriptFolder = m_pathTime / "intermediate" / m_pintegrationcontext->m_strPlatform / m_strDynamicSourceConfiguration / m_pmanager->m_strRepos / m_pmanager->m_strNamespace + "_dynamic_source_script";
+      strE = pathDynamicSourceStageFolder / m_pintegrationcontext->m_strPlatform / "dynamic_source" / strTransformName.sibling(strScript.name()) + ".exp";
+
+      ::file::path pathDynamicSourceScriptFolder = pathTime / "intermediate" / m_pintegrationcontext->m_strPlatform / m_strDynamicSourceConfiguration / m_pscriptmanager2->m_strRepos / m_pscriptmanager2->m_strNamespace + "_dynamic_source_script";
 
       //strDVI = strDynamicSourceScriptFolder / strTransformName / m_strSdk1 + ".idb";
 
       //::file::path pathSourceDVP = strDynamicSourceScriptFolder / strTransformName / m_strSdk1 + ".pdb";
 
-      ::file::path pathSourceNetnodeDSS = m_pintegrationcontext->m_pathBuildFolder / "time-" OPERATING_SYSTEM_NAME "/intermediate/x64" / m_strDynamicSourceConfiguration / "app-core/netnode_dynamic_source_script";
+      ::file::path pathSourceNetnodeDSS = pathBuildFolder / "time-" OPERATING_SYSTEM_NAME "/intermediate/x64" / m_strDynamicSourceConfiguration / "app-core/netnode_dynamic_source_script";
 
       ::string strSDK1 = m_pintegrationcontext->payload("sdk1").as_string();
 
@@ -490,7 +505,7 @@ namespace dynamic_source
 
          string strHelper1 = pathHelper1 + "-" + m_pintegrationcontext->payload("sdk1").as_string() + ".pdb";
 
-         auto pathDVP0 = m_strDynamicSourceStageFolder / m_pintegrationcontext->m_strPlatform / "dynamic_source" / pathHelper1.folder() / strHelper1;
+         auto pathDVP0 = pathDynamicSourceStageFolder / m_pintegrationcontext->m_strPlatform / "dynamic_source" / pathHelper1.folder() / strHelper1;
 
          string strCompiler = pathHelper1 + "-compiler.txt";
 
@@ -514,22 +529,22 @@ namespace dynamic_source
 
       strDVP_B.find_replace("\\", "/");
 
-      //strDPC = strDynamicSourceScriptFolder / strTransformName / m_pmanager->m_strNamespace + "_dynamic_source_script.pch";
+      //strDPC = strDynamicSourceScriptFolder / strTransformName / m_pscriptmanager2->m_strNamespace + "_dynamic_source_script.pch";
       //strDO1 = strDynamicSourceScriptFolder / strTransformName / "framework.obj";
-      //strDO2 = strDynamicSourceScriptFolder / strTransformName / m_pmanager->m_strNamespace + "_dynamic_source_script.obj";
+      //strDO2 = strDynamicSourceScriptFolder / strTransformName / m_pscriptmanager2->m_strNamespace + "_dynamic_source_script.obj";
       //strSVI = strDynamicSourceScriptFolder / m_strSdk1 + ".idb";
       //strSVP = strDynamicSourceScriptFolder / m_strSdk1 + ".pdb";
-      //strSPC = strDynamicSourceScriptFolder / m_pmanager->m_strNamespace + "_dynamic_source_script.pch";
+      //strSPC = strDynamicSourceScriptFolder / m_pscriptmanager2->m_strNamespace + "_dynamic_source_script.pch";
       //strSO1 = strDynamicSourceScriptFolder / "framework.obj";
-      //strSO2 = strDynamicSourceScriptFolder / m_pmanager->m_strNamespace + "_dynamic_source_script.obj";
+      //strSO2 = strDynamicSourceScriptFolder / m_pscriptmanager2->m_strNamespace + "_dynamic_source_script.obj";
 
-      pathObj = strDynamicSourceScriptFolder / strTransformName / strTransformName.name() + ".obj";
+      pathObj = pathDynamicSourceScriptFolder / strTransformName / strTransformName.name() + ".obj";
 
-      strO = strDynamicSourceScriptFolder / strTransformName.name() / strTransformName + ".bat";
+      strO = pathDynamicSourceScriptFolder / strTransformName.name() / strTransformName + ".bat";
 
 #endif
 
-      pscript->m_strScriptPath = m_pmanager->get_script_path(strName, strRndTitle);
+      pscript->m_strScriptPath = m_pscriptmanager2->netnode_file_path(strName, strRndTitle);
 
       try
       {
@@ -759,21 +774,22 @@ namespace dynamic_source
 
       }
 
-
       directory()->create(pscript->m_strScriptPath.folder());
+
       directory()->create(strL.folder());
-      directory()->create(m_pathTime / "intermediate" / m_pintegrationcontext->m_strPlatform / m_strDynamicSourceConfiguration / m_pmanager->m_strRepos / m_pmanager->m_strNamespace + ::file::path("_dynamic_source_script") / strTransformName);
+
+      directory()->create(m_pathTime / "intermediate" / m_pintegrationcontext->m_strPlatform / m_strDynamicSourceConfiguration / m_pscriptmanager2->m_strRepos / m_pscriptmanager2->m_strNamespace + ::file::path("_dynamic_source_script") / strTransformName);
 
       cppize(pscript);
 
       //auto pathCa2Root = m_pintegrationcontext->m_pathBuildFolder ;
 
-      string strV(pathProjectDir);
+      string strV(pathBuildFolder);
       strV.find_replace("\\", "/");
       if (!string_ends(strV, "/") && !string_ends(strV, "\\"))
          strV += "/";
 
-      string strN = m_pmanager->m_pathNetnodePath;
+      string strN = path_system()->logical_path(m_pscriptmanager2->m_pathNetnodePath);
       strN.find_replace("\\", "/");
       if (!string_ends(strN, "/") && !string_ends(strN, "\\"))
          strN += "/";
@@ -810,9 +826,9 @@ namespace dynamic_source
       string strBuildCmd;
 
 #if defined(LINUX) || defined(MACOS) || defined(FREEBSD) || defined(OPENBSD)
-      strBuildCmd = m_pintegrationcontext->m_pathBuildFolder / "operating_system" / "operating_system-" OPERATING_SYSTEM_NAME "\\_stage\\dynamic_source" / m_strDynamicSourceConfiguration + "_cl_" + m_pintegrationcontext->m_strPlatform + ".bash";
+      strBuildCmd = pathBuildFolder / "operating_system" / "operating_system-" OPERATING_SYSTEM_NAME "\\_stage\\dynamic_source" / m_strDynamicSourceConfiguration + "_cl_" + m_pintegrationcontext->m_strPlatform + ".bash";
 #else
-      strBuildCmd = m_pintegrationcontext->m_pathBuildFolder / "operating_system" / "operating_system-" OPERATING_SYSTEM_NAME "\\_stage\\dynamic_source" / m_pintegrationcontext->payload("vstools").as_string() / m_strDynamicSourceConfiguration + "_c_" + m_pintegrationcontext->m_strPlatform + ".bat";
+      strBuildCmd = pathBuildFolder / "operating_system" / "operating_system-" OPERATING_SYSTEM_NAME "\\_stage\\dynamic_source" / m_pintegrationcontext->payload("vstools").as_string() / m_strDynamicSourceConfiguration + "_c_" + m_pintegrationcontext->m_strPlatform + ".bat";
 #endif
 
       str = file()->as_string(strBuildCmd);
@@ -976,9 +992,9 @@ namespace dynamic_source
          //strBuildCmd;
 
 #if defined(LINUX) || defined(MACOS) || defined(FREEBSD) || defined(OPENBSD)
-         strBuildCmd = m_pintegrationcontext->m_pathBuildFolder / "operating_system" / "operating_system-" OPERATING_SYSTEM_NAME"\\_stage\\dynamic_source" / m_strDynamicSourceConfiguration + "_cl_" + m_pintegrationcontext->m_strPlatform + ".bash";
+         strBuildCmd = pathBuildFolder / "operating_system" / "operating_system-" OPERATING_SYSTEM_NAME"\\_stage\\dynamic_source" / m_strDynamicSourceConfiguration + "_cl_" + m_pintegrationcontext->m_strPlatform + ".bash";
 #else
-         strBuildCmd = m_pintegrationcontext->m_pathBuildFolder / "operating_system" / "operating_system-" OPERATING_SYSTEM_NAME "\\_stage\\dynamic_source" / m_pintegrationcontext->payload("vstools").as_string() / m_strDynamicSourceConfiguration + "_l_" + m_pintegrationcontext->m_strPlatform + ".bat";
+         strBuildCmd = pathBuildFolder / "operating_system" / "operating_system-" OPERATING_SYSTEM_NAME "\\_stage\\dynamic_source" / m_pintegrationcontext->payload("vstools").as_string() / m_strDynamicSourceConfiguration + "_l_" + m_pintegrationcontext->m_strPlatform + ".bat";
 #endif
 
          str = file()->as_string(strBuildCmd);
@@ -1296,13 +1312,14 @@ namespace dynamic_source
       strDest += "\r\n";
       strDest += "\r\n";
       strDest += "\r\n";
-      strDest += "class " + pscript->m_strClassNamePrefix + "_dynamic_source_script : virtual public ::app_consumer < ::netnode::application, ::" + m_pmanager->m_strNamespace + "::script_instance >\r\n";
+      //strDest += "class " + pscript->m_strClassNamePrefix + "_dynamic_source_script : virtual public ::app_consumer < ::netnode::application, ::" + m_pscriptmanager2->m_strNamespace + "::script_instance >\r\n";
+      strDest += "class " + pscript->m_strClassNamePrefix + "_dynamic_source_script : virtual public ::" + m_pscriptmanager2->m_strNamespace + "::script_instance\r\n";
       strDest += "{\r\n";
       strDest += "public:\r\n";
       //strDest += "   " + pscript->m_strClassNamePrefix + "_dynamic_source_script(dynamic_source::script * pscript) : ::object(pscript->get_app()), dynamic_source::script_instance(pscript), ::" + pscript->m_strClassNamePrefix + "::script_instance(pscript), ::" + pscript->m_strClassNamePrefix + "::script_impl(pscript) {};  \r\n";
-      strDest += "   " + pscript->m_strClassNamePrefix + "_dynamic_source_script() {};\r\n";
-      strDest += "   virtual ~" + pscript->m_strClassNamePrefix + "_dynamic_source_script() {};\r\n";
-      strDest += "   virtual void     run() { script_run(); };\r\n";
+      strDest += "   " + pscript->m_strClassNamePrefix + "_dynamic_source_script() { }\r\n";
+      strDest += "   ~" + pscript->m_strClassNamePrefix + "_dynamic_source_script() override { }\r\n";
+      strDest += "   void run() override { script_run(); }\r\n";
       strDest += "   virtual void script_run();\r\n";
       strDest += "   \r\n\r\n";
       strDest += strDs;
@@ -1419,13 +1436,13 @@ namespace dynamic_source
 
       }
 
-      if (string_begins(path, m_pmanager->m_pathNetseedDsCa2Path / "library/include"))
+      if (string_begins(path, m_pscriptmanager2->m_pathNetseedDsCa2Path / "library/include"))
       {
 
-         m_pmanager->m_pcache->set_all_out_of_date();
+         m_pscriptmanager2->m_pcache->set_all_out_of_date();
 
       }
-      else if (string_begins(path, m_pmanager->m_pathNetseedDsCa2Path / "library/source"))
+      else if (string_begins(path, m_pscriptmanager2->m_pathNetseedDsCa2Path / "library/source"))
       {
 
       }
@@ -1435,7 +1452,7 @@ namespace dynamic_source
       else
       {
 
-         m_pmanager->m_pcache->set_out_of_date(path);
+         m_pscriptmanager2->m_pcache->set_out_of_date(path);
 
       }
 
@@ -1445,7 +1462,7 @@ namespace dynamic_source
    void script_compiler::folder_watch()
    {
 
-      //xxx:folder_watch m_filewatcherid = file_watcher()->add_watch(m_pmanager->m_pathNetseedDsCa2Path, this, true);
+      //xxx:folder_watch m_filewatcherid = file_watcher()->add_watch(m_pscriptmanager2->m_pathNetseedDsCa2Path, this, true);
 
    }
 
@@ -1473,7 +1490,7 @@ namespace dynamic_source
       if (!string_ends(strV, "/") && !string_ends(strV, "\\"))
          strV += "/";
 
-      string strN = m_pmanager->m_pathNetnodePath;
+      string strN = m_pscriptmanager2->m_pathNetnodePath;
       strN.find_replace("\\", "/");
       if (!string_ends(strN, "/") && !string_ends(strN, "\\"))
          strN += "/";
@@ -1499,7 +1516,7 @@ namespace dynamic_source
 
       //auto pcontext = m_papplication;
 
-      l.m_straLibSourcePath.set_listing(m_pmanager->m_pathNetseedDsCa2Path / "library" / strName, ::e_depth_recursively);
+      l.m_straLibSourcePath.set_listing(m_pscriptmanager2->m_pathNetseedDsCa2Path / "library" / strName, ::e_depth_recursively);
 
       directory()->enumerate(l.m_straLibSourcePath);
 
@@ -1525,7 +1542,7 @@ namespace dynamic_source
       }
       //l.m_straLibIncludePath.m_pprovider = papp;
       l.m_straLibIncludePath.clear_results();
-      l.m_straLibIncludePath.set_listing(m_pmanager->m_pathNetseedDsCa2Path / "library" / strName, e_depth_recursively);
+      l.m_straLibIncludePath.set_listing(m_pscriptmanager2->m_pathNetseedDsCa2Path / "library" / strName, e_depth_recursively);
       directory()->enumerate(l.m_straLibIncludePath);
       for (int i = 0; i < l.m_straLibIncludePath.get_size();)
       {
@@ -1563,7 +1580,7 @@ namespace dynamic_source
       //#endif
 
       directory()->create(l.m_strLibraryPath.folder());
-      directory()->create(m_pathTime / "intermediate" / m_pintegrationcontext->m_strPlatform / m_strDynamicSourceConfiguration / m_pmanager->m_strRepos / m_pmanager->m_strNamespace + "_dynamic_source_library/library");
+      directory()->create(m_pathTime / "intermediate" / m_pintegrationcontext->m_strPlatform / m_strDynamicSourceConfiguration / m_pscriptmanager2->m_strRepos / m_pscriptmanager2->m_strNamespace + "_dynamic_source_library/library");
 
       for (int i = 0; i < l.m_straLibIncludePath.get_size(); i++)
       {
@@ -1571,7 +1588,7 @@ namespace dynamic_source
       }
 
 
-      //      string strN = m_pmanager->m_pathNetnodePath;
+      //      string strN = m_pscriptmanager2->m_pathNetnodePath;
             //    strN.replace("\\","/");
             //  if(!string_ends(strN,"/") && !string_ends(strN,"\\"))
             //   strN += "/";
@@ -1659,7 +1676,7 @@ namespace dynamic_source
          str.find_replace("%CONFIGURATION%", m_strDynamicSourceConfiguration);
          //str.find_replace("%DVP%", strDVP_B);
 
-         directory()->create(m_pathTime / "intermediate" / m_pintegrationcontext->m_strPlatform / m_strDynamicSourceConfiguration / m_pmanager->m_strRepos / m_pmanager->m_strNamespace + "_dynamic_source_library" / str1.folder());
+         directory()->create(m_pathTime / "intermediate" / m_pintegrationcontext->m_strPlatform / m_strDynamicSourceConfiguration / m_pscriptmanager2->m_strRepos / m_pscriptmanager2->m_strNamespace + "_dynamic_source_library" / str1.folder());
          directory()->create(m_pathTime / "library" / m_pintegrationcontext->m_strStagePlatform / str1.folder());
 
          string strFormat = "libc-" + str1;
@@ -1774,7 +1791,7 @@ namespace dynamic_source
          strObjs += " ";
          ::file::path strRel = l.m_straLibSourcePath[i].relative();
          strRel.case_insensitive_ends_eat(".ds");
-         strObjs += m_pathTime / "intermediate" / m_pintegrationcontext->m_strPlatform / m_strDynamicSourceConfiguration / m_pmanager->m_strRepos / m_pmanager->m_strNamespace + "_dynamic_source_library/library" / strName;
+         strObjs += m_pathTime / "intermediate" / m_pintegrationcontext->m_strPlatform / m_strDynamicSourceConfiguration / m_pscriptmanager2->m_strRepos / m_pscriptmanager2->m_strNamespace + "_dynamic_source_library/library" / strName;
          //strObjs += m_pathTime.separator();
          strObjs += "/";
          strObjs += strRel;
@@ -2037,6 +2054,7 @@ namespace dynamic_source
       //character_count iNext3 = 0;
       bool bInitial = true;
       string strSpec1;
+      string strSpec1Macro;
       character_count iOpenParen = 1; // open Parenthesis Count
       string_array_base straFunction;
       index_array iaFunctionParen; // index of the parenthesis of the function
@@ -2068,7 +2086,15 @@ namespace dynamic_source
             }
             else if (ch2 == '(')
             {
-               strResult += strSpec1 + "(";
+               if (strSpec1Macro.has_character())
+               {
+                  strResult += strSpec1Macro + "(";
+               }
+               else
+               {
+
+                  strResult += strSpec1 + "(";
+               }
                bInSpec1 = false;
                ch2++;
                bNewLine = false;
@@ -2076,7 +2102,15 @@ namespace dynamic_source
             }
             else
             {
-               strResult += strSpec1 + "(";
+               if (strSpec1Macro.has_character())
+               {
+                  strResult += strSpec1Macro + "(";
+               }
+               else
+               {
+
+                  strResult += strSpec1 + "(";
+               }
                bInSpec1Close = true;
                bInSpec1 = false;
             }
@@ -2330,19 +2364,19 @@ namespace dynamic_source
                         if (ch2 == ')')
                         {
                            add_var_id(strResult, iVar, straId);
-                           strResult += ").cast < " + m_pmanager->m_strNamespace + "::object_base >()->call(\"" + strToken + "\" ";
+                           strResult += ").cast < " + m_pscriptmanager2->m_strNamespace + "::object_base >()->call(\"" + strToken + "\" ";
                         }
                         else
                         {
                            add_var_id(strResult, iVar, straId);
-                           strResult += ").cast < " + m_pmanager->m_strNamespace + "::object_base >()->call(\"" + strToken + "\", ";
+                           strResult += ").cast < " + m_pscriptmanager2->m_strNamespace + "::object_base >()->call(\"" + strToken + "\", ";
                            continue;
                         }
                      }
                      else
                      {
                         add_var_id(strResult, iVar, straId);
-                        strResult += ").cast < " + m_pmanager->m_strNamespace + "::object_base >()->m_propertyset[\"" + strToken + "\"]";
+                        strResult += ").cast < " + m_pscriptmanager2->m_strNamespace + "::object_base >()->m_propertyset[\"" + strToken + "\"]";
                      }
                   }
                   else
@@ -2580,18 +2614,21 @@ namespace dynamic_source
             {
                bInSpec1 = true;
                strSpec1 = "include";
+               strSpec1Macro = "ds_include";
                ch2.ansi_add(iIdLen - 1);
             }
             else if (is_id(&str[ch2.m_i], str.length() - ch2.m_i, "print", 5, iIdLen))
             {
                bInSpec1 = true;
                strSpec1 = "print";
+               strSpec1Macro = "";
                ch2.ansi_add(iIdLen - 1);
             }
             else if (is_id(&str[ch2.m_i], str.length() - ch2.m_i, "echo", 4, iIdLen))
             {
                bInSpec1 = true;
                strSpec1 = "echo";
+               strSpec1Macro = "";
                ch2.ansi_add(iIdLen - 1);
             }
             else if (str.substr(ch2.m_i, 2) == "[]")
@@ -2681,7 +2718,7 @@ namespace dynamic_source
    void script_compiler::run_persistent()
    {
 
-      string strPath = m_pmanager->m_pathNetseedDsCa2Path / "core/persistent";
+      string strPath = m_pscriptmanager2->m_pathNetseedDsCa2Path / "core/persistent";
 
       ::file::listing_base stra;
 
@@ -2694,7 +2731,7 @@ namespace dynamic_source
       directory()->enumerate(stra);
 
       string strCat;
-      strCat = m_pmanager->m_pathNetseedDsCa2Path / "core/netnode_persistent_ui_str.ds";
+      strCat = m_pscriptmanager2->m_pathNetseedDsCa2Path / "core/netnode_persistent_ui_str.ds";
       string strBody;
       strBody = "<?\r\n";
       strBody += "// ATTENTION!\r\n";
@@ -2707,7 +2744,7 @@ namespace dynamic_source
       for (int i = 0; i < stra.get_size(); i++)
       {
          string str = stra[i];
-         if (case_insensitive_string_begins(str, m_pmanager->m_pathNetseedDsCa2Path / "core/persistent")
+         if (case_insensitive_string_begins(str, m_pscriptmanager2->m_pathNetseedDsCa2Path / "core/persistent")
             && case_insensitive_string_ends(str, ".ds"))
          {
             strBody += file()->as_string(str);
@@ -2718,48 +2755,48 @@ namespace dynamic_source
 
       string strInclude = strCat;
 
-      strInclude.case_insensitive_begins_eat(m_pmanager->m_pathNetseedDsCa2Path);
+      strInclude.case_insensitive_begins_eat(m_pscriptmanager2->m_pathNetseedDsCa2Path);
 
       strInclude.case_insensitive_ends_eat(".ds");
 
-      ::pointer<script_instance>pinstance = m_pmanager->get(strInclude);
+      auto pfilesystemcacheitem = m_pscriptmanager2->netnode_file_path(strInclude, m_pscriptmanager2);
+
+      ::pointer<script_instance>pinstance = m_pscriptmanager2->get(pfilesystemcacheitem);
 
       if (pinstance)
       {
 
-         auto pmain = øcreate < script_main >();
+         auto pscript1 = pinstance->m_pscript1;
 
-         pmain->m_pmanager2 = m_pmanager;
+         auto pscriptmain1 = øcreate < script_main >();
 
-         pmain->m_pmain = pmain;
+         pscriptmain1->initialize_script_main(m_pscriptmanager2, nullptr, pscript1);
 
-         pmain->init1();
+         //pinstance->m_pscriptmain1 = pscriptmain1;
 
-         pinstance->m_pmain = pmain;
+         pinstance->initialize(pscriptmain1);
 
-         pinstance->initialize(pmain);
+         pinstance->initialize_script_composite(pscriptmain1);
 
          //pinstance->init1();
 
          string strError;
 
-         //pinstance->initialize_dynamic_source_script_interface(pinstance, nullptr, nullptr, m_pmanager);
+         //pinstance->initialize_dynamic_source_script_interface(pinstance, nullptr, nullptr, m_pscriptmanager2);
 
-         auto pdsscript = pinstance->m_pscript2;
-
-         if (pdsscript)
+         if (pscript1)
          {
 
             try
             {
 
-               pdsscript->m_pfileError->seek_to_begin();
+               pscript1->m_pfileError->seek_to_begin();
 
                string strScriptError;
 
-               strScriptError = pdsscript->m_pfileError->as_string();
+               strScriptError = pscript1->m_pfileError->as_string();
 
-               m_pmanager->m_strPersistentError += strScriptError;
+               m_pscriptmanager2->m_strPersistentError += strScriptError;
 
             }
             catch (...)
@@ -2793,22 +2830,22 @@ namespace dynamic_source
          parse_pstr_set();
 
          //string strCat;
-         //strCat = m_pmanager->m_pathNetseedDsCa2Path/ "aura\\netnode_persistent_ui_str.ds";
+         //strCat = m_pscriptmanager2->m_pathNetseedDsCa2Path/ "aura\\netnode_persistent_ui_str.ds";
          //string strInclude = strCat;
-         //strInclude.case_insensitive_begins_eat(m_pmanager->m_pathNetseedDsCa2Path);
+         //strInclude.case_insensitive_begins_eat(m_pscriptmanager2->m_pathNetseedDsCa2Path);
          //strInclude.case_insensitive_ends_eat(".ds");
-         //script_instance * pinstance = m_pmanager->get(strInclude);
+         //script_instance * pinstance = m_pscriptmanager2->get(strInclude);
          //if(pinstance != nullptr)
          //{
          //   string strError;
-         //   pinstance->initialize(pinstance, nullptr, nullptr, m_pmanager);
+         //   pinstance->initialize(pinstance, nullptr, nullptr, m_pscriptmanager2);
          //   ::dynamic_source::ds_script * pdsscript = dynamic_cast < ds_script * > (pinstance->m_pscript);
          //   if(pdsscript != nullptr)
          //   {
          //      try
          //      {
          //         pdsscript->m_memfileError.seek_to_begin();
-         //         m_pmanager->m_strPersistentError += pdsscript->m_memfileError.to_string();
+         //         m_pscriptmanager2->m_strPersistentError += pdsscript->m_memfileError.to_string();
          //      }
          //      catch(...)
          //      {
@@ -2831,7 +2868,7 @@ namespace dynamic_source
          //   }
          //}
       }
-      else if (str.case_insensitive_begins_eat(m_pmanager->m_pathNetseedDsCa2Path / "aura\\persistent")
+      else if (str.case_insensitive_begins_eat(m_pscriptmanager2->m_pathNetseedDsCa2Path / "aura\\persistent")
          && str.case_insensitive_ends_eat(".ds")
          && str.case_insensitive_order("netnode_persistent_ui_str") != 0)
       {
@@ -2976,7 +3013,7 @@ namespace dynamic_source
 
       //auto pcontext = m_papplication;
 
-      ::file::path pathPstrSet = m_pmanager->m_pathNetnodePath / "net/aura/pstr_set";
+      ::file::path pathPstrSet = m_pscriptmanager2->m_pathNetnodePath / "net/aura/pstr_set";
 
       if (directory()->is(pathPstrSet))
       {
@@ -3056,7 +3093,7 @@ namespace dynamic_source
    void script_compiler::pstr_set(const ::atom & atomTopic, atom idLocale, atom idSchema, const ::scoped_string & scopedstr)
    {
 
-      synchronous_lock synchronouslock(m_pmanager->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+      synchronous_lock synchronouslock(m_pscriptmanager2->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       auto psystem = system();
 

@@ -28,7 +28,22 @@ namespace graphics3d
 	{
 	public:
 
-
+      ::graphics3d::scene_renderable *m_pscenerenderableCurrent;
+      bool m_bDisableAlbedo = false;
+      bool m_bDisableMetallicRoughness = false;
+      bool m_bDisableNormal = false;
+      bool m_bDisableAmbientOcclusion = false;
+      bool m_bDisableEmissive = false;
+      bool m_bForceDefaultMetallicFactor = false;
+      bool m_bForceDefaultRoughnessFactor = false;
+      bool m_bForceDefaultAmbientOcclusionFactor = false;
+      bool m_bForceDefaultAlbedo = false;
+      bool m_bForceDefaultEmission = false;
+      float m_fDefaultMetallicFactor = 0.0f;
+      float m_fDefaultRoughnessFactor = 0.0f;
+      float m_fDefaultAmbientOcclusionFactor = 0.0f;
+      glm::vec3 m_seq3DefaultAlbedo={};
+      glm::vec3 m_seq3DefaultEmission = {};
 
       //VkDescriptorSetLayout m_pdescriptorsetlayoutUbo;
       //VkDescriptorSetLayout m_iblSetLayout;

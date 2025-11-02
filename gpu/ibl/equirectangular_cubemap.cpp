@@ -67,10 +67,20 @@ namespace gpu
 
          øconstruct(m_pshaderHdri);
 
+         //m_pshaderHdri->m_bindingUbo.set(0);
+         //m_pshaderHdri->m_bindingUbo.m_strUniform = "ubo";
+
+         m_pshaderHdri->m_bindingSampler.set(0);
+         m_pshaderHdri->m_bindingSampler.m_strUniform = "hdri";
+         m_pshaderHdri->m_bDisableDepthTest = true;
+         m_pshaderHdri->m_propertiesPushShared.set_properties(
+            ::gpu_properties<::gpu::model_view_projection_hdriSampler>());
+         m_pgpucontext->layout_push_constants(m_pshaderHdri->m_propertiesPushShared);
          m_pshaderHdri->initialize_shader_with_block(
             m_pgpucontext->m_pgpurenderer,
             embedded_ibl_hdri_cube_vert(),            
-            embedded_ibl_hdri_cube_frag());
+            embedded_ibl_hdri_cube_frag(), {}, {},
+            pgpucontext->input_layout(::gpu_properties<::gpu::position3>()));
 
          øconstruct(m_phdricube);
 
@@ -82,6 +92,8 @@ namespace gpu
 //m_pskybox = pskybox;
          //m_pskybox->initialize_sky_box(pscene, pathHdri);
          øconstruct(m_pframebuffer);
+
+         m_pframebuffer->m_strSamplerUniform = "hdri";
 
          m_pframebuffer->initialize_cubemap_framebuffer(m_pgpucontext, m_uCubemapWidth, m_uCubemapHeight);
 
@@ -137,6 +149,9 @@ namespace gpu
       // {
       //    return m_pframebuffer->getCubemapTextureId();
       // }
+
+      
+
 
 
    } // namespace ibl

@@ -67,9 +67,7 @@ public:
 //   inline matter(::platform::context * pcontext) : m_papplication(pcontext), m_pmutex(nullptr), m_uError(0), m_eobject(e_object_none) { }
 //#endif
 
-   matter(const ::e_flag & eflag = e_flag_none, const ::e_status & estatus = undefined) :
-      ::particle(eflag, estatus)
-   { }
+   matter() { }
    ~matter() override;
 
 

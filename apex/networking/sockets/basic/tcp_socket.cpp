@@ -3,6 +3,9 @@
 #include "tcp_socket_impl.h"
 
 
+CLASS_DECL_ACME::string _017Time(const class ::time& time);
+
+
 namespace sockets
 {
 
@@ -11,6 +14,7 @@ namespace sockets
 //#else
 //   bool tcp_socket::s_bReuseSession = true;
 //#endif
+
 
    tcp_socket::tcp_socket():
       m_ptcpsocketInterface(nullptr)//:
@@ -347,7 +351,7 @@ namespace sockets
 //      if(!SetNonblocking(true,s))
 //      {
 //         SetCloseAndDelete();
-//         ::closesocket(s);
+//         ::_close_socket(s);
 //         return false;
 //      }
 //      SetIsClient(); // client because we connect
@@ -403,7 +407,7 @@ namespace sockets
 //         }
 //         else if(Socks4() && socket_handler()->Socks4TryDirect()) // retry
 //         {
-//            ::closesocket(s);
+//            ::_close_socket(s);
 //            return open(ad,true);
 //         }
 //         else if(Reconnect())
@@ -422,7 +426,7 @@ namespace sockets
 //            fatal() <<"connect: failed " << iError << bsd_socket_error(iError);
 //
 //            SetCloseAndDelete();
-//            ::closesocket(s);
+//            ::_close_socket(s);
 //            return false;
 //         }
 //      }

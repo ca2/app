@@ -26,11 +26,12 @@ namespace gpu_opengl
 
       void on_initialize_shader() override;
 
-      void _bind() override;
-      void bind(::gpu::texture* pgputextureTarget, ::gpu::texture* pgputextureSource) override;
-      void bind(::gpu::texture* pgputextureTarget) override;
-      void bind() override;
-      void unbind() override;
+      void _bind(::gpu::command_buffer *pgpucommandbuffer, ::gpu::enum_scene escene) override;
+      void bind(::gpu::command_buffer *pgpucommandbuffer, ::gpu::texture *pgputextureTarget,
+                ::gpu::texture *pgputextureSource) override;
+      void bind(::gpu::command_buffer *pgpucommandbuffer, ::gpu::texture *pgputextureTarget) override;
+      void bind(::gpu::command_buffer * pgpucommandbuffer) override;
+      void unbind(::gpu::command_buffer *pgpucommandbuffer) override;
       
       //virtual void initialize_shader(
       //   ::gpu::context* pgpucontext,
@@ -80,23 +81,27 @@ namespace gpu_opengl
       //::gpu::payload * get_payload(const ::scoped_string & scopedestrUniform) override;
 
 
-      //void setup_sampler_and_texture(const ::scoped_string& scopedstrName, int value) override;
+      // void setup_sampler_and_texture(const ::scoped_string &scopedstrName, int value) override;
+
+
+      virtual GLint _get_uniform_location(const_char_pointer name, const_char_pointer debug) const;
+
 
       void _set_bool(const_char_pointer name, bool bSet) const;
       void _set_int(const_char_pointer name, int value) const;
       void _set_float(const_char_pointer name, float value) const;
-      void _set_vec2(const_char_pointer name, const glm::vec2& value) const;
-      void _set_vec3(const_char_pointer name, const glm::vec3& value) const;
-      void _set_vec4(const_char_pointer name, const glm::vec4& value) const;
+      void _set_seq2(const_char_pointer name, const glm::vec2& value) const;
+      void _set_seq3(const_char_pointer name, const glm::vec3 &value) const;
+      void _set_seq4(const_char_pointer name, const glm::vec4 &value) const;
       void _set_mat2(const_char_pointer name, const glm::mat2& matrix) const;
       void _set_mat3(const_char_pointer name, const glm::mat3& matrix) const;
       void _set_mat4(const_char_pointer name, const glm::mat4& matrix) const;
 
-      void push_properties() override;
+      void push_properties(::gpu::command_buffer *pgpucommandbuffer) override;
 
       //void draw() override;
 
-      void bind_source(::gpu::texture* pgputexture, int iSlot) override;
+      void bind_source(::gpu::command_buffer *pgpucommandbuffer, ::gpu::texture *pgputexture, int iSlot) override;
 
 
       void set_bool(const ::scoped_string& scopedstrName, bool value) override;

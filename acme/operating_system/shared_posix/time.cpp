@@ -1,12 +1,12 @@
 #include "framework.h"
-#include "time.h"
+#include "time1.h"
 #include "acme/prototype/datetime/earth_gregorian_time.h"
 #include "acme/prototype/datetime/earth_zone_time.h"
 //#ifdef FREEBSD
 //#undef _C11_SOURCE
 //#define __XSI_VISIBLE 500
 //#endif
-#include <time.h>
+//#include <time.h>
 
 #ifdef HAVE_UNISTD_H
 #include "acme/prototype/datetime/microsecond_sleep.h"
@@ -374,3 +374,39 @@ class ::time & time::Now()
 
 
 
+
+
+time_t portable_timegm_threadsafe(const struct tm *tm)
+{
+    static const int days_per_month[12] =
+        { 31,28,31,30,31,30,31,31,30,31,30,31 };
+
+    int year = tm->tm_year + 1900;
+    int month = tm->tm_mon;
+    if (month > 11) { year += month / 12; month %= 12; }
+    else if (month < 0) {
+        int years_diff = (11 - month) / 12;
+        year -= years_diff;
+        month += 12 * years_diff;
+    }
+
+    // Days since epoch
+    long days = (year - 1970) * 365L
+              + (year - 1969) / 4    // leap years since 1970
+              - (year - 1901) / 100  // remove century non-leaps
+              + (year - 1601) / 400; // add back 400-year leaps
+
+    for (int m = 0; m < month; ++m)
+        days += days_per_month[m];
+    if (month > 1 && ((year % 4 == 0 && year % 100 != 0) || (year % 400 == 0)))
+        days++; // leap day in February
+
+    days += tm->tm_mday - 1;
+
+    time_t seconds = days * 86400
+                   + tm->tm_hour * 3600
+                   + tm->tm_min * 60
+                   + tm->tm_sec;
+
+    return seconds;
+}

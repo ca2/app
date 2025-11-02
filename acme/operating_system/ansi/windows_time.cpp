@@ -8,18 +8,19 @@
 //
 #include "framework.h"
 #include "windows_time.h"
+#include "acme/operating_system/shared_posix/time1.h"
 #include "acme/parallelization/mutex.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/acme.h"
 ////#include "acme/exception/exception.h"
 #if defined(OPENBSD)
-#include "clear_cstddef"
-#define _BSD_SOURCE 1
-#define __BSD_VISIBLE 1
-#ifdef _TIME_H_
-#error "time.h already include"
-#endif
-#include <time.h>
+//#include "clear_cstddef"
+//#define _BSD_SOURCE 1
+//#define __BSD_VISIBLE 1
+//#ifdef _TIME_H_
+//#error "time.h already include"
+//#endif
+//#include <time.h>
 #elif defined(FREEBSD)
 #define __XSI_VISIBLE 700
 #define __BSD_VISIBLE 1
@@ -1220,15 +1221,17 @@ void mkgmtime_from_filetime(posix_time & time, const ::file_time_t & file_time)
    tm.tm_mday = systemtime.wDay;
    tm.tm_year = systemtime.wYear;
 
-#ifdef WINDOWS
+//#ifdef WINDOWS
    
-   time.m_iSecond = _mkgmtime64(&tm);
+//   time.m_iSecond = _mkgmtime64(&tm);
 
-#else
+//#else
 
-   time.m_iSecond = timegm(&tm);
+   //time.m_iSecond = timegm(&tm);
+   
+   time.m_iSecond = portable_timegm_threadsafe(&tm);
 
-#endif
+//#endif
 
    //return ::success;
 

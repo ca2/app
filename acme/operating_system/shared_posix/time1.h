@@ -41,4 +41,7 @@ CLASS_DECL_ACME void copy(struct timespec * ptimespec, const class ::time * ptim
 CLASS_DECL_ACME void copy(class ::time * ptime, const struct timespec * ptimespec);
 
 
+CLASS_DECL_ACME time_t portable_timegm_threadsafe(const struct tm *tm);
+
+
 

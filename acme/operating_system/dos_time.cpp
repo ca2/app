@@ -150,7 +150,7 @@ posix_time dos_time_unix_time(dostime_t dostime)
     || t.tm_min  <  0 || t.tm_min  >  59
     || t.tm_sec  <  0 || t.tm_sec  >  59)
     {
-        return -1;
+       throw ::exception(error_invalid_time_type);
     }
 
     // A full round trip between Unix date to DOS and back to Unix works

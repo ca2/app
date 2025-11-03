@@ -1,10 +1,12 @@
 # Created by camilo on 2023-02 <3ThomasBorregaardSorensen!!
 # default configuration
+message(STATUS "source/app/_.cmake")
 set(INCLUDE_AUDIO FALSE)
 set(INCLUDE_ICONV FALSE)
 set(INCLUDE_IDN FALSE)
 set(INCLUDE_DRAW2D_CAIRO FALSE)
 set(INCLUDE_FREETYPE FALSE)
+set(USE_PORT_FREEIMAGE FALSE)
 set(INCLUDE_IMAGING_FREEIMAGE FALSE)
 set(INCLUDE_FREEIMAGE FALSE)
 set(INCLUDE_OPENGL FALSE)

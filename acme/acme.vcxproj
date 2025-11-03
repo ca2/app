@@ -1745,6 +1745,7 @@
     <ClCompile Include="handler\source.cpp" />
     <ClCompile Include="handler\task_handler.cpp" />
     <ClCompile Include="handler\topic.cpp" />
+    <ClCompile Include="operating_system\dos_time.cpp" />
     <ClCompile Include="_information_n.cpp" />
     <ClInclude Include="..\..\..\operating_system\operating_system-windows\operating_system\system.h" />
     <ClInclude Include="..\..\..\operating_system\operating_system-windows\operating_system\types.h" />
@@ -1772,6 +1773,7 @@
     <ClInclude Include="filesystem\filesystem\_format.h" />
     <ClInclude Include="filesystem\file\byte2_stream.h" />
     <ClInclude Include="filesystem\file\protocol_file.h" />
+    <ClInclude Include="operating_system\dos_time1.h" />
     <ClInclude Include="operating_system\networking.h" />
     <ClInclude Include="operating_system\windows_common\networking.h" />
     <ClInclude Include="platform\acme_message.h" />
@@ -2771,7 +2773,6 @@
     <ClCompile Include="operating_system\console_client.cpp" />
     <ClCompile Include="operating_system\console_message_box.cpp" />
     <ClCompile Include="operating_system\debug.cpp" />
-    <ClCompile Include="operating_system\dostime.cpp" />
     <ClCompile Include="operating_system\dynamic_library.cpp" />
     <ClCompile Include="operating_system\error_code.cpp" />
     <ClCompile Include="operating_system\exit_status.cpp" />
@@ -2802,7 +2803,6 @@
     <ClCompile Include="operating_system\windows\dynamic_library.cpp" />
     <ClCompile Include="operating_system\windows\file1.cpp" />
     <ClInclude Include="operating_system\application.h" />
-    <ClInclude Include="operating_system\dostime.h" />
     <ClInclude Include="operating_system\dos\dostime.h" />
     <ClInclude Include="operating_system\main_window.h" />
     <ClInclude Include="operating_system\aaa_operating_system_summary.h" />

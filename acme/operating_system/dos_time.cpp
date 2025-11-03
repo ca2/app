@@ -54,7 +54,7 @@
  * This implementation uses C code.
  */
 #include "framework.h"
-#include "dostime.h"
+#include "dos_time1.h"
 
 #include <stdio.h>
 #include <stdlib.h>

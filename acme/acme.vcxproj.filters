@@ -3300,9 +3300,6 @@
     <ClInclude Include="operating_system\shared_posix\c_error_number.h">
       <Filter>Header Files\operating_system\shared_posix</Filter>
     </ClInclude>
-    <ClInclude Include="operating_system\shared_posix\time.h">
-      <Filter>Header Files\operating_system\shared_posix</Filter>
-    </ClInclude>
     <ClInclude Include="prototype\collection\array_2d.h">
       <Filter>Header Files\prototype\collection</Filter>
     </ClInclude>
@@ -4289,6 +4286,9 @@
     </ClInclude>
     <ClInclude Include="operating_system\dos_time1.h">
       <Filter>Header Files\operating_system</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\shared_posix\time1.h">
+      <Filter>Header Files\operating_system\shared_posix</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

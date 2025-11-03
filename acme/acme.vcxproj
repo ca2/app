@@ -1775,6 +1775,7 @@
     <ClInclude Include="filesystem\file\protocol_file.h" />
     <ClInclude Include="operating_system\dos_time1.h" />
     <ClInclude Include="operating_system\networking.h" />
+    <ClInclude Include="operating_system\shared_posix\time1.h" />
     <ClInclude Include="operating_system\windows_common\networking.h" />
     <ClInclude Include="platform\acme_message.h" />
     <ClInclude Include="platform\http.h" />
@@ -2481,7 +2482,6 @@
     <ClInclude Include="operating_system\posix\time.h" />
     <ClInclude Include="operating_system\shared_posix\c_error_number.h" />
     <ClInclude Include="operating_system\shared_posix\stdio_file.h" />
-    <ClInclude Include="operating_system\shared_posix\time.h" />
     <ClInclude Include="operating_system\windows\_gdiplus.h" />
     <ClInclude Include="parallelization\retry.h" />
     <ClInclude Include="platform\integration_context.h" />

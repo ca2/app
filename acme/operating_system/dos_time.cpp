@@ -157,7 +157,7 @@ posix_time dos_time_unix_time(dostime_t dostime)
     // as is (without worry about the current timezone) because the DOS
     // format makes use of localdate() and that's 1 to 1 compatible with
     // mktime() which expects a local date too.
-    return mktime(&t);
+    return { posix_time_t{}, (long long)mktime(&t) };
 }
 
 
@@ -218,10 +218,10 @@ dostime_t dos_time(int year, int month, int day, int hour, int minute, int secon
  */
 dostime_t unix_time_dos_time(posix_time unix_time)
 {
-    posix_time even_time;
+    time_t even_time;
     struct tm *s;         /* result of localtime() */
 
-    even_time = (unix_time + 1) & ~1;         /* Round up to even seconds. */
+    even_time = (unix_time.m_iSecond + 1) & ~1;         /* Round up to even seconds. */
     s = localtime(&even_time);         /* Use local time since MSDOS does. */
     return dos_time(s->tm_year + 1900, s->tm_mon + 1, s->tm_mday,
                    s->tm_hour, s->tm_min, s->tm_sec);

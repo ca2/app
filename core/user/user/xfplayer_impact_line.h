@@ -1,6 +1,7 @@
 #pragma once
 
 
+#include "core/user/user/_.h"
 #include "xfplayer_impact_line_selection.h"
 #include "acme/prototype/geometry2d/_collection.h"
 

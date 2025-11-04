@@ -1863,7 +1863,7 @@ list(APPEND library_source
         operating_system/shared_posix/stdio_file.h
         operating_system/shared_posix/windows_time.cpp
         operating_system/shared_posix/time.cpp
-        operating_system/shared_posix/time.h
+        operating_system/shared_posix/time1.h
         operating_system/solaris/linux_internal.h
         operating_system/solaris/solaris.h
         operating_system/solaris/solaris_cairo_keep.h
@@ -3149,7 +3149,7 @@ elseif (${LINUX} OR ${__BSD__} OR ${ANDROID})
     target_link_options(${PROJECT_NAME} PRIVATE ${${PROJECT_NAME}_PKGCONFIG_LDFLAGS})
 
     if (${OPENBSD})
-        message(SEND_ERROR "test is really openbsd?!")
+#        message(SEND_ERROR "test is really openbsd?! Yey! It seems to be working. This is a OpenBSD system.")
         #list(APPEND this_system_libraries z pthread iconv execinfo kvm c)
         list(APPEND this_system_libraries z pthread iconv kvm c)
         list(APPEND static_this_system_libraries z pthread iconv kvm c)

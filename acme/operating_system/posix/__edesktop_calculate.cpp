@@ -95,7 +95,7 @@ namespace windowing
          return ::windowing::e_operating_ambient_unity;
          
       }
-      else if (strDesktop.case_insensitive_contains("labwc") == 0)
+      else if (strDesktop.case_insensitive_contains("labwc"))
       {
 
          printf_line("calculate_edesktop e_operating_ambient_labwc");

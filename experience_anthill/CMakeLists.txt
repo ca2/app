@@ -37,7 +37,12 @@ list(APPEND library_source
 
 
 list(APPEND library_references
-        acme apex aqua aura axis berg)
+        acme
+        apex
+        aqua
+        aura
+        axis
+        berg)
 
 
 add_library(${PROJECT_NAME} SHARED ${library_source})
@@ -50,24 +55,18 @@ if (NOT ${NO_PRECOMPILED_HEADER})
     target_precompile_headers(static_${PROJECT_NAME} PRIVATE framework.h)
 
 endif ()
-if (NOT ${NO_PRECOMPILED_HEADER})
-
-    target_precompile_headers(${PROJECT_NAME} PRIVATE framework.h)
-    target_precompile_headers(static_${PROJECT_NAME} PRIVATE framework.h)
-
-endif ()
 
 
-set_target_properties(experience_anthill PROPERTIES LINKER_LANGUAGE CXX)
+set_target_properties(${PROJECT_NAME} PROPERTIES LINKER_LANGUAGE CXX)
 
 
 if (MSVC)
 
-    target_compile_options(experience_anthill PRIVATE "/MD$<$<CONFIG:Debug>:d>")
-    target_link_options(experience_anthill PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
-    target_link_options(experience_anthill PRIVATE "/IMPLIB:${LIBRARY_OUTPUT_PATH}/experience_anthill.lib")
-    target_link_options(experience_anthill PRIVATE "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/experience_anthill.def")
-    target_link_libraries(experience_anthill PRIVATE ${library_references} ${global_library_references})
+    target_compile_options(${PROJECT_NAME} PRIVATE "/MD$<$<CONFIG:Debug>:d>")
+    target_link_options(${PROJECT_NAME} PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
+    target_link_options(${PROJECT_NAME} PRIVATE "/IMPLIB:${LIBRARY_OUTPUT_PATH}/experience_anthill.lib")
+    target_link_options(${PROJECT_NAME} PRIVATE "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/experience_anthill.def")
+    target_link_libraries(${PROJECT_NAME} PRIVATE ${library_references} ${global_library_references})
 
 elseif (${LINUX} OR ${__BSD__} OR ${ANDROID})
 
@@ -78,7 +77,7 @@ elseif (${LINUX} OR ${__BSD__} OR ${ANDROID})
 
 
     
-    target_link_libraries(experience_anthill PRIVATE ${${PROJECT_NAME}_PKGCONFIG_LIBRARIES} ${library_references} ${global_library_references})
+    target_link_libraries(${PROJECT_NAME} PRIVATE ${${PROJECT_NAME}_PKGCONFIG_LIBRARIES} ${library_references} ${global_library_references})
     target_link_options(${PROJECT_NAME} PRIVATE -Wl,-z,defs)
     # target_link_options(static_${PROJECT_NAME} PRIVATE --whole-archive)
 

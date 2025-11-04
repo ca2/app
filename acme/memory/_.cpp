@@ -222,7 +222,7 @@ CLASS_DECL_ACME unsigned int __unsigned_int_hash(const ::scoped_string & scopeds
 #ifdef WINDOWS
 //#include "_memory.h"
 #else
-#if defined(FREEBSD) || defined(OPENBSD)
+#if defined(FREEBSD) // || defined(OPENBSD)
 #define _POSIX_C_SOURCE 200809L
 #define _ANSI_SOURCE
 #endif

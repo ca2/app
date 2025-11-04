@@ -7,7 +7,7 @@
 #include "acme/prototype/datetime/system_time.h"
 #include "acme/platform/nanosecond_timer.h"
 #include "acme/_operating_system.h"
-#include "acme/operating_system/shared_posix/time.h"
+#include "acme/operating_system/shared_posix/time1.h"
 #include "acme/operating_system/time.h"
 #include <time.h>
 

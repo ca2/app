@@ -209,7 +209,6 @@
 		9A7FEC972E7F47420082C6FD /* skybox.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A7FEC872E7F47420082C6FD /* skybox.h */; };
 		9A7FEC982E7F47420082C6FD /* shapes.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A7FEC862E7F47420082C6FD /* shapes.h */; };
 		9A7FEC992E7F47420082C6FD /* static_array.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A7FEC892E7F47420082C6FD /* static_array.h */; };
-		9A7FEC9A2E7F47420082C6FD /* scene.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A7FEC7F2E7F47420082C6FD /* scene.h */; };
 		9A7FEC9B2E7F47420082C6FD /* point_light_render_system.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A7FEC2C2E7F47420082C6FD /* point_light_render_system.h */; };
 		9A7FEC9C2E7F47420082C6FD /* entity.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A7FEC652E7F47420082C6FD /* entity.h */; };
 		9A7FEC9D2E7F47420082C6FD /* input.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A7FEC6B2E7F47420082C6FD /* input.h */; };
@@ -257,7 +256,6 @@
 		9A7FECE42E7F47420082C6FD /* frame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A7FEC672E7F47420082C6FD /* frame.cpp */; };
 		9A7FECE52E7F47420082C6FD /* engine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A7FEC642E7F47420082C6FD /* engine.cpp */; };
 		9A7FECE82E7F47420082C6FD /* render_system.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A7FEC792E7F47420082C6FD /* render_system.cpp */; };
-		9A7FECE92E7F47420082C6FD /* scene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A7FEC802E7F47420082C6FD /* scene.cpp */; };
 		9A7FECEA2E7F47420082C6FD /* immersion_layer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A7FEC6A2E7F47420082C6FD /* immersion_layer.cpp */; };
 		9A7FECEB2E7F47420082C6FD /* renderable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A7FEC7B2E7F47420082C6FD /* renderable.cpp */; };
 		9A7FECEC2E7F47420082C6FD /* skybox_render_system.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A7FEC332E7F47420082C6FD /* skybox_render_system.cpp */; };
@@ -282,7 +280,6 @@
 		9A7FED0D2E7F47430082C6FD /* frame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A7FEC672E7F47420082C6FD /* frame.cpp */; };
 		9A7FED0E2E7F47430082C6FD /* engine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A7FEC642E7F47420082C6FD /* engine.cpp */; };
 		9A7FED112E7F47430082C6FD /* render_system.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A7FEC792E7F47420082C6FD /* render_system.cpp */; };
-		9A7FED122E7F47430082C6FD /* scene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A7FEC802E7F47420082C6FD /* scene.cpp */; };
 		9A7FED132E7F47430082C6FD /* immersion_layer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A7FEC6A2E7F47420082C6FD /* immersion_layer.cpp */; };
 		9A7FED142E7F47430082C6FD /* renderable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A7FEC7B2E7F47420082C6FD /* renderable.cpp */; };
 		9A7FED152E7F47430082C6FD /* skybox_render_system.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A7FEC332E7F47420082C6FD /* skybox_render_system.cpp */; };
@@ -300,7 +297,6 @@
 		9A7FED2B2E7F47430082C6FD /* skybox.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A7FEC872E7F47420082C6FD /* skybox.h */; };
 		9A7FED2C2E7F47430082C6FD /* shapes.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A7FEC862E7F47420082C6FD /* shapes.h */; };
 		9A7FED2D2E7F47430082C6FD /* static_array.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A7FEC892E7F47420082C6FD /* static_array.h */; };
-		9A7FED2E2E7F47430082C6FD /* scene.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A7FEC7F2E7F47420082C6FD /* scene.h */; };
 		9A7FED2F2E7F47430082C6FD /* point_light_render_system.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A7FEC2C2E7F47420082C6FD /* point_light_render_system.h */; };
 		9A7FED302E7F47430082C6FD /* entity.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A7FEC652E7F47420082C6FD /* entity.h */; };
 		9A7FED312E7F47430082C6FD /* input.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A7FEC6B2E7F47420082C6FD /* input.h */; };
@@ -609,8 +605,6 @@
 		9A7FEC7C2E7F47420082C6FD /* renderer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = renderer.h; sourceTree = "<group>"; };
 		9A7FEC7D2E7F47420082C6FD /* renderer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = renderer.cpp; sourceTree = "<group>"; };
 		9A7FEC7E2E7F47420082C6FD /* resource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = resource.h; sourceTree = "<group>"; };
-		9A7FEC7F2E7F47420082C6FD /* scene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = scene.h; sourceTree = "<group>"; };
-		9A7FEC802E7F47420082C6FD /* scene.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = scene.cpp; sourceTree = "<group>"; };
 		9A7FEC812E7F47420082C6FD /* scene_object.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = scene_object.h; sourceTree = "<group>"; };
 		9A7FEC822E7F47420082C6FD /* scene_object.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = scene_object.cpp; sourceTree = "<group>"; };
 		9A7FEC832E7F47420082C6FD /* shader.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = shader.cpp; sourceTree = "<group>"; };
@@ -788,7 +782,7 @@
 			isa = PBXGroup;
 			children = (
 				9A281ADA252435C3009FA9CB /* libberg.dylib */,
-				9AE64255284AA6570079EBA0 /* libios_base.a */,
+				9AE64255284AA6570079EBA0 /* libios_berg.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -947,8 +941,6 @@
 				9A7FEC7C2E7F47420082C6FD /* renderer.h */,
 				9A7FEC7D2E7F47420082C6FD /* renderer.cpp */,
 				9A7FEC7E2E7F47420082C6FD /* resource.h */,
-				9A7FEC7F2E7F47420082C6FD /* scene.h */,
-				9A7FEC802E7F47420082C6FD /* scene.cpp */,
 				9A7FEC812E7F47420082C6FD /* scene_object.h */,
 				9A7FEC822E7F47420082C6FD /* scene_object.cpp */,
 				9A7FEC832E7F47420082C6FD /* shader.cpp */,
@@ -1066,7 +1058,6 @@
 				9A7FEC972E7F47420082C6FD /* skybox.h in Headers */,
 				9A7FEC982E7F47420082C6FD /* shapes.h in Headers */,
 				9A7FEC992E7F47420082C6FD /* static_array.h in Headers */,
-				9A7FEC9A2E7F47420082C6FD /* scene.h in Headers */,
 				9A7FEC9B2E7F47420082C6FD /* point_light_render_system.h in Headers */,
 				9A7FEC9C2E7F47420082C6FD /* entity.h in Headers */,
 				9A7FED842E7F4DCB0082C6FD /* _.h in Headers */,
@@ -1174,7 +1165,6 @@
 				9A7FED2B2E7F47430082C6FD /* skybox.h in Headers */,
 				9A7FED2C2E7F47430082C6FD /* shapes.h in Headers */,
 				9A7FED2D2E7F47430082C6FD /* static_array.h in Headers */,
-				9A7FED2E2E7F47430082C6FD /* scene.h in Headers */,
 				9A7FED2F2E7F47430082C6FD /* point_light_render_system.h in Headers */,
 				9A7FED302E7F47430082C6FD /* entity.h in Headers */,
 				9A7FED892E7F4DCB0082C6FD /* _.h in Headers */,
@@ -1375,10 +1365,10 @@
 			remoteRef = 9A281AD9252435C3009FA9CB /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		9AE64255284AA6570079EBA0 /* libios_base.a */ = {
+		9AE64255284AA6570079EBA0 /* libios_berg.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
-			path = libios_base.a;
+			path = libios_berg.a;
 			remoteRef = 9AE64254284AA6570079EBA0 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -1432,7 +1422,6 @@
 				9A7FECE42E7F47420082C6FD /* frame.cpp in Sources */,
 				9A7FECE52E7F47420082C6FD /* engine.cpp in Sources */,
 				9A7FECE82E7F47420082C6FD /* render_system.cpp in Sources */,
-				9A7FECE92E7F47420082C6FD /* scene.cpp in Sources */,
 				9A7FECEA2E7F47420082C6FD /* immersion_layer.cpp in Sources */,
 				9A7FECEB2E7F47420082C6FD /* renderable.cpp in Sources */,
 				9A7FECEC2E7F47420082C6FD /* skybox_render_system.cpp in Sources */,
@@ -1509,7 +1498,6 @@
 				9A7FED0D2E7F47430082C6FD /* frame.cpp in Sources */,
 				9A7FED0E2E7F47430082C6FD /* engine.cpp in Sources */,
 				9A7FED112E7F47430082C6FD /* render_system.cpp in Sources */,
-				9A7FED122E7F47430082C6FD /* scene.cpp in Sources */,
 				9A7FED132E7F47430082C6FD /* immersion_layer.cpp in Sources */,
 				9A7FED142E7F47430082C6FD /* renderable.cpp in Sources */,
 				9A7FED152E7F47430082C6FD /* skybox_render_system.cpp in Sources */,

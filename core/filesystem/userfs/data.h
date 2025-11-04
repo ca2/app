@@ -1,6 +1,7 @@
 #pragma once
 
 
+#include "core/filesystem/userfs/_.h"
 #include "acme/prototype/data/data.h"
 #include "berg/user/form/document.h"
 #include "acme/filesystem/filesystem/listing.h"

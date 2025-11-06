@@ -34,8 +34,6 @@
 		9A4E96B727853AA900B74C76 /* libcrypto_openssl.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9A1CF4C02761556D00802DB8 /* libcrypto_openssl.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9A4E96BA27853AB400B74C76 /* libfolder_zip.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9A4E96B827853AB400B74C76 /* libfolder_zip.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9A52435D2CD4B109006ED868 /* libnano_graphics_quartz2d.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9A52435B2CD4B109006ED868 /* libnano_graphics_quartz2d.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
-		9A6FB4562EBCB4E0003BBE61 /* _____debug_application.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 9A6FB4542EBCB4E0003BBE61 /* _____debug_application.xcconfig */; };
-		9A6FB4572EBCB4E0003BBE61 /* _____release_application.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 9A6FB4552EBCB4E0003BBE61 /* _____release_application.xcconfig */; };
 		9A82E7D629A1407500EBCBCC /* libapp_app.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A46D31D2678453B000B22D0 /* libapp_app.dylib */; };
 		9A8B170529A10A9C00D14979 /* libacme_darwin.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9A8B170329A10A9C00D14979 /* libacme_darwin.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9A8B170829A10AAE00D14979 /* libapex_darwin.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9A8B170629A10AAE00D14979 /* libapex_darwin.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
@@ -673,8 +671,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9A6FB4562EBCB4E0003BBE61 /* _____debug_application.xcconfig in Resources */,
-				9A6FB4572EBCB4E0003BBE61 /* _____release_application.xcconfig in Resources */,
 				9AEA1C692760261D006437A3 /* Images.xcassets in Resources */,
 				9AADA8E729D0A8DD0004D7ED /* InfoPlist.strings in Resources */,
 				9A8C817D2783F8D9000C8587 /* _matter.zip in Resources */,
@@ -961,6 +957,7 @@
 		};
 		070B8F081B6E53FA00D26137 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9A6FB4542EBCB4E0003BBE61 /* _____debug_application.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
@@ -973,6 +970,7 @@
 		};
 		070B8F091B6E53FA00D26137 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9A6FB4552EBCB4E0003BBE61 /* _____release_application.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";

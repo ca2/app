@@ -47,6 +47,18 @@
 		9A281AD225243402009FA9CB /* _.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A281AA425243402009FA9CB /* _.cpp */; };
 		9A281AD325243402009FA9CB /* framework.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A281AA825243402009FA9CB /* framework.h */; };
 		9A281AD425243402009FA9CB /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A281AAA25243402009FA9CB /* _.h */; };
+		9A3CFE642EBB0E740074E067 /* scene_base.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A3CFE602EBB0E740074E067 /* scene_base.h */; };
+		9A3CFE652EBB0E740074E067 /* scene_renderable.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A3CFE622EBB0E740074E067 /* scene_renderable.h */; };
+		9A3CFE662EBB0E740074E067 /* scene_renderable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A3CFE632EBB0E740074E067 /* scene_renderable.cpp */; };
+		9A3CFE672EBB0E740074E067 /* scene_base.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A3CFE612EBB0E740074E067 /* scene_base.cpp */; };
+		9A3CFE682EBB0E740074E067 /* scene_renderable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A3CFE632EBB0E740074E067 /* scene_renderable.cpp */; };
+		9A3CFE692EBB0E740074E067 /* scene_base.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A3CFE612EBB0E740074E067 /* scene_base.cpp */; };
+		9A3CFE6A2EBB0E740074E067 /* scene_base.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A3CFE602EBB0E740074E067 /* scene_base.h */; };
+		9A3CFE6B2EBB0E740074E067 /* scene_renderable.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A3CFE622EBB0E740074E067 /* scene_renderable.h */; };
+		9A3CFE9E2EBB14120074E067 /* vertex.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A3CFE9C2EBB14120074E067 /* vertex.cpp */; };
+		9A3CFE9F2EBB14120074E067 /* vertex.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A3CFE9B2EBB14120074E067 /* vertex.h */; };
+		9A3CFEA02EBB14120074E067 /* vertex.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A3CFE9B2EBB14120074E067 /* vertex.h */; };
+		9A3CFEA12EBB14120074E067 /* vertex.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A3CFE9C2EBB14120074E067 /* vertex.cpp */; };
 		9A4B40632524363200F476B3 /* libacme.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A4B40622524363200F476B3 /* libacme.dylib */; };
 		9A4B40652524363200F476B3 /* libapex.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A4B40642524363200F476B3 /* libapex.dylib */; };
 		9A4B40672524363200F476B3 /* libaqua.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A4B40662524363200F476B3 /* libaqua.dylib */; };
@@ -476,6 +488,12 @@
 		9A281AA825243402009FA9CB /* framework.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = framework.h; sourceTree = "<group>"; };
 		9A281AAA25243402009FA9CB /* _.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
 		9A281AD5252435C2009FA9CB /* berg.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = berg.xcodeproj; path = ../berg/berg.xcodeproj; sourceTree = SOURCE_ROOT; };
+		9A3CFE602EBB0E740074E067 /* scene_base.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = scene_base.h; sourceTree = "<group>"; };
+		9A3CFE612EBB0E740074E067 /* scene_base.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = scene_base.cpp; sourceTree = "<group>"; };
+		9A3CFE622EBB0E740074E067 /* scene_renderable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = scene_renderable.h; sourceTree = "<group>"; };
+		9A3CFE632EBB0E740074E067 /* scene_renderable.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = scene_renderable.cpp; sourceTree = "<group>"; };
+		9A3CFE9B2EBB14120074E067 /* vertex.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = vertex.h; sourceTree = "<group>"; };
+		9A3CFE9C2EBB14120074E067 /* vertex.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = vertex.cpp; sourceTree = "<group>"; };
 		9A4B40622524363200F476B3 /* libacme.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libacme.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A4B40642524363200F476B3 /* libapex.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libapex.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A4B40662524363200F476B3 /* libaqua.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libaqua.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -679,14 +697,15 @@
 		9A281A6F25243402009FA9CB /* bred */ = {
 			isa = PBXGroup;
 			children = (
-				9A7FED9F2E7F4DDE0082C6FD /* prodevian */,
-				9A7FED832E7F4DCB0082C6FD /* typeface */,
-				9A7FEC8F2E7F47420082C6FD /* graphics3d */,
-				9A7FEB892E7F47310082C6FD /* gpu */,
 				9A281A9E25243402009FA9CB /* const */,
+				9A3CFE9D2EBB14120074E067 /* gltf */,
+				9A7FEB892E7F47310082C6FD /* gpu */,
+				9A7FEC8F2E7F47420082C6FD /* graphics3d */,
 				9A281A7725243402009FA9CB /* include */,
 				9A281A8225243402009FA9CB /* inline */,
 				9A281A7925243402009FA9CB /* platform */,
+				9A7FED9F2E7F4DDE0082C6FD /* prodevian */,
+				9A7FED832E7F4DCB0082C6FD /* typeface */,
 				9ADF04142C274A9F004CF1C9 /* user */,
 				9A8C03522A281A370049B167 /* _____debug.xcconfig */,
 				9A8C03532A281A380049B167 /* _____release.xcconfig */,
@@ -785,6 +804,15 @@
 				9AE64255284AA6570079EBA0 /* libios_berg.a */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		9A3CFE9D2EBB14120074E067 /* gltf */ = {
+			isa = PBXGroup;
+			children = (
+				9A3CFE9B2EBB14120074E067 /* vertex.h */,
+				9A3CFE9C2EBB14120074E067 /* vertex.cpp */,
+			);
+			path = gltf;
 			sourceTree = "<group>";
 		};
 		9A4B40612524363200F476B3 /* Frameworks */ = {
@@ -941,8 +969,12 @@
 				9A7FEC7C2E7F47420082C6FD /* renderer.h */,
 				9A7FEC7D2E7F47420082C6FD /* renderer.cpp */,
 				9A7FEC7E2E7F47420082C6FD /* resource.h */,
+				9A3CFE602EBB0E740074E067 /* scene_base.h */,
+				9A3CFE612EBB0E740074E067 /* scene_base.cpp */,
 				9A7FEC812E7F47420082C6FD /* scene_object.h */,
 				9A7FEC822E7F47420082C6FD /* scene_object.cpp */,
+				9A3CFE622EBB0E740074E067 /* scene_renderable.h */,
+				9A3CFE632EBB0E740074E067 /* scene_renderable.cpp */,
 				9A7FEC832E7F47420082C6FD /* shader.cpp */,
 				9A7FEC842E7F47420082C6FD /* shape_factory.h */,
 				9A7FEC852E7F47420082C6FD /* shape_factory.cpp */,
@@ -1079,6 +1111,7 @@
 				9A7FEDA12E7F4DDE0082C6FD /* _.h in Headers */,
 				9A7FEDA22E7F4DDE0082C6FD /* actor.h in Headers */,
 				9A7FEDA32E7F4DDE0082C6FD /* immersion.h in Headers */,
+				9A3CFE9F2EBB14120074E067 /* vertex.h in Headers */,
 				9A7FEDA42E7F4DDE0082C6FD /* game_object.h in Headers */,
 				9A7FEDA52E7F4DDE0082C6FD /* resource.h in Headers */,
 				9A7FEDA62E7F4DDE0082C6FD /* player_input.h in Headers */,
@@ -1126,6 +1159,8 @@
 				9A7FEB9D2E7F47310082C6FD /* model_buffer.h in Headers */,
 				9A7FEB9E2E7F47310082C6FD /* layer.h in Headers */,
 				9A7FEB9F2E7F47310082C6FD /* hlsl_context.h in Headers */,
+				9A3CFE6A2EBB0E740074E067 /* scene_base.h in Headers */,
+				9A3CFE6B2EBB0E740074E067 /* scene_renderable.h in Headers */,
 				9A7FEBA02E7F47310082C6FD /* render.h in Headers */,
 				9A7FEBA12E7F47310082C6FD /* render_target.h in Headers */,
 				9A7FEBA22E7F47310082C6FD /* _constant.h in Headers */,
@@ -1240,6 +1275,8 @@
 				9A7FEC1A2E7F47310082C6FD /* bred_approach.h in Headers */,
 				9A7FEC1B2E7F47310082C6FD /* compositor.h in Headers */,
 				9A7FEC1C2E7F47310082C6FD /* _.h in Headers */,
+				9A3CFE642EBB0E740074E067 /* scene_base.h in Headers */,
+				9A3CFE652EBB0E740074E067 /* scene_renderable.h in Headers */,
 				9A7FEC1D2E7F47310082C6FD /* properties.h in Headers */,
 				9A7FEC1E2E7F47310082C6FD /* memory_buffer.h in Headers */,
 				9A7FEC1F2E7F47310082C6FD /* aaaa_gpu.h in Headers */,
@@ -1259,6 +1296,7 @@
 				9AE6422E284AA6570079EBA0 /* application.h in Headers */,
 				9AE6422F284AA6570079EBA0 /* _application.h in Headers */,
 				9AE64230284AA6570079EBA0 /* _new_impl.h in Headers */,
+				9A3CFEA02EBB14120074E067 /* vertex.h in Headers */,
 				9AE64231284AA6570079EBA0 /* framework.h in Headers */,
 				9AE64232284AA6570079EBA0 /* library.h in Headers */,
 				9AE64233284AA6570079EBA0 /* linux.h in Headers */,
@@ -1407,6 +1445,8 @@
 				9A281AD125243402009FA9CB /* idpool.cpp in Sources */,
 				9A281AB225243402009FA9CB /* session.cpp in Sources */,
 				9A281AAE25243402009FA9CB /* framework.cpp in Sources */,
+				9A3CFE682EBB0E740074E067 /* scene_renderable.cpp in Sources */,
+				9A3CFE692EBB0E740074E067 /* scene_base.cpp in Sources */,
 				9A7FECD22E7F47420082C6FD /* types.cpp in Sources */,
 				9A7FECD32E7F47420082C6FD /* mesh.cpp in Sources */,
 				9A7FECD42E7F47420082C6FD /* skybox.cpp in Sources */,
@@ -1457,6 +1497,7 @@
 				9A7FEBC52E7F47310082C6FD /* object.cpp in Sources */,
 				9A7FEBC62E7F47310082C6FD /* swap_chain.cpp in Sources */,
 				9A7FEBC72E7F47310082C6FD /* shader.cpp in Sources */,
+				9A3CFE9E2EBB14120074E067 /* vertex.cpp in Sources */,
 				9A7FEBC82E7F47310082C6FD /* draw2d.cpp in Sources */,
 				9A7FEBC92E7F47310082C6FD /* frame.cpp in Sources */,
 				9A7FEBCA2E7F47310082C6FD /* cpu_buffer.cpp in Sources */,
@@ -1483,6 +1524,8 @@
 				9AE64243284AA6570079EBA0 /* idpool.cpp in Sources */,
 				9AE64244284AA6570079EBA0 /* session.cpp in Sources */,
 				9AE64245284AA6570079EBA0 /* framework.cpp in Sources */,
+				9A3CFE662EBB0E740074E067 /* scene_renderable.cpp in Sources */,
+				9A3CFE672EBB0E740074E067 /* scene_base.cpp in Sources */,
 				9A7FECFB2E7F47430082C6FD /* types.cpp in Sources */,
 				9A7FECFC2E7F47430082C6FD /* mesh.cpp in Sources */,
 				9A7FECFD2E7F47430082C6FD /* skybox.cpp in Sources */,
@@ -1533,6 +1576,7 @@
 				9A7FEBE82E7F47310082C6FD /* object.cpp in Sources */,
 				9A7FEBE92E7F47310082C6FD /* swap_chain.cpp in Sources */,
 				9A7FEBEA2E7F47310082C6FD /* shader.cpp in Sources */,
+				9A3CFEA12EBB14120074E067 /* vertex.cpp in Sources */,
 				9A7FEBEB2E7F47310082C6FD /* draw2d.cpp in Sources */,
 				9A7FEBEC2E7F47310082C6FD /* frame.cpp in Sources */,
 				9A7FEBED2E7F47310082C6FD /* cpu_buffer.cpp in Sources */,
@@ -1765,14 +1809,10 @@
 		9A281A67252432B5009FA9CB /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "Mac Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = L8N5V6TZE5;
 				ENABLE_HARDENED_RUNTIME = YES;
 				EXECUTABLE_EXTENSION = dylib;
 				MACH_O_TYPE = mh_dylib;
 				PLATFORM_MODIFIER = macos;
-				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = macosx;
 			};
 			name = Debug;
@@ -1780,14 +1820,10 @@
 		9A281A68252432B5009FA9CB /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "Mac Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = L8N5V6TZE5;
 				ENABLE_HARDENED_RUNTIME = YES;
 				EXECUTABLE_EXTENSION = dylib;
 				MACH_O_TYPE = mh_dylib;
 				PLATFORM_MODIFIER = macos;
-				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = macosx;
 			};
 			name = Release;

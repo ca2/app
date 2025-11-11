@@ -510,7 +510,15 @@ bool itask::operator==(const itask & itask) const
 bool htask::is_null() const
 {
 
+#if defined(WINDOWS)
+
+   return (!m_h) || ((HANDLE) m_h == INVALID_HANDLE_VALUE);
+
+#else
+
    return !m_h;
+
+#endif
 
 }
 
@@ -530,6 +538,13 @@ CLASS_DECL_ACME void _os_task_destroy(htask htask, itask)
 {
 
    auto h = (HANDLE) htask.m_h;
+
+   if (h == nullptr || h == INVALID_HANDLE_VALUE)
+   {
+
+      return;
+
+   }
 
    BOOL bOk = ::CloseHandle(h);
 

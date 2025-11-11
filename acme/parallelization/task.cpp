@@ -1435,24 +1435,29 @@ void * task::s_os_task(void * p)
 
       auto htask = ptaskhandler->m_htaskHandler;
 
-      auto itask = ptaskhandler->m_itaskHandler;
+      if (htask.is_set())
+      {
 
-      ::system()->post([htask, itask]()
-         {
+         auto itask = ptaskhandler->m_itaskHandler;
 
-            try
+         ::system()->post([htask, itask]()
             {
 
-               _os_task_destroy(htask, itask);
+               try
+               {
 
-            }
-            catch (...)
-            {
+                  _os_task_destroy(htask, itask);
+
+               }
+               catch (...)
+               {
 
 
-            }
+               }
 
-         });
+            });
+
+      }
 
    }
 
@@ -1826,8 +1831,6 @@ void task::__task_term()
    }
 
    destroy();
-
-   _os_task_destroy(m_htask, m_itask);
 
    m_htask = nullptr;
 

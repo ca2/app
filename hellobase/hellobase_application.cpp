@@ -125,7 +125,7 @@ namespace hellobase
       }
 
 
-      informationf("\nfinished hellobase::on_request");
+      informationf("----> finished hellobase::on_request");
 
    }
 

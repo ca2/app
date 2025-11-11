@@ -1165,7 +1165,7 @@ namespace user
 
       ///set_display(e_display_none);
 
-      //informationf("\nm_bLayoutEnable false");
+      //informationf("----> m_bLayoutEnable false");
 
       //auto pusersystem = øallocate ::user::system(0L, nullptr, m_strFrameTitle, dwDefaultStyle, rectangleFrame, pcreate);
 

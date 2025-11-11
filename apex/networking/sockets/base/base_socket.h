@@ -193,6 +193,9 @@ namespace sockets
       virtual ::string get_request_url_string();
 
 
+      virtual bool is_listening_socket();
+
+
       virtual void SetSocketHandler(base_socket_handler* phandler);
 
       virtual ::pointer < ::sockets::socket_thread > create_socket_thread();

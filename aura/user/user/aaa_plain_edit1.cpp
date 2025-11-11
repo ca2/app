@@ -7343,7 +7343,7 @@ namespace user
 
          get_text(strText);
 
-         informationf("\nplain_edit::on_text_composition (m_pitemComposing != nullptr) Current Text: " + strText + "\n");
+         informationf("----> plain_edit::on_text_composition (m_pitemComposing != nullptr) Current Text: " + strText + "\n");
 
       }
       else

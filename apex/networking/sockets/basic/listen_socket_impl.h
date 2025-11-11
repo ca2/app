@@ -49,6 +49,8 @@ namespace sockets
 
       void destroy() override;
 
+      bool is_listening_socket() override;
+
       base_socket* base_socket_impl() override;
       base_socket* base_socket_interface() override;
 

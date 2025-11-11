@@ -1807,7 +1807,7 @@ namespace http
          if (strRedirect.has_character())
          {
 
-            information() << "Redirect: " << iHttpGetSerial << strRedirect;
+            information() << "Redirect: http_serial:" << iHttpGetSerial << " " << strRedirect;
 
             url = strRedirect;
 
@@ -1817,7 +1817,7 @@ namespace http
          else
          {
 
-            information() << "Redirect: " << iHttpGetSerial << url.as_string();
+            information() << "Redirect: http_serial:" << iHttpGetSerial << " " << url.as_string();
 
          }
 
@@ -1825,7 +1825,7 @@ namespace http
       else
       {
 
-         information() << "Start: " << iHttpGetSerial << url.as_string();
+         information() << "Start: http_serial:" << iHttpGetSerial << " " << url.as_string();
 
       }
 
@@ -2481,7 +2481,7 @@ namespace http
 
          }
 
-         information() << LOG_HTTP_PREFIX << "URL: " << url.as_string() << " Too much tries("<< iTry <<")";
+         information() << LOG_HTTP_PREFIX << "URL: " << url.as_string() << " Too much tries("<< iTry << " of " << iTryCount <<") or Timeout("<< tickElapsed.integral_second() << "s of " << tickTotalTimeout.integral_second() <<"s)";
 
          estatus = error_http;
 

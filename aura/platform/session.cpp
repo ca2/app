@@ -2269,7 +2269,7 @@ namespace aura
          //   if(!estatus)
          //   {
 
-         //      informationf("\nFailed to øconstruct(m_puser)");
+         //      informationf("----> Failed to øconstruct(m_puser)");
 
          //   }
 

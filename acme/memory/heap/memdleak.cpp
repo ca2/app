@@ -897,16 +897,16 @@
 //   {
 //      if (pblock->m_iStack > 0)
 //      {
-//         informationf("\n");
+//         informationf("----> ");
 //         informationf("--------------------------------------------------------\n");
 //         ansi_from_unsigned_long_long(sz, ++i, 10);
 //         informationf("Index : ");
 //         information(sz);
-//         informationf("\n");
+//         informationf("----> ");
 //         ansi_from_unsigned_long_long(sz, pblock->m_size, 10);
 //         informationf("Size : ");
 //         information(sz);
-//         informationf("\n");
+//         informationf("----> ");
 //#if FAST_STACK_TRACE
 //         information(::exception_engine().xxxstack_trace(pblock->m_puiStack + 1, pblock->m_iStack));
 //#else
@@ -915,10 +915,10 @@
 //      }
 //      pblock = pblock->m_pnext;
 //   }
-//   informationf("\n");
+//   informationf("----> ");
 //   informationf("--------------------------------------------------------\n");
 //   ansi_from_unsigned_long_long(sz, i, 10);
-//   informationf("\nFound ");
+//   informationf("----> Found ");
 //   information(sz);
 //   informationf(" memory leaks.");
 //

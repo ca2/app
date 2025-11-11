@@ -39,7 +39,7 @@ namespace platform
 
                ::string strComponent = FACTORY_REPRESENTATIVE_TYPE::represented_component_name();
 
-               printf_line("Trying to create component \"%s\".", strComponent.c_str());
+               informationf("Trying to create component \"%s\".", strComponent.c_str());
 
                psystem->defer_component_factory(strComponent);
 

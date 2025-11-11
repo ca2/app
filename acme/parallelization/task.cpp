@@ -33,6 +33,7 @@ int SetThreadAffinityMask(htask h, unsigned int dwThreadAffinityMask);
 
 #endif
 
+CLASS_DECL_ACME void _os_task_destroy(htask htask, itask itask);
 
 #ifdef WINDOWS
 
@@ -350,6 +351,13 @@ void task::post_request(::request * prequest)
 
 bool task::task_set_name(const ::scoped_string & scopedstrTaskName)
 {
+
+   if (scopedstrTaskName == "task")
+   {
+
+      warning() << "task being assigned not much helpful name: " << scopedstrTaskName;
+
+   }
 
    m_strTaskName = scopedstrTaskName;
 
@@ -844,8 +852,18 @@ void task::set_task()
 
    m_htask = htask;
 
-   ::set_task(this);
+   bool bEmpty = m_strTaskName.is_empty();
 
+   bool bIsTaskName = m_strTaskName == ::type<::task>().as_string();
+
+   if (bEmpty || bIsTaskName)
+   {
+
+      m_strTaskName.formatf("task %" PRIdPTR, m_taskindex);
+
+   }
+
+   ::set_task(this);
 
    //SetCurrentHandles();
 
@@ -1405,15 +1423,49 @@ void * task::s_os_task(void * p)
 #endif
 {
 
+   int iExitCode = 0;
+
    {
 
       auto ptaskhandler = ::transfer_as_pointer((::task_handler *)p);
 
       ptaskhandler->__task_handle();
 
+      iExitCode = ptaskhandler->m_iHandlerExitCode;
+
+      auto htask = ptaskhandler->m_htaskHandler;
+
+      if (htask.is_set())
+      {
+
+         auto itask = ptaskhandler->m_itaskHandler;
+
+         ::system()->post([htask, itask]()
+            {
+
+               try
+               {
+
+                  _os_task_destroy(htask, itask);
+
+               }
+               catch (...)
+               {
+
+
+               }
+
+            });
+
+      }
+
    }
 
-   return 0;
+#ifdef WINDOWS
+   return (unsigned int) iExitCode;
+#else
+   return (void *)(iptr) iExitCode;
+#endif
 
 }
 
@@ -1595,10 +1647,12 @@ CLASS_DECL_ACME bool os_on_init_thread();
 CLASS_DECL_ACME void os_on_term_thread();
 
 
-void task::__task_main()
+int task::__task_main()
 //void task::__task_main(::procedure & procedureTaskEnded)
 //void task::__task_main()
 {
+
+   int iExitCode = -1;
 
    //::pointer < manual_reset_happening > pmanualresethappeningFinished;
    ::os_on_init_thread();
@@ -1632,6 +1686,8 @@ void task::__task_main()
       {
 
          main();
+
+         iExitCode = m_iExitCode;
 
       }
       catch (::exit_exception & exitexception)
@@ -1714,6 +1770,8 @@ void task::__task_main()
    }
    
    ::os_on_term_thread();
+
+   return iExitCode;
 
 }
 
@@ -2147,6 +2205,12 @@ bool task::on_get_task_name(string & strTaskName)
       //::task_set_name(m_strTaskTag);
 
       strTaskName = m_strTaskTag;
+
+   }
+   else if (m_strTaskName.has_character())
+   {
+
+      strTaskName = m_strTaskName;
 
    }
    else

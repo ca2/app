@@ -175,7 +175,7 @@ namespace helloworld
 
       }
 
-      informationf("\nfinished helloworld::on_request");
+      informationf("----> finished helloworld::on_request");
 
    }
 

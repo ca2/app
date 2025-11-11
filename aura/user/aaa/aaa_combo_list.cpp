@@ -331,7 +331,7 @@ namespace user
             if (size.cy() != 18)
             {
 
-               //informationf("\nCOMBO LIST ITEM HEIGHT != 18\n");
+               //informationf("----> COMBO LIST ITEM HEIGHT != 18\n");
 
             }
 

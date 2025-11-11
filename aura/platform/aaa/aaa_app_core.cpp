@@ -1916,7 +1916,7 @@ bool app_core::has_aura_application_factory() const
             if (is_verbose())
             {
 
-               informationf("\n\n::aura::session::get_new_application assembled library path " + strLibrary + "\n\n");
+               informationf("---->  ::aura::session::get_new_application assembled library path " + strLibrary + "\n\n");
 
             }
 
@@ -1938,7 +1938,7 @@ bool app_core::has_aura_application_factory() const
             if (is_verbose())
             {
 
-               informationf("\n\n::aura::session::get_new_application Found library : " + strLibrary + "\n\n");
+               informationf("---->  ::aura::session::get_new_application Found library : " + strLibrary + "\n\n");
 
             }
 
@@ -1949,7 +1949,7 @@ bool app_core::has_aura_application_factory() const
 //          if (!plibrary->is_opened())
 //          {
 //
-//             informationf("\n\n::aura::session::get_new_application Failed to load library : " + strLibrary + "\n\n");
+//             informationf("---->  ::aura::session::get_new_application Failed to load library : " + strLibrary + "\n\n");
 //
 //             return nullptr;
 //
@@ -1958,14 +1958,14 @@ bool app_core::has_aura_application_factory() const
             if (is_verbose())
             {
 
-               informationf("\n\n::aura::session::get_new_application Opened library : " + strLibrary + "\n\n");
+               informationf("---->  ::aura::session::get_new_application Opened library : " + strLibrary + "\n\n");
 
             }
 
             //if (!plibrary->open_ca2_library())
             //{
 
-            //informationf("\n\n::aura::session::get_new_application open_ca2_library failed(2) : " + strLibrary + "\n\n");
+            //informationf("---->  ::aura::session::get_new_application open_ca2_library failed(2) : " + strLibrary + "\n\n");
 
             //return nullptr;
 
@@ -1974,7 +1974,7 @@ bool app_core::has_aura_application_factory() const
             //if (is_verbose())
             //{
 
-            //   informationf("\n\n\n|(5)----");
+            //   informationf("---->  \n|(5)----");
             //   informationf("| app : " + strAppId + "\n");
             //   informationf("|\n");
             //   informationf("|\n");
@@ -1995,7 +1995,7 @@ bool app_core::has_aura_application_factory() const
 
       papp = library.get_new_application(::auraacmesystem()->get_session(), strAppId);
 
-      informationf("\n\n\n|(4)----");
+      informationf("---->  \n|(4)----");
       informationf("| app : " + strAppId + "(papp=0x" + ::hex::upper_from((uptr)papp.m_p) + ")\n");
       informationf("|\n");
       informationf("|\n");
@@ -2025,7 +2025,7 @@ bool app_core::has_aura_application_factory() const
    if (is_verbose())
    {
 
-      informationf("\n\n\n|(3)----");
+      informationf("---->  \n|(3)----");
       informationf("| app : " + strAppId + "\n");
       informationf("|\n");
       informationf("|\n");
@@ -2036,7 +2036,7 @@ bool app_core::has_aura_application_factory() const
    if (is_verbose())
    {
 
-      informationf("\n\n\n|(2)----");
+      informationf("---->  \n|(2)----");
       informationf("| app : " + strAppId + "\n");
       informationf("|\n");
       informationf("|\n");
@@ -2066,7 +2066,7 @@ bool app_core::has_aura_application_factory() const
    if (is_verbose())
    {
 
-      informationf("\n\n\n|(1)----");
+      informationf("---->  \n|(1)----");
       informationf("| app : " + strAppId + "\n");
       informationf("|\n");
       informationf("|\n");

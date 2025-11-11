@@ -109,7 +109,7 @@ namespace helloaxis
 
       m_bAxisChat = !m_varTopicQuery["no_hello_edit"].is_set();
 
-      informationf("\nfinished helloaxis::on_request");
+      informationf("----> finished helloaxis::on_request");
 
       fork([&]()
       {

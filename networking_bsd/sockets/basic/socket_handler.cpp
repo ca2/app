@@ -32,7 +32,8 @@ int __is_ok_socket(socket_id fd) {
 #endif
 
 
-#define THIS_FILE_DEBUG_LEVEL 1
+#define THIS_FILE_DEBUG_LEVEL 20
+#define THIS_FILE_DEBUG_LEVEL_FOR_LISTENING 0
 
 
 #if defined(__APPLE__) || defined(FREEBSD) || defined(OPENBSD)
@@ -758,6 +759,12 @@ namespace sockets_bsd
    int socket_handler::_select(struct timeval *tsel)
    {
 
+      bool bOnlyListeningSockets = false;
+
+      int iListeningCount = 0;
+
+      int iNonListeningCount = 0;
+
       fd_set rfds{};
       fd_set wfds{};
       fd_set efds{};
@@ -900,6 +907,7 @@ end_processing_adding:
       FD_ZERO(&rfds);
       FD_ZERO(&wfds);
       FD_ZERO(&efds);
+
       maxsock = 0;
 
       for (auto& pair : m_socketmap)
@@ -911,25 +919,73 @@ end_processing_adding:
 
          if (psocketImpl)
          {
-            
+
+            auto bListeningSocket = psocketImpl->is_listening_socket();
+
+            if (bListeningSocket)
+            {
+
+               iListeningCount++;
+
+            }
+            else
+            {
+
+               iNonListeningCount++;
+
+            }
+
             if(__is_ok_socket(socketid))
             {
-               
+
+               if (bListeningSocket)
+               {
+
+#if THIS_FILE_DEBUG_LEVEL_FOR_LISTENING >= 9
+
+
+                  informationf("socket_handler listen socket %d is OK!!", socketid);
+
+#endif
+
+               }
+               else
+               {
+
 #if THIS_FILE_DEBUG_LEVEL >= 9
+
             
-               printf_line("socket_handler socket %d is OK!!", socketid);
+                  informationf("socket_handler socket %d is OK!!", socketid);
             
 #endif
+
+               }
                
             }
             else
             {
-               
+
+               if (bListeningSocket)
+               {
+
+#if THIS_FILE_DEBUG_LEVEL_FOR_LISTENING >= 9
+
+
+                  informationf("socket_handler listen socket %d is BAD!!", socketid);
+
+#endif
+
+               }
+               else
+               {
+
 #if THIS_FILE_DEBUG_LEVEL >= 9
             
-               printf_line("socket_handler socket %d is BAD!!", socketid);
+                  informationf("socket_handler socket %d is BAD!!", socketid);
             
 #endif
+
+               }
 
                continue;
                
@@ -939,12 +995,27 @@ end_processing_adding:
             {
 
                FD_SET(socketid, &rfds);
-               
+
+               if (bListeningSocket)
+               {
+
+#if THIS_FILE_DEBUG_LEVEL_FOR_LISTENING >= 9
+
+                  informationf("socket_handler listen fd_setting read %d", socketid);
+
+#endif
+
+               }
+               else
+               {
+
 #if THIS_FILE_DEBUG_LEVEL >= 9
             
-               printf_line("socket_handler FD_SET READ %d", socketid);
+                  informationf("socket_handler fd_setting read %d", socketid);
             
 #endif
+
+               }
 
                countR++;
 
@@ -955,11 +1026,26 @@ end_processing_adding:
 
                FD_SET(socketid, &wfds);
 
+               if (bListeningSocket)
+               {
+
+#if THIS_FILE_DEBUG_LEVEL_FOR_LISTENING >= 9
+
+                  informationf("socket_handler listen fd_setting write %d", socketid);
+
+#endif
+
+               }
+               else
+               {
+
 #if THIS_FILE_DEBUG_LEVEL >= 9
             
-               printf_line("socket_handler FD_SET WRITE %d", socketid);
+                  informationf("socket_handler fd_setting write %d", socketid);
             
 #endif
+
+               }
 
                countW++;
 
@@ -967,14 +1053,29 @@ end_processing_adding:
                
             if(psocketImpl->m_iSelectError)
             {
-             
+
+               FD_SET(socketid, &efds);
+
+               if (bListeningSocket)
+               {
+
+#if THIS_FILE_DEBUG_LEVEL_FOR_LISTENING >= 9
+
+                  informationf("socket_handler listen fd_setting error %d", socketid);
+
+#endif
+
+               }
+               else
+               {
+
 #if THIS_FILE_DEBUG_LEVEL >= 9
             
-               printf_line("socket_handler FD_SET ERROR %d", socketid);
+                  informationf("socket_handler fd_setting error %d", socketid);
             
 #endif
 
-               FD_SET(socketid, &efds);
+               }
 
                countE++;
 
@@ -993,6 +1094,39 @@ end_processing_adding:
 
       }
 
+      if (iListeningCount > 0 && iNonListeningCount <= 0)
+      {
+
+         bOnlyListeningSockets = true;
+
+      }
+
+      if (bOnlyListeningSockets)
+      {
+
+#if THIS_FILE_DEBUG_LEVEL_FOR_LISTENING >= 9
+
+         informationf("listening_count=%d, non_listening_count=%d and only_listening_sockets",
+            iListeningCount,
+            iNonListeningCount,
+            bOnlyListeningSockets);
+
+#endif
+
+      }
+      else
+      {
+
+#if THIS_FILE_DEBUG_LEVEL >= 9
+
+         informationf("listening_count=%d, non_listening_count=%d",
+            iListeningCount,
+            iNonListeningCount,
+            bOnlyListeningSockets);
+
+#endif
+
+      }
 
       fd_set * prfds = countR > 0 ? &rfds : nullptr;
       fd_set * pwfds = countW > 0 ? &wfds : nullptr;
@@ -1012,7 +1146,7 @@ end_processing_adding:
          
 #if THIS_FILE_DEBUG_LEVEL >= 9
 
-         printf_line("Each rfds, wfds and efds are empty!!");
+         informationf("Each rfds, wfds and efds are empty!!");
          
 #endif
 
@@ -1033,12 +1167,27 @@ end_processing_adding:
          {
 
             synchronization()->unlock();
+
+            if (bOnlyListeningSockets)
+            {
+
+#if THIS_FILE_DEBUG_LEVEL_FOR_LISTENING > 6
             
-#if THIS_FILE_DEBUG_LEVEL > 6
-            
-            printf_line("socket_handler(mutex) select max_sock : %d", maxsock);
+               informationf("socket_handler(mutex) all listen select max_sock : %d", maxsock);
             
 #endif
+
+            }
+            else
+            {
+
+#if THIS_FILE_DEBUG_LEVEL > 6
+
+               informationf("socket_handler(mutex) select max_sock : %d", maxsock);
+
+#endif
+
+            }
 
             //n = ::select((int)m_maxsock, psetR, psetW, psetE, tsel);
             
@@ -1061,14 +1210,14 @@ end_processing_adding:
          }
          else
          {
+
+#if THIS_FILE_DEBUG_LEVEL > 21
             
-#if THIS_FILE_DEBUG_LEVEL > 6
-            
-            printf_line("socket_handler select time : %ds %dus", timevalSelect.tv_sec, timevalSelect.tv_usec);
-            printf_line("socket_handler select psetR : 0x%016llX %% 8 = %d", prfds, ((::uptr) prfds) % 8);
-            printf_line("socket_handler select psetW : 0x%016llX %% 8 = %d", pwfds, ((::uptr) pwfds) % 8);
-            printf_line("socket_handler select psetE : 0x%016llX %% 8 = %d", pefds, ((::uptr) pefds) % 8);
-            printf_line("socket_handler select thread %s(%d)", ::task_get_name().c_str(), ::current_task_index());
+            informationf("socket_handler select time : %ds %dus", timevalSelect.tv_sec, timevalSelect.tv_usec);
+            informationf("socket_handler select psetR : 0x%016llX %% 8 = %d", prfds, ((::uptr) prfds) % 8);
+            informationf("socket_handler select psetW : 0x%016llX %% 8 = %d", pwfds, ((::uptr) pwfds) % 8);
+            informationf("socket_handler select psetE : 0x%016llX %% 8 = %d", pefds, ((::uptr) pefds) % 8);
+            informationf("socket_handler select thread %s(%d)", ::task_get_name().c_str(), ::current_task_index());
             
 #endif
 
@@ -1080,7 +1229,7 @@ end_processing_adding:
             
             auto nfds = maxsock + 1;
 
-            printf_line("socket_handler select nfds : %d", nfds);
+            informationf("socket_handler select nfds : %d", nfds);
             
             //n = ::select(nfds, prfds, pwfds, pefds, &timevalSelect);
             
@@ -1098,17 +1247,51 @@ end_processing_adding:
             
 #else
 
-            printf_line("socket_handler select maxsock + 1 : %d", (int)maxsock + 1);
+            if (bOnlyListeningSockets)
+            {
+
+#if THIS_FILE_DEBUG_LEVEL_FOR_LISTENING > 3
+
+               informationf("socket_handler select all listen maxsock + 1 : %d", (int)maxsock + 1);
+
+#endif
+
+            }
+            else
+            {
+
+#if THIS_FILE_DEBUG_LEVEL > 3
+
+               informationf("socket_handler select maxsock + 1 : %d", (int)maxsock + 1);
+
+#endif
+
+            }
             
             n = ::select((int)maxsock + 1, prfds, pwfds, pefds, &timevalSelect);
             
 #endif
 
+            if (bOnlyListeningSockets)
+            {
+
+#if THIS_FILE_DEBUG_LEVEL_FOR_LISTENING > 6
+
+               informationf("socket_handler all listen select result n : %d", n);
+
+#endif
+
+            }
+            else
+            {
+
 #if THIS_FILE_DEBUG_LEVEL > 6
             
-            printf_line("socket_handler select result n : %d", n);
+            informationf("socket_handler select result n : %d", n);
             
 #endif
+
+            }
 
             //if (m_iMaxKeepAliveCount > 0)
             //{
@@ -1128,7 +1311,7 @@ end_processing_adding:
       if (n < 0)
       {
          
-         printf_line("::networking_bsd::socket_handler::_select n < 0");
+         informationf("::networking_bsd::socket_handler::_select n < 0");
 
          auto tickNow = ::time::now();
 
@@ -1380,11 +1563,26 @@ end_processing_adding:
       else // n > 0
       {
          
+         if (bOnlyListeningSockets)
+         {
+
+#if THIS_FILE_DEBUG_LEVEL_FOR_LISTENING > 6
+
+            printf("socket_handler all listen select n (%d) > 0", n);
+
+#endif
+
+         }
+         else
+         {
+
 #if THIS_FILE_DEBUG_LEVEL > 6
          
-         printf("socket_handler select n (%d) > 0", n);
+            informationf("socket_handler select n (%d) > 0", n);
          
 #endif
+
+         }
 
          auto p = m_socketlist.begin();
 
@@ -1393,19 +1591,47 @@ end_processing_adding:
             
             SOCKET socket = *p;
 
+            auto iteratorSocket = m_socketmap.find(socket);
+
+            bool bListeningSocket2 = false;
+
+            ::sockets::base_socket * pbasesocket = nullptr;
+
+            if (::is_set(iteratorSocket) && ::is_set(iteratorSocket->m_psocket)) // found
+            {
+
+               pbasesocket = iteratorSocket->m_psocket;
+
+               bListeningSocket2 = pbasesocket->is_listening_socket();
+
+            }
+
             if (FD_ISSET(socket, &rfds))
             {
-               
-               auto iteratorSocket = m_socketmap.find(socket);
 
-               //if (m_iMaxKeepAliveCount > 0)
-               //{
 
-               //   output_debug_string("m_iMaxKeepAliveCount > 0");
+               if (bListeningSocket2)
+               {
 
-               //}
+#if THIS_FILE_DEBUG_LEVEL_FOR_LISTENING >= 9
 
-               if (::is_set(iteratorSocket) && ::is_set(iteratorSocket->m_psocket)) // found
+                  informationf("socket_handler listen FD_GOT READ %d", socket);
+
+#endif
+
+               }
+               else
+               {
+
+#if THIS_FILE_DEBUG_LEVEL >= 9
+
+                  informationf("socket_handler FD_GOT READ %d", socket);
+
+#endif
+
+               }
+
+               if (::is_set(pbasesocket)) // found
                {
 
                   //if (iteratorSocket->m_psocket->m_iKeepAliveCount > 0)
@@ -1423,38 +1649,38 @@ end_processing_adding:
                   //}
 
                   // ___new SSL negotiate method
-                  if (iteratorSocket->m_psocket->IsSSLNegotiate())
+                  if (pbasesocket->IsSSLNegotiate())
                   {
 
-                     //iteratorSocket->m_psocket->information() << "SSLNegotiate";
+                     //pbasesocket->information() << "SSLNegotiate";
                      
-                     iteratorSocket->m_psocket->SSLNegotiate();
+                     pbasesocket->SSLNegotiate();
 
                   }
                   else
                   {
 
-                     //iteratorSocket->m_psocket->information() << "OnRead";
+                     //pbasesocket->information() << "OnRead";
                      
-                     iteratorSocket->m_psocket->OnRead();
+                     pbasesocket->OnRead();
 
                   }
 
-                  if (iteratorSocket->m_psocket->m_iKeepAliveCount > 0)
+                  if (pbasesocket->m_iKeepAliveCount > 0)
                   {
 
-                     //output_debug_string("iteratorSocket->m_psocket->m_iKeepAliveCount > 0");
+                     //output_debug_string("pbasesocket->m_iKeepAliveCount > 0");
 
-                     m_iMaxKeepAliveCount = maximum(m_iMaxKeepAliveCount, iteratorSocket->m_psocket->m_iKeepAliveCount);
+                     m_iMaxKeepAliveCount = maximum(m_iMaxKeepAliveCount, pbasesocket->m_iKeepAliveCount);
 
                   }
 
-                  if (iteratorSocket->m_psocket && iteratorSocket->m_psocket->m_iKeepAliveCount > 0)
+                  if (pbasesocket && pbasesocket->m_iKeepAliveCount > 0)
                   {
 
-                     //output_debug_string("iteratorSocket->m_psocket->base_socket_composite()->m_iKeepAliveCount > 0");
+                     //output_debug_string("pbasesocket->base_socket_composite()->m_iKeepAliveCount > 0");
 
-                     m_iMaxKeepAliveCount = maximum(m_iMaxKeepAliveCount, iteratorSocket->m_psocket->m_iKeepAliveCount);
+                     m_iMaxKeepAliveCount = maximum(m_iMaxKeepAliveCount, pbasesocket->m_iKeepAliveCount);
 
                   }
 
@@ -1472,27 +1698,48 @@ end_processing_adding:
 
             if (FD_ISSET(socket, &wfds))
             {
-               
+
+               if (bListeningSocket2)
+               {
+
+#if THIS_FILE_DEBUG_LEVEL_FOR_LISTENING >= 9
+
+                  informationf("socket_handler listen FD_GOT WRITE %d", socket);
+
+#endif
+
+               }
+               else
+               {
+
+#if THIS_FILE_DEBUG_LEVEL >= 9
+
+                  informationf("socket_handler FD_GOT WRITE %d", socket);
+
+#endif
+
+               }
+
                auto iteratorSocket = m_socketmap.find(socket);
 
-               if (::is_set(iteratorSocket) && ::is_set(iteratorSocket->m_psocket)) // found
+               if (::is_set(pbasesocket)) // found
                {
 
                   // ___new SSL negotiate method
-                  if (iteratorSocket->m_psocket->IsSSLNegotiate())
+                  if (pbasesocket->IsSSLNegotiate())
                   {
 
-                     //iteratorSocket->m_psocket->information() << "SSLNegotiate";
+                     //pbasesocket->information() << "SSLNegotiate";
 
-                     iteratorSocket->m_psocket->SSLNegotiate();
+                     pbasesocket->SSLNegotiate();
 
                   }
                   else
                   {
 
-                     iteratorSocket->m_psocket->information() << "OnWrite";
+                     pbasesocket->information() << "OnWrite";
 
-                     iteratorSocket->m_psocket->OnWrite();
+                     pbasesocket->OnWrite();
 
                   }
 
@@ -1511,24 +1758,49 @@ end_processing_adding:
             if (FD_ISSET(socket, &efds))
             {
 
-               auto iteratorSocket = m_socketmap.find(socket);
+               if (bListeningSocket2)
+               {
 
-               if (::is_set(iteratorSocket) && ::is_set(iteratorSocket->m_psocket)) // found
+#if THIS_FILE_DEBUG_LEVEL_FOR_LISTENING >= 9
+
+                  informationf("socket_handler listen FD_GOT EXCEPTION %d", socket);
+
+#endif
+
+               }
+               else
+               {
+
+#if THIS_FILE_DEBUG_LEVEL >= 9
+
+                  informationf("socket_handler FD_GOT EXCEPTION %d", socket);
+
+#endif
+
+               }
+
+               if (::is_set(pbasesocket)) // found
                {
                   
                   // Out-Of-Band data
                   // recv with MSG_OOB
                   //posix_time tnow = time(nullptr);
 
-                  if (iteratorSocket->m_psocket->has_timed_out())
+#if THIS_FILE_DEBUG_LEVEL > 21
+
+                  informationf("socket has exception signaled : %d", socket);
+
+#endif
+
+                  if (pbasesocket->has_timed_out())
                   {
                   
-                     if (iteratorSocket->m_psocket->is_connecting())
+                     if (pbasesocket->is_connecting())
                      {
 
                         warning() << "socket_handler " << (int)socket << " stream_socket on_connection_timeout (3)";
 
-                        iteratorSocket->m_psocket->on_connection_timeout();
+                        pbasesocket->on_connection_timeout();
 
                      }
                      else
@@ -1536,7 +1808,7 @@ end_processing_adding:
 
                         warning() << "socket_handler " << (int)socket << " socket on_timeout(3)";
 
-                        iteratorSocket->m_psocket->on_timeout();
+                        pbasesocket->on_timeout();
 
                      }
 
@@ -1544,7 +1816,7 @@ end_processing_adding:
                   else
                   {
 
-                     iteratorSocket->m_psocket->OnException();
+                     pbasesocket->OnException();
 
                   }
 

@@ -501,7 +501,7 @@ namespace apple
 
       }
 
-      informationf("\n\n** %s **\n\n", "This command should work.");
+      informationf("---->  ** %s **\n\n", "This command should work.");
 
 //      string_array_base straParam;
 //

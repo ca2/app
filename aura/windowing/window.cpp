@@ -7449,7 +7449,7 @@ namespace windowing
 
    //   oswindow w = ::set_mouse_capture(get_handle());
 
-   //   informationf("\nSet Capture: oswindow=0x" + ::hex::lower_from((iptr) w));
+   //   informationf("----> Set Capture: oswindow=0x" + ::hex::lower_from((iptr) w));
 
    //   auto psession = session();
 

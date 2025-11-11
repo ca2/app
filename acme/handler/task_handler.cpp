@@ -35,13 +35,17 @@ void task_handler::__task_handle()
 
       __task_prefix(ptask);
 
-      ptask->__task_main();
+      m_htaskHandler = ptask->m_htask;
+
+      m_itaskHandler = ptask->m_itask;
+
+      m_iHandlerExitCode = ptask->__task_main();
 
       ptask->release();
 
    }
 
-   printf_line("Going to call task suffix for task \"%s\" (%llu)", ::current_task_name().c_str(), ::current_task_index());
+   informationf("Going to call task suffix for task \"%s\" (%llu)", ::current_task_name().c_str(), ::current_task_index());
    
    __task_suffix();
 

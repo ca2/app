@@ -125,7 +125,7 @@ void windowing::initialize(::particle * pparticle)
    ////      if(!pdisplay)
    ////      {
    ////
-   ////         informationf("\nFailed to øcreate < ::windowing::display > at windowing_x11::windowing::initialize");
+   ////         informationf("----> Failed to øcreate < ::windowing::display > at windowing_x11::windowing::initialize");
    ////
    ////         return ::error_no_factory;
    ////
@@ -138,7 +138,7 @@ void windowing::initialize(::particle * pparticle)
    ////      if(!estatus)
    ////      {
    ////
-   ////         informationf("\nFailed to initialize_display at windowing_x11::windowing::initialize");
+   ////         informationf("----> Failed to initialize_display at windowing_x11::windowing::initialize");
    ////
    ////         return estatus;
    ////
@@ -162,7 +162,7 @@ void windowing::initialize(::particle * pparticle)
    //      if(!estatus)
    //      {
    //
-   //         informationf("\nFailed to m_pdisplay->open at windowing_x11::windowing::initialize");
+   //         informationf("----> Failed to m_pdisplay->open at windowing_x11::windowing::initialize");
    //
    //         return estatus;
    //

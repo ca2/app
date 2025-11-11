@@ -50,6 +50,8 @@ namespace windowing
 #else
          return "kde5";
 #endif
+         case e_operating_ambient_labwc:
+            return "gtk4";
          default:
          throw todo;
       };

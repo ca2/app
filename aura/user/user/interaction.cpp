@@ -28496,8 +28496,10 @@ __check_refdbg;
 
       }
 
-      for (auto & pitem : pitema->rear_payloads())
+      for (auto & pitemReference : pitema->rear_payloads())
       {
+
+         auto pitem = pitemReference.m_p;
 
          if (!pitem || pitem->is_hidden())
          {

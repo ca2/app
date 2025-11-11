@@ -167,3 +167,9 @@ void _do_tasks()
 
 
 
+CLASS_DECL_ACME void _os_task_destroy(htask htask, itask itask)
+{
+
+
+
+}

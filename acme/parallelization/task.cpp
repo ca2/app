@@ -33,6 +33,7 @@ int SetThreadAffinityMask(htask h, unsigned int dwThreadAffinityMask);
 
 #endif
 
+CLASS_DECL_ACME void _os_task_destroy(htask htask, itask itask);
 
 #ifdef WINDOWS
 
@@ -1405,15 +1406,44 @@ void * task::s_os_task(void * p)
 #endif
 {
 
+   int iExitCode = 0;
+
    {
 
       auto ptaskhandler = ::transfer_as_pointer((::task_handler *)p);
 
       ptaskhandler->__task_handle();
 
+      iExitCode = ptaskhandler->m_iHandlerExitCode;
+
+      auto htask = ptaskhandler->m_htaskHandler;
+
+      auto itask = ptaskhandler->m_itaskHandler;
+
+      ::system()->post([htask, itask]()
+         {
+
+            try
+            {
+
+               _os_task_destroy(htask, itask);
+
+            }
+            catch (...)
+            {
+
+
+            }
+
+         });
+
    }
 
-   return 0;
+#ifdef WINDOWS
+   return (unsigned int) iExitCode;
+#else
+   return (void *)(iptr) iExitCode;
+#endif
 
 }
 
@@ -1595,10 +1625,12 @@ CLASS_DECL_ACME bool os_on_init_thread();
 CLASS_DECL_ACME void os_on_term_thread();
 
 
-void task::__task_main()
+int task::__task_main()
 //void task::__task_main(::procedure & procedureTaskEnded)
 //void task::__task_main()
 {
+
+   int iExitCode = -1;
 
    //::pointer < manual_reset_happening > pmanualresethappeningFinished;
    ::os_on_init_thread();
@@ -1632,6 +1664,8 @@ void task::__task_main()
       {
 
          main();
+
+         iExitCode = m_iExitCode;
 
       }
       catch (::exit_exception & exitexception)
@@ -1715,6 +1749,8 @@ void task::__task_main()
    
    ::os_on_term_thread();
 
+   return iExitCode;
+
 }
 
 
@@ -1773,6 +1809,8 @@ void task::__task_term()
    }
 
    destroy();
+
+   _os_task_destroy(m_htask, m_itask);
 
    m_htask = nullptr;
 

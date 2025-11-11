@@ -177,13 +177,13 @@ namespace macos
             
          }
          
-         //informationf("\n\nGoing to dlopen: \"" + strPath + "\"");
+         //informationf("---->  Going to dlopen: \"" + strPath + "\"");
          
          auto pathModuleFolder = ::apple_app_module_folder();
          
          path = pathModuleFolder / strPath;
          
-         //informationf("\nFirst path to try: \"" + path + "\"");
+         //informationf("----> First path to try: \"" + path + "\"");
          
          auto plibrary = (library_t *) dlopen(path, RTLD_LOCAL | RTLD_LAZY);
          
@@ -258,7 +258,7 @@ namespace macos
             if(has_verbose_flag())
             {
                
-               informationf("\n" + strMessage + "\n\n");
+               informationf("----> " + strMessage + "\n\n");
                
             }
             
@@ -268,7 +268,7 @@ namespace macos
             
             strMessage = "__node_library_open : Failed with : " + strMessage;
             
-            informationf("\n" + strMessage + "\n\n");
+            informationf("----> " + strMessage + "\n\n");
             
          }
          
@@ -329,7 +329,7 @@ namespace macos
             if(has_verbose_flag())
             {
                
-               informationf("\n\n" + strMessage + "\n\n");
+               informationf("---->  " + strMessage + "\n\n");
                
             }
             
@@ -343,7 +343,7 @@ namespace macos
             
             strMessage = "__node_library_open_ca2 : " + strPath + " with the error: \"" + strError + "\"";
             
-            informationf("\n\n" + strMessage + "\n\n");
+            informationf("---->  " + strMessage + "\n\n");
             
          }
          

@@ -129,7 +129,7 @@ namespace httpd
 
                      string strMessage;
 
-                     strMessage.formatf("\n\nBound to address %s!!\n\n", m_strIp.c_str());
+                     strMessage.formatf("Bound to address %s!!", m_strIp.c_str());
 
                      information(strMessage);
                   }

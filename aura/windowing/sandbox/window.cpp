@@ -754,7 +754,7 @@ namespace sandbox_windowing
 
    //   ::file::path path = pnode->get_desktop_file_path(papp);
 
-   //   informationf("\nfreebsd::interaction_impl::set_window_text");
+   //   informationf("----> freebsd::interaction_impl::set_window_text");
 
    //   fflush(stdout);
 
@@ -776,7 +776,7 @@ namespace sandbox_windowing
    //      (const unsigned char *)(const_char_pointer )path,
    //      path.get_length());
 
-   //   informationf("\nfreebsd::interaction_impl::bamf_set_icon END");
+   //   informationf("----> freebsd::interaction_impl::bamf_set_icon END");
 
    //   fflush(stdout);
 
@@ -1852,7 +1852,7 @@ namespace sandbox_windowing
       //   (const unsigned char *)(const_char_pointer )path,
       //   path.get_length());
 
-      //informationf("\nfreebsd::interaction_impl::bamf_set_icon END");
+      //informationf("----> freebsd::interaction_impl::bamf_set_icon END");
 
       //fflush(stdout);
 
@@ -2429,7 +2429,7 @@ namespace sandbox_windowing
       //   (const unsigned char *)(const_char_pointer )path,
       //   path.get_length());
 
-      //informationf("\nfreebsd::interaction_impl::bamf_set_icon END");
+      //informationf("----> freebsd::interaction_impl::bamf_set_icon END");
 
       //fflush(stdout);
 

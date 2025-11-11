@@ -3316,7 +3316,7 @@ namespace platform
             if (application()->m_bVerbose)
             {
 
-               informationf("\n\n::apex::session::get_new_application assembled library path " + strLibrary + "\n\n");
+               informationf("---->  ::apex::session::get_new_application assembled library path " + strLibrary + "\n\n");
 
             }
 
@@ -3344,7 +3344,7 @@ namespace platform
             if (application()->m_bVerbose)
             {
 
-               informationf("\n\n::apex::session::get_new_application Found library : " + strLibrary + "\n\n");
+               informationf("---->  ::apex::session::get_new_application Found library : " + strLibrary + "\n\n");
 
             }
 
@@ -3355,7 +3355,7 @@ namespace platform
             //          if (!plibrary->is_opened())
             //          {
             //
-            //             informationf("\n\n::apex::session::get_new_application Failed to load library : " + strLibrary + "\n\n");
+            //             informationf("---->  ::apex::session::get_new_application Failed to load library : " + strLibrary + "\n\n");
             //
             //             return nullptr;
             //
@@ -3364,7 +3364,7 @@ namespace platform
             if (application()->m_bVerbose)
             {
 
-               informationf("\n\n::apex::session::get_new_application Opened library : " + strLibrary + "\n\n");
+               informationf("---->  ::apex::session::get_new_application Opened library : " + strLibrary + "\n\n");
 
             }
 
@@ -3380,7 +3380,7 @@ namespace platform
                if (!papp)
                {
 
-                  informationf("\n\n::apex::session::get_new_application\n...but this ___new found library:\n\n   -->  " + strLibrary + "  <--\n\ncannot instantiate application with following AppId:\n\n   -->  " + strAppId + "  <--\n\nIs it missing application factory_item?\n\n\n");
+                  informationf("---->  ::apex::session::get_new_application\n...but this ___new found library:\n\n   -->  " + strLibrary + "  <--\n\ncannot instantiate application with following AppId:\n\n   -->  " + strAppId + "  <--\n\nIs it missing application factory_item?\n\n\n");
 
                }
 
@@ -3393,7 +3393,7 @@ namespace platform
                //
                //         }
 
-               informationf("\n\n\n|(4)----");
+               informationf("---->  \n|(4)----");
                informationf("| app : " + strAppId + "(papp=0x" + ::hex::upper_case_from((uptr)papp.m_p) + ")\n");
                informationf("|\n");
                informationf("|\n");
@@ -3429,7 +3429,7 @@ namespace platform
       //   if (is_verbose())
       //   {
       //
-      //      informationf("\n\n\n|(3)----");
+      //      informationf("---->  \n|(3)----");
       //      informationf("| app : " + strAppId + "\n");
       //      informationf("|\n");
       //      informationf("|\n");
@@ -3440,7 +3440,7 @@ namespace platform
       //   if (is_verbose())
       //   {
       //
-      //      informationf("\n\n\n|(2)----");
+      //      informationf("---->  \n|(2)----");
       //      informationf("| app : " + strAppId + "\n");
       //      informationf("|\n");
       //      informationf("|\n");
@@ -3452,7 +3452,7 @@ namespace platform
       //   if (is_verbose())
       //   {
       //
-      //      informationf("\n\n\n|(1)----");
+      //      informationf("---->  \n|(1)----");
       //      informationf("| app : " + strAppId + "\n");
       //      informationf("|\n");
       //      informationf("|\n");
@@ -3894,7 +3894,7 @@ namespace platform
             if (pfactory)
             {
 
-               printf_line("Merging factory of component \"%s\" with implementation \"%s\"",
+               informationf("Merging factory of component \"%s\" with implementation \"%s\"",
                           ::string(scopedstrComponent).c_str(), strComponentDefaultImplementation.c_str());
 
                pfactory->merge_to_global_factory();

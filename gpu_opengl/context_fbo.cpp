@@ -146,7 +146,7 @@ void context_fbo::run()
          for(int iFormat = 0; iFormat < NumFormats; iFormat++)
          {
             
-            informationf("\nFormat " + ::as_string(iFormat) + "\n");
+            informationf("----> Format " + ::as_string(iFormat) + "\n");
             
 #define DUMP_FORMAT(x)                                                        \
 {                                                                    \

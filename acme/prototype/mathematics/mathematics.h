@@ -74,7 +74,7 @@ namespace mathematics
 
             t1 = ::numeric_info < T1 >::get_maximum_value();
 
-            informationf("\nclip::assign maximum clipped");
+            informationf("----> clip::assign maximum clipped");
 
             return false;
 
@@ -85,7 +85,7 @@ namespace mathematics
 
             t1 = ::numeric_info < T1 >::get_minimum_value();
 
-            informationf("\nclip::assign minimum clipped");
+            informationf("----> clip::assign minimum clipped");
 
             return false;
 
@@ -105,7 +105,7 @@ namespace mathematics
          if (::comparison::gt(t2, ::numeric_info < T1 >::get_maximum_value()))
          {
 
-            informationf("\nclip::convert maximum clipped");
+            informationf("----> clip::convert maximum clipped");
 
             return ::numeric_info < T1 >::get_maximum_value();
 
@@ -114,7 +114,7 @@ namespace mathematics
          if (::comparison::lt(t2, ::numeric_info < T1 >::get_minimum_value()))
          {
 
-            informationf("\nclip::convert minimum clipped");
+            informationf("----> clip::convert minimum clipped");
 
             return ::numeric_info < T1 >::get_minimum_value();
 

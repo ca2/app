@@ -199,7 +199,7 @@ pdirectorysystem->create(szRelative);  // or SHCreateDirectory(NULL, szCacheDir)
 
       }
 
-      informationf("\nfinished browser::on_request");
+      informationf("----> finished browser::on_request");
 
    }
 

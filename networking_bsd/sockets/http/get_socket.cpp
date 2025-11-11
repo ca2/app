@@ -97,7 +97,9 @@ namespace sockets
             }
          }
          //inheader("Accept-Charset") = "ISO-8859-1,utf-8;q=0.7,*;q=0.7";
-         inheader("user_agent") = MyUseragent();
+         ::string strUserAgent = MyUseragent();
+         information() << "User-Agent: " << strUserAgent;
+         inheader("user-agent") =strUserAgent;
       }
       //inheader("Content-Length") = 0;
       //inheader("Cache-Controlngth") = 0;

@@ -158,6 +158,17 @@ tracer::~tracer()
 //}
 
 
+
+::string tracer::trace_prefix() const
+{
+
+   ::string strTaskName = ::current_task_name();
+
+   return strTaskName;
+
+}
+
+
 void tracer::flush(trace_statement & tracestatement)
 {
 

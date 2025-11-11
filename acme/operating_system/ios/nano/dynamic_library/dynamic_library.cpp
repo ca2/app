@@ -188,13 +188,13 @@ library_t * dynamic_library::open(const ::file::path & pathParam, string & strMe
       
    }
    
-   //informationf("\n\nGoing to dlopen: \"" + strPath + "\"");
+   //informationf("---->  Going to dlopen: \"" + strPath + "\"");
    
    auto pathModuleFolder = directory_system()->module();
    
    path = pathModuleFolder / strPath;
    
-   //informationf("\nFirst path to try: \"" + path + "\"");
+   //informationf("----> First path to try: \"" + path + "\"");
    
    auto plibrary = (library_t *) dlopen(path, RTLD_LOCAL | RTLD_LAZY);
    
@@ -269,7 +269,7 @@ finished:
       if(has_verbose_flag())
       {
          
-         informationf("\n" + strMessage + "\n\n");
+         informationf("----> " + strMessage + "\n\n");
          
       }
       
@@ -279,7 +279,7 @@ finished:
       
       strMessage = "__node_library_open : Failed with : " + strMessage;
       
-      informationf("\n" + strMessage + "\n\n");
+      informationf("----> " + strMessage + "\n\n");
       
    }
    
@@ -340,7 +340,7 @@ library_t * dynamic_library::open_on_context(const ::file::path & pathParam, str
       if(has_verbose_flag())
       {
          
-         informationf("\n\n" + strMessage + "\n\n");
+         informationf("---->  " + strMessage + "\n\n");
          
       }
       
@@ -354,7 +354,7 @@ library_t * dynamic_library::open_on_context(const ::file::path & pathParam, str
       
       strMessage = "__node_library_open_ca2 : " + strPath + " with the error: \"" + strError + "\"";
       
-      informationf("\n\n" + strMessage + "\n\n");
+      informationf("---->  " + strMessage + "\n\n");
       
    }
    

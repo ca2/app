@@ -4165,7 +4165,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
             //          if (!plibrary->is_opened())
             //          {
             //
-            //             informationf("\n\n::apex::session::get_new_application Failed to load library : " + strLibrary + "\n\n");
+            //             informationf("---->  ::apex::session::get_new_application Failed to load library : " + strLibrary + "\n\n");
             //
             //             return nullptr;
             //
@@ -4242,7 +4242,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
       //   if (is_verbose())
       //   {
       //
-      //      informationf("\n\n\n|(3)----");
+      //      informationf("---->  \n|(3)----");
       //      informationf("| app : " + strAppId + "\n");
       //      informationf("|\n");
       //      informationf("|\n");
@@ -4253,7 +4253,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
       //   if (is_verbose())
       //   {
       //
-      //      informationf("\n\n\n|(2)----");
+      //      informationf("---->  \n|(2)----");
       //      informationf("| app : " + strAppId + "\n");
       //      informationf("|\n");
       //      informationf("|\n");
@@ -4265,7 +4265,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
       //   if (is_verbose())
       //   {
       //
-      //      informationf("\n\n\n|(1)----");
+      //      informationf("---->  \n|(1)----");
       //      informationf("| app : " + strAppId + "\n");
       //      informationf("|\n");
       //      informationf("|\n");
@@ -4754,7 +4754,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
          if (pfactory)
          {
 
-            printf_line("Merging factory of component \"%s\" with implementation \"%s\"",
+            informationf("Merging factory of component \"%s\" with implementation \"%s\"",
                ::string(scopedstrComponent).c_str(), strComponentDefaultImplementation.c_str());
 
 

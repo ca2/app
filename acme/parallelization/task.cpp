@@ -352,6 +352,13 @@ void task::post_request(::request * prequest)
 bool task::task_set_name(const ::scoped_string & scopedstrTaskName)
 {
 
+   if (scopedstrTaskName == "task")
+   {
+
+      warning() << "task being assigned not much helpful name: " << scopedstrTaskName;
+
+   }
+
    m_strTaskName = scopedstrTaskName;
 
    if (m_strTaskTag.is_empty() && m_strTaskName.has_character())
@@ -845,8 +852,18 @@ void task::set_task()
 
    m_htask = htask;
 
-   ::set_task(this);
+   bool bEmpty = m_strTaskName.is_empty();
 
+   bool bIsTaskName = m_strTaskName == ::type<::task>().as_string();
+
+   if (bEmpty || bIsTaskName)
+   {
+
+      m_strTaskName.formatf("task %" PRIdPTR, m_taskindex);
+
+   }
+
+   ::set_task(this);
 
    //SetCurrentHandles();
 
@@ -2188,6 +2205,12 @@ bool task::on_get_task_name(string & strTaskName)
       //::task_set_name(m_strTaskTag);
 
       strTaskName = m_strTaskTag;
+
+   }
+   else if (m_strTaskName.has_character())
+   {
+
+      strTaskName = m_strTaskName;
 
    }
    else

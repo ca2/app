@@ -204,7 +204,7 @@ namespace universal_windows
          //   void* plibrary = nullptr;
 
 
-         //   informationf("\n\nGoing to touch library (1) " + string(strPath) + "\n");
+         //   informationf("---->  Going to touch library (1) " + string(strPath) + "\n");
 
          //   ::file::path path;
 

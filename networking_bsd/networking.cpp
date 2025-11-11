@@ -3602,7 +3602,7 @@ namespace networking_bsd
 
          information() << str;
 
-         print_out(str);
+         //print_out(str);
 
          return true;
 

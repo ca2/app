@@ -139,7 +139,7 @@ namespace netserver
 
                      string strMessage;
 
-                     strMessage.formatf("\n\nBound to address %s:%d!!\n\n", m_strIp.c_str(), iPort);
+                     strMessage.formatf("Bound to address %s:%d!!", m_strIp.c_str(), iPort);
 
                      information(strMessage);
                      

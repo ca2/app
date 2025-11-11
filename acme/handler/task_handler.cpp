@@ -35,7 +35,11 @@ void task_handler::__task_handle()
 
       __task_prefix(ptask);
 
-      ptask->__task_main();
+      m_htaskHandler = ptask->m_htask;
+
+      m_itaskHandler = ptask->m_itask;
+
+      m_iHandlerExitCode = ptask->__task_main();
 
       ptask->release();
 

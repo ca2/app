@@ -39,10 +39,11 @@ namespace operating_system
       ::string          m_strSystemFamily;
       ::string          m_strSystemBranch;
       ::string          m_strSystemRelease;
+      ::string          m_strSystemArchitecture;
 
       ::string          m_strAmbient;
 
-      ::string          m_strSystemAmbientRelease;
+      ::string          m_strSystemAmbientReleaseArchitecture;
 
       int               m_iMajor;
       int               m_iMinor;

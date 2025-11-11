@@ -3455,11 +3455,11 @@ namespace user
       else if (::type(this).as_string().contains("main_frame"))
       {
 
-         printf_line("main_frame %d %s", elayout, ::as_string(edisplay.m_eenum).c_str());
+         informationf("main_frame %d %s", elayout, ::as_string(edisplay.m_eenum).c_str());
 
          auto & edisplaySketch = m_layout.m_statea[elayout].m_edisplay;
 
-         printf_line("main_frame %d %s", elayout, ::as_string(edisplaySketch.m_eenum).c_str());
+         informationf("main_frame %d %s", elayout, ::as_string(edisplaySketch.m_eenum).c_str());
 
       }
 
@@ -3523,7 +3523,7 @@ namespace user
    void interaction::display_zoomed()
    {
 
-      //informationf("\ne_display_zoomed\n");
+      //informationf("----> e_display_zoomed\n");
 
 #ifdef INFO_LAYOUT_DISPLAY
 
@@ -4771,7 +4771,7 @@ namespace user
 
                auto pszName = typeid(*this).name();
 
-               printf_line("About to erase a %s instance from an aura::application from thread %s!!", pszName, task_get_name().c_str());
+               informationf("About to erase a %s instance from an aura::application from thread %s!!", pszName, task_get_name().c_str());
 
                auto pauraapplication = get_app();
 
@@ -5679,9 +5679,9 @@ namespace user
 
          //string strType = ::type(this).name();
 
-         //         informationf("\n" + strType + "drawing took " + as_string(tickElapsedWithLock.m_i) + "!!");
-         //       informationf("\ndrawing took more than 3ms to complete!!");
-         //     informationf("\n");
+         //         informationf("----> " + strType + "drawing took " + as_string(tickElapsedWithLock.m_i) + "!!");
+         //       informationf("----> drawing took more than 3ms to complete!!");
+         //     informationf("----> ");
 
       }
 
@@ -5772,7 +5772,7 @@ namespace user
       {
 
          auto pointContextOffset = get_context_offset();
-         
+
          auto sizeImpact = layout().layout().size();
 
          offsetcontext -=pointContextOffset;
@@ -8649,7 +8649,7 @@ if(get_parent())
 
    //      }
 
-   //      
+   //
 
    //      bThisCapture = is_descendant(psession->m_puiCapture, true);
 
@@ -9451,7 +9451,7 @@ if(get_parent())
       else if (pitem->m_item.m_eelement == e_element_resize)
       {
 
-         printf_line("drag_shift e_element_resize");
+         informationf("drag_shift e_element_resize");
 
          auto pdrag = drag(pitem);
 
@@ -10176,9 +10176,9 @@ if(get_parent())
 
    //   lresult interaction::send_create_message()
    //   {
-   //   
+   //
    //      return send_message(::user::e_message_create);
-   //      
+   //
    //   }
 
 
@@ -10724,7 +10724,7 @@ if(get_parent())
       m_bChild = true;
 
       m_bUserElementOk = true;
-      //      
+      //
       //      if(m_pusersystem
       //         && m_pusersystem->m_prequest->m_egraphicsoutputpurpose & ::graphics::e_output_purpose_screen)
       //      {
@@ -14429,7 +14429,7 @@ if(get_parent())
 
          //}
 
-         //printf_line("interaction::message_handler pmessage->m_eusermessage %lld", pmessage->m_eusermessage.as_long_long());
+         //informationf("interaction::message_handler pmessage->m_eusermessage %lld", pmessage->m_eusermessage.as_long_long());
 
          if (pre_message_handler(pkey, bKeyMessage, pmessage))
          {
@@ -14543,7 +14543,7 @@ if(get_parent())
          //      if(bKeyMessage)
          //      {
          //
-         //         
+         //
          //
          //         auto puser = user();
          //
@@ -15666,8 +15666,8 @@ if(get_parent())
 
       //auto pointLparam = lparam_as_point(lparam);
 
-      //auto xPos = (int)(short)LOWORD(lparam);   // horizontal position 
-      //auto yPos = (int)(short)HIWORD(lparam);   // vertical position 
+      //auto xPos = (int)(short)LOWORD(lparam);   // horizontal position
+      //auto yPos = (int)(short)HIWORD(lparam);   // vertical position
       auto xPos = rectangle.left();
       auto yPos = rectangle.top();
       auto w = rectangle.width();
@@ -16989,7 +16989,7 @@ if(get_parent())
    bool interaction::is_active_window()
    {
 
-      //      
+      //
       //
       //      if (::is_null(psession))
       //      {
@@ -17849,7 +17849,7 @@ if(get_parent())
       //            if (m_ewindowflag & e_window_flag_embedded_graphics_thread)
       //            {
       //
-      //               
+      //
       //
       //               if (get_parent() == nullptr || get_parent() == psession->get_user_interaction_host())
       //               {
@@ -24282,7 +24282,7 @@ if(get_parent())
    //void interaction::defer_notify_mouse_move(bool & bPointInside, int_point & pointLast)
    //{
 
-   //   
+   //
 
    //   if (psession->get_capture() != nullptr)
    //   {
@@ -24398,7 +24398,7 @@ if(get_parent())
    //
    //      }
    //
-   //      
+   //
    //
    //      if (psession->get_capture() != nullptr)
    //      {
@@ -24495,12 +24495,12 @@ if(get_parent())
 
       if (m_callbackOnClick)
       {
-         
+
          information() << "interaction::on_click_generation m_callbackOnClick present";
 
          if (m_callbackOnClick(this, pitem, pmouse->user_activation_token()))
          {
-            
+
             information() << "interaction::on_click_generation m_callbackOnClick return true";
 
             return true;
@@ -24519,7 +24519,7 @@ if(get_parent())
 
          if (pmessageOnClick->m_bRet)
          {
-            
+
             information() << "interaction::on_click_generation ::user::e_message_click returned true";
 
             return true;
@@ -24527,7 +24527,7 @@ if(get_parent())
          }
 
       }
-      
+
       information() << "interaction::on_click_generation going to call on_click";
 
       return on_click(pitem, pmouse);
@@ -24544,7 +24544,7 @@ if(get_parent())
          if (pitem->m_item.m_eelement == ::e_element_close_button
              || pitem->m_item.m_eelement == ::e_element_close_icon)
          {
-            
+
             on_control_box_close();
 
             return true;
@@ -24586,20 +24586,20 @@ if(get_parent())
 
 void interaction::on_control_box_close()
 {
-   
+
    post_message(::user::e_message_close);
 
 }
 
 void interaction::on_control_box_minimize()
 {
-   
+
    display(e_display_iconic);
 
 }
 
 void interaction::on_control_box_zoom(){
-   
+
 
    information() << "clicked maximize";
 
@@ -25594,7 +25594,7 @@ void interaction::on_control_box_zoom(){
       //      //
       //      //            }
       //      //
-      //      //            
+      //      //
       //      //
       //      //            psession->m_puiLastLButtonDown = this;
       //      //
@@ -25725,7 +25725,7 @@ void interaction::on_control_box_zoom(){
 
       ////   }
 
-      ////   
+      ////
 
       ////   auto puser = user();
 
@@ -26051,7 +26051,7 @@ void interaction::on_control_box_zoom(){
       //   //if (m_pdragmove && m_pdragmove->m_bLButtonDown)
       //   //{
 
-      //   //   
+      //   //
 
       //   //   auto puser = user();
 
@@ -26130,7 +26130,7 @@ void interaction::on_control_box_zoom(){
 
          }
 
-         //printf_line("on_message_parent_mouse_move %d,%d", pmouse->m_pointAbsolute.x(), pmouse->m_pointAbsolute.y());
+         //informationf("on_message_parent_mouse_move %d,%d", pmouse->m_pointAbsolute.x(), pmouse->m_pointAbsolute.y());
 
          auto pitemFront = update_hover(pmouse, e_zorder_front);
 
@@ -26495,7 +26495,7 @@ void interaction::on_control_box_zoom(){
       //
       //            }
       //
-      //            
+      //
       //
       //            psession->m_puiLastLButtonDown = this;
       //
@@ -26652,7 +26652,7 @@ void interaction::on_control_box_zoom(){
 
       //   }
 
-      //   
+      //
 
       //   auto puser = user();
 
@@ -26986,7 +26986,7 @@ void interaction::on_control_box_zoom(){
 
          if (id().as_string().contains("maximize"))
          {
-          
+
             information() << "interaction::on_message_mouse_move maximize button";
 
          }
@@ -27123,7 +27123,7 @@ __check_refdbg;
          //if (m_pdragmove && m_pdragmove->m_bLButtonDown)
          //{
 
-         //   
+         //
 
          //   auto puser = user();
 
@@ -27221,7 +27221,7 @@ __check_refdbg;
             if (!m_bDefaultParentMouseMessageHandling)
             {
 
-               //printf_line("on_message_mouse_move %d,%d", pmouse->m_pointAbsolute.x(), pmouse->m_pointAbsolute.y());
+               //informationf("on_message_mouse_move %d,%d", pmouse->m_pointAbsolute.x(), pmouse->m_pointAbsolute.y());
 
                pitemFront = update_hover(pmouse, e_zorder_front);
 
@@ -27394,7 +27394,7 @@ __check_refdbg;
 
          if (pitemLeftButtonDoubleClick->m_eitemflag & e_item_flag_double_click_as_second_click)
          {
-            
+
             ::pointer<::message::mouse> pmouseUp1 = this->øcreate_new_clone(pmouse);
 
             pmouseUp1->m_eusermessage = ::user::e_message_left_button_up;
@@ -27883,9 +27883,9 @@ __check_refdbg;
 
          m_pitemHover = pitemHitTest;
 
-         //printf_line("----------------------------------------------------");
-         //printf_line("-------------------------------------------------------------m_pitemHover->m_item.m_iItem = %lld", m_pitemHover->m_item.m_iItem);
-         //printf_line("----------------------------------------------------");
+         //informationf("----------------------------------------------------");
+         //informationf("-------------------------------------------------------------m_pitemHover->m_item.m_iItem = %lld", m_pitemHover->m_item.m_iItem);
+         //informationf("----------------------------------------------------");
          on_update_hover(m_pitemHover);
 
          //m_pitemHOver->m_bAnyHoverChange = true;

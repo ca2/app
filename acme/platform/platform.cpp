@@ -1405,7 +1405,7 @@ g_bWindowingOutputDebugString = true;
       //
       // #endif
 
-      printf_line("Library was opened: \"%s\".", scopedstrLibrary.as_string().c_str());
+      informationf("Library was opened: \"%s\".", scopedstrLibrary.as_string().c_str());
 
       return plibrary;
 

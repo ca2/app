@@ -1279,7 +1279,7 @@ bool thread::get_message()
 //      if (strType.contains("output_thread"))
 //      {
 //
-//         //informationf("\nOUTPUT_THREAD thread::raw_pump_message");
+//         //informationf("----> OUTPUT_THREAD thread::raw_pump_message");
 //
 //      }
 //

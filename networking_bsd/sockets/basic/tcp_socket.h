@@ -175,10 +175,10 @@ namespace sockets_bsd
 
       /** Connect timeout callback. */
       void on_connection_timeout() override;
-#ifdef _WIN32
+//#ifdef _WIN32
       /** Connection failed reported as exception on win32 */
-      void OnException();
-#endif
+      void OnException() override;
+//#endif
 
       /** close file descriptor - internal use only.
       \sa SetCloseAndDelete */

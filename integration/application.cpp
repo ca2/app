@@ -219,7 +219,7 @@ IMPLEMENT_APPLICATION_FACTORY();
 
       }
 
-      informationf("\nfinished simple_drawing::on_request");
+      informationf("----> finished simple_drawing::on_request");
 
    }
 

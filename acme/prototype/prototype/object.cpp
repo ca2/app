@@ -1058,13 +1058,13 @@ void object::add_task(::object* pobjectTask)
    if (strType.contains("prodevian"))
    {
 
-      informationf("task added to prodevian\n");
+      informationf("task added to prodevian");
 
    }
    else if (strType.contains("user::thread"))
    {
 
-      informationf("task added to user::thread\n");
+      informationf("task added to user::thread");
 
    }
 
@@ -1124,7 +1124,7 @@ void object::erase_task_and_set_task_new_parent(::object* pobjectTask, ::object 
    if (strType.contains("user::thread"))
    {
 
-      informationf("task added to user::thread\n");
+      informationf("task added to user::thread");
 
    }
 

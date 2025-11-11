@@ -756,7 +756,7 @@ void windowing::finalize_windowing()
 
 //   ::file::path path = pnode->get_desktop_file_path(papp);
 
-//   informationf("\nfreebsd::interaction_impl::set_window_text");
+//   informationf("----> freebsd::interaction_impl::set_window_text");
 
 //   fflush(stdout);
 
@@ -778,7 +778,7 @@ void windowing::finalize_windowing()
 //      (const unsigned char *)(const_char_pointer )path,
 //      path.get_length());
 
-//   informationf("\nfreebsd::interaction_impl::bamf_set_icon END");
+//   informationf("----> freebsd::interaction_impl::bamf_set_icon END");
 
 //   fflush(stdout);
 
@@ -1858,7 +1858,7 @@ bool window::is_destroying()
    //   (const unsigned char *)(const_char_pointer )path,
    //   path.get_length());
    
-   //informationf("\nfreebsd::interaction_impl::bamf_set_icon END");
+   //informationf("----> freebsd::interaction_impl::bamf_set_icon END");
    
    //fflush(stdout);
    
@@ -2435,7 +2435,7 @@ void window::set_mouse_cursor2(::windowing::cursor* pcursor)
    //   (const unsigned char *)(const_char_pointer )path,
    //   path.get_length());
    
-   //informationf("\nfreebsd::interaction_impl::bamf_set_icon END");
+   //informationf("----> freebsd::interaction_impl::bamf_set_icon END");
    
    //fflush(stdout);
    

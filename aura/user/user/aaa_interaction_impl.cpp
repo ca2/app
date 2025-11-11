@@ -3815,7 +3815,7 @@ namespace user
 
    //   oswindow w = ::set_capture(get_handle());
 
-   //   informationf("\nSet Capture: oswindow=0x" + ::hex::lower_from((iptr) w));
+   //   informationf("----> Set Capture: oswindow=0x" + ::hex::lower_from((iptr) w));
 
    //   
 

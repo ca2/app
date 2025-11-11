@@ -532,7 +532,7 @@ namespace user
          //if (message == ::user::e_message_key_down)
          //{
 
-         //   informationf("\n Key Down Event ");
+         //   informationf("---->  Key Down Event ");
 
          //}
 

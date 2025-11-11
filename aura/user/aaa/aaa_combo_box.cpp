@@ -1659,7 +1659,7 @@ namespace user
    void combo_box::on_message_left_button_double_click(::message::message * pmessage)
    {
 
-      //informationf("\nCOMBO_BOX: DOUBLE CLICK\n");
+      //informationf("----> COMBO_BOX: DOUBLE CLICK\n");
 
       on_message_left_button_down(pmessage);
 

@@ -489,6 +489,14 @@ namespace sockets
    }
 
 
+   bool listen_socket_impl::is_listening_socket()
+   {
+
+      return true;
+
+   }
+
+
    base_socket* listen_socket_impl::base_socket_impl()
    {
 

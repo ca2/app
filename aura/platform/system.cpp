@@ -772,7 +772,7 @@ namespace aura
       //{
 
       //   printf("%s", "\n\nApplication Information\n");
-      //   informationf("\n\nApplication Information\n");
+      //   informationf("---->  Application Information\n");
 
       //   int iPid;
 
@@ -3238,11 +3238,11 @@ namespace aura
 ////
 ////      ::file::path pathCa2Module = directory()->ca2module();
 ////
-////      informationf("\n\n::aura::system::find_applications_to_cache\n\n");
+////      informationf("---->  ::aura::system::find_applications_to_cache\n\n");
 ////
 ////      informationf("ca2 module folder : " + pathCa2Module);
 ////
-////      informationf("\n\n\n");
+////      informationf("---->  \n");
 ////
 ////      straTitle.ls_pattern(pathCa2Module, { "*.*" });
 ////

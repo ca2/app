@@ -1073,7 +1073,7 @@ ret:
       //if (!estatus)
       //{
 
-      //   informationf("\nFailed to øconstruct_new(m_pfs)");
+      //   informationf("----> Failed to øconstruct_new(m_pfs)");
 
       //   m_result.add(estatus);
 

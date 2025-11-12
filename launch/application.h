@@ -22,7 +22,7 @@ namespace launch
       ::string       m_strDistro;
       ::string       m_strBranch;
       ::string       m_strRelease;
-
+      ::string       m_strArchitecture;
 
       ::string       m_strLaunchAppId;
 

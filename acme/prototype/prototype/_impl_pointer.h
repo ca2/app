@@ -1671,6 +1671,14 @@ void __destroy_and_release(pointer < T >& p)
 //
 //}
 
+template < class T >
+template < typename T2 >
+inline pointer < T >& pointer < T > ::operator = (const ::cast < T2 >& p)
+{
+
+   return this->operator=(p.m_p);
+
+}
 
 template < class T >
 template < typename T2 >

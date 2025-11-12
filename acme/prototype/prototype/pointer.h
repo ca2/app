@@ -191,6 +191,13 @@ public:
 
    }
 
+   /// consumes a referer
+   template < class T2 >
+   inline pointer(const ::cast<T2>& p) :
+      pointer(p.m_p)
+   {
+
+   }
 
    inline bool operator !() const
    {
@@ -401,6 +408,8 @@ public:
    template < class T2 >
    inline pointer & operator = (::pointer<T2> && t);
 
+   template < class T2 >
+   inline pointer& operator = (const ::cast<T2>& t);
 
    template < typename T2 >
    inline pointer < T2 > defer_get_new(::particle* pparticle);

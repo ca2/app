@@ -2353,6 +2353,7 @@
     <ClInclude Include="prototype\data\tree_base_composite.h" />
     <ClInclude Include="prototype\data\tree_item_base.h" />
     <ClInclude Include="prototype\geometry2d\_impl.h" />
+    <ClInclude Include="prototype\prototype\cast.h" />
     <ClInclude Include="prototype\prototype\make_particle.h" />
     <ClInclude Include="prototype\prototype\pool.h" />
     <ClInclude Include="prototype\prototype\poolable.h" />

@@ -1182,3 +1182,13 @@ namespace platform
 
 
 } // namespace platform
+
+
+template < typename TYPE >
+class cast;
+
+
+template < typename T >
+using cast_array = ::comparable_array_base < ::cast < T > >;
+
+

@@ -4290,6 +4290,9 @@
     <ClInclude Include="operating_system\shared_posix\time1.h">
       <Filter>Header Files\operating_system\shared_posix</Filter>
     </ClInclude>
+    <ClInclude Include="prototype\prototype\cast.h">
+      <Filter>Header Files\prototype\prototype</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="prototype\prototype\bit.cpp">

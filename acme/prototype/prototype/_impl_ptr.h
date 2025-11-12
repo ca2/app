@@ -9,6 +9,9 @@
 #pragma once
 
 
+#include "acme/prototype/prototype/cast.h"
+
+
 template < typename TYPE >
 inline ::ptr < TYPE > & ptr < TYPE >::operator = (const ::pointer < TYPE > & p)
 {
@@ -209,3 +212,14 @@ inline ::ptr < TYPE > & ptr < TYPE >::operator = (::pointer < TYPE2 > && p)
 
 
 
+
+template < typename TYPE >
+template < typename TYPE2 >
+cast<TYPE> & cast<TYPE>::operator = (const ::pointer < TYPE2 >& p2)
+{
+
+   m_p = dynamic_cast <TYPE*>((::subparticle*)(p2.m_psubparticle));
+
+   return *this;
+
+}

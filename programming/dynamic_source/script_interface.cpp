@@ -150,8 +150,8 @@ namespace dynamic_source
    {
 
       m_pscriptmain1 = nullptr;
-      m_pinstanceParent1.release();
-      m_pscript1.release();
+      m_pinstanceParent1 = nullptr;
+      m_pscript1 = nullptr;
       m_varRet.unset();
 
       ::html_file::destroy();

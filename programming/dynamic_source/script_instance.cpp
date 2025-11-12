@@ -2,6 +2,7 @@
 #include "script.h"
 #include "script_instance.h"
 #include "script_main.h"
+#include "script_manager.h"
 
 
 namespace dynamic_source

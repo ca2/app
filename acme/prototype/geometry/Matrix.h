@@ -179,10 +179,10 @@ struct matrix_type
       ::memory_copy(this->m, m.m, sizeof(FLOATING) * DIMENSION * DIMENSION);
    }
 
-   explicit matrix_type(FLOATING s) {
+   matrix_type(FLOATING diagonal) {
       ::memory_set(m, 0, sizeof(FLOATING) * DIMENSION * DIMENSION);
       for (::collection::count i = 0; i < DIMENSION; ++i)
-         m[i][i] = s;
+         m[i][i] = diagonal;
    }
 
 
@@ -912,89 +912,88 @@ inline matrix_type mul_avx2(const matrix_type &B) const
       if (fabs(det) < 1e-12f)
       {
          // return identity
-         out = {1, 0, 0, 0, 1, 0, 0, 0, 1};
-         return out;
+         //out = {1, 0, 0, 0, 1, 0, 0, 0, 1};
+         return {1.0f};
       }
 
       float invDet = 1.0f / det;
 
       // Store adjugate * invDet (column-major)
-      out.m[0] = c00 * invDet;
-      out.m[1] = c10 * invDet;
-      out.m[2] = c20 * invDet;
+      out.fa[0] = c00 * invDet;
+      out.fa[1] = c10 * invDet;
+      out.fa[2] = c20 * invDet;
 
-      out.m[3] = c01 * invDet;
-      out.m[4] = c11 * invDet;
-      out.m[5] = c21 * invDet;
+      out.fa[3] = c01 * invDet;
+      out.fa[4] = c11 * invDet;
+      out.fa[5] = c21 * invDet;
 
-      out.m[6] = c02 * invDet;
-      out.m[7] = c12 * invDet;
-      out.m[8] = c22 * invDet;
+      out.fa[6] = c02 * invDet;
+      out.fa[7] = c12 * invDet;
+      out.fa[8] = c22 * invDet;
 
       return out;
    }
 
 
-   inline matrix_type inverse_avx() const
+   inline matrix_type inversed_avx() const
       requires(DIMENSION == 3 && std::is_same_v<FLOATING, float>)
    {
 
-      const auto &A = *this;
-      // Load columns padded into 256-bit registers
-      __m256 c01 = _mm256_set_ps(0, A.fa[5], A.fa[4], A.fa[3], 0, A.fa[2], A.fa[1], A.fa[0]);
+      const float *in = this->fa;
+      matrix_type result;
+      float *out = result.fa;
+         // Load 3×3 matrix (column-major)
+         float m00 = in[0], m01 = in[3], m02 = in[6];
+         float m10 = in[1], m11 = in[4], m12 = in[7];
+         float m20 = in[2], m21 = in[5], m22 = in[8];
 
-      __m256 c2 = _mm256_set_ps(0, 0, 0, A.fa[8], 0, 0, A.fa[7], A.fa[6]);
+         //
+         // ---- Cofactor matrix (scalar – fastest for 3×3) ----
+         //
+         float cf00 = m11 * m22 - m12 * m21;
+         float cf01 = -(m10 * m22 - m12 * m20);
+         float cf02 = m10 * m21 - m11 * m20;
 
-      // Multiply example (extract some cofactors)
-      __m256 r0 = _mm256_shuffle_ps(c01, c01, _MM_SHUFFLE(1, 0, 1, 0));
-      __m256 r1 = _mm256_shuffle_ps(c01, c01, _MM_SHUFFLE(3, 2, 3, 2));
+         float cf10 = -(m01 * m22 - m02 * m21);
+         float cf11 = m00 * m22 - m02 * m20;
+         float cf12 = -(m00 * m21 - m01 * m20);
 
-      __m256 a11a22 = _mm256_mul_ps(r0, c2);
-      __m256 a12a21 = _mm256_mul_ps(r1, c2);
+         float cf20 = m01 * m12 - m02 * m11;
+         float cf21 = -(m00 * m12 - m02 * m10);
+         float cf22 = m00 * m11 - m01 * m10;
 
-      __m256 cof = _mm256_sub_ps(a11a22, a12a21);
+         // Determinant
+         float det = m00 * cf00 + m01 * cf01 + m02 * cf02;
+         float invdet = 1.0f / det;
 
-      float c00 = ((float *)&cof)[0];
+         //
+         // ---- Pack cofactors into column-major adjoint matrix ----
+         //
+         // adj = transpose(cofactor matrix)
+         alignas(32) float adj[9] = {
+            cf00, cf10, cf20, // column 0
+            cf01, cf11, cf21, // column 1
+            cf02, cf12, cf22 // column 2
+         };
 
-      // remaining cofactors (scalar)
-      float a00 = A.fa[0], a01 = A.fa[3], a02 = A.fa[6];
-      float a10 = A.fa[1], a11 = A.fa[4], a12 = A.fa[7];
-      float a20 = A.fa[2], a21 = A.fa[5], a22 = A.fa[8];
+         //
+         // ---- AVX multiply first 8 floats ----
+         //
+         __m256 scale = _mm256_set1_ps(invdet);
+         __m256 adj_lo = _mm256_loadu_ps(&adj[0]); // adj[0..7]
+         __m256 out_lo = _mm256_mul_ps(adj_lo, scale);
 
-      float c01 = -(a10 * a22 - a12 * a20);
-      float c02 = (a10 * a21 - a11 * a20);
-      float c10 = -(a01 * a22 - a02 * a21);
-      float c11 = (a00 * a22 - a02 * a20);
-      float c12 = -(a00 * a21 - a01 * a20);
-      float c20 = (a01 * a12 - a02 * a11);
-      float c21 = -(a00 * a12 - a02 * a10);
-      float c22 = (a00 * a11 - a01 * a10);
+         //
+         // ---- Last element adj[8] ----
+         //
+         __m128 last = _mm_mul_ss(_mm_set_ss(adj[8]), _mm256_castps256_ps128(scale));
 
-      float det = a00 * c00 + a01 * c01 + a02 * c02;
-
-      matrix_type out;
-
-      if (fabs(det) < 1e-12f)
-      {
-         out = {1, 0, 0, 0, 1, 0, 0, 0, 1};
-         return out;
-      }
-
-      float invDet = 1.0f / det;
-
-      out.m[0] = c00 * invDet;
-      out.m[1] = c10 * invDet;
-      out.m[2] = c20 * invDet;
-
-      out.m[3] = c01 * invDet;
-      out.m[4] = c11 * invDet;
-      out.m[5] = c21 * invDet;
-
-      out.m[6] = c02 * invDet;
-      out.m[7] = c12 * invDet;
-      out.m[8] = c22 * invDet;
-
-      return out;
+         //
+         // ---- Store result ----
+         //
+         _mm256_storeu_ps(&out[0], out_lo);
+         _mm_store_ss(&out[8], last);
+         return result;
    }
 
 
@@ -1308,7 +1307,7 @@ inline matrix_type mul_avx2(const matrix_type &B) const
       }
       else
       {
-         return inverse_scalar(m);
+         return inversed_scalar();
       }
 
    }

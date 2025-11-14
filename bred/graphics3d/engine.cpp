@@ -37,7 +37,10 @@
 // Function to flip a floating_matrix4 along the Z-axis
 floating_matrix4 flipZMat4(const floating_matrix4& mat) {
    // Create a rotation matrix that flips along the Y-axis (180 degrees)
-   floating_matrix4 flip = geometry::rotate(floating_matrix4(1.0f), 180.0_degree, floating_sequence3(0.0f, 1.0f, 0.0f));
+   floating_matrix4 flip = floating_matrix4(1.0f);
+   
+   
+   flip.rotate(180.0_degree, floating_sequence3(0.0f, 1.0f, 0.0f));
 
    // Multiply the rotation matrix with the original matrix
    return flip * mat;

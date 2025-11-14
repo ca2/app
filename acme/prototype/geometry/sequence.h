@@ -1017,9 +1017,20 @@ struct sequence_type :
       return ::std::sqrt(squared_modulus()); 
    }
 
+
    inline NUMBER length() const
    {
+      
       return modulus(); 
+
+   }  
+
+
+   inline NUMBER distance(const sequence_type & b) const 
+   {
+      
+      return (b - *this).modulus(); 
+   
    }  
 
 

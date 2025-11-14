@@ -25,5 +25,17 @@ struct two_π_impl<long double>
 template<typename T>
 inline constexpr T two_π = two_π_impl<T>::payload;
 
+namespace geometry
+{
 
+   template < primitive_number NUMBER >
+   inline NUMBER clamp(NUMBER n, NUMBER nMin, NUMBER nMax)
+   {
+      if (n < nMin)
+         return nMin;
+      if (n > nMax)
+         return nMax;
+      return n;
+   }
 
+} // namespace geometry

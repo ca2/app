@@ -3094,21 +3094,23 @@ color = vec4(c.r,c.g, c.b, c.a);
 
                                     const float_sequence3 &up)
    {
+
       // --- Step 1: Compute camera axes ---------------------------------
-      floating_sequence3 f = (center - eye).normalized(); // forward
-      floating_sequence3 upN = up.normalized(); // normalized up
-      floating_sequence3 s = f.crossed(upN).normalized(); // right
-      floating_sequence3 u = s.crossed(f); // corrected up
+      auto f = (center - eye).normalized(); // forward
+      auto upN = up.normalized(); // normalized up
+      auto s = f.crossed(upN).normalized(); // right
+      auto u = s.crossed(f); // corrected up
 
       // --- Step 2: Build rotation matrix from axes ----------------------
-      floating_matrix4 R = rotateFromAxes(s, u, -f); // world aligned to camera
+      auto R = rotateFromAxes(s, u, -f); // world aligned to camera
 
       // --- Step 3: Build translation matrix ----------------------------
-      floating_matrix4 T(translation_t{}, -eye); // move world by -eye
+      auto T = floating_matrix4::translation(-eye); // move world by -eye
 
       // --- Step 4: Combine ---------------------------------------------
       // View matrix = rotate world axes, then translate
       return R * T;
+
    }
 
 

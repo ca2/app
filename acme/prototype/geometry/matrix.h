@@ -131,20 +131,7 @@ struct matrix_type
       this->m[2][2] = m[2][2];
    }
 
-   // ------------------------------
-   // Translation
-   // ------------------------------
-   matrix_type(translation_t, const sequence_type <FLOATING, 3> &t): 
-      matrix_type((FLOATING) 1)
-   {
-
-      this->m[3][0] = t.x; // last row, first column
-      this->m[3][1] = t.y;
-      this->m[3][2] = t.z;
-
-      
-   }
-
+  
    matrix_type(const matrix_type<FLOATING, 4> &m)
       requires(DIMENSION == 4)
    {
@@ -487,32 +474,61 @@ inline matrix_type mul_avx2(const matrix_type &B) const
    }
 
 
-   static matrix_type scale(const sequence_type<FLOATING, DIMENSION - 1>& m_coordinatea) {
-      matrix_type result;
-      ::memory_set(result.m, 0, sizeof(FLOATING) * DIMENSION * DIMENSION);
-      for (int i = 0; i < DIMENSION; ++i)
-         result.m[i][i] = i < DIMENSION - 1 ? m_coordinatea[i] : 1;
-      return result;
+
+   // ------------------------------
+   // Translation
+   // ------------------------------
+   static matrix_type translation(const sequence_type<FLOATING, DIMENSION - 1> &t) 
+   {
+
+      matrix_type m{(FLOATING)1};
+
+      auto c = DIMENSION - 1;
+
+      for (int i = 0; i < c; ++i) 
+         m[c][i] = t[i];
+
+      return m;
+
    }
 
-   static matrix_type scale(const sequence_type<FLOATING, DIMENSION>& m_coordinatea) {
-      matrix_type result;
-      ::memory_set(result.m, 0, sizeof(FLOATING) * DIMENSION * DIMENSION);
-      for (int i = 0; i < DIMENSION; ++i)
-         result.m[i][i] = m_coordinatea[i];
+
+   // ------------------------------
+   // Scaling
+   // ------------------------------
+   static matrix_type scaling(const sequence_type<FLOATING, DIMENSION - 1>& s) 
+   {
+
+      matrix_type result{1.0f};
+
+      auto c = DIMENSION - 1;
+
+      for (int i = 0; i < c; ++i)
+         result.m[i][i] = s[i];
+
       return result;
+
    }
 
-   static matrix_type translate(const sequence_type<FLOATING, DIMENSION - 1>& m_coordinatea) {
-      matrix_type result;
-      ::memory_set(result.m, 0, sizeof(FLOATING) * DIMENSION * DIMENSION);
-      for (int i = 0; i < DIMENSION; ++i) {
-         result.m[i][i] = 1.f;
-         if (i < DIMENSION - 1)
-            result.m[DIMENSION - 1][i] = m_coordinatea[i];
-      }
-      return result;
-   }
+
+   //static matrix_type scale(const sequence_type<FLOATING, DIMENSION>& m_coordinatea) {
+   //   matrix_type result;
+   //   ::memory_set(result.m, 0, sizeof(FLOATING) * DIMENSION * DIMENSION);
+   //   for (int i = 0; i < DIMENSION; ++i)
+   //      result.m[i][i] = m_coordinatea[i];
+   //   return result;
+   //}
+
+   //static matrix_type translate(const sequence_type<FLOATING, DIMENSION - 1>& m_coordinatea) {
+   //   matrix_type result;
+   //   ::memory_set(result.m, 0, sizeof(FLOATING) * DIMENSION * DIMENSION);
+   //   for (int i = 0; i < DIMENSION; ++i) {
+   //      result.m[i][i] = 1.f;
+   //      if (i < DIMENSION - 1)
+   //         result.m[DIMENSION - 1][i] = m_coordinatea[i];
+   //   }
+   //   return result;
+   //}
 
    const column & operator[](int i) const
    {

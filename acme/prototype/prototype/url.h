@@ -489,15 +489,22 @@ namespace url
 
       // Example: http://website.com:80/script%20folder/strict%20object?param1=1&param2=2
       ::string as_string() const;
-      auto & connect() const { return m_connectrange; }
-      auto & request() const { return m_requestrange; }
+      const auto & connect() const { return m_connectrange; }
+      const auto & request() const { return m_requestrange; }
+      auto& connect() { return m_connectrange; }
+      auto& request() { return m_requestrange; }
       //auto request_uri() const { return m_rangeRequestUri; } // /script%20folder/strict%20object?param1=1&param2=2
       //auto raw_script() const { return m_rangeScript; } // /script%20folder/strict%20object
       //auto script() const { return decode(this->raw_script()); } // /script folder/strict object
       //auto raw_name() const { return m_rangeName; } // strict%20object
       //auto name() const { return decode(this->raw_name()); } // strict object
       //auto query() const { return m_rangeQuery; }// param1=1&param2=2
+      void set_request_arguments(const ::property_set & set)
+      {
+         
+         m_requestrange.arguments() = set;
 
+      }
 
       bool is() const { return m_connectrange.is_url(); }
 

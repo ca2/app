@@ -196,6 +196,8 @@ public:
 
    bool has_property(const ::atom & atom) const;
 
+   bool has_replace(const ::atom& atom, const ::payload & payload);
+
    bool is_true(const ::atom & atom) const;
 
    bool is_true_or_empty(const ::atom & atom) const;

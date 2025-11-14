@@ -368,14 +368,14 @@ namespace graphics3d
          //floating_sequence3 rotation = glm::radians(rotationEulerDegrees);
 
          // Scale
-         floating_matrix4 S = geometry::scale(floating_matrix4(1.0f), scale);
+         floating_matrix4 S = floating_matrix4(1.0f).scaled(scale);
 
          // Rotation (Euler to Quaternion to Matrix)
-         auto quaternion = geometry::quaternion(rotation);
-         floating_matrix4 R = geometry::toMat4(quaternion);
+         auto quaternion = float_quaternion(rotation);
+         floating_matrix4 R = floating_matrix4::from(quaternion);
 
          // Translation
-         floating_matrix4 T = geometry::translate(floating_matrix4(1.0f), translation);
+         floating_matrix4 T = floating_matrix4(1.0f).translated(translation);
 
          // Model matrix (camera transform)
          floating_matrix4 model = T * R * S;

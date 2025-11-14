@@ -102,7 +102,7 @@ struct row_major_type
       sequence_type<FLOATING, DIMENSION> m_sequencea[DIMENSION];
    };
 
-   matrix_type<FLOATING, 4> transpose(const row_major_type<FLOATING, 4> &m);
+   matrix_type<FLOATING, t_iDimension> transpose() const;
    
 };
 
@@ -727,11 +727,11 @@ inline matrix_type mul_avx2(const matrix_type &B) const
    }
 
 
-   matrix_type & transpose()
-      requires(DIMENSION == 3)
-   {
-      return *this = this->transposed();
-   }
+   //matrix_type & transpose()
+   //   requires(DIMENSION == 3)
+   //{
+   //   return *this = this->transposed();
+   //}
 
 
    matrix_type & translate(const sequence_type<FLOATING, 3> &s) 
@@ -755,7 +755,7 @@ inline matrix_type mul_avx2(const matrix_type &B) const
    }
 
    
-   ::matrix_type & scale( const sequence_type<FLOATING, 3> &s)
+   matrix_type & scale( const sequence_type<FLOATING, 3> &s)
       requires(DIMENSION == 4)   
    {
       this->m[0][0] *= s.x;
@@ -786,82 +786,223 @@ inline matrix_type mul_avx2(const matrix_type &B) const
       return m.scale(s);
    }
 
-
-   
-
-   
-
-};
-
-
-using float_matrix2 = matrix_type<float, 2>;
-using float_matrix3 = matrix_type<float, 3>;
-using float_matrix4 = matrix_type<float, 4>;
-
-
-using double_matrix2 = matrix_type<double, 2>;
-using double_matrix3 = matrix_type<double, 3>;
-using double_matrix4 = matrix_type<double, 4>;
-
-
-namespace geometry
-{
-
-
-   //   static inline void _transpose(FLOATING A_target[t_iDimension][t_iDimension],
-   //                              const FLOATING A_source[t_iDimension][t_iDimension])
-   //{
-   //   for (int i = 0; i < t_iDimension; i++)
-   //      for (int j = 0; j < t_iDimension; j++)
-   //         A_target[i][j] = A_source[j][i];
-   //}
-   //
-
-
-
-
-
-   template<primitive_floating FLOATING>
-   row_major_type<FLOATING, 4> transpose(const matrix_type<FLOATING, 4> &m)
+   inline matrix_type inversed_scalar() const
+      requires(DIMENSION == 3)
    {
-      row_major_type<FLOATING, 4> r;
-      _transpose(4, m.m);
-      return r;
+
+      const auto &A = *this;
+      // Column-major indexing:
+      // A.m[0] A.m[3] A.m[6]
+      // A.m[1] A.m[4] A.m[7]
+      // A.m[2] A.m[5] A.m[8]
+
+      float a00 = A.fa[0];
+      float a01 = A.fa[3];
+      float a02 = A.fa[6];
+      float a10 = A.fa[1];
+      float a11 = A.fa[4];
+      float a12 = A.fa[7];
+      float a20 = A.fa[2];
+      float a21 = A.fa[5];
+      float a22 = A.fa[8];
+
+      // Cofactors
+      float c00 = (a11 * a22 - a12 * a21);
+      float c01 = -(a10 * a22 - a12 * a20);
+      float c02 = (a10 * a21 - a11 * a20);
+
+      float c10 = -(a01 * a22 - a02 * a21);
+      float c11 = (a00 * a22 - a02 * a20);
+      float c12 = -(a00 * a21 - a01 * a20);
+
+      float c20 = (a01 * a12 - a02 * a11);
+      float c21 = -(a00 * a12 - a02 * a10);
+      float c22 = (a00 * a11 - a01 * a10);
+
+      // Determinant
+      float det = a00 * c00 + a01 * c01 + a02 * c02;
+
+      matrix_type out;
+
+      if (fabs(det) < 1e-12f)
+      {
+         // Return identity or zero? Your choice
+         // Here: return identity
+         out.fa[0] = 1;
+         out.fa[3] = 0;
+         out.fa[6] = 0;
+         out.fa[1] = 0;
+         out.fa[4] = 1;
+         out.fa[7] = 0;
+         out.fa[2] = 0;
+         out.fa[5] = 0;
+         out.fa[8] = 1;
+         return out;
+      }
+
+      float invDet = 1.0f / det;
+
+      // The adjugate is the transpose of the cofactor matrix
+      // Write it directly in column-major:
+
+      out.fa[0] = c00 * invDet;
+      out.fa[1] = c10 * invDet;
+      out.fa[2] = c20 * invDet;
+
+      out.fa[3] = c01 * invDet;
+      out.fa[4] = c11 * invDet;
+      out.fa[5] = c21 * invDet;
+
+      out.fa[6] = c02 * invDet;
+      out.fa[7] = c12 * invDet;
+      out.fa[8] = c22 * invDet;
+
+      return out;
    }
 
 
-   template<primitive_floating FLOATING>
-   //matrix_type<FLOATING, 3> inverse(const matrix_type<FLOATING, 3> &m)
-   //{
+   inline matrix_type inversed_sse() const
+      requires(DIMENSION == 3 && std::is_same_v<FLOATING, float>)
+   {
 
-   //   float det = m[0][0] * (m[1][1] * m[2][2] - m[2][1] * m[1][2]) -
-   //               m[1][0] * (m[0][1] * m[2][2] - m[2][1] * m[0][2]) + m[2][0] * (m[0][1] * m[1][2] - m[1][1] * m[0][2]);
+      const auto &A = *this;
+      // Load columns (pad with 0 in 4th float)
+      __m128 c0 = _mm_set_ps(0.0f, A.fa[2], A.fa[1], A.fa[0]);
+      __m128 c1 = _mm_set_ps(0.0f, A.fa[5], A.fa[4], A.fa[3]);
+      __m128 c2 = _mm_set_ps(0.0f, A.fa[8], A.fa[7], A.fa[6]);
 
-   //   if (std::fabs(det) < 1e-8f)
-   //      return matrix_type<FLOATING, 3>(1.0f); // fallback to identity (non-invertible)
+      // Unpack to rows
+      __m128 r0 = _mm_unpacklo_ps(c0, c1); // [a00 a01 a10 a11]
+      __m128 r1 = _mm_unpackhi_ps(c0, c1); // [a20 a21  0    0]
+      __m128 r2 = c2; // [a02 a12 a22  0]
 
-   //   float invDet = 1.0f / det;
+      // Cofactor calculations:
+      // c00 = a11*a22 - a12*a21
+      __m128 t0 = _mm_mul_ps(_mm_shuffle_ps(r0, r0, _MM_SHUFFLE(3, 3, 1, 1)),
+                             _mm_shuffle_ps(r2, r2, _MM_SHUFFLE(3, 3, 3, 0))); // a11 * a22
 
-   //   matrix_type<FLOATING, 3> r;
-   //   r[0][0] = (m[1][1] * m[2][2] - m[2][1] * m[1][2]) * invDet;
-   //   r[1][0] = -(m[1][0] * m[2][2] - m[2][0] * m[1][2]) * invDet;
-   //   r[2][0] = (m[1][0] * m[2][1] - m[2][0] * m[1][1]) * invDet;
+      __m128 t1 = _mm_mul_ps(_mm_shuffle_ps(r0, r0, _MM_SHUFFLE(3, 3, 1, 1)),
+                             _mm_shuffle_ps(r2, r2, _MM_SHUFFLE(3, 3, 0, 0))); // a12 * a21
 
-   //   r[0][1] = -(m[0][1] * m[2][2] - m[2][1] * m[0][2]) * invDet;
-   //   r[1][1] = (m[0][0] * m[2][2] - m[2][0] * m[0][2]) * invDet;
-   //   r[2][1] = -(m[0][0] * m[2][1] - m[2][0] * m[0][1]) * invDet;
+      __m128 cof0 = _mm_sub_ps(t0, t1);
 
-   //   r[0][2] = (m[0][1] * m[1][2] - m[1][1] * m[0][2]) * invDet;
-   //   r[1][2] = -(m[0][0] * m[1][2] - m[1][0] * m[0][2]) * invDet;
-   //   r[2][2] = (m[0][0] * m[1][1] - m[1][0] * m[0][1]) * invDet;
+      // We will extract elements later.
+      float c00 = _mm_cvtss_f32(cof0);
 
-   //   return r;
-   //}
+      // Scalar fallback for the remaining cofactors (SSE only helps partially for 3×3)
+      // (This keeps correctness while still accelerating the heavy parts.)
 
+      float a00 = A.fa[0], a01 = A.fa[3], a02 = A.fa[6];
+      float a10 = A.fa[1], a11 = A.fa[4], a12 = A.fa[7];
+      float a20 = A.fa[2], a21 = A.fa[5], a22 = A.fa[8];
+
+      float c01 = -(a10 * a22 - a12 * a20);
+      float c02 = (a10 * a21 - a11 * a20);
+      float c10 = -(a01 * a22 - a02 * a21);
+      float c11 = (a00 * a22 - a02 * a20);
+      float c12 = -(a00 * a21 - a01 * a20);
+      float c20 = (a01 * a12 - a02 * a11);
+      float c21 = -(a00 * a12 - a02 * a10);
+      float c22 = (a00 * a11 - a01 * a10);
+
+      float det = a00 * c00 + a01 * c01 + a02 * c02;
+
+      matrix_type out;
+
+      if (fabs(det) < 1e-12f)
+      {
+         // return identity
+         out = {1, 0, 0, 0, 1, 0, 0, 0, 1};
+         return out;
+      }
+
+      float invDet = 1.0f / det;
+
+      // Store adjugate * invDet (column-major)
+      out.m[0] = c00 * invDet;
+      out.m[1] = c10 * invDet;
+      out.m[2] = c20 * invDet;
+
+      out.m[3] = c01 * invDet;
+      out.m[4] = c11 * invDet;
+      out.m[5] = c21 * invDet;
+
+      out.m[6] = c02 * invDet;
+      out.m[7] = c12 * invDet;
+      out.m[8] = c22 * invDet;
+
+      return out;
+   }
+
+
+   inline matrix_type inverse_avx() const
+      requires(DIMENSION == 3 && std::is_same_v<FLOATING, float>)
+   {
+
+      const auto &A = *this;
+      // Load columns padded into 256-bit registers
+      __m256 c01 = _mm256_set_ps(0, A.fa[5], A.fa[4], A.fa[3], 0, A.fa[2], A.fa[1], A.fa[0]);
+
+      __m256 c2 = _mm256_set_ps(0, 0, 0, A.fa[8], 0, 0, A.fa[7], A.fa[6]);
+
+      // Multiply example (extract some cofactors)
+      __m256 r0 = _mm256_shuffle_ps(c01, c01, _MM_SHUFFLE(1, 0, 1, 0));
+      __m256 r1 = _mm256_shuffle_ps(c01, c01, _MM_SHUFFLE(3, 2, 3, 2));
+
+      __m256 a11a22 = _mm256_mul_ps(r0, c2);
+      __m256 a12a21 = _mm256_mul_ps(r1, c2);
+
+      __m256 cof = _mm256_sub_ps(a11a22, a12a21);
+
+      float c00 = ((float *)&cof)[0];
+
+      // remaining cofactors (scalar)
+      float a00 = A.fa[0], a01 = A.fa[3], a02 = A.fa[6];
+      float a10 = A.fa[1], a11 = A.fa[4], a12 = A.fa[7];
+      float a20 = A.fa[2], a21 = A.fa[5], a22 = A.fa[8];
+
+      float c01 = -(a10 * a22 - a12 * a20);
+      float c02 = (a10 * a21 - a11 * a20);
+      float c10 = -(a01 * a22 - a02 * a21);
+      float c11 = (a00 * a22 - a02 * a20);
+      float c12 = -(a00 * a21 - a01 * a20);
+      float c20 = (a01 * a12 - a02 * a11);
+      float c21 = -(a00 * a12 - a02 * a10);
+      float c22 = (a00 * a11 - a01 * a10);
+
+      float det = a00 * c00 + a01 * c01 + a02 * c02;
+
+      matrix_type out;
+
+      if (fabs(det) < 1e-12f)
+      {
+         out = {1, 0, 0, 0, 1, 0, 0, 0, 1};
+         return out;
+      }
+
+      float invDet = 1.0f / det;
+
+      out.m[0] = c00 * invDet;
+      out.m[1] = c10 * invDet;
+      out.m[2] = c20 * invDet;
+
+      out.m[3] = c01 * invDet;
+      out.m[4] = c11 * invDet;
+      out.m[5] = c21 * invDet;
+
+      out.m[6] = c02 * invDet;
+      out.m[7] = c12 * invDet;
+      out.m[8] = c22 * invDet;
+
+      return out;
+   }
+
+
+   
    
    // ---------------- Scalar inverse ----------------
    inline matrix_type inversed_scalar() const
-      requires(DIMENSION== 4)
+      requires(DIMENSION == 4)
    {
 
       const auto &a = *this;
@@ -1134,31 +1275,49 @@ namespace geometry
    }
 
 
-   inline matrix_type inversed(const matrix_type &m)
+   inline matrix_type inversed() const
    {
 
-
-      if constexpr (DIMENSION != 4 || !std::is_same_v<FLOATING, float>)
+      if constexpr ( std::is_same_v<FLOATING, float>)
       {
-         return inverse_scalar(m);
+         if constexpr (DIMENSION == 4)
+         {
+            if (g_cpufeatures.m_bAVX2)
+               return inversed_avx2();
+            else if (g_cpufeatures.m_bAVX)
+               return inversed_avx();
+            else if (g_cpufeatures.m_bSSE)
+               return inversed_sse();
+            else
+               return inversed_scalar();
+         }
+         else if constexpr (DIMENSION == 3)
+         {
+            if (g_cpufeatures.m_bAVX)
+               return inversed_avx();
+            if (g_cpufeatures.m_bSSE) 
+               return inversed_sse();
+            else
+               return inversed_scalar();
+         }
+         else
+         {
+            return inversed_scalar();
+         }
+
       }
       else
       {
-         if (g_cpufeatures.m_bAVX2)
-            return inversed_avx2();
-         else if (g_cpufeatures.m_bAVX)
-            return inversed_avx();
-         else if (g_cpufeatures.m_bSSE)
-            return inversed_sse();
-         else
-            return inversed_scalard);
+         return inverse_scalar(m);
       }
+
    }
 
-   template<primitive_floating FLOATING>
-   inline matrix_type <FLOATING, 4> toMat4(const quaternion_type < FLOATING > &q)
+
+   inline matrix_type & operator =(const quaternion_type<FLOATING> &q)
+      requires (DIMENSION == 4)
    {
-      matrix_type<FLOATING, 4> M{};
+      matrix_type M{};
 
       float xx = q.x * q.x;
       float yy = q.y * q.y;
@@ -1196,408 +1355,484 @@ namespace geometry
       return M;
    }
 
-
-   template<primitive_floating FLOATING>
-   quaternion_type < FLOATING > quaternion(const ::sequence_type<FLOATING, 3> & euler)
+   
+   inline row_major_type<FLOATING, t_iDimension> transpose() const
    {
-
-      return euler;
-
+      row_major_type<FLOATING, 4> r;
+      _transpose(4, this->m);
+      return r;
    }
-
-   template<primitive_floating FLOATING>
-   inline matrix_type<FLOATING, 4> inverse(const matrix_type<FLOATING, 4> &A)
-   {
-      matrix_type<FLOATING, 4> inv{};
-      const FLOATING *m = &A.m[0][0]; // treat as flat array
-
-      FLOATING invOut[16];
-
-      invOut[0] = m[5] * m[10] * m[15] - m[5] * m[11] * m[14] - m[9] * m[6] * m[15] + m[9] * m[7] * m[14] +
-                  m[13] * m[6] * m[11] - m[13] * m[7] * m[10];
-
-      invOut[4] = -m[4] * m[10] * m[15] + m[4] * m[11] * m[14] + m[8] * m[6] * m[15] - m[8] * m[7] * m[14] -
-                  m[12] * m[6] * m[11] + m[12] * m[7] * m[10];
-
-      invOut[8] = m[4] * m[9] * m[15] - m[4] * m[11] * m[13] - m[8] * m[5] * m[15] + m[8] * m[7] * m[13] +
-                  m[12] * m[5] * m[11] - m[12] * m[7] * m[9];
-
-      invOut[12] = -m[4] * m[9] * m[14] + m[4] * m[10] * m[13] + m[8] * m[5] * m[14] - m[8] * m[6] * m[13] -
-                   m[12] * m[5] * m[10] + m[12] * m[6] * m[9];
-
-      invOut[1] = -m[1] * m[10] * m[15] + m[1] * m[11] * m[14] + m[9] * m[2] * m[15] - m[9] * m[3] * m[14] -
-                  m[13] * m[2] * m[11] + m[13] * m[3] * m[10];
-
-      invOut[5] = m[0] * m[10] * m[15] - m[0] * m[11] * m[14] - m[8] * m[2] * m[15] + m[8] * m[3] * m[14] +
-                  m[12] * m[2] * m[11] - m[12] * m[3] * m[10];
-
-      invOut[9] = -m[0] * m[9] * m[15] + m[0] * m[11] * m[13] + m[8] * m[1] * m[15] - m[8] * m[3] * m[13] -
-                  m[12] * m[1] * m[11] + m[12] * m[3] * m[9];
-
-      invOut[13] = m[0] * m[9] * m[14] - m[0] * m[10] * m[13] - m[8] * m[1] * m[14] + m[8] * m[2] * m[13] +
-                   m[12] * m[1] * m[10] - m[12] * m[2] * m[9];
-
-      invOut[2] = m[1] * m[6] * m[15] - m[1] * m[7] * m[14] - m[5] * m[2] * m[15] + m[5] * m[3] * m[14] +
-                  m[13] * m[2] * m[7] - m[13] * m[3] * m[6];
-
-      invOut[6] = -m[0] * m[6] * m[15] + m[0] * m[7] * m[14] + m[4] * m[2] * m[15] - m[4] * m[3] * m[14] -
-                  m[12] * m[2] * m[7] + m[12] * m[3] * m[6];
-
-      invOut[10] = m[0] * m[5] * m[15] - m[0] * m[7] * m[13] - m[4] * m[1] * m[15] + m[4] * m[3] * m[13] +
-                   m[12] * m[1] * m[7] - m[12] * m[3] * m[5];
-
-      invOut[14] = -m[0] * m[5] * m[14] + m[0] * m[6] * m[13] + m[4] * m[1] * m[14] - m[4] * m[2] * m[13] -
-                   m[12] * m[1] * m[6] + m[12] * m[2] * m[5];
-
-      invOut[3] = -m[1] * m[6] * m[11] + m[1] * m[7] * m[10] + m[5] * m[2] * m[11] - m[5] * m[3] * m[10] -
-                  m[9] * m[2] * m[7] + m[9] * m[3] * m[6];
-
-      invOut[7] = m[0] * m[6] * m[11] - m[0] * m[7] * m[10] - m[4] * m[2] * m[11] + m[4] * m[3] * m[10] +
-                  m[8] * m[2] * m[7] - m[8] * m[3] * m[6];
-
-      invOut[11] = -m[0] * m[5] * m[11] + m[0] * m[7] * m[9] + m[4] * m[1] * m[11] - m[4] * m[3] * m[9] -
-                   m[8] * m[1] * m[7] + m[8] * m[3] * m[5];
-
-      invOut[15] = m[0] * m[5] * m[10] - m[0] * m[6] * m[9] - m[4] * m[1] * m[10] + m[4] * m[2] * m[9] +
-                   m[8] * m[1] * m[6] - m[8] * m[2] * m[5];
-
-      float det = m[0] * invOut[0] + m[1] * invOut[4] + m[2] * invOut[8] + m[3] * invOut[12];
-
-      // Determinant zero → not invertible
-      if (det == 0.0f)
-         return {}; // or assert / return identity
-
-      float invDet = 1.0f / det;
-
-      matrix_type<FLOATING, 4> R{};
-      for (int i = 0; i < 16; i++)
-         ((float *)R.m)[i] = invOut[i] * invDet;
-
-      return R;
-   }
+};
 
 
-   template<primitive_floating FLOATING_TYPE>
-   inline row_major_type<FLOATING_TYPE, 4> inverse(const row_major_type<FLOATING_TYPE, 4> &M)
-   {
-      auto T = transpose(M);
-      auto C = inverse(T);
-      return transpose(C);
-   }
-   // --- Fast affine inverse (rotation + translation only) --------------------
-   template<primitive_floating FLOATING>
-   inline matrix_type<FLOATING, 4> inverse_affine(const matrix_type<FLOATING, 4> &A)
-   {
-      // assumes bottom row is [0 0 0 1] (i.e. affine matrix)
-      // and upper-left 3x3 is orthonormal (rotation + uniform scale = 1)
-      matrix_type<FLOATING, 4> R;
-      // transpose the 3x3 rotation
-      for (int c = 0; c < 3; ++c)
-         for (int r = 0; r < 3; ++r)
-            R.m[c][r] = A.m[r][c];
-
-      // compute -R^T * translation
-      float tx = A.m[3][0], ty = A.m[3][1], tz = A.m[3][2];
-      R.m[3][0] = -(R.m[0][0] * tx + R.m[1][0] * ty + R.m[2][0] * tz);
-      R.m[3][1] = -(R.m[0][1] * tx + R.m[1][1] * ty + R.m[2][1] * tz);
-      R.m[3][2] = -(R.m[0][2] * tx + R.m[1][2] * ty + R.m[2][2] * tz);
-
-      // last column/row
-      R.m[0][3] = R.m[1][3] = R.m[2][3] = 0.0f;
-      R.m[3][3] = 1.0f;
-
-      return R;
-   }
+using float_matrix2 = matrix_type<float, 2>;
+using float_matrix3 = matrix_type<float, 3>;
+using float_matrix4 = matrix_type<float, 4>;
 
 
-   inline float_matrix4 inverse_col_major_simd(const float_matrix4 &A)
-   {
-      const __m128 row0 = _mm_loadu_ps(&A.m[0][0]);
-      const __m128 row1 = _mm_loadu_ps(&A.m[1][0]);
-      const __m128 row2 = _mm_loadu_ps(&A.m[2][0]);
-      const __m128 row3 = _mm_loadu_ps(&A.m[3][0]);
+using double_matrix2 = matrix_type<double, 2>;
+using double_matrix3 = matrix_type<double, 3>;
+using double_matrix4 = matrix_type<double, 4>;
 
-      // Compute cofactors
-      __m128 tmp1, tmp2, tmp3, minor0, minor1, minor2, minor3;
-
-      tmp1 = _mm_mul_ps(row2, row3);
-      tmp1 = _mm_shuffle_ps(tmp1, tmp1, _MM_SHUFFLE(1, 0, 3, 2));
-
-      tmp2 = _mm_mul_ps(row1, tmp1);
-      tmp3 = _mm_mul_ps(row0, tmp1);
-
-      tmp1 = _mm_shuffle_ps(tmp1, tmp1, _MM_SHUFFLE(2, 3, 0, 1));
-
-      tmp2 = _mm_sub_ps(tmp2, _mm_mul_ps(row1, tmp1));
-      tmp3 = _mm_sub_ps(tmp3, _mm_mul_ps(row0, tmp1));
-
-      minor0 = tmp2;
-      minor1 = tmp3;
-
-      // Continue building cofactor matrix
-      tmp1 = _mm_mul_ps(row1, row2);
-      tmp1 = _mm_shuffle_ps(tmp1, tmp1, _MM_SHUFFLE(1, 0, 3, 2));
-
-      tmp2 = _mm_mul_ps(row3, tmp1);
-      tmp3 = _mm_mul_ps(row0, tmp1);
-
-      tmp1 = _mm_shuffle_ps(tmp1, tmp1, _MM_SHUFFLE(2, 3, 0, 1));
-
-      tmp2 = _mm_sub_ps(tmp2, _mm_mul_ps(row3, tmp1));
-      tmp3 = _mm_sub_ps(tmp3, _mm_mul_ps(row0, tmp1));
-
-      minor2 = tmp2;
-      minor3 = tmp3;
-
-      // Compute determinant
-      __m128 det = _mm_mul_ps(row0, minor0);
-      det = _mm_add_ps(det, _mm_shuffle_ps(det, det, _MM_SHUFFLE(2, 3, 0, 1)));
-      det = _mm_add_ps(det, _mm_shuffle_ps(det, det, _MM_SHUFFLE(1, 0, 3, 2)));
-
-      __m128 invDet = _mm_div_ps(_mm_set1_ps(1.0f), det);
-
-      // Multiply cofactors by reciprocal determinant
-      minor0 = _mm_mul_ps(minor0, invDet);
-      minor1 = _mm_mul_ps(minor1, invDet);
-      minor2 = _mm_mul_ps(minor2, invDet);
-      minor3 = _mm_mul_ps(minor3, invDet);
-
-      float_matrix4 R;
-
-      _mm_storeu_ps(&R.m[0][0], minor0);
-      _mm_storeu_ps(&R.m[1][0], minor1);
-      _mm_storeu_ps(&R.m[2][0], minor2);
-      _mm_storeu_ps(&R.m[3][0], minor3);
-
-      return R;
-   }
-
-// --- SIMD optimized multiplication (SSE) ----------------------------------
-// Only enabled if SSE is available. Operates on column-major storage where
-// each column is contiguous in memory: &M.m[col][0]
-#if defined(__SSE__) || defined(_M_X64) || defined(_M_IX86)
-
-   // float_matrix4 * vec4  (column-major) using SSE: result = col0 * vx + col1 * vy + ...
-   inline float_sequence4 mat4_mul_vec4_sse(const float_matrix4 &M, const float_sequence4 &s)
-   {
-      __m128 col0 = _mm_loadu_ps(&M.m[0][0]); // m00,m01,m02,m03
-      __m128 col1 = _mm_loadu_ps(&M.m[1][0]);
-      __m128 col2 = _mm_loadu_ps(&M.m[2][0]);
-      __m128 col3 = _mm_loadu_ps(&M.m[3][0]);
-
-      __m128 vx = _mm_set1_ps(s.x);
-      __m128 vy = _mm_set1_ps(s.y);
-      __m128 vz = _mm_set1_ps(s.z);
-      __m128 vw = _mm_set1_ps(s.w);
-
-      __m128 r = _mm_add_ps(_mm_add_ps(_mm_mul_ps(col0, vx), _mm_mul_ps(col1, vy)),
-                            _mm_add_ps(_mm_mul_ps(col2, vz), _mm_mul_ps(col3, vw)));
-
-      float_sequence4 out;
-      _mm_storeu_ps(&out.x, r);
-      return out;
-   }
-
-   // float_matrix4 * float_matrix4 (column-major): compute A * B by multiplying A by each column of B
-   inline float_matrix4 mat4_mul_mat4_sse(const float_matrix4 &A, const float_matrix4 &B)
-   {
-      float_matrix4 R;
-      // for each column j of B, compute R.col[j] = A * B.col[j]
-      for (int j = 0; j < 4; ++j)
-      {
-         __m128 colB = _mm_loadu_ps(&B.m[j][0]); // B column j
-         // extract components of B.col[j]
-         float bj0 = ((float *)&B.m[j][0])[0];
-         float bj1 = ((float *)&B.m[j][0])[1];
-         float bj2 = ((float *)&B.m[j][0])[2];
-         float bj3 = ((float *)&B.m[j][0])[3];
-
-         __m128 r = _mm_add_ps(_mm_add_ps(_mm_mul_ps(_mm_loadu_ps(&A.m[0][0]), _mm_set1_ps(bj0)),
-                                          _mm_mul_ps(_mm_loadu_ps(&A.m[1][0]), _mm_set1_ps(bj1))),
-                               _mm_add_ps(_mm_mul_ps(_mm_loadu_ps(&A.m[2][0]), _mm_set1_ps(bj2)),
-                                          _mm_mul_ps(_mm_loadu_ps(&A.m[3][0]), _mm_set1_ps(bj3))));
-         _mm_storeu_ps(&R.m[j][0], r);
-      }
-      return R;
-   }
-
-#endif // __SSE__
-
-//   // Fallback wrappers that choose SSE version if available
-//   inline vec4 mul(const float_matrix4 &M, const vec4 &s)
-//   {
-//#if defined(__SSE__)
-//      return mat4_mul_vec4_sse(M, s);
-//#else
-//      return M * s;
-//#endif
-//   }
 //
-//   inline float_matrix4 mul(const float_matrix4 &A, const float_matrix4 &B)
-//   {
-//#if defined(__SSE__)
-//      return mat4_mul_mat4_sse(A, B);
-//#else
-//      return A * B;
-//#endif
-//   }
+//namespace geometry
+//{
 //
-//#if defined(__SSE__) || defined(_M_X64) || defined(_M_IX86)
 //
-//   inline float_matrix4 mat4_inverse_sse(const float_matrix4 &A)
-//   {
-//      // Build rows from column-major storage:
-//      // row0 = [ m00 m01 m02 m03 ] where mXY is row X column Y
-//      // Note: our storage is m[col][row], so m00 = A.m[0][0], m01 = A.m[1][0], ...
-//      __m128 row0 = _mm_setr_ps(A.m[0][0], A.m[1][0], A.m[2][0], A.m[3][0]);
-//      __m128 row1 = _mm_setr_ps(A.m[0][1], A.m[1][1], A.m[2][1], A.m[3][1]);
-//      __m128 row2 = _mm_setr_ps(A.m[0][2], A.m[1][2], A.m[2][2], A.m[3][2]);
-//      __m128 row3 = _mm_setr_ps(A.m[0][3], A.m[1][3], A.m[2][3], A.m[3][3]);
+//   //   static inline void _transpose(FLOATING A_target[t_iDimension][t_iDimension],
+//   //                              const FLOATING A_source[t_iDimension][t_iDimension])
+//   //{
+//   //   for (int i = 0; i < t_iDimension; i++)
+//   //      for (int j = 0; j < t_iDimension; j++)
+//   //         A_target[i][j] = A_source[j][i];
+//   //}
+//   //
 //
-//      __m128 tmp1, tmp2, tmp3, tmp4, tmp5, tmp6;
-//      __m128 minor0, minor1, minor2, minor3;
-//      __m128 det, det_shuf, inv_det;
 //
-//      // compute pairs for first 8 cofactors (cofactor matrix)
-//      tmp1 = _mm_mul_ps(row2, row3);
-//      tmp1 = _mm_shuffle_ps(tmp1, tmp1, _MM_SHUFFLE(2, 3, 0, 1)); // swap pairs
 //
-//      tmp2 = _mm_mul_ps(row1, tmp1);
-//      tmp3 = _mm_mul_ps(row0, tmp1);
 //
-//      tmp1 = _mm_shuffle_ps(tmp1, tmp1, _MM_SHUFFLE(2, 3, 0, 1)); // undo shuffle for other part
 //
-//      tmp2 = _mm_sub_ps(_mm_mul_ps(row1, _mm_shuffle_ps(row2, row3, _MM_SHUFFLE(1, 0, 3, 2))), tmp2);
-//      tmp3 = _mm_sub_ps(_mm_mul_ps(row0, _mm_shuffle_ps(row2, row3, _MM_SHUFFLE(1, 0, 3, 2))), tmp3);
+//   ////template<primitive_floating FLOATING>
+//   ////row_major_type<FLOATING, 4> transpose(const matrix_type<FLOATING, 4> &m)
+//   ////{
+//   ////   row_major_type<FLOATING, 4> r;
+//   ////   _transpose(4, m.m);
+//   ////   return r;
+//   ////}
 //
-//      minor0 = tmp2;
-//      minor1 = tmp3;
 //
-//      // compute pairs for the next 8 cofactors
-//      tmp4 = _mm_mul_ps(row1, row2);
-//      tmp4 = _mm_shuffle_ps(tmp4, tmp4, _MM_SHUFFLE(2, 3, 0, 1));
+//   ////template<primitive_floating FLOATING>
+//   //////matrix_type<FLOATING, 3> inverse(const matrix_type<FLOATING, 3> &m)
+//   //////{
 //
-//      tmp5 = _mm_mul_ps(row3, tmp4);
-//      tmp6 = _mm_mul_ps(row0, tmp4);
+//   //////   float det = m[0][0] * (m[1][1] * m[2][2] - m[2][1] * m[1][2]) -
+//   //////               m[1][0] * (m[0][1] * m[2][2] - m[2][1] * m[0][2]) + m[2][0] * (m[0][1] * m[1][2] - m[1][1] * m[0][2]);
 //
-//      tmp4 = _mm_shuffle_ps(tmp4, tmp4, _MM_SHUFFLE(2, 3, 0, 1));
+//   //////   if (std::fabs(det) < 1e-8f)
+//   //////      return matrix_type<FLOATING, 3>(1.0f); // fallback to identity (non-invertible)
 //
-//      tmp5 = _mm_sub_ps(_mm_mul_ps(row3, _mm_shuffle_ps(row1, row2, _MM_SHUFFLE(1, 0, 3, 2))), tmp5);
-//      tmp6 = _mm_sub_ps(_mm_mul_ps(row0, _mm_shuffle_ps(row1, row2, _MM_SHUFFLE(1, 0, 3, 2))), tmp6);
+//   //////   float invDet = 1.0f / det;
 //
-//      minor2 = tmp5;
-//      minor3 = tmp6;
+//   //////   matrix_type<FLOATING, 3> r;
+//   //////   r[0][0] = (m[1][1] * m[2][2] - m[2][1] * m[1][2]) * invDet;
+//   //////   r[1][0] = -(m[1][0] * m[2][2] - m[2][0] * m[1][2]) * invDet;
+//   //////   r[2][0] = (m[1][0] * m[2][1] - m[2][0] * m[1][1]) * invDet;
 //
-//      // assemble the cofactor matrix (rows of cofactors)
-//      // Note: This sequence produces cofactors in row-major order (as __m128 rows).
-//      // Now compute determinant = dot(row0, minor0)
-//      det = _mm_mul_ps(row0, minor0);
-//      det_shuf = _mm_shuffle_ps(det, det, _MM_SHUFFLE(2, 3, 0, 1));
-//      det = _mm_add_ps(det, det_shuf);
-//      det_shuf = _mm_shuffle_ps(det, det, _MM_SHUFFLE(1, 0, 3, 2));
-//      det = _mm_add_ps(det, det_shuf);
+//   //////   r[0][1] = -(m[0][1] * m[2][2] - m[2][1] * m[0][2]) * invDet;
+//   //////   r[1][1] = (m[0][0] * m[2][2] - m[2][0] * m[0][2]) * invDet;
+//   //////   r[2][1] = -(m[0][0] * m[2][1] - m[2][0] * m[0][1]) * invDet;
 //
-//      // reciprocal determinant
-//      inv_det = _mm_div_ps(_mm_set1_ps(1.0f), det);
+//   //////   r[0][2] = (m[0][1] * m[1][2] - m[1][1] * m[0][2]) * invDet;
+//   //////   r[1][2] = -(m[0][0] * m[1][2] - m[1][0] * m[0][2]) * invDet;
+//   //////   r[2][2] = (m[0][0] * m[1][1] - m[1][0] * m[0][1]) * invDet;
 //
-//      // Multiply cofactors by reciprocal determinant and transpose to column-major
-//      minor0 = _mm_mul_ps(minor0, inv_det);
-//      minor1 = _mm_mul_ps(minor1, inv_det);
-//      minor2 = _mm_mul_ps(minor2, inv_det);
-//      minor3 = _mm_mul_ps(minor3, inv_det);
+//   //////   return r;
+//   //////}
 //
-//      // The minors we have are the rows of the adjugate (cofactor) matrix. We must transpose them
-//      // to get the column-major result matrix. Perform a 4x4 transpose on [minor0..minor3].
-//      __m128 t0 = _mm_unpacklo_ps(minor0, minor1); // m00 m10 m01 m11
-//      __m128 t1 = _mm_unpackhi_ps(minor0, minor1); // m02 m12 m03 m13
-//      __m128 t2 = _mm_unpacklo_ps(minor2, minor3); // m20 m30 m21 m31
-//      __m128 t3 = _mm_unpackhi_ps(minor2, minor3); // m22 m32 m23 m33
+//   //
 //
-//      __m128 col0 = _mm_shuffle_ps(t0, t2, _MM_SHUFFLE(1, 0, 1, 0)); // m00 m10 m20 m30
-//      __m128 col1 = _mm_shuffle_ps(t0, t2, _MM_SHUFFLE(3, 2, 3, 2)); // m01 m11 m21 m31
-//      __m128 col2 = _mm_shuffle_ps(t1, t3, _MM_SHUFFLE(1, 0, 1, 0)); // m02 m12 m22 m32
-//      __m128 col3 = _mm_shuffle_ps(t1, t3, _MM_SHUFFLE(3, 2, 3, 2)); // m03 m13 m23 m33
 //
-//      float_matrix4 R;
-//      _mm_storeu_ps(&R.m[0][0], col0); // store column 0
-//      _mm_storeu_ps(&R.m[1][0], col1); // store column 1
-//      _mm_storeu_ps(&R.m[2][0], col2); // store column 2
-//      _mm_storeu_ps(&R.m[3][0], col3); // store column 3
+//   //template<primitive_floating FLOATING>
+//   //quaternion_type < FLOATING > quaternion(const ::sequence_type<FLOATING, 3> & euler)
+//   //{
 //
-//      return R;
-//   }
-//#endif // SSE
-
-//   // Wrapper: use SIMD inverse when available, else fallback
-//   inline float_matrix4 inverse_simd(const float_matrix4 &A)
-//   {
-//#if defined(__SSE__) || defined(_M_X64) || defined(_M_IX86)
-//      return mat4_inverse_sse(A);
-//#else
-//      return inverse(A);
-//#endif
-//   }
-
-
-
-
-      // Multiply 4x4 matrix `a` by 4x4 matrix `b` (a*b) using AVX2 fully unrolled
-   inline float_matrix4 mul_avx2(const float_matrix4 &a, const float_matrix4 &b)
-   {
-      float_matrix4 result;
-
-      // Load columns of B
-      __m128 b0 = _mm_loadu_ps(&b.fa[0]);
-      __m128 b1 = _mm_loadu_ps(&b.fa[4]);
-      __m128 b2 = _mm_loadu_ps(&b.fa[8]);
-      __m128 b3 = _mm_loadu_ps(&b.fa[12]);
-
-      // For each column of B, broadcast each element and multiply-add with columns of A
-      for (int col = 0; col < 4; ++col)
-      {
-         __m128 bc; // broadcast column element
-         __m256 sum01, sum23;
-
-         switch (col)
-         {
-            case 0:
-               bc = b0;
-               break;
-            case 1:
-               bc = b1;
-               break;
-            case 2:
-               bc = b2;
-               break;
-            case 3:
-               bc = b3;
-               break;
-         }
-
-         // Broadcast each element of the column
-         __m256 b0_256 = _mm256_broadcast_ps((__m128 *)&bc); // replicate column
-         // Load A columns
-         __m256 a01 = _mm256_loadu_ps(&a.fa[0]); // columns 0 & 1
-         __m256 a23 = _mm256_loadu_ps(&a.fa[8]); // columns 2 & 3
-
-         // Multiply and sum
-         sum01 = _mm256_mul_ps(a01, b0_256); // element-wise multiply
-         sum23 = _mm256_mul_ps(a23, b0_256);
-
-         // Add results
-         __m256 result256_0 = _mm256_add_ps(sum01, sum23);
-
-         // Store back
-         _mm256_storeu_ps(&result.fa[0], result256_0); // fully unrolled: can expand by column
-      }
-
-      return result;
-   }
-
-
-} // namespace geometry
-
-
+//   //   return euler;
+//
+//   //}
+//
+//   //template<primitive_floating FLOATING>
+//   //inline matrix_type<FLOATING, 4> inverse(const matrix_type<FLOATING, 4> &A)
+//   //{
+//   //   matrix_type<FLOATING, 4> inv{};
+//   //   const FLOATING *m = &A.fa[0][0]; // treat as flat array
+//
+//   //   FLOATING invOut[16];
+//
+//   //   invOut[0] = m[5] * m[10] * m[15] - m[5] * m[11] * m[14] - m[9] * m[6] * m[15] + m[9] * m[7] * m[14] +
+//   //               m[13] * m[6] * m[11] - m[13] * m[7] * m[10];
+//
+//   //   invOut[4] = -m[4] * m[10] * m[15] + m[4] * m[11] * m[14] + m[8] * m[6] * m[15] - m[8] * m[7] * m[14] -
+//   //               m[12] * m[6] * m[11] + m[12] * m[7] * m[10];
+//
+//   //   invOut[8] = m[4] * m[9] * m[15] - m[4] * m[11] * m[13] - m[8] * m[5] * m[15] + m[8] * m[7] * m[13] +
+//   //               m[12] * m[5] * m[11] - m[12] * m[7] * m[9];
+//
+//   //   invOut[12] = -m[4] * m[9] * m[14] + m[4] * m[10] * m[13] + m[8] * m[5] * m[14] - m[8] * m[6] * m[13] -
+//   //                m[12] * m[5] * m[10] + m[12] * m[6] * m[9];
+//
+//   //   invOut[1] = -m[1] * m[10] * m[15] + m[1] * m[11] * m[14] + m[9] * m[2] * m[15] - m[9] * m[3] * m[14] -
+//   //               m[13] * m[2] * m[11] + m[13] * m[3] * m[10];
+//
+//   //   invOut[5] = m[0] * m[10] * m[15] - m[0] * m[11] * m[14] - m[8] * m[2] * m[15] + m[8] * m[3] * m[14] +
+//   //               m[12] * m[2] * m[11] - m[12] * m[3] * m[10];
+//
+//   //   invOut[9] = -m[0] * m[9] * m[15] + m[0] * m[11] * m[13] + m[8] * m[1] * m[15] - m[8] * m[3] * m[13] -
+//   //               m[12] * m[1] * m[11] + m[12] * m[3] * m[9];
+//
+//   //   invOut[13] = m[0] * m[9] * m[14] - m[0] * m[10] * m[13] - m[8] * m[1] * m[14] + m[8] * m[2] * m[13] +
+//   //                m[12] * m[1] * m[10] - m[12] * m[2] * m[9];
+//
+//   //   invOut[2] = m[1] * m[6] * m[15] - m[1] * m[7] * m[14] - m[5] * m[2] * m[15] + m[5] * m[3] * m[14] +
+//   //               m[13] * m[2] * m[7] - m[13] * m[3] * m[6];
+//
+//   //   invOut[6] = -m[0] * m[6] * m[15] + m[0] * m[7] * m[14] + m[4] * m[2] * m[15] - m[4] * m[3] * m[14] -
+//   //               m[12] * m[2] * m[7] + m[12] * m[3] * m[6];
+//
+//   //   invOut[10] = m[0] * m[5] * m[15] - m[0] * m[7] * m[13] - m[4] * m[1] * m[15] + m[4] * m[3] * m[13] +
+//   //                m[12] * m[1] * m[7] - m[12] * m[3] * m[5];
+//
+//   //   invOut[14] = -m[0] * m[5] * m[14] + m[0] * m[6] * m[13] + m[4] * m[1] * m[14] - m[4] * m[2] * m[13] -
+//   //                m[12] * m[1] * m[6] + m[12] * m[2] * m[5];
+//
+//   //   invOut[3] = -m[1] * m[6] * m[11] + m[1] * m[7] * m[10] + m[5] * m[2] * m[11] - m[5] * m[3] * m[10] -
+//   //               m[9] * m[2] * m[7] + m[9] * m[3] * m[6];
+//
+//   //   invOut[7] = m[0] * m[6] * m[11] - m[0] * m[7] * m[10] - m[4] * m[2] * m[11] + m[4] * m[3] * m[10] +
+//   //               m[8] * m[2] * m[7] - m[8] * m[3] * m[6];
+//
+//   //   invOut[11] = -m[0] * m[5] * m[11] + m[0] * m[7] * m[9] + m[4] * m[1] * m[11] - m[4] * m[3] * m[9] -
+//   //                m[8] * m[1] * m[7] + m[8] * m[3] * m[5];
+//
+//   //   invOut[15] = m[0] * m[5] * m[10] - m[0] * m[6] * m[9] - m[4] * m[1] * m[10] + m[4] * m[2] * m[9] +
+//   //                m[8] * m[1] * m[6] - m[8] * m[2] * m[5];
+//
+//   //   float det = m[0] * invOut[0] + m[1] * invOut[4] + m[2] * invOut[8] + m[3] * invOut[12];
+//
+//   //   // Determinant zero → not invertible
+//   //   if (det == 0.0f)
+//   //      return {}; // or assert / return identity
+//
+//   //   float invDet = 1.0f / det;
+//
+//   //   matrix_type<FLOATING, 4> R{};
+//   //   for (int i = 0; i < 16; i++)
+//   //      ((float *)R.m)[i] = invOut[i] * invDet;
+//
+//   //   return R;
+//   //}
+//
+//
+//   //template<primitive_floating FLOATING_TYPE>
+//   //inline row_major_type<FLOATING_TYPE, 4> inverse(const row_major_type<FLOATING_TYPE, 4> &M)
+//   //{
+//   //   auto T = transpose(M);
+//   //   auto C = inverse(T);
+//   //   return transpose(C);
+//   //}
+//   //// --- Fast affine inverse (rotation + translation only) --------------------
+//   //template<primitive_floating FLOATING>
+//   //inline matrix_type<FLOATING, 4> inverse_affine(const matrix_type<FLOATING, 4> &A)
+//   //{
+//   //   // assumes bottom row is [0 0 0 1] (i.e. affine matrix)
+//   //   // and upper-left 3x3 is orthonormal (rotation + uniform scale = 1)
+//   //   matrix_type<FLOATING, 4> R;
+//   //   // transpose the 3x3 rotation
+//   //   for (int c = 0; c < 3; ++c)
+//   //      for (int r = 0; r < 3; ++r)
+//   //         R.m[c][r] = A.m[r][c];
+//
+//   //   // compute -R^T * translation
+//   //   float tx = A.m[3][0], ty = A.m[3][1], tz = A.m[3][2];
+//   //   R.m[3][0] = -(R.m[0][0] * tx + R.m[1][0] * ty + R.m[2][0] * tz);
+//   //   R.m[3][1] = -(R.m[0][1] * tx + R.m[1][1] * ty + R.m[2][1] * tz);
+//   //   R.m[3][2] = -(R.m[0][2] * tx + R.m[1][2] * ty + R.m[2][2] * tz);
+//
+//   //   // last column/row
+//   //   R.m[0][3] = R.m[1][3] = R.m[2][3] = 0.0f;
+//   //   R.m[3][3] = 1.0f;
+//
+//   //   return R;
+//   //}
+//
+//
+//   //inline float_matrix4 inverse_col_major_simd(const float_matrix4 &A)
+//   //{
+//   //   const __m128 row0 = _mm_loadu_ps(&A.m[0][0]);
+//   //   const __m128 row1 = _mm_loadu_ps(&A.m[1][0]);
+//   //   const __m128 row2 = _mm_loadu_ps(&A.m[2][0]);
+//   //   const __m128 row3 = _mm_loadu_ps(&A.m[3][0]);
+//
+//   //   // Compute cofactors
+//   //   __m128 tmp1, tmp2, tmp3, minor0, minor1, minor2, minor3;
+//
+//   //   tmp1 = _mm_mul_ps(row2, row3);
+//   //   tmp1 = _mm_shuffle_ps(tmp1, tmp1, _MM_SHUFFLE(1, 0, 3, 2));
+//
+//   //   tmp2 = _mm_mul_ps(row1, tmp1);
+//   //   tmp3 = _mm_mul_ps(row0, tmp1);
+//
+//   //   tmp1 = _mm_shuffle_ps(tmp1, tmp1, _MM_SHUFFLE(2, 3, 0, 1));
+//
+//   //   tmp2 = _mm_sub_ps(tmp2, _mm_mul_ps(row1, tmp1));
+//   //   tmp3 = _mm_sub_ps(tmp3, _mm_mul_ps(row0, tmp1));
+//
+//   //   minor0 = tmp2;
+//   //   minor1 = tmp3;
+//
+//   //   // Continue building cofactor matrix
+//   //   tmp1 = _mm_mul_ps(row1, row2);
+//   //   tmp1 = _mm_shuffle_ps(tmp1, tmp1, _MM_SHUFFLE(1, 0, 3, 2));
+//
+//   //   tmp2 = _mm_mul_ps(row3, tmp1);
+//   //   tmp3 = _mm_mul_ps(row0, tmp1);
+//
+//   //   tmp1 = _mm_shuffle_ps(tmp1, tmp1, _MM_SHUFFLE(2, 3, 0, 1));
+//
+//   //   tmp2 = _mm_sub_ps(tmp2, _mm_mul_ps(row3, tmp1));
+//   //   tmp3 = _mm_sub_ps(tmp3, _mm_mul_ps(row0, tmp1));
+//
+//   //   minor2 = tmp2;
+//   //   minor3 = tmp3;
+//
+//   //   // Compute determinant
+//   //   __m128 det = _mm_mul_ps(row0, minor0);
+//   //   det = _mm_add_ps(det, _mm_shuffle_ps(det, det, _MM_SHUFFLE(2, 3, 0, 1)));
+//   //   det = _mm_add_ps(det, _mm_shuffle_ps(det, det, _MM_SHUFFLE(1, 0, 3, 2)));
+//
+//   //   __m128 invDet = _mm_div_ps(_mm_set1_ps(1.0f), det);
+//
+//   //   // Multiply cofactors by reciprocal determinant
+//   //   minor0 = _mm_mul_ps(minor0, invDet);
+//   //   minor1 = _mm_mul_ps(minor1, invDet);
+//   //   minor2 = _mm_mul_ps(minor2, invDet);
+//   //   minor3 = _mm_mul_ps(minor3, invDet);
+//
+//   //   float_matrix4 R;
+//
+//   //   _mm_storeu_ps(&R.m[0][0], minor0);
+//   //   _mm_storeu_ps(&R.m[1][0], minor1);
+//   //   _mm_storeu_ps(&R.m[2][0], minor2);
+//   //   _mm_storeu_ps(&R.m[3][0], minor3);
+//
+//   //   return R;
+//   //}
+////
+////// --- SIMD optimized multiplication (SSE) ----------------------------------
+////// Only enabled if SSE is available. Operates on column-major storage where
+////// each column is contiguous in memory: &M.m[col][0]
+////#if defined(__SSE__) || defined(_M_X64) || defined(_M_IX86)
+////
+////   // float_matrix4 * vec4  (column-major) using SSE: result = col0 * vx + col1 * vy + ...
+////   inline float_sequence4 mat4_mul_vec4_sse(const float_matrix4 &M, const float_sequence4 &s)
+////   {
+////      __m128 col0 = _mm_loadu_ps(&M.m[0][0]); // m00,m01,m02,m03
+////      __m128 col1 = _mm_loadu_ps(&M.m[1][0]);
+////      __m128 col2 = _mm_loadu_ps(&M.m[2][0]);
+////      __m128 col3 = _mm_loadu_ps(&M.m[3][0]);
+////
+////      __m128 vx = _mm_set1_ps(s.x);
+////      __m128 vy = _mm_set1_ps(s.y);
+////      __m128 vz = _mm_set1_ps(s.z);
+////      __m128 vw = _mm_set1_ps(s.w);
+////
+////      __m128 r = _mm_add_ps(_mm_add_ps(_mm_mul_ps(col0, vx), _mm_mul_ps(col1, vy)),
+////                            _mm_add_ps(_mm_mul_ps(col2, vz), _mm_mul_ps(col3, vw)));
+////
+////      float_sequence4 out;
+////      _mm_storeu_ps(&out.x, r);
+////      return out;
+////   }
+////
+////   // float_matrix4 * float_matrix4 (column-major): compute A * B by multiplying A by each column of B
+////   inline float_matrix4 mat4_mul_mat4_sse(const float_matrix4 &A, const float_matrix4 &B)
+////   {
+////      float_matrix4 R;
+////      // for each column j of B, compute R.col[j] = A * B.col[j]
+////      for (int j = 0; j < 4; ++j)
+////      {
+////         __m128 colB = _mm_loadu_ps(&B.m[j][0]); // B column j
+////         // extract components of B.col[j]
+////         float bj0 = ((float *)&B.m[j][0])[0];
+////         float bj1 = ((float *)&B.m[j][0])[1];
+////         float bj2 = ((float *)&B.m[j][0])[2];
+////         float bj3 = ((float *)&B.m[j][0])[3];
+////
+////         __m128 r = _mm_add_ps(_mm_add_ps(_mm_mul_ps(_mm_loadu_ps(&A.m[0][0]), _mm_set1_ps(bj0)),
+////                                          _mm_mul_ps(_mm_loadu_ps(&A.m[1][0]), _mm_set1_ps(bj1))),
+////                               _mm_add_ps(_mm_mul_ps(_mm_loadu_ps(&A.m[2][0]), _mm_set1_ps(bj2)),
+////                                          _mm_mul_ps(_mm_loadu_ps(&A.m[3][0]), _mm_set1_ps(bj3))));
+////         _mm_storeu_ps(&R.m[j][0], r);
+////      }
+////      return R;
+////   }
+////
+////#endif // __SSE__
+//
+////   // Fallback wrappers that choose SSE version if available
+////   inline vec4 mul(const float_matrix4 &M, const vec4 &s)
+////   {
+////#if defined(__SSE__)
+////      return mat4_mul_vec4_sse(M, s);
+////#else
+////      return M * s;
+////#endif
+////   }
+////
+////   inline float_matrix4 mul(const float_matrix4 &A, const float_matrix4 &B)
+////   {
+////#if defined(__SSE__)
+////      return mat4_mul_mat4_sse(A, B);
+////#else
+////      return A * B;
+////#endif
+////   }
+////
+////#if defined(__SSE__) || defined(_M_X64) || defined(_M_IX86)
+////
+////   inline float_matrix4 mat4_inverse_sse(const float_matrix4 &A)
+////   {
+////      // Build rows from column-major storage:
+////      // row0 = [ m00 m01 m02 m03 ] where mXY is row X column Y
+////      // Note: our storage is m[col][row], so m00 = A.m[0][0], m01 = A.m[1][0], ...
+////      __m128 row0 = _mm_setr_ps(A.m[0][0], A.m[1][0], A.m[2][0], A.m[3][0]);
+////      __m128 row1 = _mm_setr_ps(A.m[0][1], A.m[1][1], A.m[2][1], A.m[3][1]);
+////      __m128 row2 = _mm_setr_ps(A.m[0][2], A.m[1][2], A.m[2][2], A.m[3][2]);
+////      __m128 row3 = _mm_setr_ps(A.m[0][3], A.m[1][3], A.m[2][3], A.m[3][3]);
+////
+////      __m128 tmp1, tmp2, tmp3, tmp4, tmp5, tmp6;
+////      __m128 minor0, minor1, minor2, minor3;
+////      __m128 det, det_shuf, inv_det;
+////
+////      // compute pairs for first 8 cofactors (cofactor matrix)
+////      tmp1 = _mm_mul_ps(row2, row3);
+////      tmp1 = _mm_shuffle_ps(tmp1, tmp1, _MM_SHUFFLE(2, 3, 0, 1)); // swap pairs
+////
+////      tmp2 = _mm_mul_ps(row1, tmp1);
+////      tmp3 = _mm_mul_ps(row0, tmp1);
+////
+////      tmp1 = _mm_shuffle_ps(tmp1, tmp1, _MM_SHUFFLE(2, 3, 0, 1)); // undo shuffle for other part
+////
+////      tmp2 = _mm_sub_ps(_mm_mul_ps(row1, _mm_shuffle_ps(row2, row3, _MM_SHUFFLE(1, 0, 3, 2))), tmp2);
+////      tmp3 = _mm_sub_ps(_mm_mul_ps(row0, _mm_shuffle_ps(row2, row3, _MM_SHUFFLE(1, 0, 3, 2))), tmp3);
+////
+////      minor0 = tmp2;
+////      minor1 = tmp3;
+////
+////      // compute pairs for the next 8 cofactors
+////      tmp4 = _mm_mul_ps(row1, row2);
+////      tmp4 = _mm_shuffle_ps(tmp4, tmp4, _MM_SHUFFLE(2, 3, 0, 1));
+////
+////      tmp5 = _mm_mul_ps(row3, tmp4);
+////      tmp6 = _mm_mul_ps(row0, tmp4);
+////
+////      tmp4 = _mm_shuffle_ps(tmp4, tmp4, _MM_SHUFFLE(2, 3, 0, 1));
+////
+////      tmp5 = _mm_sub_ps(_mm_mul_ps(row3, _mm_shuffle_ps(row1, row2, _MM_SHUFFLE(1, 0, 3, 2))), tmp5);
+////      tmp6 = _mm_sub_ps(_mm_mul_ps(row0, _mm_shuffle_ps(row1, row2, _MM_SHUFFLE(1, 0, 3, 2))), tmp6);
+////
+////      minor2 = tmp5;
+////      minor3 = tmp6;
+////
+////      // assemble the cofactor matrix (rows of cofactors)
+////      // Note: This sequence produces cofactors in row-major order (as __m128 rows).
+////      // Now compute determinant = dot(row0, minor0)
+////      det = _mm_mul_ps(row0, minor0);
+////      det_shuf = _mm_shuffle_ps(det, det, _MM_SHUFFLE(2, 3, 0, 1));
+////      det = _mm_add_ps(det, det_shuf);
+////      det_shuf = _mm_shuffle_ps(det, det, _MM_SHUFFLE(1, 0, 3, 2));
+////      det = _mm_add_ps(det, det_shuf);
+////
+////      // reciprocal determinant
+////      inv_det = _mm_div_ps(_mm_set1_ps(1.0f), det);
+////
+////      // Multiply cofactors by reciprocal determinant and transpose to column-major
+////      minor0 = _mm_mul_ps(minor0, inv_det);
+////      minor1 = _mm_mul_ps(minor1, inv_det);
+////      minor2 = _mm_mul_ps(minor2, inv_det);
+////      minor3 = _mm_mul_ps(minor3, inv_det);
+////
+////      // The minors we have are the rows of the adjugate (cofactor) matrix. We must transpose them
+////      // to get the column-major result matrix. Perform a 4x4 transpose on [minor0..minor3].
+////      __m128 t0 = _mm_unpacklo_ps(minor0, minor1); // m00 m10 m01 m11
+////      __m128 t1 = _mm_unpackhi_ps(minor0, minor1); // m02 m12 m03 m13
+////      __m128 t2 = _mm_unpacklo_ps(minor2, minor3); // m20 m30 m21 m31
+////      __m128 t3 = _mm_unpackhi_ps(minor2, minor3); // m22 m32 m23 m33
+////
+////      __m128 col0 = _mm_shuffle_ps(t0, t2, _MM_SHUFFLE(1, 0, 1, 0)); // m00 m10 m20 m30
+////      __m128 col1 = _mm_shuffle_ps(t0, t2, _MM_SHUFFLE(3, 2, 3, 2)); // m01 m11 m21 m31
+////      __m128 col2 = _mm_shuffle_ps(t1, t3, _MM_SHUFFLE(1, 0, 1, 0)); // m02 m12 m22 m32
+////      __m128 col3 = _mm_shuffle_ps(t1, t3, _MM_SHUFFLE(3, 2, 3, 2)); // m03 m13 m23 m33
+////
+////      float_matrix4 R;
+////      _mm_storeu_ps(&R.m[0][0], col0); // store column 0
+////      _mm_storeu_ps(&R.m[1][0], col1); // store column 1
+////      _mm_storeu_ps(&R.m[2][0], col2); // store column 2
+////      _mm_storeu_ps(&R.m[3][0], col3); // store column 3
+////
+////      return R;
+////   }
+////#endif // SSE
+//
+////   // Wrapper: use SIMD inverse when available, else fallback
+////   inline float_matrix4 inverse_simd(const float_matrix4 &A)
+////   {
+////#if defined(__SSE__) || defined(_M_X64) || defined(_M_IX86)
+////      return mat4_inverse_sse(A);
+////#else
+////      return inverse(A);
+////#endif
+////   }
+//
+//
+//
+//
+//   //   // Multiply 4x4 matrix `a` by 4x4 matrix `b` (a*b) using AVX2 fully unrolled
+//   //inline float_matrix4 mul_avx2(const float_matrix4 &a, const float_matrix4 &b)
+//   //{
+//   //   float_matrix4 result;
+//
+//   //   // Load columns of B
+//   //   __m128 b0 = _mm_loadu_ps(&b.fa[0]);
+//   //   __m128 b1 = _mm_loadu_ps(&b.fa[4]);
+//   //   __m128 b2 = _mm_loadu_ps(&b.fa[8]);
+//   //   __m128 b3 = _mm_loadu_ps(&b.fa[12]);
+//
+//   //   // For each column of B, broadcast each element and multiply-add with columns of A
+//   //   for (int col = 0; col < 4; ++col)
+//   //   {
+//   //      __m128 bc; // broadcast column element
+//   //      __m256 sum01, sum23;
+//
+//   //      switch (col)
+//   //      {
+//   //         case 0:
+//   //            bc = b0;
+//   //            break;
+//   //         case 1:
+//   //            bc = b1;
+//   //            break;
+//   //         case 2:
+//   //            bc = b2;
+//   //            break;
+//   //         case 3:
+//   //            bc = b3;
+//   //            break;
+//   //      }
+//
+//   //      // Broadcast each element of the column
+//   //      __m256 b0_256 = _mm256_broadcast_ps((__m128 *)&bc); // replicate column
+//   //      // Load A columns
+//   //      __m256 a01 = _mm256_loadu_ps(&a.fa[0]); // columns 0 & 1
+//   //      __m256 a23 = _mm256_loadu_ps(&a.fa[8]); // columns 2 & 3
+//
+//   //      // Multiply and sum
+//   //      sum01 = _mm256_mul_ps(a01, b0_256); // element-wise multiply
+//   //      sum23 = _mm256_mul_ps(a23, b0_256);
+//
+//   //      // Add results
+//   //      __m256 result256_0 = _mm256_add_ps(sum01, sum23);
+//
+//   //      // Store back
+//   //      _mm256_storeu_ps(&result.fa[0], result256_0); // fully unrolled: can expand by column
+//   //   }
+//
+//   //   return result;
+//   //}
+//
+//
+//} // namespace geometry
+//
+//
 
 
 
@@ -1662,9 +1897,9 @@ namespace geometry
 
 
 template<primitive_floating FLOATING, int t_iDimension>  
-   matrix_type<FLOATING, 4> row_major_type< FLOATING, t_iDimension > transpose(const row_major_type<FLOATING, 4> &m);
+inline matrix_type<FLOATING, t_iDimension> row_major_type< FLOATING, t_iDimension >::transpose() const
 {
    matrix_type<FLOATING, 4> r;
-   _transpose(4, m.m);
+   _transpose(4, this->m);
    return r;
 }

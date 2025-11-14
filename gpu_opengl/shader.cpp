@@ -466,7 +466,7 @@ namespace gpu_opengl
    //   }
    //
    //
-   ////   void shader::setVec2(const ::scoped_string & scopedstrName, const glm::vec2& value)
+   ////   void shader::setVec2(const ::scoped_string & scopedstrName, const floating_sequence2& value)
    ////   {
    ////
    ////      GLint i = glGetUniformLocation(m_ProgramID, pszName);
@@ -493,7 +493,7 @@ namespace gpu_opengl
    //   }
    //
    //
-   ////   void shader::setVec3(const ::scoped_string & scopedstrName, const glm::vec3& value)
+   ////   void shader::setVec3(const ::scoped_string & scopedstrName, const floating_sequence3& value)
    ////   {
    ////
    ////      GLint i = glGetUniformLocation(m_ProgramID, pszName);
@@ -520,7 +520,7 @@ namespace gpu_opengl
    //   }
    //
    //
-   ////   void shader::setVec4(const ::scoped_string & scopedstrName, const glm::vec4& value)
+   ////   void shader::setVec4(const ::scoped_string & scopedstrName, const floating_sequence4& value)
    ////   {
    ////
    ////      GLint i = glGetUniformLocation(m_ProgramID, pszName);
@@ -755,7 +755,7 @@ namespace gpu_opengl
    }
 
 
-   void shader::_set_seq2(const_char_pointer name, const glm::vec2& value) const 
+   void shader::_set_sequence2(const_char_pointer name, const floating_sequence2& value) const 
    {
 
       auto location = _get_uniform_location(name, "seq2");
@@ -766,7 +766,7 @@ namespace gpu_opengl
    }
 
 
-   void shader::_set_seq3(const_char_pointer name, const glm::vec3& value) const
+   void shader::_set_sequence3(const_char_pointer name, const floating_sequence3& value) const
    {
 
       auto location = _get_uniform_location(name, "seq3");
@@ -777,7 +777,7 @@ namespace gpu_opengl
    }
 
 
-   void shader::_set_seq4(const_char_pointer name, const glm::vec4& value) const 
+   void shader::_set_sequence4(const_char_pointer name, const floating_sequence4& value) const 
    {
       
       auto location = _get_uniform_location(name, "seq4");
@@ -787,7 +787,7 @@ namespace gpu_opengl
    }
 
 
-   void shader::_set_mat2(const_char_pointer name, const glm::mat2& matrix) const
+   void shader::_set_matrix2(const_char_pointer name, const floating_matrix2& matrix) const
    {
 
       auto location = _get_uniform_location(name, "mat2"); 
@@ -798,7 +798,7 @@ namespace gpu_opengl
    }
 
 
-   void shader::_set_mat3(const_char_pointer name, const glm::mat3& matrix) const
+   void shader::_set_matrix3(const_char_pointer name, const floating_matrix3& matrix) const
    {
 
       auto location = _get_uniform_location(name, "mat3");
@@ -809,7 +809,7 @@ namespace gpu_opengl
    }
 
 
-   void shader::_set_mat4(const_char_pointer name, const glm::mat4& matrix) const
+   void shader::_set_matrix4(const_char_pointer name, const floating_matrix4& matrix) const
    {
 
       auto location = _get_uniform_location(name, "mat4");
@@ -853,22 +853,22 @@ namespace gpu_opengl
                   _set_float(strName, *(float *)(m_propertiesPushShared.data(true) + iLen));
                   break;
                case ::gpu::e_type_seq2:
-                  _set_seq2(strName, *(glm::vec2 *)(m_propertiesPushShared.data(true) + iLen));
+                  _set_sequence2(strName, *(floating_sequence2 *)(m_propertiesPushShared.data(true) + iLen));
                   break;
                case ::gpu::e_type_seq3:
-                  _set_seq3(strName, *(glm::vec3 *)(m_propertiesPushShared.data(true) + iLen));
+                  _set_sequence3(strName, *(floating_sequence3 *)(m_propertiesPushShared.data(true) + iLen));
                   break;
                case ::gpu::e_type_seq4:
-                  _set_seq4(strName, *(glm::vec4 *)(m_propertiesPushShared.data(true) + iLen));
+                  _set_sequence4(strName, *(floating_sequence4 *)(m_propertiesPushShared.data(true) + iLen));
                   break;
                case ::gpu::e_type_mat2:
-                  _set_mat2(strName, *(glm::mat2 *)(m_propertiesPushShared.data(true) + iLen));
+                  _set_matrix2(strName, *(floating_matrix2 *)(m_propertiesPushShared.data(true) + iLen));
                   break;
                case ::gpu::e_type_mat3:
-                  _set_mat3(strName, *(glm::mat3 *)(m_propertiesPushShared.data(true) + iLen));
+                  _set_matrix3(strName, *(floating_matrix3 *)(m_propertiesPushShared.data(true) + iLen));
                   break;
                case ::gpu::e_type_mat4:
-                  _set_mat4(strName, *(glm::mat4 *)(m_propertiesPushShared.data(true) + iLen));
+                  _set_matrix4(strName, *(floating_matrix4 *)(m_propertiesPushShared.data(true) + iLen));
                   break;
                default:
                   throw ::exception(error_not_expected);
@@ -980,171 +980,171 @@ namespace gpu_opengl
    }
    
    
-   void shader::set_seq2(const ::scoped_string& scopedstrName, float x, float y)
+   void shader::set_sequence2(const ::scoped_string& scopedstrName, float x, float y)
    {
 
       if (m_propertiesPushShared.m_pproperties)
       {
 
-         ::gpu::shader::set_seq2(scopedstrName, x, y);
+         ::gpu::shader::set_sequence2(scopedstrName, x, y);
 
       }
       else
       {
 
-         _set_seq2(::string(scopedstrName), { x, y });
+         _set_sequence2(::string(scopedstrName), { x, y });
 
       }
 
    }
    
    
-   void shader::set_seq2(const ::scoped_string& scopedstrName, const ::glm::vec2& a)
+   void shader::set_sequence2(const ::scoped_string& scopedstrName, const ::floating_sequence2& a)
    {
 
       if (m_propertiesPushShared.m_pproperties)
       {
 
-         ::gpu::shader::set_seq2(scopedstrName, a);
+         ::gpu::shader::set_sequence2(scopedstrName, a);
 
       }
       else
       {
 
-         _set_seq2(::string(scopedstrName), a);
+         _set_sequence2(::string(scopedstrName), a);
 
       }
 
    }
    
    
-   void shader::set_seq3(const ::scoped_string& scopedstrName, float x, float y, float z)
+   void shader::set_sequence3(const ::scoped_string& scopedstrName, float x, float y, float z)
    {
 
       if (m_propertiesPushShared.m_pproperties)
       {
 
-         ::gpu::shader::set_seq3(scopedstrName, x, y, z);
+         ::gpu::shader::set_sequence3(scopedstrName, x, y, z);
 
       }
       else
       {
 
-         _set_seq3(::string(scopedstrName), { x, y, z });
+         _set_sequence3(::string(scopedstrName), { x, y, z });
 
       }
 
    }
    
    
-   void shader::set_seq3(const ::scoped_string& scopedstrName, const ::glm::vec3& a)
+   void shader::set_sequence3(const ::scoped_string& scopedstrName, const ::floating_sequence3& a)
    {
 
       if (m_propertiesPushShared.m_pproperties)
       {
 
-         ::gpu::shader::set_seq3(scopedstrName, a);
+         ::gpu::shader::set_sequence3(scopedstrName, a);
 
       }
       else
       {
 
-         _set_seq3(::string(scopedstrName), a);
+         _set_sequence3(::string(scopedstrName), a);
 
       }
 
    }
 
 
-   void shader::set_seq4(const ::scoped_string& scopedstrName, float x, float y, float z, float w)
+   void shader::set_sequence4(const ::scoped_string& scopedstrName, float x, float y, float z, float w)
    {
 
       if (m_propertiesPushShared.m_pproperties)
       {
 
-         ::gpu::shader::set_seq4(scopedstrName, x, y, z, w);
+         ::gpu::shader::set_sequence4(scopedstrName, x, y, z, w);
 
       }
       else
       {
 
-         _set_seq4(::string(scopedstrName), { x, y, z, w });
+         _set_sequence4(::string(scopedstrName), { x, y, z, w });
 
       }
 
    }
 
 
-   void shader::set_seq4(const ::scoped_string& scopedstrName, const ::glm::vec4& a)
+   void shader::set_sequence4(const ::scoped_string& scopedstrName, const ::floating_sequence4& a)
    {
 
       if (m_propertiesPushShared.m_pproperties)
       {
 
-         ::gpu::shader::set_seq4(scopedstrName, a);
+         ::gpu::shader::set_sequence4(scopedstrName, a);
 
       }
       else
       {
 
-         _set_seq4(::string(scopedstrName), a);
+         _set_sequence4(::string(scopedstrName), a);
 
       }
 
    }
 
 
-   void shader::set_mat2(const ::scoped_string& scopedstrName, const ::glm::mat2& a)
+   void shader::set_matrix2(const ::scoped_string& scopedstrName, const ::floating_matrix2& a)
    {
 
       if (m_propertiesPushShared.m_pproperties)
       {
 
-         ::gpu::shader::set_mat2(scopedstrName, a);
+         ::gpu::shader::set_matrix2(scopedstrName, a);
 
       }
       else
       {
 
-         _set_mat2(::string(scopedstrName), a);
+         _set_matrix2(::string(scopedstrName), a);
 
       }
 
    }
 
 
-   void shader::set_mat3(const ::scoped_string& scopedstrName, const ::glm::mat3& a)
+   void shader::set_matrix3(const ::scoped_string& scopedstrName, const ::floating_matrix3& a)
    {
 
       if (m_propertiesPushShared.m_pproperties)
       {
 
-         ::gpu::shader::set_mat3(scopedstrName, a);
+         ::gpu::shader::set_matrix3(scopedstrName, a);
 
       }
       else
       {
 
-         _set_mat3(::string(scopedstrName), a);
+         _set_matrix3(::string(scopedstrName), a);
 
       }
 
    }
 
 
-   void shader::set_mat4(const ::scoped_string& scopedstrName, const ::glm::mat4& a)
+   void shader::set_matrix4(const ::scoped_string& scopedstrName, const floating_matrix4& a)
    {
 
       if (m_propertiesPushShared.m_pproperties)
       {
 
-         ::gpu::shader::set_mat4(scopedstrName, a);
+         ::gpu::shader::set_matrix4(scopedstrName, a);
 
       }
       else
       {
 
-         _set_mat4(::string(scopedstrName), a);
+         _set_matrix4(::string(scopedstrName), a);
 
       }
 

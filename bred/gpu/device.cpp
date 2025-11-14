@@ -1278,7 +1278,7 @@ namespace gpu
    }
 
 
-   void device::set_mat4(void* p, const ::floating_matrix4& floating_matrix4)
+   void device::set_matrix4(void* p, const ::floating_matrix4& floating_matrix4)
    {
 
       *((::floating_matrix4*)p) = floating_matrix4;

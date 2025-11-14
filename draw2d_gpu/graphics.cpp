@@ -5843,17 +5843,17 @@ color = vec4(c.r,c.g, c.b, c.a);
       auto color = m_pbrush->m_color;
       //shader.use();
       ::cast<::gpu::shader>pshader = m_pgpushaderTextOut;
-      pshader->set_seq4("textColor", { __expand_float_pre_rgba(color) });
+      pshader->set_sequence4("textColor", { __expand_float_pre_rgba(color) });
       // glUniform3f(glGetUniformLocation(shader.ID, "textColor"), color.x, color.y, color.z);
 
       //auto pcontext = gpu_context();
 
-      glm::mat4 projection = glm::ortho(
+      floating_matrix4 projection = glm::ortho(
          0.0f, 
          static_cast<float>(pcontext->m_rectangle.width()),
          0.0f,
          static_cast<float>(pcontext->m_rectangle.height()));
-      pshader->set_mat4("projection", projection);
+      pshader->set_matrix4("projection", projection);
 
       set(m_pfont);
       

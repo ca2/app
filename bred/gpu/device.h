@@ -231,7 +231,7 @@ namespace gpu
 
       virtual int get_type_size(::gpu::enum_type etype);
 
-      virtual void set_mat4(void* p, const ::floating_matrix4& floating_matrix4);
+      virtual void set_matrix4(void* p, const ::floating_matrix4& floating_matrix4);
 
 
       virtual void start_stacking_layers();

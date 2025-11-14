@@ -168,18 +168,18 @@ namespace gpu
       //      // texture coordinates
       //      if (mesh->mTextureCoords[0])
       //      {
-      //         glm::vec2 textureCoordinates;
+      //         floating_sequence2 textureCoordinates;
       //         textureCoordinates.x = mesh->mTextureCoords[0][i].x;
       //         textureCoordinates.y = mesh->mTextureCoords[0][i].y;
       //         vertex.mTextureCoordinates = textureCoordinates;
       //      }
       //      else
       //      {
-      //         vertex.mTextureCoordinates = glm::vec2(0.0f, 0.0f);
+      //         vertex.mTextureCoordinates = floating_sequence2(0.0f, 0.0f);
       //      }
 
       //      // tangents
-      //      glm::vec4 color;
+      //      floating_sequence4 color;
       //      if (mesh->mColors[0])
       //      {
       //         color.x = mesh->mColors[0]->r;
@@ -189,12 +189,12 @@ namespace gpu
       //      }
       //      else
       //      {
-      //         color = glm::vec4(1.0f);
+      //         color = floating_sequence4(1.0f);
       //      }
       //      vertex.mColor = color;
 
       //      // tangents
-      //      glm::vec4 tangent4;
+      //      floating_sequence4 tangent4;
       //      floating_sequence3 tangent;
       //      tangent.x = mesh->mTangents[0].x;
       //      tangent.y = mesh->mTangents[0].y;

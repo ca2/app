@@ -227,18 +227,18 @@ namespace gpu
 
       virtual void set_float(const ::scoped_string& scopedstrName, float value);
 
-      virtual void set_seq2(const ::scoped_string& scopedstrName, float x, float y);
-      virtual void set_seq2(const ::scoped_string& scopedstrName, const ::floating_sequence2& a);
+      virtual void set_sequence2(const ::scoped_string& scopedstrName, float x, float y);
+      virtual void set_sequence2(const ::scoped_string& scopedstrName, const ::floating_sequence2& a);
 
-      virtual void set_seq3(const ::scoped_string& scopedstrName, float x, float y, float z);
-      virtual void set_seq3(const ::scoped_string& scopedstrName, const ::floating_sequence3& a);
+      virtual void set_sequence3(const ::scoped_string& scopedstrName, float x, float y, float z);
+      virtual void set_sequence3(const ::scoped_string& scopedstrName, const ::floating_sequence3& a);
 
-      virtual void set_seq4(const ::scoped_string& scopedstrName, float x, float y, float z, float w);
-      virtual void set_seq4(const ::scoped_string& scopedstrName, const ::floating_sequence4& a);
+      virtual void set_sequence4(const ::scoped_string& scopedstrName, float x, float y, float z, float w);
+      virtual void set_sequence4(const ::scoped_string& scopedstrName, const ::floating_sequence4& a);
 
-      virtual void set_mat2(const ::scoped_string& scopedstrName, const ::floating_matrix2& a);
-      virtual void set_mat3(const ::scoped_string& scopedstrName, const ::floating_matrix3& a);
-      virtual void set_mat4(const ::scoped_string& scopedstrName, const ::floating_matrix4& a);
+      virtual void set_matrix2(const ::scoped_string& scopedstrName, const ::floating_matrix2& a);
+      virtual void set_matrix3(const ::scoped_string& scopedstrName, const ::floating_matrix3& a);
+      virtual void set_matrix4(const ::scoped_string& scopedstrName, const ::floating_matrix4& a);
 
       virtual void setModelViewProjectionMatrices(floating_matrix4 &model, floating_matrix4 &view, floating_matrix4 &projection);
 

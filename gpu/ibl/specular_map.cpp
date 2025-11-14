@@ -3,8 +3,8 @@
 #include "framework.h"
 #include "specular_map.h"
 
-#include "glm/glm.hpp"
-#include <glm/gtc/matrix_transform.hpp>
+//#include "glm/glm.hpp"
+//#include <glm/gtc/matrix_transform.hpp>
 #include "bred/gpu/command_buffer.h"
 #include "bred/gpu/context_lock.h"
 #include "bred/gpu/texture.h"

@@ -623,6 +623,13 @@ struct sequence_type :
       return *this;
    }
 
+   sequence_type &operator/=(const NUMBER &n)
+   {
+      for (::collection::count i = 0; i < SIZE; ++i)
+         this->m_coordinatea[i] /= n;
+      return *this;
+   }
+
    bool operator==(const sequence_type& a) const {
       for (::collection::count i = 0; i < SIZE; ++i) {
          if (this->m_coordinatea[i] != a.m_coordinatea[i])
@@ -896,21 +903,6 @@ struct sequence_type :
    }
 
 
-   COORDINATE squared_modulus()  const
-   {
-
-      return dot(*this);
-
-   }
-
-
-   COORDINATE modulus() const
-   {
-      
-      return ::sqrt(squared_modulus());
-
-   }
-
 
    sequence_type make_unitary() const
    {
@@ -975,6 +967,71 @@ struct sequence_type :
       return {a.y * b.z - a.z * b.y, a.z * b.x - a.x * b.z, a.x * b.y - a.y * b.x};
    }
 
+   inline NUMBER squared_modulus() const
+      requires(SIZE == 2)
+   {
+      return 
+         this->x * this->x +
+         this->y * this->y;
+   }
+
+   inline NUMBER squared_modulus() const
+      requires(SIZE == 3)
+   {
+      return 
+         this->x * this->x +
+         this->y * this->y + 
+         this->z * this->z;
+   }
+
+   inline NUMBER squared_modulus() const
+      requires(SIZE == 4)
+   {
+      return 
+         this->x * this->x + 
+         this->y * this->y + 
+         this->z * this->z + 
+         this->w * this->w; 
+   }
+
+   inline NUMBER modulus() const
+   { 
+      return ::std::sqrt(squared_modulus()); 
+   }
+
+   inline NUMBER length() const
+   {
+      return modulus(); 
+   }  
+
+
+   sequence_type &normalize()
+   {
+
+      auto modulus = this->modulus();
+
+      if (modulus > 0.0f)
+      {
+
+         return *this /= modulus;
+
+      }
+      else
+      {
+
+         return {0.0f};
+      }
+   }
+
+
+   sequence_type normalized() const
+   {
+
+      auto sequence = *this;
+
+      return sequence.normalize();
+
+   }
 
 
 };
@@ -1110,35 +1167,35 @@ struct std::hash<::sequence_type<NUMBER, t_iSize>>
    }
 };
 
-
-namespace geometry
-{
-
-
-   template<primitive_number NUMBER>
-   sequence_type<NUMBER, 3> normalize(const sequence_type<NUMBER, 3> &v)
-   {
-      
-      float length = std::sqrt(v.x * v.x + v.y * v.y + v.z * v.z);
-      
-      if (length > 0.0f)
-      {
-
-         return v / length;
-
-      }
-      else
-      {
-
-         return sequence_type<NUMBER, 3>(0.0f); // or return v (undefined direction)
-
-      }
-
-
-   }
-
-
-} // namespace geometry
-
+//
+//namespace geometry
+//{
+//
+//
+//   template<primitive_number NUMBER>
+//   sequence_type<NUMBER, 3> normalize(const sequence_type<NUMBER, 3> &v)
+//   {
+//      
+//      float length = std::sqrt(v.x * v.x + v.y * v.y + v.z * v.z);
+//      
+//      if (length > 0.0f)
+//      {
+//
+//         return v / length;
+//
+//      }
+//      else
+//      {
+//
+//         return sequence_type<NUMBER, 3>(0.0f); // or return v (undefined direction)
+//
+//      }
+//
+//
+//   }
+//
+//
+//} // namespace geometry
+//
 
 

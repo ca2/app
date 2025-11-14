@@ -1315,7 +1315,7 @@ namespace gpu
       //shader.use();
       ::cast<::gpu::shader>pshader = m_pgpushaderTextOut;
       ::floating_sequence4 vec4TextColor{ __expand_float_pre_rgba(color) };
-      pshader->set_seq4("textColor", vec4TextColor);
+      pshader->set_sequence4("textColor", vec4TextColor);
       // glUniform3f(glGetUniformLocation(shader.ID, "textColor"), color.x, color.y, color.z);
       //pshader->setup_sampler_and_texture("text", 0);
       //auto pcontext = gpu_context();
@@ -1447,7 +1447,7 @@ namespace gpu
 
             //}
 
-            //pshader->set_mat4("projection", projection);
+            //pshader->set_matrix4("projection", projection);
 
             {
 
@@ -1469,7 +1469,7 @@ namespace gpu
                   );
 
 
-               pshader->set_seq4("quad", quad);
+               pshader->set_sequence4("quad", quad);
 
             }
 
@@ -1489,7 +1489,7 @@ namespace gpu
 
                ::floating_sequence4 texcoords(l, t, r, b);
 
-               pshader->set_seq4("texcoords", texcoords);
+               pshader->set_sequence4("texcoords", texcoords);
 
             }
 

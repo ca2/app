@@ -279,9 +279,9 @@ namespace graphics3d
                       pskybox->m_ptexture); // Make sure to bind the shader first
       //auto view = m_pengine->m_pcamera->getView();
       //floating_matrix4 skyboxView = floating_matrix4(floating_matrix3(view)); // <-- drop translation
-      //m_pshader->set_mat4("view", skyboxView);
+      //m_pshader->set_matrix4("view", skyboxView);
       //auto projection = m_pengine->m_pcamera->getProjection();
-      //m_pshader->set_mat4("projection", projection);
+      //m_pshader->set_matrix4("projection", projection);
       //m_pshader->bind_source(m_ptextureCubeMap);
       pskybox->m_pmodelCube->bind(pgpucommandbuffer);
 

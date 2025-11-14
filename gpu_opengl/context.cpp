@@ -249,10 +249,10 @@ namespace gpu_opengl
 
          // Compute the MVP matrix from keyboard and mouse input
          //computeMatricesFromInputs();
-         ::glm::mat4 matrixProjection = (::glm::mat4 &)projection_matrix();
-         ::glm::mat4 matrixView = (::glm::mat4 &)view_matrix();
-         ::glm::mat4 matrixModel = glm::mat4(1.0);
-         ::glm::mat4 matrixMVP = matrixProjection * matrixView * matrixModel;
+         floating_matrix4 matrixProjection = (floating_matrix4 &)projection_matrix();
+         floating_matrix4 matrixView = (floating_matrix4 &)view_matrix();
+         floating_matrix4 matrixModel = floating_matrix4(1.0);
+         floating_matrix4 matrixMVP = matrixProjection * matrixView * matrixModel;
 
          // Send our transformation to the currently bound shader,
          // in the "MVP" uniform
@@ -260,16 +260,16 @@ namespace gpu_opengl
 
       }
 
-      //glm::mat4 getViewMatrix() {
+      //floating_matrix4 getViewMatrix() {
       //   return ViewMatrix;
       //}
-      //glm::mat4 getProjectionMatrix() {
+      //floating_matrix4 getProjectionMatrix() {
       //   return ProjectionMatrix;
       //}
 
 
       //// Initial position : on +Z
-      //glm::vec3 position = glm::vec3(0, 0, 5);
+      //floating_sequence3 position = floating_sequence3(0, 0, 5);
       //// Initial horizontal angle : toward -Z
       //float horizontalAngle = 3.14f;
       //// Initial vertical angle : none

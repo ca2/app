@@ -401,7 +401,7 @@ namespace gpu
 
 		}
 
-		void _set_mat4(const ::floating_matrix4& floating_matrix4);
+		void _set_matrix4(const ::floating_matrix4& floating_matrix4);
 		void _set_vec4(const ::floating_sequence4& floating_sequence4);
 		void _set_int(const int& i);
 		
@@ -416,7 +416,7 @@ namespace gpu
 				throw ::exception(error_bad_data_format);
 
 			}
-			_set_mat4(floating_matrix4);
+			_set_matrix4(floating_matrix4);
 			
 
 			return *this;

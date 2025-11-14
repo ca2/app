@@ -55,7 +55,7 @@ namespace gpu
          //
          // // albedo
          // pshader->set_int("material.useTextureAlbedo", m_pmaterial->useTextureAlbedo);
-         // pshader->set_seq3("material.albedo", m_pmaterial->albedo);
+         // pshader->set_sequence3("material.albedo", m_pmaterial->albedo);
          // if (m_pmaterial->useTextureAlbedo)
          // {
          //    glActiveTexture(GL_TEXTURE0 + e_gltf_texture_albedo);
@@ -91,7 +91,7 @@ namespace gpu
          // }
          //
          // pshader->set_int("material.useTextureEmissive", m_pmaterial->useTextureEmissive);
-         // pshader->set_seq3("material.emissive", m_pmaterial->emissive);
+         // pshader->set_sequence3("material.emissive", m_pmaterial->emissive);
          // if (m_pmaterial->useTextureEmissive)
          // {
          //    glActiveTexture(GL_TEXTURE0 + e_gltf_texture_emissive);

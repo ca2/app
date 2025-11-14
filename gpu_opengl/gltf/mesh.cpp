@@ -117,7 +117,7 @@ namespace gpu_opengl
             ::cast<::graphics3d::gltf_render_system> prendersystem = pcommandbuffer->m_prendersystem;
             bool bAlbedo = !prendersystem->m_bDisableAlbedo && m_pmaterial->useTextureAlbedo;
             pshader->set_int("material.useTextureAlbedo", bAlbedo);
-            glm::vec3 seq3Albedo= {};
+            floating_sequence3 seq3Albedo= {};
             if (prendersystem->m_bForceDefaultAmbientOcclusionFactor)
             {
 
@@ -129,7 +129,7 @@ namespace gpu_opengl
                seq3Albedo = m_pmaterial->m_seq3Albedo;
             }
 
-            pshader->set_seq3("material.albedo", seq3Albedo);
+            pshader->set_sequence3("material.albedo", seq3Albedo);
             if (bAlbedo)
             {
                int iTextureIndex = ::gpu::e_gltf_texture_albedo;
@@ -216,7 +216,7 @@ namespace gpu_opengl
 
             bool bEmissive = !prendersystem->m_bDisableEmissive && m_pmaterial->useTextureEmissive;
             pshader->set_int("material.useTextureEmissive", bEmissive);
-            glm::vec3 seq3Emission = {};
+            floating_sequence3 seq3Emission = {};
             if (prendersystem->m_bForceDefaultEmission)
             {
 
@@ -227,7 +227,7 @@ namespace gpu_opengl
 
                seq3Emission = m_pmaterial->m_seq3Emissive;
             }
-            pshader->set_seq3("material.emissive", seq3Emission);
+            pshader->set_sequence3("material.emissive", seq3Emission);
             if (bEmissive)
             {
                glActiveTexture(GL_TEXTURE0 + ::gpu::e_gltf_texture_emissive);
@@ -244,7 +244,7 @@ namespace gpu_opengl
             // albedo
                         //;
             //pshader->set_int("material.useTextureAlbedo", m_pmaterial->useTextureAlbedo);
-            //pshader->set_seq3("material.albedo", m_pmaterial->m_seq3Albedo);
+            //pshader->set_sequence3("material.albedo", m_pmaterial->m_seq3Albedo);
             if (m_pmaterial->useTextureAlbedo)
             {
                int iTextureIndex = ::gpu::e_gltf_texture_albedo;
@@ -295,7 +295,7 @@ namespace gpu_opengl
             //}
 
             //pshader->set_int("material.useTextureEmissive", m_pmaterial->useTextureEmissive);
-            //pshader->set_seq3("material.emissive", m_pmaterial->m_seq3Emissive);
+            //pshader->set_sequence3("material.emissive", m_pmaterial->m_seq3Emissive);
             //if (m_pmaterial->useTextureEmissive)
             //{
             //   glActiveTexture(GL_TEXTURE0 + ::gpu::e_gltf_texture_emissive);

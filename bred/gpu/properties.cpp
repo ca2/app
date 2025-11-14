@@ -19,10 +19,10 @@ namespace gpu
 	}
 
 
-	void properties_reference::_set_mat4(const ::floating_matrix4 & floating_matrix4)
+	void properties_reference::_set_matrix4(const ::floating_matrix4 & floating_matrix4)
 	{
 
-		t_pgpudevice->set_mat4(m_blockWithSamplers.data(), floating_matrix4);
+		t_pgpudevice->set_matrix4(m_blockWithSamplers.data(), floating_matrix4);
 
 	}
 		

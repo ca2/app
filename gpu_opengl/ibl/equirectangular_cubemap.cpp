@@ -67,8 +67,8 @@ namespace gpu_opengl
          // Timer timer;
 
          auto pgpucommandbuffer = m_pgpucontext->beginSingleTimeCommands(m_pgpucontext->m_pgpudevice->graphics_queue());
-         glm::mat4 model = ::gpu::gltf::mIndentity4;
-         glm::mat4 cameraAngles[] = 
+         floating_matrix4 model = ::gpu::gltf::mIndentity4;
+         floating_matrix4 cameraAngles[] = 
          {
             glm::lookAt(::gpu::gltf::origin, ::gpu::gltf::unitX, -::gpu::gltf::unitY), // X+ (right)
             glm::lookAt(::gpu::gltf::origin, -::gpu::gltf::unitX, -::gpu::gltf::unitY), // X- (left)
@@ -77,7 +77,7 @@ namespace gpu_opengl
             glm::lookAt(::gpu::gltf::origin, ::gpu::gltf::unitZ, -::gpu::gltf::unitY), // Z+ (front)
             glm::lookAt(::gpu::gltf::origin, -::gpu::gltf::unitZ, -::gpu::gltf::unitY) // Z- (back)
          };
-         glm::mat4 projection = glm::perspective(glm::radians(90.0f), // 90 degrees to cover one face
+         floating_matrix4 projection = glm::perspective(glm::radians(90.0f), // 90 degrees to cover one face
                                                  1.0f, // its a square
                                                  0.1f, 2.0f);
 

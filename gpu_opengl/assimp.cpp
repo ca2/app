@@ -17,7 +17,7 @@ namespace assimp
 {
 
 
-   bool load_obj(const void * data, memsize size, array<unsigned short> & indexes, array<::glm::vec3> & vertexes, array<::glm::vec2> & uvs, array<::glm::vec3> & normals)
+   bool load_obj(const void * data, memsize size, array<unsigned short> & indexes, array<::floating_sequence3> & vertexes, array<::floating_sequence2> & uvs, array<::floating_sequence3> & normals)
    {
 
       Assimp::Importer importer;
@@ -39,21 +39,21 @@ namespace assimp
       vertexes.reserve(mesh->mNumVertices);
       for (unsigned int i = 0; i < mesh->mNumVertices; i++) {
          aiVector3D pos = mesh->mVertices[i];
-         vertexes.add(glm::vec3(pos.x, pos.y, pos.z));
+         vertexes.add(floating_sequence3(pos.x, pos.y, pos.z));
       }
 
       // Fill vertexes texture coordinates
       uvs.reserve(mesh->mNumVertices);
       for (unsigned int i = 0; i < mesh->mNumVertices; i++) {
          aiVector3D UVW = mesh->mTextureCoords[0][i]; // Assume only 1 set of UV coords; AssImp supports 8 UV sets.
-         uvs.add(glm::vec2(UVW.x, UVW.y));
+         uvs.add(floating_sequence2(UVW.x, UVW.y));
       }
 
       // Fill vertexes normals
       normals.reserve(mesh->mNumVertices);
       for (unsigned int i = 0; i < mesh->mNumVertices; i++) {
          aiVector3D n = mesh->mNormals[i];
-         normals.add(glm::vec3(n.x, n.y, n.z));
+         normals.add(floating_sequence3(n.x, n.y, n.z));
       }
 
       // Fill face indexes

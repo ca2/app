@@ -227,7 +227,7 @@ namespace gpu
             floating_sequence3 tangent = geometry::normalize(t - n * n.dot(t));
             float sign = (n.cross(t).dot(tan2[i]) < 0.0f) ? -1.0f : 1.0f;
 
-            vertices[i].tangent = glm::vec4(tangent, sign);
+            vertices[i].tangent = floating_sequence4(tangent, sign);
          }
       }
 
@@ -275,18 +275,18 @@ namespace gpu
             // texture coordinates
             if (mesh->mTextureCoords[0])
             {
-               glm::vec2 textureCoordinates;
+               floating_sequence2 textureCoordinates;
                textureCoordinates.x = mesh->mTextureCoords[0][i].x;
                textureCoordinates.y = mesh->mTextureCoords[0][i].y;
                vertex.uv = textureCoordinates;
             }
             else
             {
-               vertex.uv = glm::vec2(0.0f, 0.0f);
+               vertex.uv = floating_sequence2(0.0f, 0.0f);
             }
 
             //            // tangents
-            //glm::vec4 color;
+            //floating_sequence4 color;
             //if (mesh->mColors[0])
             //{
             //   color.x = mesh->mColors[0]->r;
@@ -296,14 +296,14 @@ namespace gpu
             //}
             //else
             //{
-            //   color = glm::vec4(1.0f);
+            //   color = floating_sequence4(1.0f);
             //}
             //vertex.color = color;
 
             if (bHasTangentsAndBitangents)
             {
                // tangents
-               glm::vec4 tangent4;
+               floating_sequence4 tangent4;
                floating_sequence3 tangent;
                tangent.x = mesh->mTangents[0].x;
                tangent.y = mesh->mTangents[0].y;
@@ -314,8 +314,7 @@ namespace gpu
                bitangent.z = mesh->mBitangents[0].z;
                tangent4.x = tangent.x;
                tangent4.y = tangent.y;
-               tangent4.z = tangent.z;
-               tangent4.w = (::glm::dot(::glm::cross(normal, tangent), bitangent) < 0.0f) ? -1.0f : 1.0f;
+               tangent4.z = (normal.cross(tangent).dot(bitangent) < 0.0f) ? -1.0f : 1.0f;
                vertex.tangent = tangent4;
             }
 

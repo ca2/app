@@ -154,5 +154,14 @@ namespace geometry2d
    }
 
 
+   template<primitive_floating FLOATING>
+   inline angle_type<FLOATING> asin(FLOATING s)
+   {
+
+      return ::radians(::std::asin(s));
+
+   }
+
+
 } // namespace geometry2d
  

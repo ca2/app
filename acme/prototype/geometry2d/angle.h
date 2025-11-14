@@ -141,3 +141,18 @@ inline auto angle(const ::point_type < NUMBER1 > & center, const ::point_type < 
 
 
 
+namespace geometry2d
+{
+
+
+   template<primitive_floating FLOATING>
+   inline angle_type<FLOATING> atan2(FLOATING y, FLOATING x)
+   {
+      
+      return ::radians(::std::atan2(y,x));
+
+   }
+
+
+} // namespace geometry2d
+ 

@@ -5,9 +5,9 @@
 #include "bred/gpu/context.h"
 #include "bred/graphics3d/skybox.h"
 #include "bred/gpu/device.h"
-#include <glm/gtc/matrix_transform.hpp>
+//#include <glm/gtc/matrix_transform.hpp>
 #include "glad/glad.h"
-#include "glm/glm.hpp"
+//#include "glm/glm.hpp"
 
 #include "gpu/gltf/_constant.h"
 #include "gpu_opengl/_gpu_opengl.h"
@@ -70,14 +70,14 @@ namespace gpu_opengl
          floating_matrix4 model = ::gpu::gltf::mIndentity4;
          floating_matrix4 cameraAngles[] = 
          {
-            glm::lookAt(::gpu::gltf::origin, ::gpu::gltf::unitX, -::gpu::gltf::unitY), // X+ (right)
-            glm::lookAt(::gpu::gltf::origin, -::gpu::gltf::unitX, -::gpu::gltf::unitY), // X- (left)
-            glm::lookAt(::gpu::gltf::origin, ::gpu::gltf::unitY, ::gpu::gltf::unitZ), // Y+ (top)
-            glm::lookAt(::gpu::gltf::origin, -::gpu::gltf::unitY, -::gpu::gltf::unitZ), // Y- (bottom)
-            glm::lookAt(::gpu::gltf::origin, ::gpu::gltf::unitZ, -::gpu::gltf::unitY), // Z+ (front)
-            glm::lookAt(::gpu::gltf::origin, -::gpu::gltf::unitZ, -::gpu::gltf::unitY) // Z- (back)
+            m_pgpucontext->lookAt(::gpu::gltf::origin, ::gpu::gltf::unitX, -::gpu::gltf::unitY), // X+ (right)
+            m_pgpucontext->lookAt(::gpu::gltf::origin, -::gpu::gltf::unitX, -::gpu::gltf::unitY), // X- (left)
+            m_pgpucontext->lookAt(::gpu::gltf::origin, ::gpu::gltf::unitY, ::gpu::gltf::unitZ), // Y+ (top)
+            m_pgpucontext->lookAt(::gpu::gltf::origin, -::gpu::gltf::unitY, -::gpu::gltf::unitZ), // Y- (bottom)
+            m_pgpucontext->lookAt(::gpu::gltf::origin, ::gpu::gltf::unitZ, -::gpu::gltf::unitY), // Z+ (front)
+            m_pgpucontext->lookAt(::gpu::gltf::origin, -::gpu::gltf::unitZ, -::gpu::gltf::unitY) // Z- (back)
          };
-         floating_matrix4 projection = glm::perspective(glm::radians(90.0f), // 90 degrees to cover one face
+         floating_matrix4 projection = m_pgpucontext->perspective(radians(90.0f), // 90 degrees to cover one face
                                                  1.0f, // its a square
                                                  0.1f, 2.0f);
 

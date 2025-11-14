@@ -700,6 +700,13 @@ return {};
 
 
    }
+
+
+   floating_matrix4 context::perspective(float fovyRadians, float aspect, float zNear, float zFar)
+   {
+
+      return {1.0f};
+   }
    floating_matrix4 context::rotateFromAxes(const floating_sequence3 & right, const floating_sequence3 & up,
                                            const floating_sequence3 & forward) // OpenGL forward = -f
    {

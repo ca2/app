@@ -224,8 +224,8 @@ namespace gpu
             const floating_sequence3 &n = vertices[i].normal;
             const floating_sequence3 &t = tan1[i];
 
-            auto tangent = (t - n * n.dot(t)).normalized();
-            float sign = (n.cross(t).dot(tan2[i]) < 0.0f) ? -1.0f : 1.0f;
+            auto tangent = (t - n * n.dotted(t)).normalized();
+            float sign = (n.crossed(t).dotted(tan2[i]) < 0.0f) ? -1.0f : 1.0f;
 
             vertices[i].tangent = floating_sequence4(tangent, sign);
          }
@@ -314,7 +314,7 @@ namespace gpu
                bitangent.z = mesh->mBitangents[0].z;
                tangent4.x = tangent.x;
                tangent4.y = tangent.y;
-               tangent4.z = (normal.cross(tangent).dot(bitangent) < 0.0f) ? -1.0f : 1.0f;
+               tangent4.z = (normal.crossed(tangent).dotted(bitangent) < 0.0f) ? -1.0f : 1.0f;
                vertex.tangent = tangent4;
             }
 

@@ -832,7 +832,7 @@ struct sequence_type :
    COORDINATE angle(const sequence_type & b)
    {
 
-      return ::std::atan2(this->dot_with_left_perpendicular_of(b), this->dot(b));
+      return ::std::atan2(this->dot_with_left_perpendicular_of(b), this->dotted(b));
 
    }
 

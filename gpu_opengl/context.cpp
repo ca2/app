@@ -20,7 +20,7 @@
 #include "bred/gpu/frame.h"
 #include "bred/gpu/layer.h"
 #include "bred/gpu/types.h"
-#include "glm/mat4x4.hpp"
+//#include "glm/mat4x4.hpp"
 //#include <assimp/Common/StbCommon.h>
 
 
@@ -32,7 +32,7 @@
 // #include <GL/glew.h>       // or glad, depending on your setup
 // #include <GLFW/glfw3.h>
 //
-#include <ktx/ktx.h>
+#include <ktx.h>
 //#include <ktxvulkan.h>     // not needed for GL, but included in libktx installs
 //
 // // Utility: load whole file into memory
@@ -3036,6 +3036,24 @@ color = vec4(c.r,c.g, c.b, c.a);
       M[3][0] = t.x; // last row, first column
       M[3][1] = t.y;
       M[3][2] = t.z;
+
+      return M;
+   }
+
+
+   floating_matrix4 context::perspective(float fovyRadians, float aspect, float zNear, float zFar)
+   {
+      float f = 1.0f / tanf(fovyRadians * 0.5f);
+
+      floating_matrix4 M(0.0f); // initialize all elements to 0
+
+      M[0][0] = f / aspect;
+      M[1][1] = f;
+
+      M[2][2] = (zFar + zNear) / (zNear - zFar);
+      M[2][3] = -1.0f;
+
+      M[3][2] = (2.0f * zFar * zNear) / (zNear - zFar);
 
       return M;
    }

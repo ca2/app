@@ -454,6 +454,13 @@ namespace gpu
       //    return *get_tinyobj(path);
       //
       // }
+      // 
+      // 
+      
+
+      virtual floating_matrix4 perspective(float fovyRadians, float aspect, float zNear, float zFar);
+
+      // 
       // ------------------------------
       // Rotation from camera axes
       // ------------------------------

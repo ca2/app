@@ -12,8 +12,8 @@
 #include "gpu/gltf/_constant.h"
 #include "gpu/cube.h"
 #include <glad/glad.h>
-#include <glm/glm.hpp>
-#include <glm/gtc/matrix_transform.hpp>
+//#include <glm/glm.hpp>
+//#include <glm/gtc/matrix_transform.hpp>
 #include "gpu_opengl/_gpu_opengl.h"
 #include "gpu_opengl/texture.h"
 //#include "::gpu::gltf.h"
@@ -91,15 +91,15 @@ namespace gpu_opengl
          floating_matrix4 model = ::gpu::gltf::mIndentity4;
          floating_matrix4 cameraAngles[] =
          {
-            glm::lookAt(::gpu::gltf::origin, ::gpu::gltf::unitX, -::gpu::gltf::unitY),
-            glm::lookAt(::gpu::gltf::origin, -::gpu::gltf::unitX, -::gpu::gltf::unitY),
-            glm::lookAt(::gpu::gltf::origin, ::gpu::gltf::unitY, ::gpu::gltf::unitZ),
-            glm::lookAt(::gpu::gltf::origin, -::gpu::gltf::unitY, -::gpu::gltf::unitZ),
-            glm::lookAt(::gpu::gltf::origin, ::gpu::gltf::unitZ, -::gpu::gltf::unitY),
-            glm::lookAt(::gpu::gltf::origin, -::gpu::gltf::unitZ, -::gpu::gltf::unitY)
+            m_pgpucontext->lookAt(::gpu::gltf::origin, ::gpu::gltf::unitX, -::gpu::gltf::unitY),
+            m_pgpucontext->lookAt(::gpu::gltf::origin, -::gpu::gltf::unitX, -::gpu::gltf::unitY),
+            m_pgpucontext->lookAt(::gpu::gltf::origin, ::gpu::gltf::unitY, ::gpu::gltf::unitZ),
+            m_pgpucontext->lookAt(::gpu::gltf::origin, -::gpu::gltf::unitY, -::gpu::gltf::unitZ),
+            m_pgpucontext->lookAt(::gpu::gltf::origin, ::gpu::gltf::unitZ, -::gpu::gltf::unitY),
+            m_pgpucontext->lookAt(::gpu::gltf::origin, -::gpu::gltf::unitZ, -::gpu::gltf::unitY)
          };
-         floating_matrix4 projection = glm::perspective(
-            glm::radians(90.0f), // 90 degrees to cover one face
+         floating_matrix4 projection = m_pgpucontext->perspective(
+            ::radians(90.0f), // 90 degrees to cover one face
             1.0f, // its a square
             0.1f,
             2.0f);

@@ -24,3 +24,6 @@ struct two_π_impl<long double>
 
 template<typename T>
 inline constexpr T two_π = two_π_impl<T>::payload;
+
+
+

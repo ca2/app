@@ -64,7 +64,22 @@ public:
       
    }
 
+
    
+   UNIT_TYPE cos() const
+   {
+      
+      return ::std::cos(m_fAngle);
+      
+   }
+
+   UNIT_TYPE sin() const
+   {
+      
+      return ::std::sin(m_fAngle); 
+
+   }
+
 };
 
 

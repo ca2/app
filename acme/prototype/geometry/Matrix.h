@@ -4,6 +4,12 @@
 
 
 #include "acme/prototype/geometry/sequence.h"
+#include "acme/prototype/geometry2d/angle.h"
+
+template<primitive_floating FLOATING_TYPE, int t_iDimension>
+struct matrix_type;
+
+
 
 #include <immintrin.h>
 #include <xmmintrin.h>
@@ -15,6 +21,26 @@
 
 
 //CLASS_DECL_ACME extern int g_iCpuFeatures; // 0=scalar,1=SSE,2=AVX,3=AVX2
+
+
+
+namespace geometry
+{
+
+
+   template<primitive_floating FLOATING, ::collection::count t_iDimension>
+   inline void _transpose(FLOATING A_target[t_iDimension][t_iDimension],
+                                 const FLOATING A_source[t_iDimension][t_iDimension])
+   {
+      for (int i = 0; i < t_iDimension; i++)
+         for (int j = 0; j < t_iDimension; j++)
+            A_target[i][j] = A_source[j][i];
+   }
+
+
+} // namespace geometry
+
+
 
 
 template<primitive_floating FLOATING_TYPE >
@@ -62,7 +88,7 @@ struct quaternion_type
 
 
 /// Simple matrix class with row-major storage
-template<primitive_floating FLOATING_TYPE, ::collection::count t_iDimension>
+template<primitive_floating FLOATING_TYPE, int t_iDimension>
 struct row_major_type
 {
 
@@ -76,7 +102,8 @@ struct row_major_type
       sequence_type<FLOATING, DIMENSION> m_sequencea[DIMENSION];
    };
 
-
+   matrix_type<FLOATING, 4> transpose(const row_major_type<FLOATING, 4> &m);
+   
 };
 
 
@@ -200,24 +227,24 @@ struct matrix_type
 
    // -------------------- Scalar fallback --------------------
    
-   inline sequence_type<FLOATING, 4> mul_scalar(const sequence_type<FLOATING, 4> &v) const
+   inline sequence_type<FLOATING, 4> mul_scalar(const sequence_type<FLOATING, 4> &s) const
       requires(DIMENSION == 4)
    {
       const auto &M = *this;
       sequence_type<FLOATING, 4> r;
-      r.x = M.fa[0] * v.x + M.fa[4] * v.y + M.fa[8] * v.z + M.fa[12] * v.w;
-      r.y = M.fa[1] * v.x + M.fa[5] * v.y + M.fa[9] * v.z + M.fa[13] * v.w;
-      r.z = M.fa[2] * v.x + M.fa[6] * v.y + M.fa[10] * v.z + M.fa[14] * v.w;
-      r.w = M.fa[3] * v.x + M.fa[7] * v.y + M.fa[11] * v.z + M.fa[15] * v.w;
+      r.x = M.fa[0] * s.x + M.fa[4] * s.y + M.fa[8] * s.z + M.fa[12] * s.w;
+      r.y = M.fa[1] * s.x + M.fa[5] * s.y + M.fa[9] * s.z + M.fa[13] * s.w;
+      r.z = M.fa[2] * s.x + M.fa[6] * s.y + M.fa[10] * s.z + M.fa[14] * s.w;
+      r.w = M.fa[3] * s.x + M.fa[7] * s.y + M.fa[11] * s.z + M.fa[15] * s.w;
       return r;
    }
 
    // -------------------- SSE 128-bit version --------------------
-   inline float_sequence4 mul_sse(const float_sequence4 &v) const
+   inline float_sequence4 mul_sse(const float_sequence4 &s) const
       requires(DIMENSION == 4 && std::is_same_v<FLOATING, float>)
    {
       const auto &M = *this;
-      __m128 vx = _mm_set_ps(v.w, v.z, v.y, v.x); // [w z y x]
+      __m128 vx = _mm_set_ps(s.w, s.z, s.y, s.x); // [w z y x]
       __m128 col0 = _mm_loadu_ps(&M.fa[0]);
       __m128 col1 = _mm_loadu_ps(&M.fa[4]);
       __m128 col2 = _mm_loadu_ps(&M.fa[8]);
@@ -233,12 +260,12 @@ struct matrix_type
    }
 
    // -------------------- AVX 256-bit version --------------------
-   inline float_sequence4 mul_avx(const float_sequence4 &v) const
+   inline float_sequence4 mul_avx(const float_sequence4 &s) const
       requires(DIMENSION == 4 && std::is_same_v<FLOATING, float>)
    {
       const auto &M = *this;
-      __m256 vx = _mm256_setr_m128(_mm_set1_ps(v.x), _mm_set1_ps(v.y));
-      __m256 vy = _mm256_setr_m128(_mm_set1_ps(v.z), _mm_set1_ps(v.w));
+      __m256 vx = _mm256_setr_m128(_mm_set1_ps(s.x), _mm_set1_ps(s.y));
+      __m256 vy = _mm256_setr_m128(_mm_set1_ps(s.z), _mm_set1_ps(s.w));
 
       __m256 col01 = _mm256_loadu_ps(&M.fa[0]);
       __m256 col23 = _mm256_loadu_ps(&M.fa[8]);
@@ -255,14 +282,14 @@ struct matrix_type
    }
 
    // -------------------- AVX2 fully unrolled --------------------
-   inline float_sequence4 mul_avx2(const float_sequence4 &v) const
+   inline float_sequence4 mul_avx2(const float_sequence4 &s) const
       requires(DIMENSION == 4 && std::is_same_v<FLOATING, float>)
    {
       const auto &M = *this;
-      __m256 vx = _mm256_set1_ps(v.x);
-      __m256 vy = _mm256_set1_ps(v.y);
-      __m256 vz = _mm256_set1_ps(v.z);
-      __m256 vw = _mm256_set1_ps(v.w);
+      __m256 vx = _mm256_set1_ps(s.x);
+      __m256 vy = _mm256_set1_ps(s.y);
+      __m256 vz = _mm256_set1_ps(s.z);
+      __m256 vw = _mm256_set1_ps(s.w);
 
       __m256 col01 = _mm256_loadu_ps(&M.fa[0]);
       __m256 col23 = _mm256_loadu_ps(&M.fa[8]);
@@ -281,18 +308,18 @@ struct matrix_type
    }
        
    //    // AVX2 version of matrix × vector
-   //inline float_sequence4 mul_avx2( const float_sequence4 &v)
+   //inline float_sequence4 mul_avx2( const float_sequence4 &s)
    //   requires(DIMENSION == 4 && std::is_same_v<FLOATING, float>)
    //{
    //   const auto &M = *this;
-   //   // Load vector v into low 128 bits: [x y z w]
-   //   __m128 xv = _mm_set_ps(v.w, v.z, v.y, v.x);
+   //   // Load vector s into low 128 bits: [x y z w]
+   //   __m128 xv = _mm_set_ps(s.w, s.z, s.y, s.x);
 
    //   // Broadcast vector components into AVX registers
-   //   __m256 bx = _mm256_broadcast_ss(&v.x);
-   //   __m256 by = _mm256_broadcast_ss(&v.y);
-   //   __m256 bz = _mm256_broadcast_ss(&v.z);
-   //   __m256 bw = _mm256_broadcast_ss(&v.w);
+   //   __m256 bx = _mm256_broadcast_ss(&s.x);
+   //   __m256 by = _mm256_broadcast_ss(&s.y);
+   //   __m256 bz = _mm256_broadcast_ss(&s.z);
+   //   __m256 bw = _mm256_broadcast_ss(&s.w);
 
    //   // Load two columns at a time (2×8 floats)
    //   __m256 col01 = _mm256_loadu_ps(&M.fa[0]); // columns 0 & 1
@@ -317,17 +344,17 @@ struct matrix_type
 
    //}
 
-   inline float_sequence4 operator *(const float_sequence4 &v) const
+   inline float_sequence4 operator *(const float_sequence4 &s) const
       requires(DIMENSION == 4 && std::is_same_v<FLOATING, float>)
    {
       if (g_cpufeatures.m_bAVX2)
-         return mul_avx2(v);
+         return mul_avx2(s);
       else if (g_cpufeatures.m_bAVX)
-         return mul_avx(v);
+         return mul_avx(s);
       else if (g_cpufeatures.m_bSSE)
-         return mul_sse(v);
+         return mul_sse(s);
       else
-         return mul_scalar(v);
+         return mul_scalar(s);
    }
 
    
@@ -620,71 +647,40 @@ inline matrix_type mul_avx2(const matrix_type &B) const
    }
 
 
-   //inline sequence_type<FLOATING, 4> mul_scalar(const sequence_type<FLOATING, 4> &v) const
+   //inline sequence_type<FLOATING, 4> mul_scalar(const sequence_type<FLOATING, 4> &s) const
    //   requires(DIMENSION == 4)
    //{
    //   sequence_type<FLOATING, 4> r;
 
-   //   r.x = this->m[0][0] * v.x + this->m[0][1] * v.y + this->m[0][2] * v.z + this->m[0][3] * v.w;
-   //   r.y = this->m[1][0] * v.x + this->m[1][1] * v.y + this->m[1][2] * v.z + this->m[1][3] * v.w;
-   //   r.z = this->m[2][0] * v.x + this->m[2][1] * v.y + this->m[2][2] * v.z + this->m[2][3] * v.w;
-   //   r.w = this->m[3][0] * v.x + this->m[3][1] * v.y + this->m[3][2] * v.z + this->m[3][3] * v.w;
+   //   r.x = this->m[0][0] * s.x + this->m[0][1] * s.y + this->m[0][2] * s.z + this->m[0][3] * s.w;
+   //   r.y = this->m[1][0] * s.x + this->m[1][1] * s.y + this->m[1][2] * s.z + this->m[1][3] * s.w;
+   //   r.z = this->m[2][0] * s.x + this->m[2][1] * s.y + this->m[2][2] * s.z + this->m[2][3] * s.w;
+   //   r.w = this->m[3][0] * s.x + this->m[3][1] * s.y + this->m[3][2] * s.z + this->m[3][3] * s.w;
 
    //   return r;
    //}
 
-   inline sequence_type<FLOATING, 3> operator*(const sequence_type<FLOATING, 3> &v) const
+   inline sequence_type<FLOATING, 3> operator*(const sequence_type<FLOATING, 3> &s) const
       requires(DIMENSION == 4)
    {
-      auto t = this->operator *( sequence_type<FLOATING, 4>(v, (FLOATING) 1));
+      auto t = this->operator *( sequence_type<FLOATING, 4>(s, (FLOATING) 1));
       return t;
    }
 
 
-
-};
-
-
-using float_matrix2 = matrix_type<float, 2>;
-using float_matrix3 = matrix_type<float, 3>;
-using float_matrix4 = matrix_type<float, 4>;
-
-
-using double_matrix2 = matrix_type<double, 2>;
-using double_matrix3 = matrix_type<double, 3>;
-using double_matrix4 = matrix_type<double, 4>;
-
-
-namespace geometry
-{
-
-
-   template<primitive_floating FLOATING>
-   ::matrix_type<FLOATING, 4> translate(const ::matrix_type<FLOATING, 4> &m, const sequence_type < FLOATING, 3 > &s)
-   {
-      
-      auto result = m;
-      
-      result[3][0] += s.x;
-      result[3][1] += s.y;
-      result[3][2] += s.z;
-      
-      return result;
-
-   }
-
-
-   template<primitive_floating FLOATING>
-   ::matrix_type<FLOATING, 4> rotate(const ::matrix_type<FLOATING, 4> &m, float angleRadians, const sequence_type<FLOATING, 3> & axis)
+   matrix_type rotated(angle_type<FLOATING> angleRadians,
+                                     const sequence_type<FLOATING, 3> &axis) const
+      requires(DIMENSION == 4)
    {
 
-      ::sequence_type<FLOATING, 3> a = ::geometry::normalize(axis);
-      float c = std::cos(angleRadians);
-      float s = std::sin(angleRadians);
-      float t = 1.0f - c;
+      const auto &m = *this;
+      auto a = axis.normalized();
+      auto c = angleRadians.cos();
+      auto s = angleRadians.sin();
+      auto t = 1.0f - c;
 
       // Build the rotation matrix (Rodrigues' rotation formula)
-      ::matrix_type<FLOATING, 4> rot(1.0f);
+      matrix_type rot(1.0f);
       rot[0][0] = c + a.x * a.x * t;
       rot[1][0] = a.x * a.y * t + a.z * s;
       rot[2][0] = a.x * a.z * t - a.y * s;
@@ -703,33 +699,19 @@ namespace geometry
    }
 
 
-   template<primitive_floating FLOATING>
-   ::matrix_type<FLOATING, 4> scale(const ::matrix_type<FLOATING, 4> &m, const sequence_type<FLOATING, 3> &v)
+   matrix_type & rotate(angle_type<FLOATING> angleRadians, const sequence_type<FLOATING, 3> & axis)
    {
-      ::matrix_type<FLOATING, 4> result = m;
-      result[0][0] *= v.x;
-      result[1][0] *= v.x;
-      result[2][0] *= v.x;
-      result[3][0] *= v.x;
 
-      result[0][1] *= v.y;
-      result[1][1] *= v.y;
-      result[2][1] *= v.y;
-      result[3][1] *= v.y;
+      return *this = this->rotated(angleRadians, axis);
 
-      result[0][2] *= v.z;
-      result[1][2] *= v.z;
-      result[2][2] *= v.z;
-      result[3][2] *= v.z;
-
-      return result;
    }
 
-
-   template<primitive_floating FLOATING>
-   matrix_type<FLOATING, 3> transpose(const matrix_type<FLOATING, 3> &m)
+   
+   matrix_type transposed() const
+      requires(DIMENSION == 3)
    {
-      matrix_type<FLOATING, 3> r;
+      auto &m = *this;
+      matrix_type r;
       r[0][0] = m[0][0];
       r[0][1] = m[1][0];
       r[0][2] = m[2][0];
@@ -745,23 +727,99 @@ namespace geometry
    }
 
 
-   template<primitive_floating FLOATING, int t_iDimension>
-   inline void _transpose(FLOATING  A_target[t_iDimension][t_iDimension],
-                          const FLOATING A_source[t_iDimension][t_iDimension])
+   matrix_type & transpose()
+      requires(DIMENSION == 3)
    {
-      for (int i = 0; i < t_iDimension; i++)
-         for (int j = 0; j < t_iDimension; j++)
-            A_target[i][j] = A_source[j][i];
+      return *this = this->transposed();
    }
-   
-   
-   template<primitive_floating FLOATING>
-   matrix_type<FLOATING, 4> transpose(const row_major_type<FLOATING, 4> &m)
+
+
+   matrix_type & translate(const sequence_type<FLOATING, 3> &s) 
+      requires(DIMENSION == 4)   
    {
-      matrix_type<FLOATING, 4> r;
-      _transpose(4, m.m);
-      return r;
+
+      this->m[3][0] += s.x;
+      this->m[3][1] += s.y;
+      this->m[3][2] += s.z;
+
+      return *this;
    }
+
+   matrix_type translated(const sequence_type<FLOATING, 3> &s) const
+      requires(DIMENSION == 4)
+   {
+
+      auto m = *this;
+
+      return m.translate(s);
+   }
+
+   
+   ::matrix_type & scale( const sequence_type<FLOATING, 3> &s)
+      requires(DIMENSION == 4)   
+   {
+      this->m[0][0] *= s.x;
+      this->m[1][0] *= s.x;
+      this->m[2][0] *= s.x;
+      this->m[3][0] *= s.x;
+
+      this->m[0][1] *= s.y;
+      this->m[1][1] *= s.y;
+      this->m[2][1] *= s.y;
+      this->m[3][1] *= s.y;
+
+      this->m[0][2] *= s.z;
+      this->m[1][2] *= s.z;
+      this->m[2][2] *= s.z;
+      this->m[3][2] *= s.z;
+
+      return *this;
+   }
+
+   
+   matrix_type scaled(const sequence_type<FLOATING, 3> &s) const
+      requires(DIMENSION == 4)
+   {
+
+      auto m = *this;
+
+      return m.scale(s);
+   }
+
+
+   
+
+   
+
+};
+
+
+using float_matrix2 = matrix_type<float, 2>;
+using float_matrix3 = matrix_type<float, 3>;
+using float_matrix4 = matrix_type<float, 4>;
+
+
+using double_matrix2 = matrix_type<double, 2>;
+using double_matrix3 = matrix_type<double, 3>;
+using double_matrix4 = matrix_type<double, 4>;
+
+
+namespace geometry
+{
+
+
+   //   static inline void _transpose(FLOATING A_target[t_iDimension][t_iDimension],
+   //                              const FLOATING A_source[t_iDimension][t_iDimension])
+   //{
+   //   for (int i = 0; i < t_iDimension; i++)
+   //      for (int j = 0; j < t_iDimension; j++)
+   //         A_target[i][j] = A_source[j][i];
+   //}
+   //
+
+
+
+
 
    template<primitive_floating FLOATING>
    row_major_type<FLOATING, 4> transpose(const matrix_type<FLOATING, 4> &m)
@@ -773,33 +831,329 @@ namespace geometry
 
 
    template<primitive_floating FLOATING>
-   matrix_type<FLOATING, 3> inverse(const matrix_type<FLOATING, 3> &m)
+   //matrix_type<FLOATING, 3> inverse(const matrix_type<FLOATING, 3> &m)
+   //{
+
+   //   float det = m[0][0] * (m[1][1] * m[2][2] - m[2][1] * m[1][2]) -
+   //               m[1][0] * (m[0][1] * m[2][2] - m[2][1] * m[0][2]) + m[2][0] * (m[0][1] * m[1][2] - m[1][1] * m[0][2]);
+
+   //   if (std::fabs(det) < 1e-8f)
+   //      return matrix_type<FLOATING, 3>(1.0f); // fallback to identity (non-invertible)
+
+   //   float invDet = 1.0f / det;
+
+   //   matrix_type<FLOATING, 3> r;
+   //   r[0][0] = (m[1][1] * m[2][2] - m[2][1] * m[1][2]) * invDet;
+   //   r[1][0] = -(m[1][0] * m[2][2] - m[2][0] * m[1][2]) * invDet;
+   //   r[2][0] = (m[1][0] * m[2][1] - m[2][0] * m[1][1]) * invDet;
+
+   //   r[0][1] = -(m[0][1] * m[2][2] - m[2][1] * m[0][2]) * invDet;
+   //   r[1][1] = (m[0][0] * m[2][2] - m[2][0] * m[0][2]) * invDet;
+   //   r[2][1] = -(m[0][0] * m[2][1] - m[2][0] * m[0][1]) * invDet;
+
+   //   r[0][2] = (m[0][1] * m[1][2] - m[1][1] * m[0][2]) * invDet;
+   //   r[1][2] = -(m[0][0] * m[1][2] - m[1][0] * m[0][2]) * invDet;
+   //   r[2][2] = (m[0][0] * m[1][1] - m[1][0] * m[0][1]) * invDet;
+
+   //   return r;
+   //}
+
+   
+   // ---------------- Scalar inverse ----------------
+   inline matrix_type inversed_scalar() const
+      requires(DIMENSION== 4)
    {
 
-      float det = m[0][0] * (m[1][1] * m[2][2] - m[2][1] * m[1][2]) -
-                  m[1][0] * (m[0][1] * m[2][2] - m[2][1] * m[0][2]) + m[2][0] * (m[0][1] * m[1][2] - m[1][1] * m[0][2]);
+      const auto &a = *this;
+      matrix_type result;
+      auto inv = result.fa;
+      auto m = a.fa;
 
-      if (std::fabs(det) < 1e-8f)
-         return matrix_type<FLOATING, 3>(1.0f); // fallback to identity (non-invertible)
+      inv[0] = m[5] * m[10] * m[15] - m[5] * m[11] * m[14] - m[9] * m[6] * m[15] + m[9] * m[7] * m[14] +
+               m[13] * m[6] * m[11] - m[13] * m[7] * m[10];
+      inv[4] = -m[4] * m[10] * m[15] + m[4] * m[11] * m[14] + m[8] * m[6] * m[15] - m[8] * m[7] * m[14] -
+               m[12] * m[6] * m[11] + m[12] * m[7] * m[10];
+      inv[8] = m[4] * m[9] * m[15] - m[4] * m[11] * m[13] - m[8] * m[5] * m[15] + m[8] * m[7] * m[13] +
+               m[12] * m[5] * m[11] - m[12] * m[7] * m[9];
+      inv[12] = -m[4] * m[9] * m[14] + m[4] * m[10] * m[13] + m[8] * m[5] * m[14] - m[8] * m[6] * m[13] -
+                m[12] * m[5] * m[10] + m[12] * m[6] * m[9];
 
+      inv[1] = -m[1] * m[10] * m[15] + m[1] * m[11] * m[14] + m[9] * m[2] * m[15] - m[9] * m[3] * m[14] -
+               m[13] * m[2] * m[11] + m[13] * m[3] * m[10];
+      inv[5] = m[0] * m[10] * m[15] - m[0] * m[11] * m[14] - m[8] * m[2] * m[15] + m[8] * m[3] * m[14] +
+               m[12] * m[2] * m[11] - m[12] * m[3] * m[10];
+      inv[9] = -m[0] * m[9] * m[15] + m[0] * m[11] * m[13] + m[8] * m[1] * m[15] - m[8] * m[3] * m[13] -
+               m[12] * m[1] * m[11] + m[12] * m[3] * m[9];
+      inv[13] = m[0] * m[9] * m[14] - m[0] * m[10] * m[13] - m[8] * m[1] * m[14] + m[8] * m[2] * m[13] +
+                m[12] * m[1] * m[10] - m[12] * m[2] * m[9];
+
+      inv[2] = m[1] * m[6] * m[15] - m[1] * m[7] * m[14] - m[5] * m[2] * m[15] + m[5] * m[3] * m[14] +
+               m[13] * m[2] * m[7] - m[13] * m[3] * m[6];
+      inv[6] = -m[0] * m[6] * m[15] + m[0] * m[7] * m[14] + m[4] * m[2] * m[15] - m[4] * m[3] * m[14] -
+               m[12] * m[2] * m[7] + m[12] * m[3] * m[6];
+      inv[10] = m[0] * m[5] * m[15] - m[0] * m[7] * m[13] - m[4] * m[1] * m[15] + m[4] * m[3] * m[13] +
+                m[12] * m[1] * m[7] - m[12] * m[3] * m[5];
+      inv[14] = -m[0] * m[5] * m[14] + m[0] * m[6] * m[13] + m[4] * m[1] * m[14] - m[4] * m[2] * m[13] -
+                m[12] * m[1] * m[6] + m[12] * m[2] * m[5];
+
+      inv[3] = -m[1] * m[6] * m[11] + m[1] * m[7] * m[10] + m[5] * m[2] * m[11] - m[5] * m[3] * m[10] -
+               m[9] * m[2] * m[7] + m[9] * m[3] * m[6];
+      inv[7] = m[0] * m[6] * m[11] - m[0] * m[7] * m[10] - m[4] * m[2] * m[11] + m[4] * m[3] * m[10] +
+               m[8] * m[2] * m[7] - m[8] * m[3] * m[6];
+      inv[11] = -m[0] * m[5] * m[11] + m[0] * m[7] * m[9] + m[4] * m[1] * m[11] - m[4] * m[3] * m[9] -
+                m[8] * m[1] * m[7] + m[8] * m[3] * m[5];
+      inv[15] = m[0] * m[5] * m[10] - m[0] * m[6] * m[9] - m[4] * m[1] * m[10] + m[4] * m[2] * m[9] +
+                m[8] * m[1] * m[6] - m[8] * m[2] * m[5];
+
+      float det = m[0] * inv[0] + m[1] * inv[4] + m[2] * inv[8] + m[3] * inv[12];
       float invDet = 1.0f / det;
+      for (int i = 0; i < 16; i++)
+         inv[i] *= invDet;
 
-      matrix_type<FLOATING, 3> r;
-      r[0][0] = (m[1][1] * m[2][2] - m[2][1] * m[1][2]) * invDet;
-      r[1][0] = -(m[1][0] * m[2][2] - m[2][0] * m[1][2]) * invDet;
-      r[2][0] = (m[1][0] * m[2][1] - m[2][0] * m[1][1]) * invDet;
-
-      r[0][1] = -(m[0][1] * m[2][2] - m[2][1] * m[0][2]) * invDet;
-      r[1][1] = (m[0][0] * m[2][2] - m[2][0] * m[0][2]) * invDet;
-      r[2][1] = -(m[0][0] * m[2][1] - m[2][0] * m[0][1]) * invDet;
-
-      r[0][2] = (m[0][1] * m[1][2] - m[1][1] * m[0][2]) * invDet;
-      r[1][2] = -(m[0][0] * m[1][2] - m[1][0] * m[0][2]) * invDet;
-      r[2][2] = (m[0][0] * m[1][1] - m[1][0] * m[0][1]) * invDet;
-
-      return r;
+      return result;
    }
 
+
+   inline matrix_type inversed_sse() const
+      requires(DIMENSION == 4 && std::is_same_v<FLOATING, float>)
+   {
+
+      const auto &a = *this;
+      // Load two columns at a time
+      __m128 col0 = _mm_loadu_ps(&a.fa[0]);
+      __m128 col1 = _mm_loadu_ps(&a.fa[4]);
+      __m128 col2 = _mm_loadu_ps(&a.fa[8]);
+      __m128 col3 = _mm_loadu_ps(&a.fa[12]);
+
+      // Unpack into scalar floats for fully unrolled computation
+      float m[16];
+      _mm_storeu_ps(&m[0], col0);
+      _mm_storeu_ps(&m[4], col1);
+      _mm_storeu_ps(&m[8], col2);
+      _mm_storeu_ps(&m[12], col3);
+
+      matrix_type inv;
+
+      // Fully unrolled cofactor computation (column-major)
+      inv.fa[0] = m[5] * m[10] * m[15] - m[5] * m[11] * m[14] - m[9] * m[6] * m[15] + m[9] * m[7] * m[14] +
+                  m[13] * m[6] * m[11] - m[13] * m[7] * m[10];
+      inv.fa[1] = -m[1] * m[10] * m[15] + m[1] * m[11] * m[14] + m[9] * m[2] * m[15] - m[9] * m[3] * m[14] -
+                  m[13] * m[2] * m[11] + m[13] * m[3] * m[10];
+      inv.fa[2] = m[1] * m[6] * m[15] - m[1] * m[7] * m[14] - m[5] * m[2] * m[15] + m[5] * m[3] * m[14] +
+                  m[13] * m[2] * m[7] - m[13] * m[3] * m[6];
+      inv.fa[3] = -m[1] * m[6] * m[11] + m[1] * m[7] * m[10] + m[5] * m[2] * m[11] - m[5] * m[3] * m[10] -
+                  m[9] * m[2] * m[7] + m[9] * m[3] * m[6];
+
+      inv.fa[4] = -m[4] * m[10] * m[15] + m[4] * m[11] * m[14] + m[8] * m[6] * m[15] - m[8] * m[7] * m[14] -
+                  m[12] * m[6] * m[11] + m[12] * m[7] * m[10];
+      inv.fa[5] = m[0] * m[10] * m[15] - m[0] * m[11] * m[14] - m[8] * m[2] * m[15] + m[8] * m[3] * m[14] +
+                  m[12] * m[2] * m[11] - m[12] * m[3] * m[10];
+      inv.fa[6] = -m[0] * m[6] * m[15] + m[0] * m[7] * m[14] + m[4] * m[2] * m[15] - m[4] * m[3] * m[14] -
+                  m[12] * m[2] * m[7] + m[12] * m[3] * m[6];
+      inv.fa[7] = m[0] * m[6] * m[11] - m[0] * m[7] * m[10] - m[4] * m[2] * m[11] + m[4] * m[3] * m[10] +
+                  m[8] * m[2] * m[7] - m[8] * m[3] * m[6];
+
+      inv.fa[8] = m[4] * m[9] * m[15] - m[4] * m[11] * m[13] - m[8] * m[5] * m[15] + m[8] * m[7] * m[13] +
+                  m[12] * m[5] * m[11] - m[12] * m[7] * m[9];
+      inv.fa[9] = -m[0] * m[9] * m[15] + m[0] * m[11] * m[13] + m[8] * m[1] * m[15] - m[8] * m[3] * m[13] -
+                  m[12] * m[1] * m[11] + m[12] * m[3] * m[9];
+      inv.fa[10] = m[0] * m[5] * m[15] - m[0] * m[7] * m[13] - m[4] * m[1] * m[15] + m[4] * m[3] * m[13] +
+                   m[12] * m[1] * m[7] - m[12] * m[3] * m[5];
+      inv.fa[11] = -m[0] * m[5] * m[11] + m[0] * m[7] * m[9] + m[4] * m[1] * m[11] - m[4] * m[3] * m[9] -
+                   m[8] * m[1] * m[7] + m[8] * m[3] * m[5];
+
+      inv.fa[12] = -m[4] * m[9] * m[14] + m[4] * m[10] * m[13] + m[8] * m[5] * m[14] - m[8] * m[6] * m[13] -
+                   m[12] * m[5] * m[10] + m[12] * m[6] * m[9];
+      inv.fa[13] = m[0] * m[9] * m[14] - m[0] * m[10] * m[13] - m[8] * m[1] * m[14] + m[8] * m[2] * m[13] +
+                   m[12] * m[1] * m[10] - m[12] * m[2] * m[9];
+      inv.fa[14] = -m[0] * m[5] * m[14] + m[0] * m[6] * m[13] + m[4] * m[1] * m[14] - m[4] * m[2] * m[13] -
+                   m[12] * m[1] * m[6] + m[12] * m[2] * m[5];
+      inv.fa[15] = m[0] * m[5] * m[10] - m[0] * m[6] * m[9] - m[4] * m[1] * m[10] + m[4] * m[2] * m[9] +
+                   m[8] * m[1] * m[6] - m[8] * m[2] * m[5];
+
+      // Compute determinant
+      float det = m[0] * inv.fa[0] + m[1] * inv.fa[4] + m[2] * inv.fa[8] + m[3] * inv.fa[12];
+      float invDet = 1.0f / det;
+
+      // Multiply all elements by 1/det using SSE
+      __m128 v0 = _mm_loadu_ps(&inv.fa[0]);
+      __m128 v1 = _mm_loadu_ps(&inv.fa[4]);
+      __m128 v2 = _mm_loadu_ps(&inv.fa[8]);
+      __m128 v3 = _mm_loadu_ps(&inv.fa[12]);
+      __m128 det128 = _mm_set1_ps(invDet);
+
+      _mm_storeu_ps(&inv.fa[0], _mm_mul_ps(v0, det128));
+      _mm_storeu_ps(&inv.fa[4], _mm_mul_ps(v1, det128));
+      _mm_storeu_ps(&inv.fa[8], _mm_mul_ps(v2, det128));
+      _mm_storeu_ps(&inv.fa[12], _mm_mul_ps(v3, det128));
+
+      return inv;
+   }
+
+   inline matrix_type inversed_avx() const
+      requires(DIMENSION == 4 && std::is_same_v<FLOATING, float>)
+   {
+
+      const auto &a = *this;
+      // Load columns into AVX registers (2 columns per 256-bit register)
+      __m256 col01 = _mm256_loadu_ps(&a.fa[0]); // columns 0 & 1
+      __m256 col23 = _mm256_loadu_ps(&a.fa[8]); // columns 2 & 3
+
+      // Unpack into scalar floats for full unrolled computation
+      float m[16];
+      _mm256_storeu_ps(&m[0], col01);
+      _mm256_storeu_ps(&m[8], col23);
+
+      matrix_type inv;
+
+      // Fully unrolled cofactor computation (column-major)
+      inv.fa[0] = m[5] * m[10] * m[15] - m[5] * m[11] * m[14] - m[9] * m[6] * m[15] + m[9] * m[7] * m[14] +
+                  m[13] * m[6] * m[11] - m[13] * m[7] * m[10];
+      inv.fa[1] = -m[1] * m[10] * m[15] + m[1] * m[11] * m[14] + m[9] * m[2] * m[15] - m[9] * m[3] * m[14] -
+                  m[13] * m[2] * m[11] + m[13] * m[3] * m[10];
+      inv.fa[2] = m[1] * m[6] * m[15] - m[1] * m[7] * m[14] - m[5] * m[2] * m[15] + m[5] * m[3] * m[14] +
+                  m[13] * m[2] * m[7] - m[13] * m[3] * m[6];
+      inv.fa[3] = -m[1] * m[6] * m[11] + m[1] * m[7] * m[10] + m[5] * m[2] * m[11] - m[5] * m[3] * m[10] -
+                  m[9] * m[2] * m[7] + m[9] * m[3] * m[6];
+
+      inv.fa[4] = -m[4] * m[10] * m[15] + m[4] * m[11] * m[14] + m[8] * m[6] * m[15] - m[8] * m[7] * m[14] -
+                  m[12] * m[6] * m[11] + m[12] * m[7] * m[10];
+      inv.fa[5] = m[0] * m[10] * m[15] - m[0] * m[11] * m[14] - m[8] * m[2] * m[15] + m[8] * m[3] * m[14] +
+                  m[12] * m[2] * m[11] - m[12] * m[3] * m[10];
+      inv.fa[6] = -m[0] * m[6] * m[15] + m[0] * m[7] * m[14] + m[4] * m[2] * m[15] - m[4] * m[3] * m[14] -
+                  m[12] * m[2] * m[7] + m[12] * m[3] * m[6];
+      inv.fa[7] = m[0] * m[6] * m[11] - m[0] * m[7] * m[10] - m[4] * m[2] * m[11] + m[4] * m[3] * m[10] +
+                  m[8] * m[2] * m[7] - m[8] * m[3] * m[6];
+
+      inv.fa[8] = m[4] * m[9] * m[15] - m[4] * m[11] * m[13] - m[8] * m[5] * m[15] + m[8] * m[7] * m[13] +
+                  m[12] * m[5] * m[11] - m[12] * m[7] * m[9];
+      inv.fa[9] = -m[0] * m[9] * m[15] + m[0] * m[11] * m[13] + m[8] * m[1] * m[15] - m[8] * m[3] * m[13] -
+                  m[12] * m[1] * m[11] + m[12] * m[3] * m[9];
+      inv.fa[10] = m[0] * m[5] * m[15] - m[0] * m[7] * m[13] - m[4] * m[1] * m[15] + m[4] * m[3] * m[13] +
+                   m[12] * m[1] * m[7] - m[12] * m[3] * m[5];
+      inv.fa[11] = -m[0] * m[5] * m[11] + m[0] * m[7] * m[9] + m[4] * m[1] * m[11] - m[4] * m[3] * m[9] -
+                   m[8] * m[1] * m[7] + m[8] * m[3] * m[5];
+
+      inv.fa[12] = -m[4] * m[9] * m[14] + m[4] * m[10] * m[13] + m[8] * m[5] * m[14] - m[8] * m[6] * m[13] -
+                   m[12] * m[5] * m[10] + m[12] * m[6] * m[9];
+      inv.fa[13] = m[0] * m[9] * m[14] - m[0] * m[10] * m[13] - m[8] * m[1] * m[14] + m[8] * m[2] * m[13] +
+                   m[12] * m[1] * m[10] - m[12] * m[2] * m[9];
+      inv.fa[14] = -m[0] * m[5] * m[14] + m[0] * m[6] * m[13] + m[4] * m[1] * m[14] - m[4] * m[2] * m[13] -
+                   m[12] * m[1] * m[6] + m[12] * m[2] * m[5];
+      inv.fa[15] = m[0] * m[5] * m[10] - m[0] * m[6] * m[9] - m[4] * m[1] * m[10] + m[4] * m[2] * m[9] +
+                   m[8] * m[1] * m[6] - m[8] * m[2] * m[5];
+
+      // Determinant
+      float det = m[0] * inv.fa[0] + m[1] * inv.fa[4] + m[2] * inv.fa[8] + m[3] * inv.fa[12];
+      float invDet = 1.0f / det;
+
+      // Multiply all 16 elements by 1/det using AVX
+      __m256 v0 = _mm256_loadu_ps(&inv.fa[0]);
+      __m256 v1 = _mm256_loadu_ps(&inv.fa[8]);
+      __m256 invDet256 = _mm256_set1_ps(invDet);
+      _mm256_storeu_ps(&inv.fa[0], _mm256_mul_ps(v0, invDet256));
+      _mm256_storeu_ps(&inv.fa[8], _mm256_mul_ps(v1, invDet256));
+
+      return inv;
+   }
+
+
+   inline matrix_type inversed_avx2() const
+      requires(DIMENSION == 4 && std::is_same_v<FLOATING, float>)
+   {
+
+      const auto &a = *this;
+      // Load all 16 elements
+      __m256 col01 = _mm256_loadu_ps(&a.fa[0]); // columns 0 & 1
+      __m256 col23 = _mm256_loadu_ps(&a.fa[8]); // columns 2 & 3
+
+      // Unpack columns into rows for computation
+      __m128 r0 = _mm256_castps256_ps128(col01); // col0 low
+      __m128 r1 = _mm256_extractf128_ps(col01, 1); // col1 low
+      __m128 r2 = _mm256_castps256_ps128(col23); // col2 low
+      __m128 r3 = _mm256_extractf128_ps(col23, 1); // col3 low
+
+      // Compute pairs for cofactors (fully unrolled)
+      float m[16];
+      _mm_storeu_ps(&m[0], r0);
+      _mm_storeu_ps(&m[4], r1);
+      _mm_storeu_ps(&m[8], r2);
+      _mm_storeu_ps(&m[12], r3);
+
+      matrix_type inv;
+
+      // Fully unrolled cofactor computation (column-major)
+      inv.fa[0] = m[5] * m[10] * m[15] - m[5] * m[11] * m[14] - m[9] * m[6] * m[15] + m[9] * m[7] * m[14] +
+                  m[13] * m[6] * m[11] - m[13] * m[7] * m[10];
+      inv.fa[1] = -m[1] * m[10] * m[15] + m[1] * m[11] * m[14] + m[9] * m[2] * m[15] - m[9] * m[3] * m[14] -
+                  m[13] * m[2] * m[11] + m[13] * m[3] * m[10];
+      inv.fa[2] = m[1] * m[6] * m[15] - m[1] * m[7] * m[14] - m[5] * m[2] * m[15] + m[5] * m[3] * m[14] +
+                  m[13] * m[2] * m[7] - m[13] * m[3] * m[6];
+      inv.fa[3] = -m[1] * m[6] * m[11] + m[1] * m[7] * m[10] + m[5] * m[2] * m[11] - m[5] * m[3] * m[10] -
+                  m[9] * m[2] * m[7] + m[9] * m[3] * m[6];
+
+      inv.fa[4] = -m[4] * m[10] * m[15] + m[4] * m[11] * m[14] + m[8] * m[6] * m[15] - m[8] * m[7] * m[14] -
+                  m[12] * m[6] * m[11] + m[12] * m[7] * m[10];
+      inv.fa[5] = m[0] * m[10] * m[15] - m[0] * m[11] * m[14] - m[8] * m[2] * m[15] + m[8] * m[3] * m[14] +
+                  m[12] * m[2] * m[11] - m[12] * m[3] * m[10];
+      inv.fa[6] = -m[0] * m[6] * m[15] + m[0] * m[7] * m[14] + m[4] * m[2] * m[15] - m[4] * m[3] * m[14] -
+                  m[12] * m[2] * m[7] + m[12] * m[3] * m[6];
+      inv.fa[7] = m[0] * m[6] * m[11] - m[0] * m[7] * m[10] - m[4] * m[2] * m[11] + m[4] * m[3] * m[10] +
+                  m[8] * m[2] * m[7] - m[8] * m[3] * m[6];
+
+      inv.fa[8] = m[4] * m[9] * m[15] - m[4] * m[11] * m[13] - m[8] * m[5] * m[15] + m[8] * m[7] * m[13] +
+                  m[12] * m[5] * m[11] - m[12] * m[7] * m[9];
+      inv.fa[9] = -m[0] * m[9] * m[15] + m[0] * m[11] * m[13] + m[8] * m[1] * m[15] - m[8] * m[3] * m[13] -
+                  m[12] * m[1] * m[11] + m[12] * m[3] * m[9];
+      inv.fa[10] = m[0] * m[5] * m[15] - m[0] * m[7] * m[13] - m[4] * m[1] * m[15] + m[4] * m[3] * m[13] +
+                   m[12] * m[1] * m[7] - m[12] * m[3] * m[5];
+      inv.fa[11] = -m[0] * m[5] * m[11] + m[0] * m[7] * m[9] + m[4] * m[1] * m[11] - m[4] * m[3] * m[9] -
+                   m[8] * m[1] * m[7] + m[8] * m[3] * m[5];
+
+      inv.fa[12] = -m[4] * m[9] * m[14] + m[4] * m[10] * m[13] + m[8] * m[5] * m[14] - m[8] * m[6] * m[13] -
+                   m[12] * m[5] * m[10] + m[12] * m[6] * m[9];
+      inv.fa[13] = m[0] * m[9] * m[14] - m[0] * m[10] * m[13] - m[8] * m[1] * m[14] + m[8] * m[2] * m[13] +
+                   m[12] * m[1] * m[10] - m[12] * m[2] * m[9];
+      inv.fa[14] = -m[0] * m[5] * m[14] + m[0] * m[6] * m[13] + m[4] * m[1] * m[14] - m[4] * m[2] * m[13] -
+                   m[12] * m[1] * m[6] + m[12] * m[2] * m[5];
+      inv.fa[15] = m[0] * m[5] * m[10] - m[0] * m[6] * m[9] - m[4] * m[1] * m[10] + m[4] * m[2] * m[9] +
+                   m[8] * m[1] * m[6] - m[8] * m[2] * m[5];
+
+      // Compute determinant
+      float det = m[0] * inv.fa[0] + m[1] * inv.fa[4] + m[2] * inv.fa[8] + m[3] * inv.fa[12];
+      float invDet = 1.0f / det;
+
+      // Scale all elements by 1/det using AVX2
+      __m256 v0 = _mm256_loadu_ps(&inv.fa[0]);
+      __m256 v1 = _mm256_loadu_ps(&inv.fa[8]);
+      __m256 invDet256 = _mm256_set1_ps(invDet);
+      _mm256_storeu_ps(&inv.fa[0], _mm256_mul_ps(v0, invDet256));
+      _mm256_storeu_ps(&inv.fa[8], _mm256_mul_ps(v1, invDet256));
+
+      return inv;
+   }
+
+
+   inline matrix_type inversed(const matrix_type &m)
+   {
+
+
+      if constexpr (DIMENSION != 4 || !std::is_same_v<FLOATING, float>)
+      {
+         return inverse_scalar(m);
+      }
+      else
+      {
+         if (g_cpufeatures.m_bAVX2)
+            return inversed_avx2();
+         else if (g_cpufeatures.m_bAVX)
+            return inversed_avx();
+         else if (g_cpufeatures.m_bSSE)
+            return inversed_sse();
+         else
+            return inversed_scalard);
+      }
+   }
 
    template<primitive_floating FLOATING>
    inline matrix_type <FLOATING, 4> toMat4(const quaternion_type < FLOATING > &q)
@@ -1024,17 +1378,17 @@ namespace geometry
 #if defined(__SSE__) || defined(_M_X64) || defined(_M_IX86)
 
    // float_matrix4 * vec4  (column-major) using SSE: result = col0 * vx + col1 * vy + ...
-   inline float_sequence4 mat4_mul_vec4_sse(const float_matrix4 &M, const float_sequence4 &v)
+   inline float_sequence4 mat4_mul_vec4_sse(const float_matrix4 &M, const float_sequence4 &s)
    {
       __m128 col0 = _mm_loadu_ps(&M.m[0][0]); // m00,m01,m02,m03
       __m128 col1 = _mm_loadu_ps(&M.m[1][0]);
       __m128 col2 = _mm_loadu_ps(&M.m[2][0]);
       __m128 col3 = _mm_loadu_ps(&M.m[3][0]);
 
-      __m128 vx = _mm_set1_ps(v.x);
-      __m128 vy = _mm_set1_ps(v.y);
-      __m128 vz = _mm_set1_ps(v.z);
-      __m128 vw = _mm_set1_ps(v.w);
+      __m128 vx = _mm_set1_ps(s.x);
+      __m128 vy = _mm_set1_ps(s.y);
+      __m128 vz = _mm_set1_ps(s.z);
+      __m128 vw = _mm_set1_ps(s.w);
 
       __m128 r = _mm_add_ps(_mm_add_ps(_mm_mul_ps(col0, vx), _mm_mul_ps(col1, vy)),
                             _mm_add_ps(_mm_mul_ps(col2, vz), _mm_mul_ps(col3, vw)));
@@ -1070,12 +1424,12 @@ namespace geometry
 #endif // __SSE__
 
 //   // Fallback wrappers that choose SSE version if available
-//   inline vec4 mul(const float_matrix4 &M, const vec4 &v)
+//   inline vec4 mul(const float_matrix4 &M, const vec4 &s)
 //   {
 //#if defined(__SSE__)
-//      return mat4_mul_vec4_sse(M, v);
+//      return mat4_mul_vec4_sse(M, s);
 //#else
-//      return M * v;
+//      return M * s;
 //#endif
 //   }
 //
@@ -1185,284 +1539,6 @@ namespace geometry
 //   }
 
 
-   // ---------------- Scalar inverse ----------------
-   inline float_matrix4 inverse_scalar(const float_matrix4 &a)
-   {
-      float_matrix4 result;
-      auto inv = result.fa;
-      auto m =a.fa;
-
-      inv[0] = m[5] * m[10] * m[15] - m[5] * m[11] * m[14] - m[9] * m[6] * m[15] + m[9] * m[7] * m[14] +
-                 m[13] * m[6] * m[11] - m[13] * m[7] * m[10];
-      inv[4] = -m[4] * m[10] * m[15] + m[4] * m[11] * m[14] + m[8] * m[6] * m[15] - m[8] * m[7] * m[14] -
-                 m[12] * m[6] * m[11] + m[12] * m[7] * m[10];
-      inv[8] = m[4] * m[9] * m[15] - m[4] * m[11] * m[13] - m[8] * m[5] * m[15] + m[8] * m[7] * m[13] +
-                 m[12] * m[5] * m[11] - m[12] * m[7] * m[9];
-      inv[12] = -m[4] * m[9] * m[14] + m[4] * m[10] * m[13] + m[8] * m[5] * m[14] - m[8] * m[6] * m[13] -
-                  m[12] * m[5] * m[10] + m[12] * m[6] * m[9];
-
-      inv[1] = -m[1] * m[10] * m[15] + m[1] * m[11] * m[14] + m[9] * m[2] * m[15] - m[9] * m[3] * m[14] -
-                 m[13] * m[2] * m[11] + m[13] * m[3] * m[10];
-      inv[5] = m[0] * m[10] * m[15] - m[0] * m[11] * m[14] - m[8] * m[2] * m[15] + m[8] * m[3] * m[14] +
-                 m[12] * m[2] * m[11] - m[12] * m[3] * m[10];
-      inv[9] = -m[0] * m[9] * m[15] + m[0] * m[11] * m[13] + m[8] * m[1] * m[15] - m[8] * m[3] * m[13] -
-                 m[12] * m[1] * m[11] + m[12] * m[3] * m[9];
-      inv[13] = m[0] * m[9] * m[14] - m[0] * m[10] * m[13] - m[8] * m[1] * m[14] + m[8] * m[2] * m[13] +
-                  m[12] * m[1] * m[10] - m[12] * m[2] * m[9];
-
-      inv[2] = m[1] * m[6] * m[15] - m[1] * m[7] * m[14] - m[5] * m[2] * m[15] + m[5] * m[3] * m[14] +
-                 m[13] * m[2] * m[7] - m[13] * m[3] * m[6];
-      inv[6] = -m[0] * m[6] * m[15] + m[0] * m[7] * m[14] + m[4] * m[2] * m[15] - m[4] * m[3] * m[14] -
-                 m[12] * m[2] * m[7] + m[12] * m[3] * m[6];
-      inv[10] = m[0] * m[5] * m[15] - m[0] * m[7] * m[13] - m[4] * m[1] * m[15] + m[4] * m[3] * m[13] +
-                  m[12] * m[1] * m[7] - m[12] * m[3] * m[5];
-      inv[14] = -m[0] * m[5] * m[14] + m[0] * m[6] * m[13] + m[4] * m[1] * m[14] - m[4] * m[2] * m[13] -
-                  m[12] * m[1] * m[6] + m[12] * m[2] * m[5];
-
-      inv[3] = -m[1] * m[6] * m[11] + m[1] * m[7] * m[10] + m[5] * m[2] * m[11] - m[5] * m[3] * m[10] -
-                 m[9] * m[2] * m[7] + m[9] * m[3] * m[6];
-      inv[7] = m[0] * m[6] * m[11] - m[0] * m[7] * m[10] - m[4] * m[2] * m[11] + m[4] * m[3] * m[10] +
-                 m[8] * m[2] * m[7] - m[8] * m[3] * m[6];
-      inv[11] = -m[0] * m[5] * m[11] + m[0] * m[7] * m[9] + m[4] * m[1] * m[11] - m[4] * m[3] * m[9] -
-                  m[8] * m[1] * m[7] + m[8] * m[3] * m[5];
-      inv[15] = m[0] * m[5] * m[10] - m[0] * m[6] * m[9] - m[4] * m[1] * m[10] + m[4] * m[2] * m[9] +
-                  m[8] * m[1] * m[6] - m[8] * m[2] * m[5];
-
-      float det = m[0] * inv[0] + m[1] * inv[4] + m[2] * inv[8] + m[3] * inv[12];
-      float invDet = 1.0f / det;
-      for (int i = 0; i < 16; i++)
-         inv[i] *= invDet;
-
-      return result;
-   }
-
-
-
-
-   inline float_matrix4 inverse_sse(const float_matrix4 &a)
-   {
-      // Load two columns at a time
-      __m128 col0 = _mm_loadu_ps(&a.fa[0]);
-      __m128 col1 = _mm_loadu_ps(&a.fa[4]);
-      __m128 col2 = _mm_loadu_ps(&a.fa[8]);
-      __m128 col3 = _mm_loadu_ps(&a.fa[12]);
-
-      // Unpack into scalar floats for fully unrolled computation
-      float m[16];
-      _mm_storeu_ps(&m[0], col0);
-      _mm_storeu_ps(&m[4], col1);
-      _mm_storeu_ps(&m[8], col2);
-      _mm_storeu_ps(&m[12], col3);
-
-      float_matrix4 inv;
-
-      // Fully unrolled cofactor computation (column-major)
-      inv.fa[0] = m[5] * m[10] * m[15] - m[5] * m[11] * m[14] - m[9] * m[6] * m[15] + m[9] * m[7] * m[14] +
-                 m[13] * m[6] * m[11] - m[13] * m[7] * m[10];
-      inv.fa[1] = -m[1] * m[10] * m[15] + m[1] * m[11] * m[14] + m[9] * m[2] * m[15] - m[9] * m[3] * m[14] -
-                 m[13] * m[2] * m[11] + m[13] * m[3] * m[10];
-      inv.fa[2] = m[1] * m[6] * m[15] - m[1] * m[7] * m[14] - m[5] * m[2] * m[15] + m[5] * m[3] * m[14] +
-                 m[13] * m[2] * m[7] - m[13] * m[3] * m[6];
-      inv.fa[3] = -m[1] * m[6] * m[11] + m[1] * m[7] * m[10] + m[5] * m[2] * m[11] - m[5] * m[3] * m[10] -
-                 m[9] * m[2] * m[7] + m[9] * m[3] * m[6];
-
-      inv.fa[4] = -m[4] * m[10] * m[15] + m[4] * m[11] * m[14] + m[8] * m[6] * m[15] - m[8] * m[7] * m[14] -
-                 m[12] * m[6] * m[11] + m[12] * m[7] * m[10];
-      inv.fa[5] = m[0] * m[10] * m[15] - m[0] * m[11] * m[14] - m[8] * m[2] * m[15] + m[8] * m[3] * m[14] +
-                 m[12] * m[2] * m[11] - m[12] * m[3] * m[10];
-      inv.fa[6] = -m[0] * m[6] * m[15] + m[0] * m[7] * m[14] + m[4] * m[2] * m[15] - m[4] * m[3] * m[14] -
-                 m[12] * m[2] * m[7] + m[12] * m[3] * m[6];
-      inv.fa[7] = m[0] * m[6] * m[11] - m[0] * m[7] * m[10] - m[4] * m[2] * m[11] + m[4] * m[3] * m[10] +
-                 m[8] * m[2] * m[7] - m[8] * m[3] * m[6];
-
-      inv.fa[8] = m[4] * m[9] * m[15] - m[4] * m[11] * m[13] - m[8] * m[5] * m[15] + m[8] * m[7] * m[13] +
-                 m[12] * m[5] * m[11] - m[12] * m[7] * m[9];
-      inv.fa[9] = -m[0] * m[9] * m[15] + m[0] * m[11] * m[13] + m[8] * m[1] * m[15] - m[8] * m[3] * m[13] -
-                 m[12] * m[1] * m[11] + m[12] * m[3] * m[9];
-      inv.fa[10] = m[0] * m[5] * m[15] - m[0] * m[7] * m[13] - m[4] * m[1] * m[15] + m[4] * m[3] * m[13] +
-                  m[12] * m[1] * m[7] - m[12] * m[3] * m[5];
-      inv.fa[11] = -m[0] * m[5] * m[11] + m[0] * m[7] * m[9] + m[4] * m[1] * m[11] - m[4] * m[3] * m[9] -
-                  m[8] * m[1] * m[7] + m[8] * m[3] * m[5];
-
-      inv.fa[12] = -m[4] * m[9] * m[14] + m[4] * m[10] * m[13] + m[8] * m[5] * m[14] - m[8] * m[6] * m[13] -
-                  m[12] * m[5] * m[10] + m[12] * m[6] * m[9];
-      inv.fa[13] = m[0] * m[9] * m[14] - m[0] * m[10] * m[13] - m[8] * m[1] * m[14] + m[8] * m[2] * m[13] +
-                  m[12] * m[1] * m[10] - m[12] * m[2] * m[9];
-      inv.fa[14] = -m[0] * m[5] * m[14] + m[0] * m[6] * m[13] + m[4] * m[1] * m[14] - m[4] * m[2] * m[13] -
-                  m[12] * m[1] * m[6] + m[12] * m[2] * m[5];
-      inv.fa[15] = m[0] * m[5] * m[10] - m[0] * m[6] * m[9] - m[4] * m[1] * m[10] + m[4] * m[2] * m[9] +
-                  m[8] * m[1] * m[6] - m[8] * m[2] * m[5];
-
-      // Compute determinant
-      float det = m[0] * inv.fa[0] + m[1] * inv.fa[4] + m[2] * inv.fa[8] + m[3] * inv.fa[12];
-      float invDet = 1.0f / det;
-
-      // Multiply all elements by 1/det using SSE
-      __m128 v0 = _mm_loadu_ps(&inv.fa[0]);
-      __m128 v1 = _mm_loadu_ps(&inv.fa[4]);
-      __m128 v2 = _mm_loadu_ps(&inv.fa[8]);
-      __m128 v3 = _mm_loadu_ps(&inv.fa[12]);
-      __m128 det128 = _mm_set1_ps(invDet);
-
-      _mm_storeu_ps(&inv.fa[0], _mm_mul_ps(v0, det128));
-      _mm_storeu_ps(&inv.fa[4], _mm_mul_ps(v1, det128));
-      _mm_storeu_ps(&inv.fa[8], _mm_mul_ps(v2, det128));
-      _mm_storeu_ps(&inv.fa[12], _mm_mul_ps(v3, det128));
-
-      return inv;
-   }
-
-   inline float_matrix4 inverse_avx(const float_matrix4 &a)
-   {
-      // Load columns into AVX registers (2 columns per 256-bit register)
-      __m256 col01 = _mm256_loadu_ps(&a.fa[0]); // columns 0 & 1
-      __m256 col23 = _mm256_loadu_ps(&a.fa[8]); // columns 2 & 3
-
-      // Unpack into scalar floats for full unrolled computation
-      float m[16];
-      _mm256_storeu_ps(&m[0], col01);
-      _mm256_storeu_ps(&m[8], col23);
-
-      float_matrix4 inv;
-
-      // Fully unrolled cofactor computation (column-major)
-      inv.fa[0] = m[5] * m[10] * m[15] - m[5] * m[11] * m[14] - m[9] * m[6] * m[15] + m[9] * m[7] * m[14] +
-                 m[13] * m[6] * m[11] - m[13] * m[7] * m[10];
-      inv.fa[1] = -m[1] * m[10] * m[15] + m[1] * m[11] * m[14] + m[9] * m[2] * m[15] - m[9] * m[3] * m[14] -
-                 m[13] * m[2] * m[11] + m[13] * m[3] * m[10];
-      inv.fa[2] = m[1] * m[6] * m[15] - m[1] * m[7] * m[14] - m[5] * m[2] * m[15] + m[5] * m[3] * m[14] +
-                 m[13] * m[2] * m[7] - m[13] * m[3] * m[6];
-      inv.fa[3] = -m[1] * m[6] * m[11] + m[1] * m[7] * m[10] + m[5] * m[2] * m[11] - m[5] * m[3] * m[10] -
-                 m[9] * m[2] * m[7] + m[9] * m[3] * m[6];
-
-      inv.fa[4] = -m[4] * m[10] * m[15] + m[4] * m[11] * m[14] + m[8] * m[6] * m[15] - m[8] * m[7] * m[14] -
-                 m[12] * m[6] * m[11] + m[12] * m[7] * m[10];
-      inv.fa[5] = m[0] * m[10] * m[15] - m[0] * m[11] * m[14] - m[8] * m[2] * m[15] + m[8] * m[3] * m[14] +
-                 m[12] * m[2] * m[11] - m[12] * m[3] * m[10];
-      inv.fa[6] = -m[0] * m[6] * m[15] + m[0] * m[7] * m[14] + m[4] * m[2] * m[15] - m[4] * m[3] * m[14] -
-                 m[12] * m[2] * m[7] + m[12] * m[3] * m[6];
-      inv.fa[7] = m[0] * m[6] * m[11] - m[0] * m[7] * m[10] - m[4] * m[2] * m[11] + m[4] * m[3] * m[10] +
-                 m[8] * m[2] * m[7] - m[8] * m[3] * m[6];
-
-      inv.fa[8] = m[4] * m[9] * m[15] - m[4] * m[11] * m[13] - m[8] * m[5] * m[15] + m[8] * m[7] * m[13] +
-                 m[12] * m[5] * m[11] - m[12] * m[7] * m[9];
-      inv.fa[9] = -m[0] * m[9] * m[15] + m[0] * m[11] * m[13] + m[8] * m[1] * m[15] - m[8] * m[3] * m[13] -
-                 m[12] * m[1] * m[11] + m[12] * m[3] * m[9];
-      inv.fa[10] = m[0] * m[5] * m[15] - m[0] * m[7] * m[13] - m[4] * m[1] * m[15] + m[4] * m[3] * m[13] +
-                  m[12] * m[1] * m[7] - m[12] * m[3] * m[5];
-      inv.fa[11] = -m[0] * m[5] * m[11] + m[0] * m[7] * m[9] + m[4] * m[1] * m[11] - m[4] * m[3] * m[9] -
-                  m[8] * m[1] * m[7] + m[8] * m[3] * m[5];
-
-      inv.fa[12] = -m[4] * m[9] * m[14] + m[4] * m[10] * m[13] + m[8] * m[5] * m[14] - m[8] * m[6] * m[13] -
-                  m[12] * m[5] * m[10] + m[12] * m[6] * m[9];
-      inv.fa[13] = m[0] * m[9] * m[14] - m[0] * m[10] * m[13] - m[8] * m[1] * m[14] + m[8] * m[2] * m[13] +
-                  m[12] * m[1] * m[10] - m[12] * m[2] * m[9];
-      inv.fa[14] = -m[0] * m[5] * m[14] + m[0] * m[6] * m[13] + m[4] * m[1] * m[14] - m[4] * m[2] * m[13] -
-                  m[12] * m[1] * m[6] + m[12] * m[2] * m[5];
-      inv.fa[15] = m[0] * m[5] * m[10] - m[0] * m[6] * m[9] - m[4] * m[1] * m[10] + m[4] * m[2] * m[9] +
-                  m[8] * m[1] * m[6] - m[8] * m[2] * m[5];
-
-      // Determinant
-      float det = m[0] * inv.fa[0] + m[1] * inv.fa[4] + m[2] * inv.fa[8] + m[3] * inv.fa[12];
-      float invDet = 1.0f / det;
-
-      // Multiply all 16 elements by 1/det using AVX
-      __m256 v0 = _mm256_loadu_ps(&inv.fa[0]);
-      __m256 v1 = _mm256_loadu_ps(&inv.fa[8]);
-      __m256 invDet256 = _mm256_set1_ps(invDet);
-      _mm256_storeu_ps(&inv.fa[0], _mm256_mul_ps(v0, invDet256));
-      _mm256_storeu_ps(&inv.fa[8], _mm256_mul_ps(v1, invDet256));
-
-      return inv;
-   }
-
-
-   inline float_matrix4 inverse_avx2(const float_matrix4 &a)
-   {
-      // Load all 16 elements
-      __m256 col01 = _mm256_loadu_ps(&a.fa[0]); // columns 0 & 1
-      __m256 col23 = _mm256_loadu_ps(&a.fa[8]); // columns 2 & 3
-
-      // Unpack columns into rows for computation
-      __m128 r0 = _mm256_castps256_ps128(col01); // col0 low
-      __m128 r1 = _mm256_extractf128_ps(col01, 1); // col1 low
-      __m128 r2 = _mm256_castps256_ps128(col23); // col2 low
-      __m128 r3 = _mm256_extractf128_ps(col23, 1); // col3 low
-
-      // Compute pairs for cofactors (fully unrolled)
-      float m[16];
-      _mm_storeu_ps(&m[0], r0);
-      _mm_storeu_ps(&m[4], r1);
-      _mm_storeu_ps(&m[8], r2);
-      _mm_storeu_ps(&m[12], r3);
-
-      float_matrix4 inv;
-
-      // Fully unrolled cofactor computation (column-major)
-      inv.fa[0] = m[5] * m[10] * m[15] - m[5] * m[11] * m[14] - m[9] * m[6] * m[15] + m[9] * m[7] * m[14] +
-                 m[13] * m[6] * m[11] - m[13] * m[7] * m[10];
-      inv.fa[1] = -m[1] * m[10] * m[15] + m[1] * m[11] * m[14] + m[9] * m[2] * m[15] - m[9] * m[3] * m[14] -
-                 m[13] * m[2] * m[11] + m[13] * m[3] * m[10];
-      inv.fa[2] = m[1] * m[6] * m[15] - m[1] * m[7] * m[14] - m[5] * m[2] * m[15] + m[5] * m[3] * m[14] +
-                 m[13] * m[2] * m[7] - m[13] * m[3] * m[6];
-      inv.fa[3] = -m[1] * m[6] * m[11] + m[1] * m[7] * m[10] + m[5] * m[2] * m[11] - m[5] * m[3] * m[10] -
-                 m[9] * m[2] * m[7] + m[9] * m[3] * m[6];
-
-      inv.fa[4] = -m[4] * m[10] * m[15] + m[4] * m[11] * m[14] + m[8] * m[6] * m[15] - m[8] * m[7] * m[14] -
-                 m[12] * m[6] * m[11] + m[12] * m[7] * m[10];
-      inv.fa[5] = m[0] * m[10] * m[15] - m[0] * m[11] * m[14] - m[8] * m[2] * m[15] + m[8] * m[3] * m[14] +
-                 m[12] * m[2] * m[11] - m[12] * m[3] * m[10];
-      inv.fa[6] = -m[0] * m[6] * m[15] + m[0] * m[7] * m[14] + m[4] * m[2] * m[15] - m[4] * m[3] * m[14] -
-                 m[12] * m[2] * m[7] + m[12] * m[3] * m[6];
-      inv.fa[7] = m[0] * m[6] * m[11] - m[0] * m[7] * m[10] - m[4] * m[2] * m[11] + m[4] * m[3] * m[10] +
-                 m[8] * m[2] * m[7] - m[8] * m[3] * m[6];
-
-      inv.fa[8] = m[4] * m[9] * m[15] - m[4] * m[11] * m[13] - m[8] * m[5] * m[15] + m[8] * m[7] * m[13] +
-                 m[12] * m[5] * m[11] - m[12] * m[7] * m[9];
-      inv.fa[9] = -m[0] * m[9] * m[15] + m[0] * m[11] * m[13] + m[8] * m[1] * m[15] - m[8] * m[3] * m[13] -
-                 m[12] * m[1] * m[11] + m[12] * m[3] * m[9];
-      inv.fa[10] = m[0] * m[5] * m[15] - m[0] * m[7] * m[13] - m[4] * m[1] * m[15] + m[4] * m[3] * m[13] +
-                  m[12] * m[1] * m[7] - m[12] * m[3] * m[5];
-      inv.fa[11] = -m[0] * m[5] * m[11] + m[0] * m[7] * m[9] + m[4] * m[1] * m[11] - m[4] * m[3] * m[9] -
-                  m[8] * m[1] * m[7] + m[8] * m[3] * m[5];
-
-      inv.fa[12] = -m[4] * m[9] * m[14] + m[4] * m[10] * m[13] + m[8] * m[5] * m[14] - m[8] * m[6] * m[13] -
-                  m[12] * m[5] * m[10] + m[12] * m[6] * m[9];
-      inv.fa[13] = m[0] * m[9] * m[14] - m[0] * m[10] * m[13] - m[8] * m[1] * m[14] + m[8] * m[2] * m[13] +
-                  m[12] * m[1] * m[10] - m[12] * m[2] * m[9];
-      inv.fa[14] = -m[0] * m[5] * m[14] + m[0] * m[6] * m[13] + m[4] * m[1] * m[14] - m[4] * m[2] * m[13] -
-                  m[12] * m[1] * m[6] + m[12] * m[2] * m[5];
-      inv.fa[15] = m[0] * m[5] * m[10] - m[0] * m[6] * m[9] - m[4] * m[1] * m[10] + m[4] * m[2] * m[9] +
-                  m[8] * m[1] * m[6] - m[8] * m[2] * m[5];
-
-      // Compute determinant
-      float det = m[0] * inv.fa[0] + m[1] * inv.fa[4] + m[2] * inv.fa[8] + m[3] * inv.fa[12];
-      float invDet = 1.0f / det;
-
-      // Scale all elements by 1/det using AVX2
-      __m256 v0 = _mm256_loadu_ps(&inv.fa[0]);
-      __m256 v1 = _mm256_loadu_ps(&inv.fa[8]);
-      __m256 invDet256 = _mm256_set1_ps(invDet);
-      _mm256_storeu_ps(&inv.fa[0], _mm256_mul_ps(v0, invDet256));
-      _mm256_storeu_ps(&inv.fa[8], _mm256_mul_ps(v1, invDet256));
-
-      return inv;
-   }
-
-
-   inline float_matrix4 inverse(const float_matrix4 &m)
-   {
-      
-      if (g_cpufeatures.m_bAVX2)
-            return inverse_avx2(m);
-      else if (g_cpufeatures.m_bAVX)
-            return inverse_avx(m);
-      else if (g_cpufeatures.m_bSSE)
-            return inverse_sse(m);
-      else
-         return inverse_scalar(m);
-
-   }
 
 
       // Multiply 4x4 matrix `a` by 4x4 matrix `b` (a*b) using AVX2 fully unrolled
@@ -1583,3 +1659,12 @@ namespace geometry
 //
 //_mm256_storeu_ps(&inv.fa[0], _mm256_mul_ps(v0, det256));
 //_mm256_storeu_ps(&inv.fa[8], _mm256_mul_ps(v1, det256));
+
+
+template<primitive_floating FLOATING, int t_iDimension>  
+   matrix_type<FLOATING, 4> row_major_type< FLOATING, t_iDimension > transpose(const row_major_type<FLOATING, 4> &m);
+{
+   matrix_type<FLOATING, 4> r;
+   _transpose(4, m.m);
+   return r;
+}

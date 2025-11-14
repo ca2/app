@@ -250,7 +250,7 @@ struct sequence_type :
    constexpr sequence_type()
    {
    
-      set_all(0);
+      set_null();
       
    }
 
@@ -297,8 +297,26 @@ struct sequence_type :
    }
 
 
+   void set_null() 
+   {
+      set_all(0); 
+   }
 
-   
+
+   sequence_type & null()
+   {
+
+      set_null();
+
+      return *this;
+
+   }
+
+   static sequence_type Null()
+   {
+
+      return {};
+   }
 
    template < primitive_number NUMBER1 >
    constexpr sequence_type(const sequence_t_type < NUMBER1, 4 > & sequence)
@@ -1019,15 +1037,17 @@ struct sequence_type :
       else
       {
 
-         return {0.0f};
+         return null();
+
       }
+
    }
 
 
    sequence_type normalized() const
    {
 
-      auto sequence = *this;
+      sequence_type sequence = *this;
 
       return sequence.normalize();
 

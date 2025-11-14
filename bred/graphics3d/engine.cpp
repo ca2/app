@@ -315,7 +315,7 @@ namespace graphics3d
 
       //   float aspect = m_pusergraphics3d->getAspectRatio();
 
-      //   pcameraScene->setPerspectiveProjection(glm::radians(50.f), aspect, 0.1f, 100.f);
+      //   pcameraScene->setPerspectiveProjection(::radians(50.f), aspect, 0.1f, 100.f);
 
       //   pcameraScene->UpdateCameraVectors();
 
@@ -369,7 +369,7 @@ namespace graphics3d
       //floating_matrix4 makeViewMatrix(floating_sequence3 translation, floating_sequence3 rotationEulerDegrees, )
       //{
          // Convert degrees to radians
-         //floating_sequence3 rotation = glm::radians(rotationEulerDegrees);
+         //floating_sequence3 rotation = ::radians(rotationEulerDegrees);
 
          // Scale
          floating_matrix4 S = floating_matrix4(1.0f).scaled(scale);

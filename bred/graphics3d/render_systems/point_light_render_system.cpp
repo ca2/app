@@ -233,7 +233,8 @@ namespace graphics3d
 
       auto& globalubo = pscene->global_ubo();
 
-      auto rotateLight = geometry::rotate(floating_matrix4(1.f), 0.5f * dt, { 0.f, -1.f, 0.f });
+      //auto rotateLight = floating_matrix4(1.f);
+      //rotateLight.rotate(0.5f * dt, { 0.f, -1.f, 0.f });
 
       int lightIndex = 0;
 
@@ -241,7 +242,9 @@ namespace graphics3d
 
       for (auto ppointlight : pointlighta)
       {
-         auto rotateLight = geometry::rotate(floating_matrix4(1.f), 0.5f * dt, {0.f, -1.f, 0.f});
+         auto rotateLight = floating_matrix4(1.f);
+         
+         rotateLight.rotate(radians(0.5f * dt), {0.f, -1.f, 0.f});
 
          // update light position
          ppointlight->m_transform.m_vec3Position =

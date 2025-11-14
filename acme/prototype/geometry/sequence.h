@@ -904,7 +904,7 @@ struct sequence_type :
    }
    
    
-   COORDINATE dot(const sequence_type & vector) const
+   COORDINATE dotted(const sequence_type & vector) const
    {
 
       COORDINATE result = this->m_coordinatea[0] * vector.m_coordinatea[0];
@@ -978,7 +978,7 @@ struct sequence_type :
       
    }
 
-   sequence_type<COORDINATE, 3> cross(const sequence_type<COORDINATE, 3> &b) const
+   sequence_type<COORDINATE, 3> crossed(const sequence_type<COORDINATE, 3> &b) const
       requires(SIZE == 3)
    {
       const auto &a = *this;

@@ -63,7 +63,9 @@ struct row_major_type
    
 };
 
-
+struct translation_t
+{
+};
 /// Simple matrix class with column-major storage
 template <primitive_floating FLOATING_TYPE, int t_iDimension>
 struct matrix_type
@@ -129,6 +131,19 @@ struct matrix_type
       this->m[2][2] = m[2][2];
    }
 
+   // ------------------------------
+   // Translation
+   // ------------------------------
+   matrix_type(translation_t, const sequence_type <FLOATING, 3> &t): 
+      matrix_type((FLOATING) 1)
+   {
+
+      this->m[3][0] = t.x; // last row, first column
+      this->m[3][1] = t.y;
+      this->m[3][2] = t.z;
+
+      
+   }
 
    matrix_type(const matrix_type<FLOATING, 4> &m)
       requires(DIMENSION == 4)

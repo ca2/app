@@ -190,6 +190,10 @@ namespace gpu_opengl
 //       /// generate lutBrdf
 //       /// @return lutBrdf
 //       virtual ::pointer < ::gpu::texture > generateBRDFlut();
+      floating_matrix4 rotateFromAxes(const floating_sequence3 &right, const floating_sequence3 &up,
+                                      const floating_sequence3 &forward) override; // OpenGL forward = -f
+
+      floating_matrix4 lookAt(const float_sequence3 &eye, const float_sequence3 &center, const float_sequence3 &up) override;
 
    };
 

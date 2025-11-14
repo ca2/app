@@ -224,7 +224,7 @@ namespace gpu
             const floating_sequence3 &n = vertices[i].normal;
             const floating_sequence3 &t = tan1[i];
 
-            floating_sequence3 tangent = geometry::normalize(t - n * n.dot(t));
+            auto tangent = (t - n * n.dot(t)).normalized();
             float sign = (n.cross(t).dot(tan2[i]) < 0.0f) ? -1.0f : 1.0f;
 
             vertices[i].tangent = floating_sequence4(tangent, sign);

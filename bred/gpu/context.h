@@ -454,6 +454,16 @@ namespace gpu
       //    return *get_tinyobj(path);
       //
       // }
+      // ------------------------------
+      // Rotation from camera axes
+      // ------------------------------
+      // Builds a matrix from right, up, forward vectors
+      virtual floating_matrix4 rotateFromAxes(const floating_sequence3 &right, const floating_sequence3 &up,
+                                      const floating_sequence3 &forward);  // OpenGL forward = -f
+
+      virtual floating_matrix4 lookAt(const float_sequence3 &eye, const float_sequence3 &center,
+                                      const float_sequence3 &up);
+
    };
 
 

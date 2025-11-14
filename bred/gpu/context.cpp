@@ -700,6 +700,23 @@ return {};
 
 
    }
+   floating_matrix4 context::rotateFromAxes(const floating_sequence3 & right, const floating_sequence3 & up,
+                                           const floating_sequence3 & forward) // OpenGL forward = -f
+   {
+
+      return {1.0f};
+   }
+
+
+   floating_matrix4 context::lookAt(const float_sequence3 & eye, const float_sequence3 & center,
+
+                            const float_sequence3 & up)
+   {
+
+
+      return {1.0f};
+          }
+
 
 
    ::gpu::command_buffer* context::defer_get_upload_command_buffer()

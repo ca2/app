@@ -457,7 +457,9 @@ namespace gpu
       // 
       // 
       
-
+      virtual floating_matrix4 ortho(float left, float right, float bottom, float top, float zNear = -1.0f,
+                                     float zFar = 1.0f);
+     
       virtual floating_matrix4 perspective(float fovyRadians, float aspect, float zNear, float zFar);
 
       // 

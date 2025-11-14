@@ -29,8 +29,8 @@ namespace geometry
 
 
    template<primitive_floating FLOATING, int t_iDimension>
-   inline void _transpose(FLOATING A_target[t_iDimension][t_iDimension],
-                                 const FLOATING A_source[t_iDimension][t_iDimension])
+   inline void _transpose(FLOATING(& A_target)[t_iDimension][t_iDimension],
+                                 const FLOATING(& A_source)[t_iDimension][t_iDimension])
    {
       for (int i = 0; i < t_iDimension; i++)
          for (int j = 0; j < t_iDimension; j++)
@@ -103,7 +103,9 @@ struct matrix_type
    union
    {
 
-      column m[DIMENSION];
+      
+      column columna[DIMENSION];
+      FLOATING m[DIMENSION][DIMENSION];
       FLOATING fa[DIMENSION * DIMENSION]; // floating number array
 
    };
@@ -136,6 +138,31 @@ struct matrix_type
       requires(DIMENSION == 4)
    {
       ::memory_copy(this->m, m.m, sizeof(FLOATING) * DIMENSION * DIMENSION);
+   }
+
+   template<primitive_floating FLOATING1>
+   matrix_type(const FLOATING1 *p) /// expects p to point to an array of at least DIMENSION * DIMENSION elements 
+      /// in column-major order
+      requires(DIMENSION == 4)
+   {
+      auto c = DIMENSION * DIMENSION;
+      for (int i = 0; i < c; ++i)
+         this->fa[i] = (FLOATING)p[i];
+      
+   }
+
+   matrix_type(const matrix_type<FLOATING, 3> & m)
+      requires(DIMENSION == 4)
+       : matrix_type((FLOATING)1)
+   {
+      //// Initialize as identity
+      //*this = floating_matrix4(1.0f);
+
+      // Copy the 3×3 into the upper-left of the 4×4
+      // (column-major order)
+      for (int c = 0; c < 3; ++c)
+         for (int r = 0; r < 3; ++r)
+            this->m[c][r] = m.m[c][r];
    }
 
    matrix_type(FLOATING diagonal) {
@@ -533,10 +560,10 @@ inline matrix_type mul_avx2(const matrix_type &B) const
    const column & operator[](int i) const
    {
 
-      return m[i];
+      return columna[i];
    }
 
-   column & operator[](int i) { return m[i]; }
+   column & operator[](int i) { return columna[i]; }
 
 
    matrix_type & rotate(const sequence_type<FLOATING, 3>& axis, FLOATING angle)
@@ -702,22 +729,32 @@ inline matrix_type mul_avx2(const matrix_type &B) const
    }
 
    
+   //matrix_type transposed() const
+   //   requires(DIMENSION == 3)
+   //{
+   //   auto &m = *this;
+   //   matrix_type r;
+   //   r[0][0] = m[0][0];
+   //   r[0][1] = m[1][0];
+   //   r[0][2] = m[2][0];
+
+   //   r[1][0] = m[0][1];
+   //   r[1][1] = m[1][1];
+   //   r[1][2] = m[2][1];
+
+   //   r[2][0] = m[0][2];
+   //   r[2][1] = m[1][2];
+   //   r[2][2] = m[2][2];
+   //   return r;
+   //}
+
+      
    matrix_type transposed() const
-      requires(DIMENSION == 3)
+      //requires(DIMENSION == 4)
    {
       auto &m = *this;
       matrix_type r;
-      r[0][0] = m[0][0];
-      r[0][1] = m[1][0];
-      r[0][2] = m[2][0];
-
-      r[1][0] = m[0][1];
-      r[1][1] = m[1][1];
-      r[1][2] = m[2][1];
-
-      r[2][0] = m[0][2];
-      r[2][1] = m[1][2];
-      r[2][2] = m[2][2];
+      ::geometry::_transpose(r.m, m.m);
       return r;
    }
 

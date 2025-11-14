@@ -3040,6 +3040,25 @@ color = vec4(c.r,c.g, c.b, c.a);
       return M;
    }
 
+   floating_matrix4 context::ortho(float left, float right, float bottom, float top, float zNear,
+                                 float zFar)
+   {
+      floating_matrix4 M(1.0f); // identity
+
+      float rl = right - left;
+      float tb = top - bottom;
+      float fn = zFar - zNear;
+
+      M[0][0] = 2.0f / rl;
+      M[1][1] = 2.0f / tb;
+      M[2][2] = -2.0f / fn;
+
+      M[3][0] = -(right + left) / rl;
+      M[3][1] = -(top + bottom) / tb;
+      M[3][2] = -(zFar + zNear) / fn;
+
+      return M;
+   }
 
    floating_matrix4 context::perspective(float fovyRadians, float aspect, float zNear, float zFar)
    {

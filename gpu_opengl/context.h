@@ -191,6 +191,10 @@ namespace gpu_opengl
 //       /// @return lutBrdf
 //       virtual ::pointer < ::gpu::texture > generateBRDFlut();
 
+       floating_matrix4 ortho(float left, float right, float bottom, float top, float zNear = -1.0f,
+                                    float zFar = 1.0f) override;
+     
+
       floating_matrix4 perspective(float fovyRadians, float aspect, float zNear, float zFar);
 
       floating_matrix4 rotateFromAxes(const floating_sequence3 &right, const floating_sequence3 &up,

@@ -350,7 +350,20 @@ struct matrix_type
    }
 
    
+   inline sequence_type<FLOATING, 3> operator*(const sequence_type<FLOATING, 3> &v) const
+      requires(DIMENSION == 3)
+   {
 
+      const auto &M = *this;
+      sequence_type<FLOATING, 3> result;
+
+      // Column-major OpenGL multiplication: result = M * v
+      result.x = M[0][0] * v.x + M[1][0] * v.y + M[2][0] * v.z;
+      result.y = M[0][1] * v.x + M[1][1] * v.y + M[2][1] * v.z;
+      result.z = M[0][2] * v.x + M[1][2] * v.y + M[2][2] * v.z;
+
+      return result;
+   }
    inline matrix_type mul_scalar(const matrix_type &B) const
       requires(DIMENSION == 4)
    {
@@ -1943,4 +1956,36 @@ inline matrix_type<FLOATING, t_iDimension> row_major_type< FLOATING, t_iDimensio
    matrix_type<FLOATING, 4> r;
    _transpose(4, this->m);
    return r;
+}
+
+
+template<primitive_number NUMBER, int t_iSize>
+template<primitive_floating FLOATING1>
+inline sequence_type<NUMBER, t_iSize>
+sequence_type<NUMBER, t_iSize>::operator*(const matrix_type<FLOATING1, 3> &M) const
+   requires(t_iSize == 3 && std::is_same_v < FLOATING1, NUMBER >)
+{
+   const auto &v = *this;
+   sequence_type result;
+   result.x = v.x * M[0][0] + v.y * M[0][1] + v.z * M[0][2];
+   result.y = v.x * M[1][0] + v.y * M[1][1] + v.z * M[1][2];
+   result.z = v.x * M[2][0] + v.y * M[2][1] + v.z * M[2][2];
+   return result;
+}
+
+
+template<primitive_number NUMBER, int t_iSize>
+   template<primitive_floating FLOATING1>
+inline sequence_type<NUMBER, t_iSize>
+sequence_type<NUMBER, t_iSize>::operator*(const matrix_type<FLOATING1, 4> &M) const
+   requires(t_iSize == 4 && ::std::is_same_v<FLOATING1, NUMBER>)
+{
+   sequence_type result;
+
+   result.x = v.x * M[0][0] + v.y * M[0][1] + v.z * M[0][2] + v.w * M[0][3];
+   result.y = v.x * M[1][0] + v.y * M[1][1] + v.z * M[1][2] + v.w * M[1][3];
+   result.z = v.x * M[2][0] + v.y * M[2][1] + v.z * M[2][2] + v.w * M[2][3];
+   result.w = v.x * M[3][0] + v.y * M[3][1] + v.z * M[3][2] + v.w * M[3][3];
+
+   return result;
 }

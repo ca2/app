@@ -17,6 +17,8 @@
 //#include <iosfwd>
 //#include <string.h> // ::memory_set
 
+template<primitive_floating FLOATING_TYPE, int t_iDimension>
+struct matrix_type;
 
 template<primitive_number NUMBER, int t_iSize >
 struct sequence_t_type
@@ -303,6 +305,7 @@ struct sequence_type :
       for (::collection::count i = 0; i < SIZE; ++i)
          this->m_coordinatea[i] = (UNIT_TYPE)p[i];
    }
+
 
 
 
@@ -602,13 +605,22 @@ struct sequence_type :
       return *this;
    }
 
-   friend sequence_type operator *(const sequence_type& a, const sequence_type& b) {
+   sequence_type operator *(const sequence_type& b) const {
+      const sequence_type &a = *this;
       sequence_type result;
       for (::collection::count i = 0; i < SIZE; ++i)
          result[i] = a.m_coordinatea[i] * b.m_coordinatea[i];
       return result;
    }
-   
+
+   template<primitive_floating FLOATING1>
+   inline sequence_type operator*(const matrix_type<FLOATING1, 3> &M) const
+      requires(t_iSize == 3 && ::std::is_same_v<FLOATING1, NUMBER>);
+
+   template<primitive_floating FLOATING1>
+   inline sequence_type operator*(const matrix_type<FLOATING1, 4> &M) const
+      requires(t_iSize == 4 && ::std::is_same_v<FLOATING1, NUMBER>);
+
    template < primitive_number NUMBER1 >
    sequence_type < largest_number < UNIT_TYPE, NUMBER1 >, SIZE > operator *(NUMBER1 n) const
    {

@@ -320,11 +320,11 @@ struct matrix_type
    inline float_sequence4 operator *(const float_sequence4 &v) const
       requires(DIMENSION == 4 && std::is_same_v<FLOATING, float>)
    {
-      if (g_ecpu & e_cpu_avx2)
+      if (g_cpufeatures.m_bAVX2)
          return mul_avx2(v);
-      else if (g_ecpu & e_cpu_avx)
+      else if (g_cpufeatures.m_bAVX)
          return mul_avx(v);
-      else if (g_ecpu & e_cpu_sse)
+      else if (g_cpufeatures.m_bSSE)
          return mul_sse(v);
       else
          return mul_scalar(v);
@@ -471,11 +471,11 @@ inline matrix_type mul_avx2(const matrix_type &B) const
    inline matrix_type operator*(const matrix_type &m) const
       requires(DIMENSION == 4 && std::is_same_v<FLOATING, float>)
    {
-      if (g_ecpu & e_cpu_avx2)
+      if (g_cpufeatures.m_bAVX2)
          return mul_avx2(m);
-      else if (g_ecpu & e_cpu_avx)
+      else if (g_cpufeatures.m_bAVX)
          return mul_avx(m);
-      else if (g_ecpu & e_cpu_sse)
+      else if (g_cpufeatures.m_bSSE)
          return mul_sse(m);
       else
          return mul_scalar(m);
@@ -1021,10 +1021,10 @@ namespace geometry
 // --- SIMD optimized multiplication (SSE) ----------------------------------
 // Only enabled if SSE is available. Operates on column-major storage where
 // each column is contiguous in memory: &M.m[col][0]
-#if defined(__SSE__)
+#if defined(__SSE__) || defined(_M_X64) || defined(_M_IX86)
 
    // float_matrix4 * vec4  (column-major) using SSE: result = col0 * vx + col1 * vy + ...
-   inline vec4 mat4_mul_vec4_sse(const float_matrix4 &M, const vec4 &v)
+   inline float_sequence4 mat4_mul_vec4_sse(const float_matrix4 &M, const float_sequence4 &v)
    {
       __m128 col0 = _mm_loadu_ps(&M.m[0][0]); // m00,m01,m02,m03
       __m128 col1 = _mm_loadu_ps(&M.m[1][0]);
@@ -1039,7 +1039,7 @@ namespace geometry
       __m128 r = _mm_add_ps(_mm_add_ps(_mm_mul_ps(col0, vx), _mm_mul_ps(col1, vy)),
                             _mm_add_ps(_mm_mul_ps(col2, vz), _mm_mul_ps(col3, vw)));
 
-      vec4 out;
+      float_sequence4 out;
       _mm_storeu_ps(&out.x, r);
       return out;
    }
@@ -1087,101 +1087,102 @@ namespace geometry
 //      return A * B;
 //#endif
 //   }
+//
+//#if defined(__SSE__) || defined(_M_X64) || defined(_M_IX86)
+//
+//   inline float_matrix4 mat4_inverse_sse(const float_matrix4 &A)
+//   {
+//      // Build rows from column-major storage:
+//      // row0 = [ m00 m01 m02 m03 ] where mXY is row X column Y
+//      // Note: our storage is m[col][row], so m00 = A.m[0][0], m01 = A.m[1][0], ...
+//      __m128 row0 = _mm_setr_ps(A.m[0][0], A.m[1][0], A.m[2][0], A.m[3][0]);
+//      __m128 row1 = _mm_setr_ps(A.m[0][1], A.m[1][1], A.m[2][1], A.m[3][1]);
+//      __m128 row2 = _mm_setr_ps(A.m[0][2], A.m[1][2], A.m[2][2], A.m[3][2]);
+//      __m128 row3 = _mm_setr_ps(A.m[0][3], A.m[1][3], A.m[2][3], A.m[3][3]);
+//
+//      __m128 tmp1, tmp2, tmp3, tmp4, tmp5, tmp6;
+//      __m128 minor0, minor1, minor2, minor3;
+//      __m128 det, det_shuf, inv_det;
+//
+//      // compute pairs for first 8 cofactors (cofactor matrix)
+//      tmp1 = _mm_mul_ps(row2, row3);
+//      tmp1 = _mm_shuffle_ps(tmp1, tmp1, _MM_SHUFFLE(2, 3, 0, 1)); // swap pairs
+//
+//      tmp2 = _mm_mul_ps(row1, tmp1);
+//      tmp3 = _mm_mul_ps(row0, tmp1);
+//
+//      tmp1 = _mm_shuffle_ps(tmp1, tmp1, _MM_SHUFFLE(2, 3, 0, 1)); // undo shuffle for other part
+//
+//      tmp2 = _mm_sub_ps(_mm_mul_ps(row1, _mm_shuffle_ps(row2, row3, _MM_SHUFFLE(1, 0, 3, 2))), tmp2);
+//      tmp3 = _mm_sub_ps(_mm_mul_ps(row0, _mm_shuffle_ps(row2, row3, _MM_SHUFFLE(1, 0, 3, 2))), tmp3);
+//
+//      minor0 = tmp2;
+//      minor1 = tmp3;
+//
+//      // compute pairs for the next 8 cofactors
+//      tmp4 = _mm_mul_ps(row1, row2);
+//      tmp4 = _mm_shuffle_ps(tmp4, tmp4, _MM_SHUFFLE(2, 3, 0, 1));
+//
+//      tmp5 = _mm_mul_ps(row3, tmp4);
+//      tmp6 = _mm_mul_ps(row0, tmp4);
+//
+//      tmp4 = _mm_shuffle_ps(tmp4, tmp4, _MM_SHUFFLE(2, 3, 0, 1));
+//
+//      tmp5 = _mm_sub_ps(_mm_mul_ps(row3, _mm_shuffle_ps(row1, row2, _MM_SHUFFLE(1, 0, 3, 2))), tmp5);
+//      tmp6 = _mm_sub_ps(_mm_mul_ps(row0, _mm_shuffle_ps(row1, row2, _MM_SHUFFLE(1, 0, 3, 2))), tmp6);
+//
+//      minor2 = tmp5;
+//      minor3 = tmp6;
+//
+//      // assemble the cofactor matrix (rows of cofactors)
+//      // Note: This sequence produces cofactors in row-major order (as __m128 rows).
+//      // Now compute determinant = dot(row0, minor0)
+//      det = _mm_mul_ps(row0, minor0);
+//      det_shuf = _mm_shuffle_ps(det, det, _MM_SHUFFLE(2, 3, 0, 1));
+//      det = _mm_add_ps(det, det_shuf);
+//      det_shuf = _mm_shuffle_ps(det, det, _MM_SHUFFLE(1, 0, 3, 2));
+//      det = _mm_add_ps(det, det_shuf);
+//
+//      // reciprocal determinant
+//      inv_det = _mm_div_ps(_mm_set1_ps(1.0f), det);
+//
+//      // Multiply cofactors by reciprocal determinant and transpose to column-major
+//      minor0 = _mm_mul_ps(minor0, inv_det);
+//      minor1 = _mm_mul_ps(minor1, inv_det);
+//      minor2 = _mm_mul_ps(minor2, inv_det);
+//      minor3 = _mm_mul_ps(minor3, inv_det);
+//
+//      // The minors we have are the rows of the adjugate (cofactor) matrix. We must transpose them
+//      // to get the column-major result matrix. Perform a 4x4 transpose on [minor0..minor3].
+//      __m128 t0 = _mm_unpacklo_ps(minor0, minor1); // m00 m10 m01 m11
+//      __m128 t1 = _mm_unpackhi_ps(minor0, minor1); // m02 m12 m03 m13
+//      __m128 t2 = _mm_unpacklo_ps(minor2, minor3); // m20 m30 m21 m31
+//      __m128 t3 = _mm_unpackhi_ps(minor2, minor3); // m22 m32 m23 m33
+//
+//      __m128 col0 = _mm_shuffle_ps(t0, t2, _MM_SHUFFLE(1, 0, 1, 0)); // m00 m10 m20 m30
+//      __m128 col1 = _mm_shuffle_ps(t0, t2, _MM_SHUFFLE(3, 2, 3, 2)); // m01 m11 m21 m31
+//      __m128 col2 = _mm_shuffle_ps(t1, t3, _MM_SHUFFLE(1, 0, 1, 0)); // m02 m12 m22 m32
+//      __m128 col3 = _mm_shuffle_ps(t1, t3, _MM_SHUFFLE(3, 2, 3, 2)); // m03 m13 m23 m33
+//
+//      float_matrix4 R;
+//      _mm_storeu_ps(&R.m[0][0], col0); // store column 0
+//      _mm_storeu_ps(&R.m[1][0], col1); // store column 1
+//      _mm_storeu_ps(&R.m[2][0], col2); // store column 2
+//      _mm_storeu_ps(&R.m[3][0], col3); // store column 3
+//
+//      return R;
+//   }
+//#endif // SSE
 
-
-   inline float_matrix4 mat4_inverse_sse(const float_matrix4 &A)
-   {
-      // Build rows from column-major storage:
-      // row0 = [ m00 m01 m02 m03 ] where mXY is row X column Y
-      // Note: our storage is m[col][row], so m00 = A.m[0][0], m01 = A.m[1][0], ...
-      __m128 row0 = _mm_setr_ps(A.m[0][0], A.m[1][0], A.m[2][0], A.m[3][0]);
-      __m128 row1 = _mm_setr_ps(A.m[0][1], A.m[1][1], A.m[2][1], A.m[3][1]);
-      __m128 row2 = _mm_setr_ps(A.m[0][2], A.m[1][2], A.m[2][2], A.m[3][2]);
-      __m128 row3 = _mm_setr_ps(A.m[0][3], A.m[1][3], A.m[2][3], A.m[3][3]);
-
-      __m128 tmp1, tmp2, tmp3, tmp4, tmp5, tmp6;
-      __m128 minor0, minor1, minor2, minor3;
-      __m128 det, det_shuf, inv_det;
-
-      // compute pairs for first 8 cofactors (cofactor matrix)
-      tmp1 = _mm_mul_ps(row2, row3);
-      tmp1 = _mm_shuffle_ps(tmp1, tmp1, _MM_SHUFFLE(2, 3, 0, 1)); // swap pairs
-
-      tmp2 = _mm_mul_ps(row1, tmp1);
-      tmp3 = _mm_mul_ps(row0, tmp1);
-
-      tmp1 = _mm_shuffle_ps(tmp1, tmp1, _MM_SHUFFLE(2, 3, 0, 1)); // undo shuffle for other part
-
-      tmp2 = _mm_sub_ps(_mm_mul_ps(row1, _mm_shuffle_ps(row2, row3, _MM_SHUFFLE(1, 0, 3, 2))), tmp2);
-      tmp3 = _mm_sub_ps(_mm_mul_ps(row0, _mm_shuffle_ps(row2, row3, _MM_SHUFFLE(1, 0, 3, 2))), tmp3);
-
-      minor0 = tmp2;
-      minor1 = tmp3;
-
-      // compute pairs for the next 8 cofactors
-      tmp4 = _mm_mul_ps(row1, row2);
-      tmp4 = _mm_shuffle_ps(tmp4, tmp4, _MM_SHUFFLE(2, 3, 0, 1));
-
-      tmp5 = _mm_mul_ps(row3, tmp4);
-      tmp6 = _mm_mul_ps(row0, tmp4);
-
-      tmp4 = _mm_shuffle_ps(tmp4, tmp4, _MM_SHUFFLE(2, 3, 0, 1));
-
-      tmp5 = _mm_sub_ps(_mm_mul_ps(row3, _mm_shuffle_ps(row1, row2, _MM_SHUFFLE(1, 0, 3, 2))), tmp5);
-      tmp6 = _mm_sub_ps(_mm_mul_ps(row0, _mm_shuffle_ps(row1, row2, _MM_SHUFFLE(1, 0, 3, 2))), tmp6);
-
-      minor2 = tmp5;
-      minor3 = tmp6;
-
-      // assemble the cofactor matrix (rows of cofactors)
-      // Note: This sequence produces cofactors in row-major order (as __m128 rows).
-      // Now compute determinant = dot(row0, minor0)
-      det = _mm_mul_ps(row0, minor0);
-      det_shuf = _mm_shuffle_ps(det, det, _MM_SHUFFLE(2, 3, 0, 1));
-      det = _mm_add_ps(det, det_shuf);
-      det_shuf = _mm_shuffle_ps(det, det, _MM_SHUFFLE(1, 0, 3, 2));
-      det = _mm_add_ps(det, det_shuf);
-
-      // reciprocal determinant
-      inv_det = _mm_div_ps(_mm_set1_ps(1.0f), det);
-
-      // Multiply cofactors by reciprocal determinant and transpose to column-major
-      minor0 = _mm_mul_ps(minor0, inv_det);
-      minor1 = _mm_mul_ps(minor1, inv_det);
-      minor2 = _mm_mul_ps(minor2, inv_det);
-      minor3 = _mm_mul_ps(minor3, inv_det);
-
-      // The minors we have are the rows of the adjugate (cofactor) matrix. We must transpose them
-      // to get the column-major result matrix. Perform a 4x4 transpose on [minor0..minor3].
-      __m128 t0 = _mm_unpacklo_ps(minor0, minor1); // m00 m10 m01 m11
-      __m128 t1 = _mm_unpackhi_ps(minor0, minor1); // m02 m12 m03 m13
-      __m128 t2 = _mm_unpacklo_ps(minor2, minor3); // m20 m30 m21 m31
-      __m128 t3 = _mm_unpackhi_ps(minor2, minor3); // m22 m32 m23 m33
-
-      __m128 col0 = _mm_shuffle_ps(t0, t2, _MM_SHUFFLE(1, 0, 1, 0)); // m00 m10 m20 m30
-      __m128 col1 = _mm_shuffle_ps(t0, t2, _MM_SHUFFLE(3, 2, 3, 2)); // m01 m11 m21 m31
-      __m128 col2 = _mm_shuffle_ps(t1, t3, _MM_SHUFFLE(1, 0, 1, 0)); // m02 m12 m22 m32
-      __m128 col3 = _mm_shuffle_ps(t1, t3, _MM_SHUFFLE(3, 2, 3, 2)); // m03 m13 m23 m33
-
-      float_matrix4 R;
-      _mm_storeu_ps(&R.m[0][0], col0); // store column 0
-      _mm_storeu_ps(&R.m[1][0], col1); // store column 1
-      _mm_storeu_ps(&R.m[2][0], col2); // store column 2
-      _mm_storeu_ps(&R.m[3][0], col3); // store column 3
-
-      return R;
-   }
-#endif // SSE
-
-   // Wrapper: use SIMD inverse when available, else fallback
-   inline float_matrix4 inverse_simd(const float_matrix4 &A)
-   {
-#if defined(__SSE__) || defined(_M_X64) || defined(_M_IX86)
-      return mat4_inverse_sse(A);
-#else
-      return inverse(A);
-#endif
-   }
+//   // Wrapper: use SIMD inverse when available, else fallback
+//   inline float_matrix4 inverse_simd(const float_matrix4 &A)
+//   {
+//#if defined(__SSE__) || defined(_M_X64) || defined(_M_IX86)
+//      return mat4_inverse_sse(A);
+//#else
+//      return inverse(A);
+//#endif
+//   }
 
 
    // ---------------- Scalar inverse ----------------
@@ -1452,11 +1453,11 @@ namespace geometry
    inline float_matrix4 inverse(const float_matrix4 &m)
    {
       
-      if (g_ecpu & e_cpu_avx2)
+      if (g_cpufeatures.m_bAVX2)
             return inverse_avx2(m);
-      else if (g_ecpu &  e_cpu_avx)
+      else if (g_cpufeatures.m_bAVX)
             return inverse_avx(m);
-      else if (g_ecpu &  e_cpu_sse)
+      else if (g_cpufeatures.m_bSSE)
             return inverse_sse(m);
       else
          return inverse_scalar(m);

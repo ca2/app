@@ -13,14 +13,14 @@
 //#include <glm/glm.hpp>
 //#include <glm/gtc/type_ptr.hpp> // For glm::make_mat4
 #include <assimp/matrix4x4.h>
+#include "_assimp.h"
 
-
-
-floating_matrix4 aiMatrix4x4ToColumnMajor(const aiMatrix4x4& from) {
-   // Assuming aiMatrix4x4 stores data contiguously in memory,
-   // and glm::make_mat4 can interpret the layout before transposition.
-   return geometry::transpose(geometry::make_mat4(&from.a1));
-}
+//
+//floating_matrix4 aiMatrix4x4ToColumnMajor(const aiMatrix4x4& from) {
+//   // Assuming aiMatrix4x4 stores data contiguously in memory,
+//   // and glm::make_mat4 can interpret the layout before transposition.
+//   return geometry::transpose(geometry::make_mat4(&from.a1));
+//}
 
 assimp_iosystem * get_assimp_iosystem()
 {
@@ -160,7 +160,7 @@ namespace gpu
                m = p->mTransformation * m;
                p = p->mParent;
             }
-            pmesh->uniformBlock.matrix =aiMatrix4x4ToGlm(m);
+            pmesh->uniformBlock.matrix =aiMatrix4x4ToColumnMajor(m);
             m_mesha.add(pmesh);
          }
 
@@ -191,9 +191,9 @@ namespace gpu
             const floating_sequence3 &v2 = vertices[i2].position;
             const floating_sequence3 &v3 = vertices[i3].position;
 
-            const glm::vec2 &w1 = vertices[i1].uv;
-            const glm::vec2 &w2 = vertices[i2].uv;
-            const glm::vec2 &w3 = vertices[i3].uv;
+            auto &w1 = vertices[i1].uv;
+            auto &w2 = vertices[i2].uv;
+            auto &w3 = vertices[i3].uv;
 
             floating_sequence3 e1 = v2 - v1;
             floating_sequence3 e2 = v3 - v1;
@@ -224,8 +224,8 @@ namespace gpu
             const floating_sequence3 &n = vertices[i].normal;
             const floating_sequence3 &t = tan1[i];
 
-            floating_sequence3 tangent = glm::normalize(t - n * glm::dot(n, t));
-            float sign = (glm::dot(glm::cross(n, t), tan2[i]) < 0.0f) ? -1.0f : 1.0f;
+            floating_sequence3 tangent = geometry::normalize(t - n * n.dot(t));
+            float sign = (n.cross(t).dot(tan2[i]) < 0.0f) ? -1.0f : 1.0f;
 
             vertices[i].tangent = glm::vec4(tangent, sign);
          }

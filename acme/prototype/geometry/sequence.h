@@ -968,22 +968,18 @@ struct sequence_type :
       
    }
 
-   
+   sequence_type<COORDINATE, 3> cross(const sequence_type<COORDINATE, 3> &b) const
+      requires(SIZE == 3)
+   {
+      const auto &a = *this;
+      return {a.y * b.z - a.z * b.y, a.z * b.x - a.x * b.z, a.x * b.y - a.y * b.x};
+   }
+
+
 
 };
 
 
-
-template <typename COORDINATE>
-sequence_type<COORDINATE, 3> cross(const sequence_type<COORDINATE, 3>& a, const sequence_type<COORDINATE, 3>& b) {
-   return 
-   {
-      a.y * b.z - a.z * b.y, 
-      a.z * b.x - a.x * b.z, 
-      a.x * b.y - a.y * b.x
-   };
-  
-}
 
 
 

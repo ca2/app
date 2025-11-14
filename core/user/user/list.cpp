@@ -306,7 +306,7 @@ namespace user
 
                ::int_rectangle rectangle;
 
-               rectangle.top() = int(y - pointOffset.y());
+               rectangle.top() = int(y - pointOffset.y);
 
                if (i == 0)
                {
@@ -323,9 +323,9 @@ namespace user
                   y += sizea[i - 1].cy();
                   iNewStart = i - 1;
                }
-               rectangle.left() = int(-pointOffset.x());
+               rectangle.left() = int(-pointOffset.x);
                rectangle.right() = rectangleX.right();
-               rectangle.bottom() = int(y - pointOffset.y());
+               rectangle.bottom() = int(y - pointOffset.y);
 
                pgraphics->_DrawText(m_strTopText.substr(iStart, i - iStart), rectangle, e_align_left);
                iStart = iNewStart;
@@ -438,15 +438,15 @@ namespace user
          if (m_bDrag && m_iItemLButtonDown < 0)
          {
 
-            int x1 = m_pointLButtonDown1.x();
+            int x1 = m_pointLButtonDown1.x;
 
-            int x2 = m_pointLButtonUp.x();
+            int x2 = m_pointLButtonUp.x;
 
             __sort(x1, x2);
 
-            int y1 = m_pointLButtonDown1.y();
+            int y1 = m_pointLButtonDown1.y;
 
-            int y2 = m_pointLButtonUp.y();
+            int y2 = m_pointLButtonUp.y;
 
             __sort(y1, y2);
 
@@ -1240,7 +1240,7 @@ namespace user
       //queue_graphics_call([this, pointOffset](::draw2d::graphics_pointer & pgraphics)
       //   {
 
-      //      set_context_offset(pgraphics, pointOffset.x(), pointOffset.y());
+      //      set_context_offset(pgraphics, pointOffset.x, pointOffset.y);
 
       //   });
 
@@ -1980,14 +1980,14 @@ namespace user
 
       auto pointOffset = get_context_offset();
 
-      information() << "_001CalcDisplayTopIndex pointOffset.y() : " << pointOffset.y();
+      information() << "_001CalcDisplayTopIndex pointOffset.y : " << pointOffset.y;
       information() << "_001CalcDisplayTopIndex m_bHeaderCtrl : " << m_bHeaderCtrl;
       information() << "_001CalcDisplayTopIndex m_dItemHeight : " << m_dItemHeight;
 
       ::collection::index iItem;
 
       if (_001DisplayHitTest(int_point(0,
-         pointOffset.y() + (int) (m_bHeaderCtrl ? m_dItemHeight : 0.)), iItem))
+         pointOffset.y + (int) (m_bHeaderCtrl ? m_dItemHeight : 0.)), iItem))
       {
 
          information() << "_001CalcDisplayTopIndex iItem : " << iItem;
@@ -2001,7 +2001,7 @@ namespace user
          if (m_eview == impact_report)
          {
 
-            if (pointOffset.y() < 0)
+            if (pointOffset.y < 0)
             {
 
                return 0;
@@ -2308,7 +2308,7 @@ namespace user
 
       get_margin_rect(&rectangleMargin);
 
-      auto iLeft = (::collection::index)-pointOffset.x() - (rectangleMargin.left() * 2);
+      auto iLeft = (::collection::index)-pointOffset.x - (rectangleMargin.left() * 2);
 
       if (m_bGroup && m_bLateralGroup)
       {
@@ -2321,7 +2321,7 @@ namespace user
 
       //draw_list_item item(this);
 
-      if (point.x() < 0)
+      if (point.x < 0)
       {
 
          return false;
@@ -2344,7 +2344,7 @@ namespace user
 
          iRight = iLeft + pcolumn->m_iWidth;
 
-         if (iLeft <= point.x() && point.x() < iRight)
+         if (iLeft <= point.x && point.x < iRight)
          {
 
             iItemParam = iItem;
@@ -2371,10 +2371,10 @@ namespace user
 //
 //         auto rectangleX = this->rectangle();
 //
-//         if (point.x() < 0
-//               || point.x() > rectangleX.right()
-//               || point.y() < 0
-//               || point.y() > rectangleX.bottom())
+//         if (point.x < 0
+//               || point.x > rectangleX.right()
+//               || point.y < 0
+//               || point.y > rectangleX.bottom())
 //         {
 //
 //            return false;
@@ -2388,9 +2388,9 @@ namespace user
 
          //auto pointOffset = get_context_offset();
 
-         //double iy = point.y() + pointOffset.y() + (m_bHeaderCtrl ? -m_dItemHeight : 0);
+         //double iy = point.y + pointOffset.y + (m_bHeaderCtrl ? -m_dItemHeight : 0);
 
-         double iy = point.y() + (m_bHeaderCtrl ? -m_dItemHeight : 0);
+         double iy = point.y + (m_bHeaderCtrl ? -m_dItemHeight : 0);
 
          ::collection::index iItem = -1;
 
@@ -2403,11 +2403,11 @@ namespace user
 
             information() << "impact_report iItem : " << iItem;
 
-            information() << "point.y() : " << point.y();
+            information() << "point.y : " << point.y;
 
 #endif
 
-            //information() << "pointOffset.y() : " << pointOffset.y();
+            //information() << "pointOffset.y : " << pointOffset.y;
 
          }
 
@@ -2485,7 +2485,7 @@ namespace user
          else
          {
 
-            iy = (::collection::index)(point.y() + pointOffset.y());
+            iy = (::collection::index)(point.y + pointOffset.y);
 
          }
 
@@ -2505,7 +2505,7 @@ namespace user
          if(m_iItemWidth > 0)
          {
 
-            iColumn = (int) ((point.x() + pointOffset.x()) / m_iItemWidth);
+            iColumn = (int) ((point.x + pointOffset.x) / m_iItemWidth);
 
          }
 
@@ -2556,7 +2556,7 @@ namespace user
          if (iItem >= m_nItemCount)
          {
 
-            information() << "iItem >= m_nItemCount : pointOffset.y()" << pointOffset.y();
+            information() << "iItem >= m_nItemCount : pointOffset.y" << pointOffset.y;
 
             return false;
 
@@ -2592,9 +2592,9 @@ namespace user
 
          auto pointOffset = get_context_offset();
 
-         auto dx = point.x() + pointOffset.x();
+         auto dx = point.x + pointOffset.x;
 
-         dx = maximum(pointOffset.x(), dx);
+         dx = maximum(pointOffset.x, dx);
 
          dx = minimum(rectangleX.right(), dx);
 
@@ -2602,9 +2602,9 @@ namespace user
 
          dx /= sizeIconItem.cx();
 
-         auto dy = point.y() + pointOffset.y();
+         auto dy = point.y + pointOffset.y;
 
-         dy = maximum(pointOffset.y(), dy);
+         dy = maximum(pointOffset.y, dy);
 
          dy = maximum(rectangleX.top(), dy);
 
@@ -2753,7 +2753,7 @@ namespace user
 
                   pdrawitem->m_rectangleItem.bottom() = (int) (pdrawitem->m_rectangleItem.top() + m_dItemHeight);
 
-              //    pdrawitem->m_rectangleItem.offset(-pointOffset.x(), -pointOffset.y());
+              //    pdrawitem->m_rectangleItem.offset(-pointOffset.x, -pointOffset.y);
 
                }
 
@@ -2943,7 +2943,7 @@ namespace user
 
          pdrawitem->m_rectangleItem.right() = (int)(pdrawitem->m_rectangleItem.left() + m_iItemWidth);
 
-         pdrawitem->m_rectangleItem.offset(-pointOffset.x(), -pointOffset.y());
+         pdrawitem->m_rectangleItem.offset(-pointOffset.x, -pointOffset.y);
 
       }
       else if (m_eview == impact_icon)
@@ -2981,7 +2981,7 @@ namespace user
 
          pdrawitem->m_rectangleItem.right() = (int)(pdrawitem->m_rectangleItem.left() + sizeIconItem.cy());
 
-         pdrawitem->m_rectangleItem.offset(-pointOffset.x(), -pointOffset.y());
+         pdrawitem->m_rectangleItem.offset(-pointOffset.x, -pointOffset.y);
 
          if (m_bDrag && m_iItemLButtonDown >= 0)
          {
@@ -4094,9 +4094,9 @@ namespace user
 
                index_item_rectangle(&item);
 
-               payload("offx") = point.x() - item.m_rectangleItem.left();
+               payload("offx") = point.x - item.m_rectangleItem.left();
 
-               payload("offy") = point.y() - item.m_rectangleItem.top();
+               payload("offy") = point.y - item.m_rectangleItem.top();
 
                if (!m_rangeSelection.has_item(item.m_iDisplayItem))
                {
@@ -4705,7 +4705,7 @@ namespace user
       auto pointOffset = get_context_offset();
 
       m_plistheader->order_top();
-      //m_plistheader->move_to(-pointOffset.x(), 0);
+      //m_plistheader->move_to(-pointOffset.x, 0);
       m_plistheader->display();
 
    }
@@ -6135,16 +6135,16 @@ namespace user
 
       if (m_dItemHeight > 0
             &&
-            (iItem < pointOffset.y() / m_dItemHeight ||
-             iItem >= pointOffset.y() / m_dItemHeight + m_nDisplayCount))
+            (iItem < pointOffset.y / m_dItemHeight ||
+             iItem >= pointOffset.y / m_dItemHeight + m_nDisplayCount))
       {
 
-         pointOffset.y() = iItem * m_dItemHeight;
+         pointOffset.y = iItem * m_dItemHeight;
 
          //queue_graphics_call([this, pointOffset](::draw2d::graphics_pointer & pgraphics)
            // {
 
-               set_context_offset_y(pointOffset.y());
+               set_context_offset_y(pointOffset.y);
 
               // on_change_context_offset(pgraphics);
 
@@ -6170,13 +6170,13 @@ namespace user
 
          auto pointOffset = get_context_offset();
 
-         pointOffset.y() = iItem * m_dItemHeight;
+         pointOffset.y = iItem * m_dItemHeight;
 
          //queue_graphics_call([this, pointOffset](::draw2d::graphics_pointer & pgraphics)
            // {
 
-         set_context_offset_y(pointOffset.y());
-               //set_context_offset_y(pgraphics, pointOffset.y());
+         set_context_offset_y(pointOffset.y);
+               //set_context_offset_y(pgraphics, pointOffset.y);
 
               // on_change_context_offset(pgraphics);
 
@@ -6199,7 +6199,7 @@ namespace user
 
       auto pointOffset = get_context_offset();
 
-      ::collection::index iyScroll = (::collection::index) ( pointOffset.y() / maximum(1, m_dItemHeight));
+      ::collection::index iyScroll = (::collection::index) ( pointOffset.y / maximum(1, m_dItemHeight));
 
       if (iItem < iyScroll)
       {
@@ -6214,12 +6214,12 @@ namespace user
 
       }
 
-      if (pointOffset.y() / maximum(1, m_dItemHeight) != iyScroll)
+      if (pointOffset.y / maximum(1, m_dItemHeight) != iyScroll)
       {
 
          item_range item;
 
-         pointOffset.y() = (int)(iyScroll * m_dItemHeight);
+         pointOffset.y = (int)(iyScroll * m_dItemHeight);
 
          //queue_graphics_call([this](::draw2d::graphics_pointer & pgraphics)
            // {
@@ -6917,7 +6917,7 @@ namespace user
 
       m_nDisplayCount = _001CalcDisplayItemCount();
 
-      if (m_iTopDisplayIndex < 0 && m_dItemHeight > 0 && m_eview == impact_report && point.y() != 0 && m_nDisplayCount > 0)
+      if (m_iTopDisplayIndex < 0 && m_dItemHeight > 0 && m_eview == impact_report && point.y != 0 && m_nDisplayCount > 0)
       {
 
          ::int_rectangle rectangleScroll;
@@ -6929,23 +6929,23 @@ namespace user
 
             pscrollbar->window_rectangle(rectangleScroll);
 
-            if (point.y() > (_001GetItemCount() - m_nDisplayCount) * m_dItemHeight + (m_bHeaderCtrl ? m_dItemHeight : 0))
+            if (point.y > (_001GetItemCount() - m_nDisplayCount) * m_dItemHeight + (m_bHeaderCtrl ? m_dItemHeight : 0))
             {
 
-               point.y() = (int) ((_001GetItemCount() - m_nDisplayCount) * m_dItemHeight + (m_bHeaderCtrl ? m_dItemHeight : 0));
+               point.y = (int) ((_001GetItemCount() - m_nDisplayCount) * m_dItemHeight + (m_bHeaderCtrl ? m_dItemHeight : 0));
 
             }
 
-            if (point.y() < 0)
+            if (point.y < 0)
             {
 
-               point.y() = 0;
+               point.y = 0;
 
             }
 
-            //m_pointScroll.y() = point.y();
+            //m_pointScroll.y = point.y;
 
-            set_context_offset_y(point.y());
+            set_context_offset_y(point.y);
 
             m_iTopDisplayIndex = _001CalcDisplayTopIndex();
 

@@ -41,7 +41,7 @@ namespace graphics3d
 	//
 	// 	//::graphics3d::transform m_transform;
 	//
-	// 	//glm::vec3 m_color;
+	// 	//floating_sequence3 m_color;
 	//
 	// 	//::graphics3d::model<Vertex> m_pmodel;
 	//
@@ -56,7 +56,7 @@ namespace graphics3d
 	//
 	// 	}
 	//
-	// 	scene_object& translate(const glm::vec3& locationOffset)
+	// 	scene_object& translate(const floating_sequence3& locationOffset)
 	// 	{
 	//
 	// 		m_transform.translation += locationOffset;
@@ -65,7 +65,7 @@ namespace graphics3d
 	//
 	// 	}
 	//
-	// 	scene_object& scale(const glm::vec3& poleScaling)
+	// 	scene_object& scale(const floating_sequence3& poleScaling)
 	// 	{
 	//
 	// 		m_transform.scale *= poleScaling;
@@ -91,7 +91,7 @@ namespace graphics3d
 	// 	//    };
 	// 	//
 	//
-	// 	point_light(float intensity = 10.f, float radius = 0.1f, glm::vec3 color = glm::vec3(1.f));
+	// 	point_light(float intensity = 10.f, float radius = 0.1f, floating_sequence3 color = floating_sequence3(1.f));
 	// 	~point_light() override;
 	//
 	// };

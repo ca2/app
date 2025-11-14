@@ -23,8 +23,8 @@
 namespace graphics3d
 {
 	struct PushConstantData {
-		glm::mat4 modelMatrix{ 1.f };
-		glm::mat4 normalMatrix{ 1.f };
+		floating_matrix4 modelMatrix{ 1.f };
+		floating_matrix4 normalMatrix{ 1.f };
 		//int textureIndex;
 	};
 
@@ -89,7 +89,7 @@ namespace graphics3d
 
 			auto & transformcomponent = psceneobject->transform();
 			PushConstantData push{};
-			push.modelMatrix = transformcomponent.mat4();
+			push.modelMatrix = transformcomponent.floating_matrix4();
 			push.normalMatrix = transformcomponent.normalMatrix();
 			//
 			// vkCmdPushConstants(

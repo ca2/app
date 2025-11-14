@@ -600,7 +600,7 @@ void os_term_windowing()
 int_bool point_is_window_origin(::int_point ptHitTest, oswindow oswindowExclude, int iMargin)
 {
 
-   return abs(ptHitTest.x()) < iMargin && abs(ptHitTest.y()) < iMargin;
+   return abs(ptHitTest.x) < iMargin && abs(ptHitTest.y) < iMargin;
 
 }
 

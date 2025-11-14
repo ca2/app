@@ -76,7 +76,7 @@
 //   inline bool ::float_rectangle::contains(const ::float_point & point) const
 //   {
 //
-//      return contains((float) ::float_point.x(), (float) ::float_point.y());
+//      return contains((float) ::float_point.x, (float) ::float_point.y);
 //
 //   }
 //
@@ -144,7 +144,7 @@
 //
 //   inline void ::float_rectangle::set_xy(const ::float_point & point)
 //   {
-//      set_xy((float) ::float_point.x(), (float) ::float_point.y());
+//      set_xy((float) ::float_point.x, (float) ::float_point.y);
 //   }
 //
 //   inline ::int_rectangle * ::float_rectangle::get(::int_rectangle * prectangle) const

@@ -43,7 +43,11 @@ namespace gpu_opengl
 
       int width, height, channels;
 
+      stbi_set_flip_vertically_on_load(1);
+
       auto imagedata = stbi_loadf_from_memory(data, size, &width, &height, &channels, 0);
+
+      stbi_set_flip_vertically_on_load(0);
 
       if (!imagedata)
       {

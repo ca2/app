@@ -2031,8 +2031,8 @@ namespace user
       virtual void set_context_org(::draw2d::graphics_pointer & pgraphics) override;
 
 
-      virtual void viewport_screen_to_client(::sequence2_int & sequence) override;
-      virtual void viewport_client_to_screen(::sequence2_int & sequence) override;
+      virtual void viewport_screen_to_client(::int_sequence2 & sequence) override;
+      virtual void viewport_client_to_screen(::int_sequence2 & sequence) override;
       virtual void viewport_client_to_screen(::int_rectangle & rect) override;
       virtual void viewport_screen_to_client(::int_rectangle & rect) override;
 
@@ -2261,8 +2261,8 @@ namespace user
 
       virtual void set_scroll_dimension(const ::int_size & size, ::user::enum_layout elayout = ::user::e_layout_sketch);
 
-      inline bool _001HasBarXDragScrolling() const { return m_pointBarDragScrollMax.x() > 0; }
-      inline bool _001HasBarYDragScrolling() const { return m_pointBarDragScrollMax.y() > 0; }
+      inline bool _001HasBarXDragScrolling() const { return m_pointBarDragScrollMax.x > 0; }
+      inline bool _001HasBarYDragScrolling() const { return m_pointBarDragScrollMax.y > 0; }
 
 
       //virtual double get_x_scroll();

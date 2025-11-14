@@ -26,6 +26,9 @@
 #include "aura/user/user/interaction.h"
 
 
+#include <assert.h>
+
+
 namespace gpu
 {
 
@@ -493,9 +496,9 @@ namespace gpu
 
                   ////{
 
-                  ////   float x = (float) psession->get_cursor_position().x();
+                  ////   float x = (float) psession->get_cursor_position().x;
 
-                  ////   float y = (float) psession->get_cursor_position().y();
+                  ////   float y = (float) psession->get_cursor_position().y;
 
                   ////   m_papplication->m_pprogram->m_pshader->setVec2("mouse", x, y);
                   ////   m_papplication->m_pprogram->m_pshader->setVec2("iMouse", x, y);
@@ -636,9 +639,9 @@ namespace gpu
 
             //////{
 
-            //////   float x = (float) psession->get_cursor_position().x();
+            //////   float x = (float) psession->get_cursor_position().x;
 
-            //////   float y = (float) psession->get_cursor_position().y();
+            //////   float y = (float) psession->get_cursor_position().y;
 
             //////   m_papplication->m_pprogram->m_pshader->setVec2("mouse", x, y);
             //////   m_papplication->m_pprogram->m_pshader->setVec2("iMouse", x, y);

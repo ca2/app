@@ -402,7 +402,7 @@
 //
 //   unsigned char * pDst = (unsigned char *)pimage32Dst;
 //
-//   return copy_image32((::color32_t *)pDst + point.x() * sizeof(::color32_t) + point.y() * iStrideDst, size.cx(), size.cy(), iStrideDst, pimage32Src, iStrideSrc);
+//   return copy_image32((::color32_t *)pDst + point.x * sizeof(::color32_t) + point.y * iStrideDst, size.cx(), size.cy(), iStrideDst, pimage32Src, iStrideSrc);
 //
 //}
 //

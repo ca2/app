@@ -19,18 +19,18 @@ namespace gpu
 	}
 
 
-	void properties_reference::_set_mat4(const ::glm::mat4 & mat4)
+	void properties_reference::_set_mat4(const ::floating_matrix4 & floating_matrix4)
 	{
 
-		t_pgpudevice->set_mat4(m_blockWithSamplers.data(), mat4);
+		t_pgpudevice->set_mat4(m_blockWithSamplers.data(), floating_matrix4);
 
 	}
 		
 	
-	void properties_reference::_set_vec4(const ::glm::vec4& vec4)
+	void properties_reference::_set_vec4(const ::floating_sequence4& floating_sequence4)
 	{
 
-		*((::glm::vec4 *)m_blockWithSamplers.data()) = vec4;
+		*((::floating_sequence4 *)m_blockWithSamplers.data()) = floating_sequence4;
 
 	}
 

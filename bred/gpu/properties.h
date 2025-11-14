@@ -346,12 +346,12 @@ namespace gpu
 		T& as(const_char_pointer pszName) { return *(T*)find(pszName); }
 		float& as_float(const_char_pointer pszName) { return as<float>(pszName); }
 		int& as_int(const_char_pointer pszName) { return as<int>(pszName); }
-		glm::vec2& seq2(const_char_pointer pszName) { return as<glm::vec2>(pszName); }
-		glm::vec3& seq3(const_char_pointer pszName) { return as<glm::vec3>(pszName); }
-		glm::vec4& seq4(const_char_pointer pszName) { return as<glm::vec4>(pszName); }
-		glm::mat2& mat2(const_char_pointer pszName) { return as<glm::mat2>(pszName); }
-		glm::mat3& mat3(const_char_pointer pszName) { return as<glm::mat3>(pszName); }
-		glm::mat4& mat4(const_char_pointer pszName) { return as<glm::mat4>(pszName); }
+		floating_sequence2& seq2(const_char_pointer pszName) { return as<floating_sequence2>(pszName); }
+		floating_sequence3& seq3(const_char_pointer pszName) { return as<floating_sequence3>(pszName); }
+		floating_sequence4& seq4(const_char_pointer pszName) { return as<floating_sequence4>(pszName); }
+		floating_matrix2& mat2(const_char_pointer pszName) { return as<floating_matrix2>(pszName); }
+		floating_matrix3& mat3(const_char_pointer pszName) { return as<floating_matrix3>(pszName); }
+		floating_matrix4& mat4(const_char_pointer pszName) { return as<floating_matrix4>(pszName); }
 		operator const ::gpu::property* ()
 		{
 			return m_pproperties;
@@ -401,13 +401,13 @@ namespace gpu
 
 		}
 
-		void _set_mat4(const ::glm::mat4& mat4);
-		void _set_vec4(const ::glm::vec4& vec4);
+		void _set_mat4(const ::floating_matrix4& floating_matrix4);
+		void _set_vec4(const ::floating_sequence4& floating_sequence4);
 		void _set_int(const int& i);
 		
 		template < typename TYPE >
-		properties_reference& operator=(const TYPE& mat4) requires
-			(::std::is_same_v<TYPE, ::glm::mat4 >)
+		properties_reference& operator=(const TYPE& floating_matrix4) requires
+			(::std::is_same_v<TYPE, ::floating_matrix4 >)
 		{
 
 			if (m_pproperties->m_etype != ::gpu::e_type_mat4)
@@ -416,15 +416,15 @@ namespace gpu
 				throw ::exception(error_bad_data_format);
 
 			}
-			_set_mat4(mat4);
+			_set_mat4(floating_matrix4);
 			
 
 			return *this;
 
 		}
 		template < typename TYPE >
-		properties_reference& operator=(const TYPE& vec4)requires
-		(::std::is_same_v<TYPE, ::glm::vec4 >)
+		properties_reference& operator=(const TYPE& floating_sequence4)requires
+		(::std::is_same_v<TYPE, ::floating_sequence4 >)
 		{
 			if (m_pproperties->m_etype != ::gpu::e_type_seq4)
 			{
@@ -433,7 +433,7 @@ namespace gpu
 
 			}
 
-			_set_vec4(vec4);
+			_set_vec4(floating_sequence4);
 
 			return *this;
 

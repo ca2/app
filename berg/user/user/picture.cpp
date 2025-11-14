@@ -84,8 +84,8 @@ namespace user
       set_flag(e_flag_default_io_exchange);
 
       m_dZoom = 1.0;
-      m_pointDrag2.x() = 0.0;
-      m_pointDrag2.y() = 0.0;
+      m_pointDrag2.x = 0.0;
+      m_pointDrag2.y = 0.0;
 
 
       m_bOutline = false;
@@ -195,7 +195,7 @@ namespace user
 //   }
 
 
-   void picture::_transform_sequence(sequence2_double & sequence) const
+   void picture::_transform_sequence(double_sequence2 & sequence) const
    {
 
       if (m_ppictureimpl == nullptr)
@@ -218,7 +218,7 @@ namespace user
    }
 
 
-   void picture::_transform_sequence_drawing(sequence2_double & sequence) const
+   void picture::_transform_sequence_drawing(double_sequence2 & sequence) const
    {
 
       if (m_ppictureimpl == nullptr)
@@ -265,7 +265,7 @@ namespace user
 //   }
 
 
-   void picture::_rtransform_sequence(sequence2_double & sequence) const
+   void picture::_rtransform_sequence(double_sequence2 & sequence) const
    {
 
       if (m_ppictureimpl == nullptr)
@@ -288,7 +288,7 @@ namespace user
    }
 
 
-   void picture::_rtransform_sequence_drawing(sequence2_double & sequence) const
+   void picture::_rtransform_sequence_drawing(double_sequence2 & sequence) const
    {
 
       if (m_ppictureimpl == nullptr)
@@ -335,7 +335,7 @@ namespace user
 //   }
 
 
-   void picture::drag_transform_sequence(sequence2_double & sequence) const
+   void picture::drag_transform_sequence(double_sequence2 & sequence) const
    {
 
       if (m_ppictureimpl == nullptr)
@@ -360,7 +360,7 @@ namespace user
    }
 
 
-   void picture::drag_transform_sequence_drawing(sequence2_double & sequence) const
+   void picture::drag_transform_sequence_drawing(double_sequence2 & sequence) const
    {
 
       if (m_ppictureimpl == nullptr)
@@ -409,7 +409,7 @@ namespace user
 //   }
 
 
-   void picture::drag_rtransform_sequence(sequence2_double & sequence) const
+   void picture::drag_rtransform_sequence(double_sequence2 & sequence) const
    {
 
       if (m_ppictureimpl == nullptr)
@@ -440,9 +440,9 @@ namespace user
 
       auto size = get_size();
 
-      m_ppictureimpl->m_pointDrag2.x() = point.x() * size.cx()/m_ppictureimpl->m_rectangle.width();
+      m_ppictureimpl->m_pointDrag2.x = point.x * size.cx()/m_ppictureimpl->m_rectangle.width();
 
-      m_ppictureimpl->m_pointDrag2.y() = point.y() * size.cy() / m_ppictureimpl->m_rectangle.height();
+      m_ppictureimpl->m_pointDrag2.y = point.y * size.cy() / m_ppictureimpl->m_rectangle.height();
 
    }
 
@@ -453,16 +453,16 @@ namespace user
 
       auto size = get_size();
 
-      point.x() = m_ppictureimpl->m_pointDrag2.x() *m_ppictureimpl->m_rectangle.width() / size.cx();
+      point.x = m_ppictureimpl->m_pointDrag2.x *m_ppictureimpl->m_rectangle.width() / size.cx();
 
-      point.y() = m_ppictureimpl->m_pointDrag2.y() *m_ppictureimpl->m_rectangle.height() / size.cy();
+      point.y = m_ppictureimpl->m_pointDrag2.y *m_ppictureimpl->m_rectangle.height() / size.cy();
 
       return point;
 
    }
 
 
-   void picture::drag_rtransform_sequence_drawing(sequence2_double & sequence) const
+   void picture::drag_rtransform_sequence_drawing(double_sequence2 & sequence) const
    {
 
       if (m_ppictureimpl == nullptr)
@@ -641,36 +641,36 @@ namespace user
       if (m_ppictureimpl->m_polygonDrawing.get_size() > 0)
       {
 
-         rectangle.left() = rectangle.right() = m_ppictureimpl->m_polygonDrawing[0].x();
+         rectangle.left() = rectangle.right() = m_ppictureimpl->m_polygonDrawing[0].x;
 
-         rectangle.top() = rectangle.bottom() = m_ppictureimpl->m_polygonDrawing[0].y();
+         rectangle.top() = rectangle.bottom() = m_ppictureimpl->m_polygonDrawing[0].y;
 
          for (::collection::index i = 1; i < m_ppictureimpl->m_polygonDrawing.get_size(); i++)
          {
 
-            if (m_ppictureimpl->m_polygonDrawing[i].x() < rectangle.left())
+            if (m_ppictureimpl->m_polygonDrawing[i].x < rectangle.left())
             {
 
-               rectangle.left() = m_ppictureimpl->m_polygonDrawing[i].x();
+               rectangle.left() = m_ppictureimpl->m_polygonDrawing[i].x;
 
             }
-            else if (m_ppictureimpl->m_polygonDrawing[i].x() > rectangle.right())
+            else if (m_ppictureimpl->m_polygonDrawing[i].x > rectangle.right())
             {
 
-               rectangle.right() = m_ppictureimpl->m_polygonDrawing[i].x();
+               rectangle.right() = m_ppictureimpl->m_polygonDrawing[i].x;
 
             }
 
-            if (m_ppictureimpl->m_polygonDrawing[i].y() < rectangle.top())
+            if (m_ppictureimpl->m_polygonDrawing[i].y < rectangle.top())
             {
 
-               rectangle.top() = m_ppictureimpl->m_polygonDrawing[i].y();
+               rectangle.top() = m_ppictureimpl->m_polygonDrawing[i].y;
 
             }
-            else if (m_ppictureimpl->m_polygonDrawing[i].y() > rectangle.bottom())
+            else if (m_ppictureimpl->m_polygonDrawing[i].y > rectangle.bottom())
             {
 
-               rectangle.bottom() = m_ppictureimpl->m_polygonDrawing[i].y();
+               rectangle.bottom() = m_ppictureimpl->m_polygonDrawing[i].y;
 
             }
 
@@ -955,8 +955,8 @@ namespace user
 
       auto pointDrag = get_drag_point();
 
-      size = ::double_size(pointDrag.x() * m_ppictureimpl->m_rectangleDrawing.width(),
-         pointDrag.y() * m_ppictureimpl->m_rectangleDrawing.height()) - size;
+      size = ::double_size(pointDrag.x * m_ppictureimpl->m_rectangleDrawing.width(),
+         pointDrag.y * m_ppictureimpl->m_rectangleDrawing.height()) - size;
 
       double_rectangle rectangle(::double_point(size), ::double_size(m_ppictureimpl->m_rectangleDrawing.size()));
 
@@ -1021,8 +1021,8 @@ namespace user
       auto pointDrag = get_drag_point();
 
       pgraphics->prepend(::geometry2d::matrix::translation(
-         pointDrag.x(),
-         pointDrag.y()));
+         pointDrag.x,
+         pointDrag.y));
 
       ::geometry2d::matrix mTrans;
 

@@ -151,9 +151,9 @@ namespace datetime
 
       void graphics::GetRectDay(int32_t iWeekDay,int32_t iLine,::int_rectangle * lprect)
       {
-         lprect->left() = m_point.x() + m_iColWidth * (iWeekDay - 1);
+         lprect->left() = m_point.x + m_iColWidth * (iWeekDay - 1);
          lprect->right() = lprect->left() + m_iColWidth + 1;
-         lprect->top() = m_point.y() + m_iLineHeight * iLine;
+         lprect->top() = m_point.y + m_iLineHeight * iLine;
          lprect->bottom() = lprect->top() + m_iLineHeight + 1;
       }
 
@@ -161,9 +161,9 @@ namespace datetime
       {
          if(eelement == e_element_month_title)
          {
-            lprect->left() = m_point.x() + m_iColWidth * 1;
+            lprect->left() = m_point.x + m_iColWidth * 1;
             lprect->right() = lprect->left() + m_iColWidth * 2 + 1;
-            lprect->top() = m_point.y() + m_iLineHeight * 7;
+            lprect->top() = m_point.y + m_iLineHeight * 7;
             lprect->bottom() = lprect->top() + m_iLineHeight + 1;
          }
          else

@@ -38,13 +38,13 @@ public:
 
       }
 
-      double x = point.x();
+      double x = point.x;
 
-      double y = point.y();
+      double y = point.y;
 
-      double Δx = x - center.x();
+      double Δx = x - center.x;
 
-      double Δy = y - center.y();
+      double Δy = y - center.y;
 
       if (radius.cx() == radius.cy())
       {

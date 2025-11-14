@@ -14,7 +14,7 @@ uniform sampler2D hdri;
 const vec2 inverseAtan = vec2(0.1591, 0.3183);
 vec2 sphericalToCartesian(vec3 v)
 {
-	vec2 xy = vec2(atan(v.z, v.x), asin(v.y));
+	vec2 xy = vec2(atan(v.x, -v.z), asin(v.y));
 	xy *= inverseAtan;
 	xy += 0.5;
 	return xy;

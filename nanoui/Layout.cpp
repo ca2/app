@@ -380,7 +380,7 @@ AdvancedGridLayout::Anchor::operator ::string() const
 
       compute_layout(pcontext, pwidget, grid, bRecalcTextSize);
 
-      sequence2_int size(
+      int_sequence2 size(
          2 * m_iMargin + grid[0].get_sum()
          + ::maximum((int) grid[0].size() - 1, 0) * m_sizeSpacing[0],
          2 * m_iMargin + grid[1].get_sum()
@@ -419,7 +419,7 @@ AdvancedGridLayout::Anchor::operator ::string() const
 
       }
 
-      sequence2_int dim;
+      int_sequence2 dim;
 
       dim[iAxisIndex1] = m_resolution;
 
@@ -545,7 +545,7 @@ AdvancedGridLayout::Anchor::operator ::string() const
 
       ::collection::index iChildIndex = 0;
 
-      sequence2_int pos = start;
+      int_sequence2 pos = start;
 
       for (int i2 = 0; i2 < dim[iAxisIndex2]; i2++)
       {
@@ -582,7 +582,7 @@ AdvancedGridLayout::Anchor::operator ::string() const
                });
 
 
-            sequence2_int item_pos(pos);
+            int_sequence2 item_pos(pos);
             for (int j = 0; j < 2; j++) {
                int iAxisIndex = (iAxisIndex1 + j) % 2;
                int item = j == 0 ? i1 : i2;
@@ -738,8 +738,8 @@ AdvancedGridLayout::Anchor::operator ::string() const
    void AdvancedGridLayout::compute_layout(::nano2d::context * pcontext, Widget* pwidget, ::int_array_base* _grid)
    {
 
-      sequence2_int fs_w = pwidget->fixed_size();
-      sequence2_int container_size(
+      int_sequence2 fs_w = pwidget->fixed_size();
+      int_sequence2 container_size(
          fs_w[0] ? fs_w[0] : pwidget->width(),
          fs_w[1] ? fs_w[1] : pwidget->height()
       );

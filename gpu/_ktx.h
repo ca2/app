@@ -4,7 +4,7 @@
 #pragma once
 
 
-#include <ktx/ktx.h>
+#include <ktx.h>
 
 
 namespace gpu

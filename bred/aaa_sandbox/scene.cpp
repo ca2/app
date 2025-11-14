@@ -162,14 +162,14 @@ namespace graphics3d
 
             for (int i = 0; i < count; ++i) {
                float angle = i * glm::two_pi<float>() / count;
-               glm::vec3 pos = {
+               floating_sequence3 pos = {
                    radius * std::cos(angle),
                    height,
                    radius * std::sin(angle)
                };
 
                auto colorArray = colorsJson[i % colorsJson.array_get_count()];
-               glm::vec3 color = {
+               floating_sequence3 color = {
                    colorArray[0],
                    colorArray[1],
                    colorArray[2]
@@ -328,7 +328,7 @@ namespace graphics3d
 
 
 
-   ::pointer<::graphics3d::scene_object> immersion_layer::makePointLight(float intensity, float radius, glm::vec3 color)
+   ::pointer<::graphics3d::scene_object> immersion_layer::makePointLight(float intensity, float radius, floating_sequence3 color)
    {
       auto ppointlight = øallocate ::graphics3d::point_light_scene_object;
       this->add_scene_object(ppointlight);

@@ -588,10 +588,10 @@ namespace user
 //      if (::is_element(m_pitemClick, e_element_tab_near_scroll))
 //      {
 //
-//         if (m_pointBarDragScroll.x() > 0)
+//         if (m_pointBarDragScroll.x > 0)
 //         {
 //
-//            m_pointBarDragScroll.x()--;
+//            m_pointBarDragScroll.x--;
 //
 //            set_need_redraw();
 //
@@ -609,10 +609,10 @@ namespace user
 //      else if (::is_element(m_pitemClick, e_element_tab_far_scroll))
 //      {
 //
-//         if (m_pointBarDragScroll.x() < m_pointBarDragScrollMax.x())
+//         if (m_pointBarDragScroll.x < m_pointBarDragScrollMax.x)
 //         {
 //
-//            m_pointBarDragScroll.x()++;
+//            m_pointBarDragScroll.x++;
 //
 //            set_need_redraw();
 //
@@ -830,7 +830,7 @@ namespace user
                if (get_data()->m_bVertical)
                {
 
-                  if(m_pointBarDragScroll.y() >= 0)
+                  if(m_pointBarDragScroll.y >= 0)
                   {
                    
                      return false;
@@ -841,7 +841,7 @@ namespace user
                else
                {
 
-                  if(m_pointBarDragScroll.x() >=  0)
+                  if(m_pointBarDragScroll.x >=  0)
                   {
                      
                      return false;
@@ -892,7 +892,7 @@ namespace user
                if (get_data()->m_bVertical)
                {
 
-                  if(m_pointBarDragScroll.y() <= -m_pointBarDragScrollMax.y())
+                  if(m_pointBarDragScroll.y <= -m_pointBarDragScrollMax.y)
                   {
                    
                      return false;
@@ -903,7 +903,7 @@ namespace user
                else
                {
 
-                  if(m_pointBarDragScroll.x() <= -m_pointBarDragScrollMax.x())
+                  if(m_pointBarDragScroll.x <= -m_pointBarDragScrollMax.x)
                   {
                      
                      return false;
@@ -956,17 +956,17 @@ namespace user
          if (get_data()->m_bVertical)
          {
 
-            ptOffset.y() += 4;
+            ptOffset.y += 4;
 
-            ptOffset.y() += m_pointBarDragScroll.y();
+            ptOffset.y += m_pointBarDragScroll.y;
 
          }
          else
          {
 
-            ptOffset.x() += 4;
+            ptOffset.x += 4;
 
-            ptOffset.x() += m_pointBarDragScroll.x();
+            ptOffset.x += m_pointBarDragScroll.x;
 
          }
 
@@ -1131,9 +1131,9 @@ namespace user
 
          auto ppane = get_data()->m_tabpanea[iIndex].get();
 
-         rectangle.left() = ppane->m_point.x();
+         rectangle.left() = ppane->m_point.x;
 
-         rectangle.top() = ppane->m_point.y();
+         rectangle.top() = ppane->m_point.y;
 
          rectangle.right() = rectangle.left() + ppane->m_size.cx();
 
@@ -1141,7 +1141,7 @@ namespace user
 
       }
 
-      ::offset(rectangle, ptOffset.x(), ptOffset.y());
+      ::offset(rectangle, ptOffset.x, ptOffset.y);
 
       return true;
 
@@ -1433,7 +1433,7 @@ namespace user
       
       ::user::interaction::on_drag_scroll_layout(pgraphics);
       
-      if(m_pointBarDragScrollMax.x() > 0)
+      if(m_pointBarDragScrollMax.x > 0)
       {
          
          if(!m_pitemTabFarScroll)
@@ -1480,7 +1480,7 @@ namespace user
 
          auto point = drag_point(pitem, pmouse);
 
-         m_pointBarDragScroll.x() = minimum_maximum(point.x(), -m_pointBarDragScrollMax.x(), 0);
+         m_pointBarDragScroll.x = minimum_maximum(point.x, -m_pointBarDragScrollMax.x, 0);
          
          
          set_need_redraw();

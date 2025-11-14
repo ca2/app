@@ -8,6 +8,12 @@
 //
 #pragma once
 
+
+struct point_t{};
+struct matrix_t{};
+
+
+
 template < typename ITERATOR_TYPE >
 class scoped_string_base;
 
@@ -460,8 +466,9 @@ concept raw_primitive_point = requires(POINT point)
 template < typename POINT >
 concept primitive_point = requires(POINT point)
 {
-   { point.x() }->primitive_number;
-   { point.y() }->primitive_number;
+   { point.semantic_t() } ->::std::convertible_to<point_t>;
+   { point.x }->primitive_number;
+   { point.y }->primitive_number;
 };
 
 
@@ -486,9 +493,9 @@ concept primitive_sequence4 =
 template < typename POLE >
 concept primitive_pole = requires(POLE pole)
 {
-   { pole.x() }->primitive_number;
-   { pole.y() }->primitive_number;
-   { pole.z() }->primitive_number;
+   { pole.x }->primitive_number;
+   { pole.y }->primitive_number;
+   { pole.z }->primitive_number;
 };
 
 

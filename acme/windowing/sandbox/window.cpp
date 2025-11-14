@@ -261,7 +261,7 @@ void window::create_window()
    //         // initial (XCreateWindow) int_size and position maybe not be honored.
    //         // so requesting the same change again in a effort to set the "docked/snapped" int_size and position.
    
-   //         //set_window_position(e_zorder_top, pusersystem->m_createstruct.x(), pusersystem->m_createstruct.y(),
+   //         //set_window_position(e_zorder_top, pusersystem->m_createstruct.x, pusersystem->m_createstruct.y,
    //         //                  pusersystem->m_createstruct.cx(), pusersystem->m_createstruct.cy(), SWP_SHOWWINDOW);
    
    //         set_window_position(e_zorder_top, x, y, cx, cy, SWP_SHOWWINDOW);
@@ -1486,10 +1486,10 @@ void window::full_screen(const ::int_rectangle& rectangle)
 //
 //      ::int_rectangle rWindow;
 //
-//      rWindow.left() = attr.x();
-//      rWindow.top() = attr.y();
-//      rWindow.right() = attr.x() + attr.width;
-//      rWindow.bottom() = attr.y() + attr.height;
+//      rWindow.left() = attr.x;
+//      rWindow.top() = attr.y;
+//      rWindow.right() = attr.x + attr.width;
+//      rWindow.bottom() = attr.y + attr.height;
 //
 //      if (rBest != rWindow)
 //      {
@@ -1909,10 +1909,10 @@ bool window::is_destroying()
 //
 //      ::int_rectangle rWindow;
 //
-//      rWindow.left()      = attr.x();
-//      rWindow.top()       = attr.y();
-//      rWindow.right()     = attr.x()    + attr.width;
-//      rWindow.bottom()    = attr.y()    + attr.height;
+//      rWindow.left()      = attr.x;
+//      rWindow.top()       = attr.y;
+//      rWindow.right()     = attr.x    + attr.width;
+//      rWindow.bottom()    = attr.y    + attr.height;
 //
 //      if(rBest != rWindow)
 //      {
@@ -3395,13 +3395,13 @@ bool window::has_keyboard_focus()
 //
 //      XTranslateCoordinates(Display(), window, windowRoot, 0, 0, &x, &y, &child);
 //
-//      prectangle->left() = x + attrs.x();
+//      prectangle->left() = x + attrs.x;
 //
-//      prectangle->top() = y + attrs.y();
+//      prectangle->top() = y + attrs.y;
 //
-//      prectangle->right() = x + attrs.x() + attrs.width;
+//      prectangle->right() = x + attrs.x + attrs.width;
 //
-//      prectangle->bottom() = y + attrs.y() + attrs.height;
+//      prectangle->bottom() = y + attrs.y + attrs.height;
 //
 //
 //      windowing_output_debug_string("::x11_get_window_rect 2");

@@ -20,8 +20,8 @@
 namespace graphics3d 
 {
 	//struct SimplePushConstantData {
-	//	glm::mat4 modelMatrix{ 1.f };
-	//	glm::mat4 normalMatrix{ 1.f };
+	//	floating_matrix4 modelMatrix{ 1.f };
+	//	floating_matrix4 normalMatrix{ 1.f };
 	//};
 
 	///::graphics3d::property * simple_
@@ -126,10 +126,10 @@ namespace graphics3d
 		for (auto& kv : pscene->m_mapObjects) {
 			auto& obj = kv.element2();
 			//SimplePushConstantData push{};
-			//push.modelMatrix = obj->m_transform.mat4();
+			//push.modelMatrix = obj->m_transform.floating_matrix4();
 			//push.normalMatrix = obj->m_transform.normalMatrix();
 
-			m_pshader->setMat4("modelMatrix",obj->m_transform.mat4());
+			m_pshader->setMat4("modelMatrix",obj->m_transform.floating_matrix4());
 			m_pshader->setMat4("normalMatrix", obj->m_transform.normalMatrix());
 
 			m_pshader->push_properties();

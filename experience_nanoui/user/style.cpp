@@ -761,8 +761,8 @@ namespace experience_nanoui
                iTabHeight = cy;
             }
 
-            ppane->m_point.x() = x;
-            ppane->m_point.y() = rectangleX.top();
+            ppane->m_point.x = x;
+            ppane->m_point.y = rectangleX.top();
 
 
             //            string str = ppane->get_title();
@@ -873,7 +873,7 @@ namespace experience_nanoui
       else
       {
 
-         ptab->m_iTabSize = ptab->get_data()->m_tabpanea.last()->m_point.x() +
+         ptab->m_iTabSize = ptab->get_data()->m_tabpanea.last()->m_point.x +
          ptab->get_data()->m_tabpanea.last()->m_size.cx();
 
          //ptab->m_iTabScrollMax = ptab->m_iTabSize - rcClient.width();
@@ -1677,28 +1677,28 @@ namespace experience_nanoui
       {
 
          pgraphics->line(
-                 pointCenter.x() - 5, pointCenter.y() - 5,
-                 pointCenter.x() - 5, pointCenter.y() + 5);
+                 pointCenter.x - 5, pointCenter.y - 5,
+                 pointCenter.x - 5, pointCenter.y + 5);
          pgraphics->line(
-                 pointCenter.x(), pointCenter.y() - 5,
-                 pointCenter.x(), pointCenter.y() + 5);
+                 pointCenter.x, pointCenter.y - 5,
+                 pointCenter.x, pointCenter.y + 5);
          pgraphics->line(
-                 pointCenter.x() + 5, pointCenter.y() - 5,
-                 pointCenter.x() + 5, pointCenter.y() + 5);
+                 pointCenter.x + 5, pointCenter.y - 5,
+                 pointCenter.x + 5, pointCenter.y + 5);
 
       }
       else
       {
 
          pgraphics->line(
-                 pointCenter.x() - 5, pointCenter.y() - 5,
-                 pointCenter.x() + 5, pointCenter.y() - 5);
+                 pointCenter.x - 5, pointCenter.y - 5,
+                 pointCenter.x + 5, pointCenter.y - 5);
          pgraphics->line(
-                 pointCenter.x() - 5, pointCenter.y(),
-                 pointCenter.x() + 5, pointCenter.y());
+                 pointCenter.x - 5, pointCenter.y,
+                 pointCenter.x + 5, pointCenter.y);
          pgraphics->line(
-                 pointCenter.x() - 5, pointCenter.y() + 5,
-                 pointCenter.x() + 5, pointCenter.y() + 5);
+                 pointCenter.x - 5, pointCenter.y + 5,
+                 pointCenter.x + 5, pointCenter.y + 5);
 
       }
 

@@ -150,7 +150,7 @@ inline bool polygon_base < NUMBER >::bounding_rectangle_contains(const ::point_t
 inline double atan(const double_point & point, double x, double y)
 {
 
-   return ::atan2(point.y() - y, point.x() - x);
+   return ::atan2(point.y - y, point.x - x);
 
 }
 
@@ -165,8 +165,8 @@ void polygon_base < NUMBER >::sort()
    
    for (auto & point : *this)
    {
-      x += point.x();
-      y += point.y();
+      x += point.x;
+      y += point.y;
    }
    
    x /= this->get_count();
@@ -229,10 +229,10 @@ inline bool inBoundedBox(const double_point & pt1, const double_point & pt2, con
 
    double dSpan = 0.01;
 
-   if (pt1.x() < pt2.x())
+   if (pt1.x < pt2.x)
    {
 
-      if (!(pt1.x() - dSpan <= pt3.x() && pt3.x() <= pt2.x() + dSpan))
+      if (!(pt1.x - dSpan <= pt3.x && pt3.x <= pt2.x + dSpan))
       {
 
          return false;
@@ -243,7 +243,7 @@ inline bool inBoundedBox(const double_point & pt1, const double_point & pt2, con
    else
    {
 
-      if (!(pt2.x() - dSpan <= pt3.x() && pt3.x() <= pt1.x() + dSpan))
+      if (!(pt2.x - dSpan <= pt3.x && pt3.x <= pt1.x + dSpan))
       {
 
          return false;
@@ -252,10 +252,10 @@ inline bool inBoundedBox(const double_point & pt1, const double_point & pt2, con
 
    }
 
-   if (pt1.y() < pt2.y())
+   if (pt1.y < pt2.y)
    {
 
-      if (!(pt1.y() - dSpan <= pt3.y() && pt3.y() <= pt2.y() + dSpan))
+      if (!(pt1.y - dSpan <= pt3.y && pt3.y <= pt2.y + dSpan))
       {
 
          return false;
@@ -266,7 +266,7 @@ inline bool inBoundedBox(const double_point & pt1, const double_point & pt2, con
    else
    {
 
-      if (!(pt2.y() - dSpan <= pt3.y() && pt3.y() <= pt1.y() + dSpan))
+      if (!(pt2.y - dSpan <= pt3.y && pt3.y <= pt1.y + dSpan))
       {
 
          return false;
@@ -282,10 +282,10 @@ inline bool inBoundedBox(const double_point & pt1, const double_point & pt2, con
 inline bool inBoundedBox1(const double_point & pt1, const double_point & pt2, const double_point & pt3)
 {
 
-   if (pt1.x() < pt2.x())
+   if (pt1.x < pt2.x)
    {
 
-      if (!(pt1.x() <= pt3.x() && pt3.x() <= pt2.x()))
+      if (!(pt1.x <= pt3.x && pt3.x <= pt2.x))
       {
 
          return false;
@@ -296,7 +296,7 @@ inline bool inBoundedBox1(const double_point & pt1, const double_point & pt2, co
    else
    {
 
-      if (!(pt2.x() <= pt3.x() && pt3.x() <= pt1.x()))
+      if (!(pt2.x <= pt3.x && pt3.x <= pt1.x))
       {
 
          return false;
@@ -305,10 +305,10 @@ inline bool inBoundedBox1(const double_point & pt1, const double_point & pt2, co
 
    }
 
-   if (pt1.y() < pt2.y())
+   if (pt1.y < pt2.y)
    {
 
-      if (!(pt1.y() <= pt3.y() && pt3.y() <= pt2.y()))
+      if (!(pt1.y <= pt3.y && pt3.y <= pt2.y))
       {
 
          return false;
@@ -319,7 +319,7 @@ inline bool inBoundedBox1(const double_point & pt1, const double_point & pt2, co
    else
    {
 
-      if (!(pt2.y() <= pt3.y() && pt3.y() <= pt1.y()))
+      if (!(pt2.y <= pt3.y && pt3.y <= pt1.y))
       {
 
          return false;
@@ -338,23 +338,23 @@ inline bool int_lineersection(double_point & point, const double_point & pt1, co
 {
 
    //Line segment 1 (point1, point2)
-   double A1 = pt2.x() - pt1.x();
-   double B1 = pt1.y() - pt2.y();
-   double C1 = A1 * pt1.y() + B1 * pt1.x();
+   double A1 = pt2.x - pt1.x;
+   double B1 = pt1.y - pt2.y;
+   double C1 = A1 * pt1.y + B1 * pt1.x;
 
    //Line segment 2 (p3,  p4)
-   double A2 = pt4.x() - pt3.x();
-   double B2 = pt3.y() - pt4.y();
-   double C2 = A2 * pt3.y() + B2 * pt3.x();
+   double A2 = pt4.x - pt3.x;
+   double B2 = pt3.y - pt4.y;
+   double C2 = A2 * pt3.y + B2 * pt3.x;
 
    double determinant = A1 * B2 - A2 * B1;
 
    if (determinant != 0.0)
    {
 
-      point.y() = (B2 * C1 - B1 * C2) / determinant;
+      point.y = (B2 * C1 - B1 * C2) / determinant;
 
-      point.x() = (A1 * C2 - A2 * C1) / determinant;
+      point.x = (A1 * C2 - A2 * C1) / determinant;
 
       return inBoundedBox(pt1, pt2, point) && inBoundedBox(pt3, pt4, point);
 
@@ -438,18 +438,18 @@ const ::rectangle_type < NUMBER > & polygon_base < NUMBER >::bounding_rect() con
       
       ((polygon_base *)this)->expand_bounding_box(((polygon_base *)this)->m_rectangleBounding.top_left(), ((polygon_base *)this)->m_rectangleBounding.bottom_right());
 
-//      ((polygon_base *)this)->m_rectangleBounding.left() = this->element_at(0).x();
-//      ((polygon_base *)this)->m_rectangleBounding.top() = this->element_at(0).y();
-//      ((polygon_base *)this)->m_rectangleBounding.right() = this->element_at(0).x();
-//      ((polygon_base *)this)->m_rectangleBounding.bottom() = this->element_at(0).y();
+//      ((polygon_base *)this)->m_rectangleBounding.left() = this->element_at(0).x;
+//      ((polygon_base *)this)->m_rectangleBounding.top() = this->element_at(0).y;
+//      ((polygon_base *)this)->m_rectangleBounding.right() = this->element_at(0).x;
+//      ((polygon_base *)this)->m_rectangleBounding.bottom() = this->element_at(0).y;
 //
 //      for (::collection::index i = 1; i < this->get_count(); i++)
 //      {
 //
-//         ((polygon_base *)this)->m_rectangleBounding.left() = minimum(m_rectangleBounding.left(), this->element_at(i).x());
-//         ((polygon_base *)this)->m_rectangleBounding.right() = maximum(m_rectangleBounding.right(), this->element_at(i).x());
-//         ((polygon_base *)this)->m_rectangleBounding.top() = minimum(m_rectangleBounding.top(), this->element_at(i).y());
-//         ((polygon_base *)this)->m_rectangleBounding.bottom() = maximum(m_rectangleBounding.bottom(), this->element_at(i).y());
+//         ((polygon_base *)this)->m_rectangleBounding.left() = minimum(m_rectangleBounding.left(), this->element_at(i).x);
+//         ((polygon_base *)this)->m_rectangleBounding.right() = maximum(m_rectangleBounding.right(), this->element_at(i).x);
+//         ((polygon_base *)this)->m_rectangleBounding.top() = minimum(m_rectangleBounding.top(), this->element_at(i).y);
+//         ((polygon_base *)this)->m_rectangleBounding.bottom() = maximum(m_rectangleBounding.bottom(), this->element_at(i).y);
 
 //      }
 

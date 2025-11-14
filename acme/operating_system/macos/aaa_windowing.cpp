@@ -738,10 +738,10 @@ void ns_main_async(dispatch_block_t block);
 //
 //         ::int_rectangle rectangleCopy;
 //
-//         rectangleCopy.left() = rectangle.origin.x();
-//         rectangleCopy.top() = rMainScreen.height() - (rectangle.origin.y() + rectangle.size.height);
+//         rectangleCopy.left() = rectangle.origin.x;
+//         rectangleCopy.top() = rMainScreen.height() - (rectangle.origin.y + rectangle.size.height);
 //         rectangleCopy.bottom() = rectangleCopy.top() + rectangle.size.height;
-//         rectangleCopy.right() = rectangle.origin.x() + rectangle.size.width;
+//         rectangleCopy.right() = rectangle.origin.x + rectangle.size.width;
 //
 //         recta.add(rectangleCopy);
 //
@@ -991,8 +991,8 @@ void ns_main_async(dispatch_block_t block);
 //#ifdef FUNCTION_TRACE
 //
 //         FUNCTION_TRACE("  %5.0f,%5.0f - %5.0f,%5.0f  ",
-//              rectangle.origin.x(),
-//              rectangle.origin.y(),
+//              rectangle.origin.x,
+//              rectangle.origin.y,
 //              rectangle.size.width,
 //              rectangle.size.height);
 //
@@ -1015,10 +1015,10 @@ void ns_main_async(dispatch_block_t block);
 //
 //                  ::int_rectangle rectangleCopy;
 //
-//                  rectangleCopy.left() = rectangle.origin.x();
-//                  rectangleCopy.right() = rectangle.origin.x() + rectangle.size.width;
-//                  rectangleCopy.top() = rectangle.origin.y();
-//                  rectangleCopy.bottom() = rectangle.origin.y() + rectangle.size.height;
+//                  rectangleCopy.left() = rectangle.origin.x;
+//                  rectangleCopy.right() = rectangle.origin.x + rectangle.size.width;
+//                  rectangleCopy.top() = rectangle.origin.y;
+//                  rectangleCopy.bottom() = rectangle.origin.y + rectangle.size.height;
 //
 //                  recta.add(rectangleCopy);
 //
@@ -1225,15 +1225,15 @@ void ns_main_async(dispatch_block_t block);
 //
 //         ::int_rectangle rectangleCopy;
 //
-//         //rectangleCopy.left() = rectangle.origin.x();
-//         //rectangleCopy.top() = rMainScreen.height() - (rectangle.origrin.y() + rectangle.size.height);
+//         //rectangleCopy.left() = rectangle.origin.x;
+//         //rectangleCopy.top() = rMainScreen.height() - (rectangle.origrin.y + rectangle.size.height);
 //         //rectangleCopy.bottom() = rectangleCopy.top() + rectangle.size.height;
-//         //rectangleCopy.right() = rectangle.origin.x() + rectangle.size.width;
+//         //rectangleCopy.right() = rectangle.origin.x + rectangle.size.width;
 //
-//         rectangleCopy.left() = rectangle.origin.x();
-//         rectangleCopy.right() = rectangle.origin.x() + rectangle.size.width;
-//         rectangleCopy.top() = rectangle.origin.y();
-//         rectangleCopy.bottom() = rectangle.origin.y() + rectangle.size.height;
+//         rectangleCopy.left() = rectangle.origin.x;
+//         rectangleCopy.right() = rectangle.origin.x + rectangle.size.width;
+//         rectangleCopy.top() = rectangle.origin.y;
+//         rectangleCopy.bottom() = rectangle.origin.y + rectangle.size.height;
 //
 //         recta.add(rectangleCopy);
 //         windowida.add(iWindowId);

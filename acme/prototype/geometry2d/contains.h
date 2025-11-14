@@ -34,7 +34,7 @@
 //inline bool shape_contains(const RECTANGLE & rectangle, const POINT & point)
 //{
 //
-//   return ::contains(rectangle, point.x(), point.y());
+//   return ::contains(rectangle, point.x, point.y);
 //
 //}
 //
@@ -46,11 +46,11 @@ template < primitive_number NUMBER1, primitive_number NUMBER2, primitive_number 
 bool segment_contains(const ::point_type < NUMBER1 > & point1, const ::point_type < NUMBER2 > & point2, const ::point_type < NUMBER > & point, const float epsilon = 0.001f)
 {
 
-   auto dx = point2.x() - point1.x();
+   auto dx = point2.x - point1.x;
 
-   auto dy = point2.y() - point1.y();
+   auto dy = point2.y - point1.y;
 
-   return ::is_equal(((point.x() - point1.x()) * dy), ((point.y() - point1.y()) * dx), epsilon);
+   return ::is_equal(((point.x - point1.x) * dy), ((point.y - point1.y) * dx), epsilon);
 
    //return false;
 }

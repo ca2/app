@@ -154,28 +154,28 @@ namespace graphics3d
    }
 
    
-   void mesh::SetInstanceModelMatrices(const ::array<glm::mat4>& modelMatrices)
+   void mesh::SetInstanceModelMatrices(const ::array<floating_matrix4>& modelMatrices)
    {
       //// Bind VAO
       //glBindVertexArray(m_VAO);
 
       //// Create and bind instance VBO for model matrices
       //glBindBuffer(GL_ARRAY_BUFFER, m_InstanceVBO);
-      //glBufferData(GL_ARRAY_BUFFER, modelMatrices.size() * sizeof(glm::mat4), modelMatrices.data(), GL_STATIC_DRAW);
+      //glBufferData(GL_ARRAY_BUFFER, modelMatrices.size() * sizeof(floating_matrix4), modelMatrices.data(), GL_STATIC_DRAW);
 
       //// Set instance attributes for the model matrix (layout locations 3, 4, 5, and 6)
       //for (unsigned int i = 0; i < 4; i++) {
       //   glEnableVertexAttribArray(3 + i);
-      //   glVertexAttribPointer(3 + i, 4, GL_FLOAT, GL_FALSE, sizeof(glm::mat4), (void*)(i * sizeof(glm::vec4)));
+      //   glVertexAttribPointer(3 + i, 4, GL_FLOAT, GL_FALSE, sizeof(floating_matrix4), (void*)(i * sizeof(floating_sequence4)));
       //   glVertexAttribDivisor(3 + i, 1);  // Set attribute divisor to 1 for instanced rendering
       //}
 
       //glBindVertexArray(0);  // Unbind VAO
    }
-   void mesh::UpdateInstanceModelMatrices(const ::array<glm::mat4>& modelMatrices) {
+   void mesh::UpdateInstanceModelMatrices(const ::array<floating_matrix4>& modelMatrices) {
       //glBindVertexArray(m_VAO);
       //glBindBuffer(GL_ARRAY_BUFFER, m_InstanceVBO);
-      //glBufferSubData(GL_ARRAY_BUFFER, 0, modelMatrices.size() * sizeof(glm::mat4), modelMatrices.data());
+      //glBufferSubData(GL_ARRAY_BUFFER, 0, modelMatrices.size() * sizeof(floating_matrix4), modelMatrices.data());
       //glBindVertexArray(0); // Unbind VAO
    }
 

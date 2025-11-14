@@ -59,23 +59,23 @@
 //
 //      virtual void setFloat(const ::scoped_string& scopedstrName, float value);
 //
-//      //virtual void setVec2(const ::scoped_string & scopedstrName, const glm::vec2& value) override;
+//      //virtual void setVec2(const ::scoped_string & scopedstrName, const floating_sequence2& value) override;
 //      virtual void setVec2(const ::scoped_string& scopedstrName, float x, float y);
-//      virtual void setVec2(const ::scoped_string& scopedstrName, const ::glm::vec2& a);
-//      //virtual void setVec3(const ::scoped_string & scopedstrName, const glm::vec3& value) override;
+//      virtual void setVec2(const ::scoped_string& scopedstrName, const ::floating_sequence2& a);
+//      //virtual void setVec3(const ::scoped_string & scopedstrName, const floating_sequence3& value) override;
 //      virtual void setVec3(const ::scoped_string& scopedstrName, float x, float y, float z);
-//      virtual void setVec3(const ::scoped_string& scopedstrName, const ::glm::vec3& a);
-//      //virtual void setVec4(const ::scoped_string & scopedstrName, const glm::vec4& value) override;
+//      virtual void setVec3(const ::scoped_string& scopedstrName, const ::floating_sequence3& a);
+//      //virtual void setVec4(const ::scoped_string & scopedstrName, const floating_sequence4& value) override;
 //      virtual void setVec4(const ::scoped_string& scopedstrName, float x, float y, float z, float w);
 //
-//      virtual void setVec4(const ::scoped_string& scopedstrName, const ::glm::vec4& a);
+//      virtual void setVec4(const ::scoped_string& scopedstrName, const ::floating_sequence4& a);
 //
-//      //virtual void setMat2(const ::scoped_string & scopedstrName, const glm::mat2& mat) override;
-//      //virtual void setMat3(const ::scoped_string & scopedstrName, const glm::mat3& mat) override;
-//      //virtual void setMat4(const ::scoped_string & scopedstrName, const glm::mat4& mat) override;
-//      virtual void setMat2(const ::scoped_string& scopedstrName, const ::glm::mat2 & a);
-//      virtual void setMat3(const ::scoped_string& scopedstrName, const ::glm::mat3& a);
-//      virtual void setMat4(const ::scoped_string& scopedstrName, const ::glm::mat4& a);
+//      //virtual void setMat2(const ::scoped_string & scopedstrName, const floating_matrix2& mat) override;
+//      //virtual void setMat3(const ::scoped_string & scopedstrName, const floating_matrix3& mat) override;
+//      //virtual void setMat4(const ::scoped_string & scopedstrName, const floating_matrix4& mat) override;
+//      virtual void setMat2(const ::scoped_string& scopedstrName, const ::floating_matrix2 & a);
+//      virtual void setMat3(const ::scoped_string& scopedstrName, const ::floating_matrix3& a);
+//      virtual void setMat4(const ::scoped_string& scopedstrName, const ::floating_matrix4& a);
 //
 //
 //   };

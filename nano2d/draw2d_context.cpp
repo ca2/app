@@ -995,9 +995,9 @@ void draw2d_context::text_metrics(float * pfAscender, float * pfDescender, float
       else
       {
 
-         m_point.x() = x;
+         m_point.x = x;
 
-         m_point.y() = y;
+         m_point.y = y;
 
          m_bHasCurrentPoint = true;
 
@@ -1028,11 +1028,11 @@ void draw2d_context::text_metrics(float * pfAscender, float * pfDescender, float
 
          }
 
-         m_pgraphics->line(m_point.x(), m_point.y(), x, y);
+         m_pgraphics->line(m_point.x, m_point.y, x, y);
 
-         m_point.x() = x;
+         m_point.x = x;
 
-         m_point.y() = y;
+         m_point.y = y;
 
       }
 

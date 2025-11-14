@@ -117,7 +117,7 @@ extern double g_machtime_conversion_factor;
 //   clock_get_time(cclock, &mts);
 
 #endif
-
+//CLASS_DECL_ACME void detect_cpu_features();
 
 extern CLASS_DECL_ACME ::array<matter *> * g_paAura;
 
@@ -662,6 +662,8 @@ namespace acme
 
    void acme::acme_construct()
    {
+
+      //detect_cpu_features();
 
       initialize_memory_management();
 

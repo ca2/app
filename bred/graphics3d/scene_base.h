@@ -47,8 +47,8 @@ namespace graphics3d
       //::string                                                    m_strSkyboxTexture;
 
       bool m_bInitialCameraLoaded = false;
-		//glm::vec3													            m_initialCameraPosition{ 0.f };
-		//glm::vec3													            m_initialCameraRotation{ 0.f };
+		//floating_sequence3													            m_initialCameraPosition{ 0.f };
+		//floating_sequence3													            m_initialCameraRotation{ 0.f };
 
 		//::string														            m_strSkyboxModelName;
       //::string m_strSkyboxTextureName = "skybox_hdr";
@@ -86,7 +86,7 @@ namespace graphics3d
 
 		virtual ::graphics3d::scene_renderable_map & scene_renderables();
 
-		//virtual ::pair<glm::mat4, glm::mat4> getMainCameraMatrices()const;
+		//virtual ::pair<floating_matrix4, floating_matrix4> getMainCameraMatrices()const;
 
       //virtual ::pointer<::graphics3d::renderable> get_cube_model();
       //virtual ::pointer<::graphics3d::renderable> get_skybox_cube_model();

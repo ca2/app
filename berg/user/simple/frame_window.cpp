@@ -1518,13 +1518,13 @@ void simple_frame_window::_001OnGetMinMaxInfo(::message::message * pmessage)
    //if (layout().is_full_screen())
    //{
 
-   //   pMMI->ptMaxSize.y() = m_FullScreenWindowRect.height();
+   //   pMMI->ptMaxSize.y = m_FullScreenWindowRect.height();
 
-   //   pMMI->ptMaxTrackSize.y() = pMMI->ptMaxSize.y();
+   //   pMMI->ptMaxTrackSize.y = pMMI->ptMaxSize.y;
 
-   //   pMMI->ptMaxSize.x() = m_FullScreenWindowRect.width();
+   //   pMMI->ptMaxSize.x = m_FullScreenWindowRect.width();
 
-   //   pMMI->ptMaxTrackSize.x() = pMMI->ptMaxSize.x();
+   //   pMMI->ptMaxTrackSize.x = pMMI->ptMaxSize.x;
 
    //}
 
@@ -2669,7 +2669,7 @@ void simple_frame_window::_000OnDraw(::draw2d::graphics_pointer & pgraphicsParam
 //   if (!pointScroll.is_null())
 //   {
 //
-//      pgraphicsParam->offset_origin(-pointScroll.x(), -pointScroll.y());
+//      pgraphicsParam->offset_origin(-pointScroll.x, -pointScroll.y);
 //
 //   }
 //

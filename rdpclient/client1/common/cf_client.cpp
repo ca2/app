@@ -101,10 +101,10 @@
 //
 //   for(i = 0; i < ninvalid; i++)
 //   {
-//      invalidRect.left() = cinvalid[i].x();
-//      invalidRect.top() = cinvalid[i].y();
-//      invalidRect.right() = cinvalid[i].x() + cinvalid[i].w;
-//      invalidRect.bottom() = cinvalid[i].y() + cinvalid[i].h;
+//      invalidRect.left() = cinvalid[i].x;
+//      invalidRect.top() = cinvalid[i].y;
+//      invalidRect.right() = cinvalid[i].x + cinvalid[i].w;
+//      invalidRect.bottom() = cinvalid[i].y + cinvalid[i].h;
 //
 //      region16_union_rect(&invalidRegion,&invalidRegion,&invalidRect);
 //   }
@@ -198,7 +198,7 @@
 //	if (wfc->fullscreen != true)
 //	{
 //		if (wfc->hwnd)
-//			set_window_position(wfc->hwnd, HWND_TOP, -1, -1, wfc->width + wfc->diff.x(), wfc->height + wfc->diff.y(), SWP_NOMOVE);
+//			set_window_position(wfc->hwnd, HWND_TOP, -1, -1, wfc->width + wfc->diff.x, wfc->height + wfc->diff.y, SWP_NOMOVE);
 //	}
 //	else
 //	{

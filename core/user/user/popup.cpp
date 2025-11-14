@@ -74,7 +74,7 @@ namespace user
 
       order(e_zorder_top_most);
 
-      place(point.x(), point.y(), 400, 200);
+      place(point.x, point.y, 400, 200);
 
       display(e_display_normal, { ::user::e_activation_set_popup });
 

@@ -621,8 +621,8 @@ namespace user
 
       virtual void set_context_org(::draw2d::graphics_pointer & pgraphics);
 
-      virtual void viewport_screen_to_client(::sequence2_int & sequence);
-      virtual void viewport_client_to_screen(::sequence2_int & sequence);
+      virtual void viewport_screen_to_client(::int_sequence2 & sequence);
+      virtual void viewport_client_to_screen(::int_sequence2 & sequence);
       virtual void viewport_client_to_screen(::int_rectangle & point);
       virtual void viewport_screen_to_client(::int_rectangle & point);
 

@@ -1,6 +1,6 @@
 #pragma once
 //#include <vector>
-#include <glm/glm.hpp>
+//#include <glm/glm.hpp>
 #include "bred/gpu/context_object.h"
 #include "bred/graphics3d/model.h"
 #include "bred/graphics3d/shape_factory.h"
@@ -26,7 +26,7 @@ namespace graphics3d
       unsigned int m_IndexOffset;
       unsigned int m_IndexCount;
       unsigned int m_VertexOffset;
-      ::array<glm::mat4> m_ModelMatrices;
+      ::array<floating_matrix4> m_ModelMatrices;
       // New instance buffer
       //unsigned int m_InstanceVBO;
 
@@ -48,8 +48,8 @@ namespace graphics3d
       virtual void unbind();
       virtual unsigned int GetIndexCount() const;
       virtual unsigned int GetIndexOffset() const;
-      virtual void SetInstanceModelMatrices(const ::array<glm::mat4>& modelmatricies);
-      virtual void UpdateInstanceModelMatrices(const ::array<glm::mat4>& modelMatrices);
+      virtual void SetInstanceModelMatrices(const ::array<floating_matrix4>& modelmatricies);
+      virtual void UpdateInstanceModelMatrices(const ::array<floating_matrix4>& modelMatrices);
 
 
       virtual void draw_instanced();

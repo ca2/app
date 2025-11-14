@@ -65,7 +65,7 @@ namespace experience
 
       auto pointDock = ::int_point(pmouse->m_pointAbsolute - m_pointCursorDockOrigin + m_sizeDockRightOrigin);
 
-      pointDock.x() -= m_pframewindow->width();
+      pointDock.x -= m_pframewindow->width();
 
       ::int_rectangle rectangleWindow;
 
@@ -77,7 +77,7 @@ namespace experience
 
       auto pointCursor = pmouse->m_pointAbsolute;
 
-      ::int_rectangle rectangleCursor(pointCursor.x() - 1, pointCursor.y() - 1, pointCursor.x() + 1, pointCursor.y() + 1);
+      ::int_rectangle rectangleCursor(pointCursor.x - 1, pointCursor.y - 1, pointCursor.x + 1, pointCursor.y + 1);
 
       ::int_rectangle screen;
 
@@ -116,13 +116,13 @@ namespace experience
 
       auto pointWorkspaceCenter = rectangleWorkspace.center();
 
-      rectangleWorkspaceCenter.left() = pointWorkspaceCenter.x() - cxQuarterWorkspace;
+      rectangleWorkspaceCenter.left() = pointWorkspaceCenter.x - cxQuarterWorkspace;
 
-      rectangleWorkspaceCenter.top() = pointWorkspaceCenter.y() - cyQuarterWorkspace;
+      rectangleWorkspaceCenter.top() = pointWorkspaceCenter.y - cyQuarterWorkspace;
 
-      rectangleWorkspaceCenter.right() = pointWorkspaceCenter.x() + cxQuarterWorkspace;
+      rectangleWorkspaceCenter.right() = pointWorkspaceCenter.x + cxQuarterWorkspace;
 
-      rectangleWorkspaceCenter.bottom() = pointWorkspaceCenter.y() + cyQuarterWorkspace;
+      rectangleWorkspaceCenter.bottom() = pointWorkspaceCenter.y + cyQuarterWorkspace;
 
       if (m_pframewindow->const_layout().design().display() & e_display_bottom)
       {
@@ -220,16 +220,16 @@ namespace experience
 
 //      ::int_rectangle rectangleScreenOld = m_pframewindow->screen_rect();
 
-      if (rectangleWorkspaceCenter.contains_x(pointCursor.x()))
+      if (rectangleWorkspaceCenter.contains_x(pointCursor.x))
       {
 
-         if (rectangleWorkspaceCenter.contains_y(pointCursor.y()))
+         if (rectangleWorkspaceCenter.contains_y(pointCursor.y))
          {
 
             edisplayDock = edisplayNormal;
 
          }
-         else if (pointCursor.y() < rectangleWorkspaceCenter.top())
+         else if (pointCursor.y < rectangleWorkspaceCenter.top())
          {
 
             edisplayDock = ::e_display_full_top;
@@ -237,7 +237,7 @@ namespace experience
             rectangleDock = int_rectangle_dimension(rectangleWorkspace.left(), rectangleWorkspace.top(), rectangleWorkspace.width(), rectangleWorkspace.height() / 2);
 
          }
-         else if (pointCursor.y() > rectangleWorkspaceCenter.bottom())
+         else if (pointCursor.y > rectangleWorkspaceCenter.bottom())
          {
 
             edisplayDock = ::e_display_full_bottom;
@@ -247,10 +247,10 @@ namespace experience
          }
 
       }
-      else if (rectangleWorkspaceCenter.contains_y(pointCursor.y()))
+      else if (rectangleWorkspaceCenter.contains_y(pointCursor.y))
       {
 
-         if (pointCursor.x() < rectangleWorkspaceCenter.left())
+         if (pointCursor.x < rectangleWorkspaceCenter.left())
          {
 
             edisplayDock = ::e_display_full_left;
@@ -258,7 +258,7 @@ namespace experience
             rectangleDock = int_rectangle_dimension(rectangleWorkspace.left(), rectangleWorkspace.top(), rectangleWorkspace.width() / 2, rectangleWorkspace.height());
 
          }
-         else if (pointCursor.x() > rectangleWorkspaceCenter.right())
+         else if (pointCursor.x > rectangleWorkspaceCenter.right())
          {
 
             edisplayDock = ::e_display_full_right;
@@ -268,10 +268,10 @@ namespace experience
          }
 
       }
-      else if (pointCursor.x() < rectangleWorkspaceCenter.left())
+      else if (pointCursor.x < rectangleWorkspaceCenter.left())
       {
 
-         if (pointCursor.y() < rectangleWorkspaceCenter.top())
+         if (pointCursor.y < rectangleWorkspaceCenter.top())
          {
 
             edisplayDock = ::e_display_top_left;
@@ -279,7 +279,7 @@ namespace experience
             rectangleDock = int_rectangle_dimension(rectangleWorkspace.left(), rectangleWorkspace.top(), rectangleWorkspace.width() / 2, rectangleWorkspace.height() / 2);
 
          }
-         else if (pointCursor.y() > rectangleWorkspaceCenter.bottom())
+         else if (pointCursor.y > rectangleWorkspaceCenter.bottom())
          {
 
             edisplayDock = ::e_display_bottom_left;
@@ -289,10 +289,10 @@ namespace experience
          }
 
       }
-      else if (pointCursor.x() > rectangleWorkspaceCenter.right())
+      else if (pointCursor.x > rectangleWorkspaceCenter.right())
       {
 
-         if (pointCursor.y() < rectangleWorkspaceCenter.top())
+         if (pointCursor.y < rectangleWorkspaceCenter.top())
          {
 
             edisplayDock = ::e_display_top_right;
@@ -300,7 +300,7 @@ namespace experience
             rectangleDock = int_rectangle_dimension(rectangleWorkspace.left() + rectangleWorkspace.width() / 2, rectangleWorkspace.top(), rectangleWorkspace.width() / 2, rectangleWorkspace.height() / 2);
 
          }
-         else if (pointCursor.y() > rectangleWorkspaceCenter.bottom())
+         else if (pointCursor.y > rectangleWorkspaceCenter.bottom())
          {
 
             edisplayDock = ::e_display_bottom_right;
@@ -592,7 +592,7 @@ namespace experience
 
       pbutton->raw_to_host()(rectangle);
 
-      return { m_pframewindow->width() - rectangle.origin().x(), -rectangle.origin().y()};
+      return { m_pframewindow->width() - rectangle.origin().x, -rectangle.origin().y};
 
    }
 

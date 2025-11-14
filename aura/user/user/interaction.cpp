@@ -449,8 +449,8 @@ namespace user
 
       //m_bEatsDoubleClick = true;
 
-      //m_pointScroll.x() = 0;
-      //m_pointScroll.y() = 0;
+      //m_pointScroll.x = 0;
+      //m_pointScroll.y = 0;
       //m_palphasource = nullptr;
 
       m_pform = nullptr;
@@ -690,9 +690,9 @@ namespace user
       if (::is_null(get_parent()))
       {
 
-         int x = point.x();
+         int x = point.x;
 
-         int y = point.y();
+         int y = point.y;
 
          if (x < 100 || y < 100)
          {
@@ -711,7 +711,7 @@ namespace user
 
       int iLastXAbs = get_last_x_abs();
 
-      if (pointNew.x()< iLastXAbs - 20 && get_last_x_abs() >= 0)
+      if (pointNew.x< iLastXAbs - 20 && get_last_x_abs() >= 0)
       {
 
 
@@ -720,7 +720,7 @@ namespace user
 
       //g_xLastAbs = rWindow.left;
 
-      g_xLastAbs = pointNew.x();
+      g_xLastAbs = pointNew.x;
 
 #endif
 
@@ -926,9 +926,9 @@ namespace user
 
       auto size = this->size(elayout);
 
-      size.cx() += point.x() - left;
+      size.cx() += point.x - left;
 
-      point.x() = left;
+      point.x = left;
 
       bool bOnSetSize = on_set_size(size, elayout);
 
@@ -970,7 +970,7 @@ namespace user
 
       auto size = this->size(elayout);
 
-      point.x() = right - size.cx();
+      point.x = right - size.cx();
 
       if (on_set_position(point, elayout))
       {
@@ -1003,7 +1003,7 @@ namespace user
 
       auto point = position(elayout);
 
-      point.y() = top;
+      point.y = top;
 
       if (on_set_position(point, elayout))
       {
@@ -4433,8 +4433,8 @@ namespace user
       scrollstate.m_dMinimum = 0.;
       scrollstate.m_dMaximum = sizeTotal.cx();
       scrollstate.m_dPage = sizePage.cx();
-      scrollstate.m_dPosition = pointOffset.x();
-      scrollstate.m_dTrackingPosition = pointOffset.x();
+      scrollstate.m_dPosition = pointOffset.x;
+      scrollstate.m_dTrackingPosition = pointOffset.x;
 
    }
 
@@ -4451,8 +4451,8 @@ namespace user
       scrollstate.m_dMinimum = 0.;
       scrollstate.m_dMaximum = sizeTotal.cy();
       scrollstate.m_dPage = sizePage.cy();
-      scrollstate.m_dPosition = pointOffset.y();
-      scrollstate.m_dTrackingPosition = pointOffset.y();
+      scrollstate.m_dPosition = pointOffset.y;
+      scrollstate.m_dTrackingPosition = pointOffset.y;
 
    }
 
@@ -5134,16 +5134,16 @@ namespace user
          if (puserinteraction->m_bParentScrollX)
          {
 
-            pointScroll.x() += pointChildScroll.x();
-            //pointScroll.x() += puserinteraction->get_parent()->m_pointDragScroll.x();
+            pointScroll.x += pointChildScroll.x;
+            //pointScroll.x += puserinteraction->get_parent()->m_pointDragScroll.x;
 
          }
 
          if (puserinteraction->m_bParentScrollY)
          {
 
-            pointScroll.y() += pointChildScroll.y();
-            //pointScroll.y() += puserinteraction->get_parent()->m_pointDragScroll.y();
+            pointScroll.y += pointChildScroll.y;
+            //pointScroll.y += puserinteraction->get_parent()->m_pointDragScroll.y;
 
          }
 
@@ -5171,16 +5171,16 @@ namespace user
          if (puserinteraction->m_bParentScrollX)
          {
 
-            pointScroll.x() += pointChildScroll.x();
-            //pointScroll.x() += puserinteraction->get_parent()->m_pointDragScroll.x();
+            pointScroll.x += pointChildScroll.x;
+            //pointScroll.x += puserinteraction->get_parent()->m_pointDragScroll.x;
 
          }
 
          if (puserinteraction->m_bParentScrollY)
          {
 
-            pointScroll.y() += pointChildScroll.y();
-            //pointScroll.y() += puserinteraction->get_parent()->m_pointDragScroll.y();
+            pointScroll.y += pointChildScroll.y;
+            //pointScroll.y += puserinteraction->get_parent()->m_pointDragScroll.y;
 
          }
 
@@ -5205,16 +5205,16 @@ namespace user
       if (puserinteraction->m_bParentScrollX)
       {
 
-         pointScroll.x() += pointChildScroll.x();
-         //pointScroll.x() += puserinteraction->get_parent()->m_pointDragScroll.x();
+         pointScroll.x += pointChildScroll.x;
+         //pointScroll.x += puserinteraction->get_parent()->m_pointDragScroll.x;
 
       }
 
       if (puserinteraction->m_bParentScrollY)
       {
 
-         pointScroll.y() += pointChildScroll.y();
-         //pointScroll.y() += puserinteraction->get_parent()->m_pointDragScroll.y();
+         pointScroll.y += pointChildScroll.y;
+         //pointScroll.y += puserinteraction->get_parent()->m_pointDragScroll.y;
 
       }
 
@@ -5577,7 +5577,7 @@ namespace user
       //if (!pointScroll.is_null())
       //{
 
-      //   pgraphics->offset_origin(-pointScroll.x(), -pointScroll.y());
+      //   pgraphics->offset_origin(-pointScroll.x, -pointScroll.y);
 
       //}
 
@@ -5586,7 +5586,7 @@ namespace user
       //if (!pointDragScroll.is_null())
       //{
 
-      //   pgraphics->offset_origin(-pointDragScroll.x(), -pointDragScroll.y());
+      //   pgraphics->offset_origin(-pointDragScroll.x, -pointDragScroll.y);
 
       //}
 
@@ -5687,7 +5687,7 @@ namespace user
 
 #endif //__DEBUG
 
-      //pgraphics->offset_origin(pointScroll.x(), pointScroll.y());
+      //pgraphics->offset_origin(pointScroll.x, pointScroll.y);
 
    }
 
@@ -5750,7 +5750,7 @@ namespace user
 
             pointOffset = layout().layout().origin();
 
-            if (pointOffset.y() == 31)
+            if (pointOffset.y == 31)
             {
 
                //information() << "31";
@@ -5792,7 +5792,7 @@ namespace user
 
    //      pointOffset = layout().layout().origin();
 
-   //      if (pointOffset.y() == 31)
+   //      if (pointOffset.y == 31)
    //      {
 
    //         information() << "31";
@@ -5933,8 +5933,8 @@ namespace user
                      //   if (!bParentScrollX && pinteraction->m_bParentScrollX)
                      //   {
 
-                     //      pgraphics->offset_origin(-pointScroll.x(), 0);
-                     //      //pgraphics->offset_origin(-pointDragScroll.x(), 0);
+                     //      pgraphics->offset_origin(-pointScroll.x, 0);
+                     //      //pgraphics->offset_origin(-pointDragScroll.x, 0);
 
                      //      bParentScrollX = true;
 
@@ -5942,8 +5942,8 @@ namespace user
                      //   else if (bParentScrollX && !pinteraction->m_bParentScrollX)
                      //   {
 
-                     //      pgraphics->offset_origin(pointScroll.x(), 0);
-                     //      //pgraphics->offset_origin(pointDragScroll.x(), 0);
+                     //      pgraphics->offset_origin(pointScroll.x, 0);
+                     //      //pgraphics->offset_origin(pointDragScroll.x, 0);
 
 
                      //      bParentScrollX = false;
@@ -5953,8 +5953,8 @@ namespace user
                      //   if (!bParentScrollY && pinteraction->m_bParentScrollY)
                      //   {
 
-                     //      pgraphics->offset_origin(0, -pointScroll.y());
-                     //      //pgraphics->offset_origin(0, -pointDragScroll.y());
+                     //      pgraphics->offset_origin(0, -pointScroll.y);
+                     //      //pgraphics->offset_origin(0, -pointDragScroll.y);
 
                      //      bParentScrollY = true;
 
@@ -5962,8 +5962,8 @@ namespace user
                      //   else if (bParentScrollY && !pinteraction->m_bParentScrollY)
                      //   {
 
-                     //      pgraphics->offset_origin(0, pointScroll.y());
-                     //      //pgraphics->offset_origin(0, pointDragScroll.y());
+                     //      pgraphics->offset_origin(0, pointScroll.y);
+                     //      //pgraphics->offset_origin(0, pointDragScroll.y);
 
                      //      bParentScrollY = false;
 
@@ -6031,19 +6031,19 @@ namespace user
 
       }
 
-      //pgraphics->offset_origin(pointScroll.x(), pointScroll.y());
+      //pgraphics->offset_origin(pointScroll.x, pointScroll.y);
 
-      //if (bParentScrollX && pointContextOffset.x())
+      //if (bParentScrollX && pointContextOffset.x)
       //{
 
-      //   pgraphics->offset_origin(pointContextOffset.x(), 0);
+      //   pgraphics->offset_origin(pointContextOffset.x, 0);
 
       //}
 
-      //if (bParentScrollY && pointContextOffset.y())
+      //if (bParentScrollY && pointContextOffset.y)
       //{
 
-      //   pgraphics->offset_origin(0, pointContextOffset.y());
+      //   pgraphics->offset_origin(0, pointContextOffset.y);
 
       //}
 
@@ -6344,7 +6344,7 @@ namespace user
    //      if (!pointOffset.is_null())
    //      {
    //
-   //         pgraphics->offset_origin(pointOffset.x(), pointOffset.y());
+   //         pgraphics->offset_origin(pointOffset.x, pointOffset.y);
    //
    //      }
    //
@@ -6362,7 +6362,7 @@ namespace user
    //      if (!pointOffset.is_null())
    //      {
    //
-   //         pgraphics->offset_origin(-pointOffset.x(), -pointOffset.y());
+   //         pgraphics->offset_origin(-pointOffset.x, -pointOffset.y);
    //
    //      }
    //
@@ -6902,7 +6902,7 @@ namespace user
       //if (!pointOffset.is_null())
       //{
 
-      //   pgraphics->offset_origin(pointOffset.x(), pointOffset.y());
+      //   pgraphics->offset_origin(pointOffset.x, pointOffset.y);
 
       //}
 
@@ -6933,7 +6933,7 @@ namespace user
       //if (!pointOffset.is_null())
       //{
 
-      //   pgraphics->offset_origin(-pointOffset.x(), -pointOffset.y());
+      //   pgraphics->offset_origin(-pointOffset.x, -pointOffset.y);
 
       //}
 
@@ -7166,7 +7166,7 @@ namespace user
          //if (!pointScroll.is_null())
          //{
 
-         //   pgraphics->offset_origin(-pointScroll.x(), -pointScroll.y());
+         //   pgraphics->offset_origin(-pointScroll.x, -pointScroll.y);
 
          //}
 
@@ -7267,7 +7267,7 @@ namespace user
                //}
                ////         ::int_point pointParentOffset = get_parent_context_offset();
                ////
-               ////         pgraphics->offset_origin(-pointParentOffset.x(), -pointParentOffset.y());
+               ////         pgraphics->offset_origin(-pointParentOffset.x, -pointParentOffset.y);
                {
 
                   ::draw2d::save_context savecontextThis(pgraphics);
@@ -8509,7 +8509,7 @@ if(get_parent())
       //
       //            }
       //
-      //            if (!_001IsPointInside(int_point(pdrag->point.x(), pdrag->point.y())))
+      //            if (!_001IsPointInside(int_point(pdrag->point.x, pdrag->point.y)))
       //            {
       //
       //               return;
@@ -8540,7 +8540,7 @@ if(get_parent())
       //            try
       //            {
       //
-      //               if (pinteraction->is_window_visible(e_layout_sketch) && (pdrag->id() == MESSAGE_OLE_DRAGLEAVE || pinteraction->_001IsPointInside(int_point(pdrag->point.x(), pdrag->point.y()))))
+      //               if (pinteraction->is_window_visible(e_layout_sketch) && (pdrag->id() == MESSAGE_OLE_DRAGLEAVE || pinteraction->_001IsPointInside(int_point(pdrag->point.x, pdrag->point.y))))
       //               {
       //
       //                  try
@@ -9436,7 +9436,7 @@ if(get_parent())
 
 
          //set_position(point);
-         informationf("drag_shift e_element_client set_position(x, y) = %d, %d", point.x(), point.y());
+         informationf("drag_shift e_element_client set_position(x, y) = %d, %d", point.x, point.y);
 
          set_position(point);
 
@@ -10781,8 +10781,8 @@ if(get_parent())
 
             //   //   }
 
-            //   //   pusersystem->m_createstruct.x() = window()->m_rectangle.left();
-            //   //   pusersystem->m_createstruct.y() = window()->m_rectangle.top();
+            //   //   pusersystem->m_createstruct.x = window()->m_rectangle.left();
+            //   //   pusersystem->m_createstruct.y = window()->m_rectangle.top();
             //   //   pusersystem->m_createstruct.cx() = window()->m_rectangle.width();
             //   //   pusersystem->m_createstruct.cy() = window()->m_rectangle.height();
 
@@ -11126,7 +11126,7 @@ if(get_parent())
       //   information() << "-------------------------------------------------------------------";
       //   information() << "";
       //   information() << "";
-      //   informationf("interaction_child::create_window_ex (rectangleChild %d, %d, (%d, %d))", rectangleChild.origin().x(), rectangleChild.origin().y(), rectangleChild.width(), rectangleChild.height());
+      //   informationf("interaction_child::create_window_ex (rectangleChild %d, %d, (%d, %d))", rectangleChild.origin().x, rectangleChild.origin().y, rectangleChild.width(), rectangleChild.height());
       //   information() << "";
       //   information() << "";
 
@@ -13155,7 +13155,7 @@ if(get_parent())
    //   }
 
 
-   void interaction::viewport_client_to_screen(::sequence2_int & sequence)
+   void interaction::viewport_client_to_screen(::int_sequence2 & sequence)
    {
 
       //window()->viewport_client_to_screen(sequence);
@@ -13171,7 +13171,7 @@ if(get_parent())
    }
 
 
-   void interaction::viewport_screen_to_client(::sequence2_int & sequence)
+   void interaction::viewport_screen_to_client(::int_sequence2 & sequence)
    {
 
       //if (::is_null(window()))
@@ -13991,8 +13991,8 @@ if(get_parent())
       if (type.name().contains("tap"))
       {
 
-         information() << "tap graphics_thread_reposition (" << this->screen_origin().x() << ", "
-            << this->screen_origin().y()
+         information() << "tap graphics_thread_reposition (" << this->screen_origin().x << ", "
+            << this->screen_origin().y
             << ")";
       }
 
@@ -15738,8 +15738,8 @@ if(get_parent())
             layout().m_statea[::user::e_layout_output].m_point2 = p;
             layout().m_statea[::user::e_layout_normal].m_point2 = p;
 
-            //pwindow->m_pointDesignRequest.x() = INT_MIN;
-            //pwindow->m_pointDesignRequest.y() = INT_MIN;
+            //pwindow->m_pointDesignRequest.x = INT_MIN;
+            //pwindow->m_pointDesignRequest.y = INT_MIN;
 
             on_reposition();
 
@@ -18648,9 +18648,9 @@ if(get_parent())
       case ::user::e_message_prototype_non_client_hit_test:
       {
          _NEW_MESSAGE(::message::nc_hit_test);
-         pmessage->m_point.x() = lparam_int_x(lparam);
+         pmessage->m_point.x = lparam_int_x(lparam);
 
-         pmessage->m_point.y() = lparam_int_y(lparam);
+         pmessage->m_point.y = lparam_int_y(lparam);
       }
       break;
       case ::user::e_message_prototype_move:
@@ -22838,7 +22838,7 @@ if(get_parent())
    //void interaction::set_context_offset_x(::draw2d::graphics_pointer & pgraphics, int x)
    //{
 
-   //   set_context_offset(pgraphics, x, (int)get_context_offset().y());
+   //   set_context_offset(pgraphics, x, (int)get_context_offset().y);
 
    //}
 
@@ -22846,7 +22846,7 @@ if(get_parent())
    //void interaction::set_context_offset_y(::draw2d::graphics_pointer & pgraphics, int y)
    //{
 
-   //   set_context_offset(pgraphics, (int)get_context_offset().x(), y);
+   //   set_context_offset(pgraphics, (int)get_context_offset().x, y);
 
    //}
 
@@ -25982,15 +25982,15 @@ void interaction::on_control_box_zoom(){
 
       //      m_bHorizontalBarDragScrollingActive = true;
 
-      //      int iOffset = m_pointBarDragScrollLeftButtonDown.x() - pmouse->m_point.x();
+      //      int iOffset = m_pointBarDragScrollLeftButtonDown.x - pmouse->m_point.x;
 
-      //      auto iHorizontalBarDragScroll = minimum_maximum(m_pointBarDragScrollStart.x() + iOffset, 0,
-      //                                                      m_pointBarDragScrollMax.x());
+      //      auto iHorizontalBarDragScroll = minimum_maximum(m_pointBarDragScrollStart.x + iOffset, 0,
+      //                                                      m_pointBarDragScrollMax.x);
 
-      //      if (iHorizontalBarDragScroll != m_pointBarDragScroll.x())
+      //      if (iHorizontalBarDragScroll != m_pointBarDragScroll.x)
       //      {
 
-      //         m_pointBarDragScroll.x() = iHorizontalBarDragScroll;
+      //         m_pointBarDragScroll.x = iHorizontalBarDragScroll;
 
       //         set_need_redraw();
 
@@ -26009,15 +26009,15 @@ void interaction::on_control_box_zoom(){
 
       //      m_bVerticalBarDragScrollingActive = true;
 
-      //      int iOffset = m_pointBarDragScrollLeftButtonDown.y() - pmouse->m_point.y();
+      //      int iOffset = m_pointBarDragScrollLeftButtonDown.y - pmouse->m_point.y;
 
-      //      auto iVerticalBarDragScroll = minimum_maximum(m_pointBarDragScrollStart.y() + iOffset, 0,
-      //                                                    m_pointBarDragScrollMax.y());
+      //      auto iVerticalBarDragScroll = minimum_maximum(m_pointBarDragScrollStart.y + iOffset, 0,
+      //                                                    m_pointBarDragScrollMax.y);
 
-      //      if (iVerticalBarDragScroll != m_pointBarDragScroll.y())
+      //      if (iVerticalBarDragScroll != m_pointBarDragScroll.y)
       //      {
 
-      //         m_pointBarDragScroll.y() = iVerticalBarDragScroll;
+      //         m_pointBarDragScroll.y = iVerticalBarDragScroll;
 
       //         set_need_redraw();
 
@@ -26130,7 +26130,7 @@ void interaction::on_control_box_zoom(){
 
          }
 
-         //informationf("on_message_parent_mouse_move %d,%d", pmouse->m_pointAbsolute.x(), pmouse->m_pointAbsolute.y());
+         //informationf("on_message_parent_mouse_move %d,%d", pmouse->m_pointAbsolute.x, pmouse->m_pointAbsolute.y);
 
          auto pitemFront = update_hover(pmouse, e_zorder_front);
 
@@ -27029,15 +27029,15 @@ __check_refdbg;
 
             m_bHorizontalBarDragScrollingActive = true;
 
-            int iOffset = m_pointBarDragScrollLeftButtonDown.x() - pmouse->m_pointHost.x();
+            int iOffset = m_pointBarDragScrollLeftButtonDown.x - pmouse->m_pointHost.x;
 
-            auto iHorizontalBarDragScroll = minimum_maximum(m_pointBarDragScrollStart.x() + iOffset, 0,
-                                                            m_pointBarDragScrollMax.x());
+            auto iHorizontalBarDragScroll = minimum_maximum(m_pointBarDragScrollStart.x + iOffset, 0,
+                                                            m_pointBarDragScrollMax.x);
 
-            if (iHorizontalBarDragScroll != m_pointBarDragScroll.x())
+            if (iHorizontalBarDragScroll != m_pointBarDragScroll.x)
             {
 
-               m_pointBarDragScroll.x() = iHorizontalBarDragScroll;
+               m_pointBarDragScroll.x = iHorizontalBarDragScroll;
 
                set_need_redraw();
 
@@ -27058,15 +27058,15 @@ __check_refdbg;
 
             m_bVerticalBarDragScrollingActive = true;
 
-            int iOffset = m_pointBarDragScrollLeftButtonDown.y() - pmouse->m_pointHost.y();
+            int iOffset = m_pointBarDragScrollLeftButtonDown.y - pmouse->m_pointHost.y;
 
-            auto iVerticalBarDragScroll = minimum_maximum(m_pointBarDragScrollStart.y() + iOffset, 0,
-                                                          m_pointBarDragScrollMax.y());
+            auto iVerticalBarDragScroll = minimum_maximum(m_pointBarDragScrollStart.y + iOffset, 0,
+                                                          m_pointBarDragScrollMax.y);
 
-            if (iVerticalBarDragScroll != m_pointBarDragScroll.y())
+            if (iVerticalBarDragScroll != m_pointBarDragScroll.y)
             {
 
-               m_pointBarDragScroll.y() = iVerticalBarDragScroll;
+               m_pointBarDragScroll.y = iVerticalBarDragScroll;
 
                set_need_redraw();
 
@@ -27221,7 +27221,7 @@ __check_refdbg;
             if (!m_bDefaultParentMouseMessageHandling)
             {
 
-               //informationf("on_message_mouse_move %d,%d", pmouse->m_pointAbsolute.x(), pmouse->m_pointAbsolute.y());
+               //informationf("on_message_mouse_move %d,%d", pmouse->m_pointAbsolute.x, pmouse->m_pointAbsolute.y);
 
                pitemFront = update_hover(pmouse, e_zorder_front);
 
@@ -27706,7 +27706,7 @@ __check_refdbg;
       if (m_einteraction & ::user::e_interaction_system_context_menu)
       {
 
-         if (pmouse->m_pointHost.y() <= 48)
+         if (pmouse->m_pointHost.y <= 48)
          {
 
             window()->defer_show_system_menu(pmouse);
@@ -30590,11 +30590,11 @@ __check_refdbg;
 
       ::int_point pointCenter = rectangleDropDown.center();
 
-      pointa.add(pointCenter.x() - cx / 2, pointCenter.y() - cy / 2);
+      pointa.add(pointCenter.x - cx / 2, pointCenter.y - cy / 2);
 
-      pointa.add(pointCenter.x() + cx / 2, pointCenter.y() - cy / 2);
+      pointa.add(pointCenter.x + cx / 2, pointCenter.y - cy / 2);
 
-      pointa.add(pointCenter.x(), pointCenter.y() + cy / 2);
+      pointa.add(pointCenter.x, pointCenter.y + cy / 2);
 
    }
 

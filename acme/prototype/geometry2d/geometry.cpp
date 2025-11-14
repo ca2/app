@@ -56,13 +56,13 @@ namespace geometry
    {
       for (int i = 0; i < iCount; i++)
       {
-         double x = ppoint[i].x() - xParam;
+         double x = ppoint[i].x - xParam;
 
-         double y = ppoint[i].y() - yParam;
+         double y = ppoint[i].y - yParam;
 
-         ppoint[i].x() = (int)(((x * phicos - y * phisin)) + xParam);
+         ppoint[i].x = (int)(((x * phicos - y * phisin)) + xParam);
 
-         ppoint[i].y() = (int)(((x * phisin + y * phicos)) + yParam);
+         ppoint[i].y = (int)(((x * phisin + y * phicos)) + yParam);
 
       }
    }
@@ -87,13 +87,13 @@ namespace geometry
    {
       for (int i = 0; i < iCount; i++)
       {
-         double x = ppoint[i].x() - xParam;
+         double x = ppoint[i].x - xParam;
 
-         double y = ppoint[i].y() - yParam;
+         double y = ppoint[i].y - yParam;
 
-         ppoint[i].x() = (int)(((x * phicos - y * phisin)) + xParam);
+         ppoint[i].x = (int)(((x * phicos - y * phisin)) + xParam);
 
-         ppoint[i].y() = (int)(((x * phisin + y * phicos)) + yParam);
+         ppoint[i].y = (int)(((x * phisin + y * phicos)) + yParam);
 
       }
    }
@@ -150,13 +150,13 @@ namespace geometry
    {
       for (int i = 0; i < iCount; i++)
       {
-         long x = ppoint[i].x() - m_iXCenter;
+         long x = ppoint[i].x - m_iXCenter;
 
-         long y = ppoint[i].y() - m_iYCenter;
+         long y = ppoint[i].y - m_iYCenter;
 
-         ppoint[i].x() = ((int)(x * m_dCosPhi - y * m_dSinPhi)) + m_iXCenter;
+         ppoint[i].x = ((int)(x * m_dCosPhi - y * m_dSinPhi)) + m_iXCenter;
 
-         ppoint[i].y() = ((int)(x * m_dSinPhi + y * m_dCosPhi)) + m_iYCenter;
+         ppoint[i].y = ((int)(x * m_dSinPhi + y * m_dCosPhi)) + m_iYCenter;
 
       }
    }

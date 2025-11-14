@@ -114,7 +114,7 @@ DECLARE_ENUMERATION(e_align, enum_align);
 //inline RECTANGLE_TYPE & offset(RECTANGLE_TYPE & rectangle, const POINT_TYPE & point)
 //{
 //
-//   return offset(rectangle, point.x(), point.y());
+//   return offset(rectangle, point.x, point.y);
 //
 //}
 //
@@ -123,7 +123,7 @@ DECLARE_ENUMERATION(e_align, enum_align);
 //inline RECTANGLE_TYPE & subtract(RECTANGLE_TYPE & rectangle, const POINT_TYPE & point)
 //{
 //
-//   return subtract(rectangle, point.x(), point.y());
+//   return subtract(rectangle, point.x, point.y);
 //
 //}
 //
@@ -136,8 +136,8 @@ DECLARE_ENUMERATION(e_align, enum_align);
 //inline POINT & offset(POINT & point, X x, Y y)
 //{
 //
-//   point.x() = (decltype(POINT::x))(point.x() + x);
-//   point.y() = (decltype(POINT::y))(point.y() + y);
+//   point.x = (decltype(POINT::x))(point.x + x);
+//   point.y = (decltype(POINT::y))(point.y + y);
 //
 //   return point;
 //
@@ -148,7 +148,7 @@ DECLARE_ENUMERATION(e_align, enum_align);
 //inline POINT & offset(POINT & point, const POINT2 & point2)
 //{
 //
-//   return offset(point, point2.x(), point2.y());
+//   return offset(point, point2.x, point2.y);
 //
 //}
 //
@@ -161,8 +161,8 @@ DECLARE_ENUMERATION(e_align, enum_align);
 //inline POINT_TYPE & subtract(POINT_TYPE & point, X x, Y y)
 //{
 //
-//   point.x() = (decltype(POINT_TYPE::x))(point.x() - x);
-//   point.y() = (decltype(POINT_TYPE::y))(point.y() - y);
+//   point.x = (decltype(POINT_TYPE::x))(point.x - x);
+//   point.y = (decltype(POINT_TYPE::y))(point.y - y);
 //
 //   return point;
 //
@@ -173,7 +173,7 @@ DECLARE_ENUMERATION(e_align, enum_align);
 //inline POINT_TYPE & subtract(POINT_TYPE & point, const POINT_TYPE2 & point2)
 //{
 //
-//   return subtract(point, point2.x(), point2.y());
+//   return subtract(point, point2.x, point2.y);
 //
 //}
 //
@@ -551,10 +551,10 @@ DECLARE_ENUMERATION(e_align, enum_align);
 //RECTANGLE & copy(RECTANGLE & rect1, const XYDIM & xydim)
 //{
 //
-//   rect1.left() = (decltype(RECTANGLE::left))xydim.x();
-//   rect1.top() = (decltype(RECTANGLE::top))xydim.y();
-//   rect1.right() = (decltype(RECTANGLE::right))(xydim.x() + xydim.width);
-//   rect1.bottom() = (decltype(RECTANGLE::bottom))(xydim.y() + xydim.height);
+//   rect1.left() = (decltype(RECTANGLE::left))xydim.x;
+//   rect1.top() = (decltype(RECTANGLE::top))xydim.y;
+//   rect1.right() = (decltype(RECTANGLE::right))(xydim.x + xydim.width);
+//   rect1.bottom() = (decltype(RECTANGLE::bottom))(xydim.y + xydim.height);
 //
 //   return rect1;
 //
@@ -565,8 +565,8 @@ DECLARE_ENUMERATION(e_align, enum_align);
 //POINT1 & copy(POINT1 & point1, const POINT2 & point2)
 //{
 //
-//   point1.X = (decltype(POINT1::X))point2.x();
-//   point1.Y = (decltype(POINT1::Y))point2.y();
+//   point1.X = (decltype(POINT1::X))point2.x;
+//   point1.Y = (decltype(POINT1::Y))point2.y;
 //
 //   return point1;
 //
@@ -577,8 +577,8 @@ DECLARE_ENUMERATION(e_align, enum_align);
 //POINT1 & copy(POINT1 & point1, const POINT2 & point2)
 //{
 //
-//   point1.x() = (decltype(POINT1::x))point2.X;
-//   point1.y() = (decltype(POINT1::y))point2.Y;
+//   point1.x = (decltype(POINT1::x))point2.X;
+//   point1.y = (decltype(POINT1::y))point2.Y;
 //
 //   return point1;
 //
@@ -603,8 +603,8 @@ DECLARE_ENUMERATION(e_align, enum_align);
 //XYDIM & copy(XYDIM & xydim, const RECTANGLE & rectangle)
 //{
 //
-//   xydim.x() = (decltype(XYDIM::X))rectangle.left();
-//   xydim.y() = (decltype(XYDIM::Y))rectangle.top();
+//   xydim.x = (decltype(XYDIM::X))rectangle.left();
+//   xydim.y = (decltype(XYDIM::Y))rectangle.top();
 //   xydim.width = (decltype(XYDIM::Width))(rectangle.right() - rectangle.left());
 //   xydim.height = (decltype(XYDIM::Height))(rectangle.bottom() - rectangle.top());
 //
@@ -631,8 +631,8 @@ DECLARE_ENUMERATION(e_align, enum_align);
 //POINT1 & copy(POINT1 & point1, const POINT2 & point2)
 //{
 //
-//   point1.x() = (decltype(POINT1::x))point2.x();
-//   point1.y() = (decltype(POINT1::y))point2.y();
+//   point1.x = (decltype(POINT1::x))point2.x;
+//   point1.y = (decltype(POINT1::y))point2.y;
 //
 //   return point1;
 //
@@ -643,8 +643,8 @@ DECLARE_ENUMERATION(e_align, enum_align);
 //POINT & copy(POINT & point, const SIZE & size)
 //{
 //
-//   point.x() = (decltype(POINT::x))size.cx();
-//   point.y() = (decltype(POINT::y))size.cy();
+//   point.x = (decltype(POINT::x))size.cx();
+//   point.y = (decltype(POINT::y))size.cy();
 //
 //   return point;
 //
@@ -685,7 +685,7 @@ DECLARE_ENUMERATION(e_align, enum_align);
 //bool is_equal(const POINT1 & point1, const POINT2 & point2)
 //{
 //
-//   return point1.x() == point2.x() && point1.y() == point2.y();
+//   return point1.x == point2.x && point1.y == point2.y;
 //
 //}
 //
@@ -752,10 +752,10 @@ DECLARE_ENUMERATION(e_align, enum_align);
 //RECTANGLE & assign(RECTANGLE & rectangle, const POINT & point, const SIZE & size)
 //{
 //
-//   rectangle.left() = (decltype(RECTANGLE::left))point.x();
-//   rectangle.top() = (decltype(RECTANGLE::top))point.y();
-//   rectangle.right() = (decltype(RECTANGLE::right))(point.x() + size.cx());
-//   rectangle.bottom() = (decltype(RECTANGLE::bottom))(point.y() + size.cy());
+//   rectangle.left() = (decltype(RECTANGLE::left))point.x;
+//   rectangle.top() = (decltype(RECTANGLE::top))point.y;
+//   rectangle.right() = (decltype(RECTANGLE::right))(point.x + size.cx());
+//   rectangle.bottom() = (decltype(RECTANGLE::bottom))(point.y + size.cy());
 //
 //   return rectangle;
 //
@@ -817,7 +817,7 @@ DECLARE_ENUMERATION(e_align, enum_align);
 //bool is_null(const POINT_TYPE & point)
 //{
 //
-//   return point.x() == (decltype(POINT_TYPE::cx))0 && point.y() == (decltype(POINT_TYPE::cy))0;
+//   return point.x == (decltype(POINT_TYPE::cx))0 && point.y == (decltype(POINT_TYPE::cy))0;
 //
 //}
 //
@@ -954,19 +954,19 @@ DECLARE_ENUMERATION(e_align, enum_align);
 //
 //   int i, j = iCount - 1;
 //
-//   auto x = point.x();
+//   auto x = point.x;
 //
-//   auto y = point.y();
+//   auto y = point.y;
 //
 //   bool oddNodes = false;
 //
 //   for (i = 0; i < iCount; i++)
 //   {
 //
-//      if (((ppPolygon[i].y() < y && ppPolygon[j].y() >= y) || (ppPolygon[j].y() < y && ppPolygon[i].y() >= y)) && (ppPolygon[i].x() <= x || ppPolygon[j].x() <= x))
+//      if (((ppPolygon[i].y < y && ppPolygon[j].y >= y) || (ppPolygon[j].y < y && ppPolygon[i].y >= y)) && (ppPolygon[i].x <= x || ppPolygon[j].x <= x))
 //      {
 //         
-//         oddNodes ^= (ppPolygon[i].x() + (y - ppPolygon[i].y()) / (ppPolygon[j].y() - ppPolygon[i].y()) * (ppPolygon[j].x() - ppPolygon[i].x()) < x);
+//         oddNodes ^= (ppPolygon[i].x + (y - ppPolygon[i].y) / (ppPolygon[j].y - ppPolygon[i].y) * (ppPolygon[j].x - ppPolygon[i].x) < x);
 //
 //      }
 //
@@ -1156,7 +1156,7 @@ DECLARE_ENUMERATION(e_align, enum_align);
 //
 //
 //
-////inline bool contains(const ::int_rectangle &rectangle, const ::int_point & point) { return ::rectangle_contains(rectangle, point.x(), point.y()); }
+////inline bool contains(const ::int_rectangle &rectangle, const ::int_point & point) { return ::rectangle_contains(rectangle, point.x, point.y); }
 ////inline ::int_rectangle & null(::int_rectangle & rectDst) { return ::null_rect(rectDst); }
 ////inline bool is_equal(const ::int_rectangle &rect1, const ::int_rectangle &rect2) { return ::rect_equals(rect1, rect2); }
 ////inline ::int_rectangle & inflate(::int_rectangle & rectangle, int x, int y) { return ::rect_inflate_point(rectangle, x, y); }
@@ -1190,7 +1190,7 @@ DECLARE_ENUMERATION(e_align, enum_align);
 //
 //
 //
-////inline bool contains(const ::long_long_rectangle & rectangle, const ::int_point & point) { return ::rectangle_contains(rectangle, point.x(), point.y()); }
+////inline bool contains(const ::long_long_rectangle & rectangle, const ::int_point & point) { return ::rectangle_contains(rectangle, point.x, point.y); }
 ////inline ::long_long_rectangle & null(::long_long_rectangle & rectDst) { return ::null_rect(rectDst); }
 ////inline bool is_equal(const ::long_long_rectangle & rect1, const ::long_long_rectangle & rect2) { return ::rect_equals(rect1, rect2); }
 ////inline ::long_long_rectangle & inflate(::long_long_rectangle & rectangle, long long x, long long y) { return ::rect_inflate_point(rectangle, x, y); }
@@ -1214,7 +1214,7 @@ DECLARE_ENUMERATION(e_align, enum_align);
 //
 //
 //
-////inline bool contains(const ::float_rectangle & rectangle, const ::float_point & point) { return ::rectangle_contains(rectangle, point.x(), point.y()); }
+////inline bool contains(const ::float_rectangle & rectangle, const ::float_point & point) { return ::rectangle_contains(rectangle, point.x, point.y); }
 ////inline ::float_rectangle & null(::float_rectangle & rect) { return ::null_rect(rect); }
 ////inline bool is_equal(const ::float_rectangle & rect1, const ::float_rectangle & rect2) { return ::rect_equals(rect1, rect2); }
 ////inline ::float_rectangle & inflate(::float_rectangle & rectangle, float x, float y) { return ::rect_inflate_point(rectangle, x, y); }
@@ -1240,7 +1240,7 @@ DECLARE_ENUMERATION(e_align, enum_align);
 //
 //
 //
-////inline bool contains(const ::double_rectangle & rectangle, const ::double_point & point) { return ::rectangle_contains(rectangle, point.x(), point.y()); }
+////inline bool contains(const ::double_rectangle & rectangle, const ::double_point & point) { return ::rectangle_contains(rectangle, point.x, point.y); }
 ////inline ::double_rectangle & null(::double_rectangle & rect) { return ::null_rect(rect); }
 ////inline bool is_equal(const ::double_rectangle & rect1, const ::double_rectangle & rect2) { return ::rect_equals(rect1, rect2); }
 ////inline ::double_rectangle & inflate(::double_rectangle & rectangle, double x, double y) { return ::rect_inflate_point(rectangle, x, y); }
@@ -1318,21 +1318,21 @@ DECLARE_ENUMERATION(e_align, enum_align);
 ////   }
 ////   else
 ////   {
-////      rect.left() = lppoint[0].x();
-////      rect.top() = lppoint[0].y();
-////      rect.right() = lppoint[0].x();
-////      rect.bottom() = lppoint[0].y();
+////      rect.left() = lppoint[0].x;
+////      rect.top() = lppoint[0].y;
+////      rect.right() = lppoint[0].x;
+////      rect.bottom() = lppoint[0].y;
 ////
 ////      for (int i = 1; i < count; i++)
 ////      {
-////         if (lppoint[i].x() < rect.left())
-////            rect.left() = lppoint[i].x();
-////         else if (lppoint[i].x() > rect.right())
-////            rect.right() = lppoint[i].x();
-////         if (lppoint[i].y() < rect.top())
-////            rect.top() = lppoint[i].y();
-////         else if (lppoint[i].y() > rect.bottom())
-////            rect.bottom() = lppoint[i].y();
+////         if (lppoint[i].x < rect.left())
+////            rect.left() = lppoint[i].x;
+////         else if (lppoint[i].x > rect.right())
+////            rect.right() = lppoint[i].x;
+////         if (lppoint[i].y < rect.top())
+////            rect.top() = lppoint[i].y;
+////         else if (lppoint[i].y > rect.bottom())
+////            rect.bottom() = lppoint[i].y;
 ////      }
 ////
 ////   }
@@ -1452,24 +1452,24 @@ DECLARE_ENUMERATION(e_align, enum_align);
 ////#endif
 //
 //
-////inline auto ::int_point(const ::lparam & lparam) noexcept { return ::int_point(lparam.x(), lparam.y()); }
+////inline auto ::int_point(const ::lparam & lparam) noexcept { return ::int_point(lparam.x, lparam.y); }
 ////inline auto ::int_point(const unsigned int u) noexcept { return ::int_point((int)u32_x(u), (int)u32_y(u)); }
 ////inline auto ::int_point(const unsigned long long u) noexcept { return ::int_point((int)u64_x(u), (int)u64_y(u)); }
 ////inline auto ::int_point(const ::int_size & size) noexcept { return ::int_point(size.cx(), size.cy()); }
 ////
-////inline auto __point64(const ::lparam & lparam) noexcept { return ::long_long_point(lparam.x(), lparam.y()); }
+////inline auto __point64(const ::lparam & lparam) noexcept { return ::long_long_point(lparam.x, lparam.y); }
 ////inline auto __point64(const unsigned int u) noexcept { return ::long_long_point((long long)u32_x(u), (long long)u32_y(u)); }
 ////inline auto __point64(const unsigned long long u) noexcept { return ::long_long_point((long long)u64_x(u), (long long)u64_y(u)); }
 ////inline auto __point64(const ::long_long_size & size) noexcept { return ::long_long_point(size.cx(), size.cy()); }
 ////
 ////
-////inline auto __pointf(const ::lparam & lparam) noexcept { return ::float_point((float)lparam.x(), (float)lparam.y()); }
+////inline auto __pointf(const ::lparam & lparam) noexcept { return ::float_point((float)lparam.x, (float)lparam.y); }
 ////inline auto __pointf(const unsigned int u) noexcept { return ::float_point((float)u32_x(u), (float)u32_y(u)); }
 ////inline auto __pointf(const unsigned long long u) noexcept { return ::float_point((float)u64_x(u), (float)u64_y(u)); }
 ////inline auto __pointf(const ::float_size & size) noexcept { return ::float_point(size.cx(), size.cy()); }
 ////
 ////
-////inline auto __pointd(const ::lparam & lparam) noexcept { return ::double_point(lparam.x(), lparam.y()); }
+////inline auto __pointd(const ::lparam & lparam) noexcept { return ::double_point(lparam.x, lparam.y); }
 ////inline auto __pointd(const unsigned int u) noexcept { return ::double_point((double)u32_x(u), (double)u32_y(u)); }
 ////inline auto __pointd(const unsigned long long u) noexcept { return ::double_point((double)u64_x(u), (double)u64_y(u)); }
 ////inline auto __pointd(const ::double_size & size) noexcept { return ::double_point(size.cx(), size.cy()); }
@@ -1549,9 +1549,9 @@ DECLARE_ENUMERATION(e_align, enum_align);
 ////
 ////
 ////template < primitive_point POINT >
-////inline constexpr auto __horz(const POINT & point) { return point.x(); }
+////inline constexpr auto __horz(const POINT & point) { return point.x; }
 ////template < primitive_point POINT >
-////inline constexpr auto __vert(const POINT & point) { return point.y(); }
+////inline constexpr auto __vert(const POINT & point) { return point.y; }
 ////template < primitive_size SIZE >
 ////inline constexpr auto __horz(const SIZE & size) { return size.cx(); }
 ////template < primitive_size SIZE >
@@ -1755,7 +1755,7 @@ DECLARE_ENUMERATION(e_align, enum_align);
 ////inline ::string as_string(const POINT & point)
 ////{
 ////
-////   return as_string(point.x()) + ", " + as_string(point.y());
+////   return as_string(point.x) + ", " + as_string(point.y);
 ////
 ////}
 ////

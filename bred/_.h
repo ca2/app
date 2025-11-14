@@ -5,7 +5,7 @@
 
 
 #include "berg/_.h"
-
+#include "bred/gpu/_types.h"
 
 
 #undef PLATFORM_LAYER_NAME
@@ -23,6 +23,5 @@
 
 
 #include "bred/include/_.h"
-
 
 

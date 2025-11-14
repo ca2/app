@@ -51,7 +51,7 @@ namespace nanoui
       /// The function to execute when \::pointer nanoui::CheckBox::m_bChecked is changed.
       ::function<void(bool)> m_callback;
 
-      sequence2_int m_sizePreferred;
+      int_sequence2 m_sizePreferred;
 
       /**
        * Adds a CheckBox to the specified ``parent``.

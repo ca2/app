@@ -46,14 +46,14 @@
 //      color(float l, float a)
 //      {
 //         r = g= b=l;
-//         this->a= a;
+//         this->x= a;
 //      }
 //      color(float r, float g, float b, float a)
 //      {
 //         this->r = r;
 //         this->g = g;
-//         this->b = b;
-//         this->a = a;
+//         this->y = b;
+//         this->x = a;
 //      }
 //      /**
 //       * Computes the luminance as ``l = 0.299r + 0.587g + 0.144b + 0.0a``.  If

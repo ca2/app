@@ -88,17 +88,17 @@ namespace graphics
 
          //::double_ellipse ellipse1;
 
-         //ellipse1.left() = center.x() - r1;
-         //ellipse1.top() = center.y() - r1;
-         //ellipse1.right() = center.x() + r1;
-         //ellipse1.bottom() = center.y() + r1;
+         //ellipse1.left() = center.x - r1;
+         //ellipse1.top() = center.y - r1;
+         //ellipse1.right() = center.x + r1;
+         //ellipse1.bottom() = center.y + r1;
 
          //::double_ellipse ellipse0;
 
-         //ellipse0.left() = center.x() - r0;
-         //ellipse0.top() = center.y() - r0;
-         //ellipse0.right() = center.x() + r0;
-         //ellipse0.bottom() = center.y() + r0;
+         //ellipse0.left() = center.x - r0;
+         //ellipse0.top() = center.y - r0;
+         //ellipse0.right() = center.x + r0;
+         //ellipse0.bottom() = center.y + r0;
 
          ::cast < ::nano2d::draw2d_context > p = pcontext;
 
@@ -509,9 +509,9 @@ namespace graphics
 
       center = sizeImageOffset + ::double_size(diamRound / 2, diamRound / 2);
 
-      auto cx = p.x() - center.x();
+      auto cx = p.x - center.x;
 
-      auto cy = p.y() - center.y();
+      auto cy = p.y - center.y;
 
       double smallest_dimension = diamRound /2;
 
@@ -589,8 +589,8 @@ namespace graphics
       //float sx = bx + (1.5 * r * m_hls.m_dS * 2.0 * minimum(m_hls.m_dL, 1.0 - m_hls.m_dL));
       //float sy = sqrt(3.) * r * (m_hls.m_dL - 0.5) * (1.0 - m_hls.m_dS * minimum(m_hls.m_dL, 1.0 - m_hls.m_dL));
 
-      double sx = xy.x();
-      double sy = xy.y();
+      double sx = xy.x;
+      double sy = xy.y;
 
       double bx = -0.5f * r;
 
@@ -598,8 +598,8 @@ namespace graphics
       double dTriangleHeight= 3.0 * r / 2.0;
 
 
-      double l0 = (double)(r - xy.x() + ::sqrt(3.) * xy.y()) / (3. * r);
-      double l1 = (double)(r - xy.x() - ::sqrt(3.) * xy.y()) / (3. * r);
+      double l0 = (double)(r - xy.x + ::sqrt(3.) * xy.y) / (3. * r);
+      double l1 = (double)(r - xy.x - ::sqrt(3.) * xy.y) / (3. * r);
       double l2 = 1. - l0 - l1;
       bool triangle_test = l0 >= 0. && l0 <= 1. && l1 >= 0. && l1 <= 1. &&
          l2 >= 0. && l2 <= 1.;

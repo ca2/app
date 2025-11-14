@@ -172,9 +172,9 @@ namespace gpu
 
       virtual void defer_make_current();
 
-      virtual ::glm::mat4 defer_transpose(const ::glm::mat4 & m);
-      virtual ::glm::mat4 defer_clip_remap_projection(const ::glm::mat4 &m);
-      virtual ::glm::mat4 defer_remap_impact_matrix(const ::glm::mat4 &m);
+      virtual ::floating_matrix4 defer_transpose(const ::floating_matrix4 & m);
+      virtual ::floating_matrix4 defer_clip_remap_projection(const ::floating_matrix4 &m);
+      virtual ::floating_matrix4 defer_remap_impact_matrix(const ::floating_matrix4 &m);
 
 
       virtual ::pointer < ::gpu::command_buffer > beginSingleTimeCommands(::gpu::queue * pgpuqueue, ::gpu::enum_command_buffer ecommandbuffer = ::gpu::e_command_buffer_graphics);

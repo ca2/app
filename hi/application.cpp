@@ -180,9 +180,9 @@ pmessagebox->sync();
 //   auto operator <=> (const MyPoint&p) const
 //   {
 //
-//      auto yCompare = y - p.y();
+//      auto yCompare = y - p.y;
 //
-//      return yCompare ? yCompare : x - p.x();
+//      return yCompare ? yCompare : x - p.x;
 //      
 //   }
 //

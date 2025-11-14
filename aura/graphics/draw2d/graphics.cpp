@@ -84,13 +84,13 @@ namespace draw2d
       m_puserinteraction = nullptr;
       m_bUseImageMipMapsOrResizedImages = false;
 
-      m_pointTranslateOutput.x() = 0.;
-      m_pointTranslateOutput.y() = 0.;
+      m_pointTranslateOutput.x = 0.;
+      m_pointTranslateOutput.y = 0.;
       m_sizeScaleOutput.cx() = 1.0;
       m_sizeScaleOutput.cy() = 1.0;
 
-      m_pointOrigin.x() = 0.;
-      m_pointOrigin.y() = 0.;
+      m_pointOrigin.x = 0.;
+      m_pointOrigin.y = 0.;
       m_sizeScaling.cx() = 1.0;
       m_sizeScaling.cy() = 1.0;
       //m_estatus = success;
@@ -741,7 +741,7 @@ namespace draw2d
    //double_point graphics::get_origin()
    //{
 
-   //   return ::int_point((int)m_pointOrigin.x(), (int)m_pointOrigin.y());
+   //   return ::int_point((int)m_pointOrigin.x, (int)m_pointOrigin.y);
 
    //}
 
@@ -773,7 +773,7 @@ namespace draw2d
    //void graphics::_set_origin(const ::double_point & point)
    //{
 
-   //   _set_origin(point.x(), point.y());
+   //   _set_origin(point.x, point.y);
 
    //}
 
@@ -897,9 +897,9 @@ namespace draw2d
    //void graphics::set_current_point(double x, double y)
    //{
 
-   //   m_point.x() = x;
+   //   m_point.x = x;
 
-   //   m_point.y() = y;
+   //   m_point.y = y;
 
    //   m_bHasCurrentPoint = true;
 
@@ -911,7 +911,7 @@ namespace draw2d
    //void graphics::line_to(double x, double y)
    //{
 
-   //   return draw_line(m_point.x(), m_point.y(), x, y);
+   //   return draw_line(m_point.x, m_point.y, x, y);
 
    //}
 
@@ -1018,7 +1018,7 @@ namespace draw2d
    void graphics::arc(const ::double_rectangle & rectangle, const ::double_point & pointStart, const ::double_point & pointEnd)
    {
 
-      arc(rectangle.left(), rectangle.top(), rectangle.width(), rectangle.height(), pointStart.x(), pointStart.y(), pointEnd.x(), pointEnd.y());
+      arc(rectangle.left(), rectangle.top(), rectangle.width(), rectangle.height(), pointStart.x, pointStart.y, pointEnd.x, pointEnd.y);
 
    }
 
@@ -1371,15 +1371,15 @@ namespace draw2d
 
             int_point pointDst;
 
-            pointDst.y() = (int)maximum(0., rectangleIntersect.top() - y);
+            pointDst.y = (int)maximum(0., rectangleIntersect.top() - y);
 
-            pointDst.x() = (int)maximum(0., rectangleIntersect.left() - x);
+            pointDst.x = (int)maximum(0., rectangleIntersect.left() - x);
 
             int_point pointSrc;
 
-            pointSrc.y() = (int)maximum(0, y - rectangleAlphaBlend.top());
+            pointSrc.y = (int)maximum(0, y - rectangleAlphaBlend.top());
 
-            pointSrc.x() = (int)maximum(0, x - rectangleAlphaBlend.left());
+            pointSrc.x = (int)maximum(0, x - rectangleAlphaBlend.left());
 
             image1.image()->blend2(pointDst, m_pimageAlphaBlend, pointSrc, rectangleIntersect.size(), 255);
 
@@ -1512,7 +1512,7 @@ namespace draw2d
    //   //   if (rectangle.top() < 0)
    //   //   {
 
-   //   //      point.y() -= rectangle.top();
+   //   //      point.y -= rectangle.top();
 
    //   //      rectangle.bottom() += rectangle.top();
 
@@ -1532,11 +1532,11 @@ namespace draw2d
 
    //   //      //   const ::double_point & pointOff = get_origin();
 
-   //   //      //   x += pointOff.x();
+   //   //      //   x += pointOff.x;
 
-   //   //      //   y += pointOff.y();
+   //   //      //   y += pointOff.y;
 
-   //   //      //   return m_ppimage->blend(::int_point(x, y), pgraphicsSrc->m_pimage, ::int_point(xSrc, ySrc), m_pimageAlphaBlend, int_point(m_pointAlphaBlend.x() - x, m_pointAlphaBlend.y() - y), rectangleBlt.size());
+   //   //      //   return m_ppimage->blend(::int_point(x, y), pgraphicsSrc->m_pimage, ::int_point(xSrc, ySrc), m_pimageAlphaBlend, int_point(m_pointAlphaBlend.x - x, m_pointAlphaBlend.y - y), rectangleBlt.size());
 
    //   //      //}
    //   //      //else
@@ -1556,8 +1556,8 @@ namespace draw2d
 
    //   //         pimage1->blend(::int_point(), m_pimageAlphaBlend,
    //   //            {
-   //   //               (int)maximum(0, rectangle.left() - m_pointAlphaBlend.x()),
-   //   //               (int)maximum(0, rectangle.top() - m_pointAlphaBlend.y())
+   //   //               (int)maximum(0, rectangle.left() - m_pointAlphaBlend.x),
+   //   //               (int)maximum(0, rectangle.top() - m_pointAlphaBlend.y)
    //   //            }, rectangle.size());
 
    //   //         draw_image(rectangle, pimage1->get_graphics());
@@ -1799,7 +1799,7 @@ namespace draw2d
    //
    //         {
    //
-   //            ::image::image_source imagesource(m_pimageAlphaBlend, ::double_rectangle(int_point((int)maximum(0, x - m_pointAlphaBlend.x()), (int)maximum(0, y - m_pointAlphaBlend.y())), rectangleText.size()));
+   //            ::image::image_source imagesource(m_pimageAlphaBlend, ::double_rectangle(int_point((int)maximum(0, x - m_pointAlphaBlend.x), (int)maximum(0, y - m_pointAlphaBlend.y)), rectangleText.size()));
    //
    //            double_rectangle rectangle(pimage1->rectangle());
    //
@@ -1889,15 +1889,15 @@ namespace draw2d
 
             int_point pointDst;
 
-            pointDst.y() = (int)maximum(0, rectangleIntersect.top() - y);
+            pointDst.y = (int)maximum(0, rectangleIntersect.top() - y);
 
-            pointDst.x() = (int)maximum(0, rectangleIntersect.left() - x);
+            pointDst.x = (int)maximum(0, rectangleIntersect.left() - x);
 
             int_point pointSrc;
 
-            pointSrc.y() = (int)maximum(0, y - rectangleAlphaBlend.top());
+            pointSrc.y = (int)maximum(0, y - rectangleAlphaBlend.top());
 
-            pointSrc.x() = (int)maximum(0, x - rectangleAlphaBlend.left());
+            pointSrc.x = (int)maximum(0, x - rectangleAlphaBlend.left());
 
             pimage1->blend2(pointDst, m_pimageAlphaBlend, pointSrc, rectangleIntersect.size(), 255);
 
@@ -2449,13 +2449,13 @@ namespace draw2d
             //if (!bLastPoint || !pointLast.is_same_by(0.00001, plineitem->m_item.m_p1))
             //{
             //   glVertex3f(
-            //      (float)plineitem->m_item.m_p1.x(),
-            //      (float)plineitem->m_item.m_p1.y(),
+            //      (float)plineitem->m_item.m_p1.x,
+            //      (float)plineitem->m_item.m_p1.y,
             //      0.0f);
             //}
             //glVertex3f(
-            //   (float)plineitem->m_item.m_p2.x(),
-            //   (float)plineitem->m_item.m_p2.y(),
+            //   (float)plineitem->m_item.m_p2.x,
+            //   (float)plineitem->m_item.m_p2.y,
             //   0.0f);
             pointLast = plineitem->m_item.m_p2;
          }
@@ -3030,8 +3030,8 @@ namespace draw2d
    void graphics::reset_impact_area()
    {
 
-      m_pointOrigin.x() = 0;
-      m_pointOrigin.y() = 0;
+      m_pointOrigin.x = 0;
+      m_pointOrigin.y = 0;
 
       update_matrix();
 
@@ -3041,20 +3041,20 @@ namespace draw2d
    void graphics::place_impact_area(double x, double y, double w, double h)
    {
 
-      m_pointOrigin.x() = x;
+      m_pointOrigin.x = x;
 
       auto sizeImpact = impact_size();
 
       //if (_m_bYFlip)
       //{
 
-      //   m_pointOrigin.y() = sizeImpact.height() - (y + h);
+      //   m_pointOrigin.y = sizeImpact.height() - (y + h);
 
       //}
       //else
       {
 
-         m_pointOrigin.y() = y;
+         m_pointOrigin.y = y;
 
       }
 
@@ -3069,8 +3069,8 @@ namespace draw2d
    {
 
       place_impact_area(
-         pointImpactArea.x(),
-         pointImpactArea.y(),
+         pointImpactArea.x,
+         pointImpactArea.y,
          sizeImpactArea.width(),
          sizeImpactArea.height());
 
@@ -3088,20 +3088,20 @@ namespace draw2d
    void graphics::shift_impact_area(double dx, double dy, double w, double h)
    {
 
-      m_pointOrigin.x() += dx;
+      m_pointOrigin.x += dx;
 
       auto sizeOffset = total_size();
 
       //if (_m_bYFlip)
       //{
 
-      //   m_pointOrigin.y() = sizeOffset.height() - (m_pointOrigin.y() - dy + h);
+      //   m_pointOrigin.y = sizeOffset.height() - (m_pointOrigin.y - dy + h);
 
       //}
       //else
       //{
 
-         m_pointOrigin.y() += dy;
+         m_pointOrigin.y += dy;
 
       //}
 
@@ -3170,7 +3170,7 @@ namespace draw2d
    void graphics::_x_offset(double dx)
    {
 
-      m_pointOrigin.x() += dx;
+      m_pointOrigin.x += dx;
 
    }
 
@@ -3188,7 +3188,7 @@ namespace draw2d
    void graphics::_y_offset(double dy)
    {
 
-      m_pointOrigin.y() += dy;
+      m_pointOrigin.y += dy;
 
    }
 

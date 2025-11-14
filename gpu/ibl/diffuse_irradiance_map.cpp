@@ -109,8 +109,8 @@ namespace gpu
 
          // Timer timer;
          //
-         // glm::mat4 model = constants::mIndentity4;
-         // glm::mat4 cameraAngles[] =
+         // floating_matrix4 model = constants::mIndentity4;
+         // floating_matrix4 cameraAngles[] =
          // {
          //    glm::lookAt(constants::origin, constants::unitX, -constants::unitY),
          //    glm::lookAt(constants::origin, -constants::unitX, -constants::unitY),
@@ -119,7 +119,7 @@ namespace gpu
          //    glm::lookAt(constants::origin, constants::unitZ, -constants::unitY),
          //    glm::lookAt(constants::origin, -constants::unitZ, -constants::unitY)
          // };
-         // glm::mat4 projection = glm::perspective(
+         // floating_matrix4 projection = glm::perspective(
          //    glm::radians(90.0f), // 90 degrees to cover one face
          //    1.0f, // its a square
          //    0.1f,
@@ -153,14 +153,14 @@ namespace gpu
 
          //auto pgpucommandbuffer = m_pgpucontext->beginSingleTimeCommands(m_pgpucontext->m_pgpudevice->graphics_queue());
 
-         //glm::mat4 model = ::gpu::gltf::mIndentity4;
-         //glm::mat4 cameraAngles[] = {glm::lookAt(::gpu::gltf::origin, ::gpu::gltf::unitX, -::gpu::gltf::unitY),
+         //floating_matrix4 model = ::gpu::gltf::mIndentity4;
+         //floating_matrix4 cameraAngles[] = {glm::lookAt(::gpu::gltf::origin, ::gpu::gltf::unitX, -::gpu::gltf::unitY),
          //                            glm::lookAt(::gpu::gltf::origin, -::gpu::gltf::unitX, -::gpu::gltf::unitY),
          //                            glm::lookAt(::gpu::gltf::origin, ::gpu::gltf::unitY, ::gpu::gltf::unitZ),
          //                            glm::lookAt(::gpu::gltf::origin, -::gpu::gltf::unitY, -::gpu::gltf::unitZ),
          //                            glm::lookAt(::gpu::gltf::origin, ::gpu::gltf::unitZ, -::gpu::gltf::unitY),
          //                            glm::lookAt(::gpu::gltf::origin, -::gpu::gltf::unitZ, -::gpu::gltf::unitY)};
-         //glm::mat4 projection = glm::perspective(glm::radians(90.0f), // 90 degrees to cover one face
+         //floating_matrix4 projection = glm::perspective(glm::radians(90.0f), // 90 degrees to cover one face
          //                                        1.0f, // its a square
          //                                        0.1f, 2.0f);
 

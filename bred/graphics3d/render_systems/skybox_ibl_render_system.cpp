@@ -35,13 +35,13 @@
 //
 //   struct CubeVertex
 //   {
-//      glm::vec3 pos;
-//      glm::vec3 normal;
-//      glm::vec2 uv;
-//      glm::vec4 color;
-//      //glm::vec4 joint0;
-//      //glm::vec4 weight0;
-//      glm::vec4 tangent;
+//      floating_sequence3 pos;
+//      floating_sequence3 normal;
+//      floating_sequence2 uv;
+//      floating_sequence4 color;
+//      //floating_sequence4 joint0;
+//      //floating_sequence4 weight0;
+//      floating_sequence4 tangent;
 //    
 //   };
 //

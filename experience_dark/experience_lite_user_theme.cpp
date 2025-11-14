@@ -718,8 +718,8 @@ namespace lite
                iTabHeight = cy;
             }
 
-            tab_pane.m_point.x() = x;
-            tab_pane.m_point.y() = rectangleX.top();
+            tab_pane.m_point.x = x;
+            tab_pane.m_point.y = rectangleX.top();
 
 
             //            string str = tab_pane.get_title();

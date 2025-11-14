@@ -957,7 +957,7 @@ namespace user
    ::pointer<::data::tree_item_base>tree::_001HitTest(const ::int_point & point, ::user::enum_tree_element & eelement)
    {
 
-      ::collection::index iy = point.y();
+      ::collection::index iy = point.y;
 
       ::collection::index iItem = -1;
 
@@ -968,7 +968,7 @@ namespace user
       if (item_height != 0)
       {
 
-         //iItem = (int)((iy + pointOffset.y()) / item_height);
+         //iItem = (int)((iy + pointOffset.y) / item_height);
          iItem = (int)((iy) / item_height);
 
       }
@@ -993,8 +993,8 @@ namespace user
 
       ::collection::index iLevel = pitem->m_iLevel;
 
-      //index x = (int)(point.x() - _001GetIndentation() * (iLevel)+pointOffset.x());
-      ::collection::index x = (int)(point.x() - _001GetIndentation() * (iLevel));
+      //index x = (int)(point.x - _001GetIndentation() * (iLevel)+pointOffset.x);
+      ::collection::index x = (int)(point.x - _001GetIndentation() * (iLevel));
       if (x >= 0 && x < 16)
          eelement = e_tree_element_expand_box;
       if (x >= 18 && x < 34)
@@ -1214,7 +1214,7 @@ namespace user
             else
             {
 
-               iDivision = (::collection::index)(pointOffset.y() / _001GetItemHeight());
+               iDivision = (::collection::index)(pointOffset.y / _001GetItemHeight());
 
             }
 
@@ -1228,7 +1228,7 @@ namespace user
             if (iObscured > 0)
             {
 
-               auto dNewScroll = pointOffset.y() + iObscured * _001GetItemHeight();
+               auto dNewScroll = pointOffset.y + iObscured * _001GetItemHeight();
 
                if (dNewScroll > (iParentIndex * _001GetItemHeight()))
                {
@@ -1245,7 +1245,7 @@ namespace user
 
                   //});
                //            _001SetYScroll(maximum(iNewScroll, 0), false);
-               //m_pscrollbarY->_001SetScrollPos(pointOffset.y());
+               //m_pscrollbarY->_001SetScrollPos(pointOffset.y);
             }
          }
       }
@@ -1681,7 +1681,7 @@ namespace user
 
       auto dItemHeight = _001GetItemHeight();
 
-      auto dOffset = pointOffset.y() / dItemHeight;
+      auto dOffset = pointOffset.y / dItemHeight;
 
       ::data::tree_item_base * pitem = nullptr;
 
@@ -1756,7 +1756,7 @@ namespace user
 
       auto pointOffset = get_context_offset();
 
-      nOffset = (::collection::index)(pointOffset.y() / _001GetItemHeight());
+      nOffset = (::collection::index)(pointOffset.y / _001GetItemHeight());
 
       nOffset = INT_MAX;
 
@@ -2426,7 +2426,7 @@ namespace user
 
       }
 
-      ::collection::index iMinVisibleIndex = (::collection::index)(pointOffset.y() / m_dItemHeight);
+      ::collection::index iMinVisibleIndex = (::collection::index)(pointOffset.y / m_dItemHeight);
 
       ::collection::index iMaxVisibleIndex = (::collection::index)(iMinVisibleIndex + _001GetVisibleItemCount());
 

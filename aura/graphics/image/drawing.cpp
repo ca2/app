@@ -130,7 +130,7 @@ namespace image
 
          auto rectangle = source_rectangle();
 
-         rectangle.align_rate(m_pointAlign.x(), m_pointAlign.y(), m_rectangleTarget);
+         rectangle.align_rate(m_pointAlign.x, m_pointAlign.y, m_rectangleTarget);
 
          return rectangle;
 
@@ -140,7 +140,7 @@ namespace image
 
          auto rectangle = source_rectangle();
 
-         rectangle.aspect_align_fit(m_pointAlign.x(), m_pointAlign.y(), m_rectangleTarget);
+         rectangle.aspect_align_fit(m_pointAlign.x, m_pointAlign.y, m_rectangleTarget);
 
          return rectangle;
 

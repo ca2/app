@@ -10,15 +10,17 @@
 #include "assimp_iosystem.h"
 #include "bred/gpu/context.h"
 
-#include <glm/glm.hpp>
-#include <glm/gtc/type_ptr.hpp> // For glm::make_mat4
+//#include <glm/glm.hpp>
+//#include <glm/gtc/type_ptr.hpp> // For glm::make_mat4
 #include <assimp/matrix4x4.h>
+#include "_assimp.h"
 
-glm::mat4 aiMatrix4x4ToGlm(const aiMatrix4x4& from) {
-   // Assuming aiMatrix4x4 stores data contiguously in memory,
-   // and glm::make_mat4 can interpret the layout before transposition.
-   return glm::transpose(glm::make_mat4(&from.a1));
-}
+//
+//floating_matrix4 aiMatrix4x4ToColumnMajor(const aiMatrix4x4& from) {
+//   // Assuming aiMatrix4x4 stores data contiguously in memory,
+//   // and glm::make_mat4 can interpret the layout before transposition.
+//   return geometry::transpose(geometry::make_mat4(&from.a1));
+//}
 
 assimp_iosystem * get_assimp_iosystem()
 {
@@ -158,7 +160,7 @@ namespace gpu
                m = p->mTransformation * m;
                p = p->mParent;
             }
-            pmesh->uniformBlock.matrix =aiMatrix4x4ToGlm(m);
+            pmesh->uniformBlock.matrix =aiMatrix4x4ToColumnMajor(m);
             m_mesha.add(pmesh);
          }
 
@@ -173,8 +175,8 @@ namespace gpu
          // Compute tangents from indexed mesh data
       void computeTangents(::array_base<gltf::vertex> &vertices, const ::array_base<unsigned int> &indices) 
       {
-         array_base<glm::vec3> tan1;
-         array_base<glm::vec3> tan2;
+         array_base<floating_sequence3> tan1;
+         array_base<floating_sequence3> tan2;
 
          tan1.set_size(vertices.size());
          tan2.set_size(vertices.size());
@@ -185,16 +187,16 @@ namespace gpu
             uint32_t i2 = indices[i + 1];
             uint32_t i3 = indices[i + 2];
 
-            const glm::vec3 &v1 = vertices[i1].position;
-            const glm::vec3 &v2 = vertices[i2].position;
-            const glm::vec3 &v3 = vertices[i3].position;
+            const floating_sequence3 &v1 = vertices[i1].position;
+            const floating_sequence3 &v2 = vertices[i2].position;
+            const floating_sequence3 &v3 = vertices[i3].position;
 
-            const glm::vec2 &w1 = vertices[i1].uv;
-            const glm::vec2 &w2 = vertices[i2].uv;
-            const glm::vec2 &w3 = vertices[i3].uv;
+            auto &w1 = vertices[i1].uv;
+            auto &w2 = vertices[i2].uv;
+            auto &w3 = vertices[i3].uv;
 
-            glm::vec3 e1 = v2 - v1;
-            glm::vec3 e2 = v3 - v1;
+            floating_sequence3 e1 = v2 - v1;
+            floating_sequence3 e2 = v3 - v1;
 
             float s1 = w2.x - w1.x;
             float s2 = w3.x - w1.x;
@@ -206,8 +208,8 @@ namespace gpu
                continue;
             float r = 1.0f / det;
 
-            glm::vec3 sdir = (e1 * t2 - e2 * t1) * r;
-            glm::vec3 tdir = (e2 * s1 - e1 * s2) * r;
+            floating_sequence3 sdir = (e1 * t2 - e2 * t1) * r;
+            floating_sequence3 tdir = (e2 * s1 - e1 * s2) * r;
 
             tan1[i1] += sdir;
             tan1[i2] += sdir;
@@ -219,11 +221,11 @@ namespace gpu
 
          for (size_t i = 0; i < vertices.size(); ++i)
          {
-            const glm::vec3 &n = vertices[i].normal;
-            const glm::vec3 &t = tan1[i];
+            const floating_sequence3 &n = vertices[i].normal;
+            const floating_sequence3 &t = tan1[i];
 
-            glm::vec3 tangent = glm::normalize(t - n * glm::dot(n, t));
-            float sign = (glm::dot(glm::cross(n, t), tan2[i]) < 0.0f) ? -1.0f : 1.0f;
+            floating_sequence3 tangent = geometry::normalize(t - n * n.dot(t));
+            float sign = (n.cross(t).dot(tan2[i]) < 0.0f) ? -1.0f : 1.0f;
 
             vertices[i].tangent = glm::vec4(tangent, sign);
          }
@@ -255,7 +257,7 @@ namespace gpu
             ::gpu::gltf::vertex vertex;
 
             // position
-            glm::vec3 position;
+            floating_sequence3 position;
             position.x = mesh->mVertices[i].x;
             position.y = mesh->mVertices[i].y;
             position.z = mesh->mVertices[i].z;
@@ -263,7 +265,7 @@ namespace gpu
             vertex.position = position;
 
             // normal
-            glm::vec3 normal;
+            floating_sequence3 normal;
             normal.x = mesh->mNormals[i].x;
             normal.y = mesh->mNormals[i].y;
             normal.z = mesh->mNormals[i].z;
@@ -289,8 +291,8 @@ namespace gpu
             //{
             //   color.x = mesh->mColors[0]->r;
             //   color.y = mesh->mColors[0]->g;
-            //   color.z = mesh->mColors[0]->b;
-            //   color.w = mesh->mColors[0]->a;
+            //   color.z = mesh->mColors[0]->y;
+            //   color.w = mesh->mColors[0]->x;
             //}
             //else
             //{
@@ -302,11 +304,11 @@ namespace gpu
             {
                // tangents
                glm::vec4 tangent4;
-               glm::vec3 tangent;
+               floating_sequence3 tangent;
                tangent.x = mesh->mTangents[0].x;
                tangent.y = mesh->mTangents[0].y;
                tangent.z = mesh->mTangents[0].z;
-               glm::vec3 bitangent;
+               floating_sequence3 bitangent;
                bitangent.x = mesh->mBitangents[0].x;
                bitangent.y = mesh->mBitangents[0].y;
                bitangent.z = mesh->mBitangents[0].z;
@@ -318,7 +320,7 @@ namespace gpu
             }
 
             ////// bitangents
-            //glm::vec3 bitangent;
+            //floating_sequence3 bitangent;
             //bitangent.x = mesh->mBitangents[0].x;
             //bitangent.y = mesh->mBitangents[0].y;
             //bitangent.z = mesh->mBitangents[0].z;

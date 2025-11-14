@@ -47,7 +47,7 @@ public:
    //operator ::point_type < UNIT_TYPE > * () { return this->get_data(); }
 
    void offset(UNIT_TYPE x, UNIT_TYPE y);
-   void offset(::point_type < UNIT_TYPE > point) { offset(point.x(), point.y()); }
+   void offset(::point_type < UNIT_TYPE > point) { offset(point.x, point.y); }
 
    void rotate(double dAngle);
 
@@ -70,7 +70,7 @@ public:
       for (auto & point : *this)
       {
 
-         if (tolerance_is_equal(tolerance, point.x(), pointAdd.x()) && tolerance_is_equal(tolerance, point.y(), pointAdd.y()))
+         if (tolerance_is_equal(tolerance, point.x, pointAdd.x) && tolerance_is_equal(tolerance, point.y, pointAdd.y))
          {
 
             /// 'p' is "tolerance"-equal to an existing int_point 'p' in '*this' array,
@@ -107,8 +107,8 @@ public:
       for (int i = 0; i < n; i++)
       {
 
-         area += (this->element_at(j).x() + this->element_at(i).x())
-               * (this->element_at(j).y() - this->element_at(i).y());
+         area += (this->element_at(j).x + this->element_at(i).x)
+               * (this->element_at(j).y - this->element_at(i).y);
 
          j = i;  // j is previous vertex to i
 
@@ -122,7 +122,7 @@ public:
    auto points_beyond_right(UNIT_TYPE x) const
    {
 
-      return ::transfer(container_predicate_get(*this, [x](const ::point_type < NUMBER > & p) {return p.x() > x; }));
+      return ::transfer(container_predicate_get(*this, [x](const ::point_type < NUMBER > & p) {return p.x > x; }));
 
    }
 
@@ -130,7 +130,7 @@ public:
    auto points_beyond_left(UNIT_TYPE x) const
    {
 
-      return ::transfer(container_predicate_get(*this, [x](const ::point_type < NUMBER > & p) {return p.x() < x; }));
+      return ::transfer(container_predicate_get(*this, [x](const ::point_type < NUMBER > & p) {return p.x < x; }));
 
    }
 
@@ -138,7 +138,7 @@ public:
    auto points_beyond_top(UNIT_TYPE y) const
    {
 
-      return ::transfer(container_predicate_get(*this, [y](const ::point_type < NUMBER > & p) {return p.y() < y; }));
+      return ::transfer(container_predicate_get(*this, [y](const ::point_type < NUMBER > & p) {return p.y < y; }));
 
    }
 
@@ -146,7 +146,7 @@ public:
    auto points_beyond_bottom(UNIT_TYPE y) const
    {
 
-      return ::transfer(container_predicate_get(*this, [y](const ::point_type < NUMBER > & p) {return p.y() > y; }));
+      return ::transfer(container_predicate_get(*this, [y](const ::point_type < NUMBER > & p) {return p.y > y; }));
 
    }
 
@@ -154,7 +154,7 @@ public:
    auto points_beyond_right() const
    {
 
-      return this->points_beyond_right(this->first().x());
+      return this->points_beyond_right(this->first().x);
 
    }
 
@@ -162,7 +162,7 @@ public:
    auto points_beyond_left() const
    {
 
-      return this->points_beyond_left(this->first().x());
+      return this->points_beyond_left(this->first().x);
 
    }
 
@@ -170,7 +170,7 @@ public:
    auto points_beyond_top() const
    {
 
-      return this->points_beyond_top(this->first().y());
+      return this->points_beyond_top(this->first().y);
 
    }
 
@@ -178,7 +178,7 @@ public:
    auto points_beyond_bottom() const
    {
 
-      return this->points_beyond_bottom(this->first().y());
+      return this->points_beyond_bottom(this->first().y);
 
    }
 
@@ -194,8 +194,8 @@ void point_array_base < NUMBER >::offset(UNIT_TYPE x, UNIT_TYPE y)
 {
    for (int i = 0; i < this->get_size(); i++)
    {
-      this->element_at(i).x() += x;
-      this->element_at(i).y() += y;
+      this->element_at(i).x += x;
+      this->element_at(i).y += y;
    }
 }
 
@@ -211,10 +211,10 @@ void point_array_base < NUMBER >::rotate(double dAngle)
 
    for (int i = 0; i < this->get_count(); i++)
    {
-      x = this->element_at(i).x();
-      y = this->element_at(i).y();
-      this->element_at(i).x() = (int)(x * dCos - y * dSin);
-      this->element_at(i).y() = (int)(x * dSin + y * dCos);
+      x = this->element_at(i).x;
+      y = this->element_at(i).y;
+      this->element_at(i).x = (int)(x * dCos - y * dSin);
+      this->element_at(i).y = (int)(x * dSin + y * dCos);
    }
 
 }
@@ -245,10 +245,10 @@ void point_array_base < NUMBER >::rotate(double dAngle, ::point_type < NUMBER > 
    for (int i = 0; i < this->get_count(); i++)
    {
       this->element_at(i) -= pointCenter;
-      x = this->element_at(i).x();
-      y = this->element_at(i).y();
-      this->element_at(i).x() = (int)(x * dCos - y * dSin);
-      this->element_at(i).y() = (int)(x * dSin + y * dCos);
+      x = this->element_at(i).x;
+      y = this->element_at(i).y;
+      this->element_at(i).x = (int)(x * dCos - y * dSin);
+      this->element_at(i).y = (int)(x * dSin + y * dCos);
       this->element_at(i) += pointCenter;
    }
 
@@ -281,8 +281,8 @@ int pnpoly(int nvert, float * vertx, float * verty, float testx, float testy)
 //   int i, j, c = 0;
 //   for (i = 0, j = nvert - 1; i < nvert; j = i++)
 //   {
-//      if (((ppointa[i].y() > point.y()) != (ppointa[j].y() > point.y())) &&
-//         (point.x() < (ppointa[j].x() - ppointa[i].x()) * (point.y() - ppointa[i].y()) / (ppointa[j].y() - ppointa[i].y()) + ppointa[i].x()))
+//      if (((ppointa[i].y > point.y) != (ppointa[j].y > point.y)) &&
+//         (point.x < (ppointa[j].x - ppointa[i].x) * (point.y - ppointa[i].y) / (ppointa[j].y - ppointa[i].y) + ppointa[i].x))
 //         c = !c;
 //   }
 //   return c;
@@ -310,13 +310,13 @@ template < primitive_number NUMBER >
 ::collection::count point_array_base < NUMBER >::add_unique_range(const ::point_type < NUMBER > & pointBeg, const ::point_type < NUMBER > & pointEnd, const ::size_type < NUMBER > & size)
 {
 
-   auto x1 = pointBeg.x();
+   auto x1 = pointBeg.x;
 
-   auto x2 = pointEnd.x();
+   auto x2 = pointEnd.x;
 
-   auto y1 = pointBeg.y();
+   auto y1 = pointBeg.y;
 
-   auto y2 = pointEnd.y();
+   auto y2 = pointEnd.y;
 
    __sort(x1, x2);
 

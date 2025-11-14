@@ -6,9 +6,9 @@
 //
 
 //template < primitive_point POINT >
-//inline constexpr auto __horz(const POINT & point) { return point.x(); }
+//inline constexpr auto __horz(const POINT & point) { return point.x; }
 //template < primitive_point POINT >
-//inline constexpr auto __vert(const POINT & point) { return point.y(); }
+//inline constexpr auto __vert(const POINT & point) { return point.y; }
 //template < primitive_size SIZE >
 //inline constexpr auto __horz(const SIZE & size) { return size.cx(); }
 //template < primitive_size SIZE >
@@ -239,7 +239,7 @@
 //inline ::string as_string(const POINT & point)
 //{
 //
-//   str = as_string(point.x()) + ", " + as_string(point.y());
+//   str = as_string(point.x) + ", " + as_string(point.y);
 //
 //}
 //

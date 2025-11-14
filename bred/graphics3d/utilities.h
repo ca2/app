@@ -6,7 +6,7 @@
 //#include <functional>
 //
 //#define GLM_ENABLE_EXPERIMENTAL
-//#include <glm/vec3.hpp>
+//#include <glm/floating_sequence3.hpp>
 //#include <glm/gtx/hash.hpp>
 //
 //

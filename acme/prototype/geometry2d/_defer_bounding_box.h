@@ -11,10 +11,10 @@
 //inline bool expand_bounding_box(RECTANGLE & rectangleBounding, const ::arc_type < NUMBER > & arc)
 //{
 //
-//   rectangleBounding.left() = (decltype(rectangleBounding.left())) (arc.m_pointCenter.x() - arc.m_sizeRadius.cx());
-//   rectangleBounding.right() = (decltype(rectangleBounding.right()))(arc.m_pointCenter.x() + arc.m_sizeRadius.cx());
-//   rectangleBounding.top() = (decltype(rectangleBounding.top()))(arc.m_pointCenter.y() - arc.m_sizeRadius.cy());
-//   rectangleBounding.bottom() = (decltype(rectangleBounding.bottom()))(arc.m_pointCenter.y() + arc.m_sizeRadius.cy());
+//   rectangleBounding.left() = (decltype(rectangleBounding.left())) (arc.m_pointCenter.x - arc.m_sizeRadius.cx());
+//   rectangleBounding.right() = (decltype(rectangleBounding.right()))(arc.m_pointCenter.x + arc.m_sizeRadius.cx());
+//   rectangleBounding.top() = (decltype(rectangleBounding.top()))(arc.m_pointCenter.y - arc.m_sizeRadius.cy());
+//   rectangleBounding.bottom() = (decltype(rectangleBounding.bottom()))(arc.m_pointCenter.y + arc.m_sizeRadius.cy());
 //
 //   return true;
 //
@@ -41,10 +41,10 @@
 //inline bool get_bounding_box(::double_rectangle * prectangleBounding, const ::arc * parc)
 //{
 //
-//   rectangleBounding.left() = arc.m_pointCenter.x() - arc.m_sizeRadius.cx();
-//   rectangleBounding.right() = arc.m_pointCenter.x() + arc.m_sizeRadius.cx();
-//   rectangleBounding.top() = arc.m_pointCenter.y() - arc.m_sizeRadius.cy();
-//   rectangleBounding.bottom() = arc.m_pointCenter.y() + arc.m_sizeRadius.cy();
+//   rectangleBounding.left() = arc.m_pointCenter.x - arc.m_sizeRadius.cx();
+//   rectangleBounding.right() = arc.m_pointCenter.x + arc.m_sizeRadius.cx();
+//   rectangleBounding.top() = arc.m_pointCenter.y - arc.m_sizeRadius.cy();
+//   rectangleBounding.bottom() = arc.m_pointCenter.y + arc.m_sizeRadius.cy();
 //
 //   return true;
 //
@@ -55,10 +55,10 @@
 //inline bool get_bounding_box(::double_rectangle* prectangleBounding, const line* pline)
 //{
 //
-//   rectangleBounding.left() = minimum(line.m_p1.x(), line.m_p2.x());
-//   rectangleBounding.top() = minimum(line.m_p1.y(), line.m_p2.y());
-//   rectangleBounding.right() = maximum(line.m_p1.x(), line.m_p2.x());
-//   rectangleBounding.bottom() = maximum(line.m_p1.y(), line.m_p2.y());
+//   rectangleBounding.left() = minimum(line.m_p1.x, line.m_p2.x);
+//   rectangleBounding.top() = minimum(line.m_p1.y, line.m_p2.y);
+//   rectangleBounding.right() = maximum(line.m_p1.x, line.m_p2.x);
+//   rectangleBounding.bottom() = maximum(line.m_p1.y, line.m_p2.y);
 //
 //   return true;
 //
@@ -68,10 +68,10 @@
 //inline bool get_bounding_box(::int_rectangle* prectangleBounding, const line * pline)
 //{
 //
-//   rectangleBounding.left() = (int)minimum(line.m_p1.x(), line.m_p2.x());
-//   rectangleBounding.top() = (int)minimum(line.m_p1.y(), line.m_p2.y());
-//   rectangleBounding.right() = (int)maximum(line.m_p1.x(), line.m_p2.x());
-//   rectangleBounding.bottom() = (int)maximum(line.m_p1.y(), line.m_p2.y());
+//   rectangleBounding.left() = (int)minimum(line.m_p1.x, line.m_p2.x);
+//   rectangleBounding.top() = (int)minimum(line.m_p1.y, line.m_p2.y);
+//   rectangleBounding.right() = (int)maximum(line.m_p1.x, line.m_p2.x);
+//   rectangleBounding.bottom() = (int)maximum(line.m_p1.y, line.m_p2.y);
 //
 //   return true;
 //
@@ -81,10 +81,10 @@
 //inline bool get_bounding_box(::double_rectangle* prectangleBounding, const line * pline)
 //{
 //
-//   rectangleBounding.left() = minimum(line.m_p1.x(), line.m_p2.x());
-//   rectangleBounding.top() = minimum(line.m_p1.y(), line.m_p2.y());
-//   rectangleBounding.right() = maximum(line.m_p1.x(), line.m_p2.x());
-//   rectangleBounding.bottom() = maximum(line.m_p1.y(), line.m_p2.y());
+//   rectangleBounding.left() = minimum(line.m_p1.x, line.m_p2.x);
+//   rectangleBounding.top() = minimum(line.m_p1.y, line.m_p2.y);
+//   rectangleBounding.right() = maximum(line.m_p1.x, line.m_p2.x);
+//   rectangleBounding.bottom() = maximum(line.m_p1.y, line.m_p2.y);
 //
 //   return true;
 //
@@ -222,9 +222,9 @@
 //void expand_bounding_box(::rectangle_type < NUMBER1 > & rectangle, const ::point_type < NUMBER2 > & point)
 //{
 //
-//   expand_bounding_box_x(rectangle, point.x());
+//   expand_bounding_box_x(rectangle, point.x);
 //
-//   expand_bounding_box_y(rectangle, point.y());
+//   expand_bounding_box_y(rectangle, point.y);
 //
 //}
 //
@@ -281,10 +281,10 @@ inline bool get_bounding_box(RECTANGLE & rectangleBounding, const TYPE & t)
 
    t.expand_bounding_box(rectangleBounding.top_left(), rectangleBounding.bottom_right());
 
-   //rectangleBounding.left() = (decltype(rectangleBounding.left()))minimum(line.m_p1.x(), line.m_p2.x());
-   //rectangleBounding.top() = (decltype(rectangleBounding.top()))minimum(line.m_p1.y(), line.m_p2.y());
-   //rectangleBounding.right() = (decltype(rectangleBounding.right()))maximum(line.m_p1.x(), line.m_p2.x());
-   //rectangleBounding.bottom() = (decltype(rectangleBounding.bottom()))maximum(line.m_p1.y(), line.m_p2.y());
+   //rectangleBounding.left() = (decltype(rectangleBounding.left()))minimum(line.m_p1.x, line.m_p2.x);
+   //rectangleBounding.top() = (decltype(rectangleBounding.top()))minimum(line.m_p1.y, line.m_p2.y);
+   //rectangleBounding.right() = (decltype(rectangleBounding.right()))maximum(line.m_p1.x, line.m_p2.x);
+   //rectangleBounding.bottom() = (decltype(rectangleBounding.bottom()))maximum(line.m_p1.y, line.m_p2.y);
 
    return rectangleBounding.is_set();
 
@@ -299,10 +299,10 @@ inline bool get_bounding_box(RECTANGLE & rectangleBounding, const POINT * ppoint
 
    POINT::expand_bounding_box(rectangleBounding.top_left(), rectangleBounding.bottom_right(), ppoint, iPointCount);
 
-   //rectangleBounding.left() = (decltype(rectangleBounding.left()))minimum(line.m_p1.x(), line.m_p2.x());
-   //rectangleBounding.top() = (decltype(rectangleBounding.top()))minimum(line.m_p1.y(), line.m_p2.y());
-   //rectangleBounding.right() = (decltype(rectangleBounding.right()))maximum(line.m_p1.x(), line.m_p2.x());
-   //rectangleBounding.bottom() = (decltype(rectangleBounding.bottom()))maximum(line.m_p1.y(), line.m_p2.y());
+   //rectangleBounding.left() = (decltype(rectangleBounding.left()))minimum(line.m_p1.x, line.m_p2.x);
+   //rectangleBounding.top() = (decltype(rectangleBounding.top()))minimum(line.m_p1.y, line.m_p2.y);
+   //rectangleBounding.right() = (decltype(rectangleBounding.right()))maximum(line.m_p1.x, line.m_p2.x);
+   //rectangleBounding.bottom() = (decltype(rectangleBounding.bottom()))maximum(line.m_p1.y, line.m_p2.y);
 
    return rectangleBounding.is_set();
 

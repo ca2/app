@@ -2085,14 +2085,14 @@ namespace user
 
                yLast = pbox->m_rectangleHitTest.top();
 
-               if (point.y() < yLast)
+               if (point.y < yLast)
                {
 
                   return iLast;
 
                }
 
-               if (pbox->m_rectangleHitTest.contains_y(point.y()))
+               if (pbox->m_rectangleHitTest.contains_y(point.y))
                {
 
                   double xLeft = pbox->m_rectangleDevice.left();
@@ -2103,7 +2103,7 @@ namespace user
 
                   character_count iPos = pbox->m_iPosBeg;
 
-                  if (point.x() <= xLeft)
+                  if (point.x <= xLeft)
                   {
 
                      return iPos;
@@ -2124,7 +2124,7 @@ namespace user
 
                      }
 
-                     if (xLast <= point.x() && point.x() < xRight)
+                     if (xLast <= point.x && point.x < xRight)
                      {
 
                         return iPos;
@@ -2155,14 +2155,14 @@ namespace user
 
          }
 
-         if (point.y() >= rBox.bottom())
+         if (point.y >= rBox.bottom())
          {
 
             return _001GetLayoutTextLength();
 
          }
 
-         if (point.y() < rBox.top())
+         if (point.y < rBox.top())
          {
 
             return 0;

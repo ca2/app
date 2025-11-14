@@ -105,7 +105,7 @@ NAMESPACE_END(detail)
  *    FormHelper* h = ___new FormHelper(pscreen);
  *
  *    // Add a ___new windows pwidget
- *    h->add_window(sequence2_int(10,10),"Menu");
+ *    h->add_window(int_sequence2(10,10),"Menu");
  *
  *    // Start a ___new group
  *    h->add_group("Group 1");
@@ -131,7 +131,7 @@ NAMESPACE_END(detail)
 
       
       /// Add a ___new top-level window
-      Window * add_window(const sequence2_int & pos,
+      Window * add_window(const int_sequence2 & pos,
          const ::scoped_string & title = "Untitled")
       {
          ASSERT(m_pscreen);
@@ -178,7 +178,7 @@ NAMESPACE_END(detail)
          pwidget->set_callback(setter);
          pwidget->set_editable(editable);
          pwidget->set_font_size((float)m_widget_font_size);
-         sequence2_int sizeFixed = pwidget->fixed_size();
+         int_sequence2 sizeFixed = pwidget->fixed_size();
          pwidget->set_fixed_size(sizeFixed.prefer_self_coordinate_if_set(m_fixed_size));
          m_refresh_callbacks.add(refresh);
          if (m_playout->row_count() > 0)

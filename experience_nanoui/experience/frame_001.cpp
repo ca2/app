@@ -133,8 +133,8 @@ namespace experience_nanoui
          if (egrip & e_grip_top)
          {
             rectangle.top() = rectangleEvent.top();
-            rectangle.left() = pointCenter.x() - 8;
-            rectangle.right() = pointCenter.x() + 8;
+            rectangle.left() = pointCenter.x - 8;
+            rectangle.right() = pointCenter.x + 8;
             rectangle.bottom() = rectangleEvent.top() + 5;
             if (rectangle.contains(point))
             {
@@ -145,8 +145,8 @@ namespace experience_nanoui
          if (egrip & e_grip_bottom)
          {
             rectangle.top() = rectangleEvent.bottom() - 5;
-            rectangle.left() = pointCenter.x() - 8;
-            rectangle.right() = pointCenter.x() + 8;
+            rectangle.left() = pointCenter.x - 8;
+            rectangle.right() = pointCenter.x + 8;
             rectangle.bottom() = rectangleEvent.bottom();
             if (rectangle.contains(point))
             {
@@ -156,10 +156,10 @@ namespace experience_nanoui
          }
          if (egrip & e_grip_left)
          {
-            rectangle.top() = pointCenter.y() - 8;
+            rectangle.top() = pointCenter.y - 8;
             rectangle.left() = rectangleEvent.left();
             rectangle.right() = rectangleEvent.left() + 5;
-            rectangle.bottom() = pointCenter.y() + 8;
+            rectangle.bottom() = pointCenter.y + 8;
             if (rectangle.contains(point))
             {
                etest = ::experience::e_frame_sizing_left;
@@ -168,10 +168,10 @@ namespace experience_nanoui
          }
          if (egrip & e_grip_right)
          {
-            rectangle.top() = pointCenter.y() - 8;
+            rectangle.top() = pointCenter.y - 8;
             rectangle.left() = rectangleEvent.right() - 5;
             rectangle.right() = rectangleEvent.right();
-            rectangle.bottom() = pointCenter.y() + 8;
+            rectangle.bottom() = pointCenter.y + 8;
             if (rectangle.contains(point))
             {
                etest = ::experience::e_frame_sizing_right;
@@ -472,10 +472,10 @@ namespace experience_nanoui
          rectangleA.right()--;
 
          pointA = rectangleA.top_left();
-         pointA.y() += 14;
+         pointA.y += 14;
          pointB = rectangleA.top_left();
          pointC = rectangleA.top_left();
-         pointC.x() += 15;
+         pointC.x += 15;
 
 
          {
@@ -498,10 +498,10 @@ namespace experience_nanoui
          rectangleA = rectangleX;
 
          pointA = rectangleA.top_left();
-         pointA.y() += 15;
+         pointA.y += 15;
          pointB = rectangleA.top_left();
          pointC = rectangleA.top_left();
-         pointC.x() += 16;
+         pointC.x += 16;
 
          {
 
@@ -526,10 +526,10 @@ namespace experience_nanoui
          rectangleA.right() -= 2;
 
          pointA = rectangleA.top_left();
-         pointA.y() += 13;
+         pointA.y += 13;
          pointB = rectangleA.top_left();
          pointC = rectangleA.top_left();
-         pointC.x() += 14;
+         pointC.x += 14;
 
          {
 
@@ -560,10 +560,10 @@ namespace experience_nanoui
 
 
          pointA = rectangleA.top_left();
-         pointA.y() += 12;
+         pointA.y += 12;
          pointB = rectangleA.top_left();
          pointC = rectangleA.top_left();
-         pointC.x() += 13;
+         pointC.x += 13;
 
          {
 
@@ -588,10 +588,10 @@ namespace experience_nanoui
          rectangleA.right() -= 4;
 
          pointA = rectangleA.top_left();
-         pointA.y() += 11;
+         pointA.y += 11;
          pointB = rectangleA.top_left();
          pointC = rectangleA.top_left();
-         pointC.x() += 12;
+         pointC.x += 12;
 
          {
 
@@ -610,37 +610,37 @@ namespace experience_nanoui
 
          // Details
 
-         pointA.x() = rectangleXB.left() + 14;
-         pointA.y() = rectangleXB.top() + 1;
-         pointB.x() = rectangleXB.left() + 14;
-         pointB.y() = rectangleXB.top() + 3;
+         pointA.x = rectangleXB.left() + 14;
+         pointA.y = rectangleXB.top() + 1;
+         pointB.x = rectangleXB.left() + 14;
+         pointB.y = rectangleXB.top() + 3;
          pgraphics->line(pointA, pointB);
 
 
          // Details
 
-         pointA.x() = rectangleXB.left() + 1;
-         pointA.y() = rectangleXB.top() + 14;
-         pointB.x() = rectangleXB.left() + 3;
-         pointB.y() = rectangleXB.top() + 14;
+         pointA.x = rectangleXB.left() + 1;
+         pointA.y = rectangleXB.top() + 14;
+         pointB.x = rectangleXB.left() + 3;
+         pointB.y = rectangleXB.top() + 14;
          pgraphics->line(pointA, pointB);
 
          pgraphics->set(m_ppenDkShadow1);
 
          // Details
 
-         pointA.x() = rectangleXB.left() + 15;
-         pointA.y() = rectangleXB.top() + 1;
-         pointB.x() = rectangleXB.left() + 15;
-         pointB.y() = rectangleXB.top() + 5;
+         pointA.x = rectangleXB.left() + 15;
+         pointA.y = rectangleXB.top() + 1;
+         pointB.x = rectangleXB.left() + 15;
+         pointB.y = rectangleXB.top() + 5;
          pgraphics->line(pointA, pointB);
 
          // Details
 
-         pointA.x() = rectangleXB.left() + 1;
-         pointA.y() = rectangleXB.top() + 15;
-         pointB.x() = rectangleXB.left() + 5;
-         pointB.y() = rectangleXB.top() + 15;
+         pointA.x = rectangleXB.left() + 1;
+         pointA.y = rectangleXB.top() + 15;
+         pointB.x = rectangleXB.left() + 5;
+         pointB.y = rectangleXB.top() + 15;
          pgraphics->line(pointA, pointB);
       }
       break;
@@ -656,7 +656,7 @@ namespace experience_nanoui
          rectangleA.right()--;
 
          pointA = rectangleA.top_right();
-         pointA.x() -= 15;
+         pointA.x -= 15;
          pointB = rectangleA.top_right();
          pgraphics->line(pointA, pointB);
 
@@ -667,7 +667,7 @@ namespace experience_nanoui
 
          pointB = rectangleA.top_right();
          pointC = rectangleA.top_right();
-         pointC.y() += 13;
+         pointC.y += 13;
          pgraphics->line(pointB, pointC);
 
          pgraphics->set(m_ppenFace1);
@@ -677,7 +677,7 @@ namespace experience_nanoui
          rectangleA = rectangleX;
 
          pointA = rectangleA.top_right();
-         pointA.x() -= 16;
+         pointA.x -= 16;
          pointB = rectangleA.top_right();
          pgraphics->line(pointA, pointB);
 
@@ -691,7 +691,7 @@ namespace experience_nanoui
 
          pointB = rectangleA.top_right();
          pointC = rectangleA.top_right();
-         pointC.y() += 12;
+         pointC.y += 12;
          pgraphics->line(pointB, pointC);
 
          // Midle int_rectangle
@@ -704,10 +704,10 @@ namespace experience_nanoui
          rectangleA.right() -= 2;
 
          pointA = rectangleA.top_right();
-         pointA.x() -= 13;
+         pointA.x -= 13;
          pointB = rectangleA.top_right();
          pointC = rectangleA.top_right();
-         pointC.y() += 14;
+         pointC.y += 14;
 
          {
 
@@ -733,7 +733,7 @@ namespace experience_nanoui
 
          pointB = rectangleA.top_right();
          pointC = rectangleA.top_right();
-         pointC.y() += 15;
+         pointC.y += 15;
          pgraphics->line(pointB, pointC);
 
          rectangleA.top() += 2;
@@ -742,7 +742,7 @@ namespace experience_nanoui
          rectangleA.right() -= 2;
 
          pointA = rectangleA.top_right();
-         pointA.x() -= 12;
+         pointA.x -= 12;
          pointB = rectangleA.top_right();
          pgraphics->line(pointA, pointB);
 
@@ -752,7 +752,7 @@ namespace experience_nanoui
 
          pointB = rectangleA.top_right();
          pointC = rectangleA.top_right();
-         pointC.y() += 16;
+         pointC.y += 16;
          pgraphics->line(pointB, pointC);
 
          rectangleA.top() += 4;
@@ -761,46 +761,46 @@ namespace experience_nanoui
          rectangleA.right() -= 4;
 
          pointA = rectangleA.top_right();
-         pointA.x() -= 11;
+         pointA.x -= 11;
          pointB = rectangleA.top_right();
          pgraphics->line(pointA, pointB);
 
          pgraphics->set(m_ppenHilight1);
 
-         pointA.x() = rectangleXB.right() - 14;
-         pointA.y() = rectangleXB.top() + 1;
-         pointB.x() = rectangleXB.right() - 14;
-         pointB.y() = rectangleXB.top() + 4;
+         pointA.x = rectangleXB.right() - 14;
+         pointA.y = rectangleXB.top() + 1;
+         pointB.x = rectangleXB.right() - 14;
+         pointB.y = rectangleXB.top() + 4;
          pgraphics->line(pointA, pointB);
 
          pgraphics->set(m_ppenFace1);
 
          // Details
 
-         pointA.x() = rectangleXB.right() - 15;
-         pointA.y() = rectangleXB.top();
-         pointB.x() = rectangleXB.right() - 15;
-         pointB.y() = rectangleXB.top() + 5;
+         pointA.x = rectangleXB.right() - 15;
+         pointA.y = rectangleXB.top();
+         pointB.x = rectangleXB.right() - 15;
+         pointB.y = rectangleXB.top() + 5;
          pgraphics->line(pointA, pointB);
 
          pgraphics->set(m_ppenShadow1);
 
          // Details
 
-         pointA.x() = rectangleXB.right() - 3;
-         pointA.y() = rectangleXB.top() + 14;
-         pointB.x() = rectangleXB.right() - 1;
-         pointB.y() = rectangleXB.top() + 14;
+         pointA.x = rectangleXB.right() - 3;
+         pointA.y = rectangleXB.top() + 14;
+         pointB.x = rectangleXB.right() - 1;
+         pointB.y = rectangleXB.top() + 14;
          pgraphics->line(pointA, pointB);
 
          pgraphics->set(m_ppenDkShadow1);
 
          // Details
 
-         pointA.x() = rectangleXB.right() - 4;
-         pointA.y() = rectangleXB.top() + 15;
-         pointB.x() = rectangleXB.right();
-         pointB.y() = rectangleXB.top() + 15;
+         pointA.x = rectangleXB.right() - 4;
+         pointA.y = rectangleXB.top() + 15;
+         pointB.x = rectangleXB.right();
+         pointB.y = rectangleXB.top() + 15;
          pgraphics->line(pointB, pointA);
       }
       break;
@@ -816,7 +816,7 @@ namespace experience_nanoui
 
          // left 1
          pointA = rectangleA.bottom_left();
-         pointA.y() -= 16;
+         pointA.y -= 16;
          pointB = rectangleA.bottom_left();
          pgraphics->line(pointB, pointA);
 
@@ -828,7 +828,7 @@ namespace experience_nanoui
          // bottom 2
          pointB = rectangleA.bottom_left();
          pointC = rectangleA.bottom_left();
-         pointC.x() += 12;
+         pointC.x += 12;
          pgraphics->line(pointC, pointB);
 
          pgraphics->set(m_ppenFace1);
@@ -838,7 +838,7 @@ namespace experience_nanoui
          rectangleA = rectangleX;
 
          pointA = rectangleA.bottom_left();
-         pointA.y() -= 15;
+         pointA.y -= 15;
          pointB = rectangleA.bottom_left();
          pgraphics->line(pointB, pointA);
 
@@ -851,7 +851,7 @@ namespace experience_nanoui
 
          pointB = rectangleA.bottom_left();
          pointC = rectangleA.bottom_left();
-         pointC.x() += 12;
+         pointC.x += 12;
          pgraphics->line(pointB, pointC);
 
          // Midle int_rectangle 2
@@ -864,10 +864,10 @@ namespace experience_nanoui
          rectangleA.right() -= 2;
 
          pointA = rectangleA.bottom_left();
-         pointA.y() -= 13;
+         pointA.y -= 13;
          pointB = rectangleA.bottom_left();
          pointC = rectangleA.bottom_left();
-         pointC.x() += 14;
+         pointC.x += 14;
 
          {
 
@@ -891,7 +891,7 @@ namespace experience_nanoui
 
          pointB = rectangleA.bottom_left();
          pointC = rectangleA.bottom_left();
-         pointC.x() += 14;
+         pointC.x += 14;
          pgraphics->line(pointB, pointC);
 
          rectangleA = rectangleX;
@@ -900,7 +900,7 @@ namespace experience_nanoui
          rectangleA.bottom() -= 2;
 
          pointA = rectangleA.bottom_left();
-         pointA.y() -= 12;
+         pointA.y -= 12;
          pointB = rectangleA.bottom_left();
          pgraphics->line(pointA, pointB);
 
@@ -909,16 +909,16 @@ namespace experience_nanoui
          rectangleA = rectangleX;
 
          pointB = rectangleA.bottom_left();
-         pointB.x()++;
+         pointB.x++;
          pointC = rectangleA.bottom_left();
-         pointC.x() += 16;
+         pointC.x += 16;
          pgraphics->line(pointB, pointC);
 
          rectangleA.left() += 4;
          rectangleA.bottom() -= 3;
 
          pointA = rectangleA.bottom_left();
-         pointA.y() -= 11;
+         pointA.y -= 11;
          pointB = rectangleA.bottom_left();
          pgraphics->line(pointA, pointB);
 
@@ -926,40 +926,40 @@ namespace experience_nanoui
 
          pgraphics->set(m_ppenHilight1);
 
-         pointA.x() = rectangleXB.left() + 1;
-         pointA.y() = rectangleXB.bottom() - 15;
-         pointB.x() = rectangleXB.left() + 4;
-         pointB.y() = rectangleXB.bottom() - 15;
+         pointA.x = rectangleXB.left() + 1;
+         pointA.y = rectangleXB.bottom() - 15;
+         pointB.x = rectangleXB.left() + 4;
+         pointB.y = rectangleXB.bottom() - 15;
          pgraphics->line(pointA, pointB);
 
          // Details - top most
 
          pgraphics->set(m_ppenFace1);
 
-         pointA.x() = rectangleXB.left();
-         pointA.y() = rectangleXB.bottom() - 15;
-         pointB.x() = rectangleXB.left() + 5;
-         pointB.y() = rectangleXB.bottom() - 15;
+         pointA.x = rectangleXB.left();
+         pointA.y = rectangleXB.bottom() - 15;
+         pointB.x = rectangleXB.left() + 5;
+         pointB.y = rectangleXB.bottom() - 15;
          pgraphics->line(pointA, pointB);
 
          pgraphics->set(m_ppenShadow1);
 
          // Details - right most
 
-         pointA.x() = rectangleXB.left() + 14;
-         pointA.y() = rectangleXB.bottom() - 4;
-         pointB.x() = rectangleXB.left() + 14;
-         pointB.y() = rectangleXB.bottom() - 1;
+         pointA.x = rectangleXB.left() + 14;
+         pointA.y = rectangleXB.bottom() - 4;
+         pointB.x = rectangleXB.left() + 14;
+         pointB.y = rectangleXB.bottom() - 1;
          pgraphics->line(pointB, pointA);
 
          pgraphics->set(m_ppenDkShadow1);
 
          // Details - right most
 
-         pointA.x() = rectangleXB.left() + 15;
-         pointA.y() = rectangleXB.bottom() - 4;
-         pointB.x() = rectangleXB.left() + 15;
-         pointB.y() = rectangleXB.bottom();
+         pointA.x = rectangleXB.left() + 15;
+         pointA.y = rectangleXB.bottom() - 4;
+         pointB.x = rectangleXB.left() + 15;
+         pointB.y = rectangleXB.bottom();
          pgraphics->line(pointB, pointA);
       }
       break;
@@ -980,10 +980,10 @@ namespace experience_nanoui
          rectangleA.right() -= 2;
 
          pointA = rectangleA.bottom_right();
-         pointA.y() -= 12;
+         pointA.y -= 12;
          pointB = rectangleA.bottom_right();
          pointC = rectangleA.bottom_right();
-         pointC.x() -= 13;
+         pointC.x -= 13;
 
          {
 
@@ -1010,10 +1010,10 @@ namespace experience_nanoui
          rectangleA.right() -= 4;
 
          pointA = rectangleA.bottom_right();
-         pointA.y() -= 11;
+         pointA.y -= 11;
          pointB = rectangleA.bottom_right();
          pointC = rectangleA.bottom_right();
-         pointC.x() -= 12;
+         pointC.x -= 12;
 
          {
 
@@ -1038,10 +1038,10 @@ namespace experience_nanoui
          rectangleA.right() -= 2;
 
          pointA = rectangleA.bottom_right();
-         pointA.y() -= 13;
+         pointA.y -= 13;
          pointB = rectangleA.bottom_right();
          pointC = rectangleA.bottom_right();
-         pointC.x() -= 14;
+         pointC.x -= 14;
 
          {
 
@@ -1065,10 +1065,10 @@ namespace experience_nanoui
          rectangleA.right()--;
 
          pointA = rectangleA.bottom_right();
-         pointA.y() -= 14;
+         pointA.y -= 14;
          pointB = rectangleA.bottom_right();
          pointC = rectangleA.bottom_right();
-         pointC.x() -= 15;
+         pointC.x -= 15;
 
          {
 
@@ -1088,10 +1088,10 @@ namespace experience_nanoui
          rectangleA = rectangleX;
 
          pointA = rectangleA.bottom_right();
-         pointA.y() -= 15;
+         pointA.y -= 15;
          pointB = rectangleA.bottom_right();
          pointC = rectangleA.bottom_right();
-         pointC.x() -= 15;
+         pointC.x -= 15;
 
          {
 
@@ -1108,32 +1108,32 @@ namespace experience_nanoui
 
          pgraphics->set(m_ppenHilight1);
 
-         pointA.x() = rectangleXB.right() - 3;
-         pointA.y() = rectangleXB.bottom() - 14;
-         pointB.x() = rectangleXB.right() - 1;
-         pointB.y() = rectangleXB.bottom() - 14;
+         pointA.x = rectangleXB.right() - 3;
+         pointA.y = rectangleXB.bottom() - 14;
+         pointB.x = rectangleXB.right() - 1;
+         pointB.y = rectangleXB.bottom() - 14;
          pgraphics->line(pointB, pointA);
 
-         pointA.x() = rectangleXB.right() - 14;
-         pointA.y() = rectangleXB.bottom() - 3;
-         pointB.x() = rectangleXB.right() - 14;
-         pointB.y() = rectangleXB.bottom() - 1;
+         pointA.x = rectangleXB.right() - 14;
+         pointA.y = rectangleXB.bottom() - 3;
+         pointB.x = rectangleXB.right() - 14;
+         pointB.y = rectangleXB.bottom() - 1;
          pgraphics->line(pointB, pointA);
 
          pgraphics->set(m_ppenFace1);
 
          // Details
 
-         pointA.x() = rectangleXB.right() - 5;
-         pointA.y() = rectangleXB.bottom() - 15;
-         pointB.x() = rectangleXB.right();
-         pointB.y() = rectangleXB.bottom() - 15;
+         pointA.x = rectangleXB.right() - 5;
+         pointA.y = rectangleXB.bottom() - 15;
+         pointB.x = rectangleXB.right();
+         pointB.y = rectangleXB.bottom() - 15;
          pgraphics->line(pointB, pointA);
 
-         pointA.x() = rectangleXB.right() - 15;
-         pointA.y() = rectangleXB.bottom() - 5;
-         pointB.x() = rectangleXB.right() - 15;
-         pointB.y() = rectangleXB.bottom();
+         pointA.x = rectangleXB.right() - 15;
+         pointA.y = rectangleXB.bottom() - 5;
+         pointB.x = rectangleXB.right() - 15;
+         pointB.y = rectangleXB.bottom();
          pgraphics->line(pointB, pointA);
       }
       break;
@@ -1150,8 +1150,8 @@ namespace experience_nanoui
          ::int_rectangle rectangleB;
 
          rectangleB.top() = rectangleC.top();
-         rectangleB.left() = pointCenter.x() - GRIP_CENTER_LARGE_CX / 2 + iMod;
-         rectangleB.right() = pointCenter.x() + GRIP_CENTER_LARGE_CX / 2 + iMod;
+         rectangleB.left() = pointCenter.x - GRIP_CENTER_LARGE_CX / 2 + iMod;
+         rectangleB.right() = pointCenter.x + GRIP_CENTER_LARGE_CX / 2 + iMod;
          rectangleB.bottom() = rectangleC.top() + GRIP_CENTER_SMALL_CY;
 
          DrawRectGrip(pgraphics, rectangleB);
@@ -1170,8 +1170,8 @@ namespace experience_nanoui
             iMod = 0;
 
          rectangleB.bottom() = rectangleC.bottom();
-         rectangleB.left() = pointCenter.x() - GRIP_CENTER_LARGE_CX / 2 + iMod;
-         rectangleB.right() = pointCenter.x() + GRIP_CENTER_LARGE_CX / 2 + iMod;
+         rectangleB.left() = pointCenter.x - GRIP_CENTER_LARGE_CX / 2 + iMod;
+         rectangleB.right() = pointCenter.x + GRIP_CENTER_LARGE_CX / 2 + iMod;
          rectangleB.top() = rectangleC.bottom() - GRIP_CENTER_SMALL_CY;
 
          DrawRectGrip(pgraphics, rectangleB);
@@ -1190,10 +1190,10 @@ namespace experience_nanoui
 
          ::int_rectangle rectangleB;
 
-         rectangleB.top() = pointCenter.y() - GRIP_CENTER_LARGE_CY / 2 + iMod;
+         rectangleB.top() = pointCenter.y - GRIP_CENTER_LARGE_CY / 2 + iMod;
          rectangleB.left() = rectangleC.left();
          rectangleB.right() = rectangleC.left() + GRIP_CENTER_SMALL_CX;
-         rectangleB.bottom() = pointCenter.y() + GRIP_CENTER_LARGE_CY / 2 + iMod;
+         rectangleB.bottom() = pointCenter.y + GRIP_CENTER_LARGE_CY / 2 + iMod;
 
          DrawRectGrip(pgraphics, rectangleB);
       }
@@ -1211,10 +1211,10 @@ namespace experience_nanoui
 
          ::int_rectangle rectangleB;
 
-         rectangleB.top() = pointCenter.y() - GRIP_CENTER_LARGE_CY / 2 + iMod;
+         rectangleB.top() = pointCenter.y - GRIP_CENTER_LARGE_CY / 2 + iMod;
          rectangleB.right() = rectangleC.right();
          rectangleB.left() = rectangleC.right() - GRIP_CENTER_SMALL_CX;
-         rectangleB.bottom() = pointCenter.y() + GRIP_CENTER_LARGE_CY / 2 + iMod;
+         rectangleB.bottom() = pointCenter.y + GRIP_CENTER_LARGE_CY / 2 + iMod;
 
          DrawRectGrip(pgraphics, rectangleB);
       }

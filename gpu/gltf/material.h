@@ -8,7 +8,8 @@
 // #include "texture.h"
 #include "gpu/gltf/_constant.h"
 #include "aura/message/user.h"
-#include <glm/glm.hpp>
+//#include <glm/glm.hpp>
+
 
 namespace gpu
 {
@@ -29,11 +30,11 @@ namespace gpu
          bool useTextureAmbientOcclusion = false;
          bool useTextureEmissive = false;
 
-         glm::vec3 m_seq3Albedo = ::gpu::gltf::colorRed;
+         floating_sequence3 m_seq3Albedo = ::gpu::gltf::colorRed;
          float m_fMetallic = 1.0f;
          float m_fRoughness = 0.0f;
          float m_fAmbientOcclusion = 1.0f;
-         glm::vec3 m_seq3Emissive = glm::vec3(0.0, 0.0, 0.0);
+         floating_sequence3 m_seq3Emissive = floating_sequence3(0.0, 0.0, 0.0);
 
          ::pointer<::gpu::texture> m_ptextureAlbedo;
          ::pointer<::gpu::texture> m_ptextureMetallicRoughness;

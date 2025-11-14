@@ -325,8 +325,8 @@ namespace browser
 
       screen_to_client()(point);
 
-      happening.x() = point.x();
-      happening.y() = point.y();
+      happening.x = point.x;
+      happening.y = point.y;
 
       if (pmouse->m_emessage == ::user::e_message_left_button_down)
       {

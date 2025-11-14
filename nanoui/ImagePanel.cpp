@@ -45,7 +45,7 @@ namespace nanoui
          (int)((m_size.cx() - 2 * m_iMargin - m_iThumbSize) /
             (float)(m_iThumbSize + m_iSpacing)));
       int n_rows = ((int)m_images.size() + n_cols - 1) / n_cols;
-      return sequence2_int(n_cols, n_rows);
+      return int_sequence2(n_cols, n_rows);
    }
 
 
@@ -61,22 +61,22 @@ namespace nanoui
       float icon_region = m_iThumbSize / (float)(m_iThumbSize + m_iSpacing);
 
       bool over_image =
-         fmodf(cursorrate.x(), 1.f) < icon_region &&
-         fmodf(cursorrate.y(), 1.f) < icon_region;
+         fmodf(cursorrate.x, 1.f) < icon_region &&
+         fmodf(cursorrate.y, 1.f) < icon_region;
 
 
       ::int_point gridindex(cursorrate);
 
       auto gridsize = grid_size();
 
-      over_image &= cursorrate.x() >= 0.f
-         && cursorrate.y() >= 0.f
-         && gridindex.x() >= 0
-         && gridindex.y() >= 0
-         && gridindex.x() < gridsize.cx()
-         && gridindex.y() < gridsize.cy();
+      over_image &= cursorrate.x >= 0.f
+         && cursorrate.y >= 0.f
+         && gridindex.x >= 0
+         && gridindex.y >= 0
+         && gridindex.x < gridsize.cx()
+         && gridindex.y < gridsize.cy();
 
-      return over_image ? (gridindex.x() + gridindex.y() * gridsize.cx()) : -1;
+      return over_image ? (gridindex.x + gridindex.y * gridsize.cx()) : -1;
 
    }
 
@@ -185,10 +185,10 @@ namespace nanoui
          {
 
             ::int_rectangle rectangleViewableImagePanel(
-               pvscrollpanel->m_pos.x(),
-               pvscrollpanel->m_pos.y(),
-               pvscrollpanel->m_pos.x() + pvscrollpanel->m_size.cx(),
-               pvscrollpanel->m_pos.y() + pvscrollpanel->m_size.cy());
+               pvscrollpanel->m_pos.x,
+               pvscrollpanel->m_pos.y,
+               pvscrollpanel->m_pos.x + pvscrollpanel->m_size.cx(),
+               pvscrollpanel->m_pos.y + pvscrollpanel->m_size.cy());
 
             ::int_rectangle rectangleImageFinalPlacement(
                image_top_left,
@@ -228,8 +228,8 @@ namespace nanoui
          float opacity = m_iMouseIndex == iImageIndex ? 1.0f : 0.7f;
 
          ::nano2d::paint img_paint = pcontext->image_pattern_from_index(
-            image_top_left.x() + ix,
-            image_top_left.y() + iy,
+            image_top_left.x + ix,
+            image_top_left.y + iy,
             iw, ih,
             0,
             opacity,
@@ -237,22 +237,22 @@ namespace nanoui
 
          pcontext->begin_path();
          pcontext->rounded_rectangle(
-                                     (float)image_top_left.x(), (float)image_top_left.y(), (float)m_iThumbSize, (float)m_iThumbSize, 5);
+                                     (float)image_top_left.x, (float)image_top_left.y, (float)m_iThumbSize, (float)m_iThumbSize, 5);
          pcontext->fill_paint(img_paint);
          pcontext->fill();
 
          ::nano2d::paint shadow_paint =
-            pcontext->box_gradient(image_top_left.x() - 1.f, (float)image_top_left.y(), m_iThumbSize + 2.f, m_iThumbSize + 2.f, 5.f, 3.f,
+            pcontext->box_gradient(image_top_left.x - 1.f, (float)image_top_left.y, m_iThumbSize + 2.f, m_iThumbSize + 2.f, 5.f, 3.f,
                ::rgba(0, 0, 0, 128), ::rgba(0, 0, 0, 0));
          pcontext->begin_path();
-         pcontext->rectangle(image_top_left.x() - 5.f, image_top_left.y() - 5.f, m_iThumbSize + 10.f, m_iThumbSize + 10.f);
-         pcontext->rounded_rectangle((float)image_top_left.x(), (float)image_top_left.y(), (float)m_iThumbSize, (float)m_iThumbSize, 6.f);
+         pcontext->rectangle(image_top_left.x - 5.f, image_top_left.y - 5.f, m_iThumbSize + 10.f, m_iThumbSize + 10.f);
+         pcontext->rounded_rectangle((float)image_top_left.x, (float)image_top_left.y, (float)m_iThumbSize, (float)m_iThumbSize, 6.f);
          pcontext->path_winding(::nano2d::e_solidity_hole);
          pcontext->fill_paint(shadow_paint);
          pcontext->fill();
 
          pcontext->begin_path();
-         pcontext->rounded_rectangle(image_top_left.x() + 0.5f, image_top_left.y() + 0.5f, m_iThumbSize - 1.f, m_iThumbSize - 1.f, 4.f - 0.5f);
+         pcontext->rounded_rectangle(image_top_left.x + 0.5f, image_top_left.y + 0.5f, m_iThumbSize - 1.f, m_iThumbSize - 1.f, 4.f - 0.5f);
          pcontext->stroke_width(1.0f);
          pcontext->stroke_color(::rgba(255, 255, 255, 80));
          pcontext->stroke();

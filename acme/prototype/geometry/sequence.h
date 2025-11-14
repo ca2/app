@@ -18,22 +18,233 @@
 //#include <string.h> // ::memory_set
 
 
+template<primitive_number NUMBER, int t_iSize >
+struct sequence_t_type
+{
 
-template < primitive_number COORDINATE, ::collection::count t_iSize >
-struct sequence_type
+
+   using sequence_tag = sequence_t;
+   using sequence_size = sequence_size_t<t_iSize>;
+   using COORDINATE = NUMBER;
+   using UNIT_TYPE = NUMBER;
+   static const int SIZE = t_iSize;
+
+
+};
+
+
+template<primitive_number NUMBER>
+struct sequence_t_type<NUMBER, 1>
+{
+
+
+   using COORDINATE = NUMBER;
+   using UNIT_TYPE = NUMBER;
+   static const int SIZE = 1;
+
+
+   union
+   {
+      struct
+      {
+         union
+         {
+            COORDINATE x, r, s;
+         };
+      };
+      COORDINATE m_coordinatea[SIZE];
+   };
+
+
+};
+
+
+template<primitive_number NUMBER>
+struct std::hash<::sequence_t_type<NUMBER, 1>>
+{
+   std::size_t operator()(const ::sequence_t_type<NUMBER, 1> &s) const noexcept
+   {
+      std::size_t h1 = std::hash<NUMBER>{}(s.x);
+      return h1;
+   }
+};
+ 
+
+
+template < primitive_number NUMBER >
+struct sequence_t_type<NUMBER, 2>
+{
+
+
+   using COORDINATE = NUMBER;
+   using UNIT_TYPE = NUMBER;
+   static const int SIZE = 2;
+
+   union
+   {
+      struct
+      {
+         union
+         {
+            COORDINATE x, r, s;
+         };
+         union
+         {
+            COORDINATE y, g, t;
+         };
+      };
+      COORDINATE m_coordinatea[SIZE];
+   };
+
+
+};
+
+
+template<primitive_number NUMBER>
+struct std::hash<::sequence_t_type<NUMBER, 2>>
+{
+   std::size_t operator()(const ::sequence_t_type<NUMBER, 2> &s) const noexcept
+   {
+      std::size_t h1 = std::hash<NUMBER>{}(s.x);
+      std::size_t h2 = std::hash<NUMBER>{}(s.y);
+      return h1 ^ (h2 << 1);
+   }
+};
+
+
+
+template<primitive_number NUMBER>
+struct sequence_t_type<NUMBER, 3>
+{
+
+
+   using COORDINATE = NUMBER;
+   using UNIT_TYPE = NUMBER;
+   static const int SIZE = 3;
+
+
+   union
+   {
+      struct
+      {
+         union
+         {
+            COORDINATE x, r, s;
+         };
+         union
+         {
+            COORDINATE y, g, t;
+         };
+         union
+         {
+            COORDINATE z, b, p;
+         };
+      };
+      COORDINATE m_coordinatea[SIZE];
+   };
+   
+
+};
+
+
+template<primitive_number NUMBER>
+struct std::hash<::sequence_t_type<NUMBER, 3>>
+{
+   std::size_t operator()(const ::sequence_t_type<NUMBER, 3> &s) const noexcept
+   {
+      std::size_t h1 = std::hash<NUMBER>{}(s.x);
+      std::size_t h2 = std::hash<NUMBER>{}(s.y);
+      std::size_t h3 = std::hash<NUMBER>{}(s.z);
+      return h1 ^ (h2 << 1) ^ (h3 << 2);
+   }
+};
+
+
+template<primitive_number NUMBER>
+struct sequence_t_type<NUMBER, 4>
+{
+
+
+   using COORDINATE = NUMBER;
+   using UNIT_TYPE = NUMBER;
+   static const int SIZE = 4;
+
+
+   union
+   {
+      struct
+      {
+         union
+         {
+            COORDINATE x, r, s;
+         };
+         union
+         {
+            COORDINATE y, g, t;
+         };
+         union
+         {
+            COORDINATE z, b, p;
+         };
+         union
+         {
+            COORDINATE w, a, q;
+         };
+      };
+      COORDINATE m_coordinatea[SIZE];
+   };
+   
+
+};
+
+template<primitive_number NUMBER>
+struct std::hash<::sequence_t_type<NUMBER, 4>>
+{
+   std::size_t operator()(const ::sequence_t_type<NUMBER, 4> &s) const noexcept
+   {
+      std::size_t h1 = std::hash<NUMBER>{}(s.x);
+      std::size_t h2 = std::hash<NUMBER>{}(s.y);
+      std::size_t h3 = std::hash<NUMBER>{}(s.z);
+      std::size_t h4 = std::hash<NUMBER>{}(s.w);
+      return h1 ^ (h2 << 1) ^ (h3 << 2) ^ (h4 << 2);
+   }
+};
+
+using int_sequence2_t = sequence_t_type<int, 2>;
+using int_sequence3_t = sequence_t_type<int, 3>;
+using int_sequence4_t = sequence_t_type<int, 4>;
+
+
+using long_long_sequence2_t = sequence_t_type<long long, 2>;
+using long_long_sequence3_t = sequence_t_type<long long, 3>;
+using long_long_sequence4_t = sequence_t_type<long long, 4>;
+
+
+using float_sequence2_t = sequence_t_type<float, 2>;
+using float_sequence3_t = sequence_t_type<float, 3>;
+using float_sequence4_t = sequence_t_type<float, 4>;
+
+
+using double_sequence2_t = sequence_t_type<double, 2>;
+using double_sequence3_t = sequence_t_type<double, 3>;
+using double_sequence4_t = sequence_t_type<double, 4>;
+
+
+
+template < primitive_number NUMBER, int t_iSize >
+struct sequence_type :
+   public sequence_t_type<NUMBER, t_iSize>
 {
 
    using sequence_tag = sequence_t;
    using sequence_size = sequence_size_t < t_iSize >;
-   using BASE_COORDINATE = COORDINATE;
-   using UNIT_TYPE = COORDINATE;
-
-
-   COORDINATE m_coordinatea[t_iSize];
+   using SEQUENCE_T = sequence_t_type< NUMBER, t_iSize >;
+   using COORDINATE = typename SEQUENCE_T::COORDINATE;
+   using UNIT_TYPE = typename SEQUENCE_T::COORDINATE;
+   static const int SIZE = t_iSize;
 
 
    static constexpr bool IS_MATRIX = false;
-   static constexpr ::collection::count SIZE = t_iSize;
 
 
    constexpr sequence_type()
@@ -64,45 +275,51 @@ struct sequence_type
 //      std::is_same_v<typename T::COORDINATE, COORDINATE>, int> = 0>
 //   sequence_type(const T & a) {
 //      for (::collection::count i = 0; i < SIZE; ++i)
-//         m_coordinatea[i] = (COORDINATE)a[i];
+//         this->m_coordinatea[i] = (COORDINATE)a[i];
 //   }
 
-   template < primitive_number NUMBER1, ::collection::count S = SIZE, std::enable_if_t<S == 2, int> = 0 >
-   constexpr sequence_type(const sequence_type < NUMBER1, 2 > & sequence)
+   template < primitive_number NUMBER1 >
+   constexpr sequence_type(const sequence_t_type < NUMBER1, 2 > & sequence)
+      requires(SIZE >= 2)
    {
-      m_coordinatea[0] = (UNIT_TYPE) sequence.m_coordinatea[0];
-      m_coordinatea[1] = (UNIT_TYPE) sequence.m_coordinatea[1];
+      this->m_coordinatea[0] = (UNIT_TYPE) sequence.m_coordinatea[0];
+      this->m_coordinatea[1] = (UNIT_TYPE) sequence.m_coordinatea[1];
    }
 
    
-   template < primitive_number NUMBER1, ::collection::count S = SIZE, std::enable_if_t<S == 3, int> = 0 >
-   constexpr sequence_type(const sequence_type < NUMBER1, 3 > & sequence)
+   template < primitive_number NUMBER1, int iSize >
+   constexpr sequence_type(const sequence_t_type < NUMBER1, iSize > & sequence)
+      requires(SIZE >= 3 && iSize >= 3)
    {
-      m_coordinatea[0] = (UNIT_TYPE) sequence.m_coordinatea[0];
-      m_coordinatea[1] = (UNIT_TYPE) sequence.m_coordinatea[1];
-      m_coordinatea[2] = (UNIT_TYPE) sequence.m_coordinatea[2];
+      this->m_coordinatea[0] = (UNIT_TYPE) sequence.m_coordinatea[0];
+      this->m_coordinatea[1] = (UNIT_TYPE) sequence.m_coordinatea[1];
+      this->m_coordinatea[2] = (UNIT_TYPE) sequence.m_coordinatea[2];
    }
 
+
+
    
-   template < primitive_number NUMBER1, ::collection::count S = SIZE, std::enable_if_t<S == 4, int> = 0 >
-   constexpr sequence_type(const sequence_type < NUMBER1, 4 > & sequence)
+
+   template < primitive_number NUMBER1 >
+   constexpr sequence_type(const sequence_t_type < NUMBER1, 4 > & sequence)
+      requires(SIZE >= 4)
    {
-      m_coordinatea[0] = (UNIT_TYPE) sequence.m_coordinatea[0];
-      m_coordinatea[1] = (UNIT_TYPE) sequence.m_coordinatea[1];
-      m_coordinatea[2] = (UNIT_TYPE) sequence.m_coordinatea[2];
-      m_coordinatea[3] = (UNIT_TYPE) sequence.m_coordinatea[3];
+      this->m_coordinatea[0] = (UNIT_TYPE) sequence.m_coordinatea[0];
+      this->m_coordinatea[1] = (UNIT_TYPE) sequence.m_coordinatea[1];
+      this->m_coordinatea[2] = (UNIT_TYPE) sequence.m_coordinatea[2];
+      this->m_coordinatea[3] = (UNIT_TYPE) sequence.m_coordinatea[3];
    }
 
 //   sequence_type(COORDINATE s) {
 //      for (::collection::count i = 0; i < SIZE; ++i)
-//         m_coordinatea[i] = s;
+//         this->m_coordinatea[i] = s;
 //   }
 
    template < ::collection::count S = SIZE, std::enable_if_t<S == 2, int> = 0 >
    constexpr sequence_type(COORDINATE coordinate0, COORDINATE coordinate1)
    {
-      m_coordinatea[0] = coordinate0;
-      m_coordinatea[1] = coordinate1;
+      this->m_coordinatea[0] = coordinate0;
+      this->m_coordinatea[1] = coordinate1;
    }
 
    
@@ -110,23 +327,41 @@ struct sequence_type
    constexpr sequence_type(COORDINATE coordinate0, COORDINATE coordinate1,
                  COORDINATE coordinate2)
    {
-      m_coordinatea[0] = coordinate0;
-      m_coordinatea[1] = coordinate1;
-      m_coordinatea[2] = coordinate2;
+      this->m_coordinatea[0] = coordinate0;
+      this->m_coordinatea[1] = coordinate1;
+      this->m_coordinatea[2] = coordinate2;
    }
 
    
-   template <::collection::count S = SIZE, std::enable_if_t<S == 4, int> = 0>
    constexpr sequence_type(
                  COORDINATE coordinate0, COORDINATE coordinate1,
                  COORDINATE coordinate2, COORDINATE coordinate3)
+      requires(SIZE == 4)
    {
-      m_coordinatea[0] = coordinate0;
-      m_coordinatea[1] = coordinate1;
-      m_coordinatea[2] = coordinate2;
-      m_coordinatea[3] = coordinate3;
+      this->m_coordinatea[0] = coordinate0;
+      this->m_coordinatea[1] = coordinate1;
+      this->m_coordinatea[2] = coordinate2;
+      this->m_coordinatea[3] = coordinate3;
    }
 
+   constexpr sequence_type(const sequence_type < COORDINATE, 3 > &  seq3,
+                           COORDINATE coordinate3)
+      requires(SIZE == 4)
+   {
+      this->m_coordinatea[0] = seq3[0];
+      this->m_coordinatea[1] = seq3[1];
+      this->m_coordinatea[2] = seq3[2];
+      this->m_coordinatea[3] = coordinate3;
+   }
+
+   constexpr sequence_type(COORDINATE coordinate0, const sequence_type<COORDINATE, 3> &seq3)
+      requires(SIZE == 4)
+   {
+      this->m_coordinatea[0] = coordinate0;
+      this->m_coordinatea[1] = seq3[0];
+      this->m_coordinatea[2] = seq3[1];
+      this->m_coordinatea[3] = seq3[2];
+   }
 
    constexpr ::collection::count get_size() const { return SIZE; }
    constexpr ::collection::count get_count() const { return this->get_size(); }
@@ -135,7 +370,7 @@ struct sequence_type
    constexpr COORDINATE & set_coordinate(::collection::index i, COORDINATE coordinate)
    {
 
-      return m_coordinatea[i] = coordinate;
+      return this->m_coordinatea[i] = coordinate;
 
    }
 
@@ -143,7 +378,7 @@ struct sequence_type
    constexpr COORDINATE coordinate(::collection::index i) const
    {
 
-      return m_coordinatea[i];
+      return this->m_coordinatea[i];
 
    }
 
@@ -151,7 +386,7 @@ struct sequence_type
    constexpr COORDINATE & coordinate(::collection::index i)
    {
 
-      return m_coordinatea[i];
+      return this->m_coordinatea[i];
 
    }
 
@@ -162,7 +397,7 @@ struct sequence_type
       for (::collection::count i = 0; i < SIZE; ++i)
       {
          
-         m_coordinatea[i] = coordinate;
+         this->m_coordinatea[i] = coordinate;
          
       }
       
@@ -174,7 +409,7 @@ struct sequence_type
       for (::collection::count i = 0; i < SIZE; ++i)
       {
          
-         if(m_coordinatea[i] != coordinate)
+         if(this->m_coordinatea[i] != coordinate)
          {
           
             return false;
@@ -193,114 +428,114 @@ struct sequence_type
    template < ::collection::count S = SIZE, std::enable_if_t<S <= 2, int> = 0 >
    inline void add2(const sequence_type & a)
    {
-      this->a() += a.a();
-      this->b() += a.b();
+      this->x += a.a;
+      this->y += a.b;
    }
    template < ::collection::count S = SIZE, std::enable_if_t<S <= 2, int> = 0 >
    inline void sub2(const sequence_type & a)
    {
-      this->a() -= a.a();
-      this->b() -= a.b();
+      this->x -= a.a;
+      this->y -= a.b;
    }
    template < ::collection::count S = SIZE, std::enable_if_t<S <= 2, int> = 0 >
    inline void mul2(UNIT_TYPE n)
    {
-      this->a() *= n;
-      this->b() *= n;
+      this->x *= n;
+      this->y *= n;
    }
    template < ::collection::count S = SIZE, std::enable_if_t<S <= 2, int> = 0 >
    inline void set2(UNIT_TYPE a, UNIT_TYPE b)
    {
-      this->a() = a;
-      this->b() = b;
+      this->x = a;
+      this->y = b;
    }
 
    template < ::collection::count S = SIZE, std::enable_if_t<S <= 2, int> = 0 >
    static inline void mix2(const sequence_type &a, const sequence_type &b, UNIT_TYPE t, sequence_type &c)
    {
-      c.a() = a.a()*((UNIT_TYPE)1.0 - t) + b.a()*t;
-      c.b() = a.b()*((UNIT_TYPE)1.0 - t) + b.b()*t;
+      c.a = a.a*((UNIT_TYPE)1.0 - t) + b.a*t;
+      c.b = a.b*((UNIT_TYPE)1.0 - t) + b.b*t;
    }
 
    // simple menthods: operates on x, y, z
    template < ::collection::count S = SIZE, std::enable_if_t<S <= 3, int> = 0 >
    inline void add3(const sequence_type & a)
    {
-      this->a() += a.a();
-      this->b() += a.b();
-      this->c() += a.c();
+      this->x += a.a;
+      this->y += a.b;
+      this->c += a.c;
    }
    template < ::collection::count S = SIZE, std::enable_if_t<S <= 3, int> = 0 >
    inline void sub3(const sequence_type & a)
    {
-      this->a() -= a.a();
-      this->b() -= a.b();
-      this->c() -= a.c();
+      this->x -= a.a;
+      this->y -= a.b;
+      this->c -= a.c;
    }
    template < ::collection::count S = SIZE, std::enable_if_t<S <= 3, int> = 0 >
    inline void mul3(UNIT_TYPE n)
    {
-      this->a() *= n;
-      this->b() *= n;
-      this->c() *= n;
+      this->x *= n;
+      this->y *= n;
+      this->c *= n;
    }
    template < ::collection::count S = SIZE, std::enable_if_t<S <= 3, int> = 0 >
    inline void set3(UNIT_TYPE a, UNIT_TYPE b, UNIT_TYPE c)
    {
-      this->a() = a;
-      this->b() = b;
-      this->c() = c;
+      this->x = a;
+      this->y = b;
+      this->c = c;
    }
 
    template < ::collection::count S = SIZE, std::enable_if_t<S <= 3, int> = 0 >
    static inline void mix3(const sequence_type &a, const sequence_type &b, UNIT_TYPE t, sequence_type &c)
    {
-      c.a() = a.a()*((UNIT_TYPE)1.0 - t) + b.a()*t;
-      c.b() = a.b()*((UNIT_TYPE)1.0 - t) + b.b()*t;
-      c.c() = a.c()*((UNIT_TYPE)1.0 - t) + b.c()*t;
+      c.a = a.a*((UNIT_TYPE)1.0 - t) + b.a*t;
+      c.b = a.b*((UNIT_TYPE)1.0 - t) + b.b*t;
+      c.c = a.c*((UNIT_TYPE)1.0 - t) + b.c*t;
    }
 
    // simple menthods: operates on x, y, z, w
    template < ::collection::count S = SIZE, std::enable_if_t<S <= 4, int> = 0 >
    inline void add4(const sequence_type & q)
    {
-      this->a() += q.a();
-      this->b() += q.b();
-      this->c() += q.c();
-      this->d() += q.d();
+      this->x += q.a;
+      this->y += q.b;
+      this->c += q.c;
+      this->d += q.d;
    }
    template < ::collection::count S = SIZE, std::enable_if_t<S <= 4, int> = 0 >
    inline void sub4(const sequence_type & q)
    {
-      this->a() -= q.a();
-      this->b() -= q.b();
-      this->c() -= q.c();
-      this->d() -= q.d();
+      this->x -= q.a;
+      this->y -= q.b;
+      this->c -= q.c;
+      this->d -= q.d;
    }
    template < ::collection::count S = SIZE, std::enable_if_t<S <= 4, int> = 0 >
    inline void mul4(UNIT_TYPE n)
    {
-      this->a() *= n;
-      this->b() *= n;
-      this->c() *= n;
-      this->d() *= n;
+      this->x *= n;
+      this->y *= n;
+      this->c *= n;
+      this->d *= n;
    }
    template < ::collection::count S = SIZE, std::enable_if_t<S <= 4, int> = 0 >
    inline void set4(UNIT_TYPE a, UNIT_TYPE b, UNIT_TYPE c, UNIT_TYPE d)
    {
-      this->a() = a;
-      this->b() = b;
-      this->c() = c;
-      this->d() = d;
+      this->x = a;
+      this->y = b;
+      this->c = c;
+      this->d = d;
    }
 
    template < ::collection::count S = SIZE, std::enable_if_t<S <= 4, int> = 0 >
    static inline void mix4(const sequence_type &a, const sequence_type &b, UNIT_TYPE t, sequence_type &c)
    {
-      c.a() = a.a()*((UNIT_TYPE)1.0 - t) + b.a()*t;
-      c.b() = a.b()*((UNIT_TYPE)1.0 - t) + b.b()*t;
-      c.c() = a.c()*((UNIT_TYPE)1.0 - t) + b.c()*t;
-      c.d() = a.d()*((UNIT_TYPE)1.0 - t) + b.d()*t;
+      c.a = a.a*((UNIT_TYPE)1.0 - t) + b.a*t;
+      c.b = a.b*((UNIT_TYPE)1.0 - t) + b.b*t;
+      c.c = a.c*((UNIT_TYPE)1.0 - t) + b.c*t;
+      c.d = a.d*((UNIT_TYPE)1.0 - t) + b.d*t;
    }
 
 
@@ -308,7 +543,7 @@ struct sequence_type
    {
       sequence_type result;
       for (::collection::count i = 0; i < SIZE; ++i)
-         result[i] = -m_coordinatea[i];
+         result[i] = -this->m_coordinatea[i];
       return result;
    }
 
@@ -323,7 +558,7 @@ struct sequence_type
 
    sequence_type& operator +=(const sequence_type& a) {
       for (::collection::count i = 0; i < SIZE; ++i)
-         m_coordinatea[i] += a.m_coordinatea[i];
+         this->m_coordinatea[i] += a.m_coordinatea[i];
       return *this;
    }
 
@@ -336,7 +571,7 @@ struct sequence_type
 
    sequence_type& operator-=(const sequence_type& a) {
       for (::collection::count i = 0; i < SIZE; ++i)
-         m_coordinatea[i] -= a.m_coordinatea[i];
+         this->m_coordinatea[i] -= a.m_coordinatea[i];
       return *this;
    }
 
@@ -359,7 +594,7 @@ struct sequence_type
 
    sequence_type& operator*=(const sequence_type& a) {
       for (::collection::count i = 0; i < SIZE; ++i)
-         m_coordinatea[i] *= a.m_coordinatea[i];
+         this->m_coordinatea[i] *= a.m_coordinatea[i];
       return *this;
    }
 
@@ -384,13 +619,13 @@ struct sequence_type
 
    sequence_type& operator/=(const sequence_type& a) {
       for (::collection::count i = 0; i < SIZE; ++i)
-         m_coordinatea[i] /= a.m_coordinatea[i];
+         this->m_coordinatea[i] /= a.m_coordinatea[i];
       return *this;
    }
 
    bool operator==(const sequence_type& a) const {
       for (::collection::count i = 0; i < SIZE; ++i) {
-         if (m_coordinatea[i] != a.m_coordinatea[i])
+         if (this->m_coordinatea[i] != a.m_coordinatea[i])
             return false;
       }
       return true;
@@ -404,7 +639,7 @@ struct sequence_type
       for (::collection::count i = 0; i < SIZE; ++i)
       {
 
-         if (!predicate(m_coordinatea[i]))
+         if (!predicate(this->m_coordinatea[i]))
          {
 
             return false;
@@ -459,10 +694,10 @@ struct sequence_type
       for (::collection::count i = 0; i < SIZE; ++i)
       {
 
-         if (predicate(m_coordinatea[i]))
+         if (predicate(this->m_coordinatea[i]))
          {
 
-            vector[i] = m_coordinatea[i];
+            vector[i] = this->m_coordinatea[i];
 
          }
          else
@@ -534,36 +769,36 @@ struct sequence_type
 
    constexpr bool operator!=(const sequence_type& a) const { return !operator==(a); }
 
-   constexpr const COORDINATE& operator[](::collection::count i) const { return m_coordinatea[i]; }
+   constexpr const COORDINATE& operator[](::collection::count i) const { return this->m_coordinatea[i]; }
 
-   constexpr COORDINATE& operator[](::collection::count i) { return m_coordinatea[i]; }
+   constexpr COORDINATE& operator[](::collection::count i) { return this->m_coordinatea[i]; }
 
-   template <::collection::count S = SIZE, std::enable_if_t<(S >= 1), int> = 0>
-   constexpr const COORDINATE& a() const { return m_coordinatea[0]; }
-   template <::collection::count S = SIZE, std::enable_if_t<(S >= 1), int> = 0>
-   COORDINATE& a() { return m_coordinatea[0]; }
+   //template <::collection::count S = SIZE, std::enable_if_t<(S >= 1), int> = 0>
+   //constexpr const COORDINATE& a const { return this->m_coordinatea[0]; }
+   //template <::collection::count S = SIZE, std::enable_if_t<(S >= 1), int> = 0>
+   //COORDINATE& a { return this->m_coordinatea[0]; }
 
-   template <::collection::count S = SIZE, std::enable_if_t<(S >= 2), int> = 0>
-   constexpr const COORDINATE& b() const { return m_coordinatea[1]; }
-   template <::collection::count S = SIZE, std::enable_if_t<(S >= 2), int> = 0>
-   COORDINATE& b() { return m_coordinatea[1]; }
+   //template <::collection::count S = SIZE, std::enable_if_t<(S >= 2), int> = 0>
+   //constexpr const COORDINATE& b const { return this->m_coordinatea[1]; }
+   //template <::collection::count S = SIZE, std::enable_if_t<(S >= 2), int> = 0>
+   //COORDINATE& b { return this->m_coordinatea[1]; }
 
-   template <::collection::count S = SIZE, std::enable_if_t<(S >= 3), int> = 0>
-   constexpr const COORDINATE& c() const { return m_coordinatea[2]; }
-   template <::collection::count S = SIZE, std::enable_if_t<(S >= 3), int> = 0>
-   COORDINATE& c() { return m_coordinatea[2]; }
+   //template <::collection::count S = SIZE, std::enable_if_t<(S >= 3), int> = 0>
+   //constexpr const COORDINATE& c const { return this->m_coordinatea[2]; }
+   //template <::collection::count S = SIZE, std::enable_if_t<(S >= 3), int> = 0>
+   //COORDINATE& c { return this->m_coordinatea[2]; }
 
-   template <::collection::count S = SIZE, std::enable_if_t<(S >= 4), int> = 0>
-   constexpr const COORDINATE& d() const { return m_coordinatea[3]; }
-   template <::collection::count S = SIZE, std::enable_if_t<(S >= 4), int> = 0>
-   COORDINATE& d() { return m_coordinatea[3]; }
+   //template <::collection::count S = SIZE, std::enable_if_t<(S >= 4), int> = 0>
+   //constexpr const COORDINATE& d const { return this->m_coordinatea[3]; }
+   //template <::collection::count S = SIZE, std::enable_if_t<(S >= 4), int> = 0>
+   //COORDINATE& d { return this->m_coordinatea[3]; }
    
    
    template <::collection::count S = SIZE, std::enable_if_t<(S == 2), int> = 0>
    COORDINATE dot_with_left_perpendicular_of(const sequence_type & b)
    {
 
-      return (this->b() * b.a()) - (this->a() * b.b());
+      return (this->y * b.x) - (this->x * b.y);
 
    }
 
@@ -585,7 +820,7 @@ struct sequence_type
       for (::collection::count i = 0; i < SIZE; ++i)
       {
 
-         result.m_coordinatea[i] = ::maximum(m_coordinatea[i], vector.m_coordinatea[i]);
+         result.m_coordinatea[i] = ::maximum(this->m_coordinatea[i], vector.m_coordinatea[i]);
 
       }
 
@@ -601,7 +836,7 @@ struct sequence_type
       for (::collection::count i = 0; i < SIZE; ++i)
       {
 
-         result.m_coordinatea[i] = ::minimum(m_coordinatea[i], vector.m_coordinatea[i]);
+         result.m_coordinatea[i] = ::minimum(this->m_coordinatea[i], vector.m_coordinatea[i]);
 
       }
 
@@ -647,12 +882,12 @@ struct sequence_type
    COORDINATE dot(const sequence_type & vector) const
    {
 
-      COORDINATE result = m_coordinatea[0] * vector.m_coordinatea[0];
+      COORDINATE result = this->m_coordinatea[0] * vector.m_coordinatea[0];
 
       for (::collection::count i = 1; i < SIZE; ++i)
       {
 
-         result += m_coordinatea[i] * vector.m_coordinatea[i];
+         result += this->m_coordinatea[i] * vector.m_coordinatea[i];
 
       }
 
@@ -733,20 +968,18 @@ struct sequence_type
       
    }
 
-   
+   sequence_type<COORDINATE, 3> cross(const sequence_type<COORDINATE, 3> &b) const
+      requires(SIZE == 3)
+   {
+      const auto &a = *this;
+      return {a.y * b.z - a.z * b.y, a.z * b.x - a.x * b.z, a.x * b.y - a.y * b.x};
+   }
+
+
 
 };
 
 
-
-template <typename COORDINATE>
-sequence_type<COORDINATE, 3> cross(const sequence_type<COORDINATE, 3>& a, const sequence_type<COORDINATE, 3>& b) {
-   return sequence_type<COORDINATE, 3>(
-      a.b() * b.c() - a.c() * b.b(),
-      a.c() * b.a() - a.a() * b.c(),
-      a.a() * b.b() - a.b() * b.a()
-   );
-}
 
 
 
@@ -771,7 +1004,7 @@ sequence_type<COORDINATE, 3> cross(const sequence_type<COORDINATE, 3>& a, const 
 //   NUMBER dot_with_left_perpendicular_of(const sequence2_type & b)
 //   {
 //
-//      return (this->b() * b.a()) - (this->a() * b.b());
+//      return (this->y * b.a) - (this->x * b.b);
 //
 //   }
 //
@@ -788,21 +1021,21 @@ sequence_type<COORDINATE, 3> cross(const sequence_type<COORDINATE, 3>& a, const 
 //};
 
 // Import some common Enoki types
-using sequence2_int = sequence_type<int, 2>;
-using sequence3_int = sequence_type<int, 3>;
-using sequence4_int = sequence_type<int, 4>;
+using int_sequence2 = sequence_type<int, 2>;
+using int_sequence3 = sequence_type<int, 3>;
+using int_sequence4 = sequence_type<int, 4>;
 
-using sequence2_long_long = sequence_type<long long, 2>;
-using sequence3_long_long = sequence_type<long long, 3>;
-using sequence4_long_long = sequence_type<long long, 4>;
+using long_long_sequence2 = sequence_type<long long, 2>;
+using long_long_sequence3 = sequence_type<long long, 3>;
+using long_long_sequence4 = sequence_type<long long, 4>;
 
-using sequence2_float = sequence_type<float, 2>;
-using sequence3_float = sequence_type<float, 3>;
-using sequence4_float = sequence_type<float, 4>;
+using float_sequence2 = sequence_type<float, 2>;
+using float_sequence3 = sequence_type<float, 3>;
+using float_sequence4 = sequence_type<float, 4>;
 
-using sequence2_double = sequence_type<double, 2>;
-using sequence3_double = sequence_type<double, 3>;
-using sequence4_double = sequence_type<double, 4>;
+using double_sequence2 = sequence_type<double, 2>;
+using double_sequence3 = sequence_type<double, 3>;
+using double_sequence4 = sequence_type<double, 4>;
 
 
 
@@ -846,6 +1079,66 @@ auto ceil(const SEQUENCE& sequence)
    return transform(sequence, [](auto a) {return ceil(a); });
 
 }
+
+
+
+//
+//template<primitive_number COORDINATE, ::collection::count t_iDimension>
+//struct matrix_type
+//{
+//
+//   using matrix_tag = matrix_t;
+//   using BASE_COORDINATE = COORDINATE;
+//   using UNIT_TYPE = COORDINATE;
+//
+//
+//   COORDINATE this->m_coordinatea[t_iDimension * t_iDimension];
+//
+//
+//};
+//
+
+
+
+template<primitive_number NUMBER, int t_iSize>
+struct std::hash<::sequence_type<NUMBER, t_iSize>>
+{
+   std::size_t operator()(const ::sequence_type<NUMBER, t_iSize> &s) const noexcept
+   {
+      return std::hash<::sequence_t_type<NUMBER, t_iSize>>{}(
+         (const ::sequence_t_type<NUMBER, t_iSize> & )(s));
+   }
+};
+
+
+namespace geometry
+{
+
+
+   template<primitive_number NUMBER>
+   sequence_type<NUMBER, 3> normalize(const sequence_type<NUMBER, 3> &v)
+   {
+      
+      float length = std::sqrt(v.x * v.x + v.y * v.y + v.z * v.z);
+      
+      if (length > 0.0f)
+      {
+
+         return v / length;
+
+      }
+      else
+      {
+
+         return sequence_type<NUMBER, 3>(0.0f); // or return v (undefined direction)
+
+      }
+
+
+   }
+
+
+} // namespace geometry
 
 
 

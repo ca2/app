@@ -96,7 +96,7 @@
 //      a = value;
 //
 //   }
-//   //void shader::setVec2(const ::scoped_string & scopedstrName, const glm::vec2& value) override;
+//   //void shader::setVec2(const ::scoped_string & scopedstrName, const floating_sequence2& value) override;
 //   void shader::setVec2(const ::scoped_string& scopedstrName, float x, float y)
 //   {
 //      ::string strName(scopedstrName);
@@ -105,13 +105,13 @@
 //      a.y = y;
 //
 //   }
-//   void shader::setVec2(const ::scoped_string& scopedstrName, const glm::vec2& a)
+//   void shader::setVec2(const ::scoped_string& scopedstrName, const floating_sequence2& a)
 //   {
 //      ::string strName(scopedstrName);
 //      m_properties.seq2(strName) = a;
 //
 //   }
-//   //void shader::setVec3(const ::scoped_string & scopedstrName, const glm::vec3& value) override;
+//   //void shader::setVec3(const ::scoped_string & scopedstrName, const floating_sequence3& value) override;
 //   void shader::setVec3(const ::scoped_string& scopedstrName, float x, float y, float z)
 //   {
 //      ::string strName(scopedstrName);
@@ -122,13 +122,13 @@
 //
 //   }
 //
-//   void shader::setVec3(const ::scoped_string& scopedstrName, const glm::vec3& a)
+//   void shader::setVec3(const ::scoped_string& scopedstrName, const floating_sequence3& a)
 //   {
 //      ::string strName(scopedstrName);
 //      m_properties.seq3(strName) = a;
 //
 //   }
-//   //void shader::setVec4(const ::scoped_string & scopedstrName, const glm::vec4& value) override;
+//   //void shader::setVec4(const ::scoped_string & scopedstrName, const floating_sequence4& value) override;
 //   void shader::setVec4(const ::scoped_string& scopedstrName, float x, float y, float z, float w)
 //   {
 //      ::string strName(scopedstrName);
@@ -140,32 +140,32 @@
 //
 //   }
 //
-//   void shader::setVec4(const ::scoped_string& scopedstrName, const glm::vec4& a)
+//   void shader::setVec4(const ::scoped_string& scopedstrName, const floating_sequence4& a)
 //   {
 //      ::string strName(scopedstrName);
 //      m_properties.seq4(strName) = a;
 //      
 //   }
 //
-//   //void shader::setMat2(const ::scoped_string & scopedstrName, const glm::mat2& mat) override;
-//   //void shader::setMat3(const ::scoped_string & scopedstrName, const glm::mat3& mat) override;
-//   //void shader::setMat4(const ::scoped_string & scopedstrName, const glm::mat4& mat) override;
-//   void shader::setMat2(const ::scoped_string& scopedstrName, const ::glm::mat2& a)
+//   //void shader::setMat2(const ::scoped_string & scopedstrName, const floating_matrix2& mat) override;
+//   //void shader::setMat3(const ::scoped_string & scopedstrName, const floating_matrix3& mat) override;
+//   //void shader::setMat4(const ::scoped_string & scopedstrName, const floating_matrix4& mat) override;
+//   void shader::setMat2(const ::scoped_string& scopedstrName, const ::floating_matrix2& a)
 //   {
 //      ::string strName(scopedstrName);
-//      m_properties.mat2(strName.c_str())= a;
+//      m_properties.floating_matrix2(strName.c_str())= a;
 //
 //   }
-//   void shader::setMat3(const ::scoped_string& scopedstrName, const ::glm::mat3& a)
+//   void shader::setMat3(const ::scoped_string& scopedstrName, const ::floating_matrix3& a)
 //   {
 //      ::string strName(scopedstrName);
-//      m_properties.mat3(strName.c_str()) =  a;
+//      m_properties.floating_matrix3(strName.c_str()) =  a;
 //
 //   }
-//   void shader::setMat4(const ::scoped_string& scopedstrName, const ::glm::mat4& a)
+//   void shader::setMat4(const ::scoped_string& scopedstrName, const ::floating_matrix4& a)
 //   {
 //      ::string strName(scopedstrName);
-//      m_properties.mat4(strName.c_str()) = a;
+//      m_properties.floating_matrix4(strName.c_str()) = a;
 //
 //   }
 //

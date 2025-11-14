@@ -29,10 +29,10 @@ void ProgressBar::draw(::nano2d::context  * pcontext) {
    Widget::draw(pcontext);
 
    ::nano2d::paint paint = pcontext->box_gradient(
-      m_pos.x() + 1.f, m_pos.y() + 1.f,
+      m_pos.x + 1.f, m_pos.y + 1.f,
       m_size.cx() - 2.f, (float)m_size.cy(), 3.f, 4.f, ::color::color(0, 32),  ::color::color(0, 92));
    pcontext->begin_path();
-   pcontext->rounded_rectangle((float)m_pos.x(), (float)m_pos.y(), (float)m_size.cx(), (float)m_size.cy(), 3.f);
+   pcontext->rounded_rectangle((float)m_pos.x, (float)m_pos.y, (float)m_size.cx(), (float)m_size.cy(), 3.f);
    pcontext->fill_paint(paint);
    pcontext->fill();
 
@@ -40,13 +40,13 @@ void ProgressBar::draw(::nano2d::context  * pcontext) {
    int bar_pos = (int)::round((m_size.cx() - 2) * value);
 
    paint = pcontext->box_gradient(
-      (float)m_pos.x(), (float)m_pos.y(),
+      (float)m_pos.x, (float)m_pos.y,
       bar_pos + 1.5f, m_size.cy() - 1.f, 3.f, 4.f,
       ::color::color(220, 100),       ::color::color(128, 100));
 
    pcontext->begin_path();
    pcontext->rounded_rectangle(
-      m_pos.x() + 1.f, m_pos.y() + 1.f,
+      m_pos.x + 1.f, m_pos.y + 1.f,
       (float)bar_pos, m_size.cy() - 2.f, 3.f);
    pcontext->fill_paint(paint);
    pcontext->fill();

@@ -217,10 +217,10 @@ constexpr auto operator ""_px(long double d)
 }
 
 
-struct point_t {};
+struct point_unit_t {};
 
 template < primitive_number NUMBER >
-constexpr auto operator *(NUMBER n, point_t) { return unit(n, e_unit_point); }
+constexpr auto operator *(NUMBER n, point_unit_t) { return unit(n, e_unit_point); }
 
 
 constexpr auto operator ""_pt(unsigned long long i)

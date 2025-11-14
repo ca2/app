@@ -120,7 +120,7 @@ template < primitive_number NUMBER1, primitive_number NUMBER2 >
 inline auto angle(const ::point_type < NUMBER1 > & center, const ::point_type < NUMBER2 > & point)
 {
 
-   return radians(::std::atan2(point.y() - center.y(), point.x() - center.x()));
+   return radians(::std::atan2(point.y - center.y, point.x - center.x));
 
 }
 

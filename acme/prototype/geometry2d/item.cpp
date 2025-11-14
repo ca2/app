@@ -234,13 +234,13 @@ namespace geometry2d
 
    //   }
 
-   //   double x = p.x();
+   //   double x = p.x;
 
-   //   double y = p.y();
+   //   double y = p.y;
 
-   //   double Δx = x - center.x();
+   //   double Δx = x - center.x;
 
-   //   double Δy = y - center.y();
+   //   double Δy = y - center.y;
 
    //   if (radius.cx() == radius.cy())
    //   {

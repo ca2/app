@@ -210,8 +210,8 @@
 //    if(!(uFlags & SWP_NOMOVE))
 //    {
 //       value_mask |= CWX | CWY;
-//       values.x() = x;
-//       values.y() = y;
+//       values.x = x;
+//       values.y = y;
 //    }
 
 //    if(!(uFlags & SWP_NOSIZE))

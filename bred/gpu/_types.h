@@ -1,7 +1,8 @@
-/// Created by camilo on 2025-08-23 <3ThomasBorregaardSorensen!!
+/// Created by camilo on 2025-08-23 <3ThomasBorregaardSørensen!!
 #pragma once
 
 
+#include "acme/prototype/geometry/quaternion.h"
 #include "acme/prototype/geometry/sequence.h"
 #include "acme/prototype/geometry/matrix.h"
 
@@ -14,6 +15,9 @@ using floating_sequence4 = ::float_sequence4;
 using floating_matrix2 = ::float_matrix2;
 using floating_matrix3 = ::float_matrix3;
 using floating_matrix4 = ::float_matrix4;
+
+
+using floating_quaternion = ::float_quaternion;
 
 
 namespace gpu

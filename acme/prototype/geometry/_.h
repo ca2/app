@@ -1,4 +1,6 @@
 // Created by camilo on 2025-11-13 22:44 <3ThomasBorregaardSørensen!!
+#pragma once
+
 
 // two_pi two_π constant for different floating point types
 template<typename T>
@@ -28,8 +30,8 @@ inline constexpr T two_π = two_π_impl<T>::payload;
 namespace geometry
 {
 
-   template < primitive_number NUMBER >
-   inline NUMBER clamp(NUMBER n, NUMBER nMin, NUMBER nMax)
+   template < typename TYPE >
+   inline TYPE clamp(TYPE n, TYPE nMin, TYPE nMax)
    {
       if (n < nMin)
          return nMin;

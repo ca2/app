@@ -40,6 +40,24 @@ public:
    FLOAT operator / (const angle_type & angle) const { return m_fAngle / angle.m_fAngle; }
    angle_type operator * (FLOAT f) const { return m_fAngle * f; }
 
+   angle_type &operator-=(const angle_type &angle) 
+   { 
+      
+      m_fAngle -= angle.m_fAngle;
+      
+      return *this;
+
+   }
+
+   angle_type &operator+=(const angle_type &angle)
+   {
+      
+      m_fAngle += angle.m_fAngle;
+      
+      return *this; 
+
+   }
+
    double normalized() const { auto d = (FLOAT) fmod(m_fAngle, 2.0 * MATH_PI); return d <  (FLOAT) 0.0 ? d + (FLOAT) (2.0 * MATH_PI) : d; }
    void normalize() { m_fAngle = normalized(); }
 

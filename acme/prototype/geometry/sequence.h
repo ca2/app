@@ -297,6 +297,15 @@ struct sequence_type :
    }
 
 
+   template<primitive_number NUMBER1>
+   constexpr sequence_type(const NUMBER1 *p) // expects p to point to an array of at least SIZE elements
+   {
+      for (::collection::count i = 0; i < SIZE; ++i)
+         this->m_coordinatea[i] = (UNIT_TYPE)p[i];
+   }
+
+
+
    void set_null() 
    {
       set_all(0); 

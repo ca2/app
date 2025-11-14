@@ -4299,6 +4299,9 @@
     <ClInclude Include="operating_system\cpu_features.h">
       <Filter>Header Files\operating_system</Filter>
     </ClInclude>
+    <ClInclude Include="prototype\geometry\quaternion.h">
+      <Filter>Header Files\prototype\geometry</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="prototype\prototype\bit.cpp">

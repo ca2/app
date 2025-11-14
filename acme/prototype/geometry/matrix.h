@@ -2,7 +2,7 @@
 #pragma once
 
 
-
+#include "acme/prototype/geometry/quaternion.h"
 #include "acme/prototype/geometry/sequence.h"
 #include "acme/prototype/geometry2d/angle.h"
 
@@ -28,7 +28,7 @@ namespace geometry
 {
 
 
-   template<primitive_floating FLOATING, ::collection::count t_iDimension>
+   template<primitive_floating FLOATING, int t_iDimension>
    inline void _transpose(FLOATING A_target[t_iDimension][t_iDimension],
                                  const FLOATING A_source[t_iDimension][t_iDimension])
    {
@@ -41,49 +41,6 @@ namespace geometry
 } // namespace geometry
 
 
-
-
-template<primitive_floating FLOATING_TYPE >
-struct quaternion_type
-{
-
-
-   using FLOATING = FLOATING_TYPE;
-   static constexpr int DIMENSION = 4;
-
-
-   union
-   {
-      struct
-      {
-         FLOATING w, x, y, z;
-      };
-      FLOATING m_coordinatea[4];
-   };
-
-   quaternion_type() : w(1), x(0), y(0), z(0) {}
-   quaternion_type(float _w, float _x, float _y, float _z) : w(_w), x(_x), y(_y), z(_z) {}
-
-   // Construct quaternion from Euler XYZ rotation
-   // rotation = (pitch, yaw, roll) in radians
-   quaternion_type(const ::sequence_type < FLOATING, 3> &euler)
-   {
-      float cx = std::cos(euler.x * 0.5f);
-      float sx = std::sin(euler.x * 0.5f);
-
-      float cy = std::cos(euler.y * 0.5f);
-      float sy = std::sin(euler.y * 0.5f);
-
-      float cz = std::cos(euler.z * 0.5f);
-      float sz = std::sin(euler.z * 0.5f);
-
-      // GLM uses Z * Y * X intrinsic rotation order
-      w = cx * cy * cz + sx * sy * sz;
-      x = sx * cy * cz - cx * sy * sz;
-      y = cx * sy * cz + sx * cy * sz;
-      z = cx * cy * sz - sx * sy * cz;
-   }
-};
 
 
 
@@ -181,11 +138,17 @@ struct matrix_type
 
    matrix_type(FLOATING diagonal) {
       ::memory_set(m, 0, sizeof(FLOATING) * DIMENSION * DIMENSION);
-      for (::collection::count i = 0; i < DIMENSION; ++i)
+      for (int i = 0; i < DIMENSION; ++i)
          m[i][i] = diagonal;
    }
 
+   matrix_type(const quaternion_type<FLOATING> & q)
+      requires(DIMENSION == 4)
+   {
 
+      this->operator=(q);
+
+   }
 
    //// --- Matrix × Matrix (column-major) ---------------------------------------
 
@@ -212,10 +175,10 @@ struct matrix_type
 
    //   auto &a = *this;
    //   matrix_type c;
-   //   for (::collection::count i = 0; i < DIMENSION; ++i) {
-   //      for (::collection::count j = 0; j < DIMENSION; ++j) {
+   //   for (int i = 0; i < DIMENSION; ++i) {
+   //      for (int j = 0; j < DIMENSION; ++j) {
    //         FLOATING accum = 0;
-   //         for (::collection::count k = 0; k < DIMENSION; ++k)
+   //         for (int k = 0; k < DIMENSION; ++k)
    //            accum += a.m[k][i] * b.m[j][k];
    //         c.m[j][i] = accum;
    //      }
@@ -512,7 +475,7 @@ inline matrix_type mul_avx2(const matrix_type &B) const
    static matrix_type scale(const sequence_type<FLOATING, DIMENSION - 1>& m_coordinatea) {
       matrix_type result;
       ::memory_set(result.m, 0, sizeof(FLOATING) * DIMENSION * DIMENSION);
-      for (::collection::count i = 0; i < DIMENSION; ++i)
+      for (int i = 0; i < DIMENSION; ++i)
          result.m[i][i] = i < DIMENSION - 1 ? m_coordinatea[i] : 1;
       return result;
    }
@@ -520,7 +483,7 @@ inline matrix_type mul_avx2(const matrix_type &B) const
    static matrix_type scale(const sequence_type<FLOATING, DIMENSION>& m_coordinatea) {
       matrix_type result;
       ::memory_set(result.m, 0, sizeof(FLOATING) * DIMENSION * DIMENSION);
-      for (::collection::count i = 0; i < DIMENSION; ++i)
+      for (int i = 0; i < DIMENSION; ++i)
          result.m[i][i] = m_coordinatea[i];
       return result;
    }
@@ -528,7 +491,7 @@ inline matrix_type mul_avx2(const matrix_type &B) const
    static matrix_type translate(const sequence_type<FLOATING, DIMENSION - 1>& m_coordinatea) {
       matrix_type result;
       ::memory_set(result.m, 0, sizeof(FLOATING) * DIMENSION * DIMENSION);
-      for (::collection::count i = 0; i < DIMENSION; ++i) {
+      for (int i = 0; i < DIMENSION; ++i) {
          result.m[i][i] = 1.f;
          if (i < DIMENSION - 1)
             result.m[DIMENSION - 1][i] = m_coordinatea[i];
@@ -580,7 +543,7 @@ inline matrix_type mul_avx2(const matrix_type &B) const
    }
 
 
-   template <::collection::count S = DIMENSION, std::enable_if_t<S == 4, int> = 0>
+   template <int S = DIMENSION, std::enable_if_t<S == 4, int> = 0>
    static matrix_type perspective(FLOATING fov, FLOATING near_, FLOATING far_, FLOATING aspect = 1.f)
    {
 
@@ -595,7 +558,7 @@ inline matrix_type mul_avx2(const matrix_type &B) const
       return trafo;
    }
 
-   template <::collection::count S = DIMENSION, std::enable_if_t<S == 4, int> = 0>
+   template <int S = DIMENSION, std::enable_if_t<S == 4, int> = 0>
    static matrix_type ortho(FLOATING left, FLOATING right,
       FLOATING bottom, FLOATING top,
       FLOATING near_, FLOATING far_)
@@ -618,10 +581,11 @@ inline matrix_type mul_avx2(const matrix_type &B) const
       return result;
    }
 
-   template <::collection::count S = DIMENSION, std::enable_if_t<S == 4, int> = 0>
+
    static matrix_type look_at(const sequence_type<FLOATING, 3>& origin,
       const sequence_type<FLOATING, 3>& target,
       const sequence_type<FLOATING, 3>& up)
+      requires(DIMENSION == 4)   
    {
 
       auto dir = normalize(target - origin);
@@ -1316,7 +1280,7 @@ inline matrix_type mul_avx2(const matrix_type &B) const
    inline matrix_type & operator =(const quaternion_type<FLOATING> &q)
       requires (DIMENSION == 4)
    {
-      matrix_type M{};
+      auto & M = *this;
 
       float xx = q.x * q.x;
       float yy = q.y * q.y;
@@ -1351,8 +1315,18 @@ inline matrix_type mul_avx2(const matrix_type &B) const
       M.m[3][2] = 0;
       M.m[3][3] = 1;
 
-      return M;
+      return *this;
    }
+
+
+   static inline matrix_type from(const quaternion_type<FLOATING> &q)
+      requires(DIMENSION == 4)
+   {
+
+      return q;
+
+   }
+
 
    
    inline row_major_type<FLOATING, t_iDimension> transpose() const

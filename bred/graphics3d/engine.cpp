@@ -28,6 +28,7 @@
 #include "aura/graphics/image/target.h"
 #include "aura/platform/application.h"
 #include <chrono>
+#include "acme/prototype/geometry/quaternion.h"
 
 //#include <glm/glm.hpp>
 //#include <glm/gtc/matrix_transform.hpp>
@@ -432,7 +433,7 @@ namespace graphics3d
 
       auto m = model_matrix(transformcomponent);
 
-      return geometry::inverse(m);
+      return m.inversed();
 
    }
 

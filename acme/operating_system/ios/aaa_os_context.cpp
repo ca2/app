@@ -892,8 +892,8 @@ int_bool GetCursorPos(::int_point * lppointCursor)
    HIGetMousePosition(space, nullptr, &point);
 
 
-   lppointCursor->x = point.x();
-   lppointCursor->y = point.y();
+   lppointCursor->x = point.x;
+   lppointCursor->y = point.y;
    */
 
    return true;

@@ -242,8 +242,8 @@
                   if (m_pframewindow == nullptr || m_pframewindow->m_picon == nullptr)
                      return false;
 
-                  lprect->left() = m_pointWindowIcon.x();
-                  lprect->top() = m_pointWindowIcon.y();
+                  lprect->left() = m_pointWindowIcon.x;
+                  lprect->top() = m_pointWindowIcon.y;
                   //lprect->right() = lprect->left() + m_pframewindow->m_picon->get_size().cx();
                   //lprect->bottom() = lprect->top() + m_pframewindow->m_picon->get_size().cy();
                   lprect->right() = lprect->left() + 24;
@@ -256,8 +256,8 @@
                   if (m_pframewindow == nullptr || m_pframewindow->get_appearance() != ::e_display_minimal)
                      return false;
 
-                  lprect->left() = m_pointMoveGripMinimal.x() + 2;
-                  lprect->top() = m_pointMoveGripMinimal.y() + 2;
+                  lprect->left() = m_pointMoveGripMinimal.x + 2;
+                  lprect->top() = m_pointMoveGripMinimal.y + 2;
                   lprect->right() = lprect->left() + get_control_box_rect()->height() - 4;
                   lprect->bottom() = lprect->top() + get_control_box_rect()->height() - 4;
 

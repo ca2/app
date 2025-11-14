@@ -10,6 +10,8 @@
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/application.h"
 #include "acme/platform/node.h"
+#include "acme/prototype/geometry/matrix.h"
+#include "acme/prototype/geometry2d/angle.h"
 #include "apex/database/client.h"
 #include "apex/database/stream.h"
 #include "bred/gpu/bred_approach.h"
@@ -27,15 +29,15 @@
 #include "aura/platform/application.h"
 #include <chrono>
 
-#include <glm/glm.hpp>
-#include <glm/gtc/matrix_transform.hpp>
-#include <glm/gtc/quaternion.hpp>
-#include <glm/gtx/quaternion.hpp>
-
-// Function to flip a mat4 along the Z-axis
-glm::mat4 flipZMat4(const glm::mat4& mat) {
+//#include <glm/glm.hpp>
+//#include <glm/gtc/matrix_transform.hpp>
+//#include <glm/gtc/quaternion.hpp>
+//#include <glm/gtx/quaternion.hpp>
+//
+// Function to flip a floating_matrix4 along the Z-axis
+floating_matrix4 flipZMat4(const floating_matrix4& mat) {
    // Create a rotation matrix that flips along the Y-axis (180 degrees)
-   glm::mat4 flip = glm::rotate(glm::mat4(1.0f), glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+   floating_matrix4 flip = geometry::rotate(floating_matrix4(1.0f), 180.0_degree, floating_sequence3(0.0f, 1.0f, 0.0f));
 
    // Multiply the rotation matrix with the original matrix
    return flip * mat;
@@ -221,7 +223,7 @@ namespace graphics3d
    }
 
 
-   //glm::vec3 engine::camera_pole_up()
+   //floating_sequence3 engine::camera_pole_up()
    //{
    //   
    //   return { 0.0f, 1.0f, 0.0f };
@@ -281,7 +283,7 @@ namespace graphics3d
 
       //}
 
-         //VkcCamera camera(glm::vec3(0.0f, 2.0f, -10.0f), .0f, 0.0f);
+         //VkcCamera camera(floating_sequence3(0.0f, 2.0f, -10.0f), .0f, 0.0f);
 
          //auto viewerObject = øcreate <::graphics3d::scene_object>();
          //papp->m_pimpact->m_bLastMouse = true;
@@ -325,7 +327,7 @@ namespace graphics3d
       //   // else
       //   //{
 
-      //   glm::mat4 matrixImpact;
+      //   floating_matrix4 matrixImpact;
       //   if (m_fYScale < 0)
       //   {
       //      matrixImpact =
@@ -352,7 +354,7 @@ namespace graphics3d
    }
 
 
-   glm::mat4 engine::model_matrix(::graphics3d::transform& transform)
+   floating_matrix4 engine::model_matrix(::graphics3d::transform& transform)
    {
 
       auto translation = transform.m_vec3Position;
@@ -360,28 +362,28 @@ namespace graphics3d
       auto scale = transform.m_vec3Scale;
 
       scale.z = scale.z * m_fYScale;
-      //glm::mat4 makeViewMatrix(glm::vec3 translation, glm::vec3 rotationEulerDegrees, )
+      //floating_matrix4 makeViewMatrix(floating_sequence3 translation, floating_sequence3 rotationEulerDegrees, )
       //{
          // Convert degrees to radians
-         //glm::vec3 rotation = glm::radians(rotationEulerDegrees);
+         //floating_sequence3 rotation = glm::radians(rotationEulerDegrees);
 
          // Scale
-         glm::mat4 S = glm::scale(glm::mat4(1.0f), scale);
+         floating_matrix4 S = geometry::scale(floating_matrix4(1.0f), scale);
 
          // Rotation (Euler to Quaternion to Matrix)
-         glm::quat q = glm::quat(rotation);
-         glm::mat4 R = glm::toMat4(q);
+         auto quaternion = geometry::quaternion(rotation);
+         floating_matrix4 R = geometry::toMat4(quaternion);
 
          // Translation
-         glm::mat4 T = glm::translate(glm::mat4(1.0f), translation);
+         floating_matrix4 T = geometry::translate(floating_matrix4(1.0f), translation);
 
          // Model matrix (camera transform)
-         glm::mat4 model = T * R * S;
+         floating_matrix4 model = T * R * S;
 
          return model;
 
          // View matrix is inverse of camera transform
-        // glm::mat4 view = glm::inverse(model);
+        // floating_matrix4 view = glm::inverse(model);
 
          //return view;
       //}
@@ -397,7 +399,7 @@ namespace graphics3d
       //float translationx = transformcomponent.translation.x;
       //float translationy = transformcomponent.translation.y;
       //float translationz = transformcomponent.translation.z;
-      //return glm::mat4{
+      //return floating_matrix4{
       //   {
       //      scalex * (c1 * c3 + s1 * s2 * s3),
       //      scalex * (c2 * s3),
@@ -422,12 +424,12 @@ namespace graphics3d
    }
 
    
-   glm::mat4 engine::normal_matrix(::graphics3d::transform& transformcomponent)
+   floating_matrix4 engine::normal_matrix(::graphics3d::transform& transformcomponent)
    {
 
       auto m = model_matrix(transformcomponent);
 
-      return glm::inverse(m);
+      return geometry::inverse(m);
 
    }
 
@@ -890,7 +892,7 @@ namespace graphics3d
 
             //   //m_pinput->m_pimpact = m_pimpact;
 
-            //   //m_pcamera = øallocate::graphics3d::camera(glm::vec3(0.0f, 3.0f, 3.0f), -90.0f, 0.0f);
+            //   //m_pcamera = øallocate::graphics3d::camera(floating_sequence3(0.0f, 3.0f, 3.0f), -90.0f, 0.0f);
 
             //   ////m_pcamera->m_pimpact
 
@@ -1050,7 +1052,7 @@ namespace graphics3d
       //
       //         //m_pinput->m_pimpact = m_pimpact;
       //
-      //         //m_pcamera = øallocate::graphics3d::camera(glm::vec3(0.0f, 3.0f, 3.0f), -90.0f, 0.0f);
+      //         //m_pcamera = øallocate::graphics3d::camera(floating_sequence3(0.0f, 3.0f, 3.0f), -90.0f, 0.0f);
       //
       //         ////m_pcamera->m_pimpact
       //

@@ -72,7 +72,7 @@ namespace graphics3d
 
    //   pmodelbuffer->initialize_gpu_context_object(m_pgpucontext);
 
-   //   ::array_base<glm::vec3> vertexa = {// positions
+   //   ::array_base<floating_sequence3> vertexa = {// positions
    //                                      {-1.0f, 1.0f, -1.0f},  {-1.0f, -1.0f, -1.0f}, {1.0f, -1.0f, -1.0f},
    //                                      {1.0f, -1.0f, -1.0f},  {1.0f, 1.0f, -1.0f},   {-1.0f, 1.0f, -1.0f},
 
@@ -91,7 +91,7 @@ namespace graphics3d
    //                                      {-1.0f, -1.0f, -1.0f}, {-1.0f, -1.0f, 1.0f},  {1.0f, -1.0f, -1.0f},
    //                                      {1.0f, -1.0f, -1.0f},  {-1.0f, -1.0f, 1.0f},  {1.0f, -1.0f, 1.0f}};
 
-   //   pmodelbuffer->static_initialize_vertexes<::glm::vec3>(vertexa);
+   //   pmodelbuffer->static_initialize_vertexes<::floating_sequence3>(vertexa);
 
    //   return pmodelbuffer;
    //}
@@ -191,9 +191,9 @@ namespace graphics3d
       for (int i = 0; i < count; ++i)
       {
 
-         float angle = i * glm::two_pi<float>() / count;
+         float angle = i * ::two_π<float> / count;
 
-         glm::vec3 pos = {radius * std::cos(angle), height, radius * std::sin(angle)};
+         floating_sequence3 pos = {radius * std::cos(angle), height, radius * std::sin(angle)};
 
          auto colorArray = colorsJson[i % colorsJson.array_get_count()];
          auto color = ::argb(1.0f, colorArray[0].as_float(), colorArray[1].as_float(), colorArray[2].as_float());

@@ -38,7 +38,7 @@ namespace gpu
          ~mipmap_cubemap_framebuffer() override;
 
 
-         virtual void initialize_mipmap_cubemap_framebuffer(::graphics3d::scene_base * pscenebase, int iWidth, int iHeight, int iMipCount);
+         virtual void initialize_mipmap_cubemap_framebuffer(::graphics3d::scene_base * pscenebase, int iWidth, int iHeight);
          virtual void on_initialize_mipmap_cubemap_framebuffer();
 
          virtual void bind();

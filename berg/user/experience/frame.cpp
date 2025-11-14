@@ -1088,7 +1088,7 @@ namespace experience
 
       bool bIcon = get_element_rectangle(rectangleIcon, ::e_element_top_left_icon);
 
-      m_pointWindowIcon.y() = rectangleMargin.top() + ((m_iCaptionHeight - rectangleIcon.height()) / 2);
+      m_pointWindowIcon.y = rectangleMargin.top() + ((m_iCaptionHeight - rectangleIcon.height()) / 2);
 
       if (bIcon)
       {

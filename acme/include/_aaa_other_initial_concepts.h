@@ -27,16 +27,16 @@ concept raw_primitive_point = requires(POINT point)
 template < typename POINT >
 concept primitive_point = requires(POINT point)
 {
-   {point.x()}->primitive_number;
-   {point.y()}->primitive_number;
+   {point.x}->primitive_number;
+   {point.y}->primitive_number;
 };
 
 
 template < typename POLE >
 concept primitive_pole = requires(POLE pole)
 {
-   {pole.x()}->primitive_number;
-   {pole.y()}->primitive_number;
+   {pole.x}->primitive_number;
+   {pole.y}->primitive_number;
    {pole.z()}->primitive_number;
 };
 
@@ -168,8 +168,8 @@ template < primitive_XY POINT1, primitive_point POINT2 >
 void copy(POINT1 point1, const POINT2& point2)
 {
 
-   point1.X = (decltype(POINT1::X))point2.x();
-   point1.Y = (decltype(POINT1::Y))point2.y();
+   point1.X = (decltype(POINT1::X))point2.x;
+   point1.Y = (decltype(POINT1::Y))point2.y;
 
 }
 
@@ -178,8 +178,8 @@ template < primitive_point POINT1, primitive_XY POINT2 >
 void copy(POINT1& point1, const POINT2& point2)
 {
 
-   point1.x() = (decltype(POINT1::x))point2.X;
-   point1.y() = (decltype(POINT1::y))point2.Y;
+   point1.x = (decltype(POINT1::x))point2.X;
+   point1.y = (decltype(POINT1::y))point2.Y;
 
 }
 
@@ -212,8 +212,8 @@ template < primitive_xydim XYDIM, primitive_rectangle RECTANGLE >
 void copy(XYDIM& xydim, const RECTANGLE& rectangle)
 {
 
-   xydim.x() = (decltype(XYDIM::X))rectangle.left();
-   xydim.y() = (decltype(XYDIM::Y))rectangle.top();
+   xydim.x = (decltype(XYDIM::X))rectangle.left();
+   xydim.y = (decltype(XYDIM::Y))rectangle.top();
    xydim.width = (decltype(XYDIM::Width))(rectangle.right() - rectangle.left());
    xydim.height = (decltype(XYDIM::Height))(rectangle.bottom() - rectangle.top());
 
@@ -236,8 +236,8 @@ template < primitive_point POINT1, primitive_point POINT2 >
 void copy(POINT1& point1, const POINT2& point2)
 {
 
-   point1.x() = (const ::std::decay_t <decltype(point1.x())>&)point2.x();
-   point1.y() = (const ::std::decay_t <decltype(point1.y())>&)point2.y();
+   point1.x = (const ::std::decay_t <decltype(point1.x)>&)point2.x;
+   point1.y = (const ::std::decay_t <decltype(point1.y)>&)point2.y;
 
 }
 
@@ -246,8 +246,8 @@ template < primitive_point POINT1, raw_primitive_point POINT2 >
 void copy(POINT1& point1, const POINT2& point2)
 {
 
-   point1.x() = (const ::std::decay_t <decltype(point1.x())>&)point2.x();
-   point1.y() = (const ::std::decay_t <decltype(point1.y())>&)point2.y();
+   point1.x = (const ::std::decay_t <decltype(point1.x)>&)point2.x;
+   point1.y = (const ::std::decay_t <decltype(point1.y)>&)point2.y;
    
 }
 
@@ -255,8 +255,8 @@ template < raw_primitive_point POINT1, primitive_point POINT2 >
 void copy(POINT1& point1, const POINT2& point2)
 {
 
-   point1.x = (const ::std::decay_t <decltype(point1.x)>&)point2.x();
-   point1.y = (const ::std::decay_t <decltype(point1.y)>&)point2.y();
+   point1.x = (const ::std::decay_t <decltype(point1.x)>&)point2.x;
+   point1.y = (const ::std::decay_t <decltype(point1.y)>&)point2.y;
 
 }
 
@@ -265,8 +265,8 @@ template < primitive_point POINT, primitive_size SIZE >
 void copy(POINT& point, const SIZE& size)
 {
 
-   point.x() = (const ::std::decay_t <decltype(point.x())>&)size.cx();
-   point.y() = (const ::std::decay_t <decltype(point.y()) > &)size.cy();
+   point.x = (const ::std::decay_t <decltype(point.x)>&)size.cx();
+   point.y = (const ::std::decay_t <decltype(point.y) > &)size.cy();
 
 }
 

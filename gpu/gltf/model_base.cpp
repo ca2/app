@@ -10,8 +10,8 @@
 #include "bred/gpu/context.h"
 
 #include <assimp/matrix4x4.h>
-#include <glm/glm.hpp>
-#include <glm/gtc/type_ptr.hpp> // For glm::make_mat4
+//#include <glm/glm.hpp>
+//#include <glm/gtc/type_ptr.hpp> // For glm::make_mat4
 
 
 
@@ -150,7 +150,7 @@ namespace gpu
       //      ::gpu::gltf::vertex vertex;
 
       //      // position
-      //      glm::vec3 position;
+      //      floating_sequence3 position;
       //      position.x = mesh->mVertices[i].x;
       //      position.y = mesh->mVertices[i].y;
       //      position.z = mesh->mVertices[i].z;
@@ -158,7 +158,7 @@ namespace gpu
       //      vertex.mPosition = position;
 
       //      // normal
-      //      glm::vec3 normal;
+      //      floating_sequence3 normal;
       //      normal.x = mesh->mNormals[i].x;
       //      normal.y = mesh->mNormals[i].y;
       //      normal.z = mesh->mNormals[i].z;
@@ -184,8 +184,8 @@ namespace gpu
       //      {
       //         color.x = mesh->mColors[0]->r;
       //         color.y = mesh->mColors[0]->g;
-      //         color.z = mesh->mColors[0]->b;
-      //         color.w = mesh->mColors[0]->a;
+      //         color.z = mesh->mColors[0]->y;
+      //         color.w = mesh->mColors[0]->x;
       //      }
       //      else
       //      {
@@ -195,11 +195,11 @@ namespace gpu
 
       //      // tangents
       //      glm::vec4 tangent4;
-      //      glm::vec3 tangent;
+      //      floating_sequence3 tangent;
       //      tangent.x = mesh->mTangents[0].x;
       //      tangent.y = mesh->mTangents[0].y;
       //      tangent.z = mesh->mTangents[0].z;
-      //      glm::vec3 bitangent;
+      //      floating_sequence3 bitangent;
       //      bitangent.x = mesh->mBitangents[0].x;
       //      bitangent.y = mesh->mBitangents[0].y;
       //      bitangent.z = mesh->mBitangents[0].z;
@@ -210,7 +210,7 @@ namespace gpu
       //      vertex.mTangent = tangent4;
 
       //      //// bitangents
-      //      // glm::vec3 bitangent;
+      //      // floating_sequence3 bitangent;
       //      // bitangent.x = mesh->mBitangents[0].x;
       //      // bitangent.y = mesh->mBitangents[0].y;
       //      // bitangent.z = mesh->mBitangents[0].z;

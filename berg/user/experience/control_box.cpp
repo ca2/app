@@ -145,7 +145,7 @@ namespace experience
    void control_box::drag(const ::int_point & point)
    {
 
-      //int x = point.x() - m_pointDrag.x();
+      //int x = point.x - m_pointDrag.x;
 
       //if (x < 0)
       //{
@@ -180,7 +180,7 @@ namespace experience
 
       //get_parent()->client_to_screen(pointScreen);
 
-      //m_pframewindow->m_pframe->m_iControlBoxRight = rectangleParent.right() - point.x() - rectangleWindow.width();
+      //m_pframewindow->m_pframe->m_iControlBoxRight = rectangleParent.right() - point.x - rectangleWindow.width();
 
       //int iControlBoxRight = m_pframewindow->m_pframe->m_iControlBoxRight;
 
@@ -300,9 +300,9 @@ namespace experience
 
                      auto rectangleHost = host_rectangle();
 
-                     if (pointCursorHost.x() >= rectangleHost.left()
-                     && pointCursorHost.x() <= rectangleHost.right() &&
-                        pointCursorHost.y() == 0)
+                     if (pointCursorHost.x >= rectangleHost.left()
+                     && pointCursorHost.x <= rectangleHost.right() &&
+                        pointCursorHost.y == 0)
                      {
 
                         order(e_zorder_top);
@@ -326,9 +326,9 @@ namespace experience
 
                auto rectangleHost = host_rectangle();
 
-               if (pointCursorHost.x() >= rectangleHost.left()
-                   && pointCursorHost.x() <= rectangleHost.right() &&
-                   pointCursorHost.y() == 0)
+               if (pointCursorHost.x >= rectangleHost.left()
+                   && pointCursorHost.x <= rectangleHost.right() &&
+                   pointCursorHost.y == 0)
                {
 
                   m_bShowAttempt = true;
@@ -1190,7 +1190,7 @@ namespace experience
 
       m_pframewindow->screen_to_client()(rectangle);
 
-      m_pframewindow->m_pframe->m_bControlBoxAlignRight = rectangle.center().x() > (rectangleWindow.width() / 2);
+      m_pframewindow->m_pframe->m_bControlBoxAlignRight = rectangle.center().x > (rectangleWindow.width() / 2);
 
 //      if (rectangle != *m_pframewindow->m_pframe->get_control_box_rect())
 //      {

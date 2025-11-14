@@ -22,7 +22,7 @@ public:
    template < primitive_number X, primitive_number Y >
    shift_type(X x, Y y) noexcept { this->Δx = (UNIT_TYPE) x; this->Δy = (UNIT_TYPE) y; }
    template < primitive_point POINT >
-   shift_type(const POINT & point) { this->Δx = (UNIT_TYPE)point.x(); this->Δy = (UNIT_TYPE)point.y(); }
+   shift_type(const POINT & point) { this->Δx = (UNIT_TYPE)point.x; this->Δy = (UNIT_TYPE)point.y; }
    template < primitive_size SIZE >
    shift_type(const SIZE & size) { this->Δx = (UNIT_TYPE)size.cx(); this->Δy = (UNIT_TYPE)size.cy(); }
 
@@ -38,9 +38,9 @@ public:
    inline POINT & operator()(POINT & point) const noexcept 
    { 
       
-      point.x() = (::std::decay_t<decltype(point.x())>)(point.x() + this->Δx);
+      point.x = (::std::decay_t<decltype(point.x)>)(point.x + this->Δx);
       
-      point.y() = (::std::decay_t<decltype(point.y())>)(point.y() + this->Δy);
+      point.y = (::std::decay_t<decltype(point.y)>)(point.y + this->Δy);
       
       return point; 
    
@@ -78,7 +78,7 @@ public:
 
 
    template < primitive_point POINT >
-   inline POINT get(const POINT & point) const noexcept { return { (decltype(point.x()))(point.x() + this->Δx), (decltype(point.y()))(point.y() + this->Δy) }; }
+   inline POINT get(const POINT & point) const noexcept { return { (decltype(point.x))(point.x + this->Δx), (decltype(point.y))(point.y + this->Δy) }; }
 
    template < primitive_size SIZE >
    inline SIZE get(const SIZE & size) const noexcept { return { (decltype(size.cx()))(size.cx() + this->Δx), (decltype(size.cy()))(size.cy() + this->Δy) }; }

@@ -261,10 +261,10 @@ namespace gpu_gpu
 //
 //          // Compute the MVP matrix from keyboard and mouse input
 //          //computeMatricesFromInputs();
-//          ::glm::mat4 matrixProjection = (::glm::mat4 &)projection_matrix();
-//          ::glm::mat4 matrixView = (::glm::mat4 &)view_matrix();
-//          ::glm::mat4 matrixModel = glm::mat4(1.0);
-//          ::glm::mat4 matrixMVP = matrixProjection * matrixView * matrixModel;
+//          ::floating_matrix4 matrixProjection = (::floating_matrix4 &)projection_matrix();
+//          ::floating_matrix4 matrixView = (::floating_matrix4 &)view_matrix();
+//          ::floating_matrix4 matrixModel = floating_matrix4(1.0);
+//          ::floating_matrix4 matrixMVP = matrixProjection * matrixView * matrixModel;
 //
 //          // Send our transformation to the currently bound shader,
 //          // in the "MVP" uniform
@@ -272,16 +272,16 @@ namespace gpu_gpu
 //
 //       }
 //
-//       //glm::mat4 getViewMatrix() {
+//       //floating_matrix4 getViewMatrix() {
 //       //   return ViewMatrix;
 //       //}
-//       //glm::mat4 getProjectionMatrix() {
+//       //floating_matrix4 getProjectionMatrix() {
 //       //   return ProjectionMatrix;
 //       //}
 //
 //
 //       //// Initial position : on +Z
-//       //glm::vec3 position = glm::vec3(0, 0, 5);
+//       //floating_sequence3 position = floating_sequence3(0, 0, 5);
 //       //// Initial horizontal angle : toward -Z
 //       //float horizontalAngle = 3.14f;
 //       //// Initial vertical angle : none
@@ -714,12 +714,12 @@ namespace gpu_gpu
 //
 //
 //       string strProjection =
-//          "layout(location = 0) in vec3 aPos;\n"
-//          "out vec3 ourPosition;\n"
+//          "layout(location = 0) in floating_sequence3 aPos;\n"
+//          "out floating_sequence3 ourPosition;\n"
 //          "\n"
 //          "void main()\n"
 //          "{\n"
-//          "   gl_Position = vec4(aPos, 1.0);\n"
+//          "   gl_Position = floating_sequence4(aPos, 1.0);\n"
 //          "   ourPosition = aPos;\n"
 //          "}\n";
 //
@@ -733,19 +733,19 @@ namespace gpu_gpu
 //       string strVersion = get_shader_version_text();
 //
 //       string strFragment =
-//          "uniform vec2 resolution;\n"
+//          "uniform floating_sequence2 resolution;\n"
 //          "uniform float time;\n"
-//          "uniform vec2 mouse;\n"
+//          "uniform floating_sequence2 mouse;\n"
 //          "uniform sampler2D backbuffer;\n"
 //          "\n"
 //          "void main(void) {\n"
-//          "float base_res = min(resolution.x(), resolution.y());\n"
-//          "vec2 uv = (gl_FragCoord.xy * 2.0 - resolution.xy) / base_res;\n"
+//          "float base_res = min(resolution.x, resolution.y);\n"
+//          "floating_sequence2 uv = (gl_FragCoord.xy * 2.0 - resolution.xy) / base_res;\n"
 //          "\n"
-//          //"gl_FragColor = vec4(uv, (uv.x() * uv.x()) / 2.0, ((uv.x() + (base_res - uv.y())) *(uv.x() + (base_res - uv.y()))) / 2.0);\n"
-//          "float posx = max(0.f, uv.x());\n"
-//          "float posy = max(0.f, uv.y());\n"
-//          "gl_FragColor = vec4(uv, (posx * posx) / 4.0, ((posx + posy) * (posx + posy)) / 4.0);\n"
+//          //"gl_FragColor = floating_sequence4(uv, (uv.x * uv.x) / 2.0, ((uv.x + (base_res - uv.y)) *(uv.x + (base_res - uv.y))) / 2.0);\n"
+//          "float posx = max(0.f, uv.x);\n"
+//          "float posy = max(0.f, uv.y);\n"
+//          "gl_FragColor = floating_sequence4(uv, (posx * posx) / 4.0, ((posx + posy) * (posx + posy)) / 4.0);\n"
 //          "}\n";
 //
 //       return strFragment;
@@ -778,9 +778,9 @@ namespace gpu_gpu
 //    //            //"\n"
 //    //            //"precision highp float;\n"
 //    //            "\n"
-//    //            "uniform vec2 iResolution;\n"
+//    //            "uniform floating_sequence2 iResolution;\n"
 //    //            "uniform float iTime;\n"
-//    //            "uniform vec2 iMouse;\n"
+//    //            "uniform floating_sequence2 iMouse;\n"
 //    //            "uniform sampler2D backbuffer;\n"
 //    //            "\n"
 //    //            "\n"
@@ -976,20 +976,20 @@ namespace gpu_gpu
 //          // Vertex shader
 //          const_char_pointer vertexShaderSource = R"(
 // #version 330 core
-// layout(location = 0) in vec2 inPos;
-// layout(location = 1) in vec2 inUV;
-// out vec2 fragUV;
+// layout(location = 0) in floating_sequence2 inPos;
+// layout(location = 1) in floating_sequence2 inUV;
+// out floating_sequence2 fragUV;
 // void main() {
 //     fragUV = inUV;
-//     gl_Position = vec4(inPos, 0.0, 1.0);
+//     gl_Position = floating_sequence4(inPos, 0.0, 1.0);
 // }
 // )";
 //
 //          // Fragment shader
 //          const_char_pointer fragmentShaderSource = R"(
 // #version 330 core
-// in vec2 fragUV;
-// out vec4 outColor;
+// in floating_sequence2 fragUV;
+// out floating_sequence4 outColor;
 // uniform sampler2D uTexture;
 // void main() {
 //     outColor = texture(uTexture, fragUV);
@@ -1124,22 +1124,22 @@ namespace gpu_gpu
 //             const char full_screen_triangle_vertex_shader[] = R"vert(
 // #version 330 core
 //
-// out vec2 uv;
+// out floating_sequence2 uv;
 //
 // void main() {
-//     const vec2 pos[3] = vec2[](
-//         vec2(-1.0, -1.0),
-//         vec2(-1.0,  3.0),
-//         vec2( 3.0, -1.0)
+//     const floating_sequence2 pos[3] = floating_sequence2[](
+//         floating_sequence2(-1.0, -1.0),
+//         floating_sequence2(-1.0,  3.0),
+//         floating_sequence2( 3.0, -1.0)
 //     );
 //
-//     const vec2 tex[3] = vec2[](
-//         vec2(0.0, 0.0),
-//         vec2(0.0, 2.0),
-//         vec2(2.0, 0.0)
+//     const floating_sequence2 tex[3] = floating_sequence2[](
+//         floating_sequence2(0.0, 0.0),
+//         floating_sequence2(0.0, 2.0),
+//         floating_sequence2(2.0, 0.0)
 //     );
 //
-//     gl_Position = vec4(pos[gl_VertexID], 0.0, 1.0);
+//     gl_Position = floating_sequence4(pos[gl_VertexID], 0.0, 1.0);
 //     uv = tex[gl_VertexID];
 // }
 // )vert";
@@ -1149,11 +1149,11 @@ namespace gpu_gpu
 //
 // uniform sampler2D uTexture;
 //
-// in vec2 uv;
-// out vec4 outColor;
+// in floating_sequence2 uv;
+// out floating_sequence4 outColor;
 //
 // void main() {
-//     vec4 color = texture(uTexture, uv);
+//     floating_sequence4 color = texture(uTexture, uv);
 //     outColor = color;
 // }
 // )frag";
@@ -2658,13 +2658,13 @@ namespace gpu_gpu
 //       const char proto_vert[] = R"vert(
 // #version 330 core
 //
-// layout(location = 0) in vec2 inPos;
-// layout(location = 1) in vec4 inColor;
+// layout(location = 0) in floating_sequence2 inPos;
+// layout(location = 1) in floating_sequence4 inColor;
 //
-// out vec4 fragColor;
+// out floating_sequence4 fragColor;
 //
 // void main() {
-//     gl_Position = vec4(inPos, 0.0, 1.0);
+//     gl_Position = floating_sequence4(inPos, 0.0, 1.0);
 //     fragColor = inColor;
 // })vert";
 //
@@ -2679,12 +2679,12 @@ namespace gpu_gpu
 //       const char proto_frag[] = R"frag(
 //             #version 330 core
 //
-//                in vec4 fragColor;      // Input from the vertex shader (location = 0)
-//             out vec4 outColor;      // Output to framebuffer (location = 0)
+//                in floating_sequence4 fragColor;      // Input from the vertex shader (location = 0)
+//             out floating_sequence4 outColor;      // Output to framebuffer (location = 0)
 //
 //             void main() {
 //                outColor = fragColor;
-// //outColor=vec4(0.5*0.35,0.5*0.75,0.5*0.95,0.5);
+// //outColor=floating_sequence4(0.5*0.35,0.5*0.75,0.5*0.95,0.5);
 //             }
 // )frag";
 //
@@ -2698,32 +2698,32 @@ namespace gpu_gpu
 //
 //       auto pvertexshader = R"vertexshader(#version 330 core
 //
-// out vec2 TexCoords;
+// out floating_sequence2 TexCoords;
 //
-// //uniform mat4 projection;
-// uniform vec4 quad;       // l, t, r, b
-// uniform vec4 texcoords;  // l, t, r, b
-// uniform vec4 textColor;  // (if needed in fragment shader)
+// //uniform floating_matrix4 projection;
+// uniform floating_sequence4 quad;       // l, t, r, b
+// uniform floating_sequence4 texcoords;  // l, t, r, b
+// uniform floating_sequence4 textColor;  // (if needed in fragment shader)
 //
 // void main() {
 //     // 4 vertexes: 0–3
-//     vec2 positions[4] = vec2[](
-//         vec2(quad.x, quad.y),
-//         vec2(quad.z, quad.y),
-//         vec2(quad.x, quad.w),
-//         vec2(quad.z, quad.w)
+//     floating_sequence2 positions[4] = floating_sequence2[](
+//         floating_sequence2(quad.x, quad.y),
+//         floating_sequence2(quad.z, quad.y),
+//         floating_sequence2(quad.x, quad.w),
+//         floating_sequence2(quad.z, quad.w)
 //     );
 //
-//     vec2 uvs[4] = vec2[](
-//         vec2(texcoords.x, texcoords.y),
-//         vec2(texcoords.z, texcoords.y),
-//         vec2(texcoords.x, texcoords.w),
-//         vec2(texcoords.z, texcoords.w)
+//     floating_sequence2 uvs[4] = floating_sequence2[](
+//         floating_sequence2(texcoords.x, texcoords.y),
+//         floating_sequence2(texcoords.z, texcoords.y),
+//         floating_sequence2(texcoords.x, texcoords.w),
+//         floating_sequence2(texcoords.z, texcoords.w)
 //     );
 //
 //     int vid = gl_VertexID;
-//     //gl_Position = projection * vec4(positions[vid], 0.0, 1.0);
-// gl_Position = vec4(positions[vid], 0.0, 1.0);
+//     //gl_Position = projection * floating_sequence4(positions[vid], 0.0, 1.0);
+// gl_Position = floating_sequence4(positions[vid], 0.0, 1.0);
 //     TexCoords = uvs[vid];
 // }
 // )vertexshader";
@@ -2737,20 +2737,20 @@ namespace gpu_gpu
 //    {
 //
 //       auto pfragmentshader = R"fragmentshader(#version 330 core
-// in vec2 TexCoords;
-// out vec4 color;
+// in floating_sequence2 TexCoords;
+// out floating_sequence4 color;
 //
 // uniform sampler2D text;
-// uniform vec4 textColor;
+// uniform floating_sequence4 textColor;
 //
 // void main()
 // {
-//     vec4 sampled = texture(text, TexCoords).rgba;
-// vec4 c = vec4(textColor) * sampled;
-//     //color = vec4(sqrt(c.r),sqrt(c.g), sqrt(c.b), sqrt(c.a));
-// color = vec4(c.r,c.g, c.b, c.a);
-// //color = vec4(0.0, 1.0, 0.0, 1.0); // Bright debug color
-// //color=vec4(0.5*0.35,0.5*0.75,0.5*0.95,0.5);
+//     floating_sequence4 sampled = texture(text, TexCoords).rgba;
+// floating_sequence4 c = floating_sequence4(textColor) * sampled;
+//     //color = floating_sequence4(sqrt(c.r),sqrt(c.g), sqrt(c.b), sqrt(c.a));
+// color = floating_sequence4(c.r,c.g, c.b, c.a);
+// //color = floating_sequence4(0.0, 1.0, 0.0, 1.0); // Bright debug color
+// //color=floating_sequence4(0.5*0.35,0.5*0.75,0.5*0.95,0.5);
 // }
 // )fragmentshader";
 //
@@ -2913,7 +2913,7 @@ namespace gpu_gpu
   ::pointer < ::graphics3d::renderable > context::get_skybox_cube_model()
    {
       auto pmodelbuffer = øcreate_new <::gpu::model_buffer>();
-      ::array_base<glm::vec3> vertexa = {
+      ::array_base<floating_sequence3> vertexa = {
          // positions
          {-1.0f,  1.0f, -1.0f },
          {-1.0f, -1.0f, -1.0f },
@@ -2958,7 +2958,7 @@ namespace gpu_gpu
          { 1.0f, -1.0f,  1.0f}
       };
 
-      pmodelbuffer->static_initialize_vertexes<::glm::vec3>(vertexa);
+      pmodelbuffer->static_initialize_vertexes<::floating_sequence3>(vertexa);
 
       return pmodelbuffer;
 

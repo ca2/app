@@ -824,8 +824,8 @@ menu::~menu()
 //
 //   //   ::int_rectangle rectangleWindow;
 //
-//   //   rectangleWindow.left() = point.x();
-//   //   rectangleWindow.top() = point.y();
+//   //   rectangleWindow.left() = point.x;
+//   //   rectangleWindow.top() = point.y;
 //   //   rectangleWindow.right() = rectangleWindow.left() + m_size.cx();
 //   //   rectangleWindow.bottom() = rectangleWindow.top() + m_size.cy();
 //
@@ -1571,9 +1571,9 @@ menu::~menu()
 //
 //         //   ::int_rectangle * prectangle = (::int_rectangle *)pusermessage->m_lparam.m_lparam;
 //
-//         //   prectangle->left() = m_pointTrack.x();
+//         //   prectangle->left() = m_pointTrack.x;
 //
-//         //   prectangle->top() = m_pointTrack.y();
+//         //   prectangle->top() = m_pointTrack.y;
 //
 //         //   prectangle->right() = prectangle->left() + maximum(::user::interaction::get_window_minimum_size().cx(), m_size.cx());
 //
@@ -2240,8 +2240,8 @@ menu::~menu()
 //
 //            ::int_rectangle rectangleWindow;
 //
-//            rectangleWindow.left() = point.x();
-//            rectangleWindow.top() = point.y();
+//            rectangleWindow.left() = point.x;
+//            rectangleWindow.top() = point.y;
 //            rectangleWindow.right() = rectangleWindow.left() + m_size.cx();
 //            rectangleWindow.bottom() = rectangleWindow.top() + m_size.cy();
 //

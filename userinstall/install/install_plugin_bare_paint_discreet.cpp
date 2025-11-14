@@ -194,31 +194,31 @@ auto m_timeSync = ::time::now();
          for (int x = 0; x < (cx + cy); x += 46)
          {
 
-            pa[0].x() = rectangle.left() + x;
-            pa[0].y() = rectangle.top();
+            pa[0].x = rectangle.left() + x;
+            pa[0].y = rectangle.top();
 
-            pa[1].x() = rectangle.left() + x + iBarHeight;
-            pa[1].y() = rectangle.top();
+            pa[1].x = rectangle.left() + x + iBarHeight;
+            pa[1].y = rectangle.top();
 
-            pa[2].x() = rectangle.left() + x - mcy + iBarHeight;
-            pa[2].y() = rectangle.top() + mcy;
+            pa[2].x = rectangle.left() + x - mcy + iBarHeight;
+            pa[2].y = rectangle.top() + mcy;
 
-            pa[3].x() = rectangle.left() + x - mcy;
-            pa[3].y() = rectangle.top() + mcy;
+            pa[3].x = rectangle.left() + x - mcy;
+            pa[3].y = rectangle.top() + mcy;
 
             pgraphics->fill_polygon(pa, 4);
 
-            pa[0].x() = rectangle.left() + x - mcy - iBarHeight;
-            pa[0].y() = rectangle.top() + mcy;
+            pa[0].x = rectangle.left() + x - mcy - iBarHeight;
+            pa[0].y = rectangle.top() + mcy;
 
-            pa[1].x() = rectangle.left() + x - mcy;
-            pa[1].y() = rectangle.top() + mcy;
+            pa[1].x = rectangle.left() + x - mcy;
+            pa[1].y = rectangle.top() + mcy;
 
-            pa[2].x() = rectangle.left() + x - cy;
-            pa[2].y() = rectangle.top() + cy;
+            pa[2].x = rectangle.left() + x - cy;
+            pa[2].y = rectangle.top() + cy;
 
-            pa[3].x() = rectangle.left() + x - cy - iBarHeight;
-            pa[3].y() = rectangle.top() + cy;
+            pa[3].x = rectangle.left() + x - cy - iBarHeight;
+            pa[3].y = rectangle.top() + cy;
 
             pgraphics->fill_polygon(pa, 4);
 

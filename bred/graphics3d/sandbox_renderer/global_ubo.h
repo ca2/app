@@ -15,15 +15,15 @@ namespace graphics3d
 
    struct point_light {
       inline static const int MAX_LIGHTS=10;
-      glm::vec4 position{};
-      glm::vec4 color{};
+      floating_sequence4 position{};
+      floating_sequence4 color{};
    };
 
    struct global_ubo {
-      glm::mat4 projection{ 1.f };
-      glm::mat4 view{ 1.f };
-      glm::vec4 ambientLightColor{ 1.f,1.f,1.f,0.02f };
-      glm::vec4 viewPos{ 0.f };
+      floating_matrix4 projection{ 1.f };
+      floating_matrix4 view{ 1.f };
+      floating_sequence4 ambientLightColor{ 1.f,1.f,1.f,0.02f };
+      floating_sequence4 viewPos{ 0.f };
       point_light pointLights[point_light::MAX_LIGHTS];
       alignas(4) int numLights = 0;
       // pad up to 16‑byte multiple:
@@ -31,8 +31,8 @@ namespace graphics3d
    };
 
    //struct PointLight
-   //   glm::vec4 position{};  // ignore w
-   // glm::vec4 color{};     // w is intensity
+   //   floating_sequence4 position{};  // ignore w
+   // floating_sequence4 color{};     // w is intensity
 
 //BEGIN_GPU_PROPERTIES(point_light)
 //GPU_PROPERTY("position", ::gpu::e_type_seq4)
@@ -42,10 +42,10 @@ namespace graphics3d
 //GPU_PROPERTY("radius", ::gpu::e_type_float)
 
    // GlobalUbo :
-   // glm::mat4 projection{ 1.f };
-   // glm::mat4 view{ 1.f };
-   // glm::mat4 invView{ 1.f };
-   // glm::vec4 ambientLightColor{ 1.f, 1.f, 1.f, .02f };
+   // floating_matrix4 projection{ 1.f };
+   // floating_matrix4 view{ 1.f };
+   // floating_matrix4 invView{ 1.f };
+   // floating_sequence4 ambientLightColor{ 1.f, 1.f, 1.f, .02f };
    // PointLight pointLights[MAX_LIGHTS];
    // int numLights;
    // 3XINT PADDING

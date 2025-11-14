@@ -33,9 +33,9 @@ namespace gpu
          struct specular_env_map_push_constants
          {
             
-            ::glm::mat4 model;
-            ::glm::mat4 view;
-            ::glm::mat4 projection;
+            ::floating_matrix4 model;
+            ::floating_matrix4 view;
+            ::floating_matrix4 projection;
 
             float roughness;
             float padding1;
@@ -45,7 +45,7 @@ namespace gpu
 
 
          // prefiltered environment map
-         const unsigned int m_iPrefilteredEnvMapMipCount = 5;
+         int m_iPrefilteredEnvMapMipCount = -1;
          const unsigned int m_uPrefilteredEnvMapWidth = 128;
          const unsigned int m_uPrefilteredEnvMapHeight = 128;
 

@@ -1247,7 +1247,7 @@ uiStartScanLineParam = uiStartScanLine;
 //unsigned int uStartScanLine = bm.bmHeight - y - cy;
 unsigned int uScanLines = cy;
 uiScanLineCountParam = uiScanLines;
-int xOffset = (x + pointContext.x()) * 3;
+int xOffset = (x + pointContext.x) * 3;
 //if(!GetDIBits(dcAux.get_os_data(), bitmap, bm.bmHeight - cy, cy, pv, &bmi, DIB_RGB_COLORS))
 
 //  throw ::exception(::exception("integer_exception" + as_string($1)));
@@ -1266,9 +1266,9 @@ DIB_RGB_COLORS)))
 throw ::exception(::exception("integer_exception" + as_string($1)));
 int iLimitX = cx;
 
-if(bm.bmWidth - x - pointContext.x() < iLimitX)
+if(bm.bmWidth - x - pointContext.x < iLimitX)
 {
-iLimitX = bm.bmWidth - x - pointContext.x();
+iLimitX = bm.bmWidth - x - pointContext.x;
 }
 
 graphicsMem->set(pmpMemOld);
@@ -1725,10 +1725,10 @@ void imaging::ColorInvert(::draw2d::graphics * pgraphics,int x,int y,int cx,int 
 
    ::int_point pointContext;
    pointContext = pgraphics->get_origin();
-   unsigned int uStartScanLine = bm.bmHeight - y - cy - pointContext.y();
+   unsigned int uStartScanLine = bm.bmHeight - y - cy - pointContext.y;
    //unsigned int uStartScanLine = bm.bmHeight - y - cy;
    unsigned int uScanLines = cy;
-   int xOffset = (x + pointContext.x()) * 3;
+   int xOffset = (x + pointContext.x) * 3;
    //if(!GetDIBits(dcAux.get_os_data(), bitmapA, bm.bmHeight - cy, cy, pv, &bmi, DIB_RGB_COLORS))
 
    //  throw ::exception(::exception("integer_exception" + as_string($1)));
@@ -1746,9 +1746,9 @@ void imaging::ColorInvert(::draw2d::graphics * pgraphics,int x,int y,int cx,int 
    return false;
    int iLimitX = cx;
 
-   if(bm.bmWidth - x - pointContext.x() < iLimitX)
+   if(bm.bmWidth - x - pointContext.x < iLimitX)
    {
-   iLimitX = bm.bmWidth - x - pointContext.x();
+   iLimitX = bm.bmWidth - x - pointContext.x;
    }
 
    unsigned char * p;
@@ -1840,10 +1840,10 @@ void imaging::ColorInvert(::draw2d::graphics * pgraphics,int x,int y,int cx,int 
    LPVOID pv = memstorageA.get_data();
 
    ::int_point pointContext = pgraphics->get_origin();
-   unsigned int uStartScanLine = bm.bmHeight - y - cy - pointContext.y();
+   unsigned int uStartScanLine = bm.bmHeight - y - cy - pointContext.y;
    //unsigned int uStartScanLine = bm.bmHeight - y - cy;
    unsigned int uScanLines = cy;
-   int xOffset = (x + pointContext.x()) * 3;
+   int xOffset = (x + pointContext.x) * 3;
 
 
    //int xOffset = (x) * 3;
@@ -1863,9 +1863,9 @@ void imaging::ColorInvert(::draw2d::graphics * pgraphics,int x,int y,int cx,int 
    int iLimitX = cx;
 
 
-   if(bm.bmWidth - x - pointContext.x() < iLimitX)
+   if(bm.bmWidth - x - pointContext.x < iLimitX)
    {
-   iLimitX = bm.bmWidth - x - pointContext.x();
+   iLimitX = bm.bmWidth - x - pointContext.x;
    }
 
    unsigned char * p;
@@ -4202,16 +4202,16 @@ void imaging::color_blend(::draw2d::graphics * pgraphics, const ::int_point & po
 //
 //   ::int_point pointAlpha(pointAlphaParam);
 //
-//   if(point.x() < 0)
+//   if(point.x < 0)
 //   {
-//      pointAlpha.x() += -point.x();
-//      point.x() = 0;
+//      pointAlpha.x += -point.x;
+//      point.x = 0;
 //   }
 //
-//   if(point.y() < 0)
+//   if(point.y < 0)
 //   {
-//      pointAlpha.y() += -point.y();
-//      point.y() = 0;
+//      pointAlpha.y += -point.y;
+//      point.y = 0;
 //   }
 //
 //
@@ -4421,8 +4421,8 @@ int w3)
 //   const ::int_point & pointContextDst = pdcDst->get_origin();
 //   const ::int_point & pointContextSrc = pdcSrc->get_origin();
 //
-//   int xvpDst = pointDst.x() + pointContextDst.x();
-//   int xvpSrc = pointSrc.x() + pointContextSrc.x();
+//   int xvpDst = pointDst.x + pointContextDst.x;
+//   int xvpSrc = pointSrc.x + pointContextSrc.x;
 //
 //   int iLimitX = size.cx();
 //
@@ -4484,7 +4484,7 @@ int w3)
 //         throw ::exception(::exception("integer_exception" + as_string($1)));
 //      ::draw2d::bitmap * pmpMemOld = graphicsMem->set(bitmapDst);
 
-//      if(!pdcDst->BitBlt(pointDst.x(),pointDst.y(),size.cx(),size.cy(),graphicsMem,pointSrc.x(),pointSrc.y()))
+//      if(!pdcDst->BitBlt(pointDst.x,pointDst.y,size.cx(),size.cy(),graphicsMem,pointSrc.x,pointSrc.y))
 //      {
 //         ASSERT(false);
 //      }
@@ -4600,8 +4600,8 @@ int w3)
 //   const ::int_point & pointContextDest = pdcDst->get_origin();
 //   const ::int_point & pointContextSrc = pdcSrc->get_origin();
 //
-//   int xvpDest = pointDst.x() + pointContextDest.x();
-//   int xvpSrc = pointDst.y() + pointContextSrc.x();
+//   int xvpDest = pointDst.x + pointContextDest.x;
+//   int xvpSrc = pointDst.y + pointContextSrc.x;
 //
 //   int iLimitX = size.cx();
 //
@@ -4663,7 +4663,7 @@ int w3)
 //         throw ::exception(::exception("integer_exception" + as_string($1)));
 //      ::draw2d::bitmap * pmpMemOld = graphicsMem->set(bitmapDest);
 
-//      if(!pdcDst->BitBlt(pointDst.x(),pointDst.y(),size.cx(),size.cy(),graphicsMem,pointSrc.x(),pointSrc.y()))
+//      if(!pdcDst->BitBlt(pointDst.x,pointDst.y,size.cx(),size.cy(),graphicsMem,pointSrc.x,pointSrc.y))
 //      {
 //         ASSERT(false);
 //      }
@@ -5749,8 +5749,8 @@ breakFilter2:
 //   const ::int_point & pointContextDest = pdcDst->get_origin();
 //   const ::int_point & pointContextSrc = pdcSrc->get_origin();
 //
-//   int xvpDest = xDest + pointContextDest.x();
-//   int xvpSrc = xSrc + pointContextSrc.x();
+//   int xvpDest = xDest + pointContextDest.x;
+//   int xvpSrc = xSrc + pointContextSrc.x;
 //
 //   int iLimitX = cx;
 //
@@ -6316,9 +6316,9 @@ int      iSize)
 //   const ::int_point & pointContextSrc1 = pdcSrc1->get_origin();
 //   const ::int_point & pointContextSrc2 = pdcSrc2->get_origin();
 //
-//   int xvpDest = xDest + pointContextDest.x();
-//   int xvpSrc1 = xSrc1 + pointContextSrc1.x();
-//   int xvpSrc2 = xSrc2 + pointContextSrc2.x();
+//   int xvpDest = xDest + pointContextDest.x;
+//   int xvpSrc1 = xSrc1 + pointContextSrc1.x;
+//   int xvpSrc2 = xSrc2 + pointContextSrc2.x;
 //
 //   int iLimitX = cx;
 //

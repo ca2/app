@@ -25,7 +25,7 @@
 #include "bred/gpu/layer.h"
 #include "bred/gpu/texture.h"
 #include "bred/gpu/types.h"
-#include "glm/mat4x4.hpp"
+//#include "glm/mat4x4.hpp"
 //#include <assimp/Common/StbCommon.h>
 
 
@@ -37,7 +37,7 @@
 // #include <GL/glew.h>       // or glad, depending on your setup
 // #include <GLFW/glfw3.h>
 //
-#include <ktx/ktx.h>
+#include <ktx.h>
 
 #include "bred/graphics3d/engine.h"
 #include "bred/graphics3d/immersion_layer.h"
@@ -263,10 +263,10 @@ namespace gpu_gpu
 //
 //          // Compute the MVP matrix from keyboard and mouse input
 //          //computeMatricesFromInputs();
-//          ::glm::mat4 matrixProjection = (::glm::mat4 &)projection_matrix();
-//          ::glm::mat4 matrixView = (::glm::mat4 &)view_matrix();
-//          ::glm::mat4 matrixModel = glm::mat4(1.0);
-//          ::glm::mat4 matrixMVP = matrixProjection * matrixView * matrixModel;
+//          ::floating_matrix4 matrixProjection = (::floating_matrix4 &)projection_matrix();
+//          ::floating_matrix4 matrixView = (::floating_matrix4 &)view_matrix();
+//          ::floating_matrix4 matrixModel = floating_matrix4(1.0);
+//          ::floating_matrix4 matrixMVP = matrixProjection * matrixView * matrixModel;
 //
 //          // Send our transformation to the currently bound shader,
 //          // in the "MVP" uniform
@@ -274,16 +274,16 @@ namespace gpu_gpu
 //
 //       }
 //
-//       //glm::mat4 getViewMatrix() {
+//       //floating_matrix4 getViewMatrix() {
 //       //   return ViewMatrix;
 //       //}
-//       //glm::mat4 getProjectionMatrix() {
+//       //floating_matrix4 getProjectionMatrix() {
 //       //   return ProjectionMatrix;
 //       //}
 //
 //
 //       //// Initial position : on +Z
-//       //glm::vec3 position = glm::vec3(0, 0, 5);
+//       //floating_sequence3 position = floating_sequence3(0, 0, 5);
 //       //// Initial horizontal angle : toward -Z
 //       //float horizontalAngle = 3.14f;
 //       //// Initial vertical angle : none
@@ -741,12 +741,12 @@ namespace gpu_gpu
 //          "uniform sampler2D backbuffer;\n"
 //          "\n"
 //          "void main(void) {\n"
-//          "float base_res = min(resolution.x(), resolution.y());\n"
+//          "float base_res = min(resolution.x, resolution.y);\n"
 //          "vec2 uv = (gl_FragCoord.xy * 2.0 - resolution.xy) / base_res;\n"
 //          "\n"
-//          //"gl_FragColor = vec4(uv, (uv.x() * uv.x()) / 2.0, ((uv.x() + (base_res - uv.y())) *(uv.x() + (base_res - uv.y()))) / 2.0);\n"
-//          "float posx = max(0.f, uv.x());\n"
-//          "float posy = max(0.f, uv.y());\n"
+//          //"gl_FragColor = vec4(uv, (uv.x * uv.x) / 2.0, ((uv.x + (base_res - uv.y)) *(uv.x + (base_res - uv.y))) / 2.0);\n"
+//          "float posx = max(0.f, uv.x);\n"
+//          "float posy = max(0.f, uv.y);\n"
 //          "gl_FragColor = vec4(uv, (posx * posx) / 4.0, ((posx + posy) * (posx + posy)) / 4.0);\n"
 //          "}\n";
 //

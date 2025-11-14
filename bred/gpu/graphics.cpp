@@ -32,7 +32,7 @@ namespace gpu
 //
 //#define __TRANSFORM(p) \
 //   m_m1.transform(p); \
-//p.y() = iContextHeight - p.y()
+//p.y = iContextHeight - p.y
 //
 //#define __USES_TRANSFORM(pcontext) \
 //auto iContextHeight = pcontext->m_rectangle.height()
@@ -1010,10 +1010,10 @@ namespace gpu
 
       ::double_point points1[2];
 
-      points1[0].x() = x1;
-      points1[0].y() = y1;
-      points1[1].x() = x2;
-      points1[1].y() = y2;
+      points1[0].x = x1;
+      points1[0].y = y1;
+      points1[1].x = x2;
+      points1[1].y = y2;
 
       __transform(points1[0]);
       __transform(points1[1]);
@@ -1046,7 +1046,7 @@ namespace gpu
 
       ::array<::graphics3d::sequence2_color> quadVertices;
       for (auto& point : pointa)
-         quadVertices.add({ {(float)point.x(), (float)point.y()}, {fR, fG, fB, fA} });
+         quadVertices.add({ {(float)point.x, (float)point.y}, {fR, fG, fB, fA} });
 
       auto pmodelbuffer = model_buffer(::draw2d::e_model_line);
 
@@ -1084,8 +1084,8 @@ namespace gpu
 
       pcontext->defer_unbind(pshader);
 
-      m_point.x() = x2;
-      m_point.y() = y2;
+      m_point.x = x2;
+      m_point.y = y2;
    }
 
 
@@ -1314,13 +1314,13 @@ namespace gpu
       auto color = m_pbrush->m_color;
       //shader.use();
       ::cast<::gpu::shader>pshader = m_pgpushaderTextOut;
-      ::glm::vec4 vec4TextColor{ __expand_float_pre_rgba(color) };
+      ::floating_sequence4 vec4TextColor{ __expand_float_pre_rgba(color) };
       pshader->set_seq4("textColor", vec4TextColor);
       // glUniform3f(glGetUniformLocation(shader.ID, "textColor"), color.x, color.y, color.z);
       //pshader->setup_sampler_and_texture("text", 0);
       //auto pcontext = gpu_context();
       // auto size = pcontext->m_rectangle.size();
-      // glm::mat4 projection = glm::ortho(
+      // floating_matrix4 projection = glm::ortho(
       //    0.0f,
       //    static_cast<float>(size.width()),
       //    static_cast<float>(size.height()),
@@ -1385,7 +1385,7 @@ namespace gpu
       int Δx = 0;
       //auto pcontext = gpu_context();
 
-      //point.y() = pcontext->m_rectangle.height() - point.y() - pface->m_iPixelSize;
+      //point.y = pcontext->m_rectangle.height() - point.y - pface->m_iPixelSize;
 
       //pcontext->set_cull_face(::gpu::e_cull_mode_back);
       pcontext->set_cull_face(::gpu::e_cull_mode_none);
@@ -1406,9 +1406,9 @@ namespace gpu
 
          auto& ch = pface->get_character(strChar);
          float h2 = (float)(ch.Size.y - ch.Bearing.y);
-         float xpos = (float) (point.x() + Δx + ch.Bearing.x);
-         //float ypos = (float) (point.y() + h2);
-         float ypos = (float) (point.y());
+         float xpos = (float) (point.x + Δx + ch.Bearing.x);
+         //float ypos = (float) (point.y + h2);
+         float ypos = (float) (point.y);
 
          float w = (float) ch.Size.x;
          float h = (float) ch.Size.y;
@@ -1465,7 +1465,7 @@ namespace gpu
                context_matrix(e_transform_context_text).transform(p1);
                context_matrix(e_transform_context_text).transform(p2);
 
-               ::glm::vec4 quad(p1.x(), p1.y(), p2.x(), p2.y()
+               ::floating_sequence4 quad(p1.x, p1.y, p2.x, p2.y
                   );
 
 
@@ -1487,7 +1487,7 @@ namespace gpu
                float r = rectangle.right() / w;
                float b = rectangle.bottom() / h;
 
-               ::glm::vec4 texcoords(l, t, r, b);
+               ::floating_sequence4 texcoords(l, t, r, b);
 
                pshader->set_seq4("texcoords", texcoords);
 

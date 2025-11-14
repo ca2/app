@@ -118,9 +118,9 @@ namespace user
    void scroll_base::set_context_offset(const ::double_point & pointOffset, ::user::enum_layout elayout)
    {
 
-      set_context_offset_x(pointOffset.x(), elayout);
+      set_context_offset_x(pointOffset.x, elayout);
 
-      set_context_offset_y(pointOffset.y(), elayout);
+      set_context_offset_y(pointOffset.y, elayout);
 
    }
 
@@ -291,15 +291,15 @@ namespace user
    void scroll_base::constrain_context_offset(double_point & point, ::user::enum_layout elayout)
    {
 
-      constrain_context_offset_x(point.x(), elayout);
+      constrain_context_offset_x(point.x, elayout);
 
-      constrain_context_offset_y(point.y(), elayout);
+      constrain_context_offset_y(point.y, elayout);
 
       //auto scrollstatey = get_scroll_state_y(elayout);
 
-      //point.x() = minimum_maximum(point.x(), scrollstatex.m_iMinimum, scrollstatex.m_iMaximum);
+      //point.x = minimum_maximum(point.x, scrollstatex.m_iMinimum, scrollstatex.m_iMaximum);
 
-      //point.y() = minimum_maximum(point.y(), scrollstatey.m_iMinimum, scrollstatey.m_iMaximum);
+      //point.y = minimum_maximum(point.y, scrollstatey.m_iMinimum, scrollstatey.m_iMaximum);
 
    //   bool yValidated = scroll_base_y::validate_context_offset(point);
 
@@ -395,7 +395,7 @@ namespace user
       //if (!m_pscrollstateHorizontal->m_bScroll)
       //{
 
-      //   m_pointScroll.x() = 0;
+      //   m_pointScroll.x = 0;
 
       //}
 
@@ -403,7 +403,7 @@ namespace user
       //if (!m_pscrollstateVertical->m_bScroll)
       //{
 
-      //   m_pointScroll.y() = 0;
+      //   m_pointScroll.y = 0;
 
       //}
 
@@ -450,9 +450,9 @@ namespace user
 
       rectangle.bottom() -= get_final_scroll_bar_y_thickness(elayout);
 
-      //rectangle.right() -= (int)(rectangle.left() + minimum(::width(rectangle), sizeTotal.cx() - m_pscrolllayoutX->m_scrollstatea[elayout].m_dPage - pointOffset.x()));
+      //rectangle.right() -= (int)(rectangle.left() + minimum(::width(rectangle), sizeTotal.cx() - m_pscrolllayoutX->m_scrollstatea[elayout].m_dPage - pointOffset.x));
 
-      //rectangle.bottom() -= (int)(rectangle.top() + minimum(::height(rectangle), sizeTotal.cy() - m_pscrolllayoutY->m_scrollstatea[elayout].m_dPage - pointOffset.y()));
+      //rectangle.bottom() -= (int)(rectangle.top() + minimum(::height(rectangle), sizeTotal.cy() - m_pscrolllayoutY->m_scrollstatea[elayout].m_dPage - pointOffset.y));
 
       return rectangle;
 

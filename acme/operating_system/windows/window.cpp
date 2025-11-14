@@ -134,8 +134,8 @@ namespace windows
                POINT pointCursor{};
                RECT r{};
                GetWindowRect(m_hwnd, &r);
-               pointCursor.x = r.left + m_pointSizeMoveStart.x();
-               pointCursor.y = r.top + m_pointSizeMoveStart.y();
+               pointCursor.x = r.left + m_pointSizeMoveStart.x;
+               pointCursor.y = r.top + m_pointSizeMoveStart.y;
                ::SetCursorPos(pointCursor.x, pointCursor.y);
             }
 
@@ -150,8 +150,8 @@ namespace windows
 
                POINT pointCursor{};
                ::GetCursorPos(&pointCursor);
-               auto x = pointCursor.x - m_pointSizeMoveStart.x();
-               auto y = pointCursor.y - m_pointSizeMoveStart.y();
+               auto x = pointCursor.x - m_pointSizeMoveStart.x;
+               auto y = pointCursor.y - m_pointSizeMoveStart.y;
 
 
                //RECT r;
@@ -382,8 +382,8 @@ namespace windows
          ::GetCursorPos(&pointCursor);
          RECT r{};
          ::GetWindowRect(m_hwnd, &r);
-         m_pointSizeMoveStart.x() = pointCursor.x - r.left;
-         m_pointSizeMoveStart.y() = pointCursor.y - r.top;
+         m_pointSizeMoveStart.x = pointCursor.x - r.left;
+         m_pointSizeMoveStart.y = pointCursor.y - r.top;
          ::SetCursor(::LoadCursor(nullptr, IDC_SIZEALL));
          m_bSizeMoveMode = true;
 
@@ -414,8 +414,8 @@ namespace windows
       //SetForegroundWindow(hwnd);
       TrackPopupMenu(m_hmenuSystem,
          TPM_LEFTALIGN | TPM_TOPALIGN,
-         pmouse->m_pointAbsolute.x(),
-         pmouse->m_pointAbsolute.y(),
+         pmouse->m_pointAbsolute.x,
+         pmouse->m_pointAbsolute.y,
          0,
          m_hwnd, NULL);
       //PostMessage(hwnd, WM_NULL, 0, 0);

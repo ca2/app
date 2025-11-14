@@ -509,7 +509,7 @@ namespace experience_core
 
                   pgraphics->set(pbrush);
 
-                  auto offset = ptab->m_pointBarDragScroll.x() - ppath->m_pointUserOffset.x();
+                  auto offset = ptab->m_pointBarDragScroll.x - ppath->m_pointUserOffset.x;
 
                   pgraphics->x_offset(offset);
 
@@ -534,7 +534,7 @@ namespace experience_core
 
                   auto offsetcontext = pgraphics->offset_context();
 
-                  offsetcontext.Δx() += ptab->m_pointBarDragScroll.x() - ppath->m_pointUserOffset.x();
+                  offsetcontext.Δx() += ptab->m_pointBarDragScroll.x - ppath->m_pointUserOffset.x;
 
                   pgraphics->draw(ppath);
 
@@ -636,7 +636,7 @@ namespace experience_core
 
                      auto offsetcontext = pgraphics->offset_context();
 
-                     offsetcontext.Δx() += ptab->m_pointBarDragScroll.x() - ppath->m_pointUserOffset.x();
+                     offsetcontext.Δx() += ptab->m_pointBarDragScroll.x - ppath->m_pointUserOffset.x;
 
                      pgraphics->fill(ppath);
 
@@ -657,7 +657,7 @@ namespace experience_core
 
                      auto offsetcontext = pgraphics->offset_context();
 
-                     offsetcontext.Δx()+= ptab->m_pointBarDragScroll.x() - ppath->m_pointUserOffset.x();
+                     offsetcontext.Δx()+= ptab->m_pointBarDragScroll.x - ppath->m_pointUserOffset.x;
 
                      pgraphics->draw(ppath);
 
@@ -720,7 +720,7 @@ namespace experience_core
 
                      auto offsetcontext = pgraphics->offset_context();
 
-                     offsetcontext.Δx() += ptab->m_pointBarDragScroll.x() - ppath->m_pointUserOffset.x();
+                     offsetcontext.Δx() += ptab->m_pointBarDragScroll.x - ppath->m_pointUserOffset.x;
 
                      pgraphics->fill(ppath);
 
@@ -741,7 +741,7 @@ namespace experience_core
 
                      auto offsetcontext = pgraphics->offset_context();
 
-                     offsetcontext.Δx() += ptab->m_pointBarDragScroll.x() - ppath->m_pointUserOffset.x();
+                     offsetcontext.Δx() += ptab->m_pointBarDragScroll.x - ppath->m_pointUserOffset.x;
 
                      pgraphics->draw(ppath);
 
@@ -858,7 +858,7 @@ namespace experience_core
                   
                   ppath->add_line(rectangleScroll.bottom_left());
                   
-                  ppath->add_line({rectangleScroll.right(), rectangleScroll.center().y()});
+                  ppath->add_line({rectangleScroll.right(), rectangleScroll.center().y});
                   
                   ppath->close_figure();
                   
@@ -903,7 +903,7 @@ namespace experience_core
                   
                   ppath->add_line(rectangleScroll.bottom_right());
                   
-                  ppath->add_line({rectangleScroll.left(), rectangleScroll.center().y()});
+                  ppath->add_line({rectangleScroll.left(), rectangleScroll.center().y});
                   
                   ppath->close_figure();
                   
@@ -1222,8 +1222,8 @@ namespace experience_core
                iTabHeight = cy;
             }
 
-            ppane->m_point.x() = x;
-            ppane->m_point.y() = rectangleX.top();
+            ppane->m_point.x = x;
+            ppane->m_point.y = rectangleX.top();
 
 
             //            string str = ppane->get_title();
@@ -1330,7 +1330,7 @@ namespace experience_core
 
          ptab->m_iTabSize = (int)(pdata->m_tabpanea.get_count() * pdata->m_iTabHeight);
 
-//         ptab->m_pointDragScrollMax.y() = ptab->m_sizeDragScroll.cy() - rcClient.height();
+//         ptab->m_pointDragScrollMax.y = ptab->m_sizeDragScroll.cy() - rcClient.height();
 
          ptab->m_sizeBarDragScroll.cy() = (int)ptab->m_pdata->m_tabpanea.get_count() * ptab->m_pdata->m_iTabHeight;
 
@@ -1338,12 +1338,12 @@ namespace experience_core
       else
       {
 
-         ptab->m_iTabSize = pdata->m_tabpanea.last()->m_point.x() +
+         ptab->m_iTabSize = pdata->m_tabpanea.last()->m_point.x +
             pdata->m_tabpanea.last()->m_size.cx();
 
-         //ptab->m_pointDragScrollMax.x() = ptab->m_sizeDragScroll.cx() - rcClient.width();
+         //ptab->m_pointDragScrollMax.x = ptab->m_sizeDragScroll.cx() - rcClient.width();
 
-         ptab->m_sizeBarDragScroll.cx() = ptab->m_pdata->m_tabpanea.last()->m_point.x() +
+         ptab->m_sizeBarDragScroll.cx() = ptab->m_pdata->m_tabpanea.last()->m_point.x +
             ptab->m_pdata->m_tabpanea.last()->m_size.cx();
 
          //if (m_pdata->m_bVertical)
@@ -2169,23 +2169,23 @@ namespace experience_core
       if (pbar->m_eorientation == e_orientation_horizontal)
       {
 
-         pgraphics->line(pointCenter.x() - 5, pointCenter.y() - 5,
-                     pointCenter.x() - 5, pointCenter.y() + 5);
-         pgraphics->line(pointCenter.x(), pointCenter.y() - 5,
-             pointCenter.x(), pointCenter.y() + 5);
-         pgraphics->line(pointCenter.x() + 5, pointCenter.y() - 5,
-         pointCenter.x() + 5, pointCenter.y() + 5);
+         pgraphics->line(pointCenter.x - 5, pointCenter.y - 5,
+                     pointCenter.x - 5, pointCenter.y + 5);
+         pgraphics->line(pointCenter.x, pointCenter.y - 5,
+             pointCenter.x, pointCenter.y + 5);
+         pgraphics->line(pointCenter.x + 5, pointCenter.y - 5,
+         pointCenter.x + 5, pointCenter.y + 5);
 
       }
       else
       {
 
-         pgraphics->line(pointCenter.x() - 5, pointCenter.y() - 5,
-         pointCenter.x() + 5, pointCenter.y() - 5);
-         pgraphics->line(pointCenter.x() - 5, pointCenter.y(),
-         pointCenter.x() + 5, pointCenter.y());
-         pgraphics->line(pointCenter.x() - 5, pointCenter.y() + 5,
-         pointCenter.x() + 5, pointCenter.y() + 5);
+         pgraphics->line(pointCenter.x - 5, pointCenter.y - 5,
+         pointCenter.x + 5, pointCenter.y - 5);
+         pgraphics->line(pointCenter.x - 5, pointCenter.y,
+         pointCenter.x + 5, pointCenter.y);
+         pgraphics->line(pointCenter.x - 5, pointCenter.y + 5,
+         pointCenter.x + 5, pointCenter.y + 5);
 
       }
 

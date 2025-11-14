@@ -42,8 +42,8 @@ namespace graphics3d
       float m_fDefaultMetallicFactor = 0.0f;
       float m_fDefaultRoughnessFactor = 0.0f;
       float m_fDefaultAmbientOcclusionFactor = 0.0f;
-      glm::vec3 m_seq3DefaultAlbedo={};
-      glm::vec3 m_seq3DefaultEmission = {};
+      floating_sequence3 m_seq3DefaultAlbedo={};
+      floating_sequence3 m_seq3DefaultEmission = {};
 
       //VkDescriptorSetLayout m_pdescriptorsetlayoutUbo;
       //VkDescriptorSetLayout m_iblSetLayout;

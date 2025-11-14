@@ -258,6 +258,9 @@
     <ClInclude Include="gltf\_constant.h">
       <Filter>Header Files\gltf</Filter>
     </ClInclude>
+    <ClInclude Include="_assimp.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="framework.cpp">

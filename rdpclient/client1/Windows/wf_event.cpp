@@ -183,8 +183,8 @@ void wf_event_focus_in(wfContext* wfc)
 	screen_to_client(wfc->hwnd, &pt);
 	this->rectangle(wfc->hwnd, &rc);
 
-	if (point.x() >= rc.left() && point.x() < rc.right() && point.y() >= rc.top() && point.y() < rc.bottom())
-		input->MouseEvent(input, PTR_FLAGS_MOVE, (::u3216)point.x(), (::u3216)point.y());
+	if (point.x >= rc.left() && point.x < rc.right() && point.y >= rc.top() && point.y < rc.bottom())
+		input->MouseEvent(input, PTR_FLAGS_MOVE, (::u3216)point.x, (::u3216)point.y);
 }
 
 static int wf_event_process_WM_MOUSEWHEEL(wfContext* wfc, HWND hWnd, unsigned int Msg, WPARAM wParam, LPARAM lParam)
@@ -299,8 +299,8 @@ void wf_sizing(wfContext* wfc, WPARAM wParam, LPARAM lParam)
 //					if (!wfc->fullscreen)
 //					{
 //						// add window decoration
-//						minmax->ptMaxTrackSize.x() = wfc->width + wfc->diff.x();
-//						minmax->ptMaxTrackSize.y() = wfc->height + wfc->diff.y();
+//						minmax->ptMaxTrackSize.x = wfc->width + wfc->diff.x;
+//						minmax->ptMaxTrackSize.y = wfc->height + wfc->diff.y;
 //					}
 //				}
 //				break;
@@ -674,8 +674,8 @@ void wf_scale_mouse_event(wfContext* wfc, rdpInput* input, ::u3216 flags, ::u321
 		input->MouseEvent(input, flags, x * dw / ww + wfc->xCurrentScroll, y * dh / wh + wfc->yCurrentScroll);
 
 	eventArgs.flags = flags;
-	eventArgs.x() = x;
-	eventArgs.y() = y;
+	eventArgs.x = x;
+	eventArgs.y = y;
 	context = (rdpContext*) wfc;
 	PubSub_OnMouseEvent(context->pubSub, context, &eventArgs);
 }

@@ -24,7 +24,7 @@ namespace graphics3d
    }
 
 
-   glm::vec3 camera::position()
+   floating_sequence3 camera::position()
    {
 
       return m_vec3Position;
@@ -32,7 +32,7 @@ namespace graphics3d
    }
 
 
-   glm::vec3 camera::rotation()
+   floating_sequence3 camera::rotation()
    {
 
       return m_vec3Rotation;

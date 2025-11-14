@@ -587,7 +587,7 @@ namespace gpu
 
    }
 
-   ::glm::mat4 context::defer_transpose(const ::glm::mat4 & m)
+   ::floating_matrix4 context::defer_transpose(const ::floating_matrix4 & m)
    {
 
       return m;
@@ -595,13 +595,13 @@ namespace gpu
    }
 
 
-   ::glm::mat4 context::defer_clip_remap_projection(const ::glm::mat4 & m)
+   ::floating_matrix4 context::defer_clip_remap_projection(const ::floating_matrix4 & m)
    { return m;
 
    }
 
 
-   ::glm::mat4 context::defer_remap_impact_matrix(const ::glm::mat4 &m) {
+   ::floating_matrix4 context::defer_remap_impact_matrix(const ::floating_matrix4 &m) {
    
       return m;
    
@@ -1652,14 +1652,14 @@ return {};
 
 
       string strProjection =
-         "layout(glm::vec3 = 0) in vec3 aPos;\n"
-         "layout(glm::vec3 = 1) in vec3 aColor;\n"
-         "/* out vec3 ourColor; */\n"
-         "out vec3 ourPosition;\n"
+         "layout(floating_sequence3 = 0) in floating_sequence3 aPos;\n"
+         "layout(floating_sequence3 = 1) in floating_sequence3 aColor;\n"
+         "/* out floating_sequence3 ourColor; */\n"
+         "out floating_sequence3 ourPosition;\n"
          "\n"
          "void main()\n"
          "{\n"
-         "   gl_Position = vec4(aPos, 1.0);\n"
+         "   gl_Position = floating_sequence4(aPos, 1.0);\n"
          "   /* ourColor = aColor;*/\n"
          "   ourPosition = aPos;\n"
          "}\n";
@@ -1674,15 +1674,15 @@ return {};
       string strVersion = get_shader_version_text();
 
       string strFragment =
-         "uniform vec2 resolution;\n"
+         "uniform floating_sequence2 resolution;\n"
          "uniform float time;\n"
-         "uniform vec2 mouse;\n"
+         "uniform floating_sequence2 mouse;\n"
          "uniform sampler2D backbuffer;\n"
          "\n"
          "void main(void) {\n"
-         "vec2 uv = (gl_FragCoord.xy * 2.0 - resolution.xy) / minimum(resolution.x(), resolution.y());\n"
+         "floating_sequence2 uv = (gl_FragCoord.xy * 2.0 - resolution.xy) / minimum(resolution.x, resolution.y);\n"
          "\n"
-         "gl_FragColor = vec4(uv, uv/2.0);\n"
+         "gl_FragColor = floating_sequence4(uv, uv/2.0);\n"
          "}\n";
 
       return strFragment;
@@ -1719,9 +1719,9 @@ return {};
             //"\n"
             //"precision highp float;\n"
             "\n"
-            "uniform vec2 iResolution;\n"
+            "uniform floating_sequence2 iResolution;\n"
             "uniform float iTime;\n"
-            "uniform vec2 iMouse;\n"
+            "uniform floating_sequence2 iMouse;\n"
             "uniform sampler2D backbuffer;\n"
             "\n"
             "\n"

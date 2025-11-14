@@ -144,8 +144,8 @@ namespace experience_nanoui
          if(egrip & e_grip_top)
          {
             rectangle.top() = rectangleEvent.top();
-            rectangle.left() = pointCenter.x() - 8;
-            rectangle.right() = pointCenter.x() + 8;
+            rectangle.left() = pointCenter.x - 8;
+            rectangle.right() = pointCenter.x + 8;
             rectangle.bottom() = rectangleEvent.top() + 5;
             if(rectangle.contains(point))
             {
@@ -156,8 +156,8 @@ namespace experience_nanoui
          if(egrip & e_grip_bottom)
          {
             rectangle.top() = rectangleEvent.bottom() - 5;
-            rectangle.left() = pointCenter.x() - 8;
-            rectangle.right() = pointCenter.x() + 8;
+            rectangle.left() = pointCenter.x - 8;
+            rectangle.right() = pointCenter.x + 8;
             rectangle.bottom() = rectangleEvent.bottom();
             if(rectangle.contains(point))
             {
@@ -167,10 +167,10 @@ namespace experience_nanoui
          }
          if(egrip & e_grip_left)
          {
-            rectangle.top() = pointCenter.y() - 8;
+            rectangle.top() = pointCenter.y - 8;
             rectangle.left() = rectangleEvent.left();
             rectangle.right() = rectangleEvent.left() + 5;
-            rectangle.bottom() = pointCenter.y() + 8;
+            rectangle.bottom() = pointCenter.y + 8;
             if(rectangle.contains(point))
             {
                etest = ::experience::e_frame_sizing_left;
@@ -179,10 +179,10 @@ namespace experience_nanoui
          }
          if(egrip & e_grip_right)
          {
-            rectangle.top() = pointCenter.y() - 8;
+            rectangle.top() = pointCenter.y - 8;
             rectangle.left() = rectangleEvent.right() - 5;
             rectangle.right() = rectangleEvent.right();
-            rectangle.bottom() = pointCenter.y() + 8;
+            rectangle.bottom() = pointCenter.y + 8;
             if(rectangle.contains(point))
             {
                etest = ::experience::e_frame_sizing_right;
@@ -499,72 +499,72 @@ SizingNone:;
 
          pointA = rectangleA.top_left();
          pointB = pointA;
-         pointB.x() += 16;
+         pointB.x += 16;
          pgraphics->line(pointA, pointB);
 
 
          pointA = rectangleA.top_left();
          pointB = pointA;
-         pointB.y() += 16;
+         pointB.y += 16;
          pgraphics->line(pointA, pointB);
 
          pgraphics->set(m_ppenFace1);
 
          pointA = rectangleA.top_left();
-         pointA.x()++;
-         pointA.y()++;
+         pointA.x++;
+         pointA.y++;
          pointB = pointA;
-         pointB.x() += 15;
+         pointB.x += 15;
          pgraphics->line(pointA, pointB);
 
          pointA = rectangleA.top_left();
-         pointA.x() += 2;
-         pointA.y() += 2;
+         pointA.x += 2;
+         pointA.y += 2;
          pointB = pointA;
-         pointB.x() += 14;
+         pointB.x += 14;
          pgraphics->line(pointA, pointB);
 
 
          pointA = rectangleA.top_left();
-         pointA.x()++;
-         pointA.y()++;
+         pointA.x++;
+         pointA.y++;
          pointB = pointA;
-         pointB.y() += 15;
+         pointB.y += 15;
          pgraphics->line(pointA, pointB);
 
          pointA = rectangleA.top_left();
-         pointA.x() += 2;
-         pointA.y() += 2;
+         pointA.x += 2;
+         pointA.y += 2;
          pointB = pointA;
-         pointB.y() += 14;
+         pointB.y += 14;
          pgraphics->line(pointA, pointB);
 
          pgraphics->set(m_ppenShadow1);
 
          pointA = rectangleA.top_left();
-         pointA.x() += 3;
-         pointA.y() += 3;
+         pointA.x += 3;
+         pointA.y += 3;
          pointB = pointA;
-         pointB.x() += 13;
+         pointB.x += 13;
          pgraphics->line(pointA, pointB);
 
 
          pointA = rectangleA.top_left();
-         pointA.x() += 3;
-         pointA.y() += 3;
+         pointA.x += 3;
+         pointA.y += 3;
          pointB = pointA;
-         pointB.y() += 13;
+         pointB.y += 13;
          pgraphics->line(pointA, pointB);
 
          pgraphics->set(m_ppenDkShadow1);
 
          pointA = rectangleA.top_left();
-         pointA.x() += 4;
-         pointA.y() += 4;
+         pointA.x += 4;
+         pointA.y += 4;
          pointB = pointA;
-         pointB.y() += 12;
+         pointB.y += 12;
          pointC = pointB;
-         pointC.x() -= 3;
+         pointC.x -= 3;
 
          {
 
@@ -580,12 +580,12 @@ SizingNone:;
 
 
          pointA = rectangleA.top_left();
-         pointA.x() += 4;
-         pointA.y() += 4;
+         pointA.x += 4;
+         pointA.y += 4;
          pointB = pointA;
-         pointB.x() += 12;
+         pointB.x += 12;
          pointC = pointB;
-         pointC.y() -= 3;
+         pointC.y -= 3;
 
          {
 
@@ -613,9 +613,9 @@ SizingNone:;
 
          pointA = rectangleA.top_right();
          pointB = pointA;
-         pointB.x() -= 16;
+         pointB.x -= 16;
          pointC = pointB;
-         pointC.y() += 4;
+         pointC.y += 4;
 
          {
 
@@ -631,73 +631,73 @@ SizingNone:;
 
 
          pointB = rectangleA.top_right();
-         pointB.x() -= 4;
-         pointB.y() += 4;
+         pointB.x -= 4;
+         pointB.y += 4;
          pointC = pointB;
-         pointC.y() += 12;
+         pointC.y += 12;
          pgraphics->line(pointB, pointC);
 
          pgraphics->set(m_ppenFace1);
 
          pointA = rectangleA.top_right();
-         pointA.x()--;
-         pointA.y()++;
+         pointA.x--;
+         pointA.y++;
          pointB = pointA;
-         pointB.x() -= 14;
+         pointB.x -= 14;
          pgraphics->line(pointA, pointB);
 
          pointA = rectangleA.top_right();
-         pointA.x() -= 2;
-         pointA.y() += 2;
+         pointA.x -= 2;
+         pointA.y += 2;
          pointB = pointA;
-         pointB.x() -= 13;
+         pointB.x -= 13;
          pgraphics->line(pointA, pointB);
 
          pointA = rectangleA.top_right();
-         pointA.x() -= 2;
-         pointA.y() += 2;
+         pointA.x -= 2;
+         pointA.y += 2;
          pointB = pointA;
-         pointB.y() += 13;
+         pointB.y += 13;
          pgraphics->line(pointA, pointB);
 
          pointA = rectangleA.top_right();
-         pointA.x() -= 3;
-         pointA.y() += 3;
+         pointA.x -= 3;
+         pointA.y += 3;
          pointB = pointA;
-         pointB.y() += 12;
+         pointB.y += 12;
          pgraphics->line(pointA, pointB);
 
          pgraphics->set(m_ppenShadow1);
 
          pointA = rectangleA.top_right();
-         pointA.x() -= 3;
-         pointA.y() += 3;
+         pointA.x -= 3;
+         pointA.y += 3;
          pointB = pointA;
-         pointB.x() -= 12;
+         pointB.x -= 12;
          pgraphics->line(pointA, pointB);
 
          pointA = rectangleA.top_right();
-         pointA.x()--;
-         pointA.y()++;
+         pointA.x--;
+         pointA.y++;
          pointB = pointA;
-         pointB.y() += 14;
+         pointB.y += 14;
          pgraphics->line(pointA, pointB);
 
          pgraphics->set(m_ppenDkShadow1);
 
          pointB = rectangleA.top_right();
-         pointB.x() -= 4;
-         pointB.y() += 4;
+         pointB.x -= 4;
+         pointB.y += 4;
          pointC = pointB;
-         pointC.x() -= 12;
+         pointC.x -= 12;
          pgraphics->line(pointB, pointC);
 
 
          pointA = rectangleA.top_right();
          pointB = pointA;
-         pointB.y() += 16;
+         pointB.y += 16;
          pointC = pointB;
-         pointC.x() -= 4;
+         pointC.x -= 4;
 
          {
 
@@ -726,9 +726,9 @@ SizingNone:;
 
          pointA = rectangleA.bottom_left();
          pointB = rectangleA.bottom_left();
-         pointB.y() -= 16;
+         pointB.y -= 16;
          pointC = pointB;
-         pointC.x() += 4;
+         pointC.x += 4;
 
          {
 
@@ -745,72 +745,72 @@ SizingNone:;
 
 
          pointB = rectangleA.bottom_left();
-         pointB.y() -= 4;
-         pointB.x() += 4;
+         pointB.y -= 4;
+         pointB.x += 4;
          pointC = pointB;
-         pointC.x() += 12;
+         pointC.x += 12;
          pgraphics->line(pointB, pointC);  // horizontal bottom hillite
 
          pgraphics->set(m_ppenFace1);
 
          pointA = rectangleA.bottom_left();
-         pointA.y()--;
-         pointA.x()++;
+         pointA.y--;
+         pointA.x++;
          pointB = pointA;
-         pointB.y() -= 14;
+         pointB.y -= 14;
          pgraphics->line(pointA, pointB);
 
          pointA = rectangleA.bottom_left();
-         pointA.y() -= 2;
-         pointA.x() += 2;
+         pointA.y -= 2;
+         pointA.x += 2;
          pointB = pointA;
-         pointB.y() -= 13;
+         pointB.y -= 13;
          pgraphics->line(pointA, pointB);
 
          pointA = rectangleA.bottom_left();
-         pointA.y() -= 2;
-         pointA.x() += 2;
+         pointA.y -= 2;
+         pointA.x += 2;
          pointB = pointA;
-         pointB.x() += 13;
+         pointB.x += 13;
          pgraphics->line(pointA, pointB);
 
          pointA = rectangleA.bottom_left();
-         pointA.y() -= 3;
-         pointA.x() += 3;
+         pointA.y -= 3;
+         pointA.x += 3;
          pointB = pointA;
-         pointB.x() += 12;
+         pointB.x += 12;
          pgraphics->line(pointA, pointB);
 
          pgraphics->set(m_ppenShadow1);
 
          pointA = rectangleA.bottom_left();
-         pointA.y() -= 3;
-         pointA.x() += 3;
+         pointA.y -= 3;
+         pointA.x += 3;
          pointB = pointA;
-         pointB.y() -= 12;
+         pointB.y -= 12;
          pgraphics->line(pointA, pointB);
 
          pointA = rectangleA.bottom_left();
-         pointA.y()--;
-         pointA.x()++;
+         pointA.y--;
+         pointA.x++;
          pointB = pointA;
-         pointB.x() += 14;
+         pointB.x += 14;
          pgraphics->line(pointA, pointB);
 
          pgraphics->set(m_ppenDkShadow1);
 
          pointB = rectangleA.bottom_left();
-         pointB.y() -= 4;
-         pointB.x() += 4;
+         pointB.y -= 4;
+         pointB.x += 4;
          pointC = pointB;
-         pointC.y() -= 12;
+         pointC.y -= 12;
          pgraphics->line(pointB, pointC);
 
          pointA = rectangleA.bottom_left();
          pointB = pointA;
-         pointB.x() += 16;
+         pointB.x += 16;
          pointC = pointB;
-         pointC.y() -= 4;
+         pointC.y -= 4;
 
          {
 
@@ -839,71 +839,71 @@ SizingNone:;
 
          pointA = rectangleA.bottom_right();
          pointB = pointA;
-         pointB.x() -= 16;
+         pointB.x -= 16;
          pgraphics->line(pointA, pointB);
 
          pointA = rectangleA.bottom_right();
          pointB = pointA;
-         pointB.y() -= 16;
+         pointB.y -= 16;
          pgraphics->line(pointA, pointB);
 
          pgraphics->set(m_ppenShadow1);
 
          pointA = rectangleA.bottom_right();
-         pointA.y()--;
-         pointA.x()--;
+         pointA.y--;
+         pointA.x--;
          pointB = pointA;
-         pointB.x() -= 15;
+         pointB.x -= 15;
          pgraphics->line(pointA, pointB);
 
          pointA = rectangleA.bottom_right();
-         pointA.y()--;
-         pointA.x()--;
+         pointA.y--;
+         pointA.x--;
          pointB = pointA;
-         pointB.y() -= 15;
+         pointB.y -= 15;
          pgraphics->line(pointA, pointB);
 
 
          pgraphics->set(m_ppenFace1);
 
          pointA = rectangleA.bottom_right();
-         pointA.y() -= 3;
-         pointA.x() -= 3;
+         pointA.y -= 3;
+         pointA.x -= 3;
          pointB = pointA;
-         pointB.x() -= 13;
+         pointB.x -= 13;
          pgraphics->line(pointA, pointB);
 
          pointA = rectangleA.bottom_right();
-         pointA.y() -= 2;
-         pointA.x() -= 2;
+         pointA.y -= 2;
+         pointA.x -= 2;
          pointB = pointA;
-         pointB.x() -= 14;
+         pointB.x -= 14;
          pgraphics->line(pointA, pointB);
 
          pointA = rectangleA.bottom_right();
-         pointA.y() -= 3;
-         pointA.x() -= 3;
+         pointA.y -= 3;
+         pointA.x -= 3;
          pointB = pointA;
-         pointB.y() -= 13;
+         pointB.y -= 13;
          pgraphics->line(pointA, pointB);
 
          pointA = rectangleA.bottom_right();
-         pointA.y() -= 2;
-         pointA.x() -= 2;
+         pointA.y -= 2;
+         pointA.x -= 2;
          pointB = pointA;
-         pointB.y() -= 14;
+         pointB.y -= 14;
          pgraphics->line(pointA, pointB);
 
 
          pgraphics->set(m_ppenHilight1);
 
          pointA = rectangleA.bottom_right();
-         pointA.x() -= 4;
-         pointA.y() -= 4;
+         pointA.x -= 4;
+         pointA.y -= 4;
          pointB = pointA;
-         pointB.x() -= 12;
+         pointB.x -= 12;
          pointC = pointB;
-         pointC.y() += 4;
+         pointC.y += 4;
 
 
          {
@@ -920,12 +920,12 @@ SizingNone:;
 
 
          pointA = rectangleA.bottom_right();
-         pointA.x() -= 4;
-         pointA.y() -= 4;
+         pointA.x -= 4;
+         pointA.y -= 4;
          pointB = pointA;
-         pointB.y() -= 12;
+         pointB.y -= 12;
          pointC = pointB;
-         pointC.x() += 4;
+         pointC.x += 4;
 
 
          {
@@ -950,8 +950,8 @@ SizingNone:;
          ::int_rectangle rectangleB;
 
          rectangleB.top() = rectangleX.top();
-         rectangleB.left() = pointCenter.x() - GRIP_CENTER_LARGE_CX / 2;
-         rectangleB.right() = pointCenter.x() + GRIP_CENTER_LARGE_CX / 2;
+         rectangleB.left() = pointCenter.x - GRIP_CENTER_LARGE_CX / 2;
+         rectangleB.right() = pointCenter.x + GRIP_CENTER_LARGE_CX / 2;
          rectangleB.bottom() = rectangleB.top() + GRIP_CENTER_SMALL_CY;
 
          DrawRectGrip(pgraphics, rectangleB);
@@ -964,8 +964,8 @@ SizingNone:;
          ::int_rectangle rectangleB;
 
          rectangleB.bottom() = rectangleX.bottom();
-         rectangleB.left() = pointCenter.x() - GRIP_CENTER_LARGE_CX / 2;
-         rectangleB.right() = pointCenter.x() + GRIP_CENTER_LARGE_CX / 2;
+         rectangleB.left() = pointCenter.x - GRIP_CENTER_LARGE_CX / 2;
+         rectangleB.right() = pointCenter.x + GRIP_CENTER_LARGE_CX / 2;
          rectangleB.top() = rectangleB.bottom() - GRIP_CENTER_SMALL_CY;
 
          DrawRectGrip(pgraphics, rectangleB);
@@ -977,10 +977,10 @@ SizingNone:;
 
          ::int_rectangle rectangleB;
 
-         rectangleB.top() = pointCenter.y() - GRIP_CENTER_LARGE_CY / 2;
+         rectangleB.top() = pointCenter.y - GRIP_CENTER_LARGE_CY / 2;
          rectangleB.left() = rectangleX.left();
          rectangleB.right() = rectangleX.left() + GRIP_CENTER_SMALL_CX;
-         rectangleB.bottom() = pointCenter.y() + GRIP_CENTER_LARGE_CY / 2;
+         rectangleB.bottom() = pointCenter.y + GRIP_CENTER_LARGE_CY / 2;
 
          DrawRectGrip(pgraphics, rectangleB);
       }
@@ -991,10 +991,10 @@ SizingNone:;
 
          ::int_rectangle rectangleB;
 
-         rectangleB.top() = pointCenter.y() - GRIP_CENTER_LARGE_CY / 2;
+         rectangleB.top() = pointCenter.y - GRIP_CENTER_LARGE_CY / 2;
          rectangleB.right() = rectangleX.right();
          rectangleB.left() = rectangleX.right() - GRIP_CENTER_SMALL_CX;
-         rectangleB.bottom() = pointCenter.y() + GRIP_CENTER_LARGE_CY / 2;
+         rectangleB.bottom() = pointCenter.y + GRIP_CENTER_LARGE_CY / 2;
 
          DrawRectGrip(pgraphics, rectangleB);
       }

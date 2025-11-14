@@ -30,7 +30,7 @@ namespace gpu
 
 
       void mipmap_cubemap_framebuffer::initialize_mipmap_cubemap_framebuffer(::graphics3d::scene_base *pscenebase,
-                                                                             int iWidth, int iHeight, int iMipCount)
+                                                                             int iWidth, int iHeight)
 
       {
 
@@ -49,7 +49,7 @@ namespace gpu
          m_ptexture->m_rectangleTarget.top()=0;
          m_ptexture->m_rectangleTarget.right()= iWidth;
          m_ptexture->m_rectangleTarget.bottom()= iHeight;
-         m_ptexture->m_iMipCount=iMipCount;
+         m_ptexture->m_iMipCount=floor(log2(maximum(iWidth, iHeight)));
          m_ptexture->m_bRenderTarget = true;
          m_ptexture->m_bShaderResourceView = true;
 

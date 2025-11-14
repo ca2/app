@@ -203,7 +203,7 @@ namespace user
 
       auto rectangleX = this->rectangle();
 
-      int iM = rectangleX.center().x();
+      int iM = rectangleX.center().x;
 
       ::int_rectangle rectangleL(rectangleX);
 

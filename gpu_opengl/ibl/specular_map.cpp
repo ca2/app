@@ -11,6 +11,7 @@
 #include "bred/gpu/context_lock.h"
 #include "bred/gpu/device.h"
 #include "gpu_opengl/_gpu_opengl.h"
+#include "gpu_opengl/shader.h"
 #include "gpu_opengl/texture.h"
 #include "gpu/cube.h"
 #include "gpu/gltf/_constant.h"
@@ -38,6 +39,7 @@ namespace gpu_opengl
    namespace ibl
    {
 
+
       specular_map::specular_map()
       {
 
@@ -48,8 +50,8 @@ namespace gpu_opengl
       specular_map::~specular_map()
       {
 
-      }
 
+      }
 
 
       ::block specular_map::embedded_prefiltered_env_map_vert()
@@ -66,6 +68,7 @@ namespace gpu_opengl
          return {g_psz_specularenv_frag, sizeof(g_psz_specularenv_frag) - 1};
 
       }
+
 
       ::block specular_map::embedded_brdf_convolution_vert()
       {
@@ -111,6 +114,7 @@ namespace gpu_opengl
 
       void specular_map::computePrefilteredEnvMap(::gpu::command_buffer *pgpucommandbuffer)
       {
+
          //Timer timer;
 
          ::gpu::context_lock contextlock(m_pgpucontext);
@@ -150,20 +154,35 @@ namespace gpu_opengl
          m_pshaderPrefilteredEnvMap->bind(nullptr, m_pframebufferPrefilteredEnvMap->m_ptexture);
          //m_pshaderPrefilteredEnvMap->set_int("environmentCubemap", 0);
 
-         for (auto iCurrentMip = 0; iCurrentMip < m_iPrefilteredEnvMapMipCount; iCurrentMip++)
+         ::cast<::gpu_opengl::shader> pshaderPrefilteredEnvMap = m_pshaderPrefilteredEnvMap;
+
+         auto mipCount = m_iPrefilteredEnvMapMipCount;
+
+         for (auto iCurrentMip = 0; iCurrentMip < mipCount; iCurrentMip++)
          {
 
             m_pframebufferPrefilteredEnvMap->set_current_mip(iCurrentMip);
 
-            glViewport(0, 0, m_pframebufferPrefilteredEnvMap->mip_width(), m_pframebufferPrefilteredEnvMap->mip_height());
+            auto mipWidth = m_pframebufferPrefilteredEnvMap->mip_width();
+
+            auto mipHeight = m_pframebufferPrefilteredEnvMap->mip_height();
+
+            glViewport(0, 0, mipWidth, mipHeight);
             GLCheckError("");
             // each mip level has increasing roughness
-            float roughness = (float)iCurrentMip / (float)(m_iPrefilteredEnvMapMipCount - 1);
+            float roughness = (float)iCurrentMip / (float)(mipCount - 1);
             m_pshaderPrefilteredEnvMap->set_float("roughness", roughness);
 
             // render to each side of the cubemap
             for (auto iFace = 0; iFace < 6; iFace++)
             {
+
+               ::string strMessage;
+
+               strMessage.format("prefiltered_env_map mip {} face {}", iCurrentMip, iFace);
+
+               m_pgpucontext->start_debug_happening(pgpucommandbuffer, strMessage);
+
                m_pshaderPrefilteredEnvMap->setModelViewProjectionMatrices(model, cameraAngles[iFace], projection);
                m_pframebufferPrefilteredEnvMap->set_cube_face(iFace);
 
@@ -172,7 +191,7 @@ namespace gpu_opengl
 
                glBindTexture(GL_TEXTURE_CUBE_MAP, ptextureSkybox->m_gluTextureID);
                GLCheckError("");
-               m_pshaderPrefilteredEnvMap->set_int("environmentCubemap", 0);
+               pshaderPrefilteredEnvMap->_set_int("environmentCubemap", 0);
                //pcube->draw(pgpucommandbuffer);
                ::graphics3d::render_system rendersystemScope;
                rendersystemScope.m_erendersystem = ::graphics3d::e_render_system_skybox_ibl;
@@ -182,6 +201,8 @@ namespace gpu_opengl
                pcube->draw(pgpucommandbuffer);
                pcube->unbind(pgpucommandbuffer);
                pgpucommandbuffer->m_prendersystem = nullptr;
+
+               m_pgpucontext->end_debug_happening(pgpucommandbuffer);
 
             }
          }

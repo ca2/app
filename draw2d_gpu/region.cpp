@@ -62,7 +62,7 @@ namespace draw2d_gpu
    int region::OffsetRgn(int x, int y)
    { ASSERT(get_os_data() != nullptr); return ::OffsetRgn((HRGN)get_os_data(), x, y); }
    int region::OffsetRgn(const ::int_point & point)
-   { ASSERT(get_os_data() != nullptr); return ::OffsetRgn((HRGN)get_os_data(), point.x(), point.y()); }
+   { ASSERT(get_os_data() != nullptr); return ::OffsetRgn((HRGN)get_os_data(), point.x, point.y); }
 
    */
    bool region::get_bounding_box(::int_rectangle * lprect) const
@@ -100,7 +100,7 @@ namespace draw2d_gpu
 
     /*  ((region *) (this))->defer_update();
 
-      plusplus::PointF float_point((plusplus::REAL) point.x(), (plusplus::REAL) point.y());
+      plusplus::PointF float_point((plusplus::REAL) point.x, (plusplus::REAL) point.y);
       
       ASSERT(get_os_data() != nullptr);
 
@@ -231,7 +231,7 @@ namespace draw2d_gpu
 
    //   for(int i = 0; i < m_nCount; i++)
    //   {
-   //      pa.add(plusplus::PointF((plusplus::REAL) m_lppoints[i].x(), (plusplus::REAL) m_lppoints[i].y()));
+   //      pa.add(plusplus::PointF((plusplus::REAL) m_lppoints[i].x, (plusplus::REAL) m_lppoints[i].y));
    //   }
 
    //   if(m_efillmode == ::draw2d::e_fill_mode_alternate)
@@ -272,7 +272,7 @@ namespace draw2d_gpu
    //      pa.erase_all();
    //      for(int j = 0; j < jCount; j++)
    //      {
-   //         pa.add(plusplus::PointF((plusplus::REAL) m_lppoints[n].x(), (plusplus::REAL) m_lppoints[n].y()));
+   //         pa.add(plusplus::PointF((plusplus::REAL) m_lppoints[n].x, (plusplus::REAL) m_lppoints[n].y));
    //         n++;
    //      }
    //      path.AddPolygon(pa.get_data(), (int) pa.get_count());

@@ -491,7 +491,7 @@ namespace user
    }
 
 
-   void primitive_impl::viewport_client_to_screen(::sequence2_int & sequence)
+   void primitive_impl::viewport_client_to_screen(::int_sequence2 & sequence)
    {
 
       if (m_puserinteraction)
@@ -504,7 +504,7 @@ namespace user
    }
 
 
-   void primitive_impl::viewport_screen_to_client(::sequence2_int & sequence)
+   void primitive_impl::viewport_screen_to_client(::int_sequence2 & sequence)
    {
 
       if (m_puserinteraction)
@@ -907,9 +907,9 @@ namespace user
       case ::message::e_prototype_non_client_hit_test:
       {
          _NEW_MESSAGE(::message::nc_hit_test);
-         pmessage->m_point.x() = lparam_int_x(lparam);
+         pmessage->m_point.x = lparam_int_x(lparam);
 
-         pmessage->m_point.y() = lparam_int_y(lparam);
+         pmessage->m_point.y = lparam_int_y(lparam);
       }
       break;
       case ::message::e_prototype_move:

@@ -223,7 +223,7 @@ namespace axis
 
       //   auto offset = rectangleX.center();
 
-      //   mTrans.append(::geometry2d::matrix::translation(offset.x(), offset.y()));
+      //   mTrans.append(::geometry2d::matrix::translation(offset.x, offset.y));
 
       //   pgraphics->append(mTrans);
 

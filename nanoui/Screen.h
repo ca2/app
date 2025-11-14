@@ -61,11 +61,11 @@ namespace nanoui
       ::pointer_array<Widget>             m_focus_path;
       ::pointer < Widget >                m_pwidgetLeftButtonDown;
       ::pointer<::nano2d::font_sink>      m_pfontsink;
-      //   sequence2_int m_fbsize;
+      //   int_sequence2 m_fbsize;
       float m_pixel_ratio;
       //::user::e_key m_mouse_state;
       ::user::e_key m_modifiers;
-      sequence2_int m_mouse_pos;
+      int_sequence2 m_mouse_pos;
       ::pointer < Widget >          m_pwidgetMouseDown;
 
 
@@ -87,7 +87,7 @@ namespace nanoui
       //   bool m_stencil_buffer;
       //   bool m_f_buffer;
       bool m_redraw;
-      ::function<void(sequence2_int)> m_resize_callback;
+      ::function<void(int_sequence2)> m_resize_callback;
       //#if defined(NANOUI_USE_METAL)
       //   void * m_metal_texture = nullptr;
       //   void * m_metal_drawable = nullptr;
@@ -140,7 +140,7 @@ namespace nanoui
        */
       Screen(
          ::user::interaction* puserinteraction,
-         const sequence2_int& size,
+         const int_sequence2& size,
          const ::scoped_string& caption = "Unnamed",
          bool resizable = true,
          bool fullscreen = false,
@@ -179,10 +179,10 @@ namespace nanoui
       //   void set_visible(bool visible);
       //
       //   /// Set window size
-      //   void set_size(const sequence2_int & size);
+      //   void set_size(const int_sequence2 & size);
       //
       //   /// Return the framebuffer size (potentially larger than size() on high-DPI screens)
-      //   const sequence2_int & framebuffer_size() const { return m_fbsize; }
+      //   const int_sequence2 & framebuffer_size() const { return m_fbsize; }
       //
       //   /// Send an happening that will cause the pscreen to be redrawn at the next happening loop iteration
       //   void redraw();
@@ -254,13 +254,13 @@ namespace nanoui
       virtual bool resize_event(const ::int_size& size);
 
       /// Set the resize callback
-      ::function<void(sequence2_int)> resize_callback() const { return m_resize_callback; }
+      ::function<void(int_sequence2)> resize_callback() const { return m_resize_callback; }
       void set_resize_callback(const ::function<void(int_size)>& callback) {
          m_resize_callback = callback;
       }
 
       /// Return the last observed mouse position value
-      sequence2_int mouse_pos() const { return m_mouse_pos; }
+      int_sequence2 mouse_pos() const { return m_mouse_pos; }
       //
       //   /// Return a pointer to the underlying GLFW window data structure
       //   GLFWwindow * glfw_window() const { return m_glfw_window; }

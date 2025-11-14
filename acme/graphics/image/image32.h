@@ -100,7 +100,7 @@ struct CLASS_DECL_ACME image32_t
    //void copy(const int_size & size, int iStrideDst, const ::image32_t * pimage32Src, int iStrideSrc = -1);
    inline void copy(const ::int_point & point, const int_size & size, int iStrideDst, const ::image32_t * pimage32Src, int iStrideSrc = -1)
    {
-      copy(point.x(), point.y(), size.cx(), size.cy(), iStrideDst, pimage32Src, iStrideSrc);
+      copy(point.x, point.y, size.cx(), size.cy(), iStrideDst, pimage32Src, iStrideSrc);
    }
    inline void copy(const ::int_rectangle & rectangle, int iStrideDst, const ::image32_t * pimage32Src, int iStrideSrc = -1)
    {

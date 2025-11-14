@@ -221,8 +221,8 @@ bool xfplayer_impact_line::_001OnDraw(::draw2d::graphics_pointer & pgraphics, bo
    //   pgraphics->SetBkMode(TRANSPARENT);
 
    int_point iMargin;
-   iMargin.x() = 3;
-   iMargin.y() = 3;
+   iMargin.x = 3;
+   iMargin.y = 3;
 
    if (!IsVisible())
    {
@@ -472,8 +472,8 @@ bool xfplayer_impact_line::_001OnDraw(::draw2d::graphics_pointer & pgraphics, bo
 
    int_point iMargin;
    {
-      iMargin.x() = (int)(sppen->m_dWidth / 2.0);
-      iMargin.y() = (int)(sppen->m_dWidth / 2.0);
+      iMargin.x = (int)(sppen->m_dWidth / 2.0);
+      iMargin.y = (int)(sppen->m_dWidth / 2.0);
    }
 
    if (!IsVisible())
@@ -1470,9 +1470,9 @@ void xfplayer_impact_line::embossed_text_out(::draw2d::graphics_pointer & pgraph
 
       ::int_point point;
 
-      point.x() = (int) (iLeft - ((maximum(2.0, m_fRateX * 8.0)) / 2));
+      point.x = (int) (iLeft - ((maximum(2.0, m_fRateX * 8.0)) / 2));
 
-      point.y() = (int) (iTop - ((maximum(2.0, m_fRateX * 8.0)) / 2));
+      point.y = (int) (iTop - ((maximum(2.0, m_fRateX * 8.0)) / 2));
 
       {
 
@@ -1832,7 +1832,7 @@ bool xfplayer_impact_line::CalcChar(const ::int_point & point, character_count &
       
    }
 
-   int x = point.x() - rectanglePlacement.left();
+   int x = point.x - rectanglePlacement.left();
 
    for (int i = 0; i < m_iaPosition.get_size() - 1; i++)
    {
@@ -1904,9 +1904,9 @@ void xfplayer_impact_line::OnMouseMove(::message::message * pmessage)
 
       if(!bInside)
       {
-         if(point.y() < rectanglePlacement.top()
-            || (point.y() <= rectanglePlacement.bottom() &&
-            point.x() < rectanglePlacement.left()))
+         if(point.y < rectanglePlacement.top()
+            || (point.y <= rectanglePlacement.bottom() &&
+            point.x < rectanglePlacement.left()))
          {
             selection.SetSelBefore(*this);
             GetWndRender()->Redraw(rectanglePlacement);
@@ -1931,7 +1931,7 @@ void xfplayer_impact_line::OnMouseMove(::message::message * pmessage)
          }
          else
          {
-            if(point.x() < m_tokenaMain.element_at(0).get_position())
+            if(point.x < m_tokenaMain.element_at(0).get_position())
             {
                selection.SetSelBefore(*this);
             }

@@ -903,10 +903,10 @@ void copy(RECTANGLE1 & rectangle1, const RECTANGLE2 & rectangle2)
 // constexpr void copy(RECTANGLE& rectangle, const ORIGIN_SIZE& origin_size)
 // {
 
-//    rectangle.left() = (decltype(rectangle.left()))origin_size.origin.x();
-//    rectangle.top() = (decltype(rectangle.top()))origin_size.origin.y();
-//    rectangle.right() = (decltype(rectangle.right()))(origin_size.origin.x() + origin_size.size.width);
-//    rectangle.bottom() = (decltype(rectangle.bottom()))(origin_size.origin.y() + origin_size.size.height);
+//    rectangle.left() = (decltype(rectangle.left()))origin_size.origin.x;
+//    rectangle.top() = (decltype(rectangle.top()))origin_size.origin.y;
+//    rectangle.right() = (decltype(rectangle.right()))(origin_size.origin.x + origin_size.size.width);
+//    rectangle.bottom() = (decltype(rectangle.bottom()))(origin_size.origin.y + origin_size.size.height);
 
 // }
 
@@ -915,8 +915,8 @@ void copy(RECTANGLE1 & rectangle1, const RECTANGLE2 & rectangle2)
 // constexpr void copy(ORIGIN_SIZE& origin_size, const RECTANGLE& rectangle)
 // {
 
-//    origin_size.origin.x() = (decltype(origin_size.origin.x()))rectangle.left();
-//    origin_size.origin.y() = (decltype(origin_size.origin.y()))rectangle.top();
+//    origin_size.origin.x = (decltype(origin_size.origin.x))rectangle.left();
+//    origin_size.origin.y = (decltype(origin_size.origin.y))rectangle.top();
 //    origin_size.size.width = (decltype(origin_size.size.width))(rectangle.right() - rectangle.left());
 //    origin_size.size.height = (decltype(origin_size.size.height))(rectangle.bottom() - rectangle.top());
 
@@ -932,8 +932,8 @@ template < primitive_XY POINT1, primitive_point POINT2 >
 void copy(POINT1 point1, const POINT2 & point2)
 {
 
-   cast_copy(point1.X, point2.x());
-   cast_copy(point1.Y, point2.y());
+   cast_copy(point1.X, point2.x);
+   cast_copy(point1.Y, point2.y);
 
 }
 
@@ -942,8 +942,8 @@ template < primitive_point POINT1, primitive_XY POINT2 >
 void copy(POINT1 & point1, const POINT2 & point2)
 {
 
-   cast_copy(point1.x(), point2.X);
-   cast_copy(point1.y(), point2.Y);
+   cast_copy(point1.x, point2.X);
+   cast_copy(point1.y, point2.Y);
 
 }
 
@@ -1012,8 +1012,8 @@ template < primitive_point POINT1, primitive_point POINT2 >
 void copy(POINT1 & point1, const POINT2 & point2)
 {
 
-   cast_copy(point1.x(), point2.x());
-   cast_copy(point1.y(), point2.y());
+   cast_copy(point1.x, point2.x);
+   cast_copy(point1.y, point2.y);
 
 }
 
@@ -1022,8 +1022,8 @@ template < primitive_point POINT1, raw_primitive_point POINT2 >
 void copy(POINT1 & point1, const POINT2 & point2)
 {
 
-   cast_copy(point1.x(), point2.x());
-   cast_copy(point1.y(), point2.y());
+   cast_copy(point1.x, point2.x);
+   cast_copy(point1.y, point2.y);
 
 }
 
@@ -1032,8 +1032,8 @@ template < raw_primitive_point POINT1, primitive_point POINT2 >
 void copy(POINT1 & point1, const POINT2 & point2)
 {
 
-   cast_copy(point1.x, point2.x());
-   cast_copy(point1.y, point2.y());
+   cast_copy(point1.x, point2.x);
+   cast_copy(point1.y, point2.y);
 
 }
 
@@ -1042,8 +1042,8 @@ template < primitive_point POINT, primitive_size SIZE >
 void copy(POINT & point, const SIZE & size)
 {
 
-   cast_copy(point.x(), size.cx());
-   cast_copy(point.y(), size.cy());
+   cast_copy(point.x, size.cx());
+   cast_copy(point.y, size.cy());
 
 }
 

@@ -469,7 +469,7 @@ namespace user
       if (!m_bMultiLine)
       {
 
-         point.y() = 0.;
+         point.y = 0.;
 
       }
 
@@ -688,7 +688,7 @@ namespace user
       //if (m_dLineHeight > 0.)
       //{
 
-      //   int iVerticalOffsetModule = (int) fmod(pointOffset.y(), m_dLineHeight);
+      //   int iVerticalOffsetModule = (int) fmod(pointOffset.y, m_dLineHeight);
 
       //   if (iVerticalOffsetModule > 0)
       //   {
@@ -699,7 +699,7 @@ namespace user
 
       //}
 
-      //pgraphics->offset_origin(-pointOffset.x(), 0);
+      //pgraphics->offset_origin(-pointOffset.x, 0);
 
       //double y = rectangleX.top() + m_iCurrentPageLineStart * m_dLineHeight;
 
@@ -1065,7 +1065,7 @@ namespace user
 
                get_wnd()->screen_to_client()(point);
 
-               ::SetCaretPos(point.x(), point.y());
+               ::SetCaretPos(point.x, point.y);
 
 #endif
 
@@ -1087,7 +1087,7 @@ namespace user
 
                get_wnd()->screen_to_client()(point);
 
-               ::SetCaretPos(point.x(), point.y());
+               ::SetCaretPos(point.x, point.y);
 
 #endif
 
@@ -1392,26 +1392,26 @@ namespace user
 
             rectangleRaw = raw_rectangle();
 
-            if (pointCursor.x() < rectangleRaw.left())
+            if (pointCursor.x < rectangleRaw.left())
             {
 
                scroll_left_line();
 
             }
-            else if (pointCursor.x() > rectangleRaw.right())
+            else if (pointCursor.x > rectangleRaw.right())
             {
 
                scroll_right_line();
 
             }
 
-            if (pointCursor.y() < rectangleRaw.top())
+            if (pointCursor.y < rectangleRaw.top())
             {
 
                scroll_up_line();
 
             }
-            else if (pointCursor.y() > rectangleRaw.bottom())
+            else if (pointCursor.y > rectangleRaw.bottom())
             {
 
                scroll_down_line();
@@ -1622,7 +1622,7 @@ namespace user
 
       window_rectangle(rectangleWindow);
 
-      if (pointHost.x() < rectangleWindow.left() - 30)
+      if (pointHost.x < rectangleWindow.left() - 30)
       {
 
          informationf("test06");
@@ -2091,7 +2091,7 @@ namespace user
 
       auto rectangleX = this->rectangle();
 
-      auto xContext = get_context_offset().x();
+      auto xContext = get_context_offset().x;
 
       int iBorder = 4;
 
@@ -2101,7 +2101,7 @@ namespace user
          xContext = 0;
 
       }
-      else if (xEnd - get_context_offset().x() < rectangleX.width() - iBorder * 2)
+      else if (xEnd - get_context_offset().x < rectangleX.width() - iBorder * 2)
       {
 
          xContext = (int)maximum(0, xEnd - rectangleX.width() + iBorder * 2);
@@ -2113,20 +2113,20 @@ namespace user
          xContext = x;
 
       }
-      else if (x > 0 && x < get_context_offset().x())
+      else if (x > 0 && x < get_context_offset().x)
       {
 
          xContext = maximum(0, x - rectangleX.width() / 2);
 
       }
-      else if (x > get_context_offset().x() + rectangleX.width() - iBorder * 2)
+      else if (x > get_context_offset().x + rectangleX.width() - iBorder * 2)
       {
 
          xContext = (int)maximum(0, xEnd - rectangleX.width() + iBorder * 2);
 
       }
 
-      if (iColumn == m_iColumn && xContext == get_context_offset().x())
+      if (iColumn == m_iColumn && xContext == get_context_offset().x)
       {
 
          return;
@@ -2135,7 +2135,7 @@ namespace user
 
       m_iColumn = iColumn;
 
-      if (xContext != get_context_offset().x())
+      if (xContext != get_context_offset().x)
       {
 
          set_context_offset_x(xContext);
@@ -2796,7 +2796,7 @@ namespace user
 
       //m_iCurrentPagePotentialLineCount = (::collection::count) ceil((double)rectangleX.height() / m_dLineHeight);
 
-      //m_iCurrentPageLineOffset = (::collection::index) minimum(maximum(0, pointOffset.y() / m_dLineHeight), m_iaLineIndex.get_upper_bound());
+      //m_iCurrentPageLineOffset = (::collection::index) minimum(maximum(0, pointOffset.y / m_dLineHeight), m_iaLineIndex.get_upper_bound());
 
       //bool bLoadFullFile = should_load_full_file();
 
@@ -2957,7 +2957,7 @@ namespace user
 
       //}
 
-      //m_dy = pointOffset.y();
+      //m_dy = pointOffset.y;
 
       ////::colorertake5::base_editor * pcolorer = colorertake5();
 
@@ -3253,7 +3253,7 @@ namespace user
       //
       //      m_iCurrentPagePotentialLineCount = (::collection::count) ceil((double) rectangleX.height() / m_dLineHeight);
       //
-      //      m_iCurrentPageLineOffset = (::collection::index) minimum(maximum(0, pointOffset.y() / m_dLineHeight), m_iaLineIndex.get_upper_bound());
+      //      m_iCurrentPageLineOffset = (::collection::index) minimum(maximum(0, pointOffset.y / m_dLineHeight), m_iaLineIndex.get_upper_bound());
       //
       //      bool bLoadFullFile = should_load_full_file();
       //
@@ -3419,7 +3419,7 @@ namespace user
       //
       //      }
       //
-      //      m_dy = pointOffset.y();
+      //      m_dy = pointOffset.y;
       //
       //      //::colorertake5::base_editor * pcolorer = colorertake5();
       //
@@ -3652,7 +3652,7 @@ namespace user
 
       m_iCurrentPagePotentialLineCount = (::collection::count)ceil((double)rectangleX.height() / m_dLineHeight);
 
-      m_iCurrentPageLineOffset = (::collection::index)minimum(maximum(0, pointOffset.y() / m_dLineHeight), m_iaLineIndex.get_upper_bound());
+      m_iCurrentPageLineOffset = (::collection::index)minimum(maximum(0, pointOffset.y / m_dLineHeight), m_iaLineIndex.get_upper_bound());
 
       bool bLoadFullFile = should_load_full_file();
 
@@ -3688,7 +3688,7 @@ namespace user
 
       //m_iCurrentPagePotentialLineCount = (::collection::count)ceil((double)rectangleX.height() / m_dLineHeight);
 
-      //m_iCurrentPageLineOffset = (::collection::index)minimum(maximum(0, pointOffset.y() / m_dLineHeight), m_iaLineIndex.get_upper_bound());
+      //m_iCurrentPageLineOffset = (::collection::index)minimum(maximum(0, pointOffset.y / m_dLineHeight), m_iaLineIndex.get_upper_bound());
 
       //bool bLoadFullFile = should_load_full_file();
 
@@ -3866,7 +3866,7 @@ namespace user
 
       }
 
-      m_dy = pointOffset.y();
+      m_dy = pointOffset.y;
 
       //::colorertake5::base_editor * pcolorer = colorertake5();
 
@@ -4236,7 +4236,7 @@ namespace user
    //
    //      }
    //
-   //      //m_dy = pointOffset.y();
+   //      //m_dy = pointOffset.y;
    //
    //      ////::colorertake5::base_editor * pcolorer = colorertake5();
    //
@@ -4441,7 +4441,7 @@ namespace user
    //
    ////m_iCurrentPagePotentialLineCount = (::collection::count) ceil((double)rectangleX.height() / m_dLineHeight);
    //
-   ////m_iCurrentPageLineOffset = (::collection::index) minimum(maximum(0, pointOffset.y() / m_dLineHeight), m_iaLineIndex.get_upper_bound());
+   ////m_iCurrentPageLineOffset = (::collection::index) minimum(maximum(0, pointOffset.y / m_dLineHeight), m_iaLineIndex.get_upper_bound());
    //
    ////bool bLoadFullFile = should_load_full_file();
    //
@@ -4602,7 +4602,7 @@ namespace user
    //
    ////}
    //
-   ////m_dy = pointOffset.y();
+   ////m_dy = pointOffset.y;
    //
    //////::colorertake5::base_editor * pcolorer = colorertake5();
    //
@@ -4643,7 +4643,7 @@ namespace user
    //
    //      m_iCurrentPagePotentialLineCount = (::collection::count)ceil((double)rectangleX.height() / m_dLineHeight);
    //
-   //      m_iCurrentPageLineOffset = (::collection::index)minimum(maximum(0, pointOffset.y() / m_dLineHeight), m_iaLineIndex.get_upper_bound());
+   //      m_iCurrentPageLineOffset = (::collection::index)minimum(maximum(0, pointOffset.y / m_dLineHeight), m_iaLineIndex.get_upper_bound());
    //
    //      bool bLoadFullFile = should_load_full_file();
    //
@@ -5217,19 +5217,19 @@ namespace user
 
       GetFocusRect(rectangleX);
 
-      point.y() -= rectangleX.top();
+      point.y -= rectangleX.top();
 
       auto pointOffset = get_context_offset();
 
       //if (m_dLineHeight > 0)
       //{
 
-      //   int iVerticalOffsetModule = (int)fmod(pointOffset.y(), m_dLineHeight);
+      //   int iVerticalOffsetModule = (int)fmod(pointOffset.y, m_dLineHeight);
 
       //   if (iVerticalOffsetModule > 0)
       //   {
 
-      //      point.y() += iVerticalOffsetModule;
+      //      point.y += iVerticalOffsetModule;
 
       //   }
 
@@ -5249,13 +5249,13 @@ namespace user
 
       ::collection::index iLine;
 
-      if (point.y() < 0)
+      if (point.y < 0)
       {
 
          iLine = maximum(0, m_iCurrentPageLineStart - 1);
 
       }
-      else if (point.y() > rectangleX.height())
+      else if (point.y > rectangleX.height())
       {
 
          iLine = minimum(line_count(), m_iCurrentPageLineEnd + 1);
@@ -5267,7 +5267,7 @@ namespace user
          for (iLine = m_iCurrentPageLineStart; iLine < m_iCurrentPageLineEnd; iLine++)
          {
 
-            if (point.y() < Δy + dLineHeight)
+            if (point.y < Δy + dLineHeight)
             {
 
                bFound = true;
@@ -5296,7 +5296,7 @@ namespace user
 
       }
 
-      return plain_edit_line_char_hit_test(pgraphics, point.x(), iLine);
+      return plain_edit_line_char_hit_test(pgraphics, point.x, iLine);
 
    }
 
@@ -5312,7 +5312,7 @@ namespace user
 
       auto pointOffset = get_context_offset();
 
-      px -= (int)(rectangleX.left() - pointOffset.x());
+      px -= (int)(rectangleX.left() - pointOffset.x);
 
       if (px <= 0)
       {
@@ -8713,7 +8713,7 @@ namespace user
 
       int x = m_iLastSelectionEndX;
 
-      double y = m_iLastSelectionEndLine * m_dLineHeight - get_context_offset().y();
+      double y = m_iLastSelectionEndLine * m_dLineHeight - get_context_offset().y;
 
       double y2 = y + m_dLineHeight;
 
@@ -9430,7 +9430,7 @@ namespace user
 
       ::int_point pointOffset = get_context_offset();
 
-      set_context_offset_y(pointOffset.y() - m_dLineHeight, ::user::e_layout_design);
+      set_context_offset_y(pointOffset.y - m_dLineHeight, ::user::e_layout_design);
 
       double dHeight = 0.;
 
@@ -9442,7 +9442,7 @@ namespace user
 
       //copy(pointOffset, get_context_offset());
 
-      while (pointOffset.y() > dHeight && i < m_iaLineLength.get_size())
+      while (pointOffset.y > dHeight && i < m_iaLineLength.get_size())
       {
 
          iLineSize = m_iaLineLength[i];

@@ -100,7 +100,7 @@ namespace nanoui
 
       bool mouse_motion_event(const int_point& p, const int_size& rel, bool bDown, const ::user::e_key& ekeyModifiers) override;
       /// Handles mouse drag happenings for the ColorWheel.
-      //bool mouse_drag_event(const sequence2_int & p, const sequence2_int & rel, const ::user::e_key & ekeyModifiers) override;
+      //bool mouse_drag_event(const int_sequence2 & p, const int_sequence2 & rel, const ::user::e_key & ekeyModifiers) override;
 
       // Converts a specified hue (with saturation = value = 1) to RGB space.
       // color::color hue2rgb(float h) const;

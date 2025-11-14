@@ -130,9 +130,9 @@ namespace nanoui
          && m_bDrag)
       {
 
-         float fScroll = y_coordinate_vertical_scroll(p.y());
+         float fScroll = y_coordinate_vertical_scroll(p.y);
 
-         information("drag:point=" + ::as_string(p.y()) + ",rate=" + ::as_string(fScroll) + "\n");
+         information("drag:point=" + ::as_string(p.y) + ",rate=" + ::as_string(fScroll) + "\n");
 
          if (is_different(fScroll, m_fScroll, 0.00001))
          {
@@ -165,8 +165,8 @@ namespace nanoui
          && emouse == ::user::e_mouse_left_button
          && !m_children.empty() 
          && m_fTotalHeight > m_size.cy() 
-         && p.x() > m_pos.x() + m_size.cx() - 13 
-         && p.x() < m_pos.x() + m_size.cx() - 4)
+         && p.x > m_pos.x + m_size.cx() - 13 
+         && p.x < m_pos.x + m_size.cx() - 4)
       {
 
          m_bDrag = true;
@@ -175,7 +175,7 @@ namespace nanoui
 
          synchronous_lock lock(screen()->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-         float fScroll = y_coordinate_vertical_scroll(p.y());
+         float fScroll = y_coordinate_vertical_scroll(p.y);
 
          if (is_different(fScroll, m_fScroll, 0.00001))
          {
@@ -348,12 +348,12 @@ namespace nanoui
          return;
 
       Widget* pwidgetPanel = m_children[0];
-      //m_child_preferred_height = pwidgetChild->preferred_size(pcontext).y();
+      //m_child_preferred_height = pwidgetChild->preferred_size(pcontext).y;
       float fTrackBarHeight = get_track_bar_height();
       //int yoffset = 0;
       //if (m_child_preferred_height > m_size.cy())
         // yoffset = (int)get_y_offset(m_scroll);
-      //pwidgetChild->set_position(sequence2_int(0, yoffset));
+      //pwidgetChild->set_position(int_sequence2(0, yoffset));
 
       if (m_update_layout)
       {
@@ -376,7 +376,7 @@ namespace nanoui
          ::nano2d::guard guard(pcontext);
          //pcontext->save();
 
-//         float y = (float)m_pos.y();
+//         float y = (float)m_pos.y;
 
          auto offsetScroll = get_scroll_offset();
 
@@ -407,23 +407,23 @@ namespace nanoui
       }
 
       ::nano2d::paint paint = pcontext->box_gradient(
-         (float)m_pos.x() + m_size.cx() - 12 + 1, (float)m_pos.y() + 4 + 1, 8,
+         (float)m_pos.x + m_size.cx() - 12 + 1, (float)m_pos.y + 4 + 1, 8,
          (float)m_size.cy() - 8, 3.f, 4.f, ::color::color(0, 32), ::color::color(0, 92));
       pcontext->begin_path();
-      pcontext->rounded_rectangle(m_pos.x() + m_size.cx() - 12.f, m_pos.y() + 4.f, 8.f,
+      pcontext->rounded_rectangle(m_pos.x + m_size.cx() - 12.f, m_pos.y + 4.f, 8.f,
          m_size.cy() - 8.f, 3.f);
       pcontext->fill_paint(paint);
       pcontext->fill();
 
       paint = pcontext->box_gradient(
-         m_pos.x() + m_size.cx() - 12.f - 1.f,
-         m_pos.y() + 4.f + (m_size.cy() - 8.f - fTrackBarHeight) * m_fScroll - 1.f, 8.f, (float)fTrackBarHeight,
+         m_pos.x + m_size.cx() - 12.f - 1.f,
+         m_pos.y + 4.f + (m_size.cy() - 8.f - fTrackBarHeight) * m_fScroll - 1.f, 8.f, (float)fTrackBarHeight,
          3.f, 4.f, ::color::color(220, 100), ::color::color(128, 100));
 
       pcontext->begin_path();
 
-      pcontext->rounded_rectangle(m_pos.x() + m_size.cx() - 12.f + 1.f,
-         m_pos.y() + 4.f + 1.f + (m_size.cy() - 8.f - fTrackBarHeight) * m_fScroll, 8.f - 2.f,
+      pcontext->rounded_rectangle(m_pos.x + m_size.cx() - 12.f + 1.f,
+         m_pos.y + 4.f + 1.f + (m_size.cy() - 8.f - fTrackBarHeight) * m_fScroll, 8.f - 2.f,
          fTrackBarHeight - 2.f, 2.f);
 
       pcontext->fill_paint(paint);

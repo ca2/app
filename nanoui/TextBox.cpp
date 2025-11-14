@@ -46,9 +46,9 @@ namespace nanoui
       m_strValueEdit(value),
       m_iSelectionStart(-1),
       m_iSelectionEnd(-1),
-      m_mouse_pos(sequence2_int(-1, -1)),
-      m_pointMouseDown(sequence2_int(-1, -1)),
-      m_pointMouseDrag(sequence2_int(-1, -1)),
+      m_mouse_pos(int_sequence2(-1, -1)),
+      m_pointMouseDown(int_sequence2(-1, -1)),
+      m_pointMouseDrag(int_sequence2(-1, -1)),
       m_ekeyMouseDownModifier(::user::e_key_none),
       m_fTextOffset(0)
    {
@@ -147,7 +147,7 @@ namespace nanoui
       {
 
          pcontext->begin_path();
-         pcontext->rounded_rectangle(m_pos.x() + 0.5f, m_pos.y() + 0.5f, m_size.cx() - 1.f,
+         pcontext->rounded_rectangle(m_pos.x + 0.5f, m_pos.y + 0.5f, m_size.cx() - 1.f,
             m_size.cy() - 1.f, 2.5f);
          pcontext->close_path();
          pcontext->fill_color(m_colorDeepBackground);
@@ -157,22 +157,22 @@ namespace nanoui
 
 
       ::nano2d::paint bg = pcontext->box_gradient(
-         m_pos.x() + 1.f, m_pos.y() + 1.f + 1.0f, m_size.cx() - 2.f, m_size.cy() - 2.f,
+         m_pos.x + 1.f, m_pos.y + 1.f + 1.0f, m_size.cx() - 2.f, m_size.cy() - 2.f,
          3.f, 4.f, ::color::color(255, 32), m_colorBackground);
       ::nano2d::paint fg1 = pcontext->box_gradient(
-         m_pos.x() + 1.f, m_pos.y() + 1.f + 1.0f, m_size.cx() - 2.f, m_size.cy() - 2.f,
+         m_pos.x + 1.f, m_pos.y + 1.f + 1.0f, m_size.cx() - 2.f, m_size.cy() - 2.f,
          3.f, 4.f, ::color::color(150, 32), m_colorBackground);
       ::nano2d::paint fg2 = pcontext->box_gradient(
-         m_pos.x() + 1.f, m_pos.y() + 1.f + 1.0f, m_size.cx() - 2.f, m_size.cy() - 2.f,
+         m_pos.x + 1.f, m_pos.y + 1.f + 1.0f, m_size.cx() - 2.f, m_size.cy() - 2.f,
          3.f, 4.f, ::rgba(255, 0, 0, 100), m_colorBackground);
 
       pcontext->begin_path();
-      pcontext->rounded_rectangle(m_pos.x() + 1.f, m_pos.y() + 1.f + 1.0f, m_size.cx() - 2.f,
+      pcontext->rounded_rectangle(m_pos.x + 1.f, m_pos.y + 1.f + 1.0f, m_size.cx() - 2.f,
          m_size.cy() - 2.f, 3);
 
       if (m_bEditable && focused())
          m_bValidFormat ? pcontext->fill_paint(fg1) : pcontext->fill_paint(fg2);
-      else if (m_bSpinnable && m_pointMouseDown.x() != -1)
+      else if (m_bSpinnable && m_pointMouseDown.x != -1)
          pcontext->fill_paint(fg1);
       else
          pcontext->fill_paint(bg);
@@ -180,14 +180,14 @@ namespace nanoui
       pcontext->fill();
 
       pcontext->begin_path();
-      pcontext->rounded_rectangle(m_pos.x() + 0.5f, m_pos.y() + 0.5f, m_size.cx() - 1.f,
+      pcontext->rounded_rectangle(m_pos.x + 0.5f, m_pos.y + 0.5f, m_size.cx() - 1.f,
          m_size.cy() - 1.f, 2.5f);
       pcontext->stroke_color(::color::color(0, 48));
       pcontext->stroke();
 
       pcontext->font_size(font_size());
       pcontext->font_face("sans");
-      float_point draw_pos((float)m_pos.x(), (float)(m_pos.y() + m_size.cy() * 0.5f + 1.f));
+      float_point draw_pos((float)m_pos.x, (float)(m_pos.y + m_size.cy() * 0.5f + 1.f));
 
       float x_spacing = m_size.cy() * 0.3f;
 
@@ -201,12 +201,12 @@ namespace nanoui
          float unit_height = m_size.cy() * 0.4f;
          unit_width = pwidgetChild * unit_height / h;
          ::nano2d::paint img_paint = pcontext->image_pattern_from_index(
-            m_pos.x() + m_size.cx() - x_spacing - unit_width,
-            draw_pos.y() - unit_height * 0.5f, unit_width, unit_height, 0,
+            m_pos.x + m_size.cx() - x_spacing - unit_width,
+            draw_pos.y - unit_height * 0.5f, unit_width, unit_height, 0,
             m_bEnabled ? 0.7f : 0.35f, m_iUnitImage);
          pcontext->begin_path();
-         pcontext->rectangle(m_pos.x() + m_size.cx() - x_spacing - unit_width,
-            draw_pos.y() - unit_height * 0.5f, unit_width, unit_height);
+         pcontext->rectangle(m_pos.x + m_size.cx() - x_spacing - unit_width,
+            draw_pos.y - unit_height * 0.5f, unit_width, unit_height);
          pcontext->fill_paint(img_paint);
          pcontext->fill();
          unit_width += 2;
@@ -217,7 +217,7 @@ namespace nanoui
          unit_width = pcontext->text_bounds(0, 0, m_strUnit, nullptr);
          pcontext->fill_color(::color::color(255, m_bEnabled ? 64 : 32));
          pcontext->text_align(::nano2d::e_align_right | ::nano2d::e_align_middle);
-         pcontext->text(m_pos.x() + m_size.cx() - x_spacing, (float)draw_pos.y(), m_strUnit);
+         pcontext->text(m_pos.x + m_size.cx() - x_spacing, (float)draw_pos.y, m_strUnit);
          unit_width += 2;
 
       }
@@ -233,7 +233,7 @@ namespace nanoui
          pcontext->font_face("icons");
          pcontext->font_size(((m_font_size < 0) ? m_ptheme->m_iButtonFontSize : m_font_size) * icon_scale());
 
-         bool spinning = m_pointMouseDown.x() != -1;
+         bool spinning = m_pointMouseDown.x != -1;
 
          /* up button */ {
             bool hover = m_bMouseHover && spin_area(m_mouse_pos) == SpinArea::Top;
@@ -241,10 +241,10 @@ namespace nanoui
             auto icon = get_utf8_character(m_ptheme->m_efontawesomeTextBoxUp);
             pcontext->text_align(::nano2d::e_align_left | ::nano2d::e_align_middle);
 
-            float_point icon_pos(m_pos.x() + 4.f,
-               m_pos.y() + m_size.cy() / 2.f - x_spacing / 2.f);
+            float_point icon_pos(m_pos.x + 4.f,
+               m_pos.y + m_size.cy() / 2.f - x_spacing / 2.f);
 
-            pcontext->text(icon_pos.x(), icon_pos.y(), icon.data());
+            pcontext->text(icon_pos.x, icon_pos.y, icon.data());
 
          }
 
@@ -254,10 +254,10 @@ namespace nanoui
             auto icon = get_utf8_character(m_ptheme->m_efontawesomeTextBoxDown);
             pcontext->text_align(::nano2d::e_align_left | ::nano2d::e_align_middle);
 
-            float_point icon_pos(m_pos.x() + 4.f,
-               m_pos.y() + m_size.cy() / 2.f + x_spacing / 2.f + 1.5f);
+            float_point icon_pos(m_pos.x + 4.f,
+               m_pos.y + m_size.cy() / 2.f + x_spacing / 2.f + 1.5f);
 
-            pcontext->text(icon_pos.x(), icon_pos.y(), icon.data());
+            pcontext->text(icon_pos.x, icon_pos.y, icon.data());
 
          }
 
@@ -268,15 +268,15 @@ namespace nanoui
       switch (m_ealignment) {
       case e_alignment_left:
          pcontext->text_align(::nano2d::e_align_left | ::nano2d::e_align_middle);
-         draw_pos.x() += (int)(x_spacing + spin_arrows_width);
+         draw_pos.x += (int)(x_spacing + spin_arrows_width);
          break;
       case e_alignment_right:
          pcontext->text_align(::nano2d::e_align_right | ::nano2d::e_align_middle);
-         draw_pos.x() += (int)(m_size.cx() - unit_width - x_spacing);
+         draw_pos.x += (int)(m_size.cx() - unit_width - x_spacing);
          break;
       case e_alignment_center:
          pcontext->text_align(::nano2d::e_align_center | ::nano2d::e_align_middle);
-         draw_pos.x() += (int)(m_size.cx() * 0.5f);
+         draw_pos.x += (int)(m_size.cx() * 0.5f);
          break;
       }
 
@@ -286,8 +286,8 @@ namespace nanoui
          m_ptheme->m_colorDisableText);
 
       // clip visible text area
-      float clip_x = m_pos.x() + x_spacing + spin_arrows_width - 1.0f;
-      float clip_y = m_pos.y() + 1.0f;
+      float clip_x = m_pos.x + x_spacing + spin_arrows_width - 1.0f;
+      float clip_y = m_pos.y + 1.0f;
       float clip_width = m_size.cx() - unit_width - spin_arrows_width - 2 * x_spacing + 2.0f;
       float clip_height = m_size.cy() - 3.0f;
 
@@ -299,21 +299,21 @@ namespace nanoui
 
          float_point old_draw_pos(draw_pos);
 
-         draw_pos.x() += m_fTextOffset;
+         draw_pos.x += m_fTextOffset;
 
          if (m_bCommitted) {
-            pcontext->text(draw_pos.x(), draw_pos.y(), m_strValue.is_empty() ? m_strPlaceHolder : m_strValue);
+            pcontext->text(draw_pos.x, draw_pos.y, m_strValue.is_empty() ? m_strPlaceHolder : m_strValue);
          }
          else {
             const int max_glyphs = 1024;
             ::nano2d::glyphPosition glyphs[max_glyphs];
             ::float_rectangle text_bound;
-            pcontext->text_bounds(draw_pos.x(), draw_pos.y(), m_strValueEdit, &text_bound);
+            pcontext->text_bounds(draw_pos.x, draw_pos.y, m_strValueEdit, &text_bound);
             float lineh = text_bound[3] - text_bound[1];
 
             // find cursor positions
             int nglyphs =
-               pcontext->text_glyph_positions(draw_pos.x(), draw_pos.y(),
+               pcontext->text_glyph_positions(draw_pos.x, draw_pos.y,
                   m_strValueEdit, glyphs, max_glyphs);
             update_cursor(pcontext, text_bound[2], glyphs, nglyphs);
 
@@ -328,14 +328,14 @@ namespace nanoui
             if (prev_cx < clip_x)
                m_fTextOffset += clip_x - prev_cx + 1;
 
-            draw_pos.x() = old_draw_pos.x() + m_fTextOffset;
+            draw_pos.x = old_draw_pos.x + m_fTextOffset;
 
             // draw text with offset
-            pcontext->text(draw_pos.x(), draw_pos.y(), m_strValueEdit);
-            pcontext->text_bounds(draw_pos.x(), draw_pos.y(), m_strValueEdit, &text_bound);
+            pcontext->text(draw_pos.x, draw_pos.y, m_strValueEdit);
+            pcontext->text_bounds(draw_pos.x, draw_pos.y, m_strValueEdit, &text_bound);
 
             // recompute cursor positions
-            nglyphs = pcontext->text_glyph_positions(draw_pos.x(), draw_pos.y(),
+            nglyphs = pcontext->text_glyph_positions(draw_pos.x, draw_pos.y,
                m_strValueEdit, glyphs, max_glyphs);
 
             if (m_iSelectionStart > -1) {
@@ -351,7 +351,7 @@ namespace nanoui
                   // draw selection
                   pcontext->begin_path();
                   pcontext->fill_color(::rgba(255, 255, 255, 80));
-                  pcontext->rectangle(caretx, draw_pos.y() - lineh * 0.5f, selx - caretx,
+                  pcontext->rectangle(caretx, draw_pos.y - lineh * 0.5f, selx - caretx,
                      lineh);
                   pcontext->fill();
                }
@@ -360,8 +360,8 @@ namespace nanoui
 
                // draw cursor
                pcontext->begin_path();
-               pcontext->move_to(caretx, draw_pos.y() - lineh * 0.5f);
-               pcontext->line_to(caretx, draw_pos.y() + lineh * 0.5f);
+               pcontext->move_to(caretx, draw_pos.y - lineh * 0.5f);
+               pcontext->line_to(caretx, draw_pos.y + lineh * 0.5f);
                pcontext->stroke_color(::rgba(255, 192, 0, 255));
                pcontext->stroke_width(1.0f);
                pcontext->stroke();
@@ -410,9 +410,9 @@ namespace nanoui
 
             release_mouse_capture();
 
-            m_pointMouseDown = sequence2_int(-1, -1);
+            m_pointMouseDown = int_sequence2(-1, -1);
 
-            m_pointMouseDrag = sequence2_int(-1, -1);
+            m_pointMouseDrag = int_sequence2(-1, -1);
 
             return true;
 
@@ -432,7 +432,7 @@ namespace nanoui
 
             m_iSelectionEnd = (int)m_strValueEdit.size();
 
-            m_pointMouseDown = sequence2_int(-1, -1);
+            m_pointMouseDown = int_sequence2(-1, -1);
 
             set_need_redraw();
 
@@ -498,7 +498,7 @@ namespace nanoui
 
                   post_redraw();
 
-                  m_pointMouseDown = sequence2_int(-1, -1);
+                  m_pointMouseDown = int_sequence2(-1, -1);
 
                }
 
@@ -508,9 +508,9 @@ namespace nanoui
             else
             {
 
-               m_pointMouseDown = sequence2_int(-1, -1);
+               m_pointMouseDown = int_sequence2(-1, -1);
 
-               m_pointMouseDrag = sequence2_int(-1, -1);
+               m_pointMouseDrag = int_sequence2(-1, -1);
 
             }
 
@@ -518,9 +518,9 @@ namespace nanoui
          else
          {
 
-            m_pointMouseDown = sequence2_int(-1, -1);
+            m_pointMouseDown = int_sequence2(-1, -1);
 
-            m_pointMouseDrag = sequence2_int(-1, -1);
+            m_pointMouseDrag = int_sequence2(-1, -1);
 
          }
 
@@ -1168,7 +1168,7 @@ namespace nanoui
    {
 
       // handle mouse cursor happenings
-      if (m_pointMouseDrag.x() != -1)
+      if (m_pointMouseDrag.x != -1)
       {
 
          if (m_iSelectionStart == -1)
@@ -1184,7 +1184,7 @@ namespace nanoui
          }
 
          auto iSelectionEnd = position_to_cursor_index(
-            (float)m_pointMouseDrag.x() + m_pos.x(), 
+            (float)m_pointMouseDrag.x + m_pos.x, 
             lastx, glyphs, size);
 
          if (m_iSelectionEnd != iSelectionEnd)
@@ -1195,11 +1195,11 @@ namespace nanoui
          }
 
       }
-      else if (m_pointMouseDown.x() != -1)
+      else if (m_pointMouseDown.x != -1)
       {
 
          auto iCursor = position_to_cursor_index(
-            (float)m_pointMouseDown.x() + m_pos.x(),
+            (float)m_pointMouseDown.x + m_pos.x,
             lastx, glyphs, size);
 
          if (m_ekeyMouseDownModifier == ::user::e_key_shift)
@@ -1217,7 +1217,7 @@ namespace nanoui
 
          }
 
-         m_pointMouseDown = sequence2_int(-1, -1);
+         m_pointMouseDown = int_sequence2(-1, -1);
 
       }
       else
@@ -1305,11 +1305,11 @@ namespace nanoui
    TextBox::SpinArea TextBox::spin_area(const int_point& pos)
    {
 
-      if (0 <= pos.x() && pos.x() < 14.f) { /* on scrolling arrows */
-         if (m_size.cy() >= pos.y() && pos.y() <= m_size.cy() / 2.f) { /* top part */
+      if (0 <= pos.x && pos.x < 14.f) { /* on scrolling arrows */
+         if (m_size.cy() >= pos.y && pos.y <= m_size.cy() / 2.f) { /* top part */
             return SpinArea::Top;
          }
-         else if (0.f <= pos.y() && pos.y() > m_size.cy() / 2.f) { /* bottom part */
+         else if (0.f <= pos.y && pos.y > m_size.cy() / 2.f) { /* bottom part */
             return SpinArea::Bottom;
          }
       }

@@ -32,8 +32,8 @@ namespace graphics3d
    // Define light constants
    struct PointLightPushConstants
    {
-      glm::vec4 position{};
-      glm::vec4 color{};
+      floating_sequence4 position{};
+      floating_sequence4 color{};
       float radius;
    };
 
@@ -125,7 +125,7 @@ namespace graphics3d
          ::cast<point_light> ppointlight = pobject;
          if (!ppointlight)
             continue;
-         glm::vec3 offset = pframe->camera()->getPosition() - pobject->transform().translation;
+         floating_sequence3 offset = pframe->camera()->getPosition() - pobject->transform().translation;
          // need to implement getPosition because ICamera has no defintion
          float distanceSquared = glm::dot(offset, offset);
          sorted[distanceSquared] = pobject->getId();
@@ -148,8 +148,8 @@ namespace graphics3d
          auto pobject = (*pframe->scene_objects())[it->element2()];
          ::cast<point_light> ppointlight = pobject;
          PointLightPushConstants push{};
-         push.position = glm::vec4(ppointlight->transform().translation, 1.0f);
-         push.color = glm::vec4(
+         push.position = floating_sequence4(ppointlight->transform().translation, 1.0f);
+         push.color = floating_sequence4(
             ppointlight->color().f32_red(),
             ppointlight->color().f32_green(),
             ppointlight->color().f32_blue(),
@@ -182,7 +182,7 @@ namespace graphics3d
 
       auto& globalubo = pscene->global_ubo();
 
-      auto rotateLight = glm::rotate(glm::mat4(1.f), 0.5f * dt, { 0.f, -1.f, 0.f });
+      auto rotateLight = glm::rotate(floating_matrix4(1.f), 0.5f * dt, { 0.f, -1.f, 0.f });
 
       int lightIndex = 0;
 
@@ -199,13 +199,13 @@ namespace graphics3d
 
          // update light position
          ppointlight->m_transform.translation =
-            glm::vec3(rotateLight * glm::vec4(ppointlight->m_transform.translation, 1.f));
+            floating_sequence3(rotateLight * floating_sequence4(ppointlight->m_transform.translation, 1.f));
 
          // copy light to ubo
          globalubo["pointLights"][lightIndex]["position"] =
-            glm::vec4(ppointlight->m_transform.translation, 1.f);
+            floating_sequence4(ppointlight->m_transform.translation, 1.f);
          globalubo["pointLights"][lightIndex]["color"] =
-            glm::vec4(obj->m_color, ppointlight->m_pointlightcomponent.lightIntensity);
+            floating_sequence4(obj->m_color, ppointlight->m_pointlightcomponent.lightIntensity);
 
          lightIndex += 1;
 
@@ -213,7 +213,7 @@ namespace graphics3d
 
       globalubo["numLights"] = lightIndex;
 
-      // auto rotateLight = glm::rotate(glm::mat4(1.f), m_rotationSpeed * pframe->frameTime(), {0.f, -1.f, 0.f});
+      // auto rotateLight = glm::rotate(floating_matrix4(1.f), m_rotationSpeed * pframe->frameTime(), {0.f, -1.f, 0.f});
       // auto &ubo = (*ppropertiesGlobalUbo);
       // int lightIndex = 0;
       // auto &sceneobjects = (*pframe->scene_objects());
@@ -226,11 +226,11 @@ namespace graphics3d
       //    ASSERT(lightIndex < point_light::MAX_LIGHTS && "Point lights exceed maximum supported.");
       //
       //    auto &transform = ppointlight->getTransform();
-      //    transform.translation = glm::vec3(rotateLight * glm::vec4(transform.translation, 1.f));
+      //    transform.translation = floating_sequence3(rotateLight * floating_sequence4(transform.translation, 1.f));
       //
       //    auto pointLights = ubo["pointLights"];
-      //    pointLights[lightIndex]["position"] = glm::vec4(transform.translation, 1.f);
-      //    pointLights[lightIndex]["color"] = glm::vec4(ppointlight->getColor(),
+      //    pointLights[lightIndex]["position"] = floating_sequence4(transform.translation, 1.f);
+      //    pointLights[lightIndex]["color"] = floating_sequence4(ppointlight->getColor(),
       //                                                 ppointlight->m_fLightIntensity);
       //
       //    ++lightIndex;

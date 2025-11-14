@@ -119,8 +119,8 @@ namespace typeface_freetype
       //// now store character for later use
       ////aracter = {
       //  //  texture,
-      ch.Size = glm::ivec2(m_face->glyph->bitmap.width, m_face->glyph->bitmap.rows);
-      ch.Bearing = glm::ivec2(m_face->glyph->bitmap_left, m_face->glyph->bitmap_top);
+      ch.Size = {(int) m_face->glyph->bitmap.width, (int) m_face->glyph->bitmap.rows};
+      ch.Bearing = {m_face->glyph->bitmap_left, m_face->glyph->bitmap_top};
       ch.Advance = static_cast<unsigned int>(m_face->glyph->advance.x);
 //      //};
 //      //Characters.insert(std::pair<char, Character>(c, character));

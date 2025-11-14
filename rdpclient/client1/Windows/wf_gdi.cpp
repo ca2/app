@@ -288,7 +288,7 @@ void wf_resize_window(wfContext* wfc)
 		set_window_position(wfc->hwnd, HWND_TOP, 0, 0, wfc->width, wfc->height, SWP_FRAMECHANGED);
 
 //		wf_update_canvas_diff(wfc);
-		set_window_position(wfc->hwnd, HWND_TOP, -1, -1, wfc->width + wfc->diff.x(), wfc->height + wfc->diff.y(), SWP_NOMOVE | SWP_FRAMECHANGED);
+		set_window_position(wfc->hwnd, HWND_TOP, -1, -1, wfc->width + wfc->diff.x, wfc->height + wfc->diff.y, SWP_NOMOVE | SWP_FRAMECHANGED);
 	}
 	else
 	{
@@ -309,7 +309,7 @@ void wf_resize_window(wfContext* wfc)
 //		wf_update_canvas_diff(wfc);
 
 		/* Now resize to get full canvas int_size and room for caption and borders */
-		set_window_position(wfc->hwnd, HWND_TOP, wfc->client_x, wfc->client_y, wfc->client_width + wfc->diff.x(), wfc->client_height + wfc->diff.y(), 0 /*SWP_FRAMECHANGED*/);
+		set_window_position(wfc->hwnd, HWND_TOP, wfc->client_x, wfc->client_y, wfc->client_width + wfc->diff.x, wfc->client_height + wfc->diff.y, 0 /*SWP_FRAMECHANGED*/);
 		//wf_size_scrollbars(wfc,  wfc->client_width, wfc->client_height);
 	}
 	wf_update_offset(wfc);
@@ -633,15 +633,15 @@ void wf_gdi_palette_update(wfContext* wfc, PALETTE_UPDATE* palette)
 //
 //		numPoints = polyline->numDeltaEntries + 1;
 //		pts = (::int_point*) malloc(sizeof(::int_point) * numPoints);
-//		pts[0].x() = temp.x() = polyline->xStart;
-//		pts[0].y() = temp.y() = polyline->yStart;
+//		pts[0].x = temp.x = polyline->xStart;
+//		pts[0].y = temp.y = polyline->yStart;
 //
 //		for (i = 0; i < (int) polyline->numDeltaEntries; i++)
 //		{
-//			temp.x() += polyline->points[i].x();
-//			temp.y() += polyline->points[i].y();
-//			pts[i + 1].x() = temp.x();
-//			pts[i + 1].y() = temp.y();
+//			temp.x += polyline->points[i].x;
+//			temp.y += polyline->points[i].y;
+//			pts[i + 1].x = temp.x;
+//			pts[i + 1].y = temp.y;
 //		}
 //		if (wfc->drawing == wfc->primary)
 //			wf_invalidate_region(wfc, wfc->client_x, wfc->client_y, wfc->client_width, wfc->client_height);
@@ -700,8 +700,8 @@ void wf_gdi_palette_update(wfContext* wfc, PALETTE_UPDATE* palette)
 //			for (j = 0; j < message->numRects; j++)
 //			{
 //				wf_set_clip_rgn(wfc,
-//					surface_bits_command->destLeft + message->rects[j].x(),
-//					surface_bits_command->destTop + message->rects[j].y(),
+//					surface_bits_command->destLeft + message->rects[j].x,
+//					surface_bits_command->destTop + message->rects[j].y,
 //					message->rects[j].width, message->rects[j].height);
 //
 //				BitBlt(wfc->primary->hdc, tx, ty, 64, 64, wfc->tile->hdc, 0, 0);
@@ -713,8 +713,8 @@ void wf_gdi_palette_update(wfContext* wfc, PALETTE_UPDATE* palette)
 //		/* invalidate regions */
 //		for (i = 0; i < message->numRects; i++)
 //		{
-//			tx = surface_bits_command->destLeft + message->rects[i].x();
-//			ty = surface_bits_command->destTop + message->rects[i].y();
+//			tx = surface_bits_command->destLeft + message->rects[i].x;
+//			ty = surface_bits_command->destTop + message->rects[i].y;
 //			wf_invalidate_region(wfc, tx, ty, message->rects[i].width, message->rects[i].height);
 //		}
 //
@@ -822,7 +822,7 @@ void wf_gdi_palette_update(wfContext* wfc, PALETTE_UPDATE* palette)
 //
 //	if (!wfc->disablewindowtracking)
 //	{
-//		wfc->diff.x() = Δx;
-//		wfc->diff.y() = Δy;
+//		wfc->diff.x = Δx;
+//		wfc->diff.y = Δy;
 //	}
 //}

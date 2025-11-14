@@ -966,28 +966,28 @@
 //
 //inline void __exchange(::binary_stream & s, ::int_point & point)
 //{
-//   s.exchange("x", point.x()); s.exchange("y", point.y());
+//   s.exchange("x", point.x); s.exchange("y", point.y);
 //}
 //
 //
 //
 //inline void __exchange(::binary_stream & s, ::long_long_point & point)
 //{
-//   s.exchange("x", point.x()); s.exchange("y", point.y());
+//   s.exchange("x", point.x); s.exchange("y", point.y);
 //}
 //
 //
 //
 //inline void __exchange(::binary_stream & s, ::float_point & point)
 //{
-//   s.exchange("x", point.x()); s.exchange("y", point.y());
+//   s.exchange("x", point.x); s.exchange("y", point.y);
 //}
 //
 //
 //
 //inline void __exchange(::binary_stream & s, ::double_point & point)
 //{
-//   s.exchange("x", point.x()); s.exchange("y", point.y());
+//   s.exchange("x", point.x); s.exchange("y", point.y);
 //}
 //
 //template < typename TYPE >

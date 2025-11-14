@@ -68,8 +68,8 @@ void message_queue::post_message(oswindow oswindow, ::user::enum_message euserme
    message.m_eusermessage = eusermessage;
    message.m_wparam = wparam;
    message.m_lparam = lparam;
-   message.m_point.x() = I32_MINIMUM;
-   message.m_point.y() = I32_MINIMUM;
+   message.m_point.x = I32_MINIMUM;
+   message.m_point.y = I32_MINIMUM;
 
    /* return */ post_message(message);
 

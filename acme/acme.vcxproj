@@ -1745,6 +1745,7 @@
     <ClCompile Include="handler\source.cpp" />
     <ClCompile Include="handler\task_handler.cpp" />
     <ClCompile Include="handler\topic.cpp" />
+    <ClCompile Include="operating_system\cpu_features.cpp" />
     <ClCompile Include="operating_system\dos_time.cpp" />
     <ClCompile Include="_information_n.cpp" />
     <ClInclude Include="..\..\..\operating_system\operating_system-windows\operating_system\system.h" />
@@ -1773,6 +1774,7 @@
     <ClInclude Include="filesystem\filesystem\_format.h" />
     <ClInclude Include="filesystem\file\byte2_stream.h" />
     <ClInclude Include="filesystem\file\protocol_file.h" />
+    <ClInclude Include="operating_system\cpu_features.h" />
     <ClInclude Include="operating_system\dos_time1.h" />
     <ClInclude Include="operating_system\networking.h" />
     <ClInclude Include="operating_system\shared_posix\time1.h" />
@@ -1783,7 +1785,8 @@
     <ClInclude Include="prototype\collection\block_array.h" />
     <ClInclude Include="prototype\collection\static_array.h" />
     <ClInclude Include="prototype\data\block.h" />
-    <ClInclude Include="prototype\geometry\Matrix.h" />
+    <ClInclude Include="prototype\geometry\matrix.h" />
+    <ClInclude Include="prototype\geometry\_.h" />
     <ClInclude Include="prototype\prototype\call.h" />
     <ClInclude Include="compress\compress.h" />
     <ClInclude Include="compress\uncompress.h" />

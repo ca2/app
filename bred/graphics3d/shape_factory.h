@@ -20,16 +20,16 @@ namespace graphics3d
       struct Vertex
       {
 
-         ::glm::vec3    m_position;
-         ::glm::vec3    m_color;
-         ::glm::vec2    m_uv;
+         ::floating_sequence3    m_position;
+         ::floating_sequence3    m_color;
+         ::floating_sequence2    m_uv;
 
          /*Vertex() {}
 
          Vertex(
-            const ::glm::vec3& position,
-            const ::glm::vec3& color,
-            const ::glm::vec3& uv
+            const ::floating_sequence3& position,
+            const ::floating_sequence3& color,
+            const ::floating_sequence3& uv
          ) :
             m_position(position),
             m_color(color),

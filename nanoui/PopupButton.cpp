@@ -77,14 +77,14 @@ namespace nanoui
          pcontext->text_align(::nano2d::e_align_left | ::nano2d::e_align_middle);
 
          float iw = pcontext->text_bounds(0, 0, icon.data(), nullptr);
-         float_point icon_pos(0, m_pos.y() + m_size.cy() * 0.5f - 1);
+         float_point icon_pos(0, m_pos.y + m_size.cy() * 0.5f - 1);
 
          if (m_ppopup->side() == Popup::Right)
-            icon_pos[0] = m_pos.x() + m_size.cx() - iw - 8.f;
+            icon_pos[0] = m_pos.x + m_size.cx() - iw - 8.f;
          else
-            icon_pos[0] = m_pos.x() + 8.f;
+            icon_pos[0] = m_pos.x + 8.f;
 
-         pcontext->text(icon_pos.x(), icon_pos.y(), icon.data());
+         pcontext->text(icon_pos.x, icon_pos.y, icon.data());
       }
    }
 
@@ -104,18 +104,18 @@ namespace nanoui
          if (parent_window)
          {
 
-            int pos_y = absolute_position().y() - parent_window->position().y() + m_size.cy() / 2;
+            int pos_y = absolute_position().y - parent_window->position().y + m_size.cy() / 2;
 
             if (m_ppopup->side() == Popup::Right)
             {
 
-               m_ppopup->set_anchor_pos(sequence2_int(parent_window->width() + anchor_size, pos_y));
+               m_ppopup->set_anchor_pos(int_sequence2(parent_window->width() + anchor_size, pos_y));
 
             }
             else
             {
 
-               m_ppopup->set_anchor_pos(sequence2_int(-anchor_size, pos_y));
+               m_ppopup->set_anchor_pos(int_sequence2(-anchor_size, pos_y));
 
             }
 
@@ -123,7 +123,7 @@ namespace nanoui
          else
          {
 
-            m_ppopup->set_position(absolute_position() + sequence2_int(width() + anchor_size + 1, m_size.cy() / 2 - anchor_size));
+            m_ppopup->set_position(absolute_position() + int_sequence2(width() + anchor_size + 1, m_size.cy() / 2 - anchor_size));
 
          }
 

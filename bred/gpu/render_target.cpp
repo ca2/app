@@ -11,6 +11,9 @@
 #include "acme/platform/application.h"
 
 
+#include <assert.h>
+
+
 namespace gpu
 {
 

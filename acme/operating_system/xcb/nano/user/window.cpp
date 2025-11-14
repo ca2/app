@@ -1066,7 +1066,7 @@ namespace nano
       void window::move_to(const ::int_point & point)
       {
 
-         m_pdisplay->_move_window(m_window, point.x(), point.y());
+         m_pdisplay->_move_window(m_window, point.x, point.y);
 
          m_pinterface->m_rectangle.move_to(point);
 

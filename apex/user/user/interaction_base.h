@@ -464,8 +464,8 @@ namespace user
 
       void set_context_org(::draw2d::graphics_pointer & pgraphics) override;
 
-      void viewport_screen_to_client(::sequence2_int & sequence) override;
-      void viewport_client_to_screen(::sequence2_int & sequence) override;
+      void viewport_screen_to_client(::int_sequence2 & sequence) override;
+      void viewport_client_to_screen(::int_sequence2 & sequence) override;
       void viewport_client_to_screen(::int_rectangle & rectangle) override;
       void viewport_screen_to_client(::int_rectangle & rectangle) override;
 

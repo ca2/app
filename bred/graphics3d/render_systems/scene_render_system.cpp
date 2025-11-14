@@ -170,8 +170,8 @@ namespace graphics3d
       //      if (!node->mesh)
       //         continue;
 
-      //      glm::mat4 world = go->getTransform().mat4() * node->getMatrix();
-      //      glm::mat4 normalMat = glm::transpose(glm::inverse(world));
+      //      floating_matrix4 world = go->getTransform().floating_matrix4() * node->getMatrix();
+      //      floating_matrix4 normalMat = glm::transpose(glm::inverse(world));
 
       //      memcpy(node->mesh->uniformBuffer.mapped, &world, sizeof(world));
       //      memcpy((char *)node->mesh->uniformBuffer.mapped + sizeof(world), &normalMat, sizeof(normalMat));

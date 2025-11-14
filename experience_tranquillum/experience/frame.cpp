@@ -209,9 +209,9 @@ namespace experience_tranquillum
          if (m_pframewindow == nullptr || m_pframewindow->const_layout().design().display() != ::e_display_minimal)
             return false;
 
-         rectangle.left() = m_pointMoveGripMinimal.x() + 2;
+         rectangle.left() = m_pointMoveGripMinimal.x + 2;
 
-         rectangle.top() = m_pointMoveGripMinimal.y() + 2;
+         rectangle.top() = m_pointMoveGripMinimal.y + 2;
 
          rectangle.right() = rectangle.left() + m_iCaptionHeight - 4;
 
@@ -848,9 +848,9 @@ namespace experience_tranquillum
          ::int_point pointHitTest = point;
 
          //               if(rectangleEvent.left() < 0)
-         //                  pointHitTest.x() -= rectangleEvent.left();
+         //                  pointHitTest.x -= rectangleEvent.left();
          //               if(rectangleEvent.top() < 0)
-         //                  pointHitTest.y() -= rectangleEvent.top();
+         //                  pointHitTest.y -= rectangleEvent.top();
 
          if (egrip & e_grip_top_left)
          {

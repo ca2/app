@@ -2,6 +2,19 @@
 #pragma once
 
 
+#include "acme/prototype/geometry/sequence.h"
+#include "acme/prototype/geometry/matrix.h"
+
+
+using floating_sequence2 = ::float_sequence2;
+using floating_sequence3 = ::float_sequence3;
+using floating_sequence4 = ::float_sequence4;
+
+
+using floating_matrix2 = ::float_matrix2;
+using floating_matrix3 = ::float_matrix3;
+using floating_matrix4 = ::float_matrix4;
+
 
 namespace gpu
 {
@@ -11,8 +24,8 @@ namespace gpu
 	struct point_light
 	{
 
-		glm::vec4 position{};  // ignore w
-		glm::vec4 color{};     // w is intensity
+		floating_sequence4       position{};  // ignore w
+		floating_sequence4       color{};     // w is intensity
 
 	};
 
@@ -20,8 +33,8 @@ namespace gpu
    struct point_light_push_constants
    {
 
-      glm::vec4 position{}; // ignore w
-      glm::vec4 color{}; // w is intensity
+      floating_sequence4 position{}; // ignore w
+      floating_sequence4 color{}; // w is intensity
       float radius;
    };
 

@@ -60,7 +60,7 @@ public:
 //#endif
    template < primitive_point POINT, primitive_size SIZE >
    rectangle_type(const POINT & point, const SIZE & size) :
-      rectangle_type((UNIT_TYPE)point.x(), (UNIT_TYPE)point.y(), (UNIT_TYPE)(point.x() + size.cx()), (UNIT_TYPE)(point.y() + size.cy())) 
+      rectangle_type((UNIT_TYPE)point.x, (UNIT_TYPE)point.y, (UNIT_TYPE)(point.x + size.cx()), (UNIT_TYPE)(point.y + size.cy())) 
    {
    }
    template < primitive_size SIZE >
@@ -122,21 +122,21 @@ public:
    }
 
 
-//   constexpr const UNIT_TYPE & x() const {return this->a();}
-//   UNIT_TYPE & x() {return this->a();}
-//   constexpr const UNIT_TYPE & y() const {return this->b();}
-//   UNIT_TYPE & y() {return this->b();}
+//   constexpr const UNIT_TYPE & x() const {return this->x();}
+//   UNIT_TYPE & x() {return this->x();}
+//   constexpr const UNIT_TYPE & y() const {return this->y();}
+//   UNIT_TYPE & y() {return this->y();}
 
 
-   constexpr const UNIT_TYPE & left() const {return this->a();}
-   UNIT_TYPE & left() {return this->a();}
-   constexpr const UNIT_TYPE & top() const {return this->b();}
-   UNIT_TYPE & top() {return this->b();}
+   constexpr const UNIT_TYPE & left() const {return this->x;}
+   UNIT_TYPE & left() {return this->x;}
+   constexpr const UNIT_TYPE & top() const {return this->y;}
+   UNIT_TYPE & top() {return this->y;}
 
-   constexpr const UNIT_TYPE & right() const {return this->c();}
-   UNIT_TYPE & right() {return this->c();}
-   constexpr const UNIT_TYPE & bottom() const {return this->d();}
-   UNIT_TYPE & bottom() {return this->d();}
+   constexpr const UNIT_TYPE & right() const {return this->z;}
+   UNIT_TYPE & right() {return this->z;}
+   constexpr const UNIT_TYPE & bottom() const {return this->w;}
+   UNIT_TYPE & bottom() {return this->w;}
 
    auto & origin()  { return top_left(); }
    const auto & origin() const  { return top_left(); }
@@ -152,7 +152,7 @@ public:
    inline bool is_null() const  { return ::is_null(*this); }
    inline bool has_area() const { return !is_empty(); }
    template < primitive_point POINT >
-   inline bool contains(const POINT & point) const  { return ::contains(*this, point.x(), point.y()); }
+   inline bool contains(const POINT & point) const  { return ::contains(*this, point.x, point.y); }
    inline bool contains_x(UNIT_TYPE x) const  { return ::contains_x(*this, x); }
    inline bool contains_y(UNIT_TYPE y) const  { return ::contains_y(*this, y); }
 
@@ -173,8 +173,8 @@ public:
    inline ::double_point to_point_rate(const POINT & point) const
    {
 
-      return { ((double)point.x() - (double)this->left()) / (double)width(),
-         ((double)point.y() - (double)this->top()) / (double)height() };
+      return { ((double)point.x - (double)this->left()) / (double)width(),
+         ((double)point.y - (double)this->top()) / (double)height() };
 
    }
 
@@ -199,7 +199,7 @@ public:
    inline POINT_TYPE from_point_rate(const ::double_point & point) const
    {
 
-      return POINT_TYPE(x_rate(point.x()), y_rate(point.y()));
+      return POINT_TYPE(x_rate(point.x), y_rate(point.y));
 
    }
 
@@ -332,10 +332,10 @@ public:
    {
       
       return {
-         center.x() - halfsize.cx(),
-         center.y() - halfsize.cy(),
-         center.x()+ halfsize.cx(),
-         center.y()+ halfsize.cx()
+         center.x - halfsize.cx(),
+         center.y - halfsize.cy(),
+         center.x+ halfsize.cx(),
+         center.y+ halfsize.cx()
       };
       
    }
@@ -355,7 +355,7 @@ public:
    rectangle_type & move_bottom_to(UNIT_TYPE bottom)  { this->top() = bottom - height(); this->bottom() = bottom; return *this; }
 
    rectangle_type & move_to(UNIT_TYPE left, UNIT_TYPE top)  { move_left_to(left); return move_top_to(top); return *this; }
-   rectangle_type & move_to(const POINT_TYPE & point)  { return move_to(point.x(), point.y()); }
+   rectangle_type & move_to(const POINT_TYPE & point)  { return move_to(point.x, point.y); }
 
    POINT_TYPE & top_left()  { return *((POINT_TYPE *)this); }
    POINT_TYPE & bottom_right()  { return *((POINT_TYPE *)this + 1); }
@@ -373,7 +373,7 @@ public:
    template < primitive_size SIZE >
    rectangle_type & set(const SIZE & s)  { return ::assign(*this, POINT_TYPE(), s); }
    template < primitive_point POINT1, primitive_point POINT2 >
-   rectangle_type & set(const POINT1 & p1, const POINT2 & p2)  { return ::assign(*this, p1.x(), p1.y(), p2.x(), p2.y()); }
+   rectangle_type & set(const POINT1 & p1, const POINT2 & p2)  { return ::assign(*this, p1.x, p1.y, p2.x, p2.y); }
    template < primitive_point POINT, primitive_size SIZE >
    rectangle_type & set(const POINT & p, const SIZE & s)  { return ::assign(*this, p, s); }
    template < primitive_rectangle RECTANGLE >
@@ -421,7 +421,7 @@ public:
    rectangle_type & deflate(NUMBERN n)  { return deflate(n, n); }
 
    template < primitive_point POINT >
-   rectangle_type & offset(const POINT & point)  { return offset_x(point.x()).offset_y(point.y()); }
+   rectangle_type & offset(const POINT & point)  { return offset_x(point.x).offset_y(point.y); }
 
 
    template < primitive_size SIZE >
@@ -619,7 +619,7 @@ public:
 //   bool operator!=(const rectangle_type & rectangle) const  { return !operator ==(rectangle); }
 
    template < primitive_point POINT >
-   rectangle_type & operator +=(const POINT & point)  { return ::offset(*this, point.x(), point.y()); }
+   rectangle_type & operator +=(const POINT & point)  { return ::offset(*this, point.x, point.y); }
 
    template < primitive_size SIZE >
    rectangle_type & operator +=(const SIZE & size)  { return ::offset(*this, size.cx(), size.cy()); }
@@ -653,7 +653,7 @@ public:
 
 
    template < primitive_point POINT >
-   rectangle_type & operator-=(const POINT & point)  { return ::subtract(*this, point.x(), point.y()); }
+   rectangle_type & operator-=(const POINT & point)  { return ::subtract(*this, point.x, point.y); }
 
    template < primitive_size SIZE >
    rectangle_type & operator-=(const SIZE & size)  { return ::subtract(*this, -size.cx(), -size.cy()); }
@@ -664,11 +664,11 @@ public:
 
    rectangle_type operator +(const POINT_TYPE & point) const 
    {
-      rectangle_type rectangle(*this); rectangle.offset(point.x(), point.y()); return rectangle;
+      rectangle_type rectangle(*this); rectangle.offset(point.x, point.y); return rectangle;
    }
    rectangle_type operator-(const POINT_TYPE & point) const 
    {
-      rectangle_type rectangle(*this); rectangle.offset(-point.x(), -point.y()); return rectangle;
+      rectangle_type rectangle(*this); rectangle.offset(-point.x, -point.y); return rectangle;
    }
 
    template < primitive_size SIZE >
@@ -779,11 +779,11 @@ public:
 
       UNIT_TYPE h = (UNIT_TYPE)(d * height());
 
-      this->left() = point.x() - w / 2;
+      this->left() = point.x - w / 2;
 
       this->right() = this->left() + w;
 
-      this->top() = point.y() - h / 2;
+      this->top() = point.y - h / 2;
 
       this->bottom() = this->top() + h;
 
@@ -928,38 +928,38 @@ public:
       if ((ealign & e_align_horizontal) == e_align_horizontal_center)
       {
 
-         point.x() = rectangle.left() + (rectangle.right() - rectangle.left()) / 2 - width() / 2 - this->left();
+         point.x = rectangle.left() + (rectangle.right() - rectangle.left()) / 2 - width() / 2 - this->left();
 
       }
       else if ((ealign & e_align_horizontal) == e_align_left)
       {
 
-         point.x() = rectangle.left() - this->left();
+         point.x = rectangle.left() - this->left();
 
       }
       else if ((ealign & e_align_horizontal) == e_align_right)
       {
 
-         point.x() = rectangle.right() - this->right();
+         point.x = rectangle.right() - this->right();
 
       }
 
       if ((ealign & e_align_vertical) == e_align_vertical_center)
       {
 
-         point.y() = rectangle.top() + (rectangle.bottom() - rectangle.top()) / 2 - height() / 2 - this->top();
+         point.y = rectangle.top() + (rectangle.bottom() - rectangle.top()) / 2 - height() / 2 - this->top();
 
       }
       else if ((ealign & e_align_vertical) == e_align_top)
       {
 
-         point.y() = rectangle.top() - this->top();
+         point.y = rectangle.top() - this->top();
 
       }
       else if ((ealign & e_align_vertical) == e_align_bottom)
       {
 
-         point.y() = rectangle.bottom() - this->bottom();
+         point.y = rectangle.bottom() - this->bottom();
 
       }
 
@@ -1593,10 +1593,10 @@ public:
    void expand_bounding_box(POINT_TYPE & top_left, POINT_TYPE & bottom_right) const
    {
       
-      expand_minimum_maximum(top_left.x(), bottom_right.x(), this->left());
-      expand_minimum_maximum(top_left.y(), bottom_right.y(), this->top());
-      expand_minimum_maximum(top_left.x(), bottom_right.x(), this->right());
-      expand_minimum_maximum(top_left.y(), bottom_right.y(), this->bottom());
+      expand_minimum_maximum(top_left.x, bottom_right.x, this->left());
+      expand_minimum_maximum(top_left.y, bottom_right.y, this->top());
+      expand_minimum_maximum(top_left.x, bottom_right.x, this->right());
+      expand_minimum_maximum(top_left.y, bottom_right.y, this->bottom());
 
    }
 

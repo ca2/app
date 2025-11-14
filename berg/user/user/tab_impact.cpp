@@ -1488,7 +1488,7 @@ namespace user
 
             pointOffset = const_layout().layout().origin();
 
-            if (pointOffset.y() == 31)
+            if (pointOffset.y == 31)
             {
 
                //information() << "31";

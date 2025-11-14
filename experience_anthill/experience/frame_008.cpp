@@ -90,9 +90,9 @@ namespace experience_anthill
    //      ::int_point pointHitTest = point;
 
    //      //                  if(rectangleEvent.left() < 0)
-   //      //                     pointHitTest.x() -= rectangleEvent.left();
+   //      //                     pointHitTest.x -= rectangleEvent.left();
    //      //                  if(rectangleEvent.top() < 0)
-   //      //                     pointHitTest.y() -= rectangleEvent.top();
+   //      //                     pointHitTest.y -= rectangleEvent.top();
 
    //      if (egrip & e_grip_top_left)
    //      {

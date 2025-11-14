@@ -145,8 +145,8 @@ namespace os
 
       }
 
-      m_point.x() = lpcrect.left();
-      m_point.y() = lpcrect.top();
+      m_point.x = lpcrect.left();
+      m_point.y = lpcrect.top();
       m_size.cx() = width(lpcrect);
       m_size.cy() = height(lpcrect);
 
@@ -169,7 +169,7 @@ namespace os
       if(bShow)
       {
 
-         set_window_position(m_window, nullptr, m_point.x(), m_point.y(), m_size.cx(), m_size.cy(), SWP_SHOWWINDOW | SWP_NOZORDER);
+         set_window_position(m_window, nullptr, m_point.x, m_point.y, m_size.cx(), m_size.cy(), SWP_SHOWWINDOW | SWP_NOZORDER);
 
       }
       else
@@ -222,7 +222,7 @@ namespace os
 
       //bool bShow = true;
 
-//      XMoveResizeWindow(m_window->display(), m_window->window(), m_rectangleDesktop.right()-m_point.x(), m_rectangleDesktop.bottom()-m_point.y(), m_size.cx(), m_size.cy());
+//      XMoveResizeWindow(m_window->display(), m_window->window(), m_rectangleDesktop.right()-m_point.x, m_rectangleDesktop.bottom()-m_point.y, m_size.cx(), m_size.cy());
 
       //XMoveResizeWindow(m_window->display(), m_window->window(), 500, 0, 200, 200);
 
@@ -311,7 +311,7 @@ namespace os
                         {
                            if(e.xbutton.button == Button1)
                            {
-                              on_lbutton_down(e.xbutton.x(), e.xbutton.y());
+                              on_lbutton_down(e.xbutton.x, e.xbutton.y);
                            }
                            else if(e.xbutton.button == Button2)
                            {
@@ -331,7 +331,7 @@ namespace os
                         {
                            if(e.xbutton.button == Button1)
                            {
-                              on_lbutton_up(e.xbutton.x(), e.xbutton.y());
+                              on_lbutton_up(e.xbutton.x, e.xbutton.y);
                            }
                            else if(e.xbutton.button == Button2)
                            {
@@ -445,7 +445,7 @@ namespace os
                         //lpMsg->wParam        = 0;
                         //lpMsg->lParam        = make_int(e.xmotion.x_root, e.xmotion.y_root);
 
-                        on_mouse_move(e.xmotion.x(), e.xmotion.y());
+                        on_mouse_move(e.xmotion.x, e.xmotion.y);
 
                         //bRet                 = true;
 
@@ -703,13 +703,13 @@ namespace os
    bool simple_ui::on_move(int x, int y)
    {
 
-      m_point.x() = x;
-      m_point.y() = y;
+      m_point.x = x;
+      m_point.y = y;
 
-      m_rectangle.left() = m_point.x();
-      m_rectangle.right() = m_point.x() + m_size.cx();
-      m_rectangle.top() = m_point.y();
-      m_rectangle.bottom() = m_point.y() + m_size.cy();
+      m_rectangle.left() = m_point.x;
+      m_rectangle.right() = m_point.x + m_size.cx();
+      m_rectangle.top() = m_point.y;
+      m_rectangle.bottom() = m_point.y + m_size.cy();
 
       return true;
 
@@ -721,10 +721,10 @@ namespace os
       m_size.cx() = cx;
       m_size.cy() = cy;
 
-      m_rectangle.left() = m_point.x();
-      m_rectangle.right() = m_point.x() + m_size.cx();
-      m_rectangle.top() = m_point.y();
-      m_rectangle.bottom() = m_point.y() + m_size.cy();
+      m_rectangle.left() = m_point.x;
+      m_rectangle.right() = m_point.x + m_size.cx();
+      m_rectangle.top() = m_point.y;
+      m_rectangle.bottom() = m_point.y + m_size.cy();
 
 /*      m_pimage = create_image({get_app()->create_new,  this});
 /*      m_pimage = create_image({m_size.cx(),  m_size.cy()});
@@ -780,8 +780,8 @@ namespace os
       m_rectangle.right() = x + m_size.cx();
       m_rectangle.bottom() = y + m_size.cy();
 
-      m_point.x() = x;
-      m_point.y() = y;
+      m_point.x = x;
+      m_point.y = y;
 
       return true;
 

@@ -161,7 +161,7 @@ namespace gpu_opengl
             GL_COLOR_ATTACHMENT0,
             GL_TEXTURE_CUBE_MAP_POSITIVE_X + iFace,
             ptexture->m_gluTextureID,
-            ptexture->m_iMipCount);
+            ptexture->m_iCurrentMip);
 
          GLCheckError("");
 

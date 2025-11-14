@@ -1086,6 +1086,15 @@ struct sequence_type :
    }
 
 
+   template<primitive_floating FLOATING>
+   inline sequence_type mix(const sequence_type &b, FLOATING t) const
+   {
+      
+      return *this * ((FLOATING)1 - t) + b * t;
+
+   }
+
+
 };
 
 
@@ -1251,3 +1260,12 @@ struct std::hash<::sequence_type<NUMBER, t_iSize>>
 //
 
 
+template < primitive_number NUMBER, primitive_number NUMBER1, int t_iSize >
+inline sequence_type<largest_number<NUMBER, NUMBER1>, t_iSize>
+operator*(NUMBER n, const sequence_type< NUMBER, t_iSize> & s)
+{
+   sequence_type<largest_number<NUMBER, NUMBER1>, t_iSize> result;
+   for (::collection::count i = 0; i < t_iSize; ++i)
+      result[i] = (largest_number<NUMBER, NUMBER1>)(n * this->m_coordinatea[i]);
+   return result;
+}

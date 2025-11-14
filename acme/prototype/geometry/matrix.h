@@ -1980,6 +1980,8 @@ inline sequence_type<NUMBER, t_iSize>
 sequence_type<NUMBER, t_iSize>::operator*(const matrix_type<FLOATING1, 4> &M) const
    requires(t_iSize == 4 && ::std::is_same_v<FLOATING1, NUMBER>)
 {
+
+   const auto &v = *this;
    sequence_type result;
 
    result.x = v.x * M[0][0] + v.y * M[0][1] + v.z * M[0][2] + v.w * M[0][3];

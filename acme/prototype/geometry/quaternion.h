@@ -34,14 +34,14 @@ struct quaternion_type
    // rotation = (pitch, yaw, roll) in radians
    quaternion_type(const ::sequence_type<FLOATING, 3> &euler)
    {
-      float cx = std::cos(euler.x * 0.5f);
-      float sx = std::sin(euler.x * 0.5f);
+      FLOATING cx = std::cos(euler.x * 0.5f);
+      FLOATING sx = std::sin(euler.x * 0.5f);
 
-      float cy = std::cos(euler.y * 0.5f);
-      float sy = std::sin(euler.y * 0.5f);
+      FLOATING cy = std::cos(euler.y * 0.5f);
+      FLOATING sy = std::sin(euler.y * 0.5f);
 
-      float cz = std::cos(euler.z * 0.5f);
-      float sz = std::sin(euler.z * 0.5f);
+      FLOATING cz = std::cos(euler.z * 0.5f);
+      FLOATING sz = std::sin(euler.z * 0.5f);
 
       // GLM uses Z * Y * X intrinsic rotation order
       w = cx * cy * cz + sx * sy * sz;
@@ -51,16 +51,16 @@ struct quaternion_type
    }
 
 
-   inline quaternion_type slerp(const quaternion_type &q2, float t) const
+   inline quaternion_type slerp(const quaternion_type &q2, FLOATING t) const
    {
       const auto &q1 = *this;
       // Compute the cosine of the angle
-      float dot = q1.w * q2.w + q1.x * q2.x + q1.y * q2.y + q1.z * q2.z;
+      FLOATING dot = q1.w * q2.w + q1.x * q2.x + q1.y * q2.y + q1.z * q2.z;
 
       quaternion_type q2c = q2;
 
       // If dot < 0, q2 is on the opposite hemisphere -> take the shorter path
-      if (dot < 0.0f)
+      if (dot < (FLOATING)0)
       {
          dot = -dot;
          q2c.w = -q2c.w;
@@ -70,8 +70,8 @@ struct quaternion_type
       }
 
       // If close, fall back to lerp
-      const float EPS = 1e-6f;
-      if (dot > 1.0f - EPS)
+      const FLOATING EPS = 1e-6f;
+      if (dot > (FLOATING)1 - EPS)
       {
          // Linear interpolation + renormalize
          quaternion_type result;
@@ -81,8 +81,8 @@ struct quaternion_type
          result.z = q1.z + t * (q2c.z - q1.z);
 
          // Normalize
-         float invLen =
-            1.0f / sqrtf(result.w * result.w + result.x * result.x + result.y * result.y + result.z * result.z);
+         FLOATING invLen =
+            (FLOATING)1 / sqrtf(result.w * result.w + result.x * result.x + result.y * result.y + result.z * result.z);
          result.w *= invLen;
          result.x *= invLen;
          result.y *= invLen;
@@ -92,11 +92,11 @@ struct quaternion_type
       }
 
       // Compute the angle θ
-      float theta = acosf(dot);
-      float sinTheta = sinf(theta);
+      FLOATING theta = acosf(dot);
+      FLOATING sinTheta = sinf(theta);
 
-      float w1 = sinf((1.0f - t) * theta) / sinTheta;
-      float w2 = sinf(t * theta) / sinTheta;
+      FLOATING w1 = sinf(((FLOATING)1 - t) * theta) / sinTheta;
+      FLOATING w2 = sinf(t * theta) / sinTheta;
 
       quaternion_type result;
       result.w = w1 * q1.w + w2 * q2c.w;
@@ -105,6 +105,19 @@ struct quaternion_type
       result.z = w1 * q1.z + w2 * q2c.z;
 
       return result;
+   }
+
+   inline quaternion_type normalized() const
+   {
+      FLOATING len = std::sqrt(this->w * this->w + this->x * this->x + this->y * this->y + this->z * this->z);
+
+      // Avoid division by zero
+      if (len == (FLOATING)0)
+         return {(FLOATING)1, (FLOATING)0, (FLOATING)0, (FLOATING)0}; // identity rotation
+
+      FLOATING inv = (FLOATING)1 / len;
+
+      return {this->w * inv, this->x * inv, this->y * inv, this->z * inv};
    }
 
 };

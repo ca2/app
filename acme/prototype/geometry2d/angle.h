@@ -104,6 +104,32 @@ public:
 using float_angle = angle_type < float >;
 using double_angle = angle_type < double >;
 
+
+namespace geometry
+{
+
+
+   template<primitive_floating FLOATING>
+   inline angle_type<FLOATING> atan2(FLOATING y, FLOATING x)
+   {
+
+      return ::radians(::std::atan2(y, x));
+
+   }
+
+
+   template<primitive_floating FLOATING>
+   inline angle_type<FLOATING> asin(FLOATING s)
+   {
+
+      return ::radians(::std::asin(s));
+
+   }
+
+
+} // namespace geometry
+ 
+
 template < primitive_floating FLOATING >
 constexpr angle_type < FLOATING > radians(FLOATING fAngle)
 {
@@ -111,7 +137,6 @@ constexpr angle_type < FLOATING > radians(FLOATING fAngle)
    return angle_type < FLOATING >::radians(fAngle);
    
 }
-
 
 
 inline double_angle operator "" _degree(long double degrees)
@@ -166,6 +191,7 @@ inline float_angle operator"" f_degree(unsigned long long degrees)
 {
 
    return radians(degrees_to_radians((float)degrees));
+
 }
 
 
@@ -181,33 +207,9 @@ template < primitive_number NUMBER1, primitive_number NUMBER2 >
 inline auto angle(const ::point_type < NUMBER1 > & center, const ::point_type < NUMBER2 > & point)
 {
 
-   return radians(::std::atan2(point.y - center.y, point.x - center.x));
+   return ::geometry::atan2(point.y - center.y, point.x - center.x));
 
 }
 
 
 
-namespace geometry2d
-{
-
-
-   template<primitive_floating FLOATING>
-   inline angle_type<FLOATING> atan2(FLOATING y, FLOATING x)
-   {
-      
-      return ::radians(::std::atan2(y,x));
-
-   }
-
-
-   template<primitive_floating FLOATING>
-   inline angle_type<FLOATING> asin(FLOATING s)
-   {
-
-      return ::radians(::std::asin(s));
-
-   }
-
-
-} // namespace geometry2d
- 

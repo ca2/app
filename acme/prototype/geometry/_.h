@@ -2,8 +2,6 @@
 #pragma once
 
 
-
-
 namespace geometry
 {
 
@@ -16,6 +14,7 @@ namespace geometry
          return nMax;
       return n;
    }
+
 
 } // namespace geometry
 

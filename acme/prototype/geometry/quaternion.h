@@ -2,6 +2,8 @@
 #pragma once
 
 
+#include "acme/prototype/geometry2d/angle.h"
+
 
 template<primitive_floating FLOATING_TYPE>
 struct quaternion_type
@@ -121,7 +123,7 @@ struct quaternion_type
    }
 
 
-   quaterion_type & set_yaw_and_pitch(const angle_type<FLOATING> &yaw, const angle_type<FLOATING> &pitch)
+   quaternion_type & set_yaw_and_pitch(const angle_type<FLOATING> &yaw, const angle_type<FLOATING> &pitch)
    {
 
       // half-angles
@@ -153,21 +155,21 @@ struct quaternion_type
    }
 
 
-   constexpr FLOATING pitch() const
+   constexpr angle_type < FLOATING > pitch() const
    {
 
       // pitch (rotation around X axis)
 
       auto sinp = (FLOATING) 2 * (this->w * this->x + this->y * this->z);
       
-      auto pitch = std::asin(clampd(sinp, (FLOATING) - 1.0, (FLOATING) 1.0));
+      auto pitch = ::geometry::asin(clampd(sinp, (FLOATING) - 1.0, (FLOATING) 1.0));
 
       return pitch;
 
    }
 
 
-   constexpr FLOATING yaw() const
+   constexpr angle_type<FLOATING> yaw() const
    {
 
       // yaw (rotation around Y axis)
@@ -176,7 +178,7 @@ struct quaternion_type
       
       auto cosy_cosp = (FLOATING)1 - (FLOATING)2 * (this->x * this->x + this->y * this->y);
       
-      auto yaw = std::atan2(siny_cosp, cosy_cosp);
+      auto yaw = ::geometry::atan2(siny_cosp, cosy_cosp);
 
       return yaw;
 

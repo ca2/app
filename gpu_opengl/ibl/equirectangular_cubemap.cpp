@@ -68,14 +68,15 @@ namespace gpu_opengl
 
          auto pgpucommandbuffer = m_pgpucontext->beginSingleTimeCommands(m_pgpucontext->m_pgpudevice->graphics_queue());
          floating_matrix4 model = ::gpu::gltf::mIndentity4;
+         using namespace graphics3d;
          floating_matrix4 cameraAngles[] = 
          {
-            m_pgpucontext->lookAt(::geometry3d::origin, ::geometry3d::unitX, -::geometry3d::unitY), // X+ (right)
-            m_pgpucontext->lookAt(::geometry3d::origin, -::geometry3d::unitX, -::geometry3d::unitY), // X- (left)
-            m_pgpucontext->lookAt(::geometry3d::origin, ::geometry3d::unitY, ::geometry3d::unitZ), // Y+ (top)
-            m_pgpucontext->lookAt(::geometry3d::origin, -::geometry3d::unitY, -::geometry3d::unitZ), // Y- (bottom)
-            m_pgpucontext->lookAt(::geometry3d::origin, ::geometry3d::unitZ, -::geometry3d::unitY), // Z+ (front)
-            m_pgpucontext->lookAt(::geometry3d::origin, -::geometry3d::unitZ, -::geometry3d::unitY) // Z- (back)
+            lookAt(origin, unitX, -unitY), // X+ (right)
+            lookAt(origin, -unitX, -unitY), // X- (left)
+            lookAt(origin, unitY, unitZ), // Y+ (top)
+            lookAt(origin, -unitY, -unitZ), // Y- (bottom)
+            lookAt(origin, unitZ, -unitY), // Z+ (front)
+            lookAt(origin, -unitZ, -unitY) // Z- (back)
          };
          floating_matrix4 projection = m_pgpucontext->perspective(radians(90.0f), // 90 degrees to cover one face
                                                  1.0f, // its a square

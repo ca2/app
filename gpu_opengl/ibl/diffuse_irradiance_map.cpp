@@ -89,22 +89,22 @@ namespace gpu_opengl
          //auto pgpucommandbuffer = m_pgpucontext->beginSingleTimeCommands(m_pgpucontext->m_pgpudevice->graphics_queue());
 
          floating_matrix4 model = ::gpu::gltf::mIndentity4;
-         using geometry3d;
+         using namespace graphics3d;
          floating_matrix4 cameraAngles[] =
          {
-            ::graphics3d::lookAt(origin, unitX, -unitY),
-            ::graphics3d::lookAt(origin, -unitX, -unitY),
-            ::graphics3d::lookAt(origin, unitY, unitZ),
-            ::graphics3d::lookAt(origin, -unitY, -unitZ),
-            ::graphics3d::lookAt(origin, unitZ, -unitY),
-            ::graphics3d::lookAt(origin, -unitZ, -unitY)
+            lookAt(origin, unitX, -unitY),
+            lookAt(origin, -unitX, -unitY),
+            lookAt(origin, unitY, unitZ),
+            lookAt(origin, -unitY, -unitZ),
+            lookAt(origin, unitZ, -unitY),
+            lookAt(origin, -unitZ, -unitY)
          };
-         floating_matrix4 projection = m_pgpucontext->perspective(
-            ::radians(90.0f), // 90 degrees to cover one face
+
+         auto projection = m_pgpucontext->perspective(
+            90_degrees, // 90 degrees to cover one face
             1.0f, // its a square
             0.1f,
             2.0f);
-
 
          //auto pcube = øcreate<::gpu::cube>();
          ////::cast < ::gpu_gpu::context > pcontext = m_pgpucontext;

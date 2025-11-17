@@ -2,7 +2,7 @@
 #pragma once
 
 
-namespace geometry3d
+namespace graphics3d
 {
 
    /// from glm lookAtRH
@@ -35,7 +35,8 @@ namespace geometry3d
 
    }
 
-} // namespace geometry3d
+
+} // namespace graphics3d
 
 
 

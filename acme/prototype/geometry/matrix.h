@@ -2010,3 +2010,6 @@ sequence_type<NUMBER, t_iSize>::operator*(const matrix_type<FLOATING1, 4> &M) co
 
    return result;
 }
+
+
+

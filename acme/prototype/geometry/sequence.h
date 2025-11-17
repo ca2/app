@@ -1269,3 +1269,8 @@ operator*(NUMBER n, const sequence_type< NUMBER, t_iSize> & s)
       result[i] = (largest_number<NUMBER, NUMBER1>)(n * this->m_coordinatea[i]);
    return result;
 }
+
+
+ 
+
+

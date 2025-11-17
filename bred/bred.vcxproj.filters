@@ -405,6 +405,9 @@
     <ClInclude Include="gpu\model_data.h">
       <Filter>Header Files\gpu</Filter>
     </ClInclude>
+    <ClInclude Include="graphics3d\_functions.h">
+      <Filter>Header Files\graphics3d</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="platform\application.cpp">

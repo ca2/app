@@ -99,6 +99,7 @@ struct matrix_type
 
    using FLOATING = FLOATING_TYPE;
    static constexpr int DIMENSION = t_iDimension;
+   static constexpr int SQUARED_DIMENSION = DIMENSION * DIMENSION;
 
    union
    {
@@ -106,15 +107,15 @@ struct matrix_type
       
       column columna[DIMENSION];
       FLOATING m[DIMENSION][DIMENSION];
-      FLOATING fa[DIMENSION * DIMENSION]; // floating number array
+      FLOATING fa[SQUARED_DIMENSION]; // floating number array
 
    };
 
 
-   matrix_type() {}
+   constexpr matrix_type() {}
 
 
-   matrix_type(const matrix_type<FLOATING, 4> &m)
+   constexpr matrix_type(const matrix_type<FLOATING, 4> &m)
       requires(DIMENSION==3)
    {
       // Column 0
@@ -134,24 +135,30 @@ struct matrix_type
    }
 
   
-   matrix_type(const matrix_type<FLOATING, 4> &m)
+   constexpr matrix_type(const matrix_type<FLOATING, 4> &m)
       requires(DIMENSION == 4)
    {
-      ::memory_copy(this->m, m.m, sizeof(FLOATING) * DIMENSION * DIMENSION);
+      
+      for (int i = 0; i < SQUARED_DIMENSION; i++) this->fa[i] = m.fa[i];
+
    }
 
+
+   /// expects p to point to an array of at least SQUARED_DIMENSION elements
+   /// in column-major order
    template<primitive_floating FLOATING1>
-   matrix_type(const FLOATING1 *p) /// expects p to point to an array of at least DIMENSION * DIMENSION elements 
-      /// in column-major order
+   matrix_type(const FLOATING1 *p) 
       requires(DIMENSION == 4)
    {
-      auto c = DIMENSION * DIMENSION;
-      for (int i = 0; i < c; ++i)
-         this->fa[i] = (FLOATING)p[i];
+
+      auto c = SQUARED_DIMENSION;
+
+      for (int i = 0; i < c; ++i) this->fa[i] = (FLOATING)p[i];
       
    }
 
-   matrix_type(const matrix_type<FLOATING, 3> & m)
+
+   constexpr matrix_type(const matrix_type<FLOATING, 3> & m)
       requires(DIMENSION == 4)
        : matrix_type((FLOATING)1)
    {
@@ -165,10 +172,15 @@ struct matrix_type
             this->m[c][r] = m.m[c][r];
    }
 
-   matrix_type(FLOATING diagonal) {
-      ::memory_set(m, 0, sizeof(FLOATING) * DIMENSION * DIMENSION);
+
+   template < primitive_number NUMBER >
+   constexpr matrix_type(NUMBER diagonal) 
+   {
+
       for (int i = 0; i < DIMENSION; ++i)
-         m[i][i] = diagonal;
+         for (int j = 0; i < DIMENSION; ++i)
+            m[i][j] = i == j ? (FLOATING) diagonal : (FLOATING) 0;
+
    }
 
    matrix_type(const quaternion_type<FLOATING> & q)
@@ -553,7 +565,7 @@ inline matrix_type mul_avx2(const matrix_type &B) const
 
    //static matrix_type scale(const sequence_type<FLOATING, DIMENSION>& m_coordinatea) {
    //   matrix_type result;
-   //   ::memory_set(result.m, 0, sizeof(FLOATING) * DIMENSION * DIMENSION);
+   //   ::memory_set(result.m, 0, sizeof(FLOATING) * SQUARED_DIMENSION);
    //   for (int i = 0; i < DIMENSION; ++i)
    //      result.m[i][i] = m_coordinatea[i];
    //   return result;
@@ -561,7 +573,7 @@ inline matrix_type mul_avx2(const matrix_type &B) const
 
    //static matrix_type translate(const sequence_type<FLOATING, DIMENSION - 1>& m_coordinatea) {
    //   matrix_type result;
-   //   ::memory_set(result.m, 0, sizeof(FLOATING) * DIMENSION * DIMENSION);
+   //   ::memory_set(result.m, 0, sizeof(FLOATING) * SQUARED_DIMENSION);
    //   for (int i = 0; i < DIMENSION; ++i) {
    //      result.m[i][i] = 1.f;
    //      if (i < DIMENSION - 1)

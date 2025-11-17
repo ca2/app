@@ -124,12 +124,12 @@ namespace gpu_opengl
          floating_matrix4 model = ::gpu::gltf::mIndentity4;
          floating_matrix4 cameraAngles[] =
          {
-            m_pgpucontext->lookAt(::gpu::gltf::origin, ::gpu::gltf::unitX, -::gpu::gltf::unitY),
-            m_pgpucontext->lookAt(::gpu::gltf::origin, -::gpu::gltf::unitX, -::gpu::gltf::unitY),
-            m_pgpucontext->lookAt(::gpu::gltf::origin, ::gpu::gltf::unitY, ::gpu::gltf::unitZ),
-            m_pgpucontext->lookAt(::gpu::gltf::origin, -::gpu::gltf::unitY, -::gpu::gltf::unitZ),
-            m_pgpucontext->lookAt(::gpu::gltf::origin, ::gpu::gltf::unitZ, -::gpu::gltf::unitY),
-            m_pgpucontext->lookAt(::gpu::gltf::origin, -::gpu::gltf::unitZ, -::gpu::gltf::unitY)
+            m_pgpucontext->lookAt(::geometry3d::origin, ::geometry3d::unitX, -::geometry3d::unitY),
+            m_pgpucontext->lookAt(::geometry3d::origin, -::geometry3d::unitX, -::geometry3d::unitY),
+            m_pgpucontext->lookAt(::geometry3d::origin, ::geometry3d::unitY, ::geometry3d::unitZ),
+            m_pgpucontext->lookAt(::geometry3d::origin, -::geometry3d::unitY, -::geometry3d::unitZ),
+            m_pgpucontext->lookAt(::geometry3d::origin, ::geometry3d::unitZ, -::geometry3d::unitY),
+            m_pgpucontext->lookAt(::geometry3d::origin, -::geometry3d::unitZ, -::geometry3d::unitY)
          };
          floating_matrix4 projection = m_pgpucontext->perspective(
             ::radians(90.0f), // 90 degrees to cover one face

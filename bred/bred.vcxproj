@@ -424,6 +424,7 @@
     <ClInclude Include="graphics3d\utilities.h" />
     <ClInclude Include="graphics3d\_.h" />
     <ClInclude Include="graphics3d\_constant.h" />
+    <ClInclude Include="graphics3d\_functions.h" />
     <ClInclude Include="graphics3d\_types.h" />
     <ClInclude Include="id.h" />
     <ClInclude Include="include\_.h" />

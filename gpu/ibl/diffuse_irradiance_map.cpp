@@ -154,12 +154,12 @@ namespace gpu
          //auto pgpucommandbuffer = m_pgpucontext->beginSingleTimeCommands(m_pgpucontext->m_pgpudevice->graphics_queue());
 
          //floating_matrix4 model = ::gpu::gltf::mIndentity4;
-         //floating_matrix4 cameraAngles[] = {glm::lookAt(::gpu::gltf::origin, ::gpu::gltf::unitX, -::gpu::gltf::unitY),
-         //                            glm::lookAt(::gpu::gltf::origin, -::gpu::gltf::unitX, -::gpu::gltf::unitY),
-         //                            glm::lookAt(::gpu::gltf::origin, ::gpu::gltf::unitY, ::gpu::gltf::unitZ),
-         //                            glm::lookAt(::gpu::gltf::origin, -::gpu::gltf::unitY, -::gpu::gltf::unitZ),
-         //                            glm::lookAt(::gpu::gltf::origin, ::gpu::gltf::unitZ, -::gpu::gltf::unitY),
-         //                            glm::lookAt(::gpu::gltf::origin, -::gpu::gltf::unitZ, -::gpu::gltf::unitY)};
+         //floating_matrix4 cameraAngles[] = {glm::lookAt(::geometry3d::origin, ::geometry3d::unitX, -::geometry3d::unitY),
+         //                            glm::lookAt(::geometry3d::origin, -::geometry3d::unitX, -::geometry3d::unitY),
+         //                            glm::lookAt(::geometry3d::origin, ::geometry3d::unitY, ::geometry3d::unitZ),
+         //                            glm::lookAt(::geometry3d::origin, -::geometry3d::unitY, -::geometry3d::unitZ),
+         //                            glm::lookAt(::geometry3d::origin, ::geometry3d::unitZ, -::geometry3d::unitY),
+         //                            glm::lookAt(::geometry3d::origin, -::geometry3d::unitZ, -::geometry3d::unitY)};
          //floating_matrix4 projection = glm::perspective(::radians(90.0f), // 90 degrees to cover one face
          //                                        1.0f, // its a square
          //                                        0.1f, 2.0f);

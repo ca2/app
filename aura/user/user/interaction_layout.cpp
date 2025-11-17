@@ -142,7 +142,7 @@ namespace user
    //void interaction_layout::move_to(const int_point & point)
    //{
 
-   //   move_to(point.x(), point.y());
+   //   move_to(point.x, point.y);
 
    //}
 

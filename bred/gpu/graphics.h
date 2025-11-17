@@ -72,7 +72,7 @@ namespace gpu
          
          m_m1.transform(p);
          
-         //p.y() = m_pgpucontextCompositor2->m_rectangle.height() - p.y();
+         //p.y = m_pgpucontextCompositor2->m_rectangle.height() - p.y;
          
          return p;
 

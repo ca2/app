@@ -45,7 +45,7 @@
 #include "acme/user/user/frame_interaction.h"
 #include "acme/user/user/interaction.h"
 #include "acme/user/user/mouse.h"
-
+#include "acme/constant/windowing2.h"
 
 
 namespace acme

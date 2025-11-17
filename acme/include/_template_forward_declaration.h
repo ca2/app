@@ -492,6 +492,8 @@ using procedure = ::function < void() >;
 
 class procedure_array;
 
+using procedure_array_base = ::comparable_array_base < ::procedure >;
+
 using procedure_map = ::atom_map_base < ::procedure_array >;
 
 using procedure_list_base = ::list_base < ::procedure >;
@@ -1180,3 +1182,13 @@ namespace platform
 
 
 } // namespace platform
+
+
+template < typename TYPE >
+class cast;
+
+
+template < typename T >
+using cast_array = ::comparable_array_base < ::cast < T > >;
+
+

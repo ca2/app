@@ -846,6 +846,31 @@ void sigpipe_handler(int signum)
 }
 
 
+// the code below was at
+//ld: error: duplicate symbol: sigchld_handler(int)
+//>>> defined at node.cpp:29 (/home/camilo/code/console_build_tools/operating_system/operating_system-openbsd/acme_openbsd/node.cpp:29)
+//void sigchld_handler(int signum) {
+    //int saved_errno = errno;
+    //int status;
+    //pid_t pid;
+    
+    //printf_line("Child exited!!");
+    
+    //preempt(5_s);
+
+    //// Reap all dead children
+    //while ((pid = waitpid(-1, &status, WNOHANG)) > 0) {
+        //if (WIFEXITED(status)) {
+            //printf("Child %d exited with status %d\n", pid, WEXITSTATUS(status));
+        //} else if (WIFSIGNALED(status)) {
+            //printf("Child %d terminated by signal %d (%s)\n", pid, WTERMSIG(status), strsignal(WTERMSIG(status)));
+        //}
+    //}
+
+    //errno = saved_errno;
+//}
+
+
 void install_operating_system_default_signal_handlers()
 {      
       

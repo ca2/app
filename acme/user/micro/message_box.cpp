@@ -639,7 +639,7 @@ namespace micro
    void message_box::on_right_click(const ::payload& payload, ::user::mouse* pmouse)
    {
 
-      if (pmouse->m_pointHost.y() < 48)
+      if (pmouse->m_pointHost.y < 48)
       {
 
          m_pacmewindowingwindow->defer_show_system_menu(pmouse);
@@ -666,8 +666,8 @@ namespace micro
 
       ::int_rectangle rectanglePointTo;
 
-      rectanglePointTo.left() = pmouse->m_pointAbsolute.x();
-      rectanglePointTo.top() = pmouse->m_pointAbsolute.y();
+      rectanglePointTo.left() = pmouse->m_pointAbsolute.x;
+      rectanglePointTo.top() = pmouse->m_pointAbsolute.y;
       rectanglePointTo.right() = rectanglePointTo.left() + 200;
       rectanglePointTo.bottom() = rectanglePointTo.top() + 2;
 
@@ -675,12 +675,12 @@ namespace micro
 #ifdef APPLE_IOS
       ppopupbutton->initialize_popup_button(
          "Dump to Clipboard...",
-         pmouse->m_pointAbsolute.x(), pmouse->m_pointAbsolute.y(),
+         pmouse->m_pointAbsolute.x, pmouse->m_pointAbsolute.y,
          this);
 #else
       ppopupbutton->initialize_popup_button(
          "Dump to File...",
-         pmouse->m_pointAbsolute.x(), pmouse->m_pointAbsolute.y(),
+         pmouse->m_pointAbsolute.x, pmouse->m_pointAbsolute.y,
          this);
 #endif
       ppopupbutton->main_async()

@@ -40,7 +40,8 @@ namespace operating_system
       set["__SYSTEM_FAMILY"] = m_strSystemFamily;
       set["__SYSTEM_BRANCH"] = m_strSystemBranch;
       set["__SYSTEM_RELEASE"] = m_strSystemRelease;
-      set["__SYSTEM_AMBIENT_RELEASE"] = m_strSystemAmbientRelease;
+      set["__SYSTEM_ARCHITECTURE"] = m_strSystemArchitecture;
+      set["__SYSTEM_AMBIENT_RELEASE_ARCHITECTURE"] = m_strSystemAmbientReleaseArchitecture;
       set["__SYSTEM_SUDO_INSTALL"] = m_strSudoInstall;
       set["__SYSTEM_STANDARD_PACKAGE_FILE_EXTENSION"] = m_strStandardPackageFileExtension;
       set["__AMBIENT"] = m_strAmbient;
@@ -98,7 +99,8 @@ namespace operating_system
       pnode->set_environment_variable("__SYSTEM_FAMILY", m_strSystemFamily);
       pnode->set_environment_variable("__SYSTEM_BRANCH", m_strSystemBranch);
       pnode->set_environment_variable("__SYSTEM_RELEASE", m_strSystemRelease);
-      pnode->set_environment_variable("__SYSTEM_AMBIENT_RELEASE", m_strSystemAmbientRelease);
+      pnode->set_environment_variable("__SYSTEM_ARCHITECTURE", m_strSystemArchitecture);
+      pnode->set_environment_variable("__SYSTEM_AMBIENT_RELEASE_ARCHITECTURE", m_strSystemAmbientReleaseArchitecture);
       pnode->set_environment_variable("__SYSTEM_SUDO_INSTALL", m_strSudoInstall);
       pnode->set_environment_variable("__SYSTEM_TERMINAL", m_strTerminal);
       pnode->set_environment_variable("__AMBIENT", m_strAmbient);

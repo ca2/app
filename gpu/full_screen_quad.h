@@ -6,6 +6,8 @@
 
 #include "bred/gpu/context_object.h"
 #include "bred/graphics3d/renderable.h"
+#include "bred/gpu/model_data.h"
+#include "bred/gpu/types.h"
 
 
 namespace gpu
@@ -28,7 +30,8 @@ namespace gpu
       const unsigned int QUAD_NUM_TRIANGLES = 6;
 
 
-      float_array_base m_vertexa;
+      ::gpu::model_data < ::gpu::position2_uv > m_modeldata;
+      ::pointer<::gpu::model_buffer> m_pmodelbuffer;
 
 
       full_screen_quad();

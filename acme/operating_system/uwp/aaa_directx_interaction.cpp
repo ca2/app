@@ -59,7 +59,7 @@ namespace universal_windows
          catch (...)
          {
 
-            informationf("\n\nException thrown while drawing user::interaction\n\n");
+            informationf("---->  Exception thrown while drawing user::interaction\n\n");
 
          }
 

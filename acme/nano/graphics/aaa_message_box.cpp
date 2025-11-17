@@ -446,7 +446,7 @@ void message_box::on_click(const ::payload& payload, ::user::mouse * pmouse)
 void message_box::on_right_click(const ::payload& payload, ::user::mouse * pmouse)
 {
 
-   if (pmouse->m_pointHost.y() < 48)
+   if (pmouse->m_pointHost.y < 48)
    {
 
       m_pwindowbase->defer_show_system_menu(pmouse);
@@ -471,7 +471,7 @@ void message_box::on_right_click(const ::payload& payload, ::user::mouse * pmous
 
    };
 
-   pbutton->initialize_popup_button("Dump to File...", pmouse->m_pointAbsolute.x(), pmouse->m_pointAbsolute.y());
+   pbutton->initialize_popup_button("Dump to File...", pmouse->m_pointAbsolute.x, pmouse->m_pointAbsolute.y);
 
    pbutton->do_asynchronously();
 

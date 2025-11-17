@@ -1,5 +1,6 @@
 #include "framework.h"
 #include "skybox_render_system.h"
+#include "bred/gpu/command_buffer.h"
 #include "bred/gpu/device.h"
 #include "bred/gpu/frame.h"
 #include "bred/gpu/render_target.h"
@@ -77,7 +78,6 @@ namespace graphics3d
          "matter://shaders/skybox.vert",
          "matter://shaders/skybox.frag",
          {::gpu::shader::e_descriptor_set_slot_global},
-         nullptr,
          nullptr,
          pengine->gpu_context()->input_layout<::graphics3d::shape_factory::Vertex>()
       );
@@ -208,7 +208,7 @@ namespace graphics3d
 
    //      //pimageCubeMap->image32()->copy(point, sizeItem, scanCubeMap, pimage32, scan);
 
-   //      //point.x() += m_sizeSquare.width();
+   //      //point.x += m_sizeSquare.width();
 
    //   }
 
@@ -275,13 +275,13 @@ namespace graphics3d
       m_pshader->m_bindingCubeSampler.m_strUniform = "skybox";
 
      
-      m_pshader->bind(::gpu::current_frame()->m_pgpucommandbuffer, ptextureDst,
+      m_pshader->bind(::gpu::current_command_buffer(), ptextureDst,
                       pskybox->m_ptexture); // Make sure to bind the shader first
       //auto view = m_pengine->m_pcamera->getView();
-      //glm::mat4 skyboxView = glm::mat4(glm::mat3(view)); // <-- drop translation
-      //m_pshader->set_mat4("view", skyboxView);
+      //floating_matrix4 skyboxView = floating_matrix4(floating_matrix3(view)); // <-- drop translation
+      //m_pshader->set_matrix4("view", skyboxView);
       //auto projection = m_pengine->m_pcamera->getProjection();
-      //m_pshader->set_mat4("projection", projection);
+      //m_pshader->set_matrix4("projection", projection);
       //m_pshader->bind_source(m_ptextureCubeMap);
       pskybox->m_pmodelCube->bind(pgpucommandbuffer);
 
@@ -331,7 +331,7 @@ namespace graphics3d
 
       pskybox->m_pmodelCube->unbind(pgpucommandbuffer);
 
-      m_pshader->unbind(::gpu::current_frame()->m_pgpucommandbuffer);
+      m_pshader->unbind(::gpu::current_command_buffer());
 
    }
 

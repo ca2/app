@@ -3,18 +3,21 @@
 #include "framework.h"
 #include "specular_map.h"
 #include "brdf_convolution_framebuffer.h"
+#include "bred/graphics3d/render_system.h"
 #include "bred/graphics3d/scene_base.h"
 #include "bred/graphics3d/skybox.h"
 #include "bred/gpu/command_buffer.h"
 #include "bred/gpu/context.h"
 #include "bred/gpu/context_lock.h"
+#include "bred/gpu/device.h"
 #include "gpu_opengl/_gpu_opengl.h"
+#include "gpu_opengl/shader.h"
 #include "gpu_opengl/texture.h"
 #include "gpu/cube.h"
 #include "gpu/gltf/_constant.h"
 #include <glad/glad.h>
-#include <glm/glm.hpp>
-#include <glm/gtc/matrix_transform.hpp>
+//#include <glm/glm.hpp>
+//#include <glm/gtc/matrix_transform.hpp>
 #include "gpu/context.h"
 //#include "::gpu::gltf.h"
 //#include "cube.h"
@@ -36,6 +39,7 @@ namespace gpu_opengl
    namespace ibl
    {
 
+
       specular_map::specular_map()
       {
 
@@ -46,8 +50,8 @@ namespace gpu_opengl
       specular_map::~specular_map()
       {
 
-      }
 
+      }
 
 
       ::block specular_map::embedded_prefiltered_env_map_vert()
@@ -64,6 +68,7 @@ namespace gpu_opengl
          return {g_psz_specularenv_frag, sizeof(g_psz_specularenv_frag) - 1};
 
       }
+
 
       ::block specular_map::embedded_brdf_convolution_vert()
       {
@@ -107,27 +112,27 @@ namespace gpu_opengl
       // }
 
 
-      void specular_map::computePrefilteredEnvMap()
+      void specular_map::computePrefilteredEnvMap(::gpu::command_buffer *pgpucommandbuffer)
       {
+
          //Timer timer;
 
          ::gpu::context_lock contextlock(m_pgpucontext);
 
+         //auto pgpucommandbuffer = m_pgpucontext->beginSingleTimeCommands(m_pgpucontext->m_pgpudevice->graphics_queue());
 
-         auto pgpucommandbuffer = m_pgpucontext->beginSingleTimeCommands(m_pgpucontext->graphics_queue());
-
-         glm::mat4 model = ::gpu::gltf::mIndentity4;
-         glm::mat4 cameraAngles[] =
+         floating_matrix4 model = ::gpu::gltf::mIndentity4;
+         floating_matrix4 cameraAngles[] =
          {
-            glm::lookAt(::gpu::gltf::origin, ::gpu::gltf::unitX, -::gpu::gltf::unitY),
-            glm::lookAt(::gpu::gltf::origin, -::gpu::gltf::unitX, -::gpu::gltf::unitY),
-            glm::lookAt(::gpu::gltf::origin, ::gpu::gltf::unitY, ::gpu::gltf::unitZ),
-            glm::lookAt(::gpu::gltf::origin, -::gpu::gltf::unitY, -::gpu::gltf::unitZ),
-            glm::lookAt(::gpu::gltf::origin, ::gpu::gltf::unitZ, -::gpu::gltf::unitY),
-            glm::lookAt(::gpu::gltf::origin, -::gpu::gltf::unitZ, -::gpu::gltf::unitY)
+            m_pgpucontext->lookAt(::gpu::gltf::origin, ::gpu::gltf::unitX, -::gpu::gltf::unitY),
+            m_pgpucontext->lookAt(::gpu::gltf::origin, -::gpu::gltf::unitX, -::gpu::gltf::unitY),
+            m_pgpucontext->lookAt(::gpu::gltf::origin, ::gpu::gltf::unitY, ::gpu::gltf::unitZ),
+            m_pgpucontext->lookAt(::gpu::gltf::origin, -::gpu::gltf::unitY, -::gpu::gltf::unitZ),
+            m_pgpucontext->lookAt(::gpu::gltf::origin, ::gpu::gltf::unitZ, -::gpu::gltf::unitY),
+            m_pgpucontext->lookAt(::gpu::gltf::origin, -::gpu::gltf::unitZ, -::gpu::gltf::unitY)
          };
-         glm::mat4 projection = glm::perspective(
-            glm::radians(90.0f), // 90 degrees to cover one face
+         floating_matrix4 projection = m_pgpucontext->perspective(
+            ::radians(90.0f), // 90 degrees to cover one face
             1.0f, // its a square
             0.1f,
             2.0f);
@@ -149,33 +154,55 @@ namespace gpu_opengl
          m_pshaderPrefilteredEnvMap->bind(nullptr, m_pframebufferPrefilteredEnvMap->m_ptexture);
          //m_pshaderPrefilteredEnvMap->set_int("environmentCubemap", 0);
 
-         for (auto mipLevel = 0; mipLevel < m_uPrefilteredEnvMapMipLevels; mipLevel++)
-         {
-            m_pframebufferPrefilteredEnvMap->setMipLevel(mipLevel);
+         ::cast<::gpu_opengl::shader> pshaderPrefilteredEnvMap = m_pshaderPrefilteredEnvMap;
 
-            glViewport(0, 0, m_pframebufferPrefilteredEnvMap->getWidth(), m_pframebufferPrefilteredEnvMap->getHeight());
+         auto mipCount = m_iPrefilteredEnvMapMipCount;
+
+         for (auto iCurrentMip = 0; iCurrentMip < mipCount; iCurrentMip++)
+         {
+
+            m_pframebufferPrefilteredEnvMap->set_current_mip(iCurrentMip);
+
+            auto mipWidth = m_pframebufferPrefilteredEnvMap->mip_width();
+
+            auto mipHeight = m_pframebufferPrefilteredEnvMap->mip_height();
+
+            glViewport(0, 0, mipWidth, mipHeight);
             GLCheckError("");
             // each mip level has increasing roughness
-            float roughness = (float)mipLevel / (float)(m_uPrefilteredEnvMapMipLevels - 1);
+            float roughness = (float)iCurrentMip / (float)(mipCount - 1);
             m_pshaderPrefilteredEnvMap->set_float("roughness", roughness);
 
             // render to each side of the cubemap
-            for (auto i = 0; i < 6; i++)
+            for (auto iFace = 0; iFace < 6; iFace++)
             {
-               m_pshaderPrefilteredEnvMap->setModelViewProjectionMatrices(model, cameraAngles[i], projection);
-               m_pframebufferPrefilteredEnvMap->setCubeFace(i);
+
+               ::string strMessage;
+
+               strMessage.format("prefiltered_env_map mip {} face {}", iCurrentMip, iFace);
+
+               m_pgpucontext->start_debug_happening(pgpucommandbuffer, strMessage);
+
+               m_pshaderPrefilteredEnvMap->setModelViewProjectionMatrices(model, cameraAngles[iFace], projection);
+               m_pframebufferPrefilteredEnvMap->set_cube_face(iFace);
 
                glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
                GLCheckError("");
 
                glBindTexture(GL_TEXTURE_CUBE_MAP, ptextureSkybox->m_gluTextureID);
                GLCheckError("");
-               m_pshaderPrefilteredEnvMap->set_int("environmentCubemap", 0);
+               pshaderPrefilteredEnvMap->_set_int("environmentCubemap", 0);
                //pcube->draw(pgpucommandbuffer);
-               pgpucommandbuffer->m_erendersystem = ::graphics3d::e_render_system_skybox_ibl;
+               ::graphics3d::render_system rendersystemScope;
+               rendersystemScope.m_erendersystem = ::graphics3d::e_render_system_skybox_ibl;
+               pgpucommandbuffer->m_prendersystem = &rendersystemScope;
+               m_pshaderPrefilteredEnvMap->push_properties(pgpucommandbuffer);
                pcube->bind(pgpucommandbuffer);
                pcube->draw(pgpucommandbuffer);
                pcube->unbind(pgpucommandbuffer);
+               pgpucommandbuffer->m_prendersystem = nullptr;
+
+               m_pgpucontext->end_debug_happening(pgpucommandbuffer);
 
             }
          }
@@ -213,7 +240,7 @@ namespace gpu_opengl
 
          ::gpu::context_lock contextlock(m_pgpucontext);
 
-         auto pcommandbuffer = m_pgpucontext->beginSingleTimeCommands(m_pgpucontext->graphics_queue());
+         auto pcommandbuffer = m_pgpucontext->beginSingleTimeCommands(m_pgpucontext->m_pgpudevice->graphics_queue());
 
          auto pfullscreenquad = øcreate<::gpu::full_screen_quad>();
 

@@ -1473,7 +1473,7 @@ void user::destroy()
 //   //int application::sync_message_box(::user::interaction_base * puiOwner, const ::scoped_string & scopedstrMessage, unsigned int fuStyle)
 //   //{
 //
-//   //   informationf("\n\napp_message_box: " + string(scopedstrMessage) + "\n\n");
+//   //   informationf("---->  app_message_box: " + string(scopedstrMessage) + "\n\n");
 //
 //   //   if (&Session == nullptr || user() == nullptr)
 //   //      return ::berg::application::sync_message_box(puiOwner, pszMessage, fuStyle);

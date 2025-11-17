@@ -14,14 +14,14 @@ namespace dynamic_source
    public:
 
 
-      ::netnode::script_main *                                 m_pnetnodescriptmain;
+      ::cast < ::netnode::script_main >                        m_pnetnodescriptmain;
 
-      ::pointer<httpd_socket>                                  m_psocket2;
-      script_manager *                                         m_pmanager2;
+      //::pointer<httpd_socket>                                  m_phttpsocket1;
+      //::pointer < script_manager >                             m_pscriptmanager2;
+      ::cast < script_instance >                               m_pscriptinstanceLastlyInstantiated;
+      ::cast_array < ::dynamic_source::script_interface >      m_interfacea;
 
-      ::pointer_array < ::dynamic_source::script_interface >   m_interfacea;
-
-      ::pointer<::dynamic_source::script_interface>            m_pscriptinterfaceTopic;
+      ::cast < ::dynamic_source::script_interface >            m_pscriptinterfaceTopic;
 
       //::url::url                                               m_url;
 
@@ -39,6 +39,11 @@ namespace dynamic_source
 #endif
 
       void initialize(::particle * pparticle) override;
+
+      virtual void initialize_script_main(
+         ::dynamic_source::script_manager* pscriptmanager1,
+         ::dynamic_source::httpd_socket * phttpsocket1,
+         ::dynamic_source::script * pscript1);
 
       //void finalize() override;
 

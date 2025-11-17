@@ -152,8 +152,8 @@ namespace draw2d
       //      VERIFY(::SetMapMode(pgraphics->m_hDC, iOldMapMode));
       //      VERIFY(::SetContextOrgEx(
       //         pgraphics->m_hDC,
-      //         viewportOrg.x(),
-      //         viewportOrg.y(),
+      //         viewportOrg.x,
+      //         viewportOrg.y,
       //         nullptr));
    }
 
@@ -214,8 +214,8 @@ namespace draw2d
 //      VERIFY(::SetMapMode(pgraphics->m_hDC, iOldMapMode));
 //      VERIFY(::SetContextOrgEx(
 //         pgraphics->m_hDC,
-//         viewportOrg.x(),
-//         viewportOrg.y(),
+//         viewportOrg.x,
+//         viewportOrg.y,
 //         nullptr));
    }
 

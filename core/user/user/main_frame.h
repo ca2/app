@@ -1,6 +1,7 @@
 #pragma once
 
 
+#include "core/user/rich_text/_.h"
 #include "berg/user/simple/main_frame.h"
 
 

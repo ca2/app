@@ -12,7 +12,7 @@
 #include "bred/gpu/shader.h"
 
 // libs
-#include <glm/gtc/matrix_transform.hpp>
+//#include <glm/gtc/matrix_transform.hpp>
 //
 //// std
 //#include <memory>
@@ -92,8 +92,8 @@ namespace graphics3d
 
 		float dt() { return m_fFrameTime; }
 
-		virtual glm::mat4 model_matrix(::graphics3d::transform& transformcomponent);
-		virtual glm::mat4 normal_matrix(::graphics3d::transform& transformcomponent);
+		virtual floating_matrix4 model_matrix(::graphics3d::transform& transformcomponent);
+		virtual floating_matrix4 normal_matrix(::graphics3d::transform& transformcomponent);
 
 		//void on_begin_frame() override;
 		virtual void run_cpu_buffer();
@@ -122,7 +122,7 @@ namespace graphics3d
 
 		virtual void on_render_frame();
 
-		//virtual glm::vec3 camera_pole_up();
+		//virtual floating_sequence3 camera_pole_up();
 
 		virtual void on_update_frame();
 
@@ -132,7 +132,7 @@ namespace graphics3d
 
 	};
 
-	//glm::vec3 camera::pole_up() { return m_pengine->camera_pole_up(); }
+	//floating_sequence3 camera::pole_up() { return m_pengine->camera_pole_up(); }
 } // namespace graphics3d
 
 

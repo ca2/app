@@ -149,7 +149,7 @@ namespace user
       if(rectangle.width() != 0)
       {
 
-         dScalar = (double) (pointCursor.x() - rectangle.left()) / (double) rectangle.width();
+         dScalar = (double) (pointCursor.x - rectangle.left()) / (double) rectangle.width();
 
       }
 

@@ -8,8 +8,10 @@
 
 
 #if defined(USE_PORT_FREEIMAGE)
+//#error "Using port freeimage"
 #include <port_freeimage/FreeImage.h>
 #else
+//#error "Shoudl Use system Freeimage"
 #include <FreeImage.h>
 #endif
 
@@ -229,7 +231,37 @@ namespace imaging_freeimage
 
    //#endif // WINDOWS_DESKTOP
 
+const char* getFreeImageFormatName(FREE_IMAGE_FORMAT format) {
+    switch (format) {
+        case FIF_UNKNOWN: return "Unknown Format";
+        case FIF_BMP:     return "BMP";
+        case FIF_ICO:     return "ICO";
+        case FIF_JPEG:    return "JPEG";
+        case FIF_JNG:     return "JNG";
+        case FIF_PNG:     return "PNG";
+        case FIF_PPM:     return "PPM";
+        case FIF_TIFF:    return "TIFF";
+        case FIF_WBMP:    return "WBMP";
+        case FIF_PSD:     return "PSD";
+        case FIF_CUT:     return "CUT";
+        case FIF_XPM:     return "XPM";
+        case FIF_DDS:     return "DDS";
+        case FIF_GIF:     return "GIF";
+        case FIF_FAXG3:   return "FAXG3";
+        case FIF_SGI:     return "SGI";
+        case FIF_EXR:     return "EXR";
+        case FIF_TARGA:     return "TARGA";
+        case FIF_J2K:     return "J2K";
+        case FIF_PFM:     return "PFM";
+        case FIF_HDR:     return "HDR";
+        default:          return "Unknown Format";
+    }
+}
 
+// Function to print FreeImage messages
+void FreeImageErrorHandler(FREE_IMAGE_FORMAT fif, const char *message) {
+    printf("FreeImage Error [format %d]: %s\n", fif, message);
+}
    void image_context::_load_image(::image::image* pimage, const ::payload& varFileParam,
                                    const ::image::load_options& loadoptions)
    {
@@ -317,22 +349,40 @@ namespace imaging_freeimage
 
          bool bPng = size > sizeof(pszPngSignature)
                      && ansi_ncmp((const_char_pointer )pszData, pszPngSignature, sizeof(pszPngSignature)) == 0;
+                     
+		 information() << "bPng: " << (bPng ? "true" : "false");
 
          bool bJpegBegins = memory.begins("\x0FF\x0D8");
+         
+         information() << "bJpegBegins: " << (bJpegBegins ? "true" : "false");
 
          bool bJpegEnds = memory.ends("\x0FF\x0D9");
+         
+         information() << "bJpegEnds: " << (bJpegEnds ? "true" : "false");
 
          bool bGif87a = memory.begins("GIF87a");
+         
+         information() << "bGif87a: " << (bGif87a ? "true" : "false");
 
-         bool bGif89a = memory.begins("GIF89a");
+         bool bGif89a = memory.begins("bGif89a");
+         
+         information() << "bGif89a: " << (bGif89a ? "true" : "false");
 
          bool bJpeg = bJpegBegins && bJpegEnds;
+         
+         information() << "bJpeg: " << (bJpeg ? "true" : "false");
 
          bool bJfif = memory.begins("JFIF");
+         
+         information() << "bJfif: " << (bJfif ? "true" : "false");
 
          bool bExif = memory.begins("Exif");
+         
+         information() << "bExif: " << (bExif ? "true" : "false");
 
          bool bGif = bGif87a || bGif89a;
+         
+         information() << "bGif: " << (bGif ? "true" : "false");
 
          bool bBinary = *pszData == '\0';
 
@@ -388,17 +438,32 @@ namespace imaging_freeimage
 
          try
          {
+			 
+			     FreeImage_SetOutputMessage(FreeImageErrorHandler);
+
 
             FREE_IMAGE_FORMAT format;
 
             format = FreeImage_GetFileTypeFromMemory(pmem);
+            
+            auto pszImageFormat = getFreeImageFormatName(format);
+            
+            information() << "FreeImage_GetFileTypeFromMemory returned: " << (int) format << " = "<< pszImageFormat;
 
             pfibitmap = FreeImage_LoadFromMemory(format, pmem);
 
             if(pfibitmap)
             {
+				
+				information() << "FreeImage Bitmap is set";
                break;
             }
+            else
+            {
+				
+				information() << "FreeImage Bitmap is not set";
+				
+			}
 
          }
          catch (...)
@@ -408,6 +473,8 @@ namespace imaging_freeimage
 
       if (pfibitmap == nullptr)
       {
+		  
+		  information() << "FreeImage Bitmap is not set (2)";
          FreeImage_CloseMemory(pmem);
 
          pimage->m_estatus = error_failed;
@@ -427,10 +494,13 @@ namespace imaging_freeimage
 
       if (mdhandle)
       {
+		  
+		  information() << "FreeImage Could get Exif information";
          do
          {
             if (!ansi_icmp(FreeImage_GetTagKey(tag), "orientation"))
             {
+				information() << "FreeImage Could get Exif Orientation";
                bOrientation = true;
 
                auto type = FreeImage_GetTagType(tag);
@@ -458,6 +528,8 @@ namespace imaging_freeimage
 
       if (!image_from_freeimage(pimage, pfibitmap))
       {
+		  
+		  information() << "image_from_freeimage failed";
          FreeImage_Unload(pfibitmap);
 
          FreeImage_CloseMemory(pmem);
@@ -465,6 +537,8 @@ namespace imaging_freeimage
          throw ::exception(error_failed);
       }
 
+
+information() << "image_from_freeimage Success";
       FreeImage_Unload(pfibitmap);
 
       FreeImage_CloseMemory(pmem);

@@ -19,11 +19,11 @@ namespace gltf
  * gltf::vertex attributes.
  */
 struct gltf::vertex {
-   glm::vec3 mPosition;
-   glm::vec3 mNormal;
-   glm::vec2 mTextureCoordinates;
-   glm::vec3 mTangent;
-   glm::vec3 mBitangent;
+   floating_sequence3 mPosition;
+   floating_sequence3 mNormal;
+   floating_sequence2 mTextureCoordinates;
+   floating_sequence3 mTangent;
+   floating_sequence3 mBitangent;
 };
 
 

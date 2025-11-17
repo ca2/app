@@ -36,7 +36,7 @@ Canvas::Canvas(Widget * parent, uint8_t samples,
    bool has_depth_buffer, bool has_stencil_buffer,
    bool clear)
    : Widget(parent), m_bDrawBorder(true) {
-   m_size = sequence2_int(250, 250);
+   m_size = int_sequence2(250, 250);
    m_border_color = m_ptheme->m_colorBorderLight;
 
 #if defined(NANOUI_USE_GLES)
@@ -167,7 +167,7 @@ void Canvas::draw(::nano2d::context  * pcontext) {
 
    }
 
-   pcontext->_draw_image((float)m_pos.x(), (float)m_pos.y(), (float)m_size.cx(), (float)m_size.cy(), m_pimage);
+   pcontext->_draw_image((float)m_pos.x, (float)m_pos.y, (float)m_size.cx(), (float)m_size.cy(), m_pimage);
 //   Screen * pscreen = screen();
 //   if (pscreen == nullptr)
 //      throw std::runtime_error("Canvas::draw(): could not find parent pscreen!");
@@ -178,21 +178,21 @@ void Canvas::draw(::nano2d::context  * pcontext) {
 //
 //   pscreen->::nano2d::_flush();
 //
-//   sequence2_int fbsize = m_size;
-//   sequence2_int offset = absolute_position();
+//   int_sequence2 fbsize = m_size;
+//   int_sequence2 offset = absolute_position();
 //   if (m_bDrawBorder)
 //      fbsize -= 2;
 //
 //#if defined(NANOUI_USE_OPENGL) || defined(NANOUI_USE_GLES)
 //   if (m_render_to_texture)
-//      offset = sequence2_int(offset.x(), pscreen->size().y() - offset.y() - m_size.cy());
+//      offset = int_sequence2(offset.x, pscreen->size().y - offset.y - m_size.cy());
 //#endif
 //
 //   if (m_bDrawBorder)
-//      offset += sequence2_int(1, 1);
+//      offset += int_sequence2(1, 1);
 //
-//   fbsize = sequence2_int(sequence2_float(fbsize) * pixel_ratio);
-//   offset = sequence2_int(sequence2_float(offset) * pixel_ratio);
+//   fbsize = int_sequence2(float_sequence2(fbsize) * pixel_ratio);
+//   offset = int_sequence2(float_sequence2(offset) * pixel_ratio);
 //
 //   if (m_render_to_texture) {
 //      m_render_pass->resize(fbsize);
@@ -214,7 +214,7 @@ void Canvas::draw(::nano2d::context  * pcontext) {
 //      pcontext->begin_path();
 //      pcontext->stroke_width(1.f);
 //      pcontext->stroke_color(m_border_color);
-//      ::nano2d::RoundedRect(ctx, m_pos.x() + .5f, m_pos.y() + .5f,
+//      ::nano2d::RoundedRect(ctx, m_pos.x + .5f, m_pos.y + .5f,
 //         m_size.cx() - 1.f, m_size.cy() - 1.f,
 //         m_ptheme->m_iWindowCorderRadius);
 //      pcontext->stroke();
@@ -226,7 +226,7 @@ void Canvas::draw(::nano2d::context  * pcontext) {
 //      if (m_render_pass_resolved)
 //         rp = m_render_pass_resolved;
 //#endif
-//      rp->blit_to(sequence2_int(0, 0), fbsize, pscreen, offset);
+//      rp->blit_to(int_sequence2(0, 0), fbsize, pscreen, offset);
 //   }
 }
 

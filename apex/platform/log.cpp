@@ -557,7 +557,7 @@ namespace apex
 ////
 ////         print("<log>Starting Log</log>"); // <<  this is one of the "...possible_recursive_impossible_logging_in_file"...
 ////
-////         informationf("\n" + m_strLogPath + "\n");
+////         informationf("----> " + m_strLogPath + "\n");
 ////
 ////#if !defined(UNIVERSAL_WINDOWS)
 ////

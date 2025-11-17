@@ -82,7 +82,7 @@ void prop_id_debug(::particle * pparticle);
 //      if(m_atom.is_empty())
 //      {
 //
-//         informationf("\nHI!! Shouldn't you use a matter find this by use matter and set a breakpoint here!!!\n");
+//         informationf("----> HI!! Shouldn't you use a matter find this by use matter and set a breakpoint here!!!\n");
 //         m_atom = property.m_atom;
 //
 //      }

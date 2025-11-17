@@ -331,7 +331,7 @@ namespace user
             if (size.cy() != 18)
             {
 
-               //informationf("\nCOMBO LIST ITEM HEIGHT != 18\n");
+               //informationf("----> COMBO LIST ITEM HEIGHT != 18\n");
 
             }
 
@@ -397,13 +397,13 @@ namespace user
          && iItem >= 0 && iItem < m_pcombo->_001GetListCount())
       {
 
-         m_pointScroll.y() = (int) (iItem * _001GetItemHeight());
+         m_pointScroll.y = (int) (iItem * _001GetItemHeight());
 
       }
       else
       {
 
-         m_pointScroll.y() = 0;
+         m_pointScroll.y = 0;
 
       }
 

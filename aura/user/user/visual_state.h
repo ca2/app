@@ -68,11 +68,11 @@ namespace user
       //template < primitive_rectangle RECTANGLE >
       //visual_state & operator = (const RECTANGLE & rectangle) { m_point = rectangle.origin(); m_size = rectangle.size(); return *this; }
 
-      int left() const { return m_point2.x(); }
-      //int & left() { return m_point.x(); }
+      int left() const { return m_point2.x; }
+      //int & left() { return m_point.x; }
 
-      int top() const { return m_point2.y(); }
-      //int & top() { return m_point.y(); }
+      int top() const { return m_point2.y; }
+      //int & top() { return m_point.y; }
 
       int width() const { return m_size.cx(); }
       int & width() { return m_size.cx(); }

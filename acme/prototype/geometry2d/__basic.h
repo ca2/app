@@ -147,7 +147,7 @@ inline auto top(const XYDim & rectangle) { return rectangle.Y; }
 
 
 
-//inline bool contains(const ::int_rectangle &rectangle, const ::int_point & point) { return ::rectangle_contains(rectangle, point.x(), point.y()); }
+//inline bool contains(const ::int_rectangle &rectangle, const ::int_point & point) { return ::rectangle_contains(rectangle, point.x, point.y); }
 //inline ::int_rectangle & null(::int_rectangle & rectDst) { return ::null_rect(rectDst); }
 //inline bool is_equal(const ::int_rectangle &rect1, const ::int_rectangle &rect2) { return ::rect_equals(rect1, rect2); }
 //inline ::int_rectangle & inflate(::int_rectangle & rectangle, int x, int y) { return ::rect_inflate_point(rectangle, x, y); }
@@ -181,7 +181,7 @@ inline auto top(const XYDim & rectangle) { return rectangle.Y; }
 
 
 
-//inline bool contains(const ::long_long_rectangle & rectangle, const ::int_point & point) { return ::rectangle_contains(rectangle, point.x(), point.y()); }
+//inline bool contains(const ::long_long_rectangle & rectangle, const ::int_point & point) { return ::rectangle_contains(rectangle, point.x, point.y); }
 //inline ::long_long_rectangle & null(::long_long_rectangle & rectDst) { return ::null_rect(rectDst); }
 //inline bool is_equal(const ::long_long_rectangle & rect1, const ::long_long_rectangle & rect2) { return ::rect_equals(rect1, rect2); }
 //inline ::long_long_rectangle & inflate(::long_long_rectangle & rectangle, long long x, long long y) { return ::rect_inflate_point(rectangle, x, y); }
@@ -205,7 +205,7 @@ inline auto top(const XYDim & rectangle) { return rectangle.Y; }
 
 
 
-//inline bool contains(const ::float_rectangle & rectangle, const ::float_point & point) { return ::rectangle_contains(rectangle, point.x(), point.y()); }
+//inline bool contains(const ::float_rectangle & rectangle, const ::float_point & point) { return ::rectangle_contains(rectangle, point.x, point.y); }
 //inline ::float_rectangle & null(::float_rectangle & rect) { return ::null_rect(rect); }
 //inline bool is_equal(const ::float_rectangle & rect1, const ::float_rectangle & rect2) { return ::rect_equals(rect1, rect2); }
 //inline ::float_rectangle & inflate(::float_rectangle & rectangle, float x, float y) { return ::rect_inflate_point(rectangle, x, y); }
@@ -231,7 +231,7 @@ inline auto top(const XYDim & rectangle) { return rectangle.Y; }
 
 
 
-//inline bool contains(const ::double_rectangle & rectangle, const ::double_point & point) { return ::rectangle_contains(rectangle, point.x(), point.y()); }
+//inline bool contains(const ::double_rectangle & rectangle, const ::double_point & point) { return ::rectangle_contains(rectangle, point.x, point.y); }
 //inline ::double_rectangle & null(::double_rectangle & rect) { return ::null_rect(rect); }
 //inline bool is_equal(const ::double_rectangle & rect1, const ::double_rectangle & rect2) { return ::rect_equals(rect1, rect2); }
 //inline ::double_rectangle & inflate(::double_rectangle & rectangle, double x, double y) { return ::rect_inflate_point(rectangle, x, y); }

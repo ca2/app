@@ -1767,7 +1767,7 @@ namespace gpu_opengl
    //   for (auto& p : a)
    //   {
 
-   //      glVertex3f((GLfloat)p.x(), (GLfloat)p.y(), fZ);
+   //      glVertex3f((GLfloat)p.x, (GLfloat)p.y, fZ);
 
    //   }
 

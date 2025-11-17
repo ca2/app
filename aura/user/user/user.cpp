@@ -117,7 +117,7 @@ namespace user
       //if (!estatus)
       //{
 
-      //   informationf("\nFailed to create_windowing at user::user::initialize.");
+      //   informationf("----> Failed to create_windowing at user::user::initialize.");
 
       //   return estatus;
 

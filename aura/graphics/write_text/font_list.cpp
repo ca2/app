@@ -200,7 +200,7 @@ namespace write_text
 
                pgraphics->text_out(point, "Loading " + m_pfontenumeration->m_pathaLoading[i].title());
 
-               point.y() += (int)pgraphics->m_pfont->get_height(pgraphics);
+               point.y += (int)pgraphics->m_pfont->get_height(pgraphics);
 
             }
 
@@ -441,7 +441,7 @@ namespace write_text
 
          }
 
-         //if (bCheckHover && rectangle.contains_y(pointCursor.y()))
+         //if (bCheckHover && rectangle.contains_y(pointCursor.y))
          //{
 
          //   //m_puserinteraction->m_pitemHover = øallocate ::item({ ::e_element_item, i });

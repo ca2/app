@@ -27,6 +27,8 @@ namespace gpu
 
    class full_screen_quad;
 
+   class Timer;
+
    //class hdr_texture;
 
 
@@ -34,6 +36,7 @@ namespace gpu
 
 
 #include "aqua/include/_include.h"
+
 
 #include "gpu/gltf/_.h"
 #include "gpu/ibl/_.h"

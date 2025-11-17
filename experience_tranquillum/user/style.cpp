@@ -1024,8 +1024,8 @@ namespace experience_tranquillum
                iTabHeight = cy;
             }
 
-            pane.m_point.x() = x;
-            pane.m_point.y() = rectangleX.top();
+            pane.m_point.x = x;
+            pane.m_point.y = rectangleX.top();
 
 
             //            string str = pane.get_title();

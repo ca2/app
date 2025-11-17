@@ -120,7 +120,7 @@ auto      pwindow = ::windowing::windowing::get_new_window();
       ////      if(!pdisplay)
       ////      {
       ////
-      ////         informationf("\nFailed to øcreate < ::windowing::display > at windowing_x11::windowing::initialize");
+      ////         informationf("----> Failed to øcreate < ::windowing::display > at windowing_x11::windowing::initialize");
       ////
       ////         return ::error_no_factory;
       ////
@@ -133,7 +133,7 @@ auto      pwindow = ::windowing::windowing::get_new_window();
       ////      if(!estatus)
       ////      {
       ////
-      ////         informationf("\nFailed to initialize_display at windowing_x11::windowing::initialize");
+      ////         informationf("----> Failed to initialize_display at windowing_x11::windowing::initialize");
       ////
       ////         return estatus;
       ////
@@ -157,7 +157,7 @@ auto      pwindow = ::windowing::windowing::get_new_window();
       //      if(!estatus)
       //      {
       //
-      //         informationf("\nFailed to m_pdisplay->open at windowing_x11::windowing::initialize");
+      //         informationf("----> Failed to m_pdisplay->open at windowing_x11::windowing::initialize");
       //
       //         return estatus;
       //

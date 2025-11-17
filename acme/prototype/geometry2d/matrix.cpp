@@ -98,33 +98,33 @@ namespace geometry2d
    }
 
 
-   void matrix::transform(sequence2_int & sequence)
+   void matrix::transform(int_sequence2 & sequence)
    {
 
-      ::sequence2_int s;
+      ::int_sequence2 s;
 
-      s.a() = (int) (sequence.a() * a1 + sequence.b() * b1 + c1);
-      s.b() = (int) (sequence.a() * a2 + sequence.b() * b2 + c2);
+      s.x = (int) (sequence.x * a1 + sequence.y * b1 + c1);
+      s.y = (int) (sequence.x * a2 + sequence.y * b2 + c2);
 
       sequence = s;
 
    }
 
 
-   void matrix::transform(sequence2_double & sequence)
+   void matrix::transform(double_sequence2 & sequence)
    {
 
-      sequence2_double s;
+      double_sequence2 s;
 
-      s.a() = sequence.a() * a1 + sequence.b() * b1 + c1;
-      s.b() = sequence.a() * a2 + sequence.b() * b2 + c2;
+      s.x = sequence.x * a1 + sequence.y * b1 + c1;
+      s.y = sequence.x * a2 + sequence.y * b2 + c2;
 
       sequence = s;
 
    }
 
 
-   void matrix::transform(sequence2_double* ppoint, ::collection::count c)
+   void matrix::transform(double_sequence2* ppoint, ::collection::count c)
    {
 
       while (c-- > 0) transform(ppoint[c]);

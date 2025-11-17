@@ -97,7 +97,7 @@ void host_interaction::on_click(const ::payload & payload, ::user::mouse * pmous
 
       ppopupbutton->initialize_popup_button(
          "About...",
-         pmouse->m_pointAbsolute.x(), pmouse->m_pointAbsolute.y(),
+         pmouse->m_pointAbsolute.x, pmouse->m_pointAbsolute.y,
          this);
 
       auto puseractivationtoken = ::as_pointer(pmouse->user_activation_token());

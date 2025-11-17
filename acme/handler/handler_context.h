@@ -14,7 +14,7 @@ public:
    unsigned long long       m_uUpdateSerial;
 
 
-   handler_context();
+   handler_context() { m_uUpdateSerial = 0; }
    ~handler_context() override;
 
 

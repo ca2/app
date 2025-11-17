@@ -6,7 +6,7 @@
 #include "shader.h"
 //#include "GLFW/glfw3.h"
 #include <memory>
-#include <glm/glm.hpp>
+//#include <glm/glm.hpp>
 
 
 namespace gpu_opengl

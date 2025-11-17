@@ -3,6 +3,9 @@
 #include "tcp_socket_impl.h"
 
 
+CLASS_DECL_ACME::string _017Time(const class ::time& time);
+
+
 namespace sockets
 {
 
@@ -11,6 +14,7 @@ namespace sockets
 //#else
 //   bool tcp_socket::s_bReuseSession = true;
 //#endif
+
 
    tcp_socket::tcp_socket():
       m_ptcpsocketInterface(nullptr)//:

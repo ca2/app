@@ -53,8 +53,8 @@ namespace user
 
       //bool has_screen_coordinates() const
       //{
-      //   return m_pointScreen.x() != I32_MINIMUM
-      //      && m_pointScreen.y() != I32_MINIMUM;
+      //   return m_pointScreen.x != I32_MINIMUM
+      //      && m_pointScreen.y != I32_MINIMUM;
 
       //}
 

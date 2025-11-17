@@ -34,9 +34,9 @@ CLASS_DECL_ACME bool _istlead(int ch)
 //   HIGetMousePosition(space, nullptr, &point);
 //
 //
-//   ppointCursor->x = point.x();
+//   ppointCursor->x = point.x;
 //
-//   ppointCursor->y = point.y();
+//   ppointCursor->y = point.y;
 //
 //
 //

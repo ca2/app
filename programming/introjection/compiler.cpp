@@ -800,7 +800,7 @@ pdirectorysystem->create("/var/tmp/ca2/intermediate");
 
 #endif
       //lib->m_strBuildBat = strB;
-      //m_pathScript = m_pmanager->get_script_path(strName);
+      //m_pathScript = m_pmanager->netnode_file_path(strName);
       //#else
       // lib->m_strLibraryPath.formatf(directory()->install(m_strDynamicSourceStage /" Release\\%s.dll"), strName);
       //#endif

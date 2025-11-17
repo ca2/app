@@ -97,6 +97,17 @@ public:
    }
 
 
+   cast& operator  = (nullptr_t)
+   {
+
+      m_p = nullptr;
+
+      return *this;
+
+   }
+
+
+
    template < typename TYPE2 >
    cast & operator  = (const TYPE2 * p2)
    {
@@ -109,14 +120,7 @@ public:
 
 
    template < typename TYPE2 >
-   cast & operator = (const ::pointer < TYPE2 > & p2)
-   {
-
-      m_p = dynamic_cast <TYPE *>((::subparticle *)(p2.m_psubparticle));
-
-      return *this;
-
-   }
+   cast& operator = (const ::pointer < TYPE2 >& p2);
 
 
    template < typename TYPE2 >

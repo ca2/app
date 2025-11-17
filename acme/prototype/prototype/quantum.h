@@ -17,20 +17,16 @@ public:
 
 
 
-   inline quantum()
-   {
+   inline quantum() { }
 
 
-   }
+   //inline quantum(const ::e_flag & eflag, const ::e_status & estatus = undefined) :
+   //   m_eflagElement(eflag),
+   //   m_estatus(estatus)
+   //{
 
 
-   inline quantum(const ::e_flag & eflag, const ::e_status & estatus = undefined) :
-      m_eflagElement(eflag),
-      m_estatus(estatus)
-   {
-
-
-   }
+   //}
 
 
    inline quantum(const ::quantum & quantum)

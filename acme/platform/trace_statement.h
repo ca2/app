@@ -91,6 +91,9 @@ public:
 
    }
    //#endif
+
+
+   ::string prefix() const;
    
    
    //void format_output_arguments(const_char_pointer psz, va_list & arguments)

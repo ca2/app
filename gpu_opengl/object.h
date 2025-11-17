@@ -2,8 +2,6 @@
 #pragma once
 
 
-#include "glm/vec2.hpp"
-#include "glm/vec3.hpp"
 #include "acme/prototype/geometry3d/location.h"
 #include "bred/gpu/object.h"
 
@@ -28,9 +26,9 @@ namespace gpu_opengl
       ::gpu::element             m_ibo_elements;
 
       ::array<unsigned short>    m_indexes;
-      ::array<::glm::vec3>       m_vertexes;
-      ::array<::glm::vec2>       m_uvs;
-      ::array<::glm::vec3>       m_normals;
+      ::array<::floating_sequence3>       m_vertexes;
+      ::array<::floating_sequence2>       m_uvs;
+      ::array<::floating_sequence3>       m_normals;
 
       ::gpu::payload             m_payloadTexture;
       ::gpu::element             m_uniformTexture;

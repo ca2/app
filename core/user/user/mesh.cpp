@@ -266,7 +266,7 @@ namespace user
                   || i == sizea.get_upper_bound())
             {
                ::int_rectangle rectangle;
-               rectangle.top() = int(y - pointScroll.y());
+               rectangle.top() = int(y - pointScroll.y);
                if(i == 0)
                {
                   //w = (::collection::index) (sizea[0].cx() - x);
@@ -282,9 +282,9 @@ namespace user
                   y += sizea[i - 1].cy();
                   iNewStart = i - 1;
                }
-               rectangle.left() = int(- pointScroll.x());
+               rectangle.left() = int(- pointScroll.x);
                rectangle.right() = rectangleX.right();
-               rectangle.bottom() = int(y - pointScroll.y());
+               rectangle.bottom() = int(y - pointScroll.y);
 
                pgraphics->_DrawText(m_strTopText.substr(iStart,i - iStart),rectangle,e_align_left);
                iStart = iNewStart;
@@ -692,7 +692,7 @@ namespace user
       //if(m_eview == impact_grid)
       //{
 
-      //   pdrawitem->m_iOrder = maximum(get_context_offset().x(), 0);
+      //   pdrawitem->m_iOrder = maximum(get_context_offset().x, 0);
 
       //}
       //else
@@ -1606,7 +1606,7 @@ namespace user
       if(m_eview == impact_grid)
       {
 
-         return (::collection::index) minimum(maximum(0,get_context_offset().y()),m_nGridItemCount);
+         return (::collection::index) minimum(maximum(0,get_context_offset().y),m_nGridItemCount);
 
       }
       else
@@ -1616,7 +1616,7 @@ namespace user
 
          ::collection::index iItem;
 
-         if(_001DisplayHitTest(::int_point((int)(pointScroll.x() < 0 ? -pointScroll.x() : 0), (int)(m_dItemHeight + (pointScroll.y() < -0 ? -pointScroll.y() : 0))),iItem))
+         if(_001DisplayHitTest(::int_point((int)(pointScroll.x < 0 ? -pointScroll.x : 0), (int)(m_dItemHeight + (pointScroll.y < -0 ? -pointScroll.y : 0))),iItem))
          {
 
             return (::collection::index) iItem;
@@ -1628,7 +1628,7 @@ namespace user
             if(m_eview == impact_report || m_eview == impact_grid)
             {
 
-               if(pointScroll.y() < 0)
+               if(pointScroll.y < 0)
                {
 
                   return 0;
@@ -1870,12 +1870,12 @@ namespace user
          return true;
       }
       ::collection::index iColumnCount = m_nColumnCount;
-      int iLeft =(int)pointScroll.x();
+      int iLeft =(int)pointScroll.x;
       if(m_bGroup && m_bLateralGroup)
          iLeft += m_iLateralGroupWidth;
       //int iRight;
       // draw_mesh_item item(this);
-      if(point.x() < iLeft)
+      if(point.x < iLeft)
          return false;
       //for(::collection::index iColumn = 0; iColumn < iColumnCount; iColumn++)
       //{
@@ -1883,7 +1883,7 @@ namespace user
       //   if(!item.m_bOk)
       //      continue;
       //   iRight = iLeft + item.m_iColumnWidth;
-      //   if(iLeft <= point.x() && point.x() < iRight)
+      //   if(iLeft <= point.x && point.x < iRight)
       //   {
       //      iItemParam = iItem;
       //      iSubItemParam = _001MapColumnToSubItem(item.m_iColumn);
@@ -1901,10 +1901,10 @@ namespace user
 
          auto rectangleX = this->rectangle();
 
-         if(point.x() < 0
-               || point.x() > rectangleX.right()
-               || point.y() < 0
-               || point.y() > rectangleX.bottom())
+         if(point.x < 0
+               || point.x > rectangleX.right()
+               || point.y < 0
+               || point.y > rectangleX.bottom())
          {
 
             return false;
@@ -1918,7 +1918,7 @@ namespace user
       if(m_eview == impact_report || m_eview == impact_grid)
       {
 
-         auto dy = point.y() + pointScroll.y();
+         auto dy = point.y + pointScroll.y;
 
          auto dItem = -1.;
 
@@ -1971,7 +1971,7 @@ namespace user
          //}
          ::collection::index iRoundHeight = (::collection::index)((rectangleX.height() / m_dItemHeight) * m_dItemHeight);
 
-         ::collection::index iy = (::collection::index)((point.y() + pointScroll.y()) + (((point.x() + pointScroll.x()) / m_iItemWidth)) * iRoundHeight);
+         ::collection::index iy = (::collection::index)((point.y + pointScroll.y) + (((point.x + pointScroll.x) / m_iItemWidth)) * iRoundHeight);
 
          ::collection::index iItem = -1;
 
@@ -2016,14 +2016,14 @@ namespace user
          auto dIconSize = 32.0;
          auto dItemSize = dIconSize * 2;
 
-         auto dx = point.x() + pointScroll.x();
-         dx = maximum(pointScroll.x(),dx);
+         auto dx = point.x + pointScroll.x;
+         dx = maximum(pointScroll.x,dx);
          dx = minimum(rectangleX.right(),dx);
          dx = maximum(rectangleX.left(),dx);
          dx /= dItemSize;
 
-         auto dy = point.y() + pointScroll.y();
-         dy = maximum(pointScroll.y(),dy);
+         auto dy = point.y + pointScroll.y;
+         dy = maximum(pointScroll.y,dy);
          dy = maximum(rectangleX.top(),dy);
          dy /= dItemSize;
 
@@ -2150,7 +2150,7 @@ namespace user
                      pdrawitem->m_rectangleItem.top() += m_rectangleTopText.height();
                   }
                   pdrawitem->m_rectangleItem.bottom() = (int)(pdrawitem->m_rectangleItem.top() + m_dItemHeight);
-                  pdrawitem->m_rectangleItem.offset(-pointScroll.x(),-pointScroll.y());
+                  pdrawitem->m_rectangleItem.offset(-pointScroll.x,-pointScroll.y);
                }
 
                if(pdrawitem->m_iDisplayItem > pdrawitem->m_iRectangleDisplayItem)
@@ -2223,7 +2223,7 @@ namespace user
                pdrawitem->m_rectangleItem.top() += m_rectangleTopText.height();
             }
             pdrawitem->m_rectangleItem.bottom() = (int)(pdrawitem->m_rectangleItem.top() + m_dItemHeight);
-            pdrawitem->m_rectangleItem.offset(0, (int)(m_iTopMargin -pointScroll.y() * m_dItemHeight));
+            pdrawitem->m_rectangleItem.offset(0, (int)(m_iTopMargin -pointScroll.y * m_dItemHeight));
             pdrawitem->m_iRectangleDisplayItem = pdrawitem->m_iDisplayItem;
          }
       }
@@ -2252,7 +2252,7 @@ namespace user
                      pdrawitem->m_rectangleItem.top() += m_rectangleTopText.height();
                   }
                   pdrawitem->m_rectangleItem.bottom() = (int)(pdrawitem->m_rectangleItem.top() + m_dItemHeight);
-                  pdrawitem->m_rectangleItem.offset(-pointScroll.x(),-pointScroll.y());
+                  pdrawitem->m_rectangleItem.offset(-pointScroll.x,-pointScroll.y);
                }
 
                if(pdrawitem->m_iDisplayItem > pdrawitem->m_iRectangleDisplayItem)
@@ -2323,7 +2323,7 @@ namespace user
                pdrawitem->m_rectangleItem.top() += m_rectangleTopText.height();
             }
             pdrawitem->m_rectangleItem.bottom() = (int)(pdrawitem->m_rectangleItem.top() + m_dItemHeight);
-            pdrawitem->m_rectangleItem.offset(-pointScroll.x(),-pointScroll.y());
+            pdrawitem->m_rectangleItem.offset(-pointScroll.x,-pointScroll.y);
             pdrawitem->m_iRectangleDisplayItem = pdrawitem->m_iDisplayItem;
          }
       }
@@ -2361,7 +2361,7 @@ namespace user
          //}
          pdrawitem->m_rectangleItem.bottom() = (int)(pdrawitem->m_rectangleItem.top() + m_dItemHeight);
          pdrawitem->m_rectangleItem.right() = (int)(pdrawitem->m_rectangleItem.left() + m_iItemWidth);
-         pdrawitem->m_rectangleItem.offset(-pointScroll.x(),-pointScroll.y());
+         pdrawitem->m_rectangleItem.offset(-pointScroll.x,-pointScroll.y);
       }
       else if(m_eview == impact_icon)
       {
@@ -2394,7 +2394,7 @@ namespace user
          //   pdrawitem->m_rectangleItem.bottom() = (int)(pdrawitem->m_rectangleItem.top() + iItemSize);
          //   pdrawitem->m_rectangleItem.right() = (int)(pdrawitem->m_rectangleItem.left() + iItemSize);
          //}
-         pdrawitem->m_rectangleItem.offset(-pointScroll.x(),-pointScroll.y());
+         pdrawitem->m_rectangleItem.offset(-pointScroll.x,-pointScroll.y);
       }
 
       pdrawitem->m_bOk = true;
@@ -4536,7 +4536,7 @@ namespace user
 
       auto pointScroll = get_context_offset();
 
-      if(iItem < pointScroll.y() || (m_dItemHeight > 0 && iItem >= pointScroll.y() / m_dItemHeight + m_nDisplayCount))
+      if(iItem < pointScroll.y || (m_dItemHeight > 0 && iItem >= pointScroll.y / m_dItemHeight + m_nDisplayCount))
       {
 
          auto dy = iItem * m_dItemHeight;
@@ -4596,7 +4596,7 @@ namespace user
 
       auto pointScroll = get_context_offset();
 
-      auto iyScroll = pointScroll.y() / maximum(1,m_dItemHeight);
+      auto iyScroll = pointScroll.y / maximum(1,m_dItemHeight);
       if(iItem < iyScroll)
       {
          iyScroll = iItem - (double) m_nDisplayCount + 1;
@@ -4605,7 +4605,7 @@ namespace user
       {
          iyScroll = (double) iItem;
       }
-      if(pointScroll.y() / maximum(1,m_dItemHeight) != iyScroll)
+      if(pointScroll.y / maximum(1,m_dItemHeight) != iyScroll)
       {
          item_range item;
 
@@ -5696,7 +5696,7 @@ namespace user
 
             auto sizeTotal = get_total_size();
 
-            if((sizeTotal.cy() - pointScroll.y() - sizePage.cy()) <= 1)
+            if((sizeTotal.cy() - pointScroll.y - sizePage.cy()) <= 1)
             {
 
                m_nItemCount = minimum(m_nGridItemCount,m_nItemCount + (::collection::count)(sizePage.cy() / m_dItemHeight));
@@ -5736,7 +5736,7 @@ namespace user
 
             auto sizeTotal = get_total_size();
 
-            if((sizeTotal.cx() - pointScroll.x() - sizePage.cx()) <= 1)
+            if((sizeTotal.cx() - pointScroll.x - sizePage.cx()) <= 1)
             {
 
 ///               m_nColumnCount = minimum(m_nGridColumnCount,m_nColumnCount + sizePage.cx());
@@ -6462,10 +6462,10 @@ namespace user
 
    //      m_scrollstate.m_sizePage.cy() = rectangleImpactClient.size().cy() / m_dItemHeight;
 
-   //      if(m_scrollstate.m_pointScroll.y() > (m_sizeTotal.cy() - m_scrollstate.m_sizePage.cy()))
+   //      if(m_scrollstate.m_pointScroll.y > (m_sizeTotal.cy() - m_scrollstate.m_sizePage.cy()))
    //      {
 
-   //         m_scrollstate.m_pointScroll.y() = (m_sizeTotal.cy() - m_scrollstate.m_sizePage.cy());
+   //         m_scrollstate.m_pointScroll.y = (m_sizeTotal.cy() - m_scrollstate.m_sizePage.cy());
 
    //      }
 

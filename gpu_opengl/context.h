@@ -64,7 +64,7 @@ namespace gpu_opengl
 
       virtual void update_framebuffer(const ::int_size& size);
       //void gpu_debug_message(const ::scoped_string& scopedstrMessage) override;
-      void start_debug_happening(const ::scoped_string& scopedstrMessage) override;
+      void start_debug_happening(::gpu::command_buffer * pgpucommandbuffer, const ::scoped_string& scopedstrMessage) override;
       ::memory rectangle_shader_vert() override;
       ::memory rectangle_shader_frag() override;
 
@@ -112,7 +112,7 @@ namespace gpu_opengl
       void set_matrix_uniform(const ::gpu::payload & uniformMatrix) override;
 
 
-      void clear(const ::color::color& color) override;
+      void clear(::gpu::texture * pgputexture, const ::color::color& color) override;
       void create_global_ubo(int iSize, int iFrameCount) override;
       void update_global_ubo(const ::block& block) override;
 
@@ -190,6 +190,17 @@ namespace gpu_opengl
 //       /// generate lutBrdf
 //       /// @return lutBrdf
 //       virtual ::pointer < ::gpu::texture > generateBRDFlut();
+
+       floating_matrix4 ortho(float left, float right, float bottom, float top, float zNear = -1.0f,
+                                    float zFar = 1.0f) override;
+     
+
+      floating_matrix4 perspective(float fovyRadians, float aspect, float zNear, float zFar);
+
+      floating_matrix4 rotateFromAxes(const floating_sequence3 &right, const floating_sequence3 &up,
+                                      const floating_sequence3 &forward) override; // OpenGL forward = -f
+
+      floating_matrix4 lookAt(const float_sequence3 &eye, const float_sequence3 &center, const float_sequence3 &up) override;
 
    };
 

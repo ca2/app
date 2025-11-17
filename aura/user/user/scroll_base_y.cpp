@@ -337,7 +337,7 @@ namespace user
    //   //if (m_pscrollbarY.is_set())
    //   //{
 
-   //   //   m_pscrollbarY->m_scrollinfo.nPos = m_pointScroll.y();
+   //   //   m_pscrollbarY->m_scrollinfo.nPos = m_pointScroll.y;
 
    //   //}
 
@@ -480,10 +480,10 @@ namespace user
    //bool scroll_base_y::validate_context_offset(int_point & point)
    //{
 
-   //   if (point.y() < 0)
+   //   if (point.y < 0)
    //   {
 
-   //      point.y() = 0;
+   //      point.y = 0;
 
    //   }
    //   else
@@ -493,10 +493,10 @@ namespace user
 
    //      auto sizePage = get_page_size();
 
-   //      if (point.y() > maximum(0, sizeTotal.cy() - sizePage.cy()))
+   //      if (point.y > maximum(0, sizeTotal.cy() - sizePage.cy()))
    //      {
 
-   //         point.y() = (int)maximum(0, sizeTotal.cy() - sizePage.cy());
+   //         point.y = (int)maximum(0, sizeTotal.cy() - sizePage.cy());
 
    //      }
 
@@ -556,12 +556,12 @@ namespace user
 
       y = minimum_maximum(y, scrollstatey.m_dMinimum, scrollstatey.m_dMaximum - scrollstatey.m_dPage);
 
-      //point.y() = minimum_maximum(point.y(), scrollstatey.m_iMinimum, scrollstatey.m_iMaximum);
+      //point.y = minimum_maximum(point.y, scrollstatey.m_iMinimum, scrollstatey.m_iMaximum);
 
-            //if (point.x() < 0)
+            //if (point.x < 0)
             //{
 
-            //   point.x() = 0;
+            //   point.x = 0;
 
             //}
             //else
@@ -571,10 +571,10 @@ namespace user
 
             //   auto sizePage = get_page_size();
 
-            //   if (point.x() > maximum(0, sizeTotal.cx() - sizePage.cx()))
+            //   if (point.x > maximum(0, sizeTotal.cx() - sizePage.cx()))
             //   {
 
-            //      point.x() = (int)maximum(0, sizeTotal.cx() - sizePage.cx());
+            //      point.x = (int)maximum(0, sizeTotal.cx() - sizePage.cx());
 
             //   }
 
@@ -687,7 +687,7 @@ namespace user
       //else
       //{
 
-      //   pscroll->m_nPos = (int)get_context_offset().y();
+      //   pscroll->m_nPos = (int)get_context_offset().y;
 
       //}
 

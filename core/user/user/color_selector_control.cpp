@@ -223,21 +223,21 @@ namespace user
    //void color_selector_control::on_mouse_motion(const ::int_point & point)
    //{
 
-   //   if (point.y() >= m_rectangleColors.bottom())
+   //   if (point.y >= m_rectangleColors.bottom())
    //   {
 
    //      return;
 
    //   }
 
-   //   if (point.x() < m_rectangleColors.left())
+   //   if (point.x < m_rectangleColors.left())
    //   {
 
    //      return;
 
    //   }
 
-   //   if (point.y() < m_rectangleColors.top())
+   //   if (point.y < m_rectangleColors.top())
    //   {
 
    //      return;
@@ -250,12 +250,12 @@ namespace user
 
    //   int iColorsRight = iColorsLeft + iColorsWidth;
 
-   //   if (point.x() < iColorsRight)
+   //   if (point.x < iColorsRight)
    //   {
 
-   //      int x = point.x() - iColorsLeft;
+   //      int x = point.x - iColorsLeft;
 
-   //      int y = point.y() - m_rectangleColors.top();
+   //      int y = point.y - m_rectangleColors.top();
 
    //      m_pointMouseColorBeam = point;
 
@@ -295,12 +295,12 @@ namespace user
    //      post_redraw();
 
    //   }
-   //   else if (point.x() < m_rectangleColors.center().x() + m_rectangleColors.width() / 8)
+   //   else if (point.x < m_rectangleColors.center().x + m_rectangleColors.width() / 8)
    //   {
 
-   //      auto pointLuminance = point - ::int_size(m_rectangleColors.center().x(), m_rectangleColors.top());
+   //      auto pointLuminance = point - ::int_size(m_rectangleColors.center().x, m_rectangleColors.top());
 
-   //      m_hls.m_dL = 1.0 - ((double)pointLuminance.y() / (double)m_pimage->height());
+   //      m_hls.m_dL = 1.0 - ((double)pointLuminance.y / (double)m_pimage->height());
 
    //      if (has_handler())
    //      {
@@ -341,7 +341,7 @@ namespace user
 
    //   double_size sizeBeam(dSize, dSize);
 
-   //   double_rectangle rectangleOuter(point.x() - sizeBeam.cx() / 2.0, point.y() - sizeBeam.cy() / 2.0, point.x() + sizeBeam.cx() / 2.0, point.y() + sizeBeam.cy() / 2.0);
+   //   double_rectangle rectangleOuter(point.x - sizeBeam.cx() / 2.0, point.y - sizeBeam.cy() / 2.0, point.x + sizeBeam.cx() / 2.0, point.y + sizeBeam.cy() / 2.0);
 
    //   double_rectangle rectangleInner(rectangleOuter);
 
@@ -359,9 +359,9 @@ namespace user
 
    //      double_point_array pointa;
 
-   //      pointa.add(double_point(rectangleOuter.left(), point.y() - dHalfTriBase));
-   //      pointa.add(double_point(rectangleInner.left(), point.y()));
-   //      pointa.add(double_point(rectangleOuter.left(), point.y() + dHalfTriBase));
+   //      pointa.add(double_point(rectangleOuter.left(), point.y - dHalfTriBase));
+   //      pointa.add(double_point(rectangleInner.left(), point.y));
+   //      pointa.add(double_point(rectangleOuter.left(), point.y + dHalfTriBase));
 
    //      pgraphics->fill_polygon(pointa);
 
@@ -371,9 +371,9 @@ namespace user
 
    //      double_point_array pointa;
 
-   //      pointa.add(double_point(point.x() - dHalfTriBase, rectangleOuter.top()));
-   //      pointa.add(double_point(point.x(), rectangleInner.top()));
-   //      pointa.add(double_point(point.x() + dHalfTriBase, rectangleOuter.top()));
+   //      pointa.add(double_point(point.x - dHalfTriBase, rectangleOuter.top()));
+   //      pointa.add(double_point(point.x, rectangleInner.top()));
+   //      pointa.add(double_point(point.x + dHalfTriBase, rectangleOuter.top()));
 
    //      pgraphics->fill_polygon(pointa);
 
@@ -383,9 +383,9 @@ namespace user
 
    //      double_point_array pointa;
 
-   //      pointa.add(double_point(rectangleOuter.right(), point.y() - dHalfTriBase));
-   //      pointa.add(double_point(rectangleInner.right(), point.y()));
-   //      pointa.add(double_point(rectangleOuter.right(), point.y() + dHalfTriBase));
+   //      pointa.add(double_point(rectangleOuter.right(), point.y - dHalfTriBase));
+   //      pointa.add(double_point(rectangleInner.right(), point.y));
+   //      pointa.add(double_point(rectangleOuter.right(), point.y + dHalfTriBase));
 
    //      pgraphics->fill_polygon(pointa);
 
@@ -395,9 +395,9 @@ namespace user
 
    //      double_point_array pointa;
 
-   //      pointa.add(double_point(point.x() - dHalfTriBase, rectangleOuter.bottom()));
-   //      pointa.add(double_point(point.x(), rectangleInner.bottom()));
-   //      pointa.add(double_point(point.x() + dHalfTriBase, rectangleOuter.bottom()));
+   //      pointa.add(double_point(point.x - dHalfTriBase, rectangleOuter.bottom()));
+   //      pointa.add(double_point(point.x, rectangleInner.bottom()));
+   //      pointa.add(double_point(point.x + dHalfTriBase, rectangleOuter.bottom()));
 
    //      pgraphics->fill_polygon(pointa);
 
@@ -564,9 +564,9 @@ namespace user
    //   else
    //   {
 
-   //      point.x() = (int)(rTarget.left() + rTarget.width() * m_hls.m_dH);
+   //      point.x = (int)(rTarget.left() + rTarget.width() * m_hls.m_dH);
 
-   //      point.y() = (int)(rTarget.top() + rTarget.height() * (1.0 - m_hls.m_dS));
+   //      point.y = (int)(rTarget.top() + rTarget.height() * (1.0 - m_hls.m_dS));
 
    //   }
 

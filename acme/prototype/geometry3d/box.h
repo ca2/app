@@ -29,12 +29,12 @@ public:
 
       point = m_origin + locationd(m_dimension.cx() / 2.0, m_dimension.cy() / 2.0, m_dimension.cz / 2.0).rotate(m_direction);
 
-      //point.x() = m_dimension.cx() *cos(m_direction.z) / 2.0 - m_dimension.cy() * sin(m_direction.z) / 2.0;
-      //point.y() = m_dimension.cx() *sin(m_direction.z) / 2.0 + m_dimension.cy() * cos(m_direction.z) / 2.0;
-      //point.y() = m_dimension.cy() *cos(m_direction.x()) / 2.0 - m_dimension.cz * sin(m_direction.x()) / 2.0;
-      //point.z = m_dimension.cy() *sin(m_direction.x()) / 2.0 + m_dimension.cz * cos(m_direction.x()) / 2.0;
-      //point.z = m_dimension.cz *cos(m_direction.y()) / 2.0 - m_dimension.cx() * sin(m_direction.y()) / 2.0;
-      //point.x() = m_dimension.cz *sin(m_direction.y()) / 2.0 + m_dimension.cx() * cos(m_direction.y()) / 2.0;
+      //point.x = m_dimension.cx() *cos(m_direction.z) / 2.0 - m_dimension.cy() * sin(m_direction.z) / 2.0;
+      //point.y = m_dimension.cx() *sin(m_direction.z) / 2.0 + m_dimension.cy() * cos(m_direction.z) / 2.0;
+      //point.y = m_dimension.cy() *cos(m_direction.x) / 2.0 - m_dimension.cz * sin(m_direction.x) / 2.0;
+      //point.z = m_dimension.cy() *sin(m_direction.x) / 2.0 + m_dimension.cz * cos(m_direction.x) / 2.0;
+      //point.z = m_dimension.cz *cos(m_direction.y) / 2.0 - m_dimension.cx() * sin(m_direction.y) / 2.0;
+      //point.x = m_dimension.cz *sin(m_direction.y) / 2.0 + m_dimension.cx() * cos(m_direction.y) / 2.0;
 
       //point += m_origin;
 
@@ -49,7 +49,7 @@ public:
       operator -=(point);
 
 
-      //locationd OriginDirection(0, acos(m_origin.z / (sqrt(m_origin.x() * m_origin.x() + m_origin.y() * m_origin.y() + m_origin.z * m_origin.z))), atan2(m_origin.y(),m_origin.x()));
+      //locationd OriginDirection(0, acos(m_origin.z / (sqrt(m_origin.x * m_origin.x + m_origin.y * m_origin.y + m_origin.z * m_origin.z))), atan2(m_origin.y,m_origin.x));
 
       m_direction += pointRotation;
       m_origin = m_origin.rotate(pointRotation);
@@ -185,14 +185,14 @@ public:
 
 
       point[0] = m_origin;
-      point[1] = point[0] + location_type < NUMBER >(m_dimension.x(), 0, 0).rotate(m_direction);
-      point[2] = point[0] + location_type < NUMBER >(m_dimension.x(), m_dimension.y(), 0).rotate(m_direction);
-      point[3] = point[0] + location_type < NUMBER >(0, m_dimension.y(), 0).rotate(m_direction);
+      point[1] = point[0] + location_type < NUMBER >(m_dimension.x, 0, 0).rotate(m_direction);
+      point[2] = point[0] + location_type < NUMBER >(m_dimension.x, m_dimension.y, 0).rotate(m_direction);
+      point[3] = point[0] + location_type < NUMBER >(0, m_dimension.y, 0).rotate(m_direction);
 
-      point[4] = m_origin + location_type < NUMBER >(0, 0, m_dimension.z()).rotate(m_direction);
-      point[5] = point[4] + location_type < NUMBER >(m_dimension.x(), 0, 0).rotate(m_direction);
-      point[6] = point[4] + location_type < NUMBER >(m_dimension.x(), m_dimension.y(), 0).rotate(m_direction);
-      point[7] = point[4] + location_type < NUMBER >(0, m_dimension.y(), 0).rotate(m_direction);
+      point[4] = m_origin + location_type < NUMBER >(0, 0, m_dimension.z).rotate(m_direction);
+      point[5] = point[4] + location_type < NUMBER >(m_dimension.x, 0, 0).rotate(m_direction);
+      point[6] = point[4] + location_type < NUMBER >(m_dimension.x, m_dimension.y, 0).rotate(m_direction);
+      point[7] = point[4] + location_type < NUMBER >(0, m_dimension.y, 0).rotate(m_direction);
 
       return point;
    }
@@ -205,7 +205,7 @@ public:
 
       array < location_type < NUMBER > >  verts = vertexes();
 
-      double dMin = sqrt(::sqr(point.x() - verts[0].x()) + sqr(point.y() - verts[0].y()) + sqr(point.z - verts[0].z));
+      double dMin = sqrt(::sqr(point.x - verts[0].x) + sqr(point.y - verts[0].y) + sqr(point.z - verts[0].z));
 
       double d;
 
@@ -213,7 +213,7 @@ public:
 
       for (::collection::index i = 1; i < verts.get_count(); i++)
       {
-         d = sqrt(::sqr(point.x() - verts[i].x()) + sqr(point.y() - verts[i].y()) + sqr(point.z - verts[i].z));
+         d = sqrt(::sqr(point.x - verts[i].x) + sqr(point.y - verts[i].y) + sqr(point.z - verts[i].z));
 
          if (d < dMin)
          {
@@ -232,7 +232,7 @@ public:
 
       array < location_type < NUMBER > >  verts = vertexes();
 
-      double dMin = sqrt(::sqr(point.x() - verts[0].x()) + sqr(point.y() - verts[0].y()) + sqr(point.z - verts[0].z));
+      double dMin = sqrt(::sqr(point.x - verts[0].x) + sqr(point.y - verts[0].y) + sqr(point.z - verts[0].z));
 
       double d;
 
@@ -240,7 +240,7 @@ public:
 
       for (::collection::index i = 1; i < verts.get_count(); i++)
       {
-         d = sqrt(::sqr(point.x() - verts[i].x()) + sqr(point.y() - verts[i].y()) + sqr(point.z - verts[i].z));
+         d = sqrt(::sqr(point.x - verts[i].x) + sqr(point.y - verts[i].y) + sqr(point.z - verts[i].z));
 
          if (d < dMin)
          {
@@ -260,7 +260,7 @@ public:
 
       array < location_type < NUMBER > >  verts = vertexes();
 
-      double dMin = sqrt(::sqr(x - verts[0].x()) + sqr(y - verts[0].y()));
+      double dMin = sqrt(::sqr(x - verts[0].x) + sqr(y - verts[0].y));
 
       double d;
 
@@ -268,7 +268,7 @@ public:
 
       for (::collection::index i = 1; i < verts.get_count(); i++)
       {
-         d = sqrt(::sqr(x - verts[i].x()) + sqr(y - verts[i].y()));
+         d = sqrt(::sqr(x - verts[i].x) + sqr(y - verts[i].y));
 
          if (d < dMin)
          {

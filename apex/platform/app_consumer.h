@@ -34,7 +34,12 @@
 
 #define APP_CONSUMER_BODY                                                      \
                                                                                        \
+void _on_initialize_app_consumer()  override                                           \
+{                                                                                      \
                                                                                        \
+   m_papp = this->m_papplication ? this->m_papplication->m_papplication : nullptr;             \
+                                                                                    \
+}                                                                                    \
                                                                                        \
                                                                                        \
 void on_initialize_particle() override                                             \
@@ -122,10 +127,7 @@ public:
    ::pointer<APP>m_papp;
 
 
-   app_consumer_base()
-   {
-
-   }
+   app_consumer_base() { }
 
 
    APP_CONSUMER_BODY

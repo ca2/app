@@ -150,7 +150,7 @@ struct pixmap
 
    }
 
-   inline ::color::color get_pixel(const ::int_point & point) const { return get_pixel(point.x(), point.y()); }
+   inline ::color::color get_pixel(const ::int_point & point) const { return get_pixel(point.x, point.y); }
 
    inline pixmap & operator =(const pixmap & pixmap);
    inline pixmap & operator =(const ::int_rectangle & rectangle) { map(rectangle);  return *this; }
@@ -174,7 +174,7 @@ struct pixmap
       if (::is_set(m_pimage32Raw))
       {
 
-         ((pixmap *)this)->m_pimage32 = m_pimage32Raw + (m_point.x() + m_iScan * m_point.y());
+         ((pixmap *)this)->m_pimage32 = m_pimage32Raw + (m_point.x + m_iScan * m_point.y);
 
       }
 

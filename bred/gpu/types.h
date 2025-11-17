@@ -4,7 +4,8 @@
 
 #include "acme/constant/gpu.h"
 #include "bred/gpu/properties.h"
-
+#include "acme/prototype/geometry/sequence.h"
+#include "acme/prototype/geometry/matrix.h"
 
 #include <functional>
 
@@ -28,38 +29,57 @@ namespace gpu
 	struct projection_quad_texcoords_textColor
 	{
 
-		glm::mat4 projection;
-		glm::vec4 quad;
-		glm::vec4 texcoords;
-		glm::vec4 textColor;  // r, g, b, a
+		floating_matrix4 projection;
+		floating_sequence4 quad;
+		floating_sequence4 texcoords;
+		floating_sequence4 textColor;  // r, g, b, a
 
 	};
 
 	struct quad_texcoords_textColor
 	{
 
-		glm::vec4 quad;
-		glm::vec4 texcoords;
-		glm::vec4 textColor;  // r, g, b, a
+		floating_sequence4 quad;
+		floating_sequence4 texcoords;
+		floating_sequence4 textColor;  // r, g, b, a
 
 	};
 
    struct model_view_projection_hdriSampler
    {
-      glm::mat4 model;
-      glm::mat4 view;
-      glm::mat4 projection;
+      floating_matrix4 model;
+      floating_matrix4 view;
+      floating_matrix4 projection;
       int hdri;
    };
 
    struct model_view_projection_environmentCubeSampler
    {
-      glm::mat4 model;
-      glm::mat4 view;
-      glm::mat4 projection;
-      int environmentCube;
+      floating_matrix4 model;
+      floating_matrix4 view;
+      floating_matrix4 projection;
+      int environmentCubemap;
    };
 
+   struct model_normal
+   {
+      floating_matrix4 modelMatrix;
+      floating_matrix4 normalMatrix;
+   };
+
+   struct position3
+   {
+      floating_sequence3 position;
+
+      position3() {}
+      position3(float x, float y, float z) : position(x, y, z) {}
+   };
+
+   struct position2_uv
+   {
+      floating_sequence2 position;
+      floating_sequence2 uv;
+   };
 
 } // namespace gpu
 
@@ -68,3 +88,6 @@ DECLARE_GPU_PROPERTIES(CLASS_DECL_BRED, ::gpu::projection_quad_texcoords_textCol
 DECLARE_GPU_PROPERTIES(CLASS_DECL_BRED, ::gpu::quad_texcoords_textColor)
 DECLARE_GPU_PROPERTIES(CLASS_DECL_BRED, ::gpu::model_view_projection_hdriSampler)
 DECLARE_GPU_PROPERTIES(CLASS_DECL_BRED, ::gpu::model_view_projection_environmentCubeSampler)
+DECLARE_GPU_PROPERTIES(CLASS_DECL_BRED, ::gpu::model_normal)
+DECLARE_GPU_PROPERTIES(CLASS_DECL_BRED, ::gpu::position3)
+DECLARE_GPU_PROPERTIES(CLASS_DECL_BRED, ::gpu::position2_uv)

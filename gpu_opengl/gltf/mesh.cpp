@@ -2,12 +2,14 @@
 // camilo on 2025-09-26 18:28 <3ThomasBorregaardSorensen!!
 #include "framework.h"
 #include "mesh.h"
-#include "gpu/gltf/vertex.h"
+#include "bred/gltf/vertex.h"
 #include "gpu_opengl/texture.h"
 #include "bred/gpu/command_buffer.h"
 #include "bred/gpu/context.h"
 #include "bred/gpu/render_target.h"
 #include "bred/gpu/renderer.h"
+#include "bred/graphics3d/render_systems/gltf_render_system.h"
+#include "bred/graphics3d/render_system.h"
 
 #include <glad/glad.h>
 
@@ -103,7 +105,7 @@ namespace gpu_opengl
          // glBindVertexArray(0);
 
          auto pshader = pcommandbuffer->m_pgpurendertarget->m_pgpurenderer->m_pgpucontext->m_pshaderBound;
-         auto erendersystem = pcommandbuffer->m_erendersystem;
+         auto erendersystem = pcommandbuffer->m_prendersystem->m_erendersystem;
          if (erendersystem == ::graphics3d::e_render_system_skybox_ibl)
          {
 
@@ -112,9 +114,23 @@ namespace gpu_opengl
          else  if (erendersystem == ::graphics3d::e_render_system_gltf_ibl)
          {
             // albedo
-            pshader->set_int("material.useTextureAlbedo", m_pmaterial->useTextureAlbedo);
-            pshader->set_seq3("material.albedo", m_pmaterial->m_seq3Albedo);
-            if (m_pmaterial->useTextureAlbedo)
+            ::cast<::graphics3d::gltf_render_system> prendersystem = pcommandbuffer->m_prendersystem;
+            bool bAlbedo = !prendersystem->m_bDisableAlbedo && m_pmaterial->useTextureAlbedo;
+            pshader->set_int("material.useTextureAlbedo", bAlbedo);
+            floating_sequence3 seq3Albedo= {};
+            if (prendersystem->m_bForceDefaultAmbientOcclusionFactor)
+            {
+
+               seq3Albedo = prendersystem->m_seq3DefaultAlbedo;
+            }
+            else
+            {
+
+               seq3Albedo = m_pmaterial->m_seq3Albedo;
+            }
+
+            pshader->set_sequence3("material.albedo", seq3Albedo);
+            if (bAlbedo)
             {
                int iTextureIndex = ::gpu::e_gltf_texture_albedo;
                GLenum textureIndex = GL_TEXTURE0 + iTextureIndex;
@@ -125,10 +141,37 @@ namespace gpu_opengl
                glBindTexture(GL_TEXTURE_2D, ptextureAlbedo->m_gluTextureID);
             }
 
-            pshader->set_int("material.useTextureMetallicRoughness", m_pmaterial->useTextureMetallicRoughness);
-            pshader->set_float("material.metallic", m_pmaterial->m_fMetallic);
-            pshader->set_float("material.roughness", m_pmaterial->m_fRoughness);
-            if (m_pmaterial->useTextureMetallicRoughness)
+            bool bMetallicRoughness =
+               !prendersystem->m_bDisableMetallicRoughness && m_pmaterial->useTextureMetallicRoughness;
+
+            pshader->set_int("material.useTextureMetallicRoughness", bMetallicRoughness);
+            float fMetallic = 0.0f;
+            if (prendersystem->m_bForceDefaultMetallicFactor)
+            {
+
+               fMetallic = prendersystem->m_fDefaultMetallicFactor;
+
+            }
+            else
+            {
+
+               fMetallic = m_pmaterial->m_fMetallic;
+
+            }
+            float fRoughness = 0.0f;
+            if (prendersystem->m_bForceDefaultRoughnessFactor)
+            {
+
+               fRoughness = prendersystem->m_fDefaultRoughnessFactor;
+            }
+            else
+            {
+
+               fRoughness = m_pmaterial->m_fRoughness;
+            }
+            pshader->set_float("material.metallic", fMetallic);
+            pshader->set_float("material.roughness", fRoughness);
+            if (bMetallicRoughness)
             {
                int iTextureIndex = ::gpu::e_gltf_texture_metallic_roughness;
                GLenum textureIndex = GL_TEXTURE0 + iTextureIndex;
@@ -138,8 +181,9 @@ namespace gpu_opengl
                glBindTexture(GL_TEXTURE_2D, ptextureMetallicRoughness->m_gluTextureID);
             }
 
-            pshader->set_int("material.useTextureNormal", m_pmaterial->useTextureNormal);
-            if (m_pmaterial->useTextureNormal)
+            bool bNormal = !prendersystem->m_bDisableNormal && m_pmaterial->useTextureNormal;
+            pshader->set_int("material.useTextureNormal", bNormal);
+            if (bNormal)
             {
                glActiveTexture(GL_TEXTURE0 + ::gpu::e_gltf_texture_normal);
                pshader->set_int("material.textureNormal", ::gpu::e_gltf_texture_normal);
@@ -147,9 +191,22 @@ namespace gpu_opengl
                glBindTexture(GL_TEXTURE_2D, ptextureNormal->m_gluTextureID);
             }
 
-            pshader->set_int("material.useTextureAmbientOcclusion", m_pmaterial->useTextureAmbientOcclusion);
-            pshader->set_float("material.ambientOcclusion", m_pmaterial->m_fAmbientOcclusion);
-            if (m_pmaterial->useTextureAmbientOcclusion)
+            bool bAmbientOcclusion =
+               !prendersystem->m_bDisableAmbientOcclusion && m_pmaterial->useTextureAmbientOcclusion;
+            pshader->set_int("material.useTextureAmbientOcclusion", bAmbientOcclusion);
+            float fAmbientOcclusion = 0.0f;
+            if (prendersystem->m_bForceDefaultAmbientOcclusionFactor)
+            {
+
+               fAmbientOcclusion = prendersystem->m_fDefaultAmbientOcclusionFactor;
+            }
+            else
+            {
+
+               fAmbientOcclusion = m_pmaterial->m_fAmbientOcclusion;
+            }
+            pshader->set_float("material.ambientOcclusion", fAmbientOcclusion);
+            if (bAmbientOcclusion)
             {
                glActiveTexture(GL_TEXTURE0 + ::gpu::e_gltf_texture_ambient_occlusion);
                pshader->set_int("material.textureAmbientOcclusion", ::gpu::e_gltf_texture_ambient_occlusion);
@@ -157,9 +214,21 @@ namespace gpu_opengl
                glBindTexture(GL_TEXTURE_2D, ptextureAmbientOcclusion->m_gluTextureID);
             }
 
-            pshader->set_int("material.useTextureEmissive", m_pmaterial->useTextureEmissive);
-            pshader->set_seq3("material.emissive", m_pmaterial->m_seq3Emissive);
-            if (m_pmaterial->useTextureEmissive)
+            bool bEmissive = !prendersystem->m_bDisableEmissive && m_pmaterial->useTextureEmissive;
+            pshader->set_int("material.useTextureEmissive", bEmissive);
+            floating_sequence3 seq3Emission = {};
+            if (prendersystem->m_bForceDefaultEmission)
+            {
+
+               seq3Emission = prendersystem->m_seq3DefaultEmission;
+            }
+            else
+            {
+
+               seq3Emission = m_pmaterial->m_seq3Emissive;
+            }
+            pshader->set_sequence3("material.emissive", seq3Emission);
+            if (bEmissive)
             {
                glActiveTexture(GL_TEXTURE0 + ::gpu::e_gltf_texture_emissive);
                pshader->set_int("material.textureEmissive", ::gpu::e_gltf_texture_emissive);
@@ -175,7 +244,7 @@ namespace gpu_opengl
             // albedo
                         //;
             //pshader->set_int("material.useTextureAlbedo", m_pmaterial->useTextureAlbedo);
-            //pshader->set_seq3("material.albedo", m_pmaterial->m_seq3Albedo);
+            //pshader->set_sequence3("material.albedo", m_pmaterial->m_seq3Albedo);
             if (m_pmaterial->useTextureAlbedo)
             {
                int iTextureIndex = ::gpu::e_gltf_texture_albedo;
@@ -226,7 +295,7 @@ namespace gpu_opengl
             //}
 
             //pshader->set_int("material.useTextureEmissive", m_pmaterial->useTextureEmissive);
-            //pshader->set_seq3("material.emissive", m_pmaterial->m_seq3Emissive);
+            //pshader->set_sequence3("material.emissive", m_pmaterial->m_seq3Emissive);
             //if (m_pmaterial->useTextureEmissive)
             //{
             //   glActiveTexture(GL_TEXTURE0 + ::gpu::e_gltf_texture_emissive);
@@ -328,19 +397,19 @@ namespace gpu_opengl
 
          // normals
          glEnableVertexAttribArray(1);
-         glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(::gpu::gltf::vertex), (void *)offsetof(::gpu::gltf::vertex, mNormal));
+         glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(::gpu::gltf::vertex), (void *)offsetof(::gpu::gltf::vertex, normal));
 
          // texture coordinates
          glEnableVertexAttribArray(2);
-         glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, sizeof(::gpu::gltf::vertex), (void *)offsetof(::gpu::gltf::vertex, mTextureCoordinates));
+         glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, sizeof(::gpu::gltf::vertex), (void *)offsetof(::gpu::gltf::vertex, uv));
 
-         // tangents
+         // color
          glEnableVertexAttribArray(3);
-         glVertexAttribPointer(3, 4, GL_FLOAT, GL_FALSE, sizeof(::gpu::gltf::vertex), (void *)offsetof(::gpu::gltf::vertex, mColor));
+         glVertexAttribPointer(3, 4, GL_FLOAT, GL_FALSE, sizeof(::gpu::gltf::vertex), (void *)offsetof(::gpu::gltf::vertex, color));
 
-         // bitangents
+         // tangent with .w = handness
          glEnableVertexAttribArray(4);
-         glVertexAttribPointer(4, 4, GL_FLOAT, GL_FALSE, sizeof(::gpu::gltf::vertex), (void *)offsetof(::gpu::gltf::vertex, mTangent));
+         glVertexAttribPointer(4, 4, GL_FLOAT, GL_FALSE, sizeof(::gpu::gltf::vertex), (void *)offsetof(::gpu::gltf::vertex, tangent));
 
          glBindVertexArray(0);
       }

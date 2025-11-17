@@ -55,6 +55,7 @@ namespace file
       //m_pThis = nullptr;
       //m_pfilewatchLast = 0;
       m_bCreateWatchThread = true;
+      m_bCreatingWatchThread = false;
 
    }
 
@@ -146,15 +147,34 @@ namespace file
       if (m_bCreateWatchThread)
       {
 
-         if (!m_htask)
+         if (!m_bCreatingWatchThread)
          {
 
-            application()->post([this]()
-               {
+            m_bCreatingWatchThread = true;
 
-                  branch();
+            if (!m_htask)
+            {
 
-               });
+               application()->post([this]()
+                  {
+
+                     try
+                     {
+
+                        branch();
+
+                     }
+                     catch (...)
+                     {
+
+
+                     }
+
+                     m_bCreatingWatchThread = false;
+
+                  });
+
+            }
 
          }
 

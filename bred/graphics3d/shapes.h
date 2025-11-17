@@ -24,9 +24,9 @@ namespace graphics3d
 
       struct Vertex
       {
-         ::glm::vec3 m_position;
-         ::glm::vec3 m_color;
-         ::glm::vec3 m_uv;
+         ::floating_sequence3 m_position;
+         ::floating_sequence3 m_color;
+         ::floating_sequence3 m_uv;
 
       };
 

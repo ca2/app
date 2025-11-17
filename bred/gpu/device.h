@@ -119,6 +119,10 @@ namespace gpu
       virtual bool is_starting_frame()const;
 
 
+      virtual ::gpu::queue *transfer_queue();
+      virtual ::gpu::queue *graphics_queue();
+      virtual ::gpu::queue *present_queue();
+
       virtual ::gpu::frame_storage* current_frame_storage();
       virtual ::gpu::frame_ephemeral* current_frame_ephemeral();
 
@@ -227,7 +231,7 @@ namespace gpu
 
       virtual int get_type_size(::gpu::enum_type etype);
 
-      virtual void set_mat4(void* p, const ::glm::mat4& mat4);
+      virtual void set_matrix4(void* p, const ::floating_matrix4& floating_matrix4);
 
 
       virtual void start_stacking_layers();

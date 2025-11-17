@@ -40,6 +40,24 @@ public:
    FLOAT operator / (const angle_type & angle) const { return m_fAngle / angle.m_fAngle; }
    angle_type operator * (FLOAT f) const { return m_fAngle * f; }
 
+   angle_type &operator-=(const angle_type &angle) 
+   { 
+      
+      m_fAngle -= angle.m_fAngle;
+      
+      return *this;
+
+   }
+
+   angle_type &operator+=(const angle_type &angle)
+   {
+      
+      m_fAngle += angle.m_fAngle;
+      
+      return *this; 
+
+   }
+
    double normalized() const { auto d = (FLOAT) fmod(m_fAngle, 2.0 * MATH_PI); return d <  (FLOAT) 0.0 ? d + (FLOAT) (2.0 * MATH_PI) : d; }
    void normalize() { m_fAngle = normalized(); }
 
@@ -64,7 +82,22 @@ public:
       
    }
 
+
    
+   UNIT_TYPE cos() const
+   {
+      
+      return ::std::cos(m_fAngle);
+      
+   }
+
+   UNIT_TYPE sin() const
+   {
+      
+      return ::std::sin(m_fAngle); 
+
+   }
+
 };
 
 
@@ -120,9 +153,33 @@ template < primitive_number NUMBER1, primitive_number NUMBER2 >
 inline auto angle(const ::point_type < NUMBER1 > & center, const ::point_type < NUMBER2 > & point)
 {
 
-   return radians(::std::atan2(point.y() - center.y(), point.x() - center.x()));
+   return radians(::std::atan2(point.y - center.y, point.x - center.x));
 
 }
 
 
 
+namespace geometry2d
+{
+
+
+   template<primitive_floating FLOATING>
+   inline angle_type<FLOATING> atan2(FLOATING y, FLOATING x)
+   {
+      
+      return ::radians(::std::atan2(y,x));
+
+   }
+
+
+   template<primitive_floating FLOATING>
+   inline angle_type<FLOATING> asin(FLOATING s)
+   {
+
+      return ::radians(::std::asin(s));
+
+   }
+
+
+} // namespace geometry2d
+ 

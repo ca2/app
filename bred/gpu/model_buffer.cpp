@@ -281,23 +281,23 @@ namespace gpu
    //   auto data = this->map_base < graphics3d::sequence3_color > ();
 
    //   //   // Triangle 1
-   //   data[0] = { {points[0].x(), points[0].y(), g_z}, {fR, fG, fB, fA} };
-   //   data[1] = { {points[1].x(), points[1].y(), g_z}, {fR, fG, fB, fA} };
-   //   data[2] = { {points[2].x(), points[2].y(), g_z}, {fR, fG, fB, fA} };
+   //   data[0] = { {points[0].x, points[0].y, g_z}, {fR, fG, fB, fA} };
+   //   data[1] = { {points[1].x, points[1].y, g_z}, {fR, fG, fB, fA} };
+   //   data[2] = { {points[2].x, points[2].y, g_z}, {fR, fG, fB, fA} };
    //   //   // Triangle 2
-   //   data[3] = { {points[1].x(), points[1].y(), g_z}, {fR, fG, fB, fA} };
-   //   data[4] = { {points[2].x(), points[2].y(), g_z}, {fR, fG, fB, fA} };
-   //   data[5] = { {points[3].x(), points[3].y(), g_z}, {fR, fG, fB, fA} };
+   //   data[3] = { {points[1].x, points[1].y, g_z}, {fR, fG, fB, fA} };
+   //   data[4] = { {points[2].x, points[2].y, g_z}, {fR, fG, fB, fA} };
+   //   data[5] = { {points[3].x, points[3].y, g_z}, {fR, fG, fB, fA} };
 
    //   //graphics3d::sequence3_color quadvertexes[] = {
    //   //   // Triangle 1
-   //   //   {{(float)points[0].x(), (float)points[0].y(), g_z}, {fR, fG, fB, fA}}, // Red
-   //   //   {{(float)points[1].x(), (float)points[1].y(), g_z}, {fR, fG, fB, fA}}, // Green
-   //   //   {{(float)points[2].x(), (float)points[2].y(), g_z}, {fR, fG, fB, fA}}, // Blue
+   //   //   {{(float)points[0].x, (float)points[0].y, g_z}, {fR, fG, fB, fA}}, // Red
+   //   //   {{(float)points[1].x, (float)points[1].y, g_z}, {fR, fG, fB, fA}}, // Green
+   //   //   {{(float)points[2].x, (float)points[2].y, g_z}, {fR, fG, fB, fA}}, // Blue
    //   //   // Triangle 2
-   //   //   {{(float)points[0].x(), (float)points[0].y(), g_z}, {fR, fG, fB, fA}}, // Green
-   //   //   {{(float)points[2].x(), (float)points[2].y(), g_z}, {fR, fG, fB, fA}}, // Yellow
-   //   //   {{(float)points[3].x(), (float)points[3].y(), g_z}, {fR, fG, fB, fA}}, // Blue
+   //   //   {{(float)points[0].x, (float)points[0].y, g_z}, {fR, fG, fB, fA}}, // Green
+   //   //   {{(float)points[2].x, (float)points[2].y, g_z}, {fR, fG, fB, fA}}, // Yellow
+   //   //   {{(float)points[3].x, (float)points[3].y, g_z}, {fR, fG, fB, fA}}, // Blue
    //   //};
 
    //   //m_pbufferVertex->assign(::as_memory_block(quadvertexes));
@@ -355,13 +355,13 @@ namespace gpu
 
       ::array<::graphics3d::sequence2_color> quadvertexes = {
          // Triangle 1
-         {{(float)points[0].x(), (float)points[0].y()}, {fR, fG, fB, fA}}, // Red
-         {{(float)points[1].x(), (float)points[1].y()}, {fR, fG, fB, fA}}, // Green
-         {{(float)points[2].x(), (float)points[2].y()}, {fR, fG, fB, fA}}, // Blue
+         {{(float)points[0].x, (float)points[0].y}, {fR, fG, fB, fA}}, // Red
+         {{(float)points[1].x, (float)points[1].y}, {fR, fG, fB, fA}}, // Green
+         {{(float)points[2].x, (float)points[2].y}, {fR, fG, fB, fA}}, // Blue
          // Triangle 2
-         {{(float)points[0].x(), (float)points[0].y()}, {fR, fG, fB, fA}}, // Green
-         {{(float)points[2].x(), (float)points[2].y()}, {fR, fG, fB, fA}}, // Yellow
-         {{(float)points[3].x(), (float)points[3].y()}, {fR, fG, fB, fA}}, // Blue
+         {{(float)points[0].x, (float)points[0].y}, {fR, fG, fB, fA}}, // Green
+         {{(float)points[2].x, (float)points[2].y}, {fR, fG, fB, fA}}, // Yellow
+         {{(float)points[3].x, (float)points[3].y}, {fR, fG, fB, fA}}, // Blue
       };
 
       this->set_vertexes(quadvertexes);
@@ -395,13 +395,13 @@ namespace gpu
 
       ::array<::graphics3d::sequence2_color> quadvertexes = {
          // Triangle 1
-         {{(float)pointa[0].x(), (float)pointa[0].y()}, {fR, fG, fB, fA}}, // Red
-         {{(float)pointa[1].x(), (float)pointa[1].y()}, {fR, fG, fB, fA}}, // Green
-         {{(float)pointa[2].x(), (float)pointa[2].y()}, {fR, fG, fB, fA}}, // Blue
+         {{(float)pointa[0].x, (float)pointa[0].y}, {fR, fG, fB, fA}}, // Red
+         {{(float)pointa[1].x, (float)pointa[1].y}, {fR, fG, fB, fA}}, // Green
+         {{(float)pointa[2].x, (float)pointa[2].y}, {fR, fG, fB, fA}}, // Blue
          // Triangle 2
-         {{(float)pointa[0].x(), (float)pointa[0].y()}, {fR, fG, fB, fA}}, // Green
-         {{(float)pointa[2].x(), (float)pointa[2].y()}, {fR, fG, fB, fA}}, // Yellow
-         {{(float)pointa[3].x(), (float)pointa[3].y()}, {fR, fG, fB, fA}}, // Blue
+         {{(float)pointa[0].x, (float)pointa[0].y}, {fR, fG, fB, fA}}, // Green
+         {{(float)pointa[2].x, (float)pointa[2].y}, {fR, fG, fB, fA}}, // Yellow
+         {{(float)pointa[3].x, (float)pointa[3].y}, {fR, fG, fB, fA}}, // Blue
       };
 
       this->set_vertexes(quadvertexes);
@@ -473,8 +473,8 @@ namespace gpu
       float g_z = 0.f;
 
       graphics3d::sequence3_color linevertexes[] = {
-         {{(float)points[0].x(), (float)points[0].y(), g_z}, {fR, fG, fB, fA}},
-         {{(float)points[1].x(), (float)points[1].y(), g_z}, {fR, fG, fB, fA}},
+         {{(float)points[0].x, (float)points[0].y, g_z}, {fR, fG, fB, fA}},
+         {{(float)points[1].x, (float)points[1].y, g_z}, {fR, fG, fB, fA}},
       };
 
 
@@ -606,8 +606,8 @@ namespace gpu
       float g_z = 0.f;
 
       graphics3d::sequence2_color linevertexes[] = {
-         {{(float)points[0].x(), (float)points[0].y()}, {fR, fG, fB, fA}},
-         {{(float)points[1].x(), (float)points[1].y()}, {fR, fG, fB, fA}},
+         {{(float)points[0].x, (float)points[0].y}, {fR, fG, fB, fA}},
+         {{(float)points[1].x, (float)points[1].y}, {fR, fG, fB, fA}},
       };
 
 

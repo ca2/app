@@ -45,6 +45,7 @@ namespace gpu
          m_ptexture->m_rectangleTarget.right()=width;
          m_ptexture->m_rectangleTarget.bottom()=height;
          m_ptexture->m_bRenderTarget = true;
+         m_ptexture->m_bShaderResourceView = true;
 
          on_initialize_cubemap_framebuffer();
 

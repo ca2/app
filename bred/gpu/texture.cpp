@@ -26,7 +26,14 @@ namespace gpu
       m_bTransferSrc = false;
       m_bCpuRead = false;
       m_bWithDepth = false;
-      m_iLayerCount = 0;
+      m_bShaderResourceView = false;
+      m_iLayerCount = 1;
+      m_iMipCount = 1;
+      m_iIndex = -1;
+      m_bRedGreen = false;
+      m_bFloat = false;
+      m_iCurrentMip = 0;
+      m_iCurrentFace = 0;
 
    }
 
@@ -43,6 +50,17 @@ namespace gpu
 
 
    }
+
+
+   void texture::initialize_with_image_data(::gpu::renderer * pgpurenderer,
+                                              const ::int_rectangle & rectangleTarget,
+                                     int numChannels, bool bSrgb, const void * pdata,
+                                     enum_type etype)
+   {
+
+
+         }
+
 
 
    void texture::initialize_image_texture(::gpu::renderer * pgpurenderer, const ::int_rectangle& rectangleTarget, bool bWithDepth, const ::pointer_array < ::image::image >& imagea, enum_type etype)
@@ -66,7 +84,7 @@ namespace gpu
    }
 
 
-   ::int_size texture::size()
+   ::int_size texture::size() const
    {
 
       return m_rectangleTarget.size();
@@ -74,7 +92,7 @@ namespace gpu
    }
 
 
-   int texture::width()
+   int texture::width() const
    {
 
       return m_rectangleTarget.width();
@@ -82,11 +100,76 @@ namespace gpu
    }
 
 
-   int texture::height()
+   int texture::height() const
    {
 
       return m_rectangleTarget.height();
 
+   }
+
+
+   // Helper: compute integer mip size (never below 1)
+   int texture::mip_width_for_mip(int baseWidth, int level) const
+   {
+      
+      return ::maximum(1, baseWidth >> level);
+
+   }
+
+   
+   int texture::mip_height_for_mip(int baseHeight, int level) const
+   {
+      
+      return ::maximum(1, baseHeight >> level);
+
+   }
+
+
+   int texture::render_target_view_index(int iFace, int iMip) const
+   {
+      
+      auto iMipCount = m_iMipCount;
+
+      if (iMip < 0 || iMip >= iMipCount)
+      {
+
+         throw ::exception(error_wrong_state);
+
+      }
+
+      if (iFace < 0 || iFace >= 6)
+      {
+
+         throw ::exception(error_wrong_state);
+
+      }
+
+      return iFace * iMipCount + iMip;
+
+   }
+
+
+   int texture::current_render_target_view_index() const
+   {
+
+      return this->render_target_view_index(m_iCurrentFace, m_iCurrentMip);
+
+   }
+   
+   
+   int texture::mip_width() const
+   {
+
+      return this->mip_width_for_mip(this->width(), m_iCurrentMip);
+
+   }
+
+
+   int texture::mip_height() const 
+   {
+      
+      return this->mip_height_for_mip(this->height(), m_iCurrentMip); 
+   
    }
 
 

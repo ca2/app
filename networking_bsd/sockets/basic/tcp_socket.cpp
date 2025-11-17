@@ -15,11 +15,13 @@
 #if OPENSSL_VERSION_NUMBER >= 0x30000000
 #include <openssl/core_names.h>
 #endif
+#include "acme/_information_n.h"
 //#define OPENSSL_VERSION_NUMBER 123
 
 //::std::strong_ordering memory_order(const void * m1, const void * m2, memsize s);
 
 CLASS_DECL_ACME::collection::count get_count_of_opened_sockets();
+CLASS_DECL_ACME::string _017Time(class ::time& time);
 
 #if defined(LINUX) || defined(__BSD__)
 #undef USE_MISC
@@ -27,7 +29,6 @@ CLASS_DECL_ACME::collection::count get_count_of_opened_sockets();
 #include <sys/types.h>
 #include <sys/socket.h>
 #endif
-
 
 #include <fcntl.h>
 //#include <assert.h>
@@ -560,7 +561,7 @@ m_ibuf(isize)
 
       int iPort = paddress->get_service_number();
 
-      information() << "open address = " << strIp << ":" << iPort;
+      information() << "open address = " << strIp << " :" << iPort;
 
       if (!paddress->is_valid())
       {
@@ -709,7 +710,7 @@ m_ibuf(isize)
 #endif
          {
 
-            print_line("Connecting...");
+            information("Connecting...");
 
             attach(s);
 
@@ -791,7 +792,7 @@ m_ibuf(isize)
          if (IsIpv6() && eaddresstype == ::networking::e_address_type_none)
          {
 
-            print_line("::networking_bsd::tcp_socket::open IsIpv6() true");
+            information("::networking_bsd::tcp_socket::open IsIpv6() true");
 
             //if(!__Handler(socket_handler())->ResolverEnabled() || paddressdepartment->isipv6(host))
             //if (!pnetworking2->is_ip6(host))
@@ -821,7 +822,7 @@ m_ibuf(isize)
          else
          {
 
-            print_line("::networking_bsd::tcp_socket::open IsIpv6() false");
+            information("::networking_bsd::tcp_socket::open IsIpv6() false");
 
             ////if(!__Handler(socket_handler())->ResolverEnabled() || paddressdepartment->isipv4(host))
             //if (!pnetworking2->is_ip4(host))
@@ -2480,26 +2481,21 @@ m_ibuf(isize)
             information() << "Number of opened sockets: " << get_count_of_opened_sockets();
 
             ::cast < ::sockets::tcp_socket > ptcpsocket = base_socket_interface();
-            if (ptcpsocket && ptcpsocket->m_timegetherea.get_size() > 0)
-            {
-               for (auto& timegethere : ptcpsocket->m_timegetherea)
-               {
 
-                  information() << "script(1): " << timegethere.m_strPath;
-                  informationf("time(1): %0.2fms", timegethere.m_timeGetHere.floating_millisecond());
-               }
+            if (ptcpsocket && ptcpsocket->m_pInformationN40585)
+            {
+
+               ::cast < information_n40585 > pinformation = ptcpsocket->m_pInformationN40585;
+
+               information() << pinformation->as_string();
 
             }
-            else if (m_timegetherea.get_size() > 0)
+            else if (ptcpsocket->m_pInformationN40585)
             {
 
-               for (auto& timegethere : m_timegetherea)
-               {
+               ::cast < information_n40585 > pinformation = ptcpsocket->m_pInformationN40585;
 
-                  information() << "script(2): " << timegethere.m_strPath;
-                  informationf("time(2): %0.2fms", timegethere.m_timeGetHere.floating_millisecond());
-               }
-
+               information() << pinformation->as_string();
 
             }
 
@@ -3252,13 +3248,17 @@ m_ibuf(isize)
    }
 
 
-#ifdef _WIN32
+//#ifdef _WIN32
 
 
    void tcp_socket::OnException()
    {
 
+      information() << "tcp_socket::OnException";
+
       m_ptcpsocketInterface->OnException();
+
+#ifdef _WIN32
 
       if (is_connecting())
       {
@@ -3314,6 +3314,9 @@ m_ibuf(isize)
          }
          return;
       }
+
+#endif
+
       // %! exception doesn't always mean something bad happened, this code should be reworked
       // errno valid here?
       int err = SoError();
@@ -3321,10 +3324,11 @@ m_ibuf(isize)
       fatal() << "exception on select " << err << bsd_socket_error(err);
 
       SetCloseAndDelete();
+
    }
 
 
-#endif // _WIN32
+//#endif // _WIN32
 
 
    int tcp_socket::protocol()

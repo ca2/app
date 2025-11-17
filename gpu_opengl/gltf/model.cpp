@@ -2,9 +2,6 @@
 // camilo on 2025-09-26 18:14 <3ThomasBorregaardSorensen!!
 #include "framework.h"
 #include "model.h"
-
-//#include <iostream>
-
 #include "glad/glad.h"
 
 
@@ -97,7 +94,7 @@ model::~model()
 //       gltf::vertex vertex;
 //
 //       // position
-//       glm::vec3 position;
+//       floating_sequence3 position;
 //       position.x = mesh->mVertices[i].x;
 //       position.y = mesh->mVertices[i].y;
 //       position.z = mesh->mVertices[i].z;
@@ -105,7 +102,7 @@ model::~model()
 //       vertex.mPosition = position;
 //
 //       // normal
-//       glm::vec3 normal;
+//       floating_sequence3 normal;
 //       normal.x = mesh->mNormals[i].x;
 //       normal.y = mesh->mNormals[i].y;
 //       normal.z = mesh->mNormals[i].z;
@@ -115,25 +112,25 @@ model::~model()
 //       // texture coordinates
 //       if (mesh->mTextureCoords[0])
 //       {
-//          glm::vec2 textureCoordinates;
+//          floating_sequence2 textureCoordinates;
 //          textureCoordinates.x = mesh->mTextureCoords[0][i].x;
 //          textureCoordinates.y = mesh->mTextureCoords[0][i].y;
 //          vertex.mTextureCoordinates = textureCoordinates;
 //       }
 //       else
 //       {
-//          vertex.mTextureCoordinates = glm::vec2(0.0f, 0.0f);
+//          vertex.mTextureCoordinates = floating_sequence2(0.0f, 0.0f);
 //       }
 //
 //       // tangents
-//       glm::vec3 tangent;
+//       floating_sequence3 tangent;
 //       tangent.x = mesh->mTangents[0].x;
 //       tangent.y = mesh->mTangents[0].y;
 //       tangent.z = mesh->mTangents[0].z;
 //       vertex.mTangent = tangent;
 //
 //       // bitangents
-//       glm::vec3 bitangent;
+//       floating_sequence3 bitangent;
 //       bitangent.x = mesh->mBitangents[0].x;
 //       bitangent.y = mesh->mBitangents[0].y;
 //       bitangent.z = mesh->mBitangents[0].z;

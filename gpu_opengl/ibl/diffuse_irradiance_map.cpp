@@ -5,14 +5,15 @@
 #include "bred/gpu/command_buffer.h"
 #include "bred/gpu/context.h"
 #include "bred/gpu/context_lock.h"
+#include "bred/gpu/device.h"
 #include "bred/graphics3d/renderable.h"
 #include "bred/graphics3d/scene_base.h"
 #include "bred/graphics3d/skybox.h"
 #include "gpu/gltf/_constant.h"
 #include "gpu/cube.h"
 #include <glad/glad.h>
-#include <glm/glm.hpp>
-#include <glm/gtc/matrix_transform.hpp>
+//#include <glm/glm.hpp>
+//#include <glm/gtc/matrix_transform.hpp>
 #include "gpu_opengl/_gpu_opengl.h"
 #include "gpu_opengl/texture.h"
 //#include "::gpu::gltf.h"
@@ -78,27 +79,27 @@ namespace gpu_opengl
 
 
 
-      void diffuse_irradiance_map::compute()
+      void diffuse_irradiance_map::computeIrradianceMap(::gpu::command_buffer *pgpucommandbuffer)
       {
 
          ::gpu::context_lock contextlock(m_pgpucontext);
 
          //Timer timer;
 
-         auto pgpucommandbuffer = m_pgpucontext->beginSingleTimeCommands(m_pgpucontext->graphics_queue());
+         //auto pgpucommandbuffer = m_pgpucontext->beginSingleTimeCommands(m_pgpucontext->m_pgpudevice->graphics_queue());
 
-         glm::mat4 model = ::gpu::gltf::mIndentity4;
-         glm::mat4 cameraAngles[] =
+         floating_matrix4 model = ::gpu::gltf::mIndentity4;
+         floating_matrix4 cameraAngles[] =
          {
-            glm::lookAt(::gpu::gltf::origin, ::gpu::gltf::unitX, -::gpu::gltf::unitY),
-            glm::lookAt(::gpu::gltf::origin, -::gpu::gltf::unitX, -::gpu::gltf::unitY),
-            glm::lookAt(::gpu::gltf::origin, ::gpu::gltf::unitY, ::gpu::gltf::unitZ),
-            glm::lookAt(::gpu::gltf::origin, -::gpu::gltf::unitY, -::gpu::gltf::unitZ),
-            glm::lookAt(::gpu::gltf::origin, ::gpu::gltf::unitZ, -::gpu::gltf::unitY),
-            glm::lookAt(::gpu::gltf::origin, -::gpu::gltf::unitZ, -::gpu::gltf::unitY)
+            m_pgpucontext->lookAt(::gpu::gltf::origin, ::gpu::gltf::unitX, -::gpu::gltf::unitY),
+            m_pgpucontext->lookAt(::gpu::gltf::origin, -::gpu::gltf::unitX, -::gpu::gltf::unitY),
+            m_pgpucontext->lookAt(::gpu::gltf::origin, ::gpu::gltf::unitY, ::gpu::gltf::unitZ),
+            m_pgpucontext->lookAt(::gpu::gltf::origin, -::gpu::gltf::unitY, -::gpu::gltf::unitZ),
+            m_pgpucontext->lookAt(::gpu::gltf::origin, ::gpu::gltf::unitZ, -::gpu::gltf::unitY),
+            m_pgpucontext->lookAt(::gpu::gltf::origin, -::gpu::gltf::unitZ, -::gpu::gltf::unitY)
          };
-         glm::mat4 projection = glm::perspective(
-            glm::radians(90.0f), // 90 degrees to cover one face
+         floating_matrix4 projection = m_pgpucontext->perspective(
+            ::radians(90.0f), // 90 degrees to cover one face
             1.0f, // its a square
             0.1f,
             2.0f);
@@ -134,6 +135,8 @@ namespace gpu_opengl
 
             glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
             GLCheckError("");
+
+            m_pshaderDiffuseIrradiance->push_properties(pgpucommandbuffer);
 
             //m_pshaderDiffuseIrradiance->set_int("environmentCubemap", 0);
             glBindTexture(GL_TEXTURE_CUBE_MAP, ptextureSkybox->m_gluTextureID);

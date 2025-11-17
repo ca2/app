@@ -36,6 +36,9 @@ namespace graphics
       bool is_single_buffer_mode() const override;
 
 
+      
+
+
       bool buffer_lock_round_swap_key_buffers() override;
 
       // synchronous_lock buffer synchronization first...
@@ -54,6 +57,8 @@ namespace graphics
 
       using graphics::update_screen;
       void update_screen() override;
+
+      virtual void _on_configure_window(buffer_item *pbufferitem);
 
       //::particle * get_draw_lock() override;
       bool _on_begin_draw(buffer_item * pbufferitem) override;

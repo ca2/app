@@ -1989,7 +1989,7 @@ namespace user
    }
 
 
-   void element::viewport_client_to_screen(::sequence2_int & sequence)
+   void element::viewport_client_to_screen(::int_sequence2 & sequence)
    {
 
       throw ::interface_only();
@@ -1997,7 +1997,7 @@ namespace user
    }
 
 
-   void element::viewport_screen_to_client(::sequence2_int & sequence)
+   void element::viewport_screen_to_client(::int_sequence2 & sequence)
    {
 
       throw ::interface_only();

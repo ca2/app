@@ -240,7 +240,7 @@ template < primitive_point POINT1, primitive_point POINT2 >
 double f64_distance(const POINT1 & point1, const POINT2 & point2)
 {
 
-   return sqrt((point2.x() - point1.x()) * (point2.x() - point1.x()) + (point2.y() - point1.y()) * (point2.y() - point1.y()));
+   return sqrt((point2.x - point1.x) * (point2.x - point1.x) + (point2.y - point1.y) * (point2.y - point1.y));
 
 }
 
@@ -495,7 +495,7 @@ template < primitive_point POINT_TYPE >
 bool is_null(const POINT_TYPE & point)
 {
 
-   return point.x() == (typename POINT_TYPE::UNIT_TYPE)0 && point.y() == (typename POINT_TYPE::UNIT_TYPE)0;
+   return point.x == (typename POINT_TYPE::UNIT_TYPE)0 && point.y == (typename POINT_TYPE::UNIT_TYPE)0;
 
 }
 
@@ -586,7 +586,7 @@ template < primitive_rectangle RECTANGLE_TYPE, primitive_point POINT_TYPE >
 inline RECTANGLE_TYPE & offset(RECTANGLE_TYPE & rectangle, const POINT_TYPE & point)
 {
 
-   return offset(rectangle, point.x(), point.y());
+   return offset(rectangle, point.x, point.y);
 
 }
 
@@ -595,7 +595,7 @@ template < primitive_rectangle RECTANGLE_TYPE, primitive_point POINT_TYPE >
 inline RECTANGLE_TYPE & subtract(RECTANGLE_TYPE & rectangle, const POINT_TYPE & point)
 {
 
-   return subtract(rectangle, point.x(), point.y());
+   return subtract(rectangle, point.x, point.y);
 
 }
 
@@ -636,8 +636,8 @@ template < primitive_sequence2 SEQUENCE, primitive_number X, primitive_number Y 
 inline SEQUENCE & offset(SEQUENCE & sequence, X x, Y y)
 {
 
-   sequence.a() = (const decay<typename SEQUENCE::UNIT_TYPE>&)(sequence.a() + x);
-   sequence.b() = (const decay<typename SEQUENCE::UNIT_TYPE>&)(sequence.b() + y);
+   sequence.x = (const decay<typename SEQUENCE::UNIT_TYPE>&)(sequence.x + x);
+   sequence.y = (const decay<typename SEQUENCE::UNIT_TYPE>&)(sequence.y + y);
 
    return sequence;
 
@@ -648,7 +648,7 @@ template < primitive_sequence2 SEQUENCEA, primitive_sequence SEQUENCEB >
 inline SEQUENCEA & offset(SEQUENCEA & sequencea, const SEQUENCEB & sequenceb)
 {
 
-   return offset(sequencea, sequenceb.a(), sequenceb.b());
+   return offset(sequencea, sequenceb.x, sequenceb.y);
 
 }
 
@@ -666,8 +666,8 @@ template < primitive_sequence2 SEQUENCE, typename X, typename Y >
 inline SEQUENCE & subtract(SEQUENCE & sequence, X x, Y y)
 {
 
-   sequence.a() = (const decay<typename SEQUENCE::UNIT_TYPE>&)(sequence.a() - x);
-   sequence.b() = (const decay<typename SEQUENCE::UNIT_TYPE>&)(sequence.b() - y);
+   sequence.x = (const decay<typename SEQUENCE::UNIT_TYPE>&)(sequence.x - x);
+   sequence.y = (const decay<typename SEQUENCE::UNIT_TYPE>&)(sequence.y - y);
 
    return sequence;
 
@@ -678,7 +678,7 @@ template < primitive_sequence2 SEQUENCEA, primitive_sequence2 SEQUENCEB >
 inline SEQUENCEA & subtract(SEQUENCEA & sequence, const SEQUENCEB & sequenceb)
 {
 
-   return subtract(sequence, sequenceb.x(), sequenceb.y());
+   return subtract(sequence, sequenceb.x, sequenceb.y);
 
 }
 
@@ -972,7 +972,7 @@ template < primitive_point POINT1, primitive_point POINT2 >
 bool is_equal(const POINT1 & point1, const POINT2 & point2, largest_number < ::decay<typename POINT1::UNIT_TYPE>, ::decay<typename POINT2::UNIT_TYPE> > epsilon = default_epsilon<largest_number < ::decay<typename POINT1::UNIT_TYPE>, ::decay<typename POINT2::UNIT_TYPE> >>())
 {
 
-   return is_equal(point1.x(), point2.x(), epsilon) && is_equal(point1.y(), point2.y(), epsilon);
+   return is_equal(point1.x, point2.x, epsilon) && is_equal(point1.y, point2.y, epsilon);
 
 }
 
@@ -1039,10 +1039,10 @@ template < primitive_rectangle RECTANGLE, primitive_point POINT, primitive_size 
 RECTANGLE & assign(RECTANGLE & rectangle, const POINT & point, const SIZE & size)
 {
 
-   rectangle.left() = (typename RECTANGLE::UNIT_TYPE)point.x();
-   rectangle.top() = (typename RECTANGLE::UNIT_TYPE)point.y();
-   rectangle.right() = (typename RECTANGLE::UNIT_TYPE)(point.x() + size.cx());
-   rectangle.bottom() = (typename RECTANGLE::UNIT_TYPE)(point.y() + size.cy());
+   rectangle.left() = (typename RECTANGLE::UNIT_TYPE)point.x;
+   rectangle.top() = (typename RECTANGLE::UNIT_TYPE)point.y;
+   rectangle.right() = (typename RECTANGLE::UNIT_TYPE)(point.x + size.cx());
+   rectangle.bottom() = (typename RECTANGLE::UNIT_TYPE)(point.y + size.cy());
 
    return rectangle;
 
@@ -1191,19 +1191,19 @@ inline bool polygon_contains_winding(const POINT1 * ppPolygon, int iCount, const
 
    int i, j = iCount - 1;
 
-   auto x = point.x();
+   auto x = point.x;
 
-   auto y = point.y();
+   auto y = point.y;
 
    bool oddNodes = false;
 
    for (i = 0; i < iCount; i++)
    {
 
-      if (((ppPolygon[i].y() < y && ppPolygon[j].y() >= y) || (ppPolygon[j].y() < y && ppPolygon[i].y() >= y)) && (ppPolygon[i].x() <= x || ppPolygon[j].x() <= x))
+      if (((ppPolygon[i].y < y && ppPolygon[j].y >= y) || (ppPolygon[j].y < y && ppPolygon[i].y >= y)) && (ppPolygon[i].x <= x || ppPolygon[j].x <= x))
       {
 
-         oddNodes ^= (ppPolygon[i].x() + (y - ppPolygon[i].y()) / (ppPolygon[j].y() - ppPolygon[i].y()) * (ppPolygon[j].x() - ppPolygon[i].x()) < x);
+         oddNodes ^= (ppPolygon[i].x + (y - ppPolygon[i].y) / (ppPolygon[j].y - ppPolygon[i].y) * (ppPolygon[j].x - ppPolygon[i].x) < x);
 
       }
 
@@ -1366,9 +1366,9 @@ inline void collapse_rect(RECT1& rectangle, const RECT2& r)
 
 
 template < primitive_point POINT >
-inline constexpr auto __horz(const POINT& point) { return point.x(); }
+inline constexpr auto __horz(const POINT& point) { return point.x; }
 template < primitive_point POINT >
-inline constexpr auto __vert(const POINT& point) { return point.y(); }
+inline constexpr auto __vert(const POINT& point) { return point.y; }
 template < primitive_size SIZE >
 inline constexpr auto __horz(const SIZE& size) { return size.cx(); }
 template < primitive_size SIZE >
@@ -1544,7 +1544,7 @@ namespace geometry
 //inline ::string as_string(const POINT & point)
 //{
 //
-//   return as_string(point.x()) + ", " + as_string(point.y());
+//   return as_string(point.x) + ", " + as_string(point.y);
 //
 //}
 //

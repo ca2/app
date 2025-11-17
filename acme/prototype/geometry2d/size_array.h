@@ -25,7 +25,7 @@ public:
 
    using array_base < ::size_type < NUMBER > >::add;
    void add(UNIT_TYPE cx, UNIT_TYPE cy) { add(SIZE_TYPE(cx, cy)); }
-   //void add(const POINT_TYPE & point) { add(SIZE_TYPE(point.x(), point.y())); }
+   //void add(const POINT_TYPE & point) { add(SIZE_TYPE(point.x, point.y)); }
 
 
    void offset(const ::size_type < NUMBER > & size) { for (auto & sizeItem : *this) sizeItem.offset(size); }

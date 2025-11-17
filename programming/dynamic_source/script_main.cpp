@@ -1,5 +1,8 @@
 #include "framework.h"
+#include "httpd_socket.h"
+#include "script.h"
 #include "script_main.h"
+#include "script_manager.h"
 
 
 namespace dynamic_source
@@ -9,7 +12,7 @@ namespace dynamic_source
    script_main::script_main()
    {
 
-      m_pmanager2 = nullptr;
+      //m_pmanager2 = nullptr;
 
       m_pnetnodescriptmain = nullptr;
 
@@ -53,42 +56,70 @@ namespace dynamic_source
    }
 
 
+   void script_main::initialize_script_main(
+      ::dynamic_source::script_manager* pscriptmanager1,
+      ::dynamic_source::httpd_socket* phttpsocket1,
+      ::dynamic_source::script* pscript1)
+   {
+
+      m_pscriptmanager1 = pscriptmanager1;
+
+      auto phttpdsocket1Old = m_phttpdsocket1;
+
+      m_phttpdsocket1 = phttpsocket1;
+
+      if (!m_phttpdsocket1 && phttpdsocket1Old)
+      {
+
+         ::output_debug_string("!m_phttpdsocket1");
+
+      }
+
+      m_pscript1 = pscript1;
+
+      m_prealpathinterfacecache = m_pscript1;
+
+      m_pscriptmain1 = this;
+
+   }
+
+
    void script_main::destroy()
    {
 
-      try
-      {
+      //try
+      //{
 
-         for (auto& pinterface : m_interfacea)
-         {
+      //   for (auto& pinterface : m_interfacea)
+      //   {
 
-            try
-            {
+      //      try
+      //      {
 
-               if (pinterface)
-               {
+      //         if (pinterface)
+      //         {
 
-                  pinterface->m_pmain.release();
+      //            pinterface->m_pmain.release();
 
-               }
+      //         }
 
-            }
-            catch (...)
-            {
+      //      }
+      //      catch (...)
+      //      {
 
-            }
+      //      }
 
-         }
+      //   }
 
-      }
-      catch (...)
-      {
+      //}
+      //catch (...)
+      //{
 
-      }
+      //}
 
       m_interfacea.clear();
          
-      m_psocket2.release();
+      m_phttpdsocket1 = nullptr;
 
       //m_pmanager2.release();
 

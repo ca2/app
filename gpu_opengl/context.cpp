@@ -20,7 +20,7 @@
 #include "bred/gpu/frame.h"
 #include "bred/gpu/layer.h"
 #include "bred/gpu/types.h"
-#include "glm/mat4x4.hpp"
+//#include "glm/mat4x4.hpp"
 //#include <assimp/Common/StbCommon.h>
 
 
@@ -32,7 +32,7 @@
 // #include <GL/glew.h>       // or glad, depending on your setup
 // #include <GLFW/glfw3.h>
 //
-#include <ktx/ktx.h>
+#include <ktx.h>
 //#include <ktxvulkan.h>     // not needed for GL, but included in libktx installs
 //
 // // Utility: load whole file into memory
@@ -249,10 +249,10 @@ namespace gpu_opengl
 
          // Compute the MVP matrix from keyboard and mouse input
          //computeMatricesFromInputs();
-         ::glm::mat4 matrixProjection = (::glm::mat4 &)projection_matrix();
-         ::glm::mat4 matrixView = (::glm::mat4 &)view_matrix();
-         ::glm::mat4 matrixModel = glm::mat4(1.0);
-         ::glm::mat4 matrixMVP = matrixProjection * matrixView * matrixModel;
+         floating_matrix4 matrixProjection = (floating_matrix4 &)projection_matrix();
+         floating_matrix4 matrixView = (floating_matrix4 &)view_matrix();
+         floating_matrix4 matrixModel = floating_matrix4(1.0);
+         floating_matrix4 matrixMVP = matrixProjection * matrixView * matrixModel;
 
          // Send our transformation to the currently bound shader,
          // in the "MVP" uniform
@@ -260,16 +260,16 @@ namespace gpu_opengl
 
       }
 
-      //glm::mat4 getViewMatrix() {
+      //floating_matrix4 getViewMatrix() {
       //   return ViewMatrix;
       //}
-      //glm::mat4 getProjectionMatrix() {
+      //floating_matrix4 getProjectionMatrix() {
       //   return ProjectionMatrix;
       //}
 
 
       //// Initial position : on +Z
-      //glm::vec3 position = glm::vec3(0, 0, 5);
+      //floating_sequence3 position = floating_sequence3(0, 0, 5);
       //// Initial horizontal angle : toward -Z
       //float horizontalAngle = 3.14f;
       //// Initial vertical angle : none
@@ -727,12 +727,12 @@ namespace gpu_opengl
          "uniform sampler2D backbuffer;\n"
          "\n"
          "void main(void) {\n"
-         "float base_res = min(resolution.x(), resolution.y());\n"
+         "float base_res = min(resolution.x, resolution.y);\n"
          "vec2 uv = (gl_FragCoord.xy * 2.0 - resolution.xy) / base_res;\n"
          "\n"
-         //"gl_FragColor = vec4(uv, (uv.x() * uv.x()) / 2.0, ((uv.x() + (base_res - uv.y())) *(uv.x() + (base_res - uv.y()))) / 2.0);\n"
-         "float posx = max(0.f, uv.x());\n"
-         "float posy = max(0.f, uv.y());\n"
+         //"gl_FragColor = vec4(uv, (uv.x * uv.x) / 2.0, ((uv.x + (base_res - uv.y)) *(uv.x + (base_res - uv.y))) / 2.0);\n"
+         "float posx = max(0.f, uv.x);\n"
+         "float posy = max(0.f, uv.y);\n"
          "gl_FragColor = vec4(uv, (posx * posx) / 4.0, ((posx + posy) * (posx + posy)) / 4.0);\n"
          "}\n";
 
@@ -791,7 +791,7 @@ namespace gpu_opengl
       ///::cast<::gpu_opengl::queue> pqueueGraphics = this->graphics_queue();
       ///
 
-      auto pqueueGraphics = this->graphics_queue();
+      auto pqueueGraphics = m_pgpudevice->graphics_queue();
 
       if (pathFile.case_insensitive_ends(".ktx"))
       {
@@ -841,6 +841,18 @@ namespace gpu_opengl
          {
             throw ::exception(e.m_estatus, "Failed to load HDR cubemap '" + name + "': " + e.get_message());
          }
+      }
+      else
+      {
+
+         ::string strMessage;
+
+         strMessage.format("loadCubemap doesn't yet support this file extension (path: \"{}\")", pathFile);
+
+         error() << strMessage;
+
+         throw ::not_implemented( strMessage);
+
       }
       // registerTextureIfNeeded(name, tex, m_textures, m_textureIndexMap, m_textureList);
       
@@ -956,7 +968,7 @@ namespace gpu_opengl
    }
 
 
-   void context::clear(const ::color::color &color)
+   void context::clear(::gpu::texture * pgputexture, const ::color::color &color)
    {
 
       ::gpu::context_lock contextlock(this);
@@ -1146,7 +1158,7 @@ void main() {
 
 
    //void context::gpu_debug_message(const ::scoped_string& scopedstrMessage)
-   void context::start_debug_happening(const ::scoped_string &scopedstrMessage)
+   void context::start_debug_happening(::gpu::command_buffer * pgpucommandbuffer, const ::scoped_string &scopedstrMessage)
    {
 
       {
@@ -1277,7 +1289,6 @@ void main() {
                m_pgpurenderer,
                ::as_block(full_screen_triangle_vertex_shader),
                ::as_block(full_screen_triangle_fragment_shader),
-               {},
                {},
                {},
                {},
@@ -3012,6 +3023,112 @@ color = vec4(c.r,c.g, c.b, c.a);
       popengltexture->m_gluTextureID = textureId;
       ptexture->m_path = path;
 
+
+   }
+
+   // ------------------------------
+   // Translation
+   // ------------------------------
+   floating_matrix4 translate(const floating_sequence3 &t)
+   {
+      floating_matrix4 M(1.0f); // identity
+
+      M[3][0] = t.x; // last row, first column
+      M[3][1] = t.y;
+      M[3][2] = t.z;
+
+      return M;
+   }
+
+   floating_matrix4 context::ortho(float left, float right, float bottom, float top, float zNear,
+                                 float zFar)
+   {
+      floating_matrix4 M(1.0f); // identity
+
+      float rl = right - left;
+      float tb = top - bottom;
+      float fn = zFar - zNear;
+
+      M[0][0] = 2.0f / rl;
+      M[1][1] = 2.0f / tb;
+      M[2][2] = -2.0f / fn;
+
+      M[3][0] = -(right + left) / rl;
+      M[3][1] = -(top + bottom) / tb;
+      M[3][2] = -(zFar + zNear) / fn;
+
+      return M;
+   }
+
+   floating_matrix4 context::perspective(float fovyRadians, float aspect, float zNear, float zFar)
+   {
+      float f = 1.0f / tanf(fovyRadians * 0.5f);
+
+      floating_matrix4 M(0.0f); // initialize all elements to 0
+
+      M[0][0] = f / aspect;
+      M[1][1] = f;
+
+      M[2][2] = (zFar + zNear) / (zNear - zFar);
+      M[2][3] = -1.0f;
+
+      M[3][2] = (2.0f * zFar * zNear) / (zNear - zFar);
+
+      return M;
+   }
+
+   // ------------------------------
+   // Rotation from camera axes
+   // ------------------------------
+   // Builds a matrix from right, up, forward vectors
+   floating_matrix4 context::rotateFromAxes(const floating_sequence3 &right, const floating_sequence3 &up,
+                                   const floating_sequence3 &forward) // OpenGL forward = -f
+   {
+      floating_matrix4 R(1.0f); // identity
+
+      // Column-major assignment
+      R[0][0] = right.x;
+      R[1][0] = right.y;
+      R[2][0] = right.z;
+      R[0][1] = up.x;
+      R[1][1] = up.y;
+      R[2][1] = up.z;
+      R[0][2] = forward.x;
+      R[1][2] = forward.y;
+      R[2][2] = forward.z;
+
+      // last column is (0,0,0,1)
+      R[0][3] = 0.0f;
+      R[1][3] = 0.0f;
+      R[2][3] = 0.0f;
+      R[3][3] = 1.0f;
+
+      return R;
+   }
+
+   // ---------------------------------------------------------------
+   // lookAt matrix (OpenGL RH)
+   // ---------------------------------------------------------------
+   floating_matrix4 context::lookAt(const float_sequence3 &eye, const float_sequence3 &center,
+
+                                    const float_sequence3 &up)
+   {
+
+      // --- Step 1: Compute camera axes ---------------------------------
+      auto f = (center - eye).normalized(); // forward
+      auto upN = up.normalized(); // normalized up
+      auto s = f.crossed(upN).normalized(); // right
+      auto u = s.crossed(f); // corrected up
+
+      // --- Step 2: Build rotation matrix from axes ----------------------
+      auto R = rotateFromAxes(s, u, -f); // world aligned to camera
+
+      // --- Step 3: Build translation matrix ----------------------------
+      auto T = floating_matrix4::translation(-eye); // move world by -eye
+
+      // --- Step 4: Combine ---------------------------------------------
+      // View matrix = rotate world axes, then translate
+      return R * T;
 
    }
 

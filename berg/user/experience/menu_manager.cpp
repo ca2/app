@@ -82,7 +82,7 @@ namespace experience
                      if(pmenu != nullptr)
                      {
                      pmenu->track_popup_menu(
-                     pMsg->point.x(), lpMsg->point.y(),
+                     pMsg->point.x, lpMsg->point.y,
 
                      pframewindow);
                      }*/
@@ -138,7 +138,7 @@ namespace experience
 
                      pframewindow->client_to_screen(&point);
                      pmenu->track_popup_menu(
-                     point.x(), point.y(),
+                     point.x, point.y,
                      pframewindow);
                      }*/
             pusermessage->m_bRet = true;

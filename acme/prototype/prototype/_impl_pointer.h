@@ -842,6 +842,27 @@ inline pointer < T > & pointer < T > ::operator = (pointer && t)
 }
 
 
+template < class T >
+template < typename T2 >
+inline ::pointer < T2 > pointer < T > ::defer_get_new(::particle* pparticle)
+{
+
+   if (this->is_null())
+   {
+
+      REFDBG_THIS(pparticle);
+
+      auto pNew = pparticle->øcreate_new < T2 >();
+
+      this->operator = (pNew);
+
+   }
+
+   return m_p;
+
+}
+
+
 //template < class T >
 //inline T * pointer < T > ::detach()
 //{
@@ -1650,6 +1671,14 @@ void __destroy_and_release(pointer < T >& p)
 //
 //}
 
+template < class T >
+template < typename T2 >
+inline pointer < T >& pointer < T > ::operator = (const ::cast < T2 >& p)
+{
+
+   return this->operator=(p.m_p);
+
+}
 
 template < class T >
 template < typename T2 >

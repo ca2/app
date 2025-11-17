@@ -1130,14 +1130,14 @@ namespace gpu
 
 
    //   string strProjection =
-   //      "layout(glm::vec3 = 0) in vec3 aPos;\n"
-   //      "layout(glm::vec3 = 1) in vec3 aColor;\n"
-   //      "/* out vec3 ourColor; */\n"
-   //      "out vec3 ourPosition;\n"
+   //      "layout(floating_sequence3 = 0) in floating_sequence3 aPos;\n"
+   //      "layout(floating_sequence3 = 1) in floating_sequence3 aColor;\n"
+   //      "/* out floating_sequence3 ourColor; */\n"
+   //      "out floating_sequence3 ourPosition;\n"
    //      "\n"
    //      "void main()\n"
    //      "{\n"
-   //      "   gl_Position = vec4(aPos, 1.0);\n"
+   //      "   gl_Position = floating_sequence4(aPos, 1.0);\n"
    //      "   /* ourColor = aColor;*/\n"
    //      "   ourPosition = aPos;\n"
    //      "}\n";
@@ -1152,15 +1152,15 @@ namespace gpu
    //   string strVersion = get_shader_version_text();
 
    //   string strFragment =
-   //      "uniform vec2 resolution;\n"
+   //      "uniform floating_sequence2 resolution;\n"
    //      "uniform float time;\n"
-   //      "uniform vec2 mouse;\n"
+   //      "uniform floating_sequence2 mouse;\n"
    //      "uniform sampler2D backbuffer;\n"
    //      "\n"
    //      "void main(void) {\n"
-   //      "vec2 uv = (gl_FragCoord.xy * 2.0 - resolution.xy) / minimum(resolution.x(), resolution.y());\n"
+   //      "floating_sequence2 uv = (gl_FragCoord.xy * 2.0 - resolution.xy) / minimum(resolution.x, resolution.y);\n"
    //      "\n"
-   //      "gl_FragColor = vec4(uv, uv/2.0);\n"
+   //      "gl_FragColor = floating_sequence4(uv, uv/2.0);\n"
    //      "}\n";
 
    //   return strFragment;
@@ -1197,9 +1197,9 @@ namespace gpu
             //"\n"
             //"precision highp float;\n"
             "\n"
-            "uniform vec2 iResolution;\n"
+            "uniform floating_sequence2 iResolution;\n"
             "uniform float iTime;\n"
-            "uniform vec2 iMouse;\n"
+            "uniform floating_sequence2 iMouse;\n"
             "uniform sampler2D backbuffer;\n"
             "\n"
             "\n"
@@ -1264,12 +1264,12 @@ namespace gpu
       {
       case e_type_int: return sizeof(int);
       case e_type_float: return sizeof(float);
-      case e_type_seq4: return sizeof(glm::vec4);
-      case e_type_mat4: return sizeof(glm::mat4);
-      case e_type_seq3: return sizeof(glm::vec3);
-      case e_type_mat3: return sizeof(glm::mat3);
-      case e_type_seq2: return sizeof(glm::vec2);
-      case e_type_mat2: return sizeof(glm::mat2);
+      case e_type_seq4: return sizeof(floating_sequence4);
+      case e_type_mat4: return sizeof(floating_matrix4);
+      case e_type_seq3: return sizeof(floating_sequence3);
+      case e_type_mat3: return sizeof(floating_matrix3);
+      case e_type_seq2: return sizeof(floating_sequence2);
+      case e_type_mat2: return sizeof(floating_matrix2);
       default:
          throw ::exception(error_wrong_state);
 
@@ -1278,10 +1278,10 @@ namespace gpu
    }
 
 
-   void device::set_mat4(void* p, const ::glm::mat4& mat4)
+   void device::set_matrix4(void* p, const ::floating_matrix4& floating_matrix4)
    {
 
-      *((::glm::mat4*)p) = mat4;
+      *((::floating_matrix4*)p) = floating_matrix4;
 
    }
 
@@ -1391,6 +1391,15 @@ namespace gpu
       return player;
 
    }
+
+
+   ::gpu::queue *device::transfer_queue() { return nullptr; }
+
+
+   ::gpu::queue *device::graphics_queue() { return nullptr; }
+
+
+   ::gpu::queue *device::present_queue() { return nullptr; }
 
 
    frame_storage* device::current_frame_storage()

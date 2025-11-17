@@ -2,6 +2,7 @@
 
 
 #include "bred/gpu/properties.h"
+#include "acme/constant/gpu.h"
 
 
 namespace gpu
@@ -117,7 +118,9 @@ namespace gpu
       memory                     m_memoryGeometry;
 
       //::gpu::properties          m_propertiesInputLayout;
-      ::gpu::properties          m_propertiesPush;
+      ::gpu::properties          m_propertiesPushShared;
+      ::gpu::properties          m_propertiesPushVertex;
+      ::gpu::properties          m_propertiesPushFragment;
 
       enum_flag                  m_eflag;
       ::comparable_array<enum_descriptor_set_slot>   m_edescriptorsetslota;
@@ -131,7 +134,6 @@ namespace gpu
       ::gpu::texture *           m_pgputextureBound = nullptr;
 
 
-
       shader();
       ~shader() override;
 
@@ -142,10 +144,10 @@ namespace gpu
          ::gpu::renderer * pgpurenderer,
          const ::file::path& pathVertex,
          const ::file::path& pathFragment,
-         const ::array<enum_descriptor_set_slot>& eslota = {},
+         const ::array_base<enum_descriptor_set_slot>& eslota = {},
          const ::particle_pointer& pLocalDescriptorSet = {},
          //const ::particle_pointer& pVertexInput = {},
-         const ::gpu::property* ppropertiesPush = nullptr,
+         //const ::gpu::property* ppropertiesPush = nullptr,
          ::gpu::input_layout* pinputlayout = nullptr,
          enum_flag eflag = e_flag_none);
 
@@ -153,10 +155,10 @@ namespace gpu
          ::gpu::renderer * pgpurenderer,
          const ::block & blockVertex, 
          const ::block & blockFragment,
-         const ::array<enum_descriptor_set_slot>& eslota = {},
+         const ::array_base<enum_descriptor_set_slot>& eslota = {},
          const ::particle_pointer& pLocalDescriptorSet = {},
          //const ::particle_pointer& pVertexInput = {},
-         const ::gpu::property* ppropertiesPush = nullptr,
+         //const ::gpu::property* ppropertiesPush = nullptr,
          ::gpu::input_layout * pinputlayout = nullptr,
          enum_flag eflag = e_flag_none);
 
@@ -170,13 +172,13 @@ namespace gpu
 
       //virtual void setFloat(const ::scoped_string & scopedstrName, float value);
 
-      ////virtual void setVec2(const ::scoped_string & scopedstrName, const glm::vec2& value);
+      ////virtual void setVec2(const ::scoped_string & scopedstrName, const floating_sequence2& value);
       //virtual void setVec2(const ::scoped_string & scopedstrName, float x, float y);
 
-      ////virtual void setVec3(const ::scoped_string & scopedstrName, const glm::vec3& value);
+      ////virtual void setVec3(const ::scoped_string & scopedstrName, const floating_sequence3& value);
       //virtual void setVec3(const ::scoped_string & scopedstrName, float x, float y, float z);
 
-      ////virtual void setVec4(const ::scoped_string & scopedstrName, const glm::vec4& value);
+      ////virtual void setVec4(const ::scoped_string & scopedstrName, const floating_sequence4& value);
       //virtual void setVec4(const ::scoped_string & scopedstrName, float x, float y, float z, float w);
 
       //virtual void setMat2(const ::scoped_string & scopedstrName, const float p[2*2]);
@@ -194,7 +196,7 @@ namespace gpu
 
       //virtual ::gpu::payload * get_payload(const ::scoped_string & scopedstrName);
       virtual void draw();
-      virtual void _bind(::gpu::command_buffer *pgpucommandbuffer);
+      virtual void _bind(::gpu::command_buffer *pgpucommandbuffer, ::gpu::enum_scene escene);
       //virtual void on_initialize_shader();
       
       
@@ -225,20 +227,20 @@ namespace gpu
 
       virtual void set_float(const ::scoped_string& scopedstrName, float value);
 
-      virtual void set_seq2(const ::scoped_string& scopedstrName, float x, float y);
-      virtual void set_seq2(const ::scoped_string& scopedstrName, const ::glm::vec2& a);
+      virtual void set_sequence2(const ::scoped_string& scopedstrName, float x, float y);
+      virtual void set_sequence2(const ::scoped_string& scopedstrName, const ::floating_sequence2& a);
 
-      virtual void set_seq3(const ::scoped_string& scopedstrName, float x, float y, float z);
-      virtual void set_seq3(const ::scoped_string& scopedstrName, const ::glm::vec3& a);
+      virtual void set_sequence3(const ::scoped_string& scopedstrName, float x, float y, float z);
+      virtual void set_sequence3(const ::scoped_string& scopedstrName, const ::floating_sequence3& a);
 
-      virtual void set_seq4(const ::scoped_string& scopedstrName, float x, float y, float z, float w);
-      virtual void set_seq4(const ::scoped_string& scopedstrName, const ::glm::vec4& a);
+      virtual void set_sequence4(const ::scoped_string& scopedstrName, float x, float y, float z, float w);
+      virtual void set_sequence4(const ::scoped_string& scopedstrName, const ::floating_sequence4& a);
 
-      virtual void set_mat2(const ::scoped_string& scopedstrName, const ::glm::mat2& a);
-      virtual void set_mat3(const ::scoped_string& scopedstrName, const ::glm::mat3& a);
-      virtual void set_mat4(const ::scoped_string& scopedstrName, const ::glm::mat4& a);
+      virtual void set_matrix2(const ::scoped_string& scopedstrName, const ::floating_matrix2& a);
+      virtual void set_matrix3(const ::scoped_string& scopedstrName, const ::floating_matrix3& a);
+      virtual void set_matrix4(const ::scoped_string& scopedstrName, const ::floating_matrix4& a);
 
-      virtual void setModelViewProjectionMatrices(glm::mat4 &model, glm::mat4 &view, glm::mat4 &projection);
+      virtual void setModelViewProjectionMatrices(floating_matrix4 &model, floating_matrix4 &view, floating_matrix4 &projection);
 
    };
 

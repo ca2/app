@@ -608,7 +608,7 @@ namespace draw2d
       //inline void set_current_point(const ::double_point& point)
       //{
 
-      //   return set_current_point(point.x(), point.y());
+      //   return set_current_point(point.x, point.y);
 
       //}
 
@@ -616,7 +616,7 @@ namespace draw2d
       //virtual void line_to(const ::double_point& point)
       //{
 
-      //   return line_to(point.x(), point.y());
+      //   return line_to(point.x, point.y);
 
       //}
 
@@ -632,7 +632,7 @@ namespace draw2d
       inline void line(const ::double_point& point1, const ::double_point& point2)
       {
 
-         return line(point1.x(), point1.y(), point2.x(), point2.y());
+         return line(point1.x, point1.y, point2.x, point2.y);
 
       }
 
@@ -640,7 +640,7 @@ namespace draw2d
       inline void line(const ::double_point& point1, const ::double_point& point2, ::draw2d::pen* ppen)
       {
 
-         return line(point1.x(), point1.y(), point2.x(), point2.y(), ppen);
+         return line(point1.x, point1.y, point2.x, point2.y, ppen);
 
       }
 
@@ -940,7 +940,7 @@ namespace draw2d
       inline void text_out(const ::double_point& point, const ::scoped_string& scopedstr)
       {
 
-         return text_out(point.x(), point.y(), scopedstr);
+         return text_out(point.x, point.y, scopedstr);
 
       }
 

@@ -248,7 +248,7 @@ namespace image
 
 
       virtual ::color::color GetPixel(int x, int y);
-      virtual ::color::color GetPixel(const ::int_point & point) { return GetPixel(point.x(), point.y()); }
+      virtual ::color::color GetPixel(const ::int_point & point) { return GetPixel(point.x, point.y); }
       virtual void Mask(::color::color colorMask, ::color::color colorInMask, ::color::color crOutMask);
       virtual void channel_mask(unsigned char uchFind, unsigned char uchSet, unsigned char uchUnset, ::color::enum_channel echannel);
       virtual void transparent_color(::color::color color);

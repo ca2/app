@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "core/user/user/_.h"
+
+
 class CLASS_DECL_CORE xfplayer_impact_linea :
    virtual public ::object
 {

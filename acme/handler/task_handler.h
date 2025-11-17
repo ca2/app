@@ -10,6 +10,14 @@ class CLASS_DECL_ACME task_handler :
 public:
 
 
+   htask       m_htaskHandler;
+
+   itask       m_itaskHandler;
+
+   int         m_iHandlerExitCode = 0;
+
+
+
    ::task_pointer m_ptask;
 
 

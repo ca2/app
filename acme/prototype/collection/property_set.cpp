@@ -2849,6 +2849,34 @@ bool property_set_base::has_property(const atom & atom) const
 }
 
 
+bool property_set_base::has_replace(const ::atom& atom, const ::payload& payload)
+{
+
+   if (::is_null(this))
+   {
+
+      return false;
+
+   }
+
+   auto pproperty = find(atom);
+
+   if(! ::is_set(pproperty) ||
+      (!pproperty->is_new_or_null() 
+        && pproperty->get_type() != e_type_not_found))
+   {
+
+      return false;
+
+   }
+
+   *pproperty = payload;
+
+   return true;
+
+}
+
+
 bool property_set_base::is_true(const atom & atom) const
 {
 

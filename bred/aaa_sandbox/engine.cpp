@@ -79,7 +79,7 @@ namespace graphics3d
 			GlobalUbo ubo{};
 			ubo.projection = cam.getProjectionMatrix();
 			ubo.view = cam.getViewMatrix();
-			ubo.viewPos = glm::vec4(cam.getPosition(), 1.0f);
+			ubo.viewPos = floating_sequence4(cam.getPosition(), 1.0f);
 
 			m_renderer.updateSystems(info, ubo, static_cast<float>(deltaTime));
 

@@ -5,14 +5,14 @@
 #include "_constant.h"
 
 
-#define GLM_ENABLE_EXPERIMENTAL
-#define GLM_FORCE_RADIANS
-#define GLM_FORCE_DEPTH_ZERO_TO_ONE
-#include <glm/glm.hpp>
-#include <glm/gtx/hash.hpp>
-#include <glm/gtc/type_ptr.hpp>
-#include <glm/gtx/hash.hpp>
-
+//#define GLM_ENABLE_EXPERIMENTAL
+//#define GLM_FORCE_RADIANS
+//#define GLM_FORCE_DEPTH_ZERO_TO_ONE
+//#include <glm/glm.hpp>
+//#include <glm/gtx/hash.hpp>
+//#include <glm/gtc/type_ptr.hpp>
+//#include <glm/gtx/hash.hpp>
+//
 
 #include "_constant.h"
 
@@ -35,6 +35,8 @@ namespace gpu
    CLASS_DECL_BRED int get_type_size(::gpu::enum_type e);
 
    CLASS_DECL_BRED int get_type_unit_count(::gpu::enum_type e);
+
+   CLASS_DECL_BRED ::gpu::enum_type get_type_unit_type(::gpu::enum_type e);
 
 
    //using uniform = int;
@@ -69,6 +71,8 @@ namespace gpu
 
    class frame;
 
+   //class property_descriptor;
+   //class property_data;
    class property;
    class properties;
 

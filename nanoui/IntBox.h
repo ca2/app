@@ -318,7 +318,7 @@ virtual bool mouse_motion_event(const int_point& p, const int_size& rel, bool bD
    if (bDown && m_bSpinnable && !focused() && ekeyModifiers & ::user::e_key_right_button && is_mouse_down())
    {
 
-      int value_delta = static_cast<int>((p.x() - m_pointMouseDown.x()) / float(10));
+      int value_delta = static_cast<int>((p.x - m_pointMouseDown.x) / float(10));
 
       set_value(m_iMouseDownValue + value_delta * m_iIncrementValue, e_source_user);
 

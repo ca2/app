@@ -5,8 +5,8 @@
 #include "bred/gpu/context.h"
 #include "bred/gpu/shader.h"
 #include "bred/gpu/texture.h"
-#include <glm/glm.hpp>
-#include <glm/gtc/matrix_transform.hpp>
+//#include <glm/glm.hpp>
+//#include <glm/gtc/matrix_transform.hpp>
 
 //#include "gpu::gltf.h"
 //#include "timer.h"
@@ -70,16 +70,17 @@ namespace gpu
          //m_pshaderHdri->m_bindingUbo.set(0);
          //m_pshaderHdri->m_bindingUbo.m_strUniform = "ubo";
 
-         m_pshaderHdri->m_bindingSampler.set(1);
+         m_pshaderHdri->m_bindingSampler.set(0);
          m_pshaderHdri->m_bindingSampler.m_strUniform = "hdri";
-
-
+         m_pshaderHdri->m_bDisableDepthTest = true;
+         m_pshaderHdri->m_propertiesPushShared.set_properties(
+            ::gpu_properties<::gpu::model_view_projection_hdriSampler>());
+         m_pgpucontext->layout_push_constants(m_pshaderHdri->m_propertiesPushShared);
          m_pshaderHdri->initialize_shader_with_block(
             m_pgpucontext->m_pgpurenderer,
             embedded_ibl_hdri_cube_vert(),            
             embedded_ibl_hdri_cube_frag(), {}, {},
-            ::gpu_properties < ::gpu::model_view_projection_hdriSampler>(),
-            pgpucontext->input_layout(::gpu_properties<::glm::vec3>()));
+            pgpucontext->input_layout(::gpu_properties<::gpu::position3>()));
 
          øconstruct(m_phdricube);
 
@@ -104,8 +105,8 @@ namespace gpu
       {
          //Timer timer;
 
-         // glm::mat4 model = gpu::gltf::mIndentity4;
-         // glm::mat4 cameraAngles[] =
+         // floating_matrix4 model = gpu::gltf::mIndentity4;
+         // floating_matrix4 cameraAngles[] =
          // {
          //    glm::lookAt(gpu::gltf::origin, gpu::gltf::unitX, -gpu::gltf::unitY),
          //    glm::lookAt(gpu::gltf::origin, -gpu::gltf::unitX, -gpu::gltf::unitY),
@@ -114,8 +115,8 @@ namespace gpu
          //    glm::lookAt(gpu::gltf::origin, gpu::gltf::unitZ, -gpu::gltf::unitY),
          //    glm::lookAt(gpu::gltf::origin, -gpu::gltf::unitZ, -gpu::gltf::unitY)
          // };
-         // glm::mat4 projection = glm::perspective(
-         //    glm::radians(90.0f), // 90 degrees to cover one face
+         // floating_matrix4 projection = glm::perspective(
+         //    ::radians(90.0f), // 90 degrees to cover one face
          //    1.0f, // its a square
          //    0.1f,
          //    2.0f);
@@ -148,6 +149,9 @@ namespace gpu
       // {
       //    return m_pframebuffer->getCubemapTextureId();
       // }
+
+      
+
 
 
    } // namespace ibl

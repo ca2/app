@@ -43,7 +43,7 @@
 // 		} m_buttons;
 //
 //
-// 		::glm::vec2		m_position;
+// 		::floating_sequence2		m_position;
 //
 //
 // 	};
@@ -53,26 +53,26 @@
 // 	// struct CLASS_DECL_BRED ::graphics3d::transform
 // 	// {
 // 	//
-// 	// 	glm::vec3 translation{};
-// 	// 	glm::vec3 scale{ 1.f, 1.f, 1.f };
-// 	// 	glm::vec3 rotation{};
+// 	// 	floating_sequence3 translation{};
+// 	// 	floating_sequence3 scale{ 1.f, 1.f, 1.f };
+// 	// 	floating_sequence3 rotation{};
 // 	//
 // 	// 	// Matrix corrsponds to Translate * Ry * Rx * Rz * Scale
 // 	// 	// Rotations correspond to Tait-bryan angles of Y(1), X(2), Z(3)
 // 	//
-// 	// 	//glm::mat4 mat4();
-// 	// 	//glm::mat4 normalMatrix();
+// 	// 	//floating_matrix4 floating_matrix4();
+// 	// 	//floating_matrix4 normalMatrix();
 // 	//
 // 	// };
 //    struct CLASS_DECL_BRED transform
 //    {
 //       //::graphics3d::transform() = default;
-//       glm::vec3 translation{};
-//       glm::vec3 scale{ 1.f };
-//       glm::vec3 rotation{};
+//       floating_sequence3 translation{};
+//       floating_sequence3 scale{ 1.f };
+//       floating_sequence3 rotation{};
 //
-//       glm::mat4 mat4() const;
-//       glm::mat3 normalMatrix() const;
+//       floating_matrix4 floating_matrix4() const;
+//       floating_matrix3 normalMatrix() const;
 //
 //    };
 //
@@ -80,8 +80,8 @@
 // 	struct sequence3_color
 // 	{
 //
-// 		glm::vec3 position; // x, y, z
-// 		glm::vec4 color;  // r, g, b, a
+// 		floating_sequence3 position; // x, y, z
+// 		floating_sequence4 color;  // r, g, b, a
 //
 // 	};
 //
@@ -101,8 +101,8 @@
 // 	struct sequence2_color
 // 	{
 //
-// 		glm::vec2 position; // x, y
-// 		glm::vec4 color;  // r, g, b, a
+// 		floating_sequence2 position; // x, y
+// 		floating_sequence4 color;  // r, g, b, a
 //
 // 	};
 //
@@ -123,8 +123,8 @@
 // 	struct sequence2_uv
 // 	{
 //
-// 		glm::vec2 position{};
-// 		glm::vec2 uv{};
+// 		floating_sequence2 position{};
+// 		floating_sequence2 uv{};
 //
 // 	};
 //
@@ -145,10 +145,10 @@
 // 	struct Vertex
 // 	{
 //
-// 		glm::vec3 position{};
-// 		glm::vec3 color{};
-// 		glm::vec3 normal{};
-// 		glm::vec2 uv{};
+// 		floating_sequence3 position{};
+// 		floating_sequence3 color{};
+// 		floating_sequence3 normal{};
+// 		floating_sequence2 uv{};
 //
 // 		//static std::vector<VkVertexInputBindingDescription> getBindingDescriptions();
 // 		//static std::vector<VkVertexInputAttributeDescription> getAttributeDescriptions();
@@ -188,8 +188,11 @@
 //
 //
 
+
+
+
 DECLARE_GPU_PROPERTIES(CLASS_DECL_BRED, ::graphics3d::sequence2_uv)
-DECLARE_GPU_PROPERTIES(CLASS_DECL_BRED, ::glm::vec3)
+DECLARE_GPU_PROPERTIES(CLASS_DECL_BRED, ::floating_sequence3)
 DECLARE_GPU_PROPERTIES(CLASS_DECL_BRED, ::graphics3d::sequence3_color)
 DECLARE_GPU_PROPERTIES(CLASS_DECL_BRED, ::graphics3d::sequence2_color)
 DECLARE_GPU_PROPERTIES(CLASS_DECL_BRED, ::graphics3d::Vertex)

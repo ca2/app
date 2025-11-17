@@ -2,6 +2,7 @@
 // camilo on 2025-09-26 22:46 <3ThomasBorregaardSorensen!!
 #include "framework.h"
 #include "full_screen_quad.h"
+#include "bred/gpu/model_buffer.h"
 
 
 namespace gpu
@@ -28,16 +29,20 @@ namespace gpu
 
       initialize_gpu_context_object(pgpucontext);
 
-      m_vertexa = {
+      m_modeldata.m_vertexes = {
          // positions   // textureCoordinates
-         -1.0f,  1.0f,  0.0f, 1.0f,
-         -1.0f, -1.0f,  0.0f, 0.0f,
-          1.0f, -1.0f,  1.0f, 0.0f,
+         {{-1.0f, 1.0f}, {0.0f, 1.0f}},
+         {{-1.0f, -1.0f}, {0.0f, 0.0f}},
+         {{1.0f, -1.0f}, {1.0f, 0.0f}},
 
-         -1.0f,  1.0f,  0.0f, 1.0f,
-          1.0f, -1.0f,  1.0f, 0.0f,
-          1.0f,  1.0f,  1.0f, 1.0f
+         {{-1.0f, 1.0f}, {0.0f, 1.0f}}, 
+         {{1.0f, -1.0f}, {1.0f, 0.0f}}, 
+         {{1.0f, 1.0f}, {1.0f, 1.0f}}
        };
+
+      øconstruct(m_pmodelbuffer);
+      
+      m_pmodelbuffer->initialize_model(pgpucontext, m_modeldata);
 
       //loadVertexData();
 
@@ -46,6 +51,9 @@ namespace gpu
 
    void full_screen_quad::draw(::gpu::command_buffer *pcommandbuffer)
    {
+      m_pmodelbuffer->bind(pcommandbuffer);
+      m_pmodelbuffer->draw(pcommandbuffer);
+      m_pmodelbuffer->unbind(pcommandbuffer);
       // glDisable(GL_DEPTH_TEST);
       // glBindVertexArray(mVAO);
       // glDrawArrays(GL_TRIANGLES, 0, QUAD_NUM_TRIANGLES);

@@ -141,6 +141,14 @@ namespace sockets
    }
 
 
+   bool base_socket::is_listening_socket()
+   {
+
+      return false;
+
+   }
+
+
    void base_socket::SetSocketHandler(base_socket_handler* phandler)
    {
 

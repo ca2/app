@@ -1,7 +1,7 @@
 // Created by camilo on 2024-11-16 15:49 <3ThomasBorregaardSorensen!!
 #include "framework.h"
 #include "acme/windowing/_.h"
-
+#include "acme/constant/windowing2.h"
 
 namespace windowing
 {
@@ -50,6 +50,8 @@ namespace windowing
 #else
          return "kde5";
 #endif
+         case e_operating_ambient_labwc:
+            return "gtk4";
          default:
          throw todo;
       };

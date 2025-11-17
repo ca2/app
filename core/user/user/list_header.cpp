@@ -589,7 +589,7 @@ namespace user
                
                GetItemRect(&rectangle, e_element_item, m_iItemLButtonDown);
                
-               rectangle.right() = pointCursor.x();
+               rectangle.right() = pointCursor.x;
                
                int iNewWidth = rectangle.width();
                
@@ -666,7 +666,7 @@ namespace user
             
             GetItemRect(&rectangle, e_element_item, m_iItemLButtonDown);
             
-            rectangle.right() = pointCursor.x();
+            rectangle.right() = pointCursor.x;
             
             int iNewWidth = rectangle.width();
             

@@ -64,10 +64,10 @@ struct quadruple_type :
 //   quadruple_type(UNIT_TYPE a, UNIT_TYPE b, UNIT_TYPE c, UNIT_TYPE d) { x = a; y = b; z = c; w = d; }
 //   //~quadruple_type() = default;
    
-   const UNIT_TYPE & x() const {return this->a();}
-   UNIT_TYPE & x() {return this->a();}
-   const UNIT_TYPE & y() const {return this->b();}
-   UNIT_TYPE & y() {return this->b();}
+   const UNIT_TYPE & x() const {return this->x();}
+   UNIT_TYPE & x() {return this->x();}
+   const UNIT_TYPE & y() const {return this->y();}
+   UNIT_TYPE & y() {return this->y();}
    const UNIT_TYPE & z() const {return this->c();}
    UNIT_TYPE & z() {return this->c();}
    const UNIT_TYPE & w() const {return this->d();}
@@ -80,22 +80,22 @@ struct quadruple_type :
 
    inline quadruple_type operator *(UNIT_TYPE n) const
    {
-      return quadruple_type(this->x() * n, this->y() * n, this->z() * n, this->w() * n);
+      return quadruple_type(this->x * n, this->y * n, this->z * n, this->w * n);
    }
 
    inline quadruple_type operator /(UNIT_TYPE n) const
    {
-      return quadruple_type(this->x() / n, this->y() / n, this->z() / n, this->w() / n);
+      return quadruple_type(this->x / n, this->y / n, this->z / n, this->w / n);
    }
 
    inline quadruple_type operator +(const quadruple_type & q) const
    {
-      return quadruple_type(this->x() + q.x(), this->y() + q.y(), this->z() + q.z(), this->w() + q.w());
+      return quadruple_type(this->x + q.x, this->y + q.y, this->z + q.z(), this->w + q.w());
    }
 
    inline quadruple_type operator -(const quadruple_type & t) const
    {
-      return quadruple_type(this->x() - t.x(), this->y() - t.y(), this->z() - t.z(), this->w() - t.w());
+      return quadruple_type(this->x - t.x, this->y - t.y, this->z - t.z(), this->w - t.w());
    }
 
    inline quadruple_type & operator +=(const quadruple_type & a)
@@ -112,7 +112,7 @@ struct quadruple_type :
 
 //   inline UNIT_TYPE dot(const quadruple_type & q) const
 //   {
-//      return this->x() * q.x() + this->y() * q.y() + this->z() * q.z() + this->w() * q.w();
+//      return this->x * q.x + this->y * q.y + this->z * q.z() + this->w * q.w();
 //   }
 
 };
@@ -126,5 +126,5 @@ template < primitive_number NUMBER1, primitive_number NUMBER2 >
 inline quadruple_type < largest_number < NUMBER1, NUMBER2 > > operator * (NUMBER1 n, const quadruple_type < NUMBER2 > & q)
 {
 
-   return quadruple_type < largest_number < NUMBER1, NUMBER2 > >(n * q.x(), n * q.y(), n * q.z(), n * q.w());
+   return quadruple_type < largest_number < NUMBER1, NUMBER2 > >(n * q.x, n * q.y, n * q.z(), n * q.w());
 }

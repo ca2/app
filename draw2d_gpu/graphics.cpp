@@ -29,9 +29,9 @@
 #include "aura/user/user/interaction.h"
 #include "aura/windowing/window.h"
 //#include "windowing_win32/window.h"
-#include <glm/glm.hpp>
-#include <glm/gtc/matrix_transform.hpp>
-#include <glm/gtc/type_ptr.hpp>
+//#include <glm/glm.hpp>
+//#include <glm/gtc/matrix_transform.hpp>
+//#include <glm/gtc/type_ptr.hpp>
 #include <math.h>
 //#include <dwmapi.h>
 #include "acme/prototype/geometry2d/_defer_item.h"
@@ -652,7 +652,7 @@ void main() {
    int_point graphics::SetBrushOrg(const ::int_point& point)
    {
       // ASSERT(m_hdc != nullptr);
-      //VERIFY(::SetBrushOrgEx(m_hdc, point.x(), point.y(), &point));
+      //VERIFY(::SetBrushOrgEx(m_hdc, point.x, point.y, &point));
       return point;
    }
 
@@ -864,7 +864,7 @@ void main() {
    //int_point graphics::set_origin(const ::int_point& point)
    //{
 
-   //   return set_origin(point.x(), point.y());
+   //   return set_origin(point.x, point.y);
 
    //}
 
@@ -875,7 +875,7 @@ void main() {
 
    int_point graphics::SetWindowOrg(const ::int_point& point)
    {
-      return SetWindowOrg(point.x(), point.y());
+      return SetWindowOrg(point.x, point.y);
    }
 
    int_size graphics::set_window_ext(const ::int_size& size)
@@ -959,7 +959,7 @@ void main() {
    {
 
       // ASSERT(m_hdc != nullptr);   // call virtual
-      return PtVisible(point.x(), point.y());
+      return PtVisible(point.x, point.y);
 
    }
 
@@ -1005,8 +1005,8 @@ void main() {
 
       //   for(double i = 0; i < nCount; i++)
       //   {
-      //      ppoints[i].X = lpPoints[i].x();
-      //      ppoints[i].Y = lpPoints[i].y();
+      //      ppoints[i].X = lpPoints[i].x;
+      //      ppoints[i].Y = lpPoints[i].y;
       //   }
 
       //   bOk1 = m_pgraphics->DrawLines(gl2d_pen(),ppoints,(::double) nCount) == plusplus::Status::Ok;
@@ -1198,7 +1198,6 @@ void main() {
                as_memory_block(proto_frag),
                {},
                {},
-               {},
                pcontext->input_layout<::graphics3d::sequence2_color>()
             );
 
@@ -1241,7 +1240,6 @@ void main() {
                as_memory_block(proto_vert),
                //as_memory_block(g_uaAccumulationFragmentShader),
                as_memory_block(proto_frag),
-               { },
                {},
                {},
                pcontext->input_layout<::graphics3d::sequence2_color>());
@@ -1429,7 +1427,7 @@ void main() {
    //   if(picon == nullptr)
    //      return false;
 
-   //   //return ::DrawIcon(m_hdc, point.x(), point.y(), (HICON) picon->m_picon) != false;
+   //   //return ::DrawIcon(m_hdc, point.x, point.y, (HICON) picon->m_picon) != false;
 
    //   return false;
 
@@ -1574,7 +1572,7 @@ void main() {
 //   {
 //
 //      // ASSERT(m_hdc != nullptr);
-//      //return ::DrawState(m_hdc, hBrush, nullptr, (LPARAM)hBitmap, 0, point.x(), point.y(), size.cx(), size.cy(), nFlags|DST_BITMAP) != false;
+//      //return ::DrawState(m_hdc, hBrush, nullptr, (LPARAM)hBitmap, 0, point.x, point.y, size.cx(), size.cy(), nFlags|DST_BITMAP) != false;
 //      return false;
 //
 //   }
@@ -1583,7 +1581,7 @@ void main() {
 //   {
 //
 //      // ASSERT(m_hdc != nullptr);
-//      //return ::DrawState(m_hdc, (HBRUSH)pBrush->get_os_data(), nullptr, (LPARAM)pBitmap->get_os_data(), 0, point.x(), point.y(), size.cx(), size.cy(), nFlags|DST_BITMAP) != false;
+//      //return ::DrawState(m_hdc, (HBRUSH)pBrush->get_os_data(), nullptr, (LPARAM)pBitmap->get_os_data(), 0, point.x, point.y, size.cx(), size.cy(), nFlags|DST_BITMAP) != false;
 //
 //      return false;
 //
@@ -1593,7 +1591,7 @@ void main() {
 //   {
 //
 //      // ASSERT(m_hdc != nullptr);
-//      //return ::DrawState(m_hdc, hBrush, nullptr, (LPARAM)hIcon, 0, point.x(), point.y(), size.cx(), size.cy(), nFlags|DST_ICON) != false;
+//      //return ::DrawState(m_hdc, hBrush, nullptr, (LPARAM)hIcon, 0, point.x, point.y, size.cx(), size.cy(), nFlags|DST_ICON) != false;
 //
 //      return false;
 //
@@ -1604,7 +1602,7 @@ void main() {
 //   {
 //
 //      // ASSERT(m_hdc != nullptr);
-//      //return ::DrawState(m_hdc, (HBRUSH)pBrush->get_os_data(), nullptr, (LPARAM)hIcon, 0, point.x(), point.y(), size.cx(), size.cy(), nFlags|DST_ICON) != false;
+//      //return ::DrawState(m_hdc, (HBRUSH)pBrush->get_os_data(), nullptr, (LPARAM)hIcon, 0, point.x, point.y, size.cx(), size.cy(), nFlags|DST_ICON) != false;
 //      return false;
 //
 //   }
@@ -1614,7 +1612,7 @@ void main() {
 //   {
 //
 //      // ASSERT(m_hdc != nullptr);
-//      //return ::DrawState(m_hdc, hBrush,  nullptr, (LPARAM)lpszText, (WPARAM)nTextLen, point.x(), point.y(), size.cx(), size.cy(), nFlags|(bPrefixText ? DST_PREFIXTEXT : DST_TEXT)) != false;
+//      //return ::DrawState(m_hdc, hBrush,  nullptr, (LPARAM)lpszText, (WPARAM)nTextLen, point.x, point.y, size.cx(), size.cy(), nFlags|(bPrefixText ? DST_PREFIXTEXT : DST_TEXT)) != false;
 //      return false;
 //
 //   }
@@ -1624,7 +1622,7 @@ void main() {
 //   {
 //
 //      // ASSERT(m_hdc != nullptr);
-//      //return ::DrawState(m_hdc, (HBRUSH)pBrush->get_os_data(), nullptr, (LPARAM)lpszText, (WPARAM)nTextLen, point.x(), point.y(), size.cx(), size.cy(), nFlags|(bPrefixText ? DST_PREFIXTEXT : DST_TEXT)) != false;
+//      //return ::DrawState(m_hdc, (HBRUSH)pBrush->get_os_data(), nullptr, (LPARAM)lpszText, (WPARAM)nTextLen, point.x, point.y, size.cx(), size.cy(), nFlags|(bPrefixText ? DST_PREFIXTEXT : DST_TEXT)) != false;
 //      return false;
 //
 //   }
@@ -1634,7 +1632,7 @@ void main() {
 //   {
 //      // ASSERT(m_hdc != nullptr);
 //      //return ::DrawState(m_hdc, hBrush,
-//          //               lpDrawProc, lData, 0, point.x(), point.y(), size.cx(), size.cy(), nFlags|DST_COMPLEX) != false;
+//          //               lpDrawProc, lData, 0, point.x, point.y, size.cx(), size.cy(), nFlags|DST_COMPLEX) != false;
 //      return false;
 //
 //   }
@@ -1644,7 +1642,7 @@ void main() {
 //   {
 //      // ASSERT(m_hdc != nullptr);
 //      //return ::DrawState(m_hdc, (HBRUSH)pBrush->get_os_data(),
-//        //                 lpDrawProc, lData, 0, point.x(), point.y(), size.cx(), size.cy(), nFlags|DST_COMPLEX) != false;
+//        //                 lpDrawProc, lData, 0, point.x, point.y, size.cx(), size.cy(), nFlags|DST_COMPLEX) != false;
 //      return false;
 //
 //   }
@@ -1683,8 +1681,8 @@ void main() {
 
       // ASSERT(m_hdc != nullptr);
       //return ::Chord(m_hdc,rectangleParam.left(),rectangleParam.top(),
-      //               rectangleParam.right(),rectangleParam.bottom(),ptStart.x(),ptStart.y(),
-      //               ptEnd.x(), ptEnd.y()) != false;
+      //               rectangleParam.right(),rectangleParam.bottom(),ptStart.x,ptStart.y,
+      //               ptEnd.x, ptEnd.y) != false;
 
       return false;
 
@@ -1813,8 +1811,8 @@ void main() {
 
    //   // ASSERT(m_hdc != nullptr);
    //   //return ::Pie(m_hdc, rectangleParam.left(), rectangleParam.top(),
-   //   //             rectangleParam.right(), rectangleParam.bottom(), ptStart.x(), ptStart.y(),
-   //   //             ptEnd.x(), ptEnd.y()) != false;
+   //   //             rectangleParam.right(), rectangleParam.bottom(), ptStart.x, ptStart.y,
+   //   //             ptEnd.x, ptEnd.y) != false;
 
    //   return false;
 
@@ -1836,8 +1834,8 @@ void main() {
 
       //      for(double i = 0; i < nCount; i++)
       //      {
-      //         ppoints[i].X = (plusplus::REAL) lpPoints[i].x();
-      //         ppoints[i].Y = (plusplus::REAL) lpPoints[i].y();
+      //         ppoints[i].X = (plusplus::REAL) lpPoints[i].x;
+      //         ppoints[i].Y = (plusplus::REAL) lpPoints[i].y;
       //      }
 
       //      m_pgraphics->SetInterpolationMode(plusplus::InterpolationModeHighQualityBicubic);
@@ -1883,8 +1881,8 @@ void main() {
 
    //   //      for(double i = 0; i < nCount; i++)
    //   //      {
-   //   //         ppoints[i].X = lpPoints[i].x();
-   //   //         ppoints[i].Y = lpPoints[i].y();
+   //   //         ppoints[i].X = lpPoints[i].x;
+   //   //         ppoints[i].Y = lpPoints[i].y;
    //   //      }
 
    //   //      m_pgraphics->SetInterpolationMode(plusplus::InterpolationModeHighQualityBicubic);
@@ -1927,8 +1925,8 @@ void main() {
 
       //   for (double i = 0; i < nCount; i++)
       //   {
-      //      ppoints[i].X = lpPoints[i].x();
-      //      ppoints[i].Y = lpPoints[i].y();
+      //      ppoints[i].X = lpPoints[i].x;
+      //      ppoints[i].Y = lpPoints[i].y;
       //   }
 
       //   m_pgraphics->SetInterpolationMode(plusplus::InterpolationModeHighQualityBicubic);
@@ -1972,8 +1970,8 @@ void main() {
 
    //   //   for(double i = 0; i < nCount; i++)
    //   //   {
-   //   //      ppoints[i].X = (plusplus::REAL) lpPoints[i].x();
-   //   //      ppoints[i].Y = (plusplus::REAL) lpPoints[i].y();
+   //   //      ppoints[i].X = (plusplus::REAL) lpPoints[i].x;
+   //   //      ppoints[i].Y = (plusplus::REAL) lpPoints[i].y;
    //   //   }
 
    //   //   m_pgraphics->SetInterpolationMode(plusplus::InterpolationModeHighQualityBicubic);
@@ -2018,8 +2016,8 @@ void main() {
 
       //   for(double i = 0; i < nCount; i++)
       //   {
-      //      ppoints[i].X = lpPoints[i].x();
-      //      ppoints[i].Y = lpPoints[i].y();
+      //      ppoints[i].X = lpPoints[i].x;
+      //      ppoints[i].Y = lpPoints[i].y;
       //   }
 
 
@@ -2098,8 +2096,8 @@ void main() {
 
    //   //   for(double i = 0; i < nCount; i++)
    //   //   {
-   //   //      ppoints[i].X = (plusplus::REAL) lpPoints[i].x();
-   //   //      ppoints[i].Y = (plusplus::REAL) lpPoints[i].y();
+   //   //      ppoints[i].X = (plusplus::REAL) lpPoints[i].x;
+   //   //      ppoints[i].Y = (plusplus::REAL) lpPoints[i].y;
    //   //   }
 
    //   //   m_pgraphics->SetInterpolationMode(plusplus::InterpolationModeHighQualityBicubic);
@@ -2218,7 +2216,7 @@ void main() {
    {
       //// ASSERT(m_hdc != nullptr);
       //return ::RoundRect(m_hdc, rectangleParam.left(), rectangleParam.top(),
-        //                 rectangleParam.right(), rectangleParam.bottom(), point.x(), point.y()) != false;
+        //                 rectangleParam.right(), rectangleParam.bottom(), point.x, point.y) != false;
 
       //return false;
 
@@ -2271,7 +2269,7 @@ void main() {
    ////
    ////         return m_pgraphics->DrawImage(
    ////                   (plusplus::Bitmap *) pgraphicsSrc->get_current_bitmap()->get_os_data(),
-   ////                   x, y, xSrc + pgraphicsSrc->get_origin().x(), ySrc + pgraphicsSrc->get_origin().y(), nWidth, nHeight, plusplus::UnitPixel) == plusplus::Status::Ok;
+   ////                   x, y, xSrc + pgraphicsSrc->get_origin().x, ySrc + pgraphicsSrc->get_origin().y, nWidth, nHeight, plusplus::UnitPixel) == plusplus::Status::Ok;
    ////
    //      }
    //      catch(...)
@@ -2355,7 +2353,7 @@ void main() {
    ::color::color graphics::GetPixel(const ::int_point& point) const
    {
       // ASSERT(m_hdc != nullptr);
-      //return ::GetPixel(m_hdc, point.x(), point.y());
+      //return ::GetPixel(m_hdc, point.x, point.y);
       return color::transparent;
 
    }
@@ -2372,7 +2370,7 @@ void main() {
    ::color::color graphics::SetPixel(const ::int_point& point, ::color::color crColor)
    {
 
-      //fill_solid_rect_coord(point.x(),point.y(),1,1,crColor);
+      //fill_solid_rect_coord(point.x,point.y,1,1,crColor);
 
       return crColor;
 
@@ -2864,12 +2862,12 @@ void main() {
    //
    //         plusplus::Point p[3];
    //
-   //         p[0].X = lpPoint[0].x();
-   //         p[0].Y = lpPoint[0].y();
-   //         p[1].X = lpPoint[1].x();
-   //         p[1].Y = lpPoint[1].y();
-   //         p[2].X = lpPoint[2].x();
-   //         p[2].Y = lpPoint[2].y();
+   //         p[0].X = lpPoint[0].x;
+   //         p[0].Y = lpPoint[0].y;
+   //         p[1].X = lpPoint[1].x;
+   //         p[1].Y = lpPoint[1].y;
+   //         p[2].X = lpPoint[2].x;
+   //         p[2].Y = lpPoint[2].y;
    //
    //         return m_pgraphics->DrawImage((plusplus::Bitmap *) pgraphicsSrc->get_current_bitmap()->get_os_data(), p, 3) == plusplus::Status::Ok;
    //
@@ -2897,7 +2895,7 @@ void main() {
    void graphics::SetPixelV(const ::int_point& point, ::color::color crColor)
    {
       // ASSERT(m_hdc != nullptr);
-      //return ::SetPixelV(m_hdc, point.x(), point.y(), crColor) != false;
+      //return ::SetPixelV(m_hdc, point.x, point.y, crColor) != false;
       //return 0;
 
    }
@@ -2917,7 +2915,7 @@ void main() {
    {
       // ASSERT(m_hdc != nullptr);
       //return ArcTo(rectangleParam.left(), rectangleParam.top(), rectangleParam.right(),
-        //           rectangleParam.bottom(), ptStart.x(), ptStart.y(), ptEnd.x(), ptEnd.y());
+        //           rectangleParam.bottom(), ptStart.x, ptStart.y, ptEnd.x, ptEnd.y);
 
       //return false;
 
@@ -3226,13 +3224,13 @@ void main() {
             //if (!bLastPoint || !pointLast.is_same_by(0.00001, plineitem->m_item.m_p1))
             //{
             //   glVertex3f(
-            //      (float)plineitem->m_item.m_p1.x(),
-            //      (float)plineitem->m_item.m_p1.y(),
+            //      (float)plineitem->m_item.m_p1.x,
+            //      (float)plineitem->m_item.m_p1.y,
             //      0.0f);
             //}
             //glVertex3f(
-            //   (float)plineitem->m_item.m_p2.x(),
-            //   (float)plineitem->m_item.m_p2.y(),
+            //   (float)plineitem->m_item.m_p2.x,
+            //   (float)plineitem->m_item.m_p2.y,
             //   0.0f);
             pointLast = plineitem->m_item.m_p2;
          }
@@ -3415,8 +3413,8 @@ void main() {
 ////
 ////         imageWork4.Fill(255, 0, 0, 0);
 ////
-////         imageWork4.from(int_point(maximum(0, m_pointAlphaBlend.x() - xDest), maximum(0, m_pointAlphaBlend.y() - yDest)),
-////                         m_pimageAlphaBlend->get_graphics(), int_point(maximum(0, xDest - m_pointAlphaBlend.x()), maximum(0, yDest - m_pointAlphaBlend.y())), size);
+////         imageWork4.from(int_point(maximum(0, m_pointAlphaBlend.x - xDest), maximum(0, m_pointAlphaBlend.y - yDest)),
+////                         m_pimageAlphaBlend->get_graphics(), int_point(maximum(0, xDest - m_pointAlphaBlend.x), maximum(0, yDest - m_pointAlphaBlend.y)), size);
 ////
 ////         imageWork.channel_multiply(::color::e_channel_opacity, imageWork4);
 ////
@@ -3424,7 +3422,7 @@ void main() {
 ////         keep < image > keep(&m_pimageAlphaBlend, nullptr, m_pimageAlphaBlend, true);
 ////
 ////
-////         return BitBlt(ptDest.x(), ptDest.y(), size.cx(), size.cy(), imageWork.get_graphics(), pointSrc.x(), pointSrc.y());
+////         return BitBlt(ptDest.x, ptDest.y, size.cx(), size.cy(), imageWork.get_graphics(), pointSrc.x, pointSrc.y);
 ////
 ////
 ////      }
@@ -3542,8 +3540,8 @@ void main() {
 
          imageWork4.Fill(255, 0, 0, 0);
 
-         imageWork4.from(int_point(maximum(0, m_pointAlphaBlend.x() - xDest), maximum(0, m_pointAlphaBlend.y() - yDest)),
-            m_pimageAlphaBlend->get_graphics(), int_point(maximum(0, xDest - m_pointAlphaBlend.x()), maximum(0, yDest - m_pointAlphaBlend.y())), size);
+         imageWork4.from(int_point(maximum(0, m_pointAlphaBlend.x - xDest), maximum(0, m_pointAlphaBlend.y - yDest)),
+            m_pimageAlphaBlend->get_graphics(), int_point(maximum(0, xDest - m_pointAlphaBlend.x), maximum(0, yDest - m_pointAlphaBlend.y)), size);
 
          imageWork.channel_multiply(::color::e_channel_opacity, imageWork4);
 
@@ -4917,7 +4915,7 @@ void graphics::FillSolidRect(double x, double y, double cx, double cy, color32_t
       //{
       //   ::int_point point;
       //   VERIFY(::GetCurrentPositionEx(m_hdc, &point));
-      //   VERIFY(::MoveToEx(m_hdc, point.x(), point.y(), nullptr));
+      //   VERIFY(::MoveToEx(m_hdc, point.x, point.y, nullptr));
       //}
       //return bResult;
    }
@@ -4946,7 +4944,7 @@ void graphics::FillSolidRect(double x, double y, double cx, double cy, color32_t
    //   //{
    //   //   ::int_point point;
    //   //   VERIFY(::GetCurrentPositionEx(m_hdc, &point));
-   //   //   VERIFY(::MoveToEx(m_hdc, point.x(), point.y(), nullptr));
+   //   //   VERIFY(::MoveToEx(m_hdc, point.x, point.y, nullptr));
    //   //}
    //   return bResult;
    //}
@@ -4960,7 +4958,7 @@ void graphics::FillSolidRect(double x, double y, double cx, double cy, color32_t
       //{
       //   ::int_point point;
       //   VERIFY(::GetCurrentPositionEx(m_hdc, &point));
-      //   VERIFY(::MoveToEx(m_hdc, point.x(), point.y(), nullptr));
+      //   VERIFY(::MoveToEx(m_hdc, point.x, point.y, nullptr));
       //}
       //return bResult;
    }
@@ -4986,7 +4984,7 @@ void graphics::FillSolidRect(double x, double y, double cx, double cy, color32_t
       //{
       //   ::int_point point;
       //   VERIFY(::GetCurrentPositionEx(m_hdc, &point));
-      //   VERIFY(::MoveToEx(m_hdc, point.x(), point.y(), nullptr));
+      //   VERIFY(::MoveToEx(m_hdc, point.x, point.y, nullptr));
       //}
       //return bResult;
    }
@@ -5603,7 +5601,7 @@ void graphics::FillSolidRect(double x, double y, double cx, double cy, color32_t
 //      //       texture,
 //      //       glm::ivec2(face->glyph->bitmap.width, face->glyph->bitmap.rows),
 //      //       glm::ivec2(face->glyph->bitmap_left, face->glyph->bitmap_top),
-//      //       face->glyph->advance.x()
+//      //       face->glyph->advance.x
 //      //   };
 //      //   Characters.insert(std::pair<GLchar, Character>(c, character));
 //      //}
@@ -5716,7 +5714,7 @@ void graphics::FillSolidRect(double x, double y, double cx, double cy, color32_t
 
       // gpu::draw2d
 
-      //::opengl::line(point1.x(), point1.y(), point2.x(), point2.y(), (float)(ppen->m_dWidth),
+      //::opengl::line(point1.x, point1.y, point2.x, point2.y, (float)(ppen->m_dWidth),
       //   ppen->m_color.f32_red(), ppen->m_color.f32_green(),
       //   ppen->m_color.f32_blue(),
       //   ppen->m_color.f32_opacity(), 0.f, 0.f, true);
@@ -5727,13 +5725,13 @@ void graphics::FillSolidRect(double x, double y, double cx, double cy, color32_t
 
       ::opengl::color(ppen->m_color);
 
-      glVertex2f(point1.x(), point1.y());
-      glVertex2f(point2.x(), point2.y());
+      glVertex2f(point1.x, point1.y);
+      glVertex2f(point2.x, point2.y);
 
       glEnd();*/
 
-      m_point.x() = point2.x();
-      m_point.y() = point2.y();
+      m_point.x = point2.x;
+      m_point.y = point2.y;
 
       //return true;
 
@@ -5779,8 +5777,8 @@ void graphics::FillSolidRect(double x, double y, double cx, double cy, color32_t
 
       //glEnd();
 
-      m_point.x() = x2;
-      m_point.y() = y2;
+      m_point.x = x2;
+      m_point.y = y2;
 
       //return true;
 
@@ -5841,21 +5839,21 @@ color = vec4(c.r,c.g, c.b, c.a);
          
       }
 
-      m_pgpushaderTextOut->bind(::gpu::current_frame()->m_pgpucommandbuffer);
+      m_pgpushaderTextOut->bind(::gpu::current_command_buffer());
       auto color = m_pbrush->m_color;
       //shader.use();
       ::cast<::gpu::shader>pshader = m_pgpushaderTextOut;
-      pshader->set_seq4("textColor", { __expand_float_pre_rgba(color) });
+      pshader->set_sequence4("textColor", { __expand_float_pre_rgba(color) });
       // glUniform3f(glGetUniformLocation(shader.ID, "textColor"), color.x, color.y, color.z);
 
       //auto pcontext = gpu_context();
 
-      glm::mat4 projection = glm::ortho(
+      floating_matrix4 projection = pcontext->ortho(
          0.0f, 
          static_cast<float>(pcontext->m_rectangle.width()),
          0.0f,
          static_cast<float>(pcontext->m_rectangle.height()));
-      pshader->set_mat4("projection", projection);
+      pshader->set_matrix4("projection", projection);
 
       set(m_pfont);
       
@@ -5901,8 +5899,8 @@ color = vec4(c.r,c.g, c.b, c.a);
 
       //auto pcontext = gpu_context();
 
-      point.y() = pcontext->m_rectangle.height() - point.y() - pface->m_iPixelSize;
-      auto pcommandbuffer = ::gpu::current_frame()->m_pgpucommandbuffer;
+      point.y = pcontext->m_rectangle.height() - point.y - pface->m_iPixelSize;
+      auto pcommandbuffer = ::gpu::current_command_buffer();
       //glEnable(GL_CULL_FACE);
       //GLCheckError("");
       //glEnable(GL_BLEND);
@@ -5912,8 +5910,8 @@ color = vec4(c.r,c.g, c.b, c.a);
 
          auto & ch = pface->get_character(strChar);
 
-         float xpos = point.x() + Δx + ch.Bearing.x;
-         float ypos = point.y() - (ch.Size.y - ch.Bearing.y);
+         float xpos = point.x + Δx + ch.Bearing.x;
+         float ypos = point.y - (ch.Size.y - ch.Bearing.y);
 
          float w = ch.Size.x;
          float h = ch.Size.y;

@@ -1,6 +1,7 @@
 #pragma once
 
 
+#include "core/user/rich_text/_.h"
 //#include "acme/prototype/geometry2d/_geometry2d.h"
 #include "acme/prototype/geometry2d/size.h"
 

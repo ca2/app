@@ -6,8 +6,8 @@ template < primitive_point POINT >
 inline binary_stream & operator << (binary_stream & s, const POINT & point)
 {
 
-   s << point.x();
-   s << point.y();
+   s << point.x;
+   s << point.y;
 
    return s;
 
@@ -18,8 +18,8 @@ template < primitive_point POINT >
 inline binary_stream & operator >> (binary_stream & s, POINT & point)
 {
 
-   s >> point.x();
-   s >> point.y();
+   s >> point.x;
+   s >> point.y;
 
    return s;
 

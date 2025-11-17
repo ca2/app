@@ -45,6 +45,7 @@ namespace httpd
 
    class socket;
    class incoming_socket;
+   class socket_thread;
 
 }
 

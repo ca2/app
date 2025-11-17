@@ -27,16 +27,16 @@ concept raw_primitive_point = requires(POINT point)
 template < typename POINT >
 concept primitive_point = requires(POINT point)
 {
-   {point.x()}->primitive_number;
-   {point.y()}->primitive_number;
+   {point.x}->primitive_number;
+   {point.y}->primitive_number;
 };
 
 
 template < typename POLE >
 concept primitive_pole = requires(POLE pole)
 {
-   {pole.x()}->primitive_number;
-   {pole.y()}->primitive_number;
+   {pole.x}->primitive_number;
+   {pole.y}->primitive_number;
    {pole.z()}->primitive_number;
 };
 

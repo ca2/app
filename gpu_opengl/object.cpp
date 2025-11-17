@@ -253,7 +253,7 @@ namespace gpu_opengl
       //GLuint vertexbuffer;
       //glGenBuffers(1, &vertexbuffer);
       //glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer);
-      //glBufferData(GL_ARRAY_BUFFER, vertexes.size() * sizeof(glm::vec3), &vertexes[0], GL_STATIC_DRAW);
+      //glBufferData(GL_ARRAY_BUFFER, vertexes.size() * sizeof(floating_sequence3), &vertexes[0], GL_STATIC_DRAW);
 
 
       auto byteCount2 = m_uvs.byte_count();

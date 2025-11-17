@@ -344,8 +344,8 @@ public:
    virtual bool on_happening(e_happening ehappening);
 
 
+   virtual int __task_main();
    virtual void __task_init();
-   virtual void __task_main();
    //virtual void __task_main(::procedure & procedureTaskEnded);
    virtual void __task_term();
 

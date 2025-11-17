@@ -1,6 +1,7 @@
 #pragma once
 
 
+#include "core/user/user/_.h"
 #include "aura/graphics/image/icon.h"
 #include "acme/prototype/text/text.h"
 #include "apex/database/key.h"

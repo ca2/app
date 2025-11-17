@@ -175,7 +175,8 @@ namespace windowing
       ::int_size                                m_sizeDrawnBuffer;
 
       //      ::int_rectangle_array_base                     m_rectangleaNeedRedraw;
-      ::pointer_array < ::user::redraw_item > m_redrawitema;
+      ::pointer < ::mutex >                     m_pmutexRedrawItem;
+      ::pointer_array < ::user::redraw_item >   m_redrawitema;
 
       ::pointer < ::user::interaction >         m_puiLastLButtonDown;
       ::item_pointer                            m_pitemLButtonDown;
@@ -1659,8 +1660,8 @@ namespace windowing
       virtual void set_origin(::draw2d::graphics_pointer & pgraphics);
 
 
-      virtual void viewport_screen_to_client(::sequence2_int & sequence) override;
-      virtual void viewport_client_to_screen(::sequence2_int & sequence) override;
+      virtual void viewport_screen_to_client(::int_sequence2 & sequence) override;
+      virtual void viewport_client_to_screen(::int_sequence2 & sequence) override;
       virtual void viewport_client_to_screen(::int_rectangle & rectangle) override;
       virtual void viewport_screen_to_client(::int_rectangle & rectangle) override;
 

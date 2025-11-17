@@ -23,7 +23,10 @@ public:
 
 
    tracer();
-   ~tracer();
+   virtual ~tracer();
+
+
+   virtual ::string trace_prefix() const;
 
 
    //void format_output_arguments(const_char_pointer psz, va_list & arguments)

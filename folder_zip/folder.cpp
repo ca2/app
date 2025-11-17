@@ -5,7 +5,7 @@
 #include "acme/filesystem/file/status.h"
 #include "acme/filesystem/filesystem/file_system.h"
 #include "acme/filesystem/filesystem/listing.h"
-#include "acme/operating_system/dos_time.h"
+#include "acme/operating_system/dos_time1.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/prototype/prototype/memory.h"
 
@@ -588,23 +588,10 @@ namespace folder_zip
 
       }
 
-      strFile.trim_left("\\/");
-
-      strFile.replace_with("/", "\\");
-
       if (!locate([strFile](const_char_pointer psz) {return strFile.case_insensitive_equals(psz); }))
       {
 
-         strFile.replace_with("\\", "/");
-
-         if (!locate([strFile](const_char_pointer psz) {return strFile.case_insensitive_equals(psz); }))
-         {
-
-            //didnt_locate_file(strFile);
-
-            return false;
-
-         }
+         return false;
 
       }
 
@@ -716,6 +703,15 @@ namespace folder_zip
          //
          //         }
 
+     /*    if (strstr(szItem, "certificate") != nullptr)
+         {
+
+            output_debug_string("certificate!!");
+
+         }
+
+         information() << "zipresource://" << szItem;*/
+
          if (function(szItem))
          {
 
@@ -770,8 +766,6 @@ namespace folder_zip
          strPrefix += "/";
 
       }
-
-      strPrefix.replace_with("/", "\\");
 
       bool bLocated = locate([strPrefix](const_char_pointer pszItem)
          {

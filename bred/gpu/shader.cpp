@@ -62,10 +62,10 @@ namespace gpu
       ::gpu::renderer * pgpurenderer,
       const ::file::path& pathVertex,
       const ::file::path& pathFragment,
-      const ::array<enum_descriptor_set_slot>& eslota,
+      const ::array_base<enum_descriptor_set_slot>& eslota,
       const ::particle_pointer& pLocalDescriptorSet,
       //const ::particle_pointer& pVertexInput,
-      const ::gpu::property* ppropertiesPush,
+      //const ::gpu::property* ppropertiesPush,
       ::gpu::input_layout* pinputlayout,
       enum_flag eflag)
    {
@@ -76,10 +76,10 @@ namespace gpu
       m_edescriptorsetslota.copy(eslota);
       m_pLocalDescriptorSet = pLocalDescriptorSet;
       m_pinputlayout = pinputlayout;
-      if (ppropertiesPush)
-      {
-         m_propertiesPush.set_properties(ppropertiesPush);
-      }
+      //if (ppropertiesPush)
+      //{
+      //   m_propertiesPush.set_properties(ppropertiesPush);
+      //}
       //if (ppropertiesInputLayout)
       //{
       //   m_propertiesInputLayout.set(ppropertiesInputLayout);
@@ -95,10 +95,10 @@ namespace gpu
       ::gpu::renderer * pgpurenderer,
       const ::block& blockVertex,
       const ::block& blockFragment,
-      const ::array<enum_descriptor_set_slot>& eslota,
+      const ::array_base<enum_descriptor_set_slot>& eslota,
       const ::particle_pointer& pLocalDescriptorSet,
       //const ::particle_pointer& pVertexInput,
-      const ::gpu::property* ppropertiesPush,
+      //const ::gpu::property* ppropertiesPush,
       ::gpu::input_layout * pinputlayout,
       enum_flag eflag)
    {
@@ -109,10 +109,10 @@ namespace gpu
       m_edescriptorsetslota.copy(eslota);
       m_pLocalDescriptorSet = pLocalDescriptorSet;
       m_pinputlayout = pinputlayout;
-      if (ppropertiesPush)
-      {
-         m_propertiesPush.set_properties(ppropertiesPush);
-      }
+      //if (ppropertiesPush)
+      //{
+      //   m_propertiesPush.set_properties(ppropertiesPush);
+      //}
       //if (ppropertiesInputLayout)
       //{
       //   m_propertiesInputLayout.set(ppropertiesInputLayout);
@@ -209,7 +209,7 @@ namespace gpu
 //   }
 //
 //
-////   void shader::setVec2(const ::scoped_string & scopedstrName, const glm::vec2& value)
+////   void shader::setVec2(const ::scoped_string & scopedstrName, const floating_sequence2& value)
 ////   {
 ////
 ////   }
@@ -221,7 +221,7 @@ namespace gpu
 //   }
 //
 //
-////   void shader::setVec3(const ::scoped_string & scopedstrName, const glm::vec3& value)
+////   void shader::setVec3(const ::scoped_string & scopedstrName, const floating_sequence3& value)
 ////   {
 ////
 ////
@@ -234,7 +234,7 @@ namespace gpu
 //   }
 //
 //
-////   void shader::setVec4(const ::scoped_string & scopedstrName, const glm::vec4& value)
+////   void shader::setVec4(const ::scoped_string & scopedstrName, const floating_sequence4& value)
 ////   {
 ////
 ////   }
@@ -292,7 +292,7 @@ namespace gpu
    }
 
 
-   void shader::_bind(::gpu::command_buffer *pgpucommandbuffer)
+   void shader::_bind(::gpu::command_buffer *pgpucommandbuffer, ::gpu::enum_scene escene)
    {
 
 
@@ -371,9 +371,30 @@ namespace gpu
 
       ::string strName(scopedstrName);
 
-      auto& a = m_propertiesPush.as_int(strName);
+      if (m_propertiesPushShared.contains(scopedstrName))
+      {
 
-      a = value;
+         auto &a = m_propertiesPushShared.as_int(strName);
+
+         a = value;
+
+      }
+      else if (m_propertiesPushVertex.contains(scopedstrName))
+      {
+
+         auto &a = m_propertiesPushVertex.as_int(strName);
+
+         a = value;
+
+      }
+      else if (m_propertiesPushFragment.contains(scopedstrName))
+      {
+
+         auto &a = m_propertiesPushFragment.as_int(strName);
+
+         a = value;
+
+      }
 
    }
 
@@ -383,76 +404,199 @@ namespace gpu
       
       ::string strName(scopedstrName);
 
-      auto& a = m_propertiesPush.as_float(strName);
+      if (m_propertiesPushShared.contains(scopedstrName))
+      {
 
-      a = value;
+         auto &a = m_propertiesPushShared.as_float(strName);
+
+         a = value;
+      }
+      else if (m_propertiesPushVertex.contains(scopedstrName))
+      {
+
+         auto &a = m_propertiesPushVertex.as_float(strName);
+
+         a = value;
+      }
+      else if (m_propertiesPushFragment.contains(scopedstrName))
+      {
+
+         auto &a = m_propertiesPushFragment.as_float(strName);
+
+         a = value;
+      }
 
    }
 
 
-   void shader::set_seq2(const ::scoped_string& scopedstrName, float x, float y)
+   void shader::set_sequence2(const ::scoped_string& scopedstrName, float x, float y)
    {
 
       ::string strName(scopedstrName);
 
-      auto& a = m_propertiesPush.seq2(strName);
+      if (m_propertiesPushShared.contains(scopedstrName))
+      {
 
-      a.x = x;
-      a.y = y;
+         auto &a = m_propertiesPushShared.seq2(strName);
+
+         a.x = x;
+         a.y = y;
+
+      }
+      else if (m_propertiesPushVertex.contains(scopedstrName))
+      {
+
+         auto &a = m_propertiesPushVertex.seq2(strName);
+
+         a.x = x;
+         a.y = y;
+
+      }
+      else if (m_propertiesPushFragment.contains(scopedstrName))
+      {
+
+         auto &a = m_propertiesPushFragment.seq2(strName);
+
+         a.x = x;
+         a.y = y;
+
+      }
+
 
    }
 
 
-   void shader::set_seq2(const ::scoped_string& scopedstrName, const glm::vec2& a)
+   void shader::set_sequence2(const ::scoped_string& scopedstrName, const floating_sequence2& a)
    {
 
       ::string strName(scopedstrName);
 
-      m_propertiesPush.seq2(strName) = a;
+      if (m_propertiesPushShared.contains(scopedstrName))
+      {
+
+         m_propertiesPushShared.seq2(strName) = a;
+
+      }
+      else if (m_propertiesPushVertex.contains(scopedstrName))
+      {
+
+         m_propertiesPushVertex.seq2(strName) = a;
+
+      }
+      else if (m_propertiesPushFragment.contains(scopedstrName))
+      {
+
+         m_propertiesPushFragment.seq2(strName) = a;
+
+      }
 
    }
 
    
-   void shader::set_seq3(const ::scoped_string& scopedstrName, float x, float y, float z)
+   void shader::set_sequence3(const ::scoped_string& scopedstrName, float x, float y, float z)
    {
-
       ::string strName(scopedstrName);
 
-      auto& a = m_propertiesPush.seq3(strName);
+      if (m_propertiesPushShared.contains(scopedstrName))
+      {
 
-      a.x = x;
-      a.y = y;
-      a.z = z;
+         auto &a = m_propertiesPushShared.seq3(strName);
+
+         a.x = x;
+         a.y = y;
+         a.z = z;
+      }
+      else if (m_propertiesPushVertex.contains(scopedstrName))
+      {
+
+         auto &a = m_propertiesPushVertex.seq3(strName);
+
+         a.x = x;
+         a.y = y;
+         a.z = z;
+      }
+      else if (m_propertiesPushFragment.contains(scopedstrName))
+      {
+
+         auto &a = m_propertiesPushFragment.seq3(strName);
+
+         a.x = x;
+         a.y = y;
+         a.z = z;
+      }
+
+
 
    }
 
 
-   void shader::set_seq3(const ::scoped_string& scopedstrName, const glm::vec3& a)
+   void shader::set_sequence3(const ::scoped_string& scopedstrName, const floating_sequence3& a)
    {
+
 
       ::string strName(scopedstrName);
 
-      m_propertiesPush.seq3(strName) = a;
+      if (m_propertiesPushShared.contains(scopedstrName))
+      {
+
+         m_propertiesPushShared.seq3(strName) = a;
+      }
+      else if (m_propertiesPushVertex.contains(scopedstrName))
+      {
+
+         m_propertiesPushVertex.seq3(strName) = a;
+      }
+      else if (m_propertiesPushFragment.contains(scopedstrName))
+      {
+
+         m_propertiesPushFragment.seq3(strName) = a;
+      }
+
 
    }
 
 
-   void shader::set_seq4(const ::scoped_string& scopedstrName, float x, float y, float z, float w)
+   void shader::set_sequence4(const ::scoped_string& scopedstrName, float x, float y, float z, float w)
    {
 
       ::string strName(scopedstrName);
 
-      auto& a = m_propertiesPush.seq4(strName);
+      if (m_propertiesPushShared.contains(scopedstrName))
+      {
 
-      a.x = x;
-      a.y = y;
-      a.z = z;
-      a.w = w;
+         auto &a = m_propertiesPushShared.seq4(strName);
+
+         a.x = x;
+         a.y = y;
+         a.z = z;
+         a.w = w;
+      }
+      else if (m_propertiesPushVertex.contains(scopedstrName))
+      {
+
+         auto &a = m_propertiesPushVertex.seq4(strName);
+
+         a.x = x;
+         a.y = y;
+         a.z = z;
+         a.w = w;
+      }
+      else if (m_propertiesPushFragment.contains(scopedstrName))
+      {
+
+         auto &a = m_propertiesPushFragment.seq4(strName);
+
+         a.x = x;
+         a.y = y;
+         a.z = z;
+         a.w = w;
+      }
+
 
    }
 
 
-   void shader::set_seq4(const ::scoped_string& scopedstrName, const glm::vec4& a)
+   void shader::set_sequence4(const ::scoped_string& scopedstrName, const floating_sequence4& a)
    {
 
       //auto p = m_mapConstantBuffer.find(scopedstrName);
@@ -467,39 +611,84 @@ namespace gpu
 
       //}
       //else
+
+
+      ::string strName(scopedstrName);
+
+      if (m_propertiesPushShared.contains(scopedstrName))
       {
 
-         ::string strName(scopedstrName);
+         m_propertiesPushShared.seq4(strName) = a;
+      }
+      else if (m_propertiesPushVertex.contains(scopedstrName))
+      {
 
-         m_propertiesPush.seq4(strName) = a;
+         m_propertiesPushVertex.seq4(strName) = a;
+      }
+      else if (m_propertiesPushFragment.contains(scopedstrName))
+      {
 
+         m_propertiesPushFragment.seq4(strName) = a;
       }
 
 
+
    }
 
 
-   void shader::set_mat2(const ::scoped_string& scopedstrName, const ::glm::mat2& a)
+   void shader::set_matrix2(const ::scoped_string& scopedstrName, const ::floating_matrix2& a)
    {
       
+  
+
       ::string strName(scopedstrName);
 
-      m_propertiesPush.mat2(strName.c_str()) = a;
+      if (m_propertiesPushShared.contains(scopedstrName))
+      {
+
+         m_propertiesPushShared.mat2(strName) = a;
+      }
+      else if (m_propertiesPushVertex.contains(scopedstrName))
+      {
+
+         m_propertiesPushVertex.mat2(strName) = a;
+      }
+      else if (m_propertiesPushFragment.contains(scopedstrName))
+      {
+
+         m_propertiesPushFragment.mat2(strName) = a;
+      }
+
+
 
    }
 
 
-   void shader::set_mat3(const ::scoped_string& scopedstrName, const ::glm::mat3& a)
+   void shader::set_matrix3(const ::scoped_string& scopedstrName, const ::floating_matrix3& a)
    {
 
       ::string strName(scopedstrName);
 
-      m_propertiesPush.mat3(strName.c_str()) = a;
+      if (m_propertiesPushShared.contains(scopedstrName))
+      {
+
+         m_propertiesPushShared.mat3(strName) = a;
+      }
+      else if (m_propertiesPushVertex.contains(scopedstrName))
+      {
+
+         m_propertiesPushVertex.mat3(strName) = a;
+      }
+      else if (m_propertiesPushFragment.contains(scopedstrName))
+      {
+
+         m_propertiesPushFragment.mat3(strName) = a;
+      }
 
    }
 
 
-   void shader::set_mat4(const ::scoped_string& scopedstrName, const ::glm::mat4& a)
+   void shader::set_matrix4(const ::scoped_string& scopedstrName, const ::floating_matrix4& a)
    {
 
       //auto p = m_mapConstantBuffer.find(scopedstrName);
@@ -514,23 +703,35 @@ namespace gpu
 
       //}
       //else
+
+      ::string strName(scopedstrName);
+
+      if (m_propertiesPushShared.contains(scopedstrName))
       {
 
-         ::string strName(scopedstrName);
-
-         m_propertiesPush.mat4(strName) = a;
-
+         m_propertiesPushShared.mat4(strName) = m_pgpurenderer->m_pgpucontext->defer_transpose(a);
       }
+      else if (m_propertiesPushVertex.contains(scopedstrName))
+      {
+
+         m_propertiesPushVertex.mat4(strName) = m_pgpurenderer->m_pgpucontext->defer_transpose(a);
+      }
+      else if (m_propertiesPushFragment.contains(scopedstrName))
+      {
+
+         m_propertiesPushFragment.mat4(strName) = m_pgpurenderer->m_pgpucontext->defer_transpose(a);
+      }
+
 
    }
 
 
-   void shader::setModelViewProjectionMatrices(glm::mat4 &model, glm::mat4 &view, glm::mat4 &projection)
+   void shader::setModelViewProjectionMatrices(floating_matrix4 &model, floating_matrix4 &view, floating_matrix4 &projection)
    {
       
-      set_mat4("model", model);
-      set_mat4("view", view);
-      set_mat4("projection", projection);
+      set_matrix4("model", model);
+      set_matrix4("view", view);
+      set_matrix4("projection", projection);
 
    }
 

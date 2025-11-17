@@ -69,6 +69,15 @@ namespace user
    document_manager::document_manager()
    {
 
+
+   }
+
+
+   void document_manager::on_initialize_particle()
+   {
+
+      ::object::on_initialize_particle();
+
       print_line("core::user::document_manager::document_manager");
 
       defer_create_synchronization();

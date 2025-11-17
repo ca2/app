@@ -54,14 +54,14 @@ namespace nanoui
 
       }
 
-      m_rectangle.left() = (float) m_pos.x();
-      m_rectangle.top() = (float)m_pos.y();
-      m_rectangle.right() = (float)(m_pos.x() + m_size.cx());
-      m_rectangle.bottom() = (float)(m_pos.y() + m_size.cy());
+      m_rectangle.left() = (float) m_pos.x;
+      m_rectangle.top() = (float)m_pos.y;
+      m_rectangle.right() = (float)(m_pos.x + m_size.cx());
+      m_rectangle.bottom() = (float)(m_pos.y + m_size.cy());
 
       ::graphics::color_wheel::_on_draw(pcontext);
 
-      //float x = (float)m_pos.x(), y = (float)m_pos.y(),
+      //float x = (float)m_pos.x, y = (float)m_pos.y,
       //   w = (float)m_size.cx(), h = (float)m_size.cy();
 
       //float hue = m_hue;
@@ -254,9 +254,9 @@ namespace nanoui
    //ColorWheel::Region ColorWheel::adjust_position(const int_point& p)
    //{
 
-   //   float x = (float) p.x();
+   //   float x = (float) p.x;
    //   
-   //   float y = (float) p.y();
+   //   float y = (float) p.y;
    //   
    //   float pwidget = (float)m_size.cx();
    //   
@@ -313,8 +313,8 @@ namespace nanoui
    //      sin_a * x + cos_a * y);
 
    //   float r = r0 - 6;
-   //   float l0 = (float)(r - xy.x() + ::sqrt(3.f) * xy.y()) / (3.f * r);
-   //   float l1 = (float)(r - xy.x() - ::sqrt(3.f) * xy.y()) / (3.f * r);
+   //   float l0 = (float)(r - xy.x + ::sqrt(3.f) * xy.y) / (3.f * r);
+   //   float l1 = (float)(r - xy.x - ::sqrt(3.f) * xy.y) / (3.f * r);
    //   float l2 = 1 - l0 - l1;
    //   bool triangle_test = l0 >= 0 && l0 <= 1.f && l1 >= 0.f && l1 <= 1.f &&
    //      l2 >= 0.f && l2 <= 1.f;

@@ -8,7 +8,7 @@ namespace windowing
 
 
    // wall-changer sourceforge.net contribution
-   enum enum_operating_ambient
+   enum enum_operating_ambient : long long
    {
 
       // please note that the row of these must match the row of the corresponding combobox in Preferences Dialog.
@@ -20,6 +20,7 @@ namespace windowing
       e_operating_ambient_xfce,
       e_operating_ambient_lxde,
       e_operating_ambient_lxqt,
+      e_operating_ambient_labwc,
       e_operating_ambient_mate,
       e_operating_ambient_ubuntu,
       e_operating_ambient_universal_windows,
@@ -28,9 +29,12 @@ namespace windowing
       e_operating_ambient_ios,
       e_operating_ambient_macos,
       e_operating_ambient_android
+
+
    };
 
-   enum enum_toolkit
+
+   enum enum_toolkit : long long
    {
 
       e_toolkit_none,
@@ -49,9 +53,9 @@ namespace windowing
 
 
    };
+   
 
-
-   enum enum_windowing
+   enum enum_windowing : long long
    {
 
       e_windowing_unknown = -1,
@@ -65,9 +69,7 @@ namespace windowing
    };
 
 
-
-
-   enum enum_display_type
+   enum enum_display_type : long long
    {
 
       e_display_type_none,
@@ -79,8 +81,7 @@ namespace windowing
    };
 
 
-
-   enum enum_bias
+   enum enum_bias : long long
    {
 
       e_bias_unknown = -1,
@@ -88,9 +89,6 @@ namespace windowing
       e_bias_linux_mint_x_cinnamon_22_1,
 
    };
-
-
-
 
 
 } // namespace windowing

@@ -6,6 +6,7 @@
 #include "aura/user/user/frame_interaction.h"
 #include "placement_log.h"
 #include "acme/constant/user_message.h"
+#include "acme/constant/windowing2.h"
 #include "acme/exception/interface_only.h"
 #include "acme/graphics/graphics/output_purpose.h"
 #include "acme/handler/request.h"
@@ -154,6 +155,8 @@ namespace windowing
 
       ::channel::on_initialize_particle();
 
+      m_pmutexRedrawItem = node()->create_mutex();
+
    }
 
 
@@ -213,7 +216,12 @@ namespace windowing
       //m_pwindowParent.release();
       m_pmessagequeue.release();
       m_pdisplay.release();
-      m_redrawitema.destroy();
+      {
+         _synchronous_lock synchronouslockRedrawItem(m_pmutexRedrawItem);
+
+         m_redrawitema.destroy();
+         m_pmutexRedrawItem.release();
+      }
 
       //::channel::destroy();
 
@@ -797,17 +805,17 @@ namespace windowing
 
       auto puserinteraction = user_interaction();
 
-      int x = puserinteraction->const_layout().sketch().origin().x();
+      int x = puserinteraction->const_layout().sketch().origin().x;
 
-      int y = puserinteraction->const_layout().sketch().origin().y();
+      int y = puserinteraction->const_layout().sketch().origin().y;
 
       int cx = puserinteraction->const_layout().sketch().width();
 
       int cy = puserinteraction->const_layout().sketch().height();
 
-      m_pointWindow.x() = x;
+      m_pointWindow.x = x;
 
-      m_pointWindow.y() = y;
+      m_pointWindow.y = y;
 
       m_sizeWindow.cx() = cx;
 
@@ -1379,9 +1387,9 @@ namespace windowing
 
       preposition->m_eusermessage = ::user::e_message_reposition;
 
-      preposition->m_point.x() = x;
+      preposition->m_point.x = x;
 
-      preposition->m_point.y() = y;
+      preposition->m_point.y = y;
 
       message_handler(preposition);
 
@@ -2622,8 +2630,8 @@ namespace windowing
          }
 
          _strict_set_window_position_unlocked(
-            pointOutput.x(),
-            pointOutput.y(),
+            pointOutput.x,
+            pointOutput.y,
             sizeOutput.cx(),
             sizeOutput.cy(),
             !bChangedPosition, !bChangedSize);
@@ -2774,8 +2782,8 @@ namespace windowing
 
          _set_window_position_unlocked(
             zOutput,
-            pointDesign.x(),
-            pointDesign.y(),
+            pointDesign.x,
+            pointDesign.y,
             sizeOutput.cx(),
             sizeOutput.cy(),
             activationOutput,
@@ -3097,15 +3105,15 @@ namespace windowing
 
       ::lparam lparam(xHost, yHost);
 
-      m_pointCursor2.x() = xHost;
+      m_pointCursor2.x = xHost;
 
-      m_pointCursor2.y() = yHost;
+      m_pointCursor2.y = yHost;
 
       auto pdisplay = this->display();
 
-      pdisplay->m_pointCursor2.x() = xAbsolute;
+      pdisplay->m_pointCursor2.x = xAbsolute;
 
-      pdisplay->m_pointCursor2.y() = yAbsolute;
+      pdisplay->m_pointCursor2.y = yAbsolute;
 
       user_interaction()->post_message(::user::e_message_left_button_down, 0, lparam);
 
@@ -3117,13 +3125,13 @@ namespace windowing
 
       ::lparam lparam(xHost, yHost);
 
-      m_pointCursor2.x() = xHost;
+      m_pointCursor2.x = xHost;
 
-      m_pointCursor2.y() = yHost;
+      m_pointCursor2.y = yHost;
 
-      m_pdisplay->m_pointCursor2.x() = xAbsolute;
+      m_pdisplay->m_pointCursor2.x = xAbsolute;
 
-      m_pdisplay->m_pointCursor2.y() = yAbsolute;
+      m_pdisplay->m_pointCursor2.y = yAbsolute;
 
       user_interaction()->post_message(::user::e_message_mouse_move, 0, lparam);
 
@@ -3135,13 +3143,13 @@ namespace windowing
 
       ::lparam lparam(xHost, yHost);
 
-      m_pointCursor2.x() = xHost;
+      m_pointCursor2.x = xHost;
 
-      m_pointCursor2.y() = yHost;
+      m_pointCursor2.y = yHost;
 
-      m_pdisplay->m_pointCursor2.x() = xAbsolute;
+      m_pdisplay->m_pointCursor2.x = xAbsolute;
 
-      m_pdisplay->m_pointCursor2.y() = yAbsolute;
+      m_pdisplay->m_pointCursor2.y = yAbsolute;
 
       user_interaction()->post_message(::user::e_message_left_button_up, 0, lparam);
 
@@ -4162,17 +4170,17 @@ namespace windowing
 
       auto puserinteraction = user_interaction();
 
-      int x = puserinteraction->const_layout().sketch().origin().x();
+      int x = puserinteraction->const_layout().sketch().origin().x;
 
-      int y = puserinteraction->const_layout().sketch().origin().y();
+      int y = puserinteraction->const_layout().sketch().origin().y;
 
       int cx = puserinteraction->const_layout().sketch().width();
 
       int cy = puserinteraction->const_layout().sketch().height();
 
-      m_pointWindow.x() = x;
+      m_pointWindow.x = x;
 
-      m_pointWindow.y() = y;
+      m_pointWindow.y = y;
 
       m_sizeWindow.cx() = cx;
 
@@ -4509,8 +4517,8 @@ namespace windowing
    //       }
    //
    //       //user_interaction()->place(int_rectangle_dimension(
-   //       //                      pusersystem->m_createstruct.x(),
-   //       //                      pusersystem->m_createstruct.y(),
+   //       //                      pusersystem->m_createstruct.x,
+   //       //                      pusersystem->m_createstruct.y,
    //       //                      pusersystem->m_createstruct.cx(),
    //       //                      pusersystem->m_createstruct.cy()));
    //
@@ -4740,7 +4748,7 @@ namespace windowing
    //
    //       //   send_message(::user::e_message_create, 0, (lparam)&pusersystem);
    //
-   //       //   //user_interaction()->set_dim(pusersystem->m_createstruct.x(), pusersystem->m_createstruct.cy(), pusersystem->m_createstruct.cx(), pusersystem->m_createstruct.cy());
+   //       //   //user_interaction()->set_dim(pusersystem->m_createstruct.x, pusersystem->m_createstruct.cy(), pusersystem->m_createstruct.cx(), pusersystem->m_createstruct.cy());
    //
    //       //   send_message(::user::e_message_size, 0, MAKELPARAM(pusersystem->m_createstruct.cx(), pusersystem->m_createstruct.cy()));
    //
@@ -4771,7 +4779,7 @@ namespace windowing
 
       //information() << "screen_pixel window().origin() : " << origin;
 
-      return m_pgraphicsgraphics->get_screen_item()->m_pimage2->pixel(x - origin.x(), y - origin.y());
+      return m_pgraphicsgraphics->get_screen_item()->m_pimage2->pixel(x - origin.x, y - origin.y);
 
    }
 
@@ -4809,8 +4817,8 @@ namespace windowing
 ////#endif
 //
 //      //pusersystem->m_createstruct.style = uStyle | WS_CHILD;
-//      //pusersystem->m_createstruct.x() = rectangle.left();
-//      //pusersystem->m_createstruct.y() = rectangle.top();
+//      //pusersystem->m_createstruct.x = rectangle.left();
+//      //pusersystem->m_createstruct.y = rectangle.top();
 //      //pusersystem->m_createstruct.cx() = rectangle.width();
 //      //pusersystem->m_createstruct.cy() = rectangle.height();
 //      //pusersystem->m_createstruct.hwndParent = puiParent->get_safe_handle();
@@ -4883,8 +4891,8 @@ namespace windowing
 
          ::int_point pointInvalid; // For long future hope still : Invalid
 
-         minimum(pointInvalid.x());
-         minimum(pointInvalid.y());
+         minimum(pointInvalid.x);
+         minimum(pointInvalid.y);
 
          _on_mouse_move_step(pointInvalid, true);
 
@@ -6297,15 +6305,15 @@ namespace windowing
       //      //   if (rectWindow.left() >= rcMonitor.left())
       //      //   {
 
-      //      //      pmouse->m_point.x() += (int)rcMonitor.left();
+      //      //      pmouse->m_point.x += (int)rcMonitor.left();
 
       //      //   }
 
       //      //   if (rectWindow.top() >= rcMonitor.top())
       //      //   {
 
-      //      //      //pmouse->m_point.y() += (int)rectWindow.top();
-      //      //      pmouse->m_point.y() += (int)rcMonitor.top();
+      //      //      //pmouse->m_point.y += (int)rectWindow.top();
+      //      //      pmouse->m_point.y += (int)rcMonitor.top();
 
       //      //   }
 
@@ -6316,14 +6324,14 @@ namespace windowing
       //         if (rectWindow.left() >= 0)
       //         {
 
-      //            pmouse->m_point.x() += (int)rectWindow.left();
+      //            pmouse->m_point.x += (int)rectWindow.left();
 
       //         }
 
       //         if (rectWindow.top() >= 0)
       //         {
 
-      //            pmouse->m_point.y() += (int)rectWindow.top();
+      //            pmouse->m_point.y += (int)rectWindow.top();
 
       //         }
 
@@ -6634,7 +6642,7 @@ namespace windowing
       //
       //         pmouse->m_pcursor = pcursor;
       //
-      //         //informationf("windows::user::e_message_mouse_move(%d,%d)", pmouse->m_point.x(), pmouse->m_point.y());
+      //         //informationf("windows::user::e_message_mouse_move(%d,%d)", pmouse->m_point.x, pmouse->m_point.y);
       //
       //         //string strType;
       //
@@ -7441,7 +7449,7 @@ namespace windowing
 
    //   oswindow w = ::set_mouse_capture(get_handle());
 
-   //   informationf("\nSet Capture: oswindow=0x" + ::hex::lower_from((iptr) w));
+   //   informationf("----> Set Capture: oswindow=0x" + ::hex::lower_from((iptr) w));
 
    //   auto psession = session();
 
@@ -7944,7 +7952,7 @@ namespace windowing
          bool bAscendants)
    {
 
-      synchronous_lock synchronouslock(synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+      _synchronous_lock synchronouslockRedrawItem(m_pmutexRedrawItem);
 
       if (rectangleaHostNeedRedraw.is_empty())
       {
@@ -8088,63 +8096,69 @@ namespace windowing
 
       }
 
-      if (bFullRedraw)
-      {
+      //{
 
-         if (m_redrawitema.is_empty())
+         //_synchronous_lock synchronouslockRedrawItem(m_pmutexRedrawItem);
+
+         if (bFullRedraw)
          {
 
-            auto predrawitem = øcreate_new<::user::redraw_item>();
-
-            if (function)
+            if (m_redrawitema.is_empty())
             {
 
-               predrawitem->m_functiona.add(function);
+               auto predrawitem = øcreate_new<::user::redraw_item>();
+
+               if (function)
+               {
+
+                  predrawitem->m_functiona.add(function);
+
+               }
+
+               m_redrawitema.add(predrawitem);
+
+            }
+            else
+            {
+
+               for (::collection::index i = m_redrawitema.get_upper_bound(); i >= 1; i--)
+               {
+
+                  m_redrawitema.first()->m_functiona.append(m_redrawitema[i]->m_functiona);
+
+                  m_redrawitema.erase_at(i);
+
+               }
+
+               m_redrawitema.first()->m_rectanglea.clear();
+
+               if (function)
+               {
+
+                  m_redrawitema.first()->m_functiona.add(function);
+
+               }
 
             }
 
-            m_redrawitema.add(predrawitem);
+            return;
 
          }
-         else
+
+         auto predrawitem = øcreate_new<::user::redraw_item>();
+
+         predrawitem->m_rectanglea.append(rectangleaHostNeedRedraw);
+
+         if (function)
          {
 
-            for (::collection::index i = m_redrawitema.get_upper_bound(); i >= 1; i--)
-            {
-
-               m_redrawitema.first()->m_functiona.append(m_redrawitema[i]->m_functiona);
-
-               m_redrawitema.erase_at(i);
-
-            }
-
-            m_redrawitema.first()->m_rectanglea.clear();
-
-            if (function)
-            {
-
-               m_redrawitema.first()->m_functiona.add(function);
-
-            }
+            predrawitem->m_functiona.add(function);
 
          }
 
-         return;
+         m_redrawitema.add(predrawitem);
 
-      }
-
-      auto predrawitem = øcreate_new<::user::redraw_item>();
-
-      predrawitem->m_rectanglea.append(rectangleaHostNeedRedraw);
-
-      if (function)
-      {
-
-         predrawitem->m_functiona.add(function);
-
-      }
-
-      m_redrawitema.add(predrawitem);
+      //}
 
       //information() << node()->get_callstack();
 
@@ -9503,7 +9517,7 @@ namespace windowing
 
                   {
 
-                     synchronous_lock synchronouslock(synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+                     _synchronous_lock synchronouslock(m_pmutexRedrawItem);
 
                      if (pgraphics->ødefer_construct_new(pgraphics->m_puserredraw))
                      {
@@ -11836,7 +11850,7 @@ namespace windowing
    //
    //         ::int_point pointBottomRight = pointOutput + sizeOutput;
    //
-   //         //informationf("SetWindowPos bottom_right " + as_string(pointBottomRight.x()) + ", " + as_string(pointBottomRight.y()) + "\n");
+   //         //informationf("SetWindowPos bottom_right " + as_string(pointBottomRight.x) + ", " + as_string(pointBottomRight.y) + "\n");
    //
    //   //#if !defined(UNIVERSAL_WINDOWS) && !defined(__ANDROID__)
    //
@@ -11855,8 +11869,8 @@ namespace windowing
    //         {
    //               _set_window_position_unlocked(
    //               zorderNew,
-   //               pointOutput.x(),
-   //               pointOutput.y(),
+   //               pointOutput.x,
+   //               pointOutput.y,
    //               sizeOutput.cx(),
    //               sizeOutput.cy(),
    //               eactivationOutput, !bZ, !bMove, !bSize, edisplayOutput);
@@ -11866,7 +11880,7 @@ namespace windowing
    //         }
    //
    //         //::SetWindowPos(get_handle(), oswindowInsertAfter,
-   //         //   pointOutput.x(), pointOutput.y(),
+   //         //   pointOutput.x, pointOutput.y,
    //         //   sizeOutput.cx(), sizeOutput.cy(),
    //         //   uFlags);
    //
@@ -12435,7 +12449,7 @@ namespace windowing
 
       //information() << "window::on_message_reposition sketch_origin " << sketch_origin;
 
-      //if(preposition->m_point.x() == 0)
+      //if(preposition->m_point.x == 0)
       //{
 
       //  information() << "window::on_message_reposition x is zero";
@@ -13916,7 +13930,7 @@ namespace windowing
    }
 
 
-   void window::viewport_client_to_screen(::sequence2_int& sequence)
+   void window::viewport_client_to_screen(::int_sequence2& sequence)
    {
 
       if (user_interaction())
@@ -13929,7 +13943,7 @@ namespace windowing
    }
 
 
-   void window::viewport_screen_to_client(::sequence2_int& sequence)
+   void window::viewport_screen_to_client(::int_sequence2& sequence)
    {
 
       if (user_interaction())
@@ -14338,9 +14352,9 @@ namespace windowing
    //      case ::user::e_message_prototype_non_client_hit_test:
    //      {
    //         _NEW_MESSAGE(::message::nc_hit_test);
-   //         pmessage->m_point.x() = lparam_int_x(lparam);
+   //         pmessage->m_point.x = lparam_int_x(lparam);
    //
-   //         pmessage->m_point.y() = lparam_int_y(lparam);
+   //         pmessage->m_point.y = lparam_int_y(lparam);
    //      }
    //      break;
    //      case ::user::e_message_prototype_move:

@@ -81,18 +81,18 @@ namespace graphics3d
    }
 
 
-   void scene_renderable::translate(const glm::vec3 &vec3)
+   void scene_renderable::translate(const floating_sequence3 &floating_sequence3)
    {
       
-      transform().m_vec3Position = vec3; 
+      transform().m_vec3Position = floating_sequence3; 
    
    }
 
 
-   void scene_renderable::scale(const glm::vec3 &vec3)
+   void scene_renderable::scale(const floating_sequence3 &floating_sequence3)
    {
       
-      transform().m_vec3Scale = vec3; 
+      transform().m_vec3Scale = floating_sequence3; 
    
    }
 

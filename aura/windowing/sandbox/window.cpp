@@ -54,9 +54,9 @@ namespace sandbox_windowing
 //
 //      auto pwindowingdisplay = pwindowing->display();
 //
-//      int x = puserinteraction->const_layout().sketch().origin().x();
+//      int x = puserinteraction->const_layout().sketch().origin().x;
 //
-//      int y = puserinteraction->const_layout().sketch().origin().y();
+//      int y = puserinteraction->const_layout().sketch().origin().y;
 //
 //      int cx = puserinteraction->const_layout().sketch().width();
 //
@@ -260,7 +260,7 @@ namespace sandbox_windowing
 //      //         // initial (XCreateWindow) int_size and position maybe not be honored.
 //      //         // so requesting the same change again in a effort to set the "docked/snapped" int_size and position.
 //
-//      //         //set_window_position(e_zorder_top, pusersystem->m_createstruct.x(), pusersystem->m_createstruct.y(),
+//      //         //set_window_position(e_zorder_top, pusersystem->m_createstruct.x, pusersystem->m_createstruct.y,
 //      //         //                  pusersystem->m_createstruct.cx(), pusersystem->m_createstruct.cy(), SWP_SHOWWINDOW);
 //
 //      //         set_window_position(e_zorder_top, x, y, cx, cy, SWP_SHOWWINDOW);
@@ -754,7 +754,7 @@ namespace sandbox_windowing
 
    //   ::file::path path = pnode->get_desktop_file_path(papp);
 
-   //   informationf("\nfreebsd::interaction_impl::set_window_text");
+   //   informationf("----> freebsd::interaction_impl::set_window_text");
 
    //   fflush(stdout);
 
@@ -776,7 +776,7 @@ namespace sandbox_windowing
    //      (const unsigned char *)(const_char_pointer )path,
    //      path.get_length());
 
-   //   informationf("\nfreebsd::interaction_impl::bamf_set_icon END");
+   //   informationf("----> freebsd::interaction_impl::bamf_set_icon END");
 
    //   fflush(stdout);
 
@@ -1478,10 +1478,10 @@ namespace sandbox_windowing
    //
    //      ::int_rectangle rWindow;
    //
-   //      rWindow.left() = attr.x();
-   //      rWindow.top() = attr.y();
-   //      rWindow.right() = attr.x() + attr.width;
-   //      rWindow.bottom() = attr.y() + attr.height;
+   //      rWindow.left() = attr.x;
+   //      rWindow.top() = attr.y;
+   //      rWindow.right() = attr.x + attr.width;
+   //      rWindow.bottom() = attr.y + attr.height;
    //
    //      if (rBest != rWindow)
    //      {
@@ -1852,7 +1852,7 @@ namespace sandbox_windowing
       //   (const unsigned char *)(const_char_pointer )path,
       //   path.get_length());
 
-      //informationf("\nfreebsd::interaction_impl::bamf_set_icon END");
+      //informationf("----> freebsd::interaction_impl::bamf_set_icon END");
 
       //fflush(stdout);
 
@@ -1903,10 +1903,10 @@ namespace sandbox_windowing
    //
    //      ::int_rectangle rWindow;
    //
-   //      rWindow.left()      = attr.x();
-   //      rWindow.top()       = attr.y();
-   //      rWindow.right()     = attr.x()    + attr.width;
-   //      rWindow.bottom()    = attr.y()    + attr.height;
+   //      rWindow.left()      = attr.x;
+   //      rWindow.top()       = attr.y;
+   //      rWindow.right()     = attr.x    + attr.width;
+   //      rWindow.bottom()    = attr.y    + attr.height;
    //
    //      if(rBest != rWindow)
    //      {
@@ -2429,7 +2429,7 @@ namespace sandbox_windowing
       //   (const unsigned char *)(const_char_pointer )path,
       //   path.get_length());
 
-      //informationf("\nfreebsd::interaction_impl::bamf_set_icon END");
+      //informationf("----> freebsd::interaction_impl::bamf_set_icon END");
 
       //fflush(stdout);
 
@@ -3396,13 +3396,13 @@ namespace sandbox_windowing
    //
    //      XTranslateCoordinates(Display(), window, windowRoot, 0, 0, &x, &y, &child);
    //
-   //      prectangle->left() = x + attrs.x();
+   //      prectangle->left() = x + attrs.x;
    //
-   //      prectangle->top() = y + attrs.y();
+   //      prectangle->top() = y + attrs.y;
    //
-   //      prectangle->right() = x + attrs.x() + attrs.width;
+   //      prectangle->right() = x + attrs.x + attrs.width;
    //
-   //      prectangle->bottom() = y + attrs.y() + attrs.height;
+   //      prectangle->bottom() = y + attrs.y + attrs.height;
    //
    //
    //      windowing_output_debug_string("::x11_get_window_rect 2");

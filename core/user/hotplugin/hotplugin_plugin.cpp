@@ -43,8 +43,8 @@ namespace hotplugin
       m_bReload         = false;
       m_bInstalling     = false;
 
-      m_pointCursorPhase.x() = 0;
-      m_pointCursorPhase.y() = 0;
+      m_pointCursorPhase.x = 0;
+      m_pointCursorPhase.y = 0;
 
       m_etheme = ::user::e_theme_lite;
 

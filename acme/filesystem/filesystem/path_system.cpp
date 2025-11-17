@@ -292,7 +292,7 @@ void path_system::safe_real_path(::file::path & path)
    if (pathFull.is_empty())
    {
 
-      return path;
+      return pathFull;
 
    }
 
@@ -307,6 +307,23 @@ void path_system::safe_real_path(::file::path & path)
    throw ::interface_only();
 
    return "";
+
+}
+
+
+::file::path path_system::logical_path(const ::file::path& path)
+{
+
+   auto pathReal = real_path(path);
+
+   if (!pathReal.is_existent_file_or_folder())
+   {
+
+      return pathReal;
+
+   }
+
+   return path;
 
 }
 
@@ -634,7 +651,7 @@ bool path_system::is_absolute_path(const ::scoped_string & scopedstr)
 
 
 
-   char* pszRealPath = ::realpath(scopedstr, NULL);
+   char* pszRealPath = ::pfilesystemcacheitem(scopedstr, NULL);
 
    if (scopedstrRealPath == NULL)
    {

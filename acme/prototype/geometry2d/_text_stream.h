@@ -9,7 +9,7 @@ template < primitive_point POINT >
 inline ::write_text_stream & operator <<(::write_text_stream & textstream, const POINT & point)
 {
 
-   return textstream << "(" << point.x()  << ", " << point.y() << ")";
+   return textstream << "(" << point.x  << ", " << point.y << ")";
 
 }
 

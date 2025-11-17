@@ -211,6 +211,25 @@ namespace image
    }
 
 
+   ::image::image_pointer image_context::defer_stretch_image(::image::image * pimage, const ::int_size& size)
+   {
+
+      if (pimage->size() == size)
+      {
+
+         return pimage;
+
+      }
+
+      auto pimageStreched = create_image(size);
+
+      pimageStreched->stretch_image(pimage);
+
+      return pimageStreched;
+
+   }
+
+
    int image_context::image_integer(const ::file::path& path)
    {
 

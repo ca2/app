@@ -2,7 +2,7 @@
 // Created by camilo on 11/04-April/2022. 22:34 <3ThomasBorregaardSorensen!!
 //
 #include "framework.h"
-
+#include "acme/constant/windowing2.h"
 #include <sys/utsname.h>
 
 #if defined(__BSD__)
@@ -93,6 +93,14 @@ namespace windowing
          printf_line("calculate_edesktop e_operating_ambient_unity_gnome");
 
          return ::windowing::e_operating_ambient_unity;
+         
+      }
+      else if (strDesktop.case_insensitive_contains("labwc"))
+      {
+
+         printf_line("calculate_edesktop e_operating_ambient_labwc");
+
+         return ::windowing::e_operating_ambient_labwc;
          
       }
 

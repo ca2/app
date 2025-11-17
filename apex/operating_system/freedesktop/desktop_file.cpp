@@ -322,7 +322,7 @@ namespace freedesktop
 
       ::file::path pathModuleIcon256 = pathAppConfig / "icon-256.png";
 
-      informationf("\npathModuleIcon256=" + pathModuleIcon256);
+      informationf("----> pathModuleIcon256=" + pathModuleIcon256);
 
       //::fflush(stdout);
 
@@ -534,7 +534,7 @@ namespace freedesktop
 //
 //      ::file::path path = get_file_path();
 //
-//      informationf("\nlinux::interaction_impl::set_window_text");
+//      informationf("----> linux::interaction_impl::set_window_text");
 //
 //      fflush(stdout);
 //

@@ -156,7 +156,7 @@ namespace user
          //   information() << "-------------------------------------------------------------------";
          //   information() << "";
          //   information() << "";
-         //   informationf("interaction_child::create_window_ex (rectangleChild %d, %d, (%d, %d))", rectangleChild.origin().x(), rectangleChild.origin().y(), rectangleChild.width(), rectangleChild.height());
+         //   informationf("interaction_child::create_window_ex (rectangleChild %d, %d, (%d, %d))", rectangleChild.origin().x, rectangleChild.origin().y, rectangleChild.width(), rectangleChild.height());
          //   information() << "";
          //   information() << "";
 
@@ -532,7 +532,7 @@ namespace user
          //if (message == ::user::e_message_key_down)
          //{
 
-         //   informationf("\n Key Down Event ");
+         //   informationf("---->  Key Down Event ");
 
          //}
 

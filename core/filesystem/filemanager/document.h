@@ -1,6 +1,7 @@
 #pragma once
 
 
+#include "core/filesystem/filemanager/_.h"
 #include "core/filesystem/userfs/document.h"
 #include "file_list_callback.h"
 #include "acme/filesystem/watcher/listener.h"

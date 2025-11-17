@@ -970,9 +970,9 @@ namespace user
 
             }
 
-            ppane->m_point.x() = x;
+            ppane->m_point.x = x;
 
-            ppane->m_point.y() = rectangleX.top();
+            ppane->m_point.y = rectangleX.top();
 
             ixAdd = 5;
 
@@ -1066,7 +1066,7 @@ namespace user
       else
       {
 
-         m_sizeBarDragScroll.cx() = m_pdata->m_tabpanea.last()->m_point.x() +
+         m_sizeBarDragScroll.cx() = m_pdata->m_tabpanea.last()->m_point.x +
                                     m_pdata->m_tabpanea.last()->m_size.cx();
 
       }

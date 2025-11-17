@@ -7,7 +7,7 @@
 //#include "device.h"
 //#include "frame_buffer.h"
 #include "gltf/model.h"
-#include "gltf/vertex.h"
+#include "bred/gltf/vertex.h"
 #include "ibl/brdf_convolution_framebuffer.h"
 #include "ibl/equirectangular_cubemap.h"
 // #include "lock.h"
@@ -23,8 +23,9 @@
 #include "bred/gpu/context_lock.h"
 #include "bred/gpu/frame.h"
 #include "bred/gpu/layer.h"
+#include "bred/gpu/texture.h"
 #include "bred/gpu/types.h"
-#include "glm/mat4x4.hpp"
+//#include "glm/mat4x4.hpp"
 //#include <assimp/Common/StbCommon.h>
 
 
@@ -36,7 +37,7 @@
 // #include <GL/glew.h>       // or glad, depending on your setup
 // #include <GLFW/glfw3.h>
 //
-#include <ktx/ktx.h>
+#include <ktx.h>
 
 #include "bred/graphics3d/engine.h"
 #include "bred/graphics3d/immersion_layer.h"
@@ -66,7 +67,7 @@
 // #endif
 // #include <assimp/material.h>
 //
-// #include <stb/stb_image.h>
+#include <stb/stb_image.h>
 
 
 namespace gpu_gpu
@@ -262,10 +263,10 @@ namespace gpu_gpu
 //
 //          // Compute the MVP matrix from keyboard and mouse input
 //          //computeMatricesFromInputs();
-//          ::glm::mat4 matrixProjection = (::glm::mat4 &)projection_matrix();
-//          ::glm::mat4 matrixView = (::glm::mat4 &)view_matrix();
-//          ::glm::mat4 matrixModel = glm::mat4(1.0);
-//          ::glm::mat4 matrixMVP = matrixProjection * matrixView * matrixModel;
+//          ::floating_matrix4 matrixProjection = (::floating_matrix4 &)projection_matrix();
+//          ::floating_matrix4 matrixView = (::floating_matrix4 &)view_matrix();
+//          ::floating_matrix4 matrixModel = floating_matrix4(1.0);
+//          ::floating_matrix4 matrixMVP = matrixProjection * matrixView * matrixModel;
 //
 //          // Send our transformation to the currently bound shader,
 //          // in the "MVP" uniform
@@ -273,16 +274,16 @@ namespace gpu_gpu
 //
 //       }
 //
-//       //glm::mat4 getViewMatrix() {
+//       //floating_matrix4 getViewMatrix() {
 //       //   return ViewMatrix;
 //       //}
-//       //glm::mat4 getProjectionMatrix() {
+//       //floating_matrix4 getProjectionMatrix() {
 //       //   return ProjectionMatrix;
 //       //}
 //
 //
 //       //// Initial position : on +Z
-//       //glm::vec3 position = glm::vec3(0, 0, 5);
+//       //floating_sequence3 position = floating_sequence3(0, 0, 5);
 //       //// Initial horizontal angle : toward -Z
 //       //float horizontalAngle = 3.14f;
 //       //// Initial vertical angle : none
@@ -740,12 +741,12 @@ namespace gpu_gpu
 //          "uniform sampler2D backbuffer;\n"
 //          "\n"
 //          "void main(void) {\n"
-//          "float base_res = min(resolution.x(), resolution.y());\n"
+//          "float base_res = min(resolution.x, resolution.y);\n"
 //          "vec2 uv = (gl_FragCoord.xy * 2.0 - resolution.xy) / base_res;\n"
 //          "\n"
-//          //"gl_FragColor = vec4(uv, (uv.x() * uv.x()) / 2.0, ((uv.x() + (base_res - uv.y())) *(uv.x() + (base_res - uv.y()))) / 2.0);\n"
-//          "float posx = max(0.f, uv.x());\n"
-//          "float posy = max(0.f, uv.y());\n"
+//          //"gl_FragColor = vec4(uv, (uv.x * uv.x) / 2.0, ((uv.x + (base_res - uv.y)) *(uv.x + (base_res - uv.y))) / 2.0);\n"
+//          "float posx = max(0.f, uv.x);\n"
+//          "float posy = max(0.f, uv.y);\n"
 //          "gl_FragColor = vec4(uv, (posx * posx) / 4.0, ((posx + posy) * (posx + posy)) / 4.0);\n"
 //          "}\n";
 //
@@ -2943,6 +2944,163 @@ namespace gpu_gpu
       return pgputexture;
 
    }
+
+
+   void context::load_generic_texture(::pointer<::gpu::texture> &ptexture, const ::file::path &path,
+                                      int iAssimpTextureType)
+   {
+
+      ødefer_construct(ptexture);
+
+      ptexture->m_bShaderResourceView = true;
+
+      auto memory = file()->as_memory(path);
+
+      //         ::string relativePath = fileName;
+      //       ::string path = directory + '/' + relativePath;
+
+      auto inputData = memory.data();
+
+      auto inputSize = memory.size();
+
+      GLuint textureId = 0;
+      GLenum glTarget = 0;
+
+      if (path.case_insensitive_ends(".hdr"))
+      {
+      }
+      else if (path.case_insensitive_ends(".ktx"))
+      {
+         // Create ktxTexture from memory
+         ktxTexture *kTexture = nullptr;
+         KTX_error_code result =
+            ktxTexture_CreateFromMemory(inputData, inputSize, KTX_TEXTURE_CREATE_LOAD_IMAGE_DATA_BIT, &kTexture);
+
+         if (result != KTX_SUCCESS)
+         {
+            warning() << "Failed to load KTX from memory\n";
+            return;
+         }
+         ktxTexture1 *tex1 = (ktxTexture1 *)kTexture;
+         information() << "Width=" << kTexture->baseWidth << " Height=" << kTexture->baseHeight
+                       << " Levels=" << kTexture->numLevels << " glInternalFormat=" << tex1->glInternalformat << "\n";
+
+         // Upload to OpenGL
+         GLenum glerror = 0;
+         // auto result2 = ktxTexture_GLUpload(kTexture, &textureId, nullptr, &glerror);
+         auto result2 = ktxTexture_GLUpload(kTexture, &textureId, &glTarget, &glerror);
+
+         if (result2 != KTX_SUCCESS)
+         {
+            warning() << "Failed to upload KTX to OpenGL\n";
+            ktxTexture_Destroy(kTexture);
+            return;
+         }
+
+         information() << "Texture uploaded to OpenGL with ID " << textureId << "\n";
+
+         // Cleanup ktx object (OpenGL texture stays alive)
+         ktxTexture_Destroy(kTexture);
+      }
+      else
+      {
+         int width, height, numChannels;
+
+
+         unsigned char *data = stbi_load_from_memory(inputData, inputSize, &width, &height, &numChannels, 0);
+
+         if (!data)
+         {
+            information() << "Failed to load texture data";
+            stbi_image_free(data);
+
+            return;
+         }
+
+         //GLenum format;
+
+         //switch (numChannels)
+         //{
+         //   case 1:
+         //      format = DXGI_FORMAT_R8_UNORM;
+         //      break;
+         //   case 3:
+         //      format = DXGI_FORMAT_B8G8R8_UNORM;
+         //      break;
+         //   case 4:
+         //      format = DXGI_FORMAT_B8G8R8A8_UNORM;
+         //      break;
+         //}
+
+         //GLenum internalFormat = format;
+
+         //
+         bool bSrgb = false;
+         //// account for sRGB textures here
+         ////
+         //// diffuse textures are in sRGB space (non-linear)
+         //// metallic/roughness/normals are usually in linear
+         //// AO depends
+         if (iAssimpTextureType == aiTextureType_DIFFUSE)
+         {
+            bSrgb = true;
+         //   //if (numChannels == 3)
+         //   //{
+         //   //   internalFormat = GL_SRGB;
+         //   //   bSrgb
+         //   //}
+         //   //else if (internalFormat == GL_RGBA)
+         //   //{
+         //   //   internalFormat = GL_SRGB_ALPHA;
+         //   //}
+         }
+
+         ::int_rectangle rectangleTarget(0, 0, width, height);
+         ptexture->initialize_with_image_data(m_pgpurenderer, rectangleTarget, numChannels, bSrgb, data);
+         //glGenTextures(1, &textureId);
+         //glBindTexture(GL_TEXTURE_2D, textureId);
+         //glTarget = GL_TEXTURE_2D;
+         //// generate the texture
+         //glTexImage2D(GL_TEXTURE_2D, 0, internalFormat, width, height, 0, format, GL_UNSIGNED_BYTE, data);
+         //glGenerateMipmap(GL_TEXTURE_2D);
+
+         //// texture wrapping/filtering options
+         //glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+         //glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+         //glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR); // image is resized using bilinear filtering
+         //glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR); // image is enlarged using bilinear filtering
+
+         // free the image data
+         stbi_image_free(data);
+      }
+
+      //::cast<::gpu_opengl::texture> popengltexture = ptexture;
+      ptexture->m_path = path;
+   }
+
+   
+   ::pointer<::graphics3d::renderable> context::_load_gltf_model(const ::gpu::renderable_t &model)
+   {
+
+      // if (auto it = m_mapgltfModel.find(name); it != m_mapgltfModel.end())
+      //  return it->element2();
+
+      ::gpu::context_lock contextlock(this);
+
+      auto pmodel = øcreate<::gpu::gltf::model>();
+
+      (*(::gpu::renderable_t *)pmodel) = model;
+
+      //::cast<::gpu_opvulkan::queue> pqueueGraphics = graphics_queue();
+
+      // pmodel->loadFromFile(model.m_path.c_str(), this, pqueueGraphics->m_vkqueue, model.m_iFlags, model.m_fScale);
+
+      pmodel->initialize_gpu_gltf_model(this, model);
+
+      // m_mapgltfModel[name] = model;
+      return pmodel;
+   }
+
 
 
 } // namespace gpu_gpu

@@ -210,11 +210,11 @@ namespace app_shader
 
       //pgpucontext->m_pgpuprogram = m_pgpuprogram;
 
-      m_pgpushader->bind();
+      m_pgpushader->bind(nullptr, nullptr);
 
       m_pgpushader->draw();
 
-      m_pgpushader->unbind();
+      m_pgpushader->unbind(nullptr);
 
       //unsigned int texture1;
 
@@ -282,12 +282,12 @@ namespace app_shader
                   
                   auto pointCursor = m_puserinteraction->mouse_cursor_position();
                   
-                  float x = (float)pointCursor.x();
+                  float x = (float)pointCursor.x;
                   
-                  float y = (float)pointCursor.y();
+                  float y = (float)pointCursor.y;
                   
-                  m_pgpushader->set_seq2("mouse", x, y);
-                  m_pgpushader->set_seq2("iMouse", x, y);
+                  m_pgpushader->set_sequence2("mouse", x, y);
+                  m_pgpushader->set_sequence2("iMouse", x, y);
                   
                }
                
@@ -297,8 +297,8 @@ namespace app_shader
                   
                   float cy = (float)m_pgpucontext->m_pcpubuffer->m_pimagetarget->m_pimage->height();
                   
-                  m_pgpushader->set_seq2("resolution", cx, cy);
-                  m_pgpushader->set_seq2("iResolution", cx, cy);
+                  m_pgpushader->set_sequence2("resolution", cx, cy);
+                  m_pgpushader->set_sequence2("iResolution", cx, cy);
                   
                }
                

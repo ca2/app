@@ -977,8 +977,8 @@ namespace user
       }
 
       //m_puserinteraction->place(int_rectangle_dimension(
-      //                      pusersystem->m_createstruct.x(),
-      //                      pusersystem->m_createstruct.y(),
+      //                      pusersystem->m_createstruct.x,
+      //                      pusersystem->m_createstruct.y,
       //                      pusersystem->m_createstruct.cx(),
       //                      pusersystem->m_createstruct.cy()));
 
@@ -1207,7 +1207,7 @@ namespace user
 
       //   send_message(::user::e_message_create, 0, (lparam)&pusersystem);
 
-      //   //m_puserinteraction->set_dim(pusersystem->m_createstruct.x(), pusersystem->m_createstruct.cy(), pusersystem->m_createstruct.cx(), pusersystem->m_createstruct.cy());
+      //   //m_puserinteraction->set_dim(pusersystem->m_createstruct.x, pusersystem->m_createstruct.cy(), pusersystem->m_createstruct.cx(), pusersystem->m_createstruct.cy());
 
       //   send_message(::user::e_message_size, 0, MAKELPARAM(pusersystem->m_createstruct.cx(), pusersystem->m_createstruct.cy()));
 
@@ -1238,7 +1238,7 @@ namespace user
 
       //information() << "screen_pixel window().origin() : " << origin;
 
-      return m_pgraphicsgraphics->get_screen_item()->m_pimage2->pixel(x - origin.x(), y - origin.y());
+      return m_pgraphicsgraphics->get_screen_item()->m_pimage2->pixel(x - origin.x, y - origin.y);
 
    }
 
@@ -1276,8 +1276,8 @@ namespace user
 ////#endif
 //
 //      //pusersystem->m_createstruct.style = uStyle | WS_CHILD;
-//      //pusersystem->m_createstruct.x() = rectangle.left();
-//      //pusersystem->m_createstruct.y() = rectangle.top();
+//      //pusersystem->m_createstruct.x = rectangle.left();
+//      //pusersystem->m_createstruct.y = rectangle.top();
 //      //pusersystem->m_createstruct.cx() = rectangle.width();
 //      //pusersystem->m_createstruct.cy() = rectangle.height();
 //      //pusersystem->m_createstruct.hwndParent = puiParent->get_safe_handle();
@@ -1351,8 +1351,8 @@ namespace user
 
          ::int_point pointInvalid; // For long future hope still : Invalid
 
-         minimum(pointInvalid.x());
-         minimum(pointInvalid.y());
+         minimum(pointInvalid.x);
+         minimum(pointInvalid.y);
 
          _on_mouse_move_step(pointInvalid);
 
@@ -2684,15 +2684,15 @@ namespace user
       //      //   if (rectWindow.left() >= rcMonitor.left())
       //      //   {
 
-      //      //      pmouse->m_point.x() += (int)rcMonitor.left();
+      //      //      pmouse->m_point.x += (int)rcMonitor.left();
 
       //      //   }
 
       //      //   if (rectWindow.top() >= rcMonitor.top())
       //      //   {
 
-      //      //      //pmouse->m_point.y() += (int)rectWindow.top();
-      //      //      pmouse->m_point.y() += (int)rcMonitor.top();
+      //      //      //pmouse->m_point.y += (int)rectWindow.top();
+      //      //      pmouse->m_point.y += (int)rcMonitor.top();
 
       //      //   }
 
@@ -2703,14 +2703,14 @@ namespace user
       //         if (rectWindow.left() >= 0)
       //         {
 
-      //            pmouse->m_point.x() += (int)rectWindow.left();
+      //            pmouse->m_point.x += (int)rectWindow.left();
 
       //         }
 
       //         if (rectWindow.top() >= 0)
       //         {
 
-      //            pmouse->m_point.y() += (int)rectWindow.top();
+      //            pmouse->m_point.y += (int)rectWindow.top();
 
       //         }
 
@@ -3008,7 +3008,7 @@ namespace user
 //
 //         pmouse->m_pcursor = pcursor;
 //
-//         //informationf("windows::::user::e_message_mouse_move(%d,%d)", pmouse->m_point.x(), pmouse->m_point.y());
+//         //informationf("windows::::user::e_message_mouse_move(%d,%d)", pmouse->m_point.x, pmouse->m_point.y);
 //
 //         //string strType;
 //
@@ -3815,7 +3815,7 @@ namespace user
 
    //   oswindow w = ::set_capture(get_handle());
 
-   //   informationf("\nSet Capture: oswindow=0x" + ::hex::lower_from((iptr) w));
+   //   informationf("----> Set Capture: oswindow=0x" + ::hex::lower_from((iptr) w));
 
    //   
 
@@ -8363,7 +8363,7 @@ namespace user
 //
 //         ::int_point pointBottomRight = pointOutput + sizeOutput;
 //
-//         //informationf("SetWindowPos bottom_right " + as_string(pointBottomRight.x()) + ", " + as_string(pointBottomRight.y()) + "\n");
+//         //informationf("SetWindowPos bottom_right " + as_string(pointBottomRight.x) + ", " + as_string(pointBottomRight.y) + "\n");
 //
 //   //#if !defined(UNIVERSAL_WINDOWS) && !defined(__ANDROID__)
 //
@@ -8382,8 +8382,8 @@ namespace user
 //         {
 //               m_pwindow->_set_window_position_unlocked(
 //               zorderNew,
-//               pointOutput.x(),
-//               pointOutput.y(),
+//               pointOutput.x,
+//               pointOutput.y,
 //               sizeOutput.cx(),
 //               sizeOutput.cy(),
 //               eactivationOutput, !bZ, !bMove, !bSize, edisplayOutput);
@@ -8393,7 +8393,7 @@ namespace user
 //         }
 //
 //         //::SetWindowPos(get_handle(), oswindowInsertAfter,
-//         //   pointOutput.x(), pointOutput.y(),
+//         //   pointOutput.x, pointOutput.y,
 //         //   sizeOutput.cx(), sizeOutput.cy(),
 //         //   uFlags);
 //
@@ -8958,7 +8958,7 @@ namespace user
 
       //information() << "interaction_impl::on_message_reposition sketch_origin " << sketch_origin;
 
-      //if(preposition->m_point.x() == 0)
+      //if(preposition->m_point.x == 0)
       //{
 
       //  information() << "interaction_impl::on_message_reposition x is zero";

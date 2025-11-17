@@ -57,7 +57,7 @@ namespace platform
 
       }
 
-      //informationf("\n\nGoing to dlopen : \"" + strPath + "\"");
+      //informationf("---->  Going to dlopen : \"" + strPath + "\"");
 
       ::file::path path;
 
@@ -141,7 +141,7 @@ namespace platform
 
       }
 
-      informationf("\n"+strMessage+"\n\n");
+      informationf("----> "+strMessage+"\n\n");
 
       return plibrary;
 
@@ -209,7 +209,7 @@ namespace platform
 
       }
 
-      informationf("\n"+strMessage+"\n\n");
+      informationf("----> "+strMessage+"\n\n");
 
       return plibrary;
 

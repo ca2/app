@@ -86,7 +86,7 @@ public:
 template < primitive_number NUMBER >
 inline void rectangle_array_base < NUMBER >::offset(::point_type < NUMBER > point)
 {
-   offset(point.x(), point.y());
+   offset(point.x, point.y);
 }
 
 

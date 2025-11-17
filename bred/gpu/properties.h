@@ -62,9 +62,11 @@ namespace gpu
 
 		inline int get_offset(const_char_pointer pszName) const;
 
+      inline int find_index(const_char_pointer pszName) const;
+
 		inline int get_item_size(bool bWithSamplers) const
 		{
-			if (m_etype == e_type_properties_array)
+			if (m_etype == e_type_array)
 			{
 
 				return m_pproperties->get_size(bWithSamplers) * m_iArraySize;
@@ -229,6 +231,52 @@ namespace gpu
 
 	}
 
+	inline int property::find_index(const_char_pointer pszName) const
+   {
+      auto p = this;
+      int iLen = 0;
+      int iIndex = 0;
+
+      while (true)
+      {
+
+         if (::is_null(p->m_pszName))
+         {
+
+            return iIndex;
+         }
+
+         ::string strName(p->m_pszName);
+
+         strName.begins_eat("sampler:");
+
+         if (strName == pszName)
+         {
+
+            return iIndex;
+         }
+
+         auto iLenItem = p->get_item_size(true);
+
+         iLen += iLenItem;
+
+         p++;
+         iIndex++;
+      }
+
+      
+   }
+
+   class property_data
+   {
+   public:
+
+
+      memsize m_iOffset;
+
+
+   };
+
 
 	class properties_reference;
 
@@ -240,6 +288,8 @@ namespace gpu
       ::block     m_blockWithoutSamplers;
 		
 		const ::gpu::property* m_pproperties;
+
+      ::array_base<property_data> m_propertydataa;
 
 		properties_interface()
 		{
@@ -272,19 +322,36 @@ namespace gpu
 		::collection::count count() const { return ::is_null(m_pproperties) ? 0:m_pproperties->count(); }
       unsigned char *data(bool bWithSamplers) const { return bWithSamplers ? m_blockWithSamplers.data():m_blockWithoutSamplers.data(); }
 		void* find(const_char_pointer pszName) {
-			auto iOffset = m_pproperties->get_offset(pszName);
+         auto iIndex = m_pproperties->find_index(pszName);
+         if (iIndex < 0)
+         {
+            throw ::exception(error_not_found);
+
+         }
+         if (iIndex >= m_propertydataa.count())
+         {
+            throw ::exception(error_wrong_state);
+
+         }
+         auto iOffset = m_propertydataa[iIndex].m_iOffset;
          return m_blockWithSamplers.data() + iOffset;
 		}
-		template < typename T>
+      bool contains(const_char_pointer pszName) const
+      {
+         if (::is_null(m_pproperties))
+            return false;
+         return ::is_set(m_pproperties->find(pszName));
+      }
+      template<typename T>
 		T& as(const_char_pointer pszName) { return *(T*)find(pszName); }
 		float& as_float(const_char_pointer pszName) { return as<float>(pszName); }
 		int& as_int(const_char_pointer pszName) { return as<int>(pszName); }
-		glm::vec2& seq2(const_char_pointer pszName) { return as<glm::vec2>(pszName); }
-		glm::vec3& seq3(const_char_pointer pszName) { return as<glm::vec3>(pszName); }
-		glm::vec4& seq4(const_char_pointer pszName) { return as<glm::vec4>(pszName); }
-		glm::mat2& mat2(const_char_pointer pszName) { return as<glm::mat2>(pszName); }
-		glm::mat3& mat3(const_char_pointer pszName) { return as<glm::mat3>(pszName); }
-		glm::mat4& mat4(const_char_pointer pszName) { return as<glm::mat4>(pszName); }
+		floating_sequence2& seq2(const_char_pointer pszName) { return as<floating_sequence2>(pszName); }
+		floating_sequence3& seq3(const_char_pointer pszName) { return as<floating_sequence3>(pszName); }
+		floating_sequence4& seq4(const_char_pointer pszName) { return as<floating_sequence4>(pszName); }
+		floating_matrix2& mat2(const_char_pointer pszName) { return as<floating_matrix2>(pszName); }
+		floating_matrix3& mat3(const_char_pointer pszName) { return as<floating_matrix3>(pszName); }
+		floating_matrix4& mat4(const_char_pointer pszName) { return as<floating_matrix4>(pszName); }
 		operator const ::gpu::property* ()
 		{
 			return m_pproperties;
@@ -334,13 +401,13 @@ namespace gpu
 
 		}
 
-		void _set_mat4(const ::glm::mat4& mat4);
-		void _set_vec4(const ::glm::vec4& vec4);
+		void _set_matrix4(const ::floating_matrix4& floating_matrix4);
+		void _set_vec4(const ::floating_sequence4& floating_sequence4);
 		void _set_int(const int& i);
 		
 		template < typename TYPE >
-		properties_reference& operator=(const TYPE& mat4) requires
-			(::std::is_same_v<TYPE, ::glm::mat4 >)
+		properties_reference& operator=(const TYPE& floating_matrix4) requires
+			(::std::is_same_v<TYPE, ::floating_matrix4 >)
 		{
 
 			if (m_pproperties->m_etype != ::gpu::e_type_mat4)
@@ -349,15 +416,15 @@ namespace gpu
 				throw ::exception(error_bad_data_format);
 
 			}
-			_set_mat4(mat4);
+			_set_matrix4(floating_matrix4);
 			
 
 			return *this;
 
 		}
 		template < typename TYPE >
-		properties_reference& operator=(const TYPE& vec4)requires
-		(::std::is_same_v<TYPE, ::glm::vec4 >)
+		properties_reference& operator=(const TYPE& floating_sequence4)requires
+		(::std::is_same_v<TYPE, ::floating_sequence4 >)
 		{
 			if (m_pproperties->m_etype != ::gpu::e_type_seq4)
 			{
@@ -366,7 +433,7 @@ namespace gpu
 
 			}
 
-			_set_vec4(vec4);
+			_set_vec4(floating_sequence4);
 
 			return *this;
 
@@ -419,7 +486,8 @@ namespace gpu
          m_blockWithoutSamplers.end() = m_blockWithoutSamplers.begin() + m_pproperties->get_size(false);
 
 		}
-
+      ::block block_with_samplers() { return m_blockWithSamplers; }
+      ::block block_without_samplers() { return m_blockWithoutSamplers; }
 		
 		template < typename TYPE >
 		void set()
@@ -435,7 +503,7 @@ namespace gpu
 
 	inline property::property(const_char_pointer pszName,  const property * pproperty, int iSize):
 		m_pszName(pszName), 
-		m_etype(::gpu::e_type_properties_array),
+		m_etype(::gpu::e_type_array),
 		m_pproperties(pproperty),
 		m_iArraySize(iSize)
 	{
@@ -457,7 +525,7 @@ namespace gpu
 	inline properties_reference properties_interface::operator[](::collection::index i)
 	{
 
-		if (m_pproperties->m_etype != ::gpu::e_type_properties_array)
+		if (m_pproperties->m_etype != ::gpu::e_type_array)
 		{
 
 			throw ::exception(error_wrong_state);

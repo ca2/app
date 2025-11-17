@@ -3,6 +3,7 @@
 //
 #include "framework.h"
 #include "windowing.h"
+#include "acme/constant/windowing2.h"
 
 
 ::string as_string(::windowing::enum_toolkit etoolkit)

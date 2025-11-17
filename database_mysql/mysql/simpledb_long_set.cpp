@@ -850,10 +850,10 @@ bool db_long_set::load(const ::string & lpKey, ::int_point * lpPoint)
 
    string strKey = lpKey;
 
-   if(!load(strKey + ".x()", point.x()))
+   if(!load(strKey + ".x", point.x))
       return false;
 
-   if(!load(strKey + ".y()", point.y()))
+   if(!load(strKey + ".y", point.y))
       return false;
 
    *lpPoint = point;
@@ -867,10 +867,10 @@ bool db_long_set::save(const ::string & lpKey, ::int_point * lpPoint)
 
    string strKey = lpKey;
 
-   if(!save(strKey + ".x()", lpPoint->x))
+   if(!save(strKey + ".x", lpPoint->x))
       return false;
 
-   if(!save(strKey + ".y()", lpPoint->y))
+   if(!save(strKey + ".y", lpPoint->y))
       return false;
 
    return true;

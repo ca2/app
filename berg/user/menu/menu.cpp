@@ -103,7 +103,7 @@ namespace user
 
 #if REFERENCING_DEBUGGING 
 
-      auto iStep =m_preferenceitema->m_iStep;
+      auto iStep = m_preferenceitema->m_iStep;
 
       if (iStep == 111)
       {
@@ -267,7 +267,7 @@ namespace user
       if (m_pmenuitem)
       {
 
-         ::user::interaction * puserinteractionHost = m_pmenuitem->m_puserinteractionHost;
+         ::user::interaction* puserinteractionHost = m_pmenuitem->m_puserinteractionHost;
 
          if (::is_set(puserinteractionHost))
          {
@@ -301,7 +301,7 @@ namespace user
          }
 
          if (::is_set(puserinteractionOwner)
-   && ::is_set(puserinteractionOwner->get_wnd())
+            && ::is_set(puserinteractionOwner->get_wnd())
             && puserinteractionOwner->get_wnd() != puserinteractionHost)
          {
 
@@ -468,13 +468,13 @@ namespace user
    }
 
 
-   void menu::on_message_destroy(::message::message * pmessage)
+   void menu::on_message_destroy(::message::message* pmessage)
    {
 
    }
 
 
-   
+
 
    ::menu::item* menu::GetSubMenu(int i)
    {
@@ -754,7 +754,7 @@ namespace user
       //display();
 
       display(e_display_normal,
-         { ::user::e_activation_set_foreground | ::user::e_activation_for_context_menu } );
+         { ::user::e_activation_set_foreground | ::user::e_activation_for_context_menu });
 
       set_need_layout();
 
@@ -773,9 +773,9 @@ namespace user
       m_procedureOnAfterCreate = [this]()
          {
 
-            display(e_display_normal, 
+            display(e_display_normal,
                { ::user::e_activation_set_foreground | ::user::e_activation_for_context_menu,
-               nullptr } );
+               nullptr });
 
             order(e_zorder_top_most);
 
@@ -985,8 +985,8 @@ namespace user
 
    //   ::int_rectangle rectangleWindow;
 
-   //   rectangleWindow.left() = point.x();
-   //   rectangleWindow.top() = point.y();
+   //   rectangleWindow.left() = point.x;
+   //   rectangleWindow.top() = point.y;
    //   rectangleWindow.right() = rectangleWindow.left() + m_size.cx();
    //   rectangleWindow.bottom() = rectangleWindow.top() + m_size.cy();
 
@@ -1046,7 +1046,7 @@ namespace user
    //}
 
 
-   void menu::_001OnNcDraw(::draw2d::graphics_pointer & pgraphics)
+   void menu::_001OnNcDraw(::draw2d::graphics_pointer& pgraphics)
    {
 
       if (this == top_level())
@@ -1168,7 +1168,7 @@ namespace user
    }
 
 
-   void menu::handle(::topic * ptopic, ::handler_context * phandlercontext)
+   void menu::handle(::topic* ptopic, ::handler_context* phandlercontext)
    {
 
       //if (ptopic->id() == ::id_click)
@@ -1299,7 +1299,7 @@ namespace user
    }
 
 
-   bool menu::on_click(::item* pitem, ::user::mouse * pmouse)
+   bool menu::on_click(::item* pitem, ::user::mouse* pmouse)
    {
 
       ::pointer<::menu::item>pmenuitem = pitem;
@@ -1335,7 +1335,7 @@ namespace user
                }
 
             }
-            else if (pmenuitem->id().begins("check://"))
+            else
             {
 
                ::string strId(pmenuitem->id().as_string());
@@ -1353,42 +1353,42 @@ namespace user
                   }
 
                }
-
-            }
-            else
-            {
-
-               auto pchannelNotify = m_pchannelNotify;
-
-               atom idCommand = pmenuitem->m_atomItem;
-
-               //idCommand = translate_property_id(idCommand);
-
-               defer_close();
-
-               // this may be destroyed by ::user::e_message_close above
-
-               if (::is_set(pchannelNotify))
+               else
                {
 
-                  auto pcommand = __initialize_new ::message::command(idCommand, pmouse->user_activation_token());
+                  auto pchannelNotify = m_pchannelNotify;
 
-                  //auto puseritem = user_item(pitem);
+                  atom idCommand = pmenuitem->id();
 
-                  //command.m_actioncontext = puseritem->M_ac
+                  //idCommand = translate_property_id(idCommand);
 
-                  pchannelNotify->_001SendCommand(pcommand);
+                  defer_close();
 
-                  //ptopic->m_bRet = command.m_bRet;
+                  // this may be destroyed by ::user::e_message_close above
 
-                  if (pcommand->m_bRet)
+                  if (::is_set(pchannelNotify))
                   {
+
+                     auto pcommand = __initialize_new::message::command(idCommand, pmouse->user_activation_token());
+
+                     //auto puseritem = user_item(pitem);
+
+                     //command.m_actioncontext = puseritem->M_ac
+
+                     pchannelNotify->_001SendCommand(pcommand);
+
+                     //ptopic->m_bRet = command.m_bRet;
+
+                     if (pcommand->m_bRet)
+                     {
+
+                        return true;
+
+                     }
 
                      return true;
 
                   }
-
-                  return true;
 
                }
 
@@ -1810,9 +1810,9 @@ namespace user
 
       //   ::int_rectangle * prectangle = (::int_rectangle *)pusermessage->m_lparam.m_lparam;
 
-      //   prectangle->left() = m_pointTrack.x();
+      //   prectangle->left() = m_pointTrack.x;
 
-      //   prectangle->top() = m_pointTrack.y();
+      //   prectangle->top() = m_pointTrack.y;
 
       //   prectangle->right() = prectangle->left() + maximum(::user::interaction::get_window_minimum_size().cx(), m_size.cx());
 
@@ -2521,7 +2521,7 @@ namespace user
 
          ::int_rectangle rectangleWindow;
 
-         rectangleWindow.left() = pointCursorHint.x();
+         rectangleWindow.left() = pointCursorHint.x;
 
          //rectangleWindow.top() = rectangleScreenHint.bottom();
 
@@ -2545,7 +2545,7 @@ namespace user
 
             p = (rectangleScreenHint.center() + p) / 2.0;
 
-            rectangleWindow.top() = p.y();
+            rectangleWindow.top() = p.y;
 
          }
          else
@@ -2578,12 +2578,12 @@ namespace user
             else
             {
 
-               rectangleWindow.top() = rectangleScreenHint.top() + pointCursorHint.y() + 8;
+               rectangleWindow.top() = rectangleScreenHint.top() + pointCursorHint.y + 8;
 
             }
 
-            rectangleWindow.left() = rectangleScreenHint.left() + pointCursorHint.x() + 8;
-            
+            rectangleWindow.left() = rectangleScreenHint.left() + pointCursorHint.x + 8;
+
             if (bLeft)
             {
 

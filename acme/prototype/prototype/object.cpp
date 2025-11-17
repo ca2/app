@@ -26,12 +26,17 @@ object::~object()
 
    ::acme::del(m_pmeta);
 
-   auto particleaNotify = ::transfer(m_particleaNotify);
+   auto pparticleaNotify = ::transfer(m_pparticleaNotify);
 
-   for (auto pparticle : particleaNotify)
+   if (::is_set(pparticleaNotify))
    {
 
-      pparticle->on_notify(this, id_destroy);
+      for (auto pparticle : *pparticleaNotify)
+      {
+
+         pparticle->on_notify(this, id_destroy);
+
+      }
 
    }
 
@@ -1053,13 +1058,13 @@ void object::add_task(::object* pobjectTask)
    if (strType.contains("prodevian"))
    {
 
-      informationf("task added to prodevian\n");
+      informationf("task added to prodevian");
 
    }
    else if (strType.contains("user::thread"))
    {
 
-      informationf("task added to user::thread\n");
+      informationf("task added to user::thread");
 
    }
 
@@ -1119,7 +1124,7 @@ void object::erase_task_and_set_task_new_parent(::object* pobjectTask, ::object 
    if (strType.contains("user::thread"))
    {
 
-      informationf("task added to user::thread\n");
+      informationf("task added to user::thread");
 
    }
 
@@ -1435,26 +1440,36 @@ void object::destroy()
    ///*estatus = */ release_references();
    ///
 
-   auto procedureaDestroy = ::transfer(m_procedureaDestroying);
+   auto pprocedureaDestroy = ::transfer(m_pprocedureaDestroying);
 
-   for (auto& procedure: procedureaDestroy)
+   if (::is_set(pprocedureaDestroy))
    {
 
-      if (procedure)
+      for (auto& procedure : *pprocedureaDestroy)
       {
 
-         procedure();
+         if (procedure)
+         {
+
+            procedure();
+
+         }
 
       }
 
    }
 
-   auto particleaNotify = ::transfer(m_particleaNotify);
+   auto pparticleaNotify = ::transfer(m_pparticleaNotify);
 
-   for (auto pparticle: particleaNotify)
+   if (::is_set(pparticleaNotify))
    {
 
-      pparticle->on_notify(this, id_destroy);
+      for (auto pparticle : *pparticleaNotify)
+      {
+
+         pparticle->on_notify(this, id_destroy);
+
+      }
 
    }
 
@@ -1477,7 +1492,7 @@ void object::on_notify(::particle * pparticle, enum_id eid)
 
       _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-      m_particleaNotify.erase(pparticle);
+      m_pparticleaNotify->erase(pparticle);
 
    }
 

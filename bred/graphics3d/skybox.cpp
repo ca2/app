@@ -191,7 +191,7 @@ namespace graphics3d
 
          //pimageCubeMap->image32()->copy(point, sizeItem, scanCubeMap, pimage32, scan);
 
-         //point.x() += m_sizeSquare.width();
+         //point.x += m_sizeSquare.width();
 
       }
 
@@ -240,10 +240,10 @@ namespace graphics3d
 
 
       //auto view = m_pengine->m_pimmersionlayer->m_pscene->m_pcameraCurrent->getView();
-      //glm::mat4 skyboxView = glm::mat4(glm::mat3(view)); // <-- drop translation
-      //m_pshader->set_mat4("view", skyboxView);
+      //floating_matrix4 skyboxView = floating_matrix4(floating_matrix3(view)); // <-- drop translation
+      //m_pshader->set_matrix4("view", skyboxView);
       //auto projection = m_pengine->m_pimmersionlayer->m_pscene->m_pcameraCurrent->getProjection();
-      //m_pshader->set_mat4("projection", projection);
+      //m_pshader->set_matrix4("projection", projection);
       //m_pshader->bind_source(m_ptextureCubeMap);
       m_prenderable->bind(pgpucommandbuffer);
 

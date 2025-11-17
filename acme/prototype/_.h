@@ -12,6 +12,7 @@
 #include "acme/prototype/collection/_.h"
 #include "acme/prototype/data/_.h"
 #include "acme/prototype/datetime/_.h"
+#include "acme/prototype/geometry/_.h"
 #include "acme/prototype/geometry2d/_.h"
 #include "acme/prototype/mathematics/_.h"
 #include "acme/prototype/prototype/_.h"

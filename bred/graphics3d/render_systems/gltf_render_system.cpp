@@ -89,11 +89,13 @@ namespace graphics3d
 
       auto prenderer = pgpucontext->m_pgpurenderer;
 
-      m_pshader = prenderer->create_shader(
+      m_pshader = øcreate<::gpu::shader>();
+         
+         m_pshader->initialize_shader(
+            pgpucontext->m_pgpurenderer,
          "matter://shaders/vert.vert",
          "matter://shaders/frag.frag",
          {::gpu::shader::e_descriptor_set_slot_global, ::gpu::shader::e_descriptor_set_slot_local}, {},
-         {}  ,
          pgpucontext->input_layout<::graphics3d::Vertex>()
 
       );
@@ -242,8 +244,8 @@ namespace graphics3d
 //
 //            if (!node->mesh) continue;
 //
-//            glm::mat4 world = pgameobject->getTransform().mat4() * node->getMatrix();
-//            glm::mat4 normalMat = glm::transpose(glm::inverse(world));
+//            floating_matrix4 world = pgameobject->getTransform().floating_matrix4() * node->getMatrix();
+//            floating_matrix4 normalMat = glm::transpose(glm::inverse(world));
 //            memcpy(node->mesh->uniformBuffer.mapped, &world, sizeof(world));
 //            memcpy((char*)node->mesh->uniformBuffer.mapped + sizeof(world), &normalMat, sizeof(normalMat));
 //

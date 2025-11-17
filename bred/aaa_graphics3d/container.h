@@ -34,7 +34,7 @@ namespace graphics3d
 
 		} m_buttons;
 
-		::glm::vec2 m_position;
+		::floating_sequence2 m_position;
 	};
 
 	

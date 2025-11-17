@@ -204,7 +204,7 @@ bool ImageImpact::scroll_event(const int_point & p, const float_size & rel)
 
    }
 
-   sequence2_float p1 = pos_to_pixel(p - m_pos);
+   float_sequence2 p1 = pos_to_pixel(p - m_pos);
    m_scale += rel.cy();
 
    // Restrict scaling to a reasonable range
@@ -213,7 +213,7 @@ bool ImageImpact::scroll_event(const int_point & p, const float_size & rel)
          m_pimage->height())) * 5.f));
    m_scale = ::minimum(m_scale, 45.f);
 
-   sequence2_float p2 = pos_to_pixel(p - m_pos);
+   float_sequence2 p2 = pos_to_pixel(p - m_pos);
    m_offset += (p2 - p1) * scale();
    return true;
 
@@ -227,25 +227,25 @@ void ImageImpact::draw(::nano2d::context  * pcontext)
      // return;
 
 
-   pcontext->_draw_image((float) m_pos.x(), (float)m_pos.y(), (float)m_size.cx(), (float)m_size.cy(), m_pimage);
+   pcontext->_draw_image((float) m_pos.x, (float)m_pos.y, (float)m_size.cx(), (float)m_size.cy(), m_pimage);
 
    //Canvas::draw(pcontext);
 
-   //sequence2_int top_left = sequence2_int(pixel_to_pos(sequence2_float(0.f, 0.f))),
-   //   size = sequence2_int(pixel_to_pos(sequence2_float(m_pimage->width(), m_pimage->height())) - sequence2_float(top_left));
+   //int_sequence2 top_left = int_sequence2(pixel_to_pos(float_sequence2(0.f, 0.f))),
+   //   size = int_sequence2(pixel_to_pos(float_sequence2(m_pimage->width(), m_pimage->height())) - float_sequence2(top_left));
 
    //if (m_draw_image_border) {
    //   pcontext->begin_path();
    //   pcontext->stroke_width(1.f);
    //   pcontext->stroke_color(m_image_border_color);
-   //   pcontext->rectangle(m_pos.x() - .5f + top_left.x(),
-   //      m_pos.y() - .5f + top_left.y(),
+   //   pcontext->rectangle(m_pos.x - .5f + top_left.x,
+   //      m_pos.y - .5f + top_left.y,
    //      size.cx() + 1.f, size.cy() + 1.f);
    //   pcontext->stroke();
    //}
 
    //pcontext->save();
-   //::nano2d::IntersectScissor(ctx, m_pos.x(), m_pos.y(), m_size.cx(), m_size.cy());
+   //::nano2d::IntersectScissor(ctx, m_pos.x, m_pos.y, m_size.cx(), m_size.cy());
 
    //if (scale() > 100 && m_pixel_callback) {
    //   float font_size = scale() / 10.f;
@@ -254,24 +254,24 @@ void ImageImpact::draw(::nano2d::context  * pcontext)
    //   pcontext->font_face("sans-bold");
    //   pcontext->text_align(::nano2d::e_align_center | ::nano2d::e_align_middle);
 
-   //   sequence2_int start = max(sequence2_int(0), sequence2_int(pos_to_pixel(sequence2_float(0.f, 0.f))) - 1),
-   //      end = ::nanoui::min(sequence2_int(pos_to_pixel(sequence2_float(m_size))) + sequence2_int(1, 1), sequence2_int(m_pimage->width(), m_pimage->height()) + sequence2_int(-1, -1));
+   //   int_sequence2 start = max(int_sequence2(0), int_sequence2(pos_to_pixel(float_sequence2(0.f, 0.f))) - 1),
+   //      end = ::nanoui::min(int_sequence2(pos_to_pixel(float_sequence2(m_size))) + int_sequence2(1, 1), int_sequence2(m_pimage->width(), m_pimage->height()) + int_sequence2(-1, -1));
 
    //   char text_buf[80],
    //      * text[4] = { text_buf, text_buf + 20, text_buf + 40, text_buf + 60 };
 
-   //   for (int y = start.y(); y <= end.y(); ++y) {
-   //      for (int x = start.x(); x <= end.x(); ++x) {
-   //         sequence2_int pos = sequence2_int(pixel_to_pos(sequence2_float(x + .5f, y + .5f)));
+   //   for (int y = start.y; y <= end.y; ++y) {
+   //      for (int x = start.x; x <= end.x; ++x) {
+   //         int_sequence2 pos = int_sequence2(pixel_to_pos(float_sequence2(x + .5f, y + .5f)));
 
-   //         m_pixel_callback(sequence2_int(x, y), text, 20);
+   //         m_pixel_callback(int_sequence2(x, y), text, 20);
 
    //         for (int ch = 0; ch < 4; ++ch) {
    //            Color col(0.f, 0.f, 0.f, alpha);
    //            pcontext->fill_color(col);
    //            ::nano2d::FontBlur(ctx, 2);
-   //            float xpos = m_pos.x() + pos.x(),
-   //               ypos = m_pos.y() + pos.y() + (ch - 1.5f) * font_size;
+   //            float xpos = m_pos.x + pos.x,
+   //               ypos = m_pos.y + pos.y + (ch - 1.5f) * font_size;
    //            pcontext->text(xpos, ypos, text[ch], nullptr);
    //            col = Color(0.3f, 0.3f, 0.3f, alpha);
    //            if (ch == 3)
@@ -298,17 +298,17 @@ void ImageImpact::draw_contents(::nano2d::context  * pcontext)
 
    /* Ensure that 'offset' is a multiple of the pixel ratio */
    //float pixel_ratio = screen()->pixel_ratio();
-   //m_offset = (sequence2_float(sequence2_int(m_offset / pixel_ratio)) * pixel_ratio);
+   //m_offset = (float_sequence2(int_sequence2(m_offset / pixel_ratio)) * pixel_ratio);
 
-   //sequence2_float bound1 = sequence2_float(m_size) * pixel_ratio,
-   //   bound2 = -sequence2_float(m_pimage->width(), m_pimage->height()) * scale();
+   //float_sequence2 bound1 = float_sequence2(m_size) * pixel_ratio,
+   //   bound2 = -float_sequence2(m_pimage->width(), m_pimage->height()) * scale();
 
-   //if ((m_offset.x() >= bound1.x()) != (m_offset.x() < bound2.x()))
-   //   m_offset.x() = ::maximum(::minimum(m_offset.x(), bound1.x()), bound2.x());
-   //if ((m_offset.y() >= bound1.y()) != (m_offset.y() < bound2.y()))
-   //   m_offset.y() = ::maximum(::minimum(m_offset.y(), bound1.y()), bound2.y());
+   //if ((m_offset.x >= bound1.x) != (m_offset.x < bound2.x))
+   //   m_offset.x = ::maximum(::minimum(m_offset.x, bound1.x), bound2.x);
+   //if ((m_offset.y >= bound1.y) != (m_offset.y < bound2.y))
+   //   m_offset.y = ::maximum(::minimum(m_offset.y, bound1.y), bound2.y);
 
-//   sequence2_int viewport_size = render_pass()->viewport().second;
+//   int_sequence2 viewport_size = render_pass()->viewport().second;
 
    //float scale = std::pow(2.f, m_scale / 5.f);
 
@@ -318,9 +318,9 @@ void ImageImpact::draw_contents(::nano2d::context  * pcontext)
 
    //Matrix4f matrix_image =
    //   Matrix4f::ortho(0.f, viewport_size.cx(), viewport_size.cy(), 0.f, -1.f, 1.f) *
-   //   Matrix4f::translate(Vector3f(m_offset.x(), (int)m_offset.y(), 0.f)) *
-   //   Matrix4f::scale(Vector3f(m_image->size().x() * scale,
-   //      m_image->size().y() * scale, 1.f));
+   //   Matrix4f::translate(Vector3f(m_offset.x, (int)m_offset.y, 0.f)) *
+   //   Matrix4f::scale(Vector3f(m_image->size().x * scale,
+   //      m_image->size().y * scale, 1.f));
 
    //m_image_shader->set_uniform("matrix_image", Matrix4f(matrix_image));
    //m_image_shader->set_uniform("matrix_background", Matrix4f(matrix_background));

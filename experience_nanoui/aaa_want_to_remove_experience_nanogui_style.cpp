@@ -534,8 +534,8 @@ namespace experience_lite
                iTabHeight = cy;
             }
 
-            tab_pane.m_point.x() = x;
-            tab_pane.m_point.y() = rectangleX.top();
+            tab_pane.m_point.x = x;
+            tab_pane.m_point.y = rectangleX.top();
 
 
             //            string str = tab_pane.get_title();
@@ -824,23 +824,23 @@ namespace experience_lite
       {
 
 
-         pgraphics->MoveTo(ptCenter.x() - 5, ptCenter.y() - 5);
-         pgraphics->LineTo(ptCenter.x() - 5, ptCenter.y() + 5);
-         pgraphics->MoveTo(ptCenter.x(), ptCenter.y() - 5);
-         pgraphics->LineTo(ptCenter.x(), ptCenter.y() + 5);
-         pgraphics->MoveTo(ptCenter.x() + 5, ptCenter.y() - 5);
-         pgraphics->LineTo(ptCenter.x() + 5, ptCenter.y() + 5);
+         pgraphics->MoveTo(ptCenter.x - 5, ptCenter.y - 5);
+         pgraphics->LineTo(ptCenter.x - 5, ptCenter.y + 5);
+         pgraphics->MoveTo(ptCenter.x, ptCenter.y - 5);
+         pgraphics->LineTo(ptCenter.x, ptCenter.y + 5);
+         pgraphics->MoveTo(ptCenter.x + 5, ptCenter.y - 5);
+         pgraphics->LineTo(ptCenter.x + 5, ptCenter.y + 5);
 
 
       }
       else
       {
-         pgraphics->MoveTo(ptCenter.x() - 5, ptCenter.y() - 5);
-         pgraphics->LineTo(ptCenter.x() + 5, ptCenter.y() - 5);
-         pgraphics->MoveTo(ptCenter.x() - 5, ptCenter.y());
-         pgraphics->LineTo(ptCenter.x() + 5, ptCenter.y());
-         pgraphics->MoveTo(ptCenter.x() - 5, ptCenter.y() + 5);
-         pgraphics->LineTo(ptCenter.x() + 5, ptCenter.y() + 5);
+         pgraphics->MoveTo(ptCenter.x - 5, ptCenter.y - 5);
+         pgraphics->LineTo(ptCenter.x + 5, ptCenter.y - 5);
+         pgraphics->MoveTo(ptCenter.x - 5, ptCenter.y);
+         pgraphics->LineTo(ptCenter.x + 5, ptCenter.y);
+         pgraphics->MoveTo(ptCenter.x - 5, ptCenter.y + 5);
+         pgraphics->LineTo(ptCenter.x + 5, ptCenter.y + 5);
 
       }
 
@@ -1164,7 +1164,7 @@ namespace experience_lite
       if (!bOk)
       {
 
-         informationf("\nUnknown color: code=" + as_string((int) ecolor));
+         informationf("----> Unknown color: code=" + as_string((int) ecolor));
 
       }
 

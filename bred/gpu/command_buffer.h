@@ -30,7 +30,7 @@ namespace gpu
       ::collection::index                 m_iFrameIndex;
       ::string                            m_strAnnotation;
       ::pointer_array < ::particle >      m_particleaHold;
-      ::graphics3d::enum_render_system    m_erendersystem;
+      ::graphics3d::render_system *       m_prendersystem = nullptr;
 
 
       command_buffer();
@@ -79,7 +79,7 @@ namespace gpu
    };
 
 
-
+   CLASS_DECL_BRED ::gpu::command_buffer *current_command_buffer();
 
 
 } // namespace gpu

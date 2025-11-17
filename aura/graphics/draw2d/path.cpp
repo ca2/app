@@ -35,17 +35,17 @@ double_point arc_point(double dAngle, double_size sizeRadius)
    //if (dAngle > g_dPi / 2.0 && dAngle < g_dPi * 3.0 / 2.0)
    //{
 
-   //   p.x() = ab * cosAngle / q;
+   //   p.x = ab * cosAngle / q;
 
-   //   p.y() = ab * sinAngle / q;
+   //   p.y = ab * sinAngle / q;
 
    //}
    //else
    //{
 
-      p.x() = ab * cosAngle / q;
+      p.x = ab * cosAngle / q;
 
-      p.y() = ab * sinAngle / q;
+      p.y = ab * sinAngle / q;
 
 //   }
 
@@ -267,17 +267,17 @@ namespace draw2d
 
       polygon.set_size(4);
 
-      polygon[0].x() = rectangle.left();
-      polygon[0].y() = rectangle.top();
+      polygon[0].x = rectangle.left();
+      polygon[0].y = rectangle.top();
 
-      polygon[1].x() = rectangle.right();
-      polygon[1].y() = rectangle.top();
+      polygon[1].x = rectangle.right();
+      polygon[1].y = rectangle.top();
 
-      polygon[2].x() = rectangle.right();
-      polygon[2].y() = rectangle.bottom();
+      polygon[2].x = rectangle.right();
+      polygon[2].y = rectangle.bottom();
 
-      polygon[3].x() = rectangle.left();
-      polygon[3].y() = rectangle.bottom();
+      polygon[3].x = rectangle.left();
+      polygon[3].y = rectangle.bottom();
 
       polygon.rotate(angleRotationCenter, point);
 
@@ -319,17 +319,17 @@ namespace draw2d
 //
 //      auto t = 90_degrees - angle;
 //
-//      double x = point.x();
-//      double y = point.y();
-//      //arc.m_pointCenter.y() = point.y() + h/2.0;
+//      double x = point.x;
+//      double y = point.y;
+//      //arc.m_pointCenter.y = point.y + h/2.0;
 //      arc.left() = x;
 //      arc.top() = y;
-//      double b = point.y() - arc.m_pointCenter.y() / sin(t);
+//      double b = point.y - arc.m_pointCenter.y / sin(t);
 //      double a = sqrt((b*b*x*x) / (y*y - b *b));
 //
 //      arc.m_sizeRadius.cx() = a;
 //      arc.m_sizeRadius.cy() = b;
-//      arc.m_pointCenter.x() = point.x() - a * cos(t);
+//      arc.m_pointCenter.x = point.x - a * cos(t);
 //      arc.m_angleBeg = t;
 //      arc.m_angleExt = -90_degrees;
 //      arc.m_angleEnd2 = t - 90_degrees;
@@ -378,9 +378,9 @@ namespace draw2d
 //      auto & arc = pitem->m_item;
 //
 //      auto t = angle + 90_degrees;
-//      arc.m_pointBegin.x() = point.x() + w / 2.0;
-//      double a = (point.x() - arc.m_pointBegin.x()) / cos(t);
-//      double x = point.x() - arc.m_pointBegin.x();
+//      arc.m_pointBegin.x = point.x + w / 2.0;
+//      double a = (point.x - arc.m_pointBegin.x) / cos(t);
+//      double x = point.x - arc.m_pointBegin.x;
 //      double b = 0;
 //      //double y = b * b  *w / (4.0* tan(dAngle));
 //      double y = 0;
@@ -388,7 +388,7 @@ namespace draw2d
 //
 //      arc.m_sizeRadius.cx() = a;
 //      arc.m_sizeRadius.cy() = b;
-//      arc.m_pointCenter.y() = point.y() - b * sin(t);
+//      arc.m_pointCenter.y = point.y - b * sin(t);
 //      arc.m_angleBeg = t;
 //      arc.m_angleEnd2 = fmod(180_degrees - arc.m_angleBeg, 360_degrees);
 //      arc.m_angleExt = arc.m_angleEnd2 - arc.m_angleBeg;

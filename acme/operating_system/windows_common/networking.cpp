@@ -23,6 +23,13 @@ SOCKET _open_socket(int af, int type, int protocol)
 int _close_socket(SOCKET s)
 {
 
+   if (s == INVALID_SOCKET)
+   {
+
+      return -1;
+
+   }
+
    auto iError = ::closesocket(s);
 
    if (iError == 0)

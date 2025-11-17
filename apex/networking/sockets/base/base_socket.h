@@ -34,10 +34,6 @@ namespace sockets
 //      };
 //
 //      friend class base_socket_handler;
-//
-//
-//
-//
 //      /** Data pass class from source to destination. */
 //      class trigger_data
 //      {

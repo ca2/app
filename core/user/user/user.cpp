@@ -1535,10 +1535,6 @@ namespace core
 //
 //   }
 //
-//
-//
-//
-//
 //   string user::impl_get_os_desktop_theme()
 //   {
 //

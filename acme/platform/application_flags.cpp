@@ -82,10 +82,6 @@ APPLICATION_FLAGS::APPLICATION_FLAGS()
 //      //m_iStatusCount = 0;
 //
 //      //m_iTotalStatusCount = 0;
-//
-//
-//
-//
 //}
 
 //
@@ -145,10 +141,6 @@ APPLICATION_FLAGS::APPLICATION_FLAGS()
 
 //void __main()
 //{
-//
-//
-//
-//
 //}
 
 
@@ -237,10 +229,6 @@ APPLICATION_FLAGS::APPLICATION_FLAGS()
 //CLASS_DECL_ACME ATOM MyRegisterClass(HINSTANCE hInstance);
 
 //#endif
-//
-//
-//
-//
 //void main::system_construct(const ::main * pmain)
 //{
 //
@@ -1590,10 +1578,6 @@ CLASS_DECL_ACME void set_debug_pointer(void * p);
 //
 //
 //#ifdef __APPLE__
-//
-//
-//
-//
 //#elif defined(UNIVERSAL_WINDOWS)
 //
 //

@@ -8,10 +8,10 @@
 #endif
 
 #include <vector>
-#include <glm/glm.hpp>
+
 #include <cmath>
 #include <vector>
-#include <glm/glm.hpp>
+
 
 namespace graphics3d
 {

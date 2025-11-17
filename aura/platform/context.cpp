@@ -926,10 +926,6 @@ namespace aura
 //
 //   }
 //
-//
-//
-//
-//
 //   string context::matter_locator(const ::scoped_string & scopedstrApp)
 //   {
 //
@@ -977,10 +973,6 @@ namespace aura
 //
 //
 //   }
-//
-//
-//
-//
 //   void context::add_matter_locator(::apex::application* papp)
 //   {
 //
@@ -993,10 +985,6 @@ namespace aura
 //      on_update_matter_locator();
 //
 //   }
-//
-//
-//
-//
 //   void context::_load_from_file(::particle * pparticle, const ::payload& payloadFile, const ::payload& varOptions)
 //   {
 //

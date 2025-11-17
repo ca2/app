@@ -165,10 +165,6 @@ pmessagebox->sync();
 //#endif
 //
 //}
-//
-//
-//
-//
 //class MyPoint
 //{
 //public:

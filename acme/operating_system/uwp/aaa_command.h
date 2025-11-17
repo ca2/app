@@ -20,7 +20,3 @@
 //
 //
 //} // namespace universal_windows
-//
-//
-//
-//

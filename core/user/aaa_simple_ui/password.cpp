@@ -170,11 +170,7 @@ namespace simple_ui
       rectangleX.left() = m_point.x;
       rectangleX.bottom() = rectangleX.top() + m_size.cy();
       rectangleX.right() = rectangleX.left() + m_size.cx();*/
-      //      pgraphics->fill_rectangle(rectangleX, crBk);
-
-//
-
-      double y = rectangleX.top();
+      //      pgraphics->fill_rectangle(rectangleX, crBk);      double y = rectangleX.top();
       get_text_selection(iSelStart,iSelEnd);
       character_count iCursor = iSelEnd;
       __sort(iSelStart,iSelEnd);

@@ -30,10 +30,6 @@
 #include <chrono>
 #include "acme/prototype/geometry/quaternion.h"
 
-//#include <glm/glm.hpp>
-//#include <glm/gtc/matrix_transform.hpp>
-//#include <glm/gtc/quaternion.hpp>
-//#include <glm/gtx/quaternion.hpp>
 //
 // Function to flip a floating_matrix4 along the Z-axis
 floating_matrix4 flipZMat4(const floating_matrix4& mat) {

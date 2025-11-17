@@ -816,10 +816,6 @@ namespace platform
 //       //virtual bool destroy();
 //
 //       //virtual void destroy() override;
-//
-//
-//
-//
 //       //virtual bool verb();
 //
 //       //virtual void main_user_async(const ::procedure & procedure, ::enum_priority epriority = e_priority_normal) override;
@@ -838,10 +834,6 @@ namespace platform
 //
 //
 //       //virtual ::aura::session * query_session(::collection::index iEdge) override;
-//
-//
-//
-//
 //       //virtual string dir_appmatter_locator(::particle * pparticle);
 //
 //
@@ -932,10 +924,6 @@ namespace platform
 //       //   return *m_pcompress;   // only usable from base.dll and dependants
 //
 //       //}
-//
-//
-//
-//
 //       //inline ::file::system_dir & dir() { return *m_spdir; }
 //       //inline ::file::system_file & file() { return *m_spfile; }
 //
@@ -1065,10 +1053,6 @@ namespace platform
 //
 //
 //       //virtual bool is_system() const override;
-//
-//
-//
-//
 //   /*    static inline ::atom atom(const ::std::type_info & info);
 //       static inline ::atom atom(const ::scoped_string & scopedstr);
 //       static inline ::atom atom(const ::scoped_string & scopedstr);
@@ -1083,10 +1067,6 @@ namespace platform
 //       //virtual bool assert_failed_line(const ::scoped_string & scopedstrFileName,int iLine) override;
 //
 //       //virtual bool on_assert_failed_line(const ::scoped_string & scopedstrFileName,int iLine) override;
-//
-//
-//
-//
 //
 //
 //       //virtual void initialize_log(const ::scoped_string & scopedstrId) override;
@@ -1144,10 +1124,6 @@ namespace platform
 // //virtual string get_system_platform() override;
 // //virtual string get_system_configuration() override;
 // //virtual string get_latest_build_number(const ::scoped_string & scopedstrConfiguration, const ::scoped_string & scopedstrAppId);
-//
-//
-//
-//
 // //#ifndef UNIVERSAL_WINDOWS
 //
 // //virtual void get_time(timeval * int_point) override;
@@ -1198,10 +1174,6 @@ namespace platform
 //
 //       //virtual ::windowing::window * impl_from_handle(void * posdata);
 //       //virtual ::user::interaction * ui_from_handle(void * posdata);
-//
-//
-//
-//
 //       //virtual void on_extra(const ::scoped_string & scopedstr) override;
 //
 //       //virtual string standalone_setting(const ::scoped_string & scopedstr) override;
@@ -1285,10 +1257,6 @@ namespace platform
 //
 //       //      virtual ::pointer<::handler>handler();
 //
-//
-//
-//
-//
 //       //virtual int main();
 //
 //       //virtual void on_allocation_error(const ::scoped_string & scopedstr, ::object* pobjectSometimes) override;
@@ -1333,14 +1301,6 @@ namespace platform
 //
 //
 // //      virtual bool wait_twf(class ::time tickTimeout = U32_INFINITE_TIMEOUT);
-//
-//
-//
-//
-//
-//
-//
-//
 //       virtual string get_host_location_url();
 //
 //       //      virtual void add_impact_library(::acme::library* plibrary);
@@ -1399,10 +1359,6 @@ namespace platform
 //       //virtual void term_system() override;
 //
 //       //virtual ::pointer<::aura::session>on_create_session() override;
-//
-//
-//
-//
 //       //virtual ::install::canvas * install_create_canvas() override;
 //       //virtual void install_canvas_on_paint(::draw2d::graphics_pointer & pgraphics, const ::int_rectangle & rectangle);
 //       //virtual int install_canvas_increment_mode() override;

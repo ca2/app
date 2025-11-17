@@ -2,7 +2,7 @@
 
 
 #include "bred/graphics3d/properties.h"
-#include <glm/glm.hpp>
+
 
 
 namespace graphics3d

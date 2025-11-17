@@ -495,10 +495,6 @@ void task_group::select_tool(task_tool* ptool)
 //   return true;
 //
 //}
-//
-//
-//
-//
 
 
 

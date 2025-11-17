@@ -262,10 +262,6 @@ int __cdecl _validdrive (
 //
 //
 //} // namespace linux
-//
-//
-//
-//
 //CLASS_DECL_ACME void os_shell_initialize()
 //{
 //

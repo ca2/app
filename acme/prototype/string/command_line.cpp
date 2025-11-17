@@ -891,10 +891,6 @@ typedef FN_GET_STRING* PFN_GET_STRING;
 
 //
 //#ifdef __APPLE__
-//
-//
-//
-//
 //#endif
 
 

@@ -186,10 +186,6 @@ CLASS_DECL_ACME void wide_parse_command_line(::wide_character *cmdstart, ::wide_
 //   return destParam;
 //   #endif
 //}
-//
-//
-//
-//
 
 //void wide_from_u64_base(unichar * sz, unsigned int u, int iBase)
 //{

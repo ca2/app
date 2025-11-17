@@ -3,7 +3,7 @@
 #pragma once
 #include "bred/graphics3d/window_input.h"
 #include "bred/graphics3d/_types.h"
-#include <glm/glm.hpp>
+
 //#include <memory>
 
 namespace sandbox_game

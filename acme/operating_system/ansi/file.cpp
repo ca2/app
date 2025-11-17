@@ -229,10 +229,6 @@
 //      return false;
 //
 //   }
-//
-//
-//
-//
 //   char * pszRealPath = ::realpath(scopedstr, NULL);
 //
 //   if (scopedstrRealPath == NULL)

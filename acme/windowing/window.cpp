@@ -9,11 +9,7 @@
 // Created by camilo on 2024-05-26 21:50 <3ThomasBorregaardSorensen!!
 // // Merged from windowing_base to
 //     windowing by camilo on 2024-10-05 10:36 <3ThomasBorregaardSorensen!!
-//
-
-//
-
-   //
+//   //
 // Created by camilo on 2023-10-06 <3ThomasBorregaardSorensen!!
 //
 // micro::window Created by camilo on 31/01/2022 23:04 <3ThomasBorregaardSorensen!!

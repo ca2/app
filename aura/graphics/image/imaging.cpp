@@ -5660,10 +5660,6 @@ breakFilter2:
 //   }
 //
 //   return true;*/
-//
-//
-//
-//
 //   if(cx <= 0 || cy <= 0)
 //      return true;
 //
@@ -7008,10 +7004,6 @@ void imaging::AlphaTextOut(::draw2d::graphics *pgraphics,int left,int top, const
 //    return ::error_failed;
 //
 // }
-//
-//
-//
-//
 //
 //#endif
 //

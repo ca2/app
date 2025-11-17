@@ -139,10 +139,6 @@ namespace platform
 //      //string_map_base < oswindow, oswindow >               m_mapAppInterest;
 //
 //      //int                                             m_iGcomBackgroundUpdateMillis;
-//
-//
-//
-//
 //   };
 
 

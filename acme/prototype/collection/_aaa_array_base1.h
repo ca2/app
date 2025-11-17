@@ -656,16 +656,8 @@
 //
 //   //}
 //
-//
-//
-//
-//
 //   //inline const TYPE * get_data() const { return this->begin(); }
 //   //inline TYPE * get_data() { return this->begin(); }
-//
-//
-//
-//
 //   inline bool contains_address(const TYPE * pmatter) const { return pmatter >= this->m_begin && pmatter < this->end(); }
 //
 //
@@ -1356,10 +1348,6 @@ public:
 //   return (TYPE &) (a % nIndex);
 //
 //}
-//
-//
-//
-//
 //
 //
 //template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
@@ -2903,10 +2891,6 @@ public:
 //
 //}
 //
-//
-//
-//
-//
 //template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
 //inline void base_array_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::set_at_grow(::collection::index nIndex, ARG_TYPE newElement)
 //{
@@ -3242,10 +3226,6 @@ public:
 ////{
 ////   return this->element_at(this->get_upper_bound(i);
 ////}
-//
-//
-//
-//
 ////template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
 ////inline const TYPE* array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::get_data() const
 ////{
@@ -3398,14 +3378,6 @@ public:
 ////
 ////}
 //
-//
-//
-//
-//
-//
-//
-//
-//
 //template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
 //inline TYPE base_array_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::pop(::collection::index n)
 //{
@@ -3547,10 +3519,6 @@ public:
 //
 //}
 //
-//
-//
-//
-//
 //template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
 //inline ::collection::count base_array_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::erase(const TYPE * begin, const TYPE * last)
 //{
@@ -3566,7 +3534,3 @@ public:
 //
 ////template < typename TYPE1, typename TYPE2 >
 ////concept is_same_family = ::std::is_base_of<TYPE1, TYPE2> || ::std::is_base_of<TYPE2, TYPE1>;
-//
-//
-//
-//

@@ -4,10 +4,6 @@
 //namespace berg
 //{
 //
-//
-//
-//
-//
 //} // namespace berg
 //
 //

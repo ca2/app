@@ -425,10 +425,6 @@
 //
 //template < >
 //inline ::hash32 as_hash32 < scoped_wd32_string >(const scoped_wd32_string & scopedstr);
-//
-//
-//
-//
 //#include  "acme/prototype/mathematics/_string.h"_ansi
 //
 //

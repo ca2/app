@@ -168,10 +168,6 @@
 // END_GPU_PROPERTIES()
 //
 //
-//
-//
-//
-//
 // template < >
 // inline ::hash32 as_hash32<::graphics3d::Vertex>(const ::graphics3d::Vertex& vertex)
 // {
@@ -183,10 +179,6 @@
 // 	return seed;
 //
 // }
-//
-//
-//
-//
 
 
 

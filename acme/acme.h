@@ -15,10 +15,6 @@ inline auto deref(const TYPE & t) { return typename TYPE::CONTAINER::dereference
 
 
 
-//
-//
-//
-//
 //template < typename CONTAINER, typename PAYLOAD >
 //inline bool contains_payload(const CONTAINER & container, const PAYLOAD & payload)
 //{

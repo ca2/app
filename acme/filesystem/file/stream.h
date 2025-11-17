@@ -889,18 +889,10 @@ void stream_exchange(S & s, T & t)
 //   operator << (s, pfile.m_p);
 //
 //}
-//
-//
-//
-//
 //inline binary_stream & operator <<(binary_stream & s, const ::earth::time & time);
 ////
 ////
 //inline binary_stream & operator >>(binary_stream & s, ::earth::time & time);
-//
-//
-//
-//
 //inline binary_stream & operator >>(binary_stream & s, ::earth::zone_time & z);
 //
 //
@@ -918,10 +910,6 @@ void stream_exchange(S & s, T & t)
 //
 //
 //inline binary_stream & operator >>(binary_stream & s, ::datetime::time_zone & z);
-//
-//
-//
-//
 //inline binary_stream & operator <<(binary_stream & s, const ::datetime::time_zone & z);
 //
 //

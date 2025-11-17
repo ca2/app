@@ -1442,10 +1442,6 @@ using double_matrix4 = matrix_type<double, 4>;
 //   //}
 //   //
 //
-//
-//
-//
-//
 //   ////template<primitive_floating FLOATING>
 //   ////row_major_type<FLOATING, 4> transpose(const matrix_type<FLOATING, 4> &m)
 //   ////{
@@ -1826,10 +1822,6 @@ using double_matrix4 = matrix_type<double, 4>;
 ////      return inverse(A);
 ////#endif
 ////   }
-//
-//
-//
-//
 //   //   // Multiply 4x4 matrix `a` by 4x4 matrix `b` (a*b) using AVX2 fully unrolled
 //   //inline float_matrix4 mul_avx2(const float_matrix4 &a, const float_matrix4 &b)
 //   //{

@@ -8,10 +8,6 @@
 //
 //namespace user
 //{
-//
-//
-//
-//
 //} // namespace user
 //
 
@@ -261,10 +257,6 @@
 //
 //namespace user
 //{
-//
-//
-//
-//
 //
 //
 //   //CLASS_DECL_AURA bool set_wallpaper(string strLocalImagePath);

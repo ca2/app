@@ -201,10 +201,6 @@ public:
 //      int & iLimitYParam);
 //
 //
-//
-//
-//
-//
 //   bool GrayVRCP(
 //      ::draw2d::graphics * pgraphics,
 //      ::draw2d::bitmap * pbitmap,

@@ -5,9 +5,9 @@
 #include "bred/gpu/context.h"
 #include "bred/graphics3d/skybox.h"
 #include "bred/gpu/device.h"
-//#include <glm/gtc/matrix_transform.hpp>
+//
 #include "glad/glad.h"
-//#include "glm/glm.hpp"
+//
 
 #include "gpu/gltf/_constant.h"
 #include "gpu_opengl/_gpu_opengl.h"

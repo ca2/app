@@ -2820,10 +2820,6 @@ pmessagebox->sync();
 //   {
 //
 //      return ::windowing::window::window_rectangle(prect);
-//
-//
-//
-//
 //      if(!::is_window((oswindow) get_handle()))
 //      {
 //
@@ -4030,10 +4026,6 @@ pmessagebox->sync();
 //   }
 //
 //
-//
-//
-//
-//
 //   ::user::interaction * interaction_impl::GetTopWindow() const
 //   {
 //
@@ -4149,10 +4141,6 @@ pmessagebox->sync();
 ////      return ::linux::interaction_impl::from_handle(::GetClipboardViewer());
 //
 //   }
-//
-//
-//
-//
 //
 //   point PASCAL interaction_impl::GetCaretPos()
 //   {
@@ -4689,10 +4677,6 @@ pmessagebox->sync();
 //   {
 //      __UNREFERENCED_PARAMETER(pinteraction);
 //   }
-//
-//
-//
-//
 ////   void interaction_impl::_001OnEraseBkgnd(::message::message * pmessage)
 ////   {
 ////      ::pointer<::message::erase_bkgnd>perasebkgnd(pmessage);

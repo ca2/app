@@ -1336,14 +1336,6 @@ int net::service_port(const ::scoped_string & scopedstr, int flags)
 //
 //} // namespace net
 //
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 

@@ -24,10 +24,6 @@
 //namespace user
 //{
 //
-//
-//
-//
-//
 //   template < class DATA >
 //   DATA* impact::get_typed_data()
 //   {

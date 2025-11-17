@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "SceneFoundry/sandbox_game/camera.h"
-// #include <glm/gtc/constants.hpp>
-// #include <glm/gtc/matrix_transform.hpp>
+// 
+// 
 // #include <cmath>
 
 namespace sandbox_game

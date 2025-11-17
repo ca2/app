@@ -2516,10 +2516,6 @@ namespace url
 //} // namespace url
 //
 //
-//
-//
-//
-//
 //#include "framework.h"
 ////#include "acme/prototype/string/hex.h"
 //
@@ -2612,10 +2608,6 @@ namespace url
 //   return false;
 //
 //}
-//
-//
-//
-//
 ////#include "framework.h"
 ////#include "net.h"
 ////#include "as_string.h"
@@ -2965,10 +2957,6 @@ namespace url
    //
 //
 //} // namespace url
-//
-//
-//
-//
 ////string str;
 ////
 ////string strChar;
@@ -3000,26 +2988,6 @@ namespace url
 ////return str;
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //#if defined(MACOS)
 //#elif defined(APPLE_IOS)
 //
@@ -3046,14 +3014,6 @@ namespace url
 //
 //
 //#endif
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -3168,10 +3128,6 @@ namespace url
 //
 //
 //
-//
-//
-//
-//
 ////CLASS_DECL_ACME bool is_url(const_char_pointer pszCandidate)
 ////{
 ////
@@ -3205,10 +3161,6 @@ namespace url
 ////   return false;
 ////
 ////}
-//
-//
-//
-//
 //
 ////CLASS_DECL_ACME string ::url::decode(const_char_pointer psz)
 ////{
@@ -3331,10 +3283,6 @@ namespace url
 ////}
 ////
 ////
-//
-//
-//
-//
 ////CLASS_DECL_ACME bool url_query_get_param(string& strParam, const_char_pointer pszKey, const_char_pointer pszUrl)
 ////{
 ////
@@ -3443,14 +3391,6 @@ namespace url
 ////   return true;
 ////
 ////}
-//
-//
-//
-//
-//
-//
-//
-//
 //CLASS_DECL_ACME string url::encode(const ::scoped_string & scopedstr)
 //{
 //
@@ -3574,26 +3514,6 @@ namespace url
 ////return str;
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //#if defined(MACOS)
 //
 ////void openURL(const string& url_str);
@@ -3637,14 +3557,6 @@ namespace url
 //
 //
 //#endif
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -3756,14 +3668,6 @@ namespace url
 ////   return true;
 ////
 ////}
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //

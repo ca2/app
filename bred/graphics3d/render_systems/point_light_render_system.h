@@ -9,8 +9,8 @@
 // // STD
 // //#include <memory>
 // //#include <vector>
-// #define GLM_ENABLE_EXPERIMENTAL
-// #include <glm/glm.hpp>
+// 
+// 
 
 #include "bred/graphics3d/render_system.h"
 

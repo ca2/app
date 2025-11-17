@@ -7,10 +7,6 @@
 //using line = ::double_line;
 //
 //
-//
-//
-//
-//
 //using line = ::double_line;
 //using rectangle = ::double_rectangle;
 //using ellipse = ::double_ellipse;

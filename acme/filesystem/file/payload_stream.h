@@ -32,10 +32,6 @@
 //inline void __exchange(::payload_stream & s, ::memory & memory);
 //
 //
-//
-//
-//
-//
 //inline void __exchange(::payload_stream & s, ::matter & matter);
 //
 //
@@ -109,8 +105,4 @@
 //
 //
 //};
-//
-//
-//
-//
 //

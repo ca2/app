@@ -1045,10 +1045,6 @@ bool draw2d_gif_antialias_8bit(::image::image & imageCompose, image_frame_array 
 //         }
 //
 //      }
-//
-//
-//
-//
 //   }
 //
 //

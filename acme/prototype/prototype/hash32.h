@@ -69,9 +69,5 @@ template < typename T >
 //   hash32() {}
 //
 //};
-//
-//
-//
-//
 
 

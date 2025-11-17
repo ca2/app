@@ -549,10 +549,6 @@ public:
 //
 //   ::real maximum();
 //   ::real minimum();
-//
-//
-//
-//
 //   operator ::real () { return get(); }
 //
 //   real_scalar & operator = (::real dValue) { set(dValue); return *this; }
@@ -567,10 +563,6 @@ public:
 //
 //
 //};
-//
-//
-//
-//
 //class CLASS_DECL_ACME integer_scalar :
 //   virtual public scalar_base
 //{
@@ -606,10 +598,6 @@ public:
 //
 //
 //};
-//
-//
-//
-//
 //
 //
 //

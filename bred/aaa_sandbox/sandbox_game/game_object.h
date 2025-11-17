@@ -5,7 +5,7 @@
 #include "bred/graphics3d/entity.h"
 #include "bred/graphics3d/game_object.h"
 #include "SceneFoundry/graphics3d/object_model.h"
-#include <glm/gtc/matrix_transform.hpp>
+
 
 // std
 //#include <memory>

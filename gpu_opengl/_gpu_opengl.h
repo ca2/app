@@ -83,11 +83,7 @@
 //#include <GLFW/glfw3.h>
 
 // Ubuntu : 	libglu1-mesa-dev
-//#include <GL/glu.h>
-
-//#include <glm/glm.hpp>
-
-#endif
+//#include <GL/glu.h>#endif
 
 
 #elif defined(MACOS)

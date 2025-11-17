@@ -16,11 +16,11 @@
 #include "bred/graphics3d/point_light.h"
 //#include "SceneFoundry/graphics3d/game_object.h"
 // // libs
-// #define GLM_FORCE_RADIANS
-// #define GLM_FORCE_DEPTH_ZERO_TO_ONE
-// #include <glm/glm.hpp>
-// #include <glm/gtc/constants.hpp>
-// #include <glm/gtx/transform.hpp>
+// 
+// 
+// 
+// 
+// 
 // // std
 // //#include <array>
 // //#include <cassert>

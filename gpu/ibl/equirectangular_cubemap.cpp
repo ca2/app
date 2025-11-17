@@ -5,8 +5,8 @@
 #include "bred/gpu/context.h"
 #include "bred/gpu/shader.h"
 #include "bred/gpu/texture.h"
-//#include <glm/glm.hpp>
-//#include <glm/gtc/matrix_transform.hpp>
+//
+//
 
 //#include "gpu::gltf.h"
 //#include "timer.h"

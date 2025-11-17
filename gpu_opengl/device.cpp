@@ -7,7 +7,7 @@
 #include "shader.h"
 #include "acme/filesystem/filesystem/file_context.h"
 #include "aura/graphics/image/image.h"
-//#include "glm/mat4x4.hpp"
+//
 
 
 namespace gpu_opengl
@@ -189,10 +189,6 @@ namespace gpu_opengl
 //
 ////glDrawElements(GL_TRIANGLES, size / sizeof(GLushort), GL_UNSIGNED_SHORT, 0);
 ////int iError18 = glGetError();
-//
-//
-//
-//
 //      ASSERT(m_itaskGpu == ::current_itask());
 //
 //      //      glClearColor(0.0f, 0.0f, 0.4f, 0.0f);
@@ -395,10 +391,6 @@ namespace gpu_opengl
 //            m_sizeBitmap1.cy(),
 //            0, GL_RGBA, GL_UNSIGNED_BYTE,
 //            m_memorySwap.data()); // upload image data to the textur
-//
-//
-//
-//
 //
 //      }
 //

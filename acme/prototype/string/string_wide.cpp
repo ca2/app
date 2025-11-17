@@ -280,10 +280,6 @@
 //   }
 //
 //}
-//
-//
-//
-//
 //wstring& wstring::replace(::collection::index iStart, ::collection::count c, const unichar* psz)
 //{
 //   if (c < 0)

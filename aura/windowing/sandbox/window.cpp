@@ -116,10 +116,6 @@ namespace sandbox_windowing
 //         //         XFree(pupdate);
 //
 //      }
-//
-//
-//
-//
 //      //#ifndef RASPBERRYPIOS
 //      //
 //      //      if (pwindowing->m_pSnLauncheeContext != nullptr && !papp->m_bSnLauncheeSetup)

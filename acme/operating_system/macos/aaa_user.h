@@ -324,21 +324,13 @@
 ////CGColorRef cg_create_color(color32_t crText);
 ////int_bool cg_release_color(CGColorRef colorref);
 //
-//
-//
-//
-//
 ////
 ////  c_os_win_user.h
 ////  c
 ////
 ////  Created by Camilo Sasuke Thomas Borregaard Soerensen on 12/30/11.
 ////  Copyright (c) 2011 ca2 Desenvolvimento de Sofware Ltda. All rights reserved.
-////
-//
-//
-//
-////
+//////
 ////int_bool set_nswindow_frame(oswindow hwnd, const ::int_rectangle * prectangle, int iDisplay);
 ////int_bool move_nswindow(oswindow hwnd,int x,int y);
 ////int_bool make_key_and_order_front_nswindow(oswindow hwnd);
@@ -349,7 +341,4 @@
 ////int_bool nswindow_is_level_normal(oswindow hwnd);
 ////int_bool nswindow_is_level_floating(oswindow hwnd);
 ////int_bool nswindow_is_level_main_menu(oswindow hwnd);
-////
-//
-//
 //

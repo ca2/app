@@ -40,10 +40,6 @@
 //      on_initialize_shader();
 //
 //   }
-//
-//
-//
-//
 //   void shader::on_initialize_shader()
 //   {
 //

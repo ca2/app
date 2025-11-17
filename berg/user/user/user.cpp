@@ -1004,10 +1004,6 @@ namespace berg
 //      //   }
 //
 //      //}
-//
-//
-//
-//
 //      ::aura::application & app = App(pinteraction->get_app());
 //
 //      string strAppName = app.m_strAppName;

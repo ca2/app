@@ -4,7 +4,7 @@
 
 
 #include "bred/gpu/properties.h"
-#include <glm/glm.hpp>
+
 
 
 namespace graphics3d

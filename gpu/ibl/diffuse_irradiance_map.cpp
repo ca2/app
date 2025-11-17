@@ -6,8 +6,8 @@
 #include "bred/gpu/context.h"
 #include "bred/gpu/shader.h"
 //#include "glad/glad.h"
-//#include <glm/glm.hpp>
-//#include <glm/gtc/matrix_transform.hpp>
+//
+//
 //
 //#include "constants.h"
 #include "gpu/cube.h"

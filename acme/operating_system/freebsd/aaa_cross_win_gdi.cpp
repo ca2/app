@@ -76,10 +76,6 @@
 ////    return true;
 //
 //// }
-//
-//
-//
-//
 //// int FillRect(HDC hdc, const ::int_rectangle & prc, HBRUSH hbr)
 //
 //// {
@@ -111,14 +107,6 @@
 ////    return ReleaseDC(hwnd, ps->hdc);
 //
 //// }
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //

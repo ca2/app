@@ -3,7 +3,7 @@
 
 
 //#include "bred/gpu/_.h"
-//#include <glm/glm.hpp>
+//
 
 template < typename TYPE >
 inline ::gpu::property* gpu_properties()

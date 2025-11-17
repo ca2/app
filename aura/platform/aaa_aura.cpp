@@ -1186,10 +1186,6 @@ namespace aura
 //         //         oswindow_data::s_pdataptra = nullptr;
 //         //
 //         //#endif // defined(LINUX)
-//
-//
-//
-//
 //      }
 //
 //
@@ -1198,10 +1194,6 @@ namespace aura
 //
 //
 //} // namespace axis
-//
-//
-//
-//
 //
 
 //#ifdef WINDOWS
@@ -1268,54 +1260,6 @@ namespace aura
 ////
 ////
 ////      }
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -1326,22 +1270,6 @@ namespace aura
 
 
 
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //      CLASS_DECL_AURA void term()
 //      {
 //
@@ -1355,10 +1283,6 @@ namespace aura
 //         //#endif // defined(__APPLE__)
 //
 //
-//
-//
-//
-//
 //      }
 //
 //
@@ -1367,10 +1291,6 @@ namespace aura
 //
 //
 //} // namespace base
-//
-//
-//
-//
 //
 
 

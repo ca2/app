@@ -1,7 +1,7 @@
 // ICamera.h
 #pragma once
 
-#include <glm/glm.hpp>
+
 
 
 namespace graphics3d

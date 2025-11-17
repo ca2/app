@@ -8,10 +8,10 @@
 #include "bred/graphics3d/scene_object.h"
 #include "bred/graphics3d/frame.h"
 // // External
-// #define GLM_FORCE_RADIANS
-// #define GLM_FORCE_DEPTH_ZERO_TO_ONE
-// #include <glm/glm.hpp>
-//#include <glm/gtc/constants.hpp>
+// 
+// 
+// 
+//
 
 // STD
 //////#include <stdexcept>

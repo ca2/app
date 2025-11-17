@@ -184,10 +184,6 @@ namespace platform
 //
 //
 ////extern ::pointer < ::mutex > g_pmutexSymDbgHelp;
-//
-//
-//
-//
 ////   if (iSkip >= 0)
 ////   {
 ////

@@ -1394,10 +1394,6 @@ SizingNone:;
 //      return ::experience::e_frame_client;
 //   }
 //
-//
-//
-//
-//
 //   void frame_Minimal001::draw_border_side(::draw2d::graphics_pointer & pgraphics, const ::int_rectangle & rectangleXParam, enum_border eside)
 //   {
 //               

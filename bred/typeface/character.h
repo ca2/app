@@ -2,10 +2,6 @@
 // 2025-06-02 03:08 <3ThomasBorregaardSørensen!!
 #pragma once
 
-
-//#include <glm/glm.hpp>
-
-
 namespace typeface
 {
 

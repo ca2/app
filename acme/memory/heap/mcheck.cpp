@@ -9,10 +9,6 @@
 //#include "heap_memory.h"
 //
 //
-//
-//
-//
-//
 //#if AXIS_MEMORY_MANAGEMENT
 //
 //
@@ -293,10 +289,6 @@
 //#endif
 //
 //#if !defined(__VLD) && !defined(__MCRTDBG)
-//
-//
-//
-//
 //#if !defined(MCHECK)
 //
 //#undef ::system()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate
@@ -343,10 +335,6 @@
 //#endif
 //
 //}
-//
-//
-//
-//
 //void * memory_calloc(size_t size, size_t bytes)
 //{
 //
@@ -374,10 +362,6 @@
 //
 //}
 //#endif
-//
-//
-//
-//
 //
 //
 //void * memory_reallocate_debug(void * pmemory, size_t size, int nBlockUse, const_char_pointer szFileName, int nLine)
@@ -559,10 +543,6 @@
 //
 //#endif
 //
-//
-//
-//
-//
 //void memory_free_debug(void * pmemory, int iBlockType)
 //{
 //
@@ -736,10 +716,6 @@
 //   return system_heap_alloc(size);
 //
 //}
-//
-//
-//
-//
 //void * ::system()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(memsize size)
 //{
 //
@@ -818,10 +794,6 @@
 //
 //
 //#endif
-//
-//
-//
-//
 //
 //#endif
 //
@@ -1156,10 +1128,6 @@
 //   return heap_memory_get_size(pmemory);
 //
 //}
-//
-//
-//
-//
 
 
 

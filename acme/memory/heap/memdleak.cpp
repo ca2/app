@@ -17,10 +17,6 @@
 ////#ifdef WINDOWS_DESKTOP
 ////#include <mmsystem.h>
 ////#endif // WINDOWS_DESKTOP
-//
-//
-//
-//
 //#define MEMDLEAK_DEFAULT 1
 //
 //
@@ -35,10 +31,6 @@
 //
 //void memdleak_init();
 //void memdleak_term();
-//
-//
-//
-//
 //
 //
 //void * aligned_memory_allocate(memsize size, memsize align)
@@ -149,10 +141,6 @@
 //}
 //
 //
-//
-//
-//
-//
 //#undef ::system()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate
 //
 //void * ::system()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(memsize size)
@@ -187,10 +175,6 @@
 //
 //
 //}
-//
-//
-//
-//
 //void * memory_calloc(memsize size, memsize bytes)
 //{
 //
@@ -213,10 +197,6 @@
 //   return memory_reallocate_debug(pmemory, nSize, 0, nullptr, -1);
 //
 //}
-//
-//
-//
-//
 //
 //void * memory_reallocate_debug(void * pmemory, memsize size, int nBlockUse, const_char_pointer szFileName, int nLine)
 //{
@@ -365,10 +345,6 @@
 //}
 //
 //
-//
-//
-//
-//
 //void memory_free_debug(void * pmemory, int iBlockType)
 //{
 //
@@ -425,10 +401,6 @@
 //
 //
 //}
-//
-//
-//
-//
 //#undef ::system()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate
 //
 //
@@ -673,22 +645,6 @@
 //#endif
 //
 //}
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //CLASS_DECL_ACME int  memdleak_enabled()
 //{
 //
@@ -714,10 +670,6 @@
 //
 //
 //}
-//
-//
-//
-//
 //
 //
 //#if MEMDLEAK

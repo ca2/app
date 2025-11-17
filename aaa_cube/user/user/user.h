@@ -205,10 +205,6 @@ namespace bred
 //
 //      ::collection::count get_template_count() const;
 //      ::pointer<::user::impact_system>get_template(::collection::index index) const;
-//
-//
-//
-//
 //      ::user::document * hold(::pointer<::user::interaction>pinteraction);
 //
 //
@@ -236,10 +232,6 @@ namespace bred
 //
 //
 //      virtual void on_frame_window_drop_files(::user::interaction* pinteraction, ::file::path_array& patha) override;
-//
-//
-//
-//
 //      //inline ::userpresence::department & userpresence() { return *m_puserpresence; }
 //
 //      //virtual bool is_session() const override;
@@ -464,10 +456,6 @@ namespace bred
 //      //virtual ::collection::index get_good_move(::int_rectangle * prectangle, const ::int_rectangle & rectangle, ::user::interaction * pinteraction);
 //
 //      //virtual ::collection::index get_ui_workspace(::user::interaction * pinteraction);
-//
-//
-//
-//
 //      //virtual void _001OnDefaultTabPaneDrawTitle(::user::tab_pane & pane, ::user::tab * ptab, ::draw2d::graphics_pointer & pgraphics, const ::int_rectangle & rectangle, ::draw2d::brush_pointer & pbrushText);
 //
 //
@@ -509,10 +497,6 @@ namespace bred
 //
 //
 //      ////virtual ::pointer<::user::menu_interaction>create_menu_button(::user::style_pointer & pstyle, ::menu::item* pitem) override;
-//
-//
-//
-//
 //      //bool InitializeLocalDataCentral();
 //
 //      ////virtual void bergedge_start() override;
@@ -676,10 +660,6 @@ namespace bred
 //      //virtual void init1() override;
 //      //virtual void init2() override;
 //      //virtual void init() override;
-//
-//
-//
-//
 //      //virtual ::user::interaction_base* get_mouse_focus_LButtonDown();
 //      //virtual void set_mouse_focus_LButtonDown(::user::interaction_base* pmousefocus);
 //      //virtual ::user::interaction_base* get_mouse_focus_RButtonDown();

@@ -20,10 +20,6 @@
 //public:
 //
 //
-//
-//
-//
-//
 //   ///int                              m_iPathInstallFolderExeArg;
 //   //LPFN_MAIN_RUNNER                 m_mainrunnera[64];
 //
@@ -71,10 +67,6 @@
 //
 //      //apex_main_data();
 //      //~apex_main_data() override;
-//
-//
-//
-//
 //      //void system_construct(const class ::main * pmain) override;
 //
 //

@@ -135,10 +135,6 @@
 //   return WaitForSingleObjectEx(pwaitable, dwTimeout, false);
 //
 //}
-//
-//
-//
-//
 ////thread_data::thread_data()
 ////{
 ////
@@ -201,10 +197,6 @@
 ////map < htask,htask,ThreadLocalData *,ThreadLocalData * > * allthreaddata = NULL;
 //
 //
-//
-//
-//
-//
 //void __node_init_multitasking()
 //{
 //
@@ -249,14 +241,6 @@
 //}
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
 //#if defined(LINUX) // || defined(__ANDROID__)
 //
 //bool axis_defer_process_x_message(htask htask,LPMESSAGE lpMsg,oswindow oswindow,bool bPeek);
@@ -273,10 +257,6 @@
 //{
 //
 //}
-//
-//
-//
-//
 //
 //
 ////map < htask,htask,PendingThreadInfo,PendingThreadInfo > * g_ppendingThreads = NULL;
@@ -1332,14 +1312,6 @@
 ////
 ////}
 ////
-//
-//
-//
-//
-//
-//
-//
-//
 ////#include <pthread.h>
 
 

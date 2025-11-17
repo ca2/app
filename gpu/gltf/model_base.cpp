@@ -10,8 +10,8 @@
 #include "bred/gpu/context.h"
 
 #include <assimp/matrix4x4.h>
-//#include <glm/glm.hpp>
-//#include <glm/gtc/type_ptr.hpp> // For glm::make_mat4
+//
+// // For glm::make_mat4
 
 
 

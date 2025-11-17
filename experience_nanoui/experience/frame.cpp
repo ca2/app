@@ -413,10 +413,6 @@ namespace experience_nanoui
 //               ca.set_rgb(crBase);
 //               ca.hls_rate(0.0, -0.49, -0.49);
 //               create_color(color_text_normal, ca.get_rgb() | (0xff << 24));
-//
-//
-//
-//
 //               ca.set_rgb(crBase);
 //               ca.hls_rate(0.0, -0.45, 0.11);
 //               create_color(color_border_hover, ca.get_rgb() | (0xff << 24));

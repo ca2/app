@@ -1001,10 +1001,6 @@ enum_trace_category particle::trace_category(const ::particle * pparticle) const
 //   get_tracer()(m_papplication, e_trace_level_fatal, etracecategory).format_output_arguments(scopedstrFormat, arguments);
 //
 //}
-//
-//
-//
-//
 //void particle::trace_arguments(enum_trace_level etracelevel, const_char_pointer pszFormat, va_list & arguments)
 //{
 //

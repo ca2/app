@@ -376,10 +376,6 @@ inline bool __sort(T1& t1, T2& t2)
 
 
 //
-//
-//
-//
-//
 //inline long long ansi_to_long_long(const_char_pointer psz, const_char_pointer *ppszEnd, int iBase)
 //{
 //

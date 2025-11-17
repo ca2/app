@@ -875,10 +875,6 @@ int_bool FILE_set_size(FILE* file, size_t iSize)
 
 
 
-//
-//
-//
-//
 //int_bool file_set_length(const ::scoped_string & scopedstrName,size_t iSize)
 //{
 //
@@ -903,10 +899,6 @@ int_bool FILE_set_size(FILE* file, size_t iSize)
 //   return true;
 //
 //}
-//
-//
-//
-//
 //
 //int_bool file_move(const_char_pointer lpszNewName,const_char_pointer lpszOldName)
 //{
@@ -1415,10 +1407,6 @@ return (HANDLE)i;		// FIXME:  This doesn't work under Win64
 //
 //}
 //
-//
-//
-//
-//
 //void hfile_set_size(HANDLE h, long long iSize)
 //{
 //
@@ -1734,10 +1722,6 @@ HANDLE hfile_create(const_char_pointer lpcszFileName, unsigned int dwDesiredAcce
 //   return true;
 //
 //}
-//
-//
-//
-//
 //::file::path dir::sys_temp()
 //{
 //
@@ -1791,10 +1775,6 @@ HANDLE hfile_create(const_char_pointer lpcszFileName, unsigned int dwDesiredAcce
 ////   return dwWrite == dwWritten && bOk != false;
 ////
 ////}
-//
-//
-//
-//
 //string file_system()->as_string(const ::file::path & path, character_count iReadAtMostByteCount)
 //{
 //
@@ -1874,10 +1854,6 @@ HANDLE hfile_create(const_char_pointer lpcszFileName, unsigned int dwDesiredAcce
 //   return bOk;
 //
 //}
-//
-//
-//
-//
 //int_bool file_path_is_equal(const ::scoped_string & scopedstr1, const ::scoped_string & scopedstr2)
 //{
 //
@@ -1920,10 +1896,6 @@ HANDLE hfile_create(const_char_pointer lpcszFileName, unsigned int dwDesiredAcce
 //   return true;
 //
 //}
-//
-//
-//
-//
 //bool file_copy_dup(const ::scoped_string & scopedstrNew, const ::scoped_string & scopedstrSrc, bool bOverwrite)
 //{
 //

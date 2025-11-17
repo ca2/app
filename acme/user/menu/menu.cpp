@@ -914,10 +914,6 @@ menu::~menu()
 //      ::user::interaction::_001OnDraw(pgraphics);
 //
 //   }
-//
-//
-//
-//
 //   void menu::on_message_left_button_down(::message::message * pmessage)
 //   {
 //

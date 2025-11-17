@@ -519,10 +519,6 @@ namespace hellobase
 //            return;
 //
 //      }
-//
-//
-//
-//
 //      ::color::color ca;
 //
 //

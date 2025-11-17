@@ -1700,10 +1700,6 @@ namespace axis
    //   return true;
 
    //}
-
-//
-
-
    void application::init()
    {
 
@@ -1721,10 +1717,6 @@ namespace axis
       //return estatus;
 
    }
-
-
-//
-
    //void application::term_application()
    //{
 

@@ -128,10 +128,6 @@
 //    virtual bool is_popup_window() const;
 //
 // };
-//
-//
-//
-//
 //    } // namespace user
 //
 //

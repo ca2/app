@@ -36,10 +36,6 @@ void CLASS_DECL_ACME __abort()
 
 
 
-//
-//
-//
-//
 //namespace android
 //{
 //

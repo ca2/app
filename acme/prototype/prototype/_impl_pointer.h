@@ -17,10 +17,6 @@ CLASS_DECL_ACME::critical_section * refdbg_cs();
 
 
 // ::ca::null_class back link to operational system oswindow.h
-//
-//
-//
-//
 // operational system nullptr/void itself to a windowing service
 //
 // Curitiba, inha-metro-win-ubuntu-mountain-lion-macos 4 de novembro de 2012

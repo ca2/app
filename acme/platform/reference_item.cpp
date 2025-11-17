@@ -306,10 +306,6 @@ CLASS_DECL_ACME::collection::index new_reference_item_serial()
 ////}
 //
 //
-//
-//
-//
-//
 //#if REFERENCING_DEBUGGING
 //
 //reference_count_debug * particle::reference_count_debug()

@@ -234,18 +234,10 @@
 //#include "tab_data.h"
 //#include "tab.h"
 //
-//
-//
-//
-//
 //namespace user
 //{
 //   
 //}
-//
-//
-//
-//
 //
 ////#include "button.h"
 //#include "frame_window.h"
@@ -324,10 +316,6 @@
 //*/
 //
 //
-//
-//
-//
-//
 //#include "network_configuration.h"
 ////#include "shell.h"
 ////#include "keyboard_layout_cfg.h"
@@ -344,10 +332,6 @@
 ////#include "impact_creator.h"
 //
 ////#include "job.h"
-//
-//
-//
-//
 ////#include "xfplayer_impact_line.h"
 ////#include "xfplayer_impact_lines.h"
 //
@@ -428,44 +412,16 @@
 //
 //
 //
-//
-//
-//
-//
 ////#include "slider.h"
 ////#include "step_slider.h"
 ////#include "elastic_slider.h"
 //
 //
-//
-//
-//
-//
 ////#include "image_manager.h"
 //
 ////#include "aura.h"
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 ////#include "aura/filesystem/filemanager/filemanager.h"
-//
-//
-//
-//
 ////#include "aura/user/netuser/_.h"
-//
-//
-//
-//
 //
 ////#include "form_mesh.h"
 //
@@ -519,18 +475,10 @@
 ////
 //
 //
-//
-//
-//
-//
 ////#include "edit_plain_text_impact.h"
 //
 //
 //#include "static_control.h"
-//
-//
-//
-//
 //#include "acme/constant/activate.h"
 //#include "aura/message/user.h"
 //#include "aura/message/timer.h"
@@ -546,10 +494,6 @@
 //
 //
 //#include "user.h"
-//
-//
-//
-//
 //#include "_impl.h"
 //
 //

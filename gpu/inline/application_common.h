@@ -54,15 +54,7 @@
 //  br_init_set_symbol(br_init_get_symbol());
 //
 //#endif
-//
-//
-//
-//
 //}
-//
-//
-//
-//
 //
 //#define __namespace_application_factory(APPID) \
 //::static_application_factory < application > g_applicationfactory(APPID);
@@ -73,10 +65,6 @@
 //#pragma comment(lib, "Dxva2.lib")
 //
 //#endif
-//
-//
-//
-//
 //#ifdef MAINAPPID
 //
 //

@@ -107,10 +107,6 @@ namespace curl
 //
 //   mem->buffer = malloc(1);
 //   mem->size   = 0;
-//
-//
-//
-//
 //   // make the http request.
 //   res = curl_easy_perform(curl_handle);
 //

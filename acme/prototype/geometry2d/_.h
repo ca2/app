@@ -1182,14 +1182,6 @@ DECLARE_ENUMERATION(e_align, enum_align);
 ////inline bool is_empty(::long_long_size & size) { return size.cx() <= 0 || size.cy() <= 0; }
 ////inline bool is_empty(::float_size & size) { return size.cx() <= 0.f || size.cy() <= 0.f; }
 ////inline bool is_empty(::double_size & size) { return size.cx() <= 0. || size.cy() <= 0.; }
-//
-//
-//
-//
-//
-//
-//
-//
 ////inline bool contains(const ::long_long_rectangle & rectangle, const ::int_point & point) { return ::rectangle_contains(rectangle, point.x, point.y); }
 ////inline ::long_long_rectangle & null(::long_long_rectangle & rectDst) { return ::null_rect(rectDst); }
 ////inline bool is_equal(const ::long_long_rectangle & rect1, const ::long_long_rectangle & rect2) { return ::rect_equals(rect1, rect2); }
@@ -1209,10 +1201,6 @@ DECLARE_ENUMERATION(e_align, enum_align);
 ////inline long long area(const ::long_long_rectangle & rectangle) { return ::area(&rectangle); }
 ////inline bool is_empty(const ::long_long_rectangle & rectangle) { return ::is_empty(&rectangle); }
 ////inline void swap_left_right(::long_long_rectangle & rectangle) noexcept { ::swap_left_right(&rectangle); }
-//
-//
-//
-//
 //
 ////inline bool contains(const ::float_rectangle & rectangle, const ::float_point & point) { return ::rectangle_contains(rectangle, point.x, point.y); }
 ////inline ::float_rectangle & null(::float_rectangle & rect) { return ::null_rect(rect); }
@@ -1236,10 +1224,6 @@ DECLARE_ENUMERATION(e_align, enum_align);
 ////inline float area(const ::float_rectangle& rectangle) { return ::area(&rectangle); }
 ////inline bool is_empty(const ::float_rectangle& rectangle) { return ::is_empty(&rectangle); }
 ////inline void swap_left_right(::float_rectangle& rectangle) noexcept { ::swap_left_right(&rectangle); }
-//
-//
-//
-//
 ////inline bool contains(const ::double_rectangle & rectangle, const ::double_point & point) { return ::rectangle_contains(rectangle, point.x, point.y); }
 ////inline ::double_rectangle & null(::double_rectangle & rect) { return ::null_rect(rect); }
 ////inline bool is_equal(const ::double_rectangle & rect1, const ::double_rectangle & rect2) { return ::rect_equals(rect1, rect2); }
@@ -1491,10 +1475,6 @@ DECLARE_ENUMERATION(e_align, enum_align);
 ////
 ////#endif
 //
-//
-//
-//
-//
 ////template < typename RECT1, typename RECT2 >
 ////inline void expand_rect(RECT1 & rectangle, const RECT2 & r)
 ////{
@@ -1705,11 +1685,7 @@ DECLARE_ENUMERATION(e_align, enum_align);
 ////   return "%f";
 ////
 ////}
-////
-//
-//
-//
-////
+//////
 ////namespace geometry
 ////{
 ////

@@ -61,10 +61,6 @@
 //
 //
 //
-//
-//
-//
-//
 //long long long_long_rectangle::width() const noexcept
 //{
 //   return right - left;
@@ -369,54 +365,6 @@
 //   return size().area();
 //
 //}
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //TEMPLATE double double_rectangle::width() const noexcept { return right - left; }
 //TEMPLATE double double_rectangle::height() const noexcept { return bottom - top; }
@@ -727,10 +675,6 @@
 //
 //   }
 //
-//
-//
-//
-//
 //  TEMPLATE void double_rectangle::CenterOf(const double_rectangle & RECT_TEMPLATE, ::double_size int_size)
 //
 //   {
@@ -759,10 +703,6 @@
 //
 //
 //   }
-//
-//
-//
-//
 //
 //  TEMPLATE double double_rectangle::minimum_signed_absolute_dimension(bool bNegativePreference) const noexcept
 //   {
@@ -839,10 +779,6 @@
 //
 //   double double_rectangle::minimum_absolute_dimension() const noexcept { return minimum(fabs(width()), fabs(height())); }
 //   double double_rectangle::maximum_absolute_dimension() const noexcept { return minimum(fabs(width()), fabs(height())); }
-//
-//
-//
-//
 //  TEMPLATE bool double_rectangle::contains_x(double x) const noexcept
 //   {
 //      return left <= x && x <= right;
@@ -871,10 +807,6 @@
 //      return RECT_TEMPLATE;
 //   }
 //
-//
-//
-//
-//
 //  TEMPLATE void double_rectangle::set(double d) noexcept
 //   {
 //
@@ -889,10 +821,6 @@
 //      return left == 0.0 && right == 0.0 && top == 0.0 && bottom == 0.0;
 //
 //   }
-//
-//
-//
-//
 //  TEMPLATE void double_rectangle::offset_x(double x) noexcept
 //   {
 //      left += x;

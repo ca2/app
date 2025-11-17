@@ -338,10 +338,6 @@
 //
 //
 //   }
-//
-//
-//
-//
 //   void interaction_base::create()
 //   {
 //
@@ -1001,10 +997,6 @@
 //      return statement;
 //
 //   }
-//
-//
-//
-//
 //} // user
 //
 //

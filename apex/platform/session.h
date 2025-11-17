@@ -26,19 +26,11 @@ namespace apex
 
 //
 //       ///__creatable(session);
-//
-//
-//
-//
 // //#if defined UNIVERSAL_WINDOWS
 // //
 // //      ::universal_windows::directx_framework_impact ^                          m_frameworkview;
 // //
 // //#endif
-//
-//
-//
-//
 //       //::aqua::session* m_paquasession;
 //       //::aura::session* m_paurasession;
 //       //::axis::session* m_paxissession;

@@ -867,28 +867,12 @@ namespace draw2d_cairo
 //
 //
 //#elif defined(LINUX)
-//
-//
-//
-//
 ////   bool image::print_window(::aura::draw_interface * puserinteraction, ::message::message * pmessage)
 ////   {
 ////
 ////      return true;
 ////
 ////   }
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -917,24 +901,12 @@ namespace draw2d_cairo
 //#elif defined(__ANDROID__)
 //
 //
-//
-//
-//
-//
 //   bool image::print_window(::aura::draw_interface * puserinteraction, ::message::message * pmessage)
 //   {
 //
 //      return true;
 //
 //   }
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //   bool image::update_window(::aura::draw_interface * puserinteraction, ::message::message * pmessage, bool bTransferBuffer)

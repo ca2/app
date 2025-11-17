@@ -9,7 +9,7 @@
 // //#include "SceneFoundry/graphics3d/model_i.h"
 // //#include <memory>
 // #include <optional>
-// #include <glm/glm.hpp>
+// 
 #include "bred/graphics3d/renderable.h"
 #include "bred/graphics3d/scene_object.h"
 

@@ -60,10 +60,6 @@
 //
 //
 //} // namespace user
-//
-//
-//
-//
 //typedef ::pointer<::windowing::window>window_pointer;
 //
 //
@@ -79,14 +75,6 @@
 //
 //#undef App
 //#define App(pparticle) (*(::get_app(pparticle))->cast < APP_TYPE >())
-//
-//
-//
-//
-//
-//
-//
-//
 //CLASS_DECL_CORE bool axis_init();
 //CLASS_DECL_CORE bool axis_term();
 //

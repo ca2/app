@@ -2,10 +2,6 @@
 // camilo on 2025-09-26 18:28 <3ThomasBorregaardSorensen!!
 
 #pragma once
-
-//#include <glm/glm.hpp>
-
-
 namespace gpu
 {
 

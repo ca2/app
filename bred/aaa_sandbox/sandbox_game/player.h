@@ -9,7 +9,7 @@
 
 //#include "SceneFoundry/graphics3d/include/window.h"
 
-#include <glm/glm.hpp>
+
 //#include <memory>
 namespace sandbox_game
 {

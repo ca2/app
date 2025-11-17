@@ -6099,10 +6099,6 @@ string payload::implode(const ::scoped_string & scopedstrGlue) const
 //}
 
 
-//
-//
-//
-//
 //property * payload::find_property_index(::iptr i) const
 //{
 //
@@ -6611,10 +6607,6 @@ bool payload::case_insensitive_array_contains(const ::scoped_string & scopedstr,
 
 
 
-//
-//
-//
-//
 //::payload payload::operator / (int i) const
 //{
 //   return as_int() / i;
@@ -6723,10 +6715,6 @@ bool payload::case_insensitive_array_contains(const ::scoped_string & scopedstr,
 //   }
 //
 //}
-//
-//
-//
-//
 //::payload operator / (double d, const class ::payload & payload)
 //{
 //   return double / payload.as_double();
@@ -6906,10 +6894,6 @@ bool payload::case_insensitive_array_contains(const ::scoped_string & scopedstr,
 //   return *this;
 //
 //}
-//
-//
-//
-//
 
 //
 //
@@ -6949,10 +6933,6 @@ bool payload::case_insensitive_array_contains(const ::scoped_string & scopedstr,
 //   operator =(*this + payload);
 //   return *this;
 //}
-//
-//
-//
-//
 
 
 
@@ -7008,10 +6988,6 @@ bool payload::case_insensitive_array_contains(const ::scoped_string & scopedstr,
 //   operator =(*this / payload);
 //   return *this;
 //}
-//
-//
-//
-//
 //
 //
 

@@ -275,10 +275,6 @@ const_char_pointer memory_counter_id(T * pthis)
 ////   return t->clone();
 ////
 ////}
-//
-//
-//
-//
 //template < typename T >
 //template < typename T2 >
 //inline pointer < T > & pointer < T >::clone(T2 * p)
@@ -409,10 +405,6 @@ const_char_pointer memory_counter_id(T * pthis)
 //   return iMultiplicator * iNumerator / iDenominator;
 //
 //}
-//
-//
-//
-//
 ////template < typename TYPE >
 ////::stream & read_container_as_parent(::stream & stream, pointer_array < TYPE > & a)
 ////{
@@ -483,15 +475,7 @@ const_char_pointer memory_counter_id(T * pthis)
 ////
 //
 //#endif // __cplusplus_winrt
-//
-//
-//
-//
 ////#ifndef __cplusplus_winrt
-//
-//
-//
-//
 //
 //
 

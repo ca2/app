@@ -1862,14 +1862,6 @@ string property_set_base::implode(const ::scoped_string & scopedstrGlue) const
 //   return *this;
 //
 //}
-//
-//
-//
-//
-//
-//
-//
-//
 //::property_set_base & property_set_base::operator = (const str_str_interface & set)
 //{
 //

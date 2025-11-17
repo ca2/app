@@ -70,10 +70,6 @@
 
 // Ubuntu : 	libglu1-mesa-dev
 //#include <GL/glu.h>
-
-//#include <glm/glm.hpp>
-
-
 #elif defined(MACOS)
 
 

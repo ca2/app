@@ -410,10 +410,6 @@ public:
 //   return *this;
 //
 //}
-//
-//
-//
-//
 //// template < typename FILE >
 //void text_stream < FILE >::raw_print(const ::scoped_string & scopedstr)
 //{
@@ -733,10 +729,6 @@ public:
 ////   ::__exchange(s, t);
 ////
 ////}
-//
-//
-//
-//
 //
 
 

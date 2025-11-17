@@ -147,10 +147,6 @@ namespace message
 //   stream.exchange(text.m_strText);
 //
 //}
-//
-//
-//
-//
 //void stream_exchange(byte2_stream & stream, ::message::open_url & openurl)
 //{
 //

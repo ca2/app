@@ -34,10 +34,6 @@ inline long long increment_reference_count(c_derived * pca);
 class subparticle;
 
 // ::ca::null_class back link to operational system oswindow.h
-//
-//
-//
-//
 // operational system nullptr/void itself to a windowing service
 //
 // Curitiba, inha-metro-win-ubuntu-mountain-lion-macos 4 de novembro de 2012
@@ -997,10 +993,6 @@ template < typename T, typename ...Args >
 //#endif
 //   }
 //}
-//
-//
-//
-//
 //
 //
 //

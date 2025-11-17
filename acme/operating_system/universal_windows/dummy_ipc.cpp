@@ -142,10 +142,6 @@
 //      };
 //
 //
-//
-//
-//
-//
 //      rx::rx(::particle * pparticle) :
 //         matter(pparticle),
 //         base(pparticle)
@@ -554,9 +550,5 @@
 //
 //
 //} // namespace acme
-//
-//
-//
-//
 //
 //

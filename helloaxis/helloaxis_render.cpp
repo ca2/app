@@ -376,10 +376,6 @@ namespace helloaxis
 //            return;
 //
 //      }
-//
-//
-//
-//
 //      ::color::color ca;
 //
 //

@@ -2529,14 +2529,6 @@ void object::_001OnUpdate(::message::message* pmessage)
 
 
 
-//
-//
-//
-//
-//
-
-
-
 
 
 struct context_object_test_struct :
@@ -3899,10 +3891,6 @@ bool object::IsSerializable() const
 //
 //   if (bSync)
 //   {
-//
-//
-//
-//
 //   }
 //
 //

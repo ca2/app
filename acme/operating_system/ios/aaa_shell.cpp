@@ -1507,10 +1507,6 @@ pdirectorysystem->is(strPath))
 //
 //      }
 //
-//
-//
-//
-//
 //      if (case_insensitive_string_ends(imagekey.m_strPath, ".acme"))
 //      {
 //         string str = file()->as_string(imagekey.m_strPath);

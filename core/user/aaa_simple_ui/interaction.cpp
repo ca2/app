@@ -792,18 +792,6 @@ namespace simple_ui
 //
 //      }
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //      // top
 //      ::memory_copy(pc, pa, sizeof(pb));
 //      pc[2].x = pb[1].x;
@@ -909,10 +897,6 @@ namespace simple_ui
 //
 //
 //      }
-//
-//
-//
-//
 //
 //      {
 //

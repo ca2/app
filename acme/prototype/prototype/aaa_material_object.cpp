@@ -152,10 +152,6 @@
 //   pprocedurea->add(procedure);
 //
 //}
-//
-//
-//
-//
 //::long_long_array & material_object::idarray() const
 //{
 //

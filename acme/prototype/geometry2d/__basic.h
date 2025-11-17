@@ -383,10 +383,6 @@ inline RECTANGLE & rate_deflate(RECTANGLE & rectangle, double dLeftRate, double 
 //template < primitive_size SIZE >
 //inline ::string as_string(const SIZE & size);
 //
-//
-//
-//
-//
 
 
 

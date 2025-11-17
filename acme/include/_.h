@@ -8,10 +8,6 @@
 //        2020 - 08 - 20 07:41 / 13, 915kb / 137, 668kb / 9, 715kb------------------ - --
 //        rebuild mark / ---------------- - ------------------------- - -------------------------------- - --
 //        ------------------ - --
-//
-//
-//
-//
 //        ------------------------------------------------------------------------------
 //        |                                                                            |
 //        |                                                                            |
@@ -49,10 +45,6 @@
 //
 //        ca2/./acme/C++/C/Assembly/Huffman Machine/...
 //        ...Hardware/Universe/Multiverse stack
-//
-//
-//
-//
 //        c(s)t(s)<tb(s)!!
 //
 //01234567-?8888?+? ??? ??? ????? ??????????? ????? ?????????? ??????? ???????????????????????
@@ -231,10 +223,6 @@
 //#endif
 
 
-//
-//
-//
-//
 //#include "acme/memory/allocation.h"
 //
 //#include "acme/platform/reference_count_debug.h"
@@ -250,14 +238,6 @@
 //#include "acme/memory/allocate_processor_cache_oriented.h"
 //
 //#include "acme/platform/number.h"
-//
-//
-//
-//
-//
-//
-//
-//
 //#include "acme/prototype/prototype/transfer.h"
 //
 //

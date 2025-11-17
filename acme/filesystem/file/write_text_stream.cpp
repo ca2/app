@@ -129,11 +129,7 @@ write_text_stream::~write_text_stream()
 
 //   }
 //   else
-//   {
-
-//
-
-//   }
+//   {//   }
 
 //   ::copy(t, str);
 
@@ -711,8 +707,4 @@ void write_text_stream::print(const ::range < const_char_pointer >& range)
 //
 //
 ////#include "_impl_write_text_stream.h"
-//
-//
-//
-//
 //

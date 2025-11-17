@@ -109,10 +109,6 @@
 //      return this->equals_start_count(range, start, count, ::comparison::comparison < ITEM >());
 //
 //   }
-//
-//
-//
-//
 //   using BASE_RANGE::_find;
 //
 //   constexpr const_iterator _find(const CONST_RAW_RANGE & range) const
@@ -461,10 +457,6 @@
 //      return this->skip_start_count(item, start, count, ::comparison::comparison < ITEM >());
 //
 //   }
-//
-//
-//
-//
 //   using BASE_RANGE::_rear_find_item;
 //
 //   constexpr const_iterator _rear_find_item(const ITEM & item) const

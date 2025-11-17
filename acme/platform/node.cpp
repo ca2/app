@@ -4321,10 +4321,6 @@ bool node::are_any_shared_libraries_mapped(const ::file::path_array_base & patha
 //         return false;
 //
 //      }
-//
-//
-//
-//
 //      char* pszRealPath = ::pfilesystemcacheitem(scopedstr, NULL);
 //
 //      if (scopedstrRealPath == NULL)

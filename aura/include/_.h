@@ -6,10 +6,6 @@
 //  C++ language with the aim to help developers create awesome apps for users.
 //
 //  ca2/./aura/C++/C/Assembly/Hardware/Universe/Multiverse stack
-//
-//
-//
-//
 //  c(s)t(s)<tb(s)!!
 //
 #pragma once
@@ -1056,10 +1052,6 @@ namespace aura
 //
 //
 //} // namespace write_text
-//
-//
-//
-//
 //
 //
 ////

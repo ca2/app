@@ -4,10 +4,6 @@
 //#include "acme/filesystem/file/serializable.h"
 //#include "acme/memory/memory.h"
 
-//
-
-
-
 class bstring_manager;
 class read_only_memory;
 class memory;

@@ -16,8 +16,8 @@
 #include "gpu/cube.h"
 #include "gpu/gltf/_constant.h"
 #include <glad/glad.h>
-//#include <glm/glm.hpp>
-//#include <glm/gtc/matrix_transform.hpp>
+//
+//
 #include "gpu/context.h"
 //#include "::gpu::gltf.h"
 //#include "cube.h"

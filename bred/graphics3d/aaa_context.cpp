@@ -23,7 +23,7 @@
 #include "bred/gpu/frame.h"
 #include "bred/gpu/layer.h"
 #include "bred/gpu/types.h"
-#include "glm/mat4x4.hpp"
+
 #include "port/graphics3d/assimp/assimp/code/Common/StbCommon.h"
 
 

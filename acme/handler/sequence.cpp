@@ -202,10 +202,6 @@
 //
 //}
 //
-//
-//
-//
-//
 //void sequencer_payload::add_result(const ::payload & payload)
 //{
 //

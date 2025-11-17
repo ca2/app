@@ -107,7 +107,3 @@ namespace windowing
 //
 //
 //} // namespace windowing
-//
-//
-//
-//

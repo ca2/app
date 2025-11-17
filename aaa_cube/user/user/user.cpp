@@ -954,10 +954,6 @@ void user::destroy()
 //   //   return pformdocument;
 //
 //   //}
-//
-//
-//
-//
 //   //::pointer<::form_document>user::create_child_form(::particle * pparticle, ::user::form_callback * pcallback, ::pointer<::user::interaction>puserinteractionParent, ::payload payload, ::payload varArgs)
 //   //{
 //
@@ -1510,10 +1506,6 @@ void user::destroy()
 //
 //
 //
-//
-//
-//
-//
 //   //::user::document * application::hold(::pointer<::user::interaction>pinteraction)
 //   //{
 //
@@ -1561,10 +1553,6 @@ void user::destroy()
 //      //m_pdocs->m_ptemplate_html->open_document_file(get_app(), itema[0]->get_user_path());
 //
 //   }
-//
-//
-//
-//
 //   //void user::initialize_bergedge_application_interface()
 //   //{
 //

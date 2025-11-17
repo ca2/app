@@ -30,10 +30,6 @@
 //   Window   m_window;
 //
 //};
-//
-//
-//
-//
 //struct tagEXTLOGPEN :
 //   public gdi_object
 //{
@@ -63,10 +59,6 @@
 //	unsigned int        m_uiSize;
 //	unsigned char *      m_puchData;
 //};
-//
-//
-//
-//
 //struct  tagFONTA :
 //   public gdi_object,
 //   public tagLOGFONTA

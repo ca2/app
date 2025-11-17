@@ -255,10 +255,6 @@
 //         ptarget->_001SendCommandProbe(this);
 //
 //      }
-//
-//
-//
-//
 //   void channel::_001SendCommand(::message::command * pcommand)
 //   {
 //

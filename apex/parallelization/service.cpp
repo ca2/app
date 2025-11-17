@@ -93,10 +93,6 @@ void service::stop_service()
 //}
 //
 //
-//
-//
-//
-//
 //bool service::get_run_service()
 //{
 //

@@ -93,10 +93,6 @@
 //		::cast < ::gpu_directx11::device > pgpudevice = m_pgpucontext->m_pgpudevice;
 //
 //		m_pdxgiswapchain = pgpudevice->m_pdxgiswapchain1;
-//
-//
-//
-//
 //		//      ::cast < ::gpu_directx11::renderer > pgpurenderer = pgpucontext->m_pgpurenderer;
 //
 //				//::cast < ::gpu_directx11::swap_chain_render_target > pswapchainrendertargetview = pgpurenderer->m_prendertargetview;

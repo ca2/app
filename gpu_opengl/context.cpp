@@ -20,7 +20,7 @@
 #include "bred/gpu/frame.h"
 #include "bred/gpu/layer.h"
 #include "bred/gpu/types.h"
-//#include "glm/mat4x4.hpp"
+//
 //#include <assimp/Common/StbCommon.h>
 
 

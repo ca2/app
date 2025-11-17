@@ -105,10 +105,6 @@ inline ::hash32 as_hash32 < const wide_string & >(const wide_string & widestr)
 //   return strLeft + strRight;
 //
 //}
-//
-//
-//
-//
 //template < primitive_character CHARACTER, primitive_character CHARACTER2 >
 //inline ::string_base < CHARACTER2 > operator +(const CHARACTER chLeft, const ::string_base < CHARACTER2 > & strRight)
 //{

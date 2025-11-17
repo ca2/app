@@ -25,10 +25,6 @@
 //
 //#include "tab_impact.h"
 //
-//
-//
-//
-//
 //#include "application.h"
 //
 //

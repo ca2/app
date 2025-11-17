@@ -4178,10 +4178,6 @@ bool str::x_contains(const ::scoped_string& scopedstr, const ::string_array_base
 //
 //}
 //
-//
-//
-//
-//
 
 
 //namespace str
@@ -4285,10 +4281,6 @@ public:
 //
 //}
 //
-//
-//
-//
-//
 //ansi_string & str::assign(ansi_string & ansistrDst, const ::payload & payload)
 //{
 //
@@ -4317,10 +4309,6 @@ public:
 //   return widestrDst;
 //
 //}
-//
-//
-//
-//
 //wd16_string & str::assign(wd16_string & widestrDst, const ::payload & payload)
 //{
 //

@@ -3,7 +3,7 @@
 #pragma once
 
 
-#include <glm/glm.hpp>
+
 
 
 namespace typeface_freetype

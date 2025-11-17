@@ -220,10 +220,6 @@
 //
 //
 //}
-//
-//
-//
-//
 //template < typename TYPE >
 //inline binary_stream & operator <<(binary_stream & s, const pointer_array < TYPE > & a)
 //{
@@ -926,10 +922,6 @@
 //   s.exchange("left", rectangle.left()); s.exchange("top", rectangle.top()); s.exchange("right", rectangle.right()); s.exchange("bottom", rectangle.bottom());
 //}
 //
-//
-//
-//
-//
 //inline void __exchange(::binary_stream & s, ::int_size & size)
 //{
 //   s.exchange("cx", size.cx()); s.exchange("cy", size.cy());
@@ -942,11 +934,7 @@
 ////   s.exchange("cx", size.cx()); s.exchange("cy", size.cy());
 ////}
 ////
-////
-//
-//
-//
-//inline void __exchange(::binary_stream & s, ::float_size & size)
+////inline void __exchange(::binary_stream & s, ::float_size & size)
 //{
 //
 //   s.exchange("cx", size.cx()); s.exchange("cy", size.cy());
@@ -959,10 +947,6 @@
 //{
 //   s.exchange("cx", size.cx()); s.exchange("cy", size.cy());
 //}
-//
-//
-//
-//
 //
 //inline void __exchange(::binary_stream & s, ::int_point & point)
 //{
@@ -1116,10 +1100,6 @@
 //  }
 //
 //}
-//
-//
-//
-//
 //template < typename TYPE >
 //inline void payload_stream::var_exchange(const ::atom & atom, TYPE & t)
 //{

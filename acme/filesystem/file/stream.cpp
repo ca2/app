@@ -290,10 +290,6 @@ bool  stream_base::is_version(int i)
 ////
 ////}
 //
-//
-//
-//
-//
 //stream::~stream()
 //{
 //
@@ -347,10 +343,6 @@ bool  stream_base::is_version(int i)
 //   return fmtflagsOld;
 //
 //}
-//
-//
-//
-//
 //
 
 
@@ -498,10 +490,6 @@ bool  stream_base::is_version(int i)
 //   write((const ::payload &) property);
 //
 //}
-//
-//
-//
-//
 //
 //
 //void stream::write(const_char_pointer psz)

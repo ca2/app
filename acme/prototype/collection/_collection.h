@@ -16,10 +16,6 @@ inline ::collection::count __iterable_count(const ITERABLE & iterable);
 //   return a.Size;
 //
 //}
-//
-//
-//
-//
 //#endif
 
 

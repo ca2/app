@@ -320,8 +320,8 @@ namespace graphics3d
       //   //{
 
       //   //   m_pcamera->m_matrixImpact = glm::lookAtRH(m_pcamera->m_locationPosition,
-      //   //      m_pcamera->m_locationPosition + m_pcamera->m_poleFront,
-      //   //      m_pcamera->m_poleWorldUp);
+      //   //      m_pcamera->m_locationPosition + m_pcamera->m_sequence3Front,
+      //   //      m_pcamera->m_sequence3WorldUp);
 
       //   //}
       //   // else
@@ -332,7 +332,7 @@ namespace graphics3d
       //   {
       //      matrixImpact =
       //         glm::lookAtRH(pcameraScene->m_locationPosition,
-      //                       pcameraScene->m_locationPosition + pcameraScene->m_poleFront, pcameraScene->m_poleWorldUp);
+      //                       pcameraScene->m_locationPosition + pcameraScene->m_sequence3Front, pcameraScene->m_sequence3WorldUp);
       //      // matrixImpact[2][0] = -matrixImpact[2][0];
       //      // matrixImpact[2][1] = -matrixImpact[2][1];
       //      // matrixImpact[2][2] = -matrixImpact[2][2];
@@ -342,12 +342,12 @@ namespace graphics3d
       //   {
       //      matrixImpact =
       //         glm::lookAtRH(pcameraScene->m_locationPosition,
-      //                       pcameraScene->m_locationPosition + pcameraScene->m_poleFront, pcameraScene->m_poleWorldUp);
+      //                       pcameraScene->m_locationPosition + pcameraScene->m_sequence3Front, pcameraScene->m_sequence3WorldUp);
       //   }
       //   pcameraScene->m_matrixImpact = matrixImpact;
       //   //}
 
-      //   pcameraScene->m_matrixAntImpact = glm::inverse(pcameraScene->m_matrixImpact);
+      //   pcameraScene->m_matrixInversedImpact = glm::inverse(pcameraScene->m_matrixImpact);
 
       //}
 

@@ -120,11 +120,74 @@ struct quaternion_type
       return {this->w * inv, this->x * inv, this->y * inv, this->z * inv};
    }
 
+
+   quaterion_type & set_yaw_and_pitch(const angle_type<FLOATING> &yaw, const angle_type<FLOATING> &pitch)
+   {
+
+      // half-angles
+      FLOATING hy = yaw * (FLOATING) 0.5;
+      FLOATING hp = pitch * (FLOATING) 0.5;
+
+      FLOATING cy = cos(hy);
+      FLOATING sy = sin(hy);
+
+      FLOATING cp = cos(hp);
+      FLOATING sp = sin(hp);
+
+      // yaw around Y: (cy, 0, sy, 0)
+      // pitch around X: (cp, sp, 0, 0)
+
+      auto &  q = *this;
+
+      q.w = cy * cp - sy * sp * (FLOATING)0.0; // simplified, no roll term
+      q.x = sp * cy;
+      q.y = sy * cp;
+      q.z = sy * sp * (FLOATING)0.0; // zero because no roll
+
+      // Full combined formula:
+      q.w = cy * cp;
+      q.x = cp * sp;
+      q.y = sy * cp;
+      q.z = sy * sp;
+
+   }
+
+
+   constexpr FLOATING pitch() const
+   {
+
+      // pitch (rotation around X axis)
+
+      auto sinp = (FLOATING) 2 * (this->w * this->x + this->y * this->z);
+      
+      auto pitch = std::asin(clampd(sinp, (FLOATING) - 1.0, (FLOATING) 1.0));
+
+      return pitch;
+
+   }
+
+
+   constexpr FLOATING yaw() const
+   {
+
+      // yaw (rotation around Y axis)
+      
+      auto siny_cosp = (FLOATING)2 * (this->w * this->y - this->z * this->x);
+      
+      auto cosy_cosp = (FLOATING)1 - (FLOATING)2 * (this->x * this->x + this->y * this->y);
+      
+      auto yaw = std::atan2(siny_cosp, cosy_cosp);
+
+      return yaw;
+
+   }
+
 };
-
-
 
 
 using float_quaternion = quaternion_type<float>;
 using double_quaternion = quaternion_type<double>;
+
+
+
 

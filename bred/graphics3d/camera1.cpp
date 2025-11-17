@@ -43,7 +43,7 @@ namespace graphics3d
 
       m_fPitch = pitch;
 
-      m_poleWorldUp = { 0.0f, 1.0f, 0.0f };
+      m_sequence3WorldUp = { 0.0f, 1.0f, 0.0f };
 
       m_fZoom = 75.0f;
 
@@ -65,7 +65,7 @@ namespace graphics3d
 
       m_fPitch = asin(direction.y);
 
-      m_poleWorldUp = { 0.0f, 1.0f, 0.0f };
+      m_sequence3WorldUp = { 0.0f, 1.0f, 0.0f };
       
       m_fZoom = glm::radians(75.0f);
       
@@ -104,13 +104,13 @@ namespace graphics3d
       auto velocity = m_fMovementSpeed * deltaTime;  // Use movement speed
 
       if (direction == FORWARD)
-         m_locationPosition += m_poleFront * velocity;
+         m_locationPosition += m_sequence3Front * velocity;
       if (direction == BACKWARD)
-         m_locationPosition -= m_poleFront * velocity;
+         m_locationPosition -= m_sequence3Front * velocity;
       if (direction == LEFT)
-         m_locationPosition -= m_poleRight * velocity;
+         m_locationPosition -= m_sequence3Right * velocity;
       if (direction == RIGHT)
-         m_locationPosition += m_poleRight * velocity;
+         m_locationPosition += m_sequence3Right * velocity;
 
    }
 
@@ -230,11 +230,11 @@ namespace graphics3d
       front.x = cos(m_fPitch) * cos(m_fYaw);
       front.y = sin(m_fPitch);
       front.z = cos(m_fPitch) * sin(m_fYaw);
-      this->m_poleFront = glm::normalize(front);
+      this->m_sequence3Front = glm::normalize(front);
 
       // Re-calculate the right and up vector
-      this->m_poleRight = glm::normalize(glm::cross(this->m_poleFront, m_poleWorldUp));
-      this->m_poleUp = glm::normalize(glm::cross(this->m_poleRight, this->m_poleFront));
+      this->m_sequence3Right = glm::normalize(glm::cross(this->m_sequence3Front, m_sequence3WorldUp));
+      this->m_sequence3Up = glm::normalize(glm::cross(this->m_sequence3Right, this->m_sequence3Front));
 
    }
 
@@ -263,11 +263,11 @@ namespace graphics3d
 
       //if (m_pengine->m_fYScale < 0.f)
       //{
-      //   return glm::lookAtRH(m_locationPosition, m_locationPosition + m_poleFront, m_poleUp);
+      //   return glm::lookAtRH(m_locationPosition, m_locationPosition + m_sequence3Front, m_sequence3Up);
       //}
       //else
       {
-         return glm::lookAt(m_locationPosition, m_locationPosition + m_poleFront, m_poleUp);
+         return glm::lookAt(m_locationPosition, m_locationPosition + m_sequence3Front, m_sequence3Up);
 
       }
 
@@ -294,16 +294,16 @@ namespace graphics3d
       const float teleportDistance = 0.40f; // Set teleport distance to 50 units
 
       if (direction == FORWARD) {
-         m_locationPosition += m_poleFront * teleportDistance;
+         m_locationPosition += m_sequence3Front * teleportDistance;
       }
       else if (direction == BACKWARD) {
-         m_locationPosition -= m_poleFront * teleportDistance;
+         m_locationPosition -= m_sequence3Front * teleportDistance;
       }
       else if (direction == LEFT) {
-         m_locationPosition -= m_poleRight * teleportDistance;
+         m_locationPosition -= m_sequence3Right * teleportDistance;
       }
       else if (direction == RIGHT) {
-         m_locationPosition += m_poleRight * teleportDistance;
+         m_locationPosition += m_sequence3Right * teleportDistance;
       }
    }
 

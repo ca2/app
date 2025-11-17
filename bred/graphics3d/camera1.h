@@ -34,13 +34,13 @@ namespace graphics3d
 		// Deadzone
 		float				m_MouseDeadZone;
 		// Inertia
-		floating_sequence3				m_poleVelocity;
+		floating_sequence3				m_sequence3Velocity;
 		// Camera attributes
 		floating_sequence3				m_locationPosition;
-		floating_sequence3				m_poleFront{ 0.0f, 0.0f, -1.0f };  // Camera direction (forward vector)
-		floating_sequence3				m_poleUp{ 0.0f, 1.0f, 0.0f };     // Up vector
-		floating_sequence3				m_poleRight{ 1.0f, 0.0f, 0.0f };   // Right vector (cross product)
-		floating_sequence3				m_poleWorldUp;
+		floating_sequence3				m_sequence3Front{ 0.0f, 0.0f, -1.0f };  // Camera direction (forward vector)
+		floating_sequence3				m_sequence3Up{ 0.0f, 1.0f, 0.0f };     // Up vector
+		floating_sequence3				m_sequence3Right{ 1.0f, 0.0f, 0.0f };   // Right vector (cross product)
+		floating_sequence3				m_sequence3WorldUp;
 
 		// Euler angles
 		float				m_fYaw = 0.0f;

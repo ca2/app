@@ -191,7 +191,7 @@ namespace graphics3d
       for (int i = 0; i < count; ++i)
       {
 
-         float angle = i * ::two_π<float> / count;
+         float angle = i * _2πf / count;
 
          floating_sequence3 pos = {radius * std::cos(angle), height, radius * std::sin(angle)};
 
@@ -200,7 +200,7 @@ namespace graphics3d
 
          auto ppointlight = this->create_point_light(intensity, 0.1f, color);
 
-         ppointlight->transform().m_vec3Position = pos;
+         ppointlight->transform().m_sequence3Position = pos;
 
          informationf("Placed point light at (%0.2f, %0.2f,%0.2f)", pos.x, pos.y, pos.z);
 
@@ -377,9 +377,9 @@ namespace graphics3d
       auto rot = setObject.get("rotation", ::float_array_base{0.f, 0.f, 0.f});
       auto scl = setObject.get("scale", ::float_array_base{1.f, 1.f, 1.f});
 
-      pscenerenderable->transform().m_vec3Position = {pos[0], pos[1], pos[2]};
-      pscenerenderable->transform().m_vec3Rotation = {rot[0], rot[1], rot[2]};
-      pscenerenderable->transform().m_vec3Scale = {scl[0], scl[1], scl[2]};
+      pscenerenderable->transform().m_sequence3Position = {pos[0], pos[1], pos[2]};
+      pscenerenderable->transform().m_sequence3Rotation = {rot[0], rot[1], rot[2]};
+      pscenerenderable->transform().m_sequence3Scale = {scl[0], scl[1], scl[2]};
 
       informationf("Loaded GameObject '%s' - Pos: (%0.2f, %0.2f, %0.2f), Rot: (%0.2f, %0.2f, %0.2f), Scale: (%0.2f, "
                    "%0.2f, %0.2f)",
@@ -552,8 +552,8 @@ namespace graphics3d
       if (m_pcameraDefault)
       {
 
-         m_pimmersionlayer->m_pengine->m_transform.m_vec3Position = m_pcameraDefault->position();
-         m_pimmersionlayer->m_pengine->m_transform.m_vec3Rotation = m_pcameraDefault->rotation();
+         m_pimmersionlayer->m_pengine->m_transform.m_sequence3Position = m_pcameraDefault->position();
+         m_pimmersionlayer->m_pengine->m_transform.m_sequence3Rotation = m_pcameraDefault->rotation();
       }
    }
 
@@ -725,7 +725,7 @@ namespace graphics3d
       auto ppointlight = øallocate ::graphics3d::point_light;
       m_pointlighta.add(ppointlight);
       ppointlight->m_color = color;
-      ppointlight->m_transform.m_vec3Scale.x = radius;
+      ppointlight->m_transform.m_sequence3Scale.x = radius;
       // gameObj->m_pointLight =
       ppointlight->m_fLightIntensity = intensity;
       return ppointlight;

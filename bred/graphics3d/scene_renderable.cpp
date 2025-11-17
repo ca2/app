@@ -84,7 +84,7 @@ namespace graphics3d
    void scene_renderable::translate(const floating_sequence3 &floating_sequence3)
    {
       
-      transform().m_vec3Position = floating_sequence3; 
+      transform().m_sequence3Position = floating_sequence3; 
    
    }
 
@@ -92,7 +92,7 @@ namespace graphics3d
    void scene_renderable::scale(const floating_sequence3 &floating_sequence3)
    {
       
-      transform().m_vec3Scale = floating_sequence3; 
+      transform().m_sequence3Scale = floating_sequence3; 
    
    }
 

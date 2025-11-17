@@ -74,9 +74,9 @@ namespace graphics3d
    struct CLASS_DECL_BRED transform
    {
       //::graphics3d::transform() = default;
-      floating_sequence3 m_vec3Position{};
-      floating_sequence3 m_vec3Rotation{};
-      floating_sequence3 m_vec3Scale{1.f};
+      floating_sequence3 m_sequence3Position{};
+      floating_sequence3 m_sequence3Rotation{};
+      floating_sequence3 m_sequence3Scale{1.f};
 
 
       floating_matrix4 getMatrix() const;

@@ -275,11 +275,11 @@ namespace graphics3d
       //if (pcameraScene)
       //{
 
-      //   m_transform.m_vec3Position = pcameraScene->m_locationPosition;
+      //   m_transform.m_sequence3Position = pcameraScene->m_locationPosition;
 
-      //   m_transform.m_vec3Rotation.x = pcameraScene->m_fPitch;
+      //   m_transform.m_sequence3Rotation.x = pcameraScene->m_fPitch;
 
-      //   m_transform.m_vec3Rotation.y = pcameraScene->m_fYaw;
+      //   m_transform.m_sequence3Rotation.y = pcameraScene->m_fYaw;
 
       //}
 
@@ -357,9 +357,9 @@ namespace graphics3d
    floating_matrix4 engine::model_matrix(::graphics3d::transform& transform)
    {
 
-      auto translation = transform.m_vec3Position;
-      auto rotation = transform.m_vec3Rotation;
-      auto scale = transform.m_vec3Scale;
+      auto translation = transform.m_sequence3Position;
+      auto rotation = transform.m_sequence3Rotation;
+      auto scale = transform.m_sequence3Scale;
 
       scale.z = scale.z * m_fYScale;
       //floating_matrix4 makeViewMatrix(floating_sequence3 translation, floating_sequence3 rotationEulerDegrees, )

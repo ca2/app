@@ -27,7 +27,7 @@ namespace graphics3d
    floating_sequence3 camera::position()
    {
 
-      return m_vec3Position;
+      return m_sequence3Position;
 
    }
 
@@ -35,7 +35,7 @@ namespace graphics3d
    floating_sequence3 camera::rotation()
    {
 
-      return m_vec3Rotation;
+      return m_sequence3Rotation;
 
    }
 

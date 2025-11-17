@@ -2,30 +2,22 @@
 #pragma once
 
 
-// two_pi two_π constant for different floating point types
-template<typename T>
-struct two_π_impl;
+static constexpr long double πl =
+   3.141592653589793238462643383279502884197169399375105820974944592307816406286208998628034825342117067982148086513282306647093844609550582231725359408128481117450284102701938521105559644622948954930381964428810975665933446128475648233786783165271201909145648566923460348610454326648213393607260249141273724587l;
 
-template<>
-struct two_π_impl<float>
-{
-   static constexpr float payload = 6.283185307179586476925286766559f; // 2π
-};
 
-template<>
-struct two_π_impl<double>
-{
-   static constexpr double payload = 6.283185307179586476925286766559;
-};
+static constexpr double π =
+   3.141592653589793238462643383279502884197169399375105820974944592307816406286208998628034825342117067982148086513282306647093844609550582231725359408128481117450284102701938521105559644622948954930381964428810975665933446128475648233786783165271201909145648566923460348610454326648213393607260249141273724587;
 
-template<>
-struct two_π_impl<long double>
-{
-   static constexpr long double payload = 6.283185307179586476925286766559L;
-};
 
-template<typename T>
-inline constexpr T two_π = two_π_impl<T>::payload;
+static constexpr float πf =
+   3.141592653589793238462643383279502884197169399375105820974944592307816406286208998628034825342117067982148086513282306647093844609550582231725359408128481117450284102701938521105559644622948954930381964428810975665933446128475648233786783165271201909145648566923460348610454326648213393607260249141273724587f;
+
+
+static constexpr long double _2πl = 2.0l * πl;
+static constexpr double _2π = 2.0 * π;
+static constexpr double _2πf = 2.0f * πf;
+
 
 namespace geometry
 {
@@ -41,3 +33,55 @@ namespace geometry
    }
 
 } // namespace geometry
+
+
+constexpr long double degrees_to_radians(long double degrees)
+{ 
+   
+   return degrees * πl / 180.0l; 
+
+}
+
+
+constexpr double degrees_to_radians(double degrees)
+{
+   
+   return degrees * π / 180.0; 
+
+}
+
+
+constexpr float degrees_to_radians(float degrees)
+{ 
+   
+   return degrees * πf / 180.0f; 
+
+}
+
+
+constexpr long double radians_to_degrees(long double radians)
+{
+   
+   return radians * 180.0l / πl;  
+
+}
+
+
+constexpr double radians_to_degrees(double radians)
+{
+   
+   return radians * 180.0 / π; 
+
+}
+
+
+
+constexpr float radians_to_degrees(float radians)
+{
+   
+   return radians * 180.0f / πf; 
+
+}
+
+
+

@@ -34,7 +34,7 @@
 #include <EGL/eglplatform.h>
 
 
-#elif defined(LINUX) || defined(FREEBSD) || defined(OPENBSD) || defined(NETBSD)
+#elif defined(LINUX) || defined(__BSD__)
 
 
 //#define __GPU_OPENGL_USE_EGL
@@ -83,7 +83,9 @@
 //#include <GLFW/glfw3.h>
 
 // Ubuntu : 	libglu1-mesa-dev
-//#include <GL/glu.h>#endif
+//#include <GL/glu.h>
+ 
+#endif
 
 
 #elif defined(MACOS)
@@ -103,7 +105,7 @@
 //#include <OpenGL/CGLTypes.h>
 
 
-#else
+#elif defined(WINDOWS_DESKTOP)
 
 
 //#include <gl/glew.h>
@@ -113,6 +115,11 @@
 #endif
 #include <glad/glad.h>
 
+
+#else
+
+
+#error "Not yet supported OpenGL include"
 
 #endif
 

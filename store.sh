@@ -84,7 +84,7 @@ if [ "$platform" = 'freebsd' ]; then
 
 elif [ "$platform" = 'linux' ]; then
 
-   url='https://linux.ca2.store/store'
+   url="https://linux.ca2.store/store_$(uname -m)"
 
 elif [ "$platform" = 'netbsd' ]; then
 

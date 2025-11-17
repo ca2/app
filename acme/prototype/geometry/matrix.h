@@ -563,6 +563,21 @@ inline matrix_type mul_avx2(const matrix_type &B) const
    }
 
 
+   // ------------------------------
+   // Translation
+   // ------------------------------
+   static matrix_type rotation(const quaternion_type<FLOATING> &q)
+   {
+
+      matrix_type m;
+
+      m = q;
+
+      return m;
+
+   }
+
+
    //static matrix_type scale(const sequence_type<FLOATING, DIMENSION>& m_coordinatea) {
    //   matrix_type result;
    //   ::memory_set(result.m, 0, sizeof(FLOATING) * SQUARED_DIMENSION);

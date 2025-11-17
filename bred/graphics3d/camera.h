@@ -67,7 +67,6 @@ namespace graphics3d
       inline float_angle yaw() { return m_quaternionRotation.yaw(); }
       inline float_angle pitch() { return m_quaternionRotation.pitch(); }
 
-      virtual ::block as_block();
 
 
 	};

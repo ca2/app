@@ -277,9 +277,9 @@ namespace graphics3d
 
       //   m_transform.m_sequence3Position = pcameraScene->m_locationPosition;
 
-      //   m_transform.m_sequence3Rotation.x = pcameraScene->m_fPitch;
+      //   m_transform.m_quaternionRotation.x = pcameraScene->m_fPitch;
 
-      //   m_transform.m_sequence3Rotation.y = pcameraScene->m_fYaw;
+      //   m_transform.m_quaternionRotation.y = pcameraScene->m_fYaw;
 
       //}
 
@@ -358,7 +358,7 @@ namespace graphics3d
    {
 
       auto translation = transform.m_sequence3Position;
-      auto rotation = transform.m_sequence3Rotation;
+      auto rotation = transform.m_quaternionRotation;
       auto scale = transform.m_sequence3Scale;
 
       scale.z = scale.z * m_fYScale;
@@ -536,7 +536,7 @@ namespace graphics3d
                auto &pcameraScene = m_pimmersionlayer->m_pscene->m_pcameraScene;
                pdatabaseclient->datastream()->set("input", m_pinput->as_block());
                pdatabaseclient->datastream()->set("transform", as_memory_block(m_transform));
-               pdatabaseclient->datastream()->set("camera", pcameraScene->as_block());
+               //pdatabaseclient->datastream()->set("camera", pcameraScene->as_block());
 
             }
 

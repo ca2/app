@@ -24,28 +24,6 @@ namespace graphics3d
    }
 
 
-   floating_sequence3 camera::position()
-   {
-
-      return m_sequence3Position;
-
-   }
-
-
-   floating_sequence3 camera::rotation()
-   {
-
-      return m_sequence3Rotation;
-
-   }
-
-
-   ::block camera::as_block()
-   {
-
-      return {};
-
-   }
 
 }  // namespace graphics3d
 

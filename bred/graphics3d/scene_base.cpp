@@ -374,12 +374,12 @@ namespace graphics3d
       pscenerenderable->set_renderable(prenderable);
 
       auto pos = setObject.get("position", ::float_array_base{0.f, 0.f, 0.f});
-      auto rot = setObject.get("rotation", ::float_array_base{0.f, 0.f, 0.f});
+      auto rot = setObject.get("rotation", ::float_array_base{0.f, 0.f, 0.f, 1.0f});
       auto scl = setObject.get("scale", ::float_array_base{1.f, 1.f, 1.f});
 
-      pscenerenderable->transform().m_sequence3Position = {pos[0], pos[1], pos[2]};
-      pscenerenderable->transform().m_sequence3Rotation = {rot[0], rot[1], rot[2]};
-      pscenerenderable->transform().m_sequence3Scale = {scl[0], scl[1], scl[2]};
+      pscenerenderable->transform().m_sequence3Position = {pos.ø(0), pos.ø(1), pos.ø(2)};
+      pscenerenderable->transform().m_quaternionRotation = {rot.ø(0), rot.ø(1), rot.ø(2), rot.ø(3)};
+      pscenerenderable->transform().m_sequence3Scale = {scl.ø(0), scl.ø(1), scl.ø(2)};
 
       informationf("Loaded GameObject '%s' - Pos: (%0.2f, %0.2f, %0.2f), Rot: (%0.2f, %0.2f, %0.2f), Scale: (%0.2f, "
                    "%0.2f, %0.2f)",
@@ -553,8 +553,10 @@ namespace graphics3d
       {
 
          m_pimmersionlayer->m_pengine->m_transform.m_sequence3Position = m_pcameraDefault->position();
-         m_pimmersionlayer->m_pengine->m_transform.m_sequence3Rotation = m_pcameraDefault->rotation();
+         m_pimmersionlayer->m_pengine->m_transform.m_quaternionRotation = m_pcameraDefault->rotation();
+
       }
+
    }
 
 

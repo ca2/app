@@ -75,7 +75,7 @@ namespace graphics3d
    {
       //::graphics3d::transform() = default;
       floating_sequence3 m_sequence3Position{};
-      floating_sequence3 m_sequence3Rotation{};
+      floating_quaternion m_quaternionRotation{};
       floating_sequence3 m_sequence3Scale{1.f};
 
 

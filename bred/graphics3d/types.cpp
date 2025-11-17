@@ -45,15 +45,11 @@ namespace graphics3d
 
 
       // 1) Translation
-      floating_matrix4 T = floating_matrix4(1.0f);
-      T.translate(m_sequence3Position);
+      auto T = floating_matrix4::translation(m_sequence3Position);
 
 
       // 2) Rotation
-      floating_matrix4 R = floating_matrix4(1.0f);
-      R.rotate(radians(m_sequence3Rotation.x), floating_sequence3(1, 0, 0));
-      R.rotate(radians(m_sequence3Rotation.y), floating_sequence3(0, 1, 0));
-      R.rotate(radians(m_sequence3Rotation.z), floating_sequence3(0, 0, 1));
+      auto R = floating_matrix4::rotation(m_quaternionRotation);
 
 
       // 3) Scale
@@ -71,16 +67,14 @@ namespace graphics3d
    {
       
       // Build RS (ignore m_sequence3Position)
-      floating_matrix4 R = floating_matrix4(1.0f);
-      R.rotate(radians(m_sequence3Rotation.y), floating_sequence3(0, 1, 0));
-      R.rotate(radians(m_sequence3Rotation.x), floating_sequence3(1, 0, 0));
-      R.rotate(radians(m_sequence3Rotation.z), floating_sequence3(0, 0, 1));
+      auto R = floating_matrix4::rotation(m_quaternionRotation);
 
-      floating_matrix4 RS = floating_matrix4(1.0f);
-      RS.scale(m_sequence3Scale);
+      auto S = floating_matrix4::scaling(m_sequence3Scale);
+      
+      auto RS = R * S;
 
       // Normal matrix = inverse-transpose of the 3x3 upper-left
-      return floating_matrix3(RS).inversed().transposed();
+      return RS.inversed().transposed();
 
    }
 

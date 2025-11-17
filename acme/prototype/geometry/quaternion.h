@@ -162,7 +162,7 @@ struct quaternion_type
 
       auto sinp = (FLOATING) 2 * (this->w * this->x + this->y * this->z);
       
-      auto pitch = ::geometry::asin(clampd(sinp, (FLOATING) - 1.0, (FLOATING) 1.0));
+      auto pitch = ::geometry::asin(::geometry::clamp(sinp, (FLOATING) - 1.0, (FLOATING) 1.0));
 
       return pitch;
 

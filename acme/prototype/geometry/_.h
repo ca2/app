@@ -5,14 +5,19 @@
 namespace geometry
 {
 
+
    template < typename TYPE >
    inline TYPE clamp(TYPE n, TYPE nMin, TYPE nMax)
    {
+
       if (n < nMin)
          return nMin;
+
       if (n > nMax)
          return nMax;
+
       return n;
+
    }
 
 
@@ -57,7 +62,6 @@ constexpr double radians_to_degrees(double radians)
    return radians * 180.0 / π; 
 
 }
-
 
 
 constexpr float radians_to_degrees(float radians)

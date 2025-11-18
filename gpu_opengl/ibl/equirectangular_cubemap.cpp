@@ -66,11 +66,13 @@ namespace gpu_opengl
 
       void equirectangular_cubemap::compute()
       {
-         // Timer timer;
 
          auto pgpucommandbuffer = m_pgpucontext->beginSingleTimeCommands(m_pgpucontext->m_pgpudevice->graphics_queue());
-         floating_matrix4 model = ::gpu::gltf::mIndentity4;
+         
          using namespace graphics3d;
+
+         floating_matrix4 model = ::graphics3d::mIndentity4;
+
          floating_matrix4 cameraAngles[] = 
          {
             lookAt(origin, unitX, -unitY), // X+ (right)
@@ -80,9 +82,12 @@ namespace gpu_opengl
             lookAt(origin, unitZ, -unitY), // Z+ (front)
             lookAt(origin, -unitZ, -unitY) // Z- (back)
          };
-         floating_matrix4 projection = m_pgpucontext->m_pengine->perspective(radians(90.0f), // 90 degrees to cover one face
-                                                 1.0f, // its a square
-                                                 0.1f, 2.0f);
+
+         floating_matrix4 projection = m_pgpucontext->m_pengine->perspective(
+            90f_degrees, // 90 degrees to cover one face
+            1.0f, // its a square
+            0.1f,
+            2.0f);
 
          glViewport(0, 0, m_uCubemapWidth, m_uCubemapHeight);
 
@@ -94,7 +99,7 @@ namespace gpu_opengl
          for (auto i = 0; i < 6; i++)
          {
             
-            m_pshaderHdri->setModelViewProjectionMatrices(model, cameraAngles[i], projection);
+            m_pshaderHdri->setModelViewProjection(model, cameraAngles[i], projection);
             
             m_pframebuffer->setCubeFace(i, m_pshaderHdri);
             

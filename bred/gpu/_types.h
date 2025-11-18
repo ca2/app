@@ -16,7 +16,7 @@ using floating_matrix2 = ::float_matrix2;
 using floating_matrix3 = ::float_matrix3;
 using floating_matrix4 = ::float_matrix4;
 
-
+using floating_angle = float_angle;
 using floating_quaternion = ::float_quaternion;
 
 

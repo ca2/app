@@ -152,6 +152,8 @@ struct quaternion_type
       q.y = sy * cp;
       q.z = sy * sp;
 
+      return *this;
+
    }
 
 

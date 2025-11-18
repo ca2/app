@@ -240,7 +240,7 @@ namespace gpu
       virtual void set_matrix3(const ::scoped_string& scopedstrName, const ::floating_matrix3& a);
       virtual void set_matrix4(const ::scoped_string& scopedstrName, const ::floating_matrix4& a);
 
-      virtual void setModelViewProjectionMatrices(floating_matrix4 &model, floating_matrix4 &view, floating_matrix4 &projection);
+      virtual void setModelViewProjection(const floating_matrix4 &model, const floating_matrix4 &view, const floating_matrix4 &projection);
 
    };
 

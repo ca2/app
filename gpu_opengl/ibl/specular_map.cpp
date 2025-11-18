@@ -123,8 +123,9 @@ namespace gpu_opengl
 
          //auto pgpucommandbuffer = m_pgpucontext->beginSingleTimeCommands(m_pgpucontext->m_pgpudevice->graphics_queue());
 
-         floating_matrix4 model = ::gpu::gltf::mIndentity4;
+         
          using namespace graphics3d;
+         floating_matrix4 model = mIndentity4;
          floating_matrix4 cameraAngles[] =
          {
             lookAt(origin, unitX, -unitY),
@@ -186,7 +187,7 @@ namespace gpu_opengl
 
                m_pgpucontext->start_debug_happening(pgpucommandbuffer, strMessage);
 
-               m_pshaderPrefilteredEnvMap->setModelViewProjectionMatrices(model, cameraAngles[iFace], projection);
+               m_pshaderPrefilteredEnvMap->setModelViewProjection(model, cameraAngles[iFace], projection);
                m_pframebufferPrefilteredEnvMap->set_cube_face(iFace);
 
                glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);

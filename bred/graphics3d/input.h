@@ -11,16 +11,16 @@
 namespace graphics3d
 {
 
-   struct input_block_0
-   {
+   //struct input_block_0
+   //{
 
-     ::graphics3d::mouse_state m_mousestate;
+   //  ::graphics3d::mouse_state m_mousestate;
 
-   };
+   //};
 
 
    class CLASS_DECL_BRED input : 
-      public input_block_0,
+      //public input_block_0,
       virtual public ::particle
    {
    public:
@@ -29,6 +29,42 @@ namespace graphics3d
       //::pointer<::user::graphics3d> m_pusergraphics3d;
       ::pointer<::graphics3d::engine> m_pengine;
       //::pointer<::graphics3d::key_map> m_pkeymap;
+      //struct input_t
+      //{
+         // KeyMappings keys{};
+         bool m_bMouseAbsolute;
+
+         double m_dMouseLastX = 0.0;
+         double m_dMouseLastY = 0.0;
+         double m_Δx = 0.;
+         double m_Δy = 0.;
+
+         bool m_bWasLeft = false;
+
+
+         double m_dCursorX;
+         double m_dCursorY;
+         bool m_bFirstMouse;
+         bool m_bLastMouse;
+
+         float m_fMoveSpeed{3.f};
+         float m_fLookSpeed{1.5f};
+
+              ::graphics3d::mouse_state m_mousestate;
+
+
+
+         bool m_b_001AbsoluteMousePosition;
+         float_angle m_angleCursorPixel; // Sensitivity factor for mouse movement
+         //float_angle m_angleYaw; // Camera yaw (horizontal rotation)
+         //float_angle m_anglePitch; // Camera pitch (vertical rotation)
+         floating_sequence3 _cameraDirection; // Camera direction vector
+         floating_sequence3 _cameraPosition;
+        // ::block as_block() { return as_memory_block(*this); }
+      //};
+
+
+
 
 
       input();

@@ -45,11 +45,12 @@ namespace graphics3d
 
       // Camera options
       //float m_fZoom;
-      float m_fMovementSpeed; // Added movement speed
+      float                m_fMovementSpeed; // Added movement speed
       
-      float_angle        m_angleFovY;
-      float              m_fNearZ;
-      float              m_fFarZ;
+      float_angle          m_angleFovY;
+      float                m_fAspectRatio;
+      float                m_fNearZ;
+      float                m_fFarZ;
 
 
 
@@ -57,17 +58,22 @@ namespace graphics3d
 		~camera() override;
 
 
-      inline floating_sequence3 position() { return m_sequence3Position; }
-      inline floating_quaternion rotation() { return m_quaternionRotation; }
+      inline const floating_sequence3 & position() const { return m_sequence3Position; }
+      inline const floating_quaternion & rotation() const { return m_quaternionRotation; }
 
 
-      inline floating_sequence3 front() { return m_sequence3Front; }
-      inline floating_sequence3 right() { return m_sequence3Right; }
-      inline floating_sequence3 up() { return m_sequence3Up; }
-      inline floating_sequence3 world_up() { return m_sequence3WorldUp; }
+      inline const floating_sequence3 & front() const { return m_sequence3Front; }
+      inline const floating_sequence3 & right() const { return m_sequence3Right; }
+      inline const floating_sequence3 & up() const { return m_sequence3Up; }
+      inline const floating_sequence3 & world_up() const { return m_sequence3WorldUp; }
 
-      inline float_angle yaw() { return m_quaternionRotation.yaw(); }
-      inline float_angle pitch() { return m_quaternionRotation.pitch(); }
+      inline float_angle yaw() const { return m_quaternionRotation.yaw(); }
+      inline float_angle pitch() const { return m_quaternionRotation.pitch(); }
+
+
+      inline const floating_matrix4 & projection() const { return m_matrixProjection; }
+      inline const floating_matrix4 & impact() const { return m_matrixImpact; }
+      inline const floating_matrix4 & inversed_impact() const { return m_matrixInversedImpact; }
 
 
       virtual void update_vectors();

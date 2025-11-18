@@ -1138,6 +1138,34 @@ namespace graphics3d
    //
    // }
 
+   
+   //floating_matrix4 engine::ortho(float left, float right, float bottom, float top, float zNear, float zFar)
+   //{
+
+   //   throw ::interface_only();
+
+   //   return {1.0f};
+
+   //}
+
+
+   floating_matrix4 engine::perspective(const float_angle & angleFovY, float aspect, float zNear, float zFar)
+   {
+
+      throw ::interface_only();
+      
+      return {1.0f}; 
+   
+   }
+
+
+   void engine::calculate_projection(::floating_matrix4 &matrixProjection, const ::graphics3d::camera &camera)
+   {
+
+
+   }
+
+
 
 } // namespace graphics3d
 

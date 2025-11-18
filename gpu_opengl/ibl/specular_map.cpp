@@ -4,6 +4,7 @@
 #include "specular_map.h"
 #include "brdf_convolution_framebuffer.h"
 #include "bred/graphics3d/_functions.h"
+#include "bred/graphics3d/engine.h"
 #include "bred/graphics3d/render_system.h"
 #include "bred/graphics3d/scene_base.h"
 #include "bred/graphics3d/skybox.h"
@@ -133,7 +134,7 @@ namespace gpu_opengl
             lookAt(origin, unitZ, -unitY),
             lookAt(origin, -unitZ, -unitY)
          };
-         floating_matrix4 projection = m_pgpucontext->perspective(
+         floating_matrix4 projection = m_pgpucontext->m_pengine->perspective(
             ::radians(90.0f), // 90 degrees to cover one face
             1.0f, // its a square
             0.1f,

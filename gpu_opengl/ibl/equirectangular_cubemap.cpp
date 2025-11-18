@@ -4,6 +4,7 @@
 #include "equirectangular_cubemap.h"
 #include "bred/gpu/context.h"
 #include "bred/graphics3d/_functions.h"
+#include "bred/graphics3d/engine.h"
 #include "bred/graphics3d/skybox.h"
 #include "bred/gpu/device.h"
 //
@@ -79,7 +80,7 @@ namespace gpu_opengl
             lookAt(origin, unitZ, -unitY), // Z+ (front)
             lookAt(origin, -unitZ, -unitY) // Z- (back)
          };
-         floating_matrix4 projection = m_pgpucontext->perspective(radians(90.0f), // 90 degrees to cover one face
+         floating_matrix4 projection = m_pgpucontext->m_pengine->perspective(radians(90.0f), // 90 degrees to cover one face
                                                  1.0f, // its a square
                                                  0.1f, 2.0f);
 

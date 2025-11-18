@@ -10,7 +10,6 @@ namespace graphics3d
 {
 
 
-	
 	class CLASS_DECL_BRED camera :
 		virtual public ::particle
 	{
@@ -41,13 +40,16 @@ namespace graphics3d
       floating_sequence3 m_sequence3WorldUp;
 
       // Euler angles
-      float_angle m_angleYaw = 0.0_degree;
-      float_angle m_anglePitch = -90.0_degree;
+      //float_angle m_angleYaw = 0.0_degree;
+      //float_angle m_anglePitch = -90.0_degree;
 
       // Camera options
-      float m_fZoom;
+      //float m_fZoom;
       float m_fMovementSpeed; // Added movement speed
-
+      
+      float_angle        m_angleFovY;
+      float              m_fNearZ;
+      float              m_fFarZ;
 
 
 
@@ -62,7 +64,7 @@ namespace graphics3d
       inline floating_sequence3 front() { return m_sequence3Front; }
       inline floating_sequence3 right() { return m_sequence3Right; }
       inline floating_sequence3 up() { return m_sequence3Up; }
-      inline floating_sequence3 worldUp() { return m_sequence3WorldUp; }
+      inline floating_sequence3 world_up() { return m_sequence3WorldUp; }
 
       inline float_angle yaw() { return m_quaternionRotation.yaw(); }
       inline float_angle pitch() { return m_quaternionRotation.pitch(); }
@@ -71,6 +73,11 @@ namespace graphics3d
       virtual void update_vectors();
 
       virtual void update();
+
+
+      virtual void calculate_impact(::floating_matrix4 &matrixImpact);
+
+      virtual void calculate_projection(::floating_matrix4 &matrixProjection);
 
 
 	};

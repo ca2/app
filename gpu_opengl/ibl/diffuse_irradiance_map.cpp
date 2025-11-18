@@ -7,6 +7,7 @@
 #include "bred/gpu/context_lock.h"
 #include "bred/gpu/device.h"
 #include "bred/graphics3d/_functions.h"
+#include "bred/graphics3d/engine.h"
 #include "bred/graphics3d/renderable.h"
 #include "bred/graphics3d/scene_base.h"
 #include "bred/graphics3d/skybox.h"
@@ -101,7 +102,7 @@ namespace gpu_opengl
             lookAt(origin, -unitZ, -unitY)
          };
 
-         auto projection = m_pgpucontext->perspective(
+         auto projection = m_pgpucontext->m_pengine->perspective(
             90_degrees, // 90 degrees to cover one face
             1.0f, // its a square
             0.1f,

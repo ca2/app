@@ -701,36 +701,34 @@ return {};
 
    }
 
-   inline floating_matrix4 context::ortho(float left, float right, float bottom, float top, float zNear,
-                                 float zFar)
+
+   floating_matrix4 context::ortho(float left, float right, float bottom, float top, float zNear,
+                           float zFar)
    {
 
+      throw ::interface_only();
 
       return {1.0f};
+
    }
 
 
-   floating_matrix4 context::perspective(float fovyRadians, float aspect, float zNear, float zFar)
-   {
+   //floating_matrix4 context::rotateFromAxes(const ::floating_sequence3 & right, const ::floating_sequence3 & up,
+   //                                        const ::floating_sequence3 & forward) // OpenGL forward = -f
+   //{
 
-      return {1.0f};
-   }
-   floating_matrix4 context::rotateFromAxes(const ::floating_sequence3 & right, const ::floating_sequence3 & up,
-                                           const ::floating_sequence3 & forward) // OpenGL forward = -f
-   {
-
-      return {1.0f};
-   }
+   //   return {1.0f};
+   //}
 
 
-   floating_matrix4 context::lookAt(const float_sequence3 & eye, const float_sequence3 & center,
+   //floating_matrix4 context::lookAt(const float_sequence3 & eye, const float_sequence3 & center,
 
-                            const float_sequence3 & up)
-   {
+   //                         const float_sequence3 & up)
+   //{
 
 
-      return {1.0f};
-          }
+   //   return {1.0f};
+   //       }
 
 
 

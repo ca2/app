@@ -130,6 +130,12 @@ namespace graphics3d
 
 		//virtual void on_offscreen_frame_pixels(const ::image32_t* pimage32, int w, int h, int stride);
 
+      virtual floating_matrix4 perspective(const ::float_angle & angleFovY, float aspect, float zNear, float zFar);
+
+
+      virtual void calculate_projection(::floating_matrix4 &matrixProjection, const ::graphics3d::camera &camera);
+
+
 	};
 
 	//floating_sequence3 camera::pole_up() { return m_pengine->camera_pole_up(); }

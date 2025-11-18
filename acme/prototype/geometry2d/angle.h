@@ -56,7 +56,7 @@ public:
    template<primitive_number NUMBER>
    angle_type operator * (NUMBER n) const
    {
-      return m_fAngle * (FLOATING) n; 
+      return ::radians(m_fAngle * (FLOATING) n); 
    }
 
    angle_type &operator-=(const angle_type &angle) 
@@ -76,6 +76,9 @@ public:
       return *this; 
 
    }
+
+
+      
 
    double normalized() const { auto d = (FLOATING) fmod(m_fAngle, 2.0 * MATH_PI); return d <  (FLOATING) 0.0 ? d + (FLOATING) (2.0 * MATH_PI) : d; }
    void normalize() { m_fAngle = normalized(); }

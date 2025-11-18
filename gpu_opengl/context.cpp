@@ -3040,6 +3040,7 @@ color = vec4(c.r,c.g, c.b, c.a);
       return M;
    }
 
+
    floating_matrix4 context::ortho(float left, float right, float bottom, float top, float zNear,
                                  float zFar)
    {
@@ -3058,79 +3059,81 @@ color = vec4(c.r,c.g, c.b, c.a);
       M[3][2] = -(zFar + zNear) / fn;
 
       return M;
-   }
-
-   floating_matrix4 context::perspective(float fovyRadians, float aspect, float zNear, float zFar)
-   {
-      float f = 1.0f / tanf(fovyRadians * 0.5f);
-
-      floating_matrix4 M(0.0f); // initialize all elements to 0
-
-      M[0][0] = f / aspect;
-      M[1][1] = f;
-
-      M[2][2] = (zFar + zNear) / (zNear - zFar);
-      M[2][3] = -1.0f;
-
-      M[3][2] = (2.0f * zFar * zNear) / (zNear - zFar);
-
-      return M;
-   }
-
-   // ------------------------------
-   // Rotation from camera axes
-   // ------------------------------
-   // Builds a matrix from right, up, forward vectors
-   floating_matrix4 context::rotateFromAxes(const ::floating_sequence3 &right, const ::floating_sequence3 &up,
-                                   const ::floating_sequence3 &forward) // OpenGL forward = -f
-   {
-      floating_matrix4 R(1.0f); // identity
-
-      // Column-major assignment
-      R[0][0] = right.x;
-      R[1][0] = right.y;
-      R[2][0] = right.z;
-      R[0][1] = up.x;
-      R[1][1] = up.y;
-      R[2][1] = up.z;
-      R[0][2] = forward.x;
-      R[1][2] = forward.y;
-      R[2][2] = forward.z;
-
-      // last column is (0,0,0,1)
-      R[0][3] = 0.0f;
-      R[1][3] = 0.0f;
-      R[2][3] = 0.0f;
-      R[3][3] = 1.0f;
-
-      return R;
-   }
-
-   // ---------------------------------------------------------------
-   // lookAt matrix (OpenGL RH)
-   // ---------------------------------------------------------------
-   floating_matrix4 context::lookAt(const float_sequence3 &eye, const float_sequence3 &center,
-
-                                    const float_sequence3 &up)
-   {
-
-      // --- Step 1: Compute camera axes ---------------------------------
-      auto f = (center - eye).normalized(); // forward
-      auto upN = up.normalized(); // normalized up
-      auto s = f.crossed(upN).normalized(); // right
-      auto u = s.crossed(f); // corrected up
-
-      // --- Step 2: Build rotation matrix from axes ----------------------
-      auto R = rotateFromAxes(s, u, -f); // world aligned to camera
-
-      // --- Step 3: Build translation matrix ----------------------------
-      auto T = floating_matrix4::translation(-eye); // move world by -eye
-
-      // --- Step 4: Combine ---------------------------------------------
-      // View matrix = rotate world axes, then translate
-      return R * T;
 
    }
+
+
+   //floating_matrix4 context::perspective(float fovyRadians, float aspect, float zNear, float zFar)
+   //{
+   //   float f = 1.0f / tanf(fovyRadians * 0.5f);
+
+   //   floating_matrix4 M(0.0f); // initialize all elements to 0
+
+   //   M[0][0] = f / aspect;
+   //   M[1][1] = f;
+
+   //   M[2][2] = (zFar + zNear) / (zNear - zFar);
+   //   M[2][3] = -1.0f;
+
+   //   M[3][2] = (2.0f * zFar * zNear) / (zNear - zFar);
+
+   //   return M;
+   //}
+
+   //// ------------------------------
+   //// Rotation from camera axes
+   //// ------------------------------
+   //// Builds a matrix from right, up, forward vectors
+   //floating_matrix4 context::rotateFromAxes(const ::floating_sequence3 &right, const ::floating_sequence3 &up,
+   //                                const ::floating_sequence3 &forward) // OpenGL forward = -f
+   //{
+   //   floating_matrix4 R(1.0f); // identity
+
+   //   // Column-major assignment
+   //   R[0][0] = right.x;
+   //   R[1][0] = right.y;
+   //   R[2][0] = right.z;
+   //   R[0][1] = up.x;
+   //   R[1][1] = up.y;
+   //   R[2][1] = up.z;
+   //   R[0][2] = forward.x;
+   //   R[1][2] = forward.y;
+   //   R[2][2] = forward.z;
+
+   //   // last column is (0,0,0,1)
+   //   R[0][3] = 0.0f;
+   //   R[1][3] = 0.0f;
+   //   R[2][3] = 0.0f;
+   //   R[3][3] = 1.0f;
+
+   //   return R;
+   //}
+
+   //// ---------------------------------------------------------------
+   //// lookAt matrix (OpenGL RH)
+   //// ---------------------------------------------------------------
+   //floating_matrix4 context::lookAt(const float_sequence3 &eye, const float_sequence3 &center,
+
+   //                                 const float_sequence3 &up)
+   //{
+
+   //   // --- Step 1: Compute camera axes ---------------------------------
+   //   auto f = (center - eye).normalized(); // forward
+   //   auto upN = up.normalized(); // normalized up
+   //   auto s = f.crossed(upN).normalized(); // right
+   //   auto u = s.crossed(f); // corrected up
+
+   //   // --- Step 2: Build rotation matrix from axes ----------------------
+   //   auto R = rotateFromAxes(s, u, -f); // world aligned to camera
+
+   //   // --- Step 3: Build translation matrix ----------------------------
+   //   auto T = floating_matrix4::translation(-eye); // move world by -eye
+
+   //   // --- Step 4: Combine ---------------------------------------------
+   //   // View matrix = rotate world axes, then translate
+   //   return R * T;
+
+   //}
 
 
 } // namespace gpu_opengl

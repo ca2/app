@@ -195,12 +195,12 @@ namespace gpu_opengl
                                     float zFar = 1.0f) override;
      
 
-      floating_matrix4 perspective(float fovyRadians, float aspect, float zNear, float zFar);
+      //floating_matrix4 perspective(float fovyRadians, float aspect, float zNear, float zFar);
 
-      floating_matrix4 rotateFromAxes(const ::floating_sequence3 &right, const ::floating_sequence3 &up,
-                                      const ::floating_sequence3 &forward) override; // OpenGL forward = -f
+      //floating_matrix4 rotateFromAxes(const ::floating_sequence3 &right, const ::floating_sequence3 &up,
+      //                                const ::floating_sequence3 &forward) override; // OpenGL forward = -f
 
-      floating_matrix4 lookAt(const float_sequence3 &eye, const float_sequence3 &center, const float_sequence3 &up) override;
+      //floating_matrix4 lookAt(const float_sequence3 &eye, const float_sequence3 &center, const float_sequence3 &up) override;
 
    };
 

@@ -22,7 +22,7 @@ namespace sandbox_game
 
    private:
       float m_moveSpeed;
-      float m_mouseSensitivity;
+      float m_angleCursorPixel;
       float m_yaw;
       float m_pitch;
 

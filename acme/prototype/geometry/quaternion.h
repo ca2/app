@@ -218,6 +218,8 @@ struct quaternion_type
       front.x = (FLOATING)2 * (this->x * this->z + this->w * this->y);
       front.y = (FLOATING)2 * (this->y * this->z - this->w * this->x);
       front.z = (FLOATING)1 - (FLOATING)2 * (this->x * this->x + this->y * this->y);
+
+      front.normalize();
       
       return front;
 

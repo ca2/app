@@ -27,10 +27,12 @@ namespace graphics3d
    void camera::update_vectors() 
    {
 
-      m_sequence3Front = m_quaternionRotation.front().normalized();
-      m_sequence3Right = m_sequence3Front.right(m_sequence3WorldUp).normalized();
-   
-   
+      m_sequence3Front = m_quaternionRotation.front();
+
+      m_sequence3Right = m_sequence3Front.front_right(m_sequence3WorldUp);
+
+      m_sequence3Up = m_sequence3Right.right_up(m_sequence3Front);
+      
    }
    
    

@@ -62,8 +62,8 @@ namespace graphics3d
       virtual long long getId();
 
 
-      virtual void translate(const floating_sequence3 &floating_sequence3);
-      virtual void scale(const floating_sequence3 &floating_sequence3);
+      virtual void translate(const ::floating_sequence3 &floating_sequence3);
+      virtual void scale(const ::floating_sequence3 &floating_sequence3);
    };
 
 

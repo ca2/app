@@ -277,9 +277,9 @@ namespace graphics3d
 
       //   m_transform.m_sequence3Position = pcameraScene->m_locationPosition;
 
-      //   m_transform.m_quaternionRotation.x = pcameraScene->m_fPitch;
+      //   m_transform.m_quaternionRotation.x = pcameraScene->m_anglePitch;
 
-      //   m_transform.m_quaternionRotation.y = pcameraScene->m_fYaw;
+      //   m_transform.m_quaternionRotation.y = pcameraScene->m_angleYaw;
 
       //}
 

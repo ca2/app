@@ -187,9 +187,9 @@ namespace gpu
             uint32_t i2 = indices[i + 1];
             uint32_t i3 = indices[i + 2];
 
-            const floating_sequence3 &v1 = vertices[i1].position;
-            const floating_sequence3 &v2 = vertices[i2].position;
-            const floating_sequence3 &v3 = vertices[i3].position;
+            const ::floating_sequence3 &v1 = vertices[i1].position;
+            const ::floating_sequence3 &v2 = vertices[i2].position;
+            const ::floating_sequence3 &v3 = vertices[i3].position;
 
             auto &w1 = vertices[i1].uv;
             auto &w2 = vertices[i2].uv;
@@ -221,8 +221,8 @@ namespace gpu
 
          for (size_t i = 0; i < vertices.size(); ++i)
          {
-            const floating_sequence3 &n = vertices[i].normal;
-            const floating_sequence3 &t = tan1[i];
+            const ::floating_sequence3 &n = vertices[i].normal;
+            const ::floating_sequence3 &t = tan1[i];
 
             auto tangent = (t - n * n.dotted(t)).normalized();
             float sign = (n.crossed(t).dotted(tan2[i]) < 0.0f) ? -1.0f : 1.0f;

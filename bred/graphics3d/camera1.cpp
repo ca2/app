@@ -34,14 +34,14 @@ namespace graphics3d
    }
 
 
-   void camera::initialize_camera(floating_sequence3 position, float yaw, float pitch)
+   void camera::initialize_camera(const ::floating_sequence3 & position, float yaw, float pitch)
    {
       
       m_locationPosition = position;
 
-      m_fYaw = yaw;
+      m_angleYaw = yaw;
 
-      m_fPitch = pitch;
+      m_anglePitch = pitch;
 
       m_sequence3WorldUp = { 0.0f, 1.0f, 0.0f };
 
@@ -61,9 +61,9 @@ namespace graphics3d
 
       auto direction = glm::normalize(target - camera);
 
-      m_fYaw = atan2(direction.z, direction.x);
+      m_angleYaw = atan2(direction.z, direction.x);
 
-      m_fPitch = asin(direction.y);
+      m_anglePitch = asin(direction.y);
 
       m_sequence3WorldUp = { 0.0f, 1.0f, 0.0f };
       
@@ -83,13 +83,13 @@ namespace graphics3d
       xoffset *= sensitivity;
       yoffset *= sensitivity;
 
-      m_fYaw += xoffset;
-      m_fPitch += yoffset;
+      m_angleYaw += xoffset;
+      m_anglePitch += yoffset;
 
       if (constrainPitch) 
       {
          
-         m_fPitch = minimum_maximum(m_fPitch, glm::radians(-89.0f), glm::radians(89.0f));
+         m_anglePitch = minimum_maximum(m_anglePitch, glm::radians(-89.0f), glm::radians(89.0f));
 
       }
 
@@ -159,7 +159,7 @@ namespace graphics3d
    }
 
 
-   void camera::setViewDirection(floating_sequence3 position, floating_sequence3 direction, floating_sequence3 up) 
+   void camera::setViewDirection(const ::floating_sequence3 & position, const ::floating_sequence3 & direction, const ::floating_sequence3 & up) 
    {
 
       const floating_sequence3 w{ glm::normalize(direction) };
@@ -196,7 +196,7 @@ namespace graphics3d
    }
 
    
-   void camera::setViewTarget(floating_sequence3 position, floating_sequence3 target, floating_sequence3 up) 
+   void camera::setViewTarget(const ::floating_sequence3 & position, const ::floating_sequence3 & target, const ::floating_sequence3 & up) 
    {
 
       setViewDirection(position, target - position, up);
@@ -204,14 +204,14 @@ namespace graphics3d
    }
 
 
-   //void camera::setViewYXZ(floating_sequence3 position, floating_sequence3 rotation) 
+   //void camera::setViewYXZ(const ::floating_sequence3 & position, floating_sequence3 rotation) 
    //{
 
    //   m_locationPosition = position;
 
-   //   m_fPitch = rotation.x;
+   //   m_anglePitch = rotation.x;
 
-   //   m_fYaw = rotation.y;
+   //   m_angleYaw = rotation.y;
 
    //   UpdateCameraVectors();
 
@@ -227,9 +227,9 @@ namespace graphics3d
 
       // Calculate the new front vector based on yaw and pitch
       floating_sequence3 front;
-      front.x = cos(m_fPitch) * cos(m_fYaw);
-      front.y = sin(m_fPitch);
-      front.z = cos(m_fPitch) * sin(m_fYaw);
+      front.x = cos(m_anglePitch) * cos(m_angleYaw);
+      front.y = sin(m_anglePitch);
+      front.z = cos(m_anglePitch) * sin(m_angleYaw);
       this->m_sequence3Front = glm::normalize(front);
 
       // Re-calculate the right and up vector

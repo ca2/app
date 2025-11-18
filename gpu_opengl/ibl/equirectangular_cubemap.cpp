@@ -3,6 +3,7 @@
 #include "framework.h"
 #include "equirectangular_cubemap.h"
 #include "bred/gpu/context.h"
+#include "bred/graphics3d/_functions.h"
 #include "bred/graphics3d/skybox.h"
 #include "bred/gpu/device.h"
 //

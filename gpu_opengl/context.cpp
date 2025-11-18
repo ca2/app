@@ -3029,7 +3029,7 @@ color = vec4(c.r,c.g, c.b, c.a);
    // ------------------------------
    // Translation
    // ------------------------------
-   floating_matrix4 translate(const floating_sequence3 &t)
+   floating_matrix4 translate(const ::floating_sequence3 &t)
    {
       floating_matrix4 M(1.0f); // identity
 
@@ -3081,8 +3081,8 @@ color = vec4(c.r,c.g, c.b, c.a);
    // Rotation from camera axes
    // ------------------------------
    // Builds a matrix from right, up, forward vectors
-   floating_matrix4 context::rotateFromAxes(const floating_sequence3 &right, const floating_sequence3 &up,
-                                   const floating_sequence3 &forward) // OpenGL forward = -f
+   floating_matrix4 context::rotateFromAxes(const ::floating_sequence3 &right, const ::floating_sequence3 &up,
+                                   const ::floating_sequence3 &forward) // OpenGL forward = -f
    {
       floating_matrix4 R(1.0f); // identity
 

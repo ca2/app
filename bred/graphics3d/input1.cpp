@@ -169,8 +169,8 @@ namespace graphics3d
       {
 
          // limit pitch values between about +/- 85ish degrees
-         _yaw = pcamera->m_fYaw;
-         _pitch = pcamera->m_fPitch;
+         _yaw = pcamera->m_angleYaw;
+         _pitch = pcamera->m_anglePitch;
 
          if (_yaw > glm::two_pi<float>())
             _yaw -= glm::two_pi<float>();
@@ -202,8 +202,8 @@ namespace graphics3d
          _pitch = glm::clamp(_pitch, -1.5f, 1.5f);
 
 
-         pcamera->m_fPitch = _pitch;
-         pcamera->m_fYaw = _yaw;
+         pcamera->m_anglePitch = _pitch;
+         pcamera->m_angleYaw = _yaw;
 
       }
 
@@ -244,7 +244,7 @@ namespace graphics3d
       if (pcamera)
       {
 
-         float yaw = pcamera->m_fYaw;
+         float yaw = pcamera->m_angleYaw;
          const floating_sequence3 forwardDir{cos(yaw), 0.f, sin(yaw)};
          const floating_sequence3 rightDir{forwardDir.z, 0.f, -forwardDir.x};
          const floating_sequence3 upDir{0.f, -1.f, 0.f};

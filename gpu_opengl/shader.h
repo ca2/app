@@ -91,7 +91,7 @@ namespace gpu_opengl
       void _set_int(const_char_pointer name, int value) const;
       void _set_float(const_char_pointer name, float value) const;
       void _set_sequence2(const_char_pointer name, const floating_sequence2& value) const;
-      void _set_sequence3(const_char_pointer name, const floating_sequence3 &value) const;
+      void _set_sequence3(const_char_pointer name, const ::floating_sequence3 &value) const;
       void _set_sequence4(const_char_pointer name, const floating_sequence4 &value) const;
       void _set_matrix2(const_char_pointer name, const floating_matrix2& matrix) const;
       void _set_matrix3(const_char_pointer name, const floating_matrix3& matrix) const;

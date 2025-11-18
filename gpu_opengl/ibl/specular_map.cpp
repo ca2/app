@@ -3,6 +3,7 @@
 #include "framework.h"
 #include "specular_map.h"
 #include "brdf_convolution_framebuffer.h"
+#include "bred/graphics3d/_functions.h"
 #include "bred/graphics3d/render_system.h"
 #include "bred/graphics3d/scene_base.h"
 #include "bred/graphics3d/skybox.h"
@@ -122,14 +123,15 @@ namespace gpu_opengl
          //auto pgpucommandbuffer = m_pgpucontext->beginSingleTimeCommands(m_pgpucontext->m_pgpudevice->graphics_queue());
 
          floating_matrix4 model = ::gpu::gltf::mIndentity4;
+         using namespace graphics3d;
          floating_matrix4 cameraAngles[] =
          {
-            m_pgpucontext->lookAt(::geometry3d::origin, ::geometry3d::unitX, -::geometry3d::unitY),
-            m_pgpucontext->lookAt(::geometry3d::origin, -::geometry3d::unitX, -::geometry3d::unitY),
-            m_pgpucontext->lookAt(::geometry3d::origin, ::geometry3d::unitY, ::geometry3d::unitZ),
-            m_pgpucontext->lookAt(::geometry3d::origin, -::geometry3d::unitY, -::geometry3d::unitZ),
-            m_pgpucontext->lookAt(::geometry3d::origin, ::geometry3d::unitZ, -::geometry3d::unitY),
-            m_pgpucontext->lookAt(::geometry3d::origin, -::geometry3d::unitZ, -::geometry3d::unitY)
+            lookAt(origin, unitX, -unitY),
+            lookAt(origin, -unitX, -unitY),
+            lookAt(origin, unitY, unitZ),
+            lookAt(origin, -unitY, -unitZ),
+            lookAt(origin, unitZ, -unitY),
+            lookAt(origin, -unitZ, -unitY)
          };
          floating_matrix4 projection = m_pgpucontext->perspective(
             ::radians(90.0f), // 90 degrees to cover one face

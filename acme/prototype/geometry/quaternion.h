@@ -184,6 +184,32 @@ struct quaternion_type
 
    }
 
+
+   quaternion_type & offset_yaw_and_pitch_with_constraints(
+      const ::angle_type<FLOATING> & angleΔYaw,
+      const ::angle_type<FLOATING> & angleΔPitch,
+      const ::angle_type<FLOATING> & angleMinimumPitch,
+      const ::angle_type<FLOATING> & angleMaximumPitch
+   ) 
+   {
+
+      auto angleYaw = this->yaw();
+
+      auto anglePitch = this->pitch();
+
+      angleYaw += angleΔYaw;
+
+      anglePitch += angleΔPitch;
+
+      anglePitch = ::geometry::clamp(anglePitch, angleMinimumPitch, angleMinimumPitch);
+
+      set_yaw_and_pitch(angleYaw, anglePitch);
+
+      return *this;
+
+   }
+
+
 };
 
 

@@ -18,8 +18,8 @@ namespace sandbox_game
       camera();
 
 
-      //sandbox_camera(floating_sequence3 position, float yawDeg = -90.f, float pitchDeg = 0.f, float zoomDeg = 45.f);
-      virtual void initialize_sandbox_camera(floating_sequence3 position, float yawDeg = -90.f, float pitchDeg = 0.f, float zoomDeg = 45.f);
+      //sandbox_camera(const ::floating_sequence3 & position, float yawDeg = -90.f, float pitchDeg = 0.f, float zoomDeg = 45.f);
+      virtual void initialize_sandbox_camera(const ::floating_sequence3 & position, float yawDeg = -90.f, float pitchDeg = 0.f, float zoomDeg = 45.f);
 
       void updateView();
       void updateProjection(float aspect, float nearZ = 0.1f, float farZ = 100.f);

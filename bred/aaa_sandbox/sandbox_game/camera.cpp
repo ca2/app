@@ -7,7 +7,7 @@
 namespace sandbox_game
 {
 
-   // camera::camera(floating_sequence3 position, float yawDeg, float pitchDeg, float zoomDeg)
+   // camera::camera(const ::floating_sequence3 & position, float yawDeg, float pitchDeg, float zoomDeg)
    //    : m_position(position),
    //    m_worldUp(0.f, 1.f, 0.f),
    //    m_yaw(yawDeg),

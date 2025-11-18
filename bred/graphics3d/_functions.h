@@ -13,23 +13,23 @@ namespace graphics3d
 
 
       const auto front = (center - eye).normalized();
-      const auto right = f.crossed(worldUp).normalized();
+      const auto right = front.crossed(worldUp).normalized();
       const auto up = right.crossed(front);
 
       matrix_type<FLOATING, 4> Result((FLOATING)1);
 
-      Result[0][0] = s.x;
-      Result[1][0] = s.y;
-      Result[2][0] = s.z;
-      Result[0][1] = u.x;
-      Result[1][1] = u.y;
-      Result[2][1] = u.z;
-      Result[0][2] = -f.x;
-      Result[1][2] = -f.y;
-      Result[2][2] = -f.z;
-      Result[3][0] = -dot(s, eye);
-      Result[3][1] = -dot(u, eye);
-      Result[3][2] = dot(f, eye);
+      Result[0][0] = right.x;
+      Result[1][0] = right.y;
+      Result[2][0] = right.z;
+      Result[0][1] = up.x;
+      Result[1][1] = up.y;
+      Result[2][1] = up.z;
+      Result[0][2] = -front.x;
+      Result[1][2] = -front.y;
+      Result[2][2] = -front.z;
+      Result[3][0] = -right.dotted(eye);
+      Result[3][1] = -up.dotted(eye);
+      Result[3][2] = front.dotted(eye);
 
       return Result;
 

@@ -39,11 +39,11 @@ public:
 
    /// assumes subtracting radians from angle
    template < primitive_number NUMBER >
-   angle_type operator-(NUMBER n) const { return radians(m_fAngle - (FLOATING) n); }
+   angle_type operator-(NUMBER radians) const { return ::radians(m_fAngle - (FLOATING)radians); }
 
    /// assumes adding radians from angle
    template<primitive_number NUMBER>
-   angle_type operator+(NUMBER n) const { return radians(m_fAngle + (FLOATING) n); }
+   angle_type operator+(NUMBER radians) const { return ::radians(m_fAngle + (FLOATING)radians); }
 
    template < primitive_number NUMBER >
    angle_type operator / (NUMBER n) const
@@ -155,20 +155,20 @@ namespace geometry
 
 /// assumes result of radians subtracted from angle
 template<primitive_number NUMBER, primitive_floating FLOATING>
-constexpr angle_type<FLOATING> operator-(NUMBER n, const angle_type<FLOATING> &angle)
+constexpr angle_type<FLOATING> operator-(NUMBER radians, const angle_type<FLOATING> &angle)
 {
    
-   return radians((FLOATING)n - angle.m_fAngle);
+   return ::radians((FLOATING)radians - angle.m_fAngle);
 
 }
 
 
 /// assumes result of radians added to angle
 template<primitive_number NUMBER, primitive_floating FLOATING>
-constexpr angle_type<FLOATING> operator+(NUMBER n, const angle_type<FLOATING> &angle)
+constexpr angle_type<FLOATING> operator+(NUMBER radians, const angle_type<FLOATING> &angle)
 {
    
-   return radians((FLOATING)n + angle.m_fAngle);
+   return ::radians((FLOATING)radians + angle.m_fAngle);
 
 }
 

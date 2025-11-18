@@ -9238,7 +9238,7 @@ void image::gradient_fill(::color::color color1, ::color::color color2, const in
 
       int dim = maximum(width(), height());
 
-      auto angle = radians(atan2(Δy, Δx));
+      auto angle = ::geometry::atan2(Δy, Δx);
 
       ::image::image_pointer pimage;
 
@@ -9304,7 +9304,7 @@ void image::gradient_fill(::color::color color1, ::color::color color2, const in
 
          pimage->gradient_vertical_fill(color1, color2, point1.x, point2.x);
 
-         pimage->rotate(this, radians(π - angle), 1.0);
+         pimage->rotate(this, π - angle, 1.0);
 
       }
 

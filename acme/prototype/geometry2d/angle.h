@@ -92,6 +92,17 @@ public:
       
    }
 
+     
+   constexpr FLOATING radians() const
+   {
+
+      return m_fAngle;
+
+   }
+
+
+   constexpr FLOATING degrees() const { return ::radians_to_degrees(m_fAngle); }
+
    
    template < primitive_number NUMBER >
    static constexpr angle_type degrees(NUMBER degrees)

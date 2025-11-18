@@ -177,11 +177,12 @@ struct matrix_type
    constexpr matrix_type(NUMBER diagonal) 
    {
 
-      for (int i = 0; i < DIMENSION; ++i)
-         for (int j = 0; i < DIMENSION; ++i)
+      for (int i = 0; i < DIMENSION; i++)
+         for (int j = 0; j < DIMENSION; j++)
             m[i][j] = i == j ? (FLOATING) diagonal : (FLOATING) 0;
 
    }
+
 
    matrix_type(const quaternion_type<FLOATING> & q)
       requires(DIMENSION == 4)

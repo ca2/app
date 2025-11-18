@@ -98,8 +98,10 @@ namespace gpu_opengl
          // render to each side of the cubemap
          for (auto i = 0; i < 6; i++)
          {
+
+            auto impact = cameraAngles[i];
             
-            m_pshaderHdri->setModelViewProjection(model, cameraAngles[i], projection);
+            m_pshaderHdri->setModelViewProjection(model, impact, projection);
             
             m_pframebuffer->setCubeFace(i, m_pshaderHdri);
             

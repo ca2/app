@@ -68,6 +68,10 @@ namespace graphics3d
       inline float_angle pitch() { return m_quaternionRotation.pitch(); }
 
 
+      virtual void update_vectors();
+
+      virtual void update();
+
 
 	};
 

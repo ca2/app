@@ -1095,6 +1095,24 @@ struct sequence_type :
    }
 
 
+   constexpr sequence_type front_right(const sequence_type & sequence3WorldUp)
+      requires(SIZE == 3 && primitive_floating<UNIT_TYPE>)
+   {
+
+      return this->crossed(sequence3WorldUp).normalized();
+
+   }
+
+
+   constexpr sequence_type right_up(const sequence_type &front)
+      requires(SIZE == 3 && primitive_floating<UNIT_TYPE>)
+   {
+
+      return this->crossed(front).normalized();
+
+   }
+
+
 };
 
 

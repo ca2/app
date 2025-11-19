@@ -866,6 +866,15 @@ namespace dynamic_source
    }
 
 
+   void script_interface::folder_enumerate(::file::listing& listing, int iId, const ::file::path& pathFolder, const ::function < void(::file::listing& listing) >& procedureListing)
+   {
+
+      m_pscript1->folder_enumerate(listing, iId, pathFolder, procedureListing);
+
+   }
+
+
+
    //httpd_socket* script_interface::netnodesocket()
    //{
 

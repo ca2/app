@@ -1,11 +1,12 @@
 #pragma once
 
 
-////#include "acme/prototype/prototype/object.h"
+#include "acme/filesystem/filesystem/listing.h"
 #include "acme/filesystem/filesystem/file_system_cache.h"
 #include "acme/filesystem/filesystem/file_system_cache_item.h"
 #include "acme/filesystem/filesystem/file_system_real_path_interface_cache.h"
 #include "programming/dynamic_source/data_object.h"
+
 
 namespace dynamic_source
 {
@@ -20,7 +21,20 @@ namespace dynamic_source
    {
    public:
 
+      class folder_enumerate :
+         virtual public ::particle
+      {
+      public:
 
+         ::file::listing   m_listing;
+         class ::time      m_timeLastEnumeration;
+
+
+      };
+
+      ::int_map < ::string_map < ::pointer < folder_enumerate > > > m_mapFolderEnumerate;
+
+      ::pointer < ::mutex >                              m_pmutexFolderEnumerate;
       ::pointer < script_manager >                       m_pscriptmanager1;
       //string                                             m_strName;
       //::file::path                                       m_path1;
@@ -77,6 +91,9 @@ namespace dynamic_source
 
       virtual ::file_system_cache_item netnode_file_path(const ::scoped_string& scopedstrName, ::file_system_interface * pfilesysteminterface);
       //virtual ::file_system_cache_item _calculate_real_path(const ::scoped_string& scopedstrBase, ::f);
+
+      virtual void folder_enumerate(::file::listing& listing, int iId, const ::file::path& pathFolder, const ::function < void(::file::listing & listing) > & procedureListing);
+
 
    };
 

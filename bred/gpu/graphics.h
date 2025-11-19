@@ -183,7 +183,7 @@ namespace gpu
 
 
       virtual ::typeface::face* get_face(::write_text::font* pfont);
-
+      void defer_set_size(const ::int_size &size) override;
 
    };
 

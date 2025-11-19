@@ -1595,6 +1595,12 @@ namespace gpu
    //
    // }
    //
+   void graphics::defer_set_size(const ::int_size &size) 
+   {
+   
+   gpu_context()->m_rectangle.set_size(size);
+   
+   }
 
 
 } // namespace gpu

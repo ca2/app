@@ -52,6 +52,8 @@ namespace gpu_opengl
          rectangle.height()
       );
 
+      //glDisable(GL_SCISSOR_TEST);
+
    }
 
 

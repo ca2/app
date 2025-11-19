@@ -2,6 +2,7 @@
 // by camilo on 2025-05-17 20:12 <3ThomasBorregaardSorensen!!
 #include "framework.h"
 #include "camera.h"
+#include "bred/gpu/context.h"
 #include "bred/graphics3d/_functions.h"
 #include "bred/graphics3d/engine.h"
 
@@ -60,6 +61,9 @@ namespace graphics3d
 
    void camera::calculate_projection(::floating_matrix4 & matrixProjection)
    {
+
+      m_fAspectRatio =
+         (float)m_pengine->gpu_context()->m_rectangle.width() / (float)m_pengine->gpu_context()->m_rectangle.height();
 
       m_pengine->calculate_projection(matrixProjection, *this);
 

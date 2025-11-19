@@ -678,6 +678,8 @@ struct sequence_type :
    }
 
 
+
+
    template < typename PREDICATE >
    bool is_every(PREDICATE predicate) const
    {
@@ -1111,6 +1113,25 @@ struct sequence_type :
       return this->crossed(front).normalized();
 
    }
+
+   
+   sequence_type cos() const
+   {
+      sequence_type result;
+      for (::collection::count i = 0; i < SIZE; ++i)
+         result[i] = ::std::cos(this->m_coordinatea[i]);
+      return result;
+   }
+
+
+   sequence_type sin() const
+   {
+      sequence_type result;
+      for (::collection::count i = 0; i < SIZE; ++i)
+         result[i] = ::std::sin(this->m_coordinatea[i]);
+      return result;
+   }
+
 
 
 };

@@ -276,9 +276,48 @@ namespace gpu_opengl
 
             auto data = memory.data();
 
-            glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, m_rectangleTarget.width(), m_rectangleTarget.height(), 0, GL_RGBA,
+            int w = m_rectangleTarget.width();
+
+            int h = m_rectangleTarget.height();
+
+            glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, w, h, 0, GL_RGBA,
                          GL_UNSIGNED_BYTE, data);
             GLCheckError("");
+
+
+
+            int samples = 0;
+            glGetIntegerv(GL_SAMPLES, &samples);
+            printf("MSAA samples: %d\n", samples);
+
+
+            //if (m_gluFbo)
+            //{
+            //   glDeleteFramebuffers(1, &m_gluFbo);
+            //   m_gluFbo = 0;
+            //   //glBindFramebuffer(GL_FRAMEBUFFER, m_gluFbo);
+            //   //GLCheckError("");
+            //   //glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, m_gluTextureID, 0);
+            //   //GLCheckError("");
+            //   //if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
+            //   //{
+            //   //   GLCheckError("");
+            //   //   throw ::exception(error_wrong_state);
+
+            //   //}
+            //   //GLCheckError("");   
+
+            //   //int_rectangle r(prenderer->m_pgpucontext->m_rectangle.size());
+
+            //   //glViewport(r.left(), r.top(), r.width(), r.height());
+            //   //GLCheckError("");
+
+            //   //glScissor(r.left(), r.top(), r.width(), r.height());
+            //   //GLCheckError("");
+
+            //   //pframe->m_pgpucommandbuffer->set_scissor(r);
+
+            //}
          }
          else if (m_gluType == GL_TEXTURE_CUBE_MAP)
          {
@@ -416,18 +455,17 @@ namespace gpu_opengl
    void texture::create_depth_resources()
    {
 
-      if (m_gluDepthStencilRBO)
-      {
-
-         return;
-      }
-
       int width = m_rectangleTarget.width();
 
       int height = m_rectangleTarget.height();
 
-      glGenRenderbuffers(1, &m_gluDepthStencilRBO);
-      GLCheckError("");
+      if (!m_gluDepthStencilRBO)
+      {
+
+         glGenRenderbuffers(1, &m_gluDepthStencilRBO);
+         GLCheckError("");
+     
+      }
 
       glBindRenderbuffer(GL_RENDERBUFFER, m_gluDepthStencilRBO);
       GLCheckError("");

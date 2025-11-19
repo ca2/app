@@ -115,17 +115,21 @@ namespace gpu
 
       auto previous = m_pgpurendertarget;
 
-      m_pgpurendertarget = on_create_render_target();
       //on_defer_update_renderer_allocate_render_target(eoutput, size, previous);
 
       if (!m_pgpurendertarget)
       {
 
-         throw ::exception(error_wrong_state);
+         m_pgpurendertarget = on_create_render_target();
+
+         if (!m_pgpurendertarget)
+         {
+
+            throw ::exception(error_wrong_state);
+
+         }
 
       }
-
-      m_sizeRenderer = size;
 
       //m_pgpurendertarget = pgpurendertarget;
       //      else if (eoutput == ::gpu::e_output_gpu_buffer)
@@ -182,8 +186,10 @@ namespace gpu
       //
       //      }
       //
-      if (!m_pgpurendertarget->has_ok_flag())
+      if (!m_pgpurendertarget->has_ok_flag() || m_sizeRenderer != size)
       {
+
+         m_sizeRenderer = size;
 
          m_pgpurendertarget->initialize_render_target(this, size, previous);
 

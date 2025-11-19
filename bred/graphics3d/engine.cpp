@@ -1162,6 +1162,7 @@ namespace graphics3d
    void engine::calculate_projection(::floating_matrix4 &matrixProjection, const ::graphics3d::camera &camera)
    {
 
+      matrixProjection = perspective(camera.m_angleFovY, camera.m_fAspectRatio, camera.m_fNearZ, camera.m_fFarZ);
 
    }
 

@@ -11,13 +11,17 @@ in vec3 modelCoordinates;
 // equirectangular projection HDRI
 uniform sampler2D hdri;
 
-const vec2 inverseAtan = vec2(0.1591, 0.3183);
 vec2 sphericalToCartesian(vec3 v)
 {
-	vec2 xy = vec2(atan(v.x, -v.z), asin(v.y));
-	xy *= inverseAtan;
-	xy += 0.5;
-	return xy;
+    float phi = atan(v.z, -v.x);       // horizontal angle
+    float theta = asin(v.y);          // vertical angle
+
+    // normalize to 0..1
+    vec2 uv;
+    uv.x = 0.5 + phi * (0.15915494309189535);   // 1 / (2π)
+    uv.y = 0.5 - theta * (0.3183098861837907);  // 1 / π (note the minus!)
+
+    return uv;
 }
 
 void main() {

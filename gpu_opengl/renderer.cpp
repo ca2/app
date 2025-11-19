@@ -245,19 +245,14 @@ namespace gpu_opengl
 
       ::cast < texture > ptexture = m_pgpurendertarget->current_texture(pframe);
 
-      if (!ptexture->m_gluFbo)
+      if (m_pgpucontext->m_escene == ::gpu::e_scene_3d)
       {
 
-         if (m_pgpucontext->m_escene == ::gpu::e_scene_3d)
-         {
-
-            ptexture->create_depth_resources();
-
-         }
-
-         ptexture->create_render_target();
+         ptexture->create_depth_resources();
 
       }
+
+      ptexture->create_render_target();
 
       ptexture->bind_render_target();
 
@@ -414,6 +409,7 @@ namespace gpu_opengl
          //if (m_pgpucontext == m_pgpucontext->m_pgpudevice->m_pgpucontextMain)
          //{
             pcommandbuffer->set_viewport(m_pgpucontext->m_rectangle.size());
+            pcommandbuffer->set_scissor(m_pgpucontext->m_rectangle.size());
          //}
          //else
          //{

@@ -7,6 +7,7 @@
 #include "texture.h"
 #include "acme/filesystem/filesystem/file_context.h"
 #include "bred/gpu/bred_approach.h"
+#include "bred/gpu/command_buffer.h"
 #include "bred/gpu/context.h"
 #include "bred/gpu/context_lock.h"
 #include "bred/gpu/device.h"

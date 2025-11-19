@@ -283,7 +283,13 @@ namespace graphics3d
 
 			prenderable->bind(pframe->m_pgpucommandbuffer);
 
-			prenderable->draw(pframe->m_pgpucommandbuffer);
+         //int_rectangle r(pgpucontext->m_rectangle.size());
+
+         //pframe->m_pgpucommandbuffer->set_viewport(r);
+
+         //pframe->m_pgpucommandbuffer->set_scissor(r);
+
+         prenderable->draw(pframe->m_pgpucommandbuffer);
 
          prenderable->unbind(pframe->m_pgpucommandbuffer);
 

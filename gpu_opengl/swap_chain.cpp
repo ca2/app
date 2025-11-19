@@ -275,9 +275,11 @@ void main() {
 
          auto pcommandbuffer = m_pgpucontext->m_pgpurenderer->getCurrentCommandBuffer2(::gpu::current_frame());
 
-         pcommandbuffer->set_viewport(m_pgpucontext->m_rectangle.size());
+         auto sizeContext = m_pgpucontext->m_rectangle.size();
 
-         pcommandbuffer->set_scissor(m_pgpucontext->m_rectangle.size());
+         pcommandbuffer->set_viewport(sizeContext);
+
+         pcommandbuffer->set_scissor(sizeContext);
 
          glDrawBuffer(GL_BACK);
 

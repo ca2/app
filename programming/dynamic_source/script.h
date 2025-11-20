@@ -26,14 +26,14 @@ namespace dynamic_source
       {
       public:
 
-         ::file::listing   m_listing;
-         class ::time      m_timeLastEnumeration;
+         ::pointer < ::file::listing >    m_plisting;
+         class ::time                     m_timeLastEnumeration;
 
 
       };
 
       ::int_map < ::string_map < ::pointer < folder_enumerate > > > m_mapFolderEnumerate;
-
+      ::int_map < ::pointer < particle > >               m_mapParticle;
       ::pointer < ::mutex >                              m_pmutexFolderEnumerate;
       ::pointer < script_manager >                       m_pscriptmanager1;
       //string                                             m_strName;
@@ -62,6 +62,31 @@ namespace dynamic_source
       bool  m_bLoadedStringTables = false;
       bool  m_bLoadedOnBeforeInclude = false;
       //bool  m_bLoadedMainStringTable = false;
+
+
+      template < typename TYPE >
+      TYPE& ø(int i)
+      {
+
+         ::pointer < TYPE > p;
+
+         auto & pparticle = m_mapParticle[i];
+
+         p = pparticle;
+
+         if(!p)
+         {
+
+            øconstruct_new(p);
+
+            pparticle = p;
+
+         }
+
+         return *p;
+
+      }
+
 
       script();
       ~script() override;
@@ -92,7 +117,7 @@ namespace dynamic_source
       virtual ::file_system_cache_item netnode_file_path(const ::scoped_string& scopedstrName, ::file_system_interface * pfilesysteminterface);
       //virtual ::file_system_cache_item _calculate_real_path(const ::scoped_string& scopedstrBase, ::f);
 
-      virtual void folder_enumerate(::file::listing& listing, int iId, const ::file::path& pathFolder, const ::function < void(::file::listing & listing) > & procedureListing);
+      virtual ::pointer < ::file::listing > folder_enumerate(int iId, const ::file::path& pathFolder, const ::function < void(::file::listing & listing) > & procedureListing);
 
 
    };

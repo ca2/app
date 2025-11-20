@@ -866,10 +866,10 @@ namespace dynamic_source
    }
 
 
-   void script_interface::folder_enumerate(::file::listing& listing, int iId, const ::file::path& pathFolder, const ::function < void(::file::listing& listing) >& procedureListing)
+   ::pointer < ::file::listing > script_interface::folder_enumerate(int iId, const ::file::path& pathFolder, const ::function < void(::file::listing& listing) >& procedureListing)
    {
 
-      m_pscript1->folder_enumerate(listing, iId, pathFolder, procedureListing);
+      return m_pscript1->folder_enumerate(iId, pathFolder, procedureListing);
 
    }
 

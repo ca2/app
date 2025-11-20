@@ -53,7 +53,7 @@ struct quaternion_type
    }
 
 
-   sequence_type< FLOATING, 3 > eulerAngles() const
+   sequence_type< FLOATING, 3 > euler_angles() const
    {
       auto q = this->normalized();
       return {q._pitch(), q._yaw(), q._roll()};
@@ -71,6 +71,9 @@ struct quaternion_type
       this->x = s.x * c.y * c.z - c.x * s.y * s.z;
       this->y = c.x * s.y * c.z + s.x * c.y * s.z;
       this->z = c.x * c.y * s.z - s.x * s.y * c.z;
+
+      return *this;
+
    }
 
 
@@ -98,12 +101,12 @@ struct quaternion_type
    }
 
 
-   quaternion_type normalize() const
+   quaternion_type normalized() const
    {
       
       auto modulus = this->modulus();
       
-      if (modulus <= static_cast<T>(0)) // Problem
+      if (modulus <= (FLOATING)0) // Problem
          return {(FLOATING)1, (FLOATING)0, (FLOATING)0, (FLOATING)0};
 
       auto inversedModulus = (FLOATING)1 / modulus;
@@ -179,24 +182,24 @@ struct quaternion_type
    }
 
 
-   inline quaternion_type normalized() const
-   {
+   //inline quaternion_type normalized() const
+   //{
 
-      FLOATING len = std::sqrt(this->w * this->w + this->x * this->x + this->y * this->y + this->z * this->z);
+   //   FLOATING len = std::sqrt(this->w * this->w + this->x * this->x + this->y * this->y + this->z * this->z);
 
-      // Avoid division by zero
-      if (len == (FLOATING)0)
-      {
-         
-         return {(FLOATING)1, (FLOATING)0, (FLOATING)0, (FLOATING)0}; // identity rotation
+   //   // Avoid division by zero
+   //   if (len == (FLOATING)0)
+   //   {
+   //      
+   //      return {(FLOATING)1, (FLOATING)0, (FLOATING)0, (FLOATING)0}; // identity rotation
 
-      }
+   //   }
 
-      FLOATING inv = (FLOATING)1 / len;
+   //   FLOATING inv = (FLOATING)1 / len;
 
-      return {this->w * inv, this->x * inv, this->y * inv, this->z * inv};
+   //   return {this->w * inv, this->x * inv, this->y * inv, this->z * inv};
 
-   }
+   //}
 
 
    inline quaternion_type & normalize()
@@ -236,39 +239,18 @@ struct quaternion_type
    quaternion_type &set_yaw_and_pitch(const angle_type<FLOATING> &yaw, const angle_type<FLOATING> &pitch)
    {
 
-      FLOATING half_yaw = yaw.m_fAngle * FLOATING(0.5);
-      FLOATING half_pitch = pitch.m_fAngle * FLOATING(0.5);
+      auto cosp = (pitch * (FLOATING)0.5).cos();
+      auto sinp = (pitch * (FLOATING)0.5).sin();
+      auto cosy = (yaw * (FLOATING)0.5).cos();
+      auto siny = (yaw * (FLOATING)0.5).sin();
 
+      this->w = cosp * cosy;
+      this->x = sinp * cosy;
+      this->y = cosp * siny;
+      this->z = - sinp * siny;
 
-      // double cr = 1.0;
-      // double sr = 0;
-      FLOATING cp = ::std::cos(half_pitch);
-      FLOATING sp = ::std::sin(half_pitch);
-      FLOATING cy = ::std::cos(half_yaw);
-      FLOATING sy = ::std::sin(half_yaw);
+      return *this;
 
-      auto &q = *this;
-      q.w = cp * cy;
-      q.x = -sp * sy;
-      q.y = sp * cy;
-      q.z = cp * sy;
-
-      return q;
-      // FLOATING cy = cos(hy);
-      // FLOATING sy = sin(hy);
-      // FLOATING cp = cos(hp);
-      // FLOATING sp = sin(hp);
-
-      // auto &q = *this;
-
-      //// q = yaw * pitch
-      ////q.w = cy * cp - sy * sp * 0; // roll=0
-      // q.w = cy * cp;
-      // q.x = sp * cy;
-      // q.y = sy * cp;
-      // q.z = sy * sp;
-
-      // return *this;
    }
 
 
@@ -302,7 +284,7 @@ struct quaternion_type
 }
 
 
-GLM_FUNC_QUALIFIER T _roll()
+angle_type < FLOATING > _roll() const
 {
    auto const y = (FLOATING)(2) * (this->x * this->y + this->w * this->z);
    auto const x = this->w * this->w + this->x * this->x - this->y * this->y - this->z * this->z;
@@ -310,7 +292,7 @@ GLM_FUNC_QUALIFIER T _roll()
    //if (all(equal(vec<2, T, Q>(x, y), vec<2, T, Q>(0), epsilon<T>()))) // avoid atan2(0,0) - handle singularity - Matiis
    if (::std::abs(x) < std::numeric_limits<FLOATING>::epsilon() &&
        ::std::abs(y) < std::numeric_limits<FLOATING>::epsilon())
-      return (FLOATING)(0);
+      return ::radians((FLOATING) 0);
 
    return ::geometry::atan2(y, x);
 }
@@ -342,7 +324,7 @@ GLM_FUNC_QUALIFIER T _roll()
           ::std::abs(y) < std::numeric_limits<FLOATING>::epsilon())
          //all(equal(vec<2, T, Q>(x, y), vec<2, T, Q>(0),
            //         ()))) // avoid atan2(0,0) - handle singularity - Matiis
-         return (FLOATING)(2) * ::geometry::atan2(this->x, this->w));
+         return (FLOATING)(2) * ::geometry::atan2(this->x, this->w);
 
       return ::geometry::atan2(y, x);
 
@@ -397,9 +379,7 @@ GLM_FUNC_QUALIFIER T _roll()
       ////auto yaw = ::geometry::atan2(sinr_cosy, cosr_cosy);
 
       return ::geometry::asin(
-            (FLOATING)(-2) * (this->x * this->z - this->w * this->y), 
-            (FLOATING)(-1), 
-            (FLOATING)(1));
+            (FLOATING)(-2) * (this->x * this->z - this->w * this->y));
 
    }
 
@@ -422,17 +402,15 @@ GLM_FUNC_QUALIFIER T _roll()
 
       this->normalize();
 
-      auto angleYaw = this->_yaw();
+      auto eulerAngles = this->euler_angles();
 
-      auto anglePitch = this->_pitch();
+      eulerAngles.x += angleΔPitch.m_fAngle;
 
-      angleYaw += angleΔYaw;
+      eulerAngles.y += angleΔYaw.m_fAngle;
 
-      anglePitch += angleΔPitch;
+      eulerAngles.x = ::geometry::clamp(eulerAngles.x, angleMinimumPitch.m_fAngle, angleMaximumPitch.m_fAngle);
 
-      anglePitch = ::geometry::clamp(anglePitch, angleMinimumPitch, angleMaximumPitch);
-
-      set_yaw_and_pitch(angleYaw, anglePitch);
+      this->set_euler_angles(eulerAngles);
 
       return *this;
 

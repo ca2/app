@@ -195,7 +195,7 @@ namespace dynamic_source
       if (!pfolderlisting || pfolderlisting->m_timeLastEnumeration.elapsed() > 1_hour)
       {
 
-         ødefer_construct_new(pfolderlisting);
+         øconstruct_new(pfolderlisting);
 
          pfolderlisting->m_listing.initialize(this);
 
@@ -204,6 +204,8 @@ namespace dynamic_source
          procedureListing(pfolderlisting->m_listing);
 
          directory()->enumerate(pfolderlisting->m_listing);
+
+         pfolderlisting->m_timeLastEnumeration.Now();
 
       }
 

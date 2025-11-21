@@ -1779,6 +1779,7 @@
     <ClInclude Include="operating_system\networking.h" />
     <ClInclude Include="operating_system\shared_posix\time1.h" />
     <ClInclude Include="operating_system\windows_common\networking.h" />
+    <ClInclude Include="parallelization\_platform.h" />
     <ClInclude Include="platform\acme_message.h" />
     <ClInclude Include="platform\http.h" />
     <ClInclude Include="prototype\collection\base_array.h" />

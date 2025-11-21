@@ -171,7 +171,7 @@ namespace dynamic_source
    }
 
 
-   void script::folder_enumerate(::file::listing& listing, int iId, const ::file::path& pathFolder, const ::function < void(::file::listing& listing) >& procedureListing)
+   ::pointer < ::file::listing > script::folder_enumerate(int iId, const ::file::path& pathFolder, const ::function < void(::file::listing& listing) >& procedureListing)
    {
 
       if(!m_pmutexFolderEnumerate)
@@ -195,19 +195,28 @@ namespace dynamic_source
       if (!pfolderlisting || pfolderlisting->m_timeLastEnumeration.elapsed() > 1_hour)
       {
 
-         ødefer_construct_new(pfolderlisting);
+         øconstruct_new(pfolderlisting);
 
-         pfolderlisting->m_listing.initialize(this);
+         øconstruct_new(pfolderlisting->m_plisting);
 
-         //pfolderlisting->m_listing.set_file_listing(pathFolder, edepth);
+         procedureListing(*pfolderlisting->m_plisting);
 
-         procedureListing(pfolderlisting->m_listing);
+         directory()->enumerate(*pfolderlisting->m_plisting);
 
-         directory()->enumerate(pfolderlisting->m_listing);
+         pfolderlisting->m_plisting->predicate_sort([](auto& path1, auto& path2)
+            {
+
+               return path1 < path2;
+
+            });
+
+         pfolderlisting->m_timeLastEnumeration.Now();
 
       }
 
-      listing = pfolderlisting->m_listing;
+      return pfolderlisting->m_plisting;
+
+      //listing = pfolderlisting->m_listing;
 
    }
 

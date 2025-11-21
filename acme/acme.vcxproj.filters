@@ -4302,6 +4302,9 @@
     <ClInclude Include="prototype\geometry\quaternion.h">
       <Filter>Header Files\prototype\geometry</Filter>
     </ClInclude>
+    <ClInclude Include="parallelization\_platform.h">
+      <Filter>Header Files\parallelization</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="prototype\prototype\bit.cpp">

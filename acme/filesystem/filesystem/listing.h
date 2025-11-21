@@ -50,6 +50,8 @@ namespace file
       string_array_base                               m_straTitle;
       ::e_status                                      m_estatusListing;
 
+      ::particle_array                                m_particleaMetaData;
+
 
       ::function < void(const ::file::path & path) >  m_functionOnNewPath;
 

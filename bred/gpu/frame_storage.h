@@ -40,6 +40,7 @@ namespace gpu
 
       
       pointer_array < memory_buffer > m_buffera;
+      pointer_array<memory> m_memorya;
 
 
       frame_storage();

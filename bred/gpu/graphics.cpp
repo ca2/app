@@ -1286,7 +1286,7 @@ namespace gpu
 
          m_pgpushaderTextOut->m_propertiesPushShared
             .set_properties(::gpu_properties<::gpu::quad_texcoords_textColor>());
-         pcontext->layout_push_constants(m_pgpushaderTextOut->m_propertiesPushShared);
+         pcontext->layout_push_constants(m_pgpushaderTextOut->m_propertiesPushShared, false);
 
          m_pgpushaderTextOut->initialize_shader_with_block(
             pcontext->m_pgpurenderer,

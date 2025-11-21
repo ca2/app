@@ -30,7 +30,7 @@ namespace graphics3d
    void camera::update_vectors() 
    {
 
-      m_sequence3Front = m_quaternionRotation.front();
+      m_sequence3Front = m_rotation.front();
 
       m_sequence3Right = m_sequence3Front.front_right(m_sequence3WorldUp);
 

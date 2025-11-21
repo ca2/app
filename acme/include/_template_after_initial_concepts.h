@@ -215,3 +215,10 @@ inline constexpr std::partial_ordering as <::std::partial_ordering, ::std::stron
    return to_partial_ordering(strongordering);
 
 }
+
+
+template<primitive_floating FLOATING_TYPE, int t_iDimension, enum_matrix_major t_emajor = e_matrix_major_column>
+struct matrix_type;
+
+
+

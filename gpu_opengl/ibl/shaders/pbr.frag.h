@@ -56,6 +56,10 @@ uniform samplerCube diffuseIrradianceMap;
 uniform samplerCube prefilteredEnvMap;
 uniform sampler2D brdfConvolutionMap;
 
+uniform float y_multiplier;
+uniform float z_multiplier;
+
+
 // Post parameters
 uniform float bloomBrightnessCutoff;
 
@@ -166,6 +170,10 @@ void main() {
 	}
 
 	vec3 v = normalize(cameraPosition - worldCoordinates); // view vector pointing at camera
+
+   v.y = v.y * y_multiplier;
+   v.z = v.z * z_multiplier;
+
 	vec3 r = reflect(-v, n); // reflection
 
 	// f0 is the "surface reflection at zero incidence"

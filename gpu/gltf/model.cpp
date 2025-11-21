@@ -123,9 +123,11 @@ namespace gpu
             stbi_set_flip_vertically_on_load(flipTexturesVertically);
             //importer.SetIOHandler(get_assimp_iosystem());
             const aiScene *scene =
-               //get_assimp_importer()->ReadFile(path, aiProcess_Triangulate | aiProcess_FlipUVs | aiProcess_CalcTangentSpace);
-               get_assimp_importer()->ReadFile(path,
-                                               aiProcess_Triangulate | aiProcess_FlipUVs);
+               // get_assimp_importer()->ReadFile(path, aiProcess_Triangulate | aiProcess_FlipUVs |
+               // aiProcess_CalcTangentSpace);
+//                              get_assimp_importer()->ReadFile(path,
+  //                                                          aiProcess_Triangulate | aiProcess_FlipUVs);
+               get_assimp_importer()->ReadFile(path, aiProcess_Triangulate);
 
             if (!scene || scene->mFlags & AI_SCENE_FLAGS_INCOMPLETE || !scene->mRootNode)
             {

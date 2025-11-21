@@ -18,7 +18,8 @@ namespace graphics3d
 
 		::pointer < ::graphics3d::engine > m_pengine;
       ::floating_sequence3 m_sequence3Position;
-      ::floating_quaternion m_quaternionRotation;
+      //::floating_quaternion m_quaternionRotation;
+      floating_rotation m_rotation;
       //      void calculateMouseOffset(float xoffset, float yoffset);
       // private:
       floating_matrix4 m_matrixProjection{1.f};
@@ -59,7 +60,8 @@ namespace graphics3d
 
 
       inline const floating_sequence3 & position() const { return m_sequence3Position; }
-      inline const floating_quaternion & rotation() const { return m_quaternionRotation; }
+      inline const floating_rotation & rotation() const { return m_rotation; }
+//      inline const floating_angle & pitch() const { return m_anglePitch; }
 
 
       inline const floating_sequence3 & front() const { return m_sequence3Front; }
@@ -67,8 +69,8 @@ namespace graphics3d
       inline const floating_sequence3 & up() const { return m_sequence3Up; }
       inline const floating_sequence3 & world_up() const { return m_sequence3WorldUp; }
 
-      inline float_angle yaw() const { return m_quaternionRotation.yaw(); }
-      inline float_angle pitch() const { return m_quaternionRotation.pitch(); }
+      //inline float_angle yaw() const { return m_quaternionRotation.yaw(); }
+      //inline float_angle pitch() const { return m_quaternionRotation.pitch(); }
 
 
       inline const floating_matrix4 & projection() const { return m_matrixProjection; }

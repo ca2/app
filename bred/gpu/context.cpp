@@ -573,7 +573,7 @@ namespace gpu
    }
 
 
-   void context::layout_push_constants(::gpu::properties & properties)
+   void context::layout_push_constants(::gpu::properties & properties, bool bGlobalUbo)
    {
 
       layout_properties_default(properties);

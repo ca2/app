@@ -137,13 +137,13 @@ inline float_matrix4 aiMatrix4x4ToColumnMajorAVX(const aiMatrix4x4 &from)
 
 inline floating_matrix4 aiMatrix4x4ToColumnMajor(const aiMatrix4x4 &from)
 {
-   if (g_cpufeatures.m_bAVX2)
-      return aiMatrix4x4ToColumnMajorAVX2(from);
-   else if (g_cpufeatures.m_bAVX)
-      return aiMatrix4x4ToColumnMajorAVX(from);
-   else if (g_cpufeatures.m_bSSE)
-      return aiMatrix4x4ToColumnMajorSSE(from);
-   else
+   //if (g_cpufeatures.m_bAVX2)
+   //   return aiMatrix4x4ToColumnMajorAVX2(from);
+   //else if (g_cpufeatures.m_bAVX)
+   //   return aiMatrix4x4ToColumnMajorAVX(from);
+   //else if (g_cpufeatures.m_bSSE)
+   //   return aiMatrix4x4ToColumnMajorSSE(from);
+   //else
       return aiMatrix4x4ToColumnMajorScalar(from);
 }
 

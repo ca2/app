@@ -75,7 +75,7 @@ namespace gpu
          m_pshaderHdri->m_bDisableDepthTest = true;
          m_pshaderHdri->m_propertiesPushShared.set_properties(
             ::gpu_properties<::gpu::model_view_projection_hdriSampler>());
-         m_pgpucontext->layout_push_constants(m_pshaderHdri->m_propertiesPushShared);
+         m_pgpucontext->layout_push_constants(m_pshaderHdri->m_propertiesPushShared, false);
          m_pshaderHdri->initialize_shader_with_block(
             m_pgpucontext->m_pgpurenderer,
             embedded_ibl_hdri_cube_vert(),            

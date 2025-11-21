@@ -1106,4 +1106,13 @@ enum enum_synchronicity
 };
 
 
+enum enum_matrix_major
+{
+
+   e_matrix_major_column,
+   e_matrix_major_row
+
+};
+
+
 

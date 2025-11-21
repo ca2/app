@@ -188,12 +188,6 @@
     <ClInclude Include="ibl\shaders\specularenv.vert.h">
       <Filter>Header Files\ibl\shaders</Filter>
     </ClInclude>
-    <ClInclude Include="ibl\shaders\pbr.frag.h">
-      <Filter>Header Files\ibl\shaders</Filter>
-    </ClInclude>
-    <ClInclude Include="ibl\shaders\pbr.vert.h">
-      <Filter>Header Files\ibl\shaders</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="framework.cpp">

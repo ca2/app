@@ -11,6 +11,8 @@ namespace graphics3d
 {
 
 
+
+
    class CLASS_DECL_BRED renderable :
       virtual public ::particle,
       public ::gpu::renderable_t

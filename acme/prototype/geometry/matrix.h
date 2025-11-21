@@ -6,8 +6,8 @@
 #include "acme/prototype/geometry/sequence.h"
 #include "acme/prototype/geometry2d/angle.h"
 
-template<primitive_floating FLOATING_TYPE, int t_iDimension>
-struct matrix_type;
+//template<primitive_floating FLOATING_TYPE, int t_iDimension, enum_matrix_major t_emajor>
+//struct matrix_type;
 
 
 
@@ -43,7 +43,6 @@ namespace geometry
 
 
 
-
 /// Simple matrix class with row-major storage
 template<primitive_floating FLOATING_TYPE, int t_iDimension>
 struct row_major_type
@@ -66,8 +65,10 @@ struct row_major_type
 struct translation_t
 {
 };
-/// Simple matrix class with column-major storage
-template <primitive_floating FLOATING_TYPE, int t_iDimension>
+
+
+/// Matrix class
+template<primitive_floating FLOATING_TYPE, int t_iDimension, enum_matrix_major t_emajor>
 struct matrix_type
 {
 
@@ -352,13 +353,13 @@ struct matrix_type
    inline float_sequence4 operator *(const float_sequence4 &s) const
       requires(DIMENSION == 4 && std::is_same_v<FLOATING, float>)
    {
-      if (g_cpufeatures.m_bAVX2)
-         return mul_avx2(s);
-      else if (g_cpufeatures.m_bAVX)
-         return mul_avx(s);
-      else if (g_cpufeatures.m_bSSE)
-         return mul_sse(s);
-      else
+      //if (g_cpufeatures.m_bAVX2)
+      //   return mul_avx2(s);
+      //else if (g_cpufeatures.m_bAVX)
+      //   return mul_avx(s);
+      //else if (g_cpufeatures.m_bSSE)
+      //   return mul_sse(s);
+      //else
          return mul_scalar(s);
    }
 
@@ -516,13 +517,13 @@ inline matrix_type mul_avx2(const matrix_type &B) const
    inline matrix_type operator*(const matrix_type &m) const
       requires(DIMENSION == 4 && std::is_same_v<FLOATING, float>)
    {
-      if (g_cpufeatures.m_bAVX2)
-         return mul_avx2(m);
-      else if (g_cpufeatures.m_bAVX)
-         return mul_avx(m);
-      else if (g_cpufeatures.m_bSSE)
-         return mul_sse(m);
-      else
+      //if (g_cpufeatures.m_bAVX2)
+      //   return mul_avx2(m);
+      //else if (g_cpufeatures.m_bAVX)
+      //   return mul_avx(m);
+      //else if (g_cpufeatures.m_bSSE)
+      //   return mul_sse(m);
+      //else
          return mul_scalar(m);
    }
 
@@ -857,6 +858,65 @@ inline matrix_type mul_avx2(const matrix_type &B) const
       auto m = *this;
 
       return m.scale(s);
+   }
+
+
+   FLOATING determinant() const
+      requires(DIMENSION == 3)
+   {
+      auto m = this->fa;
+
+      if constexpr (t_emajor == e_matrix_major_column)
+      {
+         // Column-major indexing: m[col*3 + row]
+         return m[0] * (m[4] * m[8] - m[5] * m[7]) - // m00*(m11*m22 - m12*m21)
+               m[3] * (m[1] * m[8] - m[2] * m[7]) + // m01*(m10*m22 - m12*m20)
+               m[6] * (m[1] * m[5] - m[2] * m[4]); // m02*(m10*m21 - m11*m20)
+      }
+      else
+      {
+         // Row-major indexing: m[row*3 + col]
+         return  m[0] * (m[4] * m[8] - m[5] * m[7]) - // m00*(m11*m22 - m12*m21)
+               m[1] * (m[3] * m[8] - m[5] * m[6]) + // m01*(m10*m22 - m12*m20)
+               m[2] * (m[3] * m[7] - m[4] * m[6]); // m02*(m10*m21 - m11*m20)
+      }
+
+   }
+
+
+
+   FLOATING determinant() const
+      requires(DIMENSION == 4)
+   {
+
+      auto m = this->fa;
+
+      if constexpr (t_emajor == e_matrix_major_column)
+      {
+         // Column-major: m[col*4 + row]
+         return  m[0] * (m[5] * (m[10] * m[15] - m[11] * m[14]) - m[9] * (m[6] * m[15] - m[7] * m[14]) +
+                       m[13] * (m[6] * m[11] - m[7] * m[10])) -
+               m[4] * (m[1] * (m[10] * m[15] - m[11] * m[14]) - m[9] * (m[2] * m[15] - m[3] * m[14]) +
+                       m[13] * (m[2] * m[11] - m[3] * m[10])) +
+               m[8] * (m[1] * (m[6] * m[15] - m[7] * m[14]) - m[5] * (m[2] * m[15] - m[3] * m[14]) +
+                       m[13] * (m[2] * m[7] - m[3] * m[6])) -
+               m[12] * (m[1] * (m[6] * m[11] - m[7] * m[10]) - m[5] * (m[2] * m[11] - m[3] * m[10]) +
+                        m[9] * (m[2] * m[7] - m[3] * m[6]));
+      }
+      else
+      {
+         // Row-major: m[row*4 + col]
+         return m[0] * (m[5] * (m[10] * m[15] - m[11] * m[14]) - m[6] * (m[9] * m[15] - m[11] * m[13]) +
+                       m[7] * (m[9] * m[14] - m[10] * m[13])) -
+               m[1] * (m[4] * (m[10] * m[15] - m[11] * m[14]) - m[6] * (m[8] * m[15] - m[11] * m[12]) +
+                       m[7] * (m[8] * m[14] - m[10] * m[12])) +
+               m[2] * (m[4] * (m[9] * m[15] - m[11] * m[13]) - m[5] * (m[8] * m[15] - m[11] * m[12]) +
+                       m[7] * (m[8] * m[13] - m[9] * m[12])) -
+               m[3] * (m[4] * (m[9] * m[14] - m[10] * m[13]) - m[5] * (m[8] * m[14] - m[10] * m[12]) +
+                       m[6] * (m[8] * m[13] - m[9] * m[12]));
+      }
+
+    
    }
 
    inline matrix_type inversed_scalar() const
@@ -1354,22 +1414,22 @@ inline matrix_type mul_avx2(const matrix_type &B) const
       {
          if constexpr (DIMENSION == 4)
          {
-            if (g_cpufeatures.m_bAVX2)
-               return inversed_avx2();
-            else if (g_cpufeatures.m_bAVX)
-               return inversed_avx();
-            else if (g_cpufeatures.m_bSSE)
-               return inversed_sse();
-            else
+            //if (g_cpufeatures.m_bAVX2)
+            //   return inversed_avx2();
+            //else if (g_cpufeatures.m_bAVX)
+            //   return inversed_avx();
+            //else if (g_cpufeatures.m_bSSE)
+            //   return inversed_sse();
+            //else
                return inversed_scalar();
          }
          else if constexpr (DIMENSION == 3)
          {
-            if (g_cpufeatures.m_bAVX)
-               return inversed_avx();
-            if (g_cpufeatures.m_bSSE) 
-               return inversed_sse();
-            else
+            //if (g_cpufeatures.m_bAVX)
+            //   return inversed_avx();
+            //if (g_cpufeatures.m_bSSE) 
+            //   return inversed_sse();
+            //else
                return inversed_scalar();
          }
          else
@@ -2014,3 +2074,21 @@ sequence_type<NUMBER, t_iSize>::operator*(const matrix_type<FLOATING1, 4> &M) co
 
 
 
+template<primitive_number UNIT_TYPE, int t_iSize>
+auto sequence_type<UNIT_TYPE, t_iSize>::as_translation_matrix() const
+   requires(t_iSize == 3 && primitive_floating<UNIT_TYPE>)
+{
+
+   return matrix_type<UNIT_TYPE, 4>{(UNIT_TYPE)1}.translated(*this);
+
+}
+
+
+template<primitive_number UNIT_TYPE, int t_iSize>
+auto sequence_type<UNIT_TYPE, t_iSize>::as_scaling_matrix() const
+   requires(t_iSize == 3 && primitive_floating<UNIT_TYPE>)
+{
+
+   return matrix_type<UNIT_TYPE, 4>{(UNIT_TYPE)1}.scaled(*this);
+
+}

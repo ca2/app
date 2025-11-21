@@ -411,6 +411,7 @@
     <ClInclude Include="graphics3d\render_systems\skybox_ibl_render_system.h" />
     <ClInclude Include="graphics3d\render_systems\skybox_render_system.h" />
     <ClInclude Include="graphics3d\resource.h" />
+    <ClInclude Include="graphics3d\rotation.h" />
     <ClInclude Include="graphics3d\scene_base.h" />
     <ClInclude Include="graphics3d\scene_object.h" />
     <ClInclude Include="graphics3d\scene_renderable.h" />

@@ -283,6 +283,25 @@ namespace graphics3d
 
 			prenderable->bind(pframe->m_pgpucommandbuffer);
 
+         float y_multiplier = 1.f;
+         float z_multiplier = 1.f;
+
+         if (prenderable->m_ecoordinatesystem == ::gpu::e_coordinate_system_vulkan)
+         {
+
+            if (pgpucontext->m_eapi == ::gpu::e_api_opengl)
+            {
+
+               y_multiplier = -1.f;
+               z_multiplier = -1.f;
+
+            }
+
+         }
+
+         m_pshader->set_float("y_multiplier", y_multiplier);
+         m_pshader->set_float("z_multiplier", z_multiplier);
+
          //int_rectangle r(pgpucontext->m_rectangle.size());
 
          //pframe->m_pgpucommandbuffer->set_viewport(r);

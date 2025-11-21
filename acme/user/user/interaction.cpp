@@ -1413,6 +1413,14 @@ namespace acme
          }
 
 
+         ::int_size interaction::get_window_minimum_size()
+         {
+
+            return { 250, 250 };
+
+         }
+
+
          //::collection::count interaction::nano_user_button_count()
          //{
 

@@ -305,7 +305,7 @@ struct sequence_type :
       this->m_coordinatea[0] = (UNIT_TYPE)s4.x;
       this->m_coordinatea[1] = (UNIT_TYPE)s4.y;
       this->m_coordinatea[2] = (UNIT_TYPE)s4.z;
-      this->m_coordinatea[2] = (UNIT_TYPE)s4.w;
+      this->m_coordinatea[3] = (UNIT_TYPE)s4.w;
    }
 
    template<primitive_number NUMBER1>

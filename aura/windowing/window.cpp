@@ -9710,6 +9710,22 @@ namespace windowing
 
             information() << "defer_do_graphics !pbufferitem (2)";
 
+            if (this->get_window_rectangle().size() < m_pacmeuserinteraction->get_window_minimum_size())
+            {
+
+               static class ::time s_timeThisThingLastTime;
+
+               if (s_timeThisThingLastTime.elapsed() > 15_s)
+               {
+
+                  s_timeThisThingLastTime.Now();
+
+                  m_pacmeuserinteraction->display(::e_display_normal);
+
+               }
+
+            }
+
             return;
 
          }

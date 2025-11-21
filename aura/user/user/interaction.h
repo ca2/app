@@ -2271,7 +2271,7 @@ namespace user
       virtual bool is_system_message_window();
 
 
-      virtual ::int_size get_window_minimum_size();
+      ::int_size get_window_minimum_size() override;
 
       virtual ::int_rectangle get_window_normal_stored_rectangle();
       virtual ::int_rectangle get_window_broad_stored_rectangle();

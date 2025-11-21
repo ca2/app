@@ -2020,7 +2020,7 @@ namespace dynamic_source
          iFind = straId.get_upper_bound();
       }
       //strResult = strResult.left(iArroba) + " lscript_id" + as_string(iFind);
-      strResult = strResult.left(iArroba) + " \"" + strKey + "\"";
+      strResult = strResult.left(iArroba) + " \"" + strKey + "\"_ansi";
       iArroba = -1;
    }
 

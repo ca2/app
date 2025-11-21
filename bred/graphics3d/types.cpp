@@ -1,7 +1,7 @@
 // Created by camilo on 2025-08-23 21:19 <3ThomasBorregaardSorensen!!
 #include "framework.h"
 #include "types.h"
-
+#include "bred/graphics3d/_functions.h"
 
 BEGIN_GPU_PROPERTIES(::graphics3d::sequence2_uv)
 GPU_PROPERTY("position", ::gpu::e_type_seq2)
@@ -45,16 +45,15 @@ namespace graphics3d
 
 
       // 1) Translation
-      auto T = floating_matrix4::translation(m_sequence3Position);
+      auto T = m_sequence3Position.as_translation_matrix();
 
 
       // 2) Rotation
-      auto R = floating_matrix4::rotation(m_quaternionRotation);
+      auto R = m_rotation.as_rotation_matrix();
 
 
       // 3) Scale
-      floating_matrix4 S = floating_matrix4(1.0f);
-      S.scale(m_sequence3Scale);
+      auto S = m_sequence3Scale.as_scaling_matrix();
 
 
       // Compose: T * R * S
@@ -67,9 +66,9 @@ namespace graphics3d
    {
       
       // Build RS (ignore m_sequence3Position)
-      auto R = floating_matrix4::rotation(m_quaternionRotation);
+      auto R = m_rotation.as_rotation_matrix();
 
-      auto S = floating_matrix4::scaling(m_sequence3Scale);
+      auto S = m_sequence3Scale.as_scaling_matrix();
       
       auto RS = R * S;
 

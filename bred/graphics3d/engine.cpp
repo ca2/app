@@ -23,6 +23,7 @@
 #include "bred/gpu/layer.h"
 #include "bred/gpu/renderer.h"
 #include "bred/gpu/render_target.h"
+#include "bred/graphics3d/_functions.h"
 #include "bred/graphics3d/camera.h"
 #include "bred/user/user/graphics3d.h"
 #include "aura/graphics/image/target.h"
@@ -154,7 +155,7 @@ namespace graphics3d
    void engine::create_global_ubo(::gpu::context* pgpucontext)
    {
 
-      pgpucontext->layout_push_constants(m_pimmersionlayer->m_pscene->global_ubo());
+      pgpucontext->layout_push_constants(m_pimmersionlayer->m_pscene->global_ubo(), true);
 
       auto iGlobalUboSize = m_pimmersionlayer->m_pscene->global_ubo().m_blockWithoutSamplers.size();
 
@@ -358,7 +359,8 @@ namespace graphics3d
    {
 
       auto translation = transform.m_sequence3Position;
-      auto rotation = transform.m_quaternionRotation;
+      auto rotation = transform.m_rotation;
+      //auto anglePitch = transform.m_anglePitch;
       auto scale = transform.m_sequence3Scale;
 
       scale.z = scale.z * m_fYScale;
@@ -368,17 +370,19 @@ namespace graphics3d
          //floating_sequence3 rotation = ::radians(rotationEulerDegrees);
 
          // Scale
-         floating_matrix4 S = floating_matrix4(1.0f).scaled(scale);
+         auto S = scale.as_scaling_matrix();
 
          // Rotation (Euler to Quaternion to Matrix)
-         auto quaternion = float_quaternion(rotation);
-         floating_matrix4 R = floating_matrix4::from(quaternion);
+         //;
+         //;
+         //auto quaternion = float_quaternion(rotation);
+         auto R = rotation.as_rotation_matrix();
 
          // Translation
-         floating_matrix4 T = floating_matrix4(1.0f).translated(translation);
+         auto T = translation.as_translation_matrix();
 
          // Model matrix (camera transform)
-         floating_matrix4 model = T * R * S;
+         auto model = T * R * S;
 
          return model;
 

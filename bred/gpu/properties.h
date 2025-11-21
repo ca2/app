@@ -438,6 +438,20 @@ namespace gpu
 			return *this;
 
 		}
+      template<typename TYPE>
+      properties_reference &operator=(const TYPE &floating_sequence3)
+         requires(::std::is_same_v<TYPE, ::floating_sequence3>)
+      {
+         if (m_pproperties->m_etype != ::gpu::e_type_seq3)
+         {
+
+            throw ::exception(error_bad_data_format);
+         }
+
+         _set_vec4(floating_sequence3);
+
+         return *this;
+      }
 
 		template < typename TYPE >
 		properties_reference& operator=(const TYPE& i)requires

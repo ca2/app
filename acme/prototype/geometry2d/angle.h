@@ -207,8 +207,15 @@ constexpr angle_type < FLOATING > radians(FLOATING fAngle)
 }
 
 
-inline double_angle operator "" _degree(long double degrees)
+template<primitive_floating FLOATING>
+constexpr angle_type<FLOATING> degrees(FLOATING fAngle)
 {
+
+   return angle_type<FLOATING>::degrees(fAngle);
+}
+
+
+inline double_angle operator"" _degree(long double degrees) {
 
    return radians(degrees_to_radians(degrees));
 

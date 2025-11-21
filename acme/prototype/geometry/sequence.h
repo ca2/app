@@ -17,8 +17,6 @@
 //#include <iosfwd>
 //#include <string.h> // ::memory_set
 
-template<primitive_floating FLOATING_TYPE, int t_iDimension>
-struct matrix_type;
 
 template<primitive_number NUMBER, int t_iSize >
 struct sequence_t_type
@@ -280,24 +278,35 @@ struct sequence_type :
 //         this->m_coordinatea[i] = (COORDINATE)a[i];
 //   }
 
-   template < primitive_number NUMBER1 >
-   constexpr sequence_type(const sequence_t_type < NUMBER1, 2 > & sequence)
-      requires(SIZE >= 2)
+
+   template < primitive_sequence2 S2 >
+   constexpr sequence_type(const S2 & s2)
+      requires(SIZE == 2)
    {
-      this->m_coordinatea[0] = (UNIT_TYPE) sequence.m_coordinatea[0];
-      this->m_coordinatea[1] = (UNIT_TYPE) sequence.m_coordinatea[1];
+      this->m_coordinatea[0] = (UNIT_TYPE) s2.x;
+      this->m_coordinatea[1] = (UNIT_TYPE) s2.y;
    }
 
    
-   template < primitive_number NUMBER1, int iSize >
-   constexpr sequence_type(const sequence_t_type < NUMBER1, iSize > & sequence)
-      requires(SIZE >= 3 && iSize >= 3)
+   template < primitive_sequence3 S3 >
+   constexpr sequence_type(const S3 & s3)
+      requires(SIZE == 3)
    {
-      this->m_coordinatea[0] = (UNIT_TYPE) sequence.m_coordinatea[0];
-      this->m_coordinatea[1] = (UNIT_TYPE) sequence.m_coordinatea[1];
-      this->m_coordinatea[2] = (UNIT_TYPE) sequence.m_coordinatea[2];
+      this->m_coordinatea[0] = (UNIT_TYPE) s3.x;
+      this->m_coordinatea[1] = (UNIT_TYPE) s3.y;
+      this->m_coordinatea[2] = (UNIT_TYPE) s3.z;
    }
 
+
+   template<primitive_sequence4 S4>
+   constexpr sequence_type(const S4 &s4)
+      requires(SIZE >= 4)
+   {
+      this->m_coordinatea[0] = (UNIT_TYPE)s4.x;
+      this->m_coordinatea[1] = (UNIT_TYPE)s4.y;
+      this->m_coordinatea[2] = (UNIT_TYPE)s4.z;
+      this->m_coordinatea[2] = (UNIT_TYPE)s4.w;
+   }
 
    template<primitive_number NUMBER1>
    constexpr sequence_type(const NUMBER1 *p) // expects p to point to an array of at least SIZE elements
@@ -925,7 +934,9 @@ struct sequence_type :
       return nMaximum;
 
    }
-   
+
+
+
    
    COORDINATE dotted(const sequence_type & vector) const
    {
@@ -1132,6 +1143,12 @@ struct sequence_type :
       return result;
    }
 
+   
+   auto as_translation_matrix() const
+      requires(t_iSize == 3 && primitive_floating<UNIT_TYPE>);
+
+   auto as_scaling_matrix() const
+      requires(t_iSize == 3 && primitive_floating<UNIT_TYPE>);
 
 
 };

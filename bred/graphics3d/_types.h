@@ -4,6 +4,9 @@
 #pragma once
 
 
+#include "bred/graphics3d/rotation.h"
+
+
 // 
 //
 
@@ -75,7 +78,9 @@ namespace graphics3d
    {
       //::graphics3d::transform() = default;
       floating_sequence3 m_sequence3Position{};
-      floating_quaternion m_quaternionRotation{};
+      //floating_quaternion m_quaternionRotation{};
+      ::graphics3d::floating_rotation m_rotation;
+      //float_angle m_anglePitch;
       floating_sequence3 m_sequence3Scale{1.f};
 
 

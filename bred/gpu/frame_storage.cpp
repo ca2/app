@@ -130,6 +130,8 @@ namespace gpu
 
       }
 
+      m_memorya.erase_all();
+
    }
 
 

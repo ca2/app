@@ -22,6 +22,26 @@ class scoped_string_base;
 template < typename SEQUENCE >
 concept primitive_sequence = ::std::is_same < typename SEQUENCE::sequence_tag, sequence_t >::value;
 
+template<typename SEQUENCE2>
+concept primitive_sequence2 = requires(SEQUENCE2 s2) {
+
+   s2.x;
+   s2.y;
+
+};
+template<typename SEQUENCE3>
+concept primitive_sequence3 = requires(SEQUENCE3 s3) {
+   s3.x;
+   s3.y;
+   s3.z;
+};
+template<typename SEQUENCE4>
+concept primitive_sequence4 = requires(SEQUENCE4 s4) {
+   s4.x;
+   s4.y;
+   s4.z;
+   s4.w;
+};
 
 template < typename ENUM >
 concept primitive_enum = 
@@ -472,22 +492,22 @@ concept primitive_point = requires(POINT point)
 };
 
 
-template < typename SEQUENCE2 >
-concept primitive_sequence2 =
-   ::std::is_same < typename SEQUENCE2::sequence_tag, sequence_t >::value &&
-   ::std::is_same < typename SEQUENCE2::sequence_size, sequence_size_t < 2 > >::value;
-
-
-template < typename SEQUENCE3 >
-concept primitive_sequence3 =
-   ::std::is_same < typename SEQUENCE3::sequence_tag, sequence_t >::value &&
-   ::std::is_same < typename SEQUENCE3::sequence_size, sequence_size_t < 3 > >::value;
-
-
-template < typename SEQUENCE4 >
-concept primitive_sequence4 =
-   ::std::is_same < typename SEQUENCE4::sequence_tag, sequence_t >::value &&
-   ::std::is_same < typename SEQUENCE4::sequence_size, sequence_size_t < 4 > >::value;
+//template < typename SEQUENCE2 >
+//concept primitive_sequence2 =
+//   ::std::is_same < typename SEQUENCE2::sequence_tag, sequence_t >::value &&
+//   ::std::is_same < typename SEQUENCE2::sequence_size, sequence_size_t < 2 > >::value;
+//
+//
+//template < typename SEQUENCE3 >
+//concept primitive_sequence3 =
+//   ::std::is_same < typename SEQUENCE3::sequence_tag, sequence_t >::value &&
+//   ::std::is_same < typename SEQUENCE3::sequence_size, sequence_size_t < 3 > >::value;
+//
+//
+//template < typename SEQUENCE4 >
+//concept primitive_sequence4 =
+//   ::std::is_same < typename SEQUENCE4::sequence_tag, sequence_t >::value &&
+//   ::std::is_same < typename SEQUENCE4::sequence_size, sequence_size_t < 4 > >::value;
 
 
 template < typename POLE >

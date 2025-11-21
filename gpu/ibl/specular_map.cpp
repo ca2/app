@@ -110,7 +110,7 @@ return {};
          m_pshaderPrefilteredEnvMap->m_ecullmode = ::gpu::e_cull_mode_none;
          m_pshaderPrefilteredEnvMap->m_bDisableDepthTest = true;
          m_pshaderPrefilteredEnvMap->m_propertiesPushShared.set_properties(::gpu_properties<specular_env_map_push_constants>());
-         m_pgpucontext->layout_push_constants(m_pshaderPrefilteredEnvMap->m_propertiesPushShared);
+         m_pgpucontext->layout_push_constants(m_pshaderPrefilteredEnvMap->m_propertiesPushShared, false);
          m_pshaderPrefilteredEnvMap->initialize_shader_with_block(
             m_pgpucontext->m_pgpurenderer,
             blockVert,

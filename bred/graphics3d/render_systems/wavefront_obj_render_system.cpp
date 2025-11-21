@@ -187,7 +187,7 @@ namespace graphics3d
       m_pshader = øcreate<::gpu::shader>();
       m_pshader->m_propertiesPushShared.set_properties(simple_render_properties());
       pgpucontext->layout_push_constants(
-         m_pshader->m_propertiesPushShared);
+         m_pshader->m_propertiesPushShared, false);
       m_pshader->initialize_shader(
          pgpucontext->m_pgpurenderer, "matter://shaders/vert.vert",
 			"matter://shaders/frag.frag",

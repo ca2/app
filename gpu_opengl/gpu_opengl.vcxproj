@@ -747,8 +747,6 @@
     <ClInclude Include="ibl\shaders\diffuseirradiance.vert.h" />
     <ClInclude Include="ibl\shaders\hdricube.frag.h" />
     <ClInclude Include="ibl\shaders\hdricube.vert.h" />
-    <ClInclude Include="ibl\shaders\pbr.frag.h" />
-    <ClInclude Include="ibl\shaders\pbr.vert.h" />
     <ClInclude Include="ibl\shaders\specularenv.frag.h" />
     <ClInclude Include="ibl\shaders\specularenv.vert.h" />
     <ClInclude Include="ibl\specular_map.h" />

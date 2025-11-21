@@ -634,6 +634,7 @@ inline RECTANGLE & subtract(RECTANGLE & rectangle, const RECTANGLE1 & rectangle1
 
 template < primitive_sequence2 SEQUENCE, primitive_number X, primitive_number Y >
 inline SEQUENCE & offset(SEQUENCE & sequence, X x, Y y)
+   requires(!primitive_sequence3<SEQUENCE>)
 {
 
    sequence.x = (const decay<typename SEQUENCE::UNIT_TYPE>&)(sequence.x + x);
@@ -646,6 +647,7 @@ inline SEQUENCE & offset(SEQUENCE & sequence, X x, Y y)
 
 template < primitive_sequence2 SEQUENCEA, primitive_sequence SEQUENCEB >
 inline SEQUENCEA & offset(SEQUENCEA & sequencea, const SEQUENCEB & sequenceb)
+   requires(!primitive_sequence3<SEQUENCEA>)
 {
 
    return offset(sequencea, sequenceb.x, sequenceb.y);
@@ -655,6 +657,7 @@ inline SEQUENCEA & offset(SEQUENCEA & sequencea, const SEQUENCEB & sequenceb)
 
 template < primitive_sequence2 SEQUENCEA, primitive_sequence SEQUENCEB >
 inline SEQUENCEA & add(SEQUENCEA & sequencea, const SEQUENCEB & sequenceb)
+   requires(!primitive_sequence3<SEQUENCEA>)
 {
 
    return offset(sequencea, sequenceb);
@@ -664,6 +667,7 @@ inline SEQUENCEA & add(SEQUENCEA & sequencea, const SEQUENCEB & sequenceb)
 
 template < primitive_sequence2 SEQUENCE, typename X, typename Y >
 inline SEQUENCE & subtract(SEQUENCE & sequence, X x, Y y)
+   requires(!primitive_sequence3<SEQUENCE>)
 {
 
    sequence.x = (const decay<typename SEQUENCE::UNIT_TYPE>&)(sequence.x - x);
@@ -676,6 +680,7 @@ inline SEQUENCE & subtract(SEQUENCE & sequence, X x, Y y)
 
 template < primitive_sequence2 SEQUENCEA, primitive_sequence2 SEQUENCEB >
 inline SEQUENCEA & subtract(SEQUENCEA & sequence, const SEQUENCEB & sequenceb)
+   requires(!primitive_sequence3<SEQUENCEA>)
 {
 
    return subtract(sequence, sequenceb.x, sequenceb.y);

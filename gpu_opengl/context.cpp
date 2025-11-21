@@ -67,7 +67,7 @@ namespace gpu_opengl
 
    context::context()
    {
-
+      m_eapi = ::gpu::e_api_opengl;
       m_gluLayerFrameBuffer = 0;
       m_globalUBO = 0;
       //m_gluLayFrameBufferRenderer = 0;

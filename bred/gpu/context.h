@@ -17,7 +17,15 @@
 namespace gpu
 {
 
+   enum enum_api
+   {
+      e_api_none,
+      e_api_opengl,
+      e_api_vulkan,
+      e_api_directx11,
+      e_api_directx12,
 
+   };
 
 
    class renderer;
@@ -81,7 +89,7 @@ namespace gpu
          e_type_window,
       };
 
-
+      ::gpu::enum_api m_eapi = e_api_none;
       //int                                    m_iTopicTexture = -1;
       //bool                                   m_bCullFace = false;
       ::gpu::enum_cull_mode                  m_ecullmode;
@@ -167,7 +175,7 @@ namespace gpu
       virtual void load_texture(::pointer < ::gpu::texture > & ptexture, const ::file::path& path, bool bIsSrgb);
 
       virtual void layout_input_layout_properties(::gpu::properties *pproperties);
-      virtual void layout_push_constants(::gpu::properties & properties);
+      virtual void layout_push_constants(::gpu::properties & properties, bool bGlobalUbo);
       virtual void layout_properties_default(::gpu::properties &properties);
 
       virtual void defer_make_current();

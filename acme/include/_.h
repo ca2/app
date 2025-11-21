@@ -66,7 +66,7 @@
 #include "acme/include/_template_forward_declaration.h"
 #include "acme/include/_initial_concepts.h"
 //#include "_other_initial_concepts.h"
-#include "acme/include/_template_structures.h"
+#include "acme/include/_template_after_initial_concepts.h"
 #include "acme/include/_enumeration.h"
 //#include "_c.h"
 #include "acme/include/_function_declarations.h"

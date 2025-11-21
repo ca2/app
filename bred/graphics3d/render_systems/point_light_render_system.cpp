@@ -98,7 +98,7 @@ namespace graphics3d
 
       m_pshader->m_propertiesPushShared.set_properties(::gpu_properties<::gpu::point_light_push_constants>());
       
-      pgpucontext->layout_push_constants(m_pshader->m_propertiesPushShared);
+      pgpucontext->layout_push_constants(m_pshader->m_propertiesPushShared, false);
 
       m_pshader->initialize_shader(
          pgpucontext->m_pgpurenderer,

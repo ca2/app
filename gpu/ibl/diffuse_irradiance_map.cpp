@@ -84,7 +84,7 @@ namespace gpu
          m_pshaderDiffuseIrradiance->m_propertiesPushShared.set_properties(
             ::gpu_properties<model_view_projection_environmentCubeSampler>());
 
-         m_pgpucontext->layout_push_constants(m_pshaderDiffuseIrradiance->m_propertiesPushShared);
+         m_pgpucontext->layout_push_constants(m_pshaderDiffuseIrradiance->m_propertiesPushShared, false);
 
          m_pshaderDiffuseIrradiance->initialize_shader_with_block(
             m_pgpucontext->m_pgpurenderer, embedded_diffuse_irradiance_vert(), embedded_diffuse_irradiance_frag(), {},

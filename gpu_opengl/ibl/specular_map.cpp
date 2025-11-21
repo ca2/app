@@ -136,7 +136,7 @@ namespace gpu_opengl
             lookAt(origin, -unitZ, -unitY)
          };
          floating_matrix4 projection = m_pgpucontext->m_pengine->perspective(
-            ::radians(90.0f), // 90 degrees to cover one face
+            90.0f_degrees, // 90 degrees to cover one face
             1.0f, // its a square
             0.1f,
             2.0f);

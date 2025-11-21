@@ -2085,7 +2085,7 @@
     <ClInclude Include="prototype\string\inline_string.h">
       <Filter>Header Files\prototype\string</Filter>
     </ClInclude>
-    <ClInclude Include="include\_template_structures.h">
+    <ClInclude Include="include\_template_after_initial_concepts.h">
       <Filter>Header Files\include</Filter>
     </ClInclude>
     <ClInclude Include="prototype\prototype\___url.h">

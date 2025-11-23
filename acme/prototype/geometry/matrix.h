@@ -791,13 +791,12 @@ inline matrix_type mul_avx2(const matrix_type &B) const
    //}
 
       
-   matrix_type transposed() const
+   matrix_type & transpose()
       //requires(DIMENSION == 4)
    {
-      auto &m = *this;
-      matrix_type r;
-      ::geometry::_transpose(r.m, m.m);
-      return r;
+      auto source = *this;
+      ::geometry::_transpose(this->m, source.m);
+      return * this;
    }
 
 
@@ -919,43 +918,43 @@ inline matrix_type mul_avx2(const matrix_type &B) const
     
    }
 
-   inline matrix_type inversed_scalar() const
+   inline matrix_type & inverse_scalar()
       requires(DIMENSION == 3)
    {
 
-      const auto &A = *this;
+      const auto & A = *this;
       // Column-major indexing:
       // A.m[0] A.m[3] A.m[6]
       // A.m[1] A.m[4] A.m[7]
       // A.m[2] A.m[5] A.m[8]
 
-      float a00 = A.fa[0];
-      float a01 = A.fa[3];
-      float a02 = A.fa[6];
-      float a10 = A.fa[1];
-      float a11 = A.fa[4];
-      float a12 = A.fa[7];
-      float a20 = A.fa[2];
-      float a21 = A.fa[5];
-      float a22 = A.fa[8];
+      //float a00 = A.fa[0];
+      //float a01 = A.fa[3];
+      //float a02 = A.fa[6];
+      //float a10 = A.fa[1];
+      //float a11 = A.fa[4];
+      //float a12 = A.fa[7];
+      //float a20 = A.fa[2];
+      //float a21 = A.fa[5];
+      //float a22 = A.fa[8];
 
       // Cofactors
-      float c00 = (a11 * a22 - a12 * a21);
-      float c01 = -(a10 * a22 - a12 * a20);
-      float c02 = (a10 * a21 - a11 * a20);
+      auto c00 = (A.fa[4] * A.fa[8] - A.fa[7] * A.fa[5]);
+      auto c01 = -(A.fa[1] * A.fa[8] - A.fa[7] * A.fa[2]);
+      auto c02 = (A.fa[1] * A.fa[5] - A.fa[4] * A.fa[2]);
 
-      float c10 = -(a01 * a22 - a02 * a21);
-      float c11 = (a00 * a22 - a02 * a20);
-      float c12 = -(a00 * a21 - a01 * a20);
+      auto c10 = -(A.fa[3] * A.fa[8] - A.fa[6] * A.fa[5]);
+      auto c11 = (A.fa[0] * A.fa[8] - A.fa[6] * A.fa[2]);
+      auto c12 = -(A.fa[0] * A.fa[5] - A.fa[3] * A.fa[2]);
 
-      float c20 = (a01 * a12 - a02 * a11);
-      float c21 = -(a00 * a12 - a02 * a10);
-      float c22 = (a00 * a11 - a01 * a10);
+      auto c20 = (A.fa[3] * A.fa[7] - A.fa[6] * A.fa[4]);
+      auto c21 = -(A.fa[0] * A.fa[7] - A.fa[6] * A.fa[1]);
+      auto c22 = (A.fa[0] * A.fa[4] - A.fa[3] * A.fa[1]);
 
       // Determinant
-      float det = a00 * c00 + a01 * c01 + a02 * c02;
+      auto det = A.fa[0] * c00 + A.fa[3] * c01 + A.fa[6] * c02;
 
-      matrix_type out;
+      auto & out = *this;
 
       if (fabs(det) < 1e-12f)
       {
@@ -970,10 +969,10 @@ inline matrix_type mul_avx2(const matrix_type &B) const
          out.fa[2] = 0;
          out.fa[5] = 0;
          out.fa[8] = 1;
-         return out;
+         return *this;
       }
 
-      float invDet = 1.0f / det;
+      auto invDet = (FLOATING) 1 / det;
 
       // The adjugate is the transpose of the cofactor matrix
       // Write it directly in column-major:
@@ -990,7 +989,8 @@ inline matrix_type mul_avx2(const matrix_type &B) const
       out.fa[7] = c12 * invDet;
       out.fa[8] = c22 * invDet;
 
-      return out;
+      return *this;
+
    }
 
 
@@ -1129,18 +1129,16 @@ inline matrix_type mul_avx2(const matrix_type &B) const
          return result;
    }
 
-
-   
-   
    // ---------------- Scalar inverse ----------------
-   inline matrix_type inversed_scalar() const
+   inline matrix_type & inverse_scalar()
       requires(DIMENSION == 4)
    {
 
-      const auto &a = *this;
-      matrix_type result;
-      auto inv = result.fa;
-      auto m = a.fa;
+      auto source = *this;
+
+      auto m = source.fa;
+
+      auto inv = this->fa;
 
       inv[0] = m[5] * m[10] * m[15] - m[5] * m[11] * m[14] - m[9] * m[6] * m[15] + m[9] * m[7] * m[14] +
                m[13] * m[6] * m[11] - m[13] * m[7] * m[10];
@@ -1179,11 +1177,14 @@ inline matrix_type mul_avx2(const matrix_type &B) const
                 m[8] * m[1] * m[6] - m[8] * m[2] * m[5];
 
       float det = m[0] * inv[0] + m[1] * inv[4] + m[2] * inv[8] + m[3] * inv[12];
+
       float invDet = 1.0f / det;
+
       for (int i = 0; i < 16; i++)
          inv[i] *= invDet;
 
-      return result;
+      return *this;
+
    }
 
 
@@ -1407,7 +1408,7 @@ inline matrix_type mul_avx2(const matrix_type &B) const
    }
 
 
-   inline matrix_type inversed() const
+   inline matrix_type & inverse()
    {
 
       if constexpr ( std::is_same_v<FLOATING, float>)
@@ -1421,7 +1422,7 @@ inline matrix_type mul_avx2(const matrix_type &B) const
             //else if (g_cpufeatures.m_bSSE)
             //   return inversed_sse();
             //else
-               return inversed_scalar();
+               return inverse_scalar();
          }
          else if constexpr (DIMENSION == 3)
          {
@@ -1430,61 +1431,86 @@ inline matrix_type mul_avx2(const matrix_type &B) const
             //if (g_cpufeatures.m_bSSE) 
             //   return inversed_sse();
             //else
-               return inversed_scalar();
+               return inverse_scalar();
          }
          else
          {
-            return inversed_scalar();
+            return inverse_scalar();
          }
 
       }
       else
       {
-         return inversed_scalar();
+         return inverse_scalar();
       }
 
    }
 
+   
+   inline matrix_type inversed() const
+   {
 
-   inline matrix_type & operator =(const quaternion_type<FLOATING> &q)
+      auto m = *this;
+
+      m.inverse();
+
+      return m;
+
+   }
+
+
+   inline matrix_type transposed() const
+   {
+
+      auto m = *this;
+
+      m.transpose();
+      
+      return m; 
+   
+   }
+
+
+   inline matrix_type &operator=(const quaternion_type<FLOATING> &q)
       requires (DIMENSION == 4)
    {
       auto & M = *this;
 
-      float xx = q.x * q.x;
-      float yy = q.y * q.y;
-      float zz = q.z * q.z;
+      auto xx = q.x * q.x;
+      auto yy = q.y * q.y;
+      auto zz = q.z * q.z;
 
-      float xy = q.x * q.y;
-      float xz = q.x * q.z;
-      float yz = q.y * q.z;
+      auto xy = q.x * q.y;
+      auto xz = q.x * q.z;
+      auto yz = q.y * q.z;
 
-      float wx = q.w * q.x;
-      float wy = q.w * q.y;
-      float wz = q.w * q.z;
+      auto wx = q.w * q.x;
+      auto wy = q.w * q.y;
+      auto wz = q.w * q.z;
 
       // Column-major (GLM style)
-      M.m[0][0] = 1 - 2 * (yy + zz);
-      M.m[0][1] = 2 * (xy + wz);
-      M.m[0][2] = 2 * (xz - wy);
-      M.m[0][3] = 0;
+      M.m[0][0] = (FLOATING)1 - (FLOATING)2 * (yy + zz);
+      M.m[0][1] = (FLOATING)2 * (xy + wz);
+      M.m[0][2] = (FLOATING)2 * (xz - wy);
+      M.m[0][3] = (FLOATING)0;
 
-      M.m[1][0] = 2 * (xy - wz);
-      M.m[1][1] = 1 - 2 * (xx + zz);
-      M.m[1][2] = 2 * (yz + wx);
-      M.m[1][3] = 0;
+      M.m[1][0] = (FLOATING)2 * (xy - wz);
+      M.m[1][1] = (FLOATING)1 - (FLOATING)2 * (xx + zz);
+      M.m[1][2] = (FLOATING)2 * (yz + wx);
+      M.m[1][3] = (FLOATING)0;
 
-      M.m[2][0] = 2 * (xz + wy);
-      M.m[2][1] = 2 * (yz - wx);
-      M.m[2][2] = 1 - 2 * (xx + yy);
-      M.m[2][3] = 0;
+      M.m[2][0] = (FLOATING)2 * (xz + wy);
+      M.m[2][1] = (FLOATING)2 * (yz - wx);
+      M.m[2][2] = (FLOATING)1 - (FLOATING)2 * (xx + yy);
+      M.m[2][3] = (FLOATING)0;
 
-      M.m[3][0] = 0;
-      M.m[3][1] = 0;
-      M.m[3][2] = 0;
-      M.m[3][3] = 1;
+      M.m[3][0] = (FLOATING)0;
+      M.m[3][1] = (FLOATING)0;
+      M.m[3][2] = (FLOATING)0;
+      M.m[3][3] = (FLOATING)1;
 
       return *this;
+
    }
 
 

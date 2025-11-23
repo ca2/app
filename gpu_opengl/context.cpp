@@ -2990,7 +2990,11 @@ color = vec4(c.r,c.g, c.b, c.a);
          // AO depends
          if (iAssimpTextureType == aiTextureType_DIFFUSE)
          {
-            if (internalFormat == GL_RGB)
+            if (internalFormat == GL_RED)
+            {
+               internalFormat = GL_SRGB;
+            }
+            else if (internalFormat == GL_RGB)
             {
                internalFormat = GL_SRGB;
             }
@@ -3004,7 +3008,28 @@ color = vec4(c.r,c.g, c.b, c.a);
          glBindTexture(GL_TEXTURE_2D, textureId);
          glTarget = GL_TEXTURE_2D;
          // generate the texture
-         glTexImage2D(GL_TEXTURE_2D, 0, internalFormat, width, height, 0, format, GL_UNSIGNED_BYTE, data);
+         if (format == GL_RED && internalFormat == GL_SRGB)
+         {
+            ::memory memory;
+            auto count = width * height;
+            memory.set_size(count * 3);
+            auto ptarget = (unsigned char *)memory.data();
+            auto psource = (unsigned char *)data;
+            format = GL_RGB;
+            for (int i = 0; i < count; i++)
+            {
+               ptarget[0] = *psource;
+               ptarget[1] = *psource;
+               ptarget[2] = *psource;
+               ptarget += 3;
+               psource++;
+            }
+            glTexImage2D(GL_TEXTURE_2D, 0, internalFormat, width, height, 0, format, GL_UNSIGNED_BYTE, memory.data());
+         }
+         else
+         {
+            glTexImage2D(GL_TEXTURE_2D, 0, internalFormat, width, height, 0, format, GL_UNSIGNED_BYTE, data);
+         }
          glGenerateMipmap(GL_TEXTURE_2D);
 
          // texture wrapping/filtering options

@@ -854,7 +854,7 @@ void task::set_task()
 
    bool bEmpty = m_strTaskName.is_empty();
 
-   bool bIsTaskName = m_strTaskName == ::type<::task>().as_string();
+   bool bIsTaskName = m_strTaskName == ::type(typeid(::task)).name();
 
    if (bEmpty || bIsTaskName)
    {

@@ -39,7 +39,7 @@ namespace user
 
       ::pointer<list_box>            m_plist;
 
-      ::type_atom              m_typeatomComboList;
+      ::type              m_typeComboList;
 
       e_style                    m_estyle;
 

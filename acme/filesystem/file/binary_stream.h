@@ -1217,7 +1217,7 @@ public:
 
    virtual void read_to_hex(string & str, filesize tickStart, filesize tickEnd);
 
-   virtual ::pointer<::matter>create_object_from_text(::particle * pparticle, const ::scoped_string & scopedstrText);
+   virtual ::pointer<::particle>create_object_from_text(::particle * pparticle, const ::scoped_string & scopedstrText);
 
 
 

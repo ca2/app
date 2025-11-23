@@ -348,7 +348,7 @@ namespace platform
    //}
 
 
-   //virtual ::type_atom * get_type_info(const ::std::type_info & info){}
+   //virtual ::type * get_type_info(const ::std::type_info & info){}
 
    //::type * get_type_info(const ::atom & idType)
    //{
@@ -778,19 +778,19 @@ namespace platform
    //void aura_system_layer::hist_hist(const ::scoped_string & scopedstr) override{}
 
 
-   ::type_atom  aura_system_layer::get_pane_tab_impact_type_info()
+   ::type  aura_system_layer::get_pane_tab_impact_type_info()
    {
       return {};
    }
 
 
-   ::type_atom  aura_system_layer::get_simple_frame_window_type_info()
+   ::type  aura_system_layer::get_simple_frame_window_type_info()
    {
       return {};
    }
 
 
-   //virtual ::type_atom get_simple_child_frame_type_info(){}
+   //virtual ::type get_simple_child_frame_type_info(){}
 
    //void aura_system_layer::on_start_find_applications_from_cache() override{}
    //void aura_system_layer::on_end_find_applications_from_cache(stream& is) override{}

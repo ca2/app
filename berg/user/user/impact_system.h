@@ -68,10 +68,10 @@ namespace user
       //unsigned int                  m_nIDEmbeddingResource;        // IDR_ for OLE open frame/menu/accel
       //unsigned int                  m_nIDContainerResource;        // IDR_ for container frame/menu/accel
 
-      ::type_atom          m_typeatomDocument;         // class for creating ___new documents
-      ::type_atom          m_typeatomFrame;       // class for creating ___new frames
-      ::type_atom          m_typeatomImpact;        // class for creating ___new impacts
-      ::type_atom          m_typeatomData;        // class for creating ___new data
+      ::type          m_typeDocument;         // class for creating ___new documents
+      ::type          m_typeFrame;       // class for creating ___new frames
+      ::type          m_typeImpact;        // class for creating ___new impacts
+      ::type          m_typeData;        // class for creating ___new data
       //::type       m_pOleFrameClass;    // class for creating in-place frame
       //::type       m_pOleImpactClass;     // class for creating in-place ::user::impact
 
@@ -79,7 +79,7 @@ namespace user
       // The ::user::document names sub-strings are represented as _one_ string:
       // windowTitle\ndocName\n ... (see DocStringIndex enum)
 
-      impact_system(const ::atom & atom, const ::type_atom & typeatomDocument, const ::type_atom & typeatomFrame, const ::type_atom & typeatomImpact, const ::type_atom & typeatomData);
+      impact_system(const ::atom & atom, const ::type & typeatomDocument, const ::type & typeatomFrame, const ::type & typeatomImpact, const ::type & typeatomData);
       ~impact_system() override;
 
 

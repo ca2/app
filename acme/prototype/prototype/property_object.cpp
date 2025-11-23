@@ -348,7 +348,7 @@ void property_object::on_catch_all_exception()
 ::string property_object::get_object_file_name()
 {
 
-   ::string str = ::type(*this).name();
+   ::string str = ::type(this).name();
 
    str.find_replace("::", "_");
 

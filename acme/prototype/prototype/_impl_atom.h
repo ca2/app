@@ -507,6 +507,14 @@ inline atom::atom(const ::inline_number_string & inline_number_string) :
 }
 
 
+inline atom::atom(const ::type & type) :
+   m_str(type.name())
+{
+
+   m_etype = e_type_text;
+
+}
+
 
 template < primitive_signed SIGNED >
 inline atom::atom(SIGNED i)

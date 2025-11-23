@@ -106,14 +106,14 @@ namespace user
       return nullptr;
    } // { return m_phtml{} } // defined in upper level
 
-   ::type_atom aura_user_layer::get_html_document_type()
+   ::type aura_user_layer::get_html_document_type()
    {
       return {};
-   } // { return m_typeatomHtmlDocument{} }
-   ::type_atom aura_user_layer::get_html_impact_type()
+   } // { return m_typeHtmlDocument{} }
+   ::type aura_user_layer::get_html_impact_type()
    {
       return {};
-   } // { return m_typeatomHtmlImpact{} }
+   } // { return m_typeHtmlImpact{} }
 
    void aura_user_layer::create_user_shell()
    {
@@ -160,7 +160,7 @@ namespace user
 
    //void term() override{}
 
-   ::type_atom aura_user_layer::controltype_to_typeinfo(::user::enum_control_type econtroltype)
+   ::type aura_user_layer::controltype_to_typeinfo(::user::enum_control_type econtroltype)
    {
       return {};
    }

@@ -5554,7 +5554,7 @@ namespace apex
    //::type application::user_default_controltype_to_typeinfo(::user::enum_control_type econtroltype)
    //{
 
-   //   return ::type < ::user::interaction >();
+   //   return ::as_type < ::user::interaction >();
 
    //}
 
@@ -5564,7 +5564,7 @@ namespace apex
 
    //   econtroltype = ::user::e_control_type_none;
 
-   //   return ::type < ::user::interaction >();
+   //   return ::as_type < ::user::interaction >();
 
    //}
 

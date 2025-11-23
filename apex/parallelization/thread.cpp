@@ -947,7 +947,7 @@ void thread::run()
    if (m_procedure && m_procedure != this)
    {
 
-      id() = ::type(m_procedure.m_pbase);
+      id() = ::type(m_procedure);
 
       task_set_name(id().as_string());
 

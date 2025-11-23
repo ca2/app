@@ -42,9 +42,9 @@ namespace filehandler
       ::user::single_document_template* pdoctemplate = ___new ::user::single_document_template(
       this,
       "html/frame",
-      ::type < document >(),
-      ::type < frame >(),       // top level SDI frame::windowing::window
-      ::type < pane_impact >());
+      ::as_type < document >(),
+      ::as_type < frame >(),       // top level SDI frame::windowing::window
+      ::as_type < pane_impact >());
       papp->add_document_template(pdoctemplate);
       m_ptemplateMenu = pdoctemplate;
 

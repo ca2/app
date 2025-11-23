@@ -655,6 +655,13 @@ public:
 
       auto sizeRange = this->size();
 
+      if (this->is_this_range(range))
+      {
+
+         return true;
+
+      }
+
       return sizeRange != range.size() ? false :
          (sizeRange <= 0 ?
             true :
@@ -669,6 +676,13 @@ public:
    {
 
       auto sizeThis = this->size();
+
+      if (psz == this->m_begin)
+      {
+
+         return sizeThis == string_safe_length(psz);
+
+      }
 
       return _string_count_compare(this->m_begin, psz, sizeThis) == 0
          && psz[sizeThis] == CHARACTER{};
@@ -2768,6 +2782,12 @@ public:
       this->m_end = s + n;
       this->m_erange = e_range_string_literal;
       this->m_pbasedata = nullptr;
+
+   }
+
+   constexpr string_literal(ITERATOR_TYPE s) :
+      string_literal(s, string_safe_length(s))
+   {
 
    }
 

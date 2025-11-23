@@ -80,7 +80,7 @@ public:
    {
       ::atom idFactory;
       exchange("id", idFactory);
-      auto pparticle = øid_create<::matter>(idFactory);
+      auto pparticle = øcreate_by_id<::matter>(idFactory);
       exchange("", pparticle);
       return pparticle;
    }
@@ -124,7 +124,7 @@ public:
       payload_stream stream(øallocate< ::payload(&payload()[atom].propset >()));
       ::atom idFactory;
       stream.exchange("id", idFactory);
-      auto pparticle = øid_create<::matter>(idFactory);
+      auto pparticle = øcreate_by_id<::matter>(idFactory);
       stream.exchange("", pparticle);
       return pparticle;
    }

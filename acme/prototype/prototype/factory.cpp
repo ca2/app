@@ -29,6 +29,16 @@ namespace factory
    }
 
 
+   string factory_item_interface::base_type_raw_name() const
+   {
+
+      throw ::interface_only();
+
+      return {};
+
+   }
+
+
    string factory_item_interface::base_type_name() const
    {
    
@@ -39,7 +49,17 @@ namespace factory
    }
 
 
-   string factory_item_interface::__type_name() const
+   string factory_item_interface::type_raw_name() const
+   {
+
+      throw ::interface_only();
+
+      return {};
+
+   }
+
+
+   string factory_item_interface::type_name() const
    {
 
       throw ::interface_only();
@@ -117,28 +137,37 @@ namespace factory
    void factory::merge(const ::factory::factory* pfactory)
    {
 
-      for (auto& pair : *pfactory)
-      {
+      //for (auto& pair : pfactory->m_mapByRawNamePointer)
+      //{
 
-         set_at(pair.m_element1, pair.m_element2);
+      //this->m_mapByRawNamePointer.merge_set(pfactory->m_mapByRawNamePointer);
+      this->m_mapByRawName.merge_set(pfactory->m_mapByRawName);
+      this->m_mapById.merge_set(pfactory->m_mapById);
+        //    .set_at(pair.m_element1, pair.m_element2);
 
-      }
+      //}
+
+      //for (auto& pair : pfactory->m_mapById)
+      //{
+
+      //   this->m_mapById.set_at(pair.m_element1, pair.m_element2);
+
+      //}
 
       if (pfactory->m_plibrary)
       {
 
+         auto plibrary = pfactory->m_plibrary;
+
          //::factory::factory_pointer pfactoryImplicit;
             
-         pfactory->m_plibrary->create_factory();
+         plibrary->create_factory();
 
-         auto pfactoryImplicit = pfactory->m_plibrary->m_pfactory;
+         auto pfactoryImplicit = plibrary->m_pfactory;
 
-         for (auto& pair : *pfactoryImplicit)
-         {
-
-            set_at(pair.m_element1, pair.m_element2);
-
-         }
+         //this->m_mapByRawNamePointer.merge_set(pfactoryImplicit->m_mapByRawNamePointer);
+         this->m_mapByRawName.merge_set(pfactoryImplicit->m_mapByRawName);
+         this->m_mapById.merge_set(pfactoryImplicit->m_mapById);
 
       }
 
@@ -399,7 +428,7 @@ CLASS_DECL_ACME bool safe_free_memory(void * ptype)
 //
 //
 //template < typename BASE_TYPE >
-//inline ::pointer<BASE_TYPE>øid_create(const ::atom & atom)
+//inline ::pointer<BASE_TYPE>øcreate_by_id(const ::atom & atom)
 //{
 //
 //   auto pfactory = factory_item(atom);
@@ -561,7 +590,7 @@ CLASS_DECL_ACME bool safe_free_memory(void * ptype)
 
 
 // template < typename OBJECT, typename BASE_TYPE >
-// inline void øid_construct(OBJECT && pparticle, ::pointer<BASE_TYPE>& pcomposite, const ::atom & atom)
+// inline void øconstruct_by_id(OBJECT && pparticle, ::pointer<BASE_TYPE>& pcomposite, const ::atom & atom)
 // {
 
 //    //if (((uptr)&pcomposite) < (uptr)pparticle || ((uptr)&pcomposite) >= ((uptr)pparticle) + sizeof(typename ::raw_type < OBJECT>::RAW_TYPE))
@@ -571,16 +600,16 @@ CLASS_DECL_ACME bool safe_free_memory(void * ptype)
 
 //    //}
 
-//    return pparticle->øid_construct(pcomposite, atom);
+//    return pparticle->øconstruct_by_id(pcomposite, atom);
 
 // }
 
 
 // template < typename OBJECT, typename BASE_TYPE >
-// inline void øid_construct(OBJECT && pparticle, ::pointer<BASE_TYPE>& pcomposite, const ::type_atom & typeatom)
+// inline void øconstruct_by_id(OBJECT && pparticle, ::pointer<BASE_TYPE>& pcomposite, const ::type & typeatom)
 // {
 
-//    return pparticle->øid_construct(pcomposite, (atom) type);
+//    return pparticle->øconstruct_by_id(pcomposite, (atom) type);
 
 // }
 
@@ -617,10 +646,10 @@ CLASS_DECL_ACME bool safe_free_memory(void * ptype)
 // inline void ødefer_construct(OBJECT && pparticle, ::pointer<BASE_TYPE>& pcomposite, const ::member < SOURCE > & psource) { return !pcomposite ? øconstruct(pparticle, pcomposite, psource) : ::success; }
 
 // template < typename OBJECT, typename BASE_TYPE >
-// inline void __defer_id_compose(OBJECT && pparticle, ::pointer<BASE_TYPE>& pcomposite, const ::atom & atom) { return !pcomposite ? øid_construct(pparticle, pcomposite) : ::success; }
+// inline void __defer_id_compose(OBJECT && pparticle, ::pointer<BASE_TYPE>& pcomposite, const ::atom & atom) { return !pcomposite ? øconstruct_by_id(pparticle, pcomposite) : ::success; }
 
 // //template < typename OBJECT, typename BASE_TYPE >
-// //inline void __defer_id_compose(OBJECT && pparticle, ::pointer<BASE_TYPE>& pcomposite, const ::type_atom & typeatom)  { return !pcomposite ? øconstruct(pparticle, pcomposite) : ::success; }
+// //inline void __defer_id_compose(OBJECT && pparticle, ::pointer<BASE_TYPE>& pcomposite, const ::type & typeatom)  { return !pcomposite ? øconstruct(pparticle, pcomposite) : ::success; }
 
 // template < typename OBJECT, typename BASE_TYPE >
 // inline void ødefer_construct_new(OBJECT && pparticle, ::pointer<BASE_TYPE>& pcomposite) { return !pcomposite ? øconstruct_new(pparticle, pcomposite) : ::success; }
@@ -710,13 +739,13 @@ CLASS_DECL_ACME bool safe_free_memory(void * ptype)
 //
 //   }
 //
-//   return pparticle->øid_construct(preference, atom);
+//   return pparticle->øconstruct_by_id(preference, atom);
 //
 //}
 
 
 //template < typename OBJECT, typename BASE_TYPE >
-//inline void øid_construct(OBJECT && pparticle, ::pointer<BASE_TYPE>& preference, const ::type_atom & typeatom)
+//inline void øconstruct_by_id(OBJECT && pparticle, ::pointer<BASE_TYPE>& preference, const ::type & typeatom)
 //{
 //
 //   if (((uptr)&preference) < (uptr)pparticle || ((uptr)&preference) >= ((uptr)pparticle) + sizeof(typename ::raw_type < OBJECT>::RAW_TYPE))
@@ -726,7 +755,7 @@ CLASS_DECL_ACME bool safe_free_memory(void * ptype)
 //
 //   }
 //
-//   return pparticle->øid_construct(preference, (atom)type);
+//   return pparticle->øconstruct_by_id(preference, (atom)type);
 //
 //}
 
@@ -812,7 +841,7 @@ CLASS_DECL_ACME bool safe_free_memory(void * ptype)
 
 
 //template < typename BASE_TYPE >
-//inline void øid_construct(::pointer<BASE_TYPE>& pusermessage, const ::atom & atom)
+//inline void øconstruct_by_id(::pointer<BASE_TYPE>& pusermessage, const ::atom & atom)
 //{
 //
 //   auto pfactory = factory_item(atom);
@@ -1002,7 +1031,7 @@ namespace factory
 {
 
 
-   ::particle_pointer factory::__call__create(const ::scoped_string & scopedstrType, ::particle * pparticle)
+   ::particle_pointer factory::__call__create_by_raw_name(const ::scoped_string & scopedstrRawName, ::particle * pparticle)
    {
 
       //auto psystem = system();
@@ -1035,7 +1064,7 @@ namespace factory
 
       //return pparticle;
 
-      auto pfactoryinterface = get_factory_item(scopedstrType);
+      auto pfactoryinterface = get_factory_item_by_raw_name(scopedstrRawName);
 
       //if (!pfactoryinterface)
       //{
@@ -1049,7 +1078,54 @@ namespace factory
    }
 
 
-   bool factory::has(const ::atom & atom) const
+   ::particle_pointer factory::__call__create_by_id(const ::atom & atom, ::particle* pparticle)
+   {
+
+      //auto psystem = system();
+
+      //synchronous_lock synchronouslock(&psystem->m_pmutexLibrary);
+
+      //::matter* p = nullptr;
+
+      ////if (get_library() != nullptr)
+      ////{
+
+      ////   p = get_library()->new_object(scopedstrClass);
+
+      ////}
+      ////else
+      //{
+
+      //   p = new_object(scopedstrClass);
+
+      //}
+
+      //auto pparticle = ::pointer_transfer(p);
+
+      //if (!pparticle)
+      //{
+
+      //   return nullptr;
+
+      //}
+
+      //return pparticle;
+
+      auto pfactoryinterface = get_factory_item_by_id(atom);
+
+      //if (!pfactoryinterface)
+      //{
+
+      //   return error_no_factory;
+
+      //}
+
+      return pfactoryinterface->__call__create_particle();
+
+   }
+
+
+   bool factory::has_by_raw_name(const ::scoped_string & scopedstrRawName) const
    {
 
       //auto psystem = system();
@@ -1063,22 +1139,80 @@ namespace factory
 
       //}
 
-      return has_factory_item(atom);
+      return has_factory_item_by_raw_name(scopedstrRawName);
 
    }
 
 
-   ::factory::factory_item_interface * factory::get_factory_item(const ::atom & atom) const
+
+   bool factory::has_by_id(const ::atom & atom) const
+   {
+
+      //auto psystem = system();
+
+      //synchronous_lock synchronouslock(&psystem->m_pmutexLibrary);
+
+      //if (get_library() == nullptr)
+      //{
+
+      //   return false;
+
+      //}
+
+      return has_factory_item_by_id(atom);
+
+   }
+
+
+   ::factory::factory_item_interface* factory::get_factory_item_by_raw_name(const ::scoped_string & scopedstrRawName) const
    {
 
       critical_section_lock cs(&((factory*)this)->m_criticalsection);
 
-      auto iterator = this->find(atom);
+      //{
+
+      //   auto p = this->m_mapByRawNamePointer.find(pszRawName);
+
+      //   if (p && p->payload())
+      //   {
+
+      //      return p->payload();
+
+      //   }
+
+      //}
+
+      {
+
+         auto p = this->m_mapByRawName.find(scopedstrRawName);
+
+         if (p && p->payload())
+         {
+
+            return p->payload();
+
+         }
+
+      }
+
+      error() << "factory::get_factory_item FAILED!! the following atom wasn't found by raw name pointer and text: \"" << scopedstrRawName << "\"";
+
+      return nullptr;
+
+   }
+
+
+   ::factory::factory_item_interface * factory::get_factory_item_by_id(const ::atom & atom) const
+   {
+
+      critical_section_lock cs(&((factory*)this)->m_criticalsection);
+
+      auto iterator = this->m_mapById.find(atom);
 
       if (!iterator)
       {
 
-         error() << "factory::get_factory_item FAILED!! the following atom wasn't found : \"" << atom.as_string() << "\"";
+         error() << "factory::get_factory_item FAILED!! the following atom wasn't found by id: \"" << atom.as_string() << "\"";
 
          return nullptr;
 
@@ -1089,12 +1223,48 @@ namespace factory
    }
 
 
-   bool factory::has_factory_item(const ::atom & atom) const
+   bool factory::has_factory_item_by_raw_name(const ::scoped_string & scopedstrRawName) const
    {
 
       critical_section_lock cs(&((factory*)this)->m_criticalsection);
 
-      auto iterator = this->find(atom);
+      {
+
+         auto p = this->m_mapByRawName.find(scopedstrRawName);
+
+         if (p && p->payload())
+         {
+
+            return true;
+
+         }
+
+      }
+
+      //{
+
+      //   auto p = this->m_mapByRawName.find(pszRawName);
+
+      //   if (p && p->payload())
+      //   {
+
+      //      return true;
+
+      //   }
+
+      //}
+
+      return false;
+
+   }
+
+
+   bool factory::has_factory_item_by_id(const ::atom & atom) const
+   {
+
+      critical_section_lock cs(&((factory*)this)->m_criticalsection);
+
+      auto iterator = this->m_mapById.find(atom);
 
       if (!iterator)
       {
@@ -1108,44 +1278,139 @@ namespace factory
    }
 
 
-   ::pointer<::factory::factory_item_interface> & factory::get_factory_item(const ::atom & atom)
-   {
-
-      critical_section_lock cs(&m_criticalsection);
-
-      auto & pfactoryiteminterface = this->operator[](atom);
-
-      if(!pfactoryiteminterface)
-      {
-
-         //warning() << "factory::get_factory_item (2) : \"" << atom.as_string() << "\"";
-
-      }
-
-      return pfactoryiteminterface;
-
-   }
-
-
-   //inline ::pointer<factory_item_interface> & factory::get_factory_item(const ::atom & atom)
+   //::factory::factory_item_interface * factory::get_factory_item_by_raw_name(const ::scoped_string & scopedstrRawName) const
    //{
 
    //   critical_section_lock cs(&m_criticalsection);
 
-   //   return (*get_factory())[atom];
+   //   auto& pfactoryiteminterface = this->m_mapByRawName.get(pszRawName)->element2();
+
+   //   if (!pfactoryiteminterface)
+   //   {
+
+   //      //warning() << "factory::get_factory_item (2) : \"" << atom.as_string() << "\"";
+
+   //   }
+
+   //   return pfactoryiteminterface;
 
    //}
 
 
-   ::pointer<factory_item_interface> & get_existing_factory_item(const ::atom & atom)
+
+   //::pointer<::factory::factory_item_interface> & factory::get_factory_item_by_id(const ::atom & atom)
+   //{
+
+   //   critical_section_lock cs(&m_criticalsection);
+
+   //   auto & pfactoryiteminterface = this->m_mapById.get(atom)->element2();
+
+   //   if(!pfactoryiteminterface)
+   //   {
+
+   //      //warning() << "factory::get_factory_item (2) : \"" << atom.as_string() << "\"";
+
+   //   }
+
+   //   return pfactoryiteminterface;
+
+   //}
+
+
+   ////inline ::pointer<factory_item_interface> & factory::get_factory_item(const ::atom & atom)
+   ////{
+
+   ////   critical_section_lock cs(&m_criticalsection);
+
+   ////   return (*get_factory())[atom];
+
+   ////}
+
+
+   factory_item_interface * get_factory_item_by_raw_name(const ::scoped_string & scopedstrRawName)
    {
 
-      auto & pfactoryitem = get_factory_item(atom);
+      auto pplatform = ::platform::get();
+
+      return pplatform->get_factory_item_by_raw_name(scopedstrRawName);
+
+   }
+
+
+   factory_item_interface * get_factory_item_by_id(const ::atom & atom)
+   {
+
+      auto pplatform = ::platform::get();
+
+      return pplatform->get_factory_item_by_id(atom);
+
+   }
+
+
+   factory_item_interface * get_existing_factory_item_by_raw_name(const ::scoped_string & scopedstrRawName)
+   {
+
+      auto pfactoryitem = get_factory_item_by_raw_name(scopedstrRawName);
 
       if (!pfactoryitem)
       {
 
-         throw_exception(error_no_factory, "No factory for \"" + atom + "\"");
+         throw_exception(error_no_factory, "No factory for raw name: \"" + ::string(scopedstrRawName) + "\"");
+
+      }
+
+      return pfactoryitem;
+
+   }
+
+
+   factory_item_interface * get_existing_factory_item_by_id(const ::atom & atom)
+   {
+
+      auto pfactoryitem = get_factory_item_by_id(atom);
+
+      if (!pfactoryitem)
+      {
+
+         throw_exception(error_no_factory, "No factory for id: \"" + atom + "\"");
+
+      }
+
+      return pfactoryitem;
+
+   }
+
+
+   factory_item_interface * get_factory_item_by_raw_name(const ::scoped_string & scopedstrRawName, const ::atom & atomFactory)
+   {
+
+      auto pplatform = ::platform::get();
+
+      auto pfactoryitem = pplatform->get_factory_item_by_raw_name(scopedstrRawName, atomFactory);
+
+      if (!pfactoryitem)
+      {
+
+         throw_exception(error_no_factory, "No factory for raw name: \"" + ::string(scopedstrRawName) + "\"");
+
+      }
+
+      return pfactoryitem;
+
+   }
+
+   
+   factory_item_interface * get_factory_item_by_id(const ::atom & atom, const ::atom& atomFactory)
+   {
+
+      auto pplatform = ::platform::get();
+
+      auto pfactoryitem = pplatform->get_factory_item_by_id(atom, atomFactory);
+
+      if (!pfactoryitem)
+      {
+
+         throw_exception(error_no_factory, "No factory for id: \"" + atom.as_string() + "\"");
 
       }
 

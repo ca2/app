@@ -510,7 +510,7 @@ namespace user
       if (::is_set(pparent))
       {
 
-         strTypeParent = ::type(pparent).as_string();
+         strTypeParent = ::type(pparent).name();
 
          //         ::string str;
          //
@@ -525,7 +525,7 @@ namespace user
          if (::is_set(pparentParent))
          {
 
-            strTypeParentParent = ::type(pparentParent).as_string();
+            strTypeParentParent = ::type(pparentParent).name();
 
             //            ::string str2;
             //
@@ -540,7 +540,7 @@ namespace user
             if (::is_set(pparentParentParent))
             {
 
-               strTypeParentParentParent = ::type(pparentParentParent).as_string();
+               strTypeParentParentParent = ::type(pparentParentParent).name();
 
                //               ::string str3;
                //

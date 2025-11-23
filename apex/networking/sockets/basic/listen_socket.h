@@ -29,10 +29,10 @@ namespace sockets
       //::pointer < listen_socket_impl >    m_plistensocket;
       //bool                                m_bImpl;
       //bool                                m_bListeningDetach;
-      //::type_atom                         m_typeListenSocket;
+      //::type                         m_typeListenSocket;
 
       ::pointer < ::factory::factory >    m_pfactory;
-      ::type_atom                         m_typeAttendSocket;
+      ::type                         m_typeAttendSocket;
 
       /** Constructor.
       \lparam h base_socket_handler object
@@ -41,7 +41,7 @@ namespace sockets
       ~listen_socket() override;
 
       
-      virtual void set_attend_socket_type(const ::type_atom& type);
+      virtual void set_attend_socket_type(const ::type& type);
 
       void Reset() override;
 
@@ -165,7 +165,7 @@ namespace sockets
 
 
    //   //LISTENER *     m_creator;
-   //   ::type_atom                               m_typeListenSocket;
+   //   ::type                               m_typeListenSocket;
    //   //bool                                      m_bHasCreate;
    //   ::pointer < ::sockets::base_socket >      m_psocket;
 

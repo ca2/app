@@ -63,25 +63,25 @@ namespace tc4
       pDocTemplate = ___new ::user::single_document_template(
       this,
       "main",
-      ::type < ::tc4::document >(),
-      ::type < ::tc4::frame >(),       // top level SDI frame::windowing::window
-      ::type < ::tc4::pane_impact >());
+      ::as_type < ::tc4::document >(),
+      ::as_type < ::tc4::frame >(),       // top level SDI frame::windowing::window
+      ::as_type < ::tc4::pane_impact >());
       add_document_template(pDocTemplate);
       m_ptemplateHelloMultiverseMain = pDocTemplate;
       pDocTemplate = ___new ::user::single_document_template(
       this,
       "main",
-      ::type < ::tc4::document >(),
-      ::type < ::tc4::frame >(),       // top level SDI frame::windowing::window
-      ::type < ::tc4::main_impact >());
+      ::as_type < ::tc4::document >(),
+      ::as_type < ::tc4::frame >(),       // top level SDI frame::windowing::window
+      ::as_type < ::tc4::main_impact >());
       add_document_template(pDocTemplate);
       m_ptemplateHelloMultiverseImpact = pDocTemplate;
       pDocTemplate = ___new ::user::single_document_template(
       this,
       "main",
-      ::type < ::tc4::document >(),
-      ::type < ::tc4::frame >(),       // top level SDI frame::windowing::window
-      ::type < ::tc4::switcher_impact >());
+      ::as_type < ::tc4::document >(),
+      ::as_type < ::tc4::frame >(),       // top level SDI frame::windowing::window
+      ::as_type < ::tc4::switcher_impact >());
       add_document_template(pDocTemplate);
       m_ptemplateHelloMultiverseSwitcher = pDocTemplate;
 

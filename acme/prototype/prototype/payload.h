@@ -67,7 +67,7 @@ public:
       void * m_pvoid;
       para_return                            m_parareturn;
       atom                                   m_atomPayload;
-      type_atom                              m_typeatom;
+      //type                                   m_type;
       bool                                   m_b;
       bool * m_pb;
       char                                   m_ch;
@@ -223,7 +223,7 @@ public:
    payload(const_char_pointer begin, const_char_pointer end);
    payload(const_char_pointer psz);
    payload(const ::scoped_string & scopedstr);
-   payload(const ::type_atom & typeatom);
+   //payload(const ::type & type);
    payload(const ::atom & atom);
    payload(const ::earth::time & time);
    payload(const ::color::color & color);
@@ -341,14 +341,14 @@ public:
    atom::enum_type atom_type() const;
 
 
-   void set_type(const ::type_atom & typeatom);
+   //void set_type(const ::type & type);
 
 
    template < typename T >
    void set_pointer(const ::pointer < T > & p)
    {
 
-      operator[](::type < T >().name()) = p;
+      operator[](::type(p)) = p;
 
    }
 
@@ -356,7 +356,7 @@ public:
    bool has_pointer() const
    {
 
-      return has_property(::type < T >().name());
+      return has_property(::type(typeid(T)));
 
    }
 
@@ -364,14 +364,14 @@ public:
    ::property * find_pointer() const
    {
 
-      return find_property(::type < T >().name());
+      return find_property(::type(typeid(T)));
 
    }
 
    template < typename TYPE >
    ::pointer < TYPE > pointer() const;
 
-   bool get_type(::type_atom & typeatom) const;
+   //bool get_type(::type & typeatom) const;
 
    long long payload_release();
 
@@ -388,7 +388,7 @@ public:
    bool is_numeric() const;
 
 
-   bool has_reference_of_type(enum_type type) const;
+   bool has_reference_of_type(enum_type etype) const;
 
 
    inline bool is_number() const

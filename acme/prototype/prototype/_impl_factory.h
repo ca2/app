@@ -79,7 +79,15 @@ namespace factory
 
        auto pfactory = øallocate ::factory::factory_item< TYPE, ORIGIN_TYPE > ();
 
-       this->get_factory_item < ORIGIN_TYPE >() = pfactory;
+       auto strRawName = ::type_raw_name<ORIGIN_TYPE>();
+
+       //m_mapByRawNamePointer[pszRawName] = pfactory;
+
+       m_mapByRawName[strRawName] = pfactory;
+
+       ::string strId = ::as_type<ORIGIN_TYPE>().name();
+
+       m_mapById[strId] = pfactory;
 
        return pfactory;
 
@@ -107,14 +115,14 @@ namespace factory
 //
 //#endif
 //
-       auto & pfactoryitem = get_factory_item < ORIGIN_TYPE >();
+       auto pfactoryitem = get_factory_item < ORIGIN_TYPE >();
 
        if (!pfactoryitem)
        {
 
           ::string strMessage;
 
-          strMessage = "Factory hasn't creator for type \"" + ::type < ORIGIN_TYPE >().name() + "\"";
+          strMessage = "Factory hasn't creator for type \"" + ::type(typeid(ORIGIN_TYPE)).name() + "\"";
 
           warningf(strMessage);
 
@@ -129,7 +137,7 @@ namespace factory
 
           ::string strMessage;
 
-          strMessage = "Couldn't __call__create_particle for type \"" + ::type < ORIGIN_TYPE >().name() + "\"";
+          strMessage = "Couldn't __call__create_particle for type \"" + ::type(typeid(ORIGIN_TYPE)).name() + "\"";
 
           warningf(strMessage);
 
@@ -144,7 +152,7 @@ namespace factory
 
           ::string strMessage;
 
-          strMessage = "Created element is not of the base type \"" + ::type < ORIGIN_TYPE >().name() + "\"";
+          strMessage = "Created element is not of the base type \"" + ::type(typeid(ORIGIN_TYPE)).name() + "\"";
 
           warningf(strMessage);
 
@@ -158,14 +166,12 @@ namespace factory
 
 
     template < typename ORIGIN_TYPE >
-    inline ::pointer<::factory::factory_item_interface> & factory::get_factory_item()
+    inline ::factory::factory_item_interface * factory::get_factory_item() const
     {
 
-       string strTypename(typeid(ORIGIN_TYPE).name());
+       auto strRawName = ::type_raw_name < ORIGIN_TYPE >();
 
-       strTypename = ::demangle(strTypename);
-
-       return get_factory_item(strTypename);
+       return get_factory_item_by_raw_name(strRawName);
 
     }
 
@@ -334,14 +340,14 @@ inline void particle::__call__raw_construct(::pointer<TYPE>&p, ::factory::factor
 
    }
 
-   auto& pfactoryitem = pfactory->get_factory_item< TYPE >();
+   auto pfactoryitem = pfactory->get_factory_item< TYPE >();
 
    if (!pfactoryitem)
    {
 
       string strMessage;
 
-      strMessage.formatf("matter::øconstruct has failed to find factory_item for type \"%s\"", ::type < TYPE >().name().c_str());
+      strMessage.formatf("matter::øconstruct has failed to find factory_item for type \"%s\"", ::type(typeid(TYPE)).c_str());
 
       throw_exception(::error_not_implemented, strMessage);
 
@@ -354,7 +360,7 @@ inline void particle::__call__raw_construct(::pointer<TYPE>&p, ::factory::factor
 
       string strMessage;
 
-      strMessage.formatf("matter::øconstruct no memory to allocate implementation of type \"%ss\"", ::type < TYPE >().name().c_str());
+      strMessage.formatf("matter::øconstruct no memory to allocate implementation of type \"%s\"", ::type(typeid(TYPE)).c_str());
 
       throw_exception(::error_no_memory, strMessage);
 
@@ -367,7 +373,7 @@ inline void particle::__call__raw_construct(::pointer<TYPE>&p, ::factory::factor
 
       string strMessage;
 
-      strMessage.formatf("matter::øconstruct object(%s) is not of type \"%s\"", ::type(pparticleNew).name().c_str(), ::type < TYPE >().name().c_str());
+      strMessage.formatf("matter::øconstruct object(%s) is not of type \"%s\"", ::type(typeid(*pparticleNew)).c_str(), ::type(typeid(TYPE)).c_str());
 
       throw_exception(::error_wrong_type, strMessage);
 
@@ -457,7 +463,7 @@ inline bool particle::__call__defer_construct(::pointer<TYPE>& p, ::factory::fac
 
 
 template < typename TYPE >
-inline void particle::__call__id_construct(::pointer<TYPE>& p, const ::atom& atom, ::factory::factory * pfactory)
+inline void particle::__call__construct_by_id(::pointer<TYPE>& p, const ::atom& atom, ::factory::factory * pfactory)
 {
 
    if (::is_null(pfactory))
@@ -467,7 +473,7 @@ inline void particle::__call__id_construct(::pointer<TYPE>& p, const ::atom& ato
 
    }
 
-   auto& pfactoryitem = pfactory->get_factory_item(atom);
+   auto pfactoryitem = pfactory->get_factory_item_by_id(atom);
 
    auto pparticleNew = pfactoryitem->__call__create_particle();
 
@@ -505,8 +511,9 @@ inline void particle::__call__id_construct(::pointer<TYPE>& p, const ::atom& ato
 }
 
 
+
 template < typename TYPE >
-inline ::pointer < TYPE > particle::__call__id_create(const ::atom& atom, ::factory::factory * pfactory)
+inline void particle::__call__construct_by_raw_name(::pointer<TYPE>& p, const ::scoped_string & scopedstrRawName, ::factory::factory* pfactory)
 {
 
    if (::is_null(pfactory))
@@ -516,7 +523,7 @@ inline ::pointer < TYPE > particle::__call__id_create(const ::atom& atom, ::fact
 
    }
 
-   auto& pfactoryitem = pfactory->get_factory_item(atom);
+   auto pfactoryitem = pfactory->get_factory_item_by_raw_name(scopedstrRawName);
 
    auto pparticleNew = pfactoryitem->__call__create_particle();
 
@@ -527,9 +534,7 @@ inline ::pointer < TYPE > particle::__call__id_create(const ::atom& atom, ::fact
 
    //}
 
-
-
-   ::pointer < TYPE > p = pparticleNew;
+   p = pparticleNew;
 
    if (!p)
    {
@@ -553,9 +558,8 @@ inline ::pointer < TYPE > particle::__call__id_create(const ::atom& atom, ::fact
 
    //return estatus;
 
-   return p;
-
 }
+
 
 
 //template < class T >

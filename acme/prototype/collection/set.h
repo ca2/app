@@ -483,13 +483,31 @@ public:
    //
 
 
-   void set(node_set_base & nodesetbase)
+   void merge_set(const node_set_base & set)
    {
 
-      for(auto & item : nodesetbase)
+      for(auto & item : set)
       {
 
-         set_item(item);
+         this->set_item(item);
+
+      }
+
+   }
+
+
+   void defer_merge(const node_set_base& set)
+   {
+
+      for (auto& item : set)
+      {
+
+         if (!this->has(item.key()))
+         {
+
+            this->set_item(item);
+
+         }
 
       }
 
@@ -557,6 +575,23 @@ public:
       return countRemoved;
 
    }
+
+
+   //void merge_set(const node_set_base & set)
+   //{
+
+   //   for (auto & item : set)
+   //   {
+
+   //      this->set_item(item);
+
+   //   }
+
+   //}
+
+
+
+
 
    //virtual void on_after_read() override {}
 

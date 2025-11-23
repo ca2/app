@@ -118,7 +118,7 @@ namespace user
       enum_window_type get_window_type() override;
 
 
-      ::pointer<::user::interaction>create_impact(const ::type_atom & typeatom, ::user::document * pdocument = nullptr, ::user::interaction * puserinteractionParent = nullptr, const ::atom & atom = ::atom(), ::user::interaction * pviewLast = nullptr, ::user::impact_data * pdata = nullptr);
+      ::pointer<::user::interaction>create_impact(const ::type & typeatom, ::user::document * pdocument = nullptr, ::user::interaction * puserinteractionParent = nullptr, const ::atom & atom = ::atom(), ::user::interaction * pviewLast = nullptr, ::user::impact_data * pdata = nullptr);
 
       virtual void initialize_impact(::user::document * pdocument);
 
@@ -247,22 +247,22 @@ namespace user
    inline ::pointer<IMPACT>impact::create_impact(::user::document * pdocument, ::user::interaction * puserinteractionParent, const ::atom & atom, ::user::interaction * pviewLast, ::user::impact_data * pimpactdata)
    {
       
-      auto & factoryitem = factory()->get_factory_item<IMPACT>();
+      auto pfactoryitem = factory()->get_factory_item<IMPACT>();
 
       __check_refdbg
       
-      if (!factoryitem)
+      if (!pfactoryitem)
       {
 
          __check_refdbg
 
-         factoryitem = øallocate ::factory::factory_item< IMPACT, IMPACT > ();
+         factory()->add_factory_item < IMPACT >();
 
          __check_refdbg
 
       }
 
-      return create_impact(::type < IMPACT >(), pdocument, puserinteractionParent, atom, pviewLast, pimpactdata);
+      return create_impact(::as_type < IMPACT >(), pdocument, puserinteractionParent, atom, pviewLast, pimpactdata);
 
    }
 

@@ -72,7 +72,7 @@ namespace data
       bool replace_data(const ::atom & atom, TYPE * pdata)
       {
 
-         m_datamap.set(atom, pdata);
+         m_datamap.set_at(atom, pdata);
 
          return true;
 

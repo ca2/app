@@ -465,7 +465,7 @@ namespace user
          if (m_message.m_eusermessage == ::user::e_message_quit)
          {
 
-            ::string strType = type(m_puserinteraction).name();
+            ::string strType = ::type(m_puserinteraction).name();
 
             information()(e_trace_category_graphics_thread) << "Graphics Thread has quit!! " << strType;
 
@@ -1198,7 +1198,7 @@ namespace user
       if (m_puserinteraction->has_graphical_output_purpose())
       {
 
-         ::string strType = ::type(m_puserinteraction.m_p);
+         ::string strType = ::type(m_puserinteraction).name();
 
          if (strType == "user::list_box")
          {

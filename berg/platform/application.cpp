@@ -246,7 +246,7 @@ namespace berg
    void application::create_options_impact(::user::interaction * pparent)
    {
 
-      if(factory()->has(::type < ::user::options_impact_handler >()))
+      if(factory()->has< ::user::options_impact_handler >())
       {
 
          øconstruct(m_poptionsimpacthandler);

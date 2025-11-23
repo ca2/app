@@ -4305,6 +4305,12 @@
     <ClInclude Include="parallelization\_platform.h">
       <Filter>Header Files\parallelization</Filter>
     </ClInclude>
+    <ClInclude Include="prototype\prototype\_impl_factory.h">
+      <Filter>Header Files\prototype\prototype</Filter>
+    </ClInclude>
+    <ClInclude Include="template\safe_bool.h">
+      <Filter>Header Files\template</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="prototype\prototype\bit.cpp">

@@ -628,7 +628,7 @@ namespace user
    }
 
 
-   ::pointer<::user::impact>document::get_typed_impact(const ::type_atom & typeatom, ::collection::index indexFind)
+   ::pointer<::user::impact>document::get_typed_impact(const ::type & typeatom, ::collection::index indexFind)
    {
 
       single_lock synchronouslock(synchronization(), true);
@@ -669,7 +669,7 @@ namespace user
    }
 
 
-   ::pointer<::user::impact>document::get_typed_impact_with_id(const ::type_atom & typeatom, atom atom)
+   ::pointer<::user::impact>document::get_typed_impact_with_id(const ::type & typeatom, atom atom)
    {
 
       single_lock synchronouslock(synchronization(), true);
@@ -1046,10 +1046,10 @@ namespace user
    bool document::on_new_document()
    {
 
-      if (m_pimpactsystem->m_typeatomData.has_character())
+      if (m_pimpactsystem->m_typeData)
       {
 
-         auto pNew = øid_create((const ::atom &) m_pimpactsystem->m_typeatomData);
+         auto pNew = øcreate_by_id((const ::atom &) m_pimpactsystem->m_typeData);
 
          ::pointer < ::data::data > pdataNew = pNew;
 
@@ -1124,10 +1124,10 @@ namespace user
          //}
 
          //preader->close();
-         //if (m_pimpactsystem->m_typeatomData.has_character())
+         //if (m_pimpactsystem->m_typeData.has_character())
       {
 
-         // auto pNew = øid_create((const ::atom &)m_pimpactsystem->m_typeatomData);
+         // auto pNew = øcreate_by_id((const ::atom &)m_pimpactsystem->m_typeData);
 
          //auto pdata = create_data(0);
 
@@ -1197,10 +1197,10 @@ namespace user
          //}
 
          //preader->close();
-         //if (m_pimpactsystem->m_typeatomData.has_character())
+         //if (m_pimpactsystem->m_typeData.has_character())
          {
 
-           // auto pNew = øid_create((const ::atom &)m_pimpactsystem->m_typeatomData);
+           // auto pNew = øcreate_by_id((const ::atom &)m_pimpactsystem->m_typeData);
 
             auto pdata = create_data(0);
             
@@ -1328,7 +1328,7 @@ namespace user
       if (atom.m_etype == atom::e_type_integer && atom.m_iLargest == 0)
       {
 
-         auto & typeatomData = m_pimpactsystem->m_typeatomData;
+         auto & typeatomData = m_pimpactsystem->m_typeData;
 
          if (typeatomData.is_empty())
          {
@@ -1339,12 +1339,12 @@ namespace user
 
          }
 
-         auto pdataNew = øid_create(typeatomData);
+         auto pdataNew = øcreate_by_id(typeatomData);
 
          if (!pdataNew)
          {
 
-            information() << "user::document could not create of type : " << m_pimpactsystem->m_typeatomData;
+            information() << "user::document could not create of type : " << m_pimpactsystem->m_typeData;
 
          }
          else
@@ -1355,7 +1355,7 @@ namespace user
             if (!pdata)
             {
 
-               information() << "user::document created data is not of ::data::data type : " << m_pimpactsystem->m_typeatomData;
+               information() << "user::document created data is not of ::data::data type : " << m_pimpactsystem->m_typeData;
 
             }
 

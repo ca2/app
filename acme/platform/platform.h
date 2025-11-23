@@ -319,28 +319,36 @@ namespace platform
       virtual ::string component_factory_implementation_name(const ::scoped_string & scopedstrComponent);
 
 
-      ::pointer<::factory::factory_item_interface> & get_factory_item(const ::atom & atom, const ::atom & atomSource);
+      ::factory::factory_item_interface* get_factory_item_by_raw_name(const ::scoped_string & scopedstrRawName);
+      ::factory::factory_item_interface* get_factory_item_by_id(const ::atom& atom);
 
 
-      bool has_factory_item(const ::atom & atom);
+      ::factory::factory_item_interface * get_factory_item_by_raw_name(const ::scoped_string & scopedstrRawName, const ::atom & atomFactory);
+      ::factory::factory_item_interface * get_factory_item_by_id(const ::atom & atom, const ::atom & atomFactory);
 
 
-      void set_factory(const ::atom & atom, const ::pointer<::factory::factory_item_interface> & pfactory);
+      bool has_factory_item_by_raw_name(const ::scoped_string & scopedstrRawName);
+      bool has_factory_item_by_id(const ::atom & atom);
 
 
-      void set_factory_from(const ::atom & atom, const ::atom & atomSource, const ::pointer<::factory::factory_item_interface> & pfactory);
+      void set_factory_item_by_raw_name(const ::scoped_string & scopedstrRawName, const ::atom& atom, const ::pointer<::factory::factory_item_interface> & pfactoryitem);
+      void set_factory_item_by_id(const ::atom& atom, const ::pointer<::factory::factory_item_interface>& pfactoryitem);
+
+
+      void set_factory_item_by_raw_name_for_factory(const ::scoped_string & scopedstrRawName, const ::atom& atom, const ::atom & atomFactory, const ::pointer<::factory::factory_item_interface> & pfactoryitem);
+      void set_factory_item_by_id_for_factory(const ::atom & atom, const ::atom& atomFactory, const ::pointer<::factory::factory_item_interface>& pfactoryitem);
 
 
       template < typename TYPE, typename BASE >
-      void add_factory_item(const ::atom & atom)
+      void add_factory_item_by_id(const ::atom & atom)
       {
-
-         set_factory(atom, øallocate ::factory::factory_item < TYPE, BASE > ());
+         
+         set_factory_item_by_id(atom, øallocate ::factory::factory_item < TYPE, BASE > ());
 
       }
 
 
-      ::factory::factory * get_factory(const ::atom & atomSource);
+      ::factory::factory * get_factory(const ::atom & atomFactory);
 
 
 

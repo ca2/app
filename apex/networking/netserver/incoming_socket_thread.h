@@ -34,7 +34,7 @@ namespace netserver
       //::pointer < ::netserver::socket_handler >    m_psockethandlerIncoming;
       //::pointer < ::httpd::incoming_socket >       m_pincomingsocket;
 
-      //::type_atom                                  m_typeIncomingSocket;
+      //::type                                  m_typeIncomingSocket;
 
 
       incoming_socket_thread();
@@ -59,12 +59,12 @@ namespace netserver
    //public:
 
 
-   //   ::type_atom m_typeatomSocket;
+   //   ::type m_typeSocket;
 
    //   virtual ::pointer<::sockets::listen_socket_base > new_listen_socket() override
    //   {
 
-   //      auto psocket = øid_create(m_typeatomSocket);
+   //      auto psocket = øcreate_by_id(m_typeSocket);
 
    //      //psocket->increment_reference_count();
 

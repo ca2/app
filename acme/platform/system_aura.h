@@ -30,7 +30,7 @@ namespace platform
 
       bool                                              m_bAvoidFirstResponder;
 
-      ::type_atom                                       m_typeatomPaneTabImpact;
+      ::type                                       m_typePaneTabImpact;
 
       ::pointer<::windowing::window>                    m_pwindowMain;
 
@@ -350,7 +350,7 @@ namespace platform
       //}
 
 
-      //virtual ::type_atom * get_type_info(const ::std::type_info & info);
+      //virtual ::type * get_type_info(const ::std::type_info & info);
 
       //::type * get_type_info(const ::atom & idType)
       //{
@@ -740,9 +740,9 @@ virtual ::apex::session * session(::collection::index iEdge = 0) override;*/
       //virtual void hist_hist(const ::scoped_string & scopedstr) override;
 
 
-      virtual ::type_atom get_pane_tab_impact_type_info();
-      virtual ::type_atom get_simple_frame_window_type_info();
-      //virtual ::type_atom get_simple_child_frame_type_info();
+      virtual ::type get_pane_tab_impact_type_info();
+      virtual ::type get_simple_frame_window_type_info();
+      //virtual ::type get_simple_child_frame_type_info();
 
       //virtual void on_start_find_applications_from_cache() override;
       //virtual void on_end_find_applications_from_cache(stream& is) override;

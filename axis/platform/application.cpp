@@ -1845,7 +1845,7 @@ namespace axis
    }
 
 
-   ::type_atom application::control_type_from_id(const ::atom& atom, ::user::enum_control_type& econtroltype)
+   ::type application::control_type_from_id(const ::atom& atom, ::user::enum_control_type& econtroltype)
    {
 
       string str(atom);
@@ -1855,7 +1855,7 @@ namespace axis
 
          econtroltype = ::user::e_control_type_static;
 
-         return ::type < ::user::still >();
+         return ::as_type < ::user::still >();
 
       }
       else if (str.case_insensitive_begins("label_"))
@@ -1863,7 +1863,7 @@ namespace axis
 
          econtroltype = ::user::e_control_type_static;
 
-         return ::type < ::user::still >();
+         return ::as_type < ::user::still >();
 
       }
       else if (str.case_insensitive_begins("combo_"))
@@ -1871,7 +1871,7 @@ namespace axis
 
          econtroltype = ::user::e_control_type_combo_box;
 
-         return ::type < ::user::combo_box >();
+         return ::as_type < ::user::combo_box >();
 
       }
       else if (str.case_insensitive_begins("check_") || str.case_insensitive_begins("checkbox_"))
@@ -1879,7 +1879,7 @@ namespace axis
 
          econtroltype = ::user::e_control_type_check_box;
 
-         return ::type < ::user::check_box >();
+         return ::as_type < ::user::check_box >();
 
       }
       if (str.case_insensitive_begins("button_"))
@@ -1887,7 +1887,7 @@ namespace axis
 
          econtroltype = ::user::e_control_type_button;
 
-         return ::type < ::user::button >();
+         return ::as_type < ::user::button >();
 
       }
 

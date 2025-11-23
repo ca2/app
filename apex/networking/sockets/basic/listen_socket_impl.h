@@ -28,10 +28,10 @@ namespace sockets
       listen_socket_impl *                m_plistensocketInterface;
       bool                                m_bImpl;
       bool                                m_bListeningDetach;
-      //::type_atom                         m_typeListenSocket;
+      //::type                         m_typeListenSocket;
 
       //::pointer < ::factory::factory >    m_pfactory;
-      //::type_atom                         m_typeDetachSocket;
+      //::type                         m_typeDetachSocket;
 
       /** Constructor.
       \lparam h base_socket_handler object
@@ -40,7 +40,7 @@ namespace sockets
       ~listen_socket_impl() override;
 
 
-      virtual void set_detach_socket_type(const ::type_atom& typeatom);
+      virtual void set_detach_socket_type(const ::type& typeatom);
 
       virtual void Reset();
       ::pointer<listen_socket_impl>create_listen_socket_impl();

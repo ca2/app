@@ -701,12 +701,12 @@ namespace platform
 #endif
 
 
-   ::factory::factory * platform::get_factory(const ::atom & atomSource)
+   ::factory::factory * platform::get_factory(const ::atom & atomFactory)
    {
 
       critical_section_lock criticalsectionlock(&m_criticalsection);
 
-      auto & pfactory = m_factorymap[atomSource];
+      auto & pfactory = m_factorymap[atomFactory];
 
       if (!pfactory)
       {
@@ -876,7 +876,11 @@ g_bWindowingOutputDebugString = true;
       //m_pfactory = øallocate ::factory::factory();
 
 
-      m_pfactory->InitHashTable(16381);
+      //m_pfactory->m_mapByRawNamePointer.InitHashTable(16381);
+
+      m_pfactory->m_mapByRawName.InitHashTable(16381);
+
+      m_pfactory->m_mapById.InitHashTable(16381);
 
       //::acme::acme::g_pstaticstatic->m_pfactorya = ___new factory_array();
 
@@ -901,59 +905,163 @@ g_bWindowingOutputDebugString = true;
    }
 
 
-   ::pointer<::factory::factory_item_interface> & platform::get_factory_item(const ::atom & atom, const ::atom & atomSource)
+   ::factory::factory_item_interface* platform::get_factory_item_by_raw_name(const ::scoped_string & scopedstrRawName)
    {
 
       critical_section_lock cs(&m_criticalsection);
 
-      return (*get_factory(atomSource))[atom];
+      return m_pfactory->get_factory_item_by_raw_name(scopedstrRawName);
 
    }
 
 
-   bool platform::has_factory_item(const ::atom & atom)
+   ::factory::factory_item_interface* platform::get_factory_item_by_id(const ::atom& atom)
    {
 
       critical_section_lock cs(&m_criticalsection);
 
-      auto iterator = m_pfactory->find(atom);
+      return m_pfactory->get_factory_item_by_id(atom);
 
-      if (!iterator)
+   }
+
+
+   ::factory::factory_item_interface * platform::get_factory_item_by_raw_name(const ::scoped_string & scopedstrRawName, const ::atom& atomFactory)
+   {
+
+      critical_section_lock cs(&m_criticalsection);
+
+      if (atomFactory.is_empty())
       {
 
-         return false;
+         return m_pfactory->get_factory_item_by_raw_name(scopedstrRawName);
 
       }
 
-      if (!iterator->payload())
+      auto pfactory = get_factory(atomFactory);
+
+      return pfactory->get_factory_item_by_raw_name(scopedstrRawName);
+
+   }
+
+
+   ::factory::factory_item_interface * platform::get_factory_item_by_id(const ::atom & atom, const ::atom & atomFactory)
+   {
+
+      critical_section_lock cs(&m_criticalsection);
+
+      if (atomFactory.is_empty())
       {
 
-         return false;
+         return m_pfactory->get_factory_item_by_id(atom);
 
       }
 
-      return true;
+      auto pfactory = get_factory(atomFactory);
+
+      return pfactory->get_factory_item_by_id(atom);
 
    }
 
 
-
-   void platform::set_factory(const ::atom & atom, const ::pointer<::factory::factory_item_interface> & pfactory)
+   bool platform::has_factory_item_by_raw_name(const ::scoped_string & scopedstrRawName)
    {
 
       critical_section_lock cs(&m_criticalsection);
 
-      m_pfactory->set_at(atom, pfactory);
+      //{
+
+      //   auto p = m_pfactory->m_mapByRawNamePointer.find(pszRawName);
+
+      //   if (p && p->payload())
+      //   {
+
+      //      return true;
+
+      //   }
+
+      //}
+
+      {
+
+         auto p = m_pfactory->m_mapByRawName.find(scopedstrRawName);
+
+         if (p && p->payload())
+         {
+
+            return true;
+
+         }
+
+      }
+
+      return false;
 
    }
 
 
-   void platform::set_factory_from(const ::atom & atom, const ::atom & atomSource, const ::pointer<::factory::factory_item_interface> & pfactory)
+   bool platform::has_factory_item_by_id(const ::atom & atom)
    {
 
       critical_section_lock cs(&m_criticalsection);
 
-      get_factory(atomSource)->set_at(atom, pfactory);
+      auto p = m_pfactory->m_mapById.find(atom);
+
+      if (p && p->payload())
+      {
+
+         return true;
+
+      }
+
+      return false;
+
+   }
+
+
+   void platform::set_factory_item_by_raw_name(const ::scoped_string & scopedstrRawName, const ::atom & atom, const ::pointer<::factory::factory_item_interface> & pfactoryitem)
+   {
+
+      critical_section_lock cs(&m_criticalsection);
+
+      m_pfactory->m_mapByRawName.set_at(scopedstrRawName, pfactoryitem);
+
+      m_pfactory->m_mapById.set_at(atom, pfactoryitem);
+
+   }
+
+
+   void platform::set_factory_item_by_id(const ::atom & atom, const ::pointer<::factory::factory_item_interface>& pfactoryitem)
+   {
+
+      critical_section_lock cs(&m_criticalsection);
+
+      m_pfactory->m_mapById.set_at(atom, pfactoryitem);
+
+   }
+
+
+   void platform::set_factory_item_by_raw_name_for_factory(const ::scoped_string & scopedstrRawName, const ::atom & atom, const ::atom& atomFactory, const ::pointer<::factory::factory_item_interface>& pfactoryitem)
+   {
+
+      critical_section_lock cs(&m_criticalsection);
+
+      auto pfactory = get_factory(atomFactory);
+
+      pfactory->m_mapByRawName.set_at(scopedstrRawName, pfactoryitem);
+
+      pfactory->m_mapById.set_at(atom, pfactoryitem);
+
+   }
+
+
+   void platform::set_factory_item_by_id_for_factory(const ::atom & atom, const ::atom & atomFactory, const ::pointer<::factory::factory_item_interface> & pfactoryitem)
+   {
+
+      critical_section_lock cs(&m_criticalsection);
+
+      auto pfactory = get_factory(atomFactory);
+
+      pfactory->m_mapById.set_at(atom, pfactoryitem);
 
    }
 
@@ -964,8 +1072,6 @@ g_bWindowingOutputDebugString = true;
       return m_pfactory;
 
    }
-
-
 
 
    ::factory::factory_pointer & platform::factory(const ::scoped_string & scopedstrLibraryRequest)
@@ -1320,7 +1426,11 @@ g_bWindowingOutputDebugString = true;
 
       critical_section_lock synchronouslock(factory_critical_section());
 
-      m_pfactory->erase_all();
+      //m_pfactory->m_mapByRawNamePointer.erase_all();
+
+      m_pfactory->m_mapByRawName.erase_all();
+
+      m_pfactory->m_mapById.erase_all();
 
       m_factorymap.erase_all();
 

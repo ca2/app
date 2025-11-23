@@ -4391,7 +4391,7 @@ retry_license:
    //::type application::user_default_controltype_to_typeinfo(::user::enum_control_type econtroltype)
    //{
 
-   //   return ::type < ::user::interaction >();
+   //   return ::as_type < ::user::interaction >();
 
    //}
 
@@ -8538,7 +8538,7 @@ namespace aura
    }
 
 
-   ::type_atom application::control_type_from_id(const ::atom& atom, ::user::enum_control_type& econtroltype)
+   ::type application::control_type_from_id(const ::atom& atom, ::user::enum_control_type& econtroltype)
    {
 
       string str(atom);
@@ -8548,7 +8548,7 @@ namespace aura
 
          econtroltype = ::user::e_control_type_edit_plain_text;
 
-         return ::type < ::user::plain_edit >();
+         return ::as_type < ::user::plain_edit >();
 
       }
 

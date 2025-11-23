@@ -224,16 +224,16 @@ payload::payload(const ::scoped_string & scopedstr) :
 }
 
 
-payload::payload(const type_atom & typeatom):
-   m_etype(e_type_atom)
-#if REFERENCING_DEBUGGING
-   , m_preferer(nullptr)
-#endif
-   ,m_atomPayload(typeatom)
-{
-
-
-}
+//payload::payload(const type & type):
+//   m_etype(e_type_type)
+//#if REFERENCING_DEBUGGING
+//   , m_preferer(nullptr)
+//#endif
+//   ,m_type(type)
+//{
+//
+//
+//}
 
 
 payload::payload(::string * pstr) :
@@ -776,31 +776,31 @@ class ::payload & payload::operator ++(int)
 }
 
 
-void payload::set_type(const ::type_atom & typeatom)
-{
+//void payload::set_type(const ::type & type)
+//{
+//
+//   set_type(e_type_type, false);
+//
+//   m_type = type;
+//
+//}
 
-   set_type(e_type_type, false);
 
-   m_typeatom = typeatom;
-
-}
-
-
-bool payload::get_type(::type_atom & typeatom) const
-{
-
-   if (m_etype != e_type_type)
-   {
-
-      return false;
-
-   }
-
-   typeatom = m_typeatom;
-
-   return true;
-
-}
+//bool payload::get_type(::type & typeatom) const
+//{
+//
+//   if (m_etype != e_type_type)
+//   {
+//
+//      return false;
+//
+//   }
+//
+//   typeatom = m_type;
+//
+//   return true;
+//
+//}
 
 
 void payload::set_type(enum_type etype, bool bConvert)
@@ -3540,7 +3540,7 @@ string payload::as_string(const ::scoped_string & scopedstrOnNull) const
       else if (is_element_set())
       {
          
-         copy(str, *as_subparticle());
+         str = ::type(as_subparticle()).name();
 
       }
 
@@ -9489,8 +9489,8 @@ bool payload::is_false() const
       return m_str.is_empty() || m_str.case_insensitive_order("false") == 0  || m_str.case_insensitive_order("no") == 0 || m_str.case_insensitive_order("0") == 0;
    case e_type_pstring:
       return !m_pstr || m_pstr->is_empty() || m_pstr->case_insensitive_order("false") == 0 || m_pstr->case_insensitive_order("no") == 0 || m_pstr->case_insensitive_order("0") == 0;
-   case e_type_type:
-      return m_str.is_empty();
+   //case e_type_type:
+   //   return m_str.is_empty();
    case e_type_time:
       return m_time <= 0_s;
    case e_type_ptime:
@@ -9680,8 +9680,8 @@ bool payload::is_set_false() const
       return m_str.is_empty() || m_str.case_insensitive_order("false") == 0 || m_str.case_insensitive_order("no") == 0 || m_str.case_insensitive_order("0") == 0;
    case e_type_pstring:
       return !m_pstr || m_pstr->is_empty() || m_pstr->case_insensitive_order("false") == 0 || m_pstr->case_insensitive_order("no") == 0 || m_pstr->case_insensitive_order("0") == 0;
-   case e_type_type:
-      return m_str.is_empty();
+   //case e_type_type:
+   //   return m_str.is_empty();
    case e_type_time:
       return m_time <= 0;
    case e_type_ptime:

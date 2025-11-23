@@ -264,7 +264,7 @@ namespace core
 
          m_typeDefaultListHeader = ::as_type < ::simple_list_header_control >();
 
-         auto strAtomDefaultListHeader = m_typeDefaultListHeader.as_string();
+         auto strAtomDefaultListHeader = m_typeDefaultListHeader.name();
 
          information() << "m_typeDefaultListHeader : " << strAtomDefaultListHeader;
 
@@ -1190,9 +1190,9 @@ namespace core
 
       auto typeListHeader = default_type_list_header();
 
-      information() << "default_create_list_header : " << typeListHeader.as_string();
+      information() << "default_create_list_header : " << typeListHeader.name();
 
-      return pparticle->øcreate_by_id < ::user::list_header >(typeListHeader);
+      return pparticle->øcreate_by_id(typeListHeader);
 
    }
 
@@ -1200,7 +1200,7 @@ namespace core
    ::pointer<::user::mesh_data>user::default_create_mesh_data(::particle * pparticle)
    {
 
-      return pparticle->øcreate_by_id < ::user::mesh_data >(default_type_list_data());
+      return pparticle->øcreate_by_id(default_type_list_data());
 
    }
 
@@ -1208,7 +1208,7 @@ namespace core
    ::pointer<::user::list_data>user::default_create_list_data(::particle * pparticle)
    {
 
-      return pparticle->øcreate_by_id <::user::list_data >(default_type_list_data());
+      return pparticle->øcreate_by_id(default_type_list_data());
 
    }
 

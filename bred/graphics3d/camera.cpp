@@ -14,7 +14,7 @@ namespace graphics3d
    camera::camera()
    {
 
-      m_sequence3WorldUp = {0.f, 1.f, 0.f};
+      
 
    }
 
@@ -30,7 +30,11 @@ namespace graphics3d
    void camera::update_vectors() 
    {
 
-      m_sequence3Front = m_rotation.front();
+      auto pgpucontext = m_pengine->gpu_context();
+
+      m_sequence3WorldUp = {0.f, m_pengine->m_fYScale, 0.f};
+
+      m_sequence3Front = pgpucontext->front(m_rotation);
 
       m_sequence3Right = m_sequence3Front.front_right(m_sequence3WorldUp);
 

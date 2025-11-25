@@ -202,6 +202,8 @@ namespace gpu_opengl
 
       //floating_matrix4 lookAt(const float_sequence3 &eye, const float_sequence3 &center, const float_sequence3 &up) override;
 
+       floating_sequence3 front(const ::graphics3d::floating_rotation &rotation) override;
+
    };
 
 

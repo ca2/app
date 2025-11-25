@@ -51,18 +51,6 @@ namespace graphics3d
       }
 
 
-      sequence_type<FLOATING, 3> front() const
-      {
-
-         floating_sequence3 front(m_anglePitch.cos() * m_angleYaw.cos(), m_anglePitch.sin(),
-                                  m_anglePitch.cos() * m_angleYaw.sin());
-
-         front.normalize();
-
-         return front;
-      }
-
-
       matrix_type<FLOATING, 4> as_rotation_matrix() const
       {
 

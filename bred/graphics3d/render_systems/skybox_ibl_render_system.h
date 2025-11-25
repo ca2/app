@@ -1,6 +1,9 @@
 #pragma once
 
+
 #include "bred/graphics3d/render_system.h"
+#include "bred/gpu/properties.h"
+
 //#include "SceneFoundry/graphics3d/asset_provider.h"
 //#include "device.h"
 //#include "SceneFoundry/graphics3d/pipeline.h"
@@ -21,6 +24,37 @@ namespace graphics3d
         virtual public ::graphics3d::render_system
     {
     public:
+
+
+       struct push_constants
+       {
+
+          //floating_matrix4 modelMatrix;
+          //floating_matrix4 normalMatrix;
+
+          //int useTextureAlbedo; // 0
+          //int useTextureMetallicRoughness; // 4
+          //int useTextureNormal; // 8
+          //int useTextureAmbientOcclusion; // 12
+          //int useTextureEmissive; // 16
+
+          //// 20
+
+          //::floating_sequence3 albedo; // 20
+          //float metallic; // 32
+          //float roughness; // 36
+          //float ambientOcclusion; // 40
+          //::floating_sequence3 emissive; // 44
+
+          //// 36
+
+          //// 56
+
+          ////::floating_sequence3 cameraPosition;//56
+          //float bloomBrightnessCutoff; // 68
+          //// 72
+          floating_sequence3 multiplier;
+       };
 
 
         //VkDescriptorSetLayout m_skyboxLayout;
@@ -82,6 +116,8 @@ namespace graphics3d
 
 } // namespace graphics3d
 
+
+DECLARE_GPU_PROPERTIES(CLASS_DECL_BRED, ::graphics3d::skybox_ibl_render_system::push_constants)
 
 
 

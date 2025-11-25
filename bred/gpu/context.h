@@ -12,6 +12,17 @@
 #include "bred/gpu/memory_buffer.h"
 #include "bred/gpu/shader.h"
 #include "acme/graphics/image/image32.h"
+#include "bred/graphics3d/rotation.h"
+
+
+//namespace graphics3d
+//{
+//
+//   
+//   class floating_rotation;
+//
+//
+//} // namespace graphics3d
 
 
 namespace gpu
@@ -192,7 +203,7 @@ namespace gpu
       virtual void defer_end_upload_command_buffer();
 
 
-
+      virtual floating_sequence3 front(const ::graphics3d::floating_rotation &rotation);
 
 
       virtual void _context_lock();

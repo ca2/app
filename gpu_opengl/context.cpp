@@ -3160,5 +3160,31 @@ color = vec4(c.r,c.g, c.b, c.a);
 
    //}
 
+      floating_sequence3 context::front(const ::graphics3d::floating_rotation &rotation)
+   {
+
+      //throw ::interface_only();
+      //sequence_type<FLOATING, 3> front() const
+      //{
+
+         auto &anglePitch = rotation.m_anglePitch;
+
+         auto &angleYaw = rotation.m_angleYaw;
+
+         floating_sequence3 front;
+         front.x = anglePitch.cos() * angleYaw.cos();
+         front.y = anglePitch.sin();
+         front.z = anglePitch.cos() * angleYaw.sin();
+
+         front.normalize();
+
+         return front;
+      //}
+
+
+      //return {};
+   }
+
+
 
 } // namespace gpu_opengl

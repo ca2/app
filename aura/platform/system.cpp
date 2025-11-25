@@ -1925,7 +1925,7 @@ namespace aura
       //if (::succeeded(estatus))
       //{
 
-      factory()->add_factory_item < ::draw2d::task_tool_item >(::e_task_tool_draw2d);
+      factory()->add_factory_item_with_id < ::draw2d::task_tool_item >(::e_task_tool_draw2d);
 
       //}
 
@@ -6629,7 +6629,7 @@ if(!m_pimaging)
    //::type system::get_pane_tab_impact_type_info()
    //{
 
-   //   return ::type < userex::pane_tab_impact >();
+   //   return ::as_type < userex::pane_tab_impact >();
 
    //}
 
@@ -7109,10 +7109,10 @@ if(!m_pimaging)
 
       //}
 
-   ::type_atom system::get_pane_tab_impact_type_info()
+   ::type system::get_pane_tab_impact_type_info()
    {
 
-      return m_typeatomPaneTabImpact;
+      return m_typePaneTabImpact;
 
    }
 

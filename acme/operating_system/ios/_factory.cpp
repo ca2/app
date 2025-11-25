@@ -11,27 +11,27 @@
 //   factory_exchange::factory_exchange()
 //   {
 //
-//      add_factory_item < stdio_file           >   (::type < ::file::text_file >());
-//      add_factory_item < file                 >   (::type < ::file::binary_file >());
-////      add_factory_item < file_set             >   (::type < ::file::set >());
-//      add_factory_item < file                 >   (::type < ::file::file >());
-//      //      add_factory_item < application                >   (::type < ::platform::application >(), 1);
-//      add_factory_item < ::thread               >   (::type < ::thread >());
+//      add_factory_item < stdio_file           >   (::as_type < ::file::text_file >());
+//      add_factory_item < file                 >   (::as_type < ::file::binary_file >());
+////      add_factory_item < file_set             >   (::as_type < ::file::set >());
+//      add_factory_item < file                 >   (::as_type < ::file::file >());
+//      //      add_factory_item < application                >   (::as_type < ::platform::application >(), 1);
+//      add_factory_item < ::thread               >   (::as_type < ::thread >());
 //
-//      add_factory_item < file_system                >   (::type < ::file::system >(), 1);
+//      add_factory_item < file_system                >   (::as_type < ::file::system >(), 1);
 ////    add_factory_item < file_exception, ::file::exception >();
-////    add_factory_item <    WinResource             >   (::type < ::ca2::resource >(), 1);
-//      //add_factory_item < application                >   (::type < ::platform::application >(), 1);
-//      add_factory_item < dir                        >   (::type < ::file::system_dir >(), 1);
+////    add_factory_item <    WinResource             >   (::as_type < ::ca2::resource >(), 1);
+//      //add_factory_item < application                >   (::as_type < ::platform::application >(), 1);
+//      add_factory_item < dir                        >   (::as_type < ::file::system_dir >(), 1);
 ////    add_factory_item < folder_watch, ::ca2::folder_watch >();
-////      add_factory_item < window_draw                >   (::type < ::user::window_draw >(), 1);
-//      //add_factory_item < thread               >   (::type < ::thread_impl >());
-////      add_factory_item < window               >   (::type < ::window >());
-//      add_factory_item < os                         >   (::type < ::acme::os >(), 1);
-////      add_factory_item < port_forward               >   (::type < ::net::port_forward >(), 1);
-////      add_factory_item < crypto                      >   (::type < ::crypto::crypto >(), 1);
-////      add_factory_item < copydesk                   >   (::type < ::acme::copydesk >(), 1);
-//  //    add_factory_item < ::ios2::printer                   >   (::type < ::user::printer >(), 1);
+////      add_factory_item < window_draw                >   (::as_type < ::user::window_draw >(), 1);
+//      //add_factory_item < thread               >   (::as_type < ::thread_impl >());
+////      add_factory_item < window               >   (::as_type < ::window >());
+//      add_factory_item < os                         >   (::as_type < ::acme::os >(), 1);
+////      add_factory_item < port_forward               >   (::as_type < ::net::port_forward >(), 1);
+////      add_factory_item < crypto                      >   (::as_type < ::crypto::crypto >(), 1);
+////      add_factory_item < copydesk                   >   (::as_type < ::acme::copydesk >(), 1);
+//  //    add_factory_item < ::ios2::printer                   >   (::as_type < ::user::printer >(), 1);
 //
 //   }
 //

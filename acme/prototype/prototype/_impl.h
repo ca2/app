@@ -44,7 +44,7 @@ inline ::pointer<BASE_TYPE>particle::__call__create(::factory::factory* pfactory
 
    }
 
-   auto & pfactoryitem = pfactory->get_factory_item<BASE_TYPE>();
+   auto pfactoryitem = pfactory->get_factory_item<BASE_TYPE>();
 
    if (!pfactoryitem)
    {
@@ -70,7 +70,7 @@ inline ::pointer<BASE_TYPE>particle::__call__create(::factory::factory* pfactory
 
 
 //template < typename BASE_TYPE >
-//inline ::pointer<BASE_TYPE>particle::øid_create(const ::atom & atom, ::factory::factory* pfactory)
+//inline ::pointer<BASE_TYPE>particle::øcreate_by_id(const ::atom & atom, ::factory::factory* pfactory)
 //{
 //
 //   auto pfactoryitem = pfactory->get_factory_item(atom);
@@ -194,7 +194,7 @@ inline void particle::__call__construct(::pointer<BASE_TYPE>& p, ::factory::fact
 
    }
 
-   auto & pfactoryitem = pfactory->get_factory_item < BASE_TYPE >();
+   auto pfactoryitem = pfactory->get_factory_item < BASE_TYPE >();
 
    if (!pfactoryitem)
    {
@@ -345,7 +345,7 @@ inline void particle::__call__construct(::pointer<BASE_TYPE>& p, ::factory::fact
 //
 //
 //template < typename BASE_TYPE >
-//inline void matter::øid_construct(::pointer<BASE_TYPE>& p, const ::atom & atom)
+//inline void matter::øconstruct_by_id(::pointer<BASE_TYPE>& p, const ::atom & atom)
 //{
 //
 //   auto & pfactory = factory_item(atom);
@@ -508,10 +508,10 @@ inline void particle::__call__construct_new(::pointer<TYPE>& p)
 //
 //
 //template < typename TYPE >
-//inline void matter::øid_construct(::pointer<TYPE>& p, const ::atom & atom)
+//inline void matter::øconstruct_by_id(::pointer<TYPE>& p, const ::atom & atom)
 //{
 //
-//   auto estatus = ::øid_construct(p, atom);
+//   auto estatus = ::øconstruct_by_id(p, atom);
 //
 //   if (estatus && p)
 //   {
@@ -1400,7 +1400,7 @@ void reference_count_debug_release(TYPE * & p)
 //
 //
 //template < typename BASE_TYPE >
-//inline void object::øid_construct(::pointer<BASE_TYPE> p, const ::atom& atom)
+//inline void object::øconstruct_by_id(::pointer<BASE_TYPE> p, const ::atom& atom)
 //{
 //
 //   auto& pfactory = factory_item(atom);

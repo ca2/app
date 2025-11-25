@@ -85,7 +85,7 @@ namespace filemanager
       //{
 
       //   return estatus;
-      m_typeatomFileList = ::type < file_list >();
+      m_typeFileList = ::as_type < file_list >();
       //}
       øconstruct(m_pfont);
 

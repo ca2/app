@@ -146,6 +146,8 @@ namespace graphics3d
    void skybox_ibl_render_system::on_prepare(gpu::context *pgpucontext)
    {
 
+      auto ppropertiesPush = ::gpu_properties<push_constants>();
+
 	   // Initialize skybox shader
 	   ødefer_construct(m_pshader);
 
@@ -159,7 +161,8 @@ namespace graphics3d
       //m_pshader->m_bindingCubeSampler.m_uSet = 1;
 
 	   m_pshader->m_bindingCubeSampler.set();
-
+      m_pshader->m_propertiesPushShared.set_properties(ppropertiesPush);
+      pgpucontext->layout_push_constants(m_pshader->m_propertiesPushShared, false);
       auto iSize = sizeof(::gpu::gltf::vertex);
 
       //if (false)
@@ -283,6 +286,7 @@ namespace graphics3d
 
 			prenderable->bind(pframe->m_pgpucommandbuffer);
 
+         float x_multiplier = 1.f;
          float y_multiplier = 1.f;
          float z_multiplier = 1.f;
 
@@ -296,11 +300,47 @@ namespace graphics3d
                z_multiplier = -1.f;
 
             }
+            else if (pgpucontext->m_eapi == ::gpu::e_api_vulkan)
+            {
+
+               y_multiplier = -1.f;
+               z_multiplier = -1.f;
+
+            }
+
+         }
+         else if (prenderable->m_ecoordinatesystem == ::gpu::e_coordinate_system_y_up)
+         {
+
+            if (pgpucontext->m_eapi == ::gpu::e_api_opengl)
+            {
+
+               y_multiplier = -1.f;
+               z_multiplier = -1.f;
+
+            }
+            else if (pgpucontext->m_eapi == ::gpu::e_api_vulkan)
+            {
+
+               //y_multiplier = -1.f;
+               //z_multiplier = -1.f;
+
+            }
 
          }
 
-         m_pshader->set_float("y_multiplier", y_multiplier);
-         m_pshader->set_float("z_multiplier", z_multiplier);
+         //m_pshader->set_float("y_multiplier", y_multiplier);
+         //m_pshader->set_float("z_multiplier", z_multiplier);
+
+         floating_sequence3 sequence3Multiplier;
+
+         sequence3Multiplier.x = x_multiplier;
+         sequence3Multiplier.y = y_multiplier;
+         sequence3Multiplier.z = z_multiplier;
+
+         m_pshader->set_sequence3("multiplier", sequence3Multiplier);
+
+         m_pshader->push_properties(pframe->m_pgpucommandbuffer);
 
          //int_rectangle r(pgpucontext->m_rectangle.size());
 
@@ -376,3 +416,10 @@ namespace graphics3d
 	// 	);
 	// }
 } // namespace graphics3d
+
+
+
+
+BEGIN_GPU_PROPERTIES(::graphics3d::skybox_ibl_render_system::push_constants)
+GPU_PROPERTY("multiplier", ::gpu::e_type_seq3)
+END_GPU_PROPERTIES()

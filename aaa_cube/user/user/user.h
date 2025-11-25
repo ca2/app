@@ -41,9 +41,9 @@ namespace bred
 //
 //      string_array_base                                 m_straEscape;
 //
-//      ::type_atom                                  m_typeatomDefaultMeshData;
-//      ::type_atom                                  m_typeatomDefaultListHeader;
-//      ::type_atom                                  m_typeatomDefaultListData;
+//      ::type                                  m_typeDefaultMeshData;
+//      ::type                                  m_typeDefaultListHeader;
+//      ::type                                  m_typeDefaultListData;
 //
 //      ::pointer<::userfs::userfs>               m_puserfs;
 //
@@ -190,9 +190,9 @@ namespace bred
 //      ::pointer<::user::list_data>default_create_list_data(::particle * pparticle);
 //
 //
-//      ::type_atom default_type_mesh_data();
-//      ::type_atom default_type_list_header();
-//      ::type_atom default_type_list_data();
+//      ::type default_type_mesh_data();
+//      ::type default_type_list_header();
+//      ::type default_type_list_data();
 //
 //
 //      virtual void will_use_impact_hint(::atom idImpact);
@@ -226,9 +226,9 @@ namespace bred
 //      //virtual ::pointer<::userfs::userfs>create_userfs();
 //
 //
-//      virtual ::type_atom get_pane_tab_impact_type_info();
-//      //virtual ::type_atom get_simple_frame_window_type_info() override;
-//      //virtual ::type_atom get_simple_child_frame_type_info();
+//      virtual ::type get_pane_tab_impact_type_info();
+//      //virtual ::type get_simple_frame_window_type_info() override;
+//      //virtual ::type get_simple_child_frame_type_info();
 //
 //
 //      virtual void on_frame_window_drop_files(::user::interaction* pinteraction, ::file::path_array& patha) override;
@@ -671,7 +671,7 @@ namespace bred
 //
 //      virtual void term() override;
 //
-//      virtual ::type_atom controltype_to_typeinfo(::user::enum_control_type econtroltype) override;
+//      virtual ::type controltype_to_typeinfo(::user::enum_control_type econtroltype) override;
 //
 //
 

@@ -835,8 +835,8 @@ namespace platform
 
       virtual void on_graphics_ready();
 
-      //virtual ::type_atom user_default_controltype_to_typeinfo(::user::enum_control_type econtroltype);
-      virtual ::type_atom control_type_from_id(const ::atom & atom, ::user::enum_control_type & econtroltype);
+      //virtual ::type user_default_controltype_to_typeinfo(::user::enum_control_type econtroltype);
+      virtual ::type control_type_from_id(const ::atom & atom, ::user::enum_control_type & econtroltype);
 
 
       //virtual ::atom translate_property_id(const ::atom & atom) override;

@@ -197,7 +197,7 @@ public:
    //inline ::pointer<BASE_TYPE>øcreate();
 
    //template < typename BASE_TYPE >
-   //inline ::pointer<BASE_TYPE>øid_create(const ::atom& atom);
+   //inline ::pointer<BASE_TYPE>øcreate_by_id(const ::atom& atom);
 
    //template < typename TYPE >
    //inline ::pointer<TYPE>øcreate_new();
@@ -220,7 +220,7 @@ public:
    inline void øconstruct(::pointer<BASE_TYPE> pusermessage, const ::pointer<SOURCE>psource);
 
    template < typename BASE_TYPE >
-   inline void øid_construct(::pointer<BASE_TYPE> pusermessage, const ::atom& atom);
+   inline void øconstruct_by_id(::pointer<BASE_TYPE> pusermessage, const ::atom& atom);
 
    template < typename BASE_TYPE >
    inline void øraw_construct(::pointer<BASE_TYPE> pusermessage);
@@ -244,7 +244,7 @@ public:
    inline void ødefer_construct(::pointer<BASE_TYPE> pusermessage) { return !pusermessage ? øconstruct(pusermessage) : void(::success); }
 
    template < typename BASE_TYPE >
-   inline void __defer_id_compose(::pointer<BASE_TYPE> pusermessage, const ::atom& atom) { return !pusermessage ? øid_construct(pusermessage) : void(::success); }
+   inline void __defer_id_compose(::pointer<BASE_TYPE> pusermessage, const ::atom& atom) { return !pusermessage ? øconstruct_by_id(pusermessage) : void(::success); }
 
    template < typename TYPE >
    inline void __defer_raw_compose_new(::pointer<TYPE> ptype) { return !ptype ? __raw_construct_new(ptype) : void(::success); }
@@ -258,7 +258,7 @@ public:
    //inline void øconstruct(::pointer<BASE_TYPE> pusermessage);
 
    //template < typename BASE_TYPE >
-   //inline void øid_construct(::pointer<BASE_TYPE> pusermessage, const ::atom& atom);
+   //inline void øconstruct_by_id(::pointer<BASE_TYPE> pusermessage, const ::atom& atom);
 
    //template < typename TYPE >
    //inline void øconstruct_new(::pointer<TYPE> pusermessage);

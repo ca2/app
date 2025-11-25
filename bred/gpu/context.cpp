@@ -762,6 +762,27 @@ return {};
    }
 
 
+   floating_sequence3 context::front(const ::graphics3d::floating_rotation & rotation)
+   {
+
+      throw ::interface_only();
+      //sequence_type<FLOATING, 3> front() const
+      //{
+
+      //   floating_sequence3 front(m_anglePitch.cos() * m_angleYaw.cos(), m_anglePitch.sin(),
+      //                            m_anglePitch.cos() * m_angleYaw.sin());
+
+      //   front.normalize();
+
+      //   return front;
+      //}
+
+
+      return {};
+
+   }
+
+
    void context::_context_lock()
    {
 

@@ -13,7 +13,7 @@
 #include "acme/prototype/string/scoped_string_base.h"
 
 enum enum_id : ::uptr;
-
+class type;
 
 //class atom_space;
 
@@ -366,6 +366,7 @@ public:
    inline atom(const domain_id & domainid);
    atom(const_char_pointer psz);
    atom(const inline_number_string & inlinenumberstring);
+   atom(const type & type);
    //template <typename ITERATOR_TYPE2, int t_size >
    //atom(const const_string_range_static_array <ITERATOR_TYPE2, t_size >& a) : atom((const ::string&)a) {}
 

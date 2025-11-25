@@ -38,9 +38,9 @@ namespace core
       //
       // string_array_base                                 m_straEscape;
       //
-      // ::type_atom                                  m_typeatomDefaultMeshData;
-      // ::type_atom                                  m_typeatomDefaultListHeader;
-      // ::type_atom                                  m_typeatomDefaultListData;
+      // ::type                                  m_typeDefaultMeshData;
+      // ::type                                  m_typeDefaultListHeader;
+      // ::type                                  m_typeDefaultListData;
       //
       // ::pointer<::userfs::userfs>               m_puserfs;
       //
@@ -197,9 +197,9 @@ namespace core
       ::pointer<::user::list_data> default_create_list_data(::particle *pparticle) override;
 
 
-      ::type_atom default_type_mesh_data() override;
-      ::type_atom default_type_list_header() override;
-      ::type_atom default_type_list_data() override;
+      ::type default_type_mesh_data() override;
+      ::type default_type_list_header() override;
+      ::type default_type_list_data() override;
 
 
       void will_use_impact_hint(::atom idImpact) override;
@@ -240,9 +240,9 @@ namespace core
       // virtual ::pointer<::userfs::userfs>create_userfs();
 
 
-      ::type_atom get_pane_tab_impact_type_info() override;
-      // virtual ::type_atom get_simple_frame_window_type_info() override;
-      // virtual ::type_atom get_simple_child_frame_type_info();
+      ::type get_pane_tab_impact_type_info() override;
+      // virtual ::type get_simple_frame_window_type_info() override;
+      // virtual ::type get_simple_child_frame_type_info();
 
 
       void on_frame_window_drop_files(::user::interaction *pinteraction, ::file::path_array_base &patha) override;
@@ -724,7 +724,7 @@ namespace core
 
       virtual void term() override;
 
-      virtual ::type_atom controltype_to_typeinfo(::user::enum_control_type econtroltype) override;
+      virtual ::type controltype_to_typeinfo(::user::enum_control_type econtroltype) override;
    };
 
 

@@ -426,16 +426,22 @@ const_char_pointer unicode_get_category_name(int i);
 //}
 
 
-CLASS_DECL_ACME string demangle(const_char_pointer pszMangledName);
+CLASS_DECL_ACME string type_name(const ::std::type_info& typeinfo);
 
 
-CLASS_DECL_ACME void copy(::string & str, const subparticle & subparticle);
+//CLASS_DECL_ACME string demangle_name(const_char_pointer pszMangledName);
+
+
+//CLASS_DECL_ACME string demangle_typeid(const ::std::type_info & typeinfo);
+
+
+//CLASS_DECL_ACME void copy(::string & str, const subparticle & subparticle);
 
 
 CLASS_DECL_ACME string string_from_strdup(const_char_pointer psz);
 
 
-CLASS_DECL_ACME void copy(::string & str, const subparticle & subparticle);
+//CLASS_DECL_ACME void copy(::string & str, const subparticle & subparticle);
 
 
 

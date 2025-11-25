@@ -178,7 +178,7 @@ namespace user
    ::pointer<::user::interaction>system::create_impact(::user::interaction * puserinteractionParent, const ::atom & atom)
    {
 
-      ASSERT(m_typeatomNewImpact || m_puserprimitiveNew != nullptr);
+      ASSERT(m_typeNewImpact || m_puserprimitiveNew != nullptr);
 
       auto papp = puserinteractionParent->get_app();
 
@@ -225,7 +225,7 @@ namespace user
          __check_refdbg
 
          //estatus =
-         pparticle->øid_construct(pinteraction, m_typeatomNewImpact);
+         pparticle->øconstruct_by_id(pinteraction, m_typeNewImpact);
 
          __check_refdbg
 

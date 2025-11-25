@@ -29,7 +29,7 @@ namespace httpd
       ::pointer < ::httpd::incoming_socket >       m_pincomingsocket;
 
       ::pointer < ::factory::factory >             m_pfactoryIncomingSocket;
-      ::type_atom                                  m_typeIncomingSocket;
+      ::type                                  m_typeIncomingSocket;
 
 
       incoming_socket_thread();

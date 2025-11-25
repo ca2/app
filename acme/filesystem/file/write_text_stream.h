@@ -216,6 +216,16 @@ public:
    }
 
 
+
+   template < typename ENUM >
+   write_text_stream& operator <<(const enumeration< ENUM >& e)
+   {
+
+      return *this << e.m_eenum;
+
+   }
+
+
    write_text_stream & operator <<(bool b);
    //    {
    //
@@ -506,6 +516,14 @@ public:
    //       return this->operator <<((const ::scoped_string &)str);
    //
    //    }
+
+
+   write_text_stream& operator <<(const ::type& type)
+   {
+
+      return *this << type.name();
+
+   }
 
        //text_stream & operator <<(const ::atom & atom) ;
    write_text_stream & operator <<(const ::scoped_string & scopedstr);

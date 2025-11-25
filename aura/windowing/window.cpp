@@ -612,7 +612,7 @@ namespace windowing
             if (puiKeyboardFocus)
             {
 
-               information() << "key message control with keyboard focus : " << ::string(::type(puiKeyboardFocus.m_p));
+               information() << "key message control with keyboard focus : " << ::type(puiKeyboardFocus).name();
 
                puiKeyboardFocus->route_message(pkey);
 
@@ -6086,7 +6086,7 @@ namespace windowing
             if (puiKeyboardFocus)
             {
 
-               information() << "key message control with keyboard focus : " << ::string(::type(puiKeyboardFocus.m_p));
+               information() << "key message control with keyboard focus : " << ::type(puiKeyboardFocus).name();
 
                puiKeyboardFocus->route_message(pkey);
 

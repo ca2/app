@@ -30,8 +30,8 @@ namespace berg
       //
       // //::pointer<::user::shell>                         m_pshell;
       //
-      // //::type_atom                                      m_typeatomHtmlDocument;
-      // //::type_atom                                      m_typeatomHtmlImpact;
+      // //::type                                      m_typeHtmlDocument;
+      // //::type                                      m_typeHtmlImpact;
       //
       // ::pointer < ::user::menu_central >                 m_pmenucentral;
       //
@@ -69,10 +69,10 @@ namespace berg
       void init() override;
 
 
-      ::type_atom get_html_document_type() override;
-      ::type_atom get_html_impact_type() override;
+      ::type get_html_document_type() override;
+      ::type get_html_impact_type() override;
 
-      ::type_atom user_default_controltype_to_typeinfo(::user::enum_control_type econtroltype) override;
+      ::type user_default_controltype_to_typeinfo(::user::enum_control_type econtroltype) override;
 
 
       ::user::interaction_base *get_mouse_focus_LButtonDown() override;
@@ -89,7 +89,7 @@ namespace berg
 
       void term() override;
 
-      ::type_atom controltype_to_typeinfo(::user::enum_control_type econtroltype) override;
+      ::type controltype_to_typeinfo(::user::enum_control_type econtroltype) override;
 
 
       virtual ::pointer<::user::menu_interaction> create_menu_button(::user::style *pstyle, ::menu::item *pitem);
@@ -132,9 +132,9 @@ namespace berg
                                              ::platform::application *papp = nullptr) override;
 
 
-      // virtual ::type_atom get_pane_tab_impact_type_info();
-      ::type_atom get_simple_frame_window_type_info() override;
-      ::type_atom get_simple_child_frame_type_info() override;
+      // virtual ::type get_pane_tab_impact_type_info();
+      ::type get_simple_frame_window_type_info() override;
+      ::type get_simple_child_frame_type_info() override;
 
 
       void on_frame_window_drop_files(::user::interaction *pinteraction, ::file::path_array_base &patha) override;
@@ -143,7 +143,7 @@ namespace berg
       void initialize_html() override;
 
 
-      ::pointer<::form_document> create_typed_form(::particle *pparticle, const ::type_atom &typeatom,
+      ::pointer<::form_document> create_typed_form(::particle *pparticle, const ::type &typeatom,
                                                    ::user::element *puserelementParent,
                                                    const ::payload &payload = ::e_type_empty_argument,
                                                    const ::payload &payloadArgs = ::e_type_empty_argument) override;
@@ -159,7 +159,7 @@ namespace berg
       //:::pointer<::user::interaction>userinteractionParent, ::payload payload = ::payload(::e_type_empty_argument),
       //:::payload varArgs = ::e_type_empty_argument);
       ::pointer<::form_document>
-      create_typed_child_form(::particle *pparticle, const ::type_atom &typeatom,
+      create_typed_child_form(::particle *pparticle, const ::type &typeatom,
                               ::user::element *puserelementParent,
                               const ::payload &payload = ::e_type_empty_argument,
                               const ::payload &payloadArgs = ::e_type_empty_argument) override;
@@ -174,12 +174,12 @@ namespace berg
       //:::payload payload = ::payload(::e_type_empty_argument))
       //{
 
-      //   return create_typed_child_form(pparticle, ::type < FORM >(), pimpactdata->m_pplaceholder, payload);
+      //   return create_typed_child_form(pparticle, ::as_type < FORM >(), pimpactdata->m_pplaceholder, payload);
 
       //}
 
       virtual ::pointer<::form_document>
-      create_typed_child_form(::particle *pparticle, const ::type_atom &typeatom, ::user::impact_data *pimpactdata,
+      create_typed_child_form(::particle *pparticle, const ::type &typeatom, ::user::impact_data *pimpactdata,
                               ::payload payload = ::payload(::e_type_empty_argument));
 
 

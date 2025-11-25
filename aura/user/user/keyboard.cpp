@@ -295,7 +295,7 @@ namespace user
 
       //::user::enum_key ekey;
 
-      //::type typeinfoKey = ::type < ::user::enum_key >();
+      //::type typeinfoKey = ::as_type < ::user::enum_key >();
 
       // auto pcontext = get_context();
 

@@ -197,7 +197,7 @@ enum enum_type
    e_type_string = 4096,
    e_type_pstring,
    e_type_ansi_range,
-   e_type_type,
+   //e_type_type,
    //e_type_integral_nanosecond,
    //e_type_pintegral_nanosecond,
    //e_type_integral_microsecond,

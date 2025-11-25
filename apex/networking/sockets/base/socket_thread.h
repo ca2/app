@@ -18,10 +18,10 @@ namespace sockets
 
 
       ::pointer < ::factory::factory >             m_pfactorySocketHandler;
-      ::type_atom                                  m_typeSocketHandler;
+      ::type                                  m_typeSocketHandler;
       ::pointer < ::sockets::socket_handler >      m_psockethandler;
       long long                                        m_iAllocatedCount;
-      //::type_atom                                m_typeListenSocket;
+      //::type                                m_typeListenSocket;
       //::pointer < ::factory::factory >    m_pfactory;
 
 

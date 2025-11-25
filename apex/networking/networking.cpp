@@ -81,7 +81,7 @@ namespace networking
 
       ::object::initialize(pparticle);
 
-      if (!factory()->has(::type<::sockets::socket_thread>()))
+      if (!factory()->has<::sockets::socket_thread>())
       {
 
          factory()->add_factory_item<::sockets::socket_thread>();
@@ -237,7 +237,7 @@ namespace networking
    }
 
 
-   //::sockets::listen_socket * networking::new_listen_socket(const ::type_atom& type)
+   //::sockets::listen_socket * networking::new_listen_socket(const ::type& type)
    //{
 
    //   auto plistensocket = øcreate< ::sockets::listen_socket >();

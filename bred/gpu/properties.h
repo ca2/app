@@ -401,12 +401,13 @@ namespace gpu
 
 		}
 
-		void _set_matrix4(const ::floating_matrix4& floating_matrix4);
-		void _set_vec4(const ::floating_sequence4& floating_sequence4);
+		void _set_matrix4(const ::floating_matrix4& matrix4);
+		void _set_sequence4(const ::floating_sequence4& sequence4);
+      void _set_sequence3(const ::floating_sequence3 & sequence3);
 		void _set_int(const int& i);
 		
 		template < typename TYPE >
-		properties_reference& operator=(const TYPE& floating_matrix4) requires
+		properties_reference& operator=(const TYPE& matrix4) requires
 			(::std::is_same_v<TYPE, ::floating_matrix4 >)
 		{
 
@@ -416,14 +417,14 @@ namespace gpu
 				throw ::exception(error_bad_data_format);
 
 			}
-			_set_matrix4(floating_matrix4);
+			_set_matrix4(matrix4);
 			
 
 			return *this;
 
 		}
 		template < typename TYPE >
-		properties_reference& operator=(const TYPE& floating_sequence4)requires
+		properties_reference& operator=(const TYPE& sequence4)requires
 		(::std::is_same_v<TYPE, ::floating_sequence4 >)
 		{
 			if (m_pproperties->m_etype != ::gpu::e_type_seq4)
@@ -433,13 +434,13 @@ namespace gpu
 
 			}
 
-			_set_vec4(floating_sequence4);
+			_set_sequence4(sequence4);
 
 			return *this;
 
 		}
       template<typename TYPE>
-      properties_reference &operator=(const TYPE &floating_sequence3)
+      properties_reference &operator=(const TYPE &sequence3)
          requires(::std::is_same_v<TYPE, ::floating_sequence3>)
       {
          if (m_pproperties->m_etype != ::gpu::e_type_seq3)
@@ -448,10 +449,11 @@ namespace gpu
             throw ::exception(error_bad_data_format);
          }
 
-         _set_vec4(floating_sequence3);
+         _set_sequence3(sequence3);
 
          return *this;
       }
+
 
 		template < typename TYPE >
 		properties_reference& operator=(const TYPE& i)requires

@@ -101,7 +101,7 @@ namespace berg
 {
 
 
-   ::type_atom user::get_simple_child_frame_type_info() { return ::type<simple_child_frame>(); }
+   ::type user::get_simple_child_frame_type_info() { return ::as_type <simple_child_frame>(); }
 
 
 } // namespace berg

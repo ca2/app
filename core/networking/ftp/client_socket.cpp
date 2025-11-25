@@ -850,7 +850,7 @@ namespace ftp
 
             apSckDataConnection = ___new ::sockets::listen_socket ();
 
-            apSckDataConnection->m_typeAttendSocket = ::type< ::sockets::write_socket >();
+            apSckDataConnection->m_typeAttendSocket = ::as_type < ::sockets::write_socket >();
 
          }
          else if (crDatachannelCmd.IsDatachannelReadCommand())
@@ -858,7 +858,7 @@ namespace ftp
 
             apSckDataConnection = ___new ::sockets::listen_socket ();
 
-            apSckDataConnection->m_typeAttendSocket = ::type< ::sockets::read_socket >();
+            apSckDataConnection->m_typeAttendSocket = ::as_type < ::sockets::read_socket >();
 
          }
          else

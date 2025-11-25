@@ -3452,7 +3452,7 @@ namespace user
          }
 
       }
-      else if (::type(this).as_string().contains("main_frame"))
+      else if (::type(this).name().contains("main_frame"))
       {
 
          informationf("main_frame %d %s", elayout, ::as_string(edisplay.m_eenum).c_str());
@@ -5482,7 +5482,7 @@ namespace user
                if (type.name().contains("font_list"))
                {
 
-                  informationf(type + "\n");
+                  information(type.name());
 
                }
 
@@ -6666,7 +6666,7 @@ namespace user
 
       pgraphics->m_puserinteraction = this;
 
-      ::string strType = ::type(this).as_string();
+      ::string strType = ::type(this).name();
 
       if (pgraphics->m_egraphics & e_graphics_layout)
       {
@@ -7290,7 +7290,7 @@ namespace user
                   {
 
                      information() << "Exception: interaction::_000OnDraw _001DrawThis %s"
-                        << ::type(this).as_string();
+                        << ::type(this).name();
 
                   }
 
@@ -7320,7 +7320,7 @@ namespace user
                   {
 
                      information() << "Exception: interaction::_000OnDraw _001DrawChildren %s"
-                        << ::type(this).as_string();
+                        << ::type(this).name();
 
                   }
 
@@ -14633,7 +14633,7 @@ if(get_parent())
                if (puiKeyboardFocus)
                {
 
-                  information() << "key message control with keyboard focus : " << ::string(::type(puiKeyboardFocus.m_p));
+                  information() << "key message control with keyboard focus : " << ::type(puiKeyboardFocus).name();
 
                   puiKeyboardFocus->route_message(pkey);
 
@@ -15813,7 +15813,7 @@ if(get_parent())
 
       layout_tooltip();
 
-      auto strType = ::type(this).as_string();
+      auto strType = ::type(this).name();
 
       if (strType.case_insensitive_contains("scroll_bar"))
       {
@@ -25328,7 +25328,7 @@ void interaction::on_control_box_zoom(){
 
       auto pmouse = pmessage->m_union.m_pmouse;
 
-      auto strType = type(this).as_string();
+      auto strType = type(this).name();
 
       information() << "interaction::on_message_parent_left_button_down : " << strType;
 
@@ -25953,7 +25953,7 @@ void interaction::on_control_box_zoom(){
 
       ::string strType;
 
-      strType = type(this).as_string();
+      strType = type(this).name();
 
       if (strType.contains("font_list"))
       {
@@ -26967,7 +26967,7 @@ void interaction::on_control_box_zoom(){
 
       ::string strType;
 
-      strType = type(this).as_string();
+      strType = type(this).name();
 
       if (strType.contains("font_list"))
       {
@@ -27900,7 +27900,7 @@ __check_refdbg;
 
             }
 
-            ::string strType = type(this).as_string();
+            ::string strType = type(this).name();
 
             if (strType == "simple_scroll_bar")
             {
@@ -30930,7 +30930,7 @@ __check_refdbg;
       {
       case e_control_type_edit:
 
-         //         m_type = ::type < CSimpleFormListEdit >();
+         //         m_type = ::as_type < CSimpleFormListEdit >();
 
          break;
 

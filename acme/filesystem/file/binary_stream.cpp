@@ -813,7 +813,7 @@ void binary_stream::read_to_hex(string & str, filesize tickStart, filesize tickE
 
 
 
-::pointer<::matter>binary_stream::create_object_from_text(::particle * pparticle, const ::scoped_string & scopedstrText)
+::pointer<::particle>binary_stream::create_object_from_text(::particle * pparticle, const ::scoped_string & scopedstrText)
 {
 
    if (scopedstrText.is_empty())
@@ -825,7 +825,7 @@ void binary_stream::read_to_hex(string & str, filesize tickStart, filesize tickE
 
    auto atom = text_to_factory_id(scopedstrText);
 
-   return øid_create(atom);
+   return øcreate_by_id(atom);
 
 }
 
@@ -833,11 +833,11 @@ void binary_stream::read_to_hex(string & str, filesize tickStart, filesize tickE
 ::pointer < ::subparticle > binary_stream::read_particle()
 {
 
-   ::type_atom typeatom;
+   ::atom atom;
 
-   *this >> typeatom;
+   *this >> atom;
 
-   auto pparticle = øid_create(typeatom);
+   auto pparticle = øcreate_by_id(atom);
 
    pparticle->read_from_stream(*this);
 
@@ -849,9 +849,9 @@ void binary_stream::read_to_hex(string & str, filesize tickStart, filesize tickE
 void binary_stream::write_particle(const ::subparticle * pparticle)
 {
 
-   ::type_atom typeatom(pparticle);
+   ::atom atom(::type(typeid(*pparticle)).name());
 
-   *this << typeatom;
+   *this << atom;
 
    ((subparticle *)pparticle)->write_to_stream(*this);
 

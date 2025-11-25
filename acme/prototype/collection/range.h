@@ -611,6 +611,14 @@ public:
    }
 
 
+   constexpr bool is_this_range(const range& range) const
+   {
+
+      return this->m_begin == range.m_begin && this->m_end == range.m_end;
+
+   }
+
+
 
 
 

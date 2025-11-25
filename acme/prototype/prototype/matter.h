@@ -351,7 +351,7 @@ inline bool __defer_raw_construct_new(::pointer<TYPE> & ptype)
 
 //
 //template < typename TYPE >
-//inline ::pointer<TYPE>matter::øid_create(const ::atom & atom, ::factory::factory * pfactory)
+//inline ::pointer<TYPE>matter::øcreate_by_id(const ::atom & atom, ::factory::factory * pfactory)
 //{
 //
 //   auto pfactoryitem = pfactory->get_factory_item(atom);
@@ -509,10 +509,10 @@ inline bool __defer_raw_construct_new(::pointer<TYPE> & ptype)
 
 
 //template < typename TYPE >
-//inline void particle::øid_construct(::pointer<TYPE> & p, const ::atom & atom)
+//inline void particle::øconstruct_by_id(::pointer<TYPE> & p, const ::atom & atom)
 //{
 //
-//   ::øid_construct(this, p, atom);
+//   ::øconstruct_by_id(this, p, atom);
 //
 //}
 

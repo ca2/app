@@ -91,15 +91,17 @@ CLASS_DECL_ACME inline character_count safe_strlen(void * p, character_count n)
 }
 
 
+CLASS_DECL_ACME string type_name(const ::std::type_info& typeinfo);
 
-CLASS_DECL_ACME string demangle(const ::scoped_string & scopedstr);
 
-CLASS_DECL_ACME void copy(::string & str, const subparticle & subparticle)
-{
+//CLASS_DECL_ACME string demangle_name(const_char_pointer pszMangledName);
 
-   str = demangle(typeid((::subparticle &)subparticle).name());
-
-}
+//CLASS_DECL_ACME void copy(::string & str, const subparticle & subparticle)
+//{
+//
+//   str = demangle_name(typeid((::subparticle &)subparticle).name());
+//
+//}
 
 
 

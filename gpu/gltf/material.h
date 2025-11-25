@@ -30,7 +30,7 @@ namespace gpu
          bool useTextureAmbientOcclusion = false;
          bool useTextureEmissive = false;
 
-         floating_sequence3 m_seq3Albedo = ::gpu::gltf::colorRed;
+         floating_sequence3 m_seq3Albedo = ::gpu::gltf::colorWhite;
          float m_fMetallic = 1.0f;
          float m_fRoughness = 0.0f;
          float m_fAmbientOcclusion = 1.0f;

@@ -758,7 +758,7 @@
 ////   payload_stream binary_stream(øallocate< ::payload(&payload()[atom].propset >()));
 ////   ::atom idFactory;
 ////   binary_stream.exchange("", idFactory);
-////   auto pparticle = øid_create<::matter>(idFactory);
+////   auto pparticle = øcreate_by_id<::matter>(idFactory);
 ////   pparticle->exchange(binary_stream);
 ////   return pparticle;
 ////}

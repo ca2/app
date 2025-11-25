@@ -590,7 +590,7 @@ class ::payload & payload::operator ++(int)
 }
 
 
-void payload::set_type(const ::type_atom & typeatom)
+void payload::set_type(const ::type & typeatom)
 {
 
    set_type(e_type_type, false);

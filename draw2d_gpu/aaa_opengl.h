@@ -45,10 +45,10 @@ namespace opengl
    //inline void vertex2f(const ::double_rectangle & rectangle, float fZ)
    //{
 
-   //   glVertex3f((GLfloat)rectangle.left(), (GLfloat)rectangle.top(), fZ);
-   //   glVertex3f((GLfloat)rectangle.right(), (GLfloat)rectangle.top(), fZ);
-   //   glVertex3f((GLfloat)rectangle.right(), (GLfloat)rectangle.bottom(), fZ);
-   //   glVertex3f((GLfloat)rectangle.left(), (GLfloat)rectangle.bottom(), fZ);
+   //   glVertex3f((GLfloat)rectangle.left, (GLfloat)rectangle.top, fZ);
+   //   glVertex3f((GLfloat)rectangle.right, (GLfloat)rectangle.top, fZ);
+   //   glVertex3f((GLfloat)rectangle.right, (GLfloat)rectangle.bottom, fZ);
+   //   glVertex3f((GLfloat)rectangle.left, (GLfloat)rectangle.bottom, fZ);
 
    //}
 

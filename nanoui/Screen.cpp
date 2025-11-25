@@ -818,14 +818,14 @@ namespace nanoui
 
                pcontext->begin_path();
                pcontext->fill_color(::color::color(0, 255));
-               pcontext->rounded_rectangle(bounds.left() - 4.f - h, bounds.top() - 4.f,
+               pcontext->rounded_rectangle(bounds.left - 4.f - h, bounds.top - 4.f,
                   bounds.width() + 8.f,
                   bounds.height() + 8.f, 3.f);
 
                int px = (int)(bounds.center_x() - h + shift);
-               pcontext->move_to((float)px, bounds.top() - 10.f);
-               pcontext->line_to(px + 7.f, bounds.top() + 1.f);
-               pcontext->line_to(px - 7.f, bounds.top() + 1.f);
+               pcontext->move_to((float)px, bounds.top - 10.f);
+               pcontext->line_to(px + 7.f, bounds.top + 1.f);
+               pcontext->line_to(px - 7.f, bounds.top + 1.f);
                pcontext->fill();
 
                pcontext->fill_color(::color::color(255, 255));

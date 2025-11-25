@@ -1276,8 +1276,8 @@ namespace user
 ////#endif
 //
 //      //pusersystem->m_createstruct.style = uStyle | WS_CHILD;
-//      //pusersystem->m_createstruct.x = rectangle.left();
-//      //pusersystem->m_createstruct.y = rectangle.top();
+//      //pusersystem->m_createstruct.x = rectangle.left;
+//      //pusersystem->m_createstruct.y = rectangle.top;
 //      //pusersystem->m_createstruct.cx() = rectangle.width();
 //      //pusersystem->m_createstruct.cy() = rectangle.height();
 //      //pusersystem->m_createstruct.hwndParent = puiParent->get_safe_handle();
@@ -2681,18 +2681,18 @@ namespace user
 
       //      //   pdisplay->get_monitor_rectangle(0, rcMonitor);
 
-      //      //   if (rectWindow.left() >= rcMonitor.left())
+      //      //   if (rectWindow.left >= rcMonitor.left)
       //      //   {
 
-      //      //      pmouse->m_point.x += (int)rcMonitor.left();
+      //      //      pmouse->m_point.x += (int)rcMonitor.left;
 
       //      //   }
 
-      //      //   if (rectWindow.top() >= rcMonitor.top())
+      //      //   if (rectWindow.top >= rcMonitor.top)
       //      //   {
 
-      //      //      //pmouse->m_point.y += (int)rectWindow.top();
-      //      //      pmouse->m_point.y += (int)rcMonitor.top();
+      //      //      //pmouse->m_point.y += (int)rectWindow.top;
+      //      //      pmouse->m_point.y += (int)rcMonitor.top;
 
       //      //   }
 
@@ -2700,17 +2700,17 @@ namespace user
       //      //else
       //      {
 
-      //         if (rectWindow.left() >= 0)
+      //         if (rectWindow.left >= 0)
       //         {
 
-      //            pmouse->m_point.x += (int)rectWindow.left();
+      //            pmouse->m_point.x += (int)rectWindow.left;
 
       //         }
 
-      //         if (rectWindow.top() >= 0)
+      //         if (rectWindow.top >= 0)
       //         {
 
-      //            pmouse->m_point.y += (int)rectWindow.top();
+      //            pmouse->m_point.y += (int)rectWindow.top;
 
       //         }
 
@@ -6299,7 +6299,7 @@ namespace user
 
                //m_rectangleUpdateBuffer = r;
 
-               //informationf("PrintBuffer (%d, %d)",  r.right(), r.bottom());
+               //informationf("PrintBuffer (%d, %d)",  r.right, r.bottom);
 
                //if (!m_pgraphics)
                //{
@@ -6581,7 +6581,7 @@ namespace user
 
             //m_rectangleUpdateBuffer = r;
 
-            //informationf("PrintBuffer (%d, %d)",  r.right(), r.bottom());
+            //informationf("PrintBuffer (%d, %d)",  r.right, r.bottom);
 
             if (!m_pgraphicsgraphics)
             {
@@ -8692,39 +8692,39 @@ namespace user
 //
 //                           auto pointDesign = m_puserinteraction->const_layout().design().origin();
 //
-//                           if(rectangle.top() >= rectangleBig.top() && rectangle.top() <= rectangleSmall.top()
-//                           && rectangleRequest.top()>= rectangleBig.top() && rectangleRequest.top() <= rectangleSmall.top()
-//                           && rectangleRequest.top() < rectangle.top())
+//                           if(rectangle.top >= rectangleBig.top && rectangle.top <= rectangleSmall.top
+//                           && rectangleRequest.top>= rectangleBig.top && rectangleRequest.top <= rectangleSmall.top
+//                           && rectangleRequest.top < rectangle.top)
 //                           {
 //
-//                              pmonitor->set_workspace_rectangle_top(rectangle.top());
+//                              pmonitor->set_workspace_rectangle_top(rectangle.top);
 //
 //                           }
 //
-//                           if(rectangle.left() >= rectangleBig.left() && rectangle.left() <= rectangleSmall.left()
-//                              && rectangleRequest.left()>= rectangleBig.left() && rectangleRequest.left() <= rectangleSmall.left()
-//                              && rectangleRequest.left() < rectangle.left())
+//                           if(rectangle.left >= rectangleBig.left && rectangle.left <= rectangleSmall.left
+//                              && rectangleRequest.left>= rectangleBig.left && rectangleRequest.left <= rectangleSmall.left
+//                              && rectangleRequest.left < rectangle.left)
 //                           {
 //
-//                              pmonitor->set_workspace_rectangle_left(rectangle.left());
+//                              pmonitor->set_workspace_rectangle_left(rectangle.left);
 //
 //                           }
 //
-//                           if(rectangle.right() >= rectangleSmall.right() && rectangle.right() <= rectangleBig.right()
-//                              && rectangleRequest.right()>= rectangleSmall.right() && rectangleRequest.right() <= rectangleBig.right()
-//                              && rectangleRequest.right() > rectangle.right())
+//                           if(rectangle.right >= rectangleSmall.right && rectangle.right <= rectangleBig.right
+//                              && rectangleRequest.right>= rectangleSmall.right && rectangleRequest.right <= rectangleBig.right
+//                              && rectangleRequest.right > rectangle.right)
 //                           {
 //
-//                              pmonitor->set_workspace_rectangle_right(rectangle.right());
+//                              pmonitor->set_workspace_rectangle_right(rectangle.right);
 //
 //                           }
 //
-//                           if(rectangle.bottom() >= rectangleSmall.bottom() && rectangle.bottom() <= rectangleBig.bottom()
-//                              && rectangleRequest.bottom()>= rectangleSmall.bottom() && rectangleRequest.bottom() <= rectangleBig.bottom()
-//                              && rectangleRequest.bottom() > rectangle.bottom())
+//                           if(rectangle.bottom >= rectangleSmall.bottom && rectangle.bottom <= rectangleBig.bottom
+//                              && rectangleRequest.bottom>= rectangleSmall.bottom && rectangleRequest.bottom <= rectangleBig.bottom
+//                              && rectangleRequest.bottom > rectangle.bottom)
 //                           {
 //
-//                              pmonitor->set_workspace_rectangle_bottom(rectangle.bottom());
+//                              pmonitor->set_workspace_rectangle_bottom(rectangle.bottom);
 //
 //                           }
 //

@@ -46,8 +46,8 @@ namespace graphics
 
       //}
 
-      double x = (double)m_rectangle.left();
-      double y = (double)m_rectangle.top();
+      double x = (double)m_rectangle.left;
+      double y = (double)m_rectangle.top;
       double w = (double)m_rectangle.width();
       double h = (double)m_rectangle.height();
 
@@ -88,17 +88,17 @@ namespace graphics
 
          //::double_ellipse ellipse1;
 
-         //ellipse1.left() = center.x - r1;
-         //ellipse1.top() = center.y - r1;
-         //ellipse1.right() = center.x + r1;
-         //ellipse1.bottom() = center.y + r1;
+         //ellipse1.left = center.x - r1;
+         //ellipse1.top = center.y - r1;
+         //ellipse1.right = center.x + r1;
+         //ellipse1.bottom = center.y + r1;
 
          //::double_ellipse ellipse0;
 
-         //ellipse0.left() = center.x - r0;
-         //ellipse0.top() = center.y - r0;
-         //ellipse0.right() = center.x + r0;
-         //ellipse0.bottom() = center.y + r0;
+         //ellipse0.left = center.x - r0;
+         //ellipse0.top = center.y - r0;
+         //ellipse0.right = center.x + r0;
+         //ellipse0.bottom = center.y + r0;
 
          ::cast < ::nano2d::draw2d_context > p = pcontext;
 
@@ -482,8 +482,8 @@ namespace graphics
    color_wheel::enum_hit_test color_wheel::adjust_position_and_hit_test(const int_point & p)
    {
 
-      //double x = (double)m_rectangle.left();
-      //double y = (double)m_rectangle.top();
+      //double x = (double)m_rectangle.left;
+      //double y = (double)m_rectangle.top;
       double x = 0.;
       double y = 0.;
       double w = (double)m_rectangle.width();

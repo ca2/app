@@ -129,15 +129,15 @@ struct sequence_t_type<NUMBER, 3>
       {
          union
          {
-            COORDINATE x, r, s;
+            COORDINATE x, r, s, red;
          };
          union
          {
-            COORDINATE y, g, t;
+            COORDINATE y, g, t, green;
          };
          union
          {
-            COORDINATE z, b, p;
+            COORDINATE z, b, p, blue;
          };
       };
       COORDINATE m_coordinatea[SIZE];
@@ -176,19 +176,19 @@ struct sequence_t_type<NUMBER, 4>
       {
          union
          {
-            COORDINATE x, r, s;
+            COORDINATE x, r, s, left, red;
          };
          union
          {
-            COORDINATE y, g, t;
+            COORDINATE y, g, t, top, green;
          };
          union
          {
-            COORDINATE z, b, p;
+            COORDINATE z, b, p, right, blue;
          };
          union
          {
-            COORDINATE w, a, q;
+            COORDINATE w, a, q, bottom, opacity;
          };
       };
       COORDINATE m_coordinatea[SIZE];
@@ -467,14 +467,14 @@ struct sequence_type :
    template < ::collection::count S = SIZE, std::enable_if_t<S <= 2, int> = 0 >
    inline void add2(const sequence_type & a)
    {
-      this->x += a.a;
-      this->y += a.b;
+      this->x += a.x;
+      this->y += a.y;
    }
    template < ::collection::count S = SIZE, std::enable_if_t<S <= 2, int> = 0 >
    inline void sub2(const sequence_type & a)
    {
-      this->x -= a.a;
-      this->y -= a.b;
+      this->x -= a.x;
+      this->y -= a.y;
    }
    template < ::collection::count S = SIZE, std::enable_if_t<S <= 2, int> = 0 >
    inline void mul2(UNIT_TYPE n)
@@ -492,89 +492,89 @@ struct sequence_type :
    template < ::collection::count S = SIZE, std::enable_if_t<S <= 2, int> = 0 >
    static inline void mix2(const sequence_type &a, const sequence_type &b, UNIT_TYPE t, sequence_type &c)
    {
-      c.a = a.a*((UNIT_TYPE)1.0 - t) + b.a*t;
-      c.b = a.b*((UNIT_TYPE)1.0 - t) + b.b*t;
+      c.x = a.x*((UNIT_TYPE)1.0 - t) + b.x*t;
+      c.y = a.y*((UNIT_TYPE)1.0 - t) + b.y*t;
    }
 
    // simple menthods: operates on x, y, z
    template < ::collection::count S = SIZE, std::enable_if_t<S <= 3, int> = 0 >
    inline void add3(const sequence_type & a)
    {
-      this->x += a.a;
-      this->y += a.b;
-      this->c += a.c;
+      this->x += a.x;
+      this->y += a.y;
+      this->z += a.z;
    }
    template < ::collection::count S = SIZE, std::enable_if_t<S <= 3, int> = 0 >
    inline void sub3(const sequence_type & a)
    {
-      this->x -= a.a;
-      this->y -= a.b;
-      this->c -= a.c;
+      this->x -= a.x;
+      this->y -= a.y;
+      this->z -= a.z;
    }
    template < ::collection::count S = SIZE, std::enable_if_t<S <= 3, int> = 0 >
    inline void mul3(UNIT_TYPE n)
    {
       this->x *= n;
       this->y *= n;
-      this->c *= n;
+      this->z *= n;
    }
    template < ::collection::count S = SIZE, std::enable_if_t<S <= 3, int> = 0 >
    inline void set3(UNIT_TYPE a, UNIT_TYPE b, UNIT_TYPE c)
    {
       this->x = a;
       this->y = b;
-      this->c = c;
+      this->z = c;
    }
 
    template < ::collection::count S = SIZE, std::enable_if_t<S <= 3, int> = 0 >
    static inline void mix3(const sequence_type &a, const sequence_type &b, UNIT_TYPE t, sequence_type &c)
    {
-      c.a = a.a*((UNIT_TYPE)1.0 - t) + b.a*t;
-      c.b = a.b*((UNIT_TYPE)1.0 - t) + b.b*t;
-      c.c = a.c*((UNIT_TYPE)1.0 - t) + b.c*t;
+      c.x = a.x*((UNIT_TYPE)1.0 - t) + b.x*t;
+      c.y = a.y*((UNIT_TYPE)1.0 - t) + b.y*t;
+      c.z = a.z*((UNIT_TYPE)1.0 - t) + b.z*t;
    }
 
    // simple menthods: operates on x, y, z, w
    template < ::collection::count S = SIZE, std::enable_if_t<S <= 4, int> = 0 >
    inline void add4(const sequence_type & q)
    {
-      this->x += q.a;
-      this->y += q.b;
-      this->c += q.c;
-      this->d += q.d;
+      this->x += q.x;
+      this->y += q.y;
+      this->z += q.z;
+      this->w += q.w;
    }
    template < ::collection::count S = SIZE, std::enable_if_t<S <= 4, int> = 0 >
    inline void sub4(const sequence_type & q)
    {
-      this->x -= q.a;
-      this->y -= q.b;
-      this->c -= q.c;
-      this->d -= q.d;
+      this->x -= q.x;
+      this->y -= q.y;
+      this->w -= q.w;
+      this->z -= q.z;
    }
    template < ::collection::count S = SIZE, std::enable_if_t<S <= 4, int> = 0 >
    inline void mul4(UNIT_TYPE n)
    {
       this->x *= n;
       this->y *= n;
-      this->c *= n;
-      this->d *= n;
+      this->w *= n;
+      this->z *= n;
    }
    template < ::collection::count S = SIZE, std::enable_if_t<S <= 4, int> = 0 >
    inline void set4(UNIT_TYPE a, UNIT_TYPE b, UNIT_TYPE c, UNIT_TYPE d)
    {
       this->x = a;
       this->y = b;
-      this->c = c;
-      this->d = d;
+      this->y = c;
+      this->z = d;
    }
 
    template < ::collection::count S = SIZE, std::enable_if_t<S <= 4, int> = 0 >
    static inline void mix4(const sequence_type &a, const sequence_type &b, UNIT_TYPE t, sequence_type &c)
    {
-      c.a = a.a*((UNIT_TYPE)1.0 - t) + b.a*t;
-      c.b = a.b*((UNIT_TYPE)1.0 - t) + b.b*t;
-      c.c = a.c*((UNIT_TYPE)1.0 - t) + b.c*t;
-      c.d = a.d*((UNIT_TYPE)1.0 - t) + b.d*t;
+      c.x = a.x*((UNIT_TYPE)1.0 - t) + b.x*t;
+      c.y = a.y*((UNIT_TYPE)1.0 - t) + b.y*t;
+      c.w = a.z*((UNIT_TYPE)1.0 - t) + b.z*t;
+      c.z = a.w*((UNIT_TYPE)1.0 - t) + b.w*t;
    }
 
 
@@ -1178,7 +1178,7 @@ struct sequence_type :
 //   NUMBER dot_with_left_perpendicular_of(const sequence2_type & b)
 //   {
 //
-//      return (this->y * b.a) - (this->x * b.b);
+//      return (this->y * b.x) - (this->x * b.y);
 //
 //   }
 //

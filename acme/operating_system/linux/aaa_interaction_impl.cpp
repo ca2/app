@@ -1523,17 +1523,17 @@ namespace linux
             {
                ::double_rectangle rcMonitor;
                ::acmeacmesystem()->get_monitor_rectangle(0, &rcMonitor);
-               if(rectangleWindow.left() >= rcMonitor.left())
-                  pmouse->m_point.x += (int) rectangleWindow.left();
-               if(rectangleWindow.top() >= rcMonitor.top())
-                  pmouse->m_point.y += (int) rectangleWindow.top();
+               if(rectangleWindow.left >= rcMonitor.left)
+                  pmouse->m_point.x += (int) rectangleWindow.left;
+               if(rectangleWindow.top >= rcMonitor.top)
+                  pmouse->m_point.y += (int) rectangleWindow.top;
             }
             else
             {
-               if(rectangleWindow.left() >= 0)
-                  pmouse->m_point.x += (int) rectangleWindow.left();
-               if(rectangleWindow.top() >= 0)
-                  pmouse->m_point.y += (int) rectangleWindow.top();
+               if(rectangleWindow.left >= 0)
+                  pmouse->m_point.x += (int) rectangleWindow.left;
+               if(rectangleWindow.top >= 0)
+                  pmouse->m_point.y += (int) rectangleWindow.top;
             }
          }
 
@@ -1932,7 +1932,7 @@ pmessagebox->sync();
 //                     ::window_rectangle(hWndChild, &rectangle);
 //                     screen_to_client(&rectangle);
 //                     ::set_window_position(hWndChild, nullptr,
-//                        rectangle.left()+xAmount, rectangle.top()+yAmount, 0, 0,
+//                        rectangle.left+xAmount, rectangle.top+yAmount, 0, 0,
 //                        SWP_NOSIZE|SWP_NOACTIVATE|SWP_NOZORDER);
 //                  }
 //               }
@@ -2629,13 +2629,13 @@ pmessagebox->sync();
 //
 //      }
 //
-//      prect->left()   += (int) rectangleWindow.left();
+//      prect->left   += (int) rectangleWindow.left;
 
-//      prect->right()  += (int) rectangleWindow.left();
+//      prect->right  += (int) rectangleWindow.left;
 
-//      prect->top()    += (int) rectangleWindow.top();
+//      prect->top    += (int) rectangleWindow.top;
 
-//      prect->bottom() += (int) rectangleWindow.top();
+//      prect->bottom += (int) rectangleWindow.top;
 
 //
 //      return true;
@@ -2656,9 +2656,9 @@ pmessagebox->sync();
 //
 //      }
 //
-//      ppoint->x     += (int) rectangleWindow.left();
+//      ppoint->x     += (int) rectangleWindow.left;
 
-//      ppoint->y     += (int) rectangleWindow.top();
+//      ppoint->y     += (int) rectangleWindow.top;
 
 //
 //      return true;
@@ -2679,13 +2679,13 @@ pmessagebox->sync();
 //
 //      }
 //
-//      prect->left()   += rectangleWindow.left();
+//      prect->left   += rectangleWindow.left;
 
-//      prect->right()  += rectangleWindow.left();
+//      prect->right  += rectangleWindow.left;
 
-//      prect->top()    += rectangleWindow.top();
+//      prect->top    += rectangleWindow.top;
 
-//      prect->bottom() += rectangleWindow.top();
+//      prect->bottom += rectangleWindow.top;
 
 //
 //      return true;
@@ -2706,9 +2706,9 @@ pmessagebox->sync();
 //
 //      }
 //
-//      ppoint->x     += rectangleWindow.left();
+//      ppoint->x     += rectangleWindow.left;
 
-//      ppoint->y     += rectangleWindow.top();
+//      ppoint->y     += rectangleWindow.top;
 
 //
 //      return true;
@@ -2729,13 +2729,13 @@ pmessagebox->sync();
 //
 //      }
 //
-//      prect->left()   -= (int) rectangleWindow.left();
+//      prect->left   -= (int) rectangleWindow.left;
 
-//      prect->right()  -= (int) rectangleWindow.left();
+//      prect->right  -= (int) rectangleWindow.left;
 
-//      prect->top()    -= (int) rectangleWindow.top();
+//      prect->top    -= (int) rectangleWindow.top;
 
-//      prect->bottom() -= (int) rectangleWindow.top();
+//      prect->bottom -= (int) rectangleWindow.top;
 
 //
 //      return true;
@@ -2756,9 +2756,9 @@ pmessagebox->sync();
 //
 //      }
 //
-//      ppoint->x     -= (int) rectangleWindow.left();
+//      ppoint->x     -= (int) rectangleWindow.left;
 
-//      ppoint->y     -= (int) rectangleWindow.top();
+//      ppoint->y     -= (int) rectangleWindow.top;
 
 //
 //      return true;
@@ -2779,13 +2779,13 @@ pmessagebox->sync();
 //
 //      }
 //
-//      prect->left()   -= rectangleWindow.left();
+//      prect->left   -= rectangleWindow.left;
 
-//      prect->right()  -= rectangleWindow.left();
+//      prect->right  -= rectangleWindow.left;
 
-//      prect->top()    -= rectangleWindow.top();
+//      prect->top    -= rectangleWindow.top;
 
-//      prect->bottom() -= rectangleWindow.top();
+//      prect->bottom -= rectangleWindow.top;
 
 //
 //      return true;
@@ -2806,9 +2806,9 @@ pmessagebox->sync();
 //
 //      }
 //
-//      ppoint->x     -= rectangleWindow.left();
+//      ppoint->x     -= rectangleWindow.left;
 
-//      ppoint->y     -= rectangleWindow.top();
+//      ppoint->y     -= rectangleWindow.top;
 
 //
 //      return true;
@@ -3279,7 +3279,7 @@ pmessagebox->sync();
 ////   void interaction_impl::MoveWindow(const ::double_rectangle & rectangle, bool bRepaint)
 ////   {
 ////
-////      MoveWindow(rectangle.left(), rectangle.top(), rectangle.right() - rectangle.left(), rectangle.bottom() - rectangle.top(), bRepaint);
+////      MoveWindow(rectangle.left, rectangle.top, rectangle.right - rectangle.left, rectangle.bottom - rectangle.top, bRepaint);
 ////
 ////   }
 //
@@ -3382,10 +3382,10 @@ pmessagebox->sync();
 //
 //      //oswindow->rectangle(rectangleX);
 //
-//      rectangleX.left() = 0;
-//      rectangleX.top() = 0;
-//      rectangleX.right() = 500;
-//      rectangleX.bottom() = 500;
+//      rectangleX.left = 0;
+//      rectangleX.top = 0;
+//      rectangleX.right = 500;
+//      rectangleX.bottom = 500;
 ////      (dynamic_cast < ::linux::graphics * >(g.m_p))->attach(cairo_create(cairo_xlib_surface_create(oswindow->display(), oswindow->interaction_impl(), oswindow->draw2d(),rectangleX.width(), rectangleX.height())));
 //
 //      windowing_output_debug_string("\nlinux::interaction_impl::GetDC END");

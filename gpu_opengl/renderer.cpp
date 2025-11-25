@@ -177,9 +177,9 @@ namespace gpu_opengl
          auto sizeHost = pgpucontext->m_sizeHost;
 
 
-         left = r.left();
+         left = r.left;
 
-         top = sizeHost.cy() - r.height() - r.top();
+         top = sizeHost.cy() - r.height() - r.top;
 
          width = r.width();
 
@@ -1369,8 +1369,8 @@ namespace gpu_opengl
 
       float w = (float)rectangle.width();
       float h = (float)rectangle.height();
-      float x = (float)rectangle.left();
-      float y = (float)(hHost - rectangle.bottom());
+      float x = (float)rectangle.left;
+      float y = (float)(hHost - rectangle.bottom);
 
       // 3. Composite scene texture at 1:1 into UI FBO at position (200, 150)
       //float x = 200.0f, y = 150.0f, w = SCENE_W, h = SCENE_H;
@@ -1386,10 +1386,10 @@ namespace gpu_opengl
       }
       else
       {
-         l = (float)rectangle.left();
-         r = (float)rectangle.right();
-         b = (float)rectangle.bottom();
-         t = (float)rectangle.top();
+         l = (float)rectangle.left;
+         r = (float)rectangle.right;
+         b = (float)rectangle.bottom;
+         t = (float)rectangle.top;
       }
       float quad[] = {
              l, b,  0.0f, 0.0f,
@@ -1499,11 +1499,11 @@ namespace gpu_opengl
       auto rectangleTarget = ptextureSource->m_rectangleTarget;
 
       int iTopH = ptextureDst->size().cy();
-      int rectangleBottom = rectangleTarget.bottom();
+      int rectangleBottom = rectangleTarget.bottom;
       int iY = iTopH - rectangleBottom;
 
       glViewport(
-         rectangleTarget.left(),
+         rectangleTarget.left,
           iY,
          rectangleTarget.width(),
          rectangleTarget.height());
@@ -1511,7 +1511,7 @@ namespace gpu_opengl
       // Optional: scissor if you want to limit drawing region
       glEnable(GL_SCISSOR_TEST);
       glScissor(
-         rectangleTarget.left(),
+         rectangleTarget.left,
          iY,
          rectangleTarget.width(),
          rectangleTarget.height()
@@ -1658,16 +1658,16 @@ namespace gpu_opengl
       auto rectangleTarget = ptextureSource->m_rectangleTarget;
 
       glViewport(
-         rectangleTarget.left(),
-         ptextureDst->size().cy() - rectangleTarget.bottom(),
+         rectangleTarget.left,
+         ptextureDst->size().cy() - rectangleTarget.bottom,
          rectangleTarget.width(),
          rectangleTarget.height());
 
       // Optional: scissor if you want to limit drawing region
       glEnable(GL_SCISSOR_TEST);
       glScissor(
-         rectangleTarget.left(),
-         ptextureDst->size().cy() - rectangleTarget.bottom(),
+         rectangleTarget.left,
+         ptextureDst->size().cy() - rectangleTarget.bottom,
          rectangleTarget.width(),
          rectangleTarget.height()
       );
@@ -1862,8 +1862,8 @@ namespace gpu_opengl
       auto rectangleTarget = ptextureSrc->m_rectangleTarget;
 
       glViewport(
-         rectangleTarget.left(),
-         rectangleTarget.top(),
+         rectangleTarget.left,
+         rectangleTarget.top,
          rectangleTarget.width(),
          rectangleTarget.height());
 

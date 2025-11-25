@@ -12,8 +12,8 @@ public:
    inline bool is_empty() const;
    inline ::collection::count size() const;
 
-   inline TYPE & top();
-   inline const TYPE & top() const;
+   inline TYPE & top;
+   inline const TYPE & top const;
 
    inline void push(const TYPE & t);
 
@@ -40,7 +40,7 @@ inline ::collection::count priority_queue < TYPE, ARG_TYPE, CONTAINER, FIRST > :
 
 
 template < class TYPE, class ARG_TYPE, class CONTAINER, class FIRST >
-inline TYPE & priority_queue < TYPE, ARG_TYPE, CONTAINER, FIRST > ::top()
+inline TYPE & priority_queue < TYPE, ARG_TYPE, CONTAINER, FIRST > ::top
 {
 
    return this->CONTAINER::front();
@@ -48,7 +48,7 @@ inline TYPE & priority_queue < TYPE, ARG_TYPE, CONTAINER, FIRST > ::top()
 }
 
 template < class TYPE, class ARG_TYPE, class CONTAINER, class FIRST >
-inline const TYPE & priority_queue < TYPE, ARG_TYPE, CONTAINER, FIRST > ::top() const
+inline const TYPE & priority_queue < TYPE, ARG_TYPE, CONTAINER, FIRST > ::top const
 {
 
    return this->CONTAINER::front();

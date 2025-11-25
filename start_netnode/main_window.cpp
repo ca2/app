@@ -195,9 +195,9 @@ namespace app_app
 
          this->rectangle(pitemClose->m_rectangle);
 
-         pitemClose->m_rectangle.left() = pitemClose->m_rectangle.right() - iSize;
+         pitemClose->m_rectangle.left = pitemClose->m_rectangle.right - iSize;
 
-         pitemClose->m_rectangle.bottom() = pitemClose->m_rectangle.top() + iSize;
+         pitemClose->m_rectangle.bottom = pitemClose->m_rectangle.top + iSize;
 
          auto pwindow = window();
 
@@ -214,11 +214,11 @@ namespace app_app
 
             this->rectangle(pitemZoom->m_rectangle);
 
-            pitemZoom->m_rectangle.right() = pitemClose->m_rectangle.left();
+            pitemZoom->m_rectangle.right = pitemClose->m_rectangle.left;
 
-            pitemZoom->m_rectangle.bottom() = pitemClose->m_rectangle.bottom();
+            pitemZoom->m_rectangle.bottom = pitemClose->m_rectangle.bottom;
 
-            pitemZoom->m_rectangle.left() = pitemZoom->m_rectangle.right() - iSize;
+            pitemZoom->m_rectangle.left = pitemZoom->m_rectangle.right - iSize;
 
 
             if (::is_set(pitemIcon))
@@ -226,11 +226,11 @@ namespace app_app
 
                this->rectangle(pitemIcon->m_rectangle);
 
-               pitemIcon->m_rectangle.right() = pitemZoom->m_rectangle.left();
+               pitemIcon->m_rectangle.right = pitemZoom->m_rectangle.left;
 
-               pitemIcon->m_rectangle.bottom() = pitemClose->m_rectangle.bottom();
+               pitemIcon->m_rectangle.bottom = pitemClose->m_rectangle.bottom;
 
-               pitemIcon->m_rectangle.left() = pitemIcon->m_rectangle.right() - iSize;
+               pitemIcon->m_rectangle.left = pitemIcon->m_rectangle.right - iSize;
 
 
             }

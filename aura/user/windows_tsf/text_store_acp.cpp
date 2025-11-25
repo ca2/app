@@ -1113,8 +1113,8 @@ namespace tsf
 
        ////get the position of the start character
        //dwStart = (unsigned int)SendMessage(m_hwndEdit, EM_POSFROMCHAR, acpStart, 0);
-       //rc.left() = LOWORD(dwStart);
-       //rc.top() = HIWORD(dwStart);
+       //rc.left = LOWORD(dwStart);
+       //rc.top = HIWORD(dwStart);
 
        //get the position of the last character
        /*
@@ -1132,8 +1132,8 @@ namespace tsf
        ////calculate the width of the last character
        //::int_size    size;
        //GetTextExtentPoint32W(hdc, pwszText + acpEnd, 1, &size);
-       //rc.right() = LOWORD(dwEnd) + size.cx();
-       //rc.bottom() = HIWORD(dwEnd);
+       //rc.right = LOWORD(dwEnd) + size.cx();
+       //rc.bottom = HIWORD(dwEnd);
 
        ////calculate the line height
        //GetTextMetrics(hdc, &tm);
@@ -1146,7 +1146,7 @@ namespace tsf
        //If the text range spans multiple lines, expand the int_rectangle to include all 
        //of the requested text. 
        //*/
-       //if(rc.bottom() > rc.top())
+       //if(rc.bottom > rc.top)
        //{
        //    unsigned int   dwMargins;
        //    ::int_rectangle    rcEdit;
@@ -1156,24 +1156,24 @@ namespace tsf
        //    dwMargins = (unsigned int)SendMessage(m_hwndEdit, EM_GETMARGINS, 0, 0);
        //    
        //    //set the left int_point of the int_rectangle to the left margin of the edit control
-       //    rc.left() = LOWORD(dwMargins);
+       //    rc.left = LOWORD(dwMargins);
 
        //    //set the right member to the width of the edit control less both the right margin
-       //    rc.right() = rc.right() - HIWORD(dwMargins);
+       //    rc.right = rc.right - HIWORD(dwMargins);
        //}
 
        ////add the line height to the bottom of the int_rectangle
-       //rc.bottom() += lLineHeight;
+       //rc.bottom += lLineHeight;
 
        //*prc = rc;
        //
        ////if any part of the text int_rectangle is not visible, set *pfClipped to true
        //GetClientRect(m_hwndEdit, &rc);
 
-       //if( (prc->left() < rc.left()) ||
-       //    (prc->top() < rc.top()) ||
-       //    (prc->right() > rc.right()) ||
-       //    (prc->bottom() > rc.bottom()))
+       //if( (prc->left < rc.left) ||
+       //    (prc->top < rc.top) ||
+       //    (prc->right > rc.right) ||
+       //    (prc->bottom > rc.bottom))
        //{
        //    *pfClipped = true;
        //}

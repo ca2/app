@@ -125,10 +125,10 @@ int                 cy)
    */
    sizeText = pgraphics->get_text_extent(string(pcsz,cb));
 
-   rectangleText.left()    = x;
-   rectangleText.right()   = int (x + cx + sizeText.cx());
-   rectangleText.top()     = y;
-   rectangleText.bottom()  = int(y + cy + sizeText.cy());
+   rectangleText.left    = x;
+   rectangleText.right   = int (x + cx + sizeText.cx());
+   rectangleText.top     = y;
+   rectangleText.bottom  = int(y + cy + sizeText.cy());
    //ExtTextOut(hDC, x+cx, y+cy, ETO_OPAQUE, &rectangleText, psz, cb, nullptr);
 
    //pgraphics->SetBkMode(TRANSPARENT);
@@ -279,10 +279,10 @@ int                 cy)
 
 //             pitmapMask,
 
-//             rectangle.left(),
-//             rectangle.top(),
-//             rectangle.right() - rectangle.left(),
-//             rectangle.bottom() - rectangle.top(),
+//             rectangle.left,
+//             rectangle.top,
+//             rectangle.right - rectangle.left,
+//             rectangle.bottom - rectangle.top,
 //             crTransparent);
 //}
 
@@ -305,7 +305,7 @@ for(int i = 0; i < pil->get_image_count(); i++)
 {
 VERIFY(pil->get_image_info(i, &ii));
 const ::int_rectangle & rectangle = ii.m_rectangle;
-GrayVRCP(spgraphics->get_os_data(), ii.hbmImage, ii.hbmMask, rectangle.left(), rectangle.top(), rectangle.width(), rectangle.height(), rgb(192, 192, 192));
+GrayVRCP(spgraphics->get_os_data(), ii.hbmImage, ii.hbmMask, rectangle.left, rectangle.top, rectangle.width(), rectangle.height(), rgb(192, 192, 192));
 }
 return pil;
 
@@ -337,8 +337,8 @@ const ::int_rectangle & rectangle = ii.m_rectangle;
 HueVRCP(
 spgraphics->get_os_data(),
 ii.hbmImage,
-rectangle.left(),
-rectangle.top(),
+rectangle.left,
+rectangle.top,
 rectangle.width(),
 rectangle.height(),
 crHue,
@@ -421,7 +421,7 @@ for(int i = 0; i < pil->get_image_count(); i++)
 {
 VERIFY(pil->get_image_info(i, &ii));
 const ::int_rectangle & rectangle = ii.m_rectangle;
-GrayVRCP(spgraphics->get_os_data(), ii.hbmImage, ii.hbmMask, rectangle.left(), rectangle.top(), rectangle.width(), rectangle.height(), rgb(192, 192, 192));
+GrayVRCP(spgraphics->get_os_data(), ii.hbmImage, ii.hbmMask, rectangle.left, rectangle.top, rectangle.width(), rectangle.height(), rgb(192, 192, 192));
 }
 return pil;
 
@@ -941,8 +941,8 @@ return pil;
 
 //   ::int_rectangle rectangle(rectangleParam);
 //
-//   //   int x = rectangle.left();
-//   int y = rectangle.top();
+//   //   int x = rectangle.left;
+//   int y = rectangle.top;
 //   //   int cx = rectangle.width();
 //   int cy = rectangle.height();
 //
@@ -5673,16 +5673,16 @@ breakFilter2:
 //   memory memstorageC;
 //
 //   ::int_rectangle rectangleDest;
-//   rectangleDest.left() = xDest;
-//   rectangleDest.right() = xDest + cx;
-//   rectangleDest.top() = yDest;
-//   rectangleDest.bottom() = yDest + cy;
+//   rectangleDest.left = xDest;
+//   rectangleDest.right = xDest + cx;
+//   rectangleDest.top = yDest;
+//   rectangleDest.bottom = yDest + cy;
 //
 //   ::int_rectangle rectangleSource;
-//   rectangleSource.left() = xSrc;
-//   rectangleSource.right() = xSrc + cx;
-//   rectangleSource.top() = ySrc;
-//   rectangleSource.bottom() = ySrc + cy;
+//   rectangleSource.left = xSrc;
+//   rectangleSource.right = xSrc + cx;
+//   rectangleSource.top = ySrc;
+//   rectangleSource.bottom = ySrc + cy;
 //
 //   int iwDest;
 //
@@ -6214,22 +6214,22 @@ int      iSize)
 //
 //
 //   ::int_rectangle rectangleDest;
-//   rectangleDest.left() = xDest;
-//   rectangleDest.right() = xDest + cx;
-//   rectangleDest.top() = yDest;
-//   rectangleDest.bottom() = yDest + cy;
+//   rectangleDest.left = xDest;
+//   rectangleDest.right = xDest + cx;
+//   rectangleDest.top = yDest;
+//   rectangleDest.bottom = yDest + cy;
 //
 //   ::int_rectangle rectangleSrc1;
-//   rectangleSrc1.left() = xSrc1;
-//   rectangleSrc1.right() = xSrc1 + cx;
-//   rectangleSrc1.top() = ySrc1;
-//   rectangleSrc1.bottom() = ySrc1 + cy;
+//   rectangleSrc1.left = xSrc1;
+//   rectangleSrc1.right = xSrc1 + cx;
+//   rectangleSrc1.top = ySrc1;
+//   rectangleSrc1.bottom = ySrc1 + cy;
 //
 //   ::int_rectangle rectangleSrc2;
-//   rectangleSrc2.left() = xSrc2;
-//   rectangleSrc2.right() = xSrc2 + cx;
-//   rectangleSrc2.top() = ySrc2;
-//   rectangleSrc2.bottom() = ySrc2 + cy;
+//   rectangleSrc2.left = xSrc2;
+//   rectangleSrc2.right = xSrc2 + cx;
+//   rectangleSrc2.top = ySrc2;
+//   rectangleSrc2.bottom = ySrc2 + cy;
 //
 //   int iwDest;
 //

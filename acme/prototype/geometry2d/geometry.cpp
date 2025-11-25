@@ -102,9 +102,9 @@ namespace geometry
    //void geometry::RandomPoint(::int_point * ppoint, const ::int_rectangle & rectangle)
    //{
 
-   //   ppoint->x = (int)Sy(rectangle.left(),rectangle.right());
+   //   ppoint->x = (int)Sy(rectangle.left,rectangle.right);
 
-   //   ppoint->y = (int)random(rectangle.top(),rectangle.bottom());
+   //   ppoint->y = (int)random(rectangle.top,rectangle.bottom);
 
    //}
 
@@ -133,13 +133,13 @@ namespace geometry
    //{
    //   ::int_rectangle rectangle(prectangle);
 
-   //   prectangle->left() = range_rate(rectangle.left(), rectangle.right(), dLeftRate);
+   //   prectangle->left = range_rate(rectangle.left, rectangle.right, dLeftRate);
 
-   //   prectangle->right() = range_rate(rectangle.right(), rectangle.left(), dRightRate);
+   //   prectangle->right = range_rate(rectangle.right, rectangle.left, dRightRate);
 
-   //   prectangle->top() = range_rate(rectangle.top(), rectangle.bottom(), dTopRate);
+   //   prectangle->top = range_rate(rectangle.top, rectangle.bottom, dTopRate);
 
-   //   prectangle->bottom() = range_rate(rectangle.bottom(), rectangle.top(), dBottomRate);
+   //   prectangle->bottom = range_rate(rectangle.bottom, rectangle.top, dBottomRate);
 
 
    //}

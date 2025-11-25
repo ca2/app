@@ -101,10 +101,10 @@
 //
 //   for(i = 0; i < ninvalid; i++)
 //   {
-//      invalidRect.left() = cinvalid[i].x;
-//      invalidRect.top() = cinvalid[i].y;
-//      invalidRect.right() = cinvalid[i].x + cinvalid[i].w;
-//      invalidRect.bottom() = cinvalid[i].y + cinvalid[i].h;
+//      invalidRect.left = cinvalid[i].x;
+//      invalidRect.top = cinvalid[i].y;
+//      invalidRect.right = cinvalid[i].x + cinvalid[i].w;
+//      invalidRect.bottom = cinvalid[i].y + cinvalid[i].h;
 //
 //      region16_union_rect(&invalidRegion,&invalidRegion,&invalidRect);
 //   }
@@ -113,10 +113,10 @@
 //   {
 //      extents = region16_extents(&invalidRegion);
 //
-//      updateRect.left() = extents->left();
-//      updateRect.top() = extents->top();
-//      updateRect.right() = extents->right();
-//      updateRect.bottom() = extents->bottom();
+//      updateRect.left = extents->left;
+//      updateRect.top = extents->top;
+//      updateRect.right = extents->right;
+//      updateRect.bottom = extents->bottom;
 //
 //      InvalidateRect(wfc->hwnd,&updateRect,false);
 //

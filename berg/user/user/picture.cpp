@@ -15,10 +15,10 @@
 property & operator << (property & property, const ::double_rectangle & rectangle)
 {
 
-   property["left"] = rectangle.left();
-   property["top"] = rectangle.top();
-   property["right"] = rectangle.right();
-   property["bottom"] = rectangle.bottom();
+   property["left"] = rectangle.left;
+   property["top"] = rectangle.top;
+   property["right"] = rectangle.right;
+   property["bottom"] = rectangle.bottom;
 
    return property;
 
@@ -27,10 +27,10 @@ property & operator << (property & property, const ::double_rectangle & rectangl
 property & operator >> (property & property, ::double_rectangle & rectangle)
 {
 
-   rectangle.left() = property["left"].as_double();
-   rectangle.top() = property["top"].as_double();
-   rectangle.right() = property["right"].as_double();
-   rectangle.bottom() = property["bottom"].as_double();
+   rectangle.left = property["left"].as_double();
+   rectangle.top = property["top"].as_double();
+   rectangle.right = property["right"].as_double();
+   rectangle.bottom = property["bottom"].as_double();
 
    return property;
 
@@ -507,10 +507,10 @@ namespace user
       else
       {
 
-         m_ppictureimpl->m_rectangleDrawing.left() = m_ppictureimpl->m_rectangle.left() * sizePage.cx() / sizeClient.cx();
-         m_ppictureimpl->m_rectangleDrawing.right() = m_ppictureimpl->m_rectangle.right() * sizePage.cx() / sizeClient.cx();
-         m_ppictureimpl->m_rectangleDrawing.top() = m_ppictureimpl->m_rectangle.top() * sizePage.cy() / sizeClient.cy();
-         m_ppictureimpl->m_rectangleDrawing.bottom() = m_ppictureimpl->m_rectangle.bottom() * sizePage.cy() / sizeClient.cy();
+         m_ppictureimpl->m_rectangleDrawing.left = m_ppictureimpl->m_rectangle.left * sizePage.cx() / sizeClient.cx();
+         m_ppictureimpl->m_rectangleDrawing.right = m_ppictureimpl->m_rectangle.right * sizePage.cx() / sizeClient.cx();
+         m_ppictureimpl->m_rectangleDrawing.top = m_ppictureimpl->m_rectangle.top * sizePage.cy() / sizeClient.cy();
+         m_ppictureimpl->m_rectangleDrawing.bottom = m_ppictureimpl->m_rectangle.bottom * sizePage.cy() / sizeClient.cy();
 
       }
 
@@ -531,10 +531,10 @@ namespace user
       else
       {
 
-         m_ppictureimpl->m_rectangle.left() = m_ppictureimpl->m_rectangleDrawing.left() * sizeClient.cx() / sizePage.cx();
-         m_ppictureimpl->m_rectangle.right() = m_ppictureimpl->m_rectangleDrawing.right() * sizeClient.cx() / sizePage.cx();
-         m_ppictureimpl->m_rectangle.top() = m_ppictureimpl->m_rectangleDrawing.top() * sizeClient.cy() / sizePage.cy();
-         m_ppictureimpl->m_rectangle.bottom() = m_ppictureimpl->m_rectangleDrawing.bottom() * sizeClient.cy() / sizePage.cy();
+         m_ppictureimpl->m_rectangle.left = m_ppictureimpl->m_rectangleDrawing.left * sizeClient.cx() / sizePage.cx();
+         m_ppictureimpl->m_rectangle.right = m_ppictureimpl->m_rectangleDrawing.right * sizeClient.cx() / sizePage.cx();
+         m_ppictureimpl->m_rectangle.top = m_ppictureimpl->m_rectangleDrawing.top * sizeClient.cy() / sizePage.cy();
+         m_ppictureimpl->m_rectangle.bottom = m_ppictureimpl->m_rectangleDrawing.bottom * sizeClient.cy() / sizePage.cy();
 
       }
 
@@ -641,36 +641,36 @@ namespace user
       if (m_ppictureimpl->m_polygonDrawing.get_size() > 0)
       {
 
-         rectangle.left() = rectangle.right() = m_ppictureimpl->m_polygonDrawing[0].x;
+         rectangle.left = rectangle.right = m_ppictureimpl->m_polygonDrawing[0].x;
 
-         rectangle.top() = rectangle.bottom() = m_ppictureimpl->m_polygonDrawing[0].y;
+         rectangle.top = rectangle.bottom = m_ppictureimpl->m_polygonDrawing[0].y;
 
          for (::collection::index i = 1; i < m_ppictureimpl->m_polygonDrawing.get_size(); i++)
          {
 
-            if (m_ppictureimpl->m_polygonDrawing[i].x < rectangle.left())
+            if (m_ppictureimpl->m_polygonDrawing[i].x < rectangle.left)
             {
 
-               rectangle.left() = m_ppictureimpl->m_polygonDrawing[i].x;
+               rectangle.left = m_ppictureimpl->m_polygonDrawing[i].x;
 
             }
-            else if (m_ppictureimpl->m_polygonDrawing[i].x > rectangle.right())
+            else if (m_ppictureimpl->m_polygonDrawing[i].x > rectangle.right)
             {
 
-               rectangle.right() = m_ppictureimpl->m_polygonDrawing[i].x;
+               rectangle.right = m_ppictureimpl->m_polygonDrawing[i].x;
 
             }
 
-            if (m_ppictureimpl->m_polygonDrawing[i].y < rectangle.top())
+            if (m_ppictureimpl->m_polygonDrawing[i].y < rectangle.top)
             {
 
-               rectangle.top() = m_ppictureimpl->m_polygonDrawing[i].y;
+               rectangle.top = m_ppictureimpl->m_polygonDrawing[i].y;
 
             }
-            else if (m_ppictureimpl->m_polygonDrawing[i].y > rectangle.bottom())
+            else if (m_ppictureimpl->m_polygonDrawing[i].y > rectangle.bottom)
             {
 
-               rectangle.bottom() = m_ppictureimpl->m_polygonDrawing[i].y;
+               rectangle.bottom = m_ppictureimpl->m_polygonDrawing[i].y;
 
             }
 

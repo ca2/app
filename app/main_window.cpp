@@ -235,9 +235,9 @@ namespace app_app
 
             pitemClose->m_rectangle2 = this->rectangle();
 
-            pitemClose->m_rectangle2.left() = pitemClose->m_rectangle2.right() - iSize;
+            pitemClose->m_rectangle2.left = pitemClose->m_rectangle2.right - iSize;
 
-            pitemClose->m_rectangle2.bottom() = pitemClose->m_rectangle2.top() + iSize;
+            pitemClose->m_rectangle2.bottom = pitemClose->m_rectangle2.top + iSize;
 
 //            auto pmouse = øcreate_new < ::message::mouse >();
 //
@@ -252,22 +252,22 @@ namespace app_app
 
                pitemZoom->m_rectangle2 = this->rectangle();
 
-               pitemZoom->m_rectangle2.right() = pitemClose->m_rectangle2.left();
+               pitemZoom->m_rectangle2.right = pitemClose->m_rectangle2.left;
 
-               pitemZoom->m_rectangle2.bottom() = pitemClose->m_rectangle2.bottom();
+               pitemZoom->m_rectangle2.bottom = pitemClose->m_rectangle2.bottom;
 
-               pitemZoom->m_rectangle2.left() = pitemZoom->m_rectangle2.right() - iSize;
+               pitemZoom->m_rectangle2.left = pitemZoom->m_rectangle2.right - iSize;
 
                if (::is_set(pitemIcon))
                {
 
                   pitemIcon->m_rectangle2 = this->rectangle();
 
-                  pitemIcon->m_rectangle2.right() = pitemZoom->m_rectangle2.left();
+                  pitemIcon->m_rectangle2.right = pitemZoom->m_rectangle2.left;
 
-                  pitemIcon->m_rectangle2.bottom() = pitemClose->m_rectangle2.bottom();
+                  pitemIcon->m_rectangle2.bottom = pitemClose->m_rectangle2.bottom;
 
-                  pitemIcon->m_rectangle2.left() = pitemIcon->m_rectangle2.right() - iSize;
+                  pitemIcon->m_rectangle2.left = pitemIcon->m_rectangle2.right - iSize;
 
                }
 

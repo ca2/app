@@ -416,11 +416,11 @@ namespace browser
 
                //m_pbrowser->
 
-               //::SetWindowPos(hwnd, HWND_TOP, rectangle.left(), rectangle.top(), rectangle.right() - rectangle.left(), rectangle.bottom() - rectangle.top(), SWP_NOZORDER);
+               //::SetWindowPos(hwnd, HWND_TOP, rectangle.left, rectangle.top, rectangle.right - rectangle.left, rectangle.bottom - rectangle.top, SWP_NOZORDER);
 
                //::set_window_position(::GetWindow(get_handle(), GW_CHILD), HWND_TOP,
-               //               rectangle.left(),
-               //               rectangle.top(),
+               //               rectangle.left,
+               //               rectangle.top,
                //               rectangle.width(),
                //               rectangle.height(), 0);
 
@@ -837,7 +837,7 @@ namespace browser
    //         auto rectangle = ::int_rectangle{ 0 };
    //         this->rectangle(&rectangle);
 
-   //         ::set_window_position(hwnd, HWND_TOP, rectangle.left(), rectangle.top(), rectangle.right() - rectangle.left(), rectangle.bottom() - rectangle.top(), SWP_NOZORDER);
+   //         ::set_window_position(hwnd, HWND_TOP, rectangle.left, rectangle.top, rectangle.right - rectangle.left, rectangle.bottom - rectangle.top, SWP_NOZORDER);
    //      }
    //   }
    //}
@@ -861,7 +861,7 @@ namespace browser
 
       auto rectangleWindow = get_top_level()->window_rectangle();
 
-      rectangle.Set(rectangleWindow.left(), rectangleWindow.top(), rectangleWindow.width(), rectangleWindow.height());
+      rectangle.Set(rectangleWindow.left, rectangleWindow.top, rectangleWindow.width(), rectangleWindow.height());
 
       return true;
 
@@ -875,7 +875,7 @@ namespace browser
 
       client_to_screen(rectangleX);
 
-      rectangle.Set(rectangleX.left(), rectangleX.top(), rectangleX.width(), rectangleX.height());
+      rectangle.Set(rectangleX.left, rectangleX.top, rectangleX.width(), rectangleX.height());
 
       return true;
 

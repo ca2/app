@@ -102,9 +102,9 @@ namespace nano
 
                auto size = get_text_extents(strLine, pnanofont);
 
-               r.top() += size.cy();
+               r.top += size.cy();
 
-               if (r.top() > rectangleText.bottom())
+               if (r.top > rectangleText.bottom)
                {
 
                   break;

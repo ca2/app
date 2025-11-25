@@ -168,20 +168,20 @@ namespace filehandler
 
    void impact::list_base::on_layout(const ::int_rectangle * lpcrect)
    {
-      int top = lpcrect->top();
+      int top = lpcrect->top;
       for(int i = 0; i < get_count(); i++)
       {
          item & item = operator()(i);
-         item.m_rectangleItem.left() = lpcrect.left();
-         item.m_rectangleItem.right() = lpcrect.right();
-         item.m_rectangleItem.top() = top;
-         item.m_rectangleItem.bottom() = item.m_rectangleItem.top() + m_iItemHeight;
-         top = item.m_rectangleItem.bottom() + 2;
+         item.m_rectangleItem.left = lpcrect.left;
+         item.m_rectangleItem.right = lpcrect.right;
+         item.m_rectangleItem.top = top;
+         item.m_rectangleItem.bottom = item.m_rectangleItem.top + m_iItemHeight;
+         top = item.m_rectangleItem.bottom + 2;
          item.m_rectangleStatusImage = item.m_rectangleItem;
-         item.m_rectangleStatusImage.right() = item.m_rectangleStatusImage.left() + m_iItemHeight;
+         item.m_rectangleStatusImage.right = item.m_rectangleStatusImage.left + m_iItemHeight;
          item.m_rectangleStatusImage.deflate(2, 2);
          item.m_rectangleName = item.m_rectangleItem;
-         item.m_rectangleName.left() = item.m_rectangleStatusImage.right();
+         item.m_rectangleName.left = item.m_rectangleStatusImage.right;
          item.m_rectangleName.deflate(2, 2);
 
       }

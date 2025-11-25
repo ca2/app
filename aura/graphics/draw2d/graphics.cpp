@@ -1018,7 +1018,7 @@ namespace draw2d
    void graphics::arc(const ::double_rectangle & rectangle, const ::double_point & pointStart, const ::double_point & pointEnd)
    {
 
-      arc(rectangle.left(), rectangle.top(), rectangle.width(), rectangle.height(), pointStart.x, pointStart.y, pointEnd.x, pointEnd.y);
+      arc(rectangle.left, rectangle.top, rectangle.width(), rectangle.height(), pointStart.x, pointStart.y, pointEnd.x, pointEnd.y);
 
    }
 
@@ -1034,7 +1034,7 @@ namespace draw2d
    void graphics::arc(const ::double_rectangle & rectangle, ::double_angle start, ::double_angle extends)
    {
 
-      arc(rectangle.left(), rectangle.top(), rectangle.width(), rectangle.height(), start, extends);
+      arc(rectangle.left, rectangle.top, rectangle.width(), rectangle.height(), start, extends);
 
    }
 
@@ -1160,7 +1160,7 @@ namespace draw2d
    void graphics::draw_ellipse(const ::double_rectangle & rectangle)
    {
 
-      return draw_ellipse(rectangle.left(), rectangle.top(), rectangle.right(), rectangle.bottom());
+      return draw_ellipse(rectangle.left, rectangle.top, rectangle.right, rectangle.bottom);
 
    }
 
@@ -1179,8 +1179,8 @@ namespace draw2d
    {
 
       fill_ellipse(
-         rectangle.left(),
-         rectangle.top(),
+         rectangle.left,
+         rectangle.top,
          rectangle.width(),
          rectangle.height()
       );
@@ -1365,21 +1365,21 @@ namespace draw2d
 
             image1.image()->draw(imagedrawing);
 
-            auto x = rectangleTarget.left();
+            auto x = rectangleTarget.left;
 
-            auto y = rectangleTarget.top();
+            auto y = rectangleTarget.top;
 
             int_point pointDst;
 
-            pointDst.y = (int)maximum(0., rectangleIntersect.top() - y);
+            pointDst.y = (int)maximum(0., rectangleIntersect.top - y);
 
-            pointDst.x = (int)maximum(0., rectangleIntersect.left() - x);
+            pointDst.x = (int)maximum(0., rectangleIntersect.left - x);
 
             int_point pointSrc;
 
-            pointSrc.y = (int)maximum(0, y - rectangleAlphaBlend.top());
+            pointSrc.y = (int)maximum(0, y - rectangleAlphaBlend.top);
 
-            pointSrc.x = (int)maximum(0, x - rectangleAlphaBlend.left());
+            pointSrc.x = (int)maximum(0, x - rectangleAlphaBlend.left);
 
             image1.image()->blend2(pointDst, m_pimageAlphaBlend, pointSrc, rectangleIntersect.size(), 255);
 
@@ -1498,25 +1498,25 @@ namespace draw2d
    //   //if (m_pimageAlphaBlend)
    //   //{
 
-   //   //   if (rectangleTarget.left() < 0)
+   //   //   if (rectangleTarget.left < 0)
    //   //   {
 
-   //   //      rectangleSource.left() -= rectangleTarget.left();
+   //   //      rectangleSource.left -= rectangleTarget.left;
 
-   //   //      rectangle.right() += rectangle.left();
+   //   //      rectangle.right += rectangle.left;
 
-   //   //      rectangle.left() = 0;
+   //   //      rectangle.left = 0;
 
    //   //   }
 
-   //   //   if (rectangle.top() < 0)
+   //   //   if (rectangle.top < 0)
    //   //   {
 
-   //   //      point.y -= rectangle.top();
+   //   //      point.y -= rectangle.top;
 
-   //   //      rectangle.bottom() += rectangle.top();
+   //   //      rectangle.bottom += rectangle.top;
 
-   //   //      rectangle.top() = 0;
+   //   //      rectangle.top = 0;
 
    //   //   }
 
@@ -1556,8 +1556,8 @@ namespace draw2d
 
    //   //         pimage1->blend(::int_point(), m_pimageAlphaBlend,
    //   //            {
-   //   //               (int)maximum(0, rectangle.left() - m_pointAlphaBlend.x),
-   //   //               (int)maximum(0, rectangle.top() - m_pointAlphaBlend.y)
+   //   //               (int)maximum(0, rectangle.left - m_pointAlphaBlend.x),
+   //   //               (int)maximum(0, rectangle.top - m_pointAlphaBlend.y)
    //   //            }, rectangle.size());
 
    //   //         draw_image(rectangle, pimage1->get_graphics());
@@ -1889,15 +1889,15 @@ namespace draw2d
 
             int_point pointDst;
 
-            pointDst.y = (int)maximum(0, rectangleIntersect.top() - y);
+            pointDst.y = (int)maximum(0, rectangleIntersect.top - y);
 
-            pointDst.x = (int)maximum(0, rectangleIntersect.left() - x);
+            pointDst.x = (int)maximum(0, rectangleIntersect.left - x);
 
             int_point pointSrc;
 
-            pointSrc.y = (int)maximum(0, y - rectangleAlphaBlend.top());
+            pointSrc.y = (int)maximum(0, y - rectangleAlphaBlend.top);
 
-            pointSrc.x = (int)maximum(0, x - rectangleAlphaBlend.left());
+            pointSrc.x = (int)maximum(0, x - rectangleAlphaBlend.left);
 
             pimage1->blend2(pointDst, m_pimageAlphaBlend, pointSrc, rectangleIntersect.size(), 255);
 
@@ -2618,10 +2618,10 @@ namespace draw2d
       //if (!
       fill_rectangle(
          {
-            rectangle.left() + 1,
-            rectangle.top() + 1,
-            rectangle.right() - 1,
-            rectangle.bottom() - 1
+            rectangle.left + 1,
+            rectangle.top + 1,
+            rectangle.right - 1,
+            rectangle.bottom - 1
          },
          pbrushSolidColor);/*)
       {
@@ -2677,8 +2677,8 @@ namespace draw2d
 
       ::int_rectangle rectangle(rectangleParam);
 
-      int x = rectangle.left();
-      int y = rectangle.top();
+      int x = rectangle.left;
+      int y = rectangle.top;
       int cx = rectangle.width();
       int cy = rectangle.height();
 
@@ -2726,7 +2726,7 @@ namespace draw2d
          if (eborder & e_border_top)
          {
 
-            fill_rectangle(double_rectangle_dimension(floor(rectangle.left(), pixelsize), floor(rectangle.top(), pixelsize), ceil(rectangle.width(), pixelsize), ceil(dWidth, pixelsize)), colorTopLeft);
+            fill_rectangle(double_rectangle_dimension(floor(rectangle.left, pixelsize), floor(rectangle.top, pixelsize), ceil(rectangle.width(), pixelsize), ceil(dWidth, pixelsize)), colorTopLeft);
 
          }
 
@@ -2734,8 +2734,8 @@ namespace draw2d
          {
 
             fill_rectangle(double_rectangle_dimension(
-               floor(rectangle.left(), pixelsize),
-               floor(rectangle.top(), pixelsize) + ceil(eborder & e_border_top ? dWidth : 0, pixelsize),
+               floor(rectangle.left, pixelsize),
+               floor(rectangle.top, pixelsize) + ceil(eborder & e_border_top ? dWidth : 0, pixelsize),
                ceil(dWidth, pixelsize),
                ceil(rectangle.height(), pixelsize) - ceil(eborder & e_border_top ? dWidth : 0, pixelsize)),
                colorTopLeft);
@@ -2751,8 +2751,8 @@ namespace draw2d
          {
 
             fill_rectangle(double_rectangle_dimension(
-               floor(rectangle.left(), pixelsize) + ceil(eborder & e_border_left ? dWidth : 0, pixelsize),
-               ceil(rectangle.bottom(), pixelsize) - ceil(dWidth, pixelsize),
+               floor(rectangle.left, pixelsize) + ceil(eborder & e_border_left ? dWidth : 0, pixelsize),
+               ceil(rectangle.bottom, pixelsize) - ceil(dWidth, pixelsize),
                ceil(rectangle.width(), pixelsize) - ceil(eborder & e_border_left ? dWidth : 0, pixelsize),
                ceil(dWidth, pixelsize)), 
                colorBottomRight);
@@ -2770,8 +2770,8 @@ namespace draw2d
             //if (!
             fill_rectangle(
                ::double_rectangle_dimension(
-                  ceil(rectangle.right(), pixelsize) - ceil(dWidth, pixelsize),
-                  floor(rectangle.top(), pixelsize) + ceil(eborder & e_border_top ? dWidth : 0, pixelsize),
+                  ceil(rectangle.right, pixelsize) - ceil(dWidth, pixelsize),
+                  floor(rectangle.top, pixelsize) + ceil(eborder & e_border_top ? dWidth : 0, pixelsize),
                   ceil(dWidth, pixelsize),
                   ceil(rectangle.height(), pixelsize) - ceil(eborder & e_border_top ? dWidth : 0, pixelsize) - ceil(eborder & e_border_bottom ? dWidth : 0, pixelsize)),
                colorBottomRight);
@@ -3385,10 +3385,10 @@ namespace draw2d
    //
    //      ::double_rectangle rectangle;
    //
-   //      rectangle.left() = x1;
-   //      rectangle.top() = y1;
-   //      rectangle.right() = x2;
-   //      rectangle.bottom() = y2;
+   //      rectangle.left = x1;
+   //      rectangle.top = y1;
+   //      rectangle.right = x2;
+   //      rectangle.bottom = y2;
    //
    //      return IntersectClipRect(rectangle);
    //
@@ -4387,13 +4387,13 @@ namespace draw2d
       if (ealign & e_align_right)
       {
 
-         Δx = rectangleParam.right() - rectangleParam.left() - size.cx();
+         Δx = rectangleParam.right - rectangleParam.left - size.cx();
 
       }
       else if (ealign & e_align_horizontal_center)
       {
 
-         Δx = ((rectangleParam.right() - rectangleParam.left()) - (size.cx())) / 2.0;
+         Δx = ((rectangleParam.right - rectangleParam.left) - (size.cx())) / 2.0;
 
       }
       else
@@ -4406,13 +4406,13 @@ namespace draw2d
       if (ealign & e_align_bottom)
       {
 
-         Δy = rectangleParam.bottom() - rectangleParam.top() - size.cy();
+         Δy = rectangleParam.bottom - rectangleParam.top - size.cy();
 
       }
       else if (ealign & e_align_vertical_center)
       {
 
-         Δy = ((rectangleParam.bottom() - rectangleParam.top()) - (size.cy())) / 2.0;
+         Δy = ((rectangleParam.bottom - rectangleParam.top) - (size.cy())) / 2.0;
 
       }
       else
@@ -4442,7 +4442,7 @@ namespace draw2d
 
          str.replace_with("", "\n");
 
-         text_out(rectangleParam.left() + Δx, rectangleParam.top() + Δy, str);
+         text_out(rectangleParam.left + Δx, rectangleParam.top + Δy, str);
 
       }
       else
@@ -4461,7 +4461,7 @@ namespace draw2d
 
             auto size1 = get_text_extent(str);
 
-            text_out(rectangleParam.left() + Δx, rectangleParam.top() + Δy + offsety, str);
+            text_out(rectangleParam.left + Δx, rectangleParam.top + Δy + offsety, str);
 
             offsety += (int)size1.cy();
 
@@ -5290,11 +5290,11 @@ namespace draw2d
 
       ::double_rectangle rectangle;
 
-      rectangle.left() = 0;
-      rectangle.top() = 0;
-      rectangle.right() = sz.cx();
-      rectangle.bottom() = sz.cy();
-      //rectangle.bottom() = (int) (dLineSpacing);
+      rectangle.left = 0;
+      rectangle.top = 0;
+      rectangle.right = sz.cx();
+      rectangle.bottom = sz.cy();
+      //rectangle.bottom = (int) (dLineSpacing);
 
       //::e_align ealign;
 
@@ -5342,7 +5342,7 @@ namespace draw2d
 
       //bool bBilboRaspi = str.case_insensitive_equals("bilbo-raspi");
 
-      int iLeft = (int) rectangle.left();
+      int iLeft = (int) rectangle.left;
 
       // if (bBilboRaspi)
       // {
@@ -5360,7 +5360,7 @@ namespace draw2d
       //
       //    }
       //
-      //    if (rectangleClip.right() != 76)
+      //    if (rectangleClip.right != 76)
       //    {
       //
       //       information() << "";
@@ -5392,7 +5392,7 @@ namespace draw2d
       //
       //    }
       //
-      //    if (rectangleClip.right() != 76)
+      //    if (rectangleClip.right != 76)
       //    {
       //
       //       information() << "";
@@ -5421,11 +5421,11 @@ namespace draw2d
          //
          // }
 
-         text_out(rectangle.left(), rectangle.top(), { str.c_str(), (int)minimum(iUnderline, str.length()) });
+         text_out(rectangle.left, rectangle.top, { str.c_str(), (int)minimum(iUnderline, str.length()) });
          /*::TextOutU(
          (HDC)pgraphics->get_os_data(),
-         rectangle.left(),
-         rectangle.top(),
+         rectangle.left,
+         rectangle.top,
          str,
          minimum(iUnderline, str.length()));*/
          if (iUnderline <= str.length())
@@ -5442,12 +5442,12 @@ namespace draw2d
             char wch = str[iUnderline];
             /*::TextOutU(
             (HDC)pgraphics->get_os_data(),
-            rectangle.left() + sz.cx(),
-            rectangle.top(),
+            rectangle.left + sz.cx(),
+            rectangle.top,
             &wch,
             1);*/
 
-            text_out(rectangle.left() + sz.cx(), (double)rectangle.top(), { &wch, 1 });
+            text_out(rectangle.left + sz.cx(), (double)rectangle.top, { &wch, 1 });
 
             if (iUnderline + 1 <= str.length())
             {
@@ -5461,12 +5461,12 @@ namespace draw2d
 
                character_count iCount = str.length() - iUnderline - 1;
 
-               text_out(rectangle.left() + sz.cx(), (double)rectangle.top(), { ::string(str.right(iCount)).c_str(), (int)iCount });
+               text_out(rectangle.left + sz.cx(), (double)rectangle.top, { ::string(str.right(iCount)).c_str(), (int)iCount });
 
                /*::TextOutU(
                (HDC)pgraphics->get_os_data(),
-               rectangle.left() + sz.cx(),
-               rectangle.top(),
+               rectangle.left + sz.cx(),
+               rectangle.top,
                str.right(iCount),
                iCount);*/
 
@@ -5487,13 +5487,13 @@ namespace draw2d
          // else if (bBilboRaspiEtc)
          // {
          //
-         //    text_out(rectangle.left(), rectangle.top(), str);
+         //    text_out(rectangle.left, rectangle.top, str);
          //
          // }
          // else
          {
 
-            text_out(rectangle.left(), rectangle.top(), str);
+            text_out(rectangle.left, rectangle.top, str);
 
          }
 
@@ -5510,7 +5510,7 @@ namespace draw2d
          //
          // }
 
-         rectangleClip.top() = rectangleClip.top() + sz.cy();
+         rectangleClip.top = rectangleClip.top + sz.cy();
 
          _DrawText(str2, rectangleClip, ealign, edrawtext);
 
@@ -5558,7 +5558,7 @@ namespace draw2d
 
       bool bEnd = false;
 
-      auto y = rectangle.top();
+      auto y = rectangle.top;
 
       while (psz <= pszEnd)
       {
@@ -5567,7 +5567,7 @@ namespace draw2d
 
          dNewY = y + sz.cy();
 
-         if (dNewY + sz.cy() > rectangle.bottom())
+         if (dNewY + sz.cy() > rectangle.bottom)
          {
 
             //bLastLine = true;
@@ -5607,7 +5607,7 @@ namespace draw2d
 
             str1 = str;
 
-            rectangle.top() = y;
+            rectangle.top = y;
 
             return false;
 
@@ -5693,7 +5693,7 @@ namespace draw2d
 
       str2 = string(pszEnd);
 
-      rectangle.top() = y;
+      rectangle.top = y;
 
       return true;
 
@@ -5831,10 +5831,10 @@ namespace draw2d
             rect1.bottom_left());
          line(
             rect1.top_right(),
-            { rect1.right(), rect2.top() });
+            { rect1.right, rect2.top });
          line(
             rect1.bottom_left(),
-            { rect2.left(), rect1.bottom() });
+            { rect2.left, rect1.bottom });
          line(
             rect2.top_left(),
             rect2.bottom_left());
@@ -5932,7 +5932,7 @@ namespace draw2d
 
          pointa.add(rectangle.bottom_right());
 
-         pointa.add((rectangle.right() + rectangle.left()) / 2.0, rectangle.top());
+         pointa.add((rectangle.right + rectangle.left) / 2.0, rectangle.top);
 
          polygon(pointa);
 
@@ -5948,7 +5948,7 @@ namespace draw2d
 
          pointa.add(rectangle.top_right());
 
-         pointa.add((rectangle.right() + rectangle.left()) / 2.0, rectangle.bottom());
+         pointa.add((rectangle.right + rectangle.left) / 2.0, rectangle.bottom);
 
          polygon(pointa);
 
@@ -6238,80 +6238,80 @@ namespace draw2d
 
       b->create_solid(color);
 
-      rectangle.top() += w * 13;
-      rectangle.bottom() -= w;
+      rectangle.top += w * 13;
+      rectangle.bottom -= w;
 
 
       // c
 
-      rectangle.left() += w;
-      rectangle.right() = rectangle.left() + w * 5;
+      rectangle.left += w;
+      rectangle.right = rectangle.left + w * 5;
 
       ::double_rectangle rect2(rectangle);
 
       // c vertical
 
-      rect2.right() = rect2.left() + w;
+      rect2.right = rect2.left + w;
 
       fill_rectangle(rect2, b);
 
       rect2 = rectangle;
 
-      rect2.bottom() = rect2.top() + w;
+      rect2.bottom = rect2.top + w;
 
       fill_rectangle(rect2, b);
 
       rect2 = rectangle;
 
-      rect2.top() = rect2.bottom() - w;
+      rect2.top = rect2.bottom - w;
 
       fill_rectangle(rect2, b);
 
 
       // a
 
-      rectangle.left() += w * 6;
-      rectangle.right() = rectangle.left() + w * 5;
+      rectangle.left += w * 6;
+      rectangle.right = rectangle.left + w * 5;
 
       rect2 = rectangle;
 
-      rect2.bottom() = rect2.top() + w;
+      rect2.bottom = rect2.top + w;
 
       fill_rectangle(rect2, b);
 
       rect2 = rectangle;
 
-      rect2.top() = rect2.bottom() - w;
+      rect2.top = rect2.bottom - w;
 
       fill_rectangle(rect2, b);
 
       rect2 = rectangle;
 
-      rect2.right() = rect2.left() + w * 2;
-      rect2.top() += w * 2;
-      rect2.bottom() = rect2.top() + w;
+      rect2.right = rect2.left + w * 2;
+      rect2.top += w * 2;
+      rect2.bottom = rect2.top + w;
 
       fill_rectangle(rect2, b);
 
       rect2 = rectangle;
 
-      rect2.left() += w * 5 / 2;
-      rect2.right() = rect2.left() + w;
-      rect2.top() += w * 2;
-      rect2.bottom() = rect2.top() + w;
+      rect2.left += w * 5 / 2;
+      rect2.right = rect2.left + w;
+      rect2.top += w * 2;
+      rect2.bottom = rect2.top + w;
 
       fill_rectangle(rect2, b);
 
       rect2 = rectangle;
 
-      rect2.left() = rect2.right() - w;
+      rect2.left = rect2.right - w;
 
       fill_rectangle(rect2, b);
 
       rect2 = rectangle;
 
-      rect2.right() = rect2.left() + w;
-      rect2.top() += w * 2;
+      rect2.right = rect2.left + w;
+      rect2.top += w * 2;
 
       fill_rectangle(rect2, b);
 
@@ -6321,39 +6321,39 @@ namespace draw2d
 
       // 2
 
-      rectangle.left() += w * 6;
-      rectangle.right() = rectangle.left() + w * 5;
+      rectangle.left += w * 6;
+      rectangle.right = rectangle.left + w * 5;
 
       rect2 = rectangle;
 
-      rect2.bottom() = rect2.top() + w;
+      rect2.bottom = rect2.top + w;
 
       fill_rectangle(rect2, b);
 
       rect2 = rectangle;
 
-      rect2.top() = rect2.bottom() - w;
+      rect2.top = rect2.bottom - w;
 
       fill_rectangle(rect2, b);
 
       rect2 = rectangle;
 
-      rect2.top() += w * 2;
-      rect2.bottom() = rect2.top() + w;
+      rect2.top += w * 2;
+      rect2.bottom = rect2.top + w;
 
       fill_rectangle(rect2, b);
 
       rect2 = rectangle;
 
-      rect2.right() = rect2.left() + w;
-      rect2.top() += w * 2;
+      rect2.right = rect2.left + w;
+      rect2.top += w * 2;
 
       fill_rectangle(rect2, b);
 
       rect2 = rectangle;
 
-      rect2.left() = rect2.right() - w;
-      rect2.bottom() -= w * 2;
+      rect2.left = rect2.right - w;
+      rect2.bottom -= w * 2;
 
       fill_rectangle(rect2, b);
 

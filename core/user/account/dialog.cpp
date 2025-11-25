@@ -306,13 +306,13 @@ namespace account
 
       ::int_rectangle rectangleFontopus;
 
-      rectangleFontopus.left() = rectangleDesktop.left() + (rectangleDesktop.width() - w) / 2;
+      rectangleFontopus.left = rectangleDesktop.left + (rectangleDesktop.width() - w) / 2;
 
-      rectangleFontopus.top() = rectangleDesktop.top() + (rectangleDesktop.height() - h) / 3;
+      rectangleFontopus.top = rectangleDesktop.top + (rectangleDesktop.height() - h) / 3;
 
-      rectangleFontopus.right() = rectangleFontopus.left() + w;
+      rectangleFontopus.right = rectangleFontopus.left + w;
 
-      rectangleFontopus.bottom() = rectangleFontopus.top() + h;
+      rectangleFontopus.bottom = rectangleFontopus.top + h;
 
       if (puiParent != nullptr)
       {

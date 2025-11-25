@@ -1283,9 +1283,9 @@ namespace gpu_gpu
 //
 //                   int h = r.height();
 //
-//                   r.top() = iH - r.bottom();
+//                   r.top = iH - r.bottom;
 //
-//                   r.bottom() = r.top() + h;
+//                   r.bottom = r.top + h;
 //
 //                   pcommandbuffer->set_viewport(r);
 //
@@ -1352,26 +1352,26 @@ namespace gpu_gpu
 //
 //                   // 1. Define viewport and scissor rectangle
 //                   //D3D12_VIEWPORT viewport = {};
-//                   //viewport.TopLeftX = ptextureSrc->m_rectangleTarget.left();
-//                   //viewport.TopLeftY = ptextureSrc->m_rectangleTarget.top();
+//                   //viewport.TopLeftX = ptextureSrc->m_rectangleTarget.left;
+//                   //viewport.TopLeftY = ptextureSrc->m_rectangleTarget.top;
 //                   //viewport.Width = static_cast<float>(ptextureSrc->m_rectangleTarget.width());
 //                   //viewport.Height = static_cast<float>(ptextureSrc->m_rectangleTarget.height());
 //                   //viewport.MinDepth = 0.0f;
 //                   //viewport.MaxDepth = 1.0f;
 //
 //                   //D3D12_RECT scissorRect = {};
-//                   //scissorRect.left = ptextureSrc->m_rectangleTarget.left();
-//                   //scissorRect.top = ptextureSrc->m_rectangleTarget.top();
-//                   //scissorRect.right = ptextureSrc->m_rectangleTarget.right();
-//                   //scissorRect.bottom = ptextureSrc->m_rectangleTarget.bottom();
+//                   //scissorRect.left = ptextureSrc->m_rectangleTarget.left;
+//                   //scissorRect.top = ptextureSrc->m_rectangleTarget.top;
+//                   //scissorRect.right = ptextureSrc->m_rectangleTarget.right;
+//                   //scissorRect.bottom = ptextureSrc->m_rectangleTarget.bottom;
 //
 //
 //                   ////// 4. Set the viewport and scissor
 //                   //pcommandlist->RSSetViewports(1, &viewport);
 //                   //pcommandlist->RSSetScissorRects(1, &scissorRect);
 //                   //D3D11_VIEWPORT vp = {};
-//                   //vp.TopLeftX = ptexture->m_rectangleTarget.left();
-//                   //vp.TopLeftY = ptexture->m_rectangleTarget.top();
+//                   //vp.TopLeftX = ptexture->m_rectangleTarget.left;
+//                   //vp.TopLeftY = ptexture->m_rectangleTarget.top;
 //                   //vp.Width = static_cast<float>(ptexture->m_rectangleTarget.width());
 //                   //vp.Height = static_cast<float>(ptexture->m_rectangleTarget.height());
 //                   //vp.MinDepth = 0.0f;

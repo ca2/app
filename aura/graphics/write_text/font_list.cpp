@@ -28,7 +28,7 @@
 //class tracer & operator << (class tracer&  tracer, const RECTANGLE& r)
 //{
 //
-//   return tracer << r.left() << ","<<r.top() << ","<<r.right()<< "," << r.bottom();
+//   return tracer << r.left << ","<<r.top << ","<<r.right<< "," << r.bottom;
 //
 //}
 
@@ -418,7 +418,7 @@ namespace write_text
 
          int_rectangle rectangle = pbox->m_rectangle;
 
-         rectangle.right() = rectangle.left() + m_size.cx();
+         rectangle.right = rectangle.left + m_size.cx();
 
          if (!pbox->is_drawing_ok(this))
          {
@@ -688,9 +688,9 @@ namespace write_text
 
          }
 
-         s.cx() += m_rectangleMargin.left() + m_rectangleMargin.right();
+         s.cx() += m_rectangleMargin.left + m_rectangleMargin.right;
 
-         s.cy() += m_rectangleMargin.top() + m_rectangleMargin.bottom();
+         s.cy() += m_rectangleMargin.top + m_rectangleMargin.bottom;
 
          pbox->m_size = s;
 
@@ -1454,15 +1454,15 @@ namespace write_text
 
          }
 
-         //pgraphics->text_out(x + m_rectangleMargin.left(),y + m_rectangleMargin.top(),strText);
+         //pgraphics->text_out(x + m_rectangleMargin.left,y + m_rectangleMargin.top,strText);
 
-         rectangle.left() = x;
+         rectangle.left = x;
 
-         rectangle.top() = y;
+         rectangle.top = y;
 
-         rectangle.right() = rectangle.left() + s.cx();
+         rectangle.right = rectangle.left + s.cx();
 
-         rectangle.bottom() = rectangle.top() + s.cy();
+         rectangle.bottom = rectangle.top + s.cy();
 
          if (rectangle.intersects(rectangleX))
          {
@@ -1515,13 +1515,13 @@ namespace write_text
             if (x > 0)
             {
 
-               x = m_rectangleX.center_x() - rectangle.left();
+               x = m_rectangleX.center_x() - rectangle.left;
 
             }
             else
             {
 
-               x = m_rectangleX.center_x() - rectangle.right();
+               x = m_rectangleX.center_x() - rectangle.right;
 
             }
 
@@ -1529,16 +1529,16 @@ namespace write_text
 
             if (x > 0)
             {
-               rect2.left() = m_rectangleX.center_x() - x;
-               rect2.right() = rect2.left() + size2.cx();
+               rect2.left = m_rectangleX.center_x() - x;
+               rect2.right = rect2.left + size2.cx();
             }
             else
             {
-               rect2.right() = m_rectangleX.center_x()- x;
-               rect2.left() = rect2.right() - size2.cx();
+               rect2.right = m_rectangleX.center_x()- x;
+               rect2.left = rect2.right - size2.cx();
             }
-            rect2.top() = rectangle.top() - dh;
-            rect2.bottom() = rect2.top() + size2.cy();
+            rect2.top = rectangle.top - dh;
+            rect2.bottom = rect2.top + size2.cy();
 
             hExtra = maximum(hExtra, size2.cy());
 
@@ -1591,12 +1591,12 @@ namespace write_text
 
          auto & rectangle = pitem->m_box[0].m_rectangle;
 
-         pitem->m_box[0].m_rectangle.left() = xSingleColumn;
-         pitem->m_box[0].m_rectangle.top() = ySingleColumn;
-         pitem->m_box[0].m_rectangle.right() = xSingleColumn + s.cx();
-         pitem->m_box[0].m_rectangle.bottom() = ySingleColumn + s.cy();
+         pitem->m_box[0].m_rectangle.left = xSingleColumn;
+         pitem->m_box[0].m_rectangle.top = ySingleColumn;
+         pitem->m_box[0].m_rectangle.right = xSingleColumn + s.cx();
+         pitem->m_box[0].m_rectangle.bottom = ySingleColumn + s.cy();
 
-         sizeTotal.cx() = maximum(m_size.cx(), pitem->m_box[0].m_rectangle.right() + 4);
+         sizeTotal.cx() = maximum(m_size.cx(), pitem->m_box[0].m_rectangle.right + 4);
 
          ySingleColumn += s.cy();
 
@@ -1723,7 +1723,7 @@ namespace write_text
 
          int_rectangle rectangle(pfontlistitem->m_box[BOX].m_rectangle);
 
-         rectangle.right() = rectangle.left() + m_size.cx();
+         rectangle.right = rectangle.left + m_size.cx();
 
          if (rectangle.contains(point))
          {
@@ -1850,7 +1850,7 @@ namespace write_text
 
       *lprect = pfontlistitem->m_box[BOX].m_rectangle;
 
-      lprect->right() = lprect->left() + m_size.cx();
+      lprect->right = lprect->left + m_size.cx();
 
       return true;
 

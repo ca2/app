@@ -34,10 +34,10 @@
 void
 getviewsettings (struct viewporttype *viewport)
 {
-  viewport->left() = TcViewLeft;
-  viewport->right() = TcViewRight;
-  viewport->top() = TcViewTop;
-  viewport->bottom() = TcViewBottom;
+  viewport->left = TcViewLeft;
+  viewport->right = TcViewRight;
+  viewport->top = TcViewTop;
+  viewport->bottom = TcViewBottom;
   viewport->clip = TcViewClip;
 }
 

@@ -683,10 +683,10 @@ namespace acme
 
       //   //::int_rectangle rectangle;
 
-      //   //rectangle.left() = 0;
-      //   //rectangle.top() = 0;
-      //   //rectangle.right() = m_rectangle.width();
-      //   //rectangle.bottom() = m_rectangle.height();
+      //   //rectangle.left = 0;
+      //   //rectangle.top = 0;
+      //   //rectangle.right = m_rectangle.width();
+      //   //rectangle.bottom = m_rectangle.height();
 
       //   //return rectangle;
 

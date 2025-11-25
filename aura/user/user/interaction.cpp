@@ -2096,7 +2096,7 @@ namespace user
 
       //      auto r = rectangleaNeedRedraw[0];
 
-      //      informationf("%d,%d  %d,%d", r.left(), r.top(), r.width(), r.height());
+      //      informationf("%d,%d  %d,%d", r.left, r.top, r.width(), r.height());
 
       //   }
 
@@ -2132,10 +2132,10 @@ namespace user
 
                auto rectangleFocusRectExtraMargin = pstyle->simple_ui_focus_rect_extra_margin(this);
 
-               rectangleFocusRectExtraMargin.left() += 4;
-               rectangleFocusRectExtraMargin.top() += 4;
-               rectangleFocusRectExtraMargin.right() += 4;
-               rectangleFocusRectExtraMargin.bottom() += 4;
+               rectangleFocusRectExtraMargin.left += 4;
+               rectangleFocusRectExtraMargin.top += 4;
+               rectangleFocusRectExtraMargin.right += 4;
+               rectangleFocusRectExtraMargin.bottom += 4;
 
                rectangle.inflate(rectangleFocusRectExtraMargin);
 
@@ -7276,7 +7276,7 @@ namespace user
 
                   //   auto rectangleClient = this->client2_rectangle();
 
-                  //   pgraphics->offset_origin(rectangleClient.left(), rectangleClient.top());
+                  //   pgraphics->offset_origin(rectangleClient.left, rectangleClient.top);
 
                   //}
 
@@ -9127,25 +9127,25 @@ if(get_parent())
                if (m_sizeInitialResizeOffset.cx() > 0)
                {
 
-                  r.right() += sizeOffset.cx();
+                  r.right += sizeOffset.cx();
 
                }
                else if (m_sizeInitialResizeOffset.cx() < 0)
                {
 
-                  r.left() += sizeOffset.cx();
+                  r.left += sizeOffset.cx();
 
                }
                else if (m_sizeInitialResizeOffset.cy() > 0)
                {
 
-                  r.bottom() += sizeOffset.cy();
+                  r.bottom += sizeOffset.cy();
 
                }
                else if (m_sizeInitialResizeOffset.cy() < 0)
                {
 
-                  r.top() += sizeOffset.cy();
+                  r.top += sizeOffset.cy();
 
                }
                else
@@ -9497,29 +9497,29 @@ if(get_parent())
 
    //   ::int_rectangle_array_base rectanglea;
 
-   //   if (rectangle.right() > rectanglePrevious.right())
+   //   if (rectangle.right > rectanglePrevious.right)
    //   {
 
    //      ::int_rectangle r;
 
-   //      r.left() = rectanglePrevious.right();
-   //      r.right() = rectangle.right();
-   //      r.top() = rectangle.top();
-   //      r.bottom() = rectangle.bottom();
+   //      r.left = rectanglePrevious.right;
+   //      r.right = rectangle.right;
+   //      r.top = rectangle.top;
+   //      r.bottom = rectangle.bottom;
 
    //      rectanglea.add(r);
 
    //   }
 
-   //   if (rectangle.bottom() > rectanglePrevious.bottom())
+   //   if (rectangle.bottom > rectanglePrevious.bottom)
    //   {
 
    //      ::int_rectangle r;
 
-   //      r.left() = rectangle.left();
-   //      r.right() = rectangle.right();
-   //      r.top() = rectanglePrevious.bottom();
-   //      r.bottom() = rectangle.bottom();
+   //      r.left = rectangle.left;
+   //      r.right = rectangle.right;
+   //      r.top = rectanglePrevious.bottom;
+   //      r.bottom = rectangle.bottom;
 
    //      rectanglea.add(r);
 
@@ -10781,8 +10781,8 @@ if(get_parent())
 
             //   //   }
 
-            //   //   pusersystem->m_createstruct.x = window()->m_rectangle.left();
-            //   //   pusersystem->m_createstruct.y = window()->m_rectangle.top();
+            //   //   pusersystem->m_createstruct.x = window()->m_rectangle.left;
+            //   //   pusersystem->m_createstruct.y = window()->m_rectangle.top;
             //   //   pusersystem->m_createstruct.cx() = window()->m_rectangle.width();
             //   //   pusersystem->m_createstruct.cy() = window()->m_rectangle.height();
 
@@ -12782,11 +12782,11 @@ if(get_parent())
          else
          {
 
-            prectParam->left() = prectParam->top() = 0;
+            prectParam->left = prectParam->top = 0;
 
-            prectParam->right() = sizeparentlayout.m_sizeTotal.cx();
+            prectParam->right = sizeparentlayout.m_sizeTotal.cx();
 
-            prectParam->bottom() = sizeparentlayout.m_sizeTotal.cy();
+            prectParam->bottom = sizeparentlayout.m_sizeTotal.cy();
 
          }
 
@@ -12803,13 +12803,13 @@ if(get_parent())
             ASSERT(prectParam != nullptr);
 
 
-            sizeparentlayout.m_rectangle.left() += prectParam->left();
+            sizeparentlayout.m_rectangle.left += prectParam->left;
 
-            sizeparentlayout.m_rectangle.top() += prectParam->top();
+            sizeparentlayout.m_rectangle.top += prectParam->top;
 
-            sizeparentlayout.m_rectangle.right() -= prectParam->right();
+            sizeparentlayout.m_rectangle.right -= prectParam->right;
 
-            sizeparentlayout.m_rectangle.bottom() -= prectParam->bottom();
+            sizeparentlayout.m_rectangle.bottom -= prectParam->bottom;
 
          }
 
@@ -15080,9 +15080,9 @@ if(get_parent())
 
       ::double_size sizePaddedFitting;
 
-      sizePaddedFitting.cx() = rectanglePadding.left() + sizeFitting.cx() + rectanglePadding.right();
+      sizePaddedFitting.cx() = rectanglePadding.left + sizeFitting.cx() + rectanglePadding.right;
 
-      sizePaddedFitting.cy() = rectanglePadding.top() + sizeFitting.cy() + rectanglePadding.bottom();
+      sizePaddedFitting.cy() = rectanglePadding.top + sizeFitting.cy() + rectanglePadding.bottom;
 
       return sizePaddedFitting;
 
@@ -15565,9 +15565,9 @@ if(get_parent())
 
       //         this->rectangle(pitem->m_rectangle);
 
-      //         pitem->m_rectangle.left() = pitem->m_rectangle.right() - 32;
+      //         pitem->m_rectangle.left = pitem->m_rectangle.right - 32;
 
-      //         pitem->m_rectangle.bottom() = pitem->m_rectangle.top() + 32;
+      //         pitem->m_rectangle.bottom = pitem->m_rectangle.top + 32;
 
       //      }
 
@@ -15587,9 +15587,9 @@ if(get_parent())
 
       //         this->rectangle(pitem->m_rectangle);
 
-      //         pitem->m_rectangle.left() = pitem->m_rectangle.right() - 48;
+      //         pitem->m_rectangle.left = pitem->m_rectangle.right - 48;
 
-      //         pitem->m_rectangle.bottom() = pitem->m_rectangle.top() + 48;
+      //         pitem->m_rectangle.bottom = pitem->m_rectangle.top + 48;
 
       //      }
 
@@ -15609,9 +15609,9 @@ if(get_parent())
 
       //         this->rectangle(pitem->m_rectangle);
 
-      //         pitem->m_rectangle.left() = pitem->m_rectangle.right() - 48;
+      //         pitem->m_rectangle.left = pitem->m_rectangle.right - 48;
 
-      //         pitem->m_rectangle.top() = pitem->m_rectangle.bottom() - 48;
+      //         pitem->m_rectangle.top = pitem->m_rectangle.bottom - 48;
 
       //      }
 
@@ -15668,8 +15668,8 @@ if(get_parent())
 
       //auto xPos = (int)(short)LOWORD(lparam);   // horizontal position
       //auto yPos = (int)(short)HIWORD(lparam);   // vertical position
-      auto xPos = rectangle.left();
-      auto yPos = rectangle.top();
+      auto xPos = rectangle.left;
+      auto yPos = rectangle.top;
       auto w = rectangle.width();
       auto h = rectangle.height();
 
@@ -21075,22 +21075,22 @@ if(get_parent())
 
    int interaction::top(enum_layout elayout)
    {
-      return parent_client_rectangle(elayout).top();
+      return parent_client_rectangle(elayout).top;
    }
 
    int interaction::left(enum_layout elayout)
    {
-      return parent_client_rectangle(elayout).left();
+      return parent_client_rectangle(elayout).left;
    }
 
    int interaction::right(enum_layout elayout)
    {
-      return parent_client_rectangle(elayout).right();
+      return parent_client_rectangle(elayout).right;
    }
 
    int interaction::bottom(enum_layout elayout)
    {
-      return parent_client_rectangle(elayout).bottom();
+      return parent_client_rectangle(elayout).bottom;
    }
 
 
@@ -21506,8 +21506,8 @@ if(get_parent())
       if (bSet && rectangleNew.is_set() && iMatchingMonitor >= 0)
       {
 
-         information() << "interaction::bestmonitor (" << rectangleNew.left() << ", " << rectangleNew.top() << ", "
-            << rectangleNew.right() << ", " << rectangleNew.bottom() << ") activation " << (int)useractivation.m_eactivation;
+         information() << "interaction::bestmonitor (" << rectangleNew.left << ", " << rectangleNew.top << ", "
+            << rectangleNew.right << ", " << rectangleNew.bottom << ") activation " << (int)useractivation.m_eactivation;
 
          order(zorderParam);
 
@@ -21592,13 +21592,13 @@ if(get_parent())
 
 #if !MOBILE_PLATFORM
 
-         if (iMatchingMonitor >= 0 && rectangleZoomedWindowSite.bottom() > 0)
+         if (iMatchingMonitor >= 0 && rectangleZoomedWindowSite.bottom > 0)
          {
 
-            if (rectangleZoomedWindowSite.bottom() > rectangleZoomedWindowSite.bottom() - 2)
+            if (rectangleZoomedWindowSite.bottom > rectangleZoomedWindowSite.bottom - 2)
             {
 
-               rectangleZoomedWindowSite.bottom() = rectangleZoomedWindowSite.bottom() - 2;
+               rectangleZoomedWindowSite.bottom = rectangleZoomedWindowSite.bottom - 2;
 
             }
 
@@ -21684,12 +21684,12 @@ if(get_parent())
       if (edisplay & ::e_display_top)
       {
 
-         prectangle->top() = rectangleWorkspace.top();
+         prectangle->top = rectangleWorkspace.top;
 
          if (::height(*prectangle) < sizeMinimum.cy())
          {
 
-            prectangle->bottom() = prectangle->top() + sizeMinimum.cy();
+            prectangle->bottom = prectangle->top + sizeMinimum.cy();
 
          }
 
@@ -21697,19 +21697,19 @@ if(get_parent())
       else
       {
 
-         prectangle->top() = rectangleWorkspace.center_y();
+         prectangle->top = rectangleWorkspace.center_y();
 
       }
 
       if (edisplay & ::e_display_bottom)
       {
 
-         prectangle->bottom() = rectangleWorkspace.bottom();
+         prectangle->bottom = rectangleWorkspace.bottom;
 
          if (::height(*prectangle) < sizeMinimum.cy())
          {
 
-            prectangle->top() = prectangle->bottom() - sizeMinimum.cy();
+            prectangle->top = prectangle->bottom - sizeMinimum.cy();
 
          }
 
@@ -21717,19 +21717,19 @@ if(get_parent())
       else
       {
 
-         prectangle->bottom() = rectangleWorkspace.center_y();
+         prectangle->bottom = rectangleWorkspace.center_y();
 
       }
 
       if (edisplay & ::e_display_left)
       {
 
-         prectangle->left() = rectangleWorkspace.left();
+         prectangle->left = rectangleWorkspace.left;
 
          if (::width(*prectangle) < sizeMinimum.cx())
          {
 
-            prectangle->right() = prectangle->left() + sizeMinimum.cx();
+            prectangle->right = prectangle->left + sizeMinimum.cx();
 
          }
 
@@ -21737,19 +21737,19 @@ if(get_parent())
       else
       {
 
-         prectangle->left() = rectangleWorkspace.center_x();
+         prectangle->left = rectangleWorkspace.center_x();
 
       }
 
       if (edisplay & ::e_display_right)
       {
 
-         prectangle->right() = rectangleWorkspace.right();
+         prectangle->right = rectangleWorkspace.right;
 
          if (::width(*prectangle) < sizeMinimum.cx())
          {
 
-            prectangle->left() = prectangle->right() + sizeMinimum.cx();
+            prectangle->left = prectangle->right + sizeMinimum.cx();
 
          }
 
@@ -21757,7 +21757,7 @@ if(get_parent())
       else
       {
 
-         prectangle->right() = rectangleWorkspace.center_x();
+         prectangle->right = rectangleWorkspace.center_x();
 
       }
 
@@ -21822,10 +21822,10 @@ if(get_parent())
          rectangleRate.set_dimension(100, 100, 800, 400);
 
       }
-      else if (fabs(rectangleRate.left()) < 10.0
-               && fabs(rectangleRate.right()) < 10.0
-               && fabs(rectangleRate.bottom()) < 10.0
-               && fabs(rectangleRate.top()) < 10.0)
+      else if (fabs(rectangleRate.left) < 10.0
+               && fabs(rectangleRate.right) < 10.0
+               && fabs(rectangleRate.bottom) < 10.0
+               && fabs(rectangleRate.top) < 10.0)
       {
 
          rectangleRate *= double_rectangle(rectangleMainMonitor.width(), rectangleMainMonitor.height(),
@@ -23020,13 +23020,13 @@ if(get_parent())
    void interaction::get_margin_rect(::int_rectangle * prectMargin)
    {
 
-      prectMargin->left() = 0;
+      prectMargin->left = 0;
 
-      prectMargin->top() = 0;
+      prectMargin->top = 0;
 
-      prectMargin->right() = 0;
+      prectMargin->right = 0;
 
-      prectMargin->bottom() = 0;
+      prectMargin->bottom = 0;
 
 
    }
@@ -24039,17 +24039,17 @@ if(get_parent())
 
       //rectangleWindow.offset(0, -sizeTooltip.cy());
 
-      //if (rectangleWindow.top() < rectangleMonitor.top())
+      //if (rectangleWindow.top < rectangleMonitor.top)
       //{
 
-      //   rectangleWindow.move_top_to(rectangleThisWindow.bottom());
+      //   rectangleWindow.move_top_to(rectangleThisWindow.bottom);
 
       //}
 
-      //if (rectangleWindow.right() > rectangleMonitor.right())
+      //if (rectangleWindow.right > rectangleMonitor.right)
       //{
 
-      //   rectangleWindow.move_left_to(rectangleMonitor.right() - sizeTooltip.cx() - rectangleThisWindow.height());
+      //   rectangleWindow.move_left_to(rectangleMonitor.right - sizeTooltip.cx() - rectangleThisWindow.height());
 
       //}
 
@@ -24904,9 +24904,9 @@ void interaction::on_control_box_zoom(){
 
       rectangle = this->rectangle();
 
-      rectangle.right() += get_final_scroll_bar_x_thickness();
+      rectangle.right += get_final_scroll_bar_x_thickness();
 
-      rectangle.bottom() += get_final_scroll_bar_y_thickness();
+      rectangle.bottom += get_final_scroll_bar_y_thickness();
 
       return true;
 
@@ -30207,10 +30207,10 @@ __check_refdbg;
             if (strKey.case_insensitive_order("padding") == 0)
             {
 
-               //m_rectanglePadding.left() = atoi(strValue);
-               //m_rectanglePadding.top() = atoi(strValue);
-               //m_rectanglePadding.right() = atoi(strValue);
-               //m_rectanglePadding.bottom() = atoi(strValue);
+               //m_rectanglePadding.left = atoi(strValue);
+               //m_rectanglePadding.top = atoi(strValue);
+               //m_rectanglePadding.right = atoi(strValue);
+               //m_rectanglePadding.bottom = atoi(strValue);
 
 
             }
@@ -30351,8 +30351,8 @@ __check_refdbg;
 
          rectangle = this->rectangle();
 
-         rectangle.left() = maximum(rectangle.left(), rectangle.right() - 25);
-         rectangle.top() = maximum(rectangle.top(), rectangle.bottom() - 25);
+         rectangle.left = maximum(rectangle.left, rectangle.right - 25);
+         rectangle.top = maximum(rectangle.top, rectangle.bottom - 25);
 
          return true;
 
@@ -30380,10 +30380,10 @@ __check_refdbg;
 
          int iW = rectangleX.height() * 5 / 8;
 
-         rectangleDropDown.right() -= iMargin;
-         rectangleDropDown.bottom() -= iMargin;
-         rectangleDropDown.top() += iMargin;
-         rectangleDropDown.left() = rectangleDropDown.right() - iW;
+         rectangleDropDown.right -= iMargin;
+         rectangleDropDown.bottom -= iMargin;
+         rectangleDropDown.top += iMargin;
+         rectangleDropDown.left = rectangleDropDown.right - iW;
 
          rectangle = rectangleDropDown;
 
@@ -30401,7 +30401,7 @@ __check_refdbg;
 
          ::int_rectangle rectangleEdit = rectangleX;
 
-         rectangleEdit.right() = rectangleDropDown.left();
+         rectangleEdit.right = rectangleDropDown.left;
 
          //::int_rectangle rectanglePadding = _001GetRect(::user::rect_edit_padding);
 
@@ -30417,9 +30417,9 @@ __check_refdbg;
 
          rectangle = this->rectangle();
 
-         rectangle.left() = rectangle.right() - 32;
+         rectangle.left = rectangle.right - 32;
 
-         rectangle.bottom() = rectangle.top() + 32;
+         rectangle.bottom = rectangle.top + 32;
 
          return true;
 
@@ -30429,11 +30429,11 @@ __check_refdbg;
 
          rectangle = this->rectangle();
 
-         rectangle.left() = rectangle.right() - 64;
+         rectangle.left = rectangle.right - 64;
 
-         rectangle.right() = rectangle.left() + 32;
+         rectangle.right = rectangle.left + 32;
 
-         rectangle.bottom() = rectangle.top() + 32;
+         rectangle.bottom = rectangle.top + 32;
 
          return true;
 
@@ -30443,11 +30443,11 @@ __check_refdbg;
 
          rectangle = this->rectangle();
 
-         rectangle.left() = rectangle.right() - 96;
+         rectangle.left = rectangle.right - 96;
 
-         rectangle.right() = rectangle.left() + 32;
+         rectangle.right = rectangle.left + 32;
 
-         rectangle.bottom() = rectangle.top() + 32;
+         rectangle.bottom = rectangle.top + 32;
 
          return true;
 
@@ -30457,9 +30457,9 @@ __check_refdbg;
 
          rectangle = this->rectangle();
 
-         rectangle.left() = rectangle.right() - 48;
+         rectangle.left = rectangle.right - 48;
 
-         rectangle.bottom() = rectangle.top() + 48;
+         rectangle.bottom = rectangle.top + 48;
 
          return true;
 
@@ -30469,11 +30469,11 @@ __check_refdbg;
 
          rectangle = this->rectangle();
 
-         rectangle.right() = rectangle.right() - 48;
+         rectangle.right = rectangle.right - 48;
 
-         rectangle.left() = rectangle.right() - 48;
+         rectangle.left = rectangle.right - 48;
 
-         rectangle.top() = rectangle.bottom() - 48;
+         rectangle.top = rectangle.bottom - 48;
 
          return true;
 
@@ -30483,11 +30483,11 @@ __check_refdbg;
 
          rectangle = this->rectangle();
 
-         rectangle.left() = rectangle.right() - 96;
+         rectangle.left = rectangle.right - 96;
 
-         rectangle.right() = rectangle.left() + 48;
+         rectangle.right = rectangle.left + 48;
 
-         rectangle.bottom() = rectangle.top() + 48;
+         rectangle.bottom = rectangle.top + 48;
 
          return true;
 
@@ -30497,11 +30497,11 @@ __check_refdbg;
 
          rectangle = this->rectangle();
 
-         rectangle.left() = rectangle.right() - 144;
+         rectangle.left = rectangle.right - 144;
 
-         rectangle.right() = rectangle.left() + 48;
+         rectangle.right = rectangle.left + 48;
 
-         rectangle.bottom() = rectangle.top() + 48;
+         rectangle.bottom = rectangle.top + 48;
 
          return true;
 

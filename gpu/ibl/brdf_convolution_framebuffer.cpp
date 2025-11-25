@@ -40,10 +40,10 @@ namespace gpu
 
          ødefer_construct(m_ptexture);
          m_ptexture->m_pgpurenderer = m_pgpucontext->m_pgpurenderer;
-         m_ptexture->m_rectangleTarget.left()=0;
-         m_ptexture->m_rectangleTarget.top()=0;
-         m_ptexture->m_rectangleTarget.right()=width;
-         m_ptexture->m_rectangleTarget.bottom()=height;
+         m_ptexture->m_rectangleTarget.left=0;
+         m_ptexture->m_rectangleTarget.top=0;
+         m_ptexture->m_rectangleTarget.right=width;
+         m_ptexture->m_rectangleTarget.bottom=height;
          m_ptexture->m_bRenderTarget = true;
          m_ptexture->m_bRedGreen = true;
          m_ptexture->m_bFloat = true;

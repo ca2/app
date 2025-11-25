@@ -622,9 +622,9 @@ namespace hotplugin
 
       ::int_rectangle rectangleWindow(rectangleParam);
 
-      int cx = rectangleWindow.right() - rectangleWindow.left();
+      int cx = rectangleWindow.right - rectangleWindow.left;
 
-      int cy = rectangleWindow.bottom() - rectangleWindow.top();
+      int cy = rectangleWindow.bottom - rectangleWindow.top;
 
       double dRate = get_progress_rate();
 
@@ -632,7 +632,7 @@ namespace hotplugin
 
       int x;
 
-      int y = rectangleWindow.top();
+      int y = rectangleWindow.top;
 
       int pcx = cx;
 
@@ -651,20 +651,20 @@ namespace hotplugin
          {
 
             if(dRate < dStart)
-               x = rectangleWindow.left();
+               x = rectangleWindow.left;
             else
-               x = (int) (rectangleWindow.left() + ((((dRate - dStart) * (double) pcx) / (dEnd - dStart))));
+               x = (int) (rectangleWindow.left + ((((dRate - dStart) * (double) pcx) / (dEnd - dStart))));
 
             if(iLine >= (iLineCount - 1))
-               pcy = rectangleWindow.bottom() - y;
+               pcy = rectangleWindow.bottom - y;
 
-            rectangleP.top()      = y;
+            rectangleP.top      = y;
 
-            rectangleP.bottom()   = y + pcy;
+            rectangleP.bottom   = y + pcy;
 
-            rectangleP.left()     = x;
+            rectangleP.left     = x;
 
-            rectangleP.right()    = rectangleWindow.right();
+            rectangleP.right    = rectangleWindow.right;
 
             pgraphics->fill_rectangle(rectangleP, argb(90, 90, 90, 80));
 

@@ -27,8 +27,8 @@ CLASS_DECL_ACME ::int_rectangle_array_base get_top_left_oriented_damaged_areas_b
 
       // Right
       auto rectangleRight = rectangleAfter;
-      rectangleRight.left() = rectangleBefore.right();
-      rectangleRight.bottom() = ::minimum(rectangleBefore.bottom(), rectangleAfter.bottom());
+      rectangleRight.left = rectangleBefore.right;
+      rectangleRight.bottom = ::minimum(rectangleBefore.bottom, rectangleAfter.bottom);
 
       if (!bOnlyGrowing)
       {
@@ -50,7 +50,7 @@ CLASS_DECL_ACME ::int_rectangle_array_base get_top_left_oriented_damaged_areas_b
 
       // Bottom
       auto rectangleBottom = rectangleAfter;
-      rectangleBottom.top() = rectangleBefore.bottom();
+      rectangleBottom.top = rectangleBefore.bottom;
 
       if (!bOnlyGrowing)
       {

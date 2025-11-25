@@ -759,7 +759,7 @@ void image::_draw_raw(const ::int_rectangle& rectangleDstParam, ::image::image* 
    if (pointSrc.x < 0)
    {
 
-      rectangleTarget.left() -= pointSrc.x;
+      rectangleTarget.left -= pointSrc.x;
 
       pointSrc.x = 0;
 
@@ -768,18 +768,18 @@ void image::_draw_raw(const ::int_rectangle& rectangleDstParam, ::image::image* 
    if (pointSrc.y < 0)
    {
 
-      rectangleTarget.top() -= pointSrc.y;
+      rectangleTarget.top -= pointSrc.y;
 
       pointSrc.y = 0;
 
    }
 
-   if (rectangleTarget.left() < 0)
+   if (rectangleTarget.left < 0)
    {
 
-      rectangleTarget.right() += rectangleTarget.left();
+      rectangleTarget.right += rectangleTarget.left;
 
-      rectangleTarget.left() = 0;
+      rectangleTarget.left = 0;
 
    }
 
@@ -790,12 +790,12 @@ void image::_draw_raw(const ::int_rectangle& rectangleDstParam, ::image::image* 
 
    }
 
-   if (rectangleTarget.top() < 0)
+   if (rectangleTarget.top < 0)
    {
 
-      rectangleTarget.bottom() += rectangleTarget.top();
+      rectangleTarget.bottom += rectangleTarget.top;
 
-      rectangleTarget.top() = 0;
+      rectangleTarget.top = 0;
 
    }
 
@@ -806,9 +806,9 @@ void image::_draw_raw(const ::int_rectangle& rectangleDstParam, ::image::image* 
 
    }
 
-   int xEnd = minimum(rectangleTarget.width(), minimum(pimageSrc->width() - pointSrc.x, pimageDst->width() - rectangleTarget.left()));
+   int xEnd = minimum(rectangleTarget.width(), minimum(pimageSrc->width() - pointSrc.x, pimageDst->width() - rectangleTarget.left));
 
-   int yEnd = minimum(rectangleTarget.height(), minimum(pimageSrc->height() - pointSrc.y, pimageDst->height() - rectangleTarget.top()));
+   int yEnd = minimum(rectangleTarget.height(), minimum(pimageSrc->height() - pointSrc.y, pimageDst->height() - rectangleTarget.top));
 
    if (xEnd < 0)
    {
@@ -828,7 +828,7 @@ void image::_draw_raw(const ::int_rectangle& rectangleDstParam, ::image::image* 
 
    int scanSrc = pimageSrc->m_iScan;
 
-   unsigned char* pdst = &((unsigned char*)pimageDst->image32())[scanDst * rectangleTarget.top() + rectangleTarget.left() * sizeof(image32_t)];
+   unsigned char* pdst = &((unsigned char*)pimageDst->image32())[scanDst * rectangleTarget.top + rectangleTarget.left * sizeof(image32_t)];
 
    unsigned char* psrc = &((unsigned char*)pimageSrc->image32())[scanSrc * pointSrc.y + pointSrc.x * sizeof(image32_t)];
 
@@ -884,7 +884,7 @@ void image::blend(const ::int_rectangle& rectangleDstParam, ::image::image* pima
    if (pointSrc.x < 0)
    {
 
-      rectangleTarget.left() -= pointSrc.x;
+      rectangleTarget.left -= pointSrc.x;
 
       pointSrc.x = 0;
 
@@ -893,18 +893,18 @@ void image::blend(const ::int_rectangle& rectangleDstParam, ::image::image* pima
    if (pointSrc.y < 0)
    {
 
-      rectangleTarget.top() -= pointSrc.y;
+      rectangleTarget.top -= pointSrc.y;
 
       pointSrc.y = 0;
 
    }
 
-   if (rectangleTarget.left() < 0)
+   if (rectangleTarget.left < 0)
    {
 
-      size.cx() += rectangleTarget.left();
+      size.cx() += rectangleTarget.left;
 
-      rectangleTarget.left() = 0;
+      rectangleTarget.left = 0;
 
    }
 
@@ -917,12 +917,12 @@ void image::blend(const ::int_rectangle& rectangleDstParam, ::image::image* pima
 
    }
 
-   if (rectangleTarget.top() < 0)
+   if (rectangleTarget.top < 0)
    {
 
-      size.cy() += rectangleTarget.top();
+      size.cy() += rectangleTarget.top;
 
-      rectangleTarget.top() = 0;
+      rectangleTarget.top = 0;
 
    }
 
@@ -935,9 +935,9 @@ void image::blend(const ::int_rectangle& rectangleDstParam, ::image::image* pima
 
    }
 
-   int xEnd = minimum(size.cx(), minimum(pimageSrc->width() - pointSrc.x, pimageDst->width() - rectangleTarget.left()));
+   int xEnd = minimum(size.cx(), minimum(pimageSrc->width() - pointSrc.x, pimageDst->width() - rectangleTarget.left));
 
-   int yEnd = minimum(size.cy(), minimum(pimageSrc->height() - pointSrc.y, pimageDst->height() - rectangleTarget.top()));
+   int yEnd = minimum(size.cy(), minimum(pimageSrc->height() - pointSrc.y, pimageDst->height() - rectangleTarget.top));
 
    if (xEnd < 0)
    {
@@ -959,7 +959,7 @@ void image::blend(const ::int_rectangle& rectangleDstParam, ::image::image* pima
 
    int scanSrc = pimageSrc->m_iScan;
 
-   unsigned char* pdst = &((unsigned char*)pimageDst->image32())[scanDst * rectangleTarget.top() + rectangleTarget.left() * sizeof(image32_t)];
+   unsigned char* pdst = &((unsigned char*)pimageDst->image32())[scanDst * rectangleTarget.top + rectangleTarget.left * sizeof(image32_t)];
 
    unsigned char* psrc = &((unsigned char*)pimageSrc->image32())[scanSrc * pointSrc.y + pointSrc.x * sizeof(image32_t)];
 
@@ -3702,10 +3702,10 @@ void image::channel_from(::color::enum_channel echannel, ::image::image* pimage,
 
    }
 
-   unsigned char* pb1 = ((unsigned char*)data()) + (rectangle.left() * sizeof(image32_t) + rectangle.top() * m_iScan);
+   unsigned char* pb1 = ((unsigned char*)data()) + (rectangle.left * sizeof(image32_t) + rectangle.top * m_iScan);
 
 
-   unsigned char* pb2 = ((unsigned char*)pimage->data()) + (rectangle.left() * sizeof(image32_t) + rectangle.top() * pimage->m_iScan);
+   unsigned char* pb2 = ((unsigned char*)pimage->data()) + (rectangle.left * sizeof(image32_t) + rectangle.top * pimage->m_iScan);
 
 
    pb1 += ((int)echannel) % 4;
@@ -3787,18 +3787,18 @@ void image::channel_multiply(::color::enum_channel echannel, ::image::image* pim
 
 #ifdef __APPLE__
 
-   unsigned char* pb1 = ((unsigned char*)data()) + (rectangle.left() * sizeof(image32_t) + (height() - rectangle.top() - 1) * m_iScan);
+   unsigned char* pb1 = ((unsigned char*)data()) + (rectangle.left * sizeof(image32_t) + (height() - rectangle.top - 1) * m_iScan);
 
 
-   unsigned char* pb2 = ((unsigned char*)pimage->data()) + (rectangle.left() * sizeof(image32_t) + (pimage->height() - rectangle.top() - 1) * pimage->m_iScan);
+   unsigned char* pb2 = ((unsigned char*)pimage->data()) + (rectangle.left * sizeof(image32_t) + (pimage->height() - rectangle.top - 1) * pimage->m_iScan);
 
 
 #else
 
-   unsigned char* pb1 = ((unsigned char*)data()) + (rectangle.left() * sizeof(image32_t) + rectangle.top() * m_iScan);
+   unsigned char* pb1 = ((unsigned char*)data()) + (rectangle.left * sizeof(image32_t) + rectangle.top * m_iScan);
 
 
-   unsigned char* pb2 = ((unsigned char*)pimage->data()) + (rectangle.left() * sizeof(image32_t) + rectangle.top() * pimage->m_iScan);
+   unsigned char* pb2 = ((unsigned char*)pimage->data()) + (rectangle.left * sizeof(image32_t) + rectangle.top * pimage->m_iScan);
 
 
 #endif
@@ -4447,9 +4447,9 @@ void image::copy_from(::image::image *pimage, enum_flag eflagCreate)
 void image::fill_rectangle(const ::int_rectangle& rectangle, int R, int G, int B)
 {
 
-   int x = rectangle.left();
+   int x = rectangle.left;
 
-   int y = rectangle.top();
+   int y = rectangle.top;
 
    int w = rectangle.width();
 
@@ -4502,9 +4502,9 @@ void image::fill_rectangle(const ::int_rectangle& rectangle, ::color::color colo
    if (m_bMapped)
    {
 
-      int x = rectangle.left();
+      int x = rectangle.left;
 
-      int y = rectangle.top();
+      int y = rectangle.top;
 
       int w = rectangle.width();
 
@@ -4589,9 +4589,9 @@ void image::fill_glass_rect(const ::int_rectangle& rectangle, int R, int G, int 
 
 {
 
-   int x = rectangle.left();
+   int x = rectangle.left;
 
-   int y = rectangle.top();
+   int y = rectangle.top;
 
    int w = rectangle.width();
 
@@ -4637,9 +4637,9 @@ void image::fill_stippled_glass_rect(const ::int_rectangle& rectangle, int R, in
 
 {
 
-   int x = rectangle.left();
+   int x = rectangle.left;
 
-   int y = rectangle.top();
+   int y = rectangle.top;
 
    int w = rectangle.width();
 
@@ -6406,9 +6406,9 @@ void image::Rotate034(::image::image* pimage, double dAngle, double dScale)
 //   int imax = minimum(l, width() / 2);
 //   int imin = -imax;
 //
-//   int joff = height() / 2 + rectangle.left();
+//   int joff = height() / 2 + rectangle.left;
 //
-//   int ioff = width() / 2 + rectangle.top();
+//   int ioff = width() / 2 + rectangle.top;
 //
 //   int stride_unit = m_iScan / sizeof(image32_t);
 //   //int iAngle = iStep % 360;
@@ -8559,7 +8559,7 @@ long long image::get_rgba_area(::color::color color, const ::int_rectangle &rect
 
    int scanadvance = wscan - w;
 
-   const image32_t* p = this->data() + r.left() + wscan * r.top();
+   const image32_t* p = this->data() + r.left + wscan * r.top;
 
    areaRgba++;
 
@@ -8635,24 +8635,24 @@ long long image::_001GetTopLeftWeightedOpaqueArea(int iAlphaMin, const ::int_rec
 
    long long areaRgbaLast = 0;
 
-   const image32_t* p = this->data() + r.left() + wscan * r.top();
+   const image32_t* p = this->data() + r.left + wscan * r.top;
 
    areaRgba++;
 
-   for (int y = r.top(); y < r.bottom(); y++)
+   for (int y = r.top; y < r.bottom; y++)
    {
 
-      auto ysq = (rTotal.bottom() - y);
+      auto ysq = (rTotal.bottom - y);
 
       auto pbyte = &((unsigned char*)p)[m_colorindexes.m_uchIndexOpacity];
 
-      for (int x = r.left(); x < r.right(); x++)
+      for (int x = r.left; x < r.right; x++)
       {
 
          if (*pbyte > iAlphaMin)
          {
 
-            areaRgba += ((rTotal.right() - x) + ysq);
+            areaRgba += ((rTotal.right - x) + ysq);
 
          }
 
@@ -9491,16 +9491,16 @@ void image::invert_rgb(const ::int_rectangle& rectangle)
    int top;
    int bottom;
 
-   left = minimum(maximum(0, rectangle.left()), width());
+   left = minimum(maximum(0, rectangle.left), width());
 
 
-   right = minimum(maximum(0, rectangle.right()), width());
+   right = minimum(maximum(0, rectangle.right), width());
 
 
-   top = minimum(maximum(0, rectangle.top()), height());
+   top = minimum(maximum(0, rectangle.top), height());
 
 
-   bottom = minimum(maximum(0, rectangle.bottom()), height());
+   bottom = minimum(maximum(0, rectangle.bottom), height());
 
    int start = left * 4 + top * s;
 

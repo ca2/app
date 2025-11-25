@@ -188,10 +188,10 @@ namespace geometry2d
    //void rectangle_item::expand_bounding_box(::double_rectangle & rectangle)
    //{
 
-   //   rectangle.left() = ::minimum(m_rectangle.left(), rectangle.left());
-   //   rectangle.top() = ::minimum(m_rectangle.top(), rectangle.top());
-   //   rectangle.right() = ::minimum(m_rectangle.right(), rectangle.right());
-   //   rectangle.bottom() = ::minimum(m_rectangle.bottom(), rectangle.bottom());
+   //   rectangle.left = ::minimum(m_rectangle.left, rectangle.left);
+   //   rectangle.top = ::minimum(m_rectangle.top, rectangle.top);
+   //   rectangle.right = ::minimum(m_rectangle.right, rectangle.right);
+   //   rectangle.bottom = ::minimum(m_rectangle.bottom, rectangle.bottom);
 
    //}
 
@@ -269,10 +269,10 @@ namespace geometry2d
    //void ellipse_item::expand_bounding_box(::double_rectangle & rectangle)
    //{
 
-   //   ::expand_bounding_box(rectangle, m_ellipse);/* rectangleleft = ::minimum(m_rectangle.left(), rectangle.left());
-   //   rectangle.top() = ::minimum(m_rectangle.top(), rectangle.top());
-   //   rectangle.right() = ::minimum(m_rectangle.right(), rectangle.right());
-   //   rectangle.bottom() = ::minimum(m_rectangle.bottom(), rectangle.bottom());*/
+   //   ::expand_bounding_box(rectangle, m_ellipse);/* rectangleleft = ::minimum(m_rectangle.left, rectangle.left);
+   //   rectangle.top = ::minimum(m_rectangle.top, rectangle.top);
+   //   rectangle.right = ::minimum(m_rectangle.right, rectangle.right);
+   //   rectangle.bottom = ::minimum(m_rectangle.bottom, rectangle.bottom);*/
 
    //}
 
@@ -316,10 +316,10 @@ namespace geometry2d
    //{
 
    //   ::expand_bounding_box(rectangle, m_arc);
-   //   //rectangle.left() = ::minimum(m_rectangle.left(), rectangle.left());
-   //   //rectangle.top() = ::minimum(m_rectangle.top(), rectangle.top());
-   //   //rectangle.right() = ::minimum(m_rectangle.right(), rectangle.right());
-   //   //rectangle.bottom() = ::minimum(m_rectangle.bottom(), rectangle.bottom());
+   //   //rectangle.left = ::minimum(m_rectangle.left, rectangle.left);
+   //   //rectangle.top = ::minimum(m_rectangle.top, rectangle.top);
+   //   //rectangle.right = ::minimum(m_rectangle.right, rectangle.right);
+   //   //rectangle.bottom = ::minimum(m_rectangle.bottom, rectangle.bottom);
 
    //}
 

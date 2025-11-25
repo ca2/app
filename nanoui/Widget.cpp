@@ -1242,10 +1242,10 @@ namespace nanoui
 
       auto absolutionPosition = absolute_position();
 
-      rectangle.left() = absolutionPosition.x;
-      rectangle.top() = absolutionPosition.y;
-      rectangle.right() = rectangle.left() + m_size.cx();
-      rectangle.bottom() = rectangle.top() + m_size.cy();
+      rectangle.left = absolutionPosition.x;
+      rectangle.top = absolutionPosition.y;
+      rectangle.right = rectangle.left + m_size.cx();
+      rectangle.bottom = rectangle.top + m_size.cy();
 
       return rectangle;
 

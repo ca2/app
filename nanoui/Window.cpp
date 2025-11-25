@@ -326,10 +326,10 @@ void Window::on_destroy_window()
             }
 
             informationf("rectangleOld (%d, %d, %d, %d)",
-                        rectangleOld.left(),
-                        rectangleOld.top(),
-                        rectangleOld.right(),
-                        rectangleOld.bottom());
+                        rectangleOld.left,
+                        rectangleOld.top,
+                        rectangleOld.right,
+                        rectangleOld.bottom);
             
             ::int_rectangle_array_base rectanglea;
             
@@ -352,21 +352,21 @@ void Window::on_destroy_window()
                if (ppopup->side() == Popup::Left)
                {
 
-                  rectangleOld.right() += ppopup->anchor_size();
+                  rectangleOld.right += ppopup->anchor_size();
 
                }
                else
                {
 
-                  rectangleOld.left() -= ppopup->anchor_size();
+                  rectangleOld.left -= ppopup->anchor_size();
 
                }
 
                informationf("extra Popup Button : rectangleOld (%d, %d, %d, %d)",
-                  rectangleOld.left(),
-                  rectangleOld.top(),
-                  rectangleOld.right(),
-                  rectangleOld.bottom());
+                  rectangleOld.left,
+                  rectangleOld.top,
+                  rectangleOld.right,
+                  rectangleOld.bottom);
 
                rectanglea.add(rectangleOld);
 
@@ -382,10 +382,10 @@ void Window::on_destroy_window()
             }
             
             informationf("rectangleNew (%d, %d, %d, %d)",
-                        rectangleNew.left(),
-                        rectangleNew.top(),
-                        rectangleNew.right(),
-                        rectangleNew.bottom());
+                        rectangleNew.left,
+                        rectangleNew.top,
+                        rectangleNew.right,
+                        rectangleNew.bottom);
 
             rectanglea.add(rectangleNew);
 
@@ -410,21 +410,21 @@ void Window::on_destroy_window()
                if (ppopup->side() == Popup::Left)
                {
 
-                  rectangleNew.right() += ppopup->anchor_size();
+                  rectangleNew.right += ppopup->anchor_size();
 
                }
                else
                {
 
-                  rectangleNew.left() -= ppopup->anchor_size();
+                  rectangleNew.left -= ppopup->anchor_size();
 
                }
 
                informationf("extra Popup Button : rectangleNew (%d, %d, %d, %d)",
-                  rectangleNew.left(),
-                  rectangleNew.top(),
-                  rectangleNew.right(),
-                  rectangleNew.bottom());
+                  rectangleNew.left,
+                  rectangleNew.top,
+                  rectangleNew.right,
+                  rectangleNew.bottom);
 
                rectanglea.add(rectangleNew);
 

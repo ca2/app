@@ -267,17 +267,17 @@ namespace draw2d
 
       polygon.set_size(4);
 
-      polygon[0].x = rectangle.left();
-      polygon[0].y = rectangle.top();
+      polygon[0].x = rectangle.left;
+      polygon[0].y = rectangle.top;
 
-      polygon[1].x = rectangle.right();
-      polygon[1].y = rectangle.top();
+      polygon[1].x = rectangle.right;
+      polygon[1].y = rectangle.top;
 
-      polygon[2].x = rectangle.right();
-      polygon[2].y = rectangle.bottom();
+      polygon[2].x = rectangle.right;
+      polygon[2].y = rectangle.bottom;
 
-      polygon[3].x = rectangle.left();
-      polygon[3].y = rectangle.bottom();
+      polygon[3].x = rectangle.left;
+      polygon[3].y = rectangle.bottom;
 
       polygon.rotate(angleRotationCenter, point);
 
@@ -322,8 +322,8 @@ namespace draw2d
 //      double x = point.x;
 //      double y = point.y;
 //      //arc.m_pointCenter.y = point.y + h/2.0;
-//      arc.left() = x;
-//      arc.top() = y;
+//      arc.left = x;
+//      arc.top = y;
 //      double b = point.y - arc.m_pointCenter.y / sin(t);
 //      double a = sqrt((b*b*x*x) / (y*y - b *b));
 //
@@ -1674,7 +1674,7 @@ namespace draw2d
       if (iDiameter > rectangle.height())	iDiameter = rectangle.height();
 
       // define a corner
-      auto rectangleCorder = double_rectangle_dimension(rectangle.left(), rectangle.top(), iDiameter, iDiameter);
+      auto rectangleCorder = double_rectangle_dimension(rectangle.left, rectangle.top, iDiameter, iDiameter);
 
       // begin path
       //path.m_ppath->Reset();
@@ -1694,29 +1694,29 @@ namespace draw2d
       //}
 
       // top right
-      rectangleCorder.left() += (rectangle.width() - iDiameter - 1);
+      rectangleCorder.left += (rectangle.width() - iDiameter - 1);
       //path.m_ppath->AddArc(rectangleCorder, 270, 90);
 
       // bottom right
-      rectangleCorder.top() += (rectangle.height() - iDiameter - 1);
+      rectangleCorder.top += (rectangle.height() - iDiameter - 1);
       //path.m_ppath->AddArc(rectangleCorder,   0, 90);
 
       // bottom left
-      rectangleCorder.left() -= (rectangle.width() - iDiameter - 1);
-      rectangleCorder.right() = rectangleCorder.left() + iDiameter2;
+      rectangleCorder.left -= (rectangle.width() - iDiameter - 1);
+      rectangleCorder.right = rectangleCorder.left + iDiameter2;
       add_arc(rectangleCorder, 135_degree, 45_degree);
 
-      add_line(rectangle.left(), rectangle.top() + rectangle.height() - iDiameter / 2, rectangle.left(), rectangle.top() + iDiameter / 2);
+      add_line(rectangle.left, rectangle.top + rectangle.height() - iDiameter / 2, rectangle.left, rectangle.top + iDiameter / 2);
 
 
-      rectangleCorder.top() -= (rectangle.height() - iDiameter - 1);
-      rectangleCorder.bottom() = rectangleCorder.top() + iDiameter2;
+      rectangleCorder.top -= (rectangle.height() - iDiameter - 1);
+      rectangleCorder.bottom = rectangleCorder.top + iDiameter2;
       add_arc(rectangleCorder, 180_degree, 90_degree);
 
-      add_line(rectangle.left() + iDiameter / 2, rectangle.top(), rectangle.left() + rectangle.width() - iDiameter / 2, rectangle.top());
+      add_line(rectangle.left + iDiameter / 2, rectangle.top, rectangle.left + rectangle.width() - iDiameter / 2, rectangle.top);
 
-      rectangleCorder.left() += (rectangle.width() - iDiameter - 1);
-      rectangleCorder.right() = rectangleCorder.left() + iDiameter2;
+      rectangleCorder.left += (rectangle.width() - iDiameter - 1);
+      rectangleCorder.right = rectangleCorder.left + iDiameter2;
       add_arc(rectangleCorder, 270_degree, 45_degree);
 
 
@@ -1736,7 +1736,7 @@ namespace draw2d
       if (iDiameter > rectangle.height())	iDiameter = rectangle.height();
 
       // define a corner
-      auto rectangleCorder = double_rectangle_dimension(rectangle.left(), rectangle.top(), iDiameter, iDiameter);
+      auto rectangleCorder = double_rectangle_dimension(rectangle.left, rectangle.top, iDiameter, iDiameter);
 
       // begin path
       //path.m_ppath->Reset();
@@ -1755,22 +1755,22 @@ namespace draw2d
       //}
 
       // top right
-      rectangleCorder.left() += (rectangle.width() - iDiameter - 1);
-      rectangleCorder.right() = rectangleCorder.left() + iDiameter2;
+      rectangleCorder.left += (rectangle.width() - iDiameter - 1);
+      rectangleCorder.right = rectangleCorder.left + iDiameter2;
       add_arc(rectangleCorder, 315_degree, 45_degree);
 
-      add_line(rectangle.left() + rectangle.width(), rectangle.top() + iDiameter / 2, rectangle.left() + rectangle.width(), rectangle.top() + rectangle.height() - iDiameter / 2);
+      add_line(rectangle.left + rectangle.width(), rectangle.top + iDiameter / 2, rectangle.left + rectangle.width(), rectangle.top + rectangle.height() - iDiameter / 2);
 
       // bottom right
-      rectangleCorder.top() += (rectangle.height() - iDiameter - 1);
-      rectangleCorder.bottom() = rectangleCorder.top() + iDiameter2;
+      rectangleCorder.top += (rectangle.height() - iDiameter - 1);
+      rectangleCorder.bottom = rectangleCorder.top + iDiameter2;
       add_arc(rectangleCorder, 0_degrees, 90_degrees);
 
-      add_line(rectangle.left() + iDiameter / 2, rectangle.top() + rectangle.height(), rectangle.left() + rectangle.width() - iDiameter / 2, rectangle.top() + rectangle.height());
+      add_line(rectangle.left + iDiameter / 2, rectangle.top + rectangle.height(), rectangle.left + rectangle.width() - iDiameter / 2, rectangle.top + rectangle.height());
 
       // bottom left
-      rectangleCorder.left() -= (rectangle.width() - iDiameter - 1);
-      rectangleCorder.right() = rectangleCorder.left() + iDiameter2;
+      rectangleCorder.left -= (rectangle.width() - iDiameter - 1);
+      rectangleCorder.right = rectangleCorder.left + iDiameter2;
       add_arc(rectangleCorder, 90_degrees, 45_degrees);
 
 
@@ -1841,13 +1841,13 @@ namespace draw2d
 
       {
 
-         rectangle.left() = rectangleParam.left();
+         rectangle.left = rectangleParam.left;
 
-         rectangle.top() = rectangleParam.top();
+         rectangle.top = rectangleParam.top;
 
-         rectangle.right() = rectangleParam.left() + rectangleParam.height();
+         rectangle.right = rectangleParam.left + rectangleParam.height();
 
-         rectangle.bottom() = rectangleParam.bottom();
+         rectangle.bottom = rectangleParam.bottom;
 
          add_arc(rectangle,90_degree,180_degree);
 
@@ -1855,27 +1855,27 @@ namespace draw2d
 
       {
 
-         r2.left() = rectangle.left() + rectangle.height() / 2.0;
+         r2.left = rectangle.left + rectangle.height() / 2.0;
 
-         r2.top() = rectangle.top();
+         r2.top = rectangle.top;
 
-         r2.right() = rectangle.right() - rectangle.height() / 2.0;
+         r2.right = rectangle.right - rectangle.height() / 2.0;
 
-         r2.bottom() = rectangle.bottom();
+         r2.bottom = rectangle.bottom;
 
-         //add_line(r2.right(), r2.top());
+         //add_line(r2.right, r2.top);
 
       }
 
       {
 
-         rectangle.right() = rectangleParam.right();
+         rectangle.right = rectangleParam.right;
 
-         rectangle.top() = rectangleParam.top();
+         rectangle.top = rectangleParam.top;
 
-         rectangle.left() = rectangleParam.right() - rectangleParam.height();
+         rectangle.left = rectangleParam.right - rectangleParam.height();
 
-         rectangle.bottom() = rectangleParam.bottom();
+         rectangle.bottom = rectangleParam.bottom;
 
          add_arc(rectangle,-90_degree,180_degree);
 
@@ -1883,7 +1883,7 @@ namespace draw2d
 
       {
 
-         add_line(r2.left(),r2.bottom());
+         add_line(r2.left,r2.bottom);
 
       }
 

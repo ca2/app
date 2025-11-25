@@ -62,10 +62,10 @@ void xfplayer_impact_line_selection::relay_event(xfplayer_impact_line & viewline
          if(emessage == ::user::e_message_left_button_up
                || emessage == ::user::e_message_mouse_move)
          {
-            if(pointCursor.y < rectanglePlacement.top()
+            if(pointCursor.y < rectanglePlacement.top
                   ||
-                  (pointCursor.y <= rectanglePlacement.bottom() &&
-                   pointCursor.x < rectanglePlacement.left()))
+                  (pointCursor.y <= rectanglePlacement.bottom &&
+                   pointCursor.x < rectanglePlacement.left))
             {
                SetSelBefore(viewline);
                //                   viewline.get_interaction()->set_need_redraw();
@@ -530,10 +530,10 @@ bool xfplayer_impact_line_selection::OnMouseMove(xfplayer_impact_line & viewline
 
    if(!bInside && GetState() == e_state_tracking)
    {
-      if(point1.y < rectanglePlacement.top()
+      if(point1.y < rectanglePlacement.top
             ||
             (rectanglePlacement.contains_y(point1.y) &&
-             point1.x < rectanglePlacement.left()))
+             point1.x < rectanglePlacement.left))
       {
          SetSelBefore(viewline);
          //             viewline.get_interaction()->set_need_redraw();
@@ -616,10 +616,10 @@ bool xfplayer_impact_line_selection::OnLButtonUp(xfplayer_impact_line & viewline
    
    if(!bInside && GetState() == e_state_tracking)
    {
-      if(point1.y < rectanglePlacement.top()
+      if(point1.y < rectanglePlacement.top
             ||
-            (point1.y <= rectanglePlacement.bottom() &&
-             point1.x < rectanglePlacement.left()))
+            (point1.y <= rectanglePlacement.bottom &&
+             point1.x < rectanglePlacement.left))
       {
          SetSelBefore(viewline);
          //             viewline.get_interaction()->set_need_redraw();

@@ -395,8 +395,8 @@ namespace user
 
             //double_rectangle r;
 
-            //r.left() = 400.0;
-            //r.top() = 200.0;
+            //r.left = 400.0;
+            //r.top = 200.0;
             //r.set_size(50.0, 50.0);
 
             //pgraphics->fill_solid_rectangle(r, argb(1.0, 0.5, 0.75, 0.95));

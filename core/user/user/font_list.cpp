@@ -429,7 +429,7 @@ namespace user
          if (!rectangleImpact.contains(rectangle))
          {
 
-            set_context_offset_y((rectangle.top() + rectangle.bottom() - rectangleImpact.height()) / 2);
+            set_context_offset_y((rectangle.top + rectangle.bottom - rectangleImpact.height()) / 2);
 
             on_change_context_offset();
 
@@ -470,11 +470,11 @@ namespace user
       //if (m_pfontlist->get_font_list_type() != ::write_text::e_font_list_wide)
       //{
 
-         rectangleFontList.right() -= iScrollBarWidth;
+         rectangleFontList.right -= iScrollBarWidth;
 
       //}
 
-      rectangleFontList.bottom() -= iScrollBarWidth;
+      rectangleFontList.bottom -= iScrollBarWidth;
 
       if (m_pfontlist->m_strFontFamily.has_character()
          && !::is_item_set(main_content().m_pitemCurrent)
@@ -775,7 +775,7 @@ namespace user
          if (!rectangle.contains(pfontlistitem->m_box[0].m_rectangle))
          {
 
-            auto y = pfontlistitem->m_box[0].m_rectangle.top() - rectangle.height() / 2;
+            auto y = pfontlistitem->m_box[0].m_rectangle.top - rectangle.height() / 2;
 
             if (y > get_total_size().cy() - rectangle.height())
             {

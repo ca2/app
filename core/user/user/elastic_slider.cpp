@@ -269,13 +269,13 @@ namespace user
 
       int iWidth = 16;
       
-      rectangle.top() = rectangleX.top();
+      rectangle.top = rectangleX.top;
       
-      rectangle.bottom() = rectangleX.bottom();
+      rectangle.bottom = rectangleX.bottom;
       
-      rectangle.left() = (int) minimum(rectangleX.right(), m_dPosition * (rectangleX.width() - iWidth));
+      rectangle.left = (int) minimum(rectangleX.right, m_dPosition * (rectangleX.width() - iWidth));
       
-      rectangle.right() = (int) minimum(rectangleX.right(), m_dPosition * ((rectangleX.width() - iWidth)) + iWidth);
+      rectangle.right = (int) minimum(rectangleX.right, m_dPosition * ((rectangleX.width() - iWidth)) + iWidth);
       
    }
 

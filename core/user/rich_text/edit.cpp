@@ -451,7 +451,7 @@ namespace user
 
          double_rectangle rectangleX(rectangle);
 
-         int x = (int)rectangle.left();
+         int x = (int)rectangle.left;
 
          //int xLast = x;
 
@@ -547,13 +547,13 @@ namespace user
 
                //pline = øallocate line();
 
-               x = (int)rectangle.left();
+               x = (int)rectangle.left;
 
                //xLast = x;
 
                //bLineWrap = false;
 
-               x = (int)rectangle.left();
+               x = (int)rectangle.left;
 
                //pbox = øallocate box(pspan);
 
@@ -692,7 +692,7 @@ namespace user
 
                strSlice.empty();
 
-               cWords = (int)longest_pline(strSlice, dPosition, straWords, &pspan->m_daPositionRight[iSpanChar], dPositionLeft, (int)rectangleX.right() - x);
+               cWords = (int)longest_pline(strSlice, dPosition, straWords, &pspan->m_daPositionRight[iSpanChar], dPositionLeft, (int)rectangleX.right - x);
 
                if (ansi_char_isspace(straWords.last().last_char())
                   || (iSpan + 1 < prichtextdata->m_spana.get_count()
@@ -752,7 +752,7 @@ namespace user
 
                      strSlice.empty();
 
-                     longest_word(strSlice, dPosition, strWord, &pspan->m_daPositionRight[iSpanChar], dPositionLeft, (int)rectangleX.right() - x);
+                     longest_word(strSlice, dPosition, strWord, &pspan->m_daPositionRight[iSpanChar], dPositionLeft, (int)rectangleX.right - x);
 
                      auto pbox = øallocate box(pspan);
 
@@ -961,7 +961,7 @@ namespace user
 
          //}
 
-         int y = (int)rectangle.top();
+         int y = (int)rectangle.top;
 
 
          int nexty;
@@ -978,9 +978,9 @@ namespace user
 
                iMaxCy = maximum(iMaxCy, (int)pbox->m_sizeBox.cy());
 
-               pbox->m_rectangleBox.top() = y;
+               pbox->m_rectangleBox.top = y;
 
-               pbox->m_rectangleHitTest.top() = y;
+               pbox->m_rectangleHitTest.top = y;
 
             }
 
@@ -989,11 +989,11 @@ namespace user
             for (auto & pbox : *pline)
             {
 
-               pbox->m_rectangleBox.bottom() = nexty;
+               pbox->m_rectangleBox.bottom = nexty;
 
-               pbox->m_rectangleHitTest.bottom() = nexty;
+               pbox->m_rectangleHitTest.bottom = nexty;
 
-               //pbox->m_rectangleBox.right() += 2;
+               //pbox->m_rectangleBox.right += 2;
 
             }
 
@@ -1080,13 +1080,13 @@ namespace user
                            if (iBoxPosBeg == pboxBeg->m_iPosBeg)
                            {
 
-                              l = pboxBeg->m_rectangleBox.left();
+                              l = pboxBeg->m_rectangleBox.left;
 
                            }
                            else if (iBoxPosBeg >= pboxBeg->m_iPosEnd)
                            {
 
-                              l = pboxBeg->m_rectangleBox.right();
+                              l = pboxBeg->m_rectangleBox.right;
 
                            }
                            else
@@ -1101,13 +1101,13 @@ namespace user
                            if (iBoxPosEnd == pboxEnd->m_iPosBeg)
                            {
 
-                              r = pboxEnd->m_rectangleBox.left();
+                              r = pboxEnd->m_rectangleBox.left;
 
                            }
                            else if (iBoxPosEnd >= pboxEnd->m_iPosEnd)
                            {
 
-                              r = pboxEnd->m_rectangleBox.right();
+                              r = pboxEnd->m_rectangleBox.right;
 
                            }
                            else
@@ -1118,9 +1118,9 @@ namespace user
 
                            pgraphics->fill_rectangle(
                               ::double_rectangle(l,
-                                 pboxBeg->m_rectangleBox.top(),
+                                 pboxBeg->m_rectangleBox.top,
                                  r,
-                                 pboxEnd->m_rectangleBox.bottom()),
+                                 pboxEnd->m_rectangleBox.bottom),
                               crBkSel);
 
                         }
@@ -1193,35 +1193,35 @@ namespace user
 
                r = pbox->get_pos(m_iSelEnd);
 
-               ////r += rectangle.left();
+               ////r += rectangle.left;
 
-               //if (r > rectangle.right())
+               //if (r > rectangle.right)
                //{
 
                //   r -= 1.0;
 
                //}
 
-               if (r < rectangle.left() + 2)
+               if (r < rectangle.left + 2)
                {
 
-                  r = rectangle.left() + 2;
+                  r = rectangle.left + 2;
 
                }
 
-               if (r > rectangle.right() - 2)
+               if (r > rectangle.right - 2)
                {
 
-                  r = rectangle.right() - 2;
+                  r = rectangle.right - 2;
 
                }
 
                auto dDescent = pbox->m_pspan->m_pformat->m_pfont->get_descent(pgraphics);
 
                pgraphics->fill_rectangle(::double_rectangle(r,
-                  pbox->m_rectangleBox.top() + 1,
+                  pbox->m_rectangleBox.top + 1,
                   r + 0.5,
-                  pbox->m_rectangleBox.bottom() - dDescent),
+                  pbox->m_rectangleBox.bottom - dDescent),
                   system()->dark_mode() ? argb(255, 255, 255, 255) : argb(255, 0, 0, 0));
 
             }
@@ -2062,10 +2062,10 @@ namespace user
 
          double_rectangle rBox;
 
-         rBox.right() = -1024.0 * 1024.0 * 1024.0;
-         rBox.bottom() = -1024.0 * 1024.0 * 1024.0;
-         rBox.left() = 1024.0 * 1024.0 * 1024.0;
-         rBox.top() = 1024.0 * 1024.0 * 1024.0;
+         rBox.right = -1024.0 * 1024.0 * 1024.0;
+         rBox.bottom = -1024.0 * 1024.0 * 1024.0;
+         rBox.left = 1024.0 * 1024.0 * 1024.0;
+         rBox.top = 1024.0 * 1024.0 * 1024.0;
 
          double yStart = -1024.0 * 1024.0 * 1024.0;
 
@@ -2083,7 +2083,7 @@ namespace user
 
                rBox.unite(pbox->m_rectangleDevice);
 
-               yLast = pbox->m_rectangleHitTest.top();
+               yLast = pbox->m_rectangleHitTest.top;
 
                if (point.y < yLast)
                {
@@ -2095,9 +2095,9 @@ namespace user
                if (pbox->m_rectangleHitTest.contains_y(point.y))
                {
 
-                  double xLeft = pbox->m_rectangleDevice.left();
+                  double xLeft = pbox->m_rectangleDevice.left;
 
-                  double xLast = pbox->m_rectangleHitTest.left();
+                  double xLast = pbox->m_rectangleHitTest.left;
 
                   double xRight;
 
@@ -2155,14 +2155,14 @@ namespace user
 
          }
 
-         if (point.y >= rBox.bottom())
+         if (point.y >= rBox.bottom)
          {
 
             return _001GetLayoutTextLength();
 
          }
 
-         if (point.y < rBox.top())
+         if (point.y < rBox.top)
          {
 
             return 0;
@@ -2197,24 +2197,24 @@ namespace user
 
             auto & pbox = pline->element_at(iBox);
 
-            if (x <= pbox->m_rectangleHitTest.left())
+            if (x <= pbox->m_rectangleHitTest.left)
             {
 
                return pbox->m_iPosBeg;
 
             }
-            else if (iBox >= pline->get_upper_bound() && x > pbox->m_rectangleHitTest.right())
+            else if (iBox >= pline->get_upper_bound() && x > pbox->m_rectangleHitTest.right)
             {
 
                return pbox->m_iPosEnd;
 
             }
-            else if (x <= pbox->m_rectangleHitTest.right())
+            else if (x <= pbox->m_rectangleHitTest.right)
             {
 
-               double xLeft = pbox->m_rectangleBox.left();
+               double xLeft = pbox->m_rectangleBox.left;
 
-               double xLast = pbox->m_rectangleHitTest.left();
+               double xLast = pbox->m_rectangleHitTest.left;
 
                double xRight;
 

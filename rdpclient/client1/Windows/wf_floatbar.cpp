@@ -234,8 +234,8 @@ LRESULT CALLBACK floatbar_proc(HWND hWnd, unsigned int Msg, WPARAM wParam, LPARA
 			floatbar->parent = get_parent(hWnd);
 
 			window_rectangle(floatbar->hwnd, &floatbar->rectangle);
-			floatbar->width = floatbar->rectangle.right() - floatbar->rectangle.left();
-			floatbar->height = floatbar->rectangle.bottom() - floatbar->rectangle.top();
+			floatbar->width = floatbar->rectangle.right - floatbar->rectangle.left;
+			floatbar->height = floatbar->rectangle.bottom - floatbar->rectangle.top;
 
 			hdc = GetDC(hWnd);
 			floatbar->hdcmem = CreateCompatibleDC(hdc);
@@ -297,14 +297,14 @@ LRESULT CALLBACK floatbar_proc(HWND hWnd, unsigned int Msg, WPARAM wParam, LPARA
 
 			if (dragging)
 			{
-				floatbar->rectangle.left() = floatbar->rectangle.left() + (lParam & 0xffff) - btn_dwn_x;
+				floatbar->rectangle.left = floatbar->rectangle.left + (lParam & 0xffff) - btn_dwn_x;
 
-				if (floatbar->rectangle.left() < 0)
-					floatbar->rectangle.left() = 0;
-				else if (floatbar->rectangle.left() > xScreen - floatbar->width)
-					floatbar->rectangle.left() = xScreen - floatbar->width;
+				if (floatbar->rectangle.left < 0)
+					floatbar->rectangle.left = 0;
+				else if (floatbar->rectangle.left > xScreen - floatbar->width)
+					floatbar->rectangle.left = xScreen - floatbar->width;
 
-				MoveWindow(hWnd, floatbar->rectangle.left(), floatbar->rectangle.top(), floatbar->width, floatbar->height, true);
+				MoveWindow(hWnd, floatbar->rectangle.left, floatbar->rectangle.top, floatbar->width, floatbar->height, true);
 			}
 			else
 			{
@@ -355,7 +355,7 @@ LRESULT CALLBACK floatbar_proc(HWND hWnd, unsigned int Msg, WPARAM wParam, LPARA
 				{
 					static int y = 0;
 
-					MoveWindow(floatbar->hwnd, floatbar->rectangle.left(), (y++ - floatbar->height), floatbar->width, floatbar->height, true);
+					MoveWindow(floatbar->hwnd, floatbar->rectangle.left, (y++ - floatbar->height), floatbar->width, floatbar->height, true);
 					if (y == floatbar->height)
 					{
 						y = 0;
@@ -367,7 +367,7 @@ LRESULT CALLBACK floatbar_proc(HWND hWnd, unsigned int Msg, WPARAM wParam, LPARA
 				{
 					static int y = 0;
 
-					MoveWindow(floatbar->hwnd, floatbar->rectangle.left(), -y++, floatbar->width, floatbar->height, true);
+					MoveWindow(floatbar->hwnd, floatbar->rectangle.left, -y++, floatbar->width, floatbar->height, true);
 					if (y == floatbar->height)
 					{
 						y = 0;
@@ -419,14 +419,14 @@ static FloatBar* floatbar_create(wfContext* wfc)
 int floatbar_hide(FloatBar* floatbar)
 {
 	kill_timer(floatbar->hwnd, TIMER_HIDE);
-	MoveWindow(floatbar->hwnd, floatbar->rectangle.left(), -floatbar->height, floatbar->width, floatbar->height, true);
+	MoveWindow(floatbar->hwnd, floatbar->rectangle.left, -floatbar->height, floatbar->width, floatbar->height, true);
 	return 0;
 }
 
 int floatbar_show(FloatBar* floatbar)
 {
 	set_timer(floatbar->hwnd, TIMER_HIDE, 3000, nullptr);
-	MoveWindow(floatbar->hwnd, floatbar->rectangle.left(), floatbar->rectangle.top(), floatbar->width, floatbar->height, true);
+	MoveWindow(floatbar->hwnd, floatbar->rectangle.left, floatbar->rectangle.top, floatbar->width, floatbar->height, true);
 	return 0;
 }
 

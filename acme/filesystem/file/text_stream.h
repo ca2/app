@@ -352,7 +352,7 @@ public:
 //
 //   this->m_estrflag = (e_str_flag)((int)this->m_estrflag & ~(int)str_flag_ifnumberparenthesizeandspace);
 //
-//   *this << prectangle->left() << prectangle->top() << prectangle->right() << prectangle->bottom();
+//   *this << prectangle->left << prectangle->top << prectangle->right << prectangle->bottom;
 //
 //}
 //
@@ -575,13 +575,13 @@ public:
 ////text_stream & text_stream < FILE >::operator >>(::int_rectangle * prectangle)
 ////
 ////{
-////   m_pfile->read(&prectangle->left(), sizeof(prectangle->left()));
+////   m_pfile->read(&prectangle->left, sizeof(prectangle->left));
 ////
-////   m_pfile->read(&prectangle->top(), sizeof(prectangle->top()));
+////   m_pfile->read(&prectangle->top, sizeof(prectangle->top));
 ////
-////   m_pfile->read(&prectangle->right(), sizeof(prectangle->right()));
+////   m_pfile->read(&prectangle->right, sizeof(prectangle->right));
 ////
-////   m_pfile->read(&prectangle->bottom(), sizeof(prectangle->bottom()));
+////   m_pfile->read(&prectangle->bottom, sizeof(prectangle->bottom));
 ////   
 ////}
 ////

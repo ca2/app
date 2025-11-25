@@ -213,8 +213,8 @@ namespace nano
 
          xcb_window_t window = xcb_generate_id(m_pdisplay->m_pconnection);
 
-         int x = m_pinterface->m_rectangle.left();
-         int y = m_pinterface->m_rectangle.top();
+         int x = m_pinterface->m_rectangle.left;
+         int y = m_pinterface->m_rectangle.top;
          int cx = m_pinterface->m_rectangle.width();
          int cy = m_pinterface->m_rectangle.height();
 
@@ -636,13 +636,13 @@ namespace nano
 
             }
 
-            m_pinterface->m_rectangle.left() = pconfigure->x;
+            m_pinterface->m_rectangle.left = pconfigure->x;
 
-            m_pinterface->m_rectangle.top() = pconfigure->y;
+            m_pinterface->m_rectangle.top = pconfigure->y;
 
-            m_pinterface->m_rectangle.right() = pconfigure->x + pconfigure->width;
+            m_pinterface->m_rectangle.right = pconfigure->x + pconfigure->width;
 
-            m_pinterface->m_rectangle.bottom() = pconfigure->y + pconfigure->height;
+            m_pinterface->m_rectangle.bottom = pconfigure->y + pconfigure->height;
 
             if (m_psurface)
             {
@@ -1119,10 +1119,10 @@ namespace nano
 
          _get_geometry(&geometry);
 
-         rectangle.left() = 0;
-         rectangle.top() = 0;
-         rectangle.right() = geometry.width;
-         rectangle.bottom() = geometry.height;
+         rectangle.left = 0;
+         rectangle.top = 0;
+         rectangle.right = geometry.width;
+         rectangle.bottom = geometry.height;
 
       }
 
@@ -1134,10 +1134,10 @@ namespace nano
 
          _get_geometry(&geometry);
 
-         rectangle.left() = geometry.x;
-         rectangle.top() = geometry.y;
-         rectangle.right() = geometry.x + geometry.width;
-         rectangle.bottom() = geometry.y + geometry.height;
+         rectangle.left = geometry.x;
+         rectangle.top = geometry.y;
+         rectangle.right = geometry.x + geometry.width;
+         rectangle.bottom = geometry.y + geometry.height;
 
       }
 

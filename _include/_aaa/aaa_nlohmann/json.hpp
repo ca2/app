@@ -11911,7 +11911,7 @@ class json_pointer
         return static_cast<size_type>(res);
     }
 
-    json_pointer top() const
+    json_pointer top const
     {
         if (JSON_HEDLEY_UNLIKELY(empty()))
         {
@@ -24708,7 +24708,7 @@ class basic_json
             }
 
             // make sure the top element of the pointer exists
-            json_pointer top_pointer = ptr.top();
+            json_pointer top_pointer = ptr.top;
             if (top_pointer != ptr)
             {
                 result.at(top_pointer);

@@ -248,13 +248,13 @@ namespace micro
 
             //auto r = pelemental->get_rectangle();
 
-            //pmicrodevice->translate(r.left(), r.top());
+            //pmicrodevice->translate(r.left, r.top);
 
             //pelemental->draw_background(pmicrodevice);
 
             //pelemental->draw_foreground(pmicrodevice);
 
-            //pmicrodevice->translate(-r.left(), -r.top());
+            //pmicrodevice->translate(-r.left, -r.top);
 
          }
 
@@ -275,13 +275,13 @@ namespace micro
 
       auto r = pelemental->get_rectangle();
 
-      pmicrodevice->translate(r.left(), r.top());
+      pmicrodevice->translate(r.left, r.top);
 
       pelemental->draw_background(pmicrodevice);
 
       pelemental->draw_foreground(pmicrodevice);
 
-      pmicrodevice->translate(-r.left(), -r.top());
+      pmicrodevice->translate(-r.left, -r.top);
 
    }
 
@@ -293,9 +293,9 @@ namespace micro
 
       auto size = pdevice->get_text_extents(m_strText, micro_theme()->m_pfont);
 
-      m_rectangle.right() = m_rectangle.left() + size.cx();
+      m_rectangle.right = m_rectangle.left + size.cx();
 
-      m_rectangle.bottom() = m_rectangle.top() + size.cy();
+      m_rectangle.bottom = m_rectangle.top + size.cy();
 
    }
 

@@ -11,10 +11,10 @@
 //property & operator << (property & property, const ::double_rectangle & rectangle)
 //{
 //
-//   property["left"] = rectangle.left();
-//   property["top"] = rectangle.top();
-//   property["right"] = rectangle.right();
-//   property["bottom"] = rectangle.bottom();
+//   property["left"] = rectangle.left;
+//   property["top"] = rectangle.top;
+//   property["right"] = rectangle.right;
+//   property["bottom"] = rectangle.bottom;
 //
 //   return property;
 //
@@ -23,10 +23,10 @@
 //property & operator >> (property & property, ::double_rectangle & rectangle)
 //{
 //
-//   property["left"].as(rectangle.left());
-//   rectangle.top() = property["top"].as_double();
-//   rectangle.right() = property["right"].as_double();
-//   rectangle.bottom() = property["bottom"].as_double();
+//   property["left"].as(rectangle.left);
+//   rectangle.top = property["top"].as_double();
+//   rectangle.right = property["right"].as_double();
+//   rectangle.bottom = property["bottom"].as_double();
 //
 //   return property;
 //

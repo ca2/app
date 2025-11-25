@@ -176,16 +176,16 @@ namespace user
 
          ::menu::item * pitem = pitemParent->m_pmenuitema->element_at(i);
 
-         prectangle->bottom() = (int) (prectangle->top() + m_dItemHeight * 1.2 - 2);
+         prectangle->bottom = (int) (prectangle->top + m_dItemHeight * 1.2 - 2);
 
-         if(prectangle->bottom() > rectangleBound.bottom())
+         if(prectangle->bottom > rectangleBound.bottom)
          {
 
-            prectangle->left() += iMaxWidth + 16;
+            prectangle->left += iMaxWidth + 16;
 
-            prectangle->top() = rectangleBound.top();
+            prectangle->top = rectangleBound.top;
 
-            prectangle->bottom() = (int) (prectangle->top() + m_dItemHeight - 2);
+            prectangle->bottom = (int) (prectangle->top + m_dItemHeight - 2);
 
          }
 
@@ -193,10 +193,10 @@ namespace user
          {
             
             auto rPlacement = ::int_rectangle_dimension(
-                                                        prectangle->left() + pitem->m_iLevel * g_base_menu_indent,
-                                                        prectangle->top(),
+                                                        prectangle->left + pitem->m_iLevel * g_base_menu_indent,
+                                                        prectangle->top,
                                                         iMaxWidth - pitem->m_iLevel * g_base_menu_indent,
-                                                        prectangle->bottom() - prectangle->top());
+                                                        prectangle->bottom - prectangle->top);
 
             pitem->m_puserinteraction->place(rPlacement);
 
@@ -206,7 +206,7 @@ namespace user
 
          }
 
-         prectangle->top() = prectangle->bottom() + 5;
+         prectangle->top = prectangle->bottom + 5;
 
       }
 

@@ -166,7 +166,7 @@ namespace simple_ui
          unsigned char b1 = __byte_rate(dRate, 23, 127);
          ppen->create_solid(1.0, argb(a1, r1, g1, b1));
          pgraphics->set(ppen);
-         pgraphics->line(rectangleDraw.left(), i, rectangleDraw.right(), i);
+         pgraphics->line(rectangleDraw.left, i, rectangleDraw.right, i);
 
       }
 
@@ -197,24 +197,24 @@ namespace simple_ui
       double_point pc[4];
 
 
-      pa[0].x = rectangle.left();
-      pa[0].y = rectangleDraw.top();
-      pa[1].x = rectangleDraw.right() - rectangleDraw.width() / 10;
-      pa[1].y = rectangleDraw.top() + rectangleDraw.height() / 10;
-      pa[2].x = rectangleDraw.right() - rectangleDraw.width() / 8;
-      pa[2].y = rectangleDraw.bottom() - rectangleDraw.height() / 10;
-      pa[3].x = rectangleDraw.left();
-      pa[3].y = rectangleDraw.bottom();
+      pa[0].x = rectangle.left;
+      pa[0].y = rectangleDraw.top;
+      pa[1].x = rectangleDraw.right - rectangleDraw.width() / 10;
+      pa[1].y = rectangleDraw.top + rectangleDraw.height() / 10;
+      pa[2].x = rectangleDraw.right - rectangleDraw.width() / 8;
+      pa[2].y = rectangleDraw.bottom - rectangleDraw.height() / 10;
+      pa[3].x = rectangleDraw.left;
+      pa[3].y = rectangleDraw.bottom;
 
 
-      pb[0].x = rectangleDraw.left() + rectangleDraw.width() / 6;
-      pb[0].y = rectangleDraw.top() + rectangleDraw.height() / 6;
-      pb[1].x = rectangleDraw.right() - rectangleDraw.width() / 6;
-      pb[1].y = rectangleDraw.top() + rectangleDraw.height() / 6;
-      pb[2].x = rectangleDraw.right() - rectangleDraw.width() / 5;
-      pb[2].y = rectangleDraw.bottom() - rectangleDraw.height() / 4;
-      pb[3].x = rectangleDraw.left() + rectangleDraw.width() / 5;
-      pb[3].y = rectangleDraw.bottom() - rectangleDraw.height() / 4;
+      pb[0].x = rectangleDraw.left + rectangleDraw.width() / 6;
+      pb[0].y = rectangleDraw.top + rectangleDraw.height() / 6;
+      pb[1].x = rectangleDraw.right - rectangleDraw.width() / 6;
+      pb[1].y = rectangleDraw.top + rectangleDraw.height() / 6;
+      pb[2].x = rectangleDraw.right - rectangleDraw.width() / 5;
+      pb[2].y = rectangleDraw.bottom - rectangleDraw.height() / 4;
+      pb[3].x = rectangleDraw.left + rectangleDraw.width() / 5;
+      pb[3].y = rectangleDraw.bottom - rectangleDraw.height() / 4;
 
       {
 
@@ -404,17 +404,17 @@ namespace simple_ui
 
       auto pbrush = øcreate < ::draw2d::brush > ();
 
-      pbrush->CreateLinearGradientBrush(rectangle.top_left(), int_point(rectangle.left(), rectangle.top() + iBorderH), crOut, crIn);
+      pbrush->CreateLinearGradientBrush(rectangle.top_left(), int_point(rectangle.left, rectangle.top + iBorderH), crOut, crIn);
 
-      pgraphics->fill_rectangle(::int_rectangle(rectangle.left(), rectangle.top(), (int)rectangle.width(), iBorderH), pbrush);
+      pgraphics->fill_rectangle(::int_rectangle(rectangle.left, rectangle.top, (int)rectangle.width(), iBorderH), pbrush);
 
       pbrush->create_solid(crIn);
 
-      pgraphics->fill_rectangle(::int_rectangle(rectangle.left(), rectangle.top() + iBorderH, (int)rectangle.width(), (int)rectangle.height() - (iBorderH * 2)), pbrush);
+      pgraphics->fill_rectangle(::int_rectangle(rectangle.left, rectangle.top + iBorderH, (int)rectangle.width(), (int)rectangle.height() - (iBorderH * 2)), pbrush);
 
-      pbrush->CreateLinearGradientBrush(int_point(rectangle.left(), rectangle.bottom() - iBorderH), rectangle.bottom_left(), crIn, crOut);
+      pbrush->CreateLinearGradientBrush(int_point(rectangle.left, rectangle.bottom - iBorderH), rectangle.bottom_left(), crIn, crOut);
 
-      pgraphics->fill_rectangle(::int_rectangle(rectangle.left(), rectangle.bottom() - iBorderH, (int)rectangle.width(), iBorderH), pbrush);
+      pgraphics->fill_rectangle(::int_rectangle(rectangle.left, rectangle.bottom - iBorderH, (int)rectangle.width(), iBorderH), pbrush);
 
    }
 

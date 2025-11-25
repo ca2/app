@@ -144,11 +144,11 @@ namespace user
 
             int iScrollBarWidth = get_int(pstyle, e_int_scroll_bar_thickness);
 
-            rectangleNewPos.left() = rectangleX.left();
-            rectangleNewPos.top() = rectangleX.bottom() - iScrollBarWidth;
-            //rectangleNewPos.right() = rectangleNewPos.left() + rectangleX.width() - get_final_y_scroll_bar_width();
-            rectangleNewPos.right() = rectangleNewPos.left() + rectangleX.width() - iScrollBarWidth;
-            rectangleNewPos.bottom() = rectangleX.bottom();
+            rectangleNewPos.left = rectangleX.left;
+            rectangleNewPos.top = rectangleX.bottom - iScrollBarWidth;
+            //rectangleNewPos.right = rectangleNewPos.left + rectangleX.width() - get_final_y_scroll_bar_width();
+            rectangleNewPos.right = rectangleNewPos.left + rectangleX.width() - iScrollBarWidth;
+            rectangleNewPos.bottom = rectangleX.bottom;
 
             m_pscrollbarX->place(rectangleNewPos, elayout);
 

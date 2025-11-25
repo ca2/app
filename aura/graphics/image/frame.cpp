@@ -141,10 +141,10 @@ namespace image
       auto dx = (double) imagedrawing.m_rectangleTarget.width() / (double) imagedrawing.image()->width();
       auto dy = (double)imagedrawing.m_rectangleTarget.height() / (double)imagedrawing.image()->height();
 
-      m_rectangle.left() = (decay<decltype(m_rectangle.left())>)(pframeSource->m_rectangle.left() * dx);
-      m_rectangle.top() = (decay<decltype(m_rectangle.top())>)(pframeSource->m_rectangle.top() * dy);
-      m_rectangle.right() = (decay<decltype(m_rectangle.right())>)(pframeSource->m_rectangle.right() * dx);
-      m_rectangle.bottom() = (decay<decltype(m_rectangle.bottom())>)(pframeSource->m_rectangle.bottom() * dy);
+      m_rectangle.left = (decay<decltype(m_rectangle.left)>)(pframeSource->m_rectangle.left * dx);
+      m_rectangle.top = (decay<decltype(m_rectangle.top)>)(pframeSource->m_rectangle.top * dy);
+      m_rectangle.right = (decay<decltype(m_rectangle.right)>)(pframeSource->m_rectangle.right * dx);
+      m_rectangle.bottom = (decay<decltype(m_rectangle.bottom)>)(pframeSource->m_rectangle.bottom * dy);
 
       øconstruct(m_pimage);
 

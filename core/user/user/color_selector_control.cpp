@@ -223,28 +223,28 @@ namespace user
    //void color_selector_control::on_mouse_motion(const ::int_point & point)
    //{
 
-   //   if (point.y >= m_rectangleColors.bottom())
+   //   if (point.y >= m_rectangleColors.bottom)
    //   {
 
    //      return;
 
    //   }
 
-   //   if (point.x < m_rectangleColors.left())
+   //   if (point.x < m_rectangleColors.left)
    //   {
 
    //      return;
 
    //   }
 
-   //   if (point.y < m_rectangleColors.top())
+   //   if (point.y < m_rectangleColors.top)
    //   {
 
    //      return;
 
    //   }
 
-   //   int iColorsLeft = m_rectangleColors.left();
+   //   int iColorsLeft = m_rectangleColors.left;
 
    //   int iColorsWidth = m_pimage->width();
 
@@ -255,7 +255,7 @@ namespace user
 
    //      int x = point.x - iColorsLeft;
 
-   //      int y = point.y - m_rectangleColors.top();
+   //      int y = point.y - m_rectangleColors.top;
 
    //      m_pointMouseColorBeam = point;
 
@@ -298,7 +298,7 @@ namespace user
    //   else if (point.x < m_rectangleColors.center().x + m_rectangleColors.width() / 8)
    //   {
 
-   //      auto pointLuminance = point - ::int_size(m_rectangleColors.center().x, m_rectangleColors.top());
+   //      auto pointLuminance = point - ::int_size(m_rectangleColors.center().x, m_rectangleColors.top);
 
    //      m_hls.m_dL = 1.0 - ((double)pointLuminance.y / (double)m_pimage->height());
 
@@ -359,9 +359,9 @@ namespace user
 
    //      double_point_array pointa;
 
-   //      pointa.add(double_point(rectangleOuter.left(), point.y - dHalfTriBase));
-   //      pointa.add(double_point(rectangleInner.left(), point.y));
-   //      pointa.add(double_point(rectangleOuter.left(), point.y + dHalfTriBase));
+   //      pointa.add(double_point(rectangleOuter.left, point.y - dHalfTriBase));
+   //      pointa.add(double_point(rectangleInner.left, point.y));
+   //      pointa.add(double_point(rectangleOuter.left, point.y + dHalfTriBase));
 
    //      pgraphics->fill_polygon(pointa);
 
@@ -371,9 +371,9 @@ namespace user
 
    //      double_point_array pointa;
 
-   //      pointa.add(double_point(point.x - dHalfTriBase, rectangleOuter.top()));
-   //      pointa.add(double_point(point.x, rectangleInner.top()));
-   //      pointa.add(double_point(point.x + dHalfTriBase, rectangleOuter.top()));
+   //      pointa.add(double_point(point.x - dHalfTriBase, rectangleOuter.top));
+   //      pointa.add(double_point(point.x, rectangleInner.top));
+   //      pointa.add(double_point(point.x + dHalfTriBase, rectangleOuter.top));
 
    //      pgraphics->fill_polygon(pointa);
 
@@ -383,9 +383,9 @@ namespace user
 
    //      double_point_array pointa;
 
-   //      pointa.add(double_point(rectangleOuter.right(), point.y - dHalfTriBase));
-   //      pointa.add(double_point(rectangleInner.right(), point.y));
-   //      pointa.add(double_point(rectangleOuter.right(), point.y + dHalfTriBase));
+   //      pointa.add(double_point(rectangleOuter.right, point.y - dHalfTriBase));
+   //      pointa.add(double_point(rectangleInner.right, point.y));
+   //      pointa.add(double_point(rectangleOuter.right, point.y + dHalfTriBase));
 
    //      pgraphics->fill_polygon(pointa);
 
@@ -395,9 +395,9 @@ namespace user
 
    //      double_point_array pointa;
 
-   //      pointa.add(double_point(point.x - dHalfTriBase, rectangleOuter.bottom()));
-   //      pointa.add(double_point(point.x, rectangleInner.bottom()));
-   //      pointa.add(double_point(point.x + dHalfTriBase, rectangleOuter.bottom()));
+   //      pointa.add(double_point(point.x - dHalfTriBase, rectangleOuter.bottom));
+   //      pointa.add(double_point(point.x, rectangleInner.bottom));
+   //      pointa.add(double_point(point.x + dHalfTriBase, rectangleOuter.bottom));
 
    //      pgraphics->fill_polygon(pointa);
 
@@ -431,9 +431,9 @@ namespace user
 
    //      double_point_array pointa;
 
-   //      pointa.add(double_point(rectangleOuter.left(), y - dHalfTriBase));
-   //      pointa.add(double_point(rectangleInner.left(), y));
-   //      pointa.add(double_point(rectangleOuter.left(), y + dHalfTriBase));
+   //      pointa.add(double_point(rectangleOuter.left, y - dHalfTriBase));
+   //      pointa.add(double_point(rectangleInner.left, y));
+   //      pointa.add(double_point(rectangleOuter.left, y + dHalfTriBase));
 
    //      pgraphics->fill_polygon(pointa);
 
@@ -443,9 +443,9 @@ namespace user
 
    //      double_point_array pointa;
 
-   //      pointa.add(double_point(rectangleOuter.right(), y - dHalfTriBase));
-   //      pointa.add(double_point(rectangleInner.right(), y));
-   //      pointa.add(double_point(rectangleOuter.right(), y + dHalfTriBase));
+   //      pointa.add(double_point(rectangleOuter.right, y - dHalfTriBase));
+   //      pointa.add(double_point(rectangleInner.right, y));
+   //      pointa.add(double_point(rectangleOuter.right, y + dHalfTriBase));
 
    //      pgraphics->fill_polygon(pointa);
 
@@ -459,13 +459,13 @@ namespace user
 
       //auto r0 = this->rectangle();
 
-      //r0.right() = r0.center_x();
+      //r0.right = r0.center_x();
 
       //pgraphics->fill_rectangle(r0, color::black);
 
       //auto r1 = this->rectangle();
 
-      //r1.left() = r1.center_x();
+      //r1.left = r1.center_x();
 
       //pgraphics->fill_rectangle(r1, color::black);
 
@@ -564,9 +564,9 @@ namespace user
    //   else
    //   {
 
-   //      point.x = (int)(rTarget.left() + rTarget.width() * m_hls.m_dH);
+   //      point.x = (int)(rTarget.left + rTarget.width() * m_hls.m_dH);
 
-   //      point.y = (int)(rTarget.top() + rTarget.height() * (1.0 - m_hls.m_dS));
+   //      point.y = (int)(rTarget.top + rTarget.height() * (1.0 - m_hls.m_dS));
 
    //   }
 
@@ -596,11 +596,11 @@ namespace user
 
    //   rTarget.top_left() = m_rectangleColors.top_left() + ::int_size(m_pimage->width() - 1 + m_pimageLuminance->get_size().cx() - 1, 0);
 
-   //   rTarget.set_size(m_rectangleColors.right() - rTarget.left(), m_pimage->height());
+   //   rTarget.set_size(m_rectangleColors.right - rTarget.left, m_pimage->height());
 
    //   pgraphics->fill_rectangle(rTarget, get_color());
 
-   //   int y = (int)(rectangleLum1.top() + (1.0 - m_hls.m_dL) * rectangleLum1.height());
+   //   int y = (int)(rectangleLum1.top + (1.0 - m_hls.m_dL) * rectangleLum1.height());
 
    //   draw_level(pgraphics, rectangleLum1, y);
 
@@ -766,7 +766,7 @@ namespace user
 
       auto r = this->rectangle();
 
-      //r.top() += 20;
+      //r.top += 20;
 
       layout_color_selector(r);
 

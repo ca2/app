@@ -496,7 +496,7 @@ namespace user
 //
 //         auto r = pparent->rectangle();
 
-//         str.formatf("%d,%d,%d,%d : %s", r.left(), r.top(), r.width(), r.height(), strTypeParent.c_str());
+//         str.formatf("%d,%d,%d,%d : %s", r.left, r.top, r.width(), r.height(), strTypeParent.c_str());
 //
 //         information() << str;
 
@@ -511,7 +511,7 @@ namespace user
 //
 //            auto r2 = pparentParent->rectangle();
 //
-//            str2.formatf("%d,%d,%d,%d : %s", r2.left(), r2.top(), r2.width(), r2.height(), strTypeParentParent.c_str());
+//            str2.formatf("%d,%d,%d,%d : %s", r2.left, r2.top, r2.width(), r2.height(), strTypeParentParent.c_str());
 
 //            information() << str2;
 
@@ -526,7 +526,7 @@ namespace user
 //
 //               auto r3 = pparentParentParent->rectangle();
 
-//               str3.formatf("%d,%d,%d,%d : %s", r3.left(), r3.top(), r3.width(), r3.height(), strTypeParentParentParent.c_str());
+//               str3.formatf("%d,%d,%d,%d : %s", r3.left, r3.top, r3.width(), r3.height(), strTypeParentParentParent.c_str());
 
 //               information() << str3;
 
@@ -605,7 +605,7 @@ namespace user
 
       rectangleX.deflate(rectanglePadding);
 
-      double left = rectangleX.left();
+      double left = rectangleX.left;
 
       character_count iSelBeg;
       character_count iSelEnd;
@@ -639,9 +639,9 @@ namespace user
 
       //pgraphics->offset_origin(-pointOffset.x, 0);
 
-      //double y = rectangleX.top() + m_iCurrentPageLineStart * m_dLineHeight;
+      //double y = rectangleX.top + m_iCurrentPageLineStart * m_dLineHeight;
 
-      double y = rectangleX.top();
+      double y = rectangleX.top;
 
       _001_get_impact_sel(iSelBegOriginal, iSelEndOriginal);
 
@@ -879,8 +879,8 @@ namespace user
                   pgraphics->fill_rectangle(
                      ::double_rectangle_dimension((double)((double)left + x1),
                         (double)y,
-                        (double)minimum(x2 - x1, (double)rectangleX.right() - ((double)left + x1)),
-                        (double)minimum((double)m_dLineHeight, (double)rectangleX.bottom() - y)),
+                        (double)minimum(x2 - x1, (double)rectangleX.right - ((double)left + x1)),
+                        (double)minimum((double)m_dLineHeight, (double)rectangleX.bottom - y)),
                      crBkSel);
 
                   pgraphics->set(pbrushTextSel);
@@ -910,14 +910,14 @@ namespace user
                //pgraphics->fill_rectangle(
                //   ::double_rectangle_dimension((double)((double)left + compose1),
                //      (double)y,
-               //      (double)minimum(compose2 - compose1, (double)rectangleX.right() - ((double)left + compose1)),
-               //      (double)minimum((double)m_dLineHeight, (double)rectangleX.bottom() - y)),
+               //      (double)minimum(compose2 - compose1, (double)rectangleX.right - ((double)left + compose1)),
+               //      (double)minimum((double)m_dLineHeight, (double)rectangleX.bottom - y)),
                //   colorComposeBk);
 
                pgraphics->fill_rectangle(
                   ::double_rectangle_dimension((double)((double)left + compose1),
-                     ((double)minimum((double)m_dLineHeight, (double)rectangleX.bottom())) - 1.0,
-                     (double)minimum(compose2 - compose1, (double)rectangleX.right() - ((double)left + compose1)),
+                     ((double)minimum((double)m_dLineHeight, (double)rectangleX.bottom)) - 1.0,
+                     (double)minimum(compose2 - compose1, (double)rectangleX.right - ((double)left + compose1)),
                      1.0));
 
                //pgraphics->set(pbrushTextSel);
@@ -1279,26 +1279,26 @@ namespace user
 
             rectangleRaw = raw_rectangle();
 
-            if (pointCursor.x < rectangleRaw.left())
+            if (pointCursor.x < rectangleRaw.left)
             {
 
                scroll_left_line();
 
             }
-            else if (pointCursor.x > rectangleRaw.right())
+            else if (pointCursor.x > rectangleRaw.right)
             {
 
                scroll_right_line();
 
             }
 
-            if (pointCursor.y < rectangleRaw.top())
+            if (pointCursor.y < rectangleRaw.top)
             {
 
                scroll_up_line();
 
             }
-            else if (pointCursor.y > rectangleRaw.bottom())
+            else if (pointCursor.y > rectangleRaw.bottom)
             {
 
                scroll_down_line();
@@ -1509,7 +1509,7 @@ namespace user
 
       window_rectangle(rectangleWindow);
 
-      if (pointHost.x < rectangleWindow.left() - 30)
+      if (pointHost.x < rectangleWindow.left - 30)
       {
 
          informationf("test06");
@@ -4422,9 +4422,9 @@ namespace user
 
       }
 
-      lprect->left() = x;
+      lprect->left = x;
 
-      lprect->right() = x + 1;
+      lprect->right = x + 1;
 
       return true;
 
@@ -4451,9 +4451,9 @@ namespace user
 
       }
 
-      lprect->top() = (int)(iLine * m_dItemHeight);
+      lprect->top = (int)(iLine * m_dItemHeight);
 
-      lprect->bottom() = (int)(lprect->top() + m_dItemHeight);
+      lprect->bottom = (int)(lprect->top + m_dItemHeight);
 
       return true;
 
@@ -4551,7 +4551,7 @@ namespace user
 
       }
 
-      x = rectangleX.left();
+      x = rectangleX.left;
 
       return m_iaLineLength.get_upper_bound();
 
@@ -4710,7 +4710,7 @@ namespace user
 
             xCharacter = (int)(plain_edit_get_line_extent(pgraphics, iLine, iRel));
 
-            xCharacter = rectangleX.left() + xCharacter;
+            xCharacter = rectangleX.left + xCharacter;
 
             x = xCharacter;
 
@@ -4766,7 +4766,7 @@ namespace user
 
       GetFocusRect(rectangleX);
 
-      point.y -= rectangleX.top();
+      point.y -= rectangleX.top;
 
       auto pointOffset = get_context_offset();
 
@@ -4861,7 +4861,7 @@ namespace user
 
       auto pointOffset = get_context_offset();
 
-      px -= (int)(rectangleX.left() - pointOffset.x);
+      px -= (int)(rectangleX.left - pointOffset.x);
 
       if (px <= 0)
       {
@@ -7264,11 +7264,11 @@ namespace user
 
       rectangle = this->rectangle();
 
-      rectangle.left() = (int)x;
+      rectangle.left = (int)x;
 
-      rectangle.top() = (int)y;
+      rectangle.top = (int)y;
 
-      rectangle.bottom() = (int)y2;
+      rectangle.bottom = (int)y2;
 
       client_to_screen()(rectangle);
 

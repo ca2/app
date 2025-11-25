@@ -363,13 +363,13 @@ namespace graphics
       ::int_rectangle r;
       
       
-      r.left() = x * m_sizeTile.cx();
+      r.left = x * m_sizeTile.cx();
       
-      r.top() = y * m_sizeTile.cy();
+      r.top = y * m_sizeTile.cy();
       
-      r.right() = r.left() + m_sizeTile.cx();
+      r.right = r.left + m_sizeTile.cx();
       
-      r.bottom() = r.top() + m_sizeTile.cy();
+      r.bottom = r.top + m_sizeTile.cy();
       
       return r;
       

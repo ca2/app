@@ -107,10 +107,10 @@ void rectangle_array_base < NUMBER >::offset(UNIT_TYPE cx, UNIT_TYPE cy)
 
       ::rectangle_type < NUMBER > & rectangle = this->element_at(i);
 
-      rectangle.left() += cx;
-      rectangle.top() += cy;
-      rectangle.right() += cx;
-      rectangle.bottom() += cy;
+      rectangle.left += cx;
+      rectangle.top += cy;
+      rectangle.right += cx;
+      rectangle.bottom += cy;
 
    }
 

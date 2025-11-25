@@ -176,10 +176,10 @@ bool simple_menu_bar::_track_popup_menu(::collection::index iItem)
    /*#ifdef WINDOWS_DESKTOP
        TPMPARAMS tpm;
        tpm.cbSize = sizeof(TPMPARAMS);
-       tpm.rcExclude.top()    = rectangle.top();
-       tpm.rcExclude.left()   = rectangle.left();
-       tpm.rcExclude.bottom() = rectangle.bottom();
-       tpm.rcExclude.right()  = rectangle.right();
+       tpm.rcExclude.top    = rectangle.top;
+       tpm.rcExclude.left   = rectangle.left;
+       tpm.rcExclude.bottom = rectangle.bottom;
+       tpm.rcExclude.right  = rectangle.right;
    #endif*/
 
    return true;
@@ -513,8 +513,8 @@ bool simple_menu_bar::ReloadMenuBar()
    {
       imaging.color_blend(
          pgraphics,
-         rectangleX.left(),
-         rectangleX.top(),
+         rectangleX.left,
+         rectangleX.top,
          rectangleX.width(),
          rectangleX.height(),
          rgb(255, 255, 250),
@@ -524,8 +524,8 @@ bool simple_menu_bar::ReloadMenuBar()
    {
       imaging.color_blend(
          pgraphics,
-         rectangleX.left(),
-         rectangleX.top(),
+         rectangleX.left,
+         rectangleX.top,
          rectangleX.width(),
          rectangleX.height(),
          rgb(230, 230, 225),
@@ -551,43 +551,43 @@ bool simple_menu_bar::ReloadMenuBar()
    switch(eelement)
    {
    case e_element_item:
-      prectangle->left()   = m_buttona[iItem].m_rectangle.left() + ITEMCHECKEDCX;
+      prectangle->left   = m_buttona[iItem].m_rectangle.left + ITEMCHECKEDCX;
 
-      prectangle->right()  = m_buttona[iItem].m_rectangle.right() + ITEMCHECKEDPADRIGHT;
+      prectangle->right  = m_buttona[iItem].m_rectangle.right + ITEMCHECKEDPADRIGHT;
 
-      prectangle->top()    = m_buttona[iItem].m_rectangle.top() + ITEMCHECKEDCY;
+      prectangle->top    = m_buttona[iItem].m_rectangle.top + ITEMCHECKEDCY;
 
-      prectangle->bottom() = m_buttona[iItem].m_rectangle.bottom();
+      prectangle->bottom = m_buttona[iItem].m_rectangle.bottom;
 
       break;
    case element_item_hover:
-      prectangle->left()   = m_buttona[iItem].m_rectangle.left() - ITEMCHECKEDPADLEFT;
+      prectangle->left   = m_buttona[iItem].m_rectangle.left - ITEMCHECKEDPADLEFT;
 
-      prectangle->right()  = m_buttona[iItem].m_rectangle.right() - ITEMCHECKEDCX + ITEMCHECKEDPADRIGHT;
+      prectangle->right  = m_buttona[iItem].m_rectangle.right - ITEMCHECKEDCX + ITEMCHECKEDPADRIGHT;
 
-      prectangle->top()    = m_buttona[iItem].m_rectangle.top();
+      prectangle->top    = m_buttona[iItem].m_rectangle.top;
 
-      prectangle->bottom() = m_buttona[iItem].m_rectangle.bottom() - ITEMCHECKEDCY;
+      prectangle->bottom = m_buttona[iItem].m_rectangle.bottom - ITEMCHECKEDCY;
 
       break;
    case e_element_text:
-      prectangle->left()   = m_buttona[iItem].m_rectangle.left() + ITEMCHECKEDCX;
+      prectangle->left   = m_buttona[iItem].m_rectangle.left + ITEMCHECKEDCX;
 
-      prectangle->right()  = m_buttona[iItem].m_rectangle.right();
+      prectangle->right  = m_buttona[iItem].m_rectangle.right;
 
-      prectangle->top()    = m_buttona[iItem].m_rectangle.top() + ITEMCHECKEDCY;
+      prectangle->top    = m_buttona[iItem].m_rectangle.top + ITEMCHECKEDCY;
 
-      prectangle->bottom() = m_buttona[iItem].m_rectangle.bottom();
+      prectangle->bottom = m_buttona[iItem].m_rectangle.bottom;
 
       break;
    case element_text_hover:
-      prectangle->left()   = m_buttona[iItem].m_rectangle.left() + ITEMCHECKEDPADLEFT;
+      prectangle->left   = m_buttona[iItem].m_rectangle.left + ITEMCHECKEDPADLEFT;
 
-      prectangle->right()  = m_buttona[iItem].m_rectangle.right() - ITEMCHECKEDPADRIGHT - ITEMCHECKEDCX;
+      prectangle->right  = m_buttona[iItem].m_rectangle.right - ITEMCHECKEDPADRIGHT - ITEMCHECKEDCX;
 
-      prectangle->top()    = m_buttona[iItem].m_rectangle.top() + ITEMCHECKEDPADTOP;
+      prectangle->top    = m_buttona[iItem].m_rectangle.top + ITEMCHECKEDPADTOP;
 
-      prectangle->bottom() = m_buttona[iItem].m_rectangle.bottom() - ITEMCHECKEDPADBOTTOM - ITEMCHECKEDCY;
+      prectangle->bottom = m_buttona[iItem].m_rectangle.bottom - ITEMCHECKEDPADBOTTOM - ITEMCHECKEDCY;
 
       break;
    default:
@@ -637,15 +637,15 @@ bool simple_menu_bar::ReloadMenuBar()
          m_buttona[iItem].m_wstr,
          m_buttona[iItem].m_wstr.get_length(),
          &size);
-      m_buttona[iItem].m_rectangle.left()  = ix ;
+      m_buttona[iItem].m_rectangle.left  = ix ;
       ix += size.cx() + ITEMCHECKEDCX + ITEMCHECKEDPADLEFT + ITEMCHECKEDPADRIGHT;
-      m_buttona[iItem].m_rectangle.right() = ix;
-      m_buttona[iItem].m_rectangle.top()   = 0;
+      m_buttona[iItem].m_rectangle.right = ix;
+      m_buttona[iItem].m_rectangle.top   = 0;
       iy = maximum(iy, size.cy());
    }
    for(iItem = 0; iItem < m_buttona.get_size(); iItem++)
    {
-      m_buttona[iItem].m_rectangle.bottom() = iy + ITEMCHECKEDCX + ITEMCHECKEDPADTOP + ITEMCHECKEDPADBOTTOM;
+      m_buttona[iItem].m_rectangle.bottom = iy + ITEMCHECKEDCX + ITEMCHECKEDPADTOP + ITEMCHECKEDPADBOTTOM;
    }
 
 
@@ -738,8 +738,8 @@ int_size simple_menu_bar::CalcLayout(unsigned int dwMode, ::collection::index nL
 
    if(m_buttona.get_size() > 0)
    {
-      sizeResult.cx() = m_buttona[m_buttona.get_size() - 1].m_rectangle.right() + ITEMCHECKEDPADRIGHT;
-      sizeResult.cy() = m_buttona[m_buttona.get_size() - 1].m_rectangle.bottom();
+      sizeResult.cx() = m_buttona[m_buttona.get_size() - 1].m_rectangle.right + ITEMCHECKEDPADRIGHT;
+      sizeResult.cy() = m_buttona[m_buttona.get_size() - 1].m_rectangle.bottom;
    }
 
    return sizeResult;

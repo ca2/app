@@ -84,8 +84,8 @@ namespace user
       m_sizeButton.cy() = 22;
 
       // top and bottom borders are 1 larger than default for ease of grabbing
-      m_rectangleBorder.top() = 3;
-      m_rectangleBorder.bottom() = 3;
+      m_rectangleBorder.top = 3;
+      m_rectangleBorder.bottom = 3;
    }
 
    toolbar::~toolbar()
@@ -319,15 +319,15 @@ namespace user
          //cyHeight -= ::windows_definition::Data.cyBorder2;
          cyHeight -= 2;
 
-      m_rectangleBorder.bottom() = (int)((cyHeight - m_sizeButton.cy()) / 2);
-      // if there is an extra pixel, m_rectangleBorder.top() will get it
-      m_rectangleBorder.top() = (int)(cyHeight - m_sizeButton.cy() - m_rectangleBorder.bottom());
-      if (m_rectangleBorder.top() < 0)
+      m_rectangleBorder.bottom = (int)((cyHeight - m_sizeButton.cy()) / 2);
+      // if there is an extra pixel, m_rectangleBorder.top will get it
+      m_rectangleBorder.top = (int)(cyHeight - m_sizeButton.cy() - m_rectangleBorder.bottom);
+      if (m_rectangleBorder.top < 0)
       {
          informationf("Warning: toolbar::SetHeight(%d) is smaller than button.",
             nHeight);
-         m_rectangleBorder.bottom() += m_rectangleBorder.top();
-         m_rectangleBorder.top() = 0;  // will clip at bottom
+         m_rectangleBorder.bottom += m_rectangleBorder.top;
+         m_rectangleBorder.top = 0;  // will clip at bottom
       }
 
       // recalculate the non-client region
@@ -1464,11 +1464,11 @@ namespace user
 
       NCCALCSIZE_PARAMS * pparams = (NCCALCSIZE_PARAMS *)pnccalcsize->m_pNCCALCSIZE_PARAMS;
       // adjust non-client area for border space
-      pparams->rgrc[0].left += rectangle.left();
-      pparams->rgrc[0].top += rectangle.top();
+      pparams->rgrc[0].left += rectangle.left;
+      pparams->rgrc[0].top += rectangle.top;
       // previous versions of COMCTL32.DLL had a built-in 2 pixel border
-      pparams->rgrc[0].right += rectangle.right();
-      pparams->rgrc[0].bottom += rectangle.bottom();
+      pparams->rgrc[0].right += rectangle.right;
+      pparams->rgrc[0].bottom += rectangle.bottom;
 #else
       throw ::exception(todo);
 #endif

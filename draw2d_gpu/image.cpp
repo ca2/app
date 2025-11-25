@@ -1976,8 +1976,8 @@ namespace draw2d_gpu
    //   int imin = - imax;
 
 
-   //   int joff = cy / 2 + rectangle.left();
-   //   int ioff = cx / 2 + rectangle.top();
+   //   int joff = cy / 2 + rectangle.left;
+   //   int ioff = cx / 2 + rectangle.top;
 
    //   //int iAngle = iStep % 360;
    //   //int iAngle = iStep;
@@ -2692,10 +2692,10 @@ namespace draw2d_gpu
 //      //      unsigned int dw = ::get_last_error();
 //      ::int_size size = pbitmap->get_size();
 //
-//      rectx.left() = 0;
-//      rectx.top() = 0;
-//      rectx.right() = size.cx();
-//      rectx.bottom() = size.cy();
+//      rectx.left = 0;
+//      rectx.top = 0;
+//      rectx.right = size.cx();
+//      rectx.bottom = size.cy();
 //
 //      try
 //      {
@@ -2725,14 +2725,14 @@ namespace draw2d_gpu
 //         m_pgraphics-> set_origin(::int_point());
 //         puserinteraction->_000OnDraw(pimage->get_graphics());
 //         m_pgraphics->set_origin(::int_point());
-//         //(dynamic_cast<::win::graphics * >(pgraphics))->FillSolidRect(rectangleUpdate.left(), rectangleUpdate.top(), 100, 100, 255);
+//         //(dynamic_cast<::win::graphics * >(pgraphics))->FillSolidRect(rectangleUpdate.left, rectangleUpdate.top, 100, 100, 255);
 //         m_pgraphics->SelectClipRgn(nullptr);
 //         m_pgraphics->set_origin(::int_point());
 //
 //         m_pgraphics->SelectClipRgn( nullptr);
-//         m_pgraphics->BitBlt(rectanglePaint.left(), rectanglePaint.top(),
+//         m_pgraphics->BitBlt(rectanglePaint.left, rectanglePaint.top,
 //            rectanglePaint.width(), rectanglePaint.height(),
-//            pgraphics, rectangleUpdate.left(), rectangleUpdate.top(),
+//            pgraphics, rectangleUpdate.left, rectangleUpdate.top,
 //            SRCCOPY);
 //
 //      }

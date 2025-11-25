@@ -229,7 +229,7 @@ namespace hi5
 
          rectangleOpen.deflate(iWidth / 5, iHeight / 50);
 
-         rectangleOpen.top() = iHeight * 2 / 3;
+         rectangleOpen.top = iHeight * 2 / 3;
 
          //::pointer<::user::frame_window>pframe = m_pviewAuth->get_parent_frame();
 

@@ -394,7 +394,7 @@ namespace draw2d
       switch(iEffect)
       {
       case EffectSimple:
-         simple_text_out(pgraphics, rectangle.left(), rectangle.top(), str, piCharsPositions, iCharsPositions);
+         simple_text_out(pgraphics, rectangle.left, rectangle.top, str, piCharsPositions, iCharsPositions);
 
          break;
       case EffectEmbossed:

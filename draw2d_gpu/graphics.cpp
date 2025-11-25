@@ -1099,10 +1099,10 @@ void main() {
    //void vertex2f(const ::double_rectangle& rectangle, float fZ)
    //{
 
-   //   glVertex3f((GLfloat)rectangle.left(), (GLfloat)rectangle.top(), fZ);
-   //   glVertex3f((GLfloat)rectangle.right(), (GLfloat)rectangle.top(), fZ);
-   //   glVertex3f((GLfloat)rectangle.right(), (GLfloat)rectangle.bottom(), fZ);
-   //   glVertex3f((GLfloat)rectangle.left(), (GLfloat)rectangle.bottom(), fZ);
+   //   glVertex3f((GLfloat)rectangle.left, (GLfloat)rectangle.top, fZ);
+   //   glVertex3f((GLfloat)rectangle.right, (GLfloat)rectangle.top, fZ);
+   //   glVertex3f((GLfloat)rectangle.right, (GLfloat)rectangle.bottom, fZ);
+   //   glVertex3f((GLfloat)rectangle.left, (GLfloat)rectangle.bottom, fZ);
 
    //}
 
@@ -1331,8 +1331,8 @@ void main() {
 
 
       pshader->unbind(pcommandbuffer);
-      //vkvg_rectangle(m_pdc, rectangle.left(), rectangle.top(), rectangle.right() - rectangle.left(),
-        // rectangle.bottom() - rectangle.top());
+      //vkvg_rectangle(m_pdc, rectangle.left, rectangle.top, rectangle.right - rectangle.left,
+        // rectangle.bottom - rectangle.top);
 
       //m_particleaResetOnTopFrameEnd.add(pmodelbufferRectangle);
 
@@ -1680,8 +1680,8 @@ void main() {
    {
 
       // ASSERT(m_hdc != nullptr);
-      //return ::Chord(m_hdc,rectangleParam.left(),rectangleParam.top(),
-      //               rectangleParam.right(),rectangleParam.bottom(),ptStart.x,ptStart.y,
+      //return ::Chord(m_hdc,rectangleParam.left,rectangleParam.top,
+      //               rectangleParam.right,rectangleParam.bottom,ptStart.x,ptStart.y,
       //               ptEnd.x, ptEnd.y) != false;
 
       return false;
@@ -1713,7 +1713,7 @@ void main() {
 
       //set_smooth_mode(::draw2d::e_smooth_mode_high);
 
-      //return (m_pgraphics->DrawEllipse(gl2d_pen(),rectangleParam.left(),rectangleParam.top(),rectangleParam.right() - rectangleParam.left(),rectangleParam.bottom() - rectangleParam.top())) == plusplus::Status::Ok;
+      //return (m_pgraphics->DrawEllipse(gl2d_pen(),rectangleParam.left,rectangleParam.top,rectangleParam.right - rectangleParam.left,rectangleParam.bottom - rectangleParam.top)) == plusplus::Status::Ok;
 
       //return true;
 
@@ -1737,7 +1737,7 @@ void main() {
 
       //set_smooth_mode(::draw2d::e_smooth_mode_high);
 
-//      return (m_pgraphics->FillEllipse(gl2d_brush(), rectangleParam.left(), rectangleParam.top(), rectangleParam.right() - rectangleParam.left(), rectangleParam.bottom() - rectangleParam.top())) == plusplus::Status::Ok;
+//      return (m_pgraphics->FillEllipse(gl2d_brush(), rectangleParam.left, rectangleParam.top, rectangleParam.right - rectangleParam.left, rectangleParam.bottom - rectangleParam.top)) == plusplus::Status::Ok;
 
       //return true;
 
@@ -1761,9 +1761,9 @@ void main() {
 
    //   //set_smooth_mode(::draw2d::e_smooth_mode_high);
 
-   //   //return (m_pgraphics->DrawEllipse(gl2d_pen(),(plusplus::REAL)rectangleParam.left(),(plusplus::REAL)rectangleParam.top(),
-   //   //                                 (plusplus::REAL)(rectangleParam.right() - rectangleParam.left()),
-   //   //                                 (plusplus::REAL)(rectangleParam.bottom() - rectangleParam.top()))) == plusplus::Status::Ok;
+   //   //return (m_pgraphics->DrawEllipse(gl2d_pen(),(plusplus::REAL)rectangleParam.left,(plusplus::REAL)rectangleParam.top,
+   //   //                                 (plusplus::REAL)(rectangleParam.right - rectangleParam.left),
+   //   //                                 (plusplus::REAL)(rectangleParam.bottom - rectangleParam.top))) == plusplus::Status::Ok;
 
    //   return true;
 
@@ -1787,9 +1787,9 @@ void main() {
 
    //   //set_smooth_mode(::draw2d::e_smooth_mode_high);
 
-   //   //return (m_pgraphics->FillEllipse(gl2d_brush(),(plusplus::REAL)rectangleParam.left(),(plusplus::REAL)rectangleParam.top(),
-   //   //                                 (plusplus::REAL)(rectangleParam.right() - rectangleParam.left()),
-   //   //                                 (plusplus::REAL)(rectangleParam.bottom() - rectangleParam.top()))) == plusplus::Status::Ok;
+   //   //return (m_pgraphics->FillEllipse(gl2d_brush(),(plusplus::REAL)rectangleParam.left,(plusplus::REAL)rectangleParam.top,
+   //   //                                 (plusplus::REAL)(rectangleParam.right - rectangleParam.left),
+   //   //                                 (plusplus::REAL)(rectangleParam.bottom - rectangleParam.top))) == plusplus::Status::Ok;
 
    //   return true;
 
@@ -1810,8 +1810,8 @@ void main() {
    //{
 
    //   // ASSERT(m_hdc != nullptr);
-   //   //return ::Pie(m_hdc, rectangleParam.left(), rectangleParam.top(),
-   //   //             rectangleParam.right(), rectangleParam.bottom(), ptStart.x, ptStart.y,
+   //   //return ::Pie(m_hdc, rectangleParam.left, rectangleParam.top,
+   //   //             rectangleParam.right, rectangleParam.bottom, ptStart.x, ptStart.y,
    //   //             ptEnd.x, ptEnd.y) != false;
 
    //   return false;
@@ -2148,7 +2148,7 @@ void main() {
 
       draw_rectangle(rectangleParam);
 
-      //return ::double_rectangle(rectangleParam.left(), rectangleParam.top(), rectangleParam.right(), rectangleParam.bottom());
+      //return ::double_rectangle(rectangleParam.left, rectangleParam.top, rectangleParam.right, rectangleParam.bottom);
 
       //return bOk1 && bOk2;
 
@@ -2215,8 +2215,8 @@ void main() {
    void graphics::round_rectangle(const ::double_rectangle& rectangleParam, const ::int_point& point)
    {
       //// ASSERT(m_hdc != nullptr);
-      //return ::RoundRect(m_hdc, rectangleParam.left(), rectangleParam.top(),
-        //                 rectangleParam.right(), rectangleParam.bottom(), point.x, point.y) != false;
+      //return ::RoundRect(m_hdc, rectangleParam.left, rectangleParam.top,
+        //                 rectangleParam.right, rectangleParam.bottom, point.x, point.y) != false;
 
       //return false;
 
@@ -2914,8 +2914,8 @@ void main() {
    void graphics::arc_to(const ::int_rectangle& rectangleParam, const ::int_point& pointStart, const ::int_point& pointEnd)
    {
       // ASSERT(m_hdc != nullptr);
-      //return ArcTo(rectangleParam.left(), rectangleParam.top(), rectangleParam.right(),
-        //           rectangleParam.bottom(), ptStart.x, ptStart.y, ptEnd.x, ptEnd.y);
+      //return ArcTo(rectangleParam.left, rectangleParam.top, rectangleParam.right,
+        //           rectangleParam.bottom, ptStart.x, ptStart.y, ptEnd.x, ptEnd.y);
 
       //return false;
 
@@ -3320,7 +3320,7 @@ void main() {
    //bool graphics::PlayMetaFile(HENHMETAFILE hEnhMF, const ::double_rectangle & rectangleBounds)
    //{
 
-   //   //plusplus::rectF ::double_rectangle((plusplus::REAL) rectangleBounds.left(),(plusplus::REAL) rectangleBounds.top(),(plusplus::REAL) width(rectangleBounds),(plusplus::REAL) height(rectangleBounds));
+   //   //plusplus::rectF ::double_rectangle((plusplus::REAL) rectangleBounds.left,(plusplus::REAL) rectangleBounds.top,(plusplus::REAL) width(rectangleBounds),(plusplus::REAL) height(rectangleBounds));
 
    //   //plusplus::Metafile* pMeta = ___new plusplus::Metafile (hEnhMF, false);
 
@@ -3846,7 +3846,7 @@ void main() {
    //            SelectClipRgn(&rgnLast);
    //            get_clip_box(&rectangle);
    //            pBrushOld = SelectObject(pBrushLast);
-   //            PatBlt(rectangle.left(), rectangle.top(), rectangle.width(), rectangle.height(), PATINVERT);
+   //            PatBlt(rectangle.left, rectangle.top, rectangle.width(), rectangle.height(), PATINVERT);
    //            SelectObject(pBrushOld);
    //            pBrushOld = nullptr;
    //         }
@@ -3855,7 +3855,7 @@ void main() {
    //         SelectClipRgn(rgnUpdate.get_os_data() != nullptr ? &rgnUpdate : &rgnNew);
    //         get_clip_box(&rectangle);
    //         pBrushOld = SelectObject(pBrush);
-   //         PatBlt(rectangle.left(), rectangle.top(), rectangle.width(), rectangle.height(), PATINVERT);
+   //         PatBlt(rectangle.left, rectangle.top, rectangle.width(), rectangle.height(), PATINVERT);
 
    //         // cleanup DC
    //         if (pBrushOld != nullptr)
@@ -3896,8 +3896,8 @@ void graphics::FillSolidRect(double x, double y, double cx, double cy, color32_t
 //   const ::e_border & eborder)
 //{
 
-//   //draw3d_rectangle(rectangleParam.left(), rectangleParam.top(), rectangleParam.right() - rectangleParam.left(),
-//     //         rectangleParam.bottom() - rectangleParam.top(), clrTopLeft, clrBottomRight);
+//   //draw3d_rectangle(rectangleParam.left, rectangleParam.top, rectangleParam.right - rectangleParam.left,
+//     //         rectangleParam.bottom - rectangleParam.top, clrTopLeft, clrBottomRight);
 
 //}
 
@@ -4638,10 +4638,10 @@ void graphics::FillSolidRect(double x, double y, double cx, double cy, color32_t
 
       //m_pgraphics->GetClipBounds(rectangle);
 
-      //rectangle.left() = rectangle.X;
-      //rectangle.top() = rectangle.Y;
-      //rectangle.right() = rectangle.X + rectangle.Width;
-      //rectangle.bottom() = rectangle.Y + rectangle.Height;
+      //rectangle.left = rectangle.X;
+      //rectangle.top = rectangle.Y;
+      //rectangle.right = rectangle.X + rectangle.Width;
+      //rectangle.bottom = rectangle.Y + rectangle.Height;
 
       return 1;
 
@@ -4693,11 +4693,11 @@ void graphics::FillSolidRect(double x, double y, double cx, double cy, color32_t
       //double nRetVal = ERROR;
 
       //if(m_hdc != nullptr && m_hdc != m_hdc)
-      //   nRetVal = ::ExcludeClipRect(m_hdc, rectangleParam.left(), rectangleParam.top(),
-      //                               rectangleParam.right(), rectangleParam.bottom());
+      //   nRetVal = ::ExcludeClipRect(m_hdc, rectangleParam.left, rectangleParam.top,
+      //                               rectangleParam.right, rectangleParam.bottom);
       //if(m_hdc != nullptr)
-      //   nRetVal = ::ExcludeClipRect(m_hdc, rectangleParam.left(), rectangleParam.top(),
-      //                               rectangleParam.right(), rectangleParam.bottom());
+      //   nRetVal = ::ExcludeClipRect(m_hdc, rectangleParam.left, rectangleParam.top,
+      //                               rectangleParam.right, rectangleParam.bottom);
 
       //return nRetVal;
 
@@ -4729,9 +4729,9 @@ void graphics::FillSolidRect(double x, double y, double cx, double cy, color32_t
       int nRetVal = 0;
 
       //if(m_hdc != nullptr && m_hdc != m_hdc)
-      //   nRetVal = ::IntersectClipRect(m_hdc,rectangleBounds.left(),rectangleBounds.top(),rectangleBounds.right(),rectangleBounds.bottom());
+      //   nRetVal = ::IntersectClipRect(m_hdc,rectangleBounds.left,rectangleBounds.top,rectangleBounds.right,rectangleBounds.bottom);
       //if(m_hdc != nullptr)
-      //   nRetVal = ::IntersectClipRect(m_hdc,rectangleBounds.left(),rectangleBounds.top(),rectangleBounds.right(),rectangleBounds.bottom());
+      //   nRetVal = ::IntersectClipRect(m_hdc,rectangleBounds.left,rectangleBounds.top,rectangleBounds.right,rectangleBounds.bottom);
 
       return nRetVal;
 
@@ -5231,14 +5231,14 @@ void graphics::FillSolidRect(double x, double y, double cx, double cy, color32_t
       //copy(rectangle,&rectangleParam);
 
       //return draw_text(str, rectangle, ealign, edrawtext);
-      text_out(rectangle.left(), rectangle.top(), str);
+      text_out(rectangle.left, rectangle.top, str);
 
    }
 
 
    void graphics::draw_text(const ::scoped_string& str, const ::int_rectangle& rectangle, const ::e_align& ealign, const ::e_draw_text& edrawtext)
    {
-      text_out(rectangle.left(), rectangle.top(), str);
+      text_out(rectangle.left, rectangle.top, str);
       //try
       //{
 
@@ -5333,10 +5333,10 @@ void graphics::FillSolidRect(double x, double y, double cx, double cy, color32_t
       //{
 
 
-      //   pmNew->Translate((plusplus::REAL) rectangleParam.left(),(plusplus::REAL) rectangleParam.top());
+      //   pmNew->Translate((plusplus::REAL) rectangleParam.left,(plusplus::REAL) rectangleParam.top);
       //   pmNew->Scale((plusplus::REAL) m_pfont->m_dFontWidth,(plusplus::REAL) 1.0,plusplus::MatrixOrderAppend);
 
-      //   plusplus::rectF float_rectangle(0,0,(plusplus::REAL) ((rectangleParam.right() - rectangleParam.left()) * m_pfont->m_dFontWidth),(plusplus::REAL) (rectangleParam.bottom() - rectangleParam.top()));
+      //   plusplus::rectF float_rectangle(0,0,(plusplus::REAL) ((rectangleParam.right - rectangleParam.left) * m_pfont->m_dFontWidth),(plusplus::REAL) (rectangleParam.bottom - rectangleParam.top));
 
       //   m_pgraphics->SetTransform(pmNew);
 
@@ -6418,10 +6418,10 @@ color = vec4(c.r,c.g, c.b, c.a);
 
       //   //plusplus::PointF points[2];
 
-      //   //points[0].X    = (plusplus::REAL) rectangleParam.left();
-      //   //points[0].Y    = (plusplus::REAL) rectangleParam.top();
-      //   //points[1].X    = (plusplus::REAL) rectangleParam.right();
-      //   //points[1].Y    = (plusplus::REAL) rectangleParam.bottom();
+      //   //points[0].X    = (plusplus::REAL) rectangleParam.left;
+      //   //points[0].Y    = (plusplus::REAL) rectangleParam.top;
+      //   //points[1].X    = (plusplus::REAL) rectangleParam.right;
+      //   //points[1].Y    = (plusplus::REAL) rectangleParam.bottom;
 
       //   //m.TransformPoints(points, 2);
 
@@ -6429,10 +6429,10 @@ color = vec4(c.r,c.g, c.b, c.a);
 
       //   //::double_rectangle ::double_rectangle;
 
-      //   //rectangle.left()      = (::double) points[0].X;
-      //   //rectangle.top()       = (::double) points[0].Y;
-      //   //rectangle.right()     = (::double) points[1].X;
-      //   //rectangle.bottom()    = (::double) points[1].Y;
+      //   //rectangle.left      = (::double) points[0].X;
+      //   //rectangle.top       = (::double) points[0].Y;
+      //   //rectangle.right     = (::double) points[1].X;
+      //   //rectangle.bottom    = (::double) points[1].Y;
 
       //   //plusplus::Bitmap * pbitmap = ((plusplus::Bitmap *) m_pbitmap->get_os_data());
 

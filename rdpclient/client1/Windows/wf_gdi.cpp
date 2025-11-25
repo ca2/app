@@ -193,36 +193,36 @@ void wf_scale_rect(wfContext* wfc, ::int_rectangle* source)
 
 	if (wfc->instance->settings->SmartSizing && (ww != dw || wh != dh))
 	{
-		source->bottom() = source->bottom() * wh / dh + 20;
-		source->top() = source->top() * wh / dh - 20;
-		source->left() = source->left() * ww / dw - 20;
-		source->right() = source->right() * ww / dw + 20;
+		source->bottom = source->bottom * wh / dh + 20;
+		source->top = source->top * wh / dh - 20;
+		source->left = source->left * ww / dw - 20;
+		source->right = source->right * ww / dw + 20;
 	}
 
-	source->bottom() -= wfc->yCurrentScroll;
-	source->top() -= wfc->yCurrentScroll;
-	source->left() -= wfc->xCurrentScroll;
-	source->right() -= wfc->xCurrentScroll;
+	source->bottom -= wfc->yCurrentScroll;
+	source->top -= wfc->yCurrentScroll;
+	source->left -= wfc->xCurrentScroll;
+	source->right -= wfc->xCurrentScroll;
 }
 
 void wf_invalidate_region(wfContext* wfc, int x, int y, int width, int height)
 {
 	::int_rectangle int_rectangle;
 
-	wfc->update_rect.left() = x + wfc->offset_x;
-	wfc->update_rect.top() = y + wfc->offset_y;
-	wfc->update_rect.right() = wfc->update_rect.left() + width;
-	wfc->update_rect.bottom() = wfc->update_rect.top() + height;
+	wfc->update_rect.left = x + wfc->offset_x;
+	wfc->update_rect.top = y + wfc->offset_y;
+	wfc->update_rect.right = wfc->update_rect.left + width;
+	wfc->update_rect.bottom = wfc->update_rect.top + height;
 
 	wf_scale_rect(wfc, &(wfc->update_rect));
 	InvalidateRect(wfc->hwnd, &(wfc->update_rect), false);
 
-	rectangle.left() = x;
-	rectangle.right() = width;
-	rectangle.top() = y;
-	rectangle.bottom() = height;
+	rectangle.left = x;
+	rectangle.right = width;
+	rectangle.top = y;
+	rectangle.bottom = height;
 	wf_scale_rect(wfc, &rectangle);
-	gdi_InvalidateRegion(wfc->hdc, rectangle.left(), rectangle.top(), rectangle.right(), rectangle.bottom());
+	gdi_InvalidateRegion(wfc->hdc, rectangle.left, rectangle.top, rectangle.right, rectangle.bottom);
 }
 
 void wf_update_offset(wfContext* wfc)
@@ -471,7 +471,7 @@ void wf_gdi_palette_update(wfContext* wfc, PALETTE_UPDATE* palette)
 //
 //	if (bounds != nullptr)
 //	{
-//		hrgn = CreateRectRgn(bounds->left(), bounds->top(), bounds->right() + 1, bounds->bottom() + 1);
+//		hrgn = CreateRectRgn(bounds->left, bounds->top, bounds->right + 1, bounds->bottom + 1);
 //		SelectClipRgn(wfc->drawing->hdc, hrgn);
 //		DeleteObject(hrgn);
 //	}
@@ -541,16 +541,16 @@ void wf_gdi_palette_update(wfContext* wfc, PALETTE_UPDATE* palette)
 //
 //	brush_color = freerdp_color_convert_var_bgr(opaque_rect->color, wfc->srcBpp, wfc->dstBpp, wfc->clrconv);
 //
-//	rectangle.left() = opaque_rect->nLeftRect;
-//	rectangle.top() = opaque_rect->nTopRect;
-//	rectangle.right() = opaque_rect->nLeftRect + opaque_rect->nWidth;
-//	rectangle.bottom() = opaque_rect->nTopRect + opaque_rect->nHeight;
+//	rectangle.left = opaque_rect->nLeftRect;
+//	rectangle.top = opaque_rect->nTopRect;
+//	rectangle.right = opaque_rect->nLeftRect + opaque_rect->nWidth;
+//	rectangle.bottom = opaque_rect->nTopRect + opaque_rect->nHeight;
 //	brush = CreateSolidBrush(brush_color);
 //	FillRect(wfc->drawing->hdc, &rectangle, brush);
 //	DeleteObject(brush);
 //
 //	if (wfc->drawing == wfc->primary)
-//		wf_invalidate_region(wfc, rectangle.left(), rectangle.top(), rectangle.right() - rectangle.left() + 1, rectangle.bottom() - rectangle.top() + 1);
+//		wf_invalidate_region(wfc, rectangle.left, rectangle.top, rectangle.right - rectangle.left + 1, rectangle.bottom - rectangle.top + 1);
 //}
 //
 //void wf_gdi_multi_opaque_rect(wfContext* wfc, MULTI_OPAQUE_RECT_ORDER* multi_opaque_rect)
@@ -567,16 +567,16 @@ void wf_gdi_palette_update(wfContext* wfc, PALETTE_UPDATE* palette)
 //	{
 //		rectangle = &multi_opaque_rect->rectangles[i];
 //
-//		rectangle.left() = int_rectangle->left();
-//		rectangle.top() = int_rectangle->top();
-//		rectangle.right() = int_rectangle->left() + int_rectangle->width;
-//		rectangle.bottom() = int_rectangle->top() + int_rectangle->height;
+//		rectangle.left = int_rectangle->left;
+//		rectangle.top = int_rectangle->top;
+//		rectangle.right = int_rectangle->left + int_rectangle->width;
+//		rectangle.bottom = int_rectangle->top + int_rectangle->height;
 //		brush = CreateSolidBrush(brush_color);
 //
 //		FillRect(wfc->drawing->hdc, &rectangle, brush);
 //
 //		if (wfc->drawing == wfc->primary)
-//			wf_invalidate_region(wfc, rectangle.left(), rectangle.top(), rectangle.right() - rectangle.left() + 1, rectangle.bottom() - rectangle.top() + 1);
+//			wf_invalidate_region(wfc, rectangle.left, rectangle.top, rectangle.right - rectangle.left + 1, rectangle.bottom - rectangle.top + 1);
 //
 //		DeleteObject(brush);
 //	}
@@ -817,8 +817,8 @@ void wf_gdi_palette_update(wfContext* wfc, PALETTE_UPDATE* palette)
 //	this->rectangle(wfc->hwnd, &rc_client);
 //	window_rectangle(wfc->hwnd, &rc_wnd);
 //	
-//	Δx = (rc_wnd.right() - rc_wnd.left()) - rc_client.right();
-//	Δy = (rc_wnd.bottom() - rc_wnd.top()) - rc_client.bottom();
+//	Δx = (rc_wnd.right - rc_wnd.left) - rc_client.right;
+//	Δy = (rc_wnd.bottom - rc_wnd.top) - rc_client.bottom;
 //
 //	if (!wfc->disablewindowtracking)
 //	{

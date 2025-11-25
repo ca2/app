@@ -75,10 +75,10 @@ public:
 
       q4 q;
 
-      q.w() = this->w * q2.w() - this->x * q2.x - this->y * q2.y - this->z * q2.z();
-      q.x = this->w * q2.x + this->x * q2.w() + this->y * q2.z() - this->z * q2.y;
-      q.y = this->w * q2.y - this->x * q2.z() + this->y * q2.w() + this->z * q2.x;
-      q.z() = this->w * q2.z() + this->x * q2.y - this->y * q2.x + this->z * q2.w();
+      q.w = this->w * q2.w - this->x * q2.x - this->y * q2.y - this->z * q2.z;
+      q.x = this->w * q2.x + this->x * q2.w + this->y * q2.z - this->z * q2.y;
+      q.y = this->w * q2.y - this->x * q2.z + this->y * q2.w + this->z * q2.x;
+      q.z = this->w * q2.z + this->x * q2.y - this->y * q2.x + this->z * q2.w;
 
       return q;
 
@@ -97,10 +97,10 @@ public:
    q4 & operator = (const q4 & q2)
    {
 
-      this->w = q2.w();
+      this->w = q2.w;
       this->x = q2.x;
       this->y = q2.y;
-      this->z = q2.z();
+      this->z = q2.z;
 
       return *this;
 

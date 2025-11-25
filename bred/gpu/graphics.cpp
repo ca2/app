@@ -734,8 +734,8 @@ namespace gpu
 
 
       pcontext->defer_unbind(pshader);
-      //vkvg_rectangle(m_pdc, rectangle.left(), rectangle.top(), rectangle.right() - rectangle.left(),
-        // rectangle.bottom() - rectangle.top());
+      //vkvg_rectangle(m_pdc, rectangle.left, rectangle.top, rectangle.right - rectangle.left,
+        // rectangle.bottom - rectangle.top);
 
       //m_particleaResetOnTopFrameEnd.add(pmodelbufferRectangle);
 
@@ -925,8 +925,8 @@ namespace gpu
        ////}
        ///
        auto r = rectangle;
-      //r.bottom()--;
-      //r.right()--;
+      //r.bottom--;
+      //r.right--;
 
       double_point points[4] = {
    {r.top_left()},
@@ -980,8 +980,8 @@ namespace gpu
 
 
       //pshader->unbind();
-      ////vkvg_rectangle(m_pdc, rectangle.left(), rectangle.top(), rectangle.right() - rectangle.left(),
-      //  // rectangle.bottom() - rectangle.top());
+      ////vkvg_rectangle(m_pdc, rectangle.left, rectangle.top, rectangle.right - rectangle.left,
+      //  // rectangle.bottom - rectangle.top);
 
       ////m_particleaResetOnTopFrameEnd.add(pmodelbufferRectangle);
 
@@ -1482,10 +1482,10 @@ namespace gpu
 
                float_rectangle rectangle = ppixmap->m_rectangle;
              
-               float l = rectangle.left() / w;
-               float t = rectangle.top() / h;
-               float r = rectangle.right() / w;
-               float b = rectangle.bottom() / h;
+               float l = rectangle.left / w;
+               float t = rectangle.top / h;
+               float r = rectangle.right / w;
+               float b = rectangle.bottom / h;
 
                ::floating_sequence4 texcoords(l, t, r, b);
 

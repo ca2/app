@@ -369,10 +369,10 @@ namespace windowing
 //
 //               ::int_rectangle &rButtonOuter = pbutton->m_rectangle;
 //
-//               rButtonOuter.right() = right;
-//               rButtonOuter.left() = right - m_iButtonWidth;
-//               rButtonOuter.top() = m_iButtonTop;
-//               rButtonOuter.bottom() = m_iButtonTop + m_iButtonHeight;
+//               rButtonOuter.right = right;
+//               rButtonOuter.left = right - m_iButtonWidth;
+//               rButtonOuter.top = m_iButtonTop;
+//               rButtonOuter.bottom = m_iButtonTop + m_iButtonHeight;
 //
 //               ::int_rectangle rButton = rButtonOuter;
 //
@@ -439,33 +439,33 @@ namespace windowing
 //               {
 //
 //                  rButtonOuter.inflate(3);
-//                  XftDrawRect(m_pdraw, &m_colorBorderHover3, rButtonOuter.left(), rButtonOuter.top(), rButtonOuter.width(),
+//                  XftDrawRect(m_pdraw, &m_colorBorderHover3, rButtonOuter.left, rButtonOuter.top, rButtonOuter.width(),
 //                              rButtonOuter.height());
 //                  rButtonOuter.deflate(1);
-//                  XftDrawRect(m_pdraw, &m_colorBorderHover2, rButtonOuter.left(), rButtonOuter.top(), rButtonOuter.width(),
+//                  XftDrawRect(m_pdraw, &m_colorBorderHover2, rButtonOuter.left, rButtonOuter.top, rButtonOuter.width(),
 //                              rButtonOuter.height());
 //                  rButtonOuter.deflate(1);
-//                  XftDrawRect(m_pdraw, &m_colorBorderHover1, rButtonOuter.left(), rButtonOuter.top(), rButtonOuter.width(),
+//                  XftDrawRect(m_pdraw, &m_colorBorderHover1, rButtonOuter.left, rButtonOuter.top, rButtonOuter.width(),
 //                              rButtonOuter.height());
 //                  rButtonOuter.deflate(1);
 //
 //               }
 //
-//               XftDrawRect(m_pdraw, &colorBorder, rButtonOuter.left(), rButtonOuter.top(), rButtonOuter.width(),
+//               XftDrawRect(m_pdraw, &colorBorder, rButtonOuter.left, rButtonOuter.top, rButtonOuter.width(),
 //                           rButtonOuter.height());
 //
-//               XftDrawRect(m_pdraw, &colorBack, rButton.left(), rButton.top(), rButton.width(), rButton.height());
+//               XftDrawRect(m_pdraw, &colorBack, rButton.left, rButton.top, rButton.width(), rButton.height());
 //
 //               ::int_rectangle rectangleText(rButton);
 //
 //               rectangleText.deflate(m_iButtonHPadding, m_iButtonVPadding);
 //
 //               XftDrawStringUtf8(m_pdraw, &colorFore, m_pfont,
-//                                 rectangleText.left() + (rectangleText.width() - rText.width) / 2,
-//                                 rectangleText.top() + m_iTextAscent,
+//                                 rectangleText.left + (rectangleText.width() - rText.width) / 2,
+//                                 rectangleText.top + m_iTextAscent,
 //                                 (FcChar8 *) pbutton->m_strLabel.c_str(), pbutton->m_strLabel.length());
 //
-//               right = rButton.left() - m_iButtonHSpacing;
+//               right = rButton.left - m_iButtonHSpacing;
 //
 //            }
 //

@@ -54,7 +54,7 @@ namespace geometry
       inline typename RECTANGLE::POINT_TYPE random_point(const RECTANGLE & r)
       {
 
-         return { mathematics()->random(r.left(), r.right()), mathematics()->random(r.top(), r.bottom()) };
+         return { mathematics()->random(r.left, r.right), mathematics()->random(r.top, r.bottom) };
 
       }
 

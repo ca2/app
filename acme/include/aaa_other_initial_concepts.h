@@ -37,7 +37,7 @@ concept primitive_pole = requires(POLE pole)
 {
    {pole.x}->primitive_number;
    {pole.y}->primitive_number;
-   {pole.z()}->primitive_number;
+   {pole.z}->primitive_number;
 };
 
 
@@ -76,10 +76,10 @@ concept primitive_dimension = requires(DIMENSION dimension)
 template < typename RECTANGLE >
 concept primitive_rectangle = requires(RECTANGLE rectangle)
 {
-   rectangle.left();
-   rectangle.top();
-   rectangle.right();
-   rectangle.bottom();
+   rectangle.left;
+   rectangle.top;
+   rectangle.right;
+   rectangle.bottom;
 };
 
 

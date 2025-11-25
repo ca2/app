@@ -347,10 +347,10 @@ namespace console
 
          ::int_rectangle rectangleCaret;
 
-         rectangleCaret.left() = (int) (iLeftMargin+m_sizeChar.cx() * m_iCursor);
-         rectangleCaret.right() = rectangleCaret.left() + m_sizeChar.cx();
-         rectangleCaret.top() = m_sizeChar.cy() - 3;
-         rectangleCaret.bottom() = m_sizeChar.cy();
+         rectangleCaret.left = (int) (iLeftMargin+m_sizeChar.cx() * m_iCursor);
+         rectangleCaret.right = rectangleCaret.left + m_sizeChar.cx();
+         rectangleCaret.top = m_sizeChar.cy() - 3;
+         rectangleCaret.bottom = m_sizeChar.cy();
 
 
 

@@ -309,10 +309,10 @@ namespace gpu_opengl
 
             //   //int_rectangle r(prenderer->m_pgpucontext->m_rectangle.size());
 
-            //   //glViewport(r.left(), r.top(), r.width(), r.height());
+            //   //glViewport(r.left, r.top, r.width(), r.height());
             //   //GLCheckError("");
 
-            //   //glScissor(r.left(), r.top(), r.width(), r.height());
+            //   //glScissor(r.left, r.top, r.width(), r.height());
             //   //GLCheckError("");
 
             //   //pframe->m_pgpucommandbuffer->set_scissor(r);
@@ -507,7 +507,7 @@ namespace gpu_opengl
       glBindTexture(GL_TEXTURE_2D, m_gluTextureID);
       glTexSubImage2D(GL_TEXTURE_2D,
                       0, // mip level
-                      rectangle.left(), rectangle.top(), // offset inside the texture
+                      rectangle.left, rectangle.top, // offset inside the texture
                       rectangle.width(), rectangle.height(),
                       GL_RGBA, // format of the new data
                       GL_UNSIGNED_BYTE, // type of the new data
@@ -555,11 +555,11 @@ namespace gpu_opengl
       //
       // //auto pphysicaldevice = pgpudevice->m_pphysicaldevice;
       //
-      // m_rectangleTarget.left() = 0;
-      // m_rectangleTarget.top() = 0;
+      // m_rectangleTarget.left = 0;
+      // m_rectangleTarget.top = 0;
       // //this->m_pDevice = pdevice;
-      // m_rectangleTarget.right() = ktxTexture->baseWidth;
-      // m_rectangleTarget.bottom() = ktxTexture->baseHeight;
+      // m_rectangleTarget.right = ktxTexture->baseWidth;
+      // m_rectangleTarget.bottom = ktxTexture->baseHeight;
       // m_iMipCount = ktxTexture->numLevels;
       //
       // ktx_uint8_t *ktxTextureData = ktxTexture_GetData(ktxTexture);

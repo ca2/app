@@ -19,8 +19,9 @@ inline quadruple_type < NUMBER > random(::mathematics::mathematics * pmathematic
    return quadruple_type < NUMBER >(
           pmathematics->random(quadruple1.x, quadruple2.x),
           pmathematics->random(quadruple1.y, quadruple2.y),
-          pmathematics->random(quadruple1.c(), quadruple2.c()),
-          pmathematics->random(quadruple1.d(), quadruple2.d()));
+          pmathematics->random(quadruple1.z, quadruple2.z),
+          pmathematics->random(quadruple1.w, quadruple2.w)
+      );
 
 }
 

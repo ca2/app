@@ -140,7 +140,7 @@ namespace draw2d
       offset_context& operator +=(const ::double_rectangle& rectangle)
       {
 
-         shift_impact_area(rectangle.left(), rectangle.top(), rectangle.width(), rectangle.height());
+         shift_impact_area(rectangle.left, rectangle.top, rectangle.width(), rectangle.height());
 
          return *this;
 

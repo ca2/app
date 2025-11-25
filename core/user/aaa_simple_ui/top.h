@@ -21,8 +21,8 @@ namespace simple_ui
 
 
 
-      top();
-      virtual ~top();
+      top;
+      virtual ~top;
 
 
       void install_message_routing(::channel * pchannel) override;

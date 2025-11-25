@@ -37,7 +37,7 @@ concept primitive_pole = requires(POLE pole)
 {
    {pole.x}->primitive_number;
    {pole.y}->primitive_number;
-   {pole.z()}->primitive_number;
+   {pole.z}->primitive_number;
 };
 
 
@@ -76,10 +76,10 @@ concept primitive_dimension = requires(DIMENSION dimension)
 template < typename RECTANGLE >
 concept primitive_rectangle = requires(RECTANGLE rectangle)
 {
-   rectangle.left();
-   rectangle.top();
-   rectangle.right();
-   rectangle.bottom();
+   rectangle.left;
+   rectangle.top;
+   rectangle.right;
+   rectangle.bottom;
 };
 
 
@@ -188,10 +188,10 @@ template < primitive_rectangle RECTANGLE1, primitive_rectangle RECTANGLE2 >
 inline void copy(RECTANGLE1 & rectangle1, const RECTANGLE2 & rectangle2)
 {
 
-   rectangle1.left() = (::decay<decltype(rectangle1.left())>)rectangle2.left();
-   rectangle1.top() = (::decay<decltype(rectangle1.top())>)rectangle2.top();
-   rectangle1.right() = (::decay<decltype(rectangle1.right())>)rectangle2.right();
-   rectangle1.bottom() = (::decay<decltype(rectangle1.bottom())>)rectangle2.bottom();
+   rectangle1.left = (::decay<decltype(rectangle1.left)>)rectangle2.left;
+   rectangle1.top = (::decay<decltype(rectangle1.top)>)rectangle2.top;
+   rectangle1.right = (::decay<decltype(rectangle1.right)>)rectangle2.right;
+   rectangle1.bottom = (::decay<decltype(rectangle1.bottom)>)rectangle2.bottom;
 
 }
 
@@ -200,10 +200,10 @@ template < primitive_XYDim XYDim, primitive_rectangle RECTANGLE >
 void copy(XYDim& xydim, const RECTANGLE& rectangle)
 {
 
-   xydim.X = (decltype(XYDim::X))rectangle.left();
-   xydim.Y = (decltype(XYDim::Y))rectangle.top();
-   xydim.Width = (decltype(XYDim::Width))(rectangle.right() - rectangle.left());
-   xydim.Height = (decltype(XYDim::Height))(rectangle.bottom() - rectangle.top());
+   xydim.X = (decltype(XYDim::X))rectangle.left;
+   xydim.Y = (decltype(XYDim::Y))rectangle.top;
+   xydim.Width = (decltype(XYDim::Width))(rectangle.right - rectangle.left);
+   xydim.Height = (decltype(XYDim::Height))(rectangle.bottom - rectangle.top);
 
 }
 
@@ -212,10 +212,10 @@ template < primitive_xydim XYDIM, primitive_rectangle RECTANGLE >
 void copy(XYDIM& xydim, const RECTANGLE& rectangle)
 {
 
-   xydim.x = (decltype(XYDIM::X))rectangle.left();
-   xydim.y = (decltype(XYDIM::Y))rectangle.top();
-   xydim.width = (decltype(XYDIM::Width))(rectangle.right() - rectangle.left());
-   xydim.height = (decltype(XYDIM::Height))(rectangle.bottom() - rectangle.top());
+   xydim.x = (decltype(XYDIM::X))rectangle.left;
+   xydim.y = (decltype(XYDIM::Y))rectangle.top;
+   xydim.width = (decltype(XYDIM::Width))(rectangle.right - rectangle.left);
+   xydim.height = (decltype(XYDIM::Height))(rectangle.bottom - rectangle.top);
 
 }
 

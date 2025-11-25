@@ -41,8 +41,8 @@ AdvancedGridLayout::Anchor::operator ::string() const
    int_size BoxLayout::preferred_size(::nano2d::context * pcontext, Widget* pwidget, bool bRecalcTextSize)
    {
 
-      int_size size(m_rectangleMargin.left() + m_rectangleMargin.right(),
-         m_rectangleMargin.top() + m_rectangleMargin.bottom());
+      int_size size(m_rectangleMargin.left + m_rectangleMargin.right,
+         m_rectangleMargin.top + m_rectangleMargin.bottom);
 
       int y_offset = 0;
 
@@ -54,7 +54,7 @@ AdvancedGridLayout::Anchor::operator ::string() const
          if (m_eorientation == e_orientation_vertical)
          {
 
-            size[1] += pwidget->theme()->m_iWindowHeaderHeight - m_rectangleMargin.top() / 2;
+            size[1] += pwidget->theme()->m_iWindowHeaderHeight - m_rectangleMargin.top / 2;
 
          }
          else
@@ -146,7 +146,7 @@ AdvancedGridLayout::Anchor::operator ::string() const
          if (m_eorientation == e_orientation_vertical)
          {
 
-            position += pwidget->theme()->m_iWindowHeaderHeight - m_rectangleMargin.top() / 2;
+            position += pwidget->theme()->m_iWindowHeaderHeight - m_rectangleMargin.top / 2;
 
          }
          else

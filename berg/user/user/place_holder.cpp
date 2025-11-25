@@ -641,7 +641,7 @@ namespace user
 
       get_parent()->get_child_rect(rectangle);
 
-      offset(rectangle, -rectangle.left(), -rectangle.top());
+      offset(rectangle, -rectangle.left, -rectangle.top);
 
    }
 

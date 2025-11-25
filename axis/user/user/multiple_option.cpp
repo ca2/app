@@ -576,8 +576,8 @@ namespace user
 
          ::int_rectangle rItem(r);
 
-         rItem.left() = x;
-         rItem.right() = rItem.left() + iW;
+         rItem.left = x;
+         rItem.right = rItem.left + iW;
 
          if (i == iIndex)
          {

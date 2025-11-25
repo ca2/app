@@ -803,10 +803,10 @@ namespace draw2d_cairo
 //      //      unsigned int dw = ::get_last_error();
 //      ::int_size size = pbitmap->get_size();
 //
-//      rectx.left() = 0;
-//      rectx.top() = 0;
-//      rectx.right() = size.cx();
-//      rectx.bottom() = size.cy();
+//      rectx.left = 0;
+//      rectx.top = 0;
+//      rectx.right = size.cx();
+//      rectx.bottom = size.cy();
 //
 //      try
 //      {
@@ -844,14 +844,14 @@ namespace draw2d_cairo
 //         m_spgraphics-> set_origin(::int_point());
 //         puserinteraction->_000OnDraw(pimage1->g());
 //         m_spgraphics->set_origin(::int_point());
-//         //(dynamic_cast<::win::graphics * >(pgraphics))->FillSolidRect(rectangleUpdate.left(), rectangleUpdate.top(), 100, 100, 255);
+//         //(dynamic_cast<::win::graphics * >(pgraphics))->FillSolidRect(rectangleUpdate.left, rectangleUpdate.top, 100, 100, 255);
 //         m_spgraphics->SelectClipRgn(nullptr);
 //         m_spgraphics->set_origin(::int_point());
 //
 //         m_spgraphics->SelectClipRgn( nullptr);
-//         m_spgraphics->BitBlt(rectanglePaint.left(), rectanglePaint.top(),
+//         m_spgraphics->BitBlt(rectanglePaint.left, rectanglePaint.top,
 //                              rectanglePaint.width(), rectanglePaint.height(),
-//                              pgraphics, rectangleUpdate.left(), rectangleUpdate.top(),
+//                              pgraphics, rectangleUpdate.left, rectangleUpdate.top,
 //                              SRCCOPY);
 //
 //      }

@@ -423,13 +423,13 @@ namespace browser
 
       ::int_rectangle rectangleX;
 
-      rectangleX.left() = 0;
+      rectangleX.left = 0;
 
-      rectangleX.top() = 0;
+      rectangleX.top = 0;
 
-      rectangleX.right() = m_cx;
+      rectangleX.right = m_cx;
 
-      rectangleX.bottom() = m_cy;
+      rectangleX.bottom = m_cy;
 
       auto pbrushText = øcreate < ::draw2d::brush > ();
 
@@ -682,13 +682,13 @@ namespace browser
 
       ::int_rectangle rectangleX;
 
-      rectangleX.left() = 0;
+      rectangleX.left = 0;
 
-      rectangleX.top() = 0;
+      rectangleX.top = 0;
 
-      rectangleX.right() = m_cx;
+      rectangleX.right = m_cx;
 
-      rectangleX.bottom() = m_cy;
+      rectangleX.bottom = m_cy;
 
       if (rectangleX.area() <= 0)
          return;
@@ -1036,10 +1036,10 @@ namespace browser
 
       ::int_rectangle rectangleX;
 
-      rectangleX.left() = 0;
-      rectangleX.top() = 0;
-      rectangleX.right() = m_cx;
-      rectangleX.bottom() = m_cy;
+      rectangleX.left = 0;
+      rectangleX.top = 0;
+      rectangleX.right = m_cx;
+      rectangleX.bottom = m_cy;
 
       pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
       ::time tickPeriod = m_timeSlidePeriod;

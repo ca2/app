@@ -147,7 +147,7 @@ namespace user
       if(rectangle.width() != 0)
       {
 
-         dScalar = (double) (point.x - rectangle.left()) / (double) rectangle.width();
+         dScalar = (double) (point.x - rectangle.left) / (double) rectangle.width();
 
       }
 
@@ -241,10 +241,10 @@ namespace user
 
       int iWidth = 16;
 
-      rectangle.top() = rectangleX.top();
-      rectangle.bottom() = rectangleX.bottom();
-      rectangle.left() = (int)minimum(rectangleX.right(),m_dRate * (rectangleX.width() - iWidth));
-      rectangle.right() = (int)minimum(rectangleX.right(),m_dRate * ((rectangleX.width() - iWidth)) + iWidth);
+      rectangle.top = rectangleX.top;
+      rectangle.bottom = rectangleX.bottom;
+      rectangle.left = (int)minimum(rectangleX.right,m_dRate * (rectangleX.width() - iWidth));
+      rectangle.right = (int)minimum(rectangleX.right,m_dRate * ((rectangleX.width() - iWidth)) + iWidth);
 
 
    }

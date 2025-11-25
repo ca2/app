@@ -24,10 +24,10 @@ namespace user
    status_bar::status_bar()
    {
       // setup default border/margin depending on type of system
-      m_rectangleBorder.top() = 2;
-      m_rectangleBorder.left() = 0;
-      m_rectangleBorder.right() = 0;
-      m_rectangleBorder.bottom() = 0;
+      m_rectangleBorder.top = 2;
+      m_rectangleBorder.left = 0;
+      m_rectangleBorder.right = 0;
+      m_rectangleBorder.bottom = 0;
 
       // minimum height set with SB_SETMINHEIGHT is cached
       m_nMinHeight = 0;
@@ -214,7 +214,7 @@ namespace user
 //         pBar->default_window_procedure(SB_GETBORDERS, 0, (LPARAM)&rgBorders);
 //
 //         // int_size grip uses a border + size of scrollbar + cx border
-//         rectangle.right() -= rgBorders[0] + ::GetSystemMetrics(SM_CXVSCROLL) +
+//         rectangle.right -= rgBorders[0] + ::GetSystemMetrics(SM_CXVSCROLL) +
 //                       ::GetSystemMetrics(SM_CXBORDER) * 2;
 //      }
 //#else
@@ -238,7 +238,7 @@ namespace user
 //         // get border information and client work area
 //         ::int_rectangle rectangle;
 //         window_rectangle(rectangle);
-//         rectangle.offset(-rectangle.left(), -rectangle.top());
+//         rectangle.offset(-rectangle.left, -rectangle.top);
 //         CalcInsideRect(rectangle, true);
 //         int rgBorders[3];
 //
@@ -565,13 +565,13 @@ namespace user
 //      ::int_rectangle rectangle;
 //
 //      ::user::control_bar::CalcInsideRect(rectangle, true);
-//      ASSERT(rectangle.top() >= 2);
+//      ASSERT(rectangle.top >= 2);
 //
 //      // adjust non-client area for border space
-//      pnccalcsize->m_pparams->rgrc[0].left() += rectangle.left();
-//      pnccalcsize->m_pparams->rgrc[0].top() += rectangle.top() - 2;
-//      pnccalcsize->m_pparams->rgrc[0].right() += rectangle.right();
-//      pnccalcsize->m_pparams->rgrc[0].bottom() += rectangle.bottom();
+//      pnccalcsize->m_pparams->rgrc[0].left += rectangle.left;
+//      pnccalcsize->m_pparams->rgrc[0].top += rectangle.top - 2;
+//      pnccalcsize->m_pparams->rgrc[0].right += rectangle.right;
+//      pnccalcsize->m_pparams->rgrc[0].bottom += rectangle.bottom;
 //#else
 //      throw ::exception(todo);
 //#endif

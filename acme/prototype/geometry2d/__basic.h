@@ -10,14 +10,14 @@
 #include "_concept.h"
 
 
-// inline auto left(const ::int_rectangle &rectangle) { return rectangle.left(); }
-// inline auto top(const ::int_rectangle &rectangle) { return rectangle.top(); }
-// inline auto left(const ::long_long_rectangle & rectangle) { return rectangle.left(); }
-// inline auto top(const ::long_long_rectangle & rectangle) { return rectangle.top(); }
-// inline auto left(const ::float_rectangle & rectangle) { return rectangle.left(); }
-// inline auto top(const ::float_rectangle & rectangle) { return rectangle.top(); }
-// inline auto left(const ::double_rectangle & rectangle) { return rectangle.left(); }
-// inline auto top(const ::double_rectangle & rectangle) { return rectangle.top(); }
+// inline auto left(const ::int_rectangle &rectangle) { return rectangle.left; }
+// inline auto top(const ::int_rectangle &rectangle) { return rectangle.top; }
+// inline auto left(const ::long_long_rectangle & rectangle) { return rectangle.left; }
+// inline auto top(const ::long_long_rectangle & rectangle) { return rectangle.top; }
+// inline auto left(const ::float_rectangle & rectangle) { return rectangle.left; }
+// inline auto top(const ::float_rectangle & rectangle) { return rectangle.top; }
+// inline auto left(const ::double_rectangle & rectangle) { return rectangle.left; }
+// inline auto top(const ::double_rectangle & rectangle) { return rectangle.top; }
 
 
 //template < typename TARGET, typename SOURCE >
@@ -88,20 +88,20 @@ inline INTEGRAL_RESULT muldiv(INTEGRAL1 i, INTEGRAL2 iNumerator, INTEGRAL3 iDeno
 
 
 template < primitive_rectangle RECTANGLE >
-inline auto width(const RECTANGLE & rectangle) { return rectangle.right() - rectangle.left(); }
+inline auto width(const RECTANGLE & rectangle) { return rectangle.right - rectangle.left; }
 
 template < primitive_rectangle RECTANGLE >
-inline auto height(const RECTANGLE & rectangle) { return rectangle.bottom() - rectangle.top(); }
+inline auto height(const RECTANGLE & rectangle) { return rectangle.bottom - rectangle.top; }
 
 template < primitive_rectangle RECTANGLE >
 inline auto area(const RECTANGLE & rectangle) { return maximum(width(rectangle), 0) * maximum(height(rectangle), 0); }
 
 
 template < primitive_rectangle RECTANGLE >
-inline auto left(const RECTANGLE & rectangle) { return rectangle.left(); }
+inline auto left(const RECTANGLE & rectangle) { return rectangle.left; }
 
 template < primitive_rectangle RECTANGLE >
-inline auto top(const RECTANGLE & rectangle) { return rectangle.top(); }
+inline auto top(const RECTANGLE & rectangle) { return rectangle.top; }
 
 
 
@@ -126,10 +126,10 @@ inline auto top(const XYDim & rectangle) { return rectangle.Y; }
 //inline void copy(RECTANGLE & rectangle, const XYDim & xydim)
 //{
 //
-//   rectangle.left() = (decltype(rectangle.left())) xydim.X;
-//   rectangle.top() = (decltype(rectangle.top())) xydim.Y;
-//   rectangle.right() = (decltype(rectangle.right()))(xydim.X + xydim.Width);
-//   rectangle.bottom() = (decltype(rectangle.bottom()))(xydim.Y + xydim.Height);
+//   rectangle.left = (decltype(rectangle.left)) xydim.X;
+//   rectangle.top = (decltype(rectangle.top)) xydim.Y;
+//   rectangle.right = (decltype(rectangle.right))(xydim.X + xydim.Width);
+//   rectangle.bottom = (decltype(rectangle.bottom))(xydim.Y + xydim.Height);
 //
 //}
 //
@@ -138,10 +138,10 @@ inline auto top(const XYDim & rectangle) { return rectangle.Y; }
 //inline void copy(XYDim & xydim, const RECTANGLE & rectangle)
 //{
 //
-//   xydim.X = (decltype(xydim.X)) rectangle.left();
-//   xydim.Y = (decltype(xydim.Y)) rectangle.top();
-//   xydim.Width = (decltype(xydim.Width))(rectangle.right() + rectangle.left());
-//   xydim.Height = (decltype(xydim.Height))(rectangle.bottom() + rectangle.top());
+//   xydim.X = (decltype(xydim.X)) rectangle.left;
+//   xydim.Y = (decltype(xydim.Y)) rectangle.top;
+//   xydim.Width = (decltype(xydim.Width))(rectangle.right + rectangle.left);
+//   xydim.Height = (decltype(xydim.Height))(rectangle.bottom + rectangle.top);
 //
 //}
 
@@ -159,7 +159,7 @@ inline auto top(const XYDim & rectangle) { return rectangle.Y; }
 //inline int height(const ::int_rectangle &rectangle) { return ::rect_height(rectangle); }
 //inline int area(const ::int_rectangle &rectangle) { return ::rect_area(rectangle); }
 //inline bool is_empty(const ::int_rectangle &rectangle) { return ::is_rect_empty(rectangle); }
-//inline void swap_left_right(::int_rectangle & rectangle) noexcept { ::__swap(rectangle.left(), rectangle.right()); }
+//inline void swap_left_right(::int_rectangle & rectangle) noexcept { ::__swap(rectangle.left, rectangle.right); }
 
 //inline int width(const ::int_rectangle &rectangle) { return ::width(&rectangle); }
 //inline int height(const ::int_rectangle &rectangle) { return ::height(&rectangle); }
@@ -193,7 +193,7 @@ inline auto top(const XYDim & rectangle) { return rectangle.Y; }
 //inline long long height(const ::long_long_rectangle & rectangle) { return ::rect_height(rectangle); }
 //inline long long area(const ::long_long_rectangle & rectangle) { return ::rect_area(rectangle); }
 //inline bool is_empty(const ::long_long_rectangle & rectangle) { return ::is_rect_empty(rectangle); }
-//inline void swap_left_right(::long_long_rectangle & rectangle) noexcept { ::__swap(rectangle.left(), rectangle.right()); }
+//inline void swap_left_right(::long_long_rectangle & rectangle) noexcept { ::__swap(rectangle.left, rectangle.right); }
 
 //inline long long width(const ::long_long_rectangle & rectangle) { return ::width(&rectangle); }
 //inline long long height(const ::long_long_rectangle & rectangle) { return ::height(&rectangle); }
@@ -220,7 +220,7 @@ inline auto top(const XYDim & rectangle) { return rectangle.Y; }
 ////inline auto height(const RECTANGLE & rectangle) { return ::height(&rectangle); }
 //inline float area(const ::float_rectangle & rectangle) { return ::rect_area(rectangle); }
 //inline bool is_empty(const ::float_rectangle & rectangle) { return ::is_rect_empty(rectangle); }
-//inline void swap_left_right(::float_rectangle & rectangle) noexcept { ::__swap(rectangle.left(), rectangle.right()); }
+//inline void swap_left_right(::float_rectangle & rectangle) noexcept { ::__swap(rectangle.left, rectangle.right); }
 
 //inline float width(const ::float_rectangle& rectangle) { return ::width(&rectangle); }
 ////inline float height(const ::float_rectangle& rectangle) { return ::height(&rectangle); }
@@ -248,7 +248,7 @@ inline RECTANGLE & rate_deflate(RECTANGLE & rectangle, double dLeftRate, double 
 ////inline double height(const ::double_rectangle  & rectangle) { return ::rect_height(rectangle); }
 //inline double area(const ::double_rectangle & rectangle) { return ::rect_area(rectangle); }
 //inline bool is_empty(const ::double_rectangle & rectangle) { return ::is_rect_empty(rectangle); }
-//inline void swap_left_right(::double_rectangle & rectangle) noexcept { ::__swap(rectangle.left(), rectangle.right()); }
+//inline void swap_left_right(::double_rectangle & rectangle) noexcept { ::__swap(rectangle.left, rectangle.right); }
 
 //inline double width(const ::double_rectangle & rectangle) { return ::width(&rectangle); }
 //inline double height(const ::double_rectangle& rectangle) { return ::height(&rectangle); }
@@ -327,16 +327,16 @@ inline RECTANGLE & rate_deflate(RECTANGLE & rectangle, double dLeftRate, double 
 //
 //inline void copy(int_rectangle & rectDst, const ::winrt::Windows::Foundation::Rect * prectSrc)
 //{
-//   rectDst->left() = (int) prectSrc->X;
-//   rectDst->top() = (int)prectSrc->Y;
-//   rectDst->right() = (int) (prectSrc->X + prectSrc->Width);
-//   rectDst->bottom() = (int) (prectSrc->Y + prectSrc->Height);
+//   rectDst->left = (int) prectSrc->X;
+//   rectDst->top = (int)prectSrc->Y;
+//   rectDst->right = (int) (prectSrc->X + prectSrc->Width);
+//   rectDst->bottom = (int) (prectSrc->Y + prectSrc->Height);
 //}
 //
 //inline void copy(::winrt::Windows::Foundation::Rect& rectDst, int_rectangle* prectSrc)
 //{
-//   rectDst->X = (float) prectSrc->left();
-//   rectDst->Y = (float) prectSrc->top();
+//   rectDst->X = (float) prectSrc->left;
+//   rectDst->Y = (float) prectSrc->top;
 //   rectDst->Width = (float) prectSrc->width();
 //   rectDst->Height = (float) prectSrc->height();
 //}

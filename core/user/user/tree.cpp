@@ -415,13 +415,13 @@ namespace user
 
             drawitemdata.m_rectangle = drawitemdata.m_rectangleX;
 
-            drawitemdata.m_rectangle.left() = (int)(drawitemdata.m_iIndentation * pitem->m_iLevel);
+            drawitemdata.m_rectangle.left = (int)(drawitemdata.m_iIndentation * pitem->m_iLevel);
 
-            drawitemdata.m_rectangle.top() = (int)(iItem * drawitemdata.m_dItemHeight);
+            drawitemdata.m_rectangle.top = (int)(iItem * drawitemdata.m_dItemHeight);
 
-            drawitemdata.m_rectangle.bottom() = (int)(drawitemdata.m_rectangle.top() + drawitemdata.m_dItemHeight);
+            drawitemdata.m_rectangle.bottom = (int)(drawitemdata.m_rectangle.top + drawitemdata.m_dItemHeight);
 
-            drawitemdata.m_rectangle.right() = m_iCurrentImpactWidth;
+            drawitemdata.m_rectangle.right = m_iCurrentImpactWidth;
 
             {
                
@@ -574,7 +574,7 @@ namespace user
       if (bHover) // selected
       {
 
-         auto rectangleFill = ::double_rectangle(data.m_rectangleX.left(), data.m_rectangle.top(), data.m_rectangleX.right(), data.m_rectangle.bottom());
+         auto rectangleFill = ::double_rectangle(data.m_rectangleX.left, data.m_rectangle.top, data.m_rectangleX.right, data.m_rectangle.bottom);
 
          data.m_pdc->fill_rectangle(rectangleFill, argb(127, 125, 166, 228));
 
@@ -612,7 +612,7 @@ namespace user
 
          //   ::color::color crTranslucid = rgb(0, 0, 0);
 
-         //   imaging.color_blend(data.m_pdc,    rectangleUnion.left(), rectangleUnion.top(),
+         //   imaging.color_blend(data.m_pdc,    rectangleUnion.left, rectangleUnion.top,
          //   rectangleUnion.width(), rectangleUnion.height(),
          //   crTranslucid, 127);
 
@@ -1104,21 +1104,21 @@ namespace user
       {
       case e_tree_element_expand_box:
       {
-         prectangle->left() = (int)(drawitem.m_rectangle.left());
+         prectangle->left = (int)(drawitem.m_rectangle.left);
 
-         prectangle->right() = (int)minimum(prectangle->left() + 16, drawitem.m_rectangle.right());
+         prectangle->right = (int)minimum(prectangle->left + 16, drawitem.m_rectangle.right);
 
-         prectangle->top() = (int)(drawitem.m_rectangle.top());
+         prectangle->top = (int)(drawitem.m_rectangle.top);
 
-         prectangle->bottom() = (int)(drawitem.m_rectangle.bottom());
+         prectangle->bottom = (int)(drawitem.m_rectangle.bottom);
 
       }
       break;
       case e_tree_element_image:
       {
-         prectangle->left() = (int)(drawitem.m_rectangle.left() + 18);
+         prectangle->left = (int)(drawitem.m_rectangle.left + 18);
 
-         prectangle->right() = (int)minimum(prectangle->left() + 16, drawitem.m_rectangle.right());
+         prectangle->right = (int)minimum(prectangle->left + 16, drawitem.m_rectangle.right);
 
          int iHDiff = 0;
 
@@ -1129,21 +1129,21 @@ namespace user
 
          }
 
-         prectangle->top() = (int)(drawitem.m_rectangle.top() + iHDiff / 2);
+         prectangle->top = (int)(drawitem.m_rectangle.top + iHDiff / 2);
 
-         prectangle->bottom() = (int)(drawitem.m_rectangle.bottom() - iHDiff / 2);
+         prectangle->bottom = (int)(drawitem.m_rectangle.bottom - iHDiff / 2);
 
       }
       break;
       case e_tree_element_text:
       {
-         prectangle->left() = (int)(drawitem.m_rectangle.left() + 38);
+         prectangle->left = (int)(drawitem.m_rectangle.left + 38);
 
-         prectangle->right() = (int)(drawitem.m_rectangle.right());
+         prectangle->right = (int)(drawitem.m_rectangle.right);
 
-         prectangle->top() = (int)(drawitem.m_rectangle.top());
+         prectangle->top = (int)(drawitem.m_rectangle.top);
 
-         prectangle->bottom() = (int)(drawitem.m_rectangle.bottom());
+         prectangle->bottom = (int)(drawitem.m_rectangle.bottom);
 
       }
       break;

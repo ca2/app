@@ -955,10 +955,10 @@ namespace user
 
          auto puseritem = puseritembase->m_puseritem;
 
-         puseritem->m_rectangle2.left() = 0;
-         puseritem->m_rectangle2.right() = rectangleX.width();
-         puseritem->m_rectangle2.top() = y;
-         puseritem->m_rectangle2.bottom() = (int) (y + iLineHeight);
+         puseritem->m_rectangle2.left = 0;
+         puseritem->m_rectangle2.right = rectangleX.width();
+         puseritem->m_rectangle2.top = y;
+         puseritem->m_rectangle2.bottom = (int) (y + iLineHeight);
 
          ::user::enum_state estate = ::user::e_state_none;
 

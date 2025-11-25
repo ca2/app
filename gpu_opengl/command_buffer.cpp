@@ -31,8 +31,8 @@ namespace gpu_opengl
    {
 
       glViewport(
-         rectangle.left(),
-         rectangle.top(),
+         rectangle.left,
+         rectangle.top,
          rectangle.width(),
          rectangle.height());
       GLCheckError("");
@@ -46,8 +46,8 @@ namespace gpu_opengl
       glEnable(GL_SCISSOR_TEST);
 
       glScissor(
-         rectangle.left(),
-         rectangle.top(),
+         rectangle.left,
+         rectangle.top,
          rectangle.width(),
          rectangle.height()
       );

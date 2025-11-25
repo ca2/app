@@ -18,13 +18,13 @@ template < primitive_number NUMBER >
 struct color_type :
    public sequence_type < NUMBER, 4 >
 {
-protected:
-   
-   using sequence_type < NUMBER, 4 >::a;
-   using sequence_type < NUMBER, 4 >::b;
-   using sequence_type < NUMBER, 4 >::c;
-   using sequence_type < NUMBER, 4 >::d;
-
+//protected:
+//   
+//   using sequence_type < NUMBER, 4 >::x;
+//   using sequence_type < NUMBER, 4 >::y;
+//   using sequence_type < NUMBER, 4 >::z;
+//   using sequence_type < NUMBER, 4 >::w;
+//
 public:
    
    using UNIT_TYPE = NUMBER;
@@ -79,14 +79,14 @@ public:
 //   color_type(UNIT_TYPE a, UNIT_TYPE b, UNIT_TYPE c, UNIT_TYPE d) { x = a; y = b; z = c; w = d; }
 //   //~color_type() = default;
    
-   const UNIT_TYPE & red() const {return this->x();}
-   UNIT_TYPE & red() {return this->x();}
-   const UNIT_TYPE & green() const {return this->y();}
-   UNIT_TYPE & green() {return this->y();}
-   const UNIT_TYPE & blue() const {return this->c();}
-   UNIT_TYPE & blue() {return this->c();}
-   const UNIT_TYPE & opacity() const {return this->d();}
-   UNIT_TYPE & opacity() {return this->d();}
+   //const UNIT_TYPE & red() const {return this->x();}
+   //UNIT_TYPE & red() {return this->x();}
+   //const UNIT_TYPE & green() const {return this->y();}
+   //UNIT_TYPE & green() {return this->y();}
+   //const UNIT_TYPE & blue() const {return this->c();}
+   //UNIT_TYPE & blue() {return this->c();}
+   //const UNIT_TYPE & opacity() const {return this->d();}
+   //UNIT_TYPE & opacity() {return this->d();}
 
 
    color_type & operator =(const color_type & v) = default;
@@ -105,12 +105,12 @@ public:
 
    inline color_type operator +(const color_type & q) const
    {
-      return color_type(this->x + q.x, this->y + q.y, this->z + q.z(), this->w + q.w());
+      return color_type(this->x + q.x, this->y + q.y, this->z + q.z, this->w + q.w);
    }
 
    inline color_type operator -(const color_type & t) const
    {
-      return color_type(this->x - t.x, this->y - t.y, this->z - t.z(), this->w - t.w());
+      return color_type(this->x - t.x, this->y - t.y, this->z - t.z, this->w - t.w);
    }
 
    inline color_type & operator +=(const color_type & a)
@@ -127,17 +127,17 @@ public:
 
 //   inline UNIT_TYPE dot(const color_type & q) const
 //   {
-//      return this->x * q.x + this->y * q.y + this->z * q.z() + this->w * q.w();
+//      return this->x * q.x + this->y * q.y + this->z * q.z + this->w * q.w;
 //   }
    
    ::color::color color() const
    {
       
       return ::rgba(
-         this->red(),
-         this->green(),
-         this->blue(),
-         this->opacity());
+         this->red,
+         this->green,
+         this->blue,
+         this->opacity);
       
    }
 
@@ -152,5 +152,5 @@ template < primitive_number NUMBER1, primitive_number NUMBER2 >
 inline color_type < largest_number < NUMBER1, NUMBER2 > > operator * (NUMBER1 n, const color_type < NUMBER2 > & q)
 {
 
-   return color_type < largest_number < NUMBER1, NUMBER2 > >(n * q.x, n * q.y, n * q.z(), n * q.w());
+   return color_type < largest_number < NUMBER1, NUMBER2 > >(n * q.x, n * q.y, n * q.z, n * q.w);
 }

@@ -395,15 +395,15 @@ namespace html
 
          auto pointBound = top_left();
 
-         pointBound.x += m_margin.left() + m_border.left() + m_padding.left();
+         pointBound.x += m_margin.left + m_border.left + m_padding.left;
 
          float x = pointBound.x;
 
          ::float_size sizeContent = ::float_size(get_bound_size());
 
-         sizeContent.cx() = maximum(0.f, sizeContent.cx() - m_padding.left() - m_padding.right() - m_border.left() - m_border.right() - m_margin.left() - m_margin.right());
+         sizeContent.cx() = maximum(0.f, sizeContent.cx() - m_padding.left - m_padding.right - m_border.left - m_border.right - m_margin.left - m_margin.right);
 
-         sizeContent.cy() = maximum(0.f, sizeContent.cy() - m_padding.top() - m_padding.bottom() - m_border.top() - m_border.bottom() - m_margin.top() - m_margin.bottom());
+         sizeContent.cy() = maximum(0.f, sizeContent.cy() - m_padding.top - m_padding.bottom - m_border.top - m_border.bottom - m_margin.top - m_margin.bottom);
 
          for (int i = 0; i < str.length();)
          {
@@ -651,11 +651,11 @@ namespace html
 
                   string str = m_straLines[i];
 
-                  rectangleLine.top() = rectangleLine.top();
+                  rectangleLine.top = rectangleLine.top;
 
                   rectangleLine.set_size(m_sizea[i]);
 
-                  pgraphics->text_out(rectangleLine.left(), rectangleLine.top(), str);
+                  pgraphics->text_out(rectangleLine.left, rectangleLine.top, str);
 
                }
 
@@ -834,9 +834,9 @@ namespace html
          if(m_pelemental->m_pparent != nullptr)
          {
 
-            //x += m_pelemental->m_pparent->m_pimpl->m_border.left() + //m_pelemental->m_pparent->m_pimpl->m_padding.left() + //m_pelemental->m_pparent->m_pimpl->m_margin.left();
+            //x += m_pelemental->m_pparent->m_pimpl->m_border.left + //m_pelemental->m_pparent->m_pimpl->m_padding.left + //m_pelemental->m_pparent->m_pimpl->m_margin.left;
 
-            //y += m_pelemental->m_pparent->m_pimpl->m_border.top() + //m_pelemental->m_pparent->m_pimpl->m_padding.top() + m_pelemental->m_pparent->m_pimpl->m_margin.top();*/
+            //y += m_pelemental->m_pparent->m_pimpl->m_border.top + //m_pelemental->m_pparent->m_pimpl->m_padding.top + m_pelemental->m_pparent->m_pimpl->m_margin.top;*/
 
          /*}
 
@@ -864,7 +864,7 @@ namespace html
             for(int i = 0; i < m_straLines.get_size(); i++)
             {
                string strLine = m_straLines[i];
-               float left = i == 0 ? x : m_bound.left();
+               float left = i == 0 ? x : m_bound.left;
                float top = y + cy;
                if(pdata->m_pcoredata->m_bEdit)
                {
@@ -1059,7 +1059,7 @@ namespace html
 
          __UNREFERENCED_PARAMETER(pdocument);
 
-         float x = left();
+         float x = this->left();
          float cy = 0.f;
          float x1;
          float x2;
@@ -1067,14 +1067,14 @@ namespace html
          for(int i = 0; i < m_straLines.get_size(); i++)
          {
 
-            x1 = i == 0 ? x : m_bound.left();
+            x1 = i == 0 ? x : m_bound.left;
 
             x2 = x1 + m_sizea[i].cx();
 
             if(point.x > x1 && point.x < x2)
             {
 
-               if(point.y > m_box.top() + cy  && point.y < m_box.top() + cy + m_sizea[i].cy())
+               if(point.y > m_box.top + cy  && point.y < m_box.top + cy + m_sizea[i].cy())
                {
 
                   return 1;
@@ -1180,9 +1180,9 @@ namespace html
 
          pgraphics->set(m_pelemental->m_pdata->get_font(m_pelemental)->m_pfont);
 
-         float x = left();
+         float x = this->left();
 
-         float y = top();
+         float y = this->top();
 
          float cy = 0;
 
@@ -1206,7 +1206,7 @@ namespace html
 
             const_char_pointer pszEnd = pszStart;
 
-            float cur_x = i == 0 ? x : m_bound.left();
+            float cur_x = i == 0 ? x : m_bound.left;
 //            int cur_y = y + cy;
             if(py >= (y + cy) && py < (y + m_sizea[i].cy()))
             {

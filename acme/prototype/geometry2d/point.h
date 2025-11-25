@@ -271,16 +271,16 @@ public:
 //   void x_constraint(const RECTANGLE_TYPE& rectangle) noexcept
 //   {
 //
-//      if (this->x < rectangle.left())
+//      if (this->x < rectangle.left)
 //      {
 //
-//         this->x = rectangle.left();
+//         this->x = rectangle.left;
 //
 //      }
-//      else if (this->x > rectangle.right())
+//      else if (this->x > rectangle.right)
 //      {
 //
-//         this->x = rectangle.right();
+//         this->x = rectangle.right;
 //
 //      }
 //
@@ -289,16 +289,16 @@ public:
 //   void y_constraint(const RECTANGLE_TYPE& rectangle) noexcept
 //   {
 //
-//      if (this->y < rectangle.top())
+//      if (this->y < rectangle.top)
 //      {
 //
-//         this->y = rectangle.top();
+//         this->y = rectangle.top;
 //
 //      }
-//      else if (this->y > rectangle.bottom())
+//      else if (this->y > rectangle.bottom)
 //      {
 //
-//         this->y = rectangle.bottom();
+//         this->y = rectangle.bottom;
 //
 //      }
 //
@@ -425,7 +425,7 @@ inline ::size_type < largest_number < NUMBER1, NUMBER2 > > operator -(const ::po
 
 
 template < primitive_number NUMBER >
-constexpr point_type < NUMBER >::point_type(const lparam & lparam) : sequence_type<UNIT_TYPE, 2>(lparam.x(), lparam.y())
+constexpr point_type<NUMBER>::point_type(const lparam &lparam) : sequence_type<UNIT_TYPE, 2>(lparam.x(), lparam.y())
 {
 
 

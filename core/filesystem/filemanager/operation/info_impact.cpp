@@ -61,20 +61,20 @@ namespace filemanager
 
 
       /*::fill_rectangle(hdc, &rectangleProgress, g_hbrushProgress3);
-      rectangleProgress.left()++;
-      rectangleProgress.right()--;
-      rectangleProgress.top()++;
-      rectangleProgress.bottom()--;*/
+      rectangleProgress.left++;
+      rectangleProgress.right--;
+      rectangleProgress.top++;
+      rectangleProgress.bottom--;*/
       auto rectangleX = this->rectangle();
       int iLineCount = 23;
       double dBarHeight = (double)rectangleX.height() / (double)iLineCount;
       double dTop = 0.0;
       ::int_rectangle rectangleProgress;
       rectangleProgress = rectangleX;
-      //rectangleProgress.left() += 23;
-      //rectangleProgress.right() -= 23;
-      rectangleProgress.top() += (int)dTop;
-      rectangleProgress.bottom() = (int)(dTop + dBarHeight);
+      //rectangleProgress.left += 23;
+      //rectangleProgress.right -= 23;
+      rectangleProgress.top += (int)dTop;
+      rectangleProgress.bottom = (int)(dTop + dBarHeight);
       double dProgressL = 0.0;
       double dProgressU;
       double dProgressD = 1.0 / (double)iLineCount;
@@ -94,14 +94,14 @@ namespace filemanager
          {
             if(dProgress < dProgressU)
             {
-               rectangleBar.right() = ((int)((rectangleProgress.right() - rectangleProgress.left()) * (dProgress - dProgressL) * ((double)iLineCount))) + rectangleProgress.left();
+               rectangleBar.right = ((int)((rectangleProgress.right - rectangleProgress.left) * (dProgress - dProgressL) * ((double)iLineCount))) + rectangleProgress.left;
             }
-            DoBar(pgraphics,rectangleBar.left(),rectangleBar.top(),
-                  rectangleBar.right() - rectangleBar.left(),rectangleBar.bottom() - rectangleBar.top(),m_dAnimation);
+            DoBar(pgraphics,rectangleBar.left,rectangleBar.top,
+                  rectangleBar.right - rectangleBar.left,rectangleBar.bottom - rectangleBar.top,m_dAnimation);
          }
          dTop += dBarHeight;
-         rectangleProgress.top() = (int)dTop;
-         rectangleProgress.bottom() = (int)(dTop + dBarHeight);
+         rectangleProgress.top = (int)dTop;
+         rectangleProgress.bottom = (int)(dTop + dBarHeight);
          dProgressL = dProgressU;
       }
       //::fill_rectangle(hdc, &rectangleProgress, g_hbrushProgress1);

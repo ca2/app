@@ -122,7 +122,7 @@ namespace micro
 
       rectangleText = get_client_rectangle();
 
-      rectangleText.bottom() = rectangleText.top() + rectangleText.height() * 3 / 4;
+      rectangleText.bottom = rectangleText.top + rectangleText.height() * 3 / 4;
 
       rectangleText.deflate(25);
 
@@ -131,7 +131,7 @@ namespace micro
 
          pmicrodevice->draw(m_picon, 25, 25, 48, 48);
 
-         rectangleText.left() += 48 + 10;
+         rectangleText.left += 48 + 10;
 
       }
 
@@ -308,12 +308,12 @@ namespace micro
 
          auto pmicrobutton = micro_button_at(iButton);
 
-         pmicrobutton->m_rectangle.bottom() = iBottom;
-         pmicrobutton->m_rectangle.top() = pmicrobutton->m_rectangle.bottom() - hButton;
-         pmicrobutton->m_rectangle.right() = iRight;
-         pmicrobutton->m_rectangle.left() = pmicrobutton->m_rectangle.right() - wButton;
+         pmicrobutton->m_rectangle.bottom = iBottom;
+         pmicrobutton->m_rectangle.top = pmicrobutton->m_rectangle.bottom - hButton;
+         pmicrobutton->m_rectangle.right = iRight;
+         pmicrobutton->m_rectangle.left = pmicrobutton->m_rectangle.right - wButton;
 
-         iRight = pmicrobutton->m_rectangle.left() - wSpacing;
+         iRight = pmicrobutton->m_rectangle.left - wSpacing;
 
          printf_line("234");
 
@@ -478,7 +478,7 @@ namespace micro
 
          m_pstillDetails->resize_to_fit();
 
-         m_pstillDetails->m_rectangle.move_bottom_to(micro_button_at(0)->m_rectangle.bottom());
+         m_pstillDetails->m_rectangle.move_bottom_to(micro_button_at(0)->m_rectangle.bottom);
 
          m_pstillDetails->m_rectangle.move_left_to(x);
 
@@ -510,10 +510,10 @@ namespace micro
 
 
 
-         m_pstillTimeout->m_rectangle.bottom() = iBottom;
-         m_pstillTimeout->m_rectangle.top() = m_pstillTimeout->m_rectangle.bottom() - hButton / 2;
-         m_pstillTimeout->m_rectangle.left() = (int)(m_rectangle.width() * 0.025);
-         m_pstillTimeout->m_rectangle.right() = m_pstillTimeout->m_rectangle.left() + wButton / 3;
+         m_pstillTimeout->m_rectangle.bottom = iBottom;
+         m_pstillTimeout->m_rectangle.top = m_pstillTimeout->m_rectangle.bottom - hButton / 2;
+         m_pstillTimeout->m_rectangle.left = (int)(m_rectangle.width() * 0.025);
+         m_pstillTimeout->m_rectangle.right = m_pstillTimeout->m_rectangle.left + wButton / 3;
 
          set_timer(1021, 200_ms);
 
@@ -666,10 +666,10 @@ namespace micro
 
       ::int_rectangle rectanglePointTo;
 
-      rectanglePointTo.left() = pmouse->m_pointAbsolute.x;
-      rectanglePointTo.top() = pmouse->m_pointAbsolute.y;
-      rectanglePointTo.right() = rectanglePointTo.left() + 200;
-      rectanglePointTo.bottom() = rectanglePointTo.top() + 2;
+      rectanglePointTo.left = pmouse->m_pointAbsolute.x;
+      rectanglePointTo.top = pmouse->m_pointAbsolute.y;
+      rectanglePointTo.right = rectanglePointTo.left + 200;
+      rectanglePointTo.bottom = rectanglePointTo.top + 2;
 
       ppopupbutton->acme_windowing_window()->m_rectanglePointingTo = rectanglePointTo;
 #ifdef APPLE_IOS

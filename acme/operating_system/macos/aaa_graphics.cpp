@@ -338,13 +338,13 @@ HBRUSH CreateSolidBrush(color32_t color32)
 //{
 //   CGColorRef color = cg_create_color(clr);
 //   CGRect int_rectangle;
-//   rectangle.origin.x = prectangle->left();
+//   rectangle.origin.x = prectangle->left;
 
-//   rectangle.origin.y = prectangle->top();
+//   rectangle.origin.y = prectangle->top;
 
-//   rectangle.size.width = prectangle->right() - prectangle->left();
+//   rectangle.size.width = prectangle->right - prectangle->left;
 
-//   rectangle.size.height = prectangle->bottom() - prectangle->top();
+//   rectangle.size.height = prectangle->bottom - prectangle->top;
 
 //   CGContextFillRect(hdc->m_cgcontext, rectangle);
 //   cg_release_color(color);
@@ -704,26 +704,26 @@ bool mm1_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const ::s
 //    {
 //    return false;
 //    }
-//    prectangle->left()      = 0;
+//    prectangle->left      = 0;
 //
-//    prectangle->top()       = 0;
+//    prectangle->top       = 0;
 //
-//    prectangle->right()     = prectangle->left()    + attrs.width;
+//    prectangle->right     = prectangle->left    + attrs.width;
 //
-//    prectangle->bottom()    = prectangle->top()     + attrs.height;*/
+//    prectangle->bottom    = prectangle->top     + attrs.height;*/
 //
 //
 //   if(!window_rectangle(hwnd, prectangle))
 //
 //      return false;
 //
-//   prectangle->right()   -=  prectangle->left();
+//   prectangle->right   -=  prectangle->left;
 //
-//   prectangle->bottom()  -=  prectangle->top();
+//   prectangle->bottom  -=  prectangle->top;
 //
-//   prectangle->left()    =   0;
+//   prectangle->left    =   0;
 //
-//   prectangle->top()     =   0;
+//   prectangle->top     =   0;
 //
 //
 //   return true;
@@ -740,13 +740,13 @@ bool mm1_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const ::s
 //    {
 //    return false;
 //    }
-//    prectangle->left()      = attrs.x;
+//    prectangle->left      = attrs.x;
 //
-//    prectangle->top()       = attrs.y;
+//    prectangle->top       = attrs.y;
 //
-//    prectangle->right()     = prectangle->left()    + attrs.width;
+//    prectangle->right     = prectangle->left    + attrs.width;
 //
-//    prectangle->bottom()    = prectangle->top()     + attrs.height;*/
+//    prectangle->bottom    = prectangle->top     + attrs.height;*/
 //
 //
 //   //if(!hwnd->m_bNsWindowRect)
@@ -779,13 +779,13 @@ bool mm1_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const ::s
 
  CGRect int_rectangle;
 
- rectangle.origin.x     = prc->left();
+ rectangle.origin.x     = prc->left;
 
- rectangle.origin.y     = prc->top();
+ rectangle.origin.y     = prc->top;
 
- rectangle.size.width   = prc->right() - lprc->left();
+ rectangle.size.width   = prc->right - lprc->left;
 
- rectangle.size.height  = prc->bottom() - lprc->top();
+ rectangle.size.height  = prc->bottom - lprc->top;
 
 
  CGContextSetRGBFillColor(hdc->m_cgcontext, color32_byte_red(hbr->lbColor), color32_byte_green(hbr->lbColor), color32_byte_blue(hbr->lbColor), color32_byte_opacity(hbr->lbColor));
@@ -1093,13 +1093,13 @@ bool mm1_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const ::s
 // {
 //    CGColorRef color = cg_create_color(clr);
 //    CGRect int_rectangle;
-//    rectangle.origin.x = prectangle->left();
+//    rectangle.origin.x = prectangle->left;
 
-//    rectangle.origin.y = prectangle->top();
+//    rectangle.origin.y = prectangle->top;
 
-//    rectangle.size.width = prectangle->right() - prectangle->left();
+//    rectangle.size.width = prectangle->right - prectangle->left;
 
-//    rectangle.size.height = prectangle->bottom() - prectangle->top();
+//    rectangle.size.height = prectangle->bottom - prectangle->top;
 
 //    CGContextFillRect(hdc->m_cgcontext, rectangle);
 //    cg_release_color(color);
@@ -1210,13 +1210,13 @@ void os_term_imaging()
 //    {
 //    return false;
 //    }
-//    prectangle->left()      = attrs.x;
+//    prectangle->left      = attrs.x;
 //    
-//    prectangle->top()       = attrs.y;
+//    prectangle->top       = attrs.y;
 //    
-//    prectangle->right()     = prectangle->left()    + attrs.width;
+//    prectangle->right     = prectangle->left    + attrs.width;
 //    
-//    prectangle->bottom()    = prectangle->top()     + attrs.height;*/
+//    prectangle->bottom    = prectangle->top     + attrs.height;*/
 //   
 //   
 //   //if(!hwnd->m_bNsWindowRect)

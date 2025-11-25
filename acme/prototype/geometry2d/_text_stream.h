@@ -28,7 +28,7 @@ template <  primitive_rectangle RECTANGLE >
 inline ::write_text_stream & operator <<(::write_text_stream & textstream, const RECTANGLE & rectangle)
 {
 
-   return textstream << "xy(" << rectangle.left()  << ", " << rectangle.top() << ")-wh(" << rectangle.width() << ", " << rectangle.height() << ")";
+   return textstream << "xy(" << rectangle.left  << ", " << rectangle.top << ")-wh(" << rectangle.width() << ", " << rectangle.height() << ")";
 
 }
 

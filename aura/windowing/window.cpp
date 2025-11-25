@@ -2606,8 +2606,8 @@ namespace windowing
 
          ::int_rectangle rectangleOutput(pointOutput, sizeOutput);
 
-         //information() << "::windowing::window::_set_window_position_unlocked l:" << r.left() << ", t:" << r.top()
-         //              << ", r:" << r.right() << ", b:" << r.bottom() << ", thrd:" << ::current_task_index();
+         //information() << "::windowing::window::_set_window_position_unlocked l:" << r.left << ", t:" << r.top
+         //              << ", r:" << r.right << ", b:" << r.bottom << ", thrd:" << ::current_task_index();
 
          static ::int_point s_pointInitialTopRight;
 
@@ -2757,8 +2757,8 @@ namespace windowing
             << ", bActivate : " << bActivate;
 
 
-         //information() << "::windowing::window::_set_window_position_unlocked l:" << r.left() << ", t:" << r.top()
-         //              << ", r:" << r.right() << ", b:" << r.bottom() << ", thrd:" << ::current_task_index();
+         //information() << "::windowing::window::_set_window_position_unlocked l:" << r.left << ", t:" << r.top
+         //              << ", r:" << r.right << ", b:" << r.bottom << ", thrd:" << ::current_task_index();
 
          static ::int_point s_pointInitialTopRight;
 
@@ -4817,8 +4817,8 @@ namespace windowing
 ////#endif
 //
 //      //pusersystem->m_createstruct.style = uStyle | WS_CHILD;
-//      //pusersystem->m_createstruct.x = rectangle.left();
-//      //pusersystem->m_createstruct.y = rectangle.top();
+//      //pusersystem->m_createstruct.x = rectangle.left;
+//      //pusersystem->m_createstruct.y = rectangle.top;
 //      //pusersystem->m_createstruct.cx() = rectangle.width();
 //      //pusersystem->m_createstruct.cy() = rectangle.height();
 //      //pusersystem->m_createstruct.hwndParent = puiParent->get_safe_handle();
@@ -6302,18 +6302,18 @@ namespace windowing
 
       //      //   pdisplay->get_monitor_rectangle(0, rcMonitor);
 
-      //      //   if (rectWindow.left() >= rcMonitor.left())
+      //      //   if (rectWindow.left >= rcMonitor.left)
       //      //   {
 
-      //      //      pmouse->m_point.x += (int)rcMonitor.left();
+      //      //      pmouse->m_point.x += (int)rcMonitor.left;
 
       //      //   }
 
-      //      //   if (rectWindow.top() >= rcMonitor.top())
+      //      //   if (rectWindow.top >= rcMonitor.top)
       //      //   {
 
-      //      //      //pmouse->m_point.y += (int)rectWindow.top();
-      //      //      pmouse->m_point.y += (int)rcMonitor.top();
+      //      //      //pmouse->m_point.y += (int)rectWindow.top;
+      //      //      pmouse->m_point.y += (int)rcMonitor.top;
 
       //      //   }
 
@@ -6321,17 +6321,17 @@ namespace windowing
       //      //else
       //      {
 
-      //         if (rectWindow.left() >= 0)
+      //         if (rectWindow.left >= 0)
       //         {
 
-      //            pmouse->m_point.x += (int)rectWindow.left();
+      //            pmouse->m_point.x += (int)rectWindow.left;
 
       //         }
 
-      //         if (rectWindow.top() >= 0)
+      //         if (rectWindow.top >= 0)
       //         {
 
-      //            pmouse->m_point.y += (int)rectWindow.top();
+      //            pmouse->m_point.y += (int)rectWindow.top;
 
       //         }
 
@@ -9646,7 +9646,7 @@ namespace windowing
 
                      //m_rectangleUpdateBuffer = r;
 
-                     //informationf("PrintBuffer (%d, %d)",  r.right(), r.bottom());
+                     //informationf("PrintBuffer (%d, %d)",  r.right, r.bottom);
 
                      //if (!m_pgraphics)
                      //{
@@ -9967,7 +9967,7 @@ namespace windowing
 
                      //m_rectangleUpdateBuffer = r;
 
-                     //informationf("PrintBuffer (%d, %d)",  r.right(), r.bottom());
+                     //informationf("PrintBuffer (%d, %d)",  r.right, r.bottom);
 
                      if (!m_pgraphicsgraphics)
                      {
@@ -12195,39 +12195,39 @@ namespace windowing
    //
    //                           auto pointDesign = user_interaction()->const_layout().design().origin();
    //
-   //                           if(rectangle.top() >= rectangleBig.top() && rectangle.top() <= rectangleSmall.top()
-   //                           && rectangleRequest.top()>= rectangleBig.top() && rectangleRequest.top() <= rectangleSmall.top()
-   //                           && rectangleRequest.top() < rectangle.top())
+   //                           if(rectangle.top >= rectangleBig.top && rectangle.top <= rectangleSmall.top
+   //                           && rectangleRequest.top>= rectangleBig.top && rectangleRequest.top <= rectangleSmall.top
+   //                           && rectangleRequest.top < rectangle.top)
    //                           {
    //
-   //                              pmonitor->set_workspace_rectangle_top(rectangle.top());
+   //                              pmonitor->set_workspace_rectangle_top(rectangle.top);
    //
    //                           }
    //
-   //                           if(rectangle.left() >= rectangleBig.left() && rectangle.left() <= rectangleSmall.left()
-   //                              && rectangleRequest.left()>= rectangleBig.left() && rectangleRequest.left() <= rectangleSmall.left()
-   //                              && rectangleRequest.left() < rectangle.left())
+   //                           if(rectangle.left >= rectangleBig.left && rectangle.left <= rectangleSmall.left
+   //                              && rectangleRequest.left>= rectangleBig.left && rectangleRequest.left <= rectangleSmall.left
+   //                              && rectangleRequest.left < rectangle.left)
    //                           {
    //
-   //                              pmonitor->set_workspace_rectangle_left(rectangle.left());
+   //                              pmonitor->set_workspace_rectangle_left(rectangle.left);
    //
    //                           }
    //
-   //                           if(rectangle.right() >= rectangleSmall.right() && rectangle.right() <= rectangleBig.right()
-   //                              && rectangleRequest.right()>= rectangleSmall.right() && rectangleRequest.right() <= rectangleBig.right()
-   //                              && rectangleRequest.right() > rectangle.right())
+   //                           if(rectangle.right >= rectangleSmall.right && rectangle.right <= rectangleBig.right
+   //                              && rectangleRequest.right>= rectangleSmall.right && rectangleRequest.right <= rectangleBig.right
+   //                              && rectangleRequest.right > rectangle.right)
    //                           {
    //
-   //                              pmonitor->set_workspace_rectangle_right(rectangle.right());
+   //                              pmonitor->set_workspace_rectangle_right(rectangle.right);
    //
    //                           }
    //
-   //                           if(rectangle.bottom() >= rectangleSmall.bottom() && rectangle.bottom() <= rectangleBig.bottom()
-   //                              && rectangleRequest.bottom()>= rectangleSmall.bottom() && rectangleRequest.bottom() <= rectangleBig.bottom()
-   //                              && rectangleRequest.bottom() > rectangle.bottom())
+   //                           if(rectangle.bottom >= rectangleSmall.bottom && rectangle.bottom <= rectangleBig.bottom
+   //                              && rectangleRequest.bottom>= rectangleSmall.bottom && rectangleRequest.bottom <= rectangleBig.bottom
+   //                              && rectangleRequest.bottom > rectangle.bottom)
    //                           {
    //
-   //                              pmonitor->set_workspace_rectangle_bottom(rectangle.bottom());
+   //                              pmonitor->set_workspace_rectangle_bottom(rectangle.bottom);
    //
    //                           }
    //
@@ -13750,11 +13750,11 @@ namespace windowing
       //      else
       //      {
 
-      //         prectParam->left() = prectParam->top() = 0;
+      //         prectParam->left = prectParam->top = 0;
 
-      //         prectParam->right() = sizeparentparams.sizeTotal.cx();
+      //         prectParam->right = sizeparentparams.sizeTotal.cx();
 
-      //         prectParam->bottom() = sizeparentparams.sizeTotal.cy();
+      //         prectParam->bottom = sizeparentparams.sizeTotal.cy();
 
 
       //      }
@@ -13773,13 +13773,13 @@ namespace windowing
       //         ASSERT(prectParam != nullptr);
 
 
-      //         sizeparentparams.rectangle.left() += prectParam->left();
+      //         sizeparentparams.rectangle.left += prectParam->left;
 
-      //         sizeparentparams.rectangle.top() += prectParam->top();
+      //         sizeparentparams.rectangle.top += prectParam->top;
 
-      //         sizeparentparams.rectangle.right() -= prectParam->right();
+      //         sizeparentparams.rectangle.right -= prectParam->right;
 
-      //         sizeparentparams.rectangle.bottom() -= prectParam->bottom();
+      //         sizeparentparams.rectangle.bottom -= prectParam->bottom;
 
 
       //      }
@@ -16699,7 +16699,7 @@ namespace windowing
       //
       //    information() << "window::_on_get_configuration";
       //
-      //    _017_on_window_configure_delayed(r.left(), r.top(), r.width(), r.height());
+      //    _017_on_window_configure_delayed(r.left, r.top, r.width(), r.height());
       //
       // });
 

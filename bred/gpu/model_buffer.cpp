@@ -447,10 +447,10 @@ namespace gpu
       // size(100, 100) l = (0 - 100 / 2) / 100 = -0.5
       // size(100, 100) r = (100 - 100 / 2) / 100 = 0.5
 
-      //float l = (float)(2. * (rectangle.left() - size.cx()/2.)/ (size.cx()));
-      //float r = (float)(2. * (rectangle.right() - size.cx()/2.) / (size.cx()));
-      //float t = (float)(2. * (rectangle.bottom() - size.cy()/2.) / (size.cy()));
-      //float b = (float)(2. * (rectangle.top() - size.cy()/2.) / (size.cy()));
+      //float l = (float)(2. * (rectangle.left - size.cx()/2.)/ (size.cx()));
+      //float r = (float)(2. * (rectangle.right - size.cx()/2.) / (size.cx()));
+      //float t = (float)(2. * (rectangle.bottom - size.cy()/2.) / (size.cy()));
+      //float b = (float)(2. * (rectangle.top - size.cy()/2.) / (size.cy()));
 
       //  0 l,t
       //  1 r,t
@@ -580,10 +580,10 @@ namespace gpu
       // size(100, 100) l = (0 - 100 / 2) / 100 = -0.5
       // size(100, 100) r = (100 - 100 / 2) / 100 = 0.5
 
-      //float l = (float)(2. * (rectangle.left() - size.cx()/2.)/ (size.cx()));
-      //float r = (float)(2. * (rectangle.right() - size.cx()/2.) / (size.cx()));
-      //float t = (float)(2. * (rectangle.bottom() - size.cy()/2.) / (size.cy()));
-      //float b = (float)(2. * (rectangle.top() - size.cy()/2.) / (size.cy()));
+      //float l = (float)(2. * (rectangle.left - size.cx()/2.)/ (size.cx()));
+      //float r = (float)(2. * (rectangle.right - size.cx()/2.) / (size.cx()));
+      //float t = (float)(2. * (rectangle.bottom - size.cy()/2.) / (size.cy()));
+      //float b = (float)(2. * (rectangle.top - size.cy()/2.) / (size.cy()));
 
       //  0 l,t
       //  1 r,t

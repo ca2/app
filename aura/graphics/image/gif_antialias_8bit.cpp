@@ -300,7 +300,7 @@ bool draw2d_gif_antialias_8bit(::image::image & imageCompose, image_frame_array 
 //
 //         }
 //
-//         bTransparent = pointer->m_rectangle.bottom() == imagea.height(); // borders transparent?
+//         bTransparent = pointer->m_rectangle.bottom == imagea.height(); // borders transparent?
 //
 //         y--;
 //
@@ -390,7 +390,7 @@ bool draw2d_gif_antialias_8bit(::image::image & imageCompose, image_frame_array 
 //      for (y = 0; y < pointer->m_pimage->height(); y++)
 //      {
 //
-//         bTransparent = pointer->m_rectangle.left() == 0; // borders transparent?
+//         bTransparent = pointer->m_rectangle.left == 0; // borders transparent?
 //
 //         for (x = 0; x < pointer->m_pimage->width() && y + x < pointer->m_pimage->height(); x++)
 //         {
@@ -467,7 +467,7 @@ bool draw2d_gif_antialias_8bit(::image::image & imageCompose, image_frame_array 
 //
 //         }
 //
-//         bTransparent = pointer->m_rectangle.right() == imagea.width(); // borders transparent?
+//         bTransparent = pointer->m_rectangle.right == imagea.width(); // borders transparent?
 //
 //         x--;
 //
@@ -556,7 +556,7 @@ bool draw2d_gif_antialias_8bit(::image::image & imageCompose, image_frame_array 
 //      for (y = 0; y < pointer->m_pimage->height(); y++)
 //      {
 //
-//         bTransparent = pointer->m_rectangle.left() == 0; // borders transparent?
+//         bTransparent = pointer->m_rectangle.left == 0; // borders transparent?
 //
 //         for (x = 0; x < pointer->m_pimage->width() && y - x >= 0; x++)
 //         {
@@ -633,7 +633,7 @@ bool draw2d_gif_antialias_8bit(::image::image & imageCompose, image_frame_array 
 //
 //         }
 //
-//         bTransparent = pointer->m_rectangle.right() == imagea.width(); // borders transparent?
+//         bTransparent = pointer->m_rectangle.right == imagea.width(); // borders transparent?
 //
 //         x--;
 //
@@ -723,7 +723,7 @@ bool draw2d_gif_antialias_8bit(::image::image & imageCompose, image_frame_array 
 //      for (x = 0; x < pointer->m_pimage->width(); x++)
 //      {
 //
-//         bTransparent = pointer->m_rectangle.top() == 0; // borders transparent?
+//         bTransparent = pointer->m_rectangle.top == 0; // borders transparent?
 //
 //         for (y = pointer->m_pimage->height() - 1; y >= 0 && x + (y - pointer->m_pimage->height() + 1) < pointer->m_pimage->width(); y--)
 //         {

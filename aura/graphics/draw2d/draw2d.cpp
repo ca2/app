@@ -556,10 +556,10 @@ void draw2d::emboss_predicate(
 
    ::int_rectangle rectangleEmboss = rectangle;
 
-   rectangleEmboss.left() -= (int)(iR * g_dEmboss);
-   rectangleEmboss.top() -= (int)(iR * g_dEmboss);
-   rectangleEmboss.right() += (int)(iR * g_dEmboss);
-   rectangleEmboss.bottom() += (int)(iR * g_dEmboss);
+   rectangleEmboss.left -= (int)(iR * g_dEmboss);
+   rectangleEmboss.top -= (int)(iR * g_dEmboss);
+   rectangleEmboss.right += (int)(iR * g_dEmboss);
+   rectangleEmboss.bottom += (int)(iR * g_dEmboss);
 
    if (bUpdate || !pimageBlur->is_ok())
    {
@@ -576,11 +576,11 @@ void draw2d::emboss_predicate(
 
       ::int_rectangle rectangleCache;
 
-      rectangleCache.left() = (int)(iR * g_dEmboss);
-      rectangleCache.top() = (int)(iR * g_dEmboss);
-      rectangleCache.right() = rectangleCache.left() + rectangle.width();
+      rectangleCache.left = (int)(iR * g_dEmboss);
+      rectangleCache.top = (int)(iR * g_dEmboss);
+      rectangleCache.right = rectangleCache.left + rectangle.width();
 
-      rectangleCache.bottom() = rectangleCache.top() + rectangle.height();
+      rectangleCache.bottom = rectangleCache.top + rectangle.height();
 
       ::image::image_pointer pimage;
 

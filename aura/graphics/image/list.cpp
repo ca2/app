@@ -722,10 +722,10 @@ namespace image
 
       }
 
-      pinfo->m_rectangle.left() = nImage * m_size.cx();
-      pinfo->m_rectangle.right() = pinfo->m_rectangle.left() + m_size.cx();
-      pinfo->m_rectangle.top() = 0;
-      pinfo->m_rectangle.bottom() = m_size.cy();
+      pinfo->m_rectangle.left = nImage * m_size.cx();
+      pinfo->m_rectangle.right = pinfo->m_rectangle.left + m_size.cx();
+      pinfo->m_rectangle.top = 0;
+      pinfo->m_rectangle.bottom = m_size.cy();
 
       pinfo->m_pimage = m_pimage;
 

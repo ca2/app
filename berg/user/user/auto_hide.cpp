@@ -187,13 +187,13 @@ namespace user
       //      if(get_data()->m_bVertical)
       //      {
 
-      //         bShowTabs = pointCursor.x <= rectangleWindow.left();
+      //         bShowTabs = pointCursor.x <= rectangleWindow.left;
 
       //      }
       //      else
       //      {
 
-      //         bShowTabs = pointCursor.y <= rectangleWindow.top();
+      //         bShowTabs = pointCursor.y <= rectangleWindow.top;
 
       //      }
 

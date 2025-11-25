@@ -851,10 +851,10 @@ inline XYDim & set_dim(XYDim & rectTarget, X x, Y y, W w, H h)
 //void copy(RECTANGLE1 & rectangle1, const RECTANGLE2 & rectangle2)
 //{
 //
-//   cast_copy(rectangle1.left()    , rectangle2.left()    );
-//   cast_copy(rectangle1.top()     , rectangle2.top()     );
-//   cast_copy(rectangle1.right()   , rectangle2.right()   );
-//   cast_copy(rectangle1.bottom()  , rectangle2.bottom()  );
+//   cast_copy(rectangle1.left    , rectangle2.left    );
+//   cast_copy(rectangle1.top     , rectangle2.top     );
+//   cast_copy(rectangle1.right   , rectangle2.right   );
+//   cast_copy(rectangle1.bottom  , rectangle2.bottom  );
 //
 //}
 
@@ -863,10 +863,10 @@ template < primitive_rectangle RECTANGLE, primitive_xydim XYDIM >
 void copy(RECTANGLE & rectangle, const XYDIM  & xydim)
 {
 
-   cast_copy(rectangle.left()     , xydim.x);
-   cast_copy(rectangle.top()      , xydim.y);
-   cast_copy(rectangle.right()    , xydim.x + xydim.width);
-   cast_copy(rectangle.bottom()   , xydim.y + xydim.height);
+   cast_copy(rectangle.left     , xydim.x);
+   cast_copy(rectangle.top      , xydim.y);
+   cast_copy(rectangle.right    , xydim.x + xydim.width);
+   cast_copy(rectangle.bottom   , xydim.y + xydim.height);
 
 }
 
@@ -875,10 +875,10 @@ template < primitive_origin_size ORIGIN_SIZE, primitive_rectangle RECTANGLE >
 void copy(ORIGIN_SIZE & originsize, const RECTANGLE & rectangle)
 {
 
-   cast_copy(originsize.origin.x      , rectangle.left());
-   cast_copy(originsize.origin.y      , rectangle.top());
-   cast_copy(originsize.size.width    , rectangle.right() - rectangle.left());
-   cast_copy(originsize.size.height   , rectangle.bottom() - rectangle.top());
+   cast_copy(originsize.origin.x      , rectangle.left);
+   cast_copy(originsize.origin.y      , rectangle.top);
+   cast_copy(originsize.size.width    , rectangle.right - rectangle.left);
+   cast_copy(originsize.size.height   , rectangle.bottom - rectangle.top);
 
 }
 
@@ -887,10 +887,10 @@ template < primitive_rectangle RECTANGLE1, primitive_origin_size RECTANGLE2 >
 void copy(RECTANGLE1 & rectangle1, const RECTANGLE2 & rectangle2)
 {
 
-   cast_copy(rectangle1.left()    , rectangle2.origin.x);
-   cast_copy(rectangle1.top()     , rectangle2.origin.y);
-   cast_copy(rectangle1.right()   , rectangle2.origin.x + rectangle2.size.width);
-   cast_copy(rectangle1.bottom()  , rectangle2.origin.y + rectangle2.size.height);
+   cast_copy(rectangle1.left    , rectangle2.origin.x);
+   cast_copy(rectangle1.top     , rectangle2.origin.y);
+   cast_copy(rectangle1.right   , rectangle2.origin.x + rectangle2.size.width);
+   cast_copy(rectangle1.bottom  , rectangle2.origin.y + rectangle2.size.height);
 
 }
 
@@ -899,10 +899,10 @@ void copy(RECTANGLE1 & rectangle1, const RECTANGLE2 & rectangle2)
 // constexpr void copy(RECTANGLE& rectangle, const ORIGIN_SIZE& origin_size)
 // {
 
-//    rectangle.left() = (decltype(rectangle.left()))origin_size.origin.x;
-//    rectangle.top() = (decltype(rectangle.top()))origin_size.origin.y;
-//    rectangle.right() = (decltype(rectangle.right()))(origin_size.origin.x + origin_size.size.width);
-//    rectangle.bottom() = (decltype(rectangle.bottom()))(origin_size.origin.y + origin_size.size.height);
+//    rectangle.left = (decltype(rectangle.left))origin_size.origin.x;
+//    rectangle.top = (decltype(rectangle.top))origin_size.origin.y;
+//    rectangle.right = (decltype(rectangle.right))(origin_size.origin.x + origin_size.size.width);
+//    rectangle.bottom = (decltype(rectangle.bottom))(origin_size.origin.y + origin_size.size.height);
 
 // }
 
@@ -911,10 +911,10 @@ void copy(RECTANGLE1 & rectangle1, const RECTANGLE2 & rectangle2)
 // constexpr void copy(ORIGIN_SIZE& origin_size, const RECTANGLE& rectangle)
 // {
 
-//    origin_size.origin.x = (decltype(origin_size.origin.x))rectangle.left();
-//    origin_size.origin.y = (decltype(origin_size.origin.y))rectangle.top();
-//    origin_size.size.width = (decltype(origin_size.size.width))(rectangle.right() - rectangle.left());
-//    origin_size.size.height = (decltype(origin_size.size.height))(rectangle.bottom() - rectangle.top());
+//    origin_size.origin.x = (decltype(origin_size.origin.x))rectangle.left;
+//    origin_size.origin.y = (decltype(origin_size.origin.y))rectangle.top;
+//    origin_size.size.width = (decltype(origin_size.size.width))(rectangle.right - rectangle.left);
+//    origin_size.size.height = (decltype(origin_size.size.height))(rectangle.bottom - rectangle.top);
 
 // }
 
@@ -948,10 +948,10 @@ template < primitive_rectangle RECTANGLE1, primitive_rectangle RECTANGLE2 >
 void copy(RECTANGLE1 & rectangle1, const RECTANGLE2 & rectangle2)
 {
 
-   cast_copy(rectangle1.left(), rectangle2.left());
-   cast_copy(rectangle1.top(), rectangle2.top());
-   cast_copy(rectangle1.right(), rectangle2.right());
-   cast_copy(rectangle1.bottom(), rectangle2.bottom());
+   cast_copy(rectangle1.left, rectangle2.left);
+   cast_copy(rectangle1.top, rectangle2.top);
+   cast_copy(rectangle1.right, rectangle2.right);
+   cast_copy(rectangle1.bottom, rectangle2.bottom);
 
 }
 
@@ -960,10 +960,10 @@ template < primitive_XYDim XYDim, primitive_rectangle RECTANGLE >
 void copy(XYDim & xydim, const RECTANGLE & rectangle)
 {
 
-   cast_copy(xydim.X, rectangle.left());
-   cast_copy(xydim.Y, rectangle.top());
-   cast_copy(xydim.Width, rectangle.right() - rectangle.left());
-   cast_copy(xydim.Height, rectangle.bottom() - rectangle.top());
+   cast_copy(xydim.X, rectangle.left);
+   cast_copy(xydim.Y, rectangle.top);
+   cast_copy(xydim.Width, rectangle.right - rectangle.left);
+   cast_copy(xydim.Height, rectangle.bottom - rectangle.top);
 
 }
 
@@ -972,10 +972,10 @@ template < primitive_rectangle RECTANGLE, primitive_XYDim XYDim >
 void copy(RECTANGLE & rectangle, const XYDim & xydim)
 {
 
-   cast_copy(rectangle.left(), xydim.X);
-   cast_copy(rectangle.top(), xydim.Y);
-   cast_copy(rectangle.right(), xydim.X + xydim.Width);
-   cast_copy(rectangle.bottom(), xydim.Y + xydim.Height);
+   cast_copy(rectangle.left, xydim.X);
+   cast_copy(rectangle.top, xydim.Y);
+   cast_copy(rectangle.right, xydim.X + xydim.Width);
+   cast_copy(rectangle.bottom, xydim.Y + xydim.Height);
 
 }
 
@@ -984,10 +984,10 @@ template < primitive_xydim XYDIM, primitive_rectangle RECTANGLE >
 void copy(XYDIM & xydim, const RECTANGLE & rectangle)
 {
 
-   cast_copy(xydim.x, rectangle.left());
-   cast_copy(xydim.y, rectangle.top());
-   cast_copy(xydim.width, rectangle.right() - rectangle.left());
-   cast_copy(xydim.height, rectangle.bottom() - rectangle.top());
+   cast_copy(xydim.x, rectangle.left);
+   cast_copy(xydim.y, rectangle.top);
+   cast_copy(xydim.width, rectangle.right - rectangle.left);
+   cast_copy(xydim.height, rectangle.bottom - rectangle.top);
 
 }
 

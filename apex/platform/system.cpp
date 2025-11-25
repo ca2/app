@@ -3194,13 +3194,13 @@ pdirectorysystem->create("/ca2core");
    //
    //      ::winrt::Windows::Foundation::Rect rectangle = pwindow->window_rectangle();
    //
-   //      prectangle->left() = rectangle.X;
+   //      prectangle->left = rectangle.X;
    //
-   //      prectangle->top() = rectangle.Y;
+   //      prectangle->top = rectangle.Y;
    //
-   //      prectangle->right() = prectangle->left() + rectangle.Width;
+   //      prectangle->right = prectangle->left + rectangle.Width;
    //
-   //      prectangle->bottom() = prectangle->top() + rectangle.Height;
+   //      prectangle->bottom = prectangle->top + rectangle.Height;
    //
    //
    //      return true;

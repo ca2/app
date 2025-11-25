@@ -35,7 +35,7 @@ namespace hotplugin
 
    //HPEN hpenOld = (HPEN) ::SelectObject(hdc,hpen);
 
-   ////::int_rectangle(hdc,rectangle.left(),rectangle.top(),rectangle.right(),rectangle.bottom());
+   ////::int_rectangle(hdc,rectangle.left,rectangle.top,rectangle.right,rectangle.bottom);
 
    //::SelectObject(hdc,hbrushDark);
 
@@ -43,7 +43,7 @@ namespace hotplugin
 
    //
 
-   ////::int_rectangle(hdc,rectangleBar.left(),rectangleBar.top(),rectangleBar.right(),rectangleBar.bottom());
+   ////::int_rectangle(hdc,rectangleBar.left,rectangleBar.top,rectangleBar.right,rectangleBar.bottom);
 
    ////rectangleBar.deflate(2,2);
 
@@ -57,26 +57,26 @@ namespace hotplugin
 
    ////::SelectObject(hdc,hpen);
 
-   ////rectangleBar.right()++;
+   ////rectangleBar.right++;
 
-   ////rectangleBar.bottom()++;
+   ////rectangleBar.bottom++;
 
    //int old = SetROP2(hdc,R2_MASKPEN);
 
    //
 
-   //::int_rectangle(hdc,rectangleBar.left(),rectangleBar.top(),rectangleBar.right(),rectangleBar.bottom());
+   //::int_rectangle(hdc,rectangleBar.left,rectangleBar.top,rectangleBar.right,rectangleBar.bottom);
 
    //::SetTextColor(hdc,rgb(184,184,177));
 
-   //::int_rectangle(hdc,rectangleBar.left()-1,rectangleBar.top()-1,rectangleBar.right() + 1,rectangleBar.top());
-   //::int_rectangle(hdc,rectangleBar.left() - 1,rectangleBar.bottom(),rectangleBar.right() + 1,rectangleBar.bottom()+1);
-   //::int_rectangle(hdc,rectangleBar.left() - 1,rectangleBar.top() - 1,rectangleBar.left(),rectangleBar.bottom()+1);
-   //::int_rectangle(hdc,rectangleBar.right(),rectangleBar.top() - 1,rectangleBar.right()+1,rectangleBar.bottom() + 1);
+   //::int_rectangle(hdc,rectangleBar.left-1,rectangleBar.top-1,rectangleBar.right + 1,rectangleBar.top);
+   //::int_rectangle(hdc,rectangleBar.left - 1,rectangleBar.bottom,rectangleBar.right + 1,rectangleBar.bottom+1);
+   //::int_rectangle(hdc,rectangleBar.left - 1,rectangleBar.top - 1,rectangleBar.left,rectangleBar.bottom+1);
+   //::int_rectangle(hdc,rectangleBar.right,rectangleBar.top - 1,rectangleBar.right+1,rectangleBar.bottom + 1);
 
    //SetROP2(hdc,old);
 
-   ////::int_rectangle(hdc,rectangleBar.left(),rectangleBar.top(),rectangleBar.right(),rectangleBar.bottom());
+   ////::int_rectangle(hdc,rectangleBar.left,rectangleBar.top,rectangleBar.right,rectangleBar.bottom);
 
    //
 
@@ -92,13 +92,13 @@ namespace hotplugin
 
    //int x = v % rectangleBar.width();
 
-   //::int_rectangle rectangleBrick(left + x,rectangleBar.top(),left + x + w,rectangleBar.bottom());
+   //::int_rectangle rectangleBrick(left + x,rectangleBar.top,left + x + w,rectangleBar.bottom);
    //::int_rectangle rectangleDraw;
 
    //if(rectangleDraw.intersect(rectangleBar,rectangleBrick))
    //{
 
-   //   ::int_rectangle(hdc,rectangleDraw.left(),rectangleDraw.top(),rectangleDraw.right(),rectangleDraw.bottom());
+   //   ::int_rectangle(hdc,rectangleDraw.left,rectangleDraw.top,rectangleDraw.right,rectangleDraw.bottom);
 
    //}
 
@@ -107,7 +107,7 @@ namespace hotplugin
    //if(rectangleDraw.intersect(rectangleBar,rectangleBrick))
    //{
 
-   //   ::int_rectangle(hdc,rectangleDraw.left(),rectangleDraw.top(),rectangleDraw.right(),rectangleDraw.bottom());
+   //   ::int_rectangle(hdc,rectangleDraw.left,rectangleDraw.top,rectangleDraw.right,rectangleDraw.bottom);
 
    //}
 
@@ -116,7 +116,7 @@ namespace hotplugin
    //if(rectangleDraw.intersect(rectangleBar,rectangleBrick))
    //{
 
-   //   ::int_rectangle(hdc,rectangleDraw.left(),rectangleDraw.top(),rectangleDraw.right(),rectangleDraw.bottom());
+   //   ::int_rectangle(hdc,rectangleDraw.left,rectangleDraw.top,rectangleDraw.right,rectangleDraw.bottom);
 
    //}
 
@@ -140,14 +140,14 @@ namespace hotplugin
 
    ////HFONT hfontOld = (HFONT) ::SelectObject(hdc,hStockFont);
 
-   ////::text_out(hdc,rectangleBar.left() - 1,rectangleBar.bottom() + 2,str,str.length());
+   ////::text_out(hdc,rectangleBar.left - 1,rectangleBar.bottom + 2,str,str.length());
 
-   ////rectangleBar.left()++;
-   ////rectangleBar.top()++;
-   ////rectangleBar.right()--;
-   ////rectangleBar.bottom()--;
+   ////rectangleBar.left++;
+   ////rectangleBar.top++;
+   ////rectangleBar.right--;
+   ////rectangleBar.bottom--;
 
-   //rectangleBar.left() += 4;
+   //rectangleBar.left += 4;
 
    //HFONT hFont = CreateFont(23,0,0,0,FW_DONTCARE,false,false,false,DEFAULT_CHARSET,OUT_OUTLINE_PRECIS,
    //   CLIP_DEFAULT_PRECIS,CLEARTYPE_QUALITY,VARIABLE_PITCH,TEXT("Calibri"));
@@ -183,25 +183,25 @@ namespace hotplugin
 
 //if(height(rectangle) < h)
 //{
-//   top = rectangle.top();
-//   bottom = rectangle.bottom();
+//   top = rectangle.top;
+//   bottom = rectangle.bottom;
 //}
 //else
 //{
-//   top = rectangle.top() + height(rectangle) / 2 - h / 2;
-//   bottom = rectangle.top() + height(rectangle) / 2 + h / 2;
+//   top = rectangle.top + height(rectangle) / 2 - h / 2;
+//   bottom = rectangle.top + height(rectangle) / 2 + h / 2;
 //}
 
 //if(width(rectangle) < m)
 //{
-//   left = rectangle.left();
-//   right = rectangle.right();
+//   left = rectangle.left;
+//   right = rectangle.right;
 //}
 //else
 //{
 
-//   left = rectangle.left() + minimum(m / 2,width(rectangle) / 2);
-//   right = rectangle.right() - minimum(m / 2,width(rectangle) / 2);
+//   left = rectangle.left + minimum(m / 2,width(rectangle) / 2);
+//   right = rectangle.right - minimum(m / 2,width(rectangle) / 2);
 
 //}
 

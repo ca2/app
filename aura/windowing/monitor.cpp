@@ -21,15 +21,15 @@ namespace windowing
    monitor::monitor()
    {
 
-      m_rectangleFixedWorkspace.left() = I32_MINIMUM;
-      m_rectangleFixedWorkspace.top() = I32_MINIMUM;
-      m_rectangleFixedWorkspace.right() = I32_MINIMUM;
-      m_rectangleFixedWorkspace.bottom() = I32_MINIMUM;
+      m_rectangleFixedWorkspace.left = I32_MINIMUM;
+      m_rectangleFixedWorkspace.top = I32_MINIMUM;
+      m_rectangleFixedWorkspace.right = I32_MINIMUM;
+      m_rectangleFixedWorkspace.bottom = I32_MINIMUM;
 
-      m_rectangleWorkspace.left() = I32_MINIMUM;
-      m_rectangleWorkspace.top() = I32_MINIMUM;
-      m_rectangleWorkspace.right() = I32_MINIMUM;
-      m_rectangleWorkspace.bottom() = I32_MINIMUM;
+      m_rectangleWorkspace.left = I32_MINIMUM;
+      m_rectangleWorkspace.top = I32_MINIMUM;
+      m_rectangleWorkspace.right = I32_MINIMUM;
+      m_rectangleWorkspace.bottom = I32_MINIMUM;
 
    }
 
@@ -78,10 +78,10 @@ namespace windowing
    ::int_rectangle monitor::workspace_rectangle()
    {
 
-      if(m_rectangleFixedWorkspace.left() != I32_MINIMUM
-      && m_rectangleFixedWorkspace.top() != I32_MINIMUM
-      && m_rectangleFixedWorkspace.right() != I32_MINIMUM
-      && m_rectangleFixedWorkspace.bottom() != I32_MINIMUM)
+      if(m_rectangleFixedWorkspace.left != I32_MINIMUM
+      && m_rectangleFixedWorkspace.top != I32_MINIMUM
+      && m_rectangleFixedWorkspace.right != I32_MINIMUM
+      && m_rectangleFixedWorkspace.bottom != I32_MINIMUM)
       {
 
 #if DEEP_LOG_HERE >= 6
@@ -94,10 +94,10 @@ namespace windowing
 
       }
 
-      if(m_rectangleWorkspace.left() != I32_MINIMUM
-         && m_rectangleWorkspace.top() != I32_MINIMUM
-         && m_rectangleWorkspace.right() != I32_MINIMUM
-         && m_rectangleWorkspace.bottom() != I32_MINIMUM)
+      if(m_rectangleWorkspace.left != I32_MINIMUM
+         && m_rectangleWorkspace.top != I32_MINIMUM
+         && m_rectangleWorkspace.right != I32_MINIMUM
+         && m_rectangleWorkspace.bottom != I32_MINIMUM)
       {
 
 #if DEEP_LOG_HERE >= 6
@@ -169,7 +169,7 @@ namespace windowing
    void monitor::set_workspace_rectangle_left(int left)
    {
 
-      m_rectangleFixedWorkspace.left() = left;
+      m_rectangleFixedWorkspace.left = left;
 
       information() << "monitor::fixed_workspace left : " << left;
 
@@ -179,7 +179,7 @@ namespace windowing
    void monitor::set_workspace_rectangle_top(int top)
    {
 
-      m_rectangleFixedWorkspace.top() = top;
+      m_rectangleFixedWorkspace.top = top;
 
       information() << "monitor::fixed_workspace top : " << top;
 
@@ -189,7 +189,7 @@ namespace windowing
    void monitor::set_workspace_rectangle_right(int right)
    {
 
-      m_rectangleFixedWorkspace.right() = right;
+      m_rectangleFixedWorkspace.right = right;
 
       information() << "monitor::fixed_workspace right : " << right;
 
@@ -199,7 +199,7 @@ namespace windowing
    void monitor::set_workspace_rectangle_bottom(int bottom)
    {
 
-      m_rectangleFixedWorkspace.bottom() = bottom;
+      m_rectangleFixedWorkspace.bottom = bottom;
 
       information() << "monitor::fixed_workspace bottom : " << bottom;
 

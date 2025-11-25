@@ -68,8 +68,8 @@ namespace user
 
 
       // info about bar (for status bar and toolbar)
-//      int m_rectangleBorder.left(), m_rectangleBorder.right();
-  //    int m_rectangleBorder.top(), m_rectangleBorder.bottom();
+//      int m_rectangleBorder.left, m_rectangleBorder.right;
+  //    int m_rectangleBorder.top, m_rectangleBorder.bottom;
       ::int_rectangle                           m_rectangleBorder;
       int                                       m_cxDefaultGap;         // default gap value
       unsigned int                                     m_nMRUWidth;   // For dynamic resizing.

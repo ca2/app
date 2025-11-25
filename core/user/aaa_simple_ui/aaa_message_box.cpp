@@ -157,13 +157,13 @@ namespace simple_ui
 
       }
 
-      rectangleFontopus.left() = rectangleDesktop.left() + (rectangleDesktop.width() - w) / 2;
+      rectangleFontopus.left = rectangleDesktop.left + (rectangleDesktop.width() - w) / 2;
 
-      rectangleFontopus.top() = rectangleDesktop.top() + (rectangleDesktop.height() - h) / 3;
+      rectangleFontopus.top = rectangleDesktop.top + (rectangleDesktop.height() - h) / 3;
 
-      rectangleFontopus.right() = rectangleFontopus.left() + w;
+      rectangleFontopus.right = rectangleFontopus.left + w;
 
-      rectangleFontopus.bottom() = rectangleFontopus.top() + h;
+      rectangleFontopus.bottom = rectangleFontopus.top + h;
 
       //auto pusersystem = øallocate ::user::system(WS_EX_LAYERED, nullptr, nullptr, 0, rectangleFontopus);
 
@@ -287,9 +287,9 @@ namespace simple_ui
 
       int margin = 10;
 
-      int x = rectangleX.left() + margin;
+      int x = rectangleX.left + margin;
 
-      int y = rectangleX.bottom() - cy - margin;
+      int y = rectangleX.bottom - cy - margin;
 
       for(::collection::index i = 0; i < m_tapaA.get_count(); i++)
       {
@@ -308,7 +308,7 @@ namespace simple_ui
 
       }
 
-      x = rectangleX.right() - margin - cx;
+      x = rectangleX.right - margin - cx;
 
       for(::collection::index i = m_tapaB.get_upper_bound(); i >= 0; i--)
       {

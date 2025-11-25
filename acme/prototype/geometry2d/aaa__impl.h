@@ -15,19 +15,19 @@
 //inline constexpr auto __vert(const SIZE & size) { return size.cy(); }
 //
 //inline int_point& top_left(const ::int_rectangle* prectangle) { return *(int_point*)prectangle; }
-//inline int_point& bottom_right(const ::int_rectangle* prectangle) { return *(int_point*)& prectangle->right(); }
+//inline int_point& bottom_right(const ::int_rectangle* prectangle) { return *(int_point*)& prectangle->right; }
 //inline int_point& top_left(const ::int_rectangle& rectangle) { return top_left(&rectangle); }
 //inline int_point& bottom_right(const ::int_rectangle& rectangle) { return bottom_right(&rectangle); }
 //
 //
 //inline long_long_point& top_left(const ::long_long_rectangle* prectangle) { return *(long_long_point*)prectangle; }
-//inline long_long_point& bottom_right(const ::long_long_rectangle* prectangle) { return *(long_long_point*)& prectangle->right(); }
+//inline long_long_point& bottom_right(const ::long_long_rectangle* prectangle) { return *(long_long_point*)& prectangle->right; }
 //inline long_long_point& top_left(const ::long_long_rectangle& rectangle) { return top_left(&rectangle); }
 //inline long_long_point& bottom_right(const ::long_long_rectangle& rectangle) { return bottom_right(&rectangle); }
 //
 //
 //inline double_point& top_left(const ::double_rectangle* prectangle) { return *(double_point*)prectangle; }
-//inline double_point& bottom_right(const ::double_rectangle* prectangle) { return *(double_point*)& prectangle->right(); }
+//inline double_point& bottom_right(const ::double_rectangle* prectangle) { return *(double_point*)& prectangle->right; }
 //inline double_point& top_left(const ::double_rectangle& rectangle) { return top_left(&rectangle); }
 //inline double_point& bottom_right(const ::double_rectangle& rectangle) { return bottom_right(&rectangle); }
 
@@ -217,13 +217,13 @@
 //
 //      auto rectangle = *prectangle;
 //
-//      prectangle->left() = range_rate(rectangle.left(), rectangle.right(), dLeftRate);
+//      prectangle->left = range_rate(rectangle.left, rectangle.right, dLeftRate);
 //
-//      prectangle->right() = range_rate(rectangle.right(), rectangle.left(), dRightRate);
+//      prectangle->right = range_rate(rectangle.right, rectangle.left, dRightRate);
 //
-//      prectangle->top() = range_rate(rectangle.top(), rectangle.bottom(), dTopRate);
+//      prectangle->top = range_rate(rectangle.top, rectangle.bottom, dTopRate);
 //
-//      prectangle->bottom() = range_rate(rectangle.bottom(), rectangle.top(), dBottomRate);
+//      prectangle->bottom = range_rate(rectangle.bottom, rectangle.top, dBottomRate);
 //
 //   }
 //

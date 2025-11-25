@@ -45,10 +45,10 @@ namespace gpu
 
          m_ptexture->m_pgpurenderer = m_pgpucontext->m_pgpurenderer;
 
-         m_ptexture->m_rectangleTarget.left()=0;
-         m_ptexture->m_rectangleTarget.top()=0;
-         m_ptexture->m_rectangleTarget.right()= iWidth;
-         m_ptexture->m_rectangleTarget.bottom()= iHeight;
+         m_ptexture->m_rectangleTarget.left=0;
+         m_ptexture->m_rectangleTarget.top=0;
+         m_ptexture->m_rectangleTarget.right= iWidth;
+         m_ptexture->m_rectangleTarget.bottom= iHeight;
          m_ptexture->m_iMipCount=floor(log2(maximum(iWidth, iHeight)));
          m_ptexture->m_bRenderTarget = true;
          m_ptexture->m_bShaderResourceView = true;

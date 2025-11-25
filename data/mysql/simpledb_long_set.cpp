@@ -496,16 +496,16 @@ bool db_long_set::load(const ::string & lpKey, ::int_rectangle * lpRect)
 
    string strKey = lpKey;
 
-   if(!load(strKey + ".left()", rectangle.left()))
+   if(!load(strKey + ".left", rectangle.left))
       return false;
 
-   if(!load(strKey + ".top()", rectangle.top()))
+   if(!load(strKey + ".top", rectangle.top))
       return false;
 
-   if(!load(strKey + ".right()", rectangle.right()))
+   if(!load(strKey + ".right", rectangle.right))
       return false;
 
-   if(!load(strKey + ".bottom()", rectangle.bottom()))
+   if(!load(strKey + ".bottom", rectangle.bottom))
       return false;
 
    *lpRect = rectangle;
@@ -525,16 +525,16 @@ bool db_long_set::save(const ::string & lpKey, const ::int_rectangle * lpRect)
 
    string strKey = lpKey;
 
-   if(!save(strKey + ".left()", lpRect->left()))
+   if(!save(strKey + ".left", lpRect->left))
       return false;
 
-   if(!save(strKey + ".top()", lpRect->top()))
+   if(!save(strKey + ".top", lpRect->top))
       return false;
 
-   if(!save(strKey + ".right()", lpRect->right()))
+   if(!save(strKey + ".right", lpRect->right))
       return false;
 
-   if(!save(strKey + ".bottom()", lpRect->bottom()))
+   if(!save(strKey + ".bottom", lpRect->bottom))
       return false;
 
    return true;

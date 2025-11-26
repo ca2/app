@@ -79,10 +79,10 @@ public:
 //   color_type(UNIT_TYPE a, UNIT_TYPE b, UNIT_TYPE c, UNIT_TYPE d) { x = a; y = b; z = c; w = d; }
 //   //~color_type() = default;
    
-   //const UNIT_TYPE & red() const {return this->x();}
-   //UNIT_TYPE & red() {return this->x();}
-   //const UNIT_TYPE & green() const {return this->y();}
-   //UNIT_TYPE & green() {return this->y();}
+   //const UNIT_TYPE & red() const {return this->x;}
+   //UNIT_TYPE & red() {return this->x;}
+   //const UNIT_TYPE & green() const {return this->y;}
+   //UNIT_TYPE & green() {return this->y;}
    //const UNIT_TYPE & blue() const {return this->c();}
    //UNIT_TYPE & blue() {return this->c();}
    //const UNIT_TYPE & opacity() const {return this->d();}

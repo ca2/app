@@ -162,12 +162,12 @@ void Canvas::draw(::nano2d::context  * pcontext) {
 
       screen()->m_puserinteraction->øconstruct(m_pimage);
 
-      m_pimage->create({ m_size.cx(), m_size.cy() });
+      m_pimage->create({ m_size.cx, m_size.cy });
 
 
    }
 
-   pcontext->_draw_image((float)m_pos.x, (float)m_pos.y, (float)m_size.cx(), (float)m_size.cy(), m_pimage);
+   pcontext->_draw_image((float)m_pos.x, (float)m_pos.y, (float)m_size.cx, (float)m_size.cy, m_pimage);
 //   Screen * pscreen = screen();
 //   if (pscreen == nullptr)
 //      throw std::runtime_error("Canvas::draw(): could not find parent pscreen!");
@@ -185,7 +185,7 @@ void Canvas::draw(::nano2d::context  * pcontext) {
 //
 //#if defined(NANOUI_USE_OPENGL) || defined(NANOUI_USE_GLES)
 //   if (m_render_to_texture)
-//      offset = int_sequence2(offset.x, pscreen->size().y - offset.y - m_size.cy());
+//      offset = int_sequence2(offset.x, pscreen->size().y - offset.y - m_size.cy);
 //#endif
 //
 //   if (m_bDrawBorder)
@@ -215,7 +215,7 @@ void Canvas::draw(::nano2d::context  * pcontext) {
 //      pcontext->stroke_width(1.f);
 //      pcontext->stroke_color(m_border_color);
 //      ::nano2d::RoundedRect(ctx, m_pos.x + .5f, m_pos.y + .5f,
-//         m_size.cx() - 1.f, m_size.cy() - 1.f,
+//         m_size.cx - 1.f, m_size.cy - 1.f,
 //         m_ptheme->m_iWindowCorderRadius);
 //      pcontext->stroke();
 //   }

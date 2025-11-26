@@ -11,12 +11,12 @@
 //}
 //
 //
-//inline bool type_name::operator == (const ::type& typeatom) const
+//inline bool type_name::operator == (const ::type& type) const
 //{
 //
-//   return m_pszRawName == typeatom.m_pszRawName
-//      || !strcmp(m_pszRawName, typeatom.m_pszRawName)
-//      || m_strDemangled == typeatom.m_strDemangled;
+//   return m_pszRawName == type.m_pszRawName
+//      || !strcmp(m_pszRawName, type.m_pszRawName)
+//      || m_strDemangled == type.m_strDemangled;
 //
 //}
 //

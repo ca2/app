@@ -222,8 +222,8 @@ namespace user
    int_size control_bar::CalcFixedLayout(::draw2d::graphics_pointer& pgraphics, bool bStretch, bool bHorz)
    {
       ::int_size size;
-      size.cx() = (bStretch && bHorz ? 32767 : 0);
-      size.cy() = (bStretch && !bHorz ? 32767 : 0);
+      size.cx = (bStretch && bHorz ? 32767 : 0);
+      size.cy = (bStretch && !bHorz ? 32767 : 0);
       return size;
    }
 
@@ -801,28 +801,28 @@ namespace user
 
          ::int_size size = CalcDynamicLayout(pgraphics, -1, dwMode);
 
-         size.cx() = minimum(size.cx(), sizeAvail.cx());
-         size.cy() = minimum(size.cy(), sizeAvail.cy());
+         size.cx = minimum(size.cx, sizeAvail.cx);
+         size.cy = minimum(size.cy, sizeAvail.cy);
 
          if (uStyle & CBRS_ORIENT_HORZ)
          {
 
-            playout->m_sizeTotal.cy() += size.cy();
+            playout->m_sizeTotal.cy += size.cy;
 
-            playout->m_sizeTotal.cx() = maximum(playout->m_sizeTotal.cx(), size.cx());
+            playout->m_sizeTotal.cx = maximum(playout->m_sizeTotal.cx, size.cx);
 
             if (uStyle & CBRS_ALIGN_TOP)
             {
 
-               playout->m_rectangle.top += size.cy();
+               playout->m_rectangle.top += size.cy;
 
             }
             else if (uStyle & CBRS_ALIGN_BOTTOM)
             {
 
-               rectangle.top = rectangle.bottom - size.cy();
+               rectangle.top = rectangle.bottom - size.cy;
 
-               playout->m_rectangle.bottom -= size.cy();
+               playout->m_rectangle.bottom -= size.cy;
 
             }
 
@@ -830,22 +830,22 @@ namespace user
          else if (uStyle & CBRS_ORIENT_VERT)
          {
 
-            playout->m_sizeTotal.cx() += size.cx();
+            playout->m_sizeTotal.cx += size.cx;
 
-            playout->m_sizeTotal.cy() = maximum(playout->m_sizeTotal.cy(), size.cy());
+            playout->m_sizeTotal.cy = maximum(playout->m_sizeTotal.cy, size.cy);
 
             if (uStyle & CBRS_ALIGN_LEFT)
             {
 
-               playout->m_rectangle.left += size.cx();
+               playout->m_rectangle.left += size.cx;
 
             }
             else if (uStyle & CBRS_ALIGN_RIGHT)
             {
 
-               rectangle.left = rectangle.right - size.cx();
+               rectangle.left = rectangle.right - size.cx;
 
-               playout->m_rectangle.right -= size.cx();
+               playout->m_rectangle.right -= size.cx;
 
             }
 
@@ -857,9 +857,9 @@ namespace user
 
          }
 
-         rectangle.right = rectangle.left + size.cx();
+         rectangle.right = rectangle.left + size.cx;
 
-         rectangle.bottom = rectangle.top + size.cy();
+         rectangle.bottom = rectangle.top + size.cy;
 
          // only resize the interaction_impl if doing on_layout and not just int_rectangle query
          //if (playout->hDWP != nullptr)

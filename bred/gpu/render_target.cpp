@@ -284,7 +284,7 @@ namespace gpu
    int render_target::width() 
    {
       
-      return m_size.cx(); 
+      return m_size.cx; 
    
    }
 
@@ -292,7 +292,7 @@ namespace gpu
    int render_target::height() 
    {
       
-      return m_size.cy(); 
+      return m_size.cy; 
    
    }
 

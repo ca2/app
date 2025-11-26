@@ -848,13 +848,13 @@ namespace user
             if (ppane->m_pimage->is_set())
             {
 
-               size.cx() += ppane->m_pimage->width() + 2;
+               size.cx += ppane->m_pimage->width() + 2;
 
-               size.cy() = maximum(size.cy(), ppane->m_pimage->height());
+               size.cy = maximum(size.cy, ppane->m_pimage->height());
 
             }
 
-            cx = (int)(size.cx() + 2.0);
+            cx = (int)(size.cx + 2.0);
 
             if (!ppane->m_bPermanent)
             {
@@ -870,7 +870,7 @@ namespace user
 
             }
 
-            cy = (int)(size.cy() + 2.0);
+            cy = (int)(size.cy + 2.0);
 
             if (cy > iTabHeight)
             {
@@ -957,11 +957,11 @@ namespace user
             if (ppane->m_pimage->is_ok())
             {
 
-               size.cy() = maximum(size.cy(), ppane->m_pimage->size().cy());
+               size.cy = maximum(size.cy, ppane->m_pimage->size().cy);
 
             }
 
-            cy = (int)(size.cy() + 2.0);
+            cy = (int)(size.cy + 2.0);
 
             if (cy > iTabHeight)
             {
@@ -990,12 +990,12 @@ namespace user
 
             }
 
-            ppane->m_size.cx() = (int)(size.cx() + ixAdd
+            ppane->m_size.cx = (int)(size.cx + ixAdd
                                          + get_data()->m_rectangleBorder.left + get_data()->m_rectangleBorder.right
                                          + get_data()->m_rectangleMargin.left + get_data()->m_rectangleMargin.right
                                          + get_data()->m_rectangleTextMargin.left + get_data()->m_rectangleTextMargin.right);
 
-            x += ppane->m_size.cx();
+            x += ppane->m_size.cx;
          }
 
          // close tab button
@@ -1015,7 +1015,7 @@ namespace user
 
             auto ppane = get_data()->m_tabpanea[iIndex].get();
 
-            ppane->m_size.cy() = iTabHeight;
+            ppane->m_size.cy = iTabHeight;
 
          }
 
@@ -1059,15 +1059,15 @@ namespace user
       if (m_pdata->m_bVertical)
       {
 
-         m_sizeBarDragScroll.cy() = (int)m_pdata->m_tabpanea.get_count() * m_pdata->m_iTabHeight;
+         m_sizeBarDragScroll.cy = (int)m_pdata->m_tabpanea.get_count() * m_pdata->m_iTabHeight;
 
 
       }
       else
       {
 
-         m_sizeBarDragScroll.cx() = m_pdata->m_tabpanea.last()->m_point.x +
-                                    m_pdata->m_tabpanea.last()->m_size.cx();
+         m_sizeBarDragScroll.cx = m_pdata->m_tabpanea.last()->m_point.x +
+                                    m_pdata->m_tabpanea.last()->m_size.cx;
 
       }
 

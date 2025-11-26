@@ -418,7 +418,7 @@ namespace write_text
 
          int_rectangle rectangle = pbox->m_rectangle;
 
-         rectangle.right = rectangle.left + m_size.cx();
+         rectangle.right = rectangle.left + m_size.cx;
 
          if (!pbox->is_drawing_ok(this))
          {
@@ -688,9 +688,9 @@ namespace write_text
 
          }
 
-         s.cx() += m_rectangleMargin.left + m_rectangleMargin.right;
+         s.cx += m_rectangleMargin.left + m_rectangleMargin.right;
 
-         s.cy() += m_rectangleMargin.top + m_rectangleMargin.bottom;
+         s.cy += m_rectangleMargin.top + m_rectangleMargin.bottom;
 
          pbox->m_size = s;
 
@@ -698,7 +698,7 @@ namespace write_text
 
          pbox->set_text_box_init();
 
-         m_size.cx() = (int) maximum(m_size.cx(), s.cx());
+         m_size.cx = (int) maximum(m_size.cx, s.cx);
 
       }
 
@@ -1357,7 +1357,7 @@ namespace write_text
 
       int nextx;
 
-      sizeTotal.cx() = m_rectangleX.width();
+      sizeTotal.cx = m_rectangleX.width();
 
       int_rectangle rectangleX = m_puserinteraction->raw_rectangle();
 
@@ -1399,7 +1399,7 @@ namespace write_text
          if (pitem == nullptr)
          {
 
-            sizeTotal.cy() = y + hExtra;
+            sizeTotal.cy = y + hExtra;
 
             return sizeTotal;
 
@@ -1411,7 +1411,7 @@ namespace write_text
 
          x += iPadding;
 
-         nextx = x + s.cx() + iPadding;
+         nextx = x + s.cx + iPadding;
 
          if (nextx > w )
          {
@@ -1444,7 +1444,7 @@ namespace write_text
 
             x = iMargin + iPadding;
 
-            nextx = x + s.cx() + iPadding;
+            nextx = x + s.cx + iPadding;
 
             y += h + iPadding;
 
@@ -1460,9 +1460,9 @@ namespace write_text
 
          rectangle.top = y;
 
-         rectangle.right = rectangle.left + s.cx();
+         rectangle.right = rectangle.left + s.cx;
 
-         rectangle.bottom = rectangle.top + s.cy();
+         rectangle.bottom = rectangle.top + s.cy;
 
          if (rectangle.intersects(rectangleX))
          {
@@ -1486,9 +1486,9 @@ namespace write_text
 
          x = nextx;
 
-         h = maximum(h, s.cy());
+         h = maximum(h, s.cy);
 
-         hExtra = maximum(hExtra, s.cy());
+         hExtra = maximum(hExtra, s.cy);
 
       }
 
@@ -1507,8 +1507,8 @@ namespace write_text
             auto & size2 = pitem->m_box[j].m_size;
             auto & rect2 = pitem->m_box[j].m_rectangle;
 
-            int dw = (size2.cx() - s.cx()) / 2;
-            int dh = (size2.cy() - s.cy()) / 2;
+            int dw = (size2.cx - s.cx) / 2;
+            int dh = (size2.cy - s.cy) / 2;
 
             int x = m_rectangleX.center_x() - rectangle.center_x();
 
@@ -1530,23 +1530,23 @@ namespace write_text
             if (x > 0)
             {
                rect2.left = m_rectangleX.center_x() - x;
-               rect2.right = rect2.left + size2.cx();
+               rect2.right = rect2.left + size2.cx;
             }
             else
             {
                rect2.right = m_rectangleX.center_x()- x;
-               rect2.left = rect2.right - size2.cx();
+               rect2.left = rect2.right - size2.cx;
             }
             rect2.top = rectangle.top - dh;
-            rect2.bottom = rect2.top + size2.cy();
+            rect2.bottom = rect2.top + size2.cy;
 
-            hExtra = maximum(hExtra, size2.cy());
+            hExtra = maximum(hExtra, size2.cy);
 
          }
 
       }
 
-      sizeTotal.cy() = y + hExtra + 5;
+      sizeTotal.cy = y + hExtra + 5;
 
       return sizeTotal;
 
@@ -1566,7 +1566,7 @@ namespace write_text
 
       int h = 0;
 
-      sizeTotal.cx() = 0;
+      sizeTotal.cx = 0;
 
       int xSingleColumn = 0;
       int ySingleColumn = 0;
@@ -1581,7 +1581,7 @@ namespace write_text
          if (pitem == nullptr)
          {
 
-            sizeTotal.cy() = ySingleColumn;
+            sizeTotal.cy = ySingleColumn;
 
             return sizeTotal;
 
@@ -1593,18 +1593,18 @@ namespace write_text
 
          pitem->m_box[0].m_rectangle.left = xSingleColumn;
          pitem->m_box[0].m_rectangle.top = ySingleColumn;
-         pitem->m_box[0].m_rectangle.right = xSingleColumn + s.cx();
-         pitem->m_box[0].m_rectangle.bottom = ySingleColumn + s.cy();
+         pitem->m_box[0].m_rectangle.right = xSingleColumn + s.cx;
+         pitem->m_box[0].m_rectangle.bottom = ySingleColumn + s.cy;
 
-         sizeTotal.cx() = maximum(m_size.cx(), pitem->m_box[0].m_rectangle.right + 4);
+         sizeTotal.cx = maximum(m_size.cx, pitem->m_box[0].m_rectangle.right + 4);
 
-         ySingleColumn += s.cy();
+         ySingleColumn += s.cy;
 
-         h = maximum(h, s.cy());
+         h = maximum(h, s.cy);
 
       }
 
-      sizeTotal.cy() = ySingleColumn;
+      sizeTotal.cy = ySingleColumn;
 
       return sizeTotal;
 
@@ -1723,7 +1723,7 @@ namespace write_text
 
          int_rectangle rectangle(pfontlistitem->m_box[BOX].m_rectangle);
 
-         rectangle.right = rectangle.left + m_size.cx();
+         rectangle.right = rectangle.left + m_size.cx;
 
          if (rectangle.contains(point))
          {
@@ -1850,7 +1850,7 @@ namespace write_text
 
       *lprect = pfontlistitem->m_box[BOX].m_rectangle;
 
-      lprect->right = lprect->left + m_size.cx();
+      lprect->right = lprect->left + m_size.cx;
 
       return true;
 

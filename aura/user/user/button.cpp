@@ -216,9 +216,9 @@ namespace user
 
       ::double_size sizeTotal;
 
-      sizeTotal.cx() = size.cx();
+      sizeTotal.cx = size.cx;
 
-      sizeTotal.cy() = tm.get_line_height();
+      sizeTotal.cy = tm.get_line_height();
 
       return sizeTotal;
 
@@ -358,10 +358,10 @@ namespace user
          auto sizeControl = get_preferred_size(pgraphics);
 
          //::int_rectangle rectangle;
-         //rectangle.left = (int)(rectangleX.left + (rectangleX.width() - sizeFitting.cx()) / 2);
-         //rectangle.top = (int)(rectangleX.top + (rectangleX.height() - sizeFitting.cy()) / 2);
-         //rectangle.right = (int)(rectangle.left + sizeFitting.cx());
-         //rectangle.bottom = (int)(rectangle.top + sizeFitting.cy());
+         //rectangle.left = (int)(rectangleX.left + (rectangleX.width() - sizeFitting.cx) / 2);
+         //rectangle.top = (int)(rectangleX.top + (rectangleX.height() - sizeFitting.cy) / 2);
+         //rectangle.right = (int)(rectangle.left + sizeFitting.cx);
+         //rectangle.bottom = (int)(rectangle.top + sizeFitting.cy);
          //if (rectangle != m_rectangleText)
          //{
          //   m_rectangleText = rectangle;
@@ -478,13 +478,13 @@ namespace user
 
       auto sizeFitting = get_fitting_size(pgraphics);
 
-      rectangleText.left = (int)(rectangleX.left + (rectangleX.width() - sizeFitting.cx()) / 2);
+      rectangleText.left = (int)(rectangleX.left + (rectangleX.width() - sizeFitting.cx) / 2);
 
-      rectangleText.top = (int)(rectangleX.top + (rectangleX.height() - sizeFitting.cy()) / 2);
+      rectangleText.top = (int)(rectangleX.top + (rectangleX.height() - sizeFitting.cy) / 2);
 
-      rectangleText.right = (int)(rectangleText.left + sizeFitting.cx());
+      rectangleText.right = (int)(rectangleText.left + sizeFitting.cx);
 
-      rectangleText.bottom = (int)(rectangleText.top + sizeFitting.cy());
+      rectangleText.bottom = (int)(rectangleText.top + sizeFitting.cy);
 
       //::int_rectangle rectangleText = m_rectangleText;
       //      string str = utf8_to_unicode(str);

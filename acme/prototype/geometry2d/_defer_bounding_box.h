@@ -11,10 +11,10 @@
 //inline bool expand_bounding_box(RECTANGLE & rectangleBounding, const ::arc_type < NUMBER > & arc)
 //{
 //
-//   rectangleBounding.left = (decltype(rectangleBounding.left)) (arc.m_pointCenter.x - arc.m_sizeRadius.cx());
-//   rectangleBounding.right = (decltype(rectangleBounding.right))(arc.m_pointCenter.x + arc.m_sizeRadius.cx());
-//   rectangleBounding.top = (decltype(rectangleBounding.top))(arc.m_pointCenter.y - arc.m_sizeRadius.cy());
-//   rectangleBounding.bottom = (decltype(rectangleBounding.bottom))(arc.m_pointCenter.y + arc.m_sizeRadius.cy());
+//   rectangleBounding.left = (decltype(rectangleBounding.left)) (arc.m_pointCenter.x - arc.m_sizeRadius.cx);
+//   rectangleBounding.right = (decltype(rectangleBounding.right))(arc.m_pointCenter.x + arc.m_sizeRadius.cx);
+//   rectangleBounding.top = (decltype(rectangleBounding.top))(arc.m_pointCenter.y - arc.m_sizeRadius.cy);
+//   rectangleBounding.bottom = (decltype(rectangleBounding.bottom))(arc.m_pointCenter.y + arc.m_sizeRadius.cy);
 //
 //   return true;
 //
@@ -41,10 +41,10 @@
 //inline bool get_bounding_box(::double_rectangle * prectangleBounding, const ::arc * parc)
 //{
 //
-//   rectangleBounding.left = arc.m_pointCenter.x - arc.m_sizeRadius.cx();
-//   rectangleBounding.right = arc.m_pointCenter.x + arc.m_sizeRadius.cx();
-//   rectangleBounding.top = arc.m_pointCenter.y - arc.m_sizeRadius.cy();
-//   rectangleBounding.bottom = arc.m_pointCenter.y + arc.m_sizeRadius.cy();
+//   rectangleBounding.left = arc.m_pointCenter.x - arc.m_sizeRadius.cx;
+//   rectangleBounding.right = arc.m_pointCenter.x + arc.m_sizeRadius.cx;
+//   rectangleBounding.top = arc.m_pointCenter.y - arc.m_sizeRadius.cy;
+//   rectangleBounding.bottom = arc.m_pointCenter.y + arc.m_sizeRadius.cy;
 //
 //   return true;
 //

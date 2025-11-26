@@ -278,9 +278,9 @@ AdvancedGridLayout::Anchor::operator ::string() const
 
          bool indent_cur = indent && !plabel;
 
-         height += sizeTarget.cy();
+         height += sizeTarget.cy;
 
-         width = ::maximum(width, sizeTarget.cx() + 2 * m_iMargin + (indent_cur ? m_group_indent : 0));
+         width = ::maximum(width, sizeTarget.cx + 2 * m_iMargin + (indent_cur ? m_group_indent : 0));
 
          if (plabel)
          {
@@ -348,7 +348,7 @@ AdvancedGridLayout::Anchor::operator ::string() const
             {
 
                return int_size(available_width - (indent_cur ? m_group_indent : 0),
-               pwidgetChild->preferred_size(pcontext, bRecalcTextSize).cy());
+               pwidgetChild->preferred_size(pcontext, bRecalcTextSize).cy);
 
             });
 
@@ -358,7 +358,7 @@ AdvancedGridLayout::Anchor::operator ::string() const
 
          pwidgetChild->perform_layout(pcontext);
 
-         height += sizeTarget.cy();
+         height += sizeTarget.cy;
 
          if (plabel)
          {

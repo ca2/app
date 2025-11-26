@@ -121,7 +121,7 @@ namespace gpu_opengl
       if (drawFboId != m_fbo)
       {
 
-         glViewport(0, 0, m_size.cx(), m_size.cy());
+         glViewport(0, 0, m_size.cx, m_size.cy);
 
       }
       //glBindFramebuffer(GL_FRAMEBUFFER, m_fbo);

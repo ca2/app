@@ -121,7 +121,7 @@ namespace draw2d
       offset_context& operator +=(const ::double_size& size)
       {
 
-         offset(size.cx(), size.cy());
+         offset(size.cx, size.cy);
 
          return *this;
 
@@ -130,7 +130,7 @@ namespace draw2d
       offset_context& operator -=(const ::double_size& size)
       {
 
-         offset(-size.cx(), -size.cy());
+         offset(-size.cx, -size.cy);
 
          return *this;
 

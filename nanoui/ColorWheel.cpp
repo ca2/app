@@ -56,13 +56,13 @@ namespace nanoui
 
       m_rectangle.left = (float) m_pos.x;
       m_rectangle.top = (float)m_pos.y;
-      m_rectangle.right = (float)(m_pos.x + m_size.cx());
-      m_rectangle.bottom = (float)(m_pos.y + m_size.cy());
+      m_rectangle.right = (float)(m_pos.x + m_size.cx);
+      m_rectangle.bottom = (float)(m_pos.y + m_size.cy);
 
       ::graphics::color_wheel::_on_draw(pcontext);
 
       //float x = (float)m_pos.x, y = (float)m_pos.y,
-      //   w = (float)m_size.cx(), h = (float)m_size.cy();
+      //   w = (float)m_size.cx, h = (float)m_size.cy;
 
       //float hue = m_hue;
       //::nano2d::paint paint;
@@ -258,9 +258,9 @@ namespace nanoui
    //   
    //   float y = (float) p.y;
    //   
-   //   float pwidget = (float)m_size.cx();
+   //   float pwidget = (float)m_size.cx;
    //   
-   //   float h = (float)m_size.cy();
+   //   float h = (float)m_size.cy;
 
    //   float cx = pwidget / 2.f;
 

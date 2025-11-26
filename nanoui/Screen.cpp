@@ -223,7 +223,7 @@ namespace nanoui
    //            caption.c_str(), monitor, nullptr);
    //      }
    //      else {
-   //         m_glfw_window = glfwCreateWindow(size.cx(), size.cy(),
+   //         m_glfw_window = glfwCreateWindow(size.cx, size.cy,
    //            caption.c_str(), nullptr, nullptr);
    //      }
    //
@@ -413,7 +413,7 @@ namespace nanoui
    //         Screen * s = it->second;
    //
    //         s->m_pixel_ratio = get_pixel_ratio(pwidgetChild);
-   //         s->resize_callback_event(s->m_size.cx(), s->m_size.cy());
+   //         s->resize_callback_event(s->m_size.cx, s->m_size.cy);
    //      }
    //   );
    //
@@ -466,8 +466,8 @@ namespace nanoui
    //   m_size = int_sequence2((int)pwidgetChild, (int)h);
    //#elif defined(_WIN32) || defined(__linux__)
    //   if (m_pixel_ratio != 1 && !m_fullscreen)
-   //      glfwSetWindowSize(window, m_size.cx() * m_pixel_ratio,
-   //         m_size.cy() * m_pixel_ratio);
+   //      glfwSetWindowSize(window, m_size.cx * m_pixel_ratio,
+   //         m_size.cy * m_pixel_ratio);
    //#endif
    //
    //#if defined(NANOUI_GLAD)
@@ -564,10 +564,10 @@ namespace nanoui
    //   Widget::set_size(size);
    //
    //#if defined(_WIN32) || defined(__linux__) || defined(EMSCRIPTEN)
-   //   glfwSetWindowSize(m_glfw_window, size.cx() * m_pixel_ratio,
-   //      size.cy() * m_pixel_ratio);
+   //   glfwSetWindowSize(m_glfw_window, size.cx * m_pixel_ratio,
+   //      size.cy * m_pixel_ratio);
    //#else
-   //   glfwSetWindowSize(m_glfw_window, size.cx(), size.cy());
+   //   glfwSetWindowSize(m_glfw_window, size.cx, size.cy);
    //#endif
    //}
    //
@@ -612,7 +612,7 @@ namespace nanoui
 
 
       pcontext->begin_path();
-      pcontext->rectangle((float)m_pos.x, (float)m_pos.y, (float)m_size.cx(), (float)m_size.cy());
+      pcontext->rectangle((float)m_pos.x, (float)m_pos.y, (float)m_size.cx, (float)m_size.cy);
       pcontext->fill_color(m_background);
       pcontext->fill();
 
@@ -928,7 +928,7 @@ namespace nanoui
       _synchronous_lock lock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
       bool ret = false;
 
-      //if (point.x > m_size.cx() - 10 && point.y > m_size.cy() - 10)
+      //if (point.x > m_size.cx - 10 && point.y > m_size.cy - 10)
       //{
 
       //   return false;
@@ -1562,8 +1562,8 @@ namespace nanoui
       if (m_puserinteraction)
       {
 
-         if (m_puserinteraction->width() != size.cx()
-            || m_puserinteraction->height() != size.cy())
+         if (m_puserinteraction->width() != size.cx
+            || m_puserinteraction->height() != size.cy)
          {
 
             //m_puserinteraction->move_to(::int_size(m_pos[0], m_pos[1]));
@@ -1588,9 +1588,9 @@ namespace nanoui
 
       ::appearance::appearance::set_user_interaction(puserinteraction);
 
-      m_size.cx() = puserinteraction->width();
+      m_size.cx = puserinteraction->width();
 
-      m_size.cy() = puserinteraction->height();
+      m_size.cy = puserinteraction->height();
 
       puserinteraction->set_need_layout();
 
@@ -1628,7 +1628,7 @@ namespace nanoui
 
       ::int_size size = m_puserinteraction->get_size();
       
-      set_size({ (int)size.cx(), (int)size.cy() });
+      set_size({ (int)size.cx, (int)size.cy });
 
       resize_event(m_size);
 
@@ -1638,8 +1638,8 @@ namespace nanoui
       {
 
          auto r = m_puserinteraction->rectangle();
-         m_size.cx() = r.width();
-         m_size.cy() = r.height();
+         m_size.cx = r.width();
+         m_size.cy = r.height();
       }*/
 
    }
@@ -1715,7 +1715,7 @@ namespace nanoui
    bool Screen::on_button_down(::user::e_key ekeyButton, const ::int_point& point, const ::user::e_key& ekeyModifiers, bool bDoubleClick)
    {
 
-      //if (point.x > m_size.cx() - 10 && point.y > m_size.cy() - 10)
+      //if (point.x > m_size.cx - 10 && point.y > m_size.cy - 10)
       //{
 
       //   return false;
@@ -1738,7 +1738,7 @@ namespace nanoui
    bool Screen::on_button_up(::user::e_key ekeyButton, const ::int_point& point, const ::user::e_key& ekeyModifiers)
    {
 
-      //if (point.x > m_size.cx() - 10 && point.y > m_size.cy() - 10)
+      //if (point.x > m_size.cx - 10 && point.y > m_size.cy - 10)
       //{
 
       //   return false;

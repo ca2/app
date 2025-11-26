@@ -65,7 +65,7 @@ public:
    ::collection::count set_size(::int_size size)
    {
 
-      return this->set_size(size.cx(), size.cy());
+      return this->set_size(size.cx, size.cy);
 
    }
 

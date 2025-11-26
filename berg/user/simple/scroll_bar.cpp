@@ -348,11 +348,11 @@ void simple_scroll_bar::on_message_left_button_up(::message::message * pmessage)
    if (m_eorientation == e_orientation_horizontal)
    {
 
-      auto dWidth = rectangleX.width() - dScrollBarThickness * 2 - sizeTrack.cx();
+      auto dWidth = rectangleX.width() - dScrollBarThickness * 2 - sizeTrack.cx;
 
       statusrectangleTrack.top = rectangleX.top;
 
-      statusrectangleTrack.bottom = rectangleX.top + sizeTrack.cy();
+      statusrectangleTrack.bottom = rectangleX.top + sizeTrack.cy;
 
       if (m_pscrolllayout->m_scrollstatea[elayout].range() <= 0)
       {
@@ -367,17 +367,17 @@ void simple_scroll_bar::on_message_left_button_up(::message::message * pmessage)
 
       }
 
-      statusrectangleTrack.right = statusrectangleTrack.left + sizeTrack.cx();
+      statusrectangleTrack.right = statusrectangleTrack.left + sizeTrack.cx;
 
    }
    else if (m_eorientation == e_orientation_vertical)
    {
 
-      auto dHeight = rectangleX.height() - dScrollBarThickness * 2 - sizeTrack.cy();
+      auto dHeight = rectangleX.height() - dScrollBarThickness * 2 - sizeTrack.cy;
 
       statusrectangleTrack.left = rectangleX.left;
 
-      statusrectangleTrack.right = statusrectangleTrack.left + sizeTrack.cx();
+      statusrectangleTrack.right = statusrectangleTrack.left + sizeTrack.cx;
 
       if (m_pscrolllayout->m_scrollstatea[elayout].range() <= 0)
       {
@@ -392,7 +392,7 @@ void simple_scroll_bar::on_message_left_button_up(::message::message * pmessage)
 
       }
 
-      statusrectangleTrack.bottom = statusrectangleTrack.top + sizeTrack.cy();
+      statusrectangleTrack.bottom = statusrectangleTrack.top + sizeTrack.cy;
 
    }
 
@@ -520,9 +520,9 @@ void simple_scroll_bar::on_message_left_button_up(::message::message * pmessage)
 
       }
 
-      size.cx() = cx;
+      size.cx = cx;
 
-      size.cy() = rectangleX.height();
+      size.cy = rectangleX.height();
 
    }
    else if (m_eorientation == e_orientation_vertical)
@@ -559,9 +559,9 @@ void simple_scroll_bar::on_message_left_button_up(::message::message * pmessage)
 
       }
 
-      size.cy() = cy;
+      size.cy = cy;
 
-      size.cx() = rectangleX.width();
+      size.cx = rectangleX.width();
 
    }
 
@@ -584,7 +584,7 @@ void simple_scroll_bar::set_scroll_tracking_position(const ::double_point & poin
    if (m_eorientation == e_orientation_horizontal)
    {
 
-      auto dWidth = sizeScrollWindow.cx() - dScrollBarThickness * 2 - sizeTrack.cx();
+      auto dWidth = sizeScrollWindow.cx - dScrollBarThickness * 2 - sizeTrack.cx;
 
       double dRate = (point.x - dScrollBarThickness) / dWidth;
 
@@ -598,7 +598,7 @@ void simple_scroll_bar::set_scroll_tracking_position(const ::double_point & poin
    else if (m_eorientation == e_orientation_vertical)
    {
 
-      auto dHeight = sizeScrollWindow.cy() - dScrollBarThickness * 2 - sizeTrack.cy();
+      auto dHeight = sizeScrollWindow.cy - dScrollBarThickness * 2 - sizeTrack.cy;
 
       double dRate = (point.y - dScrollBarThickness) / dHeight;
 
@@ -703,14 +703,14 @@ void simple_scroll_bar::on_layout(::draw2d::graphics_pointer & pgraphics)
 
       //m_rectangleA.left   = 0;
       //m_rectangleA.top    = 0;
-      //m_rectangleA.right  = minimum(iScrollBarThickness,size.cx() / 2);
-      //m_rectangleA.bottom = size.cy();
+      //m_rectangleA.right  = minimum(iScrollBarThickness,size.cx / 2);
+      //m_rectangleA.bottom = size.cy;
 
       /*
       m_pointaA[0].x = 0;
-      m_pointaA[0].y = size.cy() / 2;
-      m_pointaA[1].x = minimum(GetSystemMetrics(SM_CXHSCROLL), size.cx() / 2);
-      m_pointaA[1].y = size.cy() - 1;
+      m_pointaA[0].y = size.cy / 2;
+      m_pointaA[1].x = minimum(GetSystemMetrics(SM_CXHSCROLL), size.cx / 2);
+      m_pointaA[1].y = size.cy - 1;
       m_pointaA[2].x = m_pointaA[1].x;
       m_pointaA[2].y = 1;
       m_pointaA[3].x = m_pointaA[0].x;
@@ -726,18 +726,18 @@ void simple_scroll_bar::on_layout(::draw2d::graphics_pointer & pgraphics)
       //m_pointaA[2].x = m_rectangleA.left + (m_rectangleA.width() + iArrowForce) / 2;
       //m_pointaA[2].y = m_rectangleA.top + (m_rectangleA.height() + iArrowStability) / 2;;
 
-      //m_rectangleB.left   = maximum(size.cx() - iScrollBarThickness,size.cx() / 2);
+      //m_rectangleB.left   = maximum(size.cx - iScrollBarThickness,size.cx / 2);
       //m_rectangleB.top    = 0;
-      //m_rectangleB.right  = size.cx();
-      //m_rectangleB.bottom = size.cy();
+      //m_rectangleB.right  = size.cx;
+      //m_rectangleB.bottom = size.cy;
 
       /*
-      m_pointaB[0].x = size.cx();
-      m_pointaB[0].y = size.cy() / 2;
+      m_pointaB[0].x = size.cx;
+      m_pointaB[0].y = size.cy / 2;
       m_pointaB[1].x = ;
       m_pointaB[1].y = 1;
       m_pointaB[2].x = m_pointaB[1].x;
-      m_pointaB[2].y = size.cy() - 1;
+      m_pointaB[2].y = size.cy - 1;
       m_pointaB[3].x = m_pointaB[0].x;
       m_pointaB[3].y = m_pointaA[0].y;
       */
@@ -755,15 +755,15 @@ void simple_scroll_bar::on_layout(::draw2d::graphics_pointer & pgraphics)
 
       //m_rectangleA.left   = 0;
       //m_rectangleA.top    = 0;
-      //m_rectangleA.right  = size.cx();
-      //m_rectangleA.bottom = minimum(iScrollBarThickness,size.cy() / 2);
+      //m_rectangleA.right  = size.cx;
+      //m_rectangleA.bottom = minimum(iScrollBarThickness,size.cy / 2);
 
       /*
-      m_pointaA[0].x = size.cx() / 2;
+      m_pointaA[0].x = size.cx / 2;
       m_pointaA[0].y = 0;
       m_pointaA[1].x = 1;
-      m_pointaA[1].y = minimum(GetSystemMetrics(SM_CYVSCROLL), size.cy() / 2);
-      m_pointaA[2].x = size.cx() - 1;
+      m_pointaA[1].y = minimum(GetSystemMetrics(SM_CYVSCROLL), size.cy / 2);
+      m_pointaA[2].x = size.cx - 1;
       m_pointaA[2].y = m_pointaA[1].y;
       m_pointaA[3].x = m_pointaA[0].x;
       m_pointaA[3].y = m_pointaA[0].y;
@@ -777,15 +777,15 @@ void simple_scroll_bar::on_layout(::draw2d::graphics_pointer & pgraphics)
       //m_pointaA[2].y = m_rectangleA.top + (m_rectangleA.height() + iArrowForce) / 2;;
 
       //m_rectangleB.left   = 0;
-      //m_rectangleB.top    = maximum(size.cy() - iScrollBarThickness,size.cy() / 2);
-      //m_rectangleB.right  = size.cx();
-      //m_rectangleB.bottom = size.cy();
+      //m_rectangleB.top    = maximum(size.cy - iScrollBarThickness,size.cy / 2);
+      //m_rectangleB.right  = size.cx;
+      //m_rectangleB.bottom = size.cy;
 
       /*
-      m_pointaB[0].x = size.cx() / 2;
-      m_pointaB[0].y = size.cy();
-      m_pointaB[1].x = size.cx() - 1;
-      m_pointaB[1].y = maximum(size.cy() - GetSystemMetrics(SM_CYVSCROLL), size.cy() / 2);
+      m_pointaB[0].x = size.cx / 2;
+      m_pointaB[0].y = size.cy;
+      m_pointaB[1].x = size.cx - 1;
+      m_pointaB[1].y = maximum(size.cy - GetSystemMetrics(SM_CYVSCROLL), size.cy / 2);
       m_pointaB[2].x = 1;
       m_pointaB[2].y = m_pointaB[1].y;
       m_pointaB[3].x = m_pointaA[0].x;
@@ -2359,7 +2359,7 @@ bool simple_scroll_bar::on_drag_start(::int_point & point, ::user::mouse * pmous
 //
 //      size = size.maximum(sizeMinimum);
 //
-//      informationf("drag_shift resize %d, %d", size.cx(), size.cy());
+//      informationf("drag_shift resize %d, %d", size.cx, size.cy);
 //
 //      //auto rectanglePrevious = layout().window().raw_rectangle();
 //

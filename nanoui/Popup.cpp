@@ -124,24 +124,24 @@ namespace nanoui
          //pcontext->reset_scissor();
 
          /* Draw a drop shadow */
-         ::nano2d::paint shadow_paint = pcontext->box_gradient((float)m_pos.x, (float)m_pos.y, (float)m_size.cx(), (float)m_size.cy(), cr * 2.f, ds * 2.f,
+         ::nano2d::paint shadow_paint = pcontext->box_gradient((float)m_pos.x, (float)m_pos.y, (float)m_size.cx, (float)m_size.cy, cr * 2.f, ds * 2.f,
             m_ptheme->m_colorDropShadow, m_ptheme->m_colorTransparent);
 
          pcontext->begin_path();
-         pcontext->rectangle((float)m_pos.x - ds, (float)m_pos.y - ds, (float)m_size.cx() + 2.f * ds, (float)m_size.cy() + 2.f * ds);
-         pcontext->rounded_rectangle((float)m_pos.x, (float)m_pos.y, (float)m_size.cx(), (float)m_size.cy(), (float)cr);
+         pcontext->rectangle((float)m_pos.x - ds, (float)m_pos.y - ds, (float)m_size.cx + 2.f * ds, (float)m_size.cy + 2.f * ds);
+         pcontext->rounded_rectangle((float)m_pos.x, (float)m_pos.y, (float)m_size.cx, (float)m_size.cy, (float)cr);
          pcontext->path_winding(::nano2d::e_solidity_hole);
          pcontext->fill_paint(shadow_paint);
          pcontext->fill();
 
          /* Draw window */
          pcontext->begin_path();
-         pcontext->rounded_rectangle((float)m_pos.x, (float)m_pos.y, (float)m_size.cx(), (float)m_size.cy(), (float)cr);
+         pcontext->rounded_rectangle((float)m_pos.x, (float)m_pos.y, (float)m_size.cx, (float)m_size.cy, (float)cr);
 
          auto base = m_pos + int_sequence2(0, m_anchor_offset);
          int sign = -1;
          if (m_side == Side::Left) {
-            base.x += m_size.cx();
+            base.x += m_size.cx;
             sign = 1;
          }
 

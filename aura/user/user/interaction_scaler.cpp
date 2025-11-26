@@ -30,9 +30,9 @@ namespace user
    void interaction_scaler::on_display_change(const ::int_size & size)
    {
 
-      double dW = (double) size.cx() / 1920.0;
+      double dW = (double) size.cx / 1920.0;
 
-      double dH = (double) size.cy() / 1080.0;
+      double dH = (double) size.cy / 1080.0;
 
       double dScreenScaler = minimum(dW, dH);
 

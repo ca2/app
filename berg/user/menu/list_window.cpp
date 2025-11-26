@@ -132,20 +132,20 @@ namespace user
 
          auto size = pgraphics->get_text_extent(strWindowText);
 
-         size.cy() = size.cy() * 5 / 4;
+         size.cy = size.cy * 5 / 4;
 
-         size.cx() = size.cx() * 5 / 4;
+         size.cx = size.cx * 5 / 4;
 
-         size.cx() += pitem->m_iLevel * g_base_menu_indent;
+         size.cx += pitem->m_iLevel * g_base_menu_indent;
 
          if(pitem->is_popup())
-            size.cx() += 12 + 16;
+            size.cx += 12 + 16;
 
-         if(size.cy() > iMaxHeight)
-            iMaxHeight = (int) size.cy();
+         if(size.cy > iMaxHeight)
+            iMaxHeight = (int) size.cy;
 
-         if(size.cx() > iMaxWidth)
-            iMaxWidth = (int)size.cx();
+         if(size.cx > iMaxWidth)
+            iMaxWidth = (int)size.cx;
 
          calc_size(pitem, pgraphics, iMaxWidth, iMaxHeight);
 
@@ -260,21 +260,21 @@ namespace user
 
       const ::int_size & size = pgraphics->get_text_extent("XXXMMMgggppp");
 
-      int iMaxHeight = size.cy();
+      int iMaxHeight = size.cy;
 
-      int iMaxWidth = size.cx();
+      int iMaxWidth = size.cx;
 
-      m_dHeaderHeight = size.cy();
+      m_dHeaderHeight = size.cy;
 
       calc_size(m_pmenuitem, pgraphics, iMaxWidth, iMaxHeight);
 
       m_dItemHeight = iMaxHeight * 3 / 2;
 
-      m_size.cx() = iMaxWidth * 7 / 4;
+      m_size.cx = iMaxWidth * 7 / 4;
 
-      m_size.cy() = (int) (m_dHeaderHeight + pitem->get_separator_item_count() * 3 + pitem->get_full_height_item_count() * m_dItemHeight + 4);
+      m_size.cy = (int) (m_dHeaderHeight + pitem->get_separator_item_count() * 3 + pitem->get_full_height_item_count() * m_dItemHeight + 4);
 
-      ::int_rectangle rectangle(4, (int) m_dHeaderHeight + 4, m_size.cx() - 8, 4);
+      ::int_rectangle rectangle(4, (int) m_dHeaderHeight + 4, m_size.cx - 8, 4);
 
       string str;
 
@@ -290,7 +290,7 @@ namespace user
 
             puiClose->resize_to_fit(pgraphics);
 
-            puiClose->set_position({ m_size.cx() - puiClose->width() - 2, 2 });
+            puiClose->set_position({ m_size.cx - puiClose->width() - 2, 2 });
 
          }
 

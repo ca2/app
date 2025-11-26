@@ -209,7 +209,7 @@ namespace gpu_opengl
  //     m_pixmap.map();
       //
 //      glDrawPixels(
-//         m_pixmap.m_size.cx(), m_pixmap.m_size.cy(),
+//         m_pixmap.m_size.cx, m_pixmap.m_size.cy,
 //         GL_BGRA,
 //         GL_UNSIGNED_BYTE,
 //         m_pixmap.m_pimage32Raw);

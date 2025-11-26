@@ -160,18 +160,18 @@ namespace nanoui
 
       pcontext->text_align(::nano2d::e_align_left | ::nano2d::e_align_middle);
 
-      pcontext->text(m_pos.x + 1.6f * font_size(), m_pos.y + m_size.cy() * 0.5f,
+      pcontext->text(m_pos.x + 1.6f * font_size(), m_pos.y + m_size.cy * 0.5f,
          m_strCaption);
 
       ::nano2d::paint bg = pcontext->box_gradient(m_pos.x + 1.5f, m_pos.y + 1.5f,
-         m_size.cy() - 2.0f, m_size.cy() - 2.0f, 3, 3,
+         m_size.cy - 2.0f, m_size.cy - 2.0f, 3, 3,
          is_mouse_down() ? ::color::color(0, 100) : ::color::color(0, 32),
                                                   ::rgba(0, 0, 0, 180));
 
       pcontext->begin_path();
 
-      pcontext->rounded_rectangle(m_pos.x + 1.0f, m_pos.y + 1.0f, m_size.cy() - 2.0f,
-         m_size.cy() - 2.0f, 3);
+      pcontext->rounded_rectangle(m_pos.x + 1.0f, m_pos.y + 1.0f, m_size.cy - 2.0f,
+         m_size.cy - 2.0f, 3);
 
       pcontext->fill_paint(bg);
 
@@ -182,7 +182,7 @@ namespace nanoui
 
          //informationf("draw \"%s\" Checked!!", m_strAnnotation.c_str());
 
-         pcontext->font_size(icon_scale() * m_size.cy());
+         pcontext->font_size(icon_scale() * m_size.cy);
          
          pcontext->font_face("icons");
 
@@ -192,7 +192,7 @@ namespace nanoui
          
          pcontext->text_align(::nano2d::e_align_center | ::nano2d::e_align_middle);
 
-         auto sizeIcon = ::int_size(m_size.cy(), m_size.cy());
+         auto sizeIcon = ::int_size(m_size.cy, m_size.cy);
 
          float_point pointText = m_pos + sizeIcon / 2.f;
          

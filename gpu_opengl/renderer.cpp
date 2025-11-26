@@ -179,7 +179,7 @@ namespace gpu_opengl
 
          left = r.left;
 
-         top = sizeHost.cy() - r.height() - r.top;
+         top = sizeHost.cy - r.height() - r.top;
 
          width = r.width();
 
@@ -283,7 +283,7 @@ namespace gpu_opengl
          //double d = 200.0 / 72.0;
 
    //double d = 1.0;
-   ////glViewport(0, 0, size.cx() * d, size.cy() * d);
+   ////glViewport(0, 0, size.cx * d, size.cy * d);
 
          //if (m_pgpucontext == m_pgpucontext->m_pgpudevice->m_pgpucontextMain)
          //{
@@ -326,11 +326,11 @@ namespace gpu_opengl
          GLCheckError("");
          //glLoadIdentity();
          GLCheckError("");
-         ////glOrtho(0, size.cx() * d, size.cy() * d, 0.0f, 000.0f, 1000.0f);
-         ////glOrtho(0, size.cx() * d, size.cy() * d, 0.0f, 000.0f, 1000.0f);
-         //////glOrtho(0, size.cx() * d, 0.0f, size.cy() * d, 000.0f, 1000.0f);
-         ////glOrtho(0, size.cx(), size.cy(), 0.0f, -1000.0f, 1000.0f);
-         //glOrtho(0.f, size.cx(), 0.f, -size.cy(), -1.0f, 1.0f);
+         ////glOrtho(0, size.cx * d, size.cy * d, 0.0f, 000.0f, 1000.0f);
+         ////glOrtho(0, size.cx * d, size.cy * d, 0.0f, 000.0f, 1000.0f);
+         //////glOrtho(0, size.cx * d, 0.0f, size.cy * d, 000.0f, 1000.0f);
+         ////glOrtho(0, size.cx, size.cy, 0.0f, -1000.0f, 1000.0f);
+         //glOrtho(0.f, size.cx, 0.f, -size.cy, -1.0f, 1.0f);
          if (bYSwap)
          {
             //glOrtho(0.0f, width, height, 0, -1.0f, 1.0f);  // Flip Y
@@ -350,7 +350,7 @@ namespace gpu_opengl
          //glLoadIdentity();
 
 
-         //gluOrtho2D(0.f, size.cx(), 0.f, size.cy());
+         //gluOrtho2D(0.f, size.cx, 0.f, size.cy);
          //glMatrixMode(GL_MODELVIEW);
          //glLoadIdentity();
 
@@ -404,7 +404,7 @@ namespace gpu_opengl
          //double d = 200.0 / 72.0;
 
    //double d = 1.0;
-   ////glViewport(0, 0, size.cx() * d, size.cy() * d);
+   ////glViewport(0, 0, size.cx * d, size.cy * d);
          //glViewport(0, 0, width, height);
          //if (m_pgpucontext == m_pgpucontext->m_pgpudevice->m_pgpucontextMain)
          //{
@@ -443,11 +443,11 @@ namespace gpu_opengl
          GLCheckError("");
          //glLoadIdentity();
          GLCheckError("");
-         ////glOrtho(0, size.cx() * d, size.cy() * d, 0.0f, 000.0f, 1000.0f);
-         ////glOrtho(0, size.cx() * d, size.cy() * d, 0.0f, 000.0f, 1000.0f);
-         //////glOrtho(0, size.cx() * d, 0.0f, size.cy() * d, 000.0f, 1000.0f);
-         ////glOrtho(0, size.cx(), size.cy(), 0.0f, -1000.0f, 1000.0f);
-         //glOrtho(0.f, size.cx(), 0.f, -size.cy(), -1.0f, 1.0f);
+         ////glOrtho(0, size.cx * d, size.cy * d, 0.0f, 000.0f, 1000.0f);
+         ////glOrtho(0, size.cx * d, size.cy * d, 0.0f, 000.0f, 1000.0f);
+         //////glOrtho(0, size.cx * d, 0.0f, size.cy * d, 000.0f, 1000.0f);
+         ////glOrtho(0, size.cx, size.cy, 0.0f, -1000.0f, 1000.0f);
+         //glOrtho(0.f, size.cx, 0.f, -size.cy, -1.0f, 1.0f);
          if (bYSwap)
          {
             //glOrtho(0.0f, width, height, 0, -1.0f, 1.0f);  // Flip Y
@@ -831,9 +831,9 @@ namespace gpu_opengl
 
       //      //m_pixmap.map();
       //
-      //      auto cx = m_pixmap.m_size.cx();
+      //      auto cx = m_pixmap.m_size.cx;
       //
-      //      auto cy = m_pixmap.m_size.cy();
+      //      auto cy = m_pixmap.m_size.cy;
       //
       //      //auto sizeNeeded = cx * cy * 4;
       //
@@ -1305,11 +1305,11 @@ namespace gpu_opengl
 
       //glMatrixMode(GL_PROJECTION);
       //glLoadIdentity();
-      ////glOrtho(0, size.cx() * d, size.cy() * d, 0.0f, 000.0f, 1000.0f);
-      ////glOrtho(0, size.cx() * d, size.cy() * d, 0.0f, 000.0f, 1000.0f);
-      //////glOrtho(0, size.cx() * d, 0.0f, size.cy() * d, 000.0f, 1000.0f);
-      ////glOrtho(0, size.cx(), size.cy(), 0.0f, -1000.0f, 1000.0f);
-      //glOrtho(0.f, size.cx(), 0.f, -size.cy(), -1.0f, 1.0f);
+      ////glOrtho(0, size.cx * d, size.cy * d, 0.0f, 000.0f, 1000.0f);
+      ////glOrtho(0, size.cx * d, size.cy * d, 0.0f, 000.0f, 1000.0f);
+      //////glOrtho(0, size.cx * d, 0.0f, size.cy * d, 000.0f, 1000.0f);
+      ////glOrtho(0, size.cx, size.cy, 0.0f, -1000.0f, 1000.0f);
+      //glOrtho(0.f, size.cx, 0.f, -size.cy, -1.0f, 1.0f);
       auto bYSwap = true;
       if (bYSwap)
       {
@@ -1453,7 +1453,7 @@ namespace gpu_opengl
 
 
       // Set viewport size (match texture dimensions)
-      glViewport(0, 0, ptexture->size().cx(), ptexture->size().cy());
+      glViewport(0, 0, ptexture->size().cx, ptexture->size().cy);
 
       // Clear destination texture before blending
       glClearColor(0, 0, 0, 0); // Transparent
@@ -1498,7 +1498,7 @@ namespace gpu_opengl
 
       auto rectangleTarget = ptextureSource->m_rectangleTarget;
 
-      int iTopH = ptextureDst->size().cy();
+      int iTopH = ptextureDst->size().cy;
       int rectangleBottom = rectangleTarget.bottom;
       int iY = iTopH - rectangleBottom;
 
@@ -1659,7 +1659,7 @@ namespace gpu_opengl
 
       glViewport(
          rectangleTarget.left,
-         ptextureDst->size().cy() - rectangleTarget.bottom,
+         ptextureDst->size().cy - rectangleTarget.bottom,
          rectangleTarget.width(),
          rectangleTarget.height());
 
@@ -1667,7 +1667,7 @@ namespace gpu_opengl
       glEnable(GL_SCISSOR_TEST);
       glScissor(
          rectangleTarget.left,
-         ptextureDst->size().cy() - rectangleTarget.bottom,
+         ptextureDst->size().cy - rectangleTarget.bottom,
          rectangleTarget.width(),
          rectangleTarget.height()
       );
@@ -1997,8 +1997,8 @@ namespace gpu_opengl
 //
 //      // Blit from source to destination
 //      glBlitFramebuffer(
-//         0, 0, sizeSrc.cx(), sizeSrc.cy(),
-//         0, 0, sizeDst.cx(), sizeDst.cy(),
+//         0, 0, sizeSrc.cx, sizeSrc.cy,
+//         0, 0, sizeDst.cx, sizeDst.cy,
 //         GL_COLOR_BUFFER_BIT, GL_NEAREST
 //      );
 //      GLCheckError("");

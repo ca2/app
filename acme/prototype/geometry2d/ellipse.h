@@ -46,10 +46,10 @@ public:
 
       double Δy = y - center.y;
 
-      if (radius.cx() == radius.cy())
+      if (radius.cx == radius.cy)
       {
 
-         double r = radius.cx();
+         double r = radius.cx;
 
          double square_distance = (Δx * Δx) + (Δy * Δy);
 
@@ -61,7 +61,7 @@ public:
       else
       {
 
-         double normal_distance = ((Δx * Δx) / (radius.cx() * radius.cx()) + (Δy * Δy) / (radius.cx() * radius.cy()));
+         double normal_distance = ((Δx * Δx) / (radius.cx * radius.cx) + (Δy * Δy) / (radius.cx * radius.cy));
 
          return normal_distance <= 1.0;
 

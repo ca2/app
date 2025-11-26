@@ -203,7 +203,7 @@ return {};
    }
 
 
-   ::pointer<::form_document> base_user_layer::create_typed_form(::particle* pparticle, const ::type& typeatom,
+   ::pointer<::form_document> base_user_layer::create_typed_form(::particle* pparticle, const ::type& type,
                                                                  ::user::element* puserelementParent,
                                                                  const ::payload& payload, const ::payload& payloadArgs)
    {
@@ -231,7 +231,7 @@ return {};
 
 
    ::pointer<::form_document> base_user_layer::create_typed_child_form(::particle* pparticle,
-                                                                       const ::type& typeatom,
+                                                                       const ::type& type,
                                                                        ::user::element* puserelementParent,
                                                                        const ::payload& payload,
                                                                        const ::payload& payloadArgs)
@@ -267,7 +267,7 @@ return {};
 
    //void add_impact_system(const ::atom & atom, ::user::impact_system * pimpactsystem) override{}
 
-   ::pointer<::form_document>  base_user_layer::create_typed_child_form(::particle * pparticle, const ::type & typeatom, ::user::impact_data * pimpactdata, ::payload payload)
+   ::pointer<::form_document>  base_user_layer::create_typed_child_form(::particle * pparticle, const ::type & type, ::user::impact_data * pimpactdata, ::payload payload)
    {
 
       return {};

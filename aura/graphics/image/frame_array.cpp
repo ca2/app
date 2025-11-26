@@ -145,8 +145,8 @@ namespace image
 
       //::int_size size;
 
-      //size.cx() = pframes->m_size.cx() * dx;
-      //size.cy() = pframes->m_size.cy() * dx;
+      //size.cx = pframes->m_size.cx * dx;
+      //size.cy = pframes->m_size.cy * dx;
 
       //m_size = size;
 

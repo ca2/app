@@ -42,7 +42,7 @@ namespace nanoui
    int_size ImagePanel::grid_size() const
    {
       int n_cols = 1 + ::maximum(0,
-         (int)((m_size.cx() - 2 * m_iMargin - m_iThumbSize) /
+         (int)((m_size.cx - 2 * m_iMargin - m_iThumbSize) /
             (float)(m_iThumbSize + m_iSpacing)));
       int n_rows = ((int)m_images.size() + n_cols - 1) / n_cols;
       return int_sequence2(n_cols, n_rows);
@@ -73,10 +73,10 @@ namespace nanoui
          && cursorrate.y >= 0.f
          && gridindex.x >= 0
          && gridindex.y >= 0
-         && gridindex.x < gridsize.cx()
-         && gridindex.y < gridsize.cy();
+         && gridindex.x < gridsize.cx
+         && gridindex.y < gridsize.cy;
 
-      return over_image ? (gridindex.x + gridindex.y * gridsize.cx()) : -1;
+      return over_image ? (gridindex.x + gridindex.y * gridsize.cx) : -1;
 
    }
 
@@ -148,8 +148,8 @@ namespace nanoui
       auto gridsize = grid_size();
 
       return int_size(
-         gridsize.cx() * m_iThumbSize + (gridsize.cx() - 1) * m_iSpacing + 2 * m_iMargin,
-         gridsize.cy() * m_iThumbSize + (gridsize.cy() - 1) * m_iSpacing + 2 * m_iMargin
+         gridsize.cx * m_iThumbSize + (gridsize.cx - 1) * m_iSpacing + 2 * m_iMargin,
+         gridsize.cy * m_iThumbSize + (gridsize.cy - 1) * m_iSpacing + 2 * m_iMargin
       );
    }
 
@@ -174,7 +174,7 @@ namespace nanoui
       for (::collection::index iImageIndex = 0; iImageIndex < m_images.size(); ++iImageIndex)
       {
 
-         int_point gridindex((int)iImageIndex % gridsize.cx(), (int)iImageIndex / gridsize.cx());
+         int_point gridindex((int)iImageIndex % gridsize.cx, (int)iImageIndex / gridsize.cx);
 
          int_point image_top_left =
             m_pos
@@ -187,14 +187,14 @@ namespace nanoui
             ::int_rectangle rectangleViewableImagePanel(
                pvscrollpanel->m_pos.x,
                pvscrollpanel->m_pos.y,
-               pvscrollpanel->m_pos.x + pvscrollpanel->m_size.cx(),
-               pvscrollpanel->m_pos.y + pvscrollpanel->m_size.cy());
+               pvscrollpanel->m_pos.x + pvscrollpanel->m_size.cx,
+               pvscrollpanel->m_pos.y + pvscrollpanel->m_size.cy);
 
             ::int_rectangle rectangleImageFinalPlacement(
                image_top_left,
                ::int_size(m_iThumbSize, m_iThumbSize));
 
-            rectangleImageFinalPlacement.offset_y((int)pvscrollpanel->get_scroll_offset().cy());
+            rectangleImageFinalPlacement.offset_y((int)pvscrollpanel->get_scroll_offset().cy);
 
             if (!rectangleViewableImagePanel.intersects(rectangleImageFinalPlacement))
             {

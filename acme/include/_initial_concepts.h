@@ -9,7 +9,8 @@
 #pragma once
 
 
-struct point_t{};
+struct point2_t{};
+struct size2_t{};
 struct matrix_t{};
 
 
@@ -484,12 +485,24 @@ concept raw_primitive_point = requires(POINT point)
 
 
 template < typename POINT >
-concept primitive_point = requires(POINT point)
+concept function_point = requires(POINT point)
 {
-   { point.semantic_t() } ->::std::convertible_to<point_t>;
+   { point.semantic_t() } ->::std::convertible_to<point2_t>;
+   { point.x() }->primitive_number;
+   { point.y() }->primitive_number;
+};
+
+template < typename POINT >
+concept struct_point = requires(POINT point)
+{
+   { point.semantic_t() } ->::std::convertible_to<point2_t>;
    { point.x }->primitive_number;
    { point.y }->primitive_number;
 };
+
+
+template < typename POINT >
+concept primitive_point = function_point<POINT> || struct_point<POINT >;
 
 
 //template < typename SEQUENCE2 >
@@ -527,12 +540,29 @@ concept primitive_XY = requires(POINT point)
 };
 
 
+
+
 template < typename SIZE >
-concept primitive_size = requires(SIZE size)
+concept function_size = requires(SIZE s)
 {
-   size.cx();
-   size.cy();
+   { s.semantic_t() } ->::std::convertible_to<size2_t>;
+   { s.x() }->primitive_number;
+   { s.y() }->primitive_number;
 };
+
+
+template < typename SIZE >
+concept struct_size = requires(SIZE s)
+{
+   { s.semantic_t() } ->::std::convertible_to<size2_t>;
+   { s.x }->primitive_number;
+   { s.y }->primitive_number;
+};
+
+
+
+template < typename SIZE >
+concept primitive_size = function_size <SIZE> || struct_size <SIZE>;
 
 
 template < typename Dimension >
@@ -586,15 +616,23 @@ concept primitive_XYDim = requires(RECTANGLE rectangle)
    rectangle.Height;
 };
 
-
 template < typename RECTANGLE >
-concept primitive_xydim = requires(RECTANGLE rectangle)
+concept struct_xydim = requires(RECTANGLE rectangle)
 {
    rectangle.x;
    rectangle.y;
    rectangle.width;
    rectangle.height;
 };
+
+template < typename RECTANGLE >
+concept primitive_xydim = struct_xydim<RECTANGLE> && !primitive_rectangle<RECTANGLE>;
+// {
+//    rectangle.x;
+//    rectangle.y;
+//    rectangle.width;
+//    rectangle.height;
+// };
 
 
 template < typename RECTANGLE >

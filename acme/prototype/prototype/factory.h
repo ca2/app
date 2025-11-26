@@ -223,6 +223,16 @@ namespace factory
       bool has_factory_item_by_raw_name(const ::scoped_string & scopedstrRawName) const;
       bool has_factory_item_by_id(const ::atom& atom) const;
 
+      template<typename ORIGIN_TYPE>
+      bool has_factory_item() const
+      {
+
+         const auto &strRawName = ::as_type<ORIGIN_TYPE>().raw_name();
+
+         return this->has_factory_item_by_raw_name(strRawName);
+
+      }
+
       //inline ::factory::factory_item_interface * get_factory_item_from(const ::atom& atom, const ::atom & atomSource) const;
 
       template < typename ORIGIN_TYPE >

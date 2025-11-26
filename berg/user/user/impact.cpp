@@ -897,7 +897,7 @@ namespace user
    }
 
 
-   ::pointer<::user::interaction>impact::create_impact(const ::type & typeatom, ::user::document * pdocument, ::user::interaction * puserinteractionParent, const ::atom & atom, ::user::interaction * pviewLast, ::user::impact_data * pimpactdata)
+   ::pointer<::user::interaction>impact::create_impact(const ::type & type, ::user::document * pdocument, ::user::interaction * puserinteractionParent, const ::atom & atom, ::user::interaction * pviewLast, ::user::impact_data * pimpactdata)
    {
 
       ::pointer<::request>prequest;
@@ -947,7 +947,7 @@ namespace user
 
       }
 
-      pusersystem->m_typeNewImpact = typeatom;
+      pusersystem->m_typeNewImpact = type;
 
       pusersystem->m_puserprimitiveLastImpact = pviewLast;
 
@@ -993,14 +993,14 @@ namespace user
    }
 
 
-   ::pointer<::user::interaction>create_impact(const ::type & typeatom, ::user::document * pdocument, ::user::interaction * puserinteractionParent, const ::atom & atom, ::user::interaction * pviewLast)
+   ::pointer<::user::interaction>create_impact(const ::type & type, ::user::document * pdocument, ::user::interaction * puserinteractionParent, const ::atom & atom, ::user::interaction * pviewLast)
    {
 
       ::pointer<::request>pcreate(e_create_new, pdocument);
 
       auto pusersystem= øallocate ::user::system();
 
-      pusersystem->m_typeNewImpact = typeatom;
+      pusersystem->m_typeNewImpact = type;
 
       pusersystem->m_puserprimitiveLastImpact = pviewLast;
 

@@ -59,7 +59,7 @@ namespace geometry2d
       static matrix rotation(double dAngleRadians);
       static matrix scaling(double dRateX, double dRateY);
       static matrix scaling(double_point point) { return scaling(point.x, point.y); }
-      static matrix scaling(double_size size) { return scaling(size.cx(), size.cy()); }
+      static matrix scaling(double_size size) { return scaling(size.cx, size.cy); }
 
 
       matrix& translate(double_point point, e_mode emode = mode_append) { return translate(point.x, point.y, emode); }

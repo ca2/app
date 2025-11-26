@@ -479,9 +479,9 @@ namespace user
 
       ::double_size sizeTotal;
 
-      sizeTotal.cx() = size.cx();
+      sizeTotal.cx = size.cx;
 
-      sizeTotal.cy() = tm.get_line_height();
+      sizeTotal.cy = tm.get_line_height();
 
       return sizeTotal;
 
@@ -504,8 +504,8 @@ namespace user
 
          ::int_rectangle rectangle(0, 0, 0, 0);
 
-         rectangle.right = int(size.cx() * 1.6);
-         rectangle.bottom = int(size.cy() * 1.4);
+         rectangle.right = int(size.cx * 1.6);
+         rectangle.bottom = int(size.cy * 1.4);
 
          const_layout().sketch().size() = rectangle.size();
 
@@ -768,13 +768,13 @@ namespace user
 
          //::int_rectangle rectangle;
 
-         //rectangle.left = (int)(rectangleX.left + (rectangleX.width() - sizeText.cx()) / 2);
+         //rectangle.left = (int)(rectangleX.left + (rectangleX.width() - sizeText.cx) / 2);
 
-         //rectangle.top = (int)(rectangleX.top + (rectangleX.height() - sizeText.cy()) / 2);
+         //rectangle.top = (int)(rectangleX.top + (rectangleX.height() - sizeText.cy) / 2);
 
-         //rectangle.right = (int)(rectangle.left + sizeText.cx());
+         //rectangle.right = (int)(rectangle.left + sizeText.cx);
 
-         //rectangle.bottom = (int)(rectangle.top + sizeText.cy());
+         //rectangle.bottom = (int)(rectangle.top + sizeText.cy);
 
          //m_rectangleText = rectangle;
 

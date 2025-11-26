@@ -68,9 +68,9 @@ namespace user
 
       window_rectangle(rectangleWindow);
 
-      m_sizeMinimum.cx() = 300;
+      m_sizeMinimum.cx = 300;
 
-      m_sizeMinimum.cy() = 150;
+      m_sizeMinimum.cy = 150;
 
       order(e_zorder_top_most);
 
@@ -136,9 +136,9 @@ namespace user
 
             //   window_rectangle(rectangleWindow);
 
-            //   pframe->m_sizeMinimum.cx() = 300;
+            //   pframe->m_sizeMinimum.cx = 300;
 
-            //   pframe->m_sizeMinimum.cy() = 150;
+            //   pframe->m_sizeMinimum.cy = 150;
 
             //   pframe->order(e_zorder_top_most);
 

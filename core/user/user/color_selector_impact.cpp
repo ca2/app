@@ -292,11 +292,11 @@ namespace user
 
    //   double_size sizeBeam(dSize,dSize);
 
-   //   double_rectangle rectangleOuter(point.x - sizeBeam.cx() / 2.0, point.y - sizeBeam.cy() / 2.0, point.x + sizeBeam.cx() / 2.0, point.y + sizeBeam.cy() / 2.0);
+   //   double_rectangle rectangleOuter(point.x - sizeBeam.cx / 2.0, point.y - sizeBeam.cy / 2.0, point.x + sizeBeam.cx / 2.0, point.y + sizeBeam.cy / 2.0);
 
    //   double_rectangle rectangleInner(rectangleOuter);
 
-   //   rectangleInner.deflate(sizeBeam.cx() / 4.0, sizeBeam.cy() / 4.0);
+   //   rectangleInner.deflate(sizeBeam.cx / 4.0, sizeBeam.cy / 4.0);
 
    //   auto pbrush = øcreate < ::draw2d::brush > ();
 
@@ -484,7 +484,7 @@ namespace user
 
    //   }
 
-   //   rTarget.top_left() = m_rectangleColors.top_left() + ::int_size(m_pimage->width() - 1 + m_pimageLuminance->get_size().cx() - 1, 0);
+   //   rTarget.top_left() = m_rectangleColors.top_left() + ::int_size(m_pimage->width() - 1 + m_pimageLuminance->get_size().cx - 1, 0);
 
    //   rTarget.set_size(m_rectangleColors.right - rTarget.left, m_pimage->height());
 

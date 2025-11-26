@@ -169,10 +169,10 @@ inline auto top(const XYDim & rectangle) { return rectangle.Y; }
 
 
 
-//inline bool is_empty(::int_size & size) { return size.cx() <= 0 || size.cy() <= 0; }
-//inline bool is_empty(::long_long_size & size) { return size.cx() <= 0 || size.cy() <= 0; }
-//inline bool is_empty(::float_size & size) { return size.cx() <= 0.f || size.cy() <= 0.f; }
-//inline bool is_empty(::double_size & size) { return size.cx() <= 0. || size.cy() <= 0.; }
+//inline bool is_empty(::int_size & size) { return size.cx <= 0 || size.cy <= 0; }
+//inline bool is_empty(::long_long_size & size) { return size.cx <= 0 || size.cy <= 0; }
+//inline bool is_empty(::float_size & size) { return size.cx <= 0.f || size.cy <= 0.f; }
+//inline bool is_empty(::double_size & size) { return size.cx <= 0. || size.cy <= 0.; }
 
 
 
@@ -387,10 +387,10 @@ inline RECTANGLE & rate_deflate(RECTANGLE & rectangle, double dLeftRate, double 
 
 
 //
-//inline auto ::int_point(const ::int_size & size) noexcept { return ::int_point(size.cx(), size.cy()); }
-//inline auto __point64(const ::long_long_size & size) noexcept { return ::long_long_point(size.cx(), size.cy()); }
-//inline auto __pointf(const ::float_size & size) noexcept { return ::float_point(size.cx(), size.cy()); }
-//inline auto __pointd(const ::double_size & size) noexcept { return ::double_point(size.cx(), size.cy()); }
+//inline auto ::int_point(const ::int_size & size) noexcept { return ::int_point(size.cx, size.cy); }
+//inline auto __point64(const ::long_long_size & size) noexcept { return ::long_long_point(size.cx, size.cy); }
+//inline auto __pointf(const ::float_size & size) noexcept { return ::float_point(size.cx, size.cy); }
+//inline auto __pointd(const ::double_size & size) noexcept { return ::double_point(size.cx, size.cy); }
 //
 
 

@@ -74,11 +74,11 @@ namespace user
       int top() const { return m_point2.y; }
       //int & top { return m_point.y; }
 
-      int width() const { return m_size.cx(); }
-      int & width() { return m_size.cx(); }
+      int width() const { return m_size.cx; }
+      int & width() { return m_size.cx; }
 
-      int height() const { return m_size.cy(); }
-      int & height() { return m_size.cy(); }
+      int height() const { return m_size.cy; }
+      int & height() { return m_size.cy; }
 
       bool operator == (const visual_state & state) const
       {

@@ -9327,7 +9327,7 @@ namespace aura
          if (::is_set(pwindowApplicationHost))
          {
 
-            pwindowApplicationHost->on_size(size.cx(), size.cy());
+            pwindowApplicationHost->on_size(size.cx, size.cy);
 
          }
 

@@ -3,7 +3,7 @@
 
 //dump_context & operator<<(dump_context & dumpcontext,const ::int_size & size)
 //{
-//   dumpcontext << "(" << size.cx() << " x " << size.cy() << ")";
+//   dumpcontext << "(" << size.cx << " x " << size.cy << ")";
 //   
 //   return dumpcontext;
 //   

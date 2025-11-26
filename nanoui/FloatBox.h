@@ -189,7 +189,7 @@ namespace nanoui
          if (m_bSpinnable && !focused())
          {
 
-            int value_delta = (rel.cy() > 0) ? 1 : -1;
+            int value_delta = (rel.cy > 0) ? 1 : -1;
 
             set_value(value() + value_delta * m_value_increment, e_source_user);
 

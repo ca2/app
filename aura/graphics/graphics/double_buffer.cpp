@@ -116,31 +116,31 @@ namespace graphics
 
          auto sizeReserved = ::int_size(1920, 1080);
 
-         if (pitem->m_sizeBufferItemDraw.cx() > sizeImage.cx())
+         if (pitem->m_sizeBufferItemDraw.cx > sizeImage.cx)
          {
 
-            sizeImage.cx() = pitem->m_sizeBufferItemDraw.cx();
+            sizeImage.cx = pitem->m_sizeBufferItemDraw.cx;
 
          }
 
-         if (pitem->m_sizeBufferItemDraw.cy() > sizeImage.cy())
+         if (pitem->m_sizeBufferItemDraw.cy > sizeImage.cy)
          {
 
-            sizeImage.cy() = pitem->m_sizeBufferItemDraw.cy();
+            sizeImage.cy = pitem->m_sizeBufferItemDraw.cy;
 
          }
 
-         if (sizeReserved.cx() > sizeImage.cx())
+         if (sizeReserved.cx > sizeImage.cx)
          {
 
-            sizeImage.cx() = sizeReserved.cx();
+            sizeImage.cx = sizeReserved.cx;
 
          }
 
-         if (sizeReserved.cy() > sizeImage.cy())
+         if (sizeReserved.cy > sizeImage.cy)
          {
 
-            sizeImage.cy() = sizeReserved.cy();
+            sizeImage.cy = sizeReserved.cy;
 
          }
 

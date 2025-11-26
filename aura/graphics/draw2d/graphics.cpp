@@ -86,13 +86,13 @@ namespace draw2d
 
       m_pointTranslateOutput.x = 0.;
       m_pointTranslateOutput.y = 0.;
-      m_sizeScaleOutput.cx() = 1.0;
-      m_sizeScaleOutput.cy() = 1.0;
+      m_sizeScaleOutput.cx = 1.0;
+      m_sizeScaleOutput.cy = 1.0;
 
       m_pointOrigin.x = 0.;
       m_pointOrigin.y = 0.;
-      m_sizeScaling.cx() = 1.0;
-      m_sizeScaling.cy() = 1.0;
+      m_sizeScaling.cx = 1.0;
+      m_sizeScaling.cy = 1.0;
       //m_estatus = success;
       //m_estatusLast = success;
 
@@ -1862,9 +1862,9 @@ namespace draw2d
 
          const ::double_size & size = ::double_size(get_text_extent(scopedstr));
 
-         //size.cx() = size.cx() * 110 / 100;
+         //size.cx = size.cx * 110 / 100;
 
-         //size.cy() = size.cy() * 110 / 100;
+         //size.cy = size.cy * 110 / 100;
 
          ::int_rectangle rectangleText(int_point((int)x, (int)y), size);
 
@@ -3116,8 +3116,8 @@ namespace draw2d
    {
 
       shift_impact_area(
-         shiftImpactArea.cx(),
-         shiftImpactArea.cy(),
+         shiftImpactArea.cx,
+         shiftImpactArea.cy,
          sizeImpactArea.width(),
          sizeImpactArea.height());
 
@@ -3226,7 +3226,7 @@ namespace draw2d
    void graphics::offset(const double_size& size)
    {
 
-      _offset(size.cx(), size.cy());
+      _offset(size.cx, size.cy);
 
       update_matrix();
 
@@ -3450,7 +3450,7 @@ namespace draw2d
    //   int graphics::OffsetClipRgn(const ::int_size & size)
    //   {
    //
-   //      return OffsetClipRgn(size.cx(), size.cy());
+   //      return OffsetClipRgn(size.cx, size.cy);
    //
    //   }
 
@@ -3470,9 +3470,9 @@ namespace draw2d
    //      /*
    //       int nRetVal = ERROR;
    //       if(get_handle1() != nullptr && get_handle1() != get_handle2())
-   //       nRetVal = ::OffsetClipRgn(get_handle1(), size.cx(), size.cy());
+   //       nRetVal = ::OffsetClipRgn(get_handle1(), size.cx, size.cy);
    //       if(get_handle2() != nullptr)
-   //       nRetVal = ::OffsetClipRgn(get_handle2(), size.cx(), size.cy());
+   //       nRetVal = ::OffsetClipRgn(get_handle2(), size.cx, size.cy);
    //       return nRetVal;
    //       */
    //   }
@@ -4199,7 +4199,7 @@ namespace draw2d
          
          ::string strLastLine = stra.last();
          
-         auto dRight = get_text_extent(strLastLine).cx();
+         auto dRight = get_text_extent(strLastLine).cx;
 
          for(int i = 0; i < iLen; i++)
          {
@@ -4299,8 +4299,8 @@ namespace draw2d
 
    //   ::double_size sz = get_text_extent(string(scopedstrString), nCount, iIndex);
 
-   //   size.cx() = sz.cx();
-   //   size.cy() = sz.cy();
+   //   size.cx = sz.cx;
+   //   size.cy = sz.cy;
 
    //   //return true;
 
@@ -4312,8 +4312,8 @@ namespace draw2d
 
    //   ::double_size sz = get_text_extent(string(scopedstrString), nCount);
 
-   //   size.cx() = sz.cx();
-   //   size.cy() = sz.cy();
+   //   size.cx = sz.cx;
+   //   size.cy = sz.cy;
 
    //   //return true;
 
@@ -4325,9 +4325,9 @@ namespace draw2d
 
    //   ::double_size sz = get_text_extent(scopedstr);
 
-   //   size.cx() = sz.cx();
+   //   size.cx = sz.cx;
 
-   //   size.cy() = sz.cy();
+   //   size.cy = sz.cy;
 
    //}
 
@@ -4387,13 +4387,13 @@ namespace draw2d
       if (ealign & e_align_right)
       {
 
-         Δx = rectangleParam.right - rectangleParam.left - size.cx();
+         Δx = rectangleParam.right - rectangleParam.left - size.cx;
 
       }
       else if (ealign & e_align_horizontal_center)
       {
 
-         Δx = ((rectangleParam.right - rectangleParam.left) - (size.cx())) / 2.0;
+         Δx = ((rectangleParam.right - rectangleParam.left) - (size.cx)) / 2.0;
 
       }
       else
@@ -4406,13 +4406,13 @@ namespace draw2d
       if (ealign & e_align_bottom)
       {
 
-         Δy = rectangleParam.bottom - rectangleParam.top - size.cy();
+         Δy = rectangleParam.bottom - rectangleParam.top - size.cy;
 
       }
       else if (ealign & e_align_vertical_center)
       {
 
-         Δy = ((rectangleParam.bottom - rectangleParam.top) - (size.cy())) / 2.0;
+         Δy = ((rectangleParam.bottom - rectangleParam.top) - (size.cy)) / 2.0;
 
       }
       else
@@ -4463,7 +4463,7 @@ namespace draw2d
 
             text_out(rectangleParam.left + Δx, rectangleParam.top + Δy + offsety, str);
 
-            offsety += (int)size1.cy();
+            offsety += (int)size1.cy;
 
          }
 
@@ -5000,9 +5000,9 @@ namespace draw2d
 
       double_size sz;
 
-      sz.cx() = 0;
+      sz.cx = 0;
 
-      sz.cy() = 0;
+      sz.cy = 0;
 
       character_count iUnderline = -1;
 
@@ -5107,7 +5107,7 @@ namespace draw2d
 
             b6 = true;
 
-            if (sz.cx() > rectangleClip.width())
+            if (sz.cx > rectangleClip.width())
             {
 
                b7 = true;
@@ -5131,7 +5131,7 @@ namespace draw2d
 
                   auto szHere = _get_text_extent(strSample);
 
-                  if (szHere.cx() > rectangleClip.width())
+                  if (szHere.cx > rectangleClip.width())
                   {
 
                      str = strLastSample;
@@ -5194,7 +5194,7 @@ namespace draw2d
 
             b9 = true;
 
-            if (sz.cx() > rectangleClip.width())
+            if (sz.cx > rectangleClip.width())
             {
 
                bA = true;
@@ -5215,7 +5215,7 @@ namespace draw2d
 
                   auto szHere = _get_text_extent(str(0, i));
 
-                  if ((int)szHere.cx() > rectangleClip.width())
+                  if ((int)szHere.cx > rectangleClip.width())
                   {
 
                      i = unicode_prior(psz + i, psz) - psz;
@@ -5292,8 +5292,8 @@ namespace draw2d
 
       rectangle.left = 0;
       rectangle.top = 0;
-      rectangle.right = sz.cx();
-      rectangle.bottom = sz.cy();
+      rectangle.right = sz.cx;
+      rectangle.bottom = sz.cy;
       //rectangle.bottom = (int) (dLineSpacing);
 
       //::e_align ealign;
@@ -5442,12 +5442,12 @@ namespace draw2d
             char wch = str[iUnderline];
             /*::TextOutU(
             (HDC)pgraphics->get_os_data(),
-            rectangle.left + sz.cx(),
+            rectangle.left + sz.cx,
             rectangle.top,
             &wch,
             1);*/
 
-            text_out(rectangle.left + sz.cx(), (double)rectangle.top, { &wch, 1 });
+            text_out(rectangle.left + sz.cx, (double)rectangle.top, { &wch, 1 });
 
             if (iUnderline + 1 <= str.length())
             {
@@ -5461,11 +5461,11 @@ namespace draw2d
 
                character_count iCount = str.length() - iUnderline - 1;
 
-               text_out(rectangle.left + sz.cx(), (double)rectangle.top, { ::string(str.right(iCount)).c_str(), (int)iCount });
+               text_out(rectangle.left + sz.cx, (double)rectangle.top, { ::string(str.right(iCount)).c_str(), (int)iCount });
 
                /*::TextOutU(
                (HDC)pgraphics->get_os_data(),
-               rectangle.left + sz.cx(),
+               rectangle.left + sz.cx,
                rectangle.top,
                str.right(iCount),
                iCount);*/
@@ -5510,7 +5510,7 @@ namespace draw2d
          //
          // }
 
-         rectangleClip.top = rectangleClip.top + sz.cy();
+         rectangleClip.top = rectangleClip.top + sz.cy;
 
          _DrawText(str2, rectangleClip, ealign, edrawtext);
 
@@ -5565,9 +5565,9 @@ namespace draw2d
 
          sz = pgraphics->get_text_extent({ pszSource, psz - pszSource });
 
-         dNewY = y + sz.cy();
+         dNewY = y + sz.cy;
 
-         if (dNewY + sz.cy() > rectangle.bottom)
+         if (dNewY + sz.cy > rectangle.bottom)
          {
 
             //bLastLine = true;
@@ -5580,7 +5580,7 @@ namespace draw2d
             sz = pgraphics->get_text_extent(str(0, (int)iLen));
 
 
-            if (sz.cx() > rectangleClip.width())
+            if (sz.cx > rectangleClip.width())
             {
 
                character_count iSampleLen = strSource.length();
@@ -5594,7 +5594,7 @@ namespace draw2d
 
                   sz = pgraphics->get_text_extent(str);
 
-                  if (sz.cx() < rectangleClip.width())
+                  if (sz.cx < rectangleClip.width())
                   {
 
                      break;
@@ -5639,7 +5639,7 @@ namespace draw2d
 
          }
 
-         if (sz.cx() > rectangleClip.width())
+         if (sz.cx > rectangleClip.width())
          {
 
             if (psz == pszStart)

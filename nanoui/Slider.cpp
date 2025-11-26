@@ -43,9 +43,9 @@ namespace nanoui
 
       }
 
-      const float kr = (m_size.cy() * 0.4f), kshadow = 3.f;
+      const float kr = (m_size.cy * 0.4f), kshadow = 3.f;
       const float start_x = kr + kshadow + m_pos.x - 1.f;
-      const float width_x = m_size.cx() - 2.f * (kr + kshadow);
+      const float width_x = m_size.cx - 2.f * (kr + kshadow);
 
       float value = (p.x - start_x) / width_x, old_value = m_value;
 
@@ -79,11 +79,11 @@ namespace nanoui
 
       }
 
-      const float kr = (m_size.cy() * 0.4f), kshadow = 3.f;
+      const float kr = (m_size.cy * 0.4f), kshadow = 3.f;
 
       const float start_x = kr + kshadow + m_pos.x - 1;
 
-      const float width_x = m_size.cx() - 2 * (kr + kshadow);
+      const float width_x = m_size.cx - 2 * (kr + kshadow);
 
       float value = (p.x - start_x) / width_x, old_value = m_value;
 
@@ -115,11 +115,11 @@ namespace nanoui
 
       auto center = float_point(m_pos) + float_size(m_size) * 0.5f;
 
-      float kr = (m_size.cy() * 0.4f), kshadow = 3.f;
+      float kr = (m_size.cy * 0.4f), kshadow = 3.f;
 
       float start_x = kr + kshadow + m_pos.x;
 
-      float width_x = m_size.cx() - 2 * (kr + kshadow);
+      float width_x = m_size.cx - 2 * (kr + kshadow);
 
       float_point knob_pos(start_x + (m_value - m_range.m_element1) /
          (m_range.m_element2 - m_range.m_element1) * width_x,
@@ -139,7 +139,7 @@ namespace nanoui
 
          pcontext->begin_path();
 
-         pcontext->rounded_rectangle(start_x + m_highlighted_range.m_element1 * m_size.cx(),
+         pcontext->rounded_rectangle(start_x + m_highlighted_range.m_element1 * m_size.cx,
             center.y - kshadow + 1,
             width_x *
             (m_highlighted_range.m_element2 - m_highlighted_range.m_element1),

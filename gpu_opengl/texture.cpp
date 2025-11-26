@@ -348,13 +348,13 @@ namespace gpu_opengl
 
                auto pimage32 = (::image32_t *)memory.data();
 
-               pimage32->copy(size.cx(), size.cy(), scan, imagea[i]->image32(), imagea[i]->m_iScan);
+               pimage32->copy(size.cx, size.cy, scan, imagea[i]->image32(), imagea[i]->m_iScan);
 
                if (pimage32)
                {
 
                   // Load the texture data into the cubemap
-                  glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i, 0, GL_BGRA, size.cx(), size.cy(), 0, GL_BGRA,
+                  glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i, 0, GL_BGRA, size.cx, size.cy, 0, GL_BGRA,
                                GL_UNSIGNED_BYTE, pimage32);
 
                   GLCheckError("");

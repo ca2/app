@@ -358,13 +358,13 @@ string type_name(const ::std::type_info& typeinfo)
 //}
 
 
-//type_name& type_name::operator = (const ::type& typeatom)
+//type_name& type_name::operator = (const ::type& type)
 //{
 //
-//   if (this != &typeatom)
+//   if (this != &type)
 //   {
 //
-//      ::atom::operator =(typeatom);
+//      ::atom::operator =(type);
 //
 //   }
 //
@@ -385,10 +385,10 @@ string type_name(const ::std::type_info& typeinfo)
 //}
 //
 //
-//bool type_name::operator == (const ::type & typeatom) const
+//bool type_name::operator == (const ::type & type) const
 //{
 //
-//   return ::atom::operator == (typeatom);
+//   return ::atom::operator == (type);
 //
 //}
 //
@@ -409,13 +409,13 @@ string type_name(const ::std::type_info& typeinfo)
 //}
 
 
-//type_name& type_name::operator = (const ::type& typeatom)
+//type_name& type_name::operator = (const ::type& type)
 //{
 //
-//   if (this != &typeatom)
+//   if (this != &type)
 //   {
 //
-//      ::atom::operator =(typeatom);
+//      ::atom::operator =(type);
 //
 //   }
 //
@@ -444,10 +444,10 @@ string type_name(const ::std::type_info& typeinfo)
 //}
 
 
-//bool type_name::operator == (const ::type& typeatom) const
+//bool type_name::operator == (const ::type& type) const
 //{
 //
-//   return ::atom::operator == (typeatom);
+//   return ::atom::operator == (type);
 //
 //}
 //
@@ -476,10 +476,10 @@ string type_name(const ::std::type_info& typeinfo)
 //}
 
 
-//bool type_name::operator != (const ::type& typeatom) const
+//bool type_name::operator != (const ::type& type) const
 //{
 //
-//   return !operator==(typeatom);
+//   return !operator==(type);
 //
 //}
 

@@ -590,7 +590,7 @@ namespace user
 
                   //estatus = 
                   
-                  pimage2->create({ 300, rectangle.size().cy() * 300 / rectangle.size().cx() });
+                  pimage2->create({ 300, rectangle.size().cy * 300 / rectangle.size().cx });
 
                   //if (!estatus)
                   //{
@@ -2006,7 +2006,7 @@ namespace user
    }
 
 
-   ::pointer<toolbar>frame_window::get_toolbar(const ::atom & idToolbar, bool bCreate, const ::scoped_string & scopedstrToolbarParam, unsigned int dwCtrlStyle, unsigned int uStyle, const ::type & typeatom)
+   ::pointer<toolbar>frame_window::get_toolbar(const ::atom & idToolbar, bool bCreate, const ::scoped_string & scopedstrToolbarParam, unsigned int dwCtrlStyle, unsigned int uStyle, const ::type & type)
    {
 
       try
@@ -2083,10 +2083,10 @@ namespace user
    }
 
 
-   ::pointer<toolbar>frame_window::create_toolbar(const ::atom & idToolbar, const ::scoped_string & scopedstrToolbarParam, unsigned int dwCtrlStyle, unsigned int uStyle, const ::type & typeatom)
+   ::pointer<toolbar>frame_window::create_toolbar(const ::atom & idToolbar, const ::scoped_string & scopedstrToolbarParam, unsigned int dwCtrlStyle, unsigned int uStyle, const ::type & type)
    {
 
-      ::pointer < toolbar> ptoolbar = øcreate_by_id (typeatom);
+      ::pointer < toolbar> ptoolbar = øcreate_by_id (type);
 
       ptoolbar->m_dwStyle = uStyle;
 
@@ -2871,8 +2871,8 @@ namespace user
    void frame_window::common_construct()
    {
 
-      m_sizeMinimum.cx() = 0;
-      m_sizeMinimum.cy() = 0;
+      m_sizeMinimum.cx = 0;
+      m_sizeMinimum.cy = 0;
       m_nWindow = -1;                 // unknown interaction_impl ID
       m_bAutoMenuEnable = true;       // auto enable on by default
       m_nIDTracking = 0;

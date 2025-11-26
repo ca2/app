@@ -11,7 +11,7 @@
 //inline hash32 as_hash32 < const ::int_size & >(const ::int_size & size) 
 //{ 
 //   
-//   return (hash32)(size.cx() | size.cy() << 16); 
+//   return (hash32)(size.cx | size.cy << 16); 
 //
 //}
 

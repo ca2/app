@@ -114,8 +114,8 @@ inline void storeFloatAsRGBA8(float32x4_t data,unsigned int* destination)
    {
 
       m_iRadius = 0;
-      m_size.cx() = 0;
-      m_size.cy() = 0;
+      m_size.cx = 0;
+      m_size.cy = 0;
 
 #if VECTOR3_SSE
 
@@ -279,8 +279,8 @@ inline void storeFloatAsRGBA8(float32x4_t data,unsigned int* destination)
       m_uchaDiv.set_size(256 * div);
       unsigned char * dv         = m_uchaDiv.get_data();
 
-      m_size.cx()         = cx;
-      m_size.cy()         = cy;
+      m_size.cx         = cx;
+      m_size.cy         = cy;
 
       for(int i = 0; i < m_uchaDiv.get_count(); i++)
       {
@@ -301,7 +301,7 @@ inline void storeFloatAsRGBA8(float32x4_t data,unsigned int* destination)
    void fastblur::initialize(int_size sz,int iRadius)
    {
 
-      return initialize(sz.cx(),sz.cy(),iRadius);
+      return initialize(sz.cx,sz.cy,iRadius);
 
    }
 
@@ -362,8 +362,8 @@ inline void storeFloatAsRGBA8(float32x4_t data,unsigned int* destination)
       unsigned char * int_point;
       vector4 * t = timage;
 
-      int w = m_size.cx();
-      int h = m_size.cy();
+      int w = m_size.cx;
+      int h = m_size.cy;
 
       int s = m_p->m_iScan / 4;
 
@@ -456,8 +456,8 @@ auto tickC1 = ::time::now();
 
       vector4 * t = timage;
 
-      int w = m_size.cx();
-      int h = m_size.cy();
+      int w = m_size.cx;
+      int h = m_size.cy;
       int wj = w; // w job
       int hj = h; // h job
 
@@ -604,8 +604,8 @@ auto tickC1 = ::time::now();
 
             do_fastblur(
                 pimage->image32(),
-                m_size.cx(),
-                m_size.cy(),
+                m_size.cx,
+                m_size.cy,
                 m_rgbaa.data(),
                 m_uchaDiv.get_data(),
                 pimage->scan_size(),
@@ -623,7 +623,7 @@ auto tickC1 = ::time::now();
 auto tick2 = ::time::now();
       unsigned int dw3 = dw2 - dw1;
       string str1;
-      str1.format("| Parameters: w=%d h=%d rectangle=%d  \n",m_size.cx(),m_size.cy(),m_iRadius);
+      str1.format("| Parameters: w=%d h=%d rectangle=%d  \n",m_size.cx,m_size.cy,m_iRadius);
       string str2;
       str2.format("| time for calculating fast blur : %d\b",dw3);
 

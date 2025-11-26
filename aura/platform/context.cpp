@@ -1055,7 +1055,7 @@ namespace aura
 
    //      pimage->map();
 
-   //      copy_image32(pimage->data(), size.cx(), size.cy(), pimage->m_iScan, pcolor, iScan);
+   //      copy_image32(pimage->data(), size.cx, size.cy, pimage->m_iScan, pcolor, iScan);
 
    //   }
 

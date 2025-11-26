@@ -86,11 +86,11 @@ struct sequence_t_type<NUMBER, 2>
       {
          union
          {
-            COORDINATE x, r, s;
+            COORDINATE x, r, s, cx, width;
          };
          union
          {
-            COORDINATE y, g, t;
+            COORDINATE y, g, t, cy, height;
          };
       };
       COORDINATE m_coordinatea[SIZE];

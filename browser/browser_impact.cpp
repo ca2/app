@@ -688,9 +688,9 @@ namespace browser
       if (m_prender->m_bImageEnable && m_prender->m_pimageImage->is_ok())
       {
 
-         ::int_rectangle rectangleWork(0, 0, m_prender->m_pimageWork->get_size()->cx(), m_prender->m_pimageWork->get_size()->cy());
+         ::int_rectangle rectangleWork(0, 0, m_prender->m_pimageWork->get_size()->cx, m_prender->m_pimageWork->get_size()->cy);
 
-         ::int_rectangle rectangleImage(0, 0, m_prender->m_pimageImage->get_size()->cx(), m_prender->m_pimageImage->get_size()->cy());
+         ::int_rectangle rectangleImage(0, 0, m_prender->m_pimageImage->get_size()->cx, m_prender->m_pimageImage->get_size()->cy);
 
          rectangleImage.FitOnCenterOf(rectangleWork);
 

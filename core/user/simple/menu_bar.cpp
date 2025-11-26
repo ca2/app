@@ -638,10 +638,10 @@ bool simple_menu_bar::ReloadMenuBar()
          m_buttona[iItem].m_wstr.get_length(),
          &size);
       m_buttona[iItem].m_rectangle.left  = ix ;
-      ix += size.cx() + ITEMCHECKEDCX + ITEMCHECKEDPADLEFT + ITEMCHECKEDPADRIGHT;
+      ix += size.cx + ITEMCHECKEDCX + ITEMCHECKEDPADLEFT + ITEMCHECKEDPADRIGHT;
       m_buttona[iItem].m_rectangle.right = ix;
       m_buttona[iItem].m_rectangle.top   = 0;
-      iy = maximum(iy, size.cy());
+      iy = maximum(iy, size.cy);
    }
    for(iItem = 0; iItem < m_buttona.get_size(); iItem++)
    {
@@ -733,13 +733,13 @@ int_size simple_menu_bar::CalcLayout(unsigned int dwMode, ::collection::index nL
 {
    _001Layout();
    int_size sizeResult;
-   sizeResult.cx() = 0;
-   sizeResult.cy() = 0;
+   sizeResult.cx = 0;
+   sizeResult.cy = 0;
 
    if(m_buttona.get_size() > 0)
    {
-      sizeResult.cx() = m_buttona[m_buttona.get_size() - 1].m_rectangle.right + ITEMCHECKEDPADRIGHT;
-      sizeResult.cy() = m_buttona[m_buttona.get_size() - 1].m_rectangle.bottom;
+      sizeResult.cx = m_buttona[m_buttona.get_size() - 1].m_rectangle.right + ITEMCHECKEDPADRIGHT;
+      sizeResult.cy = m_buttona[m_buttona.get_size() - 1].m_rectangle.bottom;
    }
 
    return sizeResult;

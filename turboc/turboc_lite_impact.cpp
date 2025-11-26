@@ -193,7 +193,7 @@ namespace turboc
 
 /*            m_pimage->g()->SelectObject(pbrushText);
 
-/*            m_pimage->g()->text_out((m_cxCache1 - int_size->cx()) / 2,(m_cyCache1 - int_size->cy()) / 2,strHelloMultiverse);
+/*            m_pimage->g()->text_out((m_cxCache1 - int_size->cx) / 2,(m_cyCache1 - int_size->cy) / 2,strHelloMultiverse);
 
 /*            m_pimage->blur(m_cxCache1,m_cyCache1);
 
@@ -298,7 +298,7 @@ namespace turboc
       //if(!m_bAlternate)
       {
 
-         pgraphics->text_out((m_cx - size.cx()) / 2,(m_cy - size.cy()) / 2,strHelloMultiverse);
+         pgraphics->text_out((m_cx - size.cx) / 2,(m_cy - size.cy) / 2,strHelloMultiverse);
 
       }
 

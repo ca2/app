@@ -1135,9 +1135,9 @@ namespace user
 
          rectangle.top = ppane->m_point.y;
 
-         rectangle.right = rectangle.left + ppane->m_size.cx();
+         rectangle.right = rectangle.left + ppane->m_size.cx;
 
-         rectangle.bottom = rectangle.top + ppane->m_size.cy();
+         rectangle.bottom = rectangle.top + ppane->m_size.cy;
 
       }
 
@@ -1330,9 +1330,9 @@ namespace user
                      for (int iTitle = 0; iTitle < ppane->m_straTitle.get_size(); iTitle++)
                      {
 
-                        rectangleText.left += (int)(ppane->m_sizeaText[iTitle].cx());
+                        rectangleText.left += (int)(ppane->m_sizeaText[iTitle].cx);
 
-                        rectangleText.right = (int)(rectangleText.left + get_data()->m_sizeSep.cx());
+                        rectangleText.right = (int)(rectangleText.left + get_data()->m_sizeSep.cx);
 
                         if (rectangleText.contains(point))
                         {
@@ -1341,7 +1341,7 @@ namespace user
 
                         }
 
-                        rectangleText.left += (int)(get_data()->m_sizeSep.cx());
+                        rectangleText.left += (int)(get_data()->m_sizeSep.cx);
 
                      }
 

@@ -29,14 +29,14 @@
 //
 //   inline ::float_size::float_size(const ::float_size & size)
 //   {
-//      cx = (float) ::float_size.cx();
-//      cy = (float) ::float_size.cy();
+//      cx = (float) ::float_size.cx;
+//      cy = (float) ::float_size.cy;
 //   }
 //
 //   inline ::float_size::float_size(float cx, float cy)
 //   {
-//      this->cx() = cx;
-//      this->cy() = cy;
+//      this->cx = cx;
+//      this->cy = cy;
 //   }
 //
 //

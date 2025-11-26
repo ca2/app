@@ -269,7 +269,7 @@ namespace gpu
 
       ::geometry2d::matrix contextmatrix;
 
-      contextmatrix.scale(2.0 / size.cx(), 2.0 / size.cy());
+      contextmatrix.scale(2.0 / size.cx, 2.0 / size.cy);
 
       contextmatrix.translate(-1.0, -1.0);
 
@@ -1022,7 +1022,7 @@ namespace gpu
 
       //::geometry2d::matrix m;
       //m.translate(0.5, -0.5);
-      //m.scale(2.0 / size.cx(), 2.0 / size.cy());
+      //m.scale(2.0 / size.cx, 2.0 / size.cy);
       //m.translate(-1.0, -1.0);
 
       ::double_point_array pointa;

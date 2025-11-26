@@ -349,9 +349,9 @@ namespace user
 
       }
 
-      int iTotalCX = (int)sizeTotal.cx();
+      int iTotalCX = (int)sizeTotal.cx;
 
-      int iTotalCY = (int)sizeTotal.cy();
+      int iTotalCY = (int)sizeTotal.cy;
 
       int iClientCX = rectangleX.width();
 
@@ -450,9 +450,9 @@ namespace user
 
       rectangle.bottom -= get_final_scroll_bar_y_thickness(elayout);
 
-      //rectangle.right -= (int)(rectangle.left + minimum(::width(rectangle), sizeTotal.cx() - m_pscrolllayoutX->m_scrollstatea[elayout].m_dPage - pointOffset.x));
+      //rectangle.right -= (int)(rectangle.left + minimum(::width(rectangle), sizeTotal.cx - m_pscrolllayoutX->m_scrollstatea[elayout].m_dPage - pointOffset.x));
 
-      //rectangle.bottom -= (int)(rectangle.top + minimum(::height(rectangle), sizeTotal.cy() - m_pscrolllayoutY->m_scrollstatea[elayout].m_dPage - pointOffset.y));
+      //rectangle.bottom -= (int)(rectangle.top + minimum(::height(rectangle), sizeTotal.cy - m_pscrolllayoutY->m_scrollstatea[elayout].m_dPage - pointOffset.y));
 
       return rectangle;
 
@@ -478,8 +478,8 @@ namespace user
 
       rectangle.left = 0;
       rectangle.top = 0;
-      rectangle.right = const_layout().sketch().size().cx();
-      rectangle.bottom = const_layout().sketch().size().cy();
+      rectangle.right = const_layout().sketch().size().cx;
+      rectangle.bottom = const_layout().sketch().size().cy;
 
       rectangle += get_accumulated_scroll();
 
@@ -547,8 +547,8 @@ namespace user
 
          rectangle.top = rectangleX.bottom;
          rectangle.left = rectangleX.right;
-         rectangle.right = (int)(rectangle.left + m_pscrollbarY->const_layout().design().size().cx());
-         rectangle.bottom = (int)(rectangle.top + m_pscrollbarX->const_layout().design().size().cy());
+         rectangle.right = (int)(rectangle.left + m_pscrollbarY->const_layout().design().size().cx);
+         rectangle.bottom = (int)(rectangle.top + m_pscrollbarX->const_layout().design().size().cy);
 
          pgraphics->fill_rectangle(rectangle, argb(127, 127, 127, 127));
 
@@ -583,7 +583,7 @@ namespace user
 
          auto sizeWindow = raw_rectangle().size();
 
-         //if (sizeTotal.cx() < sizeWindow.cx())
+         //if (sizeTotal.cx < sizeWindow.cx)
          {
 
             rectangle.left = 0;
@@ -596,7 +596,7 @@ namespace user
 
          //}
 
-         //if (sizeTotal.cy() < sizeWindow.cy())
+         //if (sizeTotal.cy < sizeWindow.cy)
          {
 
             rectangle.top = 0;

@@ -485,8 +485,8 @@ template < primitive_size SIZE_TYPE >
 bool is_null(const SIZE_TYPE & size)
 {
 
-   return size.cx() == (typename SIZE_TYPE::UNIT_TYPE)0
-      && size.cy() == (typename SIZE_TYPE::UNIT_TYPE)0;
+   return size.cx == (typename SIZE_TYPE::UNIT_TYPE)0
+      && size.cy == (typename SIZE_TYPE::UNIT_TYPE)0;
 
 }
 
@@ -986,7 +986,7 @@ template < primitive_size SIZE1, primitive_size SIZE2 >
 bool is_equal(const SIZE1 & size1, const SIZE2 & size2, largest_number < ::decay<typename SIZE1::UNIT_TYPE>, ::decay<typename SIZE2::UNIT_TYPE> > epsilon = default_epsilon<largest_number < ::decay<typename SIZE1::UNIT_TYPE>, ::decay<typename SIZE2::UNIT_TYPE > >>())
 {
 
-   return is_equal(size1.cx(), size2.cx(), epsilon) && is_equal(size1.cy(), size2.cy(), epsilon);
+   return is_equal(size1.cx, size2.cx, epsilon) && is_equal(size1.cy, size2.cy, epsilon);
 
 }
 
@@ -1032,8 +1032,8 @@ template < primitive_rectangle RECTANGLE, primitive_point POINT, primitive_size 
 RECTANGLE & set_bottom_right(RECTANGLE & rectangle, const SIZE & size)
 {
 
-   rectangle.right = (typename RECTANGLE::UNIT_TYPE)(rectangle.left + size.cx());
-   rectangle.bottom = (typename RECTANGLE::UNIT_TYPE)(rectangle.top + size.cy());
+   rectangle.right = (typename RECTANGLE::UNIT_TYPE)(rectangle.left + size.cx);
+   rectangle.bottom = (typename RECTANGLE::UNIT_TYPE)(rectangle.top + size.cy);
 
    return rectangle;
 
@@ -1046,8 +1046,8 @@ RECTANGLE & assign(RECTANGLE & rectangle, const POINT & point, const SIZE & size
 
    rectangle.left = (typename RECTANGLE::UNIT_TYPE)point.x;
    rectangle.top = (typename RECTANGLE::UNIT_TYPE)point.y;
-   rectangle.right = (typename RECTANGLE::UNIT_TYPE)(point.x + size.cx());
-   rectangle.bottom = (typename RECTANGLE::UNIT_TYPE)(point.y + size.cy());
+   rectangle.right = (typename RECTANGLE::UNIT_TYPE)(point.x + size.cx);
+   rectangle.bottom = (typename RECTANGLE::UNIT_TYPE)(point.y + size.cy);
 
    return rectangle;
 
@@ -1375,9 +1375,9 @@ inline constexpr auto __horz(const POINT& point) { return point.x; }
 template < primitive_point POINT >
 inline constexpr auto __vert(const POINT& point) { return point.y; }
 template < primitive_size SIZE >
-inline constexpr auto __horz(const SIZE& size) { return size.cx(); }
+inline constexpr auto __horz(const SIZE& size) { return size.cx; }
 template < primitive_size SIZE >
-inline constexpr auto __vert(const SIZE& size) { return size.cy(); }
+inline constexpr auto __vert(const SIZE& size) { return size.cy; }
 
 
 template < primitive_rectangle RECTANGLE >
@@ -1558,6 +1558,6 @@ namespace geometry
 //inline ::string as_string(const SIZE & size)
 //{
 //
-//   return as_string(size.cx()) + ", " + as_string(size.cy());
+//   return as_string(size.cx) + ", " + as_string(size.cy);
 //
 //}

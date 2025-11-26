@@ -1390,8 +1390,8 @@ namespace filemanager
          auto pcolumn = new_list_column();
          pcolumn->m_iWidth = filemanager_data()->m_iIconSize;
          //pcolumn->m_bIcon                = true;
-         pcolumn->m_sizeIcon.cx() = filemanager_data()->m_iIconSize;
-         pcolumn->m_sizeIcon.cy() = filemanager_data()->m_iIconSize;
+         pcolumn->m_sizeIcon.cx = filemanager_data()->m_iIconSize;
+         pcolumn->m_sizeIcon.cy = filemanager_data()->m_iIconSize;
          //pcolumn->m_iControl = -1;
          pcolumn->m_strDataKey = "FILE_MANAGER_ID_FILE_NAME";
          pcolumn->m_bEditOnSecondClick = false;
@@ -1453,8 +1453,8 @@ namespace filemanager
          auto plistdata = fs_list();
          plistdata->m_iNameSubItemText = m_iNameSubItemText;
          //pcolumn->m_bIcon                = true;
-         pcolumn->m_sizeIcon.cx() = get_document()->m_iIconSize;
-         pcolumn->m_sizeIcon.cy() = get_document()->m_iIconSize;
+         pcolumn->m_sizeIcon.cx = get_document()->m_iIconSize;
+         pcolumn->m_sizeIcon.cy = get_document()->m_iIconSize;
          pcolumn->m_text = pcontext->__text("file:Name");
          pcolumn->m_strDataKey = "FILE_MANAGER_ID_FILE_NAME";
          pcolumn->m_bEditOnSecondClick = true;
@@ -1488,9 +1488,9 @@ namespace filemanager
 
          pcolumn->m_text = pcontext->__text("file:Size");
 
-         pcolumn->m_sizeIcon.cx() = 0;
+         pcolumn->m_sizeIcon.cx = 0;
 
-         pcolumn->m_sizeIcon.cy() = 0;
+         pcolumn->m_sizeIcon.cy = 0;
 
          pcolumn->m_pimagelistHover = nullptr;
 

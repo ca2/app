@@ -65,7 +65,7 @@ void device::draw_text123(const ::scoped_string & scopedstr, const ::int_rectang
 
          auto size = get_text_extents(strLine, pnanofont);
 
-         r.top += size.cy();
+         r.top += size.cy;
 
          if (r.top > rectangleText.bottom)
          {

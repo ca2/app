@@ -1388,17 +1388,17 @@ namespace berg
    }
 
 
-   ::pointer<::form_document>user::create_typed_form(::particle * pparticle, const ::type & typeatom, ::user::element * puserelementParent, const ::payload & payload, const ::payload & payloadArgs)
+   ::pointer<::form_document>user::create_typed_form(::particle * pparticle, const ::type & type, ::user::element * puserelementParent, const ::payload & payload, const ::payload & payloadArgs)
    {
 
-      if (!typeatom)
+      if (!type)
       {
 
          return nullptr;
 
       }
 
-      auto pimpactsystem = application()->impact_system(typeatom);
+      auto pimpactsystem = application()->impact_system(type);
 
       if (!pimpactsystem)
       {
@@ -1411,7 +1411,7 @@ namespace berg
          //      m_ptemplateForm->id(),
          //      m_ptemplateForm->m_typeDocument,
          //      m_ptemplateForm->m_typeFrame,
-         //      typeatom));
+         //      type));
 
       }
 
@@ -1633,7 +1633,7 @@ namespace berg
    }
 
 
-   ::pointer < ::form_document > user::create_typed_child_form(::particle * pparticle, const ::type & typeatom, ::user::element * puserelementParent, const ::payload & payload, const ::payload & payloadArgs)
+   ::pointer < ::form_document > user::create_typed_child_form(::particle * pparticle, const ::type & type, ::user::element * puserelementParent, const ::payload & payload, const ::payload & payloadArgs)
    {
 
       auto pathFile = payload.as_file_path();
@@ -1641,14 +1641,14 @@ namespace berg
       try
       {
 
-         if (!typeatom)
+         if (!type)
          {
 
             return nullptr;
 
          }
 
-         auto pimpactsystem = application()->impact_system(typeatom);
+         auto pimpactsystem = application()->impact_system(type);
 
          if (!pimpactsystem)
          {
@@ -1670,13 +1670,13 @@ namespace berg
             //   m_ptemplateChildForm->id(),
             //   typeDocument,
             //   m_ptemplateChildForm->m_typeFrame,
-            //   typeatom));
+            //   type));
 
            /* pimpactsystemNew->initialize(pparticle);
 
             pimpactsystem = pimpactsystemNew;
 
-            m_mapimpactsystem[typeatom] = pimpactsystemNew;
+            m_mapimpactsystem[type] = pimpactsystemNew;
 
             document_manager()->add_document_template(pimpactsystem);*/
 
@@ -1793,10 +1793,10 @@ namespace berg
       //__namespace_object_factory(user, ::system_setup::flag_object_user);
 
 
-   ::pointer<::form_document> user::create_typed_child_form(::particle * pparticle, const ::type & typeatom, ::user::impact_data * pimpactdata, ::payload payload)
+   ::pointer<::form_document> user::create_typed_child_form(::particle * pparticle, const ::type & type, ::user::impact_data * pimpactdata, ::payload payload)
    {
 
-      return create_typed_child_form(pparticle, typeatom, pimpactdata->m_pplaceholder, payload);
+      return create_typed_child_form(pparticle, type, pimpactdata->m_pplaceholder, payload);
 
    }
 

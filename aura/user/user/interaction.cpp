@@ -772,7 +772,7 @@ namespace user
       if (!on_set_size(sizeNew, elayout))
       {
 
-         informationf("!interaction::!set_size({%d, %d})", sizeNew.cx(), sizeNew.cy());
+         informationf("!interaction::!set_size({%d, %d})", sizeNew.cx, sizeNew.cy);
 
          return false;
 
@@ -864,7 +864,7 @@ namespace user
 
       auto size = this->size(elayout);
 
-      size.cx() = width;
+      size.cx = width;
 
       if (on_set_size(size, elayout))
       {
@@ -894,7 +894,7 @@ namespace user
 
       auto size = this->size(elayout);
 
-      size.cy() = height;
+      size.cy = height;
 
       if (on_set_size(size, elayout))
       {
@@ -926,7 +926,7 @@ namespace user
 
       auto size = this->size(elayout);
 
-      size.cx() += point.x - left;
+      size.cx += point.x - left;
 
       point.x = left;
 
@@ -970,7 +970,7 @@ namespace user
 
       auto size = this->size(elayout);
 
-      point.x = right - size.cx();
+      point.x = right - size.cx;
 
       if (on_set_position(point, elayout))
       {
@@ -1048,17 +1048,17 @@ namespace user
 
       auto sizeMin = get_window_minimum_size();
 
-      if (size.cx() < sizeMin.cx())
+      if (size.cx < sizeMin.cx)
       {
 
-         size.cx() = sizeMin.cx();
+         size.cx = sizeMin.cx;
 
       }
 
-      if (size.cy() < sizeMin.cy())
+      if (size.cy < sizeMin.cy)
       {
 
-         size.cy() = sizeMin.cy();
+         size.cy = sizeMin.cy;
 
       }
 
@@ -1088,10 +1088,10 @@ namespace user
 
             //informationf("control_box::on_set_size(" + as_string(size) + ")");
 
-            //if (size.cx() > 500)
+            //if (size.cx > 500)
             //{
 
-            //   informationf("size.cx() > 500");
+            //   informationf("size.cx > 500");
 
             //}
 
@@ -4431,8 +4431,8 @@ namespace user
       auto pointOffset = get_context_offset(elayout);
 
       scrollstate.m_dMinimum = 0.;
-      scrollstate.m_dMaximum = sizeTotal.cx();
-      scrollstate.m_dPage = sizePage.cx();
+      scrollstate.m_dMaximum = sizeTotal.cx;
+      scrollstate.m_dPage = sizePage.cx;
       scrollstate.m_dPosition = pointOffset.x;
       scrollstate.m_dTrackingPosition = pointOffset.x;
 
@@ -4449,8 +4449,8 @@ namespace user
       auto pointOffset = get_context_offset(elayout);
 
       scrollstate.m_dMinimum = 0.;
-      scrollstate.m_dMaximum = sizeTotal.cy();
-      scrollstate.m_dPage = sizePage.cy();
+      scrollstate.m_dMaximum = sizeTotal.cy;
+      scrollstate.m_dPage = sizePage.cy;
       scrollstate.m_dPosition = pointOffset.y;
       scrollstate.m_dTrackingPosition = pointOffset.y;
 
@@ -5731,7 +5731,7 @@ namespace user
 
       //auto offset = pointOffset - pointContextOffset;
 
-      //pgraphics->offset_origin((int)offset.cx(), (int)offset.cy());
+      //pgraphics->offset_origin((int)offset.cx, (int)offset.cy);
 
    }
 
@@ -5805,7 +5805,7 @@ namespace user
 
    //   auto offset = pointOffset - pointContextOffset;
 
-   //   pgraphics->offset_origin((int)offset.cx(), (int)offset.cy());
+   //   pgraphics->offset_origin((int)offset.cx, (int)offset.cy);
 
    //}
 
@@ -6403,9 +6403,9 @@ namespace user
    //
    //   g->debug();
    //
-   //   m_size.cx() = 0;
+   //   m_size.cx = 0;
    //
-   //   m_size.cy() = 0;
+   //   m_size.cy = 0;
    //
    //#endif
    //
@@ -9047,33 +9047,33 @@ if(get_parent())
          if (pmessage->m_union.m_pkey->m_ekey == ::user::e_key_up)
          {
 
-            sizeOffset.cy() -= 10;
+            sizeOffset.cy -= 10;
 
          }
          else if (pmessage->m_union.m_pkey->m_ekey == ::user::e_key_down)
          {
 
-            sizeOffset.cy() += 10;
+            sizeOffset.cy += 10;
 
          }
          else if (pmessage->m_union.m_pkey->m_ekey == ::user::e_key_left)
          {
 
-            sizeOffset.cx() -= 10;
+            sizeOffset.cx -= 10;
 
          }
          else if (pmessage->m_union.m_pkey->m_ekey == ::user::e_key_right)
          {
 
-            sizeOffset.cx() += 10;
+            sizeOffset.cx += 10;
 
          }
          else if (pmessage->m_union.m_pkey->m_ekey == ::user::e_key_escape)
          {
 
             m_ekeyboardmode = e_keyboard_mode_none;
-            m_sizeInitialResizeOffset.cx() = 0;
-            m_sizeInitialResizeOffset.cy() = 0;
+            m_sizeInitialResizeOffset.cx = 0;
+            m_sizeInitialResizeOffset.cy = 0;
 
             auto pwindowing = windowing();
 
@@ -9083,7 +9083,7 @@ if(get_parent())
 
          }
 
-         if (sizeOffset.cx() != 0 || sizeOffset.cy() != 0)
+         if (sizeOffset.cx != 0 || sizeOffset.cy != 0)
          {
 
             if (m_ekeyboardmode == e_keyboard_mode_reposition)
@@ -9103,20 +9103,20 @@ if(get_parent())
             else
             {
 
-               if (m_sizeInitialResizeOffset.cx() == 0
-                  && sizeOffset.cx() != 0)
+               if (m_sizeInitialResizeOffset.cx == 0
+                  && sizeOffset.cx != 0)
                {
 
-                  m_sizeInitialResizeOffset.cx() = sizeOffset.cx();
-                  m_sizeInitialResizeOffset.cy() = 0;
+                  m_sizeInitialResizeOffset.cx = sizeOffset.cx;
+                  m_sizeInitialResizeOffset.cy = 0;
 
                }
-               else if (m_sizeInitialResizeOffset.cy() == 0
-                  && sizeOffset.cy() != 0)
+               else if (m_sizeInitialResizeOffset.cy == 0
+                  && sizeOffset.cy != 0)
                {
 
-                  m_sizeInitialResizeOffset.cy() = sizeOffset.cy();
-                  m_sizeInitialResizeOffset.cx() = 0;
+                  m_sizeInitialResizeOffset.cy = sizeOffset.cy;
+                  m_sizeInitialResizeOffset.cx = 0;
 
                }
 
@@ -9124,28 +9124,28 @@ if(get_parent())
 
                bool bChanged = true;
 
-               if (m_sizeInitialResizeOffset.cx() > 0)
+               if (m_sizeInitialResizeOffset.cx > 0)
                {
 
-                  r.right += sizeOffset.cx();
+                  r.right += sizeOffset.cx;
 
                }
-               else if (m_sizeInitialResizeOffset.cx() < 0)
+               else if (m_sizeInitialResizeOffset.cx < 0)
                {
 
-                  r.left += sizeOffset.cx();
+                  r.left += sizeOffset.cx;
 
                }
-               else if (m_sizeInitialResizeOffset.cy() > 0)
+               else if (m_sizeInitialResizeOffset.cy > 0)
                {
 
-                  r.bottom += sizeOffset.cy();
+                  r.bottom += sizeOffset.cy;
 
                }
-               else if (m_sizeInitialResizeOffset.cy() < 0)
+               else if (m_sizeInitialResizeOffset.cy < 0)
                {
 
-                  r.top += sizeOffset.cy();
+                  r.top += sizeOffset.cy;
 
                }
                else
@@ -9469,7 +9469,7 @@ if(get_parent())
 
          size = size.maximum(sizeMinimum);
 
-         informationf("drag_shift resize %d, %d", size.cx(), size.cy());
+         informationf("drag_shift resize %d, %d", size.cx, size.cy);
 
          //auto rectanglePrevious = layout().window().raw_rectangle();
 
@@ -10783,8 +10783,8 @@ if(get_parent())
 
             //   //   pusersystem->m_createstruct.x = window()->m_rectangle.left;
             //   //   pusersystem->m_createstruct.y = window()->m_rectangle.top;
-            //   //   pusersystem->m_createstruct.cx() = window()->m_rectangle.width();
-            //   //   pusersystem->m_createstruct.cy() = window()->m_rectangle.height();
+            //   //   pusersystem->m_createstruct.cx = window()->m_rectangle.width();
+            //   //   pusersystem->m_createstruct.cy = window()->m_rectangle.height();
 
             //   //}
             //   //else
@@ -12724,7 +12724,7 @@ if(get_parent())
 
       sizeparentlayout.m_bStretch = bStretch;
 
-      sizeparentlayout.m_sizeTotal.cx() = sizeparentlayout.m_sizeTotal.cy() = 0;
+      sizeparentlayout.m_sizeTotal.cx = sizeparentlayout.m_sizeTotal.cy = 0;
 
       if (rectangleX.is_set())
       {
@@ -12784,9 +12784,9 @@ if(get_parent())
 
             prectParam->left = prectParam->top = 0;
 
-            prectParam->right = sizeparentlayout.m_sizeTotal.cx();
+            prectParam->right = sizeparentlayout.m_sizeTotal.cx;
 
-            prectParam->bottom = sizeparentlayout.m_sizeTotal.cy();
+            prectParam->bottom = sizeparentlayout.m_sizeTotal.cy;
 
          }
 
@@ -15060,9 +15060,9 @@ if(get_parent())
 
       ::double_size size = pgraphics->get_text_extent(strWindowText);
 
-      setFittingFontHeight.cx() = size.cx();
+      setFittingFontHeight.cx = size.cx;
 
-      setFittingFontHeight.cy() = metric.get_line_height();
+      setFittingFontHeight.cy = metric.get_line_height();
 
       return setFittingFontHeight;
 
@@ -15080,9 +15080,9 @@ if(get_parent())
 
       ::double_size sizePaddedFitting;
 
-      sizePaddedFitting.cx() = rectanglePadding.left + sizeFitting.cx() + rectanglePadding.right;
+      sizePaddedFitting.cx = rectanglePadding.left + sizeFitting.cx + rectanglePadding.right;
 
-      sizePaddedFitting.cy() = rectanglePadding.top + sizeFitting.cy() + rectanglePadding.bottom;
+      sizePaddedFitting.cy = rectanglePadding.top + sizeFitting.cy + rectanglePadding.bottom;
 
       return sizePaddedFitting;
 
@@ -15760,8 +15760,8 @@ if(get_parent())
             // layout().m_statea[::user::e_layout_output].m_size = s;
             // layout().m_statea[::user::e_layout_normal].m_size = s;
             //
-            // pwindow->m_sizeDesignRequest.cx() = INT_MIN;
-            // pwindow->m_sizeDesignRequest.cy() = INT_MIN;
+            // pwindow->m_sizeDesignRequest.cx = INT_MIN;
+            // pwindow->m_sizeDesignRequest.cy = INT_MIN;
 
             set_size(s);
 
@@ -17149,8 +17149,8 @@ if(get_parent())
 
    //   bool bWindowCrossesWorkspaceBoundaries = !rectangleWorkspace.contains(rectangleRequest);
 
-   //   bool bWindowLargerThanBroadRestore = rectangleRequest.width() > m_sizeRestoreBroad.cx()
-   //      || rectangleRequest.height() > m_sizeRestoreBroad.cy();
+   //   bool bWindowLargerThanBroadRestore = rectangleRequest.width() > m_sizeRestoreBroad.cx
+   //      || rectangleRequest.height() > m_sizeRestoreBroad.cy;
 
    //   if (bWindowCrossesWorkspaceBoundaries || bWindowLargerThanBroadRestore)
    //   {
@@ -17371,7 +17371,7 @@ if(get_parent())
 
             auto Δ = r.top_right() - p;
 
-            if (Δ.cx() != 0 || Δ.cy() != 0)
+            if (Δ.cx != 0 || Δ.cy != 0)
             {
 
                //information() << "sketch_to_lading top right offset not null " << Δ;
@@ -17497,7 +17497,7 @@ if(get_parent())
       if (m_bDerivedHeight)
       {
 
-         int iDerivedWidth = sizeLading.cx();
+         int iDerivedWidth = sizeLading.cx;
 
          int iDerivedHeight = get_derived_height(iDerivedWidth);
 
@@ -17506,10 +17506,10 @@ if(get_parent())
          if (iDerivedHeight > 0)
          {
 
-            if (iDerivedHeight < sizeMinimum.cy())
+            if (iDerivedHeight < sizeMinimum.cy)
             {
 
-               iDerivedHeight = sizeMinimum.cy();
+               iDerivedHeight = sizeMinimum.cy;
 
                iDerivedWidth = get_derived_width(iDerivedHeight);
 
@@ -17517,12 +17517,12 @@ if(get_parent())
 
          }
 
-         if (iDerivedWidth >= sizeMinimum.cx() && iDerivedHeight >= sizeMinimum.cy())
+         if (iDerivedWidth >= sizeMinimum.cx && iDerivedHeight >= sizeMinimum.cy)
          {
 
-            sizeLading.cx() = iDerivedWidth;
+            sizeLading.cx = iDerivedWidth;
 
-            sizeLading.cy() = iDerivedHeight;
+            sizeLading.cy = iDerivedHeight;
 
             layout().lading().size() = sizeLading;
 
@@ -17969,7 +17969,7 @@ if(get_parent())
 
             auto Δ = r.top_right() - p;
 
-            if (Δ.cx() != 0 || Δ.cy() != 0)
+            if (Δ.cx != 0 || Δ.cy != 0)
             {
 
                information() << "interaction::layout_to_design top right offset not null " << Δ;
@@ -19219,7 +19219,7 @@ if(get_parent())
 
       size = pgraphics->get_text_extent(unitext("Ap"));
 
-      return size.cy();
+      return size.cy;
 
    }
 
@@ -20892,7 +20892,7 @@ if(get_parent())
 
                auto Δ = r.top_right() - p;
 
-               if (Δ.cx() != 0 || Δ.cy() != 0)
+               if (Δ.cx != 0 || Δ.cy != 0)
                {
 
                   information() << "place top right offset not null " << Δ;
@@ -21686,10 +21686,10 @@ if(get_parent())
 
          prectangle->top = rectangleWorkspace.top;
 
-         if (::height(*prectangle) < sizeMinimum.cy())
+         if (::height(*prectangle) < sizeMinimum.cy)
          {
 
-            prectangle->bottom = prectangle->top + sizeMinimum.cy();
+            prectangle->bottom = prectangle->top + sizeMinimum.cy;
 
          }
 
@@ -21706,10 +21706,10 @@ if(get_parent())
 
          prectangle->bottom = rectangleWorkspace.bottom;
 
-         if (::height(*prectangle) < sizeMinimum.cy())
+         if (::height(*prectangle) < sizeMinimum.cy)
          {
 
-            prectangle->top = prectangle->bottom - sizeMinimum.cy();
+            prectangle->top = prectangle->bottom - sizeMinimum.cy;
 
          }
 
@@ -21726,10 +21726,10 @@ if(get_parent())
 
          prectangle->left = rectangleWorkspace.left;
 
-         if (::width(*prectangle) < sizeMinimum.cx())
+         if (::width(*prectangle) < sizeMinimum.cx)
          {
 
-            prectangle->right = prectangle->left + sizeMinimum.cx();
+            prectangle->right = prectangle->left + sizeMinimum.cx;
 
          }
 
@@ -21746,10 +21746,10 @@ if(get_parent())
 
          prectangle->right = rectangleWorkspace.right;
 
-         if (::width(*prectangle) < sizeMinimum.cx())
+         if (::width(*prectangle) < sizeMinimum.cx)
          {
 
-            prectangle->left = prectangle->right + sizeMinimum.cx();
+            prectangle->left = prectangle->right + sizeMinimum.cx;
 
          }
 
@@ -24037,7 +24037,7 @@ if(get_parent())
 
       //rectangleWindow.SetBottomRightSize(sizeTooltip);
 
-      //rectangleWindow.offset(0, -sizeTooltip.cy());
+      //rectangleWindow.offset(0, -sizeTooltip.cy);
 
       //if (rectangleWindow.top < rectangleMonitor.top)
       //{
@@ -24049,7 +24049,7 @@ if(get_parent())
       //if (rectangleWindow.right > rectangleMonitor.right)
       //{
 
-      //   rectangleWindow.move_left_to(rectangleMonitor.right - sizeTooltip.cx() - rectangleThisWindow.height());
+      //   rectangleWindow.move_left_to(rectangleMonitor.right - sizeTooltip.cx - rectangleThisWindow.height());
 
       //}
 

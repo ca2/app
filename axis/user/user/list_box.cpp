@@ -655,7 +655,7 @@ namespace user
 
       ::double_size size;
 
-      psize->cx() = 0;
+      psize->cx = 0;
 
       m_dItemHeight = 0.;
 
@@ -668,21 +668,21 @@ namespace user
 
          size = pgraphics->get_text_extent(strItem);
 
-         size.cx() += m_iPadding * 2;
+         size.cx += m_iPadding * 2;
 
-         if (size.cx() > psize->cx())
+         if (size.cx > psize->cx)
          {
 
-            psize->cx() = (int)size.cx();
+            psize->cx = (int)size.cx;
 
          }
 
-         if (size.cy() > m_dItemHeight)
+         if (size.cy > m_dItemHeight)
          {
 
-            m_dItemHeight = (int)size.cy();
+            m_dItemHeight = (int)size.cy;
 
-            if (size.cy() != 18)
+            if (size.cy != 18)
             {
 
                //informationf("----> COMBO LIST ITEM HEIGHT != 18\n");
@@ -718,16 +718,16 @@ namespace user
 
       }
 
-      psize->cy() = (int)(_001GetItemHeight() * (_001GetListCount() + iAddUp));
+      psize->cy = (int)(_001GetItemHeight() * (_001GetListCount() + iAddUp));
 
       int iScrollBarWidth = 20;
 
-      psize->cx() += iScrollBarWidth;
+      psize->cx += iScrollBarWidth;
 
       //auto rectangleComboClient = this->rectangle();
 
-      //psize->cx() = maximum(psize->cx(), rectangleComboClient.width());
-      //psize->cx() = maximum(psize->cx(), rectangleComboClient.width());
+      //psize->cx = maximum(psize->cx, rectangleComboClient.width());
+      //psize->cx = maximum(psize->cx, rectangleComboClient.width());
 
    }
 
@@ -1273,10 +1273,10 @@ namespace user
       ::int_rectangle rectangleList;
 
       rectangleList.left = rectangleWindow.left;
-      //rectangleList.right = rectangleWindow.left + maximum(rectangleWindow.width(), sizeFull.cx()) + 20;
-      rectangleList.right = rectangleWindow.left + maximum(rectangleWindow.width(), sizeFull.cx());
+      //rectangleList.right = rectangleWindow.left + maximum(rectangleWindow.width(), sizeFull.cx) + 20;
+      rectangleList.right = rectangleWindow.left + maximum(rectangleWindow.width(), sizeFull.cx);
       rectangleList.top = rectangleWindow.bottom;
-      rectangleList.bottom = rectangleWindow.bottom + sizeFull.cy();
+      rectangleList.bottom = rectangleWindow.bottom + sizeFull.cy;
 
       //rectangleList.inflate(1);
 
@@ -1302,9 +1302,9 @@ namespace user
          {
 
             rectangleList.left = rectangleWindow.left;
-            rectangleList.right = rectangleWindow.left + maximum(rectangleWindow.width(), sizeFull.cx()) + 20;
+            rectangleList.right = rectangleWindow.left + maximum(rectangleWindow.width(), sizeFull.cx) + 20;
             rectangleList.bottom = rectangleWindow.top;
-            rectangleList.top = rectangleList.bottom - sizeFull.cy();
+            rectangleList.top = rectangleList.bottom - sizeFull.cy;
 
             if (rectangleList.top < rectangleMonitor.top + m_iScreenMargin)
             {
@@ -1320,7 +1320,7 @@ namespace user
          //rectangleListOver.left = rectangleList.left;
          //rectangleListOver.right = rectangleList.right;
          //rectangleListOver.bottom = rectangleWindow.top;
-         //rectangleListOver.top = rectangleWindow.top - sizeFull.cy();
+         //rectangleListOver.top = rectangleWindow.top - sizeFull.cy;
 
          //if (rectangleListOver.top < rectangleMonitor.top + m_iBorder)
          //{

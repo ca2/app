@@ -30,8 +30,8 @@ template < primitive_size SIZE >
 inline binary_stream & operator << (binary_stream & s, const SIZE & size)
 {
 
-   s << size.cx();
-   s << size.cy();
+   s << size.cx;
+   s << size.cy;
 
    return s;
 
@@ -42,8 +42,8 @@ template < primitive_size SIZE >
 inline binary_stream & operator >> (binary_stream & s, SIZE & size)
 {
 
-   s >> size.cx();
-   s >> size.cy();
+   s >> size.cx;
+   s >> size.cy;
 
    return s;
 

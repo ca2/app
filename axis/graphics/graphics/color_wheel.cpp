@@ -63,9 +63,9 @@ namespace graphics
 
       int_size sizeImageOffset;
 
-      sizeImageOffset.cx() = (int) (x + (w - diam1) / 2.0);
+      sizeImageOffset.cx = (int) (x + (w - diam1) / 2.0);
 
-      sizeImageOffset.cy() = (int) (y + (h - diam1) / 2.0);
+      sizeImageOffset.cy = (int) (y + (h - diam1) / 2.0);
 
       ::double_point center;
 
@@ -226,8 +226,8 @@ namespace graphics
 
          //double cx = x + w * 0.5;
          //double cy = y + h * 0.5;
-         double cx = sizeImageOffset.cx() + centerX;
-         double cy = sizeImageOffset.cy() + centerY;
+         double cx = sizeImageOffset.cx + centerX;
+         double cy = sizeImageOffset.cy + centerY;
          //double r1 = (w < h ? w : h) * 0.5;
          //double r0 = r1 * .75;
 
@@ -501,9 +501,9 @@ namespace graphics
 
       int_size sizeImageOffset;
 
-      sizeImageOffset.cx() = (int) (x + (w - diam1) / 2.0);
+      sizeImageOffset.cx = (int) (x + (w - diam1) / 2.0);
 
-      sizeImageOffset.cy() = (int) (y + (h - diam1) / 2.0);
+      sizeImageOffset.cy = (int) (y + (h - diam1) / 2.0);
 
       ::double_point center;
 

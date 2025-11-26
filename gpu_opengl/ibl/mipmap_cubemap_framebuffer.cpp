@@ -133,7 +133,7 @@ namespace gpu_opengl
          ::cast < ::gpu_opengl::texture>ptexture = m_ptexture;
          glBindRenderbuffer(GL_RENDERBUFFER, ptexture->m_gluDepthStencilRBO);
          GLCheckError("");
-         glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT24, ptexture->m_sizeMip.cx(), ptexture->m_sizeMip.cy());
+         glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT24, ptexture->m_sizeMip.cx, ptexture->m_sizeMip.cy);
          GLCheckError("");
 
       }

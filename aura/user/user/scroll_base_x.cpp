@@ -112,7 +112,7 @@ namespace user
       while (iLayout >= 0)
       {
 
-         m_pscrolllayoutX->m_scrollstatea[iLayout].set_dimension(size.cx());
+         m_pscrolllayoutX->m_scrollstatea[iLayout].set_dimension(size.cx);
 
          iLayout--;
 
@@ -342,10 +342,10 @@ namespace user
 
       //   auto sizePage = get_page_size();
 
-      //   if (point.x > maximum(0, sizeTotal.cx() - sizePage.cx()))
+      //   if (point.x > maximum(0, sizeTotal.cx - sizePage.cx))
       //   {
 
-      //      point.x = (int)maximum(0, sizeTotal.cx() - sizePage.cx());
+      //      point.x = (int)maximum(0, sizeTotal.cx - sizePage.cx);
 
       //   }
 
@@ -377,9 +377,9 @@ namespace user
 
       auto rectangleX = this->rectangle();
 
-      int iTotalHeight = (int)sizeTotal.cy();
+      int iTotalHeight = (int)sizeTotal.cy;
 
-      int iTotalWidth = (int)sizeTotal.cx();
+      int iTotalWidth = (int)sizeTotal.cx;
 
       int iClientHeight = rectangleX.height();
 

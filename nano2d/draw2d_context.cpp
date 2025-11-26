@@ -753,32 +753,32 @@ pstate->m_ppen->m_color = color;
 
       auto size = m_pgraphics->get_text_extent(scopedstr);
 
-      size.cx() *= 1.01;
-      size.cy() *= 1.01;
+      size.cx *= 1.01;
+      size.cy *= 1.01;
 
       if (m_pstate->m_ealignText & ::e_align_right)
       {
 
-         offsetx = -size.cx();
+         offsetx = -size.cx;
 
       }
       else if (m_pstate->m_ealignText & ::e_align_horizontal_center)
       {
 
-         offsetx = -size.cx() / 2.0;
+         offsetx = -size.cx / 2.0;
 
       }
 
       if (m_pstate->m_ealignText & ::e_align_bottom)
       {
 
-         offsety = -size.cy();
+         offsety = -size.cy;
 
       }
       else if (m_pstate->m_ealignText & ::e_align_vertical_center)
       {
 
-         offsety = -size.cy() / 2.0;
+         offsety = -size.cy / 2.0;
 
       }
 
@@ -814,26 +814,26 @@ pstate->m_ppen->m_color = color;
       if (m_pstate->m_ealignText & ::e_align_right)
       {
 
-         offsetx = -size.cx();
+         offsetx = -size.cx;
 
       }
       else if (m_pstate->m_ealignText & ::e_align_horizontal_center)
       {
 
-         offsetx = -size.cx() / 2.0;
+         offsetx = -size.cx / 2.0;
 
       }
 
       if (m_pstate->m_ealignText & ::e_align_bottom)
       {
 
-         offsety = -size.cy();
+         offsety = -size.cy;
 
       }
       else if (m_pstate->m_ealignText & ::e_align_vertical_center)
       {
 
-         offsety = -size.cy() / 2.0;
+         offsety = -size.cy / 2.0;
 
       }
 
@@ -901,7 +901,7 @@ pstate->m_ppen->m_color = color;
 
       //   auto tm = m_pgraphics->get_text_metrics();
 
-      //   size.cy() = tm.m_dAscent;
+      //   size.cy = tm.m_dAscent;
 
       //}
 
@@ -912,26 +912,26 @@ pstate->m_ppen->m_color = color;
       if (m_pstate->m_ealignText & ::e_align_right)
       {
 
-         offsetx = -size.cx();
+         offsetx = -size.cx;
 
       }
       else if (m_pstate->m_ealignText & ::e_align_horizontal_center)
       {
 
-         offsetx = -size.cx() / 2.0;
+         offsetx = -size.cx / 2.0;
 
       }
 
       if (m_pstate->m_ealignText & ::e_align_bottom)
       {
 
-         offsety = -size.cy();
+         offsety = -size.cy;
 
       }
       else if (m_pstate->m_ealignText & ::e_align_vertical_center)
       {
 
-         offsety = -size.cy() / 2.0;
+         offsety = -size.cy / 2.0;
 
       }
 
@@ -944,7 +944,7 @@ pstate->m_ppen->m_color = color;
          
       }
 
-      return (float) (x + offsetx + size.cx());
+      return (float) (x + offsetx + size.cx);
 
    }
 

@@ -379,7 +379,7 @@ void image32_t::copy(int cx, int cy, int iStrideDst, const ::image32_t * pimage3
 //void image32_t::copy(const ::int_size & size, int iStrideDst, const ::image32_t * pimage32Src, int iStrideSrc)
 //{
 //
-//   copy(size.cx(), size.cy(), iStrideDst, pimage32Src, iStrideSrc);
+//   copy(size.cx, size.cy, iStrideDst, pimage32Src, iStrideSrc);
 //
 //}
 

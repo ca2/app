@@ -924,20 +924,20 @@
 //
 //inline void __exchange(::binary_stream & s, ::int_size & size)
 //{
-//   s.exchange("cx", size.cx()); s.exchange("cy", size.cy());
+//   s.exchange("cx", size.cx); s.exchange("cy", size.cy);
 //}
 //
 //
 ////
 ////inline void __exchange(::binary_stream & s, SIZEL & size)
 ////{
-////   s.exchange("cx", size.cx()); s.exchange("cy", size.cy());
+////   s.exchange("cx", size.cx); s.exchange("cy", size.cy);
 ////}
 ////
 ////inline void __exchange(::binary_stream & s, ::float_size & size)
 //{
 //
-//   s.exchange("cx", size.cx()); s.exchange("cy", size.cy());
+//   s.exchange("cx", size.cx); s.exchange("cy", size.cy);
 //
 //}
 //
@@ -945,7 +945,7 @@
 //
 //inline void __exchange(::binary_stream & s, ::double_size & size)
 //{
-//   s.exchange("cx", size.cx()); s.exchange("cy", size.cy());
+//   s.exchange("cx", size.cx); s.exchange("cy", size.cy);
 //}
 //
 //inline void __exchange(::binary_stream & s, ::int_point & point)

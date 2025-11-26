@@ -160,9 +160,9 @@
 // //
 // ////      EGLint pbufferAttribs[5];
 // ////      pbufferAttribs[0] = EGL_WIDTH;
-// ////      pbufferAttribs[1] = size.cx();
+// ////      pbufferAttribs[1] = size.cx;
 // ////      pbufferAttribs[2] = EGL_HEIGHT;
-// ////      pbufferAttribs[3] = size.cy();
+// ////      pbufferAttribs[3] = size.cy;
 // ////      pbufferAttribs[4] = EGL_NONE;
 // ////
 // ////      // Step 6 - Create a surface to draw to.
@@ -305,9 +305,9 @@
 // //
 // //      EGLint pbufferAttribs[5];
 // //      pbufferAttribs[0] = EGL_WIDTH;
-// //      pbufferAttribs[1] = size.cx();
+// //      pbufferAttribs[1] = size.cx;
 // //      pbufferAttribs[2] = EGL_HEIGHT;
-// //      pbufferAttribs[3] = size.cy();
+// //      pbufferAttribs[3] = size.cy;
 // //      pbufferAttribs[4] = EGL_NONE;
 // //
 // //      // Step 6 - Create a surface to draw to.
@@ -449,9 +449,9 @@
 //
 //       EGLint pbufferAttribs[5];
 //       pbufferAttribs[0] = EGL_WIDTH;
-//       pbufferAttribs[1] = size.cx();
+//       pbufferAttribs[1] = size.cx;
 //       pbufferAttribs[2] = EGL_HEIGHT;
-//       pbufferAttribs[3] = size.cy();
+//       pbufferAttribs[3] = size.cy;
 //       pbufferAttribs[4] = EGL_NONE;
 //
 //       // Step 6 - Create a surface to draw to.
@@ -531,9 +531,9 @@
 //
 //       EGLint pbufferAttribs[5];
 //       pbufferAttribs[0] = EGL_WIDTH;
-//       pbufferAttribs[1] = size.cx();
+//       pbufferAttribs[1] = size.cx;
 //       pbufferAttribs[2] = EGL_HEIGHT;
-//       pbufferAttribs[3] = size.cy();
+//       pbufferAttribs[3] = size.cy;
 //       pbufferAttribs[4] = EGL_NONE;
 //
 //       // Step 6 - Create a surface to draw to.
@@ -668,8 +668,8 @@
 //
 //       // Blit from source to destination
 //       glBlitFramebuffer(
-//          0, 0, sizeSrc.cx(), sizeSrc.cy(),
-//          0, 0, sizeDst.cx(), sizeDst.cy(),
+//          0, 0, sizeSrc.cx, sizeSrc.cy,
+//          0, 0, sizeDst.cx, sizeDst.cy,
 //          GL_COLOR_BUFFER_BIT, GL_NEAREST
 //       );
 //       GLCheckError("");

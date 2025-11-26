@@ -147,8 +147,8 @@ namespace nanoui
       {
 
          pcontext->begin_path();
-         pcontext->rounded_rectangle(m_pos.x + 0.5f, m_pos.y + 0.5f, m_size.cx() - 1.f,
-            m_size.cy() - 1.f, 2.5f);
+         pcontext->rounded_rectangle(m_pos.x + 0.5f, m_pos.y + 0.5f, m_size.cx - 1.f,
+            m_size.cy - 1.f, 2.5f);
          pcontext->close_path();
          pcontext->fill_color(m_colorDeepBackground);
          pcontext->fill();
@@ -157,18 +157,18 @@ namespace nanoui
 
 
       ::nano2d::paint bg = pcontext->box_gradient(
-         m_pos.x + 1.f, m_pos.y + 1.f + 1.0f, m_size.cx() - 2.f, m_size.cy() - 2.f,
+         m_pos.x + 1.f, m_pos.y + 1.f + 1.0f, m_size.cx - 2.f, m_size.cy - 2.f,
          3.f, 4.f, ::color::color(255, 32), m_colorBackground);
       ::nano2d::paint fg1 = pcontext->box_gradient(
-         m_pos.x + 1.f, m_pos.y + 1.f + 1.0f, m_size.cx() - 2.f, m_size.cy() - 2.f,
+         m_pos.x + 1.f, m_pos.y + 1.f + 1.0f, m_size.cx - 2.f, m_size.cy - 2.f,
          3.f, 4.f, ::color::color(150, 32), m_colorBackground);
       ::nano2d::paint fg2 = pcontext->box_gradient(
-         m_pos.x + 1.f, m_pos.y + 1.f + 1.0f, m_size.cx() - 2.f, m_size.cy() - 2.f,
+         m_pos.x + 1.f, m_pos.y + 1.f + 1.0f, m_size.cx - 2.f, m_size.cy - 2.f,
          3.f, 4.f, ::rgba(255, 0, 0, 100), m_colorBackground);
 
       pcontext->begin_path();
-      pcontext->rounded_rectangle(m_pos.x + 1.f, m_pos.y + 1.f + 1.0f, m_size.cx() - 2.f,
-         m_size.cy() - 2.f, 3);
+      pcontext->rounded_rectangle(m_pos.x + 1.f, m_pos.y + 1.f + 1.0f, m_size.cx - 2.f,
+         m_size.cy - 2.f, 3);
 
       if (m_bEditable && focused())
          m_bValidFormat ? pcontext->fill_paint(fg1) : pcontext->fill_paint(fg2);
@@ -180,16 +180,16 @@ namespace nanoui
       pcontext->fill();
 
       pcontext->begin_path();
-      pcontext->rounded_rectangle(m_pos.x + 0.5f, m_pos.y + 0.5f, m_size.cx() - 1.f,
-         m_size.cy() - 1.f, 2.5f);
+      pcontext->rounded_rectangle(m_pos.x + 0.5f, m_pos.y + 0.5f, m_size.cx - 1.f,
+         m_size.cy - 1.f, 2.5f);
       pcontext->stroke_color(::color::color(0, 48));
       pcontext->stroke();
 
       pcontext->font_size(font_size());
       pcontext->font_face("sans");
-      float_point draw_pos((float)m_pos.x, (float)(m_pos.y + m_size.cy() * 0.5f + 1.f));
+      float_point draw_pos((float)m_pos.x, (float)(m_pos.y + m_size.cy * 0.5f + 1.f));
 
-      float x_spacing = m_size.cy() * 0.3f;
+      float x_spacing = m_size.cy * 0.3f;
 
       float unit_width = 0;
 
@@ -198,14 +198,14 @@ namespace nanoui
 
          int pwidgetChild, h;
          pcontext->image_size(m_iUnitImage, &pwidgetChild, &h);
-         float unit_height = m_size.cy() * 0.4f;
+         float unit_height = m_size.cy * 0.4f;
          unit_width = pwidgetChild * unit_height / h;
          ::nano2d::paint img_paint = pcontext->image_pattern_from_index(
-            m_pos.x + m_size.cx() - x_spacing - unit_width,
+            m_pos.x + m_size.cx - x_spacing - unit_width,
             draw_pos.y - unit_height * 0.5f, unit_width, unit_height, 0,
             m_bEnabled ? 0.7f : 0.35f, m_iUnitImage);
          pcontext->begin_path();
-         pcontext->rectangle(m_pos.x + m_size.cx() - x_spacing - unit_width,
+         pcontext->rectangle(m_pos.x + m_size.cx - x_spacing - unit_width,
             draw_pos.y - unit_height * 0.5f, unit_width, unit_height);
          pcontext->fill_paint(img_paint);
          pcontext->fill();
@@ -217,7 +217,7 @@ namespace nanoui
          unit_width = pcontext->text_bounds(0, 0, m_strUnit, nullptr);
          pcontext->fill_color(::color::color(255, m_bEnabled ? 64 : 32));
          pcontext->text_align(::nano2d::e_align_right | ::nano2d::e_align_middle);
-         pcontext->text(m_pos.x + m_size.cx() - x_spacing, (float)draw_pos.y, m_strUnit);
+         pcontext->text(m_pos.x + m_size.cx - x_spacing, (float)draw_pos.y, m_strUnit);
          unit_width += 2;
 
       }
@@ -242,7 +242,7 @@ namespace nanoui
             pcontext->text_align(::nano2d::e_align_left | ::nano2d::e_align_middle);
 
             float_point icon_pos(m_pos.x + 4.f,
-               m_pos.y + m_size.cy() / 2.f - x_spacing / 2.f);
+               m_pos.y + m_size.cy / 2.f - x_spacing / 2.f);
 
             pcontext->text(icon_pos.x, icon_pos.y, icon.data());
 
@@ -255,7 +255,7 @@ namespace nanoui
             pcontext->text_align(::nano2d::e_align_left | ::nano2d::e_align_middle);
 
             float_point icon_pos(m_pos.x + 4.f,
-               m_pos.y + m_size.cy() / 2.f + x_spacing / 2.f + 1.5f);
+               m_pos.y + m_size.cy / 2.f + x_spacing / 2.f + 1.5f);
 
             pcontext->text(icon_pos.x, icon_pos.y, icon.data());
 
@@ -272,11 +272,11 @@ namespace nanoui
          break;
       case e_alignment_right:
          pcontext->text_align(::nano2d::e_align_right | ::nano2d::e_align_middle);
-         draw_pos.x += (int)(m_size.cx() - unit_width - x_spacing);
+         draw_pos.x += (int)(m_size.cx - unit_width - x_spacing);
          break;
       case e_alignment_center:
          pcontext->text_align(::nano2d::e_align_center | ::nano2d::e_align_middle);
-         draw_pos.x += (int)(m_size.cx() * 0.5f);
+         draw_pos.x += (int)(m_size.cx * 0.5f);
          break;
       }
 
@@ -288,8 +288,8 @@ namespace nanoui
       // clip visible text area
       float clip_x = m_pos.x + x_spacing + spin_arrows_width - 1.0f;
       float clip_y = m_pos.y + 1.0f;
-      float clip_width = m_size.cx() - unit_width - spin_arrows_width - 2 * x_spacing + 2.0f;
-      float clip_height = m_size.cy() - 3.0f;
+      float clip_width = m_size.cx - unit_width - spin_arrows_width - 2 * x_spacing + 2.0f;
+      float clip_height = m_size.cy - 3.0f;
 
 
       {
@@ -1306,10 +1306,10 @@ namespace nanoui
    {
 
       if (0 <= pos.x && pos.x < 14.f) { /* on scrolling arrows */
-         if (m_size.cy() >= pos.y && pos.y <= m_size.cy() / 2.f) { /* top part */
+         if (m_size.cy >= pos.y && pos.y <= m_size.cy / 2.f) { /* top part */
             return SpinArea::Top;
          }
-         else if (0.f <= pos.y && pos.y > m_size.cy() / 2.f) { /* bottom part */
+         else if (0.f <= pos.y && pos.y > m_size.cy / 2.f) { /* bottom part */
             return SpinArea::Bottom;
          }
       }

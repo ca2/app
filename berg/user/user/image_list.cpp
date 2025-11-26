@@ -29,8 +29,8 @@ namespace user
 
       m_iTextHeight = 30;
       m_bMultiSel = true;
-      m_size.cx() = 128;
-      m_size.cy() = 128;
+      m_size.cx = 128;
+      m_size.cy = 128;
 
       m_iMargin = 10;
 
@@ -233,9 +233,9 @@ namespace user
 
    //      int cx = rectangleX.width();
 
-   //      int w = m_size.cx();
+   //      int w = m_size.cx;
 
-   //      int h = m_size.cy();
+   //      int h = m_size.cy;
 
    //      int iColCount = (cx - xpad) / (w + xpad);
 
@@ -340,7 +340,7 @@ namespace user
 
    //      }
 
-   //      item.m_rectangle.top += m_size.cy();
+   //      item.m_rectangle.top += m_size.cy;
 
    //      return true;
 
@@ -751,12 +751,12 @@ namespace user
 
          auto puseritem = user_item(pitem);
 
-         if (x > left && x + m_size.cx() + m_iMargin >= rectangleX.width())
+         if (x > left && x + m_size.cx + m_iMargin >= rectangleX.width())
          {
 
             x = left;
 
-            y += m_size.cy() + m_iMargin;
+            y += m_size.cy + m_iMargin;
 
             if (m_bLabel)
             {
@@ -768,9 +768,9 @@ namespace user
          }
 
          puseritem->m_rectangle2.left = x;
-         puseritem->m_rectangle2.right = x + m_size.cx();
+         puseritem->m_rectangle2.right = x + m_size.cx;
          puseritem->m_rectangle2.top = y;
-         puseritem->m_rectangle2.bottom = y + m_size.cy();
+         puseritem->m_rectangle2.bottom = y + m_size.cy;
 
          if (m_bLabel)
          {
@@ -790,7 +790,7 @@ namespace user
 
       //   m_sizeImage = sizeImage;
 
-      //   //m_iWheelDeltaScroll = (short) (sizeImage.cy() / 3);
+      //   //m_iWheelDeltaScroll = (short) (sizeImage.cy / 3);
 
       //   m_pimageaThumb->m_imagea.erase_all();
 

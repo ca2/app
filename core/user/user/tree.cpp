@@ -103,8 +103,8 @@ namespace user
       m_happeningOpen.m_eflagElement += e_flag_alertable_wait;
       m_happeningExpand.m_eflagElement += e_flag_alertable_wait;
 
-      m_sizeItemMaximum.cx() = 16;
-      m_sizeItemMaximum.cy() = 16;
+      m_sizeItemMaximum.cx = 16;
+      m_sizeItemMaximum.cy = 16;
 
    }
 
@@ -1125,7 +1125,7 @@ namespace user
          if (m_pimagelist != nullptr)
          {
 
-            iHDiff = (int)(drawitem.m_rectangle.height() - m_pimagelist->m_size.cy());
+            iHDiff = (int)(drawitem.m_rectangle.height() - m_pimagelist->m_size.cy);
 
          }
 
@@ -1828,7 +1828,7 @@ namespace user
 
          double_size s = pgraphics->get_text_extent(strText);
 
-         iWidth = (int)(48 + s.cx() + iIndent * (iLevel + 1));
+         iWidth = (int)(48 + s.cx + iIndent * (iLevel + 1));
 
          if (iWidth > iMaxWidth)
          {

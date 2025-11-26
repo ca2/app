@@ -584,7 +584,7 @@ namespace user
    void menu::set_minimum_width(int iWidth)
    {
 
-      m_sizeMinimum.cx() = iWidth;
+      m_sizeMinimum.cx = iWidth;
 
    }
 
@@ -874,11 +874,11 @@ namespace user
    //      m_pitemClose->m_puserinteraction->on_calc_size(&calcsize);
 
    //      m_pitemClose->m_rectangleUi.left = x;
-   //      m_pitemClose->m_rectangleUi.right = x + calcsize.m_size.cx();
+   //      m_pitemClose->m_rectangleUi.right = x + calcsize.m_size.cx;
    //      m_pitemClose->m_rectangleUi.top = y;
-   //      m_pitemClose->m_rectangleUi.bottom = y + calcsize.m_size.cy();
+   //      m_pitemClose->m_rectangleUi.bottom = y + calcsize.m_size.cy;
 
-   //      y += calcsize.m_size.cy();
+   //      y += calcsize.m_size.cy;
 
    //   }
 
@@ -888,7 +888,7 @@ namespace user
 
    //   m_iaColumnHeight.set_size(1);
 
-   //   m_iaColumnWidth[0] = calcsize.m_size.cx();
+   //   m_iaColumnWidth[0] = calcsize.m_size.cx;
 
    //   m_iaColumnHeight[0] = yClose;
 
@@ -904,18 +904,18 @@ namespace user
    //      pmenuitema->element_at(i)->m_puserinteraction->on_calc_size(&calcsize);
 
    //      pmenuitema->element_at(i)->m_rectangleUi.left = x;
-   //      pmenuitema->element_at(i)->m_rectangleUi.right = x + calcsize.m_size.cx();
+   //      pmenuitema->element_at(i)->m_rectangleUi.right = x + calcsize.m_size.cx;
    //      pmenuitema->element_at(i)->m_rectangleUi.top = y;
-   //      pmenuitema->element_at(i)->m_rectangleUi.bottom = y + calcsize.m_size.cy();
+   //      pmenuitema->element_at(i)->m_rectangleUi.bottom = y + calcsize.m_size.cy;
 
-   //      y += calcsize.m_size.cy();
+   //      y += calcsize.m_size.cy;
 
    //      m_iaColumnHeight[0] = y;
 
-   //      if (calcsize.m_size.cx() > m_iaColumnWidth[0])
+   //      if (calcsize.m_size.cx > m_iaColumnWidth[0])
    //      {
 
-   //         m_iaColumnWidth[0] = calcsize.m_size.cx();
+   //         m_iaColumnWidth[0] = calcsize.m_size.cx;
 
    //      }
 
@@ -936,20 +936,20 @@ namespace user
 
    //   }
 
-   //   m_size.cx() = (int) (m_iaColumnWidth.get_sum()
+   //   m_size.cx = (int) (m_iaColumnWidth.get_sum()
    //               + rectangleMargin.left + rectangleMargin.right
    //               + rectangleBorder.left + rectangleBorder.right
    //               + rectanglePadding.left + rectanglePadding.right);
 
-   //   m_size.cy() = (int) (m_iaColumnHeight.get_maximum_value()
+   //   m_size.cy = (int) (m_iaColumnHeight.get_maximum_value()
    //               + rectangleMargin.top + rectangleMargin.bottom
    //               + rectangleBorder.top + rectangleBorder.bottom
    //               + rectanglePadding.top + rectanglePadding.bottom);
 
 
-   //   m_size.cx() = maximum(m_sizeMinimum.cx(), m_size.cx());
+   //   m_size.cx = maximum(m_sizeMinimum.cx, m_size.cx);
 
-   //   m_size.cy() = maximum(m_sizeMinimum.cy(), m_size.cy());
+   //   m_size.cy = maximum(m_sizeMinimum.cy, m_size.cy);
 
    //   ::collection::count iItemCount = pmenuitema->get_size();
 
@@ -964,7 +964,7 @@ namespace user
 
    //      pbergstyle->prepare_menu(pgraphics, pitem);
 
-   //      pitem->m_rectangleUi.right = maximum(pitem->m_rectangleUi.right, pitem->m_rectangleUi.left + m_sizeMinimum.cx());
+   //      pitem->m_rectangleUi.right = maximum(pitem->m_rectangleUi.right, pitem->m_rectangleUi.left + m_sizeMinimum.cx);
 
    //      pitem->m_puserinteraction->place(pitem->m_rectangleUi);
 
@@ -987,8 +987,8 @@ namespace user
 
    //   rectangleWindow.left = point.x;
    //   rectangleWindow.top = point.y;
-   //   rectangleWindow.right = rectangleWindow.left + m_size.cx();
-   //   rectangleWindow.bottom = rectangleWindow.top + m_size.cy();
+   //   rectangleWindow.right = rectangleWindow.left + m_size.cx;
+   //   rectangleWindow.bottom = rectangleWindow.top + m_size.cy;
 
    //   ::int_rectangle rectangleMonitor;
 
@@ -1814,9 +1814,9 @@ namespace user
 
       //   prectangle->top = m_pointTrack.y;
 
-      //   prectangle->right = prectangle->left + maximum(::user::interaction::get_window_minimum_size().cx(), m_size.cx());
+      //   prectangle->right = prectangle->left + maximum(::user::interaction::get_window_minimum_size().cx, m_size.cx);
 
-      //   prectangle->bottom = prectangle->left + maximum(::user::interaction::get_window_minimum_size().cy(), m_size.cy());
+      //   prectangle->bottom = prectangle->left + maximum(::user::interaction::get_window_minimum_size().cy, m_size.cy);
 
       //   pusermessage->m_bRet = true;
       //   pusermessage->set_lresult(0);
@@ -2249,11 +2249,11 @@ namespace user
          information() << "close_button size : " << size;
 
          m_pitemClose->m_rectangleUi.left = x;
-         m_pitemClose->m_rectangleUi.right = x + size.cx();
+         m_pitemClose->m_rectangleUi.right = x + size.cx;
          m_pitemClose->m_rectangleUi.top = y;
-         m_pitemClose->m_rectangleUi.bottom = y + size.cy();
+         m_pitemClose->m_rectangleUi.bottom = y + size.cy;
 
-         y += size.cy();
+         y += size.cy;
 
       }
 
@@ -2263,7 +2263,7 @@ namespace user
 
       m_iaColumnHeight.set_size(1);
 
-      m_iaColumnWidth[0] = size.cx();
+      m_iaColumnWidth[0] = size.cx;
 
       m_iaColumnHeight[0] = yClose;
 
@@ -2302,7 +2302,7 @@ namespace user
             pmenuitem->m_rectangleUi.top = 0;
             pmenuitem->m_rectangleUi.set_size(size);
 
-            iMaximumButtonHeight = maximum(iMaximumButtonHeight, size.cy());
+            iMaximumButtonHeight = maximum(iMaximumButtonHeight, size.cy);
 
          }
 
@@ -2326,7 +2326,7 @@ namespace user
 
             pmenuitem->m_rectangleUi.set_height(iSeparatorHeight);
 
-            size.cy() = iSeparatorHeight;
+            size.cy = iSeparatorHeight;
 
          }
 
@@ -2334,12 +2334,12 @@ namespace user
 
          pmenuitem->m_iRow = iRow;
 
-         y += size.cy();
+         y += size.cy;
 
-         if (size.cx() > m_iaColumnWidth[iColumn])
+         if (size.cx > m_iaColumnWidth[iColumn])
          {
 
-            m_iaColumnWidth[iColumn] = size.cx();
+            m_iaColumnWidth[iColumn] = size.cx;
 
          }
 
@@ -2403,9 +2403,9 @@ namespace user
       //      if (sizeSeparator.is_empty())
       //      {
 
-      //         sizeSeparator.cx() = 
+      //         sizeSeparator.cx = 
 
-      //         sizeSeparator.cy() = size.cy() / 2;
+      //         sizeSeparator.cy = size.cy / 2;
 
       //      }
 
@@ -2417,18 +2417,18 @@ namespace user
       //   }
 
       //   pmenuitema->element_at(i)->m_rectangleUi.left = x;
-      //   pmenuitema->element_at(i)->m_rectangleUi.right = x + size.cx();
+      //   pmenuitema->element_at(i)->m_rectangleUi.right = x + size.cx;
       //   pmenuitema->element_at(i)->m_rectangleUi.top = y;
-      //   pmenuitema->element_at(i)->m_rectangleUi.bottom = y + size.cy();
+      //   pmenuitema->element_at(i)->m_rectangleUi.bottom = y + size.cy;
 
-      //   y += size.cy();
+      //   y += size.cy;
 
       //   m_iaColumnHeight[iColumn] = y;
 
-      //   if (size.cx() > m_iaColumnWidth[iColumn])
+      //   if (size.cx > m_iaColumnWidth[iColumn])
       //   {
 
-      //      m_iaColumnWidth[iColumn] = size.cx();
+      //      m_iaColumnWidth[iColumn] = size.cx;
 
       //   }
 
@@ -2451,19 +2451,19 @@ namespace user
 
       //}
 
-      m_size.cx() = (int)(m_iaColumnWidth.get_sum()
+      m_size.cx = (int)(m_iaColumnWidth.get_sum()
          + rectangleMargin.left + rectangleMargin.right
          + rectangleBorder.left + rectangleBorder.right
          + rectanglePadding.left + rectanglePadding.right);
 
-      m_size.cy() = (int)(m_iaColumnHeight.get_maximum_value()
+      m_size.cy = (int)(m_iaColumnHeight.get_maximum_value()
          + rectangleMargin.top + rectangleMargin.bottom
          + rectangleBorder.top + rectangleBorder.bottom
          + rectanglePadding.top + rectanglePadding.bottom);
 
-      m_size.cx() = maximum(m_sizeMinimum.cx(), m_size.cx());
+      m_size.cx = maximum(m_sizeMinimum.cx, m_size.cx);
 
-      m_size.cy() = maximum(m_sizeMinimum.cy(), m_size.cy());
+      m_size.cy = maximum(m_sizeMinimum.cy, m_size.cy);
 
       ::collection::count iItemCount = pmenuitema->get_size();
 
@@ -2486,7 +2486,7 @@ namespace user
 
          pbergstyle->prepare_menu(pgraphics, pitem);
 
-         //pitem->m_rectangleUi.right = maximum(pitem->m_rectangleUi.right, pitem->m_rectangleUi.left + m_sizeMinimum.cx());
+         //pitem->m_rectangleUi.right = maximum(pitem->m_rectangleUi.right, pitem->m_rectangleUi.left + m_sizeMinimum.cx);
 
          pitem->m_puserinteraction->place(pitem->m_rectangleUi);
 
@@ -2572,7 +2572,7 @@ namespace user
             if (bUp)
             {
 
-               rectangleWindow.top = rectangleScreenHint.top - 32 - m_size.cy();
+               rectangleWindow.top = rectangleScreenHint.top - 32 - m_size.cy;
 
             }
             else
@@ -2587,14 +2587,14 @@ namespace user
             if (bLeft)
             {
 
-               rectangleWindow.left -= m_size.cx();
+               rectangleWindow.left -= m_size.cx;
 
             }
 
          }
 
-         rectangleWindow.right = rectangleWindow.left + m_size.cx();
-         rectangleWindow.bottom = rectangleWindow.top + m_size.cy();
+         rectangleWindow.right = rectangleWindow.left + m_size.cx;
+         rectangleWindow.bottom = rectangleWindow.top + m_size.cy;
 
          iMonitor = get_best_monitor(&rectangleMonitor, rectangleWindow);
 

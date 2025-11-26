@@ -18,7 +18,7 @@
 double_point arc_point(double dAngle, double_size sizeRadius)
 {
 
-   double ab = sizeRadius.cx() * sizeRadius.cy();
+   double ab = sizeRadius.cx * sizeRadius.cy;
 
    double_point p;
 
@@ -26,9 +26,9 @@ double_point arc_point(double dAngle, double_size sizeRadius)
 
    double sinAngle = sin(dAngle);
 
-   double m = cosAngle * sizeRadius.cy();
+   double m = cosAngle * sizeRadius.cy;
 
-   double n = sinAngle * sizeRadius.cx();
+   double n = sinAngle * sizeRadius.cx;
 
    double q = sqrt(m * m + n * n);
 
@@ -327,8 +327,8 @@ namespace draw2d
 //      double b = point.y - arc.m_pointCenter.y / sin(t);
 //      double a = sqrt((b*b*x*x) / (y*y - b *b));
 //
-//      arc.m_sizeRadius.cx() = a;
-//      arc.m_sizeRadius.cy() = b;
+//      arc.m_sizeRadius.cx = a;
+//      arc.m_sizeRadius.cy = b;
 //      arc.m_pointCenter.x = point.x - a * cos(t);
 //      arc.m_angleBeg = t;
 //      arc.m_angleExt = -90_degrees;
@@ -386,8 +386,8 @@ namespace draw2d
 //      double y = 0;
 //      b = sqrt((a*a*y*y) / (a*a-x *x));
 //
-//      arc.m_sizeRadius.cx() = a;
-//      arc.m_sizeRadius.cy() = b;
+//      arc.m_sizeRadius.cx = a;
+//      arc.m_sizeRadius.cy = b;
 //      arc.m_pointCenter.y = point.y - b * sin(t);
 //      arc.m_angleBeg = t;
 //      arc.m_angleEnd2 = fmod(180_degrees - arc.m_angleBeg, 360_degrees);

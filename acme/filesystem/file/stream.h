@@ -940,8 +940,8 @@ void stream_exchange(S & s, T & t)
 //inline binary_stream & operator << (binary_stream & s, const size_type < BASE_TYPE, POINT_BASE_TYPE, RECTANGLE_BASE_TYPE > & size)
 //{
 //
-//   s << size.cx();
-//   s << size.cy();
+//   s << size.cx;
+//   s << size.cy;
 //
 //   return s;
 //
@@ -952,8 +952,8 @@ void stream_exchange(S & s, T & t)
 //template < typename BASE_TYPE, typename POINT_BASE_TYPE, typename RECTANGLE_BASE_TYPE >
 //inline binary_stream & operator >> (binary_stream & s, size_type < BASE_TYPE, POINT_BASE_TYPE, RECTANGLE_BASE_TYPE > & size)
 //{
-//   s >> size.cx();
-//   s >> size.cy();
+//   s >> size.cx;
+//   s >> size.cy;
 //   return s;
 //}
 //

@@ -98,12 +98,12 @@
 //
 //   inline void ::float_rectangle::set_cxy(::float_size sz)
 //   {
-//      set_cxy((float) sz.cx(), (float) sz.cy());
+//      set_cxy((float) sz.cx, (float) sz.cy);
 //   }
 //
 //   inline void ::float_rectangle::set_cxy(::float_size sz)
 //   {
-//      set_cxy(sz.cx(), sz.cy());
+//      set_cxy(sz.cx, sz.cy);
 //   }
 //
 //   inline void ::float_rectangle::offset_x(float x)

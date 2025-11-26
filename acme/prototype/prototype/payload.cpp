@@ -786,7 +786,7 @@ class ::payload & payload::operator ++(int)
 //}
 
 
-//bool payload::get_type(::type & typeatom) const
+//bool payload::get_type(::type & type) const
 //{
 //
 //   if (m_etype != e_type_type)
@@ -796,7 +796,7 @@ class ::payload & payload::operator ++(int)
 //
 //   }
 //
-//   typeatom = m_type;
+//   type = m_type;
 //
 //   return true;
 //

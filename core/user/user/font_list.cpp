@@ -777,10 +777,10 @@ namespace user
 
             auto y = pfontlistitem->m_box[0].m_rectangle.top - rectangle.height() / 2;
 
-            if (y > get_total_size().cy() - rectangle.height())
+            if (y > get_total_size().cy - rectangle.height())
             {
 
-               y = (decltype(y)) (get_total_size().cy() - rectangle.height());
+               y = (decltype(y)) (get_total_size().cy - rectangle.height());
 
             }
             else if (y < 0)

@@ -578,7 +578,7 @@ namespace experience
 
          rectangle.right = rectangle.left - rectangleMargin.right;
 
-         rectangle.left = rectangle.right - sizeButton.cx();
+         rectangle.left = rectangle.right - sizeButton.cx;
 
          if (rectangle.left > 400)
          {
@@ -592,7 +592,7 @@ namespace experience
 
             rectangle.top = rectangleMargin.top;
 
-            rectangle.bottom = rectangle.top + sizeButton.cy();
+            rectangle.bottom = rectangle.top + sizeButton.cy;
 
             pbutton->order(e_zorder_top);
 

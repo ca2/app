@@ -72,7 +72,7 @@ struct CLASS_DECL_ACME image32_t
    void vertical_swap_copy( int cx, int cy, int iStrideDst, const ::image32_t * pimage32Src, int iStrideSrc);
    inline void vertical_swap_copy(const ::int_size & size, int iStrideDst, const ::image32_t * pimage32Src, int iStrideSrc)
    {
-      vertical_swap_copy(size.cx(), size.cy(), iStrideDst, pimage32Src, iStrideSrc);
+      vertical_swap_copy(size.cx, size.cy, iStrideDst, pimage32Src, iStrideSrc);
    }
    ::image32_t * offset(int x, int y, int iStrideDst)
    {
@@ -86,21 +86,21 @@ struct CLASS_DECL_ACME image32_t
    void copy(int cx, int cy, int iStrideDst, const ::image32_t * pimage32Src, int iStrideSrc);
    inline void copy(const ::int_size & size, int iStrideDst, const ::image32_t * pimage32Src, int iStrideSrc)
    {
-      copy(size.cx(), size.cy(), iStrideDst, pimage32Src, iStrideSrc);
+      copy(size.cx, size.cy, iStrideDst, pimage32Src, iStrideSrc);
    }
 
    //void vertical_swap_copy(int cx, int cy, int iStrideDst, const ::image32_t * pimage32Src, int iStrideSrc = -1);
    void vertical_swap_copy_swap_red_blue(int cx, int cy, int iStrideDst, const ::image32_t * pimage32Src, int iStrideSrc = -1);
    inline void vertical_swap_copy_swap_red_blue(const ::int_size & size, int iStrideDst, const ::image32_t * pimage32Src, int iStrideSrc = -1)
    {
-      vertical_swap_copy_swap_red_blue(size.cx(), size.cy(), iStrideDst, pimage32Src, iStrideSrc);
+      vertical_swap_copy_swap_red_blue(size.cx, size.cy, iStrideDst, pimage32Src, iStrideSrc);
    }
    //void copy(int cx, int cy, int iStrideDst, const ::image32_t * pimage32Src, int iStrideSrc = -1);
    //void copy(int x, int y, int cx, int cy, int iStrideDst, const ::image32_t * pimage32Src, int iStrideSrc = -1);
    //void copy(const int_size & size, int iStrideDst, const ::image32_t * pimage32Src, int iStrideSrc = -1);
    inline void copy(const ::int_point & point, const int_size & size, int iStrideDst, const ::image32_t * pimage32Src, int iStrideSrc = -1)
    {
-      copy(point.x, point.y, size.cx(), size.cy(), iStrideDst, pimage32Src, iStrideSrc);
+      copy(point.x, point.y, size.cx, size.cy, iStrideDst, pimage32Src, iStrideSrc);
    }
    inline void copy(const ::int_rectangle & rectangle, int iStrideDst, const ::image32_t * pimage32Src, int iStrideSrc = -1)
    {

@@ -1038,8 +1038,8 @@ template < primitive_point POINT, primitive_size SIZE >
 void copy(POINT & point, const SIZE & size)
 {
 
-   cast_copy(point.x, size.cx());
-   cast_copy(point.y, size.cy());
+   cast_copy(point.x, size.cx);
+   cast_copy(point.y, size.cy);
 
 }
 
@@ -1048,8 +1048,8 @@ template < primitive_size SIZE_TYPE1, primitive_size SIZE_TYPE2 >
 void copy(SIZE_TYPE1 & size1, const SIZE_TYPE2 & size2)
 {
 
-   cast_copy(size1.cx(), size2.cx());
-   cast_copy(size1.cy(), size2.cy());
+   cast_copy(size1.cx, size2.cx);
+   cast_copy(size1.cy, size2.cy);
 
 }
 

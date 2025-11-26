@@ -64,10 +64,10 @@ public:
    pole_type(X xP, Y yP, Z zP) { this->x = xP; this->y = yP; this->z = zP; }
 
 
-   //const UNIT_TYPE& x() const { return this->x(); }
-   //UNIT_TYPE& x() { return this->x(); }
-   //const UNIT_TYPE& y() const { return this->y(); }
-   //UNIT_TYPE& y() { return this->y(); }
+   //const UNIT_TYPE& x() const { return this->x; }
+   //UNIT_TYPE& x() { return this->x; }
+   //const UNIT_TYPE& y() const { return this->y; }
+   //UNIT_TYPE& y() { return this->y; }
    //const UNIT_TYPE& z() const { return this->c(); }
    //UNIT_TYPE& z() { return this->c(); }
 

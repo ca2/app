@@ -18,7 +18,7 @@ public:
    template < primitive_integral INTEGRAL >
    constexpr lparam(INTEGRAL i) { m_lparam = (iptr)i; }
    template < primitive_size SIZE >
-   constexpr lparam(const SIZE & size):lparam((int)size.cx(), (int) size.cy()) {}
+   constexpr lparam(const SIZE & size):lparam((int)size.cx, (int) size.cy) {}
    template < primitive_point POINT >
    constexpr lparam(const POINT & point);
    lparam(int x, int y) { m_lparam = make_unsigned_int(x, y); }

@@ -26,7 +26,7 @@ public:
 
 
 
-   consteval point_t semantic_t() const { return {}; }
+   consteval point2_t semantic_t() const { return {}; }
 
    //point_type(nullptr_t) : sequence_type < NUMBER, 2 >(nullptr) {}
 
@@ -87,7 +87,7 @@ public:
 //   ///point_type(const ::lparam& lparam) noexcept : point_type(lparam.x, lparam.y) {}
 //   //point_type(const unsigned int u) noexcept : point_type((UNIT_TYPE) u32_x(u), (UNIT_TYPE)u32_y(u)) {}
 //   //point_type(const unsigned long long u) noexcept : point_type((UNIT_TYPE)u64_x(u), (UNIT_TYPE)u64_y(u)) {}
-//   //point_type(const SIZE_TYPE & size) noexcept : point_type(size.cx(), size.cy()) {}
+//   //point_type(const SIZE_TYPE & size) noexcept : point_type(size.cx, size.cy) {}
 //
 //
 ////   template < raw_primitive_point POINT >
@@ -113,8 +113,8 @@ public:
 ////   point_type(const SIZE & size)
 ////   {
 ////
-////      this->x = (UNIT_TYPE) size.cx();
-////      this->y = (UNIT_TYPE) size.cy();
+////      this->x = (UNIT_TYPE) size.cx;
+////      this->y = (UNIT_TYPE) size.cy;
 ////
 ////   }
 //
@@ -135,10 +135,10 @@ public:
 ////   point_type(const CGPoint * ppoint) noexcept : point_type(ppoint->x, ppoint->y){}
 //#endif
    
-   //constexpr const UNIT_TYPE & x() const {return this->x();}
-   //UNIT_TYPE & x() {return this->x();}
-   //constexpr const UNIT_TYPE & y() const {return this->y();}
-   //UNIT_TYPE & y() {return this->y();}
+   //constexpr const UNIT_TYPE & x() const {return this->x;}
+   //UNIT_TYPE & x() {return this->x;}
+   //constexpr const UNIT_TYPE & y() const {return this->y;}
+   //UNIT_TYPE & y() {return this->y;}
 
 //   template < raw_primitive_point RAW_PRIMITIVE_POINT >
 //   inline point_type& operator = (const RAW_PRIMITIVE_POINT& point) { this->x = (UNIT_TYPE)point.x; this->y = (UNIT_TYPE)point.y; return *this; }
@@ -171,7 +171,7 @@ public:
 
    point_type & offset(UNIT_TYPE xOffset, UNIT_TYPE yOffset) noexcept { this->x += xOffset; this->y += yOffset; return *this; }
    point_type & offset(const sequence_type < UNIT_TYPE, 2 > & sequence) noexcept { this->x += sequence.x; this->y += sequence.y; return *this; }
-//   point_type & offset(const SIZE_TYPE& size) noexcept { this->x += size.cx(); this->y += size.cy(); return *this; }
+//   point_type & offset(const SIZE_TYPE& size) noexcept { this->x += size.cx; this->y += size.cy; return *this; }
    point_type & set(UNIT_TYPE x, UNIT_TYPE y) noexcept { this->x = x; this->y = y; return *this; }
 
 
@@ -190,7 +190,7 @@ public:
 //   inline UNIT_TYPE set_normal(enum_orientation eorientation, UNIT_TYPE l) noexcept { return set_orthogonal_dimension(eorientation,l); }
 
    template < primitive_point POINT >
-   double distance(const POINT& point) const { auto s = *this - point; return sqrt((double) (s.cx() * s.cx() + s.cy() * s.cy())); }
+   double distance(const POINT& point) const { auto s = *this - point; return sqrt((double) (s.cx * s.cx + s.cy * s.cy)); }
 
    template < primitive_point POINT >
    point_type mid(const POINT& point) const
@@ -230,10 +230,10 @@ public:
 
    
    template < primitive_size SIZE >
-   inline point_type& operator +=(const SIZE& size) noexcept { this->x = (UNIT_TYPE) (this->x + size.cx()); this->y = (UNIT_TYPE)(this->y + size.cy()); return *this; }
+   inline point_type& operator +=(const SIZE& size) noexcept { this->x = (UNIT_TYPE) (this->x + size.cx); this->y = (UNIT_TYPE)(this->y + size.cy); return *this; }
 
    template < primitive_size SIZE >
-   inline point_type& operator -=(const SIZE& size) noexcept { this->x = (UNIT_TYPE)(this->x - size.cx()); this->y = (UNIT_TYPE)(this->y - size.cy()); return *this; }
+   inline point_type& operator -=(const SIZE& size) noexcept { this->x = (UNIT_TYPE)(this->x - size.cx); this->y = (UNIT_TYPE)(this->y - size.cy); return *this; }
 
    template < primitive_point POINT >
    inline point_type& operator +=(const POINT& point) noexcept { this->x = (UNIT_TYPE)(this->x + point.x); this->y = (UNIT_TYPE)(this->y + point.y); return *this; }

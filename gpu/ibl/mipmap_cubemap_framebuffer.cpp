@@ -114,9 +114,9 @@ namespace gpu
       {
 
          m_ptexture->m_iCurrentMip = iCurrentMip;
-         m_ptexture->m_sizeMip.cx() =
+         m_ptexture->m_sizeMip.cx =
             (int)((double) m_ptexture->m_rectangleTarget.width() * ::pow((double)0.5, (double)iCurrentMip));
-         m_ptexture->m_sizeMip.cy() =
+         m_ptexture->m_sizeMip.cy =
             (int)((double) m_ptexture->m_rectangleTarget.height() * ::pow((double)0.5, (double)iCurrentMip));
 
       }

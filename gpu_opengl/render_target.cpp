@@ -129,9 +129,9 @@ namespace gpu_opengl
       //   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
       //   GLCheckError("");
 
-      //   int w = m_size.cx();
+      //   int w = m_size.cx;
 
-      //   int h = m_size.cy();
+      //   int h = m_size.cy;
       //   // Allocate storage for a 24-bit depth + 8-bit stencil buffer
       //   glTexImage2D(GL_TEXTURE_2D, 0, GL_DEPTH24_STENCIL8, w, h, 0, GL_DEPTH_STENCIL, GL_UNSIGNED_INT_24_8, NULL);
       //   GLCheckError("");

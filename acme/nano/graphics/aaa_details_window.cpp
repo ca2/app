@@ -48,9 +48,9 @@ void details_window::calculate_size()
 
    //operating_system_get_main_screen_size(wScreen, hScreen);
 
-   auto wScreen = sizeScreen.cx();
+   auto wScreen = sizeScreen.cx;
 
-   auto hScreen = sizeScreen.cy();
+   auto hScreen = sizeScreen.cy;
 
    int w = wScreen / 2;
    int h = (w /8) * 5;

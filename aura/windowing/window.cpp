@@ -756,8 +756,8 @@ namespace windowing
 
       //      rectParam.left = m_pusersystem->m_createstruct.x;
       //      rectParam.top = pusersystem->m_createstruct.y;
-      //      rectParam.right = pusersystem->m_createstruct.x + pusersystem->m_createstruct.cx();
-      //      rectParam.bottom = pusersystem->m_createstruct.y + pusersystem->m_createstruct.cy();
+      //      rectParam.right = pusersystem->m_createstruct.x + pusersystem->m_createstruct.cx;
+      //      rectParam.bottom = pusersystem->m_createstruct.y + pusersystem->m_createstruct.cy;
 
       //      copy(rectangle, rectParam);
       //
@@ -817,9 +817,9 @@ namespace windowing
 
       m_pointWindow.y = y;
 
-      m_sizeWindow.cx() = cx;
+      m_sizeWindow.cx = cx;
 
-      m_sizeWindow.cy() = cy;
+      m_sizeWindow.cy = cy;
 
       install_message_routing(user_interaction());
 
@@ -1440,16 +1440,16 @@ namespace windowing
 
       psize->m_eusermessage = ::user::e_message_size;
 
-      psize->m_size.cx() = cx;
+      psize->m_size.cx = cx;
 
-      psize->m_size.cy() = cy;
+      psize->m_size.cy = cy;
 
       message_handler(psize);
 
       // ::int_size s(cx, cy);
       //
       // informationf("::windowing_q6::window::_on_size(%d, %d)", cx, cy);
-      // informationf("::windowing_q6::window::_on_size this->m_sizeWindow (%d, %d)", m_sizeWindow.cx(), m_sizeWindow.cy());
+      // informationf("::windowing_q6::window::_on_size this->m_sizeWindow (%d, %d)", m_sizeWindow.cx, m_sizeWindow.cy);
       //
       // if (m_sizeWindow != s)
       // {
@@ -2622,7 +2622,7 @@ namespace windowing
 
          //information() << "TopRightOffsetFromInitial : " << offset;
 
-         if (offset.cx() != 0 || offset.cy() != 0)
+         if (offset.cx != 0 || offset.cy != 0)
          {
 
             //            information() << "Offset is Not Null";
@@ -2632,8 +2632,8 @@ namespace windowing
          _strict_set_window_position_unlocked(
             pointOutput.x,
             pointOutput.y,
-            sizeOutput.cx(),
-            sizeOutput.cy(),
+            sizeOutput.cx,
+            sizeOutput.cy,
             !bChangedPosition, !bChangedSize);
 
          //stateWindow = stateDesign;
@@ -2773,7 +2773,7 @@ namespace windowing
 
          //information() << "TopRightOffsetFromInitial : " << offset;
 
-         if (offset.cx() != 0 || offset.cy() != 0)
+         if (offset.cx != 0 || offset.cy != 0)
          {
 
             //            information() << "Offset is Not Null";
@@ -2784,8 +2784,8 @@ namespace windowing
             zOutput,
             pointDesign.x,
             pointDesign.y,
-            sizeOutput.cx(),
-            sizeOutput.cy(),
+            sizeOutput.cx,
+            sizeOutput.cy,
             activationOutput,
             !bZ, !bMove, !bSize,
             edisplayOutput);
@@ -4182,9 +4182,9 @@ namespace windowing
 
       m_pointWindow.y = y;
 
-      m_sizeWindow.cx() = cx;
+      m_sizeWindow.cx = cx;
 
-      m_sizeWindow.cy() = cy;
+      m_sizeWindow.cy = cy;
 
       _create_window();
 
@@ -4519,8 +4519,8 @@ namespace windowing
    //       //user_interaction()->place(int_rectangle_dimension(
    //       //                      pusersystem->m_createstruct.x,
    //       //                      pusersystem->m_createstruct.y,
-   //       //                      pusersystem->m_createstruct.cx(),
-   //       //                      pusersystem->m_createstruct.cy()));
+   //       //                      pusersystem->m_createstruct.cx,
+   //       //                      pusersystem->m_createstruct.cy));
    //
    //       //auto psynca = øallocate synchronization_array();
    //
@@ -4748,9 +4748,9 @@ namespace windowing
    //
    //       //   send_message(::user::e_message_create, 0, (lparam)&pusersystem);
    //
-   //       //   //user_interaction()->set_dim(pusersystem->m_createstruct.x, pusersystem->m_createstruct.cy(), pusersystem->m_createstruct.cx(), pusersystem->m_createstruct.cy());
+   //       //   //user_interaction()->set_dim(pusersystem->m_createstruct.x, pusersystem->m_createstruct.cy, pusersystem->m_createstruct.cx, pusersystem->m_createstruct.cy);
    //
-   //       //   send_message(::user::e_message_size, 0, MAKELPARAM(pusersystem->m_createstruct.cx(), pusersystem->m_createstruct.cy()));
+   //       //   send_message(::user::e_message_size, 0, MAKELPARAM(pusersystem->m_createstruct.cx, pusersystem->m_createstruct.cy));
    //
    //       //   user_interaction()->increment_reference_count(REFERENCING_DEBUGGING_THIS_FUNCTION_FILE_LINE);
    //
@@ -4819,8 +4819,8 @@ namespace windowing
 //      //pusersystem->m_createstruct.style = uStyle | WS_CHILD;
 //      //pusersystem->m_createstruct.x = rectangle.left;
 //      //pusersystem->m_createstruct.y = rectangle.top;
-//      //pusersystem->m_createstruct.cx() = rectangle.width();
-//      //pusersystem->m_createstruct.cy() = rectangle.height();
+//      //pusersystem->m_createstruct.cx = rectangle.width();
+//      //pusersystem->m_createstruct.cy = rectangle.height();
 //      //pusersystem->m_createstruct.hwndParent = puiParent->get_safe_handle();
 //      //pusersystem->m_createstruct.CREATE_STRUCT_P_CREATE_PARAMS = (LPVOID)pcreate;
 //
@@ -11870,7 +11870,7 @@ namespace windowing
    //
    //   //#if !defined(UNIVERSAL_WINDOWS) && !defined(__ANDROID__)
    //
-   //            //if (sizeOutput.cx() > m_sizeDrawn.cx() || sizeOutput.cy() > m_sizeDrawn.cy())
+   //            //if (sizeOutput.cx > m_sizeDrawn.cx || sizeOutput.cy > m_sizeDrawn.cy)
    //            // if (sizeOutput != m_sizeDrawn)
    //            // {
    //
@@ -11887,8 +11887,8 @@ namespace windowing
    //               zorderNew,
    //               pointOutput.x,
    //               pointOutput.y,
-   //               sizeOutput.cx(),
-   //               sizeOutput.cy(),
+   //               sizeOutput.cx,
+   //               sizeOutput.cy,
    //               eactivationOutput, !bZ, !bMove, !bSize, edisplayOutput);
    //
    //            m_sizeSetWindowSizeRequest = sizeOutput;
@@ -11897,7 +11897,7 @@ namespace windowing
    //
    //         //::SetWindowPos(get_handle(), oswindowInsertAfter,
    //         //   pointOutput.x, pointOutput.y,
-   //         //   sizeOutput.cx(), sizeOutput.cy(),
+   //         //   sizeOutput.cx, sizeOutput.cy,
    //         //   uFlags);
    //
    //   //#endif
@@ -13692,7 +13692,7 @@ namespace windowing
 
       //   sizeparentparams.bStretch = bStretch;
 
-      //   sizeparentparams.sizeTotal.cx() = sizeparentparams.sizeTotal.cy() = 0;
+      //   sizeparentparams.sizeTotal.cx = sizeparentparams.sizeTotal.cy = 0;
 
       //   if (rectangleX != nullptr)
       //   {
@@ -13752,9 +13752,9 @@ namespace windowing
 
       //         prectParam->left = prectParam->top = 0;
 
-      //         prectParam->right = sizeparentparams.sizeTotal.cx();
+      //         prectParam->right = sizeparentparams.sizeTotal.cx;
 
-      //         prectParam->bottom = sizeparentparams.sizeTotal.cy();
+      //         prectParam->bottom = sizeparentparams.sizeTotal.cy;
 
 
       //      }

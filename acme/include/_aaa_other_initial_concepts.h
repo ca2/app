@@ -52,8 +52,8 @@ concept primitive_XY = requires(POINT point)
 template < typename SIZE >
 concept primitive_size = requires(SIZE size)
 {
-   size.cx();
-   size.cy();
+   size.cx;
+   size.cy;
 };
 
 
@@ -265,8 +265,8 @@ template < primitive_point POINT, primitive_size SIZE >
 void copy(POINT& point, const SIZE& size)
 {
 
-   point.x = (const ::std::decay_t <decltype(point.x)>&)size.cx();
-   point.y = (const ::std::decay_t <decltype(point.y) > &)size.cy();
+   point.x = (const ::std::decay_t <decltype(point.x)>&)size.cx;
+   point.y = (const ::std::decay_t <decltype(point.y) > &)size.cy;
 
 }
 
@@ -275,8 +275,8 @@ template < primitive_size SIZE_TYPE1, primitive_size SIZE_TYPE2 >
 void copy(SIZE_TYPE1& size1, const SIZE_TYPE2& size2)
 {
 
-   size1.cx() = (decltype(SIZE_TYPE1::cx))size2.cx();
-   size1.cy() = (decltype(SIZE_TYPE1::cy))size2.cy();
+   size1.cx = (decltype(SIZE_TYPE1::cx))size2.cx;
+   size1.cy = (decltype(SIZE_TYPE1::cy))size2.cy;
 
 }
 

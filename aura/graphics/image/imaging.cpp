@@ -126,9 +126,9 @@ int                 cy)
    sizeText = pgraphics->get_text_extent(string(pcsz,cb));
 
    rectangleText.left    = x;
-   rectangleText.right   = int (x + cx + sizeText.cx());
+   rectangleText.right   = int (x + cx + sizeText.cx);
    rectangleText.top     = y;
-   rectangleText.bottom  = int(y + cy + sizeText.cy());
+   rectangleText.bottom  = int(y + cy + sizeText.cy);
    //ExtTextOut(hDC, x+cx, y+cy, ETO_OPAQUE, &rectangleText, psz, cb, nullptr);
 
    //pgraphics->SetBkMode(TRANSPARENT);
@@ -173,7 +173,7 @@ int                 cy)
 //   ::collection::count nSize;
 //
 //   nSize = pArray->get_size();
-//   pSize->cx() = 0;
+//   pSize->cx = 0;
 //
 //   ::int_size size;
 //   for(nIndex = 0; nIndex < nSize; nIndex++)
@@ -181,18 +181,18 @@ int                 cy)
 //      const ::scoped_string & scopedstr = pArray->get_at(nIndex);
 //      wstring wstr(str);
 //      GetTextExtentPoint32W(hDC,wstr,(int)wstr.get_length(),&size);
-//      if(size.cx() > pSize->cx())
+//      if(size.cx > pSize->cx)
 //
-//         pSize->cx() = size.cx();
+//         pSize->cx = size.cx;
 //
 //   }
-//   //   pSize->cy() =
+//   //   pSize->cy =
 //
 //   //      (tm.tmHeight +
 //   //      tm.tmExternalLeading +
 //   //      tm.tmInternalLeading) *
 //   nSize;
-//   pSize->cy() = (int)((tm.tmHeight + tm.tmExternalLeading) * nSize);
+//   pSize->cy = (int)((tm.tmHeight + tm.tmExternalLeading) * nSize);
 //
 //
 //#else
@@ -484,17 +484,17 @@ return pil;
 ////   const ::int_size & size = pitmap->get_size();
 
 ////
-////   unsigned int cbLine = ((size.cx() * 3 + 3) & ~3);
-////   unsigned int cbImage = size.cy() * cbLine;
+////   unsigned int cbLine = ((size.cx * 3 + 3) & ~3);
+////   unsigned int cbImage = size.cy * cbLine;
 ////
-////   unsigned int cbMask = size.cy() * ((size.cx() + 3) & ~3);
+////   unsigned int cbMask = size.cy * ((size.cx + 3) & ~3);
 ////
 ////
 ////   BITMAPINFO bmi;
 ////
 ////   bmi.bmiHeader.biSize = sizeof(BITMAPINFOHEADER);
-////   bmi.bmiHeader.biWidth = size.cx();
-////   bmi.bmiHeader.biHeight = - size.cy();
+////   bmi.bmiHeader.biWidth = size.cx;
+////   bmi.bmiHeader.biHeight = - size.cy;
 ////   bmi.bmiHeader.biPlanes = 1;
 ////   bmi.bmiHeader.biBitCount = 24;
 ////   bmi.bmiHeader.biCompression = BI_RGB;
@@ -521,7 +521,7 @@ return pil;
 ////
 ////#ifdef WINDOWS_DESKTOP
 ////
-////   unsigned int uScanLines = size.cy();
+////   unsigned int uScanLines = size.cy;
 ////
 ////
 ////   if(!GetDIBits(
@@ -553,9 +553,9 @@ return pil;
 ////
 ////   pmiMask->bmiHeader.biSize = sizeof(BITMAPINFOHEADER);
 
-////   pmiMask->bmiHeader.biWidth = sizeMask.cx();
+////   pmiMask->bmiHeader.biWidth = sizeMask.cx;
 
-////   pmiMask->bmiHeader.biHeight = - sizeMask.cy();
+////   pmiMask->bmiHeader.biHeight = - sizeMask.cy;
 
 ////   pmiMask->bmiHeader.biPlanes = 1;
 
@@ -610,17 +610,17 @@ return pil;
 
 
 
-////   unsigned char * pBaseShadow = pShadow + size.cx() * y + x * 3;
+////   unsigned char * pBaseShadow = pShadow + size.cx * y + x * 3;
 
 
 
 
-////   unsigned char * pBaseMask = pMask + size.cx() * y + x;
+////   unsigned char * pBaseMask = pMask + size.cx * y + x;
 
 
 
 
-////   unsigned char * pBaseMaskShift = pMask + size.cx() * (y + 1) + (x + 1);
+////   unsigned char * pBaseMaskShift = pMask + size.cx * (y + 1) + (x + 1);
 
 
 
@@ -653,12 +653,12 @@ return pil;
 
 
 
-////      unsigned char * pLineShadow = pBaseShadow + size.cx() * i;
+////      unsigned char * pLineShadow = pBaseShadow + size.cx * i;
 
 
 
 
-////      unsigned char * pLineMask = pBaseMask + size.cy() * i;
+////      unsigned char * pLineMask = pBaseMask + size.cy * i;
 
 
 
@@ -737,7 +737,7 @@ return pil;
 ////
 ////   for(i = 0; i < cy; i ++)
 ////   {
-////      unsigned char * pLineMask = pBaseMask + size.cx() * i;
+////      unsigned char * pLineMask = pBaseMask + size.cx * i;
 
 
 
@@ -764,12 +764,12 @@ return pil;
 
 
 
-////      unsigned char * pLineShadow = pBaseShadow + size.cx() * i;
+////      unsigned char * pLineShadow = pBaseShadow + size.cx * i;
 
 
 
 
-////      unsigned char * pLineMask = pBaseMaskShift + size.cx() * i;
+////      unsigned char * pLineMask = pBaseMaskShift + size.cx * i;
 
 
 
@@ -823,12 +823,12 @@ return pil;
 
 
 
-////      unsigned char * pLineShadow = pBaseShadow + size.cx() * i;
+////      unsigned char * pLineShadow = pBaseShadow + size.cx * i;
 
 
 
 
-////      unsigned char * pLineMask = pBaseMask + size.cx() * i;
+////      unsigned char * pLineMask = pBaseMask + size.cx * i;
 
 
 
@@ -2087,7 +2087,7 @@ void imaging::trait(::image::image *pimage, long long iTrait)
 //
 //      const ::int_size & size = pbitmap->get_size();
 //
-//      if(size.cx() >= cx && size.cy() >= cy)
+//      if(size.cx >= cx && size.cy >= cy)
 //      {
 //
 //         bCreate = false;
@@ -2156,7 +2156,7 @@ void imaging::trait(::image::image *pimage, long long iTrait)
 //
 //      const ::int_size & size = pitmap->get_size();
 //
-//      if(size.cx() >= cx && size.cy() >= cy)
+//      if(size.cx >= cx && size.cy >= cy)
 //      {
 //
 //         bCreate = false;
@@ -2945,7 +2945,7 @@ void imaging::blur_32CC_r2(::image::image *pimageDst, ::image::image *pimageSrc)
 void imaging::channel_gray_blur(::draw2d::graphics *pdcDst,const ::int_point & pointDst,const ::int_size & size,::draw2d::graphics * pdcSrc,const ::int_point & pointSrc,int iChannel,int iRadius)
 {
 
-   if (size.cx() <= 0 || size.cy() <= 0)
+   if (size.cx <= 0 || size.cy <= 0)
    {
 
       throw ::exception(error_wrong_state);
@@ -3709,7 +3709,7 @@ const ::int_size & sizeFilter,
 unsigned char * pFilter)
 {
 
-   if (size.cx() <= 0 || size.cy() <= 0)
+   if (size.cx <= 0 || size.cy <= 0)
    {
 
       throw ::exception(error_wrong_state);
@@ -3757,8 +3757,8 @@ unsigned char * pFilter)
       pimageDst,
       pimageSrc,
       iChannel,
-      sizeFilter.cx(),
-      sizeFilter.cy(),
+      sizeFilter.cx,
+      sizeFilter.cy,
       pFilter);
    /*{
 
@@ -4350,7 +4350,7 @@ int w3)
 
 //void imaging::alpha_spread_R2(::draw2d::graphics *pdcDst,const ::int_point & pointDst,const ::int_size & size,::draw2d::graphics * pdcSrc,const ::int_point & pointSrc,unsigned char bMin)
 //{
-//   if(size.cx() <= 0 || size.cy() <= 0)
+//   if(size.cx <= 0 || size.cy <= 0)
 //      return true;
 //
 //   unsigned int user;
@@ -4424,7 +4424,7 @@ int w3)
 //   int xvpDst = pointDst.x + pointContextDst.x;
 //   int xvpSrc = pointSrc.x + pointContextSrc.x;
 //
-//   int iLimitX = size.cx();
+//   int iLimitX = size.cx;
 //
 //   if(bmDst.bmWidth - xvpDst < iLimitX)
 //   {
@@ -4484,7 +4484,7 @@ int w3)
 //         throw ::exception(::exception("integer_exception" + as_string($1)));
 //      ::draw2d::bitmap * pmpMemOld = graphicsMem->set(bitmapDst);
 
-//      if(!pdcDst->BitBlt(pointDst.x,pointDst.y,size.cx(),size.cy(),graphicsMem,pointSrc.x,pointSrc.y))
+//      if(!pdcDst->BitBlt(pointDst.x,pointDst.y,size.cx,size.cy,graphicsMem,pointSrc.x,pointSrc.y))
 //      {
 //         ASSERT(false);
 //      }
@@ -4525,7 +4525,7 @@ int w3)
 //void imaging::alpha_spread(::draw2d::graphics *pdcDst,const ::int_point & pointDst,const ::int_size & size,::draw2d::graphics * pdcSrc,const ::int_point & pointSrc,unsigned char bMin,int iRadius)
 //{
 //
-//   if(size.cx() <= 0 || size.cy() <= 0)
+//   if(size.cx <= 0 || size.cy <= 0)
 //      return true;
 //
 //   //   single_lock synchronouslock(&m_csMem, true);
@@ -4603,7 +4603,7 @@ int w3)
 //   int xvpDest = pointDst.x + pointContextDest.x;
 //   int xvpSrc = pointDst.y + pointContextSrc.x;
 //
-//   int iLimitX = size.cx();
+//   int iLimitX = size.cx;
 //
 //   if(bmDest.bmWidth - xvpDest < iLimitX)
 //   {
@@ -4663,7 +4663,7 @@ int w3)
 //         throw ::exception(::exception("integer_exception" + as_string($1)));
 //      ::draw2d::bitmap * pmpMemOld = graphicsMem->set(bitmapDest);
 
-//      if(!pdcDst->BitBlt(pointDst.x,pointDst.y,size.cx(),size.cy(),graphicsMem,pointSrc.x,pointSrc.y))
+//      if(!pdcDst->BitBlt(pointDst.x,pointDst.y,size.cx,size.cy,graphicsMem,pointSrc.x,pointSrc.y))
 //      {
 //         ASSERT(false);
 //      }

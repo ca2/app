@@ -117,17 +117,17 @@ inline const_char_pointer c_demangle(const_char_pointer psz)
 //   //}
 //
 //
-//   raw_literal(const ::raw_literal & typeatom)
+//   raw_literal(const ::raw_literal & type)
 //   {
 //
-//      operator = (typeatom);
+//      operator = (type);
 //
 //   }
 //
 //
-//   raw_literal(::raw_literal && typeatom):
-//      m_pszRawName(typeatom.m_pszRawName),
-//      m_strDemangled(::transfer(typeatom.m_strDemangled))
+//   raw_literal(::raw_literal && type):
+//      m_pszRawName(type.m_pszRawName),
+//      m_strDemangled(::transfer(type.m_strDemangled))
 //   {
 //
 //   }
@@ -168,7 +168,7 @@ inline const_char_pointer c_demangle(const_char_pointer psz)
 //   bool operator == (const ::std::type_info& typeinfo) const;
 //
 //
-//   bool operator == (const ::raw_literal& typeatom) const;
+//   bool operator == (const ::raw_literal& type) const;
 ////
 ////
 ////   bool operator == (const ::scoped_string & scopedstrType) const;

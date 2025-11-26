@@ -206,7 +206,7 @@ namespace turboc
 
 /*         m_pimage->g()->set_font(m_pfont);
 
-/*         m_pimage->g()->text_out((m_cx - int_size->cx()) / 2,(m_cy - int_size->cy()) / 2,strHelloMultiverse);
+/*         m_pimage->g()->text_out((m_cx - int_size->cx) / 2,(m_cy - int_size->cy) / 2,strHelloMultiverse);
 
          if(m_dMinRadius > 3.0)
          {
@@ -271,7 +271,7 @@ namespace turboc
 
       pgraphics->SelectObject(pbrushText);
 
-      pgraphics->text_out((m_cx - size.cx()) / 2,(m_cy - size.cy()) / 2,strHelloMultiverse);
+      pgraphics->text_out((m_cx - size.cx) / 2,(m_cy - size.cy) / 2,strHelloMultiverse);
 
       unsigned char a,R,g,b;
 

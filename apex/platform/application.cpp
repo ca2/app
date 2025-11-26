@@ -10434,7 +10434,7 @@ namespace apex
          
          pdialog->create();
          
-         int max_width = system()->acme_windowing()->acme_display()->get_main_screen_size().cx();
+         int max_width = system()->acme_windowing()->acme_display()->get_main_screen_size().cx;
          
          ::string strTitle;
          

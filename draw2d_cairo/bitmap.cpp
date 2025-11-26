@@ -107,9 +107,9 @@ namespace draw2d_cairo
 
       m_osdata[0] = m_psurface;
 
-      m_size.cx() = cx;
+      m_size.cx = cx;
 
-      m_size.cy() = cy;
+      m_size.cy = cy;
 
       informationf("draw2d_cairo::bitmap::CreateBitmap cairo surface created : cx=%d cy=%d", cx, cy);
 
@@ -178,14 +178,14 @@ namespace draw2d_cairo
          if(iSourceStride < 0)
          {
 
-            iSourceStride = size.cx() * sizeof(color32_t);
+            iSourceStride = size.cx * sizeof(color32_t);
 
          }
 
-         if(iScanWidth < size.cx())
+         if(iScanWidth < size.cx)
          {
 
-            iScanWidth = size.cx();
+            iScanWidth = size.cx;
 
          }
 
@@ -205,7 +205,7 @@ namespace draw2d_cairo
 
          m_mem.m_bAligned = true;
 
-         m_mem.set_size(iStride * size.cy());
+         m_mem.set_size(iStride * size.cy);
 
          if(*ppdata != nullptr)
          {
@@ -215,7 +215,7 @@ namespace draw2d_cairo
 
                int iW = minimum(iStride, iSourceStride);
 
-               for(int i = 0; i < size.cy(); i++)
+               for(int i = 0; i < size.cy; i++)
                {
 
                   ::memory_copy(&m_mem.data()[iStride * i], &((unsigned char *) *ppdata)[iSourceStride * i], iW);
@@ -226,13 +226,13 @@ namespace draw2d_cairo
             else
             {
 
-               ::memory_copy(m_mem.data(), *ppdata, iStride * size.cy());
+               ::memory_copy(m_mem.data(), *ppdata, iStride * size.cy);
 
             }
 
          }
 
-         m_psurface = cairo_image_surface_create_for_data(m_mem.data(), CAIRO_FORMAT_ARGB32, size.cx(), size.cy(), iStride);
+         m_psurface = cairo_image_surface_create_for_data(m_mem.data(), CAIRO_FORMAT_ARGB32, size.cx, size.cy, iStride);
 
          int iSurfaceStatus = cairo_surface_status(m_psurface);
 
@@ -248,9 +248,9 @@ namespace draw2d_cairo
             if(iSurfaceStatus == CAIRO_STATUS_INVALID_STRIDE)
             {
 
-               iStride = cairo_format_stride_for_width(CAIRO_FORMAT_ARGB32, size.cx());
+               iStride = cairo_format_stride_for_width(CAIRO_FORMAT_ARGB32, size.cx);
 
-               m_psurface = cairo_image_surface_create_for_data(m_mem.data(), CAIRO_FORMAT_ARGB32, size.cx(), size.cy(), iStride);
+               m_psurface = cairo_image_surface_create_for_data(m_mem.data(), CAIRO_FORMAT_ARGB32, size.cx, size.cy, iStride);
 
                iSurfaceStatus = cairo_surface_status(m_psurface);
 
@@ -341,10 +341,10 @@ namespace draw2d_cairo
 //
 //      }
 
-      if(iScanWidth < ppixmap->m_size.cx())
+      if(iScanWidth < ppixmap->m_size.cx)
       {
 
-         iScanWidth = ppixmap->m_size.cx();
+         iScanWidth = ppixmap->m_size.cx;
 
       }
 
@@ -359,18 +359,18 @@ namespace draw2d_cairo
       //m_mem.m_bAligned = true;
 
       m_mem.m_begin = (unsigned char*) ppixmap->m_pimage32Raw;
-      m_mem.m_end = m_mem.m_begin + (ppixmap->m_iScan * ppixmap->m_size.cy());
+      m_mem.m_end = m_mem.m_begin + (ppixmap->m_iScan * ppixmap->m_size.cy);
       m_mem.m_bOwner = false;
 
 //      if(*ppdata != nullptr)
 //      {
 //
-//         if(size.cx() * 4 != iStride)
+//         if(size.cx * 4 != iStride)
 //         {
 //
-//            int iW = size.cx() * 4;
+//            int iW = size.cx * 4;
 //
-//            for(int i = 0; i < size.cy(); i++)
+//            for(int i = 0; i < size.cy; i++)
 //            {
 //
 //               ::memory_copy(&m_mem.data()[iStride * i], &((unsigned char *) *ppdata)[iW * i], iW);
@@ -381,13 +381,13 @@ namespace draw2d_cairo
 //         else
 //         {
 //
-//            ::memory_copy(m_mem.data(), *ppdata, iStride * size.cy());
+//            ::memory_copy(m_mem.data(), *ppdata, iStride * size.cy);
 //
 //         }
 //
 //      }
 
-      m_psurface = cairo_image_surface_create_for_data(m_mem.data(), CAIRO_FORMAT_ARGB32, ppixmap->m_sizeRaw.cx(), ppixmap->m_sizeRaw.cy(), ppixmap->m_iScan);
+      m_psurface = cairo_image_surface_create_for_data(m_mem.data(), CAIRO_FORMAT_ARGB32, ppixmap->m_sizeRaw.cx, ppixmap->m_sizeRaw.cy, ppixmap->m_iScan);
 
       int iSurfaceStatus = cairo_surface_status(m_psurface);
 
@@ -401,9 +401,9 @@ namespace draw2d_cairo
          if(iSurfaceStatus == CAIRO_STATUS_INVALID_STRIDE)
          {
 
-            ppixmap->m_iScan = cairo_format_stride_for_width(CAIRO_FORMAT_ARGB32, ppixmap->m_sizeRaw.cx());
+            ppixmap->m_iScan = cairo_format_stride_for_width(CAIRO_FORMAT_ARGB32, ppixmap->m_sizeRaw.cx);
 
-            m_psurface = cairo_image_surface_create_for_data(m_mem.data(), CAIRO_FORMAT_ARGB32, ppixmap->m_sizeRaw.cx(), ppixmap->m_sizeRaw.cy(), ppixmap->m_iScan);
+            m_psurface = cairo_image_surface_create_for_data(m_mem.data(), CAIRO_FORMAT_ARGB32, ppixmap->m_sizeRaw.cx, ppixmap->m_sizeRaw.cy, ppixmap->m_iScan);
 
             iSurfaceStatus = cairo_surface_status(m_psurface);
 
@@ -616,7 +616,7 @@ namespace draw2d_cairo
 
       m_psurface = (cairo_surface_t *) psurface;
 
-      get_surface_size((cairo_surface_t *) psurface, (int *) &m_size.cx(), (int *)&m_size.cy());
+      get_surface_size((cairo_surface_t *) psurface, (int *) &m_size.cx, (int *)&m_size.cy);
 
       m_osdata[0] = m_psurface;
 

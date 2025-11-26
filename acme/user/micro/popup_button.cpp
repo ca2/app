@@ -42,9 +42,9 @@ namespace micro
 
       //operating_system_get_main_screen_size(wScreen, hScreen);
 
-      auto wScreen = sizeScreen.cx();
+      auto wScreen = sizeScreen.cx;
 
-      auto hScreen = sizeScreen.cy();
+      auto hScreen = sizeScreen.cy;
 
       //printf("popup_button::calculate_size_and_position (wScreen,hScreen)=%d,%d\n", wScreen, hScreen);
 

@@ -50,10 +50,10 @@ inline ::pixmap get_raw_data_from_cairo_surface(::memory & memoryHost, cairo_sur
    //memcpy(memoryHost.data(), data, memoryHost.size());
 
    pixmap.m_pimage32 = (::image32_t *) memoryHost.data();
-   pixmap.m_sizeRaw.cx() = width;
-   pixmap.m_sizeRaw.cy() = height;
-   pixmap.m_size.cx() = width;
-   pixmap.m_size.cy() = height;
+   pixmap.m_sizeRaw.cx = width;
+   pixmap.m_sizeRaw.cy = height;
+   pixmap.m_size.cx = width;
+   pixmap.m_size.cy = height;
    pixmap.m_iScan = stride;
 
    pixmap.m_pimage32->copy_swap_red_blue(width, height,stride, (image32_t*) data, stride);

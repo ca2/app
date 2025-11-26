@@ -155,9 +155,9 @@ void message_box::calculate_size()
 
    //operating_system_get_main_screen_size(wScreen, hScreen);
 
-   auto wScreen = sizeScreen.cx();
+   auto wScreen = sizeScreen.cx;
 
-   auto hScreen = sizeScreen.cy();
+   auto hScreen = sizeScreen.cy;
 
    //printf("message_box::calculate_size (wScreen,hScreen)=%d,%d\n", wScreen, hScreen);
 

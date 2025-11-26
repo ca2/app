@@ -963,16 +963,16 @@ namespace experience_core
 
             int_size s = pane.m_sizeaText[i];
 
-            rectangleText.right = rectangleText.left + s.cx();
+            rectangleText.right = rectangleText.left + s.cx;
 
             pgraphics->_DrawText(str, rectangleText, e_align_bottom_left, e_draw_text_no_prefix);
 
-            rectangleText.left += s.cx();
+            rectangleText.left += s.cx;
 
             if (i < straTitle.get_upper_bound())
             {
 
-               rectangleText.right = rectangleText.left + sSep.cx();
+               rectangleText.right = rectangleText.left + sSep.cx;
 
                rectangleEmp = rectangleText;
 
@@ -1011,7 +1011,7 @@ namespace experience_core
 
                pgraphics->_DrawText(MAGIC_PALACE_TAB_TEXT, rectangleText, e_align_center, e_draw_text_no_prefix);
 
-               rectangleText.left += sSep.cx();
+               rectangleText.left += sSep.cx;
 
             }
 
@@ -1098,13 +1098,13 @@ namespace experience_core
             if (ppane->m_pimage->is_set())
             {
 
-               size.cx() += ppane->m_pimage->width() + 2;
+               size.cx += ppane->m_pimage->width() + 2;
 
-               size.cy() = maximum(size.cy(), ppane->m_pimage->height());
+               size.cy = maximum(size.cy, ppane->m_pimage->height());
 
             }
 
-            cx = (int) (size.cx() + 2);
+            cx = (int) (size.cx + 2);
 
             if (!ppane->m_bPermanent)
             {
@@ -1120,7 +1120,7 @@ namespace experience_core
 
             }
 
-            cy = (int) ( size.cy() + 2);
+            cy = (int) ( size.cy + 2);
 
             if (cy > iTabHeight)
             {
@@ -1211,11 +1211,11 @@ namespace experience_core
             if (ppane->m_pimage.ok())
             {
 
-               size.cy() = maximum(size.cy(), ppane->m_pimage->size().cy());
+               size.cy = maximum(size.cy, ppane->m_pimage->size().cy);
 
             }
 
-            cy = (int)(size.cy() + 2);
+            cy = (int)(size.cy + 2);
 
             if (cy > iTabHeight)
             {
@@ -1246,12 +1246,12 @@ namespace experience_core
 
 
 
-            ppane->m_size.cx() = (int) (size.cx() + ixAdd
+            ppane->m_size.cx = (int) (size.cx + ixAdd
                + pdata->m_rectangleBorder.left + pdata->m_rectangleBorder.right
                + pdata->m_rectangleMargin.left + pdata->m_rectangleMargin.right
                + pdata->m_rectangleTextMargin.left + pdata->m_rectangleTextMargin.right);
 
-            x += ppane->m_size.cx();
+            x += ppane->m_size.cx;
          }
 
          // close tab button
@@ -1271,7 +1271,7 @@ namespace experience_core
 
             auto ppane = pdata->m_tabpanea[iPane].get();
 
-            ppane->m_size.cy() = iTabHeight;
+            ppane->m_size.cy = iTabHeight;
 
          }
 
@@ -1330,21 +1330,21 @@ namespace experience_core
 
          ptab->m_iTabSize = (int)(pdata->m_tabpanea.get_count() * pdata->m_iTabHeight);
 
-//         ptab->m_pointDragScrollMax.y = ptab->m_sizeDragScroll.cy() - rcClient.height();
+//         ptab->m_pointDragScrollMax.y = ptab->m_sizeDragScroll.cy - rcClient.height();
 
-         ptab->m_sizeBarDragScroll.cy() = (int)ptab->m_pdata->m_tabpanea.get_count() * ptab->m_pdata->m_iTabHeight;
+         ptab->m_sizeBarDragScroll.cy = (int)ptab->m_pdata->m_tabpanea.get_count() * ptab->m_pdata->m_iTabHeight;
 
       }
       else
       {
 
          ptab->m_iTabSize = pdata->m_tabpanea.last()->m_point.x +
-            pdata->m_tabpanea.last()->m_size.cx();
+            pdata->m_tabpanea.last()->m_size.cx;
 
-         //ptab->m_pointDragScrollMax.x = ptab->m_sizeDragScroll.cx() - rcClient.width();
+         //ptab->m_pointDragScrollMax.x = ptab->m_sizeDragScroll.cx - rcClient.width();
 
-         ptab->m_sizeBarDragScroll.cx() = ptab->m_pdata->m_tabpanea.last()->m_point.x +
-            ptab->m_pdata->m_tabpanea.last()->m_size.cx();
+         ptab->m_sizeBarDragScroll.cx = ptab->m_pdata->m_tabpanea.last()->m_point.x +
+            ptab->m_pdata->m_tabpanea.last()->m_size.cx;
 
          //if (m_pdata->m_bVertical)
          //{

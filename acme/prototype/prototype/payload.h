@@ -371,7 +371,7 @@ public:
    template < typename TYPE >
    ::pointer < TYPE > pointer() const;
 
-   //bool get_type(::type & typeatom) const;
+   //bool get_type(::type & type) const;
 
    long long payload_release();
 

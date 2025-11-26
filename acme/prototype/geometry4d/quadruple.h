@@ -64,10 +64,10 @@ struct quadruple_type :
 //   quadruple_type(UNIT_TYPE a, UNIT_TYPE b, UNIT_TYPE c, UNIT_TYPE d) { x = a; y = b; z = c; w = d; }
 //   //~quadruple_type() = default;
    
-   //const UNIT_TYPE & x() const {return this->x();}
-   //UNIT_TYPE & x() {return this->x();}
-   //const UNIT_TYPE & y() const {return this->y();}
-   //UNIT_TYPE & y() {return this->y();}
+   //const UNIT_TYPE & x() const {return this->x;}
+   //UNIT_TYPE & x() {return this->x;}
+   //const UNIT_TYPE & y() const {return this->y;}
+   //UNIT_TYPE & y() {return this->y;}
    //const UNIT_TYPE & z() const {return this->c();}
    //UNIT_TYPE & z() {return this->c();}
    //const UNIT_TYPE & w() const {return this->d();}

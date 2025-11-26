@@ -655,19 +655,19 @@ namespace user
                      pbox->m_iPosEnd = pspan->m_iPosBeg + iSpanChar;
 
                      // keeping dimensions
-                     //pbox->m_size.cy() = pspan->m_size.cy();
+                     //pbox->m_size.cy = pspan->m_size.cy;
 
-                     //if (pbox->m_size.cy() <= 0)
+                     //if (pbox->m_size.cy <= 0)
                      {
 
-                        pbox->m_sizeBox.cy() = pformat->get_font(pgraphics)->get_height(pgraphics);
+                        pbox->m_sizeBox.cy = pformat->get_font(pgraphics)->get_height(pgraphics);
 
                      }
 
-                     pbox->m_sizeBox.cx() = 0;
+                     pbox->m_sizeBox.cx = 0;
 
                      // just horizonal layout
-                     pbox->m_rectangleBox.set_dimension(x, 0, pbox->m_sizeBox.cx(), 0);
+                     pbox->m_rectangleBox.set_dimension(x, 0, pbox->m_sizeBox.cx, 0);
 
                      pbox->m_rectangleHitTest = pbox->m_rectangleBox;
 
@@ -714,18 +714,18 @@ namespace user
                      pbox->m_iPosEnd = pspan->m_iPosBeg + iSpanChar;
 
                      // keeping dimensions
-                     pbox->m_sizeBox.cy() = pspan->m_sizeSpan.cy();
+                     pbox->m_sizeBox.cy = pspan->m_sizeSpan.cy;
 
-                     pbox->m_sizeBox.cx() = dPosition - dPositionLeft;
+                     pbox->m_sizeBox.cx = dPosition - dPositionLeft;
 
                      // just horizonal layout
-                     pbox->m_rectangleBox.set_dimension(x, 0, pbox->m_sizeBox.cx(), 0);
+                     pbox->m_rectangleBox.set_dimension(x, 0, pbox->m_sizeBox.cx, 0);
 
                      pbox->m_rectangleHitTest = pbox->m_rectangleBox;
 
                      pline->add(pbox);
 
-                     x += (int)pbox->m_sizeBox.cx();
+                     x += (int)pbox->m_sizeBox.cx;
 
                      if (cWords >= straWords.get_count())
                      {
@@ -763,18 +763,18 @@ namespace user
                      pbox->m_iPosEnd = pspan->m_iPosBeg + iSpanChar;
 
                      // keeping dimensions
-                     pbox->m_sizeBox.cy() = pspan->m_sizeSpan.cy();
+                     pbox->m_sizeBox.cy = pspan->m_sizeSpan.cy;
 
-                     pbox->m_sizeBox.cx() = dPosition - dPositionLeft;
+                     pbox->m_sizeBox.cx = dPosition - dPositionLeft;
 
                      // just horizonal layout
-                     pbox->m_rectangleBox.set_dimension(x, 0, pbox->m_sizeBox.cx(), 0);
+                     pbox->m_rectangleBox.set_dimension(x, 0, pbox->m_sizeBox.cx, 0);
 
                      pbox->m_rectangleHitTest = pbox->m_rectangleBox;
 
                      pline->add(pbox);
 
-                     x += (int)pbox->m_sizeBox.cx();
+                     x += (int)pbox->m_sizeBox.cx;
 
                      //iSpanChar++;
 
@@ -797,18 +797,18 @@ namespace user
                   pbox->m_iPosEnd = pbox->m_iPosBeg + iSpanChar;
 
                   // keeping dimensions
-                  pbox->m_sizeBox.cy() = pspan->m_sizeSpan.cy();
+                  pbox->m_sizeBox.cy = pspan->m_sizeSpan.cy;
 
-                  pbox->m_sizeBox.cx() = dPosition;
+                  pbox->m_sizeBox.cx = dPosition;
 
                   // just horizonal layout
-                  pbox->m_rectangleBox.set_dimension(x, 0, pbox->m_sizeBox.cx(), 0);
+                  pbox->m_rectangleBox.set_dimension(x, 0, pbox->m_sizeBox.cx, 0);
 
                   pbox->m_rectangleHitTest = pbox->m_rectangleBox;
 
                   pline->add(pbox);
 
-                  x += (int)pbox->m_sizeBox.cx();
+                  x += (int)pbox->m_sizeBox.cx;
 
                   //spanaMultiWordFormat.add(pspan);
 
@@ -976,7 +976,7 @@ namespace user
             for (auto & pbox : *pline)
             {
 
-               iMaxCy = maximum(iMaxCy, (int)pbox->m_sizeBox.cy());
+               iMaxCy = maximum(iMaxCy, (int)pbox->m_sizeBox.cy);
 
                pbox->m_rectangleBox.top = y;
 

@@ -336,7 +336,7 @@ namespace experience_tranquillum
 
 
       m_minSize = int_size(144, 48);
-      m_minSize.cy() = 48;
+      m_minSize.cy = 48;
       if (pcontrolbox)
       {
          pcontrolbox->set_button_color_system_default_001();

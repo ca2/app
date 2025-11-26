@@ -40,7 +40,7 @@ namespace sockets
       ~listen_socket_impl() override;
 
 
-      virtual void set_detach_socket_type(const ::type& typeatom);
+      virtual void set_detach_socket_type(const ::type& type);
 
       virtual void Reset();
       ::pointer<listen_socket_impl>create_listen_socket_impl();

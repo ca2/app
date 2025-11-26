@@ -329,13 +329,13 @@ bool image::host(::pixmap* ppixmap, ::windowing::window * pwindow)
    //if (m_pbitmap.is_null())
    //{
 
-   //   m_sizeRaw.cx() = 0;
+   //   m_sizeRaw.cx = 0;
 
-   //   m_sizeRaw.cy() = 0;
+   //   m_sizeRaw.cy = 0;
 
-   //   m_sizeAlloc.cx() = 0;
+   //   m_sizeAlloc.cx = 0;
 
-   //   m_sizeAlloc.cy() = 0;
+   //   m_sizeAlloc.cy = 0;
 
    //   m_iScan = 0;
 
@@ -354,13 +354,13 @@ bool image::host(::pixmap* ppixmap, ::windowing::window * pwindow)
    //if (!)
    //{
 
-   //   m_sizeRaw.cx() = 0;
+   //   m_sizeRaw.cx = 0;
 
-   //   m_sizeRaw.cy() = 0;
+   //   m_sizeRaw.cy = 0;
 
-   //   m_sizeAlloc.cx() = 0;
+   //   m_sizeAlloc.cx = 0;
 
-   //   m_sizeAlloc.cy() = 0;
+   //   m_sizeAlloc.cy = 0;
 
    //   m_iScan = 0;
 
@@ -383,7 +383,7 @@ bool image::host(::pixmap* ppixmap, ::windowing::window * pwindow)
 
    m_pgraphics->m_pimage = this;
 
-   m_pgraphics->place_impact_area(0., 0., m_size.cx(), m_size.cy());
+   m_pgraphics->place_impact_area(0., 0., m_size.cx, m_size.cy);
 
    m_sizeRaw = ppixmap->size();
 
@@ -589,10 +589,10 @@ void image::create_isotropic(double_array& daRate, ::enum_priority epriority)
 void image::destroy()
 {
 
-   m_sizeRaw.cx() = 0;
-   m_sizeRaw.cy() = 0;
-   m_size.cx() = 0;
-   m_size.cy() = 0;
+   m_sizeRaw.cx = 0;
+   m_sizeRaw.cy = 0;
+   m_size.cx = 0;
+   m_size.cy = 0;
    pixmap::reset();
    pixmap::unmap();
    clear_flag(e_flag_success);
@@ -902,13 +902,13 @@ void image::blend(const ::int_rectangle& rectangleDstParam, ::image::image* pima
    if (rectangleTarget.left < 0)
    {
 
-      size.cx() += rectangleTarget.left;
+      size.cx += rectangleTarget.left;
 
       rectangleTarget.left = 0;
 
    }
 
-   if (size.cx() < 0)
+   if (size.cx < 0)
    {
 
       //return true;
@@ -920,13 +920,13 @@ void image::blend(const ::int_rectangle& rectangleDstParam, ::image::image* pima
    if (rectangleTarget.top < 0)
    {
 
-      size.cy() += rectangleTarget.top;
+      size.cy += rectangleTarget.top;
 
       rectangleTarget.top = 0;
 
    }
 
-   if (size.cy() < 0)
+   if (size.cy < 0)
    {
 
       //return true;
@@ -935,9 +935,9 @@ void image::blend(const ::int_rectangle& rectangleDstParam, ::image::image* pima
 
    }
 
-   int xEnd = minimum(size.cx(), minimum(pimageSrc->width() - pointSrc.x, pimageDst->width() - rectangleTarget.left));
+   int xEnd = minimum(size.cx, minimum(pimageSrc->width() - pointSrc.x, pimageDst->width() - rectangleTarget.left));
 
-   int yEnd = minimum(size.cy(), minimum(pimageSrc->height() - pointSrc.y, pimageDst->height() - rectangleTarget.top));
+   int yEnd = minimum(size.cy, minimum(pimageSrc->height() - pointSrc.y, pimageDst->height() - rectangleTarget.top));
 
    if (xEnd < 0)
    {
@@ -1026,11 +1026,11 @@ void image::blend2(const ::int_point& pointDstParam, ::image::image* pimageSrc, 
 
    if (pointDst.x < 0)
    {
-      size.cx() += pointDst.x;
+      size.cx += pointDst.x;
       pointDst.x = 0;
    }
 
-   if (size.cx() < 0)
+   if (size.cx < 0)
    {
 
       return;
@@ -1040,20 +1040,20 @@ void image::blend2(const ::int_point& pointDstParam, ::image::image* pimageSrc, 
 
    if (pointDst.y < 0)
    {
-      size.cy() += pointDst.y;
+      size.cy += pointDst.y;
       pointDst.y = 0;
    }
 
-   if (size.cy() < 0)
+   if (size.cy < 0)
    {
    //   return true;
 
       return;
    }
 
-   int xEnd = minimum(size.cx(), minimum(pimageSrc->width() - pointSrc.x, pimageDst->width() - pointDst.x));
+   int xEnd = minimum(size.cx, minimum(pimageSrc->width() - pointSrc.x, pimageDst->width() - pointDst.x));
 
-   int yEnd = minimum(size.cy(), minimum(pimageSrc->height() - pointSrc.y, pimageDst->height() - pointDst.y));
+   int yEnd = minimum(size.cy, minimum(pimageSrc->height() - pointSrc.y, pimageDst->height() - pointDst.y));
 
    if (xEnd < 0)
    {
@@ -1228,11 +1228,11 @@ void image::blend(const ::int_point& pointDstParam, ::image::image* pimageSrc, c
 
    if (pointDst.x < 0)
    {
-      size.cx() += pointDst.x;
+      size.cx += pointDst.x;
       pointDst.x = 0;
    }
 
-   if (size.cx() < 0)
+   if (size.cx < 0)
    {
 
       //  return true;
@@ -1243,11 +1243,11 @@ void image::blend(const ::int_point& pointDstParam, ::image::image* pimageSrc, c
 
    if (pointDst.y < 0)
    {
-      size.cy() += pointDst.y;
+      size.cy += pointDst.y;
       pointDst.y = 0;
    }
 
-   if (size.cy() < 0)
+   if (size.cy < 0)
    {
 
       //return true;
@@ -1256,9 +1256,9 @@ void image::blend(const ::int_point& pointDstParam, ::image::image* pimageSrc, c
 
    }
 
-   int xEnd = minimum(size.cx(), minimum(pimageSrc->width() - pointSrc.x, pimageDst->width() - pointDst.x));
+   int xEnd = minimum(size.cx, minimum(pimageSrc->width() - pointSrc.x, pimageDst->width() - pointDst.x));
 
-   int yEnd = minimum(size.cy(), minimum(pimageSrc->height() - pointSrc.y, pimageDst->height() - pointDst.y));
+   int yEnd = minimum(size.cy, minimum(pimageSrc->height() - pointSrc.y, pimageDst->height() - pointDst.y));
 
    if (xEnd < 0)
    {
@@ -1565,11 +1565,11 @@ void image::precision_blend(const ::int_point& pointDstParam, ::image::image* pi
 
    if (pointDst.x < 0)
    {
-      size.cx() += pointDst.x;
+      size.cx += pointDst.x;
       pointDst.x = 0;
    }
 
-   if (size.cx() < 0)
+   if (size.cx < 0)
    {
 
       //return true;
@@ -1580,11 +1580,11 @@ void image::precision_blend(const ::int_point& pointDstParam, ::image::image* pi
 
    if (pointDst.y < 0)
    {
-      size.cy() += pointDst.y;
+      size.cy += pointDst.y;
       pointDst.y = 0;
    }
 
-   if (size.cy() < 0)
+   if (size.cy < 0)
    {
 
       //return true;
@@ -1593,9 +1593,9 @@ void image::precision_blend(const ::int_point& pointDstParam, ::image::image* pi
 
    }
 
-   int xEnd = minimum(size.cx(), minimum(pimageSrc->width() - pointSrc.x, pimageDst->width() - pointDst.x));
+   int xEnd = minimum(size.cx, minimum(pimageSrc->width() - pointSrc.x, pimageDst->width() - pointDst.x));
 
-   int yEnd = minimum(size.cy(), minimum(pimageSrc->height() - pointSrc.y, pimageDst->height() - pointDst.y));
+   int yEnd = minimum(size.cy, minimum(pimageSrc->height() - pointSrc.y, pimageDst->height() - pointDst.y));
 
    if (xEnd < 0)
    {
@@ -1764,12 +1764,12 @@ void image::fork_blend(const ::int_point& pointDstParam, ::image::image* pimageS
 
    if (pointDst.x < 0)
    {
-      size.cx() += pointDst.x;
+      size.cx += pointDst.x;
       pointSrc.x -= pointDst.x;
       pointDst.x = 0;
    }
 
-   if (size.cx() < 0)
+   if (size.cx < 0)
    {
 
       //return true;
@@ -1780,21 +1780,21 @@ void image::fork_blend(const ::int_point& pointDstParam, ::image::image* pimageS
 
    if (pointDst.y < 0)
    {
-      size.cy() += pointDst.y;
+      size.cy += pointDst.y;
       pointSrc.y -= pointDst.y;
       pointDst.y = 0;
    }
 
-   if (size.cy() < 0)
+   if (size.cy < 0)
    {
 
       //return true;
 
    }
 
-   int xEnd = minimum(size.cx(), minimum(pimageSrc->width() - pointSrc.x, pimageDst->width() - pointDst.x));
+   int xEnd = minimum(size.cx, minimum(pimageSrc->width() - pointSrc.x, pimageDst->width() - pointDst.x));
 
-   int yEnd = minimum(size.cy(), minimum(pimageSrc->height() - pointSrc.y, pimageDst->height() - pointDst.y));
+   int yEnd = minimum(size.cy, minimum(pimageSrc->height() - pointSrc.y, pimageDst->height() - pointDst.y));
 
    if (xEnd <= 0)
    {
@@ -1934,11 +1934,11 @@ void image::draw_ignore_alpha(const ::int_point& pointDstParam, ::image::image* 
 
    if (pointDst.x < 0)
    {
-      size.cx() += pointDst.x;
+      size.cx += pointDst.x;
       pointDst.x = 0;
    }
 
-   if (size.cx() < 0)
+   if (size.cx < 0)
    {
     
       return;
@@ -1947,20 +1947,20 @@ void image::draw_ignore_alpha(const ::int_point& pointDstParam, ::image::image* 
 
    if (pointDst.y < 0)
    {
-      size.cy() += pointDst.y;
+      size.cy += pointDst.y;
       pointDst.y = 0;
    }
 
-   if (size.cy() < 0)
+   if (size.cy < 0)
    {
 
       return;
 
    }
 
-   int xEnd = minimum(size.cx(), minimum(pimage->width() - pointSrc.x, width() - pointDst.x));
+   int xEnd = minimum(size.cx, minimum(pimage->width() - pointSrc.x, width() - pointDst.x));
 
-   int yEnd = minimum(size.cy(), minimum(pimage->height() - pointSrc.y, height() - pointDst.y));
+   int yEnd = minimum(size.cy, minimum(pimage->height() - pointSrc.y, height() - pointDst.y));
 
    if (xEnd < 0)
    {
@@ -2055,11 +2055,11 @@ void image::blend(const ::int_point& pointDstParam, ::image::image* pimageSrc, c
 
    if (pointDst.x < 0)
    {
-      size.cx() += pointDst.x;
+      size.cx += pointDst.x;
       pointDst.x = 0;
    }
 
-   if (size.cx() < 0)
+   if (size.cx < 0)
    {
     
       return;
@@ -2068,20 +2068,20 @@ void image::blend(const ::int_point& pointDstParam, ::image::image* pimageSrc, c
 
    if (pointDst.y < 0)
    {
-      size.cy() += pointDst.y;
+      size.cy += pointDst.y;
       pointDst.y = 0;
    }
 
-   if (size.cy() < 0)
+   if (size.cy < 0)
    {
 
       return;
 
    }
 
-   int xEnd = minimum(size.cx(), minimum(pimageSrc->width() - pointSrc.x, pimageDst->width() - pointDst.x));
+   int xEnd = minimum(size.cx, minimum(pimageSrc->width() - pointSrc.x, pimageDst->width() - pointDst.x));
 
-   int yEnd = minimum(size.cy(), minimum(pimageSrc->height() - pointSrc.y, pimageDst->height() - pointDst.y));
+   int yEnd = minimum(size.cy, minimum(pimageSrc->height() - pointSrc.y, pimageDst->height() - pointDst.y));
 
    if (xEnd < 0)
    {
@@ -2223,25 +2223,25 @@ void image::blend(const ::int_point & pointDst,::image::image *pimageSrc, const 
 
    if (pointDst.x < 0)
    {
-      size.cx() += pointDst.x;
+      size.cx += pointDst.x;
       pointDst.x = 0;
    }
 
-   if (size.cx() < 0)
+   if (size.cx < 0)
       return true;
 
    if (pointDst.y < 0)
    {
-      size.cy() += pointDst.y;
+      size.cy += pointDst.y;
       pointDst.y = 0;
    }
 
-   if (size.cy() < 0)
+   if (size.cy < 0)
       return true;
 
-   int xEnd = minimum(size.cx(), minimum(pimageSrc->width() - pointSrc.x, pimageDst->width() - pointDst.x));
+   int xEnd = minimum(size.cx, minimum(pimageSrc->width() - pointSrc.x, pimageDst->width() - pointDst.x));
 
-   int yEnd = minimum(size.cy(), minimum(pimageSrc->height() - pointSrc.y, pimageDst->height() - pointDst.y));
+   int yEnd = minimum(size.cy, minimum(pimageSrc->height() - pointSrc.y, pimageDst->height() - pointDst.y));
 
    if (xEnd < 0)
       return false;
@@ -2812,11 +2812,11 @@ void image::mult_alpha(const ::int_point& pointDstParam, const ::int_size& sizeP
 
    if (pointDst.x < 0)
    {
-      size.cx() += pointDst.x;
+      size.cx += pointDst.x;
       pointDst.x = 0;
    }
 
-   if (size.cx() < 0)
+   if (size.cx < 0)
    {
 
 
@@ -2828,11 +2828,11 @@ void image::mult_alpha(const ::int_point& pointDstParam, const ::int_size& sizeP
 
    if (pointDst.y < 0)
    {
-      size.cy() += pointDst.y;
+      size.cy += pointDst.y;
       pointDst.y = 0;
    }
 
-   if (size.cy() < 0)
+   if (size.cy < 0)
    {
 
       //return false;
@@ -2841,9 +2841,9 @@ void image::mult_alpha(const ::int_point& pointDstParam, const ::int_size& sizeP
 
    }
 
-   int xEnd = minimum(size.cx(), pimageDst->width() - pointDst.x);
+   int xEnd = minimum(size.cx, pimageDst->width() - pointDst.x);
 
-   int yEnd = minimum(size.cy(), pimageDst->height() - pointDst.y);
+   int yEnd = minimum(size.cy, pimageDst->height() - pointDst.y);
 
    if (xEnd < 0)
    {
@@ -3003,11 +3003,11 @@ void image::div_alpha(const ::int_point& pointDstParam, const ::int_size& sizePa
 
    if (pointDst.x < 0)
    {
-      size.cx() += pointDst.x;
+      size.cx += pointDst.x;
       pointDst.x = 0;
    }
 
-   if (size.cx() < 0)
+   if (size.cx < 0)
    {
     
       return;
@@ -3016,11 +3016,11 @@ void image::div_alpha(const ::int_point& pointDstParam, const ::int_size& sizePa
 
    if (pointDst.y < 0)
    {
-      size.cy() += pointDst.y;
+      size.cy += pointDst.y;
       pointDst.y = 0;
    }
 
-   if (size.cy() < 0)
+   if (size.cy < 0)
    {
 
       return;
@@ -3028,9 +3028,9 @@ void image::div_alpha(const ::int_point& pointDstParam, const ::int_size& sizePa
    }
 
 
-   int xEnd = minimum(size.cx(), pimageDst->width() - pointDst.x);
+   int xEnd = minimum(size.cx, pimageDst->width() - pointDst.x);
 
-   int yEnd = minimum(size.cy(), pimageDst->height() - pointDst.y);
+   int yEnd = minimum(size.cy, pimageDst->height() - pointDst.y);
 
    if (xEnd < 0)
    {
@@ -4367,7 +4367,7 @@ void image::copy_from_no_create(::image::image *pimage, const ::int_point & poin
 
    ::int_size s(pimage->size() - point);
 
-   auto sizeCopy = ::int_size(::minimum(size().cx(), s.cx()), ::minimum(size().cy(), s.cy()));
+   auto sizeCopy = ::int_size(::minimum(size().cx, s.cx), ::minimum(size().cy, s.cy));
 
    if (sizeCopy.area() > 0)
    {
@@ -6653,7 +6653,7 @@ void image::fill_byte(uchar uch)
 
       int iScan = m_iScan;
 
-      int iHeight = get_size().cy();
+      int iHeight = get_size().cy;
 
       if (iScan <= 0 || iHeight <= 0)
       {
@@ -9580,12 +9580,12 @@ void image::create_circle(::image::image* pimage, int diameter)
 
    image32_t* pimage322;
 
-   for (int y = 0; y < s.cx(); y++)
+   for (int y = 0; y < s.cx; y++)
    {
 
       pimage322 = &pimage32[y * wscan];
 
-      for (int x = 0; x < s.cx(); x++)
+      for (int x = 0; x < s.cx; x++)
       {
 
          double Δx = x;
@@ -10187,9 +10187,9 @@ CLASS_DECL_AURA void draw_freetype_bitmap(::image::image* m_p, int Δx, int Δy,
 //
 //   stream << (int)iHeight;
 //
-//   stream << (int)m_sizeAlloc.cx();
+//   stream << (int)m_sizeAlloc.cx;
 //
-//   stream << (int)m_sizeAlloc.cy();
+//   stream << (int)m_sizeAlloc.cy;
 //
 //   stream << (int)m_iScan;
 //
@@ -10403,9 +10403,9 @@ CLASS_DECL_AURA void draw_freetype_bitmap(::image::image* m_p, int Δx, int Δy,
 //
 //   }
 //
-//   m_size.cx() = width;
+//   m_size.cx = width;
 //
-//   m_size.cy() = height;
+//   m_size.cy = height;
 //
 //   return stream;
 //

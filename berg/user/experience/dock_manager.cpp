@@ -334,7 +334,7 @@ namespace experience
             - m_pointCursorDockOrigin
             + m_sizeDockRightOrigin;
 
-         pointReposition.cx() -= rectangleWindow.width();
+         pointReposition.cx -= rectangleWindow.width();
 
          rectangleWindow.move_to(pointReposition);
 

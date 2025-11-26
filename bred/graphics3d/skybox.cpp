@@ -103,8 +103,8 @@ namespace graphics3d
    void skybox::load_cube_map_images()
    {
 
-      m_sizeSquare.cx() = 0;
-      m_sizeSquare.cy() = 0;
+      m_sizeSquare.cx = 0;
+      m_sizeSquare.cy = 0;
 
       for(auto & face : m_cube)
       {
@@ -123,7 +123,7 @@ namespace graphics3d
             throw ::exception(error_wrong_state, "All images in skybox shouldn't be empty");
 
          }
-         else if (sizeSquare.cx() != sizeSquare.cy())
+         else if (sizeSquare.cx != sizeSquare.cy)
          {
 
             throw ::exception(error_wrong_state, "All images in skybox should be a square");

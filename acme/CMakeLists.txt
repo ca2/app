@@ -447,6 +447,8 @@ list(APPEND library_source
         operating_system/console.cpp
         operating_system/console_client.cpp
         operating_system/console_client.h
+        operating_system/cpu_features.cpp
+        operating_system/cpu_features.h
         operating_system/debug.cpp
         operating_system/dynamic_library.cpp
         operating_system/dynamic_library.h

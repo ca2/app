@@ -362,7 +362,7 @@ public:
 //
 //   this->m_estrflag = (e_str_flag)((int)this->m_estrflag & ~(int)str_flag_ifnumberparenthesizeandspace);
 //
-//   *this << psize->cx() << psize->cy();
+//   *this << psize->cx << psize->cy;
 //
 //}
 //
@@ -587,8 +587,8 @@ public:
 ////
 ////text_stream & text_stream < FILE >::operator >>(::int_size * psize)
 ////{
-////   m_pfile->read(&psize->cx(), sizeof(psize->cx()));
-////   m_pfile->read(&psize->cy(), sizeof(psize->cy()));
+////   m_pfile->read(&psize->cx, sizeof(psize->cx));
+////   m_pfile->read(&psize->cy, sizeof(psize->cy));
 ////}
 ////
 ////text_stream & text_stream < FILE >::operator >>(::int_point * ppoint)

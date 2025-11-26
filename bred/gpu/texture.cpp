@@ -267,7 +267,7 @@ namespace gpu
       int iAtlasY = m_iAtlasY;
       int iAtlasH = m_iAtlasCurrentRowHeight;
 
-      if (size.cx() > m_rectangleTarget.width() - iAtlasX)
+      if (size.cx > m_rectangleTarget.width() - iAtlasX)
       {
 
          if (iAtlasX <= 0)
@@ -283,7 +283,7 @@ namespace gpu
 
       }
 
-      if (size.cy() > m_rectangleTarget.height() - iAtlasY)
+      if (size.cy > m_rectangleTarget.height() - iAtlasY)
       {
 
          if (iAtlasY <= 0)
@@ -299,7 +299,7 @@ namespace gpu
 
       }
 
-      iAtlasH = maximum(iAtlasH, size.cy());
+      iAtlasH = maximum(iAtlasH, size.cy);
 
       m_iAtlasX = iAtlasX;
       m_iAtlasY = iAtlasY;
@@ -309,11 +309,11 @@ namespace gpu
 
       ppixmap->initialize_gpu_pixmap(this, 
          {iAtlasX, iAtlasY,
-         iAtlasX + size.cx(),
-         iAtlasY + size.cy()});
+         iAtlasX + size.cx,
+         iAtlasY + size.cy});
 
-      m_iAtlasX += size.cx();
-      m_iAtlasCurrentRowHeight = maximum(m_iAtlasCurrentRowHeight, size.cy());
+      m_iAtlasX += size.cx;
+      m_iAtlasCurrentRowHeight = maximum(m_iAtlasCurrentRowHeight, size.cy);
 
       return ppixmap;
 

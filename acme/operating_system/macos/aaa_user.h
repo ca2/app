@@ -173,9 +173,9 @@
 ////   void SetDefaults(const wxSize& size)
 ////   {
 ////      if(x == wxDefaultCoord)
-////         x = size.cx();
+////         x = size.cx;
 ////      if(y == wxDefaultCoord)
-////         y = size.cy();
+////         y = size.cy;
 ////   }
 ////   
 ////   // compatibility

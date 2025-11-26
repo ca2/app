@@ -1416,12 +1416,12 @@ namespace windowing
       
       auto sizeMax = rectangleMonitor.size() * 0.9;
 
-      if (rectangleIntersect.width() < sizeMin.cx() || rectangleIntersect.height() < sizeMin.cy()
-         || rectangleIntersect.width() > sizeMax.cx() || rectangleIntersect.height() > sizeMax.cy())
+      if (rectangleIntersect.width() < sizeMin.cx || rectangleIntersect.height() < sizeMin.cy
+         || rectangleIntersect.width() > sizeMax.cx || rectangleIntersect.height() > sizeMax.cy)
       {
 
-         if (rectangleMonitor.width() / 7 + maximum(sizeMin.cx(), rectangleMonitor.width() * 2 / 5) > rectangleMonitor.width()
-            || rectangleMonitor.height() / 7 + maximum(sizeMin.cy(), rectangleMonitor.height() * 2 / 5) > rectangleMonitor.width())
+         if (rectangleMonitor.width() / 7 + maximum(sizeMin.cx, rectangleMonitor.width() * 2 / 5) > rectangleMonitor.width()
+            || rectangleMonitor.height() / 7 + maximum(sizeMin.cy, rectangleMonitor.height() * 2 / 5) > rectangleMonitor.width())
          {
 
             rectangleRestore = rectangleMonitor;
@@ -1434,9 +1434,9 @@ namespace windowing
 
             rectangleRestore.top = rectangleMonitor.top + rectangleMonitor.height() / 7;
 
-            rectangleRestore.right = rectangleRestore.left + maximum(sizeMin.cx(), rectangleMonitor.width() * 2 / 5);
+            rectangleRestore.right = rectangleRestore.left + maximum(sizeMin.cx, rectangleMonitor.width() * 2 / 5);
 
-            rectangleRestore.bottom = rectangleRestore.top + maximum(sizeMin.cy(), rectangleMonitor.height() * 2 / 5);
+            rectangleRestore.bottom = rectangleRestore.top + maximum(sizeMin.cy, rectangleMonitor.height() * 2 / 5);
 
             if (rectangleRestore.right > rectangleMonitor.right - rectangleMonitor.width() / 7)
             {
@@ -1871,7 +1871,7 @@ namespace windowing
 
       auto sizeMinimum = system()->windowing()->get_window_minimum_size();
 
-      if (rectangleWouldBeSnapped.width() < sizeMinimum.cx() || rectangleWouldBeSnapped.height() < sizeMinimum.cy())
+      if (rectangleWouldBeSnapped.width() < sizeMinimum.cx || rectangleWouldBeSnapped.height() < sizeMinimum.cy)
       {
 
          return false;
@@ -1889,26 +1889,26 @@ namespace windowing
 
                // left snapping
 
-               return rectangleWouldBeSnapped.right < rectangleMonitor.right - sizeMinimum.cx();
+               return rectangleWouldBeSnapped.right < rectangleMonitor.right - sizeMinimum.cx;
 
             }
             else if (rectangleWouldBeSnapped.right == rectangleMonitor.right
-               || rectangleWouldBeSnapped.right < rectangleMonitor.right - sizeMinimum.cx())
+               || rectangleWouldBeSnapped.right < rectangleMonitor.right - sizeMinimum.cx)
             {
 
                // top snapping, or;
                // top left snapping
 
-               return rectangleWouldBeSnapped.bottom < rectangleMonitor.bottom - sizeMinimum.cy();
+               return rectangleWouldBeSnapped.bottom < rectangleMonitor.bottom - sizeMinimum.cy;
 
             }
 
          }
-         else if (rectangleWouldBeSnapped.top > rectangleMonitor.top + sizeMinimum.cy())
+         else if (rectangleWouldBeSnapped.top > rectangleMonitor.top + sizeMinimum.cy)
          {
 
             if (rectangleWouldBeSnapped.right == rectangleMonitor.right
-               || rectangleWouldBeSnapped.right < rectangleMonitor.right - sizeMinimum.cx())
+               || rectangleWouldBeSnapped.right < rectangleMonitor.right - sizeMinimum.cx)
             {
 
                // bottom snapping, or;
@@ -1932,23 +1932,23 @@ namespace windowing
 
                // right snapping
 
-               return rectangleWouldBeSnapped.left > rectangleMonitor.left + sizeMinimum.cx();
+               return rectangleWouldBeSnapped.left > rectangleMonitor.left + sizeMinimum.cx;
 
             }
-            else if (rectangleWouldBeSnapped.left > rectangleMonitor.left + sizeMinimum.cx())
+            else if (rectangleWouldBeSnapped.left > rectangleMonitor.left + sizeMinimum.cx)
             {
 
                // top right snapping
 
-               return rectangleWouldBeSnapped.bottom < rectangleMonitor.bottom - sizeMinimum.cy();
+               return rectangleWouldBeSnapped.bottom < rectangleMonitor.bottom - sizeMinimum.cy;
 
             }
 
          }
-         else if (rectangleWouldBeSnapped.top > rectangleMonitor.top + sizeMinimum.cy())
+         else if (rectangleWouldBeSnapped.top > rectangleMonitor.top + sizeMinimum.cy)
          {
 
-            if (rectangleWouldBeSnapped.left > rectangleMonitor.left + sizeMinimum.cx())
+            if (rectangleWouldBeSnapped.left > rectangleMonitor.left + sizeMinimum.cx)
             {
 
                // bottom right snapping
@@ -2045,7 +2045,7 @@ namespace windowing
 
       auto sizeMinimum = system()->windowing()->get_window_minimum_size();
 
-      if (rectangleWouldBeRestored.width() < sizeMinimum.cx() || rectangleWouldBeRestored.height() < sizeMinimum.cy())
+      if (rectangleWouldBeRestored.width() < sizeMinimum.cx || rectangleWouldBeRestored.height() < sizeMinimum.cy)
       {
 
          return false;

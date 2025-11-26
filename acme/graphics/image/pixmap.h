@@ -116,8 +116,8 @@ struct pixmap
    inline ::int_point origin() const noexcept { return top_left(); }
    //inline concrete < ::int_size > size() const noexcept { return m_size; }
    inline ::int_size size() const noexcept { return m_size; }
-   inline int width() const noexcept { return m_size.cx(); }
-   inline int height() const noexcept { return m_size.cy(); }
+   inline int width() const noexcept { return m_size.cx; }
+   inline int height() const noexcept { return m_size.cy; }
    inline int area() const noexcept { return m_size.area(); }
    inline int scan_area() const noexcept { return height() * scan_size(); }
 

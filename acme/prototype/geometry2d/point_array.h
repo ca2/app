@@ -324,10 +324,10 @@ template < primitive_number NUMBER >
 
    ::collection::count c = 0;
 
-   for (auto x = x1; x <= x2; x += size.cx())
+   for (auto x = x1; x <= x2; x += size.cx)
    {
 
-      for (auto y = y1; y <= y2; y += size.cy())
+      for (auto y = y1; y <= y2; y += size.cy)
       {
 
          if (this->add_unique(POINT_TYPE(x, y)))

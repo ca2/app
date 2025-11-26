@@ -236,7 +236,7 @@ namespace draw2d
    //{
 
 
-   //   return SetBitmapDimension(size.cx(),size.cy());
+   //   return SetBitmapDimension(size.cx,size.cy);
 
 
    //}

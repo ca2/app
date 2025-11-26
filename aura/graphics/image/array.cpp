@@ -55,17 +55,17 @@ namespace image
 
       ::int_size sizeSource(pimageSource->width() / cols, pimageSource->height() / rows);
 
-      if (size.cx() < 0)
+      if (size.cx < 0)
       {
 
-         size.cx() = sizeSource.cx();
+         size.cx = sizeSource.cx;
 
       }
 
-      if (size.cy() < 0)
+      if (size.cy < 0)
       {
 
-         size.cy() = sizeSource.cy();
+         size.cy = sizeSource.cy;
 
       }
 
@@ -79,7 +79,7 @@ namespace image
 
             auto rectangleTarget = pimage->rectangle();
 
-            auto rectangleSource = ::int_rectangle_dimension(sizeSource.cx() * col, sizeSource.cy() * row, sizeSource.cx(), sizeSource.cy());
+            auto rectangleSource = ::int_rectangle_dimension(sizeSource.cx * col, sizeSource.cy * row, sizeSource.cx, sizeSource.cy);
 
             ::image::image_source imagesource(pimageSource, rectangleSource);
 

@@ -257,7 +257,7 @@ namespace sandbox_windowing
 //      //         // so requesting the same change again in a effort to set the "docked/snapped" int_size and position.
 //
 //      //         //set_window_position(e_zorder_top, pusersystem->m_createstruct.x, pusersystem->m_createstruct.y,
-//      //         //                  pusersystem->m_createstruct.cx(), pusersystem->m_createstruct.cy(), SWP_SHOWWINDOW);
+//      //         //                  pusersystem->m_createstruct.cx, pusersystem->m_createstruct.cy, SWP_SHOWWINDOW);
 //
 //      //         set_window_position(e_zorder_top, x, y, cx, cy, SWP_SHOWWINDOW);
 //

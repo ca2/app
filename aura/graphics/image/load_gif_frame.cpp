@@ -125,9 +125,9 @@ namespace image
    //
    //   //      int_size s = pframe->m_pimage->get_size();
    //
-   //   //      int cx = s.cx();
+   //   //      int cx = s.cx;
    //
-   //   //      int cy = s.cy();
+   //   //      int cy = s.cy;
    //
    //   //      if (pframe->m_rectangle.size() == pframea.m_size)
    //   //      {

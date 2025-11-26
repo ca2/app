@@ -448,9 +448,9 @@ namespace user
 //      if (m_estockicon != e_stock_icon_none)
 //      {
 //
-//         pcalcsize->m_size.cx() = 24;
+//         pcalcsize->m_size.cx = 24;
 //
-//         pcalcsize->m_size.cy() = 24;
+//         pcalcsize->m_size.cy = 24;
 //
 //
 //         return;
@@ -481,7 +481,7 @@ namespace user
 //      if (bSeparator)
 //      {
 //
-//         size.cy() /= 2;
+//         size.cy /= 2;
 //
 //      }
 //
@@ -491,13 +491,13 @@ namespace user
 //
 //      auto rectanglePadding = get_padding(pstyle);
 //
-//      size.cx() += rectangleMargin.left + rectangleBorder.left + rectanglePadding.left;
+//      size.cx += rectangleMargin.left + rectangleBorder.left + rectanglePadding.left;
 //
-//      size.cx() += rectangleMargin.right;435
+//      size.cx += rectangleMargin.right;435
 //
-//      size.cx() += m_pmenuitem->m_pmenu->m_dCheckBoxSize;
+//      size.cx += m_pmenuitem->m_pmenu->m_dCheckBoxSize;
 //
-//      size.cx() += rectanglePadding.left;
+//      size.cx += rectanglePadding.left;
 
       if (m_pmenuitem->is_popup())
       {
@@ -506,17 +506,17 @@ namespace user
 
          auto rectanglePadding = get_padding(pstyle);
 
-         size.cx() += rectanglePadding.left;
+         size.cx += rectanglePadding.left;
 
-         size.cx() += m_pmenuitem->m_pmenu->m_dCheckBoxSize;
+         size.cx += m_pmenuitem->m_pmenu->m_dCheckBoxSize;
 
       }
 
-//      size.cx() += rectangleMargin.right + rectangleBorder.right + rectanglePadding.right;
+//      size.cx += rectangleMargin.right + rectangleBorder.right + rectanglePadding.right;
 //
-//      size.cy() += rectangleMargin.top + rectangleBorder.top + rectanglePadding.top;
+//      size.cy += rectangleMargin.top + rectangleBorder.top + rectanglePadding.top;
 //
-//      size.cy() += rectangleMargin.bottom + rectangleBorder.bottom + rectanglePadding.bottom;
+//      size.cy += rectangleMargin.bottom + rectangleBorder.bottom + rectanglePadding.bottom;
 //
 //      pcalcsize->m_size = size;
 

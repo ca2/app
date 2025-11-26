@@ -10,9 +10,9 @@
 //template < primitive_point POINT >
 //inline constexpr auto __vert(const POINT & point) { return point.y; }
 //template < primitive_size SIZE >
-//inline constexpr auto __horz(const SIZE & size) { return size.cx(); }
+//inline constexpr auto __horz(const SIZE & size) { return size.cx; }
 //template < primitive_size SIZE >
-//inline constexpr auto __vert(const SIZE & size) { return size.cy(); }
+//inline constexpr auto __vert(const SIZE & size) { return size.cy; }
 //
 //inline int_point& top_left(const ::int_rectangle* prectangle) { return *(int_point*)prectangle; }
 //inline int_point& bottom_right(const ::int_rectangle* prectangle) { return *(int_point*)& prectangle->right; }
@@ -244,6 +244,6 @@
 //inline ::string as_string(const SIZE & size)
 //{
 //
-//   str = as_string(size.cx()) + ", " + as_string(size.cy());
+//   str = as_string(size.cx) + ", " + as_string(size.cy);
 //
 //}

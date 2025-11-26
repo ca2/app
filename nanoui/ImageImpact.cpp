@@ -185,9 +185,9 @@ bool ImageImpact::mouse_motion_event(const int_point & /* p */, const int_size &
 
    }
 
-   m_offset.cx() += (float)rel.cx() * screen()->pixel_ratio();
+   m_offset.cx += (float)rel.cx * screen()->pixel_ratio();
 
-   m_offset.cy() += (float)rel.cy() * screen()->pixel_ratio();
+   m_offset.cy += (float)rel.cy * screen()->pixel_ratio();
 
    return true;
 
@@ -205,7 +205,7 @@ bool ImageImpact::scroll_event(const int_point & p, const float_size & rel)
    }
 
    float_sequence2 p1 = pos_to_pixel(p - m_pos);
-   m_scale += rel.cy();
+   m_scale += rel.cy;
 
    // Restrict scaling to a reasonable range
    m_scale = maximum(
@@ -227,7 +227,7 @@ void ImageImpact::draw(::nano2d::context  * pcontext)
      // return;
 
 
-   pcontext->_draw_image((float) m_pos.x, (float)m_pos.y, (float)m_size.cx(), (float)m_size.cy(), m_pimage);
+   pcontext->_draw_image((float) m_pos.x, (float)m_pos.y, (float)m_size.cx, (float)m_size.cy, m_pimage);
 
    //Canvas::draw(pcontext);
 
@@ -240,12 +240,12 @@ void ImageImpact::draw(::nano2d::context  * pcontext)
    //   pcontext->stroke_color(m_image_border_color);
    //   pcontext->rectangle(m_pos.x - .5f + top_left.x,
    //      m_pos.y - .5f + top_left.y,
-   //      size.cx() + 1.f, size.cy() + 1.f);
+   //      size.cx + 1.f, size.cy + 1.f);
    //   pcontext->stroke();
    //}
 
    //pcontext->save();
-   //::nano2d::IntersectScissor(ctx, m_pos.x, m_pos.y, m_size.cx(), m_size.cy());
+   //::nano2d::IntersectScissor(ctx, m_pos.x, m_pos.y, m_size.cx, m_size.cy);
 
    //if (scale() > 100 && m_pixel_callback) {
    //   float font_size = scale() / 10.f;
@@ -317,7 +317,7 @@ void ImageImpact::draw_contents(::nano2d::context  * pcontext)
    //      m_image->height() * scale / 20.f, 1.f));
 
    //Matrix4f matrix_image =
-   //   Matrix4f::ortho(0.f, viewport_size.cx(), viewport_size.cy(), 0.f, -1.f, 1.f) *
+   //   Matrix4f::ortho(0.f, viewport_size.cx, viewport_size.cy, 0.f, -1.f, 1.f) *
    //   Matrix4f::translate(Vector3f(m_offset.x, (int)m_offset.y, 0.f)) *
    //   Matrix4f::scale(Vector3f(m_image->size().x * scale,
    //      m_image->size().y * scale, 1.f));

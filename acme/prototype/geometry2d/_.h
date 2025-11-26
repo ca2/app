@@ -643,8 +643,8 @@ DECLARE_ENUMERATION(e_align, enum_align);
 //POINT & copy(POINT & point, const SIZE & size)
 //{
 //
-//   point.x = (decltype(POINT::x))size.cx();
-//   point.y = (decltype(POINT::y))size.cy();
+//   point.x = (decltype(POINT::x))size.cx;
+//   point.y = (decltype(POINT::y))size.cy;
 //
 //   return point;
 //
@@ -655,8 +655,8 @@ DECLARE_ENUMERATION(e_align, enum_align);
 //SIZE_TYPE1 & copy_size(SIZE_TYPE1 & size1, const SIZE_TYPE2 & size2)
 //{
 //
-//   size1.cx() = (decltype(SIZE_TYPE1::cx))size2.cx();
-//   size1.cy() = (decltype(SIZE_TYPE1::cy))size2.cy();
+//   size1.cx = (decltype(SIZE_TYPE1::cx))size2.cx;
+//   size1.cy = (decltype(SIZE_TYPE1::cy))size2.cy;
 //
 //   return size1;
 //
@@ -694,7 +694,7 @@ DECLARE_ENUMERATION(e_align, enum_align);
 //bool is_equal(const SIZE_TYPE1 & size1, const SIZE_TYPE2 & size2)
 //{
 //
-//   return size1.cx() == size2.cx() && size1.cy() == size2.cy();
+//   return size1.cx == size2.cx && size1.cy == size2.cy;
 //
 //}
 //
@@ -740,8 +740,8 @@ DECLARE_ENUMERATION(e_align, enum_align);
 //RECTANGLE & set_bottom_right(RECTANGLE & rectangle, const SIZE & size)
 //{
 //
-//   rectangle.right = (decltype(RECTANGLE::right))(rectangle.left + size.cx());
-//   rectangle.bottom = (decltype(RECTANGLE::bottom))(rectangle.top + size.cy());
+//   rectangle.right = (decltype(RECTANGLE::right))(rectangle.left + size.cx);
+//   rectangle.bottom = (decltype(RECTANGLE::bottom))(rectangle.top + size.cy);
 //
 //   return rectangle;
 //
@@ -754,8 +754,8 @@ DECLARE_ENUMERATION(e_align, enum_align);
 //
 //   rectangle.left = (decltype(RECTANGLE::left))point.x;
 //   rectangle.top = (decltype(RECTANGLE::top))point.y;
-//   rectangle.right = (decltype(RECTANGLE::right))(point.x + size.cx());
-//   rectangle.bottom = (decltype(RECTANGLE::bottom))(point.y + size.cy());
+//   rectangle.right = (decltype(RECTANGLE::right))(point.x + size.cx);
+//   rectangle.bottom = (decltype(RECTANGLE::bottom))(point.y + size.cy);
 //
 //   return rectangle;
 //
@@ -807,8 +807,8 @@ DECLARE_ENUMERATION(e_align, enum_align);
 //bool is_null(const SIZE_TYPE & size)
 //{
 //
-//   return size.cx() == (decltype(SIZE_TYPE::cx))0
-//      && size.cy() == (decltype(SIZE_TYPE::cy))0;
+//   return size.cx == (decltype(SIZE_TYPE::cx))0
+//      && size.cy == (decltype(SIZE_TYPE::cy))0;
 //
 //}
 //
@@ -1178,10 +1178,10 @@ DECLARE_ENUMERATION(e_align, enum_align);
 //
 //
 //
-////inline bool is_empty(::int_size & size) { return size.cx() <= 0 || size.cy() <= 0; }
-////inline bool is_empty(::long_long_size & size) { return size.cx() <= 0 || size.cy() <= 0; }
-////inline bool is_empty(::float_size & size) { return size.cx() <= 0.f || size.cy() <= 0.f; }
-////inline bool is_empty(::double_size & size) { return size.cx() <= 0. || size.cy() <= 0.; }
+////inline bool is_empty(::int_size & size) { return size.cx <= 0 || size.cy <= 0; }
+////inline bool is_empty(::long_long_size & size) { return size.cx <= 0 || size.cy <= 0; }
+////inline bool is_empty(::float_size & size) { return size.cx <= 0.f || size.cy <= 0.f; }
+////inline bool is_empty(::double_size & size) { return size.cx <= 0. || size.cy <= 0.; }
 ////inline bool contains(const ::long_long_rectangle & rectangle, const ::int_point & point) { return ::rectangle_contains(rectangle, point.x, point.y); }
 ////inline ::long_long_rectangle & null(::long_long_rectangle & rectDst) { return ::null_rect(rectDst); }
 ////inline bool is_equal(const ::long_long_rectangle & rect1, const ::long_long_rectangle & rect2) { return ::rect_equals(rect1, rect2); }
@@ -1439,24 +1439,24 @@ DECLARE_ENUMERATION(e_align, enum_align);
 ////inline auto ::int_point(const ::lparam & lparam) noexcept { return ::int_point(lparam.x, lparam.y); }
 ////inline auto ::int_point(const unsigned int u) noexcept { return ::int_point((int)u32_x(u), (int)u32_y(u)); }
 ////inline auto ::int_point(const unsigned long long u) noexcept { return ::int_point((int)u64_x(u), (int)u64_y(u)); }
-////inline auto ::int_point(const ::int_size & size) noexcept { return ::int_point(size.cx(), size.cy()); }
+////inline auto ::int_point(const ::int_size & size) noexcept { return ::int_point(size.cx, size.cy); }
 ////
 ////inline auto __point64(const ::lparam & lparam) noexcept { return ::long_long_point(lparam.x, lparam.y); }
 ////inline auto __point64(const unsigned int u) noexcept { return ::long_long_point((long long)u32_x(u), (long long)u32_y(u)); }
 ////inline auto __point64(const unsigned long long u) noexcept { return ::long_long_point((long long)u64_x(u), (long long)u64_y(u)); }
-////inline auto __point64(const ::long_long_size & size) noexcept { return ::long_long_point(size.cx(), size.cy()); }
+////inline auto __point64(const ::long_long_size & size) noexcept { return ::long_long_point(size.cx, size.cy); }
 ////
 ////
 ////inline auto __pointf(const ::lparam & lparam) noexcept { return ::float_point((float)lparam.x, (float)lparam.y); }
 ////inline auto __pointf(const unsigned int u) noexcept { return ::float_point((float)u32_x(u), (float)u32_y(u)); }
 ////inline auto __pointf(const unsigned long long u) noexcept { return ::float_point((float)u64_x(u), (float)u64_y(u)); }
-////inline auto __pointf(const ::float_size & size) noexcept { return ::float_point(size.cx(), size.cy()); }
+////inline auto __pointf(const ::float_size & size) noexcept { return ::float_point(size.cx, size.cy); }
 ////
 ////
 ////inline auto __pointd(const ::lparam & lparam) noexcept { return ::double_point(lparam.x, lparam.y); }
 ////inline auto __pointd(const unsigned int u) noexcept { return ::double_point((double)u32_x(u), (double)u32_y(u)); }
 ////inline auto __pointd(const unsigned long long u) noexcept { return ::double_point((double)u64_x(u), (double)u64_y(u)); }
-////inline auto __pointd(const ::double_size & size) noexcept { return ::double_point(size.cx(), size.cy()); }
+////inline auto __pointd(const ::double_size & size) noexcept { return ::double_point(size.cx, size.cy); }
 //
 ////#ifdef UNIVERSAL_WINDOWS
 ////
@@ -1533,9 +1533,9 @@ DECLARE_ENUMERATION(e_align, enum_align);
 ////template < primitive_point POINT >
 ////inline constexpr auto __vert(const POINT & point) { return point.y; }
 ////template < primitive_size SIZE >
-////inline constexpr auto __horz(const SIZE & size) { return size.cx(); }
+////inline constexpr auto __horz(const SIZE & size) { return size.cx; }
 ////template < primitive_size SIZE >
-////inline constexpr auto __vert(const SIZE & size) { return size.cy(); }
+////inline constexpr auto __vert(const SIZE & size) { return size.cy; }
 ////
 ////inline int_point & top_left(const ::int_rectangle &rectangle) { return *(int_point *)&rectangle; }
 ////inline int_point & bottom_right(const ::int_rectangle &rectangle) { return *(int_point *)&rectangle.right; }
@@ -1740,7 +1740,7 @@ DECLARE_ENUMERATION(e_align, enum_align);
 ////inline ::string as_string(const SIZE & size)
 ////{
 ////
-////   return as_string(size.cx()) + ", " + as_string(size.cy());
+////   return as_string(size.cx) + ", " + as_string(size.cy);
 ////
 ////}
 ////

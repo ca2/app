@@ -351,7 +351,7 @@ virtual bool scroll_event(const int_point& p, const float_size& rel) override
    if (m_bSpinnable && !focused())
    {
 
-      int value_delta = (rel.cy() > 0) ? 1 : -1;
+      int value_delta = (rel.cy > 0) ? 1 : -1;
 
       set_value(value() + value_delta * m_iIncrementValue, e_source_user);
 

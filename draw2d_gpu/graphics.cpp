@@ -435,8 +435,8 @@ void main() {
       //dwStyle &= ~WS_BORDER;
       //int x = 0;
       //int y = 0;
-      //int nWidth = size.cx();
-      //int nHeight = size.cy();
+      //int nWidth = size.cx;
+      //int nHeight = size.cy;
       //HWND hWndParent = nullptr;
       //HMENU hMenu = nullptr;
       /////HINSTANCE hInstance = psystem->m_hinstance;
@@ -870,7 +870,7 @@ void main() {
 
    //int_size graphics::set_context_extents(const ::int_size & size)
    //{
-   //   return set_context_extents(size.cx(), size.cy());
+   //   return set_context_extents(size.cx, size.cy);
    //}
 
    int_point graphics::SetWindowOrg(const ::int_point& point)
@@ -880,7 +880,7 @@ void main() {
 
    int_size graphics::set_window_ext(const ::int_size& size)
    {
-      return set_window_ext(size.cx(), size.cy());
+      return set_window_ext(size.cx, size.cy);
    }
 
    void graphics::DPtoLP(::double_point* lpPoints, ::collection::count nCount)
@@ -1572,7 +1572,7 @@ void main() {
 //   {
 //
 //      // ASSERT(m_hdc != nullptr);
-//      //return ::DrawState(m_hdc, hBrush, nullptr, (LPARAM)hBitmap, 0, point.x, point.y, size.cx(), size.cy(), nFlags|DST_BITMAP) != false;
+//      //return ::DrawState(m_hdc, hBrush, nullptr, (LPARAM)hBitmap, 0, point.x, point.y, size.cx, size.cy, nFlags|DST_BITMAP) != false;
 //      return false;
 //
 //   }
@@ -1581,7 +1581,7 @@ void main() {
 //   {
 //
 //      // ASSERT(m_hdc != nullptr);
-//      //return ::DrawState(m_hdc, (HBRUSH)pBrush->get_os_data(), nullptr, (LPARAM)pBitmap->get_os_data(), 0, point.x, point.y, size.cx(), size.cy(), nFlags|DST_BITMAP) != false;
+//      //return ::DrawState(m_hdc, (HBRUSH)pBrush->get_os_data(), nullptr, (LPARAM)pBitmap->get_os_data(), 0, point.x, point.y, size.cx, size.cy, nFlags|DST_BITMAP) != false;
 //
 //      return false;
 //
@@ -1591,7 +1591,7 @@ void main() {
 //   {
 //
 //      // ASSERT(m_hdc != nullptr);
-//      //return ::DrawState(m_hdc, hBrush, nullptr, (LPARAM)hIcon, 0, point.x, point.y, size.cx(), size.cy(), nFlags|DST_ICON) != false;
+//      //return ::DrawState(m_hdc, hBrush, nullptr, (LPARAM)hIcon, 0, point.x, point.y, size.cx, size.cy, nFlags|DST_ICON) != false;
 //
 //      return false;
 //
@@ -1602,7 +1602,7 @@ void main() {
 //   {
 //
 //      // ASSERT(m_hdc != nullptr);
-//      //return ::DrawState(m_hdc, (HBRUSH)pBrush->get_os_data(), nullptr, (LPARAM)hIcon, 0, point.x, point.y, size.cx(), size.cy(), nFlags|DST_ICON) != false;
+//      //return ::DrawState(m_hdc, (HBRUSH)pBrush->get_os_data(), nullptr, (LPARAM)hIcon, 0, point.x, point.y, size.cx, size.cy, nFlags|DST_ICON) != false;
 //      return false;
 //
 //   }
@@ -1612,7 +1612,7 @@ void main() {
 //   {
 //
 //      // ASSERT(m_hdc != nullptr);
-//      //return ::DrawState(m_hdc, hBrush,  nullptr, (LPARAM)lpszText, (WPARAM)nTextLen, point.x, point.y, size.cx(), size.cy(), nFlags|(bPrefixText ? DST_PREFIXTEXT : DST_TEXT)) != false;
+//      //return ::DrawState(m_hdc, hBrush,  nullptr, (LPARAM)lpszText, (WPARAM)nTextLen, point.x, point.y, size.cx, size.cy, nFlags|(bPrefixText ? DST_PREFIXTEXT : DST_TEXT)) != false;
 //      return false;
 //
 //   }
@@ -1622,7 +1622,7 @@ void main() {
 //   {
 //
 //      // ASSERT(m_hdc != nullptr);
-//      //return ::DrawState(m_hdc, (HBRUSH)pBrush->get_os_data(), nullptr, (LPARAM)lpszText, (WPARAM)nTextLen, point.x, point.y, size.cx(), size.cy(), nFlags|(bPrefixText ? DST_PREFIXTEXT : DST_TEXT)) != false;
+//      //return ::DrawState(m_hdc, (HBRUSH)pBrush->get_os_data(), nullptr, (LPARAM)lpszText, (WPARAM)nTextLen, point.x, point.y, size.cx, size.cy, nFlags|(bPrefixText ? DST_PREFIXTEXT : DST_TEXT)) != false;
 //      return false;
 //
 //   }
@@ -1632,7 +1632,7 @@ void main() {
 //   {
 //      // ASSERT(m_hdc != nullptr);
 //      //return ::DrawState(m_hdc, hBrush,
-//          //               lpDrawProc, lData, 0, point.x, point.y, size.cx(), size.cy(), nFlags|DST_COMPLEX) != false;
+//          //               lpDrawProc, lData, 0, point.x, point.y, size.cx, size.cy, nFlags|DST_COMPLEX) != false;
 //      return false;
 //
 //   }
@@ -1642,7 +1642,7 @@ void main() {
 //   {
 //      // ASSERT(m_hdc != nullptr);
 //      //return ::DrawState(m_hdc, (HBRUSH)pBrush->get_os_data(),
-//        //                 lpDrawProc, lData, 0, point.x, point.y, size.cx(), size.cy(), nFlags|DST_COMPLEX) != false;
+//        //                 lpDrawProc, lData, 0, point.x, point.y, size.cx, size.cy, nFlags|DST_COMPLEX) != false;
 //      return false;
 //
 //   }
@@ -3422,7 +3422,7 @@ void main() {
 ////         keep < image > keep(&m_pimageAlphaBlend, nullptr, m_pimageAlphaBlend, true);
 ////
 ////
-////         return BitBlt(ptDest.x, ptDest.y, size.cx(), size.cy(), imageWork.get_graphics(), pointSrc.x, pointSrc.y);
+////         return BitBlt(ptDest.x, ptDest.y, size.cx, size.cy, imageWork.get_graphics(), pointSrc.x, pointSrc.y);
 ////
 ////
 ////      }
@@ -3700,8 +3700,8 @@ void main() {
 
       //         }
       //         ASSERT(cxPerInch != 0 && cyPerInch != 0);
-      //         LPSIZE32->cx() = MulDiv(LPSIZE32->cx(), HIMETRIC_INCH, cxPerInch);
-      //         LPSIZE32->cy() = MulDiv(LPSIZE32->cy(), HIMETRIC_INCH, cyPerInch);
+      //         LPSIZE32->cx = MulDiv(LPSIZE32->cx, HIMETRIC_INCH, cxPerInch);
+      //         LPSIZE32->cy = MulDiv(LPSIZE32->cy, HIMETRIC_INCH, cyPerInch);
       //      }
    }
 
@@ -3735,8 +3735,8 @@ void main() {
 
       //         }
       //         ASSERT(cxPerInch != 0 && cyPerInch != 0);
-      //         LPSIZE32->cx() = MulDiv(LPSIZE32->cx(), cxPerInch, HIMETRIC_INCH);
-      //         LPSIZE32->cy() = MulDiv(LPSIZE32->cy(), cyPerInch, HIMETRIC_INCH);
+      //         LPSIZE32->cx = MulDiv(LPSIZE32->cx, cxPerInch, HIMETRIC_INCH);
+      //         LPSIZE32->cy = MulDiv(LPSIZE32->cy, cyPerInch, HIMETRIC_INCH);
       //      }
    }
 
@@ -3802,7 +3802,7 @@ void main() {
    //         ::draw2d::region rgnOutside, rgnInside;
    //         rgnOutside.create_rect(rectangle);
    //         const ::double_rectangle & rectangle = *rectangle;
-   //         rectangle.inflate(-size.cx(), -size.cy());
+   //         rectangle.inflate(-size.cx, -size.cy);
    //         rectangle.intersect(rectangle, rectangle);
    //         rgnInside.create_rect(rectangle);
    //         rgnNew.create_rect(0, 0, 0, 0);
@@ -3828,7 +3828,7 @@ void main() {
    //            rgnLast.create_rect(0, 0, 0, 0);
    //            rgnOutside.SetRectRgn(lpRectLast);
    //            rectangle = *lpRectLast;
-   //            rectangle.inflate(-sizeLast.cx(), -sizeLast.cy());
+   //            rectangle.inflate(-sizeLast.cx, -sizeLast.cy);
    //            rectangle.intersect(rectangle, lpRectLast);
    //            rgnInside.SetRectRgn(rectangle);
    //            rgnLast.CombineRgn(&rgnOutside, &rgnInside, RGN_XOR);
@@ -4759,9 +4759,9 @@ void graphics::FillSolidRect(double x, double y, double cx, double cy, color32_t
       int nRetVal = 0;
 
       //if(m_hdc != nullptr && m_hdc != m_hdc)
-      //   nRetVal = ::OffsetClipRgn(m_hdc, size.cx(), size.cy());
+      //   nRetVal = ::OffsetClipRgn(m_hdc, size.cx, size.cy);
       //if(m_hdc != nullptr)
-      //   nRetVal = ::OffsetClipRgn(m_hdc, size.cx(), size.cy());
+      //   nRetVal = ::OffsetClipRgn(m_hdc, size.cx, size.cy);
 
       return nRetVal;
 
@@ -5204,8 +5204,8 @@ void graphics::FillSolidRect(double x, double y, double cx, double cy, color32_t
 
       //int_size sizeWinExt = GetWindowExt();
       //int_size sizeVpExt = get_context_extents();
-      //LPSIZE32->cx() = MulDiv(LPSIZE32->cx(), abs(sizeVpExt.cx()), abs(sizeWinExt.cx()));
-      //LPSIZE32->cy() = MulDiv(LPSIZE32->cy(), abs(sizeVpExt.cy()), abs(sizeWinExt.cy()));
+      //LPSIZE32->cx = MulDiv(LPSIZE32->cx, abs(sizeVpExt.cx), abs(sizeWinExt.cx));
+      //LPSIZE32->cy = MulDiv(LPSIZE32->cy, abs(sizeVpExt.cy), abs(sizeWinExt.cy));
 
    }
 
@@ -5217,8 +5217,8 @@ void graphics::FillSolidRect(double x, double y, double cx, double cy, color32_t
 
       //int_size sizeWinExt = GetWindowExt();
       //int_size sizeVpExt = get_context_extents();
-      //LPSIZE32->cx() = MulDiv(LPSIZE32->cx(), abs(sizeWinExt.cx()), abs(sizeVpExt.cx()));
-      //LPSIZE32->cy() = MulDiv(LPSIZE32->cy(), abs(sizeWinExt.cy()), abs(sizeVpExt.cy()));
+      //LPSIZE32->cx = MulDiv(LPSIZE32->cx, abs(sizeWinExt.cx), abs(sizeVpExt.cx));
+      //LPSIZE32->cy = MulDiv(LPSIZE32->cy, abs(sizeWinExt.cy), abs(sizeVpExt.cy));
 
    }
 
@@ -5488,7 +5488,7 @@ void graphics::FillSolidRect(double x, double y, double cx, double cy, color32_t
    //   if (!get_text_extent(size, lpszString, nCount, 0))
    //      return ::int_size(0, 0);
 
-   //   return ::int_size(size.cx(), size.cy());
+   //   return ::int_size(size.cx, size.cy);
 
    //}
 
@@ -5501,7 +5501,7 @@ void graphics::FillSolidRect(double x, double y, double cx, double cy, color32_t
       if(!get_text_extent(size, str, (double) str.length(), 0))
          return ::int_size(0, 0);
 
-      return ::int_size((long) size.cx(), (long) size.cy());
+      return ::int_size((long) size.cx, (long) size.cy);
 
    }*/
 
@@ -5610,9 +5610,9 @@ void graphics::FillSolidRect(double x, double y, double cx, double cy, color32_t
 //      //FT_Done_Face(face);
 //      //FT_Done_FreeType(ft);
 //
-//      size.cx() = s.cx();
+//      size.cx = s.cx;
 //
-//      size.cy() = s.cy();
+//      size.cy = s.cy;
 //
 //      return true;
 //
@@ -5635,9 +5635,9 @@ void graphics::FillSolidRect(double x, double y, double cx, double cy, color32_t
 //      //if (!::GetTextExtentPoint32W(pfont->m_hdcFont, wstr, (double)wstr.get_length(), &s))
 //        // return false;
 //
-//      size.cx() = s.cx();
+//      size.cx = s.cx;
 //
-//      size.cy() = s.cy();
+//      size.cy = s.cy;
 //
 //      return true;
 //
@@ -5660,9 +5660,9 @@ void graphics::FillSolidRect(double x, double y, double cx, double cy, color32_t
 //      //if (::GetTextExtentPoint32W(pfont->m_hdcFont, wstr, (double)wstr.get_length(), &s))
 //        // return false;
 //
-//      size.cx() = s.cx();
+//      size.cx = s.cx;
 //
-//      size.cy() = s.cy();
+//      size.cy = s.cy;
 //
 //      return true;
 //
@@ -7052,29 +7052,29 @@ namespace opengl
       //double d = 200.0 / 72.0;
 
       //double d = 1.0;
-      ////glViewport(0, 0, size.cx() * d, size.cy() * d);
-      //glglgl glViewport(0, 0, size.cx(), size.cy());
+      ////glViewport(0, 0, size.cx * d, size.cy * d);
+      //glglgl glViewport(0, 0, size.cx, size.cy);
       //glMatrixMode(GL_PROJECTION);
       //glLoadIdentity();
-      ////glOrtho(0, size.cx() * d, size.cy() * d, 0.0f, 000.0f, 1000.0f);
-      ////glOrtho(0, size.cx() * d, size.cy() * d, 0.0f, 000.0f, 1000.0f);
-      //////glOrtho(0, size.cx() * d, 0.0f, size.cy() * d, 000.0f, 1000.0f);
-      ////glOrtho(0, size.cx(), size.cy(), 0.0f, -1000.0f, 1000.0f);
-      //glOrtho(0.f, size.cx(), 0.f, -size.cy(), -1.0f, 1.0f);
+      ////glOrtho(0, size.cx * d, size.cy * d, 0.0f, 000.0f, 1000.0f);
+      ////glOrtho(0, size.cx * d, size.cy * d, 0.0f, 000.0f, 1000.0f);
+      //////glOrtho(0, size.cx * d, 0.0f, size.cy * d, 000.0f, 1000.0f);
+      ////glOrtho(0, size.cx, size.cy, 0.0f, -1000.0f, 1000.0f);
+      //glOrtho(0.f, size.cx, 0.f, -size.cy, -1.0f, 1.0f);
       if (bYSwap)
       {
-         //glOrtho(0.0f, size.cx(), size.cy(), 0, -1.0f, 1.0f);  // Flip Y
+         //glOrtho(0.0f, size.cx, size.cy, 0, -1.0f, 1.0f);  // Flip Y
       }
       else
       {
-         //glOrtho(0.0f, size.cx(), 0, size.cy(), -1.0f, 1.0f);  // Flip Y
+         //glOrtho(0.0f, size.cx, 0, size.cy, -1.0f, 1.0f);  // Flip Y
       }
       //glMatrixMode(GL_MODELVIEW);
       //glLoadIdentity();
       //auto left = 0.;
-      //auto right = (double) size.cx();
+      //auto right = (double) size.cx;
       //auto bottom = 0.;
-      //auto top = (double)size.cy();
+      //auto top = (double)size.cy;
       //double dFar = 1.0;
       //double dNear = -1.0;
       //double tx = -(right + left) / (right - left);
@@ -7093,7 +7093,7 @@ namespace opengl
       //glLoadIdentity();
 
 
-      //gluOrtho2D(0.f, size.cx(), 0.f, size.cy());
+      //gluOrtho2D(0.f, size.cx, 0.f, size.cy);
       //glMatrixMode(GL_MODELVIEW);
       //glLoadIdentity();
 

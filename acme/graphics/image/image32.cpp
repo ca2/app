@@ -263,7 +263,48 @@ void image32_t::copy_swap_red_blue( int cxParam, int cyParam, int iStrideDst, co
 }
 
 
-void image32_t::_001ProperCopyColorref(int cxParam, int cyParam, int iStrideDst, const ::image32_t * pimage32Src, int iStrideSrc)
+void image32_t::swap_red_blue(int cxParam, int cyParam, int iStride)
+{
+
+
+   try
+   {
+
+      if (iStride <= 0)
+      {
+
+         iStride = cxParam * sizeof(::image32_t);
+
+      }
+
+      auto *p = this;
+
+      for (int i = 0; i < cyParam; i++)
+      {
+
+         auto *pline = ((unsigned char *)p) + iStride * i;
+
+         for (int j = 0; j < cxParam; j++)
+         {
+
+            ::swap(pline[0], pline[2]);
+
+            pline += sizeof(::image32_t);
+
+         }
+
+      }
+
+   }
+   catch (...)
+   {
+   }
+
+}
+
+
+void image32_t::_001ProperCopyColorref(int cxParam, int cyParam, int iStrideDst, const ::image32_t *pimage32Src,
+                                       int iStrideSrc)
 {
 
    ::image32_t * pimage32Dst = this;
@@ -424,6 +465,120 @@ void image32_t::blend_rectangle(int x, int y, int w, int h, int s, const ::image
       }
 
    }
+
+}
+
+
+void image32_t::copy_3_channel_data(const int_size & size, int iTargetStride, const void * pdata, int iSourceStride)
+{
+
+   auto ptarget = (unsigned char *)this;
+
+   auto psource = (const unsigned char *)pdata;
+
+   for (int y = 0; y < size.cy; y++)
+   {
+
+      auto ptargetLine = ptarget + (iTargetStride * y);
+
+      auto psourceLine = psource + (iSourceStride * y);
+
+      for (int x = 0; x < size.cx; x++)
+      {
+
+         ptargetLine[0] = psourceLine[0];
+         ptargetLine[1] = psourceLine[1];
+         ptargetLine[2] = psourceLine[2];
+         ptargetLine[3] = 255;
+
+         ptargetLine += 4;
+         psourceLine += 3;
+
+      }
+
+   }
+
+}
+
+
+void image32_t::copy_1_channel_data(const int_size &size, int stride, const void *pdata, int inputStride)
+{
+
+   auto ptarget = (const unsigned char *)this;
+
+   auto psource = (const unsigned char *)pdata;
+
+   for (int y = 0; y < size.cy; y++)
+   {
+
+      auto psourceLine = psource[inputStride * y];
+
+      auto ptargetLine = psource[inputStride * y];
+
+      for (int x = 0; x < size.cx; x++)
+      {
+      }
+   }
+}
+
+
+image32_t *image32_t::create_copy_of(::memory &memoryAllocation, const int_size & size, int stride, const void *pdata, int channels, int inputStride)
+{
+
+   if (stride <= 0)
+   {
+
+      stride = size.cx * 4;
+
+   }
+   else if (stride < size.cx * 4)
+   {
+
+      throw ::exception(error_bad_argument, "stride at least hold a row with width * 4 bytes");
+
+   }
+
+   if (inputStride <= 0)
+   {
+
+      inputStride = size.cx * channels;
+
+   }
+
+   auto imagedata = (unsigned char *)pdata;
+
+   auto pixelCount = size.area();
+
+   memoryAllocation.set_size(stride * size.cy);
+
+   auto pimage32 = (image32_t *)memoryAllocation.data();
+
+   if (channels == 4)
+   {
+
+      pimage32->copy(size, stride, (const image32_t *)pdata, inputStride);
+
+   }
+   else if (channels == 3)
+   {
+
+      pimage32->copy_3_channel_data(size, stride, pdata, inputStride);
+
+   }
+   else if (channels == 1)
+   {
+
+      pimage32->copy_1_channel_data(size, stride, pdata, inputStride);
+
+   }
+   else
+   {
+
+      throw ::exception(error_wrong_state, "Currently not supported number of channels : " + ::as_string(channels));
+
+   }
+      
+   return pimage32;
 
 }
 

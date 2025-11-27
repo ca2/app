@@ -476,14 +476,14 @@ void image32_t::copy_3_channel_data(const int_size & size, int iTargetStride, co
 
    auto psource = (const unsigned char *)pdata;
 
-   for (int y = 0; y < size.cy(); y++)
+   for (int y = 0; y < size.cy; y++)
    {
 
       auto ptargetLine = ptarget + (iTargetStride * y);
 
       auto psourceLine = psource + (iSourceStride * y);
 
-      for (int x = 0; x < size.cx(); x++)
+      for (int x = 0; x < size.cx; x++)
       {
 
          ptargetLine[0] = psourceLine[0];
@@ -508,14 +508,14 @@ void image32_t::copy_1_channel_data(const int_size &size, int stride, const void
 
    auto psource = (const unsigned char *)pdata;
 
-   for (int y = 0; y < size.cy(); y++)
+   for (int y = 0; y < size.cy; y++)
    {
 
       auto psourceLine = psource[inputStride * y];
 
       auto ptargetLine = psource[inputStride * y];
 
-      for (int x = 0; x < size.cx(); x++)
+      for (int x = 0; x < size.cx; x++)
       {
       }
    }
@@ -528,10 +528,10 @@ image32_t *image32_t::create_copy_of(::memory &memoryAllocation, const int_size 
    if (stride <= 0)
    {
 
-      stride = size.cx() * 4;
+      stride = size.cx * 4;
 
    }
-   else if (stride < size.cx() * 4)
+   else if (stride < size.cx * 4)
    {
 
       throw ::exception(error_bad_argument, "stride at least hold a row with width * 4 bytes");
@@ -541,7 +541,7 @@ image32_t *image32_t::create_copy_of(::memory &memoryAllocation, const int_size 
    if (inputStride <= 0)
    {
 
-      inputStride = size.cx() * channels;
+      inputStride = size.cx * channels;
 
    }
 
@@ -549,7 +549,7 @@ image32_t *image32_t::create_copy_of(::memory &memoryAllocation, const int_size 
 
    auto pixelCount = size.area();
 
-   memoryAllocation.set_size(stride * size.cy());
+   memoryAllocation.set_size(stride * size.cy);
 
    auto pimage32 = (image32_t *)memoryAllocation.data();
 

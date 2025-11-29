@@ -296,26 +296,24 @@ inline ::hash32 as_hash32 < pointer_key >(const pointer_key& key)
 }
 
 
-
-inline string_literal < const_char_pointer > type_raw_name(const ::std::type_info & typeinfo)
+inline ::string type_raw_name(const ::std::type_info & typeinfo)
 {
 
 #ifdef WINDOWS
 
-   return typeinfo.raw_name();
+   return (string_literal < const_char_pointer >) typeinfo.raw_name();
 
 #else
 
-   return typeinfo.name();
+   return (string_literal<const_char_pointer>) typeinfo.name();
 
 #endif
-
 
 }
 
 
 template < typename TYPE >
-inline string_literal < const_char_pointer > type_raw_name()
+inline ::string type_raw_name()
 {
 
    return type_raw_name(typeid(TYPE));
@@ -324,7 +322,7 @@ inline string_literal < const_char_pointer > type_raw_name()
 
 
 template < typename TYPE >
-inline string_literal < const_char_pointer > type_raw_name(const TYPE* p)
+inline ::string type_raw_name(const TYPE* p)
 {
 
    return type_raw_name(typeid(*(TYPE*)p));
@@ -333,7 +331,7 @@ inline string_literal < const_char_pointer > type_raw_name(const TYPE* p)
 
 
 template < typename TYPE >
-inline string_literal < const_char_pointer > type_raw_name(const TYPE& t)
+inline ::string type_raw_name(const TYPE& t)
 {
 
    return type_raw_name(typeid(t));
@@ -342,7 +340,7 @@ inline string_literal < const_char_pointer > type_raw_name(const TYPE& t)
 
 
 template < typename BASE >
-inline string_literal < const_char_pointer > type_raw_name(const ::pointer<BASE>& p)
+inline ::string type_raw_name(const ::pointer<BASE>& p)
 {
 
    return type_name(typeid(*p.m_p));
@@ -384,7 +382,7 @@ public:
       m_strRawTypeName(type.m_strRawTypeName),
       m_strTypeName(type.m_strTypeName) {}
    explicit type(const ::std::type_info& info) :
-      m_typeindex(typeid(info)),
+      m_typeindex(info),
       m_strRawTypeName(::type_raw_name(info)),
       m_strTypeName(::type_name(info)) {}
    type(const ::scoped_string& scopedstrTypeName) :

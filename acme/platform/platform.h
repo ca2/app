@@ -279,6 +279,8 @@ namespace platform
 
       string get_argument1(::collection::index iArgument) const;
 
+      string arguments_from1(::collection::index iArgument) const;
+
       bool has_argument(const ::scoped_string & scopedArgument) const;
 
       inline ::collection::count get_argument_count1() const { return _get_argc() - 1; }

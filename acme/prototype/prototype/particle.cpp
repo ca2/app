@@ -890,9 +890,9 @@ void particle::err_line(const ::scoped_string& scopedstr) const
 
    strLine += "\n";
 
-   printf("%s", strLine.c_str());
+   fprintf(stderr, "\x1b[31m%s\x1b[39m", strLine.c_str());
 
-   fflush(stdout);
+   fflush(stderr);
 
 }
 

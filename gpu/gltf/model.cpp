@@ -287,20 +287,20 @@ namespace gpu
                vertex.uv = floating_sequence2(0.0f, 0.0f);
             }
 
-            //            // tangents
-            //floating_sequence4 color;
-            //if (mesh->mColors[0])
-            //{
-            //   color.x = mesh->mColors[0]->r;
-            //   color.y = mesh->mColors[0]->g;
-            //   color.z = mesh->mColors[0]->y;
-            //   color.w = mesh->mColors[0]->x;
-            //}
-            //else
-            //{
-            //   color = floating_sequence4(1.0f);
-            //}
-            //vertex.color = color;
+            // tangents
+            floating_sequence4 color;
+            if (mesh->mColors[0])
+            {
+               color.x = mesh->mColors[0]->r;
+               color.y = mesh->mColors[0]->g;
+               color.z = mesh->mColors[0]->b;
+               color.w = mesh->mColors[0]->a;
+            }
+            else
+            {
+               color = floating_sequence4(1.0f);
+            }
+            vertex.color = color;
 
             if (bHasTangentsAndBitangents)
             {
@@ -441,6 +441,18 @@ namespace gpu
                   pmaterial->useTextureEmissive = true;
                   pmaterial->m_ptextureEmissive = loadMaterialTexture(aiMaterial, aiTextureType_EMISSIVE);
                }
+
+               aiColor4D assimpcolor;
+               if (AI_SUCCESS == aiMaterial->Get(AI_MATKEY_BASE_COLOR, assimpcolor))
+               {
+                  pmaterial->m_seq3Albedo.red = assimpcolor.r;
+                  pmaterial->m_seq3Albedo.green = assimpcolor.g;
+                  pmaterial->m_seq3Albedo.blue = assimpcolor.b;
+                  //pmaterial->m_seq3Albedo. = assimpcolor.r;
+                     
+               }
+
+               //if (aiMaterial->Get())
             }
          }
 

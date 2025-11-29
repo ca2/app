@@ -538,8 +538,9 @@ namespace gpu
 
       if (m_propertiesPushShared.contains(scopedstrName))
       {
+         auto &s = m_propertiesPushShared.seq3(strName);
 
-         m_propertiesPushShared.seq3(strName) = a;
+         s= a;
       }
       else if (m_propertiesPushVertex.contains(scopedstrName))
       {

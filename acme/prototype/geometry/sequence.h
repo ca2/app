@@ -587,11 +587,11 @@ struct sequence_type :
    }
 
    
-   friend sequence_type operator +(const sequence_type& a, const sequence_type& b)
+   sequence_type operator +(const sequence_type& b) const
    {
       sequence_type result;
       for (::collection::count i = 0; i < SIZE; ++i)
-         result[i] = a.m_coordinatea[i] + b.m_coordinatea[i];
+         result[i] = this->m_coordinatea[i] + b.m_coordinatea[i];
       return result;
    }
 

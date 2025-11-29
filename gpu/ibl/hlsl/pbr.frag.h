@@ -45,12 +45,9 @@ cbuffer GlobalUbo : register(b0)
     float4x4 view;
     float4x4 invView;
     float4 ambientLightColor;
-    float4 viewPos;
+    float4 cameraPosition;
     PointLight pointLights[10];
     int numLights;
-    int padding1;
-    int padding2;
-    int padding3;
 };
 
 // ---------- Push constants (converted to another cbuffer) ----------
@@ -71,25 +68,26 @@ cbuffer PushConsts : register(b1)
     float ambientOcclusion;
     float3 emissive;
 
-    float3 cameraPosition;
+    //float3 cameraPosition;
     float bloomBrightnessCutoff;
+    float3 multiplier;
 };
 
 // ---------- Texture bindings ----------
 
 // IBL maps (set = 1)
-TextureCube diffuseIrradianceMap : register(t0);
-TextureCube prefilteredEnvMap     : register(t1);
-Texture2D   brdfConvolutionMap    : register(t2);
-SamplerState samplerIBL           : register(s0);
+SamplerState samplerIBL             : register(s0);
+TextureCube diffuseIrradianceMap    : register(t0);
+TextureCube prefilteredEnvMap       : register(t1);
+Texture2D   brdfConvolutionMap      : register(t2);
 
 // Combined image samplers (set = 2)
-Texture2D textureAlbedo            : register(t3);
-Texture2D textureMetallicRoughness : register(t4);
-Texture2D textureNormal            : register(t5);
-Texture2D textureAmbientOcclusion  : register(t6);
-Texture2D textureEmissive          : register(t7);
-SamplerState samplerMaterial       : register(s1);
+SamplerState samplerMaterial        : register(s1);
+Texture2D textureAlbedo             : register(t3);
+Texture2D textureMetallicRoughness  : register(t4);
+Texture2D textureNormal             : register(t5);
+Texture2D textureAmbientOcclusion   : register(t6);
+Texture2D textureEmissive           : register(t7);
 
 // ---------- Helper wrappers ----------
 
@@ -212,7 +210,9 @@ PSOutput main(PSInput input)
     // float3 cameraPos = viewPos.xyz;
 
     float3 v = normalize(cameraPos - worldPos);
+    //v.z = -v.z;               // fix for DX11 cubemap axis
     float3 r = reflect(-v, n);
+    //r.z = -r.z;
 
     float3 f0 = float3(0.04, 0.04, 0.04);
     f0 = lerp(f0, albedoVal, metallicVal);

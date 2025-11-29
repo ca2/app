@@ -358,7 +358,7 @@
       <Filter>Source Files\ibl\hlsl</Filter>
     </CustomBuild>
     <CustomBuild Include="ibl\hlsl\hdricube.frag">
-      <Filter>Source Files\ibl</Filter>
+      <Filter>Source Files\ibl\hlsl</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>

@@ -268,16 +268,6 @@ struct sequence_type :
 
    }
 
-//   sequence_type(const sequence_type&) = default;
-
-//   template <primitive_number T,
-//      std::enable_if_t<T::SIZE == SIZE &&
-//      std::is_same_v<typename T::COORDINATE, COORDINATE>, int> = 0>
-//   sequence_type(const T & a) {
-//      for (::collection::count i = 0; i < SIZE; ++i)
-//         this->m_coordinatea[i] = (COORDINATE)a[i];
-//   }
-
 
    template < primitive_sequence2 S2 >
    constexpr sequence_type(const S2 & s2)
@@ -316,29 +306,6 @@ struct sequence_type :
    }
 
 
-
-
-   void set_null() 
-   {
-      set_all(0); 
-   }
-
-
-   sequence_type & null()
-   {
-
-      set_null();
-
-      return *this;
-
-   }
-
-   static sequence_type Null()
-   {
-
-      return {};
-   }
-
    template < primitive_number NUMBER1 >
    constexpr sequence_type(const sequence_t_type < NUMBER1, 4 > & sequence)
       requires(SIZE >= 4)
@@ -349,62 +316,73 @@ struct sequence_type :
       this->m_coordinatea[3] = (UNIT_TYPE) sequence.m_coordinatea[3];
    }
 
-//   sequence_type(COORDINATE s) {
-//      for (::collection::count i = 0; i < SIZE; ++i)
-//         this->m_coordinatea[i] = s;
-//   }
 
-   template < ::collection::count S = SIZE, std::enable_if_t<S == 2, int> = 0 >
-   constexpr sequence_type(COORDINATE coordinate0, COORDINATE coordinate1)
+   template<primitive_number NUMBER0, primitive_number NUMBER1>
+   constexpr sequence_type(NUMBER0 coordinate0, NUMBER1 coordinate1)
+      requires(SIZE == 2)
    {
-      this->m_coordinatea[0] = coordinate0;
-      this->m_coordinatea[1] = coordinate1;
+      this->m_coordinatea[0] = (UNIT_TYPE)coordinate0;
+      this->m_coordinatea[1] = (UNIT_TYPE)coordinate1;
    }
 
    
-   template <::collection::count S = SIZE, std::enable_if_t<S == 3, int> = 0>
-   constexpr sequence_type(COORDINATE coordinate0, COORDINATE coordinate1,
-                 COORDINATE coordinate2)
+   template<primitive_number NUMBER0, primitive_number NUMBER1, primitive_number NUMBER2>
+   constexpr sequence_type(NUMBER0 coordinate0, NUMBER1 coordinate1, NUMBER2 coordinate2)
+      requires(SIZE == 3)
    {
-      this->m_coordinatea[0] = coordinate0;
-      this->m_coordinatea[1] = coordinate1;
-      this->m_coordinatea[2] = coordinate2;
+      this->m_coordinatea[0] = (UNIT_TYPE)coordinate0;
+      this->m_coordinatea[1] = (UNIT_TYPE)coordinate1;
+      this->m_coordinatea[2] = (UNIT_TYPE)coordinate2;
    }
 
-   
-   constexpr sequence_type(
-                 COORDINATE coordinate0, COORDINATE coordinate1,
-                 COORDINATE coordinate2, COORDINATE coordinate3)
+   template<primitive_number NUMBER0, primitive_number NUMBER1, primitive_number NUMBER2, primitive_number NUMBER3>
+   constexpr sequence_type(NUMBER0 coordinate0, NUMBER1 coordinate1, NUMBER2 coordinate2, NUMBER3 coordinate3)
       requires(SIZE == 4)
    {
-      this->m_coordinatea[0] = coordinate0;
-      this->m_coordinatea[1] = coordinate1;
-      this->m_coordinatea[2] = coordinate2;
-      this->m_coordinatea[3] = coordinate3;
+      this->m_coordinatea[0] = (UNIT_TYPE)coordinate0;
+      this->m_coordinatea[1] = (UNIT_TYPE)coordinate1;
+      this->m_coordinatea[2] = (UNIT_TYPE)coordinate2;
+      this->m_coordinatea[3] = (UNIT_TYPE)coordinate3;
    }
 
-   constexpr sequence_type(const sequence_type < COORDINATE, 3 > &  seq3,
-                           COORDINATE coordinate3)
+   template<primitive_number NUMBER0, primitive_number NUMBER3>
+   constexpr sequence_type(const sequence_type<NUMBER0, 3> &seq3, NUMBER3 coordinate3)
       requires(SIZE == 4)
    {
-      this->m_coordinatea[0] = seq3[0];
-      this->m_coordinatea[1] = seq3[1];
-      this->m_coordinatea[2] = seq3[2];
-      this->m_coordinatea[3] = coordinate3;
+      this->m_coordinatea[0] = (UNIT_TYPE)seq3[0];
+      this->m_coordinatea[1] = (UNIT_TYPE)seq3[1];
+      this->m_coordinatea[2] = (UNIT_TYPE)seq3[2];
+      this->m_coordinatea[3] = (UNIT_TYPE) coordinate3;
    }
 
-   constexpr sequence_type(COORDINATE coordinate0, const sequence_type<COORDINATE, 3> &seq3)
+   template<primitive_number NUMBER0, primitive_number NUMBER1>
+   constexpr sequence_type(NUMBER0 coordinate0, const sequence_type<NUMBER1, 3> &seq3)
       requires(SIZE == 4)
    {
-      this->m_coordinatea[0] = coordinate0;
-      this->m_coordinatea[1] = seq3[0];
-      this->m_coordinatea[2] = seq3[1];
-      this->m_coordinatea[3] = seq3[2];
+      this->m_coordinatea[0] = (UNIT_TYPE)coordinate0;
+      this->m_coordinatea[1] = (UNIT_TYPE)seq3[0];
+      this->m_coordinatea[2] = (UNIT_TYPE)seq3[1];
+      this->m_coordinatea[3] = (UNIT_TYPE)seq3[2];
    }
 
    constexpr ::collection::count get_size() const { return SIZE; }
    constexpr ::collection::count get_count() const { return this->get_size(); }
    
+
+   
+
+   void set_null() { set_all(0); }
+
+
+   sequence_type &null()
+   {
+
+      set_null();
+
+      return *this;
+   }
+
+   static sequence_type Null() { return {}; }
    
    constexpr COORDINATE & set_coordinate(::collection::index i, COORDINATE coordinate)
    {
@@ -587,11 +565,11 @@ struct sequence_type :
    }
 
    
-   friend sequence_type operator +(const sequence_type& a, const sequence_type& b)
+   sequence_type operator +(const sequence_type& b) const
    {
       sequence_type result;
       for (::collection::count i = 0; i < SIZE; ++i)
-         result[i] = a.m_coordinatea[i] + b.m_coordinatea[i];
+         result[i] = this->m_coordinatea[i] + b.m_coordinatea[i];
       return result;
    }
 

@@ -34,12 +34,15 @@ namespace graphics3d
          // KeyMappings keys{};
          bool m_bMouseAbsolute;
 
-         double m_dMouseLastX = 0.0;
-         double m_dMouseLastY = 0.0;
-         double m_Δx = 0.;
-         double m_Δy = 0.;
+         //double m_dMouseLastY = 0.0;
+         //double m_Δx = 0.;
+         //double m_Δy = 0.;
 
          bool m_bWasLeft = false;
+         ::floating_sequence2 m_sequence2MouseLast;
+         ::floating_sequence2 m_sequence2MouseRawΔ{0.f};
+         ::floating_sequence2 m_sequence2MouseSmoothΔ{0.f};
+         ::floating_sequence2 m_sequence2MouseΔ{0.f};
 
 
          double m_dCursorX;
@@ -53,6 +56,7 @@ namespace graphics3d
               ::graphics3d::mouse_state m_mousestate;
 
 
+                    float m_smoothing = 15.f;
 
          bool m_b_001AbsoluteMousePosition;
          float_angle m_angleCursorPixel; // Sensitivity factor for mouse movement
@@ -63,6 +67,7 @@ namespace graphics3d
         // ::block as_block() { return as_memory_block(*this); }
       //};
 
+               bool m_bMouseOut = true;
 
 
 
@@ -93,12 +98,17 @@ namespace graphics3d
 
       virtual void _001OnMouseMove(const ::int_point &point);
       virtual void _001OnMouseOut();
+      virtual void _001OnMouseDrag(::floating_sequence2 Δ);
+      //virtual void mouseCallback(::floating_sequence2 delta);
+      //virtual void _001OnMouseMove(const ::int_point &point);
+      //virtual void _001OnMouseOut();
 
 
 
       virtual void _001PrepareMouseInput();
       virtual void process_mouse_input_updateLook();
 
+      virtual void _017Update(float dt, ::graphics3d::transform &transform);
 
 
    };

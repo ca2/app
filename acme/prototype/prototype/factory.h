@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include <typeindex>
+
+
 ////#include "acme/exception/exception.h"
 #include "acme/parallelization/critical_section.h"
 #include "acme/prototype/collection/atom_map.h"
@@ -17,7 +20,7 @@ template < typename TYPE >
 using pointer_key_map_base = ::map_base < pointer_key, TYPE >;
 
 
-//CLASS_DECL_ACME ::string demangle_name(const ::scoped_string & scopedstrRawName);
+//CLASS_DECL_ACME ::string demangle_name(const ::std::type_index & typeindex);
 
 
 CLASS_DECL_ACME string type_name(const ::std::type_info& typeinfo);
@@ -188,8 +191,8 @@ namespace factory
    };
 
 
-   //using factory_base_by_raw_name_pointer = ::pointer_key_map_base < ::pointer < factory_item_interface > >;
-   using factory_base_by_raw_name = ::string_map_base < ::pointer < factory_item_interface > >;
+   //using factory_base_by_type_index_pointer = ::pointer_key_map_base < ::pointer < factory_item_interface > >;
+   using factory_base_by_type_index = ::map < ::std::type_index, ::pointer < factory_item_interface > >;
    using factory_base_by_id = atom_map_base < ::pointer < factory_item_interface > >;
 
 
@@ -199,8 +202,8 @@ namespace factory
    public:
 
 
-      //factory_base_by_raw_name_pointer       m_mapByRawNamePointer;
-      factory_base_by_raw_name               m_mapByRawName;
+      //factory_base_by_type_index_pointer       m_mapByRawNamePointer;
+      factory_base_by_type_index             m_mapByTypeIndex;
       factory_base_by_id                     m_mapById;
       ::atom                                 m_atomSource;
       ::pointer<::acme::library>             m_plibrary;
@@ -212,24 +215,24 @@ namespace factory
       ~factory();
 
 
-      //::pointer<::factory::factory_item_interface>& get_factory_item_by_raw_name(const ::scoped_string & scopedstrRawName);
+      //::pointer<::factory::factory_item_interface>& get_factory_item_by_type_index(const ::std::type_index & typeindex);
       //::pointer<::factory::factory_item_interface>& get_factory_item_by_id(const ::atom& atom);
 
       //inline ::pointer<::factory::factory_item_interface>& get_factory_item_from(const ::atom& atom, const ::atom & atomSource);
 
-      ::factory::factory_item_interface * get_factory_item_by_raw_name(const ::scoped_string & scopedstrRawName) const;
+      ::factory::factory_item_interface * get_factory_item_by_type_index(const ::std::type_index & typeindex) const;
       ::factory::factory_item_interface * get_factory_item_by_id(const ::atom& atom) const;
 
-      bool has_factory_item_by_raw_name(const ::scoped_string & scopedstrRawName) const;
+      bool has_factory_item_by_type_index(const ::std::type_index & typeindex) const;
       bool has_factory_item_by_id(const ::atom& atom) const;
 
       template<typename ORIGIN_TYPE>
       bool has_factory_item() const
       {
 
-         const auto &strRawName = typeid(ORIGIN_TYPE).raw_name();
+         auto typeindex = ::std::type_index(typeid(ORIGIN_TYPE));
 
-         return this->has_factory_item_by_raw_name(strRawName);
+         return this->has_factory_item_by_type_index(typeindex);
 
       }
 
@@ -301,18 +304,19 @@ namespace factory
       inline void __call__raw_construct(::pointer<ORIGIN_TYPE> & p);
 
 
-      virtual ::particle_pointer __call__create_by_raw_name(const ::scoped_string & scopedstrRawName, ::particle * pparticle);
+      virtual ::particle_pointer __call__create_by_type_index(const ::std::type_index & typeindex, ::particle * pparticle);
       virtual ::particle_pointer __call__create_by_id(const ::atom & atom, ::particle* pparticle);
 
 
-      virtual bool has_by_raw_name(const ::scoped_string & scopedstrRawName) const;
+      virtual bool has_by_type_index(const ::std::type_index & typeindex) const;
       virtual bool has_by_id(const ::atom & atom) const;
       
+
       template < typename TYPE >
       bool has() const
       {
        
-         return this->has_by_raw_name(typeid(TYPE).raw_name());
+         return this->has_by_type_index(::std::type_index(typeid(TYPE)));
          
       }
 
@@ -327,24 +331,24 @@ namespace factory
 
    ///CLASS_DECL_ACME factory * get_factory(const ::atom & atomSource);
 
-   CLASS_DECL_ACME factory_item_interface * get_factory_item_by_raw_name(const ::scoped_string & scopedstrRawName);
+   CLASS_DECL_ACME factory_item_interface * get_factory_item_by_type_index(const ::std::type_index & typeindex);
    CLASS_DECL_ACME factory_item_interface * get_factory_item_by_id(const ::atom & atom);
 
 
-   CLASS_DECL_ACME factory_item_interface * get_existing_factory_item_by_raw_name(const ::scoped_string & scopedstrRawName);
+   CLASS_DECL_ACME factory_item_interface * get_existing_factory_item_by_type_index(const ::std::type_index & typeindex);
    CLASS_DECL_ACME factory_item_interface * get_existing_factory_item_by_id(const ::atom & atom);
 
 
-   CLASS_DECL_ACME factory_item_interface * get_factory_item_by_raw_name(const ::scoped_string & scopedstrRawName, const ::atom & atomFactory);
+   CLASS_DECL_ACME factory_item_interface * get_factory_item_by_type_index(const ::std::type_index & typeindex, const ::atom & atomFactory);
    CLASS_DECL_ACME factory_item_interface * get_factory_item_by_id(const ::atom & atom, const ::atom & atomFactory);
 
 
-   CLASS_DECL_ACME bool has_by_raw_name(const ::scoped_string & scopedstrRawName);
+   CLASS_DECL_ACME bool has_by_type_index(const ::std::type_index & typeindex);
    CLASS_DECL_ACME bool has_by_id(const ::atom& atom);
    
 
    
-   CLASS_DECL_ACME void set_factory_item_by_raw_name(const ::atom & atom, const ::pointer<factory_item_interface>& pfactory);
+   CLASS_DECL_ACME void set_factory_item_by_type_index(const ::atom & atom, const ::pointer<factory_item_interface>& pfactory);
 
    template < typename ORIGIN_TYPE >
    inline ::atom get_id();
@@ -384,7 +388,7 @@ namespace factory
 
 
    template < typename ORIGIN_TYPE >
-   inline ::pointer<factory_item_interface> get_factory_item_by_raw_name(const ::scoped_string & scopedstrRawName);
+   inline ::pointer<factory_item_interface> get_factory_item_by_type_index(const ::std::type_index & typeindex);
 
    template < typename ORIGIN_TYPE >
    inline ::pointer<factory_item_interface> get_factory_item_by_id(const ::atom & atom);

@@ -58,7 +58,11 @@ namespace graphics3d
       m_pimmersionlayer = pimmersionlayer;
       //::graphics3d::scene_base::initialize_scene(pengine);
 
+      m_pgpucontext->on_before_initialize_scene();
+
       on_initialize_scene();
+
+      
    }
 
 
@@ -675,11 +679,12 @@ namespace graphics3d
       {
 
          model.set_type("obj");
+
       }
 
       auto prenderable = pgpucontext->load_model(model);
 
-      auto pscenerenderable = øcreate<::graphics3d::scene_renderable>();
+      auto pscenerenderable = øcreate_new<::graphics3d::scene_renderable>();
 
       pscenerenderable->initialize_scene_renderable(this);
 

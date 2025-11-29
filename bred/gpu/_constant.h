@@ -3,6 +3,12 @@
 
 namespace gpu
 {
+   enum enum_layout
+   {
+      e_layout_std140,
+      e_layout_std430,
+
+   };
 
 
    enum enum_type

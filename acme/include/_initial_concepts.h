@@ -583,10 +583,10 @@ concept primitive_dimension = requires(DIMENSION dimension)
 
 template<typename RECTANGLE>
 concept function_rectangle = requires(RECTANGLE rectangle) {
-   rectangle.left();
-   rectangle.top();
-   rectangle.right();
-   rectangle.bottom();
+   rectangle.left;
+   rectangle.top;
+   rectangle.right;
+   rectangle.bottom;
 };
 
 

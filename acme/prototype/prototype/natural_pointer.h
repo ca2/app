@@ -70,7 +70,7 @@ public:
    static base_data * base_data_from_data(const DATA * pdata) { return &((base_data *) pdata)[-1]; }
 
 
-   int release_base_data()
+   int base_data_defer_release()
    {
 
       auto i = base_data_decrement_reference_count();
@@ -398,7 +398,7 @@ public:
 // // //         //if (this->is_string())
 // // //         //{
 // // //
-// // //            this->release_base_data(base_data_from_data(this->begin()));
+// // //            this->base_data_defer_release(base_data_from_data(this->begin()));
 // // //
 // // ////            this->clear_string_flag();
 // // //
@@ -620,7 +620,7 @@ public:
 // //
 // //    //}
 // //
-// //   /* static void release_base_data(BASE_DATA * pbasedata)
+// //   /* static void base_data_defer_release(BASE_DATA * pbasedata)
 // //    {
 // //
 // //       if (::is_null(pbasedata))
@@ -635,7 +635,7 @@ public:
 // //    }*/
 // //
 // //
-// //    static void release_base_data(BASE_DATA * pbasedata)
+// //    static void base_data_defer_release(BASE_DATA * pbasedata)
 // //    {
 // //
 // //       if (pbasedata->base_data_decrement_reference_count() == 0)
@@ -664,9 +664,22 @@ public:
 //
 //
 
+template < typename DATA >
+inline void base_data_defer_add_reference(::base_data < DATA >* pbasedata)
+{
+
+   if (::is_set(pbasedata))
+   {
+
+      pbasedata->base_data_increment_reference_count();
+
+   }
+
+}
+
 
 template < typename DATA >
-int release_base_data(::base_data < DATA > * & pbasedata)
+int base_data_defer_release(::base_data < DATA > * & pbasedata)
 {
 
    auto p = pbasedata;
@@ -681,7 +694,7 @@ int release_base_data(::base_data < DATA > * & pbasedata)
       try
       {
 
-         i = p->release_base_data();
+         i = p->base_data_defer_release();
 
       }
       catch (...)

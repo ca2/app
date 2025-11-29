@@ -90,6 +90,7 @@ namespace gpu
       using thread::_send;
       using thread::_post;
 
+
       enum enum_type
       {
          e_type_undefined,
@@ -188,7 +189,8 @@ namespace gpu
       virtual void layout_input_layout_properties(::gpu::properties *pproperties);
       virtual void layout_push_constants(::gpu::properties & properties, bool bGlobalUbo);
       virtual void layout_properties_default(::gpu::properties &properties);
-
+      virtual void _layout_std140_or_std430(::gpu::properties &properties, enum_layout elayout);
+      virtual void _layout_hlsl(::gpu::properties &properties);
       virtual void defer_make_current();
 
       virtual ::floating_matrix4 defer_transpose(const ::floating_matrix4 & m);
@@ -209,7 +211,7 @@ namespace gpu
       virtual void _context_lock();
       virtual void _context_unlock();
 
-      virtual void defer_bind(::gpu::shader* pgpushader);
+      virtual bool defer_bind(::gpu::shader* pgpushader);
       virtual void defer_unbind(::gpu::shader* pgpushader);
       virtual void defer_unbind_shader();
       //virtual bool defer_construct_new(::pointer < ::gpu::memory_buffer >& pmemorybuffer, memsize size, memory_buffer::enum_type etype);
@@ -233,6 +235,9 @@ namespace gpu
       virtual void on_create_context(::gpu::device * pgpudevice, const ::gpu::enum_output & eoutput, ::windowing::window* pwindow, const ::int_size & size);
 
       virtual void engine_on_frame_context_initialization();
+
+
+      virtual void on_before_initialize_scene();
 
       virtual void onBeforePreloadGlobalAssets();
 

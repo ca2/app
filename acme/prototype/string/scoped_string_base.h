@@ -276,7 +276,7 @@ public:
       //if(::is_s)
       {
 
-         ::release_base_data(this->m_pbasedata);
+         ::base_data_defer_release(this->m_pbasedata);
 
          //this->m_erange = e_range_none;
 
@@ -578,7 +578,7 @@ public:
       if (pdataThis)
       {
 
-         ::release_base_data(pdataThis);
+         ::base_data_defer_release(pdataThis);
 
       }
 

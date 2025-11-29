@@ -38,7 +38,7 @@ void directory_system::initialize(::particle * pparticle)
 
    m_pathInstallFolder = default_install();
 
-   m_pathFolder = get_current();
+   m_pathFolder = current();
 
 
 //   m_pathModuleFolder = dir_ca2_module();
@@ -1344,7 +1344,7 @@ string_array_base directory_system::enumerate_content(const ::file::path &path)
 }
 
 
-::file::path directory_system::get_current()
+::file::path directory_system::current()
 {
 
    throw ::interface_only();
@@ -1357,9 +1357,15 @@ string_array_base directory_system::enumerate_content(const ::file::path &path)
 void directory_system::change_current(const ::file::path & path)
 {
 
-   throw ::interface_only();
+   set_current(path);
 
-   //throw ::interface_only();
+}
+
+
+void directory_system::set_current(const ::file::path& path)
+{
+
+   change_current(path);
 
 }
 

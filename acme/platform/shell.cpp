@@ -255,14 +255,20 @@ namespace acme
    }
 
 
-   ::string shell::get_posix_shell_command_output(const ::scoped_string& scopedstr, enum_posix_shell eposixshell, const class ::time& timeOut)
+   ::string shell::get_posix_shell_command_output(const ::scoped_string& scopedstr, enum_posix_shell eposixshell, int * piExitCode,  const class ::time& timeOut)
    {
 
       ::string strOutput;
 
       auto iExitCode = get_posix_shell_command_output(strOutput, scopedstr, eposixshell, timeOut);
 
-      if (iExitCode != 0)
+      if (piExitCode)
+      {
+         
+         *piExitCode = iExitCode;
+
+      }
+      else if (iExitCode != 0)
       {
 
          throw ::exception(error_failed);
@@ -313,6 +319,16 @@ namespace acme
       return m_pshellComposite->command_system(scopedstr, tracefunction, pathWorkingDirectory, edisplay);
 
    }
+
+
+
+   int shell::interactive_command_system(const ::scoped_string& scopedstrPrompt, const ::scoped_string& scopedstrCommand, const trace_function& tracefunction, const ::file::path& pathWorkingDirectory, ::e_display edisplay)
+   {
+
+      return m_pshellComposite->interactive_command_system(scopedstrPrompt, scopedstrCommand, tracefunction, pathWorkingDirectory, edisplay);
+
+   }
+
 
 
    //void shell::open_terminal_and_run(const ::scoped_string& scopedstr)
@@ -504,8 +520,8 @@ namespace acme
 
          ::string strCommand;
 
-         informationf("Current Directory: %s\n", directory_system()->get_current().c_str());
-         informationf("%s\n", strEscaped.c_str());
+         information("Current Directory: {}", directory_system()->current());
+         information("{}", strEscaped);
 
 #ifdef WINDOWS_DESKTOP
 
@@ -544,6 +560,96 @@ namespace acme
 
    }
 
+
+   int shell::interactive_posix_shell(const ::scoped_string& scopedstrCommand, enum_posix_shell eposixshell)
+   {
+
+      trace_function tracefunction = [](enum_trace_level eTraceLevel, const scoped_string& str, bool bCarriage)
+         {
+
+            ::print_out(str);
+
+         };
+
+
+
+      if (m_pshellComposite != this)
+      {
+
+         return m_pshellComposite->interactive_posix_shell(scopedstrCommand, eposixshell);
+
+      }
+
+      try
+      {
+
+         //string strEscaped = scopedstrCommand;
+
+         ::string strPrompt;
+         ::string strCommand = scopedstrCommand;
+         ////if (m_bInteractive)
+         //{
+
+         //   strCommand = "bash --noprofile --norc -i -c ";
+         //   strCommand += scopedstrCommand;
+         //   strCommand += "; echo __END_OF_COMMAND:$?__\n";
+
+         //}
+
+         information("Current Directory: {}", directory_system()->current());
+         //information("{}", scopedstrCommand);
+
+#ifdef WINDOWS_DESKTOP
+
+         if (eposixshell == e_posix_shell_msys2)
+         {
+
+            //strPrompt = "\"C:\\msys64\\usr\\bin\\bash.exe\" --noprofile --norc -i -c ";
+            //strPrompt = "\"C:\\msys64\\usr\\bin\\bash.exe\" -i -l";
+            strPrompt = "\"C:\\msys64\\usr\\bin\\bash.exe\" --noprofile --norc -i";
+
+         }
+         else
+         {
+
+            //strPrompt = "\"C:\\Program Files\\Git\\bin\\bash.exe\" -i -l";
+            strPrompt = "\"C:\\Program Files\\Git\\bin\\bash.exe\" --noprofile --norc -i";
+
+         }
+
+#else
+
+         //strCommand = strEscaped;
+
+#endif 
+
+         //::string strCommand;
+//if (m_bInteractive)
+         //{
+
+         //   strPrompt += "\"";
+         //   strPrompt += scopedstrCommand;
+         //   strPrompt += "; echo __END_OF_COMMAND:$?__\"";
+
+         //}
+
+
+
+         auto iExitCode = this->interactive_command_system(strPrompt, strCommand, tracefunction, {}, e_display_none);
+
+         ///command_system("cmd.exe -c \"C:\\msys64\\msys2_shell.cmd\" \"" + strEscaped + "\"");
+
+         return iExitCode;
+
+      }
+      catch (...)
+      {
+
+      }
+
+      return -1;
+
+   }
 
    //::string shell::posix_shell_command_string(const ::scoped_string& scopedstrCommand, enum_posix_shell eposixshell)
    //{

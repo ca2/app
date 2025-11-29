@@ -258,7 +258,7 @@ public:
       if (pbasedataOld)
       {
 
-         ::release_base_data(pbasedataOld);
+         ::base_data_defer_release(pbasedataOld);
 
       }
 

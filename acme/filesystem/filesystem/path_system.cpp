@@ -484,7 +484,7 @@ bool path_system::has_custom_icon(const ::file::path & path)
    if(pathFolder.is_empty())
    {
 
-      pathFolder = m_pdirectorysystem->m_pathFolder;
+      pathFolder = directory_system()->current();
 
    }
 

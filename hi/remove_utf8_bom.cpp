@@ -15,7 +15,7 @@ namespace console_hello
 
       ::file::listing_base listing;
 
-      auto pathFolder = directory_system()->get_current();
+      auto pathFolder = directory_system()->current();
 
       listing.set_pattern_file_listing(pathFolder, {"*.h", "*.cpp", "*.c", "*.hpp", "*.mm", "*.java" }, e_depth_recursively);
       ::file::path_array_base patha;
@@ -85,7 +85,7 @@ namespace console_hello
    void application::remove_utf8_bom_phase2()
    {
 
-      auto pathFolder = directory_system()->get_current();
+      auto pathFolder = directory_system()->current();
       auto pathFileWithBoms = pathFolder / "file_with_boms.txt";
 
 

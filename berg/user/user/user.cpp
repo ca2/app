@@ -1829,9 +1829,9 @@ namespace berg
             atom,
             øallocate::user::multiple_document_template(
                "system/form",
-               ::as_type < form_document >(),
+               typeid(form_document ),
                get_simple_child_frame_type_info(),
-               ::as_type < ::user::form_impact >()));
+               typeid(::user::form_impact )));
 
          return true;
 

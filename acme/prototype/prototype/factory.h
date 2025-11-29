@@ -227,7 +227,7 @@ namespace factory
       bool has_factory_item() const
       {
 
-         const auto &strRawName = ::as_type<ORIGIN_TYPE>().raw_name();
+         const auto &strRawName = typeid(ORIGIN_TYPE).raw_name();
 
          return this->has_factory_item_by_raw_name(strRawName);
 

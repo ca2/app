@@ -4391,7 +4391,7 @@ retry_license:
    //::type application::user_default_controltype_to_typeinfo(::user::enum_control_type econtroltype)
    //{
 
-   //   return ::as_type < ::user::interaction >();
+   //   return typeid(::user::interaction );
 
    //}
 
@@ -8548,7 +8548,7 @@ namespace aura
 
          econtroltype = ::user::e_control_type_edit_plain_text;
 
-         return ::as_type < ::user::plain_edit >();
+         return typeid(::user::plain_edit );
 
       }
 

@@ -61,7 +61,7 @@ namespace networking
 
       m_psocketthread->m_pnetworkingapplication = this;
 
-      m_psocketthread->m_typeIncomingSocket = ::as_type <::networking::application_incoming_socket>();
+      m_psocketthread->m_typeIncomingSocket = typeid(::networking::application_incoming_socket);
 
       m_psocketthread->m_strIp = "127.0.0.1";
 

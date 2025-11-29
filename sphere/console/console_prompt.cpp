@@ -15,9 +15,9 @@ namespace console
       pdoctemplate = ___new ::user::single_document_template(
       get_app(),
       "system/form",
-      ::as_type < prompt_document >(),
-      ::as_type < prompt_frame >(),
-      ::as_type < prompt_impact >());
+      typeid(prompt_document ),
+      typeid(prompt_frame ),
+      typeid(prompt_impact ));
 
       papp->add_document_template(pdoctemplate);
 

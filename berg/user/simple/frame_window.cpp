@@ -54,7 +54,7 @@ namespace berg
 {
 
 
-   ::type user::get_simple_frame_window_type_info() { return ::as_type <::simple_frame_window>(); }
+   ::type user::get_simple_frame_window_type_info() { return typeid(::simple_frame_window); }
 
 
 } // namespace berg

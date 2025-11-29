@@ -244,9 +244,9 @@ inline const_char_pointer c_demangle(const_char_pointer psz)
 //}
 //
 //
-////#define ::as_type < TYPE >()  ___type<TYPE>()
+////#define typeid(TYPE >()  ___type<TYPE)
 //
-////#define ::as_type < TYPE >()  ___type<TYPE>()
+////#define typeid(TYPE >()  ___type<TYPE)
 //
 //
 

@@ -34,7 +34,7 @@ namespace core
 {
 
    
-   ::type user::get_pane_tab_impact_type_info() { return ::as_type <::userex::pane_tab_impact>(); }
+   ::type user::get_pane_tab_impact_type_info() { return typeid(::userex::pane_tab_impact); }
 
 
 } // namespace core
@@ -1124,7 +1124,7 @@ namespace userex
 //::type system::get_pane_tab_impact_type_info()
 //{
 //
-//   return ::as_type < userex::pane_tab_impact >();
+//   return typeid(userex::pane_tab_impact );
 //
 //}
 //

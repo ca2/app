@@ -28,7 +28,7 @@ namespace user
 
       //m_edatamode = data_mode_string;
 
-      m_typeListBox = ::as_type < ::user::font_list >();
+      m_typeListBox = typeid(::user::font_list );
 
       m_bEdit = false;
 

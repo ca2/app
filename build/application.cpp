@@ -111,9 +111,9 @@ IMPLEMENT_APPLICATION_FACTORY();
 
       auto ptemplate = __initialize_new ::user::single_document_template(
                             "main",
-                            ::as_type < simple_pane_document >(),
-                            ::as_type < main_frame >(),
-                            ::as_type < pane_impact >()));
+                            typeid(simple_pane_document ),
+                            typeid(main_frame ),
+                            typeid(pane_impact )));
 
       m_ptemplateHelloMultiverseMain = ptemplate;
 
@@ -121,9 +121,9 @@ IMPLEMENT_APPLICATION_FACTORY();
 
       ptemplate = __initialize_new ::user::single_document_template(
                        "main",
-                       ::as_type < document >(),
-                       ::as_type < frame >(),
-                       ::as_type < main_impact >()));
+                       typeid(document ),
+                       typeid(frame ),
+                       typeid(main_impact )));
 
       m_ptemplateHelloMultiverseImpact = ptemplate;
 

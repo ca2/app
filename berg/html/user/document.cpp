@@ -451,7 +451,7 @@ void html_document::form_document_set_callback(form_callback * pcallback)
 CLASS_DECL_BERG ::type __form_document_type()
 {
 
-   return ::as_type <  ::html_document >();
+   return typeid(::html_document );
 
 }
 

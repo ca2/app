@@ -599,9 +599,9 @@ namespace sphere
       m_ptemplate_pane = ___new ::user::single_document_template(
       this,
       "bergedge/frame",
-      ::as_type < ::userstack::document >(),
-      ::as_type < ::userstack::frame >(),
-      ::as_type < ::userstack::pane_impact >());
+      typeid(::userstack::document ),
+      typeid(::userstack::frame ),
+      typeid(::userstack::pane_impact ));
 
    }
 

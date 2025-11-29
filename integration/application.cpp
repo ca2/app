@@ -55,7 +55,7 @@ IMPLEMENT_APPLICATION_FACTORY();
    ::type application::get_pane_impact_type() const
    {
 
-      return ::as_type < tab_impact >();
+      return typeid(tab_impact );
 
    }
 
@@ -121,8 +121,8 @@ IMPLEMENT_APPLICATION_FACTORY();
 
       auto pdoctemplate = __initialize_new ::user::single_document_template(
                                "main",
-                               ::as_type < document >(),
-                               ::as_type < main_frame >(),
+                               typeid(document ),
+                               typeid(main_frame ),
                                get_pane_impact_type()));
 
       m_ptemplateSimpleDrawingMain = pdoctemplate;
@@ -132,9 +132,9 @@ IMPLEMENT_APPLICATION_FACTORY();
 
       pdoctemplate = __initialize_new ::user::single_document_template(
          "openssl",
-         ::as_type < document >(),
-         ::as_type < main_frame >(),
-         ::as_type < impact >()));
+         typeid(document ),
+         typeid(main_frame ),
+         typeid(impact )));
 
       m_ptemplateOpenSSL = pdoctemplate;
 
@@ -142,9 +142,9 @@ IMPLEMENT_APPLICATION_FACTORY();
 
       pdoctemplate = __initialize_new ::user::single_document_template(
          "ffmpeg",
-         ::as_type < document >(),
-         ::as_type < main_frame >(),
-         ::as_type < impact >()));
+         typeid(document ),
+         typeid(main_frame ),
+         typeid(impact )));
 
       m_ptemplateFFMPEG = pdoctemplate;
 

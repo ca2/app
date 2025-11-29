@@ -24,25 +24,25 @@ namespace filehandler
       /*   ::user::single_document_template* pdoctemplate;
       pdoctemplate = ___new ::user::single_document_template(
       IDR_ALBUM,
-      ::as_type < MediaLibraryDoc >(),
-      ::as_type < MediaLibraryChildFrame >(),
-      ::as_type < ::mplite::library::impact >());
+      typeid(MediaLibraryDoc ),
+      typeid(MediaLibraryChildFrame ),
+      typeid(::mplite::library::impact ));
       m_pimpactsystemAlbum = pdoctemplate;
 
       pdoctemplate = ___new ::user::single_document_template(
       IDR_ALBUM,
-      ::as_type < OptionsDoc >(),
-      ::as_type < OptionsChildFrame >(),
-      ::as_type < OptionsImpact >());
+      typeid(OptionsDoc ),
+      typeid(OptionsChildFrame ),
+      typeid(OptionsImpact ));
 
 
       m_pimpactsystemOptions = pdoctemplate;
 
       pdoctemplate = ___new ::user::single_document_template(
       IDR_ALBUM,
-      ::as_type < GoodMixerDoc >(),
-      ::as_type < simple_child_frame >(),
-      ::as_type < MixerMainImpact >());
+      typeid(GoodMixerDoc ),
+      typeid(simple_child_frame ),
+      typeid(MixerMainImpact ));
 
       m_pimpactsystemAudioControl = pdoctemplate;*/
 
@@ -150,7 +150,7 @@ namespace filehandler
          }*/
          /*         create_context cc;
          cc.m_pCurrentDoc = get_document();
-         cc.m_typeNewImpact =  ::as_type < rtprx::impact >();
+         cc.m_typeNewImpact =  typeid(rtprx::impact );
 
          ::pointer<::user::impact>pimpact = (CreateImpact(&cc, 101, this));
          if(pimpact != nullptr)

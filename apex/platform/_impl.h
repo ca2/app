@@ -557,7 +557,7 @@
 //   //::pointer<::user::document>session::create_form(::pointer<::user::interaction>userinteractionParent, ::payload payload, ::payload varArgs)
 //   //{
 //
-//   //   return create_form(::as_type < VIEW >(), puserinteractionParent, payload);
+//   //   return create_form(typeid(VIEW ), puserinteractionParent, payload);
 //
 //   //}
 //
@@ -566,7 +566,7 @@
 //   //::pointer<::user::document>session::create_child_form(::pointer<::user::interaction>userinteractionParent, ::payload payload)
 //   //{
 //
-//   //   return create_child_form(::as_type < VIEW >(), puserinteractionParent, payload);
+//   //   return create_child_form(typeid(VIEW ), puserinteractionParent, payload);
 //
 //   //}
 //

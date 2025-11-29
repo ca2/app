@@ -70,8 +70,8 @@ namespace hi5
 
          m_ptemplatePane = ___new ::user::single_document_template(
             "system/auth",
-            ::as_type < ::user::document >(),
-            ::as_type < simple_frame_window >(),
+            typeid(::user::document ),
+            typeid(simple_frame_window ),
             psystem->get_pane_tab_impact_type_info());
 
          //return estatus;

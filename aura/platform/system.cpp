@@ -6629,7 +6629,7 @@ if(!m_pimaging)
    //::type system::get_pane_tab_impact_type_info()
    //{
 
-   //   return ::as_type < userex::pane_tab_impact >();
+   //   return typeid(userex::pane_tab_impact );
 
    //}
 

@@ -85,7 +85,7 @@ namespace factory
 
        m_mapByRawName[strRawName] = pfactory;
 
-       ::string strId = ::as_type<ORIGIN_TYPE>().name();
+       ::string strId = typeid(ORIGIN_TYPE).name();
 
        m_mapById[strId] = pfactory;
 

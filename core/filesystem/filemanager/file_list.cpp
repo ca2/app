@@ -1360,7 +1360,7 @@ namespace filemanager
             auto pinteraction = øcreate_new <  user::button > ();
             pinteraction->m_bTransparent = true;
             //pinteraction->set_control_type(user::e_control_type_button);
-            //pinteraction->m_type = typeid(::user::button );
+            //pinteraction->m_type = typeid(::user::button);
             pinteraction->id() = atom;
             pinteraction->add_function(user::e_control_function_action);
             _001AddControl(pinteraction);

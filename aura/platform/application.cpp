@@ -4391,7 +4391,7 @@ retry_license:
    //::type application::user_default_controltype_to_typeinfo(::user::enum_control_type econtroltype)
    //{
 
-   //   return typeid(::user::interaction );
+   //   return typeid(::user::interaction);
 
    //}
 

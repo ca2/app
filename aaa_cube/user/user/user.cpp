@@ -216,7 +216,7 @@ void user::init(){
 //         "system/form_placeholder",
 //         __initialize_new ::user::multiple_document_template(
 //         "system/form",
-//         typeid(::user::document ),
+//         typeid(::user::document),
 //         psystem->get_simple_frame_window_type_info(),
 //         typeid(::user::place_holder )));
 //
@@ -230,7 +230,7 @@ void user::init(){
 //         "progress_impact",
 //         __initialize_new ::user::multiple_document_template(
 //         "main",
-//         typeid(::user::document ),
+//         typeid(::user::document),
 //         typeid(::userex::dialog_frame ),
 //         typeid(::userex::progress_impact )));
 //
@@ -1610,7 +1610,7 @@ void user::destroy()
 //         //user()->m_mapimpactsystem[COLORSEL_IMPACT] = __initialize_new ::user::multiple_document_template(
 //         //   get_app(),
 //         //   "main",
-//         //   typeid(::user::document ),
+//         //   typeid(::user::document),
 //         //   typeid(::prodevian_translucent_simple_frame_window ),
 //         //   typeid(::user::color_impact )));
 //
@@ -1633,7 +1633,7 @@ void user::destroy()
 //            COLORSEL_IMPACT,
 //            __initialize_new ::user::multiple_document_template(
 //            "main",
-//            typeid(::user::document ),
+//            typeid(::user::document),
 //            typeid(::simple_frame_window ),
 //            typeid(::user::color_selector_impact )));
 //
@@ -1664,7 +1664,7 @@ void user::destroy()
 //            FONTSEL_IMPACT,
 //            __initialize_new ::user::multiple_document_template(
 //            "main",
-//            typeid(::user::document ),
+//            typeid(::user::document),
 //            typeid(::simple_frame_window ),
 //            typeid(::userex::font_impact )));
 //

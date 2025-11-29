@@ -30930,7 +30930,7 @@ __check_refdbg;
       {
       case e_control_type_edit:
 
-         //         m_type = typeid(CSimpleFormListEdit );
+         //         m_type = typeid(CSimpleFormListEdit);
 
          break;
 

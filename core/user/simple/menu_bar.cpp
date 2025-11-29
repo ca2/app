@@ -126,7 +126,7 @@ bool simple_menu_bar::pre_create_window(::user::system * pusersystem)
     LPNMTOOLBAR pnmtb = (LPNMTOOLBAR) pNotifyStruct;
 
 
-//    m_pwthreadTracking = (CMenuTrackingThreadV033*) __begin_thread(typeid(CMenuTrackingThreadV033 ));
+//    m_pwthreadTracking = (CMenuTrackingThreadV033*) __begin_thread(typeid(CMenuTrackingThreadV033));
   //  m_pwthreadTracking->m_happeningInitialized.lock();
     //m_pwthreadTracking->m_puiMain->SendMessage(WM_USER, 3, (LPARAM) this);
     //m_pwthreadTracking->m_puiMain->SendMessage(WM_USER, 4, pnmtb->iItem);

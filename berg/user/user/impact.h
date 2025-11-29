@@ -262,7 +262,7 @@ namespace user
 
       }
 
-      return create_impact(typeid(IMPACT ), pdocument, puserinteractionParent, atom, pviewLast, pimpactdata);
+      return create_impact(typeid(IMPACT), pdocument, puserinteractionParent, atom, pviewLast, pimpactdata);
 
    }
 

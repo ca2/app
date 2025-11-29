@@ -121,8 +121,8 @@ IMPLEMENT_APPLICATION_FACTORY();
 
       ptemplate = __initialize_new ::user::single_document_template(
                        "main",
-                       typeid(document ),
-                       typeid(frame ),
+                       typeid(document),
+                       typeid(frame),
                        typeid(main_impact )));
 
       m_ptemplateHelloMultiverseImpact = ptemplate;

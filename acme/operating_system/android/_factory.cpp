@@ -19,7 +19,7 @@
 //         add_factory_item < stdio_file            >(typeid(::file::text_file );
 //         add_factory_item < file                  >(typeid(::file::binary_file );
 //         add_factory_item < file, ::file::file >();
-//         add_factory_item < os                          >(typeid(::acme::os ),1);
+//         add_factory_item < os                          >(typeid(::acme::os),1);
 //         add_factory_item < ::ansios::process           >(typeid(::operating_system::process ), 10);
 //         add_factory_item < ::ansios::pipe              >(typeid(::operating_system::pipe ), 10);
 //

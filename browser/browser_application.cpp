@@ -120,7 +120,7 @@ pdirectorysystem->create(szRelative);  // or SHCreateDirectory(NULL, szCacheDir)
       pDocTemplate = __initialize_new ::user::single_document_template(
                           this,
                           "main",
-                          typeid(document ),
+                          typeid(document),
                           typeid(main_frame ),
                           typeid(pane_impact )));
       m_ptemplateHelloBrowserMain = pDocTemplate;
@@ -130,8 +130,8 @@ pdirectorysystem->create(szRelative);  // or SHCreateDirectory(NULL, szCacheDir)
       pDocTemplate = __initialize_new ::user::single_document_template(
                           this,
                           "main",
-                          typeid(document ),
-                          typeid(frame ),
+                          typeid(document),
+                          typeid(frame),
                           typeid(main_impact )));
       m_ptemplateHelloBrowserView = pDocTemplate;
       add_document_template(pDocTemplate);
@@ -140,8 +140,8 @@ pdirectorysystem->create(szRelative);  // or SHCreateDirectory(NULL, szCacheDir)
       pDocTemplate = __initialize_new ::user::single_document_template(
                           this,
                           "switcher",
-                          typeid(document ),
-                          typeid(frame ),
+                          typeid(document),
+                          typeid(frame),
                           typeid(switcher_impact )));
       m_ptemplateHelloBrowserSwitcher = pDocTemplate;
       add_document_template(pDocTemplate);

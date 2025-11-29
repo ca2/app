@@ -75,9 +75,9 @@ namespace hellobase
       pDocTemplate = __initialize_new ::user::single_document_template(
                              this,
                              "main",
-                             typeid(document ),
+                             typeid(document),
                              typeid(main_frame ),
-                             typeid(impact )));
+                             typeid(impact)));
       m_ptemplateHelloBaseMain = pDocTemplate;
 
 

@@ -103,7 +103,7 @@ namespace user
 ////      if(pdescriptor->m_pcontrol != nullptr)
 ////      {
 ////         //::type ti = typeid(pdescriptor->m_pcontrol);
-/////*         if(ti == typeid(::user::list ))
+/////*         if(ti == typeid(::user::list))
 ////         {
 ////            if(pdescriptor->m_etype == e_control_type_simple_list)
 ////            {
@@ -1106,7 +1106,7 @@ throw_todo();
 //               {
 //                  //xxx pinteraction->m_puserinteraction->unsubclass_window();
 //               }
-//   //            ASSERT(pinteraction->m_type->IsDerivedFrom(typeid(window )));
+//   //            ASSERT(pinteraction->m_type->IsDerivedFrom(typeid(window)));
 //               if(descriptor.m_pcontrol.is_set())
 //               {
 //                  //window_id wndidTemp = get_child_by_id(pinteraction->id())->GetSafeoswindow_();
@@ -1119,7 +1119,7 @@ throw_todo();
 //            if(descriptor.m_pcontrol != nullptr)
 //            {
 ////               ::type ti = typeid(descriptor.m_pcontrol);
-///*               if(ti == typeid(::user::list ))
+///*               if(ti == typeid(::user::list))
 //               {
 //                  if(descriptor.m_etype == e_control_type_simple_list)
 //                  {

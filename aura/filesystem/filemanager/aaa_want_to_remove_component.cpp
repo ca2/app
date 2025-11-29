@@ -213,7 +213,7 @@ namespace filemanager
       ////                   "filemanager",
       ////                   __form_document_type(),
       ////                   typeid(form_child_frame ),
-      ////                   typeid(form )));
+      ////                   typeid(form)));
 
       ////øconstruct(m_pimpactsystemForm, pmulti);
 
@@ -284,8 +284,8 @@ namespace filemanager
    //   //{
    //   //   pdoctemplate = __initialize_new ::user::multiple_document_template(
    //   //                       strTemplateId,
-   //   //                       typeid(document ),
-   //   //                       typeid(frame ),       // main SDI frame window
+   //   //                       typeid(document),
+   //   //                       typeid(frame),       // main SDI frame window
    //   //                       typeid(tab_impact )));
 
    //   //}
@@ -294,7 +294,7 @@ namespace filemanager
 
    //   //   pdoctemplate = __initialize_new ::user::multiple_document_template(
    //   //                       strTemplateId,
-   //   //                       typeid(document ),
+   //   //                       typeid(document),
    //   //                       typeid(main_frame ),
    //   //                       typeid(file_list )));
 
@@ -304,7 +304,7 @@ namespace filemanager
 
    //   //   pdoctemplate = __initialize_new ::user::multiple_document_template(
    //   //                       strTemplateId,
-   //   //                       typeid(document ),
+   //   //                       typeid(document),
    //   //                       typeid(main_frame ),
    //   //                       typeid(folder_selection_list_impact )));
 
@@ -314,9 +314,9 @@ namespace filemanager
 
    //   //   pdoctemplate = __initialize_new ::user::multiple_document_template(
    //   //                       strTemplateId,
-   //   //                       typeid(document ),
-   //   //                       typeid(frame ),
-   //   //                       typeid(impact )));
+   //   //                       typeid(document),
+   //   //                       typeid(frame),
+   //   //                       typeid(impact)));
    //   //}
 
    //   //papp->add_document_template(pdoctemplate);

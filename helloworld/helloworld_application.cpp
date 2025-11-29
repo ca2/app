@@ -91,7 +91,7 @@ namespace helloworld
       pDocTemplate = __initialize_new ::user::single_document_template(
                              this,
                              "main",
-                             typeid(document ),
+                             typeid(document),
                              typeid(main_frame ),
                              typeid(pane_impact )));
       m_ptemplateHelloWorldMain = pDocTemplate;
@@ -101,8 +101,8 @@ namespace helloworld
       pDocTemplate = __initialize_new ::user::single_document_template(
                              this,
                              "main",
-                             typeid(document ),
-                             typeid(frame ),
+                             typeid(document),
+                             typeid(frame),
                              typeid(main_impact )));
       m_ptemplateHelloWorldView = pDocTemplate;
       add_document_template(pDocTemplate);
@@ -111,8 +111,8 @@ namespace helloworld
       pDocTemplate = __initialize_new ::user::single_document_template(
                              this,
                              "switcher",
-                             typeid(document ),
-                             typeid(frame ),
+                             typeid(document),
+                             typeid(frame),
                              typeid(switcher_impact )));
       m_ptemplateHelloWorldSwitcher = pDocTemplate;
       add_document_template(pDocTemplate);

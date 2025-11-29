@@ -121,7 +121,7 @@ IMPLEMENT_APPLICATION_FACTORY();
 
       auto pdoctemplate = __initialize_new ::user::single_document_template(
                                "main",
-                               typeid(document ),
+                               typeid(document),
                                typeid(main_frame ),
                                get_pane_impact_type()));
 
@@ -132,9 +132,9 @@ IMPLEMENT_APPLICATION_FACTORY();
 
       pdoctemplate = __initialize_new ::user::single_document_template(
          "openssl",
-         typeid(document ),
+         typeid(document),
          typeid(main_frame ),
-         typeid(impact )));
+         typeid(impact)));
 
       m_ptemplateOpenSSL = pdoctemplate;
 
@@ -142,9 +142,9 @@ IMPLEMENT_APPLICATION_FACTORY();
 
       pdoctemplate = __initialize_new ::user::single_document_template(
          "ffmpeg",
-         typeid(document ),
+         typeid(document),
          typeid(main_frame ),
-         typeid(impact )));
+         typeid(impact)));
 
       m_ptemplateFFMPEG = pdoctemplate;
 

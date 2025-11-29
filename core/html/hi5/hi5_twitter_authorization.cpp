@@ -70,7 +70,7 @@ namespace hi5
 
          m_ptemplatePane = ___new ::user::single_document_template(
             "system/auth",
-            typeid(::user::document ),
+            typeid(::user::document),
             typeid(simple_frame_window ),
             psystem->get_pane_tab_impact_type_info());
 

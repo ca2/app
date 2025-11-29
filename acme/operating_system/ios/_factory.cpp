@@ -13,25 +13,25 @@
 //
 //      add_factory_item < stdio_file           >   (typeid(::file::text_file ));
 //      add_factory_item < file                 >   (typeid(::file::binary_file ));
-////      add_factory_item < file_set             >   (typeid(::file::set ));
-//      add_factory_item < file                 >   (typeid(::file::file ));
-//      //      add_factory_item < application                >   (typeid(::platform::application ), 1);
-//      add_factory_item < ::thread               >   (typeid(::thread ));
+////      add_factory_item < file_set             >   (typeid(::file::set));
+//      add_factory_item < file                 >   (typeid(::file::file));
+//      //      add_factory_item < application                >   (typeid(::platform::application), 1);
+//      add_factory_item < ::thread               >   (typeid(::thread));
 //
-//      add_factory_item < file_system                >   (typeid(::file::system ), 1);
+//      add_factory_item < file_system                >   (typeid(::file::system), 1);
 ////    add_factory_item < file_exception, ::file::exception >();
-////    add_factory_item <    WinResource             >   (typeid(::ca2::resource ), 1);
-//      //add_factory_item < application                >   (typeid(::platform::application ), 1);
+////    add_factory_item <    WinResource             >   (typeid(::ca2::resource), 1);
+//      //add_factory_item < application                >   (typeid(::platform::application), 1);
 //      add_factory_item < dir                        >   (typeid(::file::system_dir ), 1);
 ////    add_factory_item < folder_watch, ::ca2::folder_watch >();
 ////      add_factory_item < window_draw                >   (typeid(::user::window_draw ), 1);
 //      //add_factory_item < thread               >   (typeid(::thread_impl ));
-////      add_factory_item < window               >   (typeid(::window ));
-//      add_factory_item < os                         >   (typeid(::acme::os ), 1);
+////      add_factory_item < window               >   (typeid(::window));
+//      add_factory_item < os                         >   (typeid(::acme::os), 1);
 ////      add_factory_item < port_forward               >   (typeid(::net::port_forward ), 1);
-////      add_factory_item < crypto                      >   (typeid(::crypto::crypto ), 1);
-////      add_factory_item < copydesk                   >   (typeid(::acme::copydesk ), 1);
-//  //    add_factory_item < ::ios2::printer                   >   (typeid(::user::printer ), 1);
+////      add_factory_item < crypto                      >   (typeid(::crypto::crypto), 1);
+////      add_factory_item < copydesk                   >   (typeid(::acme::copydesk), 1);
+//  //    add_factory_item < ::ios2::printer                   >   (typeid(::user::printer), 1);
 //
 //   }
 //

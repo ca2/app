@@ -45,8 +45,8 @@ namespace userfs
       ::pointer<::request>prequest(e_create, this);
 
 //      prequest->m_usercreatecontext.m_pCurrentDoc = get_document();
-  //    prequest->m_usercreatecontext.m_typeNewImpact = typeid(tree );
-      ::pointer<::user::interaction>puserinteraction = create_impact(typeid(::user::tree ),get_document(),get_pane_holder(0),100);
+  //    prequest->m_usercreatecontext.m_typeNewImpact = typeid(tree);
+      ::pointer<::user::interaction>puserinteraction = create_impact(typeid(::user::tree),get_document(),get_pane_holder(0),100);
 
       SetPane(0, puserinteraction, false);
 //      ::pointer<tree>ptree =  (puserinteraction);
@@ -54,7 +54,7 @@ namespace userfs
 
 //      cc->m_usercreatecontext.m_pCurrentDoc = get_document();
   //    cc->m_usercreatecontext.m_typeNewImpact = typeid(list_base );
-      puserinteraction = create_impact(typeid(::userfs::list ),get_document(), get_pane_holder(1),101);
+      puserinteraction = create_impact(typeid(::userfs::list),get_document(), get_pane_holder(1),101);
 //      list_base * plist = dynamic_cast < list_base * > (puserinteraction);
       SetPane(1, puserinteraction, false);
       set_need_layout();

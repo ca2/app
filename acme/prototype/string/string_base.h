@@ -395,7 +395,7 @@ public:
    //
    //    auto pbasedata = this->base_data_from_data(this->m_begin);
    //
-   //    this->release_base_data(pbasedata);
+   //    this->base_data_defer_release(pbasedata);
    //
    // }
 
@@ -419,7 +419,7 @@ public:
       if (this->has_string_storage() && ::is_set(this->m_begin))
       {
 
-         ::release_base_data(this->m_pbasedata);
+         ::base_data_defer_release(this->m_pbasedata);
 
       }
 
@@ -1081,7 +1081,7 @@ public:
       if (pdataThis)
       {
 
-         ::release_base_data(pdataThis);
+         ::base_data_defer_release(pdataThis);
 
       }
 
@@ -1153,7 +1153,7 @@ public:
       if (pdataThis)
       {
 
-         ::release_base_data(pdataThis);
+         ::base_data_defer_release(pdataThis);
 
       }
 
@@ -1379,7 +1379,7 @@ public:
       if (this->has_string_storage())
       {
 
-         release_base_data(this->m_pbasedata);
+         ::base_data_defer_release(this->m_pbasedata);
 
       }
 
@@ -1746,7 +1746,7 @@ public:
          //if constexpr (t_bWasString)
          //{
 
-            ::release_base_data(pbasedataOld);
+            ::base_data_defer_release(pbasedataOld);
 
          //}
 
@@ -1842,7 +1842,7 @@ public:
    //       if constexpr (t_bWasString)
    //       {
    //
-   //          ::release_base_data(pbasedataOld);
+   //          ::base_data_defer_release(pbasedataOld);
    //
    //       }
    //
@@ -2929,7 +2929,7 @@ struct std::formatter<::string > :
 
 
 template<typename ...Args>
-[[nodiscard]] inline ::string
+[[nodiscard]] constexpr ::string
 format(const std::format_string<Args...> fmt, Args&&... args) noexcept
 {
 

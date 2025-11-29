@@ -18,7 +18,7 @@ namespace application_build_helper
 
       //   printf("Preparing to generate documentation...");
       //
-      //   auto path = directory_system()->get_current();
+      //   auto path = directory_system()->current();
       //
       //   directory_system()->change_current(path / "source/app/acme");
       //
@@ -266,7 +266,7 @@ namespace application_build_helper
 
       printf("%s", ("Generating documentation for " + scopedstrSubPath + " ...").c_str());
 
-      auto path = directory_system()->get_current();
+      auto path = directory_system()->current();
 
       directory_system()->change_current(path / scopedstrSubPath);
 

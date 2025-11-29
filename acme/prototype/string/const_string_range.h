@@ -537,6 +537,118 @@ public:
    }
 
 
+   constexpr bool _is_p_in_range(ITERATOR_TYPE p) const
+   {
+
+      return p >= this->m_begin && p <= this->m_begin;
+
+   }
+
+
+   const_string_range & trim_left(const SCOPED_STRING& scopedstrAnyPrefixCharacterToTrim)
+   {
+
+      ASSERT(this->is_working_string_range());
+
+      auto pszBegin = this->skip_any_character_in(scopedstrAnyPrefixCharacterToTrim);
+
+      if (pszBegin 
+         && pszBegin != this->m_begin 
+         && this->_is_p_in_range(pszBegin))
+      {
+
+         this->m_begin = pszBegin;
+         
+      }
+
+      return *this;
+
+   }
+
+
+   const_string_range& trim_left()
+   {
+
+      return this->trim_left(::typed_whitespace < CHARACTER >());
+
+   }
+
+
+   const_string_range & trim_right(const SCOPED_STRING& scopedstrAnySuffixCharacterToTrim)
+   {
+
+      ASSERT(this->is_working_string_range());
+
+      auto pszEnd = this->rear_skip_any_character_in(scopedstrAnySuffixCharacterToTrim);
+
+      if (pszEnd
+         && pszEnd != this->m_end
+         && this->_is_p_in_range(pszEnd))
+      {
+
+         this->m_end = pszEnd;
+
+      }
+
+      return *this;
+
+   }
+
+
+   const_string_range& trim_right()
+   {
+
+      return this->trim_right(::typed_whitespace < CHARACTER >());
+
+   }
+
+
+   const_string_range & trim(
+      const SCOPED_STRING& scopedstrAnyPrefixCharacterToTrim,
+      const SCOPED_STRING& scopedstrAnySuffixCharacterToTrim)
+   {
+
+      return trim_right(scopedstrAnySuffixCharacterToTrim).
+         trim_left(scopedstrAnyPrefixCharacterToTrim);
+
+   }
+
+
+   const_string_range& trim()
+   {
+
+      return trim_right().trim_left();
+
+   }
+
+
+   bool defer_trim(const SCOPED_STRING& scopedstrAnyPrefixCharacterToTrim, const SCOPED_STRING& scopedstrAnySuffixCharacterToTrim)
+   {
+
+      ASSERT(this->is_working_string_range());
+
+      auto pszCandidateBegin = this->skip_any_character_in(scopedstrAnyPrefixCharacterToTrim);
+
+      auto pszCandidateEnd = this->rear_skip_any_character_in(scopedstrAnySuffixCharacterToTrim);
+
+      if (pszCandidateBegin <= this->m_begin
+         || pszCandidateEnd >= this->m_end)
+      {
+
+         return false;
+
+      }
+
+      this->m_begin = pszCandidateBegin;
+
+      this->m_end = pszCandidateEnd;
+
+      return *this;
+
+   }
+
+
+
    const_string_range trimmed(const SCOPED_STRING& scopedstr) const
    {
 
@@ -1893,6 +2005,22 @@ public:
 
    }
 
+   bool begins_eat(const SCOPED_STRING& range) {
+
+      if (!this->begins(range))
+      {
+
+         return false;
+
+      }
+
+      this->m_begin += range.size();
+
+      return true;
+
+   }
+
+
 
    ::collection::count begins_count(bool(*character_is_function)(CHARACTER character)) const
    {
@@ -2839,6 +2967,32 @@ primitive_character < TYPED_STRING_LITERAL >;
 
 
 
+template <typename ITERATOR_TYPE>
+struct std::formatter<::character_range<ITERATOR_TYPE>>
+{
+   using character_type = ::character_decay<::erase_pointer<::non_const< ITERATOR_TYPE>>>;
+   using string_view_type = ::std::basic_string_view<character_type>;
+   using target_iterator = const character_type*;
+
+   std::formatter<string_view_type> base;
+
+   // Forward parse explicitly
+   template <typename FormatContext>
+   constexpr auto parse(FormatContext& ctx) {
+      return base.parse(ctx);
+   }
+
+   template <typename FormatContext>
+   auto format(const ::character_range<ITERATOR_TYPE>& characterrange, FormatContext& ctx) const {
+      return base.format(
+         string_view_type{
+            (target_iterator)characterrange.begin(),
+            (target_iterator)characterrange.end()
+         },
+         ctx
+      );
+   }
+};
 
 
 

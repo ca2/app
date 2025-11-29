@@ -43,6 +43,11 @@ struct hash32
 template < typename T >
 ::hash32 as_hash32(const T & t) { return (::hash32)t; }
 
+#include <typeindex>
+
+template <  >
+constexpr ::hash32 as_hash32<::std::type_index>(const ::std::type_index & typeindex)
+{ return (::hash32)typeindex.hash_code(); }
 
 //#include "acme/include/_numeric_concepts.h"
 //#include "acme/prototype/prototype/enumeration.h"

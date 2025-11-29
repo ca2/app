@@ -659,7 +659,7 @@ namespace console_integration
          
          //};
          
-         printf("Current Directory: %s\n", directory_system()->get_current().c_str());
+         printf("Current Directory: %s\n", directory_system()->current().c_str());
 
          m_papplication->bash(strConfigureCommand);
          

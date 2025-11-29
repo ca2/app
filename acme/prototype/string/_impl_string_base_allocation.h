@@ -303,7 +303,7 @@ requires (sizeof(SAME_SIZE_CHARACTER) == sizeof(CHARACTER))
    if (pdataThis)
    {
 
-      ::release_base_data(pdataThis);
+      ::base_data_defer_release(pdataThis);
 
    }
 
@@ -400,7 +400,7 @@ requires (sizeof(OTHER_SIZE_CHARACTER) != sizeof(CHARACTER))
    if (pdataThis)
    {
 
-      ::release_base_data(pdataThis);
+      ::base_data_defer_release(pdataThis);
 
    }
 

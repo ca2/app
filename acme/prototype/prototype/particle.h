@@ -378,6 +378,19 @@ public:
 
    virtual void formatf_trace(enum_trace_level etracelevel, const_char_pointer pszFormat, va_list & arguments) const;
 
+
+   template<typename... Args>
+   void print_line(std::format_string<Args...> fmt, Args&&... args) const
+   {
+
+      string str;
+
+      str.format(fmt, ::std::forward < Args >(args)...);
+
+      print_line(str);
+
+   }
+
    virtual void print_line(const ::scoped_string & scopedstr) const;
    virtual void print_out(const ::scoped_string & scopedstr) const;
    virtual void printf_line(const_char_pointer pszFormat, ...) const;
@@ -1330,27 +1343,27 @@ CLASS_DECL_ACME void fatal(const ::scoped_string& scopedstr);
 template <typename... Args>
 void debug(std::string_view fmt, Args&&... args)
 {
-   ::debug(format(fmt, std::make_format_args(args...)));
+   ::debug(::format(fmt, std::make_format_args(args...)));
 }
 template <typename... Args>
-void information(std::string_view fmt, Args&&... args)
+void information(const std::format_string<Args...> fmt, Args&&... args)
 {
-   ::information(format(fmt, std::make_format_args(args...)));
+   ::information(::format<Args...>(fmt, std::forward<Args>(args)...));
 }
 template <typename... Args>
-void warning(std::string_view fmt, Args&&... args)
+void warning(const std::format_string<Args...> fmt, Args&&... args)
 {
-   ::warning(format(fmt, std::make_format_args(args...)));
+   ::warning(::format<Args...>(fmt, std::forward<Args>(args)...));
 }
 template <typename... Args>
-void error(std::string_view fmt, Args&&... args)
+void error(const std::format_string<Args...> fmt, Args&&... args)
 {
-   ::error(format(fmt, std::make_format_args(args...)));
+   ::error(::format<Args...>(fmt, std::forward<Args>(args)...));
 }
 template <typename... Args>
-void fatal(std::string_view fmt, Args&&... args)
+void fatal(const std::format_string<Args...> fmt, Args&&... args)
 {
-   ::fatal(format(fmt, std::make_format_args(args...)));
+   ::fatal(::format<Args...>(fmt, std::forward<Args>(args)...));
 }
 
 

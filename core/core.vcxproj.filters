@@ -443,9 +443,6 @@
     <ClInclude Include="user\simple\tab_impact.h">
       <Filter>Header Files\user\simple</Filter>
     </ClInclude>
-    <ClInclude Include="user\simple\toolbar.h">
-      <Filter>Header Files\user\simple</Filter>
-    </ClInclude>
     <ClInclude Include="user\simple\tree_impact.h">
       <Filter>Header Files\user\simple</Filter>
     </ClInclude>

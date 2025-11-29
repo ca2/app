@@ -6,6 +6,8 @@
 
 #include "acme/template/safe_bool.h"
 
+#include <typeindex>
+
 
 //CLASS_DECL_ACME string demangle_name(const_char_pointer pszMangledName);
 CLASS_DECL_ACME string type_name(const ::std::type_info& typeinfo);
@@ -371,18 +373,22 @@ class type
 public:
 
 
-   ::string       m_strRawTypeName;
-   ::string       m_strTypeName;
+   ::std::type_index    m_typeindex;
+   ::string             m_strRawTypeName;
+   ::string             m_strTypeName;
 
 
-   type(){}
+   type():m_typeindex(::std::type_index(typeid(nullptr))){}
    type(const type& type) :
+      m_typeindex(type.m_typeindex),
       m_strRawTypeName(type.m_strRawTypeName),
       m_strTypeName(type.m_strTypeName) {}
-   type(const ::std::type_info& info) :
+   explicit type(const ::std::type_info& info) :
+      m_typeindex(typeid(info)),
       m_strRawTypeName(::type_raw_name(info)),
       m_strTypeName(::type_name(info)) {}
    type(const ::scoped_string& scopedstrTypeName) :
+      m_typeindex(::std::type_index(typeid(nullptr))),
       m_strTypeName(scopedstrTypeName) {}
    template < typename TYPE >
    type(const TYPE* p) : type(typeid(*(TYPE*)p)) {}

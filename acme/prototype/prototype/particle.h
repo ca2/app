@@ -762,9 +762,9 @@ public:
    virtual ::pointer < ::particle > __call__create_by_id(const ::atom & atom, ::factory::factory * pfactory = nullptr);
 
    template < typename BASE_TYPE >
-   inline void __call__construct_by_raw_name(::pointer<BASE_TYPE>& ptype, const ::scoped_string & scopedstrRawName, ::factory::factory* pfactory = nullptr);
+   inline void __call__construct_by_type_index(::pointer<BASE_TYPE>& ptype, const ::std::type_index & typeindex, ::factory::factory* pfactory = nullptr);
 
-   virtual ::pointer < ::particle > __call__create_by_raw_name(const ::scoped_string & scopedstrRawName, ::factory::factory* pfactory = nullptr);
+   virtual ::pointer < ::particle > __call__create_by_type_index(const ::std::type_index & typeindex, ::factory::factory* pfactory = nullptr);
 
    template < typename TYPE >
    inline void __call__construct_new(::pointer<TYPE>& ptype);

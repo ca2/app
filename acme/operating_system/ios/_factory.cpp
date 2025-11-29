@@ -11,27 +11,27 @@
 //   factory_exchange::factory_exchange()
 //   {
 //
-//      add_factory_item < stdio_file           >   (::as_type < ::file::text_file >());
-//      add_factory_item < file                 >   (::as_type < ::file::binary_file >());
-////      add_factory_item < file_set             >   (::as_type < ::file::set >());
-//      add_factory_item < file                 >   (::as_type < ::file::file >());
-//      //      add_factory_item < application                >   (::as_type < ::platform::application >(), 1);
-//      add_factory_item < ::thread               >   (::as_type < ::thread >());
+//      add_factory_item < stdio_file           >   (typeid(::file::text_file ));
+//      add_factory_item < file                 >   (typeid(::file::binary_file ));
+////      add_factory_item < file_set             >   (typeid(::file::set ));
+//      add_factory_item < file                 >   (typeid(::file::file ));
+//      //      add_factory_item < application                >   (typeid(::platform::application ), 1);
+//      add_factory_item < ::thread               >   (typeid(::thread ));
 //
-//      add_factory_item < file_system                >   (::as_type < ::file::system >(), 1);
+//      add_factory_item < file_system                >   (typeid(::file::system ), 1);
 ////    add_factory_item < file_exception, ::file::exception >();
-////    add_factory_item <    WinResource             >   (::as_type < ::ca2::resource >(), 1);
-//      //add_factory_item < application                >   (::as_type < ::platform::application >(), 1);
-//      add_factory_item < dir                        >   (::as_type < ::file::system_dir >(), 1);
+////    add_factory_item <    WinResource             >   (typeid(::ca2::resource ), 1);
+//      //add_factory_item < application                >   (typeid(::platform::application ), 1);
+//      add_factory_item < dir                        >   (typeid(::file::system_dir ), 1);
 ////    add_factory_item < folder_watch, ::ca2::folder_watch >();
-////      add_factory_item < window_draw                >   (::as_type < ::user::window_draw >(), 1);
-//      //add_factory_item < thread               >   (::as_type < ::thread_impl >());
-////      add_factory_item < window               >   (::as_type < ::window >());
-//      add_factory_item < os                         >   (::as_type < ::acme::os >(), 1);
-////      add_factory_item < port_forward               >   (::as_type < ::net::port_forward >(), 1);
-////      add_factory_item < crypto                      >   (::as_type < ::crypto::crypto >(), 1);
-////      add_factory_item < copydesk                   >   (::as_type < ::acme::copydesk >(), 1);
-//  //    add_factory_item < ::ios2::printer                   >   (::as_type < ::user::printer >(), 1);
+////      add_factory_item < window_draw                >   (typeid(::user::window_draw ), 1);
+//      //add_factory_item < thread               >   (typeid(::thread_impl ));
+////      add_factory_item < window               >   (typeid(::window ));
+//      add_factory_item < os                         >   (typeid(::acme::os ), 1);
+////      add_factory_item < port_forward               >   (typeid(::net::port_forward ), 1);
+////      add_factory_item < crypto                      >   (typeid(::crypto::crypto ), 1);
+////      add_factory_item < copydesk                   >   (typeid(::acme::copydesk ), 1);
+//  //    add_factory_item < ::ios2::printer                   >   (typeid(::user::printer ), 1);
 //
 //   }
 //

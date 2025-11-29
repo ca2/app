@@ -321,23 +321,23 @@ namespace platform
       virtual ::string component_factory_implementation_name(const ::scoped_string & scopedstrComponent);
 
 
-      ::factory::factory_item_interface* get_factory_item_by_raw_name(const ::scoped_string & scopedstrRawName);
+      ::factory::factory_item_interface* get_factory_item_by_type_index(const ::std::type_index & typeindex);
       ::factory::factory_item_interface* get_factory_item_by_id(const ::atom& atom);
 
 
-      ::factory::factory_item_interface * get_factory_item_by_raw_name(const ::scoped_string & scopedstrRawName, const ::atom & atomFactory);
+      ::factory::factory_item_interface * get_factory_item_by_type_index(const ::std::type_index & typeindex, const ::atom & atomFactory);
       ::factory::factory_item_interface * get_factory_item_by_id(const ::atom & atom, const ::atom & atomFactory);
 
 
-      bool has_factory_item_by_raw_name(const ::scoped_string & scopedstrRawName);
+      bool has_factory_item_by_type_index(const ::std::type_index & typeindex);
       bool has_factory_item_by_id(const ::atom & atom);
 
 
-      void set_factory_item_by_raw_name(const ::scoped_string & scopedstrRawName, const ::atom& atom, const ::pointer<::factory::factory_item_interface> & pfactoryitem);
+      void set_factory_item_by_type_index(const ::std::type_index & typeindex, const ::atom& atom, const ::pointer<::factory::factory_item_interface> & pfactoryitem);
       void set_factory_item_by_id(const ::atom& atom, const ::pointer<::factory::factory_item_interface>& pfactoryitem);
 
 
-      void set_factory_item_by_raw_name_for_factory(const ::scoped_string & scopedstrRawName, const ::atom& atom, const ::atom & atomFactory, const ::pointer<::factory::factory_item_interface> & pfactoryitem);
+      void set_factory_item_by_type_index_for_factory(const ::std::type_index & typeindex, const ::atom& atom, const ::atom & atomFactory, const ::pointer<::factory::factory_item_interface> & pfactoryitem);
       void set_factory_item_by_id_for_factory(const ::atom & atom, const ::atom& atomFactory, const ::pointer<::factory::factory_item_interface>& pfactoryitem);
 
 

@@ -2196,7 +2196,7 @@ bool particle::should_run_async() const
 }
 
 
-::pointer < ::particle > particle::__call__create_by_raw_name(const ::scoped_string & scopedstrRawName, ::factory::factory* pfactory)
+::pointer < ::particle > particle::__call__create_by_type_index(const ::std::type_index & typeindex, ::factory::factory* pfactory)
 {
 
    if (::is_null(pfactory))
@@ -2206,7 +2206,7 @@ bool particle::should_run_async() const
 
    }
 
-   auto pfactoryitem = pfactory->get_factory_item_by_raw_name(scopedstrRawName);
+   auto pfactoryitem = pfactory->get_factory_item_by_type_index(typeindex);
 
    auto p = pfactoryitem->__call__create_particle();
 

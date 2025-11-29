@@ -141,7 +141,7 @@ namespace factory
       //{
 
       //this->m_mapByRawNamePointer.merge_set(pfactory->m_mapByRawNamePointer);
-      this->m_mapByRawName.merge_set(pfactory->m_mapByRawName);
+      this->m_mapByTypeIndex.merge_set(pfactory->m_mapByTypeIndex);
       this->m_mapById.merge_set(pfactory->m_mapById);
         //    .set_at(pair.m_element1, pair.m_element2);
 
@@ -166,7 +166,7 @@ namespace factory
          auto pfactoryImplicit = plibrary->m_pfactory;
 
          //this->m_mapByRawNamePointer.merge_set(pfactoryImplicit->m_mapByRawNamePointer);
-         this->m_mapByRawName.merge_set(pfactoryImplicit->m_mapByRawName);
+         this->m_mapByTypeIndex.merge_set(pfactoryImplicit->m_mapByTypeIndex);
          this->m_mapById.merge_set(pfactoryImplicit->m_mapById);
 
       }
@@ -1031,7 +1031,7 @@ namespace factory
 {
 
 
-   ::particle_pointer factory::__call__create_by_raw_name(const ::scoped_string & scopedstrRawName, ::particle * pparticle)
+   ::particle_pointer factory::__call__create_by_type_index(const ::std::type_index & typeindex, ::particle * pparticle)
    {
 
       //auto psystem = system();
@@ -1064,7 +1064,7 @@ namespace factory
 
       //return pparticle;
 
-      auto pfactoryinterface = get_factory_item_by_raw_name(scopedstrRawName);
+      auto pfactoryinterface = get_factory_item_by_type_index(typeindex);
 
       //if (!pfactoryinterface)
       //{
@@ -1125,7 +1125,7 @@ namespace factory
    }
 
 
-   bool factory::has_by_raw_name(const ::scoped_string & scopedstrRawName) const
+   bool factory::has_by_type_index(const ::std::type_index & typeindex) const
    {
 
       //auto psystem = system();
@@ -1139,7 +1139,7 @@ namespace factory
 
       //}
 
-      return has_factory_item_by_raw_name(scopedstrRawName);
+      return has_factory_item_by_type_index(typeindex);
 
    }
 
@@ -1164,7 +1164,7 @@ namespace factory
    }
 
 
-   ::factory::factory_item_interface* factory::get_factory_item_by_raw_name(const ::scoped_string & scopedstrRawName) const
+   ::factory::factory_item_interface* factory::get_factory_item_by_type_index(const ::std::type_index & typeindex) const
    {
 
       critical_section_lock cs(&((factory*)this)->m_criticalsection);
@@ -1184,7 +1184,7 @@ namespace factory
 
       {
 
-         auto p = this->m_mapByRawName.find(scopedstrRawName);
+         auto p = this->m_mapByTypeIndex.find(typeindex);
 
          if (p && p->payload())
          {
@@ -1195,7 +1195,7 @@ namespace factory
 
       }
 
-      error() << "factory::get_factory_item FAILED!! the following atom wasn't found by raw name pointer and text: \"" << scopedstrRawName << "\"";
+      error() << "factory::get_factory_item FAILED!! the following atom wasn't found by raw name pointer and text: \"" << typeindex << "\"";
 
       return nullptr;
 
@@ -1223,14 +1223,14 @@ namespace factory
    }
 
 
-   bool factory::has_factory_item_by_raw_name(const ::scoped_string & scopedstrRawName) const
+   bool factory::has_factory_item_by_type_index(const ::std::type_index & typeindex) const
    {
 
       critical_section_lock cs(&((factory*)this)->m_criticalsection);
 
       {
 
-         auto p = this->m_mapByRawName.find(scopedstrRawName);
+         auto p = this->m_mapByTypeIndex.find(typeindex);
 
          if (p && p->payload())
          {
@@ -1243,7 +1243,7 @@ namespace factory
 
       //{
 
-      //   auto p = this->m_mapByRawName.find(pszRawName);
+      //   auto p = this->m_mapByTypeIndex.find(pszRawName);
 
       //   if (p && p->payload())
       //   {
@@ -1278,12 +1278,12 @@ namespace factory
    }
 
 
-   //::factory::factory_item_interface * factory::get_factory_item_by_raw_name(const ::scoped_string & scopedstrRawName) const
+   //::factory::factory_item_interface * factory::get_factory_item_by_type_index(const ::std::type_index & typeindex) const
    //{
 
    //   critical_section_lock cs(&m_criticalsection);
 
-   //   auto& pfactoryiteminterface = this->m_mapByRawName.get(pszRawName)->element2();
+   //   auto& pfactoryiteminterface = this->m_mapByTypeIndex.get(pszRawName)->element2();
 
    //   if (!pfactoryiteminterface)
    //   {
@@ -1327,12 +1327,12 @@ namespace factory
    ////}
 
 
-   factory_item_interface * get_factory_item_by_raw_name(const ::scoped_string & scopedstrRawName)
+   factory_item_interface * get_factory_item_by_type_index(const ::std::type_index & typeindex)
    {
 
       auto pplatform = ::platform::get();
 
-      return pplatform->get_factory_item_by_raw_name(scopedstrRawName);
+      return pplatform->get_factory_item_by_type_index(typeindex);
 
    }
 
@@ -1347,15 +1347,15 @@ namespace factory
    }
 
 
-   factory_item_interface * get_existing_factory_item_by_raw_name(const ::scoped_string & scopedstrRawName)
+   factory_item_interface * get_existing_factory_item_by_type_index(const ::std::type_index & typeindex)
    {
 
-      auto pfactoryitem = get_factory_item_by_raw_name(scopedstrRawName);
+      auto pfactoryitem = get_factory_item_by_type_index(typeindex);
 
       if (!pfactoryitem)
       {
 
-         throw_exception(error_no_factory, "No factory for raw name: \"" + ::string(scopedstrRawName) + "\"");
+         throw_exception(error_no_factory, "No factory for type_index with name: \"" + ::string(typeindex.name()) + "\"");
 
       }
 
@@ -1381,17 +1381,17 @@ namespace factory
    }
 
 
-   factory_item_interface * get_factory_item_by_raw_name(const ::scoped_string & scopedstrRawName, const ::atom & atomFactory)
+   factory_item_interface * get_factory_item_by_type_index(const ::std::type_index & typeindex, const ::atom & atomFactory)
    {
 
       auto pplatform = ::platform::get();
 
-      auto pfactoryitem = pplatform->get_factory_item_by_raw_name(scopedstrRawName, atomFactory);
+      auto pfactoryitem = pplatform->get_factory_item_by_type_index(typeindex, atomFactory);
 
       if (!pfactoryitem)
       {
 
-         throw_exception(error_no_factory, "No factory for raw name: \"" + ::string(scopedstrRawName) + "\"");
+         throw_exception(error_no_factory, "No factory for type_index with name: \"" + ::string(typeindex.name()) + "\"");
 
       }
 

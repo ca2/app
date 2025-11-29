@@ -767,7 +767,7 @@ namespace user
 
       /*      ::user::list * plist = dynamic_cast<::user::list *>(get_child_by_id(pinteraction->id()));
 
-      if(typeid(plist->GetDataInterface()) == ::as_type < ::user::simple_mesh_data >())
+      if(typeid(plist->GetDataInterface()) == typeid(::user::simple_mesh_data ))
       {
       ::user::simple_mesh_data * pdata = dynamic_cast < ::user::simple_mesh_data * > (plist->GetDataInterface());
       string_array_base stra;
@@ -1191,7 +1191,7 @@ namespace user
       //         {
       //            //xxx pinteraction->m_puserinteraction->unsubclass_window();
       //         }
-      //         //            ASSERT(pinteraction->m_type->IsDerivedFrom(::as_type < window >()));
+      //         //            ASSERT(pinteraction->m_type->IsDerivedFrom(typeid(window )));
       //         if(descriptor.m_pcontrol.is_set())
       //         {
       //            //window_id wndidTemp = get_child_by_id(pinteraction->id())->GetSafeoswindow_();
@@ -1204,7 +1204,7 @@ namespace user
       //      if(descriptor.m_pcontrol != nullptr)
       //      {
       //         //               ::type ti = typeid(descriptor.m_pcontrol);
-      //         /*               if(ti == ::as_type < ::user::list >())
+      //         /*               if(ti == typeid(::user::list ))
       //         {
       //         if(descriptor.m_etype == e_control_type_simple_list)
       //         {
@@ -1213,7 +1213,7 @@ namespace user
       //         plist->_001SetSingleColumnMode(false);
       //         }
       //         }*/
-      //         /*            else if(pinteraction->m_type->IsDerivedFrom(::as_type < simple_still >()))
+      //         /*            else if(pinteraction->m_type->IsDerivedFrom(typeid(simple_still )))
       //         {
       //         simple_still * pstatic = (simple_still *) pinteraction->m_puserinteraction;
       //         pstatic->m_bTransparent = pinteraction->m_bTransparent;

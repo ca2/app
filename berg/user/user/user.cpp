@@ -12,7 +12,6 @@
 #include "acme/filesystem/filesystem/directory_system.h"
 #include "acme/filesystem/filesystem/file_context.h"
 #include "acme/parallelization/synchronous_lock.h"
-//#include "acme/handler/sequence.h"
 #include "acme/platform/system_setup.h"
 #include "acme/handler/request.h"
 #include "acme/nano/nano.h"
@@ -43,13 +42,6 @@
 #include "berg/user/form/impact.h"
 
 
-//#if defined(FREEBSD) || defined(OPENBSD) || defined(__APPLE__)
-//#include <stdio.h>
-//#endif
-
-
-
-
 namespace berg
 {
 
@@ -57,8 +49,6 @@ namespace berg
    {
 
       print_line("berg::user::user");
-
-      //m_pbaseuser = this;
 
    }
 
@@ -1829,9 +1819,9 @@ namespace berg
             atom,
             øallocate::user::multiple_document_template(
                "system/form",
-               ::as_type < form_document >(),
+               typeid(form_document ),
                get_simple_child_frame_type_info(),
-               ::as_type < ::user::form_impact >()));
+               typeid(::user::form_impact )));
 
          return true;
 

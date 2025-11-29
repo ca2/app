@@ -26,9 +26,9 @@ namespace berg
 
       // auto ptemplate = __initialize_new ::user::multiple_document_template(
       //    "system/form",
-      //    ::as_type < html_document >(),
+      //    typeid(html_document ),
       //    get_simple_child_frame_type_info(),
-      //    ::as_type < html_impact >()));
+      //    typeid(html_impact )));
 
       // m_ptemplateHtmlChildForm1 = ptemplate;
 

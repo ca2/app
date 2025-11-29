@@ -77,7 +77,7 @@ namespace userex
             
             //create_context cc;
             //cc.m_pCurrentDoc = get_document();
-            //cc.m_typeNewImpact = ::as_type < ::user::menu_list_impact >();
+            //cc.m_typeNewImpact = typeid(::user::menu_list_impact );
 
             ::pointer<::user::impact>pimpact = create_impact < ::user::impact > ();
             

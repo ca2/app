@@ -38,12 +38,12 @@ namespace gpu
 {
 
 
-   extern thread_local device* t_pgpudevice;
+   extern thread_local device *t_pgpudevice;
 
    context::context()
    {
 
-      //m_pdraw2dgraphics = nullptr;
+      // m_pdraw2dgraphics = nullptr;
 
       m_eoutput = ::gpu::e_output_none;
 
@@ -52,64 +52,35 @@ namespace gpu
       m_escene = e_scene_none;
 
       m_bCreated = false;
-
    }
 
 
-   context::~context()
-   {
+   context::~context() {}
 
 
-   }
-
-
-   void context::draw()
-   {
-
-
-   }
+   void context::draw() {}
 
 
    void context::prepare_for_gpu_read()
    {
 
-      //swap_buffers();
-
+      // swap_buffers();
    }
 
 
-   void context::start_drawing()
-   {
+   void context::start_drawing() {}
 
 
-   }
+   void context::global_transform() {}
 
 
-   void context::global_transform()
-   {
+   void context::render() {}
 
 
-   }
+   void context::set_bitmap_1(::image::image *pimage) {}
 
 
-   void context::render()
-   {
-
-
-   }
-
-
-   void context::set_bitmap_1(::image::image* pimage)
-   {
-
-
-
-   }
-
-
-
-
-   //void context::swap_buffers()
+   // void context::swap_buffers()
    //{
 
    //   ::cast < swap_chain > pswapchain = m_pgpurenderer->m_pgpurendertarget;
@@ -124,49 +95,42 @@ namespace gpu
    //}
 
 
-   void context::create_window_buffer(::windowing::window* pwindow)
+   void context::create_window_buffer(::windowing::window *pwindow)
    {
 
-      ::cast < device > pgpudevice = m_pgpudevice;
+      ::cast<device> pgpudevice = m_pgpudevice;
 
       if (::is_null(pgpudevice))
       {
 
          throw ::exception(error_null_pointer);
-
       }
 
       _create_window_buffer(pwindow);
-
    }
 
 
-   void context::_create_window_buffer(::windowing::window* pwindow)
-   {
-
-   }
+   void context::_create_window_buffer(::windowing::window *pwindow) {}
 
 
-   void context::create_cpu_buffer(const ::int_size& size)
+   void context::create_cpu_buffer(const ::int_size &size)
    {
 
       if (size.is_empty())
       {
 
          return;
-
       }
 
-      _send([this, size]()
+      _send(
+         [this, size]()
          {
-
-            ::cast < device > pgpudevice = m_pgpudevice;
+            ::cast<device> pgpudevice = m_pgpudevice;
 
             if (::is_null(pgpudevice))
             {
 
                throw ::exception(error_null_pointer);
-
             }
 
             ødefer_construct(m_pcpubuffer);
@@ -178,83 +142,67 @@ namespace gpu
             _create_cpu_buffer(size);
 
             m_bCreated = true;
-
          });
-
    }
 
 
-   void context::defer_create_window_context(::windowing::window* pwindow)
+   void context::defer_create_window_context(::windowing::window *pwindow)
    {
 
-      send([this, pwindow]()
+      send(
+         [this, pwindow]()
          {
-
             _defer_create_window_context(pwindow);
 
             m_bCreated = true;
-
          });
-
    }
 
 
-   void context::_create_cpu_buffer(const ::int_size& size)
+   void context::_create_cpu_buffer(const ::int_size &size) {}
+
+
+   void context::_defer_create_window_context(::windowing::window *pwindow) {}
+
+
+   void context::resize_cpu_buffer(const ::int_size &size)
    {
 
-   }
-
-
-   void context::_defer_create_window_context(::windowing::window* pwindow)
-   {
-
-   }
-
-
-   void context::resize_cpu_buffer(const ::int_size& size)
-   {
-
-      send([this, size]()
+      send(
+         [this, size]()
          {
-
             if (!m_pcpubuffer)
             {
 
                return create_cpu_buffer(size);
-
             }
 
             _synchronous_lock synchronouslock(m_pcpubuffer->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
             m_pcpubuffer->set_size(size);
-
          });
-
    }
 
 
-   void context::_send(const ::procedure& procedure)
+   void context::_send(const ::procedure &procedure)
    {
 
       auto procedureForward = [this, procedure]()
       {
-
          _synchronous_lock(this->synchronization());
 
          defer_make_current();
 
          procedure();
-
       };
 
-      //rear_guard rearguard(this);
+      // rear_guard rearguard(this);
 
       ::thread::_send(procedureForward);
-
    }
 
 
-   //void context::_post(const ::procedure& procedure)
+   // void context::_post(const ::procedure& procedure)
    //{
 
    //   //throw ::error_not_supported;
@@ -274,7 +222,7 @@ namespace gpu
    //}
 
 
-   ::gpu::texture* context::current_target_texture(::gpu::frame* pgpuframe)
+   ::gpu::texture *context::current_target_texture(::gpu::frame *pgpuframe)
    {
 
       if (m_pgpucompositor)
@@ -286,19 +234,14 @@ namespace gpu
          {
 
             return ptexture;
-
          }
-
       }
 
       return m_pgpurenderer->current_render_target_texture(pgpuframe);
-
    }
 
 
-
-
-   void context::construct(::pointer < ::gpu::shader >& pgpushader)
+   void context::construct(::pointer<::gpu::shader> &pgpushader)
    {
 
       _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
@@ -312,18 +255,13 @@ namespace gpu
             pgpushader->m_timeRetire.Now();
 
             m_shaderaRetire.add(pgpushader);
-
          }
-
       }
       catch (...)
       {
-
-
       }
 
       øconstruct(pgpushader);
-
    }
 
 
@@ -335,7 +273,7 @@ namespace gpu
       for (::collection::index i = 0; i < m_shaderaRetire.size();)
       {
 
-         auto& pshader = m_shaderaRetire[i];
+         auto &pshader = m_shaderaRetire[i];
 
          if (pshader->m_timeRetire.elapsed() > 15_s)
          {
@@ -343,68 +281,54 @@ namespace gpu
             ::release(pshader);
 
             m_shaderaRetire.erase_at(i);
-
          }
          else
          {
 
             i++;
-
          }
-
       }
-
    }
 
 
-   void context::start_debug_happening(::gpu::command_buffer * pgpucommandbuffer, const ::scoped_string& scopedstrDebugHappening)
+   void context::start_debug_happening(::gpu::command_buffer *pgpucommandbuffer,
+                                       const ::scoped_string &scopedstrDebugHappening)
    {
-
-
-   }
-   
-   
-   void context::end_debug_happening(::gpu::command_buffer * pgpucommandbuffer)
-   {
-
-
-
    }
 
 
-   ::gpu::texture* context::texture(const ::file::path& path)
+   void context::end_debug_happening(::gpu::command_buffer *pgpucommandbuffer) {}
+
+
+   ::gpu::texture *context::texture(const ::file::path &path)
    {
 
       _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-      auto& ptexture = m_texturemap[path];
+      auto &ptexture = m_texturemap[path];
 
       if (!ptexture)
       {
 
          load_texture(ptexture, path, false);
-
       }
 
       return ptexture;
-
    }
 
 
-   void context::load_texture(::pointer < ::gpu::texture >& ptexture, const ::file::path& path, bool bIsSrgb)
+   void context::load_texture(::pointer<::gpu::texture> &ptexture, const ::file::path &path, bool bIsSrgb)
    {
 
       if (ødefer_construct(ptexture))
       {
 
          ptexture->initialize_image_texture(m_pgpurenderer, path, bIsSrgb);
-
       }
-
    }
 
 
-   ::gpu::texture* context::generic_texture(const ::file::path& path, int iAssimpTextureType)
+   ::gpu::texture *context::generic_texture(const ::file::path &path, int iAssimpTextureType)
    {
 
       _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
@@ -420,23 +344,20 @@ namespace gpu
          {
 
             load_generic_texture(pnode->element2(), path, iAssimpTextureType);
-
          }
          catch (...)
          {
 
             pnode->element2() = nullptr;
-
          }
-
       }
 
       return pnode->element2();
-
    }
 
 
-   void context::load_generic_texture(::pointer < ::gpu::texture >& ptexture, const ::file::path& path, int iAssimpTextureType)
+   void context::load_generic_texture(::pointer<::gpu::texture> &ptexture, const ::file::path &path,
+                                      int iAssimpTextureType)
    {
 
       throw interface_only();
@@ -447,26 +368,25 @@ namespace gpu
       //    ptexture->initialize_image_texture(m_pgpurenderer, path);
       //
       // }
-
    }
 
-   
-   void context::layout_input_layout_properties(::gpu::properties * pproperties)
+
+   void context::layout_input_layout_properties(::gpu::properties *pproperties)
    {
 
       layout_properties_default(*pproperties);
 
-      //auto &properties = *pproperties;
+      // auto &properties = *pproperties;
 
-      //auto pproperty = properties.m_pproperties;
+      // auto pproperty = properties.m_pproperties;
 
       //::collection::index i = 0;
 
-      //int iSizeWithSamplers = 0;
+      // int iSizeWithSamplers = 0;
 
-      //int iSizeWithoutSamplers = 0;
+      // int iSizeWithoutSamplers = 0;
 
-      //while (pproperty->m_pszName)
+      // while (pproperty->m_pszName)
       //{
 
       //   int iItemSize = pproperty->get_item_size(true);
@@ -506,16 +426,13 @@ namespace gpu
       //   pproperty++;
       //}
 
-      //properties.m_memory.set_size(iSizeWithSamplers);
-      //properties.m_blockWithoutSamplers = properties.m_memory(0, iSizeWithoutSamplers);
-      //properties.m_blockWithSamplers = properties.m_memory;
-
-
-
+      // properties.m_memory.set_size(iSizeWithSamplers);
+      // properties.m_blockWithoutSamplers = properties.m_memory(0, iSizeWithoutSamplers);
+      // properties.m_blockWithSamplers = properties.m_memory;
    }
 
 
-   void context::layout_properties_default(::gpu::properties & properties)
+   void context::layout_properties_default(::gpu::properties &properties)
    {
 
       auto pproperty = properties.m_pproperties;
@@ -569,16 +486,353 @@ namespace gpu
       properties.m_memory.set_size(iSizeWithSamplers);
       properties.m_blockWithoutSamplers = properties.m_memory(0, iSizeWithoutSamplers);
       properties.m_blockWithSamplers = properties.m_memory;
-
    }
 
 
-   void context::layout_push_constants(::gpu::properties & properties, bool bGlobalUbo)
+   void context::layout_push_constants(::gpu::properties &properties, bool bGlobalUbo)
    {
 
       layout_properties_default(properties);
-
    }
+
+
+   void context::_layout_std140_or_std430(::gpu::properties &properties, enum_layout elayout)
+   {
+
+      auto pproperty = properties.m_pproperties;
+
+      ::collection::index i = 0;
+
+      int iSizeWithSamplers = 0;
+
+      int iSizeWithoutSamplers = 0;
+
+      while (pproperty->m_pszName)
+      {
+
+         int iItemSize = pproperty->get_item_size(true);
+
+         int iSize = iItemSize;
+
+         if (iItemSize == 4)
+         {
+
+            if (iSizeWithSamplers % 4 != 0)
+            {
+
+               iSizeWithSamplers += 4 - iSizeWithSamplers % 4;
+            }
+         }
+         else if (iItemSize == 8)
+         {
+
+            if (iSizeWithSamplers % 8 != 0)
+            {
+
+               iSizeWithSamplers += 8 - iSizeWithSamplers % 8;
+            }
+         }
+         else if (iItemSize == 12)
+         {
+
+            if (iSizeWithSamplers % 16 != 0)
+            {
+
+               iSizeWithSamplers += 16 - iSizeWithSamplers % 16;
+            }
+
+            if (elayout == ::gpu::e_layout_std140) // layout 140
+            {
+
+               iSize = 16;
+            }
+         }
+         else
+         {
+
+            if (iSizeWithSamplers % 16 != 0)
+            {
+
+               iSizeWithSamplers += 16 - iSizeWithSamplers % 16;
+            }
+
+            // iSize = 16;
+         }
+
+
+         ::gpu::property_data data;
+
+         data.m_iOffset = iSizeWithSamplers;
+
+         properties.m_propertydataa.set_at_grow(i, data);
+
+         i++;
+
+         iSizeWithSamplers += iSize;
+
+         ::string strName(pproperty->m_pszName);
+
+         if (!strName.begins("sampler:"))
+         {
+
+            iSizeWithoutSamplers = iSizeWithSamplers;
+         }
+
+         pproperty++;
+      }
+
+      properties.m_memory.set_size(iSizeWithSamplers);
+      properties.m_blockWithoutSamplers = properties.m_memory(0, iSizeWithoutSamplers);
+      properties.m_blockWithSamplers = properties.m_memory;
+   }
+
+
+   void context::_layout_hlsl(::gpu::properties & properties)
+   {
+
+   auto pproperty = properties.m_pproperties;
+
+   ::collection::index i = 0;
+
+   int iSizeWithSamplers = 0;
+
+   int iSizeWithoutSamplers = 0;
+
+   while (pproperty->m_pszName)
+   {
+
+      int iItemSize;
+
+      if (pproperty->m_etype == ::gpu::e_type_array)
+      {
+         ::gpu::properties propertiesNested;
+
+         propertiesNested.m_pproperties = pproperty->m_pproperties;
+
+         //layout_push_constants(propertiesNested, bGlobalUbo);
+         _layout_hlsl(propertiesNested);
+
+         iItemSize = propertiesNested.m_blockWithoutSamplers.size();
+         iItemSize *= pproperty->m_iArraySize;
+      }
+      else
+      {
+         iItemSize = ::gpu::get_type_size(pproperty->m_etype);
+      }
+
+
+      int iSize = iItemSize;
+
+      if (iItemSize == 4)
+      {
+
+         /*if (iSizeWithSamplers % 16 != 0)
+         {
+
+            iSizeWithSamplers += 16 - iSizeWithSamplers % 16;
+         }*/
+
+         // iSize = (iSize + 15) & ~15;
+
+
+         ::gpu::property_data data;
+
+         data.m_iOffset = iSizeWithSamplers;
+
+         properties.m_propertydataa.set_at_grow(i, data);
+
+         i++;
+
+         iSizeWithSamplers += 4;
+
+         //if (!pproperty[1].m_pszName)
+         //{
+         //   break;
+         //}
+         //if (pproperty[1].m_etype != ::gpu::e_type_array && ::gpu::get_type_size(pproperty[1].m_etype) != 4)
+         //{
+         //   goto iteration1;
+         //}
+
+         //pproperty++;
+
+         ////         ::gpu::property_data data;
+
+         //data.m_iOffset = iSizeWithSamplers;
+
+         //properties.m_propertydataa.set_at_grow(i, data);
+
+         //i++;
+
+         //iSizeWithSamplers += 4;
+
+         //if (!pproperty[1].m_pszName)
+         //{
+         //   break;
+         //}
+         //if (pproperty[1].m_etype != ::gpu::e_type_array && ::gpu::get_type_size(pproperty[1].m_etype) != 4)
+         //{
+         //   goto iteration1;
+         //}
+
+         //pproperty++;
+
+         ////::gpu::property_data data;
+
+         //data.m_iOffset = iSizeWithSamplers;
+
+         //properties.m_propertydataa.set_at_grow(i, data);
+
+         //i++;
+
+         //iSizeWithSamplers += 4;
+
+         //if (!pproperty[1].m_pszName)
+         //{
+         //   break;
+         //}
+         //if (pproperty[1].m_etype != ::gpu::e_type_array && ::gpu::get_type_size(pproperty[1].m_etype) != 4)
+         //{
+         //   goto iteration1;
+         //}
+
+         //pproperty++;
+
+         ////::gpu::property_data data;
+
+         //data.m_iOffset = iSizeWithSamplers;
+
+         //properties.m_propertydataa.set_at_grow(i, data);
+
+         //i++;
+
+         //iSizeWithSamplers += 4;
+      }
+      else if (iItemSize == 8)
+      {
+
+         if (iSizeWithSamplers % 8 != 0)
+         {
+            iSizeWithSamplers += 8 - iSizeWithSamplers % 8;
+         }
+
+         ::gpu::property_data data;
+
+         data.m_iOffset = iSizeWithSamplers;
+
+         properties.m_propertydataa.set_at_grow(i, data);
+
+         i++;
+
+         iSizeWithSamplers += 8;
+
+         //if (!pproperty[1].m_pszName)
+         //{
+         //   break;
+         //}
+         //if (pproperty[1].m_etype != ::gpu::e_type_array && ::gpu::get_type_size(pproperty[1].m_etype) != 8)
+         //{
+         //   goto iteration1;
+         //}
+
+         //pproperty++;
+
+         ////::gpu::property_data data;
+
+         //data.m_iOffset = iSizeWithSamplers;
+
+         //properties.m_propertydataa.set_at_grow(i, data);
+
+         //i++;
+
+         //iSizeWithSamplers += 8;
+      }
+      else if (iItemSize == 12)
+      {
+
+         if (iSizeWithSamplers % 16 > 4)
+         {
+            
+            iSizeWithSamplers += 16 - iSizeWithSamplers % 16;
+
+         }
+
+         ::gpu::property_data data;
+
+         data.m_iOffset = iSizeWithSamplers;
+
+         properties.m_propertydataa.set_at_grow(i, data);
+
+         i++;
+
+         iSizeWithSamplers += 12;
+
+         // if (!pproperty[1].m_pszName)
+         //{
+         //    break;
+         // }
+         // if (pproperty[1].m_etype != ::gpu::e_type_array && ::gpu::get_type_size(pproperty[1].m_etype) != 8)
+         //{
+         //    goto iteration1;
+         // }
+
+         // pproperty++;
+
+         ////::gpu::property_data data;
+
+         // data.m_iOffset = iSizeWithSamplers;
+
+         // properties.m_propertydataa.set_at_grow(i, data);
+
+         // i++;
+
+         // iSizeWithSamplers += 8;
+      }
+      else
+      {
+
+         if (iSizeWithSamplers % 16 != 0)
+         {
+
+            iSizeWithSamplers += 16 - iSizeWithSamplers % 16;
+         }
+
+         iSize = (iSize + 15) & ~15;
+
+
+         ::gpu::property_data data;
+
+         data.m_iOffset = iSizeWithSamplers;
+
+         properties.m_propertydataa.set_at_grow(i, data);
+
+         i++;
+
+         iSizeWithSamplers += iSize;
+      }
+
+   iteration1:
+
+      ::string strName(pproperty->m_pszName);
+
+      if (!strName.begins("sampler:"))
+      {
+
+         iSizeWithoutSamplers = iSizeWithSamplers;
+      }
+
+      pproperty++;
+   }
+
+   iSizeWithSamplers += 16 - (iSizeWithSamplers % 16);
+   iSizeWithoutSamplers += 16 - (iSizeWithoutSamplers % 16);
+
+   properties.m_memory.set_size(iSizeWithSamplers);
+   properties.m_blockWithoutSamplers = properties.m_memory(0, iSizeWithoutSamplers);
+   properties.m_blockWithSamplers = properties.m_memory;
+
+
+}
 
 
    void context::defer_make_current()
@@ -798,13 +1052,13 @@ return {};
    }
 
 
-   void context::defer_bind(::gpu::shader* pgpushader)
+   bool context::defer_bind(::gpu::shader* pgpushader)
    {
 
       if (pgpushader == m_pshaderBound)
       {
 
-         return;
+         return false;
 
       }
 
@@ -821,6 +1075,8 @@ return {};
       pgpushader->bind(::gpu::current_command_buffer());
 
       m_pshaderBound = pgpushader;
+
+      return true;
 
    }
 
@@ -1094,6 +1350,14 @@ return {};
    {
 
 
+
+   }
+
+
+   void context::on_before_initialize_scene()
+   {
+
+      onBeforePreloadGlobalAssets();
 
    }
 

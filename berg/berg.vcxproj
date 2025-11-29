@@ -1274,6 +1274,7 @@
     <ClInclude Include="user\simple\main_frame.h" />
     <ClInclude Include="user\simple\scroll_bar.h" />
     <ClInclude Include="user\simple\tab_document.h" />
+    <ClInclude Include="user\simple\toolbar.h" />
     <ClInclude Include="user\simple\_.h" />
     <ClInclude Include="user\simple\_impl.h" />
     <ClInclude Include="user\simple\_component.h" />

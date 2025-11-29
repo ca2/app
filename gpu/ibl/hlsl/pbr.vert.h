@@ -44,7 +44,7 @@ cbuffer GlobalUbo : register(b0)
     float4x4 view;
     float4x4 invView;
     float4 ambientLightColor;
-    float4 viewPos;
+    float4 cameraPosition;
     PointLight pointLights[10];
     int numLights;
     int padding1;
@@ -71,8 +71,9 @@ cbuffer PushConsts : register(b1)
     float ambientOcclusion;
     float3 emissive;
 
-    float3 cameraPosition;
+//    float3 cameraPosition;
     float bloomBrightnessCutoff;
+    float3 multiplier;
 };
 
 VSOutput main(VSInput input)
@@ -81,6 +82,10 @@ VSOutput main(VSInput input)
 
     // Transform position to world space
     float4 worldPos = mul(float4(input.aPos, 1.0), modelMatrix);
+
+    //worldPos.x = -worldPos.x;
+    //worldPos.z = -worldPos.z;
+
     output.worldCoordinates = worldPos.xyz;
 
     // Final clip-space position

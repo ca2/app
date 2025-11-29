@@ -166,7 +166,7 @@ namespace userstack
          return;
       }
 
-      m_ppaneimpact = (create_impact(::as_type < pane_impact >(), get_document(), this, 102));
+      m_ppaneimpact = (create_impact(typeid(pane_impact ), get_document(), this, 102));
 
 
    }

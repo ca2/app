@@ -212,8 +212,8 @@ namespace filemanager
       ////auto pmulti = __initialize_new ::user::multiple_document_template(
       ////                   "filemanager",
       ////                   __form_document_type(),
-      ////                   ::as_type < form_child_frame >(),
-      ////                   ::as_type < form >()));
+      ////                   typeid(form_child_frame ),
+      ////                   typeid(form )));
 
       ////øconstruct(m_pimpactsystemForm, pmulti);
 
@@ -221,9 +221,9 @@ namespace filemanager
 
       ////auto psingle = __initialize_new ::user::single_document_template(
       ////                    "filemanager",
-      ////                    ::as_type < operation_document >(),
-      ////                    ::as_type < operation_child_frame >(),
-      ////                    ::as_type < operation_impact >()));
+      ////                    typeid(operation_document ),
+      ////                    typeid(operation_child_frame ),
+      ////                    typeid(operation_impact )));
       ////
       ////øconstruct(m_pimpactsystemOperation, psingle);
 
@@ -284,9 +284,9 @@ namespace filemanager
    //   //{
    //   //   pdoctemplate = __initialize_new ::user::multiple_document_template(
    //   //                       strTemplateId,
-   //   //                       ::as_type < document >(),
-   //   //                       ::as_type < frame >(),       // main SDI frame window
-   //   //                       ::as_type < tab_impact >()));
+   //   //                       typeid(document ),
+   //   //                       typeid(frame ),       // main SDI frame window
+   //   //                       typeid(tab_impact )));
 
    //   //}
    //   //else if (is_filemanager_group(atom, LIST_GROUP))
@@ -294,9 +294,9 @@ namespace filemanager
 
    //   //   pdoctemplate = __initialize_new ::user::multiple_document_template(
    //   //                       strTemplateId,
-   //   //                       ::as_type < document >(),
-   //   //                       ::as_type < main_frame >(),
-   //   //                       ::as_type < file_list >()));
+   //   //                       typeid(document ),
+   //   //                       typeid(main_frame ),
+   //   //                       typeid(file_list )));
 
    //   //}
    //   //else if (is_filemanager_group(atom, FOLDER_SELECTION_LIST_GROUP))
@@ -304,9 +304,9 @@ namespace filemanager
 
    //   //   pdoctemplate = __initialize_new ::user::multiple_document_template(
    //   //                       strTemplateId,
-   //   //                       ::as_type < document >(),
-   //   //                       ::as_type < main_frame >(),
-   //   //                       ::as_type < folder_selection_list_impact >()));
+   //   //                       typeid(document ),
+   //   //                       typeid(main_frame ),
+   //   //                       typeid(folder_selection_list_impact )));
 
    //   //}
    //   //else
@@ -314,9 +314,9 @@ namespace filemanager
 
    //   //   pdoctemplate = __initialize_new ::user::multiple_document_template(
    //   //                       strTemplateId,
-   //   //                       ::as_type < document >(),
-   //   //                       ::as_type < frame >(),
-   //   //                       ::as_type < impact >()));
+   //   //                       typeid(document ),
+   //   //                       typeid(frame ),
+   //   //                       typeid(impact )));
    //   //}
 
    //   //papp->add_document_template(pdoctemplate);

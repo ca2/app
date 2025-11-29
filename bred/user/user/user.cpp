@@ -125,21 +125,21 @@ void user::init(){
 //      if (!m_typeDefaultMeshData)
 //      {
 //
-//         m_typeDefaultMeshData = ::as_type < ::simple_mesh_data >();
+//         m_typeDefaultMeshData = typeid(::simple_mesh_data );
 //
 //      }
 //
 //      if (!m_typeDefaultListData)
 //      {
 //
-//         m_typeDefaultListData = ::as_type < ::simple_list_data >();
+//         m_typeDefaultListData = typeid(::simple_list_data );
 //
 //      }
 //
 //      if (!m_typeDefaultListHeader)
 //      {
 //
-//         m_typeDefaultListHeader = ::as_type < ::simple_list_header_control >();
+//         m_typeDefaultListHeader = typeid(::simple_list_header_control );
 //
 //         auto strAtomDefaultListHeader = m_typeDefaultListHeader.as_string();
 //
@@ -189,9 +189,9 @@ void user::init(){
 //         "system/form",
 //         __initialize_new ::user::multiple_document_template(
 //         "system/form",
-//         ::as_type < form_document >(),
+//         typeid(form_document ),
 //         psystem->get_simple_frame_window_type_info(),
-//         ::as_type < ::user::form_impact >()));
+//         typeid(::user::form_impact )));
 //
 //      //ptemplate->initialize(this);
 //
@@ -203,9 +203,9 @@ void user::init(){
 //      //   "system/form_child",
 //      //   __initialize_new ::user::multiple_document_template(
 //      //   "system/form",
-//      //   ::as_type < form_document >(),
+//      //   typeid(form_document ),
 //      //   get_simple_child_frame_type_info(),
-//      //   ::as_type < ::user::form_impact >()));
+//      //   typeid(::user::form_impact )));
 //
 //      //ptemplate->initialize(this);
 //
@@ -216,9 +216,9 @@ void user::init(){
 //         "system/form_placeholder",
 //         __initialize_new ::user::multiple_document_template(
 //         "system/form",
-//         ::as_type < ::user::document >(),
+//         typeid(::user::document ),
 //         psystem->get_simple_frame_window_type_info(),
-//         ::as_type < ::user::place_holder >()));
+//         typeid(::user::place_holder )));
 //
 //      //ptemplate->initialize(this);
 //
@@ -230,9 +230,9 @@ void user::init(){
 //         "progress_impact",
 //         __initialize_new ::user::multiple_document_template(
 //         "main",
-//         ::as_type < ::user::document >(),
-//         ::as_type < ::userex::dialog_frame >(),
-//         ::as_type < ::userex::progress_impact >()));
+//         typeid(::user::document ),
+//         typeid(::userex::dialog_frame ),
+//         typeid(::userex::progress_impact )));
 //
 //      //m_ptemplateProgress2 = pmultitemplate;
 //
@@ -1610,9 +1610,9 @@ void user::destroy()
 //         //user()->m_mapimpactsystem[COLORSEL_IMPACT] = __initialize_new ::user::multiple_document_template(
 //         //   get_app(),
 //         //   "main",
-//         //   ::as_type < ::user::document >(),
-//         //   ::as_type < ::prodevian_translucent_simple_frame_window >(),
-//         //   ::as_type < ::user::color_impact >()));
+//         //   typeid(::user::document ),
+//         //   typeid(::prodevian_translucent_simple_frame_window ),
+//         //   typeid(::user::color_impact )));
 //
 //         //add_document_template(user()->m_mapimpactsystem[COLORSEL_IMPACT]);
 //
@@ -1633,9 +1633,9 @@ void user::destroy()
 //            COLORSEL_IMPACT,
 //            __initialize_new ::user::multiple_document_template(
 //            "main",
-//            ::as_type < ::user::document >(),
-//            ::as_type < ::simple_frame_window >(),
-//            ::as_type < ::user::color_selector_impact >()));
+//            typeid(::user::document ),
+//            typeid(::simple_frame_window ),
+//            typeid(::user::color_selector_impact )));
 //
 //         //
 //
@@ -1664,9 +1664,9 @@ void user::destroy()
 //            FONTSEL_IMPACT,
 //            __initialize_new ::user::multiple_document_template(
 //            "main",
-//            ::as_type < ::user::document >(),
-//            ::as_type < ::simple_frame_window >(),
-//            ::as_type < ::userex::font_impact >()));
+//            typeid(::user::document ),
+//            typeid(::simple_frame_window ),
+//            typeid(::userex::font_impact )));
 //
 //         //
 //

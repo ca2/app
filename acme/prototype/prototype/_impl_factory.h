@@ -79,13 +79,13 @@ namespace factory
 
        auto pfactory = øallocate ::factory::factory_item< TYPE, ORIGIN_TYPE > ();
 
-       auto strRawName = ::type_raw_name<ORIGIN_TYPE>();
+       auto typeindex = ::std::type_index(typeid(ORIGIN_TYPE));
 
        //m_mapByRawNamePointer[pszRawName] = pfactory;
 
-       m_mapByRawName[strRawName] = pfactory;
+       m_mapByTypeIndex[typeindex] = pfactory;
 
-       ::string strId = ::as_type<ORIGIN_TYPE>().name();
+       ::string strId = typeid(ORIGIN_TYPE).name();
 
        m_mapById[strId] = pfactory;
 
@@ -169,9 +169,9 @@ namespace factory
     inline ::factory::factory_item_interface * factory::get_factory_item() const
     {
 
-       auto strRawName = ::type_raw_name < ORIGIN_TYPE >();
+       auto typeindex = ::std::type_index(typeid(ORIGIN_TYPE));
 
-       return get_factory_item_by_raw_name(strRawName);
+       return get_factory_item_by_type_index(typeindex);
 
     }
 
@@ -513,7 +513,7 @@ inline void particle::__call__construct_by_id(::pointer<TYPE>& p, const ::atom& 
 
 
 template < typename TYPE >
-inline void particle::__call__construct_by_raw_name(::pointer<TYPE>& p, const ::scoped_string & scopedstrRawName, ::factory::factory* pfactory)
+inline void particle::__call__construct_by_type_index(::pointer<TYPE>& p, const ::std::type_index & typeindex, ::factory::factory* pfactory)
 {
 
    if (::is_null(pfactory))
@@ -523,7 +523,7 @@ inline void particle::__call__construct_by_raw_name(::pointer<TYPE>& p, const ::
 
    }
 
-   auto pfactoryitem = pfactory->get_factory_item_by_raw_name(scopedstrRawName);
+   auto pfactoryitem = pfactory->get_factory_item_by_type_index(typeindex);
 
    auto pparticleNew = pfactoryitem->__call__create_particle();
 

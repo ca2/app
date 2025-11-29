@@ -994,7 +994,6 @@
     <ClInclude Include="user\simple\status_bar.h" />
     <ClInclude Include="user\simple\tab_control.h" />
     <ClInclude Include="user\simple\tab_impact.h" />
-    <ClInclude Include="user\simple\toolbar.h" />
     <ClInclude Include="user\simple\tree_impact.h" />
     <ClInclude Include="user\simple\_.h" />
     <ClInclude Include="user\simple\_impl.h" />

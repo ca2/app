@@ -7,18 +7,15 @@
 #include "bred/graphics3d/engine.h"
 #include "bred/graphics3d/skybox.h"
 #include "bred/gpu/device.h"
-//
 #include "glad/glad.h"
-//
-
 #include "gpu/gltf/_constant.h"
+#include "gpu/timer.h"
 #include "gpu_opengl/_gpu_opengl.h"
-// #include "timer.h"
 #include "cubemap_framebuffer.h"
 #include "hdri_cube.h"
-
 #include "shaders/hdricube.frag.h"
 #include "shaders/hdricube.vert.h"
+
 
 namespace gpu_opengl
 {
@@ -26,6 +23,7 @@ namespace gpu_opengl
 
    namespace ibl
    {
+
 
       equirectangular_cubemap::equirectangular_cubemap()
       {
@@ -45,6 +43,7 @@ namespace gpu_opengl
       {
 
          return {g_psz_hdricube_vert, sizeof(g_psz_hdricube_vert) - 1};
+
       }
 
 
@@ -52,20 +51,14 @@ namespace gpu_opengl
       {
 
          return {g_psz_hdricube_frag, sizeof(g_psz_hdricube_frag) - 1};
+
       }
 
 
-      // equirectangular_cubemap::equirectangular_cubemap(const ::string &engineRoot, const ::string &hdriPath) {
-      //     ::string hdriVertexShaderPath = engineRoot + "/src/ibl/shaders/hdri_cube.vert";
-      //     ::string hdriFragmentShaderPath = engineRoot + "/src/ibl/shaders/hdri_cube.frag";
-      //
-      //     hdriShader = std::make_unique<Shader>(hdriVertexShaderPath.c_str(), hdriFragmentShaderPath.c_str());
-      //     hdri_cube = std::make_unique<hdri_cube>(hdriPath);
-      //     framebuffer = std::make_unique<cubemap_framebuffer>(cubemapWidth, cubemapHeight);
-      // }
-
       void equirectangular_cubemap::compute()
       {
+
+         ::gpu::Timer timer;
 
          auto pgpucommandbuffer = m_pgpucontext->beginSingleTimeCommands(m_pgpucontext->m_pgpudevice->graphics_queue());
          
@@ -92,7 +85,6 @@ namespace gpu_opengl
          glViewport(0, 0, m_uCubemapWidth, m_uCubemapHeight);
 
          // render the equirectangular HDR texture to a cubemap
-         //m_pframebuffer->bind();
          m_pshaderHdri->bind(nullptr, m_pframebuffer->m_ptexture);
 
          // render to each side of the cubemap
@@ -107,16 +99,9 @@ namespace gpu_opengl
             
             m_pshaderHdri->push_properties(pgpucommandbuffer);
 
-
             glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
             
             GLCheckError("");
-
-                // auto pshader = pcommandbuffer->m_pgpurendertarget->m_pgpurenderer->m_pgpucontext->
-            //   m_pshaderBound;
-
-            //m_pshaderHdri->set_int("hdri", 0);
-
 
             m_phdricube->draw(pgpucommandbuffer);
 
@@ -124,7 +109,7 @@ namespace gpu_opengl
 
          m_pframebuffer->generateMipmap();
 
-         // timer.logDifference("Rendered equirectangular cubemap");
+         timer.logDifference("Rendered equirectangular cubemap");
 
          GLenum status = glCheckFramebufferStatus(GL_FRAMEBUFFER);
 
@@ -132,12 +117,12 @@ namespace gpu_opengl
          {
 
             printf("Framebuffer incomplete!\n");
-         }
 
-         // timer.logDifference("Rendered specular brdf convolution map");
+         }
 
          glBindFramebuffer(GL_FRAMEBUFFER, 0);
          GLCheckError("");
+
       }
 
 
@@ -145,7 +130,9 @@ namespace gpu_opengl
       {
 
          ::cast<cubemap_framebuffer> pframebuffer = m_pframebuffer;
+         
          return pframebuffer->getCubemapTextureId();
+
       }
 
 

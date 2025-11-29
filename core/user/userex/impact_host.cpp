@@ -232,9 +232,9 @@ namespace userex
          user()->add_impact_system(
             "main", __initialize_new user::single_document_template(
             "main",
-            ::as_type < ::user::document >(),
-            ::as_type < simple_child_frame >(),
-            ::as_type < ::userex::pane_tab_impact >()));
+            typeid(::user::document ),
+            typeid(simple_child_frame ),
+            typeid(::userex::pane_tab_impact )));
 
          //user()->initialize(this);
 

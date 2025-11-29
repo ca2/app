@@ -6,6 +6,8 @@
 
 #include "acme/template/safe_bool.h"
 
+#include <typeindex>
+
 
 //CLASS_DECL_ACME string demangle_name(const_char_pointer pszMangledName);
 CLASS_DECL_ACME string type_name(const ::std::type_info& typeinfo);
@@ -244,9 +246,9 @@ inline const_char_pointer c_demangle(const_char_pointer psz)
 //}
 //
 //
-////#define ::as_type < TYPE >()  ___type<TYPE>()
+////#define typeid(TYPE >()  ___type<TYPE)
 //
-////#define ::as_type < TYPE >()  ___type<TYPE>()
+////#define typeid(TYPE >()  ___type<TYPE)
 //
 //
 
@@ -294,26 +296,24 @@ inline ::hash32 as_hash32 < pointer_key >(const pointer_key& key)
 }
 
 
-
-inline string_literal < const_char_pointer > type_raw_name(const ::std::type_info & typeinfo)
+inline ::string type_raw_name(const ::std::type_info & typeinfo)
 {
 
 #ifdef WINDOWS
 
-   return typeinfo.raw_name();
+   return (string_literal < const_char_pointer >) typeinfo.raw_name();
 
 #else
 
-   return typeinfo.name();
+   return (string_literal<const_char_pointer>) typeinfo.name();
 
 #endif
-
 
 }
 
 
 template < typename TYPE >
-inline string_literal < const_char_pointer > type_raw_name()
+inline ::string type_raw_name()
 {
 
    return type_raw_name(typeid(TYPE));
@@ -322,7 +322,7 @@ inline string_literal < const_char_pointer > type_raw_name()
 
 
 template < typename TYPE >
-inline string_literal < const_char_pointer > type_raw_name(const TYPE* p)
+inline ::string type_raw_name(const TYPE* p)
 {
 
    return type_raw_name(typeid(*(TYPE*)p));
@@ -331,7 +331,7 @@ inline string_literal < const_char_pointer > type_raw_name(const TYPE* p)
 
 
 template < typename TYPE >
-inline string_literal < const_char_pointer > type_raw_name(const TYPE& t)
+inline ::string type_raw_name(const TYPE& t)
 {
 
    return type_raw_name(typeid(t));
@@ -340,7 +340,7 @@ inline string_literal < const_char_pointer > type_raw_name(const TYPE& t)
 
 
 template < typename BASE >
-inline string_literal < const_char_pointer > type_raw_name(const ::pointer<BASE>& p)
+inline ::string type_raw_name(const ::pointer<BASE>& p)
 {
 
    return type_name(typeid(*p.m_p));
@@ -371,18 +371,22 @@ class type
 public:
 
 
-   ::string       m_strRawTypeName;
-   ::string       m_strTypeName;
+   ::std::type_index    m_typeindex;
+   ::string             m_strRawTypeName;
+   ::string             m_strTypeName;
 
 
-   type(){}
+   type():m_typeindex(::std::type_index(typeid(nullptr))){}
    type(const type& type) :
+      m_typeindex(type.m_typeindex),
       m_strRawTypeName(type.m_strRawTypeName),
       m_strTypeName(type.m_strTypeName) {}
-   type(const ::std::type_info& info) :
+   explicit type(const ::std::type_info& info) :
+      m_typeindex(info),
       m_strRawTypeName(::type_raw_name(info)),
       m_strTypeName(::type_name(info)) {}
    type(const ::scoped_string& scopedstrTypeName) :
+      m_typeindex(::std::type_index(typeid(nullptr))),
       m_strTypeName(scopedstrTypeName) {}
    template < typename TYPE >
    type(const TYPE* p) : type(typeid(*(TYPE*)p)) {}

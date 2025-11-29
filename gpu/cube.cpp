@@ -33,15 +33,11 @@
        }
 
        m_pmodelbuffer->bind(pcommandbuffer);
+
        m_pmodelbuffer->draw(pcommandbuffer);
+
        m_pmodelbuffer->unbind(pcommandbuffer);
-       //// draw mesh
-       // glBindVertexArray(m_uVAO);
-       // GLCheckError("");
-       // glDrawArrays(GL_TRIANGLES, 0, m_vertexa.size());
-       // GLCheckError("");
-       // glBindVertexArray(0);
-       // GLCheckError("");
+
     }
 
 

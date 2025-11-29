@@ -18,16 +18,10 @@
 #include "gpu/cube.h"
 #include "gpu/gltf/_constant.h"
 #include <glad/glad.h>
-//
-//
 #include "gpu/context.h"
-//#include "::gpu::gltf.h"
-//#include "cube.h"
-//#include "fullscreenquad.h"
-//#include "timer.h"
+#include "gpu/timer.h"
 #include "mipmap_cubemap_framebuffer.h"
 #include "gpu/full_screen_quad.h"
-
 #include "shaders/specularenv.vert.h"
 #include "shaders/specularenv.frag.h"
 #include "shaders/brdfconvolution.vert.h"
@@ -88,44 +82,19 @@ namespace gpu_opengl
       }
 
 
-      // void specular_map::initialize_specular_map(const ::string &engineRoot, const unsigned int environmentCubemapId)
-      // {
-      //
-      //    initialize_environmentCubemapId(environmentCubemapId);
-      //
-      //    // pre-filtered env map
-      //    ::string prefilteredEnvMapVertexShaderPath = engineRoot + "/src/ibl/shaders/specularenv.vert";
-      //    ::string prefilteredEnvMapFragmentShaderPath = engineRoot + "/src/ibl/shaders/specularenv.frag";
-      //
-      //    prefilteredEnvMapShader = std::make_unique<Shader>(prefilteredEnvMapVertexShaderPath.c_str(),
-      //                                                       prefilteredEnvMapFragmentShaderPath.c_str());
-      //    prefilteredEnvMapFramebuffer = std::make_unique<mipmap_cubemap_framebuffer>(
-      //       prefilteredEnvMapWidth, prefilteredEnvMapHeight);
-      //
-      //    // BRDF convolution
-      //    ::string brdfConvolutionVertexShaderPath = engineRoot + "/src/ibl/shaders/brdfconvolution.vert";
-      //    ::string brdfConvolutionFragmentShaderPath = engineRoot + "/src/ibl/shaders/brdfconvolution.frag";
-      //
-      //    brdfConvolutionShader = std::make_unique<Shader>(brdfConvolutionVertexShaderPath.c_str(),
-      //                                                     brdfConvolutionFragmentShaderPath.c_str());
-      //    brdfConvolutionFramebuffer = std::make_unique<brdf_convolution_framebuffer>(
-      //       m_uBrdfConvolutionMapWidth, brdfConvolutionMapHeight);
-      //
-      // }
-
-
       void specular_map::computePrefilteredEnvMap(::gpu::command_buffer *pgpucommandbuffer)
       {
 
-         //Timer timer;
+         ::gpu::Timer timer;
 
          ::gpu::context_lock contextlock(m_pgpucontext);
 
          //auto pgpucommandbuffer = m_pgpucontext->beginSingleTimeCommands(m_pgpucontext->m_pgpudevice->graphics_queue());
-
          
          using namespace graphics3d;
+         
          floating_matrix4 model = mIndentity4;
+
          floating_matrix4 cameraAngles[] =
          {
             lookAt(origin, unitX, -unitY),
@@ -135,6 +104,7 @@ namespace gpu_opengl
             lookAt(origin, unitZ, -unitY),
             lookAt(origin, -unitZ, -unitY)
          };
+
          floating_matrix4 projection = m_pgpucontext->m_pengine->perspective(
             90.0f_degrees, // 90 degrees to cover one face
             1.0f, // its a square
@@ -211,8 +181,8 @@ namespace gpu_opengl
             }
          }
 
-         //timer.logDifference("Rendered specular pre-filtered environment map");
-         // timer.logDifference("Rendered diffuse irradiance map");
+         timer.logDifference("Rendered specular pre-filtered environment map");
+
          GLenum status = glCheckFramebufferStatus(GL_FRAMEBUFFER);
 
          if (status != GL_FRAMEBUFFER_COMPLETE)

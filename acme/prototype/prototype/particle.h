@@ -391,6 +391,19 @@ public:
 
    }
 
+
+   template<typename... Args>
+   void err_line(std::format_string<Args...> fmt, Args&&... args) const
+   {
+
+      string str;
+
+      str.format(fmt, ::std::forward < Args >(args)...);
+
+      err_line(str);
+
+   }
+
    virtual void print_line(const ::scoped_string & scopedstr) const;
    virtual void print_out(const ::scoped_string & scopedstr) const;
    virtual void printf_line(const_char_pointer pszFormat, ...) const;

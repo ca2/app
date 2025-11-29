@@ -629,6 +629,38 @@ namespace platform
    }
 
 
+   string platform::arguments_from1(::collection::index iArgument) const
+   {
+
+      auto iCount1 = this->get_argument_count1();
+
+      string strArguments;
+
+      for (::collection::index i = iArgument; i < iCount1; i++)
+      {
+
+         auto strArgument = get_argument1(i);
+
+         if (strArgument.contains_any_character_in(" \t"))
+         {
+
+            strArgument.surround("\"", "\"");
+
+         }
+         
+         strArguments += " ";
+         
+         strArguments += strArgument;
+
+      }
+
+      strArguments.trim_left();
+
+      return strArguments;
+
+   }
+
+
    bool platform::has_argument(const ::scoped_string & scopedArgument) const
    {
 

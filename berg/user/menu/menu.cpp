@@ -605,7 +605,7 @@ namespace user
 
       ::string strType;
 
-      strType = ::type(owner_interaction()).name();
+      strType = ::platform::type(owner_interaction()).name();
 
       information() << "::user::menu::create_menu parent window type: " << strType;
 

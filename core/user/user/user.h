@@ -24,7 +24,7 @@ namespace core
       // //::user::multiple_document_template *         m_ptemplateProgress2;
       //
       //
-      // //map_base < ::type, ::user::impact_system * >      m_mapTemplate;
+      // //map_base < ::platform::type, ::user::impact_system * >      m_mapTemplate;
       //
       // //atom_map_base < ::user::impact_system * >           m_mapimpactsystem;
       //
@@ -38,9 +38,9 @@ namespace core
       //
       // string_array_base                                 m_straEscape;
       //
-      // ::type                                  m_typeDefaultMeshData;
-      // ::type                                  m_typeDefaultListHeader;
-      // ::type                                  m_typeDefaultListData;
+      // ::platform::type                             m_typeDefaultMeshData;
+      // ::platform::type                             m_typeDefaultListHeader;
+      // ::platform::type                             m_typeDefaultListData;
       //
       // ::pointer<::userfs::userfs>               m_puserfs;
       //
@@ -197,9 +197,9 @@ namespace core
       ::pointer<::user::list_data> default_create_list_data(::particle *pparticle) override;
 
 
-      ::type default_type_mesh_data() override;
-      ::type default_type_list_header() override;
-      ::type default_type_list_data() override;
+      ::platform::type default_type_mesh_data() override;
+      ::platform::type default_type_list_header() override;
+      ::platform::type default_type_list_data() override;
 
 
       void will_use_impact_hint(::atom idImpact) override;
@@ -240,9 +240,9 @@ namespace core
       // virtual ::pointer<::userfs::userfs>create_userfs();
 
 
-      ::type get_pane_tab_impact_type_info() override;
-      // virtual ::type get_simple_frame_window_type_info() override;
-      // virtual ::type get_simple_child_frame_type_info();
+      ::platform::type get_pane_tab_impact_type_info() override;
+      // virtual ::platform::type get_simple_frame_window_type_info() override;
+      // virtual ::platform::type get_simple_child_frame_type_info();
 
 
       void on_frame_window_drop_files(::user::interaction *pinteraction, ::file::path_array_base &patha) override;
@@ -524,7 +524,7 @@ namespace core
       // template < typename VIEW >
       //::pointer<::user::document>  create_form(::pointer<::user::interaction>userinteractionParent = nullptr,
       //:::payload payload = ::payload(::e_type_empty_argument), ::payload varArgs =
-      //:::payload(::e_type_empty_argument)); :pointer<::user::document>  create_form(::type point,
+      //:::payload(::e_type_empty_argument)); :pointer<::user::document>  create_form(::platform::type point,
       //:::pointer<::user::interaction>userinteractionParent, ::payload payload = ::payload(::e_type_empty_argument),
       //:::payload varArgs = ::payload(::e_type_empty_argument)); :pointer<::user::document>
       //: create_form(::user::form_callback* pcallback, ::pointer<::user::interaction>userinteractionParent, ::payload
@@ -537,7 +537,7 @@ namespace core
       //:::payload(::e_type_empty_argument));
       // template < typename VIEW >
       //::pointer<::user::document>  create_child_form(::pointer<::user::interaction>userinteractionParent, ::payload
-      //: payload = ::payload(::e_type_empty_argument)); :pointer<::user::document>  create_child_form(::type point,
+      //: payload = ::payload(::e_type_empty_argument)); :pointer<::user::document>  create_child_form(::platform::type point,
       //:::pointer<::user::interaction>userinteractionParent, ::payload payload =
       //:::payload(::e_type_empty_argument)); :pointer<::user::document>
       //: create_child_form(::pointer<::user::form>impact, ::user::form_callback* pcallback,
@@ -724,7 +724,7 @@ namespace core
 
       virtual void term() override;
 
-      virtual ::type controltype_to_typeinfo(::user::enum_control_type econtroltype) override;
+      virtual ::platform::type controltype_to_typeinfo(::user::enum_control_type econtroltype) override;
    };
 
 

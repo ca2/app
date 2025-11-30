@@ -1972,7 +1972,7 @@ void application::start_application()
       //if (!init1())
       //{
       //
-      ////dappy(::type(this).name() + " : init1 failure : " + as_string(m_iErrorCode));
+      ////dappy(::platform::type(this).name() + " : init1 failure : " + as_string(m_iErrorCode));
       //
       //return false;
       //
@@ -1989,7 +1989,7 @@ void application::start_application()
       //if (!init2())
       //{
       //
-      ////dappy(::type(this).name() + " : init2 failure : " + as_string(m_iErrorCode));
+      ////dappy(::platform::type(this).name() + " : init2 failure : " + as_string(m_iErrorCode));
       //
       //return false;
       //
@@ -2006,7 +2006,7 @@ void application::start_application()
       //if (!init3())
       //{
       //
-      ////dappy(::type(this).name() + " : init3 failure : " + as_string(m_iErrorCode));
+      ////dappy(::platform::type(this).name() + " : init3 failure : " + as_string(m_iErrorCode));
       //
       //return false;
       //
@@ -2018,7 +2018,7 @@ void application::start_application()
 
       ping();
 
-      //dappy(::type(this).name() + " : init3 ok : " + as_string(m_iErrorCode));
+      //dappy(::platform::type(this).name() + " : init3 ok : " + as_string(m_iErrorCode));
 
       //try
       //{
@@ -2026,7 +2026,7 @@ void application::start_application()
       init();
       //{
       //
-      ////dappy(::type(this).name() + " : initialize failure : " + as_string(m_iErrorCode));
+      ////dappy(::platform::type(this).name() + " : initialize failure : " + as_string(m_iErrorCode));
       //
       //return false;
       //

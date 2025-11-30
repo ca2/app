@@ -1369,7 +1369,7 @@ namespace experience_core
       if (::is_set(pinteraction))
       {
 
-         //string strType = ::type(pinteraction).name();
+         //string strType = ::platform::type(pinteraction).name();
 
 //            if (strType.contains("form"))
 //            {
@@ -2316,7 +2316,7 @@ namespace experience_core
 
          pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
-         ::string strType =  ::type(pinteraction).name();
+         ::string strType =  ::platform::type(pinteraction).name();
 
 
          if (strType.case_insensitive_contains("menu"))

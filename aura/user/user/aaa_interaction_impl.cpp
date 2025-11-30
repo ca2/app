@@ -1919,7 +1919,7 @@ namespace user
    void interaction_impl::on_message_destroy(::message::message *pmessage)
    {
 
-      if (m_puserinteraction && ::type(m_puserinteraction).name().contains("notify_icon"))
+      if (m_puserinteraction && ::platform::type(m_puserinteraction).name().contains("notify_icon"))
       {
 
          information() << "notify_icon";
@@ -1947,7 +1947,7 @@ namespace user
    void interaction_impl::post_non_client_destroy()
    {
 
-      string strType = ::type(m_puserinteraction).name();
+      string strType = ::platform::type(m_puserinteraction).name();
 
       //      if (strType.contains("main_frame"))
       //      {
@@ -2051,7 +2051,7 @@ namespace user
          if (::is_set(m_puserinteraction))
          {
 
-            information() << ::type(m_puserinteraction).name() << "::destroy_impl_only";
+            information() << ::platform::type(m_puserinteraction).name() << "::destroy_impl_only";
 
             m_puserinteraction->transfer_handler(m_dispatchermapNormal, this, false);
             m_puserinteraction->transfer_handler(m_dispatchermapProbe, this, true);
@@ -2076,7 +2076,7 @@ namespace user
          if (m_puserinteraction)
          {
 
-            information() << ::type(m_puserinteraction).name() << "::destroy_impl_only ( 2)";
+            information() << ::platform::type(m_puserinteraction).name() << "::destroy_impl_only ( 2)";
 
          }
 
@@ -2136,7 +2136,7 @@ namespace user
    void interaction_impl::destroy_window()
    {
 
-      auto strType = ::type(m_puserinteraction).name();
+      auto strType = ::platform::type(m_puserinteraction).name();
 
       if (strType.contains("main_frame"))
       {
@@ -2472,7 +2472,7 @@ namespace user
             if (puiKeyboardFocus)
             {
 
-               information() << "key message control with keyboard focus : " << ::string(::type(puiKeyboardFocus.m_p));
+               information() << "key message control with keyboard focus : " << ::string(::platform::type(puiKeyboardFocus.m_p));
 
                puiKeyboardFocus->route_message(pkey);
 
@@ -2819,7 +2819,7 @@ namespace user
       if (m_puserinteractionMouseCapture)
       {
 
-         //::string strType = ::type(m_puserinteractionMouseCapture).name();
+         //::string strType = ::platform::type(m_puserinteractionMouseCapture).name();
 
          //information() << "on_mouse_message CAPTURED to object of type : " << strType;
 
@@ -2839,7 +2839,7 @@ namespace user
       } else
       {
 
-         //::string strType = ::type(m_puserinteraction).name();
+         //::string strType = ::platform::type(m_puserinteraction).name();
 
          //information() << "on_mouse_message type : " << strType;
 
@@ -2853,7 +2853,7 @@ namespace user
 
       }
 
-      //         string strUserInteractionType(::is_null(puserinteractionMouse) ? "(null)" : ::type(puserinteractionMouse).name());
+      //         string strUserInteractionType(::is_null(puserinteractionMouse) ? "(null)" : ::platform::type(puserinteractionMouse).name());
       //
       //         if(pmouse->m_emessage == ::user::e_message_mouse_move)
       //         {
@@ -2947,7 +2947,7 @@ namespace user
 //
 //         informationf("::user::e_message_left_button_down");
 //
-//         string strType = ::type(m_puserinteraction).name();
+//         string strType = ::platform::type(m_puserinteraction).name();
 //
 //         if (strType.case_insensitive_contains("list_box"))
 //         {
@@ -2996,7 +2996,7 @@ namespace user
 //
 //      if (pmouse->m_emessage == ::user::e_message_mouse_move)
 //      {
-//         string strType = ::type(m_puserinteraction).name();
+//         string strType = ::platform::type(m_puserinteraction).name();
 //
 //         // We are at the message handler procedure.
 //         // mouse messages originated from message handler and that are mouse transfer happenings should end up with the correct cursor.
@@ -3015,7 +3015,7 @@ namespace user
 //         if (m_puserinteraction)
 //         {
 //
-//            strType = ::type(m_puserinteraction).name();
+//            strType = ::platform::type(m_puserinteraction).name();
 //
 //            if (strType.case_insensitive_contains("list_box"))
 //            {
@@ -3048,7 +3048,7 @@ namespace user
 //      if (::is_set(puserinteractionMouseCapture))
 //      {
 //
-//         ::string strType = ::type(puserinteractionMouseCapture).name();
+//         ::string strType = ::platform::type(puserinteractionMouseCapture).name();
 //
 //         information() << "on_mouse_message capture type : " << strType;
 //
@@ -3063,7 +3063,7 @@ namespace user
 //      //if (pchild)
 //      //{
 //
-//      //   string strType = ::type(pchild).name();
+//      //   string strType = ::platform::type(pchild).name();
 //
 //      //   if (strType.case_insensitive_contains("button"))
 //      //   {
@@ -3135,7 +3135,7 @@ namespace user
 //      //if (pchild)
 //      //{
 //
-//      //   string strType = ::type(pchild).name();
+//      //   string strType = ::platform::type(pchild).name();
 //
 //      //   if (strType.case_insensitive_contains("button"))
 //      //   {
@@ -5320,7 +5320,7 @@ namespace user
 
 #endif
 
-      string strType = ::type(m_puserinteraction).name();
+      string strType = ::platform::type(m_puserinteraction).name();
 
       m_pwindowing = m_puserinteraction->windowing();
 
@@ -5644,7 +5644,7 @@ namespace user
 
       windowing_output_debug_string("\n_001UpdateBuffer : after window_rectangle");
 
-      string strType = ::type(m_puserinteraction).name();
+      string strType = ::platform::type(m_puserinteraction).name();
 
       //      if (strType.contains("list_box"))
       //      {
@@ -6791,7 +6791,7 @@ namespace user
 //
 //      }
 //
-//      string strType = ::type(m_puserinteraction).name();
+//      string strType = ::platform::type(m_puserinteraction).name();
 //
 //      if (strType.case_insensitive_contains("list_box"))
 //      {
@@ -7358,7 +7358,7 @@ namespace user
          }
 
          information() << "on_final_set_keyboard_focus : "
-                       << ::string(::type(m_pacmeuserinteractionKeyboardFocusRequest.m_p));
+                       << ::string(::platform::type(m_pacmeuserinteractionKeyboardFocusRequest.m_p));
 
          if (m_pacmeuserinteractionKeyboardFocusRequest != aaa_m_pacmeuserinteractionKeyboardFocus)
          {
@@ -8213,7 +8213,7 @@ namespace user
 //
 //      //}
 //
-//      string strType = ::type(m_puserinteraction).name();
+//      string strType = ::platform::type(m_puserinteraction).name();
 //
 //      if (strType.contains("font_format"))
 //      {
@@ -8328,7 +8328,7 @@ namespace user
 //         )
 //      {
 //
-//         string strType = ::type(m_puserinteraction).name();
+//         string strType = ::platform::type(m_puserinteraction).name();
 //
 //         if (strType.contains("font_format"))
 //         {
@@ -8644,7 +8644,7 @@ namespace user
 //
 //      }
 //
-//      string strType = ::type(m_puserinteraction).name();
+//      string strType = ::platform::type(m_puserinteraction).name();
 //
 //      if (strType.case_insensitive_contains("filemanager"))
 //      {
@@ -9143,7 +9143,7 @@ namespace user
    void interaction_impl::_001OnDestroyWindow(::message::message *pmessage)
    {
 
-      if (m_puserinteraction && ::type(m_puserinteraction).name().contains("notify_icon"))
+      if (m_puserinteraction && ::platform::type(m_puserinteraction).name().contains("notify_icon"))
       {
 
          information() << "notify_icon";

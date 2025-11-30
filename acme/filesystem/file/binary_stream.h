@@ -542,10 +542,10 @@ public:
    virtual unsigned long long read_buffer_length();
 
 
-   virtual string factory_id_to_text(const ::atom & atom);
+   virtual string type_to_text(const ::platform::type & type);
 
 
-   virtual ::atom text_to_factory_id(const ::scoped_string & scopedstr);
+   virtual ::platform::type text_to_type(const ::scoped_string &scopedstr);
 
 
    //bool is_open() const

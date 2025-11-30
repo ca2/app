@@ -263,7 +263,7 @@ namespace user
 
       string strType;
 
-      strType = ::type(m_puserinteraction).name();
+      strType = ::platform::type(m_puserinteraction).name();
 
       if (strType.contains("playlist"))
       {
@@ -309,7 +309,7 @@ namespace user
    void graphics_thread::run()
    {
 
-      string strType = ::type(m_puserinteraction).name();
+      string strType = ::platform::type(m_puserinteraction).name();
 
       ::task_set_name("graphics_thread," + strType);
 
@@ -465,7 +465,7 @@ namespace user
          if (m_message.m_eusermessage == ::user::e_message_quit)
          {
 
-            ::string strType = ::type(m_puserinteraction).name();
+            ::string strType = ::platform::type(m_puserinteraction).name();
 
             information()(e_trace_category_graphics_thread) << "Graphics Thread has quit!! " << strType;
 
@@ -1123,7 +1123,7 @@ namespace user
 
       }
 
-      if (::type(m_puserinteraction) == "user::list_box")
+      if (::platform::type(m_puserinteraction) == "user::list_box")
       {
 
          information() << "user::list_box graphics_thread_iteration user::list_box";
@@ -1175,7 +1175,7 @@ namespace user
       if (!(puserinteraction->m_ewindowflag & e_window_flag_window_created))
       {
 
-         if (::type(puserinteraction) == "user::list_box")
+         if (::platform::type(puserinteraction) == "user::list_box")
          {
 
             information() << "user::list_box graphics_thread_iteration !e_window_flag_window_created";
@@ -1198,7 +1198,7 @@ namespace user
       if (m_puserinteraction->has_graphical_output_purpose())
       {
 
-         ::string strType = ::type(m_puserinteraction).name();
+         ::string strType = ::platform::type(m_puserinteraction).name();
 
          if (strType == "user::list_box")
          {
@@ -1807,7 +1807,7 @@ namespace user
 //      try
 //      {
 //
-//         string strType = ::type(m_puserinteraction).name();
+//         string strType = ::platform::type(m_puserinteraction).name();
 //
 //         if(strType.case_insensitive_contains("list_box"))
 //         {

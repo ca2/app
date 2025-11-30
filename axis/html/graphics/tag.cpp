@@ -57,12 +57,14 @@ namespace html
 
    }
 
+
    base::type tag::get_type()
    {
 
       return type_tag;
 
    }
+
 
    base_ptr_array & tag::baseptra()
    {

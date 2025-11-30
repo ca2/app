@@ -628,7 +628,7 @@ void matter::notify_on_destroy(::property_object * pparticle)
 //void matter::to_string(const class string_exchange & str) const
 //{
 //
-//   str = ::type(this).name();
+//   str = ::platform::type(this).name();
 //
 //}
 //
@@ -876,7 +876,7 @@ void matter::__send_procedure(const ::function < void(const ::procedure &) > & f
 ::string matter::class_title()
 {
 
-   auto strName = ::type(this).name();
+   auto strName = ::platform::type(this).name();
 
    auto pszLastColon = strName.rear_find(':');
 

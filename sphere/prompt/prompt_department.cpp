@@ -53,9 +53,9 @@ namespace prompt
          pDocTemplate = ___new ::user::single_document_template(
          this,
          "system/form",
-         typeid(prompt::document),
-         typeid(prompt::frame),
-         typeid(prompt::pane_impact ));
+         ::type<prompt::document>(),
+         ::type<prompt::frame>(),
+         ::type<prompt::pane_impact>());
          papp->add_document_template(pDocTemplate);
          m_ptemplateCommandMain = pDocTemplate;
 

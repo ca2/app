@@ -166,7 +166,7 @@ void object::process_exit_status(const ::e_status & estatus)
 
       //#if REFERENCING_DEBUGGING
       //
-      //   string strType = ::type(this).name();
+      //   string strType = ::platform::type(this).name();
       //
       //   if (strType.case_insensitive_contains("session"))
       //   {
@@ -253,7 +253,7 @@ void object::process_exit_status(const ::e_status & estatus)
 
        pthread->m_pmatter = routine;
 
-       pthread->id() = ::type(pthread->m_pmatter).name();
+       pthread->id() = ::platform::type(pthread->m_pmatter).name();
 
        pthread->begin_thread();
 
@@ -391,7 +391,7 @@ void object::process_exit_status(const ::e_status & estatus)
    //inline ::pointer<BASE_TYPE>øcreate();
 
    //template < typename BASE_TYPE >
-   //inline ::pointer<BASE_TYPE>øcreate_by_id(const ::atom& atom);
+   //inline ::pointer<BASE_TYPE>øcreate_by_type(const ::atom& atom);
 
    //template < typename TYPE >
    //inline ::pointer<TYPE>øcreate_new();

@@ -152,7 +152,7 @@ namespace geometry2d
    //}
 
 
-   //::draw2d::enum_item rectangle_item::type() const 
+   //::draw2d::enum_item rectangle_item::platform::type() const 
    //{
    //   
    //   return ::draw2d::e_item_rectangle; 
@@ -196,7 +196,7 @@ namespace geometry2d
    //}
 
 
-   //::draw2d::enum_item ellipse_item::type() const 
+   //::draw2d::enum_item ellipse_item::platform::type() const 
    //{
    //   
    //   return ::draw2d::e_item_ellipse;
@@ -277,7 +277,7 @@ namespace geometry2d
    //}
 
 
-   //::draw2d::enum_item arc_item::type() const
+   //::draw2d::enum_item arc_item::platform::type() const
    //{
    //   
    //   return ::draw2d::e_item_arc; 
@@ -393,7 +393,7 @@ namespace geometry2d
 
 
    
-   //::draw2d::enum_item poly_polygon_item::type() const 
+   //::draw2d::enum_item poly_polygon_item::platform::type() const 
    //{
    //   
    //   return ::draw2d::e_item_poly_polygon; 

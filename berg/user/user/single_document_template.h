@@ -17,7 +17,7 @@ namespace user
       ::pointer<::user::document>m_pdocument;
 
 
-      single_document_template(const ::scoped_string & scopedstrMatter, const ::type & typeatomDocument, const ::type & typeatomFrame, const ::type & pImpactClass, const ::type & typeatomData = {});
+      single_document_template(const ::scoped_string & scopedstrMatter, const ::platform::type & typeatomDocument, const ::platform::type & typeatomFrame, const ::platform::type & pImpactClass, const ::platform::type & typeatomData = {});
       ~single_document_template() override;
 
 

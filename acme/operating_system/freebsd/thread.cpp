@@ -59,7 +59,7 @@ bool __node_init_thread(::thread * pthread)
 bool __node_term_thread(::thread * pthread)
 {
 
-   //__clear_mq(::type(pthread).name(), true);
+   //__clear_mq(::platform::type(pthread).name(), true);
 
    return true;
 

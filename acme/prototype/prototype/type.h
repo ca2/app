@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "atom.h"
+//#include "atom.h"
 
 
 #include "acme/template/safe_bool.h"
@@ -9,14 +9,197 @@
 #include <typeindex>
 
 
-//CLASS_DECL_ACME string demangle_name(const_char_pointer pszMangledName);
+constexpr ::std::strong_ordering order(bool b1, bool b2)
+{
+
+   if (!!b1)
+   {
+
+      if (!!b2)
+      {
+
+         return ::std::strong_ordering::equal;
+
+      }
+      else
+      {
+
+         return ::std::strong_ordering::greater;
+
+      }
+
+   }
+   else if (!!b2)
+   {
+
+      return ::std::strong_ordering::less;
+
+   }
+
+   return ::std::strong_ordering::equal;
+
+}
+
+class type_id
+{
+public:
+
+
+   /// type index as obtained from ::std::type_index(typeid())
+   ::std::type_index m_typeindex;
+   /// raw type name as obtained from typeid().raw_name()
+   ::string m_strRawTypeName;
+   /// type name as obtained from demangle(typeid().name())
+   ::string m_strTypeName;
+
+
+   inline type_id();
+   inline type_id(const ::type_id &type_id);
+   inline type_id(const ::std::type_info &info);
+
+
+   inline bool is_set() const;
+   inline bool is_empty() const {return !this->is_set();}
+
+   inline bool operator == (const ::type_id & type_id) const;
+   inline ::std::strong_ordering operator <=> (const ::type_id & type_id) const;
+
+};
+
+
+template < typename TYPE >
+constexpr TYPE minus_one_or_greater(const TYPE & t)
+{
+   return t <= -1 ? -1 : t;
+}
+
+class type_iptr_pair : 
+   public ::pair<::iptr, ::iptr>
+{
+public:
+
+
+   type_iptr_pair(::iptr i1 = -1, ::iptr i2 = -1):
+   ::pair<::iptr, ::iptr>(i1, i2)
+   {
+
+
+   }
+
+   constexpr bool is_empty() const { return this->m_element1 < 0; }
+   constexpr bool is_set() const { return !this->is_empty(); }
+
+   constexpr iptr normal1() const { return (::iptr)::minus_one_or_greater(this->m_element1); }
+   constexpr iptr normal2() const { return (::iptr)::minus_one_or_greater(this->m_element2); }
+
+
+   constexpr inline bool operator == (const ::type_iptr_pair & ipair) const
+   {
+
+      return this->normal1() == ipair.normal1()  && this->normal2() == ipair.normal2();
+
+   }
+
+
+   constexpr ::std::strong_ordering operator <=> (const ::type_iptr_pair & ipair) const
+   {
+
+      auto order = this->normal1() <=> ipair.normal1();
+
+      if (order != 0)
+      {
+
+         return order;
+
+      }
+
+      order = this->normal2() <=> ipair.normal2();
+
+      return order;
+
+   }
+
+
+}; 
+template<>
+constexpr ::hash32 as_hash32<type_iptr_pair>(const type_iptr_pair &pair)
+{
+   return (::hash32)abs(pair.normal1()) +
+          (::hash32)abs(pair.normal2());
+}
+
+class type_custom_id
+{
+public:
+
+   //::string m_strText;
+   /// m_strText if present, is just a key and/or a
+   /// string representation of the type,
+   /// not literally the real type name.
+   ::string m_strNameId;
+   /// m_ipair isn't empty it can be used as a key
+   ::type_iptr_pair m_ipairId;
+
+   type_custom_id();
+   type_custom_id(const ::scoped_string & scopedstrNameId);
+   type_custom_id(const ::type_iptr_pair & ipairId);
+   type_custom_id(const ::scoped_string & scopedstrNameId, const ::type_iptr_pair & ipairId);
+   type_custom_id(const ::atom & atom);
+
+
+   constexpr bool is_set() const;
+   constexpr bool is_empty() const{return !this->is_set();}
+
+
+   inline bool operator == (const ::type_custom_id & typecustomid) const;
+   inline ::std::strong_ordering operator <=> (const ::type_custom_id & typecustomid) const;
+
+
+
+};
 CLASS_DECL_ACME string type_name(const ::std::type_info& typeinfo);
+
+template<typename TYPE>
+inline ::std::type_index type_index() { return typeid(TYPE); }
+
+
+template<typename TYPE>
+inline ::string type_name()
+{
+   return type_name(typeid(TYPE));
+}
+
+inline ::std::type_index void_type_index()
+{
+
+   return typeid(void);
+
+}
+
+
+inline bool is_type_index_empty(const ::std::type_index & typeindex)
+{
+
+   return typeindex == ::void_type_index();
+
+}
+
+
+inline bool is_type_index_set(const ::std::type_index & typeindex)
+{
+
+   return !is_type_index_empty(typeindex);
+
+}
+
+
+inline ::std::type_index type_index(const ::std::type_info &typeinfo) { return typeinfo; }
 
 
 #ifdef WINDOWS
 
 
-#define __c_type_name(t) (c_demangle(typeid(t).name()))
+#define __c_type_name(t) (c_demangle(::type<t>().name()))
 
 
 inline const_char_pointer c_demangle(const_char_pointer psz)
@@ -65,7 +248,7 @@ inline const_char_pointer c_demangle(const_char_pointer psz)
 #endif
 
 
-//#define __object_type(t) ::type(data_structure_t{}, t)
+//#define __object_type(t) ::platform::type(data_structure_t{}, t)
 //
 //
 //struct data_structure_t {};
@@ -102,9 +285,9 @@ inline const_char_pointer c_demangle(const_char_pointer psz)
 ////   template < typename TYPE >
 ////   raw_literal(enum_data_structure_type, const TYPE &) :
 ////#ifdef WINDOWS
-////   atom(c_demangle(typeid(TYPE).name()))
+////   atom(c_demangle(::type<TYPE>().name()))
 ////#else
-////   atom(demangle(typeid(TYPE).name()))
+////   atom(demangle(::type<TYPE>().name()))
 ////#endif
 ////   {
 ////
@@ -149,7 +332,7 @@ inline const_char_pointer c_demangle(const_char_pointer psz)
 //   //type& operator = (const ::std::type_info& typeinfo);
 //
 //
-//   //type& operator = (const ::type& type);
+//   //type& operator = (const ::platform::type & type);
 //
 //
 //   raw_literal& operator = (const ::raw_literal& datatype)
@@ -213,7 +396,7 @@ inline const_char_pointer c_demangle(const_char_pointer psz)
 //
 //
 //   typed_type_atom() :
-//      raw_literal(typeid(TYPE))
+//      raw_literal(::type<TYPE>())
 //   {
 //   }
 //
@@ -366,142 +549,74 @@ inline ::string type_raw_name(const ::pointer<BASE>& p)
 //}
 
 
-class type
+namespace platform
 {
-public:
 
 
-   ::std::type_index    m_typeindex;
-   ::string             m_strRawTypeName;
-   ::string             m_strTypeName;
-
-
-   type():m_typeindex(::std::type_index(typeid(nullptr))){}
-   type(const type& type) :
-      m_typeindex(type.m_typeindex),
-      m_strRawTypeName(type.m_strRawTypeName),
-      m_strTypeName(type.m_strTypeName) {}
-   explicit type(const ::std::type_info& info) :
-      m_typeindex(info),
-      m_strRawTypeName(::type_raw_name(info)),
-      m_strTypeName(::type_name(info)) {}
-   type(const ::scoped_string& scopedstrTypeName) :
-      m_typeindex(::std::type_index(typeid(nullptr))),
-      m_strTypeName(scopedstrTypeName) {}
-   template < typename TYPE >
-   type(const TYPE* p) : type(typeid(*(TYPE*)p)) {}
-   template < typename TYPE >
-   type(const TYPE& t) : type(typeid(t)) {}
-   template < typename BASE >
-   type(const ::pointer<BASE>& p) : type(p.m_p) {}
-
-
-   bool operator == (const type& type) const 
+   class type
    {
-
-      if (m_strRawTypeName.has_character() && type.m_strRawTypeName.has_character())
-      {
-
-         return m_strRawTypeName == type.m_strRawTypeName;
-
-      }
-      else
-      {
-
-         return m_strTypeName == type.m_strTypeName;
-
-      }
-
-   }
+   public:
 
 
-   ::std::strong_ordering operator <=> (const type & type) const 
-   { 
+      ::type_id            m_typeid;
 
-      if (m_strRawTypeName.has_character() && type.m_strRawTypeName.has_character())
-      {
-
-         return m_strRawTypeName <=> type.m_strRawTypeName;
-
-      }
-      else
-      {
-
-         return m_strTypeName <=> type.m_strTypeName;
-
-      }
-
-   }
+      ::type_custom_id     m_customid;
 
 
-   const ::string& raw_name() const { return m_strRawTypeName; }
-   const ::string& name() const { return m_strTypeName; }
-   const char* c_str() const { return m_strTypeName.c_str(); }
-   bool is_set() const { return name().has_character(); }
-   bool is_empty() const { return !is_set(); }
-   explicit operator bool() const { return is_set(); }
-   //explicit operator pointer_key() const { return m_pszRawTypeName; }
-   //explicit operator ::string() const { return m_strTypeName; }
-   //bool boolean_test() const { return !is_empty(); }
+      //type();
+      //type(const ::platform::type &type);
+      //explicit type(const ::std::type_info &info);
+      //type(const ::scoped_string &scopedstrTypeName);
+
+      type();
+      type(const ::platform::type &type);
+      type(const ::std::type_info &info);
+      type(const ::scoped_string &scopedstrTypeName);
+      type(const ::type_iptr_pair &ipair);
+      type(const ::atom &atom);
 
 
-};
+      template<typename TYPE>
+      type(const TYPE *p);
+      template<typename TYPE>
+      type(const TYPE &t);
+      template<typename BASE>
+      type(const ::pointer<BASE> &p);
 
 
-//template < typename TYPE >
-//inline ::string type_name()
-//{
-//
-//   return type_name(typeid(TYPE));
-//
-//}
-//
-//
-//template < typename TYPE >
-//inline ::string type_name(const TYPE* p)
-//{
-//
-//   return type_name(typeid(*(TYPE*)p));
-//
-//}
-//
-//
-//template < typename TYPE >
-//inline ::string type_name(const TYPE& t)
-//{
-//
-//   return type_name(typeid(t));
-//
-//}
-//
-//
-//template < typename BASE >
-//inline ::string type_name(const ::pointer<BASE>& p)
-//{
-//
-//   return type_name(typeid(*p.m_p));
-//
-//}
-//
+      const ::string &raw_name() const;
+      const ::string &name() const;
+      const char *c_str() const;
+      const ::string & text() const;
+      bool is_set() const;
+      bool is_empty() const;
+      explicit operator bool() const;
+      
+      bool operator==(const ::platform::type &type) const;
+
+      ::std::strong_ordering operator<=>(const ::platform::type &type) const;
 
 
-
-//template < >
-//inline ::hash32 as_hash32 < type >(const type & type)
-//{
-//
-//   return ::as_hash32(name.m_strTypeName);
-//
-//}
-//
-//
+   };
 
 
-template < typename TYPE >
-inline ::type as_type()
-{
+} // namespace platform
 
-   return typeid(TYPE);
 
-}
+template<typename TYPE>
+inline ::platform::type type();
+inline ::platform::type type(const ::std::type_info &info);
+inline ::platform::type type(const ::scoped_string &scopedstrTypeName);
+
+
+template<typename TYPE>
+inline ::platform::type type(const TYPE *p);
+
+template<typename TYPE>
+inline ::platform::type type(const TYPE &t);
+
+template<typename BASE>
+inline ::platform::type type(const ::pointer<BASE> &p);
+
+
 

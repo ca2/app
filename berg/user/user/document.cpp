@@ -628,7 +628,7 @@ namespace user
    }
 
 
-   ::pointer<::user::impact>document::get_typed_impact(const ::type & type, ::collection::index indexFind)
+   ::pointer<::user::impact>document::get_typed_impact(const ::platform::type & type, ::collection::index indexFind)
    {
 
       single_lock synchronouslock(synchronization(), true);
@@ -669,7 +669,7 @@ namespace user
    }
 
 
-   ::pointer<::user::impact>document::get_typed_impact_with_id(const ::type & type, atom atom)
+   ::pointer<::user::impact>document::get_typed_impact_with_id(const ::platform::type & type, atom atom)
    {
 
       single_lock synchronouslock(synchronization(), true);
@@ -1049,7 +1049,7 @@ namespace user
       if (m_pimpactsystem->m_typeData)
       {
 
-         auto pNew = øcreate_by_id((const ::atom &) m_pimpactsystem->m_typeData);
+         auto pNew = øcreate_by_type((const ::atom &) m_pimpactsystem->m_typeData);
 
          ::pointer < ::data::data > pdataNew = pNew;
 
@@ -1127,7 +1127,7 @@ namespace user
          //if (m_pimpactsystem->m_typeData.has_character())
       {
 
-         // auto pNew = øcreate_by_id((const ::atom &)m_pimpactsystem->m_typeData);
+         // auto pNew = øcreate_by_type((const ::atom &)m_pimpactsystem->m_typeData);
 
          //auto pdata = create_data(0);
 
@@ -1200,7 +1200,7 @@ namespace user
          //if (m_pimpactsystem->m_typeData.has_character())
          {
 
-           // auto pNew = øcreate_by_id((const ::atom &)m_pimpactsystem->m_typeData);
+           // auto pNew = øcreate_by_type((const ::atom &)m_pimpactsystem->m_typeData);
 
             auto pdata = create_data(0);
             
@@ -1339,7 +1339,7 @@ namespace user
 
          }
 
-         auto pdataNew = øcreate_by_id(typeatomData);
+         auto pdataNew = øcreate_by_type(typeatomData);
 
          if (!pdataNew)
          {

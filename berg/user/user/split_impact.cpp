@@ -93,7 +93,7 @@ namespace user
 
          string strMessage;
 
-         strMessage.formatf("split_impact::on_create_impact failed to create views for split impact %s", typeid(this).name());
+         strMessage.format("split_impact::on_create_impact failed to create views for split impact {}", ::type(this).name());
 
          //message_box(strMessage, nullptr, ::user::e_message_box_icon_exclamation)->get_object(10_s);
 
@@ -266,7 +266,7 @@ namespace user
    }
 
 
-      ::pointer<::user::impact>split_impact::create_pane_impact(const ::type & type, ::collection::index iPane, atom atom, ::user::interaction * pviewLast)
+      ::pointer<::user::impact>split_impact::create_pane_impact(const ::platform::type & type, ::collection::index iPane, atom atom, ::user::interaction * pviewLast)
    {
 
       return create_impact(type, get_document(), get_pane_holder(iPane), atom, pviewLast);

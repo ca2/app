@@ -46,9 +46,9 @@ namespace filemanager
       // m_ptemplatePane = 
       user()->add_impact_system("system/auth", __initialize_new ::user::single_document_template(
          "system/auth",
-         typeid(::user::document),
-         typeid(simple_frame_window ),
-         typeid(::userex::pane_tab_impact )));
+         ::type<::user::document>(),
+         ::type<simple_frame_window>(),
+         ::type<::userex::pane_tab_impact>()));
 
       //return estatus;
 

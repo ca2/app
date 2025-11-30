@@ -113,7 +113,7 @@
 //
 //  ::object* pobjectReceiver = dynamic_cast <::object*> (preceiverDerived);
 //
-//  ::type typeReceiver(typeid(RECEIVER));
+//  ::platform::type typeReceiver(::type<RECEIVER>());
 //
 //  if (!m_bNewChannel && m_idroute.is_empty() && m_idrouteNew.get_count() > 0)
 //  {
@@ -203,7 +203,7 @@
 //
 //  ::object * pobjectReceiver = dynamic_cast < ::object * > (preceiverDerived);
 //
-//  ::type typeReceiver(typeid(RECEIVER));
+//  ::platform::type typeReceiver(::type<RECEIVER>());
 //
 //  if(!m_bNewChannel && m_idroute.is_empty() && m_idrouteNew.get_count() > 0)
 //  {
@@ -557,7 +557,7 @@
 //   //::pointer<::user::document>session::create_form(::pointer<::user::interaction>userinteractionParent, ::payload payload, ::payload varArgs)
 //   //{
 //
-//   //   return create_form(typeid(VIEW), puserinteractionParent, payload);
+//   //   return create_form(::type<VIEW>(), puserinteractionParent, payload);
 //
 //   //}
 //
@@ -566,7 +566,7 @@
 //   //::pointer<::user::document>session::create_child_form(::pointer<::user::interaction>userinteractionParent, ::payload payload)
 //   //{
 //
-//   //   return create_child_form(typeid(VIEW), puserinteractionParent, payload);
+//   //   return create_child_form(::type<VIEW>(), puserinteractionParent, payload);
 //
 //   //}
 //

@@ -251,7 +251,7 @@ namespace allocator
 //
 //#if MEMORY_ANNOTATION
 //
-//         pszAnnotation = ::c::strdup(typeid(T).name());
+//         pszAnnotation = ::c::strdup(::type<T>().name());
 //
 //#endif
 //
@@ -276,7 +276,7 @@ namespace allocator
 //
 //#if MEMORY_ANNOTATION
 //
-//         pszAnnotation = ::c::strdup2("array of ", typeid(T).name());
+//         pszAnnotation = ::c::strdup2("array of ", ::type<T>().name());
 //
 //#endif
 //

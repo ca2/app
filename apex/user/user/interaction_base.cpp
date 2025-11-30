@@ -4472,7 +4472,7 @@ namespace user
    void interaction_base::destroy()
    {
 
-      ::string strType = ::type(this).name();
+      ::string strType = ::platform::type(this).name();
 
       // auto & procedureaDestroying1 = ::user::drag_client::m_procedureaDestroying;
       //

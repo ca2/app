@@ -672,7 +672,7 @@ class numeric_info
 {
 public:
 
-   using INTERNAL_TYPE = typename remove_reference < typename remove_const < T >::type >::type;
+   using INTERNAL_TYPE = typename remove_reference < typename remove_const < T >::type>::type;
 
    using INTERNAL_INFO = numeric_info_internal::numeric_info < INTERNAL_TYPE > ;
 

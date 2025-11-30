@@ -106,11 +106,11 @@ namespace user
       return nullptr;
    } // { return m_phtml{} } // defined in upper level
 
-   ::type aura_user_layer::get_html_document_type()
+   ::platform::type aura_user_layer::get_html_document_type()
    {
       return {};
    } // { return m_typeHtmlDocument{} }
-   ::type aura_user_layer::get_html_impact_type()
+   ::platform::type aura_user_layer::get_html_impact_type()
    {
       return {};
    } // { return m_typeHtmlImpact{} }
@@ -160,7 +160,7 @@ namespace user
 
    //void term() override{}
 
-   ::type aura_user_layer::controltype_to_typeinfo(::user::enum_control_type econtroltype)
+   ::platform::type aura_user_layer::controltype_to_typeinfo(::user::enum_control_type econtroltype)
    {
       return {};
    }

@@ -351,7 +351,7 @@ inline bool __defer_raw_construct_new(::pointer<TYPE> & ptype)
 
 //
 //template < typename TYPE >
-//inline ::pointer<TYPE>matter::øcreate_by_id(const ::atom & atom, ::factory::factory * pfactory)
+//inline ::pointer<TYPE>matter::øcreate_by_type(const ::atom & atom, ::factory::factory * pfactory)
 //{
 //
 //   auto pfactoryitem = pfactory->get_factory_item(atom);

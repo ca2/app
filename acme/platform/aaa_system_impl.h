@@ -497,9 +497,9 @@ namespace acme
 //
 //      critical_section_lock synchronouslock(&m_csEnumText);
 //
-//      m_mapEnumToText[typeid(e).name()][(long long)e] = psz;
+//      m_mapEnumToText[::type<e>().name()][(long long)e] = psz;
 //
-//      m_mapTextToEnum[typeid(e).name()][psz] = (long long)e;
+//      m_mapTextToEnum[::type<e>().name()][psz] = (long long)e;
 //
 //   }
 
@@ -510,7 +510,7 @@ namespace acme
 //
 //      critical_section_lock synchronouslock(&m_csEnumText);
 //
-//      return m_mapEnumToText[typeid(e).name()][(long long)e];
+//      return m_mapEnumToText[::type<e>().name()][(long long)e];
 //
 //   }
 
@@ -523,7 +523,7 @@ namespace acme
 //
 //      long long iValue;
 //
-//      if (m_mapTextToEnum[typeid(e).name()].lookup(scopedstr, iValue))
+//      if (m_mapTextToEnum[::type<e>().name()].lookup(scopedstr, iValue))
 //      {
 //
 //         e = (ENUM)iValue;
@@ -1032,17 +1032,17 @@ namespace acme
 //
 //
 //       //template < class T >
-//       //::type * type_info()
+//       //::platform::type * type_info()
 //       //{
 //
-//       //   return get_type_info(typeid(T));
+//       //   return get_type_info(::type<T>());
 //
 //       //}
 //
 //
-//       //virtual ::type * get_type_info(const ::std::type_info & info);
+//       //virtual ::platform::type * get_type_info(const ::std::type_info & info);
 //
-//       //::type * get_type_info(const ::atom & idType)
+//       //::platform::type * get_type_info(const ::atom & idType)
 //       //{
 //
 //       //   if(idType.is_empty())
@@ -1397,9 +1397,9 @@ namespace acme
 //       //virtual void hist_hist(const ::scoped_string & scopedstr) override;
 //
 //
-//       virtual ::type get_pane_tab_impact_type_info();
-//       virtual ::type get_simple_frame_window_type_info();
-//       //virtual ::type get_simple_child_frame_type_info();
+//       virtual ::platform::type get_pane_tab_impact_type_info();
+//       virtual ::platform::type get_simple_frame_window_type_info();
+//       //virtual ::platform::type get_simple_child_frame_type_info();
 //
 //       //virtual void on_start_find_applications_from_cache() override;
 //       //virtual void on_end_find_applications_from_cache(stream& is) override;

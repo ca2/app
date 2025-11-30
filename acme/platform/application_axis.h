@@ -145,7 +145,7 @@ namespace platform
       virtual ::account::user * noninteractive_get_user(::file::path pathUrl = nullptr);
 
 
-      //::type control_type_from_id(const ::atom& atom, ::user::enum_control_type& econtroltype) override;
+      //::platform::type control_type_from_id(const ::atom& atom, ::user::enum_control_type& econtroltype) override;
       //::user::interaction* create_menu_interaction() override;
 
    };

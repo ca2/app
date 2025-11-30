@@ -17,8 +17,8 @@ namespace berg
    {
 
 
-      m_typeHtmlDocument = typeid(html_document);
-      m_typeHtmlImpact = typeid(html_impact);
+      m_typeHtmlDocument = ::type<html_document>();
+      m_typeHtmlImpact = ::type<html_impact>();
 
       factory()->add_factory_item<html_document>();
       factory()->add_factory_item<html_impact>();
@@ -26,9 +26,9 @@ namespace berg
 
       // auto ptemplate = __initialize_new ::user::multiple_document_template(
       //    "system/form",
-      //    typeid(html_document ),
+      //    ::type<html_document>(),
       //    get_simple_child_frame_type_info(),
-      //    typeid(html_impact )));
+      //    ::type<html_impact>()));
 
       // m_ptemplateHtmlChildForm1 = ptemplate;
 

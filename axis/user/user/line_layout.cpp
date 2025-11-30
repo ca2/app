@@ -209,7 +209,7 @@ namespace user
 
                }
 
-               auto strType = ::type(puserinteraction).name();
+               auto strType = ::platform::type(puserinteraction).name();
                auto pszWndTxt = puserinteraction->get_window_text().c_str();
 
                auto sizeItem = puserinteraction->size(e_layout_sketch);

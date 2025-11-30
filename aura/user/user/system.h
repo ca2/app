@@ -44,7 +44,7 @@ namespace user
       ::pointer<::windowing::window>            m_pwindow;
 
       ::logic::boolean                          m_bWindowFrame;
-      ::type                               m_typeNewImpact;
+      ::platform::type                          m_typeNewImpact;
       ::pointer<::object>                       m_pdocumentCurrent;
       ::pointer<::user::interaction_base>              m_puserprimitiveNew;
 

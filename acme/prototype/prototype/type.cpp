@@ -117,7 +117,7 @@ string type_name(const ::std::type_info& typeinfo)
 
 
 //
-//type_name::type(const atom & atom, const ::atom & idFriendly)
+//type_name::platform::type(const atom & atom, const ::atom & idFriendly)
 //{
 //
 //   m_pfactoryitem = nullptr;
@@ -127,7 +127,7 @@ string type_name(const ::std::type_info& typeinfo)
 //}
 //
 //
-//type_name::type()
+//type_name::platform::type()
 //{
 //
 //   m_pfactoryitem = nullptr;
@@ -140,7 +140,7 @@ string type_name(const ::std::type_info& typeinfo)
 //}
 //
 //
-//type_name::type(const type_name & info)
+//type_name::platform::type(const type_name & info)
 //{
 //
 //   id()              = info.id();
@@ -150,7 +150,7 @@ string type_name(const ::std::type_info& typeinfo)
 //}
 //
 //
-//type_name::type(const ::std::type_info & info)
+//type_name::platform::type(const ::std::type_info & info)
 //{
 //
 //   m_pfactoryitem = nullptr;
@@ -171,7 +171,7 @@ string type_name(const ::std::type_info& typeinfo)
 //}
 //
 //
-//type_name::type(const ::scoped_string & scopedstrName, const ::scoped_string & scopedstrFriendlyName)
+//type_name::platform::type(const ::scoped_string & scopedstrName, const ::scoped_string & scopedstrFriendlyName)
 //{
 //
 //   m_pfactoryitem = nullptr;
@@ -319,7 +319,7 @@ string type_name(const ::std::type_info& typeinfo)
 //}
 //
 //
-//CLASS_DECL_ACME bool operator == (const ::std::type_info & info1, const ::type info2)
+//CLASS_DECL_ACME bool operator == (const ::std::type_info & info1, const ::platform::type info2)
 //{
 //
 //#ifdef WINDOWS
@@ -334,7 +334,7 @@ string type_name(const ::std::type_info& typeinfo)
 //
 //}
 //
-//CLASS_DECL_ACME bool operator != (const ::std::type_info & info1, const ::type info2)
+//CLASS_DECL_ACME bool operator != (const ::std::type_info & info1, const ::platform::type info2)
 //{
 //
 //   return !operator == (info1, info2);
@@ -358,7 +358,7 @@ string type_name(const ::std::type_info& typeinfo)
 //}
 
 
-//type_name& type_name::operator = (const ::type& type)
+//type_name& type_name::operator = (const ::platform::type & type)
 //{
 //
 //   if (this != &type)
@@ -385,7 +385,7 @@ string type_name(const ::std::type_info& typeinfo)
 //}
 //
 //
-//bool type_name::operator == (const ::type & type) const
+//bool type_name::operator == (const ::platform::type & type) const
 //{
 //
 //   return ::atom::operator == (type);
@@ -409,7 +409,7 @@ string type_name(const ::std::type_info& typeinfo)
 //}
 
 
-//type_name& type_name::operator = (const ::type& type)
+//type_name& type_name::operator = (const ::platform::type & type)
 //{
 //
 //   if (this != &type)
@@ -435,7 +435,7 @@ string type_name(const ::std::type_info& typeinfo)
 //bool type_name::operator == (const ::std::type_info& typeinfo) const
 //{
 //
-//   ::string strName = ::type(typeinfo);
+//   ::string strName = ::platform::type(typeinfo);
 //
 //   strName = demangle(strName);
 //
@@ -444,7 +444,7 @@ string type_name(const ::std::type_info& typeinfo)
 //}
 
 
-//bool type_name::operator == (const ::type& type) const
+//bool type_name::operator == (const ::platform::type & type) const
 //{
 //
 //   return ::atom::operator == (type);
@@ -476,7 +476,7 @@ string type_name(const ::std::type_info& typeinfo)
 //}
 
 
-//bool type_name::operator != (const ::type& type) const
+//bool type_name::operator != (const ::platform::type & type) const
 //{
 //
 //   return !operator==(type);
@@ -487,7 +487,7 @@ string type_name(const ::std::type_info& typeinfo)
 //bool type_name::operator == (const ::particle* pparticle) const
 //{
 //
-//   return operator ==(::type(pparticle));
+//   return operator ==(::platform::type(pparticle));
 //
 //}
 
@@ -498,5 +498,7 @@ string type_name(const ::std::type_info& typeinfo)
 //   return !operator==(pparticle);
 //
 //}
+
+
 
 

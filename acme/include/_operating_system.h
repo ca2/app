@@ -144,8 +144,8 @@ _STUD_API bool is_system(enum_operating_system eoperatingsystem) noexcept {
    }
 }
 
-#define _STUD_MAKE_NONCOPYABLE(type) _STUD_API type(const type&) noexcept = delete; \
-_STUD_API type& operator=(const type&) noexcept = delete
+#define _STUD_MAKE_NONCOPYABLE(type) _STUD_API type(const ::platform::type &) noexcept = delete; \
+_STUD_API type& operator=(const ::platform::type &) noexcept = delete
 #define _STUD_MAKE_NONMOVEABLE(type) _STUD_API type(type&&) noexcept = delete;
 
 _STUD_API_END

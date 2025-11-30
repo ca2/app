@@ -8,12 +8,13 @@
 #include "acme/prototype/comparison/equals.h"
 #include "acme/prototype/comparison/hash.h"
 #include "acme/prototype/prototype/transfer.h"
+#include "acme/prototype/prototype/type.h"
 #include "acme/prototype/string/string.h"
 #include "acme/prototype/string/string_base.h"
 #include "acme/prototype/string/scoped_string_base.h"
 
 enum enum_id : ::uptr;
-class type;
+//class type;
 
 //class atom_space;
 
@@ -366,7 +367,7 @@ public:
    inline atom(const domain_id & domainid);
    atom(const_char_pointer psz);
    atom(const inline_number_string & inlinenumberstring);
-   atom(const type & type);
+   atom(const ::platform::type & type);
    //template <typename ITERATOR_TYPE2, int t_size >
    //atom(const const_string_range_static_array <ITERATOR_TYPE2, t_size >& a) : atom((const ::string&)a) {}
 
@@ -381,7 +382,7 @@ public:
    //atom(const const_ansi_range & range);
    //atom(const_ansi_range && range);
    //atom(const const_ansi_range && range);
-   //atom(const type & type);
+   //atom(const ::platform::type & type);
    template < primitive_character_range RANGE >
    atom(const RANGE & range);
    //template < has_as_string_not_payload HAS_AS_STRING_NOT_PAYLOAD >

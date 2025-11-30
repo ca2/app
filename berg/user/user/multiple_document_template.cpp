@@ -14,7 +14,7 @@ namespace user
 {
 
 
-   multiple_document_template::multiple_document_template(const ::scoped_string & scopedstrMatter, const ::type & typeatomDocument, const ::type & typeatomFrame, const ::type & typeatomImpact, const ::type & typeatomData) :
+   multiple_document_template::multiple_document_template(const ::scoped_string & scopedstrMatter, const ::platform::type & typeatomDocument, const ::platform::type & typeatomFrame, const ::platform::type & typeatomImpact, const ::platform::type & typeatomData) :
       ::user::impact_system(scopedstrMatter, typeatomDocument, typeatomFrame, typeatomImpact, typeatomData)
    {
 
@@ -190,7 +190,7 @@ namespace user
          if (prequest->m_puserelementAlloc)
          {
 
-            strId = ::type(prequest->m_puserelementAlloc).name();
+            strId = ::platform::type(prequest->m_puserelementAlloc).name();
 
          }
 

@@ -145,15 +145,15 @@ unsigned long long binary_stream::read_buffer_length()
 
 
 
-string binary_stream::factory_id_to_text(const ::atom & atom)
+string binary_stream::type_to_text(const ::platform::type & type)
 {
 
-   return atom.as_string();
+   return type.text();
 
 }
 
 
-::atom binary_stream::text_to_factory_id(const ::scoped_string & scopedstr)
+::platform::type binary_stream::text_to_type(const ::scoped_string & scopedstr)
 {
 
    return scopedstr;
@@ -823,9 +823,9 @@ void binary_stream::read_to_hex(string & str, filesize tickStart, filesize tickE
 
    }
 
-   auto atom = text_to_factory_id(scopedstrText);
+   auto type = text_to_type(scopedstrText);
 
-   return øcreate_by_id(atom);
+   return øcreate_by_type(type);
 
 }
 
@@ -837,7 +837,7 @@ void binary_stream::read_to_hex(string & str, filesize tickStart, filesize tickE
 
    *this >> atom;
 
-   auto pparticle = øcreate_by_id(atom);
+   auto pparticle = øcreate_by_type(atom);
 
    pparticle->read_from_stream(*this);
 
@@ -849,7 +849,7 @@ void binary_stream::read_to_hex(string & str, filesize tickStart, filesize tickE
 void binary_stream::write_particle(const ::subparticle * pparticle)
 {
 
-   ::atom atom(::type(typeid(*pparticle)).name());
+   ::atom atom(::platform::type(typeid(*pparticle)).name());
 
    *this << atom;
 

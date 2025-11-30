@@ -14,7 +14,7 @@ namespace user
 
       //bool                           m_bAutoWindowFrame;
       boolean                          m_bWindowFrame;
-      ::type                      m_typeNewImpact;
+      ::platform::type                 m_typeNewImpact;
       //::user::document *             m_pdocumentCurrent;
       ::object *                       m_pdocumentCurrent;
       ::user::interaction_base *              m_puiNew;

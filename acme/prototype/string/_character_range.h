@@ -138,14 +138,3 @@ PAYLOAD& operator += (PAYLOAD& payload, const RANGE& range)
 }
 
 
-template < primitive_character_range RANGE >
-atom::atom(const RANGE& range) :
-   m_str(range)
-{
-
-   m_etype = e_type_text;
-
-}
-
-
-

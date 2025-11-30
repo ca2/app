@@ -63,8 +63,8 @@ namespace user
       //
       // ::pointer<::html::html>                m_phtml; // defined in upper level
       //
-      // ::type                               m_typeHtmlDocument;
-      // ::type                               m_typeHtmlImpact;
+      // ::platform::type                          m_typeHtmlDocument;
+      // ::platform::type                          m_typeHtmlImpact;
       //
       // pointer_array < ::user::interaction >      m_uiptraToolWindow;
       //
@@ -143,8 +143,8 @@ namespace user
 
        ::html::html* html() override ;//  defined in upper level
 
-       ::type get_html_document_type() override;
-       ::type get_html_impact_type()  override;
+       ::platform::type get_html_document_type() override;
+       ::platform::type get_html_impact_type()  override;
 
       virtual void create_user_shell() override;
 
@@ -160,7 +160,7 @@ namespace user
 
       virtual void term() override;
 
-      virtual ::type controltype_to_typeinfo(::user::enum_control_type econtroltype) override;
+      virtual ::platform::type controltype_to_typeinfo(::user::enum_control_type econtroltype) override;
 
       //virtual ::pointer<::user::menu_interaction>create_menu_button(::user::style * pstyle, ::menu::item * pitem);
 

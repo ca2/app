@@ -445,7 +445,7 @@ menu::~menu()
 //
 //      ::string strType;
 //
-//      strType = ::type(m_puserinteractionOwner).name();
+//      strType = ::platform::type(m_puserinteractionOwner).name();
 //
 //      information() << "::user::menu::create_menu parent window type: " << strType;
 //

@@ -15,7 +15,7 @@ namespace user
 {
 
 
-   single_document_template::single_document_template(const ::scoped_string & scopedstrMatter, const ::type & typeatomDocument, const ::type & typeatomFrame, const ::type & typeatomImpact, const ::type & typeatomData) :
+   single_document_template::single_document_template(const ::scoped_string & scopedstrMatter, const ::platform::type & typeatomDocument, const ::platform::type & typeatomFrame, const ::platform::type & typeatomImpact, const ::platform::type & typeatomData) :
       ::user::impact_system(scopedstrMatter, typeatomDocument, typeatomFrame, typeatomImpact, typeatomData)
    {
 

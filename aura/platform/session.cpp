@@ -2282,7 +2282,7 @@ namespace aura
 
          øconstruct(m_puser);
 
-         information() << "aura::session user type : " << ::type(m_puser).name();
+         information() << "aura::session user type : " << ::platform::type(m_puser).name();
 
          //}
 

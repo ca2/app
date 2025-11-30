@@ -75,7 +75,7 @@ inline atom::atom(const ::scoped_string & scopedstr)
 }
 
 
-inline atom::atom(const type & type) :
+inline atom::atom(const ::platform::type & type) :
    atom((const string &) type.to_string())
 {
 

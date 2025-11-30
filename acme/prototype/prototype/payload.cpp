@@ -224,7 +224,7 @@ payload::payload(const ::scoped_string & scopedstr) :
 }
 
 
-//payload::payload(const type & type):
+//payload::payload(const ::platform::type & type):
 //   m_etype(e_type_type)
 //#if REFERENCING_DEBUGGING
 //   , m_preferer(nullptr)
@@ -776,7 +776,7 @@ class ::payload & payload::operator ++(int)
 }
 
 
-//void payload::set_type(const ::type & type)
+//void payload::set_type(const ::platform::type & type)
 //{
 //
 //   set_type(e_type_type, false);
@@ -786,7 +786,7 @@ class ::payload & payload::operator ++(int)
 //}
 
 
-//bool payload::get_type(::type & type) const
+//bool payload::get_type(::platform::type & type) const
 //{
 //
 //   if (m_etype != e_type_type)
@@ -3540,7 +3540,7 @@ string payload::as_string(const ::scoped_string & scopedstrOnNull) const
       else if (is_element_set())
       {
          
-         str = ::type(as_subparticle()).name();
+         str = ::platform::type(as_subparticle()).name();
 
       }
 

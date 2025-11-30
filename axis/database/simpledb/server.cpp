@@ -306,7 +306,7 @@ namespace simpledb
 
       informationf("data_server_load key : %s", pszDataKey);
 
-      string strType = ::type(pclient).name();
+      string strType = ::platform::type(pclient).name();
 
       if(strType.contains("filemanager::frame"))
       {
@@ -336,7 +336,7 @@ namespace simpledb
 
       informationf("data_server_save key : %s", pszDataKey);
 
-      string strType = ::type(pclient).name();
+      string strType = ::platform::type(pclient).name();
 
       if(strType.contains("filemanager::frame"))
       {

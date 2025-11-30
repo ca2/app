@@ -507,7 +507,7 @@ inline atom::atom(const ::inline_number_string & inline_number_string) :
 }
 
 
-inline atom::atom(const ::type & type) :
+inline atom::atom(const ::platform::type & type) :
    m_str(type.name())
 {
 
@@ -1997,3 +1997,9 @@ inline ::std::strong_ordering atom::operator <=> (const ::ansi_character (&cha)[
 }
 
 
+template<primitive_character_range RANGE>
+inline atom::atom(const RANGE &range) : m_str(range)
+{
+
+   m_etype = e_type_text;
+}

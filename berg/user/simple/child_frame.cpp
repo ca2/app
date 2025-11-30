@@ -101,7 +101,7 @@ namespace berg
 {
 
 
-   ::type user::get_simple_child_frame_type_info() { return typeid(simple_child_frame); }
+   ::platform::type user::get_simple_child_frame_type_info() { return ::type<simple_child_frame>(); }
 
 
 } // namespace berg

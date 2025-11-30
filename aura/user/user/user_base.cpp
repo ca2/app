@@ -39,7 +39,7 @@ return nullptr;
    //      void init() override{}
 
 
-   ::type base_user_layer::get_html_document_type()
+   ::platform::type base_user_layer::get_html_document_type()
    {
 
 return {};
@@ -47,7 +47,7 @@ return {};
    } // { return m_typeHtmlDocument{} }
 
 
-   ::type base_user_layer::get_html_impact_type()
+   ::platform::type base_user_layer::get_html_impact_type()
    {
 
 return {};
@@ -55,7 +55,7 @@ return {};
    } // { return m_typeHtmlImpact{} }
 
 
-   ::type base_user_layer::user_default_controltype_to_typeinfo(::user::enum_control_type econtroltype)
+   ::platform::type base_user_layer::user_default_controltype_to_typeinfo(::user::enum_control_type econtroltype)
    {
 
 return {};
@@ -82,7 +82,7 @@ return {};
 
    //void term() override{}
 
-   //::type controltype_to_typeinfo(::user::enum_control_type econtroltype) override{}
+   //::platform::type controltype_to_typeinfo(::user::enum_control_type econtroltype) override{}
 
 
 //    ::pointer<::user::menu_interaction> base_user_layer::create_menu_button(::user::style* pstyle, ::menu::item* pitem)
@@ -170,10 +170,10 @@ return {};
    }
 
 
-   //::type get_pane_tab_impact_type_info(){}
+   //::platform::type get_pane_tab_impact_type_info(){}
 
 
-   ::type base_user_layer::get_simple_frame_window_type_info()
+   ::platform::type base_user_layer::get_simple_frame_window_type_info()
    {
 
 return {};
@@ -181,7 +181,7 @@ return {};
    }
 
 
-   ::type base_user_layer::get_simple_child_frame_type_info()
+   ::platform::type base_user_layer::get_simple_child_frame_type_info()
    {
 
 return {};
@@ -203,7 +203,7 @@ return {};
    }
 
 
-   ::pointer<::form_document> base_user_layer::create_typed_form(::particle* pparticle, const ::type& type,
+   ::pointer<::form_document> base_user_layer::create_typed_form(::particle* pparticle, const ::platform::type & type,
                                                                  ::user::element* puserelementParent,
                                                                  const ::payload& payload, const ::payload& payloadArgs)
    {
@@ -231,7 +231,7 @@ return {};
 
 
    ::pointer<::form_document> base_user_layer::create_typed_child_form(::particle* pparticle,
-                                                                       const ::type& type,
+                                                                       const ::platform::type & type,
                                                                        ::user::element* puserelementParent,
                                                                        const ::payload& payload,
                                                                        const ::payload& payloadArgs)
@@ -257,7 +257,7 @@ return {};
    // ::pointer<::form_document>  create_child_form(::particle * pparticle, ::user::impact_data * pimpactdata, ::payload payload = ::payload(::e_type_empty_argument))
    // {
    //
-   //    return create_typed_child_form(pparticle, typeid(FORM), pimpactdata->m_pplaceholder, payload){}
+   //    return create_typed_child_form(pparticle, ::type<FORM>(), pimpactdata->m_pplaceholder, payload){}
    //
    // }
 
@@ -267,7 +267,7 @@ return {};
 
    //void add_impact_system(const ::atom & atom, ::user::impact_system * pimpactsystem) override{}
 
-   ::pointer<::form_document>  base_user_layer::create_typed_child_form(::particle * pparticle, const ::type & type, ::user::impact_data * pimpactdata, ::payload payload)
+   ::pointer<::form_document>  base_user_layer::create_typed_child_form(::particle * pparticle, const ::platform::type & type, ::user::impact_data * pimpactdata, ::payload payload)
    {
 
       return {};

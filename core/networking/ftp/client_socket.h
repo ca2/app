@@ -678,7 +678,7 @@ argument is changed, Format then returns to the Non-print
 default.
 */
 
-/** \class nsFTP::type
+/** \class nsFTP::platform::type
 Objects of this class are only used in conjunction with representation.
 
 DATA TYPES
@@ -696,7 +696,7 @@ parameter specifying the logical unsigned char size.  The transfer unsigned char
 int_size is always 8 bits.
 */
 
-/** \fn static const type nsFTP::type::ASCII()
+/** \fn static const type nsFTP::platform::type::ASCII()
 This is the default type and must be accepted by all FTP
 implementations.  It is intended primarily for the transfer
 of text files, except when both hosts would find the EBCDIC
@@ -720,7 +720,7 @@ The Format parameter for ASCII and EBCDIC types is discussed
 below.
 */
 
-/** \fn static const type nsFTP::type::EBCDIC()
+/** \fn static const type nsFTP::platform::type::EBCDIC()
 This type is intended for efficient transfer between hosts
 which use EBCDIC for their internal character
 representation.
@@ -736,7 +736,7 @@ for purposes of denoting structure, but where it is
 necessary the <NL> character should be used.
 */
 
-/** \fn static const type nsFTP::type::Image()
+/** \fn static const type nsFTP::platform::type::Image()
 The data are sent as contiguous bits which, for transfer,
 are packed into the 8-bit transfer bytes.  The receiving
 site must store the data as contiguous bits.  The structure
@@ -756,7 +756,7 @@ is recommended that this type be accepted by all FTP
 implementations.
 */
 
-/** \fn static const type nsFTP::type::LocalByte()
+/** \fn static const type nsFTP::platform::type::LocalByte()
 The data is transferred in logical bytes of the int_size
 specified by the obligatory second parameter, Byte size.
 The value of Byte int_size must be a decimal integer; there is

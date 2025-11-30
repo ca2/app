@@ -508,7 +508,7 @@ namespace user
       if (id().is_empty())
       {
 
-         id() = ::type(this).name();
+         id() = ::platform::type(this).name();
 
       }
 
@@ -1732,7 +1732,7 @@ namespace user
    string interaction::default_id_prefix()
    {
 
-      return ::type(this).name() + "_";
+      return ::platform::type(this).name() + "_";
 
    }
 
@@ -3435,7 +3435,7 @@ namespace user
 
       m_layout.m_statea[elayout].m_edisplay = edisplay;
 
-      if (::type(this) == "user::list_box")
+      if (::platform::type(this) == "user::list_box")
       {
 
          if (!windowing()->is_screen_visible(edisplay))
@@ -3452,7 +3452,7 @@ namespace user
          }
 
       }
-      else if (::type(this).name().contains("main_frame"))
+      else if (::platform::type(this).name().contains("main_frame"))
       {
 
          informationf("main_frame %d %s", elayout, ::as_string(edisplay.m_eenum).c_str());
@@ -3968,7 +3968,7 @@ namespace user
 
       m_ewindowflag += e_window_flag_destroying;
 
-      auto type = ::type(this);
+      auto type = ::platform::type(this);
 
       if (type.name().contains("main_frame"))
       {
@@ -4810,7 +4810,7 @@ namespace user
 
       m_ewindowflag -= e_window_flag_is_window;
 
-      auto type = ::type(this);
+      auto type = ::platform::type(this);
 
       if (type.name().contains("simple_scroll_bar"))
       {
@@ -5477,7 +5477,7 @@ namespace user
             if (timeElapsed > 50_ms)
             {
 
-               auto type = ::type(this);
+               auto type = ::platform::type(this);
 
                if (type.name().contains("font_list"))
                {
@@ -5508,7 +5508,7 @@ namespace user
       catch (...)
       {
 
-         information() << "Exception: interaction::_001DrawThis %s" << ::type(this).name();
+         information() << "Exception: interaction::_001DrawThis %s" << ::platform::type(this).name();
 
       }
 
@@ -5650,7 +5650,7 @@ namespace user
             //            if (timeElapsed > 100_ms)
             //            {
             //
-            //               information()(e_trace_category_graphics_thread) << "\ndrawing at " << ::type(this).name() << "!!";
+            //               information()(e_trace_category_graphics_thread) << "\ndrawing at " << ::platform::type(this).name() << "!!";
             //               information()(e_trace_category_graphics_thread) << "\ndrawing took " << timeElapsed.integral_millisecond() << +"!!";
             //               information()(e_trace_category_graphics_thread) << "\ndrawing took more more than 100ms more than 50ms to complete!!";
             //               information()(e_trace_category_graphics_thread) << "\n";
@@ -5677,7 +5677,7 @@ namespace user
       if (tickElapsedWithLock > 3_ms)
       {
 
-         //string strType = ::type(this).name();
+         //string strType = ::platform::type(this).name();
 
          //         informationf("----> " + strType + "drawing took " + as_string(tickElapsedWithLock.m_i) + "!!");
          //       informationf("----> drawing took more than 3ms to complete!!");
@@ -5992,7 +5992,7 @@ namespace user
                      //   //if(d1.m_i > 50)
                      //   //{
 
-                     //   //   string strType = ::type(pinteraction).name();
+                     //   //   string strType = ::platform::type(pinteraction).name();
 
                      //   //   if(strType.contains("hello_multiverse") && strType.contains("frame"))
                      //   //   {
@@ -6163,7 +6163,7 @@ namespace user
    //
    //      }
    //
-   //      auto type = ::type(this);
+   //      auto type = ::platform::type(this);
    //
    //      if (type.name().contains("app_veriwell_keyboard") && type.name().contains("main_frame"))
    //      {
@@ -6666,7 +6666,7 @@ namespace user
 
       pgraphics->m_puserinteraction = this;
 
-      ::string strType = ::type(this).name();
+      ::string strType = ::platform::type(this).name();
 
       if (pgraphics->m_egraphics & e_graphics_layout)
       {
@@ -7092,7 +7092,7 @@ namespace user
       if (pgraphics->m_bInheritDraw && !needs_to_draw(pgraphics))
       {
 
-         //         ::string strType = ::type(this).name();
+         //         ::string strType = ::platform::type(this).name();
          //
          //         if (strType.case_insensitive_contains("impact"))
          //         {
@@ -7192,7 +7192,7 @@ namespace user
             {
 
 
-               //                     auto type = ::type(this);
+               //                     auto type = ::platform::type(this);
                //
                //                     ::string strType = type.as_string();
                //
@@ -7290,7 +7290,7 @@ namespace user
                   {
 
                      information() << "Exception: interaction::_000OnDraw _001DrawThis %s"
-                        << ::type(this).name();
+                        << ::platform::type(this).name();
 
                   }
 
@@ -7320,7 +7320,7 @@ namespace user
                   {
 
                      information() << "Exception: interaction::_000OnDraw _001DrawChildren %s"
-                        << ::type(this).name();
+                        << ::platform::type(this).name();
 
                   }
 
@@ -7356,7 +7356,7 @@ namespace user
                         if (d1 > 50_ms)
                         {
 
-                           auto type = ::type(this);
+                           auto type = ::platform::type(this);
 
                            CATEGORY_INFORMATION(prodevian, "(more than 50ms)(E) " << type.m_strName << "::_008CallOnDraw took " <<
                               d1.integral_millisecond() << "::time.\n");
@@ -7421,7 +7421,7 @@ namespace user
 
       auto pstyle = get_style(pgraphics);
 
-      ::string strType = ::type(this).name();
+      ::string strType = ::platform::type(this).name();
 
       if (get_draw_flags(pstyle) & e_flag_background_bypass)
       {
@@ -7551,7 +7551,7 @@ namespace user
    void interaction::design_to_window()
    {
 
-      ::string strType = ::type(this).name();
+      ::string strType = ::platform::type(this).name();
 
       //information() << "type : " << strType << " design_to_window";
 
@@ -11134,7 +11134,7 @@ if(get_parent())
 
       //}
 
-      string strType = ::type(this).name();
+      string strType = ::platform::type(this).name();
 
       if (is_top_level())
       {
@@ -12171,7 +12171,7 @@ if(get_parent())
    //void interaction::start_destroying_window()
    //{
 
-   //   auto type = ::type(this);
+   //   auto type = ::platform::type(this);
 
    //   if (type.name().contains("main_frame"))
    //   {
@@ -12370,7 +12370,7 @@ if(get_parent())
 
       }
 
-      auto type = ::type(this);
+      auto type = ::platform::type(this);
 
       if (type.name().contains("main_frame"))
       {
@@ -12540,7 +12540,7 @@ if(get_parent())
    //   }
 
 
-   //   auto type = ::type(this);
+   //   auto type = ::platform::type(this);
 
    //   if (type.name().contains("main_frame"))
    //   {
@@ -13387,7 +13387,7 @@ if(get_parent())
             if (puserinteractionChild && puserinteractionChild->layout().sketch().zorder().is_change_request())
             {
 
-               //::string strType = ::type(pchild).name();
+               //::string strType = ::platform::type(pchild).name();
 
                //if (strType.case_insensitive_contains("place_holder"))
                //{
@@ -13402,14 +13402,14 @@ if(get_parent())
 
 
 
-               //      ::string strTypePlaceHolderChild = ::type(puserinteractionChild).name();
+               //      ::string strTypePlaceHolderChild = ::platform::type(puserinteractionChild).name();
 
                //      if (strTypePlaceHolderChild.case_insensitive_contains("simple_frame_window"))
                //      {
 
                //         auto puserinteractionChild2 = puserinteractionChild->m_puserinteractionpointeraChild->first_interaction();
 
-               //         ::string strTypePlaceHolderChild2 = ::type(puserinteractionChild2).name();
+               //         ::string strTypePlaceHolderChild2 = ::platform::type(puserinteractionChild2).name();
 
                //         if (strTypePlaceHolderChild2.case_insensitive_contains("font_impact"))
                //         {
@@ -13501,9 +13501,9 @@ if(get_parent())
    bool interaction::display_lading_to_layout()
    {
 
-      auto type = ::type(this);
+      auto type = ::platform::type(this);
 
-      ::string strType = ::type(this).name();
+      ::string strType = ::platform::type(this).name();
 
       auto edisplayLading = layout().lading().display();
 
@@ -13596,7 +13596,7 @@ if(get_parent())
    void interaction::layout_display()
    {
 
-      ::string strType = ::type(this).name();
+      ::string strType = ::platform::type(this).name();
 
       if (strType.case_insensitive_contains("page_home"))
       {
@@ -13780,7 +13780,7 @@ if(get_parent())
       else
       {
 
-         auto type = ::type(this);
+         auto type = ::platform::type(this);
 
          if (type.name().contains("page_home"))
          {
@@ -13855,7 +13855,7 @@ if(get_parent())
    void interaction::layout_children_zorder()
    {
 
-      ::string strType = ::type(this).name();
+      ::string strType = ::platform::type(this).name();
 
       ::string strId = this->m_atomMatterId;
 
@@ -13901,7 +13901,7 @@ if(get_parent())
             if (pchild->is_this_visible(e_layout_sketch))
             {
 
-               ::string strTypeChild = ::type(pchild).name();
+               ::string strTypeChild = ::platform::type(pchild).name();
 
                information() << strTypeChild << " (" << pchild->id().as_string() << ")" << " zorder " << iZOrder;
 
@@ -13932,7 +13932,7 @@ if(get_parent())
       }
 
 #ifdef EXTRA_DESIGN_REPOSITION_LOG
-      auto type = ::type(this);
+      auto type = ::platform::type(this);
 
       if (type.name().contains("control_box"))
       {
@@ -13949,7 +13949,7 @@ if(get_parent())
 
       ::int_point pointHost;
 
-      auto type = ::type(this);
+      auto type = ::platform::type(this);
 
       if (type.name().contains("list_box"))
       {
@@ -13986,7 +13986,7 @@ if(get_parent())
       //
       //      }
 
-//      auto type = ::type(this);
+//      auto type = ::platform::type(this);
 
       if (type.name().contains("tap"))
       {
@@ -14122,7 +14122,7 @@ if(get_parent())
       if (!is_this_visible())
       {
 
-         if (::type(this) == "user::list_box")
+         if (::platform::type(this) == "user::list_box")
          {
 
             information() << "interaction::layout_layout ListBoxNotVisible";
@@ -14133,7 +14133,7 @@ if(get_parent())
 
       }
 
-      if (::type(this) == "user::list_box")
+      if (::platform::type(this) == "user::list_box")
       {
 
          information() << "interaction::layout_layout ListBoxVisible";
@@ -14633,7 +14633,7 @@ if(get_parent())
                if (puiKeyboardFocus)
                {
 
-                  information() << "key message control with keyboard focus : " << ::type(puiKeyboardFocus).name();
+                  information() << "key message control with keyboard focus : " << ::platform::type(puiKeyboardFocus).name();
 
                   puiKeyboardFocus->route_message(pkey);
 
@@ -15244,7 +15244,7 @@ if(get_parent())
 
       _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-      ::string strType = ::type(this).name();
+      ::string strType = ::platform::type(this).name();
 
       //      if (strType == "user::still")
       //      {
@@ -15420,7 +15420,7 @@ if(get_parent())
    void interaction::on_perform_top_down_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::string strType = ::type(this).name();
+      ::string strType = ::platform::type(this).name();
 
       if (strType == "RedDotLogicsInternal_license_manager::user_form")
       {
@@ -15813,7 +15813,7 @@ if(get_parent())
 
       layout_tooltip();
 
-      auto strType = ::type(this).name();
+      auto strType = ::platform::type(this).name();
 
       if (strType.case_insensitive_contains("scroll_bar"))
       {
@@ -15924,7 +15924,7 @@ if(get_parent())
    void interaction::_on_show_window()
    {
 
-      ::string strType = ::type(this).name();
+      ::string strType = ::platform::type(this).name();
 
       //      if (is_fps_interest_on_show())
       //      {
@@ -16650,13 +16650,13 @@ if(get_parent())
 
    //                  //::string strType;
 
-   //                  //strType = ::type(pwindowOwner->m_pwindow->m_puserinteraction.m_p);
+   //                  //strType = ::platform::type(pwindowOwner->m_pwindow->m_puserinteraction.m_p);
 
    //                  //information() << "pwindowOwner->has_keyboard_focus() : " << strType;
 
    //                  //::string strTypeOldFocus;
 
-   //                  //strTypeOldFocus = ::type(pwindowOwner->m_pwindow->m_puserinteraction.m_p);
+   //                  //strTypeOldFocus = ::platform::type(pwindowOwner->m_pwindow->m_puserinteraction.m_p);
 
    //                  //information() << "old focus : " << strTypeOldFocus;
 
@@ -16786,7 +16786,7 @@ if(get_parent())
 
       //         auto puserinteraction = pwindowOwner->user_interaction();
 
-      //         strType = ::type(puserinteraction);
+      //         strType = ::platform::type(puserinteraction);
 
       //         information() << "pwindowOwner->has_keyboard_focus() : " << strType;
 
@@ -16794,7 +16794,7 @@ if(get_parent())
 
       //         //auto puserinteraction = pwindowOwner->user_interaction();
 
-      //         strTypeOldFocus = ::type(puserinteraction);
+      //         strTypeOldFocus = ::platform::type(puserinteraction);
 
       //         information() << "old focus : " << strTypeOldFocus;
 
@@ -17200,7 +17200,7 @@ if(get_parent())
    void interaction::sketch_to_lading()
    {
 
-      ::string strType = ::type(this).name();
+      ::string strType = ::platform::type(this).name();
 
       if (strType == "user::list_box")
       {
@@ -17424,7 +17424,7 @@ if(get_parent())
 
       bUpdateWindow = false;
 
-      //string strType = ::type(this).name();
+      //string strType = ::platform::type(this).name();
 
       //if (strType.contains("app_veriwell_keyboard") && strType.contains("main_frame"))
       //{
@@ -17913,7 +17913,7 @@ if(get_parent())
       _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
 
-            ::string strType = ::type(this).name();
+            ::string strType = ::platform::type(this).name();
 
       if (strType == "user::list_box")
       {
@@ -18437,7 +18437,7 @@ if(get_parent())
 
       auto pchild = this;
 
-      string strType = ::type(pchild).name();
+      string strType = ::platform::type(pchild).name();
 
       if (strType.case_insensitive_contains("button"))
       {
@@ -19167,7 +19167,7 @@ if(get_parent())
    bool interaction::defer_release_mouse_capture()
    {
 
-      ::string strType = ::type(this).name();
+      ::string strType = ::platform::type(this).name();
 
       information() << "interaction::defer_release_mouse_capture type : " << strType << ", atom : " << id().as_string();
 
@@ -23118,7 +23118,7 @@ if(get_parent())
 
          //information() << "on_message_show_window (A)";
 
-         if (::type(this).name().contains("main_frame"))
+         if (::platform::type(this).name().contains("main_frame"))
          {
 
             // information() << "on_message_show_window main_frame (A)";
@@ -23186,7 +23186,7 @@ if(get_parent())
 
          //information() << "on_message_show_window (B)";
 
-         if (::type(this).name().contains("main_frame"))
+         if (::platform::type(this).name().contains("main_frame"))
          {
 
             information() << "on_message_show_window main_frame (B)";
@@ -23237,7 +23237,7 @@ if(get_parent())
 
       }
 
-      //      string strType = ::type(this).name();
+      //      string strType = ::platform::type(this).name();
       //
       //      if(strType.contains("main_frame"))
       //      {
@@ -25155,7 +25155,7 @@ void interaction::on_control_box_zoom(){
          //   void interaction::prodevian_redraw(bool bUpdateBuffer)
          //   {
          //
-         //      auto type = ::type(this);
+         //      auto type = ::platform::type(this);
          //
          //      //      if (type.name().contains("list_box"))
          //      //      {
@@ -25655,7 +25655,7 @@ void interaction::on_control_box_zoom(){
 
       auto pmouse = pmessage->m_union.m_pmouse;
 
-      ::string strType = ::type(this).name();
+      ::string strType = ::platform::type(this).name();
 
       information() << "interaction::on_message_parent_left_button_up : " << strType;
 
@@ -26090,7 +26090,7 @@ void interaction::on_control_box_zoom(){
 
       //if (m_bDefaultMouseHoverHandling)
       {
-         auto type = ::type(this);
+         auto type = ::platform::type(this);
 
          if (type.name().contains("button"))
          {
@@ -26115,7 +26115,7 @@ void interaction::on_control_box_zoom(){
 
          }
 
-         //::string strType = ::type(this).name();
+         //::string strType = ::platform::type(this).name();
 
          if (strType == "simple_scroll_bar")
          {
@@ -26310,7 +26310,7 @@ void interaction::on_control_box_zoom(){
 
       auto pmouse = pmessage->m_union.m_pmouse;
 
-      ::string strType = ::type(this).name();
+      ::string strType = ::platform::type(this).name();
 
       information() << "interaction::on_message_left_button_down : " << strType;
 
@@ -26577,7 +26577,7 @@ void interaction::on_control_box_zoom(){
 
       auto pmouse = pmessage->m_union.m_pmouse;
 
-      ::string strType = ::type(this).name();
+      ::string strType = ::platform::type(this).name();
 
       information() << "interaction::on_message_left_button_up : " << strType;
 
@@ -27201,7 +27201,7 @@ __check_refdbg;
          if (bUpdateHover)
          {
 
-            auto type = ::type(this);
+            auto type = ::platform::type(this);
 
             if (type.name().contains("experience") && type.name().contains("button"))
             {
@@ -28151,7 +28151,7 @@ __check_refdbg;
 
       _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-      ::string strType = ::type(this).name();
+      ::string strType = ::platform::type(this).name();
 
       if (strType.contains("button"))
       {
@@ -30930,7 +30930,7 @@ __check_refdbg;
       {
       case e_control_type_edit:
 
-         //         m_type = typeid(CSimpleFormListEdit);
+         //         m_type = ::type<CSimpleFormListEdit>();
 
          break;
 

@@ -87,7 +87,7 @@ namespace user
 
       m_pwindow = pwindow;
 
-      string strType = ::type(m_pwindow->m_pacmeuserinteraction).name();
+      string strType = ::platform::type(m_pwindow->m_pacmeuserinteraction).name();
 
       m_strDebugType = strType;
 
@@ -244,9 +244,9 @@ namespace user
          //
          //#endif
 
-               //set_topic_text("window_thread_" + ::type(m_pwindow->m_puserinteraction).name()) + "> ";
+               //set_topic_text("window_thread_" + ::platform::type(m_pwindow->m_puserinteraction).name()) + "> ";
 
-      ::task_set_name(::type(m_pwindow->m_pacmeuserinteraction).name());
+      ::task_set_name(::platform::type(m_pwindow->m_pacmeuserinteraction).name());
 
 #ifdef WINDOWS_DESKTOP
 
@@ -440,9 +440,9 @@ namespace user
 
    //         }
 
-   //         information()(e_trace_category_appmsg) << ::type(this).name() << " thread::pump_message - Received ::user::e_message_quit.\n";
+   //         information()(e_trace_category_appmsg) << ::platform::type(this).name() << " thread::pump_message - Received ::user::e_message_quit.\n";
 
-   //         //::information(::type(this).name()) << " thread::pump_message - Received ::user::e_message_quit.\n");
+   //         //::information(::platform::type(this).name()) << " thread::pump_message - Received ::user::e_message_quit.\n");
 
    //         m_nDisablePumpCount++; // application must die
    //         // Note: prevents calling message loop things in 'exit_thread'
@@ -608,7 +608,7 @@ namespace user
 
                      throw ::exception(error_failed, "Please post ::user::e_message_redraw directly to the graphics thread");
 
-                     //string strType = ::type(puserinteraction).name();
+                     //string strType = ::platform::type(puserinteraction).name();
 
                      //if (strType.case_insensitive_contains("filemanager"))
                      //{
@@ -1028,7 +1028,7 @@ namespace user
       //else
       //{
 
-         //string strType = ::type(m_pwindow->m_puserinteraction).name();
+         //string strType = ::platform::type(m_pwindow->m_puserinteraction).name();
 
       if (m_strDebugType.contains("filemanager"))
       {

@@ -237,7 +237,7 @@ namespace networking
    }
 
 
-   //::sockets::listen_socket * networking::new_listen_socket(const ::type& type)
+   //::sockets::listen_socket * networking::new_listen_socket(const ::platform::type & type)
    //{
 
    //   auto plistensocket = øcreate< ::sockets::listen_socket >();

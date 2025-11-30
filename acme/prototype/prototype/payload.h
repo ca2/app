@@ -223,7 +223,7 @@ public:
    payload(const_char_pointer begin, const_char_pointer end);
    payload(const_char_pointer psz);
    payload(const ::scoped_string & scopedstr);
-   //payload(const ::type & type);
+   //payload(const ::platform::type & type);
    payload(const ::atom & atom);
    payload(const ::earth::time & time);
    payload(const ::color::color & color);
@@ -341,14 +341,14 @@ public:
    atom::enum_type atom_type() const;
 
 
-   //void set_type(const ::type & type);
+   //void set_type(const ::platform::type & type);
 
 
    template < typename T >
    void set_pointer(const ::pointer < T > & p)
    {
 
-      operator[](::type(p)) = p;
+      operator[](::platform::type(p)) = p;
 
    }
 
@@ -356,7 +356,7 @@ public:
    bool has_pointer() const
    {
 
-      return has_property(::type(typeid(T)));
+      return has_property(::platform::type(::type<T>()));
 
    }
 
@@ -364,14 +364,14 @@ public:
    ::property * find_pointer() const
    {
 
-      return find_property(::type(typeid(T)));
+      return find_property(::platform::type(::type<T>()));
 
    }
 
    template < typename TYPE >
    ::pointer < TYPE > pointer() const;
 
-   //bool get_type(::type & type) const;
+   //bool get_type(::platform::type & type) const;
 
    long long payload_release();
 

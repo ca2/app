@@ -518,7 +518,7 @@ public:
    //    }
 
 
-   write_text_stream& operator <<(const ::type& type)
+   write_text_stream& operator <<(const ::platform::type & type)
    {
 
       return *this << type.name();

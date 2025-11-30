@@ -19,7 +19,7 @@ namespace user
 {
 
 
-   impact_system::impact_system(const ::atom & atom, const ::type & typeatomDocument, const ::type & typeatomFrame, const ::type & typeatomImpact, const ::type & typeatomData)
+   impact_system::impact_system(const ::atom & atom, const ::platform::type & typeatomDocument, const ::platform::type & typeatomFrame, const ::platform::type & typeatomImpact, const ::platform::type & typeatomData)
    {
 
       m_bHiddenOnNotifyIcon = false;
@@ -131,7 +131,7 @@ namespace user
    ::pointer<::user::document>impact_system::create_new_document(::request * prequest)
    {
 
-      // default implementation constructs one from ::type
+      // default implementation constructs one from ::platform::type
       if (!m_typeDocument)
       {
 

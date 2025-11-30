@@ -1326,7 +1326,7 @@ namespace user
       if (::is_set(pinteraction))
       {
          
-         string strType = ::type(pinteraction).name();
+         string strType = ::platform::type(pinteraction).name();
 
          if (strType.contains("form"))
          {

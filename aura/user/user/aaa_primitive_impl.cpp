@@ -417,7 +417,7 @@ namespace user
 //
 //      }
 //
-//      string strType = ::type(m_puserinteraction).name();
+//      string strType = ::platform::type(m_puserinteraction).name();
 //
 ////      if (strType.contains("list_box"))
 ////      {
@@ -2671,7 +2671,7 @@ namespace user
    void primitive_impl::on_message_non_client_destroy(::message::message * pmessage)
    {
 
-      if (m_puserinteraction && ::type(m_puserinteraction).name().contains("notify_icon"))
+      if (m_puserinteraction && ::platform::type(m_puserinteraction).name().contains("notify_icon"))
       {
 
          information() << "notify_icon";
@@ -2693,13 +2693,13 @@ namespace user
 
       //}
 
-      //g_p->set_at((iptr)this, ::type(m_puserinteraction).name()) + "xxx" + ::type(this).name();
+      //g_p->set_at((iptr)this, ::platform::type(m_puserinteraction).name()) + "xxx" + ::platform::type(this).name();
       USER_MESSAGE_LINK(::user::e_message_show_window, pchannel, this, &primitive_impl::on_message_show_window);
       USER_MESSAGE_LINK(::user::e_message_destroy, pchannel, this, &primitive_impl::on_message_destroy);
       USER_MESSAGE_LINK(::user::e_message_non_client_destroy, pchannel, this, &primitive_impl::on_message_non_client_destroy);
       USER_MESSAGE_LINK(::user::e_message_create, pchannel, this, &primitive_impl::_001OnPrioCreate);
 
-      if (m_puserinteraction && ::type(m_puserinteraction).name().contains("notify_icon"))
+      if (m_puserinteraction && ::platform::type(m_puserinteraction).name().contains("notify_icon"))
       {
 
          information() << "notify_icon";

@@ -2408,10 +2408,10 @@ namespace acme
 
 
 
-//const_char_pointer matter::type(this).name() const
+//const_char_pointer matter::platform::type(this).name() const
 //{
 //
-//   return ::type(this).name();
+//   return ::platform::type(this).name();
 //
 //}
 

@@ -1352,7 +1352,7 @@ namespace file
       throw ::interface_only();
    }
 
-   void file::write (::type info)
+   void file::write (::platform::type info)
    {
       __UNREFERENCED_PARAMETER(info);
       throw ::interface_only();

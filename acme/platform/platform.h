@@ -321,33 +321,36 @@ namespace platform
       virtual ::string component_factory_implementation_name(const ::scoped_string & scopedstrComponent);
 
 
-      ::factory::factory_item_interface* get_factory_item_by_type_index(const ::std::type_index & typeindex);
-      ::factory::factory_item_interface* get_factory_item_by_id(const ::atom& atom);
+      //::factory::factory_item_interface* get_factory_item_by_type_index(const ::std::type_index & typeindex);
+      //::factory::factory_item_interface* get_factory_item_by_custom_id(const ::type_custom_id & typecustomid);
+      ::factory::factory_item_interface* get_factory_item(const ::platform::type & type);
 
 
-      ::factory::factory_item_interface * get_factory_item_by_type_index(const ::std::type_index & typeindex, const ::atom & atomFactory);
-      ::factory::factory_item_interface * get_factory_item_by_id(const ::atom & atom, const ::atom & atomFactory);
+      //::factory::factory_item_interface * get_factory_item_by_type_index(const ::std::type_index & typeindex, const ::atom & atomFactory);
+      //::factory::factory_item_interface * get_factory_item_by_custom_id(const ::type_custom_id & typecustomid, const ::atom & atomFactory);
+      ::factory::factory_item_interface * get_factory_item(const ::platform::type & type, const ::atom & atomFactory);
 
 
-      bool has_factory_item_by_type_index(const ::std::type_index & typeindex);
-      bool has_factory_item_by_id(const ::atom & atom);
+      //bool has_factory_item_by_type_index(const ::std::type_index & typeindex);
+      //bool has_factory_item_by_custom_id(const ::type_custom_id & typecustomid);
+      bool has_factory_item(const ::platform::type & type);
 
 
-      void set_factory_item_by_type_index(const ::std::type_index & typeindex, const ::atom& atom, const ::pointer<::factory::factory_item_interface> & pfactoryitem);
-      void set_factory_item_by_id(const ::atom& atom, const ::pointer<::factory::factory_item_interface>& pfactoryitem);
+      //void set_factory_item_by_type(const ::platform::type & type, const ::pointer<::factory::factory_item_interface> & pfactoryitem);
+      //void set_factory_item_by_custom_id(const ::type_custom_id & typecustomid, const ::pointer<::factory::factory_item_interface>& pfactoryitem);
 
 
-      void set_factory_item_by_type_index_for_factory(const ::std::type_index & typeindex, const ::atom& atom, const ::atom & atomFactory, const ::pointer<::factory::factory_item_interface> & pfactoryitem);
-      void set_factory_item_by_id_for_factory(const ::atom & atom, const ::atom& atomFactory, const ::pointer<::factory::factory_item_interface>& pfactoryitem);
+      //void set_factory_item_by_type_for_factory(const ::platform::type & type, const ::atom & atomFactory, const ::pointer<::factory::factory_item_interface> & pfactoryitem);
+      //void set_factory_item_by_custom_id_for_factory(const ::type_custom_id & typecustomid, const ::atom& atomFactory, const ::pointer<::factory::factory_item_interface>& pfactoryitem);
 
 
-      template < typename TYPE, typename BASE >
-      void add_factory_item_by_id(const ::atom & atom)
-      {
+      //template < typename TYPE, typename BASE >
+      //void add_factory_item_by_custom_id(const ::type_custom_id & typecustomid)
+      //{
          
-         set_factory_item_by_id(atom, øallocate ::factory::factory_item < TYPE, BASE > ());
+      //   set_factory_item_by_custom_id(typecustomid, øallocate ::factory::factory_item < TYPE, BASE > ());
 
-      }
+      //}
 
 
       ::factory::factory * get_factory(const ::atom & atomFactory);

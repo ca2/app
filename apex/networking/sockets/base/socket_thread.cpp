@@ -120,7 +120,7 @@ namespace sockets
       else
       {
 
-         return øcreate_by_id(m_typeSocketHandler.name(), m_pfactorySocketHandler);
+         return øcreate_by_type(m_typeSocketHandler.name(), m_pfactorySocketHandler);
 
       }
 

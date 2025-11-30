@@ -3468,7 +3468,7 @@ bool window::has_keyboard_focus()
 //            if (::is_set(puserinteraction))
 //            {
 
-//               string strType = ::type(puserinteraction).name();
+//               string strType = ::platform::type(puserinteraction).name();
 
 //               if (strType.contains("menu"))
 //               {

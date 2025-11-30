@@ -1587,3 +1587,13 @@ template < primitive_character_range RANGE, character_pointer CHARACTER_POINTER 
 //}
 
 
+
+
+template<primitive_character CHARACTER>
+inline ::file::path operator/(const ::character_range<const CHARACTER *> &range, const ::atom &atom)
+{
+
+   return ::file::path(range) / ::file::path(atom.as_string());
+}
+
+

@@ -12,7 +12,7 @@ public:
 
    using CONTEXT = CONTEXT_TYPE;
 
-   ::string m_strContext = typeid(CONTEXT).name();
+   ::string m_strContext = ::type<CONTEXT>().name();
 
    cancel_exception(const ::scoped_string & scopedstrMessage = nullptr);
    virtual ~cancel_exception();

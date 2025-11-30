@@ -28,7 +28,7 @@ namespace networking
 
       ::netserver::incoming_socket::on_initialize_particle();
 
-      m_typeAttendSocket = typeid(::networking::application_socket );
+      m_typeAttendSocket = ::type<::networking::application_socket>();
 
    }
 

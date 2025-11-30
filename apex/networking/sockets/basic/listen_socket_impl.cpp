@@ -27,7 +27,7 @@ namespace sockets
    }
 
 
-   void listen_socket_impl::set_detach_socket_type(const ::type& type)
+   void listen_socket_impl::set_detach_socket_type(const ::platform::type & type)
    {
 
       //m_typeDetachSocket = type;

@@ -184,7 +184,7 @@ const_char_pointer particle::topic_text() const
 //string matter::class_title() const
 //{
 //
-//   auto strTypeName =  ::type(this).name();
+//   auto strTypeName =  ::platform::type(this).name();
 //
 //   auto findLastColonColon = strTypeName.rear_find("::");
 //
@@ -2955,7 +2955,7 @@ void particle::_call_procedure(enum_dispatch edispatch, const procedure& procedu
 string particle::as_string() const
 {
 
-   return ::type(this).name();
+   return ::platform::type(this).name();
 
 }
 

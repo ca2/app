@@ -1525,7 +1525,7 @@ namespace user
             if(timeEllapsed > 50_ms)
             {
 
-               string strType = ::type(this).name();
+               string strType = ::platform::type(this).name();
 
 #ifdef VERBOSE_LOG               
 
@@ -1691,7 +1691,7 @@ namespace user
 
                auto pchild = m_pimpactdata->m_pplaceholder;
 
-               ::string strType = ::type(pchild).name();
+               ::string strType = ::platform::type(pchild).name();
 
                if (strType.case_insensitive_contains("place_holder"))
                {
@@ -1702,14 +1702,14 @@ namespace user
 
                      ::cast <::user::interaction> puserinteractionChild = pchild->m_pacmeuserinteractionaChildren->first();
 
-                     ::string strTypePlaceHolderChild = ::type(puserinteractionChild).name();
+                     ::string strTypePlaceHolderChild = ::platform::type(puserinteractionChild).name();
 
                      if (strTypePlaceHolderChild.case_insensitive_contains("simple_frame_window"))
                      {
 
                         ::cast <::user::interaction> puserinteractionChild2 = puserinteractionChild->m_pacmeuserinteractionaChildren->first();
 
-                        ::string strTypePlaceHolderChild2 = ::type(puserinteractionChild2).name();
+                        ::string strTypePlaceHolderChild2 = ::platform::type(puserinteractionChild2).name();
 
                         if (strTypePlaceHolderChild2.case_insensitive_contains("font_impact"))
                         {

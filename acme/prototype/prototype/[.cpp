@@ -53,7 +53,7 @@ payload::payload(const ::scoped_string & scopedstr)
 }
 
 
-payload::payload(const type & type)
+payload::payload(const ::platform::type & type)
 {
 
    m_etype = e_type_new;
@@ -590,7 +590,7 @@ class ::payload & payload::operator ++(int)
 }
 
 
-void payload::set_type(const ::type & type)
+void payload::set_type(const ::platform::type & type)
 {
 
    set_type(e_type_type, false);
@@ -604,7 +604,7 @@ void payload::set_type(const ::type & type)
 
 
 
-bool payload::get_type(::type & type) const
+bool payload::get_type(::platform::type & type) const
 {
 
    if (m_etype != e_type_type)

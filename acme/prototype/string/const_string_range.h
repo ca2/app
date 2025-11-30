@@ -456,7 +456,7 @@ public:
    }
 
 
-   bool has_character() const { return !this->is_empty(); }
+   constexpr bool has_character() const { return !this->is_empty(); }
 
    inline bool is_empty() const noexcept { return ::is_null(this->m_begin) || ::is_null(this->m_end) || this->m_end <= this->m_begin || *this->m_begin == '\0'; }
    inline memsize length_in_bytes() const { return this->size() * sizeof(CHARACTER); }

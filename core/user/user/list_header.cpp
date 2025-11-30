@@ -753,7 +753,7 @@ namespace user
 
       //   bool bFirst = true;
 
-      //   string strType = ::type(this).name();
+      //   string strType = ::platform::type(this).name();
 
       //   if (strType.case_insensitive_contains("control_box"))
       //   {

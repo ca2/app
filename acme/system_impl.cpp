@@ -2377,7 +2377,7 @@ namespace platform
 
       }
 
-      information() << "::apex::system::on_request session = " << ::type(psession).name() << "(" << ((iptr)psession) << ")";
+      information() << "::apex::system::on_request session = " << ::platform::type(psession).name() << "(" << ((iptr)psession) << ")";
 
       psession->post_request(prequest);
 

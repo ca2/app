@@ -113,7 +113,7 @@ namespace filemanager
       //pleftview->create_impacts();
 
       //m_pfilelist = create_pane_impact(get_document()->m_typeFileList, 1);
-      m_pfilelist = create_pane_impact(typeid(file_list ), 1);
+      m_pfilelist = create_pane_impact(::type<file_list>(), 1);
 
       if(m_pfilelist == nullptr)
       {

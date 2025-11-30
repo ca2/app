@@ -2630,7 +2630,7 @@ namespace aura
 
    //   //   try
    //   //   {
-   //   //      strMessage += ::type(pparticle).name();
+   //   //      strMessage += ::platform::type(pparticle).name();
 
    //   //   }
    //   //   catch (...)
@@ -3146,7 +3146,7 @@ namespace aura
 
    //   }
 
-   //   informationf("%s", ("::aura::system::on_request session = " + string(::type(psession).name()) + "("+as_string((iptr) psession)+")\n\n").c_str());
+   //   informationf("%s", ("::aura::system::on_request session = " + string(::platform::type(psession).name()) + "("+as_string((iptr) psession)+")\n\n").c_str());
 
    //   psession->do_request(pcreate);
 
@@ -6626,10 +6626,10 @@ if(!m_pimaging)
    //}
 
 
-   //::type system::get_pane_tab_impact_type_info()
+   //::platform::type system::get_pane_tab_impact_type_info()
    //{
 
-   //   return typeid(userex::pane_tab_impact );
+   //   return ::type<userex::pane_tab_impact>();
 
    //}
 
@@ -7109,7 +7109,7 @@ if(!m_pimaging)
 
       //}
 
-   ::type system::get_pane_tab_impact_type_info()
+   ::platform::type system::get_pane_tab_impact_type_info()
    {
 
       return m_typePaneTabImpact;

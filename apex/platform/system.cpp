@@ -2233,7 +2233,7 @@ pdirectorysystem->create("/ca2core");
 
       //   //   try
       //   //   {
-      //   //      strMessage += ::type(pparticle).name();
+      //   //      strMessage += ::platform::type(pparticle).name();
 
       //   //   }
       //   //   catch (...)

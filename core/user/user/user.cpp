@@ -61,7 +61,7 @@
 
 
 //void __html_initialize(::user::user * puserex);
-//::type get_html_document_type();
+//::platform::type get_html_document_type();
 
 //#ifdef WINDOWS_DESKTOP
 //#include <Commdlg.h>
@@ -248,21 +248,21 @@ namespace core
       if (!m_typeDefaultMeshData)
       {
 
-         m_typeDefaultMeshData = typeid(::simple_mesh_data );
+         m_typeDefaultMeshData = ::type<::simple_mesh_data>();
 
       }
 
       if (!m_typeDefaultListData)
       {
 
-         m_typeDefaultListData = typeid(::simple_list_data );
+         m_typeDefaultListData = ::type<::simple_list_data>();
 
       }
 
       if (!m_typeDefaultListHeader)
       {
 
-         m_typeDefaultListHeader = typeid(::simple_list_header_control );
+         m_typeDefaultListHeader = ::type<::simple_list_header_control>();
 
          auto strAtomDefaultListHeader = m_typeDefaultListHeader.name();
 
@@ -311,9 +311,9 @@ namespace core
       add_impact_system(
          "system/form", __initialize_new ::user::multiple_document_template(
          "system/form",
-         typeid(form_document ),
+         ::type<form_document>(),
          psystem->get_simple_frame_window_type_info(),
-         typeid(::user::form_impact )));
+         ::type<::user::form_impact>()));
 
       //ptemplate->initialize(this);
 
@@ -325,9 +325,9 @@ namespace core
       //   "system/form_child",
       //   __initialize_new ::user::multiple_document_template(
       //   "system/form",
-      //   typeid(form_document ),
+      //   ::type<form_document>(),
       //   get_simple_child_frame_type_info(),
-      //   typeid(::user::form_impact )));
+      //   ::type<::user::form_impact>()));
 
       //ptemplate->initialize(this);
 
@@ -337,9 +337,9 @@ namespace core
       add_impact_system(
          "system/form_placeholder", __initialize_new ::user::multiple_document_template(
          "system/form",
-         typeid(::user::document),
+         ::type<::user::document>(),
          psystem->get_simple_frame_window_type_info(),
-         typeid(::user::place_holder )));
+         ::type<::user::place_holder>()));
 
       //ptemplate->initialize(this);
 
@@ -350,9 +350,9 @@ namespace core
       add_impact_system(
          "progress_impact", __initialize_new ::user::multiple_document_template(
          "main",
-         typeid(::user::document),
-         typeid(::userex::dialog_frame ),
-         typeid(::userex::progress_impact )));
+         ::type<::user::document>(),
+         ::type<::userex::dialog_frame>(),
+         ::type<::userex::progress_impact>()));
 
       //m_ptemplateProgress2 = pmultitemplate;
 
@@ -549,7 +549,7 @@ namespace core
    }
 
 
-   ::type user::controltype_to_typeinfo(::user::enum_control_type econtroltype)
+   ::platform::type user::controltype_to_typeinfo(::user::enum_control_type econtroltype)
    {
 
       return {};
@@ -1192,7 +1192,7 @@ namespace core
 
       information() << "default_create_list_header : " << typeListHeader.name();
 
-      return pparticle->øcreate_by_id(typeListHeader);
+      return pparticle->øcreate_by_type(typeListHeader);
 
    }
 
@@ -1200,7 +1200,7 @@ namespace core
    ::pointer<::user::mesh_data>user::default_create_mesh_data(::particle * pparticle)
    {
 
-      return pparticle->øcreate_by_id(default_type_list_data());
+      return pparticle->øcreate_by_type(default_type_list_data());
 
    }
 
@@ -1208,12 +1208,12 @@ namespace core
    ::pointer<::user::list_data>user::default_create_list_data(::particle * pparticle)
    {
 
-      return pparticle->øcreate_by_id(default_type_list_data());
+      return pparticle->øcreate_by_type(default_type_list_data());
 
    }
 
 
-   ::type user::default_type_mesh_data()
+   ::platform::type user::default_type_mesh_data()
    {
 
       return m_typeDefaultMeshData;
@@ -1221,7 +1221,7 @@ namespace core
    }
 
 
-   ::type user::default_type_list_header()
+   ::platform::type user::default_type_list_header()
    {
 
       return m_typeDefaultListHeader;
@@ -1229,7 +1229,7 @@ namespace core
    }
 
 
-   ::type user::default_type_list_data()
+   ::platform::type user::default_type_list_data()
    {
 
       return m_typeDefaultListData;
@@ -1735,10 +1735,10 @@ namespace core
             add_impact_system(
                FILEMANAGER_IMPACT, __initialize_new ::user::multiple_document_template(
                   "filemanager",
-                  typeid(::filemanager::document),
-                  typeid(::filemanager::frame),
-                  typeid(::filemanager::impact)));
-            //typeid(main_impact )));
+                  ::type<::filemanager::document>(),
+                  ::type<::filemanager::frame>(),
+                  ::type<::filemanager::impact>()));
+            //::type<main_impact>()));
 
          //
 
@@ -1755,17 +1755,17 @@ namespace core
    //      add_impact_system(
    //COLORSEL_IMPACT, __initialize_new ::user::multiple_document_template(
    //   "main",
-   //   typeid(::user::document),
-   //   typeid(::simple_frame_window ),
-   //   typeid(::user::color_selector_impact )));
+   //   ::type<::user::document>(),
+   //   ::type<::simple_frame_window>(),
+   //   ::type<::user::color_selector_impact>()));
 
 
          //user()->m_mapimpactsystem[COLORSEL_IMPACT] = __initialize_new ::user::multiple_document_template(
          //   get_app(),
          //   "main",
-         //   typeid(::user::document),
-         //   typeid(::prodevian_translucent_simple_frame_window ),
-         //   typeid(::user::color_impact )));
+         //   ::type<::user::document>(),
+         //   ::type<::prodevian_translucent_simple_frame_window>(),
+         //   ::type<::user::color_impact>()));
 
          //add_document_template(user()->m_mapimpactsystem[COLORSEL_IMPACT]);
 
@@ -1785,9 +1785,9 @@ namespace core
          add_impact_system(
             COLORSEL_IMPACT, __initialize_new ::user::multiple_document_template(
             "main",
-            typeid(::user::document),
-            typeid(::simple_frame_window ),
-            typeid(::user::color_selector_impact )));
+            ::type<::user::document>(),
+            ::type<::simple_frame_window>(),
+            ::type<::user::color_selector_impact>()));
 
          //
 
@@ -1815,9 +1815,9 @@ namespace core
          add_impact_system(
             FONTSEL_IMPACT, __initialize_new ::user::multiple_document_template(
             "main",
-            typeid(::user::document),
-            typeid(::simple_frame_window ),
-            typeid(::userex::font_impact )));
+            ::type<::user::document>(),
+            ::type<::simple_frame_window>(),
+            ::type<::userex::font_impact>()));
 
          //
 

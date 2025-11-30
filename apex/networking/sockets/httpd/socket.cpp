@@ -101,7 +101,7 @@ namespace httpd
       else
       {
 
-         return øcreate_by_id(m_typeSocketThread, m_pfactorySocketThread);
+         return øcreate_by_type(m_typeSocketThread, m_pfactorySocketThread);
 
       }
 

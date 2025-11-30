@@ -516,7 +516,7 @@
 //
 //   string strText;
 //
-//   auto type = ::type(p).name();
+//   auto type = ::platform::type(p).name();
 //
 //   if (p->has(e_flag_factory))
 //   {
@@ -758,7 +758,7 @@
 ////   payload_stream binary_stream(øallocate< ::payload(&payload()[atom].propset >()));
 ////   ::atom idFactory;
 ////   binary_stream.exchange("", idFactory);
-////   auto pparticle = øcreate_by_id<::matter>(idFactory);
+////   auto pparticle = øcreate_by_type<::matter>(idFactory);
 ////   pparticle->exchange(binary_stream);
 ////   return pparticle;
 ////}

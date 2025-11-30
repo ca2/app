@@ -53,7 +53,7 @@ namespace sockets
 
       auto plistensocket = øcreate_new < listen_socket >();
 
-      plistensocket->m_typeAttendSocket = typeid(resolv_socket);
+      plistensocket->m_typeAttendSocket = ::type<resolv_socket>();
 
       if (plistensocket->Bind("127.0.0.1", m_port))
       {

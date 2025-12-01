@@ -659,7 +659,7 @@ namespace user
 
       //auto & linkedpropertyCheck = m_linkedpropertyCheck;
 
-      // ::string strType = ::type(this).name();
+      // ::string strType = ::platform::type(this).name();
       //
       // if (strType.contains("experience"))
       // {

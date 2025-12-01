@@ -197,7 +197,7 @@ public:
    //inline ::pointer<BASE_TYPE>øcreate();
 
    //template < typename BASE_TYPE >
-   //inline ::pointer<BASE_TYPE>øcreate_by_id(const ::atom& atom);
+   //inline ::pointer<BASE_TYPE>øcreate_by_type(const ::atom& atom);
 
    //template < typename TYPE >
    //inline ::pointer<TYPE>øcreate_new();

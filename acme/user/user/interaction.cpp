@@ -2102,7 +2102,7 @@ namespace acme
          ::trace_statement & interaction::raw_trace_statement_prefix(::trace_statement & statement) const
          {
 
-            ::string strType = ::type(this).name();
+            ::string strType = ::platform::type(this).name();
 
             statement << strType;
 

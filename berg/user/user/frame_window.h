@@ -73,7 +73,7 @@ namespace user
 //      HMENU                                      m_hMenuAlt;           // menu to update to (nullptr means default)
 //#endif
       bool                                         m_bInRecalcLayout;     // avoid recursion in on_layout
-      ::type                                  m_typeFloatingFrame;
+      ::platform::type                             m_typeFloatingFrame;
 
    unsigned int                                           m_nIdleFlags;          // set of bit flags for idle processing
 

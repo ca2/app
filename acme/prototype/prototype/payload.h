@@ -348,7 +348,7 @@ public:
    void set_pointer(const ::pointer < T > & p)
    {
 
-      operator[](::type(p)) = p;
+      operator[](::platform::type(p)) = p;
 
    }
 
@@ -356,7 +356,7 @@ public:
    bool has_pointer() const
    {
 
-      return has_property(::type(typeid(T)));
+      return has_property(::platform::type(::type<T>()));
 
    }
 
@@ -364,14 +364,14 @@ public:
    ::property * find_pointer() const
    {
 
-      return find_property(::type(typeid(T)));
+      return find_property(::platform::type(::type<T>()));
 
    }
 
    template < typename TYPE >
    ::pointer < TYPE > pointer() const;
 
-   //bool get_type(::type & type) const;
+   //bool get_type(::platform::type & type) const;
 
    long long payload_release();
 

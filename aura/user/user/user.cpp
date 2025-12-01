@@ -876,8 +876,8 @@ namespace user
 }
 
 
-::type user::get_html_document_type() { return m_typeHtmlDocument; }
-::type user::get_html_impact_type() { return m_typeHtmlImpact; }
+::platform::type user::get_html_document_type() { return m_typeHtmlDocument; }
+::platform::type user::get_html_impact_type() { return m_typeHtmlImpact; }
 
 
 //   ::user::front_end_schema * GetUfeSchema(::particle * pparticle)
@@ -933,7 +933,7 @@ namespace user
 //   }
 
 
-   ::type user::controltype_to_typeinfo(::user::enum_control_type econtroltype)
+   ::platform::type user::controltype_to_typeinfo(::user::enum_control_type econtroltype)
    {
 
       return {};
@@ -1285,7 +1285,7 @@ namespace aura
    //   }
 
    //}
-   ::type system::get_simple_frame_window_type_info()
+   ::platform::type system::get_simple_frame_window_type_info()
    {
 
       return {};

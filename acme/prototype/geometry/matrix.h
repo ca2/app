@@ -620,20 +620,20 @@ inline matrix_type mul_avx2(const matrix_type &B) const
       result.m[3][3] = 1;
       result.m[0][0] = c + axis.x * axis.x * t;
       result.m[1][1] = c + axis.y * axis.y * t;
-      result.m[2][2] = c + axis.c() * axis.c() * t;
+      result.m[2][2] = c + axis.z * axis.z * t;
 
       FLOATING tmp1 = axis.x * axis.y * t;
-      FLOATING tmp2 = axis.c() * s;
+      FLOATING tmp2 = axis.z * s;
 
       result.m[0][1] = tmp1 + tmp2;
       result.m[1][0] = tmp1 - tmp2;
 
-      tmp1 = axis.x * axis.c() * t;
+      tmp1 = axis.x * axis.z * t;
       tmp2 = axis.y * s;
       result.m[0][2] = tmp1 - tmp2;
       result.m[2][0] = tmp1 + tmp2;
 
-      tmp1 = axis.y * axis.c() * t;
+      tmp1 = axis.y * axis.z * t;
       tmp2 = axis.x * s;
       result.m[1][2] = tmp1 + tmp2;
       result.m[2][1] = tmp1 - tmp2;
@@ -2116,5 +2116,14 @@ auto sequence_type<UNIT_TYPE, t_iSize>::as_scaling_matrix() const
 {
 
    return matrix_type<UNIT_TYPE, 4>{(UNIT_TYPE)1}.scaled(*this);
+
+}
+
+template<primitive_number NUMBER, primitive_floating FLOATING_TYPE, int t_iDimension, enum_matrix_major t_emajor>
+inline matrix_type<FLOATING_TYPE, t_iDimension, t_emajor>
+operator*(NUMBER scalar, const matrix_type<FLOATING_TYPE, t_iDimension, t_emajor> & matrix)
+{
+   
+   return matrix * scalar;
 
 }

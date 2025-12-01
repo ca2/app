@@ -30,8 +30,8 @@ namespace berg
       //
       // //::pointer<::user::shell>                         m_pshell;
       //
-      // //::type                                      m_typeHtmlDocument;
-      // //::type                                      m_typeHtmlImpact;
+      // //::platform::type                                 m_typeHtmlDocument;
+      // //::platform::type                                 m_typeHtmlImpact;
       //
       // ::pointer < ::user::menu_central >                 m_pmenucentral;
       //
@@ -69,10 +69,10 @@ namespace berg
       void init() override;
 
 
-      ::type get_html_document_type() override;
-      ::type get_html_impact_type() override;
+      ::platform::type get_html_document_type() override;
+      ::platform::type get_html_impact_type() override;
 
-      ::type user_default_controltype_to_typeinfo(::user::enum_control_type econtroltype) override;
+      ::platform::type user_default_controltype_to_typeinfo(::user::enum_control_type econtroltype) override;
 
 
       ::user::interaction_base *get_mouse_focus_LButtonDown() override;
@@ -89,7 +89,7 @@ namespace berg
 
       void term() override;
 
-      ::type controltype_to_typeinfo(::user::enum_control_type econtroltype) override;
+      ::platform::type controltype_to_typeinfo(::user::enum_control_type econtroltype) override;
 
 
       virtual ::pointer<::user::menu_interaction> create_menu_button(::user::style *pstyle, ::menu::item *pitem);
@@ -132,9 +132,9 @@ namespace berg
                                              ::platform::application *papp = nullptr) override;
 
 
-      // virtual ::type get_pane_tab_impact_type_info();
-      ::type get_simple_frame_window_type_info() override;
-      ::type get_simple_child_frame_type_info() override;
+      // virtual ::platform::type get_pane_tab_impact_type_info();
+      ::platform::type get_simple_frame_window_type_info() override;
+      ::platform::type get_simple_child_frame_type_info() override;
 
 
       void on_frame_window_drop_files(::user::interaction *pinteraction, ::file::path_array_base &patha) override;
@@ -174,7 +174,7 @@ namespace berg
       //:::payload payload = ::payload(::e_type_empty_argument))
       //{
 
-      //   return create_typed_child_form(pparticle, typeid(FORM), pimpactdata->m_pplaceholder, payload);
+      //   return create_typed_child_form(pparticle, ::type<FORM>(), pimpactdata->m_pplaceholder, payload);
 
       //}
 

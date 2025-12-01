@@ -2086,7 +2086,7 @@ namespace user
    ::pointer<toolbar>frame_window::create_toolbar(const ::atom & idToolbar, const ::scoped_string & scopedstrToolbarParam, unsigned int dwCtrlStyle, unsigned int uStyle, const ::platform::type & type)
    {
 
-      ::pointer < toolbar> ptoolbar = øcreate_by_id (type);
+      ::pointer < toolbar> ptoolbar = øcreate_by_type (type);
 
       ptoolbar->m_dwStyle = uStyle;
 
@@ -2568,7 +2568,7 @@ namespace user
 
       }
 
-      ::string strType(::type(this).name());
+      ::string strType(::platform::type(this).name());
       // reposition all the child windows (regardless of ID)
       //if (GetStyle() & FWS_SNAPTOBARS)
       if(m_bSnapToBars)
@@ -2988,7 +2988,7 @@ namespace user
 //
 //      bool bUpdateWindow;
 //
-//      auto type = ::type(this);
+//      auto type = ::platform::type(this);
 //
 //      if (type.name().contains("app_veriwell_keyboard") && type.name().contains("main_frame"))
 //      {

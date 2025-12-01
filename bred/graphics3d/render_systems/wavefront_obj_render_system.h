@@ -63,11 +63,20 @@ namespace graphics3d
 	   void initialize_render_system(::graphics3d::engine* pengine) override;
 
 
+      virtual ::floating_matrix4 model_matrix2(::graphics3d::scene_renderable *pscenerenderable);
+
+      virtual void model_and_normal_matrices(::floating_matrix4 &matrixModel, ::floating_matrix4 & matrixNormal,
+         ::graphics3d::scene_renderable *pscenerenderable);
+
 
 	   void on_prepare(::gpu::context* pgpucontext) override;
 	   void on_update(::gpu::context* pgpucontext, ::graphics3d::scene_base* pscene) override;
 	   void on_render(::gpu::context* pgpucontext, ::graphics3d::scene_base* pscene) override;
 
+      virtual void on_before_draw_renderable(
+         ::gpu::context* pgpucontext,
+         ::graphics3d::scene_base* pscene,
+         ::graphics3d::scene_renderable * pscenerenderable);
 
 		//void on_render() override;
 		//private:

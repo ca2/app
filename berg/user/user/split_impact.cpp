@@ -93,7 +93,7 @@ namespace user
 
          string strMessage;
 
-         strMessage.formatf("split_impact::on_create_impact failed to create views for split impact %s", typeid(this).name());
+         strMessage.format("split_impact::on_create_impact failed to create views for split impact {}", ::type(this).name());
 
          //message_box(strMessage, nullptr, ::user::e_message_box_icon_exclamation)->get_object(10_s);
 

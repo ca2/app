@@ -39,7 +39,7 @@ namespace user
       class ::time                      m_timeShowComboList;
       ::pointer<list_box>          m_plistbox;
 
-      ::type                   m_typeListBox;
+      ::platform::type              m_typeListBox;
 
       e_style                       m_estyle;
 

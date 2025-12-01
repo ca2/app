@@ -34,7 +34,7 @@ namespace graphics3d
       // Inertia
       floating_sequence3 m_sequence3Velocity;
       // Camera attributes
-      floating_sequence3 m_locationPosition;
+      //floating_sequence3 m_locationPosition;
       floating_sequence3 m_sequence3Front{0.0f, 0.0f, -1.0f}; // Camera direction (forward vector)
       floating_sequence3 m_sequence3Up{0.0f, 1.0f, 0.0f}; // Up vector
       floating_sequence3 m_sequence3Right{1.0f, 0.0f, 0.0f}; // Right vector (cross product)

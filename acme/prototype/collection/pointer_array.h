@@ -504,7 +504,7 @@ public:
       for (::collection::index i = this->get_upper_bound(); i >= 0; i--)
       {
 
-         if (typeid(*this->element_at(i).m_p) == typeid(TYPE))
+         if (typeid(*this->element_at(i).m_p) == ::type<TYPE>())
          {
 
             this->erase_at(i);
@@ -1447,7 +1447,7 @@ public:
 //      for(::collection::index i = this->get_upper_bound(); i >= 0; i--)
 //      {
 //
-//         if(typeid(*this->element_at(i).m_p) == typeid(TYPE))
+//         if(typeid(*this->element_at(i).m_p) == ::type<TYPE>())
 //         {
 //
 //            this->erase_at(i);

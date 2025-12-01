@@ -14,7 +14,7 @@ namespace graphics3d
    camera::camera()
    {
 
-      
+      m_sequence3WorldUp = {0.f, 1.f, 0.f};
 
    }
 
@@ -32,7 +32,7 @@ namespace graphics3d
 
       auto pgpucontext = m_pengine->gpu_context();
 
-      m_sequence3WorldUp = {0.f, m_pengine->m_fYScale, 0.f};
+      //m_sequence3WorldUp = {0.f, m_pengine->m_fYScale, 0.f};
 
       m_sequence3Front = pgpucontext->front(m_rotation);
 
@@ -58,7 +58,15 @@ namespace graphics3d
    void camera::calculate_impact(::floating_matrix4 & matrixImpact)
    {
 
-      matrixImpact = ::graphics3d::lookAt(this->position(), this->position() + this->front(), this->world_up());
+      auto positionCamera = this->position();
+
+      auto frontDirection = this->front();
+
+      auto positionCenter = positionCamera + frontDirection;
+
+      auto worldUp = this->world_up();
+
+      matrixImpact = ::graphics3d::lookAt(positionCamera, positionCenter, worldUp);
 
    }
 

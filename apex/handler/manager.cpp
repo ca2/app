@@ -73,7 +73,7 @@ void manager::destroy()
 
 #if REFERENCING_DEBUGGING
 
-   ::string strType = ::type(this).name();
+   ::string strType = ::platform::type(this).name();
 
    if (strType.contains("main_frame"))
    {

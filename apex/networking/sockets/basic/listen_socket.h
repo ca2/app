@@ -29,10 +29,10 @@ namespace sockets
       //::pointer < listen_socket_impl >    m_plistensocket;
       //bool                                m_bImpl;
       //bool                                m_bListeningDetach;
-      //::type                         m_typeListenSocket;
+      //::platform::type                    m_typeListenSocket;
 
       ::pointer < ::factory::factory >    m_pfactory;
-      ::type                         m_typeAttendSocket;
+      ::platform::type                    m_typeAttendSocket;
 
       /** Constructor.
       \lparam h base_socket_handler object
@@ -165,7 +165,7 @@ namespace sockets
 
 
    //   //LISTENER *     m_creator;
-   //   ::type                               m_typeListenSocket;
+   //   ::platform::type                          m_typeListenSocket;
    //   //bool                                      m_bHasCreate;
    //   ::pointer < ::sockets::base_socket >      m_psocket;
 

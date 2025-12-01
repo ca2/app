@@ -81,7 +81,7 @@ namespace networking
 
       ::object::initialize(pparticle);
 
-      if (!factory()->has<::sockets::socket_thread>())
+      if (!factory()->has_factory_item<::sockets::socket_thread>())
       {
 
          factory()->add_factory_item<::sockets::socket_thread>();

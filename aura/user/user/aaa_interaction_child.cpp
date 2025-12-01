@@ -164,7 +164,7 @@ namespace user
 
          //}
 
-         string strType = ::type(m_puserinteraction).name();
+         string strType = ::platform::type(m_puserinteraction).name();
 
          if(m_puserinteraction->is_top_level())
          {

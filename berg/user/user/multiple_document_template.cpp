@@ -190,7 +190,7 @@ namespace user
          if (prequest->m_puserelementAlloc)
          {
 
-            strId = ::type(prequest->m_puserelementAlloc).name();
+            strId = ::platform::type(prequest->m_puserelementAlloc).name();
 
          }
 

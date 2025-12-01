@@ -79,7 +79,7 @@ namespace netserver
    //::pointer < ::sockets::listen_socket > socket_thread::create_listen_socket()
    //{
 
-   //   return øcreate_by_id(m_typeSocket);
+   //   return øcreate_by_type(m_typeSocket);
 
    //}
 

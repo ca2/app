@@ -68,6 +68,33 @@ namespace graphics3d
 	}
 
 
+   ::floating_matrix4 wavefront_obj_render_system::model_matrix2(::graphics3d::scene_renderable *pscenerenderable)
+   {
+
+      floating_matrix4 matrixModel;
+
+      floating_matrix4 matrixNormal;
+
+      model_and_normal_matrices(matrixModel, matrixNormal, pscenerenderable);
+
+      return matrixModel;
+
+   }
+
+
+
+   void wavefront_obj_render_system::model_and_normal_matrices(::floating_matrix4 & matrixModel,
+                                                               ::floating_matrix4 & matrixNormal,
+                                    ::graphics3d::scene_renderable * pscenerenderable)
+   {
+
+      matrixModel = model_matrix2(pscenerenderable);
+
+      matrixNormal = floating_matrix3(matrixModel).inversed().transposed();
+
+   }
+
+
 	void wavefront_obj_render_system::on_render(::gpu::context * pgpucontext, ::graphics3d::scene_base* pscene)
 	{
 
@@ -99,13 +126,25 @@ namespace graphics3d
             ::gpu::e_renderable_type_wavefront_obj)
 			{
 
-				auto modelMatrix = m_pengine->model_matrix(pscenerenderable->m_transform);
+            //auto T = ::floating_matrix4::translation(pscenerenderable->m_sequence3Translation);
 
-				m_pshader->m_propertiesPushShared["modelMatrix"] = modelMatrix;
+            //auto R = pscenerenderable->m_matrixRotation;
 
-				auto normalMatrix = m_pengine->normal_matrix(pscenerenderable->m_transform);
+            //auto S = ::floating_matrix4::scaling(pscenerenderable->m_sequence3Scaling);
 
-				m_pshader->m_propertiesPushShared["normalMatrix"] = normalMatrix;
+            ::floating_matrix4 matrixModel;
+
+            ::floating_matrix4 matrixNormal;
+
+				model_and_normal_matrices(matrixModel, matrixNormal, pscenerenderable);
+
+				m_pshader->m_propertiesPushShared["modelMatrix"] = matrixModel;
+
+				//auto normalMatrix = m_pengine->normal_matrix(pscenerenderable->m_transform);
+
+            //floating_matrix4 normalMatrix = floating_matrix3(modelMatrix).inversed().transposed();
+
+				m_pshader->m_propertiesPushShared["normalMatrix"] = matrixNormal;
 
 				auto pcommandbuffer = pgpucontext->m_pgpurenderer->getCurrentCommandBuffer2(::gpu::current_frame());
 
@@ -113,7 +152,9 @@ namespace graphics3d
 
             prenderable->bind(pcommandbuffer);
 
-				prenderable->draw(pcommandbuffer);
+            on_before_draw_renderable(pgpucontext, pscene, pscenerenderable);
+
+            prenderable->draw(pcommandbuffer);
 
 				prenderable->unbind(pcommandbuffer);
 
@@ -124,5 +165,14 @@ namespace graphics3d
 		m_pshader->unbind(::gpu::current_command_buffer());
 
 	}
+
+
+   void wavefront_obj_render_system::on_before_draw_renderable(::gpu::context * pgpucontext,
+                                                               ::graphics3d::scene_base * pscene,
+                                    ::graphics3d::scene_renderable * pscenerenderable)
+   {
+
+   }
+
 
 } // namespace graphics3d

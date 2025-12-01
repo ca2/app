@@ -15,10 +15,14 @@ namespace html
    {
    }
 
+
    base::type value::get_type()
    {
+
       return type_value;
+
    }
+
 
    void value::set_value(const ::scoped_string & scopedstrValue)
    {

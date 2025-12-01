@@ -206,7 +206,7 @@ namespace windowing
 
       }
 
-      string strType = ::type(user_interaction()).name();
+      string strType = ::platform::type(user_interaction()).name();
 
       m_pplacementlog.release();
       m_pparticleChildrenSynchronization.release();
@@ -612,7 +612,7 @@ namespace windowing
             if (puiKeyboardFocus)
             {
 
-               information() << "key message control with keyboard focus : " << ::type(puiKeyboardFocus).name();
+               information() << "key message control with keyboard focus : " << ::platform::type(puiKeyboardFocus).name();
 
                puiKeyboardFocus->route_message(pkey);
 
@@ -1151,7 +1151,7 @@ namespace windowing
    void window::destroy_window()
    {
 
-      auto strType = ::type(user_interaction()).name();
+      auto strType = ::platform::type(user_interaction()).name();
 
       if (strType.contains("main_frame"))
       {
@@ -2731,7 +2731,7 @@ namespace windowing
 
       bool bZ = zOutput.is_change_request();
 
-      ::string strType = ::type(user_interaction()).name();
+      ::string strType = ::platform::type(user_interaction()).name();
 
       if (strType.contains("list_box"))
       {
@@ -5479,7 +5479,7 @@ namespace windowing
    void window::on_message_destroy(::message::message* pmessage)
    {
 
-      if (user_interaction() && ::type(user_interaction()).name().contains("notify_icon"))
+      if (user_interaction() && ::platform::type(user_interaction()).name().contains("notify_icon"))
       {
 
          information() << "notify_icon";
@@ -5537,7 +5537,7 @@ namespace windowing
 
    //   }
 
-   //   string strType = ::type(user_interaction()).name();
+   //   string strType = ::platform::type(user_interaction()).name();
 
    //   m_pplacementlog.release();
    //   m_pparticleChildrenSynchronization.release();
@@ -5630,7 +5630,7 @@ namespace windowing
          if (::is_set(user_interaction()))
          {
 
-            information() << ::type(user_interaction()).name() << "::destroy_impl_only";
+            information() << ::platform::type(user_interaction()).name() << "::destroy_impl_only";
 
             user_interaction()->transfer_handler(this, this);
 
@@ -5653,7 +5653,7 @@ namespace windowing
          if (user_interaction())
          {
 
-            information() << ::type(user_interaction()).name() << "::destroy_impl_only ( 2)";
+            information() << ::platform::type(user_interaction()).name() << "::destroy_impl_only ( 2)";
 
          }
 
@@ -5743,7 +5743,7 @@ namespace windowing
    //void window::destroy_window()
    //{
 
-   //   auto strType = ::type(user_interaction()).name();
+   //   auto strType = ::platform::type(user_interaction()).name();
 
    //   if (strType.contains("main_frame"))
    //   {
@@ -6086,7 +6086,7 @@ namespace windowing
             if (puiKeyboardFocus)
             {
 
-               information() << "key message control with keyboard focus : " << ::type(puiKeyboardFocus).name();
+               information() << "key message control with keyboard focus : " << ::platform::type(puiKeyboardFocus).name();
 
                puiKeyboardFocus->route_message(pkey);
 
@@ -6443,7 +6443,7 @@ namespace windowing
       if (m_pacmeuserinteractionMouseCapture)
       {
 
-         //::string strType = ::type(m_puserinteractionMouseCapture).name();
+         //::string strType = ::platform::type(m_puserinteractionMouseCapture).name();
 
          //information() << "on_mouse_message CAPTURED to object of type : " << strType;
 
@@ -6471,7 +6471,7 @@ namespace windowing
       else
       {
 
-         //::string strType = ::type(user_interaction()).name();
+         //::string strType = ::platform::type(user_interaction()).name();
 
          //information() << "on_mouse_message type : " << strType;
 
@@ -6485,7 +6485,7 @@ namespace windowing
 
       }
 
-      //         string strUserInteractionType(::is_null(puserinteractionMouse) ? "(null)" : ::type(puserinteractionMouse).name());
+      //         string strUserInteractionType(::is_null(puserinteractionMouse) ? "(null)" : ::platform::type(puserinteractionMouse).name());
       //
       //         if(pmouse->m_emessage == ::user::e_message_mouse_move)
       //         {
@@ -6581,7 +6581,7 @@ namespace windowing
       //
       //         informationf("::user::e_message_left_button_down");
       //
-      //         string strType = ::type(user_interaction()).name();
+      //         string strType = ::platform::type(user_interaction()).name();
       //
       //         if (strType.case_insensitive_contains("list_box"))
       //         {
@@ -6630,7 +6630,7 @@ namespace windowing
       //
       //      if (pmouse->m_emessage == ::user::e_message_mouse_move)
       //      {
-      //         string strType = ::type(user_interaction()).name();
+      //         string strType = ::platform::type(user_interaction()).name();
       //
       //         // We are at the message handler procedure.
       //         // mouse messages originated from message handler and that are mouse transfer happenings should end up with the correct cursor.
@@ -6649,7 +6649,7 @@ namespace windowing
       //         if (user_interaction())
       //         {
       //
-      //            strType = ::type(user_interaction()).name();
+      //            strType = ::platform::type(user_interaction()).name();
       //
       //            if (strType.case_insensitive_contains("list_box"))
       //            {
@@ -6682,7 +6682,7 @@ namespace windowing
       //      if (::is_set(puserinteractionMouseCapture))
       //      {
       //
-      //         ::string strType = ::type(puserinteractionMouseCapture).name();
+      //         ::string strType = ::platform::type(puserinteractionMouseCapture).name();
       //
       //         information() << "on_mouse_message capture type : " << strType;
       //
@@ -6697,7 +6697,7 @@ namespace windowing
       //      //if (pchild)
       //      //{
       //
-      //      //   string strType = ::type(pchild).name();
+      //      //   string strType = ::platform::type(pchild).name();
       //
       //      //   if (strType.case_insensitive_contains("button"))
       //      //   {
@@ -6769,7 +6769,7 @@ namespace windowing
       //      //if (pchild)
       //      //{
       //
-      //      //   string strType = ::type(pchild).name();
+      //      //   string strType = ::platform::type(pchild).name();
       //
       //      //   if (strType.case_insensitive_contains("button"))
       //      //   {
@@ -9004,7 +9004,7 @@ namespace windowing
 
 #endif
 
-      string strType = ::type(user_interaction()).name();
+      string strType = ::platform::type(user_interaction()).name();
 
       if (user_interaction()->is_graphical())
       {
@@ -9278,7 +9278,7 @@ namespace windowing
 
       windowing_output_debug_string("windowing::window::do_graphics");
 
-      string strType = ::type(user_interaction()).name();
+      string strType = ::platform::type(user_interaction()).name();
 
       if (!strType.case_insensitive_contains("main_frame"))
       {
@@ -9334,7 +9334,7 @@ namespace windowing
 
       //{
 
-      ::string strType = ::type(*user_interaction()).name();
+      ::string strType = ::platform::type(*user_interaction()).name();
 
       if (!strType.case_insensitive_contains("main_frame"))
       {
@@ -10179,7 +10179,7 @@ namespace windowing
    //
    //      }
    //
-   //      string strType = ::type(user_interaction()).name();
+   //      string strType = ::platform::type(user_interaction()).name();
    //
    //      if (strType.case_insensitive_contains("list_box"))
    //      {
@@ -10751,7 +10751,7 @@ namespace windowing
    //   //   }
 
    //      information() << "on_final_set_keyboard_focus : "
-   //         << ::string(::type(m_pacmeuserinteractionKeyboardFocusRequest.m_p));
+   //         << ::string(::platform::type(m_pacmeuserinteractionKeyboardFocusRequest.m_p));
 
    //      if (m_pacmeuserinteractionKeyboardFocusRequest != m_pacmeuserinteractionKeyboardFocus)
    //      {
@@ -11716,7 +11716,7 @@ namespace windowing
    //
    //      //}
    //
-   //      string strType = ::type(user_interaction()).name();
+   //      string strType = ::platform::type(user_interaction()).name();
    //
    //      if (strType.contains("font_format"))
    //      {
@@ -11831,7 +11831,7 @@ namespace windowing
    //         )
    //      {
    //
-   //         string strType = ::type(user_interaction()).name();
+   //         string strType = ::platform::type(user_interaction()).name();
    //
    //         if (strType.contains("font_format"))
    //         {
@@ -12147,7 +12147,7 @@ namespace windowing
    //
    //      }
    //
-   //      string strType = ::type(user_interaction()).name();
+   //      string strType = ::platform::type(user_interaction()).name();
    //
    //      if (strType.case_insensitive_contains("filemanager"))
    //      {
@@ -12659,7 +12659,7 @@ namespace windowing
    void window::_001OnDestroyWindow(::message::message* pmessage)
    {
 
-      if (user_interaction() && ::type(user_interaction()).name().contains("notify_icon"))
+      if (user_interaction() && ::platform::type(user_interaction()).name().contains("notify_icon"))
       {
 
          information() << "notify_icon";
@@ -13872,7 +13872,7 @@ namespace windowing
    //
    //      }
    //
-   //      string strType = ::type(user_interaction()).name();
+   //      string strType = ::platform::type(user_interaction()).name();
    //
    ////      if (strType.contains("list_box"))
    ////      {
@@ -16105,7 +16105,7 @@ namespace windowing
    void window::on_message_non_client_destroy(::message::message* pmessage)
    {
 
-      if (user_interaction() && ::type(user_interaction()).name().contains("notify_icon"))
+      if (user_interaction() && ::platform::type(user_interaction()).name().contains("notify_icon"))
       {
 
          information() << "notify_icon";
@@ -16169,7 +16169,7 @@ namespace windowing
 
       //}
 
-      //g_p->set_at((iptr)this, ::type(user_interaction()).name()) + "xxx" + ::type(this).name();
+      //g_p->set_at((iptr)this, ::platform::type(user_interaction()).name()) + "xxx" + ::platform::type(this).name();
       USER_MESSAGE_LINK(::user::e_message_show_window, pchannel, this, &window::on_message_show_window);
       USER_MESSAGE_LINK(::user::e_message_destroy, pchannel, this, &window::on_message_destroy);
       USER_MESSAGE_LINK(::user::e_message_non_client_destroy, pchannel, this, &window::on_message_non_client_destroy);
@@ -16177,7 +16177,7 @@ namespace windowing
       USER_MESSAGE_LINK(::user::e_message_after_create, pchannel, this, &window::_001OnPrioAfterCreate);
       USER_MESSAGE_LINK(::user::e_message_set_focus, pchannel, this, &window::on_prio_message_set_focus);
 
-      if (user_interaction() && ::type(user_interaction()).name().contains("notify_icon"))
+      if (user_interaction() && ::platform::type(user_interaction()).name().contains("notify_icon"))
       {
 
          information() << "notify_icon";

@@ -13,6 +13,7 @@
 #include "acme/prototype/prototype/_impl_factory.h"
 
 
+
 //inline bool __enum_is_failed(const ::e_status & e)
 //{
 //
@@ -23,7 +24,7 @@
 
 #include "acme/prototype/prototype/_impl_atom.h"
 #include "acme/prototype/prototype/_impl_prototype.h"
-
+#include "acme/prototype/prototype/_impl_type.h"
 
 //inline bool succeeded(const ::property & property)
 //{
@@ -70,7 +71,7 @@ inline ::pointer<BASE_TYPE>particle::__call__create(::factory::factory* pfactory
 
 
 //template < typename BASE_TYPE >
-//inline ::pointer<BASE_TYPE>particle::øcreate_by_id(const ::atom & atom, ::factory::factory* pfactory)
+//inline ::pointer<BASE_TYPE>particle::øcreate_by_type(const ::atom & atom, ::factory::factory* pfactory)
 //{
 //
 //   auto pfactoryitem = pfactory->get_factory_item(atom);
@@ -201,7 +202,7 @@ inline void particle::__call__construct(::pointer<BASE_TYPE>& p, ::factory::fact
 
       ::string strError;
       
-      strError.formatf("No factory for type : '%s'", typeid(BASE_TYPE).name());
+      strError.formatf("No factory for type : '%s'", ::type<BASE_TYPE>().name());
 
       error() << strError;
 

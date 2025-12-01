@@ -169,7 +169,7 @@ namespace user
                   _001SetExpandImage("matter://list/expand.png");
                   _001SetExpandImageDark("matter://list/expand_dark.png");
 
-                  task_set_name(::type(this).name() + "::Expand");
+                  task_set_name(::platform::type(this).name() + "::Expand");
 
                   auto pthread = ::get_task();
 
@@ -206,7 +206,7 @@ namespace user
             _001SetCollapseImage("matter://list/collapse.png");
             _001SetCollapseImageDark("matter://list/collapse_dark.png");
 
-            task_set_name(::type(this).name() + "::Open");
+            task_set_name(::platform::type(this).name() + "::Open");
 
             auto pthread = ::get_task();
 

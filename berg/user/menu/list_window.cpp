@@ -251,7 +251,7 @@ namespace user
 
       ::int_rectangle rectangleX;
       
-      ::string strType = ::type(get_parent()).name();
+      ::string strType = ::platform::type(get_parent()).name();
 
 //      auto rectangleParentX = get_parent()->rectangle(e_layout_layout);
       rectangleX = this->rectangle(e_layout_layout);

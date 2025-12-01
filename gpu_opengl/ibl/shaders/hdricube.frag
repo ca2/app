@@ -1,24 +1,22 @@
 #version 330 core
 
-out vec4 FragColor;
+out vec4 outColor;
 in vec3 modelCoordinates;
 
 // equirectangular projection HDRI
 uniform sampler2D hdri;
 
-const vec2 inverseAtan = vec2(0.1591, 0.3183);
-vec2 sphericalToCartesian(vec3 v)
+const float PI = 3.14159265359;
+
+void main()
 {
-	vec2 xy = vec2(atan(v.x, -v.z), asin(v.y));
-	xy *= inverseAtan;
-	xy += 0.5;
+    vec3 N = normalize(modelCoordinates);
 
-	xy.y = 1.0 - xy.y;                 // invert Y
-	return xy;
-}
+    float phi = atan(N.z, N.x);     // range: -pi..pi
+    float theta = asin(N.y);        // range: -pi/2..pi/2
 
-void main() {
-	vec3 sampleDirection = normalize(modelCoordinates);
-	vec2 uv = sphericalToCartesian(sampleDirection);
-	vec3 color = texture(hdri, uv).rgb;
+    float u = (phi / (2.0 * PI)) + 0.5;
+    float v = (theta / PI) + 0.5;
+
+    outColor = texture(hdri, vec2(u, v));
 }

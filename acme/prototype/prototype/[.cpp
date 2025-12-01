@@ -604,7 +604,7 @@ void payload::set_type(const ::platform::type & type)
 
 
 
-bool payload::get_type(::type & type) const
+bool payload::get_type(::platform::type & type) const
 {
 
    if (m_etype != e_type_type)

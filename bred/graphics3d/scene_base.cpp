@@ -204,7 +204,7 @@ namespace graphics3d
 
          auto ppointlight = this->create_point_light(intensity, 0.1f, color);
 
-         ppointlight->transform().m_sequence3Position = pos;
+         ppointlight->m_sequence3Translation = pos;
 
          informationf("Placed point light at (%0.2f, %0.2f,%0.2f)", pos.x, pos.y, pos.z);
 
@@ -381,11 +381,13 @@ namespace graphics3d
       auto rot = setObject.get("rotation", ::float_array_base{0.f, 0.f});
       auto scl = setObject.get("scale", ::float_array_base{1.f, 1.f, 1.f});
 
-      auto &transform = pscenerenderable->transform();
+      pscenerenderable->m_sequence3Translation = {pos.ø(0), pos.ø(1), pos.ø(2)};
+      pscenerenderable->m_matrixRotation = ::graphics3d::floating_rotation(::degrees(rot.ø(0)), ::degrees(rot.ø(1))).as_rotation_matrix();
+      pscenerenderable->m_sequence3Scaling = {scl.ø(0), scl.ø(1), scl.ø(2)};
 
-      transform.m_sequence3Position = {pos.ø(0), pos.ø(1), pos.ø(2)};
-      transform.m_rotation = {::radians(rot.ø(0)), ::degrees(rot.ø(1))};
-      transform.m_sequence3Scale = {scl.ø(0), scl.ø(1), scl.ø(2)};
+      //transform.m_sequence3Position = {pos.ø(0), pos.ø(1), pos.ø(2)};
+      //transform.m_rotation = {::degrees(rot.ø(0)), ::degrees(rot.ø(1)};
+      //transform.m_sequence3Scale = {scl.ø(0), scl.ø(1), scl.ø(2)};
 
       informationf("Loaded GameObject '%s' - Pos: (%0.2f, %0.2f, %0.2f), Rot: (%0.2f, %0.2f, %0.2f), Scale: (%0.2f, "
                    "%0.2f, %0.2f)",
@@ -735,7 +737,7 @@ namespace graphics3d
       auto ppointlight = øallocate ::graphics3d::point_light;
       m_pointlighta.add(ppointlight);
       ppointlight->m_color = color;
-      ppointlight->m_transform.m_sequence3Scale.x = radius;
+      ppointlight->m_sequence3Scaling.x = radius;
       // gameObj->m_pointLight =
       ppointlight->m_fLightIntensity = intensity;
       return ppointlight;

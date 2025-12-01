@@ -5167,7 +5167,7 @@ void element::pick_multiple_file(const ::file::file_dialog_filter & filedialogfi
    ::trace_statement & element::raw_trace_statement_prefix(::trace_statement & statement) const
    {
 
-      ::string strType = ::type(this).name();
+      ::string strType = ::platform::type(this).name();
 
       statement << strType;
 

@@ -125,21 +125,21 @@ void user::init(){
 //      if (!m_typeDefaultMeshData)
 //      {
 //
-//         m_typeDefaultMeshData = typeid(::simple_mesh_data );
+//         m_typeDefaultMeshData = ::type<::simple_mesh_data>();
 //
 //      }
 //
 //      if (!m_typeDefaultListData)
 //      {
 //
-//         m_typeDefaultListData = typeid(::simple_list_data );
+//         m_typeDefaultListData = ::type<::simple_list_data>();
 //
 //      }
 //
 //      if (!m_typeDefaultListHeader)
 //      {
 //
-//         m_typeDefaultListHeader = typeid(::simple_list_header_control );
+//         m_typeDefaultListHeader = ::type<::simple_list_header_control>();
 //
 //         auto strAtomDefaultListHeader = m_typeDefaultListHeader.as_string();
 //
@@ -189,9 +189,9 @@ void user::init(){
 //         "system/form",
 //         __initialize_new ::user::multiple_document_template(
 //         "system/form",
-//         typeid(form_document ),
+//         ::type<form_document>(),
 //         psystem->get_simple_frame_window_type_info(),
-//         typeid(::user::form_impact )));
+//         ::type<::user::form_impact>()));
 //
 //      //ptemplate->initialize(this);
 //
@@ -203,9 +203,9 @@ void user::init(){
 //      //   "system/form_child",
 //      //   __initialize_new ::user::multiple_document_template(
 //      //   "system/form",
-//      //   typeid(form_document ),
+//      //   ::type<form_document>(),
 //      //   get_simple_child_frame_type_info(),
-//      //   typeid(::user::form_impact )));
+//      //   ::type<::user::form_impact>()));
 //
 //      //ptemplate->initialize(this);
 //
@@ -216,9 +216,9 @@ void user::init(){
 //         "system/form_placeholder",
 //         __initialize_new ::user::multiple_document_template(
 //         "system/form",
-//         typeid(::user::document),
+//         ::type<::user::document>(),
 //         psystem->get_simple_frame_window_type_info(),
-//         typeid(::user::place_holder )));
+//         ::type<::user::place_holder>()));
 //
 //      //ptemplate->initialize(this);
 //
@@ -230,9 +230,9 @@ void user::init(){
 //         "progress_impact",
 //         __initialize_new ::user::multiple_document_template(
 //         "main",
-//         typeid(::user::document),
-//         typeid(::userex::dialog_frame ),
-//         typeid(::userex::progress_impact )));
+//         ::type<::user::document>(),
+//         ::type<::userex::dialog_frame>(),
+//         ::type<::userex::progress_impact>()));
 //
 //      //m_ptemplateProgress2 = pmultitemplate;
 //
@@ -429,7 +429,7 @@ void user::destroy()
 }
 //
 //
-//   ::type user::controltype_to_typeinfo(::user::enum_control_type econtroltype)
+//   ::platform::type user::controltype_to_typeinfo(::user::enum_control_type econtroltype)
 //   {
 //
 //      return {};
@@ -1087,7 +1087,7 @@ void user::destroy()
 //   }
 //
 //
-//   ::type user::default_type_mesh_data()
+//   ::platform::type user::default_type_mesh_data()
 //   {
 //
 //      return m_typeDefaultMeshData;
@@ -1095,7 +1095,7 @@ void user::destroy()
 //   }
 //
 //
-//   ::type user::default_type_list_header()
+//   ::platform::type user::default_type_list_header()
 //   {
 //
 //      return m_typeDefaultListHeader;
@@ -1103,7 +1103,7 @@ void user::destroy()
 //   }
 //
 //
-//   ::type user::default_type_list_data()
+//   ::platform::type user::default_type_list_data()
 //   {
 //
 //      return m_typeDefaultListData;
@@ -1610,9 +1610,9 @@ void user::destroy()
 //         //user()->m_mapimpactsystem[COLORSEL_IMPACT] = __initialize_new ::user::multiple_document_template(
 //         //   get_app(),
 //         //   "main",
-//         //   typeid(::user::document),
-//         //   typeid(::prodevian_translucent_simple_frame_window ),
-//         //   typeid(::user::color_impact )));
+//         //   ::type<::user::document>(),
+//         //   ::type<::prodevian_translucent_simple_frame_window>(),
+//         //   ::type<::user::color_impact>()));
 //
 //         //add_document_template(user()->m_mapimpactsystem[COLORSEL_IMPACT]);
 //
@@ -1633,9 +1633,9 @@ void user::destroy()
 //            COLORSEL_IMPACT,
 //            __initialize_new ::user::multiple_document_template(
 //            "main",
-//            typeid(::user::document),
-//            typeid(::simple_frame_window ),
-//            typeid(::user::color_selector_impact )));
+//            ::type<::user::document>(),
+//            ::type<::simple_frame_window>(),
+//            ::type<::user::color_selector_impact>()));
 //
 //         //
 //
@@ -1664,9 +1664,9 @@ void user::destroy()
 //            FONTSEL_IMPACT,
 //            __initialize_new ::user::multiple_document_template(
 //            "main",
-//            typeid(::user::document),
-//            typeid(::simple_frame_window ),
-//            typeid(::userex::font_impact )));
+//            ::type<::user::document>(),
+//            ::type<::simple_frame_window>(),
+//            ::type<::userex::font_impact>()));
 //
 //         //
 //

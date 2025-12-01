@@ -316,7 +316,7 @@ namespace berg
    }
 
 
-   ::type user::get_html_document_type()
+   ::platform::type user::get_html_document_type()
    {
       
       return m_typeHtmlDocument;
@@ -324,7 +324,7 @@ namespace berg
    }
 
 
-   ::type user::get_html_impact_type()
+   ::platform::type user::get_html_impact_type()
    {
       
       return m_typeHtmlImpact;
@@ -523,7 +523,7 @@ namespace berg
    //   }
 
 
-   ::type user::controltype_to_typeinfo(::user::enum_control_type econtroltype)
+   ::platform::type user::controltype_to_typeinfo(::user::enum_control_type econtroltype)
    {
 
       return {};
@@ -904,10 +904,10 @@ namespace berg
    //   }
 
    //}
-   //::type system::get_simple_frame_window_type_info()
+   //::platform::type system::get_simple_frame_window_type_info()
    //{
 
-   //   return ::type();
+   //   return ::platform::type();
 
    //}
 
@@ -1297,7 +1297,7 @@ namespace berg
 
 
 
-   ::type user::user_default_controltype_to_typeinfo(::user::enum_control_type econtroltype)
+   ::platform::type user::user_default_controltype_to_typeinfo(::user::enum_control_type econtroltype)
    {
 
 
@@ -1819,9 +1819,9 @@ namespace berg
             atom,
             øallocate::user::multiple_document_template(
                "system/form",
-               typeid(form_document ),
+               ::type<form_document>(),
                get_simple_child_frame_type_info(),
-               typeid(::user::form_impact )));
+               ::type<::user::form_impact>()));
 
          return true;
 

@@ -43,7 +43,7 @@ namespace graphics3d
 
       m_anglePitch = pitch;
 
-      m_sequence3WorldUp = { 0.0f, 1.0f, 0.0f };
+      //m_sequence3WorldUp = { 0.0f, 1.0f, 0.0f };
 
       m_fZoom = 75.0f;
 
@@ -65,7 +65,7 @@ namespace graphics3d
 
       m_anglePitch = asin(direction.y);
 
-      m_sequence3WorldUp = { 0.0f, 1.0f, 0.0f };
+      //m_sequence3WorldUp = { 0.0f, 1.0f, 0.0f };
       
       m_fZoom = glm::radians(75.0f);
       

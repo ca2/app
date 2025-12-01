@@ -667,7 +667,7 @@ void task::__priority_and_affinity()
 //
 //   //#ifndef WINDOWS
 //   //
-//   //   information() << "init_thread : " << ::type(this).name();
+//   //   information() << "init_thread : " << ::platform::type(this).name();
 //   //
 //   //#endif
 //
@@ -854,7 +854,7 @@ void task::set_task()
 
    bool bEmpty = m_strTaskName.is_empty();
 
-   bool bIsTaskName = m_strTaskName == ::type(typeid(::task)).name();
+   bool bIsTaskName = m_strTaskName == ::platform::type(::type<::task>()).name();
 
    if (bEmpty || bIsTaskName)
    {
@@ -1535,7 +1535,7 @@ void task::__task_init()
 
    //#ifndef WINDOWS
    //
-   //   information() << "init_thread : " << ::type(this).name();
+   //   information() << "init_thread : " << ::platform::type(this).name();
    //
    //#endif
 
@@ -2216,9 +2216,9 @@ bool task::on_get_task_name(string & strTaskName)
    else
    {
 
-      //::task_set_name(::type(this).name());
+      //::task_set_name(::platform::type(this).name());
 
-      strTaskName = ::type(this).name();
+      strTaskName = ::platform::type(this).name();
 
    }
 
@@ -2291,13 +2291,13 @@ void task::init_task()
 
    }
 
-   if (::type(this).name().contains("synth_thread"))
+   if (::platform::type(this).name().contains("synth_thread"))
    {
 
       informationf("synth_thread thread::thread_proc");
 
    }
-   else if (::type(this).name().case_insensitive_ends("out"))
+   else if (::platform::type(this).name().case_insensitive_ends("out"))
    {
 
       informationf("synth_thread thread::out");
@@ -2408,7 +2408,7 @@ void task::term_task()
 //
 //   //      }
 //
-//   //      id() = ::type(pelement).name();
+//   //      id() = ::platform::type(pelement).name();
 //
 //   //      task_set_name(id());
 //
@@ -2473,7 +2473,7 @@ bool task::has_message() const
 //
 //   m_pelement = pelement;
 //
-//   id() = ::type(pelement).name();
+//   id() = ::platform::type(pelement).name();
 //
 //   return branch(epriority, nStackSize, uCreateFlags ADD_PARAM_SEC_ATTRS);
 //
@@ -2554,13 +2554,13 @@ void task::branch(enum_parallelization eparallelization, const ::create_task_att
       if (m_procedure)
       {
 
-         id() = ::type(m_procedure).name();
+         id() = ::platform::type(m_procedure).name();
 
       }
       else
       {
 
-         id() = ::type(this).name();
+         id() = ::platform::type(this).name();
 
       }
 
@@ -2820,7 +2820,7 @@ void task::branch_synchronously(const ::create_task_attributes_t & createtaskatt
    //if(id().is_empty())
    //{
 
-   //   id() = ::type(this).name();
+   //   id() = ::platform::type(this).name();
 
    //}
 
@@ -2953,13 +2953,13 @@ void task::branch_synchronously(const ::create_task_attributes_t & createtaskatt
    //      if (m_pelement)
    //      {
    //
-   //         id() = ::type(m_pelement).name();
+   //         id() = ::platform::type(m_pelement).name();
    //
    //      }
    //      else
    //      {
    //
-   //         id() = ::type(this).name();
+   //         id() = ::platform::type(this).name();
    //
    //      }
    //
@@ -4002,7 +4002,7 @@ void task_run(const class ::time & time)
 CLASS_DECL_ACME::string get_task_object_name()
 {
 
-   return ::type(::get_task()).name();
+   return ::platform::type(::get_task()).name();
 
 }
 

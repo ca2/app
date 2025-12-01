@@ -448,10 +448,10 @@ void html_document::form_document_set_callback(form_callback * pcallback)
 }
 
 
-CLASS_DECL_BERG ::type __form_document_type()
+CLASS_DECL_BERG ::platform::type __form_document_type()
 {
 
-   return typeid(::html_document );
+   return ::type<::html_document>();
 
 }
 

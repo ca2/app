@@ -36,7 +36,7 @@ bool  stream_base::is_version(int i)
 //void binary_stream::write_element(const ::atom & atom, ::particle * pparticle)
 //{
 //
-//   auto strId = factory_id_to_text(::type(pelement).name());
+//   auto strId = factory_id_to_text(::platform::type(pelement).name());
 //
 //   exchange(e_property_id, strId);
 //
@@ -932,7 +932,7 @@ bool  stream_base::is_version(int i)
 //
 //   auto atom = text_to_factory_id(strText);
 //
-//   return øcreate_by_id < ::matter >(atom);
+//   return øcreate_by_type < ::matter >(atom);
 //
 //}
 //

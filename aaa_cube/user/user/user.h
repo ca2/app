@@ -27,7 +27,7 @@ namespace bred
       //::user::multiple_document_template *         m_ptemplateProgress2;
 
 
-      //map < ::type, ::user::impact_system * >      m_mapTemplate;
+      //map < ::platform::type, ::user::impact_system * >      m_mapTemplate;
 
       //atom_map < ::user::impact_system * >           m_mapimpactsystem;
 
@@ -41,9 +41,9 @@ namespace bred
 //
 //      string_array_base                                 m_straEscape;
 //
-//      ::type                                  m_typeDefaultMeshData;
-//      ::type                                  m_typeDefaultListHeader;
-//      ::type                                  m_typeDefaultListData;
+//      ::platform::type                             m_typeDefaultMeshData;
+//      ::platform::type                             m_typeDefaultListHeader;
+//      ::platform::type                             m_typeDefaultListData;
 //
 //      ::pointer<::userfs::userfs>               m_puserfs;
 //
@@ -190,9 +190,9 @@ namespace bred
 //      ::pointer<::user::list_data>default_create_list_data(::particle * pparticle);
 //
 //
-//      ::type default_type_mesh_data();
-//      ::type default_type_list_header();
-//      ::type default_type_list_data();
+//      ::platform::type default_type_mesh_data();
+//      ::platform::type default_type_list_header();
+//      ::platform::type default_type_list_data();
 //
 //
 //      virtual void will_use_impact_hint(::atom idImpact);
@@ -226,9 +226,9 @@ namespace bred
 //      //virtual ::pointer<::userfs::userfs>create_userfs();
 //
 //
-//      virtual ::type get_pane_tab_impact_type_info();
-//      //virtual ::type get_simple_frame_window_type_info() override;
-//      //virtual ::type get_simple_child_frame_type_info();
+//      virtual ::platform::type get_pane_tab_impact_type_info();
+//      //virtual ::platform::type get_simple_frame_window_type_info() override;
+//      //virtual ::platform::type get_simple_child_frame_type_info();
 //
 //
 //      virtual void on_frame_window_drop_files(::user::interaction* pinteraction, ::file::path_array& patha) override;
@@ -486,13 +486,13 @@ namespace bred
 //
 //      //template < typename VIEW >
 //      //::pointer<::user::document>  create_form(::pointer<::user::interaction>userinteractionParent = nullptr, ::payload payload = ::payload(::e_type_empty_argument), ::payload varArgs = ::payload(::e_type_empty_argument));
-//      //::pointer<::user::document>  create_form(::type point, ::pointer<::user::interaction>userinteractionParent, ::payload payload = ::payload(::e_type_empty_argument), ::payload varArgs = ::payload(::e_type_empty_argument));
+//      //::pointer<::user::document>  create_form(::platform::type point, ::pointer<::user::interaction>userinteractionParent, ::payload payload = ::payload(::e_type_empty_argument), ::payload varArgs = ::payload(::e_type_empty_argument));
 //      //::pointer<::user::document>  create_form(::user::form_callback* pcallback, ::pointer<::user::interaction>userinteractionParent, ::payload payload = ::payload(::e_type_empty_argument), ::payload varArgs = ::payload(::e_type_empty_argument));
 //      //::pointer<::user::document>  create_form(::pointer<::user::form>impact, ::user::form_callback* pcallback, ::pointer<::user::interaction>serinteractionParent, ::payload payload = ::payload(::e_type_empty_argument), ::payload varArgs = ::payload(::e_type_empty_argument));
 //      //::pointer<::user::document>  create_child_form(::user::form_callback* pcallback, ::pointer<::user::interaction>userinteractionParent, ::payload payload = ::payload(::e_type_empty_argument), ::payload varArgs = ::payload(::e_type_empty_argument));
 //      //template < typename VIEW >
 //      //::pointer<::user::document>  create_child_form(::pointer<::user::interaction>userinteractionParent, ::payload payload = ::payload(::e_type_empty_argument));
-//      //::pointer<::user::document>  create_child_form(::type point, ::pointer<::user::interaction>userinteractionParent, ::payload payload = ::payload(::e_type_empty_argument));
+//      //::pointer<::user::document>  create_child_form(::platform::type point, ::pointer<::user::interaction>userinteractionParent, ::payload payload = ::payload(::e_type_empty_argument));
 //      //::pointer<::user::document>  create_child_form(::pointer<::user::form>impact, ::user::form_callback* pcallback, ::pointer<::user::interaction>serinteractionParent, ::payload payload = ::payload(::e_type_empty_argument));
 //
 //
@@ -671,7 +671,7 @@ namespace bred
 //
 //      virtual void term() override;
 //
-//      virtual ::type controltype_to_typeinfo(::user::enum_control_type econtroltype) override;
+//      virtual ::platform::type controltype_to_typeinfo(::user::enum_control_type econtroltype) override;
 //
 //
 

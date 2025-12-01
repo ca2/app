@@ -3,7 +3,6 @@
 
 #include <typeindex>
 
-
 ////#include "acme/exception/exception.h"
 #include "acme/parallelization/critical_section.h"
 #include "acme/prototype/collection/atom_map.h"
@@ -192,8 +191,9 @@ namespace factory
 
 
    //using factory_base_by_type_index_pointer = ::pointer_key_map_base < ::pointer < factory_item_interface > >;
+   using factory_base_by_string = ::string_map_base<::pointer<factory_item_interface>>;
    using factory_base_by_type_index = ::map < ::std::type_index, ::pointer < factory_item_interface > >;
-   using factory_base_by_id = atom_map_base < ::pointer < factory_item_interface > >;
+   using factory_base_by_custom_ipair_id = ::map_base<type_iptr_pair, ::pointer<factory_item_interface>>;
 
 
    class CLASS_DECL_ACME factory :
@@ -202,9 +202,11 @@ namespace factory
    public:
 
 
-      //factory_base_by_type_index_pointer       m_mapByRawNamePointer;
+      //factory_base_by_type_index_pointer   m_mapByRawNamePointer;
+      factory_base_by_string                 m_mapByTypeName;
+      factory_base_by_string                 m_mapByCustomNameId2;
       factory_base_by_type_index             m_mapByTypeIndex;
-      factory_base_by_id                     m_mapById;
+      factory_base_by_custom_ipair_id        m_mapByCustomIpairId;
       ::atom                                 m_atomSource;
       ::pointer<::acme::library>             m_plibrary;
       ::critical_section                     m_criticalsection;
@@ -216,15 +218,26 @@ namespace factory
 
 
       //::pointer<::factory::factory_item_interface>& get_factory_item_by_type_index(const ::std::type_index & typeindex);
-      //::pointer<::factory::factory_item_interface>& get_factory_item_by_id(const ::atom& atom);
+      //::pointer<::factory::factory_item_interface>& get_factory_item_by_custom_id(const ::platform::type & type);
 
-      //inline ::pointer<::factory::factory_item_interface>& get_factory_item_from(const ::atom& atom, const ::atom & atomSource);
+      //inline ::pointer<::factory::factory_item_interface>& get_factory_item_from(const ::platform::type & type, const ::platform::type & typeSource);
 
-      ::factory::factory_item_interface * get_factory_item_by_type_index(const ::std::type_index & typeindex) const;
-      ::factory::factory_item_interface * get_factory_item_by_id(const ::atom& atom) const;
+      ::factory::factory_item_interface * _get_factory_item_by_type_index(const ::std::type_index & typeindex) const;
+      ::factory::factory_item_interface * _get_factory_item_by_type_name(const ::scoped_string & scopedstrTypeName) const;
+      ::factory::factory_item_interface * _get_factory_item_by_type_id(const ::type_id & type_id) const;
+      ::factory::factory_item_interface * _get_factory_item_by_custom_id(const ::type_custom_id & typecustomid) const;
+      ::factory::factory_item_interface * _get_factory_item(const ::platform::type & type) const;
+
+      //::factory::factory_item_interface * get_factory_item_by_type_index(const ::std::type_index & typeindex) const;
+      //::factory::factory_item_interface * get_factory_item_by_type_name(const ::scoped_string & scopedstrTypeName) const;
+      //::factory::factory_item_interface * get_factory_item_by_type_id(const ::type_id & type_id) const;
+      //::factory::factory_item_interface * get_factory_item_by_custom_id(const ::type_custom_id & typecustomid) const;
+
 
       bool has_factory_item_by_type_index(const ::std::type_index & typeindex) const;
-      bool has_factory_item_by_id(const ::atom& atom) const;
+      bool has_factory_item_by_type_name(const ::scoped_string & scopedstrTypeName) const;
+      bool has_factory_item_by_custom_id(const ::type_custom_id & typecustomid) const;
+      bool has_factory_item(const ::platform::type & type) const;
 
       template<typename ORIGIN_TYPE>
       bool has_factory_item() const
@@ -236,19 +249,19 @@ namespace factory
 
       }
 
-      //inline ::factory::factory_item_interface * get_factory_item_from(const ::atom& atom, const ::atom & atomSource) const;
+      //inline ::factory::factory_item_interface * get_factory_item_from(const ::platform::type & type, const ::platform::type & typeSource) const;
 
       template < typename ORIGIN_TYPE >
       inline ::factory::factory_item_interface * get_factory_item() const;
 
       //template < typename ORIGIN_TYPE >
-      //inline ::factory::factory_item_interface * get_factory_item(const ::atom& atom);
-      //inline ::pointer<factory_item_interface>& get_factory_item(const ::atom& atom)
+      //inline ::factory::factory_item_interface * get_factory_item(const ::platform::type & type);
+      //inline ::pointer<factory_item_interface>& get_factory_item(const ::platform::type & type)
          
       template < typename BASE_TYPE >
       inline bool __call__defer_construct(::particle * pparticle, ::pointer<BASE_TYPE> &  ptype);
       template < typename TYPE, typename ORIGIN_TYPE>
-      inline pointer< ::factory::factory_item_base < ORIGIN_TYPE > > _add_factory_item_from(const ::atom& atomSource);
+      inline pointer< ::factory::factory_item_base < ORIGIN_TYPE > > _add_factory_item_from(const ::platform::type & typeSource);
 
 
 #if REFERENCING_DEBUGGING
@@ -259,15 +272,17 @@ namespace factory
 #endif
 
       //template < typename ORIGIN_TYPE >
-      //inline ::pointer<::factory::factory_item_interface>& get_factory_item_from(const ::atom & atomSource);
+      //inline ::pointer<::factory::factory_item_interface>& get_factory_item_from(const ::platform::type & typeSource);
 
       template < typename TYPE, typename ORIGIN_TYPE = TYPE >
       inline pointer< ::factory::factory_item_base < ORIGIN_TYPE > > add_factory_item();
 
       template < typename ORIGIN_TYPE  >
-      inline pointer< ::factory::factory_item_base < ORIGIN_TYPE > > add_factory_item_with_id(const ::atom& atom);
+      inline pointer< ::factory::factory_item_base < ORIGIN_TYPE > > add_factory_item_with_custom_id(const ::type_custom_id & typecustomid);
       //template < typename TYPE, typename ORIGIN_TYPE >
-      //inline pointer< ::factory::factory_item_base < ORIGIN_TYPE > > add_factory_item_from(const ::atom& atomSource);
+      //inline pointer< ::factory::factory_item_base < ORIGIN_TYPE > > add_factory_item_from(const ::platform::type & typeSource);
+      virtual void set_factory_item_by_custom_id(const ::type_custom_id & typecustomid, const ::pointer<::factory::factory_item_interface> & pfactoryitem);
+      virtual void set_factory_item_by_type(const ::platform::type & type, const ::pointer<::factory::factory_item_interface> & pfactoryitem);
 
       template < typename TYPE, typename ORIGIN_TYPE>
       inline pointer< ::factory::factory_item_base < ORIGIN_TYPE > > create_reusable_factory_item();
@@ -281,6 +296,7 @@ namespace factory
 
       void set_currently_loading_library();
 
+      void terminate();
 
       template < typename ORIGIN_TYPE >
       inline void __defer_raw_construct( ::pointer<ORIGIN_TYPE> & p)
@@ -304,21 +320,25 @@ namespace factory
       inline void __call__raw_construct(::pointer<ORIGIN_TYPE> & p);
 
 
-      virtual ::particle_pointer __call__create_by_type_index(const ::std::type_index & typeindex, ::particle * pparticle);
-      virtual ::particle_pointer __call__create_by_id(const ::atom & atom, ::particle* pparticle);
+      //virtual ::particle_pointer __call__create_by_type_index(const ::std::type_index & typeindex, ::particle * pparticle);
+      //virtual ::particle_pointer __call__create_by_type_name(const ::scoped_string & scopedstrTypeName, ::particle * pparticle);
+      virtual ::particle_pointer __call__create_by_custom_id(const ::type_custom_id & typecustomid, ::particle* pparticle);
+      //virtual ::particle_pointer __call__create_by_type(const ::platform::type & type, ::particle* pparticle);
 
 
-      virtual bool has_by_type_index(const ::std::type_index & typeindex) const;
-      virtual bool has_by_id(const ::atom & atom) const;
-      
+      //virtual bool has_by_type_index(const ::std::type_index & typeindex) const;
+      //virtual bool has_by_type_name(const ::scoped_string & scopedstrTypeName) const;
+      //virtual bool has_by_custom_id(const ::type_custom_id & typecustomid) const;
+      //virtual bool has(const ::platform::type & type) const;
 
-      template < typename TYPE >
-      bool has() const
-      {
-       
-         return this->has_by_type_index(::std::type_index(typeid(TYPE)));
-         
-      }
+
+      // template < typename TYPE >
+      // bool has() const
+      // {
+      //
+      //    return this->has_by_type_index(::std::type_index(typeid(TYPE)));
+      //
+      // }
 
 
    };
@@ -327,84 +347,86 @@ namespace factory
 
    using factory_array = pointer_array < factory_item_interface >;
 
-   //CLASS_DECL_ACME factory * get_factory();
-
-   ///CLASS_DECL_ACME factory * get_factory(const ::atom & atomSource);
-
-   CLASS_DECL_ACME factory_item_interface * get_factory_item_by_type_index(const ::std::type_index & typeindex);
-   CLASS_DECL_ACME factory_item_interface * get_factory_item_by_id(const ::atom & atom);
-
-
-   CLASS_DECL_ACME factory_item_interface * get_existing_factory_item_by_type_index(const ::std::type_index & typeindex);
-   CLASS_DECL_ACME factory_item_interface * get_existing_factory_item_by_id(const ::atom & atom);
-
-
-   CLASS_DECL_ACME factory_item_interface * get_factory_item_by_type_index(const ::std::type_index & typeindex, const ::atom & atomFactory);
-   CLASS_DECL_ACME factory_item_interface * get_factory_item_by_id(const ::atom & atom, const ::atom & atomFactory);
-
-
-   CLASS_DECL_ACME bool has_by_type_index(const ::std::type_index & typeindex);
-   CLASS_DECL_ACME bool has_by_id(const ::atom& atom);
-   
-
-   
-   CLASS_DECL_ACME void set_factory_item_by_type_index(const ::atom & atom, const ::pointer<factory_item_interface>& pfactory);
-
-   template < typename ORIGIN_TYPE >
-   inline ::atom get_id();
-//   {
+//    //CLASS_DECL_ACME factory * get_factory();
 //
-//      auto pszTypename = typeid(ORIGIN_TYPE).name();
-//
-//#ifdef WINDOWS
-//
-//      pszTypename = c_demangle(scopedstrTypename);
-//
-//      return pszTypename;
-//
-//#else
-//
-//      auto strTypename = ::transfer(demangle(scopedstrTypename));
-//
-//      return strTypename;
+//    ///CLASS_DECL_ACME factory * get_factory(const ::platform::type & typeSource);
+//    ///
 //
 //
-//#endif
+//    //CLASS_DECL_ACME factory_item_interface * get_factory_item_by_type_index(const ::std::type_index & typeindex);
+//    //CLASS_DECL_ACME factory_item_interface * get_factory_item_by_custom_id(const ::type_custom_id & typecustomid);
 //
-//   }
-
-
-   //template < typename ORIGIN_TYPE >
-   //inline ::pointer<factory_item_interface>& get_factory_item();
-//   {
 //
-//      //static auto atom = get_atom<ORIGIN_TYPE>();
+//    //CLASS_DECL_ACME factory_item_interface * get_existing_factory_item_by_type_index(const ::std::type_index & typeindex);
+//    //CLASS_DECL_ACME factory_item_interface * get_existing_factory_item_by_custom_id(const ::type_custom_id & typecustomid);
 //
-//      //return get_factory_item(atom);
 //
-//      return get_factory_item(get_atom<ORIGIN_TYPE>());
+//    //CLASS_DECL_ACME factory_item_interface * get_factory_item_by_type_index(const ::std::type_index & typeindex, const ::atom & atomFactory);
+//    //CLASS_DECL_ACME factory_item_interface * get_factory_item_by_custom_id(const ::platform::type & type, const ::atom & atomFactory);
 //
-//   }
-
-
-   template < typename ORIGIN_TYPE >
-   inline ::pointer<factory_item_interface> get_factory_item_by_type_index(const ::std::type_index & typeindex);
-
-   template < typename ORIGIN_TYPE >
-   inline ::pointer<factory_item_interface> get_factory_item_by_id(const ::atom & atom);
-
-   
-   //   {
 //
-//      //static auto atom = get_atom<ORIGIN_TYPE>();
+//    //CLASS_DECL_ACME bool has_by_type_index(const ::std::type_index & typeindex);
+//    //CLASS_DECL_ACME bool has_by_custom_id(const ::type_custom_id & typecustomid);
 //
-//      //return get_factory_item(atom, atomSource);
 //
-//      ///static auto atom = get_atom<ORIGIN_TYPE>();
 //
-//      return get_factory_item(atomSource, get_atom<ORIGIN_TYPE>());
+//    //CLASS_DECL_ACME void set_factory_item_by_type(const ::platform::type & type, const ::pointer<factory_item_interface>& pfactory);
 //
-//   }
+//    template < typename ORIGIN_TYPE >
+//    inline ::atom get_id();
+// //   {
+// //
+// //      auto pszTypename = ::type<ORIGIN_TYPE>().name();
+// //
+// //#ifdef WINDOWS
+// //
+// //      pszTypename = c_demangle(scopedstrTypename);
+// //
+// //      return pszTypename;
+// //
+// //#else
+// //
+// //      auto strTypename = ::transfer(demangle(scopedstrTypename));
+// //
+// //      return strTypename;
+// //
+// //
+// //#endif
+// //
+// //   }
+//
+//
+//    //template < typename ORIGIN_TYPE >
+//    //inline ::pointer<factory_item_interface>& get_factory_item();
+// //   {
+// //
+// //      //static auto atom = get_atom<ORIGIN_TYPE>();
+// //
+// //      //return get_factory_item(atom);
+// //
+// //      return get_factory_item(get_atom<ORIGIN_TYPE>());
+// //
+// //   }
+//
+//
+//    //template < typename ORIGIN_TYPE >
+//    //inline ::pointer<factory_item_interface> get_factory_item_by_type_index(const ::std::type_index & typeindex);
+//
+//    //template < typename ORIGIN_TYPE >
+//    //inline ::pointer<factory_item_interface> get_factory_item_by_custom_id(const ::type_custom_id & typecustomid);
+//
+//
+//    //   {
+// //
+// //      //static auto atom = get_atom<ORIGIN_TYPE>();
+// //
+// //      //return get_factory_item(atom, atomSource);
+// //
+// //      ///static auto atom = get_atom<ORIGIN_TYPE>();
+// //
+// //      return get_factory_item(atomSource, get_atom<ORIGIN_TYPE>());
+// //
+// //   }
 
 
 } // namespace factory
@@ -422,11 +444,11 @@ namespace factory
 
 
 //    template < typename TYPE, typename ORIGIN_TYPE = TYPE >
-//    inline pointer< ::factory::factory_item_base < ORIGIN_TYPE > > add_factory_item(const ::atom& atom);
+//    inline pointer< ::factory::factory_item_base < ORIGIN_TYPE > > add_factory_item(const ::platform::type & type);
 
 
 //    template < typename TYPE, typename ORIGIN_TYPE = TYPE >
-//    inline pointer< ::factory::factory_item_base < ORIGIN_TYPE > > add_factory_item_from(const ::atom& atomSource);
+//    inline pointer< ::factory::factory_item_base < ORIGIN_TYPE > > add_factory_item_from(const ::platform::type & typeSource);
 
 
 //    template < typename TYPE, typename ORIGIN_TYPE = TYPE >
@@ -451,17 +473,22 @@ namespace factory
    //CLASS_DECL_ACME critical_section * &m_criticalsection;
 
 
-   template <  typename ORIGIN_TYPE>
-   inline pointer< ::factory::factory_item_base < ORIGIN_TYPE > > factory::add_factory_item_with_id(const ::atom & atom)
+   template <  typename TYPE >
+   inline pointer< ::factory::factory_item_base < TYPE > > factory::add_factory_item_with_custom_id(const ::type_custom_id & typecustomid)
    {
+
+      if (typecustomid.is_empty())
+      {
+
+         throw ::exception(error_bad_argument, "type custom id is not set");
+
+      }
 
       critical_section_lock lock(&m_criticalsection);
 
-      auto pfactoryitem = øallocate ::factory::factory_item< ORIGIN_TYPE, ORIGIN_TYPE > ();
+      auto pfactoryitem = øallocate ::factory::factory_item< TYPE, TYPE > ();
 
-      m_mapById[atom] = pfactoryitem;
-
-      //factory()->set_at(atom, pfactory);
+      set_factory_item_by_custom_id(typecustomid, pfactoryitem);
 
       return pfactoryitem;
 
@@ -472,7 +499,7 @@ namespace factory
 
 //
 //   template < typename TYPE, typename ORIGIN_TYPE>
-//   inline pointer< ::factory::factory_item_base < ORIGIN_TYPE > > factory::_add_factory_item_from(const ::atom & atomSource)
+//   inline pointer< ::factory::factory_item_base < ORIGIN_TYPE > > factory::_add_factory_item_from(const ::platform::type & typeSource)
 //   {
 //
 ////      critical_section_lock lock(&m_criticalsection);
@@ -656,7 +683,7 @@ namespace factory
 //
 
 
-//   inline ::factory::factory_item_interface * factory::get_factory_item(const ::atom & atom) const
+//   inline ::factory::factory_item_interface * factory::get_factory_item(const ::platform::type & type) const
 //   {
 //
 //      critical_section_lock cs(&((factory*)this)->m_criticalsection);
@@ -679,7 +706,7 @@ namespace factory
 //   inline ::pointer<::factory::factory_item_interface> & factory::get_factory_item()
 //   {
 //
-//      string strTypename(typeid(ORIGIN_TYPE).name());
+//      string strTypename(::type<ORIGIN_TYPE>().name());
 //
 //      strTypename = ::demangle(strTypename);
 //
@@ -688,7 +715,7 @@ namespace factory
 //   }
 
 
-   //inline ::pointer<::factory::factory_item_interface> & factory::get_factory_item(const ::atom & atom);
+   //inline ::pointer<::factory::factory_item_interface> & factory::get_factory_item(const ::platform::type & type);
 //   {
 //
 //      critical_section_lock cs(&m_criticalsection);
@@ -699,7 +726,7 @@ namespace factory
 //   }
 
 
-   //inline ::pointer<factory_item_interface> & factory::get_factory_item(const ::atom & atom)
+   //inline ::pointer<factory_item_interface> & factory::get_factory_item(const ::platform::type & type)
    //{
 
    //   critical_section_lock cs(&m_criticalsection);
@@ -709,7 +736,7 @@ namespace factory
    //}
 
 
-   inline ::pointer<factory_item_interface> & get_existing_factory_item(const ::atom & atom);
+   inline ::pointer<factory_item_interface> & get_existing_factory_item(const ::platform::type & type);
 //   {
 //
 //      auto & pfactoryitem = get_factory_item(atom);
@@ -739,7 +766,7 @@ namespace factory
    //   if (strText.is_empty() || strText.case_insensitive_begins_eat("factoryless://"))
    //   {
 
-   //      if (p && ::type(p).name()) == strText
+   //      if (p && ::platform::type(p).name()) == strText
    //      {
 
    //         informationf("loading into existing matter of same class type (1)");
@@ -758,7 +785,7 @@ namespace factory
    //            stream.set_fail_bit();
 
    //         }
-   //         else if (::type(p).name()) != strText
+   //         else if (::platform::type(p).name()) != strText
    //         {
 
    //            informationf("allocated matter type is different from streamed matter type (1.2)");
@@ -775,7 +802,7 @@ namespace factory
 
    //      auto atom = stream.text_to_factory_id(strText);
 
-   //      if (p && atom == ::type(p).name())
+   //      if (p && atom == ::platform::type(p).name())
    //      {
 
    //         informationf("loading into existing matter of same class type (2)");
@@ -792,7 +819,7 @@ namespace factory
    //            informationf("stream::alloc_object_from_text failed (2.1)");
 
    //         }
-   //         else if (::type(p).name()) != atom.to_string()
+   //         else if (::platform::type(p).name()) != atom.to_string()
    //         {
 
    //            informationf("allocated matter type is different from streamed matter type (2.2)");
@@ -889,7 +916,7 @@ namespace factory
 //
 //      string strMessage;
 //
-//      strMessage.formatf("matter::øconstruct object(%s) is not of type \"%s\"", ::type(pparticleNew).name().c_str(), __type_name < TYPE >().c_str());
+//      strMessage.formatf("matter::øconstruct object(%s) is not of type \"%s\"", ::platform::type(pparticleNew).name().c_str(), __type_name < TYPE >().c_str());
 //
 //      throw_exception(::error_wrong_type, strMessage);
 //
@@ -954,7 +981,7 @@ inline ::pointer<BASE_TYPE> __raw_create(::factory::factory* pfactory);
 
 
 //template < typename TYPE >
-//inline void øconstruct_by_id(particle* pparticle, ::pointer<TYPE>& p, const ::atom& atom, ::factory::factory * pfactory = nullptr);
+//inline void øconstruct_by_custom_id(particle* pparticle, ::pointer<TYPE>& p, const ::platform::type & type, ::factory::factory * pfactory = nullptr);
 //{
 //
 //   auto& pfactoryitem = pfactory->get_factory_item(atom);
@@ -996,7 +1023,7 @@ inline ::pointer<BASE_TYPE> __raw_create(::factory::factory* pfactory);
 
 
 //template < typename TYPE >
-//inline ::pointer < TYPE > øcreate_by_id(particle* pparticle, const ::atom& atom, ::factory::factory * pfactory = nullptr);
+//inline ::pointer < TYPE > øcreate_by_custom_id(particle* pparticle, const ::platform::type & type, ::factory::factory * pfactory = nullptr);
 //{
 //
 //   auto& pfactoryitem = pfactory->get_factory_item(atom);

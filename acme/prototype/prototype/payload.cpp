@@ -786,7 +786,7 @@ class ::payload & payload::operator ++(int)
 //}
 
 
-//bool payload::get_type(::type & type) const
+//bool payload::get_type(::platform::type & type) const
 //{
 //
 //   if (m_etype != e_type_type)
@@ -3540,7 +3540,7 @@ string payload::as_string(const ::scoped_string & scopedstrOnNull) const
       else if (is_element_set())
       {
          
-         str = ::type(as_subparticle()).name();
+         str = ::platform::type(as_subparticle()).name();
 
       }
 

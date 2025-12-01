@@ -28,10 +28,10 @@ namespace sockets
       listen_socket_impl *                m_plistensocketInterface;
       bool                                m_bImpl;
       bool                                m_bListeningDetach;
-      //::type                         m_typeListenSocket;
+      //::platform::type                    m_typeListenSocket;
 
       //::pointer < ::factory::factory >    m_pfactory;
-      //::type                         m_typeDetachSocket;
+      //::platform::type                    m_typeDetachSocket;
 
       /** Constructor.
       \lparam h base_socket_handler object

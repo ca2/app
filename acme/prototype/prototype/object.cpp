@@ -117,7 +117,7 @@ void object::create_object_meta()
 string object::as_string() const
 {
 
-   return ::type(this).name() + " (0x" + ::hex::lower_case_from((uptr)this) + ")";
+   return ::platform::type(this).name() + " (0x" + ::hex::lower_case_from((uptr)this) + ")";
 
 }
 
@@ -159,7 +159,7 @@ string object::as_string() const
 //   if (m_preferencea->get_upper_bound() == 8)
 //   {
 //
-//      if (::type(this).name().contains("application"))
+//      if (::platform::type(this).name().contains("application"))
 //      {
 //
 //         string strMessage = "what is this? : " + __type_name(m_preferencea->last());
@@ -821,7 +821,7 @@ void object::defer_update_object_id()
 ::atom object::calc_default_object_id() const
 {
 
-   string strType = ::type(this).name();
+   string strType = ::platform::type(this).name();
 
    strType.case_insensitive_begins_eat("class ");
 
@@ -1053,7 +1053,7 @@ void object::add_task(::object* pobjectTask)
 
    ødefer_construct_new(m_pparticleaChildrenTask);
 
-   string strType = ::type(this).name();
+   string strType = ::platform::type(this).name();
 
    if (strType.contains("prodevian"))
    {
@@ -1119,7 +1119,7 @@ void object::erase_task_and_set_task_new_parent(::object* pobjectTask, ::object 
 
    }
 
-   string strType = ::type(this).name();
+   string strType = ::platform::type(this).name();
 
    if (strType.contains("user::thread"))
    {
@@ -1344,7 +1344,7 @@ bool object::set_children_to_finish_and_check_them_finished()
                try
                {
 
-                  strType = ::type(ptaskChild).name();
+                  strType = ::platform::type(ptaskChild).name();
 
                }
                catch (...)
@@ -1533,7 +1533,7 @@ void object::delete_this()
 //
 //   ::e_status estatus = ::success;
 //
-//   string strTypeName = ::type(this).name();
+//   string strTypeName = ::platform::type(this).name();
 //
 //   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
@@ -1565,7 +1565,7 @@ void object::delete_this()
 //
 //   ::e_status estatus = ::success;
 //
-//   string strTypeName = ::type(this).name();
+//   string strTypeName = ::platform::type(this).name();
 //
 //   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
@@ -2096,9 +2096,9 @@ void object::task_erase(::task* ptask)
    try
    {
 
-      string strThreadThis = ::type(this).name();
+      string strThreadThis = ::platform::type(this).name();
 
-      string strThreadChild = ::type(ptask).name();
+      string strThreadChild = ::platform::type(ptask).name();
 
       _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
@@ -2565,7 +2565,7 @@ struct context_object_test_struct :
 //CLASS_DECL_ACME void object_on_add_composite(const element* pusermessage)
 //{
 //
-//   string strType = ::type(pusermessage).name();
+//   string strType = ::platform::type(pusermessage).name();
 //
 //   if (strType.case_insensitive_contains("user::thread"))
 //   {
@@ -2944,7 +2944,7 @@ void object::initialize(::particle * pparticle)
 
    //#if REFERENCING_DEBUGGING
    //
-   //   string strType = ::type(this).name();
+   //   string strType = ::platform::type(this).name();
    //
    //   if (strType.case_insensitive_contains("session"))
    //   {
@@ -3066,7 +3066,7 @@ void object::initialize(::particle * pparticle)
 //
 //   pthread->m_pelement = routine;
 //
-//   pthread->id() = ::type(pthread->m_pelement).name();
+//   pthread->id() = ::platform::type(pthread->m_pelement).name();
 //
 //   pthread->begin_thread();
 //
@@ -3204,7 +3204,7 @@ void object::initialize(::particle * pparticle)
 //inline ::pointer<BASE_TYPE>øcreate();
 
 //template < typename BASE_TYPE >
-//inline ::pointer<BASE_TYPE>øcreate_by_id(const ::atom& atom);
+//inline ::pointer<BASE_TYPE>øcreate_by_type(const ::atom& atom);
 
 //template < typename TYPE >
 //inline ::pointer<TYPE>øcreate_new();

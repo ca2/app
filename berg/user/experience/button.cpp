@@ -118,7 +118,7 @@ namespace experience
 //      try
 //      {
 //
-//         if (::type(this).name().case_insensitive_contains("control_box"))
+//         if (::platform::type(this).name().case_insensitive_contains("control_box"))
 //         {
 //
 //            informationf("control_box");

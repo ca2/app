@@ -131,7 +131,7 @@ namespace user
    ::pointer<::user::document>impact_system::create_new_document(::request * prequest)
    {
 
-      // default implementation constructs one from ::type
+      // default implementation constructs one from ::platform::type
       if (!m_typeDocument)
       {
 
@@ -149,7 +149,7 @@ namespace user
 
       //auto estatus = 
       
-      papp->øconstruct_by_id(pdocument, m_typeDocument);
+      papp->øconstruct_by_type(pdocument, m_typeDocument);
 
       if (!pdocument)
       {
@@ -232,7 +232,7 @@ namespace user
 
       //auto estatus =
       
-      papp->øconstruct_by_id(pframe, m_typeFrame);
+      papp->øconstruct_by_type(pframe, m_typeFrame);
 
       if (!pframe)
       {

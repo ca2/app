@@ -2375,6 +2375,7 @@
     <ClInclude Include="prototype\prototype\_impl_factory.h" />
     <ClInclude Include="prototype\prototype\_impl_payload.h" />
     <ClInclude Include="prototype\prototype\_impl_ptr.h" />
+    <ClInclude Include="prototype\prototype\_impl_type.h" />
     <ClInclude Include="prototype\string\character_range.h" />
     <ClInclude Include="prototype\string\const_string_range_static_array.h" />
     <ClInclude Include="prototype\string\c_string.h" />

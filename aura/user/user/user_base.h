@@ -22,8 +22,8 @@ namespace user
       //
       // //::pointer<::user::shell>                         m_pshell;
       //
-      // //::type                                      m_typeHtmlDocument;
-      // //::type                                      m_typeHtmlImpact;
+      // //::platform::type                                 m_typeHtmlDocument;
+      // //::platform::type                                 m_typeHtmlImpact;
 
       ::pointer < ::user::menu_central >                 m_pmenucentral;
 
@@ -56,11 +56,11 @@ namespace user
 //      virtual void init() override;
 
 
-      virtual ::type get_html_document_type();// { return m_typeHtmlDocument; }
+      virtual ::platform::type get_html_document_type();// { return m_typeHtmlDocument; }
 
-      virtual ::type get_html_impact_type();// { return m_typeHtmlImpact; }
+      virtual ::platform::type get_html_impact_type();// { return m_typeHtmlImpact; }
 
-      virtual ::type user_default_controltype_to_typeinfo(::user::enum_control_type econtroltype);
+      virtual ::platform::type user_default_controltype_to_typeinfo(::user::enum_control_type econtroltype);
 
 
 //      virtual ::user::interaction_base * get_mouse_focus_LButtonDown() override;
@@ -78,7 +78,7 @@ namespace user
 
       //virtual void term() override;
 
-      //virtual ::type controltype_to_typeinfo(::user::enum_control_type econtroltype) override;
+      //virtual ::platform::type controltype_to_typeinfo(::user::enum_control_type econtroltype) override;
 
 
       //virtual ::pointer<::user::menu_interaction>create_menu_button(::user::style * pstyle, ::menu::item * pitem);
@@ -117,13 +117,13 @@ namespace user
       virtual ::user::style_pointer get_user_style(const ::scoped_string & scopedstrExperience, ::platform::application* papp = nullptr);
 
 
-      //virtual ::type get_pane_tab_impact_type_info();
+      //virtual ::platform::type get_pane_tab_impact_type_info();
 
 
-      virtual ::type get_simple_frame_window_type_info();
+      virtual ::platform::type get_simple_frame_window_type_info();
 
 
-      virtual ::type get_simple_child_frame_type_info();
+      virtual ::platform::type get_simple_child_frame_type_info();
 
 
       virtual void on_frame_window_drop_files(::user::interaction* pinteraction, ::file::path_array_base& patha);
@@ -154,7 +154,7 @@ namespace user
       // ::pointer<::form_document>  create_child_form(::particle * pparticle, ::user::impact_data * pimpactdata, ::payload payload = ::payload(::e_type_empty_argument))
       // {
       //
-      //    return create_typed_child_form(pparticle, typeid(FORM), pimpactdata->m_pplaceholder, payload);
+      //    return create_typed_child_form(pparticle, ::type<FORM>(), pimpactdata->m_pplaceholder, payload);
       //
       // }
 

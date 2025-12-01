@@ -5,32 +5,27 @@
 
 const char g_psz_hdricube_frag[] = R"frag_text(#version 330 core
 
-out vec4 FragColor;
+out vec4 outColor;
 in vec3 modelCoordinates;
 
 // equirectangular projection HDRI
 uniform sampler2D hdri;
 
-vec2 sphericalToCartesian(vec3 v)
+const float PI = 3.14159265359;
+
+void main()
 {
-    float phi = atan(v.z, -v.x);       // horizontal angle
-    float theta = asin(v.y);          // vertical angle
+    vec3 N = normalize(modelCoordinates);
 
-    // normalize to 0..1
-    vec2 uv;
-    uv.x = 0.5 + phi * (0.15915494309189535);   // 1 / (2π)
-    uv.y = 0.5 - theta * (0.3183098861837907);  // 1 / π (note the minus!)
+    float phi = atan(N.z, N.x);     // range: -pi..pi
+    float theta = asin(N.y);        // range: -pi/2..pi/2
 
-    return uv;
+    float u = (phi / (2.0 * PI)) + 0.5;
+    float v = (theta / PI) + 0.5;
+
+    outColor = texture(hdri, vec2(u, v));
 }
-
-void main() {
-	vec3 sampleDirection = normalize(modelCoordinates);
-	vec2 uv = sphericalToCartesian(sampleDirection);
-	vec3 color = texture(hdri, uv).rgb;
-
-	FragColor = vec4(color, 1.0);
-})frag_text";
+)frag_text";
 
 
 

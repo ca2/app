@@ -1349,8 +1349,6 @@ string_array_base directory_system::enumerate_content(const ::file::path &path)
 
    throw ::interface_only();
 
-   //throw ::interface_only();
-
 }
 
 

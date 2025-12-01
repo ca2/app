@@ -108,6 +108,8 @@ list(APPEND library_source
    graphics3d/immersion_layer.cpp
    graphics3d/immersion_layer.h
    graphics3d/game_object.h
+   graphics3d/global_ubo.cpp
+   graphics3d/global_ubo.h
    graphics3d/model.h
    graphics3d/provider.h
    graphics3d/render_system.cpp

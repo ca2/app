@@ -71,7 +71,7 @@ namespace helloworld
 
       pframe->set_style("LightBlue");
 
-      //       // pschema->m_typeControlBoxButton = typeid(MetaButton);
+      //       // pschema->m_typeControlBoxButton = ::type<MetaButton>();
 
       return pframe;
 

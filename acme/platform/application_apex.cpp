@@ -1103,9 +1103,9 @@ namespace platform
 
    //void apex_application_layer::on_graphics_ready(){}
 
-   //virtual ::type user_default_controltype_to_typeinfo(::user::enum_control_type econtroltype){}
+   //virtual ::platform::type user_default_controltype_to_typeinfo(::user::enum_control_type econtroltype){}
    // apex commented
-   //virtual ::type control_type_from_id(const ::atom & atom, ::user::enum_control_type & econtroltype){}
+   //virtual ::platform::type control_type_from_id(const ::atom & atom, ::user::enum_control_type & econtroltype){}
 
 
    //virtual ::atom translate_property_id(const ::atom & atom) override{}
@@ -1169,7 +1169,7 @@ namespace platform
    //user void apex_application_layer::on_create_split_impact(::user::split_impact* pimpact){}
 
 
-   //virtual ::type control_type_from_id(const ::atom& atom, ::user::enum_control_type& econtroltype) override{}
+   //virtual ::platform::type control_type_from_id(const ::atom& atom, ::user::enum_control_type& econtroltype) override{}
 
 
    // bool apex_application_layer::base_support(){}

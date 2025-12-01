@@ -68,12 +68,14 @@ namespace gpu_opengl
 
          floating_matrix4 cameraAngles[] = 
          {
+
             lookAt(origin, unitX, -unitY), // X+ (right)
             lookAt(origin, -unitX, -unitY), // X- (left)
             lookAt(origin, unitY, unitZ), // Y+ (top)
             lookAt(origin, -unitY, -unitZ), // Y- (bottom)
             lookAt(origin, unitZ, -unitY), // Z+ (front)
             lookAt(origin, -unitZ, -unitY) // Z- (back)
+
          };
 
          floating_matrix4 projection = m_pgpucontext->m_pengine->perspective(
@@ -81,8 +83,6 @@ namespace gpu_opengl
             1.0f, // its a square
             0.1f,
             2.0f);
-
-         glViewport(0, 0, m_uCubemapWidth, m_uCubemapHeight);
 
          // render the equirectangular HDR texture to a cubemap
          m_pshaderHdri->bind(nullptr, m_pframebuffer->m_ptexture);
@@ -99,8 +99,23 @@ namespace gpu_opengl
             
             m_pshaderHdri->push_properties(pgpucommandbuffer);
 
+
+            glViewport(0, 0, m_uCubemapWidth, m_uCubemapHeight);
+
+
+            glEnable(GL_DEPTH_TEST);
+            GLCheckError("");
+            glDepthMask(GL_TRUE);
+            GLCheckError("");
+
+
             glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-            
+            GLCheckError("");
+
+
+            glDisable(GL_DEPTH_TEST);
+            GLCheckError("");
+            glDepthMask(GL_FALSE);
             GLCheckError("");
 
             m_phdricube->draw(pgpucommandbuffer);

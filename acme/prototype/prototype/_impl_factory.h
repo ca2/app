@@ -79,15 +79,13 @@ namespace factory
 
        auto pfactory = øallocate ::factory::factory_item< TYPE, ORIGIN_TYPE > ();
 
-       auto typeindex = ::std::type_index(typeid(ORIGIN_TYPE));
-
-       //m_mapByRawNamePointer[pszRawName] = pfactory;
+       auto typeindex = ::type_index < ORIGIN_TYPE >();
 
        m_mapByTypeIndex[typeindex] = pfactory;
 
-       ::string strId = typeid(ORIGIN_TYPE).name();
+       auto strTypeName = ::type_name < ORIGIN_TYPE >();
 
-       m_mapById[strId] = pfactory;
+       m_mapByTypeName[strTypeName] = pfactory;
 
        return pfactory;
 
@@ -122,7 +120,7 @@ namespace factory
 
           ::string strMessage;
 
-          strMessage = "Factory hasn't creator for type \"" + ::type(typeid(ORIGIN_TYPE)).name() + "\"";
+          strMessage = "Factory hasn't creator for type \"" + ::platform::type(::type<ORIGIN_TYPE>()).name() + "\"";
 
           warningf(strMessage);
 
@@ -137,7 +135,7 @@ namespace factory
 
           ::string strMessage;
 
-          strMessage = "Couldn't __call__create_particle for type \"" + ::type(typeid(ORIGIN_TYPE)).name() + "\"";
+          strMessage = "Couldn't __call__create_particle for type \"" + ::platform::type(::type<ORIGIN_TYPE>()).name() + "\"";
 
           warningf(strMessage);
 
@@ -152,7 +150,7 @@ namespace factory
 
           ::string strMessage;
 
-          strMessage = "Created element is not of the base type \"" + ::type(typeid(ORIGIN_TYPE)).name() + "\"";
+          strMessage = "Created element is not of the base type \"" + ::platform::type(::type<ORIGIN_TYPE>()).name() + "\"";
 
           warningf(strMessage);
 
@@ -171,7 +169,7 @@ namespace factory
 
        auto typeindex = ::std::type_index(typeid(ORIGIN_TYPE));
 
-       return get_factory_item_by_type_index(typeindex);
+       return _get_factory_item_by_type_index(typeindex);
 
     }
 
@@ -187,7 +185,7 @@ namespace factory
     //   if (strText.is_empty() || strText.case_insensitive_begins_eat("factoryless://"))
     //   {
 
-    //      if (p && ::type(p).name()) == strText
+    //      if (p && ::platform::type(p).name()) == strText
     //      {
 
     //         informationf("loading into existing matter of same class type (1)");
@@ -206,7 +204,7 @@ namespace factory
     //            stream.set_fail_bit();
 
     //         }
-    //         else if (::type(p).name()) != strText
+    //         else if (::platform::type(p).name()) != strText
     //         {
 
     //            informationf("allocated matter type is different from streamed matter type (1.2)");
@@ -223,7 +221,7 @@ namespace factory
 
     //      auto atom = stream.text_to_factory_id(strText);
 
-    //      if (p && atom == ::type(p).name())
+    //      if (p && atom == ::platform::type(p).name())
     //      {
 
     //         informationf("loading into existing matter of same class type (2)");
@@ -240,7 +238,7 @@ namespace factory
     //            informationf("stream::alloc_object_from_text failed (2.1)");
 
     //         }
-    //         else if (::type(p).name()) != atom.to_string()
+    //         else if (::platform::type(p).name()) != atom.to_string()
     //         {
 
     //            informationf("allocated matter type is different from streamed matter type (2.2)");
@@ -347,7 +345,7 @@ inline void particle::__call__raw_construct(::pointer<TYPE>&p, ::factory::factor
 
       string strMessage;
 
-      strMessage.formatf("matter::øconstruct has failed to find factory_item for type \"%s\"", ::type(typeid(TYPE)).c_str());
+      strMessage.formatf("matter::øconstruct has failed to find factory_item for type \"%s\"", ::platform::type(::type<TYPE>()).c_str());
 
       throw_exception(::error_not_implemented, strMessage);
 
@@ -360,7 +358,7 @@ inline void particle::__call__raw_construct(::pointer<TYPE>&p, ::factory::factor
 
       string strMessage;
 
-      strMessage.formatf("matter::øconstruct no memory to allocate implementation of type \"%s\"", ::type(typeid(TYPE)).c_str());
+      strMessage.formatf("matter::øconstruct no memory to allocate implementation of type \"%s\"", ::platform::type(::type<TYPE>()).c_str());
 
       throw_exception(::error_no_memory, strMessage);
 
@@ -373,7 +371,7 @@ inline void particle::__call__raw_construct(::pointer<TYPE>&p, ::factory::factor
 
       string strMessage;
 
-      strMessage.formatf("matter::øconstruct object(%s) is not of type \"%s\"", ::type(typeid(*pparticleNew)).c_str(), ::type(typeid(TYPE)).c_str());
+      strMessage.formatf("matter::øconstruct object(%s) is not of type \"%s\"", ::platform::type(typeid(*pparticleNew)).c_str(), ::platform::type(::type<TYPE>()).c_str());
 
       throw_exception(::error_wrong_type, strMessage);
 
@@ -463,7 +461,7 @@ inline bool particle::__call__defer_construct(::pointer<TYPE>& p, ::factory::fac
 
 
 template < typename TYPE >
-inline void particle::__call__construct_by_id(::pointer<TYPE>& p, const ::atom& atom, ::factory::factory * pfactory)
+inline void particle::__call__construct_by_type(::pointer<TYPE> &p, const ::platform::type & type, ::factory::factory *pfactory)
 {
 
    if (::is_null(pfactory))
@@ -473,7 +471,18 @@ inline void particle::__call__construct_by_id(::pointer<TYPE>& p, const ::atom& 
 
    }
 
-   auto pfactoryitem = pfactory->get_factory_item_by_id(atom);
+   auto pfactoryitem = pfactory->_get_factory_item(type);
+
+   if (::is_null(pfactoryitem))
+   {
+
+      ::string strError;
+
+      strError.format("Factory item not found for type \"{}\"", type.as_string());
+
+      throw ::exception(error_not_found, strError);
+
+   }
 
    auto pparticleNew = pfactoryitem->__call__create_particle();
 
@@ -512,54 +521,54 @@ inline void particle::__call__construct_by_id(::pointer<TYPE>& p, const ::atom& 
 
 
 
-template < typename TYPE >
-inline void particle::__call__construct_by_type_index(::pointer<TYPE>& p, const ::std::type_index & typeindex, ::factory::factory* pfactory)
-{
-
-   if (::is_null(pfactory))
-   {
-
-      pfactory = this->factory();
-
-   }
-
-   auto pfactoryitem = pfactory->get_factory_item_by_type_index(typeindex);
-
-   auto pparticleNew = pfactoryitem->__call__create_particle();
-
-   //if (!pparticleNew)
-   //{
-
-   //   return error_no_memory;
-
-   //}
-
-   p = pparticleNew;
-
-   if (!p)
-   {
-
-      throw_exception(error_wrong_type);
-
-   }
-
-   p->set_flag(e_flag_factory);
-
-   //auto estatus =
-
-   p->initialize(this);
-
-   //if (!estatus)
-   //{
-
-   //   return estatus;
-
-   //}
-
-   //return estatus;
-
-}
-
+// template < typename TYPE >
+// inline void particle::__call__construct_by_type_index(::pointer<TYPE>& p, const ::std::type_index & typeindex, ::factory::factory* pfactory)
+// {
+//
+//    if (::is_null(pfactory))
+//    {
+//
+//       pfactory = this->factory();
+//
+//    }
+//
+//    auto pfactoryitem = pfactory->_get_factory_item_by_type_index(typeindex);
+//
+//    auto pparticleNew = pfactoryitem->__call__create_particle();
+//
+//    //if (!pparticleNew)
+//    //{
+//
+//    //   return error_no_memory;
+//
+//    //}
+//
+//    p = pparticleNew;
+//
+//    if (!p)
+//    {
+//
+//       throw_exception(error_wrong_type);
+//
+//    }
+//
+//    p->set_flag(e_flag_factory);
+//
+//    //auto estatus =
+//
+//    p->initialize(this);
+//
+//    //if (!estatus)
+//    //{
+//
+//    //   return estatus;
+//
+//    //}
+//
+//    //return estatus;
+//
+// }
+//
 
 
 //template < class T >

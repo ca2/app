@@ -54,7 +54,7 @@ namespace berg
 {
 
 
-   ::type user::get_simple_frame_window_type_info() { return typeid(::simple_frame_window); }
+   ::platform::type user::get_simple_frame_window_type_info() { return ::type<::simple_frame_window>(); }
 
 
 } // namespace berg
@@ -1268,7 +1268,7 @@ void simple_frame_window::on_message_show_window(::message::message * pmessage)
    if (pshow->m_bShow)
    {
 
-      //informationf("simple_frame_window::on_message_show_window true : " + ::type(this).name());
+      //informationf("simple_frame_window::on_message_show_window true : " + ::platform::type(this).name());
 
       //defer_set_icon();
 
@@ -1276,7 +1276,7 @@ void simple_frame_window::on_message_show_window(::message::message * pmessage)
    else
    {
 
-      //informationf("simple_frame_window::on_message_show_window false :" + ::type(this).name());
+      //informationf("simple_frame_window::on_message_show_window false :" + ::platform::type(this).name());
 
    }
 
@@ -1442,7 +1442,7 @@ bool simple_frame_window::pre_create_window(::user::system * pusersystem)
 void simple_frame_window::on_layout(::draw2d::graphics_pointer & pgraphics)
 {
 
-   if (::type(this).name().case_insensitive_contains("child_frame"))
+   if (::platform::type(this).name().case_insensitive_contains("child_frame"))
    {
 
       information() << "child_frame";
@@ -2678,7 +2678,7 @@ void simple_frame_window::_000OnDraw(::draw2d::graphics_pointer & pgraphicsParam
 //   try
 //   {
 //
-//      auto type = ::type(this);
+//      auto type = ::platform::type(this);
 //
 //
 //      //if (pgraphics->m_bDraw)
@@ -2833,7 +2833,7 @@ void simple_frame_window::_000OnDraw(::draw2d::graphics_pointer & pgraphicsParam
 ////
 ////#endif
 //
-//         string strType = ::type(this).name();
+//         string strType = ::platform::type(this).name();
 //
 //#ifdef VERBOSE_LOG
 //
@@ -2952,7 +2952,7 @@ void simple_frame_window::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    if (bBlurBackground)
    {
 
-      //printf("simplefrmwnd : " + ::type(this).name() + " : blur_background");
+      //printf("simplefrmwnd : " + ::platform::type(this).name() + " : blur_background");
 
       //auto psystem = system();
 
@@ -2982,7 +2982,7 @@ void simple_frame_window::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 
 #ifndef LINUX
 
-         //printf("simplefrmwnd : " + ::type(this).name() + " : ifndef LINUX");
+         //printf("simplefrmwnd : " + ::platform::type(this).name() + " : ifndef LINUX");
 
          if (rectangleX.size() != m_pimageBk->size())
          {
@@ -3052,7 +3052,7 @@ void simple_frame_window::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 
    }
 
-   //printf("simplefrmwnd : " + ::type(this).name() + " : draw_frame");
+   //printf("simplefrmwnd : " + ::platform::type(this).name() + " : draw_frame");
 
 //   pgraphics->fill_solid_rectangle(::double_rectangle_dimension(100, 100, 200, 200), ::argb(127, 0, 255, 0));
 
@@ -3845,7 +3845,7 @@ void simple_frame_window::draw_frame_and_control_box_over(::draw2d::graphics_poi
                      if (timeEllapsed > 50_ms)
                      {
 
-                        string strType = ::type(puserinteraction).name();
+                        string strType = ::platform::type(puserinteraction).name();
 
                         //if(strType.contains("pane_impact"))
                         //{

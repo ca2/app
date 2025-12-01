@@ -85,7 +85,7 @@ namespace filemanager
       //{
 
       //   return estatus;
-      m_typeFileList = typeid(file_list );
+      m_typeFileList = ::type<file_list>();
       //}
       øconstruct(m_pfont);
 

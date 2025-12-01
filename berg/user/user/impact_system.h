@@ -68,12 +68,12 @@ namespace user
       //unsigned int                  m_nIDEmbeddingResource;        // IDR_ for OLE open frame/menu/accel
       //unsigned int                  m_nIDContainerResource;        // IDR_ for container frame/menu/accel
 
-      ::type          m_typeDocument;         // class for creating ___new documents
-      ::type          m_typeFrame;       // class for creating ___new frames
-      ::type          m_typeImpact;        // class for creating ___new impacts
-      ::type          m_typeData;        // class for creating ___new data
-      //::type       m_pOleFrameClass;    // class for creating in-place frame
-      //::type       m_pOleImpactClass;     // class for creating in-place ::user::impact
+      ::platform::type     m_typeDocument;         // class for creating ___new documents
+      ::platform::type     m_typeFrame;       // class for creating ___new frames
+      ::platform::type     m_typeImpact;        // class for creating ___new impacts
+      ::platform::type     m_typeData;        // class for creating ___new data
+      //::platform::type  m_pOleFrameClass;    // class for creating in-place frame
+      //::platform::type  m_pOleImpactClass;     // class for creating in-place ::user::impact
 
       string                  m_strDocStrings;    // '\n' separated names
       // The ::user::document names sub-strings are represented as _one_ string:

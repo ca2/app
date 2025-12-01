@@ -417,7 +417,7 @@ namespace user
 //
 //      }
 //
-//      string strType = ::type(m_puserinteraction).name();
+//      string strType = ::platform::type(m_puserinteraction).name();
 //
 ////      if (strType.contains("list_box"))
 ////      {
@@ -2671,7 +2671,7 @@ namespace user
    void prototype_impl::on_message_non_client_destroy(::message::message * pmessage)
    {
 
-      if (m_puserinteraction && ::type(m_puserinteraction).name().contains("notify_icon"))
+      if (m_puserinteraction && ::platform::type(m_puserinteraction).name().contains("notify_icon"))
       {
 
          information() << "notify_icon";
@@ -2699,7 +2699,7 @@ namespace user
       USER_MESSAGE_LINK(::user::e_message_non_client_destroy, pchannel, this, &prototype_impl::on_message_non_client_destroy);
       USER_MESSAGE_LINK(::user::e_message_create, pchannel, this, &prototype_impl::_001OnPrioCreate);
 
-      if (m_puserinteraction && ::type(m_puserinteraction).name().contains("notify_icon"))
+      if (m_puserinteraction && ::platform::type(m_puserinteraction).name().contains("notify_icon"))
       {
 
          information() << "notify_icon";

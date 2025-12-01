@@ -41,7 +41,7 @@ namespace user
 
       virtual string get_path();
       bool open_document(const ::payload & payloadFile) override;
-      //::type controltype_to_typeinfo(::user::enum_control_type econtroltype);
+      //::platform::type controltype_to_typeinfo(::user::enum_control_type econtroltype);
 
       bool open_html(const ::scoped_string & scopedstr) override;
 

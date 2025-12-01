@@ -85,6 +85,7 @@ VSOutput main(VSInput input)
 
     //worldPos.x = -worldPos.x;
     //worldPos.z = -worldPos.z;
+    worldPos.y = -worldPos.y;
 
     output.worldCoordinates = worldPos.xyz;
 

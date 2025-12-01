@@ -32,7 +32,7 @@ namespace platform
 
             auto pfactory = psystem->factory();
 
-            bool bHasFactoryRepresentativeType = pfactory->has<FACTORY_REPRESENTATIVE_TYPE>();
+            bool bHasFactoryRepresentativeType = pfactory->has_factory_item<FACTORY_REPRESENTATIVE_TYPE>();
 
             if (!bHasFactoryRepresentativeType)
             {

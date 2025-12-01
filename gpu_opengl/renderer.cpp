@@ -390,6 +390,8 @@ namespace gpu_opengl
          glDepthFunc(GL_LESS);
          GLCheckError("");
 
+         glDepthRange(0.0, 1.0);
+         GLCheckError("");
 
          glFrontFace(GL_CCW);      // Default CCW
          GLCheckError("");

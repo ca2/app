@@ -1925,7 +1925,7 @@ namespace aura
       //if (::succeeded(estatus))
       //{
 
-      factory()->add_factory_item_with_id < ::draw2d::task_tool_item >(::e_task_tool_draw2d);
+      factory()->add_factory_item_with_custom_id < ::draw2d::task_tool_item >(::e_task_tool_draw2d);
 
       //}
 

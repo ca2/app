@@ -332,7 +332,7 @@
     <None Include="ibl\shaders\diffuseirradiance1.frag">
       <Filter>Source Files\ibl\shaders</Filter>
     </None>
-    <None Include="ibl\shaders\hdricube.frag">
+    <None Include="ibl\shaders\hdricube1.frag">
       <Filter>Source Files\ibl\shaders</Filter>
     </None>
     <None Include="ibl\shaders\specularenv.frag">
@@ -344,7 +344,7 @@
     <None Include="ibl\shaders\diffuseirradiance.vert">
       <Filter>Source Files\ibl\shaders</Filter>
     </None>
-    <None Include="ibl\shaders\hdricube.vert">
+    <None Include="ibl\shaders\hdricube1.vert">
       <Filter>Source Files\ibl\shaders</Filter>
     </None>
     <None Include="ibl\shaders\specularenv.vert">
@@ -356,6 +356,12 @@
       <Filter>Source Files\ibl\shaders</Filter>
     </CustomBuild>
     <CustomBuild Include="ibl\shaders\pbr1.frag">
+      <Filter>Source Files\ibl\shaders</Filter>
+    </CustomBuild>
+    <CustomBuild Include="ibl\shaders\hdricube.frag">
+      <Filter>Source Files\ibl\shaders</Filter>
+    </CustomBuild>
+    <CustomBuild Include="ibl\shaders\hdricube.vert">
       <Filter>Source Files\ibl\shaders</Filter>
     </CustomBuild>
   </ItemGroup>

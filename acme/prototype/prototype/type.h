@@ -8,6 +8,8 @@
 
 #include <typeindex>
 
+#include "atom.h"
+
 
 constexpr ::std::strong_ordering order(bool b1, bool b2)
 {
@@ -64,6 +66,8 @@ public:
    inline bool operator == (const ::type_id & type_id) const;
    inline ::std::strong_ordering operator <=> (const ::type_id & type_id) const;
 
+   ::string as_string() const;
+
 };
 
 
@@ -85,6 +89,23 @@ public:
 
 
    }
+
+   template < typename ENUM>
+   requires(::std::is_enum_v<ENUM>)
+   type_iptr_pair(::atom::enum_type etype, const ENUM & eenum) :
+   type_iptr_pair((::iptr) etype,(::iptr) eenum)
+   {
+
+
+   }
+
+   type_iptr_pair(enum_task_tool etasktool) :
+   type_iptr_pair(::atom::e_type_task_tool, etasktool)
+   {
+
+
+   }
+
 
    constexpr bool is_empty() const { return this->m_element1 < 0; }
    constexpr bool is_set() const { return !this->is_empty(); }
@@ -120,6 +141,9 @@ public:
    }
 
 
+   ::string as_string() const;
+
+
 }; 
 template<>
 constexpr ::hash32 as_hash32<type_iptr_pair>(const type_iptr_pair &pair)
@@ -141,10 +165,12 @@ public:
    ::type_iptr_pair m_ipairId;
 
    type_custom_id();
+   type_custom_id(const_char_pointer pszNameId);
    type_custom_id(const ::scoped_string & scopedstrNameId);
    type_custom_id(const ::type_iptr_pair & ipairId);
    type_custom_id(const ::scoped_string & scopedstrNameId, const ::type_iptr_pair & ipairId);
    type_custom_id(const ::atom & atom);
+   type_custom_id(enum_task_tool etasktool);
 
 
    constexpr bool is_set() const;
@@ -154,7 +180,7 @@ public:
    inline bool operator == (const ::type_custom_id & typecustomid) const;
    inline ::std::strong_ordering operator <=> (const ::type_custom_id & typecustomid) const;
 
-
+   ::string as_string() const;
 
 };
 CLASS_DECL_ACME string type_name(const ::std::type_info& typeinfo);
@@ -553,7 +579,7 @@ namespace platform
 {
 
 
-   class type
+   class CLASS_DECL_ACME type
    {
    public:
 
@@ -595,6 +621,8 @@ namespace platform
       bool operator==(const ::platform::type &type) const;
 
       ::std::strong_ordering operator<=>(const ::platform::type &type) const;
+
+      ::string as_string() const;
 
 
    };

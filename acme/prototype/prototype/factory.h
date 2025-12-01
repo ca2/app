@@ -243,7 +243,7 @@ namespace factory
       bool has_factory_item() const
       {
 
-         auto typeindex = ::std::type_index(::type<ORIGIN_TYPE>());
+         auto typeindex = ::std::type_index(typeid(ORIGIN_TYPE));
 
          return this->has_factory_item_by_type_index(typeindex);
 
@@ -320,25 +320,25 @@ namespace factory
       inline void __call__raw_construct(::pointer<ORIGIN_TYPE> & p);
 
 
-      virtual ::particle_pointer __call__create_by_type_index(const ::std::type_index & typeindex, ::particle * pparticle);
-      virtual ::particle_pointer __call__create_by_type_name(const ::scoped_string & scopedstrTypeName, ::particle * pparticle);
+      //virtual ::particle_pointer __call__create_by_type_index(const ::std::type_index & typeindex, ::particle * pparticle);
+      //virtual ::particle_pointer __call__create_by_type_name(const ::scoped_string & scopedstrTypeName, ::particle * pparticle);
       virtual ::particle_pointer __call__create_by_custom_id(const ::type_custom_id & typecustomid, ::particle* pparticle);
-      virtual ::particle_pointer __call__create_by_type(const ::platform::type & type, ::particle* pparticle);
+      //virtual ::particle_pointer __call__create_by_type(const ::platform::type & type, ::particle* pparticle);
 
 
-      virtual bool has_by_type_index(const ::std::type_index & typeindex) const;
-      virtual bool has_by_type_name(const ::scoped_string & scopedstrTypeName) const;
-      virtual bool has_by_custom_id(const ::type_custom_id & typecustomid) const;
-      virtual bool has(const ::platform::type & type) const;
+      //virtual bool has_by_type_index(const ::std::type_index & typeindex) const;
+      //virtual bool has_by_type_name(const ::scoped_string & scopedstrTypeName) const;
+      //virtual bool has_by_custom_id(const ::type_custom_id & typecustomid) const;
+      //virtual bool has(const ::platform::type & type) const;
 
 
-      template < typename TYPE >
-      bool has() const
-      {
-       
-         return this->has_by_type_index(::std::type_index(typeid(TYPE)));
-         
-      }
+      // template < typename TYPE >
+      // bool has() const
+      // {
+      //
+      //    return this->has_by_type_index(::std::type_index(typeid(TYPE)));
+      //
+      // }
 
 
    };
@@ -347,86 +347,86 @@ namespace factory
 
    using factory_array = pointer_array < factory_item_interface >;
 
-   //CLASS_DECL_ACME factory * get_factory();
-
-   ///CLASS_DECL_ACME factory * get_factory(const ::platform::type & typeSource);
-   ///
-
-
-   CLASS_DECL_ACME factory_item_interface * get_factory_item_by_type_index(const ::std::type_index & typeindex);
-   CLASS_DECL_ACME factory_item_interface * get_factory_item_by_custom_id(const ::type_custom_id & typecustomid);
-
-
-   CLASS_DECL_ACME factory_item_interface * get_existing_factory_item_by_type_index(const ::std::type_index & typeindex);
-   CLASS_DECL_ACME factory_item_interface * get_existing_factory_item_by_custom_id(const ::type_custom_id & typecustomid);
-
-
-   CLASS_DECL_ACME factory_item_interface * get_factory_item_by_type_index(const ::std::type_index & typeindex, const ::atom & atomFactory);
-   CLASS_DECL_ACME factory_item_interface * get_factory_item_by_custom_id(const ::platform::type & type, const ::atom & atomFactory);
-
-
-   CLASS_DECL_ACME bool has_by_type_index(const ::std::type_index & typeindex);
-   CLASS_DECL_ACME bool has_by_custom_id(const ::type_custom_id & typecustomid);
-   
-
-   
-   CLASS_DECL_ACME void set_factory_item_by_type(const ::platform::type & type, const ::pointer<factory_item_interface>& pfactory);
-
-   template < typename ORIGIN_TYPE >
-   inline ::atom get_id();
-//   {
+//    //CLASS_DECL_ACME factory * get_factory();
 //
-//      auto pszTypename = ::type<ORIGIN_TYPE>().name();
-//
-//#ifdef WINDOWS
-//
-//      pszTypename = c_demangle(scopedstrTypename);
-//
-//      return pszTypename;
-//
-//#else
-//
-//      auto strTypename = ::transfer(demangle(scopedstrTypename));
-//
-//      return strTypename;
+//    ///CLASS_DECL_ACME factory * get_factory(const ::platform::type & typeSource);
+//    ///
 //
 //
-//#endif
+//    //CLASS_DECL_ACME factory_item_interface * get_factory_item_by_type_index(const ::std::type_index & typeindex);
+//    //CLASS_DECL_ACME factory_item_interface * get_factory_item_by_custom_id(const ::type_custom_id & typecustomid);
 //
-//   }
-
-
-   //template < typename ORIGIN_TYPE >
-   //inline ::pointer<factory_item_interface>& get_factory_item();
-//   {
 //
-//      //static auto atom = get_atom<ORIGIN_TYPE>();
+//    //CLASS_DECL_ACME factory_item_interface * get_existing_factory_item_by_type_index(const ::std::type_index & typeindex);
+//    //CLASS_DECL_ACME factory_item_interface * get_existing_factory_item_by_custom_id(const ::type_custom_id & typecustomid);
 //
-//      //return get_factory_item(atom);
 //
-//      return get_factory_item(get_atom<ORIGIN_TYPE>());
+//    //CLASS_DECL_ACME factory_item_interface * get_factory_item_by_type_index(const ::std::type_index & typeindex, const ::atom & atomFactory);
+//    //CLASS_DECL_ACME factory_item_interface * get_factory_item_by_custom_id(const ::platform::type & type, const ::atom & atomFactory);
 //
-//   }
-
-
-   template < typename ORIGIN_TYPE >
-   inline ::pointer<factory_item_interface> get_factory_item_by_type_index(const ::std::type_index & typeindex);
-
-   template < typename ORIGIN_TYPE >
-   inline ::pointer<factory_item_interface> get_factory_item_by_custom_id(const ::type_custom_id & typecustomid);
-
-   
-   //   {
 //
-//      //static auto atom = get_atom<ORIGIN_TYPE>();
+//    //CLASS_DECL_ACME bool has_by_type_index(const ::std::type_index & typeindex);
+//    //CLASS_DECL_ACME bool has_by_custom_id(const ::type_custom_id & typecustomid);
 //
-//      //return get_factory_item(atom, atomSource);
 //
-//      ///static auto atom = get_atom<ORIGIN_TYPE>();
 //
-//      return get_factory_item(atomSource, get_atom<ORIGIN_TYPE>());
+//    //CLASS_DECL_ACME void set_factory_item_by_type(const ::platform::type & type, const ::pointer<factory_item_interface>& pfactory);
 //
-//   }
+//    template < typename ORIGIN_TYPE >
+//    inline ::atom get_id();
+// //   {
+// //
+// //      auto pszTypename = ::type<ORIGIN_TYPE>().name();
+// //
+// //#ifdef WINDOWS
+// //
+// //      pszTypename = c_demangle(scopedstrTypename);
+// //
+// //      return pszTypename;
+// //
+// //#else
+// //
+// //      auto strTypename = ::transfer(demangle(scopedstrTypename));
+// //
+// //      return strTypename;
+// //
+// //
+// //#endif
+// //
+// //   }
+//
+//
+//    //template < typename ORIGIN_TYPE >
+//    //inline ::pointer<factory_item_interface>& get_factory_item();
+// //   {
+// //
+// //      //static auto atom = get_atom<ORIGIN_TYPE>();
+// //
+// //      //return get_factory_item(atom);
+// //
+// //      return get_factory_item(get_atom<ORIGIN_TYPE>());
+// //
+// //   }
+//
+//
+//    //template < typename ORIGIN_TYPE >
+//    //inline ::pointer<factory_item_interface> get_factory_item_by_type_index(const ::std::type_index & typeindex);
+//
+//    //template < typename ORIGIN_TYPE >
+//    //inline ::pointer<factory_item_interface> get_factory_item_by_custom_id(const ::type_custom_id & typecustomid);
+//
+//
+//    //   {
+// //
+// //      //static auto atom = get_atom<ORIGIN_TYPE>();
+// //
+// //      //return get_factory_item(atom, atomSource);
+// //
+// //      ///static auto atom = get_atom<ORIGIN_TYPE>();
+// //
+// //      return get_factory_item(atomSource, get_atom<ORIGIN_TYPE>());
+// //
+// //   }
 
 
 } // namespace factory
@@ -488,7 +488,7 @@ namespace factory
 
       auto pfactoryitem = øallocate ::factory::factory_item< TYPE, TYPE > ();
 
-      set_factory_item_by_custom_id(type, pfactoryitem);
+      set_factory_item_by_custom_id(typecustomid, pfactoryitem);
 
       return pfactoryitem;
 

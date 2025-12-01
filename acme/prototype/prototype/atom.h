@@ -21,7 +21,7 @@ enum enum_id : ::uptr;
 
 class lparam;
 
-
+namespace platform { class type; }
 
 //// Lets (AMajor.AMinor) (BMajor.BMinor)
 //// order_square(AMajor - BMajor, AMinor - BMinor)

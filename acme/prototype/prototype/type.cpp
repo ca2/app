@@ -502,3 +502,128 @@ string type_name(const ::std::type_info& typeinfo)
 
 
 
+namespace platform
+{
+
+
+
+   ::string type::as_string() const
+   {
+
+      ::string str;
+
+      if (m_typeid.is_set())
+      {
+
+         str = "typeid={" + m_typeid.as_string() +"};";
+
+      }
+
+      if (m_customid.is_set())
+      {
+
+         str = "customid={" + m_customid.as_string() +"};";
+
+      }
+
+      return str;
+
+   }
+
+} // namespace platform
+
+::string type_id::as_string() const
+{
+
+   ::string str;
+
+   if (::is_type_index_set(m_typeindex))
+   {
+
+      str += "typeindex.name=" + ::string(m_typeindex.name())+";";
+
+   }
+
+   if (m_strTypeName.has_character())
+   {
+
+      str+="typename="+m_strTypeName+";";
+
+   }
+
+   return str;
+
+}
+
+
+
+::string type_custom_id::as_string() const
+{
+
+   ::string str;
+
+   if (m_ipairId.is_set())
+   {
+
+      str+= "ipair=" + m_ipairId.as_string()+ ";";
+
+   }
+
+   if (m_strNameId.has_character())
+   {
+
+      str += "name=" + m_strNameId + ";";
+
+   }
+
+   return str;
+
+
+}
+
+const char * as_const_char_pointer(::enum_task_tool etasktool)
+{
+
+switch (etasktool)
+{
+   case e_task_tool_draw2d:
+      return "e_task_tool_draw2d";
+   default:
+      return nullptr;
+}
+
+}
+
+::string type_iptr_pair::as_string() const
+{
+   ::string str;
+
+   auto i1=normal1();
+   auto i2 = normal2();
+   if (i1 >= 0)
+   {
+      str += "i1="+::as_string(i1)+ ";";
+      if (i2 >= 0)
+      {
+
+         str += "i2="+::as_string(i2)+ ";";
+
+      }
+   }
+   if (i1 >= 0 && i2 >= 0)
+   {
+
+      const char * psz = nullptr;
+
+      if (i1 == ::atom::e_type_task_tool && (psz =as_const_char_pointer((::enum_task_tool)i2)))
+      {
+
+         str+="maybe e_type_task_tool?=" + ::string(psz);
+
+      }
+
+   }
+
+   return str;
+
+}

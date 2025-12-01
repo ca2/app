@@ -27,6 +27,8 @@ list(APPEND library_source
    ibl/specular_map.h
 
    ibl/_.h
+   ibl/_hlsl.cpp
+   ibl/_hlsl.h
    gltf/_.h
    _.cpp
    _ktx.cpp
@@ -42,6 +44,8 @@ list(APPEND library_source
    full_screen_quad.h
    hdr_texture.cpp
    hdr_texture.h
+   timer.cpp
+   timer.h
 )
 
 if (MACOS)

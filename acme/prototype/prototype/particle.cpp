@@ -2144,7 +2144,7 @@ bool particle::should_run_async() const
 }
 
 
-::pointer < particle > particle::__call__create_by_id(const ::atom& atom, ::factory::factory* pfactory)
+::pointer < particle > particle::__call__create_by_type(const ::platform::type& type, ::factory::factory* pfactory)
 {
 
    if (::is_null(pfactory))
@@ -2154,7 +2154,7 @@ bool particle::should_run_async() const
 
    }
 
-   auto pfactoryitem = pfactory->get_factory_item_by_id(atom);
+   auto pfactoryitem = pfactory->_get_factory_item(type);
 
    auto p = pfactoryitem->__call__create_particle();
 
@@ -2196,56 +2196,56 @@ bool particle::should_run_async() const
 }
 
 
-::pointer < ::particle > particle::__call__create_by_type_index(const ::std::type_index & typeindex, ::factory::factory* pfactory)
-{
-
-   if (::is_null(pfactory))
-   {
-
-      pfactory = this->factory();
-
-   }
-
-   auto pfactoryitem = pfactory->get_factory_item_by_type_index(typeindex);
-
-   auto p = pfactoryitem->__call__create_particle();
-
-   //if (!pparticleNew)
-   //{
-
-   //   return error_no_memory;
-
-   //}
-
-
-
-   //::pointer < TYPE > p = pparticleNew;
-
-   //if (!p)
-   //{
-
-   //   throw_exception(error_wrong_type);
-
-   //}
-
-   p->set_flag(e_flag_factory);
-
-   //auto estatus =
-
-   p->initialize(this);
-
-   //if (!estatus)
-   //{
-
-   //   return estatus;
-
-   //}
-
-   //return estatus;
-
-   return p;
-
-}
+// ::pointer < ::particle > particle::__call__create_by_type_index(const ::std::type_index & typeindex, ::factory::factory* pfactory)
+// {
+//
+//    if (::is_null(pfactory))
+//    {
+//
+//       pfactory = this->factory();
+//
+//    }
+//
+//    auto pfactoryitem = pfactory->get_factory_item_by_type_index(typeindex);
+//
+//    auto p = pfactoryitem->__call__create_particle();
+//
+//    //if (!pparticleNew)
+//    //{
+//
+//    //   return error_no_memory;
+//
+//    //}
+//
+//
+//
+//    //::pointer < TYPE > p = pparticleNew;
+//
+//    //if (!p)
+//    //{
+//
+//    //   throw_exception(error_wrong_type);
+//
+//    //}
+//
+//    p->set_flag(e_flag_factory);
+//
+//    //auto estatus =
+//
+//    p->initialize(this);
+//
+//    //if (!estatus)
+//    //{
+//
+//    //   return estatus;
+//
+//    //}
+//
+//    //return estatus;
+//
+//    return p;
+//
+// }
 
 
 
@@ -2331,39 +2331,39 @@ void particle::kick_idle()
 }
 
 
-::pointer<subparticle>particle::__call__id_create(const ::atom& atom, ::factory::factory* pfactory)
-{
-
-   if (::is_null(pfactory))
-   {
-
-      pfactory = platform()->factory();
-
-   }
-
-   auto pfactoryitem = pfactory->get_factory_item_by_id(atom);
-
-   if (!pfactoryitem)
-   {
-
-      throw ::exception(error_no_factory);
-
-   }
-
-   auto p = pfactoryitem->__call__create_particle();
-
-   if (!p)
-   {
-
-      throw ::no_memory();
-
-   }
-
-   p->initialize(this);
-
-   return p;
-
-}
+// ::pointer<subparticle>particle::__call__id_create(const ::atom& atom, ::factory::factory* pfactory)
+// {
+//
+//    if (::is_null(pfactory))
+//    {
+//
+//       pfactory = platform()->factory();
+//
+//    }
+//
+//    auto pfactoryitem = pfactory->get_factory_item_by_id(atom);
+//
+//    if (!pfactoryitem)
+//    {
+//
+//       throw ::exception(error_no_factory);
+//
+//    }
+//
+//    auto p = pfactoryitem->__call__create_particle();
+//
+//    if (!p)
+//    {
+//
+//       throw ::no_memory();
+//
+//    }
+//
+//    p->initialize(this);
+//
+//    return p;
+//
+// }
 //
 //
 //::pointer < ::message_box > particle::message_box(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::user::e_message_box& emessagebox, const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon)

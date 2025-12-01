@@ -2605,6 +2605,13 @@ bool directory_context::matter_enumerate(const ::file::path& path, ::file::listi
 
             //strMatter.replace_with("/", "\\");
 
+            if (strMatter.case_insensitive_ends("/wavefront.vert"))
+            {
+
+               information("/wavefront.vert");
+
+            }
+
             auto etype = file()->resource_get_type(strMatter, &strLogNotFound);
 
             if (::is_existing_file_or_folder(etype))

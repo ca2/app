@@ -581,7 +581,7 @@ public:
    template < typename BASE_TYPE >
    inline ::pointer<BASE_TYPE>__call__create(::factory::factory * pfactory = nullptr);
 
-   ::pointer<subparticle>__call__id_create(const ::atom& atom, ::factory::factory * pfactory = nullptr);
+   //::pointer<subparticle>__call__id_create(const ::atom& atom, ::factory::factory * pfactory = nullptr);
 
    template < typename TYPE >
    inline ::pointer<TYPE> __call__create_new();
@@ -787,10 +787,10 @@ public:
 
    virtual ::pointer<::particle> __call__create_by_type(const ::platform::type & type, ::factory::factory *pfactory = nullptr);
 
-   template < typename BASE_TYPE >
-   inline void __call__construct_by_type_index(::pointer<BASE_TYPE>& ptype, const ::std::type_index & typeindex, ::factory::factory* pfactory = nullptr);
+   //template < typename BASE_TYPE >
+   //inline void __call__construct_by_type_index(::pointer<BASE_TYPE>& ptype, const ::std::type_index & typeindex, ::factory::factory* pfactory = nullptr);
 
-   virtual ::pointer < ::particle > __call__create_by_type_index(const ::std::type_index & typeindex, ::factory::factory* pfactory = nullptr);
+   //virtual ::pointer < ::particle > __call__create_by_type_index(const ::std::type_index & typeindex, ::factory::factory* pfactory = nullptr);
 
    template < typename TYPE >
    inline void __call__construct_new(::pointer<TYPE>& ptype);

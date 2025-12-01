@@ -205,6 +205,12 @@ inline type_custom_id::type_custom_id()
 {
 
 }
+inline type_custom_id::type_custom_id(const_char_pointer pszNameId):
+m_strNameId(pszNameId)
+{
+
+
+}
 inline type_custom_id::type_custom_id(const ::scoped_string & scopedstrNameId):
 m_strNameId(scopedstrNameId)
 {
@@ -224,6 +230,12 @@ m_ipairId(ipairId)
 
 }
 
+inline type_custom_id::type_custom_id(enum_task_tool etasktool) :
+m_ipairId(etasktool)
+{
+
+
+}
 
 
 inline type_custom_id::type_custom_id(const ::atom & atom)

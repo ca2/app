@@ -28,7 +28,6 @@ namespace graphics3d
       virtual void initialize_render_system(::graphics3d::engine* pengine);
 
 
-
       
 
       // virtual void on_prepare();

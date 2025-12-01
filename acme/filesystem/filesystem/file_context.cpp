@@ -1633,6 +1633,14 @@ void file_context::calculate_main_resource_memory()
 
    }
 
+   if (path.case_insensitive_ends("/wavefront.vert")
+      && path.case_insensitive_contains("/_std/_std/"))
+   {
+
+      information("/wavefront.vert with /_std/_std/");
+
+   }
+
    _synchronous_lock synchronouslock(pfolder->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    if (pfolder->locate_file(path))
@@ -3734,6 +3742,15 @@ file_pointer file_context::_get_file(const ::payload & payloadFile, ::file::e_op
 
       informationf("Ok let's hey hohohou");
       informationf("Ok let's hey hohohou");
+
+      //pathProcessed = "zipresource://_matter/integration/_std/_std/main/icon-256.png";
+
+   }
+   else if (path == "matter://shaders/directx11/wavefront.vert")
+   {
+
+      informationf("matter://shaders/directx11/wavefront.vert");
+      informationf("matter://shaders/directx11/wavefront.vert");
 
       //pathProcessed = "zipresource://_matter/integration/_std/_std/main/icon-256.png";
 

@@ -1052,51 +1052,51 @@ namespace factory
 {
 
 
-   ::particle_pointer factory::__call__create_by_type_index(const ::std::type_index & typeindex, ::particle * pparticle)
-   {
-
-      //auto psystem = system();
-
-      //synchronous_lock synchronouslock(&psystem->m_pmutexLibrary);
-
-      //::matter* p = nullptr;
-
-      ////if (get_library() != nullptr)
-      ////{
-
-      ////   p = get_library()->new_object(scopedstrClass);
-
-      ////}
-      ////else
-      //{
-
-      //   p = new_object(scopedstrClass);
-
-      //}
-
-      //auto pparticle = ::pointer_transfer(p);
-
-      //if (!pparticle)
-      //{
-
-      //   return nullptr;
-
-      //}
-
-      //return pparticle;
-
-      auto pfactoryinterface = get_factory_item_by_type_index(typeindex);
-
-      //if (!pfactoryinterface)
-      //{
-
-      //   return error_no_factory;
-
-      //}
-
-      return pfactoryinterface->__call__create_particle();
-
-   }
+   // ::particle_pointer factory::__call__create_by_type_index(const ::std::type_index & typeindex, ::particle * pparticle)
+   // {
+   //
+   //    //auto psystem = system();
+   //
+   //    //synchronous_lock synchronouslock(&psystem->m_pmutexLibrary);
+   //
+   //    //::matter* p = nullptr;
+   //
+   //    ////if (get_library() != nullptr)
+   //    ////{
+   //
+   //    ////   p = get_library()->new_object(scopedstrClass);
+   //
+   //    ////}
+   //    ////else
+   //    //{
+   //
+   //    //   p = new_object(scopedstrClass);
+   //
+   //    //}
+   //
+   //    //auto pparticle = ::pointer_transfer(p);
+   //
+   //    //if (!pparticle)
+   //    //{
+   //
+   //    //   return nullptr;
+   //
+   //    //}
+   //
+   //    //return pparticle;
+   //
+   //    auto pfactoryinterface = _get_factory_item_by_type_index(typeindex);
+   //
+   //    //if (!pfactoryinterface)
+   //    //{
+   //
+   //    //   return error_no_factory;
+   //
+   //    //}
+   //
+   //    return pfactoryinterface->__call__create_particle();
+   //
+   // }
 
 
    ::particle_pointer factory::__call__create_by_custom_id(const ::type_custom_id & typecustomid, ::particle* pparticle)
@@ -1132,7 +1132,7 @@ namespace factory
 
       //return pparticle;
 
-      auto pfactoryinterface = get_factory_item_by_custom_id(typecustomid);
+      auto pfactoryinterface = _get_factory_item_by_custom_id(typecustomid);
 
       //if (!pfactoryinterface)
       //{
@@ -1146,21 +1146,21 @@ namespace factory
    }
 
 
-   bool factory::has_by_type_index(const ::std::type_index & typeindex) const
-   {
-
-      return has_factory_item_by_type_index(typeindex);
-
-   }
-
-
-
-   bool factory::has_by_custom_id(const ::type_custom_id & typecustomid) const
-   {
-
-      return has_factory_item_by_custom_id(typecustomid);
-
-   }
+   // bool factory::has_by_type_index(const ::std::type_index & typeindex) const
+   // {
+   //
+   //    return has_factory_item_by_type_index(typeindex);
+   //
+   // }
+   //
+   //
+   //
+   // bool factory::has_by_custom_id(const ::type_custom_id & typecustomid) const
+   // {
+   //
+   //    return has_factory_item_by_custom_id(typecustomid);
+   //
+   // }
 
 
    ::factory::factory_item_interface* factory::_get_factory_item_by_type_index(const ::std::type_index & typeindex) const
@@ -1269,39 +1269,100 @@ namespace factory
    }
 
 
-   factory_item_interface * factory::get_factory_item_by_type_id(const ::type_id & type_id)
+   // factory_item_interface * factory::get_factory_item_by_type_id(const ::type_id & type_id)
+   // {
+   //
+   //    if (type_id.is_empty())
+   //    {
+   //
+   //       throw ::exception(error_bad_argument);
+   //
+   //    }
+   //
+   //    auto pfactoryitem = _get_factory_item_by_type_id(type_id);
+   //
+   //    if (::is_set(pfactoryitem))
+   //    {
+   //
+   //       return pfactoryitem;
+   //
+   //    }
+   //
+   //    ::string strError;
+   //
+   //    strError.format("factory::get_factory_item_by_type_id FAILED!! "
+   //       "the following type_id wasn't found by "
+   //       "type index or type name (raw name): \"{}\" (\"{}\").",
+   //       type_id.m_strTypeName, type_id.m_strRawTypeName);
+   //
+   //    throw ::exception(error_not_found, strError);
+   //
+   //    return nullptr;
+   //
+   // }
+
+   factory_item_interface * factory::_get_factory_item(const ::platform::type & type) const
    {
 
-      if (type_id.is_empty())
+      if (type.is_empty())
       {
 
          throw ::exception(error_bad_argument);
 
       }
 
-      auto pfactoryitem = _get_factory_item_by_type_id(type_id);
-
-      if (::is_set(pfactoryitem))
+      if (type.m_typeid.is_set())
       {
 
-         return pfactoryitem;
+         auto pfactoryitem = _get_factory_item_by_type_id(type.m_typeid);
+
+         if (::is_set(pfactoryitem))
+         {
+
+            return pfactoryitem;
+
+         }
 
       }
 
-      ::string strError;
+      if (type.m_customid.is_set())
+      {
 
-      strError.format("factory::get_factory_item_by_type_id FAILED!! "
-         "the following type_id wasn't found by "
-         "type index or type name (raw name): \"{}\" (\"{}\").",
-         type_id.m_strTypeName, type_id.m_strRawTypeName);
+         auto pfactoryitem = _get_factory_item_by_custom_id(type.m_customid);
 
-      throw ::exception(error_not_found, strError);
+         if (::is_set(pfactoryitem))
+         {
+
+            return pfactoryitem;
+
+         }
+
+      }
 
       return nullptr;
 
    }
 
-   ::factory::factory_item_interface * factory::get_factory_item_by_custom_id(const ::type_custom_id & typecustomid) const
+
+   bool factory::has_factory_item(const ::platform::type & type) const
+   {
+
+      auto pfactoryitem = _get_factory_item(type);
+
+      if (::is_null(pfactoryitem))
+      {
+
+         return false;
+
+      }
+
+      return true;
+
+   }
+
+
+
+   ::factory::factory_item_interface * factory::_get_factory_item_by_custom_id(const ::type_custom_id & typecustomid) const
    {
 
       critical_section_lock cs(&((factory*)this)->m_criticalsection);
@@ -1401,18 +1462,16 @@ namespace factory
    bool factory::has_factory_item_by_custom_id(const ::type_custom_id & typecustomid) const
    {
 
-      critical_section_lock cs(&((factory*)this)->m_criticalsection);
+      auto pfactoryitem = this->_get_factory_item_by_custom_id(typecustomid);
 
-      auto iterator = this->m_mapById.find(atom);
-
-      if (!iterator)
+      if (::is_null(pfactoryitem))
       {
 
          return false;
 
       }
 
-      return iterator->payload() != nullptr;
+      return true;
 
    }
 
@@ -1466,125 +1525,30 @@ namespace factory
    ////}
 
 
-   factory_item_interface * get_factory_item_by_type_index(const ::std::type_index & typeindex)
-   {
-
-      auto pplatform = ::platform::get();
-
-      return pplatform->get_factory_item_by_type_index(typeindex);
-
-   }
-
-
-   factory_item_interface * get_factory_item_by_custom_id(const ::atom & atom)
-   {
-
-      auto pplatform = ::platform::get();
-
-      return pplatform->get_factory_item_by_custom_id(atom);
-
-   }
-
-
-   factory_item_interface * get_existing_factory_item_by_type_index(const ::std::type_index & typeindex)
-   {
-
-      auto pfactoryitem = get_factory_item_by_type_index(typeindex);
-
-      if (!pfactoryitem)
-      {
-
-         throw_exception(error_no_factory, "No factory for type_index with name: \"" + ::string(typeindex.name()) + "\"");
-
-      }
-
-      return pfactoryitem;
-
-   }
-
-
-   factory_item_interface * get_existing_factory_item_by_custom_id(const ::atom & atom)
-   {
-
-      auto pfactoryitem = get_factory_item_by_custom_id(atom);
-
-      if (!pfactoryitem)
-      {
-
-         throw_exception(error_no_factory, "No factory for id: \"" + atom + "\"");
-
-      }
-
-      return pfactoryitem;
-
-   }
-
-
-   factory_item_interface * get_factory_item_by_type_index(const ::std::type_index & typeindex, const ::atom & atomFactory)
-   {
-
-      auto pplatform = ::platform::get();
-
-      auto pfactoryitem = pplatform->get_factory_item_by_type_index(typeindex, atomFactory);
-
-      if (!pfactoryitem)
-      {
-
-         throw_exception(error_no_factory, "No factory for type_index with name: \"" + ::string(typeindex.name()) + "\"");
-
-      }
-
-      return pfactoryitem;
-
-   }
-
-   
-   factory_item_interface * get_factory_item_by_custom_id(const ::atom & atom, const ::atom& atomFactory)
-   {
-
-      auto pplatform = ::platform::get();
-
-      auto pfactoryitem = pplatform->get_factory_item_by_custom_id(atom, atomFactory);
-
-      if (!pfactoryitem)
-      {
-
-         throw_exception(error_no_factory, "No factory for id: \"" + atom.as_string() + "\"");
-
-      }
-
-      return pfactoryitem;
-
-   }
-
 
    void factory::set_factory_item_by_type(const ::platform::type & type, const ::pointer<::factory::factory_item_interface> & pfactoryitem)
    {
 
-      if (type.m_strText.is_empty() && type.m_ipair.is_key_empty())
+      if (type.is_empty())
       {
 
-         throw ::exception(error_bad_argument, "type alternate ids are all empty");
+         throw ::exception(error_bad_argument, "type is empty");
 
       }
 
-      critical_section_lock lock(&m_criticalsection);
-
-      if (type.m_strText.has_character())
+      if (type.m_typeid.is_set())
       {
 
-         m_mapByTypeTitle[type.m_strText] = pfactoryitem;
+         set_factory_item_by_type(type.m_typeid, pfactoryitem);
 
       }
 
-      if (type.m_ipair.is_key_set())
+      if (type.m_customid.is_set())
       {
 
-         m_mapByTypeIpair[type.m_ipair] = pfactoryitem;
+         set_factory_item_by_custom_id(type.m_customid, pfactoryitem);
 
       }
-
-      return pfactoryitem;
 
    }
 
@@ -1615,9 +1579,8 @@ namespace factory
 
       }
 
-      return pfactoryitem;
-
    }
+
 
    // void platform::set_factory_item_by_type(const ::platform::type & type, const ::pointer<::factory::factory_item_interface> & pfactoryitem)
    // {
@@ -1636,6 +1599,97 @@ namespace factory
    //
    // }
 
+   // factory_item_interface * get_factory_item_by_type_index(const ::std::type_index & typeindex)
+   // {
+   //
+   //    auto pplatform = ::platform::get();
+   //
+   //    return pplatform->get_factory_item_by_type_index(typeindex);
+   //
+   // }
+   //
+   //
+   // factory_item_interface * get_factory_item_by_custom_id(const ::atom & atom)
+   // {
+   //
+   //    auto pplatform = ::platform::get();
+   //
+   //    return pplatform->get_factory_item_by_custom_id(atom);
+   //
+   // }
+   //
+   //
+   // factory_item_interface * get_existing_factory_item_by_type_index(const ::std::type_index & typeindex)
+   // {
+   //
+   //    auto pfactoryitem = get_factory_item_by_type_index(typeindex);
+   //
+   //    if (!pfactoryitem)
+   //    {
+   //
+   //       throw_exception(error_no_factory, "No factory for type_index with name: \"" + ::string(typeindex.name()) + "\"");
+   //
+   //    }
+   //
+   //    return pfactoryitem;
+   //
+   // }
+   //
+   //
+   // factory_item_interface * get_existing_factory_item_by_custom_id(const ::atom & atom)
+   // {
+   //
+   //    auto pfactoryitem = get_factory_item_by_custom_id(atom);
+   //
+   //    if (!pfactoryitem)
+   //    {
+   //
+   //       throw_exception(error_no_factory, "No factory for id: \"" + atom + "\"");
+   //
+   //    }
+   //
+   //    return pfactoryitem;
+   //
+   // }
+   //
+   //
+   // factory_item_interface * get_factory_item_by_type_index(const ::std::type_index & typeindex, const ::atom & atomFactory)
+   // {
+   //
+   //    auto pplatform = ::platform::get();
+   //
+   //    auto pfactoryitem = pplatform->get_factory_item_by_type_index(typeindex, atomFactory);
+   //
+   //    if (!pfactoryitem)
+   //    {
+   //
+   //       throw_exception(error_no_factory, "No factory for type_index with name: \"" + ::string(typeindex.name()) + "\"");
+   //
+   //    }
+   //
+   //    return pfactoryitem;
+   //
+   // }
+   //
+   //
+   // factory_item_interface * get_factory_item_by_custom_id(const ::atom & atom, const ::atom& atomFactory)
+   // {
+   //
+   //    auto pplatform = ::platform::get();
+   //
+   //    auto pfactoryitem = pplatform->get_factory_item_by_custom_id(atom, atomFactory);
+   //
+   //    if (!pfactoryitem)
+   //    {
+   //
+   //       throw_exception(error_no_factory, "No factory for id: \"" + atom.as_string() + "\"");
+   //
+   //    }
+   //
+   //    return pfactoryitem;
+   //
+   // }
+   //
 
 } // namespace factory
 

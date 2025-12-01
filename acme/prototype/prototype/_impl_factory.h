@@ -169,7 +169,7 @@ namespace factory
 
        auto typeindex = ::std::type_index(typeid(ORIGIN_TYPE));
 
-       return get_factory_item_by_type_index(typeindex);
+       return _get_factory_item_by_type_index(typeindex);
 
     }
 
@@ -471,7 +471,18 @@ inline void particle::__call__construct_by_type(::pointer<TYPE> &p, const ::plat
 
    }
 
-   auto pfactoryitem = pfactory->get_factory_item(type);
+   auto pfactoryitem = pfactory->_get_factory_item(type);
+
+   if (::is_null(pfactoryitem))
+   {
+
+      ::string strError;
+
+      strError.format("Factory item not found for type \"{}\"", type.as_string());
+
+      throw ::exception(error_not_found, strError);
+
+   }
 
    auto pparticleNew = pfactoryitem->__call__create_particle();
 
@@ -510,54 +521,54 @@ inline void particle::__call__construct_by_type(::pointer<TYPE> &p, const ::plat
 
 
 
-template < typename TYPE >
-inline void particle::__call__construct_by_type_index(::pointer<TYPE>& p, const ::std::type_index & typeindex, ::factory::factory* pfactory)
-{
-
-   if (::is_null(pfactory))
-   {
-
-      pfactory = this->factory();
-
-   }
-
-   auto pfactoryitem = pfactory->_get_factory_item_by_type_index(typeindex);
-
-   auto pparticleNew = pfactoryitem->__call__create_particle();
-
-   //if (!pparticleNew)
-   //{
-
-   //   return error_no_memory;
-
-   //}
-
-   p = pparticleNew;
-
-   if (!p)
-   {
-
-      throw_exception(error_wrong_type);
-
-   }
-
-   p->set_flag(e_flag_factory);
-
-   //auto estatus =
-
-   p->initialize(this);
-
-   //if (!estatus)
-   //{
-
-   //   return estatus;
-
-   //}
-
-   //return estatus;
-
-}
-
+// template < typename TYPE >
+// inline void particle::__call__construct_by_type_index(::pointer<TYPE>& p, const ::std::type_index & typeindex, ::factory::factory* pfactory)
+// {
+//
+//    if (::is_null(pfactory))
+//    {
+//
+//       pfactory = this->factory();
+//
+//    }
+//
+//    auto pfactoryitem = pfactory->_get_factory_item_by_type_index(typeindex);
+//
+//    auto pparticleNew = pfactoryitem->__call__create_particle();
+//
+//    //if (!pparticleNew)
+//    //{
+//
+//    //   return error_no_memory;
+//
+//    //}
+//
+//    p = pparticleNew;
+//
+//    if (!p)
+//    {
+//
+//       throw_exception(error_wrong_type);
+//
+//    }
+//
+//    p->set_flag(e_flag_factory);
+//
+//    //auto estatus =
+//
+//    p->initialize(this);
+//
+//    //if (!estatus)
+//    //{
+//
+//    //   return estatus;
+//
+//    //}
+//
+//    //return estatus;
+//
+// }
+//
 
 
 //template < class T >

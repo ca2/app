@@ -712,6 +712,20 @@ namespace folder_zip
 
          information() << "zipresource://" << szItem;*/
 
+         // output_debug_string(szItem);
+         //
+         // ::string strDebug(szItem);
+         //
+         // if (strDebug.case_insensitive_ends("/wavefront.vert")
+         //    && strDebug.case_insensitive_contains("/_std/_std/"))
+         // {
+         //
+         //    information("/wavefront.vert with /_std/_std/");
+         //
+         // }
+         //
+         // ::print_line(strDebug);
+
          if (function(szItem))
          {
 

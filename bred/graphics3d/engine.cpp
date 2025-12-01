@@ -363,7 +363,7 @@ namespace graphics3d
       //auto anglePitch = transform.m_anglePitch;
       auto scale = transform.m_sequence3Scale;
 
-      scale.z = scale.z * m_fYScale;
+      ///scale.z = scale.z * m_fYScale;
       //floating_matrix4 makeViewMatrix(floating_sequence3 translation, floating_sequence3 rotationEulerDegrees, )
       //{
          // Convert degrees to radians

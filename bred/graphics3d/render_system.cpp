@@ -2,6 +2,7 @@
 #include "framework.h"
 #include "engine.h"
 #include "render_system.h"
+#include "bred/graphics3d/scene_renderable.h"
 
 
 namespace graphics3d

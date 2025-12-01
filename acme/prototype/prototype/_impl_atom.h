@@ -1996,10 +1996,10 @@ inline ::std::strong_ordering atom::operator <=> (const ::ansi_character (&cha)[
 
 }
 
-
-template<primitive_character_range RANGE>
-inline atom::atom(const RANGE &range) : m_str(range)
-{
-
-   m_etype = e_type_text;
-}
+//
+//template<prototype_character_range RANGE>
+//inline atom::atom(const RANGE &range) : m_str(range)
+//{
+//
+//   m_etype = e_type_text;
+//}

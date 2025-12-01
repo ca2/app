@@ -579,54 +579,25 @@ namespace platform
 {
 
 
-      m_strTypeName(type.m_strTypeName) {}
-   explicit type(const ::std::type_info& info) :
-      m_typeindex(info),
-      m_strRawTypeName(::type_raw_name(info)),
-      m_strTypeName(::type_name(info)) {}
-   type(const ::scoped_string& scopedstrTypeName) :
-      m_typeindex(::std::type_index(typeid(nullptr))),
-      m_strTypeName(scopedstrTypeName) {}
-   template < typename TYPE >
-   type(const TYPE* p) : type(typeid(*(TYPE*)p)) {}
-   template < typename TYPE >
-   type(const TYPE& t) : type(typeid(t)) {}
-   template < typename BASE >
-   type(const ::pointer<BASE>& p) : type(p.m_p) {}
-
-
-   bool operator == (const ::platform::type & type) const 
-   {
-
-      if (m_strRawTypeName.has_character() && type.m_strRawTypeName.has_character())
-      {
-
-         return m_strRawTypeName == type.m_strRawTypeName;
-
-      }
-      else
-      {
-
-         return m_strTypeName == type.m_strTypeName;
-
+   class CLASS_DECL_ACME type
    {
    public:
 
 
-   { 
-
-      if (m_strRawTypeName.has_character() && type.m_strRawTypeName.has_character())
-      {
-
-         return m_strRawTypeName <=> type.m_strRawTypeName;
-
+      ::type_id            m_typeid;
       ::type_custom_id     m_customid;
 
 
       //type();
-      //type(const ::platform::type &type);
       //explicit type(const ::std::type_info &info);
       //type(const ::scoped_string &scopedstrTypeName);
+      //template < typename TYPE >
+      //type(const TYPE* p) : type(typeid(*(TYPE*)p)) {}
+      //template < typename TYPE >
+      //type(const TYPE& t) : type(typeid(t)) {}
+      //template < typename BASE >
+      //type(const ::pointer<BASE>& p) : type(p.m_p) {}
+
 
       type();
       type(const ::platform::type &type);
@@ -696,11 +667,11 @@ inline ::platform::type type(const ::pointer<BASE> &p);
 //
 
 
-template < typename TYPE >
-inline ::type as_type()
-{
-
-   return typeid(TYPE);
-
-}
+//template < typename TYPE >
+//inline ::type as_type()
+//{
+//
+//   return typeid(TYPE);
+//
+//}
 

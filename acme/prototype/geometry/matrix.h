@@ -2119,7 +2119,7 @@ auto sequence_type<UNIT_TYPE, t_iSize>::as_scaling_matrix() const
 
 }
 
-template<primitive_number NUMBER, primitive_floating FLOATING_TYPE, int t_iDimension, enum_matrix_major t_emajor>
+template<prototype_number NUMBER, prototype_floating FLOATING_TYPE, int t_iDimension, enum_matrix_major t_emajor>
 inline matrix_type<FLOATING_TYPE, t_iDimension, t_emajor>
 operator*(NUMBER scalar, const matrix_type<FLOATING_TYPE, t_iDimension, t_emajor> & matrix)
 {

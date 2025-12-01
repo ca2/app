@@ -75,7 +75,7 @@ class holdee
 
 
 
-//template<primitive_subparticle T>
+//template<prototype_subparticle T>
 //class pointer;
 
 

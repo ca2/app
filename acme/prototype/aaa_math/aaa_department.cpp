@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "apex/operating_system.h"
 #include <time.h>
-//#include "apex/primitive/math/prime100k.h"
+//#include "apex/prototype/math/prime100k.h"
 #ifdef LINUX
 
 #endif

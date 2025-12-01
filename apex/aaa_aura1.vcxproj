@@ -2907,7 +2907,7 @@ copy $(__operating_system)storage-windows\third\binary\$(PlatformName)\$(Configu
     <ClCompile Include="user\user\place_holder.cpp" />
     <ClCompile Include="user\user\place_holder_container.cpp" />
     <ClCompile Include="user\user\primitive.cpp" />
-    <ClCompile Include="user\user\primitive_impl.cpp" />
+    <ClCompile Include="user\user\prototype_impl.cpp" />
     <ClCompile Include="user\user\print_job.cpp" />
     <ClCompile Include="user\user\style.cpp" />
     <ClCompile Include="user\user\style_base.cpp" />
@@ -3470,7 +3470,7 @@ copy $(__operating_system)storage-windows\third\binary\$(PlatformName)\$(Configu
     <ClInclude Include="primitive\primitive\smillis.h" />
     <ClInclude Include="primitive\primitive\topic_text_string.h" />
     <ClInclude Include="primitive\primitive\_.h" />
-    <ClInclude Include="primitive\primitive\primitive_update.h" />
+    <ClInclude Include="primitive\primitive\prototype_update.h" />
     <ClInclude Include="primitive\primitive\promise.h" />
     <ClInclude Include="primitive\primitive\property.h" />
     <ClInclude Include="primitive\primitive\property_set.h" />
@@ -3764,7 +3764,7 @@ copy $(__operating_system)storage-windows\third\binary\$(PlatformName)\$(Configu
     <ClInclude Include="user\user\plain_edit.h" />
     <ClInclude Include="user\user\plain_text_data.h" />
     <ClInclude Include="user\user\primitive.h" />
-    <ClInclude Include="user\user\primitive_impl.h" />
+    <ClInclude Include="user\user\prototype_impl.h" />
     <ClInclude Include="user\user\form_data.h" />
     <ClInclude Include="user\user\frame.h" />
     <ClInclude Include="user\user\interaction_prodevian.h" />

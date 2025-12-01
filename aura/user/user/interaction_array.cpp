@@ -25,7 +25,7 @@ namespace user
 
 
 
-   ::user::interaction * interaction_ptra::find_first_typed(const ::type & type)
+   ::user::interaction * interaction_ptra::find_first_typed(const ::platform::type & type)
    {
 
       for (int i = 0; i < this->get_size(); i++)
@@ -187,7 +187,7 @@ namespace user
    //}
 
 
-   //::user::interaction * interaction_pointer_array::find_first_typed(const ::type & type)
+   //::user::interaction * interaction_pointer_array::find_first_typed(const ::platform::type & type)
    //{
 
    //   for (int i = 0; i < interaction_count(); i++)

@@ -75,7 +75,7 @@
 //
 //    //}
 //
-//    //template < primitive_integral INTEGRAL >
+//    //template < prototype_integral INTEGRAL >
 //    //void number_read(TYPE& t)
 //    //{
 //
@@ -109,7 +109,7 @@
 ////}
 //
 //// template < typename FILE >
-//template < primitive_number NUMBER >
+//template < prototype_number NUMBER >
 //void write_text_stream < FILE >::write_number(NUMBER number)
 //{
 //
@@ -119,7 +119,7 @@
 //
 //
 //// template < typename FILE >
-//template < primitive_number NUMBER >
+//template < prototype_number NUMBER >
 //void write_text_stream < FILE >::write_number(NUMBER number, const_char_pointer pszFormat)
 //{
 //
@@ -325,7 +325,7 @@
 //
 //
 //// template < typename FILE >
-//template < primitive_signed_not_8bit SIGNED >
+//template < prototype_signed_not_8bit SIGNED >
 //write_text_stream < FILE > & write_text_stream < FILE >::operator <<(SIGNED i)
 //{
 //
@@ -344,7 +344,7 @@
 //
 //
 //// template < typename FILE >
-//template < primitive_unsigned_not_8bit UNSIGNED >
+//template < prototype_unsigned_not_8bit UNSIGNED >
 //write_text_stream < FILE > & write_text_stream < FILE >::operator <<(UNSIGNED u)
 //{
 //
@@ -426,7 +426,7 @@
 //
 //
 //// template < typename FILE >
-//template < primitive_floating FLOATING >
+//template < prototype_floating FLOATING >
 //write_text_stream < FILE > & write_text_stream < FILE >::operator <<(FLOATING f)
 //{
 //
@@ -559,7 +559,7 @@
 //
 //
 //    // template < typename FILE >
-//    template < primitive_character CHARACTER2, character_count sizeMaximumLength >
+//    template < prototype_character CHARACTER2, character_count sizeMaximumLength >
 //    write_text_stream < FILE > & write_text_stream < FILE >::operator <<(const ::inline_string < CHARACTER2, sizeMaximumLength > & inlinestring)
 //    {
 //
@@ -744,7 +744,7 @@
 ////
 ////
 ////// template < typename FILE >
-////template < primitive_character CHARACTER2, character_count sizeMaximumLength >
+////template < prototype_character CHARACTER2, character_count sizeMaximumLength >
 ////write_text_stream < FILE > & write_text_stream < FILE >::operator <<(const ::inline_string < CHARACTER2, sizeMaximumLength > & inlinestring)
 ////{
 ////

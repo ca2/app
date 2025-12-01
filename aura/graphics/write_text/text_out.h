@@ -51,7 +51,7 @@ namespace write_text
 
 
 
-template < primitive_number NUMBER >
+template < prototype_number NUMBER >
 void expand_bounding_box(::rectangle_type < NUMBER > & rectangle, const ::write_text::text_out & textout)
 {
 

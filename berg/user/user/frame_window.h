@@ -186,10 +186,10 @@ namespace user
       void hide_control_bar(::user::control_bar * pcontrolbar) override;
 
 
-      virtual ::pointer<toolbar>get_toolbar(const ::atom & idToolBar, bool bCreate = true, const ::scoped_string & scopedstrToolbar = nullptr, unsigned int dwCtrlStyle = TBSTYLE_FLAT, unsigned int uStyle = CBRS_ALIGN_TOP, const ::type & type = "user::toolbar");
+      virtual ::pointer<toolbar>get_toolbar(const ::atom & idToolBar, bool bCreate = true, const ::scoped_string & scopedstrToolbar = nullptr, unsigned int dwCtrlStyle = TBSTYLE_FLAT, unsigned int uStyle = CBRS_ALIGN_TOP, const ::platform::type & type = "user::toolbar");
 
 
-      virtual ::pointer<toolbar>create_toolbar(const ::atom & idToolbar, const ::scoped_string & scopedstrToolbar = nullptr, unsigned int dwCtrlStyle = TBSTYLE_FLAT, unsigned int uStyle = CBRS_ALIGN_TOP, const ::type & type = "user::toolbar") ;
+      virtual ::pointer<toolbar>create_toolbar(const ::atom & idToolbar, const ::scoped_string & scopedstrToolbar = nullptr, unsigned int dwCtrlStyle = TBSTYLE_FLAT, unsigned int uStyle = CBRS_ALIGN_TOP, const ::platform::type & type = "user::toolbar") ;
 
       //   template < class TOOLBAR >
       // bool load_toolbar(atom idToolBar, const ::scoped_string & scopedstrToolBar,unsigned int dwCtrlStyle = TBSTYLE_FLAT,unsigned int uStyle = WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP);

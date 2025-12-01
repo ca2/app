@@ -2006,7 +2006,7 @@ namespace user
    }
 
 
-   ::pointer<toolbar>frame_window::get_toolbar(const ::atom & idToolbar, bool bCreate, const ::scoped_string & scopedstrToolbarParam, unsigned int dwCtrlStyle, unsigned int uStyle, const ::type & type)
+   ::pointer<toolbar>frame_window::get_toolbar(const ::atom & idToolbar, bool bCreate, const ::scoped_string & scopedstrToolbarParam, unsigned int dwCtrlStyle, unsigned int uStyle, const ::platform::type & type)
    {
 
       try
@@ -2083,7 +2083,7 @@ namespace user
    }
 
 
-   ::pointer<toolbar>frame_window::create_toolbar(const ::atom & idToolbar, const ::scoped_string & scopedstrToolbarParam, unsigned int dwCtrlStyle, unsigned int uStyle, const ::type & type)
+   ::pointer<toolbar>frame_window::create_toolbar(const ::atom & idToolbar, const ::scoped_string & scopedstrToolbarParam, unsigned int dwCtrlStyle, unsigned int uStyle, const ::platform::type & type)
    {
 
       ::pointer < toolbar> ptoolbar = øcreate_by_id (type);

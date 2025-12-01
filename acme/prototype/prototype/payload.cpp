@@ -224,7 +224,7 @@ payload::payload(const ::scoped_string & scopedstr) :
 }
 
 
-//payload::payload(const type & type):
+//payload::payload(const ::platform::type & type):
 //   m_etype(e_type_type)
 //#if REFERENCING_DEBUGGING
 //   , m_preferer(nullptr)
@@ -776,7 +776,7 @@ class ::payload & payload::operator ++(int)
 }
 
 
-//void payload::set_type(const ::type & type)
+//void payload::set_type(const ::platform::type & type)
 //{
 //
 //   set_type(e_type_type, false);
@@ -10755,7 +10755,7 @@ bool payload::is_array() const
 //
 
 
-//template < primitive_payload PAYLOAD >
+//template < prototype_payload PAYLOAD >
 //::payload payload::operator - (const PAYLOAD & payload2) const
 //{
 //
@@ -10836,7 +10836,7 @@ bool payload::is_array() const
 //   return payload;
 //}
 //
-//template < primitive_payload PAYLOAD >
+//template < prototype_payload PAYLOAD >
 //::payload payload::operator + (const PAYLOAD & payload2) const
 //{
 //
@@ -10971,7 +10971,7 @@ bool payload::is_array() const
 
 
 
-//template < primitive_payload PAYLOAD >
+//template < prototype_payload PAYLOAD >
 //::payload payload::operator / (const PAYLOAD & payload2) const
 //{
 //
@@ -11035,7 +11035,7 @@ bool payload::is_array() const
 
 
 
-//template < primitive_payload PAYLOAD >
+//template < prototype_payload PAYLOAD >
 //::payload payload:: operator * (const PAYLOAD & payload2) const
 //{
 //
@@ -11095,7 +11095,7 @@ bool payload::is_array() const
 
 
 
-//template < primitive_payload PAYLOAD >
+//template < prototype_payload PAYLOAD >
 //::payload & payload:: operator -= (const PAYLOAD & payload)
 //{
 //
@@ -11106,7 +11106,7 @@ bool payload::is_array() const
 //}
 //
 //
-//template < primitive_payload PAYLOAD >
+//template < prototype_payload PAYLOAD >
 //::payload & payload:: operator += (const PAYLOAD & payload)
 //{
 //
@@ -11117,7 +11117,7 @@ bool payload::is_array() const
 //}
 //
 //
-//template < primitive_payload PAYLOAD >
+//template < prototype_payload PAYLOAD >
 //::payload & payload:: operator /= (const PAYLOAD & payload)
 //{
 //
@@ -11128,7 +11128,7 @@ bool payload::is_array() const
 //}
 //
 //
-//template < primitive_payload PAYLOAD >
+//template < prototype_payload PAYLOAD >
 //::payload & payload:: operator *= (const PAYLOAD & payload)
 //{
 //
@@ -12970,7 +12970,7 @@ bool payload::case_insensitive_ends(const ::scoped_string & scopedstrSuffix) con
 }
 
 
-//template < primitive_payload PAYLOAD, primitive_number NUMBER >
+//template < prototype_payload PAYLOAD, prototype_number NUMBER >
 //inline void copy(PAYLOAD * ppayload, const NUMBER * pnumber)
 //{
 //

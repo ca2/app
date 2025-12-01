@@ -43,7 +43,7 @@ public:
 };
 
 
-   template < primitive_fundamental TYPE >
+   template < prototype_fundamental TYPE >
    class comparison < TYPE >
    {
    public:
@@ -60,7 +60,7 @@ public:
    };
 
 
-   //template < primitive_character CHARACTER >
+   //template < prototype_character CHARACTER >
    //class comparison :
    //   public comparison < CHARACTER >
    //{
@@ -217,7 +217,7 @@ inline constexpr std::partial_ordering as <::std::partial_ordering, ::std::stron
 }
 
 
-template<primitive_floating FLOATING_TYPE, int t_iDimension, enum_matrix_major t_emajor = e_matrix_major_column>
+template<prototype_floating FLOATING_TYPE, int t_iDimension, enum_matrix_major t_emajor = e_matrix_major_column>
 struct matrix_type;
 
 

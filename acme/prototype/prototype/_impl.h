@@ -640,7 +640,7 @@ inline void particle::__call__construct_new(::pointer<TYPE>& p)
 //
 //
 //template < typename BASE_TYPE, typename SOURCE >
-//inline void matter::__refer(::pointer<BASE_TYPE>& preference, const ::primitive::member < SOURCE > & pmember, const ::scoped_string & scopedstrObjRefDbg)
+//inline void matter::__refer(::pointer<BASE_TYPE>& preference, const ::prototype::member < SOURCE > & pmember, const ::scoped_string & scopedstrObjRefDbg)
 //{
 //
 //   return __refer(preference, pmember.get(), pszObjRefDbg);

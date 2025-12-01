@@ -7,7 +7,7 @@
 #include "rectangle.h"
 
 
-template < primitive_number NUMBER >
+template < prototype_number NUMBER >
 class polygon_base :
    public point_array_base < NUMBER >
 {
@@ -34,7 +34,7 @@ public:
    polygon_base(polygon_base&& polygon);
    ~polygon_base();
 
-   template < primitive_rectangle RECTANGLE >
+   template < prototype_rectangle RECTANGLE >
    polygon_base & operator = (const RECTANGLE & rectangle)
    {
 
@@ -120,14 +120,14 @@ public:
 
 };
 
-template < primitive_number NUMBER >
+template < prototype_number NUMBER >
 inline polygon_base < NUMBER >::polygon_base(const polygon_base& polygon) :
 point_array_base < NUMBER >(polygon)
 {
 
 }
 
-template < primitive_number NUMBER >
+template < prototype_number NUMBER >
 inline polygon_base < NUMBER >::polygon_base(polygon_base&& polygon) :
    point_array_base < NUMBER >(::transfer(polygon))
 {
@@ -138,7 +138,7 @@ inline polygon_base < NUMBER >::polygon_base(polygon_base&& polygon) :
 
 }
 
-template < primitive_number NUMBER >
+template < prototype_number NUMBER >
 inline bool polygon_base < NUMBER >::bounding_rectangle_contains(const ::point_type < NUMBER > & point) const
 {
 
@@ -156,7 +156,7 @@ inline double atan(const double_point & point, double x, double y)
 
 //https://www.swtestacademy.com/intersection-convex-polygons-algorithm/
 // Sinan Oz is an experienced IT professional who has a big passion on software science and algorithms since he attended International Olympiads in Informatics in his early ages.He finished Istanbul Technical University Computer Engineering Department.He worked at Garanti Technology, one of the biggest technology centres in the country for about 5 years.After that, he started Kariyer.net and takes some serious projects as a Lead Architect and he promoted as a Software Development Manager.Currently, he is working at Movie Star Planet Kopenhagen office as a Senior Backend Game Developer.
-template < primitive_number NUMBER >
+template < prototype_number NUMBER >
 void polygon_base < NUMBER >::sort()
 {
    
@@ -177,7 +177,7 @@ void polygon_base < NUMBER >::sort()
 }
 
 
-template < primitive_number NUMBER >
+template < prototype_number NUMBER >
 polygon_base < NUMBER > & polygon_base < NUMBER >::operator = (const polygon_base& polygon)
 {
 
@@ -196,7 +196,7 @@ polygon_base < NUMBER > & polygon_base < NUMBER >::operator = (const polygon_bas
 }
 
 
-template < primitive_number NUMBER >
+template < prototype_number NUMBER >
 polygon_base < NUMBER > & polygon_base < NUMBER >::operator = (polygon_base&& polygon)
 {
 
@@ -386,7 +386,7 @@ inline void get_intersection_points(double_point_array_base & pa, const double_p
 }
 
 
-template < primitive_number NUMBER >
+template < prototype_number NUMBER >
 polygon_base < NUMBER >::polygon_base()
 {
 
@@ -397,14 +397,14 @@ polygon_base < NUMBER >::polygon_base()
 }
 
 
-template < primitive_number NUMBER >
+template < prototype_number NUMBER >
 polygon_base < NUMBER >::~polygon_base()
 {
 
 }
 
 
-//template < primitive_number NUMBER >
+//template < prototype_number NUMBER >
 //void polygon_base < NUMBER >::set_rect(const ::rectangle_type < NUMBER > & rectangle)
 //{
 //
@@ -423,7 +423,7 @@ polygon_base < NUMBER >::~polygon_base()
 //}
 
 
-template < primitive_number NUMBER >
+template < prototype_number NUMBER >
 const ::rectangle_type < NUMBER > & polygon_base < NUMBER >::bounding_rect() const
 {
 
@@ -460,7 +460,7 @@ const ::rectangle_type < NUMBER > & polygon_base < NUMBER >::bounding_rect() con
 }
 
 
-template < primitive_number NUMBER >
+template < prototype_number NUMBER >
 bool polygon_base < NUMBER >::overlaps(const polygon_base & polygon) const
 {
 
@@ -532,7 +532,7 @@ bool polygon_base < NUMBER >::overlaps(const polygon_base & polygon) const
 }
 
 
-template < primitive_number NUMBER >
+template < prototype_number NUMBER >
 polygon_base < NUMBER > polygon_base < NUMBER >::convex_intersection(const polygon_base & polygon) const
 {
 
@@ -588,7 +588,7 @@ polygon_base < NUMBER > polygon_base < NUMBER >::convex_intersection(const polyg
 }
 
 
-template < primitive_number NUMBER >
+template < prototype_number NUMBER >
 class poly_polygon_base :
    public ::pointer_array < ::array_particle < ::polygon_base < NUMBER > > >
 {

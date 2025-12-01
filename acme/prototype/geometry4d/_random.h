@@ -12,7 +12,7 @@
 #include "acme/prototype/mathematics/mathematics.h"
 
 
-template < primitive_number NUMBER >
+template < prototype_number NUMBER >
 inline quadruple_type < NUMBER > random(::mathematics::mathematics * pmathematics, const quadruple_type < NUMBER > & quadruple1, const quadruple_type < NUMBER > & quadruple2)
 {
 
@@ -26,7 +26,7 @@ inline quadruple_type < NUMBER > random(::mathematics::mathematics * pmathematic
 }
 
 
-template < primitive_number NUMBER >
+template < prototype_number NUMBER >
 inline quadruple_type < NUMBER > homogeneous_minimum_maximum_rand(const quadruple_type < NUMBER > & quadruple1, const quadruple_type < NUMBER > & quadruple2)
 {
    

@@ -95,7 +95,7 @@ namespace user
 
    class notify_icon;
 
-   //class primitive_pointer_array;
+   //class prototype_pointer_array;
 
    class shell;
 

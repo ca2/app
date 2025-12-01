@@ -3300,7 +3300,7 @@ void object::initialize(::particle * pparticle)
 //inline void __refer(::pointer<BASE_TYPE> preference, const ::pointer<SOURCE>psource);
 
 //template < typename BASE_TYPE, typename SOURCE >
-//inline void __refer(::pointer<BASE_TYPE> preference, const ::primitive::member < SOURCE >& psource);
+//inline void __refer(::pointer<BASE_TYPE> preference, const ::prototype::member < SOURCE >& psource);
 
 //template < typename SOURCE >
 //inline void add_reference(SOURCE* psource);

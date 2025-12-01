@@ -2,7 +2,7 @@
 #pragma once
 
 
-//template < primitive_rectangle RECTANGLE >
+//template < prototype_rectangle RECTANGLE >
 //inline void expand_bounding_box(RECTANGLE & rectangle, const ::double_point & p)
 //{
 //
@@ -13,7 +13,7 @@
 //
 //}
 
-template < primitive_rectangle RECTANGLE >
+template < prototype_rectangle RECTANGLE >
 inline void expand_bounding_box(RECTANGLE & rectangle, ::double_point * p, ::collection::count c)
 {
 

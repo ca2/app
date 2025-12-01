@@ -73,7 +73,7 @@ public:
 
    //}
 
-   //template < primitive_integral INTEGRAL >
+   //template < prototype_integral INTEGRAL >
    //void number_read(TYPE& t)
    //{
 
@@ -108,10 +108,10 @@ public:
    void print(::wd32_character wd32character) { char sz[8]; write((const_char_pointer )& sz, wd32_to_ansi(sz, &wd32character, 1)); }
 
 
-   template < primitive_number NUMBER >
+   template < prototype_number NUMBER >
    void write_number(NUMBER number);
 
-   template < primitive_number NUMBER >
+   template < prototype_number NUMBER >
    void write_number(NUMBER number, const_char_pointer pszFormat);
 
    /*template < typename TYPE >
@@ -321,7 +321,7 @@ public:
 
 #endif
 
-   template < primitive_signed_not_8bit SIGNED >
+   template < prototype_signed_not_8bit SIGNED >
    write_text_stream & operator <<(SIGNED i);
    //    {
    //
@@ -339,7 +339,7 @@ public:
    //    }
 
 
-   template < primitive_unsigned_not_8bit UNSIGNED >
+   template < prototype_unsigned_not_8bit UNSIGNED >
    write_text_stream & operator <<(UNSIGNED u);
    //    {
    //
@@ -431,7 +431,7 @@ public:
        //}
 
 
-   template < primitive_floating FLOATING >
+   template < prototype_floating FLOATING >
    write_text_stream & operator <<(FLOATING f);
    //    {
    //
@@ -518,7 +518,7 @@ public:
    //    }
 
 
-   write_text_stream& operator <<(const ::type& type)
+   write_text_stream& operator <<(const ::platform::type & type)
    {
 
       return *this << type.name();
@@ -564,7 +564,7 @@ public:
    //    }
 
 
-   template < primitive_character CHARACTER2, character_count sizeMaximumLength >
+   template < prototype_character CHARACTER2, character_count sizeMaximumLength >
    write_text_stream & operator <<(const ::inline_string < CHARACTER2, sizeMaximumLength > & inlinestring);
    //    {
    //
@@ -665,7 +665,7 @@ public:
 
 
 
-template < primitive_number NUMBER >
+template < prototype_number NUMBER >
 inline void write_text_stream::write_number(NUMBER number)
 {
 
@@ -674,7 +674,7 @@ inline void write_text_stream::write_number(NUMBER number)
 }
 
 
-template < primitive_number NUMBER >
+template < prototype_number NUMBER >
 inline void write_text_stream::write_number(NUMBER number, const_char_pointer pszFormat)
 {
 
@@ -683,7 +683,7 @@ inline void write_text_stream::write_number(NUMBER number, const_char_pointer ps
 }
 
 
-template < primitive_signed_not_8bit SIGNED >
+template < prototype_signed_not_8bit SIGNED >
 inline write_text_stream & write_text_stream::operator <<(SIGNED i)
 {
 
@@ -702,7 +702,7 @@ inline write_text_stream & write_text_stream::operator <<(SIGNED i)
 
 
 // // template < typename FILE >
-template < primitive_unsigned_not_8bit UNSIGNED >
+template < prototype_unsigned_not_8bit UNSIGNED >
 inline write_text_stream & write_text_stream::operator <<(UNSIGNED u)
 {
 
@@ -724,7 +724,7 @@ inline write_text_stream & write_text_stream::operator <<(UNSIGNED u)
 
 
 // // template < typename FILE >
-template < primitive_floating FLOATING >
+template < prototype_floating FLOATING >
 inline write_text_stream & write_text_stream::operator <<(FLOATING f)
 {
 

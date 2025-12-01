@@ -96,15 +96,15 @@ inline const_char_pointer FormatArgument(const string & value) noexcept { return
 
 
 
-//template < primitive_atom ATOM >
+//template < prototype_atom ATOM >
 //inline ::string operator +(const ::scoped_string & scopedstr, const ATOM & atom) { return string(scopedstr) + string(atom); }
 //
 //
-//template < primitive_payload PAYLOAD >
+//template < prototype_payload PAYLOAD >
 //inline ::string operator +(const ::scoped_string & scopedstr, const PAYLOAD & payload) { return string(scopedstr) + string(payload); }
 
 //
-//template < primitive_character CHARACTER, primitive_character CHARACTER2 >
+//template < prototype_character CHARACTER, prototype_character CHARACTER2 >
 //inline ::string_base < CHARACTER2 > operator +(const CHARACTER * pszLeft, const ::string_base < CHARACTER2 > & strRight)
 //{
 //
@@ -117,7 +117,7 @@ inline const_char_pointer FormatArgument(const string & value) noexcept { return
 
 
 
-//template < primitive_character CHARACTER, primitive_character CHARACTER2 >
+//template < prototype_character CHARACTER, prototype_character CHARACTER2 >
 //inline ::string_base < CHARACTER2 > operator +(const CHARACTER chLeft, const ::string_base < CHARACTER2 > & strRight)
 //{
 //

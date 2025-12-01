@@ -79,7 +79,7 @@ namespace user
       // The ::user::document names sub-strings are represented as _one_ string:
       // windowTitle\ndocName\n ... (see DocStringIndex enum)
 
-      impact_system(const ::atom & atom, const ::type & typeatomDocument, const ::type & typeatomFrame, const ::type & typeatomImpact, const ::type & typeatomData);
+      impact_system(const ::atom & atom, const ::platform::type & typeatomDocument, const ::platform::type & typeatomFrame, const ::platform::type & typeatomImpact, const ::platform::type & typeatomData);
       ~impact_system() override;
 
 

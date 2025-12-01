@@ -13,7 +13,7 @@ namespace acme
    {
 
 
-      template<primitive_array ARRAY1, primitive_array ARRAY2>
+      template<prototype_array ARRAY1, prototype_array ARRAY2>
       bool is_equal(const ARRAY1 & array1, const ARRAY2 & array2)
       {
 
@@ -41,7 +41,7 @@ namespace acme
       }
 
 
-      template<primitive_array ARRAY1, primitive_array ARRAY2>
+      template<prototype_array ARRAY1, prototype_array ARRAY2>
       bool is_different(const ARRAY1 & array1, const ARRAY2 & array2)
       {
 

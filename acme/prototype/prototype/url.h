@@ -6,7 +6,7 @@
 //#include "acme/prototype/collection/string_array.h"
 #include "acme/prototype/string/scoped_string_base.h"
 
-//template < primitive_character CHARACTER >
+//template < prototype_character CHARACTER >
 //const CHARACTER * const_string_range_begin(const ::range < const CHARACTER* >& range)
 //{
 //
@@ -14,7 +14,7 @@
 //
 //}
 //
-//template < primitive_character CHARACTER >
+//template < prototype_character CHARACTER >
 //const CHARACTER* const_string_range_begin(const CHARACTER* p)
 //{
 //
@@ -22,7 +22,7 @@
 //
 //}
 //
-//template < primitive_character CHARACTER >
+//template < prototype_character CHARACTER >
 //character_count const_string_range_size(const ::range < const CHARACTER* >& range)
 //{
 //
@@ -30,7 +30,7 @@
 //
 //}
 //
-//template < primitive_character CHARACTER >
+//template < prototype_character CHARACTER >
 //character_count const_string_range_size(const CHARACTER* p)
 //{
 //

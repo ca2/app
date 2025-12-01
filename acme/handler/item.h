@@ -200,7 +200,7 @@ public:
 
    //operator enum_element() const { return m_item.m_eelement; }
 
-//   template < primitive_integral INTEGRAL >
+//   template < prototype_integral INTEGRAL >
 //   operator INTEGRAL() const { return (INTEGRAL)m_item.m_iItem; }
 
    virtual bool is_hidden() const;

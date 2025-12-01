@@ -246,7 +246,7 @@ public:
    //iterator _get(ARG_KEY key);
 
 
-   template < primitive_container CONTAINER >
+   template < prototype_container CONTAINER >
    ::collection::count erase_nodes(CONTAINER container)
    {
 
@@ -328,7 +328,7 @@ public:
    }
 
 
-   template < primitive_container CONTAINER >
+   template < prototype_container CONTAINER >
    void add_keys(const CONTAINER& container)
    {
 
@@ -342,7 +342,7 @@ public:
    }
 
 
-   template < primitive_container CONTAINER >
+   template < prototype_container CONTAINER >
    void erase_keys(const CONTAINER& container)
    {
 

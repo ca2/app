@@ -152,15 +152,15 @@ namespace ftp
    public:
       enum enum_type { tyASCII, tyEBCDIC, tyImage, tyLocalByte };
 
-      type(const type& type) :
+      type(const ::platform::type & type) :
          m_etype(type.AsEnum()) {}
 
       bool operator==(const enum_type& rhs) const { return m_etype==rhs; }
       bool operator!=(const enum_type& rhs) const { return !operator==(rhs); }
-      bool operator==(const type& rhs) const { return m_etype==rhs.m_etype; }
-      bool operator!=(const type& rhs) const { return !operator==(rhs); }
+      bool operator==(const ::platform::type & rhs) const { return m_etype==rhs.m_etype; }
+      bool operator!=(const ::platform::type & rhs) const { return !operator==(rhs); }
 
-      type& operator=(const type& rhs) { m_etype = rhs.AsEnum(); return *this; }
+      type& operator=(const ::platform::type & rhs) { m_etype = rhs.AsEnum(); return *this; }
 
       enum_type AsEnum() const { return m_etype; }
       string AsString() const;

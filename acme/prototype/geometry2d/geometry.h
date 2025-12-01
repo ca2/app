@@ -50,7 +50,7 @@ namespace geometry
       void deflate(::int_rectangle * prectangle, double dLeftRate, double dRightRate, double dTopRate, double dBottomRate);
 
 
-      template < primitive_rectangle RECTANGLE >
+      template < prototype_rectangle RECTANGLE >
       inline typename RECTANGLE::POINT_TYPE random_point(const RECTANGLE & r)
       {
 
@@ -59,7 +59,7 @@ namespace geometry
       }
 
 
-      template < primitive_rectangle RECTANGLE >
+      template < prototype_rectangle RECTANGLE >
       inline typename RECTANGLE::POINT_TYPE random_point(const RECTANGLE & r, double dRate)
       {
 

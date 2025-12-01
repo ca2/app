@@ -6,7 +6,7 @@
 #include "acme/prototype/geometry/sequence.h"
 
 
-template < primitive_number NUMBER >
+template < prototype_number NUMBER >
 struct quadruple_type :
    public sequence_type < NUMBER, 4 >
 {
@@ -35,7 +35,7 @@ struct quadruple_type :
 
 //   sequence_type(const sequence_type&) = default;
 
-//   template <primitive_number T,
+//   template <prototype_number T,
 //      std::enable_if_t<T::SIZE == SIZE &&
 //      std::is_same_v<typename T::COORDINATE, COORDINATE>, int> = 0>
    quadruple_type(UNIT_TYPE n)
@@ -53,7 +53,7 @@ struct quadruple_type :
    {
    }
    
-   template < primitive_number NUMBER1 >
+   template < prototype_number NUMBER1 >
    quadruple_type(const sequence_type < NUMBER1, 4 > & sequence) :
       sequence_type < UNIT_TYPE, 4 >(sequence)
    {
@@ -122,7 +122,7 @@ using quadruple_float = quadruple_type < float >;
 using quadruple_double = quadruple_type < double >;
 
 
-template < primitive_number NUMBER1, primitive_number NUMBER2 >
+template < prototype_number NUMBER1, prototype_number NUMBER2 >
 inline quadruple_type < largest_number < NUMBER1, NUMBER2 > > operator * (NUMBER1 n, const quadruple_type < NUMBER2 > & q)
 {
 

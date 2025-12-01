@@ -221,7 +221,7 @@ namespace user
    bool interaction_impl::has_pending_redraw_flags()
    {
 
-      return ::user::primitive_impl::has_pending_redraw_flags();
+      return ::user::prototype_impl::has_pending_redraw_flags();
 
    }
 
@@ -1291,7 +1291,7 @@ namespace user
    void interaction_impl::prio_install_message_routing(::channel *pchannel)
    {
 
-      ::user::primitive_impl::prio_install_message_routing(pchannel);
+      ::user::prototype_impl::prio_install_message_routing(pchannel);
 
       USER_MESSAGE_LINK(::user::e_message_create, pchannel, this, &interaction_impl::_001OnPrioCreate);
       USER_MESSAGE_LINK(::user::e_message_set_focus, pchannel, this, &interaction_impl::on_prio_message_set_focus);
@@ -1305,7 +1305,7 @@ namespace user
       USER_MESSAGE_LINK(::user::e_message_create, pchannel, this, &interaction_impl::on_message_create);
       USER_MESSAGE_LINK(::user::e_message_after_create, pchannel, this, &interaction_impl::on_message_after_create);
 
-      ::user::primitive_impl::last_install_message_routing(pchannel);
+      ::user::prototype_impl::last_install_message_routing(pchannel);
 
       if (!m_puserinteraction->m_bMessageWindow)
       {
@@ -1886,7 +1886,7 @@ namespace user
 
       last_install_message_routing(pchannel);
 
-      ::user::primitive_impl::install_message_routing(pchannel);
+      ::user::prototype_impl::install_message_routing(pchannel);
 
       m_puserinteraction->install_message_routing(pchannel);
 
@@ -1958,7 +1958,7 @@ namespace user
 
       auto pwindowthread = m_puserthread;
 
-      ::user::primitive_impl::post_non_client_destroy();
+      ::user::prototype_impl::post_non_client_destroy();
 
       detach_window();
 
@@ -2025,7 +2025,7 @@ namespace user
    //   void interaction_impl::assert_ok() const
    //   {
    //
-   //      ::user::primitive_impl::assert_ok();
+   //      ::user::prototype_impl::assert_ok();
    //
    //   }
    //
@@ -2033,7 +2033,7 @@ namespace user
    //   void interaction_impl::dump(dump_context & dumpcontext) const
    //   {
    //
-   //      ::user::primitive_impl::dump(dumpcontext);
+   //      ::user::prototype_impl::dump(dumpcontext);
    //
    //   }
 
@@ -2126,7 +2126,7 @@ namespace user
       }
 
       //bool bResult = 
-      ::user::primitive_impl::start_destroying_window();
+      ::user::prototype_impl::start_destroying_window();
 
       //return bResult;
 
@@ -3847,7 +3847,7 @@ namespace user
    //unsigned int interaction_impl::GetStyle() const
    //{
 
-   //   return ::user::primitive_impl::GetStyle();
+   //   return ::user::prototype_impl::GetStyle();
 
    //}
 
@@ -3855,7 +3855,7 @@ namespace user
    //unsigned int interaction_impl::GetExStyle() const
    //{
 
-   //   return ::user::primitive_impl::GetExStyle();
+   //   return ::user::prototype_impl::GetExStyle();
 
    //}
 
@@ -5992,7 +5992,7 @@ namespace user
    void interaction_impl::_001OnNcClip(::draw2d::graphics_pointer &pgraphics)
    {
 
-      ::user::primitive_impl::_001OnNcClip(pgraphics);
+      ::user::prototype_impl::_001OnNcClip(pgraphics);
 
    }
 
@@ -7079,7 +7079,7 @@ namespace user
 
       //return 
 
-      ::user::primitive_impl::set_finish();
+      ::user::prototype_impl::set_finish();
 
    }
 
@@ -7188,7 +7188,7 @@ namespace user
    void interaction_impl::destroy()
    {
 
-      return ::user::primitive_impl::destroy();
+      return ::user::prototype_impl::destroy();
 
    }
 
@@ -7748,7 +7748,7 @@ namespace user
    //}
 
 
-   void interaction_impl:aaa_clear_keyboard_focus(::user::primitive_impl *pprimitiveimplGainingFocusIfAny)
+   void interaction_impl:aaa_clear_keyboard_focus(::user::prototype_impl *pprimitiveimplGainingFocusIfAny)
    {
 
       auto puserinteraction = m_puserinteraction;

@@ -17,7 +17,7 @@ namespace generic
     {
 
 
-        template < primitive_container CONTAINER1, primitive_container CONTAINER2 >
+        template < prototype_container CONTAINER1, prototype_container CONTAINER2 >
         CONTAINER1& append(CONTAINER1& container1, const CONTAINER2& container2)
         {
 
@@ -33,7 +33,7 @@ namespace generic
         }
 
 
-        template < primitive_container CONTAINER1, primitive_container CONTAINER2 >
+        template < prototype_container CONTAINER1, prototype_container CONTAINER2 >
         CONTAINER1& copy(CONTAINER1& container1, const CONTAINER2& container2)
         {
 
@@ -50,7 +50,7 @@ namespace generic
 } // namespace generic
 
 
-template < primitive_container CONTAINER >
+template < prototype_container CONTAINER >
 inline ::string as_string(const CONTAINER& container, const ::scoped_string& scopedstrSeparator = "|")
 {
 
@@ -99,7 +99,7 @@ inline ::string as_string(const ::set < ITEM > & set, const ::scoped_string& sco
 }
 
 
-template < primitive_container CONTAINER >
+template < prototype_container CONTAINER >
 inline void from_string(CONTAINER & container, const ::scoped_string  & scopedstr, const ::scoped_string  & scopedstrSeparator = "|")
 {
 

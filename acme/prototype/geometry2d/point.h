@@ -6,7 +6,7 @@
 
 
 
-template < primitive_number NUMBER >
+template < prototype_number NUMBER >
 class point_type :
    public sequence_type < NUMBER, 2 >
 {
@@ -32,10 +32,10 @@ public:
 
 //   sequence_type(const sequence_type&) = default;
 
-//   template <primitive_number T,
+//   template <prototype_number T,
 //      std::enable_if_t<T::SIZE == SIZE &&
 //      std::is_same_v<typename T::COORDINATE, COORDINATE>, int> = 0>
-   template < primitive_number A >
+   template < prototype_number A >
    constexpr point_type(A a)
    {
    
@@ -43,14 +43,14 @@ public:
       
    }
    
-   template < primitive_number X, primitive_number Y >
+   template < prototype_number X, prototype_number Y >
    constexpr point_type(X x, Y y)
    {
       this->m_coordinatea[0] = (UNIT_TYPE) x;
       this->m_coordinatea[1] = (UNIT_TYPE) y;
    }
    
-   template < primitive_number NUMBER1 >
+   template < prototype_number NUMBER1 >
    constexpr point_type(const sequence_type < NUMBER1, 2 > & sequence) :
       sequence_type < UNIT_TYPE, 2 >(sequence)
    {
@@ -109,7 +109,7 @@ public:
 //   }
 //
 //
-////   template < primitive_size SIZE >
+////   template < prototype_size SIZE >
 ////   point_type(const SIZE & size)
 ////   {
 ////
@@ -121,7 +121,7 @@ public:
 //
 //   ///point_type(const ::sequence_type < NUMBER, 2 > & point) noexcept { this->x = (UNIT_TYPE) point.x; this->y = (UNIT_TYPE) point.y; }
 //
-////   template < primitive_size SIZE >
+////   template < prototype_size SIZE >
 //  // point_type(const SIZE & size) noexcept { ::copy(*this, size); }
 //
 //#ifdef WINDOWS
@@ -144,9 +144,9 @@ public:
 //   inline point_type& operator = (const RAW_PRIMITIVE_POINT& point) { this->x = (UNIT_TYPE)point.x; this->y = (UNIT_TYPE)point.y; return *this; }
 
    
-//   template < primitive_size PRIMITIVE_SIZE >
+//   template < prototype_size PRIMITIVE_SIZE >
 //   inline point_type & operator = (const PRIMITIVE_SIZE  & point) { this->x = (UNIT_TYPE) point.x; this->y = (UNIT_TYPE)point.y; return *this; }
-   //template < primitive_number E >
+   //template < prototype_number E >
    constexpr bool is_same_by(UNIT_TYPE e, const point_type & p) const
    {
 
@@ -189,27 +189,27 @@ public:
 //   inline UNIT_TYPE set_normal_dimension(enum_orientation eorientation, UNIT_TYPE l)  noexcept { return set_orthogonal_dimension(eorientation,l); }
 //   inline UNIT_TYPE set_normal(enum_orientation eorientation, UNIT_TYPE l) noexcept { return set_orthogonal_dimension(eorientation,l); }
 
-   template < primitive_point POINT >
+   template < prototype_point POINT >
    double distance(const POINT& point) const { auto s = *this - point; return sqrt((double) (s.cx * s.cx + s.cy * s.cy)); }
 
-   template < primitive_point POINT >
+   template < prototype_point POINT >
    point_type mid(const POINT& point) const
    {
       return { (UNIT_TYPE)((this->x + point.x) / (UNIT_TYPE)2), (UNIT_TYPE)((this->y + point.y) / (UNIT_TYPE)2) };
    }
 
 
-   template < primitive_point POINT >
+   template < prototype_point POINT >
    inline bool operator==(const POINT & point) const noexcept { return (this->x == (UNIT_TYPE) point.x && this->y == (UNIT_TYPE) point.y); }
 
-   //template < primitive_point POINT >
+   //template < prototype_point POINT >
    //inline bool operator!=(const POINT & point) const noexcept { return (this->x != (UNIT_TYPE) point.x || this->y != (UNIT_TYPE) point.y); }
 
 
    inline bool operator==(nullptr_t) const noexcept { return ::is_null(this); }
    //inline bool operator!=(nullptr_t) const noexcept { return !::is_null(this); }
 
-   template < primitive_number NUMBER1 >
+   template < prototype_number NUMBER1 >
    point_type < largest_number < UNIT_TYPE, NUMBER1 > > operator *(NUMBER1 n) const
    {
       point_type < largest_number < UNIT_TYPE, NUMBER1 > > result;
@@ -219,7 +219,7 @@ public:
    }
 
 
-   template < primitive_number NUMBER1 >
+   template < prototype_number NUMBER1 >
    point_type < largest_number < UNIT_TYPE, NUMBER1 > > operator /(NUMBER1 n) const
    {
       point_type < largest_number < UNIT_TYPE, NUMBER1 > > result;
@@ -229,26 +229,26 @@ public:
    }
 
    
-   template < primitive_size SIZE >
+   template < prototype_size SIZE >
    inline point_type& operator +=(const SIZE& size) noexcept { this->x = (UNIT_TYPE) (this->x + size.cx); this->y = (UNIT_TYPE)(this->y + size.cy); return *this; }
 
-   template < primitive_size SIZE >
+   template < prototype_size SIZE >
    inline point_type& operator -=(const SIZE& size) noexcept { this->x = (UNIT_TYPE)(this->x - size.cx); this->y = (UNIT_TYPE)(this->y - size.cy); return *this; }
 
-   template < primitive_point POINT >
+   template < prototype_point POINT >
    inline point_type& operator +=(const POINT& point) noexcept { this->x = (UNIT_TYPE)(this->x + point.x); this->y = (UNIT_TYPE)(this->y + point.y); return *this; }
 
-   template < primitive_point POINT >
+   template < prototype_point POINT >
    inline point_type& operator -=(const POINT& point) noexcept { this->x = (UNIT_TYPE)(this->x - point.x); this->y = (UNIT_TYPE)(this->y - point.y); return *this; }
 
-   template < primitive_number NUMBER1 >
+   template < prototype_number NUMBER1 >
    inline point_type < largest_number < UNIT_TYPE, NUMBER1 > > operator +(const sequence_type < NUMBER1, 2 > & sequence) const noexcept { return point_type < largest_number < UNIT_TYPE, NUMBER1 > >(this->x + sequence.x, this->y + sequence.y); }
 
-//   template < primitive_point POINT >
+//   template < prototype_point POINT >
 //   inline point_type operator +(const POINT & point) const noexcept { return point_type(this->x + point.x, this->y + point.y); }
 
 
-   template < primitive_number NUMBER1 >
+   template < prototype_number NUMBER1 >
    inline point_type < largest_number < UNIT_TYPE, NUMBER1 > > operator-(const sequence_type < NUMBER1, 2 > & sequence) const noexcept { return point_type < largest_number < UNIT_TYPE, NUMBER1 > >(this->x - sequence.x, this->y - sequence.y); }
 
    inline point_type operator-() const noexcept { return point_type(-this->x, -this->y); }
@@ -337,7 +337,7 @@ public:
    }
    
    
-   template < primitive_point POINT >
+   template < prototype_point POINT >
    void expand_bounding_box(POINT & top_left, POINT & bottom_right) const
    {
       
@@ -348,7 +348,7 @@ public:
    }
    
    
-   template < primitive_point POINT >
+   template < prototype_point POINT >
    static void expand_bounding_box(POINT & top_left, POINT & bottom_right, const point_type * ppoint, ::collection::count count)
    {
 
@@ -408,7 +408,7 @@ inline bool is_different(const ::double_point& p1, const ::double_point& p2, dou
 }
 
 
-template < primitive_number NUMBER1, primitive_number NUMBER2 >
+template < prototype_number NUMBER1, prototype_number NUMBER2 >
 inline ::size_type < largest_number < NUMBER1, NUMBER2 > > operator -(const ::point_type < NUMBER1 > & point1, const ::point_type < NUMBER2 > & point2) noexcept
 {
    
@@ -424,7 +424,7 @@ inline ::size_type < largest_number < NUMBER1, NUMBER2 > > operator -(const ::po
 #include "acme/platform/lparam.h"
 
 
-template < primitive_number NUMBER >
+template < prototype_number NUMBER >
 constexpr point_type<NUMBER>::point_type(const lparam &lparam) : sequence_type<UNIT_TYPE, 2>(lparam.x(), lparam.y())
 {
 
@@ -432,7 +432,7 @@ constexpr point_type<NUMBER>::point_type(const lparam &lparam) : sequence_type<U
 }
 
 
-template < primitive_point POINT >
+template < prototype_point POINT >
 constexpr lparam::lparam(const POINT & point) : lparam((int)point.x, (int)point.y)
 {
 

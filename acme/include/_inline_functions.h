@@ -15,7 +15,7 @@ T default_epsilon()
 }
 
 
-template < primitive_integral INTEGRAL >
+template < prototype_integral INTEGRAL >
 constexpr INTEGRAL default_epsilon()
 {
 
@@ -24,7 +24,7 @@ constexpr INTEGRAL default_epsilon()
 }
 
 
-template < primitive_floating FLOATING >
+template < prototype_floating FLOATING >
 constexpr FLOATING default_epsilon()
 {
 
@@ -535,7 +535,7 @@ inline bool exists(const ::file::enum_type& etype)
 
 
 
-//template < primitive_integral SECOND, primitive_integral NANOSECOND >
+//template < prototype_integral SECOND, prototype_integral NANOSECOND >
 //constexpr void normalize_second_nanosecond(SECOND & second, NANOSECOND & nanosecond)
 //{
 //
@@ -549,7 +549,7 @@ inline bool exists(const ::file::enum_type& etype)
 //
 //
 //
-//template < primitive_integral SECOND1, primitive_integral NANOSECOND1, primitive_integral SECOND2, primitive_integral NANOSECOND2 >
+//template < prototype_integral SECOND1, prototype_integral NANOSECOND1, prototype_integral SECOND2, prototype_integral NANOSECOND2 >
 //constexpr void add_second_nanosecond(SECOND1 & second1, NANOSECOND1 & nanosecond1, const SECOND2 & second2, const NANOSECOND2 & nanosecond2)
 //{
 //
@@ -565,7 +565,7 @@ inline bool exists(const ::file::enum_type& etype)
 //
 //
 //
-//template < primitive_integral SECOND1, primitive_integral NANOSECOND1, primitive_integral SECOND2, primitive_integral NANOSECOND2 >
+//template < prototype_integral SECOND1, prototype_integral NANOSECOND1, prototype_integral SECOND2, prototype_integral NANOSECOND2 >
 //constexpr void subtract_second_nanosecond(SECOND1 & second1, NANOSECOND1 & nanosecond1, const SECOND2 & second2, const NANOSECOND2 & nanosecond2)
 //{
 //
@@ -608,7 +608,7 @@ constexpr ::std::strong_ordering negation(const ::std::strong_ordering & orderin
 }
 
 
-template < primitive_floating NUMBER1, primitive_floating NUMBER2 >
+template < prototype_floating NUMBER1, prototype_floating NUMBER2 >
 bool is_equal(const NUMBER1 & n1, const NUMBER2 & n2, largest_number < NUMBER2, NUMBER2 > epsilon = default_epsilon < largest_number < NUMBER2, NUMBER2 > >())
 {
 
@@ -617,7 +617,7 @@ bool is_equal(const NUMBER1 & n1, const NUMBER2 & n2, largest_number < NUMBER2, 
 }
 
 
-template < primitive_floating NUMBER1, primitive_integral NUMBER2 >
+template < prototype_floating NUMBER1, prototype_integral NUMBER2 >
 bool is_equal(const NUMBER1 & n1, const NUMBER2 & n2, largest_number < NUMBER2, NUMBER2 > epsilon = default_epsilon < largest_number < NUMBER2, NUMBER2 > >())
 {
 
@@ -626,7 +626,7 @@ bool is_equal(const NUMBER1 & n1, const NUMBER2 & n2, largest_number < NUMBER2, 
 }
 
 
-template < primitive_integral NUMBER1, primitive_floating NUMBER2 >
+template < prototype_integral NUMBER1, prototype_floating NUMBER2 >
 bool is_equal(const NUMBER1 & n1, const NUMBER2 & n2, largest_number < NUMBER2, NUMBER2 > epsilon = default_epsilon < largest_number < NUMBER2, NUMBER2 > >())
 {
 
@@ -635,7 +635,7 @@ bool is_equal(const NUMBER1 & n1, const NUMBER2 & n2, largest_number < NUMBER2, 
 }
 
 
-template < primitive_integral NUMBER1, primitive_integral NUMBER2 >
+template < prototype_integral NUMBER1, prototype_integral NUMBER2 >
 bool is_equal(const NUMBER1 & n1, const NUMBER2 & n2, largest_number < NUMBER2, NUMBER2 > epsilon = 0)
 {
 
@@ -645,7 +645,7 @@ bool is_equal(const NUMBER1 & n1, const NUMBER2 & n2, largest_number < NUMBER2, 
 
 
 /// this function assumes minimum and maximum already have some valid value and that minimum is greater or equal maximum.
-template < primitive_number NUMBER1, primitive_number NUMBER2 >
+template < prototype_number NUMBER1, prototype_number NUMBER2 >
 constexpr void _expand_minimum_maximum(NUMBER1 & minimum, NUMBER1 & maximum, NUMBER2 n)
 {
 
@@ -666,7 +666,7 @@ constexpr void _expand_minimum_maximum(NUMBER1 & minimum, NUMBER1 & maximum, NUM
 
 
 /// this function assumes minimum and maximum already have some valid value and that minimum is greater or equal maximum.
-template < primitive_integral NUMBER1, primitive_integral NUMBER2 >
+template < prototype_integral NUMBER1, prototype_integral NUMBER2 >
 constexpr void expand_minimum_maximum(NUMBER1 & minimum, NUMBER1 & maximum, NUMBER2 n)
 {
 
@@ -676,7 +676,7 @@ constexpr void expand_minimum_maximum(NUMBER1 & minimum, NUMBER1 & maximum, NUMB
 
 
 /// this function assumes minimum and maximum already have some valid value and that minimum is greater or equal maximum.
-template < primitive_floating NUMBER1, primitive_floating NUMBER2 >
+template < prototype_floating NUMBER1, prototype_floating NUMBER2 >
 constexpr void expand_minimum_maximum(NUMBER1 & minimum, NUMBER1 & maximum, NUMBER2 n)
 {
 
@@ -686,7 +686,7 @@ constexpr void expand_minimum_maximum(NUMBER1 & minimum, NUMBER1 & maximum, NUMB
 
 
 /// this function assumes minimum and maximum already have some valid value and that minimum is greater or equal maximum.
-template < primitive_floating NUMBER1, primitive_integral NUMBER2 >
+template < prototype_floating NUMBER1, prototype_integral NUMBER2 >
 constexpr void expand_minimum_maximum(NUMBER1 & minimum, NUMBER1 & maximum, NUMBER2 n)
 {
 
@@ -696,7 +696,7 @@ constexpr void expand_minimum_maximum(NUMBER1 & minimum, NUMBER1 & maximum, NUMB
 
 
 /// this function assumes minimum and maximum already have some valid value and that minimum is greater or equal maximum.
-template < primitive_integral NUMBER1, primitive_floating NUMBER2 >
+template < prototype_integral NUMBER1, prototype_floating NUMBER2 >
 constexpr void expand_minimum_maximum(NUMBER1 & minimum, NUMBER1 & maximum, NUMBER2 n)
 {
 

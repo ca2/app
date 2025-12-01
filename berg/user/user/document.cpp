@@ -628,7 +628,7 @@ namespace user
    }
 
 
-   ::pointer<::user::impact>document::get_typed_impact(const ::type & type, ::collection::index indexFind)
+   ::pointer<::user::impact>document::get_typed_impact(const ::platform::type & type, ::collection::index indexFind)
    {
 
       single_lock synchronouslock(synchronization(), true);
@@ -669,7 +669,7 @@ namespace user
    }
 
 
-   ::pointer<::user::impact>document::get_typed_impact_with_id(const ::type & type, atom atom)
+   ::pointer<::user::impact>document::get_typed_impact_with_id(const ::platform::type & type, atom atom)
    {
 
       single_lock synchronouslock(synchronization(), true);

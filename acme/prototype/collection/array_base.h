@@ -55,7 +55,7 @@ public:
    // array_base(::collection::count n);
    // array_base(::collection::count n, ARG_TYPE t);
    // array_base(::range < const_iterator > constrange) : BASE_ARRAY(constrange) {}
-   // template < primitive_integral INTEGRAL >
+   // template < prototype_integral INTEGRAL >
    // array_base(const_iterator begin, INTEGRAL count) : BASE_ARRAY(begin, count) {}
    // array_base(const_iterator begin, const_iterator end) : BASE_ARRAY(begin, end) {}
    // array_base(array_base && a) noexcept : base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >(::transfer(a)) { }
@@ -102,7 +102,7 @@ public:
    ///inline ::collection::count append(const array_base & src);
 
 
-   //template < primitive_container CONTAINER >
+   //template < prototype_container CONTAINER >
    //inline ::collection::count append(const CONTAINER & container)
    //{
 
@@ -201,7 +201,7 @@ public:
    //operator TYPE *() {return this->m_begin;}
    //operator const TYPE *() const {return this->m_begin;}
 
-   // template < primitive_container CONTAINER >
+   // template < prototype_container CONTAINER >
    // inline array_base & operator += (const CONTAINER & container);
 
    template < typename... T >
@@ -389,7 +389,7 @@ public:
 //    // array_base(::collection::count n) : BASE_ARRAY(n) {}
 //    // array_base(::collection::count n, ARG_TYPE t) : BASE_ARRAY(n, t) {}
 //    // array_base(::range < typename BASE_ARRAY::const_iterator > constrange) : BASE_ARRAY(constrange) {}
-//    // template < primitive_integral INTEGRAL >
+//    // template < prototype_integral INTEGRAL >
 //    // array_base(typename BASE_ARRAY::const_iterator begin, INTEGRAL count) : BASE_ARRAY(begin, count) {}
 //    // array_base(typename BASE_ARRAY::const_iterator begin, typename BASE_ARRAY::const_iterator end) : BASE_ARRAY(begin, end) {}
 //
@@ -626,7 +626,7 @@ inline void array_base < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::copy
 
 
 // template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY, ::enum_type t_etypeContainer >
-// template < primitive_container CONTAINER >
+// template < prototype_container CONTAINER >
 // inline array_base < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > & array_base < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::operator += (const CONTAINER & container)
 // {
 //

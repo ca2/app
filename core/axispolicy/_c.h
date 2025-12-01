@@ -11,7 +11,7 @@
 
 
 
-#include "aura/primitive/math/mkint_c.h"
+#include "aura/prototype/math/mkint_c.h"
 
 //#if defined(__ANDROID__)
 //#include "axis/axis/os/android/android.h"

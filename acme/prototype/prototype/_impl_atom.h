@@ -72,7 +72,7 @@ inline const_string_range < ITERATOR_TYPE > & const_string_range < ITERATOR_TYPE
 
 
 template < typename ITERATOR_TYPE >
-template < primitive_block BLOCK >
+template < prototype_block BLOCK >
 inline string_range < ITERATOR_TYPE >::string_range(const BLOCK & block) :
    const_string_range < ITERATOR_TYPE >(block)
 {
@@ -397,7 +397,7 @@ inline atom::atom(enum_status estatus) :
 }
 
 
-// This constructor shouldn't change the primitive type of
+// This constructor shouldn't change the prototype type of
 // the atom argument.
 inline atom::atom(enum_type etypeAdd, const ::atom & atom)
 {
@@ -507,7 +507,7 @@ inline atom::atom(const ::inline_number_string & inline_number_string) :
 }
 
 
-inline atom::atom(const ::type & type) :
+inline atom::atom(const ::platform::type & type) :
    m_str(type.name())
 {
 
@@ -516,7 +516,7 @@ inline atom::atom(const ::type & type) :
 }
 
 
-template < primitive_signed SIGNED >
+template < prototype_signed SIGNED >
 inline atom::atom(SIGNED i)
 {
 
@@ -527,7 +527,7 @@ inline atom::atom(SIGNED i)
 }
 
 
-template < primitive_unsigned UNSIGNED >
+template < prototype_unsigned UNSIGNED >
 inline atom::atom(UNSIGNED u)
 {
 
@@ -538,7 +538,7 @@ inline atom::atom(UNSIGNED u)
 }
 
 
-template < primitive_enum ENUM >
+template < prototype_enum ENUM >
 inline atom::atom(ENUM e)
 {
 
@@ -707,7 +707,7 @@ inline atom & atom::operator = (const atom & atom)
 }
 
 
-template < primitive_character_range RANGE >
+template < prototype_character_range RANGE >
 inline bool atom::operator == (const RANGE & range) const
 {
 
@@ -817,7 +817,7 @@ inline bool atom::operator == (CHARACTER_POINTER p) const
 }
 
 
-template < primitive_character_range RANGE >
+template < prototype_character_range RANGE >
 inline ::std::strong_ordering atom::operator<=>(const RANGE & range) const
 {
 
@@ -869,7 +869,7 @@ inline ::std::strong_ordering atom::operator<=>(const RANGE & range) const
 //}
 
 
-template < primitive_integral INTEGRAL >
+template < prototype_integral INTEGRAL >
 inline bool atom::operator == (INTEGRAL i) const
 {
 
@@ -882,7 +882,7 @@ return ::comparison::tuple
 }
 
 
-template < primitive_integral INTEGRAL >
+template < prototype_integral INTEGRAL >
 inline ::std::strong_ordering atom::operator <=>(INTEGRAL i) const
 {
 
@@ -895,7 +895,7 @@ return ::comparison::tuple
 }
 
 
-//template < primitive_integral INTEGRAL >
+//template < prototype_integral INTEGRAL >
 //inline bool atom::operator != (INTEGRAL i) const
 //{
 //
@@ -904,7 +904,7 @@ return ::comparison::tuple
 //}
 //
 //
-//template < primitive_integral INTEGRAL >
+//template < prototype_integral INTEGRAL >
 //inline bool atom::operator < (INTEGRAL i) const
 //{
 //
@@ -913,7 +913,7 @@ return ::comparison::tuple
 //}
 //
 //
-//template < primitive_integral INTEGRAL >
+//template < prototype_integral INTEGRAL >
 //inline bool atom::operator <= (INTEGRAL i) const
 //{
 //
@@ -922,7 +922,7 @@ return ::comparison::tuple
 //}
 //
 //
-//template < primitive_integral INTEGRAL >
+//template < prototype_integral INTEGRAL >
 //inline bool atom::operator > (INTEGRAL i) const
 //{
 //
@@ -931,7 +931,7 @@ return ::comparison::tuple
 //}
 //
 //
-//template < primitive_integral INTEGRAL >
+//template < prototype_integral INTEGRAL >
 //inline bool atom::operator >= (INTEGRAL i) const
 //{
 //
@@ -1359,7 +1359,7 @@ inline ::std::strong_ordering atom::operator <=>(::enum_happening ehappening) co
 inline long long atom::as_long_long() const
 {
 
-   return primitive_type() == e_type_integer ? m_iLargest : 0x8000000000000000ll;
+   return prototype_type() == e_type_integer ? m_iLargest : 0x8000000000000000ll;
 
 }
 
@@ -1367,7 +1367,7 @@ inline long long atom::as_long_long() const
 inline ::iptr atom::as_iptr() const
 {
 
-   return primitive_type() == e_type_integer ? m_iLargest : INTPTR_MIN;
+   return prototype_type() == e_type_integer ? m_iLargest : INTPTR_MIN;
 
 }
 
@@ -1833,7 +1833,7 @@ string_base < CHAR > & string_base < CHAR >::append(const ::atom & atom)
 //}
 
 
-//template < primitive_character CHARACTER, character_count sizeMaximumLength >
+//template < prototype_character CHARACTER, character_count sizeMaximumLength >
 //inline ::string_base < const CHARACTER * > operator +(const inline_string < CHARACTER, sizeMaximumLength > & inlinestring, const ::atom & atom)
 //{
 //
@@ -1867,7 +1867,7 @@ string_base < CHAR > & string_base < CHAR >::append(const ::atom & atom)
 //}
 
 
-//template < primitive_character CHARACTER, primitive_character CHARACTER2 >
+//template < prototype_character CHARACTER, prototype_character CHARACTER2 >
 //inline ::string_base<CHARACTER2> operator +(const ::range < CHARACTER > & block, const ::string_base < CHARACTER2 > & str)
 //{
 //
@@ -1875,7 +1875,7 @@ string_base < CHAR > & string_base < CHAR >::append(const ::atom & atom)
 //
 //}
 
-//template < primitive_character CHARACTER >
+//template < prototype_character CHARACTER >
 //inline ::string_base < CHARACTER > & operator +=(::string_base < CHARACTER > & str, const ::atom & atom)
 //{
 //
@@ -1904,7 +1904,7 @@ string_base < CHAR > & string_base < CHAR >::append(const ::atom & atom)
 //}
 
 
-template < primitive_payload PAYLOAD >
+template < prototype_payload PAYLOAD >
 atom::atom(const PAYLOAD & payload)
 {
 

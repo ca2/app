@@ -49,7 +49,7 @@
 //
 //   }
 //
-//   //template < primitive_character CHARACTER, character_count n >
+//   //template < prototype_character CHARACTER, character_count n >
 //   //const_string_range_static_array(const CHARACTER(&s)[n]) :
 //   //   m_range(s)
 //   //{
@@ -61,7 +61,7 @@
 //
 //   constexpr character_count size() const { return this->m_range.size(); }
 //
-//   template < primitive_character TARGET_CHARACTER >
+//   template < prototype_character TARGET_CHARACTER >
 //   character_count __utf_length(TARGET_CHARACTER* ptrigger, character_count*& plen) const
 //   {
 //
@@ -69,7 +69,7 @@
 //
 //   }
 //
-//   template < primitive_character TARGET_CHARACTER >
+//   template < prototype_character TARGET_CHARACTER >
 //   void __utf_concatenate_to(TARGET_CHARACTER*& p, character_count*& plen) const
 //   {
 //
@@ -124,7 +124,7 @@
 //
 //   }
 //
-//   template < primitive_character TARGET_CHARACTER >
+//   template < prototype_character TARGET_CHARACTER >
 //   character_count __utf_length(TARGET_CHARACTER* ptrigger, character_count*& plen) const
 //   {
 //
@@ -136,7 +136,7 @@
 //
 //   }
 //
-//   template < primitive_character TARGET_CHARACTER >
+//   template < prototype_character TARGET_CHARACTER >
 //   void __utf_concatenate_to(TARGET_CHARACTER*& p, character_count*& plen) const
 //   {
 //

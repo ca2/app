@@ -11,7 +11,7 @@
 //}
 //
 //
-//inline bool type_name::operator == (const ::type& type) const
+//inline bool type_name::operator == (const ::platform::type & type) const
 //{
 //
 //   return m_pszRawName == type.m_pszRawName
@@ -51,7 +51,7 @@
 //}
 //
 //
-//template < primitive_object_not_type_atom OBJECT_NOT_TYPE_ATOM >
+//template < prototype_object_not_type_atom OBJECT_NOT_TYPE_ATOM >
 //type_name::type(OBJECT_NOT_TYPE_ATOM & objectnottypeatom)
 //{
 //

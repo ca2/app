@@ -30,7 +30,7 @@
 //    base_array(const TYPE * p, ::collection::count c) :BASE_ARRAY(p, c) {}
 //    base_array(::range < typename BASE_ARRAY::const_iterator > constrange) :
 //       BASE_ARRAY(constrange.begin(), constrange.end()) {}
-//    template < primitive_integral INTEGRAL >
+//    template < prototype_integral INTEGRAL >
 //    base_array(typename BASE_ARRAY::const_iterator begin, INTEGRAL count) :
 //       BASE_ARRAY(begin, begin + count) {}
 //    base_array(typename BASE_ARRAY::const_iterator begin, typename BASE_ARRAY::const_iterator end)

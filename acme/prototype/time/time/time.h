@@ -63,7 +63,7 @@ public:
 
    explicit time(const ::file_time & filetime);
 
-   template < primitive_integer INTEGER >
+   template < prototype_integer INTEGER >
    constexpr time(INTEGER iSecond)
       : posix_time( {posix_time_t{}, (long long)iSecond}), nanosecond({nanosecond_t{}, 0})
    {
@@ -71,7 +71,7 @@ public:
       
    }
 
-   template < primitive_floating FLOATING >
+   template < prototype_floating FLOATING >
    time(FLOATING fSeconds)
    {
 
@@ -79,13 +79,13 @@ public:
 
    }
 
-   template < primitive_integer INTEGER1, primitive_integral INTEGRAL2 >
+   template < prototype_integer INTEGER1, prototype_integral INTEGRAL2 >
    constexpr time(INTEGER1 iSecond, INTEGRAL2 iNanosecond) :
       posix_time( {posix_time_t{}, (long long)iSecond}), nanosecond({nanosecond_t{}, (long long)iNanosecond})
    { }
 
 
-   template < primitive_floating FLOATING, primitive_number NUMBER >
+   template < prototype_floating FLOATING, prototype_number NUMBER >
    time(FLOATING fSeconds, NUMBER nanoseconds)
    {
         
@@ -93,7 +93,7 @@ public:
         
    }
 
-   template < primitive_integral INTEGRAL1, primitive_integral INTEGRAL2 >
+   template < prototype_integral INTEGRAL1, prototype_integral INTEGRAL2 >
    constexpr time(enum_raw, INTEGRAL1 iSecond, INTEGRAL2 iNanosecond)
    {
          m_iSecond = iSecond;
@@ -101,10 +101,10 @@ public:
          m_iNanosecond = iNanosecond;
    }
 
-   template < primitive_integral INTEGRAL1 >
+   template < prototype_integral INTEGRAL1 >
    constexpr time(enum_raw, INTEGRAL1 iSecond) : time(e_raw, iSecond, 0) {}
    
-   template < primitive_integral INTEGRAL1, primitive_integral INTEGRAL2 >
+   template < prototype_integral INTEGRAL1, prototype_integral INTEGRAL2 >
    constexpr time(enum_normalize, INTEGRAL1 iSecond, INTEGRAL2 iNanosecond)
    {
 
@@ -239,7 +239,7 @@ public:
    constexpr  class ::time & operator += (const class time & time) { m_iSecond += time.m_iSecond; m_iNanosecond += time.m_iNanosecond; normalize();  return *this; }
 
 
-   template < primitive_floating FLOATING >
+   template < prototype_floating FLOATING >
    constexpr class ::time operator / (FLOATING d) const
    {
 
@@ -250,7 +250,7 @@ public:
    }
 
 
-   template < primitive_floating FLOATING >
+   template < prototype_floating FLOATING >
    constexpr class ::time operator * (FLOATING d) const
    {
 
@@ -261,7 +261,7 @@ public:
    }
 
 
-   template < primitive_integral INTEGRAL >
+   template < prototype_integral INTEGRAL >
    constexpr class ::time operator / (INTEGRAL i) const
    {
 
@@ -272,7 +272,7 @@ public:
    }
 
 
-   template < primitive_integral INTEGRAL >
+   template < prototype_integral INTEGRAL >
    constexpr class ::time operator * (INTEGRAL i) const
    {
 
@@ -283,7 +283,7 @@ public:
    }
 
 
-   template < primitive_floating FLOATING >
+   template < prototype_floating FLOATING >
    constexpr class ::time & operator /= (FLOATING d)
    {
 
@@ -292,7 +292,7 @@ public:
    }
 
 
-   template < primitive_floating FLOATING >
+   template < prototype_floating FLOATING >
    constexpr class ::time & operator *= (FLOATING d)
    {
 
@@ -301,7 +301,7 @@ public:
    }
 
 
-   template < primitive_integral INTEGRAL >
+   template < prototype_integral INTEGRAL >
    constexpr class ::time & operator /= (INTEGRAL i)
    {
 
@@ -310,7 +310,7 @@ public:
    }
 
 
-   template < primitive_integral INTEGRAL >
+   template < prototype_integral INTEGRAL >
    constexpr  class ::time & operator *= (INTEGRAL i)
    {
 
@@ -903,7 +903,7 @@ public:
 
 //inline doubled floatingtime() { return ::get_floating_second(); }
 
-//template < primitive_integral INTEGRAL1, primitive_integral INTEGRAL2 >
+//template < prototype_integral INTEGRAL1, prototype_integral INTEGRAL2 >
 //constexpr  time::time(enum_raw, INTEGRAL1 iSeconds, INTEGRAL2 iNanoseconds)
 //{
 //
@@ -913,7 +913,7 @@ public:
 //
 //}
 //
-//template < primitive_integral INTEGRAL1, primitive_integral INTEGRAL2 >
+//template < prototype_integral INTEGRAL1, prototype_integral INTEGRAL2 >
 //constexpr  time::time(enum_normalize, INTEGRAL1 iSeconds, INTEGRAL2 iNanoseconds)
 //{
 //
@@ -1087,7 +1087,7 @@ constexpr posix_time time::GetTimeSpan() const
 //}
 
 
-template < primitive_floating FLOATING >
+template < prototype_floating FLOATING >
 class time operator * (FLOATING d, const class time & time)
 {
 
@@ -1098,7 +1098,7 @@ class time operator * (FLOATING d, const class time & time)
 }
 
 
-template < primitive_integral INTEGRAL >
+template < prototype_integral INTEGRAL >
 class time operator * (INTEGRAL i, const class time & time)
 {
 
@@ -1233,21 +1233,21 @@ inline class time time::remaining(const class time & time, const class time & ti
 
 
 
-template < primitive_integral INTEGRAL >
+template < prototype_integral INTEGRAL >
 constexpr class time nanosecond_time(INTEGRAL i) { return { (INTEGRAL)i / 1'000'000'000, (long)(i % 1'000'000'000) }; }
-template < primitive_floating FLOATING >
+template < prototype_floating FLOATING >
 constexpr class time nanosecond_time(FLOATING f) { return { (long long)(f / 1'000'000'000.0), (long)(fmod(f, 1'000'000'000.0)) }; }
-template < primitive_integral INTEGRAL >
+template < prototype_integral INTEGRAL >
 constexpr class time microsecond_time(INTEGRAL i) { return { i / 1'000'000, (long)((i % 1'000'000) * 1'000) }; }
-template < primitive_floating FLOATING >
+template < prototype_floating FLOATING >
 constexpr class time microsecond_time(FLOATING f) { return { (long long)(f / 1'000'000.0), (long)(fmod(f, 1'000'000.0) * 1'000.0) }; }
-template < primitive_integral INTEGRAL >
+template < prototype_integral INTEGRAL >
 constexpr class time millisecond_time(INTEGRAL i) { return { i / 1'000, (long)((i % 1'000) * 1'000'000) }; }
-template < primitive_floating FLOATING >
+template < prototype_floating FLOATING >
 constexpr class time millisecond_time(FLOATING f) { return { (long long)(f / 1'000.0), (long)(fmod(f, 1'000.0) * 1'000'000.0) }; }
-template < primitive_integral INTEGRAL >
+template < prototype_integral INTEGRAL >
 constexpr class time second_time(INTEGRAL i) { return { i }; }
-template < primitive_integral NUMERATOR, primitive_integral DENOMINATOR >
+template < prototype_integral NUMERATOR, prototype_integral DENOMINATOR >
 constexpr class time second_time(NUMERATOR numerator, DENOMINATOR denominator)
 {
    return  
@@ -1256,19 +1256,19 @@ constexpr class time second_time(NUMERATOR numerator, DENOMINATOR denominator)
       (long long) muldiv64((numerator % denominator), 1'000'000'000 , denominator)
    }; 
 }
-template < primitive_floating FLOATING >
+template < prototype_floating FLOATING >
 constexpr class time second_time(FLOATING f) { return { (FLOATING)(f), (long)(fmod(f, 1.0) * 1'000'000'000.0) }; }
-template < primitive_integral INTEGRAL >
+template < prototype_integral INTEGRAL >
 constexpr class time minute_time(INTEGRAL i) { return { i * 60 }; }
-template < primitive_floating FLOATING >
+template < prototype_floating FLOATING >
 constexpr class time minute_time(FLOATING f) { return { (FLOATING)(f * 60.0), (long)(fmod(f * 60.0, 1.0) * 1'000'000'000.0) }; }
-template < primitive_integral INTEGRAL >
+template < prototype_integral INTEGRAL >
 constexpr class time hour_time(INTEGRAL i) { return { i * 3'600 }; }
-template < primitive_floating FLOATING >
+template < prototype_floating FLOATING >
 constexpr class time hour_time(FLOATING f) { return { (FLOATING)(f * 3'600.0), (long)(fmod(f * 3'600.0, 1.0) * 1'000'000'000.0) }; }
-template < primitive_integral INTEGRAL >
+template < prototype_integral INTEGRAL >
 constexpr class time day_time(INTEGRAL i) { return { i * 86'400 }; }
-template < primitive_floating FLOATING >
+template < prototype_floating FLOATING >
 constexpr class time day_time(FLOATING f) { return { (FLOATING)(f * 86'400.0), (long)(fmod(f * 86'400.0, 1.0) * 1'000'000'000.0) }; }
 
 

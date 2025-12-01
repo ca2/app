@@ -41,7 +41,7 @@ namespace sockets
       ~listen_socket() override;
 
       
-      virtual void set_attend_socket_type(const ::type& type);
+      virtual void set_attend_socket_type(const ::platform::type & type);
 
       void Reset() override;
 

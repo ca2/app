@@ -10579,7 +10579,7 @@ if(get_parent())
    //
    //      erase_all_routes();
    //
-   //      ::pointer<primitive_impl>pwindowOld = window();
+   //      ::pointer<prototype_impl>pwindowOld = window();
    //
    //      auto pwindowNew = øcreate < interaction_impl >();
    //
@@ -19793,7 +19793,7 @@ if(get_parent())
    }
 
 
-   //bool interaction::is_descendant(const primitive * puiIsDescendant, bool bIncludeSelf) const
+   //bool interaction::is_descendant(const prototype * puiIsDescendant, bool bIncludeSelf) const
    //{
 
    //   return window()->is_descendant(puiIsDescendant, bIncludeSelf);
@@ -23711,7 +23711,7 @@ if(get_parent())
 //////      if (this == puserinteractionHost)
 //////      {
 //////
-//////         ::user::primitive_impl* pwindowGainingFocusIfAny = nullptr;
+//////         ::user::prototype_impl* pwindowGainingFocusIfAny = nullptr;
 //////
 //////         if (pelementGainingFocusIfAny)
 //////         {

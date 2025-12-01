@@ -299,7 +299,7 @@ inline int unicode_to_upper_case(int i)
 }
 
 
-//template < primitive_character CHARACTER >
+//template < prototype_character CHARACTER >
 //inline const CHARACTER * string_scan(const ::range < CHARACTER > & block, const ::range < CHARACTER > & blockCharacters) noexcept
 //{
 //

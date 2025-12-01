@@ -46,7 +46,7 @@ struct DOUBLE_POLE
 };
 
 
-template < primitive_number NUMBER >
+template < prototype_number NUMBER >
 class pole_type :
    public sequence_type < NUMBER, 3 >
 {
@@ -60,7 +60,7 @@ public:
 
    pole_type(nullptr_t = nullptr) : sequence_type<NUMBER, 3>() {  }
    pole_type(no_initialize_t) { }
-   template < primitive_number X, primitive_number Y, primitive_number Z >
+   template < prototype_number X, prototype_number Y, prototype_number Z >
    pole_type(X xP, Y yP, Z zP) { this->x = xP; this->y = yP; this->z = zP; }
 
 
@@ -72,7 +72,7 @@ public:
    //UNIT_TYPE& z() { return this->c(); }
 
 
-   template < primitive_pole POLE >
+   template < prototype_pole POLE >
    pole_type operator +(const POLE& pole) const
    {
 
@@ -87,7 +87,7 @@ public:
    }
 
 
-   template < primitive_pole POLE >
+   template < prototype_pole POLE >
    pole_type& operator +=(const POLE& pole)
    {
 
@@ -100,7 +100,7 @@ public:
    }
 
 
-   template < primitive_pole POLE >
+   template < prototype_pole POLE >
    pole_type& operator -=(const POLE& pole)
    {
 
@@ -113,7 +113,7 @@ public:
    }
 
 
-   template < primitive_pole POLE >
+   template < prototype_pole POLE >
    pole_type& operator = (const POLE& pole)
    {
 
@@ -126,7 +126,7 @@ public:
    }
 
 
-   template < primitive_number NUMBER_TYPE >
+   template < prototype_number NUMBER_TYPE >
    pole_type& operator *= (NUMBER_TYPE n)
    {
 
@@ -139,7 +139,7 @@ public:
    }
 
 
-   template < primitive_number NUMBER_TYPE >
+   template < prototype_number NUMBER_TYPE >
    pole_type operator * (NUMBER_TYPE n)
    {
 
@@ -156,7 +156,7 @@ public:
    const SIZE_TYPE& cxy()const { return (const SIZE_TYPE&)*this; }
 
 
-   template < primitive_pole POLE >
+   template < prototype_pole POLE >
    pole_type& rotate(const POLE& pole)
    {
     
@@ -185,7 +185,7 @@ public:
 };
 
 
-template < primitive_pole POLE >
+template < prototype_pole POLE >
 inline typename POLE::POINT_TYPE & __point(POLE & pole)
 {
 
@@ -194,7 +194,7 @@ inline typename POLE::POINT_TYPE & __point(POLE & pole)
 }
 
 
-template < primitive_pole POLE >
+template < prototype_pole POLE >
 inline ::double_point as_double_point(const POLE & pole)
 {
 
@@ -203,7 +203,7 @@ inline ::double_point as_double_point(const POLE & pole)
 }
 
 
-template < primitive_pole POLE >
+template < prototype_pole POLE >
 inline ::int_point as_int_point(const POLE & pole)
 {
 

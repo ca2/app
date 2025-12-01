@@ -119,7 +119,7 @@ namespace networking
 
       virtual bool gudo_set();
 
-      ///virtual ::sockets::listen_socket * new_listen_socket(const ::type & type);
+      ///virtual ::sockets::listen_socket * new_listen_socket(const ::platform::type & type);
 
 
       /*

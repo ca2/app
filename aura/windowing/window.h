@@ -8,7 +8,7 @@
 #include "acme/prototype/geometry2d/rectangle.h"
 #include "acme/prototype/geometry2d/size.h"
 #include "apex/windowing/window_base.h"
-//#include "primitive_impl.h"
+//#include "prototype_impl.h"
 #include "aura/user/user/interaction_array.h"
 #include "aura/user/user/interaction.h"
 #include "aura/user/user/redraw.h"
@@ -1298,7 +1298,7 @@ namespace windowing
       ::user::element * get_keyboard_focus() override;
       //virtual void set_keyboard_focus(::user::interaction_base * pprimitive) override;
       //virtual void erase_keyboard_focus(::user::interaction_base * pprimitive) override;
-      //void aaa_clear_keyboard_focus(::user::primitive_impl * pprimitiveimplGainingFocusIfAny = nullptr) override;
+      //void aaa_clear_keyboard_focus(::user::prototype_impl * pprimitiveimplGainingFocusIfAny = nullptr) override;
       //virtual void impl_set_keyboard_focus(::user::interaction_base * pprimitive) override;
       //virtual void impl_erase_keyboard_focus(::user::interaction_base * pprimitive) override;
       //virtual void aaa_impl_clear_keyboard_focus() override;
@@ -1373,7 +1373,7 @@ namespace windowing
       //void set_opacity(double dOpacity) override;
 
 
-      // ::user::primitive_impl
+      // ::user::prototype_impl
 
 
       inline critical_section * cs_display() { return m_pcsDisplay; }

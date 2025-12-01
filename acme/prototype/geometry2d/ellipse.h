@@ -5,7 +5,7 @@
 #include "rectangle.h"
 
 
-template < primitive_number NUMBER >
+template < prototype_number NUMBER >
 class ellipse_type :
    public ::rectangle_type < NUMBER >
 {
@@ -13,7 +13,7 @@ public:
 
 
    ellipse_type() {}
-   template < primitive_number NUMBER2 >
+   template < prototype_number NUMBER2 >
    ellipse_type(const ellipse_type < NUMBER2 > & ellipse)
    {
    

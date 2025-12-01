@@ -228,7 +228,7 @@ public:
    inline operator void * () { return data(); }
 
 
-   template < primitive_character CHARACTER >
+   template < prototype_character CHARACTER >
    range < CHARACTER * > get_buffer(character_count len)
    {
 

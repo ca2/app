@@ -497,7 +497,7 @@ namespace user
 
       ::atom atom() const { return is_item_set() ? m_pitem->m_atomMatterId : e_element_none; }
 
-      //template < primitive_integral INTEGRAL >
+      //template < prototype_integral INTEGRAL >
       //operator INTEGRAL() const { return (INTEGRAL)m_iItem; }
 
       //bool is_hidden() const;

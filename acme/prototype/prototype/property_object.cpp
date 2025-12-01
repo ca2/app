@@ -935,7 +935,7 @@ unsigned int property_object::get_unsigned_int(const ::atom & atom, unsigned int
 }
 
 
-//template < primitive_subparticle TYPE >
+//template < prototype_subparticle TYPE >
 //TYPE * property_object::cast(const ::atom & atom) const
 //{
 //

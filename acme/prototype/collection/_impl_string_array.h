@@ -233,7 +233,7 @@ void string_base_array < Type, RawType, t_etypeContainer >::copy(const string_ba
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-template < primitive_array ARRAY >
+template < prototype_array ARRAY >
 void string_base_array < Type, RawType, t_etypeContainer >::copy(const ARRAY& src)
 {
 
@@ -564,7 +564,7 @@ void string_base_array < Type, RawType, t_etypeContainer >::insert_at(::collecti
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-template < primitive_container CONTAINER >
+template < prototype_container CONTAINER >
 void string_base_array < Type, RawType, t_etypeContainer >::insert_at(::collection::index nStartIndex, const CONTAINER & container)
 {
    //    // ASSERT_OK(this);
@@ -2170,7 +2170,7 @@ template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-template < primitive_container CONTAINER >
+template < prototype_container CONTAINER >
 ::collection::count string_base_array < Type, RawType, t_etypeContainer > ::case_insensitive_erase(const CONTAINER & container)
 {
 
@@ -2189,7 +2189,7 @@ template < primitive_container CONTAINER >
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-template < primitive_container CONTAINER >
+template < prototype_container CONTAINER >
 ::collection::count string_base_array < Type, RawType, t_etypeContainer > ::erase(const CONTAINER & container)
 {
 
@@ -3009,7 +3009,7 @@ bool string_base_array < Type, RawType, t_etypeContainer > ::has_elements(::coll
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-template < primitive_array INDEX_ARRAY >
+template < prototype_array INDEX_ARRAY >
 ::collection::count string_base_array < Type, RawType, t_etypeContainer > ::begins(INDEX_ARRAY& iaPrefixed, const SCOPED_STRING& strPrefix, ::collection::index iFirst, ::collection::index iLast)
 {
 
@@ -3047,7 +3047,7 @@ template < primitive_array INDEX_ARRAY >
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-template < primitive_array INDEX_ARRAY >
+template < prototype_array INDEX_ARRAY >
 ::collection::count string_base_array < Type, RawType, t_etypeContainer > ::case_insensitive_begins(INDEX_ARRAY& iaPrefixed, const SCOPED_STRING& strPrefix, ::collection::index iFirst, ::collection::index iLast)
 {
 
@@ -3121,7 +3121,7 @@ template < primitive_array INDEX_ARRAY >
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-template < primitive_array STRING_ARRAY >
+template < prototype_array STRING_ARRAY >
 ::collection::count string_base_array < Type, RawType, t_etypeContainer > ::case_insensitive_ends(STRING_ARRAY& straSuffixed, const SCOPED_STRING& strSuffix, ::collection::index iFirst, ::collection::index iLast)
 {
 
@@ -3160,7 +3160,7 @@ template < primitive_array STRING_ARRAY >
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-template < primitive_array STRING_ARRAY >
+template < prototype_array STRING_ARRAY >
 ::collection::count string_base_array < Type, RawType, t_etypeContainer > ::ends(STRING_ARRAY& iaSuffixed, const SCOPED_STRING& strSuffix, ::collection::index iFirst, ::collection::index iLast)
 {
 
@@ -3306,7 +3306,7 @@ template < primitive_array STRING_ARRAY >
 //}
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-template < primitive_array STRING_ARRAY >
+template < prototype_array STRING_ARRAY >
 ::collection::count string_base_array < Type, RawType, t_etypeContainer > ::search(STRING_ARRAY& iaResult, const SCOPED_STRING& strTopic, ::collection::index iFirst, ::collection::index iLast)
 {
 
@@ -3344,7 +3344,7 @@ template < primitive_array STRING_ARRAY >
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-template < primitive_array STRING_ARRAY >
+template < prototype_array STRING_ARRAY >
 ::collection::count string_base_array < Type, RawType, t_etypeContainer > ::case_insensitive_search(STRING_ARRAY& ia, const SCOPED_STRING& strTopic, ::collection::index iFirst, ::collection::index iLast)
 {
 
@@ -4574,7 +4574,7 @@ const Type& string_base_array < Type, RawType, t_etypeContainer >::element_at(::
 
 //
 //template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-//template < primitive_array INDEX_ARRAY >
+//template < prototype_array INDEX_ARRAY >
 //void string_base_array < Type, RawType, t_etypeContainer >::case_insensitive_get_quick_sort(INDEX_ARRAY & ia)
 //{
 //

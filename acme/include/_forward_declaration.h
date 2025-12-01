@@ -1327,7 +1327,7 @@ namespace user
 
    class interaction_base;
    class element;
-   class primitive_impl;
+   class prototype_impl;
 
    class item;
 
@@ -2472,7 +2472,7 @@ struct argument_of_struct<TYPE *>
 };
 
 
-//template < primitive_function FUNCTION >
+//template < prototype_function FUNCTION >
 //struct argument_of_struct < FUNCTION >
 //{
 //

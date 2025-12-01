@@ -83,46 +83,46 @@ struct ::double_rectangle;
 //inline long long i32muldiv(long long i, long long iNum, long long iDen);
 
 
-template < primitive_integral INTEGRAL1, primitive_integral INTEGRAL2, primitive_integral INTEGRAL3, primitive_integral INTEGRAL_RESULT = typename ::largest_type_of_3 < INTEGRAL1, INTEGRAL2, INTEGRAL3 >::type >
+template < prototype_integral INTEGRAL1, prototype_integral INTEGRAL2, prototype_integral INTEGRAL3, prototype_integral INTEGRAL_RESULT = typename ::largest_type_of_3 < INTEGRAL1, INTEGRAL2, INTEGRAL3 >::type >
 inline INTEGRAL_RESULT muldiv(INTEGRAL1 i, INTEGRAL2 iNumerator, INTEGRAL3 iDenominator);
 
 
-template < primitive_rectangle RECTANGLE >
+template < prototype_rectangle RECTANGLE >
 inline auto width(const RECTANGLE & rectangle) { return rectangle.right - rectangle.left; }
 
-template < primitive_rectangle RECTANGLE >
+template < prototype_rectangle RECTANGLE >
 inline auto height(const RECTANGLE & rectangle) { return rectangle.bottom - rectangle.top; }
 
-template < primitive_rectangle RECTANGLE >
+template < prototype_rectangle RECTANGLE >
 inline auto area(const RECTANGLE & rectangle) { return maximum(width(rectangle), 0) * maximum(height(rectangle), 0); }
 
 
-template < primitive_rectangle RECTANGLE >
+template < prototype_rectangle RECTANGLE >
 inline auto left(const RECTANGLE & rectangle) { return rectangle.left; }
 
-template < primitive_rectangle RECTANGLE >
+template < prototype_rectangle RECTANGLE >
 inline auto top(const RECTANGLE & rectangle) { return rectangle.top; }
 
 
 
-template < primitive_XYDim XYDim >
+template < prototype_XYDim XYDim >
 inline auto width(const XYDim & rectangle) { return rectangle.Width; }
 
-template < primitive_XYDim XYDim >
+template < prototype_XYDim XYDim >
 inline auto height(const XYDim & rectangle) { return rectangle.Height; }
 
-template < primitive_XYDim XYDim >
+template < prototype_XYDim XYDim >
 inline auto area(const XYDim & rectangle) { return maximum(rectangle.Width, 0) * maximum(rectangle.Height, 0); }
 
 
-template < primitive_XYDim XYDim >
+template < prototype_XYDim XYDim >
 inline auto left(const XYDim & rectangle) { return rectangle.X; }
 
-template < primitive_XYDim XYDim >
+template < prototype_XYDim XYDim >
 inline auto top(const XYDim & rectangle) { return rectangle.Y; }
 
 
-//template < primitive_rectangle RECTANGLE, primitive_XYDim XYDim >
+//template < prototype_rectangle RECTANGLE, prototype_XYDim XYDim >
 //inline void copy(RECTANGLE & rectangle, const XYDim & xydim)
 //{
 //
@@ -134,7 +134,7 @@ inline auto top(const XYDim & rectangle) { return rectangle.Y; }
 //}
 //
 //
-//template < primitive_XYDim XYDim, primitive_rectangle RECTANGLE >
+//template < prototype_XYDim XYDim, prototype_rectangle RECTANGLE >
 //inline void copy(XYDim & xydim, const RECTANGLE & rectangle)
 //{
 //
@@ -214,9 +214,9 @@ inline auto top(const XYDim & rectangle) { return rectangle.Y; }
 //inline bool intersect(::float_rectangle & rectangle, const ::float_rectangle & rect1, const ::float_rectangle & rect2) { return ::intersect_rect(rectangle, rect1, rect2); }
 //inline ::float_rectangle & unite(::float_rectangle & rectangle, const ::float_rectangle & rect1, const ::float_rectangle & rect2) { return ::union_rect(rectangle, rect1, rect2); }
 //inline float width(const ::float_rectangle & rectangle) { return ::rect_width(rectangle); }
-////template < primitive_rectangle RECTANGLE > 
+////template < prototype_rectangle RECTANGLE > 
 ////inline auto height(const RECTANGLE  & rectangle) { return ::rect_height(rectangle); }
-////template < primitive_rectangle RECTANGLE >
+////template < prototype_rectangle RECTANGLE >
 ////inline auto height(const RECTANGLE & rectangle) { return ::height(&rectangle); }
 //inline float area(const ::float_rectangle & rectangle) { return ::rect_area(rectangle); }
 //inline bool is_empty(const ::float_rectangle & rectangle) { return ::is_rect_empty(rectangle); }
@@ -238,7 +238,7 @@ inline auto top(const XYDim & rectangle) { return rectangle.Y; }
 //inline ::double_rectangle & deflate(::double_rectangle & rectangle, double x, double y) { return ::rect_deflate_point(rectangle, x, y); }
 //inline ::double_rectangle & offset(::double_rectangle & rectangle, double x, double y) { return ::offset_rect(rectangle, x, y); }
 
-template < primitive_rectangle RECTANGLE >
+template < prototype_rectangle RECTANGLE >
 inline RECTANGLE & rate_deflate(RECTANGLE & rectangle, double dLeftRate, double dRightRate, double dTopRate, double dBottomRate);
 
 
@@ -376,11 +376,11 @@ inline RECTANGLE & rate_deflate(RECTANGLE & rectangle, double dLeftRate, double 
 #include "ellipse.h"
 
 
-//template < primitive_point POINT >
+//template < prototype_point POINT >
 //inline ::string as_string(const POINT & point);
 //
 //
-//template < primitive_size SIZE >
+//template < prototype_size SIZE >
 //inline ::string as_string(const SIZE & size);
 //
 

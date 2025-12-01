@@ -4652,7 +4652,7 @@ namespace user
    }
 
 
-   ::user::primitive_impl * element::get_primitive_impl()
+   ::user::prototype_impl * element::get_primitive_impl()
    {
 
       return nullptr;

@@ -4329,7 +4329,7 @@ public:
 //}
 //
 //
-//ansi_string & str::assign(ansi_string & ansistrDst, const type & type)
+//ansi_string & str::assign(ansi_string & ansistrDst, const ::platform::type & type)
 //{
 //
 //   ansistrDst.assign(type);
@@ -4339,7 +4339,7 @@ public:
 //}
 //
 //
-//wd16_string & str::assign(wd16_string & widestrDst, const type & type)
+//wd16_string & str::assign(wd16_string & widestrDst, const ::platform::type & type)
 //{
 //
 //   widestrDst.assign(type);
@@ -4349,7 +4349,7 @@ public:
 //}
 //
 //
-//wd32_string & str::assign(wd32_string & widestrDst, const type & type)
+//wd32_string & str::assign(wd32_string & widestrDst, const ::platform::type & type)
 //{
 //
 //   widestrDst.assign(type);

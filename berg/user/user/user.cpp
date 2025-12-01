@@ -1378,7 +1378,7 @@ namespace berg
    }
 
 
-   ::pointer<::form_document>user::create_typed_form(::particle * pparticle, const ::type & type, ::user::element * puserelementParent, const ::payload & payload, const ::payload & payloadArgs)
+   ::pointer<::form_document>user::create_typed_form(::particle * pparticle, const ::platform::type & type, ::user::element * puserelementParent, const ::payload & payload, const ::payload & payloadArgs)
    {
 
       if (!type)
@@ -1623,7 +1623,7 @@ namespace berg
    }
 
 
-   ::pointer < ::form_document > user::create_typed_child_form(::particle * pparticle, const ::type & type, ::user::element * puserelementParent, const ::payload & payload, const ::payload & payloadArgs)
+   ::pointer < ::form_document > user::create_typed_child_form(::particle * pparticle, const ::platform::type & type, ::user::element * puserelementParent, const ::payload & payload, const ::payload & payloadArgs)
    {
 
       auto pathFile = payload.as_file_path();
@@ -1783,7 +1783,7 @@ namespace berg
       //__namespace_object_factory(user, ::system_setup::flag_object_user);
 
 
-   ::pointer<::form_document> user::create_typed_child_form(::particle * pparticle, const ::type & type, ::user::impact_data * pimpactdata, ::payload payload)
+   ::pointer<::form_document> user::create_typed_child_form(::particle * pparticle, const ::platform::type & type, ::user::impact_data * pimpactdata, ::payload payload)
    {
 
       return create_typed_child_form(pparticle, type, pimpactdata->m_pplaceholder, payload);

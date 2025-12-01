@@ -411,7 +411,7 @@ namespace user
    //bool interaction_child::has_keyboard_focus()
    //{
 
-   //   return ::user::primitive_impl::has_keyboard_focus();
+   //   return ::user::prototype_impl::has_keyboard_focus();
 
    //}
 
@@ -427,7 +427,7 @@ namespace user
    //unsigned int interaction_child::GetStyle() const
    //{
 
-   //   return ::user::primitive_impl::GetStyle();
+   //   return ::user::prototype_impl::GetStyle();
 
    //}
 
@@ -435,7 +435,7 @@ namespace user
    //unsigned int interaction_child::GetExStyle() const
    //{
 
-   //   return ::user::primitive_impl::GetExStyle();
+   //   return ::user::prototype_impl::GetExStyle();
 
    //}
 
@@ -460,7 +460,7 @@ namespace user
 
       //bool bOk = 
       
-      ::user::primitive_impl::start_destroying_window();
+      ::user::prototype_impl::start_destroying_window();
 
       //return bOk;
 
@@ -815,7 +815,7 @@ namespace user
    //void interaction_child::_000CallOnDraw(::draw2d::graphics_pointer & pgraphics)
    //{
 
-   //   ::user::primitive_impl::_000CallOnDraw(pgraphics);
+   //   ::user::prototype_impl::_000CallOnDraw(pgraphics);
 
    //}
 

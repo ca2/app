@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "aura/primitive/collection/string_to_string_map.h"
+#include "aura/prototype/collection/string_to_string_map.h"
 
 
 namespace aura

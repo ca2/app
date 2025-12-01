@@ -6,7 +6,7 @@
 #include "acme/prototype/geometry/sequence.h"
 #include "acme/prototype/geometry2d/angle.h"
 
-//template<primitive_floating FLOATING_TYPE, int t_iDimension, enum_matrix_major t_emajor>
+//template<prototype_floating FLOATING_TYPE, int t_iDimension, enum_matrix_major t_emajor>
 //struct matrix_type;
 
 
@@ -28,7 +28,7 @@ namespace geometry
 {
 
 
-   template<primitive_floating FLOATING, int t_iDimension>
+   template<prototype_floating FLOATING, int t_iDimension>
    inline void _transpose(FLOATING(& A_target)[t_iDimension][t_iDimension],
                                  const FLOATING(& A_source)[t_iDimension][t_iDimension])
    {
@@ -44,7 +44,7 @@ namespace geometry
 
 
 /// Simple matrix class with row-major storage
-template<primitive_floating FLOATING_TYPE, int t_iDimension>
+template<prototype_floating FLOATING_TYPE, int t_iDimension>
 struct row_major_type
 {
 
@@ -68,7 +68,7 @@ struct translation_t
 
 
 /// Matrix class
-template<primitive_floating FLOATING_TYPE, int t_iDimension, enum_matrix_major t_emajor>
+template<prototype_floating FLOATING_TYPE, int t_iDimension, enum_matrix_major t_emajor>
 struct matrix_type
 {
 
@@ -147,7 +147,7 @@ struct matrix_type
 
    /// expects p to point to an array of at least SQUARED_DIMENSION elements
    /// in column-major order
-   template<primitive_floating FLOATING1>
+   template<prototype_floating FLOATING1>
    matrix_type(const FLOATING1 *p) 
       requires(DIMENSION == 4)
    {
@@ -174,7 +174,7 @@ struct matrix_type
    }
 
 
-   template < primitive_number NUMBER >
+   template < prototype_number NUMBER >
    constexpr matrix_type(NUMBER diagonal) 
    {
 
@@ -1556,7 +1556,7 @@ using double_matrix4 = matrix_type<double, 4>;
 //   //}
 //   //
 //
-//   ////template<primitive_floating FLOATING>
+//   ////template<prototype_floating FLOATING>
 //   ////row_major_type<FLOATING, 4> transpose(const matrix_type<FLOATING, 4> &m)
 //   ////{
 //   ////   row_major_type<FLOATING, 4> r;
@@ -1565,7 +1565,7 @@ using double_matrix4 = matrix_type<double, 4>;
 //   ////}
 //
 //
-//   ////template<primitive_floating FLOATING>
+//   ////template<prototype_floating FLOATING>
 //   //////matrix_type<FLOATING, 3> inverse(const matrix_type<FLOATING, 3> &m)
 //   //////{
 //
@@ -1596,7 +1596,7 @@ using double_matrix4 = matrix_type<double, 4>;
 //   //
 //
 //
-//   //template<primitive_floating FLOATING>
+//   //template<prototype_floating FLOATING>
 //   //quaternion_type < FLOATING > quaternion(const ::sequence_type<FLOATING, 3> & euler)
 //   //{
 //
@@ -1604,7 +1604,7 @@ using double_matrix4 = matrix_type<double, 4>;
 //
 //   //}
 //
-//   //template<primitive_floating FLOATING>
+//   //template<prototype_floating FLOATING>
 //   //inline matrix_type<FLOATING, 4> inverse(const matrix_type<FLOATING, 4> &A)
 //   //{
 //   //   matrix_type<FLOATING, 4> inv{};
@@ -1676,7 +1676,7 @@ using double_matrix4 = matrix_type<double, 4>;
 //   //}
 //
 //
-//   //template<primitive_floating FLOATING_TYPE>
+//   //template<prototype_floating FLOATING_TYPE>
 //   //inline row_major_type<FLOATING_TYPE, 4> inverse(const row_major_type<FLOATING_TYPE, 4> &M)
 //   //{
 //   //   auto T = transpose(M);
@@ -1684,7 +1684,7 @@ using double_matrix4 = matrix_type<double, 4>;
 //   //   return transpose(C);
 //   //}
 //   //// --- Fast affine inverse (rotation + translation only) --------------------
-//   //template<primitive_floating FLOATING>
+//   //template<prototype_floating FLOATING>
 //   //inline matrix_type<FLOATING, 4> inverse_affine(const matrix_type<FLOATING, 4> &A)
 //   //{
 //   //   // assumes bottom row is [0 0 0 1] (i.e. affine matrix)
@@ -2056,7 +2056,7 @@ using double_matrix4 = matrix_type<double, 4>;
 //_mm256_storeu_ps(&inv.fa[8], _mm256_mul_ps(v1, det256));
 
 
-template<primitive_floating FLOATING, int t_iDimension>  
+template<prototype_floating FLOATING, int t_iDimension>  
 inline matrix_type<FLOATING, t_iDimension> row_major_type< FLOATING, t_iDimension >::transpose() const
 {
    matrix_type<FLOATING, 4> r;
@@ -2065,8 +2065,8 @@ inline matrix_type<FLOATING, t_iDimension> row_major_type< FLOATING, t_iDimensio
 }
 
 
-template<primitive_number NUMBER, int t_iSize>
-template<primitive_floating FLOATING1>
+template<prototype_number NUMBER, int t_iSize>
+template<prototype_floating FLOATING1>
 inline sequence_type<NUMBER, t_iSize>
 sequence_type<NUMBER, t_iSize>::operator*(const matrix_type<FLOATING1, 3> &M) const
    requires(t_iSize == 3 && std::is_same_v < FLOATING1, NUMBER >)
@@ -2080,8 +2080,8 @@ sequence_type<NUMBER, t_iSize>::operator*(const matrix_type<FLOATING1, 3> &M) co
 }
 
 
-template<primitive_number NUMBER, int t_iSize>
-   template<primitive_floating FLOATING1>
+template<prototype_number NUMBER, int t_iSize>
+   template<prototype_floating FLOATING1>
 inline sequence_type<NUMBER, t_iSize>
 sequence_type<NUMBER, t_iSize>::operator*(const matrix_type<FLOATING1, 4> &M) const
    requires(t_iSize == 4 && ::std::is_same_v<FLOATING1, NUMBER>)
@@ -2100,9 +2100,9 @@ sequence_type<NUMBER, t_iSize>::operator*(const matrix_type<FLOATING1, 4> &M) co
 
 
 
-template<primitive_number UNIT_TYPE, int t_iSize>
+template<prototype_number UNIT_TYPE, int t_iSize>
 auto sequence_type<UNIT_TYPE, t_iSize>::as_translation_matrix() const
-   requires(t_iSize == 3 && primitive_floating<UNIT_TYPE>)
+   requires(t_iSize == 3 && prototype_floating<UNIT_TYPE>)
 {
 
    return matrix_type<UNIT_TYPE, 4>{(UNIT_TYPE)1}.translated(*this);
@@ -2110,9 +2110,9 @@ auto sequence_type<UNIT_TYPE, t_iSize>::as_translation_matrix() const
 }
 
 
-template<primitive_number UNIT_TYPE, int t_iSize>
+template<prototype_number UNIT_TYPE, int t_iSize>
 auto sequence_type<UNIT_TYPE, t_iSize>::as_scaling_matrix() const
-   requires(t_iSize == 3 && primitive_floating<UNIT_TYPE>)
+   requires(t_iSize == 3 && prototype_floating<UNIT_TYPE>)
 {
 
    return matrix_type<UNIT_TYPE, 4>{(UNIT_TYPE)1}.scaled(*this);

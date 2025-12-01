@@ -5,7 +5,7 @@
 #include "acme/prototype/string/character_range.h"
 
 
-template < primitive_character CHARACTER, character_count m_sizeMaximumLength >
+template < prototype_character CHARACTER, character_count m_sizeMaximumLength >
 class inline_string :
    //public ::range < CHARACTER * >
    public ::character_range < const CHARACTER * >
@@ -84,13 +84,13 @@ public:
 };
 
 
-template < primitive_number NUMBER >
+template < prototype_number NUMBER >
 inline string as_string(NUMBER number, const_char_pointer pszFormat);
 
-// template < primitive_unsigned UNSIGNED >
+// template < prototype_unsigned UNSIGNED >
 // inline inline_number_string as_string(UNSIGNED u, int radix = 10, enum_digit_case edigitcase = e_digit_case_lower);
 
-template < primitive_integral INTEGRAL >
+template < prototype_integral INTEGRAL >
 inline inline_number_string as_string(INTEGRAL i, int radix = 10, enum_digit_case edigitcase = e_digit_case_lower);
 
 

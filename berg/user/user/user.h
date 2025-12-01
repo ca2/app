@@ -143,7 +143,7 @@ namespace berg
       void initialize_html() override;
 
 
-      ::pointer<::form_document> create_typed_form(::particle *pparticle, const ::type &type,
+      ::pointer<::form_document> create_typed_form(::particle *pparticle, const ::platform::type &type,
                                                    ::user::element *puserelementParent,
                                                    const ::payload &payload = ::e_type_empty_argument,
                                                    const ::payload &payloadArgs = ::e_type_empty_argument) override;
@@ -159,7 +159,7 @@ namespace berg
       //:::pointer<::user::interaction>userinteractionParent, ::payload payload = ::payload(::e_type_empty_argument),
       //:::payload varArgs = ::e_type_empty_argument);
       ::pointer<::form_document>
-      create_typed_child_form(::particle *pparticle, const ::type &type,
+      create_typed_child_form(::particle *pparticle, const ::platform::type &type,
                               ::user::element *puserelementParent,
                               const ::payload &payload = ::e_type_empty_argument,
                               const ::payload &payloadArgs = ::e_type_empty_argument) override;
@@ -179,7 +179,7 @@ namespace berg
       //}
 
       virtual ::pointer<::form_document>
-      create_typed_child_form(::particle *pparticle, const ::type &type, ::user::impact_data *pimpactdata,
+      create_typed_child_form(::particle *pparticle, const ::platform::type &type, ::user::impact_data *pimpactdata,
                               ::payload payload = ::payload(::e_type_empty_argument));
 
 

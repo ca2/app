@@ -18,7 +18,7 @@
 //#include <string.h> // ::memory_set
 
 
-template<primitive_number NUMBER, int t_iSize >
+template<prototype_number NUMBER, int t_iSize >
 struct sequence_t_type
 {
 
@@ -33,7 +33,7 @@ struct sequence_t_type
 };
 
 
-template<primitive_number NUMBER>
+template<prototype_number NUMBER>
 struct sequence_t_type<NUMBER, 1>
 {
 
@@ -59,7 +59,7 @@ struct sequence_t_type<NUMBER, 1>
 };
 
 
-template<primitive_number NUMBER>
+template<prototype_number NUMBER>
 struct std::hash<::sequence_t_type<NUMBER, 1>>
 {
    std::size_t operator()(const ::sequence_t_type<NUMBER, 1> &s) const noexcept
@@ -71,7 +71,7 @@ struct std::hash<::sequence_t_type<NUMBER, 1>>
  
 
 
-template < primitive_number NUMBER >
+template < prototype_number NUMBER >
 struct sequence_t_type<NUMBER, 2>
 {
 
@@ -100,7 +100,7 @@ struct sequence_t_type<NUMBER, 2>
 };
 
 
-template<primitive_number NUMBER>
+template<prototype_number NUMBER>
 struct std::hash<::sequence_t_type<NUMBER, 2>>
 {
    std::size_t operator()(const ::sequence_t_type<NUMBER, 2> &s) const noexcept
@@ -113,7 +113,7 @@ struct std::hash<::sequence_t_type<NUMBER, 2>>
 
 
 
-template<primitive_number NUMBER>
+template<prototype_number NUMBER>
 struct sequence_t_type<NUMBER, 3>
 {
 
@@ -147,7 +147,7 @@ struct sequence_t_type<NUMBER, 3>
 };
 
 
-template<primitive_number NUMBER>
+template<prototype_number NUMBER>
 struct std::hash<::sequence_t_type<NUMBER, 3>>
 {
    std::size_t operator()(const ::sequence_t_type<NUMBER, 3> &s) const noexcept
@@ -160,7 +160,7 @@ struct std::hash<::sequence_t_type<NUMBER, 3>>
 };
 
 
-template<primitive_number NUMBER>
+template<prototype_number NUMBER>
 struct sequence_t_type<NUMBER, 4>
 {
 
@@ -197,7 +197,7 @@ struct sequence_t_type<NUMBER, 4>
 
 };
 
-template<primitive_number NUMBER>
+template<prototype_number NUMBER>
 struct std::hash<::sequence_t_type<NUMBER, 4>>
 {
    std::size_t operator()(const ::sequence_t_type<NUMBER, 4> &s) const noexcept
@@ -231,7 +231,7 @@ using double_sequence4_t = sequence_t_type<double, 4>;
 
 
 
-template < primitive_number NUMBER, int t_iSize >
+template < prototype_number NUMBER, int t_iSize >
 struct sequence_type :
    public sequence_t_type<NUMBER, t_iSize>
 {
@@ -269,7 +269,7 @@ struct sequence_type :
    }
 
 
-   template < primitive_sequence2 S2 >
+   template < prototype_sequence2 S2 >
    constexpr sequence_type(const S2 & s2)
       requires(SIZE == 2)
    {
@@ -278,7 +278,7 @@ struct sequence_type :
    }
 
    
-   template < primitive_sequence3 S3 >
+   template < prototype_sequence3 S3 >
    constexpr sequence_type(const S3 & s3)
       requires(SIZE == 3)
    {
@@ -288,7 +288,7 @@ struct sequence_type :
    }
 
 
-   template<primitive_sequence4 S4>
+   template<prototype_sequence4 S4>
    constexpr sequence_type(const S4 &s4)
       requires(SIZE >= 4)
    {
@@ -298,7 +298,7 @@ struct sequence_type :
       this->m_coordinatea[3] = (UNIT_TYPE)s4.w;
    }
 
-   template<primitive_number NUMBER1>
+   template<prototype_number NUMBER1>
    constexpr sequence_type(const NUMBER1 *p) // expects p to point to an array of at least SIZE elements
    {
       for (::collection::count i = 0; i < SIZE; ++i)
@@ -306,7 +306,7 @@ struct sequence_type :
    }
 
 
-   template < primitive_number NUMBER1 >
+   template < prototype_number NUMBER1 >
    constexpr sequence_type(const sequence_t_type < NUMBER1, 4 > & sequence)
       requires(SIZE >= 4)
    {
@@ -317,7 +317,7 @@ struct sequence_type :
    }
 
 
-   template<primitive_number NUMBER0, primitive_number NUMBER1>
+   template<prototype_number NUMBER0, prototype_number NUMBER1>
    constexpr sequence_type(NUMBER0 coordinate0, NUMBER1 coordinate1)
       requires(SIZE == 2)
    {
@@ -326,7 +326,7 @@ struct sequence_type :
    }
 
    
-   template<primitive_number NUMBER0, primitive_number NUMBER1, primitive_number NUMBER2>
+   template<prototype_number NUMBER0, prototype_number NUMBER1, prototype_number NUMBER2>
    constexpr sequence_type(NUMBER0 coordinate0, NUMBER1 coordinate1, NUMBER2 coordinate2)
       requires(SIZE == 3)
    {
@@ -335,7 +335,7 @@ struct sequence_type :
       this->m_coordinatea[2] = (UNIT_TYPE)coordinate2;
    }
 
-   template<primitive_number NUMBER0, primitive_number NUMBER1, primitive_number NUMBER2, primitive_number NUMBER3>
+   template<prototype_number NUMBER0, prototype_number NUMBER1, prototype_number NUMBER2, prototype_number NUMBER3>
    constexpr sequence_type(NUMBER0 coordinate0, NUMBER1 coordinate1, NUMBER2 coordinate2, NUMBER3 coordinate3)
       requires(SIZE == 4)
    {
@@ -345,7 +345,7 @@ struct sequence_type :
       this->m_coordinatea[3] = (UNIT_TYPE)coordinate3;
    }
 
-   template<primitive_number NUMBER0, primitive_number NUMBER3>
+   template<prototype_number NUMBER0, prototype_number NUMBER3>
    constexpr sequence_type(const sequence_type<NUMBER0, 3> &seq3, NUMBER3 coordinate3)
       requires(SIZE == 4)
    {
@@ -355,7 +355,7 @@ struct sequence_type :
       this->m_coordinatea[3] = (UNIT_TYPE) coordinate3;
    }
 
-   template<primitive_number NUMBER0, primitive_number NUMBER1>
+   template<prototype_number NUMBER0, prototype_number NUMBER1>
    constexpr sequence_type(NUMBER0 coordinate0, const sequence_type<NUMBER1, 3> &seq3)
       requires(SIZE == 4)
    {
@@ -600,15 +600,15 @@ struct sequence_type :
       return result;
    }
 
-   template<primitive_floating FLOATING1>
+   template<prototype_floating FLOATING1>
    inline sequence_type operator*(const matrix_type<FLOATING1, 3> &M) const
       requires(t_iSize == 3 && ::std::is_same_v<FLOATING1, NUMBER>);
 
-   template<primitive_floating FLOATING1>
+   template<prototype_floating FLOATING1>
    inline sequence_type operator*(const matrix_type<FLOATING1, 4> &M) const
       requires(t_iSize == 4 && ::std::is_same_v<FLOATING1, NUMBER>);
 
-   template < primitive_number NUMBER1 >
+   template < prototype_number NUMBER1 >
    sequence_type < largest_number < UNIT_TYPE, NUMBER1 >, SIZE > operator *(NUMBER1 n) const
    {
       sequence_type < largest_number < UNIT_TYPE, NUMBER1 >, SIZE > result;
@@ -633,7 +633,7 @@ struct sequence_type :
    }
    
    
-   template < primitive_number NUMBER1 >
+   template < prototype_number NUMBER1 >
    sequence_type < largest_number < UNIT_TYPE, NUMBER1 >, SIZE > operator /(NUMBER1 n) const
    {
       sequence_type < largest_number < UNIT_TYPE, NUMBER1 >, SIZE > result;
@@ -1077,7 +1077,7 @@ struct sequence_type :
    }
 
 
-   template<primitive_floating FLOATING>
+   template<prototype_floating FLOATING>
    inline sequence_type mix(const sequence_type &b, FLOATING t) const
    {
       
@@ -1087,7 +1087,7 @@ struct sequence_type :
 
 
    constexpr sequence_type front_right(const sequence_type & sequence3WorldUp)
-      requires(SIZE == 3 && primitive_floating<UNIT_TYPE>)
+      requires(SIZE == 3 && prototype_floating<UNIT_TYPE>)
    {
 
       return this->crossed(sequence3WorldUp).normalized();
@@ -1096,7 +1096,7 @@ struct sequence_type :
 
 
    constexpr sequence_type right_up(const sequence_type &front)
-      requires(SIZE == 3 && primitive_floating<UNIT_TYPE>)
+      requires(SIZE == 3 && prototype_floating<UNIT_TYPE>)
    {
 
       return this->crossed(front).normalized();
@@ -1123,10 +1123,10 @@ struct sequence_type :
 
    
    auto as_translation_matrix() const
-      requires(t_iSize == 3 && primitive_floating<UNIT_TYPE>);
+      requires(t_iSize == 3 && prototype_floating<UNIT_TYPE>);
 
    auto as_scaling_matrix() const
-      requires(t_iSize == 3 && primitive_floating<UNIT_TYPE>);
+      requires(t_iSize == 3 && prototype_floating<UNIT_TYPE>);
 
 
 };
@@ -1143,7 +1143,7 @@ struct sequence_type :
 //   return result;
 //}
 //
-//template < primitive_number NUMBER >
+//template < prototype_number NUMBER >
 //class sequence2_type :
 //   public sequence_type < NUMBER, 2 >
 //{
@@ -1197,7 +1197,7 @@ using double_sequence4 = sequence_type<double, 4>;
 //   return reinterpret_cast<const ::color::color &>(*(this->m_coordinatea));
 //}
 
-template < primitive_sequence SEQUENCE, typename COORDINATE_TRANSFORM >
+template < prototype_sequence SEQUENCE, typename COORDINATE_TRANSFORM >
 auto transform(const SEQUENCE& sequence, COORDINATE_TRANSFORM coordinatetransform)
 {
 
@@ -1215,7 +1215,7 @@ auto transform(const SEQUENCE& sequence, COORDINATE_TRANSFORM coordinatetransfor
 }
 
 
-template < primitive_sequence SEQUENCE >
+template < prototype_sequence SEQUENCE >
 auto floor(const SEQUENCE& sequence)
 {
 
@@ -1224,7 +1224,7 @@ auto floor(const SEQUENCE& sequence)
 }
 
 
-template < primitive_sequence SEQUENCE >
+template < prototype_sequence SEQUENCE >
 auto ceil(const SEQUENCE& sequence)
 {
 
@@ -1235,7 +1235,7 @@ auto ceil(const SEQUENCE& sequence)
 
 
 //
-//template<primitive_number COORDINATE, ::collection::count t_iDimension>
+//template<prototype_number COORDINATE, ::collection::count t_iDimension>
 //struct matrix_type
 //{
 //
@@ -1252,7 +1252,7 @@ auto ceil(const SEQUENCE& sequence)
 
 
 
-template<primitive_number NUMBER, int t_iSize>
+template<prototype_number NUMBER, int t_iSize>
 struct std::hash<::sequence_type<NUMBER, t_iSize>>
 {
    std::size_t operator()(const ::sequence_type<NUMBER, t_iSize> &s) const noexcept
@@ -1267,7 +1267,7 @@ struct std::hash<::sequence_type<NUMBER, t_iSize>>
 //{
 //
 //
-//   template<primitive_number NUMBER>
+//   template<prototype_number NUMBER>
 //   sequence_type<NUMBER, 3> normalize(const sequence_type<NUMBER, 3> &v)
 //   {
 //      
@@ -1294,7 +1294,7 @@ struct std::hash<::sequence_type<NUMBER, t_iSize>>
 //
 
 
-template < primitive_number NUMBER, primitive_number NUMBER1, int t_iSize >
+template < prototype_number NUMBER, prototype_number NUMBER1, int t_iSize >
 inline sequence_type<largest_number<NUMBER, NUMBER1>, t_iSize>
 operator *(NUMBER n, const sequence_type< NUMBER1, t_iSize> & s)
 {

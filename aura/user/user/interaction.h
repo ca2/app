@@ -434,7 +434,7 @@ namespace user
       ::pointer<::user::form>                      m_pform;
       ::pointer<alpha_source>                      m_palphasource;
       //::pointer<::aura::drawable>                m_pdrawableBackground;
-      //::pointer<primitive_impl>                    m_pprimitiveimpl;
+      //::pointer<prototype_impl>                    m_pprimitiveimpl;
       //::pointer<interaction_impl>                  m_pinteractionimpl;
       ::pointer<interaction_array>                 m_puserinteractionpointeraOwned;
       //::pointer<interaction_array>                 m_puserinteractionpointeraChild;
@@ -1377,7 +1377,7 @@ namespace user
 
 
       element * keyboard_set_focus_next(bool bSkipChild = false, bool bSkipSiblings = false, bool bSkipParent = false) override;
-      //virtual primitive * keyboard_set_focus_next(primitive * pfocus = nullptr, bool bSkipChild = false, bool bSkipSiblings = false, bool bSkipParent = false) override;
+      //virtual prototype * keyboard_set_focus_next(prototype * pfocus = nullptr, bool bSkipChild = false, bool bSkipSiblings = false, bool bSkipParent = false) override;
       
 
       virtual void get_child_rect(::int_rectangle & rectangle);

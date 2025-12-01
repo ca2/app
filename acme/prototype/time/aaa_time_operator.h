@@ -116,9 +116,9 @@
 //inline class ::time operator - (const class ::time& timetime1, const class ::time& timetime2) { return timetime1.m_d - timetime2.m_d; }
 //
 //
-//template < primitive_number NUMBER >
+//template < prototype_number NUMBER >
 //inline class time operator / (const class time& timetime, const NUMBER & number) { return (double) (timetime.m_d / number); }
-//template < primitive_number NUMBER >
+//template < prototype_number NUMBER >
 //inline class time operator * (const class time& timetime, const NUMBER & number) { return (double) (timetime.m_d * number); }
 
 

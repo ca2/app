@@ -16529,7 +16529,7 @@ namespace windowing
    //}
 
 
-   //::aura::system * primitive_implacmesystem()
+   //::aura::system * prototype_implacmesystem()
    //{
 
    //   return system() ? system() : nullptr;

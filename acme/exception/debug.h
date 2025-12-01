@@ -60,14 +60,14 @@ CLASS_DECL_ACME int throw_assert_exception(const_char_pointer pszFileName, int i
 }
 
 
-template < primitive_container CONTAINER >
+template < prototype_container CONTAINER >
 inline void __assert_container_ok(const CONTAINER * pcontainer, const_char_pointer pszFileName, int nLine);
 
 
 CLASS_DECL_ACME void __assert_particle_ok(const ::particle * pparticle, const_char_pointer pszFileName, int nLine);
 
 
-template <primitive_container CONTAINER>
+template <prototype_container CONTAINER>
 inline void __assert_ok(const CONTAINER * p, const char * pszFile, int iLine)
 {
 

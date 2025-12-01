@@ -221,7 +221,7 @@ namespace graphics3d
                 //     &node->mesh->uniformBuffer.descriptorSet,
                 //     0, nullptr);
 
-                const auto& mat = node->mesh->primitives[0]->material;
+                const auto& mat = node->mesh->prototypes[0]->material;
                 switch (mat.alphaMode) {
                 case ::graphics3d::gltf::Material::ALPHAMODE_OPAQUE:
                     m_opaquePipeline->bind(frame.m_pcommandbuffer);

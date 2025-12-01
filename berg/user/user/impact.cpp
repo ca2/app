@@ -897,7 +897,7 @@ namespace user
    }
 
 
-   ::pointer<::user::interaction>impact::create_impact(const ::type & type, ::user::document * pdocument, ::user::interaction * puserinteractionParent, const ::atom & atom, ::user::interaction * pviewLast, ::user::impact_data * pimpactdata)
+   ::pointer<::user::interaction>impact::create_impact(const ::platform::type & type, ::user::document * pdocument, ::user::interaction * puserinteractionParent, const ::atom & atom, ::user::interaction * pviewLast, ::user::impact_data * pimpactdata)
    {
 
       ::pointer<::request>prequest;
@@ -993,7 +993,7 @@ namespace user
    }
 
 
-   ::pointer<::user::interaction>create_impact(const ::type & type, ::user::document * pdocument, ::user::interaction * puserinteractionParent, const ::atom & atom, ::user::interaction * pviewLast)
+   ::pointer<::user::interaction>create_impact(const ::platform::type & type, ::user::document * pdocument, ::user::interaction * puserinteractionParent, const ::atom & atom, ::user::interaction * pviewLast)
    {
 
       ::pointer<::request>pcreate(e_create_new, pdocument);

@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "apex/primitive/collection/collection_file_path_map.h"
+#include "apex/prototype/collection/collection_file_path_map.h"
 
 
 namespace file

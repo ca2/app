@@ -5,13 +5,13 @@
 //#include "_size_impl.h"
 //
 
-//template < primitive_point POINT >
+//template < prototype_point POINT >
 //inline constexpr auto __horz(const POINT & point) { return point.x; }
-//template < primitive_point POINT >
+//template < prototype_point POINT >
 //inline constexpr auto __vert(const POINT & point) { return point.y; }
-//template < primitive_size SIZE >
+//template < prototype_size SIZE >
 //inline constexpr auto __horz(const SIZE & size) { return size.cx; }
-//template < primitive_size SIZE >
+//template < prototype_size SIZE >
 //inline constexpr auto __vert(const SIZE & size) { return size.cy; }
 //
 //inline int_point& top_left(const ::int_rectangle* prectangle) { return *(int_point*)prectangle; }
@@ -211,7 +211,7 @@
 //   //
 //   //
 //   //////////////////////////////////////////////////////////////////////
-//   template < primitive_rectangle RECTANGLE >
+//   template < prototype_rectangle RECTANGLE >
 //   inline void deflate(RECTANGLE* prectangle, double dLeftRate, double dRightRate, double dTopRate, double dBottomRate)
 //   {
 //
@@ -231,7 +231,7 @@
 //} // namespace geometry
 //
 //
-//template < primitive_point POINT >
+//template < prototype_point POINT >
 //inline ::string as_string(const POINT & point)
 //{
 //
@@ -240,7 +240,7 @@
 //}
 //
 //
-//template < primitive_size SIZE >
+//template < prototype_size SIZE >
 //inline ::string as_string(const SIZE & size)
 //{
 //

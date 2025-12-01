@@ -4649,7 +4649,7 @@ STBTT_DEF unsigned char * stbtt_GetGlyphSDF(const stbtt_fontinfo * info, float s
             for (i = 0; i < num_verts; ++i) {
                float x0 = verts[i].x * scale_x, y0 = verts[i].y * scale_y;
 
-               // check against every point here rather than inside line/curve primitives -- @TODO: wrong if multiple 'moves' in a row produce a garbage point, and given culling, probably more efficient to do within line/curve
+               // check against every point here rather than inside line/curve prototypes -- @TODO: wrong if multiple 'moves' in a row produce a garbage point, and given culling, probably more efficient to do within line/curve
                float dist2 = (x0 - sx) * (x0 - sx) + (y0 - sy) * (y0 - sy);
                if (dist2 < min_dist * min_dist)
                   min_dist = (float)STBTT_sqrt(dist2);

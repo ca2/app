@@ -19,7 +19,7 @@ namespace user
 {
 
 
-   impact_system::impact_system(const ::atom & atom, const ::type & typeatomDocument, const ::type & typeatomFrame, const ::type & typeatomImpact, const ::type & typeatomData)
+   impact_system::impact_system(const ::atom & atom, const ::platform::type & typeatomDocument, const ::platform::type & typeatomFrame, const ::platform::type & typeatomImpact, const ::platform::type & typeatomData)
    {
 
       m_bHiddenOnNotifyIcon = false;

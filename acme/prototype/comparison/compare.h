@@ -13,7 +13,7 @@ namespace comparison
       return a == b;
    }
 
-   template < primitive_signed SIGNED, primitive_unsigned UNSIGNED >
+   template < prototype_signed SIGNED, prototype_unsigned UNSIGNED >
    inline bool eq(SIGNED s, UNSIGNED u)
    {
       return s < 0 ? false : (UNSIGNED)s == u;
@@ -30,20 +30,20 @@ namespace comparison
 //   }
 
 
-   template < primitive_unsigned UNSIGNED, primitive_signed SIGNED >
+   template < prototype_unsigned UNSIGNED, prototype_signed SIGNED >
    inline bool lt(UNSIGNED u, SIGNED s)
    {
       return s < 0 ? false : u < (UNSIGNED)s;
    }
 
-   template < primitive_signed SIGNED, primitive_unsigned UNSIGNED >
+   template < prototype_signed SIGNED, prototype_unsigned UNSIGNED >
    inline bool lt(SIGNED s, UNSIGNED u)
    {
       return s < 0 ? true : (UNSIGNED)s < u;
    }
 
 
-   template < primitive_signed SIGNED1, primitive_signed SIGNED2 >
+   template < prototype_signed SIGNED1, prototype_signed SIGNED2 >
    inline bool lt(SIGNED1 s1, SIGNED2 s2)
    {
       
@@ -51,7 +51,7 @@ namespace comparison
 
    }
 
-   template < primitive_unsigned UNSIGNED1, primitive_unsigned UNSIGNED2 >
+   template < prototype_unsigned UNSIGNED1, prototype_unsigned UNSIGNED2 >
    inline bool lt(UNSIGNED1 u1, UNSIGNED2 u2)
    {
 
@@ -76,7 +76,7 @@ namespace comparison
       return a <= b;
    }
 
-   template < primitive_signed SIGNED, primitive_unsigned UNSIGNED >
+   template < prototype_signed SIGNED, prototype_unsigned UNSIGNED >
    inline bool le(SIGNED s, UNSIGNED u)
    {
       return s < 0 ? true : ((UNSIGNED)s) <= u;
@@ -90,7 +90,7 @@ namespace comparison
 //   }
 
 
-   template < primitive_signed SIGNED, primitive_unsigned UNSIGNED >
+   template < prototype_signed SIGNED, prototype_unsigned UNSIGNED >
    inline bool gt(SIGNED i, UNSIGNED u)
    {
 
@@ -99,7 +99,7 @@ namespace comparison
    }
 
 
-   template < primitive_unsigned UNSIGNED, primitive_signed SIGNED >
+   template < prototype_unsigned UNSIGNED, prototype_signed SIGNED >
    inline bool gt(UNSIGNED u, SIGNED s)
    {
 
@@ -107,7 +107,7 @@ namespace comparison
 
    }
 
-   template < primitive_signed SIGNED1, primitive_signed SIGNED2 >
+   template < prototype_signed SIGNED1, prototype_signed SIGNED2 >
    inline bool gt(SIGNED1 s1, SIGNED2 s2)
    {
 
@@ -116,7 +116,7 @@ namespace comparison
    }
 
 
-   template < primitive_unsigned UNSIGNED1, primitive_unsigned UNSIGNED2 >
+   template < prototype_unsigned UNSIGNED1, prototype_unsigned UNSIGNED2 >
    inline bool gt(UNSIGNED1 u1, UNSIGNED2 u2)
    {
 
@@ -130,7 +130,7 @@ namespace comparison
       return a >= b;
    }
 
-   template < primitive_signed SIGNED, primitive_unsigned UNSIGNED >
+   template < prototype_signed SIGNED, prototype_unsigned UNSIGNED >
    inline bool ge(SIGNED s, UNSIGNED u)
    {
 
@@ -139,20 +139,20 @@ namespace comparison
    }
 
 
-   template < primitive_unsigned UNSIGNED1, primitive_unsigned UNSIGNED2 >
+   template < prototype_unsigned UNSIGNED1, prototype_unsigned UNSIGNED2 >
    inline bool ge(UNSIGNED1 u1, UNSIGNED2 u2)
    {
       return u1 >= u2;
    }
 
-   template < primitive_signed SIGNED1, primitive_signed SIGNED2 >
+   template < prototype_signed SIGNED1, prototype_signed SIGNED2 >
    inline bool ge(SIGNED1 s1, SIGNED2 s2)
    {
       return s1 >= s2;
    }
 
 
-   template < primitive_unsigned UNSIGNED, primitive_signed SIGNED >
+   template < prototype_unsigned UNSIGNED, prototype_signed SIGNED >
    inline bool ge(UNSIGNED u, SIGNED s)
    {
       return s < 0 ? true : u >= (UNSIGNED)s;

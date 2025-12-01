@@ -1338,7 +1338,7 @@
     <ClInclude Include="primitive\primitive\papaya.h" />
     <ClInclude Include="primitive\primitive\pointer.h" />
     <ClInclude Include="primitive\primitive\pointer2.h" />
-    <ClInclude Include="primitive\primitive\primitive_update.h" />
+    <ClInclude Include="primitive\primitive\prototype_update.h" />
     <ClInclude Include="primitive\primitive\promise.h" />
     <ClInclude Include="primitive\primitive\property.h" />
     <ClInclude Include="primitive\primitive\::property_set.h" />

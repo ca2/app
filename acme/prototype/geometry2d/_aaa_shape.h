@@ -361,22 +361,22 @@ bool ___shape<HOLDEE>::contains(const ::double_point & point) const
 
 
 
-template < primitive_number NUMBER, typename HOLDEE >
+template < prototype_number NUMBER, typename HOLDEE >
 using arc_shape = _shape < ::arc_type < NUMBER >, e_shape_arc, HOLDEE >;
 
-template < primitive_number NUMBER, typename HOLDEE >
+template < prototype_number NUMBER, typename HOLDEE >
 using line_shape = _shape < ::line_base < NUMBER >, e_shape_line, HOLDEE >;
 
-template < primitive_number NUMBER, typename HOLDEE >
+template < prototype_number NUMBER, typename HOLDEE >
 using rectangle_shape = _shape < ::rectangle_type < NUMBER >, e_shape_rectangle, HOLDEE >;
 
-template < primitive_number NUMBER, typename HOLDEE >
+template < prototype_number NUMBER, typename HOLDEE >
 using ellipse_shape = _shape < ::ellipse_base < NUMBER >, e_shape_ellipse, HOLDEE >;
 
-template < primitive_number NUMBER, typename HOLDEE >
+template < prototype_number NUMBER, typename HOLDEE >
 using lines_shape = _shape < ::lines_base < NUMBER >, e_shape_lines, HOLDEE >;
 
-template < primitive_number NUMBER, typename HOLDEE >
+template < prototype_number NUMBER, typename HOLDEE >
 using polygon_shape = _shape < ::polygon_base < NUMBER >, e_shape_polygon, HOLDEE >;
 
 

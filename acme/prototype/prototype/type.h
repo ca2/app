@@ -75,8 +75,8 @@ inline const_char_pointer c_demangle(const_char_pointer psz)
 //
 //
 //template < typename OBJECT_NOT_TYPE_ATOM >
-//concept primitive_object_not_type_atom =
-//   primitive_object < OBJECT_NOT_TYPE_ATOM >
+//concept prototype_object_not_type_atom =
+//   prototype_object < OBJECT_NOT_TYPE_ATOM >
 //      && !std::is_same_v < OBJECT_NOT_TYPE_ATOM, raw_literal >
 //      && !std::is_base_of_v < raw_literal, OBJECT_NOT_TYPE_ATOM >;
 //
@@ -139,7 +139,7 @@ inline const_char_pointer c_demangle(const_char_pointer psz)
 //
 //   raw_literal(const ::quantum * p);
 //
-//   template < primitive_object_not_type_atom OBJECT_NOT_TYPE_ATOM >
+//   template < prototype_object_not_type_atom OBJECT_NOT_TYPE_ATOM >
 //   raw_literal(OBJECT_NOT_TYPE_ATOM & objectnottypeatom);
 //
 //   template < typename BASE >
@@ -149,7 +149,7 @@ inline const_char_pointer c_demangle(const_char_pointer psz)
 //   //type& operator = (const ::std::type_info& typeinfo);
 //
 //
-//   //type& operator = (const ::type& type);
+//   //type& operator = (const ::platform::type & type);
 //
 //
 //   raw_literal& operator = (const ::raw_literal& datatype)
@@ -237,7 +237,7 @@ inline const_char_pointer c_demangle(const_char_pointer psz)
 //}
 //
 //
-//template < primitive_object OBJECT >
+//template < prototype_object OBJECT >
 //inline ::raw_literal type(OBJECT & object)
 //{
 //
@@ -377,7 +377,7 @@ public:
 
 
    type():m_typeindex(::std::type_index(typeid(nullptr))){}
-   type(const type& type) :
+   type(const ::platform::type & type) :
       m_typeindex(type.m_typeindex),
       m_strRawTypeName(type.m_strRawTypeName),
       m_strTypeName(type.m_strTypeName) {}
@@ -396,7 +396,7 @@ public:
    type(const ::pointer<BASE>& p) : type(p.m_p) {}
 
 
-   bool operator == (const type& type) const 
+   bool operator == (const ::platform::type & type) const 
    {
 
       if (m_strRawTypeName.has_character() && type.m_strRawTypeName.has_character())
@@ -415,7 +415,7 @@ public:
    }
 
 
-   ::std::strong_ordering operator <=> (const type & type) const 
+   ::std::strong_ordering operator <=> (const ::platform::type & type) const 
    { 
 
       if (m_strRawTypeName.has_character() && type.m_strRawTypeName.has_character())
@@ -487,7 +487,7 @@ public:
 
 
 //template < >
-//inline ::hash32 as_hash32 < type >(const type & type)
+//inline ::hash32 as_hash32 < type >(const ::platform::type & type)
 //{
 //
 //   return ::as_hash32(name.m_strTypeName);

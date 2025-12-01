@@ -9,7 +9,7 @@ namespace graphics3d
 {
 
 
-   template<primitive_floating FLOATING>
+   template<prototype_floating FLOATING>
    class rotation_type
    {
    public:

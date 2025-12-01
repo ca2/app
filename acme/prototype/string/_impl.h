@@ -96,7 +96,7 @@ inline ::hash32 as_hash32 < const wide_string & >(const wide_string & widestr)
 
 
 
-//template < primitive_character CHARACTER, primitive_character CHARACTER2 >
+//template < prototype_character CHARACTER, prototype_character CHARACTER2 >
 //inline ::string_base < CHARACTER2 > operator +(const CHARACTER * pszLeft, const ::string_base < CHARACTER2 > & strRight)
 //{
 //
@@ -105,7 +105,7 @@ inline ::hash32 as_hash32 < const wide_string & >(const wide_string & widestr)
 //   return strLeft + strRight;
 //
 //}
-//template < primitive_character CHARACTER, primitive_character CHARACTER2 >
+//template < prototype_character CHARACTER, prototype_character CHARACTER2 >
 //inline ::string_base < CHARACTER2 > operator +(const CHARACTER chLeft, const ::string_base < CHARACTER2 > & strRight)
 //{
 //
@@ -131,7 +131,7 @@ void copy(::string_base < CHAR_TYPE1 >& str1, const ::string_base < CHAR_TYPE2 >
 }
 
 
-template < typename CHAR_TYPE1, primitive_character CHARACTER, std::size_t N >
+template < typename CHAR_TYPE1, prototype_character CHARACTER, std::size_t N >
 void copy(::string_base < CHAR_TYPE1 >& str1, const CHARACTER sz[N])
 {
 
@@ -140,7 +140,7 @@ void copy(::string_base < CHAR_TYPE1 >& str1, const CHARACTER sz[N])
 }
 
 
-template < typename CHAR_TYPE1, primitive_character CHARACTER >
+template < typename CHAR_TYPE1, prototype_character CHARACTER >
 void copy(::string_base < CHAR_TYPE1 >& str1, const CHARACTER* psz)
 {
 
@@ -152,7 +152,7 @@ void copy(::string_base < CHAR_TYPE1 >& str1, const CHARACTER* psz)
 
 
 
-template < primitive_string STRING, primitive_integral INTEGRAL >
+template < prototype_string STRING, prototype_integral INTEGRAL >
 inline STRING& copy(STRING& string, const INTEGRAL& number)
 {
 
@@ -163,7 +163,7 @@ inline STRING& copy(STRING& string, const INTEGRAL& number)
 }
 
 
-template < primitive_signed SIGNED, primitive_string STRING >
+template < prototype_signed SIGNED, prototype_string STRING >
 inline void copy(SIGNED& s, const STRING& string)
 {
 
@@ -172,7 +172,7 @@ inline void copy(SIGNED& s, const STRING& string)
 }
 
 
-template < primitive_natural NATURAL, primitive_string STRING >
+template < prototype_natural NATURAL, prototype_string STRING >
 inline void copy(NATURAL& n, const STRING& string)
 {
 
@@ -181,7 +181,7 @@ inline void copy(NATURAL& n, const STRING& string)
 }
 
 
-template < primitive_floating FLOATING, primitive_string STRING >
+template < prototype_floating FLOATING, prototype_string STRING >
 inline void copy(FLOATING& f, const STRING& string)
 {
 
@@ -190,7 +190,7 @@ inline void copy(FLOATING& f, const STRING& string)
 }
 
 
-template < primitive_string STRING, primitive_floating FLOATING >
+template < prototype_string STRING, prototype_floating FLOATING >
 inline STRING& copy(STRING& string, const FLOATING& number)
 {
 
@@ -221,7 +221,7 @@ inline STRING& copy(STRING& string, const FLOATING& number)
 //}
 
 
-template < primitive_number NUMBER >
+template < prototype_number NUMBER >
 inline string as_string(NUMBER number, const_char_pointer pszFormat)
 {
 
@@ -234,7 +234,7 @@ inline string as_string(NUMBER number, const_char_pointer pszFormat)
 }
 
 
-template < primitive_integral INTEGRAL >
+template < prototype_integral INTEGRAL >
 inline inline_number_string as_string(INTEGRAL i, int radix, enum_digit_case edigitcase)
 {
 
@@ -247,7 +247,7 @@ inline inline_number_string as_string(INTEGRAL i, int radix, enum_digit_case edi
 }
 
 
-// template < primitive_integral SIGNED >
+// template < prototype_integral SIGNED >
 // inline inline_number_string as_string(SIGNED i, int radix, enum_digit_case edigitcase)
 // {
 
@@ -269,7 +269,7 @@ inline inline_number_string as_string(INTEGRAL i, int radix, enum_digit_case edi
 // }
 
 
-template < primitive_floating FLOATING >
+template < prototype_floating FLOATING >
 inline ::string as_string(FLOATING f, const_char_pointer pszFormat)
 {
 
@@ -313,7 +313,7 @@ namespace file
 {
 
 
-   //template < primitive_character_range CHARACTER_RANGE >
+   //template < prototype_character_range CHARACTER_RANGE >
    // inline path::path(const CHARACTER_RANGE & range, enum_path epath, e_type etype, bool bNormalizePath, long long iSize) :
    //         path(::ansi_string(range), epath, etype, bNormalizePath, iSize)
    // {
@@ -1962,7 +1962,7 @@ inline void write_text_stream::print_string_copy(const T & t)
 
 
 // // template < typename FILE >
-template < primitive_character CHARACTER2, character_count sizeMaximumLength >
+template < prototype_character CHARACTER2, character_count sizeMaximumLength >
 inline write_text_stream & write_text_stream::operator <<(const ::inline_string < CHARACTER2, sizeMaximumLength > & inlinestring)
 {
 

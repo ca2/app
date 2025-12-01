@@ -613,7 +613,7 @@ inline bool __defer_raw_construct_new(::pointer<TYPE> & ptype)
 //
 //
 //template < typename BASE_TYPE, typename SOURCE >
-//inline void matter::__refer(::pointer<BASE_TYPE> preference, const ::primitive::member < SOURCE >& pmember)
+//inline void matter::__refer(::pointer<BASE_TYPE> preference, const ::prototype::member < SOURCE >& pmember)
 //{
 //
 //   __refer(preference, pmember.get() );

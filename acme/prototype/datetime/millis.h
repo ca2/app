@@ -37,7 +37,7 @@ public:
    millis(enum enum_now);
    millis(enum no_initialize_t) {}
     
-   template < primitive_integral INTEGRAL >
+   template < prototype_integral INTEGRAL >
    millis(INTEGRAL i) { m_i = i; }
     
    millis(const secs & secs) { m_i = secs.m_i * 1'000; }
@@ -322,7 +322,7 @@ inline millis operator +(const ::millis& millis1, const ::millis& millis2)
 
 
 
-template < primitive_number NUMBER >
+template < prototype_number NUMBER >
 inline millis operator *(const ::millis& millis, const NUMBER& number)
 {
 
@@ -331,7 +331,7 @@ inline millis operator *(const ::millis& millis, const NUMBER& number)
 }
 
 
-template < primitive_number NUMBER >
+template < prototype_number NUMBER >
 inline millis operator /(const ::millis& millis, const NUMBER& number)
 {
 

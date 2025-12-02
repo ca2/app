@@ -350,7 +350,38 @@ struct matrix_type
 
    //}
 
-   inline float_sequence4 operator *(const float_sequence4 &s) const
+   template < prototype_number NUMBER >
+   inline matrix_type &operator*=(NUMBER n)
+   {
+
+      auto c = SQUARED_DIMENSION;
+
+      for (int i = 0; i < c; ++i)
+      {
+         
+         this->fa[i] = (FLOATING)(this->fa[i] * n);
+
+      }
+      
+      return *this;
+
+   }
+
+
+   template<prototype_number NUMBER>
+   inline matrix_type operator*(NUMBER n) const 
+   {
+
+      auto m = *this;
+
+      m *= n;
+
+      return m;
+
+   }
+
+
+   inline float_sequence4 operator*(const float_sequence4 &s) const
       requires(DIMENSION == 4 && std::is_same_v<FLOATING, float>)
    {
       //if (g_cpufeatures.m_bAVX2)

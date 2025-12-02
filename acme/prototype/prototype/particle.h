@@ -787,6 +787,10 @@ public:
 
    virtual ::pointer<::particle> __call__create_by_type(const ::platform::type & type, ::factory::factory *pfactory = nullptr);
 
+   virtual ::pointer<::particle> __call__create_by_custom_id(const ::type_custom_id & typecustomid, ::factory::factory* pfactory = nullptr);
+
+   virtual ::pointer<::particle> __call__create_by_ipair(const ::type_iptr_pair & ipair, ::factory::factory* pfactory = nullptr);
+
    //template < typename BASE_TYPE >
    //inline void __call__construct_by_type_index(::pointer<BASE_TYPE>& ptype, const ::std::type_index & typeindex, ::factory::factory* pfactory = nullptr);
 

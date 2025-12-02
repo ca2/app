@@ -349,6 +349,8 @@ namespace platform
       virtual void load_string_table(const ::scoped_string & scopedstrApp, const ::scoped_string & scopedstrId);
 
 
+      virtual ::string fetch_public_internet_domain_extension_list_text();
+
       // virtual bool is_application() const override;
       //
       //

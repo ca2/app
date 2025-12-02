@@ -166,6 +166,7 @@ public:
 
    type_custom_id();
    type_custom_id(const_char_pointer pszNameId);
+   type_custom_id(const ::string_literal < const_char_pointer > & strliteralNameId);
    type_custom_id(const ::scoped_string & scopedstrNameId);
    type_custom_id(const ::type_iptr_pair & ipairId);
    type_custom_id(const ::scoped_string & scopedstrNameId, const ::type_iptr_pair & ipairId);

@@ -1146,6 +1146,9 @@ namespace factory
    }
 
 
+
+
+
    // bool factory::has_by_type_index(const ::std::type_index & typeindex) const
    // {
    //
@@ -1417,6 +1420,37 @@ namespace factory
          typecustomid.m_ipairId.normal1(),
          typecustomid.m_ipairId.normal2(),
          typecustomid.m_strNameId);
+
+      return nullptr;
+
+   }
+
+
+   ::factory::factory_item_interface* factory::_get_factory_item_by_ipair(const ::type_iptr_pair & ipairId) const
+   {
+
+      critical_section_lock cs(&((factory*)this)->m_criticalsection);
+
+      if (ipairId.is_set())
+      {
+
+         auto iterator = this->m_mapByCustomIpairId.find(ipairId);
+
+         if (iterator)
+         {
+
+            auto pfactoryitem = iterator->payload();
+
+            if (::is_set(pfactoryitem))
+            {
+
+               return pfactoryitem;
+
+            }
+
+         }
+
+      }
 
       return nullptr;
 

@@ -84,7 +84,12 @@ namespace url
    ::property_set& request_range::arguments()
    {
 
-      __defer_raw_construct_new(m_psetArguments);
+      if (__defer_raw_construct_new(m_psetArguments))
+      {
+
+         m_psetArguments->parse_network_arguments(m_rangeQuery);
+
+      }
 
       return *m_psetArguments;
 

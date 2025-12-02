@@ -24,7 +24,7 @@
 #define BOX_SEL 1
 #define BOX_HOVER 2
 
-//template < primitive_rectangle RECTANGLE >
+//template < prototype_rectangle RECTANGLE >
 //class tracer & operator << (class tracer&  tracer, const RECTANGLE& r)
 //{
 //

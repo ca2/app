@@ -5,7 +5,7 @@
 #include "acme/filesystem/file/binary_stream.h"
 
 
-template < primitive_particle_array POINTER_ARRAY >
+template < prototype_particle_array POINTER_ARRAY >
 inline binary_stream & operator <<(binary_stream & stream, const POINTER_ARRAY & a)
 {
 
@@ -32,7 +32,7 @@ inline binary_stream & operator <<(binary_stream & stream, const POINTER_ARRAY &
 }
 
 
-template < primitive_particle_array POINTER_ARRAY >
+template < prototype_particle_array POINTER_ARRAY >
 inline binary_stream & operator >>(binary_stream & stream, POINTER_ARRAY & a)
 {
 
@@ -81,7 +81,7 @@ inline binary_stream & operator >>(binary_stream & stream, POINTER_ARRAY & a)
 }
 
 
-template < primitive_object_array ARRAY >
+template < prototype_object_array ARRAY >
 inline binary_stream & operator <<(binary_stream & stream, const ARRAY & a)
 {
 
@@ -108,7 +108,7 @@ inline binary_stream & operator <<(binary_stream & stream, const ARRAY & a)
 }
 
 
-template < primitive_object_array ARRAY >
+template < prototype_object_array ARRAY >
 inline binary_stream & operator >>(binary_stream & stream, ARRAY & a)
 {
 
@@ -157,7 +157,7 @@ inline binary_stream & operator >>(binary_stream & stream, ARRAY & a)
 }
 
 
-template < primitive_raw_pointer_array ARRAY >
+template < prototype_raw_pointer_array ARRAY >
 inline binary_stream & operator <<(binary_stream & stream, const ARRAY & a)
 {
 
@@ -184,7 +184,7 @@ inline binary_stream & operator <<(binary_stream & stream, const ARRAY & a)
 }
 
 
-template < primitive_raw_pointer_array ARRAY >
+template < prototype_raw_pointer_array ARRAY >
 inline binary_stream & operator >>(binary_stream & stream, ARRAY & a)
 {
 
@@ -237,7 +237,7 @@ inline binary_stream & operator >>(binary_stream & stream, ARRAY & a)
 }
 
 
-template < primitive_raw_type_array ARRAY >
+template < prototype_raw_type_array ARRAY >
 inline binary_stream & operator <<(binary_stream & stream, const ARRAY & a)
 {
 
@@ -251,7 +251,7 @@ inline binary_stream & operator <<(binary_stream & stream, const ARRAY & a)
 
 }
 
-template < primitive_raw_type_array ARRAY >
+template < prototype_raw_type_array ARRAY >
 inline binary_stream & operator >>(binary_stream & stream, ARRAY & a)
 {
    

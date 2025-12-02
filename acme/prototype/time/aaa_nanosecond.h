@@ -14,9 +14,9 @@ public:
 
    nanosecond() : duration(e_raw, 0, 1) {}
    nanosecond(const class ::time & time) : ::duration(duration) {}
-   template < primitive_integral INTEGRAL >
+   template < prototype_integral INTEGRAL >
    nanosecond(INTEGRAL integral) : duration(::integral_nanosecond(integral)) { }
-   template < primitive_floating FLOATING >
+   template < prototype_floating FLOATING >
    nanosecond(FLOATING floating) : duration(::floating_nanosecond(floating)) { }
 
 

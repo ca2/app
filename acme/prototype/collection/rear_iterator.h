@@ -60,14 +60,14 @@ public:
       return p;
 
    }
-   template < primitive_integral INTEGRAL >
+   template < prototype_integral INTEGRAL >
    pointer_rear_iterator operator +(INTEGRAL i)
    {
 
       return m_p - i;
 
    }
-   template < primitive_integral INTEGRAL >
+   template < prototype_integral INTEGRAL >
    pointer_rear_iterator operator -(INTEGRAL i)
    {
 
@@ -75,14 +75,14 @@ public:
 
    }
 
-   template < primitive_integral INTEGRAL >
+   template < prototype_integral INTEGRAL >
    pointer_rear_iterator & operator +=(INTEGRAL i)
    {
       m_p -= i;
       return *this;
 
    }
-   template < primitive_integral INTEGRAL >
+   template < prototype_integral INTEGRAL >
    pointer_rear_iterator & operator -=(INTEGRAL i)
    {
       m_p += i;

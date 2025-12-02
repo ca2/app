@@ -12,9 +12,9 @@ public:
 
    hour() : time(e_raw, 3'600) {}
    hour(const class time & time) : class ::time(time) {}
-   template < primitive_integral INTEGRAL >
+   template < prototype_integral INTEGRAL >
    hour(INTEGRAL integral) : time(::integral_hour(integral)) { }
-   template < primitive_floating FLOATING >
+   template < prototype_floating FLOATING >
    hour(FLOATING floating) : time(::floating_hour(floating)) { }
    
    

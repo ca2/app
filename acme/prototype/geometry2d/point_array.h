@@ -19,7 +19,7 @@ inline bool tolerance_is_equal(double tolerance, double d1, double d2)
 }
 
 
-template < primitive_number NUMBER >
+template < prototype_number NUMBER >
 class point_array_base :
    public ::array_base < ::point_type < NUMBER > >
 {
@@ -189,7 +189,7 @@ public:
    
 
 
-template < primitive_number NUMBER >
+template < prototype_number NUMBER >
 void point_array_base < NUMBER >::offset(UNIT_TYPE x, UNIT_TYPE y)
 {
    for (int i = 0; i < this->get_size(); i++)
@@ -200,7 +200,7 @@ void point_array_base < NUMBER >::offset(UNIT_TYPE x, UNIT_TYPE y)
 }
 
 
-template < primitive_number NUMBER >
+template < prototype_number NUMBER >
 void point_array_base < NUMBER >::rotate(double dAngle)
 {
 
@@ -233,7 +233,7 @@ void point_array_base < NUMBER >::rotate(double dAngle)
 
 
 
-template < primitive_number NUMBER >
+template < prototype_number NUMBER >
 void point_array_base < NUMBER >::rotate(double dAngle, ::point_type < NUMBER > pointCenter)
 {
 
@@ -288,7 +288,7 @@ int pnpoly(int nvert, float * vertx, float * verty, float testx, float testy)
 //   return c;
 //}
 
-template < primitive_number NUMBER >
+template < prototype_number NUMBER >
 bool point_array_base < NUMBER >::polygon_contains_winding(const ::point_type < NUMBER > & point) const
 {
 
@@ -297,7 +297,7 @@ bool point_array_base < NUMBER >::polygon_contains_winding(const ::point_type < 
 }
 
 
-template < primitive_number NUMBER >
+template < prototype_number NUMBER >
 bool point_array_base < NUMBER >::polygon_contains_alternate(const ::point_type < NUMBER > & point) const
 {
 
@@ -306,7 +306,7 @@ bool point_array_base < NUMBER >::polygon_contains_alternate(const ::point_type 
 }
 
 
-template < primitive_number NUMBER >
+template < prototype_number NUMBER >
 ::collection::count point_array_base < NUMBER >::add_unique_range(const ::point_type < NUMBER > & pointBeg, const ::point_type < NUMBER > & pointEnd, const ::size_type < NUMBER > & size)
 {
 
@@ -346,7 +346,7 @@ template < primitive_number NUMBER >
 }
 
 
-template < primitive_number NUMBER >
+template < prototype_number NUMBER >
 void point_array_base < NUMBER >::expand_bounding_box(::point_type < UNIT_TYPE > & top_left, ::point_type < UNIT_TYPE > & bottom_right) const
 {
 
@@ -355,7 +355,7 @@ void point_array_base < NUMBER >::expand_bounding_box(::point_type < UNIT_TYPE >
 }
 
 
-template < primitive_number NUMBER >
+template < prototype_number NUMBER >
 bool point_array_base < NUMBER >::get_bounding_box(::point_type < UNIT_TYPE > & top_left, ::point_type < UNIT_TYPE > & bottom_right) const
 {
    

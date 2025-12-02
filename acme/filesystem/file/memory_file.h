@@ -96,7 +96,7 @@ public:
    memory_file(memory_file && file);
    memory_file(const void * pmemory, memsize dwSize);
    memory_file(const ::block & block);
-   template < primitive_payload PAYLOAD >
+   template < prototype_payload PAYLOAD >
    memory_file(PAYLOAD & payload, ::file::e_open eopen = {});
    memory_file(memory_base & memory, ::file::e_open eopen = {});
    memory_file(memory_base * pmemory, ::file::e_open eopen = {});
@@ -385,7 +385,7 @@ public:
 
 
 
-template < primitive_payload PAYLOAD >
+template < prototype_payload PAYLOAD >
 memory_file::memory_file(PAYLOAD & payload, ::file::e_open eopen) :
    memory_container(payload)
 {

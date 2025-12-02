@@ -9,7 +9,7 @@
 
 //
 //
-//template < primitive_number RECTANGLE_NUMBER, primitive_number LINES_NUMBER >
+//template < prototype_number RECTANGLE_NUMBER, prototype_number LINES_NUMBER >
 //inline bool expand_bounding_box(::rectangle_type < RECTANGLE_NUMBER > & rectangleBounding, const lines_base < LINES_NUMBER > & lines)
 //{
 //
@@ -30,7 +30,7 @@
 //}
 
 
-//template < primitive_number RECTANGLE_NUMBER, primitive_number POLYGON_NUMBER >
+//template < prototype_number RECTANGLE_NUMBER, prototype_number POLYGON_NUMBER >
 //inline bool expand_bounding_box(::rectangle_type < RECTANGLE_NUMBER > & rectangleBounding, const polygon_base < POLYGON_NUMBER > & polygon)
 //{
 //
@@ -71,7 +71,7 @@
 //}
 
 
-//template < primitive_number NUMBER1, primitive_number NUMBER2 >
+//template < prototype_number NUMBER1, prototype_number NUMBER2 >
 //void expand_bounding_box(::rectangle_type < NUMBER1 > & rectangle, const ::polygon_base < NUMBER2 > & polygon)
 //{
 //
@@ -85,7 +85,7 @@
 //}
 
 //
-//template < primitive_number NUMBER1, primitive_number NUMBER2 >
+//template < prototype_number NUMBER1, prototype_number NUMBER2 >
 //void expand_bounding_box(::rectangle_type < NUMBER1 > & rectangle, const ::poly_polygon_base < NUMBER2 > & polypolygon)
 //{
 //

@@ -5,7 +5,7 @@
 // Δ greek delta
 
 
-template < primitive_number NUMBER >
+template < prototype_number NUMBER >
 class shift_type
 {
 public:
@@ -19,11 +19,11 @@ public:
    shift_type() noexcept { this->Δx = (UNIT_TYPE)0; this->Δy = (UNIT_TYPE)0; }
    shift_type(no_initialize_t) noexcept {  }
    shift_type(nullptr_t) noexcept { this->Δx = (UNIT_TYPE)0; this->Δy = (UNIT_TYPE)0; }
-   template < primitive_number X, primitive_number Y >
+   template < prototype_number X, prototype_number Y >
    shift_type(X x, Y y) noexcept { this->Δx = (UNIT_TYPE) x; this->Δy = (UNIT_TYPE) y; }
-   template < primitive_sequence2 SEQUENCE >
+   template < prototype_sequence2 SEQUENCE >
    shift_type(const SEQUENCE & s) { this->Δx = (UNIT_TYPE)s.x; this->Δy = (UNIT_TYPE)s.y; }
-   // template < primitive_size SIZE >
+   // template < prototype_size SIZE >
    // shift_type(const SIZE & size) { this->Δx = (UNIT_TYPE)size.cx; this->Δy = (UNIT_TYPE)size.cy; }
 
 
@@ -34,9 +34,9 @@ public:
    shift_type operator -(const shift_type & shift) const { return { this->Δx - shift.Δx, this->Δy - shift.Δy }; }
    
 
-   template < primitive_sequence2 SEQUENCE >
+   template < prototype_sequence2 SEQUENCE >
    inline SEQUENCE & operator()(SEQUENCE & s) const noexcept
-   requires (!primitive_rectangle<SEQUENCE>)
+   requires (!prototype_rectangle<SEQUENCE>)
    { 
       
       s.x = (::std::decay_t<decltype(s.x)>)(s.x + this->Δx);
@@ -48,7 +48,7 @@ public:
    }
 
 
-   // template < primitive_size SIZE >
+   // template < prototype_size SIZE >
    // inline SIZE & operator()(SIZE & size) const noexcept
    // {
    //
@@ -61,7 +61,7 @@ public:
    // }
 
    
-   template < primitive_rectangle RECTANGLE >
+   template < prototype_rectangle RECTANGLE >
    inline RECTANGLE & operator()(RECTANGLE & rectangle) const noexcept
    {
       
@@ -78,13 +78,13 @@ public:
    }
 
 
-   template < primitive_point POINT >
+   template < prototype_point POINT >
    inline POINT get(const POINT & point) const noexcept { return { (decltype(point.x))(point.x + this->Δx), (decltype(point.y))(point.y + this->Δy) }; }
 
-   template < primitive_size SIZE >
+   template < prototype_size SIZE >
    inline SIZE get(const SIZE & size) const noexcept { return { (decltype(size.cx))(size.cx + this->Δx), (decltype(size.cy))(size.cy + this->Δy) }; }
 
-   template < primitive_rectangle RECTANGLE >
+   template < prototype_rectangle RECTANGLE >
    inline RECTANGLE get(const RECTANGLE & rectangle) const noexcept { return { (decltype(rectangle.left))(rectangle.left + this->Δx), (decltype(rectangle.top))(rectangle.top + this->Δy), (decltype(rectangle.right))(rectangle.right + this->Δx), (decltype(rectangle.bottom))(rectangle.bottom + this->Δy) }; }
 
 

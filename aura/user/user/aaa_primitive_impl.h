@@ -13,7 +13,7 @@ namespace user
 {
 
 
-   class CLASS_DECL_AURA primitive_impl :
+   class CLASS_DECL_AURA prototype_impl :
       virtual public ::channel,
       //virtual public ::source,
       virtual public ::manager
@@ -51,8 +51,8 @@ namespace user
 
 
 
-      primitive_impl();
-      ~primitive_impl() override;
+      prototype_impl();
+      ~prototype_impl() override;
 
 
       inline critical_section * cs_display() { return m_pcsDisplay; }
@@ -451,11 +451,11 @@ namespace user
 
 
       virtual ::user::element * get_keyboard_focus();
-      virtual void set_keyboard_focus(::user::primitive_impl * pprimitiveimpl);
-      //virtual void erase_keyboard_focus(::user::primitive_impl* pprimitiveimpl);
-      virtual void aaa_clear_keyboard_focus(::user::primitive_impl* pprimitiveimplGainingFocusIfAny = nullptr);
-      virtual void impl_set_keyboard_focus(::user::primitive_impl* pprimitiveimpl);
-      virtual void impl_erase_keyboard_focus(::user::primitive_impl * pprimitiveimpl);
+      virtual void set_keyboard_focus(::user::prototype_impl * pprimitiveimpl);
+      //virtual void erase_keyboard_focus(::user::prototype_impl* pprimitiveimpl);
+      virtual void aaa_clear_keyboard_focus(::user::prototype_impl* pprimitiveimplGainingFocusIfAny = nullptr);
+      virtual void impl_set_keyboard_focus(::user::prototype_impl* pprimitiveimpl);
+      virtual void impl_erase_keyboard_focus(::user::prototype_impl * pprimitiveimpl);
       virtual void aaa_impl_clear_keyboard_focus();
 
 

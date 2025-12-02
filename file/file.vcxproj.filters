@@ -142,7 +142,7 @@
     <ClCompile Include="filesystem\file\file_stream_binder.cpp">
       <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\primitive_shared_file.cpp">
+    <ClCompile Include="primitive\prototype_shared_file.cpp">
       <Filter>Source Files\primitive</Filter>
     </ClCompile>
   </ItemGroup>

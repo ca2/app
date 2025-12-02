@@ -86,7 +86,7 @@ public:
    TYPE & get_minimum_value();
 
 
-   template < primitive_integral INTEGRAL >
+   template < prototype_integral INTEGRAL >
    INTEGRAL & mask(INTEGRAL & i)
    {
 
@@ -774,7 +774,7 @@ inline INTEGER get_integer_mean(const INTEGER * p, ::collection::count N)
 }
 
 
-template < primitive_integral INTEGRAL >
+template < prototype_integral INTEGRAL >
 inline INTEGRAL simple_total_mean(const INTEGRAL * p, ::collection::count N)
 {
 
@@ -797,7 +797,7 @@ inline INTEGRAL simple_total_mean(const INTEGRAL * p, ::collection::count N)
 
 }
 
-template < primitive_floating FLOATING >
+template < prototype_floating FLOATING >
 inline FLOATING simple_total_mean(const FLOATING * p, ::collection::count N)
 {
 
@@ -1063,10 +1063,10 @@ namespace acme
       template<class ARRAY>
       bool binary_search(ARRAY & a,typename ARRAY::BASE_ARG_TYPE t,::collection::index & iIndex,::collection::index(* fCompare) (typename ARRAY::BASE_ARG_TYPE,typename ARRAY::BASE_ARG_TYPE));
 
-      template<class ARRAY, primitive_array INDEX_ARRAY >
+      template<class ARRAY, prototype_array INDEX_ARRAY >
       bool binary_search(ARRAY & a,typename ARRAY::BASE_ARG_TYPE t,::collection::index & iIndex, less_predicate_base < typename ARRAY::BASE_ARG_TYPE > * pcompare, INDEX_ARRAY & ia);
 
-      template<class ARRAY, primitive_array INDEX_ARRAY>
+      template<class ARRAY, prototype_array INDEX_ARRAY>
       ::collection::index sort_add(ARRAY & a,typename ARRAY::BASE_ARG_TYPE t,::collection::index(* fCompare) (typename ARRAY::BASE_ARG_TYPE,typename ARRAY::BASE_ARG_TYPE),INDEX_ARRAY & ia)
       {
          ::collection::index iIndex = 0;
@@ -1076,7 +1076,7 @@ namespace acme
          return iIndex;
       }
 
-      template<class ARRAY, class ARRAY2, primitive_array INDEX_ARRAY >
+      template<class ARRAY, class ARRAY2, prototype_array INDEX_ARRAY >
       ::collection::count sort_add_array(ARRAY & a,ARRAY2 & a2,::collection::index(* fCompare) (typename ARRAY::BASE_ARG_TYPE,typename ARRAY::BASE_ARG_TYPE),INDEX_ARRAY & ia)
       {
          for(::collection::index i = 0; i < a2.get_count(); i++)
@@ -1087,7 +1087,7 @@ namespace acme
       }
 
 
-      template<class ARRAY, primitive_array INDEX_ARRAY >
+      template<class ARRAY, prototype_array INDEX_ARRAY >
       ::collection::count sort_erase(ARRAY & a,typename ARRAY::BASE_ARG_TYPE t,::collection::index(* fCompare) (typename ARRAY::BASE_ARG_TYPE,typename ARRAY::BASE_ARG_TYPE), INDEX_ARRAY & ia)
       {
          ::collection::count ca = 0;
@@ -1603,7 +1603,7 @@ template < typename T, typename PRED >
 }
 
 
-template < primitive_container CONTAINER1, primitive_container CONTAINER2 >
+template < prototype_container CONTAINER1, prototype_container CONTAINER2 >
 CONTAINER1 operator + (const CONTAINER1 & container1, const CONTAINER2 & container2)
 {
 

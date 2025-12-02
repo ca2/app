@@ -50,7 +50,7 @@ public:
    template<::std::size_t count>
    constexpr mutable_string_range(const ITEM(&array)[count]) : BASE_RANGE(array, array[count - 1] == 0 ? count - 1 : count) {}
    
-   template<primitive_integral INTEGRAL>
+   template<prototype_integral INTEGRAL>
    constexpr mutable_string_range(const_iterator begin, INTEGRAL count) : BASE_RANGE((this_iterator) begin,
                                                                              (this_iterator) (begin + count)) {}
    
@@ -114,7 +114,7 @@ using mutable_wd32_range = ::mutable_string_range< ::wd32_character *>;
 using mutable_wide_range = ::mutable_string_range< ::wide_character *>;
 
 
-template<primitive_character CHARACTER>
+template<prototype_character CHARACTER>
 inline const CHARACTER *
 _unicode_find_first_character_in(const ::range<CHARACTER> &block, const ::range<CHARACTER> &blockBlock) noexcept {
 
@@ -157,7 +157,7 @@ _unicode_find_first_character_in(const ::range<CHARACTER> &block, const ::range<
 }
 
 
-template<primitive_character CHARACTER>
+template<prototype_character CHARACTER>
 inline const CHARACTER *
 unicode_find_first_character_in(const ::range<CHARACTER> &block, const ::range<CHARACTER> &blockBlock) noexcept {
 
@@ -174,7 +174,7 @@ unicode_find_first_character_in(const ::range<CHARACTER> &block, const ::range<C
 }
 
 
-template<primitive_character CHARACTER>
+template<prototype_character CHARACTER>
 inline const CHARACTER *
 _unicode_rear_find_first_character_in(const ::range<CHARACTER> &block, const ::range<CHARACTER> &blockBlock) noexcept {
 
@@ -219,7 +219,7 @@ _unicode_rear_find_first_character_in(const ::range<CHARACTER> &block, const ::r
 }
 
 
-template<primitive_character CHARACTER>
+template<prototype_character CHARACTER>
 inline const CHARACTER *
 unicode_rear_find_first_character_in(const ::range<CHARACTER> &block, const ::range<CHARACTER> &blockBlock) noexcept {
 
@@ -241,7 +241,7 @@ using wd16_range = ::string_range< const ::wd16_character * >;
 using wd32_range = ::string_range< const ::wd32_character * >;
 
 
-template<primitive_character CHARACTER>
+template<prototype_character CHARACTER>
 inline ::hash32 _string_range_unsigned_int_hash(::string_range<const CHARACTER *> range) {
 
    if (range.is_empty()) {
@@ -283,7 +283,7 @@ inline ::hash32 _string_range_unsigned_int_hash(::string_range<const CHARACTER *
 //}
 
 
-template<primitive_character CHARACTER>
+template<prototype_character CHARACTER>
 constexpr ::character_range<const CHARACTER *> _string_range(const CHARACTER *psz) {
 
    return {psz, psz + string_safe_length(psz)};
@@ -291,7 +291,7 @@ constexpr ::character_range<const CHARACTER *> _string_range(const CHARACTER *ps
 }
 
 
-template<primitive_character CHARACTER>
+template<prototype_character CHARACTER>
 constexpr ::character_range<const CHARACTER *>
 _start_count_string_range(const CHARACTER *psz, memsize start, memsize count) {
 
@@ -308,7 +308,7 @@ _start_count_string_range(const CHARACTER *psz, memsize start, memsize count) {
 
 
 template < typename ITERATOR_TYPE >
-template < primitive_integral START, primitive_integral COUNT>
+template < prototype_integral START, prototype_integral COUNT>
 inline typename const_string_range < ITERATOR_TYPE > ::STRING_RANGE const_string_range < ITERATOR_TYPE > ::operator()(START start, COUNT count) const {
 
    //return ::_start_count_range(STRING_RANGE(*this), start, count);
@@ -331,7 +331,7 @@ inline typename const_string_range < ITERATOR_TYPE > ::STRING_RANGE const_string
 
 
 //template < typename ITERATOR_TYPE >
-//template < primitive_integral START, typed_character_pointer < typename const_string_range < ITERATOR_TYPE >::CHARACTER > CHARACTER_POINTER >
+//template < prototype_integral START, typed_character_pointer < typename const_string_range < ITERATOR_TYPE >::CHARACTER > CHARACTER_POINTER >
 //inline typename const_string_range < ITERATOR_TYPE > ::STRING_RANGE const_string_range < ITERATOR_TYPE > ::operator()(START start, CHARACTER_POINTER end) const
 //{
 //
@@ -351,7 +351,7 @@ inline typename const_string_range < ITERATOR_TYPE > ::STRING_RANGE const_string
 
 
 template < typename ITERATOR_TYPE >
-template < primitive_integral START >
+template < prototype_integral START >
 inline typename const_string_range < ITERATOR_TYPE > ::STRING_RANGE const_string_range < ITERATOR_TYPE > ::operator()(START start) const {
 
    return STRING_RANGE(this->begin() + start, this->end());

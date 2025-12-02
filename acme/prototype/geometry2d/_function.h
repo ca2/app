@@ -2,43 +2,43 @@
 #pragma once
 
 
-//template < primitive_rectangle RECTANGLE_TYPE >
+//template < prototype_rectangle RECTANGLE_TYPE >
 //constexpr auto width(RECTANGLE_TYPE & rectangle);
 
-//template < primitive_rectangle RECTANGLE_TYPE >
+//template < prototype_rectangle RECTANGLE_TYPE >
 //constexpr auto height(RECTANGLE_TYPE & rectangle);
 
 //template < typename W, typename H >
 //constexpr H area(W w, H h);
 
-//template < primitive_rectangle RECTANGLE_TYPE >
+//template < prototype_rectangle RECTANGLE_TYPE >
 //constexpr auto area(RECTANGLE_TYPE & rectangle);
 
-//template < primitive_rectangle RECTANGLE_TYPE >
+//template < prototype_rectangle RECTANGLE_TYPE >
 //bool is_null(const RECTANGLE_TYPE & rectangle);
 
-//template < primitive_rectangle RECTANGLE_TYPE >
+//template < prototype_rectangle RECTANGLE_TYPE >
 //constexpr auto is_empty(RECTANGLE_TYPE & rectangle);
 
-//template < primitive_rectangle RECTANGLE_TYPE >
+//template < prototype_rectangle RECTANGLE_TYPE >
 //constexpr auto is_set(RECTANGLE_TYPE & rectangle);
 
-//template < primitive_size SIZE_TYPE >
+//template < prototype_size SIZE_TYPE >
 //bool is_null(const SIZE_TYPE & size);
 
-//template < primitive_point POINT_TYPE >
+//template < prototype_point POINT_TYPE >
 //bool is_null(const POINT_TYPE & point);
 
-//template < primitive_rectangle RECTANGLE_TYPE, typename X >
+//template < prototype_rectangle RECTANGLE_TYPE, typename X >
 //inline RECTANGLE_TYPE & x_offset(RECTANGLE_TYPE & rectangle, X x);
 
-//template < primitive_rectangle RECTANGLE_TYPE, typename Y >
+//template < prototype_rectangle RECTANGLE_TYPE, typename Y >
 //inline RECTANGLE_TYPE & y_offset(RECTANGLE_TYPE & rectangle, Y y);
 
-//template < primitive_rectangle RECTANGLE_TYPE, typename X >
+//template < prototype_rectangle RECTANGLE_TYPE, typename X >
 //inline RECTANGLE_TYPE & x_subtract(RECTANGLE_TYPE & rectangle, X x);
 
-//template < primitive_rectangle RECTANGLE_TYPE, typename Y >
+//template < prototype_rectangle RECTANGLE_TYPE, typename Y >
 //inline RECTANGLE_TYPE & y_subtract(RECTANGLE_TYPE & rectangle, Y y);
 
 //template < typename RECTANGLE_TYPE, typename X, typename Y >
@@ -47,78 +47,78 @@
 //template < typename RECTANGLE_TYPE, typename X, typename Y >
 //inline RECTANGLE_TYPE & subtract(RECTANGLE_TYPE & rectangle, X x, Y y);
 
-//template < typename RECTANGLE_TYPE, primitive_point POINT_TYPE >
+//template < typename RECTANGLE_TYPE, prototype_point POINT_TYPE >
 //inline RECTANGLE_TYPE & offset(RECTANGLE_TYPE & rectangle, const POINT_TYPE & point);
 
-//template < primitive_rectangle RECTANGLE_TYPE, primitive_point POINT_TYPE >
+//template < prototype_rectangle RECTANGLE_TYPE, prototype_point POINT_TYPE >
 //inline RECTANGLE_TYPE & subtract(RECTANGLE_TYPE & rectangle, const POINT_TYPE & point);
 
-//template < primitive_rectangle RECTANGLE1, primitive_rectangle RECTANGLE2 >
+//template < prototype_rectangle RECTANGLE1, prototype_rectangle RECTANGLE2 >
 //inline RECTANGLE1 & subtract(RECTANGLE1 & rectangle, const RECTANGLE2 & rectangle2);
 
-//template < primitive_rectangle RECTANGLE_TYPE, primitive_point POINT >
+//template < prototype_rectangle RECTANGLE_TYPE, prototype_point POINT >
 //inline RECTANGLE_TYPE & subtract(RECTANGLE_TYPE & rectangle, const POINT & point) { return subtract(rectangle, point); }
 
 
-//template < primitive_point POINT, typename X, typename Y >
+//template < prototype_point POINT, typename X, typename Y >
 //inline POINT & offset(POINT & point, X x, Y y);
 
-//template < primitive_point POINT, primitive_point POINT2 >
+//template < prototype_point POINT, prototype_point POINT2 >
 //inline POINT & offset(POINT & point, const POINT2 & point2);
 
-//template < primitive_point POINT, primitive_point POINT2 >
+//template < prototype_point POINT, prototype_point POINT2 >
 //inline POINT & add(POINT & point, const POINT2 & point2);
 
-//template < primitive_point POINT_TYPE, typename X, typename Y >
+//template < prototype_point POINT_TYPE, typename X, typename Y >
 //inline POINT_TYPE & subtract(POINT_TYPE & point, X x, Y y);
 
-//template < primitive_point POINT_TYPE, primitive_point POINT_TYPE2 >
+//template < prototype_point POINT_TYPE, prototype_point POINT_TYPE2 >
 //inline POINT_TYPE & subtract(POINT_TYPE & point, const POINT_TYPE2 & point2);
 
-//template < primitive_rectangle RECTANGLE_TYPE, primitive_point POINT_TYPE >
+//template < prototype_rectangle RECTANGLE_TYPE, prototype_point POINT_TYPE >
 //inline RECTANGLE_TYPE & add(RECTANGLE_TYPE & rectangle, const POINT_TYPE & point);
 
-//template < primitive_rectangle RECTANGLE_TYPE, primitive_rectangle RECT_TYPE1, primitive_rectangle RECT_TYPE2 >
+//template < prototype_rectangle RECTANGLE_TYPE, prototype_rectangle RECT_TYPE1, prototype_rectangle RECT_TYPE2 >
 //bool x_intersect(RECTANGLE_TYPE & rectangle, const RECT_TYPE1 & rect1, const RECT_TYPE2 & rect2);
 
-//template < primitive_rectangle RECT_TYPE1, primitive_rectangle RECT_TYPE2 >
+//template < prototype_rectangle RECT_TYPE1, prototype_rectangle RECT_TYPE2 >
 //bool x_intersects(const RECT_TYPE1 & rect1, const RECT_TYPE2 & rect2);
 
-//template < primitive_rectangle RECTANGLE_TYPE, primitive_rectangle RECT_TYPE1, primitive_rectangle RECT_TYPE2 >
+//template < prototype_rectangle RECTANGLE_TYPE, prototype_rectangle RECT_TYPE1, prototype_rectangle RECT_TYPE2 >
 //bool y_intersect(RECTANGLE_TYPE & rectangle, const RECT_TYPE1 & rect1, const RECT_TYPE2 & rect2);
 
-//template < primitive_rectangle RECT_TYPE1, primitive_rectangle RECT_TYPE2 >
+//template < prototype_rectangle RECT_TYPE1, prototype_rectangle RECT_TYPE2 >
 //bool y_intersects(const RECT_TYPE1 & rect1, const RECT_TYPE2 & rect2);
 
-//template < primitive_rectangle RECTANGLE_TYPE, primitive_rectangle RECT_TYPE1, primitive_rectangle RECT_TYPE2 >
+//template < prototype_rectangle RECTANGLE_TYPE, prototype_rectangle RECT_TYPE1, prototype_rectangle RECT_TYPE2 >
 //bool intersect(RECTANGLE_TYPE & rectangle, const RECT_TYPE1 & rect1, const RECT_TYPE2 & rect2);
 
-//template < primitive_rectangle RECT_TYPE1, primitive_rectangle RECT_TYPE2 >
+//template < prototype_rectangle RECT_TYPE1, prototype_rectangle RECT_TYPE2 >
 //bool intersects(const RECT_TYPE1 & rect1, const RECT_TYPE2 & rect2);
 
-//template < primitive_rectangle RECTANGLE_TYPE, primitive_rectangle RECT_TYPE1, primitive_rectangle RECT_TYPE2 >
+//template < prototype_rectangle RECTANGLE_TYPE, prototype_rectangle RECT_TYPE1, prototype_rectangle RECT_TYPE2 >
 //bool x_null_intersect(RECTANGLE_TYPE & rectangle, const RECT_TYPE1 & rect1, const RECT_TYPE2 & rect2);
 
-//template < primitive_rectangle RECTANGLE_TYPE, primitive_rectangle RECT_TYPE1, primitive_rectangle RECT_TYPE2 >
+//template < prototype_rectangle RECTANGLE_TYPE, prototype_rectangle RECT_TYPE1, prototype_rectangle RECT_TYPE2 >
 //bool y_null_intersect(RECTANGLE_TYPE & rectangle, const RECT_TYPE1 & rect1, const RECT_TYPE2 & rect2);
 
-//template < primitive_rectangle RECTANGLE_TYPE, primitive_rectangle RECT_TYPE1, primitive_rectangle RECT_TYPE2 >
+//template < prototype_rectangle RECTANGLE_TYPE, prototype_rectangle RECT_TYPE1, prototype_rectangle RECT_TYPE2 >
 //bool null_intersect(RECTANGLE_TYPE & rectangle, const RECT_TYPE1 & rect1, const RECT_TYPE2 & rect2);
 //
-//template < primitive_rectangle RECTANGLE_TYPE, primitive_rectangle RECT_TYPE1, primitive_rectangle RECT_TYPE2 >
+//template < prototype_rectangle RECTANGLE_TYPE, prototype_rectangle RECT_TYPE1, prototype_rectangle RECT_TYPE2 >
 //bool x_left_null_intersect(RECTANGLE_TYPE & rectangle, const RECT_TYPE1 & rect1, const RECT_TYPE2 & rect2);
 //
-//template < primitive_rectangle RECTANGLE_TYPE, primitive_rectangle RECT_TYPE1, primitive_rectangle RECT_TYPE2 >
+//template < prototype_rectangle RECTANGLE_TYPE, prototype_rectangle RECT_TYPE1, prototype_rectangle RECT_TYPE2 >
 //bool y_top_null_intersect(RECTANGLE_TYPE & rectangle, const RECT_TYPE1 & rect1, const RECT_TYPE2 & rect2);
 //
-//template < primitive_rectangle RECTANGLE_TYPE, primitive_rectangle RECT_TYPE1, primitive_rectangle RECT_TYPE2 >
+//template < prototype_rectangle RECTANGLE_TYPE, prototype_rectangle RECT_TYPE1, prototype_rectangle RECT_TYPE2 >
 //bool top_left_null_intersect(RECTANGLE_TYPE & rectangle, const RECT_TYPE1 & rect1, const RECT_TYPE2 & rect2);
 
-//template < primitive_rectangle RECTANGLE_TYPE, primitive_rectangle RECT_TYPE1, primitive_rectangle RECT_TYPE2 >
+//template < prototype_rectangle RECTANGLE_TYPE, prototype_rectangle RECT_TYPE1, prototype_rectangle RECT_TYPE2 >
 //RECTANGLE_TYPE & unite(RECTANGLE_TYPE & rectangle, const RECT_TYPE1 & rect1, const RECT_TYPE2 & rect2);
 
 
-//template < primitive_rectangle RECT_TYPE1, primitive_rectangle RECT_TYPE2 >
+//template < prototype_rectangle RECT_TYPE1, prototype_rectangle RECT_TYPE2 >
 //RECT_TYPE1 & unite(RECT_TYPE1 & rect1, const RECT_TYPE2 & rect2);
 
 
@@ -130,23 +130,23 @@
 //auto get_normal_dimension(enum_orientation eorientation, X x, Y y);
 //
 //
-//template < primitive_rectangle RECTANGLE1, primitive_rectangle RECTANGLE2 >
+//template < prototype_rectangle RECTANGLE1, prototype_rectangle RECTANGLE2 >
 //bool is_equal(const RECTANGLE1 & rectangle1, const RECTANGLE2 & rectangle2, float epsilon = 0.0001);
 //
-//template < primitive_point POINT1, primitive_point POINT2 >
+//template < prototype_point POINT1, prototype_point POINT2 >
 //bool is_equal(const POINT1 & point1, const POINT2 & point2, float epsilon = 0.0001);
 
-//template < primitive_size SIZE_TYPE1, primitive_size SIZE_TYPE2 >
+//template < prototype_size SIZE_TYPE1, prototype_size SIZE_TYPE2 >
 //bool is_equal(const SIZE_TYPE1 & size1, const SIZE_TYPE2 & size2, float epsilon = 0.0001);
 //
-//template < primitive_rectangle RECTANGLE_TYPE, primitive_number L, primitive_number T, primitive_number R, primitive_number B >
+//template < prototype_rectangle RECTANGLE_TYPE, prototype_number L, prototype_number T, prototype_number R, prototype_number B >
 //RECTANGLE_TYPE & assign(RECTANGLE_TYPE & rectangle, L l, T t, R r, B b);
 //
 //
-//template < primitive_rectangle RECTANGLE, primitive_number L, primitive_number T, primitive_number W, primitive_number H >
+//template < prototype_rectangle RECTANGLE, prototype_number L, prototype_number T, prototype_number W, prototype_number H >
 //RECTANGLE & set_dimension(RECTANGLE & rectangle, L l, T t, W w, H h);
 
-//template < primitive_rectangle RECTANGLE,  typename L, typename T, typename W, typename H >
+//template < prototype_rectangle RECTANGLE,  typename L, typename T, typename W, typename H >
 //inline auto _001SetRectDim(RECTANGLE &r, L l, T t, W w, H h) { return set_dim(p, l, t, w, h); }
 //template <  typename L, typename T, typename W, typename H >
 //inline auto _001SetRectDim(::long_long_rectangle * p, L l, T t, W w, H h) { return set_rect_dim(p, l, t, w, h); }
@@ -156,87 +156,87 @@
 //inline auto _001SetRectDim(::double_rectangle * p, L l, T t, W w, H h) { return set_rect_dim(p, l, t, w, h); }
 
 
-//template < primitive_rectangle RECTANGLE, primitive_point POINT, primitive_size SIZE >
+//template < prototype_rectangle RECTANGLE, prototype_point POINT, prototype_size SIZE >
 //RECTANGLE & set_bottom_right(RECTANGLE & rectangle, const SIZE & size);
 //
-//template < primitive_rectangle RECTANGLE, primitive_point POINT, primitive_size SIZE >
+//template < prototype_rectangle RECTANGLE, prototype_point POINT, prototype_size SIZE >
 //RECTANGLE & assign(RECTANGLE & rectangle, const POINT & point, const SIZE & size);
 
 
-//template < primitive_rectangle RECTANGLE_TYPE >
+//template < prototype_rectangle RECTANGLE_TYPE >
 //RECTANGLE_TYPE & null(RECTANGLE_TYPE & rectangle);
 //
 //
-//template < primitive_rectangle RECTANGLE, primitive_number X >
+//template < prototype_rectangle RECTANGLE, prototype_number X >
 //inline bool contains_x(const RECTANGLE & rectangle, X x);
 //
 //
-//template < primitive_rectangle RECTANGLE, primitive_number Y >
+//template < prototype_rectangle RECTANGLE, prototype_number Y >
 //inline bool contains_y(const RECTANGLE & rectangle, Y y);
 //
-//template < typename RECTANGLE, primitive_number X, primitive_number Y >
+//template < typename RECTANGLE, prototype_number X, prototype_number Y >
 //inline bool contains(const RECTANGLE & rectangle, X x, Y y);
 //
-//template < primitive_rectangle RECTANGLE_TYPE, primitive_number L, primitive_number T, primitive_number R, primitive_number B >
+//template < prototype_rectangle RECTANGLE_TYPE, prototype_number L, prototype_number T, prototype_number R, prototype_number B >
 //inline RECTANGLE_TYPE & inflate(RECTANGLE_TYPE & rectangle, L l, T t, R r, B b);
 //
-//template < primitive_rectangle RECTANGLE_TYPE, primitive_rectangle RECT_TYPE2 >
+//template < prototype_rectangle RECTANGLE_TYPE, prototype_rectangle RECT_TYPE2 >
 //inline RECTANGLE_TYPE & inflate(RECTANGLE_TYPE & rectangle, const RECT_TYPE2 & rect2);
 //
 
-//template < primitive_rectangle RECTANGLE_TYPE, primitive_rectangle RECT_TYPE2 >
+//template < prototype_rectangle RECTANGLE_TYPE, prototype_rectangle RECT_TYPE2 >
 //inline RECTANGLE_TYPE & multiply_inline(RECTANGLE_TYPE & rectangle, const RECT_TYPE2 & rect2);
 //
 //
-//template < primitive_rectangle RECTANGLE_TYPE, primitive_number L, primitive_number T, primitive_number R, primitive_number B >
+//template < prototype_rectangle RECTANGLE_TYPE, prototype_number L, prototype_number T, prototype_number R, prototype_number B >
 //inline RECTANGLE_TYPE & deflate(RECTANGLE_TYPE & rectangle, L l, T t, R r, B b);
 //
-//template < typename RECTANGLE_TYPE, primitive_rectangle RECT_TYPE2 >
+//template < typename RECTANGLE_TYPE, prototype_rectangle RECT_TYPE2 >
 //inline RECTANGLE_TYPE & deflate(RECTANGLE_TYPE & rectangle, const RECT_TYPE2 & rect2);
 //
 //
-//template < primitive_rectangle RECTANGLE_TYPE, primitive_number X, primitive_number Y >
+//template < prototype_rectangle RECTANGLE_TYPE, prototype_number X, prototype_number Y >
 //inline RECTANGLE_TYPE & inflate(RECTANGLE_TYPE & rectangle, X x, Y y);
 //
-//template < primitive_rectangle RECTANGLE_TYPE, primitive_number X, primitive_number Y >
+//template < prototype_rectangle RECTANGLE_TYPE, prototype_number X, prototype_number Y >
 //inline RECTANGLE_TYPE & deflate(RECTANGLE_TYPE & rectangle, X x, Y y);
 //
 //
-//template < primitive_rectangle RECTANGLE_TYPE, primitive_number UNIT >
+//template < prototype_rectangle RECTANGLE_TYPE, prototype_number UNIT >
 //inline RECTANGLE_TYPE & inflate(RECTANGLE_TYPE & rectangle, UNIT u);
 //
 //
-//template < primitive_rectangle RECTANGLE_TYPE, primitive_number UNIT >
+//template < prototype_rectangle RECTANGLE_TYPE, prototype_number UNIT >
 //inline RECTANGLE_TYPE & deflate(RECTANGLE_TYPE & rectangle, UNIT u);
 //
 //
-//template < primitive_rectangle RECTANGLE_TYPE >
+//template < prototype_rectangle RECTANGLE_TYPE >
 //inline RECTANGLE_TYPE & swap_left_right(RECTANGLE_TYPE & rectangle);
 //
 //
-//template < primitive_point POINT1, primitive_point POINT2 >
+//template < prototype_point POINT1, prototype_point POINT2 >
 //inline bool polygon_contains_winding(const POINT1 * ppPolygon, int iCount, const POINT2 & point);
 //
-//template < primitive_point POINT1, primitive_point POINT2 >
+//template < prototype_point POINT1, prototype_point POINT2 >
 //inline bool polygon_contains_alternate(const POINT1 * ppPolygon, int iCount, const POINT2 & point, bool bUseHoles, float epsilon = 0.00001f);
 //
-//template < primitive_point POINT, primitive_point POINT2 >
+//template < prototype_point POINT, prototype_point POINT2 >
 //inline POINT & operator -= (POINT & point, const POINT2 & pointOffset);
 //
-//template < primitive_point POINT, primitive_point POINT2 >
+//template < prototype_point POINT, prototype_point POINT2 >
 //inline POINT & operator += (POINT & point, const POINT2 & pointOffset);
 //
-//template < primitive_rectangle RECTANGLE, primitive_point POINT >
+//template < prototype_rectangle RECTANGLE, prototype_point POINT >
 //inline RECTANGLE & operator -= (RECTANGLE & rectangle, const POINT & point);
 //
-//template < primitive_rectangle RECTANGLE, primitive_point POINT >
+//template < prototype_rectangle RECTANGLE, prototype_point POINT >
 //inline RECTANGLE & operator += (RECTANGLE & rectangle, const POINT & point);
 //
 //
 //CLASS_DECL_ACME double d_distance(const int_point& point1, const int_point& point2);
 
 
-template < primitive_point POINT1, primitive_point POINT2 >
+template < prototype_point POINT1, prototype_point POINT2 >
 double f64_distance(const POINT1 & point1, const POINT2 & point2)
 {
 
@@ -369,7 +369,7 @@ inline auto get_normal_dimension2(enum_orientation eorientation, X x, Y y)
 
 
 
-//template < primitive_rectangle RECTANGLE, primitive_rectangle RECTANGLE1, primitive_rectangle RECTANGLE2 >
+//template < prototype_rectangle RECTANGLE, prototype_rectangle RECTANGLE1, prototype_rectangle RECTANGLE2 >
 //RECTANGLE & unite(RECTANGLE1 & rectangle, const RECTANGLE1 & rectangle1, const RECTANGLE2 & rectangle2)
 //{
 //
@@ -410,7 +410,7 @@ inline auto get_normal_dimension2(enum_orientation eorientation, X x, Y y)
 //}
 
 
-template < primitive_rectangle RECTANGLE1, primitive_rectangle RECTANGLE2 >
+template < prototype_rectangle RECTANGLE1, prototype_rectangle RECTANGLE2 >
 RECTANGLE1 & unite(RECTANGLE1 & rectangle1, const RECTANGLE2 & rectangle2)
 {
 
@@ -445,11 +445,11 @@ RECTANGLE1 & unite(RECTANGLE1 & rectangle1, const RECTANGLE2 & rectangle2)
 
 
 
-template < primitive_rectangle RECTANGLE_TYPE >
+template < prototype_rectangle RECTANGLE_TYPE >
 constexpr auto width(RECTANGLE_TYPE & rectangle) { return rectangle.right - rectangle.left; }
 
 
-template < primitive_rectangle RECTANGLE_TYPE >
+template < prototype_rectangle RECTANGLE_TYPE >
 constexpr auto height(RECTANGLE_TYPE & rectangle) { return rectangle.bottom - rectangle.top; }
 
 
@@ -457,11 +457,11 @@ template < typename W, typename H >
 constexpr H area(W w, H h) { return (w <= (W)0 || h <= (H)0) ? 0 : (H)(w * h); }
 
 
-template < primitive_rectangle RECTANGLE_TYPE >
+template < prototype_rectangle RECTANGLE_TYPE >
 constexpr auto area(RECTANGLE_TYPE & rectangle) { return area(width(rectangle), height(rectangle)); }
 
 
-template < primitive_rectangle RECTANGLE_TYPE >
+template < prototype_rectangle RECTANGLE_TYPE >
 bool is_null(const RECTANGLE_TYPE & rectangle)
 {
 
@@ -473,15 +473,15 @@ bool is_null(const RECTANGLE_TYPE & rectangle)
 }
 
 
-template < primitive_rectangle RECTANGLE_TYPE >
+template < prototype_rectangle RECTANGLE_TYPE >
 constexpr auto is_empty(RECTANGLE_TYPE & rectangle) { return ::is_null(rectangle) || rectangle.right <= rectangle.left || rectangle.bottom <= rectangle.top; }
 
 
-template < primitive_rectangle RECTANGLE_TYPE >
+template < prototype_rectangle RECTANGLE_TYPE >
 constexpr auto is_set(RECTANGLE_TYPE & rectangle) { return !::is_empty(rectangle); }
 
 
-template < primitive_size SIZE_TYPE >
+template < prototype_size SIZE_TYPE >
 bool is_null(const SIZE_TYPE & size)
 {
 
@@ -491,7 +491,7 @@ bool is_null(const SIZE_TYPE & size)
 }
 
 
-template < primitive_point POINT_TYPE >
+template < prototype_point POINT_TYPE >
 bool is_null(const POINT_TYPE & point)
 {
 
@@ -503,7 +503,7 @@ bool is_null(const POINT_TYPE & point)
 
 
 
-template < primitive_rectangle RECTANGLE_TYPE, typename X >
+template < prototype_rectangle RECTANGLE_TYPE, typename X >
 inline RECTANGLE_TYPE & x_offset(RECTANGLE_TYPE & rectangle, X x)
 {
 
@@ -516,7 +516,7 @@ inline RECTANGLE_TYPE & x_offset(RECTANGLE_TYPE & rectangle, X x)
 }
 
 
-template < primitive_rectangle RECTANGLE_TYPE, typename Y >
+template < prototype_rectangle RECTANGLE_TYPE, typename Y >
 inline RECTANGLE_TYPE & y_offset(RECTANGLE_TYPE & rectangle, Y y)
 {
 
@@ -530,7 +530,7 @@ inline RECTANGLE_TYPE & y_offset(RECTANGLE_TYPE & rectangle, Y y)
 
 
 
-template < primitive_rectangle RECTANGLE_TYPE, primitive_number X >
+template < prototype_rectangle RECTANGLE_TYPE, prototype_number X >
 inline RECTANGLE_TYPE & x_subtract(RECTANGLE_TYPE & rectangle, X x)
 {
 
@@ -543,7 +543,7 @@ inline RECTANGLE_TYPE & x_subtract(RECTANGLE_TYPE & rectangle, X x)
 }
 
 
-template < primitive_rectangle RECTANGLE_TYPE, primitive_number Y >
+template < prototype_rectangle RECTANGLE_TYPE, prototype_number Y >
 inline RECTANGLE_TYPE & y_subtract(RECTANGLE_TYPE & rectangle, Y y)
 {
 
@@ -556,7 +556,7 @@ inline RECTANGLE_TYPE & y_subtract(RECTANGLE_TYPE & rectangle, Y y)
 }
 
 
-template < primitive_rectangle RECTANGLE_TYPE, primitive_number X, primitive_number Y >
+template < prototype_rectangle RECTANGLE_TYPE, prototype_number X, prototype_number Y >
 inline RECTANGLE_TYPE & offset(RECTANGLE_TYPE & rectangle, X x, Y y)
 {
 
@@ -569,7 +569,7 @@ inline RECTANGLE_TYPE & offset(RECTANGLE_TYPE & rectangle, X x, Y y)
 }
 
 
-template < primitive_rectangle RECTANGLE_TYPE, primitive_number X, primitive_number Y >
+template < prototype_rectangle RECTANGLE_TYPE, prototype_number X, prototype_number Y >
 inline RECTANGLE_TYPE & subtract(RECTANGLE_TYPE & rectangle, X x, Y y)
 {
 
@@ -582,7 +582,7 @@ inline RECTANGLE_TYPE & subtract(RECTANGLE_TYPE & rectangle, X x, Y y)
 }
 
 
-template < primitive_rectangle RECTANGLE_TYPE, primitive_point POINT_TYPE >
+template < prototype_rectangle RECTANGLE_TYPE, prototype_point POINT_TYPE >
 inline RECTANGLE_TYPE & offset(RECTANGLE_TYPE & rectangle, const POINT_TYPE & point)
 {
 
@@ -591,7 +591,7 @@ inline RECTANGLE_TYPE & offset(RECTANGLE_TYPE & rectangle, const POINT_TYPE & po
 }
 
 
-template < primitive_rectangle RECTANGLE_TYPE, primitive_point POINT_TYPE >
+template < prototype_rectangle RECTANGLE_TYPE, prototype_point POINT_TYPE >
 inline RECTANGLE_TYPE & subtract(RECTANGLE_TYPE & rectangle, const POINT_TYPE & point)
 {
 
@@ -600,7 +600,7 @@ inline RECTANGLE_TYPE & subtract(RECTANGLE_TYPE & rectangle, const POINT_TYPE & 
 }
 
 
-template < primitive_rectangle RECTANGLE1, primitive_rectangle RECTANGLE2 >
+template < prototype_rectangle RECTANGLE1, prototype_rectangle RECTANGLE2 >
 inline RECTANGLE1 & subtract(RECTANGLE1 & rectangle, const RECTANGLE2 & rectangle2)
 {
 
@@ -614,7 +614,7 @@ inline RECTANGLE1 & subtract(RECTANGLE1 & rectangle, const RECTANGLE2 & rectangl
 }
 
 
-template < primitive_rectangle RECTANGLE, primitive_rectangle RECTANGLE1, primitive_rectangle RECTANGLE2 >
+template < prototype_rectangle RECTANGLE, prototype_rectangle RECTANGLE1, prototype_rectangle RECTANGLE2 >
 inline RECTANGLE & subtract(RECTANGLE & rectangle, const RECTANGLE1 & rectangle1, const RECTANGLE2 & rectangle2)
 {
 
@@ -628,13 +628,13 @@ inline RECTANGLE & subtract(RECTANGLE & rectangle, const RECTANGLE1 & rectangle1
 }
 
 
-//template < primitive_rectangle RECTANGLE_TYPE, primitive_point POINT >
+//template < prototype_rectangle RECTANGLE_TYPE, prototype_point POINT >
 //inline RECTANGLE_TYPE & subtract(RECTANGLE_TYPE & rectangle, const POINT & point) { return subtract(rectangle, point); }
 
 
-template < primitive_sequence2 SEQUENCE, primitive_number X, primitive_number Y >
+template < prototype_sequence2 SEQUENCE, prototype_number X, prototype_number Y >
 inline SEQUENCE & offset(SEQUENCE & sequence, X x, Y y)
-   requires(!primitive_sequence3<SEQUENCE>)
+   requires(!prototype_sequence3<SEQUENCE>)
 {
 
    sequence.x = (const decay<typename SEQUENCE::UNIT_TYPE>&)(sequence.x + x);
@@ -645,9 +645,9 @@ inline SEQUENCE & offset(SEQUENCE & sequence, X x, Y y)
 }
 
 
-template < primitive_sequence2 SEQUENCEA, primitive_sequence SEQUENCEB >
+template < prototype_sequence2 SEQUENCEA, prototype_sequence SEQUENCEB >
 inline SEQUENCEA & offset(SEQUENCEA & sequencea, const SEQUENCEB & sequenceb)
-   requires(!primitive_sequence3<SEQUENCEA>)
+   requires(!prototype_sequence3<SEQUENCEA>)
 {
 
    return offset(sequencea, sequenceb.x, sequenceb.y);
@@ -655,9 +655,9 @@ inline SEQUENCEA & offset(SEQUENCEA & sequencea, const SEQUENCEB & sequenceb)
 }
 
 
-template < primitive_sequence2 SEQUENCEA, primitive_sequence SEQUENCEB >
+template < prototype_sequence2 SEQUENCEA, prototype_sequence SEQUENCEB >
 inline SEQUENCEA & add(SEQUENCEA & sequencea, const SEQUENCEB & sequenceb)
-   requires(!primitive_sequence3<SEQUENCEA>)
+   requires(!prototype_sequence3<SEQUENCEA>)
 {
 
    return offset(sequencea, sequenceb);
@@ -665,9 +665,9 @@ inline SEQUENCEA & add(SEQUENCEA & sequencea, const SEQUENCEB & sequenceb)
 }
 
 
-template < primitive_sequence2 SEQUENCE, typename X, typename Y >
+template < prototype_sequence2 SEQUENCE, typename X, typename Y >
 inline SEQUENCE & subtract(SEQUENCE & sequence, X x, Y y)
-   requires(!primitive_sequence3<SEQUENCE>)
+   requires(!prototype_sequence3<SEQUENCE>)
 {
 
    sequence.x = (const decay<typename SEQUENCE::UNIT_TYPE>&)(sequence.x - x);
@@ -678,9 +678,9 @@ inline SEQUENCE & subtract(SEQUENCE & sequence, X x, Y y)
 }
 
 
-template < primitive_sequence2 SEQUENCEA, primitive_sequence2 SEQUENCEB >
+template < prototype_sequence2 SEQUENCEA, prototype_sequence2 SEQUENCEB >
 inline SEQUENCEA & subtract(SEQUENCEA & sequence, const SEQUENCEB & sequenceb)
-   requires(!primitive_sequence3<SEQUENCEA>)
+   requires(!prototype_sequence3<SEQUENCEA>)
 {
 
    return subtract(sequence, sequenceb.x, sequenceb.y);
@@ -688,7 +688,7 @@ inline SEQUENCEA & subtract(SEQUENCEA & sequence, const SEQUENCEB & sequenceb)
 }
 
 
-template < primitive_rectangle RECTANGLE_TYPE, primitive_point POINT_TYPE >
+template < prototype_rectangle RECTANGLE_TYPE, prototype_point POINT_TYPE >
 inline RECTANGLE_TYPE & add(RECTANGLE_TYPE & rectangle, const POINT_TYPE & point)
 {
 
@@ -697,7 +697,7 @@ inline RECTANGLE_TYPE & add(RECTANGLE_TYPE & rectangle, const POINT_TYPE & point
 }
 
 
-template < primitive_rectangle RECTANGLE_TYPE, primitive_rectangle RECT_TYPE1, primitive_rectangle RECT_TYPE2 >
+template < prototype_rectangle RECTANGLE_TYPE, prototype_rectangle RECT_TYPE1, prototype_rectangle RECT_TYPE2 >
 bool x_intersect(RECTANGLE_TYPE & rectangle, const RECT_TYPE1 & rect1, const RECT_TYPE2 & rect2)
 {
 
@@ -731,7 +731,7 @@ bool x_intersect(RECTANGLE_TYPE & rectangle, const RECT_TYPE1 & rect1, const REC
 }
 
 
-template < primitive_rectangle RECT_TYPE1, primitive_rectangle RECT_TYPE2 >
+template < prototype_rectangle RECT_TYPE1, prototype_rectangle RECT_TYPE2 >
 bool x_intersects(const RECT_TYPE1 & rect1, const RECT_TYPE2 & rect2)
 {
 
@@ -747,7 +747,7 @@ bool x_intersects(const RECT_TYPE1 & rect1, const RECT_TYPE2 & rect2)
 }
 
 
-template < primitive_rectangle RECTANGLE_TYPE, primitive_rectangle RECT_TYPE1, primitive_rectangle RECT_TYPE2 >
+template < prototype_rectangle RECTANGLE_TYPE, prototype_rectangle RECT_TYPE1, prototype_rectangle RECT_TYPE2 >
 bool y_intersect(RECTANGLE_TYPE & rectangle, const RECT_TYPE1 & rect1, const RECT_TYPE2 & rect2)
 {
 
@@ -781,7 +781,7 @@ bool y_intersect(RECTANGLE_TYPE & rectangle, const RECT_TYPE1 & rect1, const REC
 }
 
 
-template < primitive_rectangle RECT_TYPE1, primitive_rectangle RECT_TYPE2 >
+template < prototype_rectangle RECT_TYPE1, prototype_rectangle RECT_TYPE2 >
 bool y_intersects(const RECT_TYPE1 & rect1, const RECT_TYPE2 & rect2)
 {
 
@@ -796,7 +796,7 @@ bool y_intersects(const RECT_TYPE1 & rect1, const RECT_TYPE2 & rect2)
 }
 
 
-template < primitive_rectangle RECTANGLE_TYPE, primitive_rectangle RECT_TYPE1, primitive_rectangle RECT_TYPE2 >
+template < prototype_rectangle RECTANGLE_TYPE, prototype_rectangle RECT_TYPE1, prototype_rectangle RECT_TYPE2 >
 bool intersect(RECTANGLE_TYPE & rectangle, const RECT_TYPE1 & rect1, const RECT_TYPE2 & rect2)
 {
 
@@ -819,7 +819,7 @@ bool intersect(RECTANGLE_TYPE & rectangle, const RECT_TYPE1 & rect1, const RECT_
 }
 
 
-template < primitive_rectangle RECT_TYPE1, primitive_rectangle RECT_TYPE2 >
+template < prototype_rectangle RECT_TYPE1, prototype_rectangle RECT_TYPE2 >
 bool intersects(const RECT_TYPE1 & rect1, const RECT_TYPE2 & rect2)
 {
 
@@ -828,7 +828,7 @@ bool intersects(const RECT_TYPE1 & rect1, const RECT_TYPE2 & rect2)
 }
 
 
-template < primitive_rectangle RECTANGLE_TYPE, primitive_rectangle RECT_TYPE1, primitive_rectangle RECT_TYPE2 >
+template < prototype_rectangle RECTANGLE_TYPE, prototype_rectangle RECT_TYPE1, prototype_rectangle RECT_TYPE2 >
 bool x_null_intersect(RECTANGLE_TYPE & rectangle, const RECT_TYPE1 & rect1, const RECT_TYPE2 & rect2)
 {
 
@@ -859,7 +859,7 @@ bool x_null_intersect(RECTANGLE_TYPE & rectangle, const RECT_TYPE1 & rect1, cons
 }
 
 
-template < primitive_rectangle RECTANGLE_TYPE, primitive_rectangle RECT_TYPE1, primitive_rectangle RECT_TYPE2 >
+template < prototype_rectangle RECTANGLE_TYPE, prototype_rectangle RECT_TYPE1, prototype_rectangle RECT_TYPE2 >
 bool y_null_intersect(RECTANGLE_TYPE & rectangle, const RECT_TYPE1 & rect1, const RECT_TYPE2 & rect2)
 {
 
@@ -890,7 +890,7 @@ bool y_null_intersect(RECTANGLE_TYPE & rectangle, const RECT_TYPE1 & rect1, cons
 }
 
 
-template < primitive_rectangle RECTANGLE_TYPE, primitive_rectangle RECT_TYPE1, primitive_rectangle RECT_TYPE2 >
+template < prototype_rectangle RECTANGLE_TYPE, prototype_rectangle RECT_TYPE1, prototype_rectangle RECT_TYPE2 >
 bool null_intersect(RECTANGLE_TYPE & rectangle, const RECT_TYPE1 & rect1, const RECT_TYPE2 & rect2)
 {
 
@@ -913,7 +913,7 @@ bool null_intersect(RECTANGLE_TYPE & rectangle, const RECT_TYPE1 & rect1, const 
 }
 
 
-template < primitive_rectangle RECTANGLE_TYPE, primitive_rectangle RECT_TYPE1, primitive_rectangle RECT_TYPE2 >
+template < prototype_rectangle RECTANGLE_TYPE, prototype_rectangle RECT_TYPE1, prototype_rectangle RECT_TYPE2 >
 bool x_left_null_intersect(RECTANGLE_TYPE & rectangle, const RECT_TYPE1 & rect1, const RECT_TYPE2 & rect2)
 {
 
@@ -926,7 +926,7 @@ bool x_left_null_intersect(RECTANGLE_TYPE & rectangle, const RECT_TYPE1 & rect1,
 }
 
 
-template < primitive_rectangle RECTANGLE_TYPE, primitive_rectangle RECT_TYPE1, primitive_rectangle RECT_TYPE2 >
+template < prototype_rectangle RECTANGLE_TYPE, prototype_rectangle RECT_TYPE1, prototype_rectangle RECT_TYPE2 >
 bool y_top_null_intersect(RECTANGLE_TYPE & rectangle, const RECT_TYPE1 & rect1, const RECT_TYPE2 & rect2)
 {
 
@@ -939,7 +939,7 @@ bool y_top_null_intersect(RECTANGLE_TYPE & rectangle, const RECT_TYPE1 & rect1, 
 }
 
 
-template < primitive_rectangle RECTANGLE_TYPE, primitive_rectangle RECT_TYPE1, primitive_rectangle RECT_TYPE2 >
+template < prototype_rectangle RECTANGLE_TYPE, prototype_rectangle RECT_TYPE1, prototype_rectangle RECT_TYPE2 >
 bool top_left_null_intersect(RECTANGLE_TYPE & rectangle, const RECT_TYPE1 & rect1, const RECT_TYPE2 & rect2)
 {
 
@@ -961,7 +961,7 @@ bool top_left_null_intersect(RECTANGLE_TYPE & rectangle, const RECT_TYPE1 & rect
 }
 
 
-template < primitive_rectangle RECTANGLE1, primitive_rectangle RECTANGLE2 >
+template < prototype_rectangle RECTANGLE1, prototype_rectangle RECTANGLE2 >
 bool is_equal(const RECTANGLE1 & rectangle1, const RECTANGLE2 & rectangle2, largest_number < ::decay<typename RECTANGLE1::UNIT_TYPE>, ::decay<typename RECTANGLE2::UNIT_TYPE > > epsilon = default_epsilon < ::largest_number < ::decay < typename RECTANGLE1::UNIT_TYPE >, ::decay<typename RECTANGLE2::UNIT_TYPE > >>())
 {
 
@@ -973,7 +973,7 @@ bool is_equal(const RECTANGLE1 & rectangle1, const RECTANGLE2 & rectangle2, larg
 }
 
 
-template < primitive_point POINT1, primitive_point POINT2 >
+template < prototype_point POINT1, prototype_point POINT2 >
 bool is_equal(const POINT1 & point1, const POINT2 & point2, largest_number < ::decay<typename POINT1::UNIT_TYPE>, ::decay<typename POINT2::UNIT_TYPE> > epsilon = default_epsilon<largest_number < ::decay<typename POINT1::UNIT_TYPE>, ::decay<typename POINT2::UNIT_TYPE> >>())
 {
 
@@ -982,7 +982,7 @@ bool is_equal(const POINT1 & point1, const POINT2 & point2, largest_number < ::d
 }
 
 
-template < primitive_size SIZE1, primitive_size SIZE2 >
+template < prototype_size SIZE1, prototype_size SIZE2 >
 bool is_equal(const SIZE1 & size1, const SIZE2 & size2, largest_number < ::decay<typename SIZE1::UNIT_TYPE>, ::decay<typename SIZE2::UNIT_TYPE> > epsilon = default_epsilon<largest_number < ::decay<typename SIZE1::UNIT_TYPE>, ::decay<typename SIZE2::UNIT_TYPE > >>())
 {
 
@@ -991,7 +991,7 @@ bool is_equal(const SIZE1 & size1, const SIZE2 & size2, largest_number < ::decay
 }
 
 
-template < primitive_rectangle RECTANGLE_TYPE, primitive_number L, primitive_number T, primitive_number R, primitive_number B >
+template < prototype_rectangle RECTANGLE_TYPE, prototype_number L, prototype_number T, prototype_number R, prototype_number B >
 RECTANGLE_TYPE & assign(RECTANGLE_TYPE & rectangle, L l, T t, R r, B b)
 {
 
@@ -1005,7 +1005,7 @@ RECTANGLE_TYPE & assign(RECTANGLE_TYPE & rectangle, L l, T t, R r, B b)
 }
 
 
-template < primitive_rectangle RECTANGLE, primitive_number L, primitive_number T, primitive_number W, primitive_number H >
+template < prototype_rectangle RECTANGLE, prototype_number L, prototype_number T, prototype_number W, prototype_number H >
 RECTANGLE & set_dimension(RECTANGLE & rectangle, L l, T t, W w, H h)
 {
 
@@ -1018,7 +1018,7 @@ RECTANGLE & set_dimension(RECTANGLE & rectangle, L l, T t, W w, H h)
 
 }
 
-//template < primitive_rectangle RECTANGLE,  typename L, typename T, typename W, typename H >
+//template < prototype_rectangle RECTANGLE,  typename L, typename T, typename W, typename H >
 //inline auto _001SetRectDim(RECTANGLE &r, L l, T t, W w, H h) { return set_dim(p, l, t, w, h); }
 //template <  typename L, typename T, typename W, typename H >
 //inline auto _001SetRectDim(::long_long_rectangle * p, L l, T t, W w, H h) { return set_rect_dim(p, l, t, w, h); }
@@ -1028,7 +1028,7 @@ RECTANGLE & set_dimension(RECTANGLE & rectangle, L l, T t, W w, H h)
 //inline auto _001SetRectDim(::double_rectangle * p, L l, T t, W w, H h) { return set_rect_dim(p, l, t, w, h); }
 
 
-template < primitive_rectangle RECTANGLE, primitive_point POINT, primitive_size SIZE >
+template < prototype_rectangle RECTANGLE, prototype_point POINT, prototype_size SIZE >
 RECTANGLE & set_bottom_right(RECTANGLE & rectangle, const SIZE & size)
 {
 
@@ -1040,7 +1040,7 @@ RECTANGLE & set_bottom_right(RECTANGLE & rectangle, const SIZE & size)
 }
 
 
-template < primitive_rectangle RECTANGLE, primitive_point POINT, primitive_size SIZE >
+template < prototype_rectangle RECTANGLE, prototype_point POINT, prototype_size SIZE >
 RECTANGLE & assign(RECTANGLE & rectangle, const POINT & point, const SIZE & size)
 {
 
@@ -1054,7 +1054,7 @@ RECTANGLE & assign(RECTANGLE & rectangle, const POINT & point, const SIZE & size
 }
 
 
-template < primitive_rectangle RECTANGLE_TYPE >
+template < prototype_rectangle RECTANGLE_TYPE >
 RECTANGLE_TYPE & null(RECTANGLE_TYPE & rectangle)
 {
 
@@ -1064,7 +1064,7 @@ RECTANGLE_TYPE & null(RECTANGLE_TYPE & rectangle)
 
 
 
-template < primitive_rectangle RECTANGLE, primitive_number X >
+template < prototype_rectangle RECTANGLE, prototype_number X >
 inline bool contains_x(const RECTANGLE & rectangle, X x)
 {
 
@@ -1073,7 +1073,7 @@ inline bool contains_x(const RECTANGLE & rectangle, X x)
 }
 
 
-template < primitive_rectangle RECTANGLE, primitive_number Y >
+template < prototype_rectangle RECTANGLE, prototype_number Y >
 inline bool contains_y(const RECTANGLE & rectangle, Y y)
 {
 
@@ -1082,7 +1082,7 @@ inline bool contains_y(const RECTANGLE & rectangle, Y y)
 }
 
 
-template < typename RECTANGLE, primitive_number X, primitive_number Y >
+template < typename RECTANGLE, prototype_number X, prototype_number Y >
 inline bool contains(const RECTANGLE & rectangle, X x, Y y)
 {
 
@@ -1091,7 +1091,7 @@ inline bool contains(const RECTANGLE & rectangle, X x, Y y)
 }
 
 
-template < primitive_rectangle RECTANGLE_TYPE, primitive_number L, primitive_number T, primitive_number R, primitive_number B >
+template < prototype_rectangle RECTANGLE_TYPE, prototype_number L, prototype_number T, prototype_number R, prototype_number B >
 inline RECTANGLE_TYPE & inflate(RECTANGLE_TYPE & rectangle, L l, T t, R r, B b)
 {
 
@@ -1105,7 +1105,7 @@ inline RECTANGLE_TYPE & inflate(RECTANGLE_TYPE & rectangle, L l, T t, R r, B b)
 }
 
 
-template < primitive_rectangle RECTANGLE_TYPE, primitive_rectangle RECT_TYPE2 >
+template < prototype_rectangle RECTANGLE_TYPE, prototype_rectangle RECT_TYPE2 >
 inline RECTANGLE_TYPE & inflate(RECTANGLE_TYPE & rectangle, const RECT_TYPE2 & rect2)
 {
 
@@ -1114,7 +1114,7 @@ inline RECTANGLE_TYPE & inflate(RECTANGLE_TYPE & rectangle, const RECT_TYPE2 & r
 }
 
 
-template < primitive_rectangle RECTANGLE_TYPE, primitive_rectangle RECT_TYPE2 >
+template < prototype_rectangle RECTANGLE_TYPE, prototype_rectangle RECT_TYPE2 >
 inline RECTANGLE_TYPE & multiply_inline(RECTANGLE_TYPE & rectangle, const RECT_TYPE2 & rect2)
 {
 
@@ -1128,7 +1128,7 @@ inline RECTANGLE_TYPE & multiply_inline(RECTANGLE_TYPE & rectangle, const RECT_T
 }
 
 
-template < primitive_rectangle RECTANGLE_TYPE, primitive_number L, primitive_number T, primitive_number R, primitive_number B >
+template < prototype_rectangle RECTANGLE_TYPE, prototype_number L, prototype_number T, prototype_number R, prototype_number B >
 inline RECTANGLE_TYPE & deflate(RECTANGLE_TYPE & rectangle, L l, T t, R r, B b)
 {
 
@@ -1142,7 +1142,7 @@ inline RECTANGLE_TYPE & deflate(RECTANGLE_TYPE & rectangle, L l, T t, R r, B b)
 }
 
 
-template < typename RECTANGLE_TYPE, primitive_rectangle RECT_TYPE2 >
+template < typename RECTANGLE_TYPE, prototype_rectangle RECT_TYPE2 >
 inline RECTANGLE_TYPE & deflate(RECTANGLE_TYPE & rectangle, const RECT_TYPE2 & rect2)
 {
 
@@ -1151,7 +1151,7 @@ inline RECTANGLE_TYPE & deflate(RECTANGLE_TYPE & rectangle, const RECT_TYPE2 & r
 }
 
 
-template < primitive_rectangle RECTANGLE_TYPE, primitive_number X, primitive_number Y >
+template < prototype_rectangle RECTANGLE_TYPE, prototype_number X, prototype_number Y >
 inline RECTANGLE_TYPE & inflate(RECTANGLE_TYPE & rectangle, X x, Y y)
 {
 
@@ -1159,7 +1159,7 @@ inline RECTANGLE_TYPE & inflate(RECTANGLE_TYPE & rectangle, X x, Y y)
 
 }
 
-template < primitive_rectangle RECTANGLE_TYPE, primitive_number X, primitive_number Y >
+template < prototype_rectangle RECTANGLE_TYPE, prototype_number X, prototype_number Y >
 inline RECTANGLE_TYPE & deflate(RECTANGLE_TYPE & rectangle, X x, Y y)
 {
 
@@ -1168,7 +1168,7 @@ inline RECTANGLE_TYPE & deflate(RECTANGLE_TYPE & rectangle, X x, Y y)
 }
 
 
-template < primitive_rectangle RECTANGLE_TYPE, primitive_number UNIT >
+template < prototype_rectangle RECTANGLE_TYPE, prototype_number UNIT >
 inline RECTANGLE_TYPE & inflate(RECTANGLE_TYPE & rectangle, UNIT u)
 {
 
@@ -1177,7 +1177,7 @@ inline RECTANGLE_TYPE & inflate(RECTANGLE_TYPE & rectangle, UNIT u)
 }
 
 
-template < primitive_rectangle RECTANGLE_TYPE, primitive_number UNIT >
+template < prototype_rectangle RECTANGLE_TYPE, prototype_number UNIT >
 inline RECTANGLE_TYPE & deflate(RECTANGLE_TYPE & rectangle, UNIT u)
 {
 
@@ -1186,11 +1186,11 @@ inline RECTANGLE_TYPE & deflate(RECTANGLE_TYPE & rectangle, UNIT u)
 }
 
 
-template < primitive_rectangle RECTANGLE_TYPE >
+template < prototype_rectangle RECTANGLE_TYPE >
 inline RECTANGLE_TYPE & swap_left_right(RECTANGLE_TYPE & rectangle) { __swap(rectangle.left, rectangle.right); return rectangle; }
 
 
-template < primitive_point POINT1, primitive_point POINT2 >
+template < prototype_point POINT1, prototype_point POINT2 >
 inline bool polygon_contains_winding(const POINT1 * ppPolygon, int iCount, const POINT2 & point)
 {
 
@@ -1227,7 +1227,7 @@ inline bool polygon_contains_winding(const POINT1 * ppPolygon, int iCount, const
 
 
 /* intersection function */
-template < primitive_point POINT1, primitive_point POINT2 >
+template < prototype_point POINT1, prototype_point POINT2 >
 inline bool polygon_contains_alternate(const POINT1 * ppPolygon, int iCount, const POINT2 & point, const bool use_holes, largest_number < ::decay<typename POINT1::UNIT_TYPE>, ::decay<typename POINT2::UNIT_TYPE>> epsilon = default_epsilon<largest_number < ::decay < typename POINT1::UNIT_TYPE >, ::decay < typename POINT2::UNIT_TYPE > > > ())
 {
 
@@ -1300,16 +1300,16 @@ inline bool polygon_contains_alternate(const POINT1 * ppPolygon, int iCount, con
 //   r[1] = a[1];
 //}
 
-//template < primitive_point POINT, primitive_point POINT2 >
+//template < prototype_point POINT, prototype_point POINT2 >
 //inline POINT & operator -= (POINT & point, const POINT2 & pointOffset) { ::subtract(point, pointOffset); return point; }
 //
-//template < primitive_point POINT, primitive_point POINT2 >
+//template < prototype_point POINT, prototype_point POINT2 >
 //inline POINT & operator += (POINT & point, const POINT2 & pointOffset) { ::add(point, pointOffset); return point; }
 //
-//template < primitive_rectangle RECTANGLE, primitive_point POINT >
+//template < prototype_rectangle RECTANGLE, prototype_point POINT >
 //inline RECTANGLE & operator -= (RECTANGLE & rectangle, const POINT & point) { ::subtract(rectangle, point); return rectangle; }
 //
-//template < primitive_rectangle RECTANGLE, primitive_point POINT >
+//template < prototype_rectangle RECTANGLE, prototype_point POINT >
 //inline RECTANGLE & operator += (RECTANGLE & rectangle, const POINT & point) { ::add(rectangle, point); return rectangle; }
 
 
@@ -1370,19 +1370,19 @@ inline void collapse_rect(RECT1& rectangle, const RECT2& r)
 }
 
 
-template < primitive_point POINT >
+template < prototype_point POINT >
 inline constexpr auto __horz(const POINT& point) { return point.x; }
-template < primitive_point POINT >
+template < prototype_point POINT >
 inline constexpr auto __vert(const POINT& point) { return point.y; }
-template < primitive_size SIZE >
+template < prototype_size SIZE >
 inline constexpr auto __horz(const SIZE& size) { return size.cx; }
-template < primitive_size SIZE >
+template < prototype_size SIZE >
 inline constexpr auto __vert(const SIZE& size) { return size.cy; }
 
 
-template < primitive_rectangle RECTANGLE >
+template < prototype_rectangle RECTANGLE >
 inline auto & top_left(const RECTANGLE & rectangle) { return *(typename RECTANGLE::POINT_TYPE*)&rectangle; }
-template < primitive_rectangle RECTANGLE >
+template < prototype_rectangle RECTANGLE >
 inline auto & bottom_right(const RECTANGLE& rectangle) { return *(typename RECTANGLE::POINT_TYPE*)&rectangle.right; }
 
 
@@ -1527,7 +1527,7 @@ namespace geometry
    //
    //
    //////////////////////////////////////////////////////////////////////
-   template < primitive_rectangle RECTANGLE >
+   template < prototype_rectangle RECTANGLE >
    inline void deflate(RECTANGLE& rectangle, double dLeftRate, double dRightRate, double dTopRate, double dBottomRate)
    {
 
@@ -1545,7 +1545,7 @@ namespace geometry
 } // namespace geometry
 
 
-//template < primitive_point POINT >
+//template < prototype_point POINT >
 //inline ::string as_string(const POINT & point)
 //{
 //
@@ -1554,7 +1554,7 @@ namespace geometry
 //}
 //
 //
-//template < primitive_size SIZE >
+//template < prototype_size SIZE >
 //inline ::string as_string(const SIZE & size)
 //{
 //

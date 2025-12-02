@@ -14,7 +14,7 @@ struct Q4
 };
 
 
-template < primitive_number NUMBER >
+template < prototype_number NUMBER >
 class q4 :
    public sequence_type < NUMBER, 4 >
 {
@@ -38,7 +38,7 @@ public:
 
    }
 
-   template < primitive_number W, primitive_number X, primitive_number Y, primitive_number Z >
+   template < prototype_number W, prototype_number X, prototype_number Y, prototype_number Z >
    q4(W w, X x, Y y, Z z)
    {
 

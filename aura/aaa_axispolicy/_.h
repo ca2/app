@@ -210,11 +210,11 @@ class ifs;
 
 #include "app/axis/axis/node/_.h"
 
-#include "aura/primitive/data/data_tree_item.h"
+#include "aura/prototype/data/data_tree_item.h"
 
-#include "aura/primitive/data/data_tree.h"
+#include "aura/prototype/data/data_tree.h"
 
-#include "aura/primitive/data/data_simple_item.h"
+#include "aura/prototype/data/data_simple_item.h"
 
 #include "axis/html_lite/_.h"
 

@@ -2,7 +2,7 @@
 #pragma once
 
 
-template < primitive_number NUMBER1, primitive_number NUMBER2 >
+template < prototype_number NUMBER1, prototype_number NUMBER2 >
 void cast_copy(NUMBER1 & n1, NUMBER2 n2)
 {
    
@@ -33,7 +33,7 @@ constexpr memsize index_of(const TYPE * p, const TYPE * pBegin)
 }
 
 
-template < primitive_character CHARACTER >
+template < prototype_character CHARACTER >
 constexpr bool string_compare_prefix(::std::strong_ordering & ordering, const CHARACTER * pszA, const CHARACTER * pszB) noexcept
 {
 
@@ -112,7 +112,7 @@ void reverse(TYPE * begin, TYPE * end)
 //auto f() { return many{ string(),5.7, unmovable() }; };
 
 
-template < primitive_signed SIGNED >
+template < prototype_signed SIGNED >
 constexpr auto as_absolute_unsigned(SIGNED i)
 {
 
@@ -454,7 +454,7 @@ inline bool __sort(T1& t1, T2& t2)
 //
 //
 
-template < primitive_integral SECOND, primitive_integral NANOSECOND >
+template < prototype_integral SECOND, prototype_integral NANOSECOND >
 constexpr void normalize_second_nanosecond(SECOND & second, NANOSECOND & nanosecond)
 {
 
@@ -468,7 +468,7 @@ constexpr void normalize_second_nanosecond(SECOND & second, NANOSECOND & nanosec
 
 
 
-template < primitive_integral SECOND1, primitive_integral NANOSECOND1, primitive_integral SECOND2, primitive_integral NANOSECOND2 >
+template < prototype_integral SECOND1, prototype_integral NANOSECOND1, prototype_integral SECOND2, prototype_integral NANOSECOND2 >
 constexpr void add_second_nanosecond(SECOND1 & second1, NANOSECOND1 & nanosecond1, const SECOND2 & second2, const NANOSECOND2 & nanosecond2)
 {
 
@@ -484,7 +484,7 @@ constexpr void add_second_nanosecond(SECOND1 & second1, NANOSECOND1 & nanosecond
 
 
 
-template < primitive_integral SECOND1, primitive_integral NANOSECOND1, primitive_integral SECOND2, primitive_integral NANOSECOND2 >
+template < prototype_integral SECOND1, prototype_integral NANOSECOND1, prototype_integral SECOND2, prototype_integral NANOSECOND2 >
 constexpr void subtract_second_nanosecond(SECOND1 & second1, NANOSECOND1 & nanosecond1, const SECOND2 & second2, const NANOSECOND2 & nanosecond2)
 {
 
@@ -535,7 +535,7 @@ constexpr const TYPE * find_first_null_character(const TYPE * p, EQUALITY equali
 }
 
 
-template < primitive_fundamental INTEGRAL >
+template < prototype_fundamental INTEGRAL >
 constexpr ::collection::count count_until_zero_item_type(const INTEGRAL * p)
 {
 
@@ -556,7 +556,7 @@ constexpr ::collection::count count_until_zero_item_type(const INTEGRAL * p)
 
 
 
-template < primitive_character CHARACTER >
+template < prototype_character CHARACTER >
 constexpr void null_terminate(CHARACTER * & p)
 {
 
@@ -565,7 +565,7 @@ constexpr void null_terminate(CHARACTER * & p)
 }
 
 
-template < primitive_character CHARACTER >
+template < prototype_character CHARACTER >
 constexpr void append_and_step_if_true(bool b, CHARACTER *& p, CHARACTER character)
 {
 
@@ -574,7 +574,7 @@ constexpr void append_and_step_if_true(bool b, CHARACTER *& p, CHARACTER charact
 }
 
 
-template < primitive_iterator ITERATOR, primitive_iterator BEGIN >
+template < prototype_iterator ITERATOR, prototype_iterator BEGIN >
 constexpr bool iterator_is_before_begin(ITERATOR p, BEGIN)
 {
 
@@ -584,7 +584,7 @@ constexpr bool iterator_is_before_begin(ITERATOR p, BEGIN)
 
 
 
-template < primitive_iterator ITERATOR, primitive_iterator END >
+template < prototype_iterator ITERATOR, prototype_iterator END >
 constexpr bool iterator_is_end(ITERATOR p, END pend)
 {
 
@@ -593,7 +593,7 @@ constexpr bool iterator_is_end(ITERATOR p, END pend)
 }
 
 
-template < primitive_iterator ITERATOR, primitive_iterator BEGIN, primitive_iterator END >
+template < prototype_iterator ITERATOR, prototype_iterator BEGIN, prototype_iterator END >
 constexpr bool iterator_is_ok(ITERATOR p, BEGIN, END pend)
 {
 
@@ -737,7 +737,7 @@ TYPE * clipped_add(TYPE * p, ::collection::count c, const non_const<TYPE> * begi
 
 
 
-template < primitive_iterator ITERATOR, typename T1, typename T2 >
+template < prototype_iterator ITERATOR, typename T1, typename T2 >
 ITERATOR clipped_add(ITERATOR p, ::collection::count c, T1, T2)
 {
 
@@ -776,7 +776,7 @@ ITERATOR clipped_add(ITERATOR p, ::collection::count c, T1, T2)
 
 
 
-template < primitive_signed SIGNED >
+template < prototype_signed SIGNED >
 bool found(SIGNED s)
 {
 
@@ -794,7 +794,7 @@ bool found(const T * p)
 }
 
 
-template < primitive_signed SIGNED >
+template < prototype_signed SIGNED >
 bool not_found(SIGNED s)
 {
 
@@ -812,7 +812,7 @@ bool not_found(const T * p)
 }
 
 
-//template < primitive_floating FLOATING, int len >
+//template < prototype_floating FLOATING, int len >
 //inline ::string as_string(FLOATING f, const_char_pointer pszFormat = "%f");
 
 
@@ -833,7 +833,7 @@ inline void set_if_different(BOOLEAN& bSetIfChanged, ASSIGNED& left, const ASSIG
 
 
 
-template < primitive_XYDim XYDim, typename X, typename Y, typename W, typename H >
+template < prototype_XYDim XYDim, typename X, typename Y, typename W, typename H >
 inline XYDim & set_dim(XYDim & rectTarget, X x, Y y, W w, H h)
 {
 
@@ -847,7 +847,7 @@ inline XYDim & set_dim(XYDim & rectTarget, X x, Y y, W w, H h)
 }
 
 
-//template < primitive_rectangle RECTANGLE1, primitive_rectangle RECTANGLE2 >
+//template < prototype_rectangle RECTANGLE1, prototype_rectangle RECTANGLE2 >
 //void copy(RECTANGLE1 & rectangle1, const RECTANGLE2 & rectangle2)
 //{
 //
@@ -859,7 +859,7 @@ inline XYDim & set_dim(XYDim & rectTarget, X x, Y y, W w, H h)
 //}
 
 
-template < primitive_rectangle RECTANGLE, primitive_xydim XYDIM >
+template < prototype_rectangle RECTANGLE, prototype_xydim XYDIM >
 void copy(RECTANGLE & rectangle, const XYDIM  & xydim)
 {
 
@@ -871,7 +871,7 @@ void copy(RECTANGLE & rectangle, const XYDIM  & xydim)
 }
 
 
-template < primitive_origin_size ORIGIN_SIZE, primitive_rectangle RECTANGLE >
+template < prototype_origin_size ORIGIN_SIZE, prototype_rectangle RECTANGLE >
 void copy(ORIGIN_SIZE & originsize, const RECTANGLE & rectangle)
 {
 
@@ -883,7 +883,7 @@ void copy(ORIGIN_SIZE & originsize, const RECTANGLE & rectangle)
 }
 
 
-template < primitive_rectangle RECTANGLE1, primitive_origin_size RECTANGLE2 >
+template < prototype_rectangle RECTANGLE1, prototype_origin_size RECTANGLE2 >
 void copy(RECTANGLE1 & rectangle1, const RECTANGLE2 & rectangle2)
 {
 
@@ -895,7 +895,7 @@ void copy(RECTANGLE1 & rectangle1, const RECTANGLE2 & rectangle2)
 }
 
 
-// template < primitive_rectangle RECTANGLE, origin_size ORIGIN_SIZE >
+// template < prototype_rectangle RECTANGLE, origin_size ORIGIN_SIZE >
 // constexpr void copy(RECTANGLE& rectangle, const ORIGIN_SIZE& origin_size)
 // {
 
@@ -907,7 +907,7 @@ void copy(RECTANGLE1 & rectangle1, const RECTANGLE2 & rectangle2)
 // }
 
 
-// template < origin_size ORIGIN_SIZE, primitive_rectangle RECTANGLE >
+// template < origin_size ORIGIN_SIZE, prototype_rectangle RECTANGLE >
 // constexpr void copy(ORIGIN_SIZE& origin_size, const RECTANGLE& rectangle)
 // {
 
@@ -924,7 +924,7 @@ void copy(RECTANGLE1 & rectangle1, const RECTANGLE2 & rectangle2)
 
 
 
-template < primitive_XY POINT1, primitive_point POINT2 >
+template < prototype_XY POINT1, prototype_point POINT2 >
 void copy(POINT1 point1, const POINT2 & point2)
 {
 
@@ -934,7 +934,7 @@ void copy(POINT1 point1, const POINT2 & point2)
 }
 
 
-template < primitive_point POINT1, primitive_XY POINT2 >
+template < prototype_point POINT1, prototype_XY POINT2 >
 void copy(POINT1 & point1, const POINT2 & point2)
 {
 
@@ -944,7 +944,7 @@ void copy(POINT1 & point1, const POINT2 & point2)
 }
 
 
-template < primitive_rectangle RECTANGLE1, primitive_rectangle RECTANGLE2 >
+template < prototype_rectangle RECTANGLE1, prototype_rectangle RECTANGLE2 >
 void copy(RECTANGLE1 & rectangle1, const RECTANGLE2 & rectangle2)
 {
 
@@ -956,7 +956,7 @@ void copy(RECTANGLE1 & rectangle1, const RECTANGLE2 & rectangle2)
 }
 
 
-template < primitive_XYDim XYDim, primitive_rectangle RECTANGLE >
+template < prototype_XYDim XYDim, prototype_rectangle RECTANGLE >
 void copy(XYDim & xydim, const RECTANGLE & rectangle)
 {
 
@@ -968,7 +968,7 @@ void copy(XYDim & xydim, const RECTANGLE & rectangle)
 }
 
 
-template < primitive_rectangle RECTANGLE, primitive_XYDim XYDim >
+template < prototype_rectangle RECTANGLE, prototype_XYDim XYDim >
 void copy(RECTANGLE & rectangle, const XYDim & xydim)
 {
 
@@ -980,7 +980,7 @@ void copy(RECTANGLE & rectangle, const XYDim & xydim)
 }
 
 
-template < primitive_xydim XYDIM, primitive_rectangle RECTANGLE >
+template < prototype_xydim XYDIM, prototype_rectangle RECTANGLE >
 void copy(XYDIM & xydim, const RECTANGLE & rectangle)
 {
 
@@ -992,7 +992,7 @@ void copy(XYDIM & xydim, const RECTANGLE & rectangle)
 }
 
 
-template < primitive_XYDim XYDim1, primitive_XYDim XYDim2 >
+template < prototype_XYDim XYDim1, prototype_XYDim XYDim2 >
 void copy(XYDim1 & xydim1, const XYDim2 & xydim2)
 {
 
@@ -1004,7 +1004,7 @@ void copy(XYDim1 & xydim1, const XYDim2 & xydim2)
 }
 
 
-template < primitive_point POINT1, primitive_point POINT2 >
+template < prototype_point POINT1, prototype_point POINT2 >
 void copy(POINT1 & point1, const POINT2 & point2)
 {
 
@@ -1014,7 +1014,7 @@ void copy(POINT1 & point1, const POINT2 & point2)
 }
 
 
-template < primitive_point POINT1, raw_primitive_point POINT2 >
+template < prototype_point POINT1, raw_primitive_point POINT2 >
 void copy(POINT1 & point1, const POINT2 & point2)
 {
 
@@ -1024,7 +1024,7 @@ void copy(POINT1 & point1, const POINT2 & point2)
 }
 
 
-template < raw_primitive_point POINT1, primitive_point POINT2 >
+template < raw_primitive_point POINT1, prototype_point POINT2 >
 void copy(POINT1 & point1, const POINT2 & point2)
 {
 
@@ -1034,7 +1034,7 @@ void copy(POINT1 & point1, const POINT2 & point2)
 }
 
 
-template < primitive_point POINT, primitive_size SIZE >
+template < prototype_point POINT, prototype_size SIZE >
 void copy(POINT & point, const SIZE & size)
 {
 
@@ -1044,7 +1044,7 @@ void copy(POINT & point, const SIZE & size)
 }
 
 
-template < primitive_size SIZE_TYPE1, primitive_size SIZE_TYPE2 >
+template < prototype_size SIZE_TYPE1, prototype_size SIZE_TYPE2 >
 void copy(SIZE_TYPE1 & size1, const SIZE_TYPE2 & size2)
 {
 

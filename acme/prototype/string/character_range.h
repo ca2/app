@@ -563,7 +563,7 @@ using character_decay = typename character_decay_struct<T>::type;
 //};
 
 
-template <primitive_character_range CHARACTER_RANGE >
+template <prototype_character_range CHARACTER_RANGE >
 struct std::formatter<CHARACTER_RANGE>
 {
    using BASE_TYPE = CHARACTER_RANGE;

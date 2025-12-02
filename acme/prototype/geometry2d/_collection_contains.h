@@ -1,7 +1,7 @@
 #pragma once
 
 
-template < primitive_number LINES_NUMBER, primitive_number POINT_NUMBER >
+template < prototype_number LINES_NUMBER, prototype_number POINT_NUMBER >
 inline bool shape_contains(const ::lines_base < LINES_NUMBER > & lines, const ::point_type < POINT_NUMBER > & point)
 {
 

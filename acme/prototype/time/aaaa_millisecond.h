@@ -12,9 +12,9 @@ public:
 
    millisecond() : time(e_raw, 0, 1'000'000) {}
    millisecond(const class time & time) : class ::time(time) {}
-   template < primitive_integral INTEGRAL >
+   template < prototype_integral INTEGRAL >
    millisecond(INTEGRAL integral) : time(::integral_millisecond(integral)) { }
-   template < primitive_floating FLOATING >
+   template < prototype_floating FLOATING >
    millisecond(FLOATING floating) : time(::floating_millisecond(floating)) { }
 
 

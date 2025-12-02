@@ -111,7 +111,7 @@ namespace aura
 
 //
 //
-////#include "aura/primitive/primitive/estatus.h"
+////#include "aura/prototype/prototype/estatus.h"
 ////
 ////
 ////#include <tuple>
@@ -369,7 +369,7 @@ namespace aura
 ////} // namespace dynamic_source
 ////
 ////
-//////#include "aura/primitive/math/mkint_c.h"
+//////#include "aura/prototype/math/mkint_c.h"
 ////
 ////// C-includes
 ////#include "aura/os/_c.h"
@@ -389,7 +389,7 @@ namespace aura
 //////#ifdef __cplusplus
 //////#define maximum(a, b) (((b) < (a)) ? (a) : (b))
 //////#define minimum(a, b) (((a) < (b)) ? (a) : (b))
-//////#include "aura/primitive/comparison/_c.h"
+//////#include "aura/prototype/comparison/_c.h"
 //////#else
 //////#define maximum(a, b) (((a) > (b)) ? (a) : (b))
 //////#define minimum(a, b) (((a) < (b)) ? (a) : (b))
@@ -514,11 +514,11 @@ namespace aura
 ////
 ////
 ////
-//////#include "aura/primitive/primitive/_c_memory.h"
+//////#include "aura/prototype/prototype/_c_memory.h"
 ////
-//////#include "aura/primitive/string/_c.h"
+//////#include "aura/prototype/string/_c.h"
 ////
-//////#include "aura/primitive/datetime/_c.h"
+//////#include "aura/prototype/datetime/_c.h"
 ////
 //////#include "aura/filesystem/file/_c.h"
 ////
@@ -542,8 +542,8 @@ namespace aura
 ////
 ////
 ////
-//////#include "aura/primitive/datetime/mktime.h"
-//////#include "aura/primitive/api/api.h"
+//////#include "aura/prototype/datetime/mktime.h"
+//////#include "aura/prototype/api/api.h"
 ////
 ////
 ////#include "aura/multimedia/_c.h"
@@ -655,7 +655,7 @@ namespace aura
 ////
 ////
 ////
-//////#include "aura/primitive/string/_c_impl.h"
+//////#include "aura/prototype/string/_c_impl.h"
 ////
 ////
 //////#include "aura/platform/aura_main_struct.h"
@@ -937,7 +937,7 @@ namespace aura
 ////template < typename TYPE > \
 ////type operator + (const TYPE & t) const { auto copy = *this; copy.add(t); return copy; }
 ////
-//////#include "aura/primitive/math/_.h"
+//////#include "aura/prototype/math/_.h"
 ////
 //////#include "aura/memory/_heap.h"
 ////
@@ -1385,7 +1385,7 @@ namespace aura
 ////class type;
 ////
 ////
-////#include "aura/primitive/string/_.h"
+////#include "aura/prototype/string/_.h"
 ////
 ////
 ////#include "aura/platform/definition.h"
@@ -1406,14 +1406,14 @@ namespace aura
 ////
 ////class thread_parameter;
 ////
-////#include "aura/primitive/primitive/enum.h"
+////#include "aura/prototype/prototype/enum.h"
 ////
 ////
-////#include "aura/primitive/primitive/interlocked_long.h"
-////#include "aura/primitive/primitive/interlocked_long_pulse.h"
-////#include "aura/primitive/primitive/type.h"
-////#include "aura/primitive/primitive/atom.h"
-////#include "aura/primitive/primitive/uid.h"
+////#include "aura/prototype/prototype/interlocked_long.h"
+////#include "aura/prototype/prototype/interlocked_long_pulse.h"
+////#include "aura/prototype/prototype/type.h"
+////#include "aura/prototype/prototype/atom.h"
+////#include "aura/prototype/prototype/uid.h"
 ////
 ////
 ////namespace prototype
@@ -1435,9 +1435,9 @@ namespace aura
 ////} // namespace prototype
 ////
 ////
-////#define __member(TYPE) ::primitive::member < TYPE >
-////#define ::pointer<TYPE>::primitive::composite < TYPE >
-////#define ::pointer<TYPE>::primitive::reference < TYPE >
+////#define __member(TYPE) ::prototype::member < TYPE >
+////#define ::pointer<TYPE>::prototype::composite < TYPE >
+////#define ::pointer<TYPE>::prototype::reference < TYPE >
 ////
 ////
 ////
@@ -1509,8 +1509,8 @@ namespace aura
 ////
 ////
 ////
-////#include "aura/primitive/primitive/pointer.h"
-////#include "aura/primitive/primitive/pointer2.h"
+////#include "aura/prototype/prototype/pointer.h"
+////#include "aura/prototype/prototype/pointer2.h"
 ////
 ////
 ////template < class POINTER_TYPE >
@@ -1537,43 +1537,43 @@ namespace aura
 ////   return __save_object(stream, (BASE_TYPE *) p.m_p);
 ////}
 ////
-////#include "aura/primitive/primitive/logic.h"
+////#include "aura/prototype/prototype/logic.h"
 ////
 ////
 ////
-////#include "aura/primitive/math/static_numeric_info.h"
-////#include "aura/primitive/math/numeric_info.h"
+////#include "aura/prototype/math/static_numeric_info.h"
+////#include "aura/prototype/math/numeric_info.h"
 ////
 ////
 ////
 ////
-////#include "aura/primitive/math/c_number.h"
+////#include "aura/prototype/math/c_number.h"
 ////
 ////using wparam = c_number < wparam >;
 ////
 ////
 ////
 ////
-////#include "aura/primitive/math/math_clip.h"
+////#include "aura/prototype/math/math_clip.h"
 ////
 ////
 ////#include "aura/platform/class ::time.h"
 ////
 ////
-////#include "aura/primitive/datetime/time.h"
+////#include "aura/prototype/datetime/time.h"
 ////
 ////#include "aura/platform/common.h"
 ////
 ////
-//////#include "aura/primitive/string/_.h"
+//////#include "aura/prototype/string/_.h"
 ////
 ////
-////#include "aura/primitive/datetime/date_span.h"
-////#include "aura/primitive/datetime/time_span.h"
-////#include "aura/primitive/datetime/time.h"
-////#include "aura/primitive/datetime/zonetime.h"
-////#include "aura/primitive/datetime/file_time_span.h"
-////#include "aura/primitive/datetime/file_time.h"
+////#include "aura/prototype/datetime/date_span.h"
+////#include "aura/prototype/datetime/time_span.h"
+////#include "aura/prototype/datetime/time.h"
+////#include "aura/prototype/datetime/zonetime.h"
+////#include "aura/prototype/datetime/file_time_span.h"
+////#include "aura/prototype/datetime/file_time.h"
 ////
 ////
 ////
@@ -1638,13 +1638,13 @@ namespace aura
 ////using size = size_type < ::int_size, ::int_point, ::int_rectangle >;
 ////
 ////
-////#include "aura/primitive/math/cast.h"
+////#include "aura/prototype/math/cast.h"
 ////
 ////
-////#include "aura/primitive/primitive/block.h"
+////#include "aura/prototype/prototype/block.h"
 ////#include "aura/memory/memory.h"
 ////
-////#include "aura/primitive/primitive/enumeration.h"
+////#include "aura/prototype/prototype/enumeration.h"
 //
 ////
 ////namespace user
@@ -1667,23 +1667,23 @@ namespace aura
 //////using eobject = enumeration < :: >;
 ////class action_context;
 ////
-////#include "aura/primitive/primitive/eobject.h"
+////#include "aura/prototype/prototype/eobject.h"
 ////
 ////using emessagebox = enumeration < enum_message_box >;
 ////
-////#include "aura/primitive/primitive/function_base.h"
+////#include "aura/prototype/prototype/function_base.h"
 ////
 ////
 ////
 ////
 ////
-////#include "aura/primitive/primitive/matter.h"
-////#include "aura/primitive/primitive/task.h"
-////#include "aura/primitive/primitive/compare_predicate.h"
+////#include "aura/prototype/prototype/matter.h"
+////#include "aura/prototype/prototype/task.h"
+////#include "aura/prototype/prototype/compare_predicate.h"
 ////
 ////
 ////#include "aura/platform/status.h"
-////#include "aura/primitive/primitive/enum_type.h"
+////#include "aura/prototype/prototype/enum_type.h"
 ////
 ////using efileopen = enumeration < ::file::e_open >;
 ////
@@ -1707,24 +1707,16 @@ namespace aura
 ////#define __inner_release(outer, inner) ::release(outer, outer->inner)
 ////
 ////
-////#include "aura/primitive/primitive/function_base.h"
+////#include "aura/prototype/prototype/function_base.h"
 ////
 ////
-////#include "aura/primitive/primitive/member.h"
+////#include "aura/prototype/prototype/member.h"
 ////
 ////
-////#include "aura/primitive/primitive/object.h"
+////#include "aura/prototype/prototype/object.h"
 ////
 ////
-////#include "aura/primitive/primitive/trait.h"
-////
-////
-////
-////
-////
-////
-////
-////#include "aura/primitive/primitive/_papaya.h"
+////#include "aura/prototype/prototype/trait.h"
 ////
 ////
 ////
@@ -1732,43 +1724,51 @@ namespace aura
 ////
 ////
 ////
-////
-////#include "aura/primitive/geometry2d/_.h"
-////
-////
-//////#include "aura/primitive/primitive/object.h"
-////
-////
-////#include "aura/primitive/primitive/_factory_prefix.h"
-////
-////
-////#include "aura/primitive/collection/decl.h"
-////
-////#include "aura/primitive/collection/raw_array_decl.h"
-////
-////
-////#include "aura/primitive/collection/comparable_eq_array.h"
-////#include "aura/primitive/collection/comparable_array.h"
-////#include "aura/primitive/collection/comparable_raw_array.h"
-////
-////
-////#include "aura/primitive/collection/pointer_array_process.h"
-////
-////#include "aura/primitive/collection/pointer_array.h"
+////#include "aura/prototype/prototype/_papaya.h"
 ////
 ////
 ////
-//////#include "aura/primitive/collection/_papaya_array_decl.h"
-////#include "aura/primitive/collection/_papaya_heap.h"
 ////
 ////
-////#include "aura/primitive/collection/address_array.h"
 ////
 ////
-////#include "aura/primitive/collection/_papaya.h"
+////
+////#include "aura/prototype/geometry2d/_.h"
 ////
 ////
-//////#include "aura/primitive/collection/pointer2_array.h"
+//////#include "aura/prototype/prototype/object.h"
+////
+////
+////#include "aura/prototype/prototype/_factory_prefix.h"
+////
+////
+////#include "aura/prototype/collection/decl.h"
+////
+////#include "aura/prototype/collection/raw_array_decl.h"
+////
+////
+////#include "aura/prototype/collection/comparable_eq_array.h"
+////#include "aura/prototype/collection/comparable_array.h"
+////#include "aura/prototype/collection/comparable_raw_array.h"
+////
+////
+////#include "aura/prototype/collection/pointer_array_process.h"
+////
+////#include "aura/prototype/collection/pointer_array.h"
+////
+////
+////
+//////#include "aura/prototype/collection/_papaya_array_decl.h"
+////#include "aura/prototype/collection/_papaya_heap.h"
+////
+////
+////#include "aura/prototype/collection/address_array.h"
+////
+////
+////#include "aura/prototype/collection/_papaya.h"
+////
+////
+//////#include "aura/prototype/collection/pointer2_array.h"
 ////
 ////class sticker;
 ////

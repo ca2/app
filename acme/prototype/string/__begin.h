@@ -25,7 +25,7 @@ namespace comparison
    };
 
 
-   template < primitive_character CHARACTER >
+   template < prototype_character CHARACTER >
    class case_insensitive < CHARACTER >
    {
    public:
@@ -45,7 +45,7 @@ namespace comparison
 
 
 
-//template < primitive_character CHARACTER >
+//template < prototype_character CHARACTER >
 //constexpr bool ::comparison::comparison(CHARACTER a, CHARACTER b)
 //{
 //
@@ -55,7 +55,7 @@ namespace comparison
 
 
 
-//template < primitive_character CHARACTER >
+//template < prototype_character CHARACTER >
 //constexpr ::std::strong_ordering compare_character(CHARACTER a, CHARACTER b)
 //{
 //
@@ -64,7 +64,7 @@ namespace comparison
 //}
 
 //
-//template < primitive_character CHARACTER >
+//template < prototype_character CHARACTER >
 //constexpr bool case_insensitive_equals_character(CHARACTER a, CHARACTER b)
 //{
 //
@@ -74,7 +74,7 @@ namespace comparison
 //
 //
 //
-//template < primitive_character CHARACTER >
+//template < prototype_character CHARACTER >
 //constexpr ::std::strong_ordering case_insensitive_compare_character(CHARACTER a, CHARACTER b)
 //{ 
 //   

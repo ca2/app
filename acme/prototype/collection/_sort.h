@@ -642,7 +642,7 @@ namespace sort
    }
 
 
-   template<primitive_range RANGE>
+   template<prototype_range RANGE>
    void QuickSortAsc(RANGE & range)
    {
 
@@ -718,7 +718,7 @@ namespace sort
    }
 
 
-   template<primitive_range RANGE>
+   template<prototype_range RANGE>
    void QuickSortDesc(RANGE & range)
    {
 
@@ -984,7 +984,7 @@ namespace sort
    }
 
 
-   template<primitive_array ARRAY>
+   template<prototype_array ARRAY>
    void BubbleSortByGetSize(ARRAY & a, bool bAsc)
    {
 

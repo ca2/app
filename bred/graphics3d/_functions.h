@@ -7,7 +7,7 @@ namespace graphics3d
 
 
    /// from glm lookAtRH
-   template < primitive_floating FLOATING >
+   template < prototype_floating FLOATING >
    matrix_type<FLOATING, 4> lookAt(const sequence_type<FLOATING, 3> &eye, const sequence_type<FLOATING, 3> &center,
                                    const sequence_type<FLOATING, 3> &worldUp)
    {

@@ -10,12 +10,12 @@ template < typename RECTANGLE_SOURCE >
 concept rectangle_source = requires(RECTANGLE_SOURCE rectanglesource)
 {
    
-   {rectanglesource.rectangle_source_get()} -> primitive_rectangle;
+   {rectanglesource.rectangle_source_get()} -> prototype_rectangle;
    
 };
 
 
-template < primitive_number NUMBER >
+template < prototype_number NUMBER >
 class rectangle_type :
    public sequence_type < NUMBER, 4 >
 
@@ -39,16 +39,16 @@ public:
    rectangle_type(no_initialize_t) { }
    //rectangle_type(nullptr_t)  : rectangle_type(0, 0, 0, 0) {}
 
-   template < primitive_number LEFT, primitive_number TOP, primitive_number RIGHT, primitive_number BOTTOM >
+   template < prototype_number LEFT, prototype_number TOP, prototype_number RIGHT, prototype_number BOTTOM >
    rectangle_type(LEFT left, TOP top, RIGHT right, BOTTOM bottom)  :
       sequence_type < NUMBER, 4 >((NUMBER) left, (NUMBER) top, (NUMBER) right, (NUMBER) bottom)
    {
    }
 
-   template < primitive_number A, primitive_number B >
+   template < prototype_number A, prototype_number B >
    rectangle_type(A a, B b)  : rectangle_type(a, b, a, b) {}
 
-   template < primitive_number N >
+   template < prototype_number N >
    rectangle_type(N n)  : rectangle_type(n, n) {}
 
 
@@ -58,16 +58,16 @@ public:
 //   rectangle_type(const CGRect * p)  : { ::copy(this, p); }
 //   rectangle_type(const Gdiplus::RectF * p)  : { ::copy(this, p); }
 //#endif
-   template < primitive_point POINT, primitive_size SIZE >
+   template < prototype_point POINT, prototype_size SIZE >
    rectangle_type(const POINT & point, const SIZE & size) :
       rectangle_type((UNIT_TYPE)point.x, (UNIT_TYPE)point.y, (UNIT_TYPE)(point.x + size.cx), (UNIT_TYPE)(point.y + size.cy))
    {
    }
-   template < primitive_size SIZE >
+   template < prototype_size SIZE >
    rectangle_type(const SIZE & size) : rectangle_type(0, 0, size.cx, size.cy) {}
-   template < primitive_point POINT1, primitive_point POINT2 >
+   template < prototype_point POINT1, prototype_point POINT2 >
    rectangle_type(const POINT1 & point1, const POINT2 & point2) { top_left() = point1; bottom_right() = point2; }
-   template < primitive_rectangle RECTANGLE >
+   template < prototype_rectangle RECTANGLE >
    rectangle_type(const RECTANGLE & t) :
    sequence_type < NUMBER, 4 >(t)
    {
@@ -89,7 +89,7 @@ public:
    {
 
    }
-      // template < primitive_rectangle RECTANGLE >
+      // template < prototype_rectangle RECTANGLE >
    // rectangle_type & operator =(const RECTANGLE & rectangle)
    // {
 
@@ -108,7 +108,7 @@ public:
    // }
 
 
-   template < primitive_origin_size ORIGIN_SIZE >
+   template < prototype_origin_size ORIGIN_SIZE >
    rectangle_type(const ORIGIN_SIZE & originsize)
    {
 
@@ -151,7 +151,7 @@ public:
    inline bool is_empty() const  { return ::is_empty(*this); }
    inline bool is_null() const  { return ::is_null(*this); }
    inline bool has_area() const { return !is_empty(); }
-   template < primitive_point POINT >
+   template < prototype_point POINT >
    inline bool contains(const POINT & point) const  { return ::contains(*this, point.x, point.y); }
    inline bool contains_x(UNIT_TYPE x) const  { return ::contains_x(*this, x); }
    inline bool contains_y(UNIT_TYPE y) const  { return ::contains_y(*this, y); }
@@ -169,7 +169,7 @@ public:
    }
 
 
-   template < primitive_point POINT >
+   template < prototype_point POINT >
    inline ::double_point to_point_rate(const POINT & point) const
    {
 
@@ -356,13 +356,13 @@ public:
    rectangle_type & set(UNIT_TYPE i)  { return ::assign(*this, i, i, i, i); }
    rectangle_type & set(UNIT_TYPE x, UNIT_TYPE y)  { return ::assign(*this, x, y, x, y); }
    rectangle_type & set(UNIT_TYPE l, UNIT_TYPE t, UNIT_TYPE r, UNIT_TYPE b)  { return ::assign(*this, l, t, r, b); }
-   template < primitive_size SIZE >
+   template < prototype_size SIZE >
    rectangle_type & set(const SIZE & s)  { return ::assign(*this, POINT_TYPE(), s); }
-   template < primitive_point POINT1, primitive_point POINT2 >
+   template < prototype_point POINT1, prototype_point POINT2 >
    rectangle_type & set(const POINT1 & p1, const POINT2 & p2)  { return ::assign(*this, p1.x, p1.y, p2.x, p2.y); }
-   template < primitive_point POINT, primitive_size SIZE >
+   template < prototype_point POINT, prototype_size SIZE >
    rectangle_type & set(const POINT & p, const SIZE & s)  { return ::assign(*this, p, s); }
-   template < primitive_rectangle RECTANGLE >
+   template < prototype_rectangle RECTANGLE >
    rectangle_type & set(const RECTANGLE & rectangle)  { return copy(rectangle); }
 
    rectangle_type & set_dimension(UNIT_TYPE l, UNIT_TYPE t, UNIT_TYPE w, UNIT_TYPE h)
@@ -385,32 +385,32 @@ public:
 
    }
 
-   template < primitive_number NUMBERX, primitive_number NUMBERY >
+   template < prototype_number NUMBERX, prototype_number NUMBERY >
    rectangle_type & inflate(NUMBERX x, NUMBERY y)  { this->left = (UNIT_TYPE) (this->left - x); this->right = (UNIT_TYPE) (this->right + x); this->top = (UNIT_TYPE)(this->top - y); this->bottom = (UNIT_TYPE)(this->bottom + y); return *this; }
-   template < primitive_size SIZE >
+   template < prototype_size SIZE >
    rectangle_type & inflate(const SIZE & size)  { return inflate(size.cx, size.cy);  }
-   template < primitive_number NUMBERX, primitive_number NUMBERY >
+   template < prototype_number NUMBERX, prototype_number NUMBERY >
    rectangle_type & deflate(NUMBERX x, NUMBERY y) { return inflate(-x, -y); }
-   template < primitive_size SIZE >
+   template < prototype_size SIZE >
    rectangle_type & deflate(const SIZE & size)  { return deflate(size.cx, size.cy); }
 
-   template < primitive_number NUMBERX, primitive_number NUMBERY >
+   template < prototype_number NUMBERX, prototype_number NUMBERY >
    rectangle_type & offset(NUMBERX x, NUMBERY y)  { return offset_x(x).offset_y(y); }
 
-   template < primitive_number NUMBERX >
+   template < prototype_number NUMBERX >
    rectangle_type & offset_x(NUMBERX x)  { this->left = (UNIT_TYPE) (this->left + x); this->right = (UNIT_TYPE) (this->right + x); return *this; }
-   template < primitive_number NUMBERY >
+   template < prototype_number NUMBERY >
    rectangle_type & offset_y(NUMBERY y)  { this->top = (UNIT_TYPE) (this->top + y); this->bottom = (UNIT_TYPE) (this->bottom + y); return *this; }
-   template < primitive_number NUMBERN >
+   template < prototype_number NUMBERN >
    rectangle_type & inflate(NUMBERN n)  { return inflate(n, n); }
-   template < primitive_number NUMBERN >
+   template < prototype_number NUMBERN >
    rectangle_type & deflate(NUMBERN n)  { return deflate(n, n); }
 
-   template < primitive_number NUMBERN >
+   template < prototype_number NUMBERN >
    rectangle_type & offset(const sequence_type < NUMBERN, 2 > & s)  { return offset_x(s.x).offset_y(s.y); }
 
 
-   // template < primitive_size SIZE >
+   // template < prototype_size SIZE >
    // rectangle_type & offset(const SIZE & size)  { return offset_x(size.cx).offset_y(size.cy);
    // }
 
@@ -563,7 +563,7 @@ public:
 
    rectangle_type & operator =(const rectangle_type & rectangle)  = default;
 
-   // template < primitive_rectangle RECTANGLE >
+   // template < prototype_rectangle RECTANGLE >
    // rectangle_type & operator =(const RECTANGLE & rectangle)
    // {
 
@@ -582,7 +582,7 @@ public:
    // }
 
 
-   // template < primitive_origin_size ORIGIN_SIZE >
+   // template < prototype_origin_size ORIGIN_SIZE >
    // rectangle_type & operator =(const ORIGIN_SIZE & originsize)
    // {
 
@@ -604,16 +604,16 @@ public:
    }
 //   bool operator!=(const rectangle_type & rectangle) const  { return !operator ==(rectangle); }
 
-   template < primitive_sequence2 SEQUENCE >
+   template < prototype_sequence2 SEQUENCE >
    rectangle_type & operator +=(const SEQUENCE & s)  { return ::offset(*this, s.x, s.y); }
 
-   //template < primitive_size SIZE >
+   //template < prototype_size SIZE >
    //rectangle_type & operator +=(const SIZE & size)  { return ::offset(*this, size.cx, size.cy); }
 
    rectangle_type & operator +=(const rectangle_type & rectangle)  { return ::inflate(*this, rectangle); }
    rectangle_type & operator*=(const rectangle_type & rectangle)  { return ::multiply_inline(*this, rectangle); }
 
-   template < primitive_number NUMBER2 >
+   template < prototype_number NUMBER2 >
    rectangle_type & operator*=(NUMBER2 n)
    {
 
@@ -638,17 +638,17 @@ public:
 //   inline rectangle_type operator-(const SHIFT_I32 & shift)  { return { (UNIT_TYPE)(this->left - shift.Δx), (UNIT_TYPE)(this->top - shift.Δy), (UNIT_TYPE)(this->right - shift.Δx), (UNIT_TYPE)(this->bottom - shift.Δy) }; }
 
 
-   template < primitive_number NUMBERN >
+   template < prototype_number NUMBERN >
    rectangle_type & operator-=(const sequence_type< NUMBERN, 2> & s)  { return ::subtract(*this, s.x, s.y); }
 
-   // template < primitive_size SIZE >
+   // template < prototype_size SIZE >
    // rectangle_type & operator-=(const SIZE & size)  { return ::subtract(*this, -size.cx, -size.cy); }
    rectangle_type & operator-=(const rectangle_type & rectangle)  { return ::subtract(*this, rectangle); }
 
    rectangle_type & operator&=(const rectangle_type & rectangle)  { ::intersect(*this, *this, rectangle); return*this; }
    rectangle_type & operator|=(const rectangle_type & rectangle)  { return unite(rectangle); }
 
-   template < primitive_sequence2 SEQUENCE >
+   template < prototype_sequence2 SEQUENCE >
    rectangle_type operator +(const SEQUENCE & s) const
    {
       rectangle_type rectangle(*this); rectangle.offset(s.x, s.y); return rectangle;
@@ -658,7 +658,7 @@ public:
    //    rectangle_type rectangle(*this); rectangle.offset(-point.x, -point.y); return rectangle;
    // }
 
-   // template < primitive_size SIZE >
+   // template < prototype_size SIZE >
    // rectangle_type operator +(const SIZE & size) const
    // {
    //
@@ -666,7 +666,7 @@ public:
    //
    // }
 
-   template < primitive_sequence2 SEQUENCE >
+   template < prototype_sequence2 SEQUENCE >
    rectangle_type operator-(const SEQUENCE & s) const
    {
 
@@ -705,7 +705,7 @@ public:
 
    void normalize() ;
 
-   template < primitive_rectangle RECTANGLE >
+   template < prototype_rectangle RECTANGLE >
    void inflate(const RECTANGLE & rectangle)
    {
 
@@ -724,7 +724,7 @@ public:
    }
 
 
-   template < primitive_rectangle RECTANGLE >
+   template < prototype_rectangle RECTANGLE >
    void deflate(const RECTANGLE & rectangle)
    {
 
@@ -1227,7 +1227,7 @@ public:
    }
 
 
-   template < primitive_rectangle RECTANGLE >
+   template < prototype_rectangle RECTANGLE >
    void _001Constrain(const rectangle_type & rectangle, RECTANGLE& rectangleBounding)
    {
 
@@ -1238,7 +1238,7 @@ public:
    }
 
 
-   template < primitive_rectangle RECTANGLE >
+   template < prototype_rectangle RECTANGLE >
    void _001ConstrainX(const rectangle_type & rectangle, RECTANGLE & rectangleBounding)
    {
 
@@ -1267,7 +1267,7 @@ public:
    }
 
 
-   template < primitive_rectangle RECTANGLE >
+   template < prototype_rectangle RECTANGLE >
    void _001ConstrainY(const rectangle_type & rectangle, RECTANGLE & rectangleBounding)
    {
 
@@ -1295,7 +1295,7 @@ public:
 
    }
 
-   template < primitive_rectangle RECTANGLE >
+   template < prototype_rectangle RECTANGLE >
    bool contains(const RECTANGLE & rectangle) const
    {
       return rectangle.left >= this->left
@@ -1535,34 +1535,34 @@ public:
    inline bool operator==(nullptr_t) const  { return ::is_null(*this); }
 //   inline bool operator!=(nullptr_t) const  { return !operator==(nullptr); }
 
-   template < primitive_size SIZE >
+   template < prototype_size SIZE >
    inline bool operator == (const SIZE & size) const  { return this->width() == size.cx && this->height() == size.cy; }
 
-   template < primitive_size SIZE >
+   template < prototype_size SIZE >
    inline bool operator != (const SIZE & size) const  { return !operator ==(size); }
 
-   template < primitive_size SIZE >
+   template < prototype_size SIZE >
    inline bool operator > (const SIZE & size) const  { return this->size() > size; }
 
-   template < primitive_size SIZE >
+   template < prototype_size SIZE >
    inline bool operator >= (const SIZE & size) const  { return this->size() >= size; }
 
-   template < primitive_size SIZE >
+   template < prototype_size SIZE >
    inline bool operator < (const SIZE & size) const  { return this->size() < size; }
 
-   template < primitive_size SIZE >
+   template < prototype_size SIZE >
    inline bool operator <= (const SIZE & size) const  { return this->size() <= size; }
 
-   template < primitive_size SIZE >
+   template < prototype_size SIZE >
    inline bool any_gt(const SIZE & size) const  { return this->size().any_gt(size); }
 
-   template < primitive_size SIZE >
+   template < prototype_size SIZE >
    inline bool any_ge(const SIZE & size) const  { return this->size().any_ge(size); }
 
-   template < primitive_size SIZE >
+   template < prototype_size SIZE >
    inline bool any_lt(const SIZE & size) const  { return this->size().any_lt(size); }
 
-   template < primitive_size SIZE >
+   template < prototype_size SIZE >
    inline bool any_le(const SIZE & size) const  { return this->size().any_le(size); }
 
 
@@ -1587,7 +1587,7 @@ public:
 
    }
 
-   template < primitive_array ARRAY >
+   template < prototype_array ARRAY >
       ARRAY & add_clockwise_edges(ARRAY &a) const
    {
       a.add(this->top_left());
@@ -1596,7 +1596,7 @@ public:
       a.add(this->bottom_left());
       return a;
    }
-      template < primitive_array ARRAY >
+      template < prototype_array ARRAY >
       ARRAY& set_clockwise_edges(ARRAY& a, ::collection::index iOffset = 0) const
       {
          a[iOffset + 0] = this->top_left();
@@ -1623,7 +1623,7 @@ public:
 
 
 
-template < primitive_number NUMBER >
+template < prototype_number NUMBER >
 inline void rectangle_type < NUMBER >::normalize() 
 {
 
@@ -1637,7 +1637,7 @@ inline void rectangle_type < NUMBER >::normalize()
 
 
 
-//template < primitive_number NUMBER >
+//template < prototype_number NUMBER >
 //void rectangle_type < NUMBER > ::get_bounding_box(const POINT_BASE_TYPE * ppoint, ::collection::count count)
 //{
 //
@@ -1646,7 +1646,7 @@ inline void rectangle_type < NUMBER >::normalize()
 //}
 
 
-template < primitive_number X, primitive_number Y, primitive_number W, primitive_number H >
+template < prototype_number X, prototype_number Y, prototype_number W, prototype_number H >
 inline int_rectangle int_rectangle_dimension(X x, Y y, W w, H h)
 {
 
@@ -1655,7 +1655,7 @@ inline int_rectangle int_rectangle_dimension(X x, Y y, W w, H h)
 }
 
 
-template < primitive_number X, primitive_number Y, primitive_number W, primitive_number H >
+template < prototype_number X, prototype_number Y, prototype_number W, prototype_number H >
 inline long_long_rectangle long_long_rectangle_dimension(X x, Y y, W w, H h)
 {
 
@@ -1664,7 +1664,7 @@ inline long_long_rectangle long_long_rectangle_dimension(X x, Y y, W w, H h)
 }
 
 
-template < primitive_number X, primitive_number Y, primitive_number W, primitive_number H >
+template < prototype_number X, prototype_number Y, prototype_number W, prototype_number H >
 inline float_rectangle float_rectangle_dimension(X x, Y y, W w, H h)
 {
 
@@ -1673,7 +1673,7 @@ inline float_rectangle float_rectangle_dimension(X x, Y y, W w, H h)
 }
 
 
-template < primitive_number X, primitive_number Y, primitive_number W, primitive_number H >
+template < prototype_number X, prototype_number Y, prototype_number W, prototype_number H >
 inline double_rectangle double_rectangle_dimension(X x, Y y, W w, H h)
 {
 
@@ -1690,7 +1690,7 @@ inline double_rectangle double_rectangle_dimension(X x, Y y, W w, H h)
 //CLASS_DECL_ACME int_rectangle & muldiv(int_rectangle & rectangle, int numerator, int denominator);
 //CLASS_DECL_ACME long_long_rectangle & muldiv(long_long_rectangle & rectangle, long long numerator, long long denominator);
 //
-//template < primitive_integral NUMERATOR, primitive_integral DENOMINATOR >
+//template < prototype_integral NUMERATOR, prototype_integral DENOMINATOR >
 //rectangle_type muldiv(NUMERATOR numerator, DENOMINATOR denominator) const 
 //{
 //   return rectangle_type(

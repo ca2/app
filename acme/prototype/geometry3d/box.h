@@ -9,7 +9,7 @@ inline double sqr(double x)
    return x * x;
 }
 
-template < primitive_number NUMBER >
+template < prototype_number NUMBER >
 class box_type
 {
 public:

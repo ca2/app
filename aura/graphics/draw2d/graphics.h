@@ -81,7 +81,7 @@ namespace draw2d
       bool                                         m_bForWindowDraw2d;
       bool                                         m_bBeginDraw;
       bool                                         m_bInheritDraw;
-      // try to draw using paths and full primitives
+      // try to draw using paths and full prototypes
       // there is little control over lines drawn with move_to line_to than generalized
       //bool                                         m_bHasCurrentPoint;
       bool                                         m_bOutline;
@@ -852,7 +852,7 @@ namespace draw2d
       //virtual void stretch_blend(const ::double_rectangle & rectangleTarget, ::draw2d::graphics * pgraphicsSrc, const ::double_rectangle & rectangleSource = ::double_rectangle());
 
 
-      //template < primitive_size SIZE >
+      //template < prototype_size SIZE >
       //inline void alpha_blend(const SIZE & sizeDst, const ::image::image_drawing & imagedrawing, double dOpacity)
       //{
 
@@ -865,7 +865,7 @@ namespace draw2d
       //}
 
 
-      //template < primitive_rectangle RECTANGLE >
+      //template < prototype_rectangle RECTANGLE >
       //inline void alpha_blend(const RECTANGLE & rectangleTarget, const ::image::image_drawing & imagedrawing, double dOpacity)
       //{
 
@@ -874,7 +874,7 @@ namespace draw2d
       //}
 
       //
-      //template < primitive_rectangle RECTANGLE, primitive_point POINT >
+      //template < prototype_rectangle RECTANGLE, prototype_point POINT >
       //inline void alpha_blend(const RECTANGLE & rectangleTarget, const ::image::image_drawing & imagedrawing, const POINT & pointSrc, double dOpacity)
       //{
 
@@ -892,7 +892,7 @@ namespace draw2d
       //}
 
 
-      //template < primitive_rectangle RECTANGLE_DST, primitive_rectangle RECTANGLE_SRC >
+      //template < prototype_rectangle RECTANGLE_DST, prototype_rectangle RECTANGLE_SRC >
       //inline void alpha_blend(const RECTANGLE_DST & rectangleTarget, const ::image::image_drawing & imagedrawing, const RECTANGLE_SRC & rectangleSource, double dOpacity)
       //{
 

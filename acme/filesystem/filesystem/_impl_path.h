@@ -553,7 +553,7 @@ namespace file
 //   }
 //
 
-    //template < primitive_atom ATOM >
+    //template < prototype_atom ATOM >
     //inline path path::operator / (const ATOM & atom) const
     //{
 
@@ -1507,7 +1507,7 @@ namespace file
 
 
 
-template < primitive_character_range RANGE1, primitive_character_range RANGE2 >
+template < prototype_character_range RANGE1, prototype_character_range RANGE2 >
 ::file::path operator / (const RANGE1& range1, const RANGE2& range2)
 {
 
@@ -1517,7 +1517,7 @@ template < primitive_character_range RANGE1, primitive_character_range RANGE2 >
 
 
 
-template < character_pointer CHARACTER_POINTER, primitive_character_range RANGE >
+template < character_pointer CHARACTER_POINTER, prototype_character_range RANGE >
 ::file::path operator / (CHARACTER_POINTER p, const RANGE& range)
 {
 
@@ -1528,7 +1528,7 @@ template < character_pointer CHARACTER_POINTER, primitive_character_range RANGE 
 
 
 
-template < primitive_character_range RANGE, character_count n >
+template < prototype_character_range RANGE, character_count n >
 ::file::path operator / (const typename RANGE::CHARACTER(&sz)[n], const RANGE& range)
 {
 
@@ -1538,7 +1538,7 @@ template < primitive_character_range RANGE, character_count n >
 
 
 
-//template < primitive_character ITERATOR_TYPE2, int t_size, primitive_character_range RANGE >
+//template < prototype_character ITERATOR_TYPE2, int t_size, prototype_character_range RANGE >
 //::file::path operator / (const const_string_range_static_array <ITERATOR_TYPE2, t_size >& a, const RANGE& range)
 //{
 //
@@ -1547,7 +1547,7 @@ template < primitive_character_range RANGE, character_count n >
 //}
 
 
-template < primitive_character_range RANGE, character_pointer CHARACTER_POINTER >
+template < prototype_character_range RANGE, character_pointer CHARACTER_POINTER >
 ::file::path operator / (const RANGE& range, CHARACTER_POINTER p)
 {
 
@@ -1569,7 +1569,7 @@ template < primitive_character_range RANGE, character_pointer CHARACTER_POINTER 
 }
 
 
-//template < primitive_character_range RANGE, typename ITERATOR_TYPE2, int t_size >
+//template < prototype_character_range RANGE, typename ITERATOR_TYPE2, int t_size >
 //::file::path operator / (const RANGE& range, const const_string_range_static_array <ITERATOR_TYPE2, t_size >& a)
 //{
 //
@@ -1586,14 +1586,12 @@ template < primitive_character_range RANGE, character_pointer CHARACTER_POINTER 
 //
 //}
 
-
-
-
-template<primitive_character CHARACTER>
-inline ::file::path operator/(const ::character_range<const CHARACTER *> &range, const ::atom &atom)
-{
-
-   return ::file::path(range) / ::file::path(atom.as_string());
-}
-
-
+//
+//template<prototype_character CHARACTER>
+//inline ::file::path operator/(const ::character_range<const CHARACTER *> &range, const ::atom &atom)
+//{
+//
+//   return ::file::path(range) / ::file::path(atom.as_string());
+//}
+//
+//

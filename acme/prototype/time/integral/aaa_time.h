@@ -90,19 +90,19 @@
 //
 //
 //
-//   template < primitive_integral INTEGRAL >
+//   template < prototype_integral INTEGRAL >
 //   integral_time operator %(INTEGRAL integral) const { return typename INTEGRAL_TIME_TYPE::BASE_TYPE(this->m_i % integral); }
 //
-//   template < primitive_integral INTEGRAL >
+//   template < prototype_integral INTEGRAL >
 //   integral_time operator /(INTEGRAL integral) const { return typename INTEGRAL_TIME_TYPE::BASE_TYPE(this->m_i / integral); }
 //
-//   template < primitive_integral INTEGRAL >
+//   template < prototype_integral INTEGRAL >
 //   integral_time operator *(INTEGRAL integral) const { return typename INTEGRAL_TIME_TYPE::BASE_TYPE(this->m_i * integral); }
 //
-//   template < primitive_integral INTEGRAL >
+//   template < prototype_integral INTEGRAL >
 //   integral_time operator +(INTEGRAL integral) const { return typename INTEGRAL_TIME_TYPE::BASE_TYPE(this->m_i + integral); }
 //
-//   template < primitive_integral INTEGRAL >
+//   template < prototype_integral INTEGRAL >
 //   integral_time operator -(INTEGRAL integral) const { return typename INTEGRAL_TIME_TYPE::BASE_TYPE(this->m_i - integral); }
 //
 //
@@ -151,7 +151,7 @@
 //};
 //
 //
-//template < primitive_floating FLOATING, typename INTEGRAL_TIME_TYPE >
+//template < prototype_floating FLOATING, typename INTEGRAL_TIME_TYPE >
 //integral_time < INTEGRAL_TIME_TYPE > operator * (FLOATING floating, const integral_time < INTEGRAL_TIME_TYPE > & integraltime)
 //{
 //
@@ -160,14 +160,14 @@
 //}
 //
 //
-//template < primitive_integral INTEGRAL, typename INTEGRAL_TIME_TYPE >
+//template < prototype_integral INTEGRAL, typename INTEGRAL_TIME_TYPE >
 //integral_time < INTEGRAL_TIME_TYPE > operator * (INTEGRAL integral, const integral_time < INTEGRAL_TIME_TYPE > & integraltime)
 //{
 //
 //   return (typename INTEGRAL_TIME_TYPE::BASE_TYPE) (typename INTEGRAL_TIME_TYPE::BASE_TYPE::BASE_TYPE)(integral * integraltime.m_i);
 //
 //}
-////template < primitive_floating FLOATING, typename INTEGRAL_TIME_TYPE >
+////template < prototype_floating FLOATING, typename INTEGRAL_TIME_TYPE >
 ////floating_frequency operator * (FLOATING floating, const integral_time < INTEGRAL_TIME_TYPE > & integraltime)
 ////{
 ////

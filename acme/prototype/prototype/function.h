@@ -313,11 +313,11 @@ public:
 //
 
 template < typename PRIMITIVE_FUNCTION >
-concept primitive_function = ::std::is_base_of < ::function_common_base, PRIMITIVE_FUNCTION >::value;
+concept prototype_function = ::std::is_base_of < ::function_common_base, PRIMITIVE_FUNCTION >::value;
 
 namespace data
 {
-   template < primitive_function FUNCTION >
+   template < prototype_function FUNCTION >
    class signal;
 } // namespace data
 
@@ -473,7 +473,7 @@ public:
          this->construct((::subparticle*)(::uptr) predicate, timeTimeout);
 
       }
-      else if constexpr (::primitive_subparticle_pointer<PREDICATE> )
+      else if constexpr (::prototype_subparticle_pointer<PREDICATE> )
       {
 
          this->construct(predicate, timeTimeout);

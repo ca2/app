@@ -31,7 +31,7 @@ DECLARE_ENUMERATION(e_align, enum_align);
 //inline TARGET & _001CopyRect(TARGET & prectTarget, const SOURCE & prectSource);
 
 
-//template < primitive_rectangle RECTANGLE_TYPE, typename X >
+//template < prototype_rectangle RECTANGLE_TYPE, typename X >
 //inline RECTANGLE_TYPE & x_offset(RECTANGLE_TYPE & rectangle, X x)
 //{
 //
@@ -44,7 +44,7 @@ DECLARE_ENUMERATION(e_align, enum_align);
 //}
 //
 //
-//template < primitive_rectangle RECTANGLE_TYPE, typename Y >
+//template < prototype_rectangle RECTANGLE_TYPE, typename Y >
 //inline RECTANGLE_TYPE & y_offset(RECTANGLE_TYPE & rectangle, Y y)
 //{
 //
@@ -58,7 +58,7 @@ DECLARE_ENUMERATION(e_align, enum_align);
 //
 //
 //
-//template < primitive_rectangle RECTANGLE_TYPE, typename X >
+//template < prototype_rectangle RECTANGLE_TYPE, typename X >
 //inline RECTANGLE_TYPE & x_subtract(RECTANGLE_TYPE & rectangle, X x)
 //{
 //
@@ -71,7 +71,7 @@ DECLARE_ENUMERATION(e_align, enum_align);
 //}
 //
 //
-//template < primitive_rectangle RECTANGLE_TYPE, typename Y >
+//template < prototype_rectangle RECTANGLE_TYPE, typename Y >
 //inline RECTANGLE_TYPE & y_subtract(RECTANGLE_TYPE & rectangle, Y y)
 //{
 //
@@ -110,7 +110,7 @@ DECLARE_ENUMERATION(e_align, enum_align);
 //}
 //
 //
-//template < typename RECTANGLE_TYPE, primitive_point POINT_TYPE >
+//template < typename RECTANGLE_TYPE, prototype_point POINT_TYPE >
 //inline RECTANGLE_TYPE & offset(RECTANGLE_TYPE & rectangle, const POINT_TYPE & point)
 //{
 //
@@ -119,7 +119,7 @@ DECLARE_ENUMERATION(e_align, enum_align);
 //}
 //
 //
-//template < typename RECTANGLE_TYPE, primitive_point POINT_TYPE >
+//template < typename RECTANGLE_TYPE, prototype_point POINT_TYPE >
 //inline RECTANGLE_TYPE & subtract(RECTANGLE_TYPE & rectangle, const POINT_TYPE & point)
 //{
 //
@@ -128,11 +128,11 @@ DECLARE_ENUMERATION(e_align, enum_align);
 //}
 //
 //
-//template < primitive_rectangle RECTANGLE_TYPE, primitive_point POINT >
+//template < prototype_rectangle RECTANGLE_TYPE, prototype_point POINT >
 //inline RECTANGLE_TYPE & subtract(RECTANGLE_TYPE & rectangle, const POINT & point) { return subtract(rectangle, point); }
 //
 //
-//template < primitive_point POINT, typename X, typename Y >
+//template < prototype_point POINT, typename X, typename Y >
 //inline POINT & offset(POINT & point, X x, Y y)
 //{
 //
@@ -144,7 +144,7 @@ DECLARE_ENUMERATION(e_align, enum_align);
 //}
 //
 //
-//template < primitive_point POINT, primitive_point POINT2 >
+//template < prototype_point POINT, prototype_point POINT2 >
 //inline POINT & offset(POINT & point, const POINT2 & point2)
 //{
 //
@@ -153,11 +153,11 @@ DECLARE_ENUMERATION(e_align, enum_align);
 //}
 //
 //
-//template < primitive_point POINT, primitive_point POINT2 >
+//template < prototype_point POINT, prototype_point POINT2 >
 //inline POINT & add(POINT & point, const POINT2 & point2) { return offset(point, point2); }
 //
 //
-//template < primitive_point POINT_TYPE, typename X, typename Y >
+//template < prototype_point POINT_TYPE, typename X, typename Y >
 //inline POINT_TYPE & subtract(POINT_TYPE & point, X x, Y y)
 //{
 //
@@ -169,7 +169,7 @@ DECLARE_ENUMERATION(e_align, enum_align);
 //}
 //
 //
-//template < primitive_point POINT_TYPE, primitive_point POINT_TYPE2 >
+//template < prototype_point POINT_TYPE, prototype_point POINT_TYPE2 >
 //inline POINT_TYPE & subtract(POINT_TYPE & point, const POINT_TYPE2 & point2)
 //{
 //
@@ -178,7 +178,7 @@ DECLARE_ENUMERATION(e_align, enum_align);
 //}
 //
 //
-//template < primitive_rectangle RECTANGLE_TYPE, primitive_rectangle POINT_TYPE >
+//template < prototype_rectangle RECTANGLE_TYPE, prototype_rectangle POINT_TYPE >
 //inline RECTANGLE_TYPE & add(RECTANGLE_TYPE & rectangle, const POINT_TYPE & point)
 //{ 
 //   
@@ -187,7 +187,7 @@ DECLARE_ENUMERATION(e_align, enum_align);
 //}
 //
 //
-//template < primitive_rectangle RECTANGLE_TYPE, primitive_rectangle RECT_TYPE1, primitive_rectangle RECT_TYPE2 >
+//template < prototype_rectangle RECTANGLE_TYPE, prototype_rectangle RECT_TYPE1, prototype_rectangle RECT_TYPE2 >
 //bool x_intersect(RECTANGLE_TYPE & rectangle, const RECT_TYPE1 & rect1, const RECT_TYPE2 & rect2)
 //{
 //
@@ -218,7 +218,7 @@ DECLARE_ENUMERATION(e_align, enum_align);
 //}
 //
 //
-//template < primitive_rectangle RECT_TYPE1, primitive_rectangle RECT_TYPE2 >
+//template < prototype_rectangle RECT_TYPE1, prototype_rectangle RECT_TYPE2 >
 //bool x_intersects(const RECT_TYPE1 & rect1, const RECT_TYPE2 & rect2)
 //{
 //
@@ -231,7 +231,7 @@ DECLARE_ENUMERATION(e_align, enum_align);
 //}
 //
 //
-//template < primitive_rectangle RECTANGLE_TYPE, primitive_rectangle RECT_TYPE1, primitive_rectangle RECT_TYPE2 >
+//template < prototype_rectangle RECTANGLE_TYPE, prototype_rectangle RECT_TYPE1, prototype_rectangle RECT_TYPE2 >
 //bool y_intersect(RECTANGLE_TYPE & rectangle, const RECT_TYPE1 & rect1, const RECT_TYPE2 & rect2)
 //{
 //
@@ -262,7 +262,7 @@ DECLARE_ENUMERATION(e_align, enum_align);
 //}
 //
 //
-//template < primitive_rectangle RECT_TYPE1, primitive_rectangle RECT_TYPE2 >
+//template < prototype_rectangle RECT_TYPE1, prototype_rectangle RECT_TYPE2 >
 //bool y_intersects(const RECT_TYPE1 & rect1, const RECT_TYPE2 & rect2)
 //{
 //
@@ -275,7 +275,7 @@ DECLARE_ENUMERATION(e_align, enum_align);
 //}
 //
 //
-//template < primitive_rectangle RECTANGLE_TYPE, primitive_rectangle RECT_TYPE1, primitive_rectangle RECT_TYPE2 >
+//template < prototype_rectangle RECTANGLE_TYPE, prototype_rectangle RECT_TYPE1, prototype_rectangle RECT_TYPE2 >
 //bool intersect(RECTANGLE_TYPE & rectangle, const RECT_TYPE1 & rect1, const RECT_TYPE2 & rect2)
 //{
 //
@@ -298,7 +298,7 @@ DECLARE_ENUMERATION(e_align, enum_align);
 //}
 //
 //
-//template < primitive_rectangle RECT_TYPE1, primitive_rectangle RECT_TYPE2 >
+//template < prototype_rectangle RECT_TYPE1, prototype_rectangle RECT_TYPE2 >
 //bool intersects(const RECT_TYPE1 & rect1, const RECT_TYPE2 & rect2)
 //{
 //
@@ -307,7 +307,7 @@ DECLARE_ENUMERATION(e_align, enum_align);
 //}
 //
 //
-//template < primitive_rectangle RECTANGLE_TYPE, primitive_rectangle RECT_TYPE1, primitive_rectangle RECT_TYPE2 >
+//template < prototype_rectangle RECTANGLE_TYPE, prototype_rectangle RECT_TYPE1, prototype_rectangle RECT_TYPE2 >
 //bool x_null_intersect(RECTANGLE_TYPE & rectangle, const RECT_TYPE1 & rect1, const RECT_TYPE2 & rect2)
 //{
 //
@@ -338,7 +338,7 @@ DECLARE_ENUMERATION(e_align, enum_align);
 //}
 //
 //
-//template < primitive_rectangle RECTANGLE_TYPE, primitive_rectangle RECT_TYPE1, primitive_rectangle RECT_TYPE2 >
+//template < prototype_rectangle RECTANGLE_TYPE, prototype_rectangle RECT_TYPE1, prototype_rectangle RECT_TYPE2 >
 //bool y_null_intersect(RECTANGLE_TYPE & rectangle, const RECT_TYPE1 & rect1, const RECT_TYPE2 & rect2)
 //{
 //
@@ -369,7 +369,7 @@ DECLARE_ENUMERATION(e_align, enum_align);
 //}
 //
 //
-//template < primitive_rectangle RECTANGLE_TYPE, primitive_rectangle RECT_TYPE1, primitive_rectangle RECT_TYPE2 >
+//template < prototype_rectangle RECTANGLE_TYPE, prototype_rectangle RECT_TYPE1, prototype_rectangle RECT_TYPE2 >
 //bool null_intersect(RECTANGLE_TYPE & rectangle, const RECT_TYPE1 & rect1, const RECT_TYPE2 & rect2)
 //{
 //
@@ -392,7 +392,7 @@ DECLARE_ENUMERATION(e_align, enum_align);
 //}
 //
 //
-//template < primitive_rectangle RECTANGLE_TYPE, primitive_rectangle RECT_TYPE1, primitive_rectangle RECT_TYPE2 >
+//template < prototype_rectangle RECTANGLE_TYPE, prototype_rectangle RECT_TYPE1, prototype_rectangle RECT_TYPE2 >
 //bool x_left_null_intersect(RECTANGLE_TYPE & rectangle, const RECT_TYPE1 & rect1, const RECT_TYPE2 & rect2)
 //{
 //
@@ -405,7 +405,7 @@ DECLARE_ENUMERATION(e_align, enum_align);
 //}
 //
 //
-//template < primitive_rectangle RECTANGLE_TYPE, primitive_rectangle RECT_TYPE1, primitive_rectangle RECT_TYPE2 >
+//template < prototype_rectangle RECTANGLE_TYPE, prototype_rectangle RECT_TYPE1, prototype_rectangle RECT_TYPE2 >
 //bool y_top_null_intersect(RECTANGLE_TYPE & rectangle, const RECT_TYPE1 & rect1, const RECT_TYPE2 & rect2)
 //{
 //
@@ -418,7 +418,7 @@ DECLARE_ENUMERATION(e_align, enum_align);
 //}
 //
 //
-//template < primitive_rectangle RECTANGLE_TYPE, primitive_rectangle RECT_TYPE1, primitive_rectangle RECT_TYPE2 >
+//template < prototype_rectangle RECTANGLE_TYPE, prototype_rectangle RECT_TYPE1, prototype_rectangle RECT_TYPE2 >
 //bool top_left_null_intersect(RECTANGLE_TYPE & rectangle, const RECT_TYPE1 & rect1, const RECT_TYPE2 & rect2)
 //{
 //
@@ -440,7 +440,7 @@ DECLARE_ENUMERATION(e_align, enum_align);
 //}
 //
 //
-//template < primitive_rectangle RECTANGLE_TYPE, primitive_rectangle RECT_TYPE1, primitive_rectangle RECT_TYPE2 >
+//template < prototype_rectangle RECTANGLE_TYPE, prototype_rectangle RECT_TYPE1, prototype_rectangle RECT_TYPE2 >
 //RECTANGLE_TYPE & unite(RECTANGLE_TYPE & rectangle, const RECT_TYPE1 & rect1, const RECT_TYPE2 & rect2)
 //{
 //
@@ -482,7 +482,7 @@ DECLARE_ENUMERATION(e_align, enum_align);
 //}
 //
 //
-//template < primitive_rectangle RECT_TYPE1, primitive_rectangle RECT_TYPE2 >
+//template < prototype_rectangle RECT_TYPE1, prototype_rectangle RECT_TYPE2 >
 //RECT_TYPE1 & unite(RECT_TYPE1 & rect1, const RECT_TYPE2 & rect2)
 //{
 //
@@ -519,7 +519,7 @@ DECLARE_ENUMERATION(e_align, enum_align);
 //
 
 
-//template < primitive_rectangle RECT_TYPE1, primitive_rectangle RECT_TYPE2 >
+//template < prototype_rectangle RECT_TYPE1, prototype_rectangle RECT_TYPE2 >
 //RECT_TYPE1 & copy(RECT_TYPE1 & rect1, const RECT_TYPE2 & rect2)
 //{
 //
@@ -533,7 +533,7 @@ DECLARE_ENUMERATION(e_align, enum_align);
 //}
 //
 //
-//template < primitive_rectangle RECTANGLE, primitive_XYDim XYDim >
+//template < prototype_rectangle RECTANGLE, prototype_XYDim XYDim >
 //RECTANGLE & copy(RECTANGLE & rectangle, const XYDim & xydim)
 //{
 //
@@ -547,7 +547,7 @@ DECLARE_ENUMERATION(e_align, enum_align);
 //}
 //
 //
-//template < primitive_rectangle RECTANGLE, primitive_xydim XYDIM >
+//template < prototype_rectangle RECTANGLE, prototype_xydim XYDIM >
 //RECTANGLE & copy(RECTANGLE & rect1, const XYDIM & xydim)
 //{
 //
@@ -561,7 +561,7 @@ DECLARE_ENUMERATION(e_align, enum_align);
 //}
 //
 //
-//template < primitive_XY POINT1, primitive_point POINT2 >
+//template < prototype_XY POINT1, prototype_point POINT2 >
 //POINT1 & copy(POINT1 & point1, const POINT2 & point2)
 //{
 //
@@ -573,7 +573,7 @@ DECLARE_ENUMERATION(e_align, enum_align);
 //}
 //
 //
-//template < primitive_point POINT1, primitive_XY POINT2 >
+//template < prototype_point POINT1, prototype_XY POINT2 >
 //POINT1 & copy(POINT1 & point1, const POINT2 & point2)
 //{
 //
@@ -585,7 +585,7 @@ DECLARE_ENUMERATION(e_align, enum_align);
 //}
 //
 //
-//template < primitive_XYDim XYDim, primitive_rectangle RECTANGLE >
+//template < prototype_XYDim XYDim, prototype_rectangle RECTANGLE >
 //XYDim & copy(XYDim & xydim, const RECTANGLE & rectangle)
 //{
 //
@@ -599,7 +599,7 @@ DECLARE_ENUMERATION(e_align, enum_align);
 //}
 //
 //
-//template < primitive_xydim XYDIM, primitive_rectangle RECTANGLE >
+//template < prototype_xydim XYDIM, prototype_rectangle RECTANGLE >
 //XYDIM & copy(XYDIM & xydim, const RECTANGLE & rectangle)
 //{
 //
@@ -613,7 +613,7 @@ DECLARE_ENUMERATION(e_align, enum_align);
 //}
 //
 //
-//template < primitive_XYDim XYDim1, primitive_XYDim XYDim2 >
+//template < prototype_XYDim XYDim1, prototype_XYDim XYDim2 >
 //XYDim1 & copy(XYDim1 & xydim1, const XYDim2 & xydim2)
 //{
 //
@@ -627,7 +627,7 @@ DECLARE_ENUMERATION(e_align, enum_align);
 //}
 //
 //
-//template < primitive_point POINT1, primitive_point POINT2 >
+//template < prototype_point POINT1, prototype_point POINT2 >
 //POINT1 & copy(POINT1 & point1, const POINT2 & point2)
 //{
 //
@@ -639,7 +639,7 @@ DECLARE_ENUMERATION(e_align, enum_align);
 //}
 //
 //
-//template < primitive_point POINT, primitive_size SIZE >
+//template < prototype_point POINT, prototype_size SIZE >
 //POINT & copy(POINT & point, const SIZE & size)
 //{
 //
@@ -651,7 +651,7 @@ DECLARE_ENUMERATION(e_align, enum_align);
 //}
 //
 //
-//template < primitive_size SIZE_TYPE1, primitive_size SIZE_TYPE2 >
+//template < prototype_size SIZE_TYPE1, prototype_size SIZE_TYPE2 >
 //SIZE_TYPE1 & copy_size(SIZE_TYPE1 & size1, const SIZE_TYPE2 & size2)
 //{
 //
@@ -671,7 +671,7 @@ DECLARE_ENUMERATION(e_align, enum_align);
 //auto get_normal_dimension(enum_orientation eorientation, X x, Y y);
 //
 //
-//template < primitive_rectangle RECTANGLE1, primitive_rectangle RECTANGLE2 >
+//template < prototype_rectangle RECTANGLE1, prototype_rectangle RECTANGLE2 >
 //bool is_equal(const RECTANGLE1 & rectangle1, const RECTANGLE2 & rectangle2)
 //{
 //
@@ -681,7 +681,7 @@ DECLARE_ENUMERATION(e_align, enum_align);
 //}
 //
 //
-//template < primitive_point POINT1, primitive_point POINT2 >
+//template < prototype_point POINT1, prototype_point POINT2 >
 //bool is_equal(const POINT1 & point1, const POINT2 & point2)
 //{
 //
@@ -690,7 +690,7 @@ DECLARE_ENUMERATION(e_align, enum_align);
 //}
 //
 //
-//template < primitive_size SIZE_TYPE1, primitive_size SIZE_TYPE2 >
+//template < prototype_size SIZE_TYPE1, prototype_size SIZE_TYPE2 >
 //bool is_equal(const SIZE_TYPE1 & size1, const SIZE_TYPE2 & size2)
 //{
 //
@@ -699,7 +699,7 @@ DECLARE_ENUMERATION(e_align, enum_align);
 //}
 //
 //
-//template < primitive_rectangle RECTANGLE_TYPE, typename L, typename T, typename R, typename B >
+//template < prototype_rectangle RECTANGLE_TYPE, typename L, typename T, typename R, typename B >
 //RECTANGLE_TYPE & set_rectangle(RECTANGLE_TYPE & rectangle, L l, T t, R r, B b)
 //{
 //
@@ -713,7 +713,7 @@ DECLARE_ENUMERATION(e_align, enum_align);
 //}
 //
 //
-//template < primitive_rectangle RECTANGLE, typename L, typename T, typename W, typename H >
+//template < prototype_rectangle RECTANGLE, typename L, typename T, typename W, typename H >
 //RECTANGLE & set_dim(RECTANGLE & rectangle, L l, T t, W w, H h)
 //{
 //
@@ -726,7 +726,7 @@ DECLARE_ENUMERATION(e_align, enum_align);
 //
 //}
 //
-////template < primitive_rectangle RECTANGLE,  typename L, typename T, typename W, typename H >
+////template < prototype_rectangle RECTANGLE,  typename L, typename T, typename W, typename H >
 ////inline auto _001SetRectDim(RECTANGLE &r, L l, T t, W w, H h) { return set_dim(p, l, t, w, h); }
 ////template <  typename L, typename T, typename W, typename H >
 ////inline auto _001SetRectDim(::long_long_rectangle * p, L l, T t, W w, H h) { return set_rect_dim(p, l, t, w, h); }
@@ -736,7 +736,7 @@ DECLARE_ENUMERATION(e_align, enum_align);
 ////inline auto _001SetRectDim(::double_rectangle * p, L l, T t, W w, H h) { return set_rect_dim(p, l, t, w, h); }
 //
 //
-//template < primitive_rectangle RECTANGLE, primitive_point POINT, primitive_size SIZE >
+//template < prototype_rectangle RECTANGLE, prototype_point POINT, prototype_size SIZE >
 //RECTANGLE & set_bottom_right(RECTANGLE & rectangle, const SIZE & size)
 //{
 //
@@ -748,7 +748,7 @@ DECLARE_ENUMERATION(e_align, enum_align);
 //}
 //
 //
-//template < primitive_rectangle RECTANGLE, primitive_point POINT, primitive_size SIZE >
+//template < prototype_rectangle RECTANGLE, prototype_point POINT, prototype_size SIZE >
 //RECTANGLE & assign(RECTANGLE & rectangle, const POINT & point, const SIZE & size)
 //{
 //
@@ -762,7 +762,7 @@ DECLARE_ENUMERATION(e_align, enum_align);
 //}
 //
 //
-//template < primitive_rectangle RECTANGLE_TYPE >
+//template < prototype_rectangle RECTANGLE_TYPE >
 //RECTANGLE_TYPE & null(RECTANGLE_TYPE & rectangle)
 //{
 //
@@ -771,11 +771,11 @@ DECLARE_ENUMERATION(e_align, enum_align);
 //}
 //
 //
-//template < primitive_rectangle RECTANGLE_TYPE >
+//template < prototype_rectangle RECTANGLE_TYPE >
 //constexpr auto width(RECTANGLE_TYPE & rectangle) { return rectangle.right - rectangle.left; }
 //
 //
-//template < primitive_rectangle RECTANGLE_TYPE >
+//template < prototype_rectangle RECTANGLE_TYPE >
 //constexpr auto height(RECTANGLE_TYPE & rectangle) { return rectangle.bottom - rectangle.top; }
 //
 //
@@ -783,15 +783,15 @@ DECLARE_ENUMERATION(e_align, enum_align);
 //constexpr H area(W w, H h) { return (w <= (W)0 || h <= (H)0) ? 0 : (H)(w * h); }
 //
 //
-//template < primitive_rectangle RECTANGLE_TYPE >
+//template < prototype_rectangle RECTANGLE_TYPE >
 //constexpr auto area(RECTANGLE_TYPE & rectangle) { return area(width(rectangle), height(rectangle)); }
 //
 //
-//template < primitive_rectangle RECTANGLE_TYPE >
+//template < prototype_rectangle RECTANGLE_TYPE >
 //constexpr auto is_empty_rectangle(RECTANGLE_TYPE & rectangle) { return ::is_null(rectangle) || rectangle.right <= rectangle.left || rectangle.bottom <= rectangle.top; }
 //
 //
-//template < primitive_rectangle RECTANGLE_TYPE >
+//template < prototype_rectangle RECTANGLE_TYPE >
 //bool is_null_rectangle(const RECTANGLE_TYPE & rectangle)
 //{
 //
@@ -803,7 +803,7 @@ DECLARE_ENUMERATION(e_align, enum_align);
 //}
 //
 //
-//template < primitive_size SIZE_TYPE >
+//template < prototype_size SIZE_TYPE >
 //bool is_null(const SIZE_TYPE & size)
 //{
 //
@@ -813,7 +813,7 @@ DECLARE_ENUMERATION(e_align, enum_align);
 //}
 //
 //
-//template < primitive_point POINT_TYPE >
+//template < prototype_point POINT_TYPE >
 //bool is_null(const POINT_TYPE & point)
 //{
 //
@@ -822,7 +822,7 @@ DECLARE_ENUMERATION(e_align, enum_align);
 //}
 //
 //
-//template < primitive_rectangle RECTANGLE, typename X >
+//template < prototype_rectangle RECTANGLE, typename X >
 //inline bool contains_x(const RECTANGLE & rectangle, X x)
 //{
 //
@@ -831,7 +831,7 @@ DECLARE_ENUMERATION(e_align, enum_align);
 //}
 //
 //
-//template < primitive_rectangle RECTANGLE, typename Y >
+//template < prototype_rectangle RECTANGLE, typename Y >
 //inline bool contains_y(const RECTANGLE & rectangle, Y y)
 //{
 //
@@ -849,7 +849,7 @@ DECLARE_ENUMERATION(e_align, enum_align);
 //}
 //
 //
-//template < primitive_rectangle RECTANGLE_TYPE, typename L, typename T, typename R, typename B >
+//template < prototype_rectangle RECTANGLE_TYPE, typename L, typename T, typename R, typename B >
 //inline RECTANGLE_TYPE & inflate(RECTANGLE_TYPE & rectangle, L l, T t, R r, B b)
 //{
 //
@@ -872,7 +872,7 @@ DECLARE_ENUMERATION(e_align, enum_align);
 //}
 //
 //
-//template < primitive_rectangle RECTANGLE_TYPE, typename RECT_TYPE2 >
+//template < prototype_rectangle RECTANGLE_TYPE, typename RECT_TYPE2 >
 //inline RECTANGLE_TYPE & multiply_inline(RECTANGLE_TYPE & rectangle, const RECT_TYPE2 & rect2)
 //{
 //
@@ -885,7 +885,7 @@ DECLARE_ENUMERATION(e_align, enum_align);
 //
 //}
 //
-//template < primitive_rectangle RECTANGLE_TYPE, typename L, typename T, typename R, typename B >
+//template < prototype_rectangle RECTANGLE_TYPE, typename L, typename T, typename R, typename B >
 //inline RECTANGLE_TYPE & deflate(RECTANGLE_TYPE & rectangle, L l, T t, R r, B b)
 //{
 //
@@ -899,7 +899,7 @@ DECLARE_ENUMERATION(e_align, enum_align);
 //}
 //
 //
-//template < typename RECTANGLE_TYPE, primitive_rectangle RECT_TYPE2 >
+//template < typename RECTANGLE_TYPE, prototype_rectangle RECT_TYPE2 >
 //inline RECTANGLE_TYPE & deflate(RECTANGLE_TYPE & rectangle, const RECT_TYPE2 & rect2)
 //{
 //
@@ -908,7 +908,7 @@ DECLARE_ENUMERATION(e_align, enum_align);
 //}
 //
 //
-//template < primitive_rectangle RECTANGLE_TYPE, typename X, typename Y >
+//template < prototype_rectangle RECTANGLE_TYPE, typename X, typename Y >
 //inline RECTANGLE_TYPE & inflate(RECTANGLE_TYPE & rectangle, X x, Y y)
 //{
 //
@@ -916,7 +916,7 @@ DECLARE_ENUMERATION(e_align, enum_align);
 //
 //}
 //
-//template < primitive_rectangle RECTANGLE_TYPE, typename X, typename Y >
+//template < prototype_rectangle RECTANGLE_TYPE, typename X, typename Y >
 //inline RECTANGLE_TYPE & deflate(RECTANGLE_TYPE & rectangle, X x, Y y)
 //{
 //
@@ -925,7 +925,7 @@ DECLARE_ENUMERATION(e_align, enum_align);
 //}
 //
 //
-//template < primitive_rectangle RECTANGLE_TYPE, typename UNIT >
+//template < prototype_rectangle RECTANGLE_TYPE, typename UNIT >
 //inline RECTANGLE_TYPE & inflate(RECTANGLE_TYPE & rectangle, UNIT u)
 //{
 //
@@ -934,7 +934,7 @@ DECLARE_ENUMERATION(e_align, enum_align);
 //}
 //
 //
-//template < primitive_rectangle RECTANGLE_TYPE, typename UNIT >
+//template < prototype_rectangle RECTANGLE_TYPE, typename UNIT >
 //inline RECTANGLE_TYPE & deflate(RECTANGLE_TYPE & rectangle, UNIT u)
 //{
 //
@@ -943,12 +943,12 @@ DECLARE_ENUMERATION(e_align, enum_align);
 //}
 //
 //
-//template < primitive_rectangle RECTANGLE_TYPE >
+//template < prototype_rectangle RECTANGLE_TYPE >
 //inline RECTANGLE_TYPE & swap_left_right(RECTANGLE_TYPE & rectangle) { __swap(rectangle.left, rectangle.right); return rectangle; }
 //
 //
 //
-//template < primitive_point POINT1, primitive_point POINT2 >
+//template < prototype_point POINT1, prototype_point POINT2 >
 //inline bool polygon_contains(const POINT1 * ppPolygon, int iCount, const POINT2 & point)
 //{
 //
@@ -1092,46 +1092,46 @@ DECLARE_ENUMERATION(e_align, enum_align);
 ////inline long long i32muldiv(long long i, long long iNum, long long iDen);
 //
 //
-//template < primitive_integral INTEGRAL1, primitive_integral INTEGRAL2, primitive_integral INTEGRAL3, primitive_integral INTEGRAL_RESULT = typename ::largest_type_of_3 < INTEGRAL1, INTEGRAL2, INTEGRAL3 >::type>
+//template < prototype_integral INTEGRAL1, prototype_integral INTEGRAL2, prototype_integral INTEGRAL3, prototype_integral INTEGRAL_RESULT = typename ::largest_type_of_3 < INTEGRAL1, INTEGRAL2, INTEGRAL3 >::type >
 //inline INTEGRAL_RESULT muldiv(INTEGRAL1 i, INTEGRAL2 iNumerator, INTEGRAL3 iDenominator);
 //
 //
-//template < primitive_rectangle RECTANGLE >
+//template < prototype_rectangle RECTANGLE >
 //inline auto width(const RECTANGLE & rectangle) { return rectangle.right - rectangle.left; }
 //
-//template < primitive_rectangle RECTANGLE >
+//template < prototype_rectangle RECTANGLE >
 //inline auto height(const RECTANGLE & rectangle) { return rectangle.bottom - rectangle.top; }
 //
-//template < primitive_rectangle RECTANGLE >
+//template < prototype_rectangle RECTANGLE >
 //inline auto area(const RECTANGLE & rectangle) { return maximum(width(rectangle), 0) * maximum(height(rectangle), 0); }
 //
 //
-//template < primitive_rectangle RECTANGLE >
+//template < prototype_rectangle RECTANGLE >
 //inline auto left(const RECTANGLE & rectangle) { return rectangle.left; }
 //
-//template < primitive_rectangle RECTANGLE >
+//template < prototype_rectangle RECTANGLE >
 //inline auto top(const RECTANGLE & rectangle) { return rectangle.top; }
 //
 //
 //
-//template < primitive_XYDim XYDim >
+//template < prototype_XYDim XYDim >
 //inline auto width(const XYDim & rectangle) { return rectangle.Width; }
 //
-//template < primitive_XYDim XYDim >
+//template < prototype_XYDim XYDim >
 //inline auto height(const XYDim & rectangle) { return rectangle.Height; }
 //
-//template < primitive_XYDim XYDim >
+//template < prototype_XYDim XYDim >
 //inline auto area(const XYDim & rectangle) { return maximum(rectangle.Width, 0) * maximum(rectangle.Height, 0); }
 //
 //
-//template < primitive_XYDim XYDim >
+//template < prototype_XYDim XYDim >
 //inline auto left(const XYDim & rectangle) { return rectangle.X; }
 //
-//template < primitive_XYDim XYDim >
+//template < prototype_XYDim XYDim >
 //inline auto top(const XYDim & rectangle) { return rectangle.Y; }
 //
 //
-////template < primitive_rectangle RECTANGLE, primitive_XYDim XYDim >
+////template < prototype_rectangle RECTANGLE, prototype_XYDim XYDim >
 ////inline void copy(RECTANGLE & rectangle, const XYDim & xydim)
 ////{
 ////
@@ -1143,7 +1143,7 @@ DECLARE_ENUMERATION(e_align, enum_align);
 ////}
 ////
 ////
-////template < primitive_XYDim XYDim, primitive_rectangle RECTANGLE >
+////template < prototype_XYDim XYDim, prototype_rectangle RECTANGLE >
 ////inline void copy(XYDim & xydim, const RECTANGLE & rectangle)
 ////{
 ////
@@ -1211,9 +1211,9 @@ DECLARE_ENUMERATION(e_align, enum_align);
 ////inline bool intersect(::float_rectangle & rectangle, const ::float_rectangle & rect1, const ::float_rectangle & rect2) { return ::intersect_rect(rectangle, rect1, rect2); }
 ////inline ::float_rectangle & unite(::float_rectangle & rectangle, const ::float_rectangle & rect1, const ::float_rectangle & rect2) { return ::union_rect(rectangle, rect1, rect2); }
 ////inline float width(const ::float_rectangle & rectangle) { return ::rect_width(rectangle); }
-//////template < primitive_rectangle RECTANGLE > 
+//////template < prototype_rectangle RECTANGLE > 
 //////inline auto height(const RECTANGLE  & rectangle) { return ::rect_height(rectangle); }
-//////template < primitive_rectangle RECTANGLE >
+//////template < prototype_rectangle RECTANGLE >
 //////inline auto height(const RECTANGLE & rectangle) { return ::height(&rectangle); }
 ////inline float area(const ::float_rectangle & rectangle) { return ::rect_area(rectangle); }
 ////inline bool is_empty(const ::float_rectangle & rectangle) { return ::is_rect_empty(rectangle); }
@@ -1231,7 +1231,7 @@ DECLARE_ENUMERATION(e_align, enum_align);
 ////inline ::double_rectangle & deflate(::double_rectangle & rectangle, double x, double y) { return ::rect_deflate_point(rectangle, x, y); }
 ////inline ::double_rectangle & offset(::double_rectangle & rectangle, double x, double y) { return ::offset_rect(rectangle, x, y); }
 //
-//template < primitive_rectangle RECTANGLE >
+//template < prototype_rectangle RECTANGLE >
 //inline RECTANGLE & rate_deflate(RECTANGLE & rectangle, double dLeftRate, double dRightRate, double dTopRate, double dBottomRate);
 //
 //
@@ -1249,10 +1249,10 @@ DECLARE_ENUMERATION(e_align, enum_align);
 ////inline bool is_empty(const ::double_rectangle & rectangle) { return ::is_empty(&rectangle); }
 ////inline void swap_left_right(::double_rectangle & rectangle) noexcept { ::swap_left_right(&rectangle); }
 //
-//template < primitive_point POINT, primitive_point POINT2 >
+//template < prototype_point POINT, prototype_point POINT2 >
 //inline POINT & operator -= (POINT & point, const POINT2 & pointOffset) { ::subtract(point, pointOffset); return point; }
 //
-//template < primitive_point POINT, primitive_point POINT2 >
+//template < prototype_point POINT, prototype_point POINT2 >
 //inline POINT & operator += (POINT & point, const POINT2 & pointOffset) { ::subtract(point, pointOffset); return point; }
 //
 ////inline ::long_long_point & operator -= (::long_long_point & point, const ::long_long_point & pointOffset) { ::point_sub(point, pointOffset); return point; }
@@ -1262,10 +1262,10 @@ DECLARE_ENUMERATION(e_align, enum_align);
 ////inline ::double_point & operator -= (::double_point & point, const ::double_point & pointOffset) { ::point_sub(point, pointOffset); return point; }
 ////inline ::double_point & operator += (::double_point & point, const ::double_point & pointOffset) { ::point_add(point, pointOffset); return point; }
 //
-//template < primitive_rectangle RECTANGLE, primitive_point POINT >
+//template < prototype_rectangle RECTANGLE, prototype_point POINT >
 //inline RECTANGLE & operator -= (RECTANGLE & rectangle, const POINT & point) { ::subtract(rectangle, point); return rectangle; }
 //
-//template < primitive_rectangle RECTANGLE, primitive_point POINT >
+//template < prototype_rectangle RECTANGLE, prototype_point POINT >
 //inline RECTANGLE & operator += (RECTANGLE & rectangle, const POINT & point) { ::subtract(rectangle, point); return rectangle; }
 //
 ////inline ::long_long_rectangle& operator -= (::long_long_rectangle& rectangle, const ::long_long_point& point) { ::rect_sub(rectangle, point); return rectangle; }
@@ -1528,13 +1528,13 @@ DECLARE_ENUMERATION(e_align, enum_align);
 ////}
 ////
 ////
-////template < primitive_point POINT >
+////template < prototype_point POINT >
 ////inline constexpr auto __horz(const POINT & point) { return point.x; }
-////template < primitive_point POINT >
+////template < prototype_point POINT >
 ////inline constexpr auto __vert(const POINT & point) { return point.y; }
-////template < primitive_size SIZE >
+////template < prototype_size SIZE >
 ////inline constexpr auto __horz(const SIZE & size) { return size.cx; }
-////template < primitive_size SIZE >
+////template < prototype_size SIZE >
 ////inline constexpr auto __vert(const SIZE & size) { return size.cy; }
 ////
 ////inline int_point & top_left(const ::int_rectangle &rectangle) { return *(int_point *)&rectangle; }
@@ -1709,7 +1709,7 @@ DECLARE_ENUMERATION(e_align, enum_align);
 ////   //
 ////   //
 ////   //////////////////////////////////////////////////////////////////////
-////   template < primitive_rectangle RECTANGLE >
+////   template < prototype_rectangle RECTANGLE >
 ////   inline void deflate(RECTANGLE & rectangle, double dLeftRate, double dRightRate, double dTopRate, double dBottomRate)
 ////   {
 ////
@@ -1727,7 +1727,7 @@ DECLARE_ENUMERATION(e_align, enum_align);
 ////} // namespace geometry
 ////
 ////
-////template < primitive_point POINT >
+////template < prototype_point POINT >
 ////inline ::string as_string(const POINT & point)
 ////{
 ////
@@ -1736,7 +1736,7 @@ DECLARE_ENUMERATION(e_align, enum_align);
 ////}
 ////
 ////
-////template < primitive_size SIZE >
+////template < prototype_size SIZE >
 ////inline ::string as_string(const SIZE & size)
 ////{
 ////
@@ -1754,11 +1754,11 @@ DECLARE_ENUMERATION(e_align, enum_align);
 ////#include "ellipse.h"
 ////
 ////
-////template < primitive_point POINT >
+////template < prototype_point POINT >
 ////inline ::string as_string(const POINT & point);
 ////
 ////
-////template < primitive_size SIZE >
+////template < prototype_size SIZE >
 ////inline ::string as_string(const SIZE & size);
 ////
 ////
@@ -1769,43 +1769,43 @@ DECLARE_ENUMERATION(e_align, enum_align);
 //
 
 
-template < primitive_number NUMBER >
+template < prototype_number NUMBER >
 class point_type;
 
-template < primitive_number NUMBER >
+template < prototype_number NUMBER >
 class size_type;
 
-template < primitive_number NUMBER >
+template < prototype_number NUMBER >
 class line_type;
 
-template < primitive_number NUMBER >
+template < prototype_number NUMBER >
 class rectangle_type;
 
-template < primitive_number NUMBER >
+template < prototype_number NUMBER >
 class ellipse_type;
 
-template < primitive_number NUMBER >
+template < prototype_number NUMBER >
 class arc_type;
 
-template < primitive_number NUMBER >
+template < prototype_number NUMBER >
 class point_array_base;
 
-template < primitive_number NUMBER >
+template < prototype_number NUMBER >
 class polygon_base;
 
-template < primitive_number NUMBER >
+template < prototype_number NUMBER >
 class poly_polygon_base;
 
-template < primitive_number NUMBER >
+template < prototype_number NUMBER >
 class point_array_base;
 
-template < primitive_number NUMBER >
+template < prototype_number NUMBER >
 class size_array_base;
 
-template < primitive_number NUMBER >
+template < prototype_number NUMBER >
 class rectangle_array_base;
 
-template < primitive_number NUMBER >
+template < prototype_number NUMBER >
 class lines_base;
 
 
@@ -1926,7 +1926,7 @@ using long_long_lines = ::array_particle < long_long_lines_base >;
 using float_lines = ::array_particle < float_lines_base >;
 using double_lines = ::array_particle < double_lines_base >;
 
-template < struct_rectangle RECTANGLE1, primitive_rectangle RECTANGLE2 >
+template < struct_rectangle RECTANGLE1, prototype_rectangle RECTANGLE2 >
 inline void copy(RECTANGLE1 * prectangle1, const RECTANGLE2 * prectangle2)
 {
 

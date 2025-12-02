@@ -101,16 +101,16 @@ public:
    inline ::property & operator[](const ::atom_array_base & atoma) { return property(atoma); }
    inline ::property & operator[](const ::atom & atom) { return property(atom); }
 
-   template < primitive_integral INTEGRAL >
+   template < prototype_integral INTEGRAL >
    inline const ::property & property_at(INTEGRAL i) const { return *this->element_at(i); }
-   template < primitive_integral INTEGRAL >
+   template < prototype_integral INTEGRAL >
    inline ::property & property_at(INTEGRAL i) { return *this->element_at(i); }
 
 
 
-   //template < primitive_character_range RANGE >
+   //template < prototype_character_range RANGE >
    //inline ::property & operator[](const RANGE & range) { return property(range); }
-   //template < primitive_character_range RANGE >
+   //template < prototype_character_range RANGE >
    //inline const ::property & operator[](const RANGE & range) const { return property(range); }
 
    //template < has_get_string HAS_GET_STRING >
@@ -442,7 +442,7 @@ public:
 
 
 
-   template < primitive_subparticle T >
+   template < prototype_subparticle T >
    T * cast(const ::atom & atom, T * pDefault = nullptr)
    {
 
@@ -458,7 +458,7 @@ public:
    }
 
 
-   template < primitive_subparticle T >
+   template < prototype_subparticle T >
    T * cast(const ::atom & atom, T * pDefault = nullptr) const
    {
 

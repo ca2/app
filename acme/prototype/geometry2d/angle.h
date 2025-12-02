@@ -4,7 +4,7 @@
 struct with_t {};
 
 
-template < primitive_floating FLOATING_TYPE >
+template < prototype_floating FLOATING_TYPE >
 class angle_type
 {
 public:
@@ -20,10 +20,10 @@ public:
    constexpr angle_type(no_initialize_t) {}
    constexpr angle_type(with_t, FLOATING u):m_fAngle(u) {}
    //constexpr angle_type(nullptr_t) : m_fAngle(0.0) {}
-   template < primitive_floating FLOATING1 >
+   template < prototype_floating FLOATING1 >
    constexpr angle_type(const ::angle_type <FLOATING1 > & angle) : m_fAngle((FLOATING) angle.m_fAngle) {}
 
-   template < primitive_number Y, primitive_number X >
+   template < prototype_number Y, prototype_number X >
    angle_type & atan(Y y, X x) { m_fAngle = ::std::atan2(y, x); return *this; }
 
    angle_type operator -() const { return radians(-m_fAngle); }
@@ -38,14 +38,14 @@ public:
    angle_type operator + (const angle_type & angle) const { return radians(m_fAngle + angle.m_fAngle); }
 
    /// assumes subtracting radians from angle
-   template < primitive_number NUMBER >
+   template < prototype_number NUMBER >
    angle_type operator-(NUMBER radians) const { return ::radians(m_fAngle - (FLOATING)radians); }
 
    /// assumes adding radians from angle
-   template<primitive_number NUMBER>
+   template<prototype_number NUMBER>
    angle_type operator+(NUMBER radians) const { return ::radians(m_fAngle + (FLOATING)radians); }
 
-   template < primitive_number NUMBER >
+   template < prototype_number NUMBER >
    angle_type operator / (NUMBER n) const
    {
       return radians(m_fAngle / (FLOATING) n); 
@@ -53,7 +53,7 @@ public:
 
    FLOATING operator / (const angle_type & angle) const { return m_fAngle / angle.m_fAngle; }
    
-   template<primitive_number NUMBER>
+   template<prototype_number NUMBER>
    angle_type operator * (NUMBER n) const
    {
       return ::radians(m_fAngle * (FLOATING) n); 
@@ -107,7 +107,7 @@ public:
    constexpr FLOATING degrees() const { return ::radians_to_degrees(m_fAngle); }
 
    
-   template < primitive_number NUMBER >
+   template < prototype_number NUMBER >
    static constexpr angle_type degrees(NUMBER degrees)
    {
       
@@ -145,7 +145,7 @@ namespace geometry
 {
 
 
-   template<primitive_floating FLOATING>
+   template<prototype_floating FLOATING>
    inline angle_type<FLOATING> atan2(FLOATING y, FLOATING x)
    {
 
@@ -154,7 +154,7 @@ namespace geometry
    }
 
 
-   template<primitive_floating FLOATING>
+   template<prototype_floating FLOATING>
    inline angle_type<FLOATING> asin(FLOATING s)
    {
 
@@ -168,7 +168,7 @@ namespace geometry
 
 
 /// assumes result of radians subtracted from angle
-template<primitive_number NUMBER, primitive_floating FLOATING>
+template<prototype_number NUMBER, prototype_floating FLOATING>
 constexpr angle_type<FLOATING> operator-(NUMBER radians, const angle_type<FLOATING> &angle)
 {
    
@@ -178,7 +178,7 @@ constexpr angle_type<FLOATING> operator-(NUMBER radians, const angle_type<FLOATI
 
 
 /// assumes result of radians added to angle
-template<primitive_number NUMBER, primitive_floating FLOATING>
+template<prototype_number NUMBER, prototype_floating FLOATING>
 constexpr angle_type<FLOATING> operator+(NUMBER radians, const angle_type<FLOATING> &angle)
 {
    
@@ -187,7 +187,7 @@ constexpr angle_type<FLOATING> operator+(NUMBER radians, const angle_type<FLOATI
 }
 
 
-template<primitive_number NUMBER, primitive_floating FLOATING>
+template<prototype_number NUMBER, prototype_floating FLOATING>
 constexpr angle_type<FLOATING> operator *(NUMBER n, const angle_type<FLOATING> &angle)
 {
 
@@ -198,7 +198,7 @@ constexpr angle_type<FLOATING> operator *(NUMBER n, const angle_type<FLOATING> &
 
  
 
-template < primitive_floating FLOATING >
+template < prototype_floating FLOATING >
 constexpr angle_type < FLOATING > radians(FLOATING fAngle)
 {
    
@@ -207,7 +207,7 @@ constexpr angle_type < FLOATING > radians(FLOATING fAngle)
 }
 
 
-template<primitive_floating FLOATING>
+template<prototype_floating FLOATING>
 constexpr angle_type<FLOATING> degrees(FLOATING fAngle)
 {
 
@@ -278,7 +278,7 @@ inline float_angle operator"" f_degrees(unsigned long long hn)
 }
 
 
-template < primitive_number NUMBER1, primitive_number NUMBER2 >
+template < prototype_number NUMBER1, prototype_number NUMBER2 >
 inline auto angle(const ::point_type < NUMBER1 > & center, const ::point_type < NUMBER2 > & point)
 {
 

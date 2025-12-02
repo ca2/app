@@ -171,7 +171,7 @@ public:
 
    using matter::cast;
 
-   template < ::primitive_subparticle TYPE > 
+   template < ::prototype_subparticle TYPE > 
    inline TYPE * cast(const ::atom & atom) const;
 
    void defer_propset();
@@ -225,7 +225,7 @@ using reference_pointer = ::pointer<::property_object>;
 
 
 
-template < primitive_subparticle TYPE >
+template < prototype_subparticle TYPE >
 inline TYPE * property_object::cast(const ::atom & atom) const
 {
 

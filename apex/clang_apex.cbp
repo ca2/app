@@ -2306,7 +2306,7 @@
 		<Unit filename="primitive/primitive/papaya.h" />
 		<Unit filename="primitive/primitive/pointer.h" />
 		<Unit filename="primitive/primitive/pointer2.h" />
-		<Unit filename="primitive/primitive/primitive_update.h" />
+		<Unit filename="primitive/primitive/prototype_update.h" />
 		<Unit filename="primitive/primitive/promise.h" />
 		<Unit filename="primitive/primitive/property.cpp" />
 		<Unit filename="primitive/primitive/property.h" />
@@ -2874,8 +2874,8 @@
 		<Unit filename="user/user/plain_text_data.h" />
 		<Unit filename="user/user/primitive.cpp" />
 		<Unit filename="user/user/primitive.h" />
-		<Unit filename="user/user/primitive_impl.cpp" />
-		<Unit filename="user/user/primitive_impl.h" />
+		<Unit filename="user/user/prototype_impl.cpp" />
+		<Unit filename="user/user/prototype_impl.h" />
 		<Unit filename="user/user/print_job.cpp" />
 		<Unit filename="user/user/print_job.h" />
 		<Unit filename="user/user/prodevian.h" />

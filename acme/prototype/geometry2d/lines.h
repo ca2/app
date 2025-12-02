@@ -5,7 +5,7 @@
 #include "contains.h"
 
 
-template < primitive_number NUMBER >
+template < prototype_number NUMBER >
 class lines_base :
    public point_array_base < NUMBER >
 {
@@ -81,14 +81,14 @@ public:
 };
 
 
-template < primitive_number NUMBER >
+template < prototype_number NUMBER >
 lines_base < NUMBER >::lines_base()
 {
 
 }
 
 
-template < primitive_number NUMBER >
+template < prototype_number NUMBER >
 inline lines_base < NUMBER >::lines_base(const lines_base& lines) :
    point_array_base < NUMBER >(lines)
 {
@@ -96,7 +96,7 @@ inline lines_base < NUMBER >::lines_base(const lines_base& lines) :
 }
 
 
-template < primitive_number NUMBER >
+template < prototype_number NUMBER >
 inline lines_base < NUMBER >::lines_base(lines_base&& lines) :
    point_array_base < NUMBER >(::transfer(lines))
 {
@@ -105,7 +105,7 @@ inline lines_base < NUMBER >::lines_base(lines_base&& lines) :
 }
 
 
-template < primitive_number NUMBER >
+template < prototype_number NUMBER >
 lines_base < NUMBER >::~lines_base()
 
 {

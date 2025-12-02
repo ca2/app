@@ -372,25 +372,25 @@ public:
    //atom(const const_string_range_static_array <ITERATOR_TYPE2, t_size >& a) : atom((const ::string&)a) {}
 
 
-   template < primitive_signed SIGNED >
+   template < prototype_signed SIGNED >
    atom(SIGNED i);
-   template < primitive_unsigned UNSIGNED >
+   template < prototype_unsigned UNSIGNED >
    atom(UNSIGNED u);
-   template < primitive_enum ENUM >
+   template < prototype_enum ENUM >
    atom(ENUM e);
    atom(const ::scoped_string & scopedstr);
    //atom(const const_ansi_range & range);
    //atom(const_ansi_range && range);
    //atom(const const_ansi_range && range);
    //atom(const ::platform::type & type);
-   template < primitive_character_range RANGE >
+   template < prototype_character_range RANGE >
    atom(const RANGE & range);
    //template < has_as_string_not_payload HAS_AS_STRING_NOT_PAYLOAD >
    //atom(const HAS_AS_STRING_NOT_PAYLOAD& has_as_string_not_payload);
    ////atom(const ::scoped_string & str);
    ////atom(const ::payload & payload);
    ////atom(const ::lparam & lparam);
-   template < primitive_payload PAYLOAD  >
+   template < prototype_payload PAYLOAD  >
    atom(const PAYLOAD & payload);
    
    atom(::atom && atom);
@@ -416,7 +416,7 @@ public:
    }
 
 
-   enum_type primitive_type() const
+   enum_type prototype_type() const
    {
 
       if(m_etype < 0)
@@ -441,7 +441,7 @@ public:
    }
 
 
-   // returned compounded_type should have same primitive type as the atom
+   // returned compounded_type should have same prototype type as the atom
    enum_type compounded_type(enum_type etypeAdd) const
    {
 
@@ -514,9 +514,9 @@ public:
    inline bool operator == (const atom& atom) const;
    inline ::std::strong_ordering operator <=> (const atom & atom) const;
 
-   template < primitive_character_range RANGE >
+   template < prototype_character_range RANGE >
    inline bool operator == (const RANGE & str) const;
-   template < primitive_character_range RANGE >
+   template < prototype_character_range RANGE >
    inline ::std::strong_ordering operator <=> (const RANGE & str) const;
 
    template < character_pointer CHARACTER_POINTER >
@@ -551,21 +551,21 @@ public:
 
 
 
-   //template < primitive_integral INTEGRAL >
+   //template < prototype_integral INTEGRAL >
    //inline ::std::strong_ordering order(INTEGRAL i) const;
 
-   template < primitive_integral INTEGRAL >
+   template < prototype_integral INTEGRAL >
    inline bool operator == (INTEGRAL i) const;
 
-   template < primitive_integral INTEGRAL >
+   template < prototype_integral INTEGRAL >
    inline ::std::strong_ordering operator <=> (INTEGRAL i) const;
-   //template < primitive_integral INTEGRAL >
+   //template < prototype_integral INTEGRAL >
    //inline bool operator < (INTEGRAL i) const;
-   //template < primitive_integral INTEGRAL >
+   //template < prototype_integral INTEGRAL >
    //inline bool operator <= (INTEGRAL i) const;
-   //template < primitive_integral INTEGRAL >
+   //template < prototype_integral INTEGRAL >
    //inline bool operator > (INTEGRAL i) const;
-   //template < primitive_integral INTEGRAL >
+   //template < prototype_integral INTEGRAL >
    //inline bool operator >= (INTEGRAL i) const;
 
 
@@ -658,9 +658,9 @@ public:
 //   atom & operator = (const ::scoped_string & scopedstr);
 //
 //
-   //template < primitive_integer INTEGRAL >
+   //template < prototype_integer INTEGRAL >
    //atom & operator = (INTEGER i);
-//   template < primitive_natural NATURAL >
+//   template < prototype_natural NATURAL >
 //   atom & operator = (NATURAL u);
 //
 //#endif // !NO_TEMPLATE
@@ -781,7 +781,7 @@ public:
 };
 
 
-//template < primitive_character CHARACTER, int t_size >
+//template < prototype_character CHARACTER, int t_size >
 //inline const_string_range_static_array < const CHARACTER*, t_size + 1 > operator + (const const_string_range_static_array < const CHARACTER*, t_size >& a, const ::atom & atom)
 //{
 //

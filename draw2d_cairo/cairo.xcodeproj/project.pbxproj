@@ -1268,65 +1268,65 @@
 		07A6DFC0173C27EB009E6FB8 /* datetime_windows_filetime.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D634173C27E9009E6FB8 /* datetime_windows_filetime.cpp */; };
 		07A6DFC1173C27EB009E6FB8 /* datetime_windows_filetime.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D635173C27E9009E6FB8 /* datetime_windows_filetime.h */; };
 		07A6DFC2173C27EB009E6FB8 /* primitive.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D636173C27E9009E6FB8 /* primitive.h */; };
-		07A6DFC3173C27EB009E6FB8 /* primitive_align.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D637173C27E9009E6FB8 /* primitive_align.h */; };
-		07A6DFC4173C27EB009E6FB8 /* primitive_check.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D638173C27E9009E6FB8 /* primitive_check.h */; };
-		07A6DFC5173C27EB009E6FB8 /* primitive_color.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D639173C27E9009E6FB8 /* primitive_color.cpp */; };
-		07A6DFC6173C27EB009E6FB8 /* primitive_color.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D63A173C27E9009E6FB8 /* primitive_color.h */; };
-		07A6DFC7173C27EB009E6FB8 /* primitive_count.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D63B173C27E9009E6FB8 /* primitive_count.cpp */; };
-		07A6DFC8173C27EB009E6FB8 /* primitive_fixed_string.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D63C173C27E9009E6FB8 /* primitive_fixed_string.cpp */; };
-		07A6DFC9173C27EB009E6FB8 /* primitive_fixed_string.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D63D173C27E9009E6FB8 /* primitive_fixed_string.h */; };
-		07A6DFCA173C27EB009E6FB8 /* primitive_geometric_types.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D63E173C27E9009E6FB8 /* primitive_geometric_types.cpp */; };
-		07A6DFCB173C27EB009E6FB8 /* primitive_geometric_types.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D63F173C27E9009E6FB8 /* primitive_geometric_types.h */; };
-		07A6DFCC173C27EB009E6FB8 /* primitive_id.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D640173C27E9009E6FB8 /* primitive_id.cpp */; };
-		07A6DFCD173C27EB009E6FB8 /* primitive_id.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D641173C27E9009E6FB8 /* primitive_id.h */; };
-		07A6DFCE173C27EB009E6FB8 /* primitive_id_space.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D642173C27E9009E6FB8 /* primitive_id_space.cpp */; };
-		07A6DFCF173C27EB009E6FB8 /* primitive_id_space.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D643173C27E9009E6FB8 /* primitive_id_space.h */; };
-		07A6DFD0173C27EB009E6FB8 /* primitive_img.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D644173C27E9009E6FB8 /* primitive_img.h */; };
-		07A6DFD1173C27EB009E6FB8 /* primitive_index.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D645173C27E9009E6FB8 /* primitive_index.cpp */; };
-		07A6DFD2173C27EB009E6FB8 /* primitive_index.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D646173C27E9009E6FB8 /* primitive_index.h */; };
-		07A6DFD3173C27EB009E6FB8 /* primitive_int_biunique.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D647173C27E9009E6FB8 /* primitive_int_biunique.cpp */; };
-		07A6DFD4173C27EB009E6FB8 /* primitive_int_biunique.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D648173C27E9009E6FB8 /* primitive_int_biunique.h */; };
-		07A6DFD5173C27EB009E6FB8 /* primitive_logic.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D649173C27E9009E6FB8 /* primitive_logic.cpp */; };
-		07A6DFD6173C27EB009E6FB8 /* primitive_logic.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D64A173C27E9009E6FB8 /* primitive_logic.h */; };
-		07A6DFD7173C27EB009E6FB8 /* primitive_memory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D64B173C27E9009E6FB8 /* primitive_memory.cpp */; };
-		07A6DFD8173C27EB009E6FB8 /* primitive_memory.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D64C173C27E9009E6FB8 /* primitive_memory.h */; };
-		07A6DFD9173C27EB009E6FB8 /* primitive_memory_base.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D64D173C27E9009E6FB8 /* primitive_memory_base.cpp */; };
-		07A6DFDA173C27EB009E6FB8 /* primitive_memory_base.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D64E173C27E9009E6FB8 /* primitive_memory_base.h */; };
-		07A6DFDB173C27EB009E6FB8 /* primitive_memory_container.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D64F173C27E9009E6FB8 /* primitive_memory_container.cpp */; };
-		07A6DFDC173C27EB009E6FB8 /* primitive_memory_container.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D650173C27E9009E6FB8 /* primitive_memory_container.h */; };
-		07A6DFDD173C27EB009E6FB8 /* primitive_memory_file.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D651173C27E9009E6FB8 /* primitive_memory_file.cpp */; };
-		07A6DFDE173C27EB009E6FB8 /* primitive_memory_file.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D652173C27E9009E6FB8 /* primitive_memory_file.h */; };
-		07A6DFDF173C27EB009E6FB8 /* primitive_natural.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D653173C27E9009E6FB8 /* primitive_natural.cpp */; };
-		07A6DFE0173C27EB009E6FB8 /* primitive_natural.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D654173C27E9009E6FB8 /* primitive_natural.h */; };
-		07A6DFE1173C27EB009E6FB8 /* primitive_numeric_info.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D655173C27E9009E6FB8 /* primitive_numeric_info.h */; };
-		07A6DFE2173C27EB009E6FB8 /* primitive_point.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D656173C27E9009E6FB8 /* primitive_point.cpp */; };
-		07A6DFE3173C27EB009E6FB8 /* primitive_point.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D657173C27E9009E6FB8 /* primitive_point.h */; };
-		07A6DFE4173C27EB009E6FB8 /* primitive_rectangle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D658173C27E9009E6FB8 /* primitive_rectangle.cpp */; };
-		07A6DFE5173C27EB009E6FB8 /* primitive_rectangle.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D659173C27E9009E6FB8 /* primitive_rectangle.h */; };
-		07A6DFE6173C27EB009E6FB8 /* primitive_scalar.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D65A173C27E9009E6FB8 /* primitive_scalar.cpp */; };
-		07A6DFE7173C27EB009E6FB8 /* primitive_scalar.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D65B173C27E9009E6FB8 /* primitive_scalar.h */; };
-		07A6DFE8173C27EB009E6FB8 /* primitive_shared_file.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D65C173C27E9009E6FB8 /* primitive_shared_file.cpp */; };
-		07A6DFE9173C27EB009E6FB8 /* primitive_shared_file.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D65D173C27E9009E6FB8 /* primitive_shared_file.h */; };
-		07A6DFEA173C27EB009E6FB8 /* primitive_shared_memory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D65E173C27E9009E6FB8 /* primitive_shared_memory.cpp */; };
-		07A6DFEB173C27EB009E6FB8 /* primitive_shared_memory.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D65F173C27E9009E6FB8 /* primitive_shared_memory.h */; };
-		07A6DFEC173C27EB009E6FB8 /* primitive_simple_string.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D660173C27E9009E6FB8 /* primitive_simple_string.cpp */; };
-		07A6DFED173C27EB009E6FB8 /* primitive_simple_string.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D661173C27E9009E6FB8 /* primitive_simple_string.h */; };
-		07A6DFEE173C27EB009E6FB8 /* primitive_size.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D662173C27E9009E6FB8 /* primitive_size.cpp */; };
-		07A6DFEF173C27EB009E6FB8 /* primitive_size.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D663173C27E9009E6FB8 /* primitive_size.h */; };
-		07A6DFF0173C27EB009E6FB8 /* primitive_string.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D664173C27E9009E6FB8 /* primitive_string.cpp */; };
-		07A6DFF1173C27EB009E6FB8 /* primitive_string.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D665173C27E9009E6FB8 /* primitive_string.h */; };
-		07A6DFF2173C27EB009E6FB8 /* primitive_string_composite.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D666173C27E9009E6FB8 /* primitive_string_composite.h */; };
-		07A6DFF3173C27EB009E6FB8 /* primitive_string_core.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D667173C27E9009E6FB8 /* primitive_string_core.cpp */; };
-		07A6DFF4173C27EB009E6FB8 /* primitive_string_format.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D668173C27E9009E6FB8 /* primitive_string_format.cpp */; };
-		07A6DFF5173C27EB009E6FB8 /* primitive_string_format.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D669173C27E9009E6FB8 /* primitive_string_format.h */; };
-		07A6DFF6173C27EB009E6FB8 /* primitive_string_interface.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D66A173C27E9009E6FB8 /* primitive_string_interface.h */; };
-		07A6DFF7173C27EB009E6FB8 /* primitive_string_manager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D66B173C27E9009E6FB8 /* primitive_string_manager.cpp */; };
-		07A6DFF8173C27EB009E6FB8 /* primitive_var.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D66C173C27E9009E6FB8 /* primitive_var.cpp */; };
-		07A6DFF9173C27EB009E6FB8 /* primitive_var.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D66D173C27E9009E6FB8 /* primitive_var.h */; };
-		07A6DFFA173C27EB009E6FB8 /* primitive_var_allocation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D66E173C27E9009E6FB8 /* primitive_var_allocation.cpp */; };
-		07A6DFFB173C27EB009E6FB8 /* primitive_virtual_memory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D66F173C27E9009E6FB8 /* primitive_virtual_memory.cpp */; };
-		07A6DFFC173C27EB009E6FB8 /* primitive_virtual_memory.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D670173C27E9009E6FB8 /* primitive_virtual_memory.h */; };
-		07A6DFFD173C27EB009E6FB8 /* primitive_wstringtou.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D671173C27E9009E6FB8 /* primitive_wstringtou.h */; };
+		07A6DFC3173C27EB009E6FB8 /* prototype_align.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D637173C27E9009E6FB8 /* prototype_align.h */; };
+		07A6DFC4173C27EB009E6FB8 /* prototype_check.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D638173C27E9009E6FB8 /* prototype_check.h */; };
+		07A6DFC5173C27EB009E6FB8 /* prototype_color.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D639173C27E9009E6FB8 /* prototype_color.cpp */; };
+		07A6DFC6173C27EB009E6FB8 /* prototype_color.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D63A173C27E9009E6FB8 /* prototype_color.h */; };
+		07A6DFC7173C27EB009E6FB8 /* prototype_count.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D63B173C27E9009E6FB8 /* prototype_count.cpp */; };
+		07A6DFC8173C27EB009E6FB8 /* prototype_fixed_string.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D63C173C27E9009E6FB8 /* prototype_fixed_string.cpp */; };
+		07A6DFC9173C27EB009E6FB8 /* prototype_fixed_string.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D63D173C27E9009E6FB8 /* prototype_fixed_string.h */; };
+		07A6DFCA173C27EB009E6FB8 /* prototype_geometric_types.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D63E173C27E9009E6FB8 /* prototype_geometric_types.cpp */; };
+		07A6DFCB173C27EB009E6FB8 /* prototype_geometric_types.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D63F173C27E9009E6FB8 /* prototype_geometric_types.h */; };
+		07A6DFCC173C27EB009E6FB8 /* prototype_id.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D640173C27E9009E6FB8 /* prototype_id.cpp */; };
+		07A6DFCD173C27EB009E6FB8 /* prototype_id.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D641173C27E9009E6FB8 /* prototype_id.h */; };
+		07A6DFCE173C27EB009E6FB8 /* prototype_id_space.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D642173C27E9009E6FB8 /* prototype_id_space.cpp */; };
+		07A6DFCF173C27EB009E6FB8 /* prototype_id_space.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D643173C27E9009E6FB8 /* prototype_id_space.h */; };
+		07A6DFD0173C27EB009E6FB8 /* prototype_img.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D644173C27E9009E6FB8 /* prototype_img.h */; };
+		07A6DFD1173C27EB009E6FB8 /* prototype_index.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D645173C27E9009E6FB8 /* prototype_index.cpp */; };
+		07A6DFD2173C27EB009E6FB8 /* prototype_index.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D646173C27E9009E6FB8 /* prototype_index.h */; };
+		07A6DFD3173C27EB009E6FB8 /* prototype_int_biunique.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D647173C27E9009E6FB8 /* prototype_int_biunique.cpp */; };
+		07A6DFD4173C27EB009E6FB8 /* prototype_int_biunique.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D648173C27E9009E6FB8 /* prototype_int_biunique.h */; };
+		07A6DFD5173C27EB009E6FB8 /* prototype_logic.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D649173C27E9009E6FB8 /* prototype_logic.cpp */; };
+		07A6DFD6173C27EB009E6FB8 /* prototype_logic.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D64A173C27E9009E6FB8 /* prototype_logic.h */; };
+		07A6DFD7173C27EB009E6FB8 /* prototype_memory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D64B173C27E9009E6FB8 /* prototype_memory.cpp */; };
+		07A6DFD8173C27EB009E6FB8 /* prototype_memory.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D64C173C27E9009E6FB8 /* prototype_memory.h */; };
+		07A6DFD9173C27EB009E6FB8 /* prototype_memory_base.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D64D173C27E9009E6FB8 /* prototype_memory_base.cpp */; };
+		07A6DFDA173C27EB009E6FB8 /* prototype_memory_base.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D64E173C27E9009E6FB8 /* prototype_memory_base.h */; };
+		07A6DFDB173C27EB009E6FB8 /* prototype_memory_container.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D64F173C27E9009E6FB8 /* prototype_memory_container.cpp */; };
+		07A6DFDC173C27EB009E6FB8 /* prototype_memory_container.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D650173C27E9009E6FB8 /* prototype_memory_container.h */; };
+		07A6DFDD173C27EB009E6FB8 /* prototype_memory_file.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D651173C27E9009E6FB8 /* prototype_memory_file.cpp */; };
+		07A6DFDE173C27EB009E6FB8 /* prototype_memory_file.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D652173C27E9009E6FB8 /* prototype_memory_file.h */; };
+		07A6DFDF173C27EB009E6FB8 /* prototype_natural.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D653173C27E9009E6FB8 /* prototype_natural.cpp */; };
+		07A6DFE0173C27EB009E6FB8 /* prototype_natural.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D654173C27E9009E6FB8 /* prototype_natural.h */; };
+		07A6DFE1173C27EB009E6FB8 /* prototype_numeric_info.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D655173C27E9009E6FB8 /* prototype_numeric_info.h */; };
+		07A6DFE2173C27EB009E6FB8 /* prototype_point.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D656173C27E9009E6FB8 /* prototype_point.cpp */; };
+		07A6DFE3173C27EB009E6FB8 /* prototype_point.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D657173C27E9009E6FB8 /* prototype_point.h */; };
+		07A6DFE4173C27EB009E6FB8 /* prototype_rectangle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D658173C27E9009E6FB8 /* prototype_rectangle.cpp */; };
+		07A6DFE5173C27EB009E6FB8 /* prototype_rectangle.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D659173C27E9009E6FB8 /* prototype_rectangle.h */; };
+		07A6DFE6173C27EB009E6FB8 /* prototype_scalar.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D65A173C27E9009E6FB8 /* prototype_scalar.cpp */; };
+		07A6DFE7173C27EB009E6FB8 /* prototype_scalar.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D65B173C27E9009E6FB8 /* prototype_scalar.h */; };
+		07A6DFE8173C27EB009E6FB8 /* prototype_shared_file.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D65C173C27E9009E6FB8 /* prototype_shared_file.cpp */; };
+		07A6DFE9173C27EB009E6FB8 /* prototype_shared_file.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D65D173C27E9009E6FB8 /* prototype_shared_file.h */; };
+		07A6DFEA173C27EB009E6FB8 /* prototype_shared_memory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D65E173C27E9009E6FB8 /* prototype_shared_memory.cpp */; };
+		07A6DFEB173C27EB009E6FB8 /* prototype_shared_memory.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D65F173C27E9009E6FB8 /* prototype_shared_memory.h */; };
+		07A6DFEC173C27EB009E6FB8 /* prototype_simple_string.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D660173C27E9009E6FB8 /* prototype_simple_string.cpp */; };
+		07A6DFED173C27EB009E6FB8 /* prototype_simple_string.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D661173C27E9009E6FB8 /* prototype_simple_string.h */; };
+		07A6DFEE173C27EB009E6FB8 /* prototype_size.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D662173C27E9009E6FB8 /* prototype_size.cpp */; };
+		07A6DFEF173C27EB009E6FB8 /* prototype_size.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D663173C27E9009E6FB8 /* prototype_size.h */; };
+		07A6DFF0173C27EB009E6FB8 /* prototype_string.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D664173C27E9009E6FB8 /* prototype_string.cpp */; };
+		07A6DFF1173C27EB009E6FB8 /* prototype_string.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D665173C27E9009E6FB8 /* prototype_string.h */; };
+		07A6DFF2173C27EB009E6FB8 /* prototype_string_composite.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D666173C27E9009E6FB8 /* prototype_string_composite.h */; };
+		07A6DFF3173C27EB009E6FB8 /* prototype_string_core.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D667173C27E9009E6FB8 /* prototype_string_core.cpp */; };
+		07A6DFF4173C27EB009E6FB8 /* prototype_string_format.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D668173C27E9009E6FB8 /* prototype_string_format.cpp */; };
+		07A6DFF5173C27EB009E6FB8 /* prototype_string_format.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D669173C27E9009E6FB8 /* prototype_string_format.h */; };
+		07A6DFF6173C27EB009E6FB8 /* prototype_string_interface.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D66A173C27E9009E6FB8 /* prototype_string_interface.h */; };
+		07A6DFF7173C27EB009E6FB8 /* prototype_string_manager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D66B173C27E9009E6FB8 /* prototype_string_manager.cpp */; };
+		07A6DFF8173C27EB009E6FB8 /* prototype_var.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D66C173C27E9009E6FB8 /* prototype_var.cpp */; };
+		07A6DFF9173C27EB009E6FB8 /* prototype_var.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D66D173C27E9009E6FB8 /* prototype_var.h */; };
+		07A6DFFA173C27EB009E6FB8 /* prototype_var_allocation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D66E173C27E9009E6FB8 /* prototype_var_allocation.cpp */; };
+		07A6DFFB173C27EB009E6FB8 /* prototype_virtual_memory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D66F173C27E9009E6FB8 /* prototype_virtual_memory.cpp */; };
+		07A6DFFC173C27EB009E6FB8 /* prototype_virtual_memory.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D670173C27E9009E6FB8 /* prototype_virtual_memory.h */; };
+		07A6DFFD173C27EB009E6FB8 /* prototype_wstringtou.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D671173C27E9009E6FB8 /* prototype_wstringtou.h */; };
 		07A6DFFE173C27EB009E6FB8 /* dynamic_source.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D674173C27E9009E6FB8 /* dynamic_source.h */; };
 		07A6DFFF173C27EB009E6FB8 /* dynamic_source_exit_exception.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D675173C27E9009E6FB8 /* dynamic_source_exit_exception.cpp */; };
 		07A6E000173C27EB009E6FB8 /* dynamic_source_exit_exception.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D676173C27E9009E6FB8 /* dynamic_source_exit_exception.h */; };
@@ -3541,65 +3541,65 @@
 		07A6D634173C27E9009E6FB8 /* datetime_windows_filetime.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = datetime_windows_filetime.cpp; sourceTree = "<group>"; };
 		07A6D635173C27E9009E6FB8 /* datetime_windows_filetime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = datetime_windows_filetime.h; sourceTree = "<group>"; };
 		07A6D636173C27E9009E6FB8 /* primitive.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = primitive.h; sourceTree = "<group>"; };
-		07A6D637173C27E9009E6FB8 /* primitive_align.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = primitive_align.h; sourceTree = "<group>"; };
-		07A6D638173C27E9009E6FB8 /* primitive_check.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = primitive_check.h; sourceTree = "<group>"; };
-		07A6D639173C27E9009E6FB8 /* primitive_color.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = primitive_color.cpp; sourceTree = "<group>"; };
-		07A6D63A173C27E9009E6FB8 /* primitive_color.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = primitive_color.h; sourceTree = "<group>"; };
-		07A6D63B173C27E9009E6FB8 /* primitive_count.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = primitive_count.cpp; sourceTree = "<group>"; };
-		07A6D63C173C27E9009E6FB8 /* primitive_fixed_string.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = primitive_fixed_string.cpp; sourceTree = "<group>"; };
-		07A6D63D173C27E9009E6FB8 /* primitive_fixed_string.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = primitive_fixed_string.h; sourceTree = "<group>"; };
-		07A6D63E173C27E9009E6FB8 /* primitive_geometric_types.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = primitive_geometric_types.cpp; sourceTree = "<group>"; };
-		07A6D63F173C27E9009E6FB8 /* primitive_geometric_types.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = primitive_geometric_types.h; sourceTree = "<group>"; };
-		07A6D640173C27E9009E6FB8 /* primitive_id.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = primitive_id.cpp; sourceTree = "<group>"; };
-		07A6D641173C27E9009E6FB8 /* primitive_id.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = primitive_id.h; sourceTree = "<group>"; };
-		07A6D642173C27E9009E6FB8 /* primitive_id_space.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = primitive_id_space.cpp; sourceTree = "<group>"; };
-		07A6D643173C27E9009E6FB8 /* primitive_id_space.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = primitive_id_space.h; sourceTree = "<group>"; };
-		07A6D644173C27E9009E6FB8 /* primitive_img.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = primitive_img.h; sourceTree = "<group>"; };
-		07A6D645173C27E9009E6FB8 /* primitive_index.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = primitive_index.cpp; sourceTree = "<group>"; };
-		07A6D646173C27E9009E6FB8 /* primitive_index.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = primitive_index.h; sourceTree = "<group>"; };
-		07A6D647173C27E9009E6FB8 /* primitive_int_biunique.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = primitive_int_biunique.cpp; sourceTree = "<group>"; };
-		07A6D648173C27E9009E6FB8 /* primitive_int_biunique.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = primitive_int_biunique.h; sourceTree = "<group>"; };
-		07A6D649173C27E9009E6FB8 /* primitive_logic.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = primitive_logic.cpp; sourceTree = "<group>"; };
-		07A6D64A173C27E9009E6FB8 /* primitive_logic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = primitive_logic.h; sourceTree = "<group>"; };
-		07A6D64B173C27E9009E6FB8 /* primitive_memory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = primitive_memory.cpp; sourceTree = "<group>"; };
-		07A6D64C173C27E9009E6FB8 /* primitive_memory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = primitive_memory.h; sourceTree = "<group>"; };
-		07A6D64D173C27E9009E6FB8 /* primitive_memory_base.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = primitive_memory_base.cpp; sourceTree = "<group>"; };
-		07A6D64E173C27E9009E6FB8 /* primitive_memory_base.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = primitive_memory_base.h; sourceTree = "<group>"; };
-		07A6D64F173C27E9009E6FB8 /* primitive_memory_container.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = primitive_memory_container.cpp; sourceTree = "<group>"; };
-		07A6D650173C27E9009E6FB8 /* primitive_memory_container.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = primitive_memory_container.h; sourceTree = "<group>"; };
-		07A6D651173C27E9009E6FB8 /* primitive_memory_file.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = primitive_memory_file.cpp; sourceTree = "<group>"; };
-		07A6D652173C27E9009E6FB8 /* primitive_memory_file.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = primitive_memory_file.h; sourceTree = "<group>"; };
-		07A6D653173C27E9009E6FB8 /* primitive_natural.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = primitive_natural.cpp; sourceTree = "<group>"; };
-		07A6D654173C27E9009E6FB8 /* primitive_natural.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = primitive_natural.h; sourceTree = "<group>"; };
-		07A6D655173C27E9009E6FB8 /* primitive_numeric_info.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = primitive_numeric_info.h; sourceTree = "<group>"; };
-		07A6D656173C27E9009E6FB8 /* primitive_point.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = primitive_point.cpp; sourceTree = "<group>"; };
-		07A6D657173C27E9009E6FB8 /* primitive_point.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = primitive_point.h; sourceTree = "<group>"; };
-		07A6D658173C27E9009E6FB8 /* primitive_rectangle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = primitive_rectangle.cpp; sourceTree = "<group>"; };
-		07A6D659173C27E9009E6FB8 /* primitive_rectangle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = primitive_rectangle.h; sourceTree = "<group>"; };
-		07A6D65A173C27E9009E6FB8 /* primitive_scalar.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = primitive_scalar.cpp; sourceTree = "<group>"; };
-		07A6D65B173C27E9009E6FB8 /* primitive_scalar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = primitive_scalar.h; sourceTree = "<group>"; };
-		07A6D65C173C27E9009E6FB8 /* primitive_shared_file.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = primitive_shared_file.cpp; sourceTree = "<group>"; };
-		07A6D65D173C27E9009E6FB8 /* primitive_shared_file.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = primitive_shared_file.h; sourceTree = "<group>"; };
-		07A6D65E173C27E9009E6FB8 /* primitive_shared_memory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = primitive_shared_memory.cpp; sourceTree = "<group>"; };
-		07A6D65F173C27E9009E6FB8 /* primitive_shared_memory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = primitive_shared_memory.h; sourceTree = "<group>"; };
-		07A6D660173C27E9009E6FB8 /* primitive_simple_string.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = primitive_simple_string.cpp; sourceTree = "<group>"; };
-		07A6D661173C27E9009E6FB8 /* primitive_simple_string.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = primitive_simple_string.h; sourceTree = "<group>"; };
-		07A6D662173C27E9009E6FB8 /* primitive_size.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = primitive_size.cpp; sourceTree = "<group>"; };
-		07A6D663173C27E9009E6FB8 /* primitive_size.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = primitive_size.h; sourceTree = "<group>"; };
-		07A6D664173C27E9009E6FB8 /* primitive_string.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = primitive_string.cpp; sourceTree = "<group>"; };
-		07A6D665173C27E9009E6FB8 /* primitive_string.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = primitive_string.h; sourceTree = "<group>"; };
-		07A6D666173C27E9009E6FB8 /* primitive_string_composite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = primitive_string_composite.h; sourceTree = "<group>"; };
-		07A6D667173C27E9009E6FB8 /* primitive_string_core.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = primitive_string_core.cpp; sourceTree = "<group>"; };
-		07A6D668173C27E9009E6FB8 /* primitive_string_format.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = primitive_string_format.cpp; sourceTree = "<group>"; };
-		07A6D669173C27E9009E6FB8 /* primitive_string_format.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = primitive_string_format.h; sourceTree = "<group>"; };
-		07A6D66A173C27E9009E6FB8 /* primitive_string_interface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = primitive_string_interface.h; sourceTree = "<group>"; };
-		07A6D66B173C27E9009E6FB8 /* primitive_string_manager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = primitive_string_manager.cpp; sourceTree = "<group>"; };
-		07A6D66C173C27E9009E6FB8 /* primitive_var.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = primitive_var.cpp; sourceTree = "<group>"; };
-		07A6D66D173C27E9009E6FB8 /* primitive_var.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = primitive_var.h; sourceTree = "<group>"; };
-		07A6D66E173C27E9009E6FB8 /* primitive_var_allocation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = primitive_var_allocation.cpp; sourceTree = "<group>"; };
-		07A6D66F173C27E9009E6FB8 /* primitive_virtual_memory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = primitive_virtual_memory.cpp; sourceTree = "<group>"; };
-		07A6D670173C27E9009E6FB8 /* primitive_virtual_memory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = primitive_virtual_memory.h; sourceTree = "<group>"; };
-		07A6D671173C27E9009E6FB8 /* primitive_wstringtou.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = primitive_wstringtou.h; sourceTree = "<group>"; };
+		07A6D637173C27E9009E6FB8 /* prototype_align.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = prototype_align.h; sourceTree = "<group>"; };
+		07A6D638173C27E9009E6FB8 /* prototype_check.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = prototype_check.h; sourceTree = "<group>"; };
+		07A6D639173C27E9009E6FB8 /* prototype_color.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = prototype_color.cpp; sourceTree = "<group>"; };
+		07A6D63A173C27E9009E6FB8 /* prototype_color.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = prototype_color.h; sourceTree = "<group>"; };
+		07A6D63B173C27E9009E6FB8 /* prototype_count.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = prototype_count.cpp; sourceTree = "<group>"; };
+		07A6D63C173C27E9009E6FB8 /* prototype_fixed_string.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = prototype_fixed_string.cpp; sourceTree = "<group>"; };
+		07A6D63D173C27E9009E6FB8 /* prototype_fixed_string.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = prototype_fixed_string.h; sourceTree = "<group>"; };
+		07A6D63E173C27E9009E6FB8 /* prototype_geometric_types.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = prototype_geometric_types.cpp; sourceTree = "<group>"; };
+		07A6D63F173C27E9009E6FB8 /* prototype_geometric_types.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = prototype_geometric_types.h; sourceTree = "<group>"; };
+		07A6D640173C27E9009E6FB8 /* prototype_id.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = prototype_id.cpp; sourceTree = "<group>"; };
+		07A6D641173C27E9009E6FB8 /* prototype_id.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = prototype_id.h; sourceTree = "<group>"; };
+		07A6D642173C27E9009E6FB8 /* prototype_id_space.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = prototype_id_space.cpp; sourceTree = "<group>"; };
+		07A6D643173C27E9009E6FB8 /* prototype_id_space.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = prototype_id_space.h; sourceTree = "<group>"; };
+		07A6D644173C27E9009E6FB8 /* prototype_img.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = prototype_img.h; sourceTree = "<group>"; };
+		07A6D645173C27E9009E6FB8 /* prototype_index.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = prototype_index.cpp; sourceTree = "<group>"; };
+		07A6D646173C27E9009E6FB8 /* prototype_index.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = prototype_index.h; sourceTree = "<group>"; };
+		07A6D647173C27E9009E6FB8 /* prototype_int_biunique.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = prototype_int_biunique.cpp; sourceTree = "<group>"; };
+		07A6D648173C27E9009E6FB8 /* prototype_int_biunique.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = prototype_int_biunique.h; sourceTree = "<group>"; };
+		07A6D649173C27E9009E6FB8 /* prototype_logic.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = prototype_logic.cpp; sourceTree = "<group>"; };
+		07A6D64A173C27E9009E6FB8 /* prototype_logic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = prototype_logic.h; sourceTree = "<group>"; };
+		07A6D64B173C27E9009E6FB8 /* prototype_memory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = prototype_memory.cpp; sourceTree = "<group>"; };
+		07A6D64C173C27E9009E6FB8 /* prototype_memory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = prototype_memory.h; sourceTree = "<group>"; };
+		07A6D64D173C27E9009E6FB8 /* prototype_memory_base.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = prototype_memory_base.cpp; sourceTree = "<group>"; };
+		07A6D64E173C27E9009E6FB8 /* prototype_memory_base.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = prototype_memory_base.h; sourceTree = "<group>"; };
+		07A6D64F173C27E9009E6FB8 /* prototype_memory_container.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = prototype_memory_container.cpp; sourceTree = "<group>"; };
+		07A6D650173C27E9009E6FB8 /* prototype_memory_container.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = prototype_memory_container.h; sourceTree = "<group>"; };
+		07A6D651173C27E9009E6FB8 /* prototype_memory_file.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = prototype_memory_file.cpp; sourceTree = "<group>"; };
+		07A6D652173C27E9009E6FB8 /* prototype_memory_file.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = prototype_memory_file.h; sourceTree = "<group>"; };
+		07A6D653173C27E9009E6FB8 /* prototype_natural.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = prototype_natural.cpp; sourceTree = "<group>"; };
+		07A6D654173C27E9009E6FB8 /* prototype_natural.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = prototype_natural.h; sourceTree = "<group>"; };
+		07A6D655173C27E9009E6FB8 /* prototype_numeric_info.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = prototype_numeric_info.h; sourceTree = "<group>"; };
+		07A6D656173C27E9009E6FB8 /* prototype_point.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = prototype_point.cpp; sourceTree = "<group>"; };
+		07A6D657173C27E9009E6FB8 /* prototype_point.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = prototype_point.h; sourceTree = "<group>"; };
+		07A6D658173C27E9009E6FB8 /* prototype_rectangle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = prototype_rectangle.cpp; sourceTree = "<group>"; };
+		07A6D659173C27E9009E6FB8 /* prototype_rectangle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = prototype_rectangle.h; sourceTree = "<group>"; };
+		07A6D65A173C27E9009E6FB8 /* prototype_scalar.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = prototype_scalar.cpp; sourceTree = "<group>"; };
+		07A6D65B173C27E9009E6FB8 /* prototype_scalar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = prototype_scalar.h; sourceTree = "<group>"; };
+		07A6D65C173C27E9009E6FB8 /* prototype_shared_file.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = prototype_shared_file.cpp; sourceTree = "<group>"; };
+		07A6D65D173C27E9009E6FB8 /* prototype_shared_file.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = prototype_shared_file.h; sourceTree = "<group>"; };
+		07A6D65E173C27E9009E6FB8 /* prototype_shared_memory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = prototype_shared_memory.cpp; sourceTree = "<group>"; };
+		07A6D65F173C27E9009E6FB8 /* prototype_shared_memory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = prototype_shared_memory.h; sourceTree = "<group>"; };
+		07A6D660173C27E9009E6FB8 /* prototype_simple_string.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = prototype_simple_string.cpp; sourceTree = "<group>"; };
+		07A6D661173C27E9009E6FB8 /* prototype_simple_string.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = prototype_simple_string.h; sourceTree = "<group>"; };
+		07A6D662173C27E9009E6FB8 /* prototype_size.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = prototype_size.cpp; sourceTree = "<group>"; };
+		07A6D663173C27E9009E6FB8 /* prototype_size.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = prototype_size.h; sourceTree = "<group>"; };
+		07A6D664173C27E9009E6FB8 /* prototype_string.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = prototype_string.cpp; sourceTree = "<group>"; };
+		07A6D665173C27E9009E6FB8 /* prototype_string.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = prototype_string.h; sourceTree = "<group>"; };
+		07A6D666173C27E9009E6FB8 /* prototype_string_composite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = prototype_string_composite.h; sourceTree = "<group>"; };
+		07A6D667173C27E9009E6FB8 /* prototype_string_core.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = prototype_string_core.cpp; sourceTree = "<group>"; };
+		07A6D668173C27E9009E6FB8 /* prototype_string_format.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = prototype_string_format.cpp; sourceTree = "<group>"; };
+		07A6D669173C27E9009E6FB8 /* prototype_string_format.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = prototype_string_format.h; sourceTree = "<group>"; };
+		07A6D66A173C27E9009E6FB8 /* prototype_string_interface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = prototype_string_interface.h; sourceTree = "<group>"; };
+		07A6D66B173C27E9009E6FB8 /* prototype_string_manager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = prototype_string_manager.cpp; sourceTree = "<group>"; };
+		07A6D66C173C27E9009E6FB8 /* prototype_var.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = prototype_var.cpp; sourceTree = "<group>"; };
+		07A6D66D173C27E9009E6FB8 /* prototype_var.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = prototype_var.h; sourceTree = "<group>"; };
+		07A6D66E173C27E9009E6FB8 /* prototype_var_allocation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = prototype_var_allocation.cpp; sourceTree = "<group>"; };
+		07A6D66F173C27E9009E6FB8 /* prototype_virtual_memory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = prototype_virtual_memory.cpp; sourceTree = "<group>"; };
+		07A6D670173C27E9009E6FB8 /* prototype_virtual_memory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = prototype_virtual_memory.h; sourceTree = "<group>"; };
+		07A6D671173C27E9009E6FB8 /* prototype_wstringtou.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = prototype_wstringtou.h; sourceTree = "<group>"; };
 		07A6D674173C27E9009E6FB8 /* dynamic_source.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dynamic_source.h; sourceTree = "<group>"; };
 		07A6D675173C27E9009E6FB8 /* dynamic_source_exit_exception.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = dynamic_source_exit_exception.cpp; sourceTree = "<group>"; };
 		07A6D676173C27E9009E6FB8 /* dynamic_source_exit_exception.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dynamic_source_exit_exception.h; sourceTree = "<group>"; };
@@ -6721,65 +6721,65 @@
 				07A6D621173C27E9009E6FB8 /* count.h */,
 				07A6D622173C27E9009E6FB8 /* datetime */,
 				07A6D636173C27E9009E6FB8 /* primitive.h */,
-				07A6D637173C27E9009E6FB8 /* primitive_align.h */,
-				07A6D638173C27E9009E6FB8 /* primitive_check.h */,
-				07A6D639173C27E9009E6FB8 /* primitive_color.cpp */,
-				07A6D63A173C27E9009E6FB8 /* primitive_color.h */,
-				07A6D63B173C27E9009E6FB8 /* primitive_count.cpp */,
-				07A6D63C173C27E9009E6FB8 /* primitive_fixed_string.cpp */,
-				07A6D63D173C27E9009E6FB8 /* primitive_fixed_string.h */,
-				07A6D63E173C27E9009E6FB8 /* primitive_geometric_types.cpp */,
-				07A6D63F173C27E9009E6FB8 /* primitive_geometric_types.h */,
-				07A6D640173C27E9009E6FB8 /* primitive_id.cpp */,
-				07A6D641173C27E9009E6FB8 /* primitive_id.h */,
-				07A6D642173C27E9009E6FB8 /* primitive_id_space.cpp */,
-				07A6D643173C27E9009E6FB8 /* primitive_id_space.h */,
-				07A6D644173C27E9009E6FB8 /* primitive_img.h */,
-				07A6D645173C27E9009E6FB8 /* primitive_index.cpp */,
-				07A6D646173C27E9009E6FB8 /* primitive_index.h */,
-				07A6D647173C27E9009E6FB8 /* primitive_int_biunique.cpp */,
-				07A6D648173C27E9009E6FB8 /* primitive_int_biunique.h */,
-				07A6D649173C27E9009E6FB8 /* primitive_logic.cpp */,
-				07A6D64A173C27E9009E6FB8 /* primitive_logic.h */,
-				07A6D64B173C27E9009E6FB8 /* primitive_memory.cpp */,
-				07A6D64C173C27E9009E6FB8 /* primitive_memory.h */,
-				07A6D64D173C27E9009E6FB8 /* primitive_memory_base.cpp */,
-				07A6D64E173C27E9009E6FB8 /* primitive_memory_base.h */,
-				07A6D64F173C27E9009E6FB8 /* primitive_memory_container.cpp */,
-				07A6D650173C27E9009E6FB8 /* primitive_memory_container.h */,
-				07A6D651173C27E9009E6FB8 /* primitive_memory_file.cpp */,
-				07A6D652173C27E9009E6FB8 /* primitive_memory_file.h */,
-				07A6D653173C27E9009E6FB8 /* primitive_natural.cpp */,
-				07A6D654173C27E9009E6FB8 /* primitive_natural.h */,
-				07A6D655173C27E9009E6FB8 /* primitive_numeric_info.h */,
-				07A6D656173C27E9009E6FB8 /* primitive_point.cpp */,
-				07A6D657173C27E9009E6FB8 /* primitive_point.h */,
-				07A6D658173C27E9009E6FB8 /* primitive_rectangle.cpp */,
-				07A6D659173C27E9009E6FB8 /* primitive_rectangle.h */,
-				07A6D65A173C27E9009E6FB8 /* primitive_scalar.cpp */,
-				07A6D65B173C27E9009E6FB8 /* primitive_scalar.h */,
-				07A6D65C173C27E9009E6FB8 /* primitive_shared_file.cpp */,
-				07A6D65D173C27E9009E6FB8 /* primitive_shared_file.h */,
-				07A6D65E173C27E9009E6FB8 /* primitive_shared_memory.cpp */,
-				07A6D65F173C27E9009E6FB8 /* primitive_shared_memory.h */,
-				07A6D660173C27E9009E6FB8 /* primitive_simple_string.cpp */,
-				07A6D661173C27E9009E6FB8 /* primitive_simple_string.h */,
-				07A6D662173C27E9009E6FB8 /* primitive_size.cpp */,
-				07A6D663173C27E9009E6FB8 /* primitive_size.h */,
-				07A6D664173C27E9009E6FB8 /* primitive_string.cpp */,
-				07A6D665173C27E9009E6FB8 /* primitive_string.h */,
-				07A6D666173C27E9009E6FB8 /* primitive_string_composite.h */,
-				07A6D667173C27E9009E6FB8 /* primitive_string_core.cpp */,
-				07A6D668173C27E9009E6FB8 /* primitive_string_format.cpp */,
-				07A6D669173C27E9009E6FB8 /* primitive_string_format.h */,
-				07A6D66A173C27E9009E6FB8 /* primitive_string_interface.h */,
-				07A6D66B173C27E9009E6FB8 /* primitive_string_manager.cpp */,
-				07A6D66C173C27E9009E6FB8 /* primitive_var.cpp */,
-				07A6D66D173C27E9009E6FB8 /* primitive_var.h */,
-				07A6D66E173C27E9009E6FB8 /* primitive_var_allocation.cpp */,
-				07A6D66F173C27E9009E6FB8 /* primitive_virtual_memory.cpp */,
-				07A6D670173C27E9009E6FB8 /* primitive_virtual_memory.h */,
-				07A6D671173C27E9009E6FB8 /* primitive_wstringtou.h */,
+				07A6D637173C27E9009E6FB8 /* prototype_align.h */,
+				07A6D638173C27E9009E6FB8 /* prototype_check.h */,
+				07A6D639173C27E9009E6FB8 /* prototype_color.cpp */,
+				07A6D63A173C27E9009E6FB8 /* prototype_color.h */,
+				07A6D63B173C27E9009E6FB8 /* prototype_count.cpp */,
+				07A6D63C173C27E9009E6FB8 /* prototype_fixed_string.cpp */,
+				07A6D63D173C27E9009E6FB8 /* prototype_fixed_string.h */,
+				07A6D63E173C27E9009E6FB8 /* prototype_geometric_types.cpp */,
+				07A6D63F173C27E9009E6FB8 /* prototype_geometric_types.h */,
+				07A6D640173C27E9009E6FB8 /* prototype_id.cpp */,
+				07A6D641173C27E9009E6FB8 /* prototype_id.h */,
+				07A6D642173C27E9009E6FB8 /* prototype_id_space.cpp */,
+				07A6D643173C27E9009E6FB8 /* prototype_id_space.h */,
+				07A6D644173C27E9009E6FB8 /* prototype_img.h */,
+				07A6D645173C27E9009E6FB8 /* prototype_index.cpp */,
+				07A6D646173C27E9009E6FB8 /* prototype_index.h */,
+				07A6D647173C27E9009E6FB8 /* prototype_int_biunique.cpp */,
+				07A6D648173C27E9009E6FB8 /* prototype_int_biunique.h */,
+				07A6D649173C27E9009E6FB8 /* prototype_logic.cpp */,
+				07A6D64A173C27E9009E6FB8 /* prototype_logic.h */,
+				07A6D64B173C27E9009E6FB8 /* prototype_memory.cpp */,
+				07A6D64C173C27E9009E6FB8 /* prototype_memory.h */,
+				07A6D64D173C27E9009E6FB8 /* prototype_memory_base.cpp */,
+				07A6D64E173C27E9009E6FB8 /* prototype_memory_base.h */,
+				07A6D64F173C27E9009E6FB8 /* prototype_memory_container.cpp */,
+				07A6D650173C27E9009E6FB8 /* prototype_memory_container.h */,
+				07A6D651173C27E9009E6FB8 /* prototype_memory_file.cpp */,
+				07A6D652173C27E9009E6FB8 /* prototype_memory_file.h */,
+				07A6D653173C27E9009E6FB8 /* prototype_natural.cpp */,
+				07A6D654173C27E9009E6FB8 /* prototype_natural.h */,
+				07A6D655173C27E9009E6FB8 /* prototype_numeric_info.h */,
+				07A6D656173C27E9009E6FB8 /* prototype_point.cpp */,
+				07A6D657173C27E9009E6FB8 /* prototype_point.h */,
+				07A6D658173C27E9009E6FB8 /* prototype_rectangle.cpp */,
+				07A6D659173C27E9009E6FB8 /* prototype_rectangle.h */,
+				07A6D65A173C27E9009E6FB8 /* prototype_scalar.cpp */,
+				07A6D65B173C27E9009E6FB8 /* prototype_scalar.h */,
+				07A6D65C173C27E9009E6FB8 /* prototype_shared_file.cpp */,
+				07A6D65D173C27E9009E6FB8 /* prototype_shared_file.h */,
+				07A6D65E173C27E9009E6FB8 /* prototype_shared_memory.cpp */,
+				07A6D65F173C27E9009E6FB8 /* prototype_shared_memory.h */,
+				07A6D660173C27E9009E6FB8 /* prototype_simple_string.cpp */,
+				07A6D661173C27E9009E6FB8 /* prototype_simple_string.h */,
+				07A6D662173C27E9009E6FB8 /* prototype_size.cpp */,
+				07A6D663173C27E9009E6FB8 /* prototype_size.h */,
+				07A6D664173C27E9009E6FB8 /* prototype_string.cpp */,
+				07A6D665173C27E9009E6FB8 /* prototype_string.h */,
+				07A6D666173C27E9009E6FB8 /* prototype_string_composite.h */,
+				07A6D667173C27E9009E6FB8 /* prototype_string_core.cpp */,
+				07A6D668173C27E9009E6FB8 /* prototype_string_format.cpp */,
+				07A6D669173C27E9009E6FB8 /* prototype_string_format.h */,
+				07A6D66A173C27E9009E6FB8 /* prototype_string_interface.h */,
+				07A6D66B173C27E9009E6FB8 /* prototype_string_manager.cpp */,
+				07A6D66C173C27E9009E6FB8 /* prototype_var.cpp */,
+				07A6D66D173C27E9009E6FB8 /* prototype_var.h */,
+				07A6D66E173C27E9009E6FB8 /* prototype_var_allocation.cpp */,
+				07A6D66F173C27E9009E6FB8 /* prototype_virtual_memory.cpp */,
+				07A6D670173C27E9009E6FB8 /* prototype_virtual_memory.h */,
+				07A6D671173C27E9009E6FB8 /* prototype_wstringtou.h */,
 			);
 			path = primitive;
 			sourceTree = "<group>";
@@ -8217,37 +8217,37 @@
 				07A6DFBF173C27EB009E6FB8 /* datetime_value.h in Headers */,
 				07A6DFC1173C27EB009E6FB8 /* datetime_windows_filetime.h in Headers */,
 				07A6DFC2173C27EB009E6FB8 /* primitive.h in Headers */,
-				07A6DFC3173C27EB009E6FB8 /* primitive_align.h in Headers */,
-				07A6DFC4173C27EB009E6FB8 /* primitive_check.h in Headers */,
-				07A6DFC6173C27EB009E6FB8 /* primitive_color.h in Headers */,
-				07A6DFC9173C27EB009E6FB8 /* primitive_fixed_string.h in Headers */,
-				07A6DFCB173C27EB009E6FB8 /* primitive_geometric_types.h in Headers */,
-				07A6DFCD173C27EB009E6FB8 /* primitive_id.h in Headers */,
-				07A6DFCF173C27EB009E6FB8 /* primitive_id_space.h in Headers */,
-				07A6DFD0173C27EB009E6FB8 /* primitive_img.h in Headers */,
-				07A6DFD2173C27EB009E6FB8 /* primitive_index.h in Headers */,
-				07A6DFD4173C27EB009E6FB8 /* primitive_int_biunique.h in Headers */,
-				07A6DFD6173C27EB009E6FB8 /* primitive_logic.h in Headers */,
-				07A6DFD8173C27EB009E6FB8 /* primitive_memory.h in Headers */,
-				07A6DFDA173C27EB009E6FB8 /* primitive_memory_base.h in Headers */,
-				07A6DFDC173C27EB009E6FB8 /* primitive_memory_container.h in Headers */,
-				07A6DFDE173C27EB009E6FB8 /* primitive_memory_file.h in Headers */,
-				07A6DFE0173C27EB009E6FB8 /* primitive_natural.h in Headers */,
-				07A6DFE1173C27EB009E6FB8 /* primitive_numeric_info.h in Headers */,
-				07A6DFE3173C27EB009E6FB8 /* primitive_point.h in Headers */,
-				07A6DFE5173C27EB009E6FB8 /* primitive_rectangle.h in Headers */,
-				07A6DFE7173C27EB009E6FB8 /* primitive_scalar.h in Headers */,
-				07A6DFE9173C27EB009E6FB8 /* primitive_shared_file.h in Headers */,
-				07A6DFEB173C27EB009E6FB8 /* primitive_shared_memory.h in Headers */,
-				07A6DFED173C27EB009E6FB8 /* primitive_simple_string.h in Headers */,
-				07A6DFEF173C27EB009E6FB8 /* primitive_size.h in Headers */,
-				07A6DFF1173C27EB009E6FB8 /* primitive_string.h in Headers */,
-				07A6DFF2173C27EB009E6FB8 /* primitive_string_composite.h in Headers */,
-				07A6DFF5173C27EB009E6FB8 /* primitive_string_format.h in Headers */,
-				07A6DFF6173C27EB009E6FB8 /* primitive_string_interface.h in Headers */,
-				07A6DFF9173C27EB009E6FB8 /* primitive_var.h in Headers */,
-				07A6DFFC173C27EB009E6FB8 /* primitive_virtual_memory.h in Headers */,
-				07A6DFFD173C27EB009E6FB8 /* primitive_wstringtou.h in Headers */,
+				07A6DFC3173C27EB009E6FB8 /* prototype_align.h in Headers */,
+				07A6DFC4173C27EB009E6FB8 /* prototype_check.h in Headers */,
+				07A6DFC6173C27EB009E6FB8 /* prototype_color.h in Headers */,
+				07A6DFC9173C27EB009E6FB8 /* prototype_fixed_string.h in Headers */,
+				07A6DFCB173C27EB009E6FB8 /* prototype_geometric_types.h in Headers */,
+				07A6DFCD173C27EB009E6FB8 /* prototype_id.h in Headers */,
+				07A6DFCF173C27EB009E6FB8 /* prototype_id_space.h in Headers */,
+				07A6DFD0173C27EB009E6FB8 /* prototype_img.h in Headers */,
+				07A6DFD2173C27EB009E6FB8 /* prototype_index.h in Headers */,
+				07A6DFD4173C27EB009E6FB8 /* prototype_int_biunique.h in Headers */,
+				07A6DFD6173C27EB009E6FB8 /* prototype_logic.h in Headers */,
+				07A6DFD8173C27EB009E6FB8 /* prototype_memory.h in Headers */,
+				07A6DFDA173C27EB009E6FB8 /* prototype_memory_base.h in Headers */,
+				07A6DFDC173C27EB009E6FB8 /* prototype_memory_container.h in Headers */,
+				07A6DFDE173C27EB009E6FB8 /* prototype_memory_file.h in Headers */,
+				07A6DFE0173C27EB009E6FB8 /* prototype_natural.h in Headers */,
+				07A6DFE1173C27EB009E6FB8 /* prototype_numeric_info.h in Headers */,
+				07A6DFE3173C27EB009E6FB8 /* prototype_point.h in Headers */,
+				07A6DFE5173C27EB009E6FB8 /* prototype_rectangle.h in Headers */,
+				07A6DFE7173C27EB009E6FB8 /* prototype_scalar.h in Headers */,
+				07A6DFE9173C27EB009E6FB8 /* prototype_shared_file.h in Headers */,
+				07A6DFEB173C27EB009E6FB8 /* prototype_shared_memory.h in Headers */,
+				07A6DFED173C27EB009E6FB8 /* prototype_simple_string.h in Headers */,
+				07A6DFEF173C27EB009E6FB8 /* prototype_size.h in Headers */,
+				07A6DFF1173C27EB009E6FB8 /* prototype_string.h in Headers */,
+				07A6DFF2173C27EB009E6FB8 /* prototype_string_composite.h in Headers */,
+				07A6DFF5173C27EB009E6FB8 /* prototype_string_format.h in Headers */,
+				07A6DFF6173C27EB009E6FB8 /* prototype_string_interface.h in Headers */,
+				07A6DFF9173C27EB009E6FB8 /* prototype_var.h in Headers */,
+				07A6DFFC173C27EB009E6FB8 /* prototype_virtual_memory.h in Headers */,
+				07A6DFFD173C27EB009E6FB8 /* prototype_wstringtou.h in Headers */,
 				07A6DFFE173C27EB009E6FB8 /* dynamic_source.h in Headers */,
 				07A6E000173C27EB009E6FB8 /* dynamic_source_exit_exception.h in Headers */,
 				07A6E002173C27EB009E6FB8 /* dynamic_source_httpd_socket.h in Headers */,
@@ -9332,34 +9332,34 @@
 				07A6DFBC173C27EB009E6FB8 /* datetime_time.cpp in Sources */,
 				07A6DFBE173C27EB009E6FB8 /* datetime_value.cpp in Sources */,
 				07A6DFC0173C27EB009E6FB8 /* datetime_windows_filetime.cpp in Sources */,
-				07A6DFC5173C27EB009E6FB8 /* primitive_color.cpp in Sources */,
-				07A6DFC7173C27EB009E6FB8 /* primitive_count.cpp in Sources */,
-				07A6DFC8173C27EB009E6FB8 /* primitive_fixed_string.cpp in Sources */,
-				07A6DFCA173C27EB009E6FB8 /* primitive_geometric_types.cpp in Sources */,
-				07A6DFCC173C27EB009E6FB8 /* primitive_id.cpp in Sources */,
-				07A6DFCE173C27EB009E6FB8 /* primitive_id_space.cpp in Sources */,
-				07A6DFD1173C27EB009E6FB8 /* primitive_index.cpp in Sources */,
-				07A6DFD3173C27EB009E6FB8 /* primitive_int_biunique.cpp in Sources */,
-				07A6DFD5173C27EB009E6FB8 /* primitive_logic.cpp in Sources */,
-				07A6DFD7173C27EB009E6FB8 /* primitive_memory.cpp in Sources */,
-				07A6DFD9173C27EB009E6FB8 /* primitive_memory_base.cpp in Sources */,
-				07A6DFDB173C27EB009E6FB8 /* primitive_memory_container.cpp in Sources */,
-				07A6DFDD173C27EB009E6FB8 /* primitive_memory_file.cpp in Sources */,
-				07A6DFDF173C27EB009E6FB8 /* primitive_natural.cpp in Sources */,
-				07A6DFE2173C27EB009E6FB8 /* primitive_point.cpp in Sources */,
-				07A6DFE4173C27EB009E6FB8 /* primitive_rectangle.cpp in Sources */,
-				07A6DFE6173C27EB009E6FB8 /* primitive_scalar.cpp in Sources */,
-				07A6DFE8173C27EB009E6FB8 /* primitive_shared_file.cpp in Sources */,
-				07A6DFEA173C27EB009E6FB8 /* primitive_shared_memory.cpp in Sources */,
-				07A6DFEC173C27EB009E6FB8 /* primitive_simple_string.cpp in Sources */,
-				07A6DFEE173C27EB009E6FB8 /* primitive_size.cpp in Sources */,
-				07A6DFF0173C27EB009E6FB8 /* primitive_string.cpp in Sources */,
-				07A6DFF3173C27EB009E6FB8 /* primitive_string_core.cpp in Sources */,
-				07A6DFF4173C27EB009E6FB8 /* primitive_string_format.cpp in Sources */,
-				07A6DFF7173C27EB009E6FB8 /* primitive_string_manager.cpp in Sources */,
-				07A6DFF8173C27EB009E6FB8 /* primitive_var.cpp in Sources */,
-				07A6DFFA173C27EB009E6FB8 /* primitive_var_allocation.cpp in Sources */,
-				07A6DFFB173C27EB009E6FB8 /* primitive_virtual_memory.cpp in Sources */,
+				07A6DFC5173C27EB009E6FB8 /* prototype_color.cpp in Sources */,
+				07A6DFC7173C27EB009E6FB8 /* prototype_count.cpp in Sources */,
+				07A6DFC8173C27EB009E6FB8 /* prototype_fixed_string.cpp in Sources */,
+				07A6DFCA173C27EB009E6FB8 /* prototype_geometric_types.cpp in Sources */,
+				07A6DFCC173C27EB009E6FB8 /* prototype_id.cpp in Sources */,
+				07A6DFCE173C27EB009E6FB8 /* prototype_id_space.cpp in Sources */,
+				07A6DFD1173C27EB009E6FB8 /* prototype_index.cpp in Sources */,
+				07A6DFD3173C27EB009E6FB8 /* prototype_int_biunique.cpp in Sources */,
+				07A6DFD5173C27EB009E6FB8 /* prototype_logic.cpp in Sources */,
+				07A6DFD7173C27EB009E6FB8 /* prototype_memory.cpp in Sources */,
+				07A6DFD9173C27EB009E6FB8 /* prototype_memory_base.cpp in Sources */,
+				07A6DFDB173C27EB009E6FB8 /* prototype_memory_container.cpp in Sources */,
+				07A6DFDD173C27EB009E6FB8 /* prototype_memory_file.cpp in Sources */,
+				07A6DFDF173C27EB009E6FB8 /* prototype_natural.cpp in Sources */,
+				07A6DFE2173C27EB009E6FB8 /* prototype_point.cpp in Sources */,
+				07A6DFE4173C27EB009E6FB8 /* prototype_rectangle.cpp in Sources */,
+				07A6DFE6173C27EB009E6FB8 /* prototype_scalar.cpp in Sources */,
+				07A6DFE8173C27EB009E6FB8 /* prototype_shared_file.cpp in Sources */,
+				07A6DFEA173C27EB009E6FB8 /* prototype_shared_memory.cpp in Sources */,
+				07A6DFEC173C27EB009E6FB8 /* prototype_simple_string.cpp in Sources */,
+				07A6DFEE173C27EB009E6FB8 /* prototype_size.cpp in Sources */,
+				07A6DFF0173C27EB009E6FB8 /* prototype_string.cpp in Sources */,
+				07A6DFF3173C27EB009E6FB8 /* prototype_string_core.cpp in Sources */,
+				07A6DFF4173C27EB009E6FB8 /* prototype_string_format.cpp in Sources */,
+				07A6DFF7173C27EB009E6FB8 /* prototype_string_manager.cpp in Sources */,
+				07A6DFF8173C27EB009E6FB8 /* prototype_var.cpp in Sources */,
+				07A6DFFA173C27EB009E6FB8 /* prototype_var_allocation.cpp in Sources */,
+				07A6DFFB173C27EB009E6FB8 /* prototype_virtual_memory.cpp in Sources */,
 				07A6DFFF173C27EB009E6FB8 /* dynamic_source_exit_exception.cpp in Sources */,
 				07A6E001173C27EB009E6FB8 /* dynamic_source_httpd_socket.cpp in Sources */,
 				07A6E003173C27EB009E6FB8 /* dynamic_source_library_class.cpp in Sources */,

@@ -12,7 +12,7 @@ namespace comparison
    namespace array
    {
 
-      template < typename A, primitive_integral I, typename T >
+      template < typename A, prototype_integral I, typename T >
       bool defer_transfer_to(A & a, I i, const T & t)
       {
 

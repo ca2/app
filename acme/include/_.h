@@ -180,7 +180,7 @@
 #include "acme/prototype/string/scoped_string_base.h"
 
 
-//#include "acme/prototype/string/primitive_character_range.h"
+//#include "acme/prototype/string/prototype_character_range.h"
 
 
 #include "acme/prototype/string/_format.h"

@@ -14,7 +14,7 @@
 #include "acme/prototype/geometry/sequence.h"
 
 
-template < primitive_number NUMBER >
+template < prototype_number NUMBER >
 struct color_type :
    public sequence_type < NUMBER, 4 >
 {
@@ -50,7 +50,7 @@ public:
 
 //   sequence_type(const sequence_type&) = default;
 
-//   template <primitive_number T,
+//   template <prototype_number T,
 //      std::enable_if_t<T::SIZE == SIZE &&
 //      std::is_same_v<typename T::COORDINATE, COORDINATE>, int> = 0>
    color_type(UNIT_TYPE n)
@@ -68,7 +68,7 @@ public:
    {
    }
    
-   template < primitive_number NUMBER1 >
+   template < prototype_number NUMBER1 >
    color_type(const sequence_type < NUMBER1, 4 > & sequence) :
       sequence_type < UNIT_TYPE, 4 >(sequence)
    {
@@ -148,7 +148,7 @@ using color_float = color_type < float >;
 using color_double = color_type < double >;
 
 
-template < primitive_number NUMBER1, primitive_number NUMBER2 >
+template < prototype_number NUMBER1, prototype_number NUMBER2 >
 inline color_type < largest_number < NUMBER1, NUMBER2 > > operator * (NUMBER1 n, const color_type < NUMBER2 > & q)
 {
 

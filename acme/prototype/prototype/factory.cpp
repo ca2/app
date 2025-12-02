@@ -627,7 +627,7 @@ CLASS_DECL_ACME bool safe_free_memory(void * ptype)
 
 
 // template < typename OBJECT, typename BASE_TYPE >
-// inline void øconstruct_by_custom_id(OBJECT && pparticle, ::pointer<BASE_TYPE>& pcomposite, const ::platform::type & type)
+// inline void øconstruct_by_id(OBJECT && pparticle, ::pointer<BASE_TYPE>& pcomposite, const ::platform::type & type)
 // {
 
 //    return pparticle->øconstruct_by_custom_id(pcomposite, (atom) type);
@@ -706,7 +706,7 @@ CLASS_DECL_ACME bool safe_free_memory(void * ptype)
 //
 //
 //template < typename OBJECT, typename BASE_TYPE, typename SOURCE >
-//inline void __refer(OBJECT && pparticle, ::pointer<BASE_TYPE>& preference, const ::primitive::member < SOURCE > & psource)
+//inline void __refer(OBJECT && pparticle, ::pointer<BASE_TYPE>& preference, const ::prototype::member < SOURCE > & psource)
 //{
 //
 //   return __refer(pparticle, preference, psource.operator SOURCE * ());
@@ -766,7 +766,7 @@ CLASS_DECL_ACME bool safe_free_memory(void * ptype)
 
 
 //template < typename OBJECT, typename BASE_TYPE >
-//inline void øconstruct_by_custom_id(OBJECT && pparticle, ::pointer<BASE_TYPE>& preference, const ::platform::type & type)
+//inline void øconstruct_by_id(OBJECT && pparticle, ::pointer<BASE_TYPE>& preference, const ::platform::type & type)
 //{
 //
 //   if (((uptr)&preference) < (uptr)pparticle || ((uptr)&preference) >= ((uptr)pparticle) + sizeof(typename ::raw_type < OBJECT>::RAW_TYPE))

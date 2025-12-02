@@ -4,7 +4,7 @@
 #include "rectangle.h"
 
 
-template < primitive_number NUMBER >
+template < prototype_number NUMBER >
 class rectangle_array_base :
 public ::array_base < ::rectangle_type < NUMBER > >
 {
@@ -35,7 +35,7 @@ public:
    {
       if (!this->any_contains(rectangle)) add(rectangle);
    }
-   template < primitive_container CONTAINER >
+   template < prototype_container CONTAINER >
    void append_if_none_contains(const CONTAINER & container)
    {
       for (auto & r : container) add_if_none_contains(r);
@@ -83,7 +83,7 @@ public:
 
 };
 
-template < primitive_number NUMBER >
+template < prototype_number NUMBER >
 inline void rectangle_array_base < NUMBER >::offset(::point_type < NUMBER > point)
 {
    offset(point.x, point.y);
@@ -92,13 +92,13 @@ inline void rectangle_array_base < NUMBER >::offset(::point_type < NUMBER > poin
 
 
 
-//template < primitive_number NUMBER >
+//template < prototype_number NUMBER >
 //rectangle_array_base < NUMBER >::~rectangle_array_base()
 //{
 //
 //}
 
-template < primitive_number NUMBER >
+template < prototype_number NUMBER >
 void rectangle_array_base < NUMBER >::offset(UNIT_TYPE cx, UNIT_TYPE cy)
 {
 
@@ -117,7 +117,7 @@ void rectangle_array_base < NUMBER >::offset(UNIT_TYPE cx, UNIT_TYPE cy)
 }
 
 
-template < primitive_number NUMBER >
+template < prototype_number NUMBER >
 ::rectangle_type < NUMBER > rectangle_array_base < NUMBER >::union_rect()
 {
    
@@ -144,7 +144,7 @@ template < primitive_number NUMBER >
 }
 
 
-template < primitive_number NUMBER >
+template < prototype_number NUMBER >
 void rectangle_array_base < NUMBER >::get_box(::rectangle_type < NUMBER > * prectangle)
 
 {
@@ -155,7 +155,7 @@ void rectangle_array_base < NUMBER >::get_box(::rectangle_type < NUMBER > * prec
 }
 
 
-template < primitive_number NUMBER >
+template < prototype_number NUMBER >
 void rectangle_array_base < NUMBER >::intersect(const ::rectangle_type < NUMBER > & rectangle)
 {
 
@@ -182,42 +182,42 @@ void rectangle_array_base < NUMBER >::intersect(const ::rectangle_type < NUMBER 
 }
 
 
-template < primitive_number NUMBER >
+template < prototype_number NUMBER >
 void rectangle_array_base < NUMBER >::add(const ::rectangle_type < NUMBER > & rectangle)
 {
    array_base < ::rectangle_type < NUMBER > >::add(rectangle);
 }
 
 
-template < primitive_number NUMBER >
+template < prototype_number NUMBER >
 void rectangle_array_base < NUMBER >::add(UNIT_TYPE left, UNIT_TYPE top, UNIT_TYPE right, UNIT_TYPE bottom)
 {
    add(::rectangle_type < NUMBER >(left, top, right, bottom));
 }
 
 
-template < primitive_number NUMBER >
+template < prototype_number NUMBER >
 void rectangle_array_base < NUMBER >::add_dim(UNIT_TYPE x, UNIT_TYPE y, UNIT_TYPE cx, UNIT_TYPE cy)
 {
    add(int_rectangle_dimension(x, y, cx, cy));
 }
 
 
-template < primitive_number NUMBER >
+template < prototype_number NUMBER >
 void rectangle_array_base < NUMBER >::add(const ::point_type < NUMBER > & point, const ::size_type < NUMBER > & size)
 {
    add(::rectangle_type < NUMBER >(point, size));
 }
 
 
-template < primitive_number NUMBER >
+template < prototype_number NUMBER >
 void rectangle_array_base < NUMBER >::add(const ::size_type < NUMBER > & size)
 {
    this->add(::rectangle_type < NUMBER >(size));
 }
 
 
-template < primitive_number NUMBER >
+template < prototype_number NUMBER >
 ::collection::index rectangle_array_base < NUMBER >::max_normal_intersect_area(const ::rectangle_type < NUMBER > & rectangleParam, const ::rectangle_type < NUMBER > & rectangleModel)
 {
 

@@ -288,7 +288,7 @@
     <ClInclude Include="user\user\place_holder.h" />
     <ClInclude Include="user\user\place_holder_container.h" />
     <ClInclude Include="user\user\primitive.h" />
-    <ClInclude Include="user\user\primitive_impl.h" />
+    <ClInclude Include="user\user\prototype_impl.h" />
     <ClInclude Include="user\user\print_job.h" />
     <ClInclude Include="user\user\prodevian.h" />
     <ClInclude Include="user\user\scroll.h" />

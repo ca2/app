@@ -22,8 +22,8 @@
 
 
 
-//#include "aura/primitive/primitive/command.h"
-//#include "aura/primitive/primitive/command_line.h"
+//#include "aura/prototype/prototype/command.h"
+//#include "aura/prototype/prototype/command_line.h"
 
 
 //#include "command.h"
@@ -33,7 +33,7 @@
 //#include "style_base.h"
 
 //
-////#include "aura/primitive/primitive/create.h"
+////#include "aura/prototype/prototype/create.h"
 //#include "system.h"
 //
 //
@@ -47,7 +47,7 @@
 //#include "aura/graphics/write_text/text_box.h"
 //#include "aura/graphics/write_text/font_list.h"
 //#include "layout_state.h"
-//#include "primitive_impl.h"
+//#include "prototype_impl.h"
 //
 //
 ////#include "aura/database/key.h"
@@ -67,7 +67,7 @@
 ////#include "aura/platform/str_context.h"
 //
 //
-////#include "aura/primitive/primitive/form_property_set.h"
+////#include "aura/prototype/prototype/form_property_set.h"
 
 //
 //namespace user
@@ -100,7 +100,7 @@
 //
 ////using window_pointer = ::pointer<::windowing::window>
 //
-////#include "primitive_impl.h"
+////#include "prototype_impl.h"
 //
 //#include "interaction_impl.h"
 //
@@ -124,7 +124,7 @@
 //
 //#include "scroll.h"
 //
-////#include "aura/primitive/primitive/form_property_set.h"
+////#include "aura/prototype/prototype/form_property_set.h"
 //
 //
 ////#include "control.h"

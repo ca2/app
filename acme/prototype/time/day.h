@@ -13,9 +13,9 @@ public:
 
    day() : time(e_raw, 86'400) {}
    day(const class time & time) : class ::time(time) {}
-   template < primitive_integral INTEGRAL >
+   template < prototype_integral INTEGRAL >
    day(INTEGRAL integral) : time(::integral_day(integral)) { }
-   template < primitive_floating FLOATING >
+   template < prototype_floating FLOATING >
    day(FLOATING floating) : time(::floating_day(floating)) { }
 
 

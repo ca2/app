@@ -2061,7 +2061,7 @@
     <ClInclude Include="..\primitive\primitive\pointer2.h">
       <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
-    <ClInclude Include="..\primitive\primitive\primitive_update.h">
+    <ClInclude Include="..\primitive\primitive\prototype_update.h">
       <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
     <ClInclude Include="..\primitive\primitive\promise.h">

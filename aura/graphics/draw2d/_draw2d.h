@@ -5,7 +5,7 @@
 namespace draw2d
 {
 
-   template < primitive_array POINT_ARRAY, primitive_point POINT, primitive_point POINT2 >
+   template < prototype_array POINT_ARRAY, prototype_point POINT, prototype_point POINT2 >
    void make_line_triangles_cap_butt_square(
       POINT_ARRAY& pointa,
       POINT p1, POINT p2, POINT2 thickness)
@@ -47,8 +47,8 @@ namespace draw2d
    }
 
 
-   template < primitive_array POINT_ARRAY, primitive_array POINT_ARRAY1,
-   primitive_point POINT >
+   template < prototype_array POINT_ARRAY, prototype_array POINT_ARRAY1,
+   prototype_point POINT >
    void make_draw_rectangle(
       POINT_ARRAY & pointa,
       const POINT_ARRAY1& pointa1,

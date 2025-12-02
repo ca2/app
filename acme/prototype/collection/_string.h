@@ -2,7 +2,7 @@
 #pragma once
 
 
-template < primitive_container CONTAINER >
+template < prototype_container CONTAINER >
 inline void from_string(CONTAINER& container, const ::scoped_string& scopedstr)
 {
    

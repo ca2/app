@@ -490,7 +490,7 @@
 ////#include "command.h"
 //
 //
-////#include "a/primitive/primitive/update.h"
+////#include "a/prototype/prototype/update.h"
 //
 //
 //#include "user.h"

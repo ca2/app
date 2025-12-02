@@ -3760,7 +3760,7 @@ void main() {
    }
 
    /////////////////////////////////////////////////////////////////////////////
-   // special graphics drawing primitives/helpers
+   // special graphics drawing prototypes/helpers
 
    ::draw2d::brush* graphics::GetHalftoneBrush()
    {

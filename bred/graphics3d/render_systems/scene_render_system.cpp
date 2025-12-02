@@ -176,7 +176,7 @@ namespace graphics3d
       //      memcpy(node->mesh->uniformBuffer.mapped, &world, sizeof(world));
       //      memcpy((char *)node->mesh->uniformBuffer.mapped + sizeof(world), &normalMat, sizeof(normalMat));
 
-      //      for (auto *primitive: node->mesh->primitives)
+      //      for (auto *prototype: node->mesh->prototypes)
       //      {
 
 
@@ -187,7 +187,7 @@ namespace graphics3d
       //         vkCmdBindDescriptorSets(frame.commandBuffer, VK_PIPELINE_BIND_POINT_GRAPHICS, m_pipelineLayout, 0,
       //                                 static_cast<uint32_t>(sets.size()), sets.data(), 0, nullptr);
 
-      //         switch (primitive->material.alphaMode)
+      //         switch (prototype->material.alphaMode)
       //         {
       //            case vkglTF::Material::ALPHAMODE_OPAQUE:
       //               m_opaquePipeline->bind(frame.commandBuffer);

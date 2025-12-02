@@ -301,9 +301,9 @@ namespace api_ca2
 
       string strAppLogin = get_app_login();
 
-      string strClientId = m_setConfiguration["installed"]["client_id"];
+      //string strClientId = m_setConfiguration["installed"]["client_id"];
 
-      string strClientSecret = m_setConfiguration["installed"]["client_secret"];
+      //string strClientSecret = m_setConfiguration["installed"]["client_secret"];
 
       string strRedirectUri = m_strRedirectUri;
 

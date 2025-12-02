@@ -205,7 +205,7 @@ constexpr bool is_end(TYPE* p, TYPE* end) { return !is_ok(p, end); }
 //}
 
 
-template < primitive_iterator ITERATOR >
+template < prototype_iterator ITERATOR >
 constexpr bool is_set(const ITERATOR & iterator)
 {
 

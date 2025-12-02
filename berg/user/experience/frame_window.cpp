@@ -28,7 +28,7 @@
 #include "berg/platform/system.h"
 
 
-template < primitive_rectangle R1, primitive_rectangle R2 >
+template < prototype_rectangle R1, prototype_rectangle R2 >
 void constrain_vertex_left(R1 & r1, const R2 & r2)
 {
 
@@ -48,7 +48,7 @@ void constrain_vertex_left(R1 & r1, const R2 & r2)
 }
 
 
-template < primitive_rectangle R1, primitive_rectangle R2 >
+template < prototype_rectangle R1, prototype_rectangle R2 >
 void constrain_vertex_right(R1 & r1, const R2 & r2)
 {
 
@@ -69,7 +69,7 @@ void constrain_vertex_right(R1 & r1, const R2 & r2)
 
 
 
-template < primitive_rectangle R1, primitive_rectangle R2 >
+template < prototype_rectangle R1, prototype_rectangle R2 >
 void constrain_vertex_top(R1 & r1, const R2 & r2)
 {
 
@@ -89,7 +89,7 @@ void constrain_vertex_top(R1 & r1, const R2 & r2)
 }
 
 
-template < primitive_rectangle R1, primitive_rectangle R2 >
+template < prototype_rectangle R1, prototype_rectangle R2 >
 void constrain_vertex_bottom(R1 & r1, const R2 & r2)
 {
 
@@ -111,7 +111,7 @@ void constrain_vertex_bottom(R1 & r1, const R2 & r2)
 }
 
 
-template < primitive_rectangle R1, primitive_rectangle R2 >
+template < prototype_rectangle R1, prototype_rectangle R2 >
 void constrain_vertex_x(R1 & r1, const R2 & r2)
 {
 
@@ -122,7 +122,7 @@ void constrain_vertex_x(R1 & r1, const R2 & r2)
 }
 
 
-template < primitive_rectangle R1, primitive_rectangle R2 >
+template < prototype_rectangle R1, prototype_rectangle R2 >
 void constrain_vertex_y(R1 & r1, const R2 & r2)
 {
 
@@ -133,7 +133,7 @@ void constrain_vertex_y(R1 & r1, const R2 & r2)
 }
 
 
-template < primitive_rectangle R1, primitive_rectangle R2 >
+template < prototype_rectangle R1, prototype_rectangle R2 >
 void constrain_vertex(R1 & r1, const R2 & r2)
 {
 

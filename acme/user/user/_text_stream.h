@@ -34,7 +34,7 @@ inline ::write_text_stream & operator <<(::write_text_stream & textstream, ::enu
 
 //
 //
-//template < typename FILE, primitive_rectangle RECTANGLE >
+//template < typename FILE, prototype_rectangle RECTANGLE >
 //inline ::write_text_stream < FILE > & operator <<(::write_text_stream < FILE > & textstream, const RECTANGLE & rectangle)
 //{
 //

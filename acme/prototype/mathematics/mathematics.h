@@ -2,7 +2,7 @@
 
 
 
-template < typename UNIT_TYPE, primitive_number NUMBER >
+template < typename UNIT_TYPE, prototype_number NUMBER >
 inline UNIT_TYPE linear_rate(const UNIT_TYPE & t1, const UNIT_TYPE & t2, NUMBER numerator, NUMBER denominator)
 {
 
@@ -275,7 +275,7 @@ namespace mathematics
 
 
 
-      template < primitive_floating FLOATING1, primitive_floating FLOATING2 >
+      template < prototype_floating FLOATING1, prototype_floating FLOATING2 >
       inline ::largest_type < FLOATING1, FLOATING2 > random(const FLOATING1 & f1, const FLOATING2 & f2)
       {
 
@@ -298,7 +298,7 @@ namespace mathematics
 
 
 
-      template < primitive_integral INTEGRAL1, primitive_integral INTEGRAL2 >
+      template < prototype_integral INTEGRAL1, prototype_integral INTEGRAL2 >
       inline ::largest_type < INTEGRAL1, INTEGRAL2 > random(const INTEGRAL1 & i1, const INTEGRAL2 & i2)
       {
 

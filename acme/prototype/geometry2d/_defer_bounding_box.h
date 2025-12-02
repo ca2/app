@@ -7,7 +7,7 @@
 
 
 
-//template < primitive_rectangle RECTANGLE, primitive_number NUMBER >
+//template < prototype_rectangle RECTANGLE, prototype_number NUMBER >
 //inline bool expand_bounding_box(RECTANGLE & rectangleBounding, const ::arc_type < NUMBER > & arc)
 //{
 //
@@ -21,7 +21,7 @@
 //}
 
 
-//template < primitive_rectangle RECTANGLE >
+//template < prototype_rectangle RECTANGLE >
 //inline void expand_bounding_box(RECTANGLE & rectangle, ::double_point * p, ::collection::count c)
 //{
 //
@@ -91,7 +91,7 @@
 //}
 
 //
-//template < primitive_rectangle RECTANGLE, primitive_number NUMBER >
+//template < prototype_rectangle RECTANGLE, prototype_number NUMBER >
 //inline bool get_bounding_box(RECTANGLE & rectangleBounding, const ellipse_base < NUMBER > & ellipse)
 //{
 //
@@ -134,7 +134,7 @@
 //
 
 
-//template < primitive_rectangle RECTANGLE1, primitive_rectangle RECTANGLE2 >
+//template < prototype_rectangle RECTANGLE1, prototype_rectangle RECTANGLE2 >
 //inline bool get_bounding_box(RECTANGLE1 & rectangleBounding, const RECTANGLE2 & rectangle)
 //{
 //
@@ -145,7 +145,7 @@
 //}
 
 //
-//template < primitive_number NUMBER1, primitive_number NUMBER2 >
+//template < prototype_number NUMBER1, prototype_number NUMBER2 >
 //void expand_bounding_box(::rectangle_type < NUMBER1 > & rectangle, ::point_type < NUMBER2 > & point)
 //{
 //
@@ -178,7 +178,7 @@
 //}
 
 //
-//template < primitive_number NUMBER1, primitive_number NUMBER2 >
+//template < prototype_number NUMBER1, prototype_number NUMBER2 >
 //inline void expand_bounding_box_x(::rectangle_type < NUMBER1 > & rectangle, NUMBER2 x)
 //{
 //
@@ -198,7 +198,7 @@
 //}
 //
 //
-//template < primitive_number NUMBER1, primitive_number NUMBER2 >
+//template < prototype_number NUMBER1, prototype_number NUMBER2 >
 //inline void expand_bounding_box_y(::rectangle_type < NUMBER1 > & rectangle, NUMBER2 y)
 //{
 //
@@ -218,7 +218,7 @@
 //}
 //
 //
-//template < primitive_number NUMBER1, primitive_number NUMBER2 >
+//template < prototype_number NUMBER1, prototype_number NUMBER2 >
 //void expand_bounding_box(::rectangle_type < NUMBER1 > & rectangle, const ::point_type < NUMBER2 > & point)
 //{
 //
@@ -229,7 +229,7 @@
 //}
 //
 //
-//template < primitive_number NUMBER1, primitive_number NUMBER2 >
+//template < prototype_number NUMBER1, prototype_number NUMBER2 >
 //void expand_bounding_box(::rectangle_type < NUMBER1 > & rectangle, const ::rectangle_type < NUMBER2 > & rectangle2)
 //{
 //
@@ -244,7 +244,7 @@
 //}
 //
 //
-//template < primitive_number NUMBER1, primitive_number NUMBER2 >
+//template < prototype_number NUMBER1, prototype_number NUMBER2 >
 //void expand_bounding_box(::rectangle_type < NUMBER1 > & rectangle, const ::ellipse_type < NUMBER2 > & ellipse2)
 //{
 //
@@ -262,7 +262,7 @@
 
 
 
-//template < primitive_rectangle RECTANGLE, primitive_number NUMBER >
+//template < prototype_rectangle RECTANGLE, prototype_number NUMBER >
 //inline void expand_bounding_box(RECTANGLE & rectangleBounding, const ::line_type < NUMBER > & line)
 //{
 //
@@ -273,7 +273,7 @@
 
 
 
-template < primitive_rectangle RECTANGLE, typename TYPE >
+template < prototype_rectangle RECTANGLE, typename TYPE >
 inline bool get_bounding_box(RECTANGLE & rectangleBounding, const TYPE & t)
 {
 
@@ -291,7 +291,7 @@ inline bool get_bounding_box(RECTANGLE & rectangleBounding, const TYPE & t)
 }
 
 
-template < primitive_rectangle RECTANGLE, primitive_point POINT >
+template < prototype_rectangle RECTANGLE, prototype_point POINT >
 inline bool get_bounding_box(RECTANGLE & rectangleBounding, const POINT * ppoint, ::collection::count iPointCount)
 {
 

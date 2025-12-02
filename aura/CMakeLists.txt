@@ -460,8 +460,8 @@ list(APPEND library_source
         user/user/plain_text_data.h
         user/user/plain_text_tree.cpp
         user/user/plain_text_tree.h
-        #user/user/primitive_impl.cpp
-        #user/user/primitive_impl.h
+        #user/user/prototype_impl.cpp
+        #user/user/prototype_impl.h
         user/user/progress.cpp
         user/user/progress.h
         user/user/range.cpp

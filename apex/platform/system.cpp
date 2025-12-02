@@ -5122,12 +5122,7 @@ namespace apex
    ::string system::fetch_public_internet_domain_extension_list_text()
    {
 
-      //auto estatus =
-      ///::platform::system::get_public_internet_domain_extension_list(stra);
-
-      //return estatus;
-
-      return {};
+      return m_papplication->fetch_public_internet_domain_extension_list_text();
 
    }
 

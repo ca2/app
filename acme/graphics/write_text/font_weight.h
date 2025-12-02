@@ -150,7 +150,7 @@ namespace write_text
       }
 
 
-      template < primitive_integral INTEGRAL >
+      template < prototype_integral INTEGRAL >
       constexpr ::std::strong_ordering operator <=>(const INTEGRAL iFontWeight) const
       {
 
@@ -159,7 +159,7 @@ namespace write_text
       }
 
 
-      template < primitive_integral INTEGRAL >
+      template < prototype_integral INTEGRAL >
       void set_font_weight(INTEGRAL iFontWeight)
       {
       
@@ -180,7 +180,7 @@ namespace write_text
       }
 
 
-      template < primitive_integral INTEGRAL >
+      template < prototype_integral INTEGRAL >
       font_weight & operator = (INTEGRAL iFontWeight)
       {
 

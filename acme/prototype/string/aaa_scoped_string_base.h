@@ -37,7 +37,7 @@
 //   scoped_string_base(const scoped_wd16_string & scopedstr) : RANGE(nullptr) { construct_range(scopedstr); }
 //   scoped_string_base(const scoped_wd32_string & scopedstr) : RANGE(nullptr) { construct_range(scopedstr); }
 //
-//   template < primitive_string STRING2 >
+//   template < prototype_string STRING2 >
 //   scoped_string_base(const STRING2& str) : RANGE(no_initialize_t{}) { construct_range(str); }
 //
 //   template < typename ITERATOR_TYPE2, int t_size >
@@ -49,7 +49,7 @@
 //   template < has_get_string HAS_GET_STRING >
 //   scoped_string_base(const HAS_GET_STRING & has_get_string) : RANGE(nullptr) { this->str(has_get_string.get_string()); }
 //
-////   template < primitive_character CHARACTER2 >
+////   template < prototype_character CHARACTER2 >
 ////   scoped_string_base(CHARACTER2 character) : RANGE(no_initialize_t{})
 ////   {
 ////      if constexpr(sizeof(CHARACTER2) == 1 && sizeof(CHARACTER) == 1)
@@ -91,7 +91,7 @@
 //   
 //   }
 //
-//   //template < primitive_character CHARACTER2, character_count n >
+//   //template < prototype_character CHARACTER2, character_count n >
 //   //scoped_string_base(const CHARACTER2(&s)[n]) : scoped_string_base(::as_string_literal<CHARACTER2, n>(s)) {}
 //   //scoped_string_base(const CHARACTER2(&s)[n]) : RANGE(::range<const CHARACTER2 *>(s)) {}
 //
@@ -116,9 +116,9 @@
 //
 //   template < character_pointer CHARACTER_POINTER >
 //   scoped_string_base(CHARACTER_POINTER start) : scoped_string_base(start, start + string_safe_length(start)) {}
-//   template < primitive_character CHARACTER2 >
+//   template < prototype_character CHARACTER2 >
 //   scoped_string_base(const CHARACTER2 * start, character_count len) : scoped_string_base(start, start + len) {}
-//   template < primitive_character CHARACTER2 >
+//   template < prototype_character CHARACTER2 >
 //   scoped_string_base(const CHARACTER2 * start, const CHARACTER2 * end) :
 //      RANGE(no_initialize_t{})
 //   { 
@@ -181,7 +181,7 @@
 //   }
 //
 //
-//   //template < primitive_character CHARACTER2 >
+//   //template < prototype_character CHARACTER2 >
 //   //void _construct1(const CHARACTER2 * psz)
 //   //{
 //   //   
@@ -338,7 +338,7 @@
 ////}
 //
 //
-////template < typename ITERATOR_TYPE, primitive_string STRING >
+////template < typename ITERATOR_TYPE, prototype_string STRING >
 ////inline string_base < ITERATOR_TYPE > operator + (const scoped_string_base < ITERATOR_TYPE > & scopedstr, const STRING & str)
 ////{
 ////
@@ -355,7 +355,7 @@
 ////}
 //
 //
-////template < primitive_character CHARACTER1, primitive_character CHARACTER2 >
+////template < prototype_character CHARACTER1, prototype_character CHARACTER2 >
 ////inline ::ansi_string operator + (const ::range < const CHARACTER1 * > & scopedstr1, const ::range < const CHARACTERE & scopedstr2)
 ////{
 ////
@@ -393,7 +393,7 @@
 //
 //
 //
-//template<primitive_character CHARACTER>
+//template<prototype_character CHARACTER>
 //inline ::hash32 _string_unsigned_int_hash(const ::scoped_string_base<const CHARACTER *> & scopedstr) 
 //{
 //

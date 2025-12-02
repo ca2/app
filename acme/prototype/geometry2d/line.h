@@ -1,7 +1,7 @@
 #pragma once
 
 
-template < primitive_number NUMBER >
+template < prototype_number NUMBER >
 class line_type
 {
 public:

@@ -6,7 +6,7 @@
 //#include "acme/prototype/collection/numeric_array.h"
 
 
-template < primitive_number NUMBER >
+template < prototype_number NUMBER >
 string & get_network_payload(::string & str, const NUMBER & number, bool bNewLine = true)
 {
 
@@ -17,7 +17,7 @@ string & get_network_payload(::string & str, const NUMBER & number, bool bNewLin
 }
 
 
-template < primitive_array ARRAY >
+template < prototype_array ARRAY >
 string & get_network_payload(::string & str, const ARRAY & a, bool bNewLine = true)
 {
 

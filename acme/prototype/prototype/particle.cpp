@@ -2196,6 +2196,52 @@ bool particle::should_run_async() const
 }
 
 
+::pointer<::particle> particle::__call__create_by_custom_id(const ::type_custom_id& typecustomid, ::factory::factory* pfactory)
+{
+
+   if (::is_null(pfactory))
+   {
+
+      pfactory = this->factory();
+
+   }
+
+   auto pfactoryitem = pfactory->_get_factory_item_by_custom_id(typecustomid);
+
+   auto p = pfactoryitem->__call__create_particle();
+
+   p->set_flag(e_flag_factory);
+
+   p->initialize(this);
+
+   return p;
+
+}
+
+
+::pointer<::particle> particle::__call__create_by_ipair(const ::type_iptr_pair& ipair, ::factory::factory* pfactory)
+{
+
+   if (::is_null(pfactory))
+   {
+
+      pfactory = this->factory();
+
+   }
+
+   auto pfactoryitem = pfactory->_get_factory_item_by_ipair(ipair);
+
+   auto p = pfactoryitem->__call__create_particle();
+
+   p->set_flag(e_flag_factory);
+
+   p->initialize(this);
+
+   return p;
+
+}
+
+
 // ::pointer < ::particle > particle::__call__create_by_type_index(const ::std::type_index & typeindex, ::factory::factory* pfactory)
 // {
 //

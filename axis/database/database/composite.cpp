@@ -260,7 +260,7 @@ namespace database
    ::payload composite::get_insert_id()
    {
 
-      return ::payload();
+      return m_pdatabase->get_insert_id();
 
    }
 

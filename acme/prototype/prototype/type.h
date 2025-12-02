@@ -166,6 +166,7 @@ public:
 
    type_custom_id();
    type_custom_id(const_char_pointer pszNameId);
+   type_custom_id(const ::string_literal < const_char_pointer > & strliteralNameId);
    type_custom_id(const ::scoped_string & scopedstrNameId);
    type_custom_id(const ::type_iptr_pair & ipairId);
    type_custom_id(const ::scoped_string & scopedstrNameId, const ::type_iptr_pair & ipairId);
@@ -284,8 +285,8 @@ inline const_char_pointer c_demangle(const_char_pointer psz)
 //
 //
 //template < typename OBJECT_NOT_TYPE_ATOM >
-//concept primitive_object_not_type_atom =
-//   primitive_object < OBJECT_NOT_TYPE_ATOM >
+//concept prototype_object_not_type_atom =
+//   prototype_object < OBJECT_NOT_TYPE_ATOM >
 //      && !std::is_same_v < OBJECT_NOT_TYPE_ATOM, raw_literal >
 //      && !std::is_base_of_v < raw_literal, OBJECT_NOT_TYPE_ATOM >;
 //
@@ -348,7 +349,7 @@ inline const_char_pointer c_demangle(const_char_pointer psz)
 //
 //   raw_literal(const ::quantum * p);
 //
-//   template < primitive_object_not_type_atom OBJECT_NOT_TYPE_ATOM >
+//   template < prototype_object_not_type_atom OBJECT_NOT_TYPE_ATOM >
 //   raw_literal(OBJECT_NOT_TYPE_ATOM & objectnottypeatom);
 //
 //   template < typename BASE >
@@ -446,7 +447,7 @@ inline const_char_pointer c_demangle(const_char_pointer psz)
 //}
 //
 //
-//template < primitive_object OBJECT >
+//template < prototype_object OBJECT >
 //inline ::raw_literal type(OBJECT & object)
 //{
 //
@@ -585,14 +586,19 @@ namespace platform
 
 
       ::type_id            m_typeid;
-
       ::type_custom_id     m_customid;
 
 
       //type();
-      //type(const ::platform::type &type);
       //explicit type(const ::std::type_info &info);
       //type(const ::scoped_string &scopedstrTypeName);
+      //template < typename TYPE >
+      //type(const TYPE* p) : type(typeid(*(TYPE*)p)) {}
+      //template < typename TYPE >
+      //type(const TYPE& t) : type(typeid(t)) {}
+      //template < typename BASE >
+      //type(const ::pointer<BASE>& p) : type(p.m_p) {}
+
 
       type();
       type(const ::platform::type &type);
@@ -647,4 +653,26 @@ template<typename BASE>
 inline ::platform::type type(const ::pointer<BASE> &p);
 
 
+
+
+
+
+//template < >
+//inline ::hash32 as_hash32 < type >(const ::platform::type & type)
+//{
+//
+//   return ::as_hash32(name.m_strTypeName);
+//
+//}
+//
+//
+
+
+//template < typename TYPE >
+//inline ::type as_type()
+//{
+//
+//   return typeid(TYPE);
+//
+//}
 

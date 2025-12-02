@@ -16,7 +16,7 @@ template < > consteval auto typed_##NAME<char16_t>() { return u##LITERAL; } \
 template < > consteval auto typed_##NAME<char32_t>() { return U##LITERAL; }
 
 
-template<primitive_character CHARACTER>
+template<prototype_character CHARACTER>
 constexpr ::character_range<const CHARACTER *>
 inline _start_count_string_range(const CHARACTER *psz, memsize start, memsize count);
 
@@ -158,7 +158,7 @@ public:
    //}
 
 
-   template<primitive_integral INTEGRAL>
+   template<prototype_integral INTEGRAL>
    constexpr const_string_range(const_iterator begin, INTEGRAL count) : BASE_RANGE((this_iterator)begin,
       (this_iterator)(begin + count)) {
    }
@@ -270,9 +270,9 @@ public:
 
 
 
-   template < primitive_integral START, primitive_integral COUNT >
+   template < prototype_integral START, prototype_integral COUNT >
    const_string_range subrange(START start, COUNT count) const;
-   template < primitive_integral START >
+   template < prototype_integral START >
    const_string_range subrange(START start, const_iterator p) const { return subrange(start, (p - this->m_begin) - start); }
 
    //auto this_range() const {return *this;}
@@ -384,9 +384,9 @@ public:
    }
 
 
-   template < primitive_integral START, primitive_integral COUNT>
+   template < prototype_integral START, prototype_integral COUNT>
    STRING_RANGE operator()(START start, COUNT count) const;
-   template < primitive_integral START, typed_character_pointer < const_string_range < ITERATOR_TYPE >::CHARACTER > CHARACTER_POINTER >
+   template < prototype_integral START, typed_character_pointer < const_string_range < ITERATOR_TYPE >::CHARACTER > CHARACTER_POINTER >
    STRING_RANGE operator()(START start, CHARACTER_POINTER end) const
    {
       return ::_start_end_range(STRING_RANGE(*this), start, end);
@@ -396,17 +396,17 @@ public:
    {
        return STRING_RANGE(start, this->end());
    }
-   template < primitive_integral START >
+   template < prototype_integral START >
    STRING_RANGE operator()(START start) const;
    STRING_RANGE operator()() const;
 
-   template < primitive_integral START, primitive_integral COUNT>
+   template < prototype_integral START, prototype_integral COUNT>
    auto substr(START start, COUNT count) const { return this->operator()(start, count); }
-   template < primitive_integral START, typed_character_pointer < typename const_string_range < ITERATOR_TYPE >::CHARACTER > CHARACTER_POINTER >
+   template < prototype_integral START, typed_character_pointer < typename const_string_range < ITERATOR_TYPE >::CHARACTER > CHARACTER_POINTER >
    auto substr(START start, CHARACTER_POINTER end) const { return this->operator()(start, end); }
    template < typed_character_pointer < typename const_string_range < ITERATOR_TYPE >::CHARACTER > CHARACTER_POINTER >
    auto substr(CHARACTER_POINTER start) const { return this->operator()(start); }
-   template < primitive_integral START >
+   template < prototype_integral START >
    auto substr(START start) const { return this->operator()(start); }
    //STRING_RANGE operator()() const;
 
@@ -2220,10 +2220,10 @@ public:
       contains(const SCOPED_STRING& scopedstr, const CHARACTER** ppszBeg, const CHARACTER** ppszEnd = nullptr) const;
    //inline bool contains(const string_base &str, const CHARACTER ** ppszBeg, const CHARACTER ** ppszEnd = nullptr) const;
 
-   template<primitive_array STRING_ARRAY>
+   template<prototype_array STRING_ARRAY>
    inline bool contains_any(const STRING_ARRAY& stra) const;
 
-   template<primitive_array STRING_ARRAY>
+   template<prototype_array STRING_ARRAY>
    inline bool contains_all(const STRING_ARRAY& stra) const;
 
    //inline bool case_insensitive_contains(CHARACTER ch = 0) const;
@@ -2235,10 +2235,10 @@ public:
       case_insensitive_contains(const SCOPED_STRING& scopedstr, const CHARACTER** ppszBeg, const CHARACTER** ppszEnd = nullptr) const;
    //inline bool case_insensitive_contains(const string_base &str, const CHARACTER ** ppszBeg, const CHARACTER ** ppszEnd = nullptr) const;
 
-   template<primitive_array STRING_ARRAY>
+   template<prototype_array STRING_ARRAY>
    inline bool case_insensitive_contains_at_least_one_of(const STRING_ARRAY& stra) const;
 
-   template<primitive_array STRING_ARRAY>
+   template<prototype_array STRING_ARRAY>
    inline bool case_insensitive_contains_all(const STRING_ARRAY& stra) const;
 
 
@@ -2251,10 +2251,10 @@ public:
       unicode_case_insensitive_contains(const SCOPED_STRING& scopedstr, const CHARACTER** ppszBeg, const CHARACTER** ppszEnd = nullptr) const;
    //inline bool unicode_case_insensitive_contains(const string_base &str, const CHARACTER ** ppszBeg, const CHARACTER ** ppszEnd = nullptr) const;
 
-   template<primitive_array STRING_ARRAY>
+   template<prototype_array STRING_ARRAY>
    inline bool unicode_case_insensitive_contains_at_least_one_of(const STRING_ARRAY& stra) const;
 
-   template<primitive_array STRING_ARRAY>
+   template<prototype_array STRING_ARRAY>
    inline bool unicode_case_insensitive_contains_all(const STRING_ARRAY& stra) const;
 
 
@@ -2849,10 +2849,10 @@ public:
 
 
 
-template<primitive_character CHARACTER>
+template<prototype_character CHARACTER>
 constexpr ::character_range<const CHARACTER*> _string_range(const CHARACTER* psz);
 
-template<primitive_character CHARACTER>
+template<prototype_character CHARACTER>
 constexpr ::character_range<const CHARACTER*>
 _start_count_string_range(const CHARACTER* psz, memsize start, memsize count);
 
@@ -2947,7 +2947,7 @@ constexpr string_literal < const ::wd32_character* > operator ""_wd32(const ::wd
 }
 
 
-template < primitive_character CHARACTER, character_count n >
+template < prototype_character CHARACTER, character_count n >
 ::const_string_range < const CHARACTER * > as_range(const CHARACTER(&s)[n])
 {
    return
@@ -2962,7 +2962,7 @@ template < primitive_character CHARACTER, character_count n >
 template < typename TYPED_STRING_LITERAL, typename CHARACTER >
 concept typed_string_literal =
 ::std::is_same_v < TYPED_STRING_LITERAL, CHARACTER >&&
-primitive_character < TYPED_STRING_LITERAL >;
+prototype_character < TYPED_STRING_LITERAL >;
 
 
 

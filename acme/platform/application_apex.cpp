@@ -83,6 +83,30 @@ namespace platform
    }
 
 
+   ::string apex_application_layer::fetch_public_internet_domain_extension_list_text()
+   {
+
+      ::string str;
+
+      str = "com\n"
+         "net\n"
+         "org\n"
+         "dk\n"
+         "us\n"
+         "de\n"
+         "uk\n"
+         "jp\n"
+         "ar\n"
+         "br\n"
+         "ve\n"
+         "in\n"
+         "fr\n";
+
+      return str;
+
+   }
+
+
    // bool apex_application_layer::is_application() const override{}
    //
    //

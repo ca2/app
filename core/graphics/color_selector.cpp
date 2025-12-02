@@ -350,9 +350,9 @@ namespace graphics
          ::color::hls hls(dH, dL, dS);
 
 
-         //unsigned char uchR = (unsigned char)primitive_color_round(m_dR * 255.0);
-         //m_uchG = (unsigned char)primitive_color_round(m_dG * 255.0);
-         //m_uchB = (unsigned char)primitive_color_round(m_dB * 255.0);
+         //unsigned char uchR = (unsigned char)prototype_color_round(m_dR * 255.0);
+         //m_uchG = (unsigned char)prototype_color_round(m_dG * 255.0);
+         //m_uchB = (unsigned char)prototype_color_round(m_dB * 255.0);
 
          ::color::color color(hls);
 

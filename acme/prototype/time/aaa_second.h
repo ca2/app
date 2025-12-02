@@ -15,9 +15,9 @@ public:
 
    second() : duration(e_raw, 1) {}
    second(const class ::time & time) : ::duration(duration) {}
-   template < primitive_integral INTEGRAL >
+   template < prototype_integral INTEGRAL >
    second(INTEGRAL integral) : duration(::integral_second(integral)) { }
-   template < primitive_floating FLOATING >
+   template < prototype_floating FLOATING >
    second(FLOATING floating) : duration(::floating_second(floating)) { }
 
    bool done() const { return integral_second().m_i >= 1; }

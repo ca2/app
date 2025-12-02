@@ -42,7 +42,7 @@ public:
 
    memory(::particle * pparticle = nullptr) { this->m_pprimitivememory = this; this->m_bAligned = false; }
    memory(enum_create_new, bool bAligned);
-   template < primitive_integral INTEGRAL >
+   template < prototype_integral INTEGRAL >
    memory(INTEGRAL i, bool bAligned = false) { this->m_pprimitivememory = this; this->m_bAligned = bAligned; this->set_size(i); }
    memory(const ::std::initializer_list < int > & iaList);
    memory(const unsigned char *, memsize size);

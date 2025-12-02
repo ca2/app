@@ -820,11 +820,11 @@ namespace core
 } // namespace core
 
 
-//#include "apex/primitive/primitive/object.h"
+//#include "apex/prototype/prototype/object.h"
 
 //#include "apex/handler/_.h"
 
-//#include "apex/primitive/primitive/object.h"
+//#include "apex/prototype/prototype/object.h"
 
 //#include "acme/prototype/prototype/object_meta.h"
 
@@ -924,7 +924,7 @@ namespace windowing
 
 //#include "apex/user/check.h"
 //#include "apex/user/text.h"
-//#include "apex/user/primitive.h"
+//#include "apex/user/prototype.h"
 
 
 //s#include "apex/parallelization/thread.h"
@@ -1149,7 +1149,7 @@ namespace xml
 //#include "apex/process/_.h"
 
 
-//#include "apex/primitive/math/department.h"
+//#include "apex/prototype/math/department.h"
 
 
 //#include "apex/user/menu_shared.h"

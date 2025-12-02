@@ -47,7 +47,7 @@
 //
 //   public:
 //
-//      member& operator = (const ::primitive::member < TYPE >& member) { m_p = member.m_p; return *this; }
+//      member& operator = (const ::prototype::member < TYPE >& member) { m_p = member.m_p; return *this; }
 //
 //      template < typename OBJECT >
 //      member& operator = (const ::pointer<OBJECT>& p) { m_p = dynamic_cast <TYPE*> ((OBJECT*)p.m_p); return *this; }
@@ -110,9 +110,9 @@
 ////} // namespace prototype
 
 //
-//#define __member(TYPE) ::primitive::member < TYPE >
-//#define ::pointer<TYPE>::primitive::composite < TYPE >
-//#define ::pointer<TYPE>::primitive::reference < TYPE >
+//#define __member(TYPE) ::prototype::member < TYPE >
+//#define ::pointer<TYPE>::prototype::composite < TYPE >
+//#define ::pointer<TYPE>::prototype::reference < TYPE >
 
 //
 //template<typename TYPE>

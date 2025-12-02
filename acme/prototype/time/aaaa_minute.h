@@ -15,9 +15,9 @@ public:
 
    minute() : time(e_raw, 60) {}
    minute(const class time & time) : class ::time(time) {}
-   template < primitive_integral INTEGRAL >
+   template < prototype_integral INTEGRAL >
    minute(INTEGRAL integral) : time(::integral_minute(integral)) { }
-   template < primitive_floating FLOATING >
+   template < prototype_floating FLOATING >
    minute(FLOATING floating) : time(::floating_minute(floating)) { }
 
    bool done() const { return integral_minute().m_i >= 1; }

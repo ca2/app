@@ -12,7 +12,7 @@ namespace generic
    {
 
 
-      template < primitive_range RANGE, typename COMPARE_INTERFACE >
+      template < prototype_range RANGE, typename COMPARE_INTERFACE >
       void quick_sort(
       RANGE & range,
       COMPARE_INTERFACE * pinterface,

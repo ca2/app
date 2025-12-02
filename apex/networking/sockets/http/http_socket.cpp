@@ -952,6 +952,8 @@ namespace sockets
 
       m_request.m_url = strUrl;
 
+      set_url(strUrl);
+
       //if(IsRequest())
       //{
 

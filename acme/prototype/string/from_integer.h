@@ -9,7 +9,7 @@ CLASS_DECL_ACME string i64toa_dup(long long i);
 CLASS_DECL_ACME string ui64toa_dup(long long i, int iBase);
 CLASS_DECL_ACME string ui64toa_dup(long long i);
 
-template < primitive_integer INTEGER >
+template < prototype_integer INTEGER >
 ::string string_from(INTEGER i, int iBase = 10)
 {
 

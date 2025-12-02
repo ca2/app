@@ -123,14 +123,14 @@
 //      return p;
 //
 //   }
-//   template < primitive_integral INTEGRAL >
+//   template < prototype_integral INTEGRAL >
 //   pointer_rear_iterator operator +(INTEGRAL i)
 //   {
 //
 //      return m_p - i;
 //
 //   }
-//   template < primitive_integral INTEGRAL >
+//   template < prototype_integral INTEGRAL >
 //   pointer_rear_iterator operator -(INTEGRAL i)
 //   {
 //
@@ -138,14 +138,14 @@
 //
 //   }
 //
-//   template < primitive_integral INTEGRAL >
+//   template < prototype_integral INTEGRAL >
 //   pointer_rear_iterator & operator +=(INTEGRAL i)
 //   {
 //      m_p -= i;
 //      return *this;
 //
 //   }
-//   template < primitive_integral INTEGRAL >
+//   template < prototype_integral INTEGRAL >
 //   pointer_rear_iterator & operator -=(INTEGRAL i)
 //   {
 //      m_p += i;
@@ -210,7 +210,7 @@
 //   base_array_quantum(base_array_quantum && a) noexcept;
 //   base_array_quantum(const TYPE * p, ::collection::count c);
 //   base_array_quantum(::range < const_iterator > constrange) : base_array_quantum(constrange.begin(), constrange.end()) {}
-//   template < primitive_integral INTEGRAL >
+//   template < prototype_integral INTEGRAL >
 //   base_array_quantum(const_iterator begin, INTEGRAL count) : base_array_quantum(begin, begin + count) {}
 //   base_array_quantum(const_iterator begin, const_iterator end)
 //   {
@@ -789,13 +789,13 @@
 //
 //   void zero(::collection::index iStart = 0, ::collection::count c = -1);
 //
-//   //template < primitive_array ARRAY >
+//   //template < prototype_array ARRAY >
 //   //void _001RemoveIndexes(ARRAY & ia);
 //   
-//   template < primitive_array ARRAY >
+//   template < prototype_array ARRAY >
 //   void erase_indexes(const ARRAY & ia);
 //
-//   template < primitive_array ARRAY >
+//   template < prototype_array ARRAY >
 //   void erase_descending_indexes(const ARRAY & ia);
 //
 //
@@ -882,7 +882,7 @@
 //   virtual void copy(const base_array_quantum & src);
 //
 //
-//   template < primitive_container CONTAINER >
+//   template < prototype_container CONTAINER >
 //   ::collection::count append(const CONTAINER & container)
 //   {
 //
@@ -1318,7 +1318,7 @@ public:
    base_array(const TYPE * p, ::collection::count c) :BASE_ARRAY(p, c) {}
    base_array(::range < typename BASE_ARRAY::const_iterator > constrange) :
       BASE_ARRAY(constrange.begin(), constrange.end()) {}
-   template < primitive_integral INTEGRAL >
+   template < prototype_integral INTEGRAL >
    base_array(typename BASE_ARRAY::const_iterator begin, INTEGRAL count) :
       BASE_ARRAY(begin, begin + count) {}
    base_array(typename BASE_ARRAY::const_iterator begin, typename BASE_ARRAY::const_iterator end)
@@ -1341,7 +1341,7 @@ public:
 };
 
 
-//template < primitive_integral INTEGRAL, class TYPE, class ARG_TYPE, class TYPED = ::typed::nodef < TYPE >, class MEMORY = ::heap::typed_memory < TYPE, ::heap::e_memory_array >, ::enum_type t_etypeContainer = e_type_element >
+//template < prototype_integral INTEGRAL, class TYPE, class ARG_TYPE, class TYPED = ::typed::nodef < TYPE >, class MEMORY = ::heap::typed_memory < TYPE, ::heap::e_memory_array >, ::enum_type t_etypeContainer = e_type_element >
 //inline TYPE& operator%(INTEGRAL nIndex, const base_array_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > & a)
 //{
 //
@@ -1744,7 +1744,7 @@ public:
 //
 //
 ////template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-////template < primitive_container CONTAINER >
+////template < prototype_container CONTAINER >
 ////base_array_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >
 ////base_array_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::operator + (const CONTAINER & array) const
 ////{
@@ -1761,7 +1761,7 @@ public:
 //
 //
 //template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-//template < primitive_array ARRAY >
+//template < prototype_array ARRAY >
 //void base_array_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::erase_indexes(const ARRAY & ia)
 //{
 //
@@ -1778,7 +1778,7 @@ public:
 //
 //
 //template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-//template < primitive_array ARRAY >
+//template < prototype_array ARRAY >
 //void base_array_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::erase_descending_indexes(const ARRAY & ia)
 //{
 //

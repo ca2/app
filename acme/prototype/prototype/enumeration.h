@@ -5,7 +5,7 @@
 //inline bool __enum_is_failed(const ENUM & e) { return !(long long)e; }
 
 template < typename INTEGRAL >
-concept primitive_integral = std::is_integral_v < ::decay < INTEGRAL > >;
+concept prototype_integral = std::is_integral_v < ::decay < INTEGRAL > >;
 
 
 template < typename ENUM >
@@ -39,9 +39,9 @@ public:
    template < typename THE_ENUM >
    constexpr enumeration(THE_ENUM e)
    requires (::std::is_same_v < THE_ENUM,  ENUM >
-      && !primitive_integral<THE_ENUM>)
+      && !prototype_integral<THE_ENUM>)
    { m_eenum = (ENUM) e; }
-   //template < primitive_integral INTEGRAL >
+   //template < prototype_integral INTEGRAL >
    //enumeration(INTEGRAL i) { m_eenum = (ENUM) i; }
    constexpr enumeration(const enumeration & e) { m_eenum = e.m_eenum; }
 
@@ -169,14 +169,14 @@ public:
 
 #define DECLARE_ENUMERATION(ENUMERATION, ENUM) \
 constexpr  ENUM operator | (ENUM e, ENUM f) { return (ENUM) ((unsigned long long)e | (unsigned long long)f); } \
-template < primitive_integral INTEGRAL > \
+template < prototype_integral INTEGRAL > \
 constexpr  ENUM operator | (ENUM e, INTEGRAL i) { return (ENUM) ((unsigned long long)e | (unsigned long long)i); } \
-template < primitive_integral INTEGRAL > \
+template < prototype_integral INTEGRAL > \
 constexpr  ENUM operator | (INTEGRAL i, ENUM e) { return (ENUM) ((unsigned long long)i | (unsigned long long)e); } \
 constexpr  ENUM operator & (ENUM e, ENUM f) { return (ENUM) ((unsigned long long)e & (unsigned long long)f); } \
-template < primitive_integral INTEGRAL > \
+template < prototype_integral INTEGRAL > \
 constexpr  ENUM operator & (ENUM e, INTEGRAL i) { return (ENUM) ((unsigned long long)e & (unsigned long long)i); } \
-template < primitive_integral INTEGRAL > \
+template < prototype_integral INTEGRAL > \
 constexpr  ENUM operator & (INTEGRAL i, ENUM e) { return (ENUM) ((unsigned long long)i & (unsigned long long)e); } \
 using ENUMERATION = ::enumeration < ENUM >
 

@@ -117,7 +117,7 @@ inline long long mkint(long long hi)
 //}
 
 //
-//template < primitive_integral) A, __typename(primitive_integral B >
+//template < prototype_integral) A, __typename(prototype_integral B >
 //constexpr const auto maximum(const A & a, const B & b)
 //{
 //

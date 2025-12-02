@@ -65,6 +65,10 @@ namespace url
 
       urlparts.arguments()[scopedstrKey] = scopedstr;
 
+      ::string strNetworkArguments = urlparts.arguments().get_network_arguments();
+
+      urlparts.m_request.set(urlparts.request().path(), strNetworkArguments);
+
       ::string strUrl = urlparts.as_string();
 
       return strUrl;

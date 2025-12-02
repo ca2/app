@@ -39,7 +39,7 @@ namespace sockets
 
    /** \defgroup timer event_timer happening handling */
 
-   /** EventTime primitive, returns current time as a 64-bit number.
+   /** EventTime prototype, returns current time as a 64-bit number.
       \ingroup timer */
    class EventTime
    {

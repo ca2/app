@@ -3,7 +3,7 @@
 // Created by camilo on 2021-02-04 18:05 <3ThomasBorregaardSorensen!!
 // Renamed to topic by camilo on 2021-02-04 18:05 <3ThomasBorregaardSorensen!!
 // From handler: on 2022-10-30 08:15 <3ThomasBorregaardSorensen!!
-//    From event_handler to handler at primitive_subject on day after ThomasBirthday2021 05:05 BRT
+//    From event_handler to handler at prototype_subject on day after ThomasBirthday2021 05:05 BRT
 //    From user namespace to global at apex by camilo on day after ThomasBirthday2021 04:36 BRT
 //    From aura by camilo on ThomasBirthday2021 20:00 BRT
 //
@@ -787,6 +787,10 @@ public:
 
    virtual ::pointer<::particle> __call__create_by_type(const ::platform::type & type, ::factory::factory *pfactory = nullptr);
 
+   virtual ::pointer<::particle> __call__create_by_custom_id(const ::type_custom_id & typecustomid, ::factory::factory* pfactory = nullptr);
+
+   virtual ::pointer<::particle> __call__create_by_ipair(const ::type_iptr_pair & ipair, ::factory::factory* pfactory = nullptr);
+
    //template < typename BASE_TYPE >
    //inline void __call__construct_by_type_index(::pointer<BASE_TYPE>& ptype, const ::std::type_index & typeindex, ::factory::factory* pfactory = nullptr);
 
@@ -1416,7 +1420,7 @@ CLASS_DECL_ACME void fatalf(const ::ansi_character* pszFormat, ...);
 // };
 
 
-template < primitive_container CONTAINER >
+template < prototype_container CONTAINER >
 inline void __assert_container_ok(const CONTAINER * pcontainer, const_char_pointer pszFileName, int nLine)
 {
 

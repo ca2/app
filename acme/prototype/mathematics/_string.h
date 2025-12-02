@@ -156,7 +156,7 @@ inline character_count itoa_base(char* psz, character_count size, long long i, i
 }
 
 
-template < primitive_integral INTEGRAL >
+template < prototype_integral INTEGRAL >
 inline INTEGRAL& _consume(INTEGRAL& i, ::ansi_range& range, int iBase = 10)
 {
 
@@ -185,7 +185,7 @@ inline INTEGRAL& _consume(INTEGRAL& i, ::ansi_range& range, int iBase = 10)
 }
 
 
-template < primitive_unsigned UNSIGNED >
+template < prototype_unsigned UNSIGNED >
 inline UNSIGNED & consume(UNSIGNED& u, ::ansi_range& range, int iBase = 10)
 {
 
@@ -194,7 +194,7 @@ inline UNSIGNED & consume(UNSIGNED& u, ::ansi_range& range, int iBase = 10)
 }
 
 
-template < primitive_signed SIGNED >
+template < prototype_signed SIGNED >
 inline SIGNED & consume(SIGNED & s, ::ansi_range& range, int iBase = 10)
 {
 
@@ -209,7 +209,7 @@ inline SIGNED & consume(SIGNED & s, ::ansi_range& range, int iBase = 10)
 }
 
 
-template < primitive_integral INTEGRAL >
+template < prototype_integral INTEGRAL >
 INTEGRAL consume_integral(::ansi_range& range, int iBase = 10)
 {
 
@@ -440,7 +440,7 @@ inline size_t as_size_t(const ::scoped_string& scopedstr, int iBase = 10) { auto
 //
 
 
-template < primitive_integral INTEGRAL >
+template < prototype_integral INTEGRAL >
 inline void from_string(INTEGRAL & i, const ::scoped_string & scopedstr, int iBase = 10)
 {
 
@@ -472,7 +472,7 @@ inline void from_string(INTEGRAL & i, const ::scoped_string & scopedstr, int iBa
 }
 
 
-template < primitive_floating FLOATING >
+template < prototype_floating FLOATING >
 inline void from_string(FLOATING& f, const ::scoped_string& scopedstr)
 {
 

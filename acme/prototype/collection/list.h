@@ -5,7 +5,7 @@
 #include "list_node.h"
 #include "acme/platform/auto_pointer.h"
 
-template < primitive_container CONTAINER, typename TYPE >
+template < prototype_container CONTAINER, typename TYPE >
 bool contains(const CONTAINER & container, const TYPE & t)
    requires(::std::is_convertible<TYPE, typename CONTAINER::BASE_ITEM >::value)
 {

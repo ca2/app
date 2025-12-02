@@ -2845,7 +2845,7 @@ pmessagebox->sync();
 //      }
 ////      else
 //      {
-//         //      primitive_impl::window_rectangle(prect);
+//         //      prototype_impl::window_rectangle(prect);
 //
 //      }
 //

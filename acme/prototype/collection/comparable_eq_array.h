@@ -40,7 +40,7 @@ public:
    // comparable_eq_array_base(const comparable_eq_array_base & array) : BASE_RANGE(array) {}
    // comparable_eq_array_base(comparable_eq_array_base && array) noexcept : BASE_RANGE(::transfer(array)) { }
    // comparable_eq_array_base(::range < const_iterator > constrange) : BASE_RANGE(constrange) {}
-   // template < primitive_integral INTEGRAL >
+   // template < prototype_integral INTEGRAL >
    // comparable_eq_array_base(const_iterator begin, INTEGRAL count) : BASE_RANGE(begin, count) {}
    // comparable_eq_array_base(const_iterator begin, const_iterator end) : BASE_RANGE(begin, end) {}
    // comparable_eq_array_base(const_iterator begin) : BASE_RANGE(begin, find_first_null_character(begin)) {}
@@ -79,7 +79,7 @@ public:
    ::collection::index erase_first(ARG_TYPE t, ::collection::index find, ::collection::index last = -1);
    ::collection::count erase(ARG_TYPE t);
    ::collection::count erase(ARG_TYPE t, ::collection::index find, ::collection::index last = -1, ::collection::count countMin = 0, ::collection::count countMax = -1);
-   template < primitive_container CONTAINER>
+   template < prototype_container CONTAINER>
    ::collection::count erase(const CONTAINER & container);
    ::collection::count erase(iterator start, iterator end)
    {
@@ -122,7 +122,7 @@ public:
    }
 
 
-   template < primitive_range RANGE >
+   template < prototype_range RANGE >
    comparable_eq_array_base & operator -= (const RANGE & range)
    {
 
@@ -473,7 +473,7 @@ merge(const comparable_eq_array_base < TYPE, ARG_TYPE, ARRAY_TYPE > & a)
 }
 
 
-template < primitive_container CONTAINER, primitive_container CONTAINER2 >
+template < prototype_container CONTAINER, prototype_container CONTAINER2 >
 inline CONTAINER& operator |= (CONTAINER& container, const CONTAINER& container2)
 {
 
@@ -484,7 +484,7 @@ inline CONTAINER& operator |= (CONTAINER& container, const CONTAINER& container2
 }
 
 
-template < primitive_container CONTAINER, primitive_container CONTAINER2 >
+template < prototype_container CONTAINER, prototype_container CONTAINER2 >
 inline CONTAINER& operator &= (CONTAINER& container, const CONTAINER& container2)
 {
    
@@ -495,7 +495,7 @@ inline CONTAINER& operator &= (CONTAINER& container, const CONTAINER& container2
 }
 
 
-// template < primitive_container CONTAINER >
+// template < prototype_container CONTAINER >
 // inline CONTAINER & operator -= (CONTAINER & container, const typename CONTAINER::CONTAINER_ITEM_TYPE& t)
 // {
 //
@@ -506,7 +506,7 @@ inline CONTAINER& operator &= (CONTAINER& container, const CONTAINER& container2
 // }
 //
 //
-// template < primitive_container CONTAINER, primitive_container CONTAINER2 >
+// template < prototype_container CONTAINER, prototype_container CONTAINER2 >
 // inline CONTAINER& operator -= (CONTAINER& container, const CONTAINER2& container2)
 // {
 //
@@ -518,7 +518,7 @@ inline CONTAINER& operator &= (CONTAINER& container, const CONTAINER& container2
 
 
 
-template < primitive_container CONTAINER1, primitive_container CONTAINER2 >
+template < prototype_container CONTAINER1, prototype_container CONTAINER2 >
 CONTAINER1 operator - (const CONTAINER1 & container1, const CONTAINER2 & container2)
 {
    
@@ -664,7 +664,7 @@ erase(ARG_TYPE t)
 //}
 
 template <class TYPE,class ARG_TYPE, class ARRAY_TYPE >
-template < primitive_container CONTAINER>
+template < prototype_container CONTAINER>
 ::collection::index comparable_eq_array_base < TYPE, ARG_TYPE, ARRAY_TYPE >::
 erase(const CONTAINER & container)
 {

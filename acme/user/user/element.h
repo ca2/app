@@ -797,7 +797,7 @@ namespace user
 
       virtual ::user::element * get_parent_primitive();
 
-      virtual ::user::primitive_impl * get_primitive_impl();
+      virtual ::user::prototype_impl * get_primitive_impl();
 
       virtual ::user::interaction * get_first_child_window();
 

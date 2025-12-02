@@ -65,7 +65,7 @@ namespace user
       ::int_size size() const { return m_size; }
       ::int_size & size() { return m_size; }
 
-      //template < primitive_rectangle RECTANGLE >
+      //template < prototype_rectangle RECTANGLE >
       //visual_state & operator = (const RECTANGLE & rectangle) { m_point = rectangle.origin(); m_size = rectangle.size(); return *this; }
 
       int left() const { return m_point2.x; }

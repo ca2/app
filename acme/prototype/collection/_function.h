@@ -9,7 +9,7 @@
 // the ::collection::index raw_array by sorting it and returning
 // only the indexes that could be erased
 // without indexes duplicates
-template < primitive_array ARRAY, primitive_array ARRAY_INDEXES >
+template < prototype_array ARRAY, prototype_array ARRAY_INDEXES >
 void _001RemoveIndexes(ARRAY & a, ARRAY_INDEXES & ia)
 {
 

@@ -101,19 +101,19 @@
 //
 //   
 //
-//   template < primitive_floating FLOATING >
+//   template < prototype_floating FLOATING >
 //   floating_time operator %(FLOATING floating) const { return typename FLOATING_TIME_TYPE::BASE_TYPE(fmod(this->m_d, floating)); }
 //
-//   template < primitive_floating FLOATING >
+//   template < prototype_floating FLOATING >
 //   floating_time operator /(FLOATING floating) const { return typename FLOATING_TIME_TYPE::BASE_TYPE(this->m_d / floating); }
 //
-//   template < primitive_floating FLOATING >
+//   template < prototype_floating FLOATING >
 //   floating_time operator *(FLOATING floating) const { return typename FLOATING_TIME_TYPE::BASE_TYPE(this->m_d * floating); }
 //
-//   template < primitive_floating FLOATING >
+//   template < prototype_floating FLOATING >
 //   floating_time operator +(FLOATING floating) const { return typename FLOATING_TIME_TYPE::BASE_TYPE(this->m_d + floating); }
 //
-//   template < primitive_floating FLOATING >
+//   template < prototype_floating FLOATING >
 //   floating_time operator -(FLOATING floating) const { return typename FLOATING_TIME_TYPE::BASE_TYPE(this->m_d - floating); }
 //
 //

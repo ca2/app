@@ -464,7 +464,7 @@ public:
 
 
    //template < class T2 >
-   //inline pointer& operator = (const ::primitive::composite < T2 >& composite)
+   //inline pointer& operator = (const ::prototype::composite < T2 >& composite)
    //{
 
    //   return operator = (composite.get());
@@ -473,7 +473,7 @@ public:
 
 
    //template < class T2 >
-   //inline pointer& operator = (const ::primitive::reference < T2 >& reference)
+   //inline pointer& operator = (const ::prototype::reference < T2 >& reference)
    //{
 
    //   return operator = (reference.get());
@@ -1408,7 +1408,7 @@ concept pointer_derived = requires(POINTER  p) {
 };
 
 template < typename POINTER >
-concept primitive_subparticle_pointer = 
+concept prototype_subparticle_pointer = 
 ::std::is_base_of_v < ::subparticle, ::erase_pointer < POINTER > > 
 || pointer_derived<POINTER>;
 
@@ -1418,7 +1418,7 @@ using subparticle_pointer = ::pointer < ::subparticle >;
 class time;
 
 template < typename RUNNABLE >
-concept primitive_runnable = requires(RUNNABLE r) {
+concept prototype_runnable = requires(RUNNABLE r) {
    
    { r() } ->::std::convertible_to<void>;
 #if defined(MS_COMPILER)
@@ -1429,7 +1429,7 @@ concept primitive_runnable = requires(RUNNABLE r) {
 };
 
 
-template < primitive_subparticle SUBPARTICLE >
+template < prototype_subparticle SUBPARTICLE >
 ::pointer < SUBPARTICLE > as_pointer(SUBPARTICLE* p)
 {
 
@@ -1438,7 +1438,7 @@ template < primitive_subparticle SUBPARTICLE >
 }
 
 
-template < primitive_subparticle SUBPARTICLE >
+template < prototype_subparticle SUBPARTICLE >
 ::pointer < SUBPARTICLE > as_pointer(const ::pointer < SUBPARTICLE > & p)
 {
 
@@ -1447,7 +1447,7 @@ template < primitive_subparticle SUBPARTICLE >
 }
 
 
-template < primitive_subparticle SUBPARTICLE >
+template < prototype_subparticle SUBPARTICLE >
 ::pointer < SUBPARTICLE > transfer_as_pointer(SUBPARTICLE* p)
 {
 
@@ -1497,7 +1497,7 @@ public:
 #endif
 
 
-   template < primitive_subparticle SUBPARTICLE >
+   template < prototype_subparticle SUBPARTICLE >
    ::pointer < SUBPARTICLE > operator << (SUBPARTICLE* p)
    { 
 
@@ -1524,7 +1524,7 @@ public:
    
    }
 
-   template < primitive_subparticle SUBPARTICLE >
+   template < prototype_subparticle SUBPARTICLE >
    ::pointer < SUBPARTICLE > operator += (SUBPARTICLE* p)
    {
       

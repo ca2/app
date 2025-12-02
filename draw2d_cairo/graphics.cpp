@@ -3156,7 +3156,7 @@ namespace draw2d_cairo
 
 
 /////////////////////////////////////////////////////////////////////////////
-// special graphics drawing primitives/helpers
+// special graphics drawing prototypes/helpers
 
 
 //::draw2d::brush * PASCAL graphics::GetHalftoneBrush(::particle * pparticle)

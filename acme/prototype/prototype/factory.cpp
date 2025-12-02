@@ -627,7 +627,7 @@ CLASS_DECL_ACME bool safe_free_memory(void * ptype)
 
 
 // template < typename OBJECT, typename BASE_TYPE >
-// inline void øconstruct_by_custom_id(OBJECT && pparticle, ::pointer<BASE_TYPE>& pcomposite, const ::platform::type & type)
+// inline void øconstruct_by_id(OBJECT && pparticle, ::pointer<BASE_TYPE>& pcomposite, const ::platform::type & type)
 // {
 
 //    return pparticle->øconstruct_by_custom_id(pcomposite, (atom) type);
@@ -706,7 +706,7 @@ CLASS_DECL_ACME bool safe_free_memory(void * ptype)
 //
 //
 //template < typename OBJECT, typename BASE_TYPE, typename SOURCE >
-//inline void __refer(OBJECT && pparticle, ::pointer<BASE_TYPE>& preference, const ::primitive::member < SOURCE > & psource)
+//inline void __refer(OBJECT && pparticle, ::pointer<BASE_TYPE>& preference, const ::prototype::member < SOURCE > & psource)
 //{
 //
 //   return __refer(pparticle, preference, psource.operator SOURCE * ());
@@ -766,7 +766,7 @@ CLASS_DECL_ACME bool safe_free_memory(void * ptype)
 
 
 //template < typename OBJECT, typename BASE_TYPE >
-//inline void øconstruct_by_custom_id(OBJECT && pparticle, ::pointer<BASE_TYPE>& preference, const ::platform::type & type)
+//inline void øconstruct_by_id(OBJECT && pparticle, ::pointer<BASE_TYPE>& preference, const ::platform::type & type)
 //{
 //
 //   if (((uptr)&preference) < (uptr)pparticle || ((uptr)&preference) >= ((uptr)pparticle) + sizeof(typename ::raw_type < OBJECT>::RAW_TYPE))
@@ -1146,6 +1146,9 @@ namespace factory
    }
 
 
+
+
+
    // bool factory::has_by_type_index(const ::std::type_index & typeindex) const
    // {
    //
@@ -1417,6 +1420,37 @@ namespace factory
          typecustomid.m_ipairId.normal1(),
          typecustomid.m_ipairId.normal2(),
          typecustomid.m_strNameId);
+
+      return nullptr;
+
+   }
+
+
+   ::factory::factory_item_interface* factory::_get_factory_item_by_ipair(const ::type_iptr_pair & ipairId) const
+   {
+
+      critical_section_lock cs(&((factory*)this)->m_criticalsection);
+
+      if (ipairId.is_set())
+      {
+
+         auto iterator = this->m_mapByCustomIpairId.find(ipairId);
+
+         if (iterator)
+         {
+
+            auto pfactoryitem = iterator->payload();
+
+            if (::is_set(pfactoryitem))
+            {
+
+               return pfactoryitem;
+
+            }
+
+         }
+
+      }
 
       return nullptr;
 

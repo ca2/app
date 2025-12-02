@@ -2819,40 +2819,44 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
 
       string str = fetch_public_internet_domain_extension_list_text();
 
-      auto psz = str.c_str();
+      stra.add_lines(str);
 
-      while (*psz != '\0')
-      {
+      stra.erase_empty();
 
-         string str(*psz);
+      //auto psz = str.c_str();
 
-         auto pStart = str.find('(');
+      //while (*psz != '\0')
+      //{
 
-         if (::is_null(pStart))
-         {
+      //   string str(*psz);
 
-            stra.add(str);
+      //   auto pStart = str.find('(');
 
-            continue;
+      //   if (::is_null(pStart))
+      //   {
 
-         }
+      //      stra.add(str);
 
-         auto pEnd = str(pStart + 1).find(')');
+      //      continue;
 
-         if (::is_null(pEnd))
-         {
+      //   }
 
-            string strItem = str(0, pStart);
+      //   auto pEnd = str(pStart + 1).find(')');
 
-            stra.add(strItem);
+      //   if (::is_null(pEnd))
+      //   {
 
-            continue;
+      //      string strItem = str(0, pStart);
 
-         }
+      //      stra.add(strItem);
 
-         stra.add({ pStart, pEnd - pStart - 1 });
+      //      continue;
 
-      }
+      //   }
+
+      //   stra.add({ pStart, pEnd - pStart - 1 });
+
+      //}
 
       stra.trim();
 

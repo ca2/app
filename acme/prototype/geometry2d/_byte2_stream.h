@@ -5,7 +5,7 @@
 
 #include "acme/filesystem/file/byte2_stream.h"
 
-template < primitive_number NUMBER >
+template < prototype_number NUMBER >
 inline byte2_stream &  operator >> (byte2_stream & stream, size_type < NUMBER > &size)
 {
 
@@ -17,7 +17,7 @@ inline byte2_stream &  operator >> (byte2_stream & stream, size_type < NUMBER > 
 }
 
 
-template < primitive_number NUMBER >
+template < prototype_number NUMBER >
 inline byte2_stream &  operator << (byte2_stream & stream, const size_type < NUMBER > &size)
 {
 

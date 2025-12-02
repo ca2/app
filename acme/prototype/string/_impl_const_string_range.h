@@ -4,7 +4,7 @@
 
 
 
-template < primitive_character CHARACTER >
+template < prototype_character CHARACTER >
 ::string_base < const CHARACTER* > operator + (
    const ::range < const CHARACTER* >& range1,
    const ::range < const CHARACTER* >& range2)
@@ -16,7 +16,7 @@ template < primitive_character CHARACTER >
 
 
 
-template < primitive_character CHARACTER, character_count n >
+template < prototype_character CHARACTER, character_count n >
 ::string_base < const CHARACTER* > operator + (
    const ::range < const CHARACTER* >& range1,
    const CHARACTER(&s)[n])

@@ -11,7 +11,7 @@
 
 
 
-#include "apex/primitive/math/mkint_c.h"
+#include "apex/prototype/math/mkint_c.h"
 
 //#if defined(__ANDROID__)
 //#include "axis/axis/os/android/android.h"

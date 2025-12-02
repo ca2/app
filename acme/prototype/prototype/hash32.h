@@ -20,11 +20,11 @@ struct hash32
    hash32() : m_u(0) {};
    template < typename T >
    hash32(const T * p) : m_u((unsigned int)(::uptr)p) {};
-   template < primitive_integral INTEGRAL >
+   template < prototype_integral INTEGRAL >
    constexpr hash32(INTEGRAL i) : m_u((unsigned int)i) { }
-   template < primitive_enum ENUM >
+   template < prototype_enum ENUM >
    constexpr hash32(ENUM e) : m_u((unsigned int)e) { }
-   template < primitive_floating FLOATING >
+   template < prototype_floating FLOATING >
    constexpr hash32(FLOATING f) : hash32(&f, sizeof(f)) { }
    template < typename T >
    constexpr hash32(const ::pointer < T > & t) : hash32(t.m_p) { }
@@ -62,7 +62,7 @@ constexpr ::hash32 as_hash32<::std::type_index>(const ::std::type_index & typein
 //
 //   template < typename T >
 //   hash32(const T* p) : m_u((unsigned int)(::uptr)p) {}
-//   template < primitive_integral INTEGRAL >
+//   template < prototype_integral INTEGRAL >
 //   hash32(INTEGRAL i) : m_u((unsigned int)i) {}
 //   template < a_enum ENUM >
 //   hash32(const ::enumeration < ENUM > & e) : m_u((unsigned int)e.m_eenum) {}

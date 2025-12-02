@@ -346,10 +346,10 @@ namespace apex
 
 //#include "debug.h"
 
-//#include "apex/primitive/collection/std_iterator.h"
-//#include "apex/primitive/collection/insert_iterator.h"
-//#include "apex/primitive/collection/back_insert_iterator.h"
-//#include "apex/primitive/collection/std_pair.h"
+//#include "apex/prototype/collection/std_iterator.h"
+//#include "apex/prototype/collection/insert_iterator.h"
+//#include "apex/prototype/collection/back_insert_iterator.h"
+//#include "apex/prototype/collection/std_pair.h"
 
 
 //#include "muldiv32.h"

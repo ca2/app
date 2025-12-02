@@ -84,7 +84,7 @@ struct CLASS_DECL_ACME block :
       this->m_end = this->m_begin + ::string_safe_length(psz);
    }
    //block(const ::scoped_string  & scopedstr);
-   template < primitive_integral INTEGRAL >
+   template < prototype_integral INTEGRAL >
    block(INTEGRAL & i) : block(e_as_little_endian_block, i) {}
    template < typename TYPE >
    block(enum_as_little_endian_block, TYPE & t) : 
@@ -99,7 +99,7 @@ struct CLASS_DECL_ACME block :
    template < typename TYPE >
    block(enum_as_block, const TYPE & t) : block((void *)&t, sizeof(t)) {}
    block(const void * begin, const void * end) : BLOCK((unsigned char *)begin, (unsigned char *)end) {}
-   template < primitive_integral INTEGRAL >
+   template < prototype_integral INTEGRAL >
    block(const void * data, INTEGRAL count) : BLOCK((unsigned char *) data, count) { }
 
    //block & operator = (const block & block) 
@@ -178,7 +178,7 @@ struct CLASS_DECL_ACME block :
    }
 
 
-   template < primitive_aggregate AGGREGATE >
+   template < prototype_aggregate AGGREGATE >
    block & operator = (const AGGREGATE & aggregate)
    {
 
@@ -436,7 +436,7 @@ inline ::block as_memory_block(const TYPE & type)
 }
 
 
-template < primitive_character CHARACTER >
+template < prototype_character CHARACTER >
 inline ::block as_block(const ::range<const CHARACTER *> & range)
 {
 

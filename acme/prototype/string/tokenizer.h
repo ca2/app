@@ -83,7 +83,7 @@ public:
    }
 
 
-   template < primitive_range RANGE >
+   template < prototype_range RANGE >
    RANGE & substring(RANGE & range, character_count count)
    {
 
@@ -96,7 +96,7 @@ public:
    }
 
    
-   template < primitive_range RANGE >
+   template < prototype_range RANGE >
    RANGE & substring(RANGE & range, const_iterator iterator)
    {
 
@@ -109,7 +109,7 @@ public:
    }
 
    
-   template < primitive_range RANGE >
+   template < prototype_range RANGE >
    RANGE & substring(RANGE & range)
    {
 
@@ -159,7 +159,7 @@ public:
    }
 
 
-   template < primitive_range RANGE >
+   template < prototype_range RANGE >
    bool get_line(RANGE & rangeLine)
    {
 

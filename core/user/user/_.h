@@ -75,7 +75,7 @@ namespace user
 
    class font_list_impact;
 
-   class primitive_pointer_array;
+   class prototype_pointer_array;
 
    class control_bar;
 

@@ -1556,11 +1556,11 @@
 			<Option target="aura"/>
 			<Option target="static_aura"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/aura/user/user/primitive_impl.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/aura/user/user/prototype_impl.cpp">
 			<Option target="aura"/>
 			<Option target="static_aura"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/aura/user/user/primitive_impl.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/aura/user/user/prototype_impl.h">
 			<Option target="aura"/>
 			<Option target="static_aura"/>
 		</Unit>

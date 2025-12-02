@@ -21,23 +21,23 @@ class scoped_string_base;
 
 
 template < typename SEQUENCE >
-concept primitive_sequence = ::std::is_same < typename SEQUENCE::sequence_tag, sequence_t >::value;
+concept prototype_sequence = ::std::is_same < typename SEQUENCE::sequence_tag, sequence_t >::value;
 
 template<typename SEQUENCE2>
-concept primitive_sequence2 = requires(SEQUENCE2 s2) {
+concept prototype_sequence2 = requires(SEQUENCE2 s2) {
 
    s2.x;
    s2.y;
 
 };
 template<typename SEQUENCE3>
-concept primitive_sequence3 = requires(SEQUENCE3 s3) {
+concept prototype_sequence3 = requires(SEQUENCE3 s3) {
    s3.x;
    s3.y;
    s3.z;
 };
 template<typename SEQUENCE4>
-concept primitive_sequence4 = requires(SEQUENCE4 s4) {
+concept prototype_sequence4 = requires(SEQUENCE4 s4) {
    s4.x;
    s4.y;
    s4.z;
@@ -45,64 +45,64 @@ concept primitive_sequence4 = requires(SEQUENCE4 s4) {
 };
 
 template < typename ENUM >
-concept primitive_enum = 
+concept prototype_enum = 
    std::is_enum < ::decay < ENUM > >::value 
    || ::std::is_same < typename ENUM::ENUM_TYPE_TAG, enum_type_t >::value;
 
 
 template < typename BLOCK >
-concept primitive_block = ::std::is_same<typename BLOCK::PRIMITIVE_BLOCK_TAG, PRIMITIVE_BLOCK_TAG_TYPE >::value;
+concept prototype_block = ::std::is_same<typename BLOCK::PRIMITIVE_BLOCK_TAG, PRIMITIVE_BLOCK_TAG_TYPE >::value;
 
 
 
 //template < typename T >
-//concept primitive_integral_up_to_32_bit =
+//concept prototype_integral_up_to_32_bit =
 //(std::is_integral_v < T > ||
 //std::is_enum < T >::value ||
 //std::is_same < T, ::e_status >::value) && sizeof(T) <= 4;
 
 template < typename T >
-concept primitive_integral_up_to_32_bit =
+concept prototype_integral_up_to_32_bit =
 (std::is_integral_v < T >) && sizeof(T) <= 4;
 
 template < typename T >
-concept primitive_integer = std::is_integral < T >::value;
+concept prototype_integer = std::is_integral < T >::value;
 
 template < typename T >
-concept primitive_natural = std::is_integral < T >::value && !std::is_signed < T >::value;
+concept prototype_natural = std::is_integral < T >::value && !std::is_signed < T >::value;
 
 template < typename T >
-concept primitive_signed = std::is_integral < T >::value && std::is_signed < T >::value;
+concept prototype_signed = std::is_integral < T >::value && std::is_signed < T >::value;
 
 template < typename T >
-concept primitive_signed_not_8bit = primitive_signed < T > && sizeof(T) != 1;
+concept prototype_signed_not_8bit = prototype_signed < T > && sizeof(T) != 1;
 
 template < typename T >
-concept primitive_unsigned = std::is_integral < T >::value && !std::is_signed < T >::value;
+concept prototype_unsigned = std::is_integral < T >::value && !std::is_signed < T >::value;
 
 template < typename T >
-concept primitive_unsigned_not_8bit = primitive_unsigned < T > && sizeof(T) != 1;
+concept prototype_unsigned_not_8bit = prototype_unsigned < T > && sizeof(T) != 1;
 
 template < typename FLOATING >
-concept primitive_floating = std::is_floating_point < ::decay < FLOATING > >::value;
+concept prototype_floating = std::is_floating_point < ::decay < FLOATING > >::value;
 
 
 
 template < typename AGGREGATE >
-concept primitive_aggregate = ::std::is_aggregate_v < AGGREGATE >;
+concept prototype_aggregate = ::std::is_aggregate_v < AGGREGATE >;
 
 
 template < typename T >
-concept primitive_fundamental = std::is_fundamental < T >::value || std::is_pointer < T >::value;
+concept prototype_fundamental = std::is_fundamental < T >::value || std::is_pointer < T >::value;
 
 template < typename T >
-concept primitive_type = !std::is_fundamental < T >::value && !std::is_pointer < T >::value;
+concept prototype_type = !std::is_fundamental < T >::value && !std::is_pointer < T >::value;
 
 template<typename ITERATOR_TYPE>
 class range;
 
 template < typename T >
-concept primitive_range = ::std::is_base_of_v < ::range< typename T::this_iterator >, T >;
+concept prototype_range = ::std::is_base_of_v < ::range< typename T::this_iterator >, T >;
 
 template < typename T >
 concept std_range = requires(const T &t)
@@ -115,7 +115,7 @@ t.begin();
 
 template < typename T, typename ITERATOR_TYPE >
 concept typed_range = 
-primitive_range < T >
+prototype_range < T >
 || ::std::is_same_v < non_const < ITERATOR_TYPE >, non_const < typename T::this_iterator > >;
 
 
@@ -147,7 +147,7 @@ concept non_raw_pointer_castable = !raw_pointer_castable < FROM, TO_POINTER >;
 
 
 template < typename T >
-concept primitive_character =
+concept prototype_character =
 std::is_same < T, unsigned char >::value ||
 std::is_same < T, char >::value ||
 std::is_same < T, char8_t >::value ||
@@ -165,7 +165,7 @@ std::is_same < T, const ::wd32_character >::value;
 
 
 template < typename T >
-concept primitive_character_iterator =
+concept prototype_character_iterator =
 std::is_same < T, unsigned char * >::value ||
 std::is_same < T, char * >::value ||
 std::is_same < T, char8_t * >::value ||
@@ -183,7 +183,7 @@ std::is_same < T, const ::wd32_character * >::value;
 
 
 template < typename T >
-concept primitive_character_iterator_reference =
+concept prototype_character_iterator_reference =
 std::is_same < T, unsigned char * & >::value ||
 std::is_same < T, char * & >::value ||
 std::is_same < T, char8_t *& >::value ||
@@ -207,13 +207,13 @@ std::is_same < T, const CHARACTER*& >::value;
 
 template < typename T, typename CHARACTER >
 concept other_primitive_character_iterator_reference =
-primitive_character < T > &&
+prototype_character < T > &&
 !std::is_same < T, CHARACTER*& >::value &&
 !std::is_same < T, const CHARACTER*& >::value;
 
 template < typename T, typename CHARACTER >
 concept other_primitive_character =
-primitive_character < T > &&
+prototype_character < T > &&
 !std::is_same < T, CHARACTER >::value;
 
 
@@ -221,7 +221,7 @@ template < typename CHARACTER_POINTER >
 concept character_pointer =
 ::std::is_pointer_v<CHARACTER_POINTER>
 && !::std::is_array_v<CHARACTER_POINTER>
-&& primitive_character<::non_const <::erase_pointer<CHARACTER_POINTER>>>;
+&& prototype_character<::non_const <::erase_pointer<CHARACTER_POINTER>>>;
 
 
 template < typename TYPED_CHARACTER_POINTER, typename CHARACTER >
@@ -235,7 +235,7 @@ template < typename OTHER_CHARACTER_POINTER, typename CHARACTER >
 concept other_character_pointer =
 ::std::is_pointer_v<OTHER_CHARACTER_POINTER>
 && !::std::is_array_v<OTHER_CHARACTER_POINTER>
-&& primitive_character< ::non_const < ::erase_pointer<OTHER_CHARACTER_POINTER>>>
+&& prototype_character< ::non_const < ::erase_pointer<OTHER_CHARACTER_POINTER>>>
 && !::std::is_same_v < CHARACTER, ::non_const <::erase_pointer<OTHER_CHARACTER_POINTER>>>;
 
 
@@ -243,7 +243,7 @@ concept other_character_pointer =
 //concept character_array =
 //::std::is_pointer_v<CHARACTER_POINTER>
 //&& ::std::is_array_v<CHARACTER_POINTER>
-//&& primitive_character<::non_const <::erase_pointer<CHARACTER_POINTER>>>;
+//&& prototype_character<::non_const <::erase_pointer<CHARACTER_POINTER>>>;
 //
 //
 //template < typename TYPED_CHARACTER_POINTER, typename CHARACTER >
@@ -257,11 +257,11 @@ class character_range;
 
 
 template < typename CHARACTER_RANGE >
-concept primitive_character_range =
+concept prototype_character_range =
 (::std::is_base_of_v < ::character_range< const typename CHARACTER_RANGE::CHARACTER* >, CHARACTER_RANGE >
-&& primitive_character < typename CHARACTER_RANGE::CHARACTER > )||
+&& prototype_character < typename CHARACTER_RANGE::CHARACTER > )||
 (::std::is_same_v < ::character_range< const typename CHARACTER_RANGE::ITEM* >, CHARACTER_RANGE > &&
-primitive_character < typename CHARACTER_RANGE::ITEM >);
+prototype_character < typename CHARACTER_RANGE::ITEM >);
 
 
 
@@ -269,7 +269,7 @@ template < typename TYPED_CHARACTER_RANGE, typename CHARACTER >
 concept typed_character_range =
 (::std::is_base_of_v < ::character_range< const CHARACTER* >, TYPED_CHARACTER_RANGE >
    || ::std::is_same_v < ::character_range< const CHARACTER* >, TYPED_CHARACTER_RANGE >)
-   && primitive_character < CHARACTER >;
+   && prototype_character < CHARACTER >;
 
 
 template < typename OTHER_CHARACTER_RANGE, typename CHARACTER >
@@ -283,7 +283,7 @@ concept other_character_range =
 struct ITERATOR_TYPE_TAG {};
 
 template < typename ITERATOR >
-concept primitive_iterator = ::std::is_same<typename ITERATOR::TYPE_TAG, ITERATOR_TYPE_TAG >::value;
+concept prototype_iterator = ::std::is_same<typename ITERATOR::TYPE_TAG, ITERATOR_TYPE_TAG >::value;
 
 
 template < typename TYPE >
@@ -383,7 +383,7 @@ concept has_get_string = requires(HAS_GET_STRING has_get_string)
 
 
 //template < typename BLOCK >
-//concept primitive_block = requires(BLOCK block)
+//concept prototype_block = requires(BLOCK block)
 //{
 //
 //   block.data();
@@ -416,35 +416,35 @@ concept has_get_string = requires(HAS_GET_STRING has_get_string)
 //};
 
 //template < typename CONTAINER >
-//concept primitive_container = ::std::is_same < typename CONTAINER::PRIMITIVE_CONTAINER_TAG, PRIMITIVE_CONTAINER_TAG_TYPE >::value;
+//concept prototype_container = ::std::is_same < typename CONTAINER::PRIMITIVE_CONTAINER_TAG, PRIMITIVE_CONTAINER_TAG_TYPE >::value;
 
 template < typename PAYLOAD >
-concept primitive_payload = 
+concept prototype_payload = 
 ::std::is_base_of_v < ::payload, PAYLOAD >
 || ::std::is_same_v < ::payload, PAYLOAD >;
 
 
 template < typename A_CONST >
-concept primitive_const = ::std::is_const < A_CONST > ::value;
+concept prototype_const = ::std::is_const < A_CONST > ::value;
 
 template < typename NON_CONST >
-concept primitive_non_const = !primitive_const < NON_CONST >;
+concept prototype_non_const = !prototype_const < NON_CONST >;
 
 template < typename HAS_AS_STRING_NOT_PAYLOAD >
-concept has_as_string_not_payload = has_as_string < HAS_AS_STRING_NOT_PAYLOAD > && !primitive_payload<HAS_AS_STRING_NOT_PAYLOAD>;
+concept has_as_string_not_payload = has_as_string < HAS_AS_STRING_NOT_PAYLOAD > && !prototype_payload<HAS_AS_STRING_NOT_PAYLOAD>;
 
 
 template < typename ATOM >
-concept primitive_atom = ::std::is_same < typename ATOM::PRIMITIVE_ATOM_TAG, PRIMITIVE_ATOM_TAG_TYPE >::value;
+concept prototype_atom = ::std::is_same < typename ATOM::PRIMITIVE_ATOM_TAG, PRIMITIVE_ATOM_TAG_TYPE >::value;
 
 template < typename STRING >
-concept primitive_string = ::std::is_same < typename STRING::PRIMITIVE_STRING_TAG, PRIMITIVE_STRING_TAG_TYPE >::value;
+concept prototype_string = ::std::is_same < typename STRING::PRIMITIVE_STRING_TAG, PRIMITIVE_STRING_TAG_TYPE >::value;
 
 template < typename TYPED_PRIMITIVE_STRING, typename CHARACTER >
 concept typed_primitive_string =
 (::std::is_base_of_v < ::string_base< const CHARACTER* >, TYPED_PRIMITIVE_STRING >
    || ::std::is_same_v < ::string_base< const CHARACTER* >, TYPED_PRIMITIVE_STRING >)
-   && primitive_character < CHARACTER >;
+   && prototype_character < CHARACTER >;
 
 
 template < typename OTHER_PRIMITIVE_STRING, typename CHARACTER >
@@ -455,32 +455,32 @@ concept other_primitive_string =
       other_primitive_character < typename OTHER_PRIMITIVE_STRING::ITEM, CHARACTER >);
 
 template < typename SCOPED_STRING >
-concept primitive_scoped_string = ::std::is_same < typename SCOPED_STRING::PRIMITIVE_SCOPED_STRING_TAG, PRIMITIVE_SCOPED_STRING_TAG_TYPE >::value;
+concept prototype_scoped_string = ::std::is_same < typename SCOPED_STRING::PRIMITIVE_SCOPED_STRING_TAG, PRIMITIVE_SCOPED_STRING_TAG_TYPE >::value;
 
 
 
 template < typename T >
-concept character_range_not_string = primitive_character_range<T> && !primitive_string<T>;
+concept character_range_not_string = prototype_character_range<T> && !prototype_string<T>;
 
 
 template < typename T >
-concept character_range_not_string_neither_scoped_string = primitive_character_range<T> && !primitive_string<T> && !primitive_scoped_string<T>;
+concept character_range_not_string_neither_scoped_string = prototype_character_range<T> && !prototype_string<T> && !prototype_scoped_string<T>;
 
 
 
 
 template < typename NUMBER >
-concept primitive_number =
-primitive_integral < NUMBER > ||
-primitive_floating < NUMBER > ||
-primitive_enum < NUMBER >;
+concept prototype_number =
+prototype_integral < NUMBER > ||
+prototype_floating < NUMBER > ||
+prototype_enum < NUMBER >;
 
 
 template < typename POINT >
 concept raw_primitive_point = requires(POINT point)
 {
-   { point.x }->primitive_number;
-   { point.y }->primitive_number;
+   { point.x }->prototype_number;
+   { point.y }->prototype_number;
 };
 
 
@@ -488,52 +488,52 @@ template < typename POINT >
 concept function_point = requires(POINT point)
 {
    { point.semantic_t() } ->::std::convertible_to<point2_t>;
-   { point.x() }->primitive_number;
-   { point.y() }->primitive_number;
+   { point.x() }->prototype_number;
+   { point.y() }->prototype_number;
 };
 
 template < typename POINT >
 concept struct_point = requires(POINT point)
 {
    { point.semantic_t() } ->::std::convertible_to<point2_t>;
-   { point.x }->primitive_number;
-   { point.y }->primitive_number;
+   { point.x }->prototype_number;
+   { point.y }->prototype_number;
 };
 
 
 template < typename POINT >
-concept primitive_point = function_point<POINT> || struct_point<POINT >;
+concept prototype_point = function_point<POINT> || struct_point<POINT >;
 
 
 //template < typename SEQUENCE2 >
-//concept primitive_sequence2 =
+//concept prototype_sequence2 =
 //   ::std::is_same < typename SEQUENCE2::sequence_tag, sequence_t >::value &&
 //   ::std::is_same < typename SEQUENCE2::sequence_size, sequence_size_t < 2 > >::value;
 //
 //
 //template < typename SEQUENCE3 >
-//concept primitive_sequence3 =
+//concept prototype_sequence3 =
 //   ::std::is_same < typename SEQUENCE3::sequence_tag, sequence_t >::value &&
 //   ::std::is_same < typename SEQUENCE3::sequence_size, sequence_size_t < 3 > >::value;
 //
 //
 //template < typename SEQUENCE4 >
-//concept primitive_sequence4 =
+//concept prototype_sequence4 =
 //   ::std::is_same < typename SEQUENCE4::sequence_tag, sequence_t >::value &&
 //   ::std::is_same < typename SEQUENCE4::sequence_size, sequence_size_t < 4 > >::value;
 
 
 template < typename POLE >
-concept primitive_pole = requires(POLE pole)
+concept prototype_pole = requires(POLE pole)
 {
-   { pole.x }->primitive_number;
-   { pole.y }->primitive_number;
-   { pole.z }->primitive_number;
+   { pole.x }->prototype_number;
+   { pole.y }->prototype_number;
+   { pole.z }->prototype_number;
 };
 
 
 template < typename POINT >
-concept primitive_XY = requires(POINT point)
+concept prototype_XY = requires(POINT point)
 {
    point.X;
    point.Y;
@@ -546,8 +546,8 @@ template < typename SIZE >
 concept function_size = requires(SIZE s)
 {
    { s.semantic_t() } ->::std::convertible_to<size2_t>;
-   { s.x() }->primitive_number;
-   { s.y() }->primitive_number;
+   { s.x() }->prototype_number;
+   { s.y() }->prototype_number;
 };
 
 
@@ -555,18 +555,18 @@ template < typename SIZE >
 concept struct_size = requires(SIZE s)
 {
    { s.semantic_t() } ->::std::convertible_to<size2_t>;
-   { s.x }->primitive_number;
-   { s.y }->primitive_number;
+   { s.x }->prototype_number;
+   { s.y }->prototype_number;
 };
 
 
 
 template < typename SIZE >
-concept primitive_size = function_size <SIZE> || struct_size <SIZE>;
+concept prototype_size = function_size <SIZE> || struct_size <SIZE>;
 
 
 template < typename Dimension >
-concept primitive_Dimension = requires(Dimension dimension)
+concept prototype_Dimension = requires(Dimension dimension)
 {
    dimension.Width;
    dimension.Height;
@@ -574,7 +574,7 @@ concept primitive_Dimension = requires(Dimension dimension)
 
 
 template < typename DIMENSION >
-concept primitive_dimension = requires(DIMENSION dimension)
+concept prototype_dimension = requires(DIMENSION dimension)
 {
    dimension.width;
    dimension.height;
@@ -592,15 +592,15 @@ concept function_rectangle = requires(RECTANGLE rectangle) {
 
 template<typename RECTANGLE>
 concept struct_rectangle = requires(RECTANGLE rectangle) {
-   { rectangle.left } -> primitive_number;
-   { rectangle.top } -> primitive_number;
-   { rectangle.right } -> primitive_number;
-   { rectangle.bottom } -> primitive_number;
+   { rectangle.left } -> prototype_number;
+   { rectangle.top } -> prototype_number;
+   { rectangle.right } -> prototype_number;
+   { rectangle.bottom } -> prototype_number;
 };
 
 
 template < typename RECTANGLE >
-concept primitive_rectangle = 
+concept prototype_rectangle = 
    function_rectangle<RECTANGLE> 
    || struct_rectangle<RECTANGLE>;
 
@@ -608,7 +608,7 @@ concept primitive_rectangle =
 
 
 template < typename RECTANGLE >
-concept primitive_XYDim = requires(RECTANGLE rectangle)
+concept prototype_XYDim = requires(RECTANGLE rectangle)
 {
    rectangle.X;
    rectangle.Y;
@@ -626,7 +626,7 @@ concept struct_xydim = requires(RECTANGLE rectangle)
 };
 
 template < typename RECTANGLE >
-concept primitive_xydim = struct_xydim<RECTANGLE> && !primitive_rectangle<RECTANGLE>;
+concept prototype_xydim = struct_xydim<RECTANGLE> && !prototype_rectangle<RECTANGLE>;
 // {
 //    rectangle.x;
 //    rectangle.y;
@@ -636,10 +636,10 @@ concept primitive_xydim = struct_xydim<RECTANGLE> && !primitive_rectangle<RECTAN
 
 
 template < typename RECTANGLE >
-concept primitive_origin_size = requires(RECTANGLE rectangle)
+concept prototype_origin_size = requires(RECTANGLE rectangle)
 {
    { rectangle.origin }->raw_primitive_point;
-   { rectangle.size }->primitive_dimension;
+   { rectangle.size }->prototype_dimension;
 };
 
 
@@ -647,14 +647,14 @@ concept primitive_origin_size = requires(RECTANGLE rectangle)
 //concept origin_size = requires(ORIGIN_SIZE origin_size)
 //{
 //
-//   { origin_size.origin } -> primitive_point;
-//   { origin_size.size } -> primitive_dim;
+//   { origin_size.origin } -> prototype_point;
+//   { origin_size.size } -> prototype_dim;
 //
 //};
 
 
 
-template < primitive_number NUMBER >
+template < prototype_number NUMBER >
 struct argument_of_struct < NUMBER >
 {
 
@@ -664,27 +664,27 @@ struct argument_of_struct < NUMBER >
 
 
 
-template < primitive_number NUMBER >
+template < prototype_number NUMBER >
 class point_type;
 
 
-template < primitive_number NUMBER >
+template < prototype_number NUMBER >
 class size_type;
 
 
-template < primitive_number NUMBER >
+template < prototype_number NUMBER >
 class rectangle_type;
 
 
 
 template<typename SUBPARTICLE>
-concept primitive_subparticle = ::std::is_base_of_v<::subparticle, SUBPARTICLE>;
+concept prototype_subparticle = ::std::is_base_of_v<::subparticle, SUBPARTICLE>;
 
 
 
 //
 //
-//template < primitive_number NUMBER1, primitive_number NUMBER2 >
+//template < prototype_number NUMBER1, prototype_number NUMBER2 >
 //inline void copy(NUMBER1& number1, const NUMBER2& number2)
 //{
 //
@@ -715,34 +715,34 @@ inline constexpr bool is_raw_pointer = is_raw_pointer_struct < T >::payload;
 
 
 template < typename POINTER >
-concept primitive_raw_pointer = ::is_raw_pointer < POINTER >;
+concept prototype_raw_pointer = ::is_raw_pointer < POINTER >;
 
 template < typename RAW_TYPE >
 concept _primitive_raw_type = 
-   ::primitive_number < decay < RAW_TYPE > >
+   ::prototype_number < decay < RAW_TYPE > >
    || ::std::is_same_v < typename decay < RAW_TYPE >::RAW_TYPE_TAG, raw_type_t >;
 
 
 template < typename RAW_TYPE >
-concept primitive_raw_type = 
+concept prototype_raw_type = 
    ::_primitive_raw_type < RAW_TYPE >
    || (::std::is_bounded_array_v<RAW_TYPE>
        && _primitive_raw_type<dereference<RAW_TYPE>>);
 
 
 template < typename POINTER >
-concept primitive_pointer2 = 
+concept prototype_pointer2 = 
    ::std::is_same_v < typename decay <POINTER >::POINTER_TYPE_TAG, pointer_type_t >;
 
 template < typename OBJECT >
-concept primitive_object = 
+concept prototype_object = 
    !::is_raw_pointer < OBJECT >
    && !::is_function < OBJECT >
-   && !primitive_pointer2 < OBJECT >
-   && !primitive_raw_type < OBJECT >;
+   && !prototype_pointer2 < OBJECT >
+   && !prototype_raw_type < OBJECT >;
 
 template < typename PARTICLE >
-concept primitive_particle = ::std::is_base_of_v<::particle, PARTICLE>;
+concept prototype_particle = ::std::is_base_of_v<::particle, PARTICLE>;
 
 
 template < typename T, typename TYPE >
@@ -780,28 +780,28 @@ concept non_particle = !a_particle < NON_PARTICLE >;
 //inline void __call__delete(T * p);
 
 
-template < primitive_character CHARACTER >
+template < prototype_character CHARACTER >
 constexpr bool string_compare_prefix(::std::strong_ordering & ordering, const CHARACTER * pszA, const CHARACTER * pszB) noexcept;
 
 
-template < primitive_fundamental TYPE >
+template < prototype_fundamental TYPE >
 constexpr bool equals(TYPE a, TYPE b) { return a == b; }
 
 
-template < primitive_type TYPE >
+template < prototype_type TYPE >
 constexpr bool equals(const TYPE & a, const TYPE & b) { return a == b; }
 
 
-template < primitive_fundamental TYPE >
+template < prototype_fundamental TYPE >
 constexpr ::std::strong_ordering compare(TYPE a, TYPE b) { return ::std::strong_order(a, b); }
 
 
-template < primitive_type TYPE >
+template < prototype_type TYPE >
 constexpr ::std::strong_ordering compare(const TYPE & a, const TYPE & b) { return ::std::strong_order(a, b); }
 
 
 
-template<primitive_character CHARACTER, character_count m_sizeMaximumLength>
+template<prototype_character CHARACTER, character_count m_sizeMaximumLength>
 class inline_string;
 
 
@@ -831,7 +831,7 @@ concept container_type = requires(CONTAINER container)
 
 
 template < typename ARRAY >
-concept primitive_array = requires (const ARRAY & array)
+concept prototype_array = requires (const ARRAY & array)
 {
 
    array.array_range_ok();
@@ -840,7 +840,7 @@ concept primitive_array = requires (const ARRAY & array)
 
 
 template < typename LIST >
-concept primitive_list = requires(const LIST & list)
+concept prototype_list = requires(const LIST & list)
 {
 
    list.list_base_ok();
@@ -849,7 +849,7 @@ concept primitive_list = requires(const LIST & list)
 
 
 template < typename MAP >
-concept primitive_map = requires(const MAP & map)
+concept prototype_map = requires(const MAP & map)
 {
 
    map.pair_map_base_ok();
@@ -858,53 +858,53 @@ concept primitive_map = requires(const MAP & map)
 
 
 template < typename ARRAY >
-concept primitive_raw_type_array = requires(ARRAY array, ::collection::index i, ::collection::count c)
+concept prototype_raw_type_array = requires(ARRAY array, ::collection::index i, ::collection::count c)
 {
    array.get_count();
-   {array.element_at(i)}->primitive_raw_type;
+   {array.element_at(i)}->prototype_raw_type;
    array.set_size(c);
 };
 
 
 template < typename ARRAY >
-concept primitive_raw_pointer_array = requires(ARRAY array, ::collection::index i, ::collection::count c)
+concept prototype_raw_pointer_array = requires(ARRAY array, ::collection::index i, ::collection::count c)
 {
    array.get_count();
-   {array.element_at(i)}->primitive_raw_pointer;
+   {array.element_at(i)}->prototype_raw_pointer;
    array.set_size(c);
 };
 
 
 template < typename ARRAY >
-concept primitive_particle_array = requires(ARRAY array, ::collection::index i, ::collection::count c)
+concept prototype_particle_array = requires(ARRAY array, ::collection::index i, ::collection::count c)
 {
    array.get_count();
-   {array.element_at(i)}->primitive_pointer2;
+   {array.element_at(i)}->prototype_pointer2;
    array.set_size(c);
 };
 
 
 template < typename ARRAY >
-concept primitive_object_array = requires(ARRAY array, ::collection::index i, ::collection::count c)
+concept prototype_object_array = requires(ARRAY array, ::collection::index i, ::collection::count c)
 {
    array.get_count();
-   {array.element_at(i)}->primitive_object;
+   {array.element_at(i)}->prototype_object;
    array.set_size(c);
 };
 
 
 template < typename CONTAINER >
-concept primitive_container =
-   primitive_array < CONTAINER >
-|| primitive_list < CONTAINER >
-|| primitive_map < CONTAINER >;
+concept prototype_container =
+   prototype_array < CONTAINER >
+|| prototype_list < CONTAINER >
+|| prototype_map < CONTAINER >;
 
 template < typename CONTAINER >
-concept non_container = !primitive_container < CONTAINER >;
+concept non_container = !prototype_container < CONTAINER >;
 
 
 
-template < primitive_enum ENUM >
+template < prototype_enum ENUM >
 inline long long as_long_long(const ENUM & e) { return (long long)(::raw_enum_of<ENUM>) e; }
 
 
@@ -942,7 +942,7 @@ concept const_string_castable =
 
 
 template < typename NON_SUBPARTICLE >
-concept non_primitive_subparticle = !primitive_subparticle<NON_SUBPARTICLE>;
+concept non_primitive_subparticle = !prototype_subparticle<NON_SUBPARTICLE>;
 
 
 template<typename Type, typename RawType = Type, ::enum_type t_etypeContainer = e_type_element >
@@ -958,7 +958,7 @@ using wstring_array = ::comparable_array_particle < wstring_array_base >;
 
 
 template < typename POINTER_BUT_NO_INTEGRAL, typename TYPE >
-concept pointer_but_not_integral = ::std::convertible_to < POINTER_BUT_NO_INTEGRAL, TYPE * > && !primitive_integral < POINTER_BUT_NO_INTEGRAL >;
+concept pointer_but_not_integral = ::std::convertible_to < POINTER_BUT_NO_INTEGRAL, TYPE * > && !prototype_integral < POINTER_BUT_NO_INTEGRAL >;
 
 
 template <class>

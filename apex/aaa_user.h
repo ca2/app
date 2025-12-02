@@ -110,7 +110,7 @@ namespace graphics
 //#include "apex/user/text.h"
 //#include "apex/user/window_state.h"
 //#include "apex/user/callback.h"
-//#include "apex/user/primitive.h"
+//#include "apex/user/prototype.h"
 
 //#include "apex/user/style_base.h"
 //#include "apex/user/style.h"

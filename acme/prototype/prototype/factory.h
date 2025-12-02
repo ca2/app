@@ -226,6 +226,7 @@ namespace factory
       ::factory::factory_item_interface * _get_factory_item_by_type_name(const ::scoped_string & scopedstrTypeName) const;
       ::factory::factory_item_interface * _get_factory_item_by_type_id(const ::type_id & type_id) const;
       ::factory::factory_item_interface * _get_factory_item_by_custom_id(const ::type_custom_id & typecustomid) const;
+      ::factory::factory_item_interface * _get_factory_item_by_ipair(const ::type_iptr_pair& ipair) const;
       ::factory::factory_item_interface * _get_factory_item(const ::platform::type & type) const;
 
       //::factory::factory_item_interface * get_factory_item_by_type_index(const ::std::type_index & typeindex) const;

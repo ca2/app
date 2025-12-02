@@ -43,12 +43,12 @@
 
 
 
-//template < raw_primitive_point RAW_PRIMITIVE_POINT, primitive_point PRIMITIVE_POINT >
-//inline void copy(RAW_PRIMITIVE_POINT& rawprimitivepoint, const PRIMITIVE_POINT & primitivepoint)
+//template < raw_primitive_point RAW_PRIMITIVE_POINT, prototype_point PRIMITIVE_POINT >
+//inline void copy(RAW_PRIMITIVE_POINT& rawprimitivepoint, const PRIMITIVE_POINT & prototypepoint)
 //{
 //
-//   rawprimitivepoint.x = (decltype(rawprimitivepoint.x))primitivepoint.x;
-//   rawprimitivepoint.y = (decltype(rawprimitivepoint.y))primitivepoint.y;
+//   rawprimitivepoint.x = (decltype(rawprimitivepoint.x))prototypepoint.x;
+//   rawprimitivepoint.y = (decltype(rawprimitivepoint.y))prototypepoint.y;
 //
 //}
 

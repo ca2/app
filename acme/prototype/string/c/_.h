@@ -25,7 +25,7 @@
 //inline character_count strlen_s_dup(const ::scoped_string & scopedstr, character_count nsize);
 
 
-template < primitive_character CHARACTER >
+template < prototype_character CHARACTER >
 inline const CHARACTER * _unicode_scan(const CHARACTER * psz, const CHARACTER * pszCharacters)
 {
 
@@ -63,7 +63,7 @@ inline const CHARACTER * _unicode_scan(const CHARACTER * psz, const CHARACTER * 
 }
 
 
-template < primitive_character CHARACTER >
+template < prototype_character CHARACTER >
 const CHARACTER * unicode_scan(const CHARACTER * psz, const CHARACTER * pszCharacters)
 {
 
@@ -86,7 +86,7 @@ const CHARACTER * unicode_scan(const CHARACTER * psz, const CHARACTER * pszChara
 }
 
 
-template < primitive_character CHARACTER >
+template < prototype_character CHARACTER >
 const CHARACTER * _string_scan(const CHARACTER * psz, const CHARACTER * pszCharacters)
 {
 
@@ -122,7 +122,7 @@ const CHARACTER * _string_scan(const CHARACTER * psz, const CHARACTER * pszChara
 }
 
 
-template < primitive_character CHARACTER >
+template < prototype_character CHARACTER >
 const CHARACTER * string_scan(const CHARACTER * psz, const CHARACTER * pszCharacters)
 {
 
@@ -145,7 +145,7 @@ const CHARACTER * string_scan(const CHARACTER * psz, const CHARACTER * pszCharac
 }
 
 
-//template < primitive_character CHARACTER >
+//template < prototype_character CHARACTER >
 //inline const CHARACTER * _unicode_scan(const CHARACTER * psz, const CHARACTER * pszCharacters)
 //{
 //
@@ -183,7 +183,7 @@ const CHARACTER * string_scan(const CHARACTER * psz, const CHARACTER * pszCharac
 //}
 //
 //
-//template < primitive_character CHARACTER >
+//template < prototype_character CHARACTER >
 //const CHARACTER * unicode_scan(const CHARACTER * psz, const CHARACTER * pszCharacters)
 //{
 //
@@ -206,7 +206,7 @@ const CHARACTER * string_scan(const CHARACTER * psz, const CHARACTER * pszCharac
 //}
 
 
-//template < primitive_character CHARACTER >
+//template < prototype_character CHARACTER >
 //const CHARACTER * _string_rear_scan(const CHARACTER * psz, const CHARACTER * pszCharacters)
 //{
 //
@@ -244,7 +244,7 @@ const CHARACTER * string_scan(const CHARACTER * psz, const CHARACTER * pszCharac
 //}
 //
 //
-//template < primitive_character CHARACTER >
+//template < prototype_character CHARACTER >
 //const CHARACTER * string_rear_scan(const CHARACTER * psz, const CHARACTER * pszCharacters)
 //{
 //

@@ -308,7 +308,7 @@ public:
    }
 
 
-   template < primitive_integral INTEGRAL >
+   template < prototype_integral INTEGRAL >
    THIS_ITERATOR & operator += (INTEGRAL c)
    { 
       
@@ -325,7 +325,7 @@ public:
    }
 
 
-   template < primitive_integral INTEGRAL >
+   template < prototype_integral INTEGRAL >
    constexpr THIS_ITERATOR operator + (INTEGRAL c) const
    {
 
@@ -338,7 +338,7 @@ public:
    }
 
 
-   template < primitive_integral INTEGRAL >
+   template < prototype_integral INTEGRAL >
    THIS_ITERATOR & operator -= (INTEGRAL c)
    { 
       
@@ -354,7 +354,7 @@ public:
    }
 
 
-   template < primitive_integral INTEGRAL >
+   template < prototype_integral INTEGRAL >
    constexpr THIS_ITERATOR operator - (INTEGRAL c) const
    {
 

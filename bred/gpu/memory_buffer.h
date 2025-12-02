@@ -133,7 +133,7 @@ namespace gpu
 
       }
 
-      template < primitive_integral INTEGRAL >
+      template < prototype_integral INTEGRAL >
       TYPE& operator[](INTEGRAL i)
       {
 

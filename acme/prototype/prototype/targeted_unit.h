@@ -20,14 +20,14 @@ public:
 
    }
 
-   template < primitive_integral INTEGRAL >
+   template < prototype_integral INTEGRAL >
    constexpr targeted_unit(INTEGRAL i, ENUM eunit) :
       unit_base<ENUM>(i, eunit)
    {
       assert_allowed(eunit);
    }
 
-   template < primitive_floating FLOATING >
+   template < prototype_floating FLOATING >
    constexpr targeted_unit(FLOATING f, ENUM eunit) :
       unit_base<ENUM>(f, eunit)
    {
@@ -81,7 +81,7 @@ public:
    }
 
 
-   template < primitive_floating FLOATING >
+   template < prototype_floating FLOATING >
    constexpr targeted_unit & operator = (FLOATING f)
    {
 
@@ -115,7 +115,7 @@ public:
    }
    
    
-   template < primitive_floating FLOATING >
+   template < prototype_floating FLOATING >
    targeted_unit & operator *= (FLOATING f)
    {
 
@@ -126,7 +126,7 @@ public:
    }
    
    
-   template < primitive_floating FLOATING >
+   template < prototype_floating FLOATING >
    targeted_unit & operator /= (FLOATING f)
    {
 
@@ -137,7 +137,7 @@ public:
    }
    
 
-   template < primitive_floating FLOATING >
+   template < prototype_floating FLOATING >
    targeted_unit operator * (FLOATING f) const
    {
       
@@ -150,7 +150,7 @@ public:
    }
    
    
-   template < primitive_floating FLOATING >
+   template < prototype_floating FLOATING >
    targeted_unit operator / (FLOATING f) const
    {
 

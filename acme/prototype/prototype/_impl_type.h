@@ -5,10 +5,17 @@
 #pragma once
 
 
-//inline type_name::platform::type(const ::std::type_info & typeinfo) :
-//   m_pszRawName(typeinfo.raw_name()){}
+//inline type_name::type(const ::std::type_info & typeinfo) :
+//   m_pszRawName(typeinfo.raw_name())
+//{
+//
+//}
+//
+//
 //inline bool type_name::operator == (const ::platform::type & type) const
-//{   return m_pszRawName == type.m_pszRawName
+//{
+//
+//   return m_pszRawName == type.m_pszRawName
 //      || !strcmp(m_pszRawName, type.m_pszRawName)
 //      || m_strDemangled == type.m_strDemangled; }
 //inline bool type_name::operator == (const ::atom& atom) const
@@ -18,11 +25,27 @@
 //{   if(::is_null(p))   {
 //      m_pszRawName = void;
 //      m_strDemangled.empty();
-//   }   else  {
-//      this->operator=(typeid(*(::quantum*)p));  }}
-//template < primitive_object_not_type_atom OBJECT_NOT_TYPE_ATOM >
-//type_name::platform::type(OBJECT_NOT_TYPE_ATOM & objectnottypeatom)
-//{  this->operator = (typeid(*(&(non_const < OBJECT_NOT_TYPE_ATOM > &)objectnottypeatom)));}
+//
+//   }
+//   else
+//   {
+//
+//      this->operator=(typeid(*(::quantum*)p));
+//
+//   }
+//
+//}
+//
+//
+//template < prototype_object_not_type_atom OBJECT_NOT_TYPE_ATOM >
+//type_name::type(OBJECT_NOT_TYPE_ATOM & objectnottypeatom)
+//{
+//
+//   this->operator = (typeid(*(&(non_const < OBJECT_NOT_TYPE_ATOM > &)objectnottypeatom)));
+//
+//}
+//
+//
 //template < typename BASE >
 //inline type_name::platform::type(const ::pointer<BASE>& p)
 //{  this->operator = (typeid(*((BASE*)p.m_p))); }
@@ -211,6 +234,14 @@ m_strNameId(pszNameId)
 
 
 }
+
+inline type_custom_id::type_custom_id(const ::string_literal < const_char_pointer >& strliteralNameId) :
+   m_strNameId(strliteralNameId)
+{
+
+
+}
+
 inline type_custom_id::type_custom_id(const ::scoped_string & scopedstrNameId):
 m_strNameId(scopedstrNameId)
 {

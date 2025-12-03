@@ -58,15 +58,7 @@ namespace graphics3d
    void camera::calculate_impact(::floating_matrix4 & matrixImpact)
    {
 
-      auto positionCamera = this->position();
-
-      auto frontDirection = this->front();
-
-      auto positionCenter = positionCamera + frontDirection;
-
-      auto worldUp = this->world_up();
-
-      matrixImpact = ::graphics3d::lookAt(positionCamera, positionCenter, worldUp);
+      m_pengine->calculate_impact(matrixImpact, *this);
 
    }
 

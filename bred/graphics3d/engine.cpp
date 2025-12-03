@@ -1163,6 +1163,23 @@ namespace graphics3d
    }
 
 
+   void engine::calculate_impact(::floating_matrix4 &matrixImpact, const ::graphics3d::camera &camera)
+   {
+
+
+      auto positionCamera = camera.position();
+
+      auto frontDirection = camera.front();
+
+      auto positionCenter = positionCamera + frontDirection;
+
+      auto worldUp = camera.world_up();
+
+      matrixImpact = ::graphics3d::lookAt(positionCamera, positionCenter, worldUp);
+
+   }
+
+
    void engine::calculate_projection(::floating_matrix4 &matrixProjection, const ::graphics3d::camera &camera)
    {
 

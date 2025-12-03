@@ -132,7 +132,7 @@ namespace graphics3d
 
       virtual floating_matrix4 perspective(const ::float_angle & angleFovY, float aspect, float zNear, float zFar);
 
-
+      virtual void calculate_impact(::floating_matrix4 &matrixImpact, const ::graphics3d::camera &camera);
       virtual void calculate_projection(::floating_matrix4 &matrixProjection, const ::graphics3d::camera &camera);
 
 

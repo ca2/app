@@ -491,7 +491,7 @@ using character_decay = typename character_decay_struct<T>::type;
 
 
 //template <typename ITERATOR_TYPE, typename CharT >
-//   requires(::std::is_same_v < CharT, ::character_decay < ::erase_pointer< ITERATOR_TYPE > > >)
+//   requires(::std::is_same_v < CharT, ::character_decay < ::non_pointer< ITERATOR_TYPE > > >)
 //struct std::formatter<::character_range<ITERATOR_TYPE>, CharT >
 //{
 //
@@ -524,7 +524,7 @@ using character_decay = typename character_decay_struct<T>::type;
 //struct std::formatter<::character_range<ITERATOR_TYPE>, char>
 //{
 //
-//   using character_type_check = ::character_decay < ::erase_pointer < ::non_const < ITERATOR_TYPE > > >;
+//   using character_type_check = ::character_decay < ::non_pointer < ::non_const < ITERATOR_TYPE > > >;
 //
 //   std::formatter<::std::string_view, char> base;
 //
@@ -547,7 +547,7 @@ using character_decay = typename character_decay_struct<T>::type;
 //struct std::formatter<::character_range<ITERATOR_TYPE>, wchar_t>
 //{
 //
-//   using character_type_check = ::character_decay < ::erase_pointer < ITERATOR_TYPE > >;
+//   using character_type_check = ::character_decay < ::non_pointer < ITERATOR_TYPE > >;
 //
 //   std::formatter<::std::wstring_view, wchar_t> base;
 //
@@ -568,7 +568,7 @@ struct std::formatter<CHARACTER_RANGE>
 {
    using BASE_TYPE = CHARACTER_RANGE;
    using this_iterator = typename BASE_TYPE::this_iterator;
-   using character_type = ::character_decay<::erase_pointer<::non_const< this_iterator>>>;
+   using character_type = ::character_decay<::non_pointer<::non_const< this_iterator>>>;
    using string_view_type = ::std::basic_string_view<character_type>;
    using target_iterator = const character_type*;
 

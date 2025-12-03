@@ -15,6 +15,9 @@ struct matrix_t{};
 
 
 
+
+
+
 template < typename ITERATOR_TYPE >
 class scoped_string_base;
 
@@ -53,6 +56,8 @@ concept prototype_enum =
 template < typename BLOCK >
 concept prototype_block = ::std::is_same<typename BLOCK::PRIMITIVE_BLOCK_TAG, PRIMITIVE_BLOCK_TAG_TYPE >::value;
 
+template< typename RAW_ARRAY >
+concept prototype_raw_array = ::is_raw_array < RAW_ARRAY>;
 
 
 //template < typename T >
@@ -148,38 +153,104 @@ concept non_raw_pointer_castable = !raw_pointer_castable < FROM, TO_POINTER >;
 
 template < typename T >
 concept prototype_character =
-std::is_same < T, unsigned char >::value ||
-std::is_same < T, char >::value ||
-std::is_same < T, char8_t >::value ||
-std::is_same < T, wchar_t >::value ||
-std::is_same < T, ::ansi_character >::value ||
-std::is_same < T, ::wd16_character >::value ||
-std::is_same < T, ::wd32_character >::value ||
-std::is_same < T, const unsigned char >::value ||
-std::is_same < T, const char >::value ||
-std::is_same < T, const char8_t >::value ||
-std::is_same < T, const wchar_t >::value ||
-std::is_same < T, const ::ansi_character >::value ||
-std::is_same < T, const ::wd16_character >::value ||
-std::is_same < T, const ::wd32_character >::value;
+   ::is_same < ::non_const<T>, char> || 
+   ::is_same < ::non_const<T>, char8_t> ||
+   ::is_same < ::non_const<T>, wchar_t> ||
+   ::is_same < ::non_const<T>, ::ansi_character> ||
+   ::is_same < ::non_const<T>, ::wd16_character> || 
+   ::is_same < ::non_const<T>, ::wd32_character>;
+
+template<typename T>
+concept const_pointer_to_prototype_character =
+   ::is_raw_pointer<T> 
+   && ::is_const<::non_pointer<T>>
+   && prototype_character<::non_const<::non_pointer<T>>>;
+
+template<typename T>
+struct is_const_prototype_character_array : ::false_type
+{
+};
+
+
+
+
+template<typename CHARACTER, std::size_t N>
+   requires (prototype_character<CHARACTER>)
+struct is_const_prototype_character_array<const CHARACTER[N]> : ::true_type
+{
+   using char_type = CHARACTER;
+   static constexpr std::size_t size = N;
+};
+
+
+
+template<typename T>
+struct is_const_non_prototype_character_array : ::false_type
+{
+};
+
+
+
+template<typename NONCHARACTER, std::size_t N>
+   requires (!prototype_character<NONCHARACTER>)
+            struct is_const_non_prototype_character_array<const NONCHARACTER[N]> : ::true_type
+{
+   using type = NONCHARACTER;
+   static constexpr std::size_t size = N;
+};
+
+
+            
+template<typename T>
+struct is_non_prototype_character_array : ::false_type
+{
+};
+template<typename NONCHARACTER, std::size_t N>
+   requires (!prototype_character<NONCHARACTER>)
+            struct is_non_prototype_character_array<NONCHARACTER[N]> : ::true_type
+{
+   using type = NONCHARACTER;
+   static constexpr std::size_t size = N;
+};
+
+
+template<typename NONCHARACTER, std::size_t N>
+   requires !prototype_character<NONCHARACTER>
+            struct is_non_prototype_character_array<const NONCHARACTER[N]> : ::true_type
+{
+   using type = NONCHARACTER;
+   static constexpr std::size_t size = N;
+};
+
+
+template<typename T>
+concept const_array_of_prototype_character = is_const_prototype_character_array<T>::payload;
+
+template<typename T>
+concept const_array_of_non_prototype_character = is_const_non_prototype_character_array<T>::payload;
+
+template<typename T>
+concept array_of_non_prototype_character = 
+   ::prototype_raw_array<T> && 
+   !prototype_character<::decay_array<T>>;
 
 
 template < typename T >
 concept prototype_character_iterator =
-std::is_same < T, unsigned char * >::value ||
-std::is_same < T, char * >::value ||
-std::is_same < T, char8_t * >::value ||
-std::is_same < T, wchar_t * >::value ||
-std::is_same < T, ::ansi_character * >::value ||
-std::is_same < T, ::wd16_character * >::value ||
-std::is_same < T, ::wd32_character * >::value ||
-std::is_same < T, const unsigned char * >::value ||
-std::is_same < T, const_char_pointer >::value ||
-std::is_same < T, const char8_t * >::value ||
-std::is_same < T, const wchar_t * >::value ||
-std::is_same < T, const_char_pointer >::value ||
-std::is_same < T, const ::wd16_character * >::value ||
-std::is_same < T, const ::wd32_character * >::value;
+::is_same < T, unsigned char * >::value ||
+::is_same < T, char * >::value ||
+::is_same < T, char8_t * >::value ||
+::is_same < T, wchar_t * >::value ||
+::is_same < T, ::ansi_character * >::value ||
+::is_same < T, ::wd16_character * >::value ||
+::is_same < T, ::wd32_character * >::value ||
+::is_same < T, const unsigned char * >::value ||
+::is_same < T, const_char_pointer >::value ||
+::is_same < T, const char8_t * >::value ||
+::is_same < T, const wchar_t * >::value ||
+::is_same < T, const_char_pointer >::value ||
+::is_same < T, const ::wd16_character * >::value ||
+::is_same < T, const ::wd32_character * >::value;
 
 
 template < typename T >
@@ -221,36 +292,36 @@ template < typename CHARACTER_POINTER >
 concept character_pointer =
 ::std::is_pointer_v<CHARACTER_POINTER>
 && !::std::is_array_v<CHARACTER_POINTER>
-&& prototype_character<::non_const <::erase_pointer<CHARACTER_POINTER>>>;
+&& prototype_character<::non_const <::non_pointer<CHARACTER_POINTER>>>;
 
 
 template < typename TYPED_CHARACTER_POINTER, typename CHARACTER >
 concept typed_character_pointer = 
 ::std::is_pointer_v<TYPED_CHARACTER_POINTER> 
 && !::std::is_array_v<TYPED_CHARACTER_POINTER>
-&& ::std::is_same_v < ::non_const<CHARACTER>, ::non_const <::erase_pointer<TYPED_CHARACTER_POINTER>>>;
+&& ::std::is_same_v < ::non_const<CHARACTER>, ::non_const <::non_pointer<TYPED_CHARACTER_POINTER>>>;
 
 
 template < typename OTHER_CHARACTER_POINTER, typename CHARACTER >
 concept other_character_pointer =
 ::std::is_pointer_v<OTHER_CHARACTER_POINTER>
 && !::std::is_array_v<OTHER_CHARACTER_POINTER>
-&& prototype_character< ::non_const < ::erase_pointer<OTHER_CHARACTER_POINTER>>>
-&& !::std::is_same_v < CHARACTER, ::non_const <::erase_pointer<OTHER_CHARACTER_POINTER>>>;
+&& prototype_character< ::non_const < ::non_pointer<OTHER_CHARACTER_POINTER>>>
+&& !::std::is_same_v < CHARACTER, ::non_const <::non_pointer<OTHER_CHARACTER_POINTER>>>;
 
 
 //template < typename CHARACTER_POINTER >
 //concept character_array =
 //::std::is_pointer_v<CHARACTER_POINTER>
 //&& ::std::is_array_v<CHARACTER_POINTER>
-//&& prototype_character<::non_const <::erase_pointer<CHARACTER_POINTER>>>;
+//&& prototype_character<::non_const <::non_pointer<CHARACTER_POINTER>>>;
 //
 //
 //template < typename TYPED_CHARACTER_POINTER, typename CHARACTER >
 //concept typed_character_array =
 //::std::is_pointer_v<TYPED_CHARACTER_POINTER>
 //&& ::std::is_array_v<CHARACTER_POINTER>
-//&& ::std::is_same_v < CHARACTER, ::non_const <::erase_pointer<TYPED_CHARACTER_POINTER>>>;
+//&& ::std::is_same_v < CHARACTER, ::non_const <::non_pointer<TYPED_CHARACTER_POINTER>>>;
 
 template < typename ITERATOR_TYPE >
 class character_range;
@@ -694,28 +765,6 @@ concept prototype_subparticle = ::std::is_base_of_v<::subparticle, SUBPARTICLE>;
 //
 
 
-
-template<typename>
-struct __is_raw_pointer_helper
-   : public false_type { };
-
-template<typename _Tp>
-struct __is_raw_pointer_helper<_Tp*>
-   : public true_type { };
-
-/// is_pointer
-template<typename _Tp>
-struct is_raw_pointer_struct
-   : public __is_raw_pointer_helper<erase_const_effemeral<_Tp>>
-{ };
-
-
-template<typename T>
-inline constexpr bool is_raw_pointer = is_raw_pointer_struct < T >::payload;
-
-
-template < typename POINTER >
-concept prototype_raw_pointer = ::is_raw_pointer < POINTER >;
 
 template < typename RAW_TYPE >
 concept _primitive_raw_type = 

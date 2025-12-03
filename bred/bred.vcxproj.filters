@@ -396,7 +396,7 @@
     <ClInclude Include="graphics3d\scene_renderable.h">
       <Filter>Header Files\graphics3d</Filter>
     </ClInclude>
-    <ClInclude Include="graphics3d\global_ubo.h">
+    <ClInclude Include="graphics3d\aaa_global_ubo.h">
       <Filter>Header Files\graphics3d</Filter>
     </ClInclude>
     <ClInclude Include="gltf\vertex.h">
@@ -409,6 +409,9 @@
       <Filter>Header Files\graphics3d</Filter>
     </ClInclude>
     <ClInclude Include="graphics3d\rotation.h">
+      <Filter>Header Files\graphics3d</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics3d\global_ubo1.h">
       <Filter>Header Files\graphics3d</Filter>
     </ClInclude>
   </ItemGroup>
@@ -629,11 +632,17 @@
     <ClCompile Include="graphics3d\scene_renderable.cpp">
       <Filter>Source Files\graphics3d</Filter>
     </ClCompile>
-    <ClCompile Include="graphics3d\global_ubo.cpp">
+    <ClCompile Include="graphics3d\aaa_global_ubo.cpp">
       <Filter>Source Files\graphics3d</Filter>
     </ClCompile>
     <ClCompile Include="gltf\vertex.cpp">
       <Filter>Source Files\gltf</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics3d\model_tinyobjloader_002.cpp">
+      <Filter>Source Files\graphics3d</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics3d\global_ubo1.cpp">
+      <Filter>Source Files\graphics3d</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

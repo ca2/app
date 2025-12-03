@@ -432,6 +432,14 @@ namespace gpu
    }
 
 
+   void context::layout_global_ubo(::gpu::properties * pproperties)
+   {
+
+      layout_properties_default(*pproperties);
+      
+   }
+
+
    void context::layout_properties_default(::gpu::properties &properties)
    {
 
@@ -514,7 +522,28 @@ namespace gpu
 
          int iSize = iItemSize;
 
-         if (iItemSize == 4)
+         if (pproperty->m_etype == ::gpu::e_type_array)
+         {
+
+            if (iSizeWithSamplers % 16 != 0)
+            {
+
+               iSizeWithSamplers += 16 - iSizeWithSamplers % 16;
+
+            }
+
+            //for (int i = 0; i < pproperty->m_iArraySize; i++)
+            //{
+
+               
+               //_layout_std140_or_std430(*pproperty->m_pproperties, elayout)
+
+            //}
+
+
+
+         }
+         else if (iItemSize == 4)
          {
 
             if (iSizeWithSamplers % 4 != 0)
@@ -563,6 +592,7 @@ namespace gpu
          ::gpu::property_data data;
 
          data.m_iOffset = iSizeWithSamplers;
+         data.m_iItemSize = iItemSize;
 
          properties.m_propertydataa.set_at_grow(i, data);
 

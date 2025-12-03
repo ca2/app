@@ -273,6 +273,7 @@ namespace gpu
 
 
       memsize m_iOffset;
+      memsize m_iItemSize;
 
 
    };
@@ -321,7 +322,7 @@ namespace gpu
 		memsize size(bool bWithSamplers) const { return bWithSamplers? m_blockWithSamplers.size():m_blockWithoutSamplers.size(); }
 		::collection::count count() const { return ::is_null(m_pproperties) ? 0:m_pproperties->count(); }
       unsigned char *data(bool bWithSamplers) const { return bWithSamplers ? m_blockWithSamplers.data():m_blockWithoutSamplers.data(); }
-		void* find(const_char_pointer pszName) {
+		void* find(const_char_pointer pszName, bool bWithSamplers = true) {
          auto iIndex = m_pproperties->find_index(pszName);
          if (iIndex < 0)
          {
@@ -334,8 +335,25 @@ namespace gpu
 
          }
          auto iOffset = m_propertydataa[iIndex].m_iOffset;
-         return m_blockWithSamplers.data() + iOffset;
+         if (bWithSamplers)
+            return m_blockWithSamplers.data() + iOffset;
+         else
+            return m_blockWithoutSamplers.data() + iOffset;
 		}
+      memsize find_size(const_char_pointer pszName)
+      {
+         auto iIndex = m_pproperties->find_index(pszName);
+         if (iIndex < 0)
+         {
+            throw ::exception(error_not_found);
+         }
+         if (iIndex >= m_propertydataa.count())
+         {
+            throw ::exception(error_wrong_state);
+         }
+         auto iSize = m_propertydataa[iIndex].m_iItemSize;
+         return iSize;
+      }
       bool contains(const_char_pointer pszName) const
       {
          if (::is_null(m_pproperties))
@@ -526,16 +544,32 @@ namespace gpu
 
 
 	}
-	inline properties_reference properties_interface::operator[](const_char_pointer pszName)
+	
+   
+   inline properties_reference properties_interface::operator[](const_char_pointer pszName)
 	{
 
 
 		auto pproperty = m_pproperties->find(pszName);
 
-		return { pproperty,
-			m_blockWithSamplers(pproperty->m_iCachedOffset,
-				pproperty->m_iCachedSizeWithSamplers),
-              m_blockWithoutSamplers(pproperty->m_iCachedOffset, pproperty->m_iCachedSizeWithoutSamplers)};
+      if (m_propertydataa.has_element())
+      {
+         return {pproperty,
+            {find(pszName, true), find_size(pszName)},
+            {find(pszName, false), find_size(pszName)}
+         };
+      }
+      else
+      {
+
+
+            return {pproperty,
+
+                 m_blockWithSamplers(pproperty->m_iCachedOffset, pproperty->m_iCachedSizeWithSamplers),
+                 m_blockWithoutSamplers(pproperty->m_iCachedOffset, pproperty->m_iCachedSizeWithoutSamplers)};
+
+
+      }
 	}
 
 	inline properties_reference properties_interface::operator[](::collection::index i)

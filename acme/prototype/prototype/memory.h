@@ -52,6 +52,11 @@ public:
    memory(const memory_base & memorybase);
    memory(const memory & memory);
    memory(const ::block & block);
+   template<prototype_character CHARACTER, ::collection::count c>
+   memory(const CHARACTER (&a)[c]):
+      memory((const void *)a, (memsize)(sizeof(CHARACTER) * (c - 1)))
+   {
+   }
    memory(memory_container * pcontainer, memsize size = 0, unsigned int uAllocFlags = 0);
    memory(memory_container * pcontainer, const void * pdata, memsize size);
    memory(manager * pmanager);

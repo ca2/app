@@ -983,27 +983,6 @@ using dereference = typename dereference_struct < T >::type;
 
 
 
-template<typename _Tp>
-struct erase_const_effemeral_struct
-{ using type = _Tp; };
-
-template<typename _Tp>
-struct erase_const_effemeral_struct<const _Tp>
-{ using type = _Tp; };
-
-template<typename _Tp>
-struct erase_const_effemeral_struct<volatile _Tp>
-{ using type = _Tp; };
-
-template<typename _Tp>
-struct erase_const_effemeral_struct<const volatile _Tp>
-{ using type = _Tp; };
-
-
-template<typename _Tp>
-using erase_const_effemeral = typename erase_const_effemeral_struct<_Tp>::type;
-
-
 
 template < typename ENUM > struct raw_enum_of_struct<::enumeration <ENUM>> { using type = ENUM; };
 template < typename ENUM >

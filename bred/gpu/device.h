@@ -109,6 +109,10 @@ namespace gpu
       virtual pool_group* frame_pool_group(int iFrameIndex);
       virtual ::pointer_array<::particle >* frame_particle_array(int iFrameIndex);
 
+
+      virtual void defer_shader_memory(::memory &memory, const ::file::path &pathShader);
+
+
       virtual void on_initialize_gpu_device();
 
       virtual void on_new_frame();

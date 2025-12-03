@@ -2,6 +2,7 @@
 #include "wavefront_obj_render_system.h"
 #include "bred/graphics3d/engine.h"
 #include "bred/gpu/command_buffer.h"
+#include "bred/gpu/device.h"
 #include "bred/gpu/shader.h"
 #include "bred/graphics3d/model.h"
 #include "bred/graphics3d/scene_renderable.h"
@@ -35,6 +36,30 @@ namespace graphics3d
 
 	}
 
+   ::memory wavefront_obj_render_system::vert_shader_memory() 
+   {
+      
+      ::memory memory;
+
+      m_pengine->gpu_context()->m_pgpudevice->defer_shader_memory(
+         memory, "matter://shaders/wavefront.vert");
+
+      return memory;
+
+   }
+
+   ::memory wavefront_obj_render_system::frag_shader_memory()
+   {
+
+      ::memory memory;
+
+      m_pengine->gpu_context()->m_pgpudevice->defer_shader_memory(
+         memory, "matter://shaders/wavefront.frag");
+
+      return memory;
+
+   }
+
 
 	void wavefront_obj_render_system::on_prepare(::gpu::context* pgpucontext)
 	{
@@ -45,10 +70,10 @@ namespace graphics3d
       m_pshader->m_propertiesPushShared.set_properties(simple_render_properties());
       pgpucontext->layout_push_constants(
          m_pshader->m_propertiesPushShared, false);
-      m_pshader->initialize_shader(
+      m_pshader->initialize_shader_with_block(
          pgpucontext->m_pgpurenderer,
-         "matter://shaders/wavefront.vert",
-			"matter://shaders/wavefront.frag",
+         this->vert_shader_memory(), 
+         this->frag_shader_memory(),
 			{ ::gpu::shader::e_descriptor_set_slot_global,
 			::gpu::shader::e_descriptor_set_slot_local }, {},
 			pgpucontext->input_layout<::graphics3d::Vertex>()

@@ -911,6 +911,14 @@ namespace gpu
    }
 
 
+   void device::defer_shader_memory(::memory &memory, const ::file::path &pathShader)
+   {
+
+      throw ::interface_only();
+
+   }
+
+
    void device::on_initialize_gpu_device()
    {
 

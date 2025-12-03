@@ -80,7 +80,7 @@
 //void channel::add_route (const ::atom & atom, RECEIVER * preceiverDerived, MESSAGE_PRED message_predicate)
 //{
 //
-//  get_typed_route < typename ::erase_reference < decltype(*preceiverDerived) >::TYPE, ::message::message >(atom, preceiverDerived) = message_predicate;
+//  get_typed_route < typename ::non_reference < decltype(*preceiverDerived) >::TYPE, ::message::message >(atom, preceiverDerived) = message_predicate;
 //
 //}
 

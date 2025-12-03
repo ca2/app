@@ -187,6 +187,7 @@ namespace gpu
       virtual void load_texture(::pointer < ::gpu::texture > & ptexture, const ::file::path& path, bool bIsSrgb);
 
       virtual void layout_input_layout_properties(::gpu::properties *pproperties);
+      virtual void layout_global_ubo(::gpu::properties * pproperties);
       virtual void layout_push_constants(::gpu::properties & properties, bool bGlobalUbo);
       virtual void layout_properties_default(::gpu::properties &properties);
       virtual void _layout_std140_or_std430(::gpu::properties &properties, enum_layout elayout);

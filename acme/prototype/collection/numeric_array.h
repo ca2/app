@@ -13,10 +13,10 @@
 template < typename ARG_TYPE >
 ::collection::index numeric_compare(ARG_TYPE t1, ARG_TYPE t2)
 {
-   typename ::erase_reference < ARG_TYPE >::TYPE t = t1 - t2;
-   if(t > ::numeric_info< typename ::erase_reference < ARG_TYPE >::TYPE >::null())
+   typename ::non_reference < ARG_TYPE >::TYPE t = t1 - t2;
+   if(t > ::numeric_info< typename ::non_reference < ARG_TYPE >::TYPE >::null())
       return 1;
-   else if(t < ::numeric_info < typename ::erase_reference < ARG_TYPE >::TYPE >::null())
+   else if(t < ::numeric_info < typename ::non_reference < ARG_TYPE >::TYPE >::null())
       return -1;
    else
       return 0;

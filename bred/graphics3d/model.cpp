@@ -21,7 +21,14 @@ namespace graphics3d
 
 
 
-   void tinyobjloader_Builder::loadModel(::gpu::context* pgpucontext, const ::file::path& path)
+   void tinyobjloader_Builder::loadModel(::gpu::context *pgpucontext, const ::file::path &path)
+   {
+
+      loadModel_002(pgpucontext, path);
+   }
+
+
+   void tinyobjloader_Builder::loadModel_001(::gpu::context *pgpucontext, const ::file::path &path)
    {
 
       tinyobj::attrib_t attrib;
@@ -44,67 +51,112 @@ namespace graphics3d
 
       m_indexes.clear();
 
-      ::map_base<::graphics3d::Vertex, uint32_t> uniquevertexes{};
+      //::map_base<::graphics3d::Vertex, uint32_t> uniquevertexes{};
 
       for (const auto& shape : shapes)
       {
 
-         for (const auto& index : shape.mesh.indices)
+                 size_t index_offset = 0;
+         for (size_t f = 0; f < shape.mesh.num_face_vertices.size(); f++)
          {
+            size_t fv = shape.mesh.num_face_vertices[f]; // Number of vertices in this face
 
-            ::graphics3d::Vertex vertex{};
-
-            if (index.vertex_index >= 0)
+            for (size_t v = 0; v < fv; v++)
             {
+               tinyobj::index_t idx = shape.mesh.indices[index_offset + v];
 
-               vertex.position =
+               Vertex vertex;
+               vertex.position[0] = attrib.vertices[3 * idx.vertex_index + 0];
+               vertex.position[1] = attrib.vertices[3 * idx.vertex_index + 1];
+               vertex.position[2] = attrib.vertices[3 * idx.vertex_index + 2];
+                        vertex.color =
+                        {
+                           attrib.colors[3 * idx.vertex_index + 0],
+                           attrib.colors[3 * idx.vertex_index + 1],
+                           attrib.colors[3 * idx.vertex_index + 2],
+                        };
+
+
+               if (idx.normal_index >= 0)
                {
-                   attrib.vertices[3 * index.vertex_index + 0],
-                   attrib.vertices[3 * index.vertex_index + 1],
-                   attrib.vertices[3 * index.vertex_index + 2],
-               };
+                  vertex.normal[0] = attrib.normals[3 * idx.normal_index + 0];
+                  vertex.normal[1] = attrib.normals[3 * idx.normal_index + 1];
+                  vertex.normal[2] = attrib.normals[3 * idx.normal_index + 2];
+               }
 
-               vertex.color =
+               if (idx.texcoord_index >= 0)
                {
-                  attrib.colors[3 * index.vertex_index + 0],
-                  attrib.colors[3 * index.vertex_index + 1],
-                  attrib.colors[3 * index.vertex_index + 2],
-               };
-
-            }
-
-            if (index.normal_index >= 0)
-            {
-
-               vertex.normal =
-               {
-                   attrib.normals[3 * index.normal_index + 0],
-                   attrib.normals[3 * index.normal_index + 1],
-                   attrib.normals[3 * index.normal_index + 2],
-               };
-            }
-
-            if (index.texcoord_index >= 0)
-            {
-
-               vertex.uv =
-               {
-                   attrib.texcoords[2 * index.texcoord_index + 0],
-                   attrib.texcoords[2 * index.texcoord_index + 1],
-               };
-            }
-
-            if (uniquevertexes.count(vertex) == 0)
-            {
-
-               uniquevertexes[vertex] = static_cast<uint32_t>(m_vertexes.size());
+                  vertex.uv[0] = attrib.texcoords[2 * idx.texcoord_index + 0];
+                  vertex.uv[1] = attrib.texcoords[2 * idx.texcoord_index + 1];
+               }
                m_vertexes.add(vertex);
-
+               //m_indexes.add(static_cast<unsigned int>(m_indexes.size())); // Simple sequential indexing
             }
-
-            m_indexes.add(uniquevertexes[vertex]);
-
+            index_offset += fv;
          }
+
+      //   for (const auto& index : shape.mesh.indices)
+      //   {
+
+      //      ::graphics3d::Vertex vertex{};
+
+      //      if (index.vertex_index >= 0)
+      //      {
+
+      //         vertex.position =
+      //         {
+      //             attrib.vertices[3 * index.vertex_index + 0],
+      //             attrib.vertices[3 * index.vertex_index + 1],
+      //             attrib.vertices[3 * index.vertex_index + 2],
+      //         };
+
+      //         vertex.color =
+      //         {
+      //            attrib.colors[3 * index.vertex_index + 0],
+      //            attrib.colors[3 * index.vertex_index + 1],
+      //            attrib.colors[3 * index.vertex_index + 2],
+      //         };
+
+      //      }
+
+      //      if (index.normal_index >= 0)
+      //      {
+
+      //         vertex.normal =
+      //         {
+      //             attrib.normals[3 * index.normal_index + 0],
+      //             attrib.normals[3 * index.normal_index + 1],
+      //             attrib.normals[3 * index.normal_index + 2],
+      //         };
+      //      }
+
+      //      if (index.texcoord_index >= 0)
+      //      {
+
+      //         vertex.uv =
+      //         {
+      //             attrib.texcoords[2 * index.texcoord_index + 0],
+      //             attrib.texcoords[2 * index.texcoord_index + 1],
+      //         };
+      //      }
+
+      //      //if (uniquevertexes.count(vertex) == 0)
+      //      //{
+
+      //        // uniquevertexes[vertex] = static_cast<uint32_t>(m_vertexes.size());
+      //         m_vertexes.add(vertex);
+
+      //      //}
+      //      //else
+      //      //{
+
+      //        /// ::information("Duplicate vertex found");
+
+      //      //}
+
+      //      //m_indexes.add(uniquevertexes[vertex]);
+
+      //   }
 
       }
 

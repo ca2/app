@@ -280,7 +280,7 @@ public:
    //template < typename CHARACTER, character_count n >
    //constexpr range(const CHARACTER(& s)[n]) requires
    //   prototype_character < CHARACTER > &&
-   //   ::std::is_same_v<non_const<erase_pointer<CHARACTER>>, non_const<erase_pointer<ITEM>>>
+   //   ::std::is_same_v<non_const<non_pointer<CHARACTER>>, non_const<non_pointer<ITEM>>>
    //{
 
    //   if constexpr (n >= 1)

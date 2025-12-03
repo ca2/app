@@ -392,10 +392,10 @@ inline auto as_double_point(const unsigned int u) noexcept { return ::double_poi
 inline auto as_double_point(const unsigned long long u) noexcept { return ::double_point((double)u64_x(u), (double)u64_y(u)); }
 
 
-inline bool is_same(const ::double_point& p1, const ::double_point& p2, double dTolerance)
+inline bool is_almost_equal(const ::double_point& p1, const ::double_point& p2, double dTolerance)
 {
 
-   return is_same(p1.x, p2.x, dTolerance) && is_same(p1.y, p2.y, dTolerance);
+   return is_almost_equal(p1.x, p2.x, dTolerance) && is_almost_equal(p1.y, p2.y, dTolerance);
 
 }
 
@@ -403,7 +403,7 @@ inline bool is_same(const ::double_point& p1, const ::double_point& p2, double d
 inline bool is_different(const ::double_point& p1, const ::double_point& p2, double dTolerance)
 {
 
-   return !is_same(p1, p2, dTolerance);
+   return !is_almost_equal(p1, p2, dTolerance);
 
 }
 

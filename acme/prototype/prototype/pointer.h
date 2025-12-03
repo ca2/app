@@ -1409,7 +1409,7 @@ concept pointer_derived = requires(POINTER  p) {
 
 template < typename POINTER >
 concept prototype_subparticle_pointer = 
-::std::is_base_of_v < ::subparticle, ::erase_pointer < POINTER > > 
+::std::is_base_of_v < ::subparticle, ::non_pointer < POINTER > > 
 || pointer_derived<POINTER>;
 
 

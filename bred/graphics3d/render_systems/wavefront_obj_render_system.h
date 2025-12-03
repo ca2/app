@@ -68,6 +68,8 @@ namespace graphics3d
       virtual void model_and_normal_matrices(::floating_matrix4 &matrixModel, ::floating_matrix4 & matrixNormal,
          ::graphics3d::scene_renderable *pscenerenderable);
 
+      virtual ::memory vert_shader_memory();
+      virtual ::memory frag_shader_memory();
 
 	   void on_prepare(::gpu::context* pgpucontext) override;
 	   void on_update(::gpu::context* pgpucontext, ::graphics3d::scene_base* pscene) override;

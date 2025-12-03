@@ -1040,6 +1040,14 @@ namespace gpu_opengl
    }
 
 
+   void context::layout_global_ubo(::gpu::properties *pproperties) 
+   {
+      
+      _layout_std140_or_std430(*pproperties, ::gpu::e_layout_std140);
+   
+   }
+
+
    //void createFullscreenQuad(GLuint* vao, GLuint* vbo) {
    //   float quadVertices[] = {
    //      // pos     // uv

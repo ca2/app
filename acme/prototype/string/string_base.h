@@ -3143,9 +3143,9 @@ template < prototype_character CHARACTER, other_primitive_character < CHARACTER 
 
 
 template < character_pointer CHARACTER_POINTER >
-::string_base < const  non_const < erase_pointer<CHARACTER_POINTER>> * > operator + (
+::string_base < const  non_const < non_pointer<CHARACTER_POINTER>> * > operator + (
    CHARACTER_POINTER p,
-   const ::character_range < const non_const< erase_pointer < CHARACTER_POINTER > > * > & range
+   const ::character_range < const non_const< non_pointer < CHARACTER_POINTER > > * > & range
    )
 {
 

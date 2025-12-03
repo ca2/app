@@ -5,7 +5,7 @@
    pchannel->add_message_handler((enum_message) (atom), { preceiver, phandler } )
 
 //#define ON_TYPED_MESSAGE(atom, MESSAGE, name) \
-//   this->get_typed_route < typename ::erase_reference < decltype(*this) >::TYPE, MESSAGE >(atom, this) = [this](MESSAGE * p ## name)
+//   this->get_typed_route < typename ::non_reference < decltype(*this) >::TYPE, MESSAGE >(atom, this) = [this](MESSAGE * p ## name)
 
 //#define ON_MESSAGE(atom) \
 //   ON_TYPED_MESSAGE(atom, ::message::message, message)

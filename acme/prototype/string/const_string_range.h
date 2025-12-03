@@ -2970,7 +2970,7 @@ prototype_character < TYPED_STRING_LITERAL >;
 template <typename ITERATOR_TYPE>
 struct std::formatter<::character_range<ITERATOR_TYPE>>
 {
-   using character_type = ::character_decay<::erase_pointer<::non_const< ITERATOR_TYPE>>>;
+   using character_type = ::character_decay<::non_pointer<::non_const< ITERATOR_TYPE>>>;
    using string_view_type = ::std::basic_string_view<character_type>;
    using target_iterator = const character_type*;
 

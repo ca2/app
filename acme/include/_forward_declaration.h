@@ -177,93 +177,89 @@ template<typename TYPE>
 using const_of = typename const_of_struct<TYPE>::CONST_OF_TYPE;
 
 
-// erase_const
-// erase_const
-// erase_const
-
 template<typename TYPE>
-struct erase_const
+struct erase_const_struct
 {
    using NON_CONST_TYPE = TYPE;
 };
 
 
 template<typename TYPE>
-struct erase_const<TYPE &>
+struct erase_const_struct<TYPE &>
 {
    using NON_CONST_TYPE = TYPE &;
 };
 
 
 template<typename TYPE>
-struct erase_const<const TYPE>
+struct erase_const_struct<const TYPE>
 {
    using NON_CONST_TYPE = TYPE;
 };
 
 
 template<typename TYPE>
-struct erase_const<const TYPE &>
+struct erase_const_struct<const TYPE &>
 {
    using NON_CONST_TYPE = TYPE &;
 };
 
 
 template<typename TYPE>
-struct erase_const<const TYPE *>
+struct erase_const_struct<const TYPE *>
 {
    using NON_CONST_TYPE = TYPE *;
 };
 
 
 template<typename TYPE>
-struct erase_const<const TYPE &&>
+struct erase_const_struct<const TYPE &&>
 {
    using NON_CONST_TYPE = TYPE &&;
 };
 
 
 template<typename TYPE>
-using non_const = typename erase_const<TYPE>::NON_CONST_TYPE;
+using non_const = typename erase_const_struct<TYPE>::NON_CONST_TYPE;
 
 
 template<typename TYPE>
-struct erase_reference
+struct erase_reference_struct
 {
    using NON_REFERENCE_TYPE = TYPE;
 };
 
 
 template<typename TYPE>
-struct erase_reference<TYPE &>
+struct erase_reference_struct<TYPE &>
 {
    using NON_REFERENCE_TYPE = TYPE;
 };
 
 
 template<typename TYPE>
-struct erase_reference<const TYPE &>
+struct erase_reference_struct<const TYPE &>
 {
    using NON_REFERENCE_TYPE = const TYPE;
 };
 
 
 template<typename TYPE>
-struct erase_reference<TYPE &&>
+struct erase_reference_struct<TYPE &&>
 {
    using NON_REFERENCE_TYPE = TYPE;
 };
 
 
 template<typename TYPE>
-struct erase_reference<const TYPE &&>
+struct erase_reference_struct<const TYPE &&>
 {
    using NON_REFERENCE_TYPE = const TYPE;
 };
 
 
 template<typename TYPE>
-using non_reference = typename erase_reference<TYPE>::NON_REFERENCE_TYPE;
+using non_reference = typename erase_reference_struct<TYPE>::NON_REFERENCE_TYPE;
 
 
 template<typename TYPE>
@@ -347,27 +343,90 @@ template<bool B, class TRUE_TYPE = void, class ELSE_TYPE = void>
 using if_else = typename if_else_base<B, TRUE_TYPE, ELSE_TYPE>::type;
 
 
+
+template<typename T>
+struct is_raw_array_struct : ::false_type
+{
+};
+
+template<typename T, std::size_t N>
+struct is_raw_array_struct<T[N]> : ::true_type
+{
+};
+
+template<typename T, std::size_t N>
+struct is_raw_array_struct<T (&)[N]> : ::true_type
+{
+};
+
+template<typename T>
+struct is_raw_array_struct<T[]> : ::true_type
+{
+};
+
+template<typename T>
+struct is_raw_array_struct<T (&)[]> : ::true_type
+{
+};
+
 template<class T>
-struct is_array_struct : false_type
+inline constexpr bool is_raw_array = is_raw_array_struct<T>::payload;
+
+
+template<typename T>
+struct erase_const_effemeral_struct
+{
+   using type = T;
+};
+
+template<typename T>
+struct erase_const_effemeral_struct<const T>
+{
+   using type = T;
+};
+
+template<typename T>
+struct erase_const_effemeral_struct<volatile T>
+{
+   using type = T;
+};
+
+template<typename T>
+struct erase_const_effemeral_struct<const volatile T>
+{
+   using type = T;
+};
+
+
+template<typename T>
+using erase_const_effemeral = typename erase_const_effemeral_struct<T>::type;
+
+
+
+
+template<typename>
+struct is_raw_pointer_bool : public false_type
+{
+};
+
+template<typename T>
+struct is_raw_pointer_bool<T *> : public true_type
 {
 };
 
 
-template<class T>
-struct is_array_struct<T[]> : true_type
+template<typename T>
+struct is_raw_pointer_struct : public is_raw_pointer_bool<erase_const_effemeral<T>>
 {
 };
 
 
-template<class T, std::size_t N>
-struct is_array_struct<T[N]> : true_type
-{
-};
+template<typename T>
+inline constexpr bool is_raw_pointer = is_raw_pointer_struct<T>::payload;
 
 
-template<class T>
-inline constexpr bool is_array = is_array_struct<T>::payload;
-
+template<typename POINTER>
+concept prototype_raw_pointer = ::is_raw_pointer<POINTER>;
 
 namespace inner_detail
 {
@@ -431,7 +490,7 @@ struct erase_pointer_struct<T * const volatile>
 
 
 template<typename T>
-using erase_pointer = typename erase_pointer_struct<T>::type;
+using non_pointer = typename erase_pointer_struct<T>::type;
 
 
 template<class T>
@@ -771,7 +830,7 @@ public:
 
    using type =
    if_else<
-      is_array<U>,
+      is_raw_array<U>,
       add_pointer<non_extent<U>>,
       if_else<
          is_function<U>, add_pointer<U>, non_const<U>>
@@ -2815,3 +2874,91 @@ enum enum_future : int;
 
 
 
+
+#ifdef __clang__
+
+template<class T1, class T2>
+struct is_same_struct : bool_constant<__is_same(T1, T2)>
+{
+};
+
+#else
+
+template<class, class>
+constexpr bool is_same_type_bool = false;
+template<class T>
+constexpr bool is_same_type_bool<T, T> = true;
+
+template<class T1, class T2>
+struct is_same_struct : bool_constant<is_same_type_bool<T1, T2>>
+{
+};
+
+#endif 
+
+template<typename T1, typename T2>
+inline constexpr bool is_same = is_same_struct<T1, T2>::payload;
+
+//
+//template<class>
+//constexpr bool is_const_bool = false;
+//
+//template<class T>
+//constexpr bool is_const_bool<const T> = true;
+//
+//template<class T>
+//struct is_const_struct : bool_constant<is_const_bool<T>>
+//{
+//};
+//
+//
+//template<typename T>
+//inline constexpr bool is_const = is_const_struct<T1, T2>::payload;
+
+
+template <typename ARRAY>
+struct decay_array_struct;
+
+template<typename ARRAY, std::size_t N>
+struct decay_array_struct<ARRAY[N]>
+{
+    using type = ARRAY;
+};
+
+template<typename ARRAY, std::size_t N>
+struct decay_array_struct<ARRAY (&)[N]> // also handles references to arrays
+{
+    using type = ARRAY;
+};
+
+template<typename ARRAY>
+using decay_array = typename decay_array_struct<ARRAY>::type;
+
+//
+//template<typename T>
+//struct is_array_struct : ::false_type
+//{
+//};
+//
+//template<typename T, std::size_t N>
+//struct is_array_struct<T[N]> : ::true_type
+//{
+//};
+//
+//template<typename T, std::size_t N>
+//struct is_array_struct<T (&)[N]> : ::true_type
+//{
+//};
+//
+//template<typename T>
+//struct is_array_struct<T[]> : ::true_type
+//{
+//};
+//
+//template<typename T>
+//struct is_array_struct<T (&)[]> : ::true_type
+//{
+//};
+//
+//template<typename T>
+//inline constexpr bool is_array = is_array_struct<T>::payload;

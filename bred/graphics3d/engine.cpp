@@ -155,7 +155,7 @@ namespace graphics3d
    void engine::create_global_ubo(::gpu::context* pgpucontext)
    {
 
-      pgpucontext->layout_push_constants(m_pimmersionlayer->m_pscene->global_ubo(), true);
+      pgpucontext->layout_global_ubo(&m_pimmersionlayer->m_pscene->global_ubo());
 
       auto iGlobalUboSize = m_pimmersionlayer->m_pscene->global_ubo().m_blockWithoutSamplers.size();
 

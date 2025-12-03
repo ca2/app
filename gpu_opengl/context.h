@@ -117,6 +117,9 @@ namespace gpu_opengl
       void update_global_ubo(const ::block& block) override;
 
 
+      void layout_global_ubo(::gpu::properties *pproperties) override;
+
+
       void copy(::gpu::texture* ptexture) override;
       virtual void _copy_using_shader(::gpu::texture* ptexture);
       virtual void _copy_using_blit(::gpu::texture* ptexture);

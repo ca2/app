@@ -393,7 +393,8 @@
     <ClInclude Include="graphics3d\frame.h" />
     <ClInclude Include="graphics3d\framework.h" />
     <ClInclude Include="graphics3d\game_object.h" />
-    <ClInclude Include="graphics3d\global_ubo.h" />
+    <ClInclude Include="graphics3d\aaa_global_ubo.h" />
+    <ClInclude Include="graphics3d\global_ubo1.h" />
     <ClInclude Include="graphics3d\immersion_layer.h" />
     <ClInclude Include="graphics3d\input.h" />
     <ClInclude Include="graphics3d\key_map.h" />
@@ -519,12 +520,14 @@
     <ClCompile Include="graphics3d\camera.cpp" />
     <ClCompile Include="graphics3d\engine.cpp" />
     <ClCompile Include="graphics3d\frame.cpp" />
-    <ClCompile Include="graphics3d\global_ubo.cpp" />
+    <ClCompile Include="graphics3d\aaa_global_ubo.cpp" />
+    <ClCompile Include="graphics3d\global_ubo1.cpp" />
     <ClCompile Include="graphics3d\immersion_layer.cpp" />
     <ClCompile Include="graphics3d\input.cpp" />
     <ClCompile Include="graphics3d\key_map.cpp" />
     <ClCompile Include="graphics3d\mesh.cpp" />
     <ClCompile Include="graphics3d\model.cpp" />
+    <ClCompile Include="graphics3d\model_tinyobjloader_002.cpp" />
     <ClCompile Include="graphics3d\point_light.cpp" />
     <ClCompile Include="graphics3d\renderable.cpp" />
     <ClCompile Include="graphics3d\renderer.cpp" />

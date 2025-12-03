@@ -15,6 +15,7 @@ namespace gpu
       e_coordinate_system_opengl,
       e_coordinate_system_vulkan,
       e_coordinate_system_directx,
+      e_coordinate_system_znf, // z normal flipped
       e_coordinate_system_z_minus,
       e_coordinate_system_y_up,
 

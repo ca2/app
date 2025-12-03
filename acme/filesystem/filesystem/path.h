@@ -731,7 +731,7 @@ inline ::hash32 as_hash32 < const ::file::path & >(const ::file::path & key);
 
 
 //template < typename ITERATOR_TYPE2, character_count n, int t_size >
-//::file::path operator / (const ::erase_pointer < non_const <ITERATOR_TYPE2>>(&sz)[n], const const_string_range_static_array <ITERATOR_TYPE2, t_size >& a)
+//::file::path operator / (const ::non_pointer < non_const <ITERATOR_TYPE2>>(&sz)[n], const const_string_range_static_array <ITERATOR_TYPE2, t_size >& a)
 //{
 //
 //   return ::transfer(::file::path(sz) / ::string(a));

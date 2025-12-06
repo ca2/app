@@ -1,6 +1,6 @@
 // Created by camilo on 2025-05-17 02:45s <3ThomasBorregaardSorensen!!
 #include "framework.h"
-#include "model.h"
+#include "tinyobjloader_Builder.h"
 #include "utilities.h"
 #include "acme/filesystem/filesystem/directory_context.h"
 #include "acme/filesystem/filesystem/path_system.h"
@@ -21,14 +21,15 @@ namespace graphics3d
 
 
 
-   void tinyobjloader_Builder::loadModel(::gpu::context *pgpucontext, const ::file::path &path)
+   void tinyobjloader_Builder::loadModel(::gpu::context *pgpucontext, const ::file::path &path, bool bCounterClockwise)
    {
 
-      loadModel_002(pgpucontext, path);
+      loadModel_002(pgpucontext, path, bCounterClockwise);
+
    }
 
 
-   void tinyobjloader_Builder::loadModel_001(::gpu::context *pgpucontext, const ::file::path &path)
+   void tinyobjloader_Builder::loadModel_001(::gpu::context *pgpucontext, const ::file::path &path, bool bFlipWinding)
    {
 
       tinyobj::attrib_t attrib;

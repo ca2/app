@@ -34,7 +34,7 @@
        public:
 
 
-          ::pointer<::gpu::cube> m_pcube;
+          //::pointer<::gpu::cube> m_pcube;
           //::pointer < ::gpu::hdr_texture >  m_phdrtexture;
 
           //A texture loaded from a .hdr file.

@@ -40,9 +40,10 @@ namespace graphics3d
 
          bool m_bWasLeft = false;
          ::floating_sequence2 m_sequence2MouseLast;
-         ::floating_sequence2 m_sequence2MouseRawΔ{0.f};
+         //::floating_sequence2 m_sequence2MouseRawΔ{0.f};
          ::floating_sequence2 m_sequence2MouseSmoothΔ{0.f};
          ::floating_sequence2 m_sequence2MouseΔ{0.f};
+         ::floating_sequence2 m_sequence2MouseLastDragΔ{0.f};
 
 
          double m_dCursorX;
@@ -69,11 +70,14 @@ namespace graphics3d
 
                bool m_bMouseOut = true;
 
-
+               //float m_moveSpeed;
 
 
       input();
       ~input() override;
+
+
+      virtual void initialize_input(float moveSpeed = 7.f, const floating_angle &angleCursorPixel = 0.1f_degree);
 
 
       virtual ::user::enum_key_state key(::graphics3d::enum_key ekey);
@@ -94,7 +98,7 @@ namespace graphics3d
 
       virtual ::block as_block();
 
-
+      virtual void mouseDrag(::floating_sequence2 Δ);
 
       virtual void _001OnMouseMove(const ::int_point &point);
       virtual void _001OnMouseOut();

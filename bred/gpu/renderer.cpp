@@ -32,9 +32,12 @@
 namespace gpu
 {
 
+   interlocked_count g_iGpuRenderer;
 
    renderer::renderer()
    {
+
+      m_iGpuRenderer = ++g_iGpuRenderer;
 
       m_iDefaultFrameCount = 3;
 

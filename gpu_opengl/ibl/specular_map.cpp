@@ -15,7 +15,7 @@
 #include "gpu_opengl/_gpu_opengl.h"
 #include "gpu_opengl/shader.h"
 #include "gpu_opengl/texture.h"
-#include "gpu/cube.h"
+//#include "gpu/cube.h"
 #include "gpu/gltf/_constant.h"
 #include <glad/glad.h>
 #include "gpu/context.h"
@@ -119,8 +119,9 @@ namespace gpu_opengl
 
          //auto pcube = øcreate < ::gpu::cube >();
          //::cast < ::gpu_gpu::context > pcontext = m_pgpucontext;
-         auto pcube = øcreate<::gpu::cube>();
-         pcube->initialize_gpu_cube(m_pgpucontext);
+         //auto pcube = øcreate<::gpu::cube>();
+         auto prenderableCube = m_pgpucontext->m_pengine->shape_factory()->create_cube_001(m_pgpucontext, 32.f);
+         //pcube->initialize_gpu_cube(m_pgpucontext);
          ::cast<::gpu_opengl::texture> ptextureSkybox = ptexture;
 
          //m_pframebufferPrefilteredEnvMap->bind();
@@ -171,9 +172,9 @@ namespace gpu_opengl
                rendersystemScope.m_erendersystem = ::graphics3d::e_render_system_skybox_ibl;
                pgpucommandbuffer->m_prendersystem = &rendersystemScope;
                m_pshaderPrefilteredEnvMap->push_properties(pgpucommandbuffer);
-               pcube->bind(pgpucommandbuffer);
-               pcube->draw(pgpucommandbuffer);
-               pcube->unbind(pgpucommandbuffer);
+               prenderableCube->bind(pgpucommandbuffer);
+               prenderableCube->draw(pgpucommandbuffer);
+               prenderableCube->unbind(pgpucommandbuffer);
                pgpucommandbuffer->m_prendersystem = nullptr;
 
                m_pgpucontext->end_debug_happening(pgpucommandbuffer);

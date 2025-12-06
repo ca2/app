@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "bred/graphics3d/model.h"
+//#include "bred/graphics3d/model.h"
 #include "bred/graphics3d/entity.h"
 #include "bred/graphics3d/game_object.h"
 //#include "SceneFoundry/graphics3d/object_model.h"

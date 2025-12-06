@@ -5,7 +5,7 @@
 #include "gpu/ibl/cubemap_framebuffer.h"
 #include "bred/gpu/shader.h"
 #include "gpu/ibl/equirectangular_cubemap.h"
-#include "gpu/ibl/hdri_cube.h"
+//#include "gpu/ibl/hdri_cube.h"
 
 
 namespace gpu_opengl
@@ -14,26 +14,15 @@ namespace gpu_opengl
 
    namespace ibl
    {
-      /**
-       * A cubemap texture created from an equirectangular image.
-       */
+
+
       class equirectangular_cubemap :
          virtual public ::gpu::ibl::equirectangular_cubemap
       {
       public:
 
 
-         // const unsigned int cubemapWidth = 512;
-         // const unsigned int cubemapHeight = 512;
-         //
-         // ::pointer<Shader> hdriShader;
-         // ::pointer<hdri_cube> hdri_cube;
-         // ::pointer<cubemap_framebuffer> framebuffer;
 
-         /**
-          * Initialize an equirectangular_cubemap.
-          * @param hdriPath path to an .hdr image in equirectangular projection format
-          */
          equirectangular_cubemap();
 
 
@@ -44,19 +33,9 @@ namespace gpu_opengl
 
 
 
-         //virtual void initialize_equirectangular_cubemap(const ::string &engineRoot, const ::string &hdriPath);
-
-
-         /**
-          * Render the equirectangular cubemap.
-          */
          void compute();
 
 
-         /**
-          * Get the GL texture ID of the computed cubemap.
-          * @return
-          */
          unsigned int getCubemapId();
 
 

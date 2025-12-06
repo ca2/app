@@ -21,7 +21,7 @@ namespace gpu
 
       class equirectangular_cubemap;
 
-      class hdri_cube;
+      //class hdri_cube;
 
       class mipmap_cubemap_framebuffer;
 

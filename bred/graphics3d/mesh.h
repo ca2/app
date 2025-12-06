@@ -2,7 +2,7 @@
 //#include <vector>
 //
 #include "bred/gpu/context_object.h"
-#include "bred/graphics3d/model.h"
+//#include "bred/graphics3d/model.h"
 #include "bred/graphics3d/shape_factory.h"
 
 

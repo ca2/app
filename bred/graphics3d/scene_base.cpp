@@ -10,44 +10,27 @@
 #include "point_light.h"
 #include "skybox.h"
 
-/// #include "SceneFoundry/scene_foundry/player.h"
-// #include "SceneFoundry/sandbox_game/game_object.h"
-
-// #include <json.hpp>
-
-
-// 
-// #include <spdlog/spdlog.h>
 
 
 namespace graphics3d
 {
 
 
-   // using json = nlohmann::json;
-
    scene_base::scene_base()
    {
 
       m_bInitialized = false;
       m_bLoadedScene = false;
-      // m_strSkyboxCubemapName = "skybox_hdr";
-      //m_strSkybox = "skybox_hdr";
       m_interlockedcountSceneObject = 1;
+
    }
 
 
-   scene_base::~scene_base() {}
-
-
-   // void scene_base::initialize_scene(::graphics3d::IWindowInput * pwindowinput, ::graphics3d::IAssetProvider *
-   // passetmanager)
-   // {
-   //
-   //    m_pwindowinput = pwindowinput;
-   //    m_passetmanager = passetmanager;
-   //
-   // }
+   scene_base::~scene_base()
+   {
+   
+   
+   }
 
 
    void scene_base::initialize_scene(::graphics3d::immersion_layer *pimmersionlayer)
@@ -56,70 +39,15 @@ namespace graphics3d
       initialize_gpu_context_object(pimmersionlayer->m_pengine->get_gpu_context());
 
       m_pimmersionlayer = pimmersionlayer;
-      //::graphics3d::scene_base::initialize_scene(pengine);
 
       m_pgpucontext->on_before_initialize_scene();
 
       on_initialize_scene();
-
       
    }
 
 
    void scene_base::on_initialize_scene() {}
-
-
-   //::pointer<::graphics3d::renderable> scene_base::get_skybox_cube_model()
-   //{
-
-   //   auto pmodelbuffer = øcreate_new<::gpu::model_buffer>();
-
-   //   pmodelbuffer->initialize_gpu_context_object(m_pgpucontext);
-
-   //   ::array_base<floating_sequence3> vertexa = {// positions
-   //                                      {-1.0f, 1.0f, -1.0f},  {-1.0f, -1.0f, -1.0f}, {1.0f, -1.0f, -1.0f},
-   //                                      {1.0f, -1.0f, -1.0f},  {1.0f, 1.0f, -1.0f},   {-1.0f, 1.0f, -1.0f},
-
-   //                                      {-1.0f, -1.0f, 1.0f},  {-1.0f, -1.0f, -1.0f}, {-1.0f, 1.0f, -1.0f},
-   //                                      {-1.0f, 1.0f, -1.0f},  {-1.0f, 1.0f, 1.0f},   {-1.0f, -1.0f, 1.0f},
-
-   //                                      {1.0f, -1.0f, -1.0f},  {1.0f, -1.0f, 1.0f},   {1.0f, 1.0f, 1.0f},
-   //                                      {1.0f, 1.0f, 1.0f},    {1.0f, 1.0f, -1.0f},   {1.0f, -1.0f, -1.0f},
-
-   //                                      {-1.0f, -1.0f, 1.0f},  {-1.0f, 1.0f, 1.0f},   {1.0f, 1.0f, 1.0f},
-   //                                      {1.0f, 1.0f, 1.0f},    {1.0f, -1.0f, 1.0f},   {-1.0f, -1.0f, 1.0f},
-
-   //                                      {-1.0f, 1.0f, -1.0f},  {1.0f, 1.0f, -1.0f},   {1.0f, 1.0f, 1.0f},
-   //                                      {1.0f, 1.0f, 1.0f},    {-1.0f, 1.0f, 1.0f},   {-1.0f, 1.0f, -1.0f},
-
-   //                                      {-1.0f, -1.0f, -1.0f}, {-1.0f, -1.0f, 1.0f},  {1.0f, -1.0f, -1.0f},
-   //                                      {1.0f, -1.0f, -1.0f},  {-1.0f, -1.0f, 1.0f},  {1.0f, -1.0f, 1.0f}};
-
-   //   pmodelbuffer->static_initialize_vertexes<::floating_sequence3>(vertexa);
-
-   //   return pmodelbuffer;
-   //}
-
-
-   //   ::pointer<::graphics3d::renderable> scene_base::get_cube_model()
-   //{
-
-   //   auto pcube = øcreate<::gpu::cube>();
-
-   //
-   //   return pcube;
-   //}
-
-
-   //::pointer<::graphics3d::renderable> scene_base::get_skybox_cube_model() { return m_prenderableSkyboxModel; }
-
-
-   //::pointer<::gpu::texture> scene_base::get_skybox_cube_texture()
-   //{
-
-   //   return m_pimmersionlayer->m_passetmanager->m_mapSkyboxTexture[this->m_strSkybox];
-
-   //}
 
 
    void scene_base::set_skybox(::graphics3d::skybox *pskybox)
@@ -633,11 +561,21 @@ namespace graphics3d
    }
 
 
+   bool scene_base::is_global_ubo_ok()
+   {
+
+      return global_ubo().size(true) > 0 && m_pgpucontext->is_global_ubo_ok();
+
+   }
+
+
    ::gpu::properties &scene_base::global_ubo() { return m_gpupropertiesGlobalUbo; }
 
 
    ::graphics3d::scene_renderable &scene_base::scene_renderable(const ::scoped_string &scopedstr,
+                  bool bCounterClockwise,
                                                                 const ::file::path &pathParameter)
+
    {
 
       auto &pscenerenderable = this->scene_renderables()[scopedstr];
@@ -658,7 +596,8 @@ namespace graphics3d
             path = scopedstr;
          }
 
-         pscenerenderable = _scene_renderable(scopedstr, path);
+         pscenerenderable = _scene_renderable(scopedstr, bCounterClockwise, path);
+
       }
 
       return *pscenerenderable;
@@ -666,6 +605,7 @@ namespace graphics3d
 
 
    ::pointer<::graphics3d::scene_renderable> scene_base::_scene_renderable(const ::scoped_string &scopedstr,
+      bool bCounterClockwise,
                                                                            const ::file::path &path)
    {
 
@@ -676,6 +616,8 @@ namespace graphics3d
       model.m_strName = scopedstr;
 
       model.m_pathRenderable = path;
+
+      model.m_bCounterClockwise = bCounterClockwise;
 
       if (path.case_insensitive_ends(".obj"))
       {

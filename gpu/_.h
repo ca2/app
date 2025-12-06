@@ -23,7 +23,7 @@ namespace gpu
 {
 
 
-   class cube;
+   //class cube;
 
    class full_screen_quad;
 

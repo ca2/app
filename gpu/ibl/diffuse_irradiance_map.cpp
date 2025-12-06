@@ -5,12 +5,14 @@
 #include "diffuse_irradiance_map.h"
 #include "bred/gpu/context.h"
 #include "bred/gpu/shader.h"
+#include "bred/gpu/types.h"
+#include "bred/graphics3d/shape_factory.h"
 //#include "glad/glad.h"
 //
 //
 //
 //#include "constants.h"
-#include "gpu/cube.h"
+//#include "gpu/cube.h"
 //#include "timer.h"
 #include "bred/gpu/render.h"
 
@@ -77,7 +79,7 @@ namespace gpu
          m_pshaderDiffuseIrradiance->m_bDisableDepthTest = true;
          m_pshaderDiffuseIrradiance->m_bEnableBlend = false;
          m_pshaderDiffuseIrradiance->m_ecullmode = ::gpu::e_cull_mode_none;
-         auto pgpupropertiesPosition = ::gpu_properties<::gpu::position3>();
+         auto pgpupropertiesPosition = ::gpu_properties<::graphics3d::shape_factory::Vertex>();
 
          auto pinputlayoutPosition = m_pgpucontext->input_layout(pgpupropertiesPosition);
 

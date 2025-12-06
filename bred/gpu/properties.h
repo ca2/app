@@ -627,3 +627,9 @@ rooting ::gpu::property *gpu_properties<type>();
 
 
 
+DECLARE_GPU_PROPERTIES(CLASS_DECL_BRED, ::floating_sequence3)
+
+
+
+
+

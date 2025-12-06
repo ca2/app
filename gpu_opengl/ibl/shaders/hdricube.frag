@@ -1,22 +1,25 @@
-#version 330 core
+#version 450 core
 
-out vec4 outColor;
 in vec3 modelCoordinates;
+out vec4 outColor;
 
-// equirectangular projection HDRI
 uniform sampler2D hdri;
 
 const float PI = 3.14159265359;
 
 void main()
 {
-    vec3 N = normalize(modelCoordinates);
+    
+    vec3 dir = normalize(modelCoordinates);
 
-    float phi = atan(N.z, N.x);     // range: -pi..pi
-    float theta = asin(N.y);        // range: -pi/2..pi/2
+    float phi = atan(dir.z, dir.x);
+    
+    float theta = acos(dir.y);
 
-    float u = (phi / (2.0 * PI)) + 0.5;
-    float v = (theta / PI) + 0.5;
+    float u = mod(0.75 + ((phi + PI) / (2.0 * PI)), 1.0);
+    
+    float v = theta / PI;
+    
+    outColor = texture(hdri, vec2(1.0 - u, v));
 
-    outColor = texture(hdri, vec2(u, v));
 }

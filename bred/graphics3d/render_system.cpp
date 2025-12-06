@@ -71,6 +71,13 @@ namespace graphics3d
 
       //testall pgpucontext->current_target_texture()->bind_render_target();
 
+      if (!m_bPrepared)
+      {
+
+         return;
+
+      }
+
       on_render(pgpucontext, pscene);
 
    }
@@ -90,6 +97,8 @@ namespace graphics3d
    {
 
       on_prepare(pgpucontext);
+
+      m_bPrepared = true;
 
    }
 

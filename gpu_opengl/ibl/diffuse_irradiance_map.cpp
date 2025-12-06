@@ -10,9 +10,10 @@
 #include "bred/graphics3d/engine.h"
 #include "bred/graphics3d/renderable.h"
 #include "bred/graphics3d/scene_base.h"
+#include "bred/graphics3d/scene_renderable.h"
 #include "bred/graphics3d/skybox.h"
 #include "gpu/gltf/_constant.h"
-#include "gpu/cube.h"
+//#include "gpu/cube.h"
 #include <glad/glad.h>
 //
 //
@@ -112,8 +113,9 @@ namespace gpu_opengl
 
          //auto pcube = øcreate<::gpu::cube>();
          ////::cast < ::gpu_gpu::context > pcontext = m_pgpucontext;
-         auto pcube = øcreate<::gpu::cube>();
-         pcube->initialize_gpu_cube(m_pgpucontext);
+         //auto pcube = øcreate<::gpu::cube>();
+         auto prenderableCube = m_pgpucontext->m_pengine->shape_factory()->create_cube_001(m_pgpucontext, 32.f);
+         //pcube->initialize_gpu_cube(m_pgpucontext);
 
          glViewport(0, 0, m_udiffuse_irradiance_mapWidth, m_udiffuse_irradiance_mapHeight);
          GLCheckError("");
@@ -146,9 +148,9 @@ namespace gpu_opengl
             //m_pshaderDiffuseIrradiance->set_int("environmentCubemap", 0);
             glBindTexture(GL_TEXTURE_CUBE_MAP, ptextureSkybox->m_gluTextureID);
             // pgpucommandbuffer->m_erendersystem = ::graphics3d::e_render_system_skybox_ibl;
-            pcube->bind(pgpucommandbuffer);
-            pcube->draw(pgpucommandbuffer);
-            pcube->unbind(pgpucommandbuffer);
+            prenderableCube->bind(pgpucommandbuffer);
+            prenderableCube->draw(pgpucommandbuffer);
+            prenderableCube->unbind(pgpucommandbuffer);
             //prenderable->bind(pgpucommandbuffer);
             //prenderable->draw(pgpucommandbuffer);
             //prenderable->unbind(pgpucommandbuffer);

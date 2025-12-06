@@ -4,7 +4,7 @@
 #include "command_buffer.h"
 #include "context.h"
 #include "cpu_buffer.h"
-#include "cube.h"
+//#include "cube.h"
 #include "device.h"
 #include "frame_buffer.h"
 #include "full_screen_quad.h"
@@ -34,7 +34,7 @@
 #include "ibl/specular_map.h"
 #include "ibl/cubemap_framebuffer.h"
 #include "ibl/mipmap_cubemap_framebuffer.h"
-#include "ibl/hdri_cube.h"
+//#include "ibl/hdri_cube.h"
 
 
 #if defined(WINDOWS_DESKTOP)
@@ -92,7 +92,7 @@ __FACTORY_EXPORT void gpu_opengl_factory(::factory::factory * pfactory)
    pfactory->add_factory_item < ::gpu::frame_storage >();
 
    //pfactory->add_factory_item < ::gpu_opengl::cube, ::gpu::cube >();
-   pfactory->add_factory_item < ::gpu::cube >();
+   //pfactory->add_factory_item < ::gpu::cube >();
    //pfactory->add_factory_item < ::gpu_opengl::full_screen_quad, ::gpu::full_screen_quad >();
    pfactory->add_factory_item < ::gpu::full_screen_quad >();
    //pfactory->add_factory_item < ::gpu_opengl::hdr_texture, ::gpu::hdr_texture >();
@@ -104,7 +104,7 @@ __FACTORY_EXPORT void gpu_opengl_factory(::factory::factory * pfactory)
    pfactory->add_factory_item < ::gpu_opengl::ibl::cubemap_framebuffer, ::gpu::ibl::cubemap_framebuffer>();
    pfactory->add_factory_item < ::gpu_opengl::ibl::equirectangular_cubemap, ::gpu::ibl::equirectangular_cubemap>();
    pfactory->add_factory_item < ::gpu_opengl::ibl::brdf_convolution_framebuffer, ::gpu::ibl::brdf_convolution_framebuffer>();
-   pfactory->add_factory_item < ::gpu_opengl::ibl::hdri_cube, ::gpu::ibl::hdri_cube>();
+   //pfactory->add_factory_item < ::gpu_opengl::ibl::hdri_cube, ::gpu::ibl::hdri_cube>();
 
 }
 

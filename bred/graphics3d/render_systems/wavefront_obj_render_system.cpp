@@ -2,12 +2,12 @@
 #include "wavefront_obj_render_system.h"
 #include "bred/graphics3d/engine.h"
 #include "bred/gpu/command_buffer.h"
+#include "bred/gpu/context.h"
 #include "bred/gpu/device.h"
+#include "bred/gpu/frame.h"
+#include "bred/gpu/renderer.h"
 #include "bred/gpu/shader.h"
-#include "bred/graphics3d/model.h"
 #include "bred/graphics3d/scene_renderable.h"
-#include "bred/graphics3d/frame.h"
-#include "graphics3d/immersion_layer.h"
 #include "graphics3d/scene_base.h"
 
 

@@ -23,7 +23,7 @@
 #include "bred/gpu/render_state.h"
 #include "bred/gpu/render_target.h"
 #include "bred/gpu/swap_chain.h"
-
+#include "bred/gpu/types.h"
 
 
 namespace gpu
@@ -1580,21 +1580,7 @@ namespace gpu
    }
 
 
-   // void graphics::nanosvg(const ::scoped_string & scopedstr, int x, int y, int w, int h)
-   // {
-   //
-   //    struct NSVGimage* pnsvgimage;
-   //
-   //    pnsvgimage = nsvgParse((char*)(const_char_pointer )str, "px", 96);
-   //
-   //    nanosvg_drawframe(pnsvgimage, x, y, w, h);
-   //
-   //    nsvgDelete(pnsvgimage);
-   //
-   //    //return true;
-   //
-   // }
-   //
+
    void graphics::defer_set_size(const ::int_size &size) 
    {
    

@@ -104,8 +104,12 @@ namespace gpu_opengl
          // glDrawElements(GL_TRIANGLES, m_indexa.size(), GL_UNSIGNED_INT, 0);
          // glBindVertexArray(0);
 
-         auto pshader = pcommandbuffer->m_pgpurendertarget->m_pgpurenderer->m_pgpucontext->m_pshaderBound;
+         auto pgpucontext1 = pcommandbuffer->m_pgpurendertarget->m_pgpurenderer->m_pgpucontext.m_p;
+
+         auto pshader = pgpucontext1->m_pshaderBound;
+
          auto erendersystem = pcommandbuffer->m_prendersystem->m_erendersystem;
+
          if (erendersystem == ::graphics3d::e_render_system_skybox_ibl)
          {
 
@@ -241,6 +245,9 @@ namespace gpu_opengl
          }
          else if (erendersystem == ::graphics3d::e_render_system_gltf_scene)
          {
+
+
+            glDisable(GL_CULL_FACE);
             // albedo
                         //;
             //pshader->set_int("material.useTextureAlbedo", m_pmaterial->useTextureAlbedo);

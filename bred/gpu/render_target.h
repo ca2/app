@@ -12,6 +12,8 @@ namespace gpu
    public:
 
 
+      ::collection::index m_iGpuRenderTarget = -1;
+
       bool                                         m_bAdvancedPipelineSynchronization = false;
 
       //::collection::index                          m_iCurrentFrame2 = -1;

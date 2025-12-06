@@ -1,12 +1,15 @@
 // From https:// github.com/tinyobjloader/tinyobjloader/blob/release/examples/viewer/viewer.cc
 // by camilo on 2025-05-17 02:45s <3ThomasBorregaardSorensen!!
 #include "framework.h"
+#include "tinyobjloader_Builder.h"
+#include "utilities.h"
 #include "acme/filesystem/filesystem/directory_context.h"
 #include "acme/filesystem/filesystem/path_system.h"
 #include "bred/gpu/context.h"
 #include "bred/gpu/renderer.h"
-#include "model.h"
-#include "utilities.h"
+#include "bred/graphics3d/types.h"
+//#include "model.h"
+
 
 //
 //#define TINYOBJLOADER_IMPLEMENTATION
@@ -363,7 +366,7 @@ namespace graphics3d
          outshape.name = inshape.name;
          // Skip lines and points.
 
-         std::unordered_map<unsigned int, unsigned int> remap;
+         ::map_base < unsigned int, unsigned int > remap;
          for (unsigned int id = idbegin; id < idend; ++id)
          {
             unsigned int face = sortedids[id].second;
@@ -382,7 +385,7 @@ namespace graphics3d
                // Smooth group 0 disables smoothing so no shared vertices in that case.
                if (sgroupid && iter != remap.end())
                {
-                  outidx.vertex_index = (*iter).second;
+                  outidx.vertex_index = (*iter).m_element2;
                   outidx.normal_index = outidx.vertex_index;
                   outidx.texcoord_index = (inidx.texcoord_index == -1) ? -1 : outidx.vertex_index;
                }
@@ -540,7 +543,7 @@ namespace graphics3d
    //bool tinyobjloader_Builder::LoadObjAndConvert(float bmin[3], float bmax[3],
      //                                                   std::vector<DrawObject> *drawObjects,
        //                          std::vector<tinyobj::material_t> &materials, std::map<std::string, GLuint> &textures,
-   bool tinyobjloader_Builder::LoadObjAndConvert(::gpu::context *pgpucontext, const ::file::path &path)
+   bool tinyobjloader_Builder::LoadObjAndConvert(::gpu::context *pgpucontext, const ::file::path &path, bool bCounterClockwise)
    {
       //tinyobj::attrib_t inattrib;
       //std::vector<tinyobj::shape_t> inshapes;
@@ -910,6 +913,11 @@ namespace graphics3d
 //               }
                            // Optionally flip winding:
                // std::swap(tri[1], tri[2]);
+
+               if (!bCounterClockwise)
+               {
+                  std::swap(tri[1], tri[2]); // flip triangle winding
+               }
                m_indexes.add(tri[0]);
                m_indexes.add(tri[1]);
                m_indexes.add(tri[2]);
@@ -957,10 +965,10 @@ namespace graphics3d
    }
 
    
-   void tinyobjloader_Builder::loadModel_002(::gpu::context *pgpucontext, const ::file::path &path)
+   void tinyobjloader_Builder::loadModel_002(::gpu::context *pgpucontext, const ::file::path &path, bool bFlipWinding)
    {
 
-      if(!LoadObjAndConvert(pgpucontext, path))
+      if(!LoadObjAndConvert(pgpucontext, path, bFlipWinding))
                {
          throw ::exception(error_failed, "Failed to load model");
                }

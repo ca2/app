@@ -12,7 +12,7 @@
 #include "gpu/timer.h"
 #include "gpu_opengl/_gpu_opengl.h"
 #include "cubemap_framebuffer.h"
-#include "hdri_cube.h"
+//#include "hdri_cube.h"
 #include "shaders/hdricube.frag.h"
 #include "shaders/hdricube.vert.h"
 
@@ -96,12 +96,12 @@ namespace gpu_opengl
             m_pshaderHdri->setModelViewProjection(model, impact, projection);
             
             m_pframebuffer->setCubeFace(i, m_pshaderHdri);
+
+            //m_pshaderHdri->set_int("faceIndex", i);
             
             m_pshaderHdri->push_properties(pgpucommandbuffer);
 
-
             glViewport(0, 0, m_uCubemapWidth, m_uCubemapHeight);
-
 
             glEnable(GL_DEPTH_TEST);
             GLCheckError("");
@@ -118,7 +118,11 @@ namespace gpu_opengl
             glDepthMask(GL_FALSE);
             GLCheckError("");
 
-            m_phdricube->draw(pgpucommandbuffer);
+            m_prenderableCube->bind(pgpucommandbuffer);
+
+            m_prenderableCube->draw(pgpucommandbuffer);
+
+            m_prenderableCube->unbind(pgpucommandbuffer);
 
          }
 

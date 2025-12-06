@@ -3,9 +3,9 @@
 #include "mesh.h"
 #include "bred/gpu/command_buffer.h"
 #include "bred/gpu/frame.h"
-#include "bred/gpu/texture.h"
+#include "bred/gpu/renderer.h"
 #include "bred/gpu/shader.h"
-#include "bred/graphics3d/model.h"
+//#include "bred/graphics3d/model.h"
 //#include <glad/glad.h>
 // #include <vector>
 

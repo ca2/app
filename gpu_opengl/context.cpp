@@ -1008,13 +1008,17 @@ namespace gpu_opengl
 
       ::gpu::context_lock contextlock(this);
 
+      ASSERT(m_globalUBO != 0);
+
       glBindBuffer(GL_UNIFORM_BUFFER, m_globalUBO);
       GLCheckError("");
+
+      int iSize = block.size();
 
       // Map the entire buffer for writing
       void *p = glMapBufferRange(
          GL_UNIFORM_BUFFER,
-         0, block.size(),
+         0, iSize,
          GL_MAP_WRITE_BIT | GL_MAP_INVALIDATE_BUFFER_BIT);
       GLCheckError("");
 
@@ -1045,6 +1049,14 @@ namespace gpu_opengl
       
       _layout_std140_or_std430(*pproperties, ::gpu::e_layout_std140);
    
+   }
+
+
+   bool context::is_global_ubo_ok()
+   {
+
+      return m_globalUBO != 0;
+
    }
 
 

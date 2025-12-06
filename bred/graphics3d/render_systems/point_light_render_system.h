@@ -43,7 +43,7 @@ namespace graphics3d
       //::pointer<::gpu::shader> m_pshader;
       //::pointer<graphics3d::pipeline> m_ppipeline;
       //VkPipelineLayout m_pipelineLayout;
-
+      ::pointer<::gpu::shader> m_pshader;
       ::pointer < ::gpu::model_buffer > m_pmodelDummy;
 
       float m_rotationSpeed = 0.2f;

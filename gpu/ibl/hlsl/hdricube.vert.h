@@ -3,25 +3,20 @@
 #pragma once
 
 
-const char g_psz_hdricube_vert[] = R"vert_text(//------------------------------------------------------------------------------
-// Vertex Shader (HLSL)
-// Equivalent of your GLSL shader
-//------------------------------------------------------------------------------
-
-// Input vertex
-struct VS_INPUT
+const char g_psz_hdricube_vert[] = R"vert_text(struct VS_INPUT
 {
-    float3 position : POSITION;   // layout(location = 0)
+    float3 position : POSITION;
+    float3 normal   : NORMAL;
+    float2 uv       : TEXCOORD0;
 };
 
-// Output to the pixel shader
 struct VS_OUTPUT
 {
     float4 position : SV_POSITION;
     float3 modelCoordinates : TEXCOORD0;
 };
 
-// Constant buffer (matches GLSL uniforms)
+// register(b1) for "push constants"
 cbuffer MatrixBuffer : register(b1)
 {
     float4x4 model;
@@ -33,15 +28,11 @@ VS_OUTPUT main(VS_INPUT input)
 {
     VS_OUTPUT output;
 
-    // HLSL uses column-major matrices by default, just like GLSL,
-    // so we can multiply in the same order.
-    float4 worldPos = mul(float4(input.position, 1.0f), model);
+    float4 worldPos = mul(float4(input.position,1), model);
     float4 viewPos  = mul(worldPos, view);
     output.position = mul(viewPos, projection);
 
-    // Pass the model-space coordinates
-    output.modelCoordinates = input.position;
-
+    output.modelCoordinates = input.position; // for HDRI lookup
     return output;
 }
 )vert_text";

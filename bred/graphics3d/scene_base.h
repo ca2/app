@@ -78,11 +78,13 @@ namespace graphics3d
       virtual void load_scene_renderable(const ::property_set &setObject);
       virtual void load_lights(const ::property_set &objJson);
 
+      virtual bool is_global_ubo_ok();
+
 	   virtual ::gpu::properties & global_ubo();
 
-	   virtual ::graphics3d::scene_renderable & scene_renderable(const ::scoped_string & scopedstr, const ::file::path & path = {});
+	   virtual ::graphics3d::scene_renderable & scene_renderable(const ::scoped_string & scopedstr, bool bCounterClockwise = true, const ::file::path & path = {});
 
-	   virtual ::pointer < ::graphics3d::scene_renderable > _scene_renderable(const ::scoped_string & scopedstr, const ::file::path & path);
+	   virtual ::pointer < ::graphics3d::scene_renderable > _scene_renderable(const ::scoped_string & scopedstr, bool bCounterClockwise, const ::file::path & path);
 
 		virtual ::graphics3d::scene_renderable_map & scene_renderables();
 

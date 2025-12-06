@@ -29,7 +29,7 @@
 #include "bred/gpu/command_buffer.h"
 #include "bred/gpu/graphics.h"
 #include "bred/graphics3d/engine.h"
-#include "bred/graphics3d/model.h"
+//#include "bred/graphics3d/model.h"
 #include "bred/graphics3d/renderable.h"
 #include "bred/graphics3d/types.h"
 
@@ -37,12 +37,14 @@
 namespace gpu
 {
 
+   interlocked_count g_iGpuContext;
 
    extern thread_local device *t_pgpudevice;
 
    context::context()
    {
 
+      m_iGpuContext = ++g_iGpuContext;
       // m_pdraw2dgraphics = nullptr;
 
       m_eoutput = ::gpu::e_output_none;
@@ -624,14 +626,14 @@ namespace gpu
 
    ::collection::index i = 0;
 
-   int iSizeWithSamplers = 0;
+   memsize iSizeWithSamplers = 0;
 
-   int iSizeWithoutSamplers = 0;
+   memsize iSizeWithoutSamplers = 0;
 
    while (pproperty->m_pszName)
    {
 
-      int iItemSize;
+      ::collection::count iItemSize;
 
       if (pproperty->m_etype == ::gpu::e_type_array)
       {
@@ -854,8 +856,8 @@ namespace gpu
       pproperty++;
    }
 
-   iSizeWithSamplers += 16 - (iSizeWithSamplers % 16);
-   iSizeWithoutSamplers += 16 - (iSizeWithoutSamplers % 16);
+   iSizeWithSamplers = (iSizeWithSamplers + 15) & ~15;
+   iSizeWithoutSamplers = (iSizeWithoutSamplers + 15) & ~15;
 
    properties.m_memory.set_size(iSizeWithSamplers);
    properties.m_blockWithoutSamplers = properties.m_memory(0, iSizeWithoutSamplers);
@@ -2464,6 +2466,13 @@ return {};
 
    }
 
+
+   bool context::is_global_ubo_ok()
+   {
+
+      return true;
+
+   }
 
 
    void context::initialize_rectangle_shader(::gpu::shader* pshader)

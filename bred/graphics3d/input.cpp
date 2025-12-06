@@ -22,6 +22,19 @@ namespace graphics3d
    input::~input() {}
 
 
+   void input::initialize_input(float moveSpeed, const floating_angle &
+    angleCursorPixel)
+   {
+      m_fMoveSpeed = moveSpeed;
+      m_angleCursorPixel = angleCursorPixel;
+   
+      //m_yaw = ::radians(-90.f);
+   
+      //m_pitch = 0.f ;
+   }
+
+
+
    ::user::enum_key_state input::key(::graphics3d::enum_key ekey) 
    {
       return m_pengine->m_pusergraphics3d->m_pkeymap->key(ekey); 
@@ -68,6 +81,14 @@ namespace graphics3d
    }
 
    void input::process_keyboard_input() {}
+
+
+   void input::mouseDrag(::floating_sequence2 Δ)
+   {
+
+      m_sequence2MouseLastDragΔ = Δ; 
+      
+   }
 
 
    ::block input::as_block()
@@ -119,7 +140,7 @@ namespace graphics3d
    void input::_001OnMouseDrag(::floating_sequence2 Δ)
    {
 
-      m_sequence2MouseRawΔ = Δ; 
+      m_sequence2MouseLastDragΔ = Δ; 
 
    }
 
@@ -155,7 +176,7 @@ namespace graphics3d
 
          information("what?");
       }
-      m_sequence2MouseSmoothΔ += (m_sequence2MouseRawΔ - m_sequence2MouseSmoothΔ) * alpha;
+      m_sequence2MouseSmoothΔ += (m_sequence2MouseLastDragΔ - m_sequence2MouseSmoothΔ) * alpha;
 
       // m_sequence2MouseSmoothΔ = m_sequence2MouseRawΔ * alpha;
 
@@ -228,9 +249,9 @@ namespace graphics3d
       if (IsKeyPressed(::user::e_key_d))
          dir += right;
       if (IsKeyPressed(::user::e_key_q))
-         dir -= m_pengine->m_fYScale * up;
+         dir -= up;
       if (IsKeyPressed(::user::e_key_e))
-         dir += m_pengine->m_fYScale * up;
+         dir += up;
 
       auto modulus = dir.modulus();
 
@@ -242,9 +263,9 @@ namespace graphics3d
       }
 
       // --- 5) Reset raw delta for next frame ---
-      m_sequence2MouseRawΔ = ::floating_sequence2(0.f);
-   }
+      m_sequence2MouseLastDragΔ = ::floating_sequence2(0.f);
 
+   }
 
 
 } // namespace graphics3d

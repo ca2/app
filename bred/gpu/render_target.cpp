@@ -18,8 +18,13 @@ namespace gpu
 {
 
 
+   interlocked_count g_iGpuRenderTarget;
+
+
    render_target::render_target()
    {
+
+      m_iGpuRenderTarget = ++g_iGpuRenderTarget;
 
       m_bRenderTargetInit = false;
       m_bBackBuffer = false;

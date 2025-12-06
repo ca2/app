@@ -17,7 +17,8 @@ namespace graphics3d
       ::pointer<::graphics3d::engine> m_pengine;
 
 
-      ::pointer<::gpu::shader> m_pshader;
+
+      bool m_bPrepared = false;
 
 
       render_system();

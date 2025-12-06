@@ -2,15 +2,10 @@
 #pragma once
 
 
-#include "acme/constant/gpu.h"
 #include "bred/gpu/properties.h"
-#include "acme/prototype/geometry/sequence.h"
-#include "acme/prototype/geometry/matrix.h"
 
-#include <functional>
+//#include <functional>
 
-
-#include "acme/graphics/image/image32.h"
 
 
 namespace gpu

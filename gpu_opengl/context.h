@@ -103,6 +103,8 @@ namespace gpu_opengl
       void _defer_create_window_context(::windowing::window * pwindow) override;
       virtual void _create_window_context(::windowing::window * pwindow);
 
+
+
       virtual void _create_window_buffer();
       void _create_cpu_buffer(const ::int_size& size) override;
       void resize_cpu_buffer(const ::int_size& size) override;
@@ -118,7 +120,7 @@ namespace gpu_opengl
 
 
       void layout_global_ubo(::gpu::properties *pproperties) override;
-
+      bool is_global_ubo_ok();
 
       void copy(::gpu::texture* ptexture) override;
       virtual void _copy_using_shader(::gpu::texture* ptexture);

@@ -245,6 +245,23 @@ namespace user
    void graphics3d::on_message_left_button_down(::message::message* pmessage)
    {
 
+      auto pengine = m_pengine;
+
+      if (::is_null(pengine))
+      {
+
+         return;
+
+      }
+
+      auto pinput = pengine->m_pinput;
+
+      if (::is_null(pinput))
+      {
+
+         return;
+
+      }
       auto pmouse = pmessage->m_union.m_pmouse;
 
       pmessage->m_bRet = true;
@@ -253,7 +270,7 @@ namespace user
 
       host_to_client()(point);
 
-      auto &mousestate = m_pengine->m_pinput->m_mousestate;
+      auto &mousestate = pinput->m_mousestate;
 
       mousestate.m_position.x = (float) point.x;
       mousestate.m_position.y = (float) point.y;

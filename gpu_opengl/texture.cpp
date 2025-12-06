@@ -343,12 +343,30 @@ namespace gpu_opengl
 
             int scan = size.width() * 4;
 
+            int iImage;
+
             for (unsigned int i = 0; i < 6; i++)
             {
 
                auto pimage32 = (::image32_t *)memory.data();
 
-               pimage32->copy(size.cx, size.cy, scan, imagea[i]->image32(), imagea[i]->m_iScan);
+               iImage = i;
+
+               if (iImage == 2)
+               {
+
+                  iImage = 3;
+
+               }
+               else if(iImage == 3)
+               {
+
+                  iImage = 2;
+
+               }
+
+
+               pimage32->vertical_swap_copy(size.cx, size.cy, scan, imagea[iImage]->image32(), imagea[iImage]->m_iScan);
 
                if (pimage32)
                {

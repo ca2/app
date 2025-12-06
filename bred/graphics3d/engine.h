@@ -2,21 +2,11 @@
 #pragma once
 
 
-
 #include "apex/platform/app_consumer.h"
-#include "bred/platform/application.h"
-#include "bred/graphics3d/camera.h"
-#include "bred/graphics3d/scene_object.h"
-#include "bred/gpu/properties.h"
 #include "bred/gpu/compositor.h"
-#include "bred/gpu/shader.h"
-
-// libs
-//
-//
-//// std
-//#include <memory>
-//#include <unordered_map>
+#include "bred/graphics3d/camera.h"
+#include "bred/graphics3d/transform.h"
+#include "bred/platform/application.h"
 
 
 #include <chrono>
@@ -56,7 +46,7 @@ namespace graphics3d
 		bool                                               m_bLoadedEngine = false;
 
 		//::image32_callback                        m_callbackImage32CpuBuffer;
-
+      ::pointer<::graphics3d::shape_factory> m_pshapefactory;
 
 		engine();
 		~engine() override;
@@ -80,7 +70,7 @@ namespace graphics3d
 
 		virtual void update_global_ubo(::gpu::context* pgpucontext);
 
-
+      virtual ::graphics3d::shape_factory *shape_factory();
 
 		virtual ::gpu::context* get_gpu_context();
 

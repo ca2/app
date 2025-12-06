@@ -44,7 +44,7 @@ namespace graphics3d
       float m_fDefaultAmbientOcclusionFactor = 0.0f;
       floating_sequence3 m_seq3DefaultAlbedo={};
       floating_sequence3 m_seq3DefaultEmission = {};
-
+      ::pointer<::gpu::shader> m_pshader;
       //VkDescriptorSetLayout m_pdescriptorsetlayoutUbo;
       //VkDescriptorSetLayout m_iblSetLayout;
       //VkDescriptorSet m_iblDescriptorSet;

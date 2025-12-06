@@ -1,122 +1,82 @@
 #pragma once
 
-//#include <glad/glad.h>
-//#include <string>
-//#include <vector>
-#include "acme/prototype/collection/static_array.h"
-#include "bred/graphics3d/model.h"
+
+#include "bred/gpu/properties.h"
 #include "bred/graphics3d/render_system.h"
-#include "bred/graphics3d/shape_factory.h"
-#include "bred/graphics3d/types.h"
 
 
 namespace graphics3d
 {
 
 
-   class CLASS_DECL_BRED skybox_render_system :
-   virtual public ::graphics3d::render_system
-
+   class CLASS_DECL_BRED skybox_render_system : virtual public ::graphics3d::render_system
    {
    public:
 
 
-            string_map<::pointer<::graphics3d::skybox>> m_mapSkybox;
+      struct push_constants
+      {
 
+         // floating_matrix4 modelMatrix;
+         // floating_matrix4 normalMatrix;
 
-      //using Vertex = ::graphics3d::shape_factory::Vertex;
+         // int useTextureAlbedo; // 0
+         // int useTextureMetallicRoughness; // 4
+         // int useTextureNormal; // 8
+         // int useTextureAmbientOcclusion; // 12
+         // int useTextureEmissive; // 16
 
-      //struct cube_face
-      //{
+         //// 20
 
-      //   ::file::path               m_path;
-      //   ::image::image_pointer     m_pimage;
+         //::floating_sequence3 albedo; // 20
+         // float metallic; // 32
+         // float roughness; // 36
+         // float ambientOcclusion; // 40
+         //::floating_sequence3 emissive; // 44
 
+         //// 36
 
-      //   cube_face() {}
-      //   cube_face(const ::file::path& path) :
-      //      m_path(path)
-      //   {
+         //// 56
 
+         ////::floating_sequence3 cameraPosition;//56
+         // float bloomBrightnessCutoff; // 68
+         //// 72
+         floating_sequence3 multiplier;
+      };
 
-      //   }
-
-      //};
-
-
-      //struct cube :
-      //   public ::preallocated_array_base < ::array < cube_face >, 6 >
-      //{
-      //public:
-
-      //   cube()
-      //   {
-
-      //   }
-      //   cube(::std::initializer_list < ::file::path > list)
-      //   {
-
-      //      int i = 0;
-
-      //      for (auto& item : list)
-      //      {
-
-      //         this->element_at(i).m_path = item;
-
-      //         i++;
-
-      //      }
-
-      //   }
-
-      //};
-      //::particle* pparticle, const ::string_array_base& faces
-
-      //::pointer < engine >                m_pengine;
-      //::pointer < ::graphics3d::skybox >              m_pskybox;
-      //::pointer < ::gpu::model_buffer >               m_pmodelCube;
-      //::pointer < ::gpu::texture >                    m_ptextureCubeMap;
-      //::int_size                                      m_sizeSquare;
-
-      //cube                                            m_cube;
-      ////::pointer<::gpu::shader>            m_pshader;
+      ::pointer<::graphics3d::renderable> m_prenderableCube;
+      // VkDescriptorSetLayout m_skyboxLayout;
+      ::pointer<::gpu::texture> m_pgputextureSkybox;
+      bool m_bHasCubemap = false;
+      ::pointer<::gpu::shader> m_pshaderHdr;
+      ::pointer<::gpu::shader> m_pshaderNormal;
 
 
 
       skybox_render_system();
       ~skybox_render_system();
 
-
-      void initialize_render_system(engine * pengine) override;
-
-      //virtual void set_skybox(::graphics3d::skybox * pskybox);
-
-      //virtual void load_cube_map_images();
-      //virtual void load_cube_map_textures();
-
-      virtual void bind(::gpu::command_buffer* pgpucommandbuffer);
-      virtual void draw(::gpu::command_buffer* pgpucommandbuffer);
-      virtual void unbind(::gpu::command_buffer* pgpucommandbuffer);
-
-      void on_render(::gpu::context* pgpucontext, ::graphics3d::scene_base* pscene) override;
+      virtual ::memory vertex_shader_memory();
+      virtual ::memory fragment_shader_memory();
+      virtual ::memory hdr_fragment_shader_memory();
 
 
+      void on_prepare(gpu::context *pgpucontext) override;
+      void on_render(::gpu::context *pgpucontext, ::graphics3d::scene_base *pscene) override;
 
-   //private:
+      virtual void setCubemapTexture(::gpu::texture *pgputexture);
 
-
-
-
-      //unsigned int skyboxVAO, skyboxVBO, skyboxEBO;
-      //unsigned int cubemapTexture;
-      //::string_array_base facesCubemap;
+      void createSkyboxDescriptorSetLayout();
+      void allocateAndWriteSkyboxDescriptorSet();
 
 
    };
 
 
+} // namespace graphics3d
 
-} // namespace graphics3d_opengl
+
+DECLARE_GPU_PROPERTIES(CLASS_DECL_BRED, ::graphics3d::skybox_render_system::push_constants)
 
 
 

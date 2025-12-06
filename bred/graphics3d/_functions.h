@@ -13,26 +13,52 @@ namespace graphics3d
    {
 
 
-      const auto front = (center - eye).normalized();
-      const auto right = front.crossed(worldUp).normalized();
-      const auto up = right.crossed(front);
+      //const auto front = (center - eye).normalized();
+      //const auto right = front.crossed(worldUp).normalized();
+      //const auto up = right.crossed(front);
 
-      matrix_type<FLOATING, 4> Result((FLOATING)1);
+      //matrix_type<FLOATING, 4> Result((FLOATING)1);
 
-      Result[0][0] = right.x;
-      Result[1][0] = right.y;
-      Result[2][0] = right.z;
-      Result[0][1] = up.x;
-      Result[1][1] = up.y;
-      Result[2][1] = up.z;
-      Result[0][2] = -front.x;
-      Result[1][2] = -front.y;
-      Result[2][2] = -front.z;
-      Result[3][0] = -right.dotted(eye);
-      Result[3][1] = -up.dotted(eye);
-      Result[3][2] = front.dotted(eye);
+      //Result[0][0] = right.x;
+      //Result[1][0] = right.y;
+      //Result[2][0] = right.z;
+      //Result[0][1] = up.x;
+      //Result[1][1] = up.y;
+      //Result[2][1] = up.z;
+      //Result[0][2] = -front.x;
+      //Result[1][2] = -front.y;
+      //Result[2][2] = -front.z;
+      //Result[3][0] = -right.dotted(eye);
+      //Result[3][1] = -up.dotted(eye);
+      //Result[3][2] = front.dotted(eye);
 
-      return Result;
+      //return Result;
+
+      const auto f = (center - eye).normalized();
+      const auto r = f.crossed(worldUp).normalized();
+      const auto u = r.crossed(f);
+
+      floating_matrix4 M(1.0f);
+
+      // Column 0
+      M[0][0] = r.x;
+      M[1][0] = r.y;
+      M[2][0] = r.z;
+      M[3][0] = -r.dotted(eye);
+
+      // Column 1
+      M[0][1] = u.x;
+      M[1][1] = u.y;
+      M[2][1] = u.z;
+      M[3][1] = -u.dotted(eye);
+
+      // Column 2
+      M[0][2] = -f.x;
+      M[1][2] = -f.y;
+      M[2][2] = -f.z;
+      M[3][2] = f.dotted(eye);
+
+      return M;
 
    }
 

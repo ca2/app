@@ -101,6 +101,8 @@ namespace gpu
          e_type_window,
       };
 
+      ::collection::index m_iGpuContext=-1;
+
       ::gpu::enum_api m_eapi = e_api_none;
       //int                                    m_iTopicTexture = -1;
       //bool                                   m_bCullFace = false;
@@ -390,7 +392,7 @@ namespace gpu
       virtual ::memory white_to_color_sampler_frag();
 
 
-
+      virtual bool is_global_ubo_ok();
 
       virtual void initialize_rectangle_shader(::gpu::shader* pshader);
 

@@ -162,9 +162,6 @@
     <ClInclude Include="platform\tinyexpr.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
-    <ClInclude Include="cube.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="hdr_texture.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -172,9 +169,6 @@
       <Filter>Header Files\ibl</Filter>
     </ClInclude>
     <ClInclude Include="ibl\mipmap_cubemap_framebuffer.h">
-      <Filter>Header Files\ibl</Filter>
-    </ClInclude>
-    <ClInclude Include="ibl\hdri_cube.h">
       <Filter>Header Files\ibl</Filter>
     </ClInclude>
     <ClInclude Include="ibl\equirectangular_cubemap.h">
@@ -261,6 +255,21 @@
     <ClInclude Include="_assimp.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="ibl\aaa_hdri_cube.h">
+      <Filter>Header Files\ibl</Filter>
+    </ClInclude>
+    <ClInclude Include="aaa_cube.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ibl\hlsl\skybox.frag.h">
+      <Filter>Header Files\ibl\hlsl</Filter>
+    </ClInclude>
+    <ClInclude Include="ibl\hlsl\skybox.vert.h">
+      <Filter>Header Files\ibl\hlsl</Filter>
+    </ClInclude>
+    <ClInclude Include="ibl\hlsl\skybox_hdr.frag.h">
+      <Filter>Header Files\ibl\hlsl</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="framework.cpp">
@@ -271,9 +280,6 @@
     </ClCompile>
     <ClCompile Include="constant\idpool.cpp">
       <Filter>Source Files\constant</Filter>
-    </ClCompile>
-    <ClCompile Include="cube.cpp">
-      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="hdr_texture.cpp">
       <Filter>Source Files</Filter>
@@ -288,9 +294,6 @@
       <Filter>Source Files\ibl</Filter>
     </ClCompile>
     <ClCompile Include="ibl\equirectangular_cubemap.cpp">
-      <Filter>Source Files\ibl</Filter>
-    </ClCompile>
-    <ClCompile Include="ibl\hdri_cube.cpp">
       <Filter>Source Files\ibl</Filter>
     </ClCompile>
     <ClCompile Include="ibl\mipmap_cubemap_framebuffer.cpp">
@@ -321,6 +324,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ibl\_hlsl.cpp">
+      <Filter>Source Files\ibl</Filter>
+    </ClCompile>
+    <ClCompile Include="ibl\aaa_hdri_cube.cpp">
       <Filter>Source Files\ibl</Filter>
     </ClCompile>
   </ItemGroup>
@@ -358,6 +364,21 @@
       <Filter>Source Files\ibl\hlsl</Filter>
     </CustomBuild>
     <CustomBuild Include="ibl\hlsl\hdricube.frag">
+      <Filter>Source Files\ibl\hlsl</Filter>
+    </CustomBuild>
+    <CustomBuild Include="ibl\hlsl\wavefront.frag">
+      <Filter>Source Files\ibl\hlsl</Filter>
+    </CustomBuild>
+    <CustomBuild Include="ibl\hlsl\wavefront.vert">
+      <Filter>Source Files\ibl\hlsl</Filter>
+    </CustomBuild>
+    <CustomBuild Include="ibl\hlsl\skybox.frag">
+      <Filter>Source Files\ibl\hlsl</Filter>
+    </CustomBuild>
+    <CustomBuild Include="ibl\hlsl\skybox.vert">
+      <Filter>Source Files\ibl\hlsl</Filter>
+    </CustomBuild>
+    <CustomBuild Include="ibl\hlsl\skybox_hdr.frag">
       <Filter>Source Files\ibl\hlsl</Filter>
     </CustomBuild>
   </ItemGroup>

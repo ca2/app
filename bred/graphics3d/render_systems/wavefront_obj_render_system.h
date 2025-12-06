@@ -38,6 +38,8 @@ namespace graphics3d
 	public:
 
 
+      ::pointer<::gpu::shader> m_pshader;
+
 		//::pointer < ::graphics3d::device > m_pgpudevice;
 
 		//VkDescriptorSetLayout m_pdescriptorsetlayoutUbo;
@@ -59,6 +61,7 @@ namespace graphics3d
 		// 	VkDescriptorSetLayout   globalSetLayout,
 		// 	::graphics3d::sandbox_descriptor_pool& descriptorPool,
 		// 	size_t frameCount)override;
+
 
 	   void initialize_render_system(::graphics3d::engine* pengine) override;
 

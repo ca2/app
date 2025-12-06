@@ -131,9 +131,6 @@
     <ClInclude Include="ibl\mipmap_cubemap_framebuffer.h">
       <Filter>Header Files\ibl</Filter>
     </ClInclude>
-    <ClInclude Include="ibl\hdri_cube.h">
-      <Filter>Header Files\ibl</Filter>
-    </ClInclude>
     <ClInclude Include="ibl\equirectangular_cubemap.h">
       <Filter>Header Files\ibl</Filter>
     </ClInclude>
@@ -160,9 +157,6 @@
     </ClInclude>
     <ClInclude Include="gltf\_constant.h">
       <Filter>Header Files\gltf</Filter>
-    </ClInclude>
-    <ClInclude Include="cube.h">
-      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ibl\shaders\brdfconvolution.frag.h">
       <Filter>Header Files\ibl\shaders</Filter>
@@ -301,9 +295,6 @@
     <ClCompile Include="ibl\equirectangular_cubemap.cpp">
       <Filter>Source Files\ibl</Filter>
     </ClCompile>
-    <ClCompile Include="ibl\hdri_cube.cpp">
-      <Filter>Source Files\ibl</Filter>
-    </ClCompile>
     <ClCompile Include="ibl\mipmap_cubemap_framebuffer.cpp">
       <Filter>Source Files\ibl</Filter>
     </ClCompile>
@@ -311,9 +302,6 @@
       <Filter>Source Files\ibl</Filter>
     </ClCompile>
     <ClCompile Include="hdr_texture.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="cube.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="full_screen_quad.cpp">
@@ -335,9 +323,6 @@
     <None Include="ibl\shaders\hdricube1.frag">
       <Filter>Source Files\ibl\shaders</Filter>
     </None>
-    <None Include="ibl\shaders\specularenv.frag">
-      <Filter>Source Files\ibl\shaders</Filter>
-    </None>
     <None Include="ibl\shaders\brdfconvolution.vert">
       <Filter>Source Files\ibl\shaders</Filter>
     </None>
@@ -345,9 +330,6 @@
       <Filter>Source Files\ibl\shaders</Filter>
     </None>
     <None Include="ibl\shaders\hdricube1.vert">
-      <Filter>Source Files\ibl\shaders</Filter>
-    </None>
-    <None Include="ibl\shaders\specularenv.vert">
       <Filter>Source Files\ibl\shaders</Filter>
     </None>
   </ItemGroup>
@@ -362,6 +344,12 @@
       <Filter>Source Files\ibl\shaders</Filter>
     </CustomBuild>
     <CustomBuild Include="ibl\shaders\hdricube.vert">
+      <Filter>Source Files\ibl\shaders</Filter>
+    </CustomBuild>
+    <CustomBuild Include="ibl\shaders\specularenv.frag">
+      <Filter>Source Files\ibl\shaders</Filter>
+    </CustomBuild>
+    <CustomBuild Include="ibl\shaders\specularenv.vert">
       <Filter>Source Files\ibl\shaders</Filter>
     </CustomBuild>
   </ItemGroup>

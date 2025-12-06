@@ -38,6 +38,8 @@ namespace gpu
       ::collection::index                 m_iIndex;
       int                                 m_iCurrentMip;
       int                                 m_iCurrentFace;
+      bool m_bHdr = false;
+
       //::pointer < ::gpu::render_target >  m_pgpurendertarget;
       ::int_rectangle                     m_rectangleTarget;
       int                                 m_iMipCount;

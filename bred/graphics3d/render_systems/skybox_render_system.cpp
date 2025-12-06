@@ -1,354 +1,433 @@
 #include "framework.h"
 #include "skybox_render_system.h"
+#include "bred/gltf/vertex.h"
 #include "bred/gpu/command_buffer.h"
 #include "bred/gpu/device.h"
 #include "bred/gpu/frame.h"
-#include "bred/gpu/render_target.h"
+#include "bred/gpu/renderer.h"
+#include "bred/gpu/shader.h"
 #include "bred/gpu/texture.h"
 #include "bred/graphics3d/engine.h"
-#include "bred/graphics3d/immersion_layer.h"
 #include "bred/graphics3d/scene_base.h"
+#include "bred/graphics3d/shape_factory.h"
 #include "bred/graphics3d/skybox.h"
-#include "acme/filesystem/filesystem/file_context.h"
-#include "aura/graphics/image/context.h"
-#include "aura/platform/application.h"
-#include <stb/stb_image.h>
-#include <iostream>
+
 
 
 namespace graphics3d
 {
 
 
-   // Constructor
-   skybox_render_system::skybox_render_system()
+	skybox_render_system::skybox_render_system()
+	{
+	}
+
+
+	skybox_render_system::~skybox_render_system()
+	{
+
+   
+   }
+
+	void skybox_render_system::createSkyboxDescriptorSetLayout()
+   {
+		// m_skyboxSetLayout = graphics3d::sandbox_descriptor_set_layout::Builder(m_pgpudevice)
+		// 	.addBinding(
+		// 		0,
+		// 		VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER,
+		// 		VK_SHADER_STAGE_FRAGMENT_BIT,
+		// 		1,
+		// 		0) // no binding flags needed here
+		// 	.build();
+	}
+
+
+   ::memory skybox_render_system::vertex_shader_memory()
    {
 
+      ::memory memory;
+
+      m_pengine->gpu_context()->m_pgpudevice->defer_shader_memory(memory, "matter://shaders/skybox_ibl.vert");
+
+      return memory;
 
    }
 
 
-   // Destructor
-   skybox_render_system::~skybox_render_system() {
-      //glDeleteVertexArrays(1, &skyboxVAO);
-      //glDeleteBuffers(1, &skyboxVBO);
-      //glDeleteTextures(1, &cubemapTexture);
+   
+   ::memory skybox_render_system::fragment_shader_memory()
+   {
+
+      ::memory memory;
+
+      m_pengine->gpu_context()->m_pgpudevice->defer_shader_memory(memory, "matter://shaders/skybox_ibl.frag");
+
+      return memory;
+
    }
 
 
-   void skybox_render_system::initialize_render_system(engine * pengine)
+   ::memory skybox_render_system::hdr_fragment_shader_memory()
    {
 
+      ::memory memory;
 
-      initialize(pengine->gpu_context());
+      m_pengine->gpu_context()->m_pgpudevice->defer_shader_memory(memory, "matter://shaders/hdr_skybox_ibl.frag");
 
-      ::graphics3d::render_system::initialize_render_system(pengine);
-
-      //cube cube;
-
-      //cube.add(::file::path("matter://textures") / scopedstrName / "right.png");
-      //cube.add(::file::path("matter://textures") / scopedstrName / "left.png");
-      //cube.add(::file::path("matter://textures") / scopedstrName / "top.png");
-      //cube.add(::file::path("matter://textures") / scopedstrName / "bottom.png");
-      //cube.add(::file::path("matter://textures") / scopedstrName / "front.png");
-      //cube.add(::file::path("matter://textures") / scopedstrName / "back.png");
-
-      //m_cube = cube;
-
-      //m_pengine = pengine;
-
-
-      //auto modeldataCube = ::graphics3d::shape_factory::create_cube(32.0f);
-
-      //ødefer_construct(m_pmodelCube);
-
-      //m_pmodelCube->initialize_model(pengine->gpu_context(), modeldataCube);
-
-      // Initialize skybox shader
-      ødefer_construct(m_pshader);
-
-      m_pshader->m_bDisableDepthTest = false;
-      m_pshader->m_bDepthTestButNoDepthWrite = true;
-      m_pshader->m_bLequalDepth = true;
-      m_pshader->m_bEnableBlend = true;
-      m_pshader->m_ecullmode = ::gpu::e_cull_mode_none;
-      m_pshader->m_bindingCubeSampler.set();
-
-      m_pshader->initialize_shader(pengine->gpu_context()->m_pgpurenderer,
-         "matter://shaders/skybox.vert",
-         "matter://shaders/skybox.frag",
-         {::gpu::shader::e_descriptor_set_slot_global},
-         nullptr,
-         pengine->gpu_context()->input_layout<::graphics3d::shape_factory::Vertex>()
-      );
-      
-      
-      
-      //SetupSkybox();
+      return memory;
 
    }
 
-   //// Setup the skybox (VAO, VBO, EBO, and cubemap textures)
-   //void skybox_render_system::set_skybox(::graphics3d::skybox * pskybox) 
-   //{
 
-   //   m_pskybox = pskybox;
-
-   //   //// Generate buffers
-   //   //glGenVertexArrays(1, &skyboxVAO);
-   //   //glGenBuffers(1, &skyboxVBO);
-
-   //   //glBindVertexArray(skyboxVAO);
-
-   //   //glBindBuffer(GL_ARRAY_BUFFER, skyboxVBO);
-   //   ////glBufferData(GL_ARRAY_BUFFER, sizeof(skyboxVertices), &skyboxVertices, GL_STATIC_DRAW);
-
-   //   //// Set the vertex attribute pointer for the graphics3d vertexes
-   //   //glEnableVertexAttribArray(0);
-   //   //glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
-
-
-   //   //load_cube_map_images();
-
-   //   //// Load cubemap textures
-   //   //load_cube_map_textures();
-
-   //   //glBindVertexArray(0);  // Unbind VAO
-   //}
-
-
-   //void skybox_render_system::load_cube_map_images()
-   //{
-
-   //   m_sizeSquare.cx = 0;
-   //   m_sizeSquare.cy = 0;
-
-   //   for(auto & face : m_cube)
-   //   {
-   //      
-   //      //         unsigned char* data = stbi_load(facesCubemap[i].c_str(), &width, &height, &nrChannels, 0);
-   //            //   auto mem = file()->as_memory();
-   //      auto pimage = image()->path_image(face.m_path.c_str());
-
-   //      auto sizeSquare = pimage->size();
-   //      //unsigned char* data = stbi_load_from_memory(
-   //      //   (const stbi_uc*)mem.data(),
-   //      //   mem.size(), &width, &height, &nrChannels, 0);
-   //      if (sizeSquare.is_empty())
-   //      {
-   //         
-   //         throw ::exception(error_wrong_state, "All images in skybox shouldn't be empty");
-
-   //      }
-   //      else if (sizeSquare.cx != sizeSquare.cy)
-   //      {
-
-   //         throw ::exception(error_wrong_state, "All images in skybox should be a square");
-
-   //      }
-
-   //      if (m_sizeSquare.is_empty())
-   //      {
-
-   //         m_sizeSquare = sizeSquare;
-
-   //      }
-   //      else
-   //      {
-
-   //         if (m_sizeSquare != sizeSquare)
-   //         {
-
-   //            throw ::exception(error_wrong_state, "All images in skybox should be same size");
-
-   //         }
-
-   //      }
-
-   //      face.m_pimage = pimage;
-
-   //   }
-
-   //   m_sizeSquare = m_cube.first().m_pimage->size();
-
-   //}
-
-
-   //// Load cubemap textures
-   //void skybox_render_system::load_cube_map_textures()
-   //{
-   //   //glGenTextures(1, &cubemapTexture);
-   //   //glBindTexture(GL_TEXTURE_CUBE_MAP, cubemapTexture);
-
-   //   //int w = 0;
-   //   //int h = 0;
-   // 
-   //   //auto pimageCubeMap = image()->create_image({ m_sizeSquare.width() * 6, m_sizeSquare.height()});
-
-   //   //pimageCubeMap->map();
-
-   //   auto sizeItem = m_sizeSquare;
-
-   //   //auto scanCubeMap = pimageCubeMap->m_iScan;
-
-   //   ::int_point point;
-
-   //   ::pointer_array < ::image::image > imagea;
-
-   //   for(auto & face : m_cube)
-   //   {
-
-   //      auto pimage = face.m_pimage;
-
-   //      imagea.add(pimage);
-
-   //      //auto scan = pimage->m_iScan;
-
-   //      //auto pimage32 = pimage->image32();
-
-   //      //pimageCubeMap->image32()->copy(point, sizeItem, scanCubeMap, pimage32, scan);
-
-   //      //point.x += m_sizeSquare.width();
-
-   //   }
-
-   //   ødefer_construct(m_ptextureCubeMap);
-
-   //   m_ptextureCubeMap->m_bTransferDst = true;
-
-   //   m_ptextureCubeMap->initialize_image_texture(
-   //      m_pmodelCube->m_pgpucontext->m_pgpurenderer,
-   //      imagea, ::gpu::texture::e_type_cube_map);
-
-   //   //m_pshader->set_int("skybox", 0);
-
-   //   //int width, height, nrChannels;
-
-   //   //   if (data) {
-   //   //      // Load the texture data into the cubemap
-   //   //      glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i,
-   //   //         0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
-   //   //      stbi_image_free(data);
-   //   //   }
-   //   //   else if (data) {
-   //   //      glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i,
-   //   //         0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
-   //   //      stbi_image_free(data);
-   //   //   }
-   //   //   else {
-   //   //      std::cout << "Failed to load cubemap texture at path: " << facesCubemap[i] << std::endl;
-   //   //      stbi_image_free(data);
-   //   //   }
-   //   //}
-
-   //   //// Set texture parameters for cubemap
-   //   //glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-   //   //glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-   //   //glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-   //   //glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-   //   //glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_R, GL_CLAMP_TO_EDGE);
-   //}
-
-
-   void skybox_render_system::bind(::gpu::command_buffer* pgpucommandbuffer)
+   void skybox_render_system::on_prepare(gpu::context *pgpucontext)
    {
 
-      auto pengine = m_pengine;
+      //auto modeldataCube = m_pengine->shape_factory()->create_cube(pgpucontext, 32.0f);
 
-      auto pimmersionlayer = pengine->m_pimmersionlayer;
+      ::pointer<::graphics3d::renderable> pmodelCube;
 
-      auto pscene = pimmersionlayer->m_pscene;
-
-      auto pskybox = pscene->current_skybox();
-
-      if (::is_null(pskybox))
+      //if (pgpucontext->m_eapi == ::gpu::e_api_opengl)
       {
 
-         return;
+        pmodelCube = m_pengine->shape_factory()->create_cube_002(pgpucontext, 32.0f);
 
       }
-      // Set uniforms in the shader
-      auto iFrameSerial = m_pengine->gpu_context()->m_pgpudevice->m_iFrameSerial2;
-
-      auto ptextureDst = m_pengine->gpu_context()->m_pgpurenderer->current_render_target_texture(::gpu::current_frame());
-      
-      m_pshader->m_bindingCubeSampler.m_strUniform = "skybox";
-
-     
-      m_pshader->bind(::gpu::current_command_buffer(), ptextureDst,
-                      pskybox->m_ptexture); // Make sure to bind the shader first
-      //auto view = m_pengine->m_pcamera->getView();
-      //floating_matrix4 skyboxView = floating_matrix4(floating_matrix3(view)); // <-- drop translation
-      //m_pshader->set_matrix4("view", skyboxView);
-      //auto projection = m_pengine->m_pcamera->getProjection();
-      //m_pshader->set_matrix4("projection", projection);
-      //m_pshader->bind_source(m_ptextureCubeMap);
-      pskybox->m_pmodelCube->bind(pgpucommandbuffer);
-
-   }
-
-
-   void skybox_render_system::draw(::gpu::command_buffer* pgpucommandbuffer)
-   {
-
-      auto pengine = m_pengine;
-
-      auto pimmersionlayer = pengine->m_pimmersionlayer;
-
-      auto pscene = pimmersionlayer->m_pscene;
-
-      auto pskybox = pscene->current_skybox();
-
-      if (::is_null(pskybox))
+      //else
       {
 
-         return;
+        // pmodelCube = m_pengine->shape_factory()->create_cube_001(pgpucontext, 32.0f);
 
       }
 
-      pskybox->m_pmodelCube->draw(pgpucommandbuffer);
+      // øconstruct(m_pmodelCube);
 
-   }
+      /*auto pmodelCube = øcreate<::gpu::model_buffer>();
 
+      pmodelCube->initialize_model(pgpucontext, modeldataCube);*/
 
-   void skybox_render_system::unbind(::gpu::command_buffer* pgpucommandbuffer)
-   {
+      // m_pmodelCube = pmodelCube;
 
-      auto pengine = m_pengine;
+      m_prenderableCube = pmodelCube;
 
-      auto pimmersionlayer = pengine->m_pimmersionlayer;
+      m_prenderableCube->m_ecoordinatesystem = ::gpu::e_coordinate_system_opengl;
 
-      auto pscene = pimmersionlayer->m_pscene;
+      auto ppropertiesPush = ::gpu_properties<push_constants>();
 
-      auto pskybox = pscene->current_skybox();
-
-      if (::is_null(pskybox))
       {
 
-         return;
+             /*  auto ppropertiesPush = ::gpu_properties<push_constants>();*/
+
+
+	   // Initialize skybox shader
+	   ødefer_construct(m_pshaderHdr);
+
+	   m_pshaderHdr->m_bDisableDepthTest = false;
+      m_pshaderHdr->m_bDepthTestButNoDepthWrite = true;
+      m_pshaderHdr->m_bLequalDepth = true;
+      m_pshaderHdr->m_bEnableBlend = true;
+      //m_pshader->m_bDisableDepthTest = true;
+      m_pshaderHdr->m_ecullmode = ::gpu::e_cull_mode_none;
+      m_pshaderHdr->m_bindingCubeSampler.m_strUniform = "skybox";
+      //m_pshader->m_bindingCubeSampler.m_uSet = 1;
+
+	   m_pshaderHdr->m_bindingCubeSampler.set();
+      m_pshaderHdr->m_propertiesPushShared.set_properties(ppropertiesPush);
+      pgpucontext->layout_push_constants(m_pshaderHdr->m_propertiesPushShared, false);
+      auto iSize = sizeof(::gpu::gltf::vertex);
+
+      //if (false)
+      //if(m_bHdr)
+      //{
+
+         m_pshaderHdr->initialize_shader_with_block(
+            pgpucontext->m_pgpurenderer, vertex_shader_memory(), hdr_fragment_shader_memory(), 
+            {::gpu::shader::e_descriptor_set_slot_global}, nullptr, pgpucontext->input_layout<::graphics3d::shape_factory::Vertex>());
+      }
+      //else
+      {
+
+
+            
+
+         	   // Initialize skybox shader
+         ødefer_construct(m_pshaderNormal);
+
+         m_pshaderNormal->m_bDisableDepthTest = false;
+         m_pshaderNormal->m_bDepthTestButNoDepthWrite = true;
+         m_pshaderNormal->m_bLequalDepth = true;
+         m_pshaderNormal->m_bEnableBlend = true;
+         // m_pshader->m_bDisableDepthTest = true;
+         m_pshaderNormal->m_ecullmode = ::gpu::e_cull_mode_none;
+         m_pshaderNormal->m_bindingCubeSampler.m_strUniform = "skybox";
+         // m_pshader->m_bindingCubeSampler.m_uSet = 1;
+
+         m_pshaderNormal->m_bindingCubeSampler.set();
+         m_pshaderNormal->m_propertiesPushShared.set_properties(ppropertiesPush);
+         pgpucontext->layout_push_constants(m_pshaderNormal->m_propertiesPushShared, false);
+         auto iSize = sizeof(::graphics3d::shape_factory::Vertex);
+
+         // if (false)
+         // if(m_bHdr)
+         //{
+
+
+         m_pshaderNormal->initialize_shader_with_block(
+            pgpucontext->m_pgpurenderer, vertex_shader_memory(), fragment_shader_memory(),
+            {::gpu::shader::e_descriptor_set_slot_global}, nullptr,
+            pgpucontext->input_layout<::graphics3d::shape_factory::Vertex>());
 
       }
 
-      pskybox->m_pmodelCube->unbind(pgpucommandbuffer);
 
-      m_pshader->unbind(::gpu::current_command_buffer());
 
    }
 
+
+ //   void skybox_render_system::on_bind(::gpu:)
+	// {
+ // // Make sure to bind the shader first
+	// }
+ //
 
    void skybox_render_system::on_render(::gpu::context* pgpucontext, ::graphics3d::scene_base* pscene)
+	{
+
+
+		//if (!m_bHasCubemap) return;
+
+	   auto pengine = m_pengine;
+
+	   //auto pscene = pengine->current_scene();
+
+		//if (!m_skyboxModel) return;
+
+      auto pskybox = pscene->current_skybox();
+
+      if (::is_null(pskybox))
+      {
+
+         return; // nothing to draw
+
+      }
+
+      //auto prenderableSkyboxModel = pskybox->m_prenderable;
+
+      auto prenderableSkyboxModel = m_prenderableCube;
+
+      if (!prenderableSkyboxModel)
+      {
+
+			throw ::exception(error_wrong_state);
+
+		}
+
+		auto ptextureSkybox = pskybox->m_ptexture;
+
+      if (!ptextureSkybox)
+      {
+
+         throw ::exception(error_wrong_state);
+
+      }
+
+	   auto pgpudevice = pgpucontext->m_pgpudevice;
+
+	   auto pgpurenderer = pgpucontext->m_pgpurenderer;
+
+	   auto iFrameSerial = pgpudevice->m_iFrameSerial2;
+
+	   auto ptextureDst = pgpurenderer->current_render_target_texture(::gpu::current_frame());
+
+      pgpucontext->start_debug_happening(::gpu::current_command_buffer()
+                                         , "skybox_render_system on_render");
+
+	   //auto pskybox = pscene->m_psceneobjectSkybox;
+
+      //auto ptextureCubeMap = prenderableSkyboxModel->get_target_texture();
+      //auto ptextureCubeMap = pscene->current_sky_box_texture();
+
+      ::gpu::shader *pgpushader = nullptr;
+      if (pskybox->m_ptexture->m_bHdr)
+      {
+         pgpushader = m_pshaderHdr;
+      }
+      else
+      {
+         pgpushader = m_pshaderNormal;
+
+      }
+
+	   pgpushader->bind(::gpu::current_command_buffer(), ptextureDst, ptextureSkybox);
+
+      auto pframe = ::gpu::current_frame();
+
+      auto prenderable = prenderableSkyboxModel;
+
+	   if (prenderable)
+		{
+
+         m_erendersystem = ::graphics3d::e_render_system_skybox_ibl;
+
+         pframe->m_pgpucommandbuffer->m_prendersystem = this;
+
+			prenderable->bind(pframe->m_pgpucommandbuffer);
+
+         float x_multiplier = 1.f;
+         float y_multiplier = 1.f;
+         float z_multiplier = 1.f;
+
+         if (prenderable->m_ecoordinatesystem == ::gpu::e_coordinate_system_vulkan)
+         {
+
+            if (pgpucontext->m_eapi == ::gpu::e_api_opengl)
+            {
+
+               y_multiplier = -1.f;
+               z_multiplier = -1.f;
+
+            }
+            else if (pgpucontext->m_eapi == ::gpu::e_api_vulkan)
+            {
+
+               y_multiplier = -1.f;
+               z_multiplier = -1.f;
+
+            }
+
+         }
+         else if (prenderable->m_ecoordinatesystem == ::gpu::e_coordinate_system_y_up)
+         {
+
+            if (pgpucontext->m_eapi == ::gpu::e_api_opengl)
+            {
+
+               y_multiplier = -1.f;
+               z_multiplier = -1.f;
+
+            }
+            else if (pgpucontext->m_eapi == ::gpu::e_api_vulkan)
+            {
+
+               y_multiplier = -1.f;
+               z_multiplier = -1.f;
+
+            }
+
+         }
+         else if (prenderable->m_ecoordinatesystem == ::gpu::e_coordinate_system_opengl)
+         {
+
+            if (pgpucontext->m_eapi == ::gpu::e_api_opengl)
+            {
+
+               y_multiplier = -1.f;
+               z_multiplier = -1.f;
+
+            }
+            else if (pgpucontext->m_eapi == ::gpu::e_api_vulkan)
+            {
+               //y_multiplier = -1.f;
+               //z_multiplier = -1.f;
+
+
+               // vulkan pbr-renderer was working with this
+               // 2-combo: vulkan continuum is also working with this
+               z_multiplier = -1.f;
+            }
+         }
+         //m_pshader->set_float("y_multiplier", y_multiplier);
+         //m_pshader->set_float("z_multiplier", z_multiplier);
+
+         floating_sequence3 sequence3Multiplier;
+
+         sequence3Multiplier.x = x_multiplier;
+         sequence3Multiplier.y = y_multiplier;
+         sequence3Multiplier.z = z_multiplier;
+
+         pgpushader->set_sequence3("multiplier", sequence3Multiplier);
+
+         pgpushader->push_properties(pframe->m_pgpucommandbuffer);
+
+         //int_rectangle r(pgpucontext->m_rectangle.size());
+
+         //pframe->m_pgpucommandbuffer->set_viewport(r);
+
+         //pframe->m_pgpucommandbuffer->set_scissor(r);
+
+         prenderable->bind(pframe->m_pgpucommandbuffer);
+
+         prenderable->draw(pframe->m_pgpucommandbuffer);
+
+         prenderable->unbind(pframe->m_pgpucommandbuffer);
+
+		}
+
+      pgpucontext->end_debug_happening(::gpu::current_command_buffer());
+
+
+	}
+
+
+   void skybox_render_system::setCubemapTexture(::gpu::texture *pgputexture)
    {
 
-      auto pcommandbuffer = pgpucontext->m_pgpurenderer->getCurrentCommandBuffer2(::gpu::current_frame());
+      m_pgputextureSkybox = pgputexture;
 
-      bind(pcommandbuffer);
-      draw(pcommandbuffer);
-      unbind(pcommandbuffer);
+      m_bHasCubemap = ::is_set(m_pgputextureSkybox);
 
    }
 
+          //}
+   //     m_skyboxImageInfo = info;
+   //     m_bHasCubemap = true;
+   //     allocateAndWriteSkyboxDescriptorSet();
+   // }
 
+
+	// void skybox_render_system::createPipeline(VkRenderPass renderPass) {
+	// 	ASSERT(m_pipelineLayout != VK_NULL_HANDLE && "Pipeline layout must be created before pipeline");
+	//
+	// 	// graphics3d::pipeline_configuration_information config{};
+	// 	// graphics3d::pipeline::default_pipeline_configuration(config);
+	// 	//
+	// 	// ::array_base<VkVertexInputBindingDescription>   bindings = {
+	// 	// 	vkinit::vertexInputBindingDescription(
+	// 	// 		0,
+	// 	// 		sizeof(graphics3d::gltf::Vertex),
+	// 	// 		VK_VERTEX_INPUT_RATE_VERTEX)
+	// 	// };
+	// 	// ::array_base<VkVertexInputAttributeDescription> attributes = {
+	// 	// 	vkinit::vertexInputAttributeDescription(
+	// 	// 		/*binding=*/0,
+	// 	// 		/*location=*/0,
+	// 	// 		/*format=*/VK_FORMAT_R32G32B32_SFLOAT,
+	// 	// 		/*offset=*/offsetof(graphics3d::gltf::Vertex, pos))
+	// 	// };
+	// 	//
+	// 	// config.bindingDescriptions = bindings;
+	// 	// config.attributeDescriptions = attributes;
+	// 	// config.renderPass = renderPass;
+	// 	// config.pipelineLayout = m_pipelineLayout;
+	// 	// config.depthStencilInfo.depthTestEnable = VK_TRUE;
+	// 	// config.depthStencilInfo.depthWriteEnable = VK_FALSE;
+	// 	// config.depthStencilInfo.depthWriteEnable = VK_COMPARE_OP_LESS_OR_EQUAL;
+	//
+	//
+	// 	::string vertPath = "matter://shaders/spirV/skybox_ibl.vert.spv";
+	// 	::string fragPath = "matter://shaders/spirV/skybox_ibl.frag.spv";
+	//
+	// 	m_ppipeline = øcreate_pointer<graphics3d::pipeline>(
+	// 		m_pgpudevice,
+	// 		vertPath.c_str(),
+	// 		fragPath.c_str()
+	// 		//,		config
+	// 	);
+	// }
 } // namespace graphics3d
 
 
 
+
+BEGIN_GPU_PROPERTIES(::graphics3d::skybox_render_system::push_constants)
+GPU_PROPERTY("multiplier", ::gpu::e_type_seq3)
+END_GPU_PROPERTIES()

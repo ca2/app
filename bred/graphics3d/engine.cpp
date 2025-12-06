@@ -3,7 +3,7 @@
 #include "engine.h"
 #include "immersion_layer.h"
 #include "input.h"
-#include "model.h"
+#include "tinyobjloader_Builder.h"
 #include "scene_base.h"
 #include "types.h"
 #include "acme/exception/interface_only.h"
@@ -25,6 +25,7 @@
 #include "bred/gpu/render_target.h"
 #include "bred/graphics3d/_functions.h"
 #include "bred/graphics3d/camera.h"
+#include "bred/graphics3d/shape_factory.h"
 #include "bred/user/user/graphics3d.h"
 #include "aura/graphics/image/target.h"
 #include "aura/platform/application.h"
@@ -89,7 +90,9 @@ namespace graphics3d
 
       _prepare_frame();
 
-      auto prenderer = gpu_context()->m_pgpurenderer;
+      auto pgpucontext = this->gpu_context();
+
+      auto prenderer = pgpucontext->m_pgpurenderer.m_p;
 
       //prenderer->on_new_frame();
 
@@ -117,18 +120,22 @@ namespace graphics3d
 
             _synchronous_lock synchronouslock(pscene->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-            if (pscene->global_ubo().size(true) > 0)
+            if (pscene->is_global_ubo_ok())
             {
 
-               update_global_ubo(gpu_context());
+               update_global_ubo(pgpucontext);
 
             }
 
-            int iFrameIndex = gpu_context()->m_pgpurenderer->m_pgpurendertarget->get_frame_index();
+            auto pgpurendertarget = prenderer->m_pgpurendertarget.m_p;
 
-            pframe->m_pgpucommandbuffer->m_iFrameIndex = iFrameIndex;
+            int iFrameIndex = pgpurendertarget->get_frame_index();
 
-            pscene->on_render(gpu_context());
+            auto pcommandbuffer = pframe->m_pgpucommandbuffer;
+
+            pcommandbuffer->m_iFrameIndex = iFrameIndex;
+
+            pscene->on_render(pgpucontext);
 
          }
 
@@ -686,6 +693,21 @@ namespace graphics3d
 
    }
 
+   
+   ::graphics3d::shape_factory * engine::shape_factory()
+   {
+
+      if (!m_pshapefactory)
+      {
+
+         øconstruct_new(m_pshapefactory);
+
+      }
+
+      return m_pshapefactory;
+
+   }
+
 
    ::gpu::context* engine::get_gpu_context()
    {
@@ -1110,7 +1132,7 @@ namespace graphics3d
 
       auto pcontext = gpu_context();
 
-      builder.loadModel(pcontext, model.m_pathRenderable);
+      builder.loadModel(pcontext, model.m_pathRenderable, model.m_bCounterClockwise);
 
       ::pointer < ::gpu::model_buffer > pmodel;
 

@@ -18,6 +18,8 @@ namespace gpu
    {
    public:
 
+      ::collection::index m_iGpuRenderer=-1;
+
       class ::time m_timeLast5s;
 
       int m_iSentLayerCount = 0;

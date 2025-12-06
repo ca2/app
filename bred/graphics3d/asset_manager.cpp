@@ -1,5 +1,4 @@
 #include "framework.h"
-// asset_manager.cpp
 #include "engine.h"
 #include "renderable.h"
 #include "acme/filesystem/filesystem/file_context.h"
@@ -8,13 +7,7 @@
 #include "bred/gpu/texture.h"
 #include "bred/graphics3d/skybox.h"
 #include <chrono>
-// #include "acme/exception/r"
-// #include <json.hpp>
-////#include <fstream>
-////#include <spdlog/spdlog.h>
-// 
 
-// using json = nlohmann::json;
 
 namespace graphics3d
 {

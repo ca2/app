@@ -195,7 +195,7 @@
     <ClInclude Include="graphics3d\key_map.h">
       <Filter>Header Files\graphics3d</Filter>
     </ClInclude>
-    <ClInclude Include="graphics3d\model.h">
+    <ClInclude Include="graphics3d\tinyobjloader_Builder.h">
       <Filter>Header Files\graphics3d</Filter>
     </ClInclude>
     <ClInclude Include="graphics3d\scene_base.h">
@@ -261,9 +261,6 @@
     <ClInclude Include="gpu\hlsl_context.h">
       <Filter>Header Files\gpu</Filter>
     </ClInclude>
-    <ClInclude Include="graphics3d\shape_factory.h">
-      <Filter>Header Files\graphics3d</Filter>
-    </ClInclude>
     <ClInclude Include="graphics3d\cube_map.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -282,10 +279,10 @@
     <ClInclude Include="gpu\frame_ephemeral.h">
       <Filter>Header Files\gpu</Filter>
     </ClInclude>
-    <ClInclude Include="graphics3d\render_systems\skybox_render_system.h">
+    <ClInclude Include="graphics3d\render_systems\aaa_skybox_render_system.h">
       <Filter>Header Files\graphics3d\render_systems</Filter>
     </ClInclude>
-    <ClInclude Include="graphics3d\render_systems\skybox_ibl_render_system.h">
+    <ClInclude Include="graphics3d\render_systems\skybox_render_system.h">
       <Filter>Header Files\graphics3d\render_systems</Filter>
     </ClInclude>
     <ClInclude Include="graphics3d\render_systems\point_light_render_system.h">
@@ -298,9 +295,6 @@
       <Filter>Header Files\graphics3d\render_systems</Filter>
     </ClInclude>
     <ClInclude Include="graphics3d\_constant.h">
-      <Filter>Header Files\graphics3d</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics3d\_types.h">
       <Filter>Header Files\graphics3d</Filter>
     </ClInclude>
     <ClInclude Include="graphics3d\asset_manager.h">
@@ -340,9 +334,6 @@
       <Filter>Header Files\graphics3d</Filter>
     </ClInclude>
     <ClInclude Include="graphics3d\resource.h">
-      <Filter>Header Files\graphics3d</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics3d\shapes.h">
       <Filter>Header Files\graphics3d</Filter>
     </ClInclude>
     <ClInclude Include="graphics3d\skybox.h">
@@ -396,9 +387,6 @@
     <ClInclude Include="graphics3d\scene_renderable.h">
       <Filter>Header Files\graphics3d</Filter>
     </ClInclude>
-    <ClInclude Include="graphics3d\aaa_global_ubo.h">
-      <Filter>Header Files\graphics3d</Filter>
-    </ClInclude>
     <ClInclude Include="gltf\vertex.h">
       <Filter>Header Files\gltf</Filter>
     </ClInclude>
@@ -412,6 +400,12 @@
       <Filter>Header Files\graphics3d</Filter>
     </ClInclude>
     <ClInclude Include="graphics3d\global_ubo1.h">
+      <Filter>Header Files\graphics3d</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics3d\shape_factory.h">
+      <Filter>Header Files\graphics3d</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics3d\transform.h">
       <Filter>Header Files\graphics3d</Filter>
     </ClInclude>
   </ItemGroup>
@@ -452,7 +446,7 @@
     <ClCompile Include="graphics3d\key_map.cpp">
       <Filter>Source Files\graphics3d</Filter>
     </ClCompile>
-    <ClCompile Include="graphics3d\model.cpp">
+    <ClCompile Include="graphics3d\tinyobjloader_Builder.cpp">
       <Filter>Source Files\graphics3d</Filter>
     </ClCompile>
     <ClCompile Include="graphics3d\scene_base.cpp">
@@ -572,9 +566,6 @@
     <ClCompile Include="graphics3d\render_systems\point_light_render_system.cpp">
       <Filter>Source Files\graphics3d\render_systems</Filter>
     </ClCompile>
-    <ClCompile Include="graphics3d\render_systems\skybox_ibl_render_system.cpp">
-      <Filter>Source Files\graphics3d\render_systems</Filter>
-    </ClCompile>
     <ClCompile Include="graphics3d\render_systems\skybox_render_system.cpp">
       <Filter>Source Files\graphics3d\render_systems</Filter>
     </ClCompile>
@@ -642,6 +633,9 @@
       <Filter>Source Files\graphics3d</Filter>
     </ClCompile>
     <ClCompile Include="graphics3d\global_ubo1.cpp">
+      <Filter>Source Files\graphics3d</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics3d\transform.cpp">
       <Filter>Source Files\graphics3d</Filter>
     </ClCompile>
   </ItemGroup>

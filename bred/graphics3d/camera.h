@@ -59,6 +59,12 @@ namespace graphics3d
 		~camera() override;
 
 
+      virtual void initialize_camera(const ::floating_sequence3 &position,
+                                     const ::graphics3d::floating_rotation &rotation = {-90_degree, 0_degree},
+                                     const floating_angle &zoom = 60f_degree);
+      
+
+
       inline const floating_sequence3 & position() const { return m_sequence3Position; }
       inline const floating_rotation & rotation() const { return m_rotation; }
 //      inline const floating_angle & pitch() const { return m_anglePitch; }

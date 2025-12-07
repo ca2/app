@@ -24,6 +24,15 @@ namespace gpu
 
       public:
 
+         enum AlphaMode
+         {
+            ALPHAMODE_OPAQUE,
+            ALPHAMODE_MASK,
+            ALPHAMODE_BLEND
+         };
+         AlphaMode alphaMode = ALPHAMODE_OPAQUE;
+         float alphaCutoff = 1.0f;
+
          bool useTextureAlbedo = false;
          bool useTextureMetallicRoughness = false;
          bool useTextureNormal = false;

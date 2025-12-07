@@ -664,6 +664,8 @@ namespace gpu_opengl
 
          strSummary.formatf("error::PROGRAM_LINKING_ERROR : \n %s \n -- --------------------------------------------------- -- \n", infoLog);
 
+         warning(strSummary);
+
          throw ::exception(error_failed);
 
       }

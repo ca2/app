@@ -714,7 +714,7 @@ namespace gpu
 
          matrixTarget = m_pgpurenderer->m_pgpucontext->defer_transpose(a);
 
-         informationf("lets check at least once it wrong: mat[0][0]=%f", matrixTarget[0][0]);
+         //informationf("lets check at least once it wrong: mat[0][0]=%f", matrixTarget[0][0]);
       }
       else if (m_propertiesPushVertex.contains(scopedstrName))
       {

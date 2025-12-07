@@ -1,3 +1,4 @@
+// Changed by camilo on 2025-12-06 21:36 <3ThomasBorregaardSørensen!!
 #include "framework.h"
 #include "scene_render_system.h"
 //#include <spdlog/spdlog.h>

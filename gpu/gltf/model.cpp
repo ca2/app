@@ -251,6 +251,8 @@ namespace gpu
 
          }
 
+
+
          bool bHasTangentsAndBitangents = mesh->HasTangentsAndBitangents();
 
          // vertices
@@ -405,7 +407,115 @@ namespace gpu
             else if (mesh->mMaterialIndex >= 0)
             {
                aiMaterial *aiMaterial = scene->mMaterials[mesh->mMaterialIndex];
+               {
+                  aiString alphaModeStr;
+                  // Attempt to get the glTF alphaMode property
+                  if (aiMaterial->Get(AI_MATKEY_GLTF_ALPHAMODE, alphaModeStr) == AI_SUCCESS)
+                  {
+                     std::string mode = alphaModeStr.C_Str();
 
+                     if (mode == "OPAQUE")
+                     {
+                        // Material is fully opaque (default)
+                        //;
+                        //;
+                        information() << "Alpha Mode: OPAQUE";
+                        pmaterial->alphaMode = material::ALPHAMODE_OPAQUE;
+                     }
+                     else if (mode == "MASK")
+                     {
+                        // Material uses alpha cutoff
+                        information() << "Alpha Mode: MASK";
+                        // You can also retrieve the alphaCutoff value if needed:
+                        pmaterial->alphaMode = material::ALPHAMODE_MASK;
+                        float alphaCutoff = 0.5f; // Default value
+                        if (aiMaterial->Get(AI_MATKEY_GLTF_ALPHACUTOFF, alphaCutoff) == AI_SUCCESS)
+                        {
+                           information() << "Alpha Cutoff: " << alphaCutoff;
+                           pmaterial->alphaCutoff = alphaCutoff;
+                        }
+                        else
+                        {
+                           pmaterial->alphaCutoff = 0.5f;
+                        }
+                     }
+                     else if (mode == "BLEND")
+                     {
+                        // Material uses alpha blending (transparency)
+                        //std::cout << "Alpha Mode: BLEND" << std::endl;
+                        pmaterial->alphaMode = material::ALPHAMODE_BLEND;
+                     }
+                     else
+                     {
+                        // Unknown or unsupported mode
+                        information() << "Alpha Mode: Unknown (" << mode << ")";
+                     }
+                  } 
+               }
+               {
+                  float fMetallic = 0.f;
+                  // Attempt to get the glTF alphaMode property
+                  if (aiMaterial->Get(AI_MATKEY_METALLIC_FACTOR, fMetallic) == AI_SUCCESS)
+                  {
+                     if (fMetallic < FLT_EPSILON)
+                     {
+                        pmaterial->m_fMetallic = 0.f;
+                     }
+                     else
+                     {
+                        pmaterial->m_fMetallic = fMetallic;
+
+                     }
+                  }
+                  else
+                  {
+
+                     pmaterial->m_fMetallic = 0.f;
+
+                  }
+
+               }
+               {
+                  float fRoughness = 0.f;
+                  // Attempt to get the glTF alphaMode property
+                  if (aiMaterial->Get(AI_MATKEY_ROUGHNESS_FACTOR, fRoughness) == AI_SUCCESS)
+                  {
+                     if (fRoughness == 0.5f)
+                     {
+                        pmaterial->m_fRoughness = 0.5f;
+                     }
+                     else
+                     {
+                        pmaterial->m_fRoughness = fRoughness;
+                     }
+                  }
+                  else
+                  {
+
+                     pmaterial->m_fRoughness = 0.f;
+                  }
+               }
+               {
+                  float ambientOcclusionStrength = 1.f;
+                  // Attempt to get the glTF alphaMode property
+                  if (aiMaterial->Get(AI_MATKEY_GLTF_TEXTURE_STRENGTH(aiTextureType_AMBIENT_OCCLUSION, 0),
+                                    ambientOcclusionStrength) == AI_SUCCESS)
+                  {
+                     if (ambientOcclusionStrength == 1.f)
+                     {
+                        pmaterial->m_fAmbientOcclusion = 1.f;
+                     }
+                     else
+                     {
+                        pmaterial->m_fAmbientOcclusion = ambientOcclusionStrength;
+                     }
+                  }
+                  else
+                  {
+
+                     pmaterial->m_fAmbientOcclusion = 1.f;
+                  }
+               }
                // albedo
                if (aiMaterial->GetTextureCount(aiTextureType_DIFFUSE))
                {

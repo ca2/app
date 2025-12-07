@@ -1,13 +1,10 @@
 #include "framework.h"
-//#include "bred/gpu/gltf_model.h"
 #include "gltf_render_system.h"
 #include "bred/gpu/context.h"
 #include "bred/gpu/frame.h"
 #include "bred/gpu/renderer.h"
 #include "bred/graphics3d/scene_base.h"
 #include "bred/graphics3d/types.h"
-//#include "graphics3d/_.h"
-//#include <stdexcept>
 
 
 namespace graphics3d

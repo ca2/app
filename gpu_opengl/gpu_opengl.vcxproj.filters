@@ -334,12 +334,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <CustomBuild Include="ibl\shaders\pbr1.vert">
-      <Filter>Source Files\ibl\shaders</Filter>
-    </CustomBuild>
-    <CustomBuild Include="ibl\shaders\pbr1.frag">
-      <Filter>Source Files\ibl\shaders</Filter>
-    </CustomBuild>
     <CustomBuild Include="ibl\shaders\hdricube.frag">
       <Filter>Source Files\ibl\shaders</Filter>
     </CustomBuild>

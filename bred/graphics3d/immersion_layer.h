@@ -1,6 +1,10 @@
+// Changed by camilo on 2025-12-07 03:42 <3ThomasBorregaardSørensen!!
 #pragma once
 //#include "SceneFoundry/graphics3d/renderer_i.h"
 //#include "SceneFoundry/graphics3d/scene_i.h"
+
+
+#include "bred/graphics3d/rotation.h"
 
 
 namespace graphics3d
@@ -11,6 +15,8 @@ namespace graphics3d
 	{
 	public:
 
+      ::floating_sequence3 m_initialCameraPosition{0.f};
+      ::graphics3d::floating_rotation m_rotationInitialCamera;
 
 	   ::pointer < ::graphics3d::engine >                          m_pengine;
 	   ::string_map_base < ::pointer < ::graphics3d::scene_base > >		m_mapScene;
@@ -43,6 +49,7 @@ namespace graphics3d
 		//virtual IScene& getSceneInterface() = 0;
 		//virtual ~IGameLayer() = default;
 
+      virtual ::pointer<::graphics3d::camera> allocate_camera();
 
       virtual void load_camera(const ::property_set &set);
       virtual void on_initial_camera_load();

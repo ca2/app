@@ -120,26 +120,28 @@ namespace gpu_opengl
             // albedo
             ::cast<::graphics3d::gltf_render_system> prendersystem = pcommandbuffer->m_prendersystem;
             bool bAlbedo = !prendersystem->m_bDisableAlbedo && m_pmaterial->useTextureAlbedo;
-            pshader->set_int("material.useTextureAlbedo", bAlbedo);
+            pshader->set_int("useTextureAlbedo", bAlbedo);
             floating_sequence3 seq3Albedo= {};
             if (prendersystem->m_bForceDefaultAmbientOcclusionFactor)
             {
 
                seq3Albedo = prendersystem->m_seq3DefaultAlbedo;
+
             }
             else
             {
 
                seq3Albedo = m_pmaterial->m_seq3Albedo;
+
             }
 
-            pshader->set_sequence3("material.albedo", seq3Albedo);
+            pshader->set_sequence3("albedo", seq3Albedo);
             if (bAlbedo)
             {
                int iTextureIndex = ::gpu::e_gltf_texture_albedo;
                GLenum textureIndex = GL_TEXTURE0 + iTextureIndex;
                glActiveTexture(textureIndex);
-               pshader->set_int("material.textureAlbedo", iTextureIndex);
+               pshader->set_int("textureAlbedo", iTextureIndex);
 
                ::cast<::gpu_opengl::texture> ptextureAlbedo = m_pmaterial->m_ptextureAlbedo;
                glBindTexture(GL_TEXTURE_2D, ptextureAlbedo->m_gluTextureID);
@@ -148,7 +150,7 @@ namespace gpu_opengl
             bool bMetallicRoughness =
                !prendersystem->m_bDisableMetallicRoughness && m_pmaterial->useTextureMetallicRoughness;
 
-            pshader->set_int("material.useTextureMetallicRoughness", bMetallicRoughness);
+            pshader->set_int("useTextureMetallicRoughness", bMetallicRoughness);
             float fMetallic = 0.0f;
             if (prendersystem->m_bForceDefaultMetallicFactor)
             {
@@ -173,31 +175,31 @@ namespace gpu_opengl
 
                fRoughness = m_pmaterial->m_fRoughness;
             }
-            pshader->set_float("material.metallic", fMetallic);
-            pshader->set_float("material.roughness", fRoughness);
+            pshader->set_float("metallic", fMetallic);
+            pshader->set_float("roughness", fRoughness);
             if (bMetallicRoughness)
             {
                int iTextureIndex = ::gpu::e_gltf_texture_metallic_roughness;
                GLenum textureIndex = GL_TEXTURE0 + iTextureIndex;
                glActiveTexture(textureIndex);
-               pshader->set_int("material.textureMetallicRoughness", iTextureIndex);
+               pshader->set_int("textureMetallicRoughness", iTextureIndex);
                ::cast<::gpu_opengl::texture> ptextureMetallicRoughness = m_pmaterial->m_ptextureMetallicRoughness;
                glBindTexture(GL_TEXTURE_2D, ptextureMetallicRoughness->m_gluTextureID);
             }
 
             bool bNormal = !prendersystem->m_bDisableNormal && m_pmaterial->useTextureNormal;
-            pshader->set_int("material.useTextureNormal", bNormal);
+            pshader->set_int("useTextureNormal", bNormal);
             if (bNormal)
             {
                glActiveTexture(GL_TEXTURE0 + ::gpu::e_gltf_texture_normal);
-               pshader->set_int("material.textureNormal", ::gpu::e_gltf_texture_normal);
+               pshader->set_int("textureNormal", ::gpu::e_gltf_texture_normal);
                ::cast<::gpu_opengl::texture> ptextureNormal = m_pmaterial->m_ptextureNormal;
                glBindTexture(GL_TEXTURE_2D, ptextureNormal->m_gluTextureID);
             }
 
             bool bAmbientOcclusion =
                !prendersystem->m_bDisableAmbientOcclusion && m_pmaterial->useTextureAmbientOcclusion;
-            pshader->set_int("material.useTextureAmbientOcclusion", bAmbientOcclusion);
+            pshader->set_int("useTextureAmbientOcclusion", bAmbientOcclusion);
             float fAmbientOcclusion = 0.0f;
             if (prendersystem->m_bForceDefaultAmbientOcclusionFactor)
             {
@@ -209,17 +211,17 @@ namespace gpu_opengl
 
                fAmbientOcclusion = m_pmaterial->m_fAmbientOcclusion;
             }
-            pshader->set_float("material.ambientOcclusion", fAmbientOcclusion);
+            pshader->set_float("ambientOcclusion", fAmbientOcclusion);
             if (bAmbientOcclusion)
             {
                glActiveTexture(GL_TEXTURE0 + ::gpu::e_gltf_texture_ambient_occlusion);
-               pshader->set_int("material.textureAmbientOcclusion", ::gpu::e_gltf_texture_ambient_occlusion);
+               pshader->set_int("textureAmbientOcclusion", ::gpu::e_gltf_texture_ambient_occlusion);
                ::cast<::gpu_opengl::texture> ptextureAmbientOcclusion = m_pmaterial->m_ptextureAmbientOcclusion;
                glBindTexture(GL_TEXTURE_2D, ptextureAmbientOcclusion->m_gluTextureID);
             }
 
             bool bEmissive = !prendersystem->m_bDisableEmissive && m_pmaterial->useTextureEmissive;
-            pshader->set_int("material.useTextureEmissive", bEmissive);
+            pshader->set_int("useTextureEmissive", bEmissive);
             floating_sequence3 seq3Emission = {};
             if (prendersystem->m_bForceDefaultEmission)
             {
@@ -231,11 +233,11 @@ namespace gpu_opengl
 
                seq3Emission = m_pmaterial->m_seq3Emissive;
             }
-            pshader->set_sequence3("material.emissive", seq3Emission);
+            pshader->set_sequence3("emissive", seq3Emission);
             if (bEmissive)
             {
                glActiveTexture(GL_TEXTURE0 + ::gpu::e_gltf_texture_emissive);
-               pshader->set_int("material.textureEmissive", ::gpu::e_gltf_texture_emissive);
+               pshader->set_int("textureEmissive", ::gpu::e_gltf_texture_emissive);
                ::cast<::gpu_opengl::texture> ptextureEmissive = m_pmaterial->m_ptextureEmissive;
                glBindTexture(GL_TEXTURE_2D, ptextureEmissive->m_gluTextureID);
             }
@@ -246,26 +248,44 @@ namespace gpu_opengl
          else if (erendersystem == ::graphics3d::e_render_system_gltf_scene)
          {
 
+            if (m_pmaterial->alphaMode == ::gpu::gltf::material::ALPHAMODE_MASK)
+            {
+
+               auto alphaMaskCutoff = m_pmaterial->alphaCutoff;
+
+               pshader->set_float("alphaMaskCutoff", alphaMaskCutoff);
+
+
+            }
 
             glDisable(GL_CULL_FACE);
             // albedo
                         //;
-            //pshader->set_int("material.useTextureAlbedo", m_pmaterial->useTextureAlbedo);
-            //pshader->set_sequence3("material.albedo", m_pmaterial->m_seq3Albedo);
-            if (m_pmaterial->useTextureAlbedo)
+
+            bool bUseTextureAlbedo = m_pmaterial->useTextureAlbedo;
+
+            pshader->set_int("useTextureAlbedo", bUseTextureAlbedo ? 1 : 0);
+            pshader->set_sequence3("albedo", m_pmaterial->m_seq3Albedo);
+            if (bUseTextureAlbedo)
             {
                int iTextureIndex = ::gpu::e_gltf_texture_albedo;
                GLenum textureIndex = GL_TEXTURE0 + iTextureIndex;
                glActiveTexture(textureIndex);
-               pshader->set_int("material.textureAlbedo", iTextureIndex);
+               pshader->set_int("textureAlbedo", iTextureIndex);
 
                ::cast<::gpu_opengl::texture> ptextureAlbedo = m_pmaterial->m_ptextureAlbedo;
                glBindTexture(GL_TEXTURE_2D, ptextureAlbedo->m_gluTextureID);
             }
+            else
+            {
+
+               information() << "mesh isn't using an albedo texture";
+
+            }
 
             //pshader->set_int("material.useTextureMetallicRoughness", m_pmaterial->useTextureMetallicRoughness);
-            //pshader->set_float("material.metallic", m_pmaterial->m_fMetallic);
-            //pshader->set_float("material.roughness", m_pmaterial->m_fRoughness);
+            pshader->set_float("metallic", m_pmaterial->m_fMetallic);
+            pshader->set_float("roughness", m_pmaterial->m_fRoughness);
             //if (m_pmaterial->useTextureMetallicRoughness)
             //{
             //   int iTextureIndex = ::gpu::e_gltf_texture_metallic_roughness;
@@ -276,11 +296,11 @@ namespace gpu_opengl
             //   glBindTexture(GL_TEXTURE_2D, ptextureMetallicRoughness->m_gluTextureID);
             //}
 
-            pshader->set_int("material.useTextureNormal", m_pmaterial->useTextureNormal);
+            pshader->set_int("useTextureNormal", m_pmaterial->useTextureNormal);
             if (m_pmaterial->useTextureNormal)
             {
                glActiveTexture(GL_TEXTURE0 + ::gpu::e_gltf_texture_normal);
-               pshader->set_int("material.textureNormal", ::gpu::e_gltf_texture_normal);
+               pshader->set_int("textureNormal", ::gpu::e_gltf_texture_normal);
                ::cast<::gpu_opengl::texture> ptextureNormal = m_pmaterial->m_ptextureNormal;
                glBindTexture(GL_TEXTURE_2D, ptextureNormal->m_gluTextureID);
             }
@@ -292,7 +312,7 @@ namespace gpu_opengl
             }
 
             //pshader->set_int("material.useTextureAmbientOcclusion", m_pmaterial->useTextureAmbientOcclusion);
-            //pshader->set_float("material.ambientOcclusion", m_pmaterial->m_fAmbientOcclusion);
+            pshader->set_float("ambientOcclusion", m_pmaterial->m_fAmbientOcclusion);
             //if (m_pmaterial->useTextureAmbientOcclusion)
             //{
             //   glActiveTexture(GL_TEXTURE0 + ::gpu::e_gltf_texture_ambient_occlusion);
@@ -302,7 +322,7 @@ namespace gpu_opengl
             //}
 
             //pshader->set_int("material.useTextureEmissive", m_pmaterial->useTextureEmissive);
-            //pshader->set_sequence3("material.emissive", m_pmaterial->m_seq3Emissive);
+            //pshader->set_sequence3("emissive", m_pmaterial->m_seq3Emissive);
             //if (m_pmaterial->useTextureEmissive)
             //{
             //   glActiveTexture(GL_TEXTURE0 + ::gpu::e_gltf_texture_emissive);
@@ -383,15 +403,25 @@ namespace gpu_opengl
 
          glBindVertexArray(m_uVAO); // use this VAO for subsequent calls
 
-         auto vertexSize =m_vertexa.size();
-         auto vertexData = m_vertexa.data();
-
-         glBindBuffer(GL_ARRAY_BUFFER, m_uVBO); // use this VBO for subsequent calls
-         glBufferData(GL_ARRAY_BUFFER, vertexSize * sizeof(::gpu::gltf::vertex),
-            vertexData,GL_STATIC_DRAW); // copy over the vertex data
-
          auto indexSize = m_indexa.size();
          auto indexData = m_indexa.data();
+
+         if (indexSize == 2388)
+         {
+
+            information() << "2388 indexes";
+
+         }
+
+         auto vertexSize = m_vertexa.size();
+         auto vertexData = m_vertexa.data();
+
+         auto vertexByteCount = vertexSize * sizeof(::gpu::gltf::vertex);
+
+         glBindBuffer(GL_ARRAY_BUFFER, m_uVBO); // use this VBO for subsequent calls
+         glBufferData(GL_ARRAY_BUFFER, vertexByteCount,
+            vertexData,GL_STATIC_DRAW); // copy over the vertex data
+
 
          glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_uEBO); // use this EBO for subsequent calls
          glBufferData(GL_ELEMENT_ARRAY_BUFFER, indexSize * sizeof(unsigned int),
@@ -400,7 +430,7 @@ namespace gpu_opengl
          // setup the locations of vertex data
          // positions
          glEnableVertexAttribArray(0);
-         glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(::gpu::gltf::vertex), (void *)0);
+         glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(::gpu::gltf::vertex), (void *)offsetof(::gpu::gltf::vertex, position));
 
          // normals
          glEnableVertexAttribArray(1);

@@ -70,18 +70,8 @@ namespace graphics3d
    ::graphics3d::skybox *scene_base::current_skybox()
    {
 
-      //if (!m_pskyboxCurrent2 || m_pskyboxCurrent2->m_prenderable != get_skybox_cube_model() ||
-      //    m_pskyboxCurrent2->m_ptexture != get_skybox_cube_texture())
-      //{
-
-      //   ødefer_construct_new(m_pskyboxCurrent2);
-
-      //   m_pskyboxCurrent2->m_prenderable = get_skybox_cube_model();
-
-      //   m_pskyboxCurrent2->m_ptexture = get_skybox_cube_texture();
-      //}
-
       return m_pskyboxCurrent2;
+
    }
 
 
@@ -200,21 +190,6 @@ namespace graphics3d
          }
       }
 
-      // auto strCubemap = setObject["cubemap"].as_string();
-
-      // if (strCubemap.has_character() && strCubemap.has_character())
-      //{
-
-      //   ptextureCubemap = m_pimmersionlayer->m_passetmanager->m_mapSkyboxTexture[strCubemap];
-
-      //   if (ptextureCubemap)
-      //   {
-
-      //      m_pimmersionlayer->m_passetmanager->m_mapObjectTexture[strName +".cubemap"] = ptexture;
-
-      //   }
-
-      //}
 
       ::pointer<::graphics3d::scene_renderable> pscenerenderable;
 

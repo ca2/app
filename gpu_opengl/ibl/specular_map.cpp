@@ -120,7 +120,7 @@ namespace gpu_opengl
          //auto pcube = øcreate < ::gpu::cube >();
          //::cast < ::gpu_gpu::context > pcontext = m_pgpucontext;
          //auto pcube = øcreate<::gpu::cube>();
-         auto prenderableCube = m_pgpucontext->m_pengine->shape_factory()->create_cube_001(m_pgpucontext, 32.f);
+         auto prenderableCube = m_pgpucontext->m_pengine->shape_factory()->create_cube_001(m_pgpucontext, 2.f);
          //pcube->initialize_gpu_cube(m_pgpucontext);
          ::cast<::gpu_opengl::texture> ptextureSkybox = ptexture;
 

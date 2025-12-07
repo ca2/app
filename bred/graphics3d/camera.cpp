@@ -27,6 +27,21 @@ namespace graphics3d
    }
 
 
+      void camera::initialize_camera(const ::floating_sequence3 &position,
+                                                const ::graphics3d::floating_rotation &rotation,
+                                                const floating_angle &zoom)
+   {
+
+      m_sequence3Position = position;
+
+      m_rotation = rotation;
+
+      m_angleFovY = zoom;
+   }
+
+
+
+
    void camera::update_vectors() 
    {
 

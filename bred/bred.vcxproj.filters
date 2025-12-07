@@ -408,6 +408,9 @@
     <ClInclude Include="graphics3d\transform.h">
       <Filter>Header Files\graphics3d</Filter>
     </ClInclude>
+    <ClInclude Include="graphics3d\render_systems\pbr_with_ibl_render_system.h">
+      <Filter>Header Files\graphics3d\render_systems</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="platform\application.cpp">
@@ -637,6 +640,9 @@
     </ClCompile>
     <ClCompile Include="graphics3d\transform.cpp">
       <Filter>Source Files\graphics3d</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics3d\render_systems\pbr_with_ibl_render_system.cpp">
+      <Filter>Source Files\graphics3d\render_systems</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

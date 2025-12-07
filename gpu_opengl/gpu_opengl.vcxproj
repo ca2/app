@@ -921,12 +921,6 @@
     </CustomBuild>
     <None Include="ibl\shaders\hdricube1.frag" />
     <None Include="ibl\shaders\hdricube1.vert" />
-    <CustomBuild Include="ibl\shaders\pbr1.frag">
-      <FileType>Document</FileType>
-    </CustomBuild>
-    <CustomBuild Include="ibl\shaders\pbr1.vert">
-      <FileType>Document</FileType>
-    </CustomBuild>
     <CustomBuild Include="ibl\shaders\specularenv.frag">
       <FileType>Document</FileType>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>

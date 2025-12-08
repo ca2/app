@@ -51,6 +51,10 @@ namespace gpu
 
       virtual void reset();
 
+      virtual void begin_render();
+
+      virtual void end_render();
+
       //virtual void set_primitive_topology_triangle_strip();
 
       virtual void draw(int a);

@@ -103,7 +103,6 @@ namespace graphics3d
    void scene_base::load_lights(const ::property_set &setObject)
    {
 
-
       auto count = setObject.get("count", 1);
       auto radius = setObject.get("radius", 4.8f);
       auto height = setObject.get("height", -2.5f);
@@ -309,6 +308,18 @@ namespace graphics3d
    }
 
 
+   void scene_base::load_scene_light(const ::payload & payload)
+   {
+
+      auto ppointlight = øcreate_new<point_light>();
+
+      ppointlight->from(payload);
+
+      m_pointlighta.add(ppointlight);
+
+   }
+
+
    void scene_base::loadSceneFile(const ::scoped_string &fileName)
    {
 
@@ -346,6 +357,7 @@ namespace graphics3d
          m_pimmersionlayer->load_camera(camJson);
 
          m_bInitialCameraLoaded = true;
+
       }
 
       auto objects = sceneJson["objects"].payload_array_reference();
@@ -356,6 +368,16 @@ namespace graphics3d
          auto &setObject = item.property_set_reference();
 
          load_scene_renderable(setObject);
+      }
+
+
+      auto lights = sceneJson["lights"].payload_array_reference();
+
+      for (auto &light: lights)
+      {
+
+         load_scene_light(light);
+
       }
 
       if (m_bInitialCameraLoaded)

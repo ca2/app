@@ -6166,7 +6166,41 @@ string payload::implode(const ::scoped_string & scopedstrGlue) const
 }
 
 
-::payload payload::find_property(const ::atom & atom) const
+::payload payload::find_property_by_name(const ::scoped_string &scopedstr) const
+{
+   //
+   ///*   if (m_etype == e_type_payload_pointer)
+   //   {
+   //
+   //      return m_ppayload->find_property_by_text(scopedstr);
+   //
+   //   }
+   //   else if (m_etype == e_type_property)
+   //   {
+   //
+   //      return m_pproperty->find_property_by_text(scopedstr);
+   //
+   //   }
+   //   else */
+   //   //{
+
+   if (m_etype == e_type_property_set)
+   {
+
+      auto iIndex = m_ppropertyset->index_of_name(scopedstr);
+
+      if (iIndex >= 0)
+      {
+
+         return m_ppropertyset->property_at(iIndex);
+      }
+   }
+
+   return e_type_new;
+}
+
+
+::payload payload::find_property(const ::atom &atom) const
 {
 
    if (atom.is_text())

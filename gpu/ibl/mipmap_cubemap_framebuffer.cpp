@@ -43,17 +43,28 @@ namespace gpu
 
          ødefer_construct(m_ptexture);
 
-         m_ptexture->m_pgpurenderer = m_pgpucontext->m_pgpurenderer;
+         //m_ptexture->m_pgpurenderer = m_pgpucontext->m_pgpurenderer;
 
-         m_ptexture->m_rectangleTarget.left=0;
-         m_ptexture->m_rectangleTarget.top=0;
-         m_ptexture->m_rectangleTarget.right= iWidth;
-         m_ptexture->m_rectangleTarget.bottom= iHeight;
-         m_ptexture->m_iMipCount=floor(log2(maximum(iWidth, iHeight)));
-         m_ptexture->m_bRenderTarget = true;
-         m_ptexture->m_bShaderResourceView = true;
+         //m_ptexture->m_rectangleTarget.left=0;
+         //m_ptexture->m_rectangleTarget.top=0;
+         //m_ptexture->m_rectangleTarget.right= iWidth;
+         //m_ptexture->m_rectangleTarget.bottom= iHeight;
+         //m_ptexture->m_iMipCount=floor(log2(maximum(iWidth, iHeight)));
+         //m_ptexture->m_bRenderTarget = true;
+         //m_ptexture->m_bShaderResourceView = true;
 
-         on_initialize_mipmap_cubemap_framebuffer();
+
+         auto pgpurenderer = m_pgpucontext->m_pgpurenderer;
+
+
+         int iMipCount = floor(log2(maximum(iWidth, iHeight)));
+
+         m_ptexture->initialize_cubemap_image_texture_with_mipmap(pgpurenderer, {0, 0, iWidth, iHeight}, iMipCount, true,
+                                              true);
+
+         //;
+         //;
+         //on_initialize_mipmap_cubemap_framebuffer();
 
          // // framebuffer
          // glGenFramebuffers(1, &framebufferId);

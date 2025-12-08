@@ -4158,9 +4158,6 @@
     <ClInclude Include="..\..\..\operating_system\operating_system-windows\operating_system\types.h">
       <Filter>Header Files\operating_system-windows</Filter>
     </ClInclude>
-    <ClInclude Include="prototype\collection\property_set.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="λ.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -4313,6 +4310,12 @@
     </ClInclude>
     <ClInclude Include="prototype\prototype\_impl_type.h">
       <Filter>Header Files\prototype\prototype</Filter>
+    </ClInclude>
+    <ClInclude Include="prototype\geometry\_payload.h">
+      <Filter>Header Files\prototype\geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="prototype\collection\property_set.h">
+      <Filter>Header Files\prototype\collection</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

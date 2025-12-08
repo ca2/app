@@ -194,12 +194,11 @@ namespace graphics3d
          //auto pobject = (*pframe->scene_objects())[it->element2()];
          //::cast<point_light> ppointlight = pobject;
          ::gpu::point_light_push_constants pushconstants{};
-         pushconstants.position = floating_sequence4(
-            ppointlight->m_sequence3Translation, 1.0f);
+         pushconstants.position = floating_sequence4(ppointlight->position(), 1.0f);
          pushconstants.color = floating_sequence4(
-            ppointlight->color().f32_red(),
-            ppointlight->color().f32_green(),
-            ppointlight->color().f32_blue(),
+            ppointlight->color().r,
+            ppointlight->color().g,
+            ppointlight->color().b,
             ppointlight->m_fLightIntensity);
          pushconstants.radius = ppointlight->m_sequence3Scaling.x;
 
@@ -242,22 +241,29 @@ namespace graphics3d
 
       for (auto ppointlight : pointlighta)
       {
-         auto rotateLight = floating_matrix4(1.f);
-         
-         rotateLight.rotate(radians(0.5f * dt), {0.f, -1.f, 0.f});
 
-         // update light position
-         ppointlight->m_sequence3Translation =
-            floating_sequence3(rotateLight * floating_sequence4(ppointlight->m_sequence3Translation, 1.f));
+         ppointlight->defer_animate(dt);
+         //floating_rotation rotation;
+
+         //rotation.m_angleYaw = radians(0.5f * dt);
+
+         //floating_sequence3 hand(ppointlight->m_fOrbitRadius, 0.f, 0.f);
+
+         //auto handRotated = rotation.as_rotation_matrix() * hand;
+
+         //// update light position
+         //ppointlight->m_sequence3Translation =
+         //   floating_sequence3(ppointlight->m_sequence3Translation + handRotated);
 
          // copy light to ubo
-         globalubo["pointLights"][lightIndex]["position"] =
-            floating_sequence4(ppointlight->m_sequence3Translation, 1.f);
+
+         auto position = ppointlight->position();
+
+         auto color = ppointlight->color();
+
+         globalubo["pointLights"][lightIndex]["position"] = floating_sequence4(position, 1.f);
          globalubo["pointLights"][lightIndex]["color"] =
-            floating_sequence4(ppointlight->m_color.f32_red(),
-            ppointlight->m_color.f32_green(),
-            ppointlight->m_color.f32_blue(),
-                ppointlight->m_fLightIntensity);
+            floating_sequence4(color.r, color.g, color.b, ppointlight->m_fLightIntensity);
 
          lightIndex += 1;
 

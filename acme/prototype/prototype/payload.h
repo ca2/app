@@ -1441,6 +1441,8 @@ template < same_as < NUMBER_TYPE > UPPER_CASE_NAME > payload & operator = (UPPER
 
    ::payload find_property_by_text(const ::scoped_string & scopedstr) const; 
 
+   ::payload find_property_by_name(const ::scoped_string &scopedstr) const; 
+
 
 
    //::payload operator[] (const ::atom & atom);
@@ -1453,12 +1455,15 @@ template < same_as < NUMBER_TYPE > UPPER_CASE_NAME > payload & operator = (UPPER
    template < prototype_character CHARACTER >
    inline ::property & operator[] (const CHARACTER * psz) { return get_property(psz); }
    template < prototype_character CHARACTER >
-   inline ::payload operator[] (const CHARACTER * psz) const { return find_property_by_text(psz); }
+   inline ::payload operator[] (const CHARACTER * psz) const { return find_property_by_name(psz); }
 
    template < prototype_character_range RANGE >
    inline ::property & operator[] (const RANGE & range) { return get_property(range); }
    template < prototype_character_range RANGE >
-   inline ::payload operator[] (const RANGE & range) const { return find_property_by_text(range); }
+   inline ::payload operator[](const RANGE &range) const
+   {
+      return find_property_by_name(range);
+   }
 
    template < has_as_string HAS_AS_STRING >
    inline ::property & operator[] (const HAS_AS_STRING & has_as_string) 
@@ -1467,7 +1472,9 @@ template < same_as < NUMBER_TYPE > UPPER_CASE_NAME > payload & operator = (UPPER
    template < has_as_string HAS_AS_STRING >
    inline ::payload operator[] (const HAS_AS_STRING & has_as_string) const
    requires (!prototype_character_range<HAS_AS_STRING>)
-   { return find_property_by_text(has_as_string.as_string()); }
+   {
+      return find_property_by_name(has_as_string.as_string());
+   }
 
    template < has_get_string HAS_GET_STRING >
    inline ::property & operator[] (const HAS_GET_STRING & has_get_string) 
@@ -1476,7 +1483,9 @@ template < same_as < NUMBER_TYPE > UPPER_CASE_NAME > payload & operator = (UPPER
    template < has_get_string HAS_GET_STRING >
    inline ::payload operator[] (const HAS_GET_STRING & has_get_string) const 
    requires (!prototype_character_range<HAS_GET_STRING>&& has_as_string<HAS_GET_STRING>)
-   { return find_property_by_text(has_get_string.get_string()); }
+   {
+      return find_property_by_name(has_get_string.get_string());
+   }
 
 
    //inline ::property & operator[] (::iptr i);

@@ -77,6 +77,7 @@ namespace graphics3d
 
       virtual void load_scene_renderable(const ::property_set &setObject);
       virtual void load_lights(const ::property_set &objJson);
+      virtual void load_scene_light(const ::payload &payload);
 
       virtual bool is_global_ubo_ok();
 

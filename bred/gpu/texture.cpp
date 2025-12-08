@@ -8,7 +8,6 @@
 #include "acme/exception/interface_only.h"
 #include "aura/graphics/image/context.h"
 
-
 namespace gpu
 {
 
@@ -74,6 +73,46 @@ namespace gpu
    }
 
 
+   void texture::initialize_cubemap_image_texture_with_mipmap(::gpu::renderer *pgpurenderer, const ::int_rectangle &rectangleTarget,
+                                          int iMipCount, bool bRenderTarget, bool bShaderResourceView)
+   {
+
+      if (m_pgpurenderer != pgpurenderer
+         || m_etype != e_type_cube_map
+         || m_rectangleTarget != rectangleTarget
+         || m_iMipCount != iMipCount)
+      {
+
+         m_pgpurenderer = pgpurenderer;
+         m_etype = e_type_cube_map;
+         m_rectangleTarget = rectangleTarget;
+         m_iMipCount = iMipCount;
+
+         create_image();
+
+      }
+
+      m_bRenderTarget = bRenderTarget;
+
+      if (bRenderTarget)
+      {
+
+         create_render_target();
+
+      }
+
+      m_bShaderResourceView = bShaderResourceView;
+
+      if (bShaderResourceView)
+      {
+
+         create_shader_resource_view();
+
+      }
+
+   }
+
+
    void texture::initialize_depth_texture(::gpu::renderer* pgpurenderer, const ::int_rectangle& rectangleTarget)
    {
 
@@ -82,6 +121,14 @@ namespace gpu
       m_rectangleTarget = rectangleTarget;
 
    }
+
+
+   void texture::create_image()
+   {
+
+
+   }
+      
 
 
    ::int_size texture::size() const
@@ -359,6 +406,13 @@ namespace gpu
    {
 
 
+   }
+
+
+   void texture::create_shader_resource_view() 
+   {
+   
+   
    }
 
 

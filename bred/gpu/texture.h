@@ -59,6 +59,8 @@ namespace gpu
       ~texture() override;
 
 
+      virtual void create_image();
+
       virtual ::int_size size() const;
       virtual int width() const;
       virtual int height() const;
@@ -81,6 +83,7 @@ namespace gpu
          const void * pdata,
          enum_type etype = e_type_image);
       virtual void initialize_image_texture(::gpu::renderer* pgpurenderer, const ::int_rectangle& rectangleTarget, bool bWithDepth, const ::pointer_array < ::image::image >& imagea = {}, enum_type etype = e_type_image);
+      virtual void initialize_cubemap_image_texture_with_mipmap(::gpu::renderer *pgpurenderer, const ::int_rectangle& rectangleTarget, int iMipCount, bool bRenderTarget, bool bShaderResourceView);
       virtual void initialize_depth_texture(::gpu::renderer* pgpurenderer, const ::int_rectangle& rectangleTarget);
 
       virtual void initialize_image_texture(::gpu::renderer* pgpurenderer, const ::file::path & path, bool bIsSrgb);
@@ -93,6 +96,8 @@ namespace gpu
       virtual void blend(::gpu::texture * ptexture);
 
       virtual void create_render_target();
+
+      virtual void create_shader_resource_view();
 
       virtual void create_depth_resources();
 

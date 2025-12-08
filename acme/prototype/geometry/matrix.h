@@ -673,6 +673,17 @@ inline matrix_type mul_avx2(const matrix_type &B) const
 
    }
 
+   static matrix_type rotation(const sequence_type<FLOATING, 3> &axis, FLOATING angle)
+      requires(DIMENSION == 4)
+   {
+
+      matrix_type m(1);
+
+      m.rotate(axis, angle);
+
+      return m;
+
+   }
 
    template <int S = DIMENSION, std::enable_if_t<S == 4, int> = 0>
    static matrix_type perspective(FLOATING fov, FLOATING near_, FLOATING far_, FLOATING aspect = 1.f)

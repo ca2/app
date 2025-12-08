@@ -2534,6 +2534,28 @@ string property_set_base::as_string(const ::scoped_string& scopedstrSeparator1, 
 
 }
 
+::collection::index property_set_base::index_of_name(const ::scoped_string &scopedstr,
+                                                       ::collection::index iStart) const
+{
+
+   for (::collection::index iIndex = iStart; iIndex < this->size(); iIndex++)
+   {
+
+      auto pproperty = this->element_at(iIndex);
+
+      if (pproperty->name() == scopedstr)
+      {
+
+         return iIndex;
+
+      }
+
+   }
+
+   return -1;
+
+}
+
 
 ::property * property_set_base::find(const ::atom & atom, ::collection::index iStart) const
 {

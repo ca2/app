@@ -36,7 +36,7 @@ namespace gpu_opengl
          void compute();
 
 
-         unsigned int getCubemapId();
+         //unsigned int getCubemapId();
 
 
       };

@@ -22,11 +22,11 @@
 //#include "::gpu::gltf.h"
 //#include "cube.h"
 ///#include "timer.h"
-//#include "ibl/cubemap_framebuffer.h"
+#include "gpu/ibl/cubemap_framebuffer.h"
 #include "bred/gpu/model_buffer.h"
 #include "gpu/context.h"
-#include "shaders/diffuseirradiance.vert.h"
-#include "shaders/diffuseirradiance.frag.h"
+#include "shaders/diffuse_irradiance_map.vert.h"
+#include "shaders/diffuse_irradiance_map.frag.h"
 
 namespace gpu_opengl
 {
@@ -53,7 +53,7 @@ namespace gpu_opengl
       ::block diffuse_irradiance_map::embedded_diffuse_irradiance_vert()
       {
 
-         return {g_psz_diffuseirradiance_vert, sizeof(g_psz_diffuseirradiance_vert) - 1};
+         return g_psz_diffuse_irradiance_map_vert;
 
       }
 
@@ -61,7 +61,7 @@ namespace gpu_opengl
       ::block diffuse_irradiance_map::embedded_diffuse_irradiance_frag()
       {
 
-         return {g_psz_diffuseirradiance_frag, sizeof(g_psz_diffuseirradiance_frag)-1};
+         return g_psz_diffuse_irradiance_map_frag;
 
 
       }
@@ -120,7 +120,7 @@ namespace gpu_opengl
          glViewport(0, 0, m_udiffuse_irradiance_mapWidth, m_udiffuse_irradiance_mapHeight);
          GLCheckError("");
          //m_pdiffuseIrradianceFramebuffer->bind();
-         m_pshaderDiffuseIrradiance->bind(nullptr, m_pdiffuseIrradianceFramebuffer->m_ptexture);
+         m_pshaderDiffuseIrradiance->bind(nullptr, m_pframebufferDiffuseIrradiance->m_ptexture);
 
 
          
@@ -138,7 +138,7 @@ namespace gpu_opengl
          for (auto i = 0; i < 6; i++)
          {
             m_pshaderDiffuseIrradiance->setModelViewProjection(model, cameraAngles[i], projection);
-            m_pdiffuseIrradianceFramebuffer->setCubeFace(i, m_pshaderDiffuseIrradiance);
+            m_pframebufferDiffuseIrradiance->set_cube_face(i, m_pshaderDiffuseIrradiance);
 
             glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
             GLCheckError("");
@@ -174,14 +174,14 @@ namespace gpu_opengl
       }
 
 
-      unsigned int diffuse_irradiance_map::getCubemapId()
-      {
-
-         ::cast <cubemap_framebuffer > pframebuffer = m_pdiffuseIrradianceFramebuffer;
-
-         return pframebuffer->getCubemapTextureId();
-
-      }
+      // unsigned int diffuse_irradiance_map::getCubemapId()
+      // {
+      //
+      //    ::cast <cubemap_framebuffer > pframebuffer = m_pframebufferDiffuseIrradiance;
+      //
+      //    return pframebuffer->getCubemapTextureId();
+      //
+      // }
 
 
    } // namespace ibl

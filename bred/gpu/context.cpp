@@ -325,8 +325,10 @@ namespace gpu
       if (ødefer_construct(ptexture))
       {
 
-         ptexture->initialize_image_texture(m_pgpurenderer, path, bIsSrgb);
+         ptexture->initialize_texture_from_file_path(m_pgpurenderer, path, bIsSrgb);
+
       }
+
    }
 
 
@@ -984,6 +986,7 @@ return {};
    void context::set_viewport(::gpu::command_buffer * pgpucommandbuffer, const ::int_rectangle & rectangle)
    {
 
+      pgpucommandbuffer->set_viewport(rectangle);
 
    }
 
@@ -1621,7 +1624,7 @@ return {};
 
          auto ptextureNewAtlas = øcreate<::gpu::texture >();
 
-         ptextureNewAtlas->initialize_image_texture(m_pgpurenderer, 
+         ptextureNewAtlas->initialize_texture(m_pgpurenderer,
             { 0, 0, 4096, 4096 }, false);
 
          m_textureaAtlas.add(ptextureNewAtlas);
@@ -1797,8 +1800,6 @@ return {};
                            /////clear(::rgba(0.5*0.5, 0.75 * 0.5, 0.95 * 0.5, 0.5));
 
 
-                           pswapchain->present(ptextureBackBuffer);
-
                            for (auto player : *playera)
                            {
 
@@ -1810,6 +1811,8 @@ return {};
                               }
 
                            }
+
+                           pswapchain->present(ptextureBackBuffer);
 
                         }
 

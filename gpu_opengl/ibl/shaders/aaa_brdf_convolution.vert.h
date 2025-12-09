@@ -3,7 +3,7 @@
 #pragma once
 
 
-const char g_psz_brdfconvolution_vert[] = R"vert_text(#version 330 core
+const char g_psz_brdf_convolution_vert[] = R"vert_text(#version 330 core
 
 layout (location = 0) in vec2 aPos;
 layout (location = 1) in vec2 aTextureCoordinates;

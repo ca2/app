@@ -158,7 +158,7 @@ namespace gpu
 
       ptexture->m_bTransferDst = true;
 
-      ptexture->initialize_image_texture(m_pgpurenderer, rectangle, false);
+      ptexture->initialize_texture(m_pgpurenderer, rectangle, false);
 
       return ptexture;
 
@@ -184,7 +184,7 @@ namespace gpu
 
       bool bWithDepth = escene == ::gpu::e_scene_3d;
 
-      ptextureSource->initialize_image_texture(m_pgpurenderer, rectangle, bWithDepth);
+      ptextureSource->initialize_texture(m_pgpurenderer, rectangle, bWithDepth);
 
       return ptextureSource;
 

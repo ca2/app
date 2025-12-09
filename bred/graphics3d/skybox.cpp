@@ -204,9 +204,11 @@ namespace graphics3d
 
       auto prenderer = m_pscene->m_pimmersionlayer->m_pengine->gpu_context()->m_pgpurenderer;
 
-      m_ptexture->initialize_image_texture(
+      m_ptexture->initialize_texture(
          prenderer,
-         imagea, ::gpu::texture::e_type_cube_map);
+         sizeItem,
+         false,
+         &imagea, ::gpu::texture::e_type_cube_map);
 
    }
 

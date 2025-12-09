@@ -3,6 +3,7 @@
 #include "framework.h"
 #include "cubemap_framebuffer.h"
 #include "bred/gpu/context.h"
+#include "bred/gpu/shader.h"
 #include "bred/gpu/texture.h"
 
 //#include <glad/glad.h>
@@ -37,17 +38,29 @@ namespace gpu
          initialize_gpu_context_object(pgpucontext);
 
          ødefer_construct(m_ptexture);
+
+         auto pgpurenderer = m_pgpucontext->m_pgpurenderer;
+
+         ::int_rectangle rectangleTarget;
+
+         rectangleTarget.set(0, 0, width, height);
          
-         m_ptexture->m_pgpurenderer = m_pgpucontext->m_pgpurenderer;
+         // m_ptexture->m_pgpurenderer = m_pgpucontext->m_pgpurenderer;
+         //
+         // m_ptexture->m_rectangleTarget.left=0;
+         // m_ptexture->m_rectangleTarget.top=0;
+         // m_ptexture->m_rectangleTarget.right=width;
+         // m_ptexture->m_rectangleTarget.bottom=height;
+         // m_ptexture->m_bRenderTarget = true;
+         // m_ptexture->m_bShaderResourceView = true;
+         //
 
-         m_ptexture->m_rectangleTarget.left=0;
-         m_ptexture->m_rectangleTarget.top=0;
-         m_ptexture->m_rectangleTarget.right=width;
-         m_ptexture->m_rectangleTarget.bottom=height;
-         m_ptexture->m_bRenderTarget = true;
-         m_ptexture->m_bShaderResourceView = true;
+         int iMipCount = floor(log2(maximum(width, height)));
 
-         on_initialize_cubemap_framebuffer();
+         m_ptexture->initialize_mipmap_cubemap_texture(pgpurenderer, rectangleTarget,
+            iMipCount, true, true);
+
+         //on_initialize_cubemap_framebuffer();
 
          //
          //
@@ -107,14 +120,17 @@ namespace gpu
 
       void cubemap_framebuffer::generateMipmap()
       {
-         // glBindTexture(GL_TEXTURE_CUBE_MAP, cubemapTextureId);
-         // glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
-         // glGenerateMipmap(GL_TEXTURE_CUBE_MAP);
+
+         m_ptexture->generate_mipmap();
+
       }
 
 
-      void cubemap_framebuffer::setCubeFace(unsigned int index, ::gpu::shader * pgpushader)
+      void cubemap_framebuffer::set_cube_face(unsigned int iIndex, ::gpu::shader * pgpushader)
       {
+
+         m_ptexture->set_cube_face(iIndex);
+         //pgpushader->m_pg
          // glFramebufferTexture2D(
          //    GL_FRAMEBUFFER,
          //    GL_COLOR_ATTACHMENT0,

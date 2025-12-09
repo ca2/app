@@ -526,8 +526,8 @@
     <ClCompile Include="graphics3d\key_map.cpp" />
     <ClCompile Include="graphics3d\mesh.cpp" />
     <ClCompile Include="graphics3d\render_systems\pbr_with_ibl_render_system.cpp" />
+    <ClCompile Include="graphics3d\tinyobjloader_002.cpp" />
     <ClCompile Include="graphics3d\tinyobjloader_Builder.cpp" />
-    <ClCompile Include="graphics3d\model_tinyobjloader_002.cpp" />
     <ClCompile Include="graphics3d\point_light.cpp" />
     <ClCompile Include="graphics3d\renderable.cpp" />
     <ClCompile Include="graphics3d\renderer.cpp" />

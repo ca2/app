@@ -31,6 +31,23 @@ namespace opengl
 
       auto pszGlErrorString = ::opengl_error_string(iGLError);
 
+      const char *pszFramebufferStatusText = nullptr;
+
+      if (iGLError == GL_INVALID_FRAMEBUFFER_OPERATION)
+      {
+
+         GLenum status = glCheckFramebufferStatus(GL_FRAMEBUFFER);
+
+         pszFramebufferStatusText = check_framebuffer_status_text(status);
+
+         if (::is_set(pszFramebufferStatusText))
+         {
+            warning("glCheckFramebufferStatus(GL_FRAMEBUFFER) return \"{}\".", pszFramebufferStatusText);
+
+         }
+
+      }
+
       throw ::opengl::exception(scopestrMessage, iGLError, pszGlErrorString, __FILE__, __LINE__);
 
    }
@@ -83,12 +100,34 @@ namespace opengl
    }
 
 
+   const char * check_framebuffer_status_text(GLenum status)
+   {
+      const char *psz = nullptr;
+      if (status != GL_FRAMEBUFFER_COMPLETE)
+      {
+         switch (status)
+         {
+            //case GL_FRAMEBUFFER_UNDEFINED: str= "undefined"; break;
+            case GL_FRAMEBUFFER_INCOMPLETE_ATTACHMENT: psz= "incomplete attachment"; break;
+            case GL_FRAMEBUFFER_INCOMPLETE_MISSING_ATTACHMENT: psz= "incomplete/missing attachment"; break;
+            case GL_FRAMEBUFFER_INCOMPLETE_DRAW_BUFFER: psz= "incomplete draw buffer"; break;
+            case GL_FRAMEBUFFER_INCOMPLETE_READ_BUFFER: psz= "incomplete read buffer"; break;
+            case GL_FRAMEBUFFER_UNSUPPORTED: psz= "unsupported"; break;
+            case GL_FRAMEBUFFER_INCOMPLETE_MULTISAMPLE: psz= "incomplete multiple"; break;
+            default: psz = "unknown error"; break;
+         }
+      }
+
+      return psz;
+
+   }
+
+
 } // namespace opengl
 
 
 void defer_throw_gl_error()
 {
-
    int iGlError = glGetError();
 
    if (iGlError != 0)
@@ -101,5 +140,6 @@ void defer_throw_gl_error()
       throw ::exception(error_failed, strOpenGLError);
 
    }
+
 
 }

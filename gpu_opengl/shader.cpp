@@ -253,6 +253,13 @@ namespace gpu_opengl
       //glBindFramebuffer(GL_DRAW_FRAMEBUFFER, ptexture->m_gluFbo);
       //GLCheckError("");
 
+      if (!ptexture->m_gluFbo)
+      {
+
+         throw ::exception(error_wrong_state);
+
+      }
+
       glBindFramebuffer(GL_FRAMEBUFFER, ptexture->m_gluFbo);
       GLCheckError("");
 
@@ -369,6 +376,7 @@ namespace gpu_opengl
 
          ::cast < texture > ptextureBound = m_ptextureBound;
 
+
          glBindTexture(ptextureBound->m_gluType, 0);
          GLCheckError("");
 
@@ -414,6 +422,24 @@ namespace gpu_opengl
       m_ptextureBound = ptexture;
 
    }
+
+
+   void shader::bind_source2(gpu::command_buffer* pgpucommandbuffer, int iIndex, const char* pszPayloadName, gpu::texture* pgputextureSource)
+   {
+    //  pshader->bind_source2(TEXTURE_UNIT_DIFFUSE_IRRADIANCE_MAP, "diffuseIrradianceMap",
+      //                      pscene->m_pibldiffuseirradiancemap->m_pframebufferDiffuseIrradiance->m_ptexture);
+
+      glActiveTexture(GL_TEXTURE0 + iIndex);
+      GLCheckError("");
+      this->set_int(pszPayloadName, iIndex);
+      ::cast<::gpu_opengl::texture > ptexture = pgputextureSource;
+      int gluTextureID = ptexture->m_gluTextureID;
+      glBindTexture(ptexture->m_gluType, gluTextureID);
+      GLCheckError("");
+
+
+   }
+
 
 
    //   void shader::setBool(const ::scoped_string & scopedstrName, bool value)

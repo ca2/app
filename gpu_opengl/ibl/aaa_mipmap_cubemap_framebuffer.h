@@ -1,7 +1,7 @@
 // From github:/tristancalderbank/OpenGL-PBR-Renderer/mipmap_cubemap_framebuffer.h by
 // camilo on 2025-09-26 19:54 <3ThomasBorregaardSorensen!!
 #pragma once
-#include "gpu/ibl/mipmap_cubemap_framebuffer.h"
+#include "gpu/ibl/aaa_mipmap_cubemap_framebuffer.h"
 
 
 namespace gpu_opengl
@@ -13,8 +13,8 @@ namespace gpu_opengl
       /**
        * Framebuffer for rendering to faces of a cubemap. The faces themselves are mipmapped.
        */
-      class mipmap_cubemap_framebuffer :
-         virtual public ::gpu::ibl::mipmap_cubemap_framebuffer
+      class aaa_mipmap_cubemap_framebuffer :
+         virtual public ::gpu::ibl::aaa_mipmap_cubemap_framebuffer
       {
       public:
 
@@ -28,10 +28,10 @@ namespace gpu_opengl
          // unsigned int m_uCubemapTextureId;
 
 
-         mipmap_cubemap_framebuffer();
+         aaa_mipmap_cubemap_framebuffer();
 
 
-         ~mipmap_cubemap_framebuffer() override;
+         ~aaa_mipmap_cubemap_framebuffer() override;
 
 
          //virtual void initialize_mipmap_cubemap_framebuffer(unsigned int width, unsigned int height);

@@ -86,7 +86,7 @@ namespace gpu_opengl
    void model_buffer::bind(::gpu::command_buffer* pgpucommandbuffer)
    {
 
-      ::gpu::context_lock contextlock(m_pgpucontext);
+      //::gpu::context_lock contextlock(m_pgpucontext);
 
       if (m_pbufferVertex)
       {

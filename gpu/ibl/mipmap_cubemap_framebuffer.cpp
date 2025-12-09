@@ -1,7 +1,7 @@
 // From github:/tristancalderbank/OpenGL-PBR-Renderer/mipmap_cubemap_framebuffer.h by
 // camilo on 2025-09-26 19:54 <3ThomasBorregaardSorensen!!
 #include "framework.h"
-#include "aaa_mipmap_cubemap_framebuffer.h"
+#include "mipmap_cubemap_framebuffer.h"
 #include "bred/gpu/context.h"
 #include <math.h>
 
@@ -16,20 +16,20 @@ namespace gpu
    {
 
 
-      aaa_mipmap_cubemap_framebuffer::aaa_mipmap_cubemap_framebuffer()
+      mipmap_cubemap_framebuffer::mipmap_cubemap_framebuffer()
       {
 
       }
 
 
-      aaa_mipmap_cubemap_framebuffer::~aaa_mipmap_cubemap_framebuffer()
+      mipmap_cubemap_framebuffer::~mipmap_cubemap_framebuffer()
       {
 
 
       }
 
 
-      void aaa_mipmap_cubemap_framebuffer::initialize_mipmap_cubemap_framebuffer(::graphics3d::scene_base *pscenebase,
+      void mipmap_cubemap_framebuffer::initialize_mipmap_cubemap_framebuffer(::graphics3d::scene_base *pscenebase,
                                                                              int iWidth, int iHeight)
 
       {
@@ -109,19 +109,19 @@ namespace gpu
       }
 
 
-      void aaa_mipmap_cubemap_framebuffer::on_initialize_mipmap_cubemap_framebuffer()
+      void mipmap_cubemap_framebuffer::on_initialize_mipmap_cubemap_framebuffer()
       {
 
       }
 
 
-      void aaa_mipmap_cubemap_framebuffer::bind()
+      void mipmap_cubemap_framebuffer::bind()
       {
          ///glBindFramebuffer(GL_FRAMEBUFFER, framebufferId);
       }
 
 
-      void aaa_mipmap_cubemap_framebuffer::set_current_mip(int iCurrentMip)
+      void mipmap_cubemap_framebuffer::set_current_mip(int iCurrentMip)
       {
 
          m_ptexture->m_iCurrentMip = iCurrentMip;
@@ -133,7 +133,7 @@ namespace gpu
       }
 
 
-      int aaa_mipmap_cubemap_framebuffer::mip_width()
+      int mipmap_cubemap_framebuffer::mip_width()
       {
 
          return m_ptexture->m_sizeMip.width();
@@ -141,7 +141,7 @@ namespace gpu
       }
 
 
-      int aaa_mipmap_cubemap_framebuffer::mip_height()
+      int mipmap_cubemap_framebuffer::mip_height()
       {
 
          return m_ptexture->m_sizeMip.height();
@@ -149,7 +149,7 @@ namespace gpu
       }
 
 
-      void aaa_mipmap_cubemap_framebuffer::set_cube_face(int iFace)
+      void mipmap_cubemap_framebuffer::set_cube_face(int iFace)
       {
 
          m_ptexture->set_cube_face(iFace);

@@ -261,7 +261,7 @@ namespace gpu
 
             //ptexture->m_pgpurendertarget = this;
 
-            ptexture->initialize_image_texture(m_pgpurenderer, m_size, m_bWithDepth);
+            ptexture->initialize_texture(m_pgpurenderer, m_size, m_bWithDepth);
 
          }
 

@@ -976,6 +976,7 @@ namespace gpu_opengl
       GLCheckError("");
       //   glClearColor(0.678f, 0.847f, 0.902f, 1.0f);//
       glClearColor(color.f32_red(), color.f32_green(), color.f32_blue(), color.f32_opacity()); //
+      glClearDepth(1.0f);
       glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
       GLCheckError("");
 
@@ -1390,14 +1391,22 @@ void main() {
 
             int iLayer = 0;
 
+            m_pshaderBlend3->bind(nullptr, ptextureDst);
+
+            //m_pshaderBlend3, ptextureDst, ptextureSrc);
+
             for (auto player: *playera)
             {
 
-               //if (iLayer == 2)
+               if (iLayer == 2)
                {
+                  //information("What happened to the 3D Layer?");
+               }
 
 
                   ::cast<::gpu_opengl::texture> ptextureSrc = player->texture();
+
+                  m_pshaderBlend3->bind_source(nullptr, ptextureSrc, 0);
 
                   //ptextureSrc->_new_state(
                   //   pcommandbuffer,
@@ -1405,8 +1414,6 @@ void main() {
                   //   VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL,
                   //   VK_PIPELINE_STAGE_FRAGMENT_SHADER_BIT
                   //);
-
-                  m_pshaderBlend3->bind(nullptr, ptextureDst, ptextureSrc);
 
                   auto r = ptextureSrc->m_rectangleTarget;
 
@@ -1513,12 +1520,15 @@ void main() {
 
                   //pcommandlist->IASetPrimitiveTopology(D3D_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
                   //vkCmdDraw(vkcommandbuffer, 3, 1, 0, 0);
-                  m_pshaderBlend3->unbind(pcommandbuffer);
-               }
+               //}
                iLayer++;
+               if (iLayer >= 3)
+               {
+                  break;
 
+               }
             }
-
+            m_pshaderBlend3->unbind(pcommandbuffer);
          }
          //}
 
@@ -3204,6 +3214,14 @@ color = vec4(c.r,c.g, c.b, c.a);
 
       //return {};
    }
+
+
+   // void context::set_viewport(::gpu::command_buffer * pgpucommandbuffer, const ::int_rectangle & rectangle)
+   // {
+   //
+   //    ::g
+   //
+   // }
 
 
 

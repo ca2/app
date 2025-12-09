@@ -19,8 +19,8 @@ list(APPEND library_source
    ibl/diffuse_irradiance_map.h
    ibl/equirectangular_cubemap.cpp
    ibl/equirectangular_cubemap.h
-   ibl/hdri_cube.cpp
-   ibl/hdri_cube.h
+   #ibl/hdri_cube.cpp
+   #ibl/hdri_cube.h
    ibl/mipmap_cubemap_framebuffer.cpp
    ibl/mipmap_cubemap_framebuffer.h
    ibl/specular_map.cpp
@@ -38,8 +38,8 @@ list(APPEND library_source
    framework.h
    context.cpp
    context.h
-   cube.cpp
-   cube.h
+   #cube.cpp
+   #cube.h
    full_screen_quad.cpp
    full_screen_quad.h
    hdr_texture.cpp

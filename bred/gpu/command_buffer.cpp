@@ -48,6 +48,20 @@ namespace gpu
    }
 
 
+   void command_buffer::begin_render()
+   {
+
+
+   }
+
+
+   void command_buffer::end_render()
+   {
+
+
+   }
+
+
    //::pointer <command_buffer >renderer::beginSingleTimeCommands()
    //{
 

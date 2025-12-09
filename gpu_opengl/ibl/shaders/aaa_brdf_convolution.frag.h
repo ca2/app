@@ -1,19 +1,15 @@
 ﻿// This file was automatically generated from a command line like:
-// application_build_helper --inline-text "prefiltered_environment_map.frag"
+// application_build_helper --inline-text "brdf_convolution.frag"
 #pragma once
 
 
-const char g_psz_prefiltered_environment_map_frag[] = R"frag_text(#version 330 core
+const char g_psz_brdf_convolution_frag[] = R"frag_text(#version 330 core
 
-out vec4 FragColor;
-in vec3 modelCoordinates;
-
-uniform float roughness;
-uniform samplerCube environmentCubemap;
+out vec2 FragColor;
+in vec2 textureCoordinates;
 
 const float PI = 3.14159265359;
 const uint SAMPLE_COUNT = 1024u;
-const float FACE_RESOLUTION = 512.0;
 
 // this mirrors the number in binary around the decimal point
 // aka return: a0 / 2 + a1 / 4 + a2 / 8 + ...
@@ -66,58 +62,66 @@ vec3 importanceSampleGGX(vec2 unitSquareSample, vec3 N, float roughness) {
 	return normalize(sampleVector);
 }
 
-float distributionGGX(vec3 N, vec3 H, float roughness) {
-	float a = roughness * roughness;
-	float a2 = a*a;
-	float NdotH = max(dot(N, H), 0.0);
-	float NdotH2 = NdotH*NdotH;
+// Geometry function
+//
+//         n * v
+//   -------------------
+//   (n * v)(1 - k) + k
+//
+float geometrySchlickGGX(vec3 n, vec3 v, float k) {
 
-	float numerator = a2;
-	float denominator = (NdotH2 * (a2 - 1.0) + 1.0);
-	denominator = PI * denominator * denominator;
+	float nDotV = max(dot(n, v), 0.0);
 
-	return numerator / denominator;
+	float numerator = nDotV;
+	float denomenator = nDotV * (1.0 - k) + k;
+
+	return numerator / denomenator;
 }
 
-float getSampleMipLevel(vec3 V, vec3 N, vec3 H, float roughness) {
-	// source: https://chetanjags.wordpress.com/2015/08/26/image-based-lighting/
-	// source: https://learnopengl.com/PBR/IBL/Specular-IBL
-	// the idea here is to use higher mip levels for samples with lower PDF value
-	// the less likely the sample is to occur the more surrounding samples we use to
-	// avoid aliasing
-	float distribution = distributionGGX(N, H, roughness);
-	float NdotH = max(dot(N, H), 0.0);
-	float HdotV = max(dot(H, V), 0.0);
-	float pdf = distribution * NdotH / (4.0 * HdotV) + 0.0001;
-
-	float saTexel  = 4.0 * PI / (6.0 * FACE_RESOLUTION * FACE_RESOLUTION);
-	float saSample = 1.0 / (float(SAMPLE_COUNT) * pdf + 0.0001);
-
-	return roughness == 0.0 ? 0.0 : 0.5 * log2(saSample / saTexel);
+// smiths method for taking into account view direction and light direction
+float geometrySmith(vec3 n, vec3 v, vec3 l, float roughness) {
+	float k = (roughness * roughness) / 2.0;
+	return geometrySchlickGGX(n, v, k) * geometrySchlickGGX(n, l, k);
 }
 
 void main() {
-	vec3 N = normalize(modelCoordinates);
-	// epic games approximation, view direction is aligned with normal
-	vec3 V = N; // view direction
+	float NdotV = textureCoordinates.x;
+	float roughness = textureCoordinates.y;
 
-	float totalWeight = 0.0;
-	vec3 outputColor = vec3(0.0);
+	vec3 N = vec3(0.0, 0.0, 1.0);
+	vec3 V;
+	V.x = sqrt(1.0 - NdotV * NdotV);
+	V.y = 0.0f;
+	V.z = NdotV;
 
-	for(uint i = 0u; i < SAMPLE_COUNT; i++) {
+	float F0Scale = 0.0;
+	float F0Bias = 0.0;
+
+	for (uint i = 0u; i < SAMPLE_COUNT; i++) {
 		vec2 unitSquareSample = hammersley(i, SAMPLE_COUNT);
 		vec3 H = importanceSampleGGX(unitSquareSample, N, roughness); // halfway
 		vec3 L = normalize(2.0 * dot(V, H) * H - V); // light sample direction
 
-		float NdotL = max(dot(N, L), 0.0); // don't forget from the integral
-		if(NdotL > 0.0) { // stuff with negative dot product is behind our hemisphere
-			float mipLevel = getSampleMipLevel(V, N, H, roughness);
-			outputColor += textureLod(environmentCubemap, L, mipLevel).rgb * NdotL;
-			totalWeight += NdotL;
+		float NdotL = max(L.z, 0.0);
+		float NdotH = max(H.z, 0.0);
+		float VdotH = max(dot(V, H), 0.0);
+
+		if (NdotL > 0.0) { // light with negative dot product is behind our hemisphere
+			float G = geometrySmith(N, V, L, roughness);
+			float GVis = (G * VdotH) / (NdotH * NdotV); // not totally sure where this comes from
+
+			float partialFresnel = pow(1.0 - VdotH, 5.0);
+
+			// (I think there is no NDF term here because we already used it for importance sampling)
+			F0Scale += GVis * (1.0 - partialFresnel);
+			F0Bias += GVis * partialFresnel;
 		}
 	}
-	outputColor /= totalWeight;
-	FragColor = vec4(outputColor, 1.0);
+
+	F0Scale /= SAMPLE_COUNT;
+	F0Bias /= SAMPLE_COUNT;
+
+	FragColor = vec2(F0Scale, F0Bias);
 })frag_text";
 
 

@@ -52,7 +52,7 @@ namespace gpu
           * Set which cube face texture to render to.
           * @param index
           */
-         virtual void setCubeFace(unsigned int index, ::gpu::shader * pgpushader);
+         virtual void set_cube_face(unsigned int index, ::gpu::shader * pgpushader);
 
 
          //virtual unsigned int getCubemapTextureId();

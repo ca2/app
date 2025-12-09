@@ -1,9 +1,9 @@
 ﻿// This file was automatically generated from a command line like:
-// application_build_helper --inline-text "brdfconvolution.frag"
+// application_build_helper --inline-text "brdf_convolution_map.frag"
 #pragma once
 
 
-const char g_psz_brdfconvolution_frag[] = R"frag_text(#version 330 core
+const char g_psz_brdf_convolution_map_frag[] = R"frag_text(#version 330 core
 
 out vec2 FragColor;
 in vec2 textureCoordinates;

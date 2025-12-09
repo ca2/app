@@ -1,5 +1,5 @@
 ﻿// This file was automatically generated from a command line like:
-// application_build_helper --inline-text "brdfconvolution.frag"
+// application_build_helper --inline-text "brdf_convolution.frag"
 #pragma once
 
 

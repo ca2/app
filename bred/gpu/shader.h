@@ -210,6 +210,8 @@ namespace gpu
                                int iSlot = 0);
       virtual void bind_source(::gpu::command_buffer *pgpucommandbuffer, ::gpu::pixmap *pgpupixmapSource,
                                int iSlot = 0);
+      virtual void bind_source2(::gpu::command_buffer * pgpucommandbuffer, int iIndex,
+         const char * pszPayloadName, ::gpu::texture * pgputextureSource);
       virtual void bind(::gpu::command_buffer *pgpucommandbuffer);
       virtual void unbind(::gpu::command_buffer *pgpucommandbuffer);
 

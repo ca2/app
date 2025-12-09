@@ -1,7 +1,7 @@
 // From github:/tristancalderbank/OpenGL-PBR-Renderer/mipmap_cubemap_framebuffer.h by
 // camilo on 2025-09-26 19:54 <3ThomasBorregaardSorensen!!
 #include "framework.h"
-#include "mipmap_cubemap_framebuffer.h"
+#include "aaa_mipmap_cubemap_framebuffer.h"
 #include "bred/gpu/context_lock.h"
 
 
@@ -18,21 +18,21 @@ namespace gpu_opengl
    {
 
 
-      mipmap_cubemap_framebuffer::mipmap_cubemap_framebuffer()
+      aaa_mipmap_cubemap_framebuffer::aaa_mipmap_cubemap_framebuffer()
       {
 
 
       }
 
 
-      mipmap_cubemap_framebuffer::~mipmap_cubemap_framebuffer()
+      aaa_mipmap_cubemap_framebuffer::~aaa_mipmap_cubemap_framebuffer()
       {
 
 
       }
 
 
-      void mipmap_cubemap_framebuffer::on_initialize_mipmap_cubemap_framebuffer()
+      void aaa_mipmap_cubemap_framebuffer::on_initialize_mipmap_cubemap_framebuffer()
       {
 
          ::gpu::context_lock contextlock(m_pgpucontext);
@@ -115,7 +115,7 @@ namespace gpu_opengl
       }
 
 
-      void mipmap_cubemap_framebuffer::bind()
+      void aaa_mipmap_cubemap_framebuffer::bind()
       {
          ::cast < ::gpu_opengl::texture>ptexture = m_ptexture;
          glBindFramebuffer(GL_FRAMEBUFFER, ptexture->m_gluFbo);
@@ -123,10 +123,10 @@ namespace gpu_opengl
       }
 
 
-      void mipmap_cubemap_framebuffer::set_current_mip(int iCurrentMip)
+      void aaa_mipmap_cubemap_framebuffer::set_current_mip(int iCurrentMip)
       {
 
-         ::gpu::ibl::mipmap_cubemap_framebuffer::set_current_mip(iCurrentMip);
+         ::gpu::ibl::aaa_mipmap_cubemap_framebuffer::set_current_mip(iCurrentMip);
          // mipLevel = level;
          // mipWidth = ptexture->m_rectangleTarget.width() * std::pow(0.5, mipLevel);
          // mipHeight = ptexture->m_rectangleTarget.height() * std::pow(0.5, mipLevel);
@@ -155,10 +155,10 @@ namespace gpu_opengl
       //     return mipHeight;
       // }
 
-      void mipmap_cubemap_framebuffer::set_cube_face(int iFace)
+      void aaa_mipmap_cubemap_framebuffer::set_cube_face(int iFace)
       {
 
-         ::gpu::ibl::mipmap_cubemap_framebuffer::set_cube_face(iFace);
+         ::gpu::ibl::aaa_mipmap_cubemap_framebuffer::set_cube_face(iFace);
 
          ::cast < ::gpu_opengl::texture>ptexture = m_ptexture;
 
@@ -174,7 +174,7 @@ namespace gpu_opengl
       }
 
 
-      unsigned int mipmap_cubemap_framebuffer::getCubemapTextureId()
+      unsigned int aaa_mipmap_cubemap_framebuffer::getCubemapTextureId()
       {
          ::cast < ::gpu_opengl::texture>ptexture = m_ptexture;
          return ptexture->m_gluTextureID;

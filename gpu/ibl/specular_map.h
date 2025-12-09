@@ -62,7 +62,7 @@ namespace gpu
          const unsigned int m_uBrdfConvolutionMapHeight = 512;
 
          ::pointer<::gpu::shader> m_pshaderBrdfConvolution;
-         ::pointer<brdf_convolution_framebuffer> m_pbrdfconvolutionframebuffer;
+         ::pointer<brdf_convolution_framebuffer> m_pframebufferBrdfConvolution;
 
          //::pointer < ::gpu::full_screen_quad > m_pfullscreenquad;
 
@@ -75,11 +75,11 @@ namespace gpu
          ~specular_map() override;
 
 
-         virtual ::block embedded_prefiltered_env_map_vert();
-         virtual ::block embedded_prefiltered_env_map_frag();
+         virtual ::memory prefiltered_environment_map_vert_memory();
+         virtual ::memory prefiltered_environment_map_frag_memory();
 
-         virtual ::block embedded_brdf_convolution_vert();
-         virtual ::block embedded_brdf_convolution_frag();
+         virtual ::memory brdf_convolution_vert_memory();
+         virtual ::memory brdf_convolution_frag_memory();
 
 
          //virtual void initialize_specular_map(::gpu::context  * pgpucontext,  const ::scoped_string & scopedstrengineRoot, const unsigned int environmentCubemapId);

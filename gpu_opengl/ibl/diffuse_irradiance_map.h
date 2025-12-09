@@ -5,7 +5,7 @@
 //#include <memory>
 
 #include "gpu/ibl/diffuse_irradiance_map.h"
-#include "gpu_opengl/ibl/cubemap_framebuffer.h"
+//#include "gpu_opengl/ibl/cubemap_framebuffer.h"
 #include "bred/gpu/shader.h"
 
 
@@ -65,7 +65,7 @@ namespace gpu_opengl
           * @return
           */
 
-         unsigned int getCubemapId();
+         //unsigned int getCubemapId();
 
 
       };

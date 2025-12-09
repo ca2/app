@@ -96,11 +96,11 @@ namespace gpu
          m_pshaderDiffuseIrradiance->m_bindingCubeSampler.m_strUniform = "environmentCubemap";
 
 
-         øconstruct(m_pdiffuseIrradianceFramebuffer);
+         øconstruct(m_pframebufferDiffuseIrradiance);
 
-         m_pdiffuseIrradianceFramebuffer->m_strSamplerUniform = "environmentCubemap";
+         m_pframebufferDiffuseIrradiance->m_strSamplerUniform = "environmentCubemap";
 
-         m_pdiffuseIrradianceFramebuffer->initialize_cubemap_framebuffer(
+         m_pframebufferDiffuseIrradiance->initialize_cubemap_framebuffer(
             m_pgpucontext, m_udiffuse_irradiance_mapWidth, m_udiffuse_irradiance_mapHeight);
 
       }

@@ -102,7 +102,7 @@ namespace gpu_opengl
       //void draw() override;
 
       void bind_source(::gpu::command_buffer *pgpucommandbuffer, ::gpu::texture *pgputexture, int iSlot) override;
-
+      void bind_source2(gpu::command_buffer* pgpucommandbuffer, int iIndex, const char* pszPayloadName, gpu::texture* pgputextureSource) override;
 
       void set_bool(const ::scoped_string& scopedstrName, bool value) override;
       void set_int(const ::scoped_string& scopedstrName, int value) override;

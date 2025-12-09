@@ -7,6 +7,8 @@
 #include "texture.h"
 #include "acme/exception/interface_only.h"
 #include "aura/graphics/image/context.h"
+#include "bred/gpu/context_lock.h"
+
 
 namespace gpu
 {
@@ -62,18 +64,39 @@ namespace gpu
 
 
 
-   void texture::initialize_image_texture(::gpu::renderer * pgpurenderer, const ::int_rectangle& rectangleTarget, bool bWithDepth, const ::pointer_array < ::image::image >& imagea, enum_type etype)
+   void texture::initialize_texture(::gpu::renderer * pgpurenderer,
+      const ::int_rectangle& rectangleTarget, bool bWithDepth,
+      const ::pointer_array < ::image::image > *pimagea, enum_type etype)
    {
 
-      m_etype = etype;
-      m_pgpurenderer = pgpurenderer;
-      m_rectangleTarget = rectangleTarget;
+      ///::gpu::context_lock contextlock(pgpurenderer->m_pgpucontext);
+
+      if (m_pgpurenderer != pgpurenderer
+         || rectangleTarget != m_rectangleTarget
+         || etype != m_etype)
+      {
+
+         m_etype = etype;
+         m_pgpurenderer = pgpurenderer;
+         m_rectangleTarget = rectangleTarget;
+
+         create_texture(pimagea);
+
+      }
+
       m_bWithDepth = bWithDepth;
+
+      if (bWithDepth)
+      {
+
+         create_depth_resources();
+
+      }
 
    }
 
 
-   void texture::initialize_cubemap_image_texture_with_mipmap(::gpu::renderer *pgpurenderer, const ::int_rectangle &rectangleTarget,
+   void texture::initialize_mipmap_cubemap_texture(::gpu::renderer *pgpurenderer, const ::int_rectangle &rectangleTarget,
                                           int iMipCount, bool bRenderTarget, bool bShaderResourceView)
    {
 
@@ -88,7 +111,7 @@ namespace gpu
          m_rectangleTarget = rectangleTarget;
          m_iMipCount = iMipCount;
 
-         create_image();
+         create_texture(nullptr);
 
       }
 
@@ -123,9 +146,10 @@ namespace gpu
    }
 
 
-   void texture::create_image()
+   void texture::create_texture(const ::pointer_array < ::image::image > *pimagea)
    {
 
+      throw ::interface_only();
 
    }
       
@@ -220,14 +244,14 @@ namespace gpu
    }
 
 
-   void texture::initialize_image_texture(::gpu::renderer* pgpurenderer, const ::file::path& path, bool bIsSrgb)
+   void texture::initialize_texture_from_file_path(::gpu::renderer* pgpurenderer, const ::file::path& path, bool bIsSrgb)
    {
 
       auto pimage = image()->path_image(path);
 
       ::pointer_array < ::image::image > imagea({ pimage });
 
-      initialize_image_texture(pgpurenderer, imagea);
+      initialize_texture_from_image(pgpurenderer, imagea);
 
    }
 
@@ -277,7 +301,8 @@ namespace gpu
 
    }
 
-   void texture::initialize_image_texture(::gpu::renderer* pgpurenderer, const ::pointer_array < ::image::image >& imagea, enum_type etype)
+
+   void texture::initialize_texture_from_image(::gpu::renderer* pgpurenderer, const ::pointer_array < ::image::image >& imagea, enum_type etype)
    {
 
       auto r = imagea.first()->rectangle();
@@ -294,7 +319,7 @@ namespace gpu
 
       }
 
-      initialize_image_texture(pgpurenderer, r, false, imagea, etype);
+      initialize_texture(pgpurenderer, r, false, &imagea, etype);
 
    }
 
@@ -481,6 +506,20 @@ namespace gpu
    {
 
       return true;
+
+   }
+
+
+   void texture::set_cube_face(int iFace)
+   {
+
+
+   }
+
+
+   void texture::generate_mipmap()
+   {
+
 
    }
 

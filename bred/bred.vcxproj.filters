@@ -632,9 +632,6 @@
     <ClCompile Include="gltf\vertex.cpp">
       <Filter>Source Files\gltf</Filter>
     </ClCompile>
-    <ClCompile Include="graphics3d\model_tinyobjloader_002.cpp">
-      <Filter>Source Files\graphics3d</Filter>
-    </ClCompile>
     <ClCompile Include="graphics3d\global_ubo1.cpp">
       <Filter>Source Files\graphics3d</Filter>
     </ClCompile>
@@ -643,6 +640,9 @@
     </ClCompile>
     <ClCompile Include="graphics3d\render_systems\pbr_with_ibl_render_system.cpp">
       <Filter>Source Files\graphics3d\render_systems</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics3d\tinyobjloader_002.cpp">
+      <Filter>Source Files\graphics3d</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -179,6 +179,13 @@ namespace gpu
    }
 
 
+   void shader::bind_source2(gpu::command_buffer* pgpucommandbuffer, int iIndex, const char* pszPayloadName, gpu::texture* pgputextureSource)
+   {
+
+
+   }
+
+
    void shader::unbind(::gpu::command_buffer *pgpucommandbuffer)
    {
 

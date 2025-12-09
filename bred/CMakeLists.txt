@@ -79,12 +79,12 @@ list(APPEND library_source
    gpu/types.h
    graphics3d/render_systems/gltf_render_system.cpp
    graphics3d/render_systems/gltf_render_system.h
+   graphics3d/render_systems/pbr_with_ibl_render_system.cpp
+   graphics3d/render_systems/pbr_with_ibl_render_system.h
    graphics3d/render_systems/point_light_render_system.cpp
    graphics3d/render_systems/point_light_render_system.h
    graphics3d/render_systems/scene_render_system.cpp
    graphics3d/render_systems/scene_render_system.h
-   graphics3d/render_systems/skybox_ibl_render_system.cpp
-   graphics3d/render_systems/skybox_ibl_render_system.h
    graphics3d/render_systems/skybox_render_system.cpp
    graphics3d/render_systems/skybox_render_system.h
    graphics3d/render_systems/wavefront_obj_render_system.cpp
@@ -92,7 +92,7 @@ list(APPEND library_source
    graphics3d/_.h
    graphics3d/_constant.h
    graphics3d/_sandbox_interfaces.h
-   graphics3d/_types.h
+   #graphics3d/_types.h
    graphics3d/aaa_frame_info.h
    graphics3d/aaa_model.h
    graphics3d/aaa_transform_component.h
@@ -108,9 +108,11 @@ list(APPEND library_source
    graphics3d/immersion_layer.cpp
    graphics3d/immersion_layer.h
    graphics3d/game_object.h
-   graphics3d/global_ubo.cpp
-   graphics3d/global_ubo.h
-   graphics3d/model.h
+   #graphics3d/global_ubo.cpp
+   #graphics3d/global_ubo.h
+   graphics3d/global_ubo1.cpp
+   graphics3d/global_ubo1.h
+   #graphics3d/model.h
    graphics3d/provider.h
    graphics3d/render_system.cpp
    graphics3d/render_system.h
@@ -146,8 +148,8 @@ list(APPEND library_source
    graphics3d/input.h
    graphics3d/key_map.cpp
    graphics3d/key_map.h
-   graphics3d/model.cpp
-   graphics3d/model.h
+   #graphics3d/model.cpp
+   #graphics3d/model.h
    graphics3d/scene_object.cpp
    graphics3d/scene_object.h
    graphics3d/scene_renderable.cpp
@@ -156,6 +158,9 @@ list(APPEND library_source
    #graphics3d/scene_system.h
    graphics3d/types.cpp
    graphics3d/types.h
+   graphics3d/tinyobjloader_Builder.cpp
+   graphics3d/tinyobjloader_Builder.h
+   graphics3d/tinyobjloader_002.cpp
    graphics3d/utilities.h
    include/_.h
    inline/__debug_box_clear_impl.h

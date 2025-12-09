@@ -24,11 +24,11 @@ namespace hlsl
 } // namespace hlsl namespace hlsl
 
 
-CLASS_DECL_GPU::block hlsl_embedded_brdf_convolution_frag()
+CLASS_DECL_GPU::block hlsl_brdf_convolution_frag_memory()
 {
    return {hlsl::g_psz_brdfconvolution_frag, sizeof(hlsl::g_psz_brdfconvolution_frag) - 1};
 }
-CLASS_DECL_GPU::block hlsl_embedded_brdf_convolution_vert()
+CLASS_DECL_GPU::block hlsl_brdf_convolution_vert_memory()
 {
    return {hlsl::g_psz_brdfconvolution_vert, sizeof(hlsl::g_psz_brdfconvolution_vert) - 1};
 
@@ -43,14 +43,14 @@ CLASS_DECL_GPU::block hlsl_embedded_diffuse_irradiance_vert()
    return {hlsl::g_psz_diffuseirradiance_vert, sizeof(hlsl::g_psz_diffuseirradiance_vert) - 1};
 }
 
-::block hlsl_embedded_prefiltered_env_map_vert()
+::block hlsl_prefiltered_environment_map_vert_memory()
 {
 
    return {hlsl::g_psz_specularenv_vert, sizeof(hlsl::g_psz_specularenv_vert) - 1};
 }
 
 
-::block hlsl_embedded_prefiltered_env_map_frag()
+::block hlsl_prefiltered_environment_map_frag_memory()
 {
 
    return {hlsl::g_psz_specularenv_frag, sizeof(hlsl::g_psz_specularenv_frag) - 1};

@@ -15,7 +15,7 @@ namespace gpu
       /**
        * Framebuffer for rendering to faces of a cubemap. The faces themselves are mipmapped.
        */
-      class CLASS_DECL_GPU aaa_mipmap_cubemap_framebuffer : 
+      class CLASS_DECL_GPU mipmap_cubemap_framebuffer : 
          virtual public ::graphics3d::scene_object
       {
       public:
@@ -32,10 +32,10 @@ namespace gpu
          // unsigned int m_uCubemapTextureId;
 
 
-         aaa_mipmap_cubemap_framebuffer();
+         mipmap_cubemap_framebuffer();
 
 
-         ~aaa_mipmap_cubemap_framebuffer() override;
+         ~mipmap_cubemap_framebuffer() override;
 
 
          virtual void initialize_mipmap_cubemap_framebuffer(::graphics3d::scene_base * pscenebase, int iWidth, int iHeight);

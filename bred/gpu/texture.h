@@ -59,7 +59,7 @@ namespace gpu
       ~texture() override;
 
 
-      virtual void create_image();
+      virtual void create_texture(const ::pointer_array < ::image::image > *pimagea);
 
       virtual ::int_size size() const;
       virtual int width() const;
@@ -82,12 +82,16 @@ namespace gpu
          bool bSrgb,
          const void * pdata,
          enum_type etype = e_type_image);
-      virtual void initialize_image_texture(::gpu::renderer* pgpurenderer, const ::int_rectangle& rectangleTarget, bool bWithDepth, const ::pointer_array < ::image::image >& imagea = {}, enum_type etype = e_type_image);
-      virtual void initialize_cubemap_image_texture_with_mipmap(::gpu::renderer *pgpurenderer, const ::int_rectangle& rectangleTarget, int iMipCount, bool bRenderTarget, bool bShaderResourceView);
+      virtual void initialize_texture(::gpu::renderer* pgpurenderer,
+         const ::int_rectangle& rectangleTarget,
+         bool bWithDepth,
+         const ::pointer_array < ::image::image > *pimagea = nullptr,
+         enum_type etype = e_type_image);
+      virtual void initialize_mipmap_cubemap_texture(::gpu::renderer *pgpurenderer, const ::int_rectangle& rectangleTarget, int iMipCount, bool bRenderTarget, bool bShaderResourceView);
       virtual void initialize_depth_texture(::gpu::renderer* pgpurenderer, const ::int_rectangle& rectangleTarget);
 
-      virtual void initialize_image_texture(::gpu::renderer* pgpurenderer, const ::file::path & path, bool bIsSrgb);
-      virtual void initialize_image_texture(::gpu::renderer* pgpurenderer, const ::pointer_array < ::image::image >& imagea, enum_type etype = e_type_image);
+      virtual void initialize_texture_from_file_path(::gpu::renderer* pgpurenderer, const ::file::path & path, bool bIsSrgb);
+      virtual void initialize_texture_from_image(::gpu::renderer* pgpurenderer, const ::pointer_array < ::image::image > & imagea, enum_type etype = e_type_image);
 
       virtual ::pointer < ::gpu::pixmap > create_gpu_pixmap(const ::int_size & size);
 
@@ -109,6 +113,10 @@ namespace gpu
       virtual void set_pixels(const ::int_rectangle& rectangle, const void* data);
 
       virtual bool is_in_shader_sampling_state();
+
+      virtual void set_cube_face(int iFace);
+
+      virtual void generate_mipmap();
 
    };
 

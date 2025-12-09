@@ -82,7 +82,7 @@ namespace gpu
       void brdf_convolution_framebuffer::on_initialize_BrdfConvolutionFramebuffer()
       {
 
-         m_ptexture->initialize_image_texture(m_pgpucontext->m_pgpurenderer, 
+         m_ptexture->initialize_texture(m_pgpucontext->m_pgpurenderer,
             m_ptexture->m_rectangleTarget, true, {});
 
       }

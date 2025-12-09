@@ -1,5 +1,5 @@
 ﻿// This file was automatically generated from a command line like:
-// application_build_helper --inline-text "specularenv.vert"
+// application_build_helper --inline-text "prefiltered_environment_map.vert"
 #pragma once
 
 

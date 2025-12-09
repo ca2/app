@@ -169,6 +169,8 @@ namespace opengl
 
    CLASS_DECL_GPU_OPENGL GLenum as_gl_draw_mode(::gpu::enum_topology etopology);
 
+   CLASS_DECL_GPU_OPENGL const char * check_framebuffer_status_text(GLenum status);
+
 
 } // namespace opengl
 

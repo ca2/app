@@ -61,16 +61,16 @@ list(APPEND library_source
    ${IBL_SHADERS_HEADERS}
    ibl/brdf_convolution_framebuffer.cpp
    ibl/brdf_convolution_framebuffer.h
-   ibl/cubemap_framebuffer.cpp
-   ibl/cubemap_framebuffer.h
+   #ibl/cubemap_framebuffer.cpp
+   #ibl/cubemap_framebuffer.h
    ibl/diffuse_irradiance_map.cpp
    ibl/diffuse_irradiance_map.h
    ibl/equirectangular_cubemap.cpp
    ibl/equirectangular_cubemap.h
-   ibl/hdri_cube.cpp
-   ibl/hdri_cube.h
-   ibl/mipmap_cubemap_framebuffer.cpp
-   ibl/mipmap_cubemap_framebuffer.h
+   #ibl/hdri_cube.cpp
+   #ibl/hdri_cube.h
+   #ibl/aaa_mipmap_cubemap_framebuffer.cpp
+   #ibl/aaa_mipmap_cubemap_framebuffer.h
    ibl/specular_map.cpp
    ibl/specular_map.h
         _.cpp
@@ -88,8 +88,8 @@ list(APPEND library_source
         cpu_buffer.h
         context.cpp
         context.h
-   cube.cpp
-   cube.h
+   #cube.cpp
+   #cube.h
         device.cpp
         device.h
         frame.h
@@ -135,6 +135,7 @@ list(APPEND library_source
         swap_chain.h
         texture.cpp
         texture.h
+
 )
 
 if (WIN32)

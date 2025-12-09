@@ -59,10 +59,10 @@ namespace gpu_opengl
 
 
 
-         ::block embedded_prefiltered_env_map_vert() override;
-         ::block embedded_prefiltered_env_map_frag() override;
-         ::block embedded_brdf_convolution_vert() override;
-         ::block embedded_brdf_convolution_frag() override;
+         ::memory prefiltered_environment_map_vert_memory() override;
+         ::memory prefiltered_environment_map_frag_memory() override;
+         ::memory brdf_convolution_vert_memory() override;
+         ::memory brdf_convolution_frag_memory() override;
 
 
          //virtual void initialize_specular_map(const ::string &engineRoot, const unsigned int environmentCubemapId);
@@ -78,7 +78,7 @@ namespace gpu_opengl
           * Get the GL texture ID of the computed pre-filtered environment cubemap.
           * @return
           */
-virtual         unsigned int getPrefilteredEnvMapId();
+//virtual         unsigned int getPrefilteredEnvMapId();
 
 
          /**
@@ -91,7 +91,7 @@ virtual         unsigned int getPrefilteredEnvMapId();
           * Get the GL texture ID of the computed BRDF convolution map.
           * @return
           */
-         unsigned int getBrdfConvolutionMapId();
+         //unsigned int getBrdfConvolutionMapId();
 
 
       };

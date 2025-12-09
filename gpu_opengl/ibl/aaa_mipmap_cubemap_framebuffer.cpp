@@ -131,10 +131,16 @@ namespace gpu_opengl
          // mipWidth = ptexture->m_rectangleTarget.width() * std::pow(0.5, mipLevel);
          // mipHeight = ptexture->m_rectangleTarget.height() * std::pow(0.5, mipLevel);
          ::cast < ::gpu_opengl::texture>ptexture = m_ptexture;
+         int iRbo = ptexture->m_gluDepthStencilRBO;
          glBindRenderbuffer(GL_RENDERBUFFER, ptexture->m_gluDepthStencilRBO);
          GLCheckError("");
-         glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT24, ptexture->m_sizeMip.cx, ptexture->m_sizeMip.cy);
-         GLCheckError("");
+         if (iRbo > 0)
+         {
+            int iMipWidth = ptexture->m_sizeMip.cx;
+            int iMipHeight = ptexture->m_sizeMip.cy;
+            glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT24, iMipWidth, iMipHeight);
+            GLCheckError("");
+         }
 
       }
 

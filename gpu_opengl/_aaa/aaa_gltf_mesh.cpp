@@ -1,7 +1,7 @@
 // From tristancalderbank/OpenGL-PBR-Renderer/mesh.h by
 // camilo on 2025-09-26 18:28 <3ThomasBorregaardSorensen!!
 #include "gltf_mesh.h"
-#include "framework.h"
+#include "../framework.h"
 
 
 #include "mesh.h"

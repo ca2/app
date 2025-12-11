@@ -1,5 +1,5 @@
 ﻿// This file was automatically generated from a command line like:
-// application_build_helper --inline-text "hdricube.vert"
+// application_build_helper --inline-text "equirectangular_cubemap.vert"
 #pragma once
 
 

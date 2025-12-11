@@ -1,11 +1,13 @@
 ﻿// This file was automatically generated from a command line like:
-// application_build_helper --inline-text "diffuseirradiance.vert"
+// application_build_helper --inline-text "equirectangular_cubemap.vert"
 #pragma once
 
 
-const char g_psz_diffuseirradiance_vert[] = R"vert_text(#version 330 core
+const char g_psz_hdricube_vert[] = R"vert_text(#version 330 core
 
 layout (location = 0) in vec3 aPos;
+layout (location = 1) in vec3 aNormal;
+layout (location = 2) in vec3 aUv;
 
 out vec3 modelCoordinates;
 

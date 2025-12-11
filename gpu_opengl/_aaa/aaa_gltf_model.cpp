@@ -1,6 +1,6 @@
 // From github:/tristancalderbank/OpenGL-PBR-Renderer/gltf_model.cpp by
 // camilo on 2025-09-26 19:17 <3ThomasBorregaardSorensen!!
-#include "framework.h"
+#include "../framework.h"
 #include "gltf_model.h"
 
 #include <iostream>

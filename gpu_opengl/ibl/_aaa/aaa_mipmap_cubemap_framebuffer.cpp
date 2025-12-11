@@ -1,7 +1,7 @@
 // From github:/tristancalderbank/OpenGL-PBR-Renderer/mipmap_cubemap_framebuffer.h by
 // camilo on 2025-09-26 19:54 <3ThomasBorregaardSorensen!!
 #include "framework.h"
-#include "aaa_mipmap_cubemap_framebuffer.h"
+#include "../aaa_mipmap_cubemap_framebuffer.h"
 #include "bred/gpu/context_lock.h"
 
 

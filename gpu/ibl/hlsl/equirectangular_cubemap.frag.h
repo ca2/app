@@ -1,5 +1,5 @@
 ﻿// This file was automatically generated from a command line like:
-// application_build_helper --inline-text "hdricube.frag"
+// application_build_helper --inline-text "equirectangular_cubemap.frag"
 #pragma once
 
 

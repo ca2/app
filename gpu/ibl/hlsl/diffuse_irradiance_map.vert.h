@@ -1,9 +1,9 @@
 ﻿// This file was automatically generated from a command line like:
-// application_build_helper --inline-text "diffuseirradiance.vert"
+// application_build_helper --inline-text "diffuse_irradiance_map.vert"
 #pragma once
 
 
-const char g_psz_diffuseirradiance_vert[] = R"vert_text(// diffuseirradiance_vs.hlsl
+const char g_psz_diffuse_irradiance_map_vert[] = R"vert_text(// diffuseirradiance_vs.hlsl
 // Converted from OpenGL GLSL (version 330 core) to HLSL for DirectX 11
 
 cbuffer MatrixBuffer : register(b1)

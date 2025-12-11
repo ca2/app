@@ -200,15 +200,18 @@ namespace graphics3d
 
       ødefer_construct(m_ptexture);
 
-      m_ptexture->m_bTransferDst = true;
+      ::gpu::texture_attributes textureattributes(::int_rectangle{sizeItem},8, 4, 0,
+         ::gpu::e_texture_cube_map,  6);
+
+      ::gpu::texture_flags textureflags;
+
+      textureflags.m_bTransferTarget = true;
+
+      ::gpu::texture_data texturedata(imagea);
 
       auto prenderer = m_pscene->m_pimmersionlayer->m_pengine->gpu_context()->m_pgpurenderer;
 
-      m_ptexture->initialize_texture(
-         prenderer,
-         sizeItem,
-         false,
-         &imagea, ::gpu::texture::e_type_cube_map);
+      m_ptexture->initialize_texture(prenderer, textureattributes, textureflags, texturedata);
 
    }
 

@@ -48,9 +48,10 @@ namespace gpu
    }
 
 
-   void command_buffer::begin_render()
+   void command_buffer::begin_render(::gpu::shader * pgpushader, ::gpu::texture * pgputextureTarget)
    {
 
+      pgpushader->bind(this, pgputextureTarget);
 
    }
 
@@ -235,21 +236,6 @@ namespace gpu
 
 
       return pgpucommandbuffer;
-
-   }
-
-
-
-   void command_buffer::begin_render()
-   {
-
-
-   }
-
-
-   void command_buffer::end_render()
-   {
-
 
    }
 

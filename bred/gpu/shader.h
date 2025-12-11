@@ -16,33 +16,17 @@ namespace gpu
 
    };
 
-   
-   struct binding
-   {
-
-      bool              m_bSet = false;
-      unsigned int      m_uSet = 0;
-      unsigned int      m_uBinding = 0;
-      ::string          m_strUniform;
-
-      void set(unsigned int uBinding = 0)
-      {
-
-         m_bSet = true;
-         m_uBinding = uBinding;
-
-      }
-      bool is_set()const { return m_bSet; }
-   };
 
 
    class CLASS_DECL_BRED shader :
       virtual public ::matter
    {
    public:
+
       
       enum enum_flag
       {
+
          e_flag_none = 0,
          e_flag_clear_default_bindings_and_attributes_descriptions = 1,
 
@@ -61,7 +45,7 @@ namespace gpu
 
       enum enum_descriptor_set_slot
       {
-         e_descriptor_set_slot_global,
+         //e_descriptor_set_slot_global,
          e_descriptor_set_slot_per_pass,
          e_descriptor_set_slot_material,
          e_descriptor_set_slot_local,
@@ -69,6 +53,8 @@ namespace gpu
          //e_descriptor_set_shader_resource_view_and_sampler,
 
       };
+
+
       int m_iVertexLevel = -1;
 
       //unsigned int               m_uId;
@@ -99,15 +85,18 @@ namespace gpu
       enum_cull_mode m_ecullmode = e_cull_mode_back;
       //bool m_bHasSourceImage = false;
 
-      binding m_bindingUbo;
-      binding m_bindingSampler;
-      binding m_bindingCubeSampler;
+      //binding m_bindingUbo;
+      //binding m_bindingSampler;
+      //binding m_bindingCubeSampler;
+
+      ::pointer < binding_set_array > m_pbindingseta;
 
       string                     m_strError;
 
       //string_map_base < payload >     m_mapLayout;
 
       ::pointer < renderer >     m_pgpurenderer;
+      ::pointer<texture> m_ptextureTarget;
 
       ::file::path               m_pathVertex;
       ::file::path               m_pathFragment;
@@ -164,6 +153,15 @@ namespace gpu
 
       virtual void on_initialize_shader();
 
+      ::gpu::binding_set_array * binding_set_array();
+      ::gpu::binding_set * binding_set(int iSet = 0, ::gpu::binding_set * pgpubindingset = nullptr);
+      ::gpu::binding * binding(int iSet = 0, int iSlot = 0);
+
+      virtual ::gpu::binding *get_first_image_sampler_binding();
+      virtual bool has_image_sampler();
+      virtual bool has_global_ubo();
+      virtual void set_global_ubo();
+
       //virtual void use();
 
       //virtual void setBool(const ::scoped_string & scopedstrName, bool value);
@@ -199,7 +197,7 @@ namespace gpu
       virtual void _bind(::gpu::command_buffer *pgpucommandbuffer, ::gpu::enum_scene escene);
       //virtual void on_initialize_shader();
       
-      
+      virtual void on_before_draw(::gpu::command_buffer *pgpucommandbuffer);
       virtual void on_set_constant_buffer(const ::scoped_string& scopedstrName);
 
 

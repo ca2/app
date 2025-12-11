@@ -1,5 +1,6 @@
 // Created by camilo on 2025-05-31 15:32 <3ThomasBorregaardSørensen!!
 #include "framework.h"
+#include "binding.h"
 #include "command_buffer.h"
 #include "draw2d.h"
 #include "frame.h"
@@ -1275,13 +1276,16 @@ namespace gpu
 
          m_pgpushaderTextOut->m_bEnableBlend = true;
          m_pgpushaderTextOut->m_bDisableDepthTest = true;
-         m_pgpushaderTextOut->m_bindingSampler.set();
-         m_pgpushaderTextOut->m_bindingSampler.m_strUniform = "text";
+         //m_pgpushaderTextOut->binding(0, 0).set();
+         //m_pgpushaderTextOut->m_bindingSampler.m_strUniform = "text";
          m_pgpushaderTextOut->m_etopology = ::gpu::e_topology_triangle_strip;
          m_pgpushaderTextOut->m_ecullmode = ::gpu::e_cull_mode_none;
-         m_pgpushaderTextOut->m_bindingSampler.set(0);
+         //m_pgpushaderTextOut->m_bindingSampler.set(0);
          m_pgpushaderTextOut->m_iPushConstants = 1;
-         
+
+         auto pbindingSampler = m_pgpushaderTextOut->binding();
+         pbindingSampler->m_strUniform = "text";
+         pbindingSampler->m_ebinding = ::gpu::e_binding_sampler2d;
          //pcontext->white_to_color_sampler_shader_setup(m_pgpushaderTextOut);
 
          m_pgpushaderTextOut->m_propertiesPushShared
@@ -1475,7 +1479,7 @@ namespace gpu
 
             {
 
-               auto size = ppixmap->m_pgputexture->m_rectangleTarget.size();
+               auto size = ppixmap->m_pgputexture->size();
 
                auto w = (float)(size.width());
                auto h = (float)(size.height());

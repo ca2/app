@@ -3,7 +3,7 @@
 #pragma once
 
 
-const char g_psz_specularenv_vert[] = R"vert_text(// DirectX 11 HLSL Vertex Shader
+const char g_psz_prefiltered_environment_map_vert[] = R"vert_text(// DirectX 11 HLSL Vertex Shader
 
 cbuffer MatrixBuffer : register(b1)
 {

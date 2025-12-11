@@ -45,9 +45,9 @@ namespace gpu_opengl
          glBindFramebuffer(GL_FRAMEBUFFER, ptexture->m_gluFbo);
          GLCheckError("");
 
-         auto w = ptexture->m_rectangleTarget.width();
+         auto w = ptexture->rectangle().width();
 
-         auto h = ptexture->m_rectangleTarget.height();
+         auto h = ptexture->rectangle().height();
 
          // depth buffer
          glGenRenderbuffers(1, &ptexture->m_gluDepthStencilRBO);
@@ -128,8 +128,8 @@ namespace gpu_opengl
 
          ::gpu::ibl::aaa_mipmap_cubemap_framebuffer::set_current_mip(iCurrentMip);
          // mipLevel = level;
-         // mipWidth = ptexture->m_rectangleTarget.width() * std::pow(0.5, mipLevel);
-         // mipHeight = ptexture->m_rectangleTarget.height() * std::pow(0.5, mipLevel);
+         // mipWidth = ptexture->rectangle().width() * std::pow(0.5, mipLevel);
+         // mipHeight = ptexture->rectangle().height() * std::pow(0.5, mipLevel);
          ::cast < ::gpu_opengl::texture>ptexture = m_ptexture;
          int iRbo = ptexture->m_gluDepthStencilRBO;
          glBindRenderbuffer(GL_RENDERBUFFER, ptexture->m_gluDepthStencilRBO);

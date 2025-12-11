@@ -1292,8 +1292,11 @@ void main() {
             ødefer_construct_new(m_pshaderBlend3);
 
             m_pshaderBlend3->m_bEnableBlend = true;
-            m_pshaderBlend3->m_bindingSampler.set();
+            //m_pshaderBlend3->m_bindingSampler.set();
             m_pshaderBlend3->m_bDisableDepthTest = true;
+
+            auto &bindingSampler = m_pshaderBlend3->binding();
+            bindingSampler.m_ebinding = ::gpu::e_binding_sampler2d;
             //m_pshaderBlend3->m_bT
             //m_pshaderBlend3->m_pgpurenderer = this;
             //m_pshaderBlend3->m_setbindingSampler = 0;
@@ -1415,7 +1418,7 @@ void main() {
                   //   VK_PIPELINE_STAGE_FRAGMENT_SHADER_BIT
                   //);
 
-                  auto r = ptextureSrc->m_rectangleTarget;
+                  auto r = ptextureSrc->rectangle();
 
                   int h = r.height();
 
@@ -1506,10 +1509,10 @@ void main() {
                   //pcommandlist->RSSetViewports(1, &viewport);
                   //pcommandlist->RSSetScissorRects(1, &scissorRect);
                   //D3D11_VIEWPORT vp = {};
-                  //vp.TopLeftX = ptexture->m_rectangleTarget.left;
-                  //vp.TopLeftY = ptexture->m_rectangleTarget.top;
-                  //vp.Width = static_cast<float>(ptexture->m_rectangleTarget.width());
-                  //vp.Height = static_cast<float>(ptexture->m_rectangleTarget.height());
+                  //vp.TopLeftX = ptexture->rectangle().left;
+                  //vp.TopLeftY = ptexture->rectangle().top;
+                  //vp.Width = static_cast<float>(ptexture->rectangle().width());
+                  //vp.Height = static_cast<float>(ptexture->rectangle().height());
                   //vp.MinDepth = 0.0f;
                   //vp.MaxDepth = 1.0f;
                   //m_pcontext->RSSetViewports(1, &vp);

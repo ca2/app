@@ -47,7 +47,10 @@ namespace graphics3d
 
 		//::image32_callback                        m_callbackImage32CpuBuffer;
       ::pointer<::graphics3d::shape_factory> m_pshapefactory;
-
+      ::pointer<::gpu::binding_set> m_pbindingsetGlobalUbo1;
+      ::pointer<::gpu::binding_set> m_pbindingsetIbl1;
+      ::pointer<::gpu::binding_set> m_pbindingsetGltfPbr;
+      ::pointer<::gpu::binding_set> m_pbindingsetSceneGltfPbr;
 		engine();
 		~engine() override;
 
@@ -75,7 +78,10 @@ namespace graphics3d
 		virtual ::gpu::context* get_gpu_context();
 
 
-
+      virtual ::gpu::binding_set * global_ubo1_binding_set();
+      virtual ::gpu::binding_set * ibl1_binding_set();
+      virtual ::gpu::binding_set * gltf_pbr_binding_set();
+      virtual ::gpu::binding_set * scene_gltf_pbr_binding_set();
 
 		virtual void engine_on_after_load_scene(::graphics3d::scene_base* pscene);
 

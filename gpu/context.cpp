@@ -6,7 +6,7 @@
 //#include "frame_buffer.h"
 #include "gltf/model.h"
 #include "bred/gltf/vertex.h"
-#include "ibl/brdf_convolution_framebuffer.h"
+//#include "ibl/brdf_convolution_framebuffer.h"
 #include "ibl/equirectangular_cubemap.h"
 #include "acme/filesystem/filesystem/file_context.h"
 #include "aura/graphics/image/image.h"
@@ -19,10 +19,10 @@
 #include "bred/graphics3d/engine.h"
 #include "bred/graphics3d/immersion_layer.h"
 #include "bred/graphics3d/scene_base.h"
-#include "ibl/cubemap_framebuffer.h"
+//#include "ibl/cubemap_framebuffer.h"
 #include "ibl/diffuse_irradiance_map.h"
 #include "ibl/equirectangular_cubemap.h"
-#include "ibl/mipmap_cubemap_framebuffer.h"
+//#include "ibl/mipmap_cubemap_framebuffer.h"
 #include "ibl/specular_map.h"
 #include <ktx.h>
 #include <stb/stb_image.h>
@@ -72,7 +72,7 @@ namespace gpu_gpu
 
          piblequirectangularcubemap->compute();
 
-         pgputexture = piblequirectangularcubemap->m_pframebuffer->m_ptexture;
+         pgputexture = piblequirectangularcubemap->m_ptextureCubemap;
 
          pgputexture->m_bHdr = true;
 
@@ -89,7 +89,7 @@ namespace gpu_gpu
 
       ødefer_construct(ptexture);
 
-      ptexture->m_bShaderResourceView = true;
+      ptexture->m_textureflags.m_bShaderResource = true;
 
       auto memory = file()->as_memory(path);
 

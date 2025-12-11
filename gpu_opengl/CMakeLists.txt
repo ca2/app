@@ -9,7 +9,7 @@ message(STATUS "PROJECT_NAME is ${PROJECT_NAME}")
 
 # Collect all files in shaders/ directory
 file(GLOB SHADER_FILES
-   "${CMAKE_CURRENT_SOURCE_DIR}/ibl/shaders/*"
+   "${CMAKE_CURRENT_SOURCE_DIR}/ibl/shader/*"
 )
 
 message(STATUS "SHADER_FILES: ${SHADER_FILES}")
@@ -59,8 +59,8 @@ list(APPEND library_source
    gltf/model.h
    gltf/vertex.h
    ${IBL_SHADERS_HEADERS}
-   ibl/brdf_convolution_framebuffer.cpp
-   ibl/brdf_convolution_framebuffer.h
+   #ibl/brdf_convolution_framebuffer.cpp
+   #ibl/brdf_convolution_framebuffer.h
    #ibl/cubemap_framebuffer.cpp
    #ibl/cubemap_framebuffer.h
    ibl/diffuse_irradiance_map.cpp

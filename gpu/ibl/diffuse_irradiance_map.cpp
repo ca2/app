@@ -1,10 +1,11 @@
 // From github:/tristancalderbank/OpenGL-PBR-Renderer/diffuse_irradiance_map.cpp by
 // camilo on 2025-09-26 19:53 <3ThomasBorregaardSorensen!!
 #include "framework.h"
-#include "cubemap_framebuffer.h"
+//#include "cubemap_framebuffer.h"
 #include "diffuse_irradiance_map.h"
 #include "bred/gpu/context.h"
 #include "bred/gpu/shader.h"
+#include "bred/gpu/texture.h"
 #include "bred/gpu/types.h"
 #include "bred/graphics3d/shape_factory.h"
 //#include "glad/glad.h"
@@ -70,8 +71,8 @@ namespace gpu
          // embedded_diffuse_irradiance_vert();
          // embedded_diffuse_irradiance_frag();
          //
-         // ::file::path pathDiffuseIrradianceVertexShader = scopedstrengineRoot + "/src/ibl/shaders/diffuseirradiance.vert";
-         // ::file::path pathDiffuseIrradianceFragmentShader = scopedstrengineRoot + "/src/ibl/shaders/diffuseirradiance.frag";
+         // ::file::path pathDiffuseIrradianceVertexShader = scopedstrengineRoot + "/src/ibl/shaders/diffuse_irradiance_map.vert";
+         // ::file::path pathDiffuseIrradianceFragmentShader = scopedstrengineRoot + "/src/ibl/shaders/diffuse_irradiance_map.frag";
 
          øconstruct(m_pshaderDiffuseIrradiance);
 
@@ -92,16 +93,17 @@ namespace gpu
             m_pgpucontext->m_pgpurenderer, embedded_diffuse_irradiance_vert(), embedded_diffuse_irradiance_frag(), {},
             {}, pinputlayoutPosition);
 
-         m_pshaderDiffuseIrradiance->m_bindingCubeSampler.set(0);
-         m_pshaderDiffuseIrradiance->m_bindingCubeSampler.m_strUniform = "environmentCubemap";
+         //m_pshaderDiffuseIrradiance->m_bindingCubeSampler.set(0);
+         //m_pshaderDiffuseIrradiance->m_bindingCubeSampler.m_strUniform = "environmentCubemap";
+         auto &bindingCubeSampler = m_pshaderDiffuseIrradiance->binding();
+         bindingCubeSampler.m_strUniform = "environmentCubemap";
 
+         øconstruct(m_ptextureDiffuseIrradianceCubemap);
 
-         øconstruct(m_pframebufferDiffuseIrradiance);
+         //m_ptextureDiffuseIrradianceCubemap->m_strSamplerUniform = "environmentCubemap";
 
-         m_pframebufferDiffuseIrradiance->m_strSamplerUniform = "environmentCubemap";
-
-         m_pframebufferDiffuseIrradiance->initialize_cubemap_framebuffer(
-            m_pgpucontext, m_udiffuse_irradiance_mapWidth, m_udiffuse_irradiance_mapHeight);
+         m_ptextureDiffuseIrradianceCubemap->initialize_mipmap_cubemap_texture(
+            m_pgpucontext->m_pgpurenderer, ::int_rectangle{ API_CHANGED_ARGUMENT,m_udiffuse_irradiance_mapWidth, m_udiffuse_irradiance_mapHeight});
 
       }
 

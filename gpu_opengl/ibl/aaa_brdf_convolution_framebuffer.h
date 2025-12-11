@@ -3,7 +3,7 @@
 #pragma once
 
 
-#include "gpu/ibl/brdf_convolution_framebuffer.h"
+//#include "gpu/ibl/brdf_convolution_framebuffer.h"
 
 
 namespace gpu_opengl
@@ -38,7 +38,7 @@ public:
 
          ///virtual void initialize_BrdfConvolutionFramebuffer(unsigned int width, unsigned int height);
 
-         void on_initialize_BrdfConvolutionFramebuffer() override;
+         //void on_initialize_BrdfConvolutionFramebuffer() override;
          /**
           * Activate this framebuffer for drawing.
           */

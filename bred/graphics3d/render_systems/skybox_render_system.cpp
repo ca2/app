@@ -1,10 +1,12 @@
 #include "framework.h"
 #include "skybox_render_system.h"
 #include "bred/gltf/vertex.h"
+#include "bred/gpu/binding.h"
 #include "bred/gpu/command_buffer.h"
 #include "bred/gpu/device.h"
 #include "bred/gpu/frame.h"
 #include "bred/gpu/renderer.h"
+#include "bred/gpu/render_target.h"
 #include "bred/gpu/shader.h"
 #include "bred/gpu/texture.h"
 #include "bred/graphics3d/engine.h"
@@ -127,10 +129,19 @@ namespace graphics3d
       m_pshaderHdr->m_bEnableBlend = true;
       //m_pshader->m_bDisableDepthTest = true;
       m_pshaderHdr->m_ecullmode = ::gpu::e_cull_mode_none;
-      m_pshaderHdr->m_bindingCubeSampler.m_strUniform = "skybox";
+
+      //auto &bindingUbo = m_pshaderHdr->binding(0, 0);
+      //bindingUbo.m_strUniform = "ubo";
+      //bindingUbo.m_ebinding = ::gpu::e_binding_global_ubo;
+      m_pshaderHdr->set_global_ubo();
+
+      auto pbindingCubeSampler = m_pshaderHdr->binding(1, 0);
+      pbindingCubeSampler->m_strUniform = "skybox";
+      pbindingCubeSampler->m_ebinding = ::gpu::e_binding_cube_sampler;
+         
       //m_pshader->m_bindingCubeSampler.m_uSet = 1;
 
-	   m_pshaderHdr->m_bindingCubeSampler.set();
+	   //m_pshaderHdr->m_bindingCubeSampler.set();
       m_pshaderHdr->m_propertiesPushShared.set_properties(ppropertiesPush);
       pgpucontext->layout_push_constants(m_pshaderHdr->m_propertiesPushShared, false);
       auto iSize = sizeof(::gpu::gltf::vertex);
@@ -141,7 +152,7 @@ namespace graphics3d
 
          m_pshaderHdr->initialize_shader_with_block(
             pgpucontext->m_pgpurenderer, vertex_shader_memory(), hdr_fragment_shader_memory(), 
-            {::gpu::shader::e_descriptor_set_slot_global}, nullptr, pgpucontext->input_layout<::graphics3d::shape_factory::Vertex>());
+            {}, nullptr, pgpucontext->input_layout<::graphics3d::shape_factory::Vertex>());
       }
       //else
       {
@@ -158,10 +169,19 @@ namespace graphics3d
          m_pshaderNormal->m_bEnableBlend = true;
          // m_pshader->m_bDisableDepthTest = true;
          m_pshaderNormal->m_ecullmode = ::gpu::e_cull_mode_none;
-         m_pshaderNormal->m_bindingCubeSampler.m_strUniform = "skybox";
+
+         //auto &bindingUbo = m_pshaderNormal->binding(0, 0);
+         //bindingUbo.m_strUniform = "ubo";
+         //bindingUbo.m_ebinding = ::gpu::e_binding_global_ubo;
+         m_pshaderNormal->set_global_ubo();
+
+         auto pbindingCubeSampler = m_pshaderNormal->binding(1, 0);
+         pbindingCubeSampler->m_strUniform = "skybox";
+         pbindingCubeSampler->m_ebinding = ::gpu::e_binding_cube_sampler;
+         //m_pshaderNormal->m_bindingCubeSampler.m_strUniform = "skybox";
          // m_pshader->m_bindingCubeSampler.m_uSet = 1;
 
-         m_pshaderNormal->m_bindingCubeSampler.set();
+         //m_pshaderNormal->m_bindingCubeSampler.set();
          m_pshaderNormal->m_propertiesPushShared.set_properties(ppropertiesPush);
          pgpucontext->layout_push_constants(m_pshaderNormal->m_propertiesPushShared, false);
          auto iSize = sizeof(::graphics3d::shape_factory::Vertex);
@@ -173,7 +193,7 @@ namespace graphics3d
 
          m_pshaderNormal->initialize_shader_with_block(
             pgpucontext->m_pgpurenderer, vertex_shader_memory(), fragment_shader_memory(),
-            {::gpu::shader::e_descriptor_set_slot_global}, nullptr,
+            {}, nullptr,
             pgpucontext->input_layout<::graphics3d::shape_factory::Vertex>());
 
       }
@@ -182,12 +202,6 @@ namespace graphics3d
 
    }
 
-
- //   void skybox_render_system::on_bind(::gpu:)
-	// {
- // // Make sure to bind the shader first
-	// }
- //
 
    void skybox_render_system::on_render(::gpu::context* pgpucontext, ::graphics3d::scene_base* pscene)
 	{
@@ -236,23 +250,25 @@ namespace graphics3d
 
 	   auto iFrameSerial = pgpudevice->m_iFrameSerial2;
 
-	   auto ptextureDst = pgpurenderer->current_render_target_texture(::gpu::current_frame());
+	   auto ptextureDst = pgpurenderer->m_pgpurendertarget->current_texture(::gpu::current_frame());
 
-      pgpucontext->start_debug_happening(::gpu::current_command_buffer()
-                                         , "skybox_render_system on_render");
+      pgpucontext->start_debug_happening(::gpu::current_command_buffer(), "skybox_render_system on_render");
 
 	   //auto pskybox = pscene->m_psceneobjectSkybox;
-
       //auto ptextureCubeMap = prenderableSkyboxModel->get_target_texture();
       //auto ptextureCubeMap = pscene->current_sky_box_texture();
 
       ::gpu::shader *pgpushader = nullptr;
+
       if (pskybox->m_ptexture->m_bHdr)
       {
+         
          pgpushader = m_pshaderHdr;
+
       }
       else
       {
+         
          pgpushader = m_pshaderNormal;
 
       }
@@ -355,7 +371,7 @@ namespace graphics3d
          //pframe->m_pgpucommandbuffer->set_scissor(r);
 
          prenderable->bind(pframe->m_pgpucommandbuffer);
-
+         pgpushader->on_before_draw(pframe->m_pgpucommandbuffer);
          prenderable->draw(pframe->m_pgpucommandbuffer);
 
          prenderable->unbind(pframe->m_pgpucommandbuffer);

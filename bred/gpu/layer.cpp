@@ -152,13 +152,17 @@ namespace gpu
 
       m_pgpurenderer->ødefer_construct(ptexture);
 
-      ptexture->m_bRenderTarget = true;
-
       auto rectangle = m_pgpurenderer->m_pgpucontext->rectangle();
 
-      ptexture->m_bTransferDst = true;
+      ::gpu::texture_attributes textureattributes(rectangle);
 
-      ptexture->initialize_texture(m_pgpurenderer, rectangle, false);
+      ::gpu::texture_flags textureflags;
+
+      textureflags.m_bRenderTarget = true;
+      textureflags.m_bTransferTarget = true;
+      textureflags.m_bShaderResource = true;
+
+      ptexture->initialize_texture(m_pgpurenderer, textureattributes, textureflags);
 
       return ptexture;
 
@@ -174,17 +178,23 @@ namespace gpu
 
       m_pgpurenderer->ødefer_construct(ptextureSource);
 
-      ptextureSource->m_bRenderTarget = true;
-
-      ptextureSource->m_bTransferSrc = true;
-
       auto rectangle = m_pgpurenderer->m_pgpucontext->rectangle();
 
       auto escene = m_pgpurenderer->m_pgpucontext->m_escene;
 
-      bool bWithDepth = escene == ::gpu::e_scene_3d;
+      ::gpu::texture_attributes textureattributes(rectangle);
 
-      ptextureSource->initialize_texture(m_pgpurenderer, rectangle, bWithDepth);
+      ::gpu::texture_flags textureflags;
+
+      textureflags.m_bRenderTarget = true;
+
+      textureflags.m_bTransferTarget = true;
+
+      textureflags.m_bTransferSource = true;
+
+      textureflags.m_bWithDepth = escene == ::gpu::e_scene_3d;
+
+      ptextureSource->initialize_texture(m_pgpurenderer, textureattributes, textureflags);
 
       return ptextureSource;
 

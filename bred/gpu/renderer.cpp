@@ -230,7 +230,13 @@ namespace gpu
 
       auto ptexture = øcreate< texture>();
 
-      ptexture->initialize_texture(this, size, bWithDepth);
+      ::gpu::texture_attributes textureattributes(::int_rectangle{size});
+
+      ::gpu::texture_flags textureflags;
+
+      textureflags.m_bWithDepth = bWithDepth;
+
+      ptexture->initialize_texture(this, textureattributes, textureflags);
 
       m_pgpucontext->on_create_texture(ptexture);
 

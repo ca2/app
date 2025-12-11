@@ -3,7 +3,7 @@
 #pragma once
 
 
-const char g_psz_specularenv_frag[] = R"frag_text(// HLSL (DirectX 11) Pixel Shader - Specular prefilter / importance sampling
+const char g_psz_prefiltered_environment_map_frag[] = R"frag_text(// HLSL (DirectX 11) Pixel Shader - Specular prefilter / importance sampling
 // Bindings (suggested):
 //   t0 -> environment cubemap (TextureCube)
 //   s0 -> sampler (SamplerState)

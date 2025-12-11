@@ -21,6 +21,10 @@ namespace gpu
    class frame_ephemeral;
    //class program;
 
+   class binding;
+   class binding_set;
+   class binding_set_array;
+
    template<typename VERTEX>
    class model_data;
 

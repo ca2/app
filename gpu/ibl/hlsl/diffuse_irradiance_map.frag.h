@@ -1,9 +1,9 @@
 ﻿// This file was automatically generated from a command line like:
-// application_build_helper --inline-text "diffuseirradiance.frag"
+// application_build_helper --inline-text "diffuse_irradiance_map.frag"
 #pragma once
 
 
-const char g_psz_diffuseirradiance_frag[] = R"frag_text(// diffuseirradiance_ps.hlsl
+const char g_psz_diffuse_irradiance_map_frag[] = R"frag_text(// diffuseirradiance_ps.hlsl
 // Converted from OpenGL GLSL (version 330 core) to HLSL for DirectX 11
 
 TextureCube environmentCubemap : register(t0);

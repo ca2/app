@@ -28,7 +28,7 @@
 #include "bred/gpu/frame_ephemeral.h"
 #include "bred/gpu/frame_storage.h"
 #include "gpu/full_screen_quad.h"
-#include "ibl/brdf_convolution_framebuffer.h"
+//#include "ibl/brdf_convolution_framebuffer.h"
 #include "ibl/diffuse_irradiance_map.h"
 #include "ibl/equirectangular_cubemap.h"
 #include "ibl/specular_map.h"
@@ -101,12 +101,12 @@ __FACTORY_EXPORT void gpu_opengl_factory(::factory::factory * pfactory)
    pfactory->add_factory_item < ::gpu_opengl::ibl::diffuse_irradiance_map, ::gpu::ibl::diffuse_irradiance_map >();
    pfactory->add_factory_item < ::gpu_opengl::ibl::specular_map, ::gpu::ibl::specular_map >();
    //pfactory->add_factory_item < ::gpu_opengl::ibl::aaa_mipmap_cubemap_framebuffer, ::gpu::ibl::aaa_mipmap_cubemap_framebuffer>();
-   pfactory->add_factory_item < ::gpu::ibl::mipmap_cubemap_framebuffer>();
+   //pfactory->add_factory_item < ::gpu::ibl::mipmap_cubemap_framebuffer>();
+   ////pfactory->add_factory_item < ::gpu_opengl::ibl::cubemap_framebuffer, ::gpu::ibl::cubemap_framebuffer>();
    //pfactory->add_factory_item < ::gpu_opengl::ibl::cubemap_framebuffer, ::gpu::ibl::cubemap_framebuffer>();
-   //pfactory->add_factory_item < ::gpu_opengl::ibl::cubemap_framebuffer, ::gpu::ibl::cubemap_framebuffer>();
-   pfactory->add_factory_item <  ::gpu::ibl::cubemap_framebuffer>();
+   //pfactory->add_factory_item <  ::gpu::ibl::cubemap_framebuffer>();
    pfactory->add_factory_item < ::gpu_opengl::ibl::equirectangular_cubemap, ::gpu::ibl::equirectangular_cubemap>();
-   pfactory->add_factory_item < ::gpu_opengl::ibl::brdf_convolution_framebuffer, ::gpu::ibl::brdf_convolution_framebuffer>();
+   //pfactory->add_factory_item < ::gpu_opengl::ibl::brdf_convolution_framebuffer, ::gpu::ibl::brdf_convolution_framebuffer>();
    //pfactory->add_factory_item < ::gpu_opengl::ibl::hdri_cube, ::gpu::ibl::hdri_cube>();
 
 }

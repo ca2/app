@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "binding.h"
 #include "bred_approach.h"
 #include "context.h"
 #include "device.h"
@@ -34,6 +35,10 @@ namespace gpu
 
       ::gpu::approach::initialize(pparticle);
 
+      system()->m_pfactory->add_factory_item<::gpu::binding>();
+      system()->m_pfactory->add_factory_item<::gpu::binding_set>();
+      system()->m_pfactory->add_factory_item<::gpu::binding_set_array>();
+
    }
 
 
@@ -63,7 +68,7 @@ namespace gpu
             if (m_rectangleOffscreen.is_empty())
             {
 
-               m_rectangleOffscreen = {1920, 1080};
+               m_rectangleOffscreen = {API_CHANGED_ARGUMENT, 1920, 1080};
 
             }
 

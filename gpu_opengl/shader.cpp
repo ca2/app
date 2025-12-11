@@ -371,16 +371,56 @@ namespace gpu_opengl
    void shader::unbind(::gpu::command_buffer *pgpucommandbuffer)
    {
 
-      if (m_ptextureBound)
+      ::pointer < ::gpu::texture > pgputextureBound;
+
+      for (auto &pbindingset: m_bindingseta)
       {
 
-         ::cast < texture > ptextureBound = m_ptextureBound;
+         if (!pbindingset)
+         {
+
+            continue;
+         }
+
+         for (auto &pbinding: *pbindingset)
+         {
+
+            if (pbinding)
+            {
+
+               continue;
+            }
+
+            //::string strUniform = pbinding->m_strUniform;
+
+            //if (strUniform.is_empty())
+            //{
+
+            //   strUniform = "uTexture";
+            //}
+
+            //_set_int(strUniform, iSlot);
+
+            pgputextureBound = ::transfer(pbinding->m_ptexture);
+
+            goto finished;
+
+         }
+
+      }
+
+      finished:
+
+      if (pgputextureBound)
+      {
+
+         ::cast<texture> ptextureBound = pgputextureBound;
 
 
          glBindTexture(ptextureBound->m_gluType, 0);
          GLCheckError("");
 
-         m_ptextureBound = nullptr;
+         //m_ptextureBound = nullptr;
 
       }
 
@@ -403,23 +443,62 @@ namespace gpu_opengl
       glBindTexture(ptexture->m_gluType, tex);
       GLCheckError("");
 
-      ::string strUniform;
-
-      if (m_bindingSampler.is_set())
-         strUniform = m_bindingSampler.m_strUniform;
-      else if(m_bindingCubeSampler.is_set())
-         strUniform = m_bindingCubeSampler.m_strUniform;
-
-      if (strUniform.is_empty())
+      for (auto &pbindingset: m_bindingseta)
       {
 
-         strUniform = "uTexture";
+         if (!pbindingset)
+         {
+
+            continue;
+
+         }
+
+         for (auto & pbinding : *pbindingset)
+         {
+
+            if (pbinding)
+            {
+
+               continue;
+
+            }
+
+            ::string strUniform = pbinding->m_strUniform;
+
+            if (strUniform.is_empty())
+            {
+
+               strUniform = "uTexture";
+
+            }
+
+            _set_int(strUniform, iSlot);
+
+            pbinding->m_ptexture = ptexture;
+
+            goto finished;
+
+         }
 
       }
 
-      _set_int(strUniform, iSlot);
+      finished:;
 
-      m_ptextureBound = ptexture;
+      //if (m_bindingSampler.is_set())
+      //   strUniform = m_bindingSampler.m_strUniform;
+      //else if(m_bindingCubeSampler.is_set())
+      //   strUniform = m_bindingCubeSampler.m_strUniform;
+
+      //if (strUniform.is_empty())
+      //{
+
+      //   strUniform = "uTexture";
+
+      //}
+
+      //_set_int(strUniform, iSlot);
+
+      //m_ptextureBound = ptexture;
 
    }
 

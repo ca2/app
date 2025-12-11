@@ -5,79 +5,77 @@
 namespace hlsl
 {
 
-#include "hlsl/brdfconvolution.frag.h"
-#include "hlsl/brdfconvolution.vert.h"
+#include "hlsl/brdf_convolution_map.frag.h"
+#include "hlsl/brdf_convolution_map.vert.h"
 
-#include "hlsl/diffuseirradiance.frag.h"
-#include "hlsl/diffuseirradiance.vert.h"
+#include "hlsl/diffuse_irradiance_map.frag.h"
+#include "hlsl/diffuse_irradiance_map.vert.h"
 
-#include "hlsl/hdricube.frag.h"
-#include "hlsl/hdricube.vert.h"
+#include "hlsl/equirectangular_cubemap.frag.h"
+#include "hlsl/equirectangular_cubemap.vert.h"
 
 #include "hlsl/pbr.frag.h"
 #include "hlsl/pbr.vert.h"
 
-#include "hlsl/specularenv.frag.h"
-#include "hlsl/specularenv.vert.h"
+#include "hlsl/prefiltered_environment_map.frag.h"
+#include "hlsl/prefiltered_environment_map.vert.h"
 
 
 } // namespace hlsl namespace hlsl
 
-
-CLASS_DECL_GPU::block hlsl_brdf_convolution_frag_memory()
-{
-   return {hlsl::g_psz_brdfconvolution_frag, sizeof(hlsl::g_psz_brdfconvolution_frag) - 1};
-}
 CLASS_DECL_GPU::block hlsl_brdf_convolution_vert_memory()
 {
-   return {hlsl::g_psz_brdfconvolution_vert, sizeof(hlsl::g_psz_brdfconvolution_vert) - 1};
-
+   return  hlsl::g_psz_brdf_convolution_map_vert; 
 }
 
-CLASS_DECL_GPU::block hlsl_embedded_diffuse_irradiance_frag()
+   CLASS_DECL_GPU::block hlsl_brdf_convolution_frag_memory()
 {
-   return {hlsl::g_psz_diffuseirradiance_frag, sizeof(hlsl::g_psz_diffuseirradiance_frag) - 1};
+   return hlsl::g_psz_brdf_convolution_map_frag;
 }
+
+
 CLASS_DECL_GPU::block hlsl_embedded_diffuse_irradiance_vert()
 {
-   return {hlsl::g_psz_diffuseirradiance_vert, sizeof(hlsl::g_psz_diffuseirradiance_vert) - 1};
+   return hlsl::g_psz_diffuse_irradiance_map_vert;
 }
+   CLASS_DECL_GPU::block hlsl_embedded_diffuse_irradiance_frag() { return hlsl::g_psz_diffuse_irradiance_map_frag; }
 
-::block hlsl_prefiltered_environment_map_vert_memory()
+   ::block hlsl_prefiltered_environment_map_vert_memory()
 {
 
-   return {hlsl::g_psz_specularenv_vert, sizeof(hlsl::g_psz_specularenv_vert) - 1};
+   return hlsl::g_psz_prefiltered_environment_map_vert;
 }
 
 
 ::block hlsl_prefiltered_environment_map_frag_memory()
 {
 
-   return {hlsl::g_psz_specularenv_frag, sizeof(hlsl::g_psz_specularenv_frag) - 1};
+   return hlsl::g_psz_prefiltered_environment_map_frag;
 }
 
 
-::block hlsl_embedded_ibl_hdri_cube_vert()
-{
-
-   return {hlsl::g_psz_hdricube_vert, sizeof(hlsl::g_psz_hdricube_vert) - 1}; }
+::block hlsl_embedded_ibl_hdri_cube_vert() 
+{ return hlsl::g_psz_equirectangular_cubemap_vert; 
+}
+      
 
 
 ::block hlsl_embedded_ibl_hdri_cube_frag()
 {
 
-   return {hlsl::g_psz_hdricube_frag, sizeof(hlsl::g_psz_hdricube_frag) - 1}; }
+   return hlsl::g_psz_equirectangular_cubemap_frag;
+}
 
 
 
 ::block hlsl_embedded_pbr_vert()
 {
 
-   return {hlsl::g_psz_pbr_vert, sizeof(hlsl::g_psz_pbr_vert) - 1};
+   return hlsl::g_psz_pbr_vert;
 }
 
 
 ::block hlsl_embedded_pbr_frag() {
 
-   return {hlsl::g_psz_pbr_frag, sizeof(hlsl::g_psz_pbr_frag) - 1};
+   return hlsl::g_psz_pbr_frag;
 }

@@ -54,15 +54,17 @@ namespace gpu
          //::graphics3d::renderable * m_prenderableSkybox = nullptr;
 
          ::pointer<::gpu::shader> m_pshaderPrefilteredEnvMap;
-         ::pointer<mipmap_cubemap_framebuffer> m_pframebufferPrefilteredEnvMap;
-
+         //::pointer<mipmap_cubemap_framebuffer> m_pframebufferPrefilteredEnvMap;
+         ::pointer<::gpu::texture> m_ptexturePrefilteredEnvMapCubemap;
+         ::pointer<::graphics3d::renderable> m_prenderablePrefilteredEnvMapCube;
          // brdf convolution
          unsigned int m_uBrdfConvolutionMapId;
          const unsigned int m_uBrdfConvolutionMapWidth = 512;
          const unsigned int m_uBrdfConvolutionMapHeight = 512;
 
          ::pointer<::gpu::shader> m_pshaderBrdfConvolution;
-         ::pointer<brdf_convolution_framebuffer> m_pframebufferBrdfConvolution;
+         //::pointer<brdf_convolution_framebuffer> m_pframebufferBrdfConvolution;
+         ::pointer<::gpu::texture> m_ptextureBrdfConvolutionMap;
 
          //::pointer < ::gpu::full_screen_quad > m_pfullscreenquad;
 

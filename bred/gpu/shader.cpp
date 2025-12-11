@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "binding.h"
 #include "context.h"
 #include "renderer.h"
 #include "shader.h"
@@ -12,24 +13,6 @@
 namespace gpu
 {
 
-
-
-   //const_char_pointer shader_type_c_str(GLenum etype)
-   //{
-
-   //   switch (etype)
-   //   {
-   //   case GL_VERTEX_SHADER:
-   //      return "VERTEX";
-   //   case GL_FRAGMENT_SHADER:
-   //      return "FRAGMENT";
-   //   case GL_GEOMETRY_SHADER:
-   //      return "GEOMETRY";
-   //   default:
-   //      return "(Unknown Shader Type)";
-   //   }
-
-   //}
 
 
    shader::shader()
@@ -132,6 +115,167 @@ namespace gpu
    }
 
 
+   ::gpu::binding_set * shader::binding_set(int iSet, ::gpu::binding_set * pgpubindingset)
+   {
+
+      if (iSet < 0)
+      {
+
+         throw ::exception(error_bad_argument);
+
+      }
+      else if (iSet > 16) // 16: a reasonable maximum number of binding sets?
+      {
+
+         throw ::exception(error_bad_argument);
+
+      }
+
+      auto &bindingsetinstance = m_pbindingseta->ø(iSet);
+
+      if (!bindingsetinstance.m_pbindingset)
+      {
+
+         if (::is_set(pgpubindingset))
+         {
+         
+            bindingsetinstance.m_pbindingset = pgpubindingset;
+         
+         }
+         else
+         {
+
+            øconstruct(bindingsetinstance.m_pbindingset);
+
+         }
+
+         bindingsetinstance.m_iSet = iSet;
+
+      }
+
+      return bindingsetinstance.m_pbindingset;
+
+   }
+
+
+
+   ::gpu::binding * shader::binding(int iSet, int iSlot)
+   {
+
+      auto pbindingset = binding_set(iSet);
+
+      if (iSlot < 0)
+      {
+
+         throw ::exception(error_bad_argument);
+      }
+      else if (iSlot > 20) // 20: a reasonable maximum number of 
+         // slots/bindings in a binding set?
+      {
+
+         throw ::exception(error_bad_argument);
+
+      }
+
+      return pbindingset->binding(iSlot);
+
+   }
+
+
+   bool shader::has_image_sampler()
+   {
+
+      auto pbinding = get_first_image_sampler_binding();
+
+      return ::is_set(pbinding);
+   }
+
+
+   bool shader::has_global_ubo()
+   {
+
+      return m_pbindingseta->has_global_ubo();
+
+   }
+
+
+   void shader::set_global_ubo()
+   {
+
+      if (!has_global_ubo())
+      {
+
+         auto pbindingGlobalUbo = this->binding();
+
+         pbindingGlobalUbo->m_strUniform = "ubo";
+
+         pbindingGlobalUbo->m_ebinding = ::gpu::e_binding_global_ubo1;
+
+      }
+
+
+   }
+
+
+
+   ::gpu::binding *shader::get_first_image_sampler_binding()
+   {
+
+      if (!m_pbindingseta)
+      {
+
+         return nullptr;
+
+      }
+
+      ::gpu::binding *pbindingFound = nullptr;
+
+      for (auto & bindingsetinstance : *m_pbindingseta)
+      {
+
+         if (!bindingsetinstance.m_pbindingset)
+         {
+
+            continue;
+
+         }
+
+         for (auto &pbinding: *bindingsetinstance.m_pbindingset)
+         {
+
+            if (!pbinding)
+            {
+
+               continue;
+
+
+            }
+
+            if (pbinding->is_image_sampler())
+            {
+
+               pbindingFound = pbinding;
+
+               break;
+
+            }
+
+            if (pbinding)
+            {
+
+               break;
+
+            }
+
+         }
+
+      }
+
+      return pbindingFound;
+
+   }
+
+
    // activate the shader
    // ------------------------------------------------------------------------
    void shader::bind(::gpu::command_buffer *pgpucommandbuffer)
@@ -153,6 +297,12 @@ namespace gpu
    {
 
       
+   }
+
+   void shader::on_before_draw(::gpu::command_buffer * pgpucommandbuffer)
+   {
+
+
    }
 
    void shader::bind(::gpu::command_buffer *pgpucommandbuffer, ::gpu::texture *pgputextureTarget)
@@ -744,6 +894,16 @@ namespace gpu
       set_matrix4("model", model);
       set_matrix4("view", view);
       set_matrix4("projection", projection);
+
+   }
+
+
+   ::gpu::binding_set_array * shader::binding_set_array()
+   {
+
+      ødefer_construct(m_pbindingseta);
+
+      return m_pbindingseta;
 
    }
 

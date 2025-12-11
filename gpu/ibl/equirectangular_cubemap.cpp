@@ -2,10 +2,12 @@
 // camilo on 2025-09-26 19:53 <3ThomasBorregaardSorensen!!
 #include "framework.h"
 #include "equirectangular_cubemap.h"
+#include "bred/gpu/command_buffer.h"
 #include "bred/gpu/context.h"
+#include "bred/gpu/render_target.h"
+#include "bred/gpu/renderer.h"
 #include "bred/gpu/shader.h"
 #include "bred/gpu/texture.h"
-#include "cubemap_framebuffer.h"
 #include "bred/graphics3d/engine.h"
 #include "bred/graphics3d/shape_factory.h"
 #include "gpu/timer.h"
@@ -59,8 +61,12 @@ namespace gpu
 
          øconstruct(m_pshaderHdri);
 
-         m_pshaderHdri->m_bindingSampler.set(0);
-         m_pshaderHdri->m_bindingSampler.m_strUniform = "hdri";
+         //m_pshaderHdri->m_bindingSampler.set(0);
+         //m_pshaderHdri->m_bindingSampler.m_strUniform = "hdri";
+         auto &bindingSampler = m_pshaderHdri->binding();
+         bindingSampler.m_strUniform = "hdri";
+         bindingSampler.m_ebinding = ::gpu::e_binding_sampler2d;
+
          m_pshaderHdri->m_bDisableDepthTest = true;
          m_pshaderHdri->m_ecullmode = ::gpu::e_cull_mode_none;
          m_pshaderHdri->m_propertiesPushShared.set_properties(
@@ -78,11 +84,12 @@ namespace gpu
 
          m_ptextureHdr->initialize_hdr_texture_on_memory(m_pgpucontext->m_pgpurenderer, block);
 
-         øconstruct(m_pframebuffer);
+         øconstruct(m_ptextureCubemap);
 
-         m_pframebuffer->m_strSamplerUniform = "hdri";
+         //m_ptextureCubemap->m_str = "hdri";
 
-         m_pframebuffer->initialize_cubemap_framebuffer(m_pgpucontext, m_uCubemapWidth, m_uCubemapHeight);
+         m_ptextureCubemap->initialize_mipmap_cubemap_texture(
+            m_pgpucontext->m_pgpurenderer, ::int_rectangle{API_CHANGED_ARGUMENT, m_uCubemapWidth, m_uCubemapHeight});
 
          m_prenderableCube = m_pgpucontext->m_pengine->shape_factory()->create_cube_001(m_pgpucontext, 2.f);
 
@@ -119,8 +126,14 @@ namespace gpu
             0.1f,
             2.0f);
 
+         m_pgpucontext->m_rectangle.set_size(m_ptextureCubemap->size());
+
+         m_ptextureHdr->set_state(pgpucommandbuffer, ::gpu::e_texture_state_shader_read);
+
+         m_ptextureCubemap->set_state(pgpucommandbuffer, ::gpu::e_texture_state_color_attachment);
+
          // render the equirectangular HDR texture to a cubemap
-         m_pshaderHdri->bind(pgpucommandbuffer, m_pframebuffer->m_ptexture, m_ptextureHdr);
+         //m_pshaderHdri->bind(pgpucommandbuffer, m_ptextureCubemap, m_ptextureHdr);
 
          // render to each side of the cubemap
          for (auto i = 0; i < 6; i++)
@@ -128,9 +141,13 @@ namespace gpu
 
             auto impact = cameraAngles[i];
 
-            m_pshaderHdri->setModelViewProjection(model, impact, projection);
+            m_ptextureCubemap->set_cube_face(i, m_pshaderHdri);
 
-            m_pframebuffer->set_cube_face(i, m_pshaderHdri);
+            pgpucommandbuffer->begin_render(m_pshaderHdri, m_ptextureCubemap);
+
+            m_pshaderHdri->bind_source(pgpucommandbuffer, m_ptextureHdr);
+
+            m_pshaderHdri->setModelViewProjection(model, impact, projection);
 
             //m_pshaderHdri->set_int("faceIndex", i);
 
@@ -161,13 +178,19 @@ namespace gpu
 
             m_prenderableCube->bind(pgpucommandbuffer);
 
+            m_pshaderHdri->on_before_draw(pgpucommandbuffer);
+
             m_prenderableCube->draw(pgpucommandbuffer);
 
             m_prenderableCube->unbind(pgpucommandbuffer);
 
+            pgpucommandbuffer->end_render();
+
          }
 
-         m_pframebuffer->generateMipmap();
+         m_ptextureCubemap->generate_mipmap();
+
+         m_pgpucontext->endSingleTimeCommands(pgpucommandbuffer);
 
          timer.logDifference("Rendered equirectangular cubemap");
 

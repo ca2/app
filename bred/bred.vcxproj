@@ -342,6 +342,7 @@
     <ClInclude Include="gltf\vertex.h" />
     <ClInclude Include="gpu\aaaa_gpu.h" />
     <ClInclude Include="gpu\aaa_end_draw.h" />
+    <ClInclude Include="gpu\binding.h" />
     <ClInclude Include="gpu\bred_approach.h" />
     <ClInclude Include="gpu\character.h" />
     <ClInclude Include="gpu\command_buffer.h" />
@@ -378,6 +379,9 @@
     <ClInclude Include="gpu\layer.h" />
     <ClInclude Include="gpu\swap_chain.h" />
     <ClInclude Include="gpu\texture.h" />
+    <ClInclude Include="gpu\texture_attributes.h" />
+    <ClInclude Include="gpu\texture_data.h" />
+    <ClInclude Include="gpu\texture_flags.h" />
     <ClInclude Include="gpu\types.h" />
     <ClInclude Include="gpu\_.h" />
     <ClInclude Include="gpu\_constant.h" />
@@ -481,6 +485,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="gltf\vertex.cpp" />
+    <ClCompile Include="gpu\binding.cpp" />
     <ClCompile Include="gpu\bred_approach.cpp" />
     <ClCompile Include="gpu\command_buffer.cpp" />
     <ClCompile Include="gpu\compositor.cpp" />

@@ -3,7 +3,7 @@
 #pragma once
 
 
-const char g_psz_hdricube_vert[] = R"vert_text(struct VS_INPUT
+const char g_psz_equirectangular_cubemap_vert[] = R"vert_text(struct VS_INPUT
 {
     float3 position : POSITION;
     float3 normal   : NORMAL;

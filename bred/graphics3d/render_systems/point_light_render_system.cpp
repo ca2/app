@@ -99,12 +99,16 @@ namespace graphics3d
       m_pshader->m_propertiesPushShared.set_properties(::gpu_properties<::gpu::point_light_push_constants>());
       
       pgpucontext->layout_push_constants(m_pshader->m_propertiesPushShared, false);
+      m_pshader->set_global_ubo();
+      //auto &bindingUbo = m_pshader->binding();
+      //bindingUbo.m_strUniform = "ubo";
+      //bindingUbo.m_ebinding = ::gpu::e_binding_global_ubo;
 
       m_pshader->initialize_shader(
          pgpucontext->m_pgpurenderer,
          "matter://shaders/point_light.vert",
          "matter://shaders/point_light.frag",
-         { ::gpu::shader::e_descriptor_set_slot_global,
+         { 
          ::gpu::shader::e_descriptor_set_slot_local },
          nullptr,
          pgpucontext->input_layout<::graphics3d::Vertex>(),

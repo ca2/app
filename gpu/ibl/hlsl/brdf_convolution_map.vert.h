@@ -1,9 +1,9 @@
 ﻿// This file was automatically generated from a command line like:
-// application_build_helper --inline-text "brdf_convolution.vert"
+// application_build_helper --inline-text "brdf_convolution_map.vert"
 #pragma once
 
 
-const char g_psz_brdfconvolution_vert[] = R"vert_text(// fullscreenquad_vs.hlsl
+const char g_psz_brdf_convolution_map_vert[] = R"vert_text(// fullscreenquad_vs.hlsl
 // Converted from GLSL (version 330 core) to HLSL for DirectX 11
 
 struct VSInput

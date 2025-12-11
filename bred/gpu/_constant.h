@@ -27,6 +27,39 @@ namespace gpu
 
    };
 
+   enum enum_texture
+   {
+
+      e_texture_none,
+      e_texture_image = 1,
+      e_texture_depth = 2,
+      e_texture_depth_stencil = 3,
+      e_texture_cube_map = 4,
+
+   };
+
+
+   enum enum_texture_data
+   {
+
+      e_texture_data_none,
+      e_texture_data_image_array,
+      e_texture_data_file_path,
+      e_texture_data_raw_scoped_data,
+
+   };
+
+
+   
+      enum enum_texture_state
+   {
+
+      e_texture_state_none,
+      e_texture_state_shader_read,
+      e_texture_state_color_attachment,
+
+   };
+
 
 
    enum enum_shader_source

@@ -51,7 +51,7 @@ namespace gpu
 
       virtual void reset();
 
-      virtual void begin_render();
+      virtual void begin_render(::gpu::shader * pgpushader, ::gpu::texture * pgputextureTarget);
 
       virtual void end_render();
 

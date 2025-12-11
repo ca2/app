@@ -47,10 +47,10 @@ namespace gpu
          
          // m_ptexture->m_pgpurenderer = m_pgpucontext->m_pgpurenderer;
          //
-         // m_ptexture->m_rectangleTarget.left=0;
-         // m_ptexture->m_rectangleTarget.top=0;
-         // m_ptexture->m_rectangleTarget.right=width;
-         // m_ptexture->m_rectangleTarget.bottom=height;
+         // m_ptexture->rectangle().left=0;
+         // m_ptexture->rectangle().top=0;
+         // m_ptexture->rectangle().right=width;
+         // m_ptexture->rectangle().bottom=height;
          // m_ptexture->m_bRenderTarget = true;
          // m_ptexture->m_bShaderResourceView = true;
          //
@@ -129,7 +129,7 @@ namespace gpu
       void cubemap_framebuffer::set_cube_face(unsigned int iIndex, ::gpu::shader * pgpushader)
       {
 
-         m_ptexture->set_cube_face(iIndex);
+         m_ptexture->set_cube_face(iIndex, pgpushader);
          //pgpushader->m_pg
          // glFramebufferTexture2D(
          //    GL_FRAMEBUFFER,

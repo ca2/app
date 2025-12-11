@@ -141,12 +141,14 @@ namespace graphics3d
                if (m_eanimation == e_animation_translation)
                {
 
-                  m_translationanimation.get_translation(Δt);
+                  return m_translationanimation.get_translation(Δt);
 
                }
                else
                {
                   throw ::exception(error_wrong_state);
+
+                  return {};
 
                }
 
@@ -162,8 +164,8 @@ namespace graphics3d
 
       float m_fLightIntensity = 1.0f;
       float m_fOrbitRadius = 2.0f;
-      floating_sequence4 m_sequence4Color;
-      floating_sequence3 m_sequence3Position;
+      //floating_sequence4 m_sequence4Color;
+      //floating_sequence3 m_sequence3Position;
       ::pointer<animation> m_panimation;
 
       floating_sequence4 m_sequence4FinalColor;

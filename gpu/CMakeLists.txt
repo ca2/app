@@ -2,7 +2,55 @@ cmake_minimum_required(VERSION 3.16)
 project(gpu CXX)
 
 
+if(${WIN32})
+
+   # Collect all files in shaders/ directory
+   file(GLOB SHADER_FILES
+      "${CMAKE_CURRENT_SOURCE_DIR}/ibl/hlsl/*"
+   )
+
+   message(STATUS "SHADER_FILES: ${SHADER_FILES}")
+
+   # Keep only .vert and .frag files
+   set(FILTERED_SHADERS "")
+   foreach(SHADER ${SHADER_FILES})
+      get_filename_component(EXT ${SHADER} EXT)
+      if(EXT STREQUAL ".vert" OR EXT STREQUAL ".frag")
+         list(APPEND FILTERED_SHADERS ${SHADER})
+      endif()
+   endforeach()
+
+
+   message(STATUS "FILTERED_SHADERS: ${FILTERED_SHADERS}")
+
+   set(GENERATED_HEADERS "")
+
+   foreach(SHADER ${FILTERED_SHADERS})
+      get_filename_component(DIR ${SHADER} DIRECTORY)
+      get_filename_component(NAME ${SHADER} NAME)
+      set(OUTPUT_FILE ${DIR}/${NAME}.h)
+
+      add_custom_command(
+         OUTPUT ${OUTPUT_FILE}
+         COMMAND ${APPLICATION_BUILD_HELPER_BINARY} --inline-text ${SHADER}
+         DEPENDS ${SHADER}
+         COMMENT "Generating header from ${SHADER}"
+         VERBATIM
+      )
+
+      list(APPEND IBL_SHADERS_HEADERS ${OUTPUT_FILE})
+   endforeach()
+
+
+   message(STATUS "IBL_SHADERS_HEADERS: ${IBL_SHADERS_HEADERS}")
+
+   # A target that generates all headers
+   add_custom_target(${PROJECT_NAME}_generate_ibl_shader_headers ALL DEPENDS ${IBL_SHADERS_HEADERS})
+
+endif()
+
 list(APPEND library_source
+   ${IBL_SHADERS}
    gltf/material.h
    gltf/mesh.cpp
    gltf/mesh.h
@@ -11,18 +59,18 @@ list(APPEND library_source
    gltf/model.cpp
    gltf/model.h
    #gltf/vertex.h
-   ibl/brdf_convolution_framebuffer.cpp
-   ibl/brdf_convolution_framebuffer.h
-   ibl/cubemap_framebuffer.cpp
-   ibl/cubemap_framebuffer.h
+   ##ibl/brdf_convolution_framebuffer.cpp
+   ##ibl/brdf_convolution_framebuffer.h
+   ##ibl/cubemap_framebuffer.cpp
+   ##ibl/cubemap_framebuffer.h
    ibl/diffuse_irradiance_map.cpp
    ibl/diffuse_irradiance_map.h
    ibl/equirectangular_cubemap.cpp
    ibl/equirectangular_cubemap.h
    #ibl/hdri_cube.cpp
    #ibl/hdri_cube.h
-   ibl/mipmap_cubemap_framebuffer.cpp
-   ibl/mipmap_cubemap_framebuffer.h
+   ##ibl/mipmap_cubemap_framebuffer.cpp
+   ##ibl/mipmap_cubemap_framebuffer.h
    ibl/specular_map.cpp
    ibl/specular_map.h
 

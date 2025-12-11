@@ -2,6 +2,10 @@
 #pragma once
 
 
+#include "bred/gpu/texture_attributes.h"
+#include "bred/gpu/texture_flags.h"
+
+
 namespace gpu
 {
 
@@ -64,7 +68,7 @@ namespace gpu
 
       virtual void create_images();
 
-      virtual void on_create_render_target_texture(::gpu::texture* pgputexture);
+      virtual void on_create_render_target_texture(::gpu::texture_attributes & textureattributes, ::gpu::texture_flags & textureflags);
 
 
       virtual int get_frame_index();

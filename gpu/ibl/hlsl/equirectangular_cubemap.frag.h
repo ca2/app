@@ -3,7 +3,7 @@
 #pragma once
 
 
-const char g_psz_hdricube_frag[] = R"frag_text(Texture2D hdri        : register(t0);
+const char g_psz_equirectangular_cubemap_frag[] = R"frag_text(Texture2D hdri        : register(t0);
 SamplerState samLinear : register(s0);
 
 static const float2 inverseAtan = float2(0.1591, 0.3183);

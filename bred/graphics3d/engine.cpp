@@ -14,6 +14,7 @@
 #include "acme/prototype/geometry2d/angle.h"
 #include "apex/database/client.h"
 #include "apex/database/stream.h"
+#include "bred/gpu/binding.h"
 #include "bred/gpu/bred_approach.h"
 #include "bred/gpu/command_buffer.h"
 #include "bred/gpu/context.h"
@@ -736,6 +737,108 @@ namespace graphics3d
 
       return pcontext;
 
+   }
+
+
+   ::gpu::binding_set * engine::global_ubo1_binding_set()
+   {
+
+      if (!m_pbindingsetGlobalUbo1)
+      {
+
+         øconstruct(m_pbindingsetGlobalUbo1);
+
+         auto pbindingGlobalUbo = m_pbindingsetGlobalUbo1->binding(0);
+
+         pbindingGlobalUbo->m_strUniform = "ubo";
+
+      }
+
+      return m_pbindingsetGlobalUbo1;
+
+   }
+
+
+   ::gpu::binding_set * engine::ibl1_binding_set()
+   {
+
+      if (!m_pbindingsetIbl1)
+      {
+
+         øconstruct(m_pbindingsetIbl1);
+
+         auto pbindingIrradiance = m_pbindingsetIbl1->binding(0);
+         pbindingIrradiance->m_ebinding = ::gpu::e_binding_cube_sampler;
+         pbindingIrradiance->m_strUniform = "irradianceMap";
+
+         auto pbindingPrefiltered = m_pbindingsetIbl1->binding(1);
+         pbindingPrefiltered->m_strUniform = "prefiltered";
+         pbindingPrefiltered->m_ebinding = ::gpu::e_binding_cube_sampler;
+
+         auto pbindingBrdf = m_pbindingsetIbl1->binding(2);
+         pbindingBrdf->m_strUniform = "brdfConvolution";
+         pbindingBrdf->m_ebinding = ::gpu::e_binding_sampler2d;
+      }
+
+      return m_pbindingsetIbl1;
+
+   }
+
+   
+   ::gpu::binding_set * engine::gltf_pbr_binding_set()
+   {
+
+      if (!m_pbindingsetGltfPbr)
+      {
+
+         øconstruct(m_pbindingsetGltfPbr);
+
+         auto pbindingAlbedo = m_pbindingsetGltfPbr->binding(0);
+         pbindingAlbedo->m_ebinding = ::gpu::e_binding_sampler2d;
+         pbindingAlbedo->m_strUniform = "albedo";
+
+         auto pbindingNormal = m_pbindingsetGltfPbr->binding(1);
+         pbindingNormal->m_strUniform = "normal";
+         pbindingNormal->m_ebinding = ::gpu::e_binding_sampler2d;
+
+         auto pbindingMetallicRoughness = m_pbindingsetGltfPbr->binding(2);
+         pbindingMetallicRoughness->m_strUniform = "metallicRoughness";
+         pbindingMetallicRoughness->m_ebinding = ::gpu::e_binding_sampler2d;
+
+         auto pbindingAmbientOcclusion = m_pbindingsetGltfPbr->binding(3);
+         pbindingAmbientOcclusion->m_strUniform = "ambientOcclusion";
+         pbindingAmbientOcclusion->m_ebinding = ::gpu::e_binding_sampler2d;
+
+         auto pbindingEmissive = m_pbindingsetGltfPbr->binding(4);
+         pbindingEmissive->m_strUniform = "emissive";
+         pbindingEmissive->m_ebinding = ::gpu::e_binding_sampler2d;
+
+      }
+
+      return m_pbindingsetGltfPbr;
+
+   }
+
+
+   ::gpu::binding_set * engine::scene_gltf_pbr_binding_set()
+   {
+
+      if (!m_pbindingsetSceneGltfPbr)
+      {
+
+         øconstruct(m_pbindingsetSceneGltfPbr);
+
+         auto pbindingAlbedo = m_pbindingsetGltfPbr->binding(0);
+         pbindingAlbedo->m_ebinding = ::gpu::e_binding_sampler2d;
+         pbindingAlbedo->m_strUniform = "albedo";
+
+         auto pbindingNormal = m_pbindingsetGltfPbr->binding(1);
+         pbindingNormal->m_strUniform = "normal";
+         pbindingNormal->m_ebinding = ::gpu::e_binding_sampler2d;
+
+      }
+
+      return m_pbindingsetSceneGltfPbr;
    }
 
 

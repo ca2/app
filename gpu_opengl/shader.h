@@ -14,7 +14,7 @@ namespace gpu_opengl
    public:
 
 
-      ::gpu::texture * m_ptextureBound = nullptr;
+      //::gpu::texture * m_ptextureBound = nullptr;
       GLuint m_ProgramID;
 
       //__creatable_from_base(shader, ::gpu::shader);

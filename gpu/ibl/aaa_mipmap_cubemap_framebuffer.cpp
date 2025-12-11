@@ -45,11 +45,11 @@ namespace gpu
 
          //m_ptexture->m_pgpurenderer = m_pgpucontext->m_pgpurenderer;
 
-         //m_ptexture->m_rectangleTarget.left=0;
-         //m_ptexture->m_rectangleTarget.top=0;
-         //m_ptexture->m_rectangleTarget.right= iWidth;
-         //m_ptexture->m_rectangleTarget.bottom= iHeight;
-         //m_ptexture->m_iMipCount=floor(log2(maximum(iWidth, iHeight)));
+         //m_ptexture->rectangle().left=0;
+         //m_ptexture->rectangle().top=0;
+         //m_ptexture->rectangle().right= iWidth;
+         //m_ptexture->rectangle().bottom= iHeight;
+         //m_ptexture->m_textureattributes.m_iMipCount=floor(log2(maximum(iWidth, iHeight)));
          //m_ptexture->m_bRenderTarget = true;
          //m_ptexture->m_bShaderResourceView = true;
 
@@ -126,9 +126,9 @@ namespace gpu
 
          m_ptexture->m_iCurrentMip = iCurrentMip;
          m_ptexture->m_sizeMip.cx =
-            (int)((double) m_ptexture->m_rectangleTarget.width() * ::pow((double)0.5, (double)iCurrentMip));
+            (int)((double) m_ptexture->width() * ::pow((double)0.5, (double)iCurrentMip));
          m_ptexture->m_sizeMip.cy =
-            (int)((double) m_ptexture->m_rectangleTarget.height() * ::pow((double)0.5, (double)iCurrentMip));
+            (int)((double) m_ptexture->height() * ::pow((double)0.5, (double)iCurrentMip));
 
       }
 
@@ -152,7 +152,7 @@ namespace gpu
       void mipmap_cubemap_framebuffer::set_cube_face(int iFace)
       {
 
-         m_ptexture->set_cube_face(iFace);
+         m_ptexture->set_cube_face(iFace, pgpushader);
          // glFramebufferTexture2D(
          //    GL_FRAMEBUFFER,
          //    GL_COLOR_ATTACHMENT0,

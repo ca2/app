@@ -2,7 +2,7 @@
 // camilo on 2025-09-26 19:55 <3ThomasBorregaardSorensen!!
 #include "framework.h"
 #include "specular_map.h"
-#include "brdf_convolution_framebuffer.h"
+//#include "brdf_convolution_framebuffer.h"
 #include "bred/graphics3d/_functions.h"
 #include "bred/graphics3d/engine.h"
 #include "bred/graphics3d/render_system.h"
@@ -22,10 +22,10 @@
 #include "gpu/timer.h"
 //#include "aaa_mipmap_cubemap_framebuffer.h"
 #include "gpu/full_screen_quad.h"
-#include "shaders/prefiltered_environment_map.vert.h"
-#include "shaders/prefiltered_environment_map.frag.h"
-#include "shaders/brdf_convolution_map.vert.h"
-#include "shaders/brdf_convolution_map.frag.h"
+#include "shader/prefiltered_environment_map.vert.h"
+#include "shader/prefiltered_environment_map.frag.h"
+#include "shader/brdf_convolution_map.vert.h"
+#include "shader/brdf_convolution_map.frag.h"
 
 
 namespace gpu_opengl

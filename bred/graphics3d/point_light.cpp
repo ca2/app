@@ -12,9 +12,16 @@ namespace graphics3d
    void point_light::from(const ::payload & payload)
    {
 
-      ::copy_color(m_sequence4Color, payload["color"]);
+       ::floating_sequence4 sequence4Color;
 
-      ::copy(m_sequence3Position, payload["position"]);
+      ::copy_color(sequence4Color, payload["color"]);
+
+       m_color = ::argb(sequence4Color.a, sequence4Color.r,
+           sequence4Color.g,
+           sequence4Color.b
+           );
+
+      ::copy(m_sequence3Translation, payload["position"]);
 
       if (payload.has_property("animation"))
       {
@@ -44,18 +51,18 @@ namespace graphics3d
       if (!m_panimation)
       {
 
-         m_sequence3FinalPosition = m_sequence3Position;
+         m_sequence3FinalPosition = m_sequence3Translation;
 
-         m_sequence4FinalColor = m_sequence4Color;
+         m_sequence4FinalColor = {m_color.f32_red(),m_color.f32_green(), m_color.f32_blue(), m_color.f32_opacity()};
 
          return;
 
       }
 
       m_sequence3FinalPosition =
-         m_sequence3Position+ m_panimation->get_translation(Δt);
+         m_sequence3Translation+ m_panimation->get_translation(Δt);
 
-      m_sequence4FinalColor = m_sequence4Color;
+      m_sequence4FinalColor = {m_color.f32_red(),m_color.f32_green(), m_color.f32_blue(), m_color.f32_opacity()};
 
    }
 

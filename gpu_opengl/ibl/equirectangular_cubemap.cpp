@@ -13,8 +13,8 @@
 #include "gpu_opengl/_gpu_opengl.h"
 //#include "cubemap_framebuffer.h"
 //#include "hdri_cube.h"
-#include "shaders/equirectangular_cubemap.vert.h"
-#include "shaders/equirectangular_cubemap.frag.h"
+#include "shader/equirectangular_cubemap.vert.h"
+#include "shader/equirectangular_cubemap.frag.h"
 
 
 namespace gpu_opengl

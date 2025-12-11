@@ -1497,8 +1497,8 @@ namespace gpu_opengl
           1.0f,  1.0f,  1.0f, 1.0f,
       };
 
+      auto rectangleTarget =  ptextureSource->rectangle();
 
-      auto rectangleTarget = ptextureSource->m_rectangleTarget;
 
       int iTopH = ptextureDst->size().cy;
       int rectangleBottom = rectangleTarget.bottom;
@@ -1657,7 +1657,7 @@ namespace gpu_opengl
       };
 
 
-      auto rectangleTarget = ptextureSource->m_rectangleTarget;
+      auto rectangleTarget = ptextureSource->rectangle();
 
       glViewport(
          rectangleTarget.left,
@@ -1861,7 +1861,7 @@ namespace gpu_opengl
       };
 
 
-      auto rectangleTarget = ptextureSrc->m_rectangleTarget;
+      auto rectangleTarget = ptextureSrc->rectangle();
 
       glViewport(
          rectangleTarget.left,

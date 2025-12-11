@@ -218,7 +218,7 @@ namespace graphics3d
 
    //   m_ptextureCubeMap->initialize_image_texture(
    //      m_pmodelCube->m_pgpucontext->m_pgpurenderer,
-   //      imagea, ::gpu::texture::e_type_cube_map);
+   //      imagea, ::gpu::e_texture_cube_map);
 
    //   //m_pshader->set_int("skybox", 0);
 

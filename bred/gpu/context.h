@@ -208,6 +208,10 @@ namespace gpu
       virtual void defer_end_upload_command_buffer();
 
 
+      virtual void begin_render(::gpu::command_buffer *pgpucommandbuffer, ::gpu::texture * pgputexture = nullptr);
+      virtual void end_render(::gpu::command_buffer *pgpucommandbuffer);
+
+
       virtual floating_sequence3 front(const ::graphics3d::floating_rotation &rotation);
 
 

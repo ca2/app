@@ -9,14 +9,14 @@
 #include "bred/gpu/device.h"
 #include "bred/gpu/types.h"
 #include "gpu/timer.h"
-#include "brdf_convolution_framebuffer.h"
+//#include "brdf_convolution_framebuffer.h"
 #include "bred/gpu/context.h"
 #include "bred/gpu/shader.h"
 #include "bred/graphics3d/engine.h"
 #include "bred/graphics3d/render_system.h"
 #include "bred/graphics3d/scene_base.h"
 #include "bred/graphics3d/skybox.h"
-#include "gpu/ibl/mipmap_cubemap_framebuffer.h"
+//#include "gpu/ibl/mipmap_cubemap_framebuffer.h"
 
 
 namespace gpu
@@ -92,6 +92,8 @@ namespace gpu
          // ::file::path pathPrefilteredEnvMapVertexShader = "matter://shaders/ibl_specularenv.vert";
          // ::file::path pathPrefilteredEnvMapFragmentShader = "matter://shaders/ibl_specularenv.frag";
          //
+
+         
          øconstruct(m_pshaderPrefilteredEnvMap);
 
          auto blockVert = prefiltered_environment_map_vert_memory();
@@ -101,6 +103,11 @@ namespace gpu
          auto pgpupropertiesPosition = ::gpu_properties<::gpu::position3>();
 
          auto pinputlayoutPosition = m_pgpucontext->input_layout(pgpupropertiesPosition);
+
+         auto & bindingSampler = m_pshaderPrefilteredEnvMap->binding();
+
+         bindingSampler.m_strUniform = "environmentCubemap";
+         bindingSampler.m_ebinding = ::gpu::e_binding_cube_sampler;
 
          m_pshaderPrefilteredEnvMap->m_ecullmode = ::gpu::e_cull_mode_none;
          m_pshaderPrefilteredEnvMap->m_bDisableDepthTest = true;
@@ -112,17 +119,23 @@ namespace gpu
             blockFrag, {}, {},
             pinputlayoutPosition);
 
-         m_pshaderPrefilteredEnvMap->m_bindingCubeSampler.set(0);
-         m_pshaderPrefilteredEnvMap->m_bindingCubeSampler.m_strUniform = "environmentCubemap";
+         //m_pshaderPrefilteredEnvMap->m_bindingCubeSampler.set(0);
+         //m_pshaderPrefilteredEnvMap->m_bindingCubeSampler.m_strUniform = "environmentCubemap";
+         
+
+         øconstruct(m_ptexturePrefilteredEnvMapCubemap);
+         m_iPrefilteredEnvMapMipCount = floor(log2(maximum(m_uPrefilteredEnvMapWidth, m_uPrefilteredEnvMapHeight)));
+         m_ptexturePrefilteredEnvMapCubemap->initialize_mipmap_cubemap_texture(
+            m_pgpucontext->m_pgpurenderer,
+            ::int_rectangle{API_CHANGED_ARGUMENT, m_uPrefilteredEnvMapWidth,
+            m_uPrefilteredEnvMapHeight}, m_iPrefilteredEnvMapMipCount, true, true);
 
 
-         øconstruct(m_pframebufferPrefilteredEnvMap);
-         m_pframebufferPrefilteredEnvMap->initialize_mipmap_cubemap_framebuffer(
-            m_pscene, 
-            m_uPrefilteredEnvMapWidth, 
-            m_uPrefilteredEnvMapHeight);
+         //m_ptexture->initialize_mipmap_cubemap_texture(pgpurenderer, {0, 0, iWidth, iHeight}, iMipCount, true,
+           //                                   true);
 
-         m_iPrefilteredEnvMapMipCount = m_pframebufferPrefilteredEnvMap->m_ptexture->m_iMipCount;
+
+         //m_iPrefilteredEnvMapMipCount = m_pframebufferPrefilteredEnvMap->m_ptexture->m_textureattributes.m_iMipCount;
 
          // // BRDF convolution
          // ::file::path pathBrdfConvolutionVertexShader= "matter://shaders/ibl_brdfconvolution.vert";
@@ -138,10 +151,28 @@ namespace gpu
             m_pgpucontext->m_pgpurenderer, brdf_convolution_vert_memory(), brdf_convolution_frag_memory(), {}, {},
             m_pgpucontext->input_layout(::gpu_properties<::gpu::position2_uv>()));
 
-         øconstruct(m_pframebufferBrdfConvolution);
+         //øconstruct(m_pframebufferBrdfConvolution);
 
-         m_pframebufferBrdfConvolution->initialize_BrdfConvolutionFramebuffer(
-            m_pscene, m_uBrdfConvolutionMapWidth, m_uBrdfConvolutionMapHeight);
+         //m_pframebufferBrdfConvolution->initialize_BrdfConvolutionFramebuffer(
+           // m_pscene, m_uBrdfConvolutionMapWidth, m_uBrdfConvolutionMapHeight);
+
+         øconstruct(m_ptextureBrdfConvolutionMap);
+
+         ::gpu::texture_attributes textureattributes(int_rectangle{API_CHANGED_ARGUMENT, m_uBrdfConvolutionMapWidth, m_uBrdfConvolutionMapHeight});
+         textureattributes.m_iBitsPerChannel = 16;
+         textureattributes.m_iChannelCount = 2;
+         textureattributes.m_iFloat = 1;
+
+
+         ::gpu::texture_flags textureflags;
+         textureflags.m_bRenderTarget = true;
+         textureflags.m_bShaderResource = true;
+
+         //m_ptexture->m_bRedGreen = true;
+         //m_ptexture->m_bFloat = true;
+         //m_ptexture->m_textureflags.m_bWithDepth = true;
+
+         m_ptextureBrdfConvolutionMap->initialize_texture(m_pgpucontext->m_pgpurenderer, textureattributes, textureflags);
 
       }
 
@@ -172,26 +203,38 @@ namespace gpu
 
          // auto prenderable = pskybox->m_prenderable;
 
-         auto ptexture = pskybox->m_ptexture;
+         auto ptextureSource = pskybox->m_ptexture;
 
          // auto pcube = øcreate < ::gpu::cube >();
          //::cast < ::gpu_gpu::context > pcontext = m_pgpucontext;
          // auto pcube = øcreate<::gpu::cube>();
-         auto prenderableCube = m_pgpucontext->m_pengine->shape_factory()->create_cube_001(m_pgpucontext, 2.f);
+         auto prenderableCube =
+            m_pgpucontext->m_pengine->shape_factory()->create_cube_001(m_pgpucontext, 2.f);
+
+         m_prenderablePrefilteredEnvMapCube = prenderableCube;
+
+         //ptextureSource->_set_state();
+
          // pcube->initialize_gpu_cube(m_pgpucontext);
          //::cast<::gpu_opengl::texture> ptextureSkybox = ptexture;
-         auto ptextureSkybox = ptexture;
+         //auto ptextureSkybox = ptexture;
 
          // m_pframebufferPrefilteredEnvMap->bind();
          // m_pshaderPrefilteredEnvMap->_bind();
 
-         auto ptextureTarget = m_pframebufferPrefilteredEnvMap->m_ptexture;
+         //auto ptextureTarget = m_pframebufferPrefilteredEnvMap->m_ptexture;
 
-         m_pshaderPrefilteredEnvMap->bind(pgpucommandbuffer, ptextureTarget, ptextureSkybox);
+         auto ptextureTarget = m_ptexturePrefilteredEnvMapCubemap;
+
+         //m_pshaderPrefilteredEnvMap->bind(pgpucommandbuffer, ptextureTarget, ptextureSkybox);
 
          // m_pshaderPrefilteredEnvMap->set_int("environmentCubemap", 0);
 
          ///::cast<::gpu_opengl::shader> pshaderPrefilteredEnvMap = m_pshaderPrefilteredEnvMap;
+
+         ptextureSource->set_state(pgpucommandbuffer, ::gpu::e_texture_state_shader_read);
+
+         ptextureTarget->set_state(pgpucommandbuffer, ::gpu::e_texture_state_color_attachment);
 
          auto pshaderPrefilteredEnvMap = m_pshaderPrefilteredEnvMap;
 
@@ -200,11 +243,13 @@ namespace gpu
          for (auto iCurrentMip = 0; iCurrentMip < mipCount; iCurrentMip++)
          {
 
-            m_pframebufferPrefilteredEnvMap->set_current_mip(iCurrentMip);
+            ///m_pframebufferPrefilteredEnvMap->set_current_mip(iCurrentMip);
 
-            auto mipWidth = m_pframebufferPrefilteredEnvMap->mip_width();
+            m_ptexturePrefilteredEnvMapCubemap->set_current_mip(iCurrentMip);
 
-            auto mipHeight = m_pframebufferPrefilteredEnvMap->mip_height();
+            auto mipWidth = m_ptexturePrefilteredEnvMapCubemap->mip_width();
+
+            auto mipHeight = m_ptexturePrefilteredEnvMapCubemap->mip_height();
 
             // glViewport(0, 0, mipWidth, mipHeight);
             // GLCheckError("");
@@ -223,6 +268,12 @@ namespace gpu
             for (auto iFace = 0; iFace < 6; iFace++)
             {
 
+               m_ptexturePrefilteredEnvMapCubemap->set_cube_face(iFace, m_pshaderPrefilteredEnvMap);
+
+               pgpucommandbuffer->begin_render(m_pshaderPrefilteredEnvMap, ptextureTarget);
+
+               m_pshaderPrefilteredEnvMap->bind_source(pgpucommandbuffer, ptextureSource);
+
                ::string strMessage;
 
                strMessage.format("prefiltered_env_map mip {} face {}", iCurrentMip, iFace);
@@ -230,27 +281,30 @@ namespace gpu
                m_pgpucontext->start_debug_happening(pgpucommandbuffer, strMessage);
 
                m_pshaderPrefilteredEnvMap->setModelViewProjection(model, cameraAngles[iFace], projection);
-               m_pframebufferPrefilteredEnvMap->set_cube_face(iFace);
 
 
-               m_pshaderPrefilteredEnvMap->bind_source(pgpucommandbuffer, ptextureSkybox);
+               //m_pshaderPrefilteredEnvMap->bind_source(pgpucommandbuffer, ptextureSkybox);
                // glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
                // GLCheckError("");
 
                // glBindTexture(GL_TEXTURE_CUBE_MAP, ptextureSkybox->m_gluTextureID);
                // GLCheckError("");
-               m_pshaderPrefilteredEnvMap->set_int("environmentCubemap", 0);
+               //m_pshaderPrefilteredEnvMap->set_int("environmentCubemap", 0);
                // pcube->draw(pgpucommandbuffer);
                //::graphics3d::render_system rendersystemScope;
                //rendersystemScope.m_erendersystem = ::graphics3d::e_render_system_skybox_ibl;
                //pgpucommandbuffer->m_prendersystem = &rendersystemScope;
                m_pshaderPrefilteredEnvMap->push_properties(pgpucommandbuffer);
                prenderableCube->bind(pgpucommandbuffer);
+               m_pshaderPrefilteredEnvMap->on_before_draw(pgpucommandbuffer);
                prenderableCube->draw(pgpucommandbuffer);
                prenderableCube->unbind(pgpucommandbuffer);
-               pgpucommandbuffer->m_prendersystem = nullptr;
+               //pgpucommandbuffer->m_prendersystem = nullptr;
 
                m_pgpucontext->end_debug_happening(pgpucommandbuffer);
+
+               pgpucommandbuffer->end_render();
+
             }
          }
 
@@ -346,7 +400,7 @@ namespace gpu
          // auto ptexture = pskybox->m_ptexture;
 
          // m_pshaderBrdfConvolution->bind(m_pbrdfconvolutionframebuffer->m_ptexture, ptexture);
-         m_pshaderBrdfConvolution->bind(pcommandbuffer, m_pframebufferBrdfConvolution->m_ptexture);
+         //m_pshaderBrdfConvolution->bind(pcommandbuffer, m_ptextureBrdfConvolutionMap);
          // m_pshaderPrefilteredEnvMap->set_int("environmentCubemap", 0);
 
          // glViewport(0, 0, m_uBrdfConvolutionMapWidth, m_uBrdfConvolutionMapHeight);
@@ -354,7 +408,7 @@ namespace gpu
          // glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
          // GLCheckError("");
 
-         pcommandbuffer->begin_render();
+         pcommandbuffer->begin_render(m_pshaderBrdfConvolution, m_ptextureBrdfConvolutionMap);
 
          ::int_rectangle rectangleViewport;
 
@@ -362,7 +416,7 @@ namespace gpu
 
          m_pgpucontext->set_viewport(pcommandbuffer, rectangleViewport);
 
-         m_pgpucontext->clear(m_pframebufferBrdfConvolution->m_ptexture, ::color::transparent);
+         m_pgpucontext->clear(m_ptextureBrdfConvolutionMap, ::color::transparent);
 
          pfullscreenquad->bind(pcommandbuffer);
          pfullscreenquad->draw(pcommandbuffer);
@@ -414,7 +468,7 @@ namespace gpu
          //// GLCheckError("");
          //// glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
          //// GLCheckError("");
-         //pcommandbuffer->set_viewport(m_pbrdfconvolutionframebuffer->m_ptexture->m_rectangleTarget);
+         //pcommandbuffer->set_viewport(m_pbrdfconvolutionframebuffer->m_ptexture->rectangle());
 
 
          //auto colorClear = ::argb(0.625f, 0.125f, 0.25f, 0.375f);

@@ -60,10 +60,10 @@ namespace gpu_opengl
 
       }
 
-      // m_etype = etype;
-      m_rectangleTarget = ::int_rectangle(::int_size(width, height));
+      // m_etexture = etype;
+      m_textureattributes.m_rectangleTarget = ::int_rectangle(::int_size(width, height));
 
-      m_bWithDepth = false;
+      m_textureflags.m_bWithDepth = false;
 
       m_gluType = GL_TEXTURE_2D;
 
@@ -116,7 +116,7 @@ namespace gpu_opengl
 
    
    void texture::initialize_with_image_data(::gpu::renderer *pgpurenderer, const ::int_rectangle &rectangleTarget,
-                                            int numChannels, bool bSrgb, const void *pdata, enum_type etype)
+                                            int numChannels, bool bSrgb, const void *pdata, ::gpu::enum_texture etexture)
    {
 
       //  if (m_rectangleTarget == rectangleTarget)
@@ -125,74 +125,40 @@ namespace gpu_opengl
       //   return;
       //}
 
-                GLenum format;
-      
-          switch (numChannels)
-          {
-             case 1:
-                format = GL_RED;
-                break;
-             case 3:
-                format = GL_RGB;
-                break;
-             case 4:
-                format = GL_RGBA;
-                break;
-          }
-      
-          GLenum internalFormat = format;
-      
-          // account for sRGB textures here
-          //
-          // diffuse textures are in sRGB space (non-linear)
-          // metallic/roughness/normals are usually in linear
-          // AO depends
-          if (bSrgb)
-          {
-             if (internalFormat == GL_RGB)
-             {
-                internalFormat = GL_SRGB;
-             }
-             else if (internalFormat == GL_RGBA)
-             {
-                internalFormat = GL_SRGB_ALPHA;
-             }
-          }
-      
+      ::gpu::texture_attributes textureattributes(rectangleTarget);
 
-      if (etype == e_type_cube_map)
-      {
+      textureattributes.m_iChannelCount = numChannels;
+      textureattributes.m_iFloat = bSrgb ? 1 : 0;
+      textureattributes.m_etexture = etexture;
 
-         m_gluType = GL_TEXTURE_CUBE_MAP;
-      }
-      else
-      {
+      ::gpu::texture_flags textureflags;
 
-         m_gluType = GL_TEXTURE_2D;
-      }
+      ::gpu::texture_data texturedata(pdata);
 
-      auto sizeCurrent = m_rectangleTarget.size();
+//      auto sizeCurrent = m_textureattributes.m_rectangleTarget.size();
 
-      ::gpu::texture::initialize_texture(pgpurenderer, rectangleTarget, false, {} , etype);
+      initialize_texture(pgpurenderer, textureattributes, textureflags, texturedata);
 
-      ::gpu::context_lock contextlock(m_pgpurenderer->m_pgpucontext);
+      //::gpu::texture::initialize_texture(pgpurenderer, rectangleTarget, false, {} , etype);
+
+      //::gpu::context_lock contextlock(m_pgpurenderer->m_pgpucontext);
 
 
-      glGenTextures(1, &m_gluTextureID);
-      glBindTexture(GL_TEXTURE_2D, m_gluTextureID);
-      m_gluType = GL_TEXTURE_2D;
-      // generate the texture
-      glTexImage2D(GL_TEXTURE_2D, 0, internalFormat, m_rectangleTarget.width(), m_rectangleTarget.height(), 0,
-                   format, GL_UNSIGNED_BYTE,
-                   pdata);
-       glGenerateMipmap(GL_TEXTURE_2D);
-
-      // texture wrapping/filtering options
-       glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-       glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-       glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR); // image is resized using bilinear filtering
-       glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR); // image is enlarged using bilinear filtering
-
+      // glGenTextures(1, &m_gluTextureID);
+      // glBindTexture(GL_TEXTURE_2D, m_gluTextureID);
+      // m_gluType = GL_TEXTURE_2D;
+      // // generate the texture
+      // glTexImage2D(GL_TEXTURE_2D, 0, internalFormat, m_textureattributes.m_rectangleTarget.width(), m_textureattributes.m_rectangleTarget.height(), 0,
+      //              format, GL_UNSIGNED_BYTE,
+      //              pdata);
+      //  glGenerateMipmap(GL_TEXTURE_2D);
+      //
+      // // texture wrapping/filtering options
+      //  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+      //  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+      //  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR); // image is resized using bilinear filtering
+      //  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR); // image is enlarged using bilinear filtering
+      //
 
    }
 
@@ -203,7 +169,7 @@ namespace gpu_opengl
    //
    //    if (m_pgpurenderer != prenderer
    //       && rectangleTarget != m_rectangleTarget
-   //       && etype != m_etype)
+   //       && etype != m_etexture)
    //    {
    //
    //       ::gpu::texture::initialize_image_texture(prenderer, rectangleTarget, bWithDepth, imagea, etype);
@@ -219,7 +185,7 @@ namespace gpu_opengl
    //
    //    }
    //
-   //    if (etype == e_type_cube_map)
+   //    if (etype == ::gpu::e_texture_cube_map)
    //    {
    //
    //       m_gluType = GL_TEXTURE_CUBE_MAP;
@@ -429,10 +395,10 @@ namespace gpu_opengl
    //}
 
 
-   void texture::create_texture(const ::pointer_array < ::image::image > *pimagea)
+   void texture::_create_texture(const ::gpu::texture_data & data)
    {
 
-      if (m_etype == e_type_cube_map)
+      if (m_textureattributes.m_etexture == ::gpu::e_texture_cube_map)
       {
 
          m_gluType = GL_TEXTURE_CUBE_MAP;
@@ -445,9 +411,60 @@ namespace gpu_opengl
 
       }
 
-      auto sizeCurrent = m_rectangleTarget.size();
+      GLenum format;
 
-      ::gpu::context_lock contextlock(m_pgpurenderer->m_pgpucontext);
+      switch (m_textureattributes.m_iChannelCount)
+      {
+         case 1:
+            format = GL_RED;
+            break;
+         case 2:
+            format = GL_RG;
+            break;
+         case 3:
+            format = GL_RGB;
+            break;
+         case 4:
+            format = GL_RGBA;
+            break;
+         default:
+            throw ::exception(error_wrong_state, "Not supported channel count");
+            break;
+      }
+
+      GLenum internalFormat = format;
+
+      // account for sRGB textures here
+      //
+      // diffuse textures are in sRGB space (non-linear)
+      // metallic/roughness/normals are usually in linear
+      // AO depends
+      if (m_textureattributes.m_iFloat >= 1)
+      {
+         if (internalFormat == GL_RGB)
+         {
+            internalFormat = GL_SRGB;
+         }
+         else if (internalFormat == GL_RGBA)
+         {
+            internalFormat = GL_SRGB_ALPHA;
+         }
+      }
+
+
+      if (m_textureattributes.m_etexture == ::gpu::e_texture_cube_map)
+      {
+
+         m_gluType = GL_TEXTURE_CUBE_MAP;
+      }
+      else
+      {
+
+         m_gluType = GL_TEXTURE_2D;
+
+      }
+
+      auto sizeCurrent = m_textureattributes.m_rectangleTarget.size();
 
       if (!m_gluTextureID)
       {
@@ -478,32 +495,42 @@ namespace gpu_opengl
 
          ::memory memory;
 
-         if (::is_set(pimagea) && pimagea->has_element())
+         const void * pdata = nullptr;
+
+         if (data.is_image_array())
          {
 
-            auto scan_area = m_rectangleTarget.area() * 4;
+            auto scan_area = m_textureattributes.m_rectangleTarget.area() * 4;
 
             memory.set_size(scan_area);
 
-            if (pimagea->size() != m_rectangleTarget.size())
+            if (data.imagea().first()->size() != m_textureattributes.m_rectangleTarget.size())
             {
 
                throw ::exception(error_wrong_state);
+
             }
 
             auto pimage32 = (image32_t *)memory.data();
 
-            pimage32->copy(pimagea->first());
+            pimage32->copy(data.imagea().first());
+
+            pdata = pimage32;
+
+         }
+         else if (data.is_raw_scoped_data())
+         {
+
+            pdata = data.raw_scoped_data();
+
          }
 
-         auto data = memory.data();
+         int w = m_textureattributes.m_rectangleTarget.width();
 
-         int w = m_rectangleTarget.width();
+         int h = m_textureattributes.m_rectangleTarget.height();
 
-         int h = m_rectangleTarget.height();
-
-         glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, w, h, 0, GL_RGBA,
-                      GL_UNSIGNED_BYTE, data);
+         glTexImage2D(GL_TEXTURE_2D, 0, internalFormat, w, h, 0, format,
+                      GL_UNSIGNED_BYTE, pdata);
          GLCheckError("");
 
 
@@ -546,14 +573,15 @@ namespace gpu_opengl
 
          ::memory memory;
 
-         if (::is_set(pimagea))
+         if (data.is_image_array())
          {
-            if (pimagea->first()->size() != sizeCurrent)
+
+            if (data.imagea().first()->size() != sizeCurrent)
             {
 
                throw ::exception(error_wrong_state);
-            }
 
+            }
 
             memory.set_size(sizeCurrent.area() * 4);
 
@@ -571,7 +599,7 @@ namespace gpu_opengl
 
             image32_t * pimage32 = nullptr;
 
-            if (::is_set(pimagea))
+            if (data.is_image_array())
             {
 
             pimage32 = (::image32_t *)memory.data();
@@ -593,7 +621,7 @@ namespace gpu_opengl
 
 
             pimage32->vertical_swap_copy(sizeCurrent.cx, sizeCurrent.cy, scan,
-               (*pimagea)[iImage]->image32(), (*pimagea)[iImage]->m_iScan);
+               data.imagea()[iImage]->image32(), data.imagea()[iImage]->m_iScan);
 
 
 
@@ -609,13 +637,13 @@ namespace gpu_opengl
 
                GLCheckError("");
 
-            if (::is_null(pimagea) && m_iMipCount > 0)
+            if (m_textureattributes.m_iMipCount > 0)
             {
 
                int w = sizeCurrent.cx;
                int h = sizeCurrent.cy;
 
-               for (int level = 1; level < m_iMipCount; ++level) {
+               for (int level = 1; level < m_textureattributes.m_iMipCount; ++level) {
                   w = std::max(1, w / 2);
                   h = std::max(1, h / 2);
                   glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i, level, GL_BGRA,
@@ -697,7 +725,7 @@ namespace gpu_opengl
       if (m_gluTextureID)
       {
 
-         if (m_etype != e_type_cube_map)
+         if (m_textureattributes.m_etexture != ::gpu::e_texture_cube_map)
          {
 
             bool bIsTexture = glIsTexture(m_gluTextureID);
@@ -745,9 +773,9 @@ namespace gpu_opengl
    void texture::create_depth_resources()
    {
 
-      int width = m_rectangleTarget.width();
+      int width = m_textureattributes.m_rectangleTarget.width();
 
-      int height = m_rectangleTarget.height();
+      int height = m_textureattributes.m_rectangleTarget.height();
 
       if (!m_gluDepthStencilRBO)
       {
@@ -816,7 +844,7 @@ namespace gpu_opengl
    // VkImageUsageFlags imageUsageFlags,
    // VkImageLayout imageLayout)
    {
-      m_etype = e_type_cube_map;
+      m_textureattributes.m_etexture = ::gpu::e_texture_cube_map;
 
       ktxTexture *ktxTexture;
       ktxResult result = loadKTXFile(this, filename, &ktxTexture);
@@ -1029,7 +1057,7 @@ namespace gpu_opengl
    }
 
 
-   void texture::set_cube_face(int iFace)
+   void texture::set_cube_face(int iFace,::gpu::shader * pgpushader)
    {
       //   ::cast < ::gpu_opengl::texture>ptexture = m_ptexture;
 
@@ -1044,10 +1072,13 @@ namespace gpu_opengl
       GLCheckError("");
 
 
-      //glBindTexture(m_gluType, m_gluTextureID);
-      //GLCheckError("");
+      glBindTexture(m_gluType, m_gluTextureID);
+      GLCheckError("");
 
    }
+
+
+   void texture::set_current_mip(int iCurrentMip) { ::gpu::texture::set_current_mip(iCurrentMip); }
 
 
    void texture::generate_mipmap()

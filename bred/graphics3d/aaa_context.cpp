@@ -1370,10 +1370,10 @@ namespace gpu_gpu
 //                   //pcommandlist->RSSetViewports(1, &viewport);
 //                   //pcommandlist->RSSetScissorRects(1, &scissorRect);
 //                   //D3D11_VIEWPORT vp = {};
-//                   //vp.TopLeftX = ptexture->m_rectangleTarget.left;
-//                   //vp.TopLeftY = ptexture->m_rectangleTarget.top;
-//                   //vp.Width = static_cast<float>(ptexture->m_rectangleTarget.width());
-//                   //vp.Height = static_cast<float>(ptexture->m_rectangleTarget.height());
+//                   //vp.TopLeftX = ptexture->rectangle().left;
+//                   //vp.TopLeftY = ptexture->rectangle().top;
+//                   //vp.Width = static_cast<float>(ptexture->rectangle().width());
+//                   //vp.Height = static_cast<float>(ptexture->rectangle().height());
 //                   //vp.MinDepth = 0.0f;
 //                   //vp.MaxDepth = 1.0f;
 //                   //m_pcontext->RSSetViewports(1, &vp);

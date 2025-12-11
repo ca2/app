@@ -106,7 +106,7 @@ namespace gpu_opengl
    void render_target::createDepthResources()
    {
 
-      //if (m_bWithDepth)
+      //if (m_flags.m_bWithDepth)
       //{
 
       //   if (!m_gluDepthStencilTex)

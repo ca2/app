@@ -50,7 +50,7 @@ namespace gpu_opengl
          ptexture->m_gluType = GL_TEXTURE_CUBE_MAP;
          glBindRenderbuffer(GL_RENDERBUFFER, ptexture->m_gluDepthStencilRBO);
          GLCheckError("");
-         glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT24, ptexture->m_rectangleTarget.width(), ptexture->m_rectangleTarget.height());
+         glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT24, ptexture->rectangle().width(), ptexture->rectangle().height());
          GLCheckError("");
 
          // attach the depth buffer
@@ -63,8 +63,8 @@ namespace gpu_opengl
          glBindTexture(ptexture->m_gluType, ptexture->m_gluTextureID);
          GLCheckError("");
 
-         int width = ptexture->m_rectangleTarget.width();
-         int height = ptexture->m_rectangleTarget.height();
+         int width = ptexture->rectangle().width();
+         int height = ptexture->rectangle().height();
 
          // specify/allocate each face for the cubemap
          for (auto i = 0; i < 6; i++)

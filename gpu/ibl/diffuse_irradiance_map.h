@@ -38,7 +38,8 @@ namespace gpu
          //::graphics3d::renderable * m_prenderableSkybox = nullptr;
 
          ::pointer<::gpu::shader> m_pshaderDiffuseIrradiance;
-         ::pointer<::gpu::ibl::cubemap_framebuffer> m_pframebufferDiffuseIrradiance;
+         //::pointer<::gpu::ibl::cubemap_framebuffer> m_pframebufferDiffuseIrradiance;
+         ::pointer < ::gpu::texture > m_ptextureDiffuseIrradianceCubemap;
          //::pointer<::gpu::cube> m_pgpucube;
 
          /**

@@ -3404,10 +3404,10 @@ void TransformSkewX(float* t, float a)
 		m_pstate->m_ealignText = oldAlign;
 	
 		if (bounds != NULL) {
-			bounds[0] = minx;
-			bounds[1] = miny;
-			bounds[2] = maxx;
-			bounds[3] = maxy;
+			bounds->left = minx;
+			bounds->top = miny;
+			bounds->right = maxx;
+			bounds->bottom = maxy;
 		}
 	////	throw_todo();
 	}

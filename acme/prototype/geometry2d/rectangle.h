@@ -15,6 +15,10 @@ concept rectangle_source = requires(RECTANGLE_SOURCE rectanglesource)
 };
 
 
+struct api_change_t{};
+
+#define API_CHANGED_ARGUMENT api_change_t{}
+
 template < prototype_number NUMBER >
 class rectangle_type :
    public sequence_type < NUMBER, 4 >
@@ -46,10 +50,10 @@ public:
    }
 
    template < prototype_number A, prototype_number B >
-   rectangle_type(A a, B b)  : rectangle_type(a, b, a, b) {}
+   rectangle_type(api_change_t, A a, B b)  : rectangle_type(0, 0, a, b) {}
 
    template < prototype_number N >
-   rectangle_type(N n)  : rectangle_type(n, n) {}
+   rectangle_type(api_change_t, N n)  : rectangle_type(n, n) {}
 
 
 //#ifdef APPLE

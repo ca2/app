@@ -70,11 +70,17 @@ namespace graphics3d
       m_pshader->m_propertiesPushShared.set_properties(simple_render_properties());
       pgpucontext->layout_push_constants(
          m_pshader->m_propertiesPushShared, false);
+
+      m_pshader->set_global_ubo();
+      //auto &bindingUbo = m_pshader->binding();
+      //bindingUbo.m_strUniform = "ubo";
+      //bindingUbo.m_ebinding = ::gpu::e_binding_global_ubo;
+
       m_pshader->initialize_shader_with_block(
          pgpucontext->m_pgpurenderer,
          this->vert_shader_memory(), 
          this->frag_shader_memory(),
-			{ ::gpu::shader::e_descriptor_set_slot_global,
+			{
 			::gpu::shader::e_descriptor_set_slot_local }, {},
 			pgpucontext->input_layout<::graphics3d::Vertex>()
 

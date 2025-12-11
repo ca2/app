@@ -1051,6 +1051,21 @@ return {};
    }
 
 
+   void context::begin_render(::gpu::command_buffer * pgpucommandbuffer,::gpu::texture * pgputexture)
+   {
+
+
+   }
+
+
+   void context::end_render(::gpu::command_buffer * pgpucommandbuffer)
+   {
+
+
+   }
+
+
+
    floating_sequence3 context::front(const ::graphics3d::floating_rotation & rotation)
    {
 
@@ -1624,8 +1639,13 @@ return {};
 
          auto ptextureNewAtlas = øcreate<::gpu::texture >();
 
-         ptextureNewAtlas->initialize_texture(m_pgpurenderer,
-            { 0, 0, 4096, 4096 }, false);
+         ::gpu::texture_attributes textureattributes(::int_rectangle{API_CHANGED_ARGUMENT, 4096, 4096}); 
+
+         ::gpu::texture_flags textureflags;
+
+         textureflags.m_bTransferTarget = true;
+
+         ptextureNewAtlas->initialize_texture(m_pgpurenderer, textureattributes, textureflags);
 
          m_textureaAtlas.add(ptextureNewAtlas);
 

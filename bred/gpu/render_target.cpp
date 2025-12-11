@@ -9,6 +9,7 @@
 #include "render_target.h"
 #include "texture.h"
 #include "acme/platform/application.h"
+#include "bred/gpu/context_lock.h"
 
 
 #include <assert.h>
@@ -84,6 +85,8 @@ namespace gpu
          return;
 
       }
+
+      ::gpu::context_lock contextlock(m_pgpurenderer->m_pgpucontext);
 
       m_bRenderTargetInit = true;
 
@@ -257,11 +260,17 @@ namespace gpu
          if (ptexture->size() != m_size && !m_size.is_empty())
          {
 
-            on_create_render_target_texture(ptexture);
+            ::gpu::texture_attributes textureattributes(::int_rectangle{m_size});
+
+            ::gpu::texture_flags textureflags;
+
+            on_create_render_target_texture(textureattributes, textureflags);
 
             //ptexture->m_pgpurendertarget = this;
 
-            ptexture->initialize_texture(m_pgpurenderer, m_size, m_bWithDepth);
+            textureflags.m_bWithDepth =m_bWithDepth;
+
+            ptexture->initialize_texture(m_pgpurenderer, textureattributes, textureflags);
 
          }
 
@@ -270,10 +279,11 @@ namespace gpu
    }
 
 
-   void render_target::on_create_render_target_texture(::gpu::texture* ptexture)
+   void render_target::on_create_render_target_texture(::gpu::texture_attributes &textureattributes,
+                                                       ::gpu::texture_flags &textureflags)
    {
 
-      ptexture->m_bRenderTarget = true;
+      textureflags.m_bRenderTarget = true;
 
    }
 

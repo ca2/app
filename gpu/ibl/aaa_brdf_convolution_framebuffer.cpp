@@ -38,19 +38,28 @@ namespace gpu
          // m_uWidth = width;
          // m_uHeight = height;
 
-         ødefer_construct(m_ptexture);
-         m_ptexture->m_pgpurenderer = m_pgpucontext->m_pgpurenderer;
-         m_ptexture->m_rectangleTarget.left=0;
-         m_ptexture->m_rectangleTarget.top=0;
-         m_ptexture->m_rectangleTarget.right=width;
-         m_ptexture->m_rectangleTarget.bottom=height;
-         m_ptexture->m_bRenderTarget = true;
-         m_ptexture->m_bRedGreen = true;
-         m_ptexture->m_bFloat = true;
-         //m_ptexture->m_bWithDepth = true;
-         m_ptexture->m_bShaderResourceView = true;
+         auto pgpurenderer = m_pgpucontext->m_pgpurenderer;
 
-         on_initialize_BrdfConvolutionFramebuffer();
+         ødefer_construct(m_ptexture);
+         //m_ptexture->m_pgpurenderer = m_pgpucontext->m_pgpurenderer;
+
+         ::gpu::texture_attributes textureattributes(int_rectangle{API_CHANGED_ARGUMENT, width, height});
+         textureattributes.m_iBitsPerChannel = 16;
+         textureattributes.m_iChannelCount = 2;
+         textureattributes.m_iFloat = 1;
+
+
+         ::gpu::texture_flags textureflags;
+         textureflags.m_bRenderTarget = true;
+         textureflags.m_bShaderResource = true;
+
+         //m_ptexture->m_bRedGreen = true;
+         //m_ptexture->m_bFloat = true;
+         //m_ptexture->m_textureflags.m_bWithDepth = true;
+
+
+         m_ptexture->initialize_texture(pgpurenderer, textureattributes, textureflags);
+         //on_initialize_BrdfConvolutionFramebuffer();
 
          // framebuffer
          // glGenFramebuffers(1, &framebufferId);
@@ -82,8 +91,7 @@ namespace gpu
       void brdf_convolution_framebuffer::on_initialize_BrdfConvolutionFramebuffer()
       {
 
-         m_ptexture->initialize_texture(m_pgpucontext->m_pgpurenderer,
-            m_ptexture->m_rectangleTarget, true, {});
+         m_ptexture->initialize_texture(m_pgpucontext->m_pgpurenderer, m_ptexture->rectangle(), true, {});
 
       }
 
@@ -96,13 +104,13 @@ namespace gpu
 
       unsigned int brdf_convolution_framebuffer::getWidth()
       {
-         return m_ptexture->m_rectangleTarget.width();
+         return m_ptexture->width();
       }
 
 
       unsigned int brdf_convolution_framebuffer::getHeight()
       {
-         return m_ptexture->m_rectangleTarget.height();
+         return m_ptexture->height();
       }
       //
       //

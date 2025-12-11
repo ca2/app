@@ -6,6 +6,7 @@
 #include "shader.h"
 #include "texture.h"
 #include "acme/filesystem/filesystem/file_context.h"
+#include "bred/gpu/binding.h"
 #include "bred/gpu/bred_approach.h"
 #include "bred/gpu/command_buffer.h"
 #include "bred/gpu/context.h"
@@ -373,19 +374,19 @@ namespace gpu_opengl
 
       ::pointer < ::gpu::texture > pgputextureBound;
 
-      for (auto &pbindingset: m_bindingseta)
+      for (auto &bindingsetinstance: *m_pbindingseta)
       {
 
-         if (!pbindingset)
+         if (!bindingsetinstance.m_pbindingset)
          {
 
             continue;
          }
 
-         for (auto &pbinding: *pbindingset)
+         for (auto &pbinding: *bindingsetinstance.m_pbindingset)
          {
 
-            if (pbinding)
+            if (!pbinding)
             {
 
                continue;
@@ -443,20 +444,20 @@ namespace gpu_opengl
       glBindTexture(ptexture->m_gluType, tex);
       GLCheckError("");
 
-      for (auto &pbindingset: m_bindingseta)
+      for (auto &bindingsetinstance: *m_pbindingseta)
       {
 
-         if (!pbindingset)
+         if (!bindingsetinstance.m_pbindingset)
          {
 
             continue;
 
          }
 
-         for (auto & pbinding : *pbindingset)
+         for (auto &pbinding: *bindingsetinstance.m_pbindingset)
          {
 
-            if (pbinding)
+            if (!pbinding)
             {
 
                continue;

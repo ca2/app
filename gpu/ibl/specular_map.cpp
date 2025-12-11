@@ -2,6 +2,7 @@
 // camilo on 2025-09-26 19:55 <3ThomasBorregaardSorensen!!
 #include "framework.h"
 #include "specular_map.h"
+#include "bred/gpu/binding.h"
 #include "bred/gpu/command_buffer.h"
 #include "bred/gpu/context_lock.h"
 #include "bred/gpu/texture.h"
@@ -104,10 +105,10 @@ namespace gpu
 
          auto pinputlayoutPosition = m_pgpucontext->input_layout(pgpupropertiesPosition);
 
-         auto & bindingSampler = m_pshaderPrefilteredEnvMap->binding();
+         auto pbindingSampler = m_pshaderPrefilteredEnvMap->binding();
 
-         bindingSampler.m_strUniform = "environmentCubemap";
-         bindingSampler.m_ebinding = ::gpu::e_binding_cube_sampler;
+         pbindingSampler->m_strUniform = "environmentCubemap";
+         pbindingSampler->m_ebinding = ::gpu::e_binding_cube_sampler;
 
          m_pshaderPrefilteredEnvMap->m_ecullmode = ::gpu::e_cull_mode_none;
          m_pshaderPrefilteredEnvMap->m_bDisableDepthTest = true;

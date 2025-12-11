@@ -115,7 +115,7 @@ namespace gpu
    }
 
 
-   ::gpu::binding_set * shader::binding_set(int iSet, ::gpu::binding_set * pgpubindingset)
+   ::gpu::binding_set_pointer shader::binding_set(int iSet, ::gpu::binding_set * pgpubindingset)
    {
 
       if (iSet < 0)
@@ -131,35 +131,35 @@ namespace gpu
 
       }
 
-      auto &bindingsetinstance = m_pbindingseta->ø(iSet);
+      auto &pbindingset = binding_set_array()->ø(iSet);
 
-      if (!bindingsetinstance.m_pbindingset)
+      if (!pbindingset.m_pbindingset)
       {
 
          if (::is_set(pgpubindingset))
          {
          
-            bindingsetinstance.m_pbindingset = pgpubindingset;
+            pbindingset.m_pbindingset = pgpubindingset;
          
          }
          else
          {
 
-            øconstruct(bindingsetinstance.m_pbindingset);
+            øconstruct(pbindingset.m_pbindingset);
 
          }
 
-         bindingsetinstance.m_iSet = iSet;
+         pbindingset.m_iSet = iSet;
 
       }
 
-      return bindingsetinstance.m_pbindingset;
+      return pbindingset;
 
    }
 
 
 
-   ::gpu::binding * shader::binding(int iSet, int iSlot)
+   ::gpu::binding_pointer shader::binding(int iSet, int iSlot)
    {
 
       auto pbindingset = binding_set(iSet);
@@ -168,6 +168,7 @@ namespace gpu
       {
 
          throw ::exception(error_bad_argument);
+
       }
       else if (iSlot > 20) // 20: a reasonable maximum number of 
          // slots/bindings in a binding set?
@@ -177,7 +178,7 @@ namespace gpu
 
       }
 
-      return pbindingset->binding(iSlot);
+      return pbindingset.binding(iSlot);
 
    }
 
@@ -185,16 +186,16 @@ namespace gpu
    bool shader::has_image_sampler()
    {
 
-      auto pbinding = get_first_image_sampler_binding();
+      auto binding = get_first_image_sampler_binding();
 
-      return ::is_set(pbinding);
+      return ::is_set(binding.m_pbinding);
    }
 
 
    bool shader::has_global_ubo()
    {
 
-      return m_pbindingseta->has_global_ubo();
+      return ::is_set(m_pbindingseta) && m_pbindingseta->has_global_ubo();
 
    }
 
@@ -217,18 +218,62 @@ namespace gpu
    }
 
 
-
-   ::gpu::binding *shader::get_first_image_sampler_binding()
+   ::gpu::binding_set_pointer shader::get_first_image_sampler_binding_set()
    {
 
       if (!m_pbindingseta)
       {
 
-         return nullptr;
+         return {};
+      }
+
+      for (auto &bindingsetinstance: *m_pbindingseta)
+      {
+
+         if (!bindingsetinstance.m_pbindingset)
+         {
+
+            continue;
+         }
+
+         int iBinding = -1;
+
+         for (auto &pbinding: *bindingsetinstance.m_pbindingset)
+         {
+
+            iBinding++;
+
+            if (!pbinding)
+            {
+
+               continue;
+            }
+
+            if (pbinding->is_image_sampler())
+            {
+
+               return bindingsetinstance;
+
+            }
+
+         }
 
       }
 
-      ::gpu::binding *pbindingFound = nullptr;
+
+      return {};
+   }
+
+
+   ::gpu::binding_pointer shader::get_first_image_sampler_binding()
+   {
+
+      if (!m_pbindingseta)
+      {
+
+         return {};
+
+      }
 
       for (auto & bindingsetinstance : *m_pbindingseta)
       {
@@ -240,8 +285,12 @@ namespace gpu
 
          }
 
+         int iBinding = -1;
+
          for (auto &pbinding: *bindingsetinstance.m_pbindingset)
          {
+
+            iBinding++;
 
             if (!pbinding)
             {
@@ -254,16 +303,7 @@ namespace gpu
             if (pbinding->is_image_sampler())
             {
 
-               pbindingFound = pbinding;
-
-               break;
-
-            }
-
-            if (pbinding)
-            {
-
-               break;
+               return {bindingsetinstance.m_iSet, iBinding, pbinding};
 
             }
 
@@ -271,7 +311,7 @@ namespace gpu
 
       }
 
-      return pbindingFound;
+      return {};
 
    }
 

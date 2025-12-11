@@ -35,15 +35,19 @@ namespace gpu
 
       ::gpu::approach::initialize(pparticle);
 
-      system()->m_pfactory->add_factory_item<::gpu::binding>();
-      system()->m_pfactory->add_factory_item<::gpu::binding_set>();
-      system()->m_pfactory->add_factory_item<::gpu::binding_set_array>();
 
    }
 
 
    void bred_approach::initialize_gpu_approach()
    {
+
+      ::gpu::approach::initialize_gpu_approach();
+
+      system()->m_pfactory->add_factory_item<::gpu::binding>();
+      system()->m_pfactory->add_factory_item<::gpu::binding_set>();
+      system()->m_pfactory->add_factory_item<::gpu::binding_set_array>();
+
 
    }
 

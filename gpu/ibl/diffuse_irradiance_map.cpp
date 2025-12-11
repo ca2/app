@@ -3,6 +3,7 @@
 #include "framework.h"
 //#include "cubemap_framebuffer.h"
 #include "diffuse_irradiance_map.h"
+#include "bred/gpu/binding.h"
 #include "bred/gpu/context.h"
 #include "bred/gpu/shader.h"
 #include "bred/gpu/texture.h"
@@ -95,8 +96,8 @@ namespace gpu
 
          //m_pshaderDiffuseIrradiance->m_bindingCubeSampler.set(0);
          //m_pshaderDiffuseIrradiance->m_bindingCubeSampler.m_strUniform = "environmentCubemap";
-         auto &bindingCubeSampler = m_pshaderDiffuseIrradiance->binding();
-         bindingCubeSampler.m_strUniform = "environmentCubemap";
+         auto pbindingCubeSampler = m_pshaderDiffuseIrradiance->binding();
+         pbindingCubeSampler->m_strUniform = "environmentCubemap";
 
          øconstruct(m_ptextureDiffuseIrradianceCubemap);
 

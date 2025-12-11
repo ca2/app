@@ -740,7 +740,7 @@ namespace graphics3d
    }
 
 
-   ::gpu::binding_set * engine::global_ubo1_binding_set()
+   ::gpu::binding_set *engine::global_ubo1_binding_set()
    {
 
       if (!m_pbindingsetGlobalUbo1)
@@ -759,7 +759,7 @@ namespace graphics3d
    }
 
 
-   ::gpu::binding_set * engine::ibl1_binding_set()
+   ::gpu::binding_set *engine::ibl1_binding_set()
    {
 
       if (!m_pbindingsetIbl1)
@@ -785,7 +785,7 @@ namespace graphics3d
    }
 
    
-   ::gpu::binding_set * engine::gltf_pbr_binding_set()
+   ::gpu::binding_set *engine::gltf_pbr_binding_set()
    {
 
       if (!m_pbindingsetGltfPbr)
@@ -820,7 +820,7 @@ namespace graphics3d
    }
 
 
-   ::gpu::binding_set * engine::scene_gltf_pbr_binding_set()
+   ::gpu::binding_set *engine::scene_gltf_pbr_binding_set()
    {
 
       if (!m_pbindingsetSceneGltfPbr)

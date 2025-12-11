@@ -15,6 +15,7 @@
 #include "texture.h"
 #include "acme/filesystem/filesystem/file_context.h"
 #include "aura/graphics/image/image.h"
+#include "bred/gpu/binding.h"
 #include "bred/gpu/command_buffer.h"
 #include "bred/gpu/context_lock.h"
 #include "bred/gpu/frame.h"
@@ -1295,8 +1296,8 @@ void main() {
             //m_pshaderBlend3->m_bindingSampler.set();
             m_pshaderBlend3->m_bDisableDepthTest = true;
 
-            auto &bindingSampler = m_pshaderBlend3->binding();
-            bindingSampler.m_ebinding = ::gpu::e_binding_sampler2d;
+            auto pbindingSampler = m_pshaderBlend3->binding();
+            pbindingSampler->m_ebinding = ::gpu::e_binding_sampler2d;
             //m_pshaderBlend3->m_bT
             //m_pshaderBlend3->m_pgpurenderer = this;
             //m_pshaderBlend3->m_setbindingSampler = 0;

@@ -2,6 +2,7 @@
 // camilo on 2025-09-26 19:53 <3ThomasBorregaardSorensen!!
 #include "framework.h"
 #include "equirectangular_cubemap.h"
+#include "bred/gpu/binding.h"
 #include "bred/gpu/command_buffer.h"
 #include "bred/gpu/context.h"
 #include "bred/gpu/render_target.h"
@@ -63,9 +64,9 @@ namespace gpu
 
          //m_pshaderHdri->m_bindingSampler.set(0);
          //m_pshaderHdri->m_bindingSampler.m_strUniform = "hdri";
-         auto &bindingSampler = m_pshaderHdri->binding();
-         bindingSampler.m_strUniform = "hdri";
-         bindingSampler.m_ebinding = ::gpu::e_binding_sampler2d;
+         auto pbindingSampler = m_pshaderHdri->binding();
+         pbindingSampler->m_strUniform = "hdri";
+         pbindingSampler->m_ebinding = ::gpu::e_binding_sampler2d;
 
          m_pshaderHdri->m_bDisableDepthTest = true;
          m_pshaderHdri->m_ecullmode = ::gpu::e_cull_mode_none;

@@ -52,26 +52,27 @@ namespace gpu
 
 
       ::gpu::binding * binding(int iSlot);
-   };
 
-
-   struct binding_set_instance
-   {
-
-      ::pointer<binding_set> m_pbindingset;
-      int m_iSet = -1;
 
    };
 
 
    class CLASS_DECL_BRED binding_set_array : 
       virtual public ::array_particle<
-         ::array_base<binding_set_instance >
+         ::array_base<binding_set_pointer >
       >
    {
    public:
       bool has_global_ubo() const;
    };
+
+
+   inline ::gpu::binding_pointer binding_set_pointer::binding(int iSlot)
+   {
+
+      return {m_iSet, iSlot, m_pbindingset->binding(iSlot)};
+
+   }
 
 
 } // namespace gpu

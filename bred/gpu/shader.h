@@ -40,7 +40,7 @@ namespace gpu
       /// be used for per - pass resources, and bound once per pass.
       /// The descriptor set number 2 will be used for material resources,
       /// and the number 3 will be used for per - object resources.
-      /// This way, the inner render loops will only be binding 
+      /// This way, the inner render loops will only be nding 
       /// descriptor sets 2 and 3, and performance will be high.
 
       enum enum_descriptor_set_slot
@@ -154,10 +154,11 @@ namespace gpu
       virtual void on_initialize_shader();
 
       ::gpu::binding_set_array * binding_set_array();
-      ::gpu::binding_set * binding_set(int iSet = 0, ::gpu::binding_set * pgpubindingset = nullptr);
-      ::gpu::binding * binding(int iSet = 0, int iSlot = 0);
+      ::gpu::binding_set_pointer binding_set(int iSet = 0, ::gpu::binding_set * pgpubindingset = nullptr);
+      ::gpu::binding_pointer binding(int iSet = 0, int iSlot = 0);
 
-      virtual ::gpu::binding *get_first_image_sampler_binding();
+      virtual ::gpu::binding_pointer get_first_image_sampler_binding();
+      virtual ::gpu::binding_set_pointer get_first_image_sampler_binding_set();
       virtual bool has_image_sampler();
       virtual bool has_global_ubo();
       virtual void set_global_ubo();

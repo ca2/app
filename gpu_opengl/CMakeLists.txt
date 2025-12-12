@@ -82,6 +82,8 @@ list(APPEND library_source
         approach.h
         assimp.cpp
         assimp.h
+   block.cpp
+   block.h
         command_buffer.cpp
    command_buffer.h
         cpu_buffer.cpp

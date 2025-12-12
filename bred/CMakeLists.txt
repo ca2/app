@@ -13,6 +13,10 @@ list(APPEND library_source
    #gpu/aaa_end_draw.cpp
    #gpu/aaa_end_draw.h
    #gpu/aaaa_gpu.h
+   gpu/binding.cpp
+   gpu/binding.h
+   gpu/block.cpp
+   gpu/block.h
    gpu/bred_approach.cpp
    gpu/bred_approach.h
    gpu/command_buffer.cpp

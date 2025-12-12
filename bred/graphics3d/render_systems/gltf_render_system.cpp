@@ -145,9 +145,9 @@ namespace graphics3d
 
 
       //::cast<::gpu_vulkan::shader> pshaderOpaque = m_pshaderOpaque;
-       m_pshaderOpaque->binding_set(0, m_pengine->global_ubo1_binding_set());
-       m_pshaderOpaque->binding_set(1, m_pengine->ibl1_binding_set());
-       m_pshaderOpaque->binding_set(2, m_pengine->gltf_pbr_binding_set());
+       m_pshaderOpaque->binding_set(0, pgpucontext->global_ubo1_binding_set());
+       m_pshaderOpaque->binding_set(1, pgpucontext->ibl1_binding_set());
+       m_pshaderOpaque->binding_set(2, pgpucontext->gltf_pbr_binding_set());
        //pshaderOpaque->m_mapDescriptorSetLayout[1] = m_pdescriptorsetlayoutIbl;
        //pshaderOpaque->m_mapDescriptorSetLayout[2] = m_pdescriptorsetlayoutPbr;
        m_pshaderOpaque->m_propertiesPushShared.set_properties(ppropertiesPush);
@@ -171,9 +171,9 @@ namespace graphics3d
        //pshaderMask->m_mapDescriptorSetLayout[1] = m_pdescriptorsetlayoutIbl;
        //pshaderMask->m_mapDescriptorSetLayout[2] = m_pdescriptorsetlayoutPbr;
 
-      m_pshaderMask->binding_set(0, m_pengine->global_ubo1_binding_set());
-      m_pshaderMask->binding_set(1, m_pengine->ibl1_binding_set());
-      m_pshaderMask->binding_set(2, m_pengine->gltf_pbr_binding_set());
+      m_pshaderMask->binding_set(0, pgpucontext->global_ubo1_binding_set());
+      m_pshaderMask->binding_set(1, pgpucontext->ibl1_binding_set());
+      m_pshaderMask->binding_set(2, pgpucontext->gltf_pbr_binding_set());
 
 
        m_pshaderMask->m_propertiesPushShared.set_properties(ppropertiesPush);
@@ -194,9 +194,9 @@ namespace graphics3d
        //pshaderBlend->m_mapDescriptorSetLayout[1] = m_pdescriptorsetlayoutIbl;
        //pshaderBlend->m_mapDescriptorSetLayout[2] = m_pdescriptorsetlayoutPbr;
 
-      m_pshaderBlend->binding_set(0, m_pengine->global_ubo1_binding_set());
-      m_pshaderBlend->binding_set(1, m_pengine->ibl1_binding_set());
-      m_pshaderBlend->binding_set(2, m_pengine->gltf_pbr_binding_set());
+      m_pshaderBlend->binding_set(0, pgpucontext->global_ubo1_binding_set());
+      m_pshaderBlend->binding_set(1, pgpucontext->ibl1_binding_set());
+      m_pshaderBlend->binding_set(2, pgpucontext->gltf_pbr_binding_set());
 
 
 

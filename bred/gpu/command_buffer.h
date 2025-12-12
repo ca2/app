@@ -31,7 +31,7 @@ namespace gpu
       ::string                            m_strAnnotation;
       ::pointer_array < ::particle >      m_particleaHold;
       ::graphics3d::render_system *       m_prendersystem = nullptr;
-
+      //::gpu::binding_set_pointer          m_pbindingsetCurrent;
 
       command_buffer();
       ~command_buffer() override;
@@ -54,6 +54,8 @@ namespace gpu
       virtual void begin_render(::gpu::shader * pgpushader, ::gpu::texture * pgputextureTarget);
 
       virtual void end_render();
+
+      //virtual void set_binding_set(::gpu::binding_set_pointer pbindingset);
 
       //virtual void set_primitive_topology_triangle_strip();
 

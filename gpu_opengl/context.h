@@ -25,7 +25,7 @@ namespace gpu_opengl
       ::pointer < ::gpu::model_buffer >      m_pmodelbufferDummy;
       //bool m_bMesa;
 
-      GLuint m_globalUBO;
+      // GLuint m_globalUBO;
 
 
       unsigned int                     m_VAO;
@@ -115,12 +115,12 @@ namespace gpu_opengl
 
 
       void clear(::gpu::texture * pgputexture, const ::color::color& color) override;
-      void create_global_ubo(int iSize, int iFrameCount) override;
-      void update_global_ubo(const ::block& block) override;
+      //void create_global_ubo(int iSize, int iFrameCount) override;
+      void update_global_ubo1(::gpu::block * pblock) override;
 
 
       void layout_global_ubo(::gpu::properties *pproperties) override;
-      bool is_global_ubo_ok();
+      //bool is_global_ubo_ok();
 
       void copy(::gpu::texture* ptexture) override;
       virtual void _copy_using_shader(::gpu::texture* ptexture);

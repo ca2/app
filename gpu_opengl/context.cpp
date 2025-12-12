@@ -56,6 +56,8 @@
 
 #include <stb/stb_image.h>
 
+#include "bred/gpu/block.h"
+
 
 namespace gpu_opengl
 {
@@ -70,7 +72,7 @@ namespace gpu_opengl
    {
       m_eapi = ::gpu::e_api_opengl;
       m_gluLayerFrameBuffer = 0;
-      m_globalUBO = 0;
+      //m_globalUBO = 0;
       //m_gluLayFrameBufferRenderer = 0;
 
       //m_fboID = 0;
@@ -984,64 +986,31 @@ namespace gpu_opengl
    }
 
 
-   void context::create_global_ubo(int iGlobalUboSize, int iFrameCount)
+   // void context::create_global_ubo(int iGlobalUboSize, int iFrameCount)
+   // {
+   //
+   //    ::gpu::context_lock contextlock(this);
+   //
+   //    // Create the UBO
+   //    glGenBuffers(1, &m_globalUBO);
+   //    GLCheckError("");
+   //    glBindBuffer(GL_UNIFORM_BUFFER, m_globalUBO);
+   //    GLCheckError("");
+   //    glBufferData(GL_UNIFORM_BUFFER, iGlobalUboSize, NULL, GL_STATIC_DRAW); // For 2 mat4s = 2 * sizeof(float) * 16
+   //    GLCheckError("");
+   //    unsigned int uUboBindingPoint = 0;
+   //    glBindBufferBase(GL_UNIFORM_BUFFER, uUboBindingPoint, m_globalUBO);
+   //    GLCheckError("");
+   //    glBindBuffer(GL_UNIFORM_BUFFER, 0);
+   //    GLCheckError("");
+   //
+   // }
+
+
+   void context::update_global_ubo1(::gpu::block * pblockGlobalUbo1)
    {
 
-      ::gpu::context_lock contextlock(this);
-
-      // Create the UBO
-      glGenBuffers(1, &m_globalUBO);
-      GLCheckError("");
-      glBindBuffer(GL_UNIFORM_BUFFER, m_globalUBO);
-      GLCheckError("");
-      glBufferData(GL_UNIFORM_BUFFER, iGlobalUboSize, NULL, GL_STATIC_DRAW); // For 2 mat4s = 2 * sizeof(float) * 16
-      GLCheckError("");
-      unsigned int uUboBindingPoint = 0;
-      glBindBufferBase(GL_UNIFORM_BUFFER, uUboBindingPoint, m_globalUBO);
-      GLCheckError("");
-      glBindBuffer(GL_UNIFORM_BUFFER, 0);
-      GLCheckError("");
-
-   }
-
-
-   void context::update_global_ubo(const ::block &block)
-   {
-
-      ::gpu::context_lock contextlock(this);
-
-      ASSERT(m_globalUBO != 0);
-
-      glBindBuffer(GL_UNIFORM_BUFFER, m_globalUBO);
-      GLCheckError("");
-
-      int iSize = block.size();
-
-      // Map the entire buffer for writing
-      void *p = glMapBufferRange(
-         GL_UNIFORM_BUFFER,
-         0, iSize,
-         GL_MAP_WRITE_BIT | GL_MAP_INVALIDATE_BUFFER_BIT);
-      GLCheckError("");
-
-      if (p)
-      {
-
-         memcpy(p, block.data(), block.size());
-
-         glUnmapBuffer(GL_UNIFORM_BUFFER);
-         GLCheckError("");
-
-      }
-      else
-      {
-
-         warning() << "Failed to map_base UBO";
-
-      }
-
-      glBindBufferBase(GL_UNIFORM_BUFFER, 0, m_globalUBO);
-      GLCheckError("");
+      pblockGlobalUbo1->update_frame(m_pgpurenderer);
 
    }
 
@@ -1053,13 +1022,13 @@ namespace gpu_opengl
    
    }
 
-
-   bool context::is_global_ubo_ok()
-   {
-
-      return m_globalUBO != 0;
-
-   }
+   //
+   // bool context::is_global_ubo_ok()
+   // {
+   //
+   //    return m_globalUBO != 0;
+   //
+   // }
 
 
    //void createFullscreenQuad(GLuint* vao, GLuint* vbo) {

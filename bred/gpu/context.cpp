@@ -1,4 +1,6 @@
 #include "framework.h"
+#include "binding.h"
+#include "block.h"
 #include "bred_approach.h"
 #include "context.h"
 #include "debug_scope.h"
@@ -29,8 +31,9 @@
 #include "bred/gpu/command_buffer.h"
 #include "bred/gpu/graphics.h"
 #include "bred/graphics3d/engine.h"
-//#include "bred/graphics3d/model.h"
+#include "bred/graphics3d/immersion_layer.h"
 #include "bred/graphics3d/renderable.h"
+#include "bred/graphics3d/scene_base.h"
 #include "bred/graphics3d/types.h"
 
 
@@ -654,8 +657,7 @@ namespace gpu
          iItemSize = ::gpu::get_type_size(pproperty->m_etype);
       }
 
-
-      int iSize = iItemSize;
+      auto iSize = iItemSize;
 
       if (iItemSize == 4)
       {
@@ -844,8 +846,6 @@ namespace gpu
 
          iSizeWithSamplers += iSize;
       }
-
-   iteration1:
 
       ::string strName(pproperty->m_pszName);
 
@@ -2264,17 +2264,153 @@ return {};
 
    }
 
-
-   void context::create_global_ubo(int iSize, int iFrameCount)
+   
+   ::gpu::binding_set *context::global_ubo1_binding_set()
    {
 
+      if (!m_pbindingsetGlobalUbo1)
+      {
+
+         øconstruct(m_pbindingsetGlobalUbo1);
+
+         auto pbindingGlobalUbo = m_pbindingsetGlobalUbo1->binding(0);
+
+         pbindingGlobalUbo->m_strUniform = "ubo";
+
+      }
+
+      return m_pbindingsetGlobalUbo1;
+   }
+
+
+   ::gpu::binding_set *context::ibl1_binding_set()
+   {
+
+      if (!m_pbindingsetIbl1)
+      {
+
+         øconstruct(m_pbindingsetIbl1);
+
+         auto pbindingIrradiance = m_pbindingsetIbl1->binding(0);
+         pbindingIrradiance->m_ebinding = ::gpu::e_binding_cube_sampler;
+         pbindingIrradiance->m_strUniform = "irradianceMap";
+
+         auto pbindingPrefiltered = m_pbindingsetIbl1->binding(1);
+         pbindingPrefiltered->m_strUniform = "prefiltered";
+         pbindingPrefiltered->m_ebinding = ::gpu::e_binding_cube_sampler;
+
+         auto pbindingBrdf = m_pbindingsetIbl1->binding(2);
+         pbindingBrdf->m_strUniform = "brdfConvolution";
+         pbindingBrdf->m_ebinding = ::gpu::e_binding_sampler2d;
+      }
+
+      return m_pbindingsetIbl1;
+   }
+
+
+   ::gpu::binding_set *context::gltf_pbr_binding_set()
+   {
+
+      if (!m_pbindingsetGltfPbr)
+      {
+
+         øconstruct(m_pbindingsetGltfPbr);
+
+         auto pbindingAlbedo = m_pbindingsetGltfPbr->binding(0);
+         pbindingAlbedo->m_ebinding = ::gpu::e_binding_sampler2d;
+         pbindingAlbedo->m_strUniform = "albedo";
+
+         auto pbindingNormal = m_pbindingsetGltfPbr->binding(1);
+         pbindingNormal->m_strUniform = "normal";
+         pbindingNormal->m_ebinding = ::gpu::e_binding_sampler2d;
+
+         auto pbindingMetallicRoughness = m_pbindingsetGltfPbr->binding(2);
+         pbindingMetallicRoughness->m_strUniform = "metallicRoughness";
+         pbindingMetallicRoughness->m_ebinding = ::gpu::e_binding_sampler2d;
+
+         auto pbindingAmbientOcclusion = m_pbindingsetGltfPbr->binding(3);
+         pbindingAmbientOcclusion->m_strUniform = "ambientOcclusion";
+         pbindingAmbientOcclusion->m_ebinding = ::gpu::e_binding_sampler2d;
+
+         auto pbindingEmissive = m_pbindingsetGltfPbr->binding(4);
+         pbindingEmissive->m_strUniform = "emissive";
+         pbindingEmissive->m_ebinding = ::gpu::e_binding_sampler2d;
+      }
+
+      return m_pbindingsetGltfPbr;
+   }
+
+
+   ::gpu::binding_set *context::scene_gltf_pbr_binding_set()
+   {
+
+      if (!m_pbindingsetSceneGltfPbr)
+      {
+
+         øconstruct(m_pbindingsetSceneGltfPbr);
+
+         auto pbindingAlbedo = m_pbindingsetGltfPbr->binding(0);
+         pbindingAlbedo->m_ebinding = ::gpu::e_binding_sampler2d;
+         pbindingAlbedo->m_strUniform = "albedo";
+
+         auto pbindingNormal = m_pbindingsetGltfPbr->binding(1);
+         pbindingNormal->m_strUniform = "normal";
+         pbindingNormal->m_ebinding = ::gpu::e_binding_sampler2d;
+      }
+
+      return m_pbindingsetSceneGltfPbr;
+   }
+
+
+   //::gpu::block *context::global_ubo1_block(::gpu::context *pgpucontext)
+   //{
+
+   //   if (!m_pblockGlobalUbo)
+   //   {
+
+   //      create_global_ubo(pgpucontext);
+   //   }
+
+   //   return m_pblockGlobalUbo;
+   //}
+
+   void context::update_global_ubo1(::gpu::block * pblockGlobalUbo1)
+   {
+
+      pblockGlobalUbo1->update_frame(m_pgpurenderer);
 
    }
 
 
-   void context::update_global_ubo(const ::block& block)
+   ::pointer < ::gpu::block > context::create_global_ubo1(const ::gpu::property * ppropertyProperties)
    {
 
+      auto pblock = øcreate<::gpu::block>();
+
+      pblock->set_properties(ppropertyProperties);
+
+      pblock->create_gpu_block(this);
+
+      layout_global_ubo(pblock);
+
+      return pblock;
+
+   }
+
+
+   void context::update_current_scene()
+   {
+
+      auto pscene = m_pengine->m_pimmersionlayer->m_pscene;
+
+      if (pscene->global_ubo1(this)->size(true) > 0)
+      {
+
+         pscene->on_update(this);
+
+         update_global_ubo1(pscene->global_ubo1(this));
+
+      }
 
    }
 
@@ -2490,12 +2626,12 @@ return {};
    }
 
 
-   bool context::is_global_ubo_ok()
-   {
-
-      return true;
-
-   }
+   // bool context::is_global_ubo_ok()
+   // {
+   //
+   //    return true;
+   //
+   // }
 
 
    void context::initialize_rectangle_shader(::gpu::shader* pshader)

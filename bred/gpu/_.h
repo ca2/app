@@ -6,8 +6,6 @@
 
 
 
-#include "_constant.h"
-
 
 namespace gpu
 {
@@ -25,38 +23,13 @@ namespace gpu
    class binding_set;
    class binding_set_array;
 
+   class binding_slot;
+   class binding_slot_set;
+   class binding_slot_set_array;
 
-   struct binding_pointer
-   {
-
-      int m_iSet = -1;
-      int m_iSlot = -1;
-      ::pointer<binding> m_pbinding;
-
-            binding *operator->() 
-            { return m_pbinding.m_p; 
-            }
-
-   };
+   class block;
 
 
-   struct binding_set_pointer
-   {
-
-      int m_iSet = -1;
-      ::pointer<binding_set> m_pbindingset;
-
-      binding_set * operator->()
-      {
-
-         return m_pbindingset.m_p;
-
-      }
-
-      ::gpu::binding_pointer binding(int iSlot);
-
-
-   };
 
 
 

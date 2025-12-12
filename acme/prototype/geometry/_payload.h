@@ -38,9 +38,9 @@ template<prototype_number NUMBER, int t_iSize>
 inline int defer_copy(sequence_type<NUMBER, t_iSize> &sequence, const ::payload &payload)
 {
 
-   int iCopyCount = minimum(payload.array_get_count(), t_iSize);
+   auto iCopyCount = minimum(payload.array_get_count(), t_iSize);
 
-   for (int i = 0; i < iCopyCount; i++)
+   for (decltype(iCopyCount) i = 0; i < iCopyCount; i++)
    {
 
       NUMBER n;

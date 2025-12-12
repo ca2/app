@@ -58,7 +58,9 @@ namespace graphics3d
 	   //string_map < ::pointer < ::graphics3d::skybox > >           m_mapSkybox;
 		//::string													               m_strSkybox;
       //::pointer < ::graphics3d::skybox >                          m_pskyboxCurrent;
-      ::gpu::properties                                           m_gpupropertiesGlobalUbo;
+      //::gpu::properties                                           m_gpupropertiesGlobalUbo;
+      ::pointer<::gpu::block> m_pblockGlobalUbo;
+
 
 		scene_base();
 		~scene_base() override;
@@ -81,7 +83,11 @@ namespace graphics3d
 
       virtual bool is_global_ubo_ok();
 
-	   virtual ::gpu::properties & global_ubo();
+	   //virtual ::gpu::block * global_ubo();
+
+      virtual ::gpu::block * global_ubo1(::gpu::context *pgpucontext);
+
+
 
 	   virtual ::graphics3d::scene_renderable & scene_renderable(const ::scoped_string & scopedstr, bool bCounterClockwise = true, const ::file::path & path = {});
 

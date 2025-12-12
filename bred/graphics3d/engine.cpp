@@ -121,12 +121,14 @@ namespace graphics3d
 
             _synchronous_lock synchronouslock(pscene->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-            if (pscene->is_global_ubo_ok())
-            {
 
-               update_global_ubo(pgpucontext);
+             pgpucontext->update_current_scene();
+            //if (pscene->is_global_ubo_ok())
+            //{
 
-            }
+               //pgpucontext->update_global_ubo1();
+
+            //}
 
             auto pgpurendertarget = prenderer->m_pgpurendertarget.m_p;
 
@@ -160,21 +162,21 @@ namespace graphics3d
    }
 
 
-   void engine::create_global_ubo(::gpu::context* pgpucontext)
-   {
+   //void engine::create_global_ubo1(::gpu::context *pgpucontext)
+   //{
 
-      pgpucontext->layout_global_ubo(&m_pimmersionlayer->m_pscene->global_ubo());
+   //   pgpucontext->layout_global_ubo(&m_pimmersionlayer->m_pscene->global_ubo());
 
-      auto iGlobalUboSize = m_pimmersionlayer->m_pscene->global_ubo().m_blockWithoutSamplers.size();
+   //   auto iGlobalUboSize = m_pimmersionlayer->m_pscene->global_ubo().m_blockWithoutSamplers.size();
 
-      if (iGlobalUboSize > 0)
-      {
+   //   if (iGlobalUboSize > 0)
+   //   {
 
-         pgpucontext->create_global_ubo((int)iGlobalUboSize, pgpucontext->get_gpu_renderer()->m_pgpurendertarget->get_frame_count());
+   //      pgpucontext->create_global_ubo((int)iGlobalUboSize, pgpucontext->get_gpu_renderer()->m_pgpurendertarget->get_frame_count());
 
-      }
+   //   }
 
-   }
+   //}
 
 
    //::file::path engine::shader_path(const ::file::path& pathShader)
@@ -676,23 +678,23 @@ namespace graphics3d
    }
 
 
-   void engine::update_global_ubo(::gpu::context* pgpucontext)
-   {
+   //void engine::update_global_ubo(::gpu::context* pgpucontext)
+   //{
 
-      auto pscene = m_pimmersionlayer->m_pscene;
+   //   auto pscene = m_pimmersionlayer->m_pscene;
 
-      if (pscene->global_ubo().size(true) > 0)
-      {
+   //   if (pscene->global_ubo().size(true) > 0)
+   //   {
 
-         pscene->on_update(pgpucontext);
-         
-         auto pcontext = gpu_context();
+   //      pscene->on_update(pgpucontext);
+   //      
+   //      auto pcontext = gpu_context();
 
-         pcontext->update_global_ubo(pscene->global_ubo().block_with_samplers());
+   //      pcontext->update_global_ubo(pscene->global_ubo().block_with_samplers());
 
-      }
+   //   }
 
-   }
+   //}
 
    
    ::graphics3d::shape_factory * engine::shape_factory()
@@ -737,108 +739,6 @@ namespace graphics3d
 
       return pcontext;
 
-   }
-
-
-   ::gpu::binding_set *engine::global_ubo1_binding_set()
-   {
-
-      if (!m_pbindingsetGlobalUbo1)
-      {
-
-         øconstruct(m_pbindingsetGlobalUbo1);
-
-         auto pbindingGlobalUbo = m_pbindingsetGlobalUbo1->binding(0);
-
-         pbindingGlobalUbo->m_strUniform = "ubo";
-
-      }
-
-      return m_pbindingsetGlobalUbo1;
-
-   }
-
-
-   ::gpu::binding_set *engine::ibl1_binding_set()
-   {
-
-      if (!m_pbindingsetIbl1)
-      {
-
-         øconstruct(m_pbindingsetIbl1);
-
-         auto pbindingIrradiance = m_pbindingsetIbl1->binding(0);
-         pbindingIrradiance->m_ebinding = ::gpu::e_binding_cube_sampler;
-         pbindingIrradiance->m_strUniform = "irradianceMap";
-
-         auto pbindingPrefiltered = m_pbindingsetIbl1->binding(1);
-         pbindingPrefiltered->m_strUniform = "prefiltered";
-         pbindingPrefiltered->m_ebinding = ::gpu::e_binding_cube_sampler;
-
-         auto pbindingBrdf = m_pbindingsetIbl1->binding(2);
-         pbindingBrdf->m_strUniform = "brdfConvolution";
-         pbindingBrdf->m_ebinding = ::gpu::e_binding_sampler2d;
-      }
-
-      return m_pbindingsetIbl1;
-
-   }
-
-   
-   ::gpu::binding_set *engine::gltf_pbr_binding_set()
-   {
-
-      if (!m_pbindingsetGltfPbr)
-      {
-
-         øconstruct(m_pbindingsetGltfPbr);
-
-         auto pbindingAlbedo = m_pbindingsetGltfPbr->binding(0);
-         pbindingAlbedo->m_ebinding = ::gpu::e_binding_sampler2d;
-         pbindingAlbedo->m_strUniform = "albedo";
-
-         auto pbindingNormal = m_pbindingsetGltfPbr->binding(1);
-         pbindingNormal->m_strUniform = "normal";
-         pbindingNormal->m_ebinding = ::gpu::e_binding_sampler2d;
-
-         auto pbindingMetallicRoughness = m_pbindingsetGltfPbr->binding(2);
-         pbindingMetallicRoughness->m_strUniform = "metallicRoughness";
-         pbindingMetallicRoughness->m_ebinding = ::gpu::e_binding_sampler2d;
-
-         auto pbindingAmbientOcclusion = m_pbindingsetGltfPbr->binding(3);
-         pbindingAmbientOcclusion->m_strUniform = "ambientOcclusion";
-         pbindingAmbientOcclusion->m_ebinding = ::gpu::e_binding_sampler2d;
-
-         auto pbindingEmissive = m_pbindingsetGltfPbr->binding(4);
-         pbindingEmissive->m_strUniform = "emissive";
-         pbindingEmissive->m_ebinding = ::gpu::e_binding_sampler2d;
-
-      }
-
-      return m_pbindingsetGltfPbr;
-
-   }
-
-
-   ::gpu::binding_set *engine::scene_gltf_pbr_binding_set()
-   {
-
-      if (!m_pbindingsetSceneGltfPbr)
-      {
-
-         øconstruct(m_pbindingsetSceneGltfPbr);
-
-         auto pbindingAlbedo = m_pbindingsetGltfPbr->binding(0);
-         pbindingAlbedo->m_ebinding = ::gpu::e_binding_sampler2d;
-         pbindingAlbedo->m_strUniform = "albedo";
-
-         auto pbindingNormal = m_pbindingsetGltfPbr->binding(1);
-         pbindingNormal->m_strUniform = "normal";
-         pbindingNormal->m_ebinding = ::gpu::e_binding_sampler2d;
-
-      }
-
-      return m_pbindingsetSceneGltfPbr;
    }
 
 
@@ -1085,7 +985,7 @@ namespace graphics3d
    }
 
 
-   void engine::defer_update_engine(const ::int_rectangle& rectanglePlacement)
+   void engine::defer_update_engine(const ::int_rectangle &rectanglePlacement)
    {
 
       //if (!m_prenderer)
@@ -1128,15 +1028,18 @@ namespace graphics3d
 
          m_bCreatedGlobalUbo = true;
 
-         auto iGlobalUboSize = pscene->global_ubo().size(true);
+         auto * pblockGlobalUbo1 = pscene->global_ubo1(pcontext);
 
-         if (iGlobalUboSize > 0)
-         {
+         ASSERT(::is_set(pblockGlobalUbo1));
 
-            create_global_ubo(pcontext);
+         //auto iGlobalUboSize = pscene->global_ubo1(pcontext).size(true);
 
-         }
+         //if (iGlobalUboSize > 0)
+         //{
 
+         //   create_global_ubo(pcontext);
+
+         //}
 
       }
 

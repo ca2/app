@@ -47,10 +47,8 @@ namespace graphics3d
 
 		//::image32_callback                        m_callbackImage32CpuBuffer;
       ::pointer<::graphics3d::shape_factory> m_pshapefactory;
-      ::pointer<::gpu::binding_set> m_pbindingsetGlobalUbo1;
-      ::pointer<::gpu::binding_set> m_pbindingsetIbl1;
-      ::pointer<::gpu::binding_set> m_pbindingsetGltfPbr;
-      ::pointer<::gpu::binding_set> m_pbindingsetSceneGltfPbr;
+
+
 		engine();
 		~engine() override;
 
@@ -58,7 +56,7 @@ namespace graphics3d
 		virtual void initialize_engine(::user::graphics3d* pimpact);
 
 
-		virtual void create_global_ubo(::gpu::context * pgpucontext);
+		//virtual void create_global_ubo(::gpu::context *pgpucontext);
 
 		virtual ::gpu::enum_output get_engine_gpu_eoutput();
 
@@ -71,17 +69,13 @@ namespace graphics3d
 		::gpu::frame* end_gpu_layer(::gpu::frame* pframe) override;
 
 
-		virtual void update_global_ubo(::gpu::context* pgpucontext);
+		//virtual void update_global_ubo(::gpu::context* pgpucontext);
 
       virtual ::graphics3d::shape_factory *shape_factory();
 
 		virtual ::gpu::context* get_gpu_context();
 
 
-      virtual ::gpu::binding_set * global_ubo1_binding_set();
-      virtual ::gpu::binding_set * ibl1_binding_set();
-      virtual ::gpu::binding_set * gltf_pbr_binding_set();
-      virtual ::gpu::binding_set * scene_gltf_pbr_binding_set();
 
 		virtual void engine_on_after_load_scene(::graphics3d::scene_base* pscene);
 
@@ -110,7 +104,7 @@ namespace graphics3d
 
 		virtual void _do_frame_step();
 		virtual void on_after_done_frame_step(::draw2d::graphics_pointer& pgraphics);
-		virtual void defer_update_engine(const ::int_rectangle & rectangle);
+      virtual void defer_update_engine(const ::int_rectangle &rectangle);
 
 		virtual void on_layout(const ::int_rectangle & rectanglePlacement);
 

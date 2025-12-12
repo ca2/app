@@ -4,6 +4,7 @@
 #include "asset_manager.h"
 #include "bred/gpu/texture.h"
 #include "bred/graphics3d/engine.h"
+#include "bred/graphics3d/global_ubo1.h"
 #include "bred/graphics3d/immersion_layer.h"
 #include "bred/prodevian/actor.h"
 #include "openssl/ct.h"
@@ -561,12 +562,35 @@ namespace graphics3d
    bool scene_base::is_global_ubo_ok()
    {
 
-      return global_ubo().size(true) > 0 && m_pgpucontext->is_global_ubo_ok();
+      if (::is_null(m_pblockGlobalUbo))
+      {
+
+         return false;
+
+      }
+
+      //return global_ubo(m_pgpucontext).size(true) > 0 && m_pgpucontext->is_global_ubo_ok();
+
+      return true;
 
    }
 
 
-   ::gpu::properties &scene_base::global_ubo() { return m_gpupropertiesGlobalUbo; }
+   ::gpu::block * scene_base::global_ubo1(::gpu::context * pgpucontext)
+   {
+
+      if (!m_pblockGlobalUbo)
+      {
+
+         auto ppropertyProperties = ::gpu_properties<::graphics3d::global_ubo1>();
+
+         m_pblockGlobalUbo = pgpucontext->create_global_ubo1(ppropertyProperties);
+
+      }
+
+      return m_pblockGlobalUbo;
+
+   }
 
 
    ::graphics3d::scene_renderable &scene_base::scene_renderable(const ::scoped_string &scopedstr,

@@ -153,6 +153,13 @@ namespace gpu
       ::string_map_base < ::pointer < ::gpu::texture > > m_texturemap;
       ::string_map_base < ::pointer < ::gpu::texture > > m_texturemapGeneric;
 
+      ::pointer<::gpu::binding_set> m_pbindingsetGlobalUbo1;
+      ::pointer<::gpu::binding_set> m_pbindingsetIbl1;
+      ::pointer<::gpu::binding_set> m_pbindingsetGltfPbr;
+      ::pointer<::gpu::binding_set> m_pbindingsetSceneGltfPbr;
+      ::pointer<::gpu::block> m_pblockGlobalUbo;
+
+
       context();
       ~context() override;
 
@@ -213,6 +220,12 @@ namespace gpu
 
 
       virtual floating_sequence3 front(const ::graphics3d::floating_rotation &rotation);
+
+
+      virtual ::gpu::binding_set *global_ubo1_binding_set();
+      virtual ::gpu::binding_set *ibl1_binding_set();
+      virtual ::gpu::binding_set *gltf_pbr_binding_set();
+      virtual ::gpu::binding_set *scene_gltf_pbr_binding_set();
 
 
       virtual void _context_lock();
@@ -351,8 +364,9 @@ namespace gpu
       virtual void clear(::gpu::texture * ptexture, const ::color::color& color);
 
 
-      virtual void create_global_ubo(int iSize, int iFrameCount);
-      virtual void update_global_ubo(const ::block& block);
+      virtual ::pointer < ::gpu::block > create_global_ubo1(const ::gpu::property * ppropertyProperties);
+      virtual void update_global_ubo1(::gpu::block * pblockGlobalUbo1);
+      virtual void update_current_scene();
 
       virtual void copy(::gpu::texture* ptexture);
       virtual void copy(::gpu::texture* ptextureTarget, ::gpu::texture* ptextureSource);
@@ -396,7 +410,7 @@ namespace gpu
       virtual ::memory white_to_color_sampler_frag();
 
 
-      virtual bool is_global_ubo_ok();
+      //virtual bool is_global_ubo_ok();
 
       virtual void initialize_rectangle_shader(::gpu::shader* pshader);
 

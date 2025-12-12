@@ -1,15 +1,14 @@
 #include "framework.h"
 #include "point_light_render_system.h"
-//#include "global_ubo.h"
-//#include "pipeline.h"
 #include "aura/platform/application.h"
-#include "bred/graphics3d/engine.h"
+#include "bred/gpu/block.h"
 #include "bred/gpu/command_buffer.h"
 #include "bred/gpu/model_buffer.h"
 #include "bred/gpu/properties.h"
 #include "bred/gpu/renderer.h"
 #include "bred/gpu/shader.h"
 #include "bred/graphics3d/camera.h"
+#include "bred/graphics3d/engine.h"
 #include "bred/graphics3d/frame.h"
 #include "bred/graphics3d/scene_base.h"
 #include "bred/graphics3d/game_object.h"
@@ -234,7 +233,9 @@ namespace graphics3d
 
       //auto pscene = m_pengine->m_pscene;
 
-      auto& globalubo = pscene->global_ubo();
+      auto pblockGlobalUbo = pscene->global_ubo1(pgpucontext);
+
+      auto &globalUbo = *pblockGlobalUbo;
 
       //auto rotateLight = floating_matrix4(1.f);
       //rotateLight.rotate(0.5f * dt, { 0.f, -1.f, 0.f });
@@ -265,15 +266,15 @@ namespace graphics3d
 
          auto color = ppointlight->color();
 
-         globalubo["pointLights"][lightIndex]["position"] = floating_sequence4(position, 1.f);
-         globalubo["pointLights"][lightIndex]["color"] =
+         globalUbo["pointLights"][lightIndex]["position"] = floating_sequence4(position, 1.f);
+         globalUbo["pointLights"][lightIndex]["color"] =
             floating_sequence4(color.r, color.g, color.b, ppointlight->m_fLightIntensity);
 
          lightIndex += 1;
 
       }
 
-      globalubo["numLights"] = lightIndex;
+      globalUbo["numLights"] = lightIndex;
 
       // auto rotateLight = glm::rotate(floating_matrix4(1.f), m_rotationSpeed * pframe->frameTime(), {0.f, -1.f, 0.f});
       // auto &ubo = (*ppropertiesGlobalUbo);

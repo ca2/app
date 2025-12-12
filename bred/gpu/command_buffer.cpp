@@ -63,6 +63,14 @@ namespace gpu
    }
 
 
+   //void command_buffer::set_binding_set(::gpu::binding_set_pointer pbindingset)
+   //{
+
+   //   m_pbindingsetCurrent = pbindingset;
+
+   //}
+
+
    //::pointer <command_buffer >renderer::beginSingleTimeCommands()
    //{
 

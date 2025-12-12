@@ -1,6 +1,7 @@
 #include "framework.h"
 #include "graphics3d.h"
 #include "acme/exception/interface_only.h"
+#include "bred/gpu/block.h"
 #include "bred/gpu/context.h"
 #include "bred/gpu/frame.h"
 #include "bred/graphics3d/asset_manager.h"
@@ -182,7 +183,6 @@ namespace user
    void graphics3d::on_load_engine()
    {
 
-
       auto pgpucontextEngine = m_pengine->gpu_context();
 
       pgpucontextEngine->m_pengine = m_pengine;
@@ -202,6 +202,10 @@ namespace user
       m_pengine->m_pimmersionlayer->m_pscene = psceneMain;
 
       psceneMain->m_pgpucontext = pgpucontextEngine;
+
+      //auto pblockGlobalUbo1 = psceneMain->global_ubo1(pgpucontextEngine);
+
+      //pblockGlobalUbo1->create_gpu_block(pgpucontextEngine);
 
       //psceneMain->generateIbl();
 

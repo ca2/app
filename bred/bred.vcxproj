@@ -343,6 +343,7 @@
     <ClInclude Include="gpu\aaaa_gpu.h" />
     <ClInclude Include="gpu\aaa_end_draw.h" />
     <ClInclude Include="gpu\binding.h" />
+    <ClInclude Include="gpu\block.h" />
     <ClInclude Include="gpu\bred_approach.h" />
     <ClInclude Include="gpu\character.h" />
     <ClInclude Include="gpu\command_buffer.h" />
@@ -486,6 +487,7 @@
     </ClCompile>
     <ClCompile Include="gltf\vertex.cpp" />
     <ClCompile Include="gpu\binding.cpp" />
+    <ClCompile Include="gpu\block.cpp" />
     <ClCompile Include="gpu\bred_approach.cpp" />
     <ClCompile Include="gpu\command_buffer.cpp" />
     <ClCompile Include="gpu\compositor.cpp" />

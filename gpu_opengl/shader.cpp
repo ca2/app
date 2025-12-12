@@ -374,19 +374,19 @@ namespace gpu_opengl
 
       ::pointer < ::gpu::texture > pgputextureBound;
 
-      for (auto &bindingsetinstance: *m_pbindingseta)
+      for (auto &bindingslotset: *m_pbindingslotseta)
       {
 
-         if (!bindingsetinstance.m_pbindingset)
+         if (!bindingslotset.m_pbindingset)
          {
 
             continue;
          }
 
-         for (auto &pbinding: *bindingsetinstance.m_pbindingset)
+         for (auto &bindingslot: bindingslotset)
          {
 
-            if (!pbinding)
+            if (!bindingslot.m_pbinding)
             {
 
                continue;
@@ -402,7 +402,7 @@ namespace gpu_opengl
 
             //_set_int(strUniform, iSlot);
 
-            pgputextureBound = ::transfer(pbinding->m_ptexture);
+            pgputextureBound = ::transfer(bindingslot.m_ptexture);
 
             goto finished;
 
@@ -444,27 +444,27 @@ namespace gpu_opengl
       glBindTexture(ptexture->m_gluType, tex);
       GLCheckError("");
 
-      for (auto &bindingsetinstance: *m_pbindingseta)
+      for (auto &bindingslotset: *m_pbindingslotseta)
       {
 
-         if (!bindingsetinstance.m_pbindingset)
+         if (!bindingslotset.m_pbindingset)
          {
 
             continue;
 
          }
 
-         for (auto &pbinding: *bindingsetinstance.m_pbindingset)
+         for (auto &bindingslot: bindingslotset)
          {
 
-            if (!pbinding)
+            if (!bindingslot.m_pbinding)
             {
 
                continue;
 
             }
 
-            ::string strUniform = pbinding->m_strUniform;
+            ::string strUniform = bindingslot.m_pbinding->m_strUniform;
 
             if (strUniform.is_empty())
             {
@@ -475,7 +475,7 @@ namespace gpu_opengl
 
             _set_int(strUniform, iSlot);
 
-            pbinding->m_ptexture = ptexture;
+            bindingslot.m_ptexture = ptexture;
 
             goto finished;
 

@@ -115,7 +115,7 @@ namespace gpu
    }
 
 
-   ::gpu::binding_set_pointer shader::binding_set(int iSet, ::gpu::binding_set * pgpubindingset)
+   ::gpu::binding_set *shader::binding_set(int iSet, ::gpu::binding_set *pgpubindingset)
    {
 
       if (iSet < 0)
@@ -133,23 +133,10 @@ namespace gpu
 
       auto &pbindingset = binding_set_array()->ø(iSet);
 
-      if (!pbindingset.m_pbindingset)
+      if (::is_set(pgpubindingset))
       {
 
-         if (::is_set(pgpubindingset))
-         {
-         
-            pbindingset.m_pbindingset = pgpubindingset;
-         
-         }
-         else
-         {
-
-            øconstruct(pbindingset.m_pbindingset);
-
-         }
-
-         pbindingset.m_iSet = iSet;
+         pbindingset = pgpubindingset;
 
       }
 
@@ -158,11 +145,75 @@ namespace gpu
    }
 
 
-
-   ::gpu::binding_pointer shader::binding(int iSet, int iSlot)
+   ::gpu::binding *shader::binding(int iSet, int iSlot)
    {
 
       auto pbindingset = binding_set(iSet);
+
+      if (iSlot < 0)
+      {
+
+         throw ::exception(error_bad_argument);
+
+      }
+      else if (iSlot > 20) // 20: a reasonable maximum number of
+                           // slots/bindings in a binding set?
+      {
+
+         throw ::exception(error_bad_argument);
+
+      }
+
+      return pbindingset->binding(iSlot);
+
+   }
+
+
+
+
+   ::gpu::binding_slot_set * shader::binding_slot_set(int iSet, ::gpu::binding_set * pgpubindingset)
+   {
+
+      if (iSet < 0)
+      {
+
+         throw ::exception(error_bad_argument);
+
+      }
+      else if (iSet > 16) // 16: a reasonable maximum number of binding sets?
+      {
+
+         throw ::exception(error_bad_argument);
+
+      }
+
+      auto &pbindingslotset = binding_slot_set_array()->ø(iSet);
+
+      if (!pbindingslotset)
+      {
+
+         øconstruct(pbindingslotset);
+
+      }
+
+      if (::is_set(pgpubindingset))
+      {
+         
+         pbindingslotset->m_pbindingset = pgpubindingset;
+         
+      }
+
+      pbindingslotset->m_iSet = iSet;
+
+      return pbindingslotset;
+
+   }
+
+
+   ::gpu::binding_slot * shader::binding_slot(int iSet, int iSlot)
+   {
+
+      auto pbindingslotset = binding_slot_set(iSet);
 
       if (iSlot < 0)
       {
@@ -178,7 +229,7 @@ namespace gpu
 
       }
 
-      return pbindingset.binding(iSlot);
+      return pbindingslotset->binding_slot(iSlot);
 
    }
 
@@ -186,16 +237,17 @@ namespace gpu
    bool shader::has_image_sampler()
    {
 
-      auto binding = get_first_image_sampler_binding();
+      auto pbindingslot = get_first_image_sampler_binding_slot();
 
-      return ::is_set(binding.m_pbinding);
+      return ::is_set(pbindingslot->m_pbinding);
+
    }
 
 
    bool shader::has_global_ubo()
    {
 
-      return ::is_set(m_pbindingseta) && m_pbindingseta->has_global_ubo();
+      return ::is_set(m_pbindingslotseta) && m_pbindingslotseta->has_global_ubo();
 
    }
 
@@ -218,19 +270,19 @@ namespace gpu
    }
 
 
-   ::gpu::binding_set_pointer shader::get_first_image_sampler_binding_set()
+   ::gpu::binding_slot_set * shader::get_first_image_sampler_binding_slot_set()
    {
 
-      if (!m_pbindingseta)
+      if (!m_pbindingslotseta)
       {
 
-         return {};
+         return nullptr;
       }
 
-      for (auto &bindingsetinstance: *m_pbindingseta)
+      for (auto &pbindingslotset: *m_pbindingslotseta)
       {
 
-         if (!bindingsetinstance.m_pbindingset)
+         if (!pbindingslotset->m_pbindingset)
          {
 
             continue;
@@ -238,21 +290,21 @@ namespace gpu
 
          int iBinding = -1;
 
-         for (auto &pbinding: *bindingsetinstance.m_pbindingset)
+         for (auto &bindingslot: *pbindingslotset)
          {
 
             iBinding++;
 
-            if (!pbinding)
+            if (!bindingslot.m_pbinding)
             {
 
                continue;
             }
 
-            if (pbinding->is_image_sampler())
+            if (bindingslot.m_pbinding->is_image_sampler())
             {
 
-               return bindingsetinstance;
+               return pbindingslotset;
 
             }
 
@@ -260,25 +312,25 @@ namespace gpu
 
       }
 
+      return nullptr;
 
-      return {};
    }
 
 
-   ::gpu::binding_pointer shader::get_first_image_sampler_binding()
+   ::gpu::binding_slot * shader::get_first_image_sampler_binding_slot()
    {
 
-      if (!m_pbindingseta)
+      if (!m_pbindingslotseta)
       {
 
-         return {};
+         return nullptr;
 
       }
 
-      for (auto & bindingsetinstance : *m_pbindingseta)
+      for (auto &pbindingslotset: *m_pbindingslotseta)
       {
 
-         if (!bindingsetinstance.m_pbindingset)
+         if (!pbindingslotset->m_pbindingset)
          {
 
             continue;
@@ -287,12 +339,12 @@ namespace gpu
 
          int iBinding = -1;
 
-         for (auto &pbinding: *bindingsetinstance.m_pbindingset)
+         for (auto &bindingslot: *pbindingslotset)
          {
 
             iBinding++;
 
-            if (!pbinding)
+            if (!bindingslot.m_pbinding)
             {
 
                continue;
@@ -300,10 +352,10 @@ namespace gpu
 
             }
 
-            if (pbinding->is_image_sampler())
+            if (bindingslot.m_pbinding->is_image_sampler())
             {
 
-               return {bindingsetinstance.m_iSet, iBinding, pbinding};
+               return &bindingslot;
 
             }
 
@@ -311,7 +363,7 @@ namespace gpu
 
       }
 
-      return {};
+      return nullptr;
 
    }
 
@@ -941,9 +993,36 @@ namespace gpu
    ::gpu::binding_set_array * shader::binding_set_array()
    {
 
-      ødefer_construct(m_pbindingseta);
+      ødefer_construct(binding_slot_set_array()->m_pbindingseta);
 
-      return m_pbindingseta;
+      return binding_slot_set_array()->m_pbindingseta;
+
+   }
+
+
+   ::gpu::binding_slot_set_array *shader::binding_slot_set_array()
+   {
+
+      ødefer_construct(m_pbindingslotseta);
+
+      return m_pbindingslotseta;
+
+   }
+
+
+   void shader::update_binding_slots()
+   { 
+      
+      auto parray = binding_slot_set_array();
+
+      if (::is_null(parray))
+      {
+
+         return;
+
+      }
+
+      parray->update_binding_slots();
 
    }
 

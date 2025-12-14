@@ -81,18 +81,18 @@ list(APPEND library_source
    gpu/texture.h
    gpu/types.cpp
    gpu/types.h
-   graphics3d/render_systems/gltf_render_system.cpp
-   graphics3d/render_systems/gltf_render_system.h
-   graphics3d/render_systems/pbr_with_ibl_render_system.cpp
-   graphics3d/render_systems/pbr_with_ibl_render_system.h
-   graphics3d/render_systems/point_light_render_system.cpp
-   graphics3d/render_systems/point_light_render_system.h
-   graphics3d/render_systems/scene_render_system.cpp
-   graphics3d/render_systems/scene_render_system.h
-   graphics3d/render_systems/skybox_render_system.cpp
-   graphics3d/render_systems/skybox_render_system.h
-   graphics3d/render_systems/wavefront_obj_render_system.cpp
-   graphics3d/render_systems/wavefront_obj_render_system.h
+   graphics3d/render_system/point_light_render_system.cpp
+   graphics3d/render_system/point_light_render_system.h
+   #graphics3d/render_systems/gltf_render_system.cpp
+   #graphics3d/render_systems/gltf_render_system.h
+   graphics3d/render_system/pbr_with_ibl_render_system_base.cpp
+   graphics3d/render_system/pbr_with_ibl_render_system_base.h
+   #graphics3d/render_systems/scene_render_system.cpp
+   #graphics3d/render_systems/scene_render_system.h
+   graphics3d/render_system/skybox_render_system.cpp
+   graphics3d/render_system/skybox_render_system.h
+   graphics3d/render_system/wavefront_obj_render_system.cpp
+   graphics3d/render_system/wavefront_obj_render_system.h
    graphics3d/_.h
    graphics3d/_constant.h
    graphics3d/_sandbox_interfaces.h

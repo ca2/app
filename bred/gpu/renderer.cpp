@@ -383,17 +383,31 @@ namespace gpu
 
          iFrameIndex = m_pgpucontext->get_swap_chain()->swap_chain_frame_index();
 
+         if (iFrameIndex < 0)
+         {
+
+            ::warning("iFrameIndex < 0 (1)");
+
+         }
+
       }
       else
       {
 
          iFrameIndex = m_pgpurendertarget->get_frame_index();
 
+         if (iFrameIndex < 0)
+         {
+
+            ::warning("iFrameIndex < 0 (2)");
+
+         }
+
       }
 
       auto pcommandbuffer = m_commandbuffera[iFrameIndex];
 
-      pcommandbuffer->m_iFrameIndex = iFrameIndex;
+      pcommandbuffer->m_iCommandBufferFrameIndex = iFrameIndex;
 
       pcommandbuffer->m_strAnnotation.empty();
 
@@ -447,6 +461,8 @@ namespace gpu
             m_pgpurendertarget,
             m_pgpucontext->m_pgpudevice->graphics_queue(),
             e_command_buffer_graphics);
+
+         pcommandbuffer->m_iCommandBufferFrameIndex = i;
 
       }
 
@@ -1223,20 +1239,20 @@ namespace gpu
    }
 
 
-   void renderer::copy(::gpu::texture* pgputextureTarget, ::gpu::texture* pgputextureSource)
-   {
+   //void renderer::copy(::gpu::texture* pgputextureTarget, ::gpu::texture* pgputextureSource)
+   //{
 
-      throw::interface_only();
+   //   throw::interface_only();
 
-   }
+   //}
 
 
-   void renderer::blend(::gpu::texture* pgputextureTarget, ::gpu::texture* pgputextureSource)
-   {
+   //void renderer::blend(::gpu::texture* pgputextureTarget, ::gpu::texture* pgputextureSource)
+   //{
 
-      throw::interface_only();
+   //   throw::interface_only();
 
-   }
+   //}
 
 
    void renderer::soft_restore_context()
@@ -1404,13 +1420,13 @@ namespace gpu
    ::pointer < frame > renderer::beginFrame()
    {
 
-      if (m_procedureaPostOnJustBeforeFrameNextStart.has_element())
+      if (m_procedureaOnJustBeforeFrameNextStart.has_element())
       {
 
          try
          {
 
-            for (auto & procedure : m_procedureaPostOnJustBeforeFrameNextStart)
+            for (auto & procedure : m_procedureaOnJustBeforeFrameNextStart)
             {
 
                try
@@ -1434,7 +1450,7 @@ namespace gpu
 
          }
 
-         m_procedureaPostOnJustBeforeFrameNextStart.clear();
+         m_procedureaOnJustBeforeFrameNextStart.clear();
 
       }
 
@@ -1468,7 +1484,7 @@ namespace gpu
 
       ::cast < command_buffer > pcommandbuffer = getCurrentCommandBuffer2(pgpuframe);
 
-      auto iFrameIndex = pcommandbuffer->m_iFrameIndex;
+      auto iFrameIndex = pcommandbuffer->m_iCommandBufferFrameIndex;
 
       auto pszCommandBufferAnnotation = pcommandbuffer->m_strAnnotation.c_str();
 
@@ -1737,7 +1753,7 @@ namespace gpu
    void renderer::post_on_just_before_frame_next_start(const ::procedure & procedure)
    {
 
-      m_procedureaPostOnJustBeforeFrameNextStart.add(procedure);
+      m_procedureaOnJustBeforeFrameNextStart.add(procedure);
 
    }
 

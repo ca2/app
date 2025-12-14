@@ -341,6 +341,9 @@
     <ClCompile Include="ibl\aaa_mipmap_cubemap_framebuffer.cpp">
       <Filter>Source Files\ibl\_aaa</Filter>
     </ClCompile>
+    <ClCompile Include="gltf\material.cpp">
+      <Filter>Source Files\gltf</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="deployment.rc">

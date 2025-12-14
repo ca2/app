@@ -139,7 +139,7 @@ namespace gpu
       };
 #endif
 
-      this->bind(pgpuframe->m_pgpucommandbuffer);
+      this->bind2(pgpuframe->m_pgpucommandbuffer);
 
 
       this->static_initialize_vertexes<::graphics3d::sequence2_uv >(
@@ -162,7 +162,7 @@ namespace gpu
 
       auto pcommandbuffer = pgpuframe->m_pgpucommandbuffer;
 
-      bind(pcommandbuffer);
+      bind2(pcommandbuffer);
 
       this->create_vertexes<::graphics3d::sequence2_color >(6);
 
@@ -180,7 +180,7 @@ namespace gpu
 
       auto pcommandbuffer = pgpuframe->m_pgpucommandbuffer;
 
-      bind(pcommandbuffer);
+      bind2(pcommandbuffer);
 
       this->create_vertexes<::graphics3d::sequence2_color >(
          2);
@@ -199,7 +199,7 @@ namespace gpu
 
       auto pcommandbuffer = pgpuframe->m_pgpucommandbuffer;
 
-      bind(pcommandbuffer);
+      bind2(pcommandbuffer);
 
       this->create_vertexes<::graphics3d::sequence3_color >(
          6);
@@ -218,7 +218,7 @@ namespace gpu
 
       auto pcommandbuffer = pgpuframe->m_pgpucommandbuffer;
 
-      bind(pcommandbuffer);
+      bind2(pcommandbuffer);
 
       this->create_vertexes<::graphics3d::sequence3_color >(
          2);
@@ -715,7 +715,7 @@ namespace gpu
    //}
 
 
-   void model_buffer::bind(::gpu::command_buffer* pgpucommandbuffer)
+   void model_buffer::bind2(::gpu::command_buffer* pgpucommandbuffer)
    {
 
       //if (m_pbufferVertex)
@@ -748,7 +748,7 @@ namespace gpu
    }
 
 
-   void model_buffer::draw(::gpu::command_buffer* pgpucommandbuffer)
+   void model_buffer::draw2(::gpu::command_buffer* pgpucommandbuffer)
    {
 
       //if (m_pbufferVertex)
@@ -964,7 +964,7 @@ namespace gpu
 
       auto pgpurenderer = pcontext->m_pgpurenderer;
 
-      bind(pgpurenderer->getLoadAssetsCommandBuffer());
+      bind2(pgpurenderer->getLoadAssetsCommandBuffer());
 
    }
 

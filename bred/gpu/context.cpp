@@ -73,7 +73,7 @@ namespace gpu
    }
 
 
-   void context::start_drawing() {}
+   //void context::start_drawing() {}
 
 
    void context::global_transform() {}
@@ -319,6 +319,22 @@ namespace gpu
       }
 
       return ptexture;
+   }
+
+
+   ::pointer<::gpu::texture> context::create_empty_texture()
+   {
+
+      auto ptextureEmpty = øcreate<::gpu::texture>();
+
+      ::int_rectangle rectangleSize(API_CHANGED_ARGUMENT, 1, 1);
+
+      ::gpu::texture_attributes textureattributes(rectangleSize);
+
+      ptextureEmpty->initialize_texture(m_pgpurenderer, textureattributes);
+
+      return ptextureEmpty;
+
    }
 
 
@@ -911,6 +927,8 @@ namespace gpu
 
       pcommandbuffer->begin_command_buffer(true);
 
+      pcommandbuffer->m_iCommandBufferFrameIndex = 0;
+
       return pcommandbuffer;
 
    }
@@ -1102,7 +1120,8 @@ return {};
    }
 
 
-   bool context::defer_bind(::gpu::shader* pgpushader)
+   bool context::defer_bind2(::gpu::command_buffer *pgpucommandbuffer, ::gpu::shader *pgpushader,
+                             ::gpu::texture *pgputexture)
    {
 
       if (pgpushader == m_pshaderBound)
@@ -1112,17 +1131,54 @@ return {};
 
       }
 
+      //auto pgpucommandbuffer = ::gpu::current_command_buffer();
+
       if (m_pshaderBound)
       {
 
-         end_debug_happening(::gpu::current_command_buffer());
+         end_debug_happening(pgpucommandbuffer);
 
-         m_pshaderBound->unbind(::gpu::current_command_buffer());
+         m_pshaderBound->unbind(pgpucommandbuffer);
 
       }
-      start_debug_happening(::gpu::current_command_buffer(),"shader changing");
 
-      pgpushader->bind(::gpu::current_command_buffer());
+      start_debug_happening(pgpucommandbuffer, "shader changing");
+
+      //auto ptexture = m_pgpurenderer->m_pgpurendertarget->current_texture(::gpu::current_frame());
+
+      pgpushader->bind(pgpucommandbuffer, pgputexture);
+
+      m_pshaderBound = pgpushader;
+
+      return true;
+
+   }
+
+
+   bool context::defer_bind3(::gpu::command_buffer *pgpucommandbuffer, ::gpu::shader *pgpushader)
+   {
+
+      if (pgpushader == m_pshaderBound)
+      {
+
+         return false;
+      }
+
+      // auto pgpucommandbuffer = ::gpu::current_command_buffer();
+
+      if (m_pshaderBound)
+      {
+
+         end_debug_happening(pgpucommandbuffer);
+
+         m_pshaderBound->unbind(pgpucommandbuffer);
+      }
+
+      start_debug_happening(pgpucommandbuffer, "shader changing");
+
+      auto ptexture = pgpucommandbuffer->m_pgpurendertarget->current_texture(::gpu::current_frame());
+
+      pgpushader->bind(pgpucommandbuffer, ptexture);
 
       m_pshaderBound = pgpushader;
 
@@ -2349,11 +2405,11 @@ return {};
 
          øconstruct(m_pbindingsetSceneGltfPbr);
 
-         auto pbindingAlbedo = m_pbindingsetGltfPbr->binding(0);
+         auto pbindingAlbedo = m_pbindingsetSceneGltfPbr->binding(0);
          pbindingAlbedo->m_ebinding = ::gpu::e_binding_sampler2d;
          pbindingAlbedo->m_strUniform = "albedo";
 
-         auto pbindingNormal = m_pbindingsetGltfPbr->binding(1);
+         auto pbindingNormal = m_pbindingsetSceneGltfPbr->binding(1);
          pbindingNormal->m_strUniform = "normal";
          pbindingNormal->m_ebinding = ::gpu::e_binding_sampler2d;
       }
@@ -2415,12 +2471,12 @@ return {};
    }
 
 
-   void context::copy(::gpu::texture* ptexture)
-   {
+   //void context::copy(::gpu::texture* ptexture)
+   //{
 
-      throw ::interface_only();
+   //   throw ::interface_only();
 
-   }
+   //}
 
 
    void context::copy(::gpu::texture* ptextureTarget, ::gpu::texture* ptextureSource)

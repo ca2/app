@@ -249,6 +249,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='ASanStaticDebug|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="full_screen_quad.cpp" />
+    <ClCompile Include="gltf\material.cpp" />
     <ClCompile Include="gltf\mesh.cpp" />
     <ClCompile Include="gltf\model.cpp" />
     <ClCompile Include="gltf\model_base.cpp" />

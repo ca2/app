@@ -94,7 +94,7 @@ namespace gpu_opengl
 
       }
 
-      m_pmodelbuffer->bind(m_pcontext->m_pgpurenderer->getCurrentCommandBuffer2(::gpu::current_frame()));
+      m_pmodelbuffer->bind2(m_pcontext->m_pgpurenderer->getCurrentCommandBuffer2(::gpu::current_frame()));
 
       _on_set_memory_buffer(data, size);
 

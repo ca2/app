@@ -1282,150 +1282,150 @@ namespace gpu_opengl
    //}
    
    
-   void renderer::blend(::gpu::renderer* prendererSource)
-   {
+   //void renderer::blend(::gpu::renderer* prendererSource)
+   //{
 
-      ::gpu::context_lock contextlock(m_pgpucontext);
-   
-      auto rectangleHost = m_pgpucontext->rectangle();
+   //   ::gpu::context_lock contextlock(m_pgpucontext);
+   //
+   //   auto rectangleHost = m_pgpucontext->rectangle();
 
-      int wHost = rectangleHost.width();
+   //   int wHost = rectangleHost.width();
 
-      int hHost = rectangleHost.height();
+   //   int hHost = rectangleHost.height();
 
-      //glPopAttrib();
-      //glPopMatrix();
+   //   //glPopAttrib();
+   //   //glPopMatrix();
 
-      glViewport(0, 0, wHost, hHost);
+   //   glViewport(0, 0, wHost, hHost);
 
-      glDisable(GL_DEPTH_TEST);
-      glDepthMask(GL_FALSE);
+   //   glDisable(GL_DEPTH_TEST);
+   //   glDepthMask(GL_FALSE);
 
-      glEnable(GL_BLEND);
-
-
-
-      //glMatrixMode(GL_PROJECTION);
-      //glLoadIdentity();
-      ////glOrtho(0, size.cx * d, size.cy * d, 0.0f, 000.0f, 1000.0f);
-      ////glOrtho(0, size.cx * d, size.cy * d, 0.0f, 000.0f, 1000.0f);
-      //////glOrtho(0, size.cx * d, 0.0f, size.cy * d, 000.0f, 1000.0f);
-      ////glOrtho(0, size.cx, size.cy, 0.0f, -1000.0f, 1000.0f);
-      //glOrtho(0.f, size.cx, 0.f, -size.cy, -1.0f, 1.0f);
-      auto bYSwap = true;
-      if (bYSwap)
-      {
-         //glOrtho(0.0f, wHost, hHost, 0, -1.0f, 1.0f);  // Flip Y
-      }
-      else
-      {
-         //glOrtho(0.0f, wHost, 0, hHost, -1.0f, 1.0f);  // Flip Y
-      }
-      //glMatrixMode(GL_MODELVIEW);
-      //glLoadIdentity();
-
-      if (!m_pshaderBlend)
-      {
-
-         øconstruct(m_pshaderBlend);
-
-         const_char_pointer quad_vertex_shader = "#version 330 core\n"
-            "layout(location = 0) in vec2 pos;\n"
-            "layout(location = 1) in vec2 texCoord;\n"
-            "out vec2 uv;\n"
-            "void main() {\n"
-            "    uv = texCoord;\n"
-            "    gl_Position = vec4(pos, 0.0, 1.0);\n"
-            "}";
-
-         const_char_pointer blend_fragment_shader = "#version 330 core\n"
-            "in vec2 uv;\n"
-            "uniform sampler2D tex;\n"
-            "out vec4 FragColor;\n"
-            "void main() {\n"
-            "    FragColor = texture(tex, uv);\n"
-            "}";
+   //   glEnable(GL_BLEND);
 
 
-         m_pshaderBlend->initialize_shader_with_block(
-            this,
-            quad_vertex_shader,
-            blend_fragment_shader);
 
-         glGenVertexArrays(1, &m_vaoQuadBlend);
-         glGenBuffers(1, &m_vboQuadBlend);
-         glBindVertexArray(m_vaoQuadBlend);
-         glBindBuffer(GL_ARRAY_BUFFER, m_vboQuadBlend);
-         glBufferData(GL_ARRAY_BUFFER, 4 * 4 * sizeof(float), NULL, GL_DYNAMIC_DRAW);
-         glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)0);
-         glEnableVertexAttribArray(0);
-         glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)(2 * sizeof(float)));
-         glEnableVertexAttribArray(1);
+   //   //glMatrixMode(GL_PROJECTION);
+   //   //glLoadIdentity();
+   //   ////glOrtho(0, size.cx * d, size.cy * d, 0.0f, 000.0f, 1000.0f);
+   //   ////glOrtho(0, size.cx * d, size.cy * d, 0.0f, 000.0f, 1000.0f);
+   //   //////glOrtho(0, size.cx * d, 0.0f, size.cy * d, 000.0f, 1000.0f);
+   //   ////glOrtho(0, size.cx, size.cy, 0.0f, -1000.0f, 1000.0f);
+   //   //glOrtho(0.f, size.cx, 0.f, -size.cy, -1.0f, 1.0f);
+   //   auto bYSwap = true;
+   //   if (bYSwap)
+   //   {
+   //      //glOrtho(0.0f, wHost, hHost, 0, -1.0f, 1.0f);  // Flip Y
+   //   }
+   //   else
+   //   {
+   //      //glOrtho(0.0f, wHost, 0, hHost, -1.0f, 1.0f);  // Flip Y
+   //   }
+   //   //glMatrixMode(GL_MODELVIEW);
+   //   //glLoadIdentity();
 
-      }
+   //   if (!m_pshaderBlend)
+   //   {
 
-      float WIDTH = (float)wHost;
-      float HEIGHT = (float)hHost;
+   //      øconstruct(m_pshaderBlend);
 
-      auto rectangle = prendererSource->m_pgpucontext->rectangle();
+   //      const_char_pointer quad_vertex_shader = "#version 330 core\n"
+   //         "layout(location = 0) in vec2 pos;\n"
+   //         "layout(location = 1) in vec2 texCoord;\n"
+   //         "out vec2 uv;\n"
+   //         "void main() {\n"
+   //         "    uv = texCoord;\n"
+   //         "    gl_Position = vec4(pos, 0.0, 1.0);\n"
+   //         "}";
 
-      float w = (float)rectangle.width();
-      float h = (float)rectangle.height();
-      float x = (float)rectangle.left;
-      float y = (float)(hHost - rectangle.bottom);
+   //      const_char_pointer blend_fragment_shader = "#version 330 core\n"
+   //         "in vec2 uv;\n"
+   //         "uniform sampler2D tex;\n"
+   //         "out vec4 FragColor;\n"
+   //         "void main() {\n"
+   //         "    FragColor = texture(tex, uv);\n"
+   //         "}";
 
-      // 3. Composite scene texture at 1:1 into UI FBO at position (200, 150)
-      //float x = 200.0f, y = 150.0f, w = SCENE_W, h = SCENE_H;
 
-      float l, r, b, t;
+   //      m_pshaderBlend->initialize_shader_with_block(
+   //         this,
+   //         quad_vertex_shader,
+   //         blend_fragment_shader);
 
-      if (1)
-      {
-         l = (x / WIDTH) * 2.0f - 1.0f;
-         r = ((x + w) / WIDTH) * 2.0f - 1.0f;
-         b = (y / HEIGHT) * 2.0f - 1.0f;
-         t = ((y + h) / HEIGHT) * 2.0f - 1.0f;
-      }
-      else
-      {
-         l = (float)rectangle.left;
-         r = (float)rectangle.right;
-         b = (float)rectangle.bottom;
-         t = (float)rectangle.top;
-      }
-      float quad[] = {
-             l, b,  0.0f, 0.0f,
-             r, b,  1.0f, 0.0f,
-             l, t,  0.0f, 1.0f,
-             r, t,  1.0f, 1.0f
-      };
+   //      glGenVertexArrays(1, &m_vaoQuadBlend);
+   //      glGenBuffers(1, &m_vboQuadBlend);
+   //      glBindVertexArray(m_vaoQuadBlend);
+   //      glBindBuffer(GL_ARRAY_BUFFER, m_vboQuadBlend);
+   //      glBufferData(GL_ARRAY_BUFFER, 4 * 4 * sizeof(float), NULL, GL_DYNAMIC_DRAW);
+   //      glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)0);
+   //      glEnableVertexAttribArray(0);
+   //      glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)(2 * sizeof(float)));
+   //      glEnableVertexAttribArray(1);
 
-      if (1)
-      {
+   //   }
 
-         ::cast < ::gpu_opengl::context > pcontextSource = prendererSource->m_pgpucontext;
+   //   float WIDTH = (float)wHost;
+   //   float HEIGHT = (float)hHost;
 
-         //glUseProgram(blendShader);
-         m_pshaderBlend->bind(nullptr);
-         glActiveTexture(GL_TEXTURE0);
-         auto texture = pcontextSource->m_pframebuffer->m_tex;
-         glBindTexture(GL_TEXTURE_2D, texture);
-         //glUniform1i(glGetUniformLocation(blendShader, "tex"), 0);
-         ::cast < gpu_opengl::shader > pshader = m_pshaderBlend;
-         pshader->_set_int("tex", 0);
+   //   auto rectangle = prendererSource->m_pgpucontext->rectangle();
 
-         glBindBuffer(GL_ARRAY_BUFFER, m_vboQuadBlend);
-         glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(quad), quad);
-         glBindVertexArray(m_vaoQuadBlend);
-         glEnable(GL_BLEND);
-         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-         glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
-         m_pshaderBlend->unbind(nullptr);
-         //}
+   //   float w = (float)rectangle.width();
+   //   float h = (float)rectangle.height();
+   //   float x = (float)rectangle.left;
+   //   float y = (float)(hHost - rectangle.bottom);
 
-      }
+   //   // 3. Composite scene texture at 1:1 into UI FBO at position (200, 150)
+   //   //float x = 200.0f, y = 150.0f, w = SCENE_W, h = SCENE_H;
 
-   }
+   //   float l, r, b, t;
+
+   //   if (1)
+   //   {
+   //      l = (x / WIDTH) * 2.0f - 1.0f;
+   //      r = ((x + w) / WIDTH) * 2.0f - 1.0f;
+   //      b = (y / HEIGHT) * 2.0f - 1.0f;
+   //      t = ((y + h) / HEIGHT) * 2.0f - 1.0f;
+   //   }
+   //   else
+   //   {
+   //      l = (float)rectangle.left;
+   //      r = (float)rectangle.right;
+   //      b = (float)rectangle.bottom;
+   //      t = (float)rectangle.top;
+   //   }
+   //   float quad[] = {
+   //          l, b,  0.0f, 0.0f,
+   //          r, b,  1.0f, 0.0f,
+   //          l, t,  0.0f, 1.0f,
+   //          r, t,  1.0f, 1.0f
+   //   };
+
+   //   if (1)
+   //   {
+
+   //      ::cast < ::gpu_opengl::context > pcontextSource = prendererSource->m_pgpucontext;
+
+   //      //glUseProgram(blendShader);
+   //      m_pshaderBlend->bind(nullptr);
+   //      glActiveTexture(GL_TEXTURE0);
+   //      auto texture = pcontextSource->m_pframebuffer->m_tex;
+   //      glBindTexture(GL_TEXTURE_2D, texture);
+   //      //glUniform1i(glGetUniformLocation(blendShader, "tex"), 0);
+   //      ::cast < gpu_opengl::shader > pshader = m_pshaderBlend;
+   //      pshader->_set_int("tex", 0);
+
+   //      glBindBuffer(GL_ARRAY_BUFFER, m_vboQuadBlend);
+   //      glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(quad), quad);
+   //      glBindVertexArray(m_vaoQuadBlend);
+   //      glEnable(GL_BLEND);
+   //      glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+   //      glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
+   //      m_pshaderBlend->unbind(nullptr);
+   //      //}
+
+   //   }
+
+   //}
 
 
    void renderer::clear(::gpu::texture* ptextureParam)
@@ -1468,296 +1468,296 @@ namespace gpu_opengl
    }
 
 
-   void renderer::__blend(::gpu::texture* ptextureTarget, ::gpu::texture* ptextureSource)
-   {
-
-      ::gpu::context_lock contextlock(m_pgpucontext);
-
-      ::cast < ::gpu_opengl::texture > ptextureDst = ptextureTarget;
-      ::cast < ::gpu_opengl::texture > ptextureSrc = ptextureSource;
-
-
-      if (!m_pshaderBlend2)
-      {
-
-         øconstruct_new(m_pshaderBlend2);
-
-         m_pshaderBlend2->initialize_shader_with_block(
-            this,
-            blend_vert,
-            blend_frag);
-
-      }
-
-      float quadVertices[] = {
-         // pos      // uv
-         -1.0f, -1.0f,  0.0f, 0.0f,
-          1.0f, -1.0f,  1.0f, 0.0f,
-         -1.0f,  1.0f,  0.0f, 1.0f,
-          1.0f,  1.0f,  1.0f, 1.0f,
-      };
-
-      auto rectangleTarget =  ptextureSource->rectangle();
-
-
-      int iTopH = ptextureDst->size().cy;
-      int rectangleBottom = rectangleTarget.bottom;
-      int iY = iTopH - rectangleBottom;
-
-      glViewport(
-         rectangleTarget.left,
-          iY,
-         rectangleTarget.width(),
-         rectangleTarget.height());
-
-      // Optional: scissor if you want to limit drawing region
-      glEnable(GL_SCISSOR_TEST);
-      glScissor(
-         rectangleTarget.left,
-         iY,
-         rectangleTarget.width(),
-         rectangleTarget.height()
-      );
-
-      glDepthMask(FALSE);
-      glDisable(GL_DEPTH_TEST);
-
-      glEnable(GL_BLEND);
-      glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
-      glBlendEquation(GL_FUNC_ADD); // default, can be omitted if unchanged
-
-      // VAO/VBO setup
-      GLuint& vao = m_vaoQuadBlend2;
-      GLuint& vbo = m_vboQuadBlend2;
-
-      if (!vao)
-      {
-
-         glGenVertexArrays(1, &vao);
-         glGenBuffers(1, &vbo);
-         glBindVertexArray(vao);
-         glBindBuffer(GL_ARRAY_BUFFER, vbo);
-         glBufferData(GL_ARRAY_BUFFER, sizeof(quadVertices), quadVertices, GL_STATIC_DRAW);
-         glEnableVertexAttribArray(0); // position
-         glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)0);
-         glEnableVertexAttribArray(1); // texcoord
-         glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)(2 * sizeof(float)));
-
-      }
-      else
-      {
-
-         glBindVertexArray(vao);
-
-      }
-
-      m_pshaderBlend2->bind(nullptr);
-
-      glActiveTexture(GL_TEXTURE0);
-      glBindTexture(GL_TEXTURE_2D, ptextureSrc->m_gluTextureID);
-      m_pshaderBlend2->_set_int("uTexture", 0);
-
-      // Optional: if each texture should be rendered to a specific portion of the screen
-      // set a model/view/projection matrix or glViewport/scissor here.
-
-      glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
-      //}
-
-      m_pshaderBlend2->unbind(nullptr);
-
-#if SHOW_DEBUG_DRAWING
-
-      {
-
-
-         {
-
-            ///glBindFramebuffer(GL_DRAW_FRAMEBUFFER, 0);
-
-
-            glEnable(GL_BLEND);
-            glBlendFunc(GL_ONE, GL_ZERO); // Source Copy mode
-            //glBlendEquation(GL_FUNC_ADD); // default, can be omitted if unchanged
-
-            {
-               float fOpacity = 0.5;
-               float fRed = 0.5;
-               float fGreen = 0.75;
-               float fBlue = 0.95;
-               auto f32Opacity = (float)fOpacity;
-               auto f32Red = (float)(fRed * fOpacity);
-               auto f32Green = (float)(fGreen * fOpacity);
-               auto f32Blue = (float)(fBlue * fOpacity);
-               ::glColor4f(f32Red, f32Green, f32Blue, f32Opacity);
-            }
-
-            ::double_polygon polygon;
-
-            ::double_rectangle rectangle(500, 100, 550, 150);
-
-            polygon = rectangle;
-
-            glBegin(GL_QUADS);
-
-
-            vertex2f(polygon, 0.f);
-
-            glEnd();
-
-         }
-      }
-#endif // SHOW_DEBUG_DRAWING
-
-
-   }
-
-
-   void renderer::blend(::gpu::texture* ptextureTarget, ::gpu::texture* ptextureSource)
-   {
-
-      ::gpu::context_lock contextlock(m_pgpucontext);
-
-      ::cast < texture > ptextureDst = ptextureTarget;
-      ::cast < texture > ptextureSrc = ptextureSource;
-
-      GLuint framebuffer;
-      glGenFramebuffers(1, &framebuffer);
-      glBindFramebuffer(GL_DRAW_FRAMEBUFFER, framebuffer);
-
-      // Bind the destination texture (textures[textureSrc]) as the framebuffer color attachment
-      glFramebufferTexture2D(
-         GL_DRAW_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D,
-         ptextureDst->m_gluTextureID,
-         0);
-
-      if (glCheckFramebufferStatus(GL_DRAW_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE) {
-         printf("Framebuffer not complete!\n");
-         glDeleteFramebuffers(1, &framebuffer);
-         return;
-      }
-
-      if (!m_pshaderBlend2)
-      {
-
-         øconstruct_new(m_pshaderBlend2);
-
-         m_pshaderBlend2->initialize_shader_with_block(
-            this,
-            blend_vert,
-            blend_frag);
-
-      }
-
-      float quadVertices[] = {
-         // pos      // uv
-         -1.0f, -1.0f,  0.0f, 0.0f,
-          1.0f, -1.0f,  1.0f, 0.0f,
-         -1.0f,  1.0f,  0.0f, 1.0f,
-          1.0f,  1.0f,  1.0f, 1.0f,
-      };
-
-
-      auto rectangleTarget = ptextureSource->rectangle();
-
-      glViewport(
-         rectangleTarget.left,
-         ptextureDst->size().cy - rectangleTarget.bottom,
-         rectangleTarget.width(),
-         rectangleTarget.height());
-
-      // Optional: scissor if you want to limit drawing region
-      glEnable(GL_SCISSOR_TEST);
-      glScissor(
-         rectangleTarget.left,
-         ptextureDst->size().cy - rectangleTarget.bottom,
-         rectangleTarget.width(),
-         rectangleTarget.height()
-      );
-
-      glDepthMask(FALSE);
-      glDisable(GL_DEPTH_TEST);
-
-      glEnable(GL_BLEND);
-      glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
-      glBlendEquation(GL_FUNC_ADD); // default, can be omitted if unchanged
-
-      // VAO/VBO setup
-      GLuint vao, vbo;
-      glGenVertexArrays(1, &vao);
-      glGenBuffers(1, &vbo);
-      glBindVertexArray(vao);
-      glBindBuffer(GL_ARRAY_BUFFER, vbo);
-      glBufferData(GL_ARRAY_BUFFER, sizeof(quadVertices), quadVertices, GL_STATIC_DRAW);
-      glEnableVertexAttribArray(0); // position
-      glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)0);
-      glEnableVertexAttribArray(1); // texcoord
-      glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)(2 * sizeof(float)));
-
-      m_pshaderBlend2->bind(nullptr);
-
-      GLint uTexture = glGetUniformLocation(m_pshaderBlend2->m_ProgramID, "uTexture");
-
-      glActiveTexture(GL_TEXTURE0);
-      glBindTexture(GL_TEXTURE_2D, ptextureSrc->m_gluTextureID);
-      glUniform1i(uTexture, 0);
-
-      // Optional: if each texture should be rendered to a specific portion of the screen
-      // set a model/view/projection matrix or glViewport/scissor here.
-
-      glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
-      //}
-
-      m_pshaderBlend2->unbind(nullptr);
-
-
-#if SHOW_DEBUG_DRAWING
-      {
-
-
-         {
-
-            glBindFramebuffer(GL_FRAMEBUFFER, 0);
-
-
-            glEnable(GL_BLEND);
-            glBlendFunc(GL_ONE, GL_ZERO); // Source Copy mode
-            //glBlendEquation(GL_FUNC_ADD); // default, can be omitted if unchanged
-
-            {
-               float fOpacity = 0.5;
-               float fRed = 0.5;
-               float fGreen = 0.75;
-               float fBlue = 0.95;
-               auto f32Opacity = (float)fOpacity;
-               auto f32Red = (float)(fRed * fOpacity);
-               auto f32Green = (float)(fGreen * fOpacity);
-               auto f32Blue = (float)(fBlue * fOpacity);
-               ::glColor4f(f32Red, f32Green, f32Blue, f32Opacity);
-            }
-
-            ::double_polygon polygon;
-
-            ::double_rectangle rectangle(500, 100, 550, 150);
-
-            polygon = rectangle;
-
-            glBegin(GL_QUADS);
-
-
-            vertex2f(polygon, 0.f);
-
-            glEnd();
-
-         }
-      }
-
-#endif
-
-      glBindFramebuffer(GL_FRAMEBUFFER, 0); // Return to default framebuffer
-
-      glDeleteFramebuffers(1, &framebuffer);
-
-   }
+//   void renderer::__blend(::gpu::texture* ptextureTarget, ::gpu::texture* ptextureSource)
+//   {
+//
+//      ::gpu::context_lock contextlock(m_pgpucontext);
+//
+//      ::cast < ::gpu_opengl::texture > ptextureDst = ptextureTarget;
+//      ::cast < ::gpu_opengl::texture > ptextureSrc = ptextureSource;
+//
+//
+//      if (!m_pshaderBlend2)
+//      {
+//
+//         øconstruct_new(m_pshaderBlend2);
+//
+//         m_pshaderBlend2->initialize_shader_with_block(
+//            this,
+//            blend_vert,
+//            blend_frag);
+//
+//      }
+//
+//      float quadVertices[] = {
+//         // pos      // uv
+//         -1.0f, -1.0f,  0.0f, 0.0f,
+//          1.0f, -1.0f,  1.0f, 0.0f,
+//         -1.0f,  1.0f,  0.0f, 1.0f,
+//          1.0f,  1.0f,  1.0f, 1.0f,
+//      };
+//
+//      auto rectangleTarget =  ptextureSource->rectangle();
+//
+//
+//      int iTopH = ptextureDst->size().cy;
+//      int rectangleBottom = rectangleTarget.bottom;
+//      int iY = iTopH - rectangleBottom;
+//
+//      glViewport(
+//         rectangleTarget.left,
+//          iY,
+//         rectangleTarget.width(),
+//         rectangleTarget.height());
+//
+//      // Optional: scissor if you want to limit drawing region
+//      glEnable(GL_SCISSOR_TEST);
+//      glScissor(
+//         rectangleTarget.left,
+//         iY,
+//         rectangleTarget.width(),
+//         rectangleTarget.height()
+//      );
+//
+//      glDepthMask(FALSE);
+//      glDisable(GL_DEPTH_TEST);
+//
+//      glEnable(GL_BLEND);
+//      glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
+//      glBlendEquation(GL_FUNC_ADD); // default, can be omitted if unchanged
+//
+//      // VAO/VBO setup
+//      GLuint& vao = m_vaoQuadBlend2;
+//      GLuint& vbo = m_vboQuadBlend2;
+//
+//      if (!vao)
+//      {
+//
+//         glGenVertexArrays(1, &vao);
+//         glGenBuffers(1, &vbo);
+//         glBindVertexArray(vao);
+//         glBindBuffer(GL_ARRAY_BUFFER, vbo);
+//         glBufferData(GL_ARRAY_BUFFER, sizeof(quadVertices), quadVertices, GL_STATIC_DRAW);
+//         glEnableVertexAttribArray(0); // position
+//         glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)0);
+//         glEnableVertexAttribArray(1); // texcoord
+//         glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)(2 * sizeof(float)));
+//
+//      }
+//      else
+//      {
+//
+//         glBindVertexArray(vao);
+//
+//      }
+//
+//      m_pshaderBlend2->bind(nullptr);
+//
+//      glActiveTexture(GL_TEXTURE0);
+//      glBindTexture(GL_TEXTURE_2D, ptextureSrc->m_gluTextureID);
+//      m_pshaderBlend2->_set_int("uTexture", 0);
+//
+//      // Optional: if each texture should be rendered to a specific portion of the screen
+//      // set a model/view/projection matrix or glViewport/scissor here.
+//
+//      glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
+//      //}
+//
+//      m_pshaderBlend2->unbind(nullptr);
+//
+//#if SHOW_DEBUG_DRAWING
+//
+//      {
+//
+//
+//         {
+//
+//            ///glBindFramebuffer(GL_DRAW_FRAMEBUFFER, 0);
+//
+//
+//            glEnable(GL_BLEND);
+//            glBlendFunc(GL_ONE, GL_ZERO); // Source Copy mode
+//            //glBlendEquation(GL_FUNC_ADD); // default, can be omitted if unchanged
+//
+//            {
+//               float fOpacity = 0.5;
+//               float fRed = 0.5;
+//               float fGreen = 0.75;
+//               float fBlue = 0.95;
+//               auto f32Opacity = (float)fOpacity;
+//               auto f32Red = (float)(fRed * fOpacity);
+//               auto f32Green = (float)(fGreen * fOpacity);
+//               auto f32Blue = (float)(fBlue * fOpacity);
+//               ::glColor4f(f32Red, f32Green, f32Blue, f32Opacity);
+//            }
+//
+//            ::double_polygon polygon;
+//
+//            ::double_rectangle rectangle(500, 100, 550, 150);
+//
+//            polygon = rectangle;
+//
+//            glBegin(GL_QUADS);
+//
+//
+//            vertex2f(polygon, 0.f);
+//
+//            glEnd();
+//
+//         }
+//      }
+//#endif // SHOW_DEBUG_DRAWING
+//
+//
+//   }
+
+
+//   void renderer::blend(::gpu::texture* ptextureTarget, ::gpu::texture* ptextureSource)
+//   {
+//
+//      ::gpu::context_lock contextlock(m_pgpucontext);
+//
+//      ::cast < texture > ptextureDst = ptextureTarget;
+//      ::cast < texture > ptextureSrc = ptextureSource;
+//
+//      GLuint framebuffer;
+//      glGenFramebuffers(1, &framebuffer);
+//      glBindFramebuffer(GL_DRAW_FRAMEBUFFER, framebuffer);
+//
+//      // Bind the destination texture (textures[textureSrc]) as the framebuffer color attachment
+//      glFramebufferTexture2D(
+//         GL_DRAW_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D,
+//         ptextureDst->m_gluTextureID,
+//         0);
+//
+//      if (glCheckFramebufferStatus(GL_DRAW_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE) {
+//         printf("Framebuffer not complete!\n");
+//         glDeleteFramebuffers(1, &framebuffer);
+//         return;
+//      }
+//
+//      if (!m_pshaderBlend2)
+//      {
+//
+//         øconstruct_new(m_pshaderBlend2);
+//
+//         m_pshaderBlend2->initialize_shader_with_block(
+//            this,
+//            blend_vert,
+//            blend_frag);
+//
+//      }
+//
+//      float quadVertices[] = {
+//         // pos      // uv
+//         -1.0f, -1.0f,  0.0f, 0.0f,
+//          1.0f, -1.0f,  1.0f, 0.0f,
+//         -1.0f,  1.0f,  0.0f, 1.0f,
+//          1.0f,  1.0f,  1.0f, 1.0f,
+//      };
+//
+//
+//      auto rectangleTarget = ptextureSource->rectangle();
+//
+//      glViewport(
+//         rectangleTarget.left,
+//         ptextureDst->size().cy - rectangleTarget.bottom,
+//         rectangleTarget.width(),
+//         rectangleTarget.height());
+//
+//      // Optional: scissor if you want to limit drawing region
+//      glEnable(GL_SCISSOR_TEST);
+//      glScissor(
+//         rectangleTarget.left,
+//         ptextureDst->size().cy - rectangleTarget.bottom,
+//         rectangleTarget.width(),
+//         rectangleTarget.height()
+//      );
+//
+//      glDepthMask(FALSE);
+//      glDisable(GL_DEPTH_TEST);
+//
+//      glEnable(GL_BLEND);
+//      glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
+//      glBlendEquation(GL_FUNC_ADD); // default, can be omitted if unchanged
+//
+//      // VAO/VBO setup
+//      GLuint vao, vbo;
+//      glGenVertexArrays(1, &vao);
+//      glGenBuffers(1, &vbo);
+//      glBindVertexArray(vao);
+//      glBindBuffer(GL_ARRAY_BUFFER, vbo);
+//      glBufferData(GL_ARRAY_BUFFER, sizeof(quadVertices), quadVertices, GL_STATIC_DRAW);
+//      glEnableVertexAttribArray(0); // position
+//      glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)0);
+//      glEnableVertexAttribArray(1); // texcoord
+//      glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)(2 * sizeof(float)));
+//
+//      m_pshaderBlend2->bind(nullptr);
+//
+//      GLint uTexture = glGetUniformLocation(m_pshaderBlend2->m_ProgramID, "uTexture");
+//
+//      glActiveTexture(GL_TEXTURE0);
+//      glBindTexture(GL_TEXTURE_2D, ptextureSrc->m_gluTextureID);
+//      glUniform1i(uTexture, 0);
+//
+//      // Optional: if each texture should be rendered to a specific portion of the screen
+//      // set a model/view/projection matrix or glViewport/scissor here.
+//
+//      glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
+//      //}
+//
+//      m_pshaderBlend2->unbind(nullptr);
+//
+//
+//#if SHOW_DEBUG_DRAWING
+//      {
+//
+//
+//         {
+//
+//            glBindFramebuffer(GL_FRAMEBUFFER, 0);
+//
+//
+//            glEnable(GL_BLEND);
+//            glBlendFunc(GL_ONE, GL_ZERO); // Source Copy mode
+//            //glBlendEquation(GL_FUNC_ADD); // default, can be omitted if unchanged
+//
+//            {
+//               float fOpacity = 0.5;
+//               float fRed = 0.5;
+//               float fGreen = 0.75;
+//               float fBlue = 0.95;
+//               auto f32Opacity = (float)fOpacity;
+//               auto f32Red = (float)(fRed * fOpacity);
+//               auto f32Green = (float)(fGreen * fOpacity);
+//               auto f32Blue = (float)(fBlue * fOpacity);
+//               ::glColor4f(f32Red, f32Green, f32Blue, f32Opacity);
+//            }
+//
+//            ::double_polygon polygon;
+//
+//            ::double_rectangle rectangle(500, 100, 550, 150);
+//
+//            polygon = rectangle;
+//
+//            glBegin(GL_QUADS);
+//
+//
+//            vertex2f(polygon, 0.f);
+//
+//            glEnd();
+//
+//         }
+//      }
+//
+//#endif
+//
+//      glBindFramebuffer(GL_FRAMEBUFFER, 0); // Return to default framebuffer
+//
+//      glDeleteFramebuffers(1, &framebuffer);
+//
+//   }
 
 
    //void vertex2f(const ::double_polygon& a, float fZ)
@@ -1772,190 +1772,191 @@ namespace gpu_opengl
    //}
 
 
-   void renderer::copy(::gpu::texture* pgputextureTarget, ::gpu::texture* pgputextureSource)
-   {
+   //void renderer::copy(::gpu::texture* pgputextureTarget, ::gpu::texture* pgputextureSource)
+   //{
 
-      ::gpu::context_lock contextlock(m_pgpucontext);
+   //   ::gpu::context_lock contextlock(m_pgpucontext);
 
-      //glBindFramebuffer(GL_FRAMEBUFFER, 0);
-
-
-      //glEnable(GL_BLEND);
-      //glBlendFunc(GL_ONE, GL_ZERO); // Source Copy mode
-      ////glBlendEquation(GL_FUNC_ADD); // default, can be omitted if unchanged
-
-      //glBegin(GL_QUADS);
-
-      //{
-      //   float fOpacity = 0.5;
-      //   float fRed = 0.5;
-      //   float fGreen = 0.75;
-      //   float fBlue = 0.95;
-      //   auto f32Opacity = (float)fOpacity;
-      //   auto f32Red = (float)(fRed * fOpacity);
-      //   auto f32Green = (float)(fGreen * fOpacity);
-      //   auto f32Blue = (float)(fBlue * fOpacity);
-      //   ::glColor4f(f32Red, f32Green, f32Blue, f32Opacity);
-      //}
-
-      //::double_polygon polygon;
-
-      //::double_rectangle rectangle(100, 100, 200, 200);
-
-      //polygon = rectangle;
+   //   //glBindFramebuffer(GL_FRAMEBUFFER, 0);
 
 
-      //vertex2f(polygon, 0.f);
+   //   //glEnable(GL_BLEND);
+   //   //glBlendFunc(GL_ONE, GL_ZERO); // Source Copy mode
+   //   ////glBlendEquation(GL_FUNC_ADD); // default, can be omitted if unchanged
 
-      //glEnd();
+   //   //glBegin(GL_QUADS);
 
+   //   //{
+   //   //   float fOpacity = 0.5;
+   //   //   float fRed = 0.5;
+   //   //   float fGreen = 0.75;
+   //   //   float fBlue = 0.95;
+   //   //   auto f32Opacity = (float)fOpacity;
+   //   //   auto f32Red = (float)(fRed * fOpacity);
+   //   //   auto f32Green = (float)(fGreen * fOpacity);
+   //   //   auto f32Blue = (float)(fBlue * fOpacity);
+   //   //   ::glColor4f(f32Red, f32Green, f32Blue, f32Opacity);
+   //   //}
 
-      //return;
+   //   //::double_polygon polygon;
 
-      ::cast < texture > ptextureDst = pgputextureTarget;
-      ::cast < texture > ptextureSrc = pgputextureSource;
+   //   //::double_rectangle rectangle(100, 100, 200, 200);
 
-      if (ptextureDst->m_pgpurenderer->m_pgpucontext->m_etype == ::gpu::context::e_type_window)
-      {
-
-         ptextureDst->m_pgpurenderer->m_pgpucontext->copy(pgputextureSource);
-
-         return;
-
-      }
-
-      GLuint framebuffer;
-      glGenFramebuffers(1, &framebuffer);
-      glBindFramebuffer(GL_DRAW_FRAMEBUFFER, framebuffer);
-
-      // Bind the destination texture (textures[textureSrc]) as the framebuffer color attachment
-      glFramebufferTexture2D(
-         GL_DRAW_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D,
-         ptextureDst->m_gluTextureID,
-         0);
-
-      if (glCheckFramebufferStatus(GL_DRAW_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE) {
-         printf("Framebuffer not complete!\n");
-         glDeleteFramebuffers(1, &framebuffer);
-         return;
-      }
-
-      if (!m_pshaderBlend2)
-      {
-
-         øconstruct_new(m_pshaderBlend2);
-
-         m_pshaderBlend2->initialize_shader_with_block(
-            this,
-            blend_vert,
-            blend_frag);
-
-      }
-
-      float quadVertices[] = {
-         // pos      // uv
-         -1.0f, -1.0f,  0.0f, 0.0f,
-          1.0f, -1.0f,  1.0f, 0.0f,
-         -1.0f,  1.0f,  0.0f, 1.0f,
-          1.0f,  1.0f,  1.0f, 1.0f,
-      };
+   //   //polygon = rectangle;
 
 
-      auto rectangleTarget = ptextureSrc->rectangle();
+   //   //vertex2f(polygon, 0.f);
 
-      glViewport(
-         rectangleTarget.left,
-         rectangleTarget.top,
-         rectangleTarget.width(),
-         rectangleTarget.height());
-
-      // Optional: scissor if you want to limit drawing region
-      glEnable(GL_SCISSOR_TEST);
-      glScissor(
-         0,
-         0,
-         rectangleTarget.width(),
-         rectangleTarget.height()
-      );
-
-      glDisable(GL_BLEND);
-      // glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
-      //glBlendEquation(GL_FUNC_ADD); // default, can be omitted if unchanged
-      glDisable(GL_DEPTH_TEST);
-      glDepthMask(FALSE);
+   //   //glEnd();
 
 
-      // VAO/VBO setup
-      GLuint vao, vbo;
-      glGenVertexArrays(1, &vao);
-      glGenBuffers(1, &vbo);
-      glBindVertexArray(vao);
-      glBindBuffer(GL_ARRAY_BUFFER, vbo);
-      glBufferData(GL_ARRAY_BUFFER, sizeof(quadVertices), quadVertices, GL_STATIC_DRAW);
-      glEnableVertexAttribArray(0); // position
-      glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)0);
-      glEnableVertexAttribArray(1); // texcoord
-      glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)(2 * sizeof(float)));
+   //   //return;
 
-      m_pshaderBlend2->bind(nullptr);
+   //   ::cast < texture > ptextureDst = pgputextureTarget;
+   //   ::cast < texture > ptextureSrc = pgputextureSource;
 
-      GLint uTexture = glGetUniformLocation(m_pshaderBlend2->m_ProgramID, "uTexture");
+   //   if (ptextureDst->m_pgpurenderer->m_pgpucontext->m_etype == ::gpu::context::e_type_window)
+   //   {
 
-      glActiveTexture(GL_TEXTURE0);
-      glBindTexture(GL_TEXTURE_2D, ptextureSrc->m_gluTextureID);
-      glUniform1i(uTexture, 0);
+   //      throw todo;
+   //      //ptextureDst->m_pgpurenderer->m_pgpucontext->copy(pgputextureSource);
 
-      // Optional: if each texture should be rendered to a specific portion of the screen
-      // set a model/view/projection matrix or glViewport/scissor here.
+   //      return;
 
-      glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
-      //}
+   //   }
 
-      m_pshaderBlend2->unbind(nullptr);
+   //   GLuint framebuffer;
+   //   glGenFramebuffers(1, &framebuffer);
+   //   glBindFramebuffer(GL_DRAW_FRAMEBUFFER, framebuffer);
 
+   //   // Bind the destination texture (textures[textureSrc]) as the framebuffer color attachment
+   //   glFramebufferTexture2D(
+   //      GL_DRAW_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D,
+   //      ptextureDst->m_gluTextureID,
+   //      0);
 
-      {
+   //   if (glCheckFramebufferStatus(GL_DRAW_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE) {
+   //      printf("Framebuffer not complete!\n");
+   //      glDeleteFramebuffers(1, &framebuffer);
+   //      return;
+   //   }
 
-         glBindFramebuffer(GL_FRAMEBUFFER, 0);
+   //   if (!m_pshaderBlend2)
+   //   {
 
+   //      øconstruct_new(m_pshaderBlend2);
 
-         glEnable(GL_BLEND);
-         glBlendFunc(GL_ONE, GL_ZERO); // Source Copy mode
-         //glBlendEquation(GL_FUNC_ADD); // default, can be omitted if unchanged
+   //      m_pshaderBlend2->initialize_shader_with_block(
+   //         this,
+   //         blend_vert,
+   //         blend_frag);
 
-         {
-            float fOpacity = 0.5;
-            float fRed = 0.5;
-            float fGreen = 0.75;
-            float fBlue = 0.95;
-            auto f32Opacity = (float)fOpacity;
-            auto f32Red = (float)(fRed * fOpacity);
-            auto f32Green = (float)(fGreen * fOpacity);
-            auto f32Blue = (float)(fBlue * fOpacity);
-            ///::glColor4f(f32Red, f32Green, f32Blue, f32Opacity);
-         }
+   //   }
 
-         ::double_polygon polygon;
-
-         ::double_rectangle rectangle(100, 100, 200, 200);
-
-         polygon = rectangle;
-
-         //glBegin(GL_QUADS);
+   //   float quadVertices[] = {
+   //      // pos      // uv
+   //      -1.0f, -1.0f,  0.0f, 0.0f,
+   //       1.0f, -1.0f,  1.0f, 0.0f,
+   //      -1.0f,  1.0f,  0.0f, 1.0f,
+   //       1.0f,  1.0f,  1.0f, 1.0f,
+   //   };
 
 
-         //vertex2f(polygon, 0.f);
+   //   auto rectangleTarget = ptextureSrc->rectangle();
 
-         //glEnd();
+   //   glViewport(
+   //      rectangleTarget.left,
+   //      rectangleTarget.top,
+   //      rectangleTarget.width(),
+   //      rectangleTarget.height());
 
-      }
+   //   // Optional: scissor if you want to limit drawing region
+   //   glEnable(GL_SCISSOR_TEST);
+   //   glScissor(
+   //      0,
+   //      0,
+   //      rectangleTarget.width(),
+   //      rectangleTarget.height()
+   //   );
 
-      glBindFramebuffer(GL_FRAMEBUFFER, 0); // Return to default framebuffer
+   //   glDisable(GL_BLEND);
+   //   // glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
+   //   //glBlendEquation(GL_FUNC_ADD); // default, can be omitted if unchanged
+   //   glDisable(GL_DEPTH_TEST);
+   //   glDepthMask(FALSE);
 
-      glDeleteFramebuffers(1, &framebuffer);
+
+   //   // VAO/VBO setup
+   //   GLuint vao, vbo;
+   //   glGenVertexArrays(1, &vao);
+   //   glGenBuffers(1, &vbo);
+   //   glBindVertexArray(vao);
+   //   glBindBuffer(GL_ARRAY_BUFFER, vbo);
+   //   glBufferData(GL_ARRAY_BUFFER, sizeof(quadVertices), quadVertices, GL_STATIC_DRAW);
+   //   glEnableVertexAttribArray(0); // position
+   //   glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)0);
+   //   glEnableVertexAttribArray(1); // texcoord
+   //   glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)(2 * sizeof(float)));
+
+   //   m_pshaderBlend2->bind(nullptr);
+
+   //   GLint uTexture = glGetUniformLocation(m_pshaderBlend2->m_ProgramID, "uTexture");
+
+   //   glActiveTexture(GL_TEXTURE0);
+   //   glBindTexture(GL_TEXTURE_2D, ptextureSrc->m_gluTextureID);
+   //   glUniform1i(uTexture, 0);
+
+   //   // Optional: if each texture should be rendered to a specific portion of the screen
+   //   // set a model/view/projection matrix or glViewport/scissor here.
+
+   //   glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
+   //   //}
+
+   //   m_pshaderBlend2->unbind(nullptr);
 
 
-   }
+   //   {
+
+   //      glBindFramebuffer(GL_FRAMEBUFFER, 0);
+
+
+   //      glEnable(GL_BLEND);
+   //      glBlendFunc(GL_ONE, GL_ZERO); // Source Copy mode
+   //      //glBlendEquation(GL_FUNC_ADD); // default, can be omitted if unchanged
+
+   //      {
+   //         float fOpacity = 0.5;
+   //         float fRed = 0.5;
+   //         float fGreen = 0.75;
+   //         float fBlue = 0.95;
+   //         auto f32Opacity = (float)fOpacity;
+   //         auto f32Red = (float)(fRed * fOpacity);
+   //         auto f32Green = (float)(fGreen * fOpacity);
+   //         auto f32Blue = (float)(fBlue * fOpacity);
+   //         ///::glColor4f(f32Red, f32Green, f32Blue, f32Opacity);
+   //      }
+
+   //      ::double_polygon polygon;
+
+   //      ::double_rectangle rectangle(100, 100, 200, 200);
+
+   //      polygon = rectangle;
+
+   //      //glBegin(GL_QUADS);
+
+
+   //      //vertex2f(polygon, 0.f);
+
+   //      //glEnd();
+
+   //   }
+
+   //   glBindFramebuffer(GL_FRAMEBUFFER, 0); // Return to default framebuffer
+
+   //   glDeleteFramebuffers(1, &framebuffer);
+
+
+   //}
 
 
 //   void renderer::on_end_layer(::gpu::layer* player)

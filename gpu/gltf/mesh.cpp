@@ -5,7 +5,7 @@
 #include "bred/gltf/vertex.h"
 #include "bred/gpu/command_buffer.h"
 #include "bred/gpu/context.h"
-
+#include "bred/gpu/model_buffer.h"
 
 #include <glad/glad.h>
 
@@ -35,20 +35,27 @@ namespace gpu
       }
 
 
-      void mesh::initialize_gpu_gltf_mesh(const ::raw_array_base<gltf::vertex> &vertexa, const ::unsigned_int_array &indexa,
+      void mesh::initialize_gpu_gltf_mesh( //const ::gpu::model_data<gltf::vertex> &modeldata,
                                           ::gpu::gltf::material *pmaterial)
       {
+         /// model data must had been set
+         if (m_modeldata.is_empty())
+         {
 
-         m_vertexa = vertexa;
-         m_indexa = indexa;
+            throw ::exception(error_wrong_state);
+
+         }
+
+         //m_modeldata = modeldata;
+         //m_modeldata.m_indexes = indexa;
          m_pmaterial = pmaterial;
 
-         init();
+         on_initialize_gpu_gltf_mesh();
 
       }
 
 
-      void mesh::draw(::gpu::command_buffer *pcommandbuffer)
+      void mesh::draw2(::gpu::command_buffer *pcommandbuffer)
       {
 
          // auto pshader = pcommandbuffer->m_pgpurendertarget->m_pgpurenderer->m_pgpucontext->m_pshaderBound;
@@ -109,7 +116,7 @@ namespace gpu
       }
 
 
-      void mesh::init()
+      void mesh::on_initialize_gpu_gltf_mesh()
       {
          // // create our data structures
          // glGenVertexArrays(1, &m_uVAO);
@@ -148,6 +155,12 @@ namespace gpu
          // glVertexAttribPointer(4, 3, GL_FLOAT, GL_FALSE, sizeof(gltf::vertex), (void *)offsetof(gltf::vertex, mBitangent));
          //
          // glBindVertexArray(0);
+
+         øconstruct(m_pmodelbuffer);
+
+         m_pmodelbuffer->initialize_gpu_context_object(m_pgpucontext);
+
+         m_pmodelbuffer->set_data(m_modeldata);
 
       }
 

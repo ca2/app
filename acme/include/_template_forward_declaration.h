@@ -421,6 +421,10 @@ namespace allocator
 template < typename TYPE, typename ARG_TYPE = const TYPE &, class TYPED = ::typed::rawcopy < TYPE  >, class MEMORY = ::heap::typed_memory < TYPE, ::heap::e_memory_array >, ::enum_type t_etypeContainer = e_type_element >
 class raw_array_base;
 
+template<class TYPE, class ARG_TYPE = const TYPE &, class TYPED = ::typed::def<TYPE>,
+         class MEMORY = ::heap::typed_memory<TYPE, ::heap::e_memory_array>,
+         ::enum_type t_etypeContainer = e_type_element>
+using raw_array = array_particle<raw_array_base<TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer>>;
 
 //template < typename TYPE, typename ARG_TYPE = const TYPE &, class TYPED = ::typed::rawcopy < TYPE  >, class MEMORY = ::heap::typed_memory < TYPE, ::heap::e_memory_array >, ::enum_type t_etypeContainer = e_type_element >
 //class raw_array_quantum;

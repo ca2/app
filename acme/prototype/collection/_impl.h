@@ -666,12 +666,14 @@ base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::base_array(const
    m_countAllocationOffset = 0;
    set_size(array.get_size());
 
-   for (::collection::index i = 0; i < array.get_size(); i++)
-   {
 
-      this->element_at(i) = array[i];
-
-   }
+   TYPED::copy_count(this->m_begin, array.m_begin, this->size());
+   // for (::collection::index i = 0; i < array.get_size(); i++)
+   // {
+   //
+   //    this->element_at(i) = array[i];
+   //
+   // }
 
 }
 

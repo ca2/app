@@ -27,6 +27,30 @@ namespace gpu
       ::array_base<unsigned int> m_indexes;
 
 
+      model_data() {}
+      model_data(const model_data & data) :
+         m_vertexes(data.m_vertexes),
+         m_indexes(data.m_indexes)
+      {
+
+      }
+      model_data(model_data &&data) : 
+         m_vertexes(::transfer(data.m_vertexes)),
+         m_indexes(::transfer(data.m_indexes)) {}
+
+      bool is_empty() const
+      {
+
+         return m_vertexes.is_empty() && m_indexes.is_empty();
+
+      }
+
+      bool has_data() const
+      {
+
+         return !this->is_empty();
+
+      }
       //::pointer <::graphics3d::model> create_model(
       //   ::gpu::renderer* prenderer)
       //{
@@ -47,6 +71,38 @@ namespace gpu
       //   return pmodel;
 
       //}
+
+
+      model_data & operator=(const model_data & modeldata)
+      {
+
+         if (this != &modeldata)
+         {
+
+            this->m_vertexes = modeldata.m_vertexes;
+            this->m_indexes = modeldata.m_indexes;
+
+         }
+
+         return *this;
+
+      }
+
+
+      model_data &operator=(model_data &&modeldata)
+      {
+
+         if (this != &modeldata)
+         {
+
+            this->m_vertexes = ::transfer(modeldata.m_vertexes);
+            this->m_indexes = ::transfer(modeldata.m_indexes);
+         }
+
+         return *this;
+      }
+
+
    };
 
 

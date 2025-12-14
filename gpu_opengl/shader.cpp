@@ -213,34 +213,34 @@ namespace gpu_opengl
    }
 
 
-   // activate the shader
-   // ------------------------------------------------------------------------
-   void shader::bind(::gpu::command_buffer *pgpucommandbuffer, ::gpu::texture *pgputextureTarget,
-                     ::gpu::texture *pgputextureSource)
-   {
+   //// activate the shader
+   //// ------------------------------------------------------------------------
+   //void shader::bind(::gpu::command_buffer *pgpucommandbuffer, ::gpu::texture *pgputextureTarget,
+   //                  ::gpu::texture *pgputextureSource)
+   //{
 
-      bind(pgpucommandbuffer, pgputextureTarget);
+   //   bind(pgpucommandbuffer, pgputextureTarget);
 
-      bind_source(pgpucommandbuffer, pgputextureSource, 0);
+   //   bind_source(pgpucommandbuffer, pgputextureSource, 0);
 
-   }
+   //}
 
-   void shader::bind(::gpu::command_buffer *pgpucommandbuffer)
-   {
+   //void shader::bind(::gpu::command_buffer *pgpucommandbuffer)
+   //{
 
-      ::cast < render_target> prendertarget = m_pgpurenderer->m_pgpurendertarget;
+   //   ::cast < render_target> prendertarget = m_pgpurenderer->m_pgpurendertarget;
 
-      ::cast < texture > ptexture = prendertarget->current_texture(::gpu::current_frame());
+   //   ::cast < texture > ptexture = prendertarget->current_texture(::gpu::current_frame());
 
-      bind(pgpucommandbuffer, ptexture);
+   //   bind(pgpucommandbuffer, ptexture);
 
-   }
+   //}
 
 
    void shader::bind(::gpu::command_buffer *pgpucommandbuffer, ::gpu::texture *pgputextureTarget)
    {
 
-      _bind(pgpucommandbuffer, ::gpu::e_scene_none);
+      //_bind(pgpucommandbuffer, ::gpu::e_scene_none);
 
       ::cast < texture > ptexture = pgputextureTarget;
 
@@ -291,34 +291,23 @@ namespace gpu_opengl
 
       }
 
-
-
-
-   }
-
-
-   void shader::_bind(::gpu::command_buffer *pgpucommandbuffer, ::gpu::enum_scene escene)
-   {
-
-      auto pgpucontext = m_pgpurenderer->m_pgpucontext;
+            auto pgpucontext = m_pgpurenderer->m_pgpucontext;
 
       pgpucontext->set_cull_face(m_ecullmode);
 
-      //glFrontFace(GL_CCW); // counter-clockwise is front face (default)
-      ///glFrontFace(GL_CW); // counter-clockwise is front face (default)
+      // glFrontFace(GL_CCW); // counter-clockwise is front face (default)
+      /// glFrontFace(GL_CW); // counter-clockwise is front face (default)
 
       if (m_bEnableBlend)
       {
 
          glEnable(GL_BLEND);
          glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
-
       }
       else
       {
 
          glDisable(GL_BLEND);
-
       }
 
 
@@ -327,45 +316,112 @@ namespace gpu_opengl
 
          glDisable(GL_DEPTH_TEST);
          glDepthMask(GL_FALSE);
-
       }
       else
       {
 
          glEnable(GL_DEPTH_TEST);
-         
+
          if (m_bDepthTestButNoDepthWrite)
          {
 
             glDepthMask(GL_FALSE);
-
          }
          else
          {
 
             glDepthMask(GL_TRUE);
-
          }
 
          if (m_bLequalDepth)
          {
 
             glDepthFunc(GL_LEQUAL);
-
          }
          else
          {
 
             glDepthFunc(GL_LESS);
-
          }
-
       }
 
       glUseProgram(m_ProgramID);
       GLCheckError("");
 
+
+
    }
+
+
+   //void shader::_bind(::gpu::command_buffer *pgpucommandbuffer, ::gpu::enum_scene escene)
+   //{
+
+   //   auto pgpucontext = m_pgpurenderer->m_pgpucontext;
+
+   //   pgpucontext->set_cull_face(m_ecullmode);
+
+   //   //glFrontFace(GL_CCW); // counter-clockwise is front face (default)
+   //   ///glFrontFace(GL_CW); // counter-clockwise is front face (default)
+
+   //   if (m_bEnableBlend)
+   //   {
+
+   //      glEnable(GL_BLEND);
+   //      glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
+
+   //   }
+   //   else
+   //   {
+
+   //      glDisable(GL_BLEND);
+
+   //   }
+
+
+   //   if (m_bDisableDepthTest)
+   //   {
+
+   //      glDisable(GL_DEPTH_TEST);
+   //      glDepthMask(GL_FALSE);
+
+   //   }
+   //   else
+   //   {
+
+   //      glEnable(GL_DEPTH_TEST);
+   //      
+   //      if (m_bDepthTestButNoDepthWrite)
+   //      {
+
+   //         glDepthMask(GL_FALSE);
+
+   //      }
+   //      else
+   //      {
+
+   //         glDepthMask(GL_TRUE);
+
+   //      }
+
+   //      if (m_bLequalDepth)
+   //      {
+
+   //         glDepthFunc(GL_LEQUAL);
+
+   //      }
+   //      else
+   //      {
+
+   //         glDepthFunc(GL_LESS);
+
+   //      }
+
+   //   }
+
+   //   glUseProgram(m_ProgramID);
+   //   GLCheckError("");
+
+   //}
 
 
 
@@ -374,16 +430,16 @@ namespace gpu_opengl
 
       ::pointer < ::gpu::texture > pgputextureBound;
 
-      for (auto &bindingslotset: *m_pbindingslotseta)
+      for (auto &pbindingslotset: *m_pbindingslotseta)
       {
 
-         if (!bindingslotset.m_pbindingset)
+         if (!pbindingslotset->m_pbindingset)
          {
 
             continue;
          }
 
-         for (auto &bindingslot: bindingslotset)
+         for (auto &bindingslot: *pbindingslotset)
          {
 
             if (!bindingslot.m_pbinding)
@@ -444,17 +500,17 @@ namespace gpu_opengl
       glBindTexture(ptexture->m_gluType, tex);
       GLCheckError("");
 
-      for (auto &bindingslotset: *m_pbindingslotseta)
+      for (auto &pbindingslotset: *m_pbindingslotseta)
       {
 
-         if (!bindingslotset.m_pbindingset)
+         if (!pbindingslotset->m_pbindingset)
          {
 
             continue;
 
          }
 
-         for (auto &bindingslot: bindingslotset)
+         for (auto &bindingslot: *pbindingslotset)
          {
 
             if (!bindingslot.m_pbinding)

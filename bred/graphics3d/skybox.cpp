@@ -219,7 +219,7 @@ namespace graphics3d
    void skybox::bind(::gpu::command_buffer* pgpucommandbuffer)
    {
 
-      m_prenderable->bind(pgpucommandbuffer);
+      m_prenderable->bind2(pgpucommandbuffer);
 
    }
 
@@ -227,7 +227,7 @@ namespace graphics3d
    void skybox::draw(::gpu::command_buffer* pgpucommandbuffer)
    {
 
-      m_prenderable->draw(pgpucommandbuffer);
+      m_prenderable->draw2(pgpucommandbuffer);
 
    }
 

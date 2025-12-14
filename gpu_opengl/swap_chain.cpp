@@ -121,13 +121,13 @@ FragColor = texture(uTexture, TexCoord);
             auto pmodelbufferFullscreenQuad =
                m_pgpucontext->sequence2_uv_fullscreen_quad_model_buffer(::gpu::current_frame());
 
-            m_pshaderCopyTextureOnEndDraw->_bind(pcommandbuffer, ::gpu::e_scene_none);
+            //m_pshaderCopyTextureOnEndDraw->_bind(pcommandbuffer, ::gpu::e_scene_none);
 
             m_pshaderCopyTextureOnEndDraw->bind_source(pcommandbuffer, pgputexture);
 
-            pmodelbufferFullscreenQuad->bind(pcommandbuffer);
+            pcommandbuffer->draw(pmodelbufferFullscreenQuad);
 
-            pmodelbufferFullscreenQuad->draw(pcommandbuffer);
+            //pmodelbufferFullscreenQuad->draw2(pcommandbuffer);
 
             pmodelbufferFullscreenQuad->unbind(pcommandbuffer);
 

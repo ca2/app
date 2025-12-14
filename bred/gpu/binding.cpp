@@ -120,7 +120,7 @@ namespace gpu
 
          iSlot++;
 
-         auto &bindingslot = this->element_at(iSet);
+         auto &bindingslot = this->element_at(iSlot);
 
          bindingslot.m_iSet = iSet;
 
@@ -130,6 +130,21 @@ namespace gpu
 
       }
 
+   }
+
+
+   void binding_slot_set::set_texture(::pointer<::gpu::texture> *ppgputexture) 
+   {
+   
+      for (::collection::index iSlot = 0; iSlot < m_pbindingset->size(); iSlot++)
+      {
+
+         auto pbindingslot = binding_slot(iSlot);
+
+         pbindingslot->m_ptexture = ppgputexture[iSlot];
+
+      }
+   
    }
 
 

@@ -133,6 +133,13 @@ namespace gpu
 
       auto &pbindingset = binding_set_array()->ø(iSet);
 
+      if (!pbindingset)
+      {
+
+         øconstruct(pbindingset);
+
+      }
+
       if (::is_set(pgpubindingset))
       {
 
@@ -368,21 +375,21 @@ namespace gpu
    }
 
 
-   // activate the shader
-   // ------------------------------------------------------------------------
-   void shader::bind(::gpu::command_buffer *pgpucommandbuffer)
-   {
+   //// activate the shader
+   //// ------------------------------------------------------------------------
+   //void shader::bind(::gpu::command_buffer *pgpucommandbuffer)
+   //{
 
 
-   }
+   //}
 
 
-   void shader::bind(::gpu::command_buffer * pgpucommandbuffer, ::gpu::texture* pgputextureTarget, ::gpu::texture* pgputextureSource)
-   {
+   //void shader::bind(::gpu::command_buffer * pgpucommandbuffer, ::gpu::texture* pgputextureTarget, ::gpu::texture* pgputextureSource)
+   //{
 
-      throw ::interface_only("shader::bind(::gpu::texture*, ::gpu::texture*) not implemented at this shader implementation");
+   //   throw ::interface_only("shader::bind(::gpu::texture*, ::gpu::texture*) not implemented at this shader implementation");
 
-   }
+   //}
 
 
    void shader::on_set_constant_buffer(const ::scoped_string& scopedstrName)
@@ -391,11 +398,12 @@ namespace gpu
       
    }
 
-   void shader::on_before_draw(::gpu::command_buffer * pgpucommandbuffer)
-   {
+
+   //void shader::on_before_draw(::gpu::command_buffer * pgpucommandbuffer)
+   //{
 
 
-   }
+   //}
 
    void shader::bind(::gpu::command_buffer *pgpucommandbuffer, ::gpu::texture *pgputextureTarget)
    {
@@ -404,6 +412,20 @@ namespace gpu
 
    }
 
+   void shader::bind_block(::gpu::command_buffer *pgpucommandbuffer, ::gpu::block *pgpublock, int iSlot)
+   {
+
+      throw ::interface_only("shader::bind_block(::gpu::block*) not implemented at this shader implementation");
+   }
+
+
+   void shader::bind_slot_set(::gpu::command_buffer *pgpucommandbuffer, int iSet,
+                              ::gpu::binding_slot_set * pgpubindingslotset)
+   {
+
+      throw ::interface_only("shader::bind_slot_set(::gpu::binding_slot_set*) not implemented at this shader implementation");
+
+   }
 
    void shader::bind_source(::gpu::command_buffer *pgpucommandbuffer, ::gpu::texture *pgputextureSource, int iSlot)
    {
@@ -541,11 +563,11 @@ namespace gpu
    }
 
 
-   void shader::_bind(::gpu::command_buffer *pgpucommandbuffer, ::gpu::enum_scene escene)
-   {
+   //void shader::_bind(::gpu::command_buffer *pgpucommandbuffer, ::gpu::enum_scene escene)
+   //{
 
 
-   }
+   //}
    
 
    //void shader::on_initialize_shader()

@@ -12,14 +12,8 @@
     <Filter Include="Resource Files">
       <UniqueIdentifier>{2ec8ecd0-d089-4887-98eb-a66497a4e6c3}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\gltf">
-      <UniqueIdentifier>{77906454-caf4-4961-83ee-9f10e0e2915f}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\ibl">
       <UniqueIdentifier>{d3750967-61ec-4709-a5ff-cfa455097749}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\gltf">
-      <UniqueIdentifier>{56c2a673-1580-4c6a-b97d-4e8b035c635f}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\ibl">
       <UniqueIdentifier>{75ad6c63-632a-4ddc-ab3b-e61b74abf586}</UniqueIdentifier>
@@ -32,6 +26,12 @@
     </Filter>
     <Filter Include="Source Files\ibl\_aaa">
       <UniqueIdentifier>{e1aa410b-dd1c-4cc9-9ec5-88f56dc81fd2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\gltf">
+      <UniqueIdentifier>{d5e052c2-c3ea-4dfb-bb85-387e6b78b73d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\gltf">
+      <UniqueIdentifier>{222d5e7c-6081-4e3d-b97d-4e304646ec68}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -143,21 +143,6 @@
     <ClInclude Include="ibl\aaa_brdf_convolution_framebuffer.h">
       <Filter>Header Files\ibl</Filter>
     </ClInclude>
-    <ClInclude Include="gltf\vertex.h">
-      <Filter>Header Files\gltf</Filter>
-    </ClInclude>
-    <ClInclude Include="gltf\model.h">
-      <Filter>Header Files\gltf</Filter>
-    </ClInclude>
-    <ClInclude Include="gltf\mesh.h">
-      <Filter>Header Files\gltf</Filter>
-    </ClInclude>
-    <ClInclude Include="gltf\material.h">
-      <Filter>Header Files\gltf</Filter>
-    </ClInclude>
-    <ClInclude Include="gltf\_constant.h">
-      <Filter>Header Files\gltf</Filter>
-    </ClInclude>
     <ClInclude Include="ibl\shader\prefiltered_environment_map.vert.h">
       <Filter>Header Files\ibl\shader</Filter>
     </ClInclude>
@@ -190,6 +175,21 @@
     </ClInclude>
     <ClInclude Include="ibl\_aaa\aaaa_hdri_cube.h">
       <Filter>Source Files\ibl\_aaa</Filter>
+    </ClInclude>
+    <ClInclude Include="gltf\vertex.h">
+      <Filter>Header Files\gltf</Filter>
+    </ClInclude>
+    <ClInclude Include="gltf\model.h">
+      <Filter>Header Files\gltf</Filter>
+    </ClInclude>
+    <ClInclude Include="gltf\mesh.h">
+      <Filter>Header Files\gltf</Filter>
+    </ClInclude>
+    <ClInclude Include="gltf\material.h">
+      <Filter>Header Files\gltf</Filter>
+    </ClInclude>
+    <ClInclude Include="gltf\_constant.h">
+      <Filter>Header Files\gltf</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -286,12 +286,6 @@
     <ClCompile Include="approach_win32.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="gltf\mesh.cpp">
-      <Filter>Source Files\gltf</Filter>
-    </ClCompile>
-    <ClCompile Include="gltf\model.cpp">
-      <Filter>Source Files\gltf</Filter>
-    </ClCompile>
     <ClCompile Include="ibl\aaa_brdf_convolution_framebuffer.cpp">
       <Filter>Source Files\ibl</Filter>
     </ClCompile>
@@ -318,6 +312,12 @@
     </ClCompile>
     <ClCompile Include="ibl\_aaa\aaa_mipmap_cubemap_framebuffer.cpp">
       <Filter>Source Files\ibl\_aaa</Filter>
+    </ClCompile>
+    <ClCompile Include="gltf\mesh.cpp">
+      <Filter>Source Files\gltf</Filter>
+    </ClCompile>
+    <ClCompile Include="gltf\model.cpp">
+      <Filter>Source Files\gltf</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -79,15 +79,15 @@ namespace gpu_opengl
 
 
 
-      void blend(::gpu::renderer* prendererSource) override;
+      //void blend(::gpu::renderer* prendererSource) override;
       void clear(::gpu::texture* ptextureSource) override;
-      void copy(::gpu::texture* ptextureTarget, ::gpu::texture* ptextureSource) override;
-      void blend(::gpu::texture* ptextureTarget, ::gpu::texture* ptextureSource) override;
+      //void copy(::gpu::texture* ptextureTarget, ::gpu::texture* ptextureSource) override;
+      //void blend(::gpu::texture* ptextureTarget, ::gpu::texture* ptextureSource) override;
       void _blend_with_shader(::gpu::texture* ptextureTarget, ::gpu::texture* ptextureSource);
       void _blend_with_blit(::gpu::texture* ptextureTarget, ::gpu::texture* ptextureSource);
 
 
-      virtual void __blend(::gpu::texture* ptextureTarget, ::gpu::texture* ptextureSource);
+      //virtual void __blend(::gpu::texture* ptextureTarget, ::gpu::texture* ptextureSource);
 
       //void defer_update_renderer() override;
       //void on_defer_update_renderer_allocate_render_target(::gpu::enum_output eoutput, const ::int_size& size, ::gpu::render_target* previous) override;

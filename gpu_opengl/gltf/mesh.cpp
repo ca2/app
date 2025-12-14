@@ -8,8 +8,9 @@
 #include "bred/gpu/context.h"
 #include "bred/gpu/render_target.h"
 #include "bred/gpu/renderer.h"
-#include "bred/graphics3d/render_systems/gltf_render_system.h"
+//#include "graphics3d/render_systems/gltf_render_system.h"
 #include "bred/graphics3d/render_system.h"
+#include "bred/graphics3d/render_system/pbr_with_ibl_render_system_base.h"
 
 #include <glad/glad.h>
 
@@ -49,7 +50,7 @@ namespace gpu_opengl
       //}
 
 
-      void mesh::draw(::gpu::command_buffer *pcommandbuffer)
+      void mesh::draw2(::gpu::command_buffer *pcommandbuffer)
       {
          // // albedo
          // shader.setBool("material.useTextureAlbedo", m_pmaterial->useTextureAlbedo);
@@ -118,7 +119,7 @@ namespace gpu_opengl
          else  if (erendersystem == ::graphics3d::e_render_system_gltf_ibl)
          {
             // albedo
-            ::cast<::graphics3d::gltf_render_system> prendersystem = pcommandbuffer->m_prendersystem;
+            ::cast<::graphics3d::pbr_with_ibl_render_system_base> prendersystem = pcommandbuffer->m_prendersystem;
             bool bAlbedo = !prendersystem->m_bDisableAlbedo && m_pmaterial->useTextureAlbedo;
             pshader->set_int("useTextureAlbedo", bAlbedo);
             floating_sequence3 seq3Albedo= {};
@@ -143,7 +144,7 @@ namespace gpu_opengl
                glActiveTexture(textureIndex);
                pshader->set_int("textureAlbedo", iTextureIndex);
 
-               ::cast<::gpu_opengl::texture> ptextureAlbedo = m_pmaterial->m_ptextureAlbedo;
+               ::cast<::gpu_opengl::texture> ptextureAlbedo = m_pmaterial->m_texturea[::gpu::gltf::e_texture_albedo];
                glBindTexture(GL_TEXTURE_2D, ptextureAlbedo->m_gluTextureID);
             }
 
@@ -183,7 +184,8 @@ namespace gpu_opengl
                GLenum textureIndex = GL_TEXTURE0 + iTextureIndex;
                glActiveTexture(textureIndex);
                pshader->set_int("textureMetallicRoughness", iTextureIndex);
-               ::cast<::gpu_opengl::texture> ptextureMetallicRoughness = m_pmaterial->m_ptextureMetallicRoughness;
+               ::cast<::gpu_opengl::texture> ptextureMetallicRoughness =
+                  m_pmaterial->m_texturea[::gpu::gltf::e_texture_metallic_roughness];
                glBindTexture(GL_TEXTURE_2D, ptextureMetallicRoughness->m_gluTextureID);
             }
 
@@ -193,7 +195,7 @@ namespace gpu_opengl
             {
                glActiveTexture(GL_TEXTURE0 + ::gpu::e_gltf_texture_normal);
                pshader->set_int("textureNormal", ::gpu::e_gltf_texture_normal);
-               ::cast<::gpu_opengl::texture> ptextureNormal = m_pmaterial->m_ptextureNormal;
+               ::cast<::gpu_opengl::texture> ptextureNormal = m_pmaterial->m_texturea[::gpu::gltf::e_texture_normal];
                glBindTexture(GL_TEXTURE_2D, ptextureNormal->m_gluTextureID);
             }
 
@@ -216,7 +218,8 @@ namespace gpu_opengl
             {
                glActiveTexture(GL_TEXTURE0 + ::gpu::e_gltf_texture_ambient_occlusion);
                pshader->set_int("textureAmbientOcclusion", ::gpu::e_gltf_texture_ambient_occlusion);
-               ::cast<::gpu_opengl::texture> ptextureAmbientOcclusion = m_pmaterial->m_ptextureAmbientOcclusion;
+               ::cast<::gpu_opengl::texture> ptextureAmbientOcclusion =
+                  m_pmaterial->m_texturea[::gpu::gltf::e_texture_ambient_occlusion];
                glBindTexture(GL_TEXTURE_2D, ptextureAmbientOcclusion->m_gluTextureID);
             }
 
@@ -238,7 +241,7 @@ namespace gpu_opengl
             {
                glActiveTexture(GL_TEXTURE0 + ::gpu::e_gltf_texture_emissive);
                pshader->set_int("textureEmissive", ::gpu::e_gltf_texture_emissive);
-               ::cast<::gpu_opengl::texture> ptextureEmissive = m_pmaterial->m_ptextureEmissive;
+               ::cast<::gpu_opengl::texture> ptextureEmissive = m_pmaterial->m_texturea[::gpu::gltf::e_texture_emissive];
                glBindTexture(GL_TEXTURE_2D, ptextureEmissive->m_gluTextureID);
             }
 
@@ -273,7 +276,7 @@ namespace gpu_opengl
                glActiveTexture(textureIndex);
                pshader->set_int("textureAlbedo", iTextureIndex);
 
-               ::cast<::gpu_opengl::texture> ptextureAlbedo = m_pmaterial->m_ptextureAlbedo;
+               ::cast<::gpu_opengl::texture> ptextureAlbedo = m_pmaterial->m_texturea[::gpu::gltf::e_texture_albedo];
                glBindTexture(GL_TEXTURE_2D, ptextureAlbedo->m_gluTextureID);
             }
             else
@@ -301,7 +304,7 @@ namespace gpu_opengl
             {
                glActiveTexture(GL_TEXTURE0 + ::gpu::e_gltf_texture_normal);
                pshader->set_int("textureNormal", ::gpu::e_gltf_texture_normal);
-               ::cast<::gpu_opengl::texture> ptextureNormal = m_pmaterial->m_ptextureNormal;
+               ::cast<::gpu_opengl::texture> ptextureNormal = m_pmaterial->m_texturea[::gpu::gltf::e_texture_normal];
                glBindTexture(GL_TEXTURE_2D, ptextureNormal->m_gluTextureID);
             }
             else
@@ -347,14 +350,15 @@ namespace gpu_opengl
 
             // draw mesh
          glBindVertexArray(m_uVAO);
-         glDrawElements(GL_TRIANGLES, m_indexa.size(), GL_UNSIGNED_INT, 0);
+         glDrawElements(GL_TRIANGLES, m_modeldata.m_indexes.size(), GL_UNSIGNED_INT, 0);
          glBindVertexArray(0);
 
       }
 
 
-      void mesh::init()
+      void mesh::on_initialize_gpu_gltf_mesh()
       {
+
          // // create our data structures
          // glGenVertexArrays(1, &mVAO);
          // glGenBuffers(1, &mVBO);
@@ -403,8 +407,8 @@ namespace gpu_opengl
 
          glBindVertexArray(m_uVAO); // use this VAO for subsequent calls
 
-         auto indexSize = m_indexa.size();
-         auto indexData = m_indexa.data();
+         auto indexSize = m_modeldata.m_indexes.size();
+         auto indexData = m_modeldata.m_indexes.data();
 
          if (indexSize == 2388)
          {
@@ -413,8 +417,8 @@ namespace gpu_opengl
 
          }
 
-         auto vertexSize = m_vertexa.size();
-         auto vertexData = m_vertexa.data();
+         auto vertexSize = m_modeldata.m_vertexes.size();
+         auto vertexData = m_modeldata.m_vertexes.data();
 
          auto vertexByteCount = vertexSize * sizeof(::gpu::gltf::vertex);
 

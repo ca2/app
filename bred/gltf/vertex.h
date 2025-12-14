@@ -28,6 +28,7 @@ namespace gpu
          // w = bitangent sign
          // floating_sequence3 mTangent;
          // floating_sequence3 mBitangent;
+
       };
 
 

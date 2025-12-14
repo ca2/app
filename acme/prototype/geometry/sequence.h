@@ -142,7 +142,7 @@ struct sequence_t_type<NUMBER, 3>
       };
       COORDINATE m_coordinatea[SIZE];
    };
-   
+
 
 };
 
@@ -193,7 +193,6 @@ struct sequence_t_type<NUMBER, 4>
       };
       COORDINATE m_coordinatea[SIZE];
    };
-   
 
 };
 
@@ -879,7 +878,25 @@ struct sequence_type :
 
    }
 
-   
+   sequence_type & operator =(const sequence_type & sequence)
+   {
+
+      if (this != &sequence)
+      {
+
+         for (::collection::count i = 0; i < SIZE; ++i)
+         {
+
+            this->m_coordinatea[i] = sequence.m_coordinatea[i];
+
+         }
+
+      }
+
+      return *this;
+   }
+
+
    UNIT_TYPE minimum() const
    {
 

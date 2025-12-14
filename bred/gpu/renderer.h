@@ -69,8 +69,8 @@ namespace gpu
       ::pointer < swap_chain >      m_pswapchain;
       ::pointer < render_state >    m_prenderstate;
 
-            ::procedure_array m_procedureaOnAfterEndFrame;
-      ::procedure_array m_procedureaPostOnJustBeforeFrameNextStart;
+      ::procedure_array m_procedureaOnAfterEndFrame;
+      ::procedure_array m_procedureaOnJustBeforeFrameNextStart;
 
 
 
@@ -220,8 +220,8 @@ namespace gpu
 
       virtual void blend(::gpu::renderer* prenderer);
       virtual void clear(::gpu::texture* ptexture);
-      virtual void copy(::gpu::texture* pgputextureTarget, ::gpu::texture* pgputextureSource);
-      virtual void blend(::gpu::texture* pgputextureTarget, ::gpu::texture* pgputextureSource);
+      //virtual void copy(::gpu::texture* pgputextureTarget, ::gpu::texture* pgputextureSource);
+      //virtual void blend(::gpu::texture* pgputextureTarget, ::gpu::texture* pgputextureSource);
 
       virtual void soft_restore_context();
 

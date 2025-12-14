@@ -8,6 +8,7 @@
 // #include "texture.h"
 #include "gpu/gltf/_constant.h"
 #include "aura/message/user.h"
+#include "bred/gpu/context_object.h"
 //
 
 
@@ -19,10 +20,29 @@ namespace gpu
    {
 
 
-      class CLASS_DECL_GPU material : virtual public ::message::particle
+      enum enum_texture
+      {
+
+         e_texture_albedo,
+         e_texture_normal,
+         e_texture_metallic_roughness,
+         e_texture_ambient_occlusion,
+         e_texture_emissive,
+
+         e_texture_count,
+
+      };
+
+
+      class CLASS_DECL_GPU material : 
+         virtual public ::gpu::context_object
       {
 
       public:
+
+
+
+
 
          enum AlphaMode
          {
@@ -45,11 +65,30 @@ namespace gpu
          float m_fAmbientOcclusion = 1.0f;
          floating_sequence3 m_seq3Emissive = floating_sequence3(0.0, 0.0, 0.0);
 
-         ::pointer<::gpu::texture> m_ptextureAlbedo;
-         ::pointer<::gpu::texture> m_ptextureMetallicRoughness;
-         ::pointer<::gpu::texture> m_ptextureNormal;
-         ::pointer<::gpu::texture> m_ptextureAmbientOcclusion;
-         ::pointer<::gpu::texture> m_ptextureEmissive;
+         ::pointer<::gpu::texture> m_texturea[e_texture_count];
+
+         //::pointer<::gpu::texture> m_textureaCached[e_texture_count];
+         //::pointer<::gpu::texture> m_ptextureCachedNormal;
+         //::pointer<::gpu::texture> m_ptextureCachedMetallicRoughness;
+         //::pointer<::gpu::texture> m_ptextureCachedAmbientOcclusion;
+         //::pointer<::gpu::texture> m_ptextureCachedEmissive;
+
+         ::pointer<::gpu::binding_slot_set> m_pbindingslotsetGltfPbr;
+         ::pointer<::gpu::binding_slot_set> m_pbindingslotsetSceneGltfPbr;
+
+
+         virtual ::gpu::binding_slot_set *pbr_binding_slot_set(::gpu::binding_set * pbindingset, ::gpu::gltf::model * pmodel);
+         virtual ::gpu::texture *loaded_texture(enum_texture etexture);
+         virtual ::gpu::texture *cached_texture(enum_texture etexture, ::gpu::gltf::model *pmodel);
+         
+         //::gpu::binding_set *pbindingset,
+           //                                                    ::gpu::gltf::model *pmodel);
+
+
+         material();
+         ~material() override;
+
+
       };
 
    } // namespace gltf

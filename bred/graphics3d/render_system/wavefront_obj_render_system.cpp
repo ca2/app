@@ -181,11 +181,11 @@ namespace graphics3d
 
 				m_pshader->push_properties(pcommandbuffer);
 
-            prenderable->bind(pcommandbuffer);
+            //prenderable->bind(pcommandbuffer);
 
             on_before_draw_renderable(pgpucontext, pscene, pscenerenderable);
 
-            prenderable->draw(pcommandbuffer);
+            pcommandbuffer->draw(prenderable);
 
 				prenderable->unbind(pcommandbuffer);
 

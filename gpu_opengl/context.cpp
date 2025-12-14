@@ -5,7 +5,7 @@
 #include "context.h"
 #include "device.h"
 #include "frame_buffer.h"
-#include "gltf/model.h"
+//#include "gpu/gltf/model.h"
 #include "lock.h"
 #include "model_buffer.h"
 #include "program.h"
@@ -21,6 +21,7 @@
 #include "bred/gpu/frame.h"
 #include "bred/gpu/layer.h"
 #include "bred/gpu/types.h"
+#include "gpu/gltf/model.h"
 //
 //#include <assimp/Common/StbCommon.h>
 
@@ -180,63 +181,63 @@ namespace gpu_opengl
    }
 
 
-   void context::start_drawing()
-   {
-
-      ::gpu::context_lock contextlock(this);
-
-      //glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_ibo_elements);
-      //int iError16 = glGetError();
-
-      //int size = 0;
-      //glGetBufferParameteriv(GL_ELEMENT_ARRAY_BUFFER, GL_BUFFER_SIZE, &size);
-      //int iError17 = glGetError();
-
-      //glDrawElements(GL_TRIANGLES, size / sizeof(GLushort), GL_UNSIGNED_SHORT, 0);
-      //int iError18 = glGetError();
-
-
-#if defined(WINDOWS_DESKTOP)
-
-      ::cast<device_win32> pgpudevice = m_pgpudevice;
-
-      if (pgpudevice->m_itaskCurrentGpuContext != ::current_itask())
-      {
-
-         ASSERT(false);
-
-      }
-
-#endif
-
-      //      glClearColor(0.0f, 0.0f, 0.4f, 0.0f);
-
-      // Clear the screen
-      glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
-      //glClear(GL_COLOR_BUFFER_BIT);
-
-      if (m_pshader)
-      {
-
-         m_pshader->bind(nullptr);
-
-      }
-      // Use our shader
-      //glUseProgram(programID);
-
-      // be sure to activate the shader
-      //glUseProgram(shaderProgram);
-
-      // update the uniform color
-      //float timeValue = glfwGetTime();
-      //float greenValue = sin(timeValue) / 2.0f + 0.5f;
-      //int vertexColorLocation = glGetUniformLocation(shaderProgram, "ourColor");
-      //glUniform4f(vertexColorLocation, 0.0f, greenValue, 0.0f, 1.0f);
-
-      //return ::success;
-
-   }
+//   void context::start_drawing()
+//   {
+//
+//      ::gpu::context_lock contextlock(this);
+//
+//      //glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_ibo_elements);
+//      //int iError16 = glGetError();
+//
+//      //int size = 0;
+//      //glGetBufferParameteriv(GL_ELEMENT_ARRAY_BUFFER, GL_BUFFER_SIZE, &size);
+//      //int iError17 = glGetError();
+//
+//      //glDrawElements(GL_TRIANGLES, size / sizeof(GLushort), GL_UNSIGNED_SHORT, 0);
+//      //int iError18 = glGetError();
+//
+//
+//#if defined(WINDOWS_DESKTOP)
+//
+//      ::cast<device_win32> pgpudevice = m_pgpudevice;
+//
+//      if (pgpudevice->m_itaskCurrentGpuContext != ::current_itask())
+//      {
+//
+//         ASSERT(false);
+//
+//      }
+//
+//#endif
+//
+//      //      glClearColor(0.0f, 0.0f, 0.4f, 0.0f);
+//
+//      // Clear the screen
+//      glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+//
+//      //glClear(GL_COLOR_BUFFER_BIT);
+//
+//      if (m_pshader)
+//      {
+//
+//         m_pshader->bind(nullptr);
+//
+//      }
+//      // Use our shader
+//      //glUseProgram(programID);
+//
+//      // be sure to activate the shader
+//      //glUseProgram(shaderProgram);
+//
+//      // update the uniform color
+//      //float timeValue = glfwGetTime();
+//      //float greenValue = sin(timeValue) / 2.0f + 0.5f;
+//      //int vertexColorLocation = glGetUniformLocation(shaderProgram, "ourColor");
+//      //glUniform4f(vertexColorLocation, 0.0f, greenValue, 0.0f, 1.0f);
+//
+//      //return ::success;
+//
+//   }
 
 
    void context::global_transform()
@@ -1057,95 +1058,95 @@ namespace gpu_opengl
    //}
 
 
-   void context::copy(::gpu::texture *ptextureParam)
-   {
+   //void context::copy(::gpu::texture *ptextureParam)
+   //{
 
-      _copy_using_shader(ptextureParam);
+   //   _copy_using_shader(ptextureParam);
 
-   }
-
-
-   void context::_copy_using_shader(::gpu::texture *ptextureParam)
-   {
-
-      ::gpu::context_lock contextlock(this);
-
-      if (!m_pshaderCopy)
-      {
-
-         øconstruct_new(m_pshaderCopy);
-
-         // Vertex shader
-         const_char_pointer vertexShaderSource = R"(
-#version 330 core
-layout(location = 0) in vec2 inPos;
-layout(location = 1) in vec2 inUV;
-out vec2 fragUV;
-void main() {
-    fragUV = inUV;
-    gl_Position = vec4(inPos, 0.0, 1.0);
-}
-)";
-
-         // Fragment shader
-         const_char_pointer fragmentShaderSource = R"(
-#version 330 core
-in vec2 fragUV;
-out vec4 outColor;
-uniform sampler2D uTexture;
-void main() {
-    outColor = texture(uTexture, fragUV);
-}
-)";
-
-         m_pshaderCopy->initialize_shader_with_block(
-            m_pgpurenderer,
-            vertexShaderSource,
-            fragmentShaderSource);
-      }
-
-      auto pmodelbufferFullScreenQuad = sequence2_uv_fullscreen_quad_model_buffer(::gpu::current_frame());
-
-      /*  if (!m_vaoFullScreenQuad)
-        {
-
-           createFullscreenQuad(&m_vaoFullScreenQuad, &m_vboFullScreenQuad);
-
-        }*/
-      glBindFramebuffer(GL_DRAW_FRAMEBUFFER, 0);
-      //glDisable(GL_BLEND);                    // Ensure no blending
-
-      int cx = m_rectangle.width();
-      int cy = m_rectangle.height();
-      glViewport(0, 0, cx, cy);
-      //glClearColor(0.1, 0.1, 0.1, 1.0);
-      //glClear(GL_COLOR_BUFFER_BIT);
-
-      auto pcommandbuffer = m_pgpurenderer->getCurrentCommandBuffer2(::gpu::current_frame());
-
-      m_pshaderCopy->bind(pcommandbuffer);
-
-      m_pshaderCopy->bind_source(pcommandbuffer, ptextureParam, 0);
-
-      pmodelbufferFullScreenQuad->bind(pcommandbuffer);
-
-      // glBindVertexArray(m_vaoFullScreenQuad);
-
-      //::cast < texture > ptexture = ptextureParam;
-      pmodelbufferFullScreenQuad->draw(pcommandbuffer);
+   //}
 
 
-      pmodelbufferFullScreenQuad->unbind(pcommandbuffer);
-
-      ////glActiveTexture(GL_TEXTURE0);
-      //;; glBindTexture(GL_TEXTURE_2D, ptexture->m_gluTextureID);
-      //m_pshaderCopy->_set_int("uTexture", 0);
-
-      //glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
-
-      m_pshaderCopy->unbind(pcommandbuffer);
-
-   }
+//   void context::_copy_using_shader(::gpu::texture *ptextureParam)
+//   {
+//
+//      ::gpu::context_lock contextlock(this);
+//
+//      if (!m_pshaderCopy)
+//      {
+//
+//         øconstruct_new(m_pshaderCopy);
+//
+//         // Vertex shader
+//         const_char_pointer vertexShaderSource = R"(
+//#version 330 core
+//layout(location = 0) in vec2 inPos;
+//layout(location = 1) in vec2 inUV;
+//out vec2 fragUV;
+//void main() {
+//    fragUV = inUV;
+//    gl_Position = vec4(inPos, 0.0, 1.0);
+//}
+//)";
+//
+//         // Fragment shader
+//         const_char_pointer fragmentShaderSource = R"(
+//#version 330 core
+//in vec2 fragUV;
+//out vec4 outColor;
+//uniform sampler2D uTexture;
+//void main() {
+//    outColor = texture(uTexture, fragUV);
+//}
+//)";
+//
+//         m_pshaderCopy->initialize_shader_with_block(
+//            m_pgpurenderer,
+//            vertexShaderSource,
+//            fragmentShaderSource);
+//      }
+//
+//      auto pmodelbufferFullScreenQuad = sequence2_uv_fullscreen_quad_model_buffer(::gpu::current_frame());
+//
+//      /*  if (!m_vaoFullScreenQuad)
+//        {
+//
+//           createFullscreenQuad(&m_vaoFullScreenQuad, &m_vboFullScreenQuad);
+//
+//        }*/
+//      glBindFramebuffer(GL_DRAW_FRAMEBUFFER, 0);
+//      //glDisable(GL_BLEND);                    // Ensure no blending
+//
+//      int cx = m_rectangle.width();
+//      int cy = m_rectangle.height();
+//      glViewport(0, 0, cx, cy);
+//      //glClearColor(0.1, 0.1, 0.1, 1.0);
+//      //glClear(GL_COLOR_BUFFER_BIT);
+//
+//      auto pcommandbuffer = m_pgpurenderer->getCurrentCommandBuffer2(::gpu::current_frame());
+//
+//      m_pshaderCopy->bind(pcommandbuffer);
+//
+//      m_pshaderCopy->bind_source(pcommandbuffer, ptextureParam, 0);
+//
+//      pmodelbufferFullScreenQuad->bind(pcommandbuffer);
+//
+//      // glBindVertexArray(m_vaoFullScreenQuad);
+//
+//      //::cast < texture > ptexture = ptextureParam;
+//      pmodelbufferFullScreenQuad->draw(pcommandbuffer);
+//
+//
+//      pmodelbufferFullScreenQuad->unbind(pcommandbuffer);
+//
+//      ////glActiveTexture(GL_TEXTURE0);
+//      //;; glBindTexture(GL_TEXTURE_2D, ptexture->m_gluTextureID);
+//      //m_pshaderCopy->_set_int("uTexture", 0);
+//
+//      //glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
+//
+//      m_pshaderCopy->unbind(pcommandbuffer);
+//
+//   }
 
 
    //void context::gpu_debug_message(const ::scoped_string& scopedstrMessage)
@@ -1400,7 +1401,7 @@ void main() {
 
                   pcommandbuffer->set_scissor(r);
 
-                  m_pmodelbufferDummy->bind(pcommandbuffer);
+                  //m_pmodelbufferDummy->bind(pcommandbuffer);
 
 
                   {
@@ -1450,7 +1451,7 @@ void main() {
 
                   }
 
-                  m_pmodelbufferDummy->draw(pcommandbuffer);
+                  pcommandbuffer->draw(m_pmodelbufferDummy);
 
                   m_pmodelbufferDummy->unbind(pcommandbuffer);
 
@@ -2877,7 +2878,7 @@ color = vec4(c.r,c.g, c.b, c.a);
 
       ::gpu::context_lock contextlock(this);
 
-      auto pmodel = øcreate_new<::gpu_opengl::gltf::model>();
+      auto pmodel = øcreate<::gpu::gltf::model>();
 
       (*(::gpu::renderable_t *)pmodel) = model;
 

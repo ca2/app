@@ -89,9 +89,9 @@ namespace gpu_opengl
       //virtual void * _map(memsize start, memsize count);
       //virtual void unmap();
 
-      void bind(::gpu::command_buffer* pcommandbuffer) override;
+      void bind2(::gpu::command_buffer* pcommandbuffer) override;
 
-      void draw(::gpu::command_buffer* pcommandbuffer) override;
+      void draw2(::gpu::command_buffer* pcommandbuffer) override;
 
       void draw_lines(::gpu::command_buffer* pcommandbuffer) override;
 

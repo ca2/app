@@ -134,9 +134,16 @@ namespace graphics3d
 
             int iFrameIndex = pgpurendertarget->get_frame_index();
 
+            if (iFrameIndex < 0)
+            {
+
+               ::warning("iFrameIndex < 0 (1) at ::graphics3d::engine");
+
+            }
+
             auto pcommandbuffer = pframe->m_pgpucommandbuffer;
 
-            pcommandbuffer->m_iFrameIndex = iFrameIndex;
+            pcommandbuffer->m_iCommandBufferFrameIndex = iFrameIndex;
 
             pscene->on_render(pgpucontext);
 
@@ -1140,15 +1147,17 @@ namespace graphics3d
 
       builder.loadModel(pcontext, model.m_pathRenderable, model.m_bCounterClockwise);
 
-      ::pointer < ::gpu::model_buffer > pmodel;
+      ::pointer < ::gpu::model_buffer > pmodelbuffer;
 
-      øconstruct(pmodel);
+      øconstruct(pmodelbuffer);
 
-      (*(::gpu::renderable_t *)pmodel) = model;
+      (*(::gpu::renderable_t *)pmodelbuffer) = model;
 
-      pmodel->initialize_model(pcontext, builder);
+      pmodelbuffer->initialize_gpu_context_object(pcontext);
 
-      return pmodel;
+      pmodelbuffer->set_data(builder);
+
+      return pmodelbuffer;
 
    }
 

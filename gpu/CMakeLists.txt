@@ -50,7 +50,7 @@ if(${WIN32})
 endif()
 
 list(APPEND library_source
-   ${IBL_SHADERS}
+   ${IBL_SHADERS_HEADERS}
    gltf/material.h
    gltf/mesh.cpp
    gltf/mesh.h
@@ -175,7 +175,6 @@ elseif (${LINUX} OR ${__BSD__} OR ${ANDROID})
 
    message(STATUS "(6) PKGCONFIG_LIBRARIES is " ${${PROJECT_NAME}_PKGCONFIG_LIBRARIES})
 endif ()
-
 
 
 

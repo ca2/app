@@ -24,7 +24,7 @@ namespace gpu_opengl
       void set_scissor(const ::int_rectangle& rectangle) override;
 
 
-      void draw(int a) override;
+      void draw_int_a_count(int a) override;
 
 
       void set_render_target() override;

@@ -125,7 +125,7 @@ namespace graphics3d
          20,
       };
 
-      return create_renderable_from_shape(pgpucontext, shape);
+      return create_renderable_from_model_data(pgpucontext, shape);
 
    }
 
@@ -184,7 +184,7 @@ namespace graphics3d
          20, 21, 22, 22, 23, 20 // -Z
       };
 
-      return create_renderable_from_shape(pgpucontext, shape);
+      return create_renderable_from_model_data(pgpucontext, shape);
    }
 
 
@@ -208,7 +208,7 @@ namespace graphics3d
       // Indices for a plane (two triangles)
       shape.m_indexes = {0, 1, 2, 2, 3, 0};
 
-      return create_renderable_from_shape(pgpucontext, shape);
+      return create_renderable_from_model_data(pgpucontext, shape);
 
    }
 
@@ -232,7 +232,7 @@ namespace graphics3d
       // Indices for a wall (two triangles)
       shape.m_indexes = {0, 1, 2, 2, 3, 0};
 
-      return create_renderable_from_shape(pgpucontext, shape);
+      return create_renderable_from_model_data(pgpucontext, shape);
 
    }
 
@@ -307,7 +307,7 @@ namespace graphics3d
          }
       }
 
-            return create_renderable_from_shape(pgpucontext, shape);
+            return create_renderable_from_model_data(pgpucontext, shape);
 
 
    }

@@ -58,7 +58,7 @@ namespace gpu_opengl
 
 
 
-   void command_buffer::draw(int a)
+   void command_buffer::draw_int_a_count(int a)
    {
 
       glDrawArrays(GL_TRIANGLES, 0, a);

@@ -24,10 +24,15 @@ namespace graphics3d
 {
 
 
-	class CLASS_DECL_BRED pbr_with_ibl_render_system :
+	class CLASS_DECL_BRED pbr_with_ibl_render_system_base :
 		virtual public ::graphics3d::render_system
 	{
 	public:
+
+      const int TEXTURE_UNIT_DIFFUSE_IRRADIANCE_MAP = 10;
+      const int TEXTURE_UNIT_PREFILTERED_ENV_MAP = 11;
+      const int TEXTURE_UNIT_BRDF_CONVOLUTION_MAP = 12;
+
 
       ::graphics3d::scene_renderable *m_pscenerenderableCurrent;
       bool m_bDisableAlbedo = false;
@@ -52,8 +57,11 @@ namespace graphics3d
 
 		::pointer <::graphics3d::asset_manager > m_passetmanager;
 
-		pbr_with_ibl_render_system();
-		~pbr_with_ibl_render_system();
+		pbr_with_ibl_render_system_base();
+		~pbr_with_ibl_render_system_base();
+
+
+      ::graphics3d::scene_renderable *current_scene_renderable() override;
 
       void on_prepare(::gpu::context *pgpucontext) override;
 

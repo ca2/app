@@ -96,8 +96,6 @@ __FACTORY_EXPORT void gpu_opengl_factory(::factory::factory * pfactory)
    //pfactory->add_factory_item < ::gpu_opengl::full_screen_quad, ::gpu::full_screen_quad >();
    pfactory->add_factory_item < ::gpu::full_screen_quad >();
    //pfactory->add_factory_item < ::gpu_opengl::hdr_texture, ::gpu::hdr_texture >();
-   pfactory->add_factory_item < ::gpu_opengl::gltf::mesh, ::gpu::gltf::mesh >();
-   pfactory->add_factory_item < ::gpu_opengl::gltf::model, ::gpu::gltf::model >();
    pfactory->add_factory_item < ::gpu_opengl::ibl::diffuse_irradiance_map, ::gpu::ibl::diffuse_irradiance_map >();
    pfactory->add_factory_item < ::gpu_opengl::ibl::specular_map, ::gpu::ibl::specular_map >();
    //pfactory->add_factory_item < ::gpu_opengl::ibl::aaa_mipmap_cubemap_framebuffer, ::gpu::ibl::aaa_mipmap_cubemap_framebuffer>();
@@ -108,7 +106,8 @@ __FACTORY_EXPORT void gpu_opengl_factory(::factory::factory * pfactory)
    pfactory->add_factory_item < ::gpu_opengl::ibl::equirectangular_cubemap, ::gpu::ibl::equirectangular_cubemap>();
    //pfactory->add_factory_item < ::gpu_opengl::ibl::brdf_convolution_framebuffer, ::gpu::ibl::brdf_convolution_framebuffer>();
    //pfactory->add_factory_item < ::gpu_opengl::ibl::hdri_cube, ::gpu::ibl::hdri_cube>();
-
+   pfactory->add_factory_item<::gpu_opengl::gltf::mesh, ::gpu::gltf::mesh>();
+   pfactory->add_factory_item<::gpu_opengl::gltf::model, ::gpu::gltf::model>();
 }
 
 

@@ -82,7 +82,7 @@ namespace gpu
 
          auto pcommandbuffer = pgpuframe->m_pgpucommandbuffer;
 
-         bind(pcommandbuffer);
+         bind2(pcommandbuffer);
 
          this->create_vertexes<::graphics3d::sequence2_color >(iCount);
 
@@ -251,14 +251,21 @@ namespace gpu
       virtual void unbind_load_assets_command_buffer(::gpu::context *pcontext);
 
       template < typename VERTEX >
-      void initialize_model(::gpu::context *pcontext, const ::gpu::model_data<VERTEX> &modeldata)
+      void set_data(const ::gpu::model_data<VERTEX> &modeldata)
       {
 
-         initialize(pcontext);
-      
-         initialize_gpu_context_object(pcontext);
+         if (!m_papplication || !m_pgpucontext)
+         {
 
-         bind_load_assets_command_buffer(pcontext);
+            // should call initialize(pcontext);
+
+            // should call initialize_gpu_context_object(pcontext);
+
+            throw ::exception(error_wrong_state);
+
+         }
+
+         bind_load_assets_command_buffer(m_pgpucontext);
 
          static_initialize_vertexes(modeldata.m_vertexes);
 
@@ -269,7 +276,7 @@ namespace gpu
 
          }
 
-         unbind_load_assets_command_buffer(pcontext);
+         unbind_load_assets_command_buffer(m_pgpucontext);
 
       }
 
@@ -331,9 +338,9 @@ namespace gpu
       //virtual void* _map(memsize start, memsize count);
       //virtual void unmap();
 
-      void bind(::gpu::command_buffer* pcommandbuffer) override;
+      void bind2(::gpu::command_buffer* pcommandbuffer) override;
 
-      void draw(::gpu::command_buffer* pcommandbuffer) override;
+      void draw2(::gpu::command_buffer* pcommandbuffer) override;
 
       virtual void draw_lines(::gpu::command_buffer* pcommandbuffer);
 

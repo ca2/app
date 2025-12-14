@@ -485,39 +485,39 @@ namespace gpu
    }
 
 
-   void texture::merge_layers(::pointer_array < ::gpu::layer >* playera)
-   {
+   //void texture::merge_layers(::pointer_array < ::gpu::layer >* playera)
+   //{
 
-      //return;
+   //   //return;
 
-      auto& layera = *playera;
+   //   auto& layera = *playera;
 
-      for (auto player : layera)
-      {
+   //   for (auto player : layera)
+   //   {
 
-         blend(player);
+   //      blend(player);
 
-         break;
+   //      break;
 
-      }
+   //   }
 
-   }
-
-
-   void texture::blend(::gpu::layer* player)
-   {
-
-      blend(player->texture());
-
-   }
+   //}
 
 
-   void texture::blend(::gpu::texture* ptexture)
-   {
+   //void texture::blend(::gpu::layer* player)
+   //{
 
-      m_pgpurenderer->blend(this, ptexture);
+   //   blend(player->texture());
 
-   }
+   //}
+
+
+   //void texture::blend(::gpu::texture* ptexture)
+   //{
+
+   //   m_pgpurenderer->blend(this, ptexture);
+
+   //}
 
 
    void texture::create_render_target()

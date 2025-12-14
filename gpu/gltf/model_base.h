@@ -18,7 +18,9 @@ namespace gpu
       /**
        * A collection of meshes.
        */
-      class CLASS_DECL_GPU model_base : virtual public context_object, virtual public ::graphics3d::renderable
+      class CLASS_DECL_GPU model_base : 
+         virtual public context_object,
+         virtual public ::graphics3d::renderable
       {
       public:
          ::pointer<material> m_pmaterialOverride;

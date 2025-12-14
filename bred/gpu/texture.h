@@ -96,9 +96,9 @@ namespace gpu
 
       virtual ::pointer < ::gpu::pixmap > create_gpu_pixmap(const ::int_size & size);
 
-      virtual void merge_layers(::pointer_array < ::gpu::layer >* playera);
-      virtual void blend(::gpu::layer * player);
-      virtual void blend(::gpu::texture * ptexture);
+      //virtual void merge_layers(::pointer_array < ::gpu::layer >* playera);
+      //virtual void blend(::gpu::layer * player);
+      //virtual void blend(::gpu::texture * ptexture);
 
       virtual void create_render_target();
 

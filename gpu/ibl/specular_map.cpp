@@ -296,10 +296,10 @@ namespace gpu
                //rendersystemScope.m_erendersystem = ::graphics3d::e_render_system_skybox_ibl;
                //pgpucommandbuffer->m_prendersystem = &rendersystemScope;
                m_pshaderPrefilteredEnvMap->push_properties(pgpucommandbuffer);
-               prenderableCube->bind(pgpucommandbuffer);
-               m_pshaderPrefilteredEnvMap->on_before_draw(pgpucommandbuffer);
-               prenderableCube->draw(pgpucommandbuffer);
-               prenderableCube->unbind(pgpucommandbuffer);
+               pgpucommandbuffer->draw(prenderableCube);
+               //m_pshaderPrefilteredEnvMap->on_before_draw(pgpucommandbuffer);
+               //prenderableCube->draw(pgpucommandbuffer);
+               //prenderableCube->unbind(pgpucommandbuffer);
                //pgpucommandbuffer->m_prendersystem = nullptr;
 
                m_pgpucontext->end_debug_happening(pgpucommandbuffer);
@@ -419,8 +419,8 @@ namespace gpu
 
          m_pgpucontext->clear(m_ptextureBrdfConvolutionMap, ::color::transparent);
 
-         pfullscreenquad->bind(pcommandbuffer);
-         pfullscreenquad->draw(pcommandbuffer);
+         pcommandbuffer->draw(pfullscreenquad);
+         //pfullscreenquad->draw(pcommandbuffer);
          pfullscreenquad->unbind(pcommandbuffer);
 
 

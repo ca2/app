@@ -91,11 +91,11 @@ namespace graphics3d
 
       auto pcommandbuffer = m_pgpucontext->m_pgpurenderer->getCurrentCommandBuffer2(::gpu::current_frame());
 
-      m_pmodel->bind(pcommandbuffer);
+      //pcommandbuffer->set_model(m_pmodel);
 
-      m_pmodel->draw(pcommandbuffer);
+      pcommandbuffer->draw(m_pmodel);
 
-      m_pmodel->unbind(pcommandbuffer);
+      //m_pmodel->unbind(pcommandbuffer);
 
       //// draw mesh
       //glBindVertexArray(m_VAO);
@@ -119,7 +119,9 @@ namespace graphics3d
 
       øconstruct_new(m_pmodel);
 
-      m_pmodel->initialize_model(m_pgpucontext, m_modeldata);
+      m_pmodel->initialize_gpu_context_object(m_pgpucontext);
+
+      m_pmodel->set_data(m_modeldata);
 
       // m_pmodel->initialize_model(m_pgpucontext->m_pgpurenderer, );
 

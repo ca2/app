@@ -273,7 +273,21 @@ namespace graphics3d
 
       }
 
-	   pgpushader->bind(::gpu::current_command_buffer(), ptextureDst, ptextureSkybox);
+      auto pgpucommandbuffer = ::gpu::current_command_buffer();
+
+      pgpucommandbuffer->set_shader(pgpushader);
+
+	   //pgpushader->bind(pgpucommandbuffer, ptextureDst);
+
+      auto pblockGlobalUbo = pscene->global_ubo1(pgpucontext);
+
+                             // auto pbindingsetGlobalUbo =
+
+      pgpucommandbuffer->set_block(pblockGlobalUbo);
+
+      pgpucommandbuffer->set_source(ptextureSkybox);
+
+      //pgpushader->bind_source(pgpucommandbuffer, ptextureSkybox);
 
       auto pframe = ::gpu::current_frame();
 
@@ -286,7 +300,7 @@ namespace graphics3d
 
          pframe->m_pgpucommandbuffer->m_prendersystem = this;
 
-			prenderable->bind(pframe->m_pgpucommandbuffer);
+			//prenderable->bind(pframe->m_pgpucommandbuffer);
 
          float x_multiplier = 1.f;
          float y_multiplier = 1.f;
@@ -370,11 +384,13 @@ namespace graphics3d
 
          //pframe->m_pgpucommandbuffer->set_scissor(r);
 
-         prenderable->bind(pframe->m_pgpucommandbuffer);
-         pgpushader->on_before_draw(pframe->m_pgpucommandbuffer);
-         prenderable->draw(pframe->m_pgpucommandbuffer);
+         //pframe->m_pgpucommandbuffer->set_model(prenderable);
+         //pgpushader->on_before_draw(pframe->m_pgpucommandbuffer);
+         //pframe->m_pgpucommandbuffer->draw_model(prenderable);
 
-         prenderable->unbind(pframe->m_pgpucommandbuffer);
+         pframe->m_pgpucommandbuffer->draw(prenderable);
+
+         //prenderable->unbind(pframe->m_pgpucommandbuffer);
 
 		}
 

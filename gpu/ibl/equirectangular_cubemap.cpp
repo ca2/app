@@ -146,9 +146,14 @@ namespace gpu
 
             pgpucommandbuffer->begin_render(m_pshaderHdri, m_ptextureCubemap);
 
-            m_pshaderHdri->bind_source(pgpucommandbuffer, m_ptextureHdr);
+            pgpucommandbuffer->set_source(m_ptextureHdr);
 
-            m_pshaderHdri->setModelViewProjection(model, impact, projection);
+            pgpucommandbuffer->set_model_view_projection(model, impact, projection);
+               //->
+
+            //m_pshaderHdri->bind_source(pgpucommandbuffer, m_ptextureHdr);
+
+            //m_pshaderHdri->setModelViewProjection(model, impact, projection);
 
             //m_pshaderHdri->set_int("faceIndex", i);
 
@@ -175,15 +180,21 @@ namespace gpu
 
             rectangleViewport.set(0, 0, m_uCubemapWidth, m_uCubemapHeight);
 
-            m_pgpucontext->set_viewport(pgpucommandbuffer, rectangleViewport);
+            pgpucommandbuffer->set_viewport(rectangleViewport);
 
-            m_prenderableCube->bind(pgpucommandbuffer);
+            //pgpucommandbuffer->set_model(m_prenderableCube);
 
-            m_pshaderHdri->on_before_draw(pgpucommandbuffer);
+            pgpucommandbuffer->set_source(m_ptextureHdr);
 
-            m_prenderableCube->draw(pgpucommandbuffer);
+            //m_pshaderHdri->on_before_draw(pgpucommandbuffer);
 
-            m_prenderableCube->unbind(pgpucommandbuffer);
+            pgpucommandbuffer->draw(m_prenderableCube);
+
+            //pgpucommandbuffer->unbind(m_ptextureHdr);
+
+            //m_prenderableCube->draw(pgpucommandbuffer);
+
+            //m_prenderableCube->unbind(pgpucommandbuffer);
 
             pgpucommandbuffer->end_render();
 

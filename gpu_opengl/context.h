@@ -50,7 +50,7 @@ namespace gpu_opengl
       string _001GetIntroFragment() override;
 
       void draw() override;
-      void start_drawing() override;
+      //void start_drawing() override;
       void global_transform() override;
       void render() override;
 
@@ -122,8 +122,8 @@ namespace gpu_opengl
       void layout_global_ubo(::gpu::properties *pproperties) override;
       //bool is_global_ubo_ok();
 
-      void copy(::gpu::texture* ptexture) override;
-      virtual void _copy_using_shader(::gpu::texture* ptexture);
+      //void copy(::gpu::texture* ptexture) override;
+      //virtual void _copy_using_shader(::gpu::texture* ptexture);
       virtual void _copy_using_blit(::gpu::texture* ptexture);
       void merge_layers(::gpu::texture* ptextureTarget, ::pointer_array < ::gpu::layer >* playera) override;
 

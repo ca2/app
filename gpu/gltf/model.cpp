@@ -103,12 +103,19 @@ namespace gpu
          loadModel(path, flipTexturesVertically, bExternalPbr);
       }
 
+      //void model::bind2(::gpu::command_buffer *pcommandbuffer)
+      //{
+      //   for (auto &pmesh: m_mesha)
+      //   {
+      //      pmesh->bind2(pcommandbuffer);
+      //   }
+      //}
 
-      void model::draw(::gpu::command_buffer *pcommandbuffer)
+      void model::draw2(::gpu::command_buffer *pcommandbuffer)
       {
          for (auto &pmesh: m_mesha)
          {
-            pmesh->draw(pcommandbuffer);
+            pmesh->draw2(pcommandbuffer);
          }
       }
 
@@ -236,8 +243,10 @@ namespace gpu
       // convert assimp mesh to our own mesh class
       ::pointer <::gpu::gltf::mesh > model::processMesh(aiMesh *mesh, const aiScene *scene)
       {
-         ::array_base<gltf::vertex> vertices;
-         ::array_base<unsigned int> indices;
+         
+         model_data<::gpu::gltf::vertex> modeldata;
+         //::array_base<gltf::vertex> vertices;
+         //::array_base<unsigned int> indices;
          ::pointer < ::gpu::gltf::material> pmaterial;
 
          if (m_pmaterialOverride)
@@ -248,6 +257,7 @@ namespace gpu
          {
 
             øconstruct_new(pmaterial);
+            pmaterial->m_pgpucontext = m_pgpucontext;
 
          }
 
@@ -329,7 +339,8 @@ namespace gpu
             //bitangent.z = mesh->mBitangents[0].z;
             //vertex.bitangent = bitangent;
 
-            vertices.add(vertex);
+            modeldata.m_vertexes.add(vertex);
+
          }
 
          // indices
@@ -340,7 +351,7 @@ namespace gpu
 
             for (unsigned int j = 0; j < face.mNumIndices; j++)
             {
-               indices.add(face.mIndices[j]);
+               modeldata.m_indexes.add(face.mIndices[j]);
 
             }
 
@@ -351,7 +362,7 @@ namespace gpu
 
 
                // Compute tangents from indexed mesh data
-            computeTangents(vertices, indices);
+            computeTangents(modeldata.m_vertexes, modeldata.m_indexes);
 
          }
 
@@ -373,13 +384,15 @@ namespace gpu
             if (m_bExternalPbr)
             {
                // albedo
-               if (pmaterial->m_ptextureAlbedo = loadMaterialTexture("albedo.ktx", aiTextureType_DIFFUSE))
+               if (pmaterial->m_texturea[e_texture_albedo] = loadMaterialTexture("albedo.ktx", aiTextureType_DIFFUSE))
                {
+                  
                   pmaterial->useTextureAlbedo = true;
+
                }
 
                // metallicRoughness (in gltf 2.0 they are combined in one texture)
-               if (pmaterial->m_ptextureMetallicRoughness = loadMaterialTexture("metallic.ktx", aiTextureType_UNKNOWN))
+               if (pmaterial->m_texturea[e_texture_metallic_roughness] = loadMaterialTexture("metallic.ktx", aiTextureType_UNKNOWN))
                {
                   // defined here in assimp
                   // https://github.com/assimp/assimp/blob/master/include/assimp/pbrmaterial.h#L57
@@ -387,19 +400,22 @@ namespace gpu
                }
 
                // normal
-               if (pmaterial->m_ptextureNormal = loadMaterialTexture("normal.ktx", aiTextureType_NORMALS))
+               if (pmaterial->m_texturea[e_texture_normal] =
+                      loadMaterialTexture("normal.ktx", aiTextureType_NORMALS))
                {
                   pmaterial->useTextureNormal = true;
                }
 
                // ambient occlusion
-               if (pmaterial->m_ptextureAmbientOcclusion = loadMaterialTexture("ao.ktx", aiTextureType_LIGHTMAP))
+               if (pmaterial->m_texturea[e_texture_ambient_occlusion] =
+                      loadMaterialTexture("ao.ktx", aiTextureType_LIGHTMAP))
                {
                   pmaterial->useTextureAmbientOcclusion = true;
                }
 
                // emissive
-               if (pmaterial->m_ptextureEmissive = loadMaterialTexture("emissive.ktx", aiTextureType_EMISSIVE))
+               if (pmaterial->m_texturea[e_texture_emissive] =
+                      loadMaterialTexture("emissive.ktx", aiTextureType_EMISSIVE))
                {
                   pmaterial->useTextureEmissive = true;
                }
@@ -520,7 +536,8 @@ namespace gpu
                if (aiMaterial->GetTextureCount(aiTextureType_DIFFUSE))
                {
                   pmaterial->useTextureAlbedo = true;
-                  pmaterial->m_ptextureAlbedo = loadMaterialTexture(aiMaterial, aiTextureType_DIFFUSE);
+                  pmaterial->m_texturea[e_texture_albedo] =
+                     loadMaterialTexture(aiMaterial, aiTextureType_DIFFUSE);
                }
 
                // metallicRoughness (in gltf 2.0 they are combined in one texture)
@@ -528,28 +545,32 @@ namespace gpu
                {
                   // defined here in assimp https://github.com/assimp/assimp/blob/master/include/assimp/pbrmaterial.h#L57
                   pmaterial->useTextureMetallicRoughness = true;
-                  pmaterial->m_ptextureMetallicRoughness = loadMaterialTexture(aiMaterial, aiTextureType_UNKNOWN);
+                  pmaterial->m_texturea[e_texture_metallic_roughness] =
+                     loadMaterialTexture(aiMaterial, aiTextureType_UNKNOWN);
                }
 
                // normal
                if (aiMaterial->GetTextureCount(aiTextureType_NORMALS))
                {
                   pmaterial->useTextureNormal = true;
-                  pmaterial->m_ptextureNormal = loadMaterialTexture(aiMaterial, aiTextureType_NORMALS);
+                  pmaterial->m_texturea[e_texture_normal] =
+                     loadMaterialTexture(aiMaterial, aiTextureType_NORMALS);
                }
 
                // ambient occlusion
                if (aiMaterial->GetTextureCount(aiTextureType_LIGHTMAP))
                {
                   pmaterial->useTextureAmbientOcclusion = true;
-                  pmaterial->m_ptextureAmbientOcclusion = loadMaterialTexture(aiMaterial, aiTextureType_LIGHTMAP);
+                  pmaterial->m_texturea[e_texture_ambient_occlusion] =
+                     loadMaterialTexture(aiMaterial, aiTextureType_LIGHTMAP);
                }
 
                // emissive
                if (aiMaterial->GetTextureCount(aiTextureType_EMISSIVE))
                {
                   pmaterial->useTextureEmissive = true;
-                  pmaterial->m_ptextureEmissive = loadMaterialTexture(aiMaterial, aiTextureType_EMISSIVE);
+                  pmaterial->m_texturea[e_texture_emissive] =
+                     loadMaterialTexture(aiMaterial, aiTextureType_EMISSIVE);
                }
 
                aiColor4D assimpcolor;
@@ -570,7 +591,9 @@ namespace gpu
 
          pmesh->m_pgpucontext = m_pgpucontext;
 
-         pmesh->initialize_gpu_gltf_mesh(vertices, indices, pmaterial);
+         pmesh->m_modeldata = ::transfer(modeldata);
+
+         pmesh->initialize_gpu_gltf_mesh(pmaterial);
 
          return pmesh;
 
@@ -703,6 +726,20 @@ namespace gpu
       //    //
       //    // return textureId;
       // }
+
+      ::gpu::texture *model::empty_texture()
+      {
+
+         if (!m_ptextureEmpty)
+         {
+
+            m_ptextureEmpty = ::transfer(m_pgpucontext->create_empty_texture());
+
+         }
+
+         return m_ptextureEmpty;
+
+      }
 
 
    } // namespace gltf

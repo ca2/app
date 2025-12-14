@@ -63,15 +63,25 @@ namespace graphics3d
    }
 
 
-   void renderable::bind(::gpu::command_buffer *pcommandbuffer)
+   void renderable::bind2(::gpu::command_buffer *pcommandbuffer)
    {
 
 
    }
 
 
-   void renderable::draw(::gpu::command_buffer *pcommandbuffer)
+   void renderable::draw2(::gpu::command_buffer *pcommandbuffer)
    {
+   }
+
+
+   void renderable::draw_model(::gpu::command_buffer *pcommandbuffer) 
+   {
+      
+      bind2(pcommandbuffer);
+
+      draw2(pcommandbuffer);
+   
    }
 
 

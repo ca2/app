@@ -119,6 +119,8 @@ namespace gpu
 
       virtual void update_binding_slots(int iSet);
 
+      virtual void set_texture(::pointer < ::gpu::texture > * ppgputexture);
+
 
    };
 

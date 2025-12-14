@@ -51,9 +51,9 @@ namespace gpu_opengl
          //                          const ::unsigned_int_array &indexa, ::gpu::gltf::material *pmaterial) override;
 
 
-         void init() override;
+         virtual void on_initialize_gpu_gltf_mesh() override;
 
-         void draw(::gpu::command_buffer *pcommandbuffer) override;
+         void draw2(::gpu::command_buffer *pcommandbuffer) override;
          // private:
          //    // OpenGL data structures
          //    unsigned int mVAO, mVBO, mEBO;

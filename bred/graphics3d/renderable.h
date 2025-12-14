@@ -35,10 +35,13 @@ namespace graphics3d
       //virtual void set_model_usage(::gpu::enum_model_usage emodelusage);
       virtual ::gpu::texture *get_target_texture();
 
-      virtual void bind(::gpu::command_buffer *pcommandbuffer);
+      virtual void bind2(::gpu::command_buffer *pcommandbuffer);
 
 
-      virtual void draw(::gpu::command_buffer *pcommandbuffer);
+      virtual void draw2(::gpu::command_buffer *pcommandbuffer);
+
+
+      virtual void draw_model(::gpu::command_buffer *pcommandbuffer);
 
 
       virtual void unbind(::gpu::command_buffer *pcommandbuffer);

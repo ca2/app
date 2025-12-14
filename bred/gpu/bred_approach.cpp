@@ -48,6 +48,9 @@ namespace gpu
       system()->m_pfactory->add_factory_item<::gpu::binding_set>();
       system()->m_pfactory->add_factory_item<::gpu::binding_set_array>();
 
+      system()->m_pfactory->add_factory_item<::gpu::binding_slot_set>();
+      system()->m_pfactory->add_factory_item<::gpu::binding_slot_set_array>();
+
 
    }
 

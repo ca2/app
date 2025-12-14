@@ -6,6 +6,7 @@
 #include "bred/gpu/model_buffer.h"
 #include "bred/gpu/properties.h"
 #include "bred/gpu/renderer.h"
+#include "bred/gpu/render_target.h"
 #include "bred/gpu/shader.h"
 #include "bred/graphics3d/camera.h"
 #include "bred/graphics3d/engine.h"
@@ -177,9 +178,10 @@ namespace graphics3d
       // }
       //
       //
-      pgpucontext->defer_bind(m_pshader);
 
       auto pframe = ::gpu::current_frame();
+      auto ptexture = pframe->m_pgpucommandbuffer->m_pgpurendertarget->current_texture(pframe);
+      pframe->m_pgpucommandbuffer->begin_render(m_pshader, ptexture);
 
       // vkCmdBindDescriptorSets(
       //     frame.m_pcommandbuffer,
@@ -217,8 +219,10 @@ namespace graphics3d
          // );
          //pframe->m_pgpucommandbuffer->draw_vertexes(6);
          //vkCmdDraw(frame.m_pcommandbuffer, 6, 1, 0, 0);
-         m_pmodelDummy->bind(pframe->m_pgpucommandbuffer);
-         m_pmodelDummy->draw(pframe->m_pgpucommandbuffer);
+         //m_pmodelDummy->bind(pframe->m_pgpucommandbuffer);
+         //pframe->m_pgpucommandbuffer->set_model(m_pmodelDummy);
+         pframe->m_pgpucommandbuffer->draw(m_pmodelDummy);
+         //m_pmodelDummy->draw(pframe->m_pgpucommandbuffer);
       }
 
       pgpucontext->defer_unbind(m_pshader);

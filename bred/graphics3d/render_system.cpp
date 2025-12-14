@@ -48,7 +48,12 @@ namespace graphics3d
    }
 
 
+   ::graphics3d::scene_renderable * render_system::current_scene_renderable()
+   {
 
+      return nullptr;
+
+   }
 
 
    void render_system::update(::gpu::context* pgpucontext, ::graphics3d::scene_base* pscene)

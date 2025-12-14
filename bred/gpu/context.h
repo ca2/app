@@ -157,7 +157,7 @@ namespace gpu
       ::pointer<::gpu::binding_set> m_pbindingsetIbl1;
       ::pointer<::gpu::binding_set> m_pbindingsetGltfPbr;
       ::pointer<::gpu::binding_set> m_pbindingsetSceneGltfPbr;
-      ::pointer<::gpu::block> m_pblockGlobalUbo;
+      //::pointer<::gpu::block> m_pblockGlobalUbo;
 
 
       context();
@@ -182,6 +182,10 @@ namespace gpu
 
       /// loads only image::image (A8R8G8B8)
       virtual ::gpu::texture* texture(const ::file::path& path);
+
+
+      virtual ::pointer < ::gpu::texture > create_empty_texture();
+
 
       /// loads different types of image
       virtual ::gpu::texture* generic_texture(const ::file::path & path, int iAssimpTextureType);
@@ -231,7 +235,8 @@ namespace gpu
       virtual void _context_lock();
       virtual void _context_unlock();
 
-      virtual bool defer_bind(::gpu::shader* pgpushader);
+      virtual bool defer_bind2(::gpu::command_buffer * pgpucommandbuffer, ::gpu::shader * pgpushader, ::gpu::texture * pgputexture);
+      virtual bool defer_bind3(::gpu::command_buffer * pgpucommandbuffer, ::gpu::shader * pgpushader);
       virtual void defer_unbind(::gpu::shader* pgpushader);
       virtual void defer_unbind_shader();
       //virtual bool defer_construct_new(::pointer < ::gpu::memory_buffer >& pmemorybuffer, memsize size, memory_buffer::enum_type etype);
@@ -316,7 +321,7 @@ namespace gpu
       inline const ::draw3d::matrix & projection_matrix() const { return m_matrixProjection; }
       inline ::draw3d::matrix & projection_matrix() { return m_matrixProjection; }
 
-      virtual void start_drawing();
+      //virtual void start_drawing();
       virtual void global_transform();
       virtual void draw();
       virtual void render();
@@ -368,7 +373,7 @@ namespace gpu
       virtual void update_global_ubo1(::gpu::block * pblockGlobalUbo1);
       virtual void update_current_scene();
 
-      virtual void copy(::gpu::texture* ptexture);
+      //virtual void copy(::gpu::texture* ptexture);
       virtual void copy(::gpu::texture* ptextureTarget, ::gpu::texture* ptextureSource);
       virtual void merge_layers(::gpu::texture* ptextureTarget, ::pointer_array < ::gpu::layer >* playera);
 

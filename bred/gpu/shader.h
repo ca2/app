@@ -200,23 +200,26 @@ namespace gpu
 
       //virtual ::gpu::payload * get_payload(const ::scoped_string & scopedstrName);
       virtual void draw();
-      virtual void _bind(::gpu::command_buffer *pgpucommandbuffer, ::gpu::enum_scene escene);
+      //virtual void _bind(::gpu::command_buffer *pgpucommandbuffer, ::gpu::enum_scene escene);
       //virtual void on_initialize_shader();
       
-      virtual void on_before_draw(::gpu::command_buffer *pgpucommandbuffer);
+      //virtual void on_before_draw(::gpu::command_buffer *pgpucommandbuffer);
       virtual void on_set_constant_buffer(const ::scoped_string& scopedstrName);
 
 
       virtual void bind(::gpu::command_buffer * pgpucommandbuffer, ::gpu::texture* pgputextureTarget);
-      virtual void bind(::gpu::command_buffer *pgpucommandbuffer, ::gpu::texture *pgputextureTarget,
-                        ::gpu::texture *pgputextureSource);
+      //virtual void bind(::gpu::command_buffer *pgpucommandbuffer, ::gpu::texture *pgputextureTarget,
+        //                ::gpu::texture *pgputextureSource);
+      virtual void bind_block(::gpu::command_buffer *pgpucommandbuffer, ::gpu::block *pgpublock,
+                               int iSlot = 0);
+      virtual void bind_slot_set(::gpu::command_buffer *pgpucommandbuffer, int iSet, ::gpu::binding_slot_set *pgpubindingslotset);
       virtual void bind_source(::gpu::command_buffer *pgpucommandbuffer, ::gpu::texture *pgputextureSource,
                                int iSlot = 0);
       virtual void bind_source(::gpu::command_buffer *pgpucommandbuffer, ::gpu::pixmap *pgpupixmapSource,
                                int iSlot = 0);
       virtual void bind_source2(::gpu::command_buffer * pgpucommandbuffer, int iIndex,
          const char * pszPayloadName, ::gpu::texture * pgputextureSource);
-      virtual void bind(::gpu::command_buffer *pgpucommandbuffer);
+      //virtual void bind(::gpu::command_buffer *pgpucommandbuffer);
       virtual void unbind(::gpu::command_buffer *pgpucommandbuffer);
 
 
@@ -247,6 +250,7 @@ namespace gpu
       virtual void set_matrix4(const ::scoped_string& scopedstrName, const ::floating_matrix4& a);
 
       virtual void setModelViewProjection(const floating_matrix4 &model, const floating_matrix4 &view, const floating_matrix4 &projection);
+
 
    };
 

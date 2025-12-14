@@ -4024,8 +4024,6 @@ void simple_frame_window::draw_frame_and_control_box_over(::draw2d::graphics_poi
 void simple_frame_window::draw_frame(::draw2d::graphics_pointer & pgraphics)
 {
 
-   
-
    if (m_bWindowFrame && !session()->savings()->is_trying_to_save(::e_resource_display_bandwidth))
    {
 

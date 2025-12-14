@@ -26,11 +26,11 @@ namespace gpu_opengl
 
       void on_initialize_shader() override;
 
-      void _bind(::gpu::command_buffer *pgpucommandbuffer, ::gpu::enum_scene escene) override;
-      void bind(::gpu::command_buffer *pgpucommandbuffer, ::gpu::texture *pgputextureTarget,
-                ::gpu::texture *pgputextureSource) override;
+      //void _bind(::gpu::command_buffer *pgpucommandbuffer, ::gpu::enum_scene escene) override;
+      //void bind(::gpu::command_buffer *pgpucommandbuffer, ::gpu::texture *pgputextureTarget,
+                //::gpu::texture *pgputextureSource) override;
       void bind(::gpu::command_buffer *pgpucommandbuffer, ::gpu::texture *pgputextureTarget) override;
-      void bind(::gpu::command_buffer * pgpucommandbuffer) override;
+      //void bind(::gpu::command_buffer * pgpucommandbuffer) override;
       void unbind(::gpu::command_buffer *pgpucommandbuffer) override;
       
       //virtual void initialize_shader(

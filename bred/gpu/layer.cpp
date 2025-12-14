@@ -43,9 +43,16 @@ namespace gpu
 
       auto iFrameIndex = pgpurenderer->m_pgpucontext->m_pgpudevice->get_frame_index2();
 
+      if (iFrameIndex < 0)
+      {
+
+         ::warning("iFrameIndex < 0 (1) as gpu::layer");
+
+      }
+
       auto pcommandbufferLayer = m_commandbufferaLayer[iFrameIndex];
 
-      pcommandbufferLayer->m_iFrameIndex = iFrameIndex;
+      pcommandbufferLayer->m_iCommandBufferFrameIndex = iFrameIndex;
 
       pcommandbufferLayer->m_strAnnotation = "layer";
 
@@ -104,8 +111,12 @@ namespace gpu
 
       m_commandbufferaLayer.set_size(m_pgpurenderer->m_iDefaultFrameCount);
 
+      int iFrame = -1;
+
       for (auto& pcommandbufferLayer : m_commandbufferaLayer)
       {
+
+         iFrame++;
 
          ødefer_construct(pcommandbufferLayer);
 
@@ -113,6 +124,8 @@ namespace gpu
             m_pgpurenderer->m_pgpurendertarget,
             m_pgpurenderer->m_pgpucontext->m_pgpudevice->graphics_queue(),
             ::gpu::e_command_buffer_graphics);
+
+         pcommandbufferLayer->m_iCommandBufferFrameIndex = iFrame;
 
       }
 

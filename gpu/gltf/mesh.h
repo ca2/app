@@ -16,6 +16,8 @@
 
 #include "bred/gpu/shader.h"
 #include "gpu/gltf/material.h"
+#include "bred/gltf/vertex.h"
+#include "bred/gpu/model_data.h"
 
 
 namespace gpu
@@ -34,8 +36,10 @@ namespace gpu
       public:
 
 
-         raw_array_base<::gpu::gltf::vertex> m_vertexa;
-         unsigned_int_array m_indexa;
+         //::array_base<::gpu::gltf::vertex> m_vertexa;
+         //unsigned_int_array m_indexa;
+         ::gpu::model_data<::gpu::gltf::vertex> m_modeldata;
+         ::pointer<::gpu::model_buffer> m_pmodelbuffer;
          ::pointer<::gpu::gltf::material> m_pmaterial;
          struct UniformBlock {
             floating_matrix4 matrix;
@@ -48,13 +52,16 @@ namespace gpu
          ~mesh() override;
 
 
-         virtual void initialize_gpu_gltf_mesh(const ::raw_array_base<gltf::vertex> &vertexa, const ::unsigned_int_array &indexa,
-                                   ::gpu::gltf::material *pmaterial);
+         //virtual void initialize_gpu_gltf_mesh(const ::raw_array_base<gltf::vertex> &vertexa, const ::unsigned_int_array &indexa,
+           //                        ::gpu::gltf::material *pmaterial);
+          virtual void initialize_gpu_gltf_mesh(
+             //const ::gpu::model_data<gltf::vertex> & modeldata,
+             ::gpu::gltf::material *pmaterial);
 
-         virtual void init();
+         virtual void on_initialize_gpu_gltf_mesh();
 
 
-         void draw(::gpu::command_buffer *pcommandbuffer) override;
+         void draw2(::gpu::command_buffer *pcommandbuffer) override;
 
          // private:
          //    // OpenGL data structures

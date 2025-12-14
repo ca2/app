@@ -20,6 +20,7 @@
 #include "bred/gpu/frame.h"
 #include "bred/gpu/model_buffer.h"
 #include "bred/gpu/render.h"
+#include "bred/gpu/render_target.h"
 #include "bred/gpu/renderer.h"
 #include "bred/graphics3d/types.h"
 //#include "gpu_opengl/device_win32.h"
@@ -1316,15 +1317,17 @@ void main() {
       // vkCmdBeginRenderPass(cmd, &renderPassInfo, VK_SUBPASS_CONTENTS_INLINE);
       auto pcommandbuffer = prenderer->getCurrentCommandBuffer2(::gpu::current_frame());
 
-      pshader->bind(pcommandbuffer);
+      auto ptextureTarget = prenderer->m_pgpurendertarget->current_texture(::gpu::current_frame());
+
+      pshader->bind(pcommandbuffer, ptextureTarget);
 
       //VkDeviceSize offset = 0;
       ///vkCmdBindPipeline(pcommandbuffer->m_vkcommandbuffer, VK_PIPELINE_BIND_POINT_GRAPHICS, graphicsPipeline);
       //vkCmdBindVertexBuffers(pcommandbuffer->m_vkcommandbuffer, 0, 1, &pmodelbuffer->m_vertexBuffer, &offset);
 
-      pmodelbufferRectangle->bind(pcommandbuffer);
+      //pmodelbufferRectangle->bind(pcommandbuffer);
 
-      pmodelbufferRectangle->draw(pcommandbuffer);
+      pcommandbuffer->draw(pmodelbufferRectangle);
 
       //vkCmdDraw(pcommandbuffer->m_vkcommandbuffer, 6, 1, 0, 0); // 6 vertexes for two triangles
       //vkCmdEndRenderPass(cmd);
@@ -5839,7 +5842,12 @@ color = vec4(c.r,c.g, c.b, c.a);
          
       }
 
-      m_pgpushaderTextOut->bind(::gpu::current_command_buffer());
+      auto pcommandbuffer = pcontext->m_pgpurenderer->getCurrentCommandBuffer2(::gpu::current_frame());
+
+      auto ptextureTarget = pcontext->m_pgpurenderer->m_pgpurendertarget->current_texture(::gpu::current_frame());
+
+      m_pgpushaderTextOut->bind(pcommandbuffer, ptextureTarget);
+
       auto color = m_pbrush->m_color;
       //shader.use();
       ::cast<::gpu::shader>pshader = m_pgpushaderTextOut;
@@ -5900,7 +5908,7 @@ color = vec4(c.r,c.g, c.b, c.a);
       //auto pcontext = gpu_context();
 
       point.y = pcontext->m_rectangle.height() - point.y - pface->m_iPixelSize;
-      auto pcommandbuffer = ::gpu::current_command_buffer();
+      //auto pcommandbuffer = ::gpu::current_command_buffer();
       //glEnable(GL_CULL_FACE);
       //GLCheckError("");
       //glEnable(GL_BLEND);

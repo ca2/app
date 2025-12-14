@@ -83,7 +83,7 @@ namespace gpu_opengl
    }
 
 
-   void model_buffer::bind(::gpu::command_buffer* pgpucommandbuffer)
+   void model_buffer::bind2(::gpu::command_buffer* pgpucommandbuffer)
    {
 
       //::gpu::context_lock contextlock(m_pgpucontext);
@@ -151,7 +151,7 @@ namespace gpu_opengl
    }
 
 
-   void model_buffer::draw(::gpu::command_buffer* pgpucommandbuffer)
+   void model_buffer::draw2(::gpu::command_buffer* pgpucommandbuffer)
    {
 
       GLenum mode = GL_TRIANGLES;

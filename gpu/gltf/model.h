@@ -28,6 +28,9 @@ namespace gpu
          // data
          ::pointer_array<mesh>                     m_mesha;
 
+
+         ::pointer<::gpu::texture> m_ptextureEmpty;
+
          /**
           * Load a glTF 2.0 model.
           * @param path
@@ -40,10 +43,16 @@ namespace gpu
          ::gpu::texture *get_target_texture() override;
 
 
-         virtual void initialize_gpu_gltf_model(::gpu::context *pgpucontext, const ::gpu::renderable_t &model);
+         virtual void initialize_gpu_gltf_model(
+            ::gpu::context *pgpucontext,
+            const ::gpu::renderable_t &model);
 
 
-         virtual void initialize_gpu_gltf_model(::gpu::context * pgpucontext,  const ::file::path & path, bool flipTexturesVertically, bool bExternalPbr);
+         virtual void initialize_gpu_gltf_model(
+            ::gpu::context * pgpucontext,  
+            const ::file::path & path, 
+            bool flipTexturesVertically, 
+            bool bExternalPbr);
 
 
          /**
@@ -60,7 +69,8 @@ namespace gpu
          //Model(::string path, std::shared_ptr<Material> material, bool flipTexturesVertically);
          //void Draw(Shader &shader);
 
-         virtual void draw(::gpu::command_buffer *pcommandbuffer) override;
+         //virtual void bind2(::gpu::command_buffer *pcommandbuffer) override;
+         virtual void draw2(::gpu::command_buffer *pcommandbuffer) override;
 
 
          virtual void loadModel(const ::file::path & path, bool flipTexturesVertically, bool bExternalPbr);
@@ -80,6 +90,9 @@ namespace gpu
 
 
          //virtual ::gpu::texture> textureFromFile(const char *fileName, ::string directory, aiTextureType type);
+
+         virtual ::gpu::texture *empty_texture();
+
 
       };
 

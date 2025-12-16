@@ -115,7 +115,8 @@ namespace platform
    {
    }
    template<typename TYPE>
-   inline type::type(const TYPE &t) : type(typeid(t))
+   inline type::type(const TYPE &t)
+      requires (!is_raw_pointer <TYPE>) : type(typeid(t))
    {
    }
    template<typename BASE>

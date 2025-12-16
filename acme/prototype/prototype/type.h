@@ -611,7 +611,8 @@ namespace platform
       template<typename TYPE>
       type(const TYPE *p);
       template<typename TYPE>
-      type(const TYPE &t);
+      type(const TYPE &t)
+         requires (!is_raw_pointer <TYPE>);
       template<typename BASE>
       type(const ::pointer<BASE> &p);
 

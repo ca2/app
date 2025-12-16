@@ -13,7 +13,7 @@ namespace graphics3d
     // gltf_render_system::gltf_render_system(
     //     graphics3d::device * pdevice,
     //     VkRenderPass renderPass,
-    //     VkDescriptorSetLayout globalSetLayout,
+    //     aaaVkDescriptorSetLayout globalSetLayout,
     //     IAssetProvider& assets
     // ) :
     //     m_pgpudevice(pdevice),
@@ -37,7 +37,7 @@ namespace graphics3d
     // void gltf_render_system::init(
     //    graphics3d::device * pdevice,
     //     VkRenderPass renderPass,
-    //     VkDescriptorSetLayout globalSetLayout,
+    //     aaaVkDescriptorSetLayout globalSetLayout,
     //    graphics3d::sandbox_descriptor_pool& descriptorPool,
     //     size_t frameCount
     // ) {
@@ -80,8 +80,8 @@ namespace graphics3d
     //
     // }
 
-    // void gltf_render_system::createPipelineLayout(VkDescriptorSetLayout globalSetLayout) {
-    //     const ::array_base<VkDescriptorSetLayout> layouts = {
+    // void gltf_render_system::createPipelineLayout(aaaVkDescriptorSetLayout globalSetLayout) {
+    //     const ::array_base<aaaVkDescriptorSetLayout> layouts = {
     //         globalSetLayout,
     //         graphics3d::gltf::descriptorSetLayoutUbo,
     //         graphics3d::gltf::descriptorSetLayoutImage,

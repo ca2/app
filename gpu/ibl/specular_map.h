@@ -30,17 +30,12 @@ namespace gpu
       {
       public:
 
-         struct specular_env_map_push_constants
+         struct prefiltered_env_map_push_constants
          {
             
-            ::floating_matrix4 model;
-            ::floating_matrix4 view;
-            ::floating_matrix4 projection;
+            ::floating_matrix4 mvp;
 
             float roughness;
-            float padding1;
-            float padding2;
-            float padding3;
          };
 
 
@@ -56,7 +51,7 @@ namespace gpu
          ::pointer<::gpu::shader> m_pshaderPrefilteredEnvMap;
          //::pointer<mipmap_cubemap_framebuffer> m_pframebufferPrefilteredEnvMap;
          ::pointer<::gpu::texture> m_ptexturePrefilteredEnvMapCubemap;
-         ::pointer<::graphics3d::renderable> m_prenderablePrefilteredEnvMapCube;
+         ::pointer<::graphics3d::renderable> m_prenderableCube;
          // brdf convolution
          unsigned int m_uBrdfConvolutionMapId;
          const unsigned int m_uBrdfConvolutionMapWidth = 512;
@@ -127,4 +122,4 @@ namespace gpu
 
 
 
-DECLARE_GPU_PROPERTIES(CLASS_DECL_GPU, ::gpu::ibl::specular_map::specular_env_map_push_constants);
+DECLARE_GPU_PROPERTIES(CLASS_DECL_GPU, ::gpu::ibl::specular_map::prefiltered_env_map_push_constants);

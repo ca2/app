@@ -23,7 +23,7 @@ namespace graphics3d
     public:
 
 
-        //VkDescriptorSetLayout m_skyboxLayout;
+        //aaaVkDescriptorSetLayout m_skyboxLayout;
 
 
         //::pointer<::gpu_vulkan::pipeline> m_ppipeline;
@@ -36,7 +36,7 @@ namespace graphics3d
         bool m_bHasCubemap = false;
 
 
-        //skybox_ibl_render_system(graphics3d::device * pdevice, VkRenderPass renderPass, VkDescriptorSetLayout globalSetLayout);
+        //skybox_ibl_render_system(graphics3d::device * pdevice, VkRenderPass renderPass, aaaVkDescriptorSetLayout globalSetLayout);
         skybox_ibl_render_system();
         ~skybox_ibl_render_system();
 
@@ -46,7 +46,7 @@ namespace graphics3d
         // void init(
         //    graphics3d::device * pdevice,
         //     VkRenderPass            renderPass,
-        //     VkDescriptorSetLayout   globalSetLayout,
+        //     aaaVkDescriptorSetLayout   globalSetLayout,
         //    graphics3d::sandbox_descriptor_pool& descriptorPool,
         //     size_t frameCount)override;
 
@@ -68,7 +68,7 @@ namespace graphics3d
         void createSkyboxDescriptorSetLayout();
         void allocateAndWriteSkyboxDescriptorSet();
     //private:
-        //void createPipelineLayout(VkDescriptorSetLayout globalSetLayout);
+        //void createPipelineLayout(aaaVkDescriptorSetLayout globalSetLayout);
         //void createPipeline(VkRenderPass renderPass);
 
 

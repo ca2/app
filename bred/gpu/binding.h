@@ -45,6 +45,13 @@ namespace gpu
       }
 
       bool is_global_ubo() const { return m_ebinding == e_binding_global_ubo1; }
+      bool is_uniform_buffer() const
+      {
+
+         return m_ebinding == e_binding_global_ubo1 
+            || m_ebinding == e_binding_uniform_buffer;
+
+      }
    };
 
    class CLASS_DECL_BRED binding_set : virtual public ::pointer_array<binding>
@@ -61,6 +68,10 @@ namespace gpu
       ::gpu::binding * binding(int iSlot);
 
       virtual void defer_update_binding_set(::gpu::command_buffer *pgpucommandbuffer);
+
+
+      virtual ::collection::count uniform_buffer_count();
+      virtual ::collection::count image_sampler_count();
 
 
    };
@@ -119,7 +130,7 @@ namespace gpu
 
       virtual void update_binding_slots(int iSet);
 
-      virtual void set_texture(::pointer < ::gpu::texture > * ppgputexture);
+      virtual void set_texture(::pointer < ::gpu::texture > * ppgputexture, ::gpu::empty_texture_source * pemptytexturesource);
 
 
    };

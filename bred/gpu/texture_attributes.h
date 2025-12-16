@@ -5,7 +5,6 @@
 namespace gpu
 {
 
-
    class texture_attributes
    {
    public:
@@ -25,6 +24,31 @@ namespace gpu
           m_rectangleTarget(rectangle), m_iBitsPerChannel(iBitsPerChannel), m_iChannelCount(iChannelCount),
           m_iFloat(iFloat), m_etexture(etexture), m_iLayerCount(iLayerCount), m_iMipCount(iMipCount)
       {
+      }
+
+
+      void set_cubemap(int iMipCount)
+      {
+
+         m_etexture = e_texture_cube_map;
+         m_iLayerCount = 6;
+         m_iMipCount = iMipCount;
+
+      }
+
+      int all_mips() const
+      {
+
+         return floor(log2(m_rectangleTarget.size().maximum()));
+
+      }
+
+
+      void set_cubemap_all_mips()
+      {
+
+         set_cubemap(all_mips());
+
       }
 
       bool operator==(const texture_attributes &texture_attributes) const = default;

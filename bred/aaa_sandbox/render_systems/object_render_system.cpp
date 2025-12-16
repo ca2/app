@@ -28,7 +28,7 @@ namespace graphics3d
 		//int textureIndex;
 	};
 
-	// object_render_system::object_render_system(graphics3d::device *pdevice, VkRenderPass renderPass, VkDescriptorSetLayout globalSetLayout)
+	// object_render_system::object_render_system(graphics3d::device *pdevice, VkRenderPass renderPass, aaaVkDescriptorSetLayout globalSetLayout)
 	// 	: m_pgpudevice(pdevice)//, m_globalSetLayout(globalSetLayout)
 	// {
 	//
@@ -42,7 +42,7 @@ namespace graphics3d
 	// void object_render_system::init(
 	// 	graphics3d::device * pdevice,
 	// 	VkRenderPass renderPass,
-	// 	VkDescriptorSetLayout globalSetLayout,
+	// 	aaaVkDescriptorSetLayout globalSetLayout,
 	// 	graphics3d::sandbox_descriptor_pool& descriptorPool,
 	// 	size_t frameCount)
 	// {
@@ -115,14 +115,14 @@ namespace graphics3d
 	}
 
 
-	// void object_render_system::createPipelineLayout(VkDescriptorSetLayout globalSetLayout) {
+	// void object_render_system::createPipelineLayout(aaaVkDescriptorSetLayout globalSetLayout) {
 	//
 	// 	VkPushConstantRange pushConstantRange{};
 	// 	pushConstantRange.stageFlags = VK_SHADER_STAGE_VERTEX_BIT | VK_SHADER_STAGE_FRAGMENT_BIT;
 	// 	pushConstantRange.offset = 0;
 	// 	pushConstantRange.size = sizeof(PushConstantData);
 	//
-	// 	::array_base<VkDescriptorSetLayout> descriptorSetLayouts = {
+	// 	::array_base<aaaVkDescriptorSetLayout> descriptorSetLayouts = {
 	// 		globalSetLayout
 	// 	};
 	//

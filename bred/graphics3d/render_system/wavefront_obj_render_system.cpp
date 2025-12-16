@@ -80,8 +80,8 @@ namespace graphics3d
          pgpucontext->m_pgpurenderer,
          this->vert_shader_memory(), 
          this->frag_shader_memory(),
-			{
-			::gpu::shader::e_descriptor_set_slot_local }, {},
+			//{
+			//::gpu::shader::e_descriptor_set_slot_local }, {},
 			pgpucontext->input_layout<::graphics3d::Vertex>()
 
 		);

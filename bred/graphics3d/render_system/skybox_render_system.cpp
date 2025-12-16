@@ -152,7 +152,8 @@ namespace graphics3d
 
          m_pshaderHdr->initialize_shader_with_block(
             pgpucontext->m_pgpurenderer, vertex_shader_memory(), hdr_fragment_shader_memory(), 
-            {}, nullptr, pgpucontext->input_layout<::graphics3d::shape_factory::Vertex>());
+            //{}, nullptr, 
+            pgpucontext->input_layout<::graphics3d::shape_factory::Vertex>());
       }
       //else
       {
@@ -193,7 +194,7 @@ namespace graphics3d
 
          m_pshaderNormal->initialize_shader_with_block(
             pgpucontext->m_pgpurenderer, vertex_shader_memory(), fragment_shader_memory(),
-            {}, nullptr,
+            //{}, nullptr,
             pgpucontext->input_layout<::graphics3d::shape_factory::Vertex>());
 
       }

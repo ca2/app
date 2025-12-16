@@ -420,6 +420,9 @@
     <ClInclude Include="graphics3d\render_system\pbr_with_ibl_render_system_base.h">
       <Filter>Header Files\graphics3d\render_system</Filter>
     </ClInclude>
+    <ClInclude Include="gpu\empty_texture_source.h">
+      <Filter>Header Files\gpu</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="platform\application.cpp">
@@ -652,6 +655,9 @@
     </ClCompile>
     <ClCompile Include="graphics3d\render_system\pbr_with_ibl_render_system_base.cpp">
       <Filter>Source Files\graphics3d\render_system</Filter>
+    </ClCompile>
+    <ClCompile Include="gpu\empty_texture_source.cpp">
+      <Filter>Source Files\gpu</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

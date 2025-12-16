@@ -21,13 +21,13 @@ namespace graphics3d
 
 		//::pointer < ::graphics3d::device > m_pgpudevice;
 
-		//VkDescriptorSetLayout m_globalSetLayout;
+		//aaaVkDescriptorSetLayout m_globalSetLayout;
 
 		//::pointer<::gpu::pipeline> m_ppipeline;
 		//::pointer < ::gpu::shader > m_pshader;
 		///	VkPipelineLayout m_pipelineLayout;
 
-		//object_render_system(::graphics3d::device *pdevice, VkRenderPass renderPass, VkDescriptorSetLayout globalSetLayout);
+		//object_render_system(::graphics3d::device *pdevice, VkRenderPass renderPass, aaaVkDescriptorSetLayout globalSetLayout);
 		object_render_system();
 		~object_render_system();
 
@@ -37,13 +37,13 @@ namespace graphics3d
 		// void init(
 		// 	::graphics3d::device * pdevice,
 		// 	VkRenderPass            renderPass,
-		// 	VkDescriptorSetLayout   globalSetLayout,
+		// 	aaaVkDescriptorSetLayout   globalSetLayout,
 		// 	::graphics3d::sandbox_descriptor_pool& descriptorPool,
 		// 	size_t frameCount)override;
 
 		void on_render(::gpu::frame * pframe) override;
 		//private:
-		//void createPipelineLayout(VkDescriptorSetLayout globalSetLayout);
+		//void createPipelineLayout(aaaVkDescriptorSetLayout globalSetLayout);
 		//void createPipeline(VkRenderPass renderPass);
 
 	};

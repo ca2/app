@@ -70,7 +70,7 @@ namespace graphics3d
       virtual void render(::graphics3d::scene * pscene);
       virtual void update(::graphics3d::scene* pscene);
 
-      //void createPipelineLayout(VkDescriptorSetLayout globalSetLayout);
+      //void createPipelineLayout(aaaVkDescriptorSetLayout globalSetLayout);
       //void createPipeline(VkRenderPass renderPass);
 
       virtual void prepare();

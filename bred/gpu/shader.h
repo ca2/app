@@ -43,16 +43,16 @@ namespace gpu
       /// This way, the inner render loops will only be nding 
       /// descriptor sets 2 and 3, and performance will be high.
 
-      enum enum_descriptor_set_slot
-      {
-         //e_descriptor_set_slot_global,
-         e_descriptor_set_slot_per_pass,
-         e_descriptor_set_slot_material,
-         e_descriptor_set_slot_local,
-         e_descriptor_set_slot_s1,
-         //e_descriptor_set_shader_resource_view_and_sampler,
+      //enum enum_descriptor_set_slot
+      //{
+      //   //e_descriptor_set_slot_global,
+      //   e_descriptor_set_slot_per_pass,
+      //   e_descriptor_set_slot_material,
+      //   e_descriptor_set_slot_local,
+      //   e_descriptor_set_slot_s1,
+      //   //e_descriptor_set_shader_resource_view_and_sampler,
 
-      };
+      //};
 
 
       int m_iVertexLevel = -1;
@@ -112,8 +112,8 @@ namespace gpu
       ::gpu::properties          m_propertiesPushFragment;
 
       enum_flag                  m_eflag;
-      ::comparable_array<enum_descriptor_set_slot>   m_edescriptorsetslota;
-      ::particle_pointer         m_pLocalDescriptorSet;
+      //::comparable_array<enum_descriptor_set_slot>   m_edescriptorsetslota;
+      //::particle_pointer         m_pLocalDescriptorSet;
       ::pointer < input_layout > m_pinputlayout;
       class ::time               m_timeRetire;
       //bool m_bTextureAndSampler;
@@ -133,8 +133,8 @@ namespace gpu
          ::gpu::renderer * pgpurenderer,
          const ::file::path& pathVertex,
          const ::file::path& pathFragment,
-         const ::array_base<enum_descriptor_set_slot>& eslota = {},
-         const ::particle_pointer& pLocalDescriptorSet = {},
+         //const ::array_base<enum_descriptor_set_slot>& eslota = {},
+         //const ::particle_pointer& pLocalDescriptorSet = {},
          //const ::particle_pointer& pVertexInput = {},
          //const ::gpu::property* ppropertiesPush = nullptr,
          ::gpu::input_layout* pinputlayout = nullptr,
@@ -144,8 +144,8 @@ namespace gpu
          ::gpu::renderer * pgpurenderer,
          const ::block & blockVertex, 
          const ::block & blockFragment,
-         const ::array_base<enum_descriptor_set_slot>& eslota = {},
-         const ::particle_pointer& pLocalDescriptorSet = {},
+         //const ::array_base<enum_descriptor_set_slot>& eslota = {},
+         //const ::particle_pointer& pLocalDescriptorSet = {},
          //const ::particle_pointer& pVertexInput = {},
          //const ::gpu::property* ppropertiesPush = nullptr,
          ::gpu::input_layout * pinputlayout = nullptr,
@@ -164,6 +164,7 @@ namespace gpu
 
       virtual ::gpu::binding_slot *  get_first_image_sampler_binding_slot();
       virtual ::gpu::binding_slot_set * get_first_image_sampler_binding_slot_set();
+      virtual ::gpu::binding_set * _001GetSingularImageBindingSet(int & iSet);
       virtual bool has_image_sampler();
       virtual bool has_global_ubo();
       virtual void set_global_ubo();

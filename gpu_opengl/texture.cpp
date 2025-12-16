@@ -1081,7 +1081,7 @@ namespace gpu_opengl
    void texture::set_current_mip(int iCurrentMip) { ::gpu::texture::set_current_mip(iCurrentMip); }
 
 
-   void texture::generate_mipmap()
+   void texture::generate_mipmap(::gpu::command_buffer * pcommandbuffer)
    {
 
        glBindTexture(m_gluType, m_gluTextureID);

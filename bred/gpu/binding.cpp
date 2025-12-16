@@ -2,8 +2,10 @@
 #include "framework.h"
 #include "binding.h"
 #include "acme/exception/interface_only.h"
+#include "bred/gpu/empty_texture_source.h"
 #include "bred/gpu/input_layout.h"
 #include "bred/gpu/pixmap.h"
+#include "bred/gpu/texture.h"
 #include "context.h"
 #include "renderer.h"
 #include "shader.h"
@@ -62,6 +64,64 @@ namespace gpu
 
 
    void binding_set::defer_update_binding_set(::gpu::command_buffer *pgpucommandbuffer) {}
+
+
+   ::collection::count binding_set::uniform_buffer_count()
+   {
+
+      ::collection::count iUniformBuffer = 0;
+
+      for (::collection::index i = 0; i < this->size(); i++)
+      {
+
+         if (::is_null(this->element_at(i)))
+         {
+
+            continue;
+
+         }
+
+         if (this->element_at(i)->is_uniform_buffer())
+         {
+
+            iUniformBuffer++;
+
+         }
+
+      }
+
+      return iUniformBuffer;
+
+   }
+   
+   
+   ::collection::count binding_set::image_sampler_count()
+   {
+
+      ::collection::count iImageSampler = 0;
+
+      for (::collection::index i = 0; i < this->size(); i++)
+      {
+
+         if (::is_null(this->element_at(i)))
+         {
+
+            continue;
+
+         }
+
+         if (this->element_at(i)->is_image_sampler())
+         {
+
+            iImageSampler++;
+
+         }
+
+      }
+
+      return iImageSampler;
+
+   }
 
 
    binding_set_array::binding_set_array() {}
@@ -133,7 +193,8 @@ namespace gpu
    }
 
 
-   void binding_slot_set::set_texture(::pointer<::gpu::texture> *ppgputexture) 
+   void binding_slot_set::set_texture(::pointer<::gpu::texture> *ppgputexture,
+                                      ::gpu::empty_texture_source *pemptytexturesource) 
    {
    
       for (::collection::index iSlot = 0; iSlot < m_pbindingset->size(); iSlot++)
@@ -141,7 +202,32 @@ namespace gpu
 
          auto pbindingslot = binding_slot(iSlot);
 
-         pbindingslot->m_ptexture = ppgputexture[iSlot];
+         auto &pgputextureSource = ppgputexture[iSlot];
+
+         if (pgputextureSource)
+         {
+
+            if (!pgputextureSource->is_ok())
+            {
+
+               if (!pgputextureSource->is_ok())
+               {
+
+                  throw ::exception(error_wrong_state);
+
+               }
+
+            }
+
+            pbindingslot->m_ptexture = pgputextureSource;
+
+         }
+         else
+         {
+
+            pbindingslot->m_ptexture = pemptytexturesource->empty_texture();
+
+         }
 
       }
    

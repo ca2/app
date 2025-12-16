@@ -37,7 +37,7 @@ namespace graphics3d
 
 
    void point_light_system::initialize_point_light_system(::gpu::context * pgpucontext)
-      //context* pvkcdevice, VkRenderPass renderPass, VkDescriptorSetLayout globalSetLayout)
+      //context* pvkcdevice, VkRenderPass renderPass, aaaVkDescriptorSetLayout globalSetLayout)
       //: m_pgpucontext{ pvkcdevice }
    {
       m_pgpucontext = pgpucontext;
@@ -57,7 +57,7 @@ namespace graphics3d
    }
 
 
-   void point_light_system::prepare()//(VkDescriptorSetLayout globalSetLayout) 
+   void point_light_system::prepare()//(aaaVkDescriptorSetLayout globalSetLayout) 
    {
 
       m_pshader = m_pgpucontext->m_pimpact->m_pengine->create_shader(
@@ -74,7 +74,7 @@ namespace graphics3d
       //pushConstantRange.offset = 0;
       //pushConstantRange.size = sizeof(PointLightPushConstants);
 
-      //std::vector<VkDescriptorSetLayout> descriptorSetLayouts{ globalSetLayout };
+      //std::vector<aaaVkDescriptorSetLayout> descriptorSetLayouts{ globalSetLayout };
 
       //VkPipelineLayoutCreateInfo pipelineLayoutInfo{};
       //pipelineLayoutInfo.sType = VK_STRUCTURE_TYPE_PIPELINE_LAYOUT_CREATE_INFO;

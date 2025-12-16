@@ -1285,8 +1285,8 @@ void main() {
                ::as_block(full_screen_triangle_vertex_shader),
                ::as_block(full_screen_triangle_fragment_shader),
                {},
-               {},
-               {},
+               //{},
+               //{},
                // this means the vertex input layout will be null/empty
                // the full screen shader is embed in the shader code
                ::gpu::shader::e_flag_clear_default_bindings_and_attributes_descriptions

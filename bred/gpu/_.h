@@ -5,8 +5,6 @@
 #include "_constant.h"
 
 
-
-
 namespace gpu
 {
 
@@ -30,6 +28,8 @@ namespace gpu
    class block;
 
 
+
+  class empty_texture_source;
 
 
 

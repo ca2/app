@@ -7,7 +7,9 @@
 #include "texture.h"
 #include "acme/exception/interface_only.h"
 #include "aura/graphics/image/context.h"
+#include "bred/gpu/context.h"
 #include "bred/gpu/context_lock.h"
+#include "bred/gpu/device.h"
 
 
 namespace gpu
@@ -33,8 +35,8 @@ namespace gpu
       m_iIndex = -1;
       //m_bRedGreen = false;
       //m_bFloat = false;
-      m_iCurrentMip = 0;
-      m_iCurrentFace = -1;
+      m_iCurrentMip = -1;
+      m_iCurrentLayer = -1;
 
    }
 
@@ -116,17 +118,17 @@ namespace gpu
    }
 
 
-   void texture::initialize_mipmap_cubemap_texture(::gpu::renderer *pgpurenderer, const ::int_rectangle &rectangleTarget,
-                                          int iMipCount, bool bRenderTarget, bool bShaderResource)
-   {
+   //void texture::initialize_mipmap_cubemap_texture(::gpu::renderer *pgpurenderer, const ::int_rectangle &rectangleTarget,
+   //                                       int iMipCount, bool bRenderTarget, bool bShaderResource)
+   //{
 
-      ::gpu::texture_attributes textureattributes(rectangleTarget, 8, 4, 0,e_texture_cube_map, 6, iMipCount);
+   //   ::gpu::texture_attributes textureattributes(rectangleTarget, 8, 4, 0, e_texture_cube_map, 6, iMipCount);
 
-      ::gpu::texture_flags textureflags(false, bRenderTarget, bShaderResource);
+   //   ::gpu::texture_flags textureflags(false, bRenderTarget, bShaderResource);
 
-      initialize_texture(pgpurenderer, textureattributes, textureflags);
+   //   initialize_texture(pgpurenderer, textureattributes, textureflags);
 
-   }
+   //}
 
 
    void texture::initialize_depth_texture(::gpu::renderer* pgpurenderer, const ::int_rectangle& rectangleTarget)
@@ -281,7 +283,7 @@ namespace gpu
    int texture::current_render_target_view_index() const
    {
 
-      return this->render_target_view_index(m_iCurrentFace, m_iCurrentMip);
+      return this->render_target_view_index(m_iCurrentLayer, m_iCurrentMip);
 
    }
 
@@ -413,6 +415,17 @@ namespace gpu
       }
 
       initialize_texture(pgpurenderer, textureattributes, {}, &imagea);
+
+      if (is_ok())
+      {
+
+         auto pcommandbuffer = pgpurenderer->m_pgpucontext->beginSingleTimeCommands(pgpurenderer->m_pgpucontext->m_pgpudevice->transfer_queue());
+
+         this->set_state(pcommandbuffer, ::gpu::e_texture_state_shader_read);
+
+         pgpurenderer->m_pgpucontext->endSingleTimeCommands(pcommandbuffer);
+
+      }
 
    }
 
@@ -607,27 +620,50 @@ namespace gpu
    {
 
       m_iCurrentMip = iCurrentMip;
-      m_sizeMip.cx = (int)((double)this->width() * ::pow((double)0.5, (double)iCurrentMip));
-      m_sizeMip.cy = (int)((double)this->height() * ::pow((double)0.5, (double)iCurrentMip));
 
    }
 
 
-        int texture::mip_width() { return m_sizeMip.width(); }
+   int texture::mip_width()
+   {
+
+      if (m_sizeMip.width() < 0)
+      {
+
+         return (int)((double)this->width() * ::pow((double)0.5, (double)maximum(m_iCurrentMip, 0)));
+
+      }
+           
+      return m_sizeMip.width();
+
+   }
 
 
-   int texture::mip_height() { return m_sizeMip.height(); }
+   int texture::mip_height() 
+   {
+      
+      if (m_sizeMip.height() < 0)
+      {
+
+         return  (int)((double)this->height() * ::pow((double)0.5, (double)maximum(m_iCurrentMip, 0)));
+
+
+      }
+      
+      return m_sizeMip.height();
+   
+   }
 
 
    void texture::set_cube_face(int iFace, ::gpu::shader *pgpushader)
    {
 
-      m_iCurrentFace = iFace;
+      m_iCurrentLayer = iFace;
 
    }
 
 
-   void texture::generate_mipmap()
+   void texture::generate_mipmap(::gpu::command_buffer * pgpucommandbuffer)
    {
 
 

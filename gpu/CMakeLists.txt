@@ -51,6 +51,7 @@ endif()
 
 list(APPEND library_source
    ${IBL_SHADERS_HEADERS}
+   gltf/material.cpp
    gltf/material.h
    gltf/mesh.cpp
    gltf/mesh.h

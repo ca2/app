@@ -26,9 +26,8 @@ namespace gpu
          
       struct push_constants
          {
-         floating_matrix4 model;
-         floating_matrix4 view;
-         floating_matrix4 projection;
+         /// @brief  model view projection
+         floating_matrix4 mvp;
 
          //int faceIndex;
          int hdri;

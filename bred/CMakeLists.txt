@@ -35,6 +35,8 @@ list(APPEND library_source
    gpu/device.h
    gpu/draw2d.cpp
    gpu/draw2d.h
+   gpu/empty_texture_source.cpp
+   gpu/empty_texture_source.h
    gpu/frame.cpp
    gpu/frame.h
    gpu/frame_ephemeral.cpp

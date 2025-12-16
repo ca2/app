@@ -2331,6 +2331,8 @@ return {};
 
          auto pbindingGlobalUbo = m_pbindingsetGlobalUbo1->binding(0);
 
+         pbindingGlobalUbo->m_ebinding = ::gpu::e_binding_global_ubo1;
+
          pbindingGlobalUbo->m_strUniform = "ubo";
 
       }
@@ -2700,8 +2702,8 @@ return {};
          rectangle_shader_vert(),
          //as_memory_block(g_uaAccumulationFragmentShader),
          rectangle_shader_frag(),
-         {},
-         {},
+         //{},
+         //{},
          this->input_layout < ::graphics3d::sequence2_color>()
       );
 

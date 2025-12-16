@@ -69,7 +69,7 @@ namespace gpu_opengl
 
       //void set_cube_face(int iFace, ::gpu::shader * pgpushader) override;
 
-      void generate_mipmap() override;
+      void generate_mipmap(::gpu::command_buffer * pgpucommandbuffer) override;
 
                /**
        * Set the mip level to render with.

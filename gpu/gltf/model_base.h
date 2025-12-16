@@ -7,6 +7,7 @@
 
 // #include <map>
 #include "gpu/gltf/mesh.h"
+#include "bred/gpu/empty_texture_source.h"
 
 
 namespace gpu
@@ -19,7 +20,7 @@ namespace gpu
        * A collection of meshes.
        */
       class CLASS_DECL_GPU model_base : 
-         virtual public context_object,
+         virtual public ::gpu::empty_texture_source,
          virtual public ::graphics3d::renderable
       {
       public:

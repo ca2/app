@@ -45,8 +45,8 @@ namespace gpu
       ::gpu::renderer * pgpurenderer,
       const ::file::path& pathVertex,
       const ::file::path& pathFragment,
-      const ::array_base<enum_descriptor_set_slot>& eslota,
-      const ::particle_pointer& pLocalDescriptorSet,
+      //const ::array_base<enum_descriptor_set_slot>& eslota,
+      //const ::particle_pointer& pLocalDescriptorSet,
       //const ::particle_pointer& pVertexInput,
       //const ::gpu::property* ppropertiesPush,
       ::gpu::input_layout* pinputlayout,
@@ -56,8 +56,8 @@ namespace gpu
       m_pgpurenderer = pgpurenderer;
       m_pathVertex = pathVertex;
       m_pathFragment = pathFragment;
-      m_edescriptorsetslota.copy(eslota);
-      m_pLocalDescriptorSet = pLocalDescriptorSet;
+      //m_edescriptorsetslota.copy(eslota);
+      //m_pLocalDescriptorSet = pLocalDescriptorSet;
       m_pinputlayout = pinputlayout;
       //if (ppropertiesPush)
       //{
@@ -78,8 +78,8 @@ namespace gpu
       ::gpu::renderer * pgpurenderer,
       const ::block& blockVertex,
       const ::block& blockFragment,
-      const ::array_base<enum_descriptor_set_slot>& eslota,
-      const ::particle_pointer& pLocalDescriptorSet,
+      //const ::array_base<enum_descriptor_set_slot>& eslota,
+      //const ::particle_pointer& pLocalDescriptorSet,
       //const ::particle_pointer& pVertexInput,
       //const ::gpu::property* ppropertiesPush,
       ::gpu::input_layout * pinputlayout,
@@ -89,8 +89,8 @@ namespace gpu
       m_pgpurenderer = pgpurenderer;
       m_memoryVertex = blockVertex;
       m_memoryFragment = blockFragment;
-      m_edescriptorsetslota.copy(eslota);
-      m_pLocalDescriptorSet = pLocalDescriptorSet;
+      //m_edescriptorsetslota.copy(eslota);
+      //m_pLocalDescriptorSet = pLocalDescriptorSet;
       m_pinputlayout = pinputlayout;
       //if (ppropertiesPush)
       //{
@@ -133,17 +133,17 @@ namespace gpu
 
       auto &pbindingset = binding_set_array()->ø(iSet);
 
-      if (!pbindingset)
-      {
-
-         øconstruct(pbindingset);
-
-      }
-
       if (::is_set(pgpubindingset))
       {
 
          pbindingset = pgpubindingset;
+
+      }
+      
+      if (!pbindingset)
+      {
+
+         øconstruct(pbindingset);
 
       }
 
@@ -324,7 +324,52 @@ namespace gpu
    }
 
 
-   ::gpu::binding_slot * shader::get_first_image_sampler_binding_slot()
+
+      ::gpu::binding_slot *shader::get_first_image_sampler_binding_slot()
+   {
+
+      if (!m_pbindingslotseta)
+      {
+
+         return nullptr;
+      }
+
+      for (auto &pbindingslotset: *m_pbindingslotseta)
+      {
+
+         if (!pbindingslotset->m_pbindingset)
+         {
+
+            continue;
+         }
+
+         int iBinding = -1;
+
+         for (auto &bindingslot: *pbindingslotset)
+         {
+
+            iBinding++;
+
+            if (!bindingslot.m_pbinding)
+            {
+
+               continue;
+            }
+
+            if (bindingslot.m_pbinding->is_image_sampler())
+            {
+
+               return &bindingslot;
+            }
+         }
+      }
+
+      return nullptr;
+   }
+
+
+
+   ::gpu::binding_set *shader::_001GetSingularImageBindingSet(int &iSet)
    {
 
       if (!m_pbindingslotseta)
@@ -344,27 +389,19 @@ namespace gpu
 
          }
 
-         int iBinding = -1;
-
-         for (auto &bindingslot: *pbindingslotset)
+         if (pbindingslotset->m_pbindingset->size() != 1)
          {
 
-            iBinding++;
+            continue;
 
-            if (!bindingslot.m_pbinding)
-            {
+         }
 
-               continue;
+         if (pbindingslotset->m_pbindingset->first()->is_image_sampler())
+         {
 
+            iSet = pbindingslotset->m_iSet;
 
-            }
-
-            if (bindingslot.m_pbinding->is_image_sampler())
-            {
-
-               return &bindingslot;
-
-            }
+            return pbindingslotset->m_pbindingset;
 
          }
 

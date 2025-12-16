@@ -65,7 +65,7 @@ namespace gpu
          float m_fAmbientOcclusion = 1.0f;
          floating_sequence3 m_seq3Emissive = floating_sequence3(0.0, 0.0, 0.0);
 
-         ::pointer<::gpu::texture> m_texturea[e_texture_count];
+         ::pointer<::gpu::texture> m_textureaPbr[e_texture_count];
 
          //::pointer<::gpu::texture> m_textureaCached[e_texture_count];
          //::pointer<::gpu::texture> m_ptextureCachedNormal;
@@ -76,11 +76,7 @@ namespace gpu
          ::pointer<::gpu::binding_slot_set> m_pbindingslotsetGltfPbr;
          ::pointer<::gpu::binding_slot_set> m_pbindingslotsetSceneGltfPbr;
 
-
-         virtual ::gpu::binding_slot_set *pbr_binding_slot_set(::gpu::binding_set * pbindingset, ::gpu::gltf::model * pmodel);
-         virtual ::gpu::texture *loaded_texture(enum_texture etexture);
-         virtual ::gpu::texture *cached_texture(enum_texture etexture, ::gpu::gltf::model *pmodel);
-         
+       
          //::gpu::binding_set *pbindingset,
            //                                                    ::gpu::gltf::model *pmodel);
 
@@ -88,6 +84,11 @@ namespace gpu
          material();
          ~material() override;
 
+         virtual ::gpu::binding_slot_set *pbr_binding_slot_set(::gpu::binding_set *pbindingset,
+                                                               ::gpu::gltf::model *pmodel);
+         virtual ::gpu::texture *loaded_texture(enum_texture etexture);
+         virtual ::gpu::texture *texture(enum_texture etexture, ::gpu::empty_texture_source *pemptytexturesource);
+  
 
       };
 

@@ -37,7 +37,7 @@ namespace gpu
 
                m_pbindingslotsetSceneGltfPbr->m_pbindingset = m_pgpucontext->scene_gltf_pbr_binding_set();
 
-               m_pbindingslotsetSceneGltfPbr->set_texture(m_texturea);
+               m_pbindingslotsetSceneGltfPbr->set_texture(m_textureaPbr, pmodel);
                // auto pbindingslot0 = m_pbindingslotsetSceneGltfPbr->binding_slot(0);
                // pbindingslot0->m_ptexture = m_ptextureAlbedo;
 
@@ -61,7 +61,7 @@ namespace gpu
 
                m_pbindingslotsetGltfPbr->m_pbindingset = m_pgpucontext->gltf_pbr_binding_set();
 
-               m_pbindingslotsetGltfPbr->set_texture(m_texturea);
+               m_pbindingslotsetGltfPbr->set_texture(m_textureaPbr, pmodel);
                // auto pbindingslot0 = m_pbindingslotsetGltfPbr->binding_slot(0);
                // pbindingslot0->m_ptexture = m_ptextureAlbedo;
 
@@ -119,11 +119,11 @@ namespace gpu
       ::gpu::texture *material::loaded_texture(enum_texture etexture)
       {
          ASSERT(etexture >= 0 && etexture < e_texture_count);
-         return m_texturea[etexture];
+         return m_textureaPbr[etexture];
       }
 
 
-      ::gpu::texture *material::cached_texture(enum_texture etexture, ::gpu::gltf::model *pmodel)
+      ::gpu::texture *material::texture(enum_texture etexture, ::gpu::empty_texture_source *pemptytexturesource)
       {
          ASSERT(etexture >= 0 && etexture < e_texture_count);
          auto ptexture = loaded_texture(etexture);
@@ -131,7 +131,7 @@ namespace gpu
          {
             return ptexture;
          }
-         auto ptextureEmpty = pmodel->empty_texture();
+         auto ptextureEmpty = pemptytexturesource->empty_texture();
          // m_textureaLoaded[etexture];
          return ptextureEmpty;
       }

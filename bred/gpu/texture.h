@@ -29,11 +29,11 @@ namespace gpu
       ::pointer < ::gpu::renderer >       m_pgpurenderer;
       ::collection::index                 m_iIndex;
       int                                 m_iCurrentMip;
-      int                                 m_iCurrentFace;
+      int                                 m_iCurrentLayer;
       bool m_bHdr = false;
 
       //::pointer < ::gpu::render_target >  m_pgpurendertarget;
-      ::int_size                          m_sizeMip;
+      ::int_size m_sizeMip{-1, -1};
       //bool                                m_bTransferDst;
       //bool                                m_bTransferSrc;
       //bool                                m_bCpuRead;
@@ -88,7 +88,7 @@ namespace gpu
          const texture_attributes & textureattributes,
          const texture_flags & textureflags = {},
          const texture_data & texturedata = {});
-      virtual void initialize_mipmap_cubemap_texture(::gpu::renderer *pgpurenderer, const ::int_rectangle& rectangleTarget, int iMipCount = -1, bool bRenderTarget = true, bool bShaderResourceView = true);
+//      virtual void initialize_mipmap_cubemap_texture(::gpu::renderer *pgpurenderer, const ::int_rectangle& rectangleTarget, int iMipCount = -1, bool bRenderTarget = true, bool bShaderResourceView = true);
       virtual void initialize_depth_texture(::gpu::renderer* pgpurenderer, const ::int_rectangle& rectangleTarget);
 
       virtual void initialize_texture_from_file_path(::gpu::renderer* pgpurenderer, const ::file::path & path, bool bIsSrgb);
@@ -117,7 +117,7 @@ namespace gpu
 
       //virtual void set_cube_face(int iFace, ::gpu::shader *pgpushader);
 
-      virtual void generate_mipmap();
+      virtual void generate_mipmap(::gpu::command_buffer * pgpucommandbuffer);
 
                /**
        * Set the mip level to render with.

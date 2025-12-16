@@ -45,7 +45,7 @@ namespace graphics3d
       };
 
       ::pointer<::graphics3d::renderable> m_prenderableCube;
-      // VkDescriptorSetLayout m_skyboxLayout;
+      // aaaVkDescriptorSetLayout m_skyboxLayout;
       ::pointer<::gpu::texture> m_pgputextureSkybox;
       bool m_bHasCubemap = false;
       ::pointer<::gpu::shader> m_pshaderHdr;

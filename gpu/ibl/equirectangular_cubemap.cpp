@@ -5,15 +5,13 @@
 #include "bred/gpu/binding.h"
 #include "bred/gpu/command_buffer.h"
 #include "bred/gpu/context.h"
-#include "bred/gpu/render_target.h"
-#include "bred/gpu/renderer.h"
+#include "bred/gpu/debug_scope.h"
 #include "bred/gpu/shader.h"
 #include "bred/gpu/texture.h"
 #include "bred/graphics3d/engine.h"
 #include "bred/graphics3d/shape_factory.h"
 #include "gpu/timer.h"
 #include "bred/gpu/device.h"
-
 
 
 namespace gpu
@@ -62,24 +60,25 @@ namespace gpu
 
          øconstruct(m_pshaderHdri);
 
-         //m_pshaderHdri->m_bindingSampler.set(0);
-         //m_pshaderHdri->m_bindingSampler.m_strUniform = "hdri";
          auto pbindingSampler = m_pshaderHdri->binding();
          pbindingSampler->m_strUniform = "hdri";
          pbindingSampler->m_ebinding = ::gpu::e_binding_sampler2d;
 
          m_pshaderHdri->m_bDisableDepthTest = true;
          m_pshaderHdri->m_ecullmode = ::gpu::e_cull_mode_none;
+
+         auto pgpupropertiesVertex = ::gpu_properties<::graphics3d::shape_factory::Vertex>();
+
+         auto pinputlayoutVertex = m_pgpucontext->input_layout(pgpupropertiesVertex);
+
          m_pshaderHdri->m_propertiesPushShared.set_properties(
             ::gpu_properties<::gpu::ibl::equirectangular_cubemap::push_constants>());
 
          m_pgpucontext->layout_push_constants(m_pshaderHdri->m_propertiesPushShared, false);
 
          m_pshaderHdri->initialize_shader_with_block(
-            m_pgpucontext->m_pgpurenderer,
-            embedded_ibl_hdri_cube_vert(),            
-            embedded_ibl_hdri_cube_frag(), {}, {},
-            pgpucontext->input_layout(::gpu_properties<::graphics3d::shape_factory::Vertex>()));
+            m_pgpucontext->m_pgpurenderer, embedded_ibl_hdri_cube_vert(), embedded_ibl_hdri_cube_frag(), 
+            pinputlayoutVertex);
 
          øconstruct(m_ptextureHdr);
 
@@ -87,10 +86,22 @@ namespace gpu
 
          øconstruct(m_ptextureCubemap);
 
-         //m_ptextureCubemap->m_str = "hdri";
+         ::gpu::texture_attributes textureattributes(::int_rectangle{API_CHANGED_ARGUMENT, m_uCubemapWidth,
+                                                                    m_uCubemapHeight});
 
-         m_ptextureCubemap->initialize_mipmap_cubemap_texture(
-            m_pgpucontext->m_pgpurenderer, ::int_rectangle{API_CHANGED_ARGUMENT, m_uCubemapWidth, m_uCubemapHeight});
+         textureattributes.set_cubemap_all_mips();
+
+         ::gpu::texture_flags textureflags;
+
+         textureflags.m_bRenderTarget = true;
+         textureflags.m_bShaderResource = true;
+         textureflags.m_bTransferTarget = true;
+         textureflags.m_bTransferSource = true;
+
+         m_ptextureCubemap->initialize_texture(
+            m_pgpucontext->m_pgpurenderer, 
+            textureattributes,
+            textureflags);
 
          m_prenderableCube = m_pgpucontext->m_pengine->shape_factory()->create_cube_001(m_pgpucontext, 2.f);
 
@@ -100,10 +111,15 @@ namespace gpu
       void equirectangular_cubemap::compute()
       {
 
-
-                  ::gpu::Timer timer;
+         ::gpu::Timer timer;
 
          auto pgpucommandbuffer = m_pgpucontext->beginSingleTimeCommands(m_pgpucontext->m_pgpudevice->graphics_queue());
+
+         ::string strDebugScopeCompute;
+
+         strDebugScopeCompute.format("gpu::ibl::equirectangular_cubemap::compute");
+
+         ::gpu::debug_scope debugscopeCompute(pgpucommandbuffer, strDebugScopeCompute);
 
          using namespace graphics3d;
 
@@ -131,50 +147,36 @@ namespace gpu
 
          m_ptextureHdr->set_state(pgpucommandbuffer, ::gpu::e_texture_state_shader_read);
 
+         m_ptextureCubemap->set_current_mip(-1);
+
+         m_ptextureCubemap->set_cube_face(-1, nullptr);
+
          m_ptextureCubemap->set_state(pgpucommandbuffer, ::gpu::e_texture_state_color_attachment);
 
-         // render the equirectangular HDR texture to a cubemap
-         //m_pshaderHdri->bind(pgpucommandbuffer, m_ptextureCubemap, m_ptextureHdr);
+         m_ptextureCubemap->set_current_mip(0);
 
-         // render to each side of the cubemap
-         for (auto i = 0; i < 6; i++)
+         for (auto iFace = 0; iFace < 6; iFace++)
          {
 
-            auto impact = cameraAngles[i];
+            ::string strDebugScopeComputeFace;
 
-            m_ptextureCubemap->set_cube_face(i, m_pshaderHdri);
+            strDebugScopeComputeFace.format("compute face {}", iFace + 1);
+
+            ::gpu::debug_scope debugscopeComputeFace(pgpucommandbuffer, strDebugScopeComputeFace);
+
+            auto impact = cameraAngles[iFace];
+
+            m_ptextureCubemap->set_cube_face(iFace, m_pshaderHdri);
 
             pgpucommandbuffer->begin_render(m_pshaderHdri, m_ptextureCubemap);
 
             pgpucommandbuffer->set_source(m_ptextureHdr);
 
-            pgpucommandbuffer->set_model_view_projection(model, impact, projection);
-               //->
+            auto mvp = projection * impact * model;
 
-            //m_pshaderHdri->bind_source(pgpucommandbuffer, m_ptextureHdr);
-
-            //m_pshaderHdri->setModelViewProjection(model, impact, projection);
-
-            //m_pshaderHdri->set_int("faceIndex", i);
+            m_pshaderHdri->set_matrix4("mvp", mvp);
 
             m_pshaderHdri->push_properties(pgpucommandbuffer);
-
-//            glViewport(0, 0, m_uCubemapWidth, m_uCubemapHeight);
-
-            // glEnable(GL_DEPTH_TEST);
-            // GLCheckError("");
-            // glDepthMask(GL_TRUE);
-            // GLCheckError("");
-
-            //
-            // glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-            // GLCheckError("");
-            //
-            //
-            // glDisable(GL_DEPTH_TEST);
-            // GLCheckError("");
-            // glDepthMask(GL_FALSE);
-            // GLCheckError("");
 
             ::int_rectangle rectangleViewport;
 
@@ -182,42 +184,25 @@ namespace gpu
 
             pgpucommandbuffer->set_viewport(rectangleViewport);
 
-            //pgpucommandbuffer->set_model(m_prenderableCube);
-
             pgpucommandbuffer->set_source(m_ptextureHdr);
 
-            //m_pshaderHdri->on_before_draw(pgpucommandbuffer);
-
             pgpucommandbuffer->draw(m_prenderableCube);
-
-            //pgpucommandbuffer->unbind(m_ptextureHdr);
-
-            //m_prenderableCube->draw(pgpucommandbuffer);
-
-            //m_prenderableCube->unbind(pgpucommandbuffer);
 
             pgpucommandbuffer->end_render();
 
          }
 
-         m_ptextureCubemap->generate_mipmap();
+         m_ptextureCubemap->generate_mipmap(pgpucommandbuffer);
+
+         m_ptextureCubemap->set_current_mip(0);
+
+         m_ptextureCubemap->set_cube_face(-1, m_pshaderHdri);
+
+         m_ptextureCubemap->set_state(pgpucommandbuffer, ::gpu::e_texture_state_shader_read);
 
          m_pgpucontext->endSingleTimeCommands(pgpucommandbuffer);
 
          timer.logDifference("Rendered equirectangular cubemap");
-
-         // GLenum status = glCheckFramebufferStatus(GL_FRAMEBUFFER);
-         //
-         // if (status != GL_FRAMEBUFFER_COMPLETE)
-         // {
-         //
-         //    printf("Framebuffer incomplete!\n");
-         //
-         // }
-         //
-         // glBindFramebuffer(GL_FRAMEBUFFER, 0);
-         // GLCheckError("");
-
 
       }
 
@@ -228,15 +213,10 @@ namespace gpu
 } // namespace gpu
 
 
-
 BEGIN_GPU_PROPERTIES(::gpu::ibl::equirectangular_cubemap::push_constants)
-GPU_PROPERTY("model", ::gpu::e_type_mat4)
-GPU_PROPERTY("view", ::gpu::e_type_mat4)
-GPU_PROPERTY("projection", ::gpu::e_type_mat4)
-//GPU_PROPERTY("faceIndex", ::gpu::e_type_int)
+GPU_PROPERTY("mvp", ::gpu::e_type_mat4)
 GPU_PROPERTY("sampler:hdri", ::gpu::e_type_int)
 END_GPU_PROPERTIES()
-
 
 
 

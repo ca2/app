@@ -1318,7 +1318,7 @@ namespace gpu
 
          m_pgpushaderTextOut->initialize_shader_with_block(
             pcontext->m_pgpurenderer, pcontext->white_to_color_sampler_vert(),
-            pcontext->white_to_color_sampler_frag(), {::gpu::shader::e_descriptor_set_slot_local}, {} //,
+            pcontext->white_to_color_sampler_frag() //, {::gpu::shader::e_descriptor_set_slot_local}, {} //,
                                                                                                       //,
             // pcontext->input_layout<::graphics3d::sequence2_uv>()
          );
@@ -1575,7 +1575,7 @@ namespace gpu
             //pmodelbuffer->_set_vertexes(vertexes);
 
             m_pmodelbufferTextOutDummy->m_bNew = false;
-            pcommandbuffer->set_model2(m_pmodelbufferTextOutDummy);
+            pcommandbuffer->draw(m_pmodelbufferTextOutDummy);
 
             //pmodelbuffer->unbind(pcommandbuffer);
 

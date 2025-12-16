@@ -183,9 +183,6 @@
     <ClInclude Include="ibl\aaa_cubemap_framebuffer.h">
       <Filter>Header Files\ibl</Filter>
     </ClInclude>
-    <ClInclude Include="ibl\brdf_convolution_framebuffer.h">
-      <Filter>Header Files\ibl</Filter>
-    </ClInclude>
     <ClInclude Include="ibl\_.h">
       <Filter>Header Files\ibl</Filter>
     </ClInclude>

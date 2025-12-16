@@ -47,7 +47,7 @@ namespace graphics3d
       virtual void update(::gpu::context* pgpucontext, ::graphics3d::scene_base* pscene);
       virtual void on_update(::gpu::context* pgpucontext, ::graphics3d::scene_base* pscene);
 
-      //void createPipelineLayout(VkDescriptorSetLayout globalSetLayout);
+      //void createPipelineLayout(aaaVkDescriptorSetLayout globalSetLayout);
       //void createPipeline(VkRenderPass renderPass);
 
       virtual void render(::gpu::context* pgpucontext, ::graphics3d::scene_base* pscene);

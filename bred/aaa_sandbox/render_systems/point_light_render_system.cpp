@@ -38,7 +38,7 @@ namespace graphics3d
    };
 
 
-   // point_light_render_system::point_light_render_system(graphics3d::device * pdevice, VkRenderPass renderPass, VkDescriptorSetLayout globalSetLayout)
+   // point_light_render_system::point_light_render_system(graphics3d::device * pdevice, VkRenderPass renderPass, aaaVkDescriptorSetLayout globalSetLayout)
    //     : m_pgpudevice(pdevice), m_globalSetLayout(globalSetLayout)
    // {
    //
@@ -52,7 +52,7 @@ namespace graphics3d
    // void point_light_render_system::init(
    //    graphics3d::device * pgpudevice,
    //     VkRenderPass renderPass,
-   //     VkDescriptorSetLayout globalSetLayout,
+   //     aaaVkDescriptorSetLayout globalSetLayout,
    //    graphics3d::sandbox_descriptor_pool& descriptorPool,
    //     size_t frameCount)
    // {
@@ -69,13 +69,13 @@ namespace graphics3d
    }
 
 
-   // void point_light_render_system::createPipelineLayout(VkDescriptorSetLayout globalSetLayout) {
+   // void point_light_render_system::createPipelineLayout(aaaVkDescriptorSetLayout globalSetLayout) {
    //     // VkPushConstantRange pushConstantRange{};
    //     // pushConstantRange.stageFlags = VK_SHADER_STAGE_VERTEX_BIT | VK_SHADER_STAGE_FRAGMENT_BIT;
    //     // pushConstantRange.offset = 0;
    //     // pushConstantRange.size = sizeof(PointLightPushConstants);
    //     //
-   //     // ::array_base<VkDescriptorSetLayout> setLayouts = { globalSetLayout };
+   //     // ::array_base<aaaVkDescriptorSetLayout> setLayouts = { globalSetLayout };
    //     //
    //     // VkPipelineLayoutCreateInfo pipelineLayoutInfo{};
    //     // pipelineLayoutInfo.sType = VK_STRUCTURE_TYPE_PIPELINE_LAYOUT_CREATE_INFO;

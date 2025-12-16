@@ -384,7 +384,7 @@ namespace gpu
             if (m_bExternalPbr)
             {
                // albedo
-               if (pmaterial->m_texturea[e_texture_albedo] = loadMaterialTexture("albedo.ktx", aiTextureType_DIFFUSE))
+               if (pmaterial->m_textureaPbr[e_texture_albedo] = loadMaterialTexture("albedo.ktx", aiTextureType_DIFFUSE))
                {
                   
                   pmaterial->useTextureAlbedo = true;
@@ -392,7 +392,7 @@ namespace gpu
                }
 
                // metallicRoughness (in gltf 2.0 they are combined in one texture)
-               if (pmaterial->m_texturea[e_texture_metallic_roughness] = loadMaterialTexture("metallic.ktx", aiTextureType_UNKNOWN))
+               if (pmaterial->m_textureaPbr[e_texture_metallic_roughness] = loadMaterialTexture("metallic.ktx", aiTextureType_UNKNOWN))
                {
                   // defined here in assimp
                   // https://github.com/assimp/assimp/blob/master/include/assimp/pbrmaterial.h#L57
@@ -400,21 +400,21 @@ namespace gpu
                }
 
                // normal
-               if (pmaterial->m_texturea[e_texture_normal] =
+               if (pmaterial->m_textureaPbr[e_texture_normal] =
                       loadMaterialTexture("normal.ktx", aiTextureType_NORMALS))
                {
                   pmaterial->useTextureNormal = true;
                }
 
                // ambient occlusion
-               if (pmaterial->m_texturea[e_texture_ambient_occlusion] =
+               if (pmaterial->m_textureaPbr[e_texture_ambient_occlusion] =
                       loadMaterialTexture("ao.ktx", aiTextureType_LIGHTMAP))
                {
                   pmaterial->useTextureAmbientOcclusion = true;
                }
 
                // emissive
-               if (pmaterial->m_texturea[e_texture_emissive] =
+               if (pmaterial->m_textureaPbr[e_texture_emissive] =
                       loadMaterialTexture("emissive.ktx", aiTextureType_EMISSIVE))
                {
                   pmaterial->useTextureEmissive = true;
@@ -536,7 +536,7 @@ namespace gpu
                if (aiMaterial->GetTextureCount(aiTextureType_DIFFUSE))
                {
                   pmaterial->useTextureAlbedo = true;
-                  pmaterial->m_texturea[e_texture_albedo] =
+                  pmaterial->m_textureaPbr[e_texture_albedo] =
                      loadMaterialTexture(aiMaterial, aiTextureType_DIFFUSE);
                }
 
@@ -545,7 +545,7 @@ namespace gpu
                {
                   // defined here in assimp https://github.com/assimp/assimp/blob/master/include/assimp/pbrmaterial.h#L57
                   pmaterial->useTextureMetallicRoughness = true;
-                  pmaterial->m_texturea[e_texture_metallic_roughness] =
+                  pmaterial->m_textureaPbr[e_texture_metallic_roughness] =
                      loadMaterialTexture(aiMaterial, aiTextureType_UNKNOWN);
                }
 
@@ -553,7 +553,7 @@ namespace gpu
                if (aiMaterial->GetTextureCount(aiTextureType_NORMALS))
                {
                   pmaterial->useTextureNormal = true;
-                  pmaterial->m_texturea[e_texture_normal] =
+                  pmaterial->m_textureaPbr[e_texture_normal] =
                      loadMaterialTexture(aiMaterial, aiTextureType_NORMALS);
                }
 
@@ -561,7 +561,7 @@ namespace gpu
                if (aiMaterial->GetTextureCount(aiTextureType_LIGHTMAP))
                {
                   pmaterial->useTextureAmbientOcclusion = true;
-                  pmaterial->m_texturea[e_texture_ambient_occlusion] =
+                  pmaterial->m_textureaPbr[e_texture_ambient_occlusion] =
                      loadMaterialTexture(aiMaterial, aiTextureType_LIGHTMAP);
                }
 
@@ -569,7 +569,7 @@ namespace gpu
                if (aiMaterial->GetTextureCount(aiTextureType_EMISSIVE))
                {
                   pmaterial->useTextureEmissive = true;
-                  pmaterial->m_texturea[e_texture_emissive] =
+                  pmaterial->m_textureaPbr[e_texture_emissive] =
                      loadMaterialTexture(aiMaterial, aiTextureType_EMISSIVE);
                }
 

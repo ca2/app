@@ -210,7 +210,7 @@ namespace gpu
 
                m_pgpucontext->start_debug_happening(pgpucommandbuffer, strMessage);
 
-               m_ptexturePrefilteredEnvMapCubemap->set_cube_face(iFace, m_pshaderPrefilteredEnvMap);
+               m_ptexturePrefilteredEnvMapCubemap->set_current_layer(iFace);
 
                pgpucommandbuffer->begin_render(m_pshaderPrefilteredEnvMap, ptextureTarget);
 
@@ -233,6 +233,10 @@ namespace gpu
             }
 
          }
+
+         ptextureTarget->set_current_mip(-1);
+
+         ptextureTarget->set_current_layer(-1);
 
          ptextureTarget->set_state(pgpucommandbuffer, ::gpu::e_texture_state_shader_read);
 

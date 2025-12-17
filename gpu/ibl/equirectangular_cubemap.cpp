@@ -149,7 +149,7 @@ namespace gpu
 
          m_ptextureCubemap->set_current_mip(-1);
 
-         m_ptextureCubemap->set_cube_face(-1, nullptr);
+         m_ptextureCubemap->set_current_layer(-1);
 
          m_ptextureCubemap->set_state(pgpucommandbuffer, ::gpu::e_texture_state_color_attachment);
 
@@ -166,7 +166,7 @@ namespace gpu
 
             auto impact = cameraAngles[iFace];
 
-            m_ptextureCubemap->set_cube_face(iFace, m_pshaderHdri);
+            m_ptextureCubemap->set_current_layer(iFace);
 
             pgpucommandbuffer->begin_render(m_pshaderHdri, m_ptextureCubemap);
 
@@ -194,9 +194,9 @@ namespace gpu
 
          m_ptextureCubemap->generate_mipmap(pgpucommandbuffer);
 
-         m_ptextureCubemap->set_current_mip(0);
+         m_ptextureCubemap->set_current_mip(-1);
 
-         m_ptextureCubemap->set_cube_face(-1, m_pshaderHdri);
+         m_ptextureCubemap->set_current_layer(-1);
 
          m_ptextureCubemap->set_state(pgpucommandbuffer, ::gpu::e_texture_state_shader_read);
 

@@ -90,7 +90,11 @@ namespace gpu
 
          textureattributes.set_cubemap_all_mips();
 
-         m_ptextureDiffuseIrradianceCubemap->initialize_texture(m_pgpucontext->m_pgpurenderer, textureattributes);
+         ::gpu::texture_flags textureflags;
+
+         textureflags.m_bRenderTarget = true;
+
+         m_ptextureDiffuseIrradianceCubemap->initialize_texture(m_pgpucontext->m_pgpurenderer, textureattributes, textureflags);
 
          //m_ptextureDiffuseIrradianceCubemap->initialize_mipmap_cubemap_texture(
            // m_pgpucontext->m_pgpurenderer, ::int_rectangle{ API_CHANGED_ARGUMENT,m_udiffuse_irradiance_mapWidth, m_udiffuse_irradiance_mapHeight});
@@ -131,13 +135,19 @@ namespace gpu
 
           int iIrradianceMapHeight = m_udiffuse_irradiance_mapHeight;
 
+          m_ptextureDiffuseIrradianceCubemap->set_current_mip(-1);
+
+          m_ptextureDiffuseIrradianceCubemap->set_current_layer(-1);
+
+          m_ptextureDiffuseIrradianceCubemap->set_state(pgpucommandbuffer, ::gpu::e_texture_state_color_attachment);
+
           // render to each side of the cubemap
           for (auto i = 0; i < 6; i++)
           {
 
              auto impact = cameraAngles[i];
 
-             m_ptextureDiffuseIrradianceCubemap->set_cube_face(i, m_pshaderDiffuseIrradiance);
+             m_ptextureDiffuseIrradianceCubemap->set_current_layer(i);
 
              pgpucommandbuffer->begin_render(m_pshaderDiffuseIrradiance, m_ptextureDiffuseIrradianceCubemap);
 
@@ -162,6 +172,10 @@ namespace gpu
              pgpucommandbuffer->end_render();
             
           }
+
+          m_ptextureDiffuseIrradianceCubemap->set_current_mip(-1);
+
+          m_ptextureDiffuseIrradianceCubemap->set_current_layer(-1);
 
           m_ptextureDiffuseIrradianceCubemap->set_state(pgpucommandbuffer, ::gpu::e_texture_state_shader_read);
          

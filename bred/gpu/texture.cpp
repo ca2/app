@@ -205,7 +205,7 @@ namespace gpu
       else if(m_textureattributes.m_iMipCount == -1)
       {
          
-         return max_mip_count();
+         return maximum_mip_count();
 
       }
       else if (m_textureattributes.m_iMipCount == 0)
@@ -214,7 +214,7 @@ namespace gpu
          return 1;
 
       }
-      else if (m_textureattributes.m_iMipCount <= max_mip_count())
+      else if (m_textureattributes.m_iMipCount <= maximum_mip_count())
       {
          
          return m_textureattributes.m_iMipCount;
@@ -231,10 +231,10 @@ namespace gpu
    }
 
 
-   int texture::max_mip_count() const
+   int texture::maximum_mip_count() const
    {
 
-      return ::std::floor(::std::log2(this->size().maximum()));
+      return m_textureattributes.maximum_mip_count();
 
    }
 
@@ -655,10 +655,10 @@ namespace gpu
    }
 
 
-   void texture::set_cube_face(int iFace, ::gpu::shader *pgpushader)
+   void texture::set_current_layer(int iLayer)
    {
 
-      m_iCurrentLayer = iFace;
+      m_iCurrentLayer = iLayer;
 
    }
 

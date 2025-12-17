@@ -58,7 +58,7 @@ namespace gpu
       virtual int height() const;
 
       virtual int mip_count() const;
-      virtual int max_mip_count() const;
+      virtual int maximum_mip_count() const;
       virtual int mip_width_for_mip(int baseWidth, int iMip) const;
       virtual int mip_height_for_mip(int baseHeight, int iMip) const;
       virtual int mip_width() const;
@@ -144,7 +144,8 @@ namespace gpu
        * Set which cube face texture to render to.
        * @param index
        */
-      virtual void set_cube_face(int iFace, ::gpu::shader * pgpushader);
+      //virtual void set_cube_face(int iFace, ::gpu::shader * pgpushader);
+      virtual void set_current_layer(int iLayer);
 
 
 

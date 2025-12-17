@@ -36,10 +36,11 @@ namespace gpu
 
       }
 
-      int all_mips() const
+
+      int maximum_mip_count() const
       {
 
-         return floor(log2(m_rectangleTarget.size().maximum()));
+         return floor(log2(m_rectangleTarget.size().maximum())) + 1;
 
       }
 
@@ -47,9 +48,10 @@ namespace gpu
       void set_cubemap_all_mips()
       {
 
-         set_cubemap(all_mips());
+         set_cubemap(maximum_mip_count());
 
       }
+
 
       bool operator==(const texture_attributes &texture_attributes) const = default;
 

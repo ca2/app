@@ -447,7 +447,6 @@ list(APPEND library_source
         operating_system/console.cpp
         operating_system/console_client.cpp
         operating_system/console_client.h
-        operating_system/cpu_features.cpp
         operating_system/cpu_features.h
         operating_system/debug.cpp
         operating_system/dynamic_library.cpp
@@ -2394,7 +2393,9 @@ if (${WIN32} OR ${UWP})
             #      operating_system/windows_common/base.cpp
             #      operating_system/windows_common/bstring.cpp
             #      operating_system/windows_common/com.cpp
-            operating_system/windows_common/debug.cpp
+       operating_system/windows_common/cpu_features.cpp
+
+       operating_system/windows_common/debug.cpp
             #operating_system/windows_common/desktop.cpp
             operating_system/windows_common/dll.cpp
             operating_system/windows_common/file.cpp
@@ -2446,6 +2447,8 @@ if (${LINUX})
             #operating_system/linux/_user.h
             operating_system/linux/application.h
             operating_system/linux/callstack.cpp
+
+       operating_system/linux/cpu_features.cpp
             #operating_system/linux/cross_win_file.cpp
             #operating_system/linux/cross_win_file.h
             #operating_system/linux/cross_win_gdi.cpp

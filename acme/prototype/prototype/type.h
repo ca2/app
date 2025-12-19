@@ -146,7 +146,7 @@ public:
 
 }; 
 template<>
-constexpr ::hash32 as_hash32<type_iptr_pair>(const type_iptr_pair &pair)
+inline ::hash32 as_hash32<type_iptr_pair>(const type_iptr_pair &pair)
 {
    return (::hash32)abs(pair.normal1()) +
           (::hash32)abs(pair.normal2());

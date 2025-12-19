@@ -46,7 +46,7 @@ template < typename T >
 #include <typeindex>
 
 template <  >
-constexpr ::hash32 as_hash32<::std::type_index>(const ::std::type_index & typeindex)
+inline ::hash32 as_hash32<::std::type_index>(const ::std::type_index & typeindex)
 { return (::hash32)typeindex.hash_code(); }
 
 //#include "acme/include/_numeric_concepts.h"

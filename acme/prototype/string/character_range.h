@@ -592,6 +592,33 @@ struct std::formatter<CHARACTER_RANGE>
    }
 };
 
+template <typename ITERATOR_TYPE>
+struct std::formatter<::character_range<ITERATOR_TYPE>>
+{
+   using character_type = ::character_decay<::non_pointer<::non_const< ITERATOR_TYPE>>>;
+   using string_view_type = ::std::basic_string_view<character_type>;
+   using target_iterator = const character_type*;
+
+   std::formatter<string_view_type> base;
+
+   // Forward parse explicitly
+   template <typename FormatContext>
+   constexpr auto parse(FormatContext& ctx) {
+      return base.parse(ctx);
+   }
+
+   template <typename FormatContext>
+   auto format(const ::character_range<ITERATOR_TYPE>& characterrange, FormatContext& ctx) const {
+      return base.format(
+         string_view_type{
+            (target_iterator)characterrange.begin(),
+            (target_iterator)characterrange.end()
+         },
+         ctx
+      );
+   }
+};
+
 
 
 

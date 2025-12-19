@@ -364,7 +364,7 @@ public:
    ::property * find_pointer() const
    {
 
-      return find_property(::platform::type(::type<T>()));
+      return _find_property(::platform::type(::type<T>()));
 
    }
 
@@ -1437,6 +1437,7 @@ template < same_as < NUMBER_TYPE > UPPER_CASE_NAME > payload & operator = (UPPER
    //::property * find_property(const ::scoped_string & scopedstr) const;
    //::property & get_property(const ::scoped_string & scopedstr);
    ::payload find_property(const ::atom & atom) const; // { return atom.is_text() ? find_property_text_key((const ::scoped_string &)atom.m_str) : find_property_index(atom.m_i); }
+   ::property * _find_property(const ::atom & atom) const;
    ::property & get_property(const ::atom & atom); // { return atom.is_text() ? get_property_text_key((const ::scoped_string &)atom.m_str) : get_property_index(atom.m_i); }
 
    ::payload find_property_by_text(const ::scoped_string & scopedstr) const; 

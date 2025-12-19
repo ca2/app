@@ -5,6 +5,15 @@ struct with_t {};
 
 
 template < prototype_floating FLOATING_TYPE >
+class angle_type;
+
+
+template < prototype_floating FLOATING >
+constexpr angle_type < FLOATING > radians(FLOATING fAngle);
+
+
+
+template < prototype_floating FLOATING_TYPE >
 class angle_type
 {
 public:

@@ -6268,6 +6268,68 @@ string payload::implode(const ::scoped_string & scopedstrGlue) const
 }
 
 
+::property * payload::_find_property(const ::atom &atom) const
+{
+
+   if (atom.is_text())
+   {
+
+      /*      if (m_etype == e_type_payload_pointer)
+            {
+
+               return m_ppayload->find_property_by_text(atom.m_str);
+
+            }
+            else if (m_etype == e_type_property)
+            {
+
+               return m_pproperty->find_property_by_text(atom.m_str);
+
+            }
+            else*/
+
+      if (m_etype == e_type_property_set)
+      {
+
+         auto pproperty = m_ppropertyset->find(atom);
+
+         if (pproperty)
+         {
+
+            return pproperty;
+
+         }
+
+      }
+
+      return nullptr;
+
+   }
+   else
+   {
+
+      if (casts_to(e_type_property_set))
+      {
+
+         auto pproperty = property_set_reference().find(atom);
+
+         if (pproperty)
+         {
+
+            return pproperty;
+
+         }
+
+      }
+
+      return nullptr;
+
+   }
+
+
+}
+
+
 property & payload::get_property(const ::atom & atom)
 {
 

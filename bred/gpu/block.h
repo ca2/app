@@ -17,17 +17,23 @@ namespace gpu
    public:
 
 
+      ::pointer<::gpu::binding_slot_set> m_pbindingslotset;
+
+
       block();
       ~block() override; 
 
 
-      virtual void initialize_gpu_block(::gpu::context *pgpucontext);
+      //virtual void initialize_gpu_block(::gpu::context *pgpucontext);
 
 
       virtual void create_gpu_block(::gpu::context *pgpucontext);
 
 
       virtual void update_frame(::gpu::renderer * pgpurenderer);
+
+
+      virtual ::gpu::binding_slot_set * binding_slot_set(::gpu::command_buffer * pgpucommandbuffer, ::gpu::binding_set *pbindingset);
 
 
    };

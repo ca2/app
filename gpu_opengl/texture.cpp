@@ -139,6 +139,8 @@ namespace gpu_opengl
 
       initialize_texture(pgpurenderer, textureattributes, textureflags, texturedata);
 
+
+
       //::gpu::texture::initialize_texture(pgpurenderer, rectangleTarget, false, {} , etype);
 
       //::gpu::context_lock contextlock(m_pgpurenderer->m_pgpucontext);
@@ -711,10 +713,10 @@ namespace gpu_opengl
       {
 
          return;
+
       }
 
       //::gpu::context_lock contextlock(m_pgpurenderer->m_pgpucontext);
-
 
       // GLuint fboSrc, fboDst;
       glGenFramebuffers(1, &m_gluFbo);
@@ -764,6 +766,16 @@ namespace gpu_opengl
       {
 
          warning() << "Framebuffer attachment is not complete";
+
+         auto pszFramebufferStatusText = ::opengl::check_framebuffer_status_text(status);
+
+         if (::is_set(pszFramebufferStatusText))
+         {
+
+            warning("glCheckFramebufferStatus(GL_FRAMEBUFFER) return \"{}\".", pszFramebufferStatusText);
+
+         }
+
       }
 
       glBindFramebuffer(GL_FRAMEBUFFER, 0);
@@ -837,8 +849,8 @@ namespace gpu_opengl
    }
 
 
-   // Loads a cubemap from a single KTX file
-   void texture::KtxLoadCubemapFromFile(const ::scoped_string &name, ::string filename, bool b32)
+      // Loads a cubemap from a single KTX file
+   void texture::KtxLoadCubemapFromFile(const ::scoped_string &scopedstrName, ::string filename, bool b32)
    // VkFormat format,
    // VkQueue copyQueue,
    // VkImageUsageFlags imageUsageFlags,
@@ -856,9 +868,35 @@ namespace gpu_opengl
          return;
       }
 
+      KtxLoadCubemapFrom_ktxTexture(scopedstrName, ktxTexture, b32);
+
+   }
+
+
+
+
+   // Loads a cubemap from a single KTX file
+   void texture::KtxLoadCubemapFrom_ktxTexture(const ::scoped_string &name, void *p_ktxTexture, bool b32)
+   // VkFormat format,
+   // VkQueue copyQueue,
+   // VkImageUsageFlags imageUsageFlags,
+   // VkImageLayout imageLayout)
+   {
+      m_textureattributes.m_etexture = ::gpu::e_texture_cube_map;
+      ::gpu::context_lock lockcontext(m_pgpurenderer->m_pgpucontext);
+      auto pktxtexture = (ktxTexture *) p_ktxTexture;
+      //ktxResult result = loadKTXFile(this, filename, &ktxTexture);
+      //if (result != KTX_SUCCESS)
+      //{
+
+      //   throw ::exception(error_failed);
+
+      //   return;
+      //}
+
       GLenum glError = 0;
 
-      ktxResult resultUpload = ktxTexture_GLUpload(ktxTexture, &m_gluTextureID, &m_gluType, &glError);
+      ktxResult resultUpload = ktxTexture_GLUpload(pktxtexture, &m_gluTextureID, &m_gluType, &glError);
 
       if (resultUpload != KTX_SUCCESS)
       {
@@ -877,12 +915,12 @@ namespace gpu_opengl
       // m_rectangleTarget.left = 0;
       // m_rectangleTarget.top = 0;
       // //this->m_pDevice = pdevice;
-      // m_rectangleTarget.right = ktxTexture->baseWidth;
-      // m_rectangleTarget.bottom = ktxTexture->baseHeight;
-      // m_iMipCount = ktxTexture->numLevels;
+      // m_rectangleTarget.right = pktxtexture->baseWidth;
+      // m_rectangleTarget.bottom = pktxtexture->baseHeight;
+      // m_iMipCount = pktxtexture->numLevels;
       //
-      // ktx_uint8_t *ktxTextureData = ktxTexture_GetData(ktxTexture);
-      // ktx_size_t ktxTextureSize = ktxTexture_GetDataSize(ktxTexture);
+      // ktx_uint8_t *ktxTextureData = ktxTexture_GetData(pktxtexture);
+      // ktx_size_t ktxTextureSize = ktxTexture_GetDataSize(pktxtexture);
       //
       // // VkMemoryAllocateInfo memAllocInfo = vkinit::memoryAllocateInfo();
       // // VkMemoryRequirements memReqs;
@@ -924,7 +962,7 @@ namespace gpu_opengl
       //    for (uint32_t level = 0; level < m_iMipCount; level++)
       //    {
       //       ktx_size_t offset;
-      //       KTX_error_code result = ktxTexture_GetImageOffset(ktxTexture, level, 0, face, &offset);
+      //       KTX_error_code result = ktxTexture_GetImageOffset(pktxtexture, level, 0, face, &offset);
       //       ASSERT(result == KTX_SUCCESS);
       //
       //       VkBufferImageCopy bufferCopyRegion = {};
@@ -932,8 +970,8 @@ namespace gpu_opengl
       //       bufferCopyRegion.imageSubresource.mipLevel = level;
       //       bufferCopyRegion.imageSubresource.baseArrayLayer = face;
       //       bufferCopyRegion.imageSubresource.layerCount = 1;
-      //       bufferCopyRegion.imageExtent.width = ktxTexture->baseWidth >> level;
-      //       bufferCopyRegion.imageExtent.height = ktxTexture->baseHeight >> level;
+      //       bufferCopyRegion.imageExtent.width = pktxtexture->baseWidth >> level;
+      //       bufferCopyRegion.imageExtent.height = pktxtexture->baseHeight >> level;
       //       bufferCopyRegion.imageExtent.depth = 1;
       //       bufferCopyRegion.bufferOffset = offset & ~0xF;
       //
@@ -1048,7 +1086,7 @@ namespace gpu_opengl
       // VK_CHECK_RESULT(vkCreateImageView(pcontext->logicalDevice(), &viewCreateInfo, nullptr, &m_vkimageview));
       //
       // // Clean up staging resources
-      // ktxTexture_Destroy(ktxTexture);
+      // ktxTexture_Destroy(pktxtexture);
       // vkDestroyBuffer(pcontext->logicalDevice(), stagingBuffer, nullptr);
       // vkFreeMemory(pcontext->logicalDevice(), stagingMemory, nullptr);
       //
@@ -1062,18 +1100,18 @@ namespace gpu_opengl
       //   ::cast < ::gpu_opengl::texture>ptexture = m_ptexture;
 
 
-      glFramebufferTexture2D(
-         GL_FRAMEBUFFER,
-         GL_COLOR_ATTACHMENT0,
-         GL_TEXTURE_CUBE_MAP_POSITIVE_X + iFace,
-         m_gluTextureID,
-         m_iCurrentMip);
+      //glFramebufferTexture2D(
+      //   GL_FRAMEBUFFER,
+      //   GL_COLOR_ATTACHMENT0,
+      //   GL_TEXTURE_CUBE_MAP_POSITIVE_X + iFace,
+      //   m_gluTextureID,
+      //   m_iCurrentMip);
 
-      GLCheckError("");
+      //GLCheckError("");
 
 
-      glBindTexture(m_gluType, m_gluTextureID);
-      GLCheckError("");
+      //glBindTexture(m_gluType, m_gluTextureID);
+      //GLCheckError("");
 
    }
 

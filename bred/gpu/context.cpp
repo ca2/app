@@ -35,6 +35,7 @@
 #include "bred/graphics3d/renderable.h"
 #include "bred/graphics3d/scene_base.h"
 #include "bred/graphics3d/types.h"
+#include "ibl/_.h"
 
 
 namespace gpu
@@ -303,7 +304,12 @@ namespace gpu
 
 
    void context::end_debug_happening(::gpu::command_buffer *pgpucommandbuffer) {}
+   
+   void context::on_cube_map_face_image(::image::image * pimage)
+   {
 
+
+   }
 
    ::gpu::texture *context::texture(const ::file::path &path)
    {
@@ -1127,6 +1133,8 @@ return {};
       if (pgpushader == m_pshaderBound)
       {
 
+         pgpushader->on_bind_already_bound(pgpucommandbuffer, pgputexture);
+
          return false;
 
       }
@@ -1160,6 +1168,7 @@ return {};
 
       if (pgpushader == m_pshaderBound)
       {
+
 
          return false;
       }
@@ -2333,7 +2342,9 @@ return {};
 
          pbindingGlobalUbo->m_ebinding = ::gpu::e_binding_global_ubo1;
 
-         pbindingGlobalUbo->m_strUniform = "ubo";
+         pbindingGlobalUbo->m_strUniform = "GlobalUbo";
+
+         pbindingGlobalUbo->m_iBindingPoint2 = 0;
 
       }
 
@@ -2351,15 +2362,19 @@ return {};
 
          auto pbindingIrradiance = m_pbindingsetIbl1->binding(0);
          pbindingIrradiance->m_ebinding = ::gpu::e_binding_cube_sampler;
-         pbindingIrradiance->m_strUniform = "irradianceMap";
+         pbindingIrradiance->m_strUniform = "diffuseIrradianceMap";
+         pbindingIrradiance->m_iTextureUnit = ::gpu::ibl::TEXTURE_UNIT_DIFFUSE_IRRADIANCE_MAP;
 
          auto pbindingPrefiltered = m_pbindingsetIbl1->binding(1);
-         pbindingPrefiltered->m_strUniform = "prefiltered";
+         pbindingPrefiltered->m_strUniform = "prefilteredEnvMap";
          pbindingPrefiltered->m_ebinding = ::gpu::e_binding_cube_sampler;
+         pbindingPrefiltered->m_iTextureUnit = ::gpu::ibl::TEXTURE_UNIT_PREFILTERED_ENV_MAP;
 
          auto pbindingBrdf = m_pbindingsetIbl1->binding(2);
-         pbindingBrdf->m_strUniform = "brdfConvolution";
+         pbindingBrdf->m_strUniform = "brdfConvolutionMap";
          pbindingBrdf->m_ebinding = ::gpu::e_binding_sampler2d;
+         pbindingBrdf->m_iTextureUnit = ::gpu::ibl::TEXTURE_UNIT_BRDF_CONVOLUTION_MAP;
+
       }
 
       return m_pbindingsetIbl1;
@@ -2376,23 +2391,28 @@ return {};
 
          auto pbindingAlbedo = m_pbindingsetGltfPbr->binding(0);
          pbindingAlbedo->m_ebinding = ::gpu::e_binding_sampler2d;
-         pbindingAlbedo->m_strUniform = "albedo";
+         pbindingAlbedo->m_strUniform = "textureAlbedo";
+         pbindingAlbedo->m_iTextureUnit = ::gpu::ibl::TEXTURE_UNIT_ALBEDO;
 
          auto pbindingNormal = m_pbindingsetGltfPbr->binding(1);
-         pbindingNormal->m_strUniform = "normal";
+         pbindingNormal->m_strUniform = "textureNormal";
          pbindingNormal->m_ebinding = ::gpu::e_binding_sampler2d;
+         pbindingNormal->m_iTextureUnit = ::gpu::ibl::TEXTURE_UNIT_NORMAL;
 
          auto pbindingMetallicRoughness = m_pbindingsetGltfPbr->binding(2);
-         pbindingMetallicRoughness->m_strUniform = "metallicRoughness";
+         pbindingMetallicRoughness->m_strUniform = "textureMetallicRoughness";
          pbindingMetallicRoughness->m_ebinding = ::gpu::e_binding_sampler2d;
+         pbindingMetallicRoughness->m_iTextureUnit = ::gpu::ibl::TEXTURE_UNIT_METALLIC_ROUGHNESS;
 
          auto pbindingAmbientOcclusion = m_pbindingsetGltfPbr->binding(3);
-         pbindingAmbientOcclusion->m_strUniform = "ambientOcclusion";
+         pbindingAmbientOcclusion->m_strUniform = "textureAmbientOcclusion";
          pbindingAmbientOcclusion->m_ebinding = ::gpu::e_binding_sampler2d;
+         pbindingAmbientOcclusion->m_iTextureUnit = ::gpu::ibl::TEXTURE_UNIT_AMBIENT_OCCLUSION;
 
          auto pbindingEmissive = m_pbindingsetGltfPbr->binding(4);
-         pbindingEmissive->m_strUniform = "emissive";
+         pbindingEmissive->m_strUniform = "textureEmissive";
          pbindingEmissive->m_ebinding = ::gpu::e_binding_sampler2d;
+         pbindingEmissive->m_iTextureUnit = ::gpu::ibl::TEXTURE_UNIT_EMISSIVE;
       }
 
       return m_pbindingsetGltfPbr;
@@ -2409,11 +2429,13 @@ return {};
 
          auto pbindingAlbedo = m_pbindingsetSceneGltfPbr->binding(0);
          pbindingAlbedo->m_ebinding = ::gpu::e_binding_sampler2d;
-         pbindingAlbedo->m_strUniform = "albedo";
+         pbindingAlbedo->m_strUniform = "textureAlbedo";
+         pbindingAlbedo->m_iTextureUnit = ::gpu::ibl::TEXTURE_UNIT_ALBEDO;
 
          auto pbindingNormal = m_pbindingsetSceneGltfPbr->binding(1);
-         pbindingNormal->m_strUniform = "normal";
+         pbindingNormal->m_strUniform = "textureNormal";
          pbindingNormal->m_ebinding = ::gpu::e_binding_sampler2d;
+         pbindingNormal->m_iTextureUnit = ::gpu::ibl::TEXTURE_UNIT_NORMAL;
       }
 
       return m_pbindingsetSceneGltfPbr;
@@ -2447,9 +2469,9 @@ return {};
 
       pblock->set_properties(ppropertyProperties);
 
-      pblock->create_gpu_block(this);
-
       layout_global_ubo(pblock);
+
+      pblock->create_gpu_block(this);
 
       return pblock;
 

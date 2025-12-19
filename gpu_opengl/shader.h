@@ -29,6 +29,8 @@ namespace gpu_opengl
       //void _bind(::gpu::command_buffer *pgpucommandbuffer, ::gpu::enum_scene escene) override;
       //void bind(::gpu::command_buffer *pgpucommandbuffer, ::gpu::texture *pgputextureTarget,
                 //::gpu::texture *pgputextureSource) override;
+      void on_bind_already_bound(::gpu::command_buffer *pgpucommandbuffer, ::gpu::texture *pgputextureTarget) override;
+      virtual void defer_bind_frame_buffer_layer(::gpu::command_buffer *pgpucommandbuffer, ::gpu::texture *pgputextureTarget);
       void bind(::gpu::command_buffer *pgpucommandbuffer, ::gpu::texture *pgputextureTarget) override;
       //void bind(::gpu::command_buffer * pgpucommandbuffer) override;
       void unbind(::gpu::command_buffer *pgpucommandbuffer) override;
@@ -71,6 +73,8 @@ namespace gpu_opengl
       //virtual void setMat3(const ::scoped_string & scopedstrName, const float p[3*3]) override;
       //virtual void setMat4(const ::scoped_string & scopedstrName, const float p[4*4]) override;
 
+            void bind_slot_set(::gpu::command_buffer *pgpucommandbuffer, int iSet,
+                         ::gpu::binding_slot_set *pgpubindingslotset);
 
 
       unsigned int create_shader(const ::block & blockVertex, GLenum type);

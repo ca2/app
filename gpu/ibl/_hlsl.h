@@ -12,7 +12,8 @@ CLASS_DECL_GPU ::block hlsl_prefiltered_environment_map_vert_memory();
 CLASS_DECL_GPU ::block hlsl_prefiltered_environment_map_frag_memory();
 
 
-CLASS_DECL_GPU ::block hlsl_embedded_pbr_vert();
-CLASS_DECL_GPU ::block hlsl_embedded_pbr_frag();
+CLASS_DECL_GPU ::block hlsl_embedded_gltf_vert();
+CLASS_DECL_GPU ::block hlsl_embedded_gltf_frag();
 
-
+CLASS_DECL_GPU ::block hlsl_embedded_scene_vert();
+CLASS_DECL_GPU ::block hlsl_embedded_scene_frag();

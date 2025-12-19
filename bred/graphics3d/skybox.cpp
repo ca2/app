@@ -151,6 +151,8 @@ namespace graphics3d
 
          }
 
+         m_pgpucontext->on_cube_map_face_image(pimage);
+
          face.m_pimage = pimage;
 
       }

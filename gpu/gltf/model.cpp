@@ -134,7 +134,8 @@ namespace gpu
                // aiProcess_CalcTangentSpace);
 //                              get_assimp_importer()->ReadFile(path,
   //                                                          aiProcess_Triangulate | aiProcess_FlipUVs);
-               get_assimp_importer()->ReadFile(path, aiProcess_Triangulate);
+               //get_assimp_importer()->ReadFile(path, aiProcess_Triangulate);
+               get_assimp_importer()->ReadFile(path, 0);
 
             if (!scene || scene->mFlags & AI_SCENE_FLAGS_INCOMPLETE || !scene->mRootNode)
             {
@@ -536,8 +537,8 @@ namespace gpu
                if (aiMaterial->GetTextureCount(aiTextureType_DIFFUSE))
                {
                   pmaterial->useTextureAlbedo = true;
-                  pmaterial->m_textureaPbr[e_texture_albedo] =
-                     loadMaterialTexture(aiMaterial, aiTextureType_DIFFUSE);
+                  auto ptextureAlbedo = loadMaterialTexture(aiMaterial, aiTextureType_DIFFUSE);
+                  pmaterial->m_textureaPbr[e_texture_albedo] = ptextureAlbedo;
                }
 
                // metallicRoughness (in gltf 2.0 they are combined in one texture)

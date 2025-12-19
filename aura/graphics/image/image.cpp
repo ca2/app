@@ -4423,7 +4423,8 @@ void image::copy_from(::image::image* pimage, const ::int_point  & point, ::enum
 
    }
 
-   copy_from_no_create(pimage, point);
+   memcpy(data(), pimage->data(), this->scan_area_in_bytes());
+   //copy_from_no_create(pimage, point);
 
 }
 

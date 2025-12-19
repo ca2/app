@@ -57,7 +57,7 @@ namespace gpu
 
       virtual void end_render();
 
-      virtual void set_block(::gpu::block *pgpublock);
+      virtual void set_block3(::gpu::block *pgpublock);
       virtual void bind_slot_set(int iSet, ::gpu::binding_slot_set *pgpubindingslotset);
       virtual void set_source(::gpu::texture *pgputexture);
       virtual void set_source(::gpu::pixmap *pgpupixmap);

@@ -21,18 +21,21 @@ namespace gpu_opengl
    block::~block() {}
 
 
-   void block::initialize_gpu_block(::gpu::context *pgpucontext)
-   {
+   //void block::initialize_gpu_block(::gpu::context *pgpucontext)
+   //{
 
-      ::gpu::block::initialize_gpu_block(pgpucontext);
+   //   ::gpu::block::initialize_gpu_block(pgpucontext);
 
-   }
+   //}
 
 
    void block::create_gpu_block(::gpu::context *pgpucontext)
    {
 
       ::gpu::context_lock contextlock(pgpucontext);
+
+
+      ::gpu::block::create_gpu_block(pgpucontext);
 
       int iUboSize = this->size(false);
 

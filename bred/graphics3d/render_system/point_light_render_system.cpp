@@ -180,8 +180,10 @@ namespace graphics3d
       //
 
       auto pframe = ::gpu::current_frame();
-      auto ptexture = pframe->m_pgpucommandbuffer->m_pgpurendertarget->current_texture(pframe);
-      pframe->m_pgpucommandbuffer->begin_render(m_pshader, ptexture);
+      //auto ptexture = pframe->m_pgpucommandbuffer->m_pgpurendertarget->current_texture(pframe);
+      //pframe->m_pgpucommandbuffer->begin_render(m_pshader, ptexture);
+
+      pframe->m_pgpucommandbuffer->set_shader(m_pshader);
 
       // vkCmdBindDescriptorSets(
       //     frame.m_pcommandbuffer,
@@ -271,8 +273,7 @@ namespace graphics3d
          auto color = ppointlight->color();
 
          globalUbo["pointLights"][lightIndex]["position"] = floating_sequence4(position, 1.f);
-         globalUbo["pointLights"][lightIndex]["color"] =
-            floating_sequence4(color.r, color.g, color.b, ppointlight->m_fLightIntensity);
+         globalUbo["pointLights"][lightIndex]["color"] = color;
 
          lightIndex += 1;
 

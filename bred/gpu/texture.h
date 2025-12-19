@@ -44,6 +44,7 @@ namespace gpu
       //bool m_bRedGreen;
       //bool m_bFloat;
       ::file::path                        m_path;
+      ::pointer<::gpu::binding_slot_set> m_pbindingslotsetSingular;
 
       texture();
       ~texture() override;
@@ -63,8 +64,8 @@ namespace gpu
       virtual int mip_height_for_mip(int baseHeight, int iMip) const;
       virtual int mip_width() const;
       virtual int mip_height() const;
-      virtual int render_target_view_index(int iFace, int iMip) const;
-      virtual int current_render_target_view_index() const;
+///      virtual int render_target_view_index(int iFace, int iMip) const;
+//      virtual int current_render_target_view_index() const;
 
 
       virtual int layer_count() const;
@@ -149,6 +150,8 @@ namespace gpu
 
 
 
+            ::gpu::binding_slot_set *binding_slot_set(::gpu::command_buffer *pgpucommandbuffer,
+                                                ::gpu::binding_set *pbindingset);
 
    };
 

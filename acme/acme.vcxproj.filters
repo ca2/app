@@ -4317,6 +4317,9 @@
     <ClInclude Include="prototype\collection\property_set.h">
       <Filter>Header Files\prototype\collection</Filter>
     </ClInclude>
+    <ClInclude Include="prototype\prototype\address_object.h">
+      <Filter>Header Files\prototype\prototype</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="prototype\prototype\bit.cpp">

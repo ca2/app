@@ -14,11 +14,17 @@ namespace hlsl
 #include "hlsl/equirectangular_cubemap.frag.h"
 #include "hlsl/equirectangular_cubemap.vert.h"
 
-#include "hlsl/pbr.frag.h"
-#include "hlsl/pbr.vert.h"
 
 #include "hlsl/prefiltered_environment_map.frag.h"
 #include "hlsl/prefiltered_environment_map.vert.h"
+
+
+#include "hlsl/gltf.frag.h"
+#include "hlsl/gltf.vert.h"
+
+
+#include "hlsl/scene.frag.h"
+#include "hlsl/scene.vert.h"
 
 
 } // namespace hlsl namespace hlsl
@@ -68,14 +74,21 @@ CLASS_DECL_GPU::block hlsl_embedded_diffuse_irradiance_vert()
 
 
 
-::block hlsl_embedded_pbr_vert()
+::block hlsl_embedded_gltf_vert()
 {
 
-   return hlsl::g_psz_pbr_vert;
+   return hlsl::g_psz_gltf_vert;
 }
 
 
-::block hlsl_embedded_pbr_frag() {
+::block hlsl_embedded_gltf_frag() {
 
-   return hlsl::g_psz_pbr_frag;
+   return hlsl::g_psz_gltf_frag;
 }
+
+
+
+::block hlsl_embedded_scene_vert() { return hlsl::g_psz_scene_vert; }
+
+
+::block hlsl_embedded_scene_frag() { return hlsl::g_psz_scene_frag; }

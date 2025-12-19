@@ -1,4 +1,9 @@
-// pbr1.frag
+﻿// This file was automatically generated from a command line like:
+// application_build_helper --inline-text "gltf.frag"
+#pragma once
+
+
+const char g_psz_gltf_frag[] = R"frag_text(// pbr1.frag
 // Converted from Vulkan GLSL to HLSL
 // Maintains original comments and structure
 // by Camilo <3ThomasBorregaardSorensen!!
@@ -71,18 +76,18 @@ cbuffer PushConsts : register(b1)
 // ---------- Texture bindings ----------
 
 // IBL maps (set = 1)
-SamplerState samplerIBL             : register(s0);
-TextureCube diffuseIrradianceMap    : register(t0);
-TextureCube prefilteredEnvMap       : register(t1);
-Texture2D   brdfConvolutionMap      : register(t2);
+SamplerState samplerIBL             : register(s10);
+TextureCube diffuseIrradianceMap    : register(t10);
+TextureCube prefilteredEnvMap       : register(t11);
+Texture2D   brdfConvolutionMap      : register(t12);
 
 // Combined image samplers (set = 2)
-SamplerState samplerMaterial        : register(s1);
-Texture2D textureAlbedo             : register(t3);
-Texture2D textureMetallicRoughness  : register(t4);
+SamplerState samplerMaterial        : register(s4);
+Texture2D textureAlbedo             : register(t4);
 Texture2D textureNormal             : register(t5);
-Texture2D textureAmbientOcclusion   : register(t6);
-Texture2D textureEmissive           : register(t7);
+Texture2D textureMetallicRoughness  : register(t6);
+Texture2D textureAmbientOcclusion   : register(t7);
+Texture2D textureEmissive           : register(t8);
 
 // ---------- Helper wrappers ----------
 
@@ -272,3 +277,8 @@ PSOutput main(PSInput input)
 
     return output;
 }
+)frag_text";
+
+
+
+

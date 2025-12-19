@@ -74,7 +74,7 @@ namespace gpu
       // pgpushader->bind(this, pgputextureTarget);
    }
 
-   void command_buffer::set_block(::gpu::block *pgpublock)
+   void command_buffer::set_block3(::gpu::block *pgpublock)
    {
 
       auto pgpucontext = m_pgpurendertarget->m_pgpurenderer->m_pgpucontext;

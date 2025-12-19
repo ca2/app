@@ -157,10 +157,12 @@
     <ClInclude Include="ibl\hlsl\diffuse_irradiance_map.vert.h" />
     <ClInclude Include="ibl\hlsl\equirectangular_cubemap.frag.h" />
     <ClInclude Include="ibl\hlsl\equirectangular_cubemap.vert.h" />
-    <ClInclude Include="ibl\hlsl\pbr.frag.h" />
-    <ClInclude Include="ibl\hlsl\pbr.vert.h" />
+    <ClInclude Include="ibl\hlsl\gltf.frag.h" />
+    <ClInclude Include="ibl\hlsl\gltf.vert.h" />
     <ClInclude Include="ibl\hlsl\prefiltered_environment_map.frag.h" />
     <ClInclude Include="ibl\hlsl\prefiltered_environment_map.vert.h" />
+    <ClInclude Include="ibl\hlsl\scene.frag.h" />
+    <ClInclude Include="ibl\hlsl\scene.vert.h" />
     <ClInclude Include="ibl\hlsl\skybox.frag.h" />
     <ClInclude Include="ibl\hlsl\skybox.vert.h" />
     <ClInclude Include="ibl\hlsl\skybox_hdr.frag.h" />
@@ -592,7 +594,7 @@
       <Outputs Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='StaticReleaseWithDbgInfo|x64'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
     </CustomBuild>
-    <CustomBuild Include="ibl\hlsl\pbr.frag">
+    <CustomBuild Include="ibl\hlsl\gltf.frag">
       <FileType>Document</FileType>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">application_build_helper --inline-text "%(RelativeDir)%(Filename)%(Extension)"</Command>
       <Command Condition="'$(Configuration)|$(Platform)'=='ReleaseDebug|Win32'">application_build_helper --inline-text "%(RelativeDir)%(Filename)%(Extension)"</Command>
@@ -631,7 +633,7 @@
       <Outputs Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='StaticReleaseWithDbgInfo|x64'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
     </CustomBuild>
-    <CustomBuild Include="ibl\hlsl\pbr.vert">
+    <CustomBuild Include="ibl\hlsl\gltf.vert">
       <FileType>Document</FileType>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">application_build_helper --inline-text "%(RelativeDir)%(Filename)%(Extension)"</Command>
       <Command Condition="'$(Configuration)|$(Platform)'=='ReleaseDebug|Win32'">application_build_helper --inline-text "%(RelativeDir)%(Filename)%(Extension)"</Command>
@@ -905,6 +907,86 @@
       <Outputs Condition="'$(Configuration)|$(Platform)'=='StaticReleaseWithDbgInfo|x64'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
     </CustomBuild>
     <CustomBuild Include="ibl\hlsl\wavefront.vert">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">application_build_helper --inline-text "%(RelativeDir)%(Filename)%(Extension)"</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='ReleaseDebug|Win32'">application_build_helper --inline-text "%(RelativeDir)%(Filename)%(Extension)"</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='DebugWithInlOpt|Win32'">application_build_helper --inline-text "%(RelativeDir)%(Filename)%(Extension)"</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='ASanDbgWithInlOpt|Win32'">application_build_helper --inline-text "%(RelativeDir)%(Filename)%(Extension)"</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Win32'">application_build_helper --inline-text "%(RelativeDir)%(Filename)%(Extension)"</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='ASanStaticDebug|Win32'">application_build_helper --inline-text "%(RelativeDir)%(Filename)%(Extension)"</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">application_build_helper --inline-text "%(RelativeDir)%(Filename)%(Extension)"</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='StaticRelease|Win32'">application_build_helper --inline-text "%(RelativeDir)%(Filename)%(Extension)"</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='StaticReleaseWithDbgInfo|Win32'">application_build_helper --inline-text "%(RelativeDir)%(Filename)%(Extension)"</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">application_build_helper --inline-text "%(RelativeDir)%(Filename)%(Extension)"</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='ReleaseDebug|x64'">application_build_helper --inline-text "%(RelativeDir)%(Filename)%(Extension)"</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='DebugWithInlOpt|x64'">application_build_helper --inline-text "%(RelativeDir)%(Filename)%(Extension)"</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='ASanDbgWithInlOpt|x64'">application_build_helper --inline-text "%(RelativeDir)%(Filename)%(Extension)"</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='StaticDebug|x64'">application_build_helper --inline-text "%(RelativeDir)%(Filename)%(Extension)"</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='ASanStaticDebug|x64'">application_build_helper --inline-text "%(RelativeDir)%(Filename)%(Extension)"</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">application_build_helper --inline-text "%(RelativeDir)%(Filename)%(Extension)"</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">application_build_helper --inline-text "%(RelativeDir)%(Filename)%(Extension)"</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='StaticReleaseWithDbgInfo|x64'">application_build_helper --inline-text "%(RelativeDir)%(Filename)%(Extension)"</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='ReleaseDebug|Win32'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='DebugWithInlOpt|Win32'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='ASanDbgWithInlOpt|Win32'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Win32'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='ASanStaticDebug|Win32'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='StaticRelease|Win32'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='StaticReleaseWithDbgInfo|Win32'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='ReleaseDebug|x64'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='DebugWithInlOpt|x64'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='ASanDbgWithInlOpt|x64'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='StaticDebug|x64'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='ASanStaticDebug|x64'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='StaticReleaseWithDbgInfo|x64'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="ibl\hlsl\scene.frag">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">application_build_helper --inline-text "%(RelativeDir)%(Filename)%(Extension)"</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='ReleaseDebug|Win32'">application_build_helper --inline-text "%(RelativeDir)%(Filename)%(Extension)"</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='DebugWithInlOpt|Win32'">application_build_helper --inline-text "%(RelativeDir)%(Filename)%(Extension)"</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='ASanDbgWithInlOpt|Win32'">application_build_helper --inline-text "%(RelativeDir)%(Filename)%(Extension)"</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Win32'">application_build_helper --inline-text "%(RelativeDir)%(Filename)%(Extension)"</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='ASanStaticDebug|Win32'">application_build_helper --inline-text "%(RelativeDir)%(Filename)%(Extension)"</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">application_build_helper --inline-text "%(RelativeDir)%(Filename)%(Extension)"</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='StaticRelease|Win32'">application_build_helper --inline-text "%(RelativeDir)%(Filename)%(Extension)"</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='StaticReleaseWithDbgInfo|Win32'">application_build_helper --inline-text "%(RelativeDir)%(Filename)%(Extension)"</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">application_build_helper --inline-text "%(RelativeDir)%(Filename)%(Extension)"</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='ReleaseDebug|x64'">application_build_helper --inline-text "%(RelativeDir)%(Filename)%(Extension)"</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='DebugWithInlOpt|x64'">application_build_helper --inline-text "%(RelativeDir)%(Filename)%(Extension)"</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='ASanDbgWithInlOpt|x64'">application_build_helper --inline-text "%(RelativeDir)%(Filename)%(Extension)"</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='StaticDebug|x64'">application_build_helper --inline-text "%(RelativeDir)%(Filename)%(Extension)"</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='ASanStaticDebug|x64'">application_build_helper --inline-text "%(RelativeDir)%(Filename)%(Extension)"</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">application_build_helper --inline-text "%(RelativeDir)%(Filename)%(Extension)"</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">application_build_helper --inline-text "%(RelativeDir)%(Filename)%(Extension)"</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='StaticReleaseWithDbgInfo|x64'">application_build_helper --inline-text "%(RelativeDir)%(Filename)%(Extension)"</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='ReleaseDebug|Win32'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='DebugWithInlOpt|Win32'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='ASanDbgWithInlOpt|Win32'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Win32'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='ASanStaticDebug|Win32'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='StaticRelease|Win32'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='StaticReleaseWithDbgInfo|Win32'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='ReleaseDebug|x64'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='DebugWithInlOpt|x64'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='ASanDbgWithInlOpt|x64'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='StaticDebug|x64'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='ASanStaticDebug|x64'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='StaticReleaseWithDbgInfo|x64'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="ibl\hlsl\scene.vert">
       <FileType>Document</FileType>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">application_build_helper --inline-text "%(RelativeDir)%(Filename)%(Extension)"</Command>
       <Command Condition="'$(Configuration)|$(Platform)'=='ReleaseDebug|Win32'">application_build_helper --inline-text "%(RelativeDir)%(Filename)%(Extension)"</Command>

@@ -52,6 +52,8 @@ namespace gpu
          //::pointer<mipmap_cubemap_framebuffer> m_pframebufferPrefilteredEnvMap;
          ::pointer<::gpu::texture> m_ptexturePrefilteredEnvMapCubemap;
          ::pointer<::graphics3d::renderable> m_prenderableCube;
+         ;
+        
          // brdf convolution
          unsigned int m_uBrdfConvolutionMapId;
          const unsigned int m_uBrdfConvolutionMapWidth = 512;
@@ -60,7 +62,7 @@ namespace gpu
          ::pointer<::gpu::shader> m_pshaderBrdfConvolution;
          //::pointer<brdf_convolution_framebuffer> m_pframebufferBrdfConvolution;
          ::pointer<::gpu::texture> m_ptextureBrdfConvolutionMap;
-
+         ::pointer<::gpu::full_screen_quad> m_pfullscreenquadBrdf;
          //::pointer < ::gpu::full_screen_quad > m_pfullscreenquad;
 
           //* Initialize a specular map.
@@ -102,8 +104,7 @@ namespace gpu
          /**
           * Render the BRDF convolution map.
           */
-         virtual void computeBrdfConvolutionMap();
-
+         virtual void computeBrdfConvolutionMap(::gpu::command_buffer *pgpucommandbuffer);
 
          /**
           * Get the GL texture ID of the computed BRDF convolution map.

@@ -1,5 +1,6 @@
 // Created by camilo on 2025-06-12 21:07 <3ThomasBorregaardSørensen!!
 #include "framework.h"
+#include "binding.h"
 #include "layer.h"
 #include "pixmap.h"
 #include "render_target.h"
@@ -73,7 +74,7 @@ namespace gpu
       )
    {
 
-      //::gpu::context_lock contextlock(pgpurenderer->m_pgpucontext);
+      ::gpu::context_lock contextlock(pgpurenderer->m_pgpucontext);
 
       m_textureflags = textureflags;
 
@@ -114,6 +115,8 @@ namespace gpu
          create_shader_resource_view();
 
       }
+
+      set_ok_flag();
 
    }
 
@@ -256,36 +259,36 @@ namespace gpu
    }
 
 
-   int texture::render_target_view_index(int iFace, int iMip) const
-   {
-      
-      auto iMipCount = iMip;
+   //int texture::render_target_view_index(int iFace, int iMip) const
+   //{
+   //   
+   //   auto iMipCount = iMip;
 
-      if (iMip < 0 || iMip >= iMipCount)
-      {
+   //   if (iMip < 0 || iMip >= iMipCount)
+   //   {
 
-         throw ::exception(error_wrong_state);
+   //      throw ::exception(error_wrong_state);
 
-      }
+   //   }
 
-      if (iFace < 0 || iFace >= 6)
-      {
+   //   if (iFace < 0 || iFace >= 6)
+   //   {
 
-         throw ::exception(error_wrong_state);
+   //      throw ::exception(error_wrong_state);
 
-      }
+   //   }
 
-      return iFace * iMipCount + iMip;
+   //   return iFace * iMipCount + iMip;
 
-   }
+   //}
 
 
-   int texture::current_render_target_view_index() const
-   {
+   //int texture::current_render_target_view_index() const
+   //{
 
-      return this->render_target_view_index(m_iCurrentLayer, m_iCurrentMip);
+   //   return this->render_target_view_index(m_iCurrentLayer, m_iCurrentMip);
 
-   }
+   //}
 
 
    int texture::layer_count() const
@@ -414,7 +417,7 @@ namespace gpu
 
       }
 
-      initialize_texture(pgpurenderer, textureattributes, {}, &imagea);
+      initialize_texture(pgpurenderer, textureattributes, {}, imagea);
 
       if (is_ok())
       {
@@ -668,6 +671,43 @@ namespace gpu
 
 
    }
+
+
+      ::gpu::binding_slot_set *texture::binding_slot_set(::gpu::command_buffer *pgpucommandbuffer,
+                                                    ::gpu::binding_set *pbindingset)
+   {
+
+      if (pbindingset->size() == 1)
+      {
+
+         if (!m_pbindingslotsetSingular)
+         {
+
+            // ASSERT(::is_set(texture_albedo()));
+            // ASSERT(::is_set(m_ptextureNormal));
+
+            øconstruct(m_pbindingslotsetSingular);
+
+            //auto pbindingset = m_pgpucontext->global_ubo1_binding_set();
+
+            m_pbindingslotsetSingular->m_pbindingset = pbindingset;
+
+            m_pbindingslotsetSingular->ø(0).m_pbinding = pbindingset->first();
+            m_pbindingslotsetSingular->ø(0).m_ptexture = this;
+         }
+
+         return m_pbindingslotsetSingular;
+      }
+      else
+      {
+
+         throw ::exception(error_wrong_state, "No supported number of bindings");
+
+         return nullptr;
+      }
+   }
+
+
 
 
 } // namespace gpu

@@ -9,10 +9,10 @@ out vec4 FragColor;
 in vec3 modelCoordinates;
 
 uniform float roughness;
+uniform int numSamples;
 uniform samplerCube environmentCubemap;
 
 const float PI = 3.14159265359;
-const uint SAMPLE_COUNT = 1024u;
 const float FACE_RESOLUTION = 512.0;
 
 // this mirrors the number in binary around the decimal point
@@ -20,13 +20,13 @@ const float FACE_RESOLUTION = 512.0;
 // where ax is the a'th digit
 //
 // source: http://holger.dammertz.org/stuff/notes_HammersleyOnHemisphere.html#sec-SourceCode
-float radicalInverseVanDerCorput(uint bits)
+float radicalInverseVanDerCorput(int bits)
 {
-	bits = (bits << 16u) | (bits >> 16u);
-	bits = ((bits & 0x55555555u) << 1u) | ((bits & 0xAAAAAAAAu) >> 1u);
-	bits = ((bits & 0x33333333u) << 2u) | ((bits & 0xCCCCCCCCu) >> 2u);
-	bits = ((bits & 0x0F0F0F0Fu) << 4u) | ((bits & 0xF0F0F0F0u) >> 4u);
-	bits = ((bits & 0x00FF00FFu) << 8u) | ((bits & 0xFF00FF00u) >> 8u);
+	bits = (bits << 16) | (bits >> 16);
+	bits = ((bits & 0x55555555) << 1) | ((bits & 0xAAAAAAAA) >> 1);
+	bits = ((bits & 0x33333333) << 2) | ((bits & 0xCCCCCCCC) >> 2);
+	bits = ((bits & 0x0F0F0F0F) << 4) | ((bits & 0xF0F0F0F0) >> 4);
+	bits = ((bits & 0x00FF00FF) << 8) | ((bits & 0xFF00FF00) >> 8);
 	return float(bits) * 2.3283064365386963e-10;
 }
 
@@ -37,7 +37,7 @@ float radicalInverseVanDerCorput(uint bits)
 //
 // x value is evenly distributed across the unit square
 // y is a random value generated with van der corput sequence
-vec2 hammersley(uint i, uint N)
+vec2 hammersley(int i, int N)
 {
 	return vec2(float(i) / float(N), radicalInverseVanDerCorput(i));
 }
@@ -91,7 +91,7 @@ float getSampleMipLevel(vec3 V, vec3 N, vec3 H, float roughness) {
 	float pdf = distribution * NdotH / (4.0 * HdotV) + 0.0001;
 
 	float saTexel  = 4.0 * PI / (6.0 * FACE_RESOLUTION * FACE_RESOLUTION);
-	float saSample = 1.0 / (float(SAMPLE_COUNT) * pdf + 0.0001);
+	float saSample = 1.0 / (float(numSamples) * pdf + 0.0001);
 
 	return roughness == 0.0 ? 0.0 : 0.5 * log2(saSample / saTexel);
 }
@@ -104,8 +104,8 @@ void main() {
 	float totalWeight = 0.0;
 	vec3 outputColor = vec3(0.0);
 
-	for(uint i = 0u; i < SAMPLE_COUNT; i++) {
-		vec2 unitSquareSample = hammersley(i, SAMPLE_COUNT);
+	for(int i = 0; i < numSamples; i++) {
+		vec2 unitSquareSample = hammersley(i, numSamples);
 		vec3 H = importanceSampleGGX(unitSquareSample, N, roughness); // halfway
 		vec3 L = normalize(2.0 * dot(V, H) * H - V); // light sample direction
 

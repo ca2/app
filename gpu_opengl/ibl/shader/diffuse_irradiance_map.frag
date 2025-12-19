@@ -8,6 +8,9 @@ uniform samplerCube environmentCubemap;
 const float PI = 3.14159265359;
 const vec3 up = vec3(0.0, 0.0, 1.0);
 
+uniform float deltaPhi;
+uniform float deltaTheta;
+
 void main() {
 	vec3 normal = normalize(modelCoordinates);
 	vec3 tangent = normalize(cross(up, normal));
@@ -20,10 +23,10 @@ void main() {
 	// this uses spherical coordinates phi/theta
 
 	float numSamples = 0.0;
-	float delta = 0.025; // radians
+//	float delta = 0.025; // radians
 
-	for (float phi = 0.0; phi < 2.0 * PI; phi += delta) { // 360 degrees around
-		for (float theta = 0.0; theta < PI / 2.0; theta += delta) { // 90 degrees up/down
+	for (float phi = 0.0; phi < 2.0 * PI; phi += deltaPhi) { // 360 degrees around
+		for (float theta = 0.0; theta < PI / 2.0; theta += deltaTheta) { // 90 degrees up/down
 
 			vec3 sampleDirectionTangent = vec3(
 				sin(theta) * cos(phi),

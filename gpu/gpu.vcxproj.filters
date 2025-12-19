@@ -249,12 +249,6 @@
     <ClInclude Include="ibl\hlsl\equirectangular_cubemap.vert.h">
       <Filter>Header Files\ibl\hlsl</Filter>
     </ClInclude>
-    <ClInclude Include="ibl\hlsl\pbr.frag.h">
-      <Filter>Header Files\ibl\hlsl</Filter>
-    </ClInclude>
-    <ClInclude Include="ibl\hlsl\pbr.vert.h">
-      <Filter>Header Files\ibl\hlsl</Filter>
-    </ClInclude>
     <ClInclude Include="ibl\hlsl\prefiltered_environment_map.frag.h">
       <Filter>Header Files\ibl\hlsl</Filter>
     </ClInclude>
@@ -278,6 +272,18 @@
     </ClInclude>
     <ClInclude Include="ibl\aaa_brdf_convolution_framebuffer.h">
       <Filter>Header Files\ibl</Filter>
+    </ClInclude>
+    <ClInclude Include="ibl\hlsl\gltf.frag.h">
+      <Filter>Header Files\ibl\hlsl</Filter>
+    </ClInclude>
+    <ClInclude Include="ibl\hlsl\gltf.vert.h">
+      <Filter>Header Files\ibl\hlsl</Filter>
+    </ClInclude>
+    <ClInclude Include="ibl\hlsl\scene.frag.h">
+      <Filter>Header Files\ibl\hlsl</Filter>
+    </ClInclude>
+    <ClInclude Include="ibl\hlsl\scene.vert.h">
+      <Filter>Header Files\ibl\hlsl</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -375,10 +381,10 @@
     <CustomBuild Include="ibl\hlsl\equirectangular_cubemap.vert">
       <Filter>Source Files\ibl\hlsl</Filter>
     </CustomBuild>
-    <CustomBuild Include="ibl\hlsl\pbr.frag">
+    <CustomBuild Include="ibl\hlsl\gltf.frag">
       <Filter>Source Files\ibl\hlsl</Filter>
     </CustomBuild>
-    <CustomBuild Include="ibl\hlsl\pbr.vert">
+    <CustomBuild Include="ibl\hlsl\gltf.vert">
       <Filter>Source Files\ibl\hlsl</Filter>
     </CustomBuild>
     <CustomBuild Include="ibl\hlsl\prefiltered_environment_map.frag">
@@ -391,6 +397,12 @@
       <Filter>Source Files\ibl\hlsl</Filter>
     </CustomBuild>
     <CustomBuild Include="ibl\hlsl\skybox.vert">
+      <Filter>Source Files\ibl\hlsl</Filter>
+    </CustomBuild>
+    <CustomBuild Include="ibl\hlsl\scene.frag">
+      <Filter>Source Files\ibl\hlsl</Filter>
+    </CustomBuild>
+    <CustomBuild Include="ibl\hlsl\scene.vert">
       <Filter>Source Files\ibl\hlsl</Filter>
     </CustomBuild>
   </ItemGroup>

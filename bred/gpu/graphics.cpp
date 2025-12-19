@@ -285,7 +285,7 @@ namespace gpu
 
       contextmatrix.scale(2.0 / size.cx, 2.0 / size.cy);
 
-      contextmatrix.translate(-1.0, -1.0);
+      contextmatrix.translate(-2.0, -2.0);
 
       return contextmatrix;
 
@@ -1310,6 +1310,8 @@ namespace gpu
          auto pbindingSampler = m_pgpushaderTextOut->binding();
          pbindingSampler->m_strUniform = "text";
          pbindingSampler->m_ebinding = ::gpu::e_binding_sampler2d;
+         pbindingSampler->m_iTextureUnit = 0;
+
          // pcontext->white_to_color_sampler_shader_setup(m_pgpushaderTextOut);
 
          m_pgpushaderTextOut->m_propertiesPushShared.set_properties(

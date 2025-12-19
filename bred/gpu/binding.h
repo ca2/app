@@ -31,6 +31,11 @@ namespace gpu
       int m_iSlot = -1;
       bool m_bVertexShader = false;
       bool m_bFragmentShader = false;
+      union
+      {
+         int m_iBindingPoint2 = -1;
+         int m_iTextureUnit;
+      };
       // bool                       m_bImageSampler = false;
       ::string m_strUniform;
       enum_binding m_ebinding = e_binding_none;
@@ -123,6 +128,8 @@ namespace gpu
       // return m_pbindingset.m_p;
 
       //}
+
+      virtual void initialize_binding_slot_set(::gpu::binding_set * pbindingset);
 
       ::gpu::binding_slot *binding_slot(int iSlot);
 

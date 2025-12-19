@@ -147,6 +147,15 @@ namespace gpu
    }
 
 
+   void binding_slot_set::initialize_binding_slot_set(::gpu::binding_set * pbindingset)
+   {
+
+      m_pbindingset = pbindingset;
+
+      update_binding_slots(-1);
+
+   }
+
    ::gpu::binding_slot *binding_slot_set::binding_slot(int iSlot)
    {
 
@@ -182,7 +191,12 @@ namespace gpu
 
          auto &bindingslot = this->element_at(iSlot);
 
-         bindingslot.m_iSet = iSet;
+         if (iSet >= 0)
+         {
+
+            bindingslot.m_iSet = iSet;
+
+         }
 
          bindingslot.m_iSlot = iSlot;
 

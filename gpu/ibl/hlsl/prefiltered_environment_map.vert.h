@@ -7,9 +7,7 @@ const char g_psz_prefiltered_environment_map_vert[] = R"vert_text(// DirectX 11 
 
 cbuffer MatrixBuffer : register(b1)
 {
-    float4x4 model;
-    float4x4 view;
-    float4x4 projection;
+    float4x4 mvp;
 };
 
 // Vertex input structure (matches your input layout in C++)
@@ -30,11 +28,12 @@ VS_OUTPUT main(VS_INPUT input)
     VS_OUTPUT output;
 
     // HLSL matrices are row-major by default, so we multiply in the reverse order
-    float4 worldPosition = mul(float4(input.position, 1.0f), model);
-    worldPosition = mul(worldPosition, view);
-    worldPosition = mul(worldPosition, projection);
-
-    output.position = worldPosition;
+//    float4 worldPosition = mul(float4(input.position, 1.0f), model);
+//    worldPosition = mul(worldPosition, view);
+//    worldPosition = mul(worldPosition, projection);
+//
+    //output.position = worldPosition;
+    output.position =mul(float4(input.position,1), mvp);
     output.modelCoordinates = float3(input.position.x, -input.position.y, input.position.z);
 
     return output;

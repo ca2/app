@@ -191,6 +191,9 @@
     <ClInclude Include="gltf\_constant.h">
       <Filter>Header Files\gltf</Filter>
     </ClInclude>
+    <ClInclude Include="block.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="framework.cpp">
@@ -318,6 +321,12 @@
     </ClCompile>
     <ClCompile Include="gltf\model.cpp">
       <Filter>Source Files\gltf</Filter>
+    </ClCompile>
+    <ClCompile Include="block.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="context_ktx.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -1790,6 +1790,7 @@
     <ClInclude Include="prototype\geometry\quaternion.h" />
     <ClInclude Include="prototype\geometry\_.h" />
     <ClInclude Include="prototype\geometry\_payload.h" />
+    <ClInclude Include="prototype\prototype\address_object.h" />
     <ClInclude Include="prototype\prototype\call.h" />
     <ClInclude Include="compress\compress.h" />
     <ClInclude Include="compress\uncompress.h" />

@@ -691,6 +691,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="assimp.h" />
+    <ClInclude Include="block.h" />
     <ClInclude Include="command_buffer.h" />
     <ClInclude Include="cpu_buffer.h" />
     <ClInclude Include="context.h" />
@@ -818,7 +819,9 @@
   <ItemGroup>
     <ClCompile Include="approach_win32.cpp" />
     <ClCompile Include="assimp.cpp" />
+    <ClCompile Include="block.cpp" />
     <ClCompile Include="command_buffer.cpp" />
+    <ClCompile Include="context_ktx.cpp" />
     <ClCompile Include="cpu_buffer.cpp" />
     <ClCompile Include="context.cpp" />
     <ClCompile Include="context_egl.cpp">

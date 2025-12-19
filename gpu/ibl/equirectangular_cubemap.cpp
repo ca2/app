@@ -5,6 +5,7 @@
 #include "bred/gpu/binding.h"
 #include "bred/gpu/command_buffer.h"
 #include "bred/gpu/context.h"
+#include "bred/gpu/context_lock.h"
 #include "bred/gpu/debug_scope.h"
 #include "bred/gpu/shader.h"
 #include "bred/gpu/texture.h"
@@ -63,6 +64,9 @@ namespace gpu
          auto pbindingSampler = m_pshaderHdri->binding();
          pbindingSampler->m_strUniform = "hdri";
          pbindingSampler->m_ebinding = ::gpu::e_binding_sampler2d;
+         pbindingSampler->m_iTextureUnit = 0;
+
+         //m_pshaderHdri->binding_slot(0, 0, pbindingSampler);
 
          m_pshaderHdri->m_bDisableDepthTest = true;
          m_pshaderHdri->m_ecullmode = ::gpu::e_cull_mode_none;
@@ -111,6 +115,8 @@ namespace gpu
       void equirectangular_cubemap::compute()
       {
 
+         ::gpu::context_lock lockcontext(m_pgpucontext);
+
          ::gpu::Timer timer;
 
          auto pgpucommandbuffer = m_pgpucontext->beginSingleTimeCommands(m_pgpucontext->m_pgpudevice->graphics_queue());
@@ -125,15 +131,29 @@ namespace gpu
 
          floating_matrix4 model = ::graphics3d::mIndentity4;
 
-         floating_matrix4 cameraAngles[] =
+         floating_matrix4 cameraAngles[6];
+
+         if (m_pgpucontext->m_eapi == ::gpu::e_api_vulkan)
          {
 
-            lookAt(origin, unitX, -unitY), // X+ (right)
-            lookAt(origin, -unitX, -unitY), // X- (left)
-            lookAt(origin, unitY, unitZ), // Y+ (top)
-            lookAt(origin, -unitY, -unitZ), // Y- (bottom)
-            lookAt(origin, unitZ, -unitY), // Z+ (front)
-            lookAt(origin, -unitZ, -unitY) // Z- (back)
+            cameraAngles[0] = lookAt(origin, unitX, -unitY); // X+ (right)
+            cameraAngles[1] = lookAt(origin, -unitX, -unitY); // X- (left)
+            cameraAngles[2] = lookAt(origin, -unitY, -unitZ); // Y- (bottom)
+            cameraAngles[3] = lookAt(origin, unitY, unitZ); // Y+ (top)
+            cameraAngles[4] = lookAt(origin, unitZ, -unitY); // Z+ (front)
+            cameraAngles[5] = lookAt(origin, -unitZ, -unitY); // Z- (back)
+
+         }
+         else
+         {
+
+            cameraAngles[0] = lookAt(origin, unitX, -unitY); // X+ (right)
+            cameraAngles[1] = lookAt(origin, -unitX, -unitY); // X- (left)
+            cameraAngles[2] = lookAt(origin, unitY, unitZ); // Y+ (top)
+            cameraAngles[3] = lookAt(origin, -unitY, -unitZ); // Y- (bottom)
+            cameraAngles[4] = lookAt(origin, unitZ, -unitY); // Z+ (front)
+            cameraAngles[5] = lookAt(origin, -unitZ, -unitY); // Z- (back)
+
 
          };
 
@@ -170,7 +190,7 @@ namespace gpu
 
             pgpucommandbuffer->begin_render(m_pshaderHdri, m_ptextureCubemap);
 
-            pgpucommandbuffer->set_source(m_ptextureHdr);
+            //pgpucommandbuffer->set_source(m_ptextureHdr);
 
             auto mvp = projection * impact * model;
 
@@ -199,6 +219,8 @@ namespace gpu
          m_ptextureCubemap->set_current_layer(-1);
 
          m_ptextureCubemap->set_state(pgpucommandbuffer, ::gpu::e_texture_state_shader_read);
+
+         m_ptextureCubemap->set_ok_flag();
 
          m_pgpucontext->endSingleTimeCommands(pgpucommandbuffer);
 

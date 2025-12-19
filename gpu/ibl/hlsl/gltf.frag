@@ -1,9 +1,4 @@
-﻿// This file was automatically generated from a command line like:
-// application_build_helper --inline-text "pbr.frag"
-#pragma once
-
-
-const char g_psz_pbr_frag[] = R"frag_text(// pbr1.frag
+// pbr1.frag
 // Converted from Vulkan GLSL to HLSL
 // Maintains original comments and structure
 // by Camilo <3ThomasBorregaardSorensen!!
@@ -277,8 +272,3 @@ PSOutput main(PSInput input)
 
     return output;
 }
-)frag_text";
-
-
-
-

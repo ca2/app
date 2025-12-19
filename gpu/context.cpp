@@ -83,6 +83,95 @@ namespace gpu_gpu
    }
 
 
+   void context::load_ktxTexture(::pointer<::gpu::texture> & ptexture, void * p_ktxTexture)
+   {
+
+      throw ::interface_only();
+
+   }
+
+
+   
+      ::pointer<::gpu::texture>context::load_cube_map(const ::scoped_string &scopedstrName, const ::file::path &path,
+                                                   bool b32)
+   {
+   
+         auto ptexture = øcreate<::gpu::texture>();
+   
+         ptexture->m_pgpurenderer = m_pgpurenderer;
+
+         ptexture->m_textureflags.m_bShaderResource = true;
+
+         auto memory = file()->as_memory(path);
+
+         //         ::string relativePath = fileName;
+         //       ::string path = directory + '/' + relativePath;
+
+         auto inputData = memory.data();
+
+         auto inputSize = memory.size();
+   
+         try
+         {
+   
+            if (path.case_insensitive_ends(".ktx"))
+            {
+   
+         // Create ktxTexture from memory
+               ktxTexture *kTexture = nullptr;
+               KTX_error_code result =
+                  ktxTexture_CreateFromMemory(inputData, inputSize, KTX_TEXTURE_CREATE_LOAD_IMAGE_DATA_BIT, &kTexture);
+
+               if (result != KTX_SUCCESS)
+               {
+                  warning() << "Failed to load KTX from memory\n";
+                  return {};
+               }
+               ktxTexture1 *tex1 = (ktxTexture1 *)kTexture;
+               information() << "Width=" << kTexture->baseWidth << " Height=" << kTexture->baseHeight
+                             << " Levels=" << kTexture->numLevels << " glInternalFormat=" << tex1->glInternalformat
+                             << "\n";
+
+               load_ktxTexture_cube_map(ptexture, kTexture);
+
+               // Cleanup ktx object (OpenGL texture stays alive)
+               ktxTexture_Destroy(kTexture);
+
+            }
+            else if (path.case_insensitive_ends(".hdr"))
+            {
+   
+               try
+               {
+   
+                  auto ptexture = cubemap_from_hdr(path);
+                  return ptexture;
+               }
+               catch (const ::exception &e)
+               {
+   
+                  throw ::exception(e.m_estatus,
+                                    "Failed to load HDR cubemap '" + scopedstrName + "': " + e.get_message());
+               }
+            }
+            else
+            {
+   
+               warning() << "not implemented loadCubemap case";
+            }
+         }
+         catch (const ::exception &e)
+         {
+   
+            throw ::exception(e.m_estatus, "Failed to load HDR cubemap '" + scopedstrName + "': " + e.get_message());
+         }
+   
+         return ptexture;
+
+      }
+
+
+
    void context::load_generic_texture(::pointer<::gpu::texture> &ptexture, const ::file::path &path,
                                       int iAssimpTextureType)
    {
@@ -100,8 +189,6 @@ namespace gpu_gpu
 
       auto inputSize = memory.size();
 
-      GLuint textureId = 0;
-      GLenum glTarget = 0;
 
       if (path.case_insensitive_ends(".hdr"))
       {
@@ -122,22 +209,13 @@ namespace gpu_gpu
          information() << "Width=" << kTexture->baseWidth << " Height=" << kTexture->baseHeight
                        << " Levels=" << kTexture->numLevels << " glInternalFormat=" << tex1->glInternalformat << "\n";
 
-         // Upload to OpenGL
-         GLenum glerror = 0;
-         // auto result2 = ktxTexture_GLUpload(kTexture, &textureId, nullptr, &glerror);
-         auto result2 = ktxTexture_GLUpload(kTexture, &textureId, &glTarget, &glerror);
-
-         if (result2 != KTX_SUCCESS)
-         {
-            warning() << "Failed to upload KTX to OpenGL\n";
-            ktxTexture_Destroy(kTexture);
-            return;
-         }
-
-         information() << "Texture uploaded to OpenGL with ID " << textureId << "\n";
+         load_ktxTexture(ptexture, kTexture);
 
          // Cleanup ktx object (OpenGL texture stays alive)
          ktxTexture_Destroy(kTexture);
+
+         return;
+
       }
       else
       {
@@ -241,6 +319,11 @@ namespace gpu_gpu
       return pmodel;
    }
 
+   void context::load_ktxTexture_cube_map(::pointer<::gpu::texture> & pgputexture, void * p_ktxTexture)
+   {
 
+      throw ::interface_only();
+
+   }
 
 } // namespace gpu_gpu

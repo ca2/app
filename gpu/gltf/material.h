@@ -46,6 +46,7 @@ namespace gpu
 
          enum AlphaMode
          {
+            ALPHAMODE_NONE,
             ALPHAMODE_OPAQUE,
             ALPHAMODE_MASK,
             ALPHAMODE_BLEND

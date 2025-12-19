@@ -745,122 +745,122 @@ namespace gpu_opengl
    }
 
 
-   ::pointer<::gpu::texture> context::load_cube_map(const ::scoped_string &scopedstrName, const ::file::path &path,
-                                                 bool b32)
-   {
-
-      ::gpu::context_lock contextlock(this);
-
-      ::pointer<::gpu::texture> ptexture;
-
-      // VkFormat vkformat;
-      //
-      // if (!b32)
-      // {
-      //
-      //    vkformat = VK_FORMAT_R16G16B16A16_SFLOAT;
-      // }
-      // else
-      // {
-      //
-      //    vkformat = VK_FORMAT_R32G32B32A32_SFLOAT;
-      // }
-
-      //::cast<gpu_vulkan::context> pcontext = m_pgpurenderer->m_pgpucontext;
-      //::cast<gpu_vulkan::queue> pqueueCopy = pcontext->transfer_queue();
-
-      //auto vkqueueCopy = pqueueCopy->m_vkqueue;
-
-      //VkImageUsageFlags usageFlags = VK_IMAGE_USAGE_SAMPLED_BIT | VK_IMAGE_USAGE_TRANSFER_DST_BIT;
-
-      //VkImageLayout initialLayout = VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL;
-
-      //auto ptexture = loadCubemap(scopedstrName, path, vkformat, vkqueueCopy, usageFlags, initialLayout);
-
-      ptexture = loadCubemap(scopedstrName, path, b32);
-
-      return ptexture;
-
-   }
-
-
-   ::pointer<::gpu::texture> context::loadCubemap(const ::scoped_string &name, const ::file::path & pathFile,
-      bool b32)
-//                                               VkFormat format, VkQueue vkqueueCopy, VkImageUsageFlags usageFlags,
-  //                                             VkImageLayout initialLayout)
-   {
-      // if (auto it = m_textures.find(name); it != m_textures.end())
-      // return it->element2();
-
-      ///::cast<::gpu_opengl::queue> pqueueGraphics = this->graphics_queue();
-      ///
-
-      auto pqueueGraphics = m_pgpudevice->graphics_queue();
-
-      if (pathFile.case_insensitive_ends(".ktx"))
-      {
-
-         auto tex = øcreate<::gpu::texture>();
-
-         // tex->m_pDevice = &m_pgpudevice;
-
-         ::cast<::gpu_opengl::texture> ptexture = tex;
-
-         ptexture->m_pgpurenderer = m_pgpurenderer;
-
-         try
-         {
-
-            // ptexture->KtxLoadCubemapFromFile(name, ktxFilename, format, pqueueGraphics->m_vkqueue, usageFlags,
-            // initialLayout);
-
-            ptexture->KtxLoadCubemapFromFile(name, pathFile, b32);
-
-         }
-         catch (const ::exception &e)
-         {
-            
-            throw ::exception(e.m_estatus, "Failed to load HDR cubemap '" + name + "': " + e.get_message());
-
-         }
-
-         return tex;
-
-      }
-      else if (pathFile.case_insensitive_ends(".hdr"))
-      {
-
-         try
-         {
-
-            // ptexture->KtxLoadCubemapFromFile(name, ktxFilename, format, pqueueGraphics->m_vkqueue, usageFlags,
-            // initialLayout);
-
-            auto ptexture = cubemap_from_hdr(pathFile);
-
-            return ptexture;
-
-         }
-         catch (const ::exception &e)
-         {
-            throw ::exception(e.m_estatus, "Failed to load HDR cubemap '" + name + "': " + e.get_message());
-         }
-      }
-      else
-      {
-
-         ::string strMessage;
-
-         strMessage.format("loadCubemap doesn't yet support this file extension (path: \"{}\")", pathFile);
-
-         error() << strMessage;
-
-         throw ::not_implemented( strMessage);
-
-      }
-      // registerTextureIfNeeded(name, tex, m_textures, m_textureIndexMap, m_textureList);
-      
-   }
+//   ::pointer<::gpu::texture> context::load_cube_map(const ::scoped_string &scopedstrName, const ::file::path &path,
+//                                                 bool b32)
+//   {
+//
+//      ::gpu::context_lock contextlock(this);
+//
+//      ::pointer<::gpu::texture> ptexture;
+//
+//      // VkFormat vkformat;
+//      //
+//      // if (!b32)
+//      // {
+//      //
+//      //    vkformat = VK_FORMAT_R16G16B16A16_SFLOAT;
+//      // }
+//      // else
+//      // {
+//      //
+//      //    vkformat = VK_FORMAT_R32G32B32A32_SFLOAT;
+//      // }
+//
+//      //::cast<gpu_vulkan::context> pcontext = m_pgpurenderer->m_pgpucontext;
+//      //::cast<gpu_vulkan::queue> pqueueCopy = pcontext->transfer_queue();
+//
+//      //auto vkqueueCopy = pqueueCopy->m_vkqueue;
+//
+//      //VkImageUsageFlags usageFlags = VK_IMAGE_USAGE_SAMPLED_BIT | VK_IMAGE_USAGE_TRANSFER_DST_BIT;
+//
+//      //VkImageLayout initialLayout = VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL;
+//
+//      //auto ptexture = loadCubemap(scopedstrName, path, vkformat, vkqueueCopy, usageFlags, initialLayout);
+//
+//      ptexture = loadCubemap(scopedstrName, path, b32);
+//
+//      return ptexture;
+//
+//   }
+//
+//
+//   ::pointer<::gpu::texture> context::loadCubemap(const ::scoped_string &name, const ::file::path & pathFile,
+//      bool b32)
+////                                               VkFormat format, VkQueue vkqueueCopy, VkImageUsageFlags usageFlags,
+//  //                                             VkImageLayout initialLayout)
+//   {
+//      // if (auto it = m_textures.find(name); it != m_textures.end())
+//      // return it->element2();
+//
+//      ///::cast<::gpu_opengl::queue> pqueueGraphics = this->graphics_queue();
+//      ///
+//
+//      auto pqueueGraphics = m_pgpudevice->graphics_queue();
+//
+//      if (pathFile.case_insensitive_ends(".ktx"))
+//      {
+//
+//         auto tex = øcreate<::gpu::texture>();
+//
+//         // tex->m_pDevice = &m_pgpudevice;
+//
+//         ::cast<::gpu_opengl::texture> ptexture = tex;
+//
+//         ptexture->m_pgpurenderer = m_pgpurenderer;
+//
+//         try
+//         {
+//
+//            // ptexture->KtxLoadCubemapFromFile(name, ktxFilename, format, pqueueGraphics->m_vkqueue, usageFlags,
+//            // initialLayout);
+//
+//            ptexture->KtxLoadCubemapFromFile(name, pathFile, b32);
+//
+//         }
+//         catch (const ::exception &e)
+//         {
+//            
+//            throw ::exception(e.m_estatus, "Failed to load HDR cubemap '" + name + "': " + e.get_message());
+//
+//         }
+//
+//         return tex;
+//
+//      }
+//      else if (pathFile.case_insensitive_ends(".hdr"))
+//      {
+//
+//         try
+//         {
+//
+//            // ptexture->KtxLoadCubemapFromFile(name, ktxFilename, format, pqueueGraphics->m_vkqueue, usageFlags,
+//            // initialLayout);
+//
+//            auto ptexture = cubemap_from_hdr(pathFile);
+//
+//            return ptexture;
+//
+//         }
+//         catch (const ::exception &e)
+//         {
+//            throw ::exception(e.m_estatus, "Failed to load HDR cubemap '" + name + "': " + e.get_message());
+//         }
+//      }
+//      else
+//      {
+//
+//         ::string strMessage;
+//
+//         strMessage.format("loadCubemap doesn't yet support this file extension (path: \"{}\")", pathFile);
+//
+//         error() << strMessage;
+//
+//         throw ::not_implemented( strMessage);
+//
+//      }
+//      // registerTextureIfNeeded(name, tex, m_textures, m_textureIndexMap, m_textureList);
+//      
+//   }
 
 
    //   string context::load_fragment(const ::scoped_string & scopedstrPath, enum_shader & eshader)
@@ -1268,6 +1268,7 @@ void main() {
 
             auto pbindingSampler = m_pshaderBlend3->binding();
             pbindingSampler->m_ebinding = ::gpu::e_binding_sampler2d;
+            pbindingSampler->m_iTextureUnit = 0;
             //m_pshaderBlend3->m_bT
             //m_pshaderBlend3->m_pgpurenderer = this;
             //m_pshaderBlend3->m_setbindingSampler = 0;
@@ -2893,167 +2894,167 @@ color = vec4(c.r,c.g, c.b, c.a);
    }
 
 
-   void context::load_generic_texture(::pointer<::gpu::texture> &ptexture, const ::file::path &path,
-                                      int iAssimpTextureType)
-   {
+   //void context::load_generic_texture(::pointer<::gpu::texture> &ptexture, const ::file::path &path,
+   //                                   int iAssimpTextureType)
+   //{
 
-      ødefer_construct(ptexture);
+   //   ødefer_construct(ptexture);
 
-      auto memory = file()->as_memory(path);
+   //   auto memory = file()->as_memory(path);
 
-      //         ::string relativePath = fileName;
-      //       ::string path = directory + '/' + relativePath;
+   //   //         ::string relativePath = fileName;
+   //   //       ::string path = directory + '/' + relativePath;
 
-      auto inputData = memory.data();
+   //   auto inputData = memory.data();
 
-      auto inputSize = memory.size();
+   //   auto inputSize = memory.size();
 
-      GLuint textureId = 0;
-      GLenum glTarget = 0;
-      
-      if (path.case_insensitive_ends(".hdr"))
-      {
-
-
-      }
-      else if (path.case_insensitive_ends(".ktx"))
-      {
-         // Create ktxTexture from memory
-         ktxTexture *kTexture = nullptr;
-         KTX_error_code result = ktxTexture_CreateFromMemory(
-            inputData, inputSize,
-            KTX_TEXTURE_CREATE_LOAD_IMAGE_DATA_BIT,
-            &kTexture);
-
-         if (result != KTX_SUCCESS)
-         {
-            warning() << "Failed to load KTX from memory\n";
-            return;
-         }
-         ktxTexture1* tex1 = (ktxTexture1*)kTexture;
-         information() << "Width=" << kTexture->baseWidth
-                   << " Height=" << kTexture->baseHeight
-                   << " Levels=" << kTexture->numLevels
-                   << " glInternalFormat=" << tex1->glInternalformat << "\n";
-
-         // Upload to OpenGL
-         GLenum glerror = 0;
-         //auto result2 = ktxTexture_GLUpload(kTexture, &textureId, nullptr, &glerror);
-         auto result2 = ktxTexture_GLUpload(kTexture, &textureId, &glTarget, &glerror);
-
-         if (result2 != KTX_SUCCESS)
-         {
-            warning() << "Failed to upload KTX to OpenGL\n";
-            ktxTexture_Destroy(kTexture);
-            return;
-         }
-
-         information() << "Texture uploaded to OpenGL with ID " << textureId << "\n";
-
-         // Cleanup ktx object (OpenGL texture stays alive)
-         ktxTexture_Destroy(kTexture);
-
-      }
-      else
-      {
-         int width, height, numChannels;
+   //   GLuint textureId = 0;
+   //   GLenum glTarget = 0;
+   //   
+   //   if (path.case_insensitive_ends(".hdr"))
+   //   {
 
 
+   //   }
+   //   else if (path.case_insensitive_ends(".ktx"))
+   //   {
+   //      // Create ktxTexture from memory
+   //      ktxTexture *kTexture = nullptr;
+   //      KTX_error_code result = ktxTexture_CreateFromMemory(
+   //         inputData, inputSize,
+   //         KTX_TEXTURE_CREATE_LOAD_IMAGE_DATA_BIT,
+   //         &kTexture);
 
-         unsigned char *data = stbi_load_from_memory(inputData, inputSize, &width, &height, &numChannels, 0);
+   //      if (result != KTX_SUCCESS)
+   //      {
+   //         warning() << "Failed to load KTX from memory\n";
+   //         return;
+   //      }
+   //      ktxTexture1* tex1 = (ktxTexture1*)kTexture;
+   //      information() << "Width=" << kTexture->baseWidth
+   //                << " Height=" << kTexture->baseHeight
+   //                << " Levels=" << kTexture->numLevels
+   //                << " glInternalFormat=" << tex1->glInternalformat << "\n";
 
-         if (!data)
-         {
-            information() << "Failed to load texture data";
-            stbi_image_free(data);
+   //      // Upload to OpenGL
+   //      GLenum glerror = 0;
+   //      //auto result2 = ktxTexture_GLUpload(kTexture, &textureId, nullptr, &glerror);
+   //      auto result2 = ktxTexture_GLUpload(kTexture, &textureId, &glTarget, &glerror);
 
-            return;
-         }
+   //      if (result2 != KTX_SUCCESS)
+   //      {
+   //         warning() << "Failed to upload KTX to OpenGL\n";
+   //         ktxTexture_Destroy(kTexture);
+   //         return;
+   //      }
 
-         GLenum format;
+   //      information() << "Texture uploaded to OpenGL with ID " << textureId << "\n";
 
-         switch (numChannels)
-         {
-            case 1:
-               format = GL_RED;
-               break;
-            case 3:
-               format = GL_RGB;
-               break;
-            case 4:
-               format = GL_RGBA;
-               break;
-         }
+   //      // Cleanup ktx object (OpenGL texture stays alive)
+   //      ktxTexture_Destroy(kTexture);
 
-         GLenum internalFormat = format;
-
-         // account for sRGB textures here
-         //
-         // diffuse textures are in sRGB space (non-linear)
-         // metallic/roughness/normals are usually in linear
-         // AO depends
-         if (iAssimpTextureType == aiTextureType_DIFFUSE)
-         {
-            if (internalFormat == GL_RED)
-            {
-               internalFormat = GL_SRGB;
-            }
-            else if (internalFormat == GL_RGB)
-            {
-               internalFormat = GL_SRGB;
-            }
-            else if (internalFormat == GL_RGBA)
-            {
-               internalFormat = GL_SRGB_ALPHA;
-            }
-         }
-
-         glGenTextures(1, &textureId);
-         glBindTexture(GL_TEXTURE_2D, textureId);
-         glTarget = GL_TEXTURE_2D;
-         // generate the texture
-         if (format == GL_RED && internalFormat == GL_SRGB)
-         {
-            ::memory memory;
-            auto count = width * height;
-            memory.set_size(count * 3);
-            auto ptarget = (unsigned char *)memory.data();
-            auto psource = (unsigned char *)data;
-            format = GL_RGB;
-            for (int i = 0; i < count; i++)
-            {
-               ptarget[0] = *psource;
-               ptarget[1] = *psource;
-               ptarget[2] = *psource;
-               ptarget += 3;
-               psource++;
-            }
-            glTexImage2D(GL_TEXTURE_2D, 0, internalFormat, width, height, 0, format, GL_UNSIGNED_BYTE, memory.data());
-         }
-         else
-         {
-            glTexImage2D(GL_TEXTURE_2D, 0, internalFormat, width, height, 0, format, GL_UNSIGNED_BYTE, data);
-         }
-         glGenerateMipmap(GL_TEXTURE_2D);
-
-         // texture wrapping/filtering options
-         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR); // image is resized using bilinear filtering
-         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR); // image is enlarged using bilinear filtering
-
-         // free the image data
-         stbi_image_free(data);
-
-      }
-
-      ::cast<::gpu_opengl::texture> popengltexture = ptexture;
-      popengltexture->m_gluType = glTarget;
-      popengltexture->m_gluTextureID = textureId;
-      ptexture->m_path = path;
+   //   }
+   //   else
+   //   {
+   //      int width, height, numChannels;
 
 
-   }
+
+   //      unsigned char *data = stbi_load_from_memory(inputData, inputSize, &width, &height, &numChannels, 0);
+
+   //      if (!data)
+   //      {
+   //         information() << "Failed to load texture data";
+   //         stbi_image_free(data);
+
+   //         return;
+   //      }
+
+   //      GLenum format;
+
+   //      switch (numChannels)
+   //      {
+   //         case 1:
+   //            format = GL_RED;
+   //            break;
+   //         case 3:
+   //            format = GL_RGB;
+   //            break;
+   //         case 4:
+   //            format = GL_RGBA;
+   //            break;
+   //      }
+
+   //      GLenum internalFormat = format;
+
+   //      // account for sRGB textures here
+   //      //
+   //      // diffuse textures are in sRGB space (non-linear)
+   //      // metallic/roughness/normals are usually in linear
+   //      // AO depends
+   //      if (iAssimpTextureType == aiTextureType_DIFFUSE)
+   //      {
+   //         if (internalFormat == GL_RED)
+   //         {
+   //            internalFormat = GL_SRGB;
+   //         }
+   //         else if (internalFormat == GL_RGB)
+   //         {
+   //            internalFormat = GL_SRGB;
+   //         }
+   //         else if (internalFormat == GL_RGBA)
+   //         {
+   //            internalFormat = GL_SRGB_ALPHA;
+   //         }
+   //      }
+
+   //      glGenTextures(1, &textureId);
+   //      glBindTexture(GL_TEXTURE_2D, textureId);
+   //      glTarget = GL_TEXTURE_2D;
+   //      // generate the texture
+   //      if (format == GL_RED && internalFormat == GL_SRGB)
+   //      {
+   //         ::memory memory;
+   //         auto count = width * height;
+   //         memory.set_size(count * 3);
+   //         auto ptarget = (unsigned char *)memory.data();
+   //         auto psource = (unsigned char *)data;
+   //         format = GL_RGB;
+   //         for (int i = 0; i < count; i++)
+   //         {
+   //            ptarget[0] = *psource;
+   //            ptarget[1] = *psource;
+   //            ptarget[2] = *psource;
+   //            ptarget += 3;
+   //            psource++;
+   //         }
+   //         glTexImage2D(GL_TEXTURE_2D, 0, internalFormat, width, height, 0, format, GL_UNSIGNED_BYTE, memory.data());
+   //      }
+   //      else
+   //      {
+   //         glTexImage2D(GL_TEXTURE_2D, 0, internalFormat, width, height, 0, format, GL_UNSIGNED_BYTE, data);
+   //      }
+   //      glGenerateMipmap(GL_TEXTURE_2D);
+
+   //      // texture wrapping/filtering options
+   //      glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+   //      glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+   //      glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR); // image is resized using bilinear filtering
+   //      glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR); // image is enlarged using bilinear filtering
+
+   //      // free the image data
+   //      stbi_image_free(data);
+
+   //   }
+
+   //   ::cast<::gpu_opengl::texture> popengltexture = ptexture;
+   //   popengltexture->m_gluType = glTarget;
+   //   popengltexture->m_gluTextureID = textureId;
+   //   ptexture->m_path = path;
+   //   ptexture->set_ok_flag();
+
+   //}
 
    // ------------------------------
    // Translation

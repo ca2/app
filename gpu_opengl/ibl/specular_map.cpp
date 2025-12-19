@@ -212,10 +212,10 @@ namespace gpu_opengl
       // }
 
 
-      void specular_map::computeBrdfConvolutionMap()
+      void specular_map::computeBrdfConvolutionMap(::gpu::command_buffer *pgpucommandbuffer)
       {
 
-         ::gpu::ibl::specular_map::computeBrdfConvolutionMap();
+         ::gpu::ibl::specular_map::computeBrdfConvolutionMap(pgpucommandbuffer);
 
          // //Timer timer;
          //

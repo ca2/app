@@ -88,6 +88,8 @@ namespace gpu_opengl
 
       //::gpu::context_lock contextlock(m_pgpucontext);
 
+      ::gpu::context_lock contextlock(m_pgpucontext);
+
       if (m_pbufferVertex)
       {
 

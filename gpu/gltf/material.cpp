@@ -35,7 +35,9 @@ namespace gpu
 
                øconstruct(m_pbindingslotsetSceneGltfPbr);
 
-               m_pbindingslotsetSceneGltfPbr->m_pbindingset = m_pgpucontext->scene_gltf_pbr_binding_set();
+               auto pbindingset = m_pgpucontext->scene_gltf_pbr_binding_set();
+
+               m_pbindingslotsetSceneGltfPbr->initialize_binding_slot_set(pbindingset);
 
                m_pbindingslotsetSceneGltfPbr->set_texture(m_textureaPbr, pmodel);
                // auto pbindingslot0 = m_pbindingslotsetSceneGltfPbr->binding_slot(0);
@@ -44,6 +46,8 @@ namespace gpu
                // auto pbindingslot1 = m_pbindingslotsetSceneGltfPbr->binding_slot(1);
                // pbindingslot1->m_ptexture = m_ptextureNormal;
             }
+            return m_pbindingslotsetSceneGltfPbr;
+
          }
          else if (pbindingset->size() == 5)
          {
@@ -59,7 +63,11 @@ namespace gpu
 
                øconstruct(m_pbindingslotsetGltfPbr);
 
-               m_pbindingslotsetGltfPbr->m_pbindingset = m_pgpucontext->gltf_pbr_binding_set();
+               //m_pbindingslotsetGltfPbr->m_pbindingset = m_pgpucontext->gltf_pbr_binding_set();
+
+               auto pbindingset = m_pgpucontext->gltf_pbr_binding_set();
+
+               m_pbindingslotsetGltfPbr->initialize_binding_slot_set(pbindingset);
 
                m_pbindingslotsetGltfPbr->set_texture(m_textureaPbr, pmodel);
                // auto pbindingslot0 = m_pbindingslotsetGltfPbr->binding_slot(0);

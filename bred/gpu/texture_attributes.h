@@ -27,7 +27,7 @@ namespace gpu
       }
 
 
-      void set_cubemap(int iMipCount)
+      void set_cubemap(int iMipCount = 1)
       {
 
          m_etexture = e_texture_cube_map;

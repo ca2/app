@@ -9,6 +9,7 @@
 #include "renderer.h"
 #include "swap_chain.h"
 #include "texture.h"
+#include "bred/gpu/binding.h"
 #include "bred/gpu/context_lock.h"
 #include "bred/gpu/device.h"
 #include "bred/gpu/frame.h"
@@ -74,9 +75,9 @@ void main() {
 //FragColor=vec4(0.0, 0.0, 0.5, 0.5);
 //}
 //else
-//{
+{
 FragColor = texture(uTexture, TexCoord);
-//}
+}
 
 }
 )frag";
@@ -86,12 +87,18 @@ FragColor = texture(uTexture, TexCoord);
             m_pshaderCopyTextureOnEndDraw->m_bEnableBlend = false;
 
             m_pshaderCopyTextureOnEndDraw->m_bDisableDepthTest = true;
+            auto pbindingTexture = m_pshaderCopyTextureOnEndDraw->binding();
+            pbindingTexture->m_ebinding = ::gpu::e_binding_sampler2d;
+            pbindingTexture->m_iTextureUnit = 0;
 
             m_pshaderCopyTextureOnEndDraw->initialize_shader_with_block(
                m_pgpurenderer, pvertexshader, pfragmentshader, 
                //{}, {},
                m_pgpucontext->input_layout(::gpu_properties<::graphics3d::sequence2_uv>()));
-
+            øconstruct_new(m_ptextureSwapChain);
+            m_ptextureSwapChain->m_pgpurenderer = m_pgpucontext->m_pgpurenderer;
+            m_ptextureSwapChain->m_gluTextureID = -1023;
+            m_ptextureSwapChain->m_gluType = 0;
          }
 
          glBindFramebuffer(GL_FRAMEBUFFER, 0);
@@ -100,6 +107,8 @@ FragColor = texture(uTexture, TexCoord);
          auto pcommandbuffer = m_pgpucontext->m_pgpurenderer->getCurrentCommandBuffer2(::gpu::current_frame());
 
          auto sizeContext = m_pgpucontext->m_rectangle.size();
+         
+         pcommandbuffer->begin_render(m_pshaderCopyTextureOnEndDraw, m_ptextureSwapChain);
 
          pcommandbuffer->set_viewport(sizeContext);
 
@@ -109,7 +118,7 @@ FragColor = texture(uTexture, TexCoord);
          glEnable(GL_DEPTH_TEST);
          glDepthMask(GL_TRUE);
 
-         glClearColor(0.f, 0.5f, 0.f, 0.5f);
+         glClearColor(0.8f, 0.5f, 0.f, 0.8f);
          glClearDepth(1.0f);
          glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
          glDisable(GL_BLEND);
@@ -132,7 +141,7 @@ FragColor = texture(uTexture, TexCoord);
 
             pmodelbufferFullscreenQuad->unbind(pcommandbuffer);
 
-            m_pshaderCopyTextureOnEndDraw->unbind(pcommandbuffer);
+            m_pgpucontext->defer_unbind_shader();
 
          }
 

@@ -586,6 +586,8 @@ namespace graphics3d
 
          m_pblockGlobalUbo = pgpucontext->create_global_ubo1(ppropertyProperties);
 
+         //m_pblockGlobalUbo->m_pbindingslotset = m_p
+
       }
 
       return m_pblockGlobalUbo;

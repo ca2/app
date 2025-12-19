@@ -72,7 +72,7 @@ namespace gpu_opengl
       ::memory white_to_color_sampler_frag() override;
 
 
-      void load_generic_texture(::pointer < ::gpu::texture > & ptexture, const file::path &path, int iAssimpTextureType) override;
+      //void load_generic_texture(::pointer < ::gpu::texture > & ptexture, const file::path &path, int iAssimpTextureType) override;
 
 
       //virtual void create_offscreen_buffer(const ::int_size& size);
@@ -155,8 +155,8 @@ namespace gpu_opengl
 
       ::pointer<::graphics3d::renderable> _load_gltf_model(const ::gpu::renderable_t &model) override;
 
-      ::pointer<::gpu::texture> load_cube_map(const ::scoped_string &scopedstrName, const ::file::path &path,
-                                              bool b32) override;
+      //::pointer<::gpu::texture> load_cube_map(const ::scoped_string &scopedstrName, const ::file::path &path,
+      //                                        bool b32) override;
 
       // ::pointer<::gpu::texture> loadCubemap(
       //    const ::scoped_string& name,
@@ -165,10 +165,10 @@ namespace gpu_opengl
       //    VkQueue vkqueueCopy,
       //    VkImageUsageFlags usageFlags,
       //    VkImageLayout initialLayout);
-      ::pointer<::gpu::texture> loadCubemap(
-         const ::scoped_string& name,
-         const ::file::path & pathFile,
-         bool b32);
+//      ::pointer<::gpu::texture> loadCubemap(
+         //const ::scoped_string& name,
+         //const ::file::path & pathFile,
+         //bool b32);
 
 //       /// @brief generatePrefilteredEnvMap
 //       /// @param environmentCubeExisting
@@ -208,6 +208,8 @@ namespace gpu_opengl
       //floating_matrix4 lookAt(const float_sequence3 &eye, const float_sequence3 &center, const float_sequence3 &up) override;
 
        floating_sequence3 front(const ::graphics3d::floating_rotation &rotation) override;
+       void load_ktxTexture(::pointer<::gpu::texture> &ptexture, void *p_ktxTexture) override;
+       void load_ktxTexture_cube_map(::pointer<::gpu::texture> &ptexture, void *p_ktxTexture) override;
 
    };
 

@@ -1,6 +1,8 @@
 #include "framework.h"
 #include "wavefront_obj_render_system.h"
 #include "bred/graphics3d/engine.h"
+#include "bred/gpu/binding.h"
+#include "bred/gpu/block.h"
 #include "bred/gpu/command_buffer.h"
 #include "bred/gpu/context.h"
 #include "bred/gpu/device.h"
@@ -129,8 +131,23 @@ namespace graphics3d
 	void wavefront_obj_render_system::on_render(::gpu::context * pgpucontext, ::graphics3d::scene_base* pscene)
 	{
 
-		m_pshader->bind(
-         ::gpu::current_command_buffer(), pgpucontext->current_target_texture(::gpu::current_frame()));
+      auto pgpucommandbuffer = ::gpu::current_command_buffer();
+
+      pgpucommandbuffer->set_shader(m_pshader);
+
+            auto pblockGlobalUbo1 = pscene->global_ubo1(pgpucontext);
+
+      // auto pbindingsetGlobalUbo =
+
+      // pgpucommandbuffer->set_block(pblockGlobalUbo);
+
+      auto pbindingslotsetGlobalUbo1 =
+         pblockGlobalUbo1->binding_slot_set(pgpucommandbuffer, pgpucontext->global_ubo1_binding_set());
+
+      pgpucommandbuffer->bind_slot_set(0, pbindingslotsetGlobalUbo1);
+
+		//m_pshader->bind(
+  //       ::gpu::current_command_buffer(), pgpucontext->current_target_texture(::gpu::current_frame()));
 
 	   auto pgamelayer = m_pengine->m_pimmersionlayer;
 
@@ -177,23 +194,23 @@ namespace graphics3d
 
 				m_pshader->m_propertiesPushShared["normalMatrix"] = matrixNormal;
 
-				auto pcommandbuffer = pgpucontext->m_pgpurenderer->getCurrentCommandBuffer2(::gpu::current_frame());
+				///auto pcommandbuffer = pgpucontext->m_pgpurenderer->getCurrentCommandBuffer2(::gpu::current_frame());
 
-				m_pshader->push_properties(pcommandbuffer);
+				m_pshader->push_properties(pgpucommandbuffer);
 
             //prenderable->bind(pcommandbuffer);
 
             on_before_draw_renderable(pgpucontext, pscene, pscenerenderable);
 
-            pcommandbuffer->draw(prenderable);
+            pgpucommandbuffer->draw(prenderable);
 
-				prenderable->unbind(pcommandbuffer);
+				prenderable->unbind(pgpucommandbuffer);
 
 			}
 
 		}
 
-		m_pshader->unbind(::gpu::current_command_buffer());
+		//m_pshader->unbind(::gpu::current_command_buffer());
 
 	}
 

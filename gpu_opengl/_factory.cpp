@@ -1,6 +1,7 @@
 #include "framework.h"
 #include "_gpu_opengl.h"
 #include "approach.h"
+#include "block.h"
 #include "command_buffer.h"
 #include "context.h"
 #include "cpu_buffer.h"
@@ -87,6 +88,7 @@ __FACTORY_EXPORT void gpu_opengl_factory(::factory::factory * pfactory)
    pfactory->add_factory_item < ::gpu_opengl::model_buffer, ::gpu::model_buffer >();
 
 
+   pfactory->add_factory_item<::gpu_opengl::block, ::gpu::block>();
    pfactory->add_factory_item < ::gpu_opengl::memory_buffer, ::gpu::memory_buffer >();
    pfactory->add_factory_item < ::gpu::frame_ephemeral >();
    pfactory->add_factory_item < ::gpu::frame_storage >();

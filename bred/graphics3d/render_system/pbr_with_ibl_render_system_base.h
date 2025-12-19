@@ -29,12 +29,13 @@ namespace graphics3d
 	{
 	public:
 
-      const int TEXTURE_UNIT_DIFFUSE_IRRADIANCE_MAP = 10;
-      const int TEXTURE_UNIT_PREFILTERED_ENV_MAP = 11;
-      const int TEXTURE_UNIT_BRDF_CONVOLUTION_MAP = 12;
 
 
       ::graphics3d::scene_renderable *m_pscenerenderableCurrent;
+      bool m_bImplMetallic = true;
+      bool m_bImplAO = true;
+      bool m_bImplEmissive = true;
+
       bool m_bDisableAlbedo = false;
       bool m_bDisableMetallicRoughness = false;
       bool m_bDisableNormal = false;

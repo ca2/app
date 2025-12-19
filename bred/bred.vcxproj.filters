@@ -79,6 +79,9 @@
     <Filter Include="Header Files\graphics3d\render_system">
       <UniqueIdentifier>{15a92ab9-5e5c-4212-a9ee-14414fe01032}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\ibl">
+      <UniqueIdentifier>{c8a13f51-9795-45d5-bdb1-1db594b5ddf3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -422,6 +425,9 @@
     </ClInclude>
     <ClInclude Include="gpu\empty_texture_source.h">
       <Filter>Header Files\gpu</Filter>
+    </ClInclude>
+    <ClInclude Include="ibl\_.h">
+      <Filter>Header Files\ibl</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

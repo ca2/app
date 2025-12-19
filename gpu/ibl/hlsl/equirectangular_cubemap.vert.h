@@ -19,18 +19,17 @@ struct VS_OUTPUT
 // register(b1) for "push constants"
 cbuffer MatrixBuffer : register(b1)
 {
-    float4x4 model;
-    float4x4 view;
-    float4x4 projection;
+    float4x4 mvp;
 };
 
 VS_OUTPUT main(VS_INPUT input)
 {
     VS_OUTPUT output;
 
-    float4 worldPos = mul(float4(input.position,1), model);
-    float4 viewPos  = mul(worldPos, view);
-    output.position = mul(viewPos, projection);
+    //float4 worldPos = mul(float4(input.position,1), model);
+    //float4 viewPos  = mul(worldPos, view);
+    //output.position = mul(viewPos, projection);
+    output.position = mul(float4(input.position,1), mvp);
 
     output.modelCoordinates = input.position; // for HDRI lookup
     return output;

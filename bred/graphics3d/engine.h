@@ -44,7 +44,7 @@ namespace graphics3d
 		bool													         m_bEngineOnFrameContextInitialization = false;
 
 		bool                                               m_bLoadedEngine = false;
-
+      float m_fInputPitchFlip;
 		//::image32_callback                        m_callbackImage32CpuBuffer;
       ::pointer<::graphics3d::shape_factory> m_pshapefactory;
 

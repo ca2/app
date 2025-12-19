@@ -2,6 +2,7 @@
 #include "skybox_render_system.h"
 #include "bred/gltf/vertex.h"
 #include "bred/gpu/binding.h"
+#include "bred/gpu/block.h"
 #include "bred/gpu/command_buffer.h"
 #include "bred/gpu/device.h"
 #include "bred/gpu/frame.h"
@@ -138,6 +139,7 @@ namespace graphics3d
       auto pbindingCubeSampler = m_pshaderHdr->binding(1, 0);
       pbindingCubeSampler->m_strUniform = "skybox";
       pbindingCubeSampler->m_ebinding = ::gpu::e_binding_cube_sampler;
+      pbindingCubeSampler->m_iTextureUnit = 0;
          
       //m_pshader->m_bindingCubeSampler.m_uSet = 1;
 
@@ -179,6 +181,7 @@ namespace graphics3d
          auto pbindingCubeSampler = m_pshaderNormal->binding(1, 0);
          pbindingCubeSampler->m_strUniform = "skybox";
          pbindingCubeSampler->m_ebinding = ::gpu::e_binding_cube_sampler;
+         pbindingCubeSampler->m_iTextureUnit = 0;
          //m_pshaderNormal->m_bindingCubeSampler.m_strUniform = "skybox";
          // m_pshader->m_bindingCubeSampler.m_uSet = 1;
 
@@ -280,13 +283,22 @@ namespace graphics3d
 
 	   //pgpushader->bind(pgpucommandbuffer, ptextureDst);
 
-      auto pblockGlobalUbo = pscene->global_ubo1(pgpucontext);
+      auto pblockGlobalUbo1 = pscene->global_ubo1(pgpucontext);
 
                              // auto pbindingsetGlobalUbo =
 
-      pgpucommandbuffer->set_block(pblockGlobalUbo);
+      //pgpucommandbuffer->set_block(pblockGlobalUbo);
 
-      pgpucommandbuffer->set_source(ptextureSkybox);
+      auto pbindingslotsetGlobalUbo1 =
+         pblockGlobalUbo1->binding_slot_set(pgpucommandbuffer, pgpucontext->global_ubo1_binding_set());
+
+      pgpucommandbuffer->bind_slot_set(0, pbindingslotsetGlobalUbo1);
+
+      auto pbindingsetSkybox = pgpushader->binding_set(1);
+
+      auto pbindingslotsetSkybox = ptextureSkybox->binding_slot_set(pgpucommandbuffer, pbindingsetSkybox);
+
+      pgpucommandbuffer->bind_slot_set(1, pbindingslotsetSkybox);
 
       //pgpushader->bind_source(pgpucommandbuffer, ptextureSkybox);
 
@@ -357,13 +369,13 @@ namespace graphics3d
             }
             else if (pgpucontext->m_eapi == ::gpu::e_api_vulkan)
             {
-               //y_multiplier = -1.f;
+               y_multiplier = -1.f;
                //z_multiplier = -1.f;
 
 
                // vulkan pbr-renderer was working with this
                // 2-combo: vulkan continuum is also working with this
-               z_multiplier = -1.f;
+               //z_multiplier = -1.f;
             }
          }
          //m_pshader->set_float("y_multiplier", y_multiplier);

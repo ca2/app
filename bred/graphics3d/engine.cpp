@@ -54,6 +54,7 @@ namespace graphics3d
    {
       m_fYScale = 1.0f;
       m_bCreatedGlobalUbo = false;
+      m_fInputPitchFlip = 1.0f;
 
    }
 

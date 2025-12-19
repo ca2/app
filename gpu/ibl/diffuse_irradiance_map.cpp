@@ -76,6 +76,7 @@ namespace gpu
          auto pbindingCubeSampler = m_pshaderDiffuseIrradiance->binding();
          pbindingCubeSampler->m_ebinding = ::gpu::e_binding_cube_sampler;
          pbindingCubeSampler->m_strUniform = "environmentCubemap";
+         pbindingCubeSampler->m_iTextureUnit = 0;
 
          m_pshaderDiffuseIrradiance->initialize_shader_with_block(
             m_pgpucontext->m_pgpurenderer, 
@@ -88,7 +89,9 @@ namespace gpu
          ::gpu::texture_attributes textureattributes(::int_rectangle {
             API_CHANGED_ARGUMENT, m_udiffuse_irradiance_mapWidth, m_udiffuse_irradiance_mapHeight});
 
-         textureattributes.set_cubemap_all_mips();
+         textureattributes.set_cubemap();
+
+         //textureattributes.set_cubemap_all_mips();
 
          ::gpu::texture_flags textureflags;
 
@@ -141,6 +144,8 @@ namespace gpu
 
           m_ptextureDiffuseIrradianceCubemap->set_state(pgpucommandbuffer, ::gpu::e_texture_state_color_attachment);
 
+          m_ptextureDiffuseIrradianceCubemap->set_current_mip(0);
+
           // render to each side of the cubemap
           for (auto i = 0; i < 6; i++)
           {
@@ -178,6 +183,8 @@ namespace gpu
           m_ptextureDiffuseIrradianceCubemap->set_current_layer(-1);
 
           m_ptextureDiffuseIrradianceCubemap->set_state(pgpucommandbuffer, ::gpu::e_texture_state_shader_read);
+
+          m_ptextureDiffuseIrradianceCubemap->set_ok_flag();
          
           timer.logDifference("Rendered diffuse irradiance map");
         

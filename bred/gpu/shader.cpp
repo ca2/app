@@ -145,6 +145,17 @@ namespace gpu
 
          øconstruct(pbindingset);
 
+         auto & pbindingslotset = binding_slot_set_array()->ø(iSet);
+
+         if (ødefer_construct(pbindingslotset))
+         {
+
+            pbindingslotset->m_iSet = iSet;
+
+            pbindingslotset->m_pbindingset = pbindingset;
+
+         }
+
       }
 
       return pbindingset;
@@ -171,7 +182,26 @@ namespace gpu
 
       }
 
-      return pbindingset->binding(iSlot);
+      auto pbinding = pbindingset->binding(iSlot);
+
+      auto &pbindingslotset = binding_slot_set_array()->element_at(iSet);
+
+      ASSERT(::is_set(pbindingslotset));
+
+      auto &bindingslot = pbindingslotset->ø(iSlot);
+
+      if (::is_null(bindingslot.m_pbinding))
+      {
+
+         bindingslot.m_iSet = iSet;
+
+         bindingslot.m_iSlot = iSlot;
+
+         bindingslot.m_pbinding = pbinding;
+
+      }
+
+      return pbinding;
 
    }
 
@@ -209,6 +239,22 @@ namespace gpu
          pbindingslotset->m_pbindingset = pgpubindingset;
          
       }
+      else if (binding_slot_set_array()->m_pbindingseta)
+      {
+
+         if (!pbindingslotset->m_pbindingset)
+         {
+
+            if (iSet < binding_slot_set_array()->m_pbindingseta->size())
+            {
+
+               pbindingslotset->m_pbindingset = binding_slot_set_array()->m_pbindingseta->element_at(iSet);
+
+            }
+
+         }
+
+      }
 
       pbindingslotset->m_iSet = iSet;
 
@@ -217,7 +263,7 @@ namespace gpu
    }
 
 
-   ::gpu::binding_slot * shader::binding_slot(int iSet, int iSlot)
+   ::gpu::binding_slot *shader::binding_slot(int iSet, int iSlot, ::gpu::binding *pgpubinding)
    {
 
       auto pbindingslotset = binding_slot_set(iSet);
@@ -236,7 +282,16 @@ namespace gpu
 
       }
 
-      return pbindingslotset->binding_slot(iSlot);
+      auto pbindingslot = pbindingslotset->binding_slot(iSlot);
+
+      if (::is_set(pgpubinding))
+      {
+
+         pbindingslot->m_pbinding = pgpubinding;
+
+      }
+
+      return pbindingslot;
 
    }
 
@@ -267,9 +322,11 @@ namespace gpu
 
          auto pbindingGlobalUbo = this->binding();
 
-         pbindingGlobalUbo->m_strUniform = "ubo";
+         pbindingGlobalUbo->m_strUniform = "GlobalUbo";
 
          pbindingGlobalUbo->m_ebinding = ::gpu::e_binding_global_ubo1;
+
+         pbindingGlobalUbo->m_iBindingPoint2 = 0;
 
       }
 
@@ -448,6 +505,15 @@ namespace gpu
       throw ::interface_only("shader::bind(::gpu::texture*) not implemented at this shader implementation");
 
    }
+
+
+   void shader::on_bind_already_bound(::gpu::command_buffer *pgpucommandbuffer,
+                                              ::gpu::texture *pgputextureTarget)
+   {
+
+
+   }
+
 
    void shader::bind_block(::gpu::command_buffer *pgpucommandbuffer, ::gpu::block *pgpublock, int iSlot)
    {
@@ -701,6 +767,19 @@ namespace gpu
          auto &a = m_propertiesPushFragment.as_int(strName);
 
          a = value;
+
+      }
+      else
+      {
+
+         ::string strErrorMessage;
+
+         strErrorMessage = "uniform name not found in the property bags."
+                           "Is it just a shader uniform";
+
+         warning(strErrorMessage);
+
+         throw ::exception(error_wrong_state, strErrorMessage);
 
       }
 

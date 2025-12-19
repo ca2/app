@@ -160,7 +160,7 @@ namespace gpu
       virtual void update_binding_slots();
       ::gpu::binding_slot_set_array * binding_slot_set_array();
       ::gpu::binding_slot_set * binding_slot_set(int iSet = 0, ::gpu::binding_set * pgpubindingset = nullptr);
-      ::gpu::binding_slot * binding_slot(int iSet = 0, int iSlot = 0);
+      ::gpu::binding_slot * binding_slot(int iSet = 0, int iSlot = 0, ::gpu::binding * pgpubinding = nullptr);
 
       virtual ::gpu::binding_slot *  get_first_image_sampler_binding_slot();
       virtual ::gpu::binding_slot_set * get_first_image_sampler_binding_slot_set();
@@ -207,6 +207,7 @@ namespace gpu
       //virtual void on_before_draw(::gpu::command_buffer *pgpucommandbuffer);
       virtual void on_set_constant_buffer(const ::scoped_string& scopedstrName);
 
+      virtual void on_bind_already_bound(::gpu::command_buffer *pgpucommandbuffer, ::gpu::texture *pgputextureTarget);
 
       virtual void bind(::gpu::command_buffer * pgpucommandbuffer, ::gpu::texture* pgputextureTarget);
       //virtual void bind(::gpu::command_buffer *pgpucommandbuffer, ::gpu::texture *pgputextureTarget,

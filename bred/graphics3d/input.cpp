@@ -183,7 +183,7 @@ namespace graphics3d
       // convert pixels -> degrees
       auto angleΔYaw = -m_sequence2MouseSmoothΔ.x * m_angleCursorPixel;
       // auto angleΔPitch = m_pengine->m_fYScale * m_sequence2MouseSmoothΔ.y * m_angleCursorPixel; // invert Y for typical FPS
-      auto angleΔPitch = m_sequence2MouseSmoothΔ.y * m_angleCursorPixel; // invert Y for typical FPS
+      auto angleΔPitch = m_pengine->m_fInputPitchFlip * m_sequence2MouseSmoothΔ.y * m_angleCursorPixel; // invert Y for typical FPS
       information("mx={} my={}", m_sequence2MouseSmoothΔ.x, m_sequence2MouseSmoothΔ.y);
       auto pcamera = m_pengine->m_pimmersionlayer->m_pscene->camera();
 

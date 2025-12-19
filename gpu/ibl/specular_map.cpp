@@ -84,6 +84,7 @@ namespace gpu
          auto pbindingSampler = m_pshaderPrefilteredEnvMap->binding();
          pbindingSampler->m_strUniform = "environmentCubemap";
          pbindingSampler->m_ebinding = ::gpu::e_binding_cube_sampler;
+         pbindingSampler->m_iTextureUnit = 0;
 
          m_pshaderPrefilteredEnvMap->m_ecullmode = ::gpu::e_cull_mode_none;
          m_pshaderPrefilteredEnvMap->m_bDisableDepthTest = true;
@@ -120,7 +121,7 @@ namespace gpu
             textureattributesPrefilteredEnvMap, 
             textureflagsPrefilteredEnvMap);
 
-         m_prenderableCube = m_pgpucontext->m_pengine->shape_factory()->create_cube_001(m_pgpucontext, 2.f);
+         m_prenderableCube = m_pgpucontext->m_pengine->shape_factory()->create_cube_001(m_pgpucontext, 1.f);
 
          øconstruct(m_pshaderBrdfConvolution);
 
@@ -192,31 +193,31 @@ namespace gpu
 
             auto mipHeight = m_ptexturePrefilteredEnvMapCubemap->mip_height();
 
-            ::int_rectangle r(0, 0, mipWidth, mipHeight);
-
-            pgpucommandbuffer->set_viewport(r);
-
             // each mip level has increasing roughness
             float roughness = (float)iCurrentMip / (float)(mipCount - 1);
 
             m_pshaderPrefilteredEnvMap->set_float("roughness", roughness);
 
-            for (auto iFace = 0; iFace < 6; iFace++)
+            for (auto iLayer = 0; iLayer < 6; iLayer++)
             {
 
                ::string strMessage;
 
-               strMessage.format("prefiltered_env_map mip {} face {}", iCurrentMip, iFace);
+               strMessage.format("prefiltered_env_map mip {} layer {}", iCurrentMip, iLayer);
 
                m_pgpucontext->start_debug_happening(pgpucommandbuffer, strMessage);
 
-               m_ptexturePrefilteredEnvMapCubemap->set_current_layer(iFace);
+               m_ptexturePrefilteredEnvMapCubemap->set_current_layer(iLayer);
 
                pgpucommandbuffer->begin_render(m_pshaderPrefilteredEnvMap, ptextureTarget);
 
                pgpucommandbuffer->set_source(ptextureSource);
 
-               auto impact = cameraAngles[iFace];
+               ::int_rectangle r(0, 0, mipWidth, mipHeight);
+
+               pgpucommandbuffer->set_viewport(r);
+
+               auto impact = cameraAngles[iLayer];
 
                auto mvp = projection * impact * model;
 
@@ -240,23 +241,27 @@ namespace gpu
 
          ptextureTarget->set_state(pgpucommandbuffer, ::gpu::e_texture_state_shader_read);
 
+         ptextureTarget->set_ok_flag();
+
          timer.logDifference("Rendered specular pre-filtered environment map");
 
       }
 
 
-      void specular_map::computeBrdfConvolutionMap()
+      void specular_map::computeBrdfConvolutionMap(::gpu::command_buffer *pgpucommandbuffer)
       {
 
          ::gpu::Timer timer;
 
-         ::gpu::context_lock contextlock(m_pgpucontext);
+         //::gpu::context_lock contextlock(m_pgpucontext);
 
-         auto pcommandbuffer = m_pgpucontext->beginSingleTimeCommands(m_pgpucontext->m_pgpudevice->graphics_queue());
+         auto pcommandbuffer = pgpucommandbuffer;
+         
+         //auto pcommandbuffer = m_pgpucontext->beginSingleTimeCommands(m_pgpucontext->m_pgpudevice->graphics_queue());
 
-         auto pfullscreenquad = øcreate<::gpu::full_screen_quad>();
+         m_pfullscreenquadBrdf = øcreate<::gpu::full_screen_quad>();
 
-         pfullscreenquad->initialize_full_screen_quad(m_pgpucontext);
+         m_pfullscreenquadBrdf->initialize_full_screen_quad(m_pgpucontext);
          
          pcommandbuffer->begin_render(m_pshaderBrdfConvolution, m_ptextureBrdfConvolutionMap);
 
@@ -268,19 +273,21 @@ namespace gpu
 
          m_pgpucontext->clear(m_ptextureBrdfConvolutionMap, ::color::transparent);
 
-         pcommandbuffer->draw(pfullscreenquad);
+         pcommandbuffer->draw(m_pfullscreenquadBrdf);
          
-         pfullscreenquad->unbind(pcommandbuffer);
+         m_pfullscreenquadBrdf->unbind(pcommandbuffer);
 
          pcommandbuffer->end_render();
 
          m_ptextureBrdfConvolutionMap->set_state(pcommandbuffer, ::gpu::e_texture_state_shader_read);
 
-         m_pgpucontext->endSingleTimeCommands(pcommandbuffer);
+         m_ptextureBrdfConvolutionMap->set_ok_flag();
+
+         //m_pgpucontext->endSingleTimeCommands(pcommandbuffer);
 
          timer.logDifference("Rendered specular brdf convolution map");
 
-         m_pgpucontext->end_debug_happening(pcommandbuffer);
+         //m_pgpucontext->end_debug_happening(pcommandbuffer);
 
       }
 

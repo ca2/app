@@ -67,6 +67,8 @@ namespace gpu_opengl
          ::string filename,
          bool b32);
 
+            virtual void KtxLoadCubemapFrom_ktxTexture(const ::scoped_string &name, void *p_ktxTexture, bool b32);
+
       //void set_cube_face(int iFace, ::gpu::shader * pgpushader) override;
 
       void generate_mipmap(::gpu::command_buffer * pgpucommandbuffer) override;

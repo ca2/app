@@ -431,6 +431,7 @@
     <ClInclude Include="graphics3d\_.h" />
     <ClInclude Include="graphics3d\_constant.h" />
     <ClInclude Include="graphics3d\_functions.h" />
+    <ClInclude Include="ibl\_.h" />
     <ClInclude Include="id.h" />
     <ClInclude Include="include\_.h" />
     <ClInclude Include="platform\application.h" />

@@ -26,7 +26,7 @@ namespace gpu_opengl
       ~block() override;
 
 
-      void initialize_gpu_block(::gpu::context *pgpucontext) override;
+      //void initialize_gpu_block(::gpu::context *pgpucontext) override;
 
 
       void create_gpu_block(::gpu::context *pgpucontext) override;

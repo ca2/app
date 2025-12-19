@@ -1,7 +1,10 @@
 // Created with ChatGPT by camilo on 2025-11-14 01:05 <3ThomasBorregaardSørensen!!
 #include "framework.h"
-#include "cpu_features.h"
+#include "../cpu_features.h"
 #include <immintrin.h>
+#ifdef LINUX
+#include <cpuid.h>
+#endif
 
 
 //CLASS_DECL_ACME int g_iCpuFeatures; // 0=scalar,1=SSE,2=AVX,3=AVX2

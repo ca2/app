@@ -14,7 +14,7 @@
 // // For glm::make_mat4
 #include <assimp/matrix4x4.h>
 #include "_assimp.h"
-
+#include <assimp/GltfMaterial.h>
 //
 //floating_matrix4 aiMatrix4x4ToColumnMajor(const aiMatrix4x4& from) {
 //   // Assuming aiMatrix4x4 stores data contiguously in memory,

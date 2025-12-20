@@ -2,7 +2,7 @@
 
 #pragma once
 
-#include <assimp/pbrmaterial.h>
+#include <assimp/material.h>
 // #include "stb_image/stb_image.h"
 
 // #include <map>

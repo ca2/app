@@ -191,10 +191,12 @@ namespace gpu_gpu
       
       ::pointer<::graphics3d::renderable> _load_gltf_model(const ::gpu::renderable_t &model) override;
       void load_generic_texture(::pointer<::gpu::texture> &ptexture, const ::file::path &path, int iAssimpTextureType) override;
-      virtual void load_ktxTexture(::pointer<::gpu::texture> &ptexture, void *p_ktxTexture);
-      virtual void load_ktxTexture_cube_map(::pointer<::gpu::texture> &ptexture, void *p_ktxTexture);
+      virtual void load_ktxTexture(::gpu::texture * pgputexture, void *p_ktxTexture);
+      virtual void load_ktxTexture_cube_map(::gpu::texture * pgputexture, void *p_ktxTexture);
       ::pointer<::gpu::texture> load_cube_map(const ::scoped_string &scopedstrName, const ::file::path &path,
                                                       bool b32) override;
+      void load_ktx_texture_from_file_path(::gpu::texture * ptexture, const ::file::path & pathImage) override;
+      void load_ktx_texture_from_memory(::gpu::texture * ptexture, const void * data, memsize size) override;
 
    };
 

@@ -400,6 +400,22 @@ namespace gpu
    }
 
 
+   void context::load_ktx_texture_from_file_path(::gpu::texture * ptexture, const ::file::path & pathImage)
+   {
+
+
+
+   }
+
+
+   void context::load_ktx_texture_from_memory(::gpu::texture * ptexture, const void * data, memsize size)
+   {
+
+
+
+   }
+
+
    void context::layout_input_layout_properties(::gpu::properties *pproperties)
    {
 

@@ -190,8 +190,8 @@ namespace gpu
       /// loads different types of image
       virtual ::gpu::texture* generic_texture(const ::file::path & path, int iAssimpTextureType);
       virtual void load_generic_texture(::pointer < ::gpu::texture > & ptexture, const ::file::path & path, int iAssimpTextureType);
-
-
+      virtual void load_ktx_texture_from_file_path(::gpu::texture * ptexture, const ::file::path & pathImage);
+      virtual void load_ktx_texture_from_memory(::gpu::texture * ptexture, const void * data, memsize size);
 
       virtual void start_debug_happening(::gpu::command_buffer *pgpucommandbuffer,
                                          const ::scoped_string &scopedstrDebugHappening);

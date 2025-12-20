@@ -83,7 +83,7 @@ namespace gpu_gpu
    }
 
 
-   void context::load_ktxTexture(::pointer<::gpu::texture> & ptexture, void * p_ktxTexture)
+   void context::load_ktxTexture(::gpu::texture * pgputexture, void * p_ktxTexture)
    {
 
       throw ::interface_only();
@@ -195,24 +195,8 @@ namespace gpu_gpu
       }
       else if (path.case_insensitive_ends(".ktx"))
       {
-         // Create ktxTexture from memory
-         ktxTexture *kTexture = nullptr;
-         KTX_error_code result =
-            ktxTexture_CreateFromMemory(inputData, inputSize, KTX_TEXTURE_CREATE_LOAD_IMAGE_DATA_BIT, &kTexture);
 
-         if (result != KTX_SUCCESS)
-         {
-            warning() << "Failed to load KTX from memory\n";
-            return;
-         }
-         ktxTexture1 *tex1 = (ktxTexture1 *)kTexture;
-         information() << "Width=" << kTexture->baseWidth << " Height=" << kTexture->baseHeight
-                       << " Levels=" << kTexture->numLevels << " glInternalFormat=" << tex1->glInternalformat << "\n";
-
-         load_ktxTexture(ptexture, kTexture);
-
-         // Cleanup ktx object (OpenGL texture stays alive)
-         ktxTexture_Destroy(kTexture);
+         load_ktx_texture_from_file_path(ptexture, path);
 
          return;
 
@@ -319,11 +303,59 @@ namespace gpu_gpu
       return pmodel;
    }
 
-   void context::load_ktxTexture_cube_map(::pointer<::gpu::texture> & pgputexture, void * p_ktxTexture)
+
+   void context::load_ktxTexture_cube_map(::gpu::texture * pgputexture, void * p_ktxTexture)
    {
 
       throw ::interface_only();
 
    }
+
+
+   void context::load_ktx_texture_from_file_path(::gpu::texture * ptexture, const ::file::path & pathImage)
+   {
+
+      ptexture->m_textureflags.m_bShaderResource = true;
+
+      auto memory = file()->as_memory(pathImage);
+
+      //         ::string relativePath = fileName;
+      //       ::string path = directory + '/' + relativePath;
+
+      auto data = memory.data();
+
+      auto size = memory.size();
+
+      load_ktx_texture_from_memory(ptexture, data, size);
+
+   }
+
+
+   void context::load_ktx_texture_from_memory(::gpu::texture * ptexture, const void * data, memsize size)
+   {
+
+      // Create ktxTexture from memory
+      ktxTexture *kTexture = nullptr;
+      KTX_error_code result =
+         ktxTexture_CreateFromMemory((const ktx_uint8_t *) data, size, KTX_TEXTURE_CREATE_LOAD_IMAGE_DATA_BIT, &kTexture);
+
+      if (result != KTX_SUCCESS)
+      {
+         warning() << "Failed to load KTX from memory\n";
+         return;
+      }
+      ktxTexture1 *tex1 = (ktxTexture1 *)kTexture;
+      information() << "Width=" << kTexture->baseWidth << " Height=" << kTexture->baseHeight
+                    << " Levels=" << kTexture->numLevels << " glInternalFormat=" << tex1->glInternalformat << "\n";
+
+      load_ktxTexture(ptexture, kTexture);
+
+      // Cleanup ktx object (OpenGL texture stays alive)
+      ktxTexture_Destroy(kTexture);
+
+
+   }
+
+
 
 } // namespace gpu_gpu

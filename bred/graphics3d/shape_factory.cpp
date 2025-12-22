@@ -35,7 +35,7 @@ namespace graphics3d
 
       float halfSize = size / 2.0f;
 
-     shape.m_vertexes = {
+     shape.set_vertexes({
          // Front face  (normal =  0, 0,  1)
          {{-halfSize, -halfSize, halfSize}, {0.0f, 0.0f, 1.0f}, {0.0f, 0.0f}}, // bottom-left
          {{halfSize, -halfSize, halfSize}, {0.0f, 0.0f, 1.0f}, {1.0f, 0.0f}}, // bottom-right
@@ -71,7 +71,7 @@ namespace graphics3d
          {{-halfSize, -halfSize, halfSize}, {0.0f, -1.0f, 0.0f}, {1.0f, 1.0f}}, // bottom-right
          {{halfSize, -halfSize, halfSize}, {0.0f, -1.0f, 0.0f}, {1.0f, 0.0f}}, // top-right
          {{halfSize, -halfSize, -halfSize}, {0.0f, -1.0f, 0.0f}, {0.0f, 0.0f}}, // top-left
-      };
+      });
 
 
       // Indices for the graphics3d (two triangles per face)

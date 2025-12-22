@@ -1,4 +1,16 @@
-// Created by camilo with ChatGPT on 2025-11-14 <3ThomasBorregaardSørensen!!
+// Created by camilo on 2025-11-14 <3ThomasBorregaardSørensen!!
+// Created by camilo on 2025-12-22 17:34 <3ThomasBorregaardSorensen!!
+//
+#pragma once
+
+
+#include <assimp/GltfMaterial.h>
+#include <assimp/Importer.hpp>
+#include <assimp/material.h>
+#include <assimp/matrix4x4.h>
+#include <assimp/mesh.h>
+#include <assimp/postprocess.h>
+#include <assimp/scene.h>
 #pragma once
 
 #include <assimp/matrix4x4.h>

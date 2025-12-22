@@ -198,9 +198,6 @@
     <ClInclude Include="graphics3d\key_map.h">
       <Filter>Header Files\graphics3d</Filter>
     </ClInclude>
-    <ClInclude Include="graphics3d\tinyobjloader_Builder.h">
-      <Filter>Header Files\graphics3d</Filter>
-    </ClInclude>
     <ClInclude Include="graphics3d\scene_base.h">
       <Filter>Header Files\graphics3d</Filter>
     </ClInclude>
@@ -328,9 +325,6 @@
       <Filter>Header Files\graphics3d</Filter>
     </ClInclude>
     <ClInclude Include="graphics3d\static_array.h">
-      <Filter>Header Files\graphics3d</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics3d\type.h">
       <Filter>Header Files\graphics3d</Filter>
     </ClInclude>
     <ClInclude Include="gpu\queue.h">
@@ -465,9 +459,6 @@
       <Filter>Source Files\graphics3d</Filter>
     </ClCompile>
     <ClCompile Include="graphics3d\key_map.cpp">
-      <Filter>Source Files\graphics3d</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics3d\tinyobjloader_Builder.cpp">
       <Filter>Source Files\graphics3d</Filter>
     </ClCompile>
     <ClCompile Include="graphics3d\scene_base.cpp">
@@ -641,9 +632,6 @@
     <ClCompile Include="graphics3d\transform.cpp">
       <Filter>Source Files\graphics3d</Filter>
     </ClCompile>
-    <ClCompile Include="graphics3d\tinyobjloader_002.cpp">
-      <Filter>Source Files\graphics3d</Filter>
-    </ClCompile>
     <ClCompile Include="gpu\binding.cpp">
       <Filter>Source Files\gpu</Filter>
     </ClCompile>
@@ -663,6 +651,9 @@
       <Filter>Source Files\graphics3d\render_system</Filter>
     </ClCompile>
     <ClCompile Include="gpu\empty_texture_source.cpp">
+      <Filter>Source Files\gpu</Filter>
+    </ClCompile>
+    <ClCompile Include="gpu\model_data.cpp">
       <Filter>Source Files\gpu</Filter>
     </ClCompile>
   </ItemGroup>

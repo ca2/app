@@ -3,7 +3,7 @@
 #include "engine.h"
 #include "immersion_layer.h"
 #include "input.h"
-#include "tinyobjloader_Builder.h"
+//#include "tinyobjloader_Builder.h"
 #include "scene_base.h"
 #include "types.h"
 #include "acme/exception/interface_only.h"
@@ -1142,7 +1142,9 @@ namespace graphics3d
    ::pointer<::graphics3d::renderable> engine::_load_wavefront_obj_renderable(const ::gpu::renderable_t &model)
    {
 
-      tinyobjloader_Builder builder{};
+      throw ::interface_only();
+
+      /*tinyobjloader_Builder builder{};
 
       auto pcontext = gpu_context();
 
@@ -1156,9 +1158,11 @@ namespace graphics3d
 
       pmodelbuffer->initialize_gpu_context_object(pcontext);
 
-      pmodelbuffer->set_data(builder);
+      pmodelbuffer->set_data(builder);*/
 
-      return pmodelbuffer;
+      //return pmodelbuffer;
+
+      return nullptr;
 
    }
 

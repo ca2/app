@@ -1969,6 +1969,14 @@ void window::on_control_box_zoom()
 
    //} // namespace windowing
    
+      void window::get_os_window_handle(void *p, int iSize) 
+      {
+         
+         throw ::interface_only();
+      
+      }
+
+
    
 
    } // namespace windowing

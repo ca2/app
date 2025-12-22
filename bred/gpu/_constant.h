@@ -144,14 +144,14 @@ namespace gpu
    };
 
 
-   enum enum_renderable_type
-   {
+   //enum enum_renderable_type
+   //{
 
-      e_renderable_type_none,
-      e_renderable_type_wavefront_obj,
-      e_renderable_type_gltf
+   //   e_renderable_type_none,
+   //   e_renderable_type_wavefront_obj,
+   //   e_renderable_type_gltf
 
-   };
+   //};
 
 
    enum enum_renderable_usage
@@ -175,6 +175,15 @@ namespace gpu
    };
 
 
+   
+   enum enum_model
+   {
+
+      e_model_none,
+      e_model_wavefront,
+      e_model_gltf,
+
+   };
 
 } // namespace gpu
 

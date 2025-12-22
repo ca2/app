@@ -21,34 +21,8 @@
 #include "bred/gpu/frame.h"
 #include "bred/gpu/layer.h"
 #include "bred/gpu/types.h"
-#include "gpu/gltf/model.h"
-//
-//#include <assimp/Common/StbCommon.h>
-
-
-// ```cpp
-// #include <iostream>
-// #include <vector>
-// #include <fstream>
-//
-// #include <GL/glew.h>       // or glad, depending on your setup
-// #include <GLFW/glfw3.h>
-//
+#include "gpu/model/model.h"
 #include <ktx.h>
-//#include <ktxvulkan.h>     // not needed for GL, but included in libktx installs
-//
-// // Utility: load whole file into memory
-// std::vector<unsigned char> loadFile(const char* filename) {
-//    std::ifstream file(filename, std::ios::binary | std::ios::ate);
-//    if (!file) throw std::runtime_error("Failed to open file");
-//    std::streamsize size = file.tellg();
-//    file.seekg(0, std::ios::beg);
-//
-//    std::vector<unsigned char> buffer(size);
-//    if (!file.read(reinterpret_cast<char*>(buffer.data()), size))
-//       throw std::runtime_error("Failed to read file");
-//    return buffer;
-// }
 
 #if defined(WINDOWS_DESKTOP)
 #include "device_win32.h"
@@ -2872,14 +2846,14 @@ color = vec4(c.r,c.g, c.b, c.a);
    }
 
 
-   ::pointer<::graphics3d::renderable> context::_load_gltf_model(const ::gpu::renderable_t &model)
+   ::pointer<::graphics3d::renderable> context::_load_model(const ::gpu::renderable_t &model)
    {
       // if (auto it = m_mapgltfModel.find(name); it != m_mapgltfModel.end())
       //  return it->element2();
 
       ::gpu::context_lock contextlock(this);
 
-      auto pmodel = øcreate<::gpu::gltf::model>();
+      auto pmodel = øcreate<::gpu::model::model>();
 
       (*(::gpu::renderable_t *)pmodel) = model;
 
@@ -2887,7 +2861,7 @@ color = vec4(c.r,c.g, c.b, c.a);
 
       //pmodel->loadFromFile(model.m_path.c_str(), this, pqueueGraphics->m_vkqueue, model.m_iFlags, model.m_fScale);
 
-      pmodel->initialize_gpu_gltf_model(this, model);
+      pmodel->initialize_gpu_model(this, model);
 
       // m_mapgltfModel[name] = model;
       return pmodel;

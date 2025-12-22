@@ -29,7 +29,7 @@ namespace graphics3d
       ~renderable();
 
 
-      virtual ::gpu::enum_renderable_type renderable_type();
+      virtual ::gpu::enum_model emodel();
       //virtual void set_emodel(::gpu::enum_model emodel);
       virtual ::gpu::enum_renderable_usage renderable_usage();
       //virtual void set_model_usage(::gpu::enum_model_usage emodelusage);

@@ -357,7 +357,7 @@ namespace gpu
    }
 
 
-   ::gpu::texture *context::generic_texture(const ::file::path &path, int iAssimpTextureType)
+   ::gpu::texture *context::generic_texture(const ::file::path &path, bool bSrgb)
    {
 
       _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
@@ -372,7 +372,8 @@ namespace gpu
          try
          {
 
-            load_generic_texture(pnode->element2(), path, iAssimpTextureType);
+            load_generic_texture(pnode->element2(), path, bSrgb);
+
          }
          catch (...)
          {
@@ -386,7 +387,7 @@ namespace gpu
 
 
    void context::load_generic_texture(::pointer<::gpu::texture> &ptexture, const ::file::path &path,
-                                      int iAssimpTextureType)
+                                      bool bSrgb)
    {
 
       throw interface_only();
@@ -966,56 +967,56 @@ namespace gpu
    }
 
 
-   ::pointer<::graphics3d::renderable> context::load_wavefront_obj_renderable(const ::gpu::renderable_t & model)
-   {
-      // // 1) cache check
-      // if (auto it = m_mapObjectModel.find(name); it != m_mapObjectModel.end())
-      //    return it->element2();
+   //::pointer<::graphics3d::renderable> context::load_wavefront_obj_renderable(const ::gpu::renderable_t & model)
+   //{
+   //   // // 1) cache check
+   //   // if (auto it = m_mapObjectModel.find(name); it != m_mapObjectModel.end())
+   //   //    return it->element2();
 
-      // 2) load
+   //   // 2) load
 
-      ASSERT(model.m_erenderabletype == ::gpu::e_renderable_type_wavefront_obj);
+   //   ASSERT(model.m_erenderabletype == ::gpu::e_renderable_type_wavefront_obj);
 
-      auto prenderable = _load_wavefront_obj_renderable(model);
+   //   auto prenderable = _load_wavefront_obj_renderable(model);
 
-      
-      // // 3) cache & return
-      // m_mapObjectModel[name] = model;
-      return prenderable;
+   //   
+   //   // // 3) cache & return
+   //   // m_mapObjectModel[name] = model;
+   //   return prenderable;
 
-   }
-
-
-   ::pointer<::graphics3d::renderable> context::_load_wavefront_obj_renderable(const ::gpu::renderable_t & model)
-   {
-
-      auto prenderable = m_pengine->_load_wavefront_obj_renderable(model);
-
-      return prenderable;
-
-   }
+   //}
 
 
-   ::pointer<::graphics3d::renderable> context::load_gltf_model(const ::gpu::renderable_t & model)
-   {
-      ASSERT(model.m_erenderabletype == ::gpu::e_renderable_type_gltf);
-      auto prenderable = _load_gltf_model(model);
-      return prenderable;
+   //::pointer<::graphics3d::renderable> context::_load_wavefront_obj_renderable(const ::gpu::renderable_t & model)
+   //{
 
-      // //if (auto it = m_mapGltfModel.find(name); it != m_mapGltfModel.end())
-      //   // return it->element2();
-      //
-      // auto model = øcreate_pointer<gltf::Model>();
-      //
-      // model->loadFromFile(filepath, &m_pgpudevice, m_pgpudevice->graphicsQueue(), gltfFlags, scale);
-      //
-      // //m_mapGltfModel[name] = model;
-      // return model;
+   //   auto prenderable = m_pengine->_load_wavefront_obj_renderable(model);
 
-   }
+   //   return prenderable;
+
+   //}
 
 
-   ::pointer<::graphics3d::renderable> context::_load_gltf_model(const ::gpu::renderable_t & model)
+   //::pointer<::graphics3d::renderable> context::load_model(const ::gpu::renderable_t & model)
+   //{
+   //   //ASSERT(model.m_erenderabletype == ::gpu::e_renderable_type_gltf);
+   //   auto prenderable = _load_model(model);
+   //   return prenderable;
+
+   //   // //if (auto it = m_mapGltfModel.find(name); it != m_mapGltfModel.end())
+   //   //   // return it->element2();
+   //   //
+   //   // auto model = øcreate_pointer<gltf::Model>();
+   //   //
+   //   // model->loadFromFile(filepath, &m_pgpudevice, m_pgpudevice->graphicsQueue(), gltfFlags, scale);
+   //   //
+   //   // //m_mapGltfModel[name] = model;
+   //   // return model;
+
+   //}
+
+
+   ::pointer<::graphics3d::renderable> context::_load_model(const ::gpu::renderable_t & model)
    {
 
 return {};
@@ -2789,22 +2790,22 @@ return {};
       try
       {
 
-         if (model.m_erenderabletype == ::gpu::e_renderable_type_wavefront_obj)
+         if (model.m_egpumodel == ::gpu::e_model_wavefront)
          {
 
-            prenderable = load_wavefront_obj_renderable(model);
+            prenderable = load_model(model);
 
             // information("[asset_manager] Successfully loaded OBJ model '{}' from '{}'",
             //    model.m_strName,
             //    model.m_path);
 
          }
-         else if (model.m_erenderabletype == ::gpu::e_renderable_type_gltf)
+         else if (model.m_egpumodel == ::gpu::e_model_gltf)
          {
 
             //uint32_t flags = entry.get("flags", 0); // Optional flags
             //float scale = entry.get("scale", 1.0f); // Optional scale
-            prenderable = load_gltf_model(model);
+            prenderable = load_model(model);
 
             //name, path, flags, scale);
             // if (entry.get("usage", "") == "skybox" || name == "cube")

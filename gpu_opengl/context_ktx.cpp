@@ -15,7 +15,6 @@
 #include "bred/gpu/frame.h"
 #include "bred/gpu/layer.h"
 #include "bred/gpu/types.h"
-#include "gpu/gltf/model.h"
 #include "lock.h"
 #include "model_buffer.h"
 #include "program.h"

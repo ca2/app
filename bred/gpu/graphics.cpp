@@ -1074,7 +1074,7 @@ namespace gpu
       if (pmodelbuffer->is_new())
       {
 
-         pmodelbuffer->create_vertex_array< ::graphics3d::sequence2_color>(6);
+         pmodelbuffer->create_vertexes< ::graphics3d::sequence2_color>(6, true);
 
       }
 

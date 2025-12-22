@@ -170,8 +170,8 @@ namespace graphics3d
 
 		   auto prenderable = pscenerenderable->renderable();
 
-			if (prenderable && prenderable->m_erenderabletype ==
-            ::gpu::e_renderable_type_wavefront_obj)
+			if (prenderable && prenderable->m_egpumodel ==
+            ::gpu::e_model_wavefront)
 			{
 
             //auto T = ::floating_matrix4::translation(pscenerenderable->m_sequence3Translation);

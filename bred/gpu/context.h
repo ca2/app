@@ -188,8 +188,8 @@ namespace gpu
 
 
       /// loads different types of image
-      virtual ::gpu::texture* generic_texture(const ::file::path & path, int iAssimpTextureType);
-      virtual void load_generic_texture(::pointer < ::gpu::texture > & ptexture, const ::file::path & path, int iAssimpTextureType);
+      virtual ::gpu::texture* generic_texture(const ::file::path & path, bool bSrgb);
+      virtual void load_generic_texture(::pointer < ::gpu::texture > & ptexture, const ::file::path & path, bool bSrgb);
       virtual void load_ktx_texture_from_file_path(::gpu::texture * ptexture, const ::file::path & pathImage);
       virtual void load_ktx_texture_from_memory(::gpu::texture * ptexture, const void * data, memsize size);
 
@@ -456,13 +456,13 @@ namespace gpu
       //    float scale
       //    );
 
-      virtual ::pointer<::graphics3d::renderable> load_wavefront_obj_renderable(const ::gpu::renderable_t & model);
+      //virtual ::pointer<::graphics3d::renderable> load_wavefront_obj_renderable(const ::gpu::renderable_t & model);
 
-      virtual ::pointer<::graphics3d::renderable> _load_wavefront_obj_renderable(const ::gpu::renderable_t & model);
+      //virtual ::pointer<::graphics3d::renderable> _load_wavefront_obj_renderable(const ::gpu::renderable_t & model);
 
-      virtual ::pointer<::graphics3d::renderable> load_gltf_model(const ::gpu::renderable_t & model);
+      //virtual ::pointer<::graphics3d::renderable> load_model(const ::gpu::renderable_t & model);
 
-      virtual ::pointer<::graphics3d::renderable> _load_gltf_model(const ::gpu::renderable_t & model);
+      virtual ::pointer<::graphics3d::renderable> _load_model(const ::gpu::renderable_t & model);
       virtual void set_viewport(::gpu::command_buffer *pgpucommandbuffer, const ::int_rectangle &rectangle);
 
 //      /// @brief generatePrefilteredEnvMap

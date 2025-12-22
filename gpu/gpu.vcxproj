@@ -91,13 +91,6 @@
     <ClInclude Include="framework.h" />
     <ClInclude Include="full_screen_quad.h" />
     <ClInclude Include="game\_.h" />
-    <ClInclude Include="gltf\material.h" />
-    <ClInclude Include="gltf\mesh.h" />
-    <ClInclude Include="gltf\model.h" />
-    <ClInclude Include="gltf\model_base.h" />
-    <ClInclude Include="gltf\vertex.h" />
-    <ClInclude Include="gltf\_.h" />
-    <ClInclude Include="gltf\_constant.h" />
     <ClInclude Include="hdr_texture.h" />
     <ClInclude Include="ibl\aaa_brdf_convolution_framebuffer.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
@@ -207,6 +200,14 @@
     <ClInclude Include="inline\__debug_box_clear_impl.h" />
     <ClInclude Include="inline\__debug_box_set_impl.h" />
     <ClInclude Include="library.h" />
+    <ClInclude Include="model\material.h" />
+    <ClInclude Include="model\mesh.h" />
+    <ClInclude Include="model\model.h" />
+    <ClInclude Include="model\model_base.h" />
+    <ClInclude Include="model\_assimp.h" />
+    <ClInclude Include="model\__assimp.h" />
+    <ClInclude Include="model\_.h" />
+    <ClInclude Include="model\_constant.h" />
     <ClInclude Include="operating_system\windows\system.h" />
     <ClInclude Include="operating_system\windows\_windows.h" />
     <ClInclude Include="operating_system\_.h" />
@@ -250,10 +251,6 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='ASanStaticDebug|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="full_screen_quad.cpp" />
-    <ClCompile Include="gltf\material.cpp" />
-    <ClCompile Include="gltf\mesh.cpp" />
-    <ClCompile Include="gltf\model.cpp" />
-    <ClCompile Include="gltf\model_base.cpp" />
     <ClCompile Include="hdr_texture.cpp" />
     <ClCompile Include="ibl\aaa_brdf_convolution_framebuffer.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
@@ -329,6 +326,10 @@
     </ClCompile>
     <ClCompile Include="ibl\specular_map.cpp" />
     <ClCompile Include="ibl\_hlsl.cpp" />
+    <ClCompile Include="model\material.cpp" />
+    <ClCompile Include="model\mesh.cpp" />
+    <ClCompile Include="model\model.cpp" />
+    <ClCompile Include="model\model_base.cpp" />
     <ClCompile Include="timer.cpp" />
     <ClCompile Include="_.cpp" />
     <ClCompile Include="_ktx.cpp" />

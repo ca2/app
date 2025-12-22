@@ -34,7 +34,7 @@ namespace gpu
 
 
 
-   template<typename VERTEX>
+   template<typename VERTEX, typename INDEX = unsigned int>
    class model_data;
 
    CLASS_DECL_BRED int get_type_size(::gpu::enum_type e);

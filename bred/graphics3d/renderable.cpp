@@ -23,10 +23,10 @@ namespace graphics3d
    }
 
 
-   ::gpu::enum_renderable_type renderable::renderable_type()
+   ::gpu::enum_model renderable::emodel()
    {
 
-      return m_erenderabletype;
+      return m_egpumodel;
 
    }
 

@@ -1310,8 +1310,10 @@ public:
    //
    //   }
 
+
+   template < typename ITEM2 >
    static constexpr bool
-      _initialize_find_first_character(const_iterator & p, const THIS_RAW_RANGE & range, ITEM item) noexcept
+      _initialize_find_first_character(const_iterator & p, const THIS_RAW_RANGE & range, ITEM2 item) noexcept
    {
 
       if (range.is_empty())

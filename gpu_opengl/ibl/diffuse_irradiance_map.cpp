@@ -19,7 +19,7 @@
 //
 #include "gpu_opengl/_gpu_opengl.h"
 #include "gpu_opengl/texture.h"
-//#include "::gpu::gltf.h"
+//#include "::gpu::model.h"
 //#include "cube.h"
 ///#include "timer.h"
 //#include "gpu/ibl/cubemap_framebuffer.h"

@@ -416,6 +416,9 @@ namespace acme
          virtual void on_control_box_zoom();
 
 
+         virtual void get_os_window_handle(void *p, int iSize);
+
+
       };
 
 

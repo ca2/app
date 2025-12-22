@@ -382,6 +382,22 @@ namespace acme
       }
 
 
+      bool display::is_x11()
+      {
+
+         return false;
+
+      }
+
+
+      bool display::is_wayland()
+      {
+
+         return false;
+
+      }
+
+
    } // namespace windowing
 
 

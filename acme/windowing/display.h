@@ -94,7 +94,13 @@ namespace acme
 
 
          //virtual void enable_wallpaper_change_notification();
-         
+
+
+         virtual bool is_x11();
+
+         virtual bool is_wayland();
+
+
       };
 
 

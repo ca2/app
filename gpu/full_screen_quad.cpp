@@ -29,7 +29,7 @@ namespace gpu
 
       initialize_gpu_context_object(pgpucontext);
 
-      m_modeldata.m_vertexes = {
+      m_modeldata.set_vertexes({
          // positions   // textureCoordinates
          {{-1.0f, 1.0f}, {0.0f, 1.0f}},
          {{-1.0f, -1.0f}, {0.0f, 0.0f}},
@@ -38,7 +38,7 @@ namespace gpu
          {{-1.0f, 1.0f}, {0.0f, 1.0f}}, 
          {{1.0f, -1.0f}, {1.0f, 0.0f}}, 
          {{1.0f, 1.0f}, {1.0f, 1.0f}}
-       };
+       });
 
       øconstruct(m_pmodelbuffer);
       

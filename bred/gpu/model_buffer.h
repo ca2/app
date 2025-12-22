@@ -211,6 +211,21 @@ namespace gpu
 
       }
 
+      template<typename VERTEX>
+      void static_initialize(const ::gpu::model_data<VERTEX> &modeldata)
+      {
+
+         static_initialize_vertexes(modeldata.vertexes());
+
+         if (modeldata.indexes().has_elements())
+         {
+
+            static_initialize_indexes(modeldata.indexes());
+         }
+
+      }
+
+
 
       template < typename VERTEX >
       void set_vertexes(const ::array < VERTEX > & vertexa)
@@ -316,14 +331,7 @@ namespace gpu
 
          bind_load_assets_command_buffer(m_pgpucontext);
 
-         static_initialize_vertexes(modeldata.m_vertexes);
-
-         if (modeldata.m_indexes.has_elements())
-         {
-
-            static_initialize_indexes(modeldata.m_indexes);
-
-         }
+         static_initialize(modeldata);
 
          unbind_load_assets_command_buffer(m_pgpucontext);
 

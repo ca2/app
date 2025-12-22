@@ -108,7 +108,8 @@ namespace gpu
       ::gpu::property *properties() const { return (::gpu::property *) m_ppropertyProperties; };
       virtual void set_vertex_count(int iVertexCount);
       virtual void set_index_count(int iIndexCount);
-
+      virtual bool is_empty() const;
+      virtual bool has_data() const;
       bool is_dummy() const
       { return m_bDummy;
 
@@ -302,6 +303,14 @@ namespace gpu
 
       }
 
+
+      const ::array_base<VERTEX> & vertexes() const
+      {
+
+         return m_vertexes;
+
+      }
+      const ::array_base<INDEX> &indexes() const { return m_indexes; }
 
    };
 

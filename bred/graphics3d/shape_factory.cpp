@@ -75,7 +75,7 @@ namespace graphics3d
 
 
       // Indices for the graphics3d (two triangles per face)
-      shape.m_indexes = {
+     shape.set_indexes({
          // Front face
          0,
          1,
@@ -123,7 +123,7 @@ namespace graphics3d
          22,
          23,
          20,
-      };
+      });
 
       return create_renderable_from_model_data(pgpucontext, shape);
 
@@ -135,7 +135,7 @@ namespace graphics3d
       shape shape;
       float s = size * 0.5f;
 
-      shape.m_vertexes = {
+      shape.set_vertexes( {
 
          // +X face (right)
          {{s, -s, -s}, {1, 0, 0}, {0, 0}},
@@ -172,17 +172,17 @@ namespace graphics3d
          {{s, s, -s}, {0, 0, -1}, {0, 1}},
          {{-s, s, -s}, {0, 0, -1}, {1, 1}},
          {{-s, -s, -s}, {0, 0, -1}, {1, 0}},
-      };
+      });
 
       // 6 faces × 2 triangles per face
-      shape.m_indexes = {
+      shape.set_indexes( {
          0,  1,  2,  2,  3,  0, // +X
          4,  5,  6,  6,  7,  4, // -X
          8,  9,  10, 10, 11, 8, // +Y
          12, 13, 14, 14, 15, 12, // -Y
          16, 17, 18, 18, 19, 16, // +Z
          20, 21, 22, 22, 23, 20 // -Z
-      };
+      });
 
       return create_renderable_from_model_data(pgpucontext, shape);
    }
@@ -197,16 +197,16 @@ namespace graphics3d
       float halfDepth = depth / 2.0f;
 
       // Vertices for a plane
-      shape.m_vertexes = {
+      shape.set_vertexes( {
          // Position               // Color           // texture coords
          {{-halfWidth, 0.0f, -halfDepth}, {1.0f, 0.0f, 0.0f}, {0.0f, 0.0f}},
          {{halfWidth, 0.0f, -halfDepth}, {0.0f, 1.0f, 0.0f}, {1.0f, 0.0f}},
          {{halfWidth, 0.0f, halfDepth}, {0.0f, 0.0f, 1.0f}, {1.0f, 1.0f}},
          {{-halfWidth, 0.0f, halfDepth}, {1.0f, 1.0f, 0.0f}, {0.0f, 1.0f}},
-      };
+      });
 
       // Indices for a plane (two triangles)
-      shape.m_indexes = {0, 1, 2, 2, 3, 0};
+      shape.set_indexes( {0, 1, 2, 2, 3, 0});
 
       return create_renderable_from_model_data(pgpucontext, shape);
 
@@ -221,16 +221,16 @@ namespace graphics3d
       float halfHeight = height / 2.0f;
 
       // Vertices for a wall
-      shape.m_vertexes = {
+      shape.set_vertexes( {
          // Position               // Color           // texture coords
          {{-halfWidth, -halfHeight, 0.0f}, {-0.5f, -0.5f, 0.5f}, {0.0f, 0.0f}}, // bottom-left (red)
          {{halfWidth, -halfHeight, 0.0f}, {0.5f, -0.5f, 0.5f}, {1.0f, 0.0f}}, // bottom-right (green)
          {{halfWidth, halfHeight, 0.0f}, {0.5f, 0.5f, 0.5f}, {1.0f, 1.0f}}, // top-right (blue)
          {{-halfWidth, halfHeight, 0.0f}, {-0.5f, 0.5f, 0.5f}, {0.0f, 1.0f}}, // top-left (yellow)
-      };
+      });
 
       // Indices for a wall (two triangles)
-      shape.m_indexes = {0, 1, 2, 2, 3, 0};
+      shape.set_indexes({0, 1, 2, 2, 3, 0});
 
       return create_renderable_from_model_data(pgpucontext, shape);
 
@@ -241,6 +241,8 @@ namespace graphics3d
                                                                   unsigned int stackCount)
    {
       shape shape;
+
+      ::array_base<::graphics3d::shape_factory::Vertex> vertexes;
 
       float xy; // vertex position
       float lengthInv = 1.0f / radius; // normal
@@ -276,9 +278,13 @@ namespace graphics3d
             vertex.m_uv.x = (float)j / sectorCount;
             vertex.m_uv.y = (float)i / stackCount;
 
-            shape.m_vertexes.add(vertex);
+            vertexes.add(vertex);
          }
       }
+
+      shape.set_vertexes(vertexes);
+
+      array_base<unsigned int> indexes;
 
       // Indices
       unsigned int k1, k2;
@@ -292,21 +298,22 @@ namespace graphics3d
             if (i != 0)
             {
                // triangle 1
-               shape.m_indexes.add(k1);
-               shape.m_indexes.add(k2);
-               shape.m_indexes.add(k1 + 1);
+               indexes.add(k1);
+               indexes.add(k2);
+               indexes.add(k1 + 1);
             }
 
             if (i != (stackCount - 1))
             {
                // triangle 2
-               shape.m_indexes.add(k1 + 1);
-               shape.m_indexes.add(k2);
-               shape.m_indexes.add(k2 + 1);
+               indexes.add(k1 + 1);
+               indexes.add(k2);
+               indexes.add(k2 + 1);
             }
          }
       }
 
+      shape.set_indexes(indexes);
             return create_renderable_from_model_data(pgpucontext, shape);
 
 

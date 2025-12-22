@@ -34,6 +34,7 @@ namespace gpu
          //unsigned_int_array m_indexa;
          //::gpu::model_data<::gpu::gltf::vertex> m_modeldataGltf;
          //::gpu::model_data<::graphics3d::Vertex> m_modeldataWavefront;
+         ::pointer<::gpu::model_data_base> m_pmodeldata;
          ::pointer<::gpu::model_buffer> m_pmodelbuffer;
          ::pointer<::gpu::model::material> m_pmaterial;
          struct UniformBlock {

@@ -36,7 +36,7 @@ namespace gpu
       int mesh::indexes_count() const
       {
 
-         return m_pmodelbuffer->m_iIndexCount;
+         return m_pmodelbuffer->m_pmodeldatabase2->index_count();
 
 
       }
@@ -46,7 +46,7 @@ namespace gpu
                                           ::gpu::model::material *pmaterial)
       {
          /// model data must had been set
-         if (m_modeldataGltf.is_empty() && m_modeldataWavefront.is_empty())
+         if (!m_pmodeldata || m_pmodeldata->is_empty())
          {
 
             throw ::exception(error_wrong_state);

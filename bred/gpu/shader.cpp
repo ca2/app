@@ -1131,9 +1131,11 @@ namespace gpu
    ::gpu::binding_set_array * shader::binding_set_array()
    {
 
-      ødefer_construct(binding_slot_set_array()->m_pbindingseta);
+      auto & pbindingseta = binding_slot_set_array()->m_pbindingseta;
 
-      return binding_slot_set_array()->m_pbindingseta;
+      ødefer_construct(pbindingseta);
+
+      return pbindingseta;
 
    }
 

@@ -90,6 +90,7 @@ list(APPEND library_source
         cpu_buffer.h
         context.cpp
         context.h
+   context_ktx.cpp
    #cube.cpp
    #cube.h
         device.cpp
@@ -156,7 +157,7 @@ if(${LINUX} OR ${__BSD__})
  #           context_egl.h
             #context_glx.cpp
             #context_glx.h
-       #device_egl.cpp
+       device_egl.cpp
        #device_egl.h
        approach_glx.cpp
             )
@@ -207,7 +208,8 @@ endif ()
 add_compile_definitions(GLAD_GLAPI_EXPORT)
 
 
-add_library(${PROJECT_NAME} SHARED ${library_source})
+add_library(${PROJECT_NAME} SHARED ${library_source}
+   rotating_cube.cpp)
 add_library(static_${PROJECT_NAME} STATIC ${library_source})
 
 

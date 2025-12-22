@@ -25,6 +25,7 @@ namespace gpu_opengl
       EGLConfig                        m_config;
       EGLContext                       m_context;
       EGLSurface                       m_surface;
+      itask                            m_itaskGpu;
 
 
       device_egl();
@@ -47,7 +48,8 @@ namespace gpu_opengl
 
       //void _translate_shader(string_array_base& stra) override;
       virtual void _create_device(const ::int_size & size);
-
+      void _opengl_lock() override;
+      void _opengl_unlock() override;
 
    };
 

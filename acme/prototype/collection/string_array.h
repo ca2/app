@@ -183,7 +183,11 @@ public:
    void insert_empty(::collection::index nIndex, ::collection::count c);
 
 
+   ::collection::count truncate_on_find_character(CHARACTER ch);
+
+
    //class ::memory GetFormatV004();
+   ::collection::count erase_prefixed(const ::scoped_string & scopedstrPrefix);
    ::collection::count erase_empty();
    ::collection::count erase_empty_end();
    ::collection::count erase_empty_begin();

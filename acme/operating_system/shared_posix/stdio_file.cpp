@@ -1151,3 +1151,49 @@ void file_system::append_wait(const ::scoped_string & scopedstrFile, const block
 
 
 
+
+
+
+
+
+
+CLASS_DECL_ACME ::string file_as_string(const ::file::path & path)
+{
+
+
+   stdio_file file;
+
+   file.open(path, "r", _SH_DENYNO);
+
+   auto iReadAtMostByteCount = file.size();
+
+   ::string str;
+
+   auto psz = str.get_buffer(iReadAtMostByteCount);
+
+   ::size_t sizeTotalRead = 0;
+
+   while (iReadAtMostByteCount - sizeTotalRead > 0)
+   {
+
+      auto dwRead = file.read({ psz + sizeTotalRead, (size_t)iReadAtMostByteCount - sizeTotalRead });
+
+      if (dwRead <= 0)
+      {
+
+         break;
+
+      }
+
+      sizeTotalRead += dwRead;
+
+   }
+
+   str.release_buffer(sizeTotalRead);
+
+   return ::transfer(str);
+
+}
+
+
+

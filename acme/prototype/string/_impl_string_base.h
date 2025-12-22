@@ -1762,7 +1762,22 @@ void string_base < ITERATOR_TYPE >::resize(character_count n, CHARACTER c)
 }
 
 
+template < typename ITERATOR_TYPE >
+inline typename string_base < ITERATOR_TYPE >::this_iterator string_base < ITERATOR_TYPE >::truncate_on_find_character(CHARACTER ch)
+{
 
+   auto p = this->find_first_character(ch);
+
+   if (::is_null(p))
+   {
+
+      return nullptr;
+
+   }
+
+   return truncate(p);
+
+}
 
 
 template < typename ITERATOR_TYPE >

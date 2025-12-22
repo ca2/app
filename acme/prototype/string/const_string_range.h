@@ -1365,6 +1365,26 @@ public:
    //   }
 
 
+   using BASE_RANGE::_find_first_character;
+
+   constexpr const_iterator _find_first_character(CHARACTER ch) const {
+
+      return this->_find_first_character(ch, ::comparison::comparison<ITEM>());
+
+   }
+
+   constexpr character_count _find_first_character_index(CHARACTER ch) const {
+      return this->index_of(_find_first_character(ch));
+   }
+
+   using BASE_RANGE::find_first_character;
+
+   constexpr const_iterator find_first_character(CHARACTER ch) const {
+
+      return this->find_first_character(ch, ::comparison::comparison<ITEM>());
+
+   }
+
    using BASE_RANGE::_find_first_character_in;
 
    constexpr const_iterator _find_first_character_in(const SCOPED_STRING& range) const {

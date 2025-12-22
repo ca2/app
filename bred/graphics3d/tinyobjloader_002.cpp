@@ -4,6 +4,7 @@
 #include "tinyobjloader_Builder.h"
 #include "utilities.h"
 #include "acme/filesystem/filesystem/directory_context.h"
+#include "acme/filesystem/filesystem/file_context.h"
 #include "acme/filesystem/filesystem/path_system.h"
 #include "bred/gpu/context.h"
 #include "bred/gpu/renderer.h"
@@ -581,15 +582,18 @@ namespace graphics3d
       std::vector<tinyobj::material_t> materials;
       std::string warn, err;
 
-      auto pathFile = pgpucontext->directory()->defer_get_file_system_file(path.c_str(), true);
+      auto memory = pgpucontext->file()->as_memory(path);
+//
+  //    ::string str(::system()->path_system()->shell_path(pathFile));
 
-      ::string str(::system()->path_system()->shell_path(pathFile));
+         // Load OBJ data from memory
+         bool ret = tinyobj::LoadObj(&inattrib, &inshapes, &materials, &warn, &err, memory.data(), memory.size());
 
-      if (!tinyobj::LoadObj(&inattrib, &inshapes, &materials, &warn, &err, str.c_str()))
-      {
-
-         throw std::runtime_error(warn + err);
-      }
+      // if (!tinyobj::LoadObj(&inattrib, &inshapes, &materials, &warn, &err, str.c_str()))
+      // {
+      //
+      //    throw std::runtime_error(warn + err);
+      // }
 
       m_vertexes.clear();
 

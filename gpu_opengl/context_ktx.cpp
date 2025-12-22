@@ -64,7 +64,7 @@
 namespace gpu_opengl
 {
 
-   void context::load_ktxTexture(::pointer<::gpu::texture> &ptexture, void *p_ktxTexture)
+   void context::load_ktxTexture(::gpu::texture * pgputexture, void *p_ktxTexture)
    {
 
       auto pktxtexture = (ktxTexture *)p_ktxTexture;
@@ -86,10 +86,10 @@ namespace gpu_opengl
 
       information() << "Texture uploaded to OpenGL with ID " << textureId << "\n";
 
-      ::cast<::gpu_opengl::texture> popengltexture = ptexture;
+      ::cast<::gpu_opengl::texture> popengltexture = pgputexture;
       popengltexture->m_gluType = glTarget;
       popengltexture->m_gluTextureID = textureId;
-      ptexture->set_ok_flag();
+      pgputexture->set_ok_flag();
 
       //GLuint texture; // The name (ID) of your texture object
       //GLint format;
@@ -110,11 +110,10 @@ namespace gpu_opengl
    }
 
 
-      void context::load_ktxTexture_cube_map(::pointer<::gpu::texture> &pgputexture, void *p_ktxTexture)
+   void context::load_ktxTexture_cube_map(::gpu::texture * pgputexture, void *p_ktxTexture)
    {
 
       auto pktxtexture = (ktxTexture *)p_ktxTexture;
-
 
       ::cast<::gpu_opengl::texture> ptexture = pgputexture;
 

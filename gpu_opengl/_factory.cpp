@@ -42,6 +42,10 @@
 
 #include "device_win32.h"
 
+#else
+
+#include "device_egl.h"
+
 #endif
 
 //BEGIN_FACTORY(gpu_opengl)
@@ -77,6 +81,10 @@ __FACTORY_EXPORT void gpu_opengl_factory(::factory::factory * pfactory)
 #if defined(WINDOWS_DESKTOP)
 
    pfactory->add_factory_item < ::gpu_opengl::device_win32, ::gpu::device >();
+
+#else
+
+   pfactory->add_factory_item < ::gpu_opengl::device_egl, ::gpu::device >();
 
 #endif
 

@@ -2278,6 +2278,64 @@ template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
+::collection::count string_base_array < Type, RawType, t_etypeContainer > ::truncate_on_find_character(CHARACTER ch)
+{
+
+   ::collection::count count = 0;
+
+   for (::collection::index i = 0; i < this->get_size(); i++)
+   {
+
+      auto pTruncate = this->element_at(i).truncate_on_find_character(ch);
+
+      if (::is_set(pTruncate))
+      {
+
+         count++;
+
+      }
+
+   }
+
+   return count;
+
+}
+
+
+
+template < typename Type, typename RawType, ::enum_type t_etypeContainer >
+::collection::count string_base_array < Type, RawType, t_etypeContainer > ::erase_prefixed(const ::scoped_string & scopedstrPrefix)
+{
+
+
+   ::collection::count count = 0;
+
+   for (::collection::index i = 0; i < this->get_size();)
+   {
+
+      if (this->element_at(i).begins(scopedstrPrefix))
+      {
+
+         this->erase_at(i);
+
+         count++;
+
+      }
+      else
+      {
+
+         i++;
+
+      }
+
+   }
+
+   return count;
+
+}
+
+
+template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 ::collection::count string_base_array < Type, RawType, t_etypeContainer > ::erase_empty()
 {
 

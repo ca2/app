@@ -50,7 +50,7 @@ namespace gpu_opengl
    unsigned int shader::create_shader(const ::block &blockSource, GLenum type)
    {
 
-      //::gpu::context_lock contextlock(m_pgpurenderer->m_pgpucontext);
+      ::gpu::context_lock contextlock(m_pgpurenderer->m_pgpucontext);
 
       unsigned int uShader;
 

@@ -16,7 +16,9 @@
 #include <sys/stat.h>
 #include <sys/types.h>
 
-
+#include <unistd.h>
+#include <sys/types.h>
+#include <pwd.h>
 #include <fcntl.h>
 
 
@@ -1553,4 +1555,23 @@ void operating_system_determine_executable(::file::path & path)
 }
 
 
+CLASS_DECL_ACME ::file::path get_home_folder_path()
+{
 
+   // 1) HOME environment variable (preferred)
+   if (const char* home = std::getenv("HOME"))
+   {
+      if (*home)
+         return ::file::path(home);
+   }
+
+   // 2) Fallback: user database
+   struct passwd* pw = getpwuid(getuid());
+   if (pw && pw->pw_dir && *pw->pw_dir)
+   {
+      return ::file::path(pw->pw_dir);
+   }
+
+   // 3) Failure case
+   return {};
+}

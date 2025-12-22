@@ -275,7 +275,7 @@ namespace gpu_opengl
 
       }
 
-#if !defined(LINUX) && !defined(__APPLE__) && !defined(__BSD__)
+//#if !defined(LINUX) && !defined(__APPLE__) && !defined(__BSD__)
 
       gladLoadGL();
 
@@ -283,7 +283,7 @@ namespace gpu_opengl
 
       m_bGpuLibraryInit = true;
 
-#endif
+//#endif
 
 //      if (!m_bGlewInit)
 //      {

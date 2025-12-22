@@ -121,7 +121,7 @@ namespace platform
       m_pthemecolors = nullptr;
 
 //#if defined(WITH_X11)
-  //    m_pvoidX11Display = nullptr;
+  //    m_p_Display = nullptr;
     //  m_estatusInitializeX11 = error_not_initialized;
 //#endif
 

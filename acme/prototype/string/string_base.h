@@ -1601,6 +1601,9 @@ public:
 
    string_base & release_buffer(character_count nNewLength = -1);
 
+
+   inline this_iterator truncate_on_find_character(CHARACTER ch);
+
    inline this_iterator & truncate(this_iterator p);
    template < prototype_integral INTEGRAL >
    inline this_iterator & truncate(INTEGRAL count) {return truncate(this->m_begin + count);}

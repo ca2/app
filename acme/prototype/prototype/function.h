@@ -151,6 +151,7 @@ public:
 #endif
 };
 
+
 template < typename BASE_TYPE, typename COMPOSITE_TYPE >
 class function_common :
    public function_common_base
@@ -330,41 +331,6 @@ class function :
 
 };
 
-//template < typename PAYLOAD >
-//class function_receptor :
-//   public function < PAYLOAD >
-//{
-//
-//};
-
-
-//template <  typename RETURN_TYPE, typename... TYPES>
-//class function_type < RETURN_TYPE(TYPES...) >
-//{
-//public:
-//
-//   using return_type = RETURN_TYPE;
-//
-//};
-//
-//template <class RETURN_TYPE, class... TYPES>
-//struct get_function_implementation
-//{
-//   using type = function_implementation<RETURN_TYPE, TYPES...>;
-//};
-
-
-//class function_base_1 :
-//   virtual public ::subparticle
-//{
-//public:
-//
-//
-//   virtual void operator()() = 0;
-//
-//
-//};
-//
 
 class function_composite_1 :
    public function_composite_base < ::subparticle >
@@ -386,14 +352,6 @@ public:
       this->m_pbase->call();
 
    }
-
-
-   //void run() override
-   //{
-
-   //   this->operator()();
-
-   //}
 
 
 };

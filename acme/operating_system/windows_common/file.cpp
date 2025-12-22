@@ -2,6 +2,7 @@
 #include "framework.h"
 #include "acme/_operating_system.h"
 #include "acme/operating_system/console.h"
+#include <shlobj.h>   // SHGetKnownFolderPath
 
 
 namespace windows
@@ -592,3 +593,34 @@ void std_out_buffer::write(const void * pdata, memsize nCount)
 
 
 
+
+
+
+::file::path get_home_folder_path()
+{
+   PWSTR widePath = nullptr;
+
+   HRESULT hr = SHGetKnownFolderPath(
+       FOLDERID_Profile,
+       KF_FLAG_DEFAULT,
+       nullptr,
+       &widePath
+   );
+
+   if (SUCCEEDED(hr) && widePath)
+   {
+      ::file::path result(widePath);
+      CoTaskMemFree(widePath);
+      return result;
+   }
+
+   // Fallback (rare)
+   wchar_t buffer[MAX_PATH];
+   DWORD len = GetEnvironmentVariableW(L"USERPROFILE", buffer, MAX_PATH);
+   if (len > 0 && len < MAX_PATH)
+   {
+      return ::file::path(buffer);
+   }
+
+   return {};
+}

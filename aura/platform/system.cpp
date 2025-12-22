@@ -3,9 +3,11 @@
 #include "acme/constant/id.h"
 #include "acme/crypto/crypto.h"
 #include "acme/exception/interface_only.h"
+#include "acme/filesystem/filesystem/file_context.h"
 #include "acme/filesystem/filesystem/directory_system.h"
 #include "acme/filesystem/filesystem/file_system.h"
 #include "acme/handler/topic.h"
+#include "acme/operating_system/file.h"
 #include "acme/windowing/windowing.h"
 #include "acme/platform/node.h"
 #include "acme/platform/profiler.h"
@@ -28,8 +30,13 @@
 #include "aura/windowing/window.h"
 #include "aura/windowing/windowing.h"
 #include "framework.h"
+#include "nanovg.h"
 #include "node.h"
 #include "session.h"
+
+
+CLASS_DECL_ACME bool is_wayland();
+CLASS_DECL_ACME bool is_x11();
 
 
 //CLASS_DECL_ACME ::string implementation_name(const ::scoped_string & scopedstrComponent, const ::scoped_string & scopedstrImplementation)
@@ -7291,7 +7298,91 @@ if(!m_pimaging)
       if(!m_bOperatingAmbientFactory)
       {
 
-         ::string strOperatingAmbient = ::windowing::get_eoperating_ambient_name();
+         ::string strOperatingAmbientToolkit;
+
+         strOperatingAmbientToolkit = ::windowing::get_eoperating_ambient_name();
+
+         ::string strOperatingAmbient;
+
+         ::string strOperatingAmbientNew;
+
+         ::string strWindowing = get_appconfig("windowing");
+
+         strWindowing.trim();
+
+         ::string_array straLines;
+
+         straLines.add_lines(strWindowing);
+
+         straLines.trim();
+
+         straLines.erase_empty();
+
+         straLines.erase_prefixed("#");
+
+         straLines.truncate_on_find_character('#');
+
+         straLines.trim();
+
+         straLines.erase_empty();
+
+         if (straLines.has_element())
+         {
+
+            strWindowing = straLines.last();
+
+            ::information() << "appconfig : windowing : " << strWindowing;
+
+            if (strWindowing.ends_eat("_windowing"))
+            {
+
+               if (strWindowing == "toolkit")
+               {
+
+                  strOperatingAmbientNew = strOperatingAmbientToolkit;
+
+               }
+               else if (strWindowing == "raw")
+               {
+
+                  if (is_wayland())
+                  {
+
+                     strOperatingAmbientNew = "wayland";
+
+                  }
+                  else if (is_x11())
+                  {
+
+                     strOperatingAmbientNew = "x11";
+
+                  }
+
+               }
+               else
+               {
+
+                  strOperatingAmbientNew = strWindowing;
+
+               }
+
+            }
+
+         }
+
+         if (strOperatingAmbientNew.has_character())
+         {
+
+            strOperatingAmbient = strOperatingAmbientNew;
+
+         }
+
+         if (strOperatingAmbientNew.is_empty())
+         {
+
+            strOperatingAmbient = strOperatingAmbientToolkit;
+
+         }
 
          auto pfactory = factory("operating_ambient", strOperatingAmbient);
 

@@ -10,17 +10,6 @@
 #include "framework.h"
 #include "acme/constant/user.h"
 
-//
-//namespace windowing
-//{
-//
-//
-//::windowing::enum_operating_ambient calculate_edesktop()
-//{
-//   
-//   return ::windowing::e_operating_ambient_unknown;
-//   
-//}
-//
-//
-//} // namespace nano
+
+
+

@@ -6,7 +6,7 @@
 
 #include "bounding_rect.h"
 
-#include "contains.h"
+#include "../contains.h"
 
 
 //#include "shape_array.h"

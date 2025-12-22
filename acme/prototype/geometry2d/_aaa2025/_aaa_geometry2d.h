@@ -13,20 +13,20 @@
 
 
 
-#include "_function.h"
+#include "../_function.h"
 
 
-#include "angle.h"
-#include "line.h"
-#include "point.h"
-#include "size.h"
-#include "arc.h"
-#include "rectangle.h"
-#include "shift.h"
-#include "ellipse.h"
+#include "../angle.h"
+#include "../line.h"
+#include "../point.h"
+#include "../size.h"
+#include "../arc.h"
+#include "../rectangle.h"
+#include "../shift.h"
+#include "../ellipse.h"
 
 
-#include "_function_impl.h"
+#include "../_function_impl.h"
 
 
 

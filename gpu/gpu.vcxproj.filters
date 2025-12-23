@@ -198,9 +198,6 @@
     <ClInclude Include="_ktx.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="timer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="ibl\_hlsl.h">
       <Filter>Header Files\ibl</Filter>
     </ClInclude>
@@ -321,9 +318,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="_ktx.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="timer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ibl\_hlsl.cpp">

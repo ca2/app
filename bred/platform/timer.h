@@ -5,12 +5,12 @@
 #include <chrono>
 
 
-namespace gpu
+namespace bred
 {
    /**
     * Class for timing anything.
     */
-   class CLASS_DECL_GPU Timer
+   class CLASS_DECL_BRED Timer
    {
    public:
       
@@ -23,7 +23,7 @@ namespace gpu
    };
 
 
-} // namespace gpu
+} // namespace bred
 
 
 

@@ -9,7 +9,7 @@
 #include "gpu/full_screen_quad.h"
 #include "bred/gpu/device.h"
 #include "bred/gpu/types.h"
-#include "gpu/timer.h"
+#include "bred/platform/timer.h"
 #include "bred/gpu/context.h"
 #include "bred/gpu/shader.h"
 #include "bred/graphics3d/engine.h"
@@ -155,7 +155,7 @@ namespace gpu
       void specular_map::computePrefilteredEnvMap(::gpu::command_buffer *pgpucommandbuffer)
       {
 
-         ::gpu::Timer timer;
+         ::bred::Timer timer;
 
          ::gpu::context_lock contextlock(m_pgpucontext);
 
@@ -251,7 +251,7 @@ namespace gpu
       void specular_map::computeBrdfConvolutionMap(::gpu::command_buffer *pgpucommandbuffer)
       {
 
-         ::gpu::Timer timer;
+         ::bred::Timer timer;
 
          //::gpu::context_lock contextlock(m_pgpucontext);
 

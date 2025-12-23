@@ -7,7 +7,7 @@
 #include "bred/gpu/context.h"
 #include "bred/gpu/shader.h"
 #include "bred/gpu/texture.h"
-#include "gpu/timer.h"
+#include "bred/platform/timer.h"
 #include "bred/graphics3d/engine.h"
 #include "bred/graphics3d/scene_base.h"
 #include "bred/graphics3d/shape_factory.h"
@@ -110,7 +110,7 @@ namespace gpu
       void diffuse_irradiance_map::computeIrradianceMap(::gpu::command_buffer *pgpucommandbuffer)
       {
 
-         ::gpu::Timer timer;
+         ::bred::Timer timer;
 
          using namespace graphics3d;
 

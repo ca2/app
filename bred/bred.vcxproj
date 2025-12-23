@@ -435,6 +435,7 @@
     <ClInclude Include="platform\application.h" />
     <ClInclude Include="platform\session.h" />
     <ClInclude Include="platform\system.h" />
+    <ClInclude Include="platform\timer.h" />
     <ClInclude Include="platform\_platform.h" />
     <ClInclude Include="prodevian\actor.h" />
     <ClInclude Include="prodevian\camera.h" />
@@ -551,6 +552,7 @@
     <ClCompile Include="platform\application.cpp" />
     <ClCompile Include="platform\session.cpp" />
     <ClCompile Include="platform\system.cpp" />
+    <ClCompile Include="platform\timer.cpp" />
     <ClCompile Include="prodevian\actor.cpp" />
     <ClCompile Include="prodevian\game_object.cpp" />
     <ClCompile Include="prodevian\immersion.cpp" />

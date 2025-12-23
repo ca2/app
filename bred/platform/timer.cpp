@@ -4,7 +4,7 @@
 #include "timer.h"
 
 
-namespace gpu
+namespace bred
 {
 
 
@@ -22,5 +22,5 @@ namespace gpu
       ::information() << logText << " [" << diff << " ms]";
    }
 
-} // namespace gpu
+} // namespace bred
 

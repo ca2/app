@@ -9,7 +9,7 @@
 #include "bred/gpu/device.h"
 #include "glad/glad.h"
 #include "gpu/model/_constant.h"
-#include "gpu/timer.h"
+#include "bred/platform/timer.h"
 #include "gpu_opengl/_gpu_opengl.h"
 //#include "cubemap_framebuffer.h"
 //#include "hdri_cube.h"
@@ -60,7 +60,7 @@ namespace gpu_opengl
 
          gpu::ibl::equirectangular_cubemap::compute();
 
-         // ::gpu::Timer timer;
+         // ::bred::Timer timer;
          //
          // auto pgpucommandbuffer = m_pgpucontext->beginSingleTimeCommands(m_pgpucontext->m_pgpudevice->graphics_queue());
          //

@@ -30,12 +30,23 @@
 #include "aura/graphics/image/context.h"
 #include "bred/gpu/command_buffer.h"
 #include "bred/gpu/graphics.h"
+#include "bred/platform/timer.h"
 #include "bred/graphics3d/engine.h"
 #include "bred/graphics3d/immersion_layer.h"
 #include "bred/graphics3d/renderable.h"
 #include "bred/graphics3d/scene_base.h"
 #include "bred/graphics3d/types.h"
 #include "ibl/_.h"
+
+
+struct rgba_from_b_g_push_constants
+{
+
+   int mipLevel;
+};
+
+
+DECLARE_GPU_PROPERTIES(CLASS_DECL_BRED, rgba_from_b_g_push_constants);
 
 
 namespace gpu
@@ -2908,6 +2919,9 @@ return {};
                                                     ::gpu::texture *pgputextureRoughness)
    {
 
+
+
+
       if (!m_pgpushaderRgbaFromB_G)
       {
 
@@ -2920,7 +2934,21 @@ return {};
          pshaderRgbaFromB_G->m_bEnableBlend = false;
          // m_pshaderRectangle->m_bAccumulationEnable = true;
 
+
+         auto pbindingset = pshaderRgbaFromB_G->binding_set(0);
+
+         auto pbindingMetallic = pbindingset->binding(0);
+         pbindingMetallic->m_strUniform = "metallicTex";
+         pbindingMetallic->m_ebinding = ::gpu::e_binding_sampler2d;
+         auto pbindingRoughness = pbindingset->binding(1);
+         pbindingRoughness->m_strUniform = "roughnessTex";
+         pbindingRoughness->m_ebinding = ::gpu::e_binding_sampler2d;
+
          auto pcontext = this;
+
+         pshaderRgbaFromB_G->m_propertiesPushShared.set_properties(::gpu_properties<::rgba_from_b_g_push_constants>());
+
+         pcontext->layout_push_constants(pshaderRgbaFromB_G->m_propertiesPushShared, false);
 
          //::cast < ::gpu_vulkan::device > pgpudevice = pgpucontext->m_pgpudevice;
          pshaderRgbaFromB_G->initialize_shader_with_block(
@@ -2932,13 +2960,102 @@ return {};
 
       }
 
-      return pgputextureMetallic;
+      ::gpu::binding_set *pbindingset = m_pgpushaderRgbaFromB_G->binding_set(0);
+      ::gpu::binding *pbindingMetallic = m_pgpushaderRgbaFromB_G->binding(0, 0);
+      ::gpu::binding *pbindingRoughness = m_pgpushaderRgbaFromB_G->binding(0, 1);
+
+      int w1 = pgputextureMetallic->width();
+      int h1 = pgputextureMetallic->height();
+      int w2 = pgputextureRoughness->width();
+      int h2 = pgputextureRoughness->height();
+      ASSERT(w1 == w2 && h1 == h2);
+
+      auto pgputextureMetallicRoughness = øcreate<::gpu::texture>();
+      ::int_rectangle r(0, 0, w1, h1);
+      ::gpu::texture_attributes textureattributes(r);
+      textureattributes.m_iBitsPerChannel = 8;
+      textureattributes.m_iChannelCount = 1;
+      textureattributes.m_etexture = ::gpu::e_texture_image;
+      textureattributes.m_iSrgb = 0;
+      textureattributes.m_iFloat = 0;
+      textureattributes.m_iLayerCount = 1;
+      textureattributes.m_iMipCount= maximum(pgputextureMetallic->m_textureattributes.m_iMipCount,
+         pgputextureRoughness->m_textureattributes.m_iMipCount);
+      ::gpu::texture_flags textureflags;
+      textureflags.m_bRenderTarget = true;
+      textureflags.m_bShaderResource = true;
+      pgputextureMetallicRoughness->initialize_texture(m_pgpurenderer, textureattributes, textureflags);
+
+                     ::bred::Timer timer;
+
+
+
+              auto pgpucommandbuffer = this->beginSingleTimeCommands(m_pgpudevice->graphics_queue());
+                     pgputextureMetallicRoughness->set_current_mip(-1);
+              pgputextureMetallicRoughness->set_current_layer(0);
+                     pgputextureMetallicRoughness->set_state(pgpucommandbuffer,
+                                                             ::gpu::e_texture_state_color_attachment);
+
+      ::string strDebugScopeCompute;
+
+      strDebugScopeCompute.format("gpu::context::rgba_from_b_g");
+
+      auto pbindingslotMetallic = m_pgpushaderRgbaFromB_G->binding_slot(0, 0, pbindingMetallic);
+      auto pbindingslotRoughness = m_pgpushaderRgbaFromB_G->binding_slot(0, 1, pbindingRoughness);
+
+      pbindingslotMetallic->m_ptexture = pgputextureMetallic;
+      pbindingslotRoughness->m_ptexture = pgputextureRoughness;
+
+      pgputextureMetallic->set_state(pgpucommandbuffer, ::gpu::e_texture_state_shader_read);
+      pgputextureRoughness->set_state(pgpucommandbuffer, ::gpu::e_texture_state_shader_read);
+
+      auto pbindingslotset = m_pgpushaderRgbaFromB_G->binding_slot_set(0, pbindingset);
+
+      for (int iMip = 0; iMip < textureattributes.m_iMipCount; iMip++)
+      {
+         pgputextureMetallicRoughness->set_current_mip(iMip);
+         pgputextureMetallicRoughness->set_current_layer(0);
+
+         pgpucommandbuffer->begin_render(m_pgpushaderRgbaFromB_G, pgputextureMetallicRoughness);
+
+
+         m_pgpushaderRgbaFromB_G->set_int("mipLevel", iMip);
+
+         int_rectangle r;
+         r.left = 0;
+         r.top = 0;
+         r.set_width(pgputextureMetallicRoughness->mip_width());
+         r.set_height(pgputextureMetallicRoughness->mip_height());
+
+         pgpucommandbuffer->set_viewport(r);
+         m_pgpushaderRgbaFromB_G->push_properties(pgpucommandbuffer);
+
+         pgpucommandbuffer->bind_slot_set(0, pbindingslotset);
+
+         pgpucommandbuffer->draw_vertexes(3);
+         pgpucommandbuffer->end_render();
+      }
+
+      timer.logDifference("Rendered rgba_from_b_g");
+      pgputextureMetallicRoughness->set_current_mip(-1);
+      pgputextureMetallicRoughness->set_state(pgpucommandbuffer, ::gpu::e_texture_state_shader_read);
+      pgputextureMetallicRoughness->set_ok_flag();
+
+      this->endSingleTimeCommands(pgpucommandbuffer);
+
+
+      return pgputextureMetallicRoughness;
 
    }
 
 
 
 } // namespace gpu
+
+
+BEGIN_GPU_PROPERTIES(rgba_from_b_g_push_constants)
+GPU_PROPERTY("mipLevel", ::gpu::e_type_int)
+END_GPU_PROPERTIES()
 
 
 

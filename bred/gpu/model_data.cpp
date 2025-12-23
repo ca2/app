@@ -11,9 +11,36 @@ namespace gpu
 
    model_data_base::~model_data_base() {}
 
-   ::block model_data_base::vertex_data() { throw interface_only(); }
-   ::block model_data_base::index_data() { throw interface_only(); }
 
+   ::gpu::property * model_data_base::gpu_properties() const
+   {
+
+      return (::gpu::property *) m_ppropertyProperties;
+
+   }
+
+   ::block model_data_base::vertex_data()
+   {
+      throw interface_only();
+      return {};
+   }
+   ::block model_data_base::index_data()
+   {
+      throw interface_only();
+      return {};
+   }
+
+   const ::block model_data_base::vertex_data() const
+   {
+      throw interface_only();
+      return {};
+   
+   }
+   const ::block model_data_base::index_data() const
+   {
+      throw interface_only();
+      return {};
+   }
    bool model_data_base::is_empty() const
    {
 
@@ -29,6 +56,12 @@ namespace gpu
          return vertex_count() > 0;
 
       }
+
+   }
+
+   void model_data_base::update()
+   {
+
 
    }
 

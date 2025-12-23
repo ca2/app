@@ -16,7 +16,7 @@
 #include "gpu_opengl/shader.h"
 #include "gpu_opengl/texture.h"
 //#include "gpu/cube.h"
-#include "gpu/gltf/_constant.h"
+#include "gpu/model/_constant.h"
 #include <glad/glad.h>
 #include "gpu/context.h"
 #include "gpu/timer.h"

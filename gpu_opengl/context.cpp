@@ -1186,9 +1186,9 @@ namespace gpu_opengl
 
          ødefer_construct(m_pmodelbufferDummy);
 
-         m_pmodelbufferDummy->initialize_gpu_context_object(this);
+         m_pmodelbufferDummy->initialize_dummy_model(m_pgpurenderer, 3);
 
-         m_pmodelbufferDummy->m_iVertexCount = 3;
+         //m_pmodelbufferDummy->m_iVertexCount = 3;
 
       }
 

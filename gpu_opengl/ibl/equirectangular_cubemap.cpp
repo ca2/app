@@ -8,7 +8,7 @@
 #include "bred/graphics3d/skybox.h"
 #include "bred/gpu/device.h"
 #include "glad/glad.h"
-#include "gpu/gltf/_constant.h"
+#include "gpu/model/_constant.h"
 #include "gpu/timer.h"
 #include "gpu_opengl/_gpu_opengl.h"
 //#include "cubemap_framebuffer.h"

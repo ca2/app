@@ -99,17 +99,28 @@ namespace gpu
                   
                   if (pmodel->m_egpumodel == ::gpu::e_model_gltf)
                   {
-                     processMesh(pmodel, pmesh->m_modeldataGltf.m_vertexes, pmesh->m_modeldataGltf.m_indexes,
+                     ::cast < ::gpu::model_data<::gpu::gltf::vertex> >pmodeldata = pmesh->m_pmodeldata;
+
+
+                     processMesh(pmodel, pmodeldata->vertexes(), pmodeldata->indexes(),
                         
                         pmesh->m_pmaterial,
                                  mesh, scene, pmodel->m_pmaterialOverride);
+
+                     pmodeldata->update();
                   }
                   else if (pmodel->m_egpumodel == ::gpu::e_model_wavefront)
                   {
 
-                     processMesh(pmodel, pmesh->m_modeldataWavefront.m_vertexes, pmesh->m_modeldataWavefront.m_indexes, 
+                  ::cast < ::gpu::model_data<::graphics3d::Vertex> >pmodeldata = pmesh->m_pmodeldata;
+
+                     processMesh(pmodel, pmodeldata->vertexes(),
+                              pmodeldata->indexes(), 
                         pmesh->m_pmaterial,
                                  mesh, scene, pmodel->m_pmaterialOverride);
+
+                     pmodeldata->update();
+                    
 
                   }
                   auto m = node->mTransformation;

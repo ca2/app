@@ -60,7 +60,7 @@ namespace gpu
       }
       ~model_data_base() override;
 
-
+      virtual ::gpu::property *gpu_properties() const;
       virtual ::block vertex_data();
       virtual ::block index_data() ;
       virtual const ::block vertex_data() const;
@@ -116,6 +116,7 @@ namespace gpu
       { return m_bDummy;
 
       }
+      virtual void update();
    };
 
 
@@ -128,13 +129,6 @@ namespace gpu
       ::array_base<VERTEX> m_vertexes;
       ::array_base<INDEX> m_indexes;
 
-      void update()
-      {
-
-         update_vertexes();
-         update_indexes();
-
-      }
 
       void update_vertexes()
       {
@@ -167,6 +161,12 @@ namespace gpu
    public:
 
 
+            void update() override
+      {
+
+         update_vertexes();
+         update_indexes();
+      }
 
 
       model_data() {}
@@ -315,6 +315,9 @@ namespace gpu
 
       }
       const ::array_base<INDEX> &indexes() const { return m_indexes; }
+
+            ::array_base<VERTEX> &vertexes() { return m_vertexes; }
+      ::array_base<INDEX> &indexes() { return m_indexes; }
 
    };
 

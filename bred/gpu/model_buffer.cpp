@@ -881,44 +881,42 @@ namespace gpu
    }
 
 
-   //void model_buffer::static_initialize_vertex_buffer(const void* data, memsize iTypeSize, ::collection::count iVertexCount)
-   //{
+   void model_buffer::_static_initialize_vertex_buffer(const ::block & blockVertexData)
+   {
 
-   //   m_iVertexCount = (int) iVertexCount;
+      //m_iVertexCount = (int) iVertexCount;
 
-   //   m_iVertexTypeSize = (int) iTypeSize;
+      //m_iVertexTypeSize = (int) iTypeSize;
 
-   //   auto size = iTypeSize * iVertexCount;
+      //auto size = iTypeSize * iVertexCount;
 
-   //   ødefer_construct(m_pbufferVertex);
+      ødefer_construct(m_pbufferVertex);
 
-   //   m_pbufferVertex->static_initialize_memory_buffer_with_model_buffer(
-   //      this,
-   //      data,
-   //      size,
-   //      memory_buffer::e_type_vertex_buffer);
+      m_pbufferVertex->static_initialize_memory_buffer_with_model_buffer(
+         this,
+         blockVertexData,
+         memory_buffer::e_type_vertex_buffer);
 
-   //}
+   }
 
 
-   //void model_buffer::static_initialize_index_buffer(const void* data, memsize iTypeSize, ::collection::count iIndexCount)
-   //{
+   void model_buffer::_static_initialize_index_buffer(const ::block & blockIndexData)
+   {
 
-   //   m_iIndexCount = (int) iIndexCount;
+      //m_iIndexCount = (int) iIndexCount;
 
-   //   m_iIndexTypeSize = (int) iTypeSize;
+      //m_iIndexTypeSize = (int) iTypeSize;
 
-   //   auto size = iIndexCount * m_iIndexTypeSize;
+      //auto size = iIndexCount * m_iIndexTypeSize;
 
-   //   ødefer_construct(m_pbufferIndex);
+      ødefer_construct(m_pbufferIndex);
 
-   //   m_pbufferIndex->static_initialize_memory_buffer_with_model_buffer(
-   //      this,
-   //      data,
-   //      size,
-   //      memory_buffer::e_type_index_buffer);
+      m_pbufferIndex->static_initialize_memory_buffer_with_model_buffer(
+         this,
+         blockIndexData,
+         memory_buffer::e_type_index_buffer);
 
-   //}
+   }
 
 
    //void model_buffer::static_initialize_vertexes_block(const ::block& blockvertexes)

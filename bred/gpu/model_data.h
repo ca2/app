@@ -63,6 +63,8 @@ namespace gpu
 
       virtual ::block vertex_data();
       virtual ::block index_data() ;
+      virtual const ::block vertex_data() const;
+      virtual const ::block  index_data() const;
       virtual ::platform::type vertex_type() const;
       virtual ::platform::type index_type() const;
 
@@ -303,6 +305,8 @@ namespace gpu
 
       }
 
+      virtual const ::block vertex_data()const { return {m_vertexes.data(), m_vertexes.get_size_in_bytes()}; }
+      virtual const ::block index_data() const { return {m_indexes.data(), m_indexes.get_size_in_bytes()}; }
 
       const ::array_base<VERTEX> & vertexes() const
       {

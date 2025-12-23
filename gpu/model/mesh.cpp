@@ -167,18 +167,20 @@ namespace gpu
 
          m_pmodelbuffer->initialize_gpu_context_object(m_pgpucontext);
 
-         if (m_modeldataGltf.has_data())
-         {
+         //if (m_modeldataGltf.has_data())
+         //;
+         //;
+         //{
 
-            m_pmodelbuffer->set_data(m_modeldataGltf);
+            m_pmodelbuffer->set_data(m_pmodeldata);
 
-         }
-         else
-         {
+         //}
+         //else
+         //{
 
-            m_pmodelbuffer->set_data(m_modeldataWavefront);
+         //   m_pmodelbuffer->set_data(m_modeldataWavefront);
 
-         }
+         //}
 
       }
 

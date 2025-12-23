@@ -22,6 +22,13 @@ namespace gpu
       virtual public poolable < model_buffer >,
       virtual public ::graphics3d::renderable
    {
+   protected:
+
+
+      virtual void _static_initialize_vertex_buffer(const ::block & blockVertexData);
+      virtual void _static_initialize_index_buffer(const ::block & blockIndexData);
+
+
    public:
 
 
@@ -136,8 +143,6 @@ namespace gpu
 
       virtual void initialize_dummy_model(::gpu::context* pcontext, int iVertexCount);
 
-      //virtual void static_initialize_vertex_buffer(const void* data, memsize iTypeSize, ::collection::count iVertexCount);
-      //virtual void static_initialize_index_buffer(const void* data, memsize iTypeSize, ::collection::count iIndexCount);
 
       //virtual void static_initialize_vertexes_block(const ::block& blockvertexes);
       //virtual void static_initialize_indexes_block(const ::block& blockindexes);
@@ -225,7 +230,19 @@ namespace gpu
 
       }
 
+      void static_initialize(const ::gpu::model_data_base * pmodeldata)
+      {
 
+         m_pmodeldatabase2 = pmodeldata;
+
+         _static_initialize_vertex_buffer(pmodeldata->vertex_data());
+
+         if (pmodeldata->index_count() > 0)
+         {
+
+            _static_initialize_index_buffer(pmodeldata->index_data());
+         }
+      }
 
       template < typename VERTEX >
       void set_vertexes(const ::array < VERTEX > & vertexa)
@@ -335,6 +352,27 @@ namespace gpu
 
          unbind_load_assets_command_buffer(m_pgpucontext);
 
+      }
+
+
+      void set_data(const ::gpu::model_data_base * pmodeldata)
+      {
+
+         if (!m_papplication || !m_pgpucontext)
+         {
+
+            // should call initialize(pcontext);
+
+            // should call initialize_gpu_context_object(pcontext);
+
+            throw ::exception(error_wrong_state);
+         }
+
+         bind_load_assets_command_buffer(m_pgpucontext);
+
+         static_initialize(pmodeldata);
+
+         unbind_load_assets_command_buffer(m_pgpucontext);
       }
 
 

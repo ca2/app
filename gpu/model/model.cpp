@@ -129,13 +129,36 @@ namespace gpu
 
             stbi_set_flip_vertically_on_load(flipTexturesVertically);
             //importer.SetIOHandler(get_assimp_iosystem());
+            //When this flag appears
+//
+//You will see aiPrimitiveType_NGONEncodingFlag when :
+//
+//                The model has concave n -
+//                gons
+//
+//                   The model has non -
+//                planar faces
+//
+//                   The exporter wrote malformed polygons
+//
+//                      You used aiProcess_Triangulate but Assimp could not safely triangulate all faces
+//
+//                         So triangulation was partial,
+//               not complete.
+            unsigned int nFlags = 0;
+
+
+            //nFlags = aiProcess_Triangulate | aiProcess_SortByPType | aiProcess_JoinIdenticalVertices;
+
+
+            //nFlags = aiProcess_Triangulate | aiProcess_SortByPType | aiProcess_GenNormals | aiProcess_CalcTangentSpace;
             const aiScene *scene =
                // get_assimp_importer()->ReadFile(path, aiProcess_Triangulate | aiProcess_FlipUVs |
                // aiProcess_CalcTangentSpace);
 //                              get_assimp_importer()->ReadFile(path,
   //                                                          aiProcess_Triangulate | aiProcess_FlipUVs);
                //get_assimp_importer()->ReadFile(path, aiProcess_Triangulate);
-               get_assimp_importer()->ReadFile(path, 0);
+               get_assimp_importer()->ReadFile(path, nFlags);
 
             if (!scene || scene->mFlags & AI_SCENE_FLAGS_INCOMPLETE || !scene->mRootNode)
             {

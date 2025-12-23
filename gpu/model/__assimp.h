@@ -95,6 +95,23 @@ namespace gpu
                for (unsigned int i = 0; i < node->mNumMeshes; i++)
                {
                   aiMesh *mesh = scene->mMeshes[node->mMeshes[i]];
+
+                  if (mesh->mPrimitiveTypes & aiPrimitiveType_NGONEncodingFlag)
+                  {
+
+                     ::warning("must ignore this mesh. don't know how to draw NGONEndoded data");
+
+                     continue;
+                  }
+
+                  if (mesh->mPrimitiveTypes != aiPrimitiveType_TRIANGLE)
+                  {
+
+                     ::warning("must ignore this mesh. don't know how to draw non triangle data");
+
+                     continue;
+                  }
+
                   auto pmesh = pmodel->øcreate<::gpu::model::mesh>();
                   pmesh->m_pgpucontext = pmodel->m_pgpucontext;
                   
@@ -169,6 +186,25 @@ namespace gpu
          ::gpu::model::material * pmaterialOverride)
       {
 
+         if (mesh->mPrimitiveTypes & aiPrimitiveType_NGONEncodingFlag)
+         {
+
+            ::warning("must ignore this mesh. don't know how to draw NGONEndoded data");
+
+            return;
+
+
+
+         }
+
+         if (mesh->mPrimitiveTypes != aiPrimitiveType_TRIANGLE)
+         {
+
+            // please use aiProcess_Triangulate when loading the model
+
+            throw ::exception(error_exception);
+
+         }
 
          //::array_base<gltf::vertex> vertices;
          //::array_base<unsigned int> indices;
@@ -316,13 +352,53 @@ namespace gpu
                   pmaterial->useTextureAlbedo = true;
                }
 
-               // metallicRoughness (in gltf 2.0 they are combined in one texture)
-               if (pmaterial->m_textureaPbr[e_texture_metallic_roughness] =
-                      loadMaterialTexture(pmodel, "metallic.ktx", aiTextureType_UNKNOWN))
+               auto ptextureMetallic = loadMaterialTexture(pmodel, "metallic.ktx", aiTextureType_UNKNOWN);
+
+               if (::is_set(ptextureMetallic))
                {
-                  // defined here in assimp
-                  // https://github.com/assimp/assimp/blob/master/include/assimp/pbrmaterial.h#L57
-                  pmaterial->useTextureMetallicRoughness = true;
+                  int iChannelCountMetallic = ptextureMetallic->m_textureattributes.m_iChannelCount;
+                  if (iChannelCountMetallic == 2)
+                  {
+                     // metallicRoughness (in gltf 2.0 they are combined in one texture)
+                     pmaterial->m_textureaPbr[e_texture_metallic_roughness] = ptextureMetallic;
+                     // defined here in assimp
+                     // https://github.com/assimp/assimp/blob/master/include/assimp/pbrmaterial.h#L57
+                     pmaterial->useTextureMetallicRoughness = true;
+                  }
+                  else if (iChannelCountMetallic == 1)
+                  {
+
+                     auto ptextureRoughness =
+                        loadMaterialTexture(pmodel, "roughness.ktx", aiTextureType_DIFFUSE_ROUGHNESS);
+
+                     if (::is_set(ptextureRoughness))
+                     {
+                        information() << "it seems there's roughness";
+                        int iChannelCountRoughness = ptextureMetallic->m_textureattributes.m_iChannelCount;
+                        if (iChannelCountRoughness == 1)
+                        {
+                           information() << "it seems roughness is one channel";
+                           information() << "Can we synthesize mettalic/roughness texture from these?";
+
+
+
+                        }
+
+                        // quite a work arround;
+                        // use just the metallic;
+                        // oh, please try to create something like:
+                        // ptextureMetallicRoughness = 
+                        // m_pgpucontext->rgb_from_b_g(ptextureMetallic, ptextureRoughness);
+
+                        auto ptextureMetallicRoughness =
+                           pmodel->m_pgpucontext->rgba_from_b_g(ptextureMetallic, ptextureRoughness);
+
+                        pmaterial->m_textureaPbr[e_texture_metallic_roughness] =
+
+                           ptextureMetallicRoughness;
+                     }
+                  }
+
                }
 
                // normal

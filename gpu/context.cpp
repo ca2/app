@@ -350,10 +350,18 @@ namespace gpu_gpu
          return;
       }
       ktxTexture1 *tex1 = (ktxTexture1 *)kTexture;
-      information() << "Width=" << kTexture->baseWidth << " Height=" << kTexture->baseHeight
-                    << " Levels=" << kTexture->numLevels << " glInternalFormat=" << tex1->glInternalformat << "\n";
+      try
+      {
+         information() << "Width=" << kTexture->baseWidth << " Height=" << kTexture->baseHeight
+                       << " Levels=" << kTexture->numLevels << " glInternalFormat=" << tex1->glInternalformat << "\n";
 
-      load_ktxTexture(ptexture, kTexture);
+         load_ktxTexture(ptexture, kTexture);
+      }
+      catch (...)
+      {
+
+
+      }
 
       // Cleanup ktx object (OpenGL texture stays alive)
       ktxTexture_Destroy(kTexture);

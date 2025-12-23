@@ -2890,6 +2890,51 @@ return {};
    //
    // }
 
+   ::memory context::rgba_from_b_g_vert_memory()
+   {
+
+      return {};
+
+   }
+   ::memory context::rgba_from_b_g_frag_memory()
+   {
+
+      return {};
+
+   }
+
+
+   ::pointer<::gpu::texture> context::rgba_from_b_g(::gpu::texture *pgputextureMetallic,
+                                                    ::gpu::texture *pgputextureRoughness)
+   {
+
+      if (!m_pgpushaderRgbaFromB_G)
+      {
+
+
+         auto pshaderRgbaFromB_G = øcreate<::gpu::shader>();
+
+         // m_pshaderBlendRectangle->m_bDisableDepthTest = true;
+         pshaderRgbaFromB_G->m_bDisableDepthTest = true;
+         // m_pshaderRectangle->m_iColorAttachmentCount = 2;
+         pshaderRgbaFromB_G->m_bEnableBlend = false;
+         // m_pshaderRectangle->m_bAccumulationEnable = true;
+
+         auto pcontext = this;
+
+         //::cast < ::gpu_vulkan::device > pgpudevice = pgpucontext->m_pgpudevice;
+         pshaderRgbaFromB_G->initialize_shader_with_block(
+            pcontext->m_pgpurenderer, 
+            rgba_from_b_g_vert_memory(),
+            rgba_from_b_g_frag_memory(),
+            pcontext->input_layout<::graphics3d::sequence2_color>());
+         m_pgpushaderRgbaFromB_G = pshaderRgbaFromB_G;
+
+      }
+
+      return pgputextureMetallic;
+
+   }
 
 
 

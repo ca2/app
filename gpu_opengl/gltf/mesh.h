@@ -36,7 +36,7 @@ namespace gpu_opengl
       public:
 
          // OpenGL data structures
-         unsigned int m_uVAO, m_uVBO, m_uEBO;
+         //unsigned int m_uVAO, m_uVBO, m_uEBO;
 
          //array_base<gltf::vertex> m_vertexa;
          // unsigned_int_array m_indexa;

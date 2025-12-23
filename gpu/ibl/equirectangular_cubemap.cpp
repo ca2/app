@@ -154,8 +154,7 @@ namespace gpu
             cameraAngles[4] = lookAt(origin, unitZ, -unitY); // Z+ (front)
             cameraAngles[5] = lookAt(origin, -unitZ, -unitY); // Z- (back)
 
-
-         };
+         }
 
          floating_matrix4 projection = m_pgpucontext->m_pengine->perspective(
             90f_degrees, // 90 degrees to cover one face

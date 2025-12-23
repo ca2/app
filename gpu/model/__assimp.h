@@ -5,6 +5,7 @@
 #include "gpu/model/_assimp.h"
 #include "gpu/model/_.h"
 #include "gpu/model/material.h"
+#include "bred/gpu/model_buffer.h"
 
 
 namespace gpu
@@ -94,13 +95,13 @@ namespace gpu
                for (unsigned int i = 0; i < node->mNumMeshes; i++)
                {
                   aiMesh *mesh = scene->mMeshes[node->mMeshes[i]];
-                  auto pmesh = pmodel->øcreate_new<::gpu::model::mesh>();
+                  auto pmesh = pmodel->øcreate<::gpu::model::mesh>();
                   pmesh->m_pgpucontext = pmodel->m_pgpucontext;
                   
                   if (pmodel->m_egpumodel == ::gpu::e_model_gltf)
                   {
-                     ::cast < ::gpu::model_data<::gpu::gltf::vertex> >pmodeldata = pmesh->m_pmodeldata;
 
+                     auto pmodeldata = pmodel->øcreate_new < ::gpu::model_data<::gpu::gltf::vertex>>();
 
                      processMesh(pmodel, pmodeldata->vertexes(), pmodeldata->indexes(),
                         
@@ -108,11 +109,15 @@ namespace gpu
                                  mesh, scene, pmodel->m_pmaterialOverride);
 
                      pmodeldata->update();
+
+                     pmesh->m_pmodeldata = pmodeldata;
                   }
                   else if (pmodel->m_egpumodel == ::gpu::e_model_wavefront)
                   {
 
-                  ::cast < ::gpu::model_data<::graphics3d::Vertex> >pmodeldata = pmesh->m_pmodeldata;
+                     auto pmodeldata = pmodel->øcreate_new<::gpu::model_data<::graphics3d::Vertex>>();
+
+                  //::cast < ::gpu::model_data<::graphics3d::Vertex> >pmodeldata = pmesh->m_pmodeldata;
 
                      processMesh(pmodel, pmodeldata->vertexes(),
                               pmodeldata->indexes(), 
@@ -121,8 +126,19 @@ namespace gpu
 
                      pmodeldata->update();
                     
+                     pmesh->m_pmodeldata = pmodeldata;
 
                   }
+                  else
+                  {
+
+                     throw ::exception(error_wrong_state);
+
+                  }
+                  pmodel->øconstruct(pmesh->m_pmodelbuffer);
+                  pmesh->m_pmodelbuffer->initialize_gpu_context_object(pmodel->m_pgpucontext);
+                  pmesh->m_pmodelbuffer->set_data(pmesh->m_pmodeldata);
+                  pmesh->initialize_gpu_mesh(pmesh->m_pmaterial);
                   auto m = node->mTransformation;
                   auto p = node->mParent;
 
@@ -261,7 +277,8 @@ namespace gpu
 
             for (unsigned int j = 0; j < face.mNumIndices; j++)
             {
-               indexes.add(face.mIndices[j]);
+               auto iIndex = face.mIndices[j];
+               indexes.add(iIndex);
             }
          }
 

@@ -135,7 +135,7 @@ namespace gpu
          this->m_ppropertyProperties = ::gpu_properties<VERTEX>();
          this->m_iVertexCount = m_vertexes.get_size();
          this->m_iVertexTypeSize = sizeof(VERTEX);
-         this->m_iVertexByteSize = this->m_iVertexTypeSize * this->m_iIndexCount;
+         this->m_iVertexByteSize = this->m_iVertexTypeSize * this->m_iVertexCount;
       }
       void update_indexes()
       {

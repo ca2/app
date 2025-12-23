@@ -40,6 +40,12 @@ namespace gpu_opengl
 
       }
 
+      ::cast<::gpu_opengl::model_buffer> pmodelbuffer = m_pmodelbuffer;
+
+      auto vao = pmodelbuffer->m_gluVao;
+
+      glBindVertexArray(vao);
+
       ::gpu::context_lock contextlock(m_pcontext);
 
       memsize size;

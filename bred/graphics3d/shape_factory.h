@@ -62,19 +62,8 @@ namespace graphics3d
       //// Generate a ray with a specified length
       //virtual shape CreateRay(float length);
 
-         template < typename VERTEX >
-         ::pointer<::graphics3d::renderable> create_renderable_from_model_data(::gpu::context *pgpucontext, const ::gpu::model_data<VERTEX> &modeldata)
-         {
-
-            auto prenderable = øcreate<::gpu::model_buffer>();
-
-            prenderable->initialize_gpu_context_object(pgpucontext);
-
-            prenderable->set_data(modeldata);
-
-            return prenderable;
-
-         }
+         virtual ::pointer<::graphics3d::renderable> create_renderable_from_model_data(::gpu::context *pgpucontext,
+                                                                            ::gpu::model_data_base *pmodeldata);
 
       };
 

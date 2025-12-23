@@ -2793,7 +2793,7 @@ return {};
          if (model.m_egpumodel == ::gpu::e_model_wavefront)
          {
 
-            prenderable = load_model(model);
+            prenderable = _load_model(model);
 
             // information("[asset_manager] Successfully loaded OBJ model '{}' from '{}'",
             //    model.m_strName,
@@ -2805,7 +2805,7 @@ return {};
 
             //uint32_t flags = entry.get("flags", 0); // Optional flags
             //float scale = entry.get("scale", 1.0f); // Optional scale
-            prenderable = load_model(model);
+            prenderable = _load_model(model);
 
             //name, path, flags, scale);
             // if (entry.get("usage", "") == "skybox" || name == "cube")

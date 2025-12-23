@@ -242,6 +242,9 @@ namespace gpu
 
             _static_initialize_index_buffer(pmodeldata->index_data());
          }
+
+         set_input_layout(m_pgpucontext->input_layout(m_pmodeldatabase2->gpu_properties()));
+
       }
 
       template < typename VERTEX >

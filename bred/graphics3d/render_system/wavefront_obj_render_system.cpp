@@ -5,6 +5,7 @@
 #include "bred/gpu/block.h"
 #include "bred/gpu/command_buffer.h"
 #include "bred/gpu/context.h"
+#include "bred/gpu/context_lock.h"
 #include "bred/gpu/device.h"
 #include "bred/gpu/frame.h"
 #include "bred/gpu/renderer.h"
@@ -199,6 +200,8 @@ namespace graphics3d
 				m_pshader->push_properties(pgpucommandbuffer);
 
             //prenderable->bind(pcommandbuffer);
+
+            //::gpu::context_lock contextlock(pgpucontext);
 
             on_before_draw_renderable(pgpucontext, pscene, pscenerenderable);
 

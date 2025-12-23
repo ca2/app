@@ -709,6 +709,8 @@ namespace gpu
       if (pmodelbufferRectangle->is_new())
       {
 
+         pmodelbufferRectangle->initialize_gpu_context_object(pcontext);
+
          pmodelbufferRectangle->sequence2_color_create_rectangle(::gpu::current_frame());
 
       }
@@ -1073,6 +1075,8 @@ namespace gpu
 
       if (pmodelbuffer->is_new())
       {
+
+         pmodelbuffer->initialize_gpu_context_object(pcontext);
 
          pmodelbuffer->create_vertexes< ::graphics3d::sequence2_color>(6, true);
 

@@ -31,11 +31,11 @@ namespace graphics3d
       // Generate a graphics3d with position, color, texture coordinates, and normals
    ::pointer < ::graphics3d::renderable > shape_factory::create_cube_001(::gpu::context * pgpucontext, float size)
    {
-      shape shape;
+      auto pshape = øcreate_new<shape>();
 
       float halfSize = size / 2.0f;
 
-     shape.set_vertexes({
+     pshape->set_vertexes({
          // Front face  (normal =  0, 0,  1)
          {{-halfSize, -halfSize, halfSize}, {0.0f, 0.0f, 1.0f}, {0.0f, 0.0f}}, // bottom-left
          {{halfSize, -halfSize, halfSize}, {0.0f, 0.0f, 1.0f}, {1.0f, 0.0f}}, // bottom-right
@@ -75,7 +75,7 @@ namespace graphics3d
 
 
       // Indices for the graphics3d (two triangles per face)
-     shape.set_indexes({
+     pshape->set_indexes({
          // Front face
          0,
          1,
@@ -125,17 +125,17 @@ namespace graphics3d
          20,
       });
 
-      return create_renderable_from_model_data(pgpucontext, shape);
+      return create_renderable_from_model_data(pgpucontext, pshape);
 
    }
 
 
    ::pointer<::graphics3d::renderable> shape_factory::create_cube_002(::gpu::context *pgpucontext, float size)
    {
-      shape shape;
+      auto pshape = øcreate_new<shape>();
       float s = size * 0.5f;
 
-      shape.set_vertexes( {
+      pshape->set_vertexes( {
 
          // +X face (right)
          {{s, -s, -s}, {1, 0, 0}, {0, 0}},
@@ -175,7 +175,7 @@ namespace graphics3d
       });
 
       // 6 faces × 2 triangles per face
-      shape.set_indexes( {
+      pshape->set_indexes( {
          0,  1,  2,  2,  3,  0, // +X
          4,  5,  6,  6,  7,  4, // -X
          8,  9,  10, 10, 11, 8, // +Y
@@ -184,20 +184,20 @@ namespace graphics3d
          20, 21, 22, 22, 23, 20 // -Z
       });
 
-      return create_renderable_from_model_data(pgpucontext, shape);
+      return create_renderable_from_model_data(pgpucontext, pshape);
    }
 
 
    // Generate a plane (XZ plane by default) with position, texture coords, and normals
    ::pointer < ::graphics3d::renderable > shape_factory::create_plane(::gpu::context * pgpucontext, float width, float depth)
    {
-      shape shape;
+      auto pshape = øcreate_new<shape>();
 
       float halfWidth = width / 2.0f;
       float halfDepth = depth / 2.0f;
 
       // Vertices for a plane
-      shape.set_vertexes( {
+      pshape->set_vertexes( {
          // Position               // Color           // texture coords
          {{-halfWidth, 0.0f, -halfDepth}, {1.0f, 0.0f, 0.0f}, {0.0f, 0.0f}},
          {{halfWidth, 0.0f, -halfDepth}, {0.0f, 1.0f, 0.0f}, {1.0f, 0.0f}},
@@ -206,22 +206,22 @@ namespace graphics3d
       });
 
       // Indices for a plane (two triangles)
-      shape.set_indexes( {0, 1, 2, 2, 3, 0});
+      pshape->set_indexes( {0, 1, 2, 2, 3, 0});
 
-      return create_renderable_from_model_data(pgpucontext, shape);
+      return create_renderable_from_model_data(pgpucontext, pshape);
 
    }
 
    // Generate a wall (XY plane by default) with position, texture coords, and normals
    ::pointer < ::graphics3d::renderable > shape_factory::create_wall(::gpu::context * pgpucontext, float width, float height)
    {
-      shape shape;
+      auto pshape = øcreate_new<shape>();
 
       float halfWidth = width / 2.0f;
       float halfHeight = height / 2.0f;
 
       // Vertices for a wall
-      shape.set_vertexes( {
+      pshape->set_vertexes( {
          // Position               // Color           // texture coords
          {{-halfWidth, -halfHeight, 0.0f}, {-0.5f, -0.5f, 0.5f}, {0.0f, 0.0f}}, // bottom-left (red)
          {{halfWidth, -halfHeight, 0.0f}, {0.5f, -0.5f, 0.5f}, {1.0f, 0.0f}}, // bottom-right (green)
@@ -230,9 +230,9 @@ namespace graphics3d
       });
 
       // Indices for a wall (two triangles)
-      shape.set_indexes({0, 1, 2, 2, 3, 0});
+      pshape->set_indexes({0, 1, 2, 2, 3, 0});
 
-      return create_renderable_from_model_data(pgpucontext, shape);
+      return create_renderable_from_model_data(pgpucontext, pshape);
 
    }
 
@@ -240,7 +240,7 @@ namespace graphics3d
                                                                           unsigned int sectorCount,
                                                                   unsigned int stackCount)
    {
-      shape shape;
+      auto pshape = øcreate_new<shape>();
 
       ::array_base<::graphics3d::shape_factory::Vertex> vertexes;
 
@@ -282,7 +282,7 @@ namespace graphics3d
          }
       }
 
-      shape.set_vertexes(vertexes);
+      pshape->set_vertexes(vertexes);
 
       array_base<unsigned int> indexes;
 
@@ -313,8 +313,8 @@ namespace graphics3d
          }
       }
 
-      shape.set_indexes(indexes);
-            return create_renderable_from_model_data(pgpucontext, shape);
+      pshape->set_indexes(indexes);
+            return create_renderable_from_model_data(pgpucontext, pshape);
 
 
    }
@@ -325,19 +325,30 @@ namespace graphics3d
    //    shape shape;
 
    //   // Define vertexes for the ray (start at origin, end at specified length)
-   //   shape.vertexes = {
+   //   pshape->vertexes = {
    //       {0.0f, 0.0f, 0.0f}, // Ray start
    //       0.0f, 0.0f, length, // Ray end
    //   };
 
    //   // Define indexes for the ray (one line)
-   //   shape.m_indexes = {
+   //   pshape->m_indexes = {
    //       0, 1,
    //   };
 
    //   return shape;
    //}
+   ::pointer<::graphics3d::renderable> shape_factory::create_renderable_from_model_data(::gpu::context *pgpucontext,
+                                                                         ::gpu::model_data_base *pmodeldata)
+   {
 
+      auto prenderable = øcreate<::gpu::model_buffer>();
+
+      prenderable->initialize_gpu_context_object(pgpucontext);
+
+      prenderable->set_data(pmodeldata);
+
+      return prenderable;
+   }
 
 
 } // namespace graphics3d

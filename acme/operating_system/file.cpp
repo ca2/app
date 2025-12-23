@@ -49,6 +49,13 @@ CLASS_DECL_ACME ::string get_appconfig(const ::scoped_string & scopedstr)
 
    auto pathAppConfigFile = pathAppConfig / strFilename;
 
+   if (!file_exists(pathAppConfigFile))
+   {
+
+      return {};
+
+   }
+
    return file_as_string(pathAppConfigFile);
 
 

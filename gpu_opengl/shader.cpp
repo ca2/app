@@ -498,7 +498,7 @@ namespace gpu_opengl
          }
       }
 
-      finished:
+   finished:
 
       if (pgputextureBound)
       {
@@ -862,6 +862,17 @@ namespace gpu_opengl
 
                 // Get uniform block index by name
             GLuint blockIndex = glGetUniformBlockIndex(pshader->m_ProgramID, pszUniform);
+            if (glGetError() == GL_INVALID_OPERATION)
+            {
+
+               if (!glIsProgram(pshader->m_ProgramID))
+               {
+
+                  ::information("error_found?");
+
+               }
+
+            }
             GLCheckError("");
 
             if (blockIndex == GL_INVALID_INDEX)

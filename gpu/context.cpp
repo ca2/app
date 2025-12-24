@@ -289,7 +289,11 @@ namespace gpu_gpu
 
       ::gpu::context_lock contextlock(this);
 
-      auto pmodel = øcreate<::gpu::model::model>();
+      ::pointer<::graphics3d::renderable> prenderable;
+
+      if (model.m_ecoordinatesystem)
+
+      auto pmodel = øcreate<::gpu::gltf::model>();
 
       (*(::gpu::renderable_t *)pmodel) = model;
 

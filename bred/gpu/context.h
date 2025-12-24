@@ -428,6 +428,7 @@ namespace gpu
 
       //::pointer<::graphics3d::renderable> load_model();
       virtual ::pointer<::graphics3d::renderable> load_model(const ::gpu::renderable_t & renderable);
+      virtual ::pointer<::graphics3d::renderable> _load_model(const ::gpu::renderable_t & renderable);
       virtual ::pointer<::gpu::texture> load_cube_map(
          const ::scoped_string & scopedstrName,
          const ::file::path & path, 
@@ -459,13 +460,16 @@ namespace gpu
       //    float scale
       //    );
 
+
       //virtual ::pointer<::graphics3d::renderable> load_wavefront_obj_renderable(const ::gpu::renderable_t & model);
 
       //virtual ::pointer<::graphics3d::renderable> _load_wavefront_obj_renderable(const ::gpu::renderable_t & model);
 
-      //virtual ::pointer<::graphics3d::renderable> load_model(const ::gpu::renderable_t & model);
+      //virtual ::pointer<::graphics3d::renderable> load_gltf_model(const ::gpu::renderable_t & model);
 
-      virtual ::pointer<::graphics3d::renderable> _load_model(const ::gpu::renderable_t & model);
+      //virtual ::pointer<::graphics3d::renderable> _load_gltf_model(const ::gpu::renderable_t & model);
+
+
       virtual void set_viewport(::gpu::command_buffer *pgpucommandbuffer, const ::int_rectangle &rectangle);
 
 //      /// @brief generatePrefilteredEnvMap

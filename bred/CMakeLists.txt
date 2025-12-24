@@ -164,9 +164,9 @@ list(APPEND library_source
    #graphics3d/scene_system.h
    graphics3d/types.cpp
    graphics3d/types.h
-   graphics3d/tinyobjloader_Builder.cpp
-   graphics3d/tinyobjloader_Builder.h
-   graphics3d/tinyobjloader_002.cpp
+   #graphics3d/tinyobjloader_Builder.cpp
+   #graphics3d/tinyobjloader_Builder.h
+   #graphics3d/tinyobjloader_002.cpp
    graphics3d/utilities.h
    include/_.h
    inline/__debug_box_clear_impl.h

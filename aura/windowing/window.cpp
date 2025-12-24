@@ -1047,7 +1047,7 @@ namespace windowing
    // //
    // //                                      synchronous_lock synchronouslock(user_synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
    // //
-   // ////                                      display_lock displaylock(x11_display()->Display());
+   // ////                                      display_lock displaylock(x11_display()->__x11_display());
    // //
    // //                                      information() << "XGrabPointer";
    // ////

@@ -16,6 +16,14 @@ namespace user
    }
 
 
+   activation::activation(::user::enum_activation euseractivation) :
+      m_eactivation(euseractivation)
+   {
+
+
+   }
+
+
    activation::activation(const ::user::e_activation & euseractivation) :
       m_eactivation(euseractivation)
    {

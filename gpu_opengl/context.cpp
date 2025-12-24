@@ -2846,26 +2846,26 @@ color = vec4(c.r,c.g, c.b, c.a);
    }
 
 
-   ::pointer<::graphics3d::renderable> context::_load_model(const ::gpu::renderable_t &model)
-   {
-      // if (auto it = m_mapgltfModel.find(name); it != m_mapgltfModel.end())
-      //  return it->element2();
-
-      ::gpu::context_lock contextlock(this);
-
-      auto pmodel = øcreate<::gpu::model::model>();
-
-      (*(::gpu::renderable_t *)pmodel) = model;
-
-      //::cast<::gpu_opvulkan::queue> pqueueGraphics = graphics_queue();
-
-      //pmodel->loadFromFile(model.m_path.c_str(), this, pqueueGraphics->m_vkqueue, model.m_iFlags, model.m_fScale);
-
-      pmodel->initialize_gpu_model(this, model);
-
-      // m_mapgltfModel[name] = model;
-      return pmodel;
-   }
+   // ::pointer<::graphics3d::renderable> context::_load_gltf_model(const ::gpu::renderable_t &model)
+   // {
+   //    // if (auto it = m_mapgltfModel.find(name); it != m_mapgltfModel.end())
+   //    //  return it->element2();
+   //
+   //    ::gpu::context_lock contextlock(this);
+   //
+   //    auto pmodel = øcreate<::gpu::gltf::model>();
+   //
+   //    (*(::gpu::renderable_t *)pmodel) = model;
+   //
+   //    //::cast<::gpu_opvulkan::queue> pqueueGraphics = graphics_queue();
+   //
+   //    //pmodel->loadFromFile(model.m_path.c_str(), this, pqueueGraphics->m_vkqueue, model.m_iFlags, model.m_fScale);
+   //
+   //    pmodel->initialize_gpu_gltf_model(this, model);
+   //
+   //    // m_mapgltfModel[name] = model;
+   //    return pmodel;
+   // }
 
 
    //void context::load_generic_texture(::pointer<::gpu::texture> &ptexture, const ::file::path &path,

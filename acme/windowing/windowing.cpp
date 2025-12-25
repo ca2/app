@@ -375,21 +375,21 @@ namespace acme
       }
 
 
-      void windowing::on_start_system()
+      void windowing::windowing_application_on_system_start()
       {
 
 
       }
 
 
-      void windowing::on_start_windowing_application()
-      {
-
-         system()->post_application_start();
-         system()->defer_post_application_start_file_open_request();
-         system()->post_application_started();
-
-      }
+      // void windowing::on_start_windowing_application()
+      // {
+      //
+      //    system()->post_application_start();
+      //    system()->defer_post_application_start_file_open_request();
+      //    system()->post_application_started();
+      //
+      // }
 
 
       ::windowing::windowing* windowing::windowing_windowing()
@@ -521,6 +521,20 @@ namespace acme
 
 
       //}
+
+
+      void windowing::windowing_application_on_start()
+      {
+
+
+         system()->post_application_start();
+
+         system()->defer_post_application_start_file_open_request();
+
+         system()->post_application_started();
+
+
+      }
 
 
       void windowing::windowing_application_main_loop()

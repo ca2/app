@@ -7298,91 +7298,7 @@ if(!m_pimaging)
       if(!m_bOperatingAmbientFactory)
       {
 
-         ::string strOperatingAmbientToolkit;
-
-         strOperatingAmbientToolkit = ::windowing::get_eoperating_ambient_name();
-
-         ::string strOperatingAmbient;
-
-         ::string strOperatingAmbientNew;
-
-         ::string strWindowing = get_appconfig("windowing");
-
-         strWindowing.trim();
-
-         ::string_array straLines;
-
-         straLines.add_lines(strWindowing);
-
-         straLines.trim();
-
-         straLines.erase_empty();
-
-         straLines.erase_prefixed("#");
-
-         straLines.truncate_on_find_character('#');
-
-         straLines.trim();
-
-         straLines.erase_empty();
-
-         if (straLines.has_element())
-         {
-
-            strWindowing = straLines.last();
-
-            ::information() << "appconfig : windowing : " << strWindowing;
-
-            if (strWindowing.ends_eat("_windowing"))
-            {
-
-               if (strWindowing == "toolkit")
-               {
-
-                  strOperatingAmbientNew = strOperatingAmbientToolkit;
-
-               }
-               else if (strWindowing == "raw")
-               {
-
-                  if (is_wayland())
-                  {
-
-                     strOperatingAmbientNew = "wayland";
-
-                  }
-                  else if (is_x11())
-                  {
-
-                     strOperatingAmbientNew = "x11";
-
-                  }
-
-               }
-               else
-               {
-
-                  strOperatingAmbientNew = strWindowing;
-
-               }
-
-            }
-
-         }
-
-         if (strOperatingAmbientNew.has_character())
-         {
-
-            strOperatingAmbient = strOperatingAmbientNew;
-
-         }
-
-         if (strOperatingAmbientNew.is_empty())
-         {
-
-            strOperatingAmbient = strOperatingAmbientToolkit;
-
-         }
+         auto strOperatingAmbient = this->get_operating_ambient();
 
          auto pfactory = factory("operating_ambient", strOperatingAmbient);
 
@@ -7403,7 +7319,7 @@ if(!m_pimaging)
 
          ::aqua::system::do_graphics_and_windowing_factory();
 
-         ::string strUserToolkit = ::windowing::get_user_toolkit_id();
+         ::string strUserToolkit = this->get_user_toolkit_id();
 
          if (strUserToolkit.has_character())
          {

@@ -145,10 +145,6 @@ namespace acme
 
          virtual ::windowing::windowing * windowing_windowing();
 
-         virtual void on_start_system();
-
-         virtual void on_start_windowing_application();
-
          virtual void _do_tasks();
          
          virtual void application_handle(long long l, void * p);
@@ -178,6 +174,12 @@ namespace acme
          //virtual void * fetch_windowing_display();
 
          //virtual void process_messages();
+
+         //virtual void on_start_windowing_application();
+
+         virtual void windowing_application_on_system_start();
+
+         virtual void windowing_application_on_start();
 
          virtual void windowing_application_main_loop();
 

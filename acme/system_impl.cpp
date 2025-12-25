@@ -4069,7 +4069,7 @@ namespace platform
 
          nano()->graphics();
 
-         ::string strToolkit = ::windowing::get_user_toolkit_id();
+         ::string strToolkit = get_acme_windowing_toolkit_id()();
 
          m_pfactoryAcmeWindowing = this->factory("acme_windowing", strToolkit);
 

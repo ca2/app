@@ -99,6 +99,17 @@ namespace platform
 
       virtual void process_machine_event_data(machine_event_data * pdata) override;
 
+
+      virtual ::string get_operating_ambient();
+
+      virtual ::string get_user_toolkit_id();
+
+      virtual ::string get_nano_user_toolkit_id();
+
+      virtual ::string get_innate_ui_toolkit_id();
+
+      virtual ::string get_acme_windowing_toolkit_id();
+
       void do_operating_ambient_factory() override;
 
       void do_graphics_and_windowing_factory() override;

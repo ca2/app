@@ -3013,7 +3013,7 @@ void node::open_internet_link(const ::scoped_string & scopedstrUrl, const ::scop
       else if(scopedstrComponentName == "nano_user")
       {
 
-         ::string strUserToolkit = ::windowing::get_user_toolkit_id();
+         ::string strUserToolkit = system()->get_nano_user_toolkit_id();
 
          return strUserToolkit;
 

@@ -229,7 +229,7 @@ namespace acme
       ::acme::windowing::window* windowing::get_mouse_capture(::thread* pthread)
       {
 
-         return m_pwindowMouseCapture;
+         return m_pacmewindowingwindowMouseCapture;
 
       }
 
@@ -364,7 +364,7 @@ namespace acme
 
             system()->do_graphics_and_windowing_factory();
 
-            øconstruct(m_pacmedisplay);
+            ødefer_construct(m_pacmedisplay);
 
             m_pacmedisplay->open_display();
 

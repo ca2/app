@@ -141,7 +141,7 @@ namespace windowing
 
       m_pkeyboard.defer_destroy();
 
-      m_pwindowMouseCapture.release();
+      m_pacmewindowingwindowMouseCapture.release();
 
       //m_puser.release();
 
@@ -456,7 +456,7 @@ namespace windowing
     ::acme::windowing::window * windowing::get_mouse_capture(::thread * pthread)
    {
 
-       return m_pwindowMouseCapture;
+       return m_pacmewindowingwindowMouseCapture;
 
    }
 
@@ -464,7 +464,7 @@ namespace windowing
     void windowing::set_mouse_capture(::thread * pthread, ::acme::windowing::window * pwindow)
    {
 
-       m_pwindowMouseCapture = pwindow;
+       m_pacmewindowingwindowMouseCapture = pwindow;
 
    }
 
@@ -513,9 +513,9 @@ namespace windowing
    void windowing::release_mouse_capture(::thread * pthread, ::acme::windowing::window * pwindow)
    {
 
-       ASSERT(m_pwindowMouseCapture == pwindow);
+       ASSERT(m_pacmewindowingwindowMouseCapture == pwindow);
 
-       m_pwindowMouseCapture.release();
+       m_pacmewindowingwindowMouseCapture.release();
 
    }
 

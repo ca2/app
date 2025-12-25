@@ -24,7 +24,7 @@ namespace acme
          //enum_display_type       m_edisplaytype;
 
          ::string                         m_strDarkModeAnnotation;
-         bool                             m_bDisplayOpened;
+         //bool                             m_bDisplayOpened;
 
 
 
@@ -33,6 +33,9 @@ namespace acme
 
 
          virtual void open_display();
+
+
+         virtual bool is_display_opened() const;
 
 
          void destroy() override;

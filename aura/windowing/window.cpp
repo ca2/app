@@ -837,6 +837,8 @@ namespace windowing
 
             _create_window();
 
+            on_create_window();
+
          });
 
       //}

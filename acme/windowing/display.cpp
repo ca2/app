@@ -26,7 +26,7 @@ namespace acme
       {
 
 
-         m_bDisplayOpened = false;
+         //m_bDisplayOpened = false;
 
          defer_create_synchronization();
 
@@ -46,6 +46,16 @@ namespace acme
       void display::open_display()
       {
 
+
+      }
+
+
+      bool display::is_display_opened() const
+      {
+
+         throw ::interface_only();
+
+         return false;
 
       }
 

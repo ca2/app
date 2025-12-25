@@ -41,7 +41,7 @@ namespace acme
          ::pointer_array < ::acme::windowing::window >      m_windowa;
          ::pointer<::acme::windowing::display>              m_pacmedisplay;
          ::windowing::enum_windowing                        m_ewindowing;
-         ::pointer<::acme::windowing::window>               m_pwindowMouseCapture;
+         ::pointer<::acme::windowing::window>               m_pacmewindowingwindowMouseCapture;
          class ::time                                       m_timeDarkMode;
 
          ::windowing::enum_bias                             m_ewindowingbias;

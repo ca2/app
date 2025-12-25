@@ -126,13 +126,13 @@ namespace gpu_opengl
       _create_device(rectanglePlacement.size());
 
 
-      fork([]()
-      {
-
-
-         rotating_cube();
-
-      });
+      // fork([]()
+      // {
+      //
+      //
+      //    rotating_cube();
+      //
+      // });
 
    }
 

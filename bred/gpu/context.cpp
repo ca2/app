@@ -1027,12 +1027,12 @@ namespace gpu
    //}
 
 
-   ::pointer<::graphics3d::renderable> context::_load_model(const ::gpu::renderable_t & model)
-   {
-
-return {};
-
-   }
+//    ::pointer<::graphics3d::renderable> context::_load_model(const ::gpu::renderable_t & model)
+//    {
+//
+// return {};
+//
+//    }
 
 
    void context::set_viewport(::gpu::command_buffer * pgpucommandbuffer, const ::int_rectangle & rectangle)

@@ -319,7 +319,7 @@ namespace gpu
       void _set_index_array(const INDEX* p, ::collection::count iIndexCount)
       {
 
-         if (typeid(INDEX) != m_pmodeldatabase2->index_type_size())
+         if (typeid(INDEX) != m_pmodeldatabase2->index_type())
          {
 
             throw ::exception(error_wrong_state);

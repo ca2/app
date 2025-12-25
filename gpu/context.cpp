@@ -291,9 +291,9 @@ namespace gpu_gpu
 
       ::pointer<::graphics3d::renderable> prenderable;
 
-      if (model.m_ecoordinatesystem)
+      //if (model.m_ecoordinatesystem)
 
-      auto pmodel = øcreate<::gpu::gltf::model>();
+      auto pmodel = øcreate<::gpu::model::model>();
 
       (*(::gpu::renderable_t *)pmodel) = model;
 

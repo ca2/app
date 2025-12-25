@@ -153,7 +153,7 @@ namespace gpu_opengl
 
       //void copy(::gpu::texture* pgputextureTarget, ::gpu::texture* pgputextureSource) override;
 
-      ::pointer<::graphics3d::renderable> _load_model(const ::gpu::renderable_t &model) override;
+      //::pointer<::graphics3d::renderable> _load_model(const ::gpu::renderable_t &model) override;
 
       //::pointer<::gpu::texture> load_cube_map(const ::scoped_string &scopedstrName, const ::file::path &path,
       //                                        bool b32) override;

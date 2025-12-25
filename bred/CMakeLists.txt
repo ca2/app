@@ -55,6 +55,8 @@ list(APPEND library_source
    gpu/memory_buffer.h
    gpu/model_buffer.cpp
    gpu/model_buffer.h
+   gpu/model_data.cpp
+   gpu/model_data.h
    gpu/object.cpp
    gpu/object.h
    gpu/pixmap.cpp
@@ -189,6 +191,8 @@ list(APPEND library_source
    platform/session.h
    platform/system.cpp
    platform/system.h
+   platform/timer.cpp
+   platform/timer.h
    prodevian/actor.cpp
    prodevian/actor.h
    prodevian/immersion.cpp
@@ -251,7 +255,18 @@ if (MSVC)
 
    target_compile_options(${PROJECT_NAME} PRIVATE "/MD$<$<CONFIG:Debug>:d>")
    target_link_options(${PROJECT_NAME} PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
-   target_link_options(${PROJECT_NAME} PRIVATE "/IMPLIB:${LIBRARY_OUTPUT_PATH}/${PROJECT_NAME}.lib")
+   target_link_options(${PROJEC
+   |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   [1209/1815] Building CXX object operating_system/operating_system-posix/windowing_gtk4/CMakeFiles/windowing_gtk4.dir/window.cpp.o
+   /home/camilo/lowland-opengl/main/operating_system/operating_system-posix/windowing_gtk4/window.cpp: In member function ‘virtual void windowing_gtk4::window::_set_foreground_window_unlocked(user::activation_token*)’:
+   /home/camilo/lowland-opengl/main/operating_system/operating_system-posix/windowing_gtk4/window.cpp:1982:38: warning: ‘void gtk_window_present_with_time(GtkWindow*, guint32)’ is deprecated: Use 'gtk_window_present' instead [-Wdeprecated-declarations]
+   1982 |          gtk_window_present_with_time(GTK_WINDOW(m_pgtkwidget), pactivationtoken->m_time);
+   |          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   In file included from /usr/include/gtk-4.0/gtk/gtkaboutdialog.h:29,
+   from /usr/include/gtk-4.0/gtk/gtk.h:33,
+   from /home/camilo/lowland-opengl/main/operating_system/operating_system-posix/acme_windowing_g/_.h:6,
+   from /home/camilo/lowland-opengl/main/operating_system/operating_system-posix/acme_windowing_gtk4/_.h:9,
+   from /home/camilo/lowlanT_NAME} PRIVATE "/IMPLIB:${LIBRARY_OUTPUT_PATH}/${PROJECT_NAME}.lib")
    #target_link_options(${PROJECT_NAME} PRIVATE "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/${PROJECT_NAME}.def")
    target_link_libraries(${PROJECT_NAME} PRIVATE ${library_references} ${global_library_references})
 

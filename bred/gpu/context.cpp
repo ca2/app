@@ -206,9 +206,9 @@ namespace gpu
 
       auto procedureForward = [this, procedure]()
       {
-         _synchronous_lock(this->synchronization());
+         //_synchronous_lock(this->synchronization());
 
-         defer_make_current();
+         //defer_make_current();
 
          procedure();
       };
@@ -918,12 +918,12 @@ namespace gpu
 
 }
 
-
-   void context::defer_make_current()
-   {
-
-
-   }
+   //
+   // void context::defer_make_current()
+   // {
+   //
+   //
+   // }
 
    ::floating_matrix4 context::defer_transpose(const ::floating_matrix4 & m)
    {
@@ -1668,6 +1668,14 @@ namespace gpu
          m_pgpucompositor->on_gpu_context_placement_change(size);
 
       }
+
+   }
+
+
+   void context::assert_there_is_current_context()
+   {
+
+
 
    }
 

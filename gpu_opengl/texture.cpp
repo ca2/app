@@ -24,10 +24,23 @@ namespace gpu_opengl
       m_gluTextureID = 0;
       m_gluDepthStencilRBO = 0;
       m_gluFbo = 0;
+      m_glsyncGpuCommandsCompleteFence = 0;
+
+
    }
 
 
-   texture::~texture() {}
+   texture::~texture()
+   {
+
+      if (m_gluTextureID)
+      {
+         glDeleteTextures(1, &m_gluTextureID);
+         m_gluTextureID =0;
+      }
+
+
+   }
 
 
    void texture::initialize_hdr_texture_on_memory(::gpu::renderer *pgpurenderer, const ::block & block)
@@ -720,6 +733,7 @@ namespace gpu_opengl
 
       // GLuint fboSrc, fboDst;
       glGenFramebuffers(1, &m_gluFbo);
+      GLEnsureNonNullHandle(m_gluFbo, "glGenFramebuffers(1, ...)");
       GLCheckError("");
       glBindFramebuffer(GL_FRAMEBUFFER, m_gluFbo);
       GLCheckError("");
@@ -1125,6 +1139,42 @@ namespace gpu_opengl
        glBindTexture(m_gluType, m_gluTextureID);
        glTexParameteri(m_gluType, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
        glGenerateMipmap(m_gluType);
+
+   }
+
+
+   void texture::defer_fence()
+   {
+
+      if (m_glsyncGpuCommandsCompleteFence)
+      {
+
+         return;
+
+      }
+
+      m_glsyncGpuCommandsCompleteFence = glFenceSync(GL_SYNC_GPU_COMMANDS_COMPLETE, 0);
+
+      glFlush(); // push commands to GPU
+
+   }
+
+
+   void texture::wait_fence()
+   {
+
+      if (!m_glsyncGpuCommandsCompleteFence)
+      {
+
+         return;
+
+      }
+
+      glWaitSync(m_glsyncGpuCommandsCompleteFence, 0, GL_TIMEOUT_IGNORED);
+
+      glDeleteSync(m_glsyncGpuCommandsCompleteFence);
+
+      m_glsyncGpuCommandsCompleteFence = nullptr;
 
    }
 

@@ -8,6 +8,7 @@
 #include "acme/filesystem/filesystem/file_context.h"
 #include "acme/platform/application.h"
 #include "acme/user/user/interaction.h"
+#include "acme/windowing/windowing.h"
 
 
 namespace gpu
@@ -55,7 +56,7 @@ namespace gpu
    }
 
 
-   ::gpu::device* bred_approach::get_gpu_device()
+   ::gpu::device* bred_approach::get_gpu_device(::acme::windowing::window * pacmewindowingwindow)
    {
 
       if (!m_pgpudevice)
@@ -66,7 +67,20 @@ namespace gpu
          if (m_papplication->m_gpu.m_bUseSwapChainWindow)
          {
 
-            m_pgpudevice->initialize_gpu_device_for_swap_chain(this, m_papplication->m_pacmeuserinteractionMain->window());
+            ///auto pwindow = m_papplication->m_pacmeuserinteractionMain->window();
+
+            ::cast < ::windowing::window > pwindow;
+
+            pwindow = pacmewindowingwindow;
+
+            if (!pwindow)
+            {
+
+               pwindow = m_papplication->m_pacmeuserinteractionMain->window();
+
+            }
+
+            m_pgpudevice->initialize_gpu_device_for_swap_chain(this, pwindow);
 
          }
          else

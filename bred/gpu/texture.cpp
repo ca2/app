@@ -708,7 +708,18 @@ namespace gpu
    }
 
 
+      void texture::defer_fence()
+      {
 
+
+      }
+
+
+      void texture::wait_fence()
+      {
+
+
+      }
 
 } // namespace gpu
 

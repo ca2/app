@@ -714,6 +714,28 @@ namespace windowing
    }
 
 
+
+   void * window::__x11_Display()
+   {
+
+      throw ::interface_only();
+
+      return nullptr;
+
+   }
+
+
+   long window::__x11_Window()
+   {
+
+      throw ::interface_only();
+
+      return 0;
+
+   }
+
+
+
    void window::create_window()
    {
 

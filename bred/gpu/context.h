@@ -208,7 +208,7 @@ namespace gpu
       virtual void layout_properties_default(::gpu::properties &properties);
       virtual void _layout_std140_or_std430(::gpu::properties &properties, enum_layout elayout);
       virtual void _layout_hlsl(::gpu::properties &properties);
-      virtual void defer_make_current();
+      //virtual void defer_make_current();
 
       virtual ::floating_matrix4 defer_transpose(const ::floating_matrix4 & m);
       virtual ::floating_matrix4 defer_clip_remap_projection(const ::floating_matrix4 &m);
@@ -293,6 +293,8 @@ namespace gpu
 
 
       //virtual void initialize(::particle * pparticle) override;
+
+      virtual void assert_there_is_current_context();
 
       virtual void do_on_context(const ::procedure & procedure);
       virtual void send_on_context(const ::procedure & procedure);

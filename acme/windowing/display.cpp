@@ -70,6 +70,12 @@ namespace acme
       }
 
 
+      void display::get_os_display_handle(void *p, int iSize)
+      {
+
+         throw ::interface_only();
+
+      }
 
 
       void display::destroy()

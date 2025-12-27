@@ -21,6 +21,7 @@ namespace gpu_opengl
       GLuint            m_gluDepthStencilRBO;
       GLuint            m_gluFbo;
       GLenum            m_gluType;
+      GLsync            m_glsyncGpuCommandsCompleteFence;
 
 
       texture();
@@ -101,6 +102,8 @@ namespace gpu_opengl
       virtual void set_cube_face(int iFace, ::gpu::shader *pgpushader);
 
 
+      void defer_fence() override;
+      void wait_fence() override;
 
 
    };

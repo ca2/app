@@ -733,7 +733,7 @@ namespace graphics3d
          auto pgpucontextNew = pgpudevice->create_gpu_context(
             get_engine_gpu_eoutput(),
             ::gpu::e_scene_3d,
-            m_rectanglePlacement.size());
+            m_rectanglePlacementNew.size());
 
          pgpucontextNew->m_etype = ::gpu::context::e_type_graphics3d;
 

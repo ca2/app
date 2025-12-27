@@ -26,6 +26,8 @@
 
 #if defined(WINDOWS_DESKTOP)
 #include "device_win32.h"
+#elif defined(LINUX)
+#include "device_egl.h"
 #endif
 #include <assimp/material.h>
 
@@ -471,10 +473,12 @@ namespace gpu_opengl
          if (m_ecullmode == ::gpu::e_cull_mode_back)
          {
             glCullFace(GL_BACK); // cull back faces (default)
+            GLCheckError("");
          }
          else
          {
             glCullFace(GL_FRONT); // cull front faces
+            GLCheckError("");
             //glCullFace(GL_FRONT_AND_BACK); // cull both
          }
 
@@ -1332,15 +1336,22 @@ void main() {
          }
 
          glClearColor(0.f, 0.f, 0.f, 0.f);
+         GLCheckError("glClearColor");
          glClearDepth(1.0f);
+         GLCheckError("glClearDepth");
          glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+         GLCheckError("glClear");
+
+
 
          if (1)
          {
 
             int iLayer = 0;
 
-            m_pshaderBlend3->bind(nullptr, ptextureDst);
+            pcommandbuffer->begin_render(m_pshaderBlend3, ptextureDst);
+
+
 
             //m_pshaderBlend3, ptextureDst, ptextureSrc);
 
@@ -1354,6 +1365,8 @@ void main() {
 
 
                   ::cast<::gpu_opengl::texture> ptextureSrc = player->texture();
+
+                  //ptextureSrc->wait_fence();
 
                   m_pshaderBlend3->bind_source(nullptr, ptextureSrc, 0);
 
@@ -1477,7 +1490,8 @@ void main() {
 
                }
             }
-            m_pshaderBlend3->unbind(pcommandbuffer);
+            pcommandbuffer->end_render();
+            //m_pshaderBlend3->unbind(pcommandbuffer);
          }
          //}
 
@@ -1844,6 +1858,7 @@ void main() {
       auto textureDst = ptextureDst->m_gluTextureID;
 
       glFlush();
+      GLCheckError("");
 
       if (!ptextureSrc->m_gluFbo)
       {
@@ -1958,6 +1973,7 @@ void main() {
       }
 
       auto sizeSrc = ptextureSrc->size();
+
       auto sizeDst = ptextureDst->size();
 
       // Blit from source to destination
@@ -1967,6 +1983,7 @@ void main() {
          GL_COLOR_BUFFER_BIT, GL_NEAREST
          );
       GLCheckError("");
+
 #ifdef SHOW_DEBUG_DRAWING
       {
 
@@ -2006,8 +2023,10 @@ void main() {
 #endif
 
       // Cleanup
-      glBindFramebuffer(GL_FRAMEBUFFER, 0);
-      //GLCheckError("");
+      glBindFramebuffer(GL_DRAW_FRAMEBUFFER, 0);
+      GLCheckError("");
+      glBindFramebuffer(GL_READ_FRAMEBUFFER, 0);
+      GLCheckError("");
       //glDeleteFramebuffers(1, &fboSrc);
       //GLCheckError("");
       //glDeleteFramebuffers(1, &fboDst);
@@ -2022,6 +2041,12 @@ void main() {
 #if defined(WINDOWS_DESKTOP)
 
       ::cast<device_win32> pdevice = m_pgpudevice;
+
+      pdevice->_defer_create_offscreen_window(size);
+
+#elif defined(LINUX)
+
+      ::cast<device_egl> pdevice = m_pgpudevice;
 
       pdevice->_defer_create_offscreen_window(size);
 
@@ -2097,6 +2122,12 @@ void main() {
 #if defined(WINDOWS_DESKTOP)
 
       ::cast<device_win32> pdevice = m_pgpudevice;
+
+      pdevice->_create_device(m_rectangle.size());
+
+#elif defined(LINUX)
+
+      ::cast<device_egl> pdevice = m_pgpudevice;
 
       pdevice->_create_device(m_rectangle.size());
 
@@ -2569,29 +2600,29 @@ void main() {
    }
 
 
-   void context::defer_make_current()
-   {
-
-      if (m_pgpudevice->m_pgpucontextCurrent4 != this)
-      {
-
-         if (::is_set(m_pgpudevice->m_pgpucontextCurrent4))
-         {
-
-            m_pgpudevice->m_pgpucontextCurrent4->_send([this]()
-            {
-
-               ///m_pgpudevice->release_current(m_pgpudevice->m_pgpucontextCurrent4);
-
-            });
-
-         }
-
-         //make_current();
-
-      }
-
-   }
+   // void context::defer_make_current()
+   // {
+   //
+   //    if (m_pgpudevice->m_pgpucontextCurrent4 != this)
+   //    {
+   //
+   //       if (::is_set(m_pgpudevice->m_pgpucontextCurrent4))
+   //       {
+   //
+   //          m_pgpudevice->m_pgpucontextCurrent4->_send([this]()
+   //          {
+   //
+   //             m_pgpudevice->m_pgpucontextCurrent4->_context_unlock();
+   //
+   //          });
+   //
+   //       }
+   //
+   //       //make_current();
+   //
+   //    }
+   //
+   // }
 
 
    //xxxopengl

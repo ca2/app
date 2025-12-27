@@ -31,6 +31,8 @@
 namespace gpu
 {
 
+   //::pointer <::gpu::context > allocate_egl_context(::particle * pparticle);
+
    thread_local device* t_pgpudevice = nullptr;
 
    void thread_set_gpu_device(::gpu::device* pgpudevice)
@@ -139,7 +141,9 @@ namespace gpu
    ::pointer < ::gpu::context > device::allocate_context()
    {
 
-      auto pgpucontext = øcreate< ::gpu::context >();
+      ::pointer < ::gpu::context > pgpucontext;
+
+      pgpucontext = øcreate< ::gpu::context >();
 
       return pgpucontext;
 
@@ -287,7 +291,9 @@ namespace gpu
    ::pointer < ::gpu::context > device::create_draw2d_context(const ::gpu::enum_output& eoutput, const ::int_size& size)
    {
 
-      auto pgpucontext = øcreate<::gpu::context>();
+      //auto pgpucontext = øcreate<::gpu::context>();
+
+      auto pgpucontext = allocate_context();
 
       pgpucontext->create_draw2d_context(this, eoutput, size);
 
@@ -783,7 +789,7 @@ namespace gpu
       if (!m_pgpucontextMain)
       {
 
-         øconstruct(m_pgpucontextMain);
+         m_pgpucontextMain = allocate_context();
 
          ::gpu::enum_output eoutput;
 

@@ -90,6 +90,8 @@ list(APPEND library_source
         cpu_buffer.h
         context.cpp
         context.h
+   context_egl.cpp
+   context_egl.h
    context_ktx.cpp
    #cube.cpp
    #cube.h
@@ -159,7 +161,7 @@ if(${LINUX} OR ${__BSD__})
             #context_glx.h
        device_egl.cpp
        #device_egl.h
-       approach_glx.cpp
+       approach_egl.cpp
             )
 
 endif ()
@@ -209,7 +211,8 @@ add_compile_definitions(GLAD_GLAPI_EXPORT)
 
 
 add_library(${PROJECT_NAME} SHARED ${library_source}
-   rotating_cube.cpp)
+   rotating_cube.cpp
+   device_egl_x11.cpp)
 add_library(static_${PROJECT_NAME} STATIC ${library_source})
 
 
@@ -257,7 +260,8 @@ elseif (${LINUX} OR ${__BSD__} OR ${ANDROID})
    endif()
 
     #if (${USE_PKGCONFIG})
-        pkg_check_modules(${PROJECT_NAME}_PKGCONFIG glew egl assimp ${extra_pkg_modules})
+        #pkg_check_modules(${PROJECT_NAME}_PKGCONFIG glew egl assimp ${extra_pkg_modules})
+   pkg_check_modules(${PROJECT_NAME}_PKGCONFIG egl assimp ${extra_pkg_modules})
 
     #endif ()
     target_compile_options(${PROJECT_NAME} PRIVATE $<$<COMPILE_LANGUAGE:CXX>:-fpermissive  ${EXTRA_CXX_TARGET_COMPILER_OPTIONS}>)

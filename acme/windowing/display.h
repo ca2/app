@@ -44,7 +44,7 @@ namespace acme
          ::collection::count get_monitor_count();
          //virtual enum_display_type get_display_type();
 
-
+         virtual void get_os_display_handle(void *p, int iSize);
          //virtual void initialize_display_type(enum_display_type edisplaytype);
 
 

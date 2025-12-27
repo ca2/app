@@ -344,7 +344,7 @@ namespace gpu
 
          m_pgpucontext->copy(ptextureTarget, ptextureSource);
 
-         //ptextureTarget->defer_fence();
+         ptextureTarget->defer_fence();
 
       }
 

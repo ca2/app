@@ -32,15 +32,19 @@ namespace gpu_opengl
       // CGLContextObj                    m_contextOld;
       EGLContext                       m_eglcontext;
       EGLSurface                       m_eglsurface;
+      bool                             m_bEGLWindowSurface;
 
 
       context_egl();
       ~context_egl() override;
 
 
+      virtual void __create_egl_context();
+      virtual void _on_after_context_and_surface_creation();
       virtual void _create_egl_context(const ::int_size & size);
       void _create_window_buffer() override;
       void _create_offscreen_window(const ::int_size &size) override;
+      void _create_window_context(windowing::window* pwindow) override;
       virtual void _create_cpu_buffer(const ::int_size& size) override;
       //virtual void resize_offscreen_buffer(const ::int_size& size) override;
       virtual void destroy_cpu_buffer() override;
@@ -58,6 +62,8 @@ namespace gpu_opengl
       void _context_lock() override;
       void _context_unlock() override;
 
+
+      void swap_buffers() override;
 
    };
 

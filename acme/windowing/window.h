@@ -87,6 +87,8 @@ namespace acme
 
          ::pointer < ::acme::windowing::display >           m_pdisplay;
 
+         long                                               m_lX11NativeVisualId;
+
 
 
 //enum_bias m_ebias;
@@ -106,7 +108,7 @@ namespace acme
          virtual void initialize_window(::acme::user::interaction* pacmeuserinteraction);
 
          virtual ::oswindow oswindow();
-
+virtual long __x11_Window();
          virtual void set_user_interaction(::acme::user::interaction * pacmeuserinteraction);
          virtual void set_user_thread(::user::thread * puserthread);
          virtual void set_user_graphics_thread(::user::graphics_thread * pusergraphicsthread);

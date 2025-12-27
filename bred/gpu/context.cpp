@@ -166,13 +166,22 @@ namespace gpu
    void context::defer_create_window_context(::windowing::window *pwindow)
    {
 
-      send(
-         [this, pwindow]()
-         {
+      //send(
+        // [this, pwindow]()
+         //{
             _defer_create_window_context(pwindow);
 
+      auto pswapchain = get_swap_chain();
+
+      if (!pswapchain->m_bSwapChainInitialized)
+      {
+
+         pswapchain->initialize_swap_chain_window(this, pwindow);
+
+      }
+
             m_bCreated = true;
-         });
+         //});
    }
 
 
@@ -1485,6 +1494,44 @@ namespace gpu
    void context::on_create_context(::gpu::device* pgpudevice, const ::gpu::enum_output& eoutput, ::windowing::window* pwindow, const ::int_size& size)
    {
 
+      if (eoutput == ::gpu::e_output_cpu_buffer)
+      {
+
+         //if (startcontext.m_callbackImage32CpuBuffer
+         //   && !startcontext.m_rectanglePlacement.is_empty())
+         //{
+
+         //   ASSERT(startcontext.m_callbackImage32CpuBuffer);
+         //   ASSERT(!startcontext.m_rectanglePlacement.is_empty());
+
+         create_cpu_buffer(size);
+
+         //}
+
+      }
+      else if (eoutput == ::gpu::e_output_swap_chain)
+      {
+
+         defer_create_window_context(pwindow);
+
+      }
+      else
+      {
+
+         auto r = ::int_rectangle(::int_point{}, size);
+         //
+         //       ::gpu::rear_guard guard(this);
+
+         send([this, r]()
+         {
+
+            _create_cpu_buffer(r.size());
+
+            //::gpu::context_guard guard(this);
+
+         });
+
+      }
 
    }
 
@@ -1914,12 +1961,6 @@ namespace gpu
                               }
 
                            }
-
-                           //auto ptextureSwapChain = pswapchain->current_texture();
-
-                           //clear(::color::transparent);
-                           /////clear(::rgba(0.5*0.5, 0.75 * 0.5, 0.95 * 0.5, 0.5));
-
 
                            for (auto player : *playera)
                            {

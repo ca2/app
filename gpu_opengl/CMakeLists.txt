@@ -261,7 +261,7 @@ elseif (${LINUX} OR ${__BSD__} OR ${ANDROID})
 
     #if (${USE_PKGCONFIG})
         #pkg_check_modules(${PROJECT_NAME}_PKGCONFIG glew egl assimp ${extra_pkg_modules})
-   pkg_check_modules(${PROJECT_NAME}_PKGCONFIG egl assimp ${extra_pkg_modules})
+   pkg_check_modules(${PROJECT_NAME}_PKGCONFIG REQUIRED x11 egl assimp ${extra_pkg_modules})
 
     #endif ()
     target_compile_options(${PROJECT_NAME} PRIVATE $<$<COMPILE_LANGUAGE:CXX>:-fpermissive  ${EXTRA_CXX_TARGET_COMPILER_OPTIONS}>)

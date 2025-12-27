@@ -12,6 +12,7 @@
 #include "aura/platform/system.h"
 #include "aura/windowing/window.h"
 #include <X11/Xlib.h>
+#include <X11/Xutil.h>
 
 int rotating_cube();
 
@@ -259,8 +260,10 @@ namespace gpu_opengl
    {
 
       m_egldisplay = EGL_NO_DISPLAY;
-      m_eglconfig = EGL_NO_CONFIG_KHR;
+      m_eglconfig2 = EGL_NO_CONFIG_KHR;
+      m_eglconfigSwapChainWindow = EGL_NO_CONFIG_KHR;
       m_eglcontextPrimary = EGL_NO_CONTEXT;
+      m_lX11NativeVisualId = -1;
 //      gladLoadGL();
 
 //#if !defined(__ANDROID__)
@@ -296,27 +299,10 @@ namespace gpu_opengl
       //m_bAddSwapChainSupport = true;
       //m_hwnd = (HWND) m_pwindow->oswindow();
 
-      auto size = m_pwindow->get_window_rectangle().size();
+      //auto size = m_pwindow->get_window_rectangle().size();
 
-      _create_device(size);
+      _create_device({});
 
-      auto pcontext = main_context();
-
-      pcontext->m_pgpudevice = this;
-
-      pcontext->_send([this, pcontext]()
-         {
-
-            pcontext->initialize_gpu_context(this,
-               ::gpu::e_output_gpu_buffer,
-               m_pwindow,
-               m_pwindow->get_window_rectangle().size());
-
-            auto pswapchain = pcontext->get_swap_chain();
-
-            pswapchain->initialize_swap_chain_window(pcontext, m_pwindow);
-
-         });
 
    }
 
@@ -489,9 +475,16 @@ namespace gpu_opengl
 
       // Choose an EGLConfig
       //EGLConfig config;
-      EGLint numConfigs;
-      EGLint configAttribs[] = {EGL_RENDERABLE_TYPE, EGL_OPENGL_BIT, EGL_NONE};
-      if (!eglChooseConfig(egldisplay, configAttribs, &m_eglconfig, 1, &numConfigs))
+      EGLint numConfigs2;
+      EGLint configAttribs2[] = {EGL_RENDERABLE_TYPE, EGL_OPENGL_BIT,
+
+         EGL_RED_SIZE,   8,
+EGL_GREEN_SIZE, 8,
+EGL_BLUE_SIZE,  8,
+EGL_ALPHA_SIZE, 8,  // IMPORTANT
+         EGL_DEPTH_SIZE, 24,
+         EGL_NONE};
+      if (!eglChooseConfig(egldisplay, configAttribs2, &m_eglconfig2, 1, &numConfigs2))
       {
 
          int iError = eglGetError();
@@ -504,14 +497,108 @@ namespace gpu_opengl
 
       }
 
-      if (numConfigs != 1)
+      if (numConfigs2 != 1)
       {
 
-         fprintf(stderr, "Didn't get just one config, but %d\n", numConfigs);
+         fprintf(stderr, "Didn't get just one config, but %d\n", numConfigs2);
 
          throw ::exception(::error_failed);
 
       }
+
+
+      EGLint cfg_attr[] = {
+          EGL_SURFACE_TYPE, EGL_WINDOW_BIT,
+          EGL_RENDERABLE_TYPE, EGL_OPENGL_BIT,
+         EGL_RED_SIZE,   8,
+EGL_GREEN_SIZE, 8,
+EGL_BLUE_SIZE,  8,
+EGL_ALPHA_SIZE, 8,  // IMPORTANT
+         EGL_DEPTH_SIZE, 24,
+          EGL_NONE
+      };
+
+      // EGLint numSwapChain;
+      // if (!eglChooseConfig(egldisplay, cfg_attr, &m_eglconfigSwapChainWindow,  1, &numSwapChain))
+      // {
+      //
+      //    int iError = eglGetError();
+      //
+      //    const ::scoped_string & scopedstrError = eglQueryString(egldisplay, iError);
+      //
+      //    fprintf(stderr, "Failed to choose config (eglError: %s : 0x%x)\n", ::string(scopedstrError).c_str(), iError);
+      //
+      //    throw ::exception(::error_failed);
+      //
+      // }
+      //
+      // if (numSwapChain != 1)
+      // {
+      //
+      //    fprintf(stderr, "Didn't get just one config, but %d\n", numSwapChain);
+      //
+      //    throw ::exception(::error_failed);
+      //
+      // }
+
+
+      EGLConfig configs[64];
+      EGLint count = 0;
+
+      eglChooseConfig(egldisplay, cfg_attr, configs, 64, &count);
+
+      EGLConfig config = NULL;
+
+      for (int i = 0; i < count; ++i)
+      {
+         EGLint alpha, vid;
+
+         eglGetConfigAttrib(egldisplay, configs[i], EGL_ALPHA_SIZE, &alpha);
+         eglGetConfigAttrib(egldisplay, configs[i], EGL_NATIVE_VISUAL_ID, &vid);
+
+         if (alpha != 8)
+            continue;
+
+         XVisualInfo vitemplate = {};
+         vitemplate.visualid = vid;
+
+         int n;
+         XVisualInfo* vi = XGetVisualInfo(
+             pDisplay,
+             VisualIDMask,
+             &vitemplate,
+             &n
+         );
+
+         if (!vi)
+            continue;
+
+         if (vi->depth == 32)
+         {
+            m_eglconfigSwapChainWindow = configs[i];
+            m_lX11NativeVisualId = vid;
+            XFree(vi);
+            break;
+         }
+
+         XFree(vi);
+      }
+
+
+      // EGLint vid = -1;
+      // if (!eglGetConfigAttrib(egldisplay, m_eglconfigSwapChainWindow, EGL_NATIVE_VISUAL_ID, &vid))
+      // {
+      //
+      //    int iError = eglGetError();
+      //
+      //    const ::scoped_string & scopedstrError = eglQueryString(egldisplay, iError);
+      //
+      //    fprintf(stderr, "Failed to get X11 Native Visual Id(eglError: %s : 0x%x)\n", ::string(scopedstrError).c_str(), iError);
+      //
+      //    throw ::exception(::error_failed);
+      // }
+      //
+
 
       m_egldisplay = egldisplay;
 
@@ -1122,6 +1209,8 @@ namespace gpu_opengl
    void device_egl::_swap_buffers()
    {
 
+
+      m_pgpucontextMain->swap_buffers();
       //eglSwapBuffers(m_egldisplay, nullptr);
       // auto pDisplay = m_pwindow->__x11_Display();
       //

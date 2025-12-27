@@ -1366,7 +1366,7 @@ void main() {
 
                   ::cast<::gpu_opengl::texture> ptextureSrc = player->texture();
 
-                  //ptextureSrc->wait_fence();
+                  ptextureSrc->wait_fence();
 
                   m_pshaderBlend3->bind_source(nullptr, ptextureSrc, 0);
 
@@ -1801,44 +1801,7 @@ void main() {
                                    ::windowing::window *pwindow, const ::int_size &size)
    {
 
-      if (eoutput == ::gpu::e_output_cpu_buffer)
-      {
-
-         //if (startcontext.m_callbackImage32CpuBuffer
-         //   && !startcontext.m_rectanglePlacement.is_empty())
-         //{
-
-         //   ASSERT(startcontext.m_callbackImage32CpuBuffer);
-         //   ASSERT(!startcontext.m_rectanglePlacement.is_empty());
-
-         create_cpu_buffer(size);
-
-         //}
-
-      }
-      else if (eoutput == ::gpu::e_output_swap_chain)
-      {
-
-         defer_create_window_context(pwindow);
-
-      }
-      else
-      {
-
-         auto r = ::int_rectangle(::int_point{}, size);
-         //
-         //       ::gpu::rear_guard guard(this);
-
-         send([this, r]()
-         {
-
-            _create_cpu_buffer(r.size());
-
-            //::gpu::context_guard guard(this);
-
-         });
-
-      }
+      ::gpu::context::on_create_context(pgpudevice, eoutput, pwindow, size);
 
 
    }
@@ -2526,14 +2489,16 @@ void main() {
    void context::defer_create_window_context(::windowing::window *pwindow)
    {
 
-      //if (m_hrc)
-      //{
+      ::gpu_gpu::context::defer_create_window_context(pwindow);
 
-      //   return;
-
-      //}
-
-      //::gpu_opengl::context::defer_create_window_context(pwindow);
+      // //if (m_hrc)
+      // //{
+      //
+      // //   return;
+      //
+      // //}
+      //
+      // _defer_create_window_context(pwindow);
 
    }
 
@@ -2541,7 +2506,7 @@ void main() {
    void context::_defer_create_window_context(::windowing::window *pwindow)
    {
 
-      //_create_window_context(pwindow);
+      _create_window_context(pwindow);
 
    }
 
@@ -3202,6 +3167,17 @@ color = vec4(c.r,c.g, c.b, c.a);
    //    ::g
    //
    // }
+
+
+
+   void context::swap_buffers()
+   {
+
+
+
+
+   }
+
 
 
 

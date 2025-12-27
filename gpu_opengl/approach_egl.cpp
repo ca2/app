@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "device_egl.h"
 #include "bred/gpu/device.h"
 #if defined(MACOS)
 #include <OpenGL/OpenGL.h>
@@ -13,6 +14,7 @@
 #include "acme/filesystem/filesystem/file_context.h"
 #include "acme/platform/application.h"
 #include "bred/gpu/context.h"
+#include "aura/windowing/window.h"
 //#include "windowing_win32/window.h"
 //#include <glad/glad_wgl.h>
 
@@ -43,18 +45,32 @@ namespace gpu_opengl
    // }
 
 
+   void approach::_on_before_create_window(windowing::window* pwindowParam)
+   {
+
+      ::cast < ::gpu_opengl::device_egl > pegldevice = get_gpu_device(pwindowParam);
+
+      pwindowParam->m_lX11NativeVisualId = pegldevice->m_lX11NativeVisualId;
+
+
+   }
 
 
    void approach::_on_create_window(::windowing::window* pwindowParam)
    {
 
-      auto pgpudevice = get_gpu_device(pwindowParam);
+      auto pgpucontextMain = m_pgpudevice->main_context(pwindowParam);
 
-      pgpudevice->m_pgpucontextMain = pgpudevice->allocate_context();
-
-      auto & pgpucontextMain = pgpudevice->m_pgpucontextMain;
-
-      pgpucontextMain->create_window_context(pgpudevice, pwindowParam);
+      // if (!pgpudevice->m_pgpucontextMain)
+      // {
+      //
+      //    pgpudevice->m_pgpucontextMain = pgpudevice->allocate_context();
+      //
+      //    auto & pgpucontextMain = pgpudevice->m_pgpucontextMain;
+      //
+      //    pgpucontextMain->create_window_context(pgpudevice, pwindowParam);
+      //
+      // }
 
 
       // //#if defined(WINDOWS_DESKTOP)

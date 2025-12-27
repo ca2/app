@@ -211,6 +211,9 @@ namespace gpu_opengl
        void load_ktxTexture(::gpu::texture * pgputexture, void *p_ktxTexture) override;
        void load_ktxTexture_cube_map(::gpu::texture * pgputexture, void *p_ktxTexture) override;
 
+
+      void swap_buffers() override;
+
    };
 
 

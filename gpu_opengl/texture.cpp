@@ -849,6 +849,30 @@ namespace gpu_opengl
    void texture::set_pixels(const ::int_rectangle &rectangle, const void *data)
    {
 
+      glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
+
+      // int w = rectangle.width();
+      // int h = rectangle.height();
+      //
+      // ::memory memory;
+      //
+      // memory.set_size(w*h*4);
+      //
+      // auto src = (char*)data);
+      // auto rgba = (char *) memory.data();
+      //
+      // for (int y = 0; y < h; ++y)
+      // {
+      //    for (int x = 0; x < w; ++x)
+      //    {
+      //       unsigned char a = bm->buffer[y * bm->pitch + x];
+      //       rgba[(y*w + x)*4 + 0] = 255;
+      //       rgba[(y*w + x)*4 + 1] = 255;
+      //       rgba[(y*w + x)*4 + 2] = 255;
+      //       rgba[(y*w + x)*4 + 3] = a;
+      //    }
+      // }
+
       glBindTexture(GL_TEXTURE_2D, m_gluTextureID);
       glTexSubImage2D(GL_TEXTURE_2D,
                       0, // mip level

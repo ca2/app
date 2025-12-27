@@ -534,7 +534,7 @@ namespace gpu
       // 
       //                            const float_sequence3 &up);
       // 
-
+virtual void swap_buffers();
 
       //  quite a work arround;
       // use just the metallic;
@@ -547,6 +547,13 @@ namespace gpu
                                                       ::gpu::texture *pgputextureRoughness);
    };
 
+
+   inline void context::swap_buffers()
+   {
+
+
+
+   }
 
 
 } // namespace gpu

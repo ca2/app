@@ -783,7 +783,7 @@ namespace gpu
    //}
 
 
-   ::gpu::context* device::main_context()
+   ::gpu::context* device::main_context(::acme::windowing::window * pacmewindowingwindow)
    {
 
       if (!m_pgpucontextMain)
@@ -810,26 +810,31 @@ namespace gpu
 
          }
 
-         ::cast < ::user::interaction > puserinteraction = m_papplication->m_pacmeuserinteractionMain;
+         ::cast < ::windowing::window > pwindow = pacmewindowingwindow;
+
+         if (::is_null(pwindow))
+         {
+
+            pwindow = m_papplication->m_pacmeuserinteractionMain->window();
+
+         }
 
          if (!m_pgpucontextMain->m_itask
-            && puserinteraction->m_pacmewindowingwindow)
+            && pwindow)
          {
 
             m_pgpucontextMain->branch_synchronously();
 
             m_pgpucontextMain->m_pgpudevice = this;
 
-            m_pgpucontextMain->_send([this, eoutput, puserinteraction]()
+            m_pgpucontextMain->_send([this, eoutput, pwindow]()
                {
-
-                  auto pinteraction = (::user::interaction*)puserinteraction.m_p;
 
                   m_pgpucontextMain->initialize_gpu_context(
                      this,
                      eoutput,
-                     pinteraction->window(),
-                     pinteraction->window()->get_window_rectangle().size()
+                     pwindow,
+                     pwindow->get_window_rectangle().size()
                   );
 
                });

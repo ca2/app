@@ -1493,9 +1493,9 @@ namespace gpu
             {
 
                double l = (double) (xpos);
-               double t = (double) (ypos);
+               double t = (double) (ypos + ch.h2);
                double r = (double) (xpos + w);
-               double b = (double) (ypos + h);
+               double b = (double) (t + h);
 
                double_point p1(l, t);
                double_point p2(r, b);

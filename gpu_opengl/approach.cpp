@@ -104,15 +104,15 @@ namespace gpu_opengl
 #endif
 
 
-   void approach::_on_before_create_window(::windowing::window* pwindow)
-   {
-      //::cast < ::gpu_opengl::approach > papproach = m_papplication->get_gpu_approach();
-      //papproach->_on_before_create_window(pwindow);
-#if defined(WINDOWS_DESKTOP)
-      defer_load_wgl_extensions();
-#endif
-
-   }
+//    void approach::_on_before_create_window(::windowing::window* pwindow)
+//    {
+//       //::cast < ::gpu_opengl::approach > papproach = m_papplication->get_gpu_approach();
+//       //papproach->_on_before_create_window(pwindow);
+// #if defined(WINDOWS_DESKTOP)
+//       defer_load_wgl_extensions();
+// #endif
+//
+//    }
 
 #if defined(WINDOWS_DESKTOP)
 

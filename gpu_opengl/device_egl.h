@@ -1,7 +1,6 @@
 #pragma once
 
 
-#include "acme/_operating_system.h"
 //#include "gpu_opengl/context.h"
 #include "gpu_opengl/device.h"
 //#include "aura/os/_os.h"
@@ -22,8 +21,10 @@ namespace gpu_opengl
 
 
       EGLDisplay                       m_egldisplay;
-      EGLConfig                        m_eglconfig;
+      EGLConfig                        m_eglconfig2;
+      EGLConfig                        m_eglconfigSwapChainWindow;
       EGLContext                       m_eglcontextPrimary;
+      long                             m_lX11NativeVisualId;
       // EGLSurface                       m_eglsurface;
       //itask                            m_itaskGpu;
 

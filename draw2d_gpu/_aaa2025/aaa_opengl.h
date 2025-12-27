@@ -31,7 +31,7 @@
 //#include "path.h"
 
 
-#include "graphics.h"
+#include "../graphics.h"
 
 
 #define GL2D_GRAPHICS(pgraphics) (dynamic_cast < ::draw2d_gpu::graphics * > (pgraphics))

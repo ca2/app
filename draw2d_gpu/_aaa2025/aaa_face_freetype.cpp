@@ -1,7 +1,7 @@
 // Created by camilo (from https://learnopengl.com/code_viewer_gh.php?code=src/7.in_practice/2.text_rendering/text_rendering.cpp
 // with interaction with v0idsEmbrace in twitch chat)
 // on 2025-06-01 22:17 <3ThomasBorregaardSorensen!!
-#include "framework.h"
+#include "../framework.h"
 #include "face_freetype.h"
 #include "acme/filesystem/filesystem/file_context.h"
 #include "bred/gpu/pixmap.h"

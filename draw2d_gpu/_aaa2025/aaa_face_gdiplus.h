@@ -2,7 +2,7 @@
 // 2025-06-01 23:19 <3ThomasBorregaardSorensen!!
 #pragma once
 
-#include "face.h"
+#include "../face.h"
 #include <gdiplus.h>
 
 

@@ -810,12 +810,12 @@ namespace gpu
 
          }
 
-         ::cast < ::windowing::window > pwindow = pacmewindowingwindow;
+         auto pwindow = pacmewindowingwindow;
 
          if (::is_null(pwindow))
          {
 
-            pwindow = m_papplication->m_pacmeuserinteractionMain->window();
+            pwindow = m_papplication->m_pacmeuserinteractionMain->acme_windowing_window();
 
          }
 

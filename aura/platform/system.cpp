@@ -30,7 +30,7 @@
 #include "aura/windowing/window.h"
 #include "aura/windowing/windowing.h"
 #include "framework.h"
-#include "nanovg.h"
+//#include "nanovg.h"
 #include "node.h"
 #include "session.h"
 

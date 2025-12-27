@@ -5045,6 +5045,13 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
       if (strOperatingAmbient.has_character())
       {
 
+         if (strOperatingAmbient == "windows")
+         {
+
+            return "win32";
+
+         }
+
          return strOperatingAmbient;
 
       }

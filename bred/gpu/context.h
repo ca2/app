@@ -258,9 +258,9 @@ namespace gpu
       /// <param name="size"></param>
       virtual void create_draw2d_context(::gpu::device* pgpudevice, const enum_output& eoutput, const ::int_size& size);
 
-      virtual void initialize_gpu_context(::gpu::device* pgpudevice, const ::gpu::enum_output& eoutput, ::windowing::window* pwindow, const ::int_size & size);
+      virtual void initialize_gpu_context(::gpu::device* pgpudevice, const ::gpu::enum_output& eoutput, ::acme::windowing::window* pwindow, const ::int_size & size);
 
-      virtual void on_create_context(::gpu::device * pgpudevice, const ::gpu::enum_output & eoutput, ::windowing::window* pwindow, const ::int_size & size);
+      virtual void on_create_context(::gpu::device * pgpudevice, const ::gpu::enum_output & eoutput, ::acme::windowing::window* pwindow, const ::int_size & size);
 
       virtual void engine_on_frame_context_initialization();
 
@@ -347,8 +347,8 @@ namespace gpu
       virtual void destroy_cpu_buffer();
 
 
-      virtual void defer_create_window_context(::windowing::window * pwindow);
-      virtual void _defer_create_window_context(::windowing::window * pwindow);
+      virtual void defer_create_window_context(::acme::windowing::window * pwindow);
+      virtual void _defer_create_window_context(::acme::windowing::window * pwindow);
 
       
       virtual void prepare_for_gpu_read();

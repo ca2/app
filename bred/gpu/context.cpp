@@ -163,7 +163,7 @@ namespace gpu
    }
 
 
-   void context::defer_create_window_context(::windowing::window *pwindow)
+   void context::defer_create_window_context(::acme::windowing::window *pwindow)
    {
 
       //send(
@@ -188,7 +188,7 @@ namespace gpu
    void context::_create_cpu_buffer(const ::int_size &size) {}
 
 
-   void context::_defer_create_window_context(::windowing::window *pwindow) {}
+   void context::_defer_create_window_context(::acme::windowing::window *pwindow) {}
 
 
    void context::resize_cpu_buffer(const ::int_size &size)
@@ -1440,7 +1440,8 @@ namespace gpu
 
    //}
 
-   void context::initialize_gpu_context(::gpu::device* pgpudevice, const ::gpu::enum_output& eoutput, ::windowing::window* pwindow, const ::int_size& size)
+
+   void context::initialize_gpu_context(::gpu::device* pgpudevice, const ::gpu::enum_output& eoutput, ::acme::windowing::window* pwindow, const ::int_size& size)
    {
 
       ASSERT(is_current_task());
@@ -1491,7 +1492,7 @@ namespace gpu
    }
 
 
-   void context::on_create_context(::gpu::device* pgpudevice, const ::gpu::enum_output& eoutput, ::windowing::window* pwindow, const ::int_size& size)
+   void context::on_create_context(::gpu::device* pgpudevice, const ::gpu::enum_output& eoutput, ::acme::windowing::window* pwindow, const ::int_size& size)
    {
 
       if (eoutput == ::gpu::e_output_cpu_buffer)

@@ -126,7 +126,7 @@ namespace experience_tranquillum
       else if(strSchema == "Minimal001")
       {
 
-         return  øallocate frame_Minimal001();c
+         return  øallocate frame_Minimal001();
 
       }
 

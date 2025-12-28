@@ -21,7 +21,7 @@ namespace apex
    class CLASS_DECL_APEX application :
       virtual public ::platform::application,
       virtual public ::apex::context ,
-      virtual public scalar_source,
+      virtual public ::number::scalar_source,
       virtual public ::database::client,
       virtual public ::networking::application_handler
    {
@@ -770,16 +770,16 @@ namespace apex
       virtual void release_exclusive() override;
 
 
-      bool on_set_scalar(enum_scalar escalar, ::number number, int iFlags) override;
+      bool on_set_scalar(enum_scalar escalar, ::number::number number, int iFlags) override;
 
 
-      ::number get_scalar_minimum(enum_scalar escalar) override;
+      ::number::number get_scalar_minimum(enum_scalar escalar) override;
 
 
-      ::number get_scalar(enum_scalar escalar) override;
+      ::number::number get_scalar(enum_scalar escalar) override;
 
 
-      ::number get_scalar_maximum(enum_scalar escalar) override;
+      ::number::number get_scalar_maximum(enum_scalar escalar) override;
 
 
       //bool safe_is_running();

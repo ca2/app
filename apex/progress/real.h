@@ -11,7 +11,7 @@ namespace progress
 
 
    class CLASS_DECL_APEX real :
-      virtual public scalar_source,
+      virtual public ::number::scalar_source,
       virtual public object
    {
    public:
@@ -27,10 +27,10 @@ namespace progress
       ~real() override;
        
 
-      bool on_set_scalar(enum_scalar escalar, ::number number, int iFlags) override;
-      ::number get_scalar_minimum(enum_scalar escalar)override;
-      ::number get_scalar(enum_scalar escalar) override;
-      ::number get_scalar_maximum(enum_scalar escalar)override;
+      bool on_set_scalar(enum_scalar escalar, ::number::number number, int iFlags) override;
+      ::number::number get_scalar_minimum(enum_scalar escalar)override;
+      ::number::number get_scalar(enum_scalar escalar) override;
+      ::number::number get_scalar_maximum(enum_scalar escalar)override;
 
       virtual void format_status(const_char_pointer pszFormat);
 

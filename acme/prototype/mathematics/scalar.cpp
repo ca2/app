@@ -1597,7 +1597,7 @@ namespace  number
    }
 
 
-   void scalar_source::increment_scalar(enum_scalar escalar, ::number iIncrement)
+   void scalar_source::increment_scalar(enum_scalar escalar, ::number::number iIncrement)
    {
 
       auto number = get_scalar(escalar);
@@ -1612,7 +1612,7 @@ namespace  number
    }
 
 
-   bool scalar_source::contains_scalar(enum_scalar escalar, ::number number)
+   bool scalar_source::contains_scalar(enum_scalar escalar, ::number::number number)
    {
 
       auto minimum = get_scalar_minimum(escalar);
@@ -1765,7 +1765,7 @@ namespace  number
 
       }
 
-      ::number range = maximum - minimum;
+      ::number::number range = maximum - minimum;
 
       if (range == 0)
       {
@@ -1774,9 +1774,9 @@ namespace  number
 
       }
 
-      ::number current = get_scalar(escalar);
+      ::number::number current = get_scalar(escalar);
 
-      ::number position = current - minimum;
+      ::number::number position = current - minimum;
 
       return position.get_double() / range.get_double(); // aproximate value along iDenominator and iNumerator evaluation
 
@@ -1821,7 +1821,7 @@ namespace  number
 
       auto range = maximum - minimum;
 
-      ::number numberNew;
+      ::number::number numberNew;
 
       numberNew.m_enumber = range.m_enumber;
 
@@ -1843,7 +1843,7 @@ namespace  number
    }
 
 
-   void scalar::set(::number number)
+   void scalar::set(::number::number number)
    {
 
       if (m_psource == nullptr || m_escalar == e_scalar_none)
@@ -1854,7 +1854,7 @@ namespace  number
    }
 
 
-   ::number scalar::get() const
+   ::number::number scalar::get() const
    {
 
       if (m_psource == nullptr || m_escalar == e_scalar_none)
@@ -1899,7 +1899,7 @@ namespace  number
    //}
 
 
-   ::number scalar::minimum()
+   ::number::number scalar::minimum()
    {
 
       if (is_null())
@@ -1915,7 +1915,7 @@ namespace  number
 
 
 
-   ::number scalar::maximum()
+   ::number::number scalar::maximum()
    {
 
       if (is_null())

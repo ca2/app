@@ -651,7 +651,7 @@ namespace sockets
    }
 
 
-   bool http_client_socket::on_set_scalar(enum_scalar escalar,::number number,int iFlags)
+   bool http_client_socket::on_set_scalar(enum_scalar escalar,::number::number number,int iFlags)
    {
 
       if (escalar == e_scalar_download_size)
@@ -665,14 +665,14 @@ namespace sockets
       else
       {
 
-         return ::scalar_source::on_set_scalar(escalar, number, iFlags);
+         return ::number::scalar_source::on_set_scalar(escalar, number, iFlags);
 
       }
 
    }
 
 
-   ::number http_client_socket::get_scalar_minimum(enum_scalar escalar)
+   ::number::number http_client_socket::get_scalar_minimum(enum_scalar escalar)
    {
 
       if (escalar == e_scalar_download_size)
@@ -684,14 +684,14 @@ namespace sockets
       else
       {
 
-         return ::scalar_source::get_scalar_minimum(escalar);
+         return ::number::scalar_source::get_scalar_minimum(escalar);
 
       }
 
    }
 
 
-   ::number http_client_socket::get_scalar(enum_scalar escalar)
+   ::number::number http_client_socket::get_scalar(enum_scalar escalar)
    {
 
       if (escalar == e_scalar_download_size)
@@ -703,14 +703,14 @@ namespace sockets
       else
       {
 
-         return ::scalar_source::get_scalar(escalar);
+         return ::number::scalar_source::get_scalar(escalar);
 
       }
 
    }
 
 
-   ::number http_client_socket::get_scalar_maximum(enum_scalar escalar)
+   ::number::number http_client_socket::get_scalar_maximum(enum_scalar escalar)
    {
 
       if (escalar == e_scalar_download_size)
@@ -722,7 +722,7 @@ namespace sockets
       else
       {
 
-         return ::scalar_source::get_scalar_maximum(escalar);
+         return ::number::scalar_source::get_scalar_maximum(escalar);
 
       }
 

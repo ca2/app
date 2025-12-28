@@ -2140,7 +2140,7 @@ namespace http
 
       {
 
-         auto plistener = set["http_downloaded_rate_listener"].cast < ::scalar_source::listener >();
+         auto plistener = set["http_downloaded_rate_listener"].cast < ::number::scalar_source::listener >();
 
          if (::is_set(plistener))
          {
@@ -2155,7 +2155,7 @@ namespace http
 
       {
 
-         auto plistener = set["http_downloaded_listener"].cast < ::scalar_source::listener >();
+         auto plistener = set["http_downloaded_listener"].cast < ::number::scalar_source::listener >();
 
          if (::is_set(plistener))
          {

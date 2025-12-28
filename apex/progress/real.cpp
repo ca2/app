@@ -28,7 +28,7 @@ namespace progress
    }
 
 
-   bool real::on_set_scalar(enum_scalar escalar, ::number number, int iFlags)
+   bool real::on_set_scalar(enum_scalar escalar, ::number::number number, int iFlags)
    {
 
       return false;
@@ -36,7 +36,7 @@ namespace progress
    }
 
 
-   ::number real::get_scalar_minimum(enum_scalar escalar)
+   ::number::number real::get_scalar_minimum(enum_scalar escalar)
    {
 
       return 0.0;
@@ -44,7 +44,7 @@ namespace progress
    }
 
 
-   ::number real::get_scalar(enum_scalar escalar)
+   ::number::number real::get_scalar(enum_scalar escalar)
    {
 
       return (double)m_iStep / (double)m_iStepCount;
@@ -52,7 +52,7 @@ namespace progress
    }
 
 
-   ::number real::get_scalar_maximum(enum_scalar escalar)
+   ::number::number real::get_scalar_maximum(enum_scalar escalar)
    {
 
       return 1.0;

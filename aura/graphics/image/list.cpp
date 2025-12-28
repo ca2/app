@@ -287,6 +287,14 @@ namespace image
    //}
 
 
+   bool image_list::_is_ok() const
+   {
+
+      return ::is_ok(m_pimage);
+
+   }
+
+
    int image_list::reserve_image(int iItem)
    {
 

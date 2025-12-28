@@ -18,7 +18,7 @@ add_executable(${PROJECT_NAME} ${executable_source})
 add_library(static_${PROJECT_NAME}_library STATIC ${library_source})
 
 
-if (MSVC)
+if(${WIN32})
     target_compile_options(${PROJECT_NAME} PRIVATE "/MD$<$<CONFIG:Debug>:d>")
     target_link_options(${PROJECT_NAME} PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
     target_link_options(${PROJECT_NAME} PRIVATE "/SUBSYSTEM:CONSOLE")

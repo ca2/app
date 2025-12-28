@@ -18,7 +18,7 @@ list(APPEND library_references
    )
 
 
-if (MSVC)
+if(${WIN32})
     set(LIBCXX_TARGETING_MSVC ON)
 else()
     set(LIBCXX_TARGETING_MSVC OFF)
@@ -46,7 +46,7 @@ set_target_properties(compress_bzip2 PROPERTIES LINKER_LANGUAGE CXX)
 target_compile_definitions(static_${PROJECT_NAME} PRIVATE CUBE)
 
 
-if (MSVC)
+if(${WIN32})
 
 
    target_compile_options(compress_bzip2 PRIVATE "/MD$<$<CONFIG:Debug>:d>")

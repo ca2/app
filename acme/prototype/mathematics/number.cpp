@@ -5,7 +5,7 @@ namespace mathematics
 {
 
 
-   number::number()
+   number::number::number()
    {
       
       m_pimpl = øraw_new value_impl();

@@ -1581,7 +1581,7 @@ namespace  number
 
       return false;
 
-      //::number realCurrent = 0;
+      //::number::number realCurrent = 0;
 
       //get_scalar(escalar, realCurrent);
 
@@ -1648,10 +1648,10 @@ namespace  number
    }
 
 
-   //bool scalar_source::constrain_scalar(enum_scalar escalar, ::number& number)
+   //bool scalar_source::constrain_scalar(enum_scalar escalar, ::number::number& number)
    //{
    //
-   //   ::number iMin = 0;
+   //   ::number::number iMin = 0;
    //
    //   if (get_scalar_minimum(escalar, iMin))
    //   {
@@ -1667,7 +1667,7 @@ namespace  number
    //
    //   }
    //
-   //   ::number iMax = 0;
+   //   ::number::number iMax = 0;
    //
    //   if (get_scalar_maximum(escalar, iMax))
    //   {
@@ -1689,7 +1689,7 @@ namespace  number
    //
    //
    //
-   //void scalar_source::on_set_scalar(enum_scalar escalar,::number number,int iFlags)
+   //void scalar_source::on_set_scalar(enum_scalar escalar,::number::number number,int iFlags)
    //{
    //
    //   __UNREFERENCED_PARAMETER(escalar);

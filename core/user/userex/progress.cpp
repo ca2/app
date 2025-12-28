@@ -85,7 +85,7 @@ namespace userex
 
       }
 
-      m_pimpact->m_pprogress->m_scalar = scalar(this, e_scalar_progress);
+      m_pimpact->m_pprogress->m_scalar = ::number::scalar(this, e_scalar_progress);
 
       m_pimpact->m_pprogressreal = this;
 

@@ -135,28 +135,28 @@ CLASS_DECL_ACME::file::path get_module_path(HANDLE hProcess, HMODULE hmodule)
 // }
 
 
-bool CLASS_DECL_ACME shell_get_special_folder_path(HWND hwnd, ::file::path &str, int csidl, bool fCreate)
-{
+bool CLASS_DECL_ACME shell_get_special_folder_path(HWND hwnd, ::file::path &str, int csidl, bool fCreate);
+//{
+//
+//   return ::SHGetSpecialFolderPathW(hwnd, wstring_adaptor(str, MAX_PATH * 8), csidl, fCreate) != false;
+//   
+//}
 
-   return ::SHGetSpecialFolderPathW(hwnd, wstring_adaptor(str, MAX_PATH * 8), csidl, fCreate) != false;
-   
-}
 
-
-::file::path CLASS_DECL_ACME shell_get_special_folder_path(HWND hwnd, int csidl, bool fCreate,
-                                                                   ::windowing::window *pwindow)
-{
-
-   ::file::path path;
-
-   if (!shell_get_special_folder_path(hwnd, path, csidl, fCreate))
-   {
-
-      return {};
-   }
-
-   return path;
-}
+//::file::path CLASS_DECL_ACME shell_get_special_folder_path(HWND hwnd, int csidl, bool fCreate,
+//                                                                   ::windowing::window *pwindow)
+//{
+//
+//   ::file::path path;
+//
+//   if (!shell_get_special_folder_path(hwnd, path, csidl, fCreate))
+//   {
+//
+//      return {};
+//   }
+//
+//   return path;
+//}
 
 
 
@@ -173,10 +173,27 @@ CLASS_DECL_ACME::file::path home_folder_path()
 }
 
 
+::file::path CLASS_DECL_ACME shell_get_special_folder_path(HWND hwnd, int csidl, bool fCreate)
+{
+
+   ::file::path path;
+
+   if (!shell_get_special_folder_path(hwnd, path, csidl, fCreate))
+   {
+
+      return {};
+
+   }
+
+   return path;
+
+}
+
+
 ::file::path __cdecl get_home_config_folder_path(HWND hwnd)
 {
 
-   return shell_get_special_folder_path(hwnd, CSIDL_PROFILE, false, nullptr);
+   return shell_get_special_folder_path(hwnd, CSIDL_PROFILE, false);
 
 }
 

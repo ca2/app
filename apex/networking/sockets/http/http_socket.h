@@ -21,7 +21,7 @@ namespace sockets
    {
    public:
 
-
+      ::url::url           m_url;
       ::url::parts         m_urlparts;
       string               m_strProxy;
       int                  m_iProxyPort;

@@ -2,6 +2,7 @@
 #include "framework.h"
 #include "acme/_operating_system.h"
 #include "acme/operating_system/console.h"
+#include "acme/prototype/string/adaptor.h"
 #include <shlobj.h>   // SHGetKnownFolderPath
 
 
@@ -592,6 +593,11 @@ void std_out_buffer::write(const void * pdata, memsize nCount)
 }
 
 
+bool CLASS_DECL_ACME shell_get_special_folder_path(HWND hwnd, ::file::path &str, int csidl, bool fCreate)
+{
+
+   return ::SHGetSpecialFolderPathW(hwnd, wstring_adaptor(str, MAX_PATH * 8), csidl, fCreate) != false;
+}
 
 
 

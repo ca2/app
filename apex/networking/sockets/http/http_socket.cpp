@@ -388,7 +388,7 @@ namespace sockets
       strKey.make_lower();
 
       key = strKey;
-
+      auto pszLine = scopedstrLine.m_begin;
       OnHeader(key, value);
 
       printf_line("Header Key: %s Value: %s", key.as_string().c_str(), value.c_str());
@@ -823,6 +823,7 @@ namespace sockets
    void http_socket::set_url(const ::url::url & url)
    {
 
+      m_url = url;
       m_urlparts.from(url);
 
       if (m_urlparts.connect().is_secure())

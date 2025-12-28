@@ -2288,7 +2288,7 @@ namespace http
 
          iSelectTimeoutSeconds = maximum(1, iSelectTimeoutSeconds);
 
-         iContentLength = psocket->m_content_length;
+         iContentLength = psocket->m_iContentLength;
 
          psocket->socket_handler()->select((int)iSelectTimeoutSeconds, 0);
 
@@ -2424,9 +2424,9 @@ namespace http
 
       memsize iChunkSize = psocket->m_chunk_size;
       
-      set["http_content_length"] = psocket->m_content_length;
+      set["http_content_length"] = psocket->m_iContentLength;
 
-      iContentLength = psocket->m_content_length;
+      iContentLength = psocket->m_iContentLength;
       
       set["http_body_size_downloaded"] = psocket->m_body_size_downloaded;
 
@@ -2434,9 +2434,9 @@ namespace http
 
       information() << LOG_HTTP_PREFIX
          << url.as_string()
-         << " Status: "
+         << " HTTP Status Code : "
          << iStatusCode
-         << " - "
+         << ", HTTP Status : "
          << strStatus
          << (bChunked ? " Chunk Size : " : " Content Length : ")
          << (bChunked ? (memsize)iChunkSize :(memsize)iContentLength)

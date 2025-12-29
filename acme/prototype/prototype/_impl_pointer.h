@@ -24,6 +24,9 @@ template < class T >
 inline pointer < T > ::pointer() :
         m_p(nullptr),
         m_psubparticle(nullptr)
+#if REFERENCING_DEBUGGING
+,m_preferer(nullptr)
+#endif
 {
 
 }
@@ -33,6 +36,9 @@ template < class T >
 inline pointer < T > ::pointer(nullptr_t):
         m_p(nullptr),
         m_psubparticle(nullptr)
+#if REFERENCING_DEBUGGING
+,m_preferer(nullptr)
+#endif
 {
 
 }
@@ -109,6 +115,13 @@ inline pointer < T > ::pointer(place_t, T2 * p)
 
       m_psubparticle = nullptr;
 
+#if REFERENCING_DEBUGGING
+
+      m_preferer = nullptr;
+
+#endif
+
+
    }
 
 }
@@ -143,6 +156,36 @@ pointer < T >::pointer(allocate_t, Args &&... args)
       throw_resource_exception("OBJECT * p is not of type T (pointer < T >).");
 
    }
+   else
+   {
+
+#if REFERENCING_DEBUGGING
+
+      if (m_psubparticle->is_referencing_debugging_enabled())
+      {
+
+         if(m_psubparticle->m_prefererTransfer2)
+         {
+
+            m_preferer = m_psubparticle->m_prefererTransfer2;
+
+            m_psubparticle->m_prefererTransfer2 = nullptr;
+
+         }
+         else
+         {
+
+            auto preferenceitem = m_psubparticle->m_preferenceitema->m_itema.last();
+
+            m_preferer = preferenceitem->m_preferer;
+
+         }
+
+      }
+
+#endif
+
+   }
 
 }
 
@@ -165,10 +208,13 @@ inline pointer < T > ::pointer(const pointer & t)
       m_p = nullptr;
 
       m_psubparticle = nullptr;
+
 #if REFERENCING_DEBUGGING
 
       m_preferer = nullptr;
+
 #endif
+
    }
    else
    {
@@ -181,7 +227,13 @@ inline pointer < T > ::pointer(const pointer & t)
       {
 
          //::allocator::defer_push_referer(pNew, { pNew, this, __FUNCTION_FILE_LINE__  });
-         ::allocator::defer_push_referer(pNew, { this, __FUNCTION_FILE_LINE__ });
+         prefererNew = ::allocator::defer_push_referer(pNew, { this, __FUNCTION_FILE_LINE__ });
+
+      }
+      else
+      {
+
+         ::allocator::defer_erase_referer(pNew);
 
       }
 
@@ -602,6 +654,12 @@ inline pointer < T > & pointer < T > ::transfer(T2 * p)
                   prefererNew = ::allocator::defer_push_referer(pNew, { pNew, this, __FUNCTION_FILE_LINE__  });
 
                }
+               else
+               {
+
+                  ::allocator::defer_erase_referer(pNew);
+
+               }
 
 #endif
 
@@ -718,6 +776,12 @@ inline pointer < T > & pointer < T > ::operator = (const pointer & t)
                //prefererNew = ::allocator::defer_push_referer(pNew, { pNew, this, __FUNCTION_FILE_LINE__  });
 
                prefererNew = ::allocator::defer_push_referer(pNew, { this, __FUNCTION_FILE_LINE__ });
+
+            }
+            else
+            {
+
+               ::allocator::defer_erase_referer(pNew);
 
             }
 
@@ -1736,6 +1800,13 @@ inline pointer < T >& pointer < T > ::operator = (const pointer < T2 > & t)
             prefererNew = ::allocator::defer_push_referer(pNew, { this, __FUNCTION_FILE_LINE__ });
 
          }
+         else
+         {
+
+            ::allocator::defer_erase_referer(pNew);
+
+         }
+
 
 #endif
 

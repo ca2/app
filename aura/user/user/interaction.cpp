@@ -8297,7 +8297,7 @@ if(get_parent())
          if (pitemResize->m_item.m_eelement == e_element_resize)
          {
 
-            debug() << "user::interaction::on_message_create enable drag resize yes, it is e_element_resize : " << (::iptr)pitemResize.m_p;
+            debug() << "user::interaction::on_message_create enable drag resize yes, it is e_element_resize : " << (::iptr)pitemResize;
 
          }
 

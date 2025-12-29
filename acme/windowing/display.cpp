@@ -53,6 +53,14 @@ namespace acme
       }
 
 
+      void display::_on_monitor(int iIndex, const ::int_rectangle & rectangle, const ::int_rectangle & rectangleWorkspace)
+      {
+
+         m_rectanglea.ø(iIndex) = rectangle;
+
+      }
+
+
       bool display::is_display_opened() const
       {
 

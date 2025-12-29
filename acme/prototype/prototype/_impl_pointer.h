@@ -1906,11 +1906,11 @@ inline pointer < T >& pointer < T > ::operator = (pointer < T2 > && t)
 
          m_preferer = t.m_preferer;
 
+         t.m_preferer = nullptr;
+
 #endif
 
          t.m_p = nullptr;
-
-         //t.m_preferer = nullptr;
 
       }
 

@@ -660,7 +660,19 @@ namespace windowing
 
       }
 
-      auto & pmonitor = m_monitora.element_at_grow(iMonitor);
+      auto pmonitor = ømonitor(iMonitor);
+
+      return pmonitor;
+
+   }
+
+
+   monitor * display::ømonitor(::collection::index iMonitor)
+   {
+
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+
+      auto & pmonitor = m_monitora.ø(iMonitor);
 
       if(!pmonitor)
       {
@@ -685,6 +697,21 @@ namespace windowing
       return pmonitor;
 
    }
+
+
+   void display::_on_monitor(int iIndex, const ::int_rectangle & rectangle, const ::int_rectangle & rectangleWorkspace)
+   {
+
+      ::acme::windowing::display::_on_monitor(iIndex, rectangle, rectangleWorkspace);
+
+      auto pmonitor = ømonitor(iIndex);
+
+      pmonitor->m_rectangle = rectangle;
+
+      pmonitor->m_rectangleWorkspace = rectangleWorkspace;
+
+   }
+
 
 
    bool display::has_readily_gettable_absolute_pointer_position() const

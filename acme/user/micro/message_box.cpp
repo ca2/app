@@ -39,6 +39,8 @@ namespace micro
    message_box::message_box()
    {
 
+      auto & r = m_rectangle;
+
       id() = e_dialog_result_none;
 
       set_flag(e_flag_should_create_sequence_on_synchronicity);
@@ -83,9 +85,11 @@ namespace micro
       m_bMaximizeBox = false;
       m_bResizeable = false;
 
+      auto r = m_rectangle;
 
-      m_pacmewindowingwindow->m_pointWindow = m_rectangle.origin();
-      m_pacmewindowingwindow->m_sizeWindow = m_rectangle.size();
+
+      m_pacmewindowingwindow->m_pointWindow = r.origin();
+      m_pacmewindowingwindow->m_sizeWindow = r.size();
 
    }
 

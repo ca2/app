@@ -234,7 +234,7 @@ namespace acme
          //m_pacmeuserinteractionOwner.release();
          __check_refdbg
 
-         m_pdisplay.release();
+         m_pacmewindowingdisplayWindow.release();
          __check_refdbg
 
 

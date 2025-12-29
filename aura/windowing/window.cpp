@@ -215,7 +215,7 @@ namespace windowing
       m_picon.release();
       //m_pwindowParent.release();
       m_pmessagequeue.release();
-      m_pdisplay.release();
+      //m_pacmewindowingdisplayWindow.release();
       {
          _synchronous_lock synchronouslockRedrawItem(m_pmutexRedrawItem);
 
@@ -1012,18 +1012,18 @@ namespace windowing
    ::windowing::display* window::display()
    {
 
-      if(!m_pdisplay)
+      if(!m_pacmewindowingdisplayWindow)
       {
 
          auto psystem = ::system();
 
          auto pwindowing = psystem->acme_windowing();
 
-         m_pdisplay = pwindowing->acme_display();
+         m_pacmewindowingdisplayWindow = pwindowing->acme_display();
 
       }
 
-      return m_pdisplay.cast < ::windowing::display>();
+      return m_pacmewindowingdisplayWindow.raw_cast < ::windowing::display>();
 
    }
 
@@ -3153,9 +3153,9 @@ namespace windowing
 
       m_pointCursor2.y = yHost;
 
-      m_pdisplay->m_pointCursor2.x = xAbsolute;
+      m_pacmewindowingdisplayWindow->m_pointCursor2.x = xAbsolute;
 
-      m_pdisplay->m_pointCursor2.y = yAbsolute;
+      m_pacmewindowingdisplayWindow->m_pointCursor2.y = yAbsolute;
 
       user_interaction()->post_message(::user::e_message_mouse_move, 0, lparam);
 
@@ -3171,9 +3171,9 @@ namespace windowing
 
       m_pointCursor2.y = yHost;
 
-      m_pdisplay->m_pointCursor2.x = xAbsolute;
+      m_pacmewindowingdisplayWindow->m_pointCursor2.x = xAbsolute;
 
-      m_pdisplay->m_pointCursor2.y = yAbsolute;
+      m_pacmewindowingdisplayWindow->m_pointCursor2.y = yAbsolute;
 
       user_interaction()->post_message(::user::e_message_left_button_up, 0, lparam);
 

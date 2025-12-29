@@ -1642,7 +1642,7 @@ namespace micro
    ::micro::elemental * elemental::micro_parent()
    {
 
-      return m_pacmeuserinteractionParent.cast<::micro::elemental>();
+      return m_pacmeuserinteractionParent.raw_cast<::micro::elemental>();
 
    }
 

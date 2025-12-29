@@ -35,6 +35,9 @@ namespace acme
          virtual void _enumerate_monitors();
 
 
+         virtual void _on_monitor(int iIndex, const ::int_rectangle & rectangle, const ::int_rectangle & rectangleWorkspace);
+
+
          virtual bool is_display_opened() const;
 
 

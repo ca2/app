@@ -85,7 +85,7 @@ namespace acme
          //::pointer<::acme::user::interaction>               m_pacmeuserinteractionOwner;
 
 
-         ::pointer < ::acme::windowing::display >           m_pdisplay;
+         ::pointer < ::acme::windowing::display >           m_pacmewindowingdisplayWindow;
 
          long                                               m_lX11NativeVisualId;
 

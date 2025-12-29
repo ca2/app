@@ -35,6 +35,8 @@ namespace windowing
 
       m_bSettingCursorMatter = false;
 
+      m_pSnLauncheeContext = nullptr;
+
    }
 
 

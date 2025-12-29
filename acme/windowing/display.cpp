@@ -22,15 +22,10 @@ namespace acme
 
 
       display::display() : m_pointCursor2(I32_MINIMUM)
-
       {
 
 
-         //m_bDisplayOpened = false;
-
          defer_create_synchronization();
-
-         //m_edisplaytype = e_display_type_none;
 
 
       }
@@ -44,6 +39,14 @@ namespace acme
 
 
       void display::open_display()
+      {
+
+
+      }
+
+
+
+      void display::_enumerate_monitors()
       {
 
 

@@ -41,7 +41,7 @@ namespace acme
          ::pointer_array < ::acme::windowing::window >      m_windowa;
          ::pointer<::acme::windowing::display>              m_pacmedisplay;
          ::windowing::enum_windowing                        m_ewindowing;
-         ::pointer<::acme::windowing::window>               m_pwindowMouseCapture;
+         ::pointer<::acme::windowing::window>               m_pacmewindowingwindowMouseCapture;
          class ::time                                       m_timeDarkMode;
 
          ::windowing::enum_bias                             m_ewindowingbias;
@@ -145,10 +145,6 @@ namespace acme
 
          virtual ::windowing::windowing * windowing_windowing();
 
-         virtual void on_start_system();
-
-         virtual void on_start_windowing_application();
-
          virtual void _do_tasks();
          
          virtual void application_handle(long long l, void * p);
@@ -178,6 +174,12 @@ namespace acme
          //virtual void * fetch_windowing_display();
 
          //virtual void process_messages();
+
+         //virtual void on_start_windowing_application();
+
+         virtual void windowing_application_on_system_start();
+
+         virtual void windowing_application_on_start();
 
          virtual void windowing_application_main_loop();
 

@@ -205,13 +205,13 @@ namespace graphics3d
 
                   prenderable = pgpucontext->load_model(entry);
 
-                  if (prenderable->renderable_type() == ::gpu::e_renderable_type_wavefront_obj)
+                  if (prenderable->emodel() == ::gpu::e_model_wavefront)
                   {
                      // auto model = loadObjModel(name, path, false);
                      informationf("[asset_manager] Successfully loaded OBJ model '%s' from '%s'", prenderable->m_strName.c_str(),
                                  prenderable->m_pathRenderable.c_str());
                   }
-                  else if (prenderable->renderable_type() == ::gpu::e_renderable_type_gltf)
+                  else if (prenderable->emodel() == ::gpu::e_model_gltf)
                   {
                      // uint32_t flags = entry.get("flags", 0); // Optional flags
                      // float scale = entry.get("scale", 1.0f); // Optional scale

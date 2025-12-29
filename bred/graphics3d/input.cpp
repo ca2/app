@@ -140,7 +140,7 @@ namespace graphics3d
    void input::_001OnMouseDrag(::floating_sequence2 Δ)
    {
 
-      m_sequence2MouseLastDragΔ = Δ; 
+      m_sequence2MouseLastDragΔ += Δ;
 
    }
 
@@ -184,7 +184,7 @@ namespace graphics3d
       auto angleΔYaw = -m_sequence2MouseSmoothΔ.x * m_angleCursorPixel;
       // auto angleΔPitch = m_pengine->m_fYScale * m_sequence2MouseSmoothΔ.y * m_angleCursorPixel; // invert Y for typical FPS
       auto angleΔPitch = m_pengine->m_fInputPitchFlip * m_sequence2MouseSmoothΔ.y * m_angleCursorPixel; // invert Y for typical FPS
-      information("mx={} my={}", m_sequence2MouseSmoothΔ.x, m_sequence2MouseSmoothΔ.y);
+      //information("mx={} my={}", m_sequence2MouseSmoothΔ.x, m_sequence2MouseSmoothΔ.y);
       auto pcamera = m_pengine->m_pimmersionlayer->m_pscene->camera();
 
       // pcamera->m_quaternionRotation.offset_yaw_and_pitch_with_constraints(angleΔYaw, angleΔPitch, -89.0f_degrees,
@@ -199,8 +199,8 @@ namespace graphics3d
       //;
       // auto euler_angles = pcamera->m_rotation.euler_angles();
 
-      information("yaw={} pitch={}", pcamera->m_rotation.m_angleYaw.m_fAngle,
-                  pcamera->m_rotation.m_anglePitch.m_fAngle);
+      //information("yaw={} pitch={}", pcamera->m_rotation.m_angleYaw.m_fAngle,
+        //          pcamera->m_rotation.m_anglePitch.m_fAngle);
       // euler_angles.z);
       // auto angleMinimumPitch = -89.0f_degrees;
 

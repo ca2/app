@@ -714,6 +714,28 @@ namespace windowing
    }
 
 
+
+   void * window::__x11_Display()
+   {
+
+      throw ::interface_only();
+
+      return nullptr;
+
+   }
+
+
+   long window::__x11_Window()
+   {
+
+      throw ::interface_only();
+
+      return 0;
+
+   }
+
+
+
    void window::create_window()
    {
 
@@ -836,6 +858,8 @@ namespace windowing
          {
 
             _create_window();
+
+            on_create_window();
 
          });
 
@@ -1047,7 +1071,7 @@ namespace windowing
    // //
    // //                                      synchronous_lock synchronouslock(user_synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
    // //
-   // ////                                      display_lock displaylock(x11_display()->Display());
+   // ////                                      display_lock displaylock(x11_display()->__x11_display());
    // //
    // //                                      information() << "XGrabPointer";
    // ////
@@ -8239,7 +8263,7 @@ namespace windowing
       if (m_pgraphicsthread->m_bFps)
       {
 
-         warning() << "graphics thread is going to ignore post redraw as it should be doing Fps drawing";
+         //warning() << "graphics thread is going to ignore post redraw as it should be doing Fps drawing";
 
          return;
 

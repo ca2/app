@@ -2771,7 +2771,7 @@ namespace network_token {
 					switch (expected.get_type()) {
 					case json::platform::type::boolean: return expected.as_bool() == jc.as_bool();
 					case json::platform::type::integer: return expected.as_int() == jc.as_int();
-					case json::platform::type::number: return expected.as_number() == jc.as_number();
+					case json::platform::type::number::number: return expected.as_number() == jc.as_number();
 					case json::platform::type::string: return expected.as_string() == jc.as_string();
 					case json::platform::type::array:
 					case json::platform::type::object:
@@ -3456,7 +3456,7 @@ namespace network_token {
 			using json::platform::type;
 			if (val.is<bool>()) return type::boolean;
 			if (val.is<long long>()) return type::integer;
-			if (val.is<double>()) return type::number;
+			if (val.is<double>()) return type::number::number;
 			if (val.is<std::string>()) return type::string;
 			if (val.is<quite_compact_network_payload::array>()) return type::array;
 			if (val.is<quite_compact_network_payload::object>()) return type::object;

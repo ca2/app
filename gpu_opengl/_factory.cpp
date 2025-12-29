@@ -42,6 +42,10 @@
 
 #include "device_win32.h"
 
+#else
+
+#include "device_egl.h"
+
 #endif
 
 //BEGIN_FACTORY(gpu_opengl)
@@ -78,6 +82,10 @@ __FACTORY_EXPORT void gpu_opengl_factory(::factory::factory * pfactory)
 
    pfactory->add_factory_item < ::gpu_opengl::device_win32, ::gpu::device >();
 
+#else
+
+   pfactory->add_factory_item < ::gpu_opengl::device_egl, ::gpu::device >();
+
 #endif
 
    pfactory->add_factory_item < ::gpu_opengl::offscreen_render_target, ::gpu::render_target >();
@@ -108,8 +116,8 @@ __FACTORY_EXPORT void gpu_opengl_factory(::factory::factory * pfactory)
    pfactory->add_factory_item < ::gpu_opengl::ibl::equirectangular_cubemap, ::gpu::ibl::equirectangular_cubemap>();
    //pfactory->add_factory_item < ::gpu_opengl::ibl::brdf_convolution_framebuffer, ::gpu::ibl::brdf_convolution_framebuffer>();
    //pfactory->add_factory_item < ::gpu_opengl::ibl::hdri_cube, ::gpu::ibl::hdri_cube>();
-   pfactory->add_factory_item<::gpu_opengl::gltf::mesh, ::gpu::gltf::mesh>();
-   pfactory->add_factory_item<::gpu_opengl::gltf::model, ::gpu::gltf::model>();
+   pfactory->add_factory_item<::gpu_opengl::gltf::mesh, ::gpu::model::mesh>();
+   pfactory->add_factory_item<::gpu_opengl::gltf::model, ::gpu::model::model>();
 }
 
 

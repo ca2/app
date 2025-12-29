@@ -89,7 +89,7 @@ namespace gpu
       //binding m_bindingSampler;
       //binding m_bindingCubeSampler;
 
-      ::pointer < binding_slot_set_array > m_pbindingslotseta;
+      ::pointer < ::gpu::binding_slot_set_array > m_pbindingslotseta;
 
       string                     m_strError;
 

@@ -40,6 +40,7 @@ namespace gpu_opengl
 
          // framebuffer
          glGenFramebuffers(1, &ptexture->m_gluFbo);
+         GLEnsureNonNullHandle(ptexture->m_gluFbo, "glGenFramebuffers(1, ...)")
          GLCheckError("");
          glBindFramebuffer(GL_FRAMEBUFFER, ptexture->m_gluFbo);
          GLCheckError("");

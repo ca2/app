@@ -1,6 +1,8 @@
 #include "framework.h"
 //#include "acme/filesystem/filesystem/path.h"
 //#include "_linux.h"
+#include "operating_system/file.h"
+
 #include "acme/operating_system/ansi/binreloc.h"
 #include <unistd.h>
 
@@ -208,6 +210,17 @@ namespace path
    ::free(pszModule);
 
    return path;
+
+}
+
+
+
+CLASS_DECL_ACME ::file::path get_home_config_folder_path()
+{
+
+   auto pathHomeConfigFolder = get_home_folder_path() / ".config";
+
+   return pathHomeConfigFolder;
 
 }
 

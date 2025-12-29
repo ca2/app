@@ -12,14 +12,14 @@
 #include "bred/graphics3d/scene_base.h"
 #include "bred/graphics3d/scene_renderable.h"
 #include "bred/graphics3d/skybox.h"
-#include "gpu/gltf/_constant.h"
+#include "gpu/model/_constant.h"
 //#include "gpu/cube.h"
 #include <glad/glad.h>
 //
 //
 #include "gpu_opengl/_gpu_opengl.h"
 #include "gpu_opengl/texture.h"
-//#include "::gpu::gltf.h"
+//#include "::gpu::model.h"
 //#include "cube.h"
 ///#include "timer.h"
 //#include "gpu/ibl/cubemap_framebuffer.h"

@@ -50,7 +50,7 @@ namespace gpu_opengl
    unsigned int shader::create_shader(const ::block &blockSource, GLenum type)
    {
 
-      //::gpu::context_lock contextlock(m_pgpurenderer->m_pgpucontext);
+      ::gpu::context_lock contextlock(m_pgpurenderer->m_pgpucontext);
 
       unsigned int uShader;
 
@@ -255,8 +255,25 @@ namespace gpu_opengl
 
          auto gluFbo = ptexture->m_gluFbo;
 
-         glBindFramebuffer(GL_FRAMEBUFFER, gluFbo);
-         GLCheckError("");
+         GLint drawFbo = 0;
+         glGetIntegerv(GL_DRAW_FRAMEBUFFER_BINDING, &drawFbo);
+
+         GLint readFbo = 0;
+         glGetIntegerv(GL_READ_FRAMEBUFFER_BINDING, &readFbo);
+
+         if (drawFbo != gluFbo || readFbo != gluFbo)
+         {
+
+
+            // GLenum status = glCheckFramebufferStatus(GL_FRAMEBUFFER);
+            // if (status != GL_FRAMEBUFFER_COMPLETE) {
+            //    std::cerr << "Framebuffer is not complete: " << status << std::endl;
+            // }
+
+            glBindFramebuffer(GL_FRAMEBUFFER, gluFbo);
+            GLCheckError("");
+
+         }
 
                glDrawBuffer(GL_COLOR_ATTACHMENT0);
          GLCheckError("");
@@ -296,12 +313,17 @@ namespace gpu_opengl
       {
 
          glEnable(GL_BLEND);
+         GLCheckError("");
          glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
+         GLCheckError("");
+
       }
       else
       {
 
          glDisable(GL_BLEND);
+         GLCheckError("");
+
       }
 
 
@@ -309,38 +331,53 @@ namespace gpu_opengl
       {
 
          glDisable(GL_DEPTH_TEST);
+         GLCheckError("");
          glDepthMask(GL_FALSE);
+         GLCheckError("");
+
       }
       else
       {
 
          glEnable(GL_DEPTH_TEST);
+         GLCheckError("");
 
          if (m_bDepthTestButNoDepthWrite)
          {
 
             glDepthMask(GL_FALSE);
+            GLCheckError("");
+
+
          }
          else
          {
 
             glDepthMask(GL_TRUE);
+            GLCheckError("");
+
          }
 
          if (m_bLequalDepth)
          {
 
             glDepthFunc(GL_LEQUAL);
+            GLCheckError("");
+
          }
          else
          {
 
             glDepthFunc(GL_LESS);
+            GLCheckError("");
+
          }
+
       }
 
       glUseProgram(m_ProgramID);
       GLCheckError("");
+
    }
 
 
@@ -498,7 +535,7 @@ namespace gpu_opengl
          }
       }
 
-      finished:
+   finished:
 
       if (pgputextureBound)
       {
@@ -536,6 +573,7 @@ namespace gpu_opengl
          {
 
             continue;
+
          }
 
          for (auto &bindingslot: *pbindingslotset)
@@ -545,6 +583,7 @@ namespace gpu_opengl
             {
 
                continue;
+
             }
 
             ::string strUniform = bindingslot.m_pbinding->m_strUniform;
@@ -553,20 +592,27 @@ namespace gpu_opengl
             {
 
                strUniform = "uTexture";
+
             }
 
             auto iTextureUnit = bindingslot.m_pbinding->m_iTextureUnit;
 
             glActiveTexture(GL_TEXTURE0 + iTextureUnit);
+
+            m_pgpurenderer->m_pgpucontext->assert_there_is_current_context();
+
             GLCheckError("");
 
             ::cast<texture> ptexture = pgputexture;
 
-            GLuint tex = ptexture->m_gluTextureID;
+            auto gluType = ptexture->m_gluType;
 
-            glBindTexture(ptexture->m_gluType, tex);
+            auto gluTextureID = ptexture->m_gluTextureID;
+
+            auto bIsTexture = glIsTexture(gluTextureID);
+
+            glBindTexture(gluType, gluTextureID);
             GLCheckError("");
-
 
             _set_int(strUniform, iTextureUnit);
 
@@ -862,6 +908,17 @@ namespace gpu_opengl
 
                 // Get uniform block index by name
             GLuint blockIndex = glGetUniformBlockIndex(pshader->m_ProgramID, pszUniform);
+            if (glGetError() == GL_INVALID_OPERATION)
+            {
+
+               if (!glIsProgram(pshader->m_ProgramID))
+               {
+
+                  ::information("error_found?");
+
+               }
+
+            }
             GLCheckError("");
 
             if (blockIndex == GL_INVALID_INDEX)

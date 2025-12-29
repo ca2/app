@@ -124,6 +124,9 @@ namespace gpu
       ::pointer<::gpu::shader>               m_pshader;
       ::pointer<::gpu::shader>               m_pshaderBound;
       ::pointer<::gpu::render_target>        m_prendertargetBound;
+
+
+      ::pointer<::gpu::shader> m_pgpushaderRgbaFromB_G;
       bool                                   m_bCreated;
       ::draw3d::matrix                       m_matrixProjection;
       ::draw3d::matrix                       m_matrixImpact;
@@ -188,10 +191,10 @@ namespace gpu
 
 
       /// loads different types of image
-      virtual ::gpu::texture* generic_texture(const ::file::path & path, int iAssimpTextureType);
-      virtual void load_generic_texture(::pointer < ::gpu::texture > & ptexture, const ::file::path & path, int iAssimpTextureType);
-
-
+      virtual ::gpu::texture* generic_texture(const ::file::path & path, bool bSrgb);
+      virtual void load_generic_texture(::pointer < ::gpu::texture > & ptexture, const ::file::path & path, bool bSrgb);
+      virtual void load_ktx_texture_from_file_path(::gpu::texture * ptexture, const ::file::path & pathImage);
+      virtual void load_ktx_texture_from_memory(::gpu::texture * ptexture, const void * data, memsize size);
 
       virtual void start_debug_happening(::gpu::command_buffer *pgpucommandbuffer,
                                          const ::scoped_string &scopedstrDebugHappening);
@@ -205,7 +208,7 @@ namespace gpu
       virtual void layout_properties_default(::gpu::properties &properties);
       virtual void _layout_std140_or_std430(::gpu::properties &properties, enum_layout elayout);
       virtual void _layout_hlsl(::gpu::properties &properties);
-      virtual void defer_make_current();
+      //virtual void defer_make_current();
 
       virtual ::floating_matrix4 defer_transpose(const ::floating_matrix4 & m);
       virtual ::floating_matrix4 defer_clip_remap_projection(const ::floating_matrix4 &m);
@@ -255,9 +258,9 @@ namespace gpu
       /// <param name="size"></param>
       virtual void create_draw2d_context(::gpu::device* pgpudevice, const enum_output& eoutput, const ::int_size& size);
 
-      virtual void initialize_gpu_context(::gpu::device* pgpudevice, const ::gpu::enum_output& eoutput, ::windowing::window* pwindow, const ::int_size & size);
+      virtual void initialize_gpu_context(::gpu::device* pgpudevice, const ::gpu::enum_output& eoutput, ::acme::windowing::window* pwindow, const ::int_size & size);
 
-      virtual void on_create_context(::gpu::device * pgpudevice, const ::gpu::enum_output & eoutput, ::windowing::window* pwindow, const ::int_size & size);
+      virtual void on_create_context(::gpu::device * pgpudevice, const ::gpu::enum_output & eoutput, ::acme::windowing::window* pwindow, const ::int_size & size);
 
       virtual void engine_on_frame_context_initialization();
 
@@ -290,6 +293,8 @@ namespace gpu
 
 
       //virtual void initialize(::particle * pparticle) override;
+
+      virtual void assert_there_is_current_context();
 
       virtual void do_on_context(const ::procedure & procedure);
       virtual void send_on_context(const ::procedure & procedure);
@@ -342,8 +347,8 @@ namespace gpu
       virtual void destroy_cpu_buffer();
 
 
-      virtual void defer_create_window_context(::windowing::window * pwindow);
-      virtual void _defer_create_window_context(::windowing::window * pwindow);
+      virtual void defer_create_window_context(::acme::windowing::window * pwindow);
+      virtual void _defer_create_window_context(::acme::windowing::window * pwindow);
 
       
       virtual void prepare_for_gpu_read();
@@ -425,6 +430,7 @@ namespace gpu
 
       //::pointer<::graphics3d::renderable> load_model();
       virtual ::pointer<::graphics3d::renderable> load_model(const ::gpu::renderable_t & renderable);
+      virtual ::pointer<::graphics3d::renderable> _load_model(const ::gpu::renderable_t & renderable);
       virtual ::pointer<::gpu::texture> load_cube_map(
          const ::scoped_string & scopedstrName,
          const ::file::path & path, 
@@ -456,13 +462,16 @@ namespace gpu
       //    float scale
       //    );
 
-      virtual ::pointer<::graphics3d::renderable> load_wavefront_obj_renderable(const ::gpu::renderable_t & model);
 
-      virtual ::pointer<::graphics3d::renderable> _load_wavefront_obj_renderable(const ::gpu::renderable_t & model);
+      //virtual ::pointer<::graphics3d::renderable> load_wavefront_obj_renderable(const ::gpu::renderable_t & model);
 
-      virtual ::pointer<::graphics3d::renderable> load_gltf_model(const ::gpu::renderable_t & model);
+      //virtual ::pointer<::graphics3d::renderable> _load_wavefront_obj_renderable(const ::gpu::renderable_t & model);
 
-      virtual ::pointer<::graphics3d::renderable> _load_gltf_model(const ::gpu::renderable_t & model);
+      //virtual ::pointer<::graphics3d::renderable> load_gltf_model(const ::gpu::renderable_t & model);
+
+      //virtual ::pointer<::graphics3d::renderable> _load_gltf_model(const ::gpu::renderable_t & model);
+
+
       virtual void set_viewport(::gpu::command_buffer *pgpucommandbuffer, const ::int_rectangle &rectangle);
 
 //      /// @brief generatePrefilteredEnvMap
@@ -521,10 +530,30 @@ namespace gpu
       //                                const floating_sequence3 &forward);  // OpenGL forward = -f
 
       //virtual floating_matrix4 lookAt(const float_sequence3 &eye, const float_sequence3 &center,
-      //                                const float_sequence3 &up);
+      //   
+      // 
+      //                            const float_sequence3 &up);
+      // 
+virtual void swap_buffers();
 
+      //  quite a work arround;
+      // use just the metallic;
+      // oh, please try to create something like:
+      // ptextureMetallicRoughness =
+      // m_pgpucontext->rgb_from_b_g(ptextureMetallic, ptextureRoughness);
+      virtual ::memory rgba_from_b_g_vert_memory();
+      virtual ::memory rgba_from_b_g_frag_memory();
+      virtual ::pointer<::gpu::texture> rgba_from_b_g(::gpu::texture *pgputextureMetallic,
+                                                      ::gpu::texture *pgputextureRoughness);
    };
 
+
+   inline void context::swap_buffers()
+   {
+
+
+
+   }
 
 
 } // namespace gpu

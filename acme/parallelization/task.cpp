@@ -4124,7 +4124,7 @@ CLASS_DECL_ACME ::task * main_task()
 //}
 
 
-CLASS_DECL_ACME void set_main_thread()
+CLASS_DECL_ACME void set_main_user_thread()
 {
 
    set_main_htask(current_htask());
@@ -4136,7 +4136,7 @@ CLASS_DECL_ACME void set_main_thread()
 }
 
 
-//CLASS_DECL_ACME void set_main_thread(htask htask)
+//CLASS_DECL_ACME void set_main_user_thread(htask htask)
 //{
 
 //   set_main_itask(::as_itask(htask));

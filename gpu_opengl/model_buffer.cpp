@@ -177,13 +177,13 @@ namespace gpu_opengl
 
             GLenum etype;
 
-            if (m_iIndexTypeSize == 1)
+            if (m_pmodeldatabase2->index_type_size() == 1)
             {
 
                etype = GL_UNSIGNED_BYTE;
 
             }
-            else if(m_iIndexTypeSize == 2)
+            else if (m_pmodeldatabase2->index_type_size() == 2)
             {
 
                etype = GL_UNSIGNED_SHORT;
@@ -196,14 +196,14 @@ namespace gpu_opengl
 
             }
             
-            glDrawElements(mode, m_iIndexCount, etype, 0);
+            glDrawElements(mode, m_pmodeldatabase2->index_count(), etype, 0);
             GLCheckError("");
 
          }
          else
          {
 
-            glDrawArrays(mode, 0, m_iVertexCount);
+            glDrawArrays(mode, 0, m_pmodeldatabase2->vertex_count());
             GLCheckError("");
 
          }
@@ -212,7 +212,7 @@ namespace gpu_opengl
       else
       {
 
-         glDrawArrays(mode, 0, m_iVertexCount);
+         glDrawArrays(mode, 0, m_pmodeldatabase2->vertex_count());
          GLCheckError("");
 
       }
@@ -257,7 +257,7 @@ namespace gpu_opengl
          //else
          {
 
-            glDrawArrays(GL_LINES, 0, m_iVertexCount);
+            glDrawArrays(GL_LINES, 0, m_pmodeldatabase2->vertex_count());
             GLCheckError("");
 
          }
@@ -266,7 +266,7 @@ namespace gpu_opengl
       else
       {
 
-         glDrawArrays(GL_LINES, 0, m_iVertexCount);
+         glDrawArrays(GL_LINES, 0, m_pmodeldatabase2->vertex_count());
          GLCheckError("");
 
       }

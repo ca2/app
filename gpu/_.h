@@ -38,7 +38,7 @@ namespace gpu
 #include "aqua/include/_include.h"
 
 
-#include "gpu/gltf/_.h"
+#include "gpu/model/_.h"
 #include "gpu/ibl/_.h"
 
 

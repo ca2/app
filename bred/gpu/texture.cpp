@@ -137,7 +137,7 @@ namespace gpu
    void texture::initialize_depth_texture(::gpu::renderer* pgpurenderer, const ::int_rectangle& rectangleTarget)
    {
 
-      ::gpu::texture_attributes textureattributes(rectangleTarget, 16, 1, 1, e_texture_depth);
+      ::gpu::texture_attributes textureattributes(rectangleTarget, 16, 1, 0, 1, e_texture_depth);
 
       initialize_texture(pgpurenderer, textureattributes);
       // m_etype = e_type_depth;
@@ -402,7 +402,7 @@ namespace gpu
 
       auto rectangle = imagea.first()->rectangle();
 
-      ::gpu::texture_attributes textureattributes(rectangle, 8, 4, 0, etexture,
+      ::gpu::texture_attributes textureattributes(rectangle, 8, 4, 0, 0, etexture,
          etexture == e_texture_cube_map ? 6 : 1);
 
       if (imagea.has_element())
@@ -708,7 +708,18 @@ namespace gpu
    }
 
 
+      void texture::defer_fence()
+      {
 
+
+      }
+
+
+      void texture::wait_fence()
+      {
+
+
+      }
 
 } // namespace gpu
 

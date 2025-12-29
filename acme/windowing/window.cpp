@@ -77,6 +77,8 @@ namespace acme
 
          //m_uAcmeWindowingWindowFlags = 0;
 
+         m_lX11NativeVisualId = -1;
+
       }
 
 
@@ -116,6 +118,15 @@ namespace acme
 
 
          return nullptr;
+
+      }
+
+
+      long window::__x11_Window()
+      {
+
+
+         return 0;
 
       }
 
@@ -1969,6 +1980,14 @@ void window::on_control_box_zoom()
 
    //} // namespace windowing
    
+      void window::get_os_window_handle(void *p, int iSize) 
+      {
+         
+         throw ::interface_only();
+      
+      }
+
+
    
 
    } // namespace windowing

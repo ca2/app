@@ -3,7 +3,7 @@
 #include "engine.h"
 #include "immersion_layer.h"
 #include "input.h"
-#include "tinyobjloader_Builder.h"
+//#include "tinyobjloader_Builder.h"
 #include "scene_base.h"
 #include "types.h"
 #include "acme/exception/interface_only.h"
@@ -733,7 +733,7 @@ namespace graphics3d
          auto pgpucontextNew = pgpudevice->create_gpu_context(
             get_engine_gpu_eoutput(),
             ::gpu::e_scene_3d,
-            m_rectanglePlacement.size());
+            m_rectanglePlacementNew.size());
 
          pgpucontextNew->m_etype = ::gpu::context::e_type_graphics3d;
 
@@ -1139,28 +1139,28 @@ namespace graphics3d
    }
 
 
-   ::pointer<::graphics3d::renderable> engine::_load_wavefront_obj_renderable(const ::gpu::renderable_t &model)
-   {
-
-      tinyobjloader_Builder builder{};
-
-      auto pcontext = gpu_context();
-
-      builder.loadModel(pcontext, model.m_pathRenderable, model.m_bCounterClockwise);
-
-      ::pointer < ::gpu::model_buffer > pmodelbuffer;
-
-      øconstruct(pmodelbuffer);
-
-      (*(::gpu::renderable_t *)pmodelbuffer) = model;
-
-      pmodelbuffer->initialize_gpu_context_object(pcontext);
-
-      pmodelbuffer->set_data(builder);
-
-      return pmodelbuffer;
-
-   }
+   // ::pointer<::graphics3d::renderable> engine::_load_wavefront_obj_renderable(const ::gpu::renderable_t &model)
+   // {
+   //
+   //    tinyobjloader_Builder builder{};
+   //
+   //    auto pcontext = gpu_context();
+   //
+   //    builder.loadModel(pcontext, model.m_pathRenderable, model.m_bCounterClockwise);
+   //
+   //    ::pointer < ::gpu::model_buffer > pmodelbuffer;
+   //
+   //    øconstruct(pmodelbuffer);
+   //
+   //    (*(::gpu::renderable_t *)pmodelbuffer) = model;
+   //
+   //    pmodelbuffer->initialize_gpu_context_object(pcontext);
+   //
+   //    pmodelbuffer->set_data(builder);
+   //
+   //    return pmodelbuffer;
+   //
+   // }
 
 
 

@@ -655,10 +655,17 @@ namespace graphics3d
 
       pscenerenderable->initialize_scene_renderable(this);
 
-      if (model.m_erenderabletype == ::gpu::e_renderable_type_wavefront_obj)
+      if (model.m_egpumodel == ::gpu::e_model_wavefront)
       {
 
          pscenerenderable->m_erendersystem = ::graphics3d::e_render_system_wavefront_obj;
+
+      }
+      else if (model.m_egpumodel == ::gpu::e_model_gltf)
+      {
+
+         pscenerenderable->m_erendersystem = ::graphics3d::e_render_system_gltf_ibl;
+
       }
 
       pscenerenderable->m_strRenderablePath = path;

@@ -78,10 +78,6 @@ namespace gpu
       ::gpu::renderer * pgpurenderer,
       const ::block& blockVertex,
       const ::block& blockFragment,
-      //const ::array_base<enum_descriptor_set_slot>& eslota,
-      //const ::particle_pointer& pLocalDescriptorSet,
-      //const ::particle_pointer& pVertexInput,
-      //const ::gpu::property* ppropertiesPush,
       ::gpu::input_layout * pinputlayout,
       enum_flag eflag)
    {
@@ -1131,9 +1127,11 @@ namespace gpu
    ::gpu::binding_set_array * shader::binding_set_array()
    {
 
-      ødefer_construct(binding_slot_set_array()->m_pbindingseta);
+      auto & pbindingseta = binding_slot_set_array()->m_pbindingseta;
 
-      return binding_slot_set_array()->m_pbindingseta;
+      ødefer_construct(pbindingseta);
+
+      return pbindingseta;
 
    }
 

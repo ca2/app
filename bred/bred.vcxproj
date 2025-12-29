@@ -409,7 +409,6 @@
     <ClInclude Include="graphics3d\render_system\point_light_render_system.h" />
     <ClInclude Include="graphics3d\render_system\skybox_render_system.h" />
     <ClInclude Include="graphics3d\render_system\wavefront_obj_render_system.h" />
-    <ClInclude Include="graphics3d\tinyobjloader_Builder.h" />
     <ClInclude Include="graphics3d\point_light.h" />
     <ClInclude Include="graphics3d\provider.h" />
     <ClInclude Include="graphics3d\renderable.h" />
@@ -425,7 +424,6 @@
     <ClInclude Include="graphics3d\skybox.h" />
     <ClInclude Include="graphics3d\static_array.h" />
     <ClInclude Include="graphics3d\transform.h" />
-    <ClInclude Include="graphics3d\type.h" />
     <ClInclude Include="graphics3d\types.h" />
     <ClInclude Include="graphics3d\utilities.h" />
     <ClInclude Include="graphics3d\_.h" />
@@ -437,6 +435,7 @@
     <ClInclude Include="platform\application.h" />
     <ClInclude Include="platform\session.h" />
     <ClInclude Include="platform\system.h" />
+    <ClInclude Include="platform\timer.h" />
     <ClInclude Include="platform\_platform.h" />
     <ClInclude Include="prodevian\actor.h" />
     <ClInclude Include="prodevian\camera.h" />
@@ -507,6 +506,7 @@
     <ClCompile Include="gpu\input_layout.cpp" />
     <ClCompile Include="gpu\memory_buffer.cpp" />
     <ClCompile Include="gpu\model_buffer.cpp" />
+    <ClCompile Include="gpu\model_data.cpp" />
     <ClCompile Include="gpu\object.cpp" />
     <ClCompile Include="gpu\pixmap.cpp" />
     <ClCompile Include="gpu\program.cpp" />
@@ -537,8 +537,6 @@
     <ClCompile Include="graphics3d\render_system\point_light_render_system.cpp" />
     <ClCompile Include="graphics3d\render_system\skybox_render_system.cpp" />
     <ClCompile Include="graphics3d\render_system\wavefront_obj_render_system.cpp" />
-    <ClCompile Include="graphics3d\tinyobjloader_002.cpp" />
-    <ClCompile Include="graphics3d\tinyobjloader_Builder.cpp" />
     <ClCompile Include="graphics3d\point_light.cpp" />
     <ClCompile Include="graphics3d\renderable.cpp" />
     <ClCompile Include="graphics3d\renderer.cpp" />
@@ -554,6 +552,7 @@
     <ClCompile Include="platform\application.cpp" />
     <ClCompile Include="platform\session.cpp" />
     <ClCompile Include="platform\system.cpp" />
+    <ClCompile Include="platform\timer.cpp" />
     <ClCompile Include="prodevian\actor.cpp" />
     <ClCompile Include="prodevian\game_object.cpp" />
     <ClCompile Include="prodevian\immersion.cpp" />

@@ -55,6 +55,8 @@ list(APPEND library_source
    gpu/memory_buffer.h
    gpu/model_buffer.cpp
    gpu/model_buffer.h
+   gpu/model_data.cpp
+   gpu/model_data.h
    gpu/object.cpp
    gpu/object.h
    gpu/pixmap.cpp
@@ -164,9 +166,9 @@ list(APPEND library_source
    #graphics3d/scene_system.h
    graphics3d/types.cpp
    graphics3d/types.h
-   graphics3d/tinyobjloader_Builder.cpp
-   graphics3d/tinyobjloader_Builder.h
-   graphics3d/tinyobjloader_002.cpp
+   #graphics3d/tinyobjloader_Builder.cpp
+   #graphics3d/tinyobjloader_Builder.h
+   #graphics3d/tinyobjloader_002.cpp
    graphics3d/utilities.h
    include/_.h
    inline/__debug_box_clear_impl.h
@@ -189,6 +191,8 @@ list(APPEND library_source
    platform/session.h
    platform/system.cpp
    platform/system.h
+   platform/timer.cpp
+   platform/timer.h
    prodevian/actor.cpp
    prodevian/actor.h
    prodevian/immersion.cpp
@@ -246,7 +250,7 @@ set_target_properties(${PROJECT_NAME} PROPERTIES LINKER_LANGUAGE CXX)
 target_compile_definitions(static_${PROJECT_NAME} PRIVATE CUBE)
 
 
-if (MSVC)
+if(${WIN32})
 
 
    target_compile_options(${PROJECT_NAME} PRIVATE "/MD$<$<CONFIG:Debug>:d>")

@@ -2731,7 +2731,10 @@ namespace networking
 }
 
 
-class number;
+namespace number
+{
+   class number;
+} // namespace number
 
 
 class request;

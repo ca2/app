@@ -626,7 +626,7 @@ namespace user
 
             //}
 
-      display_previous(puseractivationtoken, true);
+      display_visible_trying_to_restore_last_visible({::user::e_activation_set_active, puseractivationtoken});
 
       set_need_layout();
 
@@ -3571,21 +3571,33 @@ namespace user
    }
 
 
-   void interaction::display_previous(::user::activation_token * puseractivationtoken, bool bScreenVisible)
+   void interaction::display_visible_trying_to_restore_last_visible(const ::user::activation & useractivation)
    {
 
       auto edisplayPrevious = window_previous_display();
 
-      information() << "display_previous : " << edisplayPrevious;
+      information() << "display_visible_trying_to_restore_last_visible : " << edisplayPrevious;
 
-      if (bScreenVisible && !::is_screen_visible(edisplayPrevious))
+      if (!::is_screen_visible(edisplayPrevious))
       {
 
-         information() << "display_previous not screen visible, using e_display_normal";
+         information() << "edisplayPrevious isn't screen visible, using e_display_normal";
 
          edisplayPrevious = e_display_normal;
 
       }
+
+      display(edisplayPrevious);
+
+   }
+
+
+   void interaction::display_strictly_previous(const ::user::activation & useractivation)
+   {
+
+      auto edisplayPrevious = window_previous_display();
+
+      information() << "display_strictly_previous : " << edisplayPrevious;
 
       display(edisplayPrevious);
 
@@ -3706,7 +3718,7 @@ namespace user
 
 #ifdef INFO_LAYOUT_DISPLAY
 
-            //information() << "interaction_layout::display e_display_hide";
+            information() << "interaction_layout::display e_display_hide";
 
 #endif
 
@@ -21338,7 +21350,7 @@ if(get_parent())
          if (bDisplayPreviousOnRestore)
          {
 
-            display_previous(puseractivationtoken);
+            display_visible_trying_to_restore_last_visible({::user::e_activation_set_active, puseractivationtoken});
 
          }
          else

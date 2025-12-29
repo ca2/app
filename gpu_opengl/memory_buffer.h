@@ -32,17 +32,17 @@ namespace gpu_opengl
       //void initialize_memory_buffer_with_context(::gpu::context* pcontext, memsize size, memory_buffer::enum_type etype) override;
       //void initialize_memory_buffer_with_model_buffer(::gpu::model_buffer* pmodelbuffer, memsize size, memory_buffer::enum_type etype) override;
 
-      void on_initialize_memory_buffer(const void * dataStatic = nullptr, memsize size = 0) override;
+      void on_initialize_memory_buffer(const ::block &block = {}) override;
 
-      void on_set_memory_buffer(const void* data = nullptr, memsize size = 0) override;
+      void on_set_memory_buffer(const ::block &block = {}) override;
 
-      void _on_set_memory_buffer(const void* data = nullptr, memsize size = 0) override;
+      void _on_set_memory_buffer(const ::block &block = {}) override;
 
 
       bool is_initialized() const override;
 
 
-      void _assign(const void* data, memsize size) override;
+      void _assign(const ::block &block) override;
 
 
       void * _map(memsize start, memsize count) override;

@@ -709,6 +709,8 @@ namespace gpu
       if (pmodelbufferRectangle->is_new())
       {
 
+         pmodelbufferRectangle->initialize_gpu_context_object(pcontext);
+
          pmodelbufferRectangle->sequence2_color_create_rectangle(::gpu::current_frame());
 
       }
@@ -1074,7 +1076,9 @@ namespace gpu
       if (pmodelbuffer->is_new())
       {
 
-         pmodelbuffer->create_vertex_array< ::graphics3d::sequence2_color>(6);
+         pmodelbuffer->initialize_gpu_context_object(pcontext);
+
+         pmodelbuffer->create_vertexes< ::graphics3d::sequence2_color>(6, true);
 
       }
 
@@ -1489,9 +1493,9 @@ namespace gpu
             {
 
                double l = (double) (xpos);
-               double t = (double) (ypos);
+               double t = (double) (ypos + ch.h2);
                double r = (double) (xpos + w);
-               double b = (double) (ypos + h);
+               double b = (double) (t + h);
 
                double_point p1(l, t);
                double_point p2(r, b);

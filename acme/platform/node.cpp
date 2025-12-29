@@ -41,11 +41,6 @@ __FACTORY_EXPORT void nano_compress_windows_factory(::factory::factory * pfactor
 
 #endif
 
-//namespace nano{namespace  user{
-//::user::enum_operating_ambient calculate_edesktop();
-//}//namespace user
-//   }//namespace nano
-//
 ::string errno_error_message(int iError);
 
 #if REFERENCING_DEBUGGING
@@ -121,7 +116,7 @@ namespace platform
       m_pthemecolors = nullptr;
 
 //#if defined(WITH_X11)
-  //    m_pvoidX11Display = nullptr;
+  //    m_p_Display = nullptr;
     //  m_estatusInitializeX11 = error_not_initialized;
 //#endif
 
@@ -1731,52 +1726,6 @@ namespace platform
    }
 
 
-   //::user::enum_operating_ambient node::get_eoperating_ambient()
-   //{
-
-   //   if (m_edesktop == ::user::e_operating_ambient_none)
-   //   {
-
-   //      m_edesktop = calculate_edesktop();
-
-   //   }
-
-   //   return m_edesktop;
-
-   //}
-
-
-   //::user::enum_operating_ambient node::calculate_edesktop()
-   //{
-
-   //   return ::micro::calculate_edesktop();
-
-   //}
-
-
-   //::user::enum_toolkit node::get_etoolkit()
-   //{
-
-   //   if (m_etoolkit == ::user::e_toolkit_none)
-   //   {
-
-   //      m_etoolkit = calculate_etoolkit();
-
-   //   }
-
-   //   return m_etoolkit;
-
-   //}
-
-
-   //::user::enum_toolkit node::calculate_etoolkit()
-   //{
-
-   //   return ::micro::calculate_etoolkit();
-
-   //}
-
-
 
 
 #ifdef LINUX
@@ -3064,7 +3013,7 @@ void node::open_internet_link(const ::scoped_string & scopedstrUrl, const ::scop
       else if(scopedstrComponentName == "nano_user")
       {
 
-         ::string strUserToolkit = ::windowing::get_user_toolkit_id();
+         ::string strUserToolkit = system()->get_nano_user_toolkit_id();
 
          return strUserToolkit;
 

@@ -11,7 +11,7 @@
 #include "bred/gpu/texture.h"
 #include "bred/graphics3d/engine.h"
 #include "bred/graphics3d/shape_factory.h"
-#include "gpu/timer.h"
+#include "bred/platform/timer.h"
 #include "bred/gpu/device.h"
 
 
@@ -117,7 +117,7 @@ namespace gpu
 
          ::gpu::context_lock lockcontext(m_pgpucontext);
 
-         ::gpu::Timer timer;
+         ::bred::Timer timer;
 
          auto pgpucommandbuffer = m_pgpucontext->beginSingleTimeCommands(m_pgpucontext->m_pgpudevice->graphics_queue());
 
@@ -154,8 +154,7 @@ namespace gpu
             cameraAngles[4] = lookAt(origin, unitZ, -unitY); // Z+ (front)
             cameraAngles[5] = lookAt(origin, -unitZ, -unitY); // Z- (back)
 
-
-         };
+         }
 
          floating_matrix4 projection = m_pgpucontext->m_pengine->perspective(
             90f_degrees, // 90 degrees to cover one face

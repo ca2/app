@@ -14,25 +14,28 @@ namespace gpu_opengl
 {
 
 
-   void approach::on_create_window(::windowing::window* pwindow)
+
+   void approach::_on_create_window(::windowing::window* pwindowParam)
    {
 
-      ::cast < ::gpu_opengl::approach > papproach = m_papplication->get_gpu_approach();
-      papproach->_on_create_window(pwindow);
-      //::draw2d_gpu::draw2d::on_create_window(pwindowParam);
+//#if defined(WINDOWS_DESKTOP)
 
-      //::cast < ::windowing_win32::window > pwindow = pwindowParam;
+      ::cast < ::windowing_win32::window > pwindow = pwindowParam;
 
-      //auto hwnd = pwindow->m_hwnd;
+      auto hwnd = pwindow->m_hwnd;
 
-      //HRGN hRgn = CreateRectRgn(0, 0, -1, -1);
-      //bb.dwFlags = DWM_BB_ENABLE | DWM_BB_BLURREGION;
-      //bb.hRgnBlur = hRgn;
-      //bb.fEnable = TRUE;
-      //DwmEnableBlurBehindWindow(hwnd, &bb);
+      opengl_on_create_window(hwnd, (HINSTANCE) system()->m_hinstanceThis);
+
+      DWM_BLURBEHIND bb = { 0 };
+      HRGN hRgn = CreateRectRgn(0, 0, -1, -1);
+      bb.dwFlags = DWM_BB_ENABLE | DWM_BB_BLURREGION;
+      bb.hRgnBlur = hRgn;
+      bb.fEnable = TRUE;
+      DwmEnableBlurBehindWindow(hwnd, &bb);
+
+//#endif
 
    }
-
 
 } // namespace gpu_opengl
 

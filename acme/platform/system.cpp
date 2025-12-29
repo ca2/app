@@ -31,6 +31,7 @@
 #include "acme/handler/request.h"
 #include "acme/handler/topic.h"
 #include "acme/operating_system/dynamic_library.h"
+#include "acme/operating_system/file.h"
 #include "acme/operating_system/process.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/debug.h"
@@ -47,6 +48,7 @@
 #include "acme/windowing/window.h"
 #include "acme/windowing/windowing.h"
 #include "acme/windowing/sandbox/host_interaction.h"
+#include "prototype/string/_str.h"
 //#include "acme/user/user/conversation.h"
 
 
@@ -77,6 +79,12 @@ CLASS_DECL_ACME void trace_category_static_init(::platform::system* psystem);
 
 
 CLASS_DECL_ACME void trace_category_static_term();
+
+
+CLASS_DECL_ACME bool is_x11();
+
+
+CLASS_DECL_ACME bool is_wayland();
 
 
 ::file::path _system_config_folder_path()
@@ -4933,6 +4941,176 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
    }
 
 
+   ::string system::get_operating_ambient()
+   {
+
+      ::string strOperatingAmbientToolkit;
+
+      strOperatingAmbientToolkit = ::windowing::get_eoperating_ambient_name();
+
+      ::string strOperatingAmbient;
+
+      ::string strOperatingAmbientNew;
+
+      ::string strWindowing = ::get_appconfig("windowing");
+
+      strWindowing.trim();
+
+      ::string_array straLines;
+
+      straLines.add_lines(strWindowing);
+
+      straLines.trim();
+
+      straLines.erase_empty();
+
+      straLines.erase_prefixed("#");
+
+      straLines.truncate_on_find_character('#');
+
+      straLines.trim();
+
+      straLines.erase_empty();
+
+      if (straLines.has_element())
+      {
+
+         strWindowing = straLines.last();
+
+         ::information() << "appconfig : windowing : " << strWindowing;
+
+         if (strWindowing.ends_eat("_windowing"))
+         {
+
+            if (strWindowing == "toolkit")
+            {
+
+               strOperatingAmbientNew = strOperatingAmbientToolkit;
+
+            }
+            else if (strWindowing == "raw")
+            {
+
+               if (::is_wayland())
+               {
+
+                  strOperatingAmbientNew = "wayland";
+
+               }
+               else if (::is_x11())
+               {
+
+                  strOperatingAmbientNew = "x11";
+
+               }
+
+            }
+            else
+            {
+
+               strOperatingAmbientNew = strWindowing;
+
+            }
+
+         }
+
+      }
+
+      if (strOperatingAmbientNew.has_character())
+      {
+
+         strOperatingAmbient = strOperatingAmbientNew;
+
+      }
+
+      if (strOperatingAmbientNew.is_empty())
+      {
+
+         strOperatingAmbient = strOperatingAmbientToolkit;
+
+      }
+
+      return strOperatingAmbient;
+
+   }
+
+
+   ::string system::get_user_toolkit_id()
+   {
+
+      ::string strUserToolkit = ::windowing::get_user_toolkit_id();
+
+      ::string strOperatingAmbient = get_operating_ambient();
+
+      if (strOperatingAmbient.has_character())
+      {
+
+         if (strOperatingAmbient == "windows")
+         {
+
+            return "win32";
+
+         }
+
+         return strOperatingAmbient;
+
+      }
+
+      return strUserToolkit;
+
+   }
+
+
+   string system::get_nano_user_toolkit_id()
+   {
+
+      ::string strToolkitId = get_user_toolkit_id();
+
+      ::string strNanoUserToolkitId = strToolkitId;;
+
+      return strNanoUserToolkitId;
+
+
+   }
+
+
+   string system::get_innate_ui_toolkit_id()
+   {
+
+      ::string strInnateUiToolkitId;
+
+      auto strToolkitId = get_user_toolkit_id();
+
+      if (strToolkitId == "x11")
+      {
+
+         strInnateUiToolkitId = "xaw";
+
+      }
+      else
+      {
+
+         strInnateUiToolkitId = strToolkitId;
+
+      }
+
+      return strInnateUiToolkitId;
+
+   }
+
+
+   string system::get_acme_windowing_toolkit_id()
+   {
+
+      ::string strToolkitId = get_user_toolkit_id();
+
+      ::string strAcmeWindowingToolkitId = strToolkitId;
+
+      return strAcmeWindowingToolkitId;
+
+   }
+
+
    void system::do_graphics_and_windowing_factory()
    {
 
@@ -4948,7 +5126,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
 
             pnano->graphics();
 
-            ::string strToolkit = ::windowing::get_user_toolkit_id();
+            ::string strToolkit = get_acme_windowing_toolkit_id();
 
             m_pfactoryAcmeWindowing = this->factory("acme_windowing", strToolkit);
 

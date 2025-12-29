@@ -1310,6 +1310,106 @@ public:
    //
    //   }
 
+
+   template < typename ITEM2 >
+   static constexpr bool
+      _initialize_find_first_character(const_iterator & p, const THIS_RAW_RANGE & range, ITEM2 item) noexcept
+   {
+
+      if (range.is_empty())
+      {
+
+         p = nullptr;
+
+         return true;
+
+      }
+
+      if (item == 0)
+      {
+
+         p = range.begin();
+
+         return true;
+
+      }
+
+      return false;
+
+   }
+
+
+   template<::comparison::equality<ITEM> EQUALITY>
+   static constexpr const_iterator
+      _static_find_first_character(THIS_RAW_RANGE range, ITEM item, EQUALITY equality) noexcept
+   {
+
+      do
+      {
+
+         if (equality.equals(*range.begin(), item))
+         {
+
+            // found a matching item...
+            // stop find_first_character_inning and return address of the matching item
+
+            return range.begin();
+
+         }
+
+         // Didn't found matching item...
+         // continue find_first_character...
+
+         range.begin()++;
+
+      } while (!range.is_end(range.begin()));
+
+      // reached end of the find_first_character_inning range...
+      // and didn't find any matching items...
+      // return address immediately after end of find_first_character_inning range....
+
+      return nullptr;
+
+   }
+
+   template<::comparison::equality<ITEM> EQUALITY>
+   static constexpr const_iterator
+      static_find_first_character(const THIS_RAW_RANGE & range, ITEM item, EQUALITY equality) noexcept
+   {
+
+      const_iterator p;
+
+      if (_initialize_find_first_character(p, range, item))
+      {
+
+         return p;
+
+      }
+
+      return _static_find_first_character(range, item, equality);
+
+   }
+
+
+   template<::comparison::equality<ITEM> EQUALITY>
+   constexpr const_iterator _find_first_character(ITEM item, EQUALITY equality) const
+   {
+
+      return _static_find_first_character(*this, item, equality);
+
+   }
+
+
+   template<::comparison::equality<ITEM> EQUALITY>
+   constexpr const_iterator find_first_character(ITEM item, EQUALITY equality) const
+   {
+
+      return static_find_first_character(*this, item, equality);
+
+   }
+
+
+
    static constexpr bool
       _initialize_find_first_character_in(const_iterator & p, const THIS_RAW_RANGE & range, const THIS_RAW_RANGE & rangeBlock) noexcept
    {

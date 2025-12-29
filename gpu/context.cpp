@@ -4,7 +4,7 @@
 #include "context.h"
 //#include "device.h"
 //#include "frame_buffer.h"
-#include "gltf/model.h"
+#include "model/model.h"
 #include "bred/gltf/vertex.h"
 //#include "ibl/brdf_convolution_framebuffer.h"
 #include "ibl/equirectangular_cubemap.h"
@@ -83,7 +83,7 @@ namespace gpu_gpu
    }
 
 
-   void context::load_ktxTexture(::pointer<::gpu::texture> & ptexture, void * p_ktxTexture)
+   void context::load_ktxTexture(::gpu::texture * pgputexture, void * p_ktxTexture)
    {
 
       throw ::interface_only();
@@ -173,7 +173,7 @@ namespace gpu_gpu
 
 
    void context::load_generic_texture(::pointer<::gpu::texture> &ptexture, const ::file::path &path,
-                                      int iAssimpTextureType)
+                                      bool bSrgb)
    {
 
       ødefer_construct(ptexture);
@@ -195,24 +195,8 @@ namespace gpu_gpu
       }
       else if (path.case_insensitive_ends(".ktx"))
       {
-         // Create ktxTexture from memory
-         ktxTexture *kTexture = nullptr;
-         KTX_error_code result =
-            ktxTexture_CreateFromMemory(inputData, inputSize, KTX_TEXTURE_CREATE_LOAD_IMAGE_DATA_BIT, &kTexture);
 
-         if (result != KTX_SUCCESS)
-         {
-            warning() << "Failed to load KTX from memory\n";
-            return;
-         }
-         ktxTexture1 *tex1 = (ktxTexture1 *)kTexture;
-         information() << "Width=" << kTexture->baseWidth << " Height=" << kTexture->baseHeight
-                       << " Levels=" << kTexture->numLevels << " glInternalFormat=" << tex1->glInternalformat << "\n";
-
-         load_ktxTexture(ptexture, kTexture);
-
-         // Cleanup ktx object (OpenGL texture stays alive)
-         ktxTexture_Destroy(kTexture);
+         load_ktx_texture_from_file_path(ptexture, path);
 
          return;
 
@@ -253,25 +237,25 @@ namespace gpu_gpu
          //GLenum internalFormat = format;
 
          //
-         bool bSrgb = false;
+         //bool bSrgb = false;
          //// account for sRGB textures here
          ////
          //// diffuse textures are in sRGB space (non-linear)
          //// metallic/roughness/normals are usually in linear
          //// AO depends
-         if (iAssimpTextureType == aiTextureType_DIFFUSE)
-         {
-            bSrgb = true;
-         //   //if (numChannels == 3)
-         //   //{
-         //   //   internalFormat = GL_SRGB;
-         //   //   bSrgb
-         //   //}
-         //   //else if (internalFormat == GL_RGBA)
-         //   //{
-         //   //   internalFormat = GL_SRGB_ALPHA;
-         //   //}
-         }
+         //if (iAssimpTextureType == aiTextureType_DIFFUSE)
+         //{
+         //   bSrgb = true;
+         ////   //if (numChannels == 3)
+         ////   //{
+         ////   //   internalFormat = GL_SRGB;
+         ////   //   bSrgb
+         ////   //}
+         ////   //else if (internalFormat == GL_RGBA)
+         ////   //{
+         ////   //   internalFormat = GL_SRGB_ALPHA;
+         ////   //}
+         //}
 
          ::int_rectangle rectangleTarget(0, 0, width, height);
          ptexture->initialize_with_image_data(m_pgpurenderer, rectangleTarget, numChannels, bSrgb, data);
@@ -297,7 +281,7 @@ namespace gpu_gpu
    }
 
    
-   ::pointer<::graphics3d::renderable> context::_load_gltf_model(const ::gpu::renderable_t &model)
+   ::pointer<::graphics3d::renderable> context::_load_model(const ::gpu::renderable_t &model)
    {
 
       // if (auto it = m_mapgltfModel.find(name); it != m_mapgltfModel.end())
@@ -305,7 +289,11 @@ namespace gpu_gpu
 
       ::gpu::context_lock contextlock(this);
 
-      auto pmodel = øcreate<::gpu::gltf::model>();
+      ::pointer<::graphics3d::renderable> prenderable;
+
+      //if (model.m_ecoordinatesystem)
+
+      auto pmodel = øcreate<::gpu::model::model>();
 
       (*(::gpu::renderable_t *)pmodel) = model;
 
@@ -313,17 +301,78 @@ namespace gpu_gpu
 
       // pmodel->loadFromFile(model.m_path.c_str(), this, pqueueGraphics->m_vkqueue, model.m_iFlags, model.m_fScale);
 
-      pmodel->initialize_gpu_gltf_model(this, model);
+      pmodel->initialize_gpu_model(
+         this, 
+         model.m_egpumodel,
+         model.m_pathRenderable, 
+         false,
+         model.m_bExternalPbr);
 
       // m_mapgltfModel[name] = model;
       return pmodel;
    }
 
-   void context::load_ktxTexture_cube_map(::pointer<::gpu::texture> & pgputexture, void * p_ktxTexture)
+
+   void context::load_ktxTexture_cube_map(::gpu::texture * pgputexture, void * p_ktxTexture)
    {
 
       throw ::interface_only();
 
    }
+
+
+   void context::load_ktx_texture_from_file_path(::gpu::texture * ptexture, const ::file::path & pathImage)
+   {
+
+      ptexture->m_textureflags.m_bShaderResource = true;
+
+      auto memory = file()->as_memory(pathImage);
+
+      //         ::string relativePath = fileName;
+      //       ::string path = directory + '/' + relativePath;
+
+      auto data = memory.data();
+
+      auto size = memory.size();
+
+      load_ktx_texture_from_memory(ptexture, data, size);
+
+   }
+
+
+   void context::load_ktx_texture_from_memory(::gpu::texture * ptexture, const void * data, memsize size)
+   {
+
+      // Create ktxTexture from memory
+      ktxTexture *kTexture = nullptr;
+      KTX_error_code result =
+         ktxTexture_CreateFromMemory((const ktx_uint8_t *) data, size, KTX_TEXTURE_CREATE_LOAD_IMAGE_DATA_BIT, &kTexture);
+
+      if (result != KTX_SUCCESS)
+      {
+         warning() << "Failed to load KTX from memory\n";
+         return;
+      }
+      ktxTexture1 *tex1 = (ktxTexture1 *)kTexture;
+      try
+      {
+         information() << "Width=" << kTexture->baseWidth << " Height=" << kTexture->baseHeight
+                       << " Levels=" << kTexture->numLevels << " glInternalFormat=" << tex1->glInternalformat << "\n";
+
+         load_ktxTexture(ptexture, kTexture);
+      }
+      catch (...)
+      {
+
+
+      }
+
+      // Cleanup ktx object (OpenGL texture stays alive)
+      ktxTexture_Destroy(kTexture);
+
+
+   }
+
+
 
 } // namespace gpu_gpu

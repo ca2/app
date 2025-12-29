@@ -136,7 +136,7 @@ namespace gpu_opengl
       //void make_current() override;
 
 
-      void defer_make_current() override;
+      //void defer_make_current() override;
 
 
       //void release_current() override;
@@ -153,7 +153,7 @@ namespace gpu_opengl
 
       //void copy(::gpu::texture* pgputextureTarget, ::gpu::texture* pgputextureSource) override;
 
-      ::pointer<::graphics3d::renderable> _load_gltf_model(const ::gpu::renderable_t &model) override;
+      //::pointer<::graphics3d::renderable> _load_model(const ::gpu::renderable_t &model) override;
 
       //::pointer<::gpu::texture> load_cube_map(const ::scoped_string &scopedstrName, const ::file::path &path,
       //                                        bool b32) override;
@@ -208,8 +208,11 @@ namespace gpu_opengl
       //floating_matrix4 lookAt(const float_sequence3 &eye, const float_sequence3 &center, const float_sequence3 &up) override;
 
        floating_sequence3 front(const ::graphics3d::floating_rotation &rotation) override;
-       void load_ktxTexture(::pointer<::gpu::texture> &ptexture, void *p_ktxTexture) override;
-       void load_ktxTexture_cube_map(::pointer<::gpu::texture> &ptexture, void *p_ktxTexture) override;
+       void load_ktxTexture(::gpu::texture * pgputexture, void *p_ktxTexture) override;
+       void load_ktxTexture_cube_map(::gpu::texture * pgputexture, void *p_ktxTexture) override;
+
+
+      void swap_buffers() override;
 
    };
 

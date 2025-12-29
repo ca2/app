@@ -72,64 +72,65 @@ namespace gpu
 
       m_bDynamic = bDynamic;
 
-      on_initialize_memory_buffer(nullptr, size);
+      on_initialize_memory_buffer({nullptr, size});
 
    }
 
    
-   void memory_buffer::static_initialize_memory_buffer_with_context(::gpu::context* pcontext, const void * data, memsize size, enum_type etype)
+   void memory_buffer::static_initialize_memory_buffer_with_context(::gpu::context* pcontext, const ::block & block, enum_type etype)
    {
 
       m_pmodelbuffer = nullptr;
 
       m_pcontext = pcontext;
 
-      m_size = size;
+      m_size = block.size();
 
       m_etype = etype;
 
-      on_initialize_memory_buffer(data, size);
+      on_initialize_memory_buffer(block);
 
    }
 
 
 
-   void memory_buffer::static_initialize_memory_buffer_with_model_buffer(::gpu::model_buffer* pmodelbuffer, const void * data, memsize size, enum_type etype)
+   void memory_buffer::static_initialize_memory_buffer_with_model_buffer(::gpu::model_buffer *pmodelbuffer,
+                                                                         const ::block &block, enum_type etype)
    {
 
       m_pmodelbuffer = pmodelbuffer;
 
       m_pcontext = pmodelbuffer->m_pgpucontext;
 
-      m_size = size;
+      m_size = block.size();
 
       m_etype = etype;
 
-      on_initialize_memory_buffer(data, size);
+      on_initialize_memory_buffer(block);
 
    }
 
 
-   void memory_buffer::on_initialize_memory_buffer(const void * dataStatic, memsize sizeStatic)
+   void memory_buffer::on_initialize_memory_buffer(const ::block &block)
    {
 
 
    }
 
 
-   void memory_buffer::on_set_memory_buffer(const void* dataStatic, memsize sizeStatic)
+   void memory_buffer::on_set_memory_buffer(const ::block &block)
    {
 
-      auto p = map(0, sizeStatic);
+      auto p = map(0, block.size());
 
-      memcpy(p, dataStatic, sizeStatic);
+      memcpy(p, block.data(), block.size());
 
       unmap();
 
    }
 
 
-   void memory_buffer::_on_set_memory_buffer(const void* dataStatic, memsize sizeStatic)
+   void memory_buffer::_on_set_memory_buffer(const ::block &block)
    {
 
 
@@ -150,7 +151,7 @@ namespace gpu
       if (m_etype == e_type_vertex_buffer)
       {
 
-         auto size = type_size() * m_pmodelbuffer->m_iVertexCount;
+         auto size = type_size() * m_pmodelbuffer->m_pmodeldatabase2->vertex_count();
 
          return size;
 
@@ -158,7 +159,7 @@ namespace gpu
       else if (m_etype == e_type_index_buffer)
       {
 
-         auto size = type_size() * m_pmodelbuffer->m_iIndexCount;
+         auto size = type_size() * m_pmodelbuffer->m_pmodeldatabase2->index_count();
 
          return size;
 
@@ -185,13 +186,13 @@ namespace gpu
       if (m_etype == e_type_vertex_buffer)
       {
 
-         return m_pmodelbuffer->m_iVertexTypeSize;
+         return m_pmodelbuffer->m_pmodeldatabase2->vertex_type_size();
 
       }
       else if (m_etype == e_type_index_buffer)
       {
 
-         return m_pmodelbuffer->m_iIndexTypeSize;
+         return m_pmodelbuffer->m_pmodeldatabase2->index_type_size();
 
       }
       else if (m_etype == e_type_constant_buffer)
@@ -210,7 +211,7 @@ namespace gpu
    }
 
 
-   void memory_buffer::assign(const void* data, memsize size)
+   void memory_buffer::assign(const ::block & block)
    {
 
       if (!is_initialized())
@@ -222,44 +223,44 @@ namespace gpu
 
       bind();
 
-      _assign(data, size);
+      _assign(block);
 
       unbind();
 
    }
 
 
-   void memory_buffer::assign(const ::block& block)
-   {
+   //void memory_buffer::assign(const ::block& block)
+   //{
 
-      assign(block.data(), block.size());
+   //   assign(block.data(), block.size());
 
-   }
+   //}
 
 
-   void memory_buffer::_assign(const void* pData, memsize size)
-   {
+   //void memory_buffer::_assign(const void* pData, memsize size)
+   //{
 
-      if (!is_initialized())
-      {
+   //   if (!is_initialized())
+   //   {
 
-         throw ::exception(error_wrong_state, "Buffer not initialized");
+   //      throw ::exception(error_wrong_state, "Buffer not initialized");
 
-      }
+   //   }
 
-      _map(0, size);
+   //   _map(0, size);
 
-      memcpy(m_pMap, pData, size);
+   //   memcpy(m_pMap, pData, size);
 
-      _unmap();
+   //   _unmap();
 
-   }
+   //}
 
 
    void memory_buffer::_assign(const ::block& block)
    {
 
-      _assign(block.data(), block.size());
+      _assign(block);
 
    }
 

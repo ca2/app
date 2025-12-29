@@ -3,9 +3,11 @@
 #include "acme/constant/id.h"
 #include "acme/crypto/crypto.h"
 #include "acme/exception/interface_only.h"
+#include "acme/filesystem/filesystem/file_context.h"
 #include "acme/filesystem/filesystem/directory_system.h"
 #include "acme/filesystem/filesystem/file_system.h"
 #include "acme/handler/topic.h"
+#include "acme/operating_system/file.h"
 #include "acme/windowing/windowing.h"
 #include "acme/platform/node.h"
 #include "acme/platform/profiler.h"
@@ -28,8 +30,13 @@
 #include "aura/windowing/window.h"
 #include "aura/windowing/windowing.h"
 #include "framework.h"
+//#include "nanovg.h"
 #include "node.h"
 #include "session.h"
+
+
+CLASS_DECL_ACME bool is_wayland();
+CLASS_DECL_ACME bool is_x11();
 
 
 //CLASS_DECL_ACME ::string implementation_name(const ::scoped_string & scopedstrComponent, const ::scoped_string & scopedstrImplementation)
@@ -7291,7 +7298,7 @@ if(!m_pimaging)
       if(!m_bOperatingAmbientFactory)
       {
 
-         ::string strOperatingAmbient = ::windowing::get_eoperating_ambient_name();
+         auto strOperatingAmbient = this->get_operating_ambient();
 
          auto pfactory = factory("operating_ambient", strOperatingAmbient);
 
@@ -7312,7 +7319,7 @@ if(!m_pimaging)
 
          ::aqua::system::do_graphics_and_windowing_factory();
 
-         ::string strUserToolkit = ::windowing::get_user_toolkit_id();
+         ::string strUserToolkit = this->get_user_toolkit_id();
 
          if (strUserToolkit.has_character())
          {

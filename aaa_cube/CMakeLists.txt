@@ -71,7 +71,7 @@ endif ()
 set_target_properties(bred PROPERTIES LINKER_LANGUAGE CXX)
 
 
-if (MSVC)
+if(${WIN32})
 
 
     target_compile_options(bred PRIVATE "/MD$<$<CONFIG:Debug>:d>")

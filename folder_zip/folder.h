@@ -19,10 +19,10 @@ namespace folder_zip
       file_pointer            m_pfile;
       file_pointer            m_pbuffile1;
       file_pointer            m_pbuffile2;
-      unzFile                 m_unzfile;
+      unzip_File                 m_unzip_file;
       zipFile                 m_zipfile;
       bool                    m_bOwnFile;
-      unz_file_info           m_unzfileinfo;
+      unzip__file_info           m_unzip_fileinfo;
 
       ::string m_strLogNotFound;
 

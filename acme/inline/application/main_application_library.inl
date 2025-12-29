@@ -166,7 +166,7 @@ APPLICATION_NAMESPACE_MAIN_EXPORT int APPLICATION_NAMESPACE_MAIN(main)()
 
          ::os_on_init_thread();
 
-         set_main_thread();
+         set_main_user_thread();
 
          ::APPLICATION_NAMESPACE::application_factory(psystem->factory());
 

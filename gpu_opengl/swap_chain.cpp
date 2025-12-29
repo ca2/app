@@ -102,7 +102,9 @@ FragColor = texture(uTexture, TexCoord);
          }
 
          glBindFramebuffer(GL_FRAMEBUFFER, 0);
+         GLCheckError("");
          glDrawBuffer(GL_BACK);
+         GLCheckError("");
 
          auto pcommandbuffer = m_pgpucontext->m_pgpurenderer->getCurrentCommandBuffer2(::gpu::current_frame());
 
@@ -115,15 +117,24 @@ FragColor = texture(uTexture, TexCoord);
          pcommandbuffer->set_scissor(sizeContext);
 
          glDisable(GL_BLEND);
+         GLCheckError("");
          glEnable(GL_DEPTH_TEST);
+         GLCheckError("");
          glDepthMask(GL_TRUE);
+         GLCheckError("");
 
          glClearColor(0.8f, 0.5f, 0.f, 0.8f);
+         GLCheckError("");
          glClearDepth(1.0f);
+         GLCheckError("");
          glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+         GLCheckError("");
          glDisable(GL_BLEND);
+         GLCheckError("");
          glDisable(GL_DEPTH_TEST);
+         GLCheckError("");
          glDepthMask(GL_FALSE);
+         GLCheckError("");
 
          if (1)
          {
@@ -145,10 +156,14 @@ FragColor = texture(uTexture, TexCoord);
 
          }
 
-         // glClearColor(0.f, 0.5f, 0.f, 0.5f);
-         // glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-         // glDisable(GL_BLEND);
-         // glDisable(GL_DEPTH_TEST);
+         //  glClearColor(0.f, 0.5f, 0.f, 0.5f);
+         // GLCheckError("");
+         //  glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+         // GLCheckError("");
+         //  glDisable(GL_BLEND);
+         // GLCheckError("");
+         //  glDisable(GL_DEPTH_TEST);
+         // GLCheckError("");
 
          ::cast<device> pdevice = m_pgpurenderer->m_pgpucontext->m_pgpudevice;
 

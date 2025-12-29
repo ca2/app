@@ -46,7 +46,7 @@ endif ()
 set_target_properties(scripting PROPERTIES LINKER_LANGUAGE CXX)
 
 
-if (MSVC)
+if(${WIN32})
 
 
     target_compile_options(scripting PRIVATE "/MD$<$<CONFIG:Debug>:d>")

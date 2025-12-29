@@ -21,7 +21,7 @@ namespace gpu
 
    };
 
-   CLASS_DECL_BRED enum_renderable_type as_renderable_type(const ::scoped_string &scopedstrRenderableType);
+   CLASS_DECL_BRED enum_model as_gpu_model(const ::scoped_string &scopedstrRenderableType);
 
 
    CLASS_DECL_BRED enum_renderable_usage as_renderable_usage(const ::scoped_string &scopedstrRenderableUsage);
@@ -36,7 +36,8 @@ namespace gpu
       ::string m_strName;
       ::file::path m_pathRenderable;
       ::string m_strRenderableType1;
-      enum_renderable_type m_erenderabletype;
+      enum_model m_egpumodel;
+      //enum_renderable_type m_erenderabletype;
       ::string m_strRenderableUsage1;
       enum_renderable_usage m_erenderableusage;
       ::string m_strCoordinateSystem1;

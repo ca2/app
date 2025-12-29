@@ -64,7 +64,7 @@ CLASS_DECL_ACME htask current_htask();
 
 CLASS_DECL_ACME itask as_itask(htask htask);
 
-CLASS_DECL_ACME void set_main_thread();
+CLASS_DECL_ACME void set_main_user_thread();
 
 CLASS_DECL_ACME void set_main_htask(htask htask);
 

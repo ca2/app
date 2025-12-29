@@ -59,7 +59,7 @@ list(APPEND library_references
         )
 
 
-if (MSVC)
+if(${WIN32})
 
     target_compile_options(app_integration PRIVATE "/MD$<$<CONFIG:Debug>:d>")
     target_link_options(app_integration PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")

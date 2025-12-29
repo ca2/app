@@ -16,10 +16,10 @@
 #include "gpu_opengl/shader.h"
 #include "gpu_opengl/texture.h"
 //#include "gpu/cube.h"
-#include "gpu/gltf/_constant.h"
+#include "gpu/model/_constant.h"
 #include <glad/glad.h>
 #include "gpu/context.h"
-#include "gpu/timer.h"
+#include "bred/platform/timer.h"
 //#include "aaa_mipmap_cubemap_framebuffer.h"
 #include "gpu/full_screen_quad.h"
 #include "shader/prefiltered_environment_map.vert.h"
@@ -87,7 +87,7 @@ namespace gpu_opengl
 
          ::gpu::ibl::specular_map::computePrefilteredEnvMap(pgpucommandbuffer);
 //
-//          ::gpu::Timer timer;
+//          ::bred::Timer timer;
 //
 //          ::gpu::context_lock contextlock(m_pgpucontext);
 //

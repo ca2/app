@@ -90,6 +90,9 @@ list(APPEND library_source
         cpu_buffer.h
         context.cpp
         context.h
+   context_egl.cpp
+   context_egl.h
+   context_ktx.cpp
    #cube.cpp
    #cube.h
         device.cpp
@@ -156,9 +159,9 @@ if(${LINUX} OR ${__BSD__})
  #           context_egl.h
             #context_glx.cpp
             #context_glx.h
-       #device_egl.cpp
+       device_egl.cpp
        #device_egl.h
-       approach_glx.cpp
+       approach_egl.cpp
             )
 
 endif ()
@@ -207,7 +210,9 @@ endif ()
 add_compile_definitions(GLAD_GLAPI_EXPORT)
 
 
-add_library(${PROJECT_NAME} SHARED ${library_source})
+add_library(${PROJECT_NAME} SHARED ${library_source}
+   rotating_cube.cpp
+   device_egl_x11.cpp)
 add_library(static_${PROJECT_NAME} STATIC ${library_source})
 
 
@@ -229,7 +234,7 @@ endif ()
 
 set_target_properties(${PROJECT_NAME} PROPERTIES LINKER_LANGUAGE CXX)
 
-if (MSVC)
+if(${WIN32})
 
 
     target_compile_options(${PROJECT_NAME} PRIVATE "/MD$<$<CONFIG:Debug>:d>")
@@ -255,7 +260,8 @@ elseif (${LINUX} OR ${__BSD__} OR ${ANDROID})
    endif()
 
     #if (${USE_PKGCONFIG})
-        pkg_check_modules(${PROJECT_NAME}_PKGCONFIG glew egl assimp ${extra_pkg_modules})
+        #pkg_check_modules(${PROJECT_NAME}_PKGCONFIG glew egl assimp ${extra_pkg_modules})
+   pkg_check_modules(${PROJECT_NAME}_PKGCONFIG REQUIRED x11 egl assimp ${extra_pkg_modules})
 
     #endif ()
     target_compile_options(${PROJECT_NAME} PRIVATE $<$<COMPILE_LANGUAGE:CXX>:-fpermissive  ${EXTRA_CXX_TARGET_COMPILER_OPTIONS}>)

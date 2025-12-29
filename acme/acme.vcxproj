@@ -1745,8 +1745,8 @@
     <ClCompile Include="handler\source.cpp" />
     <ClCompile Include="handler\task_handler.cpp" />
     <ClCompile Include="handler\topic.cpp" />
-    <ClCompile Include="operating_system\cpu_features.cpp" />
     <ClCompile Include="operating_system\dos_time.cpp" />
+    <ClCompile Include="operating_system\windows_common\cpu_features.cpp" />
     <ClCompile Include="_information_n.cpp" />
     <ClInclude Include="..\..\..\operating_system\operating_system-windows\operating_system\system.h" />
     <ClInclude Include="..\..\..\operating_system\operating_system-windows\operating_system\types.h" />
@@ -4537,6 +4537,9 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticMetaRelease|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticMetaRelease|x64'">true</ExcludedFromBuild>
     </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Natvis Include="_.natvis" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

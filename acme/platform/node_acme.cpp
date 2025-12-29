@@ -560,14 +560,6 @@ namespace platform
    }
 
 
-   //virtual ::user::enum_operating_ambient get_eoperating_ambient(){}
-   //virtual ::user::enum_toolkit get_etoolkit(){}
-
-   //virtual ::user::enum_operating_ambient calculate_edesktop(){}
-   //virtual ::user::enum_toolkit calculate_etoolkit(){}
-
-   //::string acme_node_layer::get_user_toolkit_id(){}
-
    void acme_node_layer::launch_app(const ::scoped_string & scopedstr, const_char_pointer *argv, int iFlags)
    {
    }
@@ -788,14 +780,6 @@ namespace platform
    }
 
 
-   //::file::path command_find_path(const ::scoped_string & scopedstrCommand){}
-
-
-   //virtual ::user::enum_operating_ambient calculate_edesktop(){}
-   //
-   //
-   //virtual ::user::enum_operating_ambient get_eoperating_ambient(){}
-
    void acme_node_layer::on_start_system()
    {
    }
@@ -811,20 +795,7 @@ namespace platform
    {
    }
 
-
-   //virtual ::pointer<::conversation> create_new_message_box_conversation(){}
-
-   //virtual ::pointer<::conversation> create_new_message_conversation(){}
-
-
-   //virtual ::pointer < ::subparticle > create_message_box_sequencer(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::user::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon){}
-
-
-   //void acme_node_layer::micro::message_box(::sequence < ::conversation > * psequence, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::user::e_message_box& emessagebox){}
-
-   //virtual ::pointer < ::subparticle > create_message_sequencer(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::user::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon){}
-
-
+   
    void acme_node_layer::shell_launch(const ::scoped_string & scopedstrAppId)
    {
    }

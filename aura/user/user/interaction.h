@@ -881,13 +881,14 @@ namespace user
       virtual bool layout_layout(::draw2d::graphics_pointer & pgraphics);
 
 
-      virtual void display_previous(::user::activation_token * puseractivationtoken, bool bScreenVisible = false);
+      virtual void display_visible_trying_to_restore_last_visible(const ::user::activation & useractivation);
+      virtual void display_strictly_previous(const ::user::activation & useractivation);
+      virtual void display_stored_state();
       virtual void display_normal(::e_display edisplay, const ::user::activation & useractivation);
       virtual void display_docked(::e_display edisplay, const ::user::activation & useractivation);
       virtual void display_zoomed();
       virtual void display_iconic();
       virtual void display_full_screen(::collection::index iMonitor, const ::user::activation & useractivation);
-      virtual void display_stored_state();
       virtual void display_notify_icon();
 
       

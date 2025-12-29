@@ -38,6 +38,7 @@
 #include "berg/user/user/place_holder.h"
 #include "berg/platform/application.h"
 #include "berg/platform/session.h"
+#include "berg/user/simple/toolbar.h"
 
 
 namespace user
@@ -2017,7 +2018,7 @@ namespace user
          if (bCreate && !ptoolbartransport)
          {
 
-            ptoolbartransport = create_toolbar(idToolbar, scopedstrToolbarParam, dwCtrlStyle, uStyle, "simple_toolbar");
+            ptoolbartransport = create_toolbar(idToolbar, scopedstrToolbarParam, dwCtrlStyle, uStyle, ::type < simple_toolbar>());
 
             add_control_bar(ptoolbartransport);
 

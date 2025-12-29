@@ -26,7 +26,7 @@ namespace acme
       {
 
 
-         m_bDisplayOpened = false;
+         //m_bDisplayOpened = false;
 
          defer_create_synchronization();
 
@@ -50,6 +50,16 @@ namespace acme
       }
 
 
+      bool display::is_display_opened() const
+      {
+
+         throw ::interface_only();
+
+         return false;
+
+      }
+
+
       ::collection::count display::get_monitor_count()
       {
 
@@ -60,6 +70,12 @@ namespace acme
       }
 
 
+      void display::get_os_display_handle(void *p, int iSize)
+      {
+
+         throw ::interface_only();
+
+      }
 
 
       void display::destroy()
@@ -378,6 +394,22 @@ namespace acme
       void display::set_desktop_icon_theme(const ::scoped_string& scopedtrDesktopIconTheme)
       {
 
+
+      }
+
+
+      bool display::is_x11()
+      {
+
+         return false;
+
+      }
+
+
+      bool display::is_wayland()
+      {
+
+         return false;
 
       }
 

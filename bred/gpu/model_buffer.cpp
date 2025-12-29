@@ -21,19 +21,19 @@ namespace gpu
    model_buffer::model_buffer()
    {
 
-      m_iVertexTypeSize = -1;
+      //m_iVertexTypeSize = -1;
 
-      m_iIndexTypeSize = -1;
+      //m_iIndexTypeSize = -1;
 
       m_ppool = nullptr;
 
-      m_bDummy = false;
+      //m_bDummy = false;
 
       m_pMap = nullptr;
 
-      m_iVertexCount = 0;
+      //m_iVertexCount = 0;
 
-      m_iIndexCount = 0;
+      //m_iIndexCount = 0;
 
    }
 
@@ -43,6 +43,7 @@ namespace gpu
 
 
    }
+
 
 
    void model_buffer::sequence2_uv_create_rectangle(::gpu::context* pcontext, bool bIndexed, bool bYSwap)
@@ -104,7 +105,7 @@ namespace gpu
    bool model_buffer::is_dummy() const
    {
 
-      return m_iIndexCount <= 0 && m_iVertexCount <= 0;
+      return m_pmodeldatabase2->is_dummy();
 
    }
 
@@ -870,93 +871,94 @@ namespace gpu
 
       initialize_gpu_context_object(pgpucontext);
 
-      m_iVertexCount = iVertexCount;
 
-      m_bDummy = true;
+      m_pmodeldatabase2 = øallocate ::gpu::model_data_base(::gpu::dummy_t{}, iVertexCount);
+
+      //m_iVertexCount = iVertexCount;
+
+      //m_bDummy = true;
 
    }
 
 
-   void model_buffer::static_initialize_vertex_buffer(const void* data, memsize iTypeSize, ::collection::count iVertexCount)
+   void model_buffer::_static_initialize_vertex_buffer(const ::block & blockVertexData)
    {
 
-      m_iVertexCount = (int) iVertexCount;
+      //m_iVertexCount = (int) iVertexCount;
 
-      m_iVertexTypeSize = (int) iTypeSize;
+      //m_iVertexTypeSize = (int) iTypeSize;
 
-      auto size = iTypeSize * iVertexCount;
+      //auto size = iTypeSize * iVertexCount;
 
       ødefer_construct(m_pbufferVertex);
 
       m_pbufferVertex->static_initialize_memory_buffer_with_model_buffer(
          this,
-         data,
-         size,
+         blockVertexData,
          memory_buffer::e_type_vertex_buffer);
 
    }
 
 
-   void model_buffer::static_initialize_index_buffer(const void* data, memsize iTypeSize, ::collection::count iIndexCount)
+   void model_buffer::_static_initialize_index_buffer(const ::block & blockIndexData)
    {
 
-      m_iIndexCount = (int) iIndexCount;
+      //m_iIndexCount = (int) iIndexCount;
 
-      m_iIndexTypeSize = (int) iTypeSize;
+      //m_iIndexTypeSize = (int) iTypeSize;
 
-      auto size = iIndexCount * m_iIndexTypeSize;
+      //auto size = iIndexCount * m_iIndexTypeSize;
 
       ødefer_construct(m_pbufferIndex);
 
       m_pbufferIndex->static_initialize_memory_buffer_with_model_buffer(
          this,
-         data,
-         size,
+         blockIndexData,
          memory_buffer::e_type_index_buffer);
 
    }
 
 
-   void model_buffer::static_initialize_vertexes_block(const ::block& blockvertexes)
-   {
+   //void model_buffer::static_initialize_vertexes_block(const ::block& blockvertexes)
+   //{
 
-      m_iVertexCount = -1;
+   //   m_iVertexCount = -1;
 
-      m_iVertexTypeSize = -1;
+   //   m_iVertexTypeSize = -1;
 
-      m_iVertexByteSize = (int) blockvertexes.size();
+   //   m_iVertexByteSize = (int) blockvertexes.size();
 
-      ødefer_construct(m_pbufferVertex);
+   //   ødefer_construct(m_pbufferVertex);
 
-      m_pbufferVertex->static_initialize_memory_buffer_with_model_buffer(
-         this,
-         blockvertexes.data(),
-         blockvertexes.size(),
-         memory_buffer::e_type_vertex_buffer);
+   //   m_pbufferVertex->static_initialize_memory_buffer_with_model_buffer(
+   //      this,
+   //      blockvertexes.data(),
+   //      blockvertexes.size(),
+   //      memory_buffer::e_type_vertex_buffer);
 
-      //defer_set_input_layout(m_pgpucontext->input_layout(::gpu_properties< VERTEX >()));
+   //   //defer_set_input_layout(m_pgpucontext->input_layout(::gpu_properties< VERTEX >()));
 
-   }
+   //}
 
 
-   void model_buffer::static_initialize_indexes_block(const ::block& blockindexes)
-   {
+   //void model_buffer::static_initialize_indexes_block(const ::block& blockindexes)
+   //{
 
-      m_iIndexCount = -1;
+   //   m_iIndexCount = -1;
 
-      m_iIndexTypeSize = -1;
+   //   m_iIndexTypeSize = -1;
 
-      m_iIndexByteSize = (int)blockindexes.size();
+   //   m_iIndexByteSize = (int)blockindexes.size();
 
-      ødefer_construct(m_pbufferIndex);
+   //   ødefer_construct(m_pbufferIndex);
 
-      m_pbufferIndex->static_initialize_memory_buffer_with_model_buffer(
-         this,
-         blockindexes.data(),
-         blockindexes.size(),
-         memory_buffer::e_type_index_buffer);
+   //   m_pbufferIndex->static_initialize_memory_buffer_with_model_buffer(
+   //      this,
+   //      blockindexes.data(),
+   //      blockindexes.size(),
+   //      memory_buffer::e_type_index_buffer);
 
-   }
+   //}
 
 
    void model_buffer::bind_load_assets_command_buffer(::gpu::context *pcontext)
@@ -988,13 +990,14 @@ namespace gpu
 
       // m_pgpurenderer = pgpurenderer;
 
-      m_bDummy = true;
+      //m_bDummy = true;
+      m_pmodeldatabase2 = øallocate ::gpu::model_data_base(::gpu::dummy_t{}, ivertexes);
 
       ødefer_construct(m_pbufferVertex);
 
       m_pbufferVertex->initialize_memory_buffer_with_model_buffer(this, 0, ::gpu::memory_buffer::e_type_none);
 
-      m_iVertexCount = ivertexes;
+      //m_iVertexCount = ivertexes;
    }
 
 

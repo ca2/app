@@ -202,7 +202,7 @@ namespace graphics3d
 
       ødefer_construct(m_ptexture);
 
-      ::gpu::texture_attributes textureattributes(::int_rectangle{sizeItem},8, 4, 0,
+      ::gpu::texture_attributes textureattributes(::int_rectangle{sizeItem},8, 4, 0,0, 
          ::gpu::e_texture_cube_map,  6);
 
       ::gpu::texture_flags textureflags;

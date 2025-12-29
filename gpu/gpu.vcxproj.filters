@@ -43,9 +43,6 @@
     <Filter Include="Header Files\ibl">
       <UniqueIdentifier>{1e4332f9-c214-4eca-9d50-d238a9f96556}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\gltf">
-      <UniqueIdentifier>{ec397ecc-99f7-4462-acd1-f141d9fd298b}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\ibl\hlsl">
       <UniqueIdentifier>{feab7de8-76aa-4ed8-940c-cf9bec94febc}</UniqueIdentifier>
     </Filter>
@@ -57,6 +54,12 @@
     </Filter>
     <Filter Include="Source Files\ibl\_aaa">
       <UniqueIdentifier>{e351062d-b8a4-413f-9f58-3a3d56eea144}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\model">
+      <UniqueIdentifier>{bf93917b-2fcd-47a1-aeb3-ba700da7d8a1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\model">
+      <UniqueIdentifier>{fc1cfa3b-1c27-4213-8255-93fc35a7a463}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -195,32 +198,8 @@
     <ClInclude Include="_ktx.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="timer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="ibl\_hlsl.h">
       <Filter>Header Files\ibl</Filter>
-    </ClInclude>
-    <ClInclude Include="gltf\_.h">
-      <Filter>Header Files\gltf</Filter>
-    </ClInclude>
-    <ClInclude Include="gltf\vertex.h">
-      <Filter>Header Files\gltf</Filter>
-    </ClInclude>
-    <ClInclude Include="gltf\model_base.h">
-      <Filter>Header Files\gltf</Filter>
-    </ClInclude>
-    <ClInclude Include="gltf\model.h">
-      <Filter>Header Files\gltf</Filter>
-    </ClInclude>
-    <ClInclude Include="gltf\mesh.h">
-      <Filter>Header Files\gltf</Filter>
-    </ClInclude>
-    <ClInclude Include="gltf\material.h">
-      <Filter>Header Files\gltf</Filter>
-    </ClInclude>
-    <ClInclude Include="gltf\_constant.h">
-      <Filter>Header Files\gltf</Filter>
     </ClInclude>
     <ClInclude Include="_assimp.h">
       <Filter>Header Files</Filter>
@@ -285,6 +264,30 @@
     <ClInclude Include="ibl\hlsl\scene.vert.h">
       <Filter>Header Files\ibl\hlsl</Filter>
     </ClInclude>
+    <ClInclude Include="model\model_base.h">
+      <Filter>Header Files\model</Filter>
+    </ClInclude>
+    <ClInclude Include="model\model.h">
+      <Filter>Header Files\model</Filter>
+    </ClInclude>
+    <ClInclude Include="model\mesh.h">
+      <Filter>Header Files\model</Filter>
+    </ClInclude>
+    <ClInclude Include="model\material.h">
+      <Filter>Header Files\model</Filter>
+    </ClInclude>
+    <ClInclude Include="model\_constant.h">
+      <Filter>Header Files\model</Filter>
+    </ClInclude>
+    <ClInclude Include="model\_.h">
+      <Filter>Header Files\model</Filter>
+    </ClInclude>
+    <ClInclude Include="model\__assimp.h">
+      <Filter>Header Files\model</Filter>
+    </ClInclude>
+    <ClInclude Include="model\_assimp.h">
+      <Filter>Header Files\model</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="framework.cpp">
@@ -311,22 +314,10 @@
     <ClCompile Include="full_screen_quad.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="gltf\mesh.cpp">
-      <Filter>Source Files\gltf</Filter>
-    </ClCompile>
-    <ClCompile Include="gltf\model.cpp">
-      <Filter>Source Files\gltf</Filter>
-    </ClCompile>
     <ClCompile Include="context.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="_ktx.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="gltf\model_base.cpp">
-      <Filter>Source Files\gltf</Filter>
-    </ClCompile>
-    <ClCompile Include="timer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ibl\_hlsl.cpp">
@@ -344,8 +335,17 @@
     <ClCompile Include="ibl\aaa_mipmap_cubemap_framebuffer.cpp">
       <Filter>Source Files\ibl\_aaa</Filter>
     </ClCompile>
-    <ClCompile Include="gltf\material.cpp">
-      <Filter>Source Files\gltf</Filter>
+    <ClCompile Include="model\material.cpp">
+      <Filter>Source Files\model</Filter>
+    </ClCompile>
+    <ClCompile Include="model\mesh.cpp">
+      <Filter>Source Files\model</Filter>
+    </ClCompile>
+    <ClCompile Include="model\model.cpp">
+      <Filter>Source Files\model</Filter>
+    </ClCompile>
+    <ClCompile Include="model\model_base.cpp">
+      <Filter>Source Files\model</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

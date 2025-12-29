@@ -6185,8 +6185,8 @@
     <ClCompile Include="operating_system\dos_time.cpp">
       <Filter>Source Files\operating_system</Filter>
     </ClCompile>
-    <ClCompile Include="operating_system\cpu_features.cpp">
-      <Filter>Source Files\operating_system</Filter>
+    <ClCompile Include="operating_system\windows_common\cpu_features.cpp">
+      <Filter>Source Files\operating_system\windows_common</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -6234,5 +6234,8 @@
     <ResourceCompile Include="deployment.rc">
       <Filter>Resource Files</Filter>
     </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Natvis Include="_.natvis" />
   </ItemGroup>
 </Project>

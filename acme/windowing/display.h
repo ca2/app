@@ -24,7 +24,7 @@ namespace acme
          //enum_display_type       m_edisplaytype;
 
          ::string                         m_strDarkModeAnnotation;
-         bool                             m_bDisplayOpened;
+         //bool                             m_bDisplayOpened;
 
 
 
@@ -35,13 +35,16 @@ namespace acme
          virtual void open_display();
 
 
+         virtual bool is_display_opened() const;
+
+
          void destroy() override;
 
 
          ::collection::count get_monitor_count();
          //virtual enum_display_type get_display_type();
 
-
+         virtual void get_os_display_handle(void *p, int iSize);
          //virtual void initialize_display_type(enum_display_type edisplaytype);
 
 
@@ -94,7 +97,13 @@ namespace acme
 
 
          //virtual void enable_wallpaper_change_notification();
-         
+
+
+         virtual bool is_x11();
+
+         virtual bool is_wayland();
+
+
       };
 
 

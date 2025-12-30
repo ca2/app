@@ -44,10 +44,10 @@ namespace data
 
 CLASS_DECL_ACME long long function_debugging_serial();
 template < prototype_function FUNCTION >
-void object::hold_signal_function(::data::signal<FUNCTION> * psignal, FUNCTION function)
+void object::hold_signal_function(::data::signal<FUNCTION> * psignal, const FUNCTION & function)
 {
 
-   this->destroyinga() += [this, psignal, function]()
+   this->destroyinga() += [psignal, function]()
       {
 
          (*psignal) -= function;

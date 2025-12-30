@@ -309,7 +309,7 @@ public:
 
 
    template < prototype_function FUNCTION >
-      void hold_signal_function(::data::signal<FUNCTION> * psignal, FUNCTION f);
+   void hold_signal_function(::data::signal<FUNCTION> * psignal, const FUNCTION & function);
 
 
 };

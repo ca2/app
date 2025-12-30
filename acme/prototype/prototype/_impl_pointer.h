@@ -95,11 +95,15 @@ inline pointer < T > ::pointer(place_t, T2 * p)
             else
             {
 
-               auto preferenceitem = m_psubparticle->m_preferenceitema->m_itema.last();
-
-               m_preferer = preferenceitem->m_preferer;
+               m_preferer = ::allocator::defer_push_referer(pNew, { this, __FUNCTION_FILE_LINE__ });
 
             }
+
+         }
+         else
+         {
+
+            ::allocator::defer_erase_referer(pNew);
 
          }
 
@@ -175,11 +179,15 @@ pointer < T >::pointer(allocate_t, Args &&... args)
          else
          {
 
-            auto preferenceitem = m_psubparticle->m_preferenceitema->m_itema.last();
-
-            m_preferer = preferenceitem->m_preferer;
+            m_preferer = ::allocator::defer_push_referer(m_p, { this, __FUNCTION_FILE_LINE__ });
 
          }
+
+      }
+      else
+      {
+
+         ::allocator::defer_erase_referer(m_p);
 
       }
 

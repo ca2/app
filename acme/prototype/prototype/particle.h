@@ -108,8 +108,7 @@ public:
 
    particle(const ::particle & particle) :
       ::quantum(particle),
-      ::subparticle(particle),
-      ::signal_handler::base(particle)
+      ::subparticle(particle)
    {
 
 
@@ -117,8 +116,7 @@ public:
 
    particle(::particle&& particle) :
       ::quantum(::transfer(particle)),
-      ::subparticle(::transfer(particle)),
-      ::signal_handler::base(::transfer(particle))
+      ::subparticle(::transfer(particle))
    {
 
 

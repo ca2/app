@@ -206,7 +206,16 @@ namespace windowing
 
       }
 
-      string strType = ::platform::type(user_interaction()).name();
+      auto puserinteraction = user_interaction();
+
+      ::string strType;
+
+      if (::is_set(puserinteraction))
+      {
+
+         strType = ::platform::type(puserinteraction).name();
+
+      }
 
       m_pplacementlog.release();
       m_pparticleChildrenSynchronization.release();

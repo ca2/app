@@ -1776,21 +1776,21 @@ void file_context::copy(::payload varTarget, ::payload varSource, bool bFailIfEx
 
    ::file::path pathSource;
 
-   if (::is_nok(preader))
-   {
-
-      pathSource = application()->defer_process_path(varSource.as_file_path());
-
-      if (exists(pathSource))
-      {
-
-         pfilesystem->copy(pathTarget, pathSource, !bFailIfExists);
-
-         return;
-
-      }
-
-   }
+   // if (::is_nok(preader))
+   // {
+   //
+   //    pathSource = application()->defer_process_path(varSource.as_file_path());
+   //
+   //    if (exists(pathSource))
+   //    {
+   //
+   //       pfilesystem->copy(pathTarget, pathSource, !bFailIfExists);
+   //
+   //       return;
+   //
+   //    }
+   //
+   // }
 
    if (bFailIfExists)
    {

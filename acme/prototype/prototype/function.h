@@ -737,7 +737,7 @@ public:
    requires(prototype_return_function<FUNCTION, RETURN_TYPE > )
    function(FUNCTION functionParam, const class ::time & timeTimeout = 0_s) :
    function_common_base(timeTimeout),
-   base_pointer(functionParam)
+   base_pointer(øallocate return_function<FUNCTION, RETURN_TYPE>(functionParam))
    {
 
       // if constexpr(::std::is_same_v<FUNCTION, nullptr_t>)

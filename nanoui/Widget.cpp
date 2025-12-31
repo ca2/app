@@ -252,7 +252,7 @@ namespace nanoui
 
          auto callbackLayout = m_callbackLayout;
 
-         m_callbackLayout.clear();
+         m_callbackLayout.release();
 
          callbackLayout(pcontext);
 
@@ -325,7 +325,7 @@ namespace nanoui
 
          auto callbackLayout = m_callbackLayout;
 
-         m_callbackLayout.clear();
+         m_callbackLayout.release();
 
          callbackLayout(pcontext);
 

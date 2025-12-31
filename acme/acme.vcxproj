@@ -1747,6 +1747,7 @@
     <ClCompile Include="handler\topic.cpp" />
     <ClCompile Include="operating_system\dos_time.cpp" />
     <ClCompile Include="operating_system\windows_common\cpu_features.cpp" />
+    <ClCompile Include="operating_system\windows_common\task.cpp" />
     <ClCompile Include="_information_n.cpp" />
     <ClInclude Include="..\..\..\operating_system\operating_system-windows\operating_system\system.h" />
     <ClInclude Include="..\..\..\operating_system\operating_system-windows\operating_system\types.h" />

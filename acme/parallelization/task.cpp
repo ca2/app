@@ -96,6 +96,8 @@ task::task()
    m_bMessageThread = false;
 #ifdef WINDOWS
    m_bCoInitialize = false;
+   m_bCoInitialized = false;
+   m_bCoInitializeMultithreaded = true;
 #endif
    //m_bIsRunning = false;
    m_bIsPredicate = true;
@@ -1329,7 +1331,7 @@ void task::destroy()
 
    m_particleaHold.clear();
 
-   m_procedure.m_pbase.release();
+   m_procedure.release();
 
    m_pevSleep.release();
 
@@ -1950,7 +1952,7 @@ void task::_post(const ::procedure & procedure)
 void task::_send(const ::procedure & procedure)
 {
 
-   ::cast < ::sequence > psequence = procedure.m_pbase;
+   ::cast < ::sequence > psequence = procedure;
 
    if (is_current_task())
    {
@@ -2065,7 +2067,7 @@ void task::_send(const ::procedure & procedure)
 
 #endif
 
-      procedure.m_pbase->on_timed_out();
+      procedure->on_timed_out();
 
    }
 
@@ -2281,6 +2283,17 @@ void task::call_init_task()
 
 void task::init_task()
 {
+
+   #ifdef WINDOWS
+
+   if (m_bCoInitialize)
+   {
+
+      _defer_co_initialize_ex(m_bCoInitializeMultithreaded);
+
+   }
+
+   #endif
 
    string strTaskName;
 

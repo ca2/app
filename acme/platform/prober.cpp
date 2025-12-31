@@ -26,7 +26,7 @@ namespace platform
    void test_case::run()
    {
 
-      m_procedure.m_pbase->run();
+      m_procedure();
 
    }
 

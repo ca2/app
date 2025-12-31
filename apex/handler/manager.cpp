@@ -502,7 +502,7 @@ void manager::erase_signal_handler(const ::signal_handler::base * pbase)
       
          auto p = psignal->m_signalhandlercontext.predicate_find([pbase](auto & iterator)
                                                                  {
-            return iterator->m_element1.m_pbase == pbase;
+            return iterator->m_element1 == pbase;
             
          });
          

@@ -153,12 +153,28 @@ public:
    class ::time m_timeTimeout;
 
 
-   function_common_base(const class ::time & timeTimeout = {}):
-   m_timeTimeout(timeTimeout)
+   function_common_base(const class ::time &timeTimeout = default_run_timeout()) :
+      m_timeTimeout(timeTimeout)
    {
 
-
    }
+
+
+   class ::time timeout() const
+   {
+   
+      return m_timeTimeout; 
+   
+   } 
+
+
+   void set_timeout(const class ::time & timeTimeout)
+   {
+      m_timeTimeout = timeTimeout; 
+   
+   }
+
+
 };
 
 
@@ -337,8 +353,9 @@ namespace data
    class signal;
 } // namespace data
 
+
 template <typename PROCEDURE >
-concept prototype_procedure_base =
+concept prototype_pure_procedure =
    requires(PROCEDURE procedure)
 {
 
@@ -347,11 +364,9 @@ concept prototype_procedure_base =
 };
 
 
-
-
 template < typename PROCEDURE >
-requires(prototype_procedure_base<PROCEDURE>)
-class procedure_base :
+requires(prototype_pure_procedure<PROCEDURE>)
+class pure_procedure :
    virtual public ::subparticle
 {
 public:
@@ -359,7 +374,7 @@ public:
 
    PROCEDURE m_procedure;
 
-   procedure_base(PROCEDURE procedure) :
+   pure_procedure(PROCEDURE procedure) :
    m_procedure(procedure)
    {
 
@@ -367,11 +382,19 @@ public:
    }
 
 
-   void operator()() const override
+   void operator()() override
    {
 
       this->m_procedure();
 
+   }
+
+
+   void run() override
+   {
+
+      this->m_procedure(); 
+   
    }
 
 
@@ -471,13 +494,17 @@ public:
    }
 
 
+   function(::lparam & lparam, const class ::time &timeTimeout = 0_s) :
+       function_common_base(timeTimeout), base_pointer(lparam)
+   {
+   }
+
 
 
    template < typename PROCEDURE >
-   requires(prototype_procedure_base<PROCEDURE>)
+   requires(prototype_pure_procedure<PROCEDURE>)
    function(PROCEDURE procedure, const class time & timeTimeout = 0_s) :
-      function_common_base(timeTimeout),
-      base_pointer(øallocate pure_procedure<>procedure)
+      function_common_base(timeTimeout), base_pointer(øallocate pure_procedure(procedure))
    {
 
       // if constexpr(::std::is_same_v<PROCEDURE, nullptr_t>)
@@ -556,7 +583,7 @@ public:
    function & operator = (const function & function)
    {
       
-      this->m_p = function.m_p;
+      base_pointer::operator=(function);
       
       return *this;
 
@@ -635,14 +662,7 @@ class return_function_base :
 public:
 
 
-   virtual RETURN_TYPE operator()() const = 0;
-
-   virtual RETURN_TYPE get()
-   {
-
-      return operator()();
-
-   }
+   virtual RETURN_TYPE function_get() = 0;
 
 
 };
@@ -667,14 +687,19 @@ public:
    }
    //
    //
-   // void get_debug_title(char * sz, character_count c) const override
+   // void get_debug_title(char * sz, character_count c) override
    // {
    //
    //    ::string_count_copy(sz, "a procedure", c);
    //
    // }
 
-
+   RETURN_TYPE function_get()
+   {
+      
+      return this->m_function(); 
+   
+   }
 
 
 };
@@ -682,7 +707,8 @@ public:
 
 
 template < typename RETURN_TYPE >
-class function < RETURN_TYPE() > :
+class function < RETURN_TYPE() > : 
+   public function_common_base,
    public ::pointer<::return_function_base <RETURN_TYPE >>
 {
 public:
@@ -695,6 +721,7 @@ public:
 
 
    function() { }
+   function(nullptr_t)   {}
    // template < typename T2 >
    // function(transfer_t, T2 * p) :base_function(place_t{}, p) {}
    // template < typename T2 >
@@ -758,7 +785,7 @@ public:
    RETURN_TYPE operator()() const
    {
 
-      return this->m_pbase->get();
+      return this->m_p->function_get();
 
    }
 
@@ -798,7 +825,7 @@ public:
    function & operator = (const function & function)
    {
 
-      this->m_p = function.m_p;
+      base_pointer::operator=(function);
 
       return *this;
 
@@ -931,6 +958,7 @@ public:
    //pointer < base >     m_pbase;
 
    function() { }
+   function(nullptr_t) {}
    // template < typename T2 >
    // function(transfer_t, T2 * p) :base_function(place_t{}, p) {}
    // template < typename T2 >
@@ -1048,7 +1076,7 @@ public:
    function & operator = (const function & function)
    {
 
-      this->m_p = function.m_p;
+      base_pointer::operator=(function);
 
       return *this;
 
@@ -1090,7 +1118,7 @@ class arguments_procedure_base :
 {
 public:
 
-   virtual void operator()(ARGUMENTS... arguments) = 0;
+   virtual void operator()(ARGUMENTS... arguments)= 0;
 
 };
 
@@ -1148,6 +1176,13 @@ public:
    //
    //
    // }
+
+   virtual void operator()(ARGUMENTS... arguments)
+   {
+
+      this->m_procedure(arguments...);
+
+   }
 
 
 };
@@ -1273,7 +1308,7 @@ public:
    requires(prototype_arguments_procedure<PROCEDURE, ARGUMENTS ...>)
    function(PROCEDURE procedure, const class ::time & timeTimeout = 0_s) :
    function_common_base(timeTimeout),
-   base_pointer(procedure)
+   base_pointer(øallocate arguments_procedure<PROCEDURE, ARGUMENTS...>(procedure))
    //
    //      requires (::std::is_convertible_v<PROCEDURE, :: >)
    {
@@ -1372,7 +1407,7 @@ public:
    function & operator = (const function & function)
    {
 
-      this->m_p = function.m_p;
+      base_pointer::operator=(function);
 
       return *this;
 

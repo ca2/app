@@ -722,6 +722,25 @@ public:
    inline sequence_continuation post(const ::procedure & procedure);
    inline sequence_continuation async();
    inline sequence_continuation post();
+
+
+   inline sequence_continuation handle(bool bSynchronously, const ::procedure & procedure)
+   {
+
+      if (bSynchronously)
+      {
+         
+         return send(procedure);
+
+      }
+      else
+      {
+
+         return post(procedure);
+
+      }
+
+   }
    
 
 

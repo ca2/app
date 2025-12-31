@@ -73,7 +73,7 @@ public:
    }
 
 
-   const TYPE * operator ->() const
+   TYPE * operator ->() const
    {
 
       return m_p;

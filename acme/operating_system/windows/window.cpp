@@ -445,9 +445,9 @@ namespace windows
 
             warning() << "WM_APP + 876 wParam is Zero At thread " << ::GetCurrentThreadId();
 
-            ::procedure procedure;
+            ::lparam lparam(lParam);
 
-            procedure.m_pbase = { transfer_t{}, (decltype(procedure.m_pbase.m_p))lParam };
+            ::procedure procedure(lparam);
 
             try
             {

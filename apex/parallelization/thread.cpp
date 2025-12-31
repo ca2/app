@@ -982,7 +982,7 @@ void thread::run()
 void thread::on_message_branch(::message::message* pmessage)
 {
 
-   ::procedure routine(e_as_lparam, pmessage->m_lparam);
+   ::procedure routine(pmessage->m_lparam);
 
    if (pmessage->m_wparam == 0)
    {
@@ -4554,7 +4554,7 @@ bool thread::process_message()
          else if (message.m_wparam == e_system_message_method)
          {
 
-            ::procedure routine(e_as_lparam, message.m_lparam);
+            ::procedure routine(message.m_lparam);
 
             routine();
 

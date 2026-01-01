@@ -11,7 +11,10 @@ handler_manager::handler_manager()
 {
 
    m_bKeepRunningPostedProcedures = true;
+
+#if defined(WINDOWS_DESKTOP)
    m_bCoInitialize = true;
+#endif
    
 }
    

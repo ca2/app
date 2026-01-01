@@ -374,7 +374,7 @@ public:
 
    PROCEDURE m_procedure;
 
-   pure_procedure(PROCEDURE procedure) :
+   pure_procedure(const PROCEDURE & procedure) :
    m_procedure(procedure)
    {
 
@@ -503,7 +503,7 @@ public:
 
    template < typename PROCEDURE >
    requires(prototype_pure_procedure<PROCEDURE>)
-   function(PROCEDURE procedure, const class time & timeTimeout = 0_s) :
+   function(const PROCEDURE & procedure, const class time & timeTimeout = 0_s) :
       function_common_base(timeTimeout), base_pointer(øallocate pure_procedure(procedure))
    {
 
@@ -559,7 +559,7 @@ public:
 
 
    template < typename PROCEDURE >
-   function(enum_timeout, const class time & timeTimeout, PROCEDURE procedureParam) :
+   function(enum_timeout, const class time & timeTimeout, const PROCEDURE & procedureParam) :
       function(procedureParam, timeTimeout)
    {
    
@@ -679,7 +679,7 @@ public:
    FUNCTION m_function;
 
 
-   return_function(FUNCTION function) :
+   return_function(const FUNCTION & function) :
         m_function(function)
    {
 
@@ -735,7 +735,7 @@ public:
 
    template < typename FUNCTION >
    requires(prototype_return_function<FUNCTION, RETURN_TYPE > )
-   function(FUNCTION functionParam, const class ::time & timeTimeout = 0_s) :
+   function(const FUNCTION & functionParam, const class ::time & timeTimeout = 0_s) :
    function_common_base(timeTimeout),
    base_pointer(øallocate return_function<FUNCTION, RETURN_TYPE>(functionParam))
    {
@@ -769,7 +769,7 @@ public:
 
 
    template < typename FUNCTION >
-   function(enum_timeout, const class time & timeTimeout, FUNCTION functionParam) :
+   function(enum_timeout, const class time & timeTimeout, const FUNCTION & functionParam) :
       function(functionParam, timeTimeout)
    {
 
@@ -889,7 +889,7 @@ public:
    //using base = ::function_base_3 < RETURN_TYPE, ARGUMENTS... >;
 
 
-   arguments_function(FUNCTION function) :
+   arguments_function(const FUNCTION & function) :
       m_function(function)
    {
 

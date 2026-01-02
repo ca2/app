@@ -89,8 +89,8 @@ namespace filemanager
          auto pcolumn = new_list_column();
          pcolumn->m_iWidth = 500;
          pcolumn->m_iSubItem = 0;
-         pcolumn->m_sizeIcon.cx() = 16;
-         pcolumn->m_sizeIcon.cy() = 16;
+         pcolumn->m_sizeIcon.cx = 16;
+         pcolumn->m_sizeIcon.cy = 16;
 
       }
 
@@ -99,8 +99,8 @@ namespace filemanager
          auto pcolumn = new_list_column();
          pcolumn->m_iWidth = 500;
          pcolumn->m_iSubItem = 1;
-         pcolumn->m_sizeIcon.cx() = 16;
-         pcolumn->m_sizeIcon.cy() = 16;
+         pcolumn->m_sizeIcon.cx = 16;
+         pcolumn->m_sizeIcon.cy = 16;
 
       }
 

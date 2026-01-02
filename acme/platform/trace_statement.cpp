@@ -77,4 +77,21 @@ void trace_statement::formatf_output_arguments(const_char_pointer pszFormat, va_
 //}
 
 
+string trace_statement::prefix() const
+{
+
+   if (::is_set(m_ptracer))
+   {
+
+      return m_ptracer->trace_prefix();
+
+   }
+
+   ::string strTaskName;
+
+   strTaskName = ::current_task_name();
+
+   return strTaskName;
+
+}
 

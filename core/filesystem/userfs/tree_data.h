@@ -1,6 +1,7 @@
 #pragma once
 
 
+#include "core/filesystem/userfs/_.h"
 #include "core/user/user/tree_data.h"
 #include "apex/message/channel.h"
 #include "core/filesystem/userfs/item.h"

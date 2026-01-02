@@ -340,7 +340,7 @@ namespace integration
    void context::download_and_uncompress()
    {
 
-      if (!file_system()->exists(directory_system()->get_current() / "Configure"))
+      if (!file_system()->exists(directory_system()->current() / "Configure"))
       {
 
          if (m_pathDownloadURL.case_insensitive_ends(".tar.gz"))
@@ -447,7 +447,7 @@ namespace integration
 
             pmemoryFileTar->seek_to_begin();
 
-            information() << "Untarring to \"" << directory_system()->get_current() << "\"...";
+            information() << "Untarring to \"" << directory_system()->current() << "\"...";
 
             ::function<void(const::scoped_string& scopedstr) > callback;
 
@@ -485,7 +485,7 @@ namespace integration
 
                };
 
-            this->untar(directory_system()->get_current(), pmemoryFileTar, 1, callback);
+            this->untar(directory_system()->current(), pmemoryFileTar, 1, callback);
 
             ::string str;
             str << iFilesExtracted << " files extracted\n";
@@ -504,7 +504,7 @@ namespace integration
    {
       //preempt(15_s);
       
-      information() << "Current Directory: " << directory_system()->get_current();
+      information() << "Current Directory: " << directory_system()->current();
       
       git_bash("git clone " + m_pathDownloadURL + " .", 2_hour);
 
@@ -651,7 +651,7 @@ namespace integration
    ::file::path context::host_integration_folder()
    {
 
-      return m_pathBaseIntegrationFolder / node()->operating_system_summary()->m_strSystemAmbientRelease;
+      return m_pathBaseIntegrationFolder / node()->operating_system_summary()->m_strSystemAmbientReleaseArchitecture;
 
    }
 
@@ -800,7 +800,7 @@ namespace integration
    ::string context::integration_main_status()
    {
 
-      auto strSlashed = node()->operating_system_summary()->m_strSystemAmbientRelease;
+      auto strSlashed = node()->operating_system_summary()->m_strSystemAmbientReleaseArchitecture;
 
       auto strMainStatus = integration_main_status(strSlashed);
 

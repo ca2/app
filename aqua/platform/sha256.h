@@ -73,7 +73,7 @@ public:
    template <size_t N>
    static ::string bytes2hex(const uint8_t(&rawHash)[N])
    {
-      return ::hex::upper_case_from(rawHash);
+      return ::hex::upper_case_from((const char (&)[N])rawHash);
       //// convert to hex string
       //::string result;
       //result.reserve(2 * N);

@@ -62,7 +62,7 @@ namespace graphics3d
    }
    
    
-   //void createPipelineLayout(VkDescriptorSetLayout globalSetLayout);
+   //void createPipelineLayout(aaaVkDescriptorSetLayout globalSetLayout);
       //void createPipeline(VkRenderPass renderPass);
 
    void scene_system::prepare(::gpu::context* pgpucontext)

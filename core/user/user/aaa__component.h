@@ -105,14 +105,6 @@
 //
 //} // namespace experience
 //
-//
-//
-//
-//
-//
-//
-//
-//
 ////
 ////#ifdef WINDOWS_DESKTOP
 ////
@@ -146,10 +138,6 @@
 //   class draw_mesh_item;
 //
 //} // namespace user
-//
-//
-//
-//
 //namespace user
 //{
 //
@@ -165,10 +153,6 @@
 ////// Note: ::windows_definition::Data.cxBorder and ::windows_definition::Data.cyBorder aren't used anymore
 ////#define CX_BORDER   1
 ////#define CY_BORDER   1
-//
-//
-//
-//
 // structures
 //struct __SIZEPARENTPARAMS;    // control bar implementationproperca2_property.h
 //
@@ -213,14 +197,6 @@
 //#define HID_BASE_DISPATCH   0x00060000UL        // IDispatch help codes
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
 //#ifndef LAYOUT_LTR
 //#define LAYOUT_LTR                         0x00000000
 //#endif
@@ -238,10 +214,6 @@
 //
 //
 //}
-//
-//
-//
-//
 //
 //#include "core/user/rich_text/_const.h"
 //
@@ -306,10 +278,6 @@
 //   class list_header;
 //   class scroll_bar;
 //   class list_column_array;
-//
-//
-//
-//
 //
 //   //CLASS_DECL_CORE bool set_wallpaper(string strLocalImagePath);
 //   //CLASS_DECL_CORE string_array_base get_wallpaper();
@@ -412,24 +380,12 @@
 //#include "core/user/simple/list_data.h"
 //
 //
-//
-//
-//
-//
 //namespace user
 //{
 //   
 //}
 //
 //class simple_frame_window;
-//
-//
-//
-//
-//
-//
-//
-//
 //#include "xfplayer_impact_line.h"
 //#include "xfplayer_impact_lines.h"
 //
@@ -469,10 +425,6 @@
 //
 //#include "core/user/netuser/_.h"
 //
-//
-//
-//
-//
 //#include "form_mesh.h"
 //
 //
@@ -497,8 +449,4 @@
 //#if !BROAD_PRECOMPILED_HEADER
 //#include "_impl.h"
 //#endif
-//
-//
-//
-//
 //

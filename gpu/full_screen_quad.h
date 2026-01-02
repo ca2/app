@@ -41,7 +41,7 @@ namespace gpu
       virtual void initialize_full_screen_quad(::gpu::context * pgpucontext);
 
 
-      void draw(::gpu::command_buffer *pcommandbuffer) override;
+      void draw2(::gpu::command_buffer *pcommandbuffer) override;
 
 
       //private:

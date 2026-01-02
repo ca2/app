@@ -82,7 +82,7 @@ public:
    static bool trimmed_is_empty(const ::scoped_string & scopedstr);
 
 
-   template < primitive_character CHAR_TYPE >
+   template < prototype_character CHAR_TYPE >
    static inline  string_base < const CHAR_TYPE * > repeat(const CHAR_TYPE * psz, character_count c);
 
    //extern enum_error g_eerror;

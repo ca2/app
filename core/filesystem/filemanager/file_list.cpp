@@ -1360,7 +1360,7 @@ namespace filemanager
             auto pinteraction = øcreate_new <  user::button > ();
             pinteraction->m_bTransparent = true;
             //pinteraction->set_control_type(user::e_control_type_button);
-            //pinteraction->m_type = ::type < ::user::button >();
+            //pinteraction->m_type = ::type<::user::button>();
             pinteraction->id() = atom;
             pinteraction->add_function(user::e_control_function_action);
             _001AddControl(pinteraction);
@@ -1390,8 +1390,8 @@ namespace filemanager
          auto pcolumn = new_list_column();
          pcolumn->m_iWidth = filemanager_data()->m_iIconSize;
          //pcolumn->m_bIcon                = true;
-         pcolumn->m_sizeIcon.cx() = filemanager_data()->m_iIconSize;
-         pcolumn->m_sizeIcon.cy() = filemanager_data()->m_iIconSize;
+         pcolumn->m_sizeIcon.cx = filemanager_data()->m_iIconSize;
+         pcolumn->m_sizeIcon.cy = filemanager_data()->m_iIconSize;
          //pcolumn->m_iControl = -1;
          pcolumn->m_strDataKey = "FILE_MANAGER_ID_FILE_NAME";
          pcolumn->m_bEditOnSecondClick = false;
@@ -1427,7 +1427,7 @@ namespace filemanager
             //pinteraction->id() = _vms::FILE_MANAGER_ID_FILE_NAME;
             pinteraction->set_data_type(user::e_control_data_type_string);
             pinteraction->add_function(user::e_control_function_vms_data_edit);
-            pinteraction->m_typeatom = ::type < ::user::plain_edit >();
+            pinteraction->m_type = ::type<::user::plain_edit>();
             //pinteraction->m_iSubItem = i;
             pinteraction->id() = 1000 + i;
             ::collection::index iControl = _001AddControl(pinteraction);
@@ -1453,8 +1453,8 @@ namespace filemanager
          auto plistdata = fs_list();
          plistdata->m_iNameSubItemText = m_iNameSubItemText;
          //pcolumn->m_bIcon                = true;
-         pcolumn->m_sizeIcon.cx() = get_document()->m_iIconSize;
-         pcolumn->m_sizeIcon.cy() = get_document()->m_iIconSize;
+         pcolumn->m_sizeIcon.cx = get_document()->m_iIconSize;
+         pcolumn->m_sizeIcon.cy = get_document()->m_iIconSize;
          pcolumn->m_text = pcontext->__text("file:Name");
          pcolumn->m_strDataKey = "FILE_MANAGER_ID_FILE_NAME";
          pcolumn->m_bEditOnSecondClick = true;
@@ -1488,9 +1488,9 @@ namespace filemanager
 
          pcolumn->m_text = pcontext->__text("file:Size");
 
-         pcolumn->m_sizeIcon.cx() = 0;
+         pcolumn->m_sizeIcon.cx = 0;
 
-         pcolumn->m_sizeIcon.cy() = 0;
+         pcolumn->m_sizeIcon.cy = 0;
 
          pcolumn->m_pimagelistHover = nullptr;
 

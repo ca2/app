@@ -9800,9 +9800,9 @@
     <frame>
       <ip>0x5D41D13</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>::user::primitive_impl::message_call(unsigned int, unsigned long, lparam)</fn>
+      <fn>::user::prototype_impl::message_call(unsigned int, unsigned long, lparam)</fn>
       <dir>/xcore/app/aura/user/user</dir>
-      <file>primitive_impl.cpp</file>
+      <file>prototype_impl.cpp</file>
       <line>838</line>
     </frame>
     <frame>
@@ -11212,9 +11212,9 @@
     <frame>
       <ip>0x5D423BD</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>::user::primitive_impl::SetTimer(unsigned long, unsigned int, bool (*)(timer*))</fn>
+      <fn>::user::prototype_impl::SetTimer(unsigned long, unsigned int, bool (*)(timer*))</fn>
       <dir>/xcore/app/aura/user/user</dir>
-      <file>primitive_impl.cpp</file>
+      <file>prototype_impl.cpp</file>
       <line>993</line>
     </frame>
     <frame>
@@ -11976,9 +11976,9 @@
     <frame>
       <ip>0x5D41D13</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>::user::primitive_impl::message_call(unsigned int, unsigned long, lparam)</fn>
+      <fn>::user::prototype_impl::message_call(unsigned int, unsigned long, lparam)</fn>
       <dir>/xcore/app/aura/user/user</dir>
-      <file>primitive_impl.cpp</file>
+      <file>prototype_impl.cpp</file>
       <line>838</line>
     </frame>
     <frame>
@@ -14555,23 +14555,23 @@
     <frame>
       <ip>0x5D42D0B</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>::user::primitive_impl::PostNcDestroy()</fn>
+      <fn>::user::prototype_impl::PostNcDestroy()</fn>
       <dir>/xcore/app/aura/user/user</dir>
-      <file>primitive_impl.cpp</file>
+      <file>prototype_impl.cpp</file>
       <line>1248</line>
     </frame>
     <frame>
       <ip>0x5D43090</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>::user::primitive_impl::_001OnNcDestroy(message::message*)</fn>
+      <fn>::user::prototype_impl::_001OnNcDestroy(message::message*)</fn>
       <dir>/xcore/app/aura/user/user</dir>
-      <file>primitive_impl.cpp</file>
+      <file>prototype_impl.cpp</file>
       <line>1308</line>
     </frame>
     <frame>
       <ip>0x5D46201</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>message::receiver_route&lt;::user::primitive_impl, message::message&gt;::on_message(message::message*)</fn>
+      <fn>message::receiver_route&lt;::user::prototype_impl, message::message&gt;::on_message(message::message*)</fn>
       <dir>/xcore/app/aura/../aura/message</dir>
       <file>message_route.h</file>
       <line>64</line>
@@ -14595,17 +14595,17 @@
     <frame>
       <ip>0x5D42022</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>::user::primitive_impl::message_call(message::base*)</fn>
+      <fn>::user::prototype_impl::message_call(message::base*)</fn>
       <dir>/xcore/app/aura/user/user</dir>
-      <file>primitive_impl.cpp</file>
+      <file>prototype_impl.cpp</file>
       <line>894</line>
     </frame>
     <frame>
       <ip>0x5D41D03</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>::user::primitive_impl::message_call(unsigned int, unsigned long, lparam)</fn>
+      <fn>::user::prototype_impl::message_call(unsigned int, unsigned long, lparam)</fn>
       <dir>/xcore/app/aura/user/user</dir>
-      <file>primitive_impl.cpp</file>
+      <file>prototype_impl.cpp</file>
       <line>854</line>
     </frame>
   </stack>
@@ -14754,7 +14754,7 @@
     <frame>
       <ip>0x59051EC</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>long release&lt;::user::primitive_impl&gt;(::user::primitive_impl*&amp;)</fn>
+      <fn>long release&lt;::user::prototype_impl&gt;(::user::prototype_impl*&amp;)</fn>
       <dir>/xcore/app/aura/../aura/primitive</dir>
       <file>object.h</file>
       <line>572</line>
@@ -14762,7 +14762,7 @@
     <frame>
       <ip>0x5D1639F</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>pointer&lt;::user::primitive_impl&gt;::release()</fn>
+      <fn>pointer&lt;::user::prototype_impl&gt;::release()</fn>
       <dir>/xcore/app/aura/../aura/</dir>
       <file>aura_smart_pointer2.h</file>
       <line>317</line>
@@ -14770,7 +14770,7 @@
     <frame>
       <ip>0x5D15105</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>pointer&lt;::user::primitive_impl&gt;::~pointer()</fn>
+      <fn>pointer&lt;::user::prototype_impl&gt;::~pointer()</fn>
       <dir>/xcore/app/aura/../aura/</dir>
       <file>aura_smart_pointer2.h</file>
       <line>124</line>
@@ -14778,9 +14778,9 @@
     <frame>
       <ip>0x5D428F0</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>::user::primitive_impl::DestroyWindow()</fn>
+      <fn>::user::prototype_impl::DestroyWindow()</fn>
       <dir>/xcore/app/aura/user/user</dir>
-      <file>primitive_impl.cpp</file>
+      <file>prototype_impl.cpp</file>
       <line>1114</line>
     </frame>
     <frame>
@@ -16131,9 +16131,9 @@
     <frame>
       <ip>0x5D3FBF6</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>::user::primitive_impl::~primitive_impl()</fn>
+      <fn>::user::prototype_impl::~prototype_impl()</fn>
       <dir>/xcore/app/aura/user/user</dir>
-      <file>primitive_impl.cpp</file>
+      <file>prototype_impl.cpp</file>
       <line>24</line>
     </frame>
     <frame>
@@ -16338,9 +16338,9 @@
     <frame>
       <ip>0x5D3FC26</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>::user::primitive_impl::~primitive_impl()</fn>
+      <fn>::user::prototype_impl::~prototype_impl()</fn>
       <dir>/xcore/app/aura/user/user</dir>
-      <file>primitive_impl.cpp</file>
+      <file>prototype_impl.cpp</file>
       <line>24</line>
     </frame>
     <frame>
@@ -101691,17 +101691,17 @@
     <frame>
       <ip>0x5D42022</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>::user::primitive_impl::message_call(message::base*)</fn>
+      <fn>::user::prototype_impl::message_call(message::base*)</fn>
       <dir>/xcore/app/aura/user/user</dir>
-      <file>primitive_impl.cpp</file>
+      <file>prototype_impl.cpp</file>
       <line>894</line>
     </frame>
     <frame>
       <ip>0x5D41D03</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>::user::primitive_impl::message_call(unsigned int, unsigned long, lparam)</fn>
+      <fn>::user::prototype_impl::message_call(unsigned int, unsigned long, lparam)</fn>
       <dir>/xcore/app/aura/user/user</dir>
-      <file>primitive_impl.cpp</file>
+      <file>prototype_impl.cpp</file>
       <line>854</line>
     </frame>
   </stack>
@@ -102314,9 +102314,9 @@
     <frame>
       <ip>0x5D423BD</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>::user::primitive_impl::SetTimer(unsigned long, unsigned int, bool (*)(timer*))</fn>
+      <fn>::user::prototype_impl::SetTimer(unsigned long, unsigned int, bool (*)(timer*))</fn>
       <dir>/xcore/app/aura/user/user</dir>
-      <file>primitive_impl.cpp</file>
+      <file>prototype_impl.cpp</file>
       <line>993</line>
     </frame>
     <frame>

@@ -647,7 +647,7 @@ namespace user
    }
 
 
-//   ::pointer<::utoolbar>frame_interaction::load_toolbar(const ::atom & idToolbar, const ::scoped_string & scopedstrToolbar, unsigned int dwCtrlStyle, unsigned int uStyle, const ::type_atom & typeatom)
+//   ::pointer<::utoolbar>frame_interaction::load_toolbar(const ::atom & idToolbar, const ::scoped_string & scopedstrToolbar, unsigned int dwCtrlStyle, unsigned int uStyle, const ::platform::type & type)
 //   {
 //
 //      return false;
@@ -791,7 +791,7 @@ namespace user
    //   if((m_ewindowflag & e_window_flag_top_level) && window())
    //   {
    //   
-   //      lprect->top() += window()->get_top_margin();
+   //      lprect->top += window()->get_top_margin();
    //      
    //   }
    //   

@@ -104,10 +104,6 @@ class single_lock;
 //
 //
 //
-//
-//
-//
-//
 //namespace user
 //{
 //

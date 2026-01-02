@@ -16,33 +16,17 @@ namespace gpu
 
    };
 
-   
-   struct binding
-   {
-
-      bool              m_bSet = false;
-      unsigned int      m_uSet = 0;
-      unsigned int      m_uBinding = 0;
-      ::string          m_strUniform;
-
-      void set(unsigned int uBinding = 0)
-      {
-
-         m_bSet = true;
-         m_uBinding = uBinding;
-
-      }
-      bool is_set()const { return m_bSet; }
-   };
 
 
    class CLASS_DECL_BRED shader :
       virtual public ::matter
    {
    public:
+
       
       enum enum_flag
       {
+
          e_flag_none = 0,
          e_flag_clear_default_bindings_and_attributes_descriptions = 1,
 
@@ -56,19 +40,21 @@ namespace gpu
       /// be used for per - pass resources, and bound once per pass.
       /// The descriptor set number 2 will be used for material resources,
       /// and the number 3 will be used for per - object resources.
-      /// This way, the inner render loops will only be binding 
+      /// This way, the inner render loops will only be nding 
       /// descriptor sets 2 and 3, and performance will be high.
 
-      enum enum_descriptor_set_slot
-      {
-         e_descriptor_set_slot_global,
-         e_descriptor_set_slot_per_pass,
-         e_descriptor_set_slot_material,
-         e_descriptor_set_slot_local,
-         e_descriptor_set_slot_s1,
-         //e_descriptor_set_shader_resource_view_and_sampler,
+      //enum enum_descriptor_set_slot
+      //{
+      //   //e_descriptor_set_slot_global,
+      //   e_descriptor_set_slot_per_pass,
+      //   e_descriptor_set_slot_material,
+      //   e_descriptor_set_slot_local,
+      //   e_descriptor_set_slot_s1,
+      //   //e_descriptor_set_shader_resource_view_and_sampler,
 
-      };
+      //};
+
+
       int m_iVertexLevel = -1;
 
       //unsigned int               m_uId;
@@ -99,15 +85,18 @@ namespace gpu
       enum_cull_mode m_ecullmode = e_cull_mode_back;
       //bool m_bHasSourceImage = false;
 
-      binding m_bindingUbo;
-      binding m_bindingSampler;
-      binding m_bindingCubeSampler;
+      //binding m_bindingUbo;
+      //binding m_bindingSampler;
+      //binding m_bindingCubeSampler;
+
+      ::pointer < ::gpu::binding_slot_set_array > m_pbindingslotseta;
 
       string                     m_strError;
 
       //string_map_base < payload >     m_mapLayout;
 
       ::pointer < renderer >     m_pgpurenderer;
+      ::pointer<texture> m_ptextureTarget;
 
       ::file::path               m_pathVertex;
       ::file::path               m_pathFragment;
@@ -123,8 +112,8 @@ namespace gpu
       ::gpu::properties          m_propertiesPushFragment;
 
       enum_flag                  m_eflag;
-      ::comparable_array<enum_descriptor_set_slot>   m_edescriptorsetslota;
-      ::particle_pointer         m_pLocalDescriptorSet;
+      //::comparable_array<enum_descriptor_set_slot>   m_edescriptorsetslota;
+      //::particle_pointer         m_pLocalDescriptorSet;
       ::pointer < input_layout > m_pinputlayout;
       class ::time               m_timeRetire;
       //bool m_bTextureAndSampler;
@@ -144,8 +133,8 @@ namespace gpu
          ::gpu::renderer * pgpurenderer,
          const ::file::path& pathVertex,
          const ::file::path& pathFragment,
-         const ::array_base<enum_descriptor_set_slot>& eslota = {},
-         const ::particle_pointer& pLocalDescriptorSet = {},
+         //const ::array_base<enum_descriptor_set_slot>& eslota = {},
+         //const ::particle_pointer& pLocalDescriptorSet = {},
          //const ::particle_pointer& pVertexInput = {},
          //const ::gpu::property* ppropertiesPush = nullptr,
          ::gpu::input_layout* pinputlayout = nullptr,
@@ -155,14 +144,30 @@ namespace gpu
          ::gpu::renderer * pgpurenderer,
          const ::block & blockVertex, 
          const ::block & blockFragment,
-         const ::array_base<enum_descriptor_set_slot>& eslota = {},
-         const ::particle_pointer& pLocalDescriptorSet = {},
+         //const ::array_base<enum_descriptor_set_slot>& eslota = {},
+         //const ::particle_pointer& pLocalDescriptorSet = {},
          //const ::particle_pointer& pVertexInput = {},
          //const ::gpu::property* ppropertiesPush = nullptr,
          ::gpu::input_layout * pinputlayout = nullptr,
          enum_flag eflag = e_flag_none);
 
       virtual void on_initialize_shader();
+
+      ::gpu::binding_set_array * binding_set_array();
+      ::gpu::binding_set * binding_set(int iSet = 0, ::gpu::binding_set *pgpubindingset = nullptr);
+      ::gpu::binding * binding(int iSet = 0, int iSlot = 0);
+
+      virtual void update_binding_slots();
+      ::gpu::binding_slot_set_array * binding_slot_set_array();
+      ::gpu::binding_slot_set * binding_slot_set(int iSet = 0, ::gpu::binding_set * pgpubindingset = nullptr);
+      ::gpu::binding_slot * binding_slot(int iSet = 0, int iSlot = 0, ::gpu::binding * pgpubinding = nullptr);
+
+      virtual ::gpu::binding_slot *  get_first_image_sampler_binding_slot();
+      virtual ::gpu::binding_slot_set * get_first_image_sampler_binding_slot_set();
+      virtual ::gpu::binding_set * _001GetSingularImageBindingSet(int & iSet);
+      virtual bool has_image_sampler();
+      virtual bool has_global_ubo();
+      virtual void set_global_ubo();
 
       //virtual void use();
 
@@ -172,13 +177,13 @@ namespace gpu
 
       //virtual void setFloat(const ::scoped_string & scopedstrName, float value);
 
-      ////virtual void setVec2(const ::scoped_string & scopedstrName, const glm::vec2& value);
+      ////virtual void setVec2(const ::scoped_string & scopedstrName, const floating_sequence2& value);
       //virtual void setVec2(const ::scoped_string & scopedstrName, float x, float y);
 
-      ////virtual void setVec3(const ::scoped_string & scopedstrName, const glm::vec3& value);
+      ////virtual void setVec3(const ::scoped_string & scopedstrName, const floating_sequence3& value);
       //virtual void setVec3(const ::scoped_string & scopedstrName, float x, float y, float z);
 
-      ////virtual void setVec4(const ::scoped_string & scopedstrName, const glm::vec4& value);
+      ////virtual void setVec4(const ::scoped_string & scopedstrName, const floating_sequence4& value);
       //virtual void setVec4(const ::scoped_string & scopedstrName, float x, float y, float z, float w);
 
       //virtual void setMat2(const ::scoped_string & scopedstrName, const float p[2*2]);
@@ -196,21 +201,27 @@ namespace gpu
 
       //virtual ::gpu::payload * get_payload(const ::scoped_string & scopedstrName);
       virtual void draw();
-      virtual void _bind(::gpu::command_buffer *pgpucommandbuffer, ::gpu::enum_scene escene);
+      //virtual void _bind(::gpu::command_buffer *pgpucommandbuffer, ::gpu::enum_scene escene);
       //virtual void on_initialize_shader();
       
-      
+      //virtual void on_before_draw(::gpu::command_buffer *pgpucommandbuffer);
       virtual void on_set_constant_buffer(const ::scoped_string& scopedstrName);
 
+      virtual void on_bind_already_bound(::gpu::command_buffer *pgpucommandbuffer, ::gpu::texture *pgputextureTarget);
 
       virtual void bind(::gpu::command_buffer * pgpucommandbuffer, ::gpu::texture* pgputextureTarget);
-      virtual void bind(::gpu::command_buffer *pgpucommandbuffer, ::gpu::texture *pgputextureTarget,
-                        ::gpu::texture *pgputextureSource);
+      //virtual void bind(::gpu::command_buffer *pgpucommandbuffer, ::gpu::texture *pgputextureTarget,
+        //                ::gpu::texture *pgputextureSource);
+      virtual void bind_block(::gpu::command_buffer *pgpucommandbuffer, ::gpu::block *pgpublock,
+                               int iSlot = 0);
+      virtual void bind_slot_set(::gpu::command_buffer *pgpucommandbuffer, int iSet, ::gpu::binding_slot_set *pgpubindingslotset);
       virtual void bind_source(::gpu::command_buffer *pgpucommandbuffer, ::gpu::texture *pgputextureSource,
                                int iSlot = 0);
       virtual void bind_source(::gpu::command_buffer *pgpucommandbuffer, ::gpu::pixmap *pgpupixmapSource,
                                int iSlot = 0);
-      virtual void bind(::gpu::command_buffer *pgpucommandbuffer);
+      virtual void bind_source2(::gpu::command_buffer * pgpucommandbuffer, int iIndex,
+         const char * pszPayloadName, ::gpu::texture * pgputextureSource);
+      //virtual void bind(::gpu::command_buffer *pgpucommandbuffer);
       virtual void unbind(::gpu::command_buffer *pgpucommandbuffer);
 
 
@@ -227,20 +238,21 @@ namespace gpu
 
       virtual void set_float(const ::scoped_string& scopedstrName, float value);
 
-      virtual void set_seq2(const ::scoped_string& scopedstrName, float x, float y);
-      virtual void set_seq2(const ::scoped_string& scopedstrName, const ::glm::vec2& a);
+      virtual void set_sequence2(const ::scoped_string& scopedstrName, float x, float y);
+      virtual void set_sequence2(const ::scoped_string& scopedstrName, const ::floating_sequence2& a);
 
-      virtual void set_seq3(const ::scoped_string& scopedstrName, float x, float y, float z);
-      virtual void set_seq3(const ::scoped_string& scopedstrName, const ::glm::vec3& a);
+      virtual void set_sequence3(const ::scoped_string& scopedstrName, float x, float y, float z);
+      virtual void set_sequence3(const ::scoped_string& scopedstrName, const ::floating_sequence3& a);
 
-      virtual void set_seq4(const ::scoped_string& scopedstrName, float x, float y, float z, float w);
-      virtual void set_seq4(const ::scoped_string& scopedstrName, const ::glm::vec4& a);
+      virtual void set_sequence4(const ::scoped_string& scopedstrName, float x, float y, float z, float w);
+      virtual void set_sequence4(const ::scoped_string& scopedstrName, const ::floating_sequence4& a);
 
-      virtual void set_mat2(const ::scoped_string& scopedstrName, const ::glm::mat2& a);
-      virtual void set_mat3(const ::scoped_string& scopedstrName, const ::glm::mat3& a);
-      virtual void set_mat4(const ::scoped_string& scopedstrName, const ::glm::mat4& a);
+      virtual void set_matrix2(const ::scoped_string& scopedstrName, const ::floating_matrix2& a);
+      virtual void set_matrix3(const ::scoped_string& scopedstrName, const ::floating_matrix3& a);
+      virtual void set_matrix4(const ::scoped_string& scopedstrName, const ::floating_matrix4& a);
 
-      virtual void setModelViewProjectionMatrices(glm::mat4 &model, glm::mat4 &view, glm::mat4 &projection);
+      virtual void setModelViewProjection(const floating_matrix4 &model, const floating_matrix4 &view, const floating_matrix4 &projection);
+
 
    };
 

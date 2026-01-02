@@ -30,22 +30,17 @@ namespace gpu
       {
       public:
 
-         struct specular_env_map_push_constants
+         struct prefiltered_env_map_push_constants
          {
             
-            ::glm::mat4 model;
-            ::glm::mat4 view;
-            ::glm::mat4 projection;
+            ::floating_matrix4 mvp;
 
             float roughness;
-            float padding1;
-            float padding2;
-            float padding3;
          };
 
 
          // prefiltered environment map
-         const unsigned int m_iPrefilteredEnvMapMipCount = 5;
+         int m_iPrefilteredEnvMapMipCount = -1;
          const unsigned int m_uPrefilteredEnvMapWidth = 128;
          const unsigned int m_uPrefilteredEnvMapHeight = 128;
 
@@ -54,16 +49,20 @@ namespace gpu
          //::graphics3d::renderable * m_prenderableSkybox = nullptr;
 
          ::pointer<::gpu::shader> m_pshaderPrefilteredEnvMap;
-         ::pointer<mipmap_cubemap_framebuffer> m_pframebufferPrefilteredEnvMap;
-
+         //::pointer<mipmap_cubemap_framebuffer> m_pframebufferPrefilteredEnvMap;
+         ::pointer<::gpu::texture> m_ptexturePrefilteredEnvMapCubemap;
+         ::pointer<::graphics3d::renderable> m_prenderableCube;
+         ;
+        
          // brdf convolution
          unsigned int m_uBrdfConvolutionMapId;
          const unsigned int m_uBrdfConvolutionMapWidth = 512;
          const unsigned int m_uBrdfConvolutionMapHeight = 512;
 
          ::pointer<::gpu::shader> m_pshaderBrdfConvolution;
-         ::pointer<brdf_convolution_framebuffer> m_pbrdfconvolutionframebuffer;
-
+         //::pointer<brdf_convolution_framebuffer> m_pframebufferBrdfConvolution;
+         ::pointer<::gpu::texture> m_ptextureBrdfConvolutionMap;
+         ::pointer<::gpu::full_screen_quad> m_pfullscreenquadBrdf;
          //::pointer < ::gpu::full_screen_quad > m_pfullscreenquad;
 
           //* Initialize a specular map.
@@ -75,11 +74,11 @@ namespace gpu
          ~specular_map() override;
 
 
-         virtual ::block embedded_prefiltered_env_map_vert();
-         virtual ::block embedded_prefiltered_env_map_frag();
+         virtual ::memory prefiltered_environment_map_vert_memory();
+         virtual ::memory prefiltered_environment_map_frag_memory();
 
-         virtual ::block embedded_brdf_convolution_vert();
-         virtual ::block embedded_brdf_convolution_frag();
+         virtual ::memory brdf_convolution_vert_memory();
+         virtual ::memory brdf_convolution_frag_memory();
 
 
          //virtual void initialize_specular_map(::gpu::context  * pgpucontext,  const ::scoped_string & scopedstrengineRoot, const unsigned int environmentCubemapId);
@@ -105,8 +104,7 @@ namespace gpu
          /**
           * Render the BRDF convolution map.
           */
-         virtual void computeBrdfConvolutionMap();
-
+         virtual void computeBrdfConvolutionMap(::gpu::command_buffer *pgpucommandbuffer);
 
          /**
           * Get the GL texture ID of the computed BRDF convolution map.
@@ -125,4 +123,4 @@ namespace gpu
 
 
 
-DECLARE_GPU_PROPERTIES(CLASS_DECL_GPU, ::gpu::ibl::specular_map::specular_env_map_push_constants);
+DECLARE_GPU_PROPERTIES(CLASS_DECL_GPU, ::gpu::ibl::specular_map::prefiltered_env_map_push_constants);

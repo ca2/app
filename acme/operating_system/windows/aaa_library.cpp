@@ -280,7 +280,7 @@ namespace nano
 
       }
 
-      informationf("\n\nGoing to touch library (1) " + string(strPath) + "\n");
+      informationf("---->  Going to touch library (1) " + string(strPath) + "\n");
 
       ::file::path path;
 
@@ -504,7 +504,7 @@ namespace nano
 
       }
 
-      informationf("\n" + strMessage + "\n\n");
+      informationf("----> " + strMessage + "\n\n");
 
       return p;
 

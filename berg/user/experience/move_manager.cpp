@@ -173,7 +173,7 @@ namespace experience
       if (pframewindow->get_int("ysnap") > 1)
       {
 
-         pointMove.y() -= pointMove.y() % pframewindow->get_int("ysnap");
+         pointMove.y -= pointMove.y % pframewindow->get_int("ysnap");
 
       }
 
@@ -262,7 +262,7 @@ namespace experience
       ////if (pframewindow->find_int("ysnap") > 1)
       ////{
 
-      ////   pointMove.y() -= pointMove.y() % pframewindow->find_int("ysnap");
+      ////   pointMove.y -= pointMove.y % pframewindow->find_int("ysnap");
 
       ////}
 

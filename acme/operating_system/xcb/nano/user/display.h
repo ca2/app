@@ -85,7 +85,7 @@ namespace nano
 
 
          virtual xcb_atom_t intern_atom(const ::scoped_string & scopedstrAtomName, bool bCreate = true);
-         virtual xcb_atom_t intern_atom(::x11::enuid() eatom, bool bCreate = true);
+         virtual xcb_atom_t intern_atom(::x11::enum_atom eatom, bool bCreate = true);
 
 
          virtual long _window_get_long_property(xcb_window_t window, xcb_atom_t property, xcb_atom_t type);
@@ -160,16 +160,16 @@ namespace nano
          virtual ::e_status _add_net_wm_state_below(xcb_window_t window);
          virtual ::e_status _add_net_wm_state_above(xcb_window_t window);
          virtual ::e_status _add_net_wm_state_hidden(xcb_window_t window);
-         virtual ::e_status _add_net_wm_state(xcb_window_t window, ::x11::enuid() eatomNetWmState);
-         virtual ::e_status _mapped_add_net_wm_state(xcb_window_t window, ::x11::enuid() eatomNetWmState);
-         virtual ::e_status _unmapped_add_net_wm_state(xcb_window_t window, ::x11::enuid() eatomNetWmState);
+         virtual ::e_status _add_net_wm_state(xcb_window_t window, ::x11::enum_atom eatomNetWmState);
+         virtual ::e_status _mapped_add_net_wm_state(xcb_window_t window, ::x11::enum_atom eatomNetWmState);
+         virtual ::e_status _unmapped_add_net_wm_state(xcb_window_t window, ::x11::enum_atom eatomNetWmState);
 
          virtual ::e_status _erase_net_wm_state_below(xcb_window_t window);
          virtual ::e_status _erase_net_wm_state_above(xcb_window_t window);
          virtual ::e_status _erase_net_wm_state_hidden(xcb_window_t window);
-         virtual ::e_status _erase_net_wm_state(xcb_window_t window, ::x11::enuid() eatomNetWmState);
-         virtual ::e_status _mapped_erase_net_wm_state(xcb_window_t window, ::x11::enuid() eatomNetWmState);
-         virtual ::e_status _unmapped_erase_net_wm_state(xcb_window_t window, ::x11::enuid() eatomNetWmState);
+         virtual ::e_status _erase_net_wm_state(xcb_window_t window, ::x11::enum_atom eatomNetWmState);
+         virtual ::e_status _mapped_erase_net_wm_state(xcb_window_t window, ::x11::enum_atom eatomNetWmState);
+         virtual ::e_status _unmapped_erase_net_wm_state(xcb_window_t window, ::x11::enum_atom eatomNetWmState);
 
 
 

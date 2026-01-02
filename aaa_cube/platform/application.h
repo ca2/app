@@ -19,15 +19,7 @@
 //      ~application() override;
 //
 //
-//
-//
-//
-//
 //   };
 //
 //
 //} // namespace graphics3d
-//
-//
-//
-//

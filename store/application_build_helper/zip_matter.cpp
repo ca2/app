@@ -254,7 +254,7 @@ namespace application_build_helper
 //      //if (bFirst)
 //      {
 //
-//         auto strCurrentDirectory = directory_system()->get_current();
+//         auto strCurrentDirectory = directory_system()->current();
 //
 //         ::string strCommandLine = strZipExe + " -r \"" + strZip + "\" -@";
 //

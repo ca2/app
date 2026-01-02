@@ -1,6 +1,6 @@
 // Created by camilo on 2025-08-23 21:14 <3ThomasBorregaardSorensen!!
 #include "framework.h"
-#include "types.h"
+#include "bred/gpu/types.h"
 
 
 BEGIN_GPU_PROPERTIES(::gpu::projection_quad_texcoords_textColor)
@@ -41,3 +41,6 @@ END_GPU_PROPERTIES()
 
 
 
+BEGIN_GPU_PROPERTIES(::gpu::position3)
+GPU_PROPERTY("position", ::gpu::e_type_seq3)
+END_GPU_PROPERTIES()

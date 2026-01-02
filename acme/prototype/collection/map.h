@@ -181,10 +181,6 @@ public:
 //    inline auto payloads() { return ::range<payload_iterator>(*(payload_iterator *)&this->begin(), *(payload_iterator *)&this->end()); }
 //    inline auto items() const { return ::range<const_item_iterator>((item_iterator)this->begin(), (item_iterator)this->end()); }
 //    inline auto payloads() const { return ::range<const_payload_iterator>((payload_iterator )this->begin(), (payload_iterator)this->end()); }
-//
-//
-//
-//
 //    ::collection::count key_count(ARG_KEY key) const;
 //    bool has_key(ARG_KEY key) const;
 //    bool contains_key(ARG_KEY key) const;
@@ -794,10 +790,6 @@ public:
 //    return true;
 //
 // }
-//
-//
-//
-//
 // template < typename PAIR >
 // template < typename PAYLOAD2 >
 // inline typename pair_map_base < PAIR >::iterator pair_map_base < PAIR >::find_payload(const PAYLOAD2 & payload) const

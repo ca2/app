@@ -12,7 +12,7 @@ namespace sandbox_game
    {
    }
 
-   void mnk_controller::mouseCallback(glm::vec2 delta) {
+   void mnk_controller::mouseCallback(floating_sequence2 delta) {
       m_rawDelta = delta;
    }
 
@@ -29,16 +29,16 @@ namespace sandbox_game
       // 2) Camera-space movement
       float pitchDeg = glm::degrees(transform.rotation.x);
       float yawDeg = glm::degrees(transform.rotation.y);
-      glm::vec3 front{
+      floating_sequence3 front{
           std::cos(glm::radians(yawDeg)) * std::cos(glm::radians(pitchDeg)),
           std::sin(glm::radians(pitchDeg)),
           std::sin(glm::radians(yawDeg)) * std::cos(glm::radians(pitchDeg))
       };
       front = glm::normalize(front);
-      glm::vec3 right = glm::normalize(glm::cross(front, glm::vec3(0.f, 1.f, 0.f)));
-      glm::vec3 up = glm::vec3(0.f, 1.f, 0.f);
+      floating_sequence3 right = glm::normalize(glm::cross(front, floating_sequence3(0.f, 1.f, 0.f)));
+      floating_sequence3 up = floating_sequence3(0.f, 1.f, 0.f);
 
-      glm::vec3 dir{ 0.f };
+      floating_sequence3 dir{ 0.f };
       if (pinput->isKeyPressed(::graphics3d::SandboxKey::W)) dir += front;
       if (pinput->isKeyPressed(::graphics3d::SandboxKey::S)) dir -= front;
       if (pinput->isKeyPressed(::graphics3d::SandboxKey::A)) dir -= right;
@@ -54,14 +54,14 @@ namespace sandbox_game
       m_pitch -= m_smoothDelta.y * m_mouseSensitivity;
       m_pitch = glm::clamp(m_pitch, -89.f, 89.f);
 
-      transform.rotation = glm::vec3(
+      transform.rotation = floating_sequence3(
          glm::radians(m_pitch),
          glm::radians(m_yaw),
          0.f
       );
 
       // 4) Reset for next frame
-      m_rawDelta = glm::vec2(0.f);
+      m_rawDelta = floating_sequence2(0.f);
    }
 
 

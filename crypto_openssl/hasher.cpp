@@ -150,10 +150,6 @@
 //   EVP_CIPHER_CTX_free(pctx);
 //   return plainlen;
 //}
-//
-//
-//
-//
 ///* Cipher mode info */
 //struct php_openssl_cipher_mode {
 //   int_bool is_aead;
@@ -312,10 +308,6 @@
 ////
 ////   return SUCCESS;
 ////}
-//
-//
-//
-//
 ////int crypto_encrypt2(memory& storageEncrypt, const memory& storageDecrypt, memory& key)
 ////{
 ////   int plainlen = (int)storageDecrypt.size();
@@ -421,38 +413,6 @@
 //   EVP_CIPHER_CTX_free(cipher_ctx);
 //   return outlen;
 //}
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 
 

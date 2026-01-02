@@ -3,7 +3,7 @@
 //
 #include "framework.h"
 #include "scene_renderable.h"
-#include "model.h"
+///#include "model.h"
 #include "scene_base.h"
 
 
@@ -15,6 +15,12 @@ namespace graphics3d
    {
       
       m_llId = -1; 
+
+      m_sequence3Translation = ::floating_sequence3(0.f, 0.f, 0.f);
+
+      m_matrixRotation = ::floating_matrix4(1.f);
+
+      m_sequence3Scaling = ::floating_sequence3(1.0f, 1.0f, 1.0f);
    
    }
 
@@ -34,12 +40,12 @@ namespace graphics3d
    }
 
 
-   ::graphics3d::transform &scene_renderable::transform()
-   {
-      
-      return m_transform; 
-   
-   }
+   //::graphics3d::transform &scene_renderable::transform()
+   //{
+   //   
+   //   return m_transform; 
+   //
+   //}
 
 
    long long scene_renderable::getId() 
@@ -73,6 +79,22 @@ namespace graphics3d
    }
 
 
+   ::floating_matrix4 scene_renderable::model_matrix()
+   {
+
+      auto T = ::floating_matrix4::translation(m_sequence3Translation);
+
+      auto R = m_matrixRotation; 
+
+      auto S = ::floating_matrix4::scaling(m_sequence3Scaling);   
+
+      auto modelMatrix = T * R * S;
+
+      return modelMatrix;
+
+   }
+
+
    color::color scene_renderable::color() 
    {
       
@@ -81,18 +103,18 @@ namespace graphics3d
    }
 
 
-   void scene_renderable::translate(const glm::vec3 &vec3)
+   void scene_renderable::translate(const ::floating_sequence3 &floating_sequence3)
    {
       
-      transform().m_vec3Position = vec3; 
+      m_sequence3Translation = floating_sequence3; 
    
    }
 
 
-   void scene_renderable::scale(const glm::vec3 &vec3)
+   void scene_renderable::scale(const ::floating_sequence3 &floating_sequence3)
    {
       
-      transform().m_vec3Scale = vec3; 
+      m_sequence3Scaling = floating_sequence3; 
    
    }
 

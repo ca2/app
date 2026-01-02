@@ -33,6 +33,7 @@ int SetThreadAffinityMask(htask h, unsigned int dwThreadAffinityMask);
 
 #endif
 
+CLASS_DECL_ACME void _os_task_destroy(htask htask, itask itask);
 
 #ifdef WINDOWS
 
@@ -95,6 +96,8 @@ task::task()
    m_bMessageThread = false;
 #ifdef WINDOWS
    m_bCoInitialize = false;
+   m_bCoInitialized = false;
+   m_bCoInitializeMultithreaded = true;
 #endif
    //m_bIsRunning = false;
    m_bIsPredicate = true;
@@ -350,6 +353,13 @@ void task::post_request(::request * prequest)
 
 bool task::task_set_name(const ::scoped_string & scopedstrTaskName)
 {
+
+   if (scopedstrTaskName == "task")
+   {
+
+      warning() << "task being assigned not much helpful name: " << scopedstrTaskName;
+
+   }
 
    m_strTaskName = scopedstrTaskName;
 
@@ -659,7 +669,7 @@ void task::__priority_and_affinity()
 //
 //   //#ifndef WINDOWS
 //   //
-//   //   information() << "init_thread : " << ::type(this).name();
+//   //   information() << "init_thread : " << ::platform::type(this).name();
 //   //
 //   //#endif
 //
@@ -844,8 +854,18 @@ void task::set_task()
 
    m_htask = htask;
 
-   ::set_task(this);
+   bool bEmpty = m_strTaskName.is_empty();
 
+   bool bIsTaskName = m_strTaskName == ::platform::type(::type<::task>()).name();
+
+   if (bEmpty || bIsTaskName)
+   {
+
+      m_strTaskName.formatf("task %" PRIdPTR, m_taskindex);
+
+   }
+
+   ::set_task(this);
 
    //SetCurrentHandles();
 
@@ -1311,7 +1331,7 @@ void task::destroy()
 
    m_particleaHold.clear();
 
-   m_procedure.m_pbase.release();
+   m_procedure.release();
 
    m_pevSleep.release();
 
@@ -1405,15 +1425,49 @@ void * task::s_os_task(void * p)
 #endif
 {
 
+   int iExitCode = 0;
+
    {
 
       auto ptaskhandler = ::transfer_as_pointer((::task_handler *)p);
 
       ptaskhandler->__task_handle();
 
+      iExitCode = ptaskhandler->m_iHandlerExitCode;
+
+      auto htask = ptaskhandler->m_htaskHandler;
+
+      if (htask.is_set())
+      {
+
+         auto itask = ptaskhandler->m_itaskHandler;
+
+         ::system()->post([htask, itask]()
+            {
+
+               try
+               {
+
+                  _os_task_destroy(htask, itask);
+
+               }
+               catch (...)
+               {
+
+
+               }
+
+            });
+
+      }
+
    }
 
-   return 0;
+#ifdef WINDOWS
+   return (unsigned int) iExitCode;
+#else
+   return (void *)(iptr) iExitCode;
+#endif
 
 }
 
@@ -1483,7 +1537,7 @@ void task::__task_init()
 
    //#ifndef WINDOWS
    //
-   //   information() << "init_thread : " << ::type(this).name();
+   //   information() << "init_thread : " << ::platform::type(this).name();
    //
    //#endif
 
@@ -1595,10 +1649,12 @@ CLASS_DECL_ACME bool os_on_init_thread();
 CLASS_DECL_ACME void os_on_term_thread();
 
 
-void task::__task_main()
+int task::__task_main()
 //void task::__task_main(::procedure & procedureTaskEnded)
 //void task::__task_main()
 {
+
+   int iExitCode = -1;
 
    //::pointer < manual_reset_happening > pmanualresethappeningFinished;
    ::os_on_init_thread();
@@ -1632,6 +1688,8 @@ void task::__task_main()
       {
 
          main();
+
+         iExitCode = m_iExitCode;
 
       }
       catch (::exit_exception & exitexception)
@@ -1714,6 +1772,8 @@ void task::__task_main()
    }
    
    ::os_on_term_thread();
+
+   return iExitCode;
 
 }
 
@@ -1892,7 +1952,7 @@ void task::_post(const ::procedure & procedure)
 void task::_send(const ::procedure & procedure)
 {
 
-   ::cast < ::sequence > psequence = procedure.m_pbase;
+   ::cast < ::sequence > psequence = procedure;
 
    if (is_current_task())
    {
@@ -2007,7 +2067,7 @@ void task::_send(const ::procedure & procedure)
 
 #endif
 
-      procedure.m_pbase->on_timed_out();
+      procedure->on_timed_out();
 
    }
 
@@ -2149,12 +2209,18 @@ bool task::on_get_task_name(string & strTaskName)
       strTaskName = m_strTaskTag;
 
    }
+   else if (m_strTaskName.has_character())
+   {
+
+      strTaskName = m_strTaskName;
+
+   }
    else
    {
 
-      //::task_set_name(::type(this).name());
+      //::task_set_name(::platform::type(this).name());
 
-      strTaskName = ::type(this).name();
+      strTaskName = ::platform::type(this).name();
 
    }
 
@@ -2218,6 +2284,17 @@ void task::call_init_task()
 void task::init_task()
 {
 
+   #ifdef WINDOWS
+
+   if (m_bCoInitialize)
+   {
+
+      _defer_co_initialize_ex(m_bCoInitializeMultithreaded);
+
+   }
+
+   #endif
+
    string strTaskName;
 
    if (on_get_task_name(strTaskName))
@@ -2227,13 +2304,13 @@ void task::init_task()
 
    }
 
-   if (::type(this).name().contains("synth_thread"))
+   if (::platform::type(this).name().contains("synth_thread"))
    {
 
       informationf("synth_thread thread::thread_proc");
 
    }
-   else if (::type(this).name().case_insensitive_ends("out"))
+   else if (::platform::type(this).name().case_insensitive_ends("out"))
    {
 
       informationf("synth_thread thread::out");
@@ -2344,7 +2421,7 @@ void task::term_task()
 //
 //   //      }
 //
-//   //      id() = ::type(pelement).name();
+//   //      id() = ::platform::type(pelement).name();
 //
 //   //      task_set_name(id());
 //
@@ -2409,7 +2486,7 @@ bool task::has_message() const
 //
 //   m_pelement = pelement;
 //
-//   id() = ::type(pelement).name();
+//   id() = ::platform::type(pelement).name();
 //
 //   return branch(epriority, nStackSize, uCreateFlags ADD_PARAM_SEC_ATTRS);
 //
@@ -2490,13 +2567,13 @@ void task::branch(enum_parallelization eparallelization, const ::create_task_att
       if (m_procedure)
       {
 
-         id() = ::type(m_procedure).name();
+         id() = ::platform::type(m_procedure).name();
 
       }
       else
       {
 
-         id() = ::type(this).name();
+         id() = ::platform::type(this).name();
 
       }
 
@@ -2756,7 +2833,7 @@ void task::branch_synchronously(const ::create_task_attributes_t & createtaskatt
    //if(id().is_empty())
    //{
 
-   //   id() = ::type(this).name();
+   //   id() = ::platform::type(this).name();
 
    //}
 
@@ -2889,13 +2966,13 @@ void task::branch_synchronously(const ::create_task_attributes_t & createtaskatt
    //      if (m_pelement)
    //      {
    //
-   //         id() = ::type(m_pelement).name();
+   //         id() = ::platform::type(m_pelement).name();
    //
    //      }
    //      else
    //      {
    //
-   //         id() = ::type(this).name();
+   //         id() = ::platform::type(this).name();
    //
    //      }
    //
@@ -3938,7 +4015,7 @@ void task_run(const class ::time & time)
 CLASS_DECL_ACME::string get_task_object_name()
 {
 
-   return ::type(::get_task()).name();
+   return ::platform::type(::get_task()).name();
 
 }
 
@@ -4060,7 +4137,7 @@ CLASS_DECL_ACME ::task * main_task()
 //}
 
 
-CLASS_DECL_ACME void set_main_thread()
+CLASS_DECL_ACME void set_main_user_thread()
 {
 
    set_main_htask(current_htask());
@@ -4072,7 +4149,7 @@ CLASS_DECL_ACME void set_main_thread()
 }
 
 
-//CLASS_DECL_ACME void set_main_thread(htask htask)
+//CLASS_DECL_ACME void set_main_user_thread(htask htask)
 //{
 
 //   set_main_itask(::as_itask(htask));

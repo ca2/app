@@ -118,9 +118,9 @@ namespace user
    void scroll_base::set_context_offset(const ::double_point & pointOffset, ::user::enum_layout elayout)
    {
 
-      set_context_offset_x(pointOffset.x(), elayout);
+      set_context_offset_x(pointOffset.x, elayout);
 
-      set_context_offset_y(pointOffset.y(), elayout);
+      set_context_offset_y(pointOffset.y, elayout);
 
    }
 
@@ -291,15 +291,15 @@ namespace user
    void scroll_base::constrain_context_offset(double_point & point, ::user::enum_layout elayout)
    {
 
-      constrain_context_offset_x(point.x(), elayout);
+      constrain_context_offset_x(point.x, elayout);
 
-      constrain_context_offset_y(point.y(), elayout);
+      constrain_context_offset_y(point.y, elayout);
 
       //auto scrollstatey = get_scroll_state_y(elayout);
 
-      //point.x() = minimum_maximum(point.x(), scrollstatex.m_iMinimum, scrollstatex.m_iMaximum);
+      //point.x = minimum_maximum(point.x, scrollstatex.m_iMinimum, scrollstatex.m_iMaximum);
 
-      //point.y() = minimum_maximum(point.y(), scrollstatey.m_iMinimum, scrollstatey.m_iMaximum);
+      //point.y = minimum_maximum(point.y, scrollstatey.m_iMinimum, scrollstatey.m_iMaximum);
 
    //   bool yValidated = scroll_base_y::validate_context_offset(point);
 
@@ -349,9 +349,9 @@ namespace user
 
       }
 
-      int iTotalCX = (int)sizeTotal.cx();
+      int iTotalCX = (int)sizeTotal.cx;
 
-      int iTotalCY = (int)sizeTotal.cy();
+      int iTotalCY = (int)sizeTotal.cy;
 
       int iClientCX = rectangleX.width();
 
@@ -395,7 +395,7 @@ namespace user
       //if (!m_pscrollstateHorizontal->m_bScroll)
       //{
 
-      //   m_pointScroll.x() = 0;
+      //   m_pointScroll.x = 0;
 
       //}
 
@@ -403,7 +403,7 @@ namespace user
       //if (!m_pscrollstateVertical->m_bScroll)
       //{
 
-      //   m_pointScroll.y() = 0;
+      //   m_pointScroll.y = 0;
 
       //}
 
@@ -446,13 +446,13 @@ namespace user
       //auto sizeTotal = get_total_size(elayout);
 
       //auto pointOffset = get_context_offset(elayout);
-      rectangle.right() -= get_final_scroll_bar_x_thickness(elayout);
+      rectangle.right -= get_final_scroll_bar_x_thickness(elayout);
 
-      rectangle.bottom() -= get_final_scroll_bar_y_thickness(elayout);
+      rectangle.bottom -= get_final_scroll_bar_y_thickness(elayout);
 
-      //rectangle.right() -= (int)(rectangle.left() + minimum(::width(rectangle), sizeTotal.cx() - m_pscrolllayoutX->m_scrollstatea[elayout].m_dPage - pointOffset.x()));
+      //rectangle.right -= (int)(rectangle.left + minimum(::width(rectangle), sizeTotal.cx - m_pscrolllayoutX->m_scrollstatea[elayout].m_dPage - pointOffset.x));
 
-      //rectangle.bottom() -= (int)(rectangle.top() + minimum(::height(rectangle), sizeTotal.cy() - m_pscrolllayoutY->m_scrollstatea[elayout].m_dPage - pointOffset.y()));
+      //rectangle.bottom -= (int)(rectangle.top + minimum(::height(rectangle), sizeTotal.cy - m_pscrolllayoutY->m_scrollstatea[elayout].m_dPage - pointOffset.y));
 
       return rectangle;
 
@@ -464,9 +464,9 @@ namespace user
 
    //   ::user::interaction::this->rectangle(prectangle);
 
-   //   prectangle->right() -= get_final_y_scroll_bar_width();
+   //   prectangle->right -= get_final_y_scroll_bar_width();
 
-   //   prectangle->bottom() -= get_final_x_scroll_bar_width();
+   //   prectangle->bottom -= get_final_x_scroll_bar_width();
 
    //   return true;
 
@@ -476,10 +476,10 @@ namespace user
    bool scroll_base::GetFocusRect(::int_rectangle & rectangle)
    {
 
-      rectangle.left() = 0;
-      rectangle.top() = 0;
-      rectangle.right() = const_layout().sketch().size().cx();
-      rectangle.bottom() = const_layout().sketch().size().cy();
+      rectangle.left = 0;
+      rectangle.top = 0;
+      rectangle.right = const_layout().sketch().size().cx;
+      rectangle.bottom = const_layout().sketch().size().cy;
 
       rectangle += get_accumulated_scroll();
 
@@ -545,10 +545,10 @@ namespace user
 
          ::int_rectangle rectangle;
 
-         rectangle.top() = rectangleX.bottom();
-         rectangle.left() = rectangleX.right();
-         rectangle.right() = (int)(rectangle.left() + m_pscrollbarY->const_layout().design().size().cx());
-         rectangle.bottom() = (int)(rectangle.top() + m_pscrollbarX->const_layout().design().size().cy());
+         rectangle.top = rectangleX.bottom;
+         rectangle.left = rectangleX.right;
+         rectangle.right = (int)(rectangle.left + m_pscrollbarY->const_layout().design().size().cx);
+         rectangle.bottom = (int)(rectangle.top + m_pscrollbarX->const_layout().design().size().cy);
 
          pgraphics->fill_rectangle(rectangle, argb(127, 127, 127, 127));
 
@@ -583,29 +583,29 @@ namespace user
 
          auto sizeWindow = raw_rectangle().size();
 
-         //if (sizeTotal.cx() < sizeWindow.cx())
+         //if (sizeTotal.cx < sizeWindow.cx)
          {
 
-            rectangle.left() = 0;
+            rectangle.left = 0;
 
          }
          //else
          //{
 
-         //   rectangle.left() = get_context_offset_x();
+         //   rectangle.left = get_context_offset_x();
 
          //}
 
-         //if (sizeTotal.cy() < sizeWindow.cy())
+         //if (sizeTotal.cy < sizeWindow.cy)
          {
 
-            rectangle.top() = 0;
+            rectangle.top = 0;
 
          }
          //else
          //{
 
-         //   rectangle.top() = get_context_offset_y(::user::e_layout_design);
+         //   rectangle.top = get_context_offset_y(::user::e_layout_design);
 
          //}
 
@@ -631,14 +631,14 @@ namespace user
          if (scroll_bar_x_visible())
          {
 
-            rectangle.bottom() -= (int)m_pscrollbarX->scroll_bar_thickness();
+            rectangle.bottom -= (int)m_pscrollbarX->scroll_bar_thickness();
 
          }
 
          if (scroll_bar_y_visible())
          {
 
-            rectangle.right() -= (int)m_pscrollbarY->scroll_bar_thickness();
+            rectangle.right -= (int)m_pscrollbarY->scroll_bar_thickness();
 
          }
 

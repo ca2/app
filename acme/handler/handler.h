@@ -1,4 +1,4 @@
-// From event_handler to handler at primitive_subject on day after ThomasBirthday2021 05:05 BRT
+// From event_handler to handler at prototype_subject on day after ThomasBirthday2021 05:05 BRT
 // From user namespace to global at apex by camilo on day after ThomasBirthday2021 04:36 BRT
 // From aura by camilo on ThomasBirthday2021 20:00 BRT
 //
@@ -98,6 +98,7 @@ namespace handler
 
 
       // ThomasBorregaardSorensen!! Like handlers
+      using ::matter::handle;
       virtual void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
       virtual void handle(::message::message * pmessage);
       virtual void handle(::request * prequest);

@@ -75,7 +75,7 @@ class holdee
 
 
 
-//template<primitive_subparticle T>
+//template<prototype_subparticle T>
 //class pointer;
 
 
@@ -421,6 +421,10 @@ namespace allocator
 template < typename TYPE, typename ARG_TYPE = const TYPE &, class TYPED = ::typed::rawcopy < TYPE  >, class MEMORY = ::heap::typed_memory < TYPE, ::heap::e_memory_array >, ::enum_type t_etypeContainer = e_type_element >
 class raw_array_base;
 
+template<class TYPE, class ARG_TYPE = const TYPE &, class TYPED = ::typed::def<TYPE>,
+         class MEMORY = ::heap::typed_memory<TYPE, ::heap::e_memory_array>,
+         ::enum_type t_etypeContainer = e_type_element>
+using raw_array = array_particle<raw_array_base<TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer>>;
 
 //template < typename TYPE, typename ARG_TYPE = const TYPE &, class TYPED = ::typed::rawcopy < TYPE  >, class MEMORY = ::heap::typed_memory < TYPE, ::heap::e_memory_array >, ::enum_type t_etypeContainer = e_type_element >
 //class raw_array_quantum;
@@ -983,27 +987,6 @@ using dereference = typename dereference_struct < T >::type;
 
 
 
-template<typename _Tp>
-struct erase_const_effemeral_struct
-{ using type = _Tp; };
-
-template<typename _Tp>
-struct erase_const_effemeral_struct<const _Tp>
-{ using type = _Tp; };
-
-template<typename _Tp>
-struct erase_const_effemeral_struct<volatile _Tp>
-{ using type = _Tp; };
-
-template<typename _Tp>
-struct erase_const_effemeral_struct<const volatile _Tp>
-{ using type = _Tp; };
-
-
-template<typename _Tp>
-using erase_const_effemeral = typename erase_const_effemeral_struct<_Tp>::type;
-
-
 
 template < typename ENUM > struct raw_enum_of_struct<::enumeration <ENUM>> { using type = ENUM; };
 template < typename ENUM >
@@ -1182,3 +1165,18 @@ namespace platform
 
 
 } // namespace platform
+
+
+template < typename TYPE >
+class cast;
+
+
+template < typename T >
+using cast_array = ::comparable_array_base < ::cast < T > >;
+
+
+template<class ARG_TYPE>
+inline bool EqualElements(ARG_TYPE element1, ARG_TYPE element2);
+
+
+

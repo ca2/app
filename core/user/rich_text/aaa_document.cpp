@@ -28,10 +28,6 @@
 //
 //      }
 //
-//
-//
-//
-//
 ////      void document::assert_ok() const
 ////      {
 ////

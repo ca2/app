@@ -123,7 +123,7 @@ namespace netserver
 
                      string strMessage;
 
-                     strMessage.formatf("\n\nBound to address %s!!\n\n", m_strIp.c_str());
+                     strMessage.formatf("Bound to address %s!!", m_strIp.c_str());
 
                      information(strMessage);
                   }
@@ -140,7 +140,7 @@ namespace netserver
 
                      string strMessage;
 
-                     strMessage.formatf("\n\netserver::socket_thread_base::run Couldn't bind to address %s!!\n\n", m_strIp.c_str());
+                     strMessage.formatf("netserver::socket_thread_base::run Couldn't bind to address %s!!", m_strIp.c_str());
 
                      information(strMessage);
 

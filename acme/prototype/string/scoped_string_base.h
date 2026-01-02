@@ -132,7 +132,7 @@ public:
    }
 
 
-   // template < primitive_character SOME_CHARACTER, character_count m_sizeMaximumLength >
+   // template < prototype_character SOME_CHARACTER, character_count m_sizeMaximumLength >
    // scoped_string_base(const ::inline_string < SOME_CHARACTER,  & inlinenumberstring) :
    //    BASE_RANGE(no_initialize_t{})
    // {
@@ -276,7 +276,7 @@ public:
       //if(::is_s)
       {
 
-         ::release_base_data(this->m_pbasedata);
+         ::base_data_defer_release(this->m_pbasedata);
 
          //this->m_erange = e_range_none;
 
@@ -578,7 +578,7 @@ public:
       if (pdataThis)
       {
 
-         ::release_base_data(pdataThis);
+         ::base_data_defer_release(pdataThis);
 
       }
 
@@ -660,7 +660,7 @@ public:
    // }
 
 
-   //template < primitive_character CHARACTER2 >
+   //template < prototype_character CHARACTER2 >
    //void _construct1(const CHARACTER2 * psz)
    //{
    //   
@@ -740,7 +740,7 @@ public:
    }
 
 
-   template < primitive_character CHARACTER >
+   template < prototype_character CHARACTER >
    bool operator ==(const CHARACTER* p) const
    {
 
@@ -847,7 +847,7 @@ public:
 //}
 
 
-//template < typename ITERATOR_TYPE, primitive_string STRING >
+//template < typename ITERATOR_TYPE, prototype_string STRING >
 //inline string_base < ITERATOR_TYPE > operator + (const scoped_string_base < ITERATOR_TYPE > & scopedstr, const STRING & str)
 //{
 //
@@ -864,7 +864,7 @@ public:
 //}
 
 
-//template < primitive_character CHARACTER1, primitive_character CHARACTER2 >
+//template < prototype_character CHARACTER1, prototype_character CHARACTER2 >
 //inline ::ansi_string operator + (const ::range < const CHARACTER1 * > & scopedstr1, const ::range < const CHARACTERE & scopedstr2)
 //{
 //
@@ -902,7 +902,7 @@ public:
 
 
 
-template<primitive_character CHARACTER>
+template<prototype_character CHARACTER>
 inline ::hash32 _scoped_string_unsigned_int_hash(const ::scoped_string_base<const CHARACTER *> & scopedstr) 
 {
 

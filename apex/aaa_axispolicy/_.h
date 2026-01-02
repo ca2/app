@@ -60,10 +60,6 @@
 //
 //
 //} // namespace user
-//
-//
-//
-//
 //typedef ::pointer<::windowing::window>window_pointer;
 //
 //
@@ -79,14 +75,6 @@
 //
 //#undef App
 //#define App(pparticle) (*(::get_app(pparticle))->cast < APP_TYPE >())
-//
-//
-//
-//
-//
-//
-//
-//
 //CLASS_DECL_APEX bool axis_init();
 //CLASS_DECL_APEX bool axis_term();
 //
@@ -211,11 +199,11 @@
 //
 //#include "app/axis/axis/node/_.h"
 //
-//#include "apex/primitive/data/data_tree_item.h"
+//#include "apex/prototype/data/data_tree_item.h"
 //
-//#include "apex/primitive/data/data_tree.h"
+//#include "apex/prototype/data/data_tree.h"
 //
-//#include "apex/primitive/data/data_simple_item.h"
+//#include "apex/prototype/data/data_simple_item.h"
 //
 //#include "axis/html_lite/_.h"
 //

@@ -2,21 +2,11 @@
 #pragma once
 
 
-
 #include "apex/platform/app_consumer.h"
-#include "bred/platform/application.h"
-#include "bred/graphics3d/camera.h"
-#include "bred/graphics3d/scene_object.h"
-#include "bred/gpu/properties.h"
 #include "bred/gpu/compositor.h"
-#include "bred/gpu/shader.h"
-
-// libs
-#include <glm/gtc/matrix_transform.hpp>
-//
-//// std
-//#include <memory>
-//#include <unordered_map>
+#include "bred/graphics3d/camera.h"
+#include "bred/graphics3d/transform.h"
+#include "bred/platform/application.h"
 
 
 #include <chrono>
@@ -54,8 +44,9 @@ namespace graphics3d
 		bool													         m_bEngineOnFrameContextInitialization = false;
 
 		bool                                               m_bLoadedEngine = false;
-
+      float m_fInputPitchFlip;
 		//::image32_callback                        m_callbackImage32CpuBuffer;
+      ::pointer<::graphics3d::shape_factory> m_pshapefactory;
 
 
 		engine();
@@ -65,7 +56,7 @@ namespace graphics3d
 		virtual void initialize_engine(::user::graphics3d* pimpact);
 
 
-		virtual void create_global_ubo(::gpu::context * pgpucontext);
+		//virtual void create_global_ubo(::gpu::context *pgpucontext);
 
 		virtual ::gpu::enum_output get_engine_gpu_eoutput();
 
@@ -78,12 +69,11 @@ namespace graphics3d
 		::gpu::frame* end_gpu_layer(::gpu::frame* pframe) override;
 
 
-		virtual void update_global_ubo(::gpu::context* pgpucontext);
+		//virtual void update_global_ubo(::gpu::context* pgpucontext);
 
-
+      virtual ::graphics3d::shape_factory *shape_factory();
 
 		virtual ::gpu::context* get_gpu_context();
-
 
 
 
@@ -92,8 +82,8 @@ namespace graphics3d
 
 		float dt() { return m_fFrameTime; }
 
-		virtual glm::mat4 model_matrix(::graphics3d::transform& transformcomponent);
-		virtual glm::mat4 normal_matrix(::graphics3d::transform& transformcomponent);
+		virtual floating_matrix4 model_matrix(::graphics3d::transform& transformcomponent);
+		virtual floating_matrix4 normal_matrix(::graphics3d::transform& transformcomponent);
 
 		//void on_begin_frame() override;
 		virtual void run_cpu_buffer();
@@ -114,7 +104,7 @@ namespace graphics3d
 
 		virtual void _do_frame_step();
 		virtual void on_after_done_frame_step(::draw2d::graphics_pointer& pgraphics);
-		virtual void defer_update_engine(const ::int_rectangle & rectangle);
+      virtual void defer_update_engine(const ::int_rectangle &rectangle);
 
 		virtual void on_layout(const ::int_rectangle & rectanglePlacement);
 
@@ -122,17 +112,23 @@ namespace graphics3d
 
 		virtual void on_render_frame();
 
-		//virtual glm::vec3 camera_pole_up();
+		//virtual floating_sequence3 camera_pole_up();
 
 		virtual void on_update_frame();
 
-		virtual ::pointer<::graphics3d::renderable> _load_wavefront_obj_renderable(const ::gpu::renderable_t &model);
+		//virtual ::pointer<::graphics3d::renderable> _load_wavefront_obj_renderable(const ::gpu::renderable_t &model);
 
 		//virtual void on_offscreen_frame_pixels(const ::image32_t* pimage32, int w, int h, int stride);
 
+      virtual floating_matrix4 perspective(const ::float_angle & angleFovY, float aspect, float zNear, float zFar);
+
+      virtual void calculate_impact(::floating_matrix4 &matrixImpact, const ::graphics3d::camera &camera);
+      virtual void calculate_projection(::floating_matrix4 &matrixProjection, const ::graphics3d::camera &camera);
+
+
 	};
 
-	//glm::vec3 camera::pole_up() { return m_pengine->camera_pole_up(); }
+	//floating_sequence3 camera::pole_up() { return m_pengine->camera_pole_up(); }
 } // namespace graphics3d
 
 

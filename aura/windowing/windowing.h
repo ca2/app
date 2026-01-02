@@ -46,6 +46,9 @@ namespace windowing
       enum_cursor                               m_ecursor;
 
       bool                                      m_bDrawCursor;
+
+      void *                                    m_pSnLauncheeContext;
+
       //::pointer<::user::user>                   m_puser;
 
       // Fallback implementation of a Main thread mouse capture

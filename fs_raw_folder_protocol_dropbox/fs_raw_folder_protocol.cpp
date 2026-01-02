@@ -45,10 +45,6 @@ namespace fs_raw_folder_protocol_dropbox
 //
 //
 //   }
-//
-//
-//
-//
 //   void folder_sync::folder_sync_touch_file(const ::file::path& pathParam, const ::function < void(const ::scoped_string&) >& callbackStatus)
 //   {
 //

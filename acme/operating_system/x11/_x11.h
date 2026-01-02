@@ -5,7 +5,10 @@
 
 
 #include "acme/operating_system/x11/_.h"
+#define pointer X11_pointer
 #include <X11/Xlib.h>
+#include <X11/extensions/Xrandr.h>
+#undef pointer
 
 
 inline Display * as_x11_display(::x11::display_t * px11display)

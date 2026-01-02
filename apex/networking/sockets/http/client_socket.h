@@ -49,7 +49,7 @@ namespace sockets
 
       //memory    m_memoryData; ///< Ptr to buffer where to store response
       //memsize m_data_size; ///< Max int_size of data buffer
-      memsize m_content_length; ///< Content-length header received from remote
+      memsize m_iContentLength; ///< Content-length header received from remote
       string m_content; ///< Received http headers
       //bool m_data_ptr_set; ///< buffer set from outside, do not delete
       memsize m_content_ptr; ///< Number of bytes received from body
@@ -125,10 +125,10 @@ namespace sockets
       virtual void request_url(const ::url::url & url);
 
 
-      bool on_set_scalar(enum_scalar escalar,::number number,int iFlags) override;
-      ::number get_scalar_minimum(enum_scalar escalar) override;
-      ::number get_scalar(enum_scalar escalar) override;
-      ::number get_scalar_maximum(enum_scalar escalar) override;
+      bool on_set_scalar(enum_scalar escalar,::number::number number,int iFlags) override;
+      ::number::number get_scalar_minimum(enum_scalar escalar) override;
+      ::number::number get_scalar(enum_scalar escalar) override;
+      ::number::number get_scalar_maximum(enum_scalar escalar) override;
 
       virtual string MyUseragent() override;
 

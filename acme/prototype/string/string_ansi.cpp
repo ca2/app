@@ -674,10 +674,6 @@ informationf("fixed_string_log::OnReallocateSpill");
 //}
 //
 //
-//
-//
-//
-//
 ////string::operator class string_composite()
 ////{
 ////   class string_composite reference;

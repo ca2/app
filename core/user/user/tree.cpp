@@ -11,7 +11,7 @@
 #include "aura/graphics/draw2d/draw2d.h"
 #include "aura/graphics/image/list.h"
 #include "aura/graphics/image/drawing.h"
-//#include "aura/user/user/primitive_impl.h"
+//#include "aura/user/user/prototype_impl.h"
 #include "aura/user/user/scroll_state.h"
 #include "aura/user/user/style.h"
 #include "berg/user/user/impact.h"
@@ -103,8 +103,8 @@ namespace user
       m_happeningOpen.m_eflagElement += e_flag_alertable_wait;
       m_happeningExpand.m_eflagElement += e_flag_alertable_wait;
 
-      m_sizeItemMaximum.cx() = 16;
-      m_sizeItemMaximum.cy() = 16;
+      m_sizeItemMaximum.cx = 16;
+      m_sizeItemMaximum.cy = 16;
 
    }
 
@@ -169,7 +169,7 @@ namespace user
                   _001SetExpandImage("matter://list/expand.png");
                   _001SetExpandImageDark("matter://list/expand_dark.png");
 
-                  task_set_name(::type(this).name() + "::Expand");
+                  task_set_name(::platform::type(this).name() + "::Expand");
 
                   auto pthread = ::get_task();
 
@@ -206,7 +206,7 @@ namespace user
             _001SetCollapseImage("matter://list/collapse.png");
             _001SetCollapseImageDark("matter://list/collapse_dark.png");
 
-            task_set_name(::type(this).name() + "::Open");
+            task_set_name(::platform::type(this).name() + "::Open");
 
             auto pthread = ::get_task();
 
@@ -415,13 +415,13 @@ namespace user
 
             drawitemdata.m_rectangle = drawitemdata.m_rectangleX;
 
-            drawitemdata.m_rectangle.left() = (int)(drawitemdata.m_iIndentation * pitem->m_iLevel);
+            drawitemdata.m_rectangle.left = (int)(drawitemdata.m_iIndentation * pitem->m_iLevel);
 
-            drawitemdata.m_rectangle.top() = (int)(iItem * drawitemdata.m_dItemHeight);
+            drawitemdata.m_rectangle.top = (int)(iItem * drawitemdata.m_dItemHeight);
 
-            drawitemdata.m_rectangle.bottom() = (int)(drawitemdata.m_rectangle.top() + drawitemdata.m_dItemHeight);
+            drawitemdata.m_rectangle.bottom = (int)(drawitemdata.m_rectangle.top + drawitemdata.m_dItemHeight);
 
-            drawitemdata.m_rectangle.right() = m_iCurrentImpactWidth;
+            drawitemdata.m_rectangle.right = m_iCurrentImpactWidth;
 
             {
                
@@ -574,7 +574,7 @@ namespace user
       if (bHover) // selected
       {
 
-         auto rectangleFill = ::double_rectangle(data.m_rectangleX.left(), data.m_rectangle.top(), data.m_rectangleX.right(), data.m_rectangle.bottom());
+         auto rectangleFill = ::double_rectangle(data.m_rectangleX.left, data.m_rectangle.top, data.m_rectangleX.right, data.m_rectangle.bottom);
 
          data.m_pdc->fill_rectangle(rectangleFill, argb(127, 125, 166, 228));
 
@@ -612,7 +612,7 @@ namespace user
 
          //   ::color::color crTranslucid = rgb(0, 0, 0);
 
-         //   imaging.color_blend(data.m_pdc,    rectangleUnion.left(), rectangleUnion.top(),
+         //   imaging.color_blend(data.m_pdc,    rectangleUnion.left, rectangleUnion.top,
          //   rectangleUnion.width(), rectangleUnion.height(),
          //   crTranslucid, 127);
 
@@ -957,7 +957,7 @@ namespace user
    ::pointer<::data::tree_item_base>tree::_001HitTest(const ::int_point & point, ::user::enum_tree_element & eelement)
    {
 
-      ::collection::index iy = point.y();
+      ::collection::index iy = point.y;
 
       ::collection::index iItem = -1;
 
@@ -968,7 +968,7 @@ namespace user
       if (item_height != 0)
       {
 
-         //iItem = (int)((iy + pointOffset.y()) / item_height);
+         //iItem = (int)((iy + pointOffset.y) / item_height);
          iItem = (int)((iy) / item_height);
 
       }
@@ -993,8 +993,8 @@ namespace user
 
       ::collection::index iLevel = pitem->m_iLevel;
 
-      //index x = (int)(point.x() - _001GetIndentation() * (iLevel)+pointOffset.x());
-      ::collection::index x = (int)(point.x() - _001GetIndentation() * (iLevel));
+      //index x = (int)(point.x - _001GetIndentation() * (iLevel)+pointOffset.x);
+      ::collection::index x = (int)(point.x - _001GetIndentation() * (iLevel));
       if (x >= 0 && x < 16)
          eelement = e_tree_element_expand_box;
       if (x >= 18 && x < 34)
@@ -1104,46 +1104,46 @@ namespace user
       {
       case e_tree_element_expand_box:
       {
-         prectangle->left() = (int)(drawitem.m_rectangle.left());
+         prectangle->left = (int)(drawitem.m_rectangle.left);
 
-         prectangle->right() = (int)minimum(prectangle->left() + 16, drawitem.m_rectangle.right());
+         prectangle->right = (int)minimum(prectangle->left + 16, drawitem.m_rectangle.right);
 
-         prectangle->top() = (int)(drawitem.m_rectangle.top());
+         prectangle->top = (int)(drawitem.m_rectangle.top);
 
-         prectangle->bottom() = (int)(drawitem.m_rectangle.bottom());
+         prectangle->bottom = (int)(drawitem.m_rectangle.bottom);
 
       }
       break;
       case e_tree_element_image:
       {
-         prectangle->left() = (int)(drawitem.m_rectangle.left() + 18);
+         prectangle->left = (int)(drawitem.m_rectangle.left + 18);
 
-         prectangle->right() = (int)minimum(prectangle->left() + 16, drawitem.m_rectangle.right());
+         prectangle->right = (int)minimum(prectangle->left + 16, drawitem.m_rectangle.right);
 
          int iHDiff = 0;
 
          if (m_pimagelist != nullptr)
          {
 
-            iHDiff = (int)(drawitem.m_rectangle.height() - m_pimagelist->m_size.cy());
+            iHDiff = (int)(drawitem.m_rectangle.height() - m_pimagelist->m_size.cy);
 
          }
 
-         prectangle->top() = (int)(drawitem.m_rectangle.top() + iHDiff / 2);
+         prectangle->top = (int)(drawitem.m_rectangle.top + iHDiff / 2);
 
-         prectangle->bottom() = (int)(drawitem.m_rectangle.bottom() - iHDiff / 2);
+         prectangle->bottom = (int)(drawitem.m_rectangle.bottom - iHDiff / 2);
 
       }
       break;
       case e_tree_element_text:
       {
-         prectangle->left() = (int)(drawitem.m_rectangle.left() + 38);
+         prectangle->left = (int)(drawitem.m_rectangle.left + 38);
 
-         prectangle->right() = (int)(drawitem.m_rectangle.right());
+         prectangle->right = (int)(drawitem.m_rectangle.right);
 
-         prectangle->top() = (int)(drawitem.m_rectangle.top());
+         prectangle->top = (int)(drawitem.m_rectangle.top);
 
-         prectangle->bottom() = (int)(drawitem.m_rectangle.bottom());
+         prectangle->bottom = (int)(drawitem.m_rectangle.bottom);
 
       }
       break;
@@ -1214,7 +1214,7 @@ namespace user
             else
             {
 
-               iDivision = (::collection::index)(pointOffset.y() / _001GetItemHeight());
+               iDivision = (::collection::index)(pointOffset.y / _001GetItemHeight());
 
             }
 
@@ -1228,7 +1228,7 @@ namespace user
             if (iObscured > 0)
             {
 
-               auto dNewScroll = pointOffset.y() + iObscured * _001GetItemHeight();
+               auto dNewScroll = pointOffset.y + iObscured * _001GetItemHeight();
 
                if (dNewScroll > (iParentIndex * _001GetItemHeight()))
                {
@@ -1245,7 +1245,7 @@ namespace user
 
                   //});
                //            _001SetYScroll(maximum(iNewScroll, 0), false);
-               //m_pscrollbarY->_001SetScrollPos(pointOffset.y());
+               //m_pscrollbarY->_001SetScrollPos(pointOffset.y);
             }
          }
       }
@@ -1681,7 +1681,7 @@ namespace user
 
       auto dItemHeight = _001GetItemHeight();
 
-      auto dOffset = pointOffset.y() / dItemHeight;
+      auto dOffset = pointOffset.y / dItemHeight;
 
       ::data::tree_item_base * pitem = nullptr;
 
@@ -1756,7 +1756,7 @@ namespace user
 
       auto pointOffset = get_context_offset();
 
-      nOffset = (::collection::index)(pointOffset.y() / _001GetItemHeight());
+      nOffset = (::collection::index)(pointOffset.y / _001GetItemHeight());
 
       nOffset = INT_MAX;
 
@@ -1828,7 +1828,7 @@ namespace user
 
          double_size s = pgraphics->get_text_extent(strText);
 
-         iWidth = (int)(48 + s.cx() + iIndent * (iLevel + 1));
+         iWidth = (int)(48 + s.cx + iIndent * (iLevel + 1));
 
          if (iWidth > iMaxWidth)
          {
@@ -2426,7 +2426,7 @@ namespace user
 
       }
 
-      ::collection::index iMinVisibleIndex = (::collection::index)(pointOffset.y() / m_dItemHeight);
+      ::collection::index iMinVisibleIndex = (::collection::index)(pointOffset.y / m_dItemHeight);
 
       ::collection::index iMaxVisibleIndex = (::collection::index)(iMinVisibleIndex + _001GetVisibleItemCount());
 

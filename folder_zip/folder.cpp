@@ -76,7 +76,7 @@ namespace folder_zip
 
 
    folder::folder() :
-      m_unzfile(nullptr),
+      m_unzip_file(nullptr),
       m_zipfile(nullptr)
    {
 
@@ -88,12 +88,12 @@ namespace folder_zip
    folder::~folder()
    {
 
-      if (m_unzfile)
+      if (m_unzip_file)
       {
 
-         unzClose(m_unzfile);
+         unzip_Close(m_unzip_file);
 
-         m_unzfile = nullptr;
+         m_unzip_file = nullptr;
 
       }
 
@@ -153,11 +153,11 @@ namespace folder_zip
    void folder::open_for_reading(::file_pointer pfile, int iBufferLevel)
    {
 
-      auto unzfile = unzOpen2("pad", (zlib_filefunc_def*)&g_filefunctiondefinitions, pfile.m_p);
+      auto unzip_file = unzip_Open2("pad", (zlib_filefunc_def*)&g_filefunctiondefinitions, pfile.m_p);
 
       m_pfile = pfile;
 
-      m_unzfile = unzfile;
+      m_unzip_file = unzip_file;
 
    }
 
@@ -220,7 +220,7 @@ namespace folder_zip
 
       _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-      unzFile pf = m_unzfile;
+      unzip_File pf = m_unzip_file;
 
       if (pf == nullptr)
       {
@@ -235,7 +235,7 @@ namespace folder_zip
       string wstrFolder;
       string_array_base wstraFolder;
 
-      unz_file_info unzfileinfo;
+      unzip__file_info unzip_fileinfo;
 
       string strPrefix = listing.m_pathFinal;
 
@@ -250,7 +250,7 @@ namespace folder_zip
 
       strPrefix.replace_with("/", "\\");
 
-      int err = unzGoToFirstFile(pf);
+      int err = unzip_GoToFirstFile(pf);
 
       ::file::path path;
 
@@ -261,9 +261,9 @@ namespace folder_zip
 
          char szTitle[_MAX_PATH];
 
-         unzGetCurrentFileInfo(
+         unzip_GetCurrentFileInfo(
             pf,
-            &unzfileinfo,
+            &unzip_fileinfo,
             szTitle,
             _MAX_PATH,
             nullptr, // extra Field
@@ -299,7 +299,7 @@ namespace folder_zip
 
                   }
 
-                  path.m_iSize = unzfileinfo.uncompressed_size;
+                  path.m_iSize = unzip_fileinfo.uncompressed_size;
 
                   listing.defer_add(path);
 
@@ -309,7 +309,7 @@ namespace folder_zip
 
          }
 
-         err = unzGoToNextFile(pf);
+         err = unzip_GoToNextFile(pf);
 
       }
 
@@ -408,7 +408,7 @@ namespace folder_zip
 #ifdef WINDOWS
 
 
-      auto dosDate = m_unzfileinfo.dosDate;
+      auto dosDate = m_unzip_fileinfo.dosDate;
 
 
 #ifdef WINDOWS_DESKTOP
@@ -431,7 +431,7 @@ namespace folder_zip
 
 #else
 
-      auto tmu_date = m_unzfileinfo.tmu_date;
+      auto tmu_date = m_unzip_fileinfo.tmu_date;
 
       struct tm newdate;
 
@@ -595,15 +595,15 @@ namespace folder_zip
 
       }
 
-      if (unzOpenCurrentFile(m_unzfile) != UNZ_OK)
+      if (unzip_OpenCurrentFile(m_unzip_file) != UNZ_OK)
       {
 
          return false;
 
       }
 
-      if (unzGetCurrentFileInfo(m_unzfile,
-         &m_unzfileinfo,
+      if (unzip_GetCurrentFileInfo(m_unzip_file,
+         &m_unzip_fileinfo,
          nullptr,
          0,
          nullptr,
@@ -630,7 +630,7 @@ namespace folder_zip
 
       _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-      unzFile pf = m_unzfile;
+      unzip_File pf = m_unzip_file;
 
       if (pf == nullptr)
       {
@@ -639,9 +639,9 @@ namespace folder_zip
 
       }
 
-      int err = unzGoToFirstFile(pf);
+      int err = unzip_GoToFirstFile(pf);
 
-      unz_file_info unzfileinfo;
+      unzip__file_info unzip_fileinfo;
 
       int i = 0;
 
@@ -650,9 +650,9 @@ namespace folder_zip
 
          char szItem[_MAX_PATH];
 
-         unzGetCurrentFileInfo(
+         unzip_GetCurrentFileInfo(
             pf,
-            &unzfileinfo,
+            &unzip_fileinfo,
             szItem,
             _MAX_PATH,
             nullptr, // extra Field
@@ -712,6 +712,20 @@ namespace folder_zip
 
          information() << "zipresource://" << szItem;*/
 
+         // output_debug_string(szItem);
+         //
+         // ::string strDebug(szItem);
+         //
+         // if (strDebug.case_insensitive_ends("/wavefront.vert")
+         //    && strDebug.case_insensitive_contains("/_std/_std/"))
+         // {
+         //
+         //    information("/wavefront.vert with /_std/_std/");
+         //
+         // }
+         //
+         // ::print_line(strDebug);
+
          if (function(szItem))
          {
 
@@ -726,7 +740,7 @@ namespace folder_zip
 
          //}
 
-         err = unzGoToNextFile(pf);
+         err = unzip_GoToNextFile(pf);
 
          i++;
 

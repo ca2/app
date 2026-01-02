@@ -356,13 +356,13 @@ namespace user
 
       auto puseritem = user_item(pmenuitem);
 
-      puseritem->m_rectangle2.top() = (int)( y + (iMenuItemIndex + iSep) * iHeight);
+      puseritem->m_rectangle2.top = (int)( y + (iMenuItemIndex + iSep) * iHeight);
 
-      puseritem->m_rectangle2.bottom() = puseritem->m_rectangle2.top() + iHeight;
+      puseritem->m_rectangle2.bottom = puseritem->m_rectangle2.top + iHeight;
 
-      puseritem->m_rectangle2.left() = x;
+      puseritem->m_rectangle2.left = x;
 
-      puseritem->m_rectangle2.right() = x + w;
+      puseritem->m_rectangle2.right = x + w;
 
       return puseritem;
 
@@ -496,7 +496,7 @@ namespace user
 
          pgraphics->set_text_color(argb(255, 0, 0, 0));
 
-         pgraphics->text_out(puseritemPopup->m_rectangle2.left() + 10, puseritemPopup->m_rectangle2.top() + 5, strTitle);
+         pgraphics->text_out(puseritemPopup->m_rectangle2.left + 10, puseritemPopup->m_rectangle2.top + 5, strTitle);
 
          iPos++;
 
@@ -583,7 +583,7 @@ namespace user
 
             }
 
-            pgraphics->text_out(puseritem->m_rectangle2.left() + 10, puseritem->m_rectangle2.top() + 5, strItemTitle);
+            pgraphics->text_out(puseritem->m_rectangle2.left + 10, puseritem->m_rectangle2.top + 5, strItemTitle);
 
             pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
@@ -595,8 +595,8 @@ namespace user
                pgraphics->set(m_ppenBkSel);
 
                pgraphics->line(
-                  puseritem->m_rectangle2.left() + 1, puseritem->m_rectangle2.top(),
-                  puseritem->m_rectangle2.left() + 1, puseritem->m_rectangle2.bottom() - 1);
+                  puseritem->m_rectangle2.left + 1, puseritem->m_rectangle2.top,
+                  puseritem->m_rectangle2.left + 1, puseritem->m_rectangle2.bottom - 1);
 
                pimage1 = m_pimageMap[atom];
 
@@ -613,8 +613,8 @@ namespace user
 
                ::int_rectangle rectangleDib;
 
-               rectangleDib.left() = puseritem->m_rectangle2.right() - pimage1->width() - 10;
-               rectangleDib.top() = puseritem->m_rectangle2.top() + (puseritem->m_rectangle2.height() - pimage1->height()) / 2;
+               rectangleDib.left = puseritem->m_rectangle2.right - pimage1->width() - 10;
+               rectangleDib.top = puseritem->m_rectangle2.top + (puseritem->m_rectangle2.height() - pimage1->height()) / 2;
                rectangleDib.set_size(pimage1->width(), pimage1->height());
 
                ::image::image_source imagesource(pimage1);
@@ -844,12 +844,12 @@ namespace user
    {
 
       pgraphics->line(
-         rectangle.left(), rectangle.top(),
-         rectangle.right(), rectangle.top());
+         rectangle.left, rectangle.top,
+         rectangle.right, rectangle.top);
 
       pgraphics->line(
-         rectangle.left(), rectangle.bottom(),
-         rectangle.right(), rectangle.bottom());
+         rectangle.left, rectangle.bottom,
+         rectangle.right, rectangle.bottom);
 
    }
 
@@ -870,12 +870,12 @@ namespace user
       pgraphics->fill_rectangle(rectangle, argb(255, 240, 240, 240));
 
       pgraphics->line(
-         rectangle.left(), rectangle.top(),
-         rectangle.left(), rectangle.bottom());
+         rectangle.left, rectangle.top,
+         rectangle.left, rectangle.bottom);
 
       pgraphics->line(
-         rectangle.right(), rectangle.top(),
-         rectangle.right(), rectangle.bottom());
+         rectangle.right, rectangle.top,
+         rectangle.right, rectangle.bottom);
 
 
 
@@ -887,12 +887,12 @@ namespace user
    {
 
       pgraphics->line(
-         rectangle.left(), rectangle.top(),
-         rectangle.left(), rectangle.bottom());
+         rectangle.left, rectangle.top,
+         rectangle.left, rectangle.bottom);
 
       pgraphics->line(
-         rectangle.right(), rectangle.top(),
-         rectangle.right(), rectangle.bottom());
+         rectangle.right, rectangle.top,
+         rectangle.right, rectangle.bottom);
 
    }
 
@@ -903,12 +903,12 @@ namespace user
       pgraphics->fill_rectangle(rectangle);
 
       pgraphics->line(
-         rectangle.left(), rectangle.top(),
-         rectangle.left(), rectangle.bottom());
+         rectangle.left, rectangle.top,
+         rectangle.left, rectangle.bottom);
 
       pgraphics->line(
-         rectangle.right(), rectangle.top(),
-         rectangle.right(), rectangle.bottom());
+         rectangle.right, rectangle.top,
+         rectangle.right, rectangle.bottom);
 
    }
 
@@ -919,36 +919,36 @@ namespace user
       pgraphics->fill_rectangle(rectangle);
 
       pgraphics->line(
-         rectangle.left(), rectangle.top(),  
-         rectangle.left(), rectangle.bottom());
+         rectangle.left, rectangle.top,  
+         rectangle.left, rectangle.bottom);
 
       int h = ::height(rectangle);
 
       pgraphics->line(
-         rectangle.right(), rectangle.bottom() - 1,
-         rectangle.right(), rectangle.bottom() - h / 3 - 2);
+         rectangle.right, rectangle.bottom - 1,
+         rectangle.right, rectangle.bottom - h / 3 - 2);
 
       double_point_array pta;
 
-      pta.add(rectangle.right(), rectangle.bottom() - h / 3 - 2);
+      pta.add(rectangle.right, rectangle.bottom - h / 3 - 2);
 
-      pta.add(rectangle.right() + h * 3 / 16, rectangle.bottom() - h / 2 - 2);
+      pta.add(rectangle.right + h * 3 / 16, rectangle.bottom - h / 2 - 2);
 
-      pta.add(rectangle.right(), rectangle.bottom() - h * 2 / 3 - 2);
+      pta.add(rectangle.right, rectangle.bottom - h * 2 / 3 - 2);
 
       pgraphics->fill_polygon(pta);
 
       auto ppath = øcreate<::draw2d::path>();
 
-      ppath->set_current_point(rectangle.right(), rectangle.bottom() - h * 2 / 3 - 2);
+      ppath->set_current_point(rectangle.right, rectangle.bottom - h * 2 / 3 - 2);
       
-      ppath->add_line(rectangle.right(), rectangle.bottom() - h / 3 - 2);
+      ppath->add_line(rectangle.right, rectangle.bottom - h / 3 - 2);
 
-      ppath->add_line(rectangle.right() + h * 3 / 16, rectangle.bottom() - h / 2 - 2);
+      ppath->add_line(rectangle.right + h * 3 / 16, rectangle.bottom - h / 2 - 2);
 
-      ppath->add_line(rectangle.right(), rectangle.bottom() - h * 2 / 3 - 2);
+      ppath->add_line(rectangle.right, rectangle.bottom - h * 2 / 3 - 2);
 
-      ppath->add_line(rectangle.right(), rectangle.top());
+      ppath->add_line(rectangle.right, rectangle.top);
 
       pgraphics->draw(ppath);
 
@@ -961,36 +961,36 @@ namespace user
       pgraphics->fill_rectangle(rectangle);
 
       pgraphics->line(
-         rectangle.left(), rectangle.top(),
-            rectangle.left(), rectangle.bottom());
+         rectangle.left, rectangle.top,
+            rectangle.left, rectangle.bottom);
 
       int h = ::height(rectangle);
 
       pgraphics->line(
-         rectangle.right(), rectangle.bottom() - 1,
-         rectangle.right(), rectangle.bottom() - h / 3 - 2);
+         rectangle.right, rectangle.bottom - 1,
+         rectangle.right, rectangle.bottom - h / 3 - 2);
 
       double_point_array pta;
 
-      pta.add(rectangle.right(), rectangle.bottom() - h / 3 - 2);
+      pta.add(rectangle.right, rectangle.bottom - h / 3 - 2);
 
-      pta.add(rectangle.right() + h * 3 / 16, rectangle.bottom() - h / 2 - 2);
+      pta.add(rectangle.right + h * 3 / 16, rectangle.bottom - h / 2 - 2);
 
-      pta.add(rectangle.right(), rectangle.bottom() - h * 2 / 3 - 2);
+      pta.add(rectangle.right, rectangle.bottom - h * 2 / 3 - 2);
 
       pgraphics->fill_polygon(pta);
 
       auto ppath = øcreate<::draw2d::path>();
 
-      ppath->set_current_point(rectangle.right(), rectangle.bottom() - h * 2 / 3 - 2);
+      ppath->set_current_point(rectangle.right, rectangle.bottom - h * 2 / 3 - 2);
 
-      ppath->add_line(rectangle.right(), rectangle.bottom() - h / 3 - 2);
+      ppath->add_line(rectangle.right, rectangle.bottom - h / 3 - 2);
 
-      ppath->add_line(rectangle.right() + h * 3 / 16, rectangle.bottom() - h / 2 - 2);
+      ppath->add_line(rectangle.right + h * 3 / 16, rectangle.bottom - h / 2 - 2);
 
-      ppath->add_line(rectangle.right(), rectangle.bottom() - h * 2 / 3 - 2);
+      ppath->add_line(rectangle.right, rectangle.bottom - h * 2 / 3 - 2);
 
-      ppath->add_line(rectangle.right(), rectangle.top());
+      ppath->add_line(rectangle.right, rectangle.top);
 
       pgraphics->draw(ppath);
 

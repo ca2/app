@@ -6,10 +6,6 @@
 //  written in C++ language to help developers create great apps for users.
 //
 //  ca2/..../core/base/axis/aura/C++/C/Assembly/os/Huffman Machine/Hardware/Universe/Multiverse stack
-//
-//
-//
-//
 //  c(s)t(s)<tb(s)!!
 //
 

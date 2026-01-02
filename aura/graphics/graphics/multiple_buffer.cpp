@@ -168,7 +168,7 @@ namespace graphics
 
          ::int_size sizeBuffer = m_bufferitema[iFound]->m_pimage2->size();
 
-         bBigger = sizeBuffer.cx() > size.cx() || sizeBuffer.cy() > size.cy();
+         bBigger = sizeBuffer.cx > size.cx || sizeBuffer.cy > size.cy;
 
       }
 
@@ -205,8 +205,8 @@ namespace graphics
          if (iFound2 < 0)
          {
 
-            if ((bBigger && sizeBuffer.cx() > size.cx() && sizeBuffer.cy() > size.cy())
-               || (!bBigger && sizeBuffer.cx() < size.cx() && sizeBuffer.cy() < size.cy()))
+            if ((bBigger && sizeBuffer.cx > size.cx && sizeBuffer.cy > size.cy)
+               || (!bBigger && sizeBuffer.cx < size.cx && sizeBuffer.cy < size.cy))
             {
 
                iFound2 = i;
@@ -253,8 +253,8 @@ namespace graphics
             if (iFound2 < 0)
             {
 
-               if ((bBigger && sizeBuffer.cx() > size.cx() && sizeBuffer.cy() > size.cy())
-                  || (!bBigger && sizeBuffer.cx() < size.cx() && sizeBuffer.cy() < size.cy()))
+               if ((bBigger && sizeBuffer.cx > size.cx && sizeBuffer.cy > size.cy)
+                  || (!bBigger && sizeBuffer.cx < size.cx && sizeBuffer.cy < size.cy))
                {
 
                   iFound2 = i;

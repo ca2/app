@@ -134,6 +134,8 @@ public:
          bool                                            m_bIsPredicate : 1; // Is helper thread (as opposite to a "main" thread)
 #ifdef WINDOWS
          bool                                            m_bCoInitialize : 1;
+         bool                                            m_bCoInitialized : 1;
+         bool                                            m_bCoInitializeMultithreaded : 1;
 #endif
          bool                                            m_bMessageThread : 1;
          bool                                            m_bHandleRequest : 1;
@@ -252,6 +254,12 @@ public:
    //void update_new_main_loop_happening() override;
    //bool has_main_loop_happening() override;
 
+#ifdef WINDOWS
+
+   virtual bool _defer_co_initialize_ex(bool bMultiThread);
+
+#endif
+
    
    virtual void on_single_lock_lock(::subparticle *psubparticleSynchronization,
                                             const ::subparticle *psubparticleContext, const_char_pointer pszFile,
@@ -344,8 +352,8 @@ public:
    virtual bool on_happening(e_happening ehappening);
 
 
+   virtual int __task_main();
    virtual void __task_init();
-   virtual void __task_main();
    //virtual void __task_main(::procedure & procedureTaskEnded);
    virtual void __task_term();
 

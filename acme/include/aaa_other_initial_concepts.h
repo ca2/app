@@ -10,39 +10,39 @@
 
 
 template < typename NUMBER >
-concept primitive_number =
-   primitive_integral < NUMBER > ||
-   primitive_floating < NUMBER > ||
-   primitive_enum < NUMBER >;
+concept prototype_number =
+   prototype_integral < NUMBER > ||
+   prototype_floating < NUMBER > ||
+   prototype_enum < NUMBER >;
 
 
 template < typename POINT >
 concept raw_primitive_point = requires(POINT point)
 {
-   {point.x}->primitive_number;
-   {point.y}->primitive_number;
+   {point.x}->prototype_number;
+   {point.y}->prototype_number;
 };
 
 
 template < typename POINT >
-concept primitive_point = requires(POINT point)
+concept prototype_point = requires(POINT point)
 {
-   {point.x()}->primitive_number;
-   {point.y()}->primitive_number;
+   {point.x}->prototype_number;
+   {point.y}->prototype_number;
 };
 
 
 template < typename POLE >
-concept primitive_pole = requires(POLE pole)
+concept prototype_pole = requires(POLE pole)
 {
-   {pole.x()}->primitive_number;
-   {pole.y()}->primitive_number;
-   {pole.z()}->primitive_number;
+   {pole.x}->prototype_number;
+   {pole.y}->prototype_number;
+   {pole.z}->prototype_number;
 };
 
 
 template < typename POINT >
-concept primitive_XY = requires(POINT point)
+concept prototype_XY = requires(POINT point)
 {
    point.X;
    point.Y;
@@ -50,15 +50,15 @@ concept primitive_XY = requires(POINT point)
 
 
 template < typename SIZE >
-concept primitive_size = requires(SIZE size)
+concept prototype_size = requires(SIZE size)
 {
-   size.cx();
-   size.cy();
+   size.cx;
+   size.cy;
 };
 
 
 template < typename Dimension >
-concept primitive_Dimension = requires(Dimension dimension)
+concept prototype_Dimension = requires(Dimension dimension)
 {
    dimension.Width;
    dimension.Height;
@@ -66,7 +66,7 @@ concept primitive_Dimension = requires(Dimension dimension)
 
 
 template < typename DIMENSION >
-concept primitive_dimension = requires(DIMENSION dimension)
+concept prototype_dimension = requires(DIMENSION dimension)
 {
    dimension.width;
    dimension.height;
@@ -74,17 +74,17 @@ concept primitive_dimension = requires(DIMENSION dimension)
 
 
 template < typename RECTANGLE >
-concept primitive_rectangle = requires(RECTANGLE rectangle)
+concept prototype_rectangle = requires(RECTANGLE rectangle)
 {
-   rectangle.left();
-   rectangle.top();
-   rectangle.right();
-   rectangle.bottom();
+   rectangle.left;
+   rectangle.top;
+   rectangle.right;
+   rectangle.bottom;
 };
 
 
 template < typename RECTANGLE >
-concept primitive_XYDim = requires(RECTANGLE rectangle)
+concept prototype_XYDim = requires(RECTANGLE rectangle)
 {
    rectangle.X;
    rectangle.Y;
@@ -94,7 +94,7 @@ concept primitive_XYDim = requires(RECTANGLE rectangle)
 
 
 template < typename RECTANGLE >
-concept primitive_xydim = requires(RECTANGLE rectangle)
+concept prototype_xydim = requires(RECTANGLE rectangle)
 {
    rectangle.x;
    rectangle.y;
@@ -104,10 +104,10 @@ concept primitive_xydim = requires(RECTANGLE rectangle)
 
 
 template < typename RECTANGLE >
-concept primitive_origin_size = requires(RECTANGLE rectangle)
+concept prototype_origin_size = requires(RECTANGLE rectangle)
 {
    {rectangle.origin}->raw_primitive_point;
-   {rectangle.size}->primitive_dimension;
+   {rectangle.size}->prototype_dimension;
 };
 
 
@@ -115,14 +115,14 @@ concept primitive_origin_size = requires(RECTANGLE rectangle)
 //concept origin_size = requires(ORIGIN_SIZE origin_size)
 //{
 //
-//   { origin_size.origin } -> primitive_point;
-//   { origin_size.size } -> primitive_dim;
+//   { origin_size.origin } -> prototype_point;
+//   { origin_size.size } -> prototype_dim;
 //
 //};
 
 
 
-template < primitive_number NUMBER >
+template < prototype_number NUMBER >
 struct argument_of_struct < NUMBER >
 {
 
@@ -132,15 +132,15 @@ struct argument_of_struct < NUMBER >
 
 
 
-template < primitive_number NUMBER >
+template < prototype_number NUMBER >
 class point_type;
 
 
-template < primitive_number NUMBER >
+template < prototype_number NUMBER >
 class size_type;
 
 
-template < primitive_number NUMBER >
+template < prototype_number NUMBER >
 class rectangle_type;
 
 
@@ -150,7 +150,7 @@ class rectangle_type;
 
 //
 //
-//template < primitive_number NUMBER1, primitive_number NUMBER2 >
+//template < prototype_number NUMBER1, prototype_number NUMBER2 >
 //inline void copy(NUMBER1& number1, const NUMBER2& number2)
 //{
 //

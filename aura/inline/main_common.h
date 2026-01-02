@@ -168,10 +168,6 @@
 //
 //
 //}
-//
-//
-//
-//
 //template < typename APPLICATION >
 //class static_application_factory :
 //   public system_setup

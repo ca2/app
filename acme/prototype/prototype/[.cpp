@@ -53,7 +53,7 @@ payload::payload(const ::scoped_string & scopedstr)
 }
 
 
-payload::payload(const type & type)
+payload::payload(const ::platform::type & type)
 {
 
    m_etype = e_type_new;
@@ -590,7 +590,7 @@ class ::payload & payload::operator ++(int)
 }
 
 
-void payload::set_type(const ::type_atom & typeatom)
+void payload::set_type(const ::platform::type & type)
 {
 
    set_type(e_type_type, false);
@@ -604,7 +604,7 @@ void payload::set_type(const ::type_atom & typeatom)
 
 
 
-bool payload::get_type(::type & type) const
+bool payload::get_type(::platform::type & type) const
 {
 
    if (m_etype != e_type_type)
@@ -4604,10 +4604,6 @@ bool payload::case_insensitive_array_contains(const ::scoped_string & scopedstr,
 
 
 
-//
-//
-//
-//
 //::payload payload::operator / (int i) const
 //{
 //   return int() / i;
@@ -4716,10 +4712,6 @@ bool payload::case_insensitive_array_contains(const ::scoped_string & scopedstr,
 //   }
 //
 //}
-//
-//
-//
-//
 //::payload operator / (double d, const class ::payload & payload)
 //{
 //   return double / payload.as_double();
@@ -4899,10 +4891,6 @@ bool payload::case_insensitive_array_contains(const ::scoped_string & scopedstr,
 //   return *this;
 //
 //}
-//
-//
-//
-//
 
 //
 //
@@ -4942,10 +4930,6 @@ bool payload::case_insensitive_array_contains(const ::scoped_string & scopedstr,
 //   operator =(*this + payload);
 //   return *this;
 //}
-//
-//
-//
-//
 
 
 
@@ -5001,10 +4985,6 @@ bool payload::case_insensitive_array_contains(const ::scoped_string & scopedstr,
 //   operator =(*this / payload);
 //   return *this;
 //}
-//
-//
-//
-//
 //
 //
 

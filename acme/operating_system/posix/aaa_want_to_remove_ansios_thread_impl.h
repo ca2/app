@@ -9,10 +9,6 @@ namespace ansios
 //      virtual public ::thread_impl
 //   {
 //   public:
-//
-//
-//
-//
 //      thread_impl(::particle * pparticle);
 //      virtual ~thread_impl();
 //

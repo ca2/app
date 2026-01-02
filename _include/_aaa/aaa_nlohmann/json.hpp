@@ -10614,7 +10614,7 @@ class parser
 // #include <nlohmann/detail/iterators/internal_iterator.hpp>
 
 
-// #include <nlohmann/detail/iterators/primitive_iterator.hpp>
+// #include <nlohmann/detail/iterators/prototype_iterator.hpp>
 
 
 #include <cstddef> // ptrdiff_t
@@ -10633,7 +10633,7 @@ to "iterate" over primitive values. Internally, the iterator is modeled by
 a `difference_type` variable. Value begin_value (`0`) models the begin,
 end_value (`1`) models past the end.
 */
-class primitive_iterator_t
+class prototype_iterator_t
 {
   private:
     using difference_type = std::ptrdiff_t;
@@ -10673,61 +10673,61 @@ class primitive_iterator_t
         return m_it == end_value;
     }
 
-    friend constexpr bool operator==(primitive_iterator_t lhs, primitive_iterator_t rhs) noexcept
+    friend constexpr bool operator==(prototype_iterator_t lhs, prototype_iterator_t rhs) noexcept
     {
         return lhs.m_it == rhs.m_it;
     }
 
-    friend constexpr bool operator<(primitive_iterator_t lhs, primitive_iterator_t rhs) noexcept
+    friend constexpr bool operator<(prototype_iterator_t lhs, prototype_iterator_t rhs) noexcept
     {
         return lhs.m_it < rhs.m_it;
     }
 
-    primitive_iterator_t operator+(difference_type n) noexcept
+    prototype_iterator_t operator+(difference_type n) noexcept
     {
         auto result = *this;
         result += n;
         return result;
     }
 
-    friend constexpr difference_type operator-(primitive_iterator_t lhs, primitive_iterator_t rhs) noexcept
+    friend constexpr difference_type operator-(prototype_iterator_t lhs, prototype_iterator_t rhs) noexcept
     {
         return lhs.m_it - rhs.m_it;
     }
 
-    primitive_iterator_t& operator++() noexcept
+    prototype_iterator_t& operator++() noexcept
     {
         ++m_it;
         return *this;
     }
 
-    primitive_iterator_t const operator++(int) noexcept
+    prototype_iterator_t const operator++(int) noexcept
     {
         auto result = *this;
         ++m_it;
         return result;
     }
 
-    primitive_iterator_t& operator--() noexcept
+    prototype_iterator_t& operator--() noexcept
     {
         --m_it;
         return *this;
     }
 
-    primitive_iterator_t const operator--(int) noexcept
+    prototype_iterator_t const operator--(int) noexcept
     {
         auto result = *this;
         --m_it;
         return result;
     }
 
-    primitive_iterator_t& operator+=(difference_type n) noexcept
+    prototype_iterator_t& operator+=(difference_type n) noexcept
     {
         m_it += n;
         return *this;
     }
 
-    primitive_iterator_t& operator-=(difference_type n) noexcept
+    prototype_iterator_t& operator-=(difference_type n) noexcept
     {
         m_it -= n;
         return *this;
@@ -10754,7 +10754,7 @@ template<typename BasicJsonType> struct internal_iterator
     /// iterator for JSON arrays
     typename BasicJsonType::array_t::iterator array_iterator {};
     /// generic iterator for all other types
-    primitive_iterator_t primitive_iterator {};
+    prototype_iterator_t prototype_iterator {};
 };
 }  // namespace detail
 }  // namespace nlohmann
@@ -10769,7 +10769,7 @@ template<typename BasicJsonType> struct internal_iterator
 
 // #include <nlohmann/detail/iterators/internal_iterator.hpp>
 
-// #include <nlohmann/detail/iterators/primitive_iterator.hpp>
+// #include <nlohmann/detail/iterators/prototype_iterator.hpp>
 
 // #include <nlohmann/detail/macro_scope.hpp>
 
@@ -10871,7 +10871,7 @@ class iter_impl
 
             default:
             {
-                m_it.primitive_iterator = primitive_iterator_t();
+                m_it.prototype_iterator = prototype_iterator_t();
                 break;
             }
         }
@@ -10958,13 +10958,13 @@ class iter_impl
             case value_t::null:
             {
                 // set to end so begin()==end() is true: null is empty
-                m_it.primitive_iterator.set_end();
+                m_it.prototype_iterator.set_end();
                 break;
             }
 
             default:
             {
-                m_it.primitive_iterator.set_begin();
+                m_it.prototype_iterator.set_begin();
                 break;
             }
         }
@@ -10994,7 +10994,7 @@ class iter_impl
 
             default:
             {
-                m_it.primitive_iterator.set_end();
+                m_it.prototype_iterator.set_end();
                 break;
             }
         }
@@ -11028,7 +11028,7 @@ class iter_impl
 
             default:
             {
-                if (JSON_HEDLEY_LIKELY(m_it.primitive_iterator.is_begin()))
+                if (JSON_HEDLEY_LIKELY(m_it.prototype_iterator.is_begin()))
                 {
                     return *m_object;
                 }
@@ -11062,7 +11062,7 @@ class iter_impl
 
             default:
             {
-                if (JSON_HEDLEY_LIKELY(m_it.primitive_iterator.is_begin()))
+                if (JSON_HEDLEY_LIKELY(m_it.prototype_iterator.is_begin()))
                 {
                     return m_object;
                 }
@@ -11107,7 +11107,7 @@ class iter_impl
 
             default:
             {
-                ++m_it.primitive_iterator;
+                ++m_it.prototype_iterator;
                 break;
             }
         }
@@ -11150,7 +11150,7 @@ class iter_impl
 
             default:
             {
-                --m_it.primitive_iterator;
+                --m_it.prototype_iterator;
                 break;
             }
         }
@@ -11181,7 +11181,7 @@ class iter_impl
                 return (m_it.array_iterator == other.m_it.array_iterator);
 
             default:
-                return (m_it.primitive_iterator == other.m_it.primitive_iterator);
+                return (m_it.prototype_iterator == other.m_it.prototype_iterator);
         }
     }
 
@@ -11217,7 +11217,7 @@ class iter_impl
                 return (m_it.array_iterator < other.m_it.array_iterator);
 
             default:
-                return (m_it.primitive_iterator < other.m_it.primitive_iterator);
+                return (m_it.prototype_iterator < other.m_it.prototype_iterator);
         }
     }
 
@@ -11269,7 +11269,7 @@ class iter_impl
 
             default:
             {
-                m_it.primitive_iterator += i;
+                m_it.prototype_iterator += i;
                 break;
             }
         }
@@ -11336,7 +11336,7 @@ class iter_impl
                 return m_it.array_iterator - other.m_it.array_iterator;
 
             default:
-                return m_it.primitive_iterator - other.m_it.primitive_iterator;
+                return m_it.prototype_iterator - other.m_it.prototype_iterator;
         }
     }
 
@@ -11361,7 +11361,7 @@ class iter_impl
 
             default:
             {
-                if (JSON_HEDLEY_LIKELY(m_it.primitive_iterator.get_value() == -n))
+                if (JSON_HEDLEY_LIKELY(m_it.prototype_iterator.get_value() == -n))
                 {
                     return *m_object;
                 }
@@ -11528,7 +11528,7 @@ class json_reverse_iterator : public std::reverse_iterator<Base>
 }  // namespace detail
 }  // namespace nlohmann
 
-// #include <nlohmann/detail/iterators/primitive_iterator.hpp>
+// #include <nlohmann/detail/iterators/prototype_iterator.hpp>
 
 // #include <nlohmann/detail/json_pointer.hpp>
 
@@ -11911,7 +11911,7 @@ class json_pointer
         return static_cast<size_type>(res);
     }
 
-    json_pointer top() const
+    json_pointer top const
     {
         if (JSON_HEDLEY_UNLIKELY(empty()))
         {
@@ -16692,7 +16692,7 @@ class basic_json
                 std::move(cb), allow_exceptions, ignore_comments);
     }
 
-    using primitive_iterator_t = ::nlohmann::detail::primitive_iterator_t;
+    using prototype_iterator_t = ::nlohmann::detail::prototype_iterator_t;
     template<typename BasicJsonType>
     using internal_iterator = ::nlohmann::detail::internal_iterator<BasicJsonType>;
     template<typename BasicJsonType>
@@ -18426,8 +18426,8 @@ class basic_json
             case value_t::number_unsigned:
             case value_t::string:
             {
-                if (JSON_HEDLEY_UNLIKELY(!first.m_it.primitive_iterator.is_begin()
-                                         || !last.m_it.primitive_iterator.is_end()))
+                if (JSON_HEDLEY_UNLIKELY(!first.m_it.prototype_iterator.is_begin()
+                                         || !last.m_it.prototype_iterator.is_end()))
                 {
                     JSON_THROW(invalid_iterator::create(204, "iterators out of range"));
                 }
@@ -20532,7 +20532,7 @@ class basic_json
             case value_t::string:
             case value_t::binary:
             {
-                if (JSON_HEDLEY_UNLIKELY(!pos.m_it.primitive_iterator.is_begin()))
+                if (JSON_HEDLEY_UNLIKELY(!pos.m_it.prototype_iterator.is_begin()))
                 {
                     JSON_THROW(invalid_iterator::create(205, "iterator out of range"));
                 }
@@ -20645,8 +20645,8 @@ class basic_json
             case value_t::string:
             case value_t::binary:
             {
-                if (JSON_HEDLEY_LIKELY(!first.m_it.primitive_iterator.is_begin()
-                                       || !last.m_it.primitive_iterator.is_end()))
+                if (JSON_HEDLEY_LIKELY(!first.m_it.prototype_iterator.is_begin()
+                                       || !last.m_it.prototype_iterator.is_end()))
                 {
                     JSON_THROW(invalid_iterator::create(204, "iterators out of range"));
                 }
@@ -24708,7 +24708,7 @@ class basic_json
             }
 
             // make sure the top element of the pointer exists
-            json_pointer top_pointer = ptr.top();
+            json_pointer top_pointer = ptr.top;
             if (top_pointer != ptr)
             {
                 result.at(top_pointer);

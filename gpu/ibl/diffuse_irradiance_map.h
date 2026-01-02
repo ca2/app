@@ -10,6 +10,7 @@
 //
 
 #include "bred/graphics3d/scene_object.h"
+#include "bred/gpu/properties.h"
 
 
 namespace gpu
@@ -30,6 +31,15 @@ namespace gpu
       public:
 
 
+         struct push_constants
+         {
+
+            ::floating_matrix4 mvp;
+
+            float deltaPhi;
+            float deltaTheta;
+         };
+
          const unsigned int m_udiffuse_irradiance_mapWidth = 32;
          const unsigned int m_udiffuse_irradiance_mapHeight = 32;
 
@@ -38,9 +48,10 @@ namespace gpu
          //::graphics3d::renderable * m_prenderableSkybox = nullptr;
 
          ::pointer<::gpu::shader> m_pshaderDiffuseIrradiance;
-         ::pointer<::gpu::ibl::cubemap_framebuffer> m_pdiffuseIrradianceFramebuffer;
+         //::pointer<::gpu::ibl::cubemap_framebuffer> m_pframebufferDiffuseIrradiance;
+         ::pointer < ::gpu::texture > m_ptextureDiffuseIrradianceCubemap;
          //::pointer<::gpu::cube> m_pgpucube;
-
+         ::pointer<::graphics3d::renderable> m_prenderableCube;
          /**
           * Initialize a diffuse irradiance map.
           * @param hdriPath path to an .hdr image in equirectangular projection format
@@ -86,3 +97,10 @@ namespace gpu
 
 
 } // namespace gpu
+
+
+DECLARE_GPU_PROPERTIES(CLASS_DECL_GPU, ::gpu::ibl::diffuse_irradiance_map::push_constants);
+
+
+
+

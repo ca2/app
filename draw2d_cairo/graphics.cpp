@@ -369,7 +369,7 @@ namespace draw2d_cairo
    bool graphics::fill_contains(const double_point & point)
    {
 
-      return cairo_in_fill(m_pdc, point.x(), point.y());
+      return cairo_in_fill(m_pdc, point.x, point.y);
 
    }
 
@@ -406,9 +406,9 @@ namespace draw2d_cairo
 //   void graphics::intersect_clip(const ::double_rectangle & rectangle)
 //   {
 //
-//      //cairo_rectangle(m_pdc, rectangle.left() + m_pointAddShapeTranslate.x(), rectangle.top() + m_pointAddShapeTranslate.y(),
+//      //cairo_rectangle(m_pdc, rectangle.left + m_pointAddShapeTranslate.x, rectangle.top + m_pointAddShapeTranslate.y,
 //        //              rectangle.width(), rectangle.height());
-//      cairo_rectangle(m_pdc, rectangle.left(), rectangle.top(),
+//      cairo_rectangle(m_pdc, rectangle.left, rectangle.top,
 //                      rectangle.width(), rectangle.height());
 //
 //      cairo_clip(m_pdc);
@@ -449,9 +449,9 @@ namespace draw2d_cairo
    void graphics::_add_shape(const ::double_rectangle & rectangle)
    {
 
-      //cairo_rectangle(m_pdc, rectangle.left() + m_pointAddShapeTranslate.x(), rectangle.top() + m_pointAddShapeTranslate.y(),
+      //cairo_rectangle(m_pdc, rectangle.left + m_pointAddShapeTranslate.x, rectangle.top + m_pointAddShapeTranslate.y,
         //              rectangle.width(), rectangle.height());
-      cairo_rectangle(m_pdc, rectangle.left(), rectangle.top(),
+      cairo_rectangle(m_pdc, rectangle.left, rectangle.top,
                       rectangle.width(), rectangle.height());
 
    }
@@ -464,13 +464,13 @@ namespace draw2d_cairo
 
       cairo_new_sub_path(m_pdc);
 
-      //cairo_translate(m_pdc, (ellipse.left() + ellipse.right()) / 2.0 + m_pointAddShapeTranslate.x(),
-        //              (ellipse.top() + ellipse.bottom()) / 2.0 + m_pointAddShapeTranslate.y());
+      //cairo_translate(m_pdc, (ellipse.left + ellipse.right) / 2.0 + m_pointAddShapeTranslate.x,
+        //              (ellipse.top + ellipse.bottom) / 2.0 + m_pointAddShapeTranslate.y);
 
-      cairo_translate(m_pdc, (ellipse.left() + ellipse.right()) / 2.0,
-                    (ellipse.top() + ellipse.bottom()) / 2.0);
+      cairo_translate(m_pdc, (ellipse.left + ellipse.right) / 2.0,
+                    (ellipse.top + ellipse.bottom) / 2.0);
 
-      cairo_scale(m_pdc, (ellipse.right() - ellipse.left()) / 2.0, (ellipse.bottom() - ellipse.top()) / 2.0);
+      cairo_scale(m_pdc, (ellipse.right - ellipse.left) / 2.0, (ellipse.bottom - ellipse.top) / 2.0);
 
       cairo_arc(m_pdc, 0.0, 0.0, 1.0, 0.0, 2.0 * 3.1415);
 
@@ -489,16 +489,16 @@ namespace draw2d_cairo
 
       cairo_new_sub_path(m_pdc);
 
-      //cairo_move_to(m_pdc, polygon[0].x() + m_pointAddShapeTranslate.x(), polygon[0].y() + m_pointAddShapeTranslate.y());
+      //cairo_move_to(m_pdc, polygon[0].x + m_pointAddShapeTranslate.x, polygon[0].y + m_pointAddShapeTranslate.y);
 
-      cairo_move_to(m_pdc, polygon[0].x(), polygon[0].y());
+      cairo_move_to(m_pdc, polygon[0].x, polygon[0].y);
 
       for (int i = 1; i < polygon.get_count(); i++)
       {
 
-         //cairo_line_to(m_pdc, polygon[i].x() + m_pointAddShapeTranslate.x(), polygon[i].y() + m_pointAddShapeTranslate.y());
+         //cairo_line_to(m_pdc, polygon[i].x + m_pointAddShapeTranslate.x, polygon[i].y + m_pointAddShapeTranslate.y);
 
-         cairo_line_to(m_pdc, polygon[i].x(), polygon[i].y());
+         cairo_line_to(m_pdc, polygon[i].x, polygon[i].y);
 
       }
 
@@ -710,7 +710,7 @@ namespace draw2d_cairo
 //   double_point graphics::set_origin(const ::double_point & point)
 //   {
 //
-//      return set_origin(point.x(), point.y());
+//      return set_origin(point.x, point.y);
 //
 //   }
 
@@ -919,14 +919,14 @@ namespace draw2d_cairo
    {
 
       return arc(
-         rectangle.left(),
-         rectangle.top(),
-         rectangle.right(),
-         rectangle.bottom(),
-         pointStart.x(),
-         pointStart.y(),
-         pointEnd.x(),
-         pointEnd.y());
+         rectangle.left,
+         rectangle.top,
+         rectangle.right,
+         rectangle.bottom,
+         pointStart.x,
+         pointStart.y,
+         pointEnd.x,
+         pointEnd.y);
 
    }
 
@@ -944,7 +944,7 @@ namespace draw2d_cairo
 
       _synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-      if (rectangle.right() <= rectangle.left() || rectangle.bottom() <= rectangle.top())
+      if (rectangle.right <= rectangle.left || rectangle.bottom <= rectangle.top)
       {
 
          return;
@@ -958,8 +958,8 @@ namespace draw2d_cairo
 //
 //      }
 
-      cairo_rectangle(m_pdc, rectangle.left(), rectangle.top(), rectangle.right() - rectangle.left(),
-                      rectangle.bottom() - rectangle.top());
+      cairo_rectangle(m_pdc, rectangle.left, rectangle.top, rectangle.right - rectangle.left,
+                      rectangle.bottom - rectangle.top);
 
       fill(pbrush);
 
@@ -973,15 +973,15 @@ namespace draw2d_cairo
 
       _synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-      if (rectangle.right() <= rectangle.left() || rectangle.bottom() <= rectangle.top())
+      if (rectangle.right <= rectangle.left || rectangle.bottom <= rectangle.top)
       {
 
          return;
 
       }
 
-      cairo_rectangle(m_pdc, rectangle.left(), rectangle.top(), rectangle.right() - rectangle.left(),
-                      rectangle.bottom() - rectangle.top());
+      cairo_rectangle(m_pdc, rectangle.left, rectangle.top, rectangle.right - rectangle.left,
+                      rectangle.bottom - rectangle.top);
 
       draw(ppen);
 
@@ -1293,7 +1293,7 @@ namespace draw2d_cairo
    void graphics::draw_ellipse(const ::double_rectangle & rectangle)
    {
 
-      return draw_ellipse(rectangle.left(), rectangle.top(), rectangle.right(), rectangle.bottom());
+      return draw_ellipse(rectangle.left, rectangle.top, rectangle.right, rectangle.bottom);
 
    }
 
@@ -1345,7 +1345,7 @@ namespace draw2d_cairo
    void graphics::fill_ellipse(const ::double_rectangle & rectangle)
    {
 
-      return fill_ellipse(rectangle.left(), rectangle.top(), rectangle.right(), rectangle.bottom());
+      return fill_ellipse(rectangle.left, rectangle.top, rectangle.right, rectangle.bottom);
 
    }
 
@@ -1384,12 +1384,12 @@ namespace draw2d_cairo
 
       }
 
-      cairo_move_to(m_pdc, pa[0].x(), pa[0].y());
+      cairo_move_to(m_pdc, pa[0].x, pa[0].y);
 
       for (int i = 1; i < nCount; i++)
       {
 
-         cairo_line_to(m_pdc, pa[i].x(), pa[i].y());
+         cairo_line_to(m_pdc, pa[i].x, pa[i].y);
 
       }
 
@@ -1414,12 +1414,12 @@ namespace draw2d_cairo
 
       }
 
-      cairo_move_to(m_pdc, pa[0].x(), pa[0].y());
+      cairo_move_to(m_pdc, pa[0].x, pa[0].y);
 
       for (int i = 1; i < nCount; i++)
       {
 
-         cairo_line_to(m_pdc, pa[i].x(), pa[i].y());
+         cairo_line_to(m_pdc, pa[i].x, pa[i].y);
 
       }
 
@@ -1444,12 +1444,12 @@ namespace draw2d_cairo
 
       }
 
-      cairo_move_to(m_pdc, pa[0].x(), pa[0].y());
+      cairo_move_to(m_pdc, pa[0].x, pa[0].y);
 
       for (int i = 1; i < nCount; i++)
       {
 
-         cairo_line_to(m_pdc, pa[i].x(), pa[i].y());
+         cairo_line_to(m_pdc, pa[i].x, pa[i].y);
 
       }
 
@@ -1472,7 +1472,7 @@ namespace draw2d_cairo
 //
 //      }
 
-      cairo_rectangle(m_pdc, rectangle.left(), rectangle.top(), ::width(rectangle), ::height(rectangle));
+      cairo_rectangle(m_pdc, rectangle.left, rectangle.top, ::width(rectangle), ::height(rectangle));
 
       //return
 
@@ -1556,11 +1556,11 @@ namespace draw2d_cairo
 
          cairo_matrix_t matrixOld;
 
-         cairo_translate(m_pdc, rectangleTarget.left(), rectangleTarget.top());
+         cairo_translate(m_pdc, rectangleTarget.left, rectangleTarget.top);
 
          cairo_pattern_get_matrix(ppattern, &matrixOld);
 
-         cairo_matrix_init_translate(&matrix, pointSrc.x(), pointSrc.y());
+         cairo_matrix_init_translate(&matrix, pointSrc.x, pointSrc.y);
 
          cairo_pattern_set_matrix(ppattern, &matrix);
 
@@ -1681,13 +1681,13 @@ namespace draw2d_cairo
 
       auto nDstHeight = rectangleFinal.height();
 
-      auto xSrc = rectangleSource.left();
+      auto xSrc = rectangleSource.left;
 
-      auto ySrc = rectangleSource.top();
+      auto ySrc = rectangleSource.top;
 
-      auto xDst = rectangleFinal.left();
+      auto xDst = rectangleFinal.left;
 
-      auto yDst = rectangleFinal.top();
+      auto yDst = rectangleFinal.top;
 
       if (nSrcWidth <= 0 || nSrcHeight <= 0 || nDstWidth <= 0 || nDstHeight <= 0)
       {
@@ -2353,66 +2353,66 @@ namespace draw2d_cairo
 //    ::double_point plg[3];
 //
 //
-//    plg[0].x() =lpPoint[0].x();
-//    plg[0].y() =lpPoint[0].y();
-//    plg[1].x() =lpPoint[1].x();
-//    plg[1].y() =lpPoint[1].y();
-//    plg[2].x() =lpPoint[2].x();
-//    plg[2].y() =lpPoint[2].y();
+//    plg[0].x =lpPoint[0].x;
+//    plg[0].y =lpPoint[0].y;
+//    plg[1].x =lpPoint[1].x;
+//    plg[1].y =lpPoint[1].y;
+//    plg[2].x =lpPoint[2].x;
+//    plg[2].y =lpPoint[2].y;
 //
 //
 //    /* X components */
-////    xf.eM11 = (plg[1].x()*(int_rectangle[2].y() - int_rectangle[0].y()) - plg[2].x()*(int_rectangle[1].y() - int_rectangle[0].y()) - plg[0].x()*(int_rectangle[2].y() - int_rectangle[1].y())) / det;
-////    xf.eM21 = (int_rectangle[1].x()*(plg[2].x() - plg[0].x()) - int_rectangle[2].x()*(plg[1].x() - plg[0].x()) - int_rectangle[0].x()*(plg[2].x() - plg[1].x())) / det;
-////    xf.eDx  = (int_rectangle[0].x()*(int_rectangle[1].y()*plg[2].x() - int_rectangle[2].y()*plg[1].x()) -
-////               int_rectangle[1].x()*(int_rectangle[0].y()*plg[2].x() - int_rectangle[2].y()*plg[0].x()) +
-////               int_rectangle[2].x()*(int_rectangle[0].y()*plg[1].x() - int_rectangle[1].y()*plg[0].x())
+////    xf.eM11 = (plg[1].x*(int_rectangle[2].y - int_rectangle[0].y) - plg[2].x*(int_rectangle[1].y - int_rectangle[0].y) - plg[0].x*(int_rectangle[2].y - int_rectangle[1].y)) / det;
+////    xf.eM21 = (int_rectangle[1].x*(plg[2].x - plg[0].x) - int_rectangle[2].x*(plg[1].x - plg[0].x) - int_rectangle[0].x*(plg[2].x - plg[1].x)) / det;
+////    xf.eDx  = (int_rectangle[0].x*(int_rectangle[1].y*plg[2].x - int_rectangle[2].y*plg[1].x) -
+////               int_rectangle[1].x*(int_rectangle[0].y*plg[2].x - int_rectangle[2].y*plg[0].x) +
+////               int_rectangle[2].x*(int_rectangle[0].y*plg[1].x - int_rectangle[1].y*plg[0].x)
 ////               ) / det;
 ////
-////    xf.eM21 = (nSrcx*(plg[2].x() - plg[0].x()) + nWitdh(plg[2].x() - plg[0].x()) - nSrcX*(plg[1].x() - plg[0].x()) - nSrcx*(plg[2].x() - plg[1].x())) / det;
-////    xf.eM21 = (+ nWitdh(plg[2].x() - plg[0].x())  / det;
-////    xf.eDx  = (int_rectangle[0].x()*(int_rectangle[1].y()*plg[2].x() - int_rectangle[2].y()*plg[1].x()) -
-////               int_rectangle[1].x()*(nYSrc*plg[2].x() - int_rectangle[2].y()*plg[0].x()) +
-////               int_rectangle[2].x()*(nYSrc*plg[1].x() - int_rectangle[1].y()*plg[0].x())
+////    xf.eM21 = (nSrcx*(plg[2].x - plg[0].x) + nWitdh(plg[2].x - plg[0].x) - nSrcX*(plg[1].x - plg[0].x) - nSrcx*(plg[2].x - plg[1].x)) / det;
+////    xf.eM21 = (+ nWitdh(plg[2].x - plg[0].x)  / det;
+////    xf.eDx  = (int_rectangle[0].x*(int_rectangle[1].y*plg[2].x - int_rectangle[2].y*plg[1].x) -
+////               int_rectangle[1].x*(nYSrc*plg[2].x - int_rectangle[2].y*plg[0].x) +
+////               int_rectangle[2].x*(nYSrc*plg[1].x - int_rectangle[1].y*plg[0].x)
 ////               ) / det;
-////    xf.eDx  = (nXSrc*(int_rectangle[1].y()*plg[2].x() - int_rectangle[2].y()*plg[1].x()) -
-////               int_rectangle[1].x()*(nYSrc*plg[2].x() - nYSrc*plg[0].x()) +
-////               int_rectangle[2].x()*(nYSrc*plg[1].x() - nYSrc*plg[0].x())
+////    xf.eDx  = (nXSrc*(int_rectangle[1].y*plg[2].x - int_rectangle[2].y*plg[1].x) -
+////               int_rectangle[1].x*(nYSrc*plg[2].x - nYSrc*plg[0].x) +
+////               int_rectangle[2].x*(nYSrc*plg[1].x - nYSrc*plg[0].x)
 ////               ) / det;
-////    xf.eDx  = (nXSrc*(nYSrc*plg[2].x() - int_rectangle[2].y()*plg[1].x()) -
-////               int_rectangle[1].x()*(nYSrc*plg[2].x() - nYSrc*plg[0].x()) +
-////               nXSrc*(nYSrc*plg[1].x() - nYSrc*plg[0].x())
+////    xf.eDx  = (nXSrc*(nYSrc*plg[2].x - int_rectangle[2].y*plg[1].x) -
+////               int_rectangle[1].x*(nYSrc*plg[2].x - nYSrc*plg[0].x) +
+////               nXSrc*(nYSrc*plg[1].x - nYSrc*plg[0].x)
 ////               ) / det;
-////    xf.eDx  = (nXSrc*(nYSrc*plg[2].x() - (nYSrc + nHeight)*plg[1].x()) -
-////               (nXSrc + nWidth)*(nYSrc*plg[2].x() - nYSrc*plg[0].x()) +
-////               nXSrc*(nYSrc*plg[1].x() - nYSrc*plg[0].x())
+////    xf.eDx  = (nXSrc*(nYSrc*plg[2].x - (nYSrc + nHeight)*plg[1].x) -
+////               (nXSrc + nWidth)*(nYSrc*plg[2].x - nYSrc*plg[0].x) +
+////               nXSrc*(nYSrc*plg[1].x - nYSrc*plg[0].x)
 ////               ) / det;
-////    xf.eDx  = (nXSrc*(nYSrc*plg[2].x() - (nYSrc + nHeight)*plg[1].x()) -
-////               (nXSrc + nWidth)*(nYSrc*plg[2].x() - nYSrc*plg[0].x()) +
-////               nXSrc*(nYSrc*plg[1].x() - nYSrc*plg[0].x())
+////    xf.eDx  = (nXSrc*(nYSrc*plg[2].x - (nYSrc + nHeight)*plg[1].x) -
+////               (nXSrc + nWidth)*(nYSrc*plg[2].x - nYSrc*plg[0].x) +
+////               nXSrc*(nYSrc*plg[1].x - nYSrc*plg[0].x)
 ////               ) / det;
 //    /* Y components */
-////    xf.eM12 = (plg[1].y()*(int_rectangle[2].y() - int_rectangle[0].y()) - plg[2].y()*(int_rectangle[1].y() - int_rectangle[0].y()) - plg[0].y()*(int_rectangle[2].y() - int_rectangle[1].y())) / det;
-////    xf.eM22 = (int_rectangle[1].x()*(plg[2].y() - plg[0].y()) - int_rectangle[2].x()*(plg[1].y() - plg[0].y()) - int_rectangle[0].x()*(plg[2].y() - plg[1].y())) / det;
-////    xf.eDy  = (int_rectangle[0].x()*(int_rectangle[1].y()*plg[2].y() - int_rectangle[2].y()*plg[1].y()) -
-////               int_rectangle[1].x()*(int_rectangle[0].y()*plg[2].y() - int_rectangle[2].y()*plg[0].y()) +
-////               int_rectangle[2].x()*(int_rectangle[0].y()*plg[1].y() - int_rectangle[1].y()*plg[0].y())
+////    xf.eM12 = (plg[1].y*(int_rectangle[2].y - int_rectangle[0].y) - plg[2].y*(int_rectangle[1].y - int_rectangle[0].y) - plg[0].y*(int_rectangle[2].y - int_rectangle[1].y)) / det;
+////    xf.eM22 = (int_rectangle[1].x*(plg[2].y - plg[0].y) - int_rectangle[2].x*(plg[1].y - plg[0].y) - int_rectangle[0].x*(plg[2].y - plg[1].y)) / det;
+////    xf.eDy  = (int_rectangle[0].x*(int_rectangle[1].y*plg[2].y - int_rectangle[2].y*plg[1].y) -
+////               int_rectangle[1].x*(int_rectangle[0].y*plg[2].y - int_rectangle[2].y*plg[0].y) +
+////               int_rectangle[2].x*(int_rectangle[0].y*plg[1].y - int_rectangle[1].y*plg[0].y)
 ////               ) / det;
-////    xf.eM22 = (int_rectangle[1].x()*(plg[2].y() - plg[0].y()) - int_rectangle[2].x()*(plg[1].y() - plg[0].y()) - int_rectangle[0].x()*(plg[2].y() - plg[1].y())) / det;
-////    xf.eM22 = (nXSrc*(plg[2].y() - plg[0].y())+nWidth*(plg[2].y() - plg[0].y()) - nXSrc*(plg[1].y() - plg[0].y()) - nXSrc*(plg[2].y() - plg[1].y())) / det;
-////    xf.eM22 = (nWidth*(plg[2].y() - plg[0].y()) - nXSrc*(plg[1].y() ) - nXSrc*(- plg[1].y())) / det;
-////    xf.eM22 = (nWidth*(plg[2].y() - plg[0].y()) ) / det;
+////    xf.eM22 = (int_rectangle[1].x*(plg[2].y - plg[0].y) - int_rectangle[2].x*(plg[1].y - plg[0].y) - int_rectangle[0].x*(plg[2].y - plg[1].y)) / det;
+////    xf.eM22 = (nXSrc*(plg[2].y - plg[0].y)+nWidth*(plg[2].y - plg[0].y) - nXSrc*(plg[1].y - plg[0].y) - nXSrc*(plg[2].y - plg[1].y)) / det;
+////    xf.eM22 = (nWidth*(plg[2].y - plg[0].y) - nXSrc*(plg[1].y ) - nXSrc*(- plg[1].y)) / det;
+////    xf.eM22 = (nWidth*(plg[2].y - plg[0].y) ) / det;
 //
 //
 //    ::double_point src[3];
 //
 //
-//    src[0].x() = nXSrc;
-//    src[0].y() = nYSrc;
-//    src[1].x() = nXSrc + nWidth;
-//    src[1].y() = nYSrc;
-//    src[2].x() = nXSrc;
-//    src[2].y() = nYSrc + nHeight;
+//    src[0].x = nXSrc;
+//    src[0].y = nYSrc;
+//    src[1].x = nXSrc + nWidth;
+//    src[1].y = nYSrc;
+//    src[2].x = nXSrc;
+//    src[2].y = nYSrc + nHeight;
 //
 //
 //    //double dX = nXSrc;
@@ -2422,24 +2422,24 @@ namespace draw2d_cairo
 //    //double dY2 = nYSrc + nHeight;
 //
 //
-//    matrixShear.xx = (plg[1].x() - plg[0].x()) / dWidth;
-//    matrixShear.xy = (plg[2].x() - plg[0].x()) / dHeight;
-//    matrixShear.x0  = (src[0].x()*(src[1].y()*plg[2].x() - src[2].y()*plg[1].x()) -
-//                       src[1].x()*(src[0].y()*plg[2].x() - src[2].y()*plg[0].x()) +
-//                       src[2].x()*(src[0].y()*plg[1].x() - src[1].y()*plg[0].x())
+//    matrixShear.xx = (plg[1].x - plg[0].x) / dWidth;
+//    matrixShear.xy = (plg[2].x - plg[0].x) / dHeight;
+//    matrixShear.x0  = (src[0].x*(src[1].y*plg[2].x - src[2].y*plg[1].x) -
+//                       src[1].x*(src[0].y*plg[2].x - src[2].y*plg[0].x) +
+//                       src[2].x*(src[0].y*plg[1].x - src[1].y*plg[0].x)
 //                      ) / dA;
-//    //matrixShear.x0 = plg[0].x();
+//    //matrixShear.x0 = plg[0].x;
 //    //matrixShear.x0 = 0;
 //
-//    matrixShear.yx = (plg[1].y() - plg[0].y()) / dWidth;
-//    matrixShear.yy = (plg[2].y() - plg[0].y()) / dHeight;
-////      matrixShear.y0  = (src[0].x()*(src[1].y()*plg[2].y() - src[2].y()*plg[1].y()) -
-////               src[1].x()*(src[0].y()*plg[2].y() - src[2].y()*plg[0].y()) +
-////               src[2].x()*(src[0].y()*plg[1].y() - src[1].y()*plg[0].y())
+//    matrixShear.yx = (plg[1].y - plg[0].y) / dWidth;
+//    matrixShear.yy = (plg[2].y - plg[0].y) / dHeight;
+////      matrixShear.y0  = (src[0].x*(src[1].y*plg[2].y - src[2].y*plg[1].y) -
+////               src[1].x*(src[0].y*plg[2].y - src[2].y*plg[0].y) +
+////               src[2].x*(src[0].y*plg[1].y - src[1].y*plg[0].y)
 ////               ) / dA;
-//    matrixShear.y0  = (src[0].x()*(src[1].y()*plg[2].y() - src[2].y()*plg[1].y()) -
-//                       src[1].x()*(src[0].y()*plg[2].y() - src[2].y()*plg[0].y()) +
-//                       src[2].x()*(src[0].y()*plg[1].y() - src[1].y()*plg[0].y())
+//    matrixShear.y0  = (src[0].x*(src[1].y*plg[2].y - src[2].y*plg[1].y) -
+//                       src[1].x*(src[0].y*plg[2].y - src[2].y*plg[0].y) +
+//                       src[2].x*(src[0].y*plg[1].y - src[1].y*plg[0].y)
 //                      ) / dA;
 //
 //    if(fabs(matrixShear.xx) <= 0.001)
@@ -2461,7 +2461,7 @@ namespace draw2d_cairo
 ////               }
 //
 //
-//    //matrixShear.y0 = plg[0].y();
+//    //matrixShear.y0 = plg[0].y;
 //    //matrixShear.y0 = 0;
 ////
 ////      cairo_matrix_t matrix;
@@ -2953,11 +2953,11 @@ namespace draw2d_cairo
 //
 //        cairo_matrix_t matrixOld;
 //
-//        cairo_translate(m_pdc, rectangleTarget.left(), rectangleTarget.right());
+//        cairo_translate(m_pdc, rectangleTarget.left, rectangleTarget.right);
 //
 //        cairo_pattern_get_matrix(ppattern, &matrixOld);
 //
-//        cairo_matrix_init_translate(&matrix, rectangleSource.left(), rectangleSource.top());
+//        cairo_matrix_init_translate(&matrix, rectangleSource.left, rectangleSource.top);
 //
 //        cairo_pattern_set_matrix(ppattern, &matrix);
 //
@@ -3156,7 +3156,7 @@ namespace draw2d_cairo
 
 
 /////////////////////////////////////////////////////////////////////////////
-// special graphics drawing primitives/helpers
+// special graphics drawing prototypes/helpers
 
 
 //::draw2d::brush * PASCAL graphics::GetHalftoneBrush(::particle * pparticle)
@@ -3564,7 +3564,7 @@ namespace draw2d_cairo
 //int graphics::IntersectClipRect(const ::int_rectangle & rectangle)
 //{
 //
-//   return IntersectClipRect(rectangle.left(), rectangle.top(), rectangle.right(), rectangle.bottom());
+//   return IntersectClipRect(rectangle.left, rectangle.top, rectangle.right, rectangle.bottom);
 //
 //}
 
@@ -3603,9 +3603,9 @@ namespace draw2d_cairo
 //
 //    cairo_move_to(m_pdc, x, y);
 //
-//    m_point.x() = x;
+//    m_point.x = x;
 //
-//    m_point.y() = y;
+//    m_point.y = y;
 //
 //    return true;
 //
@@ -3619,9 +3619,9 @@ namespace draw2d_cairo
 
    //   cairo_move_to(m_pdc, x, y);
 
-   //   m_point.x() = x2;
+   //   m_point.x = x2;
 
-   //   m_point.y() = y2;
+   //   m_point.y = y2;
 
    //   //return true;
 
@@ -3834,13 +3834,13 @@ namespace draw2d_cairo
       if (ealign & e_align_right)
       {
 
-         Δx = rectangle.right() - rectangle.left() - sz.cx();
+         Δx = rectangle.right - rectangle.left - sz.cx;
 
       }
       else if (ealign & e_align_horizontal_center)
       {
 
-         Δx = ((rectangle.right() - rectangle.left()) - (sz.cx())) / 2.0;
+         Δx = ((rectangle.right - rectangle.left) - (sz.cx)) / 2.0;
 
       }
       else
@@ -3853,13 +3853,13 @@ namespace draw2d_cairo
       if (ealign & e_align_bottom)
       {
 
-         Δy = rectangle.bottom() - rectangle.top() - e.ascent;
+         Δy = rectangle.bottom - rectangle.top - e.ascent;
 
       }
       else if (ealign & e_align_vertical_center)
       {
 
-         Δy = ((rectangle.bottom() - rectangle.top()) - (e.ascent)) / 2.0;
+         Δy = ((rectangle.bottom - rectangle.top) - (e.ascent)) / 2.0;
 
       }
       else
@@ -3922,9 +3922,9 @@ namespace draw2d_cairo
       for (auto & strLine : stra)
       {
 
-         //cairo_move_to(m_pdc, rectangle.left() + Δx, rectangle.top() + Δy + e.ascent + sz.cy() * (i) / stra.get_size());
+         //cairo_move_to(m_pdc, rectangle.left + Δx, rectangle.top + Δy + e.ascent + sz.cy * (i) / stra.get_size());
 
-         cairo_move_to(m_pdc, rectangle.left() + Δx, rectangle.top() + Δy + e.ascent + e.ascent * i);
+         cairo_move_to(m_pdc, rectangle.left + Δx, rectangle.top + Δy + e.ascent + e.ascent * i);
 
          (*ftext)(m_pdc, strLine);
 
@@ -4093,50 +4093,50 @@ namespace draw2d_cairo
       if (ealign & e_align_bottom)
       {
 
-         cairo_translate(m_pdc, 0, rectangleParam.bottom() - rectangle.height);
+         cairo_translate(m_pdc, 0, rectangleParam.bottom - rectangle.height);
 
-         ptRef.y() = rectangleParam.bottom() - rectangle.height;
+         ptRef.y = rectangleParam.bottom - rectangle.height;
 
       }
       else if (ealign & e_align_vertical_center)
       {
 
-         cairo_translate(m_pdc, 0, ((rectangleParam.top() + rectangleParam.bottom()) / 2 - (rectangle.height / 2)));
+         cairo_translate(m_pdc, 0, ((rectangleParam.top + rectangleParam.bottom) / 2 - (rectangle.height / 2)));
 
-         ptRef.y() = ((rectangleParam.top() + rectangleParam.bottom()) / 2 - (rectangle.height / 2));
+         ptRef.y = ((rectangleParam.top + rectangleParam.bottom) / 2 - (rectangle.height / 2));
 
       }
       else
       {
 
-         cairo_translate(m_pdc, 0, rectangleParam.top());
+         cairo_translate(m_pdc, 0, rectangleParam.top);
 
-         ptRef.y() = rectangleParam.top();
+         ptRef.y = rectangleParam.top;
 
       }
 
       if (ealign & e_align_right)
       {
 
-         cairo_translate(m_pdc, rectangleParam.right() - rectangle.width, 0);
+         cairo_translate(m_pdc, rectangleParam.right - rectangle.width, 0);
 
-         ptRef.x() = rectangleParam.right() - rectangle.width;
+         ptRef.x = rectangleParam.right - rectangle.width;
 
       }
       else if (ealign & e_align_horizontal_center)
       {
 
-         cairo_translate(m_pdc, ((rectangleParam.left() + rectangleParam.right()) / 2) - (rectangle.width / 2), 0);
+         cairo_translate(m_pdc, ((rectangleParam.left + rectangleParam.right) / 2) - (rectangle.width / 2), 0);
 
-         ptRef.x() = ((rectangleParam.left() + rectangleParam.right()) / 2) - (rectangle.width / 2);
+         ptRef.x = ((rectangleParam.left + rectangleParam.right) / 2) - (rectangle.width / 2);
 
       }
       else
       {
 
-         cairo_translate(m_pdc, rectangleParam.left(), 0);
+         cairo_translate(m_pdc, rectangleParam.left, 0);
 
-         ptRef.x() = rectangleParam.left();
+         ptRef.x = rectangleParam.left;
 
       }
 
@@ -4145,7 +4145,7 @@ namespace draw2d_cairo
       if (m_pbrush.is_set())
       {
 
-         _set(m_pbrush, ptRef.x(), ptRef.y());
+         _set(m_pbrush, ptRef.x, ptRef.y);
 
       }
 
@@ -4223,13 +4223,13 @@ namespace draw2d_cairo
    //    if (ealign & e_align_right)
    //    {
 
-   //        Δx = rectangle.right() - rectangle.left() - sz.cx();
+   //        Δx = rectangle.right - rectangle.left - sz.cx;
 
    //    }
    //    else if (ealign & e_align_horizontal_center)
    //    {
 
-   //        Δx = ((rectangle.right() - rectangle.left()) - (sz.cx())) / 2.0;
+   //        Δx = ((rectangle.right - rectangle.left) - (sz.cx)) / 2.0;
 
    //    }
    //    else
@@ -4242,13 +4242,13 @@ namespace draw2d_cairo
    //    if (ealign & e_align_bottom)
    //    {
 
-   //        Δy = rectangle.bottom() - rectangle.top() - e.ascent;
+   //        Δy = rectangle.bottom - rectangle.top - e.ascent;
 
    //    }
    //    else if (ealign & e_align_vertical_center)
    //    {
 
-   //        Δy = ((rectangle.bottom() - rectangle.top()) - (e.ascent)) / 2.0;
+   //        Δy = ((rectangle.bottom - rectangle.top) - (e.ascent)) / 2.0;
 
    //    }
    //    else
@@ -4309,7 +4309,7 @@ namespace draw2d_cairo
    //    for (auto & strLine : stra)
    //    {
 
-   //        cairo_move_to(m_pdc, rectangle.left() + Δx, rectangle.top() + Δy + e.ascent + sz.cy() * (i) / stra.get_size());
+   //        cairo_move_to(m_pdc, rectangle.left + Δx, rectangle.top + Δy + e.ascent + sz.cy * (i) / stra.get_size());
 
    //        (*ftext)(m_pdc, strLine);
 
@@ -4452,9 +4452,9 @@ namespace draw2d_cairo
 
             pango_layout_get_pixel_size(playout, &width, &height);
 
-            //size.cx() = ;
+            //size.cx = ;
 
-            //size.cy() = height;
+            //size.cy = height;
 
             g_object_unref(playout);                         // free the layout
 
@@ -4477,9 +4477,9 @@ namespace draw2d_cairo
 
             cairo_font_extents(m_pdc, &fontextents);
 
-            //size.cx() = x;
+            //size.cx = x;
 
-            //size.cy() = x;
+            //size.cy = x;
 
             return {textextents.x_advance, textextents.height} ;
 
@@ -4497,18 +4497,18 @@ namespace draw2d_cairo
 
       ::double_size size;
 
-      size.cx() = 0.0;
+      size.cx = 0.0;
 
-      size.cy() = 0.0;
+      size.cy = 0.0;
 
       for (auto & strLine: straLines)
       {
 
          auto sizeLine = get_text_extent(strLine, str.length());
 
-         size.cx() = maximum(size.cx(), sizeLine.cx());
+         size.cx = maximum(size.cx, sizeLine.cx);
 
-         size.cy() += sizeLine.cy();
+         size.cy += sizeLine.cy;
 
       }
 
@@ -4585,9 +4585,9 @@ namespace draw2d_cairo
 
          g_object_unref(playout);                         // free the layout
 
-         size.cx() = width * m_pfont->m_dFontWidth;
+         size.cx = width * m_pfont->m_dFontWidth;
 
-         size.cy() = height;
+         size.cy = height;
 
       }
       else
@@ -4607,9 +4607,9 @@ namespace draw2d_cairo
          if (!str.has_character())
          {
 
-            size.cx() = 0;
+            size.cx = 0;
 
-            size.cy() = e.height;
+            size.cy = e.height;
 
             return true;
 
@@ -4628,9 +4628,9 @@ namespace draw2d_cairo
 
          }
 
-         size.cx() = (int) (ex.x_advance * m_pfont->m_dFontWidth);
+         size.cx = (int) (ex.x_advance * m_pfont->m_dFontWidth);
 
-         size.cy() = (int) e.height;
+         size.cy = (int) e.height;
 
       }
 
@@ -4660,7 +4660,7 @@ namespace draw2d_cairo
 
       _synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-      if (rectangle.right() <= rectangle.left() || rectangle.bottom() <= rectangle.top())
+      if (rectangle.right <= rectangle.left || rectangle.bottom <= rectangle.top)
       {
 
          //return false;
@@ -4676,7 +4676,7 @@ namespace draw2d_cairo
 //
 //         information() << "graphics::fill_rectangle (2) : " << rectangle << ", color : " << color;
 //
-//         if((int) rectangle.height() == 472 && (int) rectangle.top() == 0)
+//         if((int) rectangle.height() == 472 && (int) rectangle.top == 0)
 //         {
 //
 //
@@ -4691,8 +4691,8 @@ namespace draw2d_cairo
 //
 //      }
 
-      cairo_rectangle(m_pdc, rectangle.left(), rectangle.top(), rectangle.right() - rectangle.left(),
-                      rectangle.bottom() - rectangle.top());
+      cairo_rectangle(m_pdc, rectangle.left, rectangle.top, rectangle.right - rectangle.left,
+                      rectangle.bottom - rectangle.top);
 
       cairo_fill(m_pdc);
 
@@ -4706,7 +4706,7 @@ namespace draw2d_cairo
 //
 //    _synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
-//    if (rectangle.right() <= rectangle.left() || rectangle.bottom() <= rectangle.top())
+//    if (rectangle.right <= rectangle.left || rectangle.bottom <= rectangle.top)
 //    {
 //
 //        return false;
@@ -4715,7 +4715,7 @@ namespace draw2d_cairo
 //
 //   _set_os_color(color);
 //
-//   cairo_rectangle(m_pdc, rectangle.left(), rectangle.top(), rectangle.right() - rectangle.left(), rectangle.bottom() - rectangle.top());
+//   cairo_rectangle(m_pdc, rectangle.left, rectangle.top, rectangle.right - rectangle.left, rectangle.bottom - rectangle.top);
 //
 //   cairo_fill(m_pdc);
 //
@@ -4776,9 +4776,9 @@ namespace draw2d_cairo
 
       draw();
 
-      m_point.x() = x2;
+      m_point.x = x2;
 
-      m_point.y() = y2;
+      m_point.y = y2;
 
       //return true;
 
@@ -4796,9 +4796,9 @@ namespace draw2d_cairo
 
       draw(ppen);
 
-      m_point.x() = x2;
+      m_point.x = x2;
 
-      m_point.y() = y2;
+      m_point.y = y2;
 
       //return true;
 
@@ -4810,9 +4810,9 @@ namespace draw2d_cairo
 //
 //    _synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
-//    cairo_move_to(m_pdc, point1.x(), point1.y());
+//    cairo_move_to(m_pdc, point1.x, point1.y);
 //
-//    cairo_line_to(m_pdc, point2.x(), point2.y());
+//    cairo_line_to(m_pdc, point2.x, point2.y);
 //
 //    draw(ppen);
 //
@@ -5040,7 +5040,7 @@ namespace draw2d_cairo
 
       /*
 
-      cairo_surface_t * psurface = cairo_surface_create_for_rectangle(psurfaceSrc, rectangle.left(), rectangle.top(), width(rectangle), height(rectangle));
+      cairo_surface_t * psurface = cairo_surface_create_for_rectangle(psurfaceSrc, rectangle.left, rectangle.top, width(rectangle), height(rectangle));
 
       cairo_image_surface_blur(psurface, dRadius);
 
@@ -5067,9 +5067,9 @@ namespace draw2d_cairo
       if (pbrush->m_ebrush == ::draw2d::e_brush_radial_gradient_color)
       {
 
-         cairo_pattern_t * ppattern = cairo_pattern_create_radial(pbrush->m_point.x() - x, pbrush->m_point.y() - y, 0,
-                                                                  pbrush->m_point.x() - x, pbrush->m_point.y() - y,
-                                                                  maximum(pbrush->m_size.cx(), pbrush->m_size.cy()));
+         cairo_pattern_t * ppattern = cairo_pattern_create_radial(pbrush->m_point.x - x, pbrush->m_point.y - y, 0,
+                                                                  pbrush->m_point.x - x, pbrush->m_point.y - y,
+                                                                  maximum(pbrush->m_size.cx, pbrush->m_size.cy));
 
          cairo_pattern_add_color_stop_rgba(ppattern, 0., __expand_float_rgba(pbrush->m_color1));
 
@@ -5083,13 +5083,13 @@ namespace draw2d_cairo
       else if (pbrush->m_ebrush == ::draw2d::e_brush_linear_gradient_point_color)
       {
 
-         double x0 = pbrush->m_point1.x() - x;
+         double x0 = pbrush->m_point1.x - x;
 
-         double y0 = pbrush->m_point1.y() - y;
+         double y0 = pbrush->m_point1.y - y;
 
-         double x1 = pbrush->m_point2.x() - x;
+         double x1 = pbrush->m_point2.x - x;
 
-         double y1 = pbrush->m_point2.y() - y;
+         double y1 = pbrush->m_point2.y - y;
 
          cairo_pattern_t * ppattern = cairo_pattern_create_linear(x0, y0, x1, y1);
 
@@ -5134,11 +5134,11 @@ namespace draw2d_cairo
 
          /* Add a Coons patch */
          cairo_mesh_pattern_begin_patch(ppattern);
-         cairo_mesh_pattern_move_to(ppattern, inner.right(), inner.top());
-         cairo_mesh_pattern_line_to(ppattern, inner.right(), outer.top());
-         cairo_mesh_pattern_curve_to(ppattern, inner.right() + KR, outer.top(), outer.right(), inner.top() - KR, outer.right(),
-                                     inner.top());
-         cairo_mesh_pattern_line_to(ppattern, inner.right(), inner.top());
+         cairo_mesh_pattern_move_to(ppattern, inner.right, inner.top);
+         cairo_mesh_pattern_line_to(ppattern, inner.right, outer.top);
+         cairo_mesh_pattern_curve_to(ppattern, inner.right + KR, outer.top, outer.right, inner.top - KR, outer.right,
+                                     inner.top);
+         cairo_mesh_pattern_line_to(ppattern, inner.right, inner.top);
          //cairo_mesh_pattern_curve_to (pattern, 60,  30, 130,  60, 100, 100);
          //cairo_mesh_pattern_curve_to (pattern, 60,  70,  30, 130,   0, 100);
          //cairo_mesh_pattern_curve_to (pattern, 30,  70, -30,  30,   0, 0);
@@ -5151,10 +5151,10 @@ namespace draw2d_cairo
 
 
          cairo_mesh_pattern_begin_patch(ppattern);
-         cairo_mesh_pattern_move_to(ppattern, inner.right(), inner.top());
-         cairo_mesh_pattern_line_to(ppattern, outer.right(), inner.top());
-         cairo_mesh_pattern_line_to(ppattern, outer.right(), inner.bottom());
-         cairo_mesh_pattern_line_to(ppattern, inner.right(), inner.bottom());
+         cairo_mesh_pattern_move_to(ppattern, inner.right, inner.top);
+         cairo_mesh_pattern_line_to(ppattern, outer.right, inner.top);
+         cairo_mesh_pattern_line_to(ppattern, outer.right, inner.bottom);
+         cairo_mesh_pattern_line_to(ppattern, inner.right, inner.bottom);
          cairo_mesh_pattern_set_corner_color_rgba(ppattern, 0, __expand_double_rgba(pbrush->m_color1));
          cairo_mesh_pattern_set_corner_color_rgba(ppattern, 1, __expand_double_rgba(pbrush->m_color2));
          cairo_mesh_pattern_set_corner_color_rgba(ppattern, 2, __expand_double_rgba(pbrush->m_color2));
@@ -5194,11 +5194,11 @@ namespace draw2d_cairo
 
 
          cairo_mesh_pattern_begin_patch(ppattern);
-         cairo_mesh_pattern_move_to(ppattern, inner.right(), inner.bottom());
-         cairo_mesh_pattern_line_to(ppattern, outer.right(), inner.bottom());
-         cairo_mesh_pattern_curve_to(ppattern, outer.right(), inner.bottom() + KR, inner.right() + KR, outer.bottom(),
-                                     inner.right(), outer.bottom());
-         cairo_mesh_pattern_line_to(ppattern, inner.right(), inner.bottom());
+         cairo_mesh_pattern_move_to(ppattern, inner.right, inner.bottom);
+         cairo_mesh_pattern_line_to(ppattern, outer.right, inner.bottom);
+         cairo_mesh_pattern_curve_to(ppattern, outer.right, inner.bottom + KR, inner.right + KR, outer.bottom,
+                                     inner.right, outer.bottom);
+         cairo_mesh_pattern_line_to(ppattern, inner.right, inner.bottom);
          cairo_mesh_pattern_set_corner_color_rgba(ppattern, 0, __expand_double_rgba(pbrush->m_color1));
          cairo_mesh_pattern_set_corner_color_rgba(ppattern, 1, __expand_double_rgba(pbrush->m_color2));
          cairo_mesh_pattern_set_corner_color_rgba(ppattern, 2, __expand_double_rgba(pbrush->m_color2));
@@ -5207,10 +5207,10 @@ namespace draw2d_cairo
 
 
          cairo_mesh_pattern_begin_patch(ppattern);
-         cairo_mesh_pattern_move_to(ppattern, inner.right(), inner.bottom());
-         cairo_mesh_pattern_line_to(ppattern, inner.right(), outer.bottom());
-         cairo_mesh_pattern_line_to(ppattern, inner.left(), outer.bottom());
-         cairo_mesh_pattern_line_to(ppattern, inner.left(), inner.bottom());
+         cairo_mesh_pattern_move_to(ppattern, inner.right, inner.bottom);
+         cairo_mesh_pattern_line_to(ppattern, inner.right, outer.bottom);
+         cairo_mesh_pattern_line_to(ppattern, inner.left, outer.bottom);
+         cairo_mesh_pattern_line_to(ppattern, inner.left, inner.bottom);
          cairo_mesh_pattern_set_corner_color_rgba(ppattern, 0, __expand_double_rgba(pbrush->m_color1));
          cairo_mesh_pattern_set_corner_color_rgba(ppattern, 1, __expand_double_rgba(pbrush->m_color2));
          cairo_mesh_pattern_set_corner_color_rgba(ppattern, 2, __expand_double_rgba(pbrush->m_color2));
@@ -5219,10 +5219,10 @@ namespace draw2d_cairo
 
 
          cairo_mesh_pattern_begin_patch(ppattern);
-         cairo_mesh_pattern_move_to(ppattern, inner.left(), inner.top());
-         cairo_mesh_pattern_line_to(ppattern, inner.right(), inner.top());
-         cairo_mesh_pattern_line_to(ppattern, inner.right(), inner.bottom());
-         cairo_mesh_pattern_line_to(ppattern, inner.left(), inner.bottom());
+         cairo_mesh_pattern_move_to(ppattern, inner.left, inner.top);
+         cairo_mesh_pattern_line_to(ppattern, inner.right, inner.top);
+         cairo_mesh_pattern_line_to(ppattern, inner.right, inner.bottom);
+         cairo_mesh_pattern_line_to(ppattern, inner.left, inner.bottom);
          cairo_mesh_pattern_set_corner_color_rgba(ppattern, 0, __expand_double_rgba(pbrush->m_color1));
          cairo_mesh_pattern_set_corner_color_rgba(ppattern, 1, __expand_double_rgba(pbrush->m_color1));
          cairo_mesh_pattern_set_corner_color_rgba(ppattern, 2, __expand_double_rgba(pbrush->m_color1));
@@ -5238,11 +5238,11 @@ namespace draw2d_cairo
 
 
          cairo_mesh_pattern_begin_patch(ppattern);
-         cairo_mesh_pattern_move_to(ppattern, inner.left(), inner.bottom());
-         cairo_mesh_pattern_line_to(ppattern, inner.left(), outer.bottom());
-         cairo_mesh_pattern_curve_to(ppattern, inner.left() - KR, outer.bottom(), outer.left(), inner.bottom() + KR, outer.left(),
-                                     inner.bottom());
-         cairo_mesh_pattern_line_to(ppattern, inner.left(), inner.bottom());
+         cairo_mesh_pattern_move_to(ppattern, inner.left, inner.bottom);
+         cairo_mesh_pattern_line_to(ppattern, inner.left, outer.bottom);
+         cairo_mesh_pattern_curve_to(ppattern, inner.left - KR, outer.bottom, outer.left, inner.bottom + KR, outer.left,
+                                     inner.bottom);
+         cairo_mesh_pattern_line_to(ppattern, inner.left, inner.bottom);
          cairo_mesh_pattern_set_corner_color_rgba(ppattern, 0, __expand_double_rgba(pbrush->m_color1));
          cairo_mesh_pattern_set_corner_color_rgba(ppattern, 1, __expand_double_rgba(pbrush->m_color2));
          cairo_mesh_pattern_set_corner_color_rgba(ppattern, 2, __expand_double_rgba(pbrush->m_color2));
@@ -5251,10 +5251,10 @@ namespace draw2d_cairo
 
 
          cairo_mesh_pattern_begin_patch(ppattern);
-         cairo_mesh_pattern_move_to(ppattern, inner.left(), inner.top());
-         cairo_mesh_pattern_line_to(ppattern, outer.left(), inner.top());
-         cairo_mesh_pattern_line_to(ppattern, outer.left(), inner.bottom());
-         cairo_mesh_pattern_line_to(ppattern, inner.left(), inner.bottom());
+         cairo_mesh_pattern_move_to(ppattern, inner.left, inner.top);
+         cairo_mesh_pattern_line_to(ppattern, outer.left, inner.top);
+         cairo_mesh_pattern_line_to(ppattern, outer.left, inner.bottom);
+         cairo_mesh_pattern_line_to(ppattern, inner.left, inner.bottom);
          cairo_mesh_pattern_set_corner_color_rgba(ppattern, 0, __expand_double_rgba(pbrush->m_color1));
          cairo_mesh_pattern_set_corner_color_rgba(ppattern, 1, __expand_double_rgba(pbrush->m_color2));
          cairo_mesh_pattern_set_corner_color_rgba(ppattern, 2, __expand_double_rgba(pbrush->m_color2));
@@ -5273,11 +5273,11 @@ namespace draw2d_cairo
 
 
          cairo_mesh_pattern_begin_patch(ppattern);
-         cairo_mesh_pattern_move_to(ppattern, inner.left(), inner.top());
-         cairo_mesh_pattern_line_to(ppattern, outer.left(), inner.top());
-         cairo_mesh_pattern_curve_to(ppattern, outer.left(), inner.top() - KR, inner.left() - KR, outer.top(), inner.left(),
-                                     outer.top());
-         cairo_mesh_pattern_line_to(ppattern, inner.left(), inner.top());
+         cairo_mesh_pattern_move_to(ppattern, inner.left, inner.top);
+         cairo_mesh_pattern_line_to(ppattern, outer.left, inner.top);
+         cairo_mesh_pattern_curve_to(ppattern, outer.left, inner.top - KR, inner.left - KR, outer.top, inner.left,
+                                     outer.top);
+         cairo_mesh_pattern_line_to(ppattern, inner.left, inner.top);
          cairo_mesh_pattern_set_corner_color_rgba(ppattern, 0, __expand_double_rgba(pbrush->m_color1));
          cairo_mesh_pattern_set_corner_color_rgba(ppattern, 1, __expand_double_rgba(pbrush->m_color2));
          cairo_mesh_pattern_set_corner_color_rgba(ppattern, 2, __expand_double_rgba(pbrush->m_color2));
@@ -5286,10 +5286,10 @@ namespace draw2d_cairo
 
 
          cairo_mesh_pattern_begin_patch(ppattern);
-         cairo_mesh_pattern_move_to(ppattern, inner.left(), inner.top());
-         cairo_mesh_pattern_line_to(ppattern, inner.left(), outer.top());
-         cairo_mesh_pattern_line_to(ppattern, inner.right(), outer.top());
-         cairo_mesh_pattern_line_to(ppattern, inner.right(), inner.top());
+         cairo_mesh_pattern_move_to(ppattern, inner.left, inner.top);
+         cairo_mesh_pattern_line_to(ppattern, inner.left, outer.top);
+         cairo_mesh_pattern_line_to(ppattern, inner.right, outer.top);
+         cairo_mesh_pattern_line_to(ppattern, inner.right, inner.top);
          cairo_mesh_pattern_set_corner_color_rgba(ppattern, 0, __expand_double_rgba(pbrush->m_color1));
          cairo_mesh_pattern_set_corner_color_rgba(ppattern, 1, __expand_double_rgba(pbrush->m_color2));
          cairo_mesh_pattern_set_corner_color_rgba(ppattern, 2, __expand_double_rgba(pbrush->m_color2));
@@ -6066,14 +6066,14 @@ namespace draw2d_cairo
    bool graphics::_set(const ::double_arc & arc)
    {
 
-      if (arc.radius().cx() <= 0.0000001)
+      if (arc.radius().cx <= 0.0000001)
       {
 
          return false;
 
       }
 
-      if (arc.radius().cy() <= 0.0000001)
+      if (arc.radius().cy <= 0.0000001)
       {
 
          return 0;
@@ -6084,20 +6084,20 @@ namespace draw2d_cairo
 
       cairo_keep keep(m_pdc);
 
-      cairo_translate(m_pdc, arc.center().x(), arc.center().y());
+      cairo_translate(m_pdc, arc.center().x, arc.center().y);
 
-      cairo_scale(m_pdc, 1.0, arc.radius().cy() / arc.radius().cx());
+      cairo_scale(m_pdc, 1.0, arc.radius().cy / arc.radius().cx);
 
       if (arc.m_angleExt > 0)
       {
 
-         cairo_arc(m_pdc, 0.0, 0.0, arc.radius().cx(), arc.m_angleBeg, arc.m_angleEnd2);
+         cairo_arc(m_pdc, 0.0, 0.0, arc.radius().cx, arc.m_angleBeg, arc.m_angleEnd2);
 
       }
       else
       {
 
-         cairo_arc_negative(m_pdc, 0.0, 0.0, arc.radius().cx(), arc.m_angleBeg, arc.m_angleEnd2);
+         cairo_arc_negative(m_pdc, 0.0, 0.0, arc.radius().cx, arc.m_angleBeg, arc.m_angleEnd2);
 
       }
 
@@ -6120,16 +6120,16 @@ namespace draw2d_cairo
 //
 //      cairo_get_current_point (m_pdc, &x, &y);
 //
-//      if(x != line.m_p1.x() || y != line.m_p1.y())
+//      if(x != line.m_p1.x || y != line.m_p1.y)
 //      {
 //
-//         cairo_move_to(m_pdc, line.m_p1.x(), line.m_p1.y());
+//         cairo_move_to(m_pdc, line.m_p1.x, line.m_p1.y);
 //
 //      }
 //      else
 //      {
 //
-//         cairo_line_to(m_pdc, line.m_p1.x(), line.m_p1.y());
+//         cairo_line_to(m_pdc, line.m_p1.x, line.m_p1.y);
 //
 //      }
 //
@@ -6137,11 +6137,11 @@ namespace draw2d_cairo
 //    else
 //    {
 //
-//      cairo_move_to(m_pdc, line.m_p1.x(), line.m_p1.y());
+//      cairo_move_to(m_pdc, line.m_p1.x, line.m_p1.y);
 //
 //    }
 //
-//    cairo_line_to(m_pdc, line.m_p2.x(), line.m_p2.y());
+//    cairo_line_to(m_pdc, line.m_p2.x, line.m_p2.y);
 //
 //    return true;
 //
@@ -6162,10 +6162,10 @@ namespace draw2d_cairo
 
          cairo_get_current_point(m_pdc, &x, &y);
 
-         if (is_different(x, line.m_p1.x(), 0.0001) || is_different(y, line.m_p1.y(), 0.0001))
+         if (is_different(x, line.m_p1.x, 0.0001) || is_different(y, line.m_p1.y, 0.0001))
          {
 
-            cairo_line_to(m_pdc, line.m_p1.x(), line.m_p1.y());
+            cairo_line_to(m_pdc, line.m_p1.x, line.m_p1.y);
 
          }
 
@@ -6173,11 +6173,11 @@ namespace draw2d_cairo
       else
       {
 
-         cairo_move_to(m_pdc, line.m_p1.x(), line.m_p1.y());
+         cairo_move_to(m_pdc, line.m_p1.x, line.m_p1.y);
 
       }
 
-      cairo_line_to(m_pdc, line.m_p2.x(), line.m_p2.y());
+      cairo_line_to(m_pdc, line.m_p2.x, line.m_p2.y);
 
       return true;
 
@@ -6205,16 +6205,16 @@ namespace draw2d_cairo
 
          cairo_get_current_point(m_pdc, &x, &y);
 
-         if (x != pointa[0].x() || y != pointa[0].y())
+         if (x != pointa[0].x || y != pointa[0].y)
          {
 
-            cairo_move_to(m_pdc, pointa[0].x(), pointa[0].y());
+            cairo_move_to(m_pdc, pointa[0].x, pointa[0].y);
 
          }
          else
          {
 
-            cairo_line_to(m_pdc, pointa[0].x(), pointa[0].y());
+            cairo_line_to(m_pdc, pointa[0].x, pointa[0].y);
 
          }
 
@@ -6222,14 +6222,14 @@ namespace draw2d_cairo
       else
       {
 
-         cairo_move_to(m_pdc, pointa[0].x(), pointa[0].y());
+         cairo_move_to(m_pdc, pointa[0].x, pointa[0].y);
 
       }
 
       for (::collection::index i = 1; i < pointa.get_count(); i++)
       {
 
-         cairo_line_to(m_pdc, pointa[i].x(), pointa[i].y());
+         cairo_line_to(m_pdc, pointa[i].x, pointa[i].y);
 
       }
 
@@ -6259,16 +6259,16 @@ namespace draw2d_cairo
 
          cairo_get_current_point(m_pdc, &x, &y);
 
-         if (x != pointa[0].x() || y != pointa[0].y())
+         if (x != pointa[0].x || y != pointa[0].y)
          {
 
-            cairo_move_to(m_pdc, pointa[0].x(), pointa[0].y());
+            cairo_move_to(m_pdc, pointa[0].x, pointa[0].y);
 
          }
          else
          {
 
-            cairo_line_to(m_pdc, pointa[0].x(), pointa[0].y());
+            cairo_line_to(m_pdc, pointa[0].x, pointa[0].y);
 
          }
 
@@ -6276,14 +6276,14 @@ namespace draw2d_cairo
       else
       {
 
-         cairo_move_to(m_pdc, pointa[0].x(), pointa[0].y());
+         cairo_move_to(m_pdc, pointa[0].x, pointa[0].y);
 
       }
 
       for (::collection::index i = 1; i < pointa.get_count(); i++)
       {
 
-         cairo_line_to(m_pdc, pointa[i].x(), pointa[i].y());
+         cairo_line_to(m_pdc, pointa[i].x, pointa[i].y);
 
       }
 
@@ -6387,8 +6387,8 @@ namespace draw2d_cairo
 //
 //    cairo_rectangle(
 //      m_pdc,
-//      rectangle.left(),
-//      rectangle.top(),
+//      rectangle.left,
+//      rectangle.top,
 //      rectangle.width(),
 //      rectangle.height());
 //
@@ -6404,8 +6404,8 @@ namespace draw2d_cairo
 
       cairo_rectangle(
          m_pdc,
-         rectangle.left(),
-         rectangle.top(),
+         rectangle.left,
+         rectangle.top,
          rectangle.width(),
          rectangle.height());
 

@@ -281,19 +281,19 @@ namespace user
       }
       inline bool set_window_position(::zorder zorder, const ::int_point & point, const ::size & size, edisplay edisplay = e_display_default, useractivation useractivation = ::user::e_activation_default)
       {
-         return set_window_position(zorder, point.x(), point.y(), size.cx(), size.cy(), edisplay, useractivation);
+         return set_window_position(zorder, point.x, point.y, size.cx, size.cy, edisplay, useractivation);
       }
       inline bool window_move(const ::int_point & point)
       {
-         return window_move(point.x(), point.y());
+         return window_move(point.x, point.y);
       }
       inline bool window_size(const ::size & size, edisplay edisplay = e_display_default, useractivation useractivation = ::user::e_activation_default)
       {
-         return window_size(size.cx(), size.cy(), edisplay, useractivation);
+         return window_size(size.cx, size.cy, edisplay, useractivation);
       }
       inline bool window_place(const ::int_point & point, const ::size & size, edisplay edisplay = e_display_default, useractivation useractivation = ::user::e_activation_default)
       {
-         return window_place(point.x(), point.y(), size.cx(), size.cy(), edisplay, useractivation);
+         return window_place(point.x, point.y, size.cx, size.cy, edisplay, useractivation);
       }
       inline bool set_window_position(::zorder zorder, const ::double_rectangle & rectangle, edisplay edisplay = e_display_default, useractivation useractivation = ::user::e_activation_default)
       {
@@ -385,7 +385,7 @@ namespace user
       inline void ClientToParent(POINT32* ppoint) { ::point_add(ppoint, top_left()); }
 
 
-      inline void this->rectangle(RECT32* prect) const { prect->left() = 0; prect->top() = 0; *(SIZE32*)&prect->right() = ui_state().m_size; }
+      inline void this->rectangle(RECT32* prect) const { prect->left = 0; prect->top = 0; *(SIZE32*)&prect->right = ui_state().m_size; }
       virtual void window_rectangle(RECT32* prect) const;
       inline void window_request_rect(RECT32 * prect) const { ::set_rect_point_size(prect, request_state().m_point, request_state().m_size); }
       inline void parent_client_rectangle(RECT32* prect) const { ::set_rect_point_size(prect, ui_state().m_point, ui_state().m_size); }

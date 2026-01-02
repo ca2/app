@@ -108,13 +108,13 @@ namespace console
 //         }
 //         if(psession->get_cursor_position(&pt))
 //         {
-//            if(!m_bHoverMouse && point.x() == 0 && point.y() == 0)
+//            if(!m_bHoverMouse && point.x == 0 && point.y == 0)
 //            {
 //               m_timeLastHover= ::time::now();
 //               m_bHoverMouse = true;
 //
 //            }
-//            else if(m_bHoverMouse && (point.x() > 10 || point.y() > 0))
+//            else if(m_bHoverMouse && (point.x > 10 || point.y > 0))
 //            {
 //               m_bHoverMouse = false;
 //            }
@@ -277,15 +277,15 @@ namespace console
          ::int_rectangle rectangleWindow;
          window_rectangle(rectangleWindow);
          double a = (double) rectangleDesktop.height() / (double) rectangleDesktop.width();
-         if(rectangleWindow.left() < (rectangleDesktop.width() / 2))
+         if(rectangleWindow.left < (rectangleDesktop.width() / 2))
          {
             // to the left
-            if(rectangleWindow.top() < rectangleWindow.left() * a)
+            if(rectangleWindow.top < rectangleWindow.left * a)
             {
                // top
                m_eposition = e_position_top;
             }
-            else if(rectangleWindow.top() > (rectangleDesktop.height() - rectangleWindow.left() * a))
+            else if(rectangleWindow.top > (rectangleDesktop.height() - rectangleWindow.left * a))
             {
                // bottom
                m_eposition = e_position_bottom;
@@ -300,12 +300,12 @@ namespace console
          {
             // to the right
             // to the left
-            if(rectangleWindow.top() > rectangleWindow.left() * a)
+            if(rectangleWindow.top > rectangleWindow.left * a)
             {
                // bottom
                m_eposition = e_position_bottom;
             }
-            else if(rectangleWindow.top() < (rectangleDesktop.height() - rectangleWindow.left() * a))
+            else if(rectangleWindow.top < (rectangleDesktop.height() - rectangleWindow.left * a))
             {
                // top
                m_eposition = e_position_top;
@@ -346,12 +346,12 @@ namespace console
       bool bChanged = false;
       if(rectangleWindow.width() < 400)
       {
-         rectangleWindow.right() = rectangleWindow.left() + 400;
+         rectangleWindow.right = rectangleWindow.left + 400;
          bChanged = true;
       }
       if(rectangleWindow.height() < 200)
       {
-         rectangleWindow.bottom() = rectangleWindow.top() + 200;
+         rectangleWindow.bottom = rectangleWindow.top + 200;
          bChanged = true;
       }
 
@@ -500,15 +500,15 @@ namespace console
 
       psystem->get_monitor_rectangle(0,int_rectangle);
 
-      int iHeight = m_pframe->calc_caption_height(::e_display_normal) + m_pframe->m_rectangleMarginNormal.top();
+      int iHeight = m_pframe->calc_caption_height(::e_display_normal) + m_pframe->m_rectangleMarginNormal.top;
 
-      rectangle.left() += 100;
+      rectangle.left += 100;
 
-      rectangle.top() = rectangle.bottom() - 100 - iHeight;
+      rectangle.top = rectangle.bottom - 100 - iHeight;
 
-      rectangle.bottom() -= 100;
+      rectangle.bottom -= 100;
 
-      rectangle.right() -= 400;
+      rectangle.right -= 400;
 
       set_appearance(::e_display_minimal);
 

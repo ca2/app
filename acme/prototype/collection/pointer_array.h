@@ -188,7 +188,7 @@ public:
 
    }
  
-   template < primitive_container CONTAINER >
+   template < prototype_container CONTAINER >
    ::collection::index append(const CONTAINER & a)
    {
 
@@ -504,7 +504,7 @@ public:
       for (::collection::index i = this->get_upper_bound(); i >= 0; i--)
       {
 
-         if (typeid(*this->element_at(i).m_p) == typeid(TYPE))
+         if (typeid(*this->element_at(i).m_p) == ::type<TYPE>())
          {
 
             this->erase_at(i);
@@ -801,7 +801,7 @@ public:
 
 
 
-   //template < primitive_container ARRAY >
+   //template < prototype_container ARRAY >
    //::collection::count add(const ARRAY * pa)
    //{
 
@@ -816,7 +816,7 @@ public:
 
    //}
 
-   template < primitive_container ARRAY >
+   template < prototype_container ARRAY >
    ::collection::count add(const ::pointer<ARRAY>& pa)
    {
 
@@ -831,7 +831,7 @@ public:
 
    }
 
-   template < primitive_container ARRAY >
+   template < prototype_container ARRAY >
    ::collection::count add(const ARRAY & a)
    {
 
@@ -864,7 +864,7 @@ public:
    }
 
 
-   template < primitive_container ARRAY >
+   template < prototype_container ARRAY >
    ::collection::count append_ptra(const ARRAY* pptra)
    {
 
@@ -1447,7 +1447,7 @@ public:
 //      for(::collection::index i = this->get_upper_bound(); i >= 0; i--)
 //      {
 //
-//         if(typeid(*this->element_at(i).m_p) == typeid(TYPE))
+//         if(typeid(*this->element_at(i).m_p) == ::type<TYPE>())
 //         {
 //
 //            this->erase_at(i);

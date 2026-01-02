@@ -29,7 +29,7 @@ public:
    memory_container(memsize size = 0);
    memory_container(const memory_container & container);
    memory_container(const void * pdata, memsize size);
-   template < primitive_payload PAYLOAD >
+   template < prototype_payload PAYLOAD >
    memory_container(PAYLOAD & payload);
    memory_container(memory_base & memory);
    memory_container(const ::pointer < memory_base > & pmemory);
@@ -60,7 +60,7 @@ public:
    void from_string(const ::wide_character * pwsz);
    void from_string(const ::scoped_string & scopedstr);
    void from_string(const ::string & str);
-   template < primitive_payload PAYLOAD >
+   template < prototype_payload PAYLOAD >
    void from_string(const PAYLOAD & payload);
    ::string as_string() const override;
    virtual ::memory as_memory() const;
@@ -183,7 +183,7 @@ inline void memory_container ::from_string(const ::string & str)
 }
 
 
-template < primitive_payload PAYLOAD >
+template < prototype_payload PAYLOAD >
 inline void memory_container ::from_string(const PAYLOAD & payload)
 {
 
@@ -226,7 +226,7 @@ inline ::memory memory_container::as_memory() const
 }
 
 
-template < primitive_payload PAYLOAD >
+template < prototype_payload PAYLOAD >
 memory_container::memory_container(PAYLOAD & payload)
 {
 

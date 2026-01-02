@@ -56,14 +56,6 @@
 //   return ( (info.kp_proc.p_flag & P_TRACED) != 0 );
 //}
 //
-//
-//
-//
-//
-//
-//
-//
-//
 //unsigned int
 ////WINAPI
 //FormatMessage(
@@ -86,10 +78,6 @@
 //}
 //
 //void ns_log(const ::scoped_string & scopedstrLog);
-//
-//
-//
-//
 //
 //void information(const ::wide_character * pOutputString)
 //{

@@ -112,7 +112,7 @@ namespace user
       while (iLayout >= 0)
       {
 
-         m_pscrolllayoutY->m_scrollstatea[iLayout].set_dimension(size.cy());
+         m_pscrolllayoutY->m_scrollstatea[iLayout].set_dimension(size.cy);
 
          iLayout--;
 
@@ -147,11 +147,11 @@ namespace user
 
             int iScrollBarWidth = get_int(pstyle, e_int_scroll_bar_thickness);
 
-            rectangleNewPos.left() = rectangleX.right() - iScrollBarWidth;
-            rectangleNewPos.top() = rectangleX.top();
-            rectangleNewPos.right() = rectangleX.right();
-            //rectangleNewPos.bottom() = rectangleNewPos.top() + rectangleX.height() - get_final_x_scroll_bar_width();
-            rectangleNewPos.bottom() = rectangleNewPos.top() + rectangleX.height() - iScrollBarWidth;
+            rectangleNewPos.left = rectangleX.right - iScrollBarWidth;
+            rectangleNewPos.top = rectangleX.top;
+            rectangleNewPos.right = rectangleX.right;
+            //rectangleNewPos.bottom = rectangleNewPos.top + rectangleX.height() - get_final_x_scroll_bar_width();
+            rectangleNewPos.bottom = rectangleNewPos.top + rectangleX.height() - iScrollBarWidth;
 
             m_pscrollbarY->place(rectangleNewPos, elayout);
 
@@ -337,7 +337,7 @@ namespace user
    //   //if (m_pscrollbarY.is_set())
    //   //{
 
-   //   //   m_pscrollbarY->m_scrollinfo.nPos = m_pointScroll.y();
+   //   //   m_pscrollbarY->m_scrollinfo.nPos = m_pointScroll.y;
 
    //   //}
 
@@ -480,10 +480,10 @@ namespace user
    //bool scroll_base_y::validate_context_offset(int_point & point)
    //{
 
-   //   if (point.y() < 0)
+   //   if (point.y < 0)
    //   {
 
-   //      point.y() = 0;
+   //      point.y = 0;
 
    //   }
    //   else
@@ -493,10 +493,10 @@ namespace user
 
    //      auto sizePage = get_page_size();
 
-   //      if (point.y() > maximum(0, sizeTotal.cy() - sizePage.cy()))
+   //      if (point.y > maximum(0, sizeTotal.cy - sizePage.cy))
    //      {
 
-   //         point.y() = (int)maximum(0, sizeTotal.cy() - sizePage.cy());
+   //         point.y = (int)maximum(0, sizeTotal.cy - sizePage.cy);
 
    //      }
 
@@ -556,12 +556,12 @@ namespace user
 
       y = minimum_maximum(y, scrollstatey.m_dMinimum, scrollstatey.m_dMaximum - scrollstatey.m_dPage);
 
-      //point.y() = minimum_maximum(point.y(), scrollstatey.m_iMinimum, scrollstatey.m_iMaximum);
+      //point.y = minimum_maximum(point.y, scrollstatey.m_iMinimum, scrollstatey.m_iMaximum);
 
-            //if (point.x() < 0)
+            //if (point.x < 0)
             //{
 
-            //   point.x() = 0;
+            //   point.x = 0;
 
             //}
             //else
@@ -571,10 +571,10 @@ namespace user
 
             //   auto sizePage = get_page_size();
 
-            //   if (point.x() > maximum(0, sizeTotal.cx() - sizePage.cx()))
+            //   if (point.x > maximum(0, sizeTotal.cx - sizePage.cx))
             //   {
 
-            //      point.x() = (int)maximum(0, sizeTotal.cx() - sizePage.cx());
+            //      point.x = (int)maximum(0, sizeTotal.cx - sizePage.cx);
 
             //   }
 
@@ -608,9 +608,9 @@ namespace user
 
       auto rectangleX = this->rectangle();
 
-      int iTotalHeight = (int)sizeTotal.cy();
+      int iTotalHeight = (int)sizeTotal.cy;
 
-      int iTotalWidth = (int)sizeTotal.cx();
+      int iTotalWidth = (int)sizeTotal.cx;
 
       int iClientHeight = rectangleX.height();
 
@@ -687,7 +687,7 @@ namespace user
       //else
       //{
 
-      //   pscroll->m_nPos = (int)get_context_offset().y();
+      //   pscroll->m_nPos = (int)get_context_offset().y;
 
       //}
 

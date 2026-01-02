@@ -13,10 +13,6 @@
 //         virtual public ::object
 //      {
 //         public:
-//
-//
-//
-//
 //            out(::particle * pparticle);
 //            virtual ~out();
 //

@@ -250,10 +250,6 @@
 //   return dynamic_cast <T*>((T2*)p);
 //}
 //
-//
-//
-//
-//
 //template < class T >
 //template < typename T2 >
 //inline pointer < T > & pointer < T > ::reset (T2 * pNew)
@@ -505,10 +501,6 @@
 //   return !operator == (t1, t2);
 //
 //}
-//
-//
-//
-//
 ////template < typename TYPE >
 //////inline bool is_set(const ::pointer<TYPE>& p)
 ////{

@@ -85,7 +85,7 @@ namespace file
 } // namespace file
 
 
-template < primitive_array ARRAY >
+template < prototype_array ARRAY >
 inline ::file::path_array_base operator / (const ::file::path & pathBase, const ARRAY & straRelativeItems)
 {
 

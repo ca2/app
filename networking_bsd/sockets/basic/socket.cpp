@@ -218,6 +218,7 @@ namespace sockets_bsd
 #else
 
       s = ::_open_socket(af, iType | SOCK_CLOEXEC, protno);
+      //s = ::_open_socket(af, iType, protno);
 
 #endif
 
@@ -230,6 +231,9 @@ namespace sockets_bsd
          throw ::exception(error_socket, string("socket() failed: ") + bsd_socket_error(networking_last_error()));
          return INVALID_SOCKET;
       }
+
+      information() << "socket::CreateSocket socket = " << (int) s;
+
       //attach(s);
       OnOptions(af, iType, protno, s);
       //attach(INVALID_SOCKET);

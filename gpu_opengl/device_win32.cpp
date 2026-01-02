@@ -125,8 +125,8 @@ namespace gpu_opengl
 
          if (!::SetWindowPos(m_hwnd,
             nullptr, 0, 0,
-            size.cx()
-            , size.cy(), SWP_NOMOVE | SWP_NOZORDER | SWP_NOACTIVATE
+            size.cx
+            , size.cy, SWP_NOMOVE | SWP_NOZORDER | SWP_NOACTIVATE
             | SWP_NOCOPYBITS | SWP_NOSENDCHANGING
             | SWP_NOREPOSITION | SWP_NOREDRAW))
          {
@@ -153,8 +153,8 @@ namespace gpu_opengl
       dwStyle &= ~WS_BORDER;
       int x = 0;
       int y = 0;
-      int nWidth = size.cx();
-      int nHeight = size.cy();
+      int nWidth = size.cx;
+      int nHeight = size.cy;
       HWND hWndParent = nullptr;
       HMENU hMenu = nullptr;
       HINSTANCE hInstance = ::GetModuleHandleW(L"gpu_opengl.dll");
@@ -654,8 +654,8 @@ HGLRC hglrc = loaded_wglCreateContextAttribsARB(hdc, 0, contextAttribs);
    //      //memset(&BIH, 0, sizeof(pwindow->m_bitmapinfoheaderProto));
 
    //      //BIH.biSize = sizeof(pwindow->m_bitmapinfoheaderProto);        // размер структуры
-   //      //BIH.biWidth = m_size.cx();       // геометрия
-   //      //BIH.biHeight = m_size.cy();      // битмапа
+   //      //BIH.biWidth = m_size.cx;       // геометрия
+   //      //BIH.biHeight = m_size.cy;      // битмапа
    //      //BIH.biPlanes = 1;          // один план
    //      //BIH.biBitCount = 32;       // 24 bits per pixel
    //      //BIH.biCompression = BI_RGB;// без сжатия// создаем новый DC в памяти
@@ -740,7 +740,7 @@ HGLRC hglrc = loaded_wglCreateContextAttribsARB(hdc, 0, contextAttribs);
 
    //   //#ifdef WINDOWS_DESKTOP
    //   //
-   //   //      ::SetWindowPos(m_hwnd, 0, 0, 0, size.cx(), size.cy(), SWP_NOZORDER | SWP_NOMOVE | SWP_HIDEWINDOW);
+   //   //      ::SetWindowPos(m_hwnd, 0, 0, 0, size.cx, size.cy, SWP_NOZORDER | SWP_NOMOVE | SWP_HIDEWINDOW);
    //   //
    //   //#else
 
@@ -757,10 +757,10 @@ HGLRC hglrc = loaded_wglCreateContextAttribsARB(hdc, 0, contextAttribs);
 
    //         make_current();
 
-   //         glViewport(0, 0, size.cx(), size.cy());
+   //         glViewport(0, 0, size.cx, size.cy);
    //         //glMatrixMode(GL_PROJECTION);
    //         //glLoadIdentity();
-   //         //glOrtho(0, size.cx(), 0, size.cy(), -10, 10);
+   //         //glOrtho(0, size.cx, 0, size.cy, -10, 10);
    //         //glMatrixMode(GL_MODELVIEW);
    //         //glutPostRedisplay();
 

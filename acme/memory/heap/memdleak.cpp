@@ -17,10 +17,6 @@
 ////#ifdef WINDOWS_DESKTOP
 ////#include <mmsystem.h>
 ////#endif // WINDOWS_DESKTOP
-//
-//
-//
-//
 //#define MEMDLEAK_DEFAULT 1
 //
 //
@@ -35,10 +31,6 @@
 //
 //void memdleak_init();
 //void memdleak_term();
-//
-//
-//
-//
 //
 //
 //void * aligned_memory_allocate(memsize size, memsize align)
@@ -149,10 +141,6 @@
 //}
 //
 //
-//
-//
-//
-//
 //#undef ::system()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate
 //
 //void * ::system()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(memsize size)
@@ -187,10 +175,6 @@
 //
 //
 //}
-//
-//
-//
-//
 //void * memory_calloc(memsize size, memsize bytes)
 //{
 //
@@ -213,10 +197,6 @@
 //   return memory_reallocate_debug(pmemory, nSize, 0, nullptr, -1);
 //
 //}
-//
-//
-//
-//
 //
 //void * memory_reallocate_debug(void * pmemory, memsize size, int nBlockUse, const_char_pointer szFileName, int nLine)
 //{
@@ -365,10 +345,6 @@
 //}
 //
 //
-//
-//
-//
-//
 //void memory_free_debug(void * pmemory, int iBlockType)
 //{
 //
@@ -425,10 +401,6 @@
 //
 //
 //}
-//
-//
-//
-//
 //#undef ::system()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate
 //
 //
@@ -673,22 +645,6 @@
 //#endif
 //
 //}
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //CLASS_DECL_ACME int  memdleak_enabled()
 //{
 //
@@ -714,10 +670,6 @@
 //
 //
 //}
-//
-//
-//
-//
 //
 //
 //#if MEMDLEAK
@@ -897,16 +849,16 @@
 //   {
 //      if (pblock->m_iStack > 0)
 //      {
-//         informationf("\n");
+//         informationf("----> ");
 //         informationf("--------------------------------------------------------\n");
 //         ansi_from_unsigned_long_long(sz, ++i, 10);
 //         informationf("Index : ");
 //         information(sz);
-//         informationf("\n");
+//         informationf("----> ");
 //         ansi_from_unsigned_long_long(sz, pblock->m_size, 10);
 //         informationf("Size : ");
 //         information(sz);
-//         informationf("\n");
+//         informationf("----> ");
 //#if FAST_STACK_TRACE
 //         information(::exception_engine().xxxstack_trace(pblock->m_puiStack + 1, pblock->m_iStack));
 //#else
@@ -915,10 +867,10 @@
 //      }
 //      pblock = pblock->m_pnext;
 //   }
-//   informationf("\n");
+//   informationf("----> ");
 //   informationf("--------------------------------------------------------\n");
 //   ansi_from_unsigned_long_long(sz, i, 10);
-//   informationf("\nFound ");
+//   informationf("----> Found ");
 //   information(sz);
 //   informationf(" memory leaks.");
 //

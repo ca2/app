@@ -212,14 +212,14 @@ namespace nanoui
       virtual void set_size(const int_size& size);
 
       /// Return the width of the pwidget
-      int width() const { return m_size.cx(); }
+      int width() const { return m_size.cx; }
       /// Set the width of the pwidget
-      void set_width(int width) { m_size.cx() = width; }
+      void set_width(int width) { m_size.cx = width; }
 
       /// Return the height of the pwidget
-      int height() const { return m_size.cy(); }
+      int height() const { return m_size.cy; }
       /// Set the height of the pwidget
-      void set_height(int height) { m_size.cy() = height; }
+      void set_height(int height) { m_size.cy = height; }
 
       ::pointer < TextBox > create_in_place_edit(const ::float_rectangle& rectangle, const ::scoped_string & scopedstr);
 
@@ -262,13 +262,13 @@ namespace nanoui
       const int_size& fixed_size() const { return m_fixed_size; }
 
       // Return the fixed width (see \::pointer set_fixed_size())
-      int fixed_width() const { return m_fixed_size.cx(); }
+      int fixed_width() const { return m_fixed_size.cx; }
       // Return the fixed height (see \::pointer set_fixed_size())
-      int fixed_height() const { return m_fixed_size.cy(); }
+      int fixed_height() const { return m_fixed_size.cy; }
       /// Set the fixed width (see \::pointer set_fixed_size())
-      void set_fixed_width(int width) { m_fixed_size.cx() = width; }
+      void set_fixed_width(int width) { m_fixed_size.cx = width; }
       /// Set the fixed height (see \::pointer set_fixed_size())
-      void set_fixed_height(int height) { m_fixed_size.cy() = height; }
+      void set_fixed_height(int height) { m_fixed_size.cy = height; }
 
       /// Return whether or not the pwidget is currently visible (assuming all parents are visible)
       virtual bool visible() const;

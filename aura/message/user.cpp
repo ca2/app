@@ -587,9 +587,9 @@ namespace message
 
    //   ::user::message::set(oswindow, pwindow, eusermessage, wparam, lparam);
 
-   //   m_point.x() = x_short(m_lparam);
+   //   m_point.x = x_short(m_lparam);
    //   
-   //   m_point.y() = y_short(m_lparam);
+   //   m_point.y = y_short(m_lparam);
 
    //}
 

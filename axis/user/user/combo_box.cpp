@@ -35,7 +35,7 @@ namespace user
    {
 
       m_econtroltype                         = e_control_type_combo_box;
-      m_typeatomListBox                          = ::type < ::user::list_box >();
+      m_typeListBox                          = ::type<::user::list_box>();
       m_estyle                               = style_simply;
       m_bEdit                                = true;
       //m_edatamode                            = data_mode_opaque;
@@ -242,11 +242,11 @@ namespace user
 
       ::int_point pointCenter = rectangleDropDown.center();
 
-      pointa.add(pointCenter.x() - cx / 2, pointCenter.y() - cy / 2);
+      pointa.add(pointCenter.x - cx / 2, pointCenter.y - cy / 2);
 
-      pointa.add(pointCenter.x() + cx / 2, pointCenter.y() - cy / 2);
+      pointa.add(pointCenter.x + cx / 2, pointCenter.y - cy / 2);
 
-      pointa.add(pointCenter.x(), pointCenter.y() + cy / 2);
+      pointa.add(pointCenter.x, pointCenter.y + cy / 2);
 
    }
 
@@ -965,7 +965,7 @@ namespace user
       if(!m_plistbox)
       {
 
-         auto plistbox = øid_create(m_typeatomListBox);
+         auto plistbox = øcreate_by_type(m_typeListBox);
 
          m_plistbox = plistbox;
 

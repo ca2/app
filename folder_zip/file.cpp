@@ -22,7 +22,7 @@ namespace folder_zip
    {
       //if(m_pfUnzip != nullptr)
       //{
-      //   unzClose(m_pfUnzip);
+      //   unzip_Close(m_pfUnzip);
       //}
       //if(m_pfZip != nullptr)
       //{
@@ -195,7 +195,7 @@ memsize file::read(void * p, ::memsize s)
    _synchronous_lock synchronouslock(m_pfolder->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //   ASSERT_OK(this);
-   ASSERT(m_pfolder->m_unzfile != nullptr);
+   ASSERT(m_pfolder->m_unzip_file != nullptr);
 
    auto data = (unsigned char *) p;
 
@@ -206,7 +206,7 @@ memsize file::read(void * p, ::memsize s)
 
    ASSERT(is_memory_segment_ok(data, (uptr)s));
 
-   auto iRead = unzReadCurrentFile(m_pfolder->m_unzfile, data, (unsigned int)s);
+   auto iRead = unzip_ReadCurrentFile(m_pfolder->m_unzip_file, data, (unsigned int)s);
 
    m_iPosition += iRead;
 
@@ -221,14 +221,14 @@ void file::write(const void * p, ::memsize s)
    return;
      /* unsigned char buf[1024];
       int iRead;
-      if(unzOpenCurrentFile(m_pfUnzip) != UNZ_OK)
+      if(unzip_OpenCurrentFile(m_pfUnzip) != UNZ_OK)
          return;
 
-      while((iRead = unzReadCurrentFile(m_pfUnzip, buf, sizeof(buf))) > 0)
+      while((iRead = unzip_ReadCurrentFile(m_pfUnzip, buf, sizeof(buf))) > 0)
       {
          pfileOut->write(buf, iRead);
       }
-      if(unzCloseCurrentFile(m_pfUnzip) != UNZ_OK)
+      if(unzip_CloseCurrentFile(m_pfUnzip) != UNZ_OK)
          return;
    }*/
 
@@ -244,18 +244,18 @@ void file::write(const void * p, ::memsize s)
 
 
    //   str.replace("\\", "/");
-   //   if(unzLocateFile(m_pfUnzip, str, 1) != UNZ_OK)
+   //   if(unzip_LocateFile(m_pfUnzip, str, 1) != UNZ_OK)
    //      return;
    //   unsigned char buf[1024];
    //   int iRead;
-   //   if(unzOpenCurrentFile(m_pfUnzip) != UNZ_OK)
+   //   if(unzip_OpenCurrentFile(m_pfUnzip) != UNZ_OK)
    //      return;
 
-   //   while((iRead = unzReadCurrentFile(m_pfUnzip, buf, sizeof(buf))) > 0)
+   //   while((iRead = unzip_ReadCurrentFile(m_pfUnzip, buf, sizeof(buf))) > 0)
    //   {
    //      pfileOut->write(buf, iRead);
    //   }
-   //   if(unzCloseCurrentFile(m_pfUnzip) != UNZ_OK)
+   //   if(unzip_CloseCurrentFile(m_pfUnzip) != UNZ_OK)
    //      return;
    //}
 
@@ -265,7 +265,7 @@ void file::write(const void * p, ::memsize s)
    //bool file::is_reading() const
    //{
 
-   //   return m_pfolder->m_unzipfile && !m_pfolder->m_pzipfile;
+   //   return m_pfolder->m_unzip_ipfile && !m_pfolder->m_pzipfile;
 
    //}
 
@@ -312,7 +312,7 @@ void file::write(const void * p, ::memsize s)
       else if (eseek == ::e_seek_from_end)
       {
 
-         iNewPosition = m_pfolder->m_unzfileinfo.uncompressed_size - offset;
+         iNewPosition = m_pfolder->m_unzip_fileinfo.uncompressed_size - offset;
 
       }
       else if (eseek == ::e_seek_current)
@@ -331,14 +331,14 @@ void file::write(const void * p, ::memsize s)
       if (iNewPosition < m_iPosition)
       {
 
-         if (unzCloseCurrentFile(m_pfolder->m_unzfile) != UNZ_OK)
+         if (unzip_CloseCurrentFile(m_pfolder->m_unzip_file) != UNZ_OK)
          {
 
             throw exception(error_failed);
 
          }
 
-         if (unzOpenCurrentFile(m_pfolder->m_unzfile) != UNZ_OK)
+         if (unzip_OpenCurrentFile(m_pfolder->m_unzip_file) != UNZ_OK)
          {
 
             throw exception(error_failed);
@@ -365,7 +365,7 @@ void file::write(const void * p, ::memsize s)
 
             iGet = minimum(iRemain, 1024);
 
-            iRead = unzReadCurrentFile(m_pfolder->m_unzfile, pbBuf, (unsigned int)iGet);
+            iRead = unzip_ReadCurrentFile(m_pfolder->m_unzip_file, pbBuf, (unsigned int)iGet);
 
             iRemain -= iRead;
 
@@ -392,7 +392,7 @@ void file::write(const void * p, ::memsize s)
    bool file::is_opened() const
    {
 
-      return m_pfolder && m_pfolder->m_unzfile;
+      return m_pfolder && m_pfolder->m_unzip_file;
 
    }
 
@@ -408,7 +408,7 @@ void file::write(const void * p, ::memsize s)
    filesize file::size() const
    {
 
-      return m_pfolder->m_unzfileinfo.uncompressed_size;
+      return m_pfolder->m_unzip_fileinfo.uncompressed_size;
 
    }
 

@@ -18,10 +18,6 @@
 
 
 //#if defined(WINDOWS)
-//
-//
-//
-//
 ////::e_status MsgWaitForMultipleObjectsEx(unsigned int dwSize, hsynchronization * synca, unsigned int tickTimeout, unsigned int dwWakeMask, unsigned int dwFlags);
 //
 ////::e_status WaitForMultipleObjectsEx(unsigned int dwSize, hsynchronization * synca, int_bool bWaitForAll, unsigned int tickTimeout, int_bool bAlertable);

@@ -872,9 +872,9 @@ namespace experience_tranquillum
 
       }
 
-      ptab->get_data()->m_rectangleTextMargin.left() = 4;
+      ptab->get_data()->m_rectangleTextMargin.left = 4;
 
-      ptab->get_data()->m_rectangleTextMargin.right() = 4;
+      ptab->get_data()->m_rectangleTextMargin.right = 4;
 
       ptab->m_bDrawTabAtBackground = true;
 
@@ -912,11 +912,11 @@ namespace experience_tranquillum
 
             if (pane.m_pimage->is_set())
             {
-               size.cx() += pane.m_pimage->width() + 2;
-               size.cy() = maximum(size.cy(), pane.m_pimage->height());
+               size.cx += pane.m_pimage->width() + 2;
+               size.cy = maximum(size.cy, pane.m_pimage->height());
             }
 
-            cx = (int)(size.cx() + 2.0);
+            cx = (int)(size.cx + 2.0);
 
             if (!pane.m_bPermanent)
             {
@@ -927,7 +927,7 @@ namespace experience_tranquillum
             {
                iTabWidth = cx;
             }
-            cy = (int)(size.cy() + 2.0);
+            cy = (int)(size.cy + 2.0);
             if (cy > iTabHeight)
             {
                iTabHeight = cy;
@@ -941,38 +941,38 @@ namespace experience_tranquillum
             iTabHeight = cy;
          }
 
-         iTabWidth += ptab->get_data()->m_rectangleBorder.left() + ptab->get_data()->m_rectangleBorder.right() +
-            ptab->get_data()->m_rectangleMargin.left() + ptab->get_data()->m_rectangleMargin.right() +
-            ptab->get_data()->m_rectangleTextMargin.left() + ptab->get_data()->m_rectangleTextMargin.right();
+         iTabWidth += ptab->get_data()->m_rectangleBorder.left + ptab->get_data()->m_rectangleBorder.right +
+            ptab->get_data()->m_rectangleMargin.left + ptab->get_data()->m_rectangleMargin.right +
+            ptab->get_data()->m_rectangleTextMargin.left + ptab->get_data()->m_rectangleTextMargin.right;
 
          ptab->get_data()->m_iTabWidth = iTabWidth;
 
-         iTabHeight += ptab->get_data()->m_rectangleBorder.top() + ptab->get_data()->m_rectangleBorder.bottom() +
-            ptab->get_data()->m_rectangleMargin.top() + ptab->get_data()->m_rectangleMargin.bottom() +
-            ptab->get_data()->m_rectangleTextMargin.top() + ptab->get_data()->m_rectangleTextMargin.bottom();
+         iTabHeight += ptab->get_data()->m_rectangleBorder.top + ptab->get_data()->m_rectangleBorder.bottom +
+            ptab->get_data()->m_rectangleMargin.top + ptab->get_data()->m_rectangleMargin.bottom +
+            ptab->get_data()->m_rectangleTextMargin.top + ptab->get_data()->m_rectangleTextMargin.bottom;
 
          ptab->get_data()->m_iTabHeight = iTabHeight;
 
          ::int_rectangle rectangleX;
          rectangleX = ptab->rectangle(::user::e_layout_lading);
 
-         ptab->get_data()->m_rectangleTab.left() = rectangleX.left();
-         ptab->get_data()->m_rectangleTab.top() = rectangleX.top();
-         ptab->get_data()->m_rectangleTab.right() = ptab->get_data()->m_rectangleTab.left() + ptab->get_data()->m_iTabWidth;
-         ptab->get_data()->m_rectangleTab.bottom() = rectangleX.bottom();
+         ptab->get_data()->m_rectangleTab.left = rectangleX.left;
+         ptab->get_data()->m_rectangleTab.top = rectangleX.top;
+         ptab->get_data()->m_rectangleTab.right = ptab->get_data()->m_rectangleTab.left + ptab->get_data()->m_iTabWidth;
+         ptab->get_data()->m_rectangleTab.bottom = rectangleX.bottom;
 
          /*      m_puserinteraction->set_window_position(
          e_zorder_top,
-         m_rectangleTab.left(),
-         m_rectangleTab.top(),
+         m_rectangleTab.left,
+         m_rectangleTab.top,
          m_rectangleTab.width(),
          m_rectangleTab.height(),
          0);*/
 
-         ptab->get_data()->m_rectangleHosting.left() = ptab->m_bEffectiveVisibleControl ? ptab->get_data()->m_rectangleTab.right() : rectangleX.left();
-         ptab->get_data()->m_rectangleHosting.top() = ptab->get_data()->m_rectangleTab.top();
-         ptab->get_data()->m_rectangleHosting.right() = rectangleX.right();
-         ptab->get_data()->m_rectangleHosting.bottom() = ptab->get_data()->m_rectangleTab.bottom();
+         ptab->get_data()->m_rectangleHosting.left = ptab->m_bEffectiveVisibleControl ? ptab->get_data()->m_rectangleTab.right : rectangleX.left;
+         ptab->get_data()->m_rectangleHosting.top = ptab->get_data()->m_rectangleTab.top;
+         ptab->get_data()->m_rectangleHosting.right = rectangleX.right;
+         ptab->get_data()->m_rectangleHosting.bottom = ptab->get_data()->m_rectangleTab.bottom;
 
       }
       else
@@ -983,7 +983,7 @@ namespace experience_tranquillum
 
          ::int_rectangle rectangleX;
          rectangleX = ptab->rectangle(::user::e_layout_lading);
-         int x = rectangleX.left();
+         int x = rectangleX.left;
 
          int ixAdd;
          for (int iPane = 0; iPane < ptab->get_data()->m_tabpanea.get_size(); iPane++)
@@ -1013,19 +1013,19 @@ namespace experience_tranquillum
             if (pane.m_pimage->is_set())
             {
 
-               size.cy() = (int)maximum(maximum(size.cy(), pane.m_pimage->size().cy()), metric.get_line_height());
+               size.cy = (int)maximum(maximum(size.cy, pane.m_pimage->size().cy), metric.get_line_height());
 
             }
 
-            cy = (int)(size.cy() + 2.0);
+            cy = (int)(size.cy + 2.0);
 
             if (cy > iTabHeight)
             {
                iTabHeight = cy;
             }
 
-            pane.m_point.x() = x;
-            pane.m_point.y() = rectangleX.top();
+            pane.m_point.x = x;
+            pane.m_point.y = rectangleX.top;
 
 
             //            string str = pane.get_title();
@@ -1048,12 +1048,12 @@ namespace experience_tranquillum
 
 
 
-            pane.m_size.cx() = (int)(size.cx() + ixAdd
-               + ptab->get_data()->m_rectangleBorder.left() + ptab->get_data()->m_rectangleBorder.right()
-               + ptab->get_data()->m_rectangleMargin.left() + ptab->get_data()->m_rectangleMargin.right()
-               + ptab->get_data()->m_rectangleTextMargin.left() + ptab->get_data()->m_rectangleTextMargin.right());
+            pane.m_size.cx = (int)(size.cx + ixAdd
+               + ptab->get_data()->m_rectangleBorder.left + ptab->get_data()->m_rectangleBorder.right
+               + ptab->get_data()->m_rectangleMargin.left + ptab->get_data()->m_rectangleMargin.right
+               + ptab->get_data()->m_rectangleTextMargin.left + ptab->get_data()->m_rectangleTextMargin.right);
 
-            x += (int)(pane.m_size.cx());
+            x += (int)(pane.m_size.cx);
 
          }
 
@@ -1064,8 +1064,8 @@ namespace experience_tranquillum
             iTabHeight = cy;
          }
 
-         iTabHeight += ptab->get_data()->m_rectangleBorder.top() + ptab->get_data()->m_rectangleBorder.bottom() +
-            ptab->get_data()->m_rectangleMargin.top() + ptab->get_data()->m_rectangleMargin.bottom() + ptab->get_data()->m_iHeightAddUp;
+         iTabHeight += ptab->get_data()->m_rectangleBorder.top + ptab->get_data()->m_rectangleBorder.bottom +
+            ptab->get_data()->m_rectangleMargin.top + ptab->get_data()->m_rectangleMargin.bottom + ptab->get_data()->m_iHeightAddUp;
 
          ptab->get_data()->m_iTabHeight = iTabHeight + 8;
 
@@ -1074,22 +1074,22 @@ namespace experience_tranquillum
 
             auto& pane = *ptab->get_data()->m_tabpanea[iPane];
 
-            pane.m_size.cy() = iTabHeight;
+            pane.m_size.cy = iTabHeight;
 
          }
 
 
 
 
-         ptab->get_data()->m_rectangleTab.left() = rectangleX.left();
-         ptab->get_data()->m_rectangleTab.top() = rectangleX.top();
-         ptab->get_data()->m_rectangleTab.right() = rectangleX.right();
-         ptab->get_data()->m_rectangleTab.bottom() = ptab->get_data()->m_rectangleTab.top() + ptab->get_data()->m_iTabHeight;
+         ptab->get_data()->m_rectangleTab.left = rectangleX.left;
+         ptab->get_data()->m_rectangleTab.top = rectangleX.top;
+         ptab->get_data()->m_rectangleTab.right = rectangleX.right;
+         ptab->get_data()->m_rectangleTab.bottom = ptab->get_data()->m_rectangleTab.top + ptab->get_data()->m_iTabHeight;
 
          /*      set_window_position(
          e_zorder_top,
-         m_rectangleTab.left(),
-         m_rectangleTab.top(),
+         m_rectangleTab.left,
+         m_rectangleTab.top,
          m_rectangleTab.width(),
          m_rectangleTab.height(),
          0);*/
@@ -1099,10 +1099,10 @@ namespace experience_tranquillum
          //bool bTabbedClient = ptab->m_bShowTabs && !ptab->top_level_frame()->layout().is_full_screen();
          // bool bTabbedClient = ptab->m_bEffectiveVisibleTabs;
 
-         rectangleHosting.left() = ptab->get_data()->m_rectangleTab.left();
-         rectangleHosting.top() = ptab->m_bEffectiveVisibleControl ? ptab->get_data()->m_rectangleTab.bottom() : rectangleX.top();
-         rectangleHosting.right() = ptab->get_data()->m_rectangleTab.right();
-         rectangleHosting.bottom() = rectangleX.bottom();
+         rectangleHosting.left = ptab->get_data()->m_rectangleTab.left;
+         rectangleHosting.top = ptab->m_bEffectiveVisibleControl ? ptab->get_data()->m_rectangleTab.bottom : rectangleX.top;
+         rectangleHosting.right = ptab->get_data()->m_rectangleTab.right;
+         rectangleHosting.bottom = rectangleX.bottom;
 
 
          //TRACE0("rectangleHosting");
@@ -1168,7 +1168,7 @@ namespace experience_tranquillum
       }
       ::int_rectangle rcTape(rcTab);
 
-      rcTape.top() = rcTape.bottom() - 8;
+      rcTape.top = rcTape.bottom - 8;
 
 
       ::int_rectangle rcTabs(rcTab);
@@ -1179,11 +1179,11 @@ namespace experience_tranquillum
 
       int iTabHeight = ptab->get_data()->m_iTabHeight;
 
-      //int iB = rcClient.top();
+      //int iB = rcClient.top;
 
-      rcTabs.bottom() = rcTabs.top() + iTabHeight - ptab->get_data()->m_rectangleBorder.bottom();
+      rcTabs.bottom = rcTabs.top + iTabHeight - ptab->get_data()->m_rectangleBorder.bottom;
 
-      rcClient.top() = rcTabs.bottom();
+      rcClient.top = rcTabs.bottom;
 
       auto pstyle = ptab->get_style(pgraphics);
 
@@ -1300,7 +1300,7 @@ namespace experience_tranquillum
 
                   rSel = rectangleX;
 
-                  rSel.bottom() = rectangleX.top() + 3;
+                  rSel.bottom = rectangleX.top + 3;
 
                   pgraphics->fill_rectangle(rSel, argb(255, 120, 155, 240));
 
@@ -1341,11 +1341,11 @@ namespace experience_tranquillum
 
                   //ppath->start_figure();
 
-                  ppath->add_line(rectangleBorder.right(), rectangleBorder.bottom(), rectangleBorder.left() + 1, rectangleBorder.bottom());
-                  ppath->add_line(rectangleBorder.left(), rectangleBorder.top() - (rectangleBorder.left() - rectangleX.left()));
-                  ppath->add_line(rectangleText.left(), rectangleBorder.top());
-                  ppath->add_line(rectangleBorder.right(), rectangleBorder.top());
-                  ppath->add_line(rectangleBorder.right(), rectangleBorder.bottom());
+                  ppath->add_line(rectangleBorder.right, rectangleBorder.bottom, rectangleBorder.left + 1, rectangleBorder.bottom);
+                  ppath->add_line(rectangleBorder.left, rectangleBorder.top - (rectangleBorder.left - rectangleX.left));
+                  ppath->add_line(rectangleText.left, rectangleBorder.top);
+                  ppath->add_line(rectangleBorder.right, rectangleBorder.top);
+                  ppath->add_line(rectangleBorder.right, rectangleBorder.bottom);
 
                   ppath->close_figure();
 
@@ -1421,12 +1421,12 @@ namespace experience_tranquillum
             //if (iPane == 0)
             //{
 
-            //   if (rcTab.left() < rectangleBorder.left())
+            //   if (rcTab.left < rectangleBorder.left)
             //   {
 
             //      pgraphics->set(ptab->get_data()->m_ppenBorder);
 
-            //      pgraphics->line(rcTab.left(), rectangleX.bottom(), rectangleBorder.left(), rectangleX.bottom());
+            //      pgraphics->line(rcTab.left, rectangleX.bottom, rectangleBorder.left, rectangleX.bottom);
 
             //   }
 
@@ -1444,7 +1444,7 @@ namespace experience_tranquillum
 
                   rSel = rectangle;
 
-                  rSel.bottom() = rectangleX.top() + 3;
+                  rSel.bottom = rectangleX.top + 3;
 
                   pgraphics->fill_rectangle(rSel, argb(255, 120, 155, 240));
 
@@ -1525,18 +1525,18 @@ namespace experience_tranquillum
 
             rVertLine = rectangle;
 
-            rVertLine.left() = rVertLine.right() - 1;
+            rVertLine.left = rVertLine.right - 1;
             pgraphics->fill_rectangle(rVertLine, argb(127, 80, 80, 80));
 
             //if (iPane == ptab->get_data()->m_panea.get_upper_bound())
             //{
 
-            //   if (rectangleBorder.right() - 1 < rcTab.right())
+            //   if (rectangleBorder.right - 1 < rcTab.right)
             //   {
 
             //      pgraphics->set(ptab->get_data()->m_ppenBorder);
 
-            //      pgraphics->line(rectangleBorder.right() - 1, rectangleX.bottom(), rcTab.right(), rectangleX.bottom());
+            //      pgraphics->line(rectangleBorder.right - 1, rectangleX.bottom, rcTab.right, rectangleX.bottom);
 
             //   }
 
@@ -1626,12 +1626,12 @@ namespace experience_tranquillum
          {
             string str = straTitle[i];
             int_size s = pane.m_sizeaText[i];
-            rectangleText.right() = rectangleText.left() + s.cx();
+            rectangleText.right = rectangleText.left + s.cx;
             pgraphics->_DrawText(str, rectangleText, e_align_bottom_left, e_draw_text_no_prefix);
-            rectangleText.left() += s.cx();
+            rectangleText.left += s.cx;
             if (i < straTitle.get_upper_bound())
             {
-               rectangleText.right() = rectangleText.left() + sSep.cx();
+               rectangleText.right = rectangleText.left + sSep.cx;
                rectangleEmp = rectangleText;
                rectangleEmp.deflate(1, 1);
                ::draw2d::enum_alpha_mode emode = pgraphics->alpha_mode();
@@ -1658,7 +1658,7 @@ namespace experience_tranquillum
                pgraphics->set_font(ptab, ::e_element_close_tab_button);
                pgraphics->set_alpha_mode(emode);
                pgraphics->_DrawText(MAGIC_PALACE_TAB_TEXT, rectangleText, e_align_center, e_draw_text_no_prefix);
-               rectangleText.left() += sSep.cx();
+               rectangleText.left += sSep.cx;
 
             }
 
@@ -1788,10 +1788,10 @@ namespace experience_tranquillum
       //   if ((nStyle & e_tool_item_style_separator) != 0)
       //   {
       //      ::int_rectangle rectangleSeparator;
-      //      rectangleSeparator.left() = (rectangleImage.left() + rectangleImage.right()) / 2 - 1;
-      //      rectangleSeparator.right() = rectangleSeparator.left() + 2;
-      //      rectangleSeparator.top() = rectangleImage.top();
-      //      rectangleSeparator.bottom() = rectangleImage.bottom();
+      //      rectangleSeparator.left = (rectangleImage.left + rectangleImage.right) / 2 - 1;
+      //      rectangleSeparator.right = rectangleSeparator.left + 2;
+      //      rectangleSeparator.top = rectangleImage.top;
+      //      rectangleSeparator.bottom = rectangleImage.bottom;
       //      pgraphics->draw_inset_3d_rectangle(rectangleSeparator, argb(255, 92, 92, 92), argb(255, 255, 255, 255));
       //   }
       //   else
@@ -1809,8 +1809,8 @@ namespace experience_tranquillum
       //            {
       //               psystem->imaging().color_blend(
       //               pgraphics,
-      //               rectangleItem.left(),
-      //               rectangleItem.top(),
+      //               rectangleItem.left,
+      //               rectangleItem.top,
       //               rectangleItem.width(),
       //               rectangleItem.height(),
       //               rgb(255, 255, 250), 208);
@@ -2004,7 +2004,7 @@ namespace experience_tranquillum
 
       //      pgraphics->set(pbrushText);
 
-      //      if (ptoolbar->index_element_rectangle(iItem, rectangleText, eelementText) && rectangleText.right() > 0)
+      //      if (ptoolbar->index_element_rectangle(iItem, rectangleText, eelementText) && rectangleText.right > 0)
       //      {
 
       //         pgraphics->_DrawText(item.m_str, item.m_str.length(), rectangleText, e_align_bottom_left, e_draw_text_no_prefix);
@@ -2094,10 +2094,10 @@ namespace experience_tranquillum
       //   if (item.id().case_insensitive_order("separator") == 0)
       //   {
       //      /*::int_rectangle rectangleSeparator;
-      //      rectangleSeparator.left() = (rectangleImage.left() + rectangleImage.right()) / 2 - 1;
-      //      rectangleSeparator.right() = rectangleSeparator.left() + 2;
-      //      rectangleSeparator.top() = rectangleImage.top();
-      //      rectangleSeparator.bottom() = rectangleImage.bottom();*/
+      //      rectangleSeparator.left = (rectangleImage.left + rectangleImage.right) / 2 - 1;
+      //      rectangleSeparator.right = rectangleSeparator.left + 2;
+      //      rectangleSeparator.top = rectangleImage.top;
+      //      rectangleSeparator.bottom = rectangleImage.bottom;*/
       //      //pgraphics->Draw3dRect(rectangleSeparator, argb(255, 92, 92, 92), argb(255, 255, 255, 255));
       //   }
       //   else
@@ -2115,8 +2115,8 @@ namespace experience_tranquillum
       //            {
       //               psystem->imaging().color_blend(
       //               pgraphics,
-      //               rectangleItem.left(),
-      //               rectangleItem.top(),
+      //               rectangleItem.left,
+      //               rectangleItem.top,
       //               rectangleItem.width(),
       //               rectangleItem.height(),
       //               rgb(255, 255, 250), 208);
@@ -2335,7 +2335,7 @@ namespace experience_tranquillum
 
       //      }
 
-      //      if (ptoolbar->index_element_rectangle(iItem, rectangleText, eelementText) && rectangleText.right() > 0)
+      //      if (ptoolbar->index_element_rectangle(iItem, rectangleText, eelementText) && rectangleText.right > 0)
       //      {
 
       //         pgraphics->_DrawText(item.m_str, item.m_str.length(), rectangleText, e_align_bottom_left, e_draw_text_no_prefix);

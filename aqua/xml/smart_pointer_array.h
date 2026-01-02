@@ -40,10 +40,6 @@
 //      copy(xmla);
 //
 //   }
-//
-//
-//
-//
 //} // namespace xml
 //
 

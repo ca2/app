@@ -114,13 +114,13 @@ namespace app_message_box
 
       ::int_rectangle rectangleButton(rectangleX);
 
-      rectangleButton.right() -= (int) x;
+      rectangleButton.right -= (int) x;
 
-      rectangleButton.bottom() -= (int) y;
+      rectangleButton.bottom -= (int) y;
 
-      rectangleButton.left() = (int) (rectangleButton.right() - dBase * 11.0);
+      rectangleButton.left = (int) (rectangleButton.right - dBase * 11.0);
       
-      rectangleButton.top() = (int) (rectangleButton.bottom() - dBase * 5.0);
+      rectangleButton.top = (int) (rectangleButton.bottom - dBase * 5.0);
 
       m_pbuttonShowMessageBox->place(rectangleButton, ::user::e_layout_layout, pgraphics);
 

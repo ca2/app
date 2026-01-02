@@ -57,7 +57,7 @@ namespace gpu
       void initialize_gpu_approach() override;
 
 
-      ::gpu::device* get_gpu_device() override;
+      ::gpu::device* get_gpu_device(::acme::windowing::window * pacmewindowingwindow = nullptr) override;
 
 
       void engine_on_frame_context_initialization(::gpu::context* pgpucontext) override;

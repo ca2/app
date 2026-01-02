@@ -2,6 +2,7 @@
 #include "framework.h"
 #include "engine.h"
 #include "render_system.h"
+#include "bred/graphics3d/scene_renderable.h"
 
 
 namespace graphics3d
@@ -47,7 +48,12 @@ namespace graphics3d
    }
 
 
+   ::graphics3d::scene_renderable * render_system::current_scene_renderable()
+   {
 
+      return nullptr;
+
+   }
 
 
    void render_system::update(::gpu::context* pgpucontext, ::graphics3d::scene_base* pscene)
@@ -70,6 +76,13 @@ namespace graphics3d
 
       //testall pgpucontext->current_target_texture()->bind_render_target();
 
+      if (!m_bPrepared)
+      {
+
+         return;
+
+      }
+
       on_render(pgpucontext, pscene);
 
    }
@@ -82,13 +95,15 @@ namespace graphics3d
    }
 
 
-   //void createPipelineLayout(VkDescriptorSetLayout globalSetLayout);
+   //void createPipelineLayout(aaaVkDescriptorSetLayout globalSetLayout);
    //void createPipeline(VkRenderPass renderPass);
 
    void render_system::prepare(::gpu::context* pgpucontext)
    {
 
       on_prepare(pgpucontext);
+
+      m_bPrepared = true;
 
    }
 

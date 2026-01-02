@@ -706,8 +706,8 @@ namespace platform
    }
 
 
-   //virtual ::type_atom user_default_controltype_to_typeinfo(::user::enum_control_type econtroltype){}
-   ::type_atom aura_application_layer::control_type_from_id(const ::atom& atom, ::user::enum_control_type& econtroltype)
+   //virtual ::platform::type user_default_controltype_to_typeinfo(::user::enum_control_type econtroltype){}
+   ::platform::type aura_application_layer::control_type_from_id(const ::atom& atom, ::user::enum_control_type& econtroltype)
    {
       return {};
    }

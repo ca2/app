@@ -57,7 +57,7 @@ namespace progress
    }
 
 
-   bool integer::on_set_scalar(scalar_source * psource, enum_scalar escalar, ::number number, int iFlags)
+   bool integer::on_set_scalar(::number::scalar_source * psource, enum_scalar escalar,::number::number number, int iFlags)
    {
 
       if (m_scalar.m_psource == psource)

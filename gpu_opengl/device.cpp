@@ -7,7 +7,7 @@
 #include "shader.h"
 #include "acme/filesystem/filesystem/file_context.h"
 #include "aura/graphics/image/image.h"
-#include "glm/mat4x4.hpp"
+//
 
 
 namespace gpu_opengl
@@ -189,10 +189,6 @@ namespace gpu_opengl
 //
 ////glDrawElements(GL_TRIANGLES, size / sizeof(GLushort), GL_UNSIGNED_SHORT, 0);
 ////int iError18 = glGetError();
-//
-//
-//
-//
 //      ASSERT(m_itaskGpu == ::current_itask());
 //
 //      //      glClearColor(0.0f, 0.0f, 0.4f, 0.0f);
@@ -238,10 +234,10 @@ namespace gpu_opengl
 //
 //         // Compute the MVP matrix from keyboard and mouse input
 //         //computeMatricesFromInputs();
-//         ::glm::mat4 matrixProjection = (::glm::mat4&)projection_matrix();
-//         ::glm::mat4 matrixView = (::glm::mat4&)view_matrix();
-//         ::glm::mat4 matrixModel = glm::mat4(1.0);
-//         ::glm::mat4 matrixMVP = matrixProjection * matrixView * matrixModel;
+//         floating_matrix4 matrixProjection = (floating_matrix4&)projection_matrix();
+//         floating_matrix4 matrixView = (floating_matrix4&)view_matrix();
+//         floating_matrix4 matrixModel = floating_matrix4(1.0);
+//         floating_matrix4 matrixMVP = matrixProjection * matrixView * matrixModel;
 //
 //         // Send our transformation to the currently bound shader, 
 //         // in the "MVP" uniform
@@ -249,16 +245,16 @@ namespace gpu_opengl
 //
 //      }
 //
-//      //glm::mat4 getViewMatrix() {
+//      //floating_matrix4 getViewMatrix() {
 //      //   return ViewMatrix;
 //      //}
-//      //glm::mat4 getProjectionMatrix() {
+//      //floating_matrix4 getProjectionMatrix() {
 //      //   return ProjectionMatrix;
 //      //}
 //
 //
 //      //// Initial position : on +Z
-//      //glm::vec3 position = glm::vec3(0, 0, 5);
+//      //floating_sequence3 position = floating_sequence3(0, 0, 5);
 //      //// Initial horizontal angle : toward -Z
 //      //float horizontalAngle = 3.14f;
 //      //// Initial vertical angle : none
@@ -311,8 +307,8 @@ namespace gpu_opengl
 //         glBindFramebuffer(GL_READ_FRAMEBUFFER, readFboId);
 //         glFramebufferTexture2D(GL_READ_FRAMEBUFFER, GL_COLOR_ATTACHMENT0,
 //            GL_TEXTURE_2D, m_gluTextureBitmap1, 0);
-//         glBlitFramebuffer(0, 0, m_sizeBitmap1.cx(), m_sizeBitmap1.cy(),
-//            0, 0, m_size.cx(), m_size.cy(),
+//         glBlitFramebuffer(0, 0, m_sizeBitmap1.cx, m_sizeBitmap1.cy,
+//            0, 0, m_size.cx, m_size.cy,
 //            GL_COLOR_BUFFER_BIT, GL_LINEAR);
 //         glBindFramebuffer(GL_READ_FRAMEBUFFER, 0);
 //         glDeleteFramebuffers(1, &readFboId);
@@ -384,21 +380,17 @@ namespace gpu_opengl
 //
 //         //vertical_swap_copy_image32_swap_red_blue(
 //         ((image32_t*)m_memorySwap.data())->vertical_swap_copy_swap_red_blue(
-//            m_sizeBitmap1.cx(),
-//            m_sizeBitmap1.cy(),
-//            m_sizeBitmap1.cx() * 4,
+//            m_sizeBitmap1.cx,
+//            m_sizeBitmap1.cy,
+//            m_sizeBitmap1.cx * 4,
 //            pimage->get_data(),
 //            pimage->m_iScan);
 //
 //         glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA,
-//            m_sizeBitmap1.cx(),
-//            m_sizeBitmap1.cy(),
+//            m_sizeBitmap1.cx,
+//            m_sizeBitmap1.cy,
 //            0, GL_RGBA, GL_UNSIGNED_BYTE,
 //            m_memorySwap.data()); // upload image data to the textur
-//
-//
-//
-//
 //
 //      }
 //
@@ -522,12 +514,12 @@ namespace gpu_opengl
    //      "uniform sampler2D backbuffer;\n"
    //      "\n"
    //      "void main(void) {\n"
-   //      "float base_res = min(resolution.x(), resolution.y());\n"
+   //      "float base_res = min(resolution.x, resolution.y);\n"
    //      "vec2 uv = (gl_FragCoord.xy * 2.0 - resolution.xy) / base_res;\n"
    //      "\n"
-   //      //"gl_FragColor = vec4(uv, (uv.x() * uv.x()) / 2.0, ((uv.x() + (base_res - uv.y())) *(uv.x() + (base_res - uv.y()))) / 2.0);\n"
-   //      "float posx = max(0.f, uv.x());\n"
-   //      "float posy = max(0.f, uv.y());\n"
+   //      //"gl_FragColor = vec4(uv, (uv.x * uv.x) / 2.0, ((uv.x + (base_res - uv.y)) *(uv.x + (base_res - uv.y))) / 2.0);\n"
+   //      "float posx = max(0.f, uv.x);\n"
+   //      "float posy = max(0.f, uv.y);\n"
    //      "gl_FragColor = vec4(uv, (posx * posx) / 4.0, ((posx + posy) * (posx + posy)) / 4.0);\n"
    //      "}\n";
 

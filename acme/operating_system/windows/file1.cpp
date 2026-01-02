@@ -2,8 +2,10 @@
 #include "acme/filesystem/filesystem/file_system.h"
 #include "acme/filesystem/filesystem/directory_system.h"
 #include "acme/operating_system/console.h"
+#include "acme/operating_system/file.h"
 #include "acme/_operating_system.h"
-
+#include "acme/prototype/string/adaptor.h"
+#include "acme/operating_system/windows/windowing.h"
 #include <ShlObj.h>
 
 
@@ -133,16 +135,77 @@ CLASS_DECL_ACME::file::path get_module_path(HANDLE hProcess, HMODULE hmodule)
 // }
 
 
+bool CLASS_DECL_ACME shell_get_special_folder_path(HWND hwnd, ::file::path &str, int csidl, bool fCreate);
+//{
+//
+//   return ::SHGetSpecialFolderPathW(hwnd, wstring_adaptor(str, MAX_PATH * 8), csidl, fCreate) != false;
+//   
+//}
+
+
+//::file::path CLASS_DECL_ACME shell_get_special_folder_path(HWND hwnd, int csidl, bool fCreate,
+//                                                                   ::windowing::window *pwindow)
+//{
+//
+//   ::file::path path;
+//
+//   if (!shell_get_special_folder_path(hwnd, path, csidl, fCreate))
+//   {
+//
+//      return {};
+//   }
+//
+//   return path;
+//}
+
+
+
 CLASS_DECL_ACME::file::path home_folder_path()
 {
 
-   wchar_t path[MAX_PATH + 1];
-   zero(path);
-   ::SHGetSpecialFolderPathW(HWND_DESKTOP, path, CSIDL_PROFILE, FALSE);
+   return get_home_config_folder_path();
+
+   //wchar_t path[MAX_PATH + 1];
+   //zero(path);
+   //::SHGetSpecialFolderPathW(HWND_DESKTOP, path, CSIDL_PROFILE, FALSE);
+   //return path;
+
+}
+
+
+::file::path CLASS_DECL_ACME shell_get_special_folder_path(HWND hwnd, int csidl, bool fCreate)
+{
+
+   ::file::path path;
+
+   if (!shell_get_special_folder_path(hwnd, path, csidl, fCreate))
+   {
+
+      return {};
+
+   }
+
    return path;
 
 }
 
+
+::file::path __cdecl get_home_config_folder_path(HWND hwnd)
+{
+
+   return shell_get_special_folder_path(hwnd, CSIDL_PROFILE, false);
+
+}
+
+
+CLASS_DECL_ACME::file::path get_home_config_folder_path()
+{
+
+   HWND hwndMain = get_main_hwnd();
+
+   return get_home_config_folder_path(hwndMain);
+
+}
 
 
 

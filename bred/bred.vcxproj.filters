@@ -40,9 +40,6 @@
     <Filter Include="Header Files\gpu">
       <UniqueIdentifier>{674ac5cf-00d4-4965-a262-5383e5a9b318}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\graphics3d">
-      <UniqueIdentifier>{886813e7-d00c-429d-972c-8a9a2718ab3c}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\gpu">
       <UniqueIdentifier>{9d2983c9-98bf-40f4-86fc-eb5fb305bcc4}</UniqueIdentifier>
     </Filter>
@@ -61,12 +58,6 @@
     <Filter Include="Header Files\typeface\NewFilter1">
       <UniqueIdentifier>{79062294-7684-419e-9562-8c78e94b8f42}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\graphics3d\render_systems">
-      <UniqueIdentifier>{585a08e6-ec61-4c8c-8477-9f7000d6665b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\graphics3d\render_systems">
-      <UniqueIdentifier>{15a92ab9-5e5c-4212-a9ee-14414fe01032}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\prodevian">
       <UniqueIdentifier>{f9c5d3cb-164e-4319-83a6-7046c3986cd7}</UniqueIdentifier>
     </Filter>
@@ -78,6 +69,18 @@
     </Filter>
     <Filter Include="Header Files\gltf">
       <UniqueIdentifier>{e4e1f53a-b7d3-4b11-bca8-275b742258e9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\graphics3d\render_system">
+      <UniqueIdentifier>{585a08e6-ec61-4c8c-8477-9f7000d6665b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\graphics3d">
+      <UniqueIdentifier>{886813e7-d00c-429d-972c-8a9a2718ab3c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\graphics3d\render_system">
+      <UniqueIdentifier>{15a92ab9-5e5c-4212-a9ee-14414fe01032}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\ibl">
+      <UniqueIdentifier>{c8a13f51-9795-45d5-bdb1-1db594b5ddf3}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -195,9 +198,6 @@
     <ClInclude Include="graphics3d\key_map.h">
       <Filter>Header Files\graphics3d</Filter>
     </ClInclude>
-    <ClInclude Include="graphics3d\model.h">
-      <Filter>Header Files\graphics3d</Filter>
-    </ClInclude>
     <ClInclude Include="graphics3d\scene_base.h">
       <Filter>Header Files\graphics3d</Filter>
     </ClInclude>
@@ -261,9 +261,6 @@
     <ClInclude Include="gpu\hlsl_context.h">
       <Filter>Header Files\gpu</Filter>
     </ClInclude>
-    <ClInclude Include="graphics3d\shape_factory.h">
-      <Filter>Header Files\graphics3d</Filter>
-    </ClInclude>
     <ClInclude Include="graphics3d\cube_map.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -282,25 +279,7 @@
     <ClInclude Include="gpu\frame_ephemeral.h">
       <Filter>Header Files\gpu</Filter>
     </ClInclude>
-    <ClInclude Include="graphics3d\render_systems\skybox_render_system.h">
-      <Filter>Header Files\graphics3d\render_systems</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics3d\render_systems\skybox_ibl_render_system.h">
-      <Filter>Header Files\graphics3d\render_systems</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics3d\render_systems\point_light_render_system.h">
-      <Filter>Header Files\graphics3d\render_systems</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics3d\render_systems\wavefront_obj_render_system.h">
-      <Filter>Header Files\graphics3d\render_systems</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics3d\render_systems\gltf_render_system.h">
-      <Filter>Header Files\graphics3d\render_systems</Filter>
-    </ClInclude>
     <ClInclude Include="graphics3d\_constant.h">
-      <Filter>Header Files\graphics3d</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics3d\_types.h">
       <Filter>Header Files\graphics3d</Filter>
     </ClInclude>
     <ClInclude Include="graphics3d\asset_manager.h">
@@ -342,16 +321,10 @@
     <ClInclude Include="graphics3d\resource.h">
       <Filter>Header Files\graphics3d</Filter>
     </ClInclude>
-    <ClInclude Include="graphics3d\shapes.h">
-      <Filter>Header Files\graphics3d</Filter>
-    </ClInclude>
     <ClInclude Include="graphics3d\skybox.h">
       <Filter>Header Files\graphics3d</Filter>
     </ClInclude>
     <ClInclude Include="graphics3d\static_array.h">
-      <Filter>Header Files\graphics3d</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics3d\type.h">
       <Filter>Header Files\graphics3d</Filter>
     </ClInclude>
     <ClInclude Include="gpu\queue.h">
@@ -387,16 +360,10 @@
     <ClInclude Include="gpu\_types.h">
       <Filter>Header Files\gpu</Filter>
     </ClInclude>
-    <ClInclude Include="graphics3d\render_systems\scene_render_system.h">
-      <Filter>Header Files\graphics3d\render_systems</Filter>
-    </ClInclude>
     <ClInclude Include="gpu\mesh.h">
       <Filter>Header Files\gpu</Filter>
     </ClInclude>
     <ClInclude Include="graphics3d\scene_renderable.h">
-      <Filter>Header Files\graphics3d</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics3d\global_ubo.h">
       <Filter>Header Files\graphics3d</Filter>
     </ClInclude>
     <ClInclude Include="gltf\vertex.h">
@@ -404,6 +371,60 @@
     </ClInclude>
     <ClInclude Include="gpu\model_data.h">
       <Filter>Header Files\gpu</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics3d\_functions.h">
+      <Filter>Header Files\graphics3d</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics3d\rotation.h">
+      <Filter>Header Files\graphics3d</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics3d\global_ubo1.h">
+      <Filter>Header Files\graphics3d</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics3d\shape_factory.h">
+      <Filter>Header Files\graphics3d</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics3d\transform.h">
+      <Filter>Header Files\graphics3d</Filter>
+    </ClInclude>
+    <ClInclude Include="gpu\texture_attributes.h">
+      <Filter>Header Files\gpu</Filter>
+    </ClInclude>
+    <ClInclude Include="gpu\texture_data.h">
+      <Filter>Header Files\gpu</Filter>
+    </ClInclude>
+    <ClInclude Include="gpu\texture_flags.h">
+      <Filter>Header Files\gpu</Filter>
+    </ClInclude>
+    <ClInclude Include="gpu\binding.h">
+      <Filter>Header Files\gpu</Filter>
+    </ClInclude>
+    <ClInclude Include="gpu\block.h">
+      <Filter>Header Files\gpu</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics3d\render_system\wavefront_obj_render_system.h">
+      <Filter>Header Files\graphics3d\render_system</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics3d\render_system\skybox_render_system.h">
+      <Filter>Header Files\graphics3d\render_system</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics3d\render_system\point_light_render_system.h">
+      <Filter>Header Files\graphics3d\render_system</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics3d\render_system\aaa_skybox_render_system.h">
+      <Filter>Header Files\graphics3d\render_system</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics3d\render_system\pbr_with_ibl_render_system_base.h">
+      <Filter>Header Files\graphics3d\render_system</Filter>
+    </ClInclude>
+    <ClInclude Include="gpu\empty_texture_source.h">
+      <Filter>Header Files\gpu</Filter>
+    </ClInclude>
+    <ClInclude Include="ibl\_.h">
+      <Filter>Header Files\ibl</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\timer.h">
+      <Filter>Header Files\platform</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -441,9 +462,6 @@
       <Filter>Source Files\graphics3d</Filter>
     </ClCompile>
     <ClCompile Include="graphics3d\key_map.cpp">
-      <Filter>Source Files\graphics3d</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics3d\model.cpp">
       <Filter>Source Files\graphics3d</Filter>
     </ClCompile>
     <ClCompile Include="graphics3d\scene_base.cpp">
@@ -557,18 +575,6 @@
     <ClCompile Include="gpu\frame_ephemeral.cpp">
       <Filter>Source Files\gpu</Filter>
     </ClCompile>
-    <ClCompile Include="graphics3d\render_systems\wavefront_obj_render_system.cpp">
-      <Filter>Source Files\graphics3d\render_systems</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics3d\render_systems\point_light_render_system.cpp">
-      <Filter>Source Files\graphics3d\render_systems</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics3d\render_systems\skybox_ibl_render_system.cpp">
-      <Filter>Source Files\graphics3d\render_systems</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics3d\render_systems\skybox_render_system.cpp">
-      <Filter>Source Files\graphics3d\render_systems</Filter>
-    </ClCompile>
     <ClCompile Include="graphics3d\render_system.cpp">
       <Filter>Source Files\graphics3d</Filter>
     </ClCompile>
@@ -614,20 +620,47 @@
     <ClCompile Include="graphics3d\shape_factory.cpp">
       <Filter>Source Files\graphics3d</Filter>
     </ClCompile>
-    <ClCompile Include="graphics3d\render_systems\scene_render_system.cpp">
-      <Filter>Source Files\graphics3d\render_systems</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics3d\render_systems\gltf_render_system.cpp">
-      <Filter>Source Files\graphics3d\render_systems</Filter>
-    </ClCompile>
     <ClCompile Include="graphics3d\scene_renderable.cpp">
       <Filter>Source Files\graphics3d</Filter>
     </ClCompile>
-    <ClCompile Include="graphics3d\global_ubo.cpp">
+    <ClCompile Include="graphics3d\aaa_global_ubo.cpp">
       <Filter>Source Files\graphics3d</Filter>
     </ClCompile>
     <ClCompile Include="gltf\vertex.cpp">
       <Filter>Source Files\gltf</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics3d\global_ubo1.cpp">
+      <Filter>Source Files\graphics3d</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics3d\transform.cpp">
+      <Filter>Source Files\graphics3d</Filter>
+    </ClCompile>
+    <ClCompile Include="gpu\binding.cpp">
+      <Filter>Source Files\gpu</Filter>
+    </ClCompile>
+    <ClCompile Include="gpu\block.cpp">
+      <Filter>Source Files\gpu</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics3d\render_system\point_light_render_system.cpp">
+      <Filter>Source Files\graphics3d\render_system</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics3d\render_system\skybox_render_system.cpp">
+      <Filter>Source Files\graphics3d\render_system</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics3d\render_system\wavefront_obj_render_system.cpp">
+      <Filter>Source Files\graphics3d\render_system</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics3d\render_system\pbr_with_ibl_render_system_base.cpp">
+      <Filter>Source Files\graphics3d\render_system</Filter>
+    </ClCompile>
+    <ClCompile Include="gpu\empty_texture_source.cpp">
+      <Filter>Source Files\gpu</Filter>
+    </ClCompile>
+    <ClCompile Include="gpu\model_data.cpp">
+      <Filter>Source Files\gpu</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\timer.cpp">
+      <Filter>Source Files\platform</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

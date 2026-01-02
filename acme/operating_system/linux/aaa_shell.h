@@ -115,10 +115,6 @@
 //      LPVOID pParam);
 //
 //
-//
-//
-//
-//
 //// xxx    int_bool (WINAPI * m_pfnSHGetPathFromIDList)(LPCITEMIDLIST pidl, unichar * pszPath);
 //// xxx    HANDLE (WINAPI * m_pfnFindFirstFile)(const unichar * pcsz, WIN32_FIND_DATAW * pdata);
 //
@@ -216,14 +212,6 @@
 //      HMENU hMenu,
 //      HINSTANCE hInstance,
 //      LPVOID pParam);
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //// xxx    static int_bool SHGetPathFromIDList(LPCITEMIDLIST pidl, string & str);
 //// xxx    static int_bool SHGetPathFromIDList(LPCITEMIDLIST pidl, unichar * pszPath);

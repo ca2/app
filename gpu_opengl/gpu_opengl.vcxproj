@@ -44,35 +44,35 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseOfAtl>false</UseOfAtl>
-    <PlatformToolset>v143</PlatformToolset>
+    <PlatformToolset>v145</PlatformToolset>
     <WholeProgramOptimization>false</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Win32'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseOfAtl>false</UseOfAtl>
-    <PlatformToolset>v143</PlatformToolset>
+    <PlatformToolset>v145</PlatformToolset>
     <WholeProgramOptimization>false</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseOfAtl>false</UseOfAtl>
-    <PlatformToolset>v143</PlatformToolset>
+    <PlatformToolset>v145</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='StaticRelease|Win32'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseOfAtl>false</UseOfAtl>
-    <PlatformToolset>v143</PlatformToolset>
+    <PlatformToolset>v145</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseOfAtl>false</UseOfAtl>
-    <PlatformToolset>v143</PlatformToolset>
+    <PlatformToolset>v145</PlatformToolset>
     <WholeProgramOptimization>false</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
@@ -81,19 +81,19 @@
     <UseOfAtl>false</UseOfAtl>
     <WholeProgramOptimization>false</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
-    <PlatformToolset>v143</PlatformToolset>
+    <PlatformToolset>v145</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseOfAtl>false</UseOfAtl>
-    <PlatformToolset>v143</PlatformToolset>
+    <PlatformToolset>v145</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseOfAtl>false</UseOfAtl>
-    <PlatformToolset>v143</PlatformToolset>
+    <PlatformToolset>v145</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
@@ -691,6 +691,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="assimp.h" />
+    <ClInclude Include="block.h" />
     <ClInclude Include="command_buffer.h" />
     <ClInclude Include="cpu_buffer.h" />
     <ClInclude Include="context.h" />
@@ -724,7 +725,6 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">true</ExcludedFromBuild>
     </ClInclude>
-    <ClInclude Include="cube.h" />
     <ClInclude Include="device.h" />
     <ClInclude Include="device_win32.h" />
     <ClInclude Include="frame.h" />
@@ -735,23 +735,67 @@
     <ClInclude Include="gltf\vertex.h" />
     <ClInclude Include="gltf\_constant.h" />
     <ClInclude Include="gltf_mesh.h" />
-    <ClInclude Include="ibl\brdf_convolution_framebuffer.h" />
-    <ClInclude Include="ibl\cubemap_framebuffer.h" />
+    <ClInclude Include="ibl\aaa_brdf_convolution_framebuffer.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticDebug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">true</ExcludedFromBuild>
+    </ClInclude>
     <ClInclude Include="ibl\diffuse_irradiance_map.h" />
     <ClInclude Include="ibl\equirectangular_cubemap.h" />
-    <ClInclude Include="ibl\hdri_cube.h" />
-    <ClInclude Include="ibl\mipmap_cubemap_framebuffer.h" />
-    <ClInclude Include="ibl\shaders\brdfconvolution.frag.h" />
-    <ClInclude Include="ibl\shaders\brdfconvolution.vert.h" />
-    <ClInclude Include="ibl\shaders\diffuseirradiance.frag.h" />
-    <ClInclude Include="ibl\shaders\diffuseirradiance.vert.h" />
-    <ClInclude Include="ibl\shaders\hdricube.frag.h" />
-    <ClInclude Include="ibl\shaders\hdricube.vert.h" />
-    <ClInclude Include="ibl\shaders\pbr.frag.h" />
-    <ClInclude Include="ibl\shaders\pbr.vert.h" />
-    <ClInclude Include="ibl\shaders\specularenv.frag.h" />
-    <ClInclude Include="ibl\shaders\specularenv.vert.h" />
+    <ClInclude Include="ibl\aaa_mipmap_cubemap_framebuffer.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticDebug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="ibl\shader\brdf_convolution_map.frag.h" />
+    <ClInclude Include="ibl\shader\brdf_convolution_map.vert.h" />
+    <ClInclude Include="ibl\shader\diffuse_irradiance_map.frag.h" />
+    <ClInclude Include="ibl\shader\diffuse_irradiance_map.vert.h" />
+    <ClInclude Include="ibl\shader\equirectangular_cubemap.frag.h" />
+    <ClInclude Include="ibl\shader\equirectangular_cubemap.vert.h" />
+    <ClInclude Include="ibl\shader\prefiltered_environment_map.frag.h" />
+    <ClInclude Include="ibl\shader\prefiltered_environment_map.vert.h" />
     <ClInclude Include="ibl\specular_map.h" />
+    <ClInclude Include="ibl\_aaa\aaaa_hdri_cube.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticDebug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="ibl\_aaa\aaa_cubemap_framebuffer.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticDebug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="ibl\_aaa\aaa_mipmap_cubemap_framebuffer.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticDebug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">true</ExcludedFromBuild>
+    </ClInclude>
     <ClInclude Include="input_layout.h" />
     <ClInclude Include="lock.h" />
     <ClInclude Include="memory_buffer.h" />
@@ -775,7 +819,9 @@
   <ItemGroup>
     <ClCompile Include="approach_win32.cpp" />
     <ClCompile Include="assimp.cpp" />
+    <ClCompile Include="block.cpp" />
     <ClCompile Include="command_buffer.cpp" />
+    <ClCompile Include="context_ktx.cpp" />
     <ClCompile Include="cpu_buffer.cpp" />
     <ClCompile Include="context.cpp" />
     <ClCompile Include="context_egl.cpp">
@@ -808,7 +854,6 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="cube.cpp" />
     <ClCompile Include="device.cpp" />
     <ClCompile Include="device_win32.cpp" />
     <ClCompile Include="frame_buffer.cpp" />
@@ -816,13 +861,49 @@
     <ClCompile Include="gltf\mesh.cpp" />
     <ClCompile Include="gltf\model.cpp" />
     <ClCompile Include="hdr_texture.cpp" />
-    <ClCompile Include="ibl\brdf_convolution_framebuffer.cpp" />
-    <ClCompile Include="ibl\cubemap_framebuffer.cpp" />
+    <ClCompile Include="ibl\aaa_brdf_convolution_framebuffer.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticDebug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="ibl\diffuse_irradiance_map.cpp" />
     <ClCompile Include="ibl\equirectangular_cubemap.cpp" />
-    <ClCompile Include="ibl\hdri_cube.cpp" />
-    <ClCompile Include="ibl\mipmap_cubemap_framebuffer.cpp" />
     <ClCompile Include="ibl\specular_map.cpp" />
+    <ClCompile Include="ibl\_aaa\aaa_cubemap_framebuffer.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticDebug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="ibl\_aaa\aaa_hdri_cube.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticDebug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="ibl\_aaa\aaa_mipmap_cubemap_framebuffer.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticDebug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="input_layout.cpp" />
     <ClCompile Include="lock.cpp" />
     <ClCompile Include="memory_buffer.cpp" />
@@ -883,20 +964,158 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="ibl\shaders\brdfconvolution.frag" />
-    <None Include="ibl\shaders\brdfconvolution.vert" />
-    <None Include="ibl\shaders\diffuseirradiance1.frag" />
-    <None Include="ibl\shaders\diffuseirradiance.vert" />
-    <None Include="ibl\shaders\hdricube.frag" />
-    <None Include="ibl\shaders\hdricube.vert" />
-    <CustomBuild Include="ibl\shaders\pbr1.frag">
+    <CustomBuild Include="ibl\shader\brdf_convolution_map.frag">
       <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Win32'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='StaticRelease|Win32'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='StaticDebug|x64'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Win32'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='StaticRelease|Win32'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='StaticDebug|x64'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
     </CustomBuild>
-    <CustomBuild Include="ibl\shaders\pbr1.vert">
+    <CustomBuild Include="ibl\shader\brdf_convolution_map.vert">
       <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Win32'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='StaticRelease|Win32'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='StaticDebug|x64'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Win32'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='StaticRelease|Win32'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='StaticDebug|x64'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
     </CustomBuild>
-    <None Include="ibl\shaders\specularenv.frag" />
-    <None Include="ibl\shaders\specularenv.vert" />
+    <CustomBuild Include="ibl\shader\diffuse_irradiance_map.frag">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Win32'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='StaticRelease|Win32'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='StaticDebug|x64'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Win32'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='StaticRelease|Win32'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='StaticDebug|x64'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="ibl\shader\diffuse_irradiance_map.vert">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Win32'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='StaticRelease|Win32'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='StaticDebug|x64'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Win32'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='StaticRelease|Win32'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='StaticDebug|x64'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="ibl\shader\equirectangular_cubemap.frag">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Win32'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='StaticRelease|Win32'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='StaticDebug|x64'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Win32'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='StaticRelease|Win32'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='StaticDebug|x64'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="ibl\shader\equirectangular_cubemap.vert">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Win32'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='StaticRelease|Win32'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='StaticDebug|x64'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Win32'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='StaticRelease|Win32'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='StaticDebug|x64'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="ibl\shader\prefiltered_environment_map.frag">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Win32'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='StaticRelease|Win32'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='StaticDebug|x64'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Win32'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='StaticRelease|Win32'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='StaticDebug|x64'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="ibl\shader\prefiltered_environment_map.vert">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Win32'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='StaticRelease|Win32'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='StaticDebug|x64'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">application_build_helper --inline-text %(RelativeDir)%(Filename)%(Extension)</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Win32'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='StaticRelease|Win32'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='StaticDebug|x64'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">%(RelativeDir)%(Filename)%(Extension).h</Outputs>
+    </CustomBuild>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

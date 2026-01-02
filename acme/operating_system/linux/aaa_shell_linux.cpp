@@ -864,10 +864,6 @@ pdirectorysystem->is(strPath))
 //      {
 //
 //         per_fork fork;
-//
-//
-//
-//
 //         synchronous_lock synchronouslock(m_pmutexQueue, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //         while (task_get_run())

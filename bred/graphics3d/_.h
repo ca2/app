@@ -32,6 +32,8 @@ namespace graphics3d
    class input;
    class camera;
 
+   class transform;
+
    class render_system;
    //class shader;
 
@@ -58,11 +60,11 @@ namespace graphics3d
    class wavefront_obj_render_system;
    class point_light_render_system;
    class scene_render_system;
-   class skybox_ibl_render_system;
+   //class skybox_ibl_render_system;
    class skybox_render_system;
-
+   class shape_factory;
 
 } // namespace graphics3d
 
 
-#include "_types.h"
+//#include "_types.h"

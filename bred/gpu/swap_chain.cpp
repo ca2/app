@@ -60,7 +60,7 @@ namespace gpu
    }
 
 
-   void swap_chain::initialize_swap_chain_window(::gpu::context * pgpucontext, ::windowing::window* pwindow)
+   void swap_chain::initialize_swap_chain_window(::gpu::context * pgpucontext, ::acme::windowing::window* pwindow)
    {
 
       ASSERT(pgpucontext && pgpucontext->m_etype == ::gpu::context::e_type_window);

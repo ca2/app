@@ -126,7 +126,7 @@ CLASS_DECL_ACME::collection::index new_reference_item_serial()
 //      try
 //      {
 //
-//         string strType = ::type(this).name();
+//         string strType = ::platform::type(this).name();
 //
 //         if (strType == "pacman::game")
 //         {
@@ -148,11 +148,11 @@ CLASS_DECL_ACME::collection::index new_reference_item_serial()
 //         else if (!pobjectreferencecountdebug->m_strDebug.is_empty())
 //         {
 //
-//            pobjectreferencecountdebug->m_strDebug = "For " + ::type(this).name() + "(" + string(debug_note()) + ")";
+//            pobjectreferencecountdebug->m_strDebug = "For " + ::platform::type(this).name() + "(" + string(debug_note()) + ")";
 //
 //         }
 //
-//         string strNote = ::type(pReferer).name();
+//         string strNote = ::platform::type(pReferer).name();
 //
 //         if (::is_set(scopedstrObjRefDbg))
 //         {
@@ -304,10 +304,6 @@ CLASS_DECL_ACME::collection::index new_reference_item_serial()
 ////    return g_lparamdbg;
 ////
 ////}
-//
-//
-//
-//
 //
 //
 //#if REFERENCING_DEBUGGING

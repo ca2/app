@@ -82,7 +82,7 @@ namespace platform
 
       }
 
-      information() << "::apex::session::on_request(::pointer<::create> " << ::type(this).name();
+      information() << "::apex::session::on_request(::pointer<::create> " << ::platform::type(this).name();
 
       //string strAppId = prequest->m_strAppId;
 

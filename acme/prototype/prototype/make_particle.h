@@ -2,12 +2,6 @@
 #pragma once
 
 
-//template < typename TYPE >
-//class make_particle :
-//   virtual public ::particle,
-// virtual public TYPE
-//{
-//public:
 
 
 template < typename TYPE >
@@ -20,22 +14,6 @@ public:
 
    using TYPE::TYPE;
    using TYPE::operator = ;
-
-
-   // virtual void write_to_stream(::binary_stream& stream)
-   // {
-   //
-   //    stream << (TYPE&)*this;
-   //
-   // }
-   //
-   //
-   // virtual void read_from_stream(::binary_stream& stream)
-   // {
-   //
-   //    stream >> (TYPE&)*this;
-   //
-   // }
 
 
 };

@@ -112,7 +112,7 @@ namespace user
       while (iLayout >= 0)
       {
 
-         m_pscrolllayoutX->m_scrollstatea[iLayout].set_dimension(size.cx());
+         m_pscrolllayoutX->m_scrollstatea[iLayout].set_dimension(size.cx);
 
          iLayout--;
 
@@ -144,11 +144,11 @@ namespace user
 
             int iScrollBarWidth = get_int(pstyle, e_int_scroll_bar_thickness);
 
-            rectangleNewPos.left() = rectangleX.left();
-            rectangleNewPos.top() = rectangleX.bottom() - iScrollBarWidth;
-            //rectangleNewPos.right() = rectangleNewPos.left() + rectangleX.width() - get_final_y_scroll_bar_width();
-            rectangleNewPos.right() = rectangleNewPos.left() + rectangleX.width() - iScrollBarWidth;
-            rectangleNewPos.bottom() = rectangleX.bottom();
+            rectangleNewPos.left = rectangleX.left;
+            rectangleNewPos.top = rectangleX.bottom - iScrollBarWidth;
+            //rectangleNewPos.right = rectangleNewPos.left + rectangleX.width() - get_final_y_scroll_bar_width();
+            rectangleNewPos.right = rectangleNewPos.left + rectangleX.width() - iScrollBarWidth;
+            rectangleNewPos.bottom = rectangleX.bottom;
 
             m_pscrollbarX->place(rectangleNewPos, elayout);
 
@@ -220,25 +220,25 @@ namespace user
       //      if (pscroll->m_ecommand == e_scroll_command_line_left)
       //      {
 
-      //         set_context_offset_x(pgraphics, (int)(get_context_offset().x() - m_pscrollstateHorizontal->m_iLine));
+      //         set_context_offset_x(pgraphics, (int)(get_context_offset().x - m_pscrollstateHorizontal->m_iLine));
 
       //      }
       //      else if (pscroll->m_ecommand == e_scroll_command_page_left)
       //      {
 
-      //         set_context_offset_x(pgraphics, (int)(get_context_offset().x() - m_pscrollstateHorizontal->m_iPage));
+      //         set_context_offset_x(pgraphics, (int)(get_context_offset().x - m_pscrollstateHorizontal->m_iPage));
 
       //      }
       //      else if (pscroll->m_ecommand == e_scroll_command_page_right)
       //      {
 
-      //         set_context_offset_x(pgraphics, (int)(get_context_offset().x() + m_pscrollstateHorizontal->m_iPage));
+      //         set_context_offset_x(pgraphics, (int)(get_context_offset().x + m_pscrollstateHorizontal->m_iPage));
 
       //      }
       //      else if (pscroll->m_ecommand == e_scroll_command_line_right)
       //      {
 
-      //         set_context_offset_x(pgraphics, (int)(get_context_offset().x() + m_pscrollstateHorizontal->m_iLine));
+      //         set_context_offset_x(pgraphics, (int)(get_context_offset().x + m_pscrollstateHorizontal->m_iLine));
 
       //      }
       //      else if (pscroll->m_ecommand == e_scroll_command_thumb_track)
@@ -271,7 +271,7 @@ namespace user
    //   //if (m_pscrollbarX.is_set())
    //   //{
 
-   //   //   m_pscrollbarX->m_scrollstate.nPos = m_pointScroll.x();
+   //   //   m_pscrollbarX->m_scrollstate.nPos = m_pointScroll.x;
 
    //   //}
 
@@ -327,12 +327,12 @@ namespace user
 
       x = minimum_maximum(x, scrollstatex.m_dMinimum, scrollstatex.m_dMaximum - scrollstatex.m_dPage);
 
-//point.y() = minimum_maximum(point.y(), scrollstatey.m_iMinimum, scrollstatey.m_iMaximum);
+//point.y = minimum_maximum(point.y, scrollstatey.m_iMinimum, scrollstatey.m_iMaximum);
 
-      //if (point.x() < 0)
+      //if (point.x < 0)
       //{
 
-      //   point.x() = 0;
+      //   point.x = 0;
 
       //}
       //else
@@ -342,10 +342,10 @@ namespace user
 
       //   auto sizePage = get_page_size();
 
-      //   if (point.x() > maximum(0, sizeTotal.cx() - sizePage.cx()))
+      //   if (point.x > maximum(0, sizeTotal.cx - sizePage.cx))
       //   {
 
-      //      point.x() = (int)maximum(0, sizeTotal.cx() - sizePage.cx());
+      //      point.x = (int)maximum(0, sizeTotal.cx - sizePage.cx);
 
       //   }
 
@@ -377,9 +377,9 @@ namespace user
 
       auto rectangleX = this->rectangle();
 
-      int iTotalHeight = (int)sizeTotal.cy();
+      int iTotalHeight = (int)sizeTotal.cy;
 
-      int iTotalWidth = (int)sizeTotal.cx();
+      int iTotalWidth = (int)sizeTotal.cx;
 
       int iClientHeight = rectangleX.height();
 
@@ -452,7 +452,7 @@ namespace user
       //else
       //{
 
-      //   pscroll->m_nPos = (int)get_context_offset().x();
+      //   pscroll->m_nPos = (int)get_context_offset().x;
 
       //}
 

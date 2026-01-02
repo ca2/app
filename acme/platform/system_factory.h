@@ -32,14 +32,14 @@ namespace platform
 
             auto pfactory = psystem->factory();
 
-            bool bHasFactoryRepresentativeType = pfactory->has<FACTORY_REPRESENTATIVE_TYPE>();
+            bool bHasFactoryRepresentativeType = pfactory->has_factory_item<FACTORY_REPRESENTATIVE_TYPE>();
 
             if (!bHasFactoryRepresentativeType)
             {
 
                ::string strComponent = FACTORY_REPRESENTATIVE_TYPE::represented_component_name();
 
-               printf_line("Trying to create component \"%s\".", strComponent.c_str());
+               informationf("Trying to create component \"%s\".", strComponent.c_str());
 
                psystem->defer_component_factory(strComponent);
 

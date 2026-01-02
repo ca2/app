@@ -44,7 +44,7 @@ endif ()
 
 set_target_properties(database_sqlite3 PROPERTIES LINKER_LANGUAGE CXX)
 
-if (MSVC)
+if(${WIN32})
 
 
    target_compile_options(database_sqlite3 PRIVATE "/MD$<$<CONFIG:Debug>:d>")

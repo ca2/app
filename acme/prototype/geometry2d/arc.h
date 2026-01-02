@@ -8,7 +8,7 @@
 //#include "contains.h"
 
 
-template < primitive_number NUMBER >
+template < prototype_number NUMBER >
 class arc_type :
    public ellipse_type < NUMBER >
 {

@@ -34,10 +34,6 @@ namespace sockets
 //      };
 //
 //      friend class base_socket_handler;
-//
-//
-//
-//
 //      /** Data pass class from source to destination. */
 //      class trigger_data
 //      {
@@ -191,6 +187,9 @@ namespace sockets
 
 
       virtual ::string get_request_url_string();
+
+
+      virtual bool is_listening_socket();
 
 
       virtual void SetSocketHandler(base_socket_handler* phandler);
@@ -492,7 +491,7 @@ namespace sockets
       // --------------------------------------------------------------------------
       /** @name IP options
       When an ip or base_socket option is available on all of the operating systems
-      I'm testing on (linux 2.4.x(), _win32, macosx, solaris9 intel) they are not
+      I'm testing on (linux 2.4.x, _win32, macosx, solaris9 intel) they are not
       checked with an #ifdef below.
       This might cause a compile error on other operating systems. */
       // --------------------------------------------------------------------------

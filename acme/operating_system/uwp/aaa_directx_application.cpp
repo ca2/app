@@ -247,9 +247,9 @@ namespace universal_windows
 
       m_directx->m_size.set_size((int) args->Size.Width, (int)args->Size.Height);
 
-      m_rectangleLastWindowRect.Width = (float) m_directx->m_size.cx();
+      m_rectangleLastWindowRect.Width = (float) m_directx->m_size.cx;
 
-      m_rectangleLastWindowRect.Height = (float) m_directx->m_size.cy();
+      m_rectangleLastWindowRect.Height = (float) m_directx->m_size.cy;
 
       m_directx->OnWindowSizeChange();
 
@@ -538,8 +538,8 @@ namespace universal_windows
 
       spbase = pmouse;
 
-      pmouse->m_point.x()       = (int) pointerPoint->RawPosition.X;
-      pmouse->m_point.y()       = (int) pointerPoint->RawPosition.Y;
+      pmouse->m_point.x       = (int) pointerPoint->RawPosition.X;
+      pmouse->m_point.y       = (int) pointerPoint->RawPosition.Y;
       pmouse->m_emessage            = ::user::e_message_mouse_move;
       pmouse->m_puserinteraction  = session()->m_puserinteractionHost;
 
@@ -574,9 +574,9 @@ namespace universal_windows
 
       spbase = pmouse;
 
-      pmouse->m_point.x() = (int) pointerPoint->RawPosition.X;
+      pmouse->m_point.x = (int) pointerPoint->RawPosition.X;
 
-      pmouse->m_point.y() = (int) pointerPoint->RawPosition.Y;
+      pmouse->m_point.y = (int) pointerPoint->RawPosition.Y;
 
       if(args->CurrentPoint->Properties->IsLeftButtonPressed && !m_bLeftButton)
       {
@@ -638,9 +638,9 @@ namespace universal_windows
 
       spbase = pmouse;
 
-      pmouse->m_point.x() = (int) pointerPoint->RawPosition.X;
+      pmouse->m_point.x = (int) pointerPoint->RawPosition.X;
 
-      pmouse->m_point.y() = (int) pointerPoint->RawPosition.Y;
+      pmouse->m_point.y = (int) pointerPoint->RawPosition.Y;
 
       if(m_bLeftButton && !args->CurrentPoint->Properties->IsLeftButtonPressed)
       {

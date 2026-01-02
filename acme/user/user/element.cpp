@@ -1989,7 +1989,7 @@ namespace user
    }
 
 
-   void element::viewport_client_to_screen(::sequence2_int & sequence)
+   void element::viewport_client_to_screen(::int_sequence2 & sequence)
    {
 
       throw ::interface_only();
@@ -1997,7 +1997,7 @@ namespace user
    }
 
 
-   void element::viewport_screen_to_client(::sequence2_int & sequence)
+   void element::viewport_screen_to_client(::int_sequence2 & sequence)
    {
 
       throw ::interface_only();
@@ -2812,9 +2812,9 @@ namespace user
 
    //   ::double_size sizePaddedFitting;
 
-   //   sizePaddedFitting.cx() = rectanglePadding.left() + sizeFitting.cx() + rectanglePadding.right();
+   //   sizePaddedFitting.cx = rectanglePadding.left + sizeFitting.cx + rectanglePadding.right;
 
-   //   sizePaddedFitting.cy() = rectanglePadding.top() + sizeFitting.cy() + rectanglePadding.bottom();
+   //   sizePaddedFitting.cy = rectanglePadding.top + sizeFitting.cy + rectanglePadding.bottom;
 
    //   return sizePaddedFitting;
 
@@ -4652,7 +4652,7 @@ namespace user
    }
 
 
-   ::user::primitive_impl * element::get_primitive_impl()
+   ::user::prototype_impl * element::get_primitive_impl()
    {
 
       return nullptr;
@@ -5167,7 +5167,7 @@ void element::pick_multiple_file(const ::file::file_dialog_filter & filedialogfi
    ::trace_statement & element::raw_trace_statement_prefix(::trace_statement & statement) const
    {
 
-      ::string strType = ::type(this).name();
+      ::string strType = ::platform::type(this).name();
 
       statement << strType;
 

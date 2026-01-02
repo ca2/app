@@ -9,8 +9,8 @@
 // // STD
 // //#include <memory>
 // //#include <vector>
-// #define GLM_ENABLE_EXPERIMENTAL
-// #include <glm/glm.hpp>
+// 
+// 
 
 #include "bred/graphics3d/render_system.h"
 
@@ -39,7 +39,7 @@ namespace graphics3d
 
       //::pointer<::graphics3d::device> m_pgpudevice;
 
-      //VkDescriptorSetLayout m_globalSetLayout;
+      //aaaVkDescriptorSetLayout m_globalSetLayout;
       //::pointer<::gpu::shader> m_pshader;
       //::pointer<graphics3d::pipeline> m_ppipeline;
       //VkPipelineLayout m_pipelineLayout;
@@ -48,7 +48,7 @@ namespace graphics3d
       // point_light_render_system(const point_light_render_system&) = delete;
       // point_light_render_system& operator=(const point_light_render_system&) = delete;
 
-      //point_light_render_system(graphics3d::device * pdevice, VkRenderPass renderPass, VkDescriptorSetLayout globalSetLayout);
+      //point_light_render_system(graphics3d::device * pdevice, VkRenderPass renderPass, aaaVkDescriptorSetLayout globalSetLayout);
       point_light_render_system();
 
 
@@ -58,7 +58,7 @@ namespace graphics3d
       // void init(
       // 	::graphics3d::device * pdevice,
       // 	VkRenderPass            renderPass,
-      // 	VkDescriptorSetLayout   globalSetLayout,
+      // 	aaaVkDescriptorSetLayout   globalSetLayout,
       // 	graphics3d::sandbox_descriptor_pool& descriptorPool,
       // 	size_t frameCount)override;
 
@@ -72,7 +72,7 @@ namespace graphics3d
 
 
       //private:
-      //void createPipelineLayout(VkDescriptorSetLayout globalSetLayout);
+      //void createPipelineLayout(aaaVkDescriptorSetLayout globalSetLayout);
       //void createPipeline(VkRenderPass renderPass);
 
 

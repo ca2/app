@@ -69,7 +69,7 @@ public:
    constexpr frequency(double dHertz) : FREQUENCY{dHertz} {}
    constexpr frequency(const ::FREQUENCY & frequency) : FREQUENCY(frequency) {}
 
-   template < primitive_floating FLOATING >
+   template < prototype_floating FLOATING >
    constexpr frequency operator *(FLOATING d) const
    {
 
@@ -77,7 +77,7 @@ public:
 
    }
 
-   template < primitive_floating FLOATING >
+   template < prototype_floating FLOATING >
    constexpr frequency operator / (FLOATING d) const
    {
 
@@ -128,7 +128,7 @@ public:
 
 
 
-template < primitive_floating FLOATING >
+template < prototype_floating FLOATING >
 constexpr ::frequency operator / (FLOATING d, const class time& time)
 {
 
@@ -139,7 +139,7 @@ constexpr ::frequency operator / (FLOATING d, const class time& time)
 }
 
 
-template < primitive_integral INTEGRAL >
+template < prototype_integral INTEGRAL >
 constexpr ::frequency operator / (INTEGRAL i, const class time& time)
 {
 
@@ -150,7 +150,7 @@ constexpr ::frequency operator / (INTEGRAL i, const class time& time)
 }
 
 
-template < primitive_floating FLOATING >
+template < prototype_floating FLOATING >
 constexpr ::frequency operator * (FLOATING d, const frequency & frequency)
 {
 
@@ -159,7 +159,7 @@ constexpr ::frequency operator * (FLOATING d, const frequency & frequency)
 }
 
 
-template < primitive_floating FLOATING >
+template < prototype_floating FLOATING >
 constexpr class time operator / (FLOATING d, const frequency & frequency)
 {
 
@@ -170,7 +170,7 @@ constexpr class time operator / (FLOATING d, const frequency & frequency)
 }
 
 
-template < primitive_integral INTEGRAL >
+template < prototype_integral INTEGRAL >
 constexpr class time operator / (INTEGRAL i, const frequency & frequency)
 {
 
@@ -181,7 +181,7 @@ constexpr class time operator / (INTEGRAL i, const frequency & frequency)
 }
 
 
-template < primitive_integral INTEGRAL >
+template < prototype_integral INTEGRAL >
 constexpr ::frequency operator * (INTEGRAL i, const frequency & frequency)
 {
 

@@ -10,10 +10,6 @@ namespace platform
 
 //   struct CLASS_DECL_ACME acme_context_layer_t
 //   {
-//
-//
-//
-//
 //      //::platform::platform *                          m_pplatform;
 //
 //

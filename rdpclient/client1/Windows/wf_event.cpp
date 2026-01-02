@@ -183,8 +183,8 @@ void wf_event_focus_in(wfContext* wfc)
 	screen_to_client(wfc->hwnd, &pt);
 	this->rectangle(wfc->hwnd, &rc);
 
-	if (point.x() >= rc.left() && point.x() < rc.right() && point.y() >= rc.top() && point.y() < rc.bottom())
-		input->MouseEvent(input, PTR_FLAGS_MOVE, (::u3216)point.x(), (::u3216)point.y());
+	if (point.x >= rc.left && point.x < rc.right && point.y >= rc.top && point.y < rc.bottom)
+		input->MouseEvent(input, PTR_FLAGS_MOVE, (::u3216)point.x, (::u3216)point.y);
 }
 
 static int wf_event_process_WM_MOUSEWHEEL(wfContext* wfc, HWND hWnd, unsigned int Msg, WPARAM wParam, LPARAM lParam)
@@ -226,20 +226,20 @@ void wf_sizing(wfContext* wfc, WPARAM wParam, LPARAM lParam)
 			case WMSZ_RIGHT:
 			case WMSZ_BOTTOMRIGHT:
 				// Adjust height
-				int_rectangle->bottom() = int_rectangle->top() + wfc->height * (int_rectangle->right() - int_rectangle->left()) / wfc->instance->settings->DesktopWidth;
+				int_rectangle->bottom = int_rectangle->top + wfc->height * (int_rectangle->right - int_rectangle->left) / wfc->instance->settings->DesktopWidth;
 				break;
 
 			case WMSZ_TOP:
 			case WMSZ_BOTTOM:
 			case WMSZ_TOPRIGHT:			
 				// Adjust width
-				int_rectangle->right() = int_rectangle->left() + wfc->width * (int_rectangle->bottom() - int_rectangle->top()) / wfc->instance->settings->DesktopHeight;
+				int_rectangle->right = int_rectangle->left + wfc->width * (int_rectangle->bottom - int_rectangle->top) / wfc->instance->settings->DesktopHeight;
 				break;
 
 			case WMSZ_BOTTOMLEFT:
 			case WMSZ_TOPLEFT:
 				// adjust width
-				int_rectangle->left() = int_rectangle->right() - (wfc->width * (int_rectangle->bottom() - int_rectangle->top()) / wfc->instance->settings->DesktopHeight);
+				int_rectangle->left = int_rectangle->right - (wfc->width * (int_rectangle->bottom - int_rectangle->top) / wfc->instance->settings->DesktopHeight);
 
 				break;
 		}
@@ -299,8 +299,8 @@ void wf_sizing(wfContext* wfc, WPARAM wParam, LPARAM lParam)
 //					if (!wfc->fullscreen)
 //					{
 //						// add window decoration
-//						minmax->ptMaxTrackSize.x() = wfc->width + wfc->diff.x();
-//						minmax->ptMaxTrackSize.y() = wfc->height + wfc->diff.y();
+//						minmax->ptMaxTrackSize.x = wfc->width + wfc->diff.x;
+//						minmax->ptMaxTrackSize.y = wfc->height + wfc->diff.y;
 //					}
 //				}
 //				break;
@@ -316,8 +316,8 @@ void wf_sizing(wfContext* wfc, WPARAM wParam, LPARAM lParam)
 //				{
 //					wfc->client_width = LOWORD(lParam);
 //					wfc->client_height = HIWORD(lParam);
-//					wfc->client_x = windowRect.left();
-//					wfc->client_y = windowRect.top();
+//					wfc->client_x = windowRect.left;
+//					wfc->client_y = windowRect.top;
 //				}
 //				
 //				if (wfc->client_width && wfc->client_height)
@@ -326,7 +326,7 @@ void wf_sizing(wfContext* wfc, WPARAM wParam, LPARAM lParam)
 //
 //					// Workaround: when the window is maximized, the call to "ShowScrollBars" returns true but has no effect.
 //					if (wParam == SIZE_MAXIMIZED && !wfc->fullscreen)
-//						set_window_position(wfc->hwnd, HWND_TOP, 0, 0, windowRect.right() - windowRect.left(), windowRect.bottom() - windowRect.top(), SWP_NOMOVE | SWP_FRAMECHANGED);
+//						set_window_position(wfc->hwnd, HWND_TOP, 0, 0, windowRect.right - windowRect.left, windowRect.bottom - windowRect.top, SWP_NOMOVE | SWP_FRAMECHANGED);
 //				}
 //
 //				break;
@@ -342,10 +342,10 @@ void wf_sizing(wfContext* wfc, WPARAM wParam, LPARAM lParam)
 //			case ::user::e_message_paint:
 //				hdc = BeginPaint(hWnd, &ps);
 //
-//				x = ps.rcPaint.left();
-//				y = ps.rcPaint.top();
-//				w = ps.rcPaint.right() - ps.rcPaint.left() + 1;
-//				h = ps.rcPaint.bottom() - ps.rcPaint.top() + 1;
+//				x = ps.rcPaint.left;
+//				y = ps.rcPaint.top;
+//				w = ps.rcPaint.right - ps.rcPaint.left + 1;
+//				h = ps.rcPaint.bottom - ps.rcPaint.top + 1;
 //
 //				wf_scale_blt(wfc, hdc, x, y, w, h, ((wfBitmap *)wfc->primary)->hdc, x - wfc->offset_x + wfc->xCurrentScroll, y - wfc->offset_y + wfc->yCurrentScroll);
 //
@@ -674,8 +674,8 @@ void wf_scale_mouse_event(wfContext* wfc, rdpInput* input, ::u3216 flags, ::u321
 		input->MouseEvent(input, flags, x * dw / ww + wfc->xCurrentScroll, y * dh / wh + wfc->yCurrentScroll);
 
 	eventArgs.flags = flags;
-	eventArgs.x() = x;
-	eventArgs.y() = y;
+	eventArgs.x = x;
+	eventArgs.y = y;
 	context = (rdpContext*) wfc;
 	PubSub_OnMouseEvent(context->pubSub, context, &eventArgs);
 }

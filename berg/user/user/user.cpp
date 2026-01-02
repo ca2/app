@@ -12,7 +12,6 @@
 #include "acme/filesystem/filesystem/directory_system.h"
 #include "acme/filesystem/filesystem/file_context.h"
 #include "acme/parallelization/synchronous_lock.h"
-//#include "acme/handler/sequence.h"
 #include "acme/platform/system_setup.h"
 #include "acme/handler/request.h"
 #include "acme/nano/nano.h"
@@ -43,13 +42,6 @@
 #include "berg/user/form/impact.h"
 
 
-//#if defined(FREEBSD) || defined(OPENBSD) || defined(__APPLE__)
-//#include <stdio.h>
-//#endif
-
-
-
-
 namespace berg
 {
 
@@ -57,8 +49,6 @@ namespace berg
    {
 
       print_line("berg::user::user");
-
-      //m_pbaseuser = this;
 
    }
 
@@ -326,18 +316,18 @@ namespace berg
    }
 
 
-   ::type_atom user::get_html_document_type()
+   ::platform::type user::get_html_document_type()
    {
       
-      return m_typeatomHtmlDocument;
+      return m_typeHtmlDocument;
       
    }
 
 
-   ::type_atom user::get_html_impact_type()
+   ::platform::type user::get_html_impact_type()
    {
       
-      return m_typeatomHtmlImpact;
+      return m_typeHtmlImpact;
       
    }
 
@@ -533,7 +523,7 @@ namespace berg
    //   }
 
 
-   ::type_atom user::controltype_to_typeinfo(::user::enum_control_type econtroltype)
+   ::platform::type user::controltype_to_typeinfo(::user::enum_control_type econtroltype)
    {
 
       return {};
@@ -914,10 +904,10 @@ namespace berg
    //   }
 
    //}
-   //::type system::get_simple_frame_window_type_info()
+   //::platform::type system::get_simple_frame_window_type_info()
    //{
 
-   //   return ::type();
+   //   return ::platform::type();
 
    //}
 
@@ -1004,10 +994,6 @@ namespace berg
 //      //   }
 //
 //      //}
-//
-//
-//
-//
 //      ::aura::application & app = App(pinteraction->get_app());
 //
 //      string strAppName = app.m_strAppName;
@@ -1311,7 +1297,7 @@ namespace berg
 
 
 
-   ::type_atom user::user_default_controltype_to_typeinfo(::user::enum_control_type econtroltype)
+   ::platform::type user::user_default_controltype_to_typeinfo(::user::enum_control_type econtroltype)
    {
 
 
@@ -1392,17 +1378,17 @@ namespace berg
    }
 
 
-   ::pointer<::form_document>user::create_typed_form(::particle * pparticle, const ::type_atom & typeatom, ::user::element * puserelementParent, const ::payload & payload, const ::payload & payloadArgs)
+   ::pointer<::form_document>user::create_typed_form(::particle * pparticle, const ::platform::type & type, ::user::element * puserelementParent, const ::payload & payload, const ::payload & payloadArgs)
    {
 
-      if (!typeatom)
+      if (!type)
       {
 
          return nullptr;
 
       }
 
-      auto pimpactsystem = application()->impact_system(typeatom);
+      auto pimpactsystem = application()->impact_system(type);
 
       if (!pimpactsystem)
       {
@@ -1413,9 +1399,9 @@ namespace berg
          //   m_ptemplateForm->id(), 
          //   __initialize_new ::user::multiple_document_template(
          //      m_ptemplateForm->id(),
-         //      m_ptemplateForm->m_typeatomDocument,
-         //      m_ptemplateForm->m_typeatomFrame,
-         //      typeatom));
+         //      m_ptemplateForm->m_typeDocument,
+         //      m_ptemplateForm->m_typeFrame,
+         //      type));
 
       }
 
@@ -1637,7 +1623,7 @@ namespace berg
    }
 
 
-   ::pointer < ::form_document > user::create_typed_child_form(::particle * pparticle, const ::type_atom & typeatom, ::user::element * puserelementParent, const ::payload & payload, const ::payload & payloadArgs)
+   ::pointer < ::form_document > user::create_typed_child_form(::particle * pparticle, const ::platform::type & type, ::user::element * puserelementParent, const ::payload & payload, const ::payload & payloadArgs)
    {
 
       auto pathFile = payload.as_file_path();
@@ -1645,19 +1631,19 @@ namespace berg
       try
       {
 
-         if (!typeatom)
+         if (!type)
          {
 
             return nullptr;
 
          }
 
-         auto pimpactsystem = application()->impact_system(typeatom);
+         auto pimpactsystem = application()->impact_system(type);
 
          if (!pimpactsystem)
          {
 
-            auto typeDocument = impact_system("child_form")->m_typeatomDocument;
+            auto typeDocument = impact_system("child_form")->m_typeDocument;
 
             if (is_html_file(payload.as_file_path()))
             {
@@ -1673,14 +1659,14 @@ namespace berg
             //       __initialize_new ::user::multiple_document_template(
             //   m_ptemplateChildForm->id(),
             //   typeDocument,
-            //   m_ptemplateChildForm->m_typeatomFrame,
-            //   typeatom));
+            //   m_ptemplateChildForm->m_typeFrame,
+            //   type));
 
            /* pimpactsystemNew->initialize(pparticle);
 
             pimpactsystem = pimpactsystemNew;
 
-            m_mapimpactsystem[typeatom] = pimpactsystemNew;
+            m_mapimpactsystem[type] = pimpactsystemNew;
 
             document_manager()->add_document_template(pimpactsystem);*/
 
@@ -1797,10 +1783,10 @@ namespace berg
       //__namespace_object_factory(user, ::system_setup::flag_object_user);
 
 
-   ::pointer<::form_document> user::create_typed_child_form(::particle * pparticle, const ::type_atom & typeatom, ::user::impact_data * pimpactdata, ::payload payload)
+   ::pointer<::form_document> user::create_typed_child_form(::particle * pparticle, const ::platform::type & type, ::user::impact_data * pimpactdata, ::payload payload)
    {
 
-      return create_typed_child_form(pparticle, typeatom, pimpactdata->m_pplaceholder, payload);
+      return create_typed_child_form(pparticle, type, pimpactdata->m_pplaceholder, payload);
 
    }
 
@@ -1833,9 +1819,9 @@ namespace berg
             atom,
             øallocate::user::multiple_document_template(
                "system/form",
-               ::type < form_document >(),
+               ::type<form_document>(),
                get_simple_child_frame_type_info(),
-               ::type < ::user::form_impact >()));
+               ::type<::user::form_impact>()));
 
          return true;
 

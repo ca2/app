@@ -79,7 +79,7 @@ namespace netserver
    //::pointer < ::sockets::listen_socket > socket_thread::create_listen_socket()
    //{
 
-   //   return øid_create(m_typeatomSocket);
+   //   return øcreate_by_type(m_typeSocket);
 
    //}
 
@@ -139,7 +139,7 @@ namespace netserver
 
                      string strMessage;
 
-                     strMessage.formatf("\n\nBound to address %s:%d!!\n\n", m_strIp.c_str(), iPort);
+                     strMessage.formatf("Bound to address %s:%d!!", m_strIp.c_str(), iPort);
 
                      information(strMessage);
                      

@@ -40,7 +40,7 @@ list(APPEND library_source
 
 
 
-if (MSVC)
+if(${WIN32})
     set(LIBCXX_TARGETING_MSVC ON)
 else()
     set(LIBCXX_TARGETING_MSVC OFF)
@@ -68,7 +68,7 @@ endif ()
 set_target_properties(experience_lite PROPERTIES LINKER_LANGUAGE CXX)
 
 
-if (MSVC)
+if(${WIN32})
     target_compile_options(experience_lite PRIVATE "/MD$<$<CONFIG:Debug>:d>")
     target_link_options(experience_lite PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
     target_link_options(experience_lite PRIVATE "/IMPLIB:${LIBRARY_OUTPUT_PATH}/experience_lite.lib")

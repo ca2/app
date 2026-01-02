@@ -80,7 +80,7 @@ public:
       //referer.m_preferencerefererNext = nullptr;
       common_construct();
    }
-   template < primitive_subparticle A_SUBPARTICLE >
+   template < prototype_subparticle A_SUBPARTICLE >
    //reference_referer(::subparticle * psubparticleExisting, A_SUBPARTICLE * pparticle, const_char_pointer pszFunctionName = nullptr, const_char_pointer pszDebug = nullptr) :
    reference_referer(A_SUBPARTICLE * pparticle, const_char_pointer pszFunctionName = nullptr, const_char_pointer pszDebug = nullptr) :
       //m_bConstructor(!psubparticleExisting),
@@ -237,7 +237,7 @@ public:
 
 #endif
 
-   template < primitive_subparticle T >
+   template < prototype_subparticle T >
    T* operator << (T* p)
    {
 
@@ -308,7 +308,7 @@ public:
    }
 
 
-   template < primitive_subparticle T >
+   template < prototype_subparticle T >
    T* operator << (T* p)
    {
 
@@ -384,7 +384,7 @@ public:
    }
 
 
-   template < primitive_subparticle T >
+   template < prototype_subparticle T >
    T* operator << (T* p)
    {
 

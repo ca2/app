@@ -348,7 +348,7 @@ void property_object::on_catch_all_exception()
 ::string property_object::get_object_file_name()
 {
 
-   ::string str = ::type(*this).name();
+   ::string str = ::platform::type(this).name();
 
    str.find_replace("::", "_");
 
@@ -788,7 +788,7 @@ void property_object::defer_run_property(const ::atom& atom)
 //void property_object::to_string(const class string_exchange & str) const
 //{
 //
-//   str = ::type(this).name();
+//   str = ::platform::type(this).name();
 //
 //}
 
@@ -935,7 +935,7 @@ unsigned int property_object::get_unsigned_int(const ::atom & atom, unsigned int
 }
 
 
-//template < primitive_subparticle TYPE >
+//template < prototype_subparticle TYPE >
 //TYPE * property_object::cast(const ::atom & atom) const
 //{
 //

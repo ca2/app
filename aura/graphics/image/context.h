@@ -94,6 +94,10 @@ namespace image
 
       virtual void release_pool_image(::image::pool_image * ppoolimage);
 
+      /// If the source image is already correct size, returns it.
+      /// Othersize create another image with correct size and stretch source image in it.
+      virtual ::image::image_pointer defer_stretch_image(::image::image * pimage, const ::int_size& size);
+
 
       virtual int image_integer(const ::file::path & path);
       virtual int create_image_integer(int w, int h, const image32_t * pcolor, int iScan = -1);

@@ -77,27 +77,27 @@ namespace html
 
          bool bTableBorder = m_iBorder > 0;
 
-         if(m_border.left() == 0.f && bTableBorder)
+         if(m_border.left == 0.f && bTableBorder)
          {
-            m_border.left() = m_iBorder;
+            m_border.left = m_iBorder;
             m_border.colorLeft = argb(255, 192, 192, 192);
             m_border.styleLeft = ::html::border::style_solid;
          }
-         if(m_border.top() == 0.f && bTableBorder)
+         if(m_border.top == 0.f && bTableBorder)
          {
-            m_border.top() = m_iBorder;
+            m_border.top = m_iBorder;
             m_border.colorTop = argb(255, 192, 192, 192);
             m_border.styleTop = ::html::border::style_solid;
          }
-         if(m_border.right() == 0.f && bTableBorder)
+         if(m_border.right == 0.f && bTableBorder)
          {
-            m_border.right() = m_iBorder;
+            m_border.right = m_iBorder;
             m_border.colorRight = argb(255, 90, 90, 90);
             m_border.styleRight = ::html::border::style_solid;
          }
-         if(m_border.bottom() == 0.f && bTableBorder)
+         if(m_border.bottom == 0.f && bTableBorder)
          {
-            m_border.bottom() = m_iBorder;
+            m_border.bottom = m_iBorder;
             m_border.colorBottom = argb(255, 90, 90, 90);
             m_border.styleBottom = ::html::border::style_solid;
          }
@@ -222,7 +222,7 @@ namespace html
 
          float cy = m_iCellSpacing;
 
-         float x = m_box.left() + m_iCellSpacing;
+         float x = m_box.left + m_iCellSpacing;
 
          for (int i = 0; i < m_columna.get_size(); i++)
          {
@@ -243,25 +243,25 @@ namespace html
 
          }
 
-         m_box.right() =
-         m_box.left()
+         m_box.right =
+         m_box.left
          + cx
-         + m_margin.left()
-         + m_margin.right()
-         + m_border.left()
-         + m_border.right();
-//            + m_padding.left()
-         //          + m_padding.right();
+         + m_margin.left
+         + m_margin.right
+         + m_border.left
+         + m_border.right;
+//            + m_padding.left
+         //          + m_padding.right;
 
-         m_box.bottom() =
-         m_box.top()
+         m_box.bottom =
+         m_box.top
          + cy
-         + m_margin.top()
-         + m_margin.bottom()
-         + m_border.top()
-         + m_border.bottom();
-//            + m_padding.top()
-         //          + m_padding.bottom();
+         + m_margin.top
+         + m_margin.bottom
+         + m_border.top
+         + m_border.bottom;
+//            + m_padding.top
+         //          + m_padding.bottom;
 
          pdata->m_pcoredata->m_layoutstate1.m_cya.last() = m_box.height();
 
@@ -289,7 +289,7 @@ namespace html
 
          //float cy = m_iCellSpacing;
 
-         float x = m_box.left() + m_iCellSpacing + m_border.left() + m_margin.left();
+         float x = m_box.left + m_iCellSpacing + m_border.left + m_margin.left;
 
          for (int i = 0; i < m_columna.get_size(); i++)
          {

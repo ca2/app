@@ -99,6 +99,17 @@ namespace platform
 
       virtual void process_machine_event_data(machine_event_data * pdata) override;
 
+
+      virtual ::string get_operating_ambient();
+
+      virtual ::string get_user_toolkit_id();
+
+      virtual ::string get_nano_user_toolkit_id();
+
+      virtual ::string get_innate_ui_toolkit_id();
+
+      virtual ::string get_acme_windowing_toolkit_id();
+
       void do_operating_ambient_factory() override;
 
       void do_graphics_and_windowing_factory() override;
@@ -437,9 +448,9 @@ namespace platform
 //
 //      critical_section_lock synchronouslock(&m_csEnumText);
 //
-//      m_mapEnumToText[typeid(e).name()][(long long)e] = psz;
+//      m_mapEnumToText[::type<e>().name()][(long long)e] = psz;
 //
-//      m_mapTextToEnum[typeid(e).name()][psz] = (long long)e;
+//      m_mapTextToEnum[::type<e>().name()][psz] = (long long)e;
 //
 //   }
 
@@ -450,7 +461,7 @@ namespace platform
 //
 //      critical_section_lock synchronouslock(&m_csEnumText);
 //
-//      return m_mapEnumToText[typeid(e).name()][(long long)e];
+//      return m_mapEnumToText[::type<e>().name()][(long long)e];
 //
 //   }
 
@@ -463,7 +474,7 @@ namespace platform
 //
 //      long long iValue;
 //
-//      if (m_mapTextToEnum[typeid(e).name()].find(scopedstr, iValue))
+//      if (m_mapTextToEnum[::type<e>().name()].find(scopedstr, iValue))
 //      {
 //
 //         e = (ENUM)iValue;
@@ -816,10 +827,6 @@ namespace platform
 //       //virtual bool destroy();
 //
 //       //virtual void destroy() override;
-//
-//
-//
-//
 //       //virtual bool verb();
 //
 //       //virtual void main_user_async(const ::procedure & procedure, ::enum_priority epriority = e_priority_normal) override;
@@ -838,10 +845,6 @@ namespace platform
 //
 //
 //       //virtual ::aura::session * query_session(::collection::index iEdge) override;
-//
-//
-//
-//
 //       //virtual string dir_appmatter_locator(::particle * pparticle);
 //
 //
@@ -932,10 +935,6 @@ namespace platform
 //       //   return *m_pcompress;   // only usable from base.dll and dependants
 //
 //       //}
-//
-//
-//
-//
 //       //inline ::file::system_dir & dir() { return *m_spdir; }
 //       //inline ::file::system_file & file() { return *m_spfile; }
 //
@@ -978,17 +977,17 @@ namespace platform
 //
 //
 //       //template < class T >
-//       //::type * type_info()
+//       //::platform::type * type_info()
 //       //{
 //
-//       //   return get_type_info(typeid(T));
+//       //   return get_type_info(::type<T>());
 //
 //       //}
 //
 //
-//       //virtual ::type_atom * get_type_info(const ::std::type_info & info);
+//       //virtual ::platform::type * get_type_info(const ::std::type_info & info);
 //
-//       //::type * get_type_info(const ::atom & idType)
+//       //::platform::type * get_type_info(const ::atom & idType)
 //       //{
 //
 //       //   if(idType.is_empty())
@@ -1065,10 +1064,6 @@ namespace platform
 //
 //
 //       //virtual bool is_system() const override;
-//
-//
-//
-//
 //   /*    static inline ::atom atom(const ::std::type_info & info);
 //       static inline ::atom atom(const ::scoped_string & scopedstr);
 //       static inline ::atom atom(const ::scoped_string & scopedstr);
@@ -1083,10 +1078,6 @@ namespace platform
 //       //virtual bool assert_failed_line(const ::scoped_string & scopedstrFileName,int iLine) override;
 //
 //       //virtual bool on_assert_failed_line(const ::scoped_string & scopedstrFileName,int iLine) override;
-//
-//
-//
-//
 //
 //
 //       //virtual void initialize_log(const ::scoped_string & scopedstrId) override;
@@ -1144,10 +1135,6 @@ namespace platform
 // //virtual string get_system_platform() override;
 // //virtual string get_system_configuration() override;
 // //virtual string get_latest_build_number(const ::scoped_string & scopedstrConfiguration, const ::scoped_string & scopedstrAppId);
-//
-//
-//
-//
 // //#ifndef UNIVERSAL_WINDOWS
 //
 // //virtual void get_time(timeval * int_point) override;
@@ -1198,10 +1185,6 @@ namespace platform
 //
 //       //virtual ::windowing::window * impl_from_handle(void * posdata);
 //       //virtual ::user::interaction * ui_from_handle(void * posdata);
-//
-//
-//
-//
 //       //virtual void on_extra(const ::scoped_string & scopedstr) override;
 //
 //       //virtual string standalone_setting(const ::scoped_string & scopedstr) override;
@@ -1285,10 +1268,6 @@ namespace platform
 //
 //       //      virtual ::pointer<::handler>handler();
 //
-//
-//
-//
-//
 //       //virtual int main();
 //
 //       //virtual void on_allocation_error(const ::scoped_string & scopedstr, ::object* pobjectSometimes) override;
@@ -1333,14 +1312,6 @@ namespace platform
 //
 //
 // //      virtual bool wait_twf(class ::time tickTimeout = U32_INFINITE_TIMEOUT);
-//
-//
-//
-//
-//
-//
-//
-//
 //       virtual string get_host_location_url();
 //
 //       //      virtual void add_impact_library(::acme::library* plibrary);
@@ -1371,9 +1342,9 @@ namespace platform
 //       //virtual void hist_hist(const ::scoped_string & scopedstr) override;
 //
 //
-//       virtual ::type_atom get_pane_tab_impact_type_info();
-//       virtual ::type_atom get_simple_frame_window_type_info();
-//       //virtual ::type_atom get_simple_child_frame_type_info();
+//       virtual ::platform::type get_pane_tab_impact_type_info();
+//       virtual ::platform::type get_simple_frame_window_type_info();
+//       //virtual ::platform::type get_simple_child_frame_type_info();
 //
 //       //virtual void on_start_find_applications_from_cache() override;
 //       //virtual void on_end_find_applications_from_cache(stream& is) override;
@@ -1399,10 +1370,6 @@ namespace platform
 //       //virtual void term_system() override;
 //
 //       //virtual ::pointer<::aura::session>on_create_session() override;
-//
-//
-//
-//
 //       //virtual ::install::canvas * install_create_canvas() override;
 //       //virtual void install_canvas_on_paint(::draw2d::graphics_pointer & pgraphics, const ::int_rectangle & rectangle);
 //       //virtual int install_canvas_increment_mode() override;

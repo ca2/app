@@ -1,10 +1,6 @@
 // Created by camilo on 2022-04-24 04:50 <3ThomasBorregaardSorensen!!
 #pragma once
 
-
-//
-
-
 //template < has_string_getter HAS_STRING_GETTER >
 //inline ::string as_string(const HAS_STRING_GETTER & has_string_getter)
 //{

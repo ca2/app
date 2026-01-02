@@ -54,9 +54,9 @@ namespace sandbox_windowing
 //
 //      auto pwindowingdisplay = pwindowing->display();
 //
-//      int x = puserinteraction->const_layout().sketch().origin().x();
+//      int x = puserinteraction->const_layout().sketch().origin().x;
 //
-//      int y = puserinteraction->const_layout().sketch().origin().y();
+//      int y = puserinteraction->const_layout().sketch().origin().y;
 //
 //      int cx = puserinteraction->const_layout().sketch().width();
 //
@@ -116,10 +116,6 @@ namespace sandbox_windowing
 //         //         XFree(pupdate);
 //
 //      }
-//
-//
-//
-//
 //      //#ifndef RASPBERRYPIOS
 //      //
 //      //      if (pwindowing->m_pSnLauncheeContext != nullptr && !papp->m_bSnLauncheeSetup)
@@ -260,8 +256,8 @@ namespace sandbox_windowing
 //      //         // initial (XCreateWindow) int_size and position maybe not be honored.
 //      //         // so requesting the same change again in a effort to set the "docked/snapped" int_size and position.
 //
-//      //         //set_window_position(e_zorder_top, pusersystem->m_createstruct.x(), pusersystem->m_createstruct.y(),
-//      //         //                  pusersystem->m_createstruct.cx(), pusersystem->m_createstruct.cy(), SWP_SHOWWINDOW);
+//      //         //set_window_position(e_zorder_top, pusersystem->m_createstruct.x, pusersystem->m_createstruct.y,
+//      //         //                  pusersystem->m_createstruct.cx, pusersystem->m_createstruct.cy, SWP_SHOWWINDOW);
 //
 //      //         set_window_position(e_zorder_top, x, y, cx, cy, SWP_SHOWWINDOW);
 //
@@ -382,7 +378,7 @@ namespace sandbox_windowing
 
    //   m_strWMClass = psz;
 
-   //   display_lock displaylock(x11_display()->Display());
+   //   display_lock displaylock(x11_display()->__x11_display());
 
    //   XClassHint classHint;
 
@@ -406,7 +402,7 @@ namespace sandbox_windowing
 
    //      windowing_output_debug_string("\nwindow::map_window");
 
-   //      display_lock displaylock(x11_display()->Display());
+   //      display_lock displaylock(x11_display()->__x11_display());
 
    //      i = XMapWindow(Display(), Window());
 
@@ -450,7 +446,7 @@ namespace sandbox_windowing
 
    //   windowing_output_debug_string("\nwindow::unmap_window");
 
-   //   display_lock displaylock(x11_display()->Display());
+   //   display_lock displaylock(x11_display()->__x11_display());
 
    //   int i;
 
@@ -663,14 +659,14 @@ namespace sandbox_windowing
    //Display * window::Display()
    //{
 
-   //   return x11_display()->Display();
+   //   return x11_display()->__x11_display();
 
    //}
 
    //Display * window::Display() const
    //{
 
-   //   return x11_display()->Display();
+   //   return x11_display()->__x11_display();
 
    //}
 
@@ -754,11 +750,11 @@ namespace sandbox_windowing
 
    //   ::file::path path = pnode->get_desktop_file_path(papp);
 
-   //   informationf("\nfreebsd::interaction_impl::set_window_text");
+   //   informationf("----> freebsd::interaction_impl::set_window_text");
 
    //   fflush(stdout);
 
-   //   display_lock displaylock(x11_display()->Display());
+   //   display_lock displaylock(x11_display()->__x11_display());
 
    //   Atom net_wm_icon = x11_display()->intern_atom("_BAMF_DESKTOP_FILE", False);
 
@@ -776,7 +772,7 @@ namespace sandbox_windowing
    //      (const unsigned char *)(const_char_pointer )path,
    //      path.get_length());
 
-   //   informationf("\nfreebsd::interaction_impl::bamf_set_icon END");
+   //   informationf("----> freebsd::interaction_impl::bamf_set_icon END");
 
    //   fflush(stdout);
 
@@ -833,7 +829,7 @@ namespace sandbox_windowing
 //      4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 0, 0, 0, 0, 0, 0, 0, 0, 0, 268369920, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 1509949695, 3120562431, 4009754879, 4194304255, 3690987775, 2130706687, 83886335, 0, 50331903, 1694499071, 3170894079, 3992977663, 4211081471, 3657433343, 1879048447, 16777471, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3087007999, 2281701631, 1191182591, 1040187647, 2030043391, 4127195391, 2566914303, 0, 16777471, 3254780159, 2181038335, 1191182591, 973078783, 2030043391,4177527039, 2130706687, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 0, 0, 0, 0, 0, 2214592767, 4093640959, 0, 0, 0, 0, 0, 0, 0, 2298478847, 3909091583, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2214592767, 3607101695, 0, 0, 0, 0, 0, 0, 0, 1946157311, 4093640959, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 0, 0, 536871167, 1191182591, 2281701631,3019899135, 637534463, 0, 0, 0, 100597760, 251592704, 33488896, 0, 3321889023, 2919235839, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2550137087, 4278190335, 4278190335, 3405775103, 570425599, 0, 0, 0, 0, 0, 0, 2046820607, 4043309311, 620757247, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 33488896, 0, 0, 218104063, 1291845887, 3841982719, 3388997887, 0, 0, 0, 0, 0, 1996488959, 4093640959, 1073742079, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1761607935, 4278190335, 150995199, 0, 0, 67109119, 2550137087, 3909091583, 889192703, 0, 0, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 0, 0, 0, 0, 0, 2181038335, 3925868799, 0, 0, 218104063, 3070230783, 3623878911, 570425599, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 805306623, 3288334591, 1795162367, 1040187647, 1023410431, 2231369983, 4211081471, 1694499071, 0, 369099007, 3456106751, 3825205503, 1174405375, 872415487, 872415487, 872415487, 872415487, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4293984270, 2046951677, 3422552319, 4110418175, 4177527039, 3405775103, 1409286399, 0, 0, 1409286399, 4278190335, 4278190335, 4278190335, 4278190335, 4278190335, 4278190335, 4278190335, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760,4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4278255360, 4144037632, 4009819904, 3875602176, 3741384448, 3607166720, 3472948992, 3338731264, 3204513536, 3053518592, 2936078080, 2801860352, 2650865408, 2516647680, 2382429952, 2264989440, 2113994496, 1996553984, 1862336256, 1728118528, 1577123584, 1459683072, 1325465344, 1191247616, 1040252672, 922812160, 771817216, 637599488, 503381760, 385941248, 234946304, 100728576, 4278255360, 4144037632, 4009819904, 3875602176, 3724607232, 3607166720, 3472948992, 3338731264, 3204513536, 3070295808, 2936078080, 2801860352, 2667642624, 2516647680, 2399207168, 2264989440, 2130771712, 1996553984, 1845559040, 1728118528, 1593900800, 1459683072, 1308688128, 1191247616, 1057029888, 922812160, 788594432, 637599488, 503381760, 369164032, 234946304, 117505792, 4278255360, 4144037632, 4009819904, 3875602176, 3741384448, 3607166720, 3472948992, 3338731264, 3204513536, 3053518592, 2919300864, 2801860352, 2650865408, 2533424896, 2399207168, 2264989440, 2113994496, 1996553984, 1862336256, 1728118528,1593900800, 1459683072, 1325465344, 1191247616, 1040252672, 906034944, 771817216, 654376704, 503381760, 369164032, 234946304, 117505792, 4278255360, 4144037632, 4009819904, 3858824960, 3741384448, 3607166720, 3472948992, 3338731264, 3204513536, 3070295808, 2936078080, 2801860352, 2667642624, 2533424896, 2382429952, 2264989440, 2130771712, 1979776768, 1862336256, 1728118528, 1577123584, 1442905856, 1325465344, 1191247616, 1040252672, 922812160, 771817216, 637599488, 503381760, 369164032, 234946304, 100728576, 4278255360, 4144037632, 4009819904, 3875602176, 3741384448, 3607166720, 3472948992, 3338731264, 3204513536, 3070295808, 2919300864, 2801860352, 2667642624, 2533424896, 2399207168, 2264989440, 2113994496, 1996553984, 1862336256, 1728118528, 1593900800, 1442905856, 1342241795, 1174470400, 1057029888, 906034944, 788594432, 654376704, 503381760, 385941248, 251723520, 100728576, 4278190335, 4160749823, 4026532095, 3892314367, 3741319423, 3623878911, 3472883967, 3338666239, 3221225727, 3070230783, 2952790271, 2818572543, 2667577599, 2533359871, 2399142143, 2264924415, 2147483903, 1996488959, 1862271231, 1728053503, 1593835775, 1459618047, 1325400319, 1191182591, 1056964863, 922747135, 788529407, 654311679, 520093951,385876223, 251658495, 117440767, 4278190335, 4160749823, 4026532095, 3892314367, 3741319423, 3623878911, 3489661183, 3355443455, 3221225727, 3087007999, 2936013055, 2801795327, 2667577599, 2533359871, 2399142143, 2281701631, 2130706687, 1996488959, 1862271231, 1728053503, 1593835775,1459618047, 1325400319, 1191182591, 1056964863, 922747135, 788529407, 654311679, 520093951, 385876223, 234881279, 100663551, 4278190335, 4160749823, 4026532095, 3892314367, 3758096639, 3623878911, 3489661183, 3355443455, 3221225727, 3087007999, 2936013055, 2801795327, 2667577599, 2550137087, 2415919359, 2264924415, 2130706687, 1996488959, 1862271231, 1728053503, 1593835775, 1459618047, 1325400319, 1191182591, 1056964863, 922747135, 788529407, 654311679, 503316735, 369099007, 251658495, 100663551, 4278190335, 4160749823, 4026532095, 3892314367, 3758096639, 3623878911, 3489661183, 3355443455, 3204448511, 3087007999, 2936013055, 2818572543, 2667577599, 2533359871, 2399142143, 2264924415, 2130706687, 1996488959, 1879048447, 1728053503, 1593835775, 1459618047, 1325400319, 1191182591, 1056964863, 922747135, 788529407, 654311679, 520093951, 385876223, 251658495, 117440767, 4278190335, 4160749823, 4026532095, 3892314367, 3758096639, 3623878911, 3489661183, 3355443455, 3221225727, 3087007999, 2952790271, 2818572543, 2667577599, 2533359871, 2399142143, 2264924415, 2147483903, 2013266175, 1862271231, 1744830719, 1610612991, 1476395263, 1342177535, 1191182591, 1056964863, 922747135, 788529407, 654311679, 520093951, 385876223, 251658495, 100663551, 4294901760, 4160684032, 4026466304, 3909025792, 3774808064, 3623813120, 3489595392, 3355377664, 3237937152, 3103719424, 2952724480, 2818506752, 2684289024, 2550071296, 2415853568, 2281635840, 2147418112, 2013200384, 1878982656, 1744764928, 1593769984, 1476329472,1325334528, 1207894016, 1056899072, 939458560, 788463616, 654245888, 520028160, 385810432, 251592704, 117374976, 4294901760, 4177461248, 4043243520, 3909025792, 3774808064, 3640590336, 3506372608, 3355377664, 3221159936, 3086942208, 2952724480, 2818506752, 2701066240, 2550071296, 2415853568, 2281635840, 2147418112, 2013200384, 1878982656, 1727987712, 1610547200, 1476329472, 1325334528, 1191116800, 1073676288, 922681344, 788463616, 654245888, 520028160, 385810432, 251592704, 100597760, 4294901760, 4177461248, 4043243520, 3909025792, 3774808064, 3640590336, 3489595392, 3372154880, 3237937152, 3103719424, 2952724480, 2818506752, 2700935170, 2550071296, 2415853568, 2281635840, 2147418112, 2013200384, 1878982656, 1744764928, 1610547200, 1459552256, 1342111744, 1191116800, 1056899072, 922681344, 788463616, 671023104, 520028160, 385810432, 251592704, 100597760, 4294901760, 4177461248, 4043243520, 3909025792, 3774808064, 3640590336, 3489595392, 3372154880, 3237937152, 3086942208, 2969501696, 2818506752, 2684289024, 2550071296, 2432630784, 2281635840, 2147418112, 2013200384, 1862205440, 1744764928, 1610547200, 1476329472, 1342111744, 1191116800, 1056899072, 922681344, 788463616, 654245888, 520028160, 385810432, 251592704, 117374976, 4294901760, 4177461248, 4043243520, 3909025792, 3774808064, 3623813120, 3506372608, 3372154880, 3237937152, 3103719424, 2952724480, 2835283968, 2684289024, 2550071296, 2432630784, 2281635840, 2147418112, 2046492676, 1862205440, 1744764928, 1610547200, 1476329472, 1342111744,1207894016, 1056899072, 939458560, 788463616, 654245888, 536281096, 385810432, 251592704, 134152192,
 //      };
 //
-//      display_lock displaylock(x11_display()->Display());
+//      display_lock displaylock(x11_display()->__x11_display());
 //
 //      int iScreen = DefaultScreen(d);
 //
@@ -906,7 +902,7 @@ namespace sandbox_windowing
 //
 //      //synchronous_lock synchronouslock(user_synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
-//      //display_lock displaylock(x11_display()->Display());
+//      //display_lock displaylock(x11_display()->__x11_display());
 //
 //      //Atom net_wm_icon = x11_display()->intern_atom("_NET_WM_ICON", False);
 //
@@ -1024,7 +1020,7 @@ namespace sandbox_windowing
 
    //   synchronous_lock synchronouslock(user_synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-   //   display_lock displaylock(x11_display()->Display());
+   //   display_lock displaylock(x11_display()->__x11_display());
 
    //   int i = XStoreName(Display(), Window(), psz);
 
@@ -1042,7 +1038,7 @@ namespace sandbox_windowing
 
    //   synchronous_lock synchronouslock(user_synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-   //   display_lock displaylock(x11_display()->Display());
+   //   display_lock displaylock(x11_display()->__x11_display());
 
    //   int i = XSelectInput(Display(), Window(), iInput);
 
@@ -1060,7 +1056,7 @@ namespace sandbox_windowing
 
    //   synchronous_lock synchronouslock(user_synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-   //   display_lock displaylock(x11_display()->Display());
+   //   display_lock displaylock(x11_display()->__x11_display());
 
    //   int i = select_input(ExposureMask | ButtonPressMask);
 
@@ -1212,7 +1208,7 @@ namespace sandbox_windowing
 
       //synchronous_lock synchronouslock(user_synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-      //display_lock displaylock(x11_display()->Display());
+      //display_lock displaylock(x11_display()->__x11_display());
 
       //XReparentWindow(Display(), Window(), pwindowx11NewParent->Window(), 0, 0);
 
@@ -1369,7 +1365,7 @@ namespace sandbox_windowing
    //
    //            synchronous_lock synchronouslock(user_synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
    //
-   //            display_lock displaylock(x11_display()->Display());
+   //            display_lock displaylock(x11_display()->__x11_display());
    //
    //            XWindowAttributes attr;
    //
@@ -1452,7 +1448,7 @@ namespace sandbox_windowing
    //
    //      synchronous_lock synchronouslock(user_synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
    //
-   //      display_lock displaylock(x11_display()->Display());
+   //      display_lock displaylock(x11_display()->__x11_display());
    //
    //      //      if (x11_display()->is_null())
    //      //      {
@@ -1478,17 +1474,17 @@ namespace sandbox_windowing
    //
    //      ::int_rectangle rWindow;
    //
-   //      rWindow.left() = attr.x();
-   //      rWindow.top() = attr.y();
-   //      rWindow.right() = attr.x() + attr.width;
-   //      rWindow.bottom() = attr.y() + attr.height;
+   //      rWindow.left = attr.x;
+   //      rWindow.top = attr.y;
+   //      rWindow.right = attr.x + attr.width;
+   //      rWindow.bottom = attr.y + attr.height;
    //
    //      if (rBest != rWindow)
    //      {
    //
    //         m_pwindow->m_puserinteraction->place(rBest);
    //
-   //         XMoveResizeWindow(Display(), Window(), rBest.left(), rBest.top(), rBest.width(), rBest.height());
+   //         XMoveResizeWindow(Display(), Window(), rBest.left, rBest.top, rBest.width(), rBest.height());
    //
    //      }
    //
@@ -1521,7 +1517,7 @@ namespace sandbox_windowing
 
       //synchronous_lock synchronouslock(user_synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-      //display_lock displaylock(x11_display()->Display());
+      //display_lock displaylock(x11_display()->__x11_display());
 
       //XWindowAttributes attr;
 
@@ -1553,7 +1549,7 @@ namespace sandbox_windowing
 
       //synchronous_lock synchronouslock(user_synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-      //display_lock displaylock(x11_display()->Display());
+      //display_lock displaylock(x11_display()->__x11_display());
 
       //XWindowAttributes attr;
 
@@ -1585,7 +1581,7 @@ namespace sandbox_windowing
 
       //synchronous_lock sl(user_synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-      //display_lock displaylock(x11_display()->Display());
+      //display_lock displaylock(x11_display()->__x11_display());
 
       //XWindowAttributes attr;
 
@@ -1671,7 +1667,7 @@ namespace sandbox_windowing
 
    //   synchronous_lock synchronouslock(user_synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-   //   display_lock displaylock(x11_display()->Display());
+   //   display_lock displaylock(x11_display()->__x11_display());
 
    //   static const long WM_STATE_ELEMENTS = 2L;
 
@@ -1759,7 +1755,7 @@ namespace sandbox_windowing
 
       //synchronous_lock synchronouslock(user_synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-      //display_lock displaylock(x11_display()->Display());
+      //display_lock displaylock(x11_display()->__x11_display());
 
       //if (x11_display()->is_null())
       //{
@@ -1852,7 +1848,7 @@ namespace sandbox_windowing
       //   (const unsigned char *)(const_char_pointer )path,
       //   path.get_length());
 
-      //informationf("\nfreebsd::interaction_impl::bamf_set_icon END");
+      //informationf("----> freebsd::interaction_impl::bamf_set_icon END");
 
       //fflush(stdout);
 
@@ -1903,17 +1899,17 @@ namespace sandbox_windowing
    //
    //      ::int_rectangle rWindow;
    //
-   //      rWindow.left()      = attr.x();
-   //      rWindow.top()       = attr.y();
-   //      rWindow.right()     = attr.x()    + attr.width;
-   //      rWindow.bottom()    = attr.y()    + attr.height;
+   //      rWindow.left      = attr.x;
+   //      rWindow.top       = attr.y;
+   //      rWindow.right     = attr.x    + attr.width;
+   //      rWindow.bottom    = attr.y    + attr.height;
    //
    //      if(rBest != rWindow)
    //      {
    //
    //         m_pwindow->m_puserinteraction->place(rBest);
    //
-   //         XMoveResizeWindow(d, m_window, rBest.left(), rBest.top(), rBest.width(), rBest.height());
+   //         XMoveResizeWindow(d, m_window, rBest.left, rBest.top, rBest.width(), rBest.height());
    //
    //      }
    //
@@ -2111,7 +2107,7 @@ namespace sandbox_windowing
 
       windowing_output_debug_string("::window::set_window_pos 1");
 
-      //      display_lock displaylock(x11_display()->Display());
+      //      display_lock displaylock(x11_display()->__x11_display());
       //
       //      XWindowAttributes attrs = {};
       //
@@ -2409,7 +2405,7 @@ namespace sandbox_windowing
 
       //synchronous_lock synchronouslock(user_synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-      //display_lock displaylock(x11_display()->Display());
+      //display_lock displaylock(x11_display()->__x11_display());
 
       //Atom net_wm_icon = x11_display()->intern_atom("_BAMF_DESKTOP_FILE", False);
 
@@ -2429,7 +2425,7 @@ namespace sandbox_windowing
       //   (const unsigned char *)(const_char_pointer )path,
       //   path.get_length());
 
-      //informationf("\nfreebsd::interaction_impl::bamf_set_icon END");
+      //informationf("----> freebsd::interaction_impl::bamf_set_icon END");
 
       //fflush(stdout);
 
@@ -2496,7 +2492,7 @@ namespace sandbox_windowing
 
       //      windowing_output_debug_string("::SetCursor 1");
 
-      //      display_lock displaylock(x11_display()->Display());;
+      //      display_lock displaylock(x11_display()->__x11_display());;
 
       //      XDefineCursor(Display(), Window(), pcursorx11->m_cursor);
 
@@ -2564,7 +2560,7 @@ namespace sandbox_windowing
 //
 //#endif
 //
-//      display_lock displaylock(x11_display()->Display());
+//      display_lock displaylock(x11_display()->__x11_display());
 //
 //      windowing_output_debug_string("::GetFocus 1.01");
 //
@@ -2626,7 +2622,7 @@ namespace sandbox_windowing
 
    //      windowing_output_debug_string("::set_active_window 1");
 
-   //      display_lock displaylock(x11_display()->Display());
+   //      display_lock displaylock(x11_display()->__x11_display());
 
    //      XEvent xev;
 
@@ -2787,7 +2783,7 @@ namespace sandbox_windowing
 
    //   windowing_output_debug_string("::get_window 1");
 
-   //   display_lock displaylock(x11_display()->Display());
+   //   display_lock displaylock(x11_display()->__x11_display());
 
    //   if (erelative == e_relative_first_sibling ||
    //      erelative == e_relative_last_sibling ||
@@ -2979,7 +2975,7 @@ namespace sandbox_windowing
 
       windowing_output_debug_string("::DestroyWindow 1");
 
-      //display_lock displaylock(x11_display()->Display());
+      //display_lock displaylock(x11_display()->__x11_display());
 
       //XUnmapWindow(Display(), Window());
 
@@ -3116,7 +3112,7 @@ namespace sandbox_windowing
 
    //   windowing_output_debug_string("::wm_test_state 1");
 
-   //   display_lock displaylock(x11_display()->Display());
+   //   display_lock displaylock(x11_display()->__x11_display());
 
    //   if (x11_display()->is_null())
    //   {
@@ -3225,7 +3221,7 @@ namespace sandbox_windowing
 
       //synchronous_lock synchronouslock(user_synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-      //display_lock displaylock(x11_display()->Display());
+      //display_lock displaylock(x11_display()->__x11_display());
 
       //XRaiseWindow(Display(), Window());
 
@@ -3344,7 +3340,7 @@ namespace sandbox_windowing
 
    //   synchronous_lock synchronouslock(user_synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-   //   display_lock displaylock(x11_display()->Display());
+   //   display_lock displaylock(x11_display()->__x11_display());
 
    //   XStoreName(Display(), Window(), pszName);
 
@@ -3396,13 +3392,13 @@ namespace sandbox_windowing
    //
    //      XTranslateCoordinates(Display(), window, windowRoot, 0, 0, &x, &y, &child);
    //
-   //      prectangle->left() = x + attrs.x();
+   //      prectangle->left = x + attrs.x;
    //
-   //      prectangle->top() = y + attrs.y();
+   //      prectangle->top = y + attrs.y;
    //
-   //      prectangle->right() = x + attrs.x() + attrs.width;
+   //      prectangle->right = x + attrs.x + attrs.width;
    //
-   //      prectangle->bottom() = y + attrs.y() + attrs.height;
+   //      prectangle->bottom = y + attrs.y + attrs.height;
    //
    //
    //      windowing_output_debug_string("::x11_get_window_rect 2");
@@ -3416,7 +3412,7 @@ namespace sandbox_windowing
    //
    //      synchronous_lock synchronouslock(user_synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
    //
-   //      display_lock displaylock(x11_display()->Display());
+   //      display_lock displaylock(x11_display()->__x11_display());
    //
    //      if (x11_display()->is_null())
    //      {
@@ -3438,13 +3434,13 @@ namespace sandbox_windowing
    //
    //      }
    //
-   //      prectangle->left() = 0;
+   //      prectangle->left = 0;
    //
-   //      prectangle->top() = 0;
+   //      prectangle->top = 0;
    //
-   //      prectangle->right() = prectangle->left() + attr.width;
+   //      prectangle->right = prectangle->left + attr.width;
    //
-   //      prectangle->bottom() = prectangle->top() + attr.height;
+   //      prectangle->bottom = prectangle->top + attr.height;
    //
    //      windowing_output_debug_string("::this->rectangle 2");
    //
@@ -3469,7 +3465,7 @@ namespace sandbox_windowing
    //            if (::is_set(puserinteraction))
    //            {
 
-   //               string strType = ::type(puserinteraction).name();
+   //               string strType = ::platform::type(puserinteraction).name();
 
    //               if (strType.contains("menu"))
    //               {
@@ -3588,7 +3584,7 @@ namespace sandbox_windowing
       //m_pwindowing->windowing_post([this]()
       //   {
 
-      //      display_lock displaylock(x11_display()->Display());
+      //      display_lock displaylock(x11_display()->__x11_display());
 
       //      auto grabStatus = XGrabPointer(Display(), Window(), False,
       //         ButtonPressMask | ButtonReleaseMask |
@@ -3683,7 +3679,7 @@ namespace sandbox_windowing
 
    //windowing_output_debug_string("\nwindow(sandbox)::set_keyboard_focus 1");
 
-   //display_lock displaylock(x11_display()->Display());
+   //display_lock displaylock(x11_display()->__x11_display());
 
    //if (!is_window())
    //{
@@ -3767,7 +3763,7 @@ namespace sandbox_windowing
 //
 //      //windowing_output_debug_string("\nwindow(sandbox)::set_keyboard_focus 1");
 //
-//      //display_lock displaylock(x11_display()->Display());
+//      //display_lock displaylock(x11_display()->__x11_display());
 //
 //      //if (!is_window())
 //      //{
@@ -3829,7 +3825,7 @@ namespace sandbox_windowing
 
       //windowing_output_debug_string("\nwindow(sandbox)::set_keyboard_focus 1");
 
-      //display_lock displaylock(x11_display()->Display());
+      //display_lock displaylock(x11_display()->__x11_display());
 
       //XRaiseWindow(displaylock.m_pdisplay, Window());
 

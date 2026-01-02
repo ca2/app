@@ -500,12 +500,12 @@ namespace user
 
       rectangleItem = rectangleX;
 
-      rectangleItem.bottom() = rectangleX.top();
+      rectangleItem.bottom = rectangleX.top;
 
       if (m_pcombo && m_pcombo->m_bEdit)
       {
 
-         rectangleItem.bottom() += _001GetItemHeight();
+         rectangleItem.bottom += _001GetItemHeight();
 
       }
 
@@ -524,9 +524,9 @@ namespace user
       for (::collection::index iItem = 0; iItem < iListItemCount; iItem++)
       {
 
-         rectangleItem.top() = rectangleItem.bottom();
+         rectangleItem.top = rectangleItem.bottom;
 
-         rectangleItem.bottom() = rectangleItem.top() + _001GetItemHeight();
+         rectangleItem.bottom = rectangleItem.top + _001GetItemHeight();
 
 #if DEBUG_LIST_ITEM_DRAWING
 
@@ -655,7 +655,7 @@ namespace user
 
       ::double_size size;
 
-      psize->cx() = 0;
+      psize->cx = 0;
 
       m_dItemHeight = 0.;
 
@@ -668,24 +668,24 @@ namespace user
 
          size = pgraphics->get_text_extent(strItem);
 
-         size.cx() += m_iPadding * 2;
+         size.cx += m_iPadding * 2;
 
-         if (size.cx() > psize->cx())
+         if (size.cx > psize->cx)
          {
 
-            psize->cx() = (int)size.cx();
+            psize->cx = (int)size.cx;
 
          }
 
-         if (size.cy() > m_dItemHeight)
+         if (size.cy > m_dItemHeight)
          {
 
-            m_dItemHeight = (int)size.cy();
+            m_dItemHeight = (int)size.cy;
 
-            if (size.cy() != 18)
+            if (size.cy != 18)
             {
 
-               //informationf("\nCOMBO LIST ITEM HEIGHT != 18\n");
+               //informationf("----> COMBO LIST ITEM HEIGHT != 18\n");
 
             }
 
@@ -718,16 +718,16 @@ namespace user
 
       }
 
-      psize->cy() = (int)(_001GetItemHeight() * (_001GetListCount() + iAddUp));
+      psize->cy = (int)(_001GetItemHeight() * (_001GetListCount() + iAddUp));
 
       int iScrollBarWidth = 20;
 
-      psize->cx() += iScrollBarWidth;
+      psize->cx += iScrollBarWidth;
 
       //auto rectangleComboClient = this->rectangle();
 
-      //psize->cx() = maximum(psize->cx(), rectangleComboClient.width());
-      //psize->cx() = maximum(psize->cx(), rectangleComboClient.width());
+      //psize->cx = maximum(psize->cx, rectangleComboClient.width());
+      //psize->cx = maximum(psize->cx, rectangleComboClient.width());
 
    }
 
@@ -1205,9 +1205,9 @@ namespace user
       for (::collection::index iItem = 0; iItem < iItemCount; iItem++)
       {
 
-         rectangleItem.top() = rectangleX.top() + (_001GetItemHeight() * (int)(iAddUp + iItem));
+         rectangleItem.top = rectangleX.top + (_001GetItemHeight() * (int)(iAddUp + iItem));
 
-         rectangleItem.bottom() = rectangleItem.top() + _001GetItemHeight();
+         rectangleItem.bottom = rectangleItem.top + _001GetItemHeight();
 
          if (rectangleItem.contains(point))
          {
@@ -1235,9 +1235,9 @@ namespace user
 
       }
 
-      rectangleItem.top() = rectangleX.top();
+      rectangleItem.top = rectangleX.top;
 
-      rectangleItem.bottom() = rectangleItem.top() + _001GetItemHeight();
+      rectangleItem.bottom = rectangleItem.top + _001GetItemHeight();
 
       if (rectangleItem.contains(point))
       {
@@ -1272,15 +1272,15 @@ namespace user
 
       ::int_rectangle rectangleList;
 
-      rectangleList.left() = rectangleWindow.left();
-      //rectangleList.right() = rectangleWindow.left() + maximum(rectangleWindow.width(), sizeFull.cx()) + 20;
-      rectangleList.right() = rectangleWindow.left() + maximum(rectangleWindow.width(), sizeFull.cx());
-      rectangleList.top() = rectangleWindow.bottom();
-      rectangleList.bottom() = rectangleWindow.bottom() + sizeFull.cy();
+      rectangleList.left = rectangleWindow.left;
+      //rectangleList.right = rectangleWindow.left + maximum(rectangleWindow.width(), sizeFull.cx) + 20;
+      rectangleList.right = rectangleWindow.left + maximum(rectangleWindow.width(), sizeFull.cx);
+      rectangleList.top = rectangleWindow.bottom;
+      rectangleList.bottom = rectangleWindow.bottom + sizeFull.cy;
 
       //rectangleList.inflate(1);
 
-      rectangleList.top()--;
+      rectangleList.top--;
 
       information() << "on_drop_down (1) : " << rectangleList;
 
@@ -1293,23 +1293,23 @@ namespace user
 
       information() << "on_drop_down (2) : " << rectangleList;
 
-      if (rectangleList.bottom() > rectangleMonitor.bottom() - m_iScreenMargin)
+      if (rectangleList.bottom > rectangleMonitor.bottom - m_iScreenMargin)
       {
 
-         rectangleList.bottom() = rectangleMonitor.bottom() - m_iScreenMargin;
+         rectangleList.bottom = rectangleMonitor.bottom - m_iScreenMargin;
 
-         if (rectangleWindow.bottom() > (rectangleMonitor.top() + rectangleMonitor.height() * 2 / 3))
+         if (rectangleWindow.bottom > (rectangleMonitor.top + rectangleMonitor.height() * 2 / 3))
          {
 
-            rectangleList.left() = rectangleWindow.left();
-            rectangleList.right() = rectangleWindow.left() + maximum(rectangleWindow.width(), sizeFull.cx()) + 20;
-            rectangleList.bottom() = rectangleWindow.top();
-            rectangleList.top() = rectangleList.bottom() - sizeFull.cy();
+            rectangleList.left = rectangleWindow.left;
+            rectangleList.right = rectangleWindow.left + maximum(rectangleWindow.width(), sizeFull.cx) + 20;
+            rectangleList.bottom = rectangleWindow.top;
+            rectangleList.top = rectangleList.bottom - sizeFull.cy;
 
-            if (rectangleList.top() < rectangleMonitor.top() + m_iScreenMargin)
+            if (rectangleList.top < rectangleMonitor.top + m_iScreenMargin)
             {
 
-               rectangleList.top() = rectangleMonitor.top() + m_iScreenMargin;
+               rectangleList.top = rectangleMonitor.top + m_iScreenMargin;
 
             }
 
@@ -1317,23 +1317,23 @@ namespace user
 
          //::int_rectangle rectangleListOver;
 
-         //rectangleListOver.left() = rectangleList.left();
-         //rectangleListOver.right() = rectangleList.right();
-         //rectangleListOver.bottom() = rectangleWindow.top();
-         //rectangleListOver.top() = rectangleWindow.top() - sizeFull.cy();
+         //rectangleListOver.left = rectangleList.left;
+         //rectangleListOver.right = rectangleList.right;
+         //rectangleListOver.bottom = rectangleWindow.top;
+         //rectangleListOver.top = rectangleWindow.top - sizeFull.cy;
 
-         //if (rectangleListOver.top() < rectangleMonitor.top() + m_iBorder)
+         //if (rectangleListOver.top < rectangleMonitor.top + m_iBorder)
          //{
 
-         //   rectangleListOver.move_to(rectangleListOver.left(), rectangleMonitor.top());
+         //   rectangleListOver.move_to(rectangleListOver.left, rectangleMonitor.top);
 
          //}
 
 
-         //if (rectangleListOver.bottom() > rectangleMonitor.bottom() - m_iBorder)
+         //if (rectangleListOver.bottom > rectangleMonitor.bottom - m_iBorder)
          //{
 
-         //   rectangleListOver.bottom() = rectangleMonitor.bottom() - m_iBorder;
+         //   rectangleListOver.bottom = rectangleMonitor.bottom - m_iBorder;
 
          //}
 
@@ -1341,14 +1341,14 @@ namespace user
 
       }
 
-      if (rectangleList.right() > rectangleMonitor.right() - m_iScreenMargin)
+      if (rectangleList.right > rectangleMonitor.right - m_iScreenMargin)
       {
 
-         rectangleList.offset(rectangleMonitor.right() - (rectangleList.right() - m_iScreenMargin), 0);
+         rectangleList.offset(rectangleMonitor.right - (rectangleList.right - m_iScreenMargin), 0);
 
       }
 
-      if (rectangleList.left() < rectangleMonitor.left())
+      if (rectangleList.left < rectangleMonitor.left)
       {
 
          rectangleList.move_left_to(0);

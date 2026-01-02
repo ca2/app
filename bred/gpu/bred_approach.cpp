@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "binding.h"
 #include "bred_approach.h"
 #include "context.h"
 #include "device.h"
@@ -7,6 +8,7 @@
 #include "acme/filesystem/filesystem/file_context.h"
 #include "acme/platform/application.h"
 #include "acme/user/user/interaction.h"
+#include "aura/windowing/window.h"
 
 
 namespace gpu
@@ -34,16 +36,27 @@ namespace gpu
 
       ::gpu::approach::initialize(pparticle);
 
+
    }
 
 
    void bred_approach::initialize_gpu_approach()
    {
 
+      ::gpu::approach::initialize_gpu_approach();
+
+      system()->m_pfactory->add_factory_item<::gpu::binding>();
+      system()->m_pfactory->add_factory_item<::gpu::binding_set>();
+      system()->m_pfactory->add_factory_item<::gpu::binding_set_array>();
+
+      system()->m_pfactory->add_factory_item<::gpu::binding_slot_set>();
+      system()->m_pfactory->add_factory_item<::gpu::binding_slot_set_array>();
+
+
    }
 
 
-   ::gpu::device* bred_approach::get_gpu_device()
+   ::gpu::device* bred_approach::get_gpu_device(::acme::windowing::window * pacmewindowingwindow)
    {
 
       if (!m_pgpudevice)
@@ -54,7 +67,20 @@ namespace gpu
          if (m_papplication->m_gpu.m_bUseSwapChainWindow)
          {
 
-            m_pgpudevice->initialize_gpu_device_for_swap_chain(this, m_papplication->m_pacmeuserinteractionMain->window());
+            ///auto pwindow = m_papplication->m_pacmeuserinteractionMain->window();
+
+            ::cast < ::windowing::window > pwindow;
+
+            pwindow = pacmewindowingwindow;
+
+            if (!pwindow)
+            {
+
+               pwindow = m_papplication->m_pacmeuserinteractionMain->window();
+
+            }
+
+            m_pgpudevice->initialize_gpu_device_for_swap_chain(this, pwindow);
 
          }
          else
@@ -63,7 +89,7 @@ namespace gpu
             if (m_rectangleOffscreen.is_empty())
             {
 
-               m_rectangleOffscreen = {1920, 1080};
+               m_rectangleOffscreen = {API_CHANGED_ARGUMENT, 1920, 1080};
 
             }
 

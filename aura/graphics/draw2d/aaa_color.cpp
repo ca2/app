@@ -2,7 +2,7 @@
 #include <stdio.h>
 
 
-double primitive_color_round(double d);
+double prototype_color_round(double d);
 
 ::color::color color::transparent(0, 0, 0, 0);
 ::color::color color::black(0, 0, 0, 255);
@@ -352,7 +352,7 @@ void color::get_hls(double & h, double & l, double & s) const
 }
 
 
-double primitive_color_round(double d)
+double prototype_color_round(double d)
 {
    double n;
    double f;
@@ -483,9 +483,9 @@ double dS)
    double dFinalG = (dCMin + dG * dCAdd);
    double dFinalB = (dCMin + dB * dCAdd);
 
-   m_iR = (unsigned char)primitive_color_round(dFinalR * 255.0);
-   m_iG = (unsigned char)primitive_color_round(dFinalG * 255.0);
-   m_iB = (unsigned char)primitive_color_round(dFinalB * 255.0);
+   m_iR = (unsigned char)prototype_color_round(dFinalR * 255.0);
+   m_iG = (unsigned char)prototype_color_round(dFinalG * 255.0);
+   m_iB = (unsigned char)prototype_color_round(dFinalB * 255.0);
 
    /*   double H = dH * 360.0;
 
@@ -502,9 +502,9 @@ double dS)
       m_dG = ((G1 - AVERAGE) * dS) + AVERAGE;
       m_dB = ((B1 - AVERAGE) * dS) + AVERAGE;
 
-      m_iR      = (unsigned char)primitive_color_round(m_dR * 255.0);
-      m_iG      = (unsigned char)primitive_color_round(m_dG * 255.0);
-      m_iB      = (unsigned char)primitive_color_round(m_dB * 255.0);*/
+      m_iR      = (unsigned char)prototype_color_round(m_dR * 255.0);
+      m_iG      = (unsigned char)prototype_color_round(m_dG * 255.0);
+      m_iB      = (unsigned char)prototype_color_round(m_dB * 255.0);*/
 
 }
 

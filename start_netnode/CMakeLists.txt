@@ -42,7 +42,7 @@ endif ()
 
 set_target_properties(app_app PROPERTIES LINKER_LANGUAGE CXX)
 
-if (MSVC)
+if(${WIN32})
 
     target_compile_options(app_app PRIVATE "/MD$<$<CONFIG:Debug>:d>")
     target_link_options(app_app PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
@@ -113,7 +113,7 @@ list(APPEND executable_references
 #endif()
 
 
-if (MSVC)
+if(${WIN32})
 
     target_compile_options(${PROJECT_NAME} PRIVATE "/MD$<$<CONFIG:Debug>:d>")
     target_link_options(${PROJECT_NAME} PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")

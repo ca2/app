@@ -110,13 +110,13 @@ namespace draw2d_gpu
 
       __UNREFERENCED_PARAMETER(pgraphics);
 
-      m_sizeOut.cx() = size.cx();
+      m_sizeOut.cx = size.cx;
 
-      m_sizeOut.cy() = size.cy();
+      m_sizeOut.cy = size.cy;
 
-      m_iStride = 4 * size.cx();
+      m_iStride = 4 * size.cx;
 
-      m_memOut.set_size(abs(m_iStride * size.cy()));
+      m_memOut.set_size(abs(m_iStride * size.cy));
 
       if (m_memOut.data() == nullptr)
       {
@@ -136,7 +136,7 @@ namespace draw2d_gpu
 
       if(piScan != nullptr)
       {
-         *piScan = size.cx() * sizeof(color32_t);
+         *piScan = size.cx * sizeof(color32_t);
       }
 
       m_osdata[0] = (void *) 1;
@@ -357,25 +357,25 @@ namespace draw2d_gpu
    void bitmap::create_texture(int iResampleQuality)
    {
 
-      m_sizeIn.cx() = 1;
-      m_sizeIn.cy() = 1;
+      m_sizeIn.cx = 1;
+      m_sizeIn.cy = 1;
 
-      while (m_sizeIn.cx() < m_sizeOut.cx())
+      while (m_sizeIn.cx < m_sizeOut.cx)
       {
 
-         m_sizeIn.cx() *= 2;
+         m_sizeIn.cx *= 2;
 
       }
 
-      while(m_sizeIn.cy() < m_sizeOut.cy())
+      while(m_sizeIn.cy < m_sizeOut.cy)
       {
 
-         m_sizeIn.cy() *= 2;
+         m_sizeIn.cy *= 2;
 
       }
 
 
-      resizeBilinear(m_memIn, m_sizeIn.cx(), m_sizeIn.cy(), (int*)m_memOut.data(), m_sizeOut.cx(), m_sizeOut.cy());
+      resizeBilinear(m_memIn, m_sizeIn.cx, m_sizeIn.cy, (int*)m_memOut.data(), m_sizeOut.cx, m_sizeOut.cy);
 
       //glGenTextures(1, &m_texture);
 
@@ -408,7 +408,7 @@ namespace draw2d_gpu
 
       //}
 
-      //glTexImage2D(GL_TEXTURE_2D, 0, 4, m_sizeIn.cx(), m_sizeIn.cy(), 0, GL_BGRA_EXT, GL_UNSIGNED_BYTE, m_memIn.data());
+      //glTexImage2D(GL_TEXTURE_2D, 0, 4, m_sizeIn.cx, m_sizeIn.cy, 0, GL_BGRA_EXT, GL_UNSIGNED_BYTE, m_memIn.data());
       //e = glGetError();
 
 
@@ -514,18 +514,18 @@ namespace draw2d_gpu
 //                        //   height = 1;										// Making Height Equal One
 //                        //}
 //
-//                        glContext(0, 0, m_sizeOut.cx(), m_sizeOut.cy());						// Reset The Current Context
+//                        glContext(0, 0, m_sizeOut.cx, m_sizeOut.cy);						// Reset The Current Context
 //
 //                        glMatrixMode(GL_PROJECTION);						// Select The Projection Matrix
 //                        glLoadIdentity();									// Reset The Projection Matrix
 //
 //                        // Calculate The Aspect Ratio Of The Window
-//                        gluPerspective(45.0f, (GLfloat)m_sizeOut.cx() / (GLfloat)m_sizeOut.cy(), 0.1f, 100.0f);
+//                        gluPerspective(45.0f, (GLfloat)m_sizeOut.cx / (GLfloat)m_sizeOut.cy, 0.1f, 100.0f);
 //
 //                        glMatrixMode(GL_MODELVIEW);							// Select The Modelview Matrix
 //                        glLoadIdentity();									// Reset The Modelview Matrix
 //                        glTranslatef(-1.0, -1.0, 0);
-//                        glScalef(2.0/(float)m_sizeOut.cx(), 2.0/(float)m_sizeOut.cy(), 0);
+//                        glScalef(2.0/(float)m_sizeOut.cx, 2.0/(float)m_sizeOut.cy, 0);
 //
 //                     }
 //
@@ -573,7 +573,7 @@ namespace draw2d_gpu
 //
 //         color32_t * pdata = (color32_t *) m_memOut.data();
 //
-//         glReadPixels(0, 0, m_sizeOut.cx(), m_sizeOut.cy(), GL_BGRA_EXT, GL_UNSIGNED_BYTE, pdata);
+//         glReadPixels(0, 0, m_sizeOut.cx, m_sizeOut.cy, GL_BGRA_EXT, GL_UNSIGNED_BYTE, pdata);
 //         e = glGetError();
 //
 //         information("error " + ::as_string((int)e));
@@ -773,7 +773,7 @@ namespace draw2d_gpu
 ////         return false;
 ////      }
 ////
-////      if (!(g_hPBuffer = wglCreatePbufferARB(g_hDC, format, m_sizeOut.cx(), m_sizeOut.cy(), 0)))
+////      if (!(g_hPBuffer = wglCreatePbufferARB(g_hDC, format, m_sizeOut.cx, m_sizeOut.cy, 0)))
 ////      {
 ////         MessageBox(0, _T("wglCreatePbufferARB() failed"), _T("Error"), ::user::e_message_box_icon_stop);
 ////         return false;

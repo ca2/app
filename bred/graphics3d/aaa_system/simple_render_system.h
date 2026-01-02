@@ -20,8 +20,8 @@ namespace graphics3d
 
 
 	//struct SimplePushConstantData {
-	//	glm::mat4 modelMatrix{ 1.f };
-	//	glm::mat4 normalMatrix{ 1.f };
+	//	floating_matrix4 modelMatrix{ 1.f };
+	//	floating_matrix4 normalMatrix{ 1.f };
 	//};
 
 
@@ -55,7 +55,7 @@ namespace graphics3d
 		//VkPipelineLayout pipelineLayout;
 
 		
-		//simple_render_system(context *pvkcdevice, VkRenderPass renderPass, VkDescriptorSetLayout globalSetLayout);
+		//simple_render_system(context *pvkcdevice, VkRenderPass renderPass, aaaVkDescriptorSetLayout globalSetLayout);
 		simple_render_system();
 		~simple_render_system();
 

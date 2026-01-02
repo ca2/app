@@ -92,7 +92,7 @@
 
 #ifdef __cplusplus
 
-#define LOG_THIS_TAG (::type(this).name())
+#define LOG_THIS_TAG (::platform::type(this).name())
 #define LOG_MEMBER_PREFIX __FUNCTION__
 
 #define ALOG_FUNCTION __FUNCTION__

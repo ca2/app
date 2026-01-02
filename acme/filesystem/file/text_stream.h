@@ -352,7 +352,7 @@ public:
 //
 //   this->m_estrflag = (e_str_flag)((int)this->m_estrflag & ~(int)str_flag_ifnumberparenthesizeandspace);
 //
-//   *this << prectangle->left() << prectangle->top() << prectangle->right() << prectangle->bottom();
+//   *this << prectangle->left << prectangle->top << prectangle->right << prectangle->bottom;
 //
 //}
 //
@@ -362,7 +362,7 @@ public:
 //
 //   this->m_estrflag = (e_str_flag)((int)this->m_estrflag & ~(int)str_flag_ifnumberparenthesizeandspace);
 //
-//   *this << psize->cx() << psize->cy();
+//   *this << psize->cx << psize->cy;
 //
 //}
 //
@@ -410,10 +410,6 @@ public:
 //   return *this;
 //
 //}
-//
-//
-//
-//
 //// template < typename FILE >
 //void text_stream < FILE >::raw_print(const ::scoped_string & scopedstr)
 //{
@@ -579,20 +575,20 @@ public:
 ////text_stream & text_stream < FILE >::operator >>(::int_rectangle * prectangle)
 ////
 ////{
-////   m_pfile->read(&prectangle->left(), sizeof(prectangle->left()));
+////   m_pfile->read(&prectangle->left, sizeof(prectangle->left));
 ////
-////   m_pfile->read(&prectangle->top(), sizeof(prectangle->top()));
+////   m_pfile->read(&prectangle->top, sizeof(prectangle->top));
 ////
-////   m_pfile->read(&prectangle->right(), sizeof(prectangle->right()));
+////   m_pfile->read(&prectangle->right, sizeof(prectangle->right));
 ////
-////   m_pfile->read(&prectangle->bottom(), sizeof(prectangle->bottom()));
+////   m_pfile->read(&prectangle->bottom, sizeof(prectangle->bottom));
 ////   
 ////}
 ////
 ////text_stream & text_stream < FILE >::operator >>(::int_size * psize)
 ////{
-////   m_pfile->read(&psize->cx(), sizeof(psize->cx()));
-////   m_pfile->read(&psize->cy(), sizeof(psize->cy()));
+////   m_pfile->read(&psize->cx, sizeof(psize->cx));
+////   m_pfile->read(&psize->cy, sizeof(psize->cy));
 ////}
 ////
 ////text_stream & text_stream < FILE >::operator >>(::int_point * ppoint)
@@ -733,10 +729,6 @@ public:
 ////   ::__exchange(s, t);
 ////
 ////}
-//
-//
-//
-//
 //
 
 

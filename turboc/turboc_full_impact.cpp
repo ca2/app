@@ -99,13 +99,13 @@ namespace turboc
 
       ::int_rectangle rectangleX;
 
-      rectangleX.left() = 0;
+      rectangleX.left = 0;
 
-      rectangleX.top() = 0;
+      rectangleX.top = 0;
 
-      rectangleX.right() = m_cx;
+      rectangleX.right = m_cx;
 
-      rectangleX.bottom() = m_cy;
+      rectangleX.bottom = m_cy;
 
       if(rectangleX.area() <= 0)
          return;
@@ -206,7 +206,7 @@ namespace turboc
 
 /*         m_pimage->g()->set_font(m_pfont);
 
-/*         m_pimage->g()->text_out((m_cx - int_size->cx()) / 2,(m_cy - int_size->cy()) / 2,strHelloMultiverse);
+/*         m_pimage->g()->text_out((m_cx - int_size->cx) / 2,(m_cy - int_size->cy) / 2,strHelloMultiverse);
 
          if(m_dMinRadius > 3.0)
          {
@@ -271,7 +271,7 @@ namespace turboc
 
       pgraphics->SelectObject(pbrushText);
 
-      pgraphics->text_out((m_cx - size.cx()) / 2,(m_cy - size.cy()) / 2,strHelloMultiverse);
+      pgraphics->text_out((m_cx - size.cx) / 2,(m_cy - size.cy) / 2,strHelloMultiverse);
 
       unsigned char a,R,g,b;
 

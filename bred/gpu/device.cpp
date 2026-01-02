@@ -31,6 +31,8 @@
 namespace gpu
 {
 
+   //::pointer <::gpu::context > allocate_egl_context(::particle * pparticle);
+
    thread_local device* t_pgpudevice = nullptr;
 
    void thread_set_gpu_device(::gpu::device* pgpudevice)
@@ -139,7 +141,9 @@ namespace gpu
    ::pointer < ::gpu::context > device::allocate_context()
    {
 
-      auto pgpucontext = øcreate< ::gpu::context >();
+      ::pointer < ::gpu::context > pgpucontext;
+
+      pgpucontext = øcreate< ::gpu::context >();
 
       return pgpucontext;
 
@@ -287,7 +291,9 @@ namespace gpu
    ::pointer < ::gpu::context > device::create_draw2d_context(const ::gpu::enum_output& eoutput, const ::int_size& size)
    {
 
-      auto pgpucontext = øcreate<::gpu::context>();
+      //auto pgpucontext = øcreate<::gpu::context>();
+
+      auto pgpucontext = allocate_context();
 
       pgpucontext->create_draw2d_context(this, eoutput, size);
 
@@ -777,13 +783,13 @@ namespace gpu
    //}
 
 
-   ::gpu::context* device::main_context()
+   ::gpu::context* device::main_context(::acme::windowing::window * pacmewindowingwindow)
    {
 
       if (!m_pgpucontextMain)
       {
 
-         øconstruct(m_pgpucontextMain);
+         m_pgpucontextMain = allocate_context();
 
          ::gpu::enum_output eoutput;
 
@@ -804,26 +810,31 @@ namespace gpu
 
          }
 
-         ::cast < ::user::interaction > puserinteraction = m_papplication->m_pacmeuserinteractionMain;
+         auto pwindow = pacmewindowingwindow;
+
+         if (::is_null(pwindow))
+         {
+
+            pwindow = m_papplication->m_pacmeuserinteractionMain->acme_windowing_window();
+
+         }
 
          if (!m_pgpucontextMain->m_itask
-            && puserinteraction->m_pacmewindowingwindow)
+            && pwindow)
          {
 
             m_pgpucontextMain->branch_synchronously();
 
             m_pgpucontextMain->m_pgpudevice = this;
 
-            m_pgpucontextMain->_send([this, eoutput, puserinteraction]()
+            m_pgpucontextMain->_send([this, eoutput, pwindow]()
                {
-
-                  auto pinteraction = (::user::interaction*)puserinteraction.m_p;
 
                   m_pgpucontextMain->initialize_gpu_context(
                      this,
                      eoutput,
-                     pinteraction->window(),
-                     pinteraction->window()->get_window_rectangle().size()
+                     pwindow,
+                     pwindow->get_window_rectangle().size()
                   );
 
                });
@@ -907,6 +918,28 @@ namespace gpu
    {
 
       //return ::success;
+
+   }
+
+
+   void device::defer_shader_memory(::memory &memory, const ::file::path &pathShader)
+   {
+
+      if (memory.is_empty())
+      {
+
+         auto path = this->shader_path(pathShader);
+
+         if (path.contains("_ibl_hdr"))
+         {
+
+            information() << "_ibl_hdr";
+
+         }
+
+         memory = file()->as_memory(path);
+
+      }
 
    }
 
@@ -1130,14 +1163,14 @@ namespace gpu
 
 
    //   string strProjection =
-   //      "layout(glm::vec3 = 0) in vec3 aPos;\n"
-   //      "layout(glm::vec3 = 1) in vec3 aColor;\n"
-   //      "/* out vec3 ourColor; */\n"
-   //      "out vec3 ourPosition;\n"
+   //      "layout(floating_sequence3 = 0) in floating_sequence3 aPos;\n"
+   //      "layout(floating_sequence3 = 1) in floating_sequence3 aColor;\n"
+   //      "/* out floating_sequence3 ourColor; */\n"
+   //      "out floating_sequence3 ourPosition;\n"
    //      "\n"
    //      "void main()\n"
    //      "{\n"
-   //      "   gl_Position = vec4(aPos, 1.0);\n"
+   //      "   gl_Position = floating_sequence4(aPos, 1.0);\n"
    //      "   /* ourColor = aColor;*/\n"
    //      "   ourPosition = aPos;\n"
    //      "}\n";
@@ -1152,15 +1185,15 @@ namespace gpu
    //   string strVersion = get_shader_version_text();
 
    //   string strFragment =
-   //      "uniform vec2 resolution;\n"
+   //      "uniform floating_sequence2 resolution;\n"
    //      "uniform float time;\n"
-   //      "uniform vec2 mouse;\n"
+   //      "uniform floating_sequence2 mouse;\n"
    //      "uniform sampler2D backbuffer;\n"
    //      "\n"
    //      "void main(void) {\n"
-   //      "vec2 uv = (gl_FragCoord.xy * 2.0 - resolution.xy) / minimum(resolution.x(), resolution.y());\n"
+   //      "floating_sequence2 uv = (gl_FragCoord.xy * 2.0 - resolution.xy) / minimum(resolution.x, resolution.y);\n"
    //      "\n"
-   //      "gl_FragColor = vec4(uv, uv/2.0);\n"
+   //      "gl_FragColor = floating_sequence4(uv, uv/2.0);\n"
    //      "}\n";
 
    //   return strFragment;
@@ -1197,9 +1230,9 @@ namespace gpu
             //"\n"
             //"precision highp float;\n"
             "\n"
-            "uniform vec2 iResolution;\n"
+            "uniform floating_sequence2 iResolution;\n"
             "uniform float iTime;\n"
-            "uniform vec2 iMouse;\n"
+            "uniform floating_sequence2 iMouse;\n"
             "uniform sampler2D backbuffer;\n"
             "\n"
             "\n"
@@ -1264,12 +1297,12 @@ namespace gpu
       {
       case e_type_int: return sizeof(int);
       case e_type_float: return sizeof(float);
-      case e_type_seq4: return sizeof(glm::vec4);
-      case e_type_mat4: return sizeof(glm::mat4);
-      case e_type_seq3: return sizeof(glm::vec3);
-      case e_type_mat3: return sizeof(glm::mat3);
-      case e_type_seq2: return sizeof(glm::vec2);
-      case e_type_mat2: return sizeof(glm::mat2);
+      case e_type_seq4: return sizeof(floating_sequence4);
+      case e_type_mat4: return sizeof(floating_matrix4);
+      case e_type_seq3: return sizeof(floating_sequence3);
+      case e_type_mat3: return sizeof(floating_matrix3);
+      case e_type_seq2: return sizeof(floating_sequence2);
+      case e_type_mat2: return sizeof(floating_matrix2);
       default:
          throw ::exception(error_wrong_state);
 
@@ -1278,10 +1311,10 @@ namespace gpu
    }
 
 
-   void device::set_mat4(void* p, const ::glm::mat4& mat4)
+   void device::set_matrix4(void* p, const ::floating_matrix4& floating_matrix4)
    {
 
-      *((::glm::mat4*)p) = mat4;
+      *((::floating_matrix4*)p) = floating_matrix4;
 
    }
 

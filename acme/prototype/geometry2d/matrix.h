@@ -54,19 +54,19 @@ namespace geometry2d
 
       matrix& operator = (const matrix&) = default;
 
-      static matrix translation(double_point point) { return translation(point.x(), point.y()); }
+      static matrix translation(double_point point) { return translation(point.x, point.y); }
       static matrix translation(double x, double y);
       static matrix rotation(double dAngleRadians);
       static matrix scaling(double dRateX, double dRateY);
-      static matrix scaling(double_point point) { return scaling(point.x(), point.y()); }
-      static matrix scaling(double_size size) { return scaling(size.cx(), size.cy()); }
+      static matrix scaling(double_point point) { return scaling(point.x, point.y); }
+      static matrix scaling(double_size size) { return scaling(size.cx, size.cy); }
 
 
-      matrix& translate(double_point point, e_mode emode = mode_append) { return translate(point.x(), point.y(), emode); }
+      matrix& translate(double_point point, e_mode emode = mode_append) { return translate(point.x, point.y, emode); }
       matrix& translate(double x, double y, e_mode emode = mode_append);
       matrix& rotate(double dAngleRadians, e_mode emode = mode_append);
       matrix& scale(double dRateX, double dRateY, e_mode emode = mode_append);
-      matrix& scale(const ::int_point& point, e_mode emode = mode_append) { return scale(point.x(), point.y(), emode); }
+      matrix& scale(const ::int_point& point, e_mode emode = mode_append) { return scale(point.x, point.y, emode); }
 
 
       matrix& prepend(const matrix& m);
@@ -99,12 +99,12 @@ namespace geometry2d
       virtual void SetElements(float* fa);
 
 
-      void transform(sequence2_int& point);
+      void transform(int_sequence2& point);
 
-      void transform(sequence2_double& point);
-      void transform(sequence2_double * ppoint, ::collection::count c);
+      void transform(double_sequence2& point);
+      void transform(double_sequence2 * ppoint, ::collection::count c);
 
-      template < primitive_container CONTAINER >
+      template < prototype_container CONTAINER >
       void transform(CONTAINER& container) 
       { for (auto& item : container) transform(item); }
 

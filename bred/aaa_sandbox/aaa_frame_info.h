@@ -1,7 +1,7 @@
 #pragma once
 // frame_info.h
 // #include <vulkan/vulkan.h>
-// #include <glm/glm.hpp>
+// 
 // //#include <unordered_map>
 // //#include <memory>
 // #include "SceneFoundry/graphics3d/camera_i.h"
@@ -37,7 +37,3 @@
 //
 //
 // } // namespace graphics3d
-//
-//
-//
-//

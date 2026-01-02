@@ -13,7 +13,7 @@
 // //#include "SceneFoundry/graphics3d/model_i.h"
 // //#include <memory>
 // #include <optional>
-//#include <glm/glm.hpp>
+//
 #include "bred/gpu/context_object.h"
 
 
@@ -65,8 +65,8 @@ namespace graphics3d
       //virtual long long getId();
 
 
-      //virtual void translate(const glm::vec3 & vec3);
-      //virtual void scale(const glm::vec3 & vec3);
+      //virtual void translate(const ::floating_sequence3 & floating_sequence3);
+      //virtual void scale(const ::floating_sequence3 & floating_sequence3);
 
 
    };

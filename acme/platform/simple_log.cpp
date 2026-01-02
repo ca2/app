@@ -266,21 +266,28 @@ void simple_log::print(::trace_statement & tracestatement, bool bFlush)
 
       string str;
 
-      ::string strTaskName;
+      auto sPrefix = tracestatement.prefix();
 
-      strTaskName = ::current_task_name();
+      if (sPrefix == "task")
+      {
+
+         auto sPrefix2 = tracestatement.prefix();
+
+         sPrefix = sPrefix2;
+
+      }
+
+      auto s = tracestatement.as_string();
 
       if (m_bReallySimple)
       {
 
-         auto s = tracestatement.as_string();
-
-         if (s.begins_eat("\r"))
+         if (sPrefix.begins_eat("\r"))
          {
             
             str += "\r";
 
-            str += strTaskName + "> ";
+            str += sPrefix + "> ";
 
             str += s;
 
@@ -288,7 +295,7 @@ void simple_log::print(::trace_statement & tracestatement, bool bFlush)
          else
          {
 
-            str += strTaskName + "> ";
+            str += sPrefix + "> ";
 
             str += s;
 
@@ -300,7 +307,7 @@ void simple_log::print(::trace_statement & tracestatement, bool bFlush)
       else
       {
 
-         str.formatf("%s> %c %s %d %s\n", strTaskName.c_str(), trace_level_char(tracestatement.m_etracelevel), tracestatement.m_pszFunction, tracestatement.m_iLine, tracestatement.as_string().c_str());
+         str.formatf("%s> %c %s %d %s\n", sPrefix.c_str(), trace_level_char(tracestatement.m_etracelevel), tracestatement.m_pszFunction, tracestatement.m_iLine, s.c_str());
 
       }
 
@@ -383,6 +390,7 @@ void simple_log::print(::trace_statement & tracestatement, bool bFlush)
             }
 
             str = strTime + str;
+
          }
 
       }
@@ -434,11 +442,11 @@ void simple_log::print(::trace_statement & tracestatement, bool bFlush)
 }
 
 
-
-
 CLASS_DECL_ACME const_char_pointer e_trace_level_name(enum_trace_level elevel);
 
+
 #undef DEFINE_MESSAGE
+
 
 #define SIMPLE_TRACE_FUNCTION_NAME 0
 #define SIMPLE_TRACE_FILE_NAME 0

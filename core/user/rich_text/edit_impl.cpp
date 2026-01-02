@@ -873,7 +873,7 @@ namespace user
 
          _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-         //pgraphics->offset_origin(m_pointScroll.x(), m_pointScroll.y());
+         //pgraphics->offset_origin(m_pointScroll.x, m_pointScroll.y);
 
          //::int_rectangle r(25, 25, 150, 150);
 
@@ -907,7 +907,7 @@ namespace user
 
          //_synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-         ////pgraphics->offset_origin(m_pointScroll.x(), m_pointScroll.y());
+         ////pgraphics->offset_origin(m_pointScroll.x, m_pointScroll.y);
 
          //::int_rectangle r(25, 25, 150, 150);
 

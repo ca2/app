@@ -779,7 +779,7 @@ namespace user
    //   SimpleMenu* pPopup = (SimpleMenu *) menu.GetSubMenu(0);
    //   ASSERT(pPopup != nullptr);
    //   ::pointer<::user::frame_window>pframe = get_parent_frame()->get_parent_frame();
-   //   pPopup->track_popup_menu(point.x(), point.y(),
+   //   pPopup->track_popup_menu(point.x, point.y,
    //   (::windowing::window *) pframe);
    //   }
    //   }
@@ -792,7 +792,7 @@ namespace user
    //   ASSERT(pPopup != nullptr);
    //   ::pointer<::user::frame_window>pframe = get_parent_frame()->get_parent_frame();
    //   pPopup->track_popup_menu(
-   //   point.x(), point.y(),
+   //   point.x, point.y,
    //   (::windowing::window *) pframe);
    //   }
    //   }*/
@@ -955,10 +955,10 @@ namespace user
 
          auto puseritem = puseritembase->m_puseritem;
 
-         puseritem->m_rectangle2.left() = 0;
-         puseritem->m_rectangle2.right() = rectangleX.width();
-         puseritem->m_rectangle2.top() = y;
-         puseritem->m_rectangle2.bottom() = (int) (y + iLineHeight);
+         puseritem->m_rectangle2.left = 0;
+         puseritem->m_rectangle2.right = rectangleX.width();
+         puseritem->m_rectangle2.top = y;
+         puseritem->m_rectangle2.bottom = (int) (y + iLineHeight);
 
          ::user::enum_state estate = ::user::e_state_none;
 

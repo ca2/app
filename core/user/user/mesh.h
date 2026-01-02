@@ -1,6 +1,8 @@
 #pragma once
 
 
+#include "core/user/simple/_.h"
+#include "core/user/user/_.h"
 #include "aura/user/user/scroll.h"
 #include "aura/user/user/range.h"
 #include "acme/prototype/mathematics/int_biunique.h"

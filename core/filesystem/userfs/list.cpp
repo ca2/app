@@ -34,10 +34,10 @@ namespace userfs
       m_iNameSubItem = -1;
       m_iIconSubItem = -1;
 
-      m_rectangleMargin.left() = 0;
-      m_rectangleMargin.top() = 0;
-      m_rectangleMargin.bottom() = 0;
-      m_rectangleMargin.right() = 0;
+      m_rectangleMargin.left = 0;
+      m_rectangleMargin.top = 0;
+      m_rectangleMargin.bottom = 0;
+      m_rectangleMargin.right = 0;
 
       //m_pfsdata = nullptr;
 

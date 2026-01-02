@@ -311,7 +311,7 @@ namespace user
       ::collection::index                                     m_iColumn;
 
       atom                                      m_uiText;
-      ::type_atom                               m_typeatom;
+      ::platform::type                          m_type;
       atom                                      m_atomPrivateDataSection;
       //::atom                                  m_atomTranslated;
       enum_control_type                         m_econtroltype;
@@ -434,7 +434,7 @@ namespace user
       ::pointer<::user::form>                      m_pform;
       ::pointer<alpha_source>                      m_palphasource;
       //::pointer<::aura::drawable>                m_pdrawableBackground;
-      //::pointer<primitive_impl>                    m_pprimitiveimpl;
+      //::pointer<prototype_impl>                    m_pprimitiveimpl;
       //::pointer<interaction_impl>                  m_pinteractionimpl;
       ::pointer<interaction_array>                 m_puserinteractionpointeraOwned;
       //::pointer<interaction_array>                 m_puserinteractionpointeraChild;
@@ -881,13 +881,14 @@ namespace user
       virtual bool layout_layout(::draw2d::graphics_pointer & pgraphics);
 
 
-      virtual void display_previous(::user::activation_token * puseractivationtoken, bool bScreenVisible = false);
+      virtual void display_visible_trying_to_restore_last_visible(const ::user::activation & useractivation);
+      virtual void display_strictly_previous(const ::user::activation & useractivation);
+      virtual void display_stored_state();
       virtual void display_normal(::e_display edisplay, const ::user::activation & useractivation);
       virtual void display_docked(::e_display edisplay, const ::user::activation & useractivation);
       virtual void display_zoomed();
       virtual void display_iconic();
       virtual void display_full_screen(::collection::index iMonitor, const ::user::activation & useractivation);
-      virtual void display_stored_state();
       virtual void display_notify_icon();
 
       
@@ -1377,7 +1378,7 @@ namespace user
 
 
       element * keyboard_set_focus_next(bool bSkipChild = false, bool bSkipSiblings = false, bool bSkipParent = false) override;
-      //virtual primitive * keyboard_set_focus_next(primitive * pfocus = nullptr, bool bSkipChild = false, bool bSkipSiblings = false, bool bSkipParent = false) override;
+      //virtual prototype * keyboard_set_focus_next(prototype * pfocus = nullptr, bool bSkipChild = false, bool bSkipSiblings = false, bool bSkipParent = false) override;
       
 
       virtual void get_child_rect(::int_rectangle & rectangle);
@@ -2031,8 +2032,8 @@ namespace user
       virtual void set_context_org(::draw2d::graphics_pointer & pgraphics) override;
 
 
-      virtual void viewport_screen_to_client(::sequence2_int & sequence) override;
-      virtual void viewport_client_to_screen(::sequence2_int & sequence) override;
+      virtual void viewport_screen_to_client(::int_sequence2 & sequence) override;
+      virtual void viewport_client_to_screen(::int_sequence2 & sequence) override;
       virtual void viewport_client_to_screen(::int_rectangle & rect) override;
       virtual void viewport_screen_to_client(::int_rectangle & rect) override;
 
@@ -2261,8 +2262,8 @@ namespace user
 
       virtual void set_scroll_dimension(const ::int_size & size, ::user::enum_layout elayout = ::user::e_layout_sketch);
 
-      inline bool _001HasBarXDragScrolling() const { return m_pointBarDragScrollMax.x() > 0; }
-      inline bool _001HasBarYDragScrolling() const { return m_pointBarDragScrollMax.y() > 0; }
+      inline bool _001HasBarXDragScrolling() const { return m_pointBarDragScrollMax.x > 0; }
+      inline bool _001HasBarYDragScrolling() const { return m_pointBarDragScrollMax.y > 0; }
 
 
       //virtual double get_x_scroll();
@@ -2271,7 +2272,7 @@ namespace user
       virtual bool is_system_message_window();
 
 
-      virtual ::int_size get_window_minimum_size();
+      ::int_size get_window_minimum_size() override;
 
       virtual ::int_rectangle get_window_normal_stored_rectangle();
       virtual ::int_rectangle get_window_broad_stored_rectangle();

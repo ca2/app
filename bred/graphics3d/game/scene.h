@@ -30,8 +30,8 @@ namespace sandbox_game
 
 		         ::pointer_array_base<player>								m_playera;
 		::map<unsigned int, ::pointer<::graphics3d::scene_object>>		m_mapSceneObject;
-		glm::vec3													            m_initialCameraPosition{ 0.f };
-		glm::vec3													            m_initialCameraRotation{ 0.f };
+		floating_sequence3													            m_initialCameraPosition{ 0.f };
+		floating_sequence3													            m_initialCameraRotation{ 0.f };
 
 		int															            m_iSkyboxId = -1;
 		::pointer<::graphics3d::scene_object>							      m_psceneobjectSkybox;
@@ -53,7 +53,7 @@ namespace sandbox_game
 		::graphics3d::scene_object_map & getGameObjects() override ;
 
 
-		::pair<glm::mat4, glm::mat4> getMainCameraMatrices()const;
+		::pair<floating_matrix4, floating_matrix4> getMainCameraMatrices()const;
 
 		void setSkyboxObject(::graphics3d::scene_object * pobject);
 
@@ -75,7 +75,7 @@ namespace sandbox_game
 	   ::pointer<::graphics3d::scene_object> create_skybox_object();
 
 
-		::pointer<::graphics3d::scene_object> create_point_light(float intensity = 10.f, float radius = 0.1f, glm::vec3 color = glm::vec3(1.f));
+		::pointer<::graphics3d::scene_object> create_point_light(float intensity = 10.f, float radius = 0.1f, floating_sequence3 color = floating_sequence3(1.f));
 
 
 

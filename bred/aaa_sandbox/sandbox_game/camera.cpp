@@ -1,13 +1,13 @@
 #include "framework.h"
 #include "SceneFoundry/sandbox_game/camera.h"
-// #include <glm/gtc/constants.hpp>
-// #include <glm/gtc/matrix_transform.hpp>
+// 
+// 
 // #include <cmath>
 
 namespace sandbox_game
 {
 
-   // camera::camera(glm::vec3 position, float yawDeg, float pitchDeg, float zoomDeg)
+   // camera::camera(const ::floating_sequence3 & position, float yawDeg, float pitchDeg, float zoomDeg)
    //    : m_position(position),
    //    m_worldUp(0.f, 1.f, 0.f),
    //    m_yaw(yawDeg),
@@ -24,7 +24,7 @@ namespace sandbox_game
    }
 
    void camera::updateVectors() {
-      glm::vec3 front;
+      floating_sequence3 front;
       front.x = cos(glm::radians(m_yaw)) * cos(glm::radians(m_pitch));
       front.y = sin(glm::radians(m_pitch));
       front.z = sin(glm::radians(m_yaw)) * cos(glm::radians(m_pitch));
@@ -45,7 +45,7 @@ namespace sandbox_game
       m_projMatrix[1][1] *= -1; // Vulkan Y-flip
    }
 
-   void camera::move(glm::vec3 delta) {
+   void camera::move(floating_sequence3 delta) {
       m_position += delta;
       updateView();
    }
@@ -63,7 +63,7 @@ namespace sandbox_game
       m_zoom = glm::clamp(zoom, 1.f, 120.f);
    }
 
-   void camera::setRotation(glm::vec3 euler) {
+   void camera::setRotation(floating_sequence3 euler) {
       m_pitch = glm::degrees(euler.x);
       m_yaw = glm::degrees(euler.y);
       updateVectors();

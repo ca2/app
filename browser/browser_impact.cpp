@@ -325,8 +325,8 @@ namespace browser
 
       screen_to_client()(point);
 
-      happening.x() = point.x();
-      happening.y() = point.y();
+      happening.x = point.x;
+      happening.y = point.y;
 
       if (pmouse->m_emessage == ::user::e_message_left_button_down)
       {
@@ -416,11 +416,11 @@ namespace browser
 
                //m_pbrowser->
 
-               //::SetWindowPos(hwnd, HWND_TOP, rectangle.left(), rectangle.top(), rectangle.right() - rectangle.left(), rectangle.bottom() - rectangle.top(), SWP_NOZORDER);
+               //::SetWindowPos(hwnd, HWND_TOP, rectangle.left, rectangle.top, rectangle.right - rectangle.left, rectangle.bottom - rectangle.top, SWP_NOZORDER);
 
                //::set_window_position(::GetWindow(get_handle(), GW_CHILD), HWND_TOP,
-               //               rectangle.left(),
-               //               rectangle.top(),
+               //               rectangle.left,
+               //               rectangle.top,
                //               rectangle.width(),
                //               rectangle.height(), 0);
 
@@ -688,9 +688,9 @@ namespace browser
       if (m_prender->m_bImageEnable && m_prender->m_pimageImage->is_ok())
       {
 
-         ::int_rectangle rectangleWork(0, 0, m_prender->m_pimageWork->get_size()->cx(), m_prender->m_pimageWork->get_size()->cy());
+         ::int_rectangle rectangleWork(0, 0, m_prender->m_pimageWork->get_size()->cx, m_prender->m_pimageWork->get_size()->cy);
 
-         ::int_rectangle rectangleImage(0, 0, m_prender->m_pimageImage->get_size()->cx(), m_prender->m_pimageImage->get_size()->cy());
+         ::int_rectangle rectangleImage(0, 0, m_prender->m_pimageImage->get_size()->cx, m_prender->m_pimageImage->get_size()->cy);
 
          rectangleImage.FitOnCenterOf(rectangleWork);
 
@@ -837,7 +837,7 @@ namespace browser
    //         auto rectangle = ::int_rectangle{ 0 };
    //         this->rectangle(&rectangle);
 
-   //         ::set_window_position(hwnd, HWND_TOP, rectangle.left(), rectangle.top(), rectangle.right() - rectangle.left(), rectangle.bottom() - rectangle.top(), SWP_NOZORDER);
+   //         ::set_window_position(hwnd, HWND_TOP, rectangle.left, rectangle.top, rectangle.right - rectangle.left, rectangle.bottom - rectangle.top, SWP_NOZORDER);
    //      }
    //   }
    //}
@@ -861,7 +861,7 @@ namespace browser
 
       auto rectangleWindow = get_top_level()->window_rectangle();
 
-      rectangle.Set(rectangleWindow.left(), rectangleWindow.top(), rectangleWindow.width(), rectangleWindow.height());
+      rectangle.Set(rectangleWindow.left, rectangleWindow.top, rectangleWindow.width(), rectangleWindow.height());
 
       return true;
 
@@ -875,7 +875,7 @@ namespace browser
 
       client_to_screen(rectangleX);
 
-      rectangle.Set(rectangleX.left(), rectangleX.top(), rectangleX.width(), rectangleX.height());
+      rectangle.Set(rectangleX.left, rectangleX.top, rectangleX.width(), rectangleX.height());
 
       return true;
 

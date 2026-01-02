@@ -68,25 +68,25 @@ namespace turboc
       pDocTemplate = ___new ::user::single_document_template(
       this,
       "main",
-      ::type < ::turboc::document >(),
-      ::type < ::turboc::frame >(),       // top level SDI frame::windowing::window
-      ::type < ::turboc::pane_impact >());
+      ::type<::turboc::document>(),
+      ::type<::turboc::frame>(),       // top level SDI frame::windowing::window
+      ::type<::turboc::pane_impact>());
       add_document_template(pDocTemplate);
       m_ptemplateHelloMultiverseMain = pDocTemplate;
       pDocTemplate = ___new ::user::single_document_template(
       this,
       "main",
-      ::type < ::turboc::document >(),
-      ::type < ::turboc::frame >(),       // top level SDI frame::windowing::window
-      ::type < ::turboc::main_impact >());
+      ::type<::turboc::document>(),
+      ::type<::turboc::frame>(),       // top level SDI frame::windowing::window
+      ::type<::turboc::main_impact>());
       add_document_template(pDocTemplate);
       m_ptemplateHelloMultiverseImpact = pDocTemplate;
       pDocTemplate = ___new ::user::single_document_template(
       this,
       "main",
-      ::type < ::turboc::document >(),
-      ::type < ::turboc::frame >(),       // top level SDI frame::windowing::window
-      ::type < ::turboc::switcher_impact >());
+      ::type<::turboc::document>(),
+      ::type<::turboc::frame>(),       // top level SDI frame::windowing::window
+      ::type<::turboc::switcher_impact>());
       add_document_template(pDocTemplate);
       m_ptemplateHelloMultiverseSwitcher = pDocTemplate;
 

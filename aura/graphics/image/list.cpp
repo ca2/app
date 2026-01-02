@@ -29,8 +29,8 @@ namespace image
       //defer_create_synchronization();
       m_iSize = 0;
       m_iGrow = 16;
-      m_size.cx() = 0;
-      m_size.cy() = 0;
+      m_size.cx = 0;
+      m_size.cy = 0;
 
    }
 
@@ -41,8 +41,8 @@ namespace image
       defer_create_synchronization();
       m_iSize = 0;
       m_iGrow = imagelist.m_iGrow;
-      m_size.cx() = 0;
-      m_size.cy() = 0;
+      m_size.cx = 0;
+      m_size.cy = 0;
 
       operator = (imagelist);
 
@@ -87,8 +87,8 @@ namespace image
       m_iSize = 0;
       m_iGrow = nGrow;
 
-      m_size.cx() = cx;
-      m_size.cy() = cy;
+      m_size.cx = cx;
+      m_size.cy = cy;
 
       system()->draw2d();
 
@@ -97,7 +97,7 @@ namespace image
       if (m_iSize > 0)
       {
 
-         m_pimage->create(::int_size(m_size.cx() * m_iSize, m_size.cy()));
+         m_pimage->create(::int_size(m_size.cx * m_iSize, m_size.cy));
 
       }
 
@@ -148,7 +148,7 @@ namespace image
 
       __UNREFERENCED_PARAMETER(iFlag);
 
-      double_point pointSource((double)(iImage * m_size.cx()), 0.);
+      double_point pointSource((double)(iImage * m_size.cx), 0.);
 
       double_rectangle rectangleSource(pointSource, m_size);
 
@@ -186,7 +186,7 @@ namespace image
 
       }
 
-      double_point pointSource((double)(iImage * m_size.cx()), 0.);
+      double_point pointSource((double)(iImage * m_size.cx), 0.);
 
       double_rectangle rectangleSource(pointSource, m_size);
 
@@ -251,12 +251,12 @@ namespace image
 
       __UNREFERENCED_PARAMETER(iFlag);
 
-      pointOffset.x() = minimum(m_size.cx(), pointOffset.x());
-      pointOffset.y() = minimum(m_size.cy(), pointOffset.y());
-      sz.cx() = maximum(0, minimum(m_size.cx() - pointOffset.x(), sz.cx()));
-      sz.cy() = maximum(0, minimum(m_size.cy() - pointOffset.y(), sz.cy()));
+      pointOffset.x = minimum(m_size.cx, pointOffset.x);
+      pointOffset.y = minimum(m_size.cy, pointOffset.y);
+      sz.cx = maximum(0, minimum(m_size.cx - pointOffset.x, sz.cx));
+      sz.cy = maximum(0, minimum(m_size.cy - pointOffset.y, sz.cy));
 
-      double_point pointSource((double)(iImage * m_size.cx()), 0.);
+      double_point pointSource((double)(iImage * m_size.cx), 0.);
 
       double_rectangle rectangleSource(pointSource, sz);
 
@@ -285,6 +285,14 @@ namespace image
    //   return add(&icon, iItem);
    //
    //}
+
+
+   bool image_list::_is_ok() const
+   {
+
+      return ::is_ok(m_pimage);
+
+   }
 
 
    int image_list::reserve_image(int iItem)
@@ -330,7 +338,7 @@ namespace image
    //
    //   iItem = reserve_image(iItem);
    //
-   //   auto rectangle = ::double_rectangle_dimension(iItem * m_size.cx(), 0, m_size.cx(), m_size.cy());
+   //   auto rectangle = ::double_rectangle_dimension(iItem * m_size.cx, 0, m_size.cx, m_size.cy);
    //   
    //   m_pimage->g()->set_alpha_mode(::draw2d::e_alpha_mode_set);
    //
@@ -339,11 +347,11 @@ namespace image
    //
    ////#ifdef UNIVERSAL_WINDOWS
    ////
-   ////   m_pimage->get_graphics()->draw(iItem * m_size.cx(), 0, picon, m_size.cx(), m_size.cy(), 0, nullptr, 0);
+   ////   m_pimage->get_graphics()->draw(iItem * m_size.cx, 0, picon, m_size.cx, m_size.cy, 0, nullptr, 0);
    ////
    ////#else
    //
-   //   auto pointDst = ::double_point((iItem * m_size.cx()), 0.);
+   //   auto pointDst = ::double_point((iItem * m_size.cx), 0.);
    //
    //   auto sizeDst = m_size;
    //
@@ -372,13 +380,13 @@ namespace image
    //
    //   iItem = reserve_image(iItem);
    //
-   //   auto rectangle = ::double_rectangle_dimension(iItem * m_size.cx(), 0, m_size.cx(), m_size.cy());
+   //   auto rectangle = ::double_rectangle_dimension(iItem * m_size.cx, 0, m_size.cx, m_size.cy);
    //
    //   m_pimage->g()->set_alpha_mode(::draw2d::e_alpha_mode_set);
    //
    //   m_pimage->g()->fill_rectangle(rectangle, 0);
    //
-   //   auto pointDst = ::double_point((iItem * m_size.cx()), 0.);
+   //   auto pointDst = ::double_point((iItem * m_size.cx), 0.);
    //
    //   auto sizeDst = m_size;
    //
@@ -416,7 +424,7 @@ namespace image
    //
    ////#ifdef WINDOWS_DESKTOP
    ////
-   ////   int iSize = minimum(m_size.cx(), m_size.cy());
+   ////   int iSize = minimum(m_size.cx, m_size.cy);
    ////
    ////   ::file::path path = payloadFile.get_file_path();
    ////
@@ -478,7 +486,7 @@ namespace image
    //         m_pimage->get_graphics()->set_alpha_mode(::draw2d::e_alpha_mode_set);
    //
    //         m_pimage->draw(
-   //            ::double_rectangle(::int_point(iItem * m_size.cx(), 0),  m_size ),
+   //            ::double_rectangle(::int_point(iItem * m_size.cx, 0),  m_size ),
    //            pimage);
    //
    //      });
@@ -511,7 +519,7 @@ namespace image
 
          ::image::image_drawing imagedrawingTarget(imagedrawing);
 
-         imagedrawingTarget.m_rectangleTarget.set(::double_point(iItem * m_size.cx(), 0), m_size);
+         imagedrawingTarget.m_rectangleTarget.set(::double_point(iItem * m_size.cx, 0), m_size);
 
          m_pimage->get_graphics()->draw(imagedrawingTarget);
 
@@ -608,7 +616,7 @@ namespace image
    //
    //   _synchronous_lock synchronouslock(pil->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
    //
-   //   return add_image(pil->m_pimage, iImage * pil->m_size.cx(), 0, iItem);
+   //   return add_image(pil->m_pimage, iImage * pil->m_size.cx, 0, iItem);
    //
    //}
 
@@ -645,14 +653,14 @@ namespace image
    int image_list::_get_alloc_count()
    {
 
-      if (m_size.cx() <= 0)
+      if (m_size.cx <= 0)
       {
 
          return 0;
 
       }
 
-      return m_pimage->width() / m_size.cx();
+      return m_pimage->width() / m_size.cx;
 
    }
 
@@ -662,9 +670,9 @@ namespace image
 
       _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-      int cx = m_size.cx();
+      int cx = m_size.cx;
 
-      int cy = m_size.cy();
+      int cy = m_size.cy;
 
       int iGrow = m_iGrow;
 
@@ -722,10 +730,10 @@ namespace image
 
       }
 
-      pinfo->m_rectangle.left() = nImage * m_size.cx();
-      pinfo->m_rectangle.right() = pinfo->m_rectangle.left() + m_size.cx();
-      pinfo->m_rectangle.top() = 0;
-      pinfo->m_rectangle.bottom() = m_size.cy();
+      pinfo->m_rectangle.left = nImage * m_size.cx;
+      pinfo->m_rectangle.right = pinfo->m_rectangle.left + m_size.cx;
+      pinfo->m_rectangle.top = 0;
+      pinfo->m_rectangle.bottom = m_size.cy;
 
       pinfo->m_pimage = m_pimage;
 

@@ -3,7 +3,7 @@
 #include <stdio.h>
 
 
-double primitive_color_round(double d);
+double prototype_color_round(double d);
 
 
 namespace color
@@ -492,7 +492,7 @@ namespace color
    }
 
 
-   double primitive_color_round(double d)
+   double prototype_color_round(double d)
    {
 
       double n;
@@ -713,9 +713,9 @@ namespace color
       double dFinalG = (dCMin + dG * dCAdd);
       double dFinalB = (dCMin + dB * dCAdd);
 
-      m_uchRed = (unsigned char)primitive_color_round(dFinalR * 255.0);
-      m_uchGreen = (unsigned char)primitive_color_round(dFinalG * 255.0);
-      m_uchBlue = (unsigned char)primitive_color_round(dFinalB * 255.0);
+      m_uchRed = (unsigned char)prototype_color_round(dFinalR * 255.0);
+      m_uchGreen = (unsigned char)prototype_color_round(dFinalG * 255.0);
+      m_uchBlue = (unsigned char)prototype_color_round(dFinalB * 255.0);
 
       /*   double H = dH * 360.0;
 
@@ -732,9 +732,9 @@ namespace color
          m_dG = ((G1 - AVERAGE) * dS) + AVERAGE;
          m_dB = ((B1 - AVERAGE) * dS) + AVERAGE;
 
-         m_iR      = (unsigned char)primitive_color_round(m_dR * 255.0);
-         m_iG      = (unsigned char)primitive_color_round(m_dG * 255.0);
-         m_iB      = (unsigned char)primitive_color_round(m_dB * 255.0);*/
+         m_iR      = (unsigned char)prototype_color_round(m_dR * 255.0);
+         m_iG      = (unsigned char)prototype_color_round(m_dG * 255.0);
+         m_iB      = (unsigned char)prototype_color_round(m_dB * 255.0);*/
 
    }
 
@@ -772,9 +772,9 @@ namespace color
       //double dFinalG = rgb.f64_green() * luminanceComplement + dBlack * black.f64_green() + dWhite * white.f64_green();
       //double dFinalB = rgb.f64_blue() * luminanceComplement + dBlack * black.f64_blue() + dWhite * white.f64_blue();
 
-      //m_uchRed = (unsigned char)primitive_color_round(dFinalR * 255.0);
-      //m_uchGreen = (unsigned char)primitive_color_round(dFinalG * 255.0);
-      //m_uchBlue = (unsigned char)primitive_color_round(dFinalB * 255.0);
+      //m_uchRed = (unsigned char)prototype_color_round(dFinalR * 255.0);
+      //m_uchGreen = (unsigned char)prototype_color_round(dFinalG * 255.0);
+      //m_uchBlue = (unsigned char)prototype_color_round(dFinalB * 255.0);
 
    }
 

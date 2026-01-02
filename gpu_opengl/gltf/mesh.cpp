@@ -6,10 +6,12 @@
 #include "gpu_opengl/texture.h"
 #include "bred/gpu/command_buffer.h"
 #include "bred/gpu/context.h"
+#include "bred/gpu/model_buffer.h"
 #include "bred/gpu/render_target.h"
 #include "bred/gpu/renderer.h"
-#include "bred/graphics3d/render_systems/gltf_render_system.h"
+//#include "graphics3d/render_systems/gltf_render_system.h"
 #include "bred/graphics3d/render_system.h"
+#include "bred/graphics3d/render_system/pbr_with_ibl_render_system_base.h"
 
 #include <glad/glad.h>
 
@@ -37,7 +39,7 @@ namespace gpu_opengl
 
 
       //void mesh::initialize_gpu_gltf_mesh(const ::array_base<::gpu::gltf::vertex> &vertexa,
-      //                             const ::unsigned_int_array &indexa, ::gpu::gltf::material *pmaterial)
+      //                             const ::unsigned_int_array &indexa, ::gpu::model::material *pmaterial)
       //{
 
       //   m_vertexa = vertexa;
@@ -49,7 +51,7 @@ namespace gpu_opengl
       //}
 
 
-      void mesh::draw(::gpu::command_buffer *pcommandbuffer)
+      void mesh::draw2(::gpu::command_buffer *pcommandbuffer)
       {
          // // albedo
          // shader.setBool("material.useTextureAlbedo", m_pmaterial->useTextureAlbedo);
@@ -104,8 +106,12 @@ namespace gpu_opengl
          // glDrawElements(GL_TRIANGLES, m_indexa.size(), GL_UNSIGNED_INT, 0);
          // glBindVertexArray(0);
 
-         auto pshader = pcommandbuffer->m_pgpurendertarget->m_pgpurenderer->m_pgpucontext->m_pshaderBound;
+         auto pgpucontext1 = pcommandbuffer->m_pgpurendertarget->m_pgpurenderer->m_pgpucontext.m_p;
+
+         auto pshader = pgpucontext1->m_pshaderBound;
+
          auto erendersystem = pcommandbuffer->m_prendersystem->m_erendersystem;
+
          if (erendersystem == ::graphics3d::e_render_system_skybox_ibl)
          {
 
@@ -113,196 +119,221 @@ namespace gpu_opengl
          }
          else  if (erendersystem == ::graphics3d::e_render_system_gltf_ibl)
          {
-            // albedo
-            ::cast<::graphics3d::gltf_render_system> prendersystem = pcommandbuffer->m_prendersystem;
-            bool bAlbedo = !prendersystem->m_bDisableAlbedo && m_pmaterial->useTextureAlbedo;
-            pshader->set_int("material.useTextureAlbedo", bAlbedo);
-            glm::vec3 seq3Albedo= {};
-            if (prendersystem->m_bForceDefaultAmbientOcclusionFactor)
-            {
+            //// albedo
+            //::cast<::graphics3d::pbr_with_ibl_render_system_base> prendersystem = pcommandbuffer->m_prendersystem;
+            //bool bAlbedo = !prendersystem->m_bDisableAlbedo && m_pmaterial->useTextureAlbedo;
+            //pshader->set_int("useTextureAlbedo", bAlbedo);
+            //floating_sequence3 seq3Albedo= {};
+            //if (prendersystem->m_bForceDefaultAmbientOcclusionFactor)
+            //{
 
-               seq3Albedo = prendersystem->m_seq3DefaultAlbedo;
-            }
-            else
-            {
+            //   seq3Albedo = prendersystem->m_seq3DefaultAlbedo;
 
-               seq3Albedo = m_pmaterial->m_seq3Albedo;
-            }
+            //}
+            //else
+            //{
 
-            pshader->set_seq3("material.albedo", seq3Albedo);
-            if (bAlbedo)
-            {
-               int iTextureIndex = ::gpu::e_gltf_texture_albedo;
-               GLenum textureIndex = GL_TEXTURE0 + iTextureIndex;
-               glActiveTexture(textureIndex);
-               pshader->set_int("material.textureAlbedo", iTextureIndex);
+            //   seq3Albedo = m_pmaterial->m_seq3Albedo;
 
-               ::cast<::gpu_opengl::texture> ptextureAlbedo = m_pmaterial->m_ptextureAlbedo;
-               glBindTexture(GL_TEXTURE_2D, ptextureAlbedo->m_gluTextureID);
-            }
+            //}
 
-            bool bMetallicRoughness =
-               !prendersystem->m_bDisableMetallicRoughness && m_pmaterial->useTextureMetallicRoughness;
+            //pshader->set_sequence3("albedo", seq3Albedo);
+            //if (bAlbedo)
+            //{
+            //   int iTextureIndex = ::gpu::e_gltf_texture_albedo;
+            //   GLenum textureIndex = GL_TEXTURE0 + iTextureIndex;
+            //   glActiveTexture(textureIndex);
+            //   pshader->set_int("textureAlbedo", iTextureIndex);
 
-            pshader->set_int("material.useTextureMetallicRoughness", bMetallicRoughness);
-            float fMetallic = 0.0f;
-            if (prendersystem->m_bForceDefaultMetallicFactor)
-            {
+            //   ::cast<::gpu_opengl::texture> ptextureAlbedo = m_pmaterial->m_textureaPbr[::gpu::model::e_texture_albedo];
+            //   glBindTexture(GL_TEXTURE_2D, ptextureAlbedo->m_gluTextureID);
+            //}
 
-               fMetallic = prendersystem->m_fDefaultMetallicFactor;
+            //bool bMetallicRoughness =
+            //   !prendersystem->m_bDisableMetallicRoughness && m_pmaterial->useTextureMetallicRoughness;
 
-            }
-            else
-            {
+            //pshader->set_int("useTextureMetallicRoughness", bMetallicRoughness);
+            //float fMetallic = 0.0f;
+            //if (prendersystem->m_bForceDefaultMetallicFactor)
+            //{
 
-               fMetallic = m_pmaterial->m_fMetallic;
+            //   fMetallic = prendersystem->m_fDefaultMetallicFactor;
 
-            }
-            float fRoughness = 0.0f;
-            if (prendersystem->m_bForceDefaultRoughnessFactor)
-            {
+            //}
+            //else
+            //{
 
-               fRoughness = prendersystem->m_fDefaultRoughnessFactor;
-            }
-            else
-            {
+            //   fMetallic = m_pmaterial->m_fMetallic;
 
-               fRoughness = m_pmaterial->m_fRoughness;
-            }
-            pshader->set_float("material.metallic", fMetallic);
-            pshader->set_float("material.roughness", fRoughness);
-            if (bMetallicRoughness)
-            {
-               int iTextureIndex = ::gpu::e_gltf_texture_metallic_roughness;
-               GLenum textureIndex = GL_TEXTURE0 + iTextureIndex;
-               glActiveTexture(textureIndex);
-               pshader->set_int("material.textureMetallicRoughness", iTextureIndex);
-               ::cast<::gpu_opengl::texture> ptextureMetallicRoughness = m_pmaterial->m_ptextureMetallicRoughness;
-               glBindTexture(GL_TEXTURE_2D, ptextureMetallicRoughness->m_gluTextureID);
-            }
+            //}
+            //float fRoughness = 0.0f;
+            //if (prendersystem->m_bForceDefaultRoughnessFactor)
+            //{
 
-            bool bNormal = !prendersystem->m_bDisableNormal && m_pmaterial->useTextureNormal;
-            pshader->set_int("material.useTextureNormal", bNormal);
-            if (bNormal)
-            {
-               glActiveTexture(GL_TEXTURE0 + ::gpu::e_gltf_texture_normal);
-               pshader->set_int("material.textureNormal", ::gpu::e_gltf_texture_normal);
-               ::cast<::gpu_opengl::texture> ptextureNormal = m_pmaterial->m_ptextureNormal;
-               glBindTexture(GL_TEXTURE_2D, ptextureNormal->m_gluTextureID);
-            }
+            //   fRoughness = prendersystem->m_fDefaultRoughnessFactor;
+            //}
+            //else
+            //{
 
-            bool bAmbientOcclusion =
-               !prendersystem->m_bDisableAmbientOcclusion && m_pmaterial->useTextureAmbientOcclusion;
-            pshader->set_int("material.useTextureAmbientOcclusion", bAmbientOcclusion);
-            float fAmbientOcclusion = 0.0f;
-            if (prendersystem->m_bForceDefaultAmbientOcclusionFactor)
-            {
+            //   fRoughness = m_pmaterial->m_fRoughness;
+            //}
+            //pshader->set_float("metallic", fMetallic);
+            //pshader->set_float("roughness", fRoughness);
+            //if (bMetallicRoughness)
+            //{
+            //   int iTextureIndex = ::gpu::e_gltf_texture_metallic_roughness;
+            //   GLenum textureIndex = GL_TEXTURE0 + iTextureIndex;
+            //   glActiveTexture(textureIndex);
+            //   pshader->set_int("textureMetallicRoughness", iTextureIndex);
+            //   ::cast<::gpu_opengl::texture> ptextureMetallicRoughness =
+            //      m_pmaterial->m_textureaPbr[::gpu::model::e_texture_metallic_roughness];
+            //   glBindTexture(GL_TEXTURE_2D, ptextureMetallicRoughness->m_gluTextureID);
+            //}
 
-               fAmbientOcclusion = prendersystem->m_fDefaultAmbientOcclusionFactor;
-            }
-            else
-            {
+            //bool bNormal = !prendersystem->m_bDisableNormal && m_pmaterial->useTextureNormal;
+            //pshader->set_int("useTextureNormal", bNormal);
+            //if (bNormal)
+            //{
+            //   glActiveTexture(GL_TEXTURE0 + ::gpu::e_gltf_texture_normal);
+            //   pshader->set_int("textureNormal", ::gpu::e_gltf_texture_normal);
+            //   ::cast<::gpu_opengl::texture> ptextureNormal = m_pmaterial->m_textureaPbr[::gpu::model::e_texture_normal];
+            //   glBindTexture(GL_TEXTURE_2D, ptextureNormal->m_gluTextureID);
+            //}
 
-               fAmbientOcclusion = m_pmaterial->m_fAmbientOcclusion;
-            }
-            pshader->set_float("material.ambientOcclusion", fAmbientOcclusion);
-            if (bAmbientOcclusion)
-            {
-               glActiveTexture(GL_TEXTURE0 + ::gpu::e_gltf_texture_ambient_occlusion);
-               pshader->set_int("material.textureAmbientOcclusion", ::gpu::e_gltf_texture_ambient_occlusion);
-               ::cast<::gpu_opengl::texture> ptextureAmbientOcclusion = m_pmaterial->m_ptextureAmbientOcclusion;
-               glBindTexture(GL_TEXTURE_2D, ptextureAmbientOcclusion->m_gluTextureID);
-            }
+            //bool bAmbientOcclusion =
+            //   !prendersystem->m_bDisableAmbientOcclusion && m_pmaterial->useTextureAmbientOcclusion;
+            //pshader->set_int("useTextureAmbientOcclusion", bAmbientOcclusion);
+            //float fAmbientOcclusion = 0.0f;
+            //if (prendersystem->m_bForceDefaultAmbientOcclusionFactor)
+            //{
 
-            bool bEmissive = !prendersystem->m_bDisableEmissive && m_pmaterial->useTextureEmissive;
-            pshader->set_int("material.useTextureEmissive", bEmissive);
-            glm::vec3 seq3Emission = {};
-            if (prendersystem->m_bForceDefaultEmission)
-            {
+            //   fAmbientOcclusion = prendersystem->m_fDefaultAmbientOcclusionFactor;
+            //}
+            //else
+            //{
 
-               seq3Emission = prendersystem->m_seq3DefaultEmission;
-            }
-            else
-            {
+            //   fAmbientOcclusion = m_pmaterial->m_fAmbientOcclusion;
+            //}
+            //pshader->set_float("ambientOcclusion", fAmbientOcclusion);
+            //if (bAmbientOcclusion)
+            //{
+            //   glActiveTexture(GL_TEXTURE0 + ::gpu::e_gltf_texture_ambient_occlusion);
+            //   pshader->set_int("textureAmbientOcclusion", ::gpu::e_gltf_texture_ambient_occlusion);
+            //   ::cast<::gpu_opengl::texture> ptextureAmbientOcclusion =
+            //      m_pmaterial->m_textureaPbr[::gpu::model::e_texture_ambient_occlusion];
+            //   glBindTexture(GL_TEXTURE_2D, ptextureAmbientOcclusion->m_gluTextureID);
+            //}
 
-               seq3Emission = m_pmaterial->m_seq3Emissive;
-            }
-            pshader->set_seq3("material.emissive", seq3Emission);
-            if (bEmissive)
-            {
-               glActiveTexture(GL_TEXTURE0 + ::gpu::e_gltf_texture_emissive);
-               pshader->set_int("material.textureEmissive", ::gpu::e_gltf_texture_emissive);
-               ::cast<::gpu_opengl::texture> ptextureEmissive = m_pmaterial->m_ptextureEmissive;
-               glBindTexture(GL_TEXTURE_2D, ptextureEmissive->m_gluTextureID);
-            }
+            //bool bEmissive = !prendersystem->m_bDisableEmissive && m_pmaterial->useTextureEmissive;
+            //pshader->set_int("useTextureEmissive", bEmissive);
+            //floating_sequence3 seq3Emission = {};
+            //if (prendersystem->m_bForceDefaultEmission)
+            //{
+
+            //   seq3Emission = prendersystem->m_seq3DefaultEmission;
+            //}
+            //else
+            //{
+
+            //   seq3Emission = m_pmaterial->m_seq3Emissive;
+            //}
+            //pshader->set_sequence3("emissive", seq3Emission);
+            //if (bEmissive)
+            //{
+            //   glActiveTexture(GL_TEXTURE0 + ::gpu::e_gltf_texture_emissive);
+            //   pshader->set_int("textureEmissive", ::gpu::e_gltf_texture_emissive);
+            //   ::cast<::gpu_opengl::texture> ptextureEmissive = m_pmaterial->m_textureaPbr[::gpu::model::e_texture_emissive];
+            //   glBindTexture(GL_TEXTURE_2D, ptextureEmissive->m_gluTextureID);
+            //}
 
             glActiveTexture(GL_TEXTURE0);
 
          }
          else if (erendersystem == ::graphics3d::e_render_system_gltf_scene)
          {
-            // albedo
-                        //;
-            //pshader->set_int("material.useTextureAlbedo", m_pmaterial->useTextureAlbedo);
-            //pshader->set_seq3("material.albedo", m_pmaterial->m_seq3Albedo);
-            if (m_pmaterial->useTextureAlbedo)
-            {
-               int iTextureIndex = ::gpu::e_gltf_texture_albedo;
-               GLenum textureIndex = GL_TEXTURE0 + iTextureIndex;
-               glActiveTexture(textureIndex);
-               pshader->set_int("material.textureAlbedo", iTextureIndex);
 
-               ::cast<::gpu_opengl::texture> ptextureAlbedo = m_pmaterial->m_ptextureAlbedo;
-               glBindTexture(GL_TEXTURE_2D, ptextureAlbedo->m_gluTextureID);
-            }
-
-            //pshader->set_int("material.useTextureMetallicRoughness", m_pmaterial->useTextureMetallicRoughness);
-            //pshader->set_float("material.metallic", m_pmaterial->m_fMetallic);
-            //pshader->set_float("material.roughness", m_pmaterial->m_fRoughness);
-            //if (m_pmaterial->useTextureMetallicRoughness)
+            //if (m_pmaterial->alphaMode == ::gpu::model::material::ALPHAMODE_MASK)
             //{
-            //   int iTextureIndex = ::gpu::e_gltf_texture_metallic_roughness;
+
+            //   auto alphaMaskCutoff = m_pmaterial->alphaCutoff;
+
+            //   pshader->set_float("alphaMaskCutoff", alphaMaskCutoff);
+
+
+            //}
+
+            //glDisable(GL_CULL_FACE);
+            //// albedo
+            //            //;
+
+            //bool bUseTextureAlbedo = m_pmaterial->useTextureAlbedo;
+
+            //pshader->set_int("useTextureAlbedo", bUseTextureAlbedo ? 1 : 0);
+            //pshader->set_sequence3("albedo", m_pmaterial->m_seq3Albedo);
+            //if (bUseTextureAlbedo)
+            //{
+            //   int iTextureIndex = ::gpu::e_gltf_texture_albedo;
             //   GLenum textureIndex = GL_TEXTURE0 + iTextureIndex;
             //   glActiveTexture(textureIndex);
-            //   pshader->set_int("material.textureMetallicRoughness", iTextureIndex);
-            //   ::cast<::gpu_opengl::texture> ptextureMetallicRoughness = m_pmaterial->m_ptextureMetallicRoughness;
-            //   glBindTexture(GL_TEXTURE_2D, ptextureMetallicRoughness->m_gluTextureID);
+            //   pshader->set_int("textureAlbedo", iTextureIndex);
+
+            //   ::cast<::gpu_opengl::texture> ptextureAlbedo = m_pmaterial->m_textureaPbr[::gpu::model::e_texture_albedo];
+            //   glBindTexture(GL_TEXTURE_2D, ptextureAlbedo->m_gluTextureID);
             //}
-
-            pshader->set_int("material.useTextureNormal", m_pmaterial->useTextureNormal);
-            if (m_pmaterial->useTextureNormal)
-            {
-               glActiveTexture(GL_TEXTURE0 + ::gpu::e_gltf_texture_normal);
-               pshader->set_int("material.textureNormal", ::gpu::e_gltf_texture_normal);
-               ::cast<::gpu_opengl::texture> ptextureNormal = m_pmaterial->m_ptextureNormal;
-               glBindTexture(GL_TEXTURE_2D, ptextureNormal->m_gluTextureID);
-            }
-            else
-            {
-
-               //information() << "are there gltf models without normal?";
-
-            }
-
-            //pshader->set_int("material.useTextureAmbientOcclusion", m_pmaterial->useTextureAmbientOcclusion);
-            //pshader->set_float("material.ambientOcclusion", m_pmaterial->m_fAmbientOcclusion);
-            //if (m_pmaterial->useTextureAmbientOcclusion)
+            //else
             //{
-            //   glActiveTexture(GL_TEXTURE0 + ::gpu::e_gltf_texture_ambient_occlusion);
-            //   pshader->set_int("material.textureAmbientOcclusion", ::gpu::e_gltf_texture_ambient_occlusion);
-            //   ::cast<::gpu_opengl::texture> ptextureAmbientOcclusion = m_pmaterial->m_ptextureAmbientOcclusion;
-            //   glBindTexture(GL_TEXTURE_2D, ptextureAmbientOcclusion->m_gluTextureID);
+
+            //   information() << "mesh isn't using an albedo texture";
+
             //}
 
-            //pshader->set_int("material.useTextureEmissive", m_pmaterial->useTextureEmissive);
-            //pshader->set_seq3("material.emissive", m_pmaterial->m_seq3Emissive);
-            //if (m_pmaterial->useTextureEmissive)
+            ////pshader->set_int("material.useTextureMetallicRoughness", m_pmaterial->useTextureMetallicRoughness);
+            //pshader->set_float("metallic", m_pmaterial->m_fMetallic);
+            //pshader->set_float("roughness", m_pmaterial->m_fRoughness);
+            ////if (m_pmaterial->useTextureMetallicRoughness)
+            ////{
+            ////   int iTextureIndex = ::gpu::e_gltf_texture_metallic_roughness;
+            ////   GLenum textureIndex = GL_TEXTURE0 + iTextureIndex;
+            ////   glActiveTexture(textureIndex);
+            ////   pshader->set_int("material.textureMetallicRoughness", iTextureIndex);
+            ////   ::cast<::gpu_opengl::texture> ptextureMetallicRoughness = m_pmaterial->m_ptextureMetallicRoughness;
+            ////   glBindTexture(GL_TEXTURE_2D, ptextureMetallicRoughness->m_gluTextureID);
+            ////}
+
+            //pshader->set_int("useTextureNormal", m_pmaterial->useTextureNormal);
+            //if (m_pmaterial->useTextureNormal)
             //{
-            //   glActiveTexture(GL_TEXTURE0 + ::gpu::e_gltf_texture_emissive);
-            //   pshader->set_int("material.textureEmissive", ::gpu::e_gltf_texture_emissive);
-            //   ::cast<::gpu_opengl::texture> ptextureEmissive = m_pmaterial->m_ptextureEmissive;
-            //   glBindTexture(GL_TEXTURE_2D, ptextureEmissive->m_gluTextureID);
+            //   glActiveTexture(GL_TEXTURE0 + ::gpu::e_gltf_texture_normal);
+            //   pshader->set_int("textureNormal", ::gpu::e_gltf_texture_normal);
+            //   ::cast<::gpu_opengl::texture> ptextureNormal = m_pmaterial->m_textureaPbr[::gpu::model::e_texture_normal];
+            //   glBindTexture(GL_TEXTURE_2D, ptextureNormal->m_gluTextureID);
             //}
+            //else
+            //{
+
+            //   //information() << "are there gltf models without normal?";
+
+            //}
+
+            ////pshader->set_int("material.useTextureAmbientOcclusion", m_pmaterial->useTextureAmbientOcclusion);
+            //pshader->set_float("ambientOcclusion", m_pmaterial->m_fAmbientOcclusion);
+            ////if (m_pmaterial->useTextureAmbientOcclusion)
+            ////{
+            ////   glActiveTexture(GL_TEXTURE0 + ::gpu::e_gltf_texture_ambient_occlusion);
+            ////   pshader->set_int("material.textureAmbientOcclusion", ::gpu::e_gltf_texture_ambient_occlusion);
+            ////   ::cast<::gpu_opengl::texture> ptextureAmbientOcclusion = m_pmaterial->m_ptextureAmbientOcclusion;
+            ////   glBindTexture(GL_TEXTURE_2D, ptextureAmbientOcclusion->m_gluTextureID);
+            ////}
+
+            ////pshader->set_int("material.useTextureEmissive", m_pmaterial->useTextureEmissive);
+            ////pshader->set_sequence3("emissive", m_pmaterial->m_seq3Emissive);
+            ////if (m_pmaterial->useTextureEmissive)
+            ////{
+            ////   glActiveTexture(GL_TEXTURE0 + ::gpu::e_gltf_texture_emissive);
+            ////   pshader->set_int("material.textureEmissive", ::gpu::e_gltf_texture_emissive);
+            ////   ::cast<::gpu_opengl::texture> ptextureEmissive = m_pmaterial->m_ptextureEmissive;
+            ////   glBindTexture(GL_TEXTURE_2D, ptextureEmissive->m_gluTextureID);
+            ////}
 
             glActiveTexture(GL_TEXTURE0);
 
@@ -318,100 +349,139 @@ namespace gpu_opengl
 
          }
 
-            // draw mesh
-         glBindVertexArray(m_uVAO);
-         glDrawElements(GL_TRIANGLES, m_indexa.size(), GL_UNSIGNED_INT, 0);
-         glBindVertexArray(0);
+         pcommandbuffer->draw(m_pmodelbuffer);
+
+         //   // draw mesh
+         //glBindVertexArray(m_uVAO);
+         //GLCheckError("not bound");
+         //glDrawElements(GL_TRIANGLES, indexes_count(), GL_UNSIGNED_INT, 0);
+         //GLCheckError("not drawn");
+         //glBindVertexArray(0);
+         //GLCheckError("not unbound");
 
       }
 
 
-      void mesh::init()
+      void mesh::on_initialize_gpu_mesh()
       {
-         // // create our data structures
-         // glGenVertexArrays(1, &mVAO);
-         // glGenBuffers(1, &mVBO);
-         // glGenBuffers(1, &mEBO);
-         //
-         // glBindVertexArray(mVAO); // use this VAO for subsequent calls
-         //
-         // glBindBuffer(GL_ARRAY_BUFFER, mVBO); // use this VBO for subsequent calls
-         // glBufferData(GL_ARRAY_BUFFER, mVertices.size() * sizeof(::gpu::gltf::vertex), &mVertices[0],
-         //              GL_STATIC_DRAW); // copy over the vertex data
-         //
-         // glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mEBO); // use this EBO for subsequent calls
-         // glBufferData(GL_ELEMENT_ARRAY_BUFFER, m_indexa.size() * sizeof(unsigned int), &m_indexa[0],
-         //              GL_STATIC_DRAW); // copy over the index data
-         //
-         // // setup the locations of vertex data
-         // // positions
-         // glEnableVertexAttribArray(0);
-         // glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(::gpu::gltf::vertex), (void *)0);
-         //
-         // // normals
-         // glEnableVertexAttribArray(1);
-         // glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(::gpu::gltf::vertex), (void *)offsetof(::gpu::gltf::vertex, mNormal));
-         //
-         // // texture coordinates
-         // glEnableVertexAttribArray(2);
-         // glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, sizeof(::gpu::gltf::vertex),
-         //                       (void *)offsetof(::gpu::gltf::vertex, mTextureCoordinates));
-         //
-         // // tangents
-         // glEnableVertexAttribArray(3);
-         // glVertexAttribPointer(3, 3, GL_FLOAT, GL_FALSE, sizeof(::gpu::gltf::vertex),
-         //                       (void *)offsetof(::gpu::gltf::vertex, mTangent));
-         //
-         // // bitangents
-         // glEnableVertexAttribArray(4);
-         // glVertexAttribPointer(4, 3, GL_FLOAT, GL_FALSE, sizeof(::gpu::gltf::vertex),
-         //                       (void *)offsetof(::gpu::gltf::vertex, mBitangent));
-         //
-         // glBindVertexArray(0);
-         //
-         // create our data structures
-         glGenVertexArrays(1, &m_uVAO);
-         glGenBuffers(1, &m_uVBO);
-         glGenBuffers(1, &m_uEBO);
 
-         glBindVertexArray(m_uVAO); // use this VAO for subsequent calls
+         //// // create our data structures
+         //// glGenVertexArrays(1, &mVAO);
+         //// glGenBuffers(1, &mVBO);
+         //// glGenBuffers(1, &mEBO);
+         ////
+         //// glBindVertexArray(mVAO); // use this VAO for subsequent calls
+         ////
+         //// glBindBuffer(GL_ARRAY_BUFFER, mVBO); // use this VBO for subsequent calls
+         //// glBufferData(GL_ARRAY_BUFFER, mVertices.size() * sizeof(::gpu::gltf::vertex), &mVertices[0],
+         ////              GL_STATIC_DRAW); // copy over the vertex data
+         ////
+         //// glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mEBO); // use this EBO for subsequent calls
+         //// glBufferData(GL_ELEMENT_ARRAY_BUFFER, m_indexa.size() * sizeof(unsigned int), &m_indexa[0],
+         ////              GL_STATIC_DRAW); // copy over the index data
+         ////
+         //// // setup the locations of vertex data
+         //// // positions
+         //// glEnableVertexAttribArray(0);
+         //// glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(::gpu::gltf::vertex), (void *)0);
+         ////
+         //// // normals
+         //// glEnableVertexAttribArray(1);
+         //// glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(::gpu::gltf::vertex), (void *)offsetof(::gpu::gltf::vertex, mNormal));
+         ////
+         //// // texture coordinates
+         //// glEnableVertexAttribArray(2);
+         //// glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, sizeof(::gpu::gltf::vertex),
+         ////                       (void *)offsetof(::gpu::gltf::vertex, mTextureCoordinates));
+         ////
+         //// // tangents
+         //// glEnableVertexAttribArray(3);
+         //// glVertexAttribPointer(3, 3, GL_FLOAT, GL_FALSE, sizeof(::gpu::gltf::vertex),
+         ////                       (void *)offsetof(::gpu::gltf::vertex, mTangent));
+         ////
+         //// // bitangents
+         //// glEnableVertexAttribArray(4);
+         //// glVertexAttribPointer(4, 3, GL_FLOAT, GL_FALSE, sizeof(::gpu::gltf::vertex),
+         ////                       (void *)offsetof(::gpu::gltf::vertex, mBitangent));
+         ////
+         //// glBindVertexArray(0);
+         ////
+         //// create our data structures
+         //glGenVertexArrays(1, &m_uVAO);
+         //glGenBuffers(1, &m_uVBO);
+         //glGenBuffers(1, &m_uEBO);
 
-         auto vertexSize =m_vertexa.size();
-         auto vertexData = m_vertexa.data();
+         //glBindVertexArray(m_uVAO); // use this VAO for subsequent calls
 
-         glBindBuffer(GL_ARRAY_BUFFER, m_uVBO); // use this VBO for subsequent calls
-         glBufferData(GL_ARRAY_BUFFER, vertexSize * sizeof(::gpu::gltf::vertex),
-            vertexData,GL_STATIC_DRAW); // copy over the vertex data
 
-         auto indexSize = m_indexa.size();
-         auto indexData = m_indexa.data();
+         //m_pmodelbuffer->set_input_layout(m_pgpucontext->input_layout(m_pmodeldata->gpu_properties()));
 
-         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_uEBO); // use this EBO for subsequent calls
-         glBufferData(GL_ELEMENT_ARRAY_BUFFER, indexSize * sizeof(unsigned int),
-            indexData,GL_STATIC_DRAW); // copy over the index data
+         ////if (m_pmodelbuffer->m_pmodeldatabas2->vertex_type() == typeid(::gpu::gltf::vertex))
+         ////{
 
-         // setup the locations of vertex data
-         // positions
-         glEnableVertexAttribArray(0);
-         glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(::gpu::gltf::vertex), (void *)0);
+         ////   auto indexSize = m_modeldata.m_indexes.size();
+         ////   auto indexData = m_modeldata.m_indexes.data();
 
-         // normals
-         glEnableVertexAttribArray(1);
-         glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(::gpu::gltf::vertex), (void *)offsetof(::gpu::gltf::vertex, normal));
+         ////   if (indexSize == 2388)
+         ////   {
 
-         // texture coordinates
-         glEnableVertexAttribArray(2);
-         glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, sizeof(::gpu::gltf::vertex), (void *)offsetof(::gpu::gltf::vertex, uv));
+         ////      information() << "2388 indexes";
+         ////   }
 
-         // color
-         glEnableVertexAttribArray(3);
-         glVertexAttribPointer(3, 4, GL_FLOAT, GL_FALSE, sizeof(::gpu::gltf::vertex), (void *)offsetof(::gpu::gltf::vertex, color));
+         ////   auto vertexSize = m_modeldata.m_vertexes.size();
+         ////   auto vertexData = m_modeldata.m_vertexes.data();
 
-         // tangent with .w = handness
-         glEnableVertexAttribArray(4);
-         glVertexAttribPointer(4, 4, GL_FLOAT, GL_FALSE, sizeof(::gpu::gltf::vertex), (void *)offsetof(::gpu::gltf::vertex, tangent));
+         ////   auto vertexByteCount = vertexSize * sizeof(::gpu::gltf::vertex);
 
-         glBindVertexArray(0);
+         ////   glBindBuffer(GL_ARRAY_BUFFER, m_uVBO); // use this VBO for subsequent calls
+         ////   glBufferData(GL_ARRAY_BUFFER, vertexByteCount, vertexData, GL_STATIC_DRAW); // copy over the vertex data
+
+
+         ////   glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_uEBO); // use this EBO for subsequent calls
+         ////   glBufferData(GL_ELEMENT_ARRAY_BUFFER, indexSize * sizeof(unsigned int), indexData,
+         ////                GL_STATIC_DRAW); // copy over the index data
+
+         ////   // setup the locations of vertex data
+         ////   // positions
+         ////   glEnableVertexAttribArray(0);
+         ////   glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(::gpu::gltf::vertex),
+         ////                         (void *)offsetof(::gpu::gltf::vertex, position));
+
+         ////   // normals
+         ////   glEnableVertexAttribArray(1);
+         ////   glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(::gpu::gltf::vertex),
+         ////                         (void *)offsetof(::gpu::gltf::vertex, normal));
+
+         ////   // texture coordinates
+         ////   glEnableVertexAttribArray(2);
+         ////   glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, sizeof(::gpu::gltf::vertex),
+         ////                         (void *)offsetof(::gpu::gltf::vertex, uv));
+
+         ////   // color
+         ////   glEnableVertexAttribArray(3);
+         ////   glVertexAttribPointer(3, 4, GL_FLOAT, GL_FALSE, sizeof(::gpu::gltf::vertex),
+         ////                         (void *)offsetof(::gpu::gltf::vertex, color));
+
+         ////   // tangent with .w = handness
+         ////   glEnableVertexAttribArray(4);
+         ////   glVertexAttribPointer(4, 4, GL_FLOAT, GL_FALSE, sizeof(::gpu::gltf::vertex),
+         ////                         (void *)offsetof(::gpu::gltf::vertex, tangent));
+
+         ////   glBindVertexArray(0);
+         ////}
+         ////else if (m_pmodelbuffer->m_pmodeldatabas2->vertex_type() == typeid(::graphcis3d::Vertex))
+         ////{
+
+
+
+         ////}
+         ////else
+         ////{
+
+         ////   throw ::exception(error_wrong_state);
+
+         ////}
+
       }
 
    } // namespace gltf

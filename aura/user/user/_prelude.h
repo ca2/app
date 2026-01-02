@@ -150,10 +150,6 @@ typedef ::pointer<::windowing::window>window_pointer;
 
 
 //#ifdef WINDOWS_DESKTOP
-//
-//
-//
-//
 //#endif
 
 

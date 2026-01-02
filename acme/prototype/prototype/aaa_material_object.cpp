@@ -54,7 +54,7 @@
 //::string material_object::as_string() const
 //{
 //
-//   return ::type(this).name();
+//   return ::platform::type(this).name();
 //
 //}
 //
@@ -152,10 +152,6 @@
 //   pprocedurea->add(procedure);
 //
 //}
-//
-//
-//
-//
 //::long_long_array & material_object::idarray() const
 //{
 //

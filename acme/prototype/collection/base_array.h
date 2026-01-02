@@ -164,7 +164,7 @@ public:
    base_array(const std::initializer_list < TYPE > & initializer_list);
    base_array(const base_array< TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > & array);
    base_array(base_array< TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > && array) noexcept;
-   //template < primitive_array ARRAY >
+   //template < prototype_array ARRAY >
    //base_array(const ARRAY & a) : base_array() {
    //   this->set_size(a.size());
    //   for (::collection::index i = 0; i < this->size(); i++) this->element_at(i) = a.element_at(i);
@@ -181,7 +181,7 @@ public:
 
    //template < typename OTHER_CONTAINER >
    //base_array(const OTHER_CONTAINER& container) requires
-   //   (primitive_container < OTHER_CONTAINER >
+   //   (prototype_container < OTHER_CONTAINER >
    //      && !::std::is_base_of_v<base_array, ::std::remove_cvref_t < OTHER_CONTAINER > >) :
    //   base_array()
    //{
@@ -197,7 +197,7 @@ public:
    //   : base_array(range.begin(), range.end())
    //{ }
 
-   template < primitive_integral INTEGRAL >
+   template < prototype_integral INTEGRAL >
    base_array(const_iterator begin, INTEGRAL count) : base_array(begin, begin + count) {}
    base_array(const_iterator begin, const_iterator end)
    {
@@ -304,7 +304,7 @@ public:
    }
 
 
-   template < primitive_array ARRAY >
+   template < prototype_array ARRAY >
    base_array & operator += (const ARRAY & a)
    {
 
@@ -385,7 +385,7 @@ public:
    }
 
 
-   template < primitive_container CONTAINER >
+   template < prototype_container CONTAINER >
    base_array & assign_a_container(const CONTAINER & container)
    {
 
@@ -411,7 +411,7 @@ public:
    }
 
    
-   template < primitive_container CONTAINER >
+   template < prototype_container CONTAINER >
    base_array & copy(const CONTAINER & container)
    {
 
@@ -455,7 +455,7 @@ public:
    }
 
 
-   template < primitive_container CONTAINER >
+   template < prototype_container CONTAINER >
    base_array & operator = (const CONTAINER & container)
    requires (!::std::is_base_of<base_array, CONTAINER >::value)
    {
@@ -468,7 +468,7 @@ public:
    template < std_range STDRANGE >
    base_array & operator = (const STDRANGE & range)
    requires (!::std::is_base_of<base_array, STDRANGE >::value
-      && !primitive_container<STDRANGE>)
+      && !prototype_container<STDRANGE>)
    {
 
       return this->assign_a_std_range(range);
@@ -1028,13 +1028,13 @@ public:
 
    void zero(::collection::index iStart = 0, ::collection::count c = -1);
 
-   //template < primitive_array ARRAY >
+   //template < prototype_array ARRAY >
    //void _001RemoveIndexes(ARRAY & ia);
    
-   template < primitive_array ARRAY >
+   template < prototype_array ARRAY >
    void erase_indexes(const ARRAY & ia);
 
-   template < primitive_array ARRAY >
+   template < prototype_array ARRAY >
    void erase_descending_indexes(const ARRAY & ia);
 
 
@@ -1147,7 +1147,7 @@ public:
    
 
 
-   //template < primitive_container CONTAINER >
+   //template < prototype_container CONTAINER >
    //::collection::count append(const CONTAINER & container)
    //{
 
@@ -1579,7 +1579,7 @@ public:
 //   base_array(const TYPE * p, ::collection::count c) :BASE_ARRAY(p, c) {}
 //   base_array(::range < typename BASE_ARRAY::const_iterator > constrange) :
 //      BASE_ARRAY(constrange.begin(), constrange.end()) {}
-//   template < primitive_integral INTEGRAL >
+//   template < prototype_integral INTEGRAL >
 //   base_array(typename BASE_ARRAY::const_iterator begin, INTEGRAL count) :
 //      BASE_ARRAY(begin, begin + count) {}
 //   base_array(typename BASE_ARRAY::const_iterator begin, typename BASE_ARRAY::const_iterator end)
@@ -1602,7 +1602,7 @@ public:
 //};
 
 
-template < primitive_integral INTEGRAL, class TYPE, class ARG_TYPE, class TYPED = ::typed::nodef < TYPE >, class MEMORY = ::heap::typed_memory < TYPE, ::heap::e_memory_array >, ::enum_type t_etypeContainer = e_type_element >
+template < prototype_integral INTEGRAL, class TYPE, class ARG_TYPE, class TYPED = ::typed::nodef < TYPE >, class MEMORY = ::heap::typed_memory < TYPE, ::heap::e_memory_array >, ::enum_type t_etypeContainer = e_type_element >
 inline TYPE& operator%(INTEGRAL nIndex, const base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > & a)
 {
 
@@ -2245,7 +2245,7 @@ void base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::copy(const 
 
 
 //template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-//template < primitive_container CONTAINER >
+//template < prototype_container CONTAINER >
 //base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >
 //base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::operator + (const CONTAINER & array) const
 //{
@@ -2262,7 +2262,7 @@ void base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::copy(const 
 
 
 template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-template < primitive_array ARRAY >
+template < prototype_array ARRAY >
 void base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::erase_indexes(const ARRAY & ia)
 {
 
@@ -2279,7 +2279,7 @@ void base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::erase_index
 
 
 template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-template < primitive_array ARRAY >
+template < prototype_array ARRAY >
 void base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::erase_descending_indexes(const ARRAY & ia)
 {
 

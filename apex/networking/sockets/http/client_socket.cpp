@@ -168,7 +168,7 @@ namespace sockets
       //tcp_socket(h),
       //http_socket(h),
       //http_tunnel(h),
-      m_content_length((memsize)-1),
+       m_iContentLength((memsize)-1),
       m_content_ptr(0),
       m_b_complete(false),
       m_b_close_when_complete(false)
@@ -289,24 +289,28 @@ namespace sockets
    }
 
 
-   void http_client_socket::OnHeader(const ::atom & atom, const ::scoped_string & scopedstr)
+   void http_client_socket::OnHeader(const ::atom &atomKey, const ::scoped_string &scopedstr)
    {
 
+      auto pszUrl = m_url.m_str.c_str();
+      auto pszKey = atomKey.as_string().c_str();
+      auto pszPayload = scopedstr.c_str();
 #if HEAVY_HTTP_LOG
-      informationf("OnHeader %s: %s", (const_char_pointer )key, (const_char_pointer )value);
+      informationf("OnHeader %s: %s", (const_char_pointer)atomKey, (const_char_pointer)value);
 #endif
 
-      m_content += atom.as_string() + ": " + scopedstr + "\r\n";
-      m_response.m_propertysetHeader[atom] = scopedstr;
-      if (atom == "content-length")
+      m_content += atomKey.as_string() + ": " + scopedstr + "\r\n";
+      m_response.m_propertysetHeader[atomKey] = scopedstr;
+
+      if (atomKey == "content-length")
       {
-         m_content_length = atoi(scopedstr);
+         m_iContentLength = atoi(scopedstr);
       }
-      else if (atom == "content-type")
+      else if (atomKey == "content-type")
       {
          m_content_type = scopedstr;
       }
-      else if (atom == "set-cookie")
+      else if (atomKey == "set-cookie")
       {
          m_response.m_cookies.add(scopedstr);
       }
@@ -322,15 +326,15 @@ namespace sockets
 
       m_pmemoryfile->set_size(0);
 
-      if(m_content_length != ((memsize) (-1)))
+      if (m_iContentLength != ((memsize)(-1)))
       {
-         m_pmemoryfile->allocate_internal(m_content_length);
+         m_pmemoryfile->allocate_internal(m_iContentLength);
 
          if(outheader("content-encoding").case_insensitive_order("gzip") != 0
                && (m_response.attr("http_status_code") < 300 || m_response.attr("http_status_code") >= 400))
          {
 
-            m_iFinalSize = m_content_length;
+            m_iFinalSize = m_iContentLength;
 
          }
 
@@ -521,7 +525,7 @@ namespace sockets
 
       }
 
-      if(m_content_length == ((memsize)-1))
+      if (m_iContentLength == ((memsize)-1))
       {
 
          return (memsize)m_pmemoryfile->size();
@@ -647,7 +651,7 @@ namespace sockets
    }
 
 
-   bool http_client_socket::on_set_scalar(enum_scalar escalar,::number number,int iFlags)
+   bool http_client_socket::on_set_scalar(enum_scalar escalar,::number::number number,int iFlags)
    {
 
       if (escalar == e_scalar_download_size)
@@ -661,14 +665,14 @@ namespace sockets
       else
       {
 
-         return ::scalar_source::on_set_scalar(escalar, number, iFlags);
+         return ::number::scalar_source::on_set_scalar(escalar, number, iFlags);
 
       }
 
    }
 
 
-   ::number http_client_socket::get_scalar_minimum(enum_scalar escalar)
+   ::number::number http_client_socket::get_scalar_minimum(enum_scalar escalar)
    {
 
       if (escalar == e_scalar_download_size)
@@ -680,14 +684,14 @@ namespace sockets
       else
       {
 
-         return ::scalar_source::get_scalar_minimum(escalar);
+         return ::number::scalar_source::get_scalar_minimum(escalar);
 
       }
 
    }
 
 
-   ::number http_client_socket::get_scalar(enum_scalar escalar)
+   ::number::number http_client_socket::get_scalar(enum_scalar escalar)
    {
 
       if (escalar == e_scalar_download_size)
@@ -699,26 +703,26 @@ namespace sockets
       else
       {
 
-         return ::scalar_source::get_scalar(escalar);
+         return ::number::scalar_source::get_scalar(escalar);
 
       }
 
    }
 
 
-   ::number http_client_socket::get_scalar_maximum(enum_scalar escalar)
+   ::number::number http_client_socket::get_scalar_maximum(enum_scalar escalar)
    {
 
       if (escalar == e_scalar_download_size)
       {
 
-         return (long long) m_content_length;
+         return (long long)m_iContentLength;
 
       }
       else
       {
 
-         return ::scalar_source::get_scalar_maximum(escalar);
+         return ::number::scalar_source::get_scalar_maximum(escalar);
 
       }
 

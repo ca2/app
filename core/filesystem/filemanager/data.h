@@ -1,7 +1,7 @@
 #pragma once
 
 
-
+#include "core/filesystem/filemanager/_.h"
 #include "core/filesystem/userfs/data.h"
 #include "apex/database/key.h"
 #include "acme/prototype/prototype/action_context.h"
@@ -48,7 +48,7 @@ namespace filemanager
       ::pointer < ::user::document >         m_pdocumentTopic;
       ::pointer < ::filemanager::document >  m_pfilemanagerdocument;
       string                                 m_strTitle;
-      ::type_atom                            m_typeatomFileList;
+      ::platform::type                       m_typeFileList;
       // callback *                          m_pfilemanager;
       // callback *                          m_pcallback;
       // bool                                m_bTransparentBackground;

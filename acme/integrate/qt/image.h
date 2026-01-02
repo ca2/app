@@ -49,11 +49,11 @@ public:
       ::pixmap & pixmap = *this;
 
       pixmap.m_pimage32Raw = (image32_t *) m_pqimageArgb32->bits();
-      pixmap.m_sizeRaw.cx() = m_pqimageArgb32->width();
-      pixmap.m_sizeRaw.cy() = m_pqimageArgb32->height();
+      pixmap.m_sizeRaw.cx = m_pqimageArgb32->width();
+      pixmap.m_sizeRaw.cy = m_pqimageArgb32->height();
       pixmap.m_iScan = m_pqimageArgb32->bytesPerLine();
 
-      map({(int)m_pqimageArgb32->width(), (int)m_pqimageArgb32->height()});
+      map({API_CHANGED_ARGUMENT, (int)m_pqimageArgb32->width(), (int)m_pqimageArgb32->height()});
 
    }
 

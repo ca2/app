@@ -30,15 +30,21 @@ namespace gpu_opengl
    }
 
 
-   void memory_buffer::on_initialize_memory_buffer(const void* dataStatic, memsize sizeStatic)
+   void memory_buffer::on_initialize_memory_buffer(const ::block &block)
    {
 
-      if (m_pmodelbuffer->m_bDummy)
+      if (m_pmodelbuffer->m_pmodeldatabase2->is_dummy())
       {
 
          return;
 
       }
+
+      ::cast<::gpu_opengl::model_buffer> pmodelbuffer = m_pmodelbuffer;
+
+      auto vao = pmodelbuffer->m_gluVao;
+
+      glBindVertexArray(vao);
 
       ::gpu::context_lock contextlock(m_pcontext);
 
@@ -49,7 +55,7 @@ namespace gpu_opengl
 
          m_iType = GL_ARRAY_BUFFER;
 
-         size = m_pmodelbuffer->m_iVertexCount * m_pmodelbuffer->m_iVertexTypeSize;
+         size = m_pmodelbuffer->m_pmodeldatabase2->vertex_bytes();
 
       }
       else if (m_etype == ::gpu::memory_buffer::e_type_index_buffer)
@@ -57,7 +63,7 @@ namespace gpu_opengl
 
          m_iType = GL_ELEMENT_ARRAY_BUFFER;
 
-         size = m_pmodelbuffer->m_iIndexCount * m_pmodelbuffer->m_iIndexTypeSize;
+         size = m_pmodelbuffer->m_pmodeldatabase2->index_bytes();
 
       }
       else
@@ -76,39 +82,39 @@ namespace gpu_opengl
       GLCheckError("");
 
       //GLsizeiptr size = 1024; // e.g., 1 KB buffer
-      auto usageFlags = dataStatic ? GL_STATIC_DRAW : GL_DYNAMIC_DRAW;
+      auto usageFlags = block.data() ? GL_STATIC_DRAW : GL_DYNAMIC_DRAW;
       
-      glBufferData(m_iType, (GLsizeiptr) size, dataStatic, usageFlags); // just allocate space
+      glBufferData(m_iType, (GLsizeiptr)size, block.data(), usageFlags); // just allocate space
       GLCheckError("");
 
    }
 
 
-   void memory_buffer::on_set_memory_buffer(const void* data, memsize size)
+   void memory_buffer::on_set_memory_buffer(const ::block &block)
    {
 
-      if (m_pmodelbuffer->m_bDummy)
+      if (m_pmodelbuffer->m_pmodeldatabase2->is_dummy())
       {
 
          return;
 
       }
 
-      m_pmodelbuffer->bind(m_pcontext->m_pgpurenderer->getCurrentCommandBuffer2(::gpu::current_frame()));
+      m_pmodelbuffer->bind2(m_pcontext->m_pgpurenderer->getCurrentCommandBuffer2(::gpu::current_frame()));
 
-      _on_set_memory_buffer(data, size);
+      _on_set_memory_buffer(block);
 
       m_pmodelbuffer->unbind(m_pmodelbuffer->m_pcommandbufferLoading);
 
    }
 
 
-   void memory_buffer::_on_set_memory_buffer(const void* data, memsize size)
+   void memory_buffer::_on_set_memory_buffer(const ::block &block)
    {
 
       bind();
 
-      glBufferData(m_iType, (GLsizeiptr)size, data, GL_DYNAMIC_DRAW); // just allocate space
+      glBufferData(m_iType, (GLsizeiptr)block.size(), block.data(), GL_DYNAMIC_DRAW); // just allocate space
       GLCheckError("");
 
    }
@@ -122,10 +128,10 @@ namespace gpu_opengl
    }
 
 
-   void memory_buffer::_assign(const void * data, memsize size)
+   void memory_buffer::_assign(const ::block &block)
    {
 
-      glBufferSubData(m_iType, 0, size, data);
+      glBufferSubData(m_iType, 0, block.size(), block.data());
       GLCheckError("");
 
    }

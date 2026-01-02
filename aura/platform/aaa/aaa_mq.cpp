@@ -49,8 +49,8 @@ int_bool message_queue::post_message(oswindow oswindow, unsigned int uMessage, W
    message.message = uMessage;
    message.wParam = wParam;
    message.lParam = lParam;
-   message.pt.x() = I32_MINIMUM;
-   message.pt.y() = I32_MINIMUM;
+   message.pt.x = I32_MINIMUM;
+   message.pt.y = I32_MINIMUM;
 
    return post_message(message);
 
@@ -140,8 +140,8 @@ int_bool message_queue::get_message(LPMESSAGE pMsg, oswindow oswindow, unsigned 
          pMsg->message = WM_KICKIDLE;
          pMsg->wParam = 0;
          pMsg->lParam = 0;
-         pMsg->pt.x() = INT_MIN;
-         pMsg->pt.y() = INT_MIN;
+         pMsg->pt.x = INT_MIN;
+         pMsg->pt.y = INT_MIN;
          pMsg->time = 0;
 
          return true;
@@ -235,7 +235,7 @@ int_bool message_queue::peek_message(LPMESSAGE pMsg,oswindow oswindow,unsigned i
 //   if(pthread->m_bClosedMq)
 //   {
 //
-//      string strType = ::type(pthread).name();
+//      string strType = ::platform::type(pthread).name();
 //
 //      if(string_begins(strType, "multimedia::"))
 //      {
@@ -281,7 +281,7 @@ int_bool message_queue::peek_message(LPMESSAGE pMsg,oswindow oswindow,unsigned i
 //   if(!bCreate)
 //   {
 //
-//      string strType = ::type(pthread).name();
+//      string strType = ::platform::type(pthread).name();
 //
 //      if(string_begins(strType, "multimedia::"))
 //      {

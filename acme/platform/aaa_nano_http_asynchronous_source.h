@@ -23,16 +23,8 @@
 //      static void s_http_response(long http_status, const void * data, long size, void * userdata);
 //
 //      void asynchronous_memory(const ::scoped_string & scopedstrUrl, ::pointer < ::nano::asynchronous_http_response > pasynchronoushttpresponse) override;
-//
-//
-//
-//
 //   };
 //
 //
 //} // namespace windows
-//
-//
-//
-//
 //

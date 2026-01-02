@@ -340,17 +340,17 @@ namespace platform
 
 
    //template < class T >
-   //::type * type_info()
+   //::platform::type * type_info()
    //{
 
-   //   return get_type_info(typeid(T)){}
+   //   return get_type_info(::type<T>()){}
 
    //}
 
 
-   //virtual ::type_atom * get_type_info(const ::std::type_info & info){}
+   //virtual ::platform::type * get_type_info(const ::std::type_info & info){}
 
-   //::type * get_type_info(const ::atom & idType)
+   //::platform::type * get_type_info(const ::atom & idType)
    //{
 
    //   if(idType.is_empty())
@@ -778,19 +778,19 @@ namespace platform
    //void aura_system_layer::hist_hist(const ::scoped_string & scopedstr) override{}
 
 
-   ::type_atom  aura_system_layer::get_pane_tab_impact_type_info()
+   ::platform::type  aura_system_layer::get_pane_tab_impact_type_info()
    {
       return {};
    }
 
 
-   ::type_atom  aura_system_layer::get_simple_frame_window_type_info()
+   ::platform::type  aura_system_layer::get_simple_frame_window_type_info()
    {
       return {};
    }
 
 
-   //virtual ::type_atom get_simple_child_frame_type_info(){}
+   //virtual ::platform::type get_simple_child_frame_type_info(){}
 
    //void aura_system_layer::on_start_find_applications_from_cache() override{}
    //void aura_system_layer::on_end_find_applications_from_cache(stream& is) override{}

@@ -207,7 +207,7 @@ namespace userfs
 
 
          pPopup->track_popup_menu(
-         point.x(), point.y(),
+         point.x, point.y,
          (::windowing::window *) pframe);
          }
          }
@@ -220,7 +220,7 @@ namespace userfs
          ASSERT(pPopup != nullptr);
          ::pointer<::user::frame_window>pframe = top_level_frame();
          pPopup->track_popup_menu(
-         point.x(), point.y(),
+         point.x, point.y,
          (::windowing::window *) pframe);
          }
          }*/
@@ -341,8 +341,8 @@ namespace userfs
       pcolumn->m_iWidth               = 500;
       pcolumn->m_iSubItem             = 1;
       pcolumn->m_bIcon                = true;
-      pcolumn->m_sizeIcon.cx()          = 16;
-      pcolumn->m_sizeIcon.cy()          = 16;
+      pcolumn->m_sizeIcon.cx          = 16;
+      pcolumn->m_sizeIcon.cy          = 16;
       pcolumn->m_iControl             = iControl;
       pcolumn->m_iConfigId            = FILE_MANAGER_ID_FILE_NAME;
       pcolumn->m_bEditOnSecondClick   = true;

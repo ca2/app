@@ -25,15 +25,15 @@ namespace hotplugin
 
       window_rectangle(&rectangleWindow);
 
-      int cx = rectangleWindow.right() - rectangleWindow.left();
-      int cy = rectangleWindow.bottom() - rectangleWindow.top();
+      int cx = rectangleWindow.right - rectangleWindow.left;
+      int cy = rectangleWindow.bottom - rectangleWindow.top;
 
       ::int_rectangle int_rectangle;
 
-      rectangle.left() = 0;
-      rectangle.top() = 0;
-      rectangle.bottom() = cy;
-      rectangle.right() = cx;
+      rectangle.left = 0;
+      rectangle.top = 0;
+      rectangle.bottom = cy;
+      rectangle.right = cx;
 
       string str;
 
@@ -53,7 +53,7 @@ namespace hotplugin
          ::int_rectangle rectangle;
          get_progress_color(uchR, uchG, uchB, dRate, 0);
          pbrush->create_solid(argb(255, uchR, uchG, uchB));
-         r = int_rectangle_dimension(rectangle.left(), rectangle.top(), cx, cy);
+         r = int_rectangle_dimension(rectangle.left, rectangle.top, cx, cy);
          pgraphics->FillRect(r, br);
 
       }
@@ -74,19 +74,19 @@ namespace hotplugin
 
       //on_paint_progress(pgraphics, m_rectangle);
 
-      pgraphics->text_out(rectangle.left() + 84, rectangle.top() + 84, strStatus);
+      pgraphics->text_out(rectangle.left + 84, rectangle.top + 84, strStatus);
 
       f->create_pixel_font(pnode->font_name(e_font_sans_fx), 90, true);
 
       pgraphics->SelectObject(f);
 
-      pgraphics->text_out(rectangle.left() + 84, (int)(rectangle.top() + 133 + 49 * 0.2), strProgress);
+      pgraphics->text_out(rectangle.left + 84, (int)(rectangle.top + 133 + 49 * 0.2), strProgress);
 
       f->create_pixel_font(pnode->font_name(e_font_sans_fx), 23);
 
       pgraphics->SelectObject(f);
 
-      pgraphics->text_out(rectangle.left() + 84, (int)(rectangle.top() + 133 + 49 * 0.2 + 133 * 0.2), m_strStatus2);
+      pgraphics->text_out(rectangle.left + 84, (int)(rectangle.top + 133 + 49 * 0.2 + 133 * 0.2), m_strStatus2);
 
    }
 

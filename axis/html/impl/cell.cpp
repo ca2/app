@@ -202,48 +202,48 @@ namespace html
 
          bool bTableBorder = get_table()->m_iBorder > 0;
 
-         if (m_border.left() < 1.f && bTableBorder)
+         if (m_border.left < 1.f && bTableBorder)
          {
-            m_border.left() = get_table()->m_iBorder;
+            m_border.left = get_table()->m_iBorder;
             m_border.colorLeft = argb(255, 90, 90, 90);
             m_border.styleLeft = ::html::border::style_solid;
          }
-         if (m_border.top() < 1.f && bTableBorder)
+         if (m_border.top < 1.f && bTableBorder)
          {
-            m_border.top() = get_table()->m_iBorder;
+            m_border.top = get_table()->m_iBorder;
             m_border.colorTop = argb(255, 90, 90, 90);
             m_border.styleTop = ::html::border::style_solid;
          }
-         if (m_border.right() < 1.f && bTableBorder)
+         if (m_border.right < 1.f && bTableBorder)
          {
-            m_border.right() = get_table()->m_iBorder;
+            m_border.right = get_table()->m_iBorder;
             m_border.colorRight = argb(255, 192, 192, 192);
             m_border.styleRight = ::html::border::style_solid;
          }
-         if (m_border.bottom() < 1.f && bTableBorder)
+         if (m_border.bottom < 1.f && bTableBorder)
          {
-            m_border.bottom() = get_table()->m_iBorder;
+            m_border.bottom = get_table()->m_iBorder;
             m_border.colorBottom = argb(255, 192, 192, 192);
             m_border.styleBottom = ::html::border::style_solid;
          }
 
          bool bTableCellPadding = get_table()->m_iCellPadding > 0;
 
-         if (m_padding.left() == 0.f && bTableCellPadding)
+         if (m_padding.left == 0.f && bTableCellPadding)
          {
-            m_padding.left() = get_table()->m_iCellPadding;
+            m_padding.left = get_table()->m_iCellPadding;
          }
-         if (m_padding.top() == 0.f && bTableCellPadding)
+         if (m_padding.top == 0.f && bTableCellPadding)
          {
-            m_padding.top() = get_table()->m_iCellPadding;
+            m_padding.top = get_table()->m_iCellPadding;
          }
-         if (m_padding.right() == 0.f && bTableCellPadding)
+         if (m_padding.right == 0.f && bTableCellPadding)
          {
-            m_padding.right() = get_table()->m_iCellPadding;
+            m_padding.right = get_table()->m_iCellPadding;
          }
-         if (m_padding.bottom() == 0.f && bTableCellPadding)
+         if (m_padding.bottom == 0.f && bTableCellPadding)
          {
-            m_padding.bottom() = get_table()->m_iCellPadding;
+            m_padding.bottom = get_table()->m_iCellPadding;
          }
 
          if (m_pelemental->m_elementalptra.is_empty())
@@ -349,15 +349,15 @@ namespace html
 
             iTableBorder += 2;
 
-            ::float_size.cx() = (float) (iColumnWidth - (m_iColEnd == get_table()->m_columna.get_upper_bound() ? iTableBorder * 2 : iTableBorder));
+            ::float_size.cx = (float) (iColumnWidth - (m_iColEnd == get_table()->m_columna.get_upper_bound() ? iTableBorder * 2 : iTableBorder));
 
-            ::float_size.cy() -= (float) (m_iRowEnd == get_table()->m_rowptra.get_upper_bound() ? iTableBorder * 2 : iTableBorder);
+            ::float_size.cy -= (float) (m_iRowEnd == get_table()->m_rowptra.get_upper_bound() ? iTableBorder * 2 : iTableBorder);
 
          }
          else*/
          {
 
-            size.cx() = iColumnWidth;
+            size.cx = iColumnWidth;
 
          }
 
@@ -433,7 +433,7 @@ namespace html
 
          set_width(pdata, get_table()->m_columna[m_iColBeg].m_cx);
 
-         move_top_to(pdata, get_table()->m_rowptra[m_iRowBeg]->m_box.top());
+         move_top_to(pdata, get_table()->m_rowptra[m_iRowBeg]->m_box.top);
 
       }
 
@@ -467,26 +467,26 @@ namespace html
 
          auto size = ::html::impl::element::get_content_size();
 
-         //::float_size.cx() -= get_table()->m_iCellSpacing;
+         //::float_size.cx -= get_table()->m_iCellSpacing;
 
          //if(m_iColBeg == 0)
          //{
-         //   ::float_size.cx() -= get_table()->m_iCellSpacing / 2.f;
+         //   ::float_size.cx -= get_table()->m_iCellSpacing / 2.f;
          //}
          //else if(m_iColEnd == get_table()->m_columna.get_upper_bound())
          //{
-         //   ::float_size.cx() -= get_table()->m_iCellSpacing / 2.f;
+         //   ::float_size.cx -= get_table()->m_iCellSpacing / 2.f;
          //}
 
-         //::float_size.cy() -= get_table()->m_iCellSpacing;
+         //::float_size.cy -= get_table()->m_iCellSpacing;
 
          //if(m_iRowBeg == 0)
          //{
-         //   ::float_size.cy() -= get_table()->m_iCellSpacing / 2.f;
+         //   ::float_size.cy -= get_table()->m_iCellSpacing / 2.f;
          //}
          //else if(m_iRowEnd == get_table()->m_rowptra.get_upper_bound())
          //{
-         //   ::float_size.cy() -= get_table()->m_iCellSpacing / 2.f;
+         //   ::float_size.cy -= get_table()->m_iCellSpacing / 2.f;
          //}
 
          return size;
@@ -521,20 +521,20 @@ namespace html
 
          /*if(m_iColBeg == 0)
          {
-            ::float_point.x() += get_table()->m_iCellSpacing;
+            ::float_point.x += get_table()->m_iCellSpacing;
          }
          else
          {
-            ::float_point.x() += get_table()->m_iCellSpacing / 2.f;
+            ::float_point.x += get_table()->m_iCellSpacing / 2.f;
          }
 
          if(m_iRowBeg == 0)
          {
-            ::float_point.y() += get_table()->m_iCellSpacing;
+            ::float_point.y += get_table()->m_iCellSpacing;
          }
          else
          {
-            ::float_point.y() += get_table()->m_iCellSpacing / 2.f;
+            ::float_point.y += get_table()->m_iCellSpacing / 2.f;
          }*/
 
          return point;

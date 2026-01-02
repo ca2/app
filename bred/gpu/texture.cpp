@@ -1,5 +1,6 @@
 // Created by camilo on 2025-06-12 21:07 <3ThomasBorregaardSørensen!!
 #include "framework.h"
+#include "binding.h"
 #include "layer.h"
 #include "pixmap.h"
 #include "render_target.h"
@@ -7,6 +8,9 @@
 #include "texture.h"
 #include "acme/exception/interface_only.h"
 #include "aura/graphics/image/context.h"
+#include "bred/gpu/context.h"
+#include "bred/gpu/context_lock.h"
+#include "bred/gpu/device.h"
 
 
 namespace gpu
@@ -19,21 +23,21 @@ namespace gpu
       m_iAtlasX = 0;
       m_iAtlasY = 0;
       m_iAtlasCurrentRowHeight = 0;
-      m_etype = e_type_none;
+      //m_etype = e_type_none;
       m_bClearColor = false;
-      m_bRenderTarget = false;
-      m_bTransferDst = false;
-      m_bTransferSrc = false;
-      m_bCpuRead = false;
-      m_bWithDepth = false;
-      m_bShaderResourceView = false;
-      m_iLayerCount = 1;
-      m_iMipCount = 1;
+      //m_bRenderTarget = false;
+      //m_bTransferDst = false;
+      //m_bTransferSrc = false;
+      //m = false;
+      //m_flags.m_bWithDepth = false;
+      //m_bShaderResourceView = false;
+      //m_iLayerCount = 1;
+      //m_iMipCount = 1;
       m_iIndex = -1;
-      m_bRedGreen = false;
-      m_bFloat = false;
-      m_iCurrentMip = 0;
-      m_iCurrentFace = 0;
+      //m_bRedGreen = false;
+      //m_bFloat = false;
+      m_iCurrentMip = -1;
+      m_iCurrentLayer = -1;
 
    }
 
@@ -55,7 +59,7 @@ namespace gpu
    void texture::initialize_with_image_data(::gpu::renderer * pgpurenderer,
                                               const ::int_rectangle & rectangleTarget,
                                      int numChannels, bool bSrgb, const void * pdata,
-                                     enum_type etype)
+                                     enum_texture etexture)
    {
 
 
@@ -63,31 +67,115 @@ namespace gpu
 
 
 
-   void texture::initialize_image_texture(::gpu::renderer * pgpurenderer, const ::int_rectangle& rectangleTarget, bool bWithDepth, const ::pointer_array < ::image::image >& imagea, enum_type etype)
+   void texture::initialize_texture(::gpu::renderer * pgpurenderer,
+      const texture_attributes & textureattributes,
+      const texture_flags & textureflags,
+      const texture_data & texturedata
+      )
    {
 
-      m_etype = etype;
-      m_pgpurenderer = pgpurenderer;
-      m_rectangleTarget = rectangleTarget;
-      m_bWithDepth = bWithDepth;
+      ::gpu::context_lock contextlock(pgpurenderer->m_pgpucontext);
+
+      m_textureflags = textureflags;
+
+      if (m_pgpurenderer != pgpurenderer || m_textureattributes != textureattributes)
+      {
+
+         m_pgpurenderer = pgpurenderer;
+
+         m_textureattributes = textureattributes;
+
+         _create_texture(texturedata);
+
+      }
+      else if (texturedata.is_set())
+      {
+
+         _set_data(texturedata);
+
+      }
+
+      if (m_textureflags.m_bWithDepth)
+      {
+
+         create_depth_resources();
+
+      }
+
+      if (m_textureflags.m_bRenderTarget)
+      {
+
+         create_render_target();
+
+      }
+
+      if (m_textureflags.m_bShaderResource)
+      {
+
+         create_shader_resource_view();
+
+      }
+
+      set_ok_flag();
 
    }
+
+
+   //void texture::initialize_mipmap_cubemap_texture(::gpu::renderer *pgpurenderer, const ::int_rectangle &rectangleTarget,
+   //                                       int iMipCount, bool bRenderTarget, bool bShaderResource)
+   //{
+
+   //   ::gpu::texture_attributes textureattributes(rectangleTarget, 8, 4, 0, e_texture_cube_map, 6, iMipCount);
+
+   //   ::gpu::texture_flags textureflags(false, bRenderTarget, bShaderResource);
+
+   //   initialize_texture(pgpurenderer, textureattributes, textureflags);
+
+   //}
 
 
    void texture::initialize_depth_texture(::gpu::renderer* pgpurenderer, const ::int_rectangle& rectangleTarget)
    {
 
-      m_etype = e_type_depth;
-      m_pgpurenderer = pgpurenderer;
-      m_rectangleTarget = rectangleTarget;
+      ::gpu::texture_attributes textureattributes(rectangleTarget, 16, 1, 0, 1, e_texture_depth);
+
+      initialize_texture(pgpurenderer, textureattributes);
+      // m_etype = e_type_depth;
+      // m_pgpurenderer = pgpurenderer;
+      // m_textureattributes.m_rectangleTarget = rectangleTarget;
 
    }
+
+
+   void texture::_create_texture(const texture_data & texturedata)
+   {
+
+      throw ::interface_only();
+
+   }
+
+
+   void texture::_set_data(const texture_data &texturedata) 
+   {
+      
+      throw ::interface_only(); 
+   
+   }
+
+
+   ::int_rectangle texture::rectangle() const
+   {
+
+      return m_textureattributes.m_rectangleTarget;
+
+   }
+
 
 
    ::int_size texture::size() const
    {
 
-      return m_rectangleTarget.size();
+      return m_textureattributes.m_rectangleTarget.size();
 
    }
 
@@ -95,7 +183,7 @@ namespace gpu
    int texture::width() const
    {
 
-      return m_rectangleTarget.width();
+      return m_textureattributes.m_rectangleTarget.width();
 
    }
 
@@ -103,7 +191,53 @@ namespace gpu
    int texture::height() const
    {
 
-      return m_rectangleTarget.height();
+      return m_textureattributes.m_rectangleTarget.height();
+
+   }
+
+
+   int texture::mip_count() const
+   {
+
+      if (m_textureattributes.m_iMipCount < -1)
+      {
+
+         throw ::exception(error_wrong_state);
+
+      }
+      else if(m_textureattributes.m_iMipCount == -1)
+      {
+         
+         return maximum_mip_count();
+
+      }
+      else if (m_textureattributes.m_iMipCount == 0)
+      {
+
+         return 1;
+
+      }
+      else if (m_textureattributes.m_iMipCount <= maximum_mip_count())
+      {
+         
+         return m_textureattributes.m_iMipCount;
+
+      }
+      else
+      {
+
+         throw ::exception(error_wrong_state);
+
+      }
+
+
+   }
+
+
+   int texture::maximum_mip_count() const
+   {
+
+      return m_textureattributes.maximum_mip_count();
 
    }
 
@@ -125,37 +259,68 @@ namespace gpu
    }
 
 
-   int texture::render_target_view_index(int iFace, int iMip) const
-   {
-      
-      auto iMipCount = m_iMipCount;
+   //int texture::render_target_view_index(int iFace, int iMip) const
+   //{
+   //   
+   //   auto iMipCount = iMip;
 
-      if (iMip < 0 || iMip >= iMipCount)
+   //   if (iMip < 0 || iMip >= iMipCount)
+   //   {
+
+   //      throw ::exception(error_wrong_state);
+
+   //   }
+
+   //   if (iFace < 0 || iFace >= 6)
+   //   {
+
+   //      throw ::exception(error_wrong_state);
+
+   //   }
+
+   //   return iFace * iMipCount + iMip;
+
+   //}
+
+
+   //int texture::current_render_target_view_index() const
+   //{
+
+   //   return this->render_target_view_index(m_iCurrentLayer, m_iCurrentMip);
+
+   //}
+
+
+   int texture::layer_count() const
+   {
+
+      if (m_textureattributes.m_etexture == ::gpu::e_texture_cube_map)
       {
 
-         throw ::exception(error_wrong_state);
+         return 6;
 
       }
-
-      if (iFace < 0 || iFace >= 6)
+      else if (m_textureattributes.m_iLayerCount <= 1)
       {
 
-         throw ::exception(error_wrong_state);
+         return 1;
 
       }
+      else
+      {
 
-      return iFace * iMipCount + iMip;
+         return m_textureattributes.m_iLayerCount;
 
-   }
-
-
-   int texture::current_render_target_view_index() const
-   {
-
-      return this->render_target_view_index(m_iCurrentFace, m_iCurrentMip);
-
+      }
    }
    
+
+   void texture::set_state(::gpu::command_buffer *pgpucommandbuffer, ::gpu::enum_texture_state etexturestate)
+   {
+
+      m_etexturestate = etexturestate;
+
+   }
    
    int texture::mip_width() const
    {
@@ -173,14 +338,14 @@ namespace gpu
    }
 
 
-   void texture::initialize_image_texture(::gpu::renderer* pgpurenderer, const ::file::path& path, bool bIsSrgb)
+   void texture::initialize_texture_from_file_path(::gpu::renderer* pgpurenderer, const ::file::path& path, bool bIsSrgb)
    {
 
       auto pimage = image()->path_image(path);
 
       ::pointer_array < ::image::image > imagea({ pimage });
 
-      initialize_image_texture(pgpurenderer, imagea);
+      initialize_texture_from_image(pgpurenderer, imagea);
 
    }
 
@@ -230,15 +395,20 @@ namespace gpu
 
    }
 
-   void texture::initialize_image_texture(::gpu::renderer* pgpurenderer, const ::pointer_array < ::image::image >& imagea, enum_type etype)
+
+   void texture::initialize_texture_from_image(
+      ::gpu::renderer* pgpurenderer, const ::pointer_array < ::image::image >& imagea, enum_texture etexture)
    {
 
-      auto r = imagea.first()->rectangle();
+      auto rectangle = imagea.first()->rectangle();
+
+      ::gpu::texture_attributes textureattributes(rectangle, 8, 4, 0, 0, etexture,
+         etexture == e_texture_cube_map ? 6 : 1);
 
       if (imagea.has_element())
       {
 
-         if (etype == e_type_cube_map)
+         if (etexture == e_texture_cube_map)
          {
 
             defer_throw_if_cube_map_images_are_not_ok(imagea);
@@ -247,7 +417,18 @@ namespace gpu
 
       }
 
-      initialize_image_texture(pgpurenderer, r, false, imagea, etype);
+      initialize_texture(pgpurenderer, textureattributes, {}, imagea);
+
+      if (is_ok())
+      {
+
+         auto pcommandbuffer = pgpurenderer->m_pgpucontext->beginSingleTimeCommands(pgpurenderer->m_pgpucontext->m_pgpudevice->transfer_queue());
+
+         this->set_state(pcommandbuffer, ::gpu::e_texture_state_shader_read);
+
+         pgpurenderer->m_pgpucontext->endSingleTimeCommands(pcommandbuffer);
+
+      }
 
    }
 
@@ -255,8 +436,8 @@ namespace gpu
    ::pointer < ::gpu::pixmap > texture::create_gpu_pixmap(const ::int_size& size)
    {
 
-      if (m_iAtlasX >= m_rectangleTarget.width() ||
-         m_iAtlasY >= m_rectangleTarget.height())
+      if (m_iAtlasX >= m_textureattributes.m_rectangleTarget.width() ||
+         m_iAtlasY >= m_textureattributes.m_rectangleTarget.height())
       {
 
          return nullptr;
@@ -267,7 +448,7 @@ namespace gpu
       int iAtlasY = m_iAtlasY;
       int iAtlasH = m_iAtlasCurrentRowHeight;
 
-      if (size.cx() > m_rectangleTarget.width() - iAtlasX)
+      if (size.cx > m_textureattributes.m_rectangleTarget.width() - iAtlasX)
       {
 
          if (iAtlasX <= 0)
@@ -283,7 +464,7 @@ namespace gpu
 
       }
 
-      if (size.cy() > m_rectangleTarget.height() - iAtlasY)
+      if (size.cy > m_textureattributes.m_rectangleTarget.height() - iAtlasY)
       {
 
          if (iAtlasY <= 0)
@@ -299,7 +480,7 @@ namespace gpu
 
       }
 
-      iAtlasH = maximum(iAtlasH, size.cy());
+      iAtlasH = maximum(iAtlasH, size.cy);
 
       m_iAtlasX = iAtlasX;
       m_iAtlasY = iAtlasY;
@@ -309,56 +490,63 @@ namespace gpu
 
       ppixmap->initialize_gpu_pixmap(this, 
          {iAtlasX, iAtlasY,
-         iAtlasX + size.cx(),
-         iAtlasY + size.cy()});
+         iAtlasX + size.cx,
+         iAtlasY + size.cy});
 
-      m_iAtlasX += size.cx();
-      m_iAtlasCurrentRowHeight = maximum(m_iAtlasCurrentRowHeight, size.cy());
+      m_iAtlasX += size.cx;
+      m_iAtlasCurrentRowHeight = maximum(m_iAtlasCurrentRowHeight, size.cy);
 
       return ppixmap;
 
    }
 
 
-   void texture::merge_layers(::pointer_array < ::gpu::layer >* playera)
-   {
+   //void texture::merge_layers(::pointer_array < ::gpu::layer >* playera)
+   //{
 
-      //return;
+   //   //return;
 
-      auto& layera = *playera;
+   //   auto& layera = *playera;
 
-      for (auto player : layera)
-      {
+   //   for (auto player : layera)
+   //   {
 
-         blend(player);
+   //      blend(player);
 
-         break;
+   //      break;
 
-      }
+   //   }
 
-   }
-
-
-   void texture::blend(::gpu::layer* player)
-   {
-
-      blend(player->texture());
-
-   }
+   //}
 
 
-   void texture::blend(::gpu::texture* ptexture)
-   {
+   //void texture::blend(::gpu::layer* player)
+   //{
 
-      m_pgpurenderer->blend(this, ptexture);
+   //   blend(player->texture());
 
-   }
+   //}
+
+
+   //void texture::blend(::gpu::texture* ptexture)
+   //{
+
+   //   m_pgpurenderer->blend(this, ptexture);
+
+   //}
 
 
    void texture::create_render_target()
    {
 
 
+   }
+
+
+   void texture::create_shader_resource_view() 
+   {
+   
+   
    }
 
 
@@ -379,14 +567,14 @@ namespace gpu
    texture* texture::get_depth_texture()
    {
 
-      if (m_etype & ::gpu::texture::e_type_depth)
+      if (m_textureattributes.m_etexture & ::gpu::e_texture_depth)
       {
 
          return this;
 
       }
 
-      if (!m_bWithDepth)
+      if (!m_textureflags.m_bWithDepth)
       {
 
          return nullptr;
@@ -402,7 +590,7 @@ namespace gpu
 
       ødefer_construct(m_ptextureDepth);
 
-      m_ptextureDepth->initialize_depth_texture(m_pgpurenderer, m_rectangleTarget);
+      m_ptextureDepth->initialize_depth_texture(m_pgpurenderer, m_textureattributes.m_rectangleTarget);
 
       return m_ptextureDepth;
 
@@ -430,6 +618,108 @@ namespace gpu
 
    }
 
+
+   void texture::set_current_mip(int iCurrentMip)
+   {
+
+      m_iCurrentMip = iCurrentMip;
+
+   }
+
+
+   int texture::mip_width()
+   {
+
+      if (m_sizeMip.width() < 0)
+      {
+
+         return (int)((double)this->width() * ::pow((double)0.5, (double)maximum(m_iCurrentMip, 0)));
+
+      }
+           
+      return m_sizeMip.width();
+
+   }
+
+
+   int texture::mip_height() 
+   {
+      
+      if (m_sizeMip.height() < 0)
+      {
+
+         return  (int)((double)this->height() * ::pow((double)0.5, (double)maximum(m_iCurrentMip, 0)));
+
+
+      }
+      
+      return m_sizeMip.height();
+   
+   }
+
+
+   void texture::set_current_layer(int iLayer)
+   {
+
+      m_iCurrentLayer = iLayer;
+
+   }
+
+
+   void texture::generate_mipmap(::gpu::command_buffer * pgpucommandbuffer)
+   {
+
+
+   }
+
+
+      ::gpu::binding_slot_set *texture::binding_slot_set(::gpu::command_buffer *pgpucommandbuffer,
+                                                    ::gpu::binding_set *pbindingset)
+   {
+
+      if (pbindingset->size() == 1)
+      {
+
+         if (!m_pbindingslotsetSingular)
+         {
+
+            // ASSERT(::is_set(texture_albedo()));
+            // ASSERT(::is_set(m_ptextureNormal));
+
+            øconstruct(m_pbindingslotsetSingular);
+
+            //auto pbindingset = m_pgpucontext->global_ubo1_binding_set();
+
+            m_pbindingslotsetSingular->m_pbindingset = pbindingset;
+
+            m_pbindingslotsetSingular->ø(0).m_pbinding = pbindingset->first();
+            m_pbindingslotsetSingular->ø(0).m_ptexture = this;
+         }
+
+         return m_pbindingslotsetSingular;
+      }
+      else
+      {
+
+         throw ::exception(error_wrong_state, "No supported number of bindings");
+
+         return nullptr;
+      }
+   }
+
+
+      void texture::defer_fence()
+      {
+
+
+      }
+
+
+      void texture::wait_fence()
+      {
+
+
+      }
 
 } // namespace gpu
 

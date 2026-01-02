@@ -27,11 +27,12 @@ namespace gpu
       ::pointer < ::gpu::render_target >  m_pgpurendertarget;
       ::pointer < ::gpu::queue >          m_pgpuqueue;
       bool                                m_bLoadingCommandBuffer;
-      ::collection::index                 m_iFrameIndex;
+      ::collection::index                 m_iCommandBufferFrameIndex;
+      ::collection::index                 m_iSerial;
       ::string                            m_strAnnotation;
       ::pointer_array < ::particle >      m_particleaHold;
       ::graphics3d::render_system *       m_prendersystem = nullptr;
-
+      //::gpu::binding_set_pointer          m_pbindingsetCurrent;
 
       command_buffer();
       ~command_buffer() override;
@@ -51,9 +52,36 @@ namespace gpu
 
       virtual void reset();
 
+      virtual void begin_render(::gpu::shader * pgpushader, ::gpu::texture * pgputextureTarget);
+      virtual void set_shader(::gpu::shader *pgpushader);
+
+      virtual void end_render();
+
+      virtual void set_block3(::gpu::block *pgpublock);
+      virtual void bind_slot_set(int iSet, ::gpu::binding_slot_set *pgpubindingslotset);
+      virtual void set_source(::gpu::texture *pgputexture);
+      virtual void set_source(::gpu::pixmap *pgpupixmap);
+      virtual void set_model2(::graphics3d::renderable *prenderable);
+      //virtual void draw_model(::graphics3d::renderable *prenderable);
+      virtual void draw(::graphics3d::renderable *prenderable);
+      
+
+
+      virtual void set_model_view_projection(const floating_matrix4 &model, const floating_matrix4 &view,
+                                          const floating_matrix4 &projection);
+      //virtual void unbind(::graphics3d::renderable *prenderable);
+
+
+      
+
+
+      //virtual void bind_sampler(::gpu::texture *pgputexture);
+
+      //virtual void set_binding_set(::gpu::binding_set_pointer pbindingset);
+
       //virtual void set_primitive_topology_triangle_strip();
 
-      virtual void draw(int a);
+      virtual void draw_int_a_count(int a);
 
       virtual void draw_vertexes(int iVertexCount);
       virtual void draw_indexes(int iIndexCount);

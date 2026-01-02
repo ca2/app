@@ -8,12 +8,10 @@
 #include "acme/prototype/geometry2d/rectangle.h"
 #include "acme/prototype/geometry2d/size.h"
 #include "apex/windowing/window_base.h"
-//#include "primitive_impl.h"
 #include "aura/user/user/interaction_array.h"
 #include "aura/user/user/interaction.h"
 #include "aura/user/user/redraw.h"
 #include "acme/prototype/collection/list.h"
-#include "acme/prototype/geometry2d/_collection.h"
 
 
 namespace windowing
@@ -58,10 +56,7 @@ namespace windowing
       bool                                      m_bMessageOnlyWindow : 1;
 
       ::sandbox_windowing::window *             m_psandboxwindowingwindow;
-      //void *                                    m_pWindow4;
       ::task_pointer                            m_ptaskUpdateScreen;
-      //::pointer<::windowing::display>           m_pdisplay;
-      //::pointer<::user::interaction>            m_puserinteraction;
       string                                    m_strDebug;
       ::pointer<::message_queue>                m_pmessagequeue;
       class ::time                              m_timeLastMouseMove;
@@ -70,10 +65,8 @@ namespace windowing
       mouse_reposition_throttling               m_mouserepositionthrottling;
 
       ::pointer<::windowing::icon>              m_picon;
-      //::pointer<::windowing::windowing>         m_pwindowing;
       ::pointer<::user::copydesk>               m_pcopydesk;
       ::pointer<::windowing::cursor>            m_pcursor;
-      //::oswindow                                m_oswindow;
       bool                                      m_bUpdateScreenSynchronously;
       class ::time                              m_timeLastDrawGuard1;
       
@@ -107,7 +100,6 @@ namespace windowing
       bool                                      m_bPadding2;
       bool                                      m_bPadding3;
 
-      //::IDENTIFIER_SUFFIX_OPERATING_SYSTEM(aura_)::interaction_impl * m_pImpl2;
       ::int_rectangle                           m_rectangleWindowScreen;
       ::int_rectangle                           m_rectangleXScreen;
       int                                       m_iState1;
@@ -117,31 +109,19 @@ namespace windowing
       ::pointer<::user::graphics_thread>        m_pgraphicsthread;
       ::pointer<::user::thread>                 m_puserthread;
       pointer_array < ::graphics::output_purpose > m_graphicaloutputpurposea;
-      //string                                    m_strBitmapSource;
-      //::pointer<::windowing::windowing>         m_pwindowing;
       ::frequency                               m_frequencyProdevianFramesPerSecond;
       ::frequency                               m_frequencyNominalFramesPerSecond;
       ::frequency                               m_frequencyOutputFramesPerSecond;
       int_point                                 m_pointMouseMove;
-      //::int_size                              m_sizeDrawnAAA;
-      //::int_size                                m_sizeSetWindowSizeRequest;
       particle_array                            m_particleaRedraw;
 
-      //::int_rectangle                           m_rectangleUpdateBuffer;
       ::thread_pointer                          m_pthreadMouseLeave;
 
-      //::list_base < ::pointer<::message::message >> m_messagelist;
-
       ::int_point                               m_pointInside;
-      //::user::interaction_base *                       m_pprimitiveFocus;
       ::pointer<::user::element>               m_pelementSoftwareKeyboard;
-
-      //::pointer<::user::interaction>            m_puserinteractionOwner;
 
       int_point                                 m_point;
       int_size                                  m_size;
-
-      //native_window *                         m_pwindow;
 
       ::pointer<::graphics::graphics>           m_pgraphicsgraphics;
       ::pointer<::draw2d::graphics>             m_pdraw2dgraphics;
@@ -158,13 +138,6 @@ namespace windowing
 
       bool                                      m_bUpdateBufferPending;
 
-      //::pointer<::user::interaction>            m_puserinteractionMouseCapture;
-      //::pointer<::user::interaction>            aaa_m_pacmeuserinteractionKeyboardFocus;
-      //::pointer<::acme::user::interaction>      m_pacmeuserinteractionKeyboardFocusRequest;
-      /// message handling helper besides (possibly duplicate of) m_pacmeuserinteractionKeyboardFocusRequest
-      //::pointer<::acme::user::interaction>      m_pacmeuserinteractionKeyboardGainingFocusIfAny;
-      //::pointer<::acme::user::interaction>      m_pacmeuserinteractionToKillKeyboardFocus;
-
       class ::time                              m_timeLastRedraw;
       ::user::interaction_array                 m_userinteractionaHideOnConfigurationChange;
 
@@ -174,7 +147,6 @@ namespace windowing
 
       ::int_size                                m_sizeDrawnBuffer;
 
-      //      ::int_rectangle_array_base                     m_rectangleaNeedRedraw;
       ::pointer < ::mutex >                     m_pmutexRedrawItem;
       ::pointer_array < ::user::redraw_item >   m_redrawitema;
 
@@ -186,26 +158,18 @@ namespace windowing
 
       ::int_size                                m_sizeLastBuffer;
 
-      //::windowing::window * m_pinteractionimpl;
-      //::user::interaction_child * m_pinteractionchild;
-
-
       iptr_to_iptr                              m_iptrmap;
 
       bool                                      m_bUserImplCreated;
       bool                                      m_bDrawFlagsReady;
       bool                                      m_bDestroyImplOnly;
-      //bool                                    m_bDestroying;
       int                                       m_iPendingRectMatch;
-      //::pointer<::user::interaction>            m_puserinteraction;
-      //::pointer<::user::box>                    m_puserbox;
       bool                                      m_bIgnoreSizeEvent;
       bool                                      m_bIgnoreMoveEvent;
       ::auto_pointer < critical_section >       m_pcsDisplay;
 
       const_char_pointer m_pszInteractionImplBaseDebug;
 
-      //bool                                      m_bPendingRedraw;
       unsigned int                                       m_uiLastRedraw;
       bool                                      m_bUpdatingBuffer;
 
@@ -233,22 +197,12 @@ namespace windowing
       virtual void window_on_set_keyboard_focus();
       virtual void window_on_kill_keyboard_focus();
 
-//      // void assert_ok() const override;
-//      // void dump(dump_context & dumpcontext) const override;
-
-
-      // ::aura::application* get_app();
-      // ::aura::session* get_session();
-      // //::aura::system* system();
-      //
 
       void install_message_routing(::channel * pchannel) override;
 
-      
-      //virtual void call_create_window(::windowing::window * pwindow);
+      virtual void * __x11_Display();
+      virtual long __x11_Window();
 
-      //virtual void create_window(::windowing::window * pimpl);
-      
       void create_window() override;
 
       void _create_window() override;
@@ -265,15 +219,6 @@ namespace windowing
       virtual void _001OnNcClip(::draw2d::graphics_pointer & pgraphics);
       virtual void defer_do_graphics(::draw2d::graphics_pointer & pgraphics);
 
-
-      //virtual void set_cursor_position(const ::int_point & pointCursor);
-
-      //virtual void get_cursor_position(::int_point * ppointCursor);
-
-      //inline ::int_point get_cursor_position() { ::int_point point; get_cursor_position(&point); return point; }
-
-
-      //virtual bool defer_set_icon();
 
       virtual class placement_log* placement_log();
 
@@ -330,11 +275,6 @@ namespace windowing
       virtual ::windowing::windowing * windowing();
 
 
-//      ::user::interaction * user_interaction() override;
-
-
-      //inline ::windowing::windowing * windowing() const { return m_pwindowing.m_p; }
-
 
       void exit_iconify() override;
 
@@ -348,19 +288,8 @@ namespace windowing
 
       void on_destroy() override;
 
-      //virtual void show_window(const ::e_display & edisplay, const ::user::e_activation & useractivation);
-
-      //virtual void _show_window_unlocked(const ::e_display & edisplay, const ::user::e_activation & useractivation);
-
-      //void set_user_interaction(::acme::user::interaction *pinteraction) override;
-
-      //void post_non_client_destroy() override;
-
       virtual bool is_child_of(const window * pwindowAscendantCandidate) const; // or descendant
       
-      
-      //virtual ::windowing::window * window_get_parent();
-      //virtual ::oswindow get_parent_oswindow();
       virtual void set_parent(::windowing::window * pwindowNewParent);
 
       ::user::interaction * user_interaction() override;
@@ -419,11 +348,6 @@ namespace windowing
 
       virtual void present();
 
-      //virtual bool presentation_complete();
-
-
-      //virtual void on_visual_applied();
-
       virtual void _on_configure_notify_unlocked(const ::int_rectangle & rectangle);
       virtual void _on_reposition_notify_unlocked(const ::int_point & point);
 
@@ -436,11 +360,6 @@ namespace windowing
 
 
       void set_window_text(const ::scoped_string & scopedstr) override;
-
-      //::string get_window_text() override;
-
-      //virtual void get_window_text(string & rectangleString);
-      //virtual character_count get_window_text_length();
 
       virtual void on_layout(::draw2d::graphics_pointer & pgraphics);
 
@@ -1298,7 +1217,7 @@ namespace windowing
       ::user::element * get_keyboard_focus() override;
       //virtual void set_keyboard_focus(::user::interaction_base * pprimitive) override;
       //virtual void erase_keyboard_focus(::user::interaction_base * pprimitive) override;
-      //void aaa_clear_keyboard_focus(::user::primitive_impl * pprimitiveimplGainingFocusIfAny = nullptr) override;
+      //void aaa_clear_keyboard_focus(::user::prototype_impl * pprimitiveimplGainingFocusIfAny = nullptr) override;
       //virtual void impl_set_keyboard_focus(::user::interaction_base * pprimitive) override;
       //virtual void impl_erase_keyboard_focus(::user::interaction_base * pprimitive) override;
       //virtual void aaa_impl_clear_keyboard_focus() override;
@@ -1373,7 +1292,7 @@ namespace windowing
       //void set_opacity(double dOpacity) override;
 
 
-      // ::user::primitive_impl
+      // ::user::prototype_impl
 
 
       inline critical_section * cs_display() { return m_pcsDisplay; }
@@ -1660,8 +1579,8 @@ namespace windowing
       virtual void set_origin(::draw2d::graphics_pointer & pgraphics);
 
 
-      virtual void viewport_screen_to_client(::sequence2_int & sequence) override;
-      virtual void viewport_client_to_screen(::sequence2_int & sequence) override;
+      virtual void viewport_screen_to_client(::int_sequence2 & sequence) override;
+      virtual void viewport_client_to_screen(::int_sequence2 & sequence) override;
       virtual void viewport_client_to_screen(::int_rectangle & rectangle) override;
       virtual void viewport_screen_to_client(::int_rectangle & rectangle) override;
 

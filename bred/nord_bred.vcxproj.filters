@@ -171,7 +171,7 @@
     <ClInclude Include="user\user\primitive.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
-    <ClInclude Include="user\user\primitive_impl.h">
+    <ClInclude Include="user\user\prototype_impl.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
     <ClInclude Include="user\user\print_job.h">

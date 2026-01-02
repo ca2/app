@@ -1807,7 +1807,7 @@ namespace http
          if (strRedirect.has_character())
          {
 
-            information() << "Redirect: " << iHttpGetSerial << strRedirect;
+            information() << "Redirect: http_serial:" << iHttpGetSerial << " " << strRedirect;
 
             url = strRedirect;
 
@@ -1817,7 +1817,7 @@ namespace http
          else
          {
 
-            information() << "Redirect: " << iHttpGetSerial << url.as_string();
+            information() << "Redirect: http_serial:" << iHttpGetSerial << " " << url.as_string();
 
          }
 
@@ -1825,7 +1825,7 @@ namespace http
       else
       {
 
-         information() << "Start: " << iHttpGetSerial << url.as_string();
+         information() << "Start: http_serial:" << iHttpGetSerial << " " << url.as_string();
 
       }
 
@@ -2140,7 +2140,7 @@ namespace http
 
       {
 
-         auto plistener = set["http_downloaded_rate_listener"].cast < ::scalar_source::listener >();
+         auto plistener = set["http_downloaded_rate_listener"].cast < ::number::scalar_source::listener >();
 
          if (::is_set(plistener))
          {
@@ -2155,7 +2155,7 @@ namespace http
 
       {
 
-         auto plistener = set["http_downloaded_listener"].cast < ::scalar_source::listener >();
+         auto plistener = set["http_downloaded_listener"].cast < ::number::scalar_source::listener >();
 
          if (::is_set(plistener))
          {
@@ -2288,7 +2288,7 @@ namespace http
 
          iSelectTimeoutSeconds = maximum(1, iSelectTimeoutSeconds);
 
-         iContentLength = psocket->m_content_length;
+         iContentLength = psocket->m_iContentLength;
 
          psocket->socket_handler()->select((int)iSelectTimeoutSeconds, 0);
 
@@ -2424,9 +2424,9 @@ namespace http
 
       memsize iChunkSize = psocket->m_chunk_size;
       
-      set["http_content_length"] = psocket->m_content_length;
+      set["http_content_length"] = psocket->m_iContentLength;
 
-      iContentLength = psocket->m_content_length;
+      iContentLength = psocket->m_iContentLength;
       
       set["http_body_size_downloaded"] = psocket->m_body_size_downloaded;
 
@@ -2434,9 +2434,9 @@ namespace http
 
       information() << LOG_HTTP_PREFIX
          << url.as_string()
-         << " Status: "
+         << " HTTP Status Code : "
          << iStatusCode
-         << " - "
+         << ", HTTP Status : "
          << strStatus
          << (bChunked ? " Chunk Size : " : " Content Length : ")
          << (bChunked ? (memsize)iChunkSize :(memsize)iContentLength)
@@ -2481,7 +2481,7 @@ namespace http
 
          }
 
-         information() << LOG_HTTP_PREFIX << "URL: " << url.as_string() << " Too much tries("<< iTry <<")";
+         information() << LOG_HTTP_PREFIX << "URL: " << url.as_string() << " Too much tries("<< iTry << " of " << iTryCount <<") or Timeout("<< tickElapsed.integral_second() << "s of " << tickTotalTimeout.integral_second() <<"s)";
 
          estatus = error_http;
 

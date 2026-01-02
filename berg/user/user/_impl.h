@@ -24,10 +24,6 @@
 //namespace user
 //{
 //
-//
-//
-//
-//
 //   template < class DATA >
 //   DATA* impact::get_typed_data()
 //   {
@@ -73,7 +69,7 @@ namespace user
       void frame_window::load_toolbar(const ::atom & idToolbar, const ::scoped_string & scopedstrToolbar, unsigned int dwCtrlStyle, unsigned int uStyle)
       {
 
-         return load_toolbar(::type < TOOLBAR >(), idToolbar, strToolbar, dwCtrlStyle, uStyle);
+         return load_toolbar(::type<TOOLBAR>(), idToolbar, strToolbar, dwCtrlStyle, uStyle);
 
       }
 

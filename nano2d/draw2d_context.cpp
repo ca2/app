@@ -753,46 +753,46 @@ pstate->m_ppen->m_color = color;
 
       auto size = m_pgraphics->get_text_extent(scopedstr);
 
-      size.cx() *= 1.01;
-      size.cy() *= 1.01;
+      size.cx *= 1.01;
+      size.cy *= 1.01;
 
       if (m_pstate->m_ealignText & ::e_align_right)
       {
 
-         offsetx = -size.cx();
+         offsetx = -size.cx;
 
       }
       else if (m_pstate->m_ealignText & ::e_align_horizontal_center)
       {
 
-         offsetx = -size.cx() / 2.0;
+         offsetx = -size.cx / 2.0;
 
       }
 
       if (m_pstate->m_ealignText & ::e_align_bottom)
       {
 
-         offsety = -size.cy();
+         offsety = -size.cy;
 
       }
       else if (m_pstate->m_ealignText & ::e_align_vertical_center)
       {
 
-         offsety = -size.cy() / 2.0;
+         offsety = -size.cy / 2.0;
 
       }
 
       ::float_rectangle r;
 
-      r.left() = (float) ((double)x + offsetx);
-      r.top() = (float) ((double)y + offsety);
+      r.left = (float) ((double)x + offsetx);
+      r.top = (float) ((double)y + offsety);
       r.set_size(size);
 
       auto ealignForDrawText = m_pstate->m_ealignText;
       
       m_pgraphics->draw_text(scopedstr, r, ealignForDrawText);
 
-      return r; // it used to return r.right()
+      return r; // it used to return r.right
 
    }
 
@@ -814,26 +814,26 @@ pstate->m_ppen->m_color = color;
       if (m_pstate->m_ealignText & ::e_align_right)
       {
 
-         offsetx = -size.cx();
+         offsetx = -size.cx;
 
       }
       else if (m_pstate->m_ealignText & ::e_align_horizontal_center)
       {
 
-         offsetx = -size.cx() / 2.0;
+         offsetx = -size.cx / 2.0;
 
       }
 
       if (m_pstate->m_ealignText & ::e_align_bottom)
       {
 
-         offsety = -size.cy();
+         offsety = -size.cy;
 
       }
       else if (m_pstate->m_ealignText & ::e_align_vertical_center)
       {
 
-         offsety = -size.cy() / 2.0;
+         offsety = -size.cy / 2.0;
 
       }
 
@@ -901,7 +901,7 @@ pstate->m_ppen->m_color = color;
 
       //   auto tm = m_pgraphics->get_text_metrics();
 
-      //   size.cy() = tm.m_dAscent;
+      //   size.cy = tm.m_dAscent;
 
       //}
 
@@ -912,39 +912,39 @@ pstate->m_ppen->m_color = color;
       if (m_pstate->m_ealignText & ::e_align_right)
       {
 
-         offsetx = -size.cx();
+         offsetx = -size.cx;
 
       }
       else if (m_pstate->m_ealignText & ::e_align_horizontal_center)
       {
 
-         offsetx = -size.cx() / 2.0;
+         offsetx = -size.cx / 2.0;
 
       }
 
       if (m_pstate->m_ealignText & ::e_align_bottom)
       {
 
-         offsety = -size.cy();
+         offsety = -size.cy;
 
       }
       else if (m_pstate->m_ealignText & ::e_align_vertical_center)
       {
 
-         offsety = -size.cy() / 2.0;
+         offsety = -size.cy / 2.0;
 
       }
 
       if (bounds)
       {
 
-         bounds->left() = (float) (x + offsetx);
-         bounds->top() = (float) (y + offsety);
+         bounds->left = (float) (x + offsetx);
+         bounds->top = (float) (y + offsety);
          bounds->set_size(size);
          
       }
 
-      return (float) (x + offsetx + size.cx());
+      return (float) (x + offsetx + size.cx);
 
    }
 
@@ -995,9 +995,9 @@ void draw2d_context::text_metrics(float * pfAscender, float * pfDescender, float
       else
       {
 
-         m_point.x() = x;
+         m_point.x = x;
 
-         m_point.y() = y;
+         m_point.y = y;
 
          m_bHasCurrentPoint = true;
 
@@ -1028,11 +1028,11 @@ void draw2d_context::text_metrics(float * pfAscender, float * pfDescender, float
 
          }
 
-         m_pgraphics->line(m_point.x(), m_point.y(), x, y);
+         m_pgraphics->line(m_point.x, m_point.y, x, y);
 
-         m_point.x() = x;
+         m_point.x = x;
 
-         m_point.y() = y;
+         m_point.y = y;
 
       }
 
@@ -1066,10 +1066,10 @@ void draw2d_context::text_metrics(float * pfAscender, float * pfDescender, float
       
       ::double_ellipse ellipse;
       
-      ellipse.left() = cx - rx;
-      ellipse.top() = cy - ry;
-      ellipse.right() = cx + rx;
-      ellipse.bottom() = cy + ry;
+      ellipse.left = cx - rx;
+      ellipse.top = cy - ry;
+      ellipse.right = cx + rx;
+      ellipse.bottom = cy + ry;
       
       
       ::pointer < draw2d_state > pstate = m_pstate;

@@ -168,6 +168,7 @@ namespace acme
          virtual ::acme::user::interaction * on_acme_hit_test(const ::int_point & point, ::user::e_zorder ezorder);
 
          virtual ::int_rectangle get_client_rectangle();
+         virtual ::int_size get_window_minimum_size();
 
 
          /// @brief  Child

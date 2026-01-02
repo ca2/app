@@ -302,7 +302,7 @@
     <ClInclude Include="user\user\notify_icon_mm.h" />
     <ClInclude Include="user\user\plain_edit.h" />
     <ClInclude Include="user\user\plain_text_data.h" />
-    <ClInclude Include="user\user\primitive_impl.h" />
+    <ClInclude Include="user\user\prototype_impl.h" />
     <ClInclude Include="user\user\fps_interest.h" />
     <ClInclude Include="user\user\progress.h" />
     <ClInclude Include="user\user\range.h" />

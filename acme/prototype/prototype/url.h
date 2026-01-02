@@ -6,7 +6,7 @@
 //#include "acme/prototype/collection/string_array.h"
 #include "acme/prototype/string/scoped_string_base.h"
 
-//template < primitive_character CHARACTER >
+//template < prototype_character CHARACTER >
 //const CHARACTER * const_string_range_begin(const ::range < const CHARACTER* >& range)
 //{
 //
@@ -14,7 +14,7 @@
 //
 //}
 //
-//template < primitive_character CHARACTER >
+//template < prototype_character CHARACTER >
 //const CHARACTER* const_string_range_begin(const CHARACTER* p)
 //{
 //
@@ -22,7 +22,7 @@
 //
 //}
 //
-//template < primitive_character CHARACTER >
+//template < prototype_character CHARACTER >
 //character_count const_string_range_size(const ::range < const CHARACTER* >& range)
 //{
 //
@@ -30,7 +30,7 @@
 //
 //}
 //
-//template < primitive_character CHARACTER >
+//template < prototype_character CHARACTER >
 //character_count const_string_range_size(const CHARACTER* p)
 //{
 //
@@ -489,15 +489,22 @@ namespace url
 
       // Example: http://website.com:80/script%20folder/strict%20object?param1=1&param2=2
       ::string as_string() const;
-      auto & connect() const { return m_connectrange; }
-      auto & request() const { return m_requestrange; }
+      const auto & connect() const { return m_connectrange; }
+      const auto & request() const { return m_requestrange; }
+      auto& connect() { return m_connectrange; }
+      auto& request() { return m_requestrange; }
       //auto request_uri() const { return m_rangeRequestUri; } // /script%20folder/strict%20object?param1=1&param2=2
       //auto raw_script() const { return m_rangeScript; } // /script%20folder/strict%20object
       //auto script() const { return decode(this->raw_script()); } // /script folder/strict object
       //auto raw_name() const { return m_rangeName; } // strict%20object
       //auto name() const { return decode(this->raw_name()); } // strict object
       //auto query() const { return m_rangeQuery; }// param1=1&param2=2
+      void set_request_arguments(const ::property_set & set)
+      {
+         
+         m_requestrange.arguments() = set;
 
+      }
 
       bool is() const { return m_connectrange.is_url(); }
 

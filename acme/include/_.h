@@ -8,10 +8,6 @@
 //        2020 - 08 - 20 07:41 / 13, 915kb / 137, 668kb / 9, 715kb------------------ - --
 //        rebuild mark / ---------------- - ------------------------- - -------------------------------- - --
 //        ------------------ - --
-//
-//
-//
-//
 //        ------------------------------------------------------------------------------
 //        |                                                                            |
 //        |                                                                            |
@@ -49,10 +45,6 @@
 //
 //        ca2/./acme/C++/C/Assembly/Huffman Machine/...
 //        ...Hardware/Universe/Multiverse stack
-//
-//
-//
-//
 //        c(s)t(s)<tb(s)!!
 //
 //01234567-?8888?+? ??? ??? ????? ??????????? ????? ?????????? ??????? ???????????????????????
@@ -74,7 +66,7 @@
 #include "acme/include/_template_forward_declaration.h"
 #include "acme/include/_initial_concepts.h"
 //#include "_other_initial_concepts.h"
-#include "acme/include/_template_structures.h"
+#include "acme/include/_template_after_initial_concepts.h"
 #include "acme/include/_enumeration.h"
 //#include "_c.h"
 #include "acme/include/_function_declarations.h"
@@ -188,7 +180,7 @@
 #include "acme/prototype/string/scoped_string_base.h"
 
 
-//#include "acme/prototype/string/primitive_character_range.h"
+//#include "acme/prototype/string/prototype_character_range.h"
 
 
 #include "acme/prototype/string/_format.h"
@@ -223,6 +215,8 @@
 #include "acme/prototype/_impl.h"
 #include "acme/memory/_impl.h"
 
+#include "acme/parallelization/_platform.h"
+
 
 ///#include "acme/platform/platform.h"
 
@@ -231,10 +225,6 @@
 //#endif
 
 
-//
-//
-//
-//
 //#include "acme/memory/allocation.h"
 //
 //#include "acme/platform/reference_count_debug.h"
@@ -250,14 +240,6 @@
 //#include "acme/memory/allocate_processor_cache_oriented.h"
 //
 //#include "acme/platform/number.h"
-//
-//
-//
-//
-//
-//
-//
-//
 //#include "acme/prototype/prototype/transfer.h"
 //
 //
@@ -524,5 +506,166 @@
 //
 //
 
+struct block_143 : public block
+{
+   template<array_of_non_prototype_character NONCHARACTERA>
+   block_143(NONCHARACTERA & a)
+   {
+      this->m_begin = (unsigned char *)(a);
+      this->m_end = (unsigned char *)(&a[0] + øarray_count(a));
+   }
+
+   //template<prototype_raw_array NONCHARACTERA>
+   //    block_143(NONCHARACTERA & a) 
+   //    //   requires(
+   //    //::is_raw_array<NONCHARACTERA>/*
+   //    //   && ::is_const<::decay_array<T>>
+   //    //   && !prototype_character<::non_const<::decay_array<T>>>*/)
+   //    {
 
 
+
+   //    }
+
+   //      template<typename NONCHARACTERA>
+   //block_143(NONCHARACTERA &a)
+   //   requires(::is_raw_array<NONCHARACTERA> )
+   ////   && !prototype_character<::non_const<::decay_array<T>>>*/)
+   //{
+   //}
+
+   //      template<typename NONCHARACTERA>
+   //block_143(NONCHARACTERA &a)
+   //   requires(::is_raw_array<NONCHARACTERA> && 
+   //::is_same<::decay_array<NONCHARACTERA>, unsigned char>)
+   ////   && !prototype_character<::non_const<::decay_array<T>>>*/)
+   //{
+   //}
+
+   //         template<typename NONCHARACTERA>
+   //block_143(NONCHARACTERA &a)
+   //   requires(::is_raw_array<NONCHARACTERA> && 
+   //  !prototype_character<::decay_array<NONCHARACTERA>>)
+   //{
+   //}
+
+   //   template<typename NONCHARACTERA>
+   //block_143(NONCHARACTERA &a)
+   //   requires(
+   //::is_raw_array<NONCHARACTERA> && 
+   //   ::is_const<::decay_array<NONCHARACTERA>>)
+   ////   && !prototype_character<::non_const<::decay_array<T>>>*/)
+   //{
+   //}
+};
+
+struct block_9438756 : public block
+{
+
+   using PRIMITIVE_BLOCK_TAG = PRIMITIVE_BLOCK_TAG_TYPE;
+
+   // using BLOCK::BLOCK;
+   template<array_of_non_prototype_character NONCHARACTERA>
+   block_9438756(NONCHARACTERA & a)
+   {
+      this->m_begin = (unsigned char *)(a);
+      this->m_end = (unsigned char *)(&a[0] + øarray_count(a));
+   }
+
+   block_9438756() : block() {}
+   block_9438756(const block &block)
+   {
+      this->m_begin = block.m_begin;
+      this->m_end = block.m_end;
+   }
+
+   block_9438756(const range<unsigned char *> &range) {}
+   block_9438756(const memory_base &memory) {}
+   block_9438756(const memory_base *pmemory) {}
+   block_9438756(const atom &atom) {}
+
+   // template < ::collection::count c >
+   // block(const char(&sz)[c])
+   //{
+
+   //   this->m_begin = (unsigned char *)(sz);
+   //   this->m_end = (unsigned char *)(this->m_begin + c);
+
+   //}
+   // template < ::collection::count c >
+   // block(const unsigned char(&ba)[c])
+   //{
+
+   //   this->m_begin = (unsigned char *) ba;
+   //   this->m_end = (unsigned char *) (this->m_begin + c);
+
+   //}
+   //template<const_pointer_to_prototype_character PSZ>
+   //block_9438756(PSZ psz)
+   //{
+   //   this->m_begin = (unsigned char *)(psz);
+   //   this->m_end = (unsigned char *)(psz + ::string_safe_length(psz));
+   //}
+
+   //template<const_array_of_prototype_character CONSTCHARACTERA>
+   //block_9438756(CONSTCHARACTERA a)
+   //{
+   //   this->m_begin = (unsigned char *)(a);
+   //   this->m_end = (unsigned char *)(&a[0] + øarray_count(a) - 1);
+   //}
+   // template<prototype_character CHARACTER, ::collection::count c>
+   //   requires(c > 1)
+   // block(const CHARACTER (&a)[c]) : block((const void *)a, (memsize)(sizeof(CHARACTER) * (c - 1)))
+   //{
+   //}
+   // block(const ::scoped_string  & scopedstr);
+   template<prototype_integral INTEGRAL>
+   block_9438756(INTEGRAL &i) : block(e_as_little_endian_block, i)
+   {
+   }
+   template<typename TYPE>
+   block_9438756(enum_as_little_endian_block, TYPE &t) : block((void *)&t, sizeof(t))
+   {
+#if BIG_ENDIAN
+      reverse(m_begin, m_end);
+#endif
+   }
+   template<typename TYPE>
+   block_9438756(enum_as_block, TYPE &t) : block((void *)&t, sizeof(t))
+   {
+   }
+   template<typename TYPE>
+   block_9438756(enum_as_block, const TYPE &t) : block((void *)&t, sizeof(t))
+   {
+   }
+   block_9438756(const void *begin, const void *end) : block((unsigned char *)begin, (unsigned char *)end) {}
+   template<prototype_integral INTEGRAL>
+   block_9438756(const void *data, INTEGRAL count) : block((unsigned char *)data, count)
+   {
+   }
+};
+
+
+
+inline void random_143_3956873456854(const ::block_143 &) {
+
+
+}
+
+inline void random_3956873456854(const ::block_9438756 & )
+{
+
+
+}
+
+
+inline void test_random_3956873456854()
+{
+
+   unsigned char baTicketKey[512];
+
+   random_143_3956873456854(baTicketKey);
+
+   random_3956873456854(baTicketKey);
+
+}

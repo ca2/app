@@ -456,9 +456,9 @@ namespace user
 
       ::size sizeTotal;
 
-      sizeTotal.cx() = size.cx();
+      sizeTotal.cx = size.cx;
 
-      sizeTotal.cy() = tm.tmHeight;
+      sizeTotal.cy = tm.tmHeight;
 
       return sizeTotal;
 
@@ -481,8 +481,8 @@ namespace user
 
          ::double_rectangle rectangle(0, 0, 0, 0);
 
-         rectangle.right() = int(size.cx() * 1.6);
-         rectangle.bottom() = int(size.cy() * 1.4);
+         rectangle.right = int(size.cx * 1.6);
+         rectangle.bottom = int(size.cy * 1.4);
 
          layout().sketch() = rectangle.size();
 
@@ -500,9 +500,9 @@ namespace user
 
          auto sizeTotal = calc_text_size();
 
-         sizeTotal.cx() = (int)(sizeTotal.cx() * 1.6);
+         sizeTotal.cx = (int)(sizeTotal.cx * 1.6);
 
-         sizeTotal.cy() = (int)(sizeTotal.cy() * 1.4);
+         sizeTotal.cy = (int)(sizeTotal.cy * 1.4);
 
          layout().sketch() = sizeTotal;
 
@@ -581,13 +581,13 @@ namespace user
 
       ::double_rectangle rectangle;
 
-      rectangle.left() = rectangleX.left() + (rectangleX.width() - sizeText.cx()) / 2;
+      rectangle.left = rectangleX.left + (rectangleX.width() - sizeText.cx) / 2;
 
-      rectangle.top() = rectangleX.top() + (rectangleX.height() - sizeText.cy()) / 2;
+      rectangle.top = rectangleX.top + (rectangleX.height() - sizeText.cy) / 2;
 
-      rectangle.right() = rectangle.left() + sizeText.cx();
+      rectangle.right = rectangle.left + sizeText.cx;
 
-      rectangle.bottom() = rectangle.top() + sizeText.cy();
+      rectangle.bottom = rectangle.top + sizeText.cy;
 
       m_rectangleText = rectangle;
 
@@ -712,19 +712,19 @@ namespace user
 
       //      pgraphics->SetBkMode(TRANSPARENT);
 
-      rectangleX.left() += 3;
-      rectangleX.top() += 3;
+      rectangleX.left += 3;
+      rectangleX.top += 3;
       ::double_rectangle rectangleText = m_rectangleText;
       //      string str = utf8_to_unicode(str);
       if (m_pimage->is_ok())
       {
          ::double_rectangle rectangleDib;
          rectangleDib = m_rectangleText;
-         rectangleDib.bottom() = minimum(rectangleText.top() + m_pimage->height(), rectangleText.bottom());
-         rectangleDib.right() = minimum(rectangleText.left() + m_pimage->width(), rectangleText.right());
+         rectangleDib.bottom = minimum(rectangleText.top + m_pimage->height(), rectangleText.bottom);
+         rectangleDib.right = minimum(rectangleText.left + m_pimage->width(), rectangleText.right);
          //m_pimage->to(pgraphics, rectangleDib);
          m_pimage->bitmap_blend(pgraphics, rectangleDib);
-         rectangleText.left() += m_pimage->width();
+         rectangleText.left += m_pimage->width();
       }
 
 
@@ -874,9 +874,9 @@ namespace user
 
          ::double_rectangle rectangleAspect;
 
-         rectangleAspect.left() = 0;
+         rectangleAspect.left = 0;
 
-         rectangleAspect.top() = 0;
+         rectangleAspect.top = 0;
 
          double dW = (double)rectangleX.width() / (double)pimage->width();
 
@@ -884,9 +884,9 @@ namespace user
 
          double dMin = maximum(minimum(dW, dH), 1.0);
 
-         rectangleAspect.right() = (int) (pimage->width() * dMin);
+         rectangleAspect.right = (int) (pimage->width() * dMin);
 
-         rectangleAspect.bottom() = (int) (pimage->height() * dMin);
+         rectangleAspect.bottom = (int) (pimage->height() * dMin);
 
          rectangleAspect.Align(e_align_center, rectangleX);
 

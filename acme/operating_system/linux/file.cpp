@@ -1,6 +1,8 @@
 #include "framework.h"
 //#include "acme/filesystem/filesystem/path.h"
 //#include "_linux.h"
+#include "operating_system/file.h"
+
 #include "acme/operating_system/ansi/binreloc.h"
 #include <unistd.h>
 
@@ -34,10 +36,6 @@ bool __node_further_file_is_equal(const ::file::path &,  const ::file::path &)
 //        return false;
 //
 //    }
-//
-//
-//
-//
 //   char * pszRealPath = ::realpath(scopedstr, NULL);
 //
 //   if(scopedstrRealPath == NULL)
@@ -141,7 +139,7 @@ namespace path
       pszModuleFilePath = _android_get_executable_path_dup();
 
 #else
-
+get_home_config_folder_path
       pszModuleFilePath = br_find_exe("app");
 
 #endif
@@ -212,6 +210,17 @@ namespace path
    ::free(pszModule);
 
    return path;
+
+}
+
+
+
+CLASS_DECL_ACME ::file::path get_home_config_folder_path()
+{
+
+   auto pathHomeConfigFolder = get_home_folder_path() / ".config";
+
+   return pathHomeConfigFolder;
 
 }
 

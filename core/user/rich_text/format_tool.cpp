@@ -495,7 +495,7 @@ namespace user
                else if (ptopic->user_interaction()->id() == "font_foreground")
                {
 
-                  ::int_point pointShowPopup( ptopic->user_interaction()->left(), ptopic->user_interaction()->bottom() );
+                  ::int_point pointShowPopup(ptopic->user_interaction()->left(), ptopic->user_interaction()->bottom());
 
                   ptopic->user_interaction()->get_parent()->client_to_screen()(pointShowPopup);
 
@@ -861,13 +861,13 @@ namespace user
 
          ::int_rectangle rectangleRequest;
 
-         rectangleRequest.left() = rectangle.left() - 32;
+         rectangleRequest.left = rectangle.left - 32;
 
-         rectangleRequest.top() = rectangle.top() - 32;
+         rectangleRequest.top = rectangle.top - 32;
 
-         rectangleRequest.right() = rectangleRequest.left() + 400;
+         rectangleRequest.right = rectangleRequest.left + 400;
 
-         rectangleRequest.bottom() = rectangleRequest.top() + 32;
+         rectangleRequest.bottom = rectangleRequest.top + 32;
 
          information() << "show_for_ui place(rectangleRequest) : " << rectangleRequest;
 

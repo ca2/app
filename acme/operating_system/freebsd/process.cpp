@@ -22,10 +22,6 @@
 //   __UNREFERENCED_PARAMETER(scopedstrDll);
 //
 //}
-//
-//
-//
-//
 //int create_process(const ::scoped_string & scopedstrCommandLine, int * pprocessId)
 //{
 //
@@ -695,10 +691,6 @@
 //}
 //
 //
-//
-//
-//
-//
 //CLASS_DECL_ACME int ca2_main();
 //
 //
@@ -778,10 +770,6 @@
 //   return 1;
 //
 //}
-//
-//
-//
-//
 //CLASS_DECL_ACME ::file::path core_app_path(const ::scoped_string & scopedstrApp)
 //{
 //

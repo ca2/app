@@ -135,10 +135,6 @@
 //   return WaitForSingleObjectEx(pwaitable, dwTimeout, false);
 //
 //}
-//
-//
-//
-//
 ////thread_data::thread_data()
 ////{
 ////
@@ -201,10 +197,6 @@
 ////map < htask,htask,ThreadLocalData *,ThreadLocalData * > * allthreaddata = NULL;
 //
 //
-//
-//
-//
-//
 //void __node_init_multitasking()
 //{
 //
@@ -249,14 +241,6 @@
 //}
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
 //#if defined(LINUX) // || defined(__ANDROID__)
 //
 //bool axis_defer_process_x_message(htask htask,LPMESSAGE lpMsg,oswindow oswindow,bool bPeek);
@@ -273,10 +257,6 @@
 //{
 //
 //}
-//
-//
-//
-//
 //
 //
 ////map < htask,htask,PendingThreadInfo,PendingThreadInfo > * g_ppendingThreads = NULL;
@@ -335,7 +315,7 @@
 ////static unsigned int nextTlsIndex = 0;
 //
 ////mutex * os_thread::s_pmutex = NULL;
-////comparable_raw_array < os_thread * >::type * os_thread::s_pptra = NULL;
+////comparable_raw_array < os_thread * >::type* os_thread::s_pptra = NULL;
 //
 //
 //// Converts a Win32 thread priority to WinRT format.
@@ -1162,8 +1142,8 @@
 ////   msg.message = Msg;
 ////   msg.wParam  = wParam;
 ////   msg.lParam  = lParam;
-////   msg.pt.x()    = I32_MINIMUM;
-////   msg.pt.y()    = I32_MINIMUM;
+////   msg.pt.x    = I32_MINIMUM;
+////   msg.pt.y    = I32_MINIMUM;
 ////   msg.hwnd    = NULL;
 ////
 ////   pmq->ma.add(msg);
@@ -1201,8 +1181,8 @@
 ////   msg.message    = Msg;
 ////   msg.wParam     = wParam;
 ////   msg.lParam     = lParam;
-////   msg.pt.x()       = I32_MINIMUM;
-////   msg.pt.y()       = I32_MINIMUM;
+////   msg.pt.x       = I32_MINIMUM;
+////   msg.pt.y       = I32_MINIMUM;
 ////
 ////
 ////   pmq->ma.add(msg);
@@ -1332,14 +1312,6 @@
 ////
 ////}
 ////
-//
-//
-//
-//
-//
-//
-//
-//
 ////#include <pthread.h>
 
 

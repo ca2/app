@@ -15,15 +15,15 @@ namespace gpu
 
       class brdf_convolution_framebuffer;
 
-      class cubemap_framebuffer;
+      //class cubemap_framebuffer;
 
       class diffuse_irradiance_map;
 
       class equirectangular_cubemap;
 
-      class hdri_cube;
+      //class hdri_cube;
 
-      class mipmap_cubemap_framebuffer;
+      //class mipmap_cubemap_framebuffer;
 
       class specular_map;
 

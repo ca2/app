@@ -15,7 +15,7 @@ namespace user
 {
 
 
-   single_document_template::single_document_template(const ::scoped_string & scopedstrMatter, const ::type_atom & typeatomDocument, const ::type_atom & typeatomFrame, const ::type_atom & typeatomImpact, const ::type_atom & typeatomData) :
+   single_document_template::single_document_template(const ::scoped_string & scopedstrMatter, const ::platform::type & typeatomDocument, const ::platform::type & typeatomFrame, const ::platform::type & typeatomImpact, const ::platform::type & typeatomData) :
       ::user::impact_system(scopedstrMatter, typeatomDocument, typeatomFrame, typeatomImpact, typeatomData)
    {
 
@@ -154,7 +154,7 @@ namespace user
       if (prequest->id().is_null())
       {
 
-         prequest->id() = m_typeatomImpact;
+         prequest->id() = m_typeImpact;
 
       }
 

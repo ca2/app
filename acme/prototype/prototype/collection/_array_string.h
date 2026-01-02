@@ -14,7 +14,7 @@ namespace generic
       inline ARRAY from_string(const ::scoped_string& scopedstr)
       {
 
-         static_assert(::primitive_integral<typename Container::BASE_TYPE>, "Integer containter expected.");
+         static_assert(::prototype_integral<typename Container::BASE_TYPE>, "Integer containter expected.");
 
          ::tokenizer tokenizer(scopedstrPayload);
 

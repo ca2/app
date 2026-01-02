@@ -43,9 +43,16 @@ namespace gpu
 
       auto iFrameIndex = pgpurenderer->m_pgpucontext->m_pgpudevice->get_frame_index2();
 
+      if (iFrameIndex < 0)
+      {
+
+         ::warning("iFrameIndex < 0 (1) as gpu::layer");
+
+      }
+
       auto pcommandbufferLayer = m_commandbufferaLayer[iFrameIndex];
 
-      pcommandbufferLayer->m_iFrameIndex = iFrameIndex;
+      pcommandbufferLayer->m_iCommandBufferFrameIndex = iFrameIndex;
 
       pcommandbufferLayer->m_strAnnotation = "layer";
 
@@ -104,8 +111,12 @@ namespace gpu
 
       m_commandbufferaLayer.set_size(m_pgpurenderer->m_iDefaultFrameCount);
 
+      int iFrame = -1;
+
       for (auto& pcommandbufferLayer : m_commandbufferaLayer)
       {
+
+         iFrame++;
 
          ødefer_construct(pcommandbufferLayer);
 
@@ -113,6 +124,8 @@ namespace gpu
             m_pgpurenderer->m_pgpurendertarget,
             m_pgpurenderer->m_pgpucontext->m_pgpudevice->graphics_queue(),
             ::gpu::e_command_buffer_graphics);
+
+         pcommandbufferLayer->m_iCommandBufferFrameIndex = iFrame;
 
       }
 
@@ -152,13 +165,17 @@ namespace gpu
 
       m_pgpurenderer->ødefer_construct(ptexture);
 
-      ptexture->m_bRenderTarget = true;
-
       auto rectangle = m_pgpurenderer->m_pgpucontext->rectangle();
 
-      ptexture->m_bTransferDst = true;
+      ::gpu::texture_attributes textureattributes(rectangle);
 
-      ptexture->initialize_image_texture(m_pgpurenderer, rectangle, false);
+      ::gpu::texture_flags textureflags;
+
+      textureflags.m_bRenderTarget = true;
+      textureflags.m_bTransferTarget = true;
+      textureflags.m_bShaderResource = true;
+
+      ptexture->initialize_texture(m_pgpurenderer, textureattributes, textureflags);
 
       return ptexture;
 
@@ -174,17 +191,23 @@ namespace gpu
 
       m_pgpurenderer->ødefer_construct(ptextureSource);
 
-      ptextureSource->m_bRenderTarget = true;
-
-      ptextureSource->m_bTransferSrc = true;
-
       auto rectangle = m_pgpurenderer->m_pgpucontext->rectangle();
 
       auto escene = m_pgpurenderer->m_pgpucontext->m_escene;
 
-      bool bWithDepth = escene == ::gpu::e_scene_3d;
+      ::gpu::texture_attributes textureattributes(rectangle);
 
-      ptextureSource->initialize_image_texture(m_pgpurenderer, rectangle, bWithDepth);
+      ::gpu::texture_flags textureflags;
+
+      textureflags.m_bRenderTarget = true;
+
+      textureflags.m_bTransferTarget = true;
+
+      textureflags.m_bTransferSource = true;
+
+      textureflags.m_bWithDepth = escene == ::gpu::e_scene_3d;
+
+      ptextureSource->initialize_texture(m_pgpurenderer, textureattributes, textureflags);
 
       return ptextureSource;
 

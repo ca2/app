@@ -2,6 +2,11 @@
 #pragma once
 
 
+#include "bred/gpu/texture_attributes.h"
+#include "bred/gpu/texture_flags.h"
+#include "bred/gpu/texture_data.h"
+
+
 namespace gpu
 {
 
@@ -11,62 +16,64 @@ namespace gpu
    {
    public:
 
-      
-      enum enum_type
-      {
 
-         e_type_none,
-         e_type_image = 1,
-         e_type_depth = 2,
-         e_type_depth_stencil = 3,
-         e_type_cube_map = 4,
 
-      };
-
-      bool m_bSrgb = false;
-
+      texture_attributes                  m_textureattributes;
+      texture_flags                       m_textureflags;
+      enum_texture_state                  m_etexturestate;
       int                                 m_iAtlasX;
       int                                 m_iAtlasY;
       int                                 m_iAtlasCurrentRowHeight;
-      enum_type                           m_etype;
-      bool                                m_bWithDepth;
       bool                                m_bClearColor;
       ::color::color                      m_colorClear;
-      bool                                m_bRenderTarget;
       ::pointer < ::gpu::renderer >       m_pgpurenderer;
-      int                                 m_iLayerCount;
       ::collection::index                 m_iIndex;
       int                                 m_iCurrentMip;
-      int                                 m_iCurrentFace;
+      int                                 m_iCurrentLayer;
+      bool m_bHdr = false;
+
       //::pointer < ::gpu::render_target >  m_pgpurendertarget;
-      ::int_rectangle                     m_rectangleTarget;
-      int                                 m_iMipCount;
-      ::int_size                          m_sizeMip;
-      bool                                m_bTransferDst;
-      bool                                m_bTransferSrc;
-      bool                                m_bCpuRead;
+      ::int_size m_sizeMip{-1, -1};
+      //bool                                m_bTransferDst;
+      //bool                                m_bTransferSrc;
+      //bool                                m_bCpuRead;
       ::pointer < texture >               m_ptextureDepth;
-      bool                                m_bShaderResourceView;
+      //bool                                m_bShaderResourceView;
       ::string                            m_strTextureType;
       //::string                            m_strUniform;
-      bool m_bRedGreen;
-      bool m_bFloat;
+      //bool m_bRedGreen;
+      //bool m_bFloat;
       ::file::path                        m_path;
+      ::pointer<::gpu::binding_slot_set> m_pbindingslotsetSingular;
 
       texture();
       ~texture() override;
 
 
+      virtual void _create_texture(const texture_data & texturedata = {});
+      virtual void _set_data(const texture_data &texturedata = {});
+
+      virtual ::int_rectangle rectangle() const;
       virtual ::int_size size() const;
       virtual int width() const;
       virtual int height() const;
 
+      virtual int mip_count() const;
+      virtual int maximum_mip_count() const;
       virtual int mip_width_for_mip(int baseWidth, int iMip) const;
       virtual int mip_height_for_mip(int baseHeight, int iMip) const;
       virtual int mip_width() const;
       virtual int mip_height() const;
-      virtual int render_target_view_index(int iFace, int iMip) const;
-      virtual int current_render_target_view_index() const;
+///      virtual int render_target_view_index(int iFace, int iMip) const;
+//      virtual int current_render_target_view_index() const;
+
+
+      virtual int layer_count() const;
+
+
+      virtual void set_state(::gpu::command_buffer *pgpucommandbuffer, ::gpu::enum_texture_state etexturestate);
+
+
 
       void defer_throw_if_cube_map_images_are_not_ok(const ::pointer_array < ::image::image >& imagea);
       
@@ -77,20 +84,26 @@ namespace gpu
          int numChannels,
          bool bSrgb,
          const void * pdata,
-         enum_type etype = e_type_image);
-      virtual void initialize_image_texture(::gpu::renderer* pgpurenderer, const ::int_rectangle& rectangleTarget, bool bWithDepth, const ::pointer_array < ::image::image >& imagea = {}, enum_type etype = e_type_image);
+         enum_texture etexture = e_texture_image);
+      virtual void initialize_texture(::gpu::renderer* pgpurenderer,
+         const texture_attributes & textureattributes,
+         const texture_flags & textureflags = {},
+         const texture_data & texturedata = {});
+//      virtual void initialize_mipmap_cubemap_texture(::gpu::renderer *pgpurenderer, const ::int_rectangle& rectangleTarget, int iMipCount = -1, bool bRenderTarget = true, bool bShaderResourceView = true);
       virtual void initialize_depth_texture(::gpu::renderer* pgpurenderer, const ::int_rectangle& rectangleTarget);
 
-      virtual void initialize_image_texture(::gpu::renderer* pgpurenderer, const ::file::path & path, bool bIsSrgb);
-      virtual void initialize_image_texture(::gpu::renderer* pgpurenderer, const ::pointer_array < ::image::image >& imagea, enum_type etype = e_type_image);
+      virtual void initialize_texture_from_file_path(::gpu::renderer* pgpurenderer, const ::file::path & path, bool bIsSrgb);
+      virtual void initialize_texture_from_image(::gpu::renderer* pgpurenderer, const ::pointer_array < ::image::image > & imagea, enum_texture etexture = e_texture_image);
 
       virtual ::pointer < ::gpu::pixmap > create_gpu_pixmap(const ::int_size & size);
 
-      virtual void merge_layers(::pointer_array < ::gpu::layer >* playera);
-      virtual void blend(::gpu::layer * player);
-      virtual void blend(::gpu::texture * ptexture);
+      //virtual void merge_layers(::pointer_array < ::gpu::layer >* playera);
+      //virtual void blend(::gpu::layer * player);
+      //virtual void blend(::gpu::texture * ptexture);
 
       virtual void create_render_target();
+
+      virtual void create_shader_resource_view();
 
       virtual void create_depth_resources();
 
@@ -102,6 +115,50 @@ namespace gpu
       virtual void set_pixels(const ::int_rectangle& rectangle, const void* data);
 
       virtual bool is_in_shader_sampling_state();
+
+      //virtual void set_cube_face(int iFace, ::gpu::shader *pgpushader);
+
+      virtual void generate_mipmap(::gpu::command_buffer * pgpucommandbuffer);
+
+               /**
+       * Set the mip level to render with.
+       * @param mipLevel
+       */
+      virtual void set_current_mip(int level);
+
+
+      /**
+       * Get the current width based on the mip level.
+       * @return
+       */
+      virtual int mip_width();
+
+
+      /**
+       * Get the current height based on the mip level.
+       * @return
+       */
+      virtual int mip_height();
+
+
+      /**
+       * Set which cube face texture to render to.
+       * @param index
+       */
+      //virtual void set_cube_face(int iFace, ::gpu::shader * pgpushader);
+      virtual void set_current_layer(int iLayer);
+
+
+      //virtual void defer_fence();
+
+
+            ::gpu::binding_slot_set *binding_slot_set(::gpu::command_buffer *pgpucommandbuffer,
+                                                ::gpu::binding_set *pbindingset);
+
+
+      virtual void defer_fence();
+      virtual void wait_fence();
+
 
    };
 

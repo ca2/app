@@ -13,7 +13,7 @@ namespace graphics3d
     // gltf_render_system::gltf_render_system(
     //     graphics3d::device * pdevice,
     //     VkRenderPass renderPass,
-    //     VkDescriptorSetLayout globalSetLayout,
+    //     aaaVkDescriptorSetLayout globalSetLayout,
     //     IAssetProvider& assets
     // ) :
     //     m_pgpudevice(pdevice),
@@ -37,7 +37,7 @@ namespace graphics3d
     // void gltf_render_system::init(
     //    graphics3d::device * pdevice,
     //     VkRenderPass renderPass,
-    //     VkDescriptorSetLayout globalSetLayout,
+    //     aaaVkDescriptorSetLayout globalSetLayout,
     //    graphics3d::sandbox_descriptor_pool& descriptorPool,
     //     size_t frameCount
     // ) {
@@ -80,8 +80,8 @@ namespace graphics3d
     //
     // }
 
-    // void gltf_render_system::createPipelineLayout(VkDescriptorSetLayout globalSetLayout) {
-    //     const ::array_base<VkDescriptorSetLayout> layouts = {
+    // void gltf_render_system::createPipelineLayout(aaaVkDescriptorSetLayout globalSetLayout) {
+    //     const ::array_base<aaaVkDescriptorSetLayout> layouts = {
     //         globalSetLayout,
     //         graphics3d::gltf::descriptorSetLayoutUbo,
     //         graphics3d::gltf::descriptorSetLayoutImage,
@@ -208,8 +208,8 @@ namespace graphics3d
             for (auto* node : model->m_linearNodes) {
                 if (!node->mesh) continue;
 
-                glm::mat4 world = pgameobject->getTransform().mat4() * node->getMatrix();
-                glm::mat4 normalMat = glm::transpose(glm::inverse(world));
+                floating_matrix4 world = pgameobject->getTransform().floating_matrix4() * node->getMatrix();
+                floating_matrix4 normalMat = glm::transpose(glm::inverse(world));
                 memcpy(node->mesh->uniformBuffer.mapped, &world, sizeof(world));
                 memcpy((char*)node->mesh->uniformBuffer.mapped + sizeof(world), &normalMat, sizeof(normalMat));
 
@@ -221,7 +221,7 @@ namespace graphics3d
                 //     &node->mesh->uniformBuffer.descriptorSet,
                 //     0, nullptr);
 
-                const auto& mat = node->mesh->primitives[0]->material;
+                const auto& mat = node->mesh->prototypes[0]->material;
                 switch (mat.alphaMode) {
                 case ::graphics3d::gltf::Material::ALPHAMODE_OPAQUE:
                     m_opaquePipeline->bind(frame.m_pcommandbuffer);

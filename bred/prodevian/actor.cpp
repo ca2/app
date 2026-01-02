@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "actor.h"
-#include <glm/gtc/matrix_transform.hpp>
+//
 //#include "SceneFoundry/graphics3d/key_codes.h"
 ////#include <spdlog/spdlog.h>
 
@@ -11,7 +11,7 @@ namespace prodevian
 
    // actor::actor(::pointer<::graphics3d::IWindowInput> input)
    //    : m_pInput(std::move(input))
-   //    , m_camera(glm::vec3(0.f, 0.f, 3.f))
+   //    , m_camera(floating_sequence3(0.f, 0.f, 3.f))
    // {
    // }
    actor::actor()
@@ -48,7 +48,7 @@ namespace prodevian
       // {
       //    double dx = 0, dy = 0;
       //    m_pInput->getMouseDelta(dx, dy);
-      //    m_controller.mouseCallback(glm::vec2(dx, dy));
+      //    m_controller.mouseCallback(floating_sequence2(dx, dy));
       //    m_controller.update(dt, m_pInput, m_transform);
       //
       //    m_camera.setPosition(m_transform.translation);

@@ -283,10 +283,6 @@ namespace calculator
 //      pformat->append(cval.to_string());
 //
 //   }
-//
-//
-//
-//
 //} // namespace str
 //
 //

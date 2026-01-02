@@ -54,15 +54,16 @@ namespace gpu
 
       virtual void initialize_memory_buffer_with_model_buffer(::gpu::model_buffer* pmodelbuffer, memsize size, ::gpu::memory_buffer::enum_type etype, bool bDynamic = false);
 
-      virtual void static_initialize_memory_buffer_with_context(::gpu::context* pcontext, const void * data, memsize size, ::gpu::memory_buffer::enum_type etype);
+      virtual void static_initialize_memory_buffer_with_context(::gpu::context *pcontext, const ::block &block,
+                                                                ::gpu::memory_buffer::enum_type etype);
 
-      virtual void static_initialize_memory_buffer_with_model_buffer(::gpu::model_buffer* pmodelbuffer, const void * data, memsize size, ::gpu::memory_buffer::enum_type etype);
+      virtual void static_initialize_memory_buffer_with_model_buffer(::gpu::model_buffer* pmodelbuffer, const ::block & block, ::gpu::memory_buffer::enum_type etype);
 
-      virtual void on_initialize_memory_buffer(const void * dataStatic = nullptr, memsize sizeStatic = 0);
+      virtual void on_initialize_memory_buffer(const ::block &block = {});
 
-      virtual void on_set_memory_buffer(const void* dataStatic = nullptr, memsize sizeStatic = 0);
+      virtual void on_set_memory_buffer(const ::block &block = {});
 
-      virtual void _on_set_memory_buffer(const void* dataStatic = nullptr, memsize sizeStatic = 0);
+      virtual void _on_set_memory_buffer(const ::block &block = {});
 
       virtual bool is_initialized() const;
 
@@ -71,9 +72,7 @@ namespace gpu
       virtual memsize type_size() const;
 
 
-      virtual void assign(const void* pData, memsize size);
       virtual void assign(const ::block& block);
-      virtual void _assign(const void* pData, memsize size);
       virtual void _assign(const ::block& block);
 
       virtual void* map();
@@ -133,7 +132,7 @@ namespace gpu
 
       }
 
-      template < primitive_integral INTEGRAL >
+      template < prototype_integral INTEGRAL >
       TYPE& operator[](INTEGRAL i)
       {
 

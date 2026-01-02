@@ -10,7 +10,7 @@
 #pragma once
 
 
-//template < primitive_character CHARACTER >
+//template < prototype_character CHARACTER >
 //inline void string_heap_data < CHARACTER > ::raw_set_character_count(::character_count countData)
 //{
 //
@@ -35,7 +35,7 @@
 //}
 
 
-//template < primitive_character CHARACTER >
+//template < prototype_character CHARACTER >
 //inline void string_heap_data < CHARACTER > ::set_character_count(::character_count countData)
 //{
 //
@@ -46,7 +46,7 @@
 
 
 
-//template < primitive_character CHARACTER >
+//template < prototype_character CHARACTER >
 //inline ::memsize string_heap_data < CHARACTER>::character_count_in_bytes() const
 //{
 //
@@ -55,7 +55,7 @@
 //}
 //
 
-//template < primitive_character CHARACTER >
+//template < prototype_character CHARACTER >
 //inline ::memsize string_heap_data < CHARACTER>::null_terminated_character_count_in_bytes() const
 //{
 //

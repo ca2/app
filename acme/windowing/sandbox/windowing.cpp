@@ -125,7 +125,7 @@ void windowing::initialize(::particle * pparticle)
    ////      if(!pdisplay)
    ////      {
    ////
-   ////         informationf("\nFailed to øcreate < ::windowing::display > at windowing_x11::windowing::initialize");
+   ////         informationf("----> Failed to øcreate < ::windowing::display > at windowing_x11::windowing::initialize");
    ////
    ////         return ::error_no_factory;
    ////
@@ -138,7 +138,7 @@ void windowing::initialize(::particle * pparticle)
    ////      if(!estatus)
    ////      {
    ////
-   ////         informationf("\nFailed to initialize_display at windowing_x11::windowing::initialize");
+   ////         informationf("----> Failed to initialize_display at windowing_x11::windowing::initialize");
    ////
    ////         return estatus;
    ////
@@ -162,7 +162,7 @@ void windowing::initialize(::particle * pparticle)
    //      if(!estatus)
    //      {
    //
-   //         informationf("\nFailed to m_pdisplay->open at windowing_x11::windowing::initialize");
+   //         informationf("----> Failed to m_pdisplay->open at windowing_x11::windowing::initialize");
    //
    //         return estatus;
    //
@@ -567,7 +567,7 @@ void windowing::_message_handler(void* p)
    
    ////return pwindow;
    
-   return m_pwindowMouseCapture;
+   return m_pacmewindowingwindowMouseCapture;
    
 }
 
@@ -575,14 +575,14 @@ void windowing::_message_handler(void* p)
 bool windowing::defer_release_mouse_capture(::thread * pthread, ::acme::windowing::window * pwindow)
 {
    
-   if (!m_pwindowMouseCapture)
+   if (!m_pacmewindowingwindowMouseCapture)
    {
       
       return false;
       
    }
    
-   if (m_pwindowMouseCapture != pwindow)
+   if (m_pacmewindowingwindowMouseCapture != pwindow)
    {
       
       return false;
@@ -591,7 +591,7 @@ bool windowing::defer_release_mouse_capture(::thread * pthread, ::acme::windowin
    
    pwindow->m_pacmeuserinteractionMouseCapture.release();
    
-   m_pwindowMouseCapture.release();
+   m_pacmewindowingwindowMouseCapture.release();
    
    return true;
    

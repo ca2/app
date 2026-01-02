@@ -377,14 +377,6 @@ namespace platform
 
       virtual enum_operating_system get_operating_system() const override;
 
-      //virtual ::user::enum_operating_ambient get_eoperating_ambient();
-      //virtual ::user::enum_toolkit get_etoolkit();
-
-      //virtual ::user::enum_operating_ambient calculate_edesktop();
-      //virtual ::user::enum_toolkit calculate_etoolkit();
-
-      //virtual ::string get_user_toolkit_id();
-
       virtual void launch_app(const ::scoped_string & scopedstr, const_char_pointer *argv, int iFlags) override;
 
       virtual ::file::path get_executable_path_by_app_id(const ::scoped_string & scopedstrAppId, bool bSingleExecutableVersion) override;
@@ -461,14 +453,6 @@ namespace platform
       virtual int root_execute_sync(const ::scoped_string & scopedstrFile, const ::scoped_string & scopedstrParams, const class time & timeTimeout = 1_minute, const ::file::path& pathWorkingDirectory = {}) override;
 
 
-      //::file::path command_find_path(const ::scoped_string & scopedstrCommand);
-
-
-      //virtual ::user::enum_operating_ambient calculate_edesktop();
-      //
-      //
-      //virtual ::user::enum_operating_ambient get_eoperating_ambient();
-
       virtual void on_start_system() override;
 
 
@@ -478,29 +462,12 @@ namespace platform
       virtual void report_exception_to_user(::particle* pparticle, ::exception& exception, const ::scoped_string & scopedstrMoreDetails) override;
 
 
-      //virtual ::pointer<::conversation> create_new_message_box_conversation();
-
-      //virtual ::pointer<::conversation> create_new_message_conversation();
-
-
-      //virtual ::pointer < ::subparticle > create_message_box_sequencer(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::user::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon);
-
-
-      //virtual void ::micro::message_box(::sequence < ::conversation > * psequence, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::user::e_message_box& emessagebox);
-
-      //virtual ::pointer < ::subparticle > create_message_sequencer(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::user::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon);
-
-
-
       virtual void shell_launch(const ::scoped_string & scopedstrAppId) override;
 
 
       virtual bool has_application_capability(::enum_application_capability ecapability) const override;
       virtual void add_application_capability(const ::enum_application_capability_array& ecapabilitya) override;
       virtual void on_change_application_capability() override;
-
-
-      //virtual void windowing_post(const ::procedure& procedure);
 
 
       virtual string get_local_mutex_name(const ::scoped_string & scopedstrAppId) override;

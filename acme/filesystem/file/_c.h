@@ -66,14 +66,6 @@
 //CLASS_DECL_ACME int_bool fd_set_size(int fd,size_t iSize);
 //CLASS_DECL_ACME int_bool FILE_set_size(FILE * file,size_t iSize);
 //
-//
-//
-//
-//
-//
-//
-//
-//
 ////   #pragma once
 //
 //

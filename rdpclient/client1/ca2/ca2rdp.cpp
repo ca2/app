@@ -74,10 +74,10 @@ BOOL ca2rdp_end_paint(rdpContext* context)
       return 1;
 
 //#ifdef WINDOWS_DESKTOP
-//	ca2rdpi->update_rect.left() = gdi->primary->hdc->hwnd->invalid->x;
-//	ca2rdpi->update_rect.top() = gdi->primary->hdc->hwnd->invalid->y;
-//   ca2rdpi->update_rect.right() = gdi->primary->hdc->hwnd->invalid->x+gdi->primary->hdc->hwnd->invalid->w;
-//   ca2rdpi->update_rect.bottom() = gdi->primary->hdc->hwnd->invalid->y +gdi->primary->hdc->hwnd->invalid->h;
+//	ca2rdpi->update_rect.left = gdi->primary->hdc->hwnd->invalid->x;
+//	ca2rdpi->update_rect.top = gdi->primary->hdc->hwnd->invalid->y;
+//   ca2rdpi->update_rect.right = gdi->primary->hdc->hwnd->invalid->x+gdi->primary->hdc->hwnd->invalid->w;
+//   ca2rdpi->update_rect.bottom = gdi->primary->hdc->hwnd->invalid->y +gdi->primary->hdc->hwnd->invalid->h;
 //#else
    ca2rdpi->x = 0;
    ca2rdpi->y = 0;
@@ -92,7 +92,7 @@ BOOL ca2rdp_end_paint(rdpContext* context)
       ::draw2d::graphics_pointer g(((ca2rdpContext*)context)->get_app()->create_new, this);
       g->CreateCompatibleDC(nullptr);
       g->Attach(gdi->primary->hdc->alpha);
-      ca2rdpi->primary->get_graphics()->BitBlt(ca2rdpi->update_rect.left(),ca2rdpi->update_rect.top(),
+      ca2rdpi->primary->get_graphics()->BitBlt(ca2rdpi->update_rect.left,ca2rdpi->update_rect.top,
          ca2rdpi->update_rect.width(),ca2rdpi->update_rect.height,g,0, 0);
       g->Detach();
    #else

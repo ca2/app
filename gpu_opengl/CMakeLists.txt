@@ -9,7 +9,7 @@ message(STATUS "PROJECT_NAME is ${PROJECT_NAME}")
 
 # Collect all files in shaders/ directory
 file(GLOB SHADER_FILES
-   "${CMAKE_CURRENT_SOURCE_DIR}/ibl/shaders/*"
+   "${CMAKE_CURRENT_SOURCE_DIR}/ibl/shader/*"
 )
 
 message(STATUS "SHADER_FILES: ${SHADER_FILES}")
@@ -59,18 +59,18 @@ list(APPEND library_source
    gltf/model.h
    gltf/vertex.h
    ${IBL_SHADERS_HEADERS}
-   ibl/brdf_convolution_framebuffer.cpp
-   ibl/brdf_convolution_framebuffer.h
-   ibl/cubemap_framebuffer.cpp
-   ibl/cubemap_framebuffer.h
+   #ibl/brdf_convolution_framebuffer.cpp
+   #ibl/brdf_convolution_framebuffer.h
+   #ibl/cubemap_framebuffer.cpp
+   #ibl/cubemap_framebuffer.h
    ibl/diffuse_irradiance_map.cpp
    ibl/diffuse_irradiance_map.h
    ibl/equirectangular_cubemap.cpp
    ibl/equirectangular_cubemap.h
-   ibl/hdri_cube.cpp
-   ibl/hdri_cube.h
-   ibl/mipmap_cubemap_framebuffer.cpp
-   ibl/mipmap_cubemap_framebuffer.h
+   #ibl/hdri_cube.cpp
+   #ibl/hdri_cube.h
+   #ibl/aaa_mipmap_cubemap_framebuffer.cpp
+   #ibl/aaa_mipmap_cubemap_framebuffer.h
    ibl/specular_map.cpp
    ibl/specular_map.h
         _.cpp
@@ -82,14 +82,19 @@ list(APPEND library_source
         approach.h
         assimp.cpp
         assimp.h
+   block.cpp
+   block.h
         command_buffer.cpp
    command_buffer.h
         cpu_buffer.cpp
         cpu_buffer.h
         context.cpp
         context.h
-   cube.cpp
-   cube.h
+   context_egl.cpp
+   context_egl.h
+   context_ktx.cpp
+   #cube.cpp
+   #cube.h
         device.cpp
         device.h
         frame.h
@@ -135,6 +140,7 @@ list(APPEND library_source
         swap_chain.h
         texture.cpp
         texture.h
+
 )
 
 if (WIN32)
@@ -153,9 +159,9 @@ if(${LINUX} OR ${__BSD__})
  #           context_egl.h
             #context_glx.cpp
             #context_glx.h
-       #device_egl.cpp
+       device_egl.cpp
        #device_egl.h
-       approach_glx.cpp
+       approach_egl.cpp
             )
 
 endif ()
@@ -204,7 +210,9 @@ endif ()
 add_compile_definitions(GLAD_GLAPI_EXPORT)
 
 
-add_library(${PROJECT_NAME} SHARED ${library_source})
+add_library(${PROJECT_NAME} SHARED ${library_source}
+   rotating_cube.cpp
+   device_egl_x11.cpp)
 add_library(static_${PROJECT_NAME} STATIC ${library_source})
 
 
@@ -226,7 +234,7 @@ endif ()
 
 set_target_properties(${PROJECT_NAME} PROPERTIES LINKER_LANGUAGE CXX)
 
-if (MSVC)
+if(${WIN32})
 
 
     target_compile_options(${PROJECT_NAME} PRIVATE "/MD$<$<CONFIG:Debug>:d>")
@@ -252,7 +260,8 @@ elseif (${LINUX} OR ${__BSD__} OR ${ANDROID})
    endif()
 
     #if (${USE_PKGCONFIG})
-        pkg_check_modules(${PROJECT_NAME}_PKGCONFIG glew egl assimp ${extra_pkg_modules})
+        #pkg_check_modules(${PROJECT_NAME}_PKGCONFIG glew egl assimp ${extra_pkg_modules})
+   pkg_check_modules(${PROJECT_NAME}_PKGCONFIG REQUIRED x11 egl assimp ${extra_pkg_modules})
 
     #endif ()
     target_compile_options(${PROJECT_NAME} PRIVATE $<$<COMPILE_LANGUAGE:CXX>:-fpermissive  ${EXTRA_CXX_TARGET_COMPILER_OPTIONS}>)

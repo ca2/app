@@ -200,11 +200,11 @@ namespace user
                if (get_data()->m_idaSel.contains(ppane->id()))
                {
 
-                  ppath->add_line(rectangleBorder.right(), rectangleBorder.bottom(), rectangleBorder.left() + 1, rectangleBorder.bottom());
+                  ppath->add_line(rectangleBorder.right, rectangleBorder.bottom, rectangleBorder.left + 1, rectangleBorder.bottom);
 
-                  ppath->add_line(rectangleBorder.left(), rectangleBorder.top() - (rectangleBorder.left() - rectangleX.left()));
-                  ppath->add_line(rectangleX.left(), rectangleBorder.top());
-                  ppath->add_line(rectangleBorder.right(), rectangleBorder.top());
+                  ppath->add_line(rectangleBorder.left, rectangleBorder.top - (rectangleBorder.left - rectangleX.left));
+                  ppath->add_line(rectangleX.left, rectangleBorder.top);
+                  ppath->add_line(rectangleBorder.right, rectangleBorder.top);
 
                   ppath->close_figure();
 
@@ -226,11 +226,11 @@ namespace user
                else
                {
 
-                  ppath->add_line(rectangleBorder.right(), rectangleBorder.bottom(), rectangleBorder.left() + 1, rectangleBorder.bottom());
-                  ppath->add_line(rectangleBorder.left(), rectangleBorder.top() - (rectangleBorder.left() - rectangleX.left()));
-                  ppath->add_line(rectangleText.left(), rectangleBorder.top());
-                  ppath->add_line(rectangleBorder.right(), rectangleBorder.top());
-                  ppath->add_line(rectangleBorder.right(), rectangleBorder.bottom());
+                  ppath->add_line(rectangleBorder.right, rectangleBorder.bottom, rectangleBorder.left + 1, rectangleBorder.bottom);
+                  ppath->add_line(rectangleBorder.left, rectangleBorder.top - (rectangleBorder.left - rectangleX.left));
+                  ppath->add_line(rectangleText.left, rectangleBorder.top);
+                  ppath->add_line(rectangleBorder.right, rectangleBorder.top);
+                  ppath->add_line(rectangleBorder.right, rectangleBorder.bottom);
 
                   ppath->close_figure();
 
@@ -308,13 +308,13 @@ namespace user
                if (get_data()->m_idaSel.contains(ppane->id()))
                {
 
-                  ppath->add_line(rectangleBorder.left(), rectangleX.bottom(), rectangleBorder.left(), rectangleBorder.top());
+                  ppath->add_line(rectangleBorder.left, rectangleX.bottom, rectangleBorder.left, rectangleBorder.top);
 
-                  ppath->add_line(rectangleX.right(), rectangleBorder.top());
+                  ppath->add_line(rectangleX.right, rectangleBorder.top);
 
-                  ppath->add_line(rectangleBorder.right(), rectangleBorder.top() + (rectangleBorder.right() - rectangleX.right()));
+                  ppath->add_line(rectangleBorder.right, rectangleBorder.top + (rectangleBorder.right - rectangleX.right));
 
-                  ppath->add_line(rectangleBorder.right() - 1, rectangleX.bottom());
+                  ppath->add_line(rectangleBorder.right - 1, rectangleX.bottom);
 
                   ppath->close_figure();
 
@@ -338,13 +338,13 @@ namespace user
                else
                {
 
-                  ppath->add_line(rectangleBorder.left(), rectangleX.bottom(), rectangleBorder.left(), rectangleBorder.top());
+                  ppath->add_line(rectangleBorder.left, rectangleX.bottom, rectangleBorder.left, rectangleBorder.top);
 
-                  ppath->add_line(rectangleX.right(), rectangleBorder.top());
+                  ppath->add_line(rectangleX.right, rectangleBorder.top);
 
-                  ppath->add_line(rectangleBorder.right(), rectangleBorder.top() + (rectangleBorder.right() - rectangleX.right()));
+                  ppath->add_line(rectangleBorder.right, rectangleBorder.top + (rectangleBorder.right - rectangleX.right));
 
-                  ppath->add_line(rectangleBorder.right() - 1, rectangleX.bottom());
+                  ppath->add_line(rectangleBorder.right - 1, rectangleX.bottom);
 
                   ppath->close_figure();
 
@@ -527,11 +527,11 @@ namespace user
 
                auto ppath = øcreate<::draw2d::path>();
 
-               ppath->set_current_point(rectangleBorder.right(), rectangleBorder.bottom());
-               ppath->add_line(rectangleBorder.left() + 1, rectangleBorder.bottom());
-               ppath->add_line(rectangleBorder.left(), rectangleBorder.top() - (rectangleBorder.left() - rectangleX.left()));
-               ppath->add_line(rectangleX.left(), rectangleBorder.top());
-               ppath->add_line(rectangleBorder.right(), rectangleBorder.top());
+               ppath->set_current_point(rectangleBorder.right, rectangleBorder.bottom);
+               ppath->add_line(rectangleBorder.left + 1, rectangleBorder.bottom);
+               ppath->add_line(rectangleBorder.left, rectangleBorder.top - (rectangleBorder.left - rectangleX.left));
+               ppath->add_line(rectangleX.left, rectangleBorder.top);
+               ppath->add_line(rectangleBorder.right, rectangleBorder.top);
 
                pgraphics->draw(ppath);
 
@@ -553,12 +553,12 @@ namespace user
 
                auto ppath = øcreate<::draw2d::path>();
 
-               ppath->set_current_point(rectangleBorder.right(), rectangleBorder.bottom());
-               ppath->add_line(rectangleBorder.left() + 1, rectangleBorder.bottom());
-               ppath->add_line(rectangleBorder.left(), rectangleBorder.top() - (rectangleBorder.left() - rectangleX.left()));
-               ppath->add_line(rectangleText.left(), rectangleBorder.top());
-               ppath->add_line(rectangleBorder.right(), rectangleBorder.top());
-               ppath->add_line(rectangleBorder.right(), rectangleBorder.bottom());
+               ppath->set_current_point(rectangleBorder.right, rectangleBorder.bottom);
+               ppath->add_line(rectangleBorder.left + 1, rectangleBorder.bottom);
+               ppath->add_line(rectangleBorder.left, rectangleBorder.top - (rectangleBorder.left - rectangleX.left));
+               ppath->add_line(rectangleText.left, rectangleBorder.top);
+               ppath->add_line(rectangleBorder.right, rectangleBorder.top);
+               ppath->add_line(rectangleBorder.right, rectangleBorder.bottom);
 
                pgraphics->draw(ppath);
 
@@ -618,11 +618,11 @@ namespace user
 
                auto ppath = øcreate<::draw2d::path >();
 
-               ppath->set_current_point(rectangleBorder.left(), rectangleX.bottom());
-               ppath->add_line(rectangleBorder.left(), rectangleBorder.top());
-               ppath->add_line(rectangleX.right(), rectangleBorder.top());
-               ppath->add_line(rectangleBorder.right(), rectangleBorder.top() + (rectangleBorder.right() - rectangleX.right()));
-               ppath->add_line(rectangleBorder.right() - 1, rectangleX.bottom());
+               ppath->set_current_point(rectangleBorder.left, rectangleX.bottom);
+               ppath->add_line(rectangleBorder.left, rectangleBorder.top);
+               ppath->add_line(rectangleX.right, rectangleBorder.top);
+               ppath->add_line(rectangleBorder.right, rectangleBorder.top + (rectangleBorder.right - rectangleX.right));
+               ppath->add_line(rectangleBorder.right - 1, rectangleX.bottom);
 
                pgraphics->draw(ppath);
 
@@ -644,12 +644,12 @@ namespace user
 
                auto ppath = øcreate<::draw2d::path >();
 
-               ppath->set_current_point(rectangleBorder.left(), rectangleX.bottom());
-               ppath->add_line(rectangleBorder.left(), rectangleBorder.top());
-               ppath->add_line(rectangleX.right(), rectangleBorder.top());
-               ppath->add_line(rectangleBorder.right(), rectangleBorder.top() + (rectangleBorder.right() - rectangleX.right()));
-               ppath->add_line(rectangleBorder.right() - 1, rectangleX.bottom());
-               ppath->add_line(rectangleBorder.left(), rectangleX.bottom());
+               ppath->set_current_point(rectangleBorder.left, rectangleX.bottom);
+               ppath->add_line(rectangleBorder.left, rectangleBorder.top);
+               ppath->add_line(rectangleX.right, rectangleBorder.top);
+               ppath->add_line(rectangleBorder.right, rectangleBorder.top + (rectangleBorder.right - rectangleX.right));
+               ppath->add_line(rectangleBorder.right - 1, rectangleX.bottom);
+               ppath->add_line(rectangleBorder.left, rectangleX.bottom);
 
                pgraphics->draw(ppath);
 
@@ -784,11 +784,11 @@ namespace user
 
          get_data()->m_rectangleTextMargin.set(3, 0, 1, 0);
 
-         get_data()->m_iTabHeight += get_data()->m_rectangleBorder.top() + get_data()->m_rectangleBorder.bottom() +
-                                     get_data()->m_rectangleMargin.top() + get_data()->m_rectangleMargin.bottom();
+         get_data()->m_iTabHeight += get_data()->m_rectangleBorder.top + get_data()->m_rectangleBorder.bottom +
+                                     get_data()->m_rectangleMargin.top + get_data()->m_rectangleMargin.bottom;
 
-         get_data()->m_iTabWidth += get_data()->m_rectangleBorder.left() + get_data()->m_rectangleBorder.right() +
-                                    get_data()->m_rectangleMargin.left() + get_data()->m_rectangleMargin.right();
+         get_data()->m_iTabWidth += get_data()->m_rectangleBorder.left + get_data()->m_rectangleBorder.right +
+                                    get_data()->m_rectangleMargin.left + get_data()->m_rectangleMargin.right;
 
       }
       else
@@ -800,11 +800,11 @@ namespace user
 
          get_data()->m_rectangleTextMargin.set(3, 0, 1, 0);
 
-         get_data()->m_iTabHeight += get_data()->m_rectangleBorder.top() + get_data()->m_rectangleBorder.bottom() +
-                                     get_data()->m_rectangleMargin.top() + get_data()->m_rectangleMargin.bottom();
+         get_data()->m_iTabHeight += get_data()->m_rectangleBorder.top + get_data()->m_rectangleBorder.bottom +
+                                     get_data()->m_rectangleMargin.top + get_data()->m_rectangleMargin.bottom;
 
-         get_data()->m_iTabWidth += get_data()->m_rectangleBorder.left() + get_data()->m_rectangleBorder.right() +
-                                    get_data()->m_rectangleMargin.left() + get_data()->m_rectangleMargin.right();
+         get_data()->m_iTabWidth += get_data()->m_rectangleBorder.left + get_data()->m_rectangleBorder.right +
+                                    get_data()->m_rectangleMargin.left + get_data()->m_rectangleMargin.right;
 
       }
 
@@ -848,13 +848,13 @@ namespace user
             if (ppane->m_pimage->is_set())
             {
 
-               size.cx() += ppane->m_pimage->width() + 2;
+               size.cx += ppane->m_pimage->width() + 2;
 
-               size.cy() = maximum(size.cy(), ppane->m_pimage->height());
+               size.cy = maximum(size.cy, ppane->m_pimage->height());
 
             }
 
-            cx = (int)(size.cx() + 2.0);
+            cx = (int)(size.cx + 2.0);
 
             if (!ppane->m_bPermanent)
             {
@@ -870,7 +870,7 @@ namespace user
 
             }
 
-            cy = (int)(size.cy() + 2.0);
+            cy = (int)(size.cy + 2.0);
 
             if (cy > iTabHeight)
             {
@@ -890,15 +890,15 @@ namespace user
 
          }
 
-         iTabWidth += get_data()->m_rectangleBorder.left() + get_data()->m_rectangleBorder.right() +
-                      get_data()->m_rectangleMargin.left() + get_data()->m_rectangleMargin.right() +
-                      get_data()->m_rectangleTextMargin.left() + get_data()->m_rectangleTextMargin.right();
+         iTabWidth += get_data()->m_rectangleBorder.left + get_data()->m_rectangleBorder.right +
+                      get_data()->m_rectangleMargin.left + get_data()->m_rectangleMargin.right +
+                      get_data()->m_rectangleTextMargin.left + get_data()->m_rectangleTextMargin.right;
 
          get_data()->m_iTabWidth = iTabWidth;
 
-         iTabHeight += get_data()->m_rectangleBorder.top() + get_data()->m_rectangleBorder.bottom() +
-                       get_data()->m_rectangleMargin.top() + get_data()->m_rectangleMargin.bottom() +
-                       get_data()->m_rectangleTextMargin.top() + get_data()->m_rectangleTextMargin.bottom();
+         iTabHeight += get_data()->m_rectangleBorder.top + get_data()->m_rectangleBorder.bottom +
+                       get_data()->m_rectangleMargin.top + get_data()->m_rectangleMargin.bottom +
+                       get_data()->m_rectangleTextMargin.top + get_data()->m_rectangleTextMargin.bottom;
 
          get_data()->m_iTabHeight = iTabHeight;
 
@@ -906,15 +906,15 @@ namespace user
 
          //this->rectangle(rectangleX);
 
-         get_data()->m_rectangleTab.left() = rectangleX.left();
-         get_data()->m_rectangleTab.top() = rectangleX.top();
-         get_data()->m_rectangleTab.right() = get_data()->m_rectangleTab.left() + get_data()->m_iTabWidth;
-         get_data()->m_rectangleTab.bottom() = rectangleX.bottom();
+         get_data()->m_rectangleTab.left = rectangleX.left;
+         get_data()->m_rectangleTab.top = rectangleX.top;
+         get_data()->m_rectangleTab.right = get_data()->m_rectangleTab.left + get_data()->m_iTabWidth;
+         get_data()->m_rectangleTab.bottom = rectangleX.bottom;
 
-         get_data()->m_rectangleHosting.left() = m_bEffectiveVisibleControl ? get_data()->m_rectangleTab.right() : rectangleX.left();
-         get_data()->m_rectangleHosting.top() = get_data()->m_rectangleTab.top();
-         get_data()->m_rectangleHosting.right() = rectangleX.right();
-         get_data()->m_rectangleHosting.bottom() = get_data()->m_rectangleTab.bottom();
+         get_data()->m_rectangleHosting.left = m_bEffectiveVisibleControl ? get_data()->m_rectangleTab.right : rectangleX.left;
+         get_data()->m_rectangleHosting.top = get_data()->m_rectangleTab.top;
+         get_data()->m_rectangleHosting.right = rectangleX.right;
+         get_data()->m_rectangleHosting.bottom = get_data()->m_rectangleTab.bottom;
 
       }
       else
@@ -930,7 +930,7 @@ namespace user
 
          //         this->rectangle(rectangleX);
 
-         int x = rectangleX.left();
+         int x = rectangleX.left;
 
          int ixAdd;
 
@@ -957,11 +957,11 @@ namespace user
             if (ppane->m_pimage->is_ok())
             {
 
-               size.cy() = maximum(size.cy(), ppane->m_pimage->size().cy());
+               size.cy = maximum(size.cy, ppane->m_pimage->size().cy);
 
             }
 
-            cy = (int)(size.cy() + 2.0);
+            cy = (int)(size.cy + 2.0);
 
             if (cy > iTabHeight)
             {
@@ -970,9 +970,9 @@ namespace user
 
             }
 
-            ppane->m_point.x() = x;
+            ppane->m_point.x = x;
 
-            ppane->m_point.y() = rectangleX.top();
+            ppane->m_point.y = rectangleX.top;
 
             ixAdd = 5;
 
@@ -990,12 +990,12 @@ namespace user
 
             }
 
-            ppane->m_size.cx() = (int)(size.cx() + ixAdd
-                                         + get_data()->m_rectangleBorder.left() + get_data()->m_rectangleBorder.right()
-                                         + get_data()->m_rectangleMargin.left() + get_data()->m_rectangleMargin.right()
-                                         + get_data()->m_rectangleTextMargin.left() + get_data()->m_rectangleTextMargin.right());
+            ppane->m_size.cx = (int)(size.cx + ixAdd
+                                         + get_data()->m_rectangleBorder.left + get_data()->m_rectangleBorder.right
+                                         + get_data()->m_rectangleMargin.left + get_data()->m_rectangleMargin.right
+                                         + get_data()->m_rectangleTextMargin.left + get_data()->m_rectangleTextMargin.right);
 
-            x += ppane->m_size.cx();
+            x += ppane->m_size.cx;
          }
 
          // close tab button
@@ -1005,8 +1005,8 @@ namespace user
             iTabHeight = cy;
          }
 
-         iTabHeight += get_data()->m_rectangleBorder.top() + get_data()->m_rectangleBorder.bottom() +
-                       get_data()->m_rectangleMargin.top() + get_data()->m_rectangleMargin.bottom() + get_data()->m_iHeightAddUp;
+         iTabHeight += get_data()->m_rectangleBorder.top + get_data()->m_rectangleBorder.bottom +
+                       get_data()->m_rectangleMargin.top + get_data()->m_rectangleMargin.bottom + get_data()->m_iHeightAddUp;
 
          get_data()->m_iTabHeight = iTabHeight;
 
@@ -1015,21 +1015,21 @@ namespace user
 
             auto ppane = get_data()->m_tabpanea[iIndex].get();
 
-            ppane->m_size.cy() = iTabHeight;
+            ppane->m_size.cy = iTabHeight;
 
          }
 
-         get_data()->m_rectangleTab.left() = rectangleX.left();
-         get_data()->m_rectangleTab.top() = rectangleX.top();
-         get_data()->m_rectangleTab.right() = rectangleX.right();
-         get_data()->m_rectangleTab.bottom() = get_data()->m_rectangleTab.top() + get_data()->m_iTabHeight;
+         get_data()->m_rectangleTab.left = rectangleX.left;
+         get_data()->m_rectangleTab.top = rectangleX.top;
+         get_data()->m_rectangleTab.right = rectangleX.right;
+         get_data()->m_rectangleTab.bottom = get_data()->m_rectangleTab.top + get_data()->m_iTabHeight;
 
          ::int_rectangle & rectangleHosting = get_data()->m_rectangleHosting;
 
-         rectangleHosting.left() = get_data()->m_rectangleTab.left();
-         rectangleHosting.top() = m_bEffectiveVisibleControl ? get_data()->m_rectangleTab.bottom() : rectangleX.top();
-         rectangleHosting.right() = get_data()->m_rectangleTab.right();
-         rectangleHosting.bottom() = rectangleX.bottom();
+         rectangleHosting.left = get_data()->m_rectangleTab.left;
+         rectangleHosting.top = m_bEffectiveVisibleControl ? get_data()->m_rectangleTab.bottom : rectangleX.top;
+         rectangleHosting.right = get_data()->m_rectangleTab.right;
+         rectangleHosting.bottom = rectangleX.bottom;
 
          //TRACE0("rectangleHosting");
       }
@@ -1059,15 +1059,15 @@ namespace user
       if (m_pdata->m_bVertical)
       {
 
-         m_sizeBarDragScroll.cy() = (int)m_pdata->m_tabpanea.get_count() * m_pdata->m_iTabHeight;
+         m_sizeBarDragScroll.cy = (int)m_pdata->m_tabpanea.get_count() * m_pdata->m_iTabHeight;
 
 
       }
       else
       {
 
-         m_sizeBarDragScroll.cx() = m_pdata->m_tabpanea.last()->m_point.x() +
-                                    m_pdata->m_tabpanea.last()->m_size.cx();
+         m_sizeBarDragScroll.cx = m_pdata->m_tabpanea.last()->m_point.x +
+                                    m_pdata->m_tabpanea.last()->m_size.cx;
 
       }
 

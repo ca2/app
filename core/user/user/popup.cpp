@@ -68,13 +68,13 @@ namespace user
 
       window_rectangle(rectangleWindow);
 
-      m_sizeMinimum.cx() = 300;
+      m_sizeMinimum.cx = 300;
 
-      m_sizeMinimum.cy() = 150;
+      m_sizeMinimum.cy = 150;
 
       order(e_zorder_top_most);
 
-      place(point.x(), point.y(), 400, 200);
+      place(point.x, point.y, 400, 200);
 
       display(e_display_normal, { ::user::e_activation_set_popup });
 
@@ -136,13 +136,13 @@ namespace user
 
             //   window_rectangle(rectangleWindow);
 
-            //   pframe->m_sizeMinimum.cx() = 300;
+            //   pframe->m_sizeMinimum.cx = 300;
 
-            //   pframe->m_sizeMinimum.cy() = 150;
+            //   pframe->m_sizeMinimum.cy = 150;
 
             //   pframe->order(e_zorder_top_most);
 
-            //   pframe->place(rectangleWindow.left(), rectangleWindow.bottom(), 400, 200);
+            //   pframe->place(rectangleWindow.left, rectangleWindow.bottom, 400, 200);
 
             //   pframe->display();
 

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AutoVisualizer
+    xmlns="http://schemas.microsoft.com/vstudio/debugger/natvis/2010">
+
+	<!-- Generic visualizer for string_base and related range types.
+       Covers multiple internal layouts:
+         - m_begin/m_end (string_view-like)
+         - m_range.m_psz + m_range.m_iBeg / m_range.m_iLen (range wrapper)
+         - fallback: raw pointer stored at object start
+  -->
+
+	<Type Name="string_base&lt;*&gt;">
+		<DisplayString Condition="m_begin != 0">"{m_begin,s}" (len = {(m_end - m_begin)})</DisplayString>
+		<DisplayString Condition="m_range.m_psz != 0">"{(m_range.m_psz + m_range.m_iBeg),s}" (len = {m_range.m_iLen})</DisplayString>
+		<DisplayString Condition="*(const char **)&this != 0">"{*(const char **)&this,s}"</DisplayString>
+
+		<StringView Condition="m_begin != 0">
+			<Pointer>m_begin</Pointer>
+			<Length>(m_end - m_begin)</Length>
+		</StringView>
+
+		<StringView Condition="m_range.m_psz != 0">
+			<Pointer>(m_range.m_psz + m_range.m_iBeg)</Pointer>
+			<Length>m_range.m_iLen</Length>
+		</StringView>
+
+		<StringView Condition="*(const char **)&this != 0">
+			<Pointer>*(const char **)&this</Pointer>
+			<Length>strlen(*(const char **)&this)</Length>
+		</StringView>
+
+		<Expand>
+			<Item Name="length" Condition="m_begin != 0">(m_end - m_begin)</Item>
+			<Item Name="begin" Condition="m_begin != 0">m_begin</Item>
+			<Item Name="end" Condition="m_begin != 0">m_end</Item>
+
+			<Item Name="range.ptr" Condition="m_range.m_psz != 0">m_range.m_psz</Item>
+			<Item Name="range.beg" Condition="m_range.m_psz != 0">m_range.m_iBeg</Item>
+			<Item Name="range.len" Condition="m_range.m_psz != 0">m_range.m_iLen</Item>
+
+			<Item Name="raw_ptr" Condition="*(const char **)&this != 0">*(const char **)&this</Item>
+		</Expand>
+	</Type>
+
+	<Type Name="const_string_range&lt;*&gt;">
+		<DisplayString Condition="m_range.m_psz != 0">"{(m_range.m_psz + m_range.m_iBeg),s}" (len = {m_range.m_iLen})</DisplayString>
+		<StringView>
+			<Pointer>(m_range.m_psz + m_range.m_iBeg)</Pointer>
+			<Length>m_range.m_iLen</Length>
+		</StringView>
+		<Expand>
+			<Item Name="ptr">m_range.m_psz</Item>
+			<Item Name="beg">m_range.m_iBeg</Item>
+			<Item Name="len">m_range.m_iLen</Item>
+		</Expand>
+	</Type>
+
+	<Type Name="string_range&lt;*&gt;">
+		<DisplayString Condition="m_psz != 0">"{(m_psz + m_iBeg),s}" (len = {m_iLen})</DisplayString>
+		<StringView>
+			<Pointer>(m_psz + m_iBeg)</Pointer>
+			<Length>m_iLen</Length>
+		</StringView>
+		<Expand>
+			<Item Name="ptr">m_psz</Item>
+			<Item Name="beg">m_iBeg</Item>
+			<Item Name="len">m_iLen</Item>
+		</Expand>
+	</Type>
+
+	<Type Name="character_range&lt;*&gt;">
+		<DisplayString Condition="m_begin == 0">null</DisplayString>
+		<DisplayString Condition="m_begin != 0">"{m_begin,s}" (len = {(m_end - m_begin)})</DisplayString>
+		<StringView>
+			<Pointer>m_begin</Pointer>
+			<Length>(m_end - m_begin)</Length>
+		</StringView>
+		<Expand>
+			<Item Name="length">(m_end - m_begin)</Item>
+			<Item Name="begin">m_begin</Item>
+			<Item Name="end">m_end</Item>
+		</Expand>
+	</Type>
+	
+	
+</AutoVisualizer>

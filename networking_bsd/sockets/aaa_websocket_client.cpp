@@ -696,7 +696,7 @@ namespace networking_bsd
 
                   m_strWebSocketProtocol  = outheader("sec-websocket-protocol");
 
-                  informationf("\n\nnow : websocket\n");
+                  informationf("---->  now : websocket\n");
 
                   if (m_strWebSocketProtocol.has_character())
                   {

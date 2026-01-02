@@ -1,6 +1,7 @@
 #include "framework.h"
 #include "graphics3d.h"
 #include "acme/exception/interface_only.h"
+#include "bred/gpu/block.h"
 #include "bred/gpu/context.h"
 #include "bred/gpu/frame.h"
 #include "bred/graphics3d/asset_manager.h"
@@ -182,7 +183,6 @@ namespace user
    void graphics3d::on_load_engine()
    {
 
-
       auto pgpucontextEngine = m_pengine->gpu_context();
 
       pgpucontextEngine->m_pengine = m_pengine;
@@ -202,6 +202,10 @@ namespace user
       m_pengine->m_pimmersionlayer->m_pscene = psceneMain;
 
       psceneMain->m_pgpucontext = pgpucontextEngine;
+
+      //auto pblockGlobalUbo1 = psceneMain->global_ubo1(pgpucontextEngine);
+
+      //pblockGlobalUbo1->create_gpu_block(pgpucontextEngine);
 
       //psceneMain->generateIbl();
 
@@ -245,6 +249,23 @@ namespace user
    void graphics3d::on_message_left_button_down(::message::message* pmessage)
    {
 
+      auto pengine = m_pengine;
+
+      if (::is_null(pengine))
+      {
+
+         return;
+
+      }
+
+      auto pinput = pengine->m_pinput;
+
+      if (::is_null(pinput))
+      {
+
+         return;
+
+      }
       auto pmouse = pmessage->m_union.m_pmouse;
 
       pmessage->m_bRet = true;
@@ -253,10 +274,10 @@ namespace user
 
       host_to_client()(point);
 
-      auto &mousestate = m_pengine->m_pinput->m_mousestate;
+      auto &mousestate = pinput->m_mousestate;
 
-      mousestate.m_position.x = (float) point.x();
-      mousestate.m_position.y = (float) point.y();
+      mousestate.m_position.x = (float) point.x;
+      mousestate.m_position.y = (float) point.y;
       mousestate.m_buttons.left = true;
 
       set_mouse_capture();
@@ -277,8 +298,8 @@ namespace user
 
       host_to_client()(point);
 
-      m_pengine->m_pinput->m_mousestate.m_position.x = (float) point.x();
-      m_pengine->m_pinput->m_mousestate.m_position.y = (float) point.y();
+      m_pengine->m_pinput->m_mousestate.m_position.x = (float) point.x;
+      m_pengine->m_pinput->m_mousestate.m_position.y = (float) point.y;
       m_pengine->m_pinput->m_mousestate.m_buttons.left = false;
 
       
@@ -395,8 +416,8 @@ namespace user
 
             //double_rectangle r;
 
-            //r.left() = 400.0;
-            //r.top() = 200.0;
+            //r.left = 400.0;
+            //r.top = 200.0;
             //r.set_size(50.0, 50.0);
 
             //pgraphics->fill_solid_rectangle(r, argb(1.0, 0.5, 0.75, 0.95));

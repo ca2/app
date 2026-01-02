@@ -4,7 +4,7 @@
 //#include <string>
 //#include <vector>
 #include "acme/prototype/collection/static_array.h"
-#include "bred/graphics3d/model.h"
+//#include "bred/graphics3d/model.h"
 //#include "bred/graphics3d/render_system.h"
 #include "bred/graphics3d/shape_factory.h"
 #include "bred/graphics3d/scene_renderable.h"
@@ -70,7 +70,7 @@ namespace graphics3d
       //::particle* pparticle, const ::string_array_base& faces
 
       //::pointer < engine >                m_pengine;
-      ::pointer < ::graphics3d::renderable >          m_pmodelCube;
+///      ::pointer < ::graphics3d::renderable >          m_pmodelCube;
       ::pointer < ::gpu::texture >                    m_ptexture;
       ::int_size                                      m_sizeSquare;
       ::string                                        m_strTexture;
@@ -81,6 +81,8 @@ namespace graphics3d
       //::pointer<::gpu::shader>            m_pshader;
 
       ::string          m_strCubemapTextureName;
+
+
 
       skybox();
       ~skybox();
@@ -96,6 +98,9 @@ namespace graphics3d
       virtual void bind(::gpu::command_buffer* pgpucommandbuffer);
       virtual void draw(::gpu::command_buffer* pgpucommandbuffer);
       virtual void unbind(::gpu::command_buffer* pgpucommandbuffer);
+
+
+      
 
       //void draw(::gpu::context* pgpucontext, ::graphics3d::scene_base* pscene) override;
 

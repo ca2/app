@@ -50,6 +50,9 @@ namespace image
       virtual int reserve_image(int iItem = -1);
 
 
+      bool _is_ok() const override;
+
+
       //virtual int _set(int iItem, ::image::icon * picon);
       virtual int set(int iItem, const ::image::image_drawing & imagedrawing);
       //   virtual int sete(int iItem, ::file::file * pfile);

@@ -42,7 +42,3 @@
 ////platform_char *** process_get_pargv();
 ////platform_char ** process_get_argv();
 //
-//
-//
-//
-//

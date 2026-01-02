@@ -21,6 +21,7 @@ namespace gpu_opengl
       GLuint            m_gluDepthStencilRBO;
       GLuint            m_gluFbo;
       GLenum            m_gluType;
+      GLsync            m_glsyncGpuCommandsCompleteFence;
 
 
       texture();
@@ -29,10 +30,15 @@ namespace gpu_opengl
 
       void initialize_hdr_texture_on_memory(::gpu::renderer *prenderer, const ::block & block) override;
       void initialize_with_image_data(::gpu::renderer *pgpurenderer, const ::int_rectangle &rectangleTarget,
-                                      int numChannels, bool bSrgb, const void *pdata, enum_type etype) override;
-      void initialize_image_texture(::gpu::renderer* prenderer, const ::int_rectangle & rectangleTarget, bool bWithDepth, const ::pointer_array < ::image::image >& imagea, enum_type etype) override;
+                                      int numChannels, bool bSrgb, const void *pdata, ::gpu::enum_texture etexture) override;
+      // void initialize_image_texture(::gpu::renderer* prenderer,
+      //    const ::int_rectangle & rectangleTarget, bool bWithDepth,
+      //    const ::pointer_array < ::image::image > *pimagea, enum_type etype) override;
 
       //void blend(::gpu::texture* ptexture, const ::int_rectangle& rectangleTarget) override;
+
+
+      void _create_texture(const ::gpu::texture_data & texturedata = {}) override;
 
 
       void create_render_target() override;
@@ -61,6 +67,44 @@ namespace gpu_opengl
          const ::scoped_string &name,
          ::string filename,
          bool b32);
+
+            virtual void KtxLoadCubemapFrom_ktxTexture(const ::scoped_string &name, void *p_ktxTexture, bool b32);
+
+      //void set_cube_face(int iFace, ::gpu::shader * pgpushader) override;
+
+      void generate_mipmap(::gpu::command_buffer * pgpucommandbuffer) override;
+
+               /**
+       * Set the mip level to render with.
+       * @param mipLevel
+       */
+      virtual void set_current_mip(int level);
+
+
+      ///**
+      // * Get the current width based on the mip level.
+      // * @return
+      // */
+      //virtual int mip_width();
+
+
+      ///**
+      // * Get the current height based on the mip level.
+      // * @return
+      // */
+      //virtual int mip_height();
+
+
+      /**
+       * Set which cube face texture to render to.
+       * @param index
+       */
+      virtual void set_cube_face(int iFace, ::gpu::shader *pgpushader);
+
+
+      void defer_fence() override;
+      void wait_fence() override;
+
 
    };
 

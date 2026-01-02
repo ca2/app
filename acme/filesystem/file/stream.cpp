@@ -36,7 +36,7 @@ bool  stream_base::is_version(int i)
 //void binary_stream::write_element(const ::atom & atom, ::particle * pparticle)
 //{
 //
-//   auto strId = factory_id_to_text(::type(pelement).name());
+//   auto strId = factory_id_to_text(::platform::type(pelement).name());
 //
 //   exchange(e_property_id, strId);
 //
@@ -290,10 +290,6 @@ bool  stream_base::is_version(int i)
 ////
 ////}
 //
-//
-//
-//
-//
 //stream::~stream()
 //{
 //
@@ -347,10 +343,6 @@ bool  stream_base::is_version(int i)
 //   return fmtflagsOld;
 //
 //}
-//
-//
-//
-//
 //
 
 
@@ -498,10 +490,6 @@ bool  stream_base::is_version(int i)
 //   write((const ::payload &) property);
 //
 //}
-//
-//
-//
-//
 //
 //
 //void stream::write(const_char_pointer psz)
@@ -944,7 +932,7 @@ bool  stream_base::is_version(int i)
 //
 //   auto atom = text_to_factory_id(strText);
 //
-//   return øid_create < ::matter >(atom);
+//   return øcreate_by_type < ::matter >(atom);
 //
 //}
 //

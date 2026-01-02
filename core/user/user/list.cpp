@@ -287,7 +287,7 @@ namespace user
 
          ::collection::index x = 0;
 
-         ::collection::index right = (::collection::index)rectangleX.right();
+         ::collection::index right = (::collection::index)rectangleX.right;
 
          double y = m_dItemHeight;
 
@@ -300,32 +300,32 @@ namespace user
          for (::collection::index i = 0; i < sizea.get_size(); i++)
          {
 
-            if ((sizea[i].cx() - x > right)
+            if ((sizea[i].cx - x > right)
                   || i == sizea.get_upper_bound())
             {
 
                ::int_rectangle rectangle;
 
-               rectangle.top() = int(y - pointOffset.y());
+               rectangle.top = int(y - pointOffset.y);
 
                if (i == 0)
                {
-                  //w = (::collection::index) (sizea[0].cx() - x);
-                  x = (::collection::index) (sizea[0].cx());
-                  y += sizea[0].cy();
+                  //w = (::collection::index) (sizea[0].cx - x);
+                  x = (::collection::index) (sizea[0].cx);
+                  y += sizea[0].cy;
                   iNewStart = 0;
 
                }
                else
                {
-                  //w = (::collection::index) (sizea[i - 1].cx() - x);
-                  x = (::collection::index) (sizea[i - 1].cx());
-                  y += sizea[i - 1].cy();
+                  //w = (::collection::index) (sizea[i - 1].cx - x);
+                  x = (::collection::index) (sizea[i - 1].cx);
+                  y += sizea[i - 1].cy;
                   iNewStart = i - 1;
                }
-               rectangle.left() = int(-pointOffset.x());
-               rectangle.right() = rectangleX.right();
-               rectangle.bottom() = int(y - pointOffset.y());
+               rectangle.left = int(-pointOffset.x);
+               rectangle.right = rectangleX.right;
+               rectangle.bottom = int(y - pointOffset.y);
 
                pgraphics->_DrawText(m_strTopText.substr(iStart, i - iStart), rectangle, e_align_left);
                iStart = iNewStart;
@@ -438,15 +438,15 @@ namespace user
          if (m_bDrag && m_iItemLButtonDown < 0)
          {
 
-            int x1 = m_pointLButtonDown1.x();
+            int x1 = m_pointLButtonDown1.x;
 
-            int x2 = m_pointLButtonUp.x();
+            int x2 = m_pointLButtonUp.x;
 
             __sort(x1, x2);
 
-            int y1 = m_pointLButtonDown1.y();
+            int y1 = m_pointLButtonDown1.y;
 
-            int y2 = m_pointLButtonUp.y();
+            int y2 = m_pointLButtonUp.y;
 
             __sort(y1, y2);
 
@@ -1038,7 +1038,7 @@ namespace user
 
       _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-      //m_dItemHeight = m_sizeMaximumItem.cy() + 1;
+      //m_dItemHeight = m_sizeMaximumItem.cy + 1;
 
       _001CalculateItemHeight(pgraphics);
 
@@ -1082,7 +1082,7 @@ namespace user
          //if (m_pcolumna->get_count() > 0)
          //{
 
-         //   iIconSize = maximum(32, (*m_pcolumna)[0]->m_sizeIcon.cy());
+         //   iIconSize = maximum(32, (*m_pcolumna)[0]->m_sizeIcon.cy);
 
          //}
          //else
@@ -1240,7 +1240,7 @@ namespace user
       //queue_graphics_call([this, pointOffset](::draw2d::graphics_pointer & pgraphics)
       //   {
 
-      //      set_context_offset(pgraphics, pointOffset.x(), pointOffset.y());
+      //      set_context_offset(pgraphics, pointOffset.x, pointOffset.y);
 
       //   });
 
@@ -1325,23 +1325,23 @@ namespace user
 
             index_item_rectangle(*pitem);
 
-            rectangle.top() = rectangleX.top();
+            rectangle.top = rectangleX.top;
 
-            rectangle.bottom() = rectangleX.bottom();
+            rectangle.bottom = rectangleX.bottom;
 
-            rectangle.left() = rectangleX.left();
+            rectangle.left = rectangleX.left;
 
             if (m_dItemHeight <= 0 || rectangleX.height() <= 0)
             {
 
-               rectangle.right() = rectangleX.right();
+               rectangle.right = rectangleX.right;
 
             }
             else
             {
 
-               rectangle.right() = (int)minimum(
-                            rectangleX.left() +
+               rectangle.right = (int)minimum(
+                            rectangleX.left +
                             m_nItemCount * pitem->m_pdrawlistitem->m_rectangleItem.width() * m_dItemHeight /
                             rectangleX.height()
                             + pitem->m_pdrawlistitem->m_rectangleItem.width(), I32_MAXIMUM);
@@ -1379,9 +1379,9 @@ namespace user
 
             m_pscrolllayoutY->m_scrollstatea[::user::e_layout_sketch].m_dLine = m_dItemHeight;
 
-            rectangle.top() = 0;
+            rectangle.top = 0;
 
-            rectangle.bottom() = (int) ((_001GetItemCount() + (m_bHeaderCtrl ? 1 : 0)) * m_dItemHeight);
+            rectangle.bottom = (int) ((_001GetItemCount() + (m_bHeaderCtrl ? 1 : 0)) * m_dItemHeight);
 
          }
 
@@ -1678,10 +1678,10 @@ namespace user
 
          }
 
-         if (pcolumn->m_sizeIcon.cy() + 2 > iItemHeight)
+         if (pcolumn->m_sizeIcon.cy + 2 > iItemHeight)
          {
 
-            iItemHeight = pcolumn->m_sizeIcon.cy() + 2;
+            iItemHeight = pcolumn->m_sizeIcon.cy + 2;
 
          }
 
@@ -1980,14 +1980,14 @@ namespace user
 
       auto pointOffset = get_context_offset();
 
-      information() << "_001CalcDisplayTopIndex pointOffset.y() : " << pointOffset.y();
+      information() << "_001CalcDisplayTopIndex pointOffset.y : " << pointOffset.y;
       information() << "_001CalcDisplayTopIndex m_bHeaderCtrl : " << m_bHeaderCtrl;
       information() << "_001CalcDisplayTopIndex m_dItemHeight : " << m_dItemHeight;
 
       ::collection::index iItem;
 
       if (_001DisplayHitTest(int_point(0,
-         pointOffset.y() + (int) (m_bHeaderCtrl ? m_dItemHeight : 0.)), iItem))
+         pointOffset.y + (int) (m_bHeaderCtrl ? m_dItemHeight : 0.)), iItem))
       {
 
          information() << "_001CalcDisplayTopIndex iItem : " << iItem;
@@ -2001,7 +2001,7 @@ namespace user
          if (m_eview == impact_report)
          {
 
-            if (pointOffset.y() < 0)
+            if (pointOffset.y < 0)
             {
 
                return 0;
@@ -2061,7 +2061,7 @@ namespace user
 
          const ::int_size & sizeItem = get_item_size();
 
-         return maximum((rectangleImpact.width() / sizeItem.cx()) * (rectangleImpact.height() / sizeItem.cy()),
+         return maximum((rectangleImpact.width() / sizeItem.cx) * (rectangleImpact.height() / sizeItem.cy),
                     m_piconlayout->m_iaDisplayToStrict.get_max_a() + 1);
 
       }
@@ -2308,7 +2308,7 @@ namespace user
 
       get_margin_rect(&rectangleMargin);
 
-      auto iLeft = (::collection::index)-pointOffset.x() - (rectangleMargin.left() * 2);
+      auto iLeft = (::collection::index)-pointOffset.x - (rectangleMargin.left * 2);
 
       if (m_bGroup && m_bLateralGroup)
       {
@@ -2321,7 +2321,7 @@ namespace user
 
       //draw_list_item item(this);
 
-      if (point.x() < 0)
+      if (point.x < 0)
       {
 
          return false;
@@ -2344,7 +2344,7 @@ namespace user
 
          iRight = iLeft + pcolumn->m_iWidth;
 
-         if (iLeft <= point.x() && point.x() < iRight)
+         if (iLeft <= point.x && point.x < iRight)
          {
 
             iItemParam = iItem;
@@ -2371,10 +2371,10 @@ namespace user
 //
 //         auto rectangleX = this->rectangle();
 //
-//         if (point.x() < 0
-//               || point.x() > rectangleX.right()
-//               || point.y() < 0
-//               || point.y() > rectangleX.bottom())
+//         if (point.x < 0
+//               || point.x > rectangleX.right
+//               || point.y < 0
+//               || point.y > rectangleX.bottom)
 //         {
 //
 //            return false;
@@ -2388,9 +2388,9 @@ namespace user
 
          //auto pointOffset = get_context_offset();
 
-         //double iy = point.y() + pointOffset.y() + (m_bHeaderCtrl ? -m_dItemHeight : 0);
+         //double iy = point.y + pointOffset.y + (m_bHeaderCtrl ? -m_dItemHeight : 0);
 
-         double iy = point.y() + (m_bHeaderCtrl ? -m_dItemHeight : 0);
+         double iy = point.y + (m_bHeaderCtrl ? -m_dItemHeight : 0);
 
          ::collection::index iItem = -1;
 
@@ -2403,11 +2403,11 @@ namespace user
 
             information() << "impact_report iItem : " << iItem;
 
-            information() << "point.y() : " << point.y();
+            information() << "point.y : " << point.y;
 
 #endif
 
-            //information() << "pointOffset.y() : " << pointOffset.y();
+            //information() << "pointOffset.y : " << pointOffset.y;
 
          }
 
@@ -2459,14 +2459,14 @@ namespace user
          if (m_bTopText)
          {
 
-            rectangleX.top() += m_rectangleTopText.height();
+            rectangleX.top += m_rectangleTopText.height();
 
          }
 
          if (m_bHeaderCtrl)
          {
 
-            rectangleX.top() += (int) m_dItemHeight;
+            rectangleX.top += (int) m_dItemHeight;
 
          }
 
@@ -2485,7 +2485,7 @@ namespace user
          else
          {
 
-            iy = (::collection::index)(point.y() + pointOffset.y());
+            iy = (::collection::index)(point.y + pointOffset.y);
 
          }
 
@@ -2505,7 +2505,7 @@ namespace user
          if(m_iItemWidth > 0)
          {
 
-            iColumn = (int) ((point.x() + pointOffset.x()) / m_iItemWidth);
+            iColumn = (int) ((point.x + pointOffset.x) / m_iItemWidth);
 
          }
 
@@ -2556,7 +2556,7 @@ namespace user
          if (iItem >= m_nItemCount)
          {
 
-            information() << "iItem >= m_nItemCount : pointOffset.y()" << pointOffset.y();
+            information() << "iItem >= m_nItemCount : pointOffset.y" << pointOffset.y;
 
             return false;
 
@@ -2582,7 +2582,7 @@ namespace user
          if (m_bTopText)
          {
 
-            rectangleX.top() += m_rectangleTopText.height();
+            rectangleX.top += m_rectangleTopText.height();
 
          }
 
@@ -2592,29 +2592,29 @@ namespace user
 
          auto pointOffset = get_context_offset();
 
-         auto dx = point.x() + pointOffset.x();
+         auto dx = point.x + pointOffset.x;
 
-         dx = maximum(pointOffset.x(), dx);
+         dx = maximum(pointOffset.x, dx);
 
-         dx = minimum(rectangleX.right(), dx);
+         dx = minimum(rectangleX.right, dx);
 
-         dx = maximum(rectangleX.left(), dx);
+         dx = maximum(rectangleX.left, dx);
 
-         dx /= sizeIconItem.cx();
+         dx /= sizeIconItem.cx;
 
-         auto dy = point.y() + pointOffset.y();
+         auto dy = point.y + pointOffset.y;
 
-         dy = maximum(pointOffset.y(), dy);
+         dy = maximum(pointOffset.y, dy);
 
-         dy = maximum(rectangleX.top(), dy);
+         dy = maximum(rectangleX.top, dy);
 
-         dy /= sizeIconItem.cy();
+         dy /= sizeIconItem.cy;
 
          int ix = (int) dx;
 
          int iy = (int) dy;
 
-         iItemParam =  (::collection::index) (iy * (maximum(1, rectangleX.width() / sizeIconItem.cx())) + ix);
+         iItemParam =  (::collection::index) (iy * (maximum(1, rectangleX.width() / sizeIconItem.cx)) + ix);
 
          return true;
 
@@ -2680,11 +2680,11 @@ namespace user
 
       pdrawlistgroup->m_rectangleGroup.unite(pitemFirst->m_pdrawlistitem->m_rectangleItem, pitemLast->m_pdrawlistitem->m_rectangleItem);
 
-      pdrawlistgroup->m_rectangleGroup.bottom() = maximum(pitemLast->m_pdrawlistitem->m_rectangleItem.bottom(), pitemFirst->m_pdrawlistitem->m_rectangleItem.top() + m_iGroupMinHeight);
+      pdrawlistgroup->m_rectangleGroup.bottom = maximum(pitemLast->m_pdrawlistitem->m_rectangleItem.bottom, pitemFirst->m_pdrawlistitem->m_rectangleItem.top + m_iGroupMinHeight);
 
-      pdrawlistgroup->m_rectangleGroup.left() = 0;
+      pdrawlistgroup->m_rectangleGroup.left = 0;
 
-      pdrawlistgroup->m_rectangleGroup.right() = m_iLateralGroupWidth;
+      pdrawlistgroup->m_rectangleGroup.right = m_iLateralGroupWidth;
 
       pdrawlistgroup->m_bOk = true;
 
@@ -2729,31 +2729,31 @@ namespace user
                if (pdrawitem->m_iRectangleDisplayItem < 0)
                {
 
-                  pdrawitem->m_rectangleItem.left() = m_iLateralGroupWidth;
+                  pdrawitem->m_rectangleItem.left = m_iLateralGroupWidth;
 
-                  pdrawitem->m_rectangleItem.right() = (int)(pdrawitem->m_rectangleItem.left() + m_iItemWidth);
+                  pdrawitem->m_rectangleItem.right = (int)(pdrawitem->m_rectangleItem.left + m_iItemWidth);
 
                   pdrawitem->m_iRectangleDisplayItem = 0;
 
-                  pdrawitem->m_rectangleItem.top() = 0;
+                  pdrawitem->m_rectangleItem.top = 0;
 
                   if (m_bHeaderCtrl)
                   {
 
-                     pdrawitem->m_rectangleItem.top() += (int) (m_dItemHeight);
+                     pdrawitem->m_rectangleItem.top += (int) (m_dItemHeight);
 
                   }
 
                   if (m_bTopText)
                   {
 
-                     pdrawitem->m_rectangleItem.top() += m_rectangleTopText.height();
+                     pdrawitem->m_rectangleItem.top += m_rectangleTopText.height();
 
                   }
 
-                  pdrawitem->m_rectangleItem.bottom() = (int) (pdrawitem->m_rectangleItem.top() + m_dItemHeight);
+                  pdrawitem->m_rectangleItem.bottom = (int) (pdrawitem->m_rectangleItem.top + m_dItemHeight);
 
-              //    pdrawitem->m_rectangleItem.offset(-pointOffset.x(), -pointOffset.y());
+              //    pdrawitem->m_rectangleItem.offset(-pointOffset.x, -pointOffset.y);
 
                }
 
@@ -2762,16 +2762,16 @@ namespace user
 
                //   int iOffset = (int)((pdrawitem->m_iRectangleDisplayItem - pdrawitem->m_iGroupTopDisplayIndex) * m_dItemHeight);
 
-               //   pdrawitem->m_rectangleItem.top() -= iOffset;
+               //   pdrawitem->m_rectangleItem.top -= iOffset;
 
-               //   pdrawitem->m_rectangleItem.bottom() = (int) (pdrawitem->m_rectangleItem.top() + m_dItemHeight);
+               //   pdrawitem->m_rectangleItem.bottom = (int) (pdrawitem->m_rectangleItem.top + m_dItemHeight);
 
                //   while (pdrawitem->m_iGroupTopDisplayIndex + pdrawitem->m_iGroupCount < pdrawitem->m_iDisplayItem)
                //   {
 
-               //      pdrawitem->m_rectangleItem.top() += iOffset;
+               //      pdrawitem->m_rectangleItem.top += iOffset;
 
-               //      pdrawitem->m_rectangleItem.bottom() = (int) (pdrawitem->m_rectangleItem.top() + m_dItemHeight);
+               //      pdrawitem->m_rectangleItem.bottom = (int) (pdrawitem->m_rectangleItem.top + m_dItemHeight);
 
                //      if ((pdrawitem->m_iGroup + 1) >= m_nGroupCount)
                //      {
@@ -2796,9 +2796,9 @@ namespace user
 
                //   int iOffset = (int)((pdrawitem->m_iItemRectItem - pdrawitem->m_iGroupTopDisplayIndex) * m_dItemHeight);
 
-               //   pdrawitem->m_rectangleItem.top() -= iOffset;
+               //   pdrawitem->m_rectangleItem.top -= iOffset;
 
-               //   pdrawitem->m_rectangleItem.bottom() = (int)(pdrawitem->m_rectangleItem.top() + m_dItemHeight);
+               //   pdrawitem->m_rectangleItem.bottom = (int)(pdrawitem->m_rectangleItem.top + m_dItemHeight);
 
                //   while (pdrawitem->m_iGroupTopDisplayIndex + pdrawitem->m_iGroupCount > pdrawitem->m_iDisplayItem)
                //   {
@@ -2814,9 +2814,9 @@ namespace user
 
                //      int dHeight = _001GetGroupHeight(pdrawitem->m_iGroup);
 
-               //      pdrawitem->m_rectangleItem.top() -= dHeight;
+               //      pdrawitem->m_rectangleItem.top -= dHeight;
 
-               //      pdrawitem->m_rectangleItem.bottom() = (int)(pdrawitem->m_rectangleItem.top() + m_dItemHeight);
+               //      pdrawitem->m_rectangleItem.bottom = (int)(pdrawitem->m_rectangleItem.top + m_dItemHeight);
 
                //      pdrawitem->m_iGroupCount = _001GetGroupItemCount(pdrawitem->m_iGroup);
 
@@ -2833,9 +2833,9 @@ namespace user
 
                //   pdrawitem->m_iItemRectItem = pdrawitem->m_iDisplayItem;
 
-               //   pdrawitem->m_rectangleItem.top() += (int)((pdrawitem->m_iItemRectItem - pdrawitem->m_iGroupTopDisplayIndex) * m_dItemHeight);
+               //   pdrawitem->m_rectangleItem.top += (int)((pdrawitem->m_iItemRectItem - pdrawitem->m_iGroupTopDisplayIndex) * m_dItemHeight);
 
-               //   pdrawitem->m_rectangleItem.bottom() = (int)(pdrawitem->m_rectangleItem.top() + m_dItemHeight);
+               //   pdrawitem->m_rectangleItem.bottom = (int)(pdrawitem->m_rectangleItem.top + m_dItemHeight);
 
                //}
 
@@ -2851,29 +2851,29 @@ namespace user
          else
          {
 
-            pdrawitem->m_rectangleItem.left() = 0;
+            pdrawitem->m_rectangleItem.left = 0;
 
-            pdrawitem->m_rectangleItem.right() = (int)m_iItemWidth;
+            pdrawitem->m_rectangleItem.right = (int)m_iItemWidth;
 
-            pdrawitem->m_rectangleItem.top() = 0;
+            pdrawitem->m_rectangleItem.top = 0;
 
             if (m_bHeaderCtrl)
             {
 
-               pdrawitem->m_rectangleItem.top() += (int)(m_dItemHeight);
+               pdrawitem->m_rectangleItem.top += (int)(m_dItemHeight);
 
             }
 
-            pdrawitem->m_rectangleItem.top() += (int)(m_dItemHeight * pdrawitem->m_iDisplayItem);
+            pdrawitem->m_rectangleItem.top += (int)(m_dItemHeight * pdrawitem->m_iDisplayItem);
 
             if (m_bTopText)
             {
 
-               pdrawitem->m_rectangleItem.top() += m_rectangleTopText.height();
+               pdrawitem->m_rectangleItem.top += m_rectangleTopText.height();
 
             }
 
-            pdrawitem->m_rectangleItem.bottom() = (int)(pdrawitem->m_rectangleItem.top() + m_dItemHeight);
+            pdrawitem->m_rectangleItem.bottom = (int)(pdrawitem->m_rectangleItem.top + m_dItemHeight);
 
             pdrawitem->m_iRectangleDisplayItem = pdrawitem->m_iDisplayItem;
 
@@ -2890,14 +2890,14 @@ namespace user
          if (m_bTopText)
          {
 
-            rectangleX.top() += m_rectangleTopText.height();
+            rectangleX.top += m_rectangleTopText.height();
 
          }
 
          if (m_bHeaderCtrl)
          {
 
-            rectangleX.top() += (int)(m_dItemHeight);
+            rectangleX.top += (int)(m_dItemHeight);
 
          }
 
@@ -2919,31 +2919,31 @@ namespace user
 
             int iRow = pdrawitem->m_iItem % iImpactRowCount;
 
-            pdrawitem->m_rectangleItem.left() = iColumn * m_iItemWidth;
+            pdrawitem->m_rectangleItem.left = iColumn * m_iItemWidth;
 
-            pdrawitem->m_rectangleItem.top() = (int)(iRow * m_dItemHeight);
+            pdrawitem->m_rectangleItem.top = (int)(iRow * m_dItemHeight);
 
          }
 
          if (m_bTopText)
          {
 
-            pdrawitem->m_rectangleItem.top() += m_rectangleTopText.height();
+            pdrawitem->m_rectangleItem.top += m_rectangleTopText.height();
 
          }
 
          if (m_bHeaderCtrl)
          {
 
-            pdrawitem->m_rectangleItem.top() += (int)(m_dItemHeight);
+            pdrawitem->m_rectangleItem.top += (int)(m_dItemHeight);
 
          }
 
-         pdrawitem->m_rectangleItem.bottom() = (int)(pdrawitem->m_rectangleItem.top() + m_dItemHeight);
+         pdrawitem->m_rectangleItem.bottom = (int)(pdrawitem->m_rectangleItem.top + m_dItemHeight);
 
-         pdrawitem->m_rectangleItem.right() = (int)(pdrawitem->m_rectangleItem.left() + m_iItemWidth);
+         pdrawitem->m_rectangleItem.right = (int)(pdrawitem->m_rectangleItem.left + m_iItemWidth);
 
-         pdrawitem->m_rectangleItem.offset(-pointOffset.x(), -pointOffset.y());
+         pdrawitem->m_rectangleItem.offset(-pointOffset.x, -pointOffset.y);
 
       }
       else if (m_eview == impact_icon)
@@ -2961,11 +2961,11 @@ namespace user
          if (m_bTopText)
          {
 
-            rectangleX.top() += m_rectangleTopText.height();
+            rectangleX.top += m_rectangleTopText.height();
 
          }
 
-         //::collection::index iIconSize = maximum(32, (*m_pcolumna)[0]->m_sizeIcon.cy());
+         //::collection::index iIconSize = maximum(32, (*m_pcolumna)[0]->m_sizeIcon.cy);
 
          //::collection::index iItemSize = iIconSize * 2;
 
@@ -2973,15 +2973,15 @@ namespace user
 
          auto sizeIconItem = get_list_icon_item_size();
 
-         pdrawitem->m_rectangleItem.left() = (int)(sizeIconItem.cx() * (pdrawitem->m_iDisplayItem % (maximum(1, rectangleX.width() / sizeIconItem.cx()))));
+         pdrawitem->m_rectangleItem.left = (int)(sizeIconItem.cx * (pdrawitem->m_iDisplayItem % (maximum(1, rectangleX.width() / sizeIconItem.cx))));
 
-         pdrawitem->m_rectangleItem.top() = (int)(sizeIconItem.cy() * (pdrawitem->m_iDisplayItem / (maximum(1, rectangleX.width() / sizeIconItem.cx()))));
+         pdrawitem->m_rectangleItem.top = (int)(sizeIconItem.cy * (pdrawitem->m_iDisplayItem / (maximum(1, rectangleX.width() / sizeIconItem.cx))));
 
-         pdrawitem->m_rectangleItem.bottom() = (int)(pdrawitem->m_rectangleItem.top() + sizeIconItem.cx());
+         pdrawitem->m_rectangleItem.bottom = (int)(pdrawitem->m_rectangleItem.top + sizeIconItem.cx);
 
-         pdrawitem->m_rectangleItem.right() = (int)(pdrawitem->m_rectangleItem.left() + sizeIconItem.cy());
+         pdrawitem->m_rectangleItem.right = (int)(pdrawitem->m_rectangleItem.left + sizeIconItem.cy);
 
-         pdrawitem->m_rectangleItem.offset(-pointOffset.x(), -pointOffset.y());
+         pdrawitem->m_rectangleItem.offset(-pointOffset.x, -pointOffset.y);
 
          if (m_bDrag && m_iItemLButtonDown >= 0)
          {
@@ -3043,13 +3043,13 @@ namespace user
 
       pdrawlistsubitem->m_bOk = true;
 
-      pdrawlistsubitem->m_rectangleSubItem.top() = pdrawlistsubitem->m_pitem->m_pdrawlistitem->m_rectangleItem.top();
+      pdrawlistsubitem->m_rectangleSubItem.top = pdrawlistsubitem->m_pitem->m_pdrawlistitem->m_rectangleItem.top;
 
-      pdrawlistsubitem->m_rectangleSubItem.bottom() = pdrawlistsubitem->m_pitem->m_pdrawlistitem->m_rectangleItem.bottom();
+      pdrawlistsubitem->m_rectangleSubItem.bottom = pdrawlistsubitem->m_pitem->m_pdrawlistitem->m_rectangleItem.bottom;
 
-      pdrawlistsubitem->m_rectangleSubItem.left() = pdrawlistsubitem->m_pcolumn->m_iPosition;
+      pdrawlistsubitem->m_rectangleSubItem.left = pdrawlistsubitem->m_pcolumn->m_iPosition;
 
-      pdrawlistsubitem->m_rectangleSubItem.right() = pdrawlistsubitem->m_pcolumn->m_iPosition + pdrawlistsubitem->m_pcolumn->m_iWidth;
+      pdrawlistsubitem->m_rectangleSubItem.right = pdrawlistsubitem->m_pcolumn->m_iPosition + pdrawlistsubitem->m_pcolumn->m_iWidth;
 
       //index iLastOrder = _001GetColumnCount() - 1;
 
@@ -3063,11 +3063,11 @@ namespace user
       //if (pdrawitem->m_iSubItemRectOrder < 0 || pdrawitem->m_iOrder == 0 || pdrawitem->m_iSubItemRectOrder > pdrawitem->m_iOrder)
       //{
       //   pdrawitem->m_iSubItemRectOrder = 0;
-      //   pdrawitem->m_rectangleSubItem.left() = pdrawitem->m_rectangleItem.left();
+      //   pdrawitem->m_rectangleSubItem.left = pdrawitem->m_rectangleItem.left;
       //   pdrawitem->m_iSubItemRectColumn = _001MapOrderToColumn(pdrawitem->m_iOrder);
       //   pdrawitem->m_iColumn = pdrawitem->m_iSubItemRectColumn;
       //   _001GetColumnWidth(pdrawitem);
-      //   pdrawitem->m_rectangleSubItem.right() = pdrawitem->m_rectangleItem.left() + pdrawitem->m_iColumnWidth;
+      //   pdrawitem->m_rectangleSubItem.right = pdrawitem->m_rectangleItem.left + pdrawitem->m_iColumnWidth;
       //   pdrawitem->m_iSubItemRectItem = pdrawitem->m_iItemRectItem;
       //   pdrawitem->m_iSubItemRectSubItem = pdrawitem->m_iSubItem;
       //   if (pdrawitem->m_iOrder == 0)
@@ -3083,13 +3083,13 @@ namespace user
       //   {
       //      pdrawitem->m_iColumn = _001MapOrderToColumn(pdrawitem->m_iSubItemRectOrder);
       //      _001GetColumnWidth(pdrawitem);
-      //      pdrawitem->m_rectangleSubItem.left() += pdrawitem->m_iColumnWidth;
+      //      pdrawitem->m_rectangleSubItem.left += pdrawitem->m_iColumnWidth;
       //      pdrawitem->m_iSubItemRectOrder++;
       //   }
       //   pdrawitem->m_iColumn = _001MapOrderToColumn(pdrawitem->m_iSubItemRectOrder);
       //   pdrawitem->m_iSubItemRectColumn = pdrawitem->m_iColumn;
       //   _001GetColumnWidth(pdrawitem);
-      //   pdrawitem->m_rectangleSubItem.right() = pdrawitem->m_rectangleSubItem.left() + pdrawitem->m_iColumnWidth;
+      //   pdrawitem->m_rectangleSubItem.right = pdrawitem->m_rectangleSubItem.left + pdrawitem->m_iColumnWidth;
       //   pdrawitem->m_iSubItemRectOrder = pdrawitem->m_iOrder;
       //   pdrawitem->m_iSubItemRectItem = pdrawitem->m_iItemRectItem;
       //   pdrawitem->m_iSubItemRectSubItem = pdrawitem->m_iSubItem;
@@ -3161,10 +3161,10 @@ namespace user
 
             auto sizeIconItem = get_list_icon_item_size();
 
-            pdrawlistsubitem->m_rectangleImage.left() = pdrawlistsubitem->m_pitem->m_pdrawlistitem->m_rectangleItem.left() + (sizeIconItem.cx() - sizeIcon.cx()) / 2;
-            pdrawlistsubitem->m_rectangleImage.top() = pdrawlistsubitem->m_pitem->m_pdrawlistitem->m_rectangleItem.top();
-            pdrawlistsubitem->m_rectangleImage.right() = pdrawlistsubitem->m_rectangleImage.left() + sizeIcon.cx();
-            pdrawlistsubitem->m_rectangleImage.bottom() = pdrawlistsubitem->m_rectangleImage.top() + sizeIcon.cy();
+            pdrawlistsubitem->m_rectangleImage.left = pdrawlistsubitem->m_pitem->m_pdrawlistitem->m_rectangleItem.left + (sizeIconItem.cx - sizeIcon.cx) / 2;
+            pdrawlistsubitem->m_rectangleImage.top = pdrawlistsubitem->m_pitem->m_pdrawlistitem->m_rectangleItem.top;
+            pdrawlistsubitem->m_rectangleImage.right = pdrawlistsubitem->m_rectangleImage.left + sizeIcon.cx;
+            pdrawlistsubitem->m_rectangleImage.bottom = pdrawlistsubitem->m_rectangleImage.top + sizeIcon.cy;
 
             return_(pdrawlistsubitem->m_bOk, true);
 
@@ -3176,10 +3176,10 @@ namespace user
 
             auto sizeIconItem = get_list_icon_item_size();
 
-            pdrawlistsubitem->m_rectangleText.left() = pdrawlistsubitem->m_pitem->m_pdrawlistitem->m_rectangleItem.left();
-            pdrawlistsubitem->m_rectangleText.top() = pdrawlistsubitem->m_pitem->m_pdrawlistitem->m_rectangleItem.top() + sizeIcon.cy();
-            pdrawlistsubitem->m_rectangleText.right() = pdrawlistsubitem->m_rectangleText.left() + sizeIconItem.cx();
-            pdrawlistsubitem->m_rectangleText.bottom() = pdrawlistsubitem->m_rectangleText.top() + sizeIcon.cy();
+            pdrawlistsubitem->m_rectangleText.left = pdrawlistsubitem->m_pitem->m_pdrawlistitem->m_rectangleItem.left;
+            pdrawlistsubitem->m_rectangleText.top = pdrawlistsubitem->m_pitem->m_pdrawlistitem->m_rectangleItem.top + sizeIcon.cy;
+            pdrawlistsubitem->m_rectangleText.right = pdrawlistsubitem->m_rectangleText.left + sizeIconItem.cx;
+            pdrawlistsubitem->m_rectangleText.bottom = pdrawlistsubitem->m_rectangleText.top + sizeIcon.cy;
 
             return_(pdrawlistsubitem->m_bOk, true);
 
@@ -3200,7 +3200,7 @@ namespace user
 
       }
 
-      int x = pdrawlistsubitem->m_rectangleSubItem.left();
+      int x = pdrawlistsubitem->m_rectangleSubItem.left;
 
       //if (pdrawitem->m_iListItem == -1)
       {
@@ -3230,9 +3230,9 @@ namespace user
 
                      ::int_rectangle rectangleAlign(pdrawlistsubitem->m_rectangleSubItem);
 
-                     rectangleAlign.left() = x;
+                     rectangleAlign.left = x;
                      ::int_rectangle rectangleIcon;
-                     rectangleIcon.set(0, 0, pdrawlistsubitem->m_pcolumn->m_sizeIcon.cx(), pdrawlistsubitem->m_pcolumn->m_sizeIcon.cy());
+                     rectangleIcon.set(0, 0, pdrawlistsubitem->m_pcolumn->m_sizeIcon.cx, pdrawlistsubitem->m_pcolumn->m_sizeIcon.cy);
                      rectangleIcon.Align(e_align_left_center, rectangleAlign);
                      pdrawlistsubitem->m_rectangleImage = rectangleIcon;
 
@@ -3242,7 +3242,7 @@ namespace user
                   else
                   {
 
-                     x += pdrawlistsubitem->m_pcolumn->m_sizeIcon.cx();
+                     x += pdrawlistsubitem->m_pcolumn->m_sizeIcon.cx;
 
                      x += m_iImageSpacing;
 
@@ -3257,7 +3257,7 @@ namespace user
                }
 
             }
-            else if (pdrawlistsubitem->m_pcolumn->m_pimagelist != nullptr)
+            else if (::is_ok(pdrawlistsubitem->m_pcolumn->m_pimagelist))
             {
 
                ::image::image_list::info ii;
@@ -3279,19 +3279,19 @@ namespace user
                   {
 
                      ::int_rectangle rectangleAlign(pdrawlistsubitem->m_rectangleSubItem);
-                     rectangleAlign.left() = x;
+                     rectangleAlign.left = x;
                      ::int_rectangle rectangleIcon;
                      rectangleIcon.set(0, 0, ii.m_rectangle.width(), ii.m_rectangle.height());
                      rectangleIcon.Align(e_align_left_center, rectangleAlign);
                      pdrawlistsubitem->m_rectangleImage = rectangleIcon;
 
-                     if (ii.m_rectangle.size().cx() > m_sizeMaximumImage.cx() 
-                        || ii.m_rectangle.size().cy() > m_sizeMaximumImage.cy())
+                     if (ii.m_rectangle.size().cx > m_sizeMaximumImage.cx 
+                        || ii.m_rectangle.size().cy > m_sizeMaximumImage.cy)
                      {
 
-                        m_sizeMaximumImage.cx() = maximum(m_sizeMaximumImage.cx(), ii.m_rectangle.size().cx());
+                        m_sizeMaximumImage.cx = maximum(m_sizeMaximumImage.cx, ii.m_rectangle.size().cx);
 
-                        m_sizeMaximumImage.cy() = maximum(m_sizeMaximumImage.cy(), ii.m_rectangle.size().cy());
+                        m_sizeMaximumImage.cy = maximum(m_sizeMaximumImage.cy, ii.m_rectangle.size().cy);
 
                         set_need_layout();
 
@@ -3330,10 +3330,10 @@ namespace user
          if (eelement == ::user::mesh::e_element_text)
          {
 
-            pdrawlistsubitem->m_rectangleText.left() = x;
-            pdrawlistsubitem->m_rectangleText.right() = pdrawlistsubitem->m_rectangleSubItem.right();
-            pdrawlistsubitem->m_rectangleText.top() = pdrawlistsubitem->m_rectangleSubItem.top();
-            pdrawlistsubitem->m_rectangleText.bottom() = pdrawlistsubitem->m_rectangleSubItem.bottom();
+            pdrawlistsubitem->m_rectangleText.left = x;
+            pdrawlistsubitem->m_rectangleText.right = pdrawlistsubitem->m_rectangleSubItem.right;
+            pdrawlistsubitem->m_rectangleText.top = pdrawlistsubitem->m_rectangleSubItem.top;
+            pdrawlistsubitem->m_rectangleText.bottom = pdrawlistsubitem->m_rectangleSubItem.bottom;
 
             return_(pdrawlistsubitem->m_bOk, true);
 
@@ -3352,9 +3352,9 @@ namespace user
       if (m_bGroup && m_bLateralGroup && (egroupelement == ::user::list::e_group_element_image || egroupelement == ::user::list::e_group_element_item_text))
       {
 
-         int x = pdrawlistgroup->m_rectangleGroup.left();
+         int x = pdrawlistgroup->m_rectangleGroup.left;
 
-         int iImageBottom = pdrawlistgroup->m_rectangleGroup.top();
+         int iImageBottom = pdrawlistgroup->m_rectangleGroup.top;
 
          if (m_pimagelistGroup != nullptr)
          {
@@ -3371,10 +3371,10 @@ namespace user
                if (egroupelement == ::user::list::e_group_element_image)
                {
 
-                  pdrawlistgroup->m_rectangleImage.left() = x;
-                  pdrawlistgroup->m_rectangleImage.right() = x + ii.m_rectangle.width();
-                  pdrawlistgroup->m_rectangleImage.top() = pdrawlistgroup->m_rectangleGroup.top();
-                  pdrawlistgroup->m_rectangleImage.bottom() = pdrawlistgroup->m_rectangleImage.top() + ii.m_rectangle.height();
+                  pdrawlistgroup->m_rectangleImage.left = x;
+                  pdrawlistgroup->m_rectangleImage.right = x + ii.m_rectangle.width();
+                  pdrawlistgroup->m_rectangleImage.top = pdrawlistgroup->m_rectangleGroup.top;
+                  pdrawlistgroup->m_rectangleImage.bottom = pdrawlistgroup->m_rectangleImage.top + ii.m_rectangle.height();
 
                   return_(pdrawlistgroup->m_bOk, true);
 
@@ -3409,24 +3409,24 @@ namespace user
          if (egroupelement == ::user::list::e_group_element_item_text)
          {
 
-            pdrawlistgroup->m_rectangleText.top() = (int)(pdrawlistgroup->m_rectangleGroup.top() + m_dItemHeight * pdrawlistgroup->m_iItem);
+            pdrawlistgroup->m_rectangleText.top = (int)(pdrawlistgroup->m_rectangleGroup.top + m_dItemHeight * pdrawlistgroup->m_iItem);
 
-            if (pdrawlistgroup->m_rectangleText.top() >= iImageBottom)
+            if (pdrawlistgroup->m_rectangleText.top >= iImageBottom)
             {
 
-               pdrawlistgroup->m_rectangleText.left() = pdrawlistgroup->m_rectangleGroup.left();
+               pdrawlistgroup->m_rectangleText.left = pdrawlistgroup->m_rectangleGroup.left;
 
             }
             else
             {
 
-               pdrawlistgroup->m_rectangleText.left() = x;
+               pdrawlistgroup->m_rectangleText.left = x;
 
             }
 
-            pdrawlistgroup->m_rectangleText.right() = pdrawlistgroup->m_rectangleGroup.right();
+            pdrawlistgroup->m_rectangleText.right = pdrawlistgroup->m_rectangleGroup.right;
 
-            pdrawlistgroup->m_rectangleText.bottom() = (int)(pdrawlistgroup->m_rectangleText.top() + m_dItemHeight);
+            pdrawlistgroup->m_rectangleText.bottom = (int)(pdrawlistgroup->m_rectangleText.top + m_dItemHeight);
 
             return_(pdrawlistgroup->m_bOk, true);
 
@@ -3656,7 +3656,7 @@ namespace user
 
                auto rectangleX = this->rectangle();
 
-               //::collection::index iIconSize = maximum(32, (*m_pcolumna)[0]->m_sizeIcon.cy());
+               //::collection::index iIconSize = maximum(32, (*m_pcolumna)[0]->m_sizeIcon.cy);
 
                //::collection::index iItemSize = iIconSize * 2;
 
@@ -3664,7 +3664,7 @@ namespace user
 
                auto sizeIconItem = get_list_icon_item_size();
 
-               ::collection::count iItemColumnCount = maximum(1, rectangleX.width() / sizeIconItem.cx());
+               ::collection::count iItemColumnCount = maximum(1, rectangleX.width() / sizeIconItem.cx);
 
                m_pointLButtonUp = point;
 
@@ -4094,9 +4094,9 @@ namespace user
 
                index_item_rectangle(&item);
 
-               payload("offx") = point.x() - item.m_rectangleItem.left();
+               payload("offx") = point.x - item.m_rectangleItem.left;
 
-               payload("offy") = point.y() - item.m_rectangleItem.top();
+               payload("offy") = point.y - item.m_rectangleItem.top;
 
                if (!m_rangeSelection.has_item(item.m_iDisplayItem))
                {
@@ -4705,7 +4705,7 @@ namespace user
       auto pointOffset = get_context_offset();
 
       m_plistheader->order_top();
-      //m_plistheader->move_to(-pointOffset.x(), 0);
+      //m_plistheader->move_to(-pointOffset.x, 0);
       m_plistheader->display();
 
    }
@@ -5792,30 +5792,30 @@ namespace user
       m_pgraphicsextension->get_text_extent(pgraphics, m_strTopText, sizea);
       auto rectangleX = this->rectangle();
       ::collection::index x = 0;
-      ::collection::index right = rectangleX.right();
+      ::collection::index right = rectangleX.right;
       ::collection::index y = 0;
       for (::collection::index i = 0; i < sizea.get_size(); i++)
       {
-         if ((sizea[i].cx() - x > right)
+         if ((sizea[i].cx - x > right)
                || i == sizea.get_upper_bound())
          {
             if (i == 0)
             {
-               x = (::collection::index) (sizea[0].cx());
-               y += (::collection::index) (sizea[0].cy());
+               x = (::collection::index) (sizea[0].cx);
+               y += (::collection::index) (sizea[0].cy);
             }
             else
             {
-               x = (::collection::index) (sizea[i - 1].cx());
-               y += (::collection::index) (sizea[i - 1].cy());
+               x = (::collection::index) (sizea[i - 1].cx);
+               y += (::collection::index) (sizea[i - 1].cy);
             }
          }
       }
 
-      m_rectangleTopText.left() = 0;
-      m_rectangleTopText.top() = 0;
-      m_rectangleTopText.right() = rectangleX.right();
-      m_rectangleTopText.bottom() = (int)y;
+      m_rectangleTopText.left = 0;
+      m_rectangleTopText.top = 0;
+      m_rectangleTopText.right = rectangleX.right;
+      m_rectangleTopText.bottom = (int)y;
 
 
    }
@@ -5964,7 +5964,7 @@ namespace user
 
          m_pgraphicsextension->get_text_extent(pgraphics, psubitem->m_strText, size);
 
-         cx += (::collection::index) (size.cx());
+         cx += (::collection::index) (size.cx);
 
       }
 
@@ -6135,16 +6135,16 @@ namespace user
 
       if (m_dItemHeight > 0
             &&
-            (iItem < pointOffset.y() / m_dItemHeight ||
-             iItem >= pointOffset.y() / m_dItemHeight + m_nDisplayCount))
+            (iItem < pointOffset.y / m_dItemHeight ||
+             iItem >= pointOffset.y / m_dItemHeight + m_nDisplayCount))
       {
 
-         pointOffset.y() = iItem * m_dItemHeight;
+         pointOffset.y = iItem * m_dItemHeight;
 
          //queue_graphics_call([this, pointOffset](::draw2d::graphics_pointer & pgraphics)
            // {
 
-               set_context_offset_y(pointOffset.y());
+               set_context_offset_y(pointOffset.y);
 
               // on_change_context_offset(pgraphics);
 
@@ -6170,13 +6170,13 @@ namespace user
 
          auto pointOffset = get_context_offset();
 
-         pointOffset.y() = iItem * m_dItemHeight;
+         pointOffset.y = iItem * m_dItemHeight;
 
          //queue_graphics_call([this, pointOffset](::draw2d::graphics_pointer & pgraphics)
            // {
 
-         set_context_offset_y(pointOffset.y());
-               //set_context_offset_y(pgraphics, pointOffset.y());
+         set_context_offset_y(pointOffset.y);
+               //set_context_offset_y(pgraphics, pointOffset.y);
 
               // on_change_context_offset(pgraphics);
 
@@ -6199,7 +6199,7 @@ namespace user
 
       auto pointOffset = get_context_offset();
 
-      ::collection::index iyScroll = (::collection::index) ( pointOffset.y() / maximum(1, m_dItemHeight));
+      ::collection::index iyScroll = (::collection::index) ( pointOffset.y / maximum(1, m_dItemHeight));
 
       if (iItem < iyScroll)
       {
@@ -6214,12 +6214,12 @@ namespace user
 
       }
 
-      if (pointOffset.y() / maximum(1, m_dItemHeight) != iyScroll)
+      if (pointOffset.y / maximum(1, m_dItemHeight) != iyScroll)
       {
 
          item_range item;
 
-         pointOffset.y() = (int)(iyScroll * m_dItemHeight);
+         pointOffset.y = (int)(iyScroll * m_dItemHeight);
 
          //queue_graphics_call([this](::draw2d::graphics_pointer & pgraphics)
            // {
@@ -6917,7 +6917,7 @@ namespace user
 
       m_nDisplayCount = _001CalcDisplayItemCount();
 
-      if (m_iTopDisplayIndex < 0 && m_dItemHeight > 0 && m_eview == impact_report && point.y() != 0 && m_nDisplayCount > 0)
+      if (m_iTopDisplayIndex < 0 && m_dItemHeight > 0 && m_eview == impact_report && point.y != 0 && m_nDisplayCount > 0)
       {
 
          ::int_rectangle rectangleScroll;
@@ -6929,23 +6929,23 @@ namespace user
 
             pscrollbar->window_rectangle(rectangleScroll);
 
-            if (point.y() > (_001GetItemCount() - m_nDisplayCount) * m_dItemHeight + (m_bHeaderCtrl ? m_dItemHeight : 0))
+            if (point.y > (_001GetItemCount() - m_nDisplayCount) * m_dItemHeight + (m_bHeaderCtrl ? m_dItemHeight : 0))
             {
 
-               point.y() = (int) ((_001GetItemCount() - m_nDisplayCount) * m_dItemHeight + (m_bHeaderCtrl ? m_dItemHeight : 0));
+               point.y = (int) ((_001GetItemCount() - m_nDisplayCount) * m_dItemHeight + (m_bHeaderCtrl ? m_dItemHeight : 0));
 
             }
 
-            if (point.y() < 0)
+            if (point.y < 0)
             {
 
-               point.y() = 0;
+               point.y = 0;
 
             }
 
-            //m_pointScroll.y() = point.y();
+            //m_pointScroll.y = point.y;
 
-            set_context_offset_y(point.y());
+            set_context_offset_y(point.y);
 
             m_iTopDisplayIndex = _001CalcDisplayTopIndex();
 
@@ -7243,7 +7243,7 @@ namespace user
 
             auto rectangleX = this->rectangle();
 
-            //::collection::index iIconSize = maximum(32, (*m_pcolumna)[0]->m_sizeIcon.cy());
+            //::collection::index iIconSize = maximum(32, (*m_pcolumna)[0]->m_sizeIcon.cy);
 
             //::collection::index iItemSize = iIconSize * 2;
 
@@ -7251,7 +7251,7 @@ namespace user
 
             auto sizeIconItem = get_list_icon_item_size();
 
-            int iItemColumnCount = (int)maximum(1, rectangleX.width() / sizeIconItem.cx());
+            int iItemColumnCount = (int)maximum(1, rectangleX.width() / sizeIconItem.cx);
 
             ::collection::index iCol1 = iDisplayDrag % iItemColumnCount;
 
@@ -7405,7 +7405,7 @@ namespace user
 
          }
 
-         //::collection::index iIconSize = maximum(32, (*m_pcolumna)[0]->m_sizeIcon.cy());
+         //::collection::index iIconSize = maximum(32, (*m_pcolumna)[0]->m_sizeIcon.cy);
 
          //::collection::index iItemSize = iIconSize * 2;
 
@@ -7443,7 +7443,7 @@ namespace user
 
       int cx = pwindowing->system_metrics_get_cx_icon() / 2 * 3;
 
-      int cxIcon = sizeIcon.cx() * cxSpacing / cx;
+      int cxIcon = sizeIcon.cx * cxSpacing / cx;
 
       int iColumnCount = get_rectangle().width() / cxIcon;
 
@@ -7462,19 +7462,19 @@ namespace user
 
       }
    
-      sizeIconItem.cx() = cxIconSpacing;
+      sizeIconItem.cx = cxIconSpacing;
 
       int cySpacing = pwindowing->system_metrics_get_cy_icon_spacing();
 
       int cy = pwindowing->system_metrics_get_cy_icon() /2*3;
 
-      sizeIconItem.cy() = sizeIcon.cy() * cySpacing / cy;
+      sizeIconItem.cy = sizeIcon.cy * cySpacing / cy;
 
       int cyCaption = pwindowing->system_metrics_get_cy_caption();
 
-      int cyCaptionScaled = sizeIcon.cy() * cyCaption / cy;
+      int cyCaptionScaled = sizeIcon.cy * cyCaption / cy;
 
-      sizeIconItem.cy() += cyCaptionScaled;
+      sizeIconItem.cy += cyCaptionScaled;
 
       return sizeIconItem;
 
@@ -7486,9 +7486,9 @@ namespace user
 
       ::int_size sizeIcon;
 
-      sizeIcon.cx() = maximum(32, (*m_pcolumna)[0]->m_sizeIcon.cx());
+      sizeIcon.cx = maximum(32, (*m_pcolumna)[0]->m_sizeIcon.cx);
 
-      sizeIcon.cy() = maximum(32, (*m_pcolumna)[0]->m_sizeIcon.cy());
+      sizeIcon.cy = maximum(32, (*m_pcolumna)[0]->m_sizeIcon.cy);
 
       return sizeIcon;
 
@@ -7811,7 +7811,7 @@ namespace user
 //
 //            screen_to_client(rectangleXHeader);
 //
-//            rectangleX.top() = rectangleXHeader.bottom();
+//            rectangleX.top = rectangleXHeader.bottom;
 //
 //            pgraphics->IntersectClipRect(rectangleX);
 //
@@ -7915,7 +7915,7 @@ namespace user
 
       //   screen_to_client(rectangleX);
 
-      //   prectangle->top() += rectangleX.bottom();
+      //   prectangle->top += rectangleX.bottom;
 
 
       //}

@@ -2,7 +2,7 @@
 #include "acme/platform/system.h"
 #include "acme/_operating_system.h"
 #include <time.h>
-//#include "apex/primitive/mathematics/prime100k.h"
+//#include "apex/prototype/mathematics/prime100k.h"
 #ifdef LINUX
 
 #endif

@@ -145,7 +145,7 @@ namespace experience
    void control_box::drag(const ::int_point & point)
    {
 
-      //int x = point.x() - m_pointDrag.x();
+      //int x = point.x - m_pointDrag.x;
 
       //if (x < 0)
       //{
@@ -168,19 +168,19 @@ namespace experience
 
       //get_parent()->screen_to_client(rectangleWindow);
 
-      //m_pframewindow->m_pframe->m_iControlBoxRight = rectangleParent.right() - x - rectangleWindow.width();
+      //m_pframewindow->m_pframe->m_iControlBoxRight = rectangleParent.right - x - rectangleWindow.width();
 
       //m_pframewindow->m_pframe->get_control_box_rect()->move_left_to(x);
 
       //x = m_pframewindow->m_pframe->calc_control_box_left(true);
 
-      //::int_point point(x, rectangleWindow.top());
+      //::int_point point(x, rectangleWindow.top);
 
       //::int_point pointScreen(point);
 
       //get_parent()->client_to_screen(pointScreen);
 
-      //m_pframewindow->m_pframe->m_iControlBoxRight = rectangleParent.right() - point.x() - rectangleWindow.width();
+      //m_pframewindow->m_pframe->m_iControlBoxRight = rectangleParent.right - point.x - rectangleWindow.width();
 
       //int iControlBoxRight = m_pframewindow->m_pframe->m_iControlBoxRight;
 
@@ -300,9 +300,9 @@ namespace experience
 
                      auto rectangleHost = host_rectangle();
 
-                     if (pointCursorHost.x() >= rectangleHost.left()
-                     && pointCursorHost.x() <= rectangleHost.right() &&
-                        pointCursorHost.y() == 0)
+                     if (pointCursorHost.x >= rectangleHost.left
+                     && pointCursorHost.x <= rectangleHost.right &&
+                        pointCursorHost.y == 0)
                      {
 
                         order(e_zorder_top);
@@ -326,9 +326,9 @@ namespace experience
 
                auto rectangleHost = host_rectangle();
 
-               if (pointCursorHost.x() >= rectangleHost.left()
-                   && pointCursorHost.x() <= rectangleHost.right() &&
-                   pointCursorHost.y() == 0)
+               if (pointCursorHost.x >= rectangleHost.left
+                   && pointCursorHost.x <= rectangleHost.right &&
+                   pointCursorHost.y == 0)
                {
 
                   m_bShowAttempt = true;
@@ -576,23 +576,23 @@ namespace experience
 
          auto rectangleMargin = get_button_margin(ebutton);
 
-         rectangle.right() = rectangle.left() - rectangleMargin.right();
+         rectangle.right = rectangle.left - rectangleMargin.right;
 
-         rectangle.left() = rectangle.right() - sizeButton.cx();
+         rectangle.left = rectangle.right - sizeButton.cx;
 
-         if (rectangle.left() > 400)
+         if (rectangle.left > 400)
          {
 
-            informationf("rectangle.left() > 400");
+            informationf("rectangle.left > 400");
 
          }
 
          if (pbutton)
          {
 
-            rectangle.top() = rectangleMargin.top();
+            rectangle.top = rectangleMargin.top;
 
-            rectangle.bottom() = rectangle.top() + sizeButton.cy();
+            rectangle.bottom = rectangle.top + sizeButton.cy;
 
             pbutton->order(e_zorder_top);
 
@@ -606,7 +606,7 @@ namespace experience
 
          }
 
-         rectangle.left() -= rectangleMargin.left();
+         rectangle.left -= rectangleMargin.left;
 
       }
       else
@@ -656,7 +656,7 @@ namespace experience
 
 //      int iWidth = rectangleX.width();
 //
-      rectangle.left() = rectangle.right();
+      rectangle.left = rectangle.right;
 
       _layout_button(e_button_close, rectangle);
 
@@ -1055,10 +1055,10 @@ namespace experience
 
       ::int_rectangle rectangleMargin;
 
-      rectangleMargin.left() = 0;
-      rectangleMargin.top() = m_iDefaultButtonMargin;
-      rectangleMargin.right() = m_iDefaultButtonMargin;
-      rectangleMargin.bottom() = m_iDefaultButtonMargin;
+      rectangleMargin.left = 0;
+      rectangleMargin.top = m_iDefaultButtonMargin;
+      rectangleMargin.right = m_iDefaultButtonMargin;
+      rectangleMargin.bottom = m_iDefaultButtonMargin;
 
       return rectangleMargin;
 
@@ -1190,7 +1190,7 @@ namespace experience
 
       m_pframewindow->screen_to_client()(rectangle);
 
-      m_pframewindow->m_pframe->m_bControlBoxAlignRight = rectangle.center().x() > (rectangleWindow.width() / 2);
+      m_pframewindow->m_pframe->m_bControlBoxAlignRight = rectangle.center().x > (rectangleWindow.width() / 2);
 
 //      if (rectangle != *m_pframewindow->m_pframe->get_control_box_rect())
 //      {
@@ -1261,8 +1261,8 @@ namespace experience
 //
 //            this->rectangle(rectangleX);
 //
-//            rectangleX.bottom()++;
-//            rectangleX.right()++;
+//            rectangleX.bottom++;
+//            rectangleX.right++;
 //
 //            rectangleClip = rectangleX;
 //

@@ -140,7 +140,7 @@ namespace console_integration
       void x265::insert_cmp0091_new_in_cmake()
       {
 
-         auto pathCMakeLists = directory_system()->get_current() / "source/CMakeLists.txt";
+         auto pathCMakeLists = directory_system()->current() / "source/CMakeLists.txt";
 
          auto straLines = file_system()->lines(pathCMakeLists);
 

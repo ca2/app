@@ -61,7 +61,7 @@ void message_box::on_draw(::nano::graphics::device * pnanodevice)
 
    get_client_rectangle(rectangleText);
 
-   rectangleText.bottom() = rectangleText.top() + rectangleText.height() * 3 / 4;
+   rectangleText.bottom = rectangleText.top + rectangleText.height() * 3 / 4;
 
    rectangleText.deflate(25);
 
@@ -70,7 +70,7 @@ void message_box::on_draw(::nano::graphics::device * pnanodevice)
 
       pnanodevice->draw(m_picon, 25, 25, 48, 48);
 
-      rectangleText.left() += 48+10;
+      rectangleText.left += 48+10;
 
    }
 
@@ -155,9 +155,9 @@ void message_box::calculate_size()
 
    //operating_system_get_main_screen_size(wScreen, hScreen);
 
-   auto wScreen = sizeScreen.cx();
+   auto wScreen = sizeScreen.cx;
 
-   auto hScreen = sizeScreen.cy();
+   auto hScreen = sizeScreen.cy;
 
    //printf("message_box::calculate_size (wScreen,hScreen)=%d,%d\n", wScreen, hScreen);
 
@@ -257,12 +257,12 @@ void message_box::initialize_conversation(const ::scoped_string & scopedstrMessa
 
       auto pnanobutton = m_nanobuttona[iButton];
 
-      pnanobutton->m_rectangle.bottom() = iBottom;
-      pnanobutton->m_rectangle.top() = pnanobutton->m_rectangle.bottom() - hButton;
-      pnanobutton->m_rectangle.right() = iRight;
-      pnanobutton->m_rectangle.left() = pnanobutton->m_rectangle.right() - wButton;
+      pnanobutton->m_rectangle.bottom = iBottom;
+      pnanobutton->m_rectangle.top = pnanobutton->m_rectangle.bottom - hButton;
+      pnanobutton->m_rectangle.right = iRight;
+      pnanobutton->m_rectangle.left = pnanobutton->m_rectangle.right - wButton;
 
-      iRight = pnanobutton->m_rectangle.left() - wSpacing;
+      iRight = pnanobutton->m_rectangle.left - wSpacing;
 
    }
 
@@ -341,7 +341,7 @@ void message_box::on_create_window()
 
       m_pstillDetails->resize_to_fit();
 
-      m_pstillDetails->m_rectangle.move_bottom_to(m_nanobuttona[0]->m_rectangle.bottom());
+      m_pstillDetails->m_rectangle.move_bottom_to(m_nanobuttona[0]->m_rectangle.bottom);
 
       m_pstillDetails->m_rectangle.move_left_to(x);
 
@@ -446,7 +446,7 @@ void message_box::on_click(const ::payload& payload, ::user::mouse * pmouse)
 void message_box::on_right_click(const ::payload& payload, ::user::mouse * pmouse)
 {
 
-   if (pmouse->m_pointHost.y() < 48)
+   if (pmouse->m_pointHost.y < 48)
    {
 
       m_pwindowbase->defer_show_system_menu(pmouse);
@@ -471,7 +471,7 @@ void message_box::on_right_click(const ::payload& payload, ::user::mouse * pmous
 
    };
 
-   pbutton->initialize_popup_button("Dump to File...", pmouse->m_pointAbsolute.x(), pmouse->m_pointAbsolute.y());
+   pbutton->initialize_popup_button("Dump to File...", pmouse->m_pointAbsolute.x, pmouse->m_pointAbsolute.y);
 
    pbutton->do_asynchronously();
 

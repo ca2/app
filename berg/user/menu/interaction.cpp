@@ -89,8 +89,8 @@ namespace user
          pgraphics->set(ppen);
 
          pgraphics->line(
-            rectangleX.left(), (rectangleX.top() + rectangleX.bottom()) / 2,
-            rectangleX.right(), (rectangleX.top() + rectangleX.bottom()) / 2);
+            rectangleX.left, (rectangleX.top + rectangleX.bottom) / 2,
+            rectangleX.right, (rectangleX.top + rectangleX.bottom) / 2);
 
          return;
 
@@ -111,21 +111,21 @@ namespace user
          pgraphics->set(ppen);
          pgraphics->set(pbrush);
          ::int_rectangle rectanglePopupArrow;
-         rectanglePopupArrow.left() = rectangleX.right() - 9;
-         rectanglePopupArrow.right() = rectangleX.right() - 4;
-         rectanglePopupArrow.top() = ((rectangleX.top() + rectangleX.bottom()) / 2) - 4;
-         rectanglePopupArrow.bottom() = ((rectangleX.top() + rectangleX.bottom()) / 2) + 4;
+         rectanglePopupArrow.left = rectangleX.right - 9;
+         rectanglePopupArrow.right = rectangleX.right - 4;
+         rectanglePopupArrow.top = ((rectangleX.top + rectangleX.bottom) / 2) - 4;
+         rectanglePopupArrow.bottom = ((rectangleX.top + rectangleX.bottom) / 2) + 4;
          double_point_array pointa;
 
-         pointa.add(int_point(rectanglePopupArrow.left(), rectanglePopupArrow.bottom()));
+         pointa.add(int_point(rectanglePopupArrow.left, rectanglePopupArrow.bottom));
 
-         pointa.add(int_point(rectanglePopupArrow.right(), (rectanglePopupArrow.bottom() + rectanglePopupArrow.top()) / 2));
+         pointa.add(int_point(rectanglePopupArrow.right, (rectanglePopupArrow.bottom + rectanglePopupArrow.top) / 2));
 
-         pointa.add(int_point(rectanglePopupArrow.left(), rectanglePopupArrow.top()));
+         pointa.add(int_point(rectanglePopupArrow.left, rectanglePopupArrow.top));
 
 
 
-         pointa.add(int_point(rectanglePopupArrow.left(), rectanglePopupArrow.bottom()));
+         pointa.add(int_point(rectanglePopupArrow.left, rectanglePopupArrow.bottom));
          pgraphics->polygon(pointa);
 
       }
@@ -216,26 +216,26 @@ namespace user
 
       auto rectanglePadding = get_padding(pstyle);
 
-      size.cx() += rectangleMargin.left() + rectangleBorder.left() + rectanglePadding.left();
+      size.cx += rectangleMargin.left + rectangleBorder.left + rectanglePadding.left;
 
-      size.cx() += m_pmenuitem->m_pmenu->m_dCheckBoxSize;
+      size.cx += m_pmenuitem->m_pmenu->m_dCheckBoxSize;
 
-      size.cx() += rectanglePadding.left();
+      size.cx += rectanglePadding.left;
 
       if (m_pmenuitem->is_popup())
       {
 
-         size.cx() += rectanglePadding.left();
+         size.cx += rectanglePadding.left;
 
-         size.cx() += m_pmenuitem->m_pmenu->m_dCheckBoxSize;
+         size.cx += m_pmenuitem->m_pmenu->m_dCheckBoxSize;
 
       }
 
-      size.cx() += rectangleMargin.right() + rectangleBorder.right() + rectanglePadding.right();
+      size.cx += rectangleMargin.right + rectangleBorder.right + rectanglePadding.right;
 
-      size.cy() += rectangleMargin.top() + rectangleBorder.top() + rectanglePadding.top();
+      size.cy += rectangleMargin.top + rectangleBorder.top + rectanglePadding.top;
 
-      size.cy() += rectangleMargin.bottom() + rectangleBorder.bottom() + rectanglePadding.bottom();
+      size.cy += rectangleMargin.bottom + rectangleBorder.bottom + rectanglePadding.bottom;
 
       //pcalcsize->m_size = size;
 

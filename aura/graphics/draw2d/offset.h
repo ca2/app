@@ -41,14 +41,14 @@ namespace draw2d
 
       }
 
-      template < primitive_number NUMBER>
+      template < prototype_number NUMBER>
       x_offset& operator +=(NUMBER dx)
       {
          m_pxoffsetable->x_offset((double) dx);
          return *this;
       }
 
-      template < primitive_number NUMBER>
+      template < prototype_number NUMBER>
       x_offset& operator -=(NUMBER dx)
       {
          m_pxoffsetable->x_offset(-(double) dx);
@@ -71,7 +71,7 @@ namespace draw2d
       }
 
 
-      template < primitive_number NUMBER>
+      template < prototype_number NUMBER>
       y_offset& operator +=(NUMBER dy)
       {
          m_pyoffsetable->y_offset((double) dy);
@@ -79,7 +79,7 @@ namespace draw2d
       }
 
 
-      template < primitive_number NUMBER>
+      template < prototype_number NUMBER>
       y_offset& operator -=(NUMBER dy)
       {
          m_pyoffsetable->y_offset(-(double) dy);
@@ -121,7 +121,7 @@ namespace draw2d
       offset_context& operator +=(const ::double_size& size)
       {
 
-         offset(size.cx(), size.cy());
+         offset(size.cx, size.cy);
 
          return *this;
 
@@ -130,7 +130,7 @@ namespace draw2d
       offset_context& operator -=(const ::double_size& size)
       {
 
-         offset(-size.cx(), -size.cy());
+         offset(-size.cx, -size.cy);
 
          return *this;
 
@@ -140,7 +140,7 @@ namespace draw2d
       offset_context& operator +=(const ::double_rectangle& rectangle)
       {
 
-         shift_impact_area(rectangle.left(), rectangle.top(), rectangle.width(), rectangle.height());
+         shift_impact_area(rectangle.left, rectangle.top, rectangle.width(), rectangle.height());
 
          return *this;
 

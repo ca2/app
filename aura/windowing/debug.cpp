@@ -34,10 +34,6 @@ int g_iIgnoreXDisplayError = 0;
 //   }
 //
 //}
-//
-//
-//
-//
 //int _cx_XErrorHandler(Display * display, XErrorEvent * perrorevent)
 //{
 //

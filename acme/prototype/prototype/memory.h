@@ -42,7 +42,7 @@ public:
 
    memory(::particle * pparticle = nullptr) { this->m_pprimitivememory = this; this->m_bAligned = false; }
    memory(enum_create_new, bool bAligned);
-   template < primitive_integral INTEGRAL >
+   template < prototype_integral INTEGRAL >
    memory(INTEGRAL i, bool bAligned = false) { this->m_pprimitivememory = this; this->m_bAligned = bAligned; this->set_size(i); }
    memory(const ::std::initializer_list < int > & iaList);
    memory(const unsigned char *, memsize size);
@@ -52,6 +52,11 @@ public:
    memory(const memory_base & memorybase);
    memory(const memory & memory);
    memory(const ::block & block);
+   template<prototype_character CHARACTER, ::collection::count c>
+   memory(const CHARACTER (&a)[c]):
+      memory((const void *)a, (memsize)(sizeof(CHARACTER) * (c - 1)))
+   {
+   }
    memory(memory_container * pcontainer, memsize size = 0, unsigned int uAllocFlags = 0);
    memory(memory_container * pcontainer, const void * pdata, memsize size);
    memory(manager * pmanager);

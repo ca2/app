@@ -1,16 +1,16 @@
-/* unzip.h -- IO for uncompress .zip files using zlib
+/* unzip_ip.h -- IO for uncompress .zip files using zlib
    Version 1.00, September 10th, 2003
 
    Copyright (C) 1998-2003 Gilles Vollant
 
-   This unzip package allow extract file from .ZIP file, compatible with PKZip 2.04g
+   This unzip_ip package allow extract file from .ZIP file, compatible with PKZip 2.04g
      WinZip, InfoZip tools and compatible.
    Encryption and multi volume ZipFile (span) are not supported.
-   Old compressions used by old PKZip 1.x() are not supported
+   Old compressions used by old PKZip 1.x are not supported
 
 
    I WAIT FEEDBACK at mail info@winpimage->com
-   Visit also http://www.winpimage->com/zLibDll/unzip.htm for evolution
+   Visit also http://www.winpimage->com/zLibDll/unzip_ip.htm for evolution
 
    Condition of use and distribution are the same than zlib :
 
@@ -40,8 +40,8 @@
       ftp://ftp.pkware.com/probdesc.zip
 */
 
-#ifndef _unz_H
-#define _unz_H
+#ifndef _unzip__H
+#define _unzip__H
 
 #ifdef __cplusplus
 extern "C" {
@@ -64,10 +64,10 @@ extern "C" {
 #if defined(STRICTUNZIP) || defined(STRICTZIPUNZIP)
 /* like the STRICT of WIN32, we define a pointer that cannot be converted
     from (void *) without cast */
-typedef struct TagunzFile__ { int unused; } unzFile__;
-typedef unzFile__ *unzFile;
+typedef struct Tagunzip_File__ { int unused; } unzip_File__;
+typedef unzip_File__ *unzip_File;
 #else
-typedef voidp unzFile;
+typedef voidp unzip_File;
 #endif
 
 
@@ -80,8 +80,8 @@ typedef voidp unzFile;
 #define UNZ_INTERNALERROR               (-104)
 #define UNZ_CRCERROR                    (-105)
 
-/* tm_unz contain date/time info */
-typedef struct tm_unz_s
+/* tm_unzip_ contain date/time info */
+typedef struct tm_unzip__s
 {
    unsigned int tm_sec;            /* seconds after the minute - [0,59] */
    unsigned int tm_min;            /* minutes after the hour - [0,59] */
@@ -89,20 +89,20 @@ typedef struct tm_unz_s
    unsigned int tm_mday;           /* day of the month - [1,31] */
    unsigned int tm_mon;            /* months since January - [0,11] */
    unsigned int tm_year;           /* years - [1980..2044] */
-} tm_unz;
+} tm_unzip_;
 
-/* unz_global_info structure contain global data about the ZIPfile
+/* unzip__global_info structure contain global data about the ZIPfile
    These data comes from the end of central dir */
-typedef struct unz_global_info_s
+typedef struct unzip__global_info_s
 {
    uptr number_entry;         /* total number of entries in
                        the central dir on this disk */
    uptr size_comment;         /* int_size of the global comment of the zipfile */
-} unz_global_info;
+} unzip__global_info;
 
 
-/* unz_file_info contain information about a file in the zipfile */
-typedef struct unz_file_info_s
+/* unzip__file_info contain information about a file in the zipfile */
+typedef struct unzip__file_info_s
 {
    uptr version;              /* version made by                 2 bytes */
    uptr version_needed;       /* version needed to extract       2 bytes */
@@ -120,10 +120,10 @@ typedef struct unz_file_info_s
    uptr internal_fa;          /* internal file attributes        2 bytes */
    uptr external_fa;          /* external file attributes        4 bytes */
 
-   tm_unz tmu_date;
-} unz_file_info;
+   tm_unzip_ tmu_date;
+} unzip__file_info;
 
-extern int CLASS_DECL_FOLDER_ZIP unzStringFileNameCompare OF ((const_char_pointer fileName1,
+extern int CLASS_DECL_FOLDER_ZIP unzip_StringFileNameCompare OF ((const_char_pointer fileName1,
       const_char_pointer fileName2,
       int iCaseSensitivity));
 /*
@@ -136,40 +136,40 @@ extern int CLASS_DECL_FOLDER_ZIP unzStringFileNameCompare OF ((const_char_pointe
 */
 
 
-extern unzFile CLASS_DECL_FOLDER_ZIP unzOpen OF((const_char_pointer path));
+extern unzip_File CLASS_DECL_FOLDER_ZIP unzip_Open OF((const_char_pointer path));
 /*
   open a Zip spfile-> path contain the full pathname (by example,
      on a Windows XP computer "ca:\\zlib\\zlib113.zip" or on an Unix computer
      "zlib/zlib113.zip".
      If the zipfile cannot be opened (file don't exist or in not valid), the
        return value is nullptr.
-     Else, the return value is a unzFile Handle, usable with other function
-       of this unzip package.
+     Else, the return value is a unzip_File Handle, usable with other function
+       of this unzip_ip package.
 */
 
-extern unzFile CLASS_DECL_FOLDER_ZIP unzOpen2 OF((const_char_pointer path,
+extern unzip_File CLASS_DECL_FOLDER_ZIP unzip_Open2 OF((const_char_pointer path,
       zlib_filefunc_def* pzlib_filefunc_def, void * opaque));
 /*
-   open a Zip file, like unzOpen, but provide a set of file low level API
+   open a Zip file, like unzip_Open, but provide a set of file low level API
       for read/write the zip file (see ioapi.h)
 */
 
-extern int CLASS_DECL_FOLDER_ZIP unzClose OF((unzFile file));
+extern int CLASS_DECL_FOLDER_ZIP unzip_Close OF((unzip_File file));
 /*
-  close a ZipFile opened with unzipOpen.
-  If there is files inside the .Zip opened with unzOpenCurrentFile (see later),
-    these files MUST be closed with unzipCloseCurrentFile before call unzipClose.
+  close a ZipFile opened with unzip_ipOpen.
+  If there is files inside the .Zip opened with unzip_OpenCurrentFile (see later),
+    these files MUST be closed with unzip_ipCloseCurrentFile before call unzip_ipClose.
   return UNZ_OK if there is no problem. */
 
-extern int CLASS_DECL_FOLDER_ZIP unzGetGlobalInfo OF((unzFile file,
-      unz_global_info *pglobal_info));
+extern int CLASS_DECL_FOLDER_ZIP unzip_GetGlobalInfo OF((unzip_File file,
+      unzip__global_info *pglobal_info));
 /*
   write info about the ZipFile in the *pglobal_info structure.
   No preparation of the structure is needed
   return UNZ_OK if there is no problem. */
 
 
-extern int CLASS_DECL_FOLDER_ZIP unzGetGlobalComment OF((unzFile file,
+extern int CLASS_DECL_FOLDER_ZIP unzip_GetGlobalComment OF((unzip_File file,
       char *szComment,
       uptr uSizeBuf));
 /*
@@ -182,25 +182,25 @@ extern int CLASS_DECL_FOLDER_ZIP unzGetGlobalComment OF((unzFile file,
 /***************************************************************************/
 /* Unzip package allow you browse the directory of the zipfile */
 
-extern int CLASS_DECL_FOLDER_ZIP unzGoToFirstFile OF((unzFile file));
+extern int CLASS_DECL_FOLDER_ZIP unzip_GoToFirstFile OF((unzip_File file));
 /*
   set the current file of the zipfile to the first spfile->
   return UNZ_OK if there is no problem
 */
 
-extern int CLASS_DECL_FOLDER_ZIP unzGoToNextFile OF((unzFile file));
+extern int CLASS_DECL_FOLDER_ZIP unzip_GoToNextFile OF((unzip_File file));
 /*
   set the current file of the zipfile to the next spfile->
   return UNZ_OK if there is no problem
   return UNZ_END_OF_LIST_OF_FILE if the actual file was the latest.
 */
 
-extern int CLASS_DECL_FOLDER_ZIP unzLocateFile OF((unzFile file,
+extern int CLASS_DECL_FOLDER_ZIP unzip_LocateFile OF((unzip_File file,
       const_char_pointer szFileName,
       int iCaseSensitivity));
 /*
   Try locate the file szFileName in the zipfile.
-  For the iCaseSensitivity signification, see unzStringFileNameCompare
+  For the iCaseSensitivity signification, see unzip_StringFileNameCompare
 
   return value :
   UNZ_OK if the file is found. It becomes the current spfile->
@@ -210,25 +210,25 @@ extern int CLASS_DECL_FOLDER_ZIP unzLocateFile OF((unzFile file,
 
 /* ****************************************** */
 /* Ryan supplied functions */
-/* unz_file_info contain information about a file in the zipfile */
-typedef struct unz_file_pos_s
+/* unzip__file_info contain information about a file in the zipfile */
+typedef struct unzip__file_pos_s
 {
    uptr pos_in_zip_directory;   /* offset in zip file directory */
    uptr num_of_file;            /* # of file */
-} unz_file_pos;
+} unzip__file_pos;
 
-extern int CLASS_DECL_FOLDER_ZIP unzGetFilePos(
-unzFile file,
-unz_file_pos* file_pos);
+extern int CLASS_DECL_FOLDER_ZIP unzip_GetFilePos(
+unzip_File file,
+unzip__file_pos* file_pos);
 
-extern int CLASS_DECL_FOLDER_ZIP unzGoToFilePos(
-unzFile file,
-unz_file_pos* file_pos);
+extern int CLASS_DECL_FOLDER_ZIP unzip_GoToFilePos(
+unzip_File file,
+unzip__file_pos* file_pos);
 
 /* ****************************************** */
 
-extern int CLASS_DECL_FOLDER_ZIP unzGetCurrentFileInfo OF((unzFile file,
-      unz_file_info *pfile_info,
+extern int CLASS_DECL_FOLDER_ZIP unzip_GetCurrentFileInfo OF((unzip_File file,
+      unzip__file_info *pfile_info,
       char *szFileName,
       uptr fileNameBufferSize,
       void *extraField,
@@ -253,13 +253,13 @@ extern int CLASS_DECL_FOLDER_ZIP unzGetCurrentFileInfo OF((unzFile file,
    from it, and close it (you can close it before reading all the file)
    */
 
-extern int CLASS_DECL_FOLDER_ZIP unzOpenCurrentFile OF((unzFile file));
+extern int CLASS_DECL_FOLDER_ZIP unzip_OpenCurrentFile OF((unzip_File file));
 /*
   open for reading data the current file in the zipfile.
   If there is no error, the return value is UNZ_OK.
 */
 
-extern int CLASS_DECL_FOLDER_ZIP unzOpenCurrentFilePassword OF((unzFile file,
+extern int CLASS_DECL_FOLDER_ZIP unzip_OpenCurrentFilePassword OF((unzip_File file,
       const_char_pointer password));
 /*
   open for reading data the current file in the zipfile.
@@ -267,12 +267,12 @@ extern int CLASS_DECL_FOLDER_ZIP unzOpenCurrentFilePassword OF((unzFile file,
   If there is no error, the return value is UNZ_OK.
 */
 
-extern int CLASS_DECL_FOLDER_ZIP unzOpenCurrentFile2 OF((unzFile file,
+extern int CLASS_DECL_FOLDER_ZIP unzip_OpenCurrentFile2 OF((unzip_File file,
       int* method,
       int* level,
       int raw));
 /*
-  Same than unzOpenCurrentFile, but open for read raw the file (not uncompress)
+  Same than unzip_OpenCurrentFile, but open for read raw the file (not uncompress)
     if raw==1
   *method will receive method of compression, *level will receive level of
      compression
@@ -280,13 +280,13 @@ extern int CLASS_DECL_FOLDER_ZIP unzOpenCurrentFile2 OF((unzFile file,
          but you CANNOT set method parameter as nullptr
 */
 
-extern int CLASS_DECL_FOLDER_ZIP unzOpenCurrentFile3 OF((unzFile file,
+extern int CLASS_DECL_FOLDER_ZIP unzip_OpenCurrentFile3 OF((unzip_File file,
       int* method,
       int* level,
       int raw,
       const_char_pointer password));
 /*
-  Same than unzOpenCurrentFile, but open for read raw the file (not uncompress)
+  Same than unzip_OpenCurrentFile, but open for read raw the file (not uncompress)
     if raw==1
   *method will receive method of compression, *level will receive level of
      compression
@@ -295,17 +295,17 @@ extern int CLASS_DECL_FOLDER_ZIP unzOpenCurrentFile3 OF((unzFile file,
 */
 
 
-extern int CLASS_DECL_FOLDER_ZIP unzCloseCurrentFile OF((unzFile file));
+extern int CLASS_DECL_FOLDER_ZIP unzip_CloseCurrentFile OF((unzip_File file));
 /*
-  close the file in zip opened with unzOpenCurrentFile
+  close the file in zip opened with unzip_OpenCurrentFile
   Return UNZ_CRCERROR if all the file was read but the CRC is not good
 */
 
-extern int CLASS_DECL_FOLDER_ZIP unzReadCurrentFile OF((unzFile file,
+extern int CLASS_DECL_FOLDER_ZIP unzip_ReadCurrentFile OF((unzip_File file,
       voidp buf,
       unsigned int len));
 /*
-  read bytes from the current file (opened by unzOpenCurrentFile)
+  read bytes from the current file (opened by unzip_OpenCurrentFile)
   buf contain buffer where data must be copied
   len the int_size of buf.
 
@@ -315,21 +315,21 @@ extern int CLASS_DECL_FOLDER_ZIP unzReadCurrentFile OF((unzFile file,
     (UNZ_ERRNO for IO error, or zLib error for uncompress error)
 */
 
-extern iptr CLASS_DECL_FOLDER_ZIP unztell OF((unzFile file));
+extern iptr CLASS_DECL_FOLDER_ZIP unzip_tell OF((unzip_File file));
 /*
   Give the current position in uncompressed data
 */
 
-extern int CLASS_DECL_FOLDER_ZIP unzeof OF((unzFile file));
+extern int CLASS_DECL_FOLDER_ZIP unzip_eof OF((unzip_File file));
 /*
   return 1 if the end of file was reached, 0 elsewhere
 */
 
-extern int CLASS_DECL_FOLDER_ZIP unzGetLocalExtrafield OF((unzFile file,
+extern int CLASS_DECL_FOLDER_ZIP unzip_GetLocalExtrafield OF((unzip_File file,
       voidp buf,
       unsigned int len));
 /*
-  read extra field from the current file (opened by unzOpenCurrentFile)
+  read extra field from the current file (opened by unzip_OpenCurrentFile)
   This is the local-header version of the extra field (sometimes, there is
     more info in the local-header version than in the central-header)
 
@@ -345,4 +345,4 @@ extern int CLASS_DECL_FOLDER_ZIP unzGetLocalExtrafield OF((unzFile file,
 }
 #endif
 
-#endif /* _unz_H */
+#endif /* _unzip__H */

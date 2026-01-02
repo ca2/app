@@ -621,8 +621,8 @@ namespace user
 
       virtual void set_context_org(::draw2d::graphics_pointer & pgraphics);
 
-      virtual void viewport_screen_to_client(::sequence2_int & sequence);
-      virtual void viewport_client_to_screen(::sequence2_int & sequence);
+      virtual void viewport_screen_to_client(::int_sequence2 & sequence);
+      virtual void viewport_client_to_screen(::int_sequence2 & sequence);
       virtual void viewport_client_to_screen(::int_rectangle & point);
       virtual void viewport_screen_to_client(::int_rectangle & point);
 
@@ -797,7 +797,7 @@ namespace user
 
       virtual ::user::element * get_parent_primitive();
 
-      virtual ::user::primitive_impl * get_primitive_impl();
+      virtual ::user::prototype_impl * get_primitive_impl();
 
       virtual ::user::interaction * get_first_child_window();
 

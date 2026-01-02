@@ -110,6 +110,29 @@ string get_task_name(::task * ptask)
    if (!g_pfnGetTaskName)
    {
 
+      if (::is_set(ptask))
+      {
+
+         try
+         {
+
+            auto strTaskName = ptask->m_strTaskName;
+
+            if (strTaskName.has_character())
+            {
+
+               return strTaskName;
+
+            }
+
+         }
+         catch (...)
+         {
+
+         }
+
+      }
+
       return task_get_name();
 
    }

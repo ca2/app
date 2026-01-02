@@ -1,6 +1,7 @@
 #pragma once
 
 
+#include "core/user/user/_.h"
 #include "aura/graphics/image/image.h"
 #include "aura/user/user/box.h"
 

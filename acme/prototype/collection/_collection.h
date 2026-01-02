@@ -16,10 +16,6 @@ inline ::collection::count __iterable_count(const ITERABLE & iterable);
 //   return a.Size;
 //
 //}
-//
-//
-//
-//
 //#endif
 
 
@@ -152,7 +148,7 @@ inline void dump_elements(dump_context & dumpcontext, const TYPE * pElements, ::
 #include "comparable_array.h"
 
 
-//#include "primitive_array.h"
+//#include "prototype_array.h"
 #include "numeric_array_range.h"
 #include "numeric_array.h"
 

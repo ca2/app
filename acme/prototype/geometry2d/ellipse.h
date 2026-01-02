@@ -5,7 +5,7 @@
 #include "rectangle.h"
 
 
-template < primitive_number NUMBER >
+template < prototype_number NUMBER >
 class ellipse_type :
    public ::rectangle_type < NUMBER >
 {
@@ -13,7 +13,7 @@ public:
 
 
    ellipse_type() {}
-   template < primitive_number NUMBER2 >
+   template < prototype_number NUMBER2 >
    ellipse_type(const ellipse_type < NUMBER2 > & ellipse)
    {
    
@@ -38,18 +38,18 @@ public:
 
       }
 
-      double x = point.x();
+      double x = point.x;
 
-      double y = point.y();
+      double y = point.y;
 
-      double Δx = x - center.x();
+      double Δx = x - center.x;
 
-      double Δy = y - center.y();
+      double Δy = y - center.y;
 
-      if (radius.cx() == radius.cy())
+      if (radius.cx == radius.cy)
       {
 
-         double r = radius.cx();
+         double r = radius.cx;
 
          double square_distance = (Δx * Δx) + (Δy * Δy);
 
@@ -61,7 +61,7 @@ public:
       else
       {
 
-         double normal_distance = ((Δx * Δx) / (radius.cx() * radius.cx()) + (Δy * Δy) / (radius.cx() * radius.cy()));
+         double normal_distance = ((Δx * Δx) / (radius.cx * radius.cx) + (Δy * Δy) / (radius.cx * radius.cy));
 
          return normal_distance <= 1.0;
 

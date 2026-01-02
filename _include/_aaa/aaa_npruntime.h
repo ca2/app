@@ -106,7 +106,7 @@ extern "C" {
 #define NP_END_MACRO    } while (0)
 
 /*
-    Objects (non-primitive data) passed between 'C' and script is
+    Objects (non-prototype data) passed between 'C' and script is
     always wrapped in an NPObject.  The 'interface' of an NPObject is
     described by an NPClass.
 */

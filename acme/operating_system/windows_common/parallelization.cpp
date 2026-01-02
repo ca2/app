@@ -510,7 +510,15 @@ bool itask::operator==(const itask & itask) const
 bool htask::is_null() const
 {
 
+#if defined(WINDOWS)
+
+   return (!m_h) || ((HANDLE) m_h == INVALID_HANDLE_VALUE);
+
+#else
+
    return !m_h;
+
+#endif
 
 }
 
@@ -523,3 +531,64 @@ bool itask::is_null() const
 }
 
 
+
+
+
+CLASS_DECL_ACME void _os_task_destroy(htask htask, itask)
+{
+
+   auto h = (HANDLE) htask.m_h;
+
+   if (h == nullptr || h == INVALID_HANDLE_VALUE)
+   {
+
+      return;
+
+   }
+
+   BOOL bOk = ::CloseHandle(h);
+
+   if (!bOk)
+   {
+      
+      ::string strErrorMessage;
+
+      strErrorMessage << "Failed to close thread handle " << htask.m_h;
+
+      ::warning() << strErrorMessage;
+
+      throw ::exception(error_failed, { ::windows::last_error_error_code() }, strErrorMessage);
+
+   }
+
+   //BOOL bOk2 = ::CloseHandle(h);
+
+   //if (!bOk2)
+   //{
+
+   //   ::string strErrorMessage;
+
+   //   strErrorMessage << "Failed to close thread handle " << htask.m_h;
+
+   //   ::warning() << strErrorMessage;
+
+   //   throw ::exception(error_failed, { ::windows::last_error_error_code() }, strErrorMessage);
+
+   //}
+
+   //BOOL bOk3 = ::CloseHandle(h);
+
+   //if (!bOk2)
+   //{
+
+   //   ::string strErrorMessage;
+
+   //   strErrorMessage << "Failed to close thread handle " << htask.m_h;
+
+   //   ::warning() << strErrorMessage;
+
+   //   throw ::exception(error_failed, { ::windows::last_error_error_code() }, strErrorMessage);
+
+   //}
+
+}

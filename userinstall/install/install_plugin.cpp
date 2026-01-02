@@ -991,19 +991,19 @@ run_install:
 
       window_rectangle(&rectangleWindow);
 
-      int cx = rectangleWindow.right() - rectangleWindow.left();
-      int cy = rectangleWindow.bottom() - rectangleWindow.top();
+      int cx = rectangleWindow.right - rectangleWindow.left;
+      int cy = rectangleWindow.bottom - rectangleWindow.top;
 
-      rectangle.left()         = 0;
-      rectangle.top()          = 0;
-      rectangle.right()        = cx;
-      rectangle.bottom()       = cy;
+      rectangle.left         = 0;
+      rectangle.top          = 0;
+      rectangle.right        = cx;
+      rectangle.bottom       = cy;
 
       //simple_bitmap b;
 
 
 
-      pgraphics->offset_origin(rectangleWindow.left(), rectangleWindow.top());
+      pgraphics->offset_origin(rectangleWindow.left, rectangleWindow.top);
 
       //b.create(cx, cy, pgraphics);
 
@@ -1011,7 +1011,7 @@ run_install:
 
       //pgraphics->create_from_bitmap(b);
 
-      //pgraphics->bit_blt(0, 0, cx, cy, pgraphics, ::hotplugin::plugin::m_rectangle.left(), ::hotplugin::plugin::m_rectangle.top());
+      //pgraphics->bit_blt(0, 0, cx, cy, pgraphics, ::hotplugin::plugin::m_rectangle.left, ::hotplugin::plugin::m_rectangle.top);
 
 //      HFONT hfontOld = nullptr;
 //      HFONT hfont = nullptr;
@@ -1049,10 +1049,10 @@ run_install:
          ::SelectObject(hdc, (HGDIOBJ) hbrushOld);*/
 
          /*         ::int_rectangle int_rectangle;
-         rectangle.left()      = 0;
-         rectangle.top()       = 0;
-         rectangle.bottom()    = cx;
-         rectangle.right()     = cy;
+         rectangle.left      = 0;
+         rectangle.top       = 0;
+         rectangle.bottom    = cx;
+         rectangle.right     = cy;
          ::FillSolidRect_dup(hdc, &rectangle, rgb(255, 255, 255));
          ::SetTextColor(hdc, rgb(255, 0, 255));
          const ::scoped_string & scopedstr = "ca is not installed! You may try to install using low level installer_install.exe.";
@@ -1066,20 +1066,20 @@ run_install:
 #ifdef WINDOWS
 
       pgraphics->set_origin(0, 0);
-      //pgraphics.bit_blt(lprect->left()                , lprect->top()                 , lprect->right() - lprect->left(), lprect->bottom() - lprect->top(),
-      //     pgraphics         , lprect->left() - ::hotplugin::plugin::m_rectangle.left()  , lprect.top() - ::hotplugin::plugin::m_rectangle.top()    );
+      //pgraphics.bit_blt(lprect->left                , lprect->top                 , lprect->right - lprect->left, lprect->bottom - lprect->top,
+      //     pgraphics         , lprect->left - ::hotplugin::plugin::m_rectangle.left  , lprect.top - ::hotplugin::plugin::m_rectangle.top    );
 
-      /*string strx = ansi_string_from_long_long(lprect->left());
-      string stry = ansi_string_from_long_long(lprect->top());
-      text_out(hdcWindow, lprect->left() + 10, lprect->top() + 10, strx, strx.get_length());
-      text_out(hdcWindow, lprect->left() + 110, lprect->top() + 10, stry, stry.get_length());
-      string strx2 = ansi_string_from_long_long(m_rectangle.left());
-      string stry2 = ansi_string_from_long_long(m_rectangle.top());
-      text_out(hdcWindow, lprect->left() + 210, lprect->top() + 10, strx2, strx2.get_length());
-      text_out(hdcWindow, lprect->left() + 310, lprect->top() + 10, stry2, stry2.get_length());
+      /*string strx = ansi_string_from_long_long(lprect->left);
+      string stry = ansi_string_from_long_long(lprect->top);
+      text_out(hdcWindow, lprect->left + 10, lprect->top + 10, strx, strx.get_length());
+      text_out(hdcWindow, lprect->left + 110, lprect->top + 10, stry, stry.get_length());
+      string strx2 = ansi_string_from_long_long(m_rectangle.left);
+      string stry2 = ansi_string_from_long_long(m_rectangle.top);
+      text_out(hdcWindow, lprect->left + 210, lprect->top + 10, strx2, strx2.get_length());
+      text_out(hdcWindow, lprect->left + 310, lprect->top + 10, stry2, stry2.get_length());
       */
-      //hdc,       lprect->left(), lprect->top());
-      //::BitBlt(hdcWindow, m_rectangle.left(), m_rectangle.top(), cx, cy, hdc, 0, 0);
+      //hdc,       lprect->left, lprect->top);
+      //::BitBlt(hdcWindow, m_rectangle.left, m_rectangle.top, cx, cy, hdc, 0, 0);
 
 #endif
 

@@ -36,7 +36,7 @@ public:
 };
 
 
-#define __scope_stack(xxxx, aaaa) auto stack_at_line ## LINE_NUMBER = ::scope_stack < ::erase_reference< decltype(xxxx) >::TYPE > (xxxx, aaaa);
+#define __scope_stack(xxxx, aaaa) auto stack_at_line ## LINE_NUMBER = ::scope_stack < ::non_reference< decltype(xxxx) >::TYPE > (xxxx, aaaa);
 
 
 

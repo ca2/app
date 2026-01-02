@@ -1084,10 +1084,6 @@ namespace crypto_openssl
 //
 //
 //#elif defined(HAVE_OPENSSL)
-//
-//
-//
-//
 //#else
 //
 //

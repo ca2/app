@@ -8,13 +8,4 @@
 #include "__int.h"
 
 
-//struct SHIFT_I32
-//{
-//
-//   int Δx;
-//   int Δy;
-//
-//};
-
-
 

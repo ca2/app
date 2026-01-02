@@ -114,7 +114,7 @@ write_text_stream::~write_text_stream()
 
 //}
 
-//template < primitive_integral INTEGRAL >
+//template < prototype_integral INTEGRAL >
 //void number_read(TYPE& t)
 //{
 
@@ -129,11 +129,7 @@ write_text_stream::~write_text_stream()
 
 //   }
 //   else
-//   {
-
-//
-
-//   }
+//   {//   }
 
 //   ::copy(t, str);
 
@@ -660,7 +656,7 @@ void write_text_stream::print(const ::range < const_char_pointer >& range)
 //
 //
 //// // template < typename FILE >
-//template < primitive_character CHARACTER2, character_count sizeMaximumLength >
+//template < prototype_character CHARACTER2, character_count sizeMaximumLength >
 //write_text_stream & write_text_stream::operator <<(const ::inline_string < CHARACTER2, sizeMaximumLength > & inlinestring)
 //{
 //
@@ -711,8 +707,4 @@ void write_text_stream::print(const ::range < const_char_pointer >& range)
 //
 //
 ////#include "_impl_write_text_stream.h"
-//
-//
-//
-//
 //

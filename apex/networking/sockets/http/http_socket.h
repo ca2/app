@@ -17,11 +17,11 @@ namespace sockets
    \ingroup http */
    class CLASS_DECL_APEX http_socket :
       virtual public tcp_socket,
-      virtual public scalar_source
+      virtual public ::number::scalar_source
    {
    public:
 
-
+      ::url::url           m_url;
       ::url::parts         m_urlparts;
       string               m_strProxy;
       int                  m_iProxyPort;

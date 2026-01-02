@@ -57,7 +57,7 @@ endif ()
 set_target_properties(build PROPERTIES LINKER_LANGUAGE CXX)
 
 
-if (MSVC)
+if(${WIN32})
    target_compile_options(build PRIVATE "/MD$<$<CONFIG:Debug>:d>")
    target_compile_options(build PRIVATE "/bigobj")
    target_link_options(build PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")

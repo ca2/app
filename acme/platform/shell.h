@@ -27,6 +27,8 @@ namespace acme
 
       virtual int posix_shell_command(const ::scoped_string& scopedstrCommand, enum_posix_shell eposixshell = e_posix_shell_system_default, const trace_function& tracefunction = nullptr);
 
+      virtual int interactive_posix_shell(const ::scoped_string& scopedstrCommand, enum_posix_shell eposixshell = e_posix_shell_system_default);
+
       //virtual ::string posix_shell_string(const ::scoped_string& scopedstrCommand, enum_posix_shell eposixshell = e_posix_shell_system_default);
 
       virtual bool posix_shell_protocol_begins_eat(enum_posix_shell& eposixshell, ::string& str);
@@ -47,6 +49,8 @@ namespace acme
       //virtual void command_system(string_array_base & straOutput, int & iExitCode, const ::scoped_string & scopedstr, enum_command_system ecommandsystem = e_command_system_none, const class ::time & waitTimeout = ::time::infinity(), ::particle * pparticleSynchronization = nullptr, ::file::file * pfileLog = nullptr);
 //      virtual int command_system(const ::scoped_string & scopedstr, const ::scoped_string & scopedstrPipe, const trace_function & tracefunction = nullptr);
       virtual int command_system(const ::scoped_string& scopedstr, const trace_function& tracefunction = nullptr, const ::file::path& pathWorkingDirectory = {}, ::e_display edisplay = e_display_none);
+
+      virtual int interactive_command_system(const ::scoped_string& scopedstrPrompt, const ::scoped_string& scopedstrCommand, const trace_function& tracefunction = nullptr, const ::file::path& pathWorkingDirectory = {}, ::e_display edisplay = e_display_none);
       //      virtual int command_system(const ::scoped_string & scopedstr, const trace_function & tracefunction = nullptr);
             /// This version of command_system is originally meant for implementators
             /// to not use standard I/O redirection.
@@ -58,7 +62,7 @@ namespace acme
 
       virtual int get_command_output(::string& strOutput, const ::scoped_string& scopedstr, const class ::time& timeOut = 15_min);
 
-      virtual ::string get_posix_shell_command_output(const ::scoped_string& scopedstr, enum_posix_shell eposixshell = e_posix_shell_system_default, const class ::time& timeOut = 15_min);
+      virtual ::string get_posix_shell_command_output(const ::scoped_string& scopedstr, enum_posix_shell eposixshell = e_posix_shell_system_default, int * piExitCode = nullptr, const class ::time& timeOut = 15_min);
 
       virtual int get_posix_shell_command_output(::string& strOutput, const ::scoped_string& scopedstr, enum_posix_shell eposixshell = e_posix_shell_system_default, const class ::time& timeOut = 15_min);
 

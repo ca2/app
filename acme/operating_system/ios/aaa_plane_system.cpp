@@ -45,10 +45,10 @@
 //
 //   ::user::native_window_initialize initialize;
 //
-//   initialize.m_rectangle.left() = rectangle.origin.x();
-//   initialize.m_rectangle.top() = rectangle.origin.y();
-//   initialize.m_rectangle.right() = rectangle.origin.x() + rectangle.size.width;
-//   initialize.m_rectangle.bottom() = rectangle.origin.x() + rectangle.size.height;
+//   initialize.m_rectangle.left = rectangle.origin.x;
+//   initialize.m_rectangle.top = rectangle.origin.y;
+//   initialize.m_rectangle.right = rectangle.origin.x + rectangle.size.width;
+//   initialize.m_rectangle.bottom = rectangle.origin.x + rectangle.size.height;
 //
 //   system()->m_possystemwindow->m_puserinteraction->initialize_native_window(&initialize);
 //
@@ -65,10 +65,10 @@
 //   pusersystem->m_createstruct.lpszClass = 0;
 //   pusersystem->m_createstruct.lpszName = nullptr;
 //   pusersystem->m_createstruct.style = 0;
-//   pusersystem->m_createstruct.x() = 0;
-//   pusersystem->m_createstruct.y() = 0;
-//   pusersystem->m_createstruct.cx() = 0;
-//   pusersystem->m_createstruct.cy() = 0;
+//   pusersystem->m_createstruct.x = 0;
+//   pusersystem->m_createstruct.y = 0;
+//   pusersystem->m_createstruct.cx = 0;
+//   pusersystem->m_createstruct.cy = 0;
 //   //      pusersystem->m_createstruct.hwndParent = hWndParent;
 //   //   pusersystem->m_createstruct.hMenu = hWndParent == nullptr ? nullptr : nIDorHMenu;
 //   pusersystem->m_createstruct.hMenu = nullptr;

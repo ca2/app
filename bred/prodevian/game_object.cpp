@@ -25,7 +25,7 @@
 //   }
 //
 //
-//   glm::vec3 game_object::color()
+//   floating_sequence3 game_object::color()
 //   {
 //      return m_color;
 //   }

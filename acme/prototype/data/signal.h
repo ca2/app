@@ -2,7 +2,7 @@
 #pragma once
 
 
-template < primitive_function FUNCTION >
+template < prototype_function FUNCTION >
 class add_signal_function_to_holder
 {
 public:
@@ -24,7 +24,7 @@ namespace data
 {
 
 
-   template < primitive_function FUNCTION >
+   template < prototype_function FUNCTION >
    class signal
    {
    public:
@@ -43,11 +43,11 @@ namespace data
 } // namespace data
 
 CLASS_DECL_ACME long long function_debugging_serial();
-template < primitive_function FUNCTION >
-void object::hold_signal_function(::data::signal<FUNCTION> * psignal, FUNCTION function)
+template < prototype_function FUNCTION >
+void object::hold_signal_function(::data::signal<FUNCTION> * psignal, const FUNCTION & function)
 {
 
-   this->destroyinga() += [this, psignal, function]()
+   this->destroyinga() += [psignal, function]()
       {
 
          (*psignal) -= function;
@@ -61,7 +61,7 @@ void object::hold_signal_function(::data::signal<FUNCTION> * psignal, FUNCTION f
 }
 
 
-template < primitive_function FUNCTION >
+template < prototype_function FUNCTION >
 add_signal_function_to_holder<FUNCTION> & add_signal_function_to_holder<FUNCTION>::operator += (const FUNCTION & f)
 {
 

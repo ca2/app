@@ -221,56 +221,56 @@ inline payload __visible(bool bVisible) { return __visible(::e_type_new, bVisibl
 
 
 
-template < primitive_integral INTEGRAL >
+template < prototype_integral INTEGRAL >
 inline ::payload payload::operator - (INTEGRAL i) const
 {
    return ((INTEGRAL)*this) - i;
 }
 
 
-template < primitive_floating FLOATING >
+template < prototype_floating FLOATING >
 inline ::payload payload::operator - (FLOATING f) const
 {
    return ((FLOATING)*this) - f;
 }
 
 
-template < primitive_integral INTEGRAL >
+template < prototype_integral INTEGRAL >
 inline ::payload payload::operator + (INTEGRAL i) const
 {
    return ((INTEGRAL)*this) + i;
 }
 
 
-template < primitive_floating FLOATING >
+template < prototype_floating FLOATING >
 inline ::payload payload::operator + (FLOATING f) const
 {
    return ((FLOATING)*this) + f;
 }
 
 
-template < primitive_integral INTEGRAL >
+template < prototype_integral INTEGRAL >
 inline ::payload payload::operator / (INTEGRAL i) const
 {
    return ((INTEGRAL)*this) / i;
 }
 
 
-template < primitive_floating FLOATING >
+template < prototype_floating FLOATING >
 inline ::payload payload::operator / (FLOATING f) const
 {
    return ((FLOATING)*this) / f;
 }
 
 
-template < primitive_integral INTEGRAL >
+template < prototype_integral INTEGRAL >
 inline ::payload payload::operator * (INTEGRAL i) const
 {
    return ((INTEGRAL)*this) * i;
 }
 
 
-template < primitive_floating FLOATING >
+template < prototype_floating FLOATING >
 inline ::payload payload::operator * (FLOATING f) const
 {
    return ((FLOATING)*this) * f;
@@ -280,56 +280,56 @@ inline ::payload payload::operator * (FLOATING f) const
 #include "__payload_cast.h"
 
 
-template < primitive_integral INTEGRAL, primitive_payload PAYLOAD >
+template < prototype_integral INTEGRAL, prototype_payload PAYLOAD >
 inline ::payload operator - (INTEGRAL i, const PAYLOAD & payload)
 {
    return i - ((INTEGRAL)payload_cast(payload));
 }
 
 
-template < primitive_floating FLOATING, primitive_payload PAYLOAD >
+template < prototype_floating FLOATING, prototype_payload PAYLOAD >
 inline ::payload operator - (FLOATING i, const PAYLOAD & payload)
 {
    return i - ((FLOATING)payload_cast(payload));
 }
 
 
-template < primitive_integral INTEGRAL, primitive_payload PAYLOAD >
+template < prototype_integral INTEGRAL, prototype_payload PAYLOAD >
 inline ::payload operator + (INTEGRAL i, const PAYLOAD & payload)
 {
    return i + ((INTEGRAL)payload_cast(payload));
 }
 
 
-template < primitive_floating FLOATING, primitive_payload PAYLOAD >
+template < prototype_floating FLOATING, prototype_payload PAYLOAD >
 inline ::payload operator + (FLOATING i, const PAYLOAD & payload)
 {
    return i + ((FLOATING)payload_cast(payload));
 }
 
 
-template < primitive_integral INTEGRAL, primitive_payload PAYLOAD >
+template < prototype_integral INTEGRAL, prototype_payload PAYLOAD >
 inline ::payload operator / (INTEGRAL i, const PAYLOAD & payload)
 {
    return i / ((INTEGRAL)payload_cast(payload));
 }
 
 
-template < primitive_floating FLOATING, primitive_payload PAYLOAD >
+template < prototype_floating FLOATING, prototype_payload PAYLOAD >
 inline ::payload operator / (FLOATING i, const PAYLOAD & payload)
 {
    return i / ((FLOATING)payload_cast(payload));
 }
 
 
-template < primitive_integral INTEGRAL, primitive_payload PAYLOAD >
+template < prototype_integral INTEGRAL, prototype_payload PAYLOAD >
 inline ::payload operator * (INTEGRAL i, const PAYLOAD & payload)
 {
    return i * ((INTEGRAL)payload_cast(payload));
 }
 
 
-template < primitive_floating FLOATING, primitive_payload PAYLOAD >
+template < prototype_floating FLOATING, prototype_payload PAYLOAD >
 inline ::payload operator * (FLOATING i, const PAYLOAD & payload)
 {
    return i * ((FLOATING)payload_cast(payload));
@@ -337,56 +337,56 @@ inline ::payload operator * (FLOATING i, const PAYLOAD & payload)
 
 
 
-template < primitive_integral INTEGRAL >
+template < prototype_integral INTEGRAL >
 inline ::payload & payload::operator -= (INTEGRAL i)
 {
    return *this = ((INTEGRAL)payload_cast(*this)) - i;
 }
 
 
-template < primitive_floating FLOATING >
+template < prototype_floating FLOATING >
 inline ::payload & payload::operator -= (FLOATING f)
 {
    return *this = ((FLOATING)payload_cast(*this)) - f;
 }
 
 
-template < primitive_integral INTEGRAL >
+template < prototype_integral INTEGRAL >
 inline ::payload & payload::operator += (INTEGRAL i)
 {
    return *this = ((INTEGRAL)(payload_cast(*this))) + i;
 }
 
 
-template < primitive_floating FLOATING >
+template < prototype_floating FLOATING >
 inline ::payload & payload::operator += (FLOATING f)
 {
    return *this = ((FLOATING)payload_cast(*this)) + f;
 }
 
 
-template < primitive_integral INTEGRAL >
+template < prototype_integral INTEGRAL >
 inline ::payload & payload::operator /= (INTEGRAL i)
 {
    return *this = ((INTEGRAL)payload_cast(*this)) / i;
 }
 
 
-template < primitive_floating FLOATING >
+template < prototype_floating FLOATING >
 inline ::payload & payload::operator /= (FLOATING f)
 {
    return *this = ((FLOATING)payload_cast(*this)) / f;
 }
 
 
-template < primitive_integral INTEGRAL >
+template < prototype_integral INTEGRAL >
 inline ::payload & payload::operator *= (INTEGRAL i)
 {
    return *this = ((INTEGRAL)payload_cast(*this)) * i;
 }
 
 
-template < primitive_floating FLOATING >
+template < prototype_floating FLOATING >
 inline ::payload & payload::operator *= (FLOATING f)
 {
    return *this = ((FLOATING)payload_cast(*this)) * f;
@@ -398,27 +398,27 @@ inline ::payload & payload::operator *= (FLOATING f)
 
 
 
-//template < primitive_payload PAYLOAD >
+//template < prototype_payload PAYLOAD >
 //inline bool strictly_equal(const ::scoped_string & scopedstr, const PAYLOAD & payload);
-//template < primitive_payload PAYLOAD >
+//template < prototype_payload PAYLOAD >
 //inline bool strictly_equal(const ::scoped_string & scopedstr, const PAYLOAD & payload);
-//template < primitive_payload PAYLOAD >
+//template < prototype_payload PAYLOAD >
 //inline bool strictly_equal(double d, const PAYLOAD & payload);
-//template < primitive_payload PAYLOAD >
+//template < prototype_payload PAYLOAD >
 //inline bool strictly_equal(int i, const PAYLOAD & payload);
-//template < primitive_payload PAYLOAD >
+//template < prototype_payload PAYLOAD >
 //inline bool strictly_equal(bool b, const PAYLOAD & payload);
 
 
-template < primitive_payload PAYLOAD >
+template < prototype_payload PAYLOAD >
 inline bool strictly_different(const ::scoped_string & scopedstr, const PAYLOAD & payload);
-template < primitive_payload PAYLOAD >
+template < prototype_payload PAYLOAD >
 inline bool strictly_different(const ::scoped_string & scopedstr, const PAYLOAD & payload);
-template < primitive_payload PAYLOAD >
+template < prototype_payload PAYLOAD >
 inline bool strictly_different(double d, const PAYLOAD & payload);
-template < primitive_payload PAYLOAD >
+template < prototype_payload PAYLOAD >
 inline bool strictly_different(int i, const PAYLOAD & payload);
-template < primitive_payload PAYLOAD >
+template < prototype_payload PAYLOAD >
 inline bool strictly_different(bool b, const PAYLOAD & payload);
 
 
@@ -467,7 +467,7 @@ inline payload & copy(payload & payload, const class time & time)
 //}
 
 
-template < primitive_subparticle T >
+template < prototype_subparticle T >
 inline ::pointer < T > payload::cast(T * pDefault)
 {
 
@@ -761,7 +761,7 @@ namespace file
 //}
 
 
-////template < primitive_payload PAYLOAD >
+////template < prototype_payload PAYLOAD >
 //inline payload payload::operator +(const ::payload & payload) const
 //{
 //
@@ -770,7 +770,7 @@ namespace file
 //}
 
 
-//template < primitive_payload PAYLOAD >
+//template < prototype_payload PAYLOAD >
 inline payload payload::operator -(const ::payload & payload) const
 {
 
@@ -779,7 +779,7 @@ inline payload payload::operator -(const ::payload & payload) const
 }
 
 
-//template < primitive_payload PAYLOAD >
+//template < prototype_payload PAYLOAD >
 inline payload payload::operator *(const payload & payload) const
 
 {
@@ -788,7 +788,7 @@ inline payload payload::operator *(const payload & payload) const
 
 }
 
-///template < primitive_payload PAYLOAD >
+///template < prototype_payload PAYLOAD >
 inline payload payload:: operator /(const ::payload & payload) const
 {
 
@@ -797,7 +797,7 @@ inline payload payload:: operator /(const ::payload & payload) const
 }
 
 
-////template < primitive_payload PAYLOAD >
+////template < prototype_payload PAYLOAD >
 //inline payload & payload::operator +=(const ::payload & payload)
 //{
 //
@@ -814,7 +814,7 @@ inline payload & payload::operator -=(const ::payload & payload)
 }
 
 
-//template < primitive_payload PAYLOAD >
+//template < prototype_payload PAYLOAD >
 inline payload & payload::operator *=(const ::payload & payload)
 {
 
@@ -823,7 +823,7 @@ inline payload & payload::operator *=(const ::payload & payload)
 }
 
 
-//template < primitive_payload PAYLOAD >
+//template < prototype_payload PAYLOAD >
 inline payload & payload::operator /=(const ::payload & payload)
 {
 
@@ -843,7 +843,7 @@ inline ::string_base < CHAR_TYPE > & copy(::string_base < CHAR_TYPE > & string, 
 }
 
 
-template < primitive_integral INTEGRAL >
+template < prototype_integral INTEGRAL >
 inline INTEGRAL & copy(INTEGRAL & integral, const ::payload & payload)
 {
 
@@ -868,7 +868,7 @@ inline double & copy(double & f, const ::payload & payload)
 }
 
 
-template < primitive_number NUMBER >
+template < prototype_number NUMBER >
 inline ::payload & copy(::payload & payload, const NUMBER & number)
 {
 
@@ -910,7 +910,7 @@ inline ::payload & copy(::payload & payload1, const ::payload & payload2)
 //}
 
 
-//template < primitive_character CHARACTER >
+//template < prototype_character CHARACTER >
 //inline ::string_base < CHARACTER > & operator +=(::string_base < CHARACTER > & str, const ::payload & payload)
 //{
 //
@@ -1063,7 +1063,7 @@ namespace file
 
 
 
-//template < primitive_character_range RANGE, primitive_payload PAYLOAD >
+//template < prototype_character_range RANGE, prototype_payload PAYLOAD >
 //::string operator + (const RANGE & range, const PAYLOAD & payload)
 //{
 //
@@ -1081,10 +1081,10 @@ namespace file
 
 
 template < typename PRIMITIVE >
-payload& payload::__assign_primitive(PRIMITIVE& member, enum_type etype, PRIMITIVE primitive)
+payload& payload::__assign_primitive(PRIMITIVE& member, enum_type etype, PRIMITIVE prototype)
 {
 
-   if (__assign_to_held_pointer_member(primitive))
+   if (__assign_to_held_pointer_member(prototype))
    {
 
 
@@ -1092,13 +1092,13 @@ payload& payload::__assign_primitive(PRIMITIVE& member, enum_type etype, PRIMITI
    //else if (get_type() == e_type_payload_pointer)
    //{
 
-   //   *m_ppayload = primitive;
+   //   *m_ppayload = prototype;
 
    //}
    //else if (get_type() == e_type_property)
    //{
 
-   //   m_pproperty->object() = primitive;
+   //   m_pproperty->object() = prototype;
 
    //}
    else
@@ -1106,7 +1106,7 @@ payload& payload::__assign_primitive(PRIMITIVE& member, enum_type etype, PRIMITI
 
       set_type(etype, false);
 
-      member = primitive;
+      member = prototype;
 
    }
 

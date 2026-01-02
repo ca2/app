@@ -76,7 +76,7 @@
 //   inline bool ::float_rectangle::contains(const ::float_point & point) const
 //   {
 //
-//      return contains((float) ::float_point.x(), (float) ::float_point.y());
+//      return contains((float) ::float_point.x, (float) ::float_point.y);
 //
 //   }
 //
@@ -98,12 +98,12 @@
 //
 //   inline void ::float_rectangle::set_cxy(::float_size sz)
 //   {
-//      set_cxy((float) sz.cx(), (float) sz.cy());
+//      set_cxy((float) sz.cx, (float) sz.cy);
 //   }
 //
 //   inline void ::float_rectangle::set_cxy(::float_size sz)
 //   {
-//      set_cxy(sz.cx(), sz.cy());
+//      set_cxy(sz.cx, sz.cy);
 //   }
 //
 //   inline void ::float_rectangle::offset_x(float x)
@@ -144,19 +144,19 @@
 //
 //   inline void ::float_rectangle::set_xy(const ::float_point & point)
 //   {
-//      set_xy((float) ::float_point.x(), (float) ::float_point.y());
+//      set_xy((float) ::float_point.x, (float) ::float_point.y);
 //   }
 //
 //   inline ::int_rectangle * ::float_rectangle::get(::int_rectangle * prectangle) const
 //
 //   {
-//      prectangle->left()      = (int) left;
+//      prectangle->left      = (int) left;
 //
-//      prectangle->right()     = (int) right;
+//      prectangle->right     = (int) right;
 //
-//      prectangle->top()       = (int) top;
+//      prectangle->top       = (int) top;
 //
-//      prectangle->bottom()    = (int) bottom;
+//      prectangle->bottom    = (int) bottom;
 //
 //      return prectangle;
 //
@@ -211,17 +211,17 @@
 //   inline ::float_rectangle & rectangle::constrain(::float_rectangle & rectangle) const
 //   {
 //
-//      if(::float_rectangle.left() < left)
-//         ::float_rectangle.left() = left;
+//      if(::float_rectangle.left < left)
+//         ::float_rectangle.left = left;
 //
-//      if(::float_rectangle.right() < right)
-//         ::float_rectangle.right() = right;
+//      if(::float_rectangle.right < right)
+//         ::float_rectangle.right = right;
 //
-//      if(::float_rectangle.top() < top)
-//         ::float_rectangle.top() = top;
+//      if(::float_rectangle.top < top)
+//         ::float_rectangle.top = top;
 //
-//      if(::float_rectangle.bottom() < bottom)
-//         ::float_rectangle.bottom() = bottom;
+//      if(::float_rectangle.bottom < bottom)
+//         ::float_rectangle.bottom = bottom;
 //
 //      return ::float_rectangle;
 //
@@ -241,10 +241,10 @@
 //   inline ::float_rectangle & rectangle::operator = (const ::int_rectangle & rectangle)
 //   {
 //
-//      left     = (float) rectangle.left();
-//      top      = (float) rectangle.top();
-//      right    = (float) rectangle.right();
-//      bottom   = (float) rectangle.bottom();
+//      left     = (float) rectangle.left;
+//      top      = (float) rectangle.top;
+//      right    = (float) rectangle.right;
+//      bottom   = (float) rectangle.bottom;
 //
 //      return *this;
 //

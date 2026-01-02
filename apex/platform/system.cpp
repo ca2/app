@@ -919,7 +919,7 @@ pdirectorysystem->create("/ca2core");
       //
       //         strCurrentWorkingDirectory = get_current_directory_name();
       //
-      //         informationf("\nCurrent Working Directory : " + strCurrentWorkingDirectory);
+      //         informationf("----> Current Working Directory : " + strCurrentWorkingDirectory);
       //
       //      }
 
@@ -1291,7 +1291,7 @@ pdirectorysystem->create("/ca2core");
 
       //{
 
-      //   informationf("\nFailed to begin_synch the session (::apex::session or ::apex::session derived)");
+      //   informationf("----> Failed to begin_synch the session (::apex::session or ::apex::session derived)");
 
       //   return false;
 
@@ -2233,7 +2233,7 @@ pdirectorysystem->create("/ca2core");
 
       //   //   try
       //   //   {
-      //   //      strMessage += ::type(pparticle).name();
+      //   //      strMessage += ::platform::type(pparticle).name();
 
       //   //   }
       //   //   catch (...)
@@ -2651,11 +2651,11 @@ pdirectorysystem->create("/ca2core");
    ////
    ////      ::file::path pathCa2Module = directory()->ca2module();
    ////
-   ////      informationf("\n\n::apex::system::find_applications_to_cache\n\n");
+   ////      informationf("---->  ::apex::system::find_applications_to_cache\n\n");
    ////
    ////      informationf("ca2 module folder : " + pathCa2Module);
    ////
-   ////      informationf("\n\n\n");
+   ////      informationf("---->  \n");
    ////
    ////      straTitle.ls_pattern(pathCa2Module, { "*.*" });
    ////
@@ -3194,13 +3194,13 @@ pdirectorysystem->create("/ca2core");
    //
    //      ::winrt::Windows::Foundation::Rect rectangle = pwindow->window_rectangle();
    //
-   //      prectangle->left() = rectangle.X;
+   //      prectangle->left = rectangle.X;
    //
-   //      prectangle->top() = rectangle.Y;
+   //      prectangle->top = rectangle.Y;
    //
-   //      prectangle->right() = prectangle->left() + rectangle.Width;
+   //      prectangle->right = prectangle->left + rectangle.Width;
    //
-   //      prectangle->bottom() = prectangle->top() + rectangle.Height;
+   //      prectangle->bottom = prectangle->top + rectangle.Height;
    //
    //
    //      return true;
@@ -5122,12 +5122,7 @@ namespace apex
    ::string system::fetch_public_internet_domain_extension_list_text()
    {
 
-      //auto estatus =
-      ///::platform::system::get_public_internet_domain_extension_list(stra);
-
-      //return estatus;
-
-      return {};
+      return m_papplication->fetch_public_internet_domain_extension_list_text();
 
    }
 

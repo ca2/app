@@ -48,9 +48,9 @@ void popup_button::calculate_size_and_position(int x, int y)
 
    //operating_system_get_main_screen_size(wScreen, hScreen);
 
-   auto wScreen = sizeScreen.cx();
+   auto wScreen = sizeScreen.cx;
 
-   auto hScreen = sizeScreen.cy();
+   auto hScreen = sizeScreen.cy;
 
    //printf("popup_button::calculate_size_and_position (wScreen,hScreen)=%d,%d\n", wScreen, hScreen);
 
@@ -105,18 +105,18 @@ void popup_button::initialize_popup_button(const ::scoped_string & scopedstrText
 
       auto pnanobutton = m_nanobuttona[iButton];
 
-      pnanobutton->m_rectangle.bottom() = iBottom;
+      pnanobutton->m_rectangle.bottom = iBottom;
       
-      pnanobutton->m_rectangle.top() = pnanobutton->m_rectangle.bottom() - hButton;
-      pnanobutton->m_rectangle.right() = iRight;
-      pnanobutton->m_rectangle.left() = pnanobutton->m_rectangle.right() - wButton;
+      pnanobutton->m_rectangle.top = pnanobutton->m_rectangle.bottom - hButton;
+      pnanobutton->m_rectangle.right = iRight;
+      pnanobutton->m_rectangle.left = pnanobutton->m_rectangle.right - wButton;
 
-      iBottom = pnanobutton->m_rectangle.top();
+      iBottom = pnanobutton->m_rectangle.top;
 
       if (iButton >= 1)
       {
 
-         pnanobutton->m_rectangle.top()--;
+         pnanobutton->m_rectangle.top--;
 
       }
 
@@ -143,7 +143,7 @@ void popup_button::on_draw(::nano::graphics::device * pnanodevice)
 
    get_client_rectangle(rectangleText);
 
-   rectangleText.bottom() = rectangleText.top() + rectangleText.height() * 3 / 4;
+   rectangleText.bottom = rectangleText.top + rectangleText.height() * 3 / 4;
 
    rectangleText.deflate(25);
 

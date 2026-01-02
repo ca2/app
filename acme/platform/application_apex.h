@@ -349,6 +349,8 @@ namespace platform
       virtual void load_string_table(const ::scoped_string & scopedstrApp, const ::scoped_string & scopedstrId);
 
 
+      virtual ::string fetch_public_internet_domain_extension_list_text();
+
       // virtual bool is_application() const override;
       //
       //
@@ -885,16 +887,16 @@ namespace platform
       virtual void release_exclusive();
 
 
-      // bool on_set_scalar(enum_scalar escalar, ::number number, int iFlags) override;
+      // bool on_set_scalar(enum_scalar escalar, ::number::number number, int iFlags) override;
       //
       //
-      // ::number get_scalar_minimum(enum_scalar escalar) override;
+      // ::number::number get_scalar_minimum(enum_scalar escalar) override;
       //
       //
-      // ::number get_scalar(enum_scalar escalar) override;
+      // ::number::number get_scalar(enum_scalar escalar) override;
       //
       //
-      // ::number get_scalar_maximum(enum_scalar escalar) override;
+      // ::number::number get_scalar_maximum(enum_scalar escalar) override;
 
 
       //bool safe_is_running();
@@ -1085,9 +1087,9 @@ namespace platform
 
       //virtual void on_graphics_ready();
 
-      //virtual ::type_atom user_default_controltype_to_typeinfo(::user::enum_control_type econtroltype);
+      //virtual ::platform::type user_default_controltype_to_typeinfo(::user::enum_control_type econtroltype);
       // apex commented
-      //virtual ::type_atom control_type_from_id(const ::atom & atom, ::user::enum_control_type & econtroltype);
+      //virtual ::platform::type control_type_from_id(const ::atom & atom, ::user::enum_control_type & econtroltype);
 
 
       //virtual ::atom translate_property_id(const ::atom & atom) override;
@@ -1147,7 +1149,7 @@ namespace platform
       //user virtual void on_create_split_impact(::user::split_impact* pimpact);
 
 
-      //virtual ::type_atom control_type_from_id(const ::atom& atom, ::user::enum_control_type& econtroltype) override;
+      //virtual ::platform::type control_type_from_id(const ::atom& atom, ::user::enum_control_type& econtroltype) override;
 
 
       // virtual bool base_support();

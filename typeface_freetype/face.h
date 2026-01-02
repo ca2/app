@@ -21,6 +21,7 @@ namespace typeface_freetype
 
       bool m_bFace;
       FT_Face m_face;
+      int m_iCapHeight = -1;
 
       face();
       ~face() override;

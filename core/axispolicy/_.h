@@ -60,10 +60,6 @@
 //
 //
 //} // namespace user
-//
-//
-//
-//
 //typedef ::pointer<::windowing::window>window_pointer;
 //
 //
@@ -79,14 +75,6 @@
 //
 //#undef App
 //#define App(pparticle) (*(::get_app(pparticle))->cast < APP_TYPE >())
-//
-//
-//
-//
-//
-//
-//
-//
 //CLASS_DECL_CORE bool axis_init();
 //CLASS_DECL_CORE bool axis_term();
 //
@@ -210,11 +198,11 @@
 //
 //#include "app/axis/axis/node/_.h"
 //
-//#include "aura/primitive/data/data_tree_item.h"
+//#include "aura/prototype/data/data_tree_item.h"
 //
-//#include "aura/primitive/data/data_tree.h"
+//#include "aura/prototype/data/data_tree.h"
 //
-//#include "aura/primitive/data/data_simple_item.h"
+//#include "aura/prototype/data/data_simple_item.h"
 //
 //#include "axis/html_lite/_.h"
 //

@@ -197,7 +197,7 @@ enum enum_type
    e_type_string = 4096,
    e_type_pstring,
    e_type_ansi_range,
-   e_type_type,
+   //e_type_type,
    //e_type_integral_nanosecond,
    //e_type_pintegral_nanosecond,
    //e_type_integral_microsecond,
@@ -1102,6 +1102,15 @@ enum enum_synchronicity
 
    e_synchronicity_synchronous,
    e_synchronicity_asynchronous
+
+};
+
+
+enum enum_matrix_major
+{
+
+   e_matrix_major_column,
+   e_matrix_major_row
 
 };
 

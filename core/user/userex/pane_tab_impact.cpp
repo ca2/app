@@ -34,7 +34,7 @@ namespace core
 {
 
    
-   ::type_atom user::get_pane_tab_impact_type_info() { return ::type<::userex::pane_tab_impact>(); }
+   ::platform::type user::get_pane_tab_impact_type_info() { return ::type<::userex::pane_tab_impact>(); }
 
 
 } // namespace core
@@ -1121,10 +1121,10 @@ namespace userex
 //namespace aura
 //{
 //
-//::type system::get_pane_tab_impact_type_info()
+//::platform::type system::get_pane_tab_impact_type_info()
 //{
 //
-//   return ::type < userex::pane_tab_impact >();
+//   return ::type<userex::pane_tab_impact>();
 //
 //}
 //

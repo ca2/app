@@ -11,10 +11,10 @@
 //   m_gc           = None;
 //   m_pixmap       = None;
 //   m_window       = None;
-//   m_point.x()         = 0;
-//   m_point.y()         = 0;
-//   m_pointOffset.x()   = 0;
-//   m_pointOffset.y()   = 0;
+//   m_point.x         = 0;
+//   m_point.y         = 0;
+//   m_pointOffset.x   = 0;
+//   m_pointOffset.y   = 0;
 //   m_iScreen      = 0;
 //   m_iDepth       = 0;
 //   m_fontset      = None;
@@ -76,10 +76,6 @@
 ////    return true;
 //
 //// }
-//
-//
-//
-//
 //// int FillRect(HDC hdc, const ::int_rectangle & prc, HBRUSH hbr)
 //
 //// {
@@ -87,7 +83,7 @@
 ////    //single_lock synchronouslock(&user_synchronization(), true);
 //
 //
-////    XFillRectangle(hdc->m_pdisplay, hdc->m_drawable, hdc->m_gc, prc->left(), lprc->top(), lprc->right() - lprc->left(), lprc->bottom() - lprc->top());
+////    XFillRectangle(hdc->m_pdisplay, hdc->m_drawable, hdc->m_gc, prc->left, lprc->top, lprc->right - lprc->left, lprc->bottom - lprc->top);
 //
 ////    return 1;
 //// }
@@ -111,14 +107,6 @@
 ////    return ReleaseDC(hwnd, ps->hdc);
 //
 //// }
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //

@@ -20,7 +20,7 @@ namespace gpu_opengl
    public:
 
 
-      GLuint m_gluDepthStencilTex;
+      //GLuint m_gluDepthStencilTex;
 
       ::int_array_base imageAvailable;
 

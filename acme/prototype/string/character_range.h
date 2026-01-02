@@ -60,6 +60,16 @@ inline const TYPE & for_copy(TYPE && t)
 // inline RANGE & character_range_defer_release(RANGE & range);
 //
 
+//
+//
+//if (::is_set(this->m_pbasedata))
+//{
+//
+//   this->m_pbasedata->base_data_increment_reference_count();
+//
+//}
+
+
 
 template < typename ITERATOR_TYPE >
 class character_range :
@@ -74,7 +84,7 @@ public:
    using BASE_RAW_RANGE = ::character_range < ITERATOR_TYPE >;
    using _BASE_RAW_RANGE = ::range < ITERATOR_TYPE >;
 
-   using this_iterator = typename BASE_RANGE::this_iterator;
+   using this_iterator = typename _BASE_RAW_RANGE::this_iterator;
 
    using CHARACTER = typename BASE_RANGE::ITEM;
    using BASE_DATA = ::base_data < CHARACTER >;
@@ -282,11 +292,13 @@ public:
    //
    // }
 
-
    constexpr bool has_string_storage() const { return m_pbasedata != nullptr; }
 
 
    constexpr bool is_null_terminated() const { return !*this->m_end; }
+
+
+   constexpr bool is_working_string_range() const { return !this->has_string_storage(); }
 
 
    void set_null()
@@ -407,27 +419,225 @@ public:
 //
 
 
-// Formatter for MyString<CharT>
-template <typename CharT>
-struct std::formatter<::character_range<const CharT *>, CharT> {
-   // Reuse the existing string_view formatter
-   std::formatter<std::basic_string_view<CharT>, CharT> formatter;
+//// Formatter for MyString<CharT>
+//template <typename CharT>
+//struct std::formatter<::character_range<const CharT *>, CharT> {
+//   // Reuse the existing string_view formatter
+//   std::formatter<std::basic_string_view<CharT>, CharT> formatter;
+//
+//   constexpr auto parse(std::basic_format_parse_context<CharT>& ctx) {
+//      // Delegate parsing to string_view's formatter
+//      return formatter.parse(ctx);
+//   }
+//
+//   template <typename FormatContext>
+//   auto format(const ::character_range<const CharT *>& s, FormatContext& ctx) {
+//      // Wrap in string_view and forward
+//      return formatter.format(
+//         std::basic_string_view<CharT>(s.data(), s.size()), ctx);
+//   }
+//
+//
+//};
 
-   constexpr auto parse(std::basic_format_parse_context<CharT>& ctx) {
-      // Delegate parsing to string_view's formatter
-      return formatter.parse(ctx);
+
+template<class T>
+struct character_decay_struct
+{
+   typedef T type;
+};
+
+template< >
+struct character_decay_struct < ansi_character >
+{
+   typedef char type;
+};
+
+#if defined(WINDOWS)
+
+template< >
+struct character_decay_struct < wd16_character >
+{
+   typedef wchar_t type;
+};
+
+template< >
+struct character_decay_struct < wd32_character >
+{
+   typedef char32_t type;
+};
+
+#else
+
+template< >
+struct character_decay_struct < wd16_character >
+{
+   typedef char16_t type;
+};
+
+template< >
+struct character_decay_struct < wd32_character >
+{
+   typedef wchar_t type;
+};
+
+
+#endif
+
+
+
+template<typename T>
+using character_decay = typename character_decay_struct<T>::type;
+
+
+//template <typename ITERATOR_TYPE, typename CharT >
+//   requires(::std::is_same_v < CharT, ::character_decay < ::non_pointer< ITERATOR_TYPE > > >)
+//struct std::formatter<::character_range<ITERATOR_TYPE>, CharT >
+//{
+//
+//   using character_type = CharT;
+//   using string_view_type = ::std::basic_string_view<character_type>;
+//   using target_iterator = const character_type *;
+//
+//   ::std::formatter<string_view_type, character_type> base;
+//
+//   // Forward parse explicitly
+//   constexpr auto parse(std::format_parse_context& ctx) {
+//      return base.parse(ctx);
+//   }
+//
+//   template <typename FormatContext>
+//   auto format(const ::character_range<ITERATOR_TYPE>& range, FormatContext& ctx) const {
+//      // Construct string_view safely from iterators
+//      string_view_type sv(
+//         (target_iterator)range.begin(), 
+//         (target_iterator)range.end());
+//      return base.format(sv, ctx);
+//   }
+//};
+//
+//#include <format>
+//#include <string_view>
+//#include <type_traits>
+//
+//template <typename ITERATOR_TYPE>
+//struct std::formatter<::character_range<ITERATOR_TYPE>, char>
+//{
+//
+//   using character_type_check = ::character_decay < ::non_pointer < ::non_const < ITERATOR_TYPE > > >;
+//
+//   std::formatter<::std::string_view, char> base;
+//
+//   // Must be exactly std::format_parse_context&
+//   constexpr auto parse(std::format_parse_context& ctx) {
+//      return base.parse(ctx);
+//   }
+//
+//   template <typename FormatContext>
+//   auto format(const ::character_range<ITERATOR_TYPE>& range, FormatContext& ctx) const {
+//      static_assert(std::is_same_v<character_type_check, char>,
+//         "FormatContext char_type must match formatter char");
+//      ::std::string_view sv(range.begin(), range.end());
+//      return base.format(sv, ctx);
+//   }
+//};
+//
+//
+//template <typename ITERATOR_TYPE>
+//struct std::formatter<::character_range<ITERATOR_TYPE>, wchar_t>
+//{
+//
+//   using character_type_check = ::character_decay < ::non_pointer < ITERATOR_TYPE > >;
+//
+//   std::formatter<::std::wstring_view, wchar_t> base;
+//
+//   constexpr auto parse(std::wformat_parse_context& ctx) { return base.parse(ctx); }
+//
+//   template <typename FormatContext>
+//   auto format(const ::character_range<ITERATOR_TYPE>& range, FormatContext& ctx) const {
+//      static_assert(std::is_same_v<character_type_check, wchar_t>,
+//         "FormatContext char_type must match formatter char");
+//      ::std::wstring_view sv(range.begin(), range.end());
+//      return base.format(sv, ctx);
+//   }
+//};
+
+
+template <prototype_character_range CHARACTER_RANGE >
+struct std::formatter<CHARACTER_RANGE>
+{
+   using BASE_TYPE = CHARACTER_RANGE;
+   using this_iterator = typename BASE_TYPE::this_iterator;
+   using character_type = ::character_decay<::non_pointer<::non_const< this_iterator>>>;
+   using string_view_type = ::std::basic_string_view<character_type>;
+   using target_iterator = const character_type*;
+
+   std::formatter<string_view_type> base;
+
+   // Forward parse explicitly
+   template <typename FormatContext>
+   constexpr auto parse(FormatContext& ctx) {
+      return base.parse(ctx);
    }
 
    template <typename FormatContext>
-   auto format(const ::character_range<const CharT *>& s, FormatContext& ctx) {
-      // Wrap in string_view and forward
-      return formatter.format(
-         std::basic_string_view<CharT>(s.data(), s.size()), ctx);
+   auto format(const BASE_TYPE & characterrange, FormatContext& ctx) const {
+      return base.format(
+         string_view_type{
+            (target_iterator) characterrange.begin(), 
+            (target_iterator) characterrange.end() 
+         },
+         ctx
+      );
+   }
+};
+
+template <typename ITERATOR_TYPE>
+struct std::formatter<::character_range<ITERATOR_TYPE>>
+{
+   using character_type = ::character_decay<::non_pointer<::non_const< ITERATOR_TYPE>>>;
+   using string_view_type = ::std::basic_string_view<character_type>;
+   using target_iterator = const character_type*;
+
+   std::formatter<string_view_type> base;
+
+   // Forward parse explicitly
+   template <typename FormatContext>
+   constexpr auto parse(FormatContext& ctx) {
+      return base.parse(ctx);
    }
 
-
+   template <typename FormatContext>
+   auto format(const ::character_range<ITERATOR_TYPE>& characterrange, FormatContext& ctx) const {
+      return base.format(
+         string_view_type{
+            (target_iterator)characterrange.begin(),
+            (target_iterator)characterrange.end()
+         },
+         ctx
+      );
+   }
 };
 
 
 
 
+
+inline void test_u03485203845()
+{
+
+   ::std::string_view stringview;
+
+   character_range < const ::ansi_character *> a;
+
+   a.m_begin = "test";
+   a.m_end = a.m_begin + strlen(a.m_begin);
+   a.m_erange = e_range_string_literal;
+
+   //::std::basic_format_string<char, character_range<const ansi_character*>&>::basic_format_string<char[11]>(const _Ty(&));
+
+   auto str = ::std::format("test is {}", a);
+
+   printf("Test is %s", str.c_str());
+
+}

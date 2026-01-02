@@ -486,10 +486,6 @@ void Free_check_pointer_in_cpp(void * p)
 //
 //}
 //
-//
-//
-//
-//
 //void plex_heap_alloc_sync::FreeAll()
 //{
 //
@@ -557,10 +553,6 @@ void Free_check_pointer_in_cpp(void * p)
 //#endif // XXDEBUG
 //
 //}
-//
-//
-//
-//
 
 //plex_heap_alloc_sync * plex_heap_alloc::new_plex_heap_alloc_sync(memsize nAllocSize, unsigned int nBlockSize)
 //{

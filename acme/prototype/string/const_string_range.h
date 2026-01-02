@@ -16,7 +16,7 @@ template < > consteval auto typed_##NAME<char16_t>() { return u##LITERAL; } \
 template < > consteval auto typed_##NAME<char32_t>() { return U##LITERAL; }
 
 
-template<primitive_character CHARACTER>
+template<prototype_character CHARACTER>
 constexpr ::character_range<const CHARACTER *>
 inline _start_count_string_range(const CHARACTER *psz, memsize start, memsize count);
 
@@ -158,7 +158,7 @@ public:
    //}
 
 
-   template<primitive_integral INTEGRAL>
+   template<prototype_integral INTEGRAL>
    constexpr const_string_range(const_iterator begin, INTEGRAL count) : BASE_RANGE((this_iterator)begin,
       (this_iterator)(begin + count)) {
    }
@@ -270,9 +270,9 @@ public:
 
 
 
-   template < primitive_integral START, primitive_integral COUNT >
+   template < prototype_integral START, prototype_integral COUNT >
    const_string_range subrange(START start, COUNT count) const;
-   template < primitive_integral START >
+   template < prototype_integral START >
    const_string_range subrange(START start, const_iterator p) const { return subrange(start, (p - this->m_begin) - start); }
 
    //auto this_range() const {return *this;}
@@ -384,9 +384,9 @@ public:
    }
 
 
-   template < primitive_integral START, primitive_integral COUNT>
+   template < prototype_integral START, prototype_integral COUNT>
    STRING_RANGE operator()(START start, COUNT count) const;
-   template < primitive_integral START, typed_character_pointer < const_string_range < ITERATOR_TYPE >::CHARACTER > CHARACTER_POINTER >
+   template < prototype_integral START, typed_character_pointer < const_string_range < ITERATOR_TYPE >::CHARACTER > CHARACTER_POINTER >
    STRING_RANGE operator()(START start, CHARACTER_POINTER end) const
    {
       return ::_start_end_range(STRING_RANGE(*this), start, end);
@@ -396,17 +396,17 @@ public:
    {
        return STRING_RANGE(start, this->end());
    }
-   template < primitive_integral START >
+   template < prototype_integral START >
    STRING_RANGE operator()(START start) const;
    STRING_RANGE operator()() const;
 
-   template < primitive_integral START, primitive_integral COUNT>
+   template < prototype_integral START, prototype_integral COUNT>
    auto substr(START start, COUNT count) const { return this->operator()(start, count); }
-   template < primitive_integral START, typed_character_pointer < typename const_string_range < ITERATOR_TYPE >::CHARACTER > CHARACTER_POINTER >
+   template < prototype_integral START, typed_character_pointer < typename const_string_range < ITERATOR_TYPE >::CHARACTER > CHARACTER_POINTER >
    auto substr(START start, CHARACTER_POINTER end) const { return this->operator()(start, end); }
    template < typed_character_pointer < typename const_string_range < ITERATOR_TYPE >::CHARACTER > CHARACTER_POINTER >
    auto substr(CHARACTER_POINTER start) const { return this->operator()(start); }
-   template < primitive_integral START >
+   template < prototype_integral START >
    auto substr(START start) const { return this->operator()(start); }
    //STRING_RANGE operator()() const;
 
@@ -456,7 +456,7 @@ public:
    }
 
 
-   bool has_character() const { return !this->is_empty(); }
+   constexpr bool has_character() const { return !this->is_empty(); }
 
    inline bool is_empty() const noexcept { return ::is_null(this->m_begin) || ::is_null(this->m_end) || this->m_end <= this->m_begin || *this->m_begin == '\0'; }
    inline memsize length_in_bytes() const { return this->size() * sizeof(CHARACTER); }
@@ -535,6 +535,118 @@ public:
       return trimmed_right().trimmed_left();
 
    }
+
+
+   constexpr bool _is_p_in_range(ITERATOR_TYPE p) const
+   {
+
+      return p >= this->m_begin && p <= this->m_begin;
+
+   }
+
+
+   const_string_range & trim_left(const SCOPED_STRING& scopedstrAnyPrefixCharacterToTrim)
+   {
+
+      ASSERT(this->is_working_string_range());
+
+      auto pszBegin = this->skip_any_character_in(scopedstrAnyPrefixCharacterToTrim);
+
+      if (pszBegin 
+         && pszBegin != this->m_begin 
+         && this->_is_p_in_range(pszBegin))
+      {
+
+         this->m_begin = pszBegin;
+         
+      }
+
+      return *this;
+
+   }
+
+
+   const_string_range& trim_left()
+   {
+
+      return this->trim_left(::typed_whitespace < CHARACTER >());
+
+   }
+
+
+   const_string_range & trim_right(const SCOPED_STRING& scopedstrAnySuffixCharacterToTrim)
+   {
+
+      ASSERT(this->is_working_string_range());
+
+      auto pszEnd = this->rear_skip_any_character_in(scopedstrAnySuffixCharacterToTrim);
+
+      if (pszEnd
+         && pszEnd != this->m_end
+         && this->_is_p_in_range(pszEnd))
+      {
+
+         this->m_end = pszEnd;
+
+      }
+
+      return *this;
+
+   }
+
+
+   const_string_range& trim_right()
+   {
+
+      return this->trim_right(::typed_whitespace < CHARACTER >());
+
+   }
+
+
+   const_string_range & trim(
+      const SCOPED_STRING& scopedstrAnyPrefixCharacterToTrim,
+      const SCOPED_STRING& scopedstrAnySuffixCharacterToTrim)
+   {
+
+      return trim_right(scopedstrAnySuffixCharacterToTrim).
+         trim_left(scopedstrAnyPrefixCharacterToTrim);
+
+   }
+
+
+   const_string_range& trim()
+   {
+
+      return trim_right().trim_left();
+
+   }
+
+
+   bool defer_trim(const SCOPED_STRING& scopedstrAnyPrefixCharacterToTrim, const SCOPED_STRING& scopedstrAnySuffixCharacterToTrim)
+   {
+
+      ASSERT(this->is_working_string_range());
+
+      auto pszCandidateBegin = this->skip_any_character_in(scopedstrAnyPrefixCharacterToTrim);
+
+      auto pszCandidateEnd = this->rear_skip_any_character_in(scopedstrAnySuffixCharacterToTrim);
+
+      if (pszCandidateBegin <= this->m_begin
+         || pszCandidateEnd >= this->m_end)
+      {
+
+         return false;
+
+      }
+
+      this->m_begin = pszCandidateBegin;
+
+      this->m_end = pszCandidateEnd;
+
+      return *this;
+
+   }
+
 
 
    const_string_range trimmed(const SCOPED_STRING& scopedstr) const
@@ -655,6 +767,13 @@ public:
 
       auto sizeRange = this->size();
 
+      if (this->is_this_range(range))
+      {
+
+         return true;
+
+      }
+
       return sizeRange != range.size() ? false :
          (sizeRange <= 0 ?
             true :
@@ -669,6 +788,13 @@ public:
    {
 
       auto sizeThis = this->size();
+
+      if (psz == this->m_begin)
+      {
+
+         return sizeThis == string_safe_length(psz);
+
+      }
 
       return _string_count_compare(this->m_begin, psz, sizeThis) == 0
          && psz[sizeThis] == CHARACTER{};
@@ -1238,6 +1364,26 @@ public:
    //
    //   }
 
+
+   using BASE_RANGE::_find_first_character;
+
+   constexpr const_iterator _find_first_character(CHARACTER ch) const {
+
+      return this->_find_first_character(ch, ::comparison::comparison<ITEM>());
+
+   }
+
+   constexpr character_count _find_first_character_index(CHARACTER ch) const {
+      return this->index_of(_find_first_character(ch));
+   }
+
+   using BASE_RANGE::find_first_character;
+
+   constexpr const_iterator find_first_character(CHARACTER ch) const {
+
+      return this->find_first_character(ch, ::comparison::comparison<ITEM>());
+
+   }
 
    using BASE_RANGE::_find_first_character_in;
 
@@ -1879,6 +2025,22 @@ public:
 
    }
 
+   bool begins_eat(const SCOPED_STRING& range) {
+
+      if (!this->begins(range))
+      {
+
+         return false;
+
+      }
+
+      this->m_begin += range.size();
+
+      return true;
+
+   }
+
+
 
    ::collection::count begins_count(bool(*character_is_function)(CHARACTER character)) const
    {
@@ -2078,10 +2240,10 @@ public:
       contains(const SCOPED_STRING& scopedstr, const CHARACTER** ppszBeg, const CHARACTER** ppszEnd = nullptr) const;
    //inline bool contains(const string_base &str, const CHARACTER ** ppszBeg, const CHARACTER ** ppszEnd = nullptr) const;
 
-   template<primitive_array STRING_ARRAY>
+   template<prototype_array STRING_ARRAY>
    inline bool contains_any(const STRING_ARRAY& stra) const;
 
-   template<primitive_array STRING_ARRAY>
+   template<prototype_array STRING_ARRAY>
    inline bool contains_all(const STRING_ARRAY& stra) const;
 
    //inline bool case_insensitive_contains(CHARACTER ch = 0) const;
@@ -2093,10 +2255,10 @@ public:
       case_insensitive_contains(const SCOPED_STRING& scopedstr, const CHARACTER** ppszBeg, const CHARACTER** ppszEnd = nullptr) const;
    //inline bool case_insensitive_contains(const string_base &str, const CHARACTER ** ppszBeg, const CHARACTER ** ppszEnd = nullptr) const;
 
-   template<primitive_array STRING_ARRAY>
+   template<prototype_array STRING_ARRAY>
    inline bool case_insensitive_contains_at_least_one_of(const STRING_ARRAY& stra) const;
 
-   template<primitive_array STRING_ARRAY>
+   template<prototype_array STRING_ARRAY>
    inline bool case_insensitive_contains_all(const STRING_ARRAY& stra) const;
 
 
@@ -2109,10 +2271,10 @@ public:
       unicode_case_insensitive_contains(const SCOPED_STRING& scopedstr, const CHARACTER** ppszBeg, const CHARACTER** ppszEnd = nullptr) const;
    //inline bool unicode_case_insensitive_contains(const string_base &str, const CHARACTER ** ppszBeg, const CHARACTER ** ppszEnd = nullptr) const;
 
-   template<primitive_array STRING_ARRAY>
+   template<prototype_array STRING_ARRAY>
    inline bool unicode_case_insensitive_contains_at_least_one_of(const STRING_ARRAY& stra) const;
 
-   template<primitive_array STRING_ARRAY>
+   template<prototype_array STRING_ARRAY>
    inline bool unicode_case_insensitive_contains_all(const STRING_ARRAY& stra) const;
 
 
@@ -2707,10 +2869,10 @@ public:
 
 
 
-template<primitive_character CHARACTER>
+template<prototype_character CHARACTER>
 constexpr ::character_range<const CHARACTER*> _string_range(const CHARACTER* psz);
 
-template<primitive_character CHARACTER>
+template<prototype_character CHARACTER>
 constexpr ::character_range<const CHARACTER*>
 _start_count_string_range(const CHARACTER* psz, memsize start, memsize count);
 
@@ -2771,6 +2933,12 @@ public:
 
    }
 
+   constexpr string_literal(ITERATOR_TYPE s) :
+      string_literal(s, string_safe_length(s))
+   {
+
+   }
+
 
 };
 
@@ -2799,7 +2967,7 @@ constexpr string_literal < const ::wd32_character* > operator ""_wd32(const ::wd
 }
 
 
-template < primitive_character CHARACTER, character_count n >
+template < prototype_character CHARACTER, character_count n >
 ::const_string_range < const CHARACTER * > as_range(const CHARACTER(&s)[n])
 {
    return
@@ -2814,8 +2982,7 @@ template < primitive_character CHARACTER, character_count n >
 template < typename TYPED_STRING_LITERAL, typename CHARACTER >
 concept typed_string_literal =
 ::std::is_same_v < TYPED_STRING_LITERAL, CHARACTER >&&
-primitive_character < TYPED_STRING_LITERAL >;
-
+prototype_character < TYPED_STRING_LITERAL >;
 
 
 

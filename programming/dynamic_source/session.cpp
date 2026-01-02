@@ -48,6 +48,8 @@ namespace dynamic_source
       
       ::particle::initialize(pmanager);
 
+      defer_create_synchronization();
+
       //if (!estatus)
       //{
 

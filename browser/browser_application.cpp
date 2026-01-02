@@ -120,9 +120,9 @@ pdirectorysystem->create(szRelative);  // or SHCreateDirectory(NULL, szCacheDir)
       pDocTemplate = __initialize_new ::user::single_document_template(
                           this,
                           "main",
-                          ::type < document >(),
-                          ::type < main_frame >(),
-                          ::type < pane_impact >()));
+                          ::type<document>(),
+                          ::type<main_frame>(),
+                          ::type<pane_impact>()));
       m_ptemplateHelloBrowserMain = pDocTemplate;
       add_document_template(pDocTemplate);
 
@@ -130,9 +130,9 @@ pdirectorysystem->create(szRelative);  // or SHCreateDirectory(NULL, szCacheDir)
       pDocTemplate = __initialize_new ::user::single_document_template(
                           this,
                           "main",
-                          ::type < document >(),
-                          ::type < frame >(),
-                          ::type < main_impact >()));
+                          ::type<document>(),
+                          ::type<frame>(),
+                          ::type<main_impact>()));
       m_ptemplateHelloBrowserView = pDocTemplate;
       add_document_template(pDocTemplate);
 
@@ -140,9 +140,9 @@ pdirectorysystem->create(szRelative);  // or SHCreateDirectory(NULL, szCacheDir)
       pDocTemplate = __initialize_new ::user::single_document_template(
                           this,
                           "switcher",
-                          ::type < document >(),
-                          ::type < frame >(),
-                          ::type < switcher_impact >()));
+                          ::type<document>(),
+                          ::type<frame>(),
+                          ::type<switcher_impact>()));
       m_ptemplateHelloBrowserSwitcher = pDocTemplate;
       add_document_template(pDocTemplate);
 
@@ -199,7 +199,7 @@ pdirectorysystem->create(szRelative);  // or SHCreateDirectory(NULL, szCacheDir)
 
       }
 
-      informationf("\nfinished browser::on_request");
+      informationf("----> finished browser::on_request");
 
    }
 

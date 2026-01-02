@@ -1472,7 +1472,7 @@ namespace apex
 
 
 
-   //object * application::alloc(::type info)
+   //object * application::alloc(::platform::type info)
    //{
 
    //   return psystem->alloc(this, info);
@@ -1621,7 +1621,7 @@ namespace apex
    //////         if(m_iErrorCode != 0)
    //////         {
    //////
-   //////            dappy(::type(this).name() + " : on_run failure : " + as_string(m_iErrorCode));
+   //////            dappy(::platform::type(this).name() + " : on_run failure : " + as_string(m_iErrorCode));
    //////
    //////            informationf("application::main on_run termination failure\n");
    //////
@@ -1641,7 +1641,7 @@ namespace apex
    ////      catch (...)
    ////      {
    ////
-   ////         //dappy(::type(this).name() + " : on_run general exception");
+   ////         //dappy(::platform::type(this).name() + " : on_run general exception");
    ////
    ////      }
    ////
@@ -2787,7 +2787,7 @@ namespace apex
 
       }
 
-      information() << "initial_check_directrix : ok (" << ::type(this).name() << ")" << m_strAppId;
+      information() << "initial_check_directrix : ok (" << ::platform::type(this).name() << ")" << m_strAppId;
 
       //return true;
 
@@ -3261,7 +3261,7 @@ namespace apex
    //   //if (!init1())
    //   //{
    //   //
-   //   ////dappy(::type(this).name() + " : init1 failure : " + as_string(m_iErrorCode));
+   //   ////dappy(::platform::type(this).name() + " : init1 failure : " + as_string(m_iErrorCode));
    //   //
    //   //return false;
    //   //
@@ -3278,7 +3278,7 @@ namespace apex
    //   //if (!init2())
    //   //{
    //   //
-   //   ////dappy(::type(this).name() + " : init2 failure : " + as_string(m_iErrorCode));
+   //   ////dappy(::platform::type(this).name() + " : init2 failure : " + as_string(m_iErrorCode));
    //   //
    //   //return false;
    //   //
@@ -3295,7 +3295,7 @@ namespace apex
    //   //if (!init3())
    //   //{
    //   //
-   //   ////dappy(::type(this).name() + " : init3 failure : " + as_string(m_iErrorCode));
+   //   ////dappy(::platform::type(this).name() + " : init3 failure : " + as_string(m_iErrorCode));
    //   //
    //   //return false;
    //   //
@@ -3307,7 +3307,7 @@ namespace apex
 
    //   ping();
 
-   //   //dappy(::type(this).name() + " : init3 ok : " + as_string(m_iErrorCode));
+   //   //dappy(::platform::type(this).name() + " : init3 ok : " + as_string(m_iErrorCode));
 
    //   //try
    //   //{
@@ -3315,7 +3315,7 @@ namespace apex
    //   init();
    //   //{
    //   //
-   //   ////dappy(::type(this).name() + " : initialize failure : " + as_string(m_iErrorCode));
+   //   ////dappy(::platform::type(this).name() + " : initialize failure : " + as_string(m_iErrorCode));
    //   //
    //   //return false;
    //   //
@@ -4497,7 +4497,7 @@ namespace apex
    }
 
 
-   bool application::on_set_scalar(enum_scalar escalar, ::number number, int iFlags)
+   bool application::on_set_scalar(enum_scalar escalar, ::number::number number, int iFlags)
    {
 
       //if (escalar == scalar_app_install_progress)
@@ -4530,7 +4530,7 @@ namespace apex
    }
 
 
-   ::number application::get_scalar_minimum(enum_scalar escalar)
+   ::number::number application::get_scalar_minimum(enum_scalar escalar)
    {
 
       //if (escalar == scalar_app_install_progress)
@@ -4563,7 +4563,7 @@ namespace apex
    }
 
 
-   ::number application::get_scalar(enum_scalar escalar)
+   ::number::number application::get_scalar(enum_scalar escalar)
    {
 
       //if (escalar == scalar_app_install_progress)
@@ -4596,7 +4596,7 @@ namespace apex
    }
 
 
-   ::number application::get_scalar_maximum(enum_scalar escalar)
+   ::number::number application::get_scalar_maximum(enum_scalar escalar)
    {
 
       //if (escalar == scalar_download_size)
@@ -5551,20 +5551,20 @@ namespace apex
    //   }
 
 
-   //::type application::user_default_controltype_to_typeinfo(::user::enum_control_type econtroltype)
+   //::platform::type application::user_default_controltype_to_typeinfo(::user::enum_control_type econtroltype)
    //{
 
-   //   return ::type < ::user::interaction >();
+   //   return ::type<::user::interaction>();
 
    //}
 
 
-   //::type application::control_type_from_id(const ::atom & atom, ::user::enum_control_type & econtroltype)
+   //::platform::type application::control_type_from_id(const ::atom & atom, ::user::enum_control_type & econtroltype)
    //{
 
    //   econtroltype = ::user::e_control_type_none;
 
-   //   return ::type < ::user::interaction >();
+   //   return ::type<::user::interaction>();
 
    //}
 
@@ -6032,7 +6032,7 @@ namespace apex
       //try
       //{
 
-      string strType = ::type(this).name();
+      string strType = ::platform::type(this).name();
 
       //if(::is_set(system()))
       //{
@@ -10434,7 +10434,7 @@ namespace apex
          
          pdialog->create();
          
-         int max_width = system()->acme_windowing()->acme_display()->get_main_screen_size().cx();
+         int max_width = system()->acme_windowing()->acme_display()->get_main_screen_size().cx;
          
          ::string strTitle;
          

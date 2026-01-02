@@ -21,10 +21,6 @@
 //   int case_insensitive_order(const ::scoped_string & scopedstr)const { return strnicmp((const_char_pointer )m_pdata, psz, m_iSize); }
 //   bool operator == (const ::scoped_string & scopedstr)const { return compare(scopedstr) == 0; }
 //   bool operator != (const ::scoped_string & scopedstr) const { return!operator==(scopedstr); }
-//
-//
-//
-//
 //};
 //
 

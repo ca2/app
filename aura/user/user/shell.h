@@ -73,7 +73,7 @@ namespace user
 
          inline operator ::hash32() const
          {
-            // default identity hash - works for most primitive values
+            // default identity hash - works for most prototype values
             return
                as_hash32(m_strPath) +
                as_hash32(m_strShellThemePrefix) +

@@ -9,10 +9,6 @@
 //
 //   ::exception(const ::scoped_string & scopedstrMessage = nullptr);
 //   virtual ~::exception();
-//
-//
-//
-//
 //};
 //
 //

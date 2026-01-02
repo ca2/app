@@ -66,20 +66,20 @@ namespace gpu
       virtual ::geometry2d::matrix context_scale_matrix();
 
 
-      template < primitive_point POINT >
+      template < prototype_point POINT >
       POINT& __transform(POINT& p)
       {
          
          m_m1.transform(p);
          
-         //p.y() = m_pgpucontextCompositor2->m_rectangle.height() - p.y();
+         //p.y = m_pgpucontextCompositor2->m_rectangle.height() - p.y;
          
          return p;
 
       }
 
 
-      template < primitive_array POINT_ARRAY >
+      template < prototype_array POINT_ARRAY >
       POINT_ARRAY& __transform(POINT_ARRAY& a)
       {
          
@@ -90,7 +90,7 @@ namespace gpu
       }
 
 
-      template < primitive_point POINT >
+      template < prototype_point POINT >
       POINT& context_scale(POINT& p)
       {
 
@@ -101,7 +101,7 @@ namespace gpu
       }
 
       //
-      // template < primitive_point POINT >
+      // template < prototype_point POINT >
       // POINT& context_transform(POINT& p)
       // {
       //
@@ -112,7 +112,7 @@ namespace gpu
       // }
       //
       //
-      // template < primitive_array POINT_ARRAY >
+      // template < prototype_array POINT_ARRAY >
       // POINT_ARRAY& context_transform(POINT_ARRAY& a)
       // {
       //
@@ -183,7 +183,7 @@ namespace gpu
 
 
       virtual ::typeface::face* get_face(::write_text::font* pfont);
-
+      void defer_set_size(const ::int_size &size) override;
 
    };
 

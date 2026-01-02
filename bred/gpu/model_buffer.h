@@ -4,14 +4,13 @@
 
 
 #include "acme/prototype/prototype/poolable.h"
-#include "bred/graphics3d/types.h"
 #include "bred/gpu/context.h"
 #include "bred/gpu/context_object.h"
 #include "bred/gpu/frame.h"
 #include "bred/gpu/memory_buffer.h"
 #include "bred/gpu/model_data.h"
-//#include "bred/graphics3d/model.h"
 #include "bred/graphics3d/renderable.h"
+#include "bred/graphics3d/types.h"
 
 
 namespace gpu
@@ -23,22 +22,24 @@ namespace gpu
       virtual public poolable < model_buffer >,
       virtual public ::graphics3d::renderable
    {
+   protected:
+
+
+      virtual void _static_initialize_vertex_buffer(const ::block & blockVertexData);
+      virtual void _static_initialize_index_buffer(const ::block & blockIndexData);
+
+
    public:
 
 
       void* m_pMap;
+      ::pointer<model_data_base> m_pmodeldatabase2;
       ::pointer < memory_buffer > m_pbufferVertex;
       ::pointer < memory_buffer > m_pbufferIndex;
       ::pointer < input_layout > m_pinputlayout;
       ::pointer < command_buffer >  m_pcommandbufferLoading;
-      int m_iVertexCount;
-      int m_iVertexByteSize;
-      int m_iVertexTypeSize;
-      int m_iIndexCount;
-      int m_iIndexByteSize;
-      int m_iIndexTypeSize;
-
-      bool m_bDummy;
+      
+      //bool m_bDummy;
       
       ::string m_strDebugString;
 
@@ -46,6 +47,26 @@ namespace gpu
 
       model_buffer();
       ~model_buffer();
+
+      template < typename VERTEX, typename INDEX = unsigned int >
+      ::gpu::model_data_base & model_data()
+      {
+
+         if (!m_pmodeldatabase2
+            || typeid(VERTEX) != m_pmodeldatabase2->vertex_type()
+            || typeid(INDEX) != m_pmodeldatabase2->index_type())
+         {
+
+            m_pmodeldatabase2 = øallocate ::gpu::model_data<VERTEX, INDEX>();
+
+         }
+         return *m_pmodeldatabase2;
+
+
+      }
+
+
+
 
       
       virtual void sequence2_uv_create_rectangle(::gpu::context* pcontext, bool bIndexed, bool bYSwap);
@@ -55,17 +76,21 @@ namespace gpu
       void create_vertexes(int iVertexCount, bool bDynamic = false)
       {
 
-         m_iVertexCount = iVertexCount;
+         auto & modeldata = model_data<VERTEX>();
 
-         m_iVertexTypeSize = sizeof(VERTEX);
+         modeldata.set_vertex_count(iVertexCount);
 
-         auto size = m_iVertexTypeSize * m_iVertexCount;
+         //m_iVertexCount = iVertexCount;
+
+         //m_iVertexTypeSize = sizeof(VERTEX);
+
+         //auto size = m_iVertexTypeSize * m_iVertexCount;
 
          ødefer_construct(m_pbufferVertex);
 
          m_pbufferVertex->initialize_memory_buffer_with_model_buffer(
             this,
-            size, 
+            modeldata.vertex_bytes(), 
             memory_buffer::e_type_vertex_buffer, bDynamic);
 
          set_input_layout(m_pgpucontext->input_layout(::gpu_properties< VERTEX >()));
@@ -73,37 +98,41 @@ namespace gpu
       }
 
 
-      template < typename VERTEX >
-      void create_vertex_array(int iCount)
-      {
+      //template < typename VERTEX >
+      //void create_vertex_array(int iCount)
+      //{
 
-         auto pgpuframe = ::gpu::current_frame();
+      //   auto pgpuframe = ::gpu::current_frame();
 
-         initialize_gpu_context_object(pgpuframe->gpu_context());
+      //   initialize_gpu_context_object(pgpuframe->gpu_context());
 
-         auto pcommandbuffer = pgpuframe->m_pgpucommandbuffer;
+      //   auto pcommandbuffer = pgpuframe->m_pgpucommandbuffer;
 
-         bind(pcommandbuffer);
+      //   bind2(pcommandbuffer);
 
-         this->create_vertexes<::graphics3d::sequence2_color >(iCount);
+      //   this->create_vertexes<::graphics3d::sequence2_color >(iCount);
 
-         unbind(pcommandbuffer);
+      //   unbind(pcommandbuffer);
 
-         //defer_set_input_layout(pcontext->input_layout(::gpu_properties < ::graphics::sequence2_color>()));
+      //   //defer_set_input_layout(pcontext->input_layout(::gpu_properties < ::graphics::sequence2_color>()));
 
-      }
-
-
+      //}
 
 
       template < typename VERTEX >
       void static_initialize_vertexes(const ::array_base<VERTEX> & vertexa)
       {
 
-         static_initialize_vertex_buffer(
-            vertexa.data(),
-            sizeof(VERTEX),
-            vertexa.size());
+         auto &modeldata = model_data<VERTEX>();
+
+         modeldata.set_vertexes(vertexa);
+
+         ødefer_construct(m_pbufferVertex);
+
+         auto blockVertexData = modeldata.vertex_data();
+
+         m_pbufferVertex->static_initialize_memory_buffer_with_model_buffer(
+            this, blockVertexData, memory_buffer::e_type_vertex_buffer);
 
          set_input_layout(m_pgpucontext->input_layout(::gpu_properties< VERTEX >()));
 
@@ -114,21 +143,24 @@ namespace gpu
 
       virtual void initialize_dummy_model(::gpu::context* pcontext, int iVertexCount);
 
-      virtual void static_initialize_vertex_buffer(const void* data, memsize iTypeSize, ::collection::count iVertexCount);
-      virtual void static_initialize_index_buffer(const void* data, memsize iTypeSize, ::collection::count iIndexCount);
 
-      virtual void static_initialize_vertexes_block(const ::block& blockvertexes);
-      virtual void static_initialize_indexes_block(const ::block& blockindexes);
+      //virtual void static_initialize_vertexes_block(const ::block& blockvertexes);
+      //virtual void static_initialize_indexes_block(const ::block& blockindexes);
 
       template < typename INDEX >
       void create_indexes(::collection::count iIndexCount)
       {
 
-         m_iIndexCount = (int) iIndexCount;
+         if (m_pmodeldatabase2->vertex_bytes() <= 0)
+         {
+            // please set the vertex first
+            throw ::exception(error_wrong_state);
 
-         m_iIndexTypeSize = (int) sizeof(INDEX);
+         }
 
-         auto size = m_iIndexTypeSize * m_iIndexCount;
+         m_pmodeldatabase2->set_index_type_and_count<INDEX>(iIndexCount);
+
+         auto size = m_pmodeldatabase2->index_bytes();
 
          ødefer_construct(m_pbufferIndex);
 
@@ -144,6 +176,13 @@ namespace gpu
       void static_initialize_indexes(const ::array_base<INDEX>& indexes)
       {
 
+                  if (typeid(INDEX) != m_pmodeldatabase2->index_type())
+         {
+
+            throw ::exception(error_wrong_state);
+         }
+
+
          //m_iIndexCount = (int)indexa.count();
 
          //m_iIndexTypeSize = sizeof(INDEX);
@@ -158,30 +197,73 @@ namespace gpu
          //   size,
          //   memory_buffer::e_type_index_buffer);
 
-         static_initialize_index_buffer(
-            indexes.data(),
-            sizeof(INDEX),
-            indexes.size());
+                  m_pmodeldatabase2->set_indexes(indexes);
+
+      /*m_iIndexCount = (int)iIndexCount;
+
+         m_iIndexTypeSize = (int)iTypeSize;*/
+
+         //auto size = iIndexCount * m_iIndexTypeSize;
+
+         ødefer_construct(m_pbufferIndex);
+
+         auto blockIndexData = m_pmodeldatabase2->index_data();
+
+         m_pbufferIndex->static_initialize_memory_buffer_with_model_buffer(this, 
+            blockIndexData,
+                                                                           memory_buffer::e_type_index_buffer);
+
 
       }
 
+      template<typename VERTEX>
+      void static_initialize(const ::gpu::model_data<VERTEX> &modeldata)
+      {
+
+         static_initialize_vertexes(modeldata.vertexes());
+
+         if (modeldata.indexes().has_elements())
+         {
+
+            static_initialize_indexes(modeldata.indexes());
+         }
+
+      }
+
+      void static_initialize(const ::gpu::model_data_base * pmodeldata)
+      {
+
+         m_pmodeldatabase2 = pmodeldata;
+
+         _static_initialize_vertex_buffer(pmodeldata->vertex_data());
+
+         if (pmodeldata->index_count() > 0)
+         {
+
+            _static_initialize_index_buffer(pmodeldata->index_data());
+         }
+
+         set_input_layout(m_pgpucontext->input_layout(m_pmodeldatabase2->gpu_properties()));
+
+      }
 
       template < typename VERTEX >
       void set_vertexes(const ::array < VERTEX > & vertexa)
       {
 
-         if (sizeof(VERTEX) != m_iVertexTypeSize)
+         if (typeid(VERTEX) != m_pmodeldatabase2->vertex_type())
          {
 
             throw ::exception(error_wrong_state);
 
          }
 
-         m_iVertexCount = (int) vertexa.size();
+         m_pmodeldatabase2->set_vertexes(vertexa);
 
-         m_iVertexByteSize = m_iVertexTypeSize * m_iVertexCount;
 
-         m_pbufferVertex->on_set_memory_buffer(vertexa.data(), vertexa.get_size_in_bytes());
+         auto blockVertexData = m_pmodeldatabase2->vertex_data();
+         m_pbufferVertex->on_set_memory_buffer(
+            blockVertexData);
 
       }
 
@@ -190,11 +272,10 @@ namespace gpu
       void _set_vertexes(const ::array < VERTEX >& vertexa)
       {
 
-         if (sizeof(VERTEX) != m_iVertexTypeSize)
+         if (typeid(VERTEX) != m_pmodeldatabase2->vertex_type())
          {
 
             throw ::exception(error_wrong_state);
-
          }
 
          m_pbufferVertex->_on_set_memory_buffer(vertexa.data(), vertexa.get_size_in_bytes());
@@ -206,7 +287,7 @@ namespace gpu
       void set_index_array(const INDEX* p, ::collection::count iIndexCount)
       {
 
-         if (sizeof(INDEX) != m_iIndexTypeSize)
+         if (typeid(INDEX) != m_pmodeldatabase2->index_type())
          {
 
             throw ::exception(error_wrong_state);
@@ -222,7 +303,7 @@ namespace gpu
       void _set_vertex_array(const VERTEX* p, ::collection::count iVertexCount)
       {
 
-         if (sizeof(VERTEX) != m_iVertexTypeSize)
+         if (typeid(VERTEX) != m_pmodeldatabase2->vertex_type())
          {
 
             throw ::exception(error_wrong_state);
@@ -238,7 +319,7 @@ namespace gpu
       void _set_index_array(const INDEX* p, ::collection::count iIndexCount)
       {
 
-         if (sizeof(INDEX) != m_iIndexTypeSize)
+         if (typeid(INDEX) != m_pmodeldatabase2->index_type())
          {
 
             throw ::exception(error_wrong_state);
@@ -254,26 +335,47 @@ namespace gpu
       virtual void unbind_load_assets_command_buffer(::gpu::context *pcontext);
 
       template < typename VERTEX >
-      void initialize_model(::gpu::context *pcontext, const ::gpu::model_data<VERTEX> &modeldata)
+      void set_data(const ::gpu::model_data<VERTEX> &modeldata)
       {
 
-         initialize(pcontext);
-      
-         initialize_gpu_context_object(pcontext);
-
-         bind_load_assets_command_buffer(pcontext);
-
-         static_initialize_vertexes(modeldata.m_vertexes);
-
-         if (modeldata.m_indexes.has_elements())
+         if (!m_papplication || !m_pgpucontext)
          {
 
-            static_initialize_indexes(modeldata.m_indexes);
+            // should call initialize(pcontext);
+
+            // should call initialize_gpu_context_object(pcontext);
+
+            throw ::exception(error_wrong_state);
 
          }
 
-         unbind_load_assets_command_buffer(pcontext);
+         bind_load_assets_command_buffer(m_pgpucontext);
 
+         static_initialize(modeldata);
+
+         unbind_load_assets_command_buffer(m_pgpucontext);
+
+      }
+
+
+      void set_data(const ::gpu::model_data_base * pmodeldata)
+      {
+
+         if (!m_papplication || !m_pgpucontext)
+         {
+
+            // should call initialize(pcontext);
+
+            // should call initialize_gpu_context_object(pcontext);
+
+            throw ::exception(error_wrong_state);
+         }
+
+         bind_load_assets_command_buffer(m_pgpucontext);
+
+         static_initialize(pmodeldata);
+
+         unbind_load_assets_command_buffer(m_pgpucontext);
       }
 
 
@@ -334,9 +436,9 @@ namespace gpu
       //virtual void* _map(memsize start, memsize count);
       //virtual void unmap();
 
-      void bind(::gpu::command_buffer* pcommandbuffer) override;
+      void bind2(::gpu::command_buffer* pcommandbuffer) override;
 
-      void draw(::gpu::command_buffer* pcommandbuffer) override;
+      void draw2(::gpu::command_buffer* pcommandbuffer) override;
 
       virtual void draw_lines(::gpu::command_buffer* pcommandbuffer);
 
@@ -350,7 +452,7 @@ namespace gpu
    };
 
 
-} // namespace gpus
+} // namespace gpu
 
 
 

@@ -22,7 +22,7 @@ namespace experience_anthill
    frame::frame()
    {
 
-      m_pointWindowIcon.x() = 14;
+      m_pointWindowIcon.x = 14;
 
       m_colorActiveCaptionTextBk = ::color::transparent;
 
@@ -100,12 +100,12 @@ namespace experience_anthill
       ::int_rectangle rectangleWindow = rectangleX;
       pframewindow->client_to_screen()(rectangleWindow);
       //pimage = create_image({rectangleX.width(),  rectangleX.height()});
-      //bool b = pimage2->get_graphics()->BitBlt(0, 0, rectangleX.width() + iInflate * 2, rectangleX.height() + iInflate * 2, pgraphics, rectangleX.left() - iInflate, rectangleX.top() - iInflate);
+      //bool b = pimage2->get_graphics()->BitBlt(0, 0, rectangleX.width() + iInflate * 2, rectangleX.height() + iInflate * 2, pgraphics, rectangleX.left - iInflate, rectangleX.top - iInflate);
 
       {
 
          ::image::image_source imagesource(pgraphics,
-            double_rectangle(::int_point(rectangleX.left() - iInflate, rectangleX.top() - iInflate), ::double_size(rectangleX.width() + iInflate * 2, rectangleX.height() + iInflate * 2)));
+            double_rectangle(::int_point(rectangleX.left - iInflate, rectangleX.top - iInflate), ::double_size(rectangleX.width() + iInflate * 2, rectangleX.height() + iInflate * 2)));
 
          auto rectangle = double_rectangle_dimension(0, 0, rectangleX.width() + iInflate * 2, rectangleX.height() + iInflate * 2);
 
@@ -116,14 +116,14 @@ namespace experience_anthill
          pimage2->get_graphics()->draw(imagedrawing);
 
       }
-      //bool b = ::BitBlt(dc2, 0, 0, rectangleX.width() + iInflate * 2, rectangleX.height() + iInflate * 2, hdcScreen, rectangleX.left() - iInflate, rectangleX.top() - iInflate);
+      //bool b = ::BitBlt(dc2, 0, 0, rectangleX.width() + iInflate * 2, rectangleX.height() + iInflate * 2, hdcScreen, rectangleX.left - iInflate, rectangleX.top - iInflate);
 
       m_pfastblur->blur(pimage1, ::int_rectangle(::int_size(rectangleX.width() + iInflate * 2, rectangleX.height() + iInflate * 2)));
 
       //spgraphics->Draw3dRect(rectangleX, 127 << 24, 127 << 24);
       //rectangleX.deflate(1, 1);
       //spgraphics->Draw3dRect(rectangleX, 64 << 24, 64 << 24);
-      /*b = imaging.bitmap_blend(pgraphics, rectangle.left(), rectangle.top(),
+      /*b = imaging.bitmap_blend(pgraphics, rectangle.left, rectangle.top,
       rectangleWindow.width(),
       rectangleWindow.height(),
       &spgraphics,
@@ -134,7 +134,7 @@ namespace experience_anthill
       bf.BlendFlags = 0;
       bf.SourceConstantAlpha = 255;
       ::alpha_blend(pgraphics->get_handle1(),
-      rectangle.left(), rectangle.top(),
+      rectangle.left, rectangle.top,
       rectangleWindow.width(),
       rectangleWindow.height(),
       spgraphics->get_handle1(),
@@ -176,7 +176,7 @@ namespace experience_anthill
       /*Gdiplus::Graphics g((HDC) pgraphics->get_os_data());
       g.SetCompositingMode(Gdiplus::CompositingModeSourceOver);
       Gdiplus::SolidBrush solidBrush(Gdiplus::Color(bAlpha, color32_byte_red(color32), color32_byte_green(color32), color32_byte_blue(color32)));
-      g.FillRectangle(&solidBrush, rectangle.left(), rectangle.top(), rectangle.right() - rectangle.left(), rectangle.bottom() - rectangle.top());*/
+      g.FillRectangle(&solidBrush, rectangle.left, rectangle.top, rectangle.right - rectangle.left, rectangle.bottom - rectangle.top);*/
 
       pgraphics->fill_rectangle(rectangle, color & opacity);
 
@@ -250,12 +250,12 @@ namespace experience_anthill
          if (m_pframewindow == nullptr || m_pframewindow->get_draw_icon() == nullptr)
             return false;
 
-         rectangle.left() = m_pointWindowIcon.x();
-         rectangle.top() = m_pointWindowIcon.y();
-         //rectangle.right() = rectangle.left() + m_pframewindow->m_picon->get_size().cx();
-         //rectangle.bottom() = rectangle.top() + m_pframewindow->m_picon->get_size().cy();
-         rectangle.right() = rectangle.left() + 24;
-         rectangle.bottom() = rectangle.top() + 24;
+         rectangle.left = m_pointWindowIcon.x;
+         rectangle.top = m_pointWindowIcon.y;
+         //rectangle.right = rectangle.left + m_pframewindow->m_picon->get_size().cx;
+         //rectangle.bottom = rectangle.top + m_pframewindow->m_picon->get_size().cy;
+         rectangle.right = rectangle.left + 24;
+         rectangle.bottom = rectangle.top + 24;
 
          return true;
 
@@ -264,10 +264,10 @@ namespace experience_anthill
          if (m_pframewindow == nullptr || m_pframewindow->const_layout().design().display() != ::e_display_minimal)
             return false;
 
-         //rectangle.left() = m_pointMoveGripMinimal.x() + 2;
-         //rectangle.top() = m_pointMoveGripMinimal.y() + 2;
-         rectangle.right() = rectangle.left() + get_caption_height() - 4;
-         rectangle.bottom() = rectangle.top() + get_caption_height() - 4;
+         //rectangle.left = m_pointMoveGripMinimal.x + 2;
+         //rectangle.top = m_pointMoveGripMinimal.y + 2;
+         rectangle.right = rectangle.left + get_caption_height() - 4;
+         rectangle.bottom = rectangle.top + get_caption_height() - 4;
 
          return true;
 
@@ -375,7 +375,7 @@ namespace experience_anthill
 
 
       m_minSize = int_size(144, 48);
-      m_minSize.cy() = 48;
+      m_minSize.cy = 48;
 
       set_frame_color_system_default_001();
 
@@ -448,8 +448,8 @@ namespace experience_anthill
    {
 
       ::int_rectangle rectangle(rectangleParam);
-      int x = rectangle.left();
-      int y = rectangle.top();
+      int x = rectangle.left;
+      int y = rectangle.top;
       int cx = rectangle.width();
       int cy = rectangle.height();
 
@@ -580,13 +580,13 @@ namespace experience_anthill
             while (i < rectangleGrip.width() - 5 + 1)
             {
 
-               pgraphics->draw_inset_3d_rectangle(int_rectangle_dimension(rectangleGrip.left() + i, rectangleGrip.top(), 3, rectangleGrip.height()), argb(110, 230, 230, 230), argb(110, 130, 130, 130), 1.0);
+               pgraphics->draw_inset_3d_rectangle(int_rectangle_dimension(rectangleGrip.left + i, rectangleGrip.top, 3, rectangleGrip.height()), argb(110, 230, 230, 230), argb(110, 130, 130, 130), 1.0);
 
                i += 5;
 
             }
 
-            //pgraphics->Draw3dRect(rectangleGrip.left() + 12,rectangleGrip.top(),3,rectangleGrip.height(),argb(190, 255, 255, 255),argb(190, 90, 90, 90));
+            //pgraphics->Draw3dRect(rectangleGrip.left + 12,rectangleGrip.top,3,rectangleGrip.height(),argb(190, 255, 255, 255),argb(190, 90, 90, 90));
 
          }
 
@@ -751,16 +751,16 @@ namespace experience_anthill
          if (egrip & e_grip_top_left)
          {
             rectangle = rectangleEvent;
-            rectangle.right() = rectangle.left() + 16;
-            rectangle.bottom() = rectangle.top() + 5;
+            rectangle.right = rectangle.left + 16;
+            rectangle.bottom = rectangle.top + 5;
             if (rectangle.contains(point))
             {
                return ::experience::e_frame_sizing_top_left;
                // goto SizingSuccess;
             }
             rectangle = rectangleEvent;
-            rectangle.right() = rectangle.left() + 5;
-            rectangle.bottom() = rectangle.top() + 16;
+            rectangle.right = rectangle.left + 5;
+            rectangle.bottom = rectangle.top + 16;
             if (rectangle.contains(point))
             {
                return ::experience::e_frame_sizing_top_left;
@@ -770,16 +770,16 @@ namespace experience_anthill
          if (egrip & e_grip_top_right)
          {
             rectangle = rectangleEvent;
-            rectangle.left() = rectangle.right() - 16;
-            rectangle.bottom() = rectangle.top() + 5;
+            rectangle.left = rectangle.right - 16;
+            rectangle.bottom = rectangle.top + 5;
             if (rectangle.contains(point))
             {
                return ::experience::e_frame_sizing_top_right;
                // goto SizingSuccess;
             }
             rectangle = rectangleEvent;
-            rectangle.left() = rectangle.right() - 5;
-            rectangle.bottom() = rectangle.top() + 16;
+            rectangle.left = rectangle.right - 5;
+            rectangle.bottom = rectangle.top + 16;
             if (rectangle.contains(point))
             {
                return ::experience::e_frame_sizing_top_right;
@@ -789,16 +789,16 @@ namespace experience_anthill
          if (egrip & e_grip_bottom_right)
          {
             rectangle = rectangleEvent;
-            rectangle.left() = rectangle.right() - 16;
-            rectangle.top() = rectangle.bottom() - 5;
+            rectangle.left = rectangle.right - 16;
+            rectangle.top = rectangle.bottom - 5;
             if (rectangle.contains(point))
             {
                return ::experience::e_frame_sizing_bottom_right;
                // goto SizingSuccess;
             }
             rectangle = rectangleEvent;
-            rectangle.left() = rectangle.right() - 5;
-            rectangle.top() = rectangle.bottom() - 16;
+            rectangle.left = rectangle.right - 5;
+            rectangle.top = rectangle.bottom - 16;
             if (rectangle.contains(point))
             {
                return ::experience::e_frame_sizing_bottom_right;
@@ -808,16 +808,16 @@ namespace experience_anthill
          if (egrip & e_grip_bottom_left)
          {
             rectangle = rectangleEvent;
-            rectangle.right() = rectangle.left() + 16;
-            rectangle.top() = rectangle.bottom() - 5;
+            rectangle.right = rectangle.left + 16;
+            rectangle.top = rectangle.bottom - 5;
             if (rectangle.contains(point))
             {
                return ::experience::e_frame_sizing_bottom_left;
                // goto SizingSuccess;
             }
             rectangle = rectangleEvent;
-            rectangle.right() = rectangle.left() + 5;
-            rectangle.top() = rectangle.bottom() - 16;
+            rectangle.right = rectangle.left + 5;
+            rectangle.top = rectangle.bottom - 16;
             if (rectangle.contains(point))
             {
                return ::experience::e_frame_sizing_bottom_left;
@@ -826,10 +826,10 @@ namespace experience_anthill
          }
          if (egrip & e_grip_top)
          {
-            rectangle.top() = rectangleEvent.top();
-            rectangle.left() = pointCenter.x() - 8;
-            rectangle.right() = pointCenter.x() + 8;
-            rectangle.bottom() = rectangleEvent.top() + 5;
+            rectangle.top = rectangleEvent.top;
+            rectangle.left = pointCenter.x - 8;
+            rectangle.right = pointCenter.x + 8;
+            rectangle.bottom = rectangleEvent.top + 5;
             if (rectangle.contains(point))
             {
                return ::experience::e_frame_sizing_top;
@@ -838,10 +838,10 @@ namespace experience_anthill
          }
          if (egrip & e_grip_bottom)
          {
-            rectangle.top() = rectangleEvent.bottom() - 5;
-            rectangle.left() = pointCenter.x() - 8;
-            rectangle.right() = pointCenter.x() + 8;
-            rectangle.bottom() = rectangleEvent.bottom();
+            rectangle.top = rectangleEvent.bottom - 5;
+            rectangle.left = pointCenter.x - 8;
+            rectangle.right = pointCenter.x + 8;
+            rectangle.bottom = rectangleEvent.bottom;
             if (rectangle.contains(point))
             {
                return ::experience::e_frame_sizing_bottom;
@@ -850,10 +850,10 @@ namespace experience_anthill
          }
          if (egrip & e_grip_left)
          {
-            rectangle.top() = pointCenter.y() - 8;
-            rectangle.left() = rectangleEvent.left();
-            rectangle.right() = rectangleEvent.left() + 5;
-            rectangle.bottom() = pointCenter.y() + 8;
+            rectangle.top = pointCenter.y - 8;
+            rectangle.left = rectangleEvent.left;
+            rectangle.right = rectangleEvent.left + 5;
+            rectangle.bottom = pointCenter.y + 8;
             if (rectangle.contains(point))
             {
                return ::experience::e_frame_sizing_left;
@@ -862,10 +862,10 @@ namespace experience_anthill
          }
          if (egrip & e_grip_right)
          {
-            rectangle.top() = pointCenter.y() - 8;
-            rectangle.left() = rectangleEvent.right() - 5;
-            rectangle.right() = rectangleEvent.right();
-            rectangle.bottom() = pointCenter.y() + 8;
+            rectangle.top = pointCenter.y - 8;
+            rectangle.left = rectangleEvent.right - 5;
+            rectangle.right = rectangleEvent.right;
+            rectangle.bottom = pointCenter.y + 8;
             if (rectangle.contains(point))
             {
                return ::experience::e_frame_sizing_right;
@@ -900,31 +900,31 @@ namespace experience_anthill
 
       if (eside == e_border_top)
       {
-         rectangle.left() = rectangleBig.left();
-         rectangle.right() = rectangleBig.right();
-         rectangle.top() = rectangleBig.top();
-         rectangle.bottom() = rectangleSmall.top();
+         rectangle.left = rectangleBig.left;
+         rectangle.right = rectangleBig.right;
+         rectangle.top = rectangleBig.top;
+         rectangle.bottom = rectangleSmall.top;
       }
       else if (eside == e_border_left)
       {
-         rectangle.left() = rectangleBig.left();
-         rectangle.right() = rectangleSmall.left();
-         rectangle.top() = rectangleSmall.top();
-         rectangle.bottom() = rectangleSmall.bottom();
+         rectangle.left = rectangleBig.left;
+         rectangle.right = rectangleSmall.left;
+         rectangle.top = rectangleSmall.top;
+         rectangle.bottom = rectangleSmall.bottom;
       }
       else if (eside == e_border_right)
       {
-         rectangle.left() = rectangleSmall.right();
-         rectangle.right() = rectangleBig.right();
-         rectangle.top() = rectangleSmall.top();
-         rectangle.bottom() = rectangleSmall.bottom();
+         rectangle.left = rectangleSmall.right;
+         rectangle.right = rectangleBig.right;
+         rectangle.top = rectangleSmall.top;
+         rectangle.bottom = rectangleSmall.bottom;
       }
       else if (eside == e_border_bottom)
       {
-         rectangle.left() = rectangleBig.left();
-         rectangle.right() = rectangleBig.right();
-         rectangle.top() = rectangleSmall.bottom();
-         rectangle.bottom() = rectangleBig.bottom();
+         rectangle.left = rectangleBig.left;
+         rectangle.right = rectangleBig.right;
+         rectangle.top = rectangleSmall.bottom;
+         rectangle.bottom = rectangleBig.bottom;
       }
       *lprect = rectangle;
    }

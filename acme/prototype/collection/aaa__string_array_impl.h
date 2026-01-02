@@ -282,10 +282,6 @@
 //
 //}
 //
-//
-//
-//
-//
 //template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 //inline void string_base_array < Type, RawType, t_etypeContainer > ::debug_output(::collection::index iStart, ::collection::count inCountLastOut)
 //{
@@ -293,10 +289,6 @@
 //   ::information(implode(STR_NEWLINE, iStart, inCountLastOut));
 //
 //}
-//
-//
-//
-//
 //
 //template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 //::collection::index string_base_array < Type, RawType, t_etypeContainer > ::case_insensitive_suffix_find_first(const Type& pcszTopic, ::collection::index iFind, ::collection::index iLast) const
@@ -323,10 +315,6 @@
 //
 //}
 //
-//
-//
-//
-//
 //template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 //::collection::index string_base_array < Type, RawType, t_etypeContainer > ::suffix_find_first(const Type& pcszTopic, ::collection::index iFind, ::collection::index iLast) const
 //{
@@ -351,10 +339,6 @@
 //   return -1;
 //
 //}
-//
-//
-//
-//
 //template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 //::collection::index string_base_array < Type, RawType, t_etypeContainer > ::_find_first_suffixed(const Type & strSuffix, ::collection::index iFind, ::collection::index iLast) const
 //{

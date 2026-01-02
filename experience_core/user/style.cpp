@@ -199,17 +199,17 @@ namespace experience_core
 
          }
 
-         if (rectangleBorder.right() > iTabWidth)
+         if (rectangleBorder.right > iTabWidth)
          {
 
-            iTabWidth = rectangleBorder.right();
+            iTabWidth = rectangleBorder.right;
 
          }
 
-         if (rectangleBorder.bottom() > iTabHeight)
+         if (rectangleBorder.bottom > iTabHeight)
          {
 
-            iTabHeight = rectangleBorder.bottom();
+            iTabHeight = rectangleBorder.bottom;
 
          }
 
@@ -250,16 +250,16 @@ namespace experience_core
 
                   ppath->begin_figure();
 
-                  ppath->add_line(rectangleBorder.right(), rectangleBorder.bottom(),
-                                  rectangleBorder.left() + 1, rectangleBorder.bottom());
+                  ppath->add_line(rectangleBorder.right, rectangleBorder.bottom,
+                                  rectangleBorder.left + 1, rectangleBorder.bottom);
 
-                  ppath->add_line(rectangleBorder.left(), rectangleBorder.top() -
-                                                          (rectangleBorder.left() -
-                                                           rectangleX.left()));
+                  ppath->add_line(rectangleBorder.left, rectangleBorder.top -
+                                                          (rectangleBorder.left -
+                                                           rectangleX.left));
 
-                  ppath->add_line(rectangleX.left(), rectangleBorder.top());
+                  ppath->add_line(rectangleX.left, rectangleBorder.top);
 
-                  ppath->add_line(rectangleBorder.right(), rectangleBorder.top());
+                  ppath->add_line(rectangleBorder.right, rectangleBorder.top);
 
                   ppath->close_figure();
 
@@ -330,11 +330,11 @@ namespace experience_core
 
                ppath->begin_figure();
 
-               ppath->add_line(rectangleBorder.right(), rectangleBorder.bottom(), rectangleBorder.left() + 1, rectangleBorder.bottom());
-               ppath->add_line(rectangleBorder.left(), rectangleBorder.top() - (rectangleBorder.left() - rectangleX.left()));
-               ppath->add_line(bTextRect ? rectangleText.left() : rectangleBorder.left(), rectangleBorder.top());
-               ppath->add_line(rectangleBorder.right(), rectangleBorder.top());
-               ppath->add_line(rectangleBorder.right(), rectangleBorder.bottom());
+               ppath->add_line(rectangleBorder.right, rectangleBorder.bottom, rectangleBorder.left + 1, rectangleBorder.bottom);
+               ppath->add_line(rectangleBorder.left, rectangleBorder.top - (rectangleBorder.left - rectangleX.left));
+               ppath->add_line(bTextRect ? rectangleText.left : rectangleBorder.left, rectangleBorder.top);
+               ppath->add_line(rectangleBorder.right, rectangleBorder.top);
+               ppath->add_line(rectangleBorder.right, rectangleBorder.bottom);
 
                ppath->close_figure();
 
@@ -486,13 +486,13 @@ namespace experience_core
 
                   ppath->m_pointUserOffset = ptab->m_pointBarDragScroll;
 
-                  ppath->add_line(rectangleBorder.left(), rectangleX.bottom(), rectangleBorder.left(), rectangleBorder.top());
+                  ppath->add_line(rectangleBorder.left, rectangleX.bottom, rectangleBorder.left, rectangleBorder.top);
 
-                  ppath->add_line(rectangleX.right(), rectangleBorder.top());
+                  ppath->add_line(rectangleX.right, rectangleBorder.top);
 
-                  ppath->add_line(rectangleBorder.right(), rectangleBorder.top() + (rectangleBorder.right() - rectangleX.right()));
+                  ppath->add_line(rectangleBorder.right, rectangleBorder.top + (rectangleBorder.right - rectangleX.right));
 
-                  ppath->add_line(rectangleBorder.right() - 1, rectangleX.bottom());
+                  ppath->add_line(rectangleBorder.right - 1, rectangleX.bottom);
 
                }
 
@@ -509,7 +509,7 @@ namespace experience_core
 
                   pgraphics->set(pbrush);
 
-                  auto offset = ptab->m_pointBarDragScroll.x() - ppath->m_pointUserOffset.x();
+                  auto offset = ptab->m_pointBarDragScroll.x - ppath->m_pointUserOffset.x;
 
                   pgraphics->x_offset(offset);
 
@@ -534,7 +534,7 @@ namespace experience_core
 
                   auto offsetcontext = pgraphics->offset_context();
 
-                  offsetcontext.Δx() += ptab->m_pointBarDragScroll.x() - ppath->m_pointUserOffset.x();
+                  offsetcontext.Δx() += ptab->m_pointBarDragScroll.x - ppath->m_pointUserOffset.x;
 
                   pgraphics->draw(ppath);
 
@@ -604,13 +604,13 @@ namespace experience_core
 
                   ppath->m_pointUserOffset = ptab->m_pointBarDragScroll;
 
-                  ppath->add_line(rectangleBorder.left(), rectangleX.bottom(), rectangleBorder.left(), rectangleBorder.top());
+                  ppath->add_line(rectangleBorder.left, rectangleX.bottom, rectangleBorder.left, rectangleBorder.top);
 
-                  ppath->add_line(rectangleX.right(), rectangleBorder.top());
+                  ppath->add_line(rectangleX.right, rectangleBorder.top);
 
-                  ppath->add_line(rectangleBorder.right(), rectangleBorder.top() + (rectangleBorder.right() - rectangleX.right()));
+                  ppath->add_line(rectangleBorder.right, rectangleBorder.top + (rectangleBorder.right - rectangleX.right));
 
-                  ppath->add_line(rectangleBorder.right() - 1, rectangleX.bottom());
+                  ppath->add_line(rectangleBorder.right - 1, rectangleX.bottom);
 
                   ppath->close_figure();
 
@@ -636,7 +636,7 @@ namespace experience_core
 
                      auto offsetcontext = pgraphics->offset_context();
 
-                     offsetcontext.Δx() += ptab->m_pointBarDragScroll.x() - ppath->m_pointUserOffset.x();
+                     offsetcontext.Δx() += ptab->m_pointBarDragScroll.x - ppath->m_pointUserOffset.x;
 
                      pgraphics->fill(ppath);
 
@@ -657,7 +657,7 @@ namespace experience_core
 
                      auto offsetcontext = pgraphics->offset_context();
 
-                     offsetcontext.Δx()+= ptab->m_pointBarDragScroll.x() - ppath->m_pointUserOffset.x();
+                     offsetcontext.Δx()+= ptab->m_pointBarDragScroll.x - ppath->m_pointUserOffset.x;
 
                      pgraphics->draw(ppath);
 
@@ -720,7 +720,7 @@ namespace experience_core
 
                      auto offsetcontext = pgraphics->offset_context();
 
-                     offsetcontext.Δx() += ptab->m_pointBarDragScroll.x() - ppath->m_pointUserOffset.x();
+                     offsetcontext.Δx() += ptab->m_pointBarDragScroll.x - ppath->m_pointUserOffset.x;
 
                      pgraphics->fill(ppath);
 
@@ -741,7 +741,7 @@ namespace experience_core
 
                      auto offsetcontext = pgraphics->offset_context();
 
-                     offsetcontext.Δx() += ptab->m_pointBarDragScroll.x() - ppath->m_pointUserOffset.x();
+                     offsetcontext.Δx() += ptab->m_pointBarDragScroll.x - ppath->m_pointUserOffset.x;
 
                      pgraphics->draw(ppath);
 
@@ -858,7 +858,7 @@ namespace experience_core
                   
                   ppath->add_line(rectangleScroll.bottom_left());
                   
-                  ppath->add_line({rectangleScroll.right(), rectangleScroll.center().y()});
+                  ppath->add_line({rectangleScroll.right, rectangleScroll.center().y});
                   
                   ppath->close_figure();
                   
@@ -903,7 +903,7 @@ namespace experience_core
                   
                   ppath->add_line(rectangleScroll.bottom_right());
                   
-                  ppath->add_line({rectangleScroll.left(), rectangleScroll.center().y()});
+                  ppath->add_line({rectangleScroll.left, rectangleScroll.center().y});
                   
                   ppath->close_figure();
                   
@@ -963,16 +963,16 @@ namespace experience_core
 
             int_size s = pane.m_sizeaText[i];
 
-            rectangleText.right() = rectangleText.left() + s.cx();
+            rectangleText.right = rectangleText.left + s.cx;
 
             pgraphics->_DrawText(str, rectangleText, e_align_bottom_left, e_draw_text_no_prefix);
 
-            rectangleText.left() += s.cx();
+            rectangleText.left += s.cx;
 
             if (i < straTitle.get_upper_bound())
             {
 
-               rectangleText.right() = rectangleText.left() + sSep.cx();
+               rectangleText.right = rectangleText.left + sSep.cx;
 
                rectangleEmp = rectangleText;
 
@@ -1011,7 +1011,7 @@ namespace experience_core
 
                pgraphics->_DrawText(MAGIC_PALACE_TAB_TEXT, rectangleText, e_align_center, e_draw_text_no_prefix);
 
-               rectangleText.left() += sSep.cx();
+               rectangleText.left += sSep.cx;
 
             }
 
@@ -1043,11 +1043,11 @@ namespace experience_core
 
          pdata->m_rectangleTextMargin.set(3, 0, 1, 0);
 
-         pdata->m_iTabHeight += pdata->m_rectangleBorder.top() + pdata->m_rectangleBorder.bottom() +
-            pdata->m_rectangleMargin.top() + pdata->m_rectangleMargin.bottom();
+         pdata->m_iTabHeight += pdata->m_rectangleBorder.top + pdata->m_rectangleBorder.bottom +
+            pdata->m_rectangleMargin.top + pdata->m_rectangleMargin.bottom;
 
-         pdata->m_iTabWidth += pdata->m_rectangleBorder.left() + pdata->m_rectangleBorder.right() +
-            pdata->m_rectangleMargin.left() + pdata->m_rectangleMargin.right();
+         pdata->m_iTabWidth += pdata->m_rectangleBorder.left + pdata->m_rectangleBorder.right +
+            pdata->m_rectangleMargin.left + pdata->m_rectangleMargin.right;
 
       }
       else
@@ -1059,11 +1059,11 @@ namespace experience_core
 
          pdata->m_rectangleTextMargin.set(3, 0, 1, 0);
 
-         pdata->m_iTabHeight += pdata->m_rectangleBorder.top() + pdata->m_rectangleBorder.bottom() +
-            pdata->m_rectangleMargin.top() + pdata->m_rectangleMargin.bottom();
+         pdata->m_iTabHeight += pdata->m_rectangleBorder.top + pdata->m_rectangleBorder.bottom +
+            pdata->m_rectangleMargin.top + pdata->m_rectangleMargin.bottom;
 
-         pdata->m_iTabWidth += pdata->m_rectangleBorder.left() + pdata->m_rectangleBorder.right() +
-            pdata->m_rectangleMargin.left() + pdata->m_rectangleMargin.right();
+         pdata->m_iTabWidth += pdata->m_rectangleBorder.left + pdata->m_rectangleBorder.right +
+            pdata->m_rectangleMargin.left + pdata->m_rectangleMargin.right;
 
       }
 
@@ -1098,13 +1098,13 @@ namespace experience_core
             if (ppane->m_pimage->is_set())
             {
 
-               size.cx() += ppane->m_pimage->width() + 2;
+               size.cx += ppane->m_pimage->width() + 2;
 
-               size.cy() = maximum(size.cy(), ppane->m_pimage->height());
+               size.cy = maximum(size.cy, ppane->m_pimage->height());
 
             }
 
-            cx = (int) (size.cx() + 2);
+            cx = (int) (size.cx + 2);
 
             if (!ppane->m_bPermanent)
             {
@@ -1120,7 +1120,7 @@ namespace experience_core
 
             }
 
-            cy = (int) ( size.cy() + 2);
+            cy = (int) ( size.cy + 2);
 
             if (cy > iTabHeight)
             {
@@ -1141,37 +1141,37 @@ namespace experience_core
 
          }
 
-         iTabWidth += pdata->m_rectangleBorder.left() + pdata->m_rectangleBorder.right() +
-            pdata->m_rectangleMargin.left() + pdata->m_rectangleMargin.right() +
-            pdata->m_rectangleTextMargin.left() + pdata->m_rectangleTextMargin.right();
+         iTabWidth += pdata->m_rectangleBorder.left + pdata->m_rectangleBorder.right +
+            pdata->m_rectangleMargin.left + pdata->m_rectangleMargin.right +
+            pdata->m_rectangleTextMargin.left + pdata->m_rectangleTextMargin.right;
 
          pdata->m_iTabWidth = iTabWidth;
 
-         iTabHeight += pdata->m_rectangleBorder.top() + pdata->m_rectangleBorder.bottom() +
-            pdata->m_rectangleMargin.top() + pdata->m_rectangleMargin.bottom() +
-            pdata->m_rectangleTextMargin.top() + pdata->m_rectangleTextMargin.bottom();
+         iTabHeight += pdata->m_rectangleBorder.top + pdata->m_rectangleBorder.bottom +
+            pdata->m_rectangleMargin.top + pdata->m_rectangleMargin.bottom +
+            pdata->m_rectangleTextMargin.top + pdata->m_rectangleTextMargin.bottom;
 
          pdata->m_iTabHeight = iTabHeight;
 
          ::int_rectangle rectangleX = ptab->rectangle(::user::e_layout_sketch);
 
-         pdata->m_rectangleTab.left() = rectangleX.left();
-         pdata->m_rectangleTab.top() = rectangleX.top();
-         pdata->m_rectangleTab.right() = pdata->m_rectangleTab.left() + pdata->m_iTabWidth;
-         pdata->m_rectangleTab.bottom() = rectangleX.bottom();
+         pdata->m_rectangleTab.left = rectangleX.left;
+         pdata->m_rectangleTab.top = rectangleX.top;
+         pdata->m_rectangleTab.right = pdata->m_rectangleTab.left + pdata->m_iTabWidth;
+         pdata->m_rectangleTab.bottom = rectangleX.bottom;
 
          /*      m_puserinteraction->set_window_position(
          e_zorder_top,
-         m_rectangleTab.left(),
-         m_rectangleTab.top(),
+         m_rectangleTab.left,
+         m_rectangleTab.top,
          m_rectangleTab.width(),
          m_rectangleTab.height(),
          0);*/
 
-         pdata->m_rectangleHosting.left() = ptab->m_bEffectiveVisibleControl ? pdata->m_rectangleTab.right() : rectangleX.left();
-         pdata->m_rectangleHosting.top() = pdata->m_rectangleTab.top();
-         pdata->m_rectangleHosting.right() = rectangleX.right();
-         pdata->m_rectangleHosting.bottom() = pdata->m_rectangleTab.bottom();
+         pdata->m_rectangleHosting.left = ptab->m_bEffectiveVisibleControl ? pdata->m_rectangleTab.right : rectangleX.left;
+         pdata->m_rectangleHosting.top = pdata->m_rectangleTab.top;
+         pdata->m_rectangleHosting.right = rectangleX.right;
+         pdata->m_rectangleHosting.bottom = pdata->m_rectangleTab.bottom;
 
       }
       else
@@ -1185,7 +1185,7 @@ namespace experience_core
 
          ::int_rectangle rectangleX = ptab->rectangle(::user::e_layout_sketch);
          //ptab->rectangle(rectangleX);
-         int x = rectangleX.left();
+         int x = rectangleX.left;
 
          int ixAdd;
          for (int iPane = 0; iPane < pdata->m_tabpanea.get_size(); iPane++)
@@ -1211,19 +1211,19 @@ namespace experience_core
             if (ppane->m_pimage.ok())
             {
 
-               size.cy() = maximum(size.cy(), ppane->m_pimage->size().cy());
+               size.cy = maximum(size.cy, ppane->m_pimage->size().cy);
 
             }
 
-            cy = (int)(size.cy() + 2);
+            cy = (int)(size.cy + 2);
 
             if (cy > iTabHeight)
             {
                iTabHeight = cy;
             }
 
-            ppane->m_point.x() = x;
-            ppane->m_point.y() = rectangleX.top();
+            ppane->m_point.x = x;
+            ppane->m_point.y = rectangleX.top;
 
 
             //            string str = ppane->get_title();
@@ -1246,12 +1246,12 @@ namespace experience_core
 
 
 
-            ppane->m_size.cx() = (int) (size.cx() + ixAdd
-               + pdata->m_rectangleBorder.left() + pdata->m_rectangleBorder.right()
-               + pdata->m_rectangleMargin.left() + pdata->m_rectangleMargin.right()
-               + pdata->m_rectangleTextMargin.left() + pdata->m_rectangleTextMargin.right());
+            ppane->m_size.cx = (int) (size.cx + ixAdd
+               + pdata->m_rectangleBorder.left + pdata->m_rectangleBorder.right
+               + pdata->m_rectangleMargin.left + pdata->m_rectangleMargin.right
+               + pdata->m_rectangleTextMargin.left + pdata->m_rectangleTextMargin.right);
 
-            x += ppane->m_size.cx();
+            x += ppane->m_size.cx;
          }
 
          // close tab button
@@ -1261,8 +1261,8 @@ namespace experience_core
             iTabHeight = cy;
          }
 
-         iTabHeight += pdata->m_rectangleBorder.top() + pdata->m_rectangleBorder.bottom() +
-            pdata->m_rectangleMargin.top() + pdata->m_rectangleMargin.bottom() + pdata->m_iHeightAddUp;
+         iTabHeight += pdata->m_rectangleBorder.top + pdata->m_rectangleBorder.bottom +
+            pdata->m_rectangleMargin.top + pdata->m_rectangleMargin.bottom + pdata->m_iHeightAddUp;
 
          pdata->m_iTabHeight = iTabHeight;
 
@@ -1271,22 +1271,22 @@ namespace experience_core
 
             auto ppane = pdata->m_tabpanea[iPane].get();
 
-            ppane->m_size.cy() = iTabHeight;
+            ppane->m_size.cy = iTabHeight;
 
          }
 
 
 
 
-         pdata->m_rectangleTab.left() = rectangleX.left();
-         pdata->m_rectangleTab.top() = rectangleX.top();
-         pdata->m_rectangleTab.right() = rectangleX.right();
-         pdata->m_rectangleTab.bottom() = pdata->m_rectangleTab.top() + pdata->m_iTabHeight;
+         pdata->m_rectangleTab.left = rectangleX.left;
+         pdata->m_rectangleTab.top = rectangleX.top;
+         pdata->m_rectangleTab.right = rectangleX.right;
+         pdata->m_rectangleTab.bottom = pdata->m_rectangleTab.top + pdata->m_iTabHeight;
 
          /*      set_window_position(
          e_zorder_top,
-         m_rectangleTab.left(),
-         m_rectangleTab.top(),
+         m_rectangleTab.left,
+         m_rectangleTab.top,
          m_rectangleTab.width(),
          m_rectangleTab.height(),
          0);*/
@@ -1296,10 +1296,10 @@ namespace experience_core
          //bool bTabbedClient = ptab->m_bShowTabs && !ptab->top_level_frame()->layout().is_full_screen();
          //bool bTabbedClient = ptab->m_bShowTabs;
 
-         rectangleHosting.left() = pdata->m_rectangleTab.left();
-         rectangleHosting.top() = ptab->m_bEffectiveVisibleControl ? pdata->m_rectangleTab.bottom() : rectangleX.top();
-         rectangleHosting.right() = pdata->m_rectangleTab.right();
-         rectangleHosting.bottom() = rectangleX.bottom();
+         rectangleHosting.left = pdata->m_rectangleTab.left;
+         rectangleHosting.top = ptab->m_bEffectiveVisibleControl ? pdata->m_rectangleTab.bottom : rectangleX.top;
+         rectangleHosting.right = pdata->m_rectangleTab.right;
+         rectangleHosting.bottom = rectangleX.bottom;
 
          //ptab->m_rectangleHosting = rectangleHosting;
 
@@ -1330,21 +1330,21 @@ namespace experience_core
 
          ptab->m_iTabSize = (int)(pdata->m_tabpanea.get_count() * pdata->m_iTabHeight);
 
-//         ptab->m_pointDragScrollMax.y() = ptab->m_sizeDragScroll.cy() - rcClient.height();
+//         ptab->m_pointDragScrollMax.y = ptab->m_sizeDragScroll.cy - rcClient.height();
 
-         ptab->m_sizeBarDragScroll.cy() = (int)ptab->m_pdata->m_tabpanea.get_count() * ptab->m_pdata->m_iTabHeight;
+         ptab->m_sizeBarDragScroll.cy = (int)ptab->m_pdata->m_tabpanea.get_count() * ptab->m_pdata->m_iTabHeight;
 
       }
       else
       {
 
-         ptab->m_iTabSize = pdata->m_tabpanea.last()->m_point.x() +
-            pdata->m_tabpanea.last()->m_size.cx();
+         ptab->m_iTabSize = pdata->m_tabpanea.last()->m_point.x +
+            pdata->m_tabpanea.last()->m_size.cx;
 
-         //ptab->m_pointDragScrollMax.x() = ptab->m_sizeDragScroll.cx() - rcClient.width();
+         //ptab->m_pointDragScrollMax.x = ptab->m_sizeDragScroll.cx - rcClient.width();
 
-         ptab->m_sizeBarDragScroll.cx() = ptab->m_pdata->m_tabpanea.last()->m_point.x() +
-            ptab->m_pdata->m_tabpanea.last()->m_size.cx();
+         ptab->m_sizeBarDragScroll.cx = ptab->m_pdata->m_tabpanea.last()->m_point.x +
+            ptab->m_pdata->m_tabpanea.last()->m_size.cx;
 
          //if (m_pdata->m_bVertical)
          //{
@@ -1369,7 +1369,7 @@ namespace experience_core
       if (::is_set(pinteraction))
       {
 
-         //string strType = ::type(pinteraction).name();
+         //string strType = ::platform::type(pinteraction).name();
 
 //            if (strType.contains("form"))
 //            {
@@ -2169,23 +2169,23 @@ namespace experience_core
       if (pbar->m_eorientation == e_orientation_horizontal)
       {
 
-         pgraphics->line(pointCenter.x() - 5, pointCenter.y() - 5,
-                     pointCenter.x() - 5, pointCenter.y() + 5);
-         pgraphics->line(pointCenter.x(), pointCenter.y() - 5,
-             pointCenter.x(), pointCenter.y() + 5);
-         pgraphics->line(pointCenter.x() + 5, pointCenter.y() - 5,
-         pointCenter.x() + 5, pointCenter.y() + 5);
+         pgraphics->line(pointCenter.x - 5, pointCenter.y - 5,
+                     pointCenter.x - 5, pointCenter.y + 5);
+         pgraphics->line(pointCenter.x, pointCenter.y - 5,
+             pointCenter.x, pointCenter.y + 5);
+         pgraphics->line(pointCenter.x + 5, pointCenter.y - 5,
+         pointCenter.x + 5, pointCenter.y + 5);
 
       }
       else
       {
 
-         pgraphics->line(pointCenter.x() - 5, pointCenter.y() - 5,
-         pointCenter.x() + 5, pointCenter.y() - 5);
-         pgraphics->line(pointCenter.x() - 5, pointCenter.y(),
-         pointCenter.x() + 5, pointCenter.y());
-         pgraphics->line(pointCenter.x() - 5, pointCenter.y() + 5,
-         pointCenter.x() + 5, pointCenter.y() + 5);
+         pgraphics->line(pointCenter.x - 5, pointCenter.y - 5,
+         pointCenter.x + 5, pointCenter.y - 5);
+         pgraphics->line(pointCenter.x - 5, pointCenter.y,
+         pointCenter.x + 5, pointCenter.y);
+         pgraphics->line(pointCenter.x - 5, pointCenter.y + 5,
+         pointCenter.x + 5, pointCenter.y + 5);
 
       }
 
@@ -2316,7 +2316,7 @@ namespace experience_core
 
          pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
-         ::string strType =  ::type(pinteraction).name();
+         ::string strType =  ::platform::type(pinteraction).name();
 
 
          if (strType.case_insensitive_contains("menu"))

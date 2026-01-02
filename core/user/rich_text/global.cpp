@@ -156,7 +156,7 @@ namespace user
                   if (iPos - 1 <= pbox->m_iPosBeg)
                   {
 
-                     xLeft = (int)pbox->m_rectangleBox.left();
+                     xLeft = (int)pbox->m_rectangleBox.left;
 
                   }
                   else if((iPos - 1) >= pbox->m_iPosEnd)
@@ -175,7 +175,7 @@ namespace user
                   if (iPos <= pbox->m_iPosBeg)
                   {
 
-                     xRight = (int)pbox->m_rectangleBox.left();
+                     xRight = (int)pbox->m_rectangleBox.left;
 
                   }
                   else if (iPos >= pbox->m_iPosEnd)
@@ -242,14 +242,14 @@ namespace user
                   if (iPos <= pbox->m_iPosBeg)
                   {
 
-                     xLeft = (int)pbox->m_rectangleBox.left();
+                     xLeft = (int)pbox->m_rectangleBox.left;
 
                   }
                   else if (iPos >= pbox->m_iPosEnd)
                   {
 
                      //xLeft = (int)pbox->get_last_pos();
-                     xLeft = (int)pbox->m_rectangleBox.right();
+                     xLeft = (int)pbox->m_rectangleBox.right;
 
                   }
                   else
@@ -532,9 +532,9 @@ namespace user
          else
          {
 
-            int iWidth = (int)pline->last()->m_rectangleBox.right();
+            int iWidth = (int)pline->last()->m_rectangleBox.right;
 
-            int iOffset = (int)(rectangle.right() - iWidth);
+            int iOffset = (int)(rectangle.right - iWidth);
 
             if (ealign == e_align_center)
             {

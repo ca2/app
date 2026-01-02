@@ -71,7 +71,7 @@ public:
 };
 //
 
-//template < primitive_character CHARACTER >
+//template < prototype_character CHARACTER >
 //inline bool _string_scan_prefix(const CHARACTER *& p, const ::range < CHARACTER > & block, const ::range < CHARACTER > & blockBlock) noexcept
 //{
 //
@@ -98,7 +98,7 @@ public:
 //}
 
 //
-//template < primitive_character CHARACTER >
+//template < prototype_character CHARACTER >
 //inline bool _string_rear_scan_prefix(const CHARACTER *& p, const ::range < CHARACTER > & block, const ::range < CHARACTER > & blockBlock) noexcept
 //{
 //
@@ -127,7 +127,7 @@ public:
 
 
 //
-//template < primitive_character CHARACTER >
+//template < prototype_character CHARACTER >
 //inline const CHARACTER * _string_rear_scan(const ::range < CHARACTER > & block, const ::range < CHARACTER > & blockBlock) noexcept
 //{
 //
@@ -167,7 +167,7 @@ public:
 //}
 
 //
-//template < primitive_character CHARACTER >
+//template < prototype_character CHARACTER >
 //inline const CHARACTER * string_rear_scan(const ::range < CHARACTER > & block, const ::range < CHARACTER > & blockBlock) noexcept
 //{
 //
@@ -185,7 +185,7 @@ public:
 //}
 
 
-//template < primitive_character CHARACTER >
+//template < prototype_character CHARACTER >
 //inline const CHARACTER * _unicode_find_first_character_in(const ::range < CHARACTER > & block, const ::range < CHARACTER > & blockSeparators)
 //{
 //
@@ -231,7 +231,7 @@ public:
 //}
 
 
-//template < primitive_character CHARACTER >
+//template < prototype_character CHARACTER >
 //const CHARACTER * unicode_token(const ::range < CHARACTER > & block, const ::range < CHARACTER > & blockSeparators)
 //{
 //
@@ -254,7 +254,7 @@ public:
 //}
 //
 //
-//template < primitive_character CHARACTER >
+//template < prototype_character CHARACTER >
 //inline const CHARACTER * _string_find_first_character_in(const ::range < CHARACTER > & block, const ::range < CHARACTER > & blockSeparators)
 //{
 //
@@ -296,7 +296,7 @@ public:
 //}
 //
 //
-//template < primitive_character CHARACTER >
+//template < prototype_character CHARACTER >
 //const CHARACTER * string_token(const ::range < CHARACTER > & block, const ::range < CHARACTER > & blockSeparators)
 //{
 //
@@ -320,7 +320,7 @@ public:
 
 
 //
-//template < primitive_character CHARACTER >
+//template < prototype_character CHARACTER >
 //inline const CHARACTER * _block_rear_find_character(const ::range < CHARACTER > & block, CHARACTER ch) noexcept
 //{
 //
@@ -345,7 +345,7 @@ public:
 //}
 
 //
-//template < primitive_character CHARACTER >
+//template < prototype_character CHARACTER >
 //bool _string_compare_prefix(int & iCompare, const ::range < CHARACTER > & blockA, const ::range < CHARACTER > & blockB)
 //{
 //
@@ -384,7 +384,7 @@ public:
 //}
 
 //
-//template < primitive_character CHARACTER >
+//template < prototype_character CHARACTER >
 //const CHARACTER * _string_compare(const ::range < CHARACTER > & blockA, const ::range < CHARACTER > & blockB)
 //{
 //
@@ -409,7 +409,7 @@ public:
 //}
 
 //
-//template < primitive_character CHARACTER >
+//template < prototype_character CHARACTER >
 //const CHARACTER * string_compare(const CHARACTER * pA, character_count sizeA, const CHARACTER * pB, character_count sizeB)
 //{
 //

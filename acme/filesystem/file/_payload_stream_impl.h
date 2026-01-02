@@ -50,10 +50,6 @@
 //inline void __exchange(::payload_stream& s, ::int_array_base& ia) { s.default_exchange(ia); }
 //inline void __exchange(::payload_stream& s, ::string_array_base& stra) { s.default_exchange(stra); }
 //inline void __exchange(::payload_stream& s, ::memory& memory) { s.default_exchange(memory); }
-//
-//
-//
-//
 //inline void __exchange(::payload_stream& s, ::matter& matter) { matter.exchange(s); }
 //
 //

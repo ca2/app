@@ -56,7 +56,7 @@ namespace std
 
    
 template < size_t n, typename T1, typename T2 >
-constexpr typename std::tuple_element < n, ::pair < T1, T2 > >::type & get(::pair < T1, T2 > & pair)
+constexpr typename std::tuple_element < n, ::pair < T1, T2 > >::type& get(::pair < T1, T2 > & pair)
 {
 
    static_assert(n < 2, "index not accepted for a pair");
@@ -78,7 +78,7 @@ constexpr typename std::tuple_element < n, ::pair < T1, T2 > >::type & get(::pai
 
 
 template < size_t n, typename T1, typename T2 >
-constexpr const typename std::tuple_element < n, ::pair < T1, T2 > >::type & get(const ::pair < T1, T2 > & pair)
+constexpr const typename std::tuple_element < n, ::pair < T1, T2 > >::type& get(const ::pair < T1, T2 > & pair)
 {
 
    static_assert(n < 2, "index not accepted for a pair");
@@ -100,7 +100,7 @@ constexpr const typename std::tuple_element < n, ::pair < T1, T2 > >::type & get
 
 
 template < size_t n, typename T1, typename T2 >
-constexpr typename std::tuple_element < n, ::pair < T1, T2 > >::type && get(::pair < T1, T2 > && pair)
+constexpr typename std::tuple_element < n, ::pair < T1, T2 > >::type&& get(::pair < T1, T2 > && pair)
 {
 
    static_assert(n < 2, "index not accepted for a pair");
@@ -122,7 +122,7 @@ constexpr typename std::tuple_element < n, ::pair < T1, T2 > >::type && get(::pa
 
 
 template < size_t n, typename T1, typename T2 >
-constexpr const typename std::tuple_element < n, ::pair < T1, T2 > >::type && get(const ::pair < T1, T2 > && pair)
+constexpr const typename std::tuple_element < n, ::pair < T1, T2 > >::type&& get(const ::pair < T1, T2 > && pair)
 {
 
    static_assert(n < 2, "index not accepted for a pair");
@@ -170,7 +170,7 @@ namespace std
 
 
 template < size_t n, typename PAIR >
-constexpr typename std::tuple_element < n, ::make_pair < PAIR > >::type & get(::make_pair < PAIR > & pair)
+constexpr typename std::tuple_element < n, ::make_pair < PAIR > >::type& get(::make_pair < PAIR > & pair)
 {
 
    static_assert(n < 2, "index not accepted for a pair");
@@ -192,7 +192,7 @@ constexpr typename std::tuple_element < n, ::make_pair < PAIR > >::type & get(::
 
 
 template < size_t n, typename PAIR >
-constexpr const typename std::tuple_element < n, ::make_pair < PAIR > >::type & get(const ::make_pair < PAIR > & pair)
+constexpr const typename std::tuple_element < n, ::make_pair < PAIR > >::type& get(const ::make_pair < PAIR > & pair)
 {
 
    static_assert(n < 2, "index not accepted for a pair");
@@ -214,7 +214,7 @@ constexpr const typename std::tuple_element < n, ::make_pair < PAIR > >::type & 
 
 
 template < size_t n, typename PAIR >
-constexpr typename std::tuple_element < n, ::make_pair < PAIR > >::type && get(::make_pair < PAIR > && pair)
+constexpr typename std::tuple_element < n, ::make_pair < PAIR > >::type&& get(::make_pair < PAIR > && pair)
 {
 
    static_assert(n < 2, "index not accepted for a pair");
@@ -236,7 +236,7 @@ constexpr typename std::tuple_element < n, ::make_pair < PAIR > >::type && get(:
 
 
 template < size_t n, typename PAIR >
-constexpr const typename std::tuple_element < n, ::make_pair < PAIR > >::type && get(const ::make_pair < PAIR > && pair)
+constexpr const typename std::tuple_element < n, ::make_pair < PAIR > >::type&& get(const ::make_pair < PAIR > && pair)
 {
 
    static_assert(n < 2, "index not accepted for a pair");

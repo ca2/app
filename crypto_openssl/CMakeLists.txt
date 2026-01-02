@@ -22,7 +22,7 @@ list(APPEND library_references
    acme apex)
 
 
-if (MSVC)
+if(${WIN32})
     set(LIBCXX_TARGETING_MSVC ON)
 else()
     set(LIBCXX_TARGETING_MSVC OFF)
@@ -47,7 +47,7 @@ endif()
 
 set_target_properties(crypto_openssl PROPERTIES LINKER_LANGUAGE CXX)
 
-if (MSVC)
+if(${WIN32})
     target_compile_options(crypto_openssl PRIVATE "/MD$<$<CONFIG:Debug>:d>")
     target_link_options(crypto_openssl PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
     target_link_options(crypto_openssl PRIVATE "/IMPLIB:${LIBRARY_OUTPUT_PATH}/crypto_openssl.lib")

@@ -375,9 +375,5 @@
 //
 //
 //using sort_int_ptr_array = sort_array < ::collection::index  > ;
-//
-//
-//
-//
 //template < typename TYPE >
 //using sort_pointer_array = sort_array < ::pointer<TYPE> const ::pointer<TYPE>, pointer_array < TYPE > >;

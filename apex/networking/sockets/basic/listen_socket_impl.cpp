@@ -27,7 +27,7 @@ namespace sockets
    }
 
 
-   void listen_socket_impl::set_detach_socket_type(const ::type_atom& type)
+   void listen_socket_impl::set_detach_socket_type(const ::platform::type & type)
    {
 
       //m_typeDetachSocket = type;
@@ -485,6 +485,14 @@ namespace sockets
    void listen_socket_impl::Reset()
    {
 
+
+   }
+
+
+   bool listen_socket_impl::is_listening_socket()
+   {
+
+      return true;
 
    }
 

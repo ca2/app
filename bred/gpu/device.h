@@ -95,7 +95,7 @@ namespace gpu
       ///virtual ::gpu::context* current_context();
       
 
-      virtual ::gpu::context * main_context();
+      virtual ::gpu::context * main_context(::acme::windowing::window * pacmewindowingwindow = nullptr);
       virtual ::gpu::context * main_draw2d_context();
       //virtual void start_gpu_context(const start_context_t& startcontext);
 
@@ -108,6 +108,10 @@ namespace gpu
       //void _post(const ::procedure& procedure) override;
       virtual pool_group* frame_pool_group(int iFrameIndex);
       virtual ::pointer_array<::particle >* frame_particle_array(int iFrameIndex);
+
+
+      virtual void defer_shader_memory(::memory &memory, const ::file::path &pathShader);
+
 
       virtual void on_initialize_gpu_device();
 
@@ -231,7 +235,7 @@ namespace gpu
 
       virtual int get_type_size(::gpu::enum_type etype);
 
-      virtual void set_mat4(void* p, const ::glm::mat4& mat4);
+      virtual void set_matrix4(void* p, const ::floating_matrix4& floating_matrix4);
 
 
       virtual void start_stacking_layers();

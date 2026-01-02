@@ -74,9 +74,5 @@ public:
    //void do_asynchronously() override;
 
    void run() override;
-   //void complete_aggregation(sequence * psequence) override;
-
-//
-
-   
+   //void complete_aggregation(sequence * psequence) override;   
 };

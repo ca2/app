@@ -286,7 +286,7 @@ void reference_item_array::add_referer(::reference_referer * preferer, bool bInc
 
    critical_section_lock criticalsectionlock(&::acme::get()->m_preferencingdebugging->m_criticalsection);
 
-   //if (::type(m_psubparticle).name().contains("app_app::application"))
+   //if (::platform::type(m_psubparticle).name().contains("app_app::application"))
    //{
 
    //   if (!referer)
@@ -324,7 +324,7 @@ void reference_item_array::add_referer(::reference_referer * preferer, bool bInc
          try
          {
 
-            //strList += " - " + ::type(p->m_preferer).name();
+            //strList += " - " + ::platform::type(p->m_preferer).name();
 
             //strList += " : " + as_string(p->m_iStep) + ::string(" : ") + (p->m_bOn ? "On" : "Off");
 
@@ -512,7 +512,7 @@ void subparticle::add_reference_item(bool bIncludeCallStackTrace)
    try
    {
 
-//      string strType = ::type(this).name();
+//      string strType = ::platform::type(this).name();
 //
 //      if (strType == "pacman::game")
 //      {
@@ -530,7 +530,7 @@ void subparticle::add_reference_item(bool bIncludeCallStackTrace)
 //      else if (!pitema->m_strDebug.is_empty())
 //      {
 //
-//         pitema->m_strDebug = "For " + ::type(this).name() + "(" + string(debug_note()) + ")";
+//         pitema->m_strDebug = "For " + ::platform::type(this).name() + "(" + string(debug_note()) + ")";
 //
 //      }
 //
@@ -621,6 +621,10 @@ void subparticle::erase_reference_item()
 
    if (::is_null(pitema))
    {
+
+      // It should be able to erase reference referer!! What has happened?!?!
+
+      throw ::exception(error_wrong_state);
 
       return;
 

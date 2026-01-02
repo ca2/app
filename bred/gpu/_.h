@@ -5,18 +5,6 @@
 #include "_constant.h"
 
 
-#define GLM_ENABLE_EXPERIMENTAL
-#define GLM_FORCE_RADIANS
-#define GLM_FORCE_DEPTH_ZERO_TO_ONE
-#include <glm/glm.hpp>
-#include <glm/gtx/hash.hpp>
-#include <glm/gtc/type_ptr.hpp>
-#include <glm/gtx/hash.hpp>
-
-
-#include "_constant.h"
-
-
 namespace gpu
 {
 
@@ -29,7 +17,24 @@ namespace gpu
    class frame_ephemeral;
    //class program;
 
-   template<typename VERTEX>
+   class binding;
+   class binding_set;
+   class binding_set_array;
+
+   class binding_slot;
+   class binding_slot_set;
+   class binding_slot_set_array;
+
+   class block;
+
+
+
+  class empty_texture_source;
+
+
+
+
+   template<typename VERTEX, typename INDEX = unsigned int>
    class model_data;
 
    CLASS_DECL_BRED int get_type_size(::gpu::enum_type e);

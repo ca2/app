@@ -118,7 +118,7 @@ namespace experience
 //      try
 //      {
 //
-//         if (::type(this).name().case_insensitive_contains("control_box"))
+//         if (::platform::type(this).name().case_insensitive_contains("control_box"))
 //         {
 //
 //            informationf("control_box");
@@ -138,8 +138,8 @@ namespace experience
 //
 //            this->rectangle(rectangleX);
 //
-//            rectangleX.bottom()++;
-//            rectangleX.right()++;
+//            rectangleX.bottom++;
+//            rectangleX.right++;
 //
 //            rectangleClip = rectangleX;
 //

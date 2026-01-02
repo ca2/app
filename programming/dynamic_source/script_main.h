@@ -14,14 +14,14 @@ namespace dynamic_source
    public:
 
 
-      ::netnode::script_main *                                 m_pnetnodescriptmain;
+      ::cast < ::netnode::script_main >                        m_pnetnodescriptmain;
 
       //::pointer<httpd_socket>                                  m_phttpsocket1;
       //::pointer < script_manager >                             m_pscriptmanager2;
-      ::pointer < script_instance >                            m_pscriptinstanceLastlyInstantiated;
-      ::pointer_array < ::dynamic_source::script_interface >   m_interfacea;
+      ::cast < script_instance >                               m_pscriptinstanceLastlyInstantiated;
+      ::cast_array < ::dynamic_source::script_interface >      m_interfacea;
 
-      ::pointer<::dynamic_source::script_interface>            m_pscriptinterfaceTopic;
+      ::cast < ::dynamic_source::script_interface >            m_pscriptinterfaceTopic;
 
       //::url::url                                               m_url;
 

@@ -1646,7 +1646,7 @@ namespace network_token {
 
 		template<typename traits_type, typename value_type>
 		using is_get_type_signature =
-			typename std::is_same<get_type_function<traits_type>, json::type(const value_type&)>;
+			typename std::is_same<get_type_function<traits_type>, json::platform::type(const value_type&)>;
 
 		template<typename traits_type, typename value_type>
 		struct supports_get_type {
@@ -1753,7 +1753,7 @@ namespace network_token {
 		struct is_valid_traits {
 			// Internal assertions for better feedback
 			static_assert(supports_get_type<traits, typename traits::value_type>::value,
-						  "traits must provide `network_token::json::type get_type(const value_type&)`");
+						  "traits must provide `network_token::json::platform::type get_type(const value_type&)`");
 			static_assert(supports_as_object<traits, typename traits::value_type, typename traits::object_type>::value,
 						  "traits must provide `object_type as_object(const value_type&)`");
 			static_assert(supports_as_array<traits, typename traits::value_type, typename traits::array_type>::value,
@@ -2025,7 +2025,7 @@ namespace network_token {
 		 * \return Type
 		 * \throw std::logic_error An internal error occured
 		 */
-		json::type get_type() const { return json_traits::get_type(val); }
+		json::platform::type get_type() const { return json_traits::get_type(val); }
 
 		/**
 		 * Get the contained JSON value as a string
@@ -2238,7 +2238,7 @@ namespace network_token {
 		 */
 		typename basic_claim_t::set_t get_audience() const {
 			auto aud = get_payload_claim("aud");
-			if (aud.get_type() == json::type::string) return {aud.as_string()};
+			if (aud.get_type() == json::platform::type::string) return {aud.as_string()};
 
 			return aud.as_set();
 		}
@@ -2743,7 +2743,7 @@ namespace network_token {
 					return network_token.get_payload_claim(claim_key);
 				}
 			}
-			basic_claim<json_traits> get_claim(bool in_header, json::type t, std::error_code& ec) const {
+			basic_claim<json_traits> get_claim(bool in_header, json::platform::type t, std::error_code& ec) const {
 				auto c = get_claim(in_header, ec);
 				if (ec) return {};
 				if (c.get_type() != t) {
@@ -2753,7 +2753,7 @@ namespace network_token {
 				return c;
 			}
 			basic_claim<json_traits> get_claim(std::error_code& ec) const { return get_claim(false, ec); }
-			basic_claim<json_traits> get_claim(json::type t, std::error_code& ec) const {
+			basic_claim<json_traits> get_claim(json::platform::type t, std::error_code& ec) const {
 				return get_claim(false, t, ec);
 			}
 		};
@@ -2769,12 +2769,12 @@ namespace network_token {
 				if (ec) return;
 				const bool matches = [&]() {
 					switch (expected.get_type()) {
-					case json::type::boolean: return expected.as_bool() == jc.as_bool();
-					case json::type::integer: return expected.as_int() == jc.as_int();
-					case json::type::number: return expected.as_number() == jc.as_number();
-					case json::type::string: return expected.as_string() == jc.as_string();
-					case json::type::array:
-					case json::type::object:
+					case json::platform::type::boolean: return expected.as_bool() == jc.as_bool();
+					case json::platform::type::integer: return expected.as_int() == jc.as_int();
+					case json::platform::type::number::number: return expected.as_number() == jc.as_number();
+					case json::platform::type::string: return expected.as_string() == jc.as_string();
+					case json::platform::type::array:
+					case json::platform::type::object:
 						return json_traits::serialize(expected.to_json()) == json_traits::serialize(jc.to_json());
 					default: throw std::logic_error("internal error, should be unreachable");
 					}
@@ -2794,7 +2794,7 @@ namespace network_token {
 		struct date_before_claim {
 			const size_t leeway;
 			void operator()(const verify_context<json_traits>& ctx, std::error_code& ec) const {
-				auto jc = ctx.get_claim(in_header, json::type::integer, ec);
+				auto jc = ctx.get_claim(in_header, json::platform::type::integer, ec);
 				if (ec) return;
 				auto c = jc.as_date();
 				if (ctx.current_time > c + std::chrono::seconds(leeway)) {
@@ -2811,7 +2811,7 @@ namespace network_token {
 		struct date_after_claim {
 			const size_t leeway;
 			void operator()(const verify_context<json_traits>& ctx, std::error_code& ec) const {
-				auto jc = ctx.get_claim(in_header, json::type::integer, ec);
+				auto jc = ctx.get_claim(in_header, json::platform::type::integer, ec);
 				if (ec) return;
 				auto c = jc.as_date();
 				if (ctx.current_time < c - std::chrono::seconds(leeway)) {
@@ -2831,12 +2831,12 @@ namespace network_token {
 			void operator()(const verify_context<json_traits>& ctx, std::error_code& ec) const {
 				auto c = ctx.get_claim(in_header, ec);
 				if (ec) return;
-				if (c.get_type() == json::type::string) {
+				if (c.get_type() == json::platform::type::string) {
 					if (expected.size() != 1 || *expected.begin() != c.as_string()) {
 						ec = error::token_verification_error::audience_missmatch;
 						return;
 					}
-				} else if (c.get_type() == json::type::array) {
+				} else if (c.get_type() == json::platform::type::array) {
 					auto jc = c.as_set();
 					for (auto& e : expected) {
 						if (jc.find(e) == jc.end()) {
@@ -2862,7 +2862,7 @@ namespace network_token {
 				: expected(to_lower_unicode(e, loc)), locale(loc) {}
 
 			void operator()(const verify_context<json_traits>& ctx, std::error_code& ec) const {
-				const auto c = ctx.get_claim(in_header, json::type::string, ec);
+				const auto c = ctx.get_claim(in_header, json::platform::type::string, ec);
 				if (ec) return;
 				if (to_lower_unicode(c.as_string(), locale) != expected) {
 					ec = error::token_verification_error::claim_value_missmatch;
@@ -3452,11 +3452,11 @@ namespace network_token {
 		using integer_type = long long;
 		using boolean_type = bool;
 
-		static json::type get_type(const quite_compact_network_payload::value& val) {
-			using json::type;
+		static json::platform::type get_type(const quite_compact_network_payload::value& val) {
+			using json::platform::type;
 			if (val.is<bool>()) return type::boolean;
 			if (val.is<long long>()) return type::integer;
-			if (val.is<double>()) return type::number;
+			if (val.is<double>()) return type::number::number;
 			if (val.is<std::string>()) return type::string;
 			if (val.is<quite_compact_network_payload::array>()) return type::array;
 			if (val.is<quite_compact_network_payload::object>()) return type::object;

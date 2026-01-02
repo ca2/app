@@ -28,13 +28,13 @@ namespace windowing
          return ::windowing::e_operating_ambient_android;
 
 #elif defined(APPLE_IOS)
-         
+
          printf_line("calculate_edesktop e_operating_ambient_ios");
 
          return ::windowing::e_operating_ambient_ios;
 
 #elif defined(MACOS)
-         
+
          printf_line("calculate_edesktop e_operating_ambient_macos");
 
          return ::windowing::e_operating_ambient_macos;
@@ -71,7 +71,10 @@ namespace windowing
          return ::windowing::e_operating_ambient_lxde;
          
       }
-      else if (strDesktop.case_insensitive_order("lxqt") == 0)
+      else if (strDesktop.case_insensitive_begins("lxqt:")
+         || strDesktop.case_insensitive_ends(":lxqt")
+         || strDesktop.case_insensitive_contains(":lxqt:")
+         || strDesktop.case_insensitive_equals("lxqt"))
       {
 
          printf_line("calculate_edesktop e_operating_ambient_lxqt");

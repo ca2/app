@@ -1221,10 +1221,6 @@ namespace crypto
 //
 //
 //      out.set_os_crypt_buffer(::winrt::Windows::Security::Cryptography::Core::CryptographicEngine::Decrypt(m_prsa, in.get_os_crypt_buffer(), nullptr));
-//
-//
-//
-//
 //#else
 //
 //      single_lock synchronouslock(mutex(), true);
@@ -1341,10 +1337,6 @@ namespace crypto
 //
 //
 //      out.set_os_crypt_buffer(::winrt::Windows::Security::Cryptography::Core::CryptographicEngine::Encrypt(m_prsa, in.get_os_crypt_buffer(), nullptr));
-//
-//
-//
-//
 //#else
 //
 //      auto iInSize = (int)in.get_size();
@@ -1379,10 +1371,6 @@ namespace crypto
 //
 //
 //      out.set_os_crypt_buffer(::winrt::Windows::Security::Cryptography::Core::CryptographicEngine::Decrypt(m_prsa, in.get_os_crypt_buffer(), nullptr));
-//
-//
-//
-//
 //#else
 //
 //      single_lock synchronouslock(mutex(), true);

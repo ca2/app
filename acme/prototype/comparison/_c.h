@@ -12,7 +12,7 @@
 //#define maximum(a, b) (((b) < (a)) ? (a) : (b))
 
 
-inline bool is_same(double d1, double d2, double dTolerance)
+inline bool is_almost_equal(double d1, double d2, double dTolerance)
 {
    
    return DOUBLEABS(d1-d2) < dTolerance;
@@ -22,6 +22,6 @@ inline bool is_same(double d1, double d2, double dTolerance)
 inline bool is_different(double d1, double d2, double dTolerance)
 {
    
-   return !is_same(d1, d2, dTolerance);
+   return !is_almost_equal(d1, d2, dTolerance);
    
 }

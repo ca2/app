@@ -10,23 +10,24 @@ namespace gpu
 
 
 
-   CLASS_DECL_BRED enum_renderable_type as_renderable_type(const ::scoped_string & scopedstrRenderableType)
+   CLASS_DECL_BRED enum_model as_gpu_model(const ::scoped_string & scopedstrRenderableType)
    {
+
       ::string str(scopedstrRenderableType);
 
       str.make_lower();
 
       if (str == "obj" || str=="wavefront")
       {
-         return e_renderable_type_wavefront_obj;
+         return e_model_wavefront;
       }
       else if (str == "gltf")
       {
-         return e_renderable_type_gltf;
+         return e_model_gltf;
       }
       else
       {
-         return e_renderable_type_none;
+         return e_model_none;
       }
    }
 
@@ -46,6 +47,40 @@ namespace gpu
          return e_renderable_usage_default;
       }
 
+   }
+
+
+   CLASS_DECL_BRED enum_coordinate_system as_coordinate_system(const ::scoped_string &scopedstrCoordinateSystem)
+   {
+
+      ::string str(scopedstrCoordinateSystem);
+
+      str.make_lower();
+
+      if (str == "opengl")
+      {
+         return e_coordinate_system_opengl;
+      }
+      else if (str == "vulkan")
+      {
+         return e_coordinate_system_vulkan;
+      }
+      else if (str == "directx")
+      {
+         return e_coordinate_system_directx;
+      }
+      else if (str == "z-")
+      {
+         return e_coordinate_system_z_minus;
+      }
+      else if (str == "yup")
+      {
+         return e_coordinate_system_y_up;
+      }
+      else
+      {
+         return e_coordinate_system_none;
+      }
    }
 
 
@@ -69,7 +104,9 @@ namespace gpu
 
       set_usage(entry["usage"].as_string(""));
 
-      if (m_erenderabletype == e_renderable_type_gltf)
+      set_coordinate_system(entry["coordinate_system"].as_string(""));
+
+      if (m_egpumodel == e_model_gltf)
       {
 
          m_iFlags = entry["flags"].as_unsigned_int();
@@ -83,14 +120,12 @@ namespace gpu
    }
 
 
-
    void renderable_t::set_type(const ::scoped_string & scopedstrRenderableType)
    {
 
       m_strRenderableType1 = scopedstrRenderableType;
 
-      m_erenderabletype = as_renderable_type(m_strRenderableType1);
-
+      m_egpumodel = as_gpu_model(m_strRenderableType1);
 
    }
 
@@ -101,6 +136,16 @@ namespace gpu
       m_strRenderableUsage1 = scopedstrRenderableUsage;
 
       m_erenderableusage = as_renderable_usage(m_strRenderableUsage1);
+
+   }
+
+
+   void renderable_t::set_coordinate_system(const ::scoped_string &scopedstrCoordinateSystem)
+   {
+
+      m_strCoordinateSystem1 = scopedstrCoordinateSystem;
+
+      m_ecoordinatesystem = as_coordinate_system(m_strCoordinateSystem1);
 
    }
 

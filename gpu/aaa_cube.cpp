@@ -1,0 +1,154 @@
+// From github:/tristancalderbank/OpenGL-PBR-Renderer/cube.cpp by
+// camilo on 2025-09-26 21:15 <3ThomasBorregaardSorensen!!
+#include "framework.h"
+#include "cube.h"
+
+
+ namespace gpu
+ {
+
+    cube::cube()
+    {
+    }
+
+
+    cube::~cube()
+    {
+    }
+
+
+    void cube::draw(::gpu::command_buffer *pcommandbuffer)
+    {
+
+       // if (m_uVAO == 0)
+       //{
+
+       //   throw ::exception(error_wrong_state);
+
+       //}
+       if (m_modeldata.m_vertexes.is_empty())
+       {
+
+          throw ::exception(error_wrong_state);
+       }
+
+       m_pmodelbuffer->bind(pcommandbuffer);
+
+       m_pmodelbuffer->draw(pcommandbuffer);
+
+       m_pmodelbuffer->unbind(pcommandbuffer);
+
+    }
+
+
+    void cube::initialize_gpu_cube(::gpu::context* pgpucontext)
+    {
+       static const float cubeVertices[] =
+       {
+          // +X (right)
+          1, -1, -1,
+          1, -1,  1,
+          1,  1,  1,
+          1, -1, -1,
+          1,  1,  1,
+          1,  1, -1,
+
+          // -X (left)
+          -1, -1,  1,
+          -1, -1, -1,
+          -1,  1, -1,
+          -1, -1,  1,
+          -1,  1, -1,
+          -1,  1,  1,
+
+          // +Y (up)
+          -1, 1, -1,
+          1, 1, -1,
+          1, 1, 1,
+          -1, 1, -1,
+          1, 1, 1,
+          -1, 1, 1,
+
+          // -Y (down)
+          -1, -1, 1,
+          1, -1, 1,
+          1, -1, -1,
+          -1, -1, 1,
+          1, -1, -1,
+          -1, -1, -1,
+
+          // +Z (front)
+          -1, -1, 1,
+          -1, 1, 1,
+          1, 1, 1,
+          -1, -1, 1,
+          1, 1, 1,
+          1, -1, 1,
+
+          // -Z (back)
+          1, -1, -1,
+          1, 1, -1,
+          -1, 1, -1,
+          1, -1, -1,
+          -1, 1, -1,
+          -1, -1, -1
+      };
+
+       m_modeldata.m_vertexes.set_size(36);
+
+       for (int i = 0; i < 36; i++)
+       {
+
+         m_modeldata.m_vertexes[i].position.x = cubeVertices[i*3 +0];
+         m_modeldata.m_vertexes[i].position.y = cubeVertices[i*3 +1];
+         m_modeldata.m_vertexes[i].position.z = cubeVertices[i*3 +2];
+
+       }
+
+
+       //{
+       //    // positions
+       //                {-1.0f, 1.0f, -1.0f}, {-1.0f, -1.0f, -1.0f}, {1.0f, -1.0f, -1.0f}, {1.0f, -1.0f, -1.0f}, {1.0f, 1.0f, -1.0f},
+       //    {-1.0f, 1.0f, -1.0f},
+       //
+       //    {-1.0f, -1.0f, 1.0f}, {-1.0f, -1.0f, -1.0f}, {-1.0f, 1.0f, -1.0f}, {-1.0f, 1.0f, -1.0f}, {-1.0f, 1.0f, 1.0f},
+       //    {-1.0f, -1.0f, 1.0f},
+       //
+       //    {1.0f, -1.0f, -1.0f}, {1.0f, -1.0f, 1.0f}, {1.0f, 1.0f, 1.0f}, {1.0f, 1.0f, 1.0f}, {1.0f, 1.0f, -1.0f},
+       //    {1.0f, -1.0f, -1.0f},
+       //
+       //    {-1.0f, -1.0f, 1.0f}, {-1.0f, 1.0f, 1.0f}, {1.0f, 1.0f, 1.0f}, {1.0f, 1.0f, 1.0f}, {1.0f, -1.0f, 1.0f},
+       //    {-1.0f, -1.0f, 1.0f},
+       //
+       //    {-1.0f, 1.0f, -1.0f}, {1.0f, 1.0f, -1.0f}, {1.0f, 1.0f, 1.0f}, {1.0f, 1.0f, 1.0f}, {-1.0f, 1.0f, 1.0f},
+       //    {-1.0f, 1.0f, -1.0f},
+       //
+       //    {-1.0f, -1.0f, -1.0f}, {-1.0f, -1.0f, 1.0f}, {1.0f, -1.0f, -1.0f}, {1.0f, -1.0f, -1.0f}, {-1.0f, -1.0f, 1.0f},  {1.0f, -1.0f, 1.0f}
+       // };
+
+
+              øconstruct(m_pmodelbuffer);
+
+
+       m_pmodelbuffer->initialize_model(pgpucontext, m_modeldata);
+
+
+       //// create our data structures
+       //glGenVertexArrays(1, &mVAO);
+       //glGenBuffers(1, &mVBO);
+
+       //glBindVertexArray(mVAO); // use this VAO for subsequent calls
+
+       //glBindBuffer(GL_ARRAY_BUFFER, mVBO); // use this VBO for subsequent calls
+       //glBufferData(GL_ARRAY_BUFFER, mVertices.size() * sizeof(float), &mVertices[0], GL_STATIC_DRAW); // copy over the vertex data
+
+       //// setup the locations of vertex data
+       //// positions
+       //glEnableVertexAttribArray(0);
+       //glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
+
+       //glBindVertexArray(0);
+    }
+
+
+ } // namespace gpu

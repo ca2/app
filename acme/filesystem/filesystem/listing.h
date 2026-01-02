@@ -50,6 +50,8 @@ namespace file
       string_array_base                               m_straTitle;
       ::e_status                                      m_estatusListing;
 
+      ::particle_array                                m_particleaMetaData;
+
 
       ::function < void(const ::file::path & path) >  m_functionOnNewPath;
 
@@ -104,7 +106,7 @@ namespace file
 
 
       //listing_base& operator = (const ::e_status & estatus) { return *this; }
-      template < primitive_container CONTAINER >
+      template < prototype_container CONTAINER >
       inline ::collection::index add_container(const CONTAINER & container)
       {
 

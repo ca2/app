@@ -6,24 +6,27 @@
 #include "bred/gpu/context.h"
 #include "bred/gpu/context_lock.h"
 #include "bred/gpu/device.h"
+#include "bred/graphics3d/_functions.h"
+#include "bred/graphics3d/engine.h"
 #include "bred/graphics3d/renderable.h"
 #include "bred/graphics3d/scene_base.h"
+#include "bred/graphics3d/scene_renderable.h"
 #include "bred/graphics3d/skybox.h"
-#include "gpu/gltf/_constant.h"
-#include "gpu/cube.h"
+#include "gpu/model/_constant.h"
+//#include "gpu/cube.h"
 #include <glad/glad.h>
-#include <glm/glm.hpp>
-#include <glm/gtc/matrix_transform.hpp>
+//
+//
 #include "gpu_opengl/_gpu_opengl.h"
 #include "gpu_opengl/texture.h"
-//#include "::gpu::gltf.h"
+//#include "::gpu::model.h"
 //#include "cube.h"
 ///#include "timer.h"
-//#include "ibl/cubemap_framebuffer.h"
+//#include "gpu/ibl/cubemap_framebuffer.h"
 #include "bred/gpu/model_buffer.h"
 #include "gpu/context.h"
-#include "shaders/diffuseirradiance.vert.h"
-#include "shaders/diffuseirradiance.frag.h"
+#include "shader/diffuse_irradiance_map.vert.h"
+#include "shader/diffuse_irradiance_map.frag.h"
 
 namespace gpu_opengl
 {
@@ -50,7 +53,7 @@ namespace gpu_opengl
       ::block diffuse_irradiance_map::embedded_diffuse_irradiance_vert()
       {
 
-         return {g_psz_diffuseirradiance_vert, sizeof(g_psz_diffuseirradiance_vert) - 1};
+         return g_psz_diffuse_irradiance_map_vert;
 
       }
 
@@ -58,7 +61,7 @@ namespace gpu_opengl
       ::block diffuse_irradiance_map::embedded_diffuse_irradiance_frag()
       {
 
-         return {g_psz_diffuseirradiance_frag, sizeof(g_psz_diffuseirradiance_frag)-1};
+         return g_psz_diffuse_irradiance_map_frag;
 
 
       }
@@ -68,8 +71,8 @@ namespace gpu_opengl
       //    environmentCubemapId(environmentCubemapId)
       // {
       //
-      //    ::string diffuseIrradianceVertexShaderPath = engineRoot + "/src/ibl/shaders/diffuseirradiance.vert";
-      //    ::string diffuseIrradianceFragmentShaderPath = engineRoot + "/src/ibl/shaders/diffuseirradiance.frag";
+      //    ::string diffuseIrradianceVertexShaderPath = engineRoot + "/src/ibl/shaders/diffuse_irradiance_map.vert";
+      //    ::string diffuseIrradianceFragmentShaderPath = engineRoot + "/src/ibl/shaders/diffuse_irradiance_map.frag";
       //
       //    diffuseIrradianceShader = std::make_unique<Shader>(diffuseIrradianceVertexShaderPath.c_str(),
       //                                                       diffuseIrradianceFragmentShaderPath.c_str());
@@ -82,99 +85,105 @@ namespace gpu_opengl
       void diffuse_irradiance_map::computeIrradianceMap(::gpu::command_buffer *pgpucommandbuffer)
       {
 
-         ::gpu::context_lock contextlock(m_pgpucontext);
+         ::gpu::ibl::diffuse_irradiance_map::computeIrradianceMap(pgpucommandbuffer);
 
-         //Timer timer;
+         //::gpu::context_lock contextlock(m_pgpucontext);
 
-         //auto pgpucommandbuffer = m_pgpucontext->beginSingleTimeCommands(m_pgpucontext->m_pgpudevice->graphics_queue());
+         ////Timer timer;
 
-         glm::mat4 model = ::gpu::gltf::mIndentity4;
-         glm::mat4 cameraAngles[] =
-         {
-            glm::lookAt(::gpu::gltf::origin, ::gpu::gltf::unitX, -::gpu::gltf::unitY),
-            glm::lookAt(::gpu::gltf::origin, -::gpu::gltf::unitX, -::gpu::gltf::unitY),
-            glm::lookAt(::gpu::gltf::origin, ::gpu::gltf::unitY, ::gpu::gltf::unitZ),
-            glm::lookAt(::gpu::gltf::origin, -::gpu::gltf::unitY, -::gpu::gltf::unitZ),
-            glm::lookAt(::gpu::gltf::origin, ::gpu::gltf::unitZ, -::gpu::gltf::unitY),
-            glm::lookAt(::gpu::gltf::origin, -::gpu::gltf::unitZ, -::gpu::gltf::unitY)
-         };
-         glm::mat4 projection = glm::perspective(
-            glm::radians(90.0f), // 90 degrees to cover one face
-            1.0f, // its a square
-            0.1f,
-            2.0f);
+         ////auto pgpucommandbuffer = m_pgpucontext->beginSingleTimeCommands(m_pgpucontext->m_pgpudevice->graphics_queue());
 
+         //using namespace graphics3d;
 
-         //auto pcube = øcreate<::gpu::cube>();
-         ////::cast < ::gpu_gpu::context > pcontext = m_pgpucontext;
-         auto pcube = øcreate<::gpu::cube>();
-         pcube->initialize_gpu_cube(m_pgpucontext);
+         //floating_matrix4 model = ::graphics3d::mIndentity4;
 
-         glViewport(0, 0, m_udiffuse_irradiance_mapWidth, m_udiffuse_irradiance_mapHeight);
-         GLCheckError("");
-         //m_pdiffuseIrradianceFramebuffer->bind();
-         m_pshaderDiffuseIrradiance->bind(nullptr, m_pdiffuseIrradianceFramebuffer->m_ptexture);
+         //floating_matrix4 cameraAngles[] =
+         //{
+         //   lookAt(origin, unitX, -unitY),
+         //   lookAt(origin, -unitX, -unitY),
+         //   lookAt(origin, unitY, unitZ),
+         //   lookAt(origin, -unitY, -unitZ),
+         //   lookAt(origin, unitZ, -unitY),
+         //   lookAt(origin, -unitZ, -unitY)
+         //};
 
+         //auto projection = m_pgpucontext->m_pengine->perspective(
+         //   90_degrees, // 90 degrees to cover one face
+         //   1.0f, // its a square
+         //   0.1f,
+         //   2.0f);
 
-         
-         //auto pcube = øcreate<::gpu::cube >();
+         ////auto pcube = øcreate<::gpu::cube>();
+         //////::cast < ::gpu_gpu::context > pcontext = m_pgpucontext;
+         ////auto pcube = øcreate<::gpu::cube>();
+         //auto prenderableCube = m_pgpucontext->m_pengine->shape_factory()->create_cube_001(m_pgpucontext, 2.f);
+         ////pcube->initialize_gpu_cube(m_pgpucontext);
 
-         auto pskybox = m_pscene->current_skybox();
-
-         auto prenderable = pskybox->m_prenderable;
-
-         auto ptexture = pskybox->m_ptexture;
-
-         ::cast<::gpu_opengl::texture> ptextureSkybox = ptexture;
-
-         // render to each side of the cubemap
-         for (auto i = 0; i < 6; i++)
-         {
-            m_pshaderDiffuseIrradiance->setModelViewProjectionMatrices(model, cameraAngles[i], projection);
-            m_pdiffuseIrradianceFramebuffer->setCubeFace(i, m_pshaderDiffuseIrradiance);
-
-            glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-            GLCheckError("");
-
-            m_pshaderDiffuseIrradiance->push_properties(pgpucommandbuffer);
-
-            //m_pshaderDiffuseIrradiance->set_int("environmentCubemap", 0);
-            glBindTexture(GL_TEXTURE_CUBE_MAP, ptextureSkybox->m_gluTextureID);
-            // pgpucommandbuffer->m_erendersystem = ::graphics3d::e_render_system_skybox_ibl;
-            pcube->bind(pgpucommandbuffer);
-            pcube->draw(pgpucommandbuffer);
-            pcube->unbind(pgpucommandbuffer);
-            //prenderable->bind(pgpucommandbuffer);
-            //prenderable->draw(pgpucommandbuffer);
-            //prenderable->unbind(pgpucommandbuffer);
-            //glBindTexture(GL_TEXTURE_CUBE_MAP, m_uEnvironmentCubemapId);
-            //pcube->draw(pgpucommandbuffer);
-         }
-
-         //timer.logDifference("Rendered diffuse irradiance map");
-         GLenum status = glCheckFramebufferStatus(GL_FRAMEBUFFER);
-
-         if (status != GL_FRAMEBUFFER_COMPLETE)
-         {
-
-            warning() << "Framebuffer incomplete! with status " << status;
-         }
-
-         glBindFramebuffer(GL_FRAMEBUFFER, 0);
-         GLCheckError("");
+         //glViewport(0, 0, m_udiffuse_irradiance_mapWidth, m_udiffuse_irradiance_mapHeight);
+         //GLCheckError("");
+         ////m_pdiffuseIrradianceFramebuffer->bind();
+         //m_pshaderDiffuseIrradiance->bind(nullptr, m_ptextureDiffuseIrradiance->m_ptexture);
 
 
-      }
+         //
+         ////auto pcube = øcreate<::gpu::cube >();
 
+         //auto pskybox = m_pscene->current_skybox();
 
-      unsigned int diffuse_irradiance_map::getCubemapId()
-      {
+         //auto prenderable = pskybox->m_prenderable;
 
-         ::cast <cubemap_framebuffer > pframebuffer = m_pdiffuseIrradianceFramebuffer;
+         //auto ptexture = pskybox->m_ptexture;
 
-         return pframebuffer->getCubemapTextureId();
+         //::cast<::gpu_opengl::texture> ptextureSkybox = ptexture;
+
+         //// render to each side of the cubemap
+         //for (auto i = 0; i < 6; i++)
+         //{
+         //   m_pshaderDiffuseIrradiance->setModelViewProjection(model, cameraAngles[i], projection);
+         //   m_pframebufferDiffuseIrradiance->set_cube_face(i, m_pshaderDiffuseIrradiance);
+
+         //   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+         //   GLCheckError("");
+
+         //   m_pshaderDiffuseIrradiance->push_properties(pgpucommandbuffer);
+
+         //   //m_pshaderDiffuseIrradiance->set_int("environmentCubemap", 0);
+         //   glBindTexture(GL_TEXTURE_CUBE_MAP, ptextureSkybox->m_gluTextureID);
+         //   // pgpucommandbuffer->m_erendersystem = ::graphics3d::e_render_system_skybox_ibl;
+         //   prenderableCube->bind(pgpucommandbuffer);
+         //   prenderableCube->draw(pgpucommandbuffer);
+         //   prenderableCube->unbind(pgpucommandbuffer);
+         //   //prenderable->bind(pgpucommandbuffer);
+         //   //prenderable->draw(pgpucommandbuffer);
+         //   //prenderable->unbind(pgpucommandbuffer);
+         //   //glBindTexture(GL_TEXTURE_CUBE_MAP, m_uEnvironmentCubemapId);
+         //   //pcube->draw(pgpucommandbuffer);
+         //}
+
+         ////timer.logDifference("Rendered diffuse irradiance map");
+         //GLenum status = glCheckFramebufferStatus(GL_FRAMEBUFFER);
+
+         //if (status != GL_FRAMEBUFFER_COMPLETE)
+         //{
+
+         //   warning() << "Framebuffer incomplete! with status " << status;
+         //}
+
+         //glBindFramebuffer(GL_FRAMEBUFFER, 0);
+         //GLCheckError("");
+
 
       }
+
+
+      // unsigned int diffuse_irradiance_map::getCubemapId()
+      // {
+      //
+      //    ::cast <cubemap_framebuffer > pframebuffer = m_pframebufferDiffuseIrradiance;
+      //
+      //    return pframebuffer->getCubemapTextureId();
+      //
+      // }
 
 
    } // namespace ibl

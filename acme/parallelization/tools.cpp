@@ -443,7 +443,7 @@ void task_group::select_tool(task_tool* ptool)
 
       auto & pitem = ptool->item_at(i);
 
-      pitem = system()->øid_create(ptool->id());
+      pitem = system()->øcreate_by_type(ptool->id());
 
       pitem->m_ptask = ptask;
 
@@ -495,10 +495,6 @@ void task_group::select_tool(task_tool* ptool)
 //   return true;
 //
 //}
-//
-//
-//
-//
 
 
 

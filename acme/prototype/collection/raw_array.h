@@ -1536,10 +1536,6 @@ raw_array_base < TYPE, ARG_TYPE, TYPED, MEMORY,t_etypeContainer > raw_array_base
 //   }
 //   return -1;
 //}
-//
-//
-//
-//
 //template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY, ::enum_type t_etypeContainer >
 //raw_array_base < TYPE, ARG_TYPE, TYPED, MEMORY,t_etypeContainer > & raw_array_base < TYPE, ARG_TYPE, TYPED, MEMORY,t_etypeContainer >::operator += (const raw_array_base & a)
 //{
@@ -1564,14 +1560,6 @@ raw_array_base < TYPE, ARG_TYPE, TYPED, MEMORY,t_etypeContainer > raw_array_base
 //   aNew += a;
 //   return a;
 //}
-//
-//
-//
-//
-//
-//
-//
-//
 //template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY, ::enum_type t_etypeContainer >
 //inline raw_array_base < TYPE, ARG_TYPE, TYPED, MEMORY,t_etypeContainer > & raw_array_base < TYPE, ARG_TYPE, TYPED, MEMORY,t_etypeContainer >::operator =(raw_array_base && a)
 //{
@@ -1579,10 +1567,6 @@ raw_array_base < TYPE, ARG_TYPE, TYPED, MEMORY,t_etypeContainer > raw_array_base
 //   return transfer(::transfer(a));
 //
 //}
-//
-//
-//
-//
 //
 //template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY, ::enum_type t_etypeContainer >
 //inline raw_array_base < TYPE, ARG_TYPE, TYPED, MEMORY,t_etypeContainer > & raw_array_base < TYPE, ARG_TYPE, TYPED, MEMORY,t_etypeContainer >::transfer(raw_array_base && a)

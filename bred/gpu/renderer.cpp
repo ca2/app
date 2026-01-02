@@ -26,12 +26,18 @@
 #include "aura/user/user/interaction.h"
 
 
+#include <assert.h>
+
+
 namespace gpu
 {
 
+   interlocked_count g_iGpuRenderer;
 
    renderer::renderer()
    {
+
+      m_iGpuRenderer = ++g_iGpuRenderer;
 
       m_iDefaultFrameCount = 3;
 
@@ -112,17 +118,21 @@ namespace gpu
 
       auto previous = m_pgpurendertarget;
 
-      m_pgpurendertarget = on_create_render_target();
       //on_defer_update_renderer_allocate_render_target(eoutput, size, previous);
 
       if (!m_pgpurendertarget)
       {
 
-         throw ::exception(error_wrong_state);
+         m_pgpurendertarget = on_create_render_target();
+
+         if (!m_pgpurendertarget)
+         {
+
+            throw ::exception(error_wrong_state);
+
+         }
 
       }
-
-      m_sizeRenderer = size;
 
       //m_pgpurendertarget = pgpurendertarget;
       //      else if (eoutput == ::gpu::e_output_gpu_buffer)
@@ -179,8 +189,10 @@ namespace gpu
       //
       //      }
       //
-      if (!m_pgpurendertarget->has_ok_flag())
+      if (!m_pgpurendertarget->has_ok_flag() || m_sizeRenderer != size)
       {
+
+         m_sizeRenderer = size;
 
          m_pgpurendertarget->initialize_render_target(this, size, previous);
 
@@ -218,7 +230,13 @@ namespace gpu
 
       auto ptexture = øcreate< texture>();
 
-      ptexture->initialize_image_texture(this, size, bWithDepth);
+      ::gpu::texture_attributes textureattributes(::int_rectangle{size});
+
+      ::gpu::texture_flags textureflags;
+
+      textureflags.m_bWithDepth = bWithDepth;
+
+      ptexture->initialize_texture(this, textureattributes, textureflags);
 
       m_pgpucontext->on_create_texture(ptexture);
 
@@ -326,6 +344,8 @@ namespace gpu
 
          m_pgpucontext->copy(ptextureTarget, ptextureSource);
 
+         ptextureTarget->defer_fence();
+
       }
 
    }
@@ -365,17 +385,31 @@ namespace gpu
 
          iFrameIndex = m_pgpucontext->get_swap_chain()->swap_chain_frame_index();
 
+         if (iFrameIndex < 0)
+         {
+
+            ::warning("iFrameIndex < 0 (1)");
+
+         }
+
       }
       else
       {
 
          iFrameIndex = m_pgpurendertarget->get_frame_index();
 
+         if (iFrameIndex < 0)
+         {
+
+            ::warning("iFrameIndex < 0 (2)");
+
+         }
+
       }
 
       auto pcommandbuffer = m_commandbuffera[iFrameIndex];
 
-      pcommandbuffer->m_iFrameIndex = iFrameIndex;
+      pcommandbuffer->m_iCommandBufferFrameIndex = iFrameIndex;
 
       pcommandbuffer->m_strAnnotation.empty();
 
@@ -429,6 +463,8 @@ namespace gpu
             m_pgpurendertarget,
             m_pgpucontext->m_pgpudevice->graphics_queue(),
             e_command_buffer_graphics);
+
+         pcommandbuffer->m_iCommandBufferFrameIndex = i;
 
       }
 
@@ -493,9 +529,9 @@ namespace gpu
 
                   ////{
 
-                  ////   float x = (float) psession->get_cursor_position().x();
+                  ////   float x = (float) psession->get_cursor_position().x;
 
-                  ////   float y = (float) psession->get_cursor_position().y();
+                  ////   float y = (float) psession->get_cursor_position().y;
 
                   ////   m_papplication->m_pprogram->m_pshader->setVec2("mouse", x, y);
                   ////   m_papplication->m_pprogram->m_pshader->setVec2("iMouse", x, y);
@@ -636,9 +672,9 @@ namespace gpu
 
             //////{
 
-            //////   float x = (float) psession->get_cursor_position().x();
+            //////   float x = (float) psession->get_cursor_position().x;
 
-            //////   float y = (float) psession->get_cursor_position().y();
+            //////   float y = (float) psession->get_cursor_position().y;
 
             //////   m_papplication->m_pprogram->m_pshader->setVec2("mouse", x, y);
             //////   m_papplication->m_pprogram->m_pshader->setVec2("iMouse", x, y);
@@ -1205,20 +1241,20 @@ namespace gpu
    }
 
 
-   void renderer::copy(::gpu::texture* pgputextureTarget, ::gpu::texture* pgputextureSource)
-   {
+   //void renderer::copy(::gpu::texture* pgputextureTarget, ::gpu::texture* pgputextureSource)
+   //{
 
-      throw::interface_only();
+   //   throw::interface_only();
 
-   }
+   //}
 
 
-   void renderer::blend(::gpu::texture* pgputextureTarget, ::gpu::texture* pgputextureSource)
-   {
+   //void renderer::blend(::gpu::texture* pgputextureTarget, ::gpu::texture* pgputextureSource)
+   //{
 
-      throw::interface_only();
+   //   throw::interface_only();
 
-   }
+   //}
 
 
    void renderer::soft_restore_context()
@@ -1386,13 +1422,13 @@ namespace gpu
    ::pointer < frame > renderer::beginFrame()
    {
 
-      if (m_procedureaPostOnJustBeforeFrameNextStart.has_element())
+      if (m_procedureaOnJustBeforeFrameNextStart.has_element())
       {
 
          try
          {
 
-            for (auto & procedure : m_procedureaPostOnJustBeforeFrameNextStart)
+            for (auto & procedure : m_procedureaOnJustBeforeFrameNextStart)
             {
 
                try
@@ -1416,7 +1452,7 @@ namespace gpu
 
          }
 
-         m_procedureaPostOnJustBeforeFrameNextStart.clear();
+         m_procedureaOnJustBeforeFrameNextStart.clear();
 
       }
 
@@ -1450,7 +1486,7 @@ namespace gpu
 
       ::cast < command_buffer > pcommandbuffer = getCurrentCommandBuffer2(pgpuframe);
 
-      auto iFrameIndex = pcommandbuffer->m_iFrameIndex;
+      auto iFrameIndex = pcommandbuffer->m_iCommandBufferFrameIndex;
 
       auto pszCommandBufferAnnotation = pcommandbuffer->m_strAnnotation.c_str();
 
@@ -1719,7 +1755,7 @@ namespace gpu
    void renderer::post_on_just_before_frame_next_start(const ::procedure & procedure)
    {
 
-      m_procedureaPostOnJustBeforeFrameNextStart.add(procedure);
+      m_procedureaOnJustBeforeFrameNextStart.add(procedure);
 
    }
 

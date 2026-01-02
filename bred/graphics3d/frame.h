@@ -17,10 +17,6 @@
 //
 //
 //      virtual void initialize_frame();
-//
-//
-//
-//
 //   };
 //
 //

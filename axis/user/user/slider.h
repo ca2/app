@@ -15,11 +15,11 @@ namespace user
    public:
 
 
-      scalar         m_scalar;
+      ::number::scalar        m_scalar;
 
-      double         m_dRate;
+      double                  m_dRate;
 
-      bool           m_bSlide;
+      bool                    m_bSlide;
 
       
       slider();
@@ -35,7 +35,7 @@ namespace user
 
       void on_timer(::timer * ptimer) override;
       
-      void set_scalar(const scalar & scalar);
+      void set_scalar(const ::number::scalar & scalar);
 
       void set_rate(double dRate);
 

@@ -88,7 +88,7 @@ namespace nanoui
          m_scroll = øallocate VScrollPanel(m_ppopup);
          m_scroll->set_fixed_height(300);
          m_container = øallocate Widget(m_scroll);
-         m_ppopup->set_layout(øallocate BoxLayout(e_orientation_horizontal, e_alignment_middle, ::int_rectangle(0), 0));
+         m_ppopup->set_layout(øallocate BoxLayout(e_orientation_horizontal, e_alignment_middle, ::int_rectangle(), 0));
       }
 
       m_container->set_layout(øallocate GroupLayout(10));
@@ -137,13 +137,13 @@ namespace nanoui
 
       set_checked(false, e_source_selection);
       popup()->set_visible(false);
-      if (rel.cy() < 0) {
+      if (rel.cy < 0) {
          set_selected_index(::minimum(m_iSelectedIndex + 1, (int)(items().size() - 1)), e_source_selection);
          if (m_callback)
             m_callback(m_iSelectedIndex);
          return true;
       }
-      else if (rel.cy() > 0) {
+      else if (rel.cy > 0) {
          set_selected_index(::maximum(m_iSelectedIndex - 1, 0), e_source_user);
          if (m_callback)
             m_callback(m_iSelectedIndex);

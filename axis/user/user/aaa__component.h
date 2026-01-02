@@ -29,10 +29,6 @@
 //
 //
 //#include "user.h"
-//
-//
-//
-//
 //namespace axis
 //{
 //

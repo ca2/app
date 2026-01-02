@@ -203,11 +203,11 @@ namespace user
 
       auto rectangleX = this->rectangle();
 
-      int iM = rectangleX.center().x();
+      int iM = rectangleX.center().x;
 
       ::int_rectangle rectangleL(rectangleX);
 
-      rectangleL.right() = iM - wPadding / 2;
+      rectangleL.right = iM - wPadding / 2;
 
       m_pbuttonMinus->order_top_most();
       
@@ -217,7 +217,7 @@ namespace user
 
       ::int_rectangle rectangleR(rectangleX);
 
-      rectangleR.left() = iM + wPadding / 2;
+      rectangleR.left = iM + wPadding / 2;
 
       m_pbuttonPlus->order_top();
       

@@ -117,7 +117,7 @@ namespace user
       //if (!estatus)
       //{
 
-      //   informationf("\nFailed to create_windowing at user::user::initialize.");
+      //   informationf("----> Failed to create_windowing at user::user::initialize.");
 
       //   return estatus;
 
@@ -876,8 +876,8 @@ namespace user
 }
 
 
-::type_atom user::get_html_document_type() { return m_typeatomHtmlDocument; }
-::type_atom user::get_html_impact_type() { return m_typeatomHtmlImpact; }
+::platform::type user::get_html_document_type() { return m_typeHtmlDocument; }
+::platform::type user::get_html_impact_type() { return m_typeHtmlImpact; }
 
 
 //   ::user::front_end_schema * GetUfeSchema(::particle * pparticle)
@@ -933,7 +933,7 @@ namespace user
 //   }
 
 
-   ::type_atom user::controltype_to_typeinfo(::user::enum_control_type econtroltype)
+   ::platform::type user::controltype_to_typeinfo(::user::enum_control_type econtroltype)
    {
 
       return {};
@@ -1285,7 +1285,7 @@ namespace aura
    //   }
 
    //}
-   ::type_atom system::get_simple_frame_window_type_info()
+   ::platform::type system::get_simple_frame_window_type_info()
    {
 
       return {};

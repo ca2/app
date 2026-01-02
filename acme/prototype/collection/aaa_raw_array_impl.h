@@ -703,10 +703,6 @@
 //   }
 //   return -1;
 //}
-//
-//
-//
-//
 //template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type t_etypeContainer >
 //raw_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > & raw_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::operator += (const raw_array & a)
 //{
@@ -731,14 +727,6 @@
 //   aNew += a;
 //   return a;
 //}
-//
-//
-//
-//
-//
-//
-//
-//
 //template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type t_etypeContainer >
 //inline raw_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > & raw_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::operator =(raw_array && a)
 //{
@@ -746,10 +734,6 @@
 //   return transfer(::transfer(a));
 //
 //}
-//
-//
-//
-//
 //
 //template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type t_etypeContainer >
 //inline raw_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > & raw_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::transfer(raw_array && a)
@@ -773,16 +757,4 @@
 //   return *this;
 //
 //}
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //

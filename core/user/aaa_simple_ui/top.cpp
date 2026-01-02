@@ -5,7 +5,7 @@ namespace simple_ui
 {
 
 
-   top::top()
+   top::top
    {
 
       m_bDrag = false;
@@ -13,7 +13,7 @@ namespace simple_ui
    }
 
 
-   top::~top()
+   top::~top
    {
 
    }

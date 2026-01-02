@@ -23,13 +23,13 @@ namespace hotplugin
 
       ::int_rectangle rectangleWindow;
       window_rectangle(&rectangleWindow);
-      int cx = rectangleWindow.right() - rectangleWindow.left();
-      int cy = rectangleWindow.bottom() - rectangleWindow.top();
+      int cx = rectangleWindow.right - rectangleWindow.left;
+      int cy = rectangleWindow.bottom - rectangleWindow.top;
       ::int_rectangle int_rectangle;
-      rectangle.left() = 0;
-      rectangle.top() = 0;
-      rectangle.bottom() = cy;
-      rectangle.right() = cx;
+      rectangle.left = 0;
+      rectangle.top = 0;
+      rectangle.bottom = cy;
+      rectangle.right = cx;
 
       auto ppen = øcreate < ::draw2d::pen > ();
 
@@ -117,10 +117,10 @@ auto m_timeSync = ::time::now();
 
       ::int_rectangle rectangleClip1;
 
-      rectangleClip1.left() = rectangle.left() + iBorder1;
-      rectangleClip1.top() = rectangle.top() + iBorder1;
-      rectangleClip1.right() = rectangleClip1.left() + cx - iBorder1 * 2;
-      rectangleClip1.bottom() = rectangleClip1.top() + cy - iBorder1 * 2;
+      rectangleClip1.left = rectangle.left + iBorder1;
+      rectangleClip1.top = rectangle.top + iBorder1;
+      rectangleClip1.right = rectangleClip1.left + cx - iBorder1 * 2;
+      rectangleClip1.bottom = rectangleClip1.top + cy - iBorder1 * 2;
 
       ppathClip1->begin_figure(true, ::draw2d::e_fill_mode_winding);
 
@@ -159,10 +159,10 @@ auto m_timeSync = ::time::now();
 
       ::int_rectangle rectangleClip;
 
-      rectangleClip.left() = rectangle.left() + cx / iRate - iBorder;
-      rectangleClip.top() = rectangle.top() + (cy - iBarHeight) / 2 - iBorder;
-      rectangleClip.right() = rectangleClip.left() + iRowCount + iBorder * 2;
-      rectangleClip.bottom() = rectangleClip.top() + iBarHeight + iBorder * 2;
+      rectangleClip.left = rectangle.left + cx / iRate - iBorder;
+      rectangleClip.top = rectangle.top + (cy - iBarHeight) / 2 - iBorder;
+      rectangleClip.right = rectangleClip.left + iRowCount + iBorder * 2;
+      rectangleClip.bottom = rectangleClip.top + iBarHeight + iBorder * 2;
 
 
       ppathClip->begin_figure(true, ::draw2d::e_fill_mode_winding);
@@ -177,7 +177,7 @@ auto m_timeSync = ::time::now();
       ::int_point pa[4];
 
       //Gdiplus::SolidBrush * pbr = normal_new Gdiplus::SolidBrush(Gdiplus::Color(49, 177 + iBarHeight, 177 + iBarHeight, 177 + 19));
-      //graphics2.FillRectangle(pbr, rectangle.left() , rectangle.top(), rectangle.left() + cx, rectangle.top() + cy);
+      //graphics2.FillRectangle(pbr, rectangle.left , rectangle.top, rectangle.left + cx, rectangle.top + cy);
       //delete pbr;
 
       auto pbrush = øcreate < ::draw2d::brush > ();
@@ -194,31 +194,31 @@ auto m_timeSync = ::time::now();
          for (int x = 0; x < (cx + cy); x += 46)
          {
 
-            pa[0].x() = rectangle.left() + x;
-            pa[0].y() = rectangle.top();
+            pa[0].x = rectangle.left + x;
+            pa[0].y = rectangle.top;
 
-            pa[1].x() = rectangle.left() + x + iBarHeight;
-            pa[1].y() = rectangle.top();
+            pa[1].x = rectangle.left + x + iBarHeight;
+            pa[1].y = rectangle.top;
 
-            pa[2].x() = rectangle.left() + x - mcy + iBarHeight;
-            pa[2].y() = rectangle.top() + mcy;
+            pa[2].x = rectangle.left + x - mcy + iBarHeight;
+            pa[2].y = rectangle.top + mcy;
 
-            pa[3].x() = rectangle.left() + x - mcy;
-            pa[3].y() = rectangle.top() + mcy;
+            pa[3].x = rectangle.left + x - mcy;
+            pa[3].y = rectangle.top + mcy;
 
             pgraphics->fill_polygon(pa, 4);
 
-            pa[0].x() = rectangle.left() + x - mcy - iBarHeight;
-            pa[0].y() = rectangle.top() + mcy;
+            pa[0].x = rectangle.left + x - mcy - iBarHeight;
+            pa[0].y = rectangle.top + mcy;
 
-            pa[1].x() = rectangle.left() + x - mcy;
-            pa[1].y() = rectangle.top() + mcy;
+            pa[1].x = rectangle.left + x - mcy;
+            pa[1].y = rectangle.top + mcy;
 
-            pa[2].x() = rectangle.left() + x - cy;
-            pa[2].y() = rectangle.top() + cy;
+            pa[2].x = rectangle.left + x - cy;
+            pa[2].y = rectangle.top + cy;
 
-            pa[3].x() = rectangle.left() + x - cy - iBarHeight;
-            pa[3].y() = rectangle.top() + cy;
+            pa[3].x = rectangle.left + x - cy - iBarHeight;
+            pa[3].y = rectangle.top + cy;
 
             pgraphics->fill_polygon(pa, 4);
 
@@ -236,10 +236,10 @@ auto m_timeSync = ::time::now();
 
       ::int_rectangle r1;
 
-      r1.left() = rectangle.left() + cx / iRate - 1;
-      r1.top() = rectangle.top() + (cy - iBarHeight) / 2 - 1;
-      r1.right() = r1.left() + iRowCount + 4;
-      r1.bottom() = r1.top() + iBarHeight + 2;
+      r1.left = rectangle.left + cx / iRate - 1;
+      r1.top = rectangle.top + (cy - iBarHeight) / 2 - 1;
+      r1.right = r1.left + iRowCount + 4;
+      r1.bottom = r1.top + iBarHeight + 2;
 
       pgraphics->FillRect(r1, br);
 
@@ -248,19 +248,19 @@ auto m_timeSync = ::time::now();
       {
       get_progress_color(uchR, uchG, uchB, (double) iRow / (double) iRowCount, 0);
       Gdiplus::SolidBrush * pbr = normal_new Gdiplus::SolidBrush(Gdiplus::Color(bA, uchR, uchG, uchB));
-      graphics2.FillRectangle(pbr, rectangle.left() + iRow + cx / iRate , rectangle.top() + (cy - iBarHeight) / 2, 1, 5);
+      graphics2.FillRectangle(pbr, rectangle.left + iRow + cx / iRate , rectangle.top + (cy - iBarHeight) / 2, 1, 5);
       delete pbr;
       }
       {
       get_progress_color(uchR, uchG, uchB, (double) iRow / (double) iRowCount, 1);
       Gdiplus::SolidBrush * pbr = normal_new Gdiplus::SolidBrush(Gdiplus::Color(bA, uchR, uchG, uchB));
-      graphics2.FillRectangle(pbr, rectangle.left() + iRow + cx / iRate , rectangle.top() + (cy - iBarHeight) / 2 + 5, 1, 5);
+      graphics2.FillRectangle(pbr, rectangle.left + iRow + cx / iRate , rectangle.top + (cy - iBarHeight) / 2 + 5, 1, 5);
       delete pbr;
       }
       {
       get_progress_color(uchR, uchG, uchB, (double) iRow / (double) iRowCount, 2);
       Gdiplus::SolidBrush * pbr = normal_new Gdiplus::SolidBrush(Gdiplus::Color(bA, uchR, uchG, uchB));
-      graphics2.FillRectangle(pbr, rectangle.left() + iRow + cx / iRate , rectangle.top() + (cy - iBarHeight) / 2 + 10, 1, 13);
+      graphics2.FillRectangle(pbr, rectangle.left + iRow + cx / iRate , rectangle.top + (cy - iBarHeight) / 2 + 10, 1, 13);
       delete pbr;
       }
       }*/
@@ -268,40 +268,40 @@ auto m_timeSync = ::time::now();
       {
          get_progress_color(uchR, uchG, uchB, dRate, 0);
          pbrush->create_solid(argb(bA, uchR, uchG, uchB));
-         r = int_rectangle_dimension(rectangle.left() + cx / iRate, rectangle.top() + (cy - iBarHeight) / 2, iProgressCount, 5);
+         r = int_rectangle_dimension(rectangle.left + cx / iRate, rectangle.top + (cy - iBarHeight) / 2, iProgressCount, 5);
          pgraphics->FillRect(r, br);
       }
       {
          get_progress_color(uchR, uchG, uchB, dRate, 1);
          pbrush->create_solid(argb(bA, uchR, uchG, uchB));
-         r = int_rectangle_dimension(rectangle.left() + cx / iRate, rectangle.top() + (cy - iBarHeight) / 2 + 5, iProgressCount, 5);
+         r = int_rectangle_dimension(rectangle.left + cx / iRate, rectangle.top + (cy - iBarHeight) / 2 + 5, iProgressCount, 5);
          pgraphics->FillRect(r, br);
       }
       {
          get_progress_color(uchR, uchG, uchB, dRate, 2);
          pbrush->create_solid(argb(bA, uchR, uchG, uchB));
-         r = int_rectangle_dimension(rectangle.left() + cx / iRate, rectangle.top() + (cy - iBarHeight) / 2 + 10, iProgressCount, 13);
+         r = int_rectangle_dimension(rectangle.left + cx / iRate, rectangle.top + (cy - iBarHeight) / 2 + 10, iProgressCount, 13);
          pgraphics->FillRect(r, br);
       }
 
       int iOffset = 3;
 
       ppen->create_solid(1.0, argb(220, 180, 180, 180));
-      pgraphics->line(rectangle.left() + cx / iRate - iOffset, rectangle.top() + (cy - iBarHeight) / 2 - iOffset, rectangle.left() + cx - cx / iRate + iOffset, rectangle.top() + (cy - iBarHeight) / 2 - iOffset, ppen);
-      pgraphics->line(rectangle.left() + cx / iRate - iOffset, rectangle.top() + (cy - iBarHeight) / 2 - iOffset, rectangle.left() + cx / iRate - iOffset, rectangle.top() + (cy + iBarHeight) / 2 + iOffset, ppen);
+      pgraphics->line(rectangle.left + cx / iRate - iOffset, rectangle.top + (cy - iBarHeight) / 2 - iOffset, rectangle.left + cx - cx / iRate + iOffset, rectangle.top + (cy - iBarHeight) / 2 - iOffset, ppen);
+      pgraphics->line(rectangle.left + cx / iRate - iOffset, rectangle.top + (cy - iBarHeight) / 2 - iOffset, rectangle.left + cx / iRate - iOffset, rectangle.top + (cy + iBarHeight) / 2 + iOffset, ppen);
 
       ppen->create_solid(1.0, argb(220, 80, 80, 80));
-      pgraphics->line(rectangle.left() + cx / iRate - iOffset, rectangle.top() + (cy + iBarHeight) / 2 + iOffset, rectangle.left() + cx - cx / iRate + iOffset, rectangle.top() + (cy + iBarHeight) / 2 + iOffset, ppen);
-      pgraphics->line(rectangle.left() + cx - cx / iRate + iOffset, rectangle.top() + (cy - iBarHeight) / 2 - iOffset, rectangle.left() + cx - cx / iRate + iOffset, rectangle.top() + (cy + iBarHeight) / 2 + iOffset, ppen);
+      pgraphics->line(rectangle.left + cx / iRate - iOffset, rectangle.top + (cy + iBarHeight) / 2 + iOffset, rectangle.left + cx - cx / iRate + iOffset, rectangle.top + (cy + iBarHeight) / 2 + iOffset, ppen);
+      pgraphics->line(rectangle.left + cx - cx / iRate + iOffset, rectangle.top + (cy - iBarHeight) / 2 - iOffset, rectangle.left + cx - cx / iRate + iOffset, rectangle.top + (cy + iBarHeight) / 2 + iOffset, ppen);
 
       iOffset = 2;
       ppen->create_solid(1.0, argb(220, 90, 90, 90));
-      pgraphics->line(rectangle.left() + cx / iRate - iOffset, rectangle.top() + (cy - iBarHeight) / 2 - iOffset, rectangle.left() + cx - cx / iRate + iOffset, rectangle.top() + (cy - iBarHeight) / 2 - iOffset, ppen);
-      pgraphics->line(rectangle.left() + cx / iRate - iOffset, rectangle.top() + (cy - iBarHeight) / 2 - iOffset, rectangle.left() + cx / iRate - iOffset, rectangle.top() + (cy + iBarHeight) / 2 + iOffset, ppen);
+      pgraphics->line(rectangle.left + cx / iRate - iOffset, rectangle.top + (cy - iBarHeight) / 2 - iOffset, rectangle.left + cx - cx / iRate + iOffset, rectangle.top + (cy - iBarHeight) / 2 - iOffset, ppen);
+      pgraphics->line(rectangle.left + cx / iRate - iOffset, rectangle.top + (cy - iBarHeight) / 2 - iOffset, rectangle.left + cx / iRate - iOffset, rectangle.top + (cy + iBarHeight) / 2 + iOffset, ppen);
 
       ppen->create_solid(1.0, argb(220, 170, 170, 170));
-      pgraphics->line(rectangle.left() + cx / iRate - iOffset, rectangle.top() + (cy + iBarHeight) / 2 + iOffset, rectangle.left() + cx - cx / iRate + iOffset, rectangle.top() + (cy + iBarHeight) / 2 + iOffset, ppen);
-      pgraphics->line(rectangle.left() + cx - cx / iRate + iOffset, rectangle.top() + (cy - iBarHeight) / 2 - iOffset, rectangle.left() + cx - cx / iRate + iOffset, rectangle.top() + (cy + iBarHeight) / 2 + iOffset, ppen);
+      pgraphics->line(rectangle.left + cx / iRate - iOffset, rectangle.top + (cy + iBarHeight) / 2 + iOffset, rectangle.left + cx - cx / iRate + iOffset, rectangle.top + (cy + iBarHeight) / 2 + iOffset, ppen);
+      pgraphics->line(rectangle.left + cx - cx / iRate + iOffset, rectangle.top + (cy - iBarHeight) / 2 - iOffset, rectangle.left + cx - cx / iRate + iOffset, rectangle.top + (cy + iBarHeight) / 2 + iOffset, ppen);
 
 
       pbrush->create_solid(argb(127, 255, 255, 255));
@@ -321,7 +321,7 @@ auto m_timeSync = ::time::now();
       wstrStatus = wstrStatus + wstrProgress;
 
 
-      pgraphics->text_out(rectangle.left() + cx / iRate - 1 + 18, rectangle.top() + (cy - iBarHeight) / 2 - 1 + 1, string(wstrStatus));
+      pgraphics->text_out(rectangle.left + cx / iRate - 1 + 18, rectangle.top + (cy - iBarHeight) / 2 - 1 + 1, string(wstrStatus));
 
    }
 

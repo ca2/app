@@ -163,8 +163,6 @@ unsigned long long file_length_raw(const ::file::path & path)
 }
 
 
-
-
 //string file_system()->line(const ::file::path & path, ::collection::index iLine)
 //{
 //
@@ -230,5 +228,6 @@ unsigned long long file_length_raw(const ::file::path & path)
 //   return str;
 //
 //}
+
 
 

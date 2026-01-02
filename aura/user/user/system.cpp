@@ -84,8 +84,8 @@ namespace user
       ::property_object::destroy();
 
       m_puserprimitiveOwner.release();
-      m_procedureSuccess.m_pbase.release();
-      m_procedureFailure.m_pbase.release();
+      m_procedureSuccess.release();
+      m_procedureFailure.release();
       //m_pwindow.release();
       m_prequest.release();
       m_pwindow.release();
@@ -148,10 +148,10 @@ namespace user
    //void system::set_rect(const ::int_rectangle & rectangle)
    //{
 
-   //   m_createstruct.x() = rectangle.left();
-   //   m_createstruct.y() = rectangle.top();
-   //   m_createstruct.cx() = rectangle.width();
-   //   m_createstruct.cy() = rectangle.height();
+   //   m_createstruct.x = rectangle.left;
+   //   m_createstruct.y = rectangle.top;
+   //   m_createstruct.cx = rectangle.width();
+   //   m_createstruct.cy = rectangle.height();
 
    //}
 
@@ -178,7 +178,7 @@ namespace user
    ::pointer<::user::interaction>system::create_impact(::user::interaction * puserinteractionParent, const ::atom & atom)
    {
 
-      ASSERT(m_typeatomNewImpact || m_puserprimitiveNew != nullptr);
+      ASSERT(m_typeNewImpact || m_puserprimitiveNew != nullptr);
 
       auto papp = puserinteractionParent->get_app();
 
@@ -225,7 +225,7 @@ namespace user
          __check_refdbg
 
          //estatus =
-         pparticle->øid_construct(pinteraction, m_typeatomNewImpact);
+         pparticle->øconstruct_by_type(pinteraction, m_typeNewImpact);
 
          __check_refdbg
 
@@ -319,10 +319,10 @@ namespace user
    //void system::get_rect(::int_rectangle * lprect)
    //{
 
-   //   lprect->left() = m_createstruct.x();
-   //   lprect->top() = m_createstruct.y();
-   //   lprect->right() = m_createstruct.x() + m_createstruct.cx();
-   //   lprect->bottom() = m_createstruct.y() + m_createstruct.cy();
+   //   lprect->left = m_createstruct.x;
+   //   lprect->top = m_createstruct.y;
+   //   lprect->right = m_createstruct.x + m_createstruct.cx;
+   //   lprect->bottom = m_createstruct.y + m_createstruct.cy;
 
    //}
 

@@ -22,17 +22,17 @@ namespace dynamic_source
 
       bool                                               m_bOnTopicInclude;
 
-      ::pointer < ::netnode::script_interface >          m_pnetnodescriptinterface;
-      ::pointer < ::netnode::script_impl >               m_pnetnodescriptimpl;
+      ::cast < ::netnode::script_interface >             m_pnetnodescriptinterface;
+      ::cast < ::netnode::script_impl >                  m_pnetnodescriptimpl;
 
-      ::pointer<httpd_socket>                            m_phttpdsocket1;
-      ::pointer < ::dynamic_source::script_manager >     m_pscriptmanager1;
+      ::cast < httpd_socket >                            m_phttpdsocket1;
+      ::cast < ::dynamic_source::script_manager >        m_pscriptmanager1;
 
       string                                             m_strNote;
 
-      ::pointer < script_main >                          m_pscriptmain1;
-      ::pointer<script_interface>                        m_pinstanceParent1;
-      ::pointer<script>                                  m_pscript1;
+      ::cast < script_main >                             m_pscriptmain1;
+      ::cast < script_interface >                        m_pinstanceParent1;
+      ::cast < script >                                  m_pscript1;
 
       int                                                m_iDebug;
 
@@ -138,6 +138,9 @@ namespace dynamic_source
       void uri_set_param(string& strUrl, const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrKey, const ::scoped_string & scopedstrParam);
       string query_get_param(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrKey);
       ::payload query_get_var(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrKey);
+
+
+      virtual ::pointer < ::file::listing > folder_enumerate(int iId, const ::file::path& pathFolder, const ::function < void(::file::listing& listing) >& procedureListing);
 
 
 

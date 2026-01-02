@@ -31,8 +31,8 @@ namespace gpu_opengl
    {
 
       glViewport(
-         rectangle.left(),
-         rectangle.top(),
+         rectangle.left,
+         rectangle.top,
          rectangle.width(),
          rectangle.height());
       GLCheckError("");
@@ -46,17 +46,19 @@ namespace gpu_opengl
       glEnable(GL_SCISSOR_TEST);
 
       glScissor(
-         rectangle.left(),
-         rectangle.top(),
+         rectangle.left,
+         rectangle.top,
          rectangle.width(),
          rectangle.height()
       );
+
+      //glDisable(GL_SCISSOR_TEST);
 
    }
 
 
 
-   void command_buffer::draw(int a)
+   void command_buffer::draw_int_a_count(int a)
    {
 
       glDrawArrays(GL_TRIANGLES, 0, a);
@@ -139,6 +141,18 @@ namespace gpu_opengl
 
    }
 
+   void command_buffer::begin_render(::gpu::shader * pgpushader, ::gpu::texture * pgputextureTarget)
+   {
+
+      ::gpu::command_buffer::begin_render(pgpushader, pgputextureTarget);
+
+   }
+
+   void command_buffer::end_render()
+   {
+
+
+   }
 
 
 //   GLuint createFullscreenQuad(GLuint& quadVBO) {

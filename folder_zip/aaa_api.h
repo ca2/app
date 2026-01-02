@@ -21,10 +21,6 @@
 //      static void * unzip_open(file * pfile);
 //
 //      static void * zip_open(file * pfile);
-//
-//
-//
-//
 //   };
 //
 //

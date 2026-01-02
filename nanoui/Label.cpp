@@ -52,11 +52,11 @@ int_size Label::preferred_size(::nano2d::context  * pcontext, bool bRecalcTextSi
          pcontext->font_face(m_font.c_str());
          pcontext->font_size(font_size());
          ::float_rectangle bounds;
-         if (m_fixed_size.cx() > 0) {
+         if (m_fixed_size.cx > 0) {
             pcontext->text_align(::nano2d::e_align_left | ::nano2d::e_align_top);
-            m_ptextbox = pcontext->text_box_layout(m_strCaption, (float)m_fixed_size.cx());
-            pcontext->text_box_bounds((float)m_pos.x(), (float)m_pos.y(), m_ptextbox, &bounds);
-            m_sizePreferred = int_size(m_fixed_size.cx(), bounds.height());
+            m_ptextbox = pcontext->text_box_layout(m_strCaption, (float)m_fixed_size.cx);
+            pcontext->text_box_bounds((float)m_pos.x, (float)m_pos.y, m_ptextbox, &bounds);
+            m_sizePreferred = int_size(m_fixed_size.cx, bounds.height());
          }
          else {
             m_ptextbox.release();
@@ -84,7 +84,7 @@ void Label::draw(::nano2d::context  * pcontext)
    
    pcontext->fill_color(m_color);
 
-   if (m_fixed_size.cx() > 0) 
+   if (m_fixed_size.cx > 0) 
    {
 
       pcontext->text_align(::nano2d::e_align_left | ::nano2d::e_align_top);
@@ -92,11 +92,11 @@ void Label::draw(::nano2d::context  * pcontext)
       if (!m_ptextbox)
       {
 
-         m_ptextbox = pcontext->text_box_layout(m_strCaption, (float) m_fixed_size.cx());
+         m_ptextbox = pcontext->text_box_layout(m_strCaption, (float) m_fixed_size.cx);
 
       }
 
-      pcontext->text_box((float)m_pos.x(), (float)m_pos.y(), m_ptextbox);
+      pcontext->text_box((float)m_pos.x, (float)m_pos.y, m_ptextbox);
 
    }
    else 
@@ -104,9 +104,9 @@ void Label::draw(::nano2d::context  * pcontext)
 
       pcontext->text_align(::nano2d::e_align_left | ::nano2d::e_align_middle);
 
-      auto h = m_size.cy();
+      auto h = m_size.cy;
 
-      pcontext->text((float)m_pos.x(), (float)m_pos.y() + h * 0.5f, m_strCaption);
+      pcontext->text((float)m_pos.x, (float)m_pos.y + h * 0.5f, m_strCaption);
 
    }
 

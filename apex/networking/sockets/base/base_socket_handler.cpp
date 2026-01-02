@@ -5,6 +5,7 @@
 namespace sockets
 {
 
+   ::interlocked_count g_iSocketHandlerSerial;
 
    //base_socket_handler::pool_socket::pool_socket(base_socket * src)
    //{
@@ -37,6 +38,8 @@ namespace sockets
 
    base_socket_handler::base_socket_handler() 
    {
+
+      m_iSocketHandlerSerial = g_iSocketHandlerSerial++;
 
       //m_p2 = nullptr;
 
@@ -78,7 +81,29 @@ namespace sockets
 
    }
 
-   
+
+   ::tracer * base_socket_handler::tracer() const
+   {
+
+      return (::tracer *) (const ::tracer *) this;
+
+   }
+
+
+   ::string base_socket_handler::trace_prefix() const
+   {
+
+      auto strTaskName = ::current_task_name();
+
+      ::string str;
+
+      str.formatf("%s skthdlr %" PRIdPTR, strTaskName.c_str(), m_iSocketHandlerSerial);
+
+      return str;
+
+   }
+
+
    void base_socket_handler::add(::sockets::base_socket * psocket)
    {
       

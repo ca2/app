@@ -5,10 +5,6 @@
 //
 //#include <functional>
 //
-//#define GLM_ENABLE_EXPERIMENTAL
-//#include <glm/vec3.hpp>
-//#include <glm/gtx/hash.hpp>
-//
 //
 //
 ////namespace graphics3d

@@ -324,7 +324,7 @@ namespace acme
                 i >= 0; i--)
             {
 
-               ::pointer<::micro::elemental> pelemental = m_pacmeuserinteractionaChildren->element_at(i);
+               ::cast<::micro::elemental> pelemental = m_pacmeuserinteractionaChildren->element_at(i);
 
                auto rectangle = pelemental->m_rectangle;
 
@@ -365,9 +365,9 @@ namespace acme
 
       //   auto size = pdevice->get_text_extents(m_strText, nano_user_theme()->m_pfont);
 
-      //   m_rectangle.right() = m_rectangle.left() + size.cx();
+      //   m_rectangle.right = m_rectangle.left + size.cx;
 
-      //   m_rectangle.bottom() = m_rectangle.top() + size.cy();
+      //   m_rectangle.bottom = m_rectangle.top + size.cy;
 
       //}
 
@@ -719,11 +719,11 @@ namespace acme
 
                __check_refdbg
 
-               auto childrena = ::transfer(*pchildren);
+               auto pchildrena = ::transfer(pchildren);
 
                __check_refdbg
 
-               for (auto & pchild : childrena)
+               for (auto & pchild : *pchildrena)
                {
 
                   if (pchild)
@@ -1413,6 +1413,14 @@ namespace acme
          }
 
 
+         ::int_size interaction::get_window_minimum_size()
+         {
+
+            return { 250, 250 };
+
+         }
+
+
          //::collection::count interaction::nano_user_button_count()
          //{
 
@@ -2094,7 +2102,7 @@ namespace acme
          ::trace_statement & interaction::raw_trace_statement_prefix(::trace_statement & statement) const
          {
 
-            ::string strType = ::type(this).name();
+            ::string strType = ::platform::type(this).name();
 
             statement << strType;
 

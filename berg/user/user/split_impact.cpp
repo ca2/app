@@ -93,7 +93,7 @@ namespace user
 
          string strMessage;
 
-         strMessage.formatf("split_impact::on_create_impact failed to create views for split impact %s", typeid(this).name());
+         strMessage.format("split_impact::on_create_impact failed to create views for split impact {}", ::type(this).name());
 
          //message_box(strMessage, nullptr, ::user::e_message_box_icon_exclamation)->get_object(10_s);
 
@@ -186,32 +186,32 @@ namespace user
 
       //   // Top
       //   pgraphics->fill_rectangle(
-      //      rectangle.left(),
-      //      rectangle.top(),
+      //      rectangle.left,
+      //      rectangle.top,
       //      rectangle.width(),
       //      m_cyBorder,
       //      color32);
 
       //   // Right
       //   pgraphics->fill_rectangle(
-      //      rectangle.right() - m_cxBorder,
-      //      rectangle.top(),
+      //      rectangle.right - m_cxBorder,
+      //      rectangle.top,
       //      m_cxBorder,
       //      rectangle.height(),
       //      color32);
 
       //   // Bottom
       //   pgraphics->fill_rectangle(
-      //      rectangle.left(),
-      //      rectangle.bottom() - m_cyBorder,
+      //      rectangle.left,
+      //      rectangle.bottom - m_cyBorder,
       //      rectangle.width(),
       //      m_cyBorder,
       //      color32);
 
       //   // Left
       //   pgraphics->fill_rectangle(
-      //      rectangle.left(),
-      //      rectangle.top(),
+      //      rectangle.left,
+      //      rectangle.top,
       //      m_cxBorder,
       //      rectangle.height(),
       //      color32);
@@ -266,10 +266,10 @@ namespace user
    }
 
 
-      ::pointer<::user::impact>split_impact::create_pane_impact(const ::type_atom & typeatom, ::collection::index iPane, atom atom, ::user::interaction * pviewLast)
+      ::pointer<::user::impact>split_impact::create_pane_impact(const ::platform::type & type, ::collection::index iPane, atom atom, ::user::interaction * pviewLast)
    {
 
-      return create_impact(typeatom, get_document(), get_pane_holder(iPane), atom, pviewLast);
+      return create_impact(type, get_document(), get_pane_holder(iPane), atom, pviewLast);
 
    }
 

@@ -43,7 +43,8 @@ namespace sockets
    /** socket container class, happening generator.
    \ingroup basic */
    class CLASS_DECL_APEX base_socket_handler:
-      virtual public ::object
+      virtual public ::object,
+      virtual public ::tracer
    {
    public:
 
@@ -53,6 +54,8 @@ namespace sockets
 
       friend class base_socket;
       friend class socket;
+
+      ::collection::index m_iSocketHandlerSerial;
 
       ///** Connection pool class for internal use by the base_socket_handler.
       //\ingroup internal */
@@ -79,6 +82,14 @@ namespace sockets
       //base_socket_handler(::apex::log * plogger = nullptr);
       base_socket_handler();
       ~base_socket_handler() override;
+
+
+
+      class ::tracer * tracer() const override;
+
+
+      ::string trace_prefix() const override;
+
 
       ///** get ::pointer < ::mutex > object for threadsafe operations. */
       //virtual clasync & GetMutex() const = 0;

@@ -4,6 +4,7 @@
 #include "application.h"
 #include "session.h"
 #include "system.h"
+#include "bred/graphics3d/camera.h"
 
 
 namespace bred
@@ -17,7 +18,7 @@ namespace bred
 
       factory()->add_factory_item < ::bred::application, ::apex::application >();
       factory()->add_factory_item < ::bred::session, ::apex::session >();
-
+      factory()->add_factory_item<::graphics3d::camera>();
 
    }
 

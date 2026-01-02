@@ -102,7 +102,7 @@ namespace hellobase
       //   synchronous_lock sl3(m_pmutexDraw, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
       //   synchronous_lock sl4(m_pmutexSwap, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-/*      //   bool bNewSize = m_pimage->width() != sizeNew.cx() || m_pimage->m_size.cy() != sizeNew.cy();
+/*      //   bool bNewSize = m_pimage->width() != sizeNew.cx || m_pimage->m_size.cy != sizeNew.cy;
 
       //   m_bNewLayout = false;
 
@@ -389,13 +389,13 @@ namespace hellobase
 //
 //      ::int_rectangle rectangleX;
 //
-//      rectangleX.left() = 0;
+//      rectangleX.left = 0;
 //
-//      rectangleX.top() = 0;
+//      rectangleX.top = 0;
 //
-//      rectangleX.right() = m_cx;
+//      rectangleX.right = m_cx;
 //
-//      rectangleX.bottom() = m_cy;
+//      rectangleX.bottom = m_cy;
 //
 //      //pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_set);
 //
@@ -449,8 +449,8 @@ namespace hellobase
 //
 //      size = pgraphics->get_text_extent(strHelloBase);
 //
-//      m_cxTarget = int (size.cx() * 1.2);
-//      m_cyTarget = int (size.cy() * 1.2);
+//      m_cxTarget = int (size.cx * 1.2);
+//      m_cyTarget = int (size.cy * 1.2);
 //
 //      if (!m_bFirstDone)
 //      {
@@ -489,7 +489,7 @@ namespace hellobase
 //
 //                  m_pimage->g()->SelectObject(pbrushText);
 //
-//                  m_pimage->g()->text_out((m_cxCache1 - int_size->cx()) / 2, (m_cyCache1 - int_size->cy()) / 2, strHelloBase);
+//                  m_pimage->g()->text_out((m_cxCache1 - int_size->cx) / 2, (m_cyCache1 - int_size->cy) / 2, strHelloBase);
 //
 //                  m_pimage->map();
 //
@@ -519,10 +519,6 @@ namespace hellobase
 //            return;
 //
 //      }
-//
-//
-//
-//
 //      ::color::color ca;
 //
 //
@@ -606,7 +602,7 @@ namespace hellobase
 //      //if(!m_bAlternate)
 //      {
 //
-//         pgraphics->text_out((m_cx - size.cx()) / 2, (m_cy - size.cy()) / 2, strHelloBase);
+//         pgraphics->text_out((m_cx - size.cx) / 2, (m_cy - size.cy) / 2, strHelloBase);
 //
 //      }
 //      //      pgraphics->FillSolidRect(200,00,100,100,argb(128,128,128,255));
@@ -640,13 +636,13 @@ namespace hellobase
 //
 //      ::int_rectangle rectangleX;
 //
-//      rectangleX.left() = 0;
+//      rectangleX.left = 0;
 //
-//      rectangleX.top() = 0;
+//      rectangleX.top = 0;
 //
-//      rectangleX.right() = m_cx;
+//      rectangleX.right = m_cx;
 //
-//      rectangleX.bottom() = m_cy;
+//      rectangleX.bottom = m_cy;
 //
 //      if (rectangleX.area() <= 0)
 //         return;
@@ -722,8 +718,8 @@ namespace hellobase
 //
 //      ::int_size size = pgraphics->get_text_extent(strHelloBase);
 //
-//      m_cxTarget = int(size.cx() * 1.2);
-//      m_cyTarget = int(size.cy() * 1.2);
+//      m_cxTarget = int(size.cx * 1.2);
+//      m_cyTarget = int(size.cy * 1.2);
 //
 //      {
 //
@@ -759,7 +755,7 @@ namespace hellobase
 //
 //            m_pimage->g()->set_font(m_pfont);
 //
-//            m_pimage->g()->text_out((m_cx - int_size->cx()) / 2, (m_cy - int_size->cy()) / 2, strHelloBase);
+//            m_pimage->g()->text_out((m_cx - int_size->cx) / 2, (m_cy - int_size->cy) / 2, strHelloBase);
 //
 //            if (m_dMinRadius > 3.0)
 //            {
@@ -826,7 +822,7 @@ namespace hellobase
 //
 //      pgraphics->SelectObject(pbrushText);
 //
-//      pgraphics->text_out((m_cx - size.cx()) / 2, (m_cy - size.cy()) / 2, strHelloBase);
+//      pgraphics->text_out((m_cx - size.cx) / 2, (m_cy - size.cy) / 2, strHelloBase);
 //
 //      unsigned char a, R, g, b;
 //
@@ -977,10 +973,10 @@ namespace hellobase
 
       //::int_rectangle rectangleX;
 
-      //rectangleX.left() = 0;
-      //rectangleX.top() = 0;
-      //rectangleX.right() = m_cx;
-      //rectangleX.bottom() = m_cy;
+      //rectangleX.left = 0;
+      //rectangleX.top = 0;
+      //rectangleX.right = m_cx;
+      //rectangleX.bottom = m_cy;
 
       //pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
       //int period = 5000;
@@ -1134,9 +1130,9 @@ namespace hellobase
 
       //         ::int_size size = pgraphics->get_text_extent(strHelloBase);
 
-      //         double ratey = fHeight * 0.84 / size.cy();
+      //         double ratey = fHeight * 0.84 / size.cy;
 
-      //         pfont->create_pixel_font(pnode->font_name(e_font_sans), minimum(m_cy * ratey, m_cx * size.cy() * ratey / size.cx()), e_font_weight_bold);
+      //         pfont->create_pixel_font(pnode->font_name(e_font_sans), minimum(m_cy * ratey, m_cx * size.cy * ratey / size.cx), e_font_weight_bold);
 
       //         m_pfont = font;
 
@@ -1164,7 +1160,7 @@ namespace hellobase
 
       //      ::int_size size = pgraphics->get_text_extent(strHelloBase);
 
-      //      pgraphics->text_out((m_cx - size.cx()) / 2, (m_cy - size.cy()) / 2, strHelloBase);
+      //      pgraphics->text_out((m_cx - size.cx) / 2, (m_cy - size.cy) / 2, strHelloBase);
 
       //      return;
 
@@ -1360,7 +1356,7 @@ namespace hellobase
 
    //   ::int_size sizeNew = ::int_size(m_cx, m_cy);
 
-   //   bool bNewSize = m_pimageFast->width() != sizeNew->cx() || m_pimageFast->height() != sizeNew->cy();
+   //   bool bNewSize = m_pimageFast->width() != sizeNew->cx || m_pimageFast->height() != sizeNew->cy;
 
    //   if (bNewSize)
    //   {
@@ -1385,11 +1381,11 @@ namespace hellobase
 
    //   ::int_size size = pgraphics->get_text_extent(strHelloBase);
 
-   //   double ratey = fHeight * 0.84 / size.cy();
+   //   double ratey = fHeight * 0.84 / size.cy;
 
-   //   pfont->create_pixel_font(m_pimpact->m_strFont, minimum(m_cy * ratey, m_cx * size.cy() * ratey / size.cx()), e_font_weight_bold);
+   //   pfont->create_pixel_font(m_pimpact->m_strFont, minimum(m_cy * ratey, m_cx * size.cy * ratey / size.cx), e_font_weight_bold);
 
-   //   m_dMinRadius = maximum(1.0, minimum(m_cy * ratey, m_cx * size.cy() * ratey / size.cx()) / 46.0);
+   //   m_dMinRadius = maximum(1.0, minimum(m_cy * ratey, m_cx * size.cy * ratey / size.cx) / 46.0);
 
    //   m_dMaxRadius = m_dMinRadius * 2.3;
 
@@ -1403,7 +1399,7 @@ namespace hellobase
 
    //   ppath->m_bFill = false;
 
-   //   ppath->add_string((m_cx - size.cx()) / 2, (m_cy - size.cy()) / 2, strHelloBase, m_pfont);
+   //   ppath->add_string((m_cx - size.cx) / 2, (m_cy - size.cy) / 2, strHelloBase, m_pfont);
 
    //   auto ppen = øcreate < ::draw2d::pen > ();
 
@@ -1415,7 +1411,7 @@ namespace hellobase
 
    //   pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
-   //   //      pgraphics->FillSolidRect((m_cx - size.cx()) / 2,(m_cy - size.cy()) / 2, 100, 100, argb(255,255,200,240));
+   //   //      pgraphics->FillSolidRect((m_cx - size.cx) / 2,(m_cy - size.cy) / 2, 100, 100, argb(255,255,200,240));
 
    //   pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 

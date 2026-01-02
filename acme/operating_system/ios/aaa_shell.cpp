@@ -538,8 +538,8 @@ namespace ios
 ////            lpiextractimage)))
 ////         {
 ////            ::int_size s;
-////            s.cx() = 48;
-////            s.cy() = 48;
+////            s.cx = 48;
+////            s.cy = 48;
 ////            unsigned int dwDepth = 32;
 ////            unsigned int dwFlags = 0;
 ////            if (SUCCEEDED(hrIconLocation = lpiextractpimage->GetLocation(
@@ -1507,10 +1507,6 @@ pdirectorysystem->is(strPath))
 //
 //      }
 //
-//
-//
-//
-//
 //      if (case_insensitive_string_ends(imagekey.m_strPath, ".acme"))
 //      {
 //         string str = file()->as_string(imagekey.m_strPath);
@@ -1904,7 +1900,7 @@ pdirectorysystem->is(strPath))
 //            pimage->Fill(255, color32_byte_red(crBk), color32_byte_green(crBk), color32_byte_blue(crBk));
 //            pimage->get_graphics()->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 //            pimage->get_graphics()->draw(::int_point(), d.size(), d.get_graphics());
-//            pimage->get_graphics()->fill_solid_rect_dim(0, 0, d.size().cx(), d.size().cy(), argb(123, color32_byte_red(crBk), color32_byte_green(crBk), color32_byte_blue(crBk)));
+//            pimage->get_graphics()->fill_solid_rect_dim(0, 0, d.size().cx, d.size().cy, argb(123, color32_byte_red(crBk), color32_byte_green(crBk), color32_byte_blue(crBk)));
 //            m_pimagelist[iSize]->m_pimage->g()->set_alpha_mode(::draw2d::e_alpha_mode_set);
 //            m_pimagelist[iSize]->m_pimage->g()->draw(::int_point(), d->size(), pimage->get_graphics());
 //            m_pimagelist[iSize]->m_pimage->g()->set_alpha_mode(::draw2d::e_alpha_mode_blend);

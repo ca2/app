@@ -133,24 +133,24 @@ namespace account
       int_point pc[4];
 
 
-      pa[0].x() = rectangle.left();
-      pa[0].y() = rectangle.top();
-      pa[1].x() = rectangle.right() - rectangle.width() / 10;
-      pa[1].y() = rectangle.top() + rectangle.height() / 10;
-      pa[2].x() = rectangle.right() - rectangle.width() / 8;
-      pa[2].y() = rectangle.bottom() - rectangle.height() / 10;
-      pa[3].x() = rectangle.left();
-      pa[3].y() = rectangle.bottom();
+      pa[0].x = rectangle.left;
+      pa[0].y = rectangle.top;
+      pa[1].x = rectangle.right - rectangle.width() / 10;
+      pa[1].y = rectangle.top + rectangle.height() / 10;
+      pa[2].x = rectangle.right - rectangle.width() / 8;
+      pa[2].y = rectangle.bottom - rectangle.height() / 10;
+      pa[3].x = rectangle.left;
+      pa[3].y = rectangle.bottom;
 
 
-      pb[0].x() = rectangle.left() + rectangle.width() / 6;
-      pb[0].y() = rectangle.top() + rectangle.height() / 6;
-      pb[1].x() = rectangle.right() - rectangle.width() / 6;
-      pb[1].y() = rectangle.top() + rectangle.height() / 6;
-      pb[2].x() = rectangle.right() - rectangle.width() / 5;
-      pb[2].y() = rectangle.bottom() - rectangle.height() / 4;
-      pb[3].x() = rectangle.left() + rectangle.width() / 5;
-      pb[3].y() = rectangle.bottom() - rectangle.height() / 4;
+      pb[0].x = rectangle.left + rectangle.width() / 6;
+      pb[0].y = rectangle.top + rectangle.height() / 6;
+      pb[1].x = rectangle.right - rectangle.width() / 6;
+      pb[1].y = rectangle.top + rectangle.height() / 6;
+      pb[2].x = rectangle.right - rectangle.width() / 5;
+      pb[2].y = rectangle.bottom - rectangle.height() / 4;
+      pb[3].x = rectangle.left + rectangle.width() / 5;
+      pb[3].y = rectangle.bottom - rectangle.height() / 4;
 
       {
 
@@ -187,10 +187,10 @@ namespace account
 
       // top
       ::memory_copy(pc, pa, sizeof(pb));
-      pc[2].x() = pb[1].x();
-      pc[2].y() = pb[1].y();
-      pc[3].x() = pb[0].x();
-      pc[3].y() = pb[0].y();
+      pc[2].x = pb[1].x;
+      pc[2].y = pb[1].y;
+      pc[3].x = pb[0].x;
+      pc[3].y = pb[0].y;
 
       {
 
@@ -214,10 +214,10 @@ namespace account
       }
       // left
       ::memory_copy(pc, pa, sizeof(pb));
-      pc[1].x() = pb[0].x();
-      pc[1].y() = pb[0].y();
-      pc[2].x() = pb[3].x();
-      pc[2].y() = pb[3].y();
+      pc[1].x = pb[0].x;
+      pc[1].y = pb[0].y;
+      pc[2].x = pb[3].x;
+      pc[2].y = pb[3].y;
       {
 
          simple_brush b;
@@ -240,10 +240,10 @@ namespace account
       }
       // bottom
       ::memory_copy(pc, pa, sizeof(pb));
-      pc[0].x() = pb[3].x();
-      pc[0].y() = pb[3].y();
-      pc[1].x() = pb[2].x();
-      pc[1].y() = pb[2].y();
+      pc[0].x = pb[3].x;
+      pc[0].y = pb[3].y;
+      pc[1].x = pb[2].x;
+      pc[1].y = pb[2].y;
       {
 
          simple_brush b;
@@ -266,10 +266,10 @@ namespace account
       }
       // right
       ::memory_copy(pc, pa, sizeof(pb));
-      pc[0].x() = pb[1].x();
-      pc[0].y() = pb[1].y();
-      pc[3].x() = pb[2].x();
-      pc[3].y() = pb[2].y();
+      pc[0].x = pb[1].x;
+      pc[0].y = pb[1].y;
+      pc[3].x = pb[2].x;
+      pc[3].y = pb[2].y;
       {
 
          simple_brush b;
@@ -331,7 +331,7 @@ namespace account
          unsigned char g1 = brate(dRate, 23, 127);
          unsigned char b1 = brate(dRate, 23, 127);
          p.create_solid(g, argb(a1, r1, g1, b1));
-         g.draw_line(rectangleWindow.left(), i, rectangleWindow.right(), i, p);
+         g.draw_line(rectangleWindow.left, i, rectangleWindow.right, i, p);
 
       }
 
@@ -375,10 +375,10 @@ namespace account
 
       if (lprect == nullptr)
       {
-         m_rectangleDesktop.left() = 0;
-         m_rectangleDesktop.top() = 0;
-         m_rectangleDesktop.right() = 800;
-         m_rectangleDesktop.bottom() = 600;
+         m_rectangleDesktop.left = 0;
+         m_rectangleDesktop.top = 0;
+         m_rectangleDesktop.right = 800;
+         m_rectangleDesktop.bottom = 600;
 
 //         ::window_rectangle(::get_desktop_window(), &m_rectangleDesktop);
 
@@ -455,16 +455,16 @@ namespace account
       int w = m_w + 184;
       int h = m_h + 284;
 
-      rectangleFontopus.origin.x() = rectangleDesktop.left() + (width(rectangleDesktop) - w) / 2;
-      rectangleFontopus.origin.y() = rectangleDesktop.top() + (height(rectangleDesktop) - h) / 3;
+      rectangleFontopus.origin.x = rectangleDesktop.left + (width(rectangleDesktop) - w) / 2;
+      rectangleFontopus.origin.y = rectangleDesktop.top + (height(rectangleDesktop) - h) / 3;
       rectangleFontopus.size.width = w;
       rectangleFontopus.size.height = h;
 
 
-      m_login.m_rectangle.left() = (w - m_w) / 2;
-      m_login.m_rectangle.top() = (h - m_h) / 2;
-      m_login.m_rectangle.right() = m_w;
-      m_login.m_rectangle.bottom() = m_h;
+      m_login.m_rectangle.left = (w - m_w) / 2;
+      m_login.m_rectangle.top = (h - m_h) / 2;
+      m_login.m_rectangle.right = m_w;
+      m_login.m_rectangle.bottom = m_h;
 
       m_login.defer_translate(this);
 
@@ -608,9 +608,9 @@ namespace account
             m_bDrag = true;
             ::int_point ptNow;
             ::GetCursorPos(&ptNow);
-            m_point.x() = ptNow.x() - m_pointLButtonDown.x() + m_pointLButtonDownPos.x();
-            m_point.y() = ptNow.y() - m_pointLButtonDown.y() + m_pointLButtonDownPos.y();
-            set_window_position(m_oswindow, nullptr, m_point.x(), m_point.y(), 0, 0, SWP_NOSIZE | SWP_NOZORDER);
+            m_point.x = ptNow.x - m_pointLButtonDown.x + m_pointLButtonDownPos.x;
+            m_point.y = ptNow.y - m_pointLButtonDown.y + m_pointLButtonDownPos.y;
+            set_window_position(m_oswindow, nullptr, m_point.x, m_point.y, 0, 0, SWP_NOSIZE | SWP_NOZORDER);
             m_bDrag = false;
          }
          return true;

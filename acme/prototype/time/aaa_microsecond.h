@@ -15,9 +15,9 @@ public:
    
    microsecond() : duration(e_raw, 0, 1'000) {}
    microsecond(const class ::time & time) : ::duration(duration) {}
-   template < primitive_integral INTEGRAL >
+   template < prototype_integral INTEGRAL >
    microsecond(INTEGRAL integral) : duration(::integral_microsecond(integral)) { }
-   template < primitive_floating FLOATING >
+   template < prototype_floating FLOATING >
    microsecond(FLOATING floating) : duration(::floating_microsecond(floating)) { }
 
 

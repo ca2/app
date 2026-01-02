@@ -2103,7 +2103,7 @@ namespace user
    }
 
 
-   void interaction_base::viewport_client_to_screen(::sequence2_int & sequence)
+   void interaction_base::viewport_client_to_screen(::int_sequence2 & sequence)
    {
 
       throw ::interface_only();
@@ -2111,7 +2111,7 @@ namespace user
    }
 
 
-   void interaction_base::viewport_screen_to_client(::sequence2_int & sequence)
+   void interaction_base::viewport_screen_to_client(::int_sequence2 & sequence)
    {
 
       throw ::interface_only();
@@ -2843,9 +2843,9 @@ namespace user
 
    //   ::double_size sizePaddedFitting;
 
-   //   sizePaddedFitting.cx() = rectanglePadding.left() + sizeFitting.cx() + rectanglePadding.right();
+   //   sizePaddedFitting.cx = rectanglePadding.left + sizeFitting.cx + rectanglePadding.right;
 
-   //   sizePaddedFitting.cy() = rectanglePadding.top() + sizeFitting.cy() + rectanglePadding.bottom();
+   //   sizePaddedFitting.cy = rectanglePadding.top + sizeFitting.cy + rectanglePadding.bottom;
 
    //   return sizePaddedFitting;
 
@@ -4472,7 +4472,7 @@ namespace user
    void interaction_base::destroy()
    {
 
-      ::string strType = ::type(this).name();
+      ::string strType = ::platform::type(this).name();
 
       // auto & procedureaDestroying1 = ::user::drag_client::m_procedureaDestroying;
       //

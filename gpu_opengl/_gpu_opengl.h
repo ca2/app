@@ -34,7 +34,7 @@
 #include <EGL/eglplatform.h>
 
 
-#elif defined(LINUX) || defined(FREEBSD) || defined(OPENBSD) || defined(NETBSD)
+#elif defined(LINUX) || defined(__BSD__)
 
 
 //#define __GPU_OPENGL_USE_EGL
@@ -84,9 +84,7 @@
 
 // Ubuntu : 	libglu1-mesa-dev
 //#include <GL/glu.h>
-
-//#include <glm/glm.hpp>
-
+ 
 #endif
 
 
@@ -107,7 +105,7 @@
 //#include <OpenGL/CGLTypes.h>
 
 
-#else
+#elif defined(WINDOWS_DESKTOP)
 
 
 //#include <gl/glew.h>
@@ -118,6 +116,11 @@
 #include <glad/glad.h>
 
 
+#else
+
+
+#error "Not yet supported OpenGL include"
+
 #endif
 
 
@@ -125,16 +128,10 @@
 CLASS_DECL_GPU_OPENGL const_char_pointer opengl_error_string(int iError);
 
 
+CLASS_DECL_GPU_OPENGL void GLCheckError(const_char_pointer pszErrorMessage);
 
-#define GLCheckError(message) \
-{ \
-int iGlError = glGetError(); \
-if (iGlError != 0) \
-{ \
-   ::opengl::throw_opengl_exception(message, iGlError, __FILE__, __LINE__); \
-} \
-}
 
+CLASS_DECL_GPU_OPENGL void GLEnsureNonNullHandle(long lHandle, const_char_pointer pszMessage = nullptr);
 
 
 namespace opengl
@@ -165,6 +162,8 @@ namespace opengl
    CLASS_DECL_GPU_OPENGL GLenum get_gpu_type_unit_opengl_type(::gpu::enum_type etype);
 
    CLASS_DECL_GPU_OPENGL GLenum as_gl_draw_mode(::gpu::enum_topology etopology);
+
+   CLASS_DECL_GPU_OPENGL const char * check_framebuffer_status_text(GLenum status);
 
 
 } // namespace opengl

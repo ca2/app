@@ -18,12 +18,12 @@ public:
       return &BASE_CONTAINER::last();
    }
 
-   inline TYPE & top()
+   inline TYPE & top
    {
       return BASE_CONTAINER::last();
    }
 
-   inline const TYPE & top() const
+   inline const TYPE & top const
    {
       return BASE_CONTAINER::last();
    }

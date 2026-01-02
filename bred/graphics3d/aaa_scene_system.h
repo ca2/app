@@ -4,7 +4,7 @@
 
 
 #include "bred/gpu/properties.h"
-#include <glm/glm.hpp>
+
 
 
 namespace graphics3d
@@ -35,7 +35,7 @@ namespace graphics3d
       virtual void on_update(::gpu::context* pgpucontext, ::graphics3d::scene* pscene);
       virtual void on_render(::gpu::context* pgpucontext, ::graphics3d::scene* pscene);
 
-      //void createPipelineLayout(VkDescriptorSetLayout globalSetLayout);
+      //void createPipelineLayout(aaaVkDescriptorSetLayout globalSetLayout);
       //void createPipeline(VkRenderPass renderPass);
 
       virtual void prepare(::gpu::context* pgpucontext);

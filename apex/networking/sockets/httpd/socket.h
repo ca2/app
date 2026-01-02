@@ -58,7 +58,7 @@ namespace httpd
 
 
       ::pointer < ::factory::factory >       m_pfactorySocketThread;
-      ::type_atom                            m_typeSocketThread;
+      ::platform::type                       m_typeSocketThread;
 
 
       socket();

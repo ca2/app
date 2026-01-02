@@ -252,7 +252,7 @@ namespace nanoui
 
          auto callbackLayout = m_callbackLayout;
 
-         m_callbackLayout.clear();
+         m_callbackLayout.release();
 
          callbackLayout(pcontext);
 
@@ -325,7 +325,7 @@ namespace nanoui
 
          auto callbackLayout = m_callbackLayout;
 
-         m_callbackLayout.clear();
+         m_callbackLayout.release();
 
          callbackLayout(pcontext);
 
@@ -588,7 +588,7 @@ namespace nanoui
    }
 
 
-   //bool Widget::mouse_drag_event(const sequence2_int&, const sequence2_int&, const ::user::e_key&)
+   //bool Widget::mouse_drag_event(const int_sequence2&, const int_sequence2&, const ::user::e_key&)
    //{
 
    //   return false;
@@ -1017,7 +1017,7 @@ namespace nanoui
       //
       //      pcontext->begin_path(ctx);
       //
-      //      pcontext->rectangle(ctx, m_pos.x() - 0.5f, m_pos.y() - 0.5f, m_size.cx() + 1, m_size.cy() + 1);
+      //      pcontext->rectangle(ctx, m_pos.x - 0.5f, m_pos.y - 0.5f, m_size.cx + 1, m_size.cy + 1);
       //
       //      pcontext->stroke_color(ctx, ::color::RGBA_color(255, 0, 0, 255));
       //
@@ -1045,13 +1045,13 @@ namespace nanoui
 
             ////   yOffset = pscrollPanel->get_y_offset();
 
-            ////   rectangleThis = ::int_rectangle_dimension(0, m_pos.y() - yOffset, m_size.cx(), m_size.cy());
+            ////   rectangleThis = ::int_rectangle_dimension(0, m_pos.y - yOffset, m_size.cx, m_size.cy);
 
             ////}
             ////else
             ////{
 
-            //rectangleThis = ::int_rectangle_dimension(0, 0, m_size.cx(), m_size.cy());
+            //rectangleThis = ::int_rectangle_dimension(0, 0, m_size.cx, m_size.cy);
 
             //}
 
@@ -1088,9 +1088,9 @@ namespace nanoui
 
       }
 
-      rectangleThis = ::int_rectangle_dimension(-offsetScroll.cx(), -offsetScroll.cy(), m_size.cx(), m_size.cy());
+      rectangleThis = ::int_rectangle_dimension(-offsetScroll.cx, -offsetScroll.cy, m_size.cx, m_size.cy);
 
-      pcontext->translate((float)m_pos.x(), (float)m_pos.y());
+      pcontext->translate((float)m_pos.x, (float)m_pos.y);
 
       for (::collection::index i = 0; i < m_children.size(); i++)
       {
@@ -1106,13 +1106,13 @@ namespace nanoui
 
          pchild->on_begin_draw(pcontext);
 
-         auto childX = pchild->m_pos.x();
+         auto childX = pchild->m_pos.x;
 
-         auto childY = pchild->m_pos.y();
+         auto childY = pchild->m_pos.y;
 
-         auto childW = pchild->m_size.cx();
+         auto childW = pchild->m_size.cx;
 
-         auto childH = pchild->m_size.cy();
+         auto childH = pchild->m_size.cy;
 
          auto rectangleChild = ::int_rectangle_dimension(childX, childY, childW, childH);
 
@@ -1142,8 +1142,8 @@ namespace nanoui
    //         
    //         pcontext->save();
    //
-   //         pcontext->intersect_scissor((float)pchild->m_pos.x(), (float)pchild->m_pos.y(),
-   //            (float)pchild->m_size.cx(), (float)pchild->m_size.cy());
+   //         pcontext->intersect_scissor((float)pchild->m_pos.x, (float)pchild->m_pos.y,
+   //            (float)pchild->m_size.cx, (float)pchild->m_size.cy);
    //
    //#endif
 
@@ -1165,7 +1165,7 @@ namespace nanoui
 
       }
 
-      pcontext->translate((float)-m_pos.x(), (float)-m_pos.y());
+      pcontext->translate((float)-m_pos.x, (float)-m_pos.y);
 
    }
 
@@ -1242,10 +1242,10 @@ namespace nanoui
 
       auto absolutionPosition = absolute_position();
 
-      rectangle.left() = absolutionPosition.x();
-      rectangle.top() = absolutionPosition.y();
-      rectangle.right() = rectangle.left() + m_size.cx();
-      rectangle.bottom() = rectangle.top() + m_size.cy();
+      rectangle.left = absolutionPosition.x;
+      rectangle.top = absolutionPosition.y;
+      rectangle.right = rectangle.left + m_size.cx;
+      rectangle.bottom = rectangle.top + m_size.cy;
 
       return rectangle;
 
@@ -1268,7 +1268,7 @@ namespace nanoui
 
          auto absolutePosition = absolute_position();
 
-         rectangleInteraction.offset(absolutePosition.x(), absolutePosition.y());
+         rectangleInteraction.offset(absolutePosition.x, absolutePosition.y);
 
       }
 
@@ -1447,8 +1447,8 @@ namespace nanoui
 
       //}
 
-      //sequence2_int d = p - m_pos;
-      return p.x() >= 0 && p.y() >= 0 && p.x() < (m_size.cx()) && p.y() < m_size.cy();
+      //int_sequence2 d = p - m_pos;
+      return p.x >= 0 && p.y >= 0 && p.x < (m_size.cx) && p.y < m_size.cy;
 
    }
 

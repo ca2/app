@@ -61,7 +61,7 @@ endif ()
 
 set_target_properties(app_message_box PROPERTIES LINKER_LANGUAGE CXX)
 
-if (MSVC)
+if(${WIN32})
     target_compile_options(app_message_box PRIVATE "/MD$<$<CONFIG:Debug>:d>")
     target_link_options(app_message_box PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
     target_link_options(app_message_box PRIVATE "/SUBSYSTEM:WINDOWS")

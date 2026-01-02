@@ -270,10 +270,10 @@ bool pixmap::create(::memory& memory, const ::int_size& size, int stride)
    if (stride < 0)
    {
 
-      stride = size.cx() * 4;
+      stride = size.cx * 4;
 
    }
-   else if (stride < size.cx() * 4)
+   else if (stride < size.cx * 4)
    {
 
       throw ::exception(::error_bad_argument);
@@ -282,7 +282,7 @@ bool pixmap::create(::memory& memory, const ::int_size& size, int stride)
 
    m_iScan = stride;
 
-   memory.set_size(m_iScan * size.cy());
+   memory.set_size(m_iScan * size.cy);
 
    m_sizeRaw = size;
 

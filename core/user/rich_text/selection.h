@@ -2,6 +2,9 @@
 #pragma once
 
 
+#include "core/user/rich_text/_.h"
+
+
 namespace user
 {
 

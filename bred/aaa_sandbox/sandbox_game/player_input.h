@@ -3,7 +3,7 @@
 #pragma once
 #include "bred/graphics3d/window_input.h"
 #include "bred/graphics3d/_types.h"
-#include <glm/glm.hpp>
+
 //#include <memory>
 
 namespace sandbox_game
@@ -16,7 +16,7 @@ namespace sandbox_game
       mnk_controller(float moveSpeed = 7.f, float mouseSensitivity = 0.08f);
 
       void update(float dt, ::graphics3d::IWindowInput * input, ::graphics3d::transform& transform);
-      void mouseCallback(glm::vec2 delta);
+      void mouseCallback(floating_sequence2 delta);
       float getYaw() const { return m_yaw; }
       float getPitch() const { return m_pitch; }
 
@@ -27,10 +27,10 @@ namespace sandbox_game
       float m_pitch;
 
       float m_smoothing = 15.f;
-      glm::vec2 m_rawDelta{ 0.f };
-      glm::vec2 m_smoothDelta{ 0.f };
+      floating_sequence2 m_rawDelta{ 0.f };
+      floating_sequence2 m_smoothDelta{ 0.f };
 
-      glm::vec2 m_mouseDelta{ 0.f };
+      floating_sequence2 m_mouseDelta{ 0.f };
    };
 
 

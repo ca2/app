@@ -15,9 +15,9 @@ namespace user
    public:
 
 
-      scalar         m_scalar;
+      ::number::scalar        m_scalar;
 
-      double         m_dRate;
+      double                  m_dRate;
 
 
 

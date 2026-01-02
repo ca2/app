@@ -286,8 +286,9 @@ public:
 
 
 
-   virtual ::file::path get_current();
+   virtual ::file::path current();
    virtual void change_current(const ::file::path & path);
+   virtual void set_current(const ::file::path& path);
    virtual void change_to_home();
 
 

@@ -205,7 +205,7 @@ void ca2rdp_send_mouse_button_event(rdpInput* input, const ::atom & atom, ::int_
 
 
 	if (flags != 0)
-      input->MouseEvent(input,(::u3216) flags,(::u3216) point.x(), (::u3216)point.y());
+      input->MouseEvent(input,(::u3216) flags,(::u3216) point.x, (::u3216)point.y);
 
 }
 

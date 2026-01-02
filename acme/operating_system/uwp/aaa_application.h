@@ -92,39 +92,7 @@
 //      virtual bool init2();
 //      virtual bool init3();
 //      virtual int  term_instance() override;
-//
-//
-//
-//
 //      virtual bool win_init(main_init_data * pdata);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //      /*virtual void construct(__THREADPROC pfnThreadProc, LPVOID pParam);
 //

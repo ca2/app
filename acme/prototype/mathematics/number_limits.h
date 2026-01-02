@@ -4,7 +4,7 @@
 #include <limits.h>
 
 
-template < primitive_integral INTEGRAL >
+template < prototype_integral INTEGRAL >
 inline bool fits_int(INTEGRAL i)
 {
 

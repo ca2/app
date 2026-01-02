@@ -1862,14 +1862,6 @@ string property_set_base::implode(const ::scoped_string & scopedstrGlue) const
 //   return *this;
 //
 //}
-//
-//
-//
-//
-//
-//
-//
-//
 //::property_set_base & property_set_base::operator = (const str_str_interface & set)
 //{
 //
@@ -2542,6 +2534,28 @@ string property_set_base::as_string(const ::scoped_string& scopedstrSeparator1, 
 
 }
 
+::collection::index property_set_base::index_of_name(const ::scoped_string &scopedstr,
+                                                       ::collection::index iStart) const
+{
+
+   for (::collection::index iIndex = iStart; iIndex < this->size(); iIndex++)
+   {
+
+      auto pproperty = this->element_at(iIndex);
+
+      if (pproperty->name() == scopedstr)
+      {
+
+         return iIndex;
+
+      }
+
+   }
+
+   return -1;
+
+}
+
 
 ::property * property_set_base::find(const ::atom & atom, ::collection::index iStart) const
 {
@@ -2845,6 +2859,34 @@ bool property_set_base::has_property(const atom & atom) const
 
    return ::is_set(pproperty) && 
       !(pproperty->is_new_or_null() || pproperty->get_type() == e_type_not_found);
+
+}
+
+
+bool property_set_base::has_replace(const ::atom& atom, const ::payload& payload)
+{
+
+   if (::is_null(this))
+   {
+
+      return false;
+
+   }
+
+   auto pproperty = find(atom);
+
+   if(! ::is_set(pproperty) ||
+      (!pproperty->is_new_or_null() 
+        && pproperty->get_type() != e_type_not_found))
+   {
+
+      return false;
+
+   }
+
+   *pproperty = payload;
+
+   return true;
 
 }
 

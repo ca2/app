@@ -82,7 +82,7 @@ void prop_id_debug(::particle * pparticle);
 //      if(m_atom.is_empty())
 //      {
 //
-//         informationf("\nHI!! Shouldn't you use a matter find this by use matter and set a breakpoint here!!!\n");
+//         informationf("----> HI!! Shouldn't you use a matter find this by use matter and set a breakpoint here!!!\n");
 //         m_atom = property.m_atom;
 //
 //      }
@@ -592,22 +592,6 @@ string & property::get_network_arguments(::string & str) const
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //bool property::operator < (const property & prop) const
 //{
 //   return get_value() < prop;
@@ -638,30 +622,6 @@ string & property::get_network_arguments(::string & str) const
 //   return get_value() < b;
 //}
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //bool property::operator <= (const property & prop) const
 //{
 //   return get_value() <= prop;
@@ -691,30 +651,6 @@ string & property::get_network_arguments(::string & str) const
 //{
 //   return get_value() <= b;
 //}
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //bool property::operator >= (const property & prop) const
 //{
 //   return get_value() >= prop;
@@ -744,30 +680,6 @@ string & property::get_network_arguments(::string & str) const
 //{
 //   return get_value() >= b;
 //}
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //bool property::operator > (const property & prop) const
 //{
 //   return get_value() > prop;
@@ -800,18 +712,6 @@ string & property::get_network_arguments(::string & str) const
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //bool property::operator == (long long i) const
 //{
 //   return payload::operator == (i);
@@ -836,22 +736,6 @@ string & property::get_network_arguments(::string & str) const
 //{
 //   return payload::operator > (i);
 //}
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //::payload property::operator - (int i) const
 //{
 //   return get_value() - i;
@@ -881,10 +765,6 @@ string & property::get_network_arguments(::string & str) const
 //{
 //   return get_value() - payload;
 //}
-//
-//
-//
-//
 //::payload property::operator + (int i) const
 //{
 //   return get_value() + i;
@@ -917,50 +797,6 @@ string & property::get_network_arguments(::string & str) const
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //::payload property::operator / (int i) const
 //{
 //   return get_value() / i;
@@ -990,10 +826,6 @@ string & property::get_network_arguments(::string & str) const
 //{
 //   return get_value() / payload;
 //}
-//
-//
-//
-//
 //::payload property::operator * (int i) const
 //{
 //   return get_value() * i;
@@ -1023,54 +855,6 @@ string & property::get_network_arguments(::string & str) const
 //{
 //   return get_value() * payload;
 //}
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //property & property::operator -= (int i)
 //{
@@ -1113,58 +897,6 @@ string & property::get_network_arguments(::string & str) const
 //   operator=(get_value() - prop);
 //   return *this;
 //}
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -1222,30 +954,6 @@ string & property::get_network_arguments(::string & str) const
 //   return *this;
 //}
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //property & property::operator /= (int i)
 //{
 //   operator=(*this / i);
@@ -1287,30 +995,6 @@ string & property::get_network_arguments(::string & str) const
 //   operator=(get_value() / prop);
 //   return *this;
 //}
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //property & property::operator *= (int i)
 //{
@@ -1356,62 +1040,14 @@ string & property::get_network_arguments(::string & str) const
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 ////property_ptra::property_ptra(::particle * pparticle):
 ////   ::matter(pparticle)
 ////{
 ////   set_size(0, 64);
 ////}
-//
-//
-//
-//
 ////PropertySignalObject::PropertySignalObject()
 ////{
 ////}
-//
-//
-//
-//
 
 
 
@@ -1476,18 +1112,6 @@ string & property::get_network_arguments(::string & str) const
 //
 //
 //}
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //string  operator + (const ::scoped_string & scopedstr, const property & prop)
@@ -1731,14 +1355,6 @@ string & property::get_network_arguments(::string & str) const
 //}
 
 
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //

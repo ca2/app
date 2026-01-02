@@ -49,6 +49,9 @@ namespace user
       ~document_manager() override;
 
 
+      void on_initialize_particle() override;
+
+
       void destroy() override;
 
 

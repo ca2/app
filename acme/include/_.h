@@ -506,7 +506,7 @@
 //
 //
 
-struct block_143 : public BLOCK
+struct block_143 : public block
 {
    template<array_of_non_prototype_character NONCHARACTERA>
    block_143(NONCHARACTERA & a)
@@ -559,7 +559,7 @@ struct block_143 : public BLOCK
    //}
 };
 
-struct block_9438756 : public BLOCK
+struct block_9438756 : public block
 {
 
    using PRIMITIVE_BLOCK_TAG = PRIMITIVE_BLOCK_TAG_TYPE;
@@ -572,7 +572,7 @@ struct block_9438756 : public BLOCK
       this->m_end = (unsigned char *)(&a[0] + øarray_count(a));
    }
 
-   block_9438756() : BLOCK() {}
+   block_9438756() : block() {}
    block_9438756(const block &block)
    {
       this->m_begin = block.m_begin;
@@ -638,9 +638,9 @@ struct block_9438756 : public BLOCK
    block_9438756(enum_as_block, const TYPE &t) : block((void *)&t, sizeof(t))
    {
    }
-   block_9438756(const void *begin, const void *end) : BLOCK((unsigned char *)begin, (unsigned char *)end) {}
+   block_9438756(const void *begin, const void *end) : block((unsigned char *)begin, (unsigned char *)end) {}
    template<prototype_integral INTEGRAL>
-   block_9438756(const void *data, INTEGRAL count) : BLOCK((unsigned char *)data, count)
+   block_9438756(const void *data, INTEGRAL count) : block((unsigned char *)data, count)
    {
    }
 };

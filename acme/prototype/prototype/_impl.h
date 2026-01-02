@@ -202,7 +202,7 @@ inline void particle::__call__construct(::pointer<BASE_TYPE>& p, ::factory::fact
 
       ::string strError;
       
-      strError.formatf("No factory for type : '%s'", ::type<BASE_TYPE>().name());
+      strError.format("No factory for type : '{}'", ::type<BASE_TYPE>().name());
 
       error() << strError;
 

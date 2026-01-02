@@ -9,6 +9,11 @@ namespace filehandler
 {
 
 
+   class tree_interface;
+   class library;
+   class menu_library;
+
+
    class CLASS_DECL_CORE handler :
       virtual public ::object
    {

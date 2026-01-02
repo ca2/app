@@ -27,6 +27,10 @@ namespace user
    class list_group;
    class draw_list_group;
 
+   class mesh;
+   class list_column;
+
+
    class CLASS_DECL_CORE mesh_subitem :
       virtual public ::particle
    {

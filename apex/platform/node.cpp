@@ -542,6 +542,8 @@ namespace apex
    void node::defer_create_app_shortcut(::platform::application* papplication)
    {
 
+information() << "defer_create_app_shortcut";
+
       auto pathShortcut = app_shortcut_path(papplication);
 
       auto path = file_system()->module();

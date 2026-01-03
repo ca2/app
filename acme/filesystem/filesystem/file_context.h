@@ -335,9 +335,9 @@ public:
    void put(const ::payload & payloadFile, OBJECT & a)
    {
 
-      auto writer = get_writer(payloadFile);
+      auto pwriter = get_writer(payloadFile);
 
-      *writer << a;
+      pwriter->write(&a, sizeof(a));
 
    }
 

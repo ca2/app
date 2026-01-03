@@ -744,6 +744,24 @@ m_ibuf(isize)
 
             fatal() << "connect: failed " << iError << bsd_socket_error(iError);
 
+            if(iError == 65)
+            {
+
+                fatal() << "Error seems to be no route to host...";
+
+                if(paddress->is_ip6())
+                {
+
+                    fatal() << "... and Remote Address seems to be ipv6 ...";
+
+                    fatal() << "... why we don't disable this address ... : " << paddress->get_display_number();
+
+                    networking()->m_straDisabledIpv6Addresses.add(paddress->get_display_number());
+
+                }
+
+            }
+
             SetCloseAndDelete();
 
             ::_close_socket(s);
@@ -818,6 +836,18 @@ m_ibuf(isize)
 
             }
 
+            if(networking()->m_straDisabledIpv6Addresses.contains(paddress->get_display_number()))
+            {
+
+            fatal() << "... it seems here it is trying to connect to a failing address... (1)";
+            fatal() << "... will the next action disable this path... (1)";
+
+               SetCloseAndDelete();
+
+               return false;
+
+            }
+
          }
          else
          {
@@ -854,6 +884,18 @@ m_ibuf(isize)
             //if(!paddressdepartment->convert(a,host))
             if (!paddress)
             {
+
+               SetCloseAndDelete();
+
+               return false;
+
+            }
+
+            if(networking()->m_straDisabledIpv6Addresses.contains(paddress->get_display_number()))
+            {
+
+            fatal() << "... it seems here it is trying to connect to a failing address... (2)";
+            fatal() << "... will the next action disable this path... (2)";
 
                SetCloseAndDelete();
 
@@ -3156,7 +3198,7 @@ m_ibuf(isize)
       
       printf_line("_SetSoNosigpipe for socket %d", s);
       
-      preempt(5_s);
+      //preempt(5_s);
 
 #endif
 

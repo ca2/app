@@ -27,6 +27,7 @@ namespace networking
 
       ::networking::enum_address_type       m_eaddresstypePreferred;
 
+      ::string_array m_straDisabledIpv6Addresses;
 
       //string         m_host; ///< local hostname
       //in_addr        m_ip; ///< local ip address

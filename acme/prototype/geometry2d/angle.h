@@ -239,7 +239,7 @@ inline double_angle operator "" _degrees(long double degrees)
 }
 
 
-inline float_angle operator"" f_degree(long double degrees) 
+inline float_angle operator"" _f_degree(long double degrees)
 {
    
    return radians(degrees_to_radians((float)degrees)); 
@@ -247,10 +247,10 @@ inline float_angle operator"" f_degree(long double degrees)
 }
 
 
-inline float_angle operator"" f_degrees(long double degrees)
+inline float_angle operator"" _f_degrees(long double degrees)
 {
    
-   return operator"" f_degree(degrees); 
+   return operator"" _f_degree(degrees);
 
 }
 
@@ -271,7 +271,7 @@ inline double_angle operator "" _degrees(unsigned long long hn)
 }
 
 
-inline float_angle operator"" f_degree(unsigned long long degrees)
+inline float_angle operator"" _f_degree(unsigned long long degrees)
 {
 
    return radians(degrees_to_radians((float)degrees));
@@ -279,10 +279,10 @@ inline float_angle operator"" f_degree(unsigned long long degrees)
 }
 
 
-inline float_angle operator"" f_degrees(unsigned long long hn) 
+inline float_angle operator"" _f_degrees(unsigned long long hn)
 {
    
-   return operator"" f_degree(hn); 
+   return operator"" _f_degree(hn);
 
 }
 

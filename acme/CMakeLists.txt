@@ -2827,6 +2827,7 @@ if (${FREEBSD})
             #operating_system/freebsd/_user.h
             operating_system/freebsd/application.h
             operating_system/freebsd/call_stack.cpp
+            operating_system/freebsd/cpu_features.cpp
             #      operating_system/freebsd/cross_win_file.cpp
             #      operating_system/freebsd/cross_win_file.h
             #      operating_system/freebsd/cross_win_gdi.cpp
@@ -3103,9 +3104,7 @@ if (${LINUX} OR ${__BSD__})
 endif ()
 
 
-add_library(${PROJECT_NAME} SHARED ${library_source}
-   operating_system/bsd/file.cpp
-   operating_system/bsd/parallelization.cpp)
+add_library(${PROJECT_NAME} SHARED ${library_source})
 
 
 add_library(static_${PROJECT_NAME} STATIC ${library_source}

@@ -139,7 +139,7 @@ namespace path
       pszModuleFilePath = _android_get_executable_path_dup();
 
 #else
-get_home_config_folder_path
+
       pszModuleFilePath = br_find_exe("app");
 
 #endif

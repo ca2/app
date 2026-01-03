@@ -2827,6 +2827,7 @@ if (${FREEBSD})
             #operating_system/freebsd/_user.h
             operating_system/freebsd/application.h
             operating_system/freebsd/call_stack.cpp
+            operating_system/freebsd/cpu_features.cpp
             #      operating_system/freebsd/cross_win_file.cpp
             #      operating_system/freebsd/cross_win_file.h
             #      operating_system/freebsd/cross_win_gdi.cpp

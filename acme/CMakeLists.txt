@@ -2448,7 +2448,6 @@ if (${LINUX})
             operating_system/linux/application.h
             operating_system/linux/callstack.cpp
 
-       operating_system/linux/cpu_features.cpp
             #operating_system/linux/cross_win_file.cpp
             #operating_system/linux/cross_win_file.h
             #operating_system/linux/cross_win_gdi.cpp
@@ -2491,6 +2490,11 @@ if (${LINUX})
             operating_system/linux/util.cpp
             operating_system/linux/win_base.cpp
     )
+if(${TARGET_ARCH} STREQUAL "x64")
+list(APPEND library_source
+   operating_system/linux/cpu_features_x86_64.cpp
+)
+   endif()
 
 
 endif ()

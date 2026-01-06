@@ -3257,7 +3257,7 @@ namespace user
                }
 
             }
-            else if (pdrawlistsubitem->m_pcolumn->m_pimagelist != nullptr)
+            else if (::is_ok(pdrawlistsubitem->m_pcolumn->m_pimagelist))
             {
 
                ::image::image_list::info ii;

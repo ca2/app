@@ -13,7 +13,7 @@ list(APPEND executable_source
 add_executable(${PROJECT_NAME} ${executable_source} unit_test/_unit_test.h)
 
 
-if (MSVC)
+if(${WIN32})
     target_compile_options(${PROJECT_NAME} PRIVATE "/MD$<$<CONFIG:Debug>:d>")
     target_link_options(${PROJECT_NAME} PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
     target_link_options(${PROJECT_NAME} PRIVATE "/SUBSYSTEM:CONSOLE")

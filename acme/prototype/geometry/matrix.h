@@ -692,7 +692,7 @@ inline matrix_type mul_avx2(const matrix_type &B) const
       FLOATING recip = 1 / (near_ - far_);
       FLOATING c = 1 / ::tan(.5f * fov);
 
-      matrix_type trafo = matrix_type::scale(sequence_type<FLOATING, DIMENSION>(c / aspect, c, (near_ + far_) * recip, 0.f));
+      matrix_type trafo = matrix_type::scaling(sequence_type<FLOATING, DIMENSION>(c / aspect, c, (near_ + far_) * recip, 0.f));
 
       trafo.m[3][2] = 2.f * near_ * far_ * recip;
       trafo.m[2][3] = -1.f;

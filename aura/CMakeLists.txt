@@ -813,7 +813,7 @@ if (MACOS)
 endif ()
 
 
-if (MSVC)
+if(${WIN32})
     set(LIBCXX_TARGETING_MSVC ON)
 else ()
     set(LIBCXX_TARGETING_MSVC OFF)
@@ -851,7 +851,7 @@ endif ()
 set_target_properties(aura PROPERTIES LINKER_LANGUAGE CXX)
 
 
-if (MSVC)
+if(${WIN32})
     target_compile_options(aura PRIVATE "/MD$<$<CONFIG:Debug>:d>")
     target_link_options(aura PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
     target_link_options(aura PRIVATE "/IMPLIB:${LIBRARY_OUTPUT_PATH}/aura.lib")

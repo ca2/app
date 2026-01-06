@@ -163,23 +163,32 @@ namespace gpu
    }
 
 
-   void context::defer_create_window_context(::windowing::window *pwindow)
+   void context::defer_create_window_context(::acme::windowing::window *pwindow)
    {
 
-      send(
-         [this, pwindow]()
-         {
+      //send(
+        // [this, pwindow]()
+         //{
             _defer_create_window_context(pwindow);
 
+      auto pswapchain = get_swap_chain();
+
+      if (!pswapchain->m_bSwapChainInitialized)
+      {
+
+         pswapchain->initialize_swap_chain_window(this, pwindow);
+
+      }
+
             m_bCreated = true;
-         });
+         //});
    }
 
 
    void context::_create_cpu_buffer(const ::int_size &size) {}
 
 
-   void context::_defer_create_window_context(::windowing::window *pwindow) {}
+   void context::_defer_create_window_context(::acme::windowing::window *pwindow) {}
 
 
    void context::resize_cpu_buffer(const ::int_size &size)
@@ -206,9 +215,9 @@ namespace gpu
 
       auto procedureForward = [this, procedure]()
       {
-         _synchronous_lock(this->synchronization());
+         //_synchronous_lock(this->synchronization());
 
-         defer_make_current();
+         //defer_make_current();
 
          procedure();
       };
@@ -918,12 +927,12 @@ namespace gpu
 
 }
 
-
-   void context::defer_make_current()
-   {
-
-
-   }
+   //
+   // void context::defer_make_current()
+   // {
+   //
+   //
+   // }
 
    ::floating_matrix4 context::defer_transpose(const ::floating_matrix4 & m)
    {
@@ -1027,12 +1036,12 @@ namespace gpu
    //}
 
 
-   ::pointer<::graphics3d::renderable> context::_load_model(const ::gpu::renderable_t & model)
-   {
-
-return {};
-
-   }
+//    ::pointer<::graphics3d::renderable> context::_load_model(const ::gpu::renderable_t & model)
+//    {
+//
+// return {};
+//
+//    }
 
 
    void context::set_viewport(::gpu::command_buffer * pgpucommandbuffer, const ::int_rectangle & rectangle)
@@ -1431,7 +1440,8 @@ return {};
 
    //}
 
-   void context::initialize_gpu_context(::gpu::device* pgpudevice, const ::gpu::enum_output& eoutput, ::windowing::window* pwindow, const ::int_size& size)
+
+   void context::initialize_gpu_context(::gpu::device* pgpudevice, const ::gpu::enum_output& eoutput, ::acme::windowing::window* pwindow, const ::int_size& size)
    {
 
       ASSERT(is_current_task());
@@ -1482,9 +1492,47 @@ return {};
    }
 
 
-   void context::on_create_context(::gpu::device* pgpudevice, const ::gpu::enum_output& eoutput, ::windowing::window* pwindow, const ::int_size& size)
+   void context::on_create_context(::gpu::device* pgpudevice, const ::gpu::enum_output& eoutput, ::acme::windowing::window* pwindow, const ::int_size& size)
    {
 
+      if (eoutput == ::gpu::e_output_cpu_buffer)
+      {
+
+         //if (startcontext.m_callbackImage32CpuBuffer
+         //   && !startcontext.m_rectanglePlacement.is_empty())
+         //{
+
+         //   ASSERT(startcontext.m_callbackImage32CpuBuffer);
+         //   ASSERT(!startcontext.m_rectanglePlacement.is_empty());
+
+         create_cpu_buffer(size);
+
+         //}
+
+      }
+      else if (eoutput == ::gpu::e_output_swap_chain)
+      {
+
+         defer_create_window_context(pwindow);
+
+      }
+      else
+      {
+
+         auto r = ::int_rectangle(::int_point{}, size);
+         //
+         //       ::gpu::rear_guard guard(this);
+
+         send([this, r]()
+         {
+
+            _create_cpu_buffer(r.size());
+
+            //::gpu::context_guard guard(this);
+
+         });
+
+      }
 
    }
 
@@ -1668,6 +1716,14 @@ return {};
          m_pgpucompositor->on_gpu_context_placement_change(size);
 
       }
+
+   }
+
+
+   void context::assert_there_is_current_context()
+   {
+
+
 
    }
 
@@ -1906,12 +1962,6 @@ return {};
                               }
 
                            }
-
-                           //auto ptextureSwapChain = pswapchain->current_texture();
-
-                           //clear(::color::transparent);
-                           /////clear(::rgba(0.5*0.5, 0.75 * 0.5, 0.95 * 0.5, 0.5));
-
 
                            for (auto player : *playera)
                            {
@@ -2801,42 +2851,44 @@ return {};
       try
       {
 
-         if (model.m_egpumodel == ::gpu::e_model_wavefront)
-         {
+         prenderable = _load_model(model);
 
-            prenderable = _load_model(model);
-
-            // information("[asset_manager] Successfully loaded OBJ model '{}' from '{}'",
-            //    model.m_strName,
-            //    model.m_path);
-
-         }
-         else if (model.m_egpumodel == ::gpu::e_model_gltf)
-         {
-
-            //uint32_t flags = entry.get("flags", 0); // Optional flags
-            //float scale = entry.get("scale", 1.0f); // Optional scale
-            prenderable = _load_model(model);
-
-            //name, path, flags, scale);
-            // if (entry.get("usage", "") == "skybox" || name == "cube")
-            // {
-            //    m_pmodelSkybox = pmodel;
-            // }
-
-            //information("[asset_manager] Successfully loaded glTF model '{}' from '{}'",
-              // loadmodel.m_strName,
-               //loadmodel.m_path);
-
-         }
-         else
-         {
-
-            warningf("[context::load_model] Unknown model type '%s' for asset '%s'",
-               model.m_strRenderableType1.c_str(),
-               model.m_strName.c_str());
-
-         }
+         // if (model.m_erenderabletype == ::gpu::e_renderable_type_wavefront_obj)
+         // {
+         //
+         //    prenderable = load_wavefront_obj_renderable(model);
+         //
+         //    // information("[asset_manager] Successfully loaded OBJ model '{}' from '{}'",
+         //    //    model.m_strName,
+         //    //    model.m_path);
+         //
+         // }
+         // else if (model.m_erenderabletype == ::gpu::e_renderable_type_gltf)
+         // {
+         //
+         //    //uint32_t flags = entry.get("flags", 0); // Optional flags
+         //    //float scale = entry.get("scale", 1.0f); // Optional scale
+         //    prenderable = load_gltf_model(model);
+         //
+         //    //name, path, flags, scale);
+         //    // if (entry.get("usage", "") == "skybox" || name == "cube")
+         //    // {
+         //    //    m_pmodelSkybox = pmodel;
+         //    // }
+         //
+         //    //information("[asset_manager] Successfully loaded glTF model '{}' from '{}'",
+         //      // loadmodel.m_strName,
+         //       //loadmodel.m_path);
+         //
+         // }
+         // else
+         // {
+         //
+         //    warningf("[context::load_model] Unknown model type '%s' for asset '%s'",
+         //       model.m_strRenderableType1.c_str(),
+         //       model.m_strName.c_str());
+         //
+         // }
 
       }
       catch (const ::exception &e)
@@ -2859,6 +2911,14 @@ return {};
       // }
 
       return prenderable;
+
+   }
+
+
+   ::pointer<::graphics3d::renderable> context::_load_model(const ::gpu::renderable_t & renderable)
+   {
+
+      return {};
 
    }
 

@@ -15,7 +15,7 @@ namespace user
    public:
 
 
-      scalar       m_scalar;
+      ::number::scalar        m_scalar;
 
 
       step_slider();

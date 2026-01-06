@@ -1894,7 +1894,7 @@ void object::branch_each(const ::procedure_array& routinea)
 
    ptask->m_procedure = procedure;
    
-   auto pbase = procedure.m_pbase.m_p;
+   auto pbase = procedure.m_p;
 
    ptask->id() = typeid(*pbase).name();
 
@@ -1928,7 +1928,7 @@ void object::branch_each(const ::procedure_array& routinea)
 
    ptask->m_procedure = procedure;
    
-   auto pbase = procedure.m_pbase.m_p;
+   auto pbase = procedure.m_p;
 
    ptask->id() = typeid(*pbase).name();
 

@@ -31,6 +31,8 @@
 namespace gpu
 {
 
+   //::pointer <::gpu::context > allocate_egl_context(::particle * pparticle);
+
    thread_local device* t_pgpudevice = nullptr;
 
    void thread_set_gpu_device(::gpu::device* pgpudevice)
@@ -139,7 +141,9 @@ namespace gpu
    ::pointer < ::gpu::context > device::allocate_context()
    {
 
-      auto pgpucontext = øcreate< ::gpu::context >();
+      ::pointer < ::gpu::context > pgpucontext;
+
+      pgpucontext = øcreate< ::gpu::context >();
 
       return pgpucontext;
 
@@ -287,7 +291,9 @@ namespace gpu
    ::pointer < ::gpu::context > device::create_draw2d_context(const ::gpu::enum_output& eoutput, const ::int_size& size)
    {
 
-      auto pgpucontext = øcreate<::gpu::context>();
+      //auto pgpucontext = øcreate<::gpu::context>();
+
+      auto pgpucontext = allocate_context();
 
       pgpucontext->create_draw2d_context(this, eoutput, size);
 
@@ -777,13 +783,13 @@ namespace gpu
    //}
 
 
-   ::gpu::context* device::main_context()
+   ::gpu::context* device::main_context(::acme::windowing::window * pacmewindowingwindow)
    {
 
       if (!m_pgpucontextMain)
       {
 
-         øconstruct(m_pgpucontextMain);
+         m_pgpucontextMain = allocate_context();
 
          ::gpu::enum_output eoutput;
 
@@ -804,26 +810,31 @@ namespace gpu
 
          }
 
-         ::cast < ::user::interaction > puserinteraction = m_papplication->m_pacmeuserinteractionMain;
+         auto pwindow = pacmewindowingwindow;
+
+         if (::is_null(pwindow))
+         {
+
+            pwindow = m_papplication->m_pacmeuserinteractionMain->acme_windowing_window();
+
+         }
 
          if (!m_pgpucontextMain->m_itask
-            && puserinteraction->m_pacmewindowingwindow)
+            && pwindow)
          {
 
             m_pgpucontextMain->branch_synchronously();
 
             m_pgpucontextMain->m_pgpudevice = this;
 
-            m_pgpucontextMain->_send([this, eoutput, puserinteraction]()
+            m_pgpucontextMain->_send([this, eoutput, pwindow]()
                {
-
-                  auto pinteraction = (::user::interaction*)puserinteraction.m_p;
 
                   m_pgpucontextMain->initialize_gpu_context(
                      this,
                      eoutput,
-                     pinteraction->window(),
-                     pinteraction->window()->get_window_rectangle().size()
+                     pwindow,
+                     pwindow->get_window_rectangle().size()
                   );
 
                });

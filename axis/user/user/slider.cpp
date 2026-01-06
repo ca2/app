@@ -160,7 +160,7 @@ namespace user
    }
 
 
-   void slider::set_scalar(const ::scalar & scalar)
+   void slider::set_scalar(const ::number::scalar & scalar)
    {
 
       m_scalar = scalar;

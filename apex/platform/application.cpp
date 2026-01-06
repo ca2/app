@@ -4497,7 +4497,7 @@ namespace apex
    }
 
 
-   bool application::on_set_scalar(enum_scalar escalar, ::number number, int iFlags)
+   bool application::on_set_scalar(enum_scalar escalar, ::number::number number, int iFlags)
    {
 
       //if (escalar == scalar_app_install_progress)
@@ -4530,7 +4530,7 @@ namespace apex
    }
 
 
-   ::number application::get_scalar_minimum(enum_scalar escalar)
+   ::number::number application::get_scalar_minimum(enum_scalar escalar)
    {
 
       //if (escalar == scalar_app_install_progress)
@@ -4563,7 +4563,7 @@ namespace apex
    }
 
 
-   ::number application::get_scalar(enum_scalar escalar)
+   ::number::number application::get_scalar(enum_scalar escalar)
    {
 
       //if (escalar == scalar_app_install_progress)
@@ -4596,7 +4596,7 @@ namespace apex
    }
 
 
-   ::number application::get_scalar_maximum(enum_scalar escalar)
+   ::number::number application::get_scalar_maximum(enum_scalar escalar)
    {
 
       //if (escalar == scalar_download_size)

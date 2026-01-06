@@ -4,7 +4,7 @@
 #pragma once
 
 
-#include "face.h"
+#include "../face.h"
 #include <ft2build.h>
 #include FT_FREETYPE_H
 

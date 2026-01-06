@@ -108,8 +108,7 @@ public:
 
    particle(const ::particle & particle) :
       ::quantum(particle),
-      ::subparticle(particle),
-      ::signal_handler::base(particle)
+      ::subparticle(particle)
    {
 
 
@@ -117,8 +116,7 @@ public:
 
    particle(::particle&& particle) :
       ::quantum(::transfer(particle)),
-      ::subparticle(::transfer(particle)),
-      ::signal_handler::base(::transfer(particle))
+      ::subparticle(::transfer(particle))
    {
 
 
@@ -724,6 +722,25 @@ public:
    inline sequence_continuation post(const ::procedure & procedure);
    inline sequence_continuation async();
    inline sequence_continuation post();
+
+
+   inline sequence_continuation handle(bool bSynchronously, const ::procedure & procedure)
+   {
+
+      if (bSynchronously)
+      {
+         
+         return send(procedure);
+
+      }
+      else
+      {
+
+         return post(procedure);
+
+      }
+
+   }
    
 
 

@@ -104,15 +104,15 @@ namespace gpu_opengl
 #endif
 
 
-   void approach::_on_before_create_window(::windowing::window* pwindow)
-   {
-      //::cast < ::gpu_opengl::approach > papproach = m_papplication->get_gpu_approach();
-      //papproach->_on_before_create_window(pwindow);
-#if defined(WINDOWS_DESKTOP)
-      defer_load_wgl_extensions();
-#endif
-
-   }
+//    void approach::_on_before_create_window(::windowing::window* pwindow)
+//    {
+//       //::cast < ::gpu_opengl::approach > papproach = m_papplication->get_gpu_approach();
+//       //papproach->_on_before_create_window(pwindow);
+// #if defined(WINDOWS_DESKTOP)
+//       defer_load_wgl_extensions();
+// #endif
+//
+//    }
 
 #if defined(WINDOWS_DESKTOP)
 
@@ -158,28 +158,25 @@ namespace gpu_opengl
 
 #endif
 
-   void approach::_on_create_window(::windowing::window* pwindowParam)
+
+   void approach::on_create_window(::windowing::window* pwindow)
    {
 
-#if defined(WINDOWS_DESKTOP)
-      
-      ::cast < ::windowing_win32::window > pwindow = pwindowParam;
+      ::cast < ::gpu_opengl::approach > papproach = m_papplication->get_gpu_approach();
+      papproach->_on_create_window(pwindow);
+      //::draw2d_gpu::draw2d::on_create_window(pwindowParam);
 
-      auto hwnd = pwindow->m_hwnd;
+      //::cast < ::windowing_win32::window > pwindow = pwindowParam;
 
-      opengl_on_create_window(hwnd, (HINSTANCE) system()->m_hinstanceThis);
+      //auto hwnd = pwindow->m_hwnd;
 
-      DWM_BLURBEHIND bb = { 0 };
-      HRGN hRgn = CreateRectRgn(0, 0, -1, -1);
-      bb.dwFlags = DWM_BB_ENABLE | DWM_BB_BLURREGION;
-      bb.hRgnBlur = hRgn;
-      bb.fEnable = TRUE;
-      DwmEnableBlurBehindWindow(hwnd, &bb);
-
-#endif
+      //HRGN hRgn = CreateRectRgn(0, 0, -1, -1);
+      //bb.dwFlags = DWM_BB_ENABLE | DWM_BB_BLURREGION;
+      //bb.hRgnBlur = hRgn;
+      //bb.fEnable = TRUE;
+      //DwmEnableBlurBehindWindow(hwnd, &bb);
 
    }
-
 
    approach::approach()
    {

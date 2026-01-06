@@ -39,7 +39,7 @@ void procedure_array::run()
    for (auto & procedure : *this)
    {
 
-      if (procedure.m_pbase == ptask)
+      if (procedure == ptask)
       {
 
          continue;

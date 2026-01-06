@@ -1,6 +1,7 @@
 #include "framework.h"
 #include "application.h"
 
+#include "acme/handler/request.h"
 
 
 __IMPLEMENT_APPLICATION_RELEASE_TIME(app_just_message_box);
@@ -21,7 +22,12 @@ namespace app_just_message_box
    void application::on_request(::request * prequest)
    {
 
-      show_message_box();
+      if (prequest->m_ecommand == ::e_command_application_start)
+      {
+
+         show_message_box();
+
+      }
 
    }
 

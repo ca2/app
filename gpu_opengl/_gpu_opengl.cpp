@@ -143,3 +143,79 @@ void defer_throw_gl_error()
 
 
 }
+
+
+void GLCheckError(const_char_pointer pszErrorMessage)
+{
+
+   int iGlError = glGetError();
+
+   if (iGlError != 0)
+   {
+
+      ::opengl::throw_opengl_exception(pszErrorMessage, iGlError, __FILE__, __LINE__);
+
+   }
+
+}
+
+
+void GLEnsureNonNullHandle(long lHandle, const_char_pointer pszMessage = nullptr)
+{
+
+   if (!lHandle)
+   {
+
+      int iGlError = glGetError();
+
+      if (iGlError != 0)
+      {
+
+         auto pszGlErrorString = ::opengl_error_string(iGlError);
+
+         ::string strError(pszGlErrorString);
+
+         if (::has_character(pszMessage))
+         {
+
+            strError = ::string(pszMessage) + " : " + strError;
+
+         }
+
+         strError += " : Handle is null and it shouldn't be null.";
+
+         ::warning(strError);
+
+         ::opengl::throw_opengl_exception(strError, iGlError, __FILE__, __LINE__);
+
+      }
+      else
+      {
+
+         ::string strError;
+
+         if (::has_character(pszMessage))
+         {
+
+            strError = ::string(pszMessage) + " : " + strError;
+
+         }
+
+         if (strError.has_character())
+         {
+
+            strError += " : ";
+
+         }
+
+         strError += "Handle is null and it shouldn't be null.";
+
+         throw ::exception(error_wrong_state, strError);
+
+      }
+
+   }
+
+}
+
+

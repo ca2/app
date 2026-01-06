@@ -95,7 +95,7 @@ namespace gpu
       ///virtual ::gpu::context* current_context();
       
 
-      virtual ::gpu::context * main_context();
+      virtual ::gpu::context * main_context(::acme::windowing::window * pacmewindowingwindow = nullptr);
       virtual ::gpu::context * main_draw2d_context();
       //virtual void start_gpu_context(const start_context_t& startcontext);
 

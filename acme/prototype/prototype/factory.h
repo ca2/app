@@ -3,7 +3,7 @@
 
 #include <typeindex>
 
-////#include "acme/exception/exception.h"
+#include "acme/exception/exception.h"
 #include "acme/parallelization/critical_section.h"
 #include "acme/prototype/collection/atom_map.h"
 #include "acme/prototype/collection/int_map.h"

@@ -77,7 +77,7 @@ namespace graphics3d
       ~input() override;
 
 
-      virtual void initialize_input(float moveSpeed = 7.f, const floating_angle &angleCursorPixel = 0.1f_degree);
+      virtual void initialize_input(float moveSpeed = 7.f, const floating_angle &angleCursorPixel = 0.1_f_degree);
 
 
       virtual ::user::enum_key_state key(::graphics3d::enum_key ekey);

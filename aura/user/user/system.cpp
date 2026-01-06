@@ -84,8 +84,8 @@ namespace user
       ::property_object::destroy();
 
       m_puserprimitiveOwner.release();
-      m_procedureSuccess.m_pbase.release();
-      m_procedureFailure.m_pbase.release();
+      m_procedureSuccess.release();
+      m_procedureFailure.release();
       //m_pwindow.release();
       m_prequest.release();
       m_pwindow.release();

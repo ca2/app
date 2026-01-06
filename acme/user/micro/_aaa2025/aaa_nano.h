@@ -46,8 +46,8 @@ enum enum_nano_control
 #include "device.h"
 #include "child.h"
 
-#include "button.h"
-#include "still.h"
+#include "../button.h"
+#include "../still.h"
 
 
 #include "window_interface.h"
@@ -55,11 +55,11 @@ enum enum_nano_control
 #include "window.h"
 
 
-#include "popup_button.h"
+#include "../popup_button.h"
 
 
-#include "message_box.h"
-#include "details_window.h"
+#include "../message_box.h"
+#include "../details_window.h"
 
 
 

@@ -34,7 +34,7 @@ endif ()
 
 set_target_properties(api_ca2 PROPERTIES LINKER_LANGUAGE CXX)
 
-if (MSVC)
+if(${WIN32})
 
 
     target_compile_options(api_ca2 PRIVATE "/MD$<$<CONFIG:Debug>:d>")

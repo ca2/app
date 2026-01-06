@@ -45,7 +45,7 @@ namespace userex
 
    class CLASS_DECL_CORE progress_impact :
       virtual public user::impact,
-      virtual public scalar
+      virtual public ::number::scalar
    {
    public:
 

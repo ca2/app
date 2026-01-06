@@ -193,7 +193,7 @@ namespace user
    }
 
 
-   void elastic_slider::SetStreamingVelocityMode(scalar * pscalarVelocity,scalar * pscalarPosition)
+   void elastic_slider::SetStreamingVelocityMode(::number::scalar * pscalarVelocity,::number::scalar * pscalarPosition)
    {
 
       m_escalar = e_scalar_streaming_velocity;

@@ -83,6 +83,8 @@ namespace windowing
       virtual ::int_point _get_mouse_cursor_position();
 
       virtual monitor * get_monitor(::collection::index iMonitor);
+      virtual monitor * ømonitor(::collection::index iMonitor);
+      void _on_monitor(int iIndex, const ::int_rectangle & rectangle, const ::int_rectangle & rectangleWorkspace) override;
 
       virtual monitor * monitor_hit_test(const ::int_point & point);
 

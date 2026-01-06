@@ -622,6 +622,10 @@ void subparticle::erase_reference_item()
    if (::is_null(pitema))
    {
 
+      // It should be able to erase reference referer!! What has happened?!?!
+
+      throw ::exception(error_wrong_state);
+
       return;
 
    }

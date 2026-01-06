@@ -324,7 +324,7 @@ namespace acme
                 i >= 0; i--)
             {
 
-               ::pointer<::micro::elemental> pelemental = m_pacmeuserinteractionaChildren->element_at(i);
+               ::cast<::micro::elemental> pelemental = m_pacmeuserinteractionaChildren->element_at(i);
 
                auto rectangle = pelemental->m_rectangle;
 
@@ -719,11 +719,11 @@ namespace acme
 
                __check_refdbg
 
-               auto childrena = ::transfer(*pchildren);
+               auto pchildrena = ::transfer(pchildren);
 
                __check_refdbg
 
-               for (auto & pchild : childrena)
+               for (auto & pchild : *pchildrena)
                {
 
                   if (pchild)

@@ -7,18 +7,18 @@
 
 // <3ThomasBS_ [THE MAN], [THE ONLY], [THE GOD], [THE ONLY GOD], Mummi the Goddess, and bilbo my pet mate :)
 class CLASS_DECL_APEX handler_manager :
-   virtual public ::object
+   virtual public ::task
 {
 public:
 
 
-   bool                             m_bUseDedicatedThread;
-   ::task_pointer                   m_pthread;
-   ::procedure_array                m_procedurea;
-   ::pointer<manual_reset_happening>    m_pevTaskOnQueue;
-   int                              m_iAliveCount;
-   int                              m_iAlive;
-   string                           m_strThreadName;
+   //bool                                 m_bUseDedicatedThread;
+   //::task_pointer                       m_pthread;
+   //::procedure_array                    m_procedurea;
+   //::pointer<manual_reset_happening>      m_pevTaskOnQueue;
+   //int                                    m_iAliveCount;
+   //int                                    m_iAlive;
+   //string                                 m_strThreadName;
 
 
    handler_manager();
@@ -28,27 +28,27 @@ public:
    virtual void initialize_handler_manager(::particle * pparticleContext, const ::scoped_string & scopedstrThreadName, int iAliveCount = -1);
    
 
-   virtual void on_start_loop();
+   //virtual void on_start_loop();
 
 
    //virtual void set_finish_composites(::property_object * pcontextobjectFinish) override;
    void on_destroy() override;
 
 
-   bool is_branch_current() const override;
+   //bool is_branch_current() const override;
 
 
-   void handle_synchronously(const ::procedure & procedure);
-   void handle_asynchronously(const ::procedure & procedure);
+   //void handle_synchronously(const ::procedure & procedure);
+   //void handle_asynchronously(const ::procedure & procedure);
    
 
-   void handle(const ::procedure & procedure, bool bSynchronously);
+   //void handle(const ::procedure & procedure, bool bSynchronously);
 
 
-   ::procedure pick_new_task();
+   //::procedure pick_new_task();
 
    
-   void loop();
+   //void loop();
 
 
 };

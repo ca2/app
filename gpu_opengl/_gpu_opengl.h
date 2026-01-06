@@ -128,16 +128,10 @@
 CLASS_DECL_GPU_OPENGL const_char_pointer opengl_error_string(int iError);
 
 
+CLASS_DECL_GPU_OPENGL void GLCheckError(const_char_pointer pszErrorMessage);
 
-#define GLCheckError(message) \
-{ \
-int iGlError = glGetError(); \
-if (iGlError != 0) \
-{ \
-   ::opengl::throw_opengl_exception(message, iGlError, __FILE__, __LINE__); \
-} \
-}
 
+CLASS_DECL_GPU_OPENGL void GLEnsureNonNullHandle(long lHandle, const_char_pointer pszMessage = nullptr);
 
 
 namespace opengl

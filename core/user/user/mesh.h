@@ -11,6 +11,7 @@
 namespace user
 {
 
+
    enum enum_cache_hinting
    {
 

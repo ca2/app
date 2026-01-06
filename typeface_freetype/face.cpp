@@ -4,7 +4,7 @@
 #include "framework.h"
 #include "face.h"
 #include "acme/filesystem/filesystem/file_context.h"
-
+#include <fontconfig/fontconfig.h>
 
 #ifdef WINDOWS_DESKTOP
 #pragma comment( lib, "freetype.lib" )
@@ -68,7 +68,38 @@ namespace typeface_freetype
 
          defer_initialize_freetype();
 
-         auto m = file()->as_memory("matter://font/truetype/Roboto-Regular.ttf");
+         auto pszFontName = m_strFontName.c_str();
+
+         ::file::path path;
+
+         {
+
+            FcPattern* pat = FcNameParse((FcChar8*)m_strFontName.c_str());
+            FcConfigSubstitute(NULL, pat, FcMatchPattern);
+            FcDefaultSubstitute(pat);
+
+            FcResult result;
+            FcPattern* font = FcFontMatch(NULL, pat, &result);
+
+            FcChar8* file;
+            FcPatternGetString(font, FC_FILE, 0, &file);
+
+            if (file)
+            {
+
+               path = (const char * ) file;
+
+            }
+            else
+            {
+
+               path = "matter://font/truetype/Roboto-Regular.ttf";
+
+            }
+
+         }
+
+         auto m = file()->as_memory(path);
          // Roboto - Regular.ttf
             // load font as face
 
@@ -82,7 +113,16 @@ namespace typeface_freetype
 
       }
 
-      FT_Set_Pixel_Sizes(m_face, 0, 48);
+
+      //FT_Set_Pixel_Sizes(m_face, 0, 48);
+      FT_Set_Pixel_Sizes(m_face, 0, m_iPixelSize);
+      if (m_iCapHeight < 0)
+      {
+
+         FT_Load_Char(m_face, 'H', FT_LOAD_RENDER);
+         m_iCapHeight = (m_face->glyph->metrics.horiBearingY + 32 ) >> 6;
+
+      }
       if (FT_Load_Char(m_face, unicode_index(scopedstr), FT_LOAD_RENDER))
       {
          warning() << "ERROR::FREETYTPE: Failed to load Glyph";
@@ -93,7 +133,30 @@ namespace typeface_freetype
       ch.Size.x = m_face->glyph->bitmap.width;
       ch.Size.y = m_face->glyph->bitmap.rows;
 
-      create_texture(ch, m_face->glyph->bitmap.buffer);
+      int w = ch.Size.x;
+      int h = ch.Size.y;
+
+      ::memory memory;
+
+      memory.set_size(w*h*4);
+
+      auto rgba = (char *) memory.data();
+
+      for (int y = 0; y < h; ++y)
+      {
+         for (int x = 0; x < w; ++x)
+         {
+            unsigned char a = m_face->glyph->bitmap.buffer[y * m_face->glyph->bitmap.pitch + x];
+            rgba[0] = a;
+            rgba[1] = a;
+            rgba[2] = a;
+            rgba[3] = a;
+            rgba+=4;
+         }
+      }
+
+
+      create_texture(ch, memory.data());
 
       //glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
       //// generate texture
@@ -119,9 +182,25 @@ namespace typeface_freetype
       //// now store character for later use
       ////aracter = {
       //  //  texture,
+      int iAscender = m_face->size->metrics.ascender;
+      int iAscender2 = (iAscender + 32) >> 6;
+      int iVertAdvance = m_face->glyph->metrics.vertAdvance;
+      int iVertAdvance2 = (iVertAdvance + 32) >> 6;
+      int iBearingY = m_face->glyph->metrics.vertBearingY;
+      int iBearingY2 = (iBearingY + 32) >> 6;
+
+      char ch1 = *scopedstr.m_begin;
+
+      auto bitmap_top = m_face->glyph->bitmap_top;
+
       ch.Size = {(int) m_face->glyph->bitmap.width, (int) m_face->glyph->bitmap.rows};
-      ch.Bearing = {m_face->glyph->bitmap_left, m_face->glyph->bitmap_top};
-      ch.Advance = static_cast<unsigned int>(m_face->glyph->advance.x);
+      ch.Bearing = {m_face->glyph->bitmap_left, bitmap_top};
+      ch.Advance = static_cast<unsigned int>(m_face->glyph->advance.x + 32) >> 6;
+      //ch.h2 = m_iPixelSize- ch.Bearing.y;
+      //ch.h2 = iAscender2- ch.Bearing.y;
+      //ch.h2 = iAscender2-iBearingY2;
+      ch.h2 = m_iCapHeight - bitmap_top;
+
 //      //};
 //      //Characters.insert(std::pair<char, Character>(c, character));
 //   //}

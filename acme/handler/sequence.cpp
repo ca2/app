@@ -755,7 +755,7 @@ void sequence::on_subparticle_sequence(::subparticle * psubparticle)
    
    //m_payloadaResult.add(payload);
    
-   auto p = this->element_at(iNext);
+   ::cast < ::subparticle > p = this->element_at(iNext);
    
    if(p->m_psequence != this)
    {

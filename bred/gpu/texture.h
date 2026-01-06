@@ -149,9 +149,16 @@ namespace gpu
       virtual void set_current_layer(int iLayer);
 
 
+      //virtual void defer_fence();
+
 
             ::gpu::binding_slot_set *binding_slot_set(::gpu::command_buffer *pgpucommandbuffer,
                                                 ::gpu::binding_set *pbindingset);
+
+
+      virtual void defer_fence();
+      virtual void wait_fence();
+
 
    };
 

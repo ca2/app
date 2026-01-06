@@ -5,7 +5,10 @@
 #include "pointer.h"
 #include "acme/prototype/prototype/interlocked_count.h"
 #include "acme/prototype/time/time/time.h"
+
+
 //#include "parallelization/manual_reset_happening.h"
+
 
 class notify_lock;
 #ifdef WINDOWS
@@ -17,9 +20,8 @@ using hsynchronization = ::subparticle *;
 
 class sequence;
 
+
 #include "quantum.h"
-
-
 
 
 class CLASS_DECL_ACME subparticle :

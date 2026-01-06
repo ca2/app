@@ -2448,7 +2448,6 @@ if (${LINUX})
             operating_system/linux/application.h
             operating_system/linux/callstack.cpp
 
-       operating_system/linux/cpu_features.cpp
             #operating_system/linux/cross_win_file.cpp
             #operating_system/linux/cross_win_file.h
             #operating_system/linux/cross_win_gdi.cpp
@@ -2491,6 +2490,11 @@ if (${LINUX})
             operating_system/linux/util.cpp
             operating_system/linux/win_base.cpp
     )
+if(${TARGET_ARCH} STREQUAL "x64")
+list(APPEND library_source
+   operating_system/linux/cpu_features_x86_64.cpp
+)
+   endif()
 
 
 endif ()
@@ -2827,6 +2831,7 @@ if (${FREEBSD})
             #operating_system/freebsd/_user.h
             operating_system/freebsd/application.h
             operating_system/freebsd/call_stack.cpp
+            operating_system/freebsd/cpu_features.cpp
             #      operating_system/freebsd/cross_win_file.cpp
             #      operating_system/freebsd/cross_win_file.h
             #      operating_system/freebsd/cross_win_gdi.cpp
@@ -2904,6 +2909,7 @@ if (${OPENBSD})
             #operating_system/openbsd/_user.h
             operating_system/openbsd/application.h
             operating_system/openbsd/call_stack.cpp
+            operating_system/openbsd/cpu_features.cpp
             #      operating_system/openbsd/cross_win_file.cpp
             #      operating_system/openbsd/cross_win_file.h
             #      operating_system/openbsd/cross_win_gdi.cpp
@@ -3008,7 +3014,9 @@ endif ()
 if (${__BSD__})
 
     list(APPEND library_source
-            operating_system/bsd/time.cpp
+       operating_system/bsd/file.cpp
+       operating_system/bsd/parallelization.cpp
+       operating_system/bsd/time.cpp
     )
 
     if (NOT ${OPENBSD})
@@ -3121,7 +3129,7 @@ set_target_properties(${PROJECT_NAME} PROPERTIES LINKER_LANGUAGE CXX)
 target_compile_definitions(static_${PROJECT_NAME} PRIVATE CUBE)
 
 
-if (MSVC)
+if(${WIN32})
 
     message(STATUS "acme LIBRARY_OUTPUT_PATH is ${LIBRARY_OUTPUT_PATH}")
     message(STATUS "some target link options ${PROJECT_NAME} PRIVATE \"/IMPLIB:${LIBRARY_OUTPUT_PATH}/acme.lib\"")

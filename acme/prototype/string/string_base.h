@@ -2932,7 +2932,7 @@ struct std::formatter<::string > :
 
 
 template<typename ...Args>
-[[nodiscard]] constexpr ::string
+[[nodiscard]] inline ::string
 format(const std::format_string<Args...> fmt, Args&&... args) noexcept
 {
 

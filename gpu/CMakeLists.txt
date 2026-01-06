@@ -51,14 +51,6 @@ endif()
 
 list(APPEND library_source
    ${IBL_SHADERS_HEADERS}
-   gltf/material.cpp
-   gltf/material.h
-   gltf/mesh.cpp
-   gltf/mesh.h
-   gltf/model_base.cpp
-   gltf/model_base.h
-   gltf/model.cpp
-   gltf/model.h
    #gltf/vertex.h
    ##ibl/brdf_convolution_framebuffer.cpp
    ##ibl/brdf_convolution_framebuffer.h
@@ -74,11 +66,18 @@ list(APPEND library_source
    ##ibl/mipmap_cubemap_framebuffer.h
    ibl/specular_map.cpp
    ibl/specular_map.h
-
    ibl/_.h
    ibl/_hlsl.cpp
    ibl/_hlsl.h
-   gltf/_.h
+   model/_.h
+   model/material.cpp
+   model/material.h
+   model/mesh.cpp
+   model/mesh.h
+   model/model_base.cpp
+   model/model_base.h
+   model/model.cpp
+   model/model.h
    _.cpp
    _ktx.cpp
    _ktx.h
@@ -93,8 +92,8 @@ list(APPEND library_source
    full_screen_quad.h
    hdr_texture.cpp
    hdr_texture.h
-   timer.cpp
-   timer.h
+   #timer.cpp
+   #timer.h
 )
 
 if (MACOS)
@@ -104,7 +103,7 @@ if (MACOS)
 endif ()
 
 
-if (MSVC)
+if(${WIN32})
    set(LIBCXX_TARGETING_MSVC ON)
 else ()
    set(LIBCXX_TARGETING_MSVC OFF)
@@ -145,7 +144,7 @@ endif ()
 set_target_properties(${PROJECT_NAME} PROPERTIES LINKER_LANGUAGE CXX)
 target_compile_definitions(static_${PROJECT_NAME} PRIVATE CUBE)
 
-if (MSVC)
+if(${WIN32})
    target_compile_options(${PROJECT_NAME} PRIVATE "/MD$<$<CONFIG:Debug>:d>")
    target_link_options(${PROJECT_NAME} PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
    target_link_options(${PROJECT_NAME} PRIVATE "/IMPLIB:${LIBRARY_OUTPUT_PATH}/${PROJECT_NAME}.lib")

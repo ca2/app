@@ -85,7 +85,9 @@ namespace acme
          //::pointer<::acme::user::interaction>               m_pacmeuserinteractionOwner;
 
 
-         ::pointer < ::acme::windowing::display >           m_pdisplay;
+         ::pointer < ::acme::windowing::display >           m_pacmewindowingdisplayWindow;
+
+         long                                               m_lX11NativeVisualId;
 
 
 
@@ -106,7 +108,7 @@ namespace acme
          virtual void initialize_window(::acme::user::interaction* pacmeuserinteraction);
 
          virtual ::oswindow oswindow();
-
+virtual long __x11_Window();
          virtual void set_user_interaction(::acme::user::interaction * pacmeuserinteraction);
          virtual void set_user_thread(::user::thread * puserthread);
          virtual void set_user_graphics_thread(::user::graphics_thread * pusergraphicsthread);

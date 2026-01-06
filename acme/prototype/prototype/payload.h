@@ -865,15 +865,17 @@ public:
 
    }
 
+
    template < prototype_function FUNCTION >
    inline payload & operator = (const FUNCTION & function)
    {
 
-      _set_element(function.m_pbase);
+      _set_element(function.m_p);
 
       return *this;
 
    }
+
 
    inline payload & operator = (nullptr_t){ set_type(e_type_null, false); return *this; }
 

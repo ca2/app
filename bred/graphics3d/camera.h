@@ -3,6 +3,7 @@
 #pragma once 
 
 
+#include "acme/prototype/geometry2d/angle.h"
 #include "bred/graphics3d/types.h"
 
 
@@ -28,7 +29,7 @@ namespace graphics3d
 
       // float m_LastX; // Last mouse x position
       // float m_LastY; // Last mouse y position
-      float m_angleCursorPixel = 0.1f_degree; // Sensitivity factor for mouse input
+      float m_angleCursorPixel = 0.1_f_degree; // Sensitivity factor for mouse input
       // Deadzone
       float m_MouseDeadZone;
       // Inertia
@@ -61,7 +62,7 @@ namespace graphics3d
 
       virtual void initialize_camera(const ::floating_sequence3 &position,
                                      const ::graphics3d::floating_rotation &rotation = {-90_degree, 0_degree},
-                                     const floating_angle &zoom = 60f_degree);
+                                     const floating_angle &zoom = 60_f_degree);
       
 
 

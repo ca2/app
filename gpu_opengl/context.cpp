@@ -26,6 +26,8 @@
 
 #if defined(WINDOWS_DESKTOP)
 #include "device_win32.h"
+#elif defined(LINUX)
+#include "device_egl.h"
 #endif
 #include <assimp/material.h>
 
@@ -471,10 +473,12 @@ namespace gpu_opengl
          if (m_ecullmode == ::gpu::e_cull_mode_back)
          {
             glCullFace(GL_BACK); // cull back faces (default)
+            GLCheckError("");
          }
          else
          {
             glCullFace(GL_FRONT); // cull front faces
+            GLCheckError("");
             //glCullFace(GL_FRONT_AND_BACK); // cull both
          }
 
@@ -1332,15 +1336,22 @@ void main() {
          }
 
          glClearColor(0.f, 0.f, 0.f, 0.f);
+         GLCheckError("glClearColor");
          glClearDepth(1.0f);
+         GLCheckError("glClearDepth");
          glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+         GLCheckError("glClear");
+
+
 
          if (1)
          {
 
             int iLayer = 0;
 
-            m_pshaderBlend3->bind(nullptr, ptextureDst);
+            pcommandbuffer->begin_render(m_pshaderBlend3, ptextureDst);
+
+
 
             //m_pshaderBlend3, ptextureDst, ptextureSrc);
 
@@ -1354,6 +1365,8 @@ void main() {
 
 
                   ::cast<::gpu_opengl::texture> ptextureSrc = player->texture();
+
+                  ptextureSrc->wait_fence();
 
                   m_pshaderBlend3->bind_source(nullptr, ptextureSrc, 0);
 
@@ -1477,7 +1490,8 @@ void main() {
 
                }
             }
-            m_pshaderBlend3->unbind(pcommandbuffer);
+            pcommandbuffer->end_render();
+            //m_pshaderBlend3->unbind(pcommandbuffer);
          }
          //}
 
@@ -1787,44 +1801,7 @@ void main() {
                                    ::windowing::window *pwindow, const ::int_size &size)
    {
 
-      if (eoutput == ::gpu::e_output_cpu_buffer)
-      {
-
-         //if (startcontext.m_callbackImage32CpuBuffer
-         //   && !startcontext.m_rectanglePlacement.is_empty())
-         //{
-
-         //   ASSERT(startcontext.m_callbackImage32CpuBuffer);
-         //   ASSERT(!startcontext.m_rectanglePlacement.is_empty());
-
-         create_cpu_buffer(size);
-
-         //}
-
-      }
-      else if (eoutput == ::gpu::e_output_swap_chain)
-      {
-
-         defer_create_window_context(pwindow);
-
-      }
-      else
-      {
-
-         auto r = ::int_rectangle(::int_point{}, size);
-         //
-         //       ::gpu::rear_guard guard(this);
-
-         send([this, r]()
-         {
-
-            _create_cpu_buffer(r.size());
-
-            //::gpu::context_guard guard(this);
-
-         });
-
-      }
+      ::gpu::context::on_create_context(pgpudevice, eoutput, pwindow, size);
 
 
    }
@@ -1844,6 +1821,7 @@ void main() {
       auto textureDst = ptextureDst->m_gluTextureID;
 
       glFlush();
+      GLCheckError("");
 
       if (!ptextureSrc->m_gluFbo)
       {
@@ -1958,6 +1936,7 @@ void main() {
       }
 
       auto sizeSrc = ptextureSrc->size();
+
       auto sizeDst = ptextureDst->size();
 
       // Blit from source to destination
@@ -1967,6 +1946,7 @@ void main() {
          GL_COLOR_BUFFER_BIT, GL_NEAREST
          );
       GLCheckError("");
+
 #ifdef SHOW_DEBUG_DRAWING
       {
 
@@ -2006,8 +1986,10 @@ void main() {
 #endif
 
       // Cleanup
-      glBindFramebuffer(GL_FRAMEBUFFER, 0);
-      //GLCheckError("");
+      glBindFramebuffer(GL_DRAW_FRAMEBUFFER, 0);
+      GLCheckError("");
+      glBindFramebuffer(GL_READ_FRAMEBUFFER, 0);
+      GLCheckError("");
       //glDeleteFramebuffers(1, &fboSrc);
       //GLCheckError("");
       //glDeleteFramebuffers(1, &fboDst);
@@ -2022,6 +2004,12 @@ void main() {
 #if defined(WINDOWS_DESKTOP)
 
       ::cast<device_win32> pdevice = m_pgpudevice;
+
+      pdevice->_defer_create_offscreen_window(size);
+
+#elif defined(LINUX)
+
+      ::cast<device_egl> pdevice = m_pgpudevice;
 
       pdevice->_defer_create_offscreen_window(size);
 
@@ -2097,6 +2085,12 @@ void main() {
 #if defined(WINDOWS_DESKTOP)
 
       ::cast<device_win32> pdevice = m_pgpudevice;
+
+      pdevice->_create_device(m_rectangle.size());
+
+#elif defined(LINUX)
+
+      ::cast<device_egl> pdevice = m_pgpudevice;
 
       pdevice->_create_device(m_rectangle.size());
 
@@ -2495,14 +2489,16 @@ void main() {
    void context::defer_create_window_context(::windowing::window *pwindow)
    {
 
-      //if (m_hrc)
-      //{
+      ::gpu_gpu::context::defer_create_window_context(pwindow);
 
-      //   return;
-
-      //}
-
-      //::gpu_opengl::context::defer_create_window_context(pwindow);
+      // //if (m_hrc)
+      // //{
+      //
+      // //   return;
+      //
+      // //}
+      //
+      // _defer_create_window_context(pwindow);
 
    }
 
@@ -2510,7 +2506,7 @@ void main() {
    void context::_defer_create_window_context(::windowing::window *pwindow)
    {
 
-      //_create_window_context(pwindow);
+      _create_window_context(pwindow);
 
    }
 
@@ -2569,29 +2565,29 @@ void main() {
    }
 
 
-   void context::defer_make_current()
-   {
-
-      if (m_pgpudevice->m_pgpucontextCurrent4 != this)
-      {
-
-         if (::is_set(m_pgpudevice->m_pgpucontextCurrent4))
-         {
-
-            m_pgpudevice->m_pgpucontextCurrent4->_send([this]()
-            {
-
-               ///m_pgpudevice->release_current(m_pgpudevice->m_pgpucontextCurrent4);
-
-            });
-
-         }
-
-         //make_current();
-
-      }
-
-   }
+   // void context::defer_make_current()
+   // {
+   //
+   //    if (m_pgpudevice->m_pgpucontextCurrent4 != this)
+   //    {
+   //
+   //       if (::is_set(m_pgpudevice->m_pgpucontextCurrent4))
+   //       {
+   //
+   //          m_pgpudevice->m_pgpucontextCurrent4->_send([this]()
+   //          {
+   //
+   //             m_pgpudevice->m_pgpucontextCurrent4->_context_unlock();
+   //
+   //          });
+   //
+   //       }
+   //
+   //       //make_current();
+   //
+   //    }
+   //
+   // }
 
 
    //xxxopengl
@@ -2846,26 +2842,26 @@ color = vec4(c.r,c.g, c.b, c.a);
    }
 
 
-   ::pointer<::graphics3d::renderable> context::_load_model(const ::gpu::renderable_t &model)
-   {
-      // if (auto it = m_mapgltfModel.find(name); it != m_mapgltfModel.end())
-      //  return it->element2();
-
-      ::gpu::context_lock contextlock(this);
-
-      auto pmodel = øcreate<::gpu::model::model>();
-
-      (*(::gpu::renderable_t *)pmodel) = model;
-
-      //::cast<::gpu_opvulkan::queue> pqueueGraphics = graphics_queue();
-
-      //pmodel->loadFromFile(model.m_path.c_str(), this, pqueueGraphics->m_vkqueue, model.m_iFlags, model.m_fScale);
-
-      pmodel->initialize_gpu_model(this, model);
-
-      // m_mapgltfModel[name] = model;
-      return pmodel;
-   }
+   // ::pointer<::graphics3d::renderable> context::_load_gltf_model(const ::gpu::renderable_t &model)
+   // {
+   //    // if (auto it = m_mapgltfModel.find(name); it != m_mapgltfModel.end())
+   //    //  return it->element2();
+   //
+   //    ::gpu::context_lock contextlock(this);
+   //
+   //    auto pmodel = øcreate<::gpu::gltf::model>();
+   //
+   //    (*(::gpu::renderable_t *)pmodel) = model;
+   //
+   //    //::cast<::gpu_opvulkan::queue> pqueueGraphics = graphics_queue();
+   //
+   //    //pmodel->loadFromFile(model.m_path.c_str(), this, pqueueGraphics->m_vkqueue, model.m_iFlags, model.m_fScale);
+   //
+   //    pmodel->initialize_gpu_gltf_model(this, model);
+   //
+   //    // m_mapgltfModel[name] = model;
+   //    return pmodel;
+   // }
 
 
    //void context::load_generic_texture(::pointer<::gpu::texture> &ptexture, const ::file::path &path,
@@ -3171,6 +3167,17 @@ color = vec4(c.r,c.g, c.b, c.a);
    //    ::g
    //
    // }
+
+
+
+   void context::swap_buffers()
+   {
+
+
+
+
+   }
+
 
 
 

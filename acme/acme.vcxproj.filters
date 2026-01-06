@@ -6188,6 +6188,9 @@
     <ClCompile Include="operating_system\windows_common\cpu_features.cpp">
       <Filter>Source Files\operating_system\windows_common</Filter>
     </ClCompile>
+    <ClCompile Include="operating_system\windows_common\task.cpp">
+      <Filter>Source Files\operating_system\windows_common</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="prototype\string\_defer.h">
@@ -6234,5 +6237,8 @@
     <ResourceCompile Include="deployment.rc">
       <Filter>Resource Files</Filter>
     </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Natvis Include="_.natvis" />
   </ItemGroup>
 </Project>

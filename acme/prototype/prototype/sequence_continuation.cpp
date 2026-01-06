@@ -47,17 +47,17 @@ sequence_continuation & sequence_continuation::operator << (const ::procedure & 
       if (m_procedure)
       {
          
-         m_procedure.m_pbase->m_psequence = m_psequence;
+         m_procedure->m_psequence = m_psequence;
 
-         m_psequence->add(m_procedure.m_pbase);
+         m_psequence->add(m_procedure);
 
       }
 
    }
    
-   procedure.m_pbase->m_psequence = m_psequence;
+   procedure->m_psequence = m_psequence;
 
-   m_psequence->add(procedure.m_pbase);
+   m_psequence->add(procedure);
 
    return *this;
 

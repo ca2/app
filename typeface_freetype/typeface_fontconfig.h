@@ -15,24 +15,13 @@ namespace typeface_fontconfig
       ~typeface() override;
 
 
-      virtual ::file::path get_font_file_path_by_font_name(const ::scoped_string &scopedstr);
+      ::file::path _get_font_file_path_by_font_name(const ::scoped_string &scopedstr) override;
 
 
    };
 
+
 } // namespace typeface_fontconfig
 
-            FcPattern *pat = FcNameParse((FcChar8 *)m_strFontName.c_str());
-FcConfigSubstitute(NULL, pat, FcMatchPattern);
-FcDefaultSubstitute(pat);
+            
 
-FcResult result;
-FcPattern *font = FcFontMatch(NULL, pat, &result);
-
-FcChar8 *file;
-FcPatternGetString(font, FC_FILE, 0, &file);
-
-if (file)
-{
-
-   path = (const char *)file;

@@ -19,6 +19,8 @@ namespace typeface
 
       virtual ::file::path get_font_file_path_by_font_name(const ::scoped_string &scopedstr);
 
+      virtual ::file::path _get_font_file_path_by_font_name(const ::scoped_string &scopedstr);
+
 
    };
 

@@ -5,6 +5,7 @@
 #include "session.h"
 #include "system.h"
 #include "bred/graphics3d/camera.h"
+#include "bred/typeface/allocator.h"
 
 
 namespace bred
@@ -108,6 +109,62 @@ namespace bred
 
   
    //__namespace_system_factory(system);
+
+
+   ::string system::typeface_get_default_typeface_name()
+   {
+
+      ::string strDefaultTypeface;
+
+#ifdef WINDOWS
+
+      strDefaultTypeface = "gdiplus";
+
+#else
+
+      strDefaultTypeface = "fontconfig";
+
+#endif
+
+      return strDefaultTypeface;
+
+   }
+
+
+   ::typeface::typeface *system::typeface()
+   {
+
+      if (::is_null(m_ptypeface))
+      {
+
+         ::string strDefaultTypeface;
+         
+         strDefaultTypeface = typeface_get_default_typeface_name();
+
+         m_ptypeface = typeface_allocator()->create_typeface(strDefaultTypeface);
+
+      }
+
+      return m_ptypeface;
+
+   }
+
+
+   ::typeface::allocator * system::typeface_allocator()
+   {
+
+      if (::is_null(m_ptypefaceallocator))
+      {
+
+         auto pfactory = typeface_factory;
+
+         m_ptypefaceallocator = øcreate<::typeface::allocator>(pfactory);
+
+      }
+
+      return m_ptypefaceallocator;
+
+   }
 
 
 } // namespace bred

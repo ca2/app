@@ -4,6 +4,8 @@
 #include "framework.h"
 #include "face.h"
 #include "acme/filesystem/filesystem/file_context.h"
+#include "bred/platform/system.h"
+#include "bred/typeface/typeface.h"
 #if defined(__FREEDESKTOP__)
 #include <fontconfig/fontconfig.h>
 #endif
@@ -75,7 +77,12 @@ namespace typeface_freetype
          ::file::path path;
 
 
-#if
+         ::cast < ::bred::system > psystem = system();
+
+         auto ptypeface = psystem->typeface();
+
+         ptypeface->get_fon
+
          {
 
             FcPattern* pat = FcNameParse((FcChar8*)m_strFontName.c_str());

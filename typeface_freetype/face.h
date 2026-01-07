@@ -13,7 +13,7 @@ namespace typeface_freetype
 {
 
 
-   class face :
+   class CLASS_DECL_TYPEFACE_FREETYPE face :
       virtual public ::typeface::face
    {
    public:

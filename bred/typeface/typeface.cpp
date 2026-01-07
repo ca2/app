@@ -23,6 +23,26 @@ namespace typeface
    ::file::path typeface::get_font_file_path_by_font_name(const ::scoped_string & scopedstr)
    {
 
+      auto path = _get_font_file_path_by_font_name(scopedstr);
+
+      if (path.is_empty())
+      {
+
+         path = "matter://font/truetype/Roboto-Regular.ttf";
+
+      }
+
+      return path;
+
+
+   }
+
+
+   ::file::path typeface::_get_font_file_path_by_font_name(const ::scoped_string & scopedstr)
+   {
+
+      throw ::interface_only();
+
       return {};
 
    }

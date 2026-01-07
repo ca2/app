@@ -6,6 +6,8 @@ namespace typeface
 {
 
 
+   class allocator;
+
    struct character;
 
    class face;

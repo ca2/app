@@ -448,6 +448,7 @@
     <ClInclude Include="typeface\character.h" />
     <ClInclude Include="typeface\face.h" />
     <ClInclude Include="typeface\typeface.h" />
+    <ClInclude Include="typeface\allocator.h" />
     <ClInclude Include="typeface\_.h" />
     <ClInclude Include="user\user\graphics3d.h" />
     <ClInclude Include="user\user\user.h" />
@@ -559,6 +560,7 @@
     <ClCompile Include="prodevian\immersion.cpp" />
     <ClCompile Include="typeface\face.cpp" />
     <ClCompile Include="typeface\typeface.cpp" />
+    <ClCompile Include="typeface\allocator.cpp" />
     <ClCompile Include="user\user\graphics3d.cpp" />
     <ClCompile Include="user\user\user.cpp" />
     <ClCompile Include="_.cpp" />

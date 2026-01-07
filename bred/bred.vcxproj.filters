@@ -426,6 +426,9 @@
     <ClInclude Include="typeface\typeface.h">
       <Filter>Header Files\typeface</Filter>
     </ClInclude>
+    <ClInclude Include="typeface\allocator.h">
+      <Filter>Header Files\typeface</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="platform\application.cpp">
@@ -663,6 +666,9 @@
       <Filter>Source Files\platform</Filter>
     </ClCompile>
     <ClCompile Include="typeface\typeface.cpp">
+      <Filter>Source Files\typeface</Filter>
+    </ClCompile>
+    <ClCompile Include="typeface\allocator.cpp">
       <Filter>Source Files\typeface</Filter>
     </ClCompile>
   </ItemGroup>

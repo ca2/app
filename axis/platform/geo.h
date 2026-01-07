@@ -35,7 +35,7 @@ namespace geo
 
 
    class CLASS_DECL_AXIS geo :
-      virtual public ::acme::department,
+      virtual public ::platform::department,
       virtual public ::api_client
    {
    public:

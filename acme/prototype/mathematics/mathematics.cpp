@@ -319,7 +319,7 @@ namespace mathematics
    void mathematics::destroy()
    {
 
-      //::acme::department::destroy();
+      //::platform::department::destroy();
 
       //return ::success;
 

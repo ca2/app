@@ -447,6 +447,7 @@
     <ClInclude Include="prodevian\_.h" />
     <ClInclude Include="typeface\character.h" />
     <ClInclude Include="typeface\face.h" />
+    <ClInclude Include="typeface\typeface.h" />
     <ClInclude Include="typeface\_.h" />
     <ClInclude Include="user\user\graphics3d.h" />
     <ClInclude Include="user\user\user.h" />
@@ -557,6 +558,7 @@
     <ClCompile Include="prodevian\game_object.cpp" />
     <ClCompile Include="prodevian\immersion.cpp" />
     <ClCompile Include="typeface\face.cpp" />
+    <ClCompile Include="typeface\typeface.cpp" />
     <ClCompile Include="user\user\graphics3d.cpp" />
     <ClCompile Include="user\user\user.cpp" />
     <ClCompile Include="_.cpp" />

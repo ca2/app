@@ -32,7 +32,7 @@ namespace user
 
 
    class CLASS_DECL_AURA user :
-      virtual public ::acme::department,
+      virtual public ::platform::department,
       virtual public ::user::aura_user_layer_t,
       virtual public ::user::axis_user_layer_t,
       virtual public ::user::base_user_layer_t,

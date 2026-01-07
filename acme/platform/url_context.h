@@ -10,7 +10,7 @@ namespace url
 
 
    class CLASS_DECL_ACME url_context :
-      virtual public ::acme::department
+      virtual public ::platform::department
    {
    public:
 

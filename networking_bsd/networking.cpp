@@ -198,7 +198,7 @@ namespace networking_bsd
 
       }*/
 
-      //if (!::acme::department::initialize())
+      //if (!::platform::department::initialize())
       //{
 
       //   return error_failed;
@@ -3385,7 +3385,7 @@ namespace networking_bsd
 //
 //   }*/
 //
-//   //if (!::acme::department::initialize())
+//   //if (!::platform::department::initialize())
 //   //{
 //
 //   //   return error_failed;

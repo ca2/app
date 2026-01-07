@@ -16,7 +16,7 @@ namespace nano
 
 
         class CLASS_DECL_ACME shell :
-        virtual public ::acme::department
+        virtual public ::platform::department
         {
         public:
 

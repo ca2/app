@@ -59,7 +59,7 @@ namespace draw2d
 
       //auto estatus = 
 
-      ::acme::department::initialize(pparticle);
+      ::platform::department::initialize(pparticle);
 
       defer_create_synchronization();
 
@@ -282,7 +282,7 @@ namespace draw2d
    {
 
       //if (!
-      ::acme::department::init1();
+      ::platform::department::init1();
 
       //{
 
@@ -299,7 +299,7 @@ namespace draw2d
    void draw2d::process_init()
    {
 
-      ::acme::department::process_init();
+      ::platform::department::process_init();
 
       //_synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
@@ -319,7 +319,7 @@ namespace draw2d
    {
 
       //if (!)
-      ::acme::department::init();
+      ::platform::department::init();
       //{
 
       //   return false;
@@ -411,7 +411,7 @@ namespace draw2d
       //lock::__s_finalize();
 
       //auto estatus = 
-      ::acme::department::destroy();
+      ::platform::department::destroy();
 
       //return estatus;
 
@@ -465,7 +465,7 @@ namespace draw2d
       try
       {
 
-         ::acme::department::term_instance();
+         ::platform::department::term_instance();
 
       }
       catch (...)

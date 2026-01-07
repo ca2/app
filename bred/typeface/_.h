@@ -10,6 +10,8 @@ namespace typeface
 
    class face;
 
+   class typeface;
+
 
 } // namespace typeface
 

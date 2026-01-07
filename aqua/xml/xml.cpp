@@ -50,9 +50,9 @@ namespace xml
 
       //}
 
-      ::acme::department::init1();
+      ::platform::department::init1();
 
-      //if (!::acme::department::init1())
+      //if (!::platform::department::init1())
       //{
 
       //   return ::error_failed;
@@ -87,7 +87,7 @@ namespace xml
    void xml::init()
    {
 
-      ::acme::department::init();
+      ::platform::department::init();
 
       //if (!)
       //{

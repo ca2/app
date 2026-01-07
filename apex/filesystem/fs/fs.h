@@ -9,7 +9,7 @@ namespace fs
 
 
    class CLASS_DECL_APEX fs :
-      virtual public ::acme::department
+      virtual public ::platform::department
    {
    public:
 

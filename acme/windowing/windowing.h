@@ -31,7 +31,7 @@ namespace acme
 
 
       class CLASS_DECL_ACME windowing :
-         virtual public ::acme::department,
+         virtual public ::platform::department,
          virtual public ::task,
          virtual public ::task_handler
       {

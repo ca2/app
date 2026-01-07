@@ -4,7 +4,9 @@
 #include "framework.h"
 #include "face.h"
 #include "acme/filesystem/filesystem/file_context.h"
+#if defined(__FREEDESKTOP__)
 #include <fontconfig/fontconfig.h>
+#endif
 
 #ifdef WINDOWS_DESKTOP
 #pragma comment( lib, "freetype.lib" )
@@ -72,6 +74,8 @@ namespace typeface_freetype
 
          ::file::path path;
 
+
+#if
          {
 
             FcPattern* pat = FcNameParse((FcChar8*)m_strFontName.c_str());

@@ -5,7 +5,7 @@
 //#include "apex/message/application.h"
 
 
-namespace acme
+namespace platform
 {
 
 
@@ -163,7 +163,7 @@ namespace acme
    }
 
 
-} // namespace acme
+} // namespace platform
 
 
 

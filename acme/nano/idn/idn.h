@@ -14,7 +14,7 @@ namespace nano
 
 
       class CLASS_DECL_ACME idn :
-        virtual public ::acme::department
+        virtual public ::platform::department
       {
       public:
 

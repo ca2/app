@@ -13,7 +13,7 @@ namespace nano
 namespace graphics
 {
 class CLASS_DECL_ACME graphics :
-virtual public acme::department
+virtual public platform::department
 {
 public:
    

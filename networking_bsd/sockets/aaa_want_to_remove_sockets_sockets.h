@@ -7,7 +7,7 @@ namespace sockets
    class SSLInitializer;
 
    class CLASS_DECL_APEX sockets :
-      virtual public ::acme::department
+      virtual public ::platform::department
    {
    public:
 

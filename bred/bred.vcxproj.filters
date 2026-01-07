@@ -55,9 +55,6 @@
     <Filter Include="Source Files\typeface">
       <UniqueIdentifier>{a239bdb3-1f41-4012-a80b-1118414ea886}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\typeface\NewFilter1">
-      <UniqueIdentifier>{79062294-7684-419e-9562-8c78e94b8f42}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\prodevian">
       <UniqueIdentifier>{f9c5d3cb-164e-4319-83a6-7046c3986cd7}</UniqueIdentifier>
     </Filter>
@@ -426,6 +423,9 @@
     <ClInclude Include="platform\timer.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
+    <ClInclude Include="typeface\typeface.h">
+      <Filter>Header Files\typeface</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="platform\application.cpp">
@@ -661,6 +661,9 @@
     </ClCompile>
     <ClCompile Include="platform\timer.cpp">
       <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="typeface\typeface.cpp">
+      <Filter>Source Files\typeface</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

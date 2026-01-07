@@ -284,7 +284,7 @@ namespace mathematics
    void math::initialize(::particle * pparticle)
    {
 
-      auto estatus = ::acme::department::initialize(pparticle);
+      auto estatus = ::platform::department::initialize(pparticle);
 
       if (!estatus)
       {
@@ -310,7 +310,7 @@ namespace mathematics
    void math::destroy()
    {
 
-      ::acme::department::destroy();
+      ::platform::department::destroy();
 
    }
 

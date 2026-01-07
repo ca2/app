@@ -10,7 +10,7 @@ namespace user
 
 
       class CLASS_DECL_CORE rich_text :
-         virtual public ::acme::department
+         virtual public ::platform::department
       {
       public:
 

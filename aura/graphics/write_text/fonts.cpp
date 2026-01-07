@@ -31,7 +31,7 @@ namespace write_text
    {
 
 
-      ::acme::department::initialize(pparticle);
+      ::platform::department::initialize(pparticle);
 
       defer_create_synchronization();
 

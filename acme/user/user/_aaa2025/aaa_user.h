@@ -25,7 +25,7 @@ namespace micro
 namespace user
 {
 class CLASS_DECL_ACME user :
-virtual public acme::department
+virtual public platform::department
 {
 public:
    

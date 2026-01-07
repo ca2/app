@@ -11,7 +11,7 @@ namespace aqua
 
 
    class CLASS_DECL_AQUA multimedia :
-      virtual public ::acme::department
+      virtual public ::platform::department
    {
    public:
 

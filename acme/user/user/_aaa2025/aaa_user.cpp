@@ -207,7 +207,7 @@ namespace acme
       void user::on_initialize_particle()
       {
 
-         ::acme::department::on_initialize_particle();
+         ::platform::department::on_initialize_particle();
 
          defer_create_synchronization();
 
@@ -218,7 +218,7 @@ namespace acme
 
          windowing_system_post_quit();
 
-         ::acme::department::destroy();
+         ::platform::department::destroy();
 
       }
 

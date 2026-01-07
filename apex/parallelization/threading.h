@@ -18,7 +18,7 @@ namespace parallelization
 
 
    class CLASS_DECL_APEX threading :
-      virtual public ::acme::department
+      virtual public ::platform::department
    {
    public:
 

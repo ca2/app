@@ -66,7 +66,7 @@ namespace geo
    void geo::initialize(::particle * pparticle)
    {
 
-      ::acme::department::initialize(pparticle);
+      ::platform::department::initialize(pparticle);
 
       m_pathCityTimeZoneFile = directory_system()->userconfig() / "datetime_departament_cityTimeZone.bin";
 

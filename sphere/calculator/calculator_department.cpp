@@ -5,7 +5,7 @@ namespace calculator
 {
 
    department::department(::particle * pparticle) :
-      ::acme::department(pparticle)
+      ::platform::department(pparticle)
    {
    }
 
@@ -17,7 +17,7 @@ namespace calculator
    bool department::init_instance()
    {
 
-      if (!::acme::department::init_instance())
+      if (!::platform::department::init_instance())
       {
 
          return false;

@@ -6,7 +6,7 @@ namespace filehandler
 
 
    class CLASS_DECL_SPHERE department :
-      public ::acme::department
+      public ::platform::department
    {
    public:
 

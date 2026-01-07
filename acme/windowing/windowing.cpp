@@ -335,7 +335,7 @@ namespace acme
       void windowing::on_initialize_particle()
       {
 
-         ::acme::department::on_initialize_particle();
+         ::platform::department::on_initialize_particle();
 
          ::task::on_initialize_particle();
 
@@ -351,7 +351,7 @@ namespace acme
 
          m_windowa.clear();
 
-         ::acme::department::destroy();
+         ::platform::department::destroy();
 
       }
 

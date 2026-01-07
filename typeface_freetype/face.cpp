@@ -6,9 +6,6 @@
 #include "acme/filesystem/filesystem/file_context.h"
 #include "bred/platform/system.h"
 #include "bred/typeface/typeface.h"
-#if defined(__FREEDESKTOP__)
-#include <fontconfig/fontconfig.h>
-#endif
 
 #ifdef WINDOWS_DESKTOP
 #pragma comment( lib, "freetype.lib" )
@@ -74,41 +71,41 @@ namespace typeface_freetype
 
          auto pszFontName = m_strFontName.c_str();
 
-         ::file::path path;
+         //::file::path path;
 
 
          ::cast < ::bred::system > psystem = system();
 
          auto ptypeface = psystem->typeface();
 
-         ptypeface->get_fon
+         auto path = ptypeface->get_font_file_path_by_font_name(m_strFontName);
 
-         {
+         //{
 
-            FcPattern* pat = FcNameParse((FcChar8*)m_strFontName.c_str());
-            FcConfigSubstitute(NULL, pat, FcMatchPattern);
-            FcDefaultSubstitute(pat);
+         //   FcPattern* pat = FcNameParse((FcChar8*)m_strFontName.c_str());
+         //   FcConfigSubstitute(NULL, pat, FcMatchPattern);
+         //   FcDefaultSubstitute(pat);
 
-            FcResult result;
-            FcPattern* font = FcFontMatch(NULL, pat, &result);
+         //   FcResult result;
+         //   FcPattern* font = FcFontMatch(NULL, pat, &result);
 
-            FcChar8* file;
-            FcPatternGetString(font, FC_FILE, 0, &file);
+         //   FcChar8* file;
+         //   FcPatternGetString(font, FC_FILE, 0, &file);
 
-            if (file)
-            {
+         //   if (file)
+         //   {
 
-               path = (const char * ) file;
+         //      path = (const char * ) file;
 
-            }
-            else
-            {
+         //   }
+         //   else
+         //   {
 
-               path = "matter://font/truetype/Roboto-Regular.ttf";
+         //      path = "matter://font/truetype/Roboto-Regular.ttf";
 
-            }
+         //   }
 
-         }
+         //}
 
          auto m = file()->as_memory(path);
          // Roboto - Regular.ttf

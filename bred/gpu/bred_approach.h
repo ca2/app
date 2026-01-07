@@ -66,10 +66,10 @@ namespace gpu
       void defer_init_gpu_library() override;
    
 
-      void on_before_create_window(::windowing::window* pwindow) override;
+      void on_before_create_window(::acme::windowing::window* pwindow) override;
 
       
-      void on_create_window(::windowing::window* pwindow) override;
+      void on_create_window(::acme::windowing::window* pwindow) override;
 
     
    };

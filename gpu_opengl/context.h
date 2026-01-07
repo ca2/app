@@ -97,11 +97,12 @@ namespace gpu_opengl
 
       void copy(::gpu::texture* ptextureTarget, ::gpu::texture* ptextureSource) override;
 
-      void on_create_context(::gpu::device* pgpudevice, const ::gpu::enum_output& eoutput, ::windowing::window* pwindow, const ::int_size& size) override;
+      void on_create_context(::gpu::device *pgpudevice, const ::gpu::enum_output &eoutput,
+                             ::acme::windowing::window *pwindow, const ::int_size &size) override;
 
-      void defer_create_window_context(::windowing::window * pwindow) override;
-      void _defer_create_window_context(::windowing::window * pwindow) override;
-      virtual void _create_window_context(::windowing::window * pwindow);
+      void defer_create_window_context(::acme::windowing::window *pwindow) override;
+      void _defer_create_window_context(::acme::windowing::window *pwindow) override;
+      virtual void _create_window_context(::acme::windowing::window *pwindow);
 
 
 

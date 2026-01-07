@@ -126,7 +126,7 @@ namespace gpu
           };
 
           floating_matrix4 projection =
-             m_pgpucontext->m_pengine->perspective(90f_degrees, // 90 degrees to cover one face
+             m_pgpucontext->m_pengine->perspective(90_f_degrees, // 90 degrees to cover one face
                                                    1.0f, // its a square
                                                    0.1f, 2.0f);
          

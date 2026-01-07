@@ -156,7 +156,7 @@ namespace bred
       if (::is_null(m_ptypefaceallocator))
       {
 
-         auto pfactory = typeface_factory;
+         auto pfactory = typeface_factory();
 
          m_ptypefaceallocator = øcreate<::typeface::allocator>(pfactory);
 

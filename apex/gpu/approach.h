@@ -81,8 +81,8 @@ namespace gpu
 
    
 
-      virtual void on_before_create_window(::windowing::window* pwindow);
-      virtual void on_create_window(::windowing::window* pwindow);
+      virtual void on_before_create_window(::acme::windowing::window* pwindow);
+      virtual void on_create_window(::acme::windowing::window* pwindow);
 
     
    };

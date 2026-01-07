@@ -1798,7 +1798,7 @@ void main() {
 
 
    void context::on_create_context(::gpu::device *pgpudevice, const ::gpu::enum_output &eoutput,
-                                   ::windowing::window *pwindow, const ::int_size &size)
+                                   ::acme::windowing::window *pwindow, const ::int_size &size)
    {
 
       ::gpu::context::on_create_context(pgpudevice, eoutput, pwindow, size);
@@ -2254,7 +2254,7 @@ void main() {
    }
 
 
-   void context::_create_window_context(::windowing::window *pwindowParam)
+   void context::_create_window_context(::acme::windowing::window *pwindowParam)
    {
 
       //   ::cast < ::windowing_win32::window > pwindow = pwindowParam;
@@ -2486,7 +2486,7 @@ void main() {
    }
 
 
-   void context::defer_create_window_context(::windowing::window *pwindow)
+   void context::defer_create_window_context(::acme::windowing::window *pwindow)
    {
 
       ::gpu_gpu::context::defer_create_window_context(pwindow);
@@ -2503,7 +2503,7 @@ void main() {
    }
 
 
-   void context::_defer_create_window_context(::windowing::window *pwindow)
+   void context::_defer_create_window_context(::acme::windowing::window *pwindow)
    {
 
       _create_window_context(pwindow);

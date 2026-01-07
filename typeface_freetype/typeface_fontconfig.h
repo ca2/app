@@ -2,6 +2,9 @@
 #pragma once
 
 
+#include "bred/typeface/typeface.h"
+
+
 namespace typeface_fontconfig
 {
 

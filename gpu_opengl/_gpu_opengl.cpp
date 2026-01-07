@@ -160,7 +160,7 @@ void GLCheckError(const_char_pointer pszErrorMessage)
 }
 
 
-void GLEnsureNonNullHandle(long lHandle, const_char_pointer pszMessage = nullptr)
+void GLEnsureNonNullHandle(long lHandle, const_char_pointer pszMessage)
 {
 
    if (!lHandle)

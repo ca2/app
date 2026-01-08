@@ -433,6 +433,7 @@
     <ClInclude Include="id.h" />
     <ClInclude Include="include\_.h" />
     <ClInclude Include="platform\application.h" />
+    <ClInclude Include="platform\fps_counter.h" />
     <ClInclude Include="platform\session.h" />
     <ClInclude Include="platform\system.h" />
     <ClInclude Include="platform\timer.h" />

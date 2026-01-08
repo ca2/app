@@ -69,16 +69,16 @@ namespace berg
       virtual void on_file_manager_open(::filemanager::data* pdata, const ::file::item_array& itema, const ::action_context& action_context) override;
 
 
-      void create_options_impact(::user::interaction * pparent) override;
-      void create_options_header(::user::interaction * pparent) override;
-      void create_options_body(::user::interaction * pparent) override;
-      void create_options_footer(::user::interaction * pparent) override;
+      void create_options_impact(const ::atom & atom, ::user::interaction * pparent) override;
+      void create_options_header(const ::atom &atom, ::user::interaction *pparent) override;
+      void create_options_body(const ::atom &atom, ::user::interaction *pparent) override;
+      void create_options_footer(const ::atom &atom, ::user::interaction *pparent) override;
 
-      void create_auto_start_option(::user::interaction* pparent) override;
+      void create_auto_start_option(const ::atom &atom, ::user::interaction *pparent) override;
 
-      void create_about_option(::user::interaction * pparent) override;
+      void create_about_option(const ::atom &atom, ::user::interaction *pparent) override;
 
-      void create_about_impact(::user::interaction * pparent) override;
+      void create_about_impact(const ::atom &atom, ::user::interaction *pparent) override;
 
       void on_after_prepare_impact_menu(::user::menu * pmenu) override;
 

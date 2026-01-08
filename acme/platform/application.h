@@ -775,6 +775,8 @@ namespace platform
 
 
       virtual string application_file_setting(const ::scoped_string& scopedstrFileName);
+      virtual void set_application_file_setting(const ::scoped_string &scopedstrFileName,
+                                                const ::scoped_string &scopedstr);
 
 
    };

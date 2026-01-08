@@ -4320,6 +4320,9 @@
     <ClInclude Include="prototype\prototype\address_object.h">
       <Filter>Header Files\prototype\prototype</Filter>
     </ClInclude>
+    <ClInclude Include="prototype\collection\array_map.h">
+      <Filter>Header Files\prototype\collection</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="prototype\prototype\bit.cpp">

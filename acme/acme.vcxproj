@@ -1783,6 +1783,7 @@
     <ClInclude Include="parallelization\_platform.h" />
     <ClInclude Include="platform\acme_message.h" />
     <ClInclude Include="platform\http.h" />
+    <ClInclude Include="prototype\collection\array_map.h" />
     <ClInclude Include="prototype\collection\base_array.h" />
     <ClInclude Include="prototype\collection\block_array.h" />
     <ClInclude Include="prototype\collection\static_array.h" />

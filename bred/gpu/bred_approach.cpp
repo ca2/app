@@ -125,14 +125,14 @@ namespace gpu
    }
 
 
-   void bred_approach::on_before_create_window(::windowing::window* pwindow)
+   void bred_approach::on_before_create_window(::acme::windowing::window* pwindow)
    {
 
 
    }
 
 
-   void bred_approach::on_create_window(::windowing::window* pwindow)
+   void bred_approach::on_create_window(::acme::windowing::window* pwindow)
    {
 
 

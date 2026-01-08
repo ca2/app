@@ -486,7 +486,7 @@ public:
    // function(const function & function) : base_function(function) { }
    // function(function && function) : base_function(::transfer(function)) {}
 
-   function(::subparticle * psubparticle, const class ::time & timeTimeout = 0_s) :
+   function(::subparticle *psubparticle, const class ::time &timeTimeout = default_run_timeout()) :
    function_common_base(timeTimeout),
    base_pointer(psubparticle)
    {
@@ -494,7 +494,7 @@ public:
    }
 
 
-   function(::lparam & lparam, const class ::time &timeTimeout = 0_s) :
+   function(::lparam &lparam, const class ::time &timeTimeout = default_run_timeout()) :
        function_common_base(timeTimeout), base_pointer(lparam)
    {
    }
@@ -503,7 +503,7 @@ public:
 
    template < typename PROCEDURE >
    requires(prototype_pure_procedure<PROCEDURE>)
-   function(const PROCEDURE & procedure, const class time & timeTimeout = 0_s) :
+   function(const PROCEDURE &procedure, const class time &timeTimeout = default_run_timeout()) :
       function_common_base(timeTimeout), base_pointer(øallocate pure_procedure(procedure))
    {
 
@@ -735,7 +735,7 @@ public:
 
    template < typename FUNCTION >
    requires(prototype_return_function<FUNCTION, RETURN_TYPE > )
-   function(const FUNCTION & functionParam, const class ::time & timeTimeout = 0_s) :
+   function(const FUNCTION &functionParam, const class ::time & timeTimeout = default_run_timeout()) :
    function_common_base(timeTimeout),
    base_pointer(øallocate return_function<FUNCTION, RETURN_TYPE>(functionParam))
    {
@@ -973,7 +973,7 @@ public:
 
    template < typename FUNCTION >
    requires(prototype_arguments_function<FUNCTION, RETURN_TYPE, ARGUMENTS...>)
-   function(const FUNCTION & functionParam, const class ::time & timeTimeout = 0_s) :
+   function(const FUNCTION &functionParam, const class ::time &timeTimeout = default_run_timeout()) :
    function_common_base(timeTimeout),
    base_pointer(øallocate arguments_function<FUNCTION, RETURN_TYPE, ARGUMENTS...>(functionParam))
    {
@@ -1306,7 +1306,7 @@ public:
 
    template < typename PROCEDURE >
    requires(prototype_arguments_procedure<PROCEDURE, ARGUMENTS ...>)
-   function(const PROCEDURE & procedure, const class ::time & timeTimeout = 0_s) :
+   function(const PROCEDURE &procedure, const class ::time &timeTimeout = default_run_timeout()) :
    function_common_base(timeTimeout),
    base_pointer(øallocate arguments_procedure<PROCEDURE, ARGUMENTS...>(procedure))
    //
@@ -1318,7 +1318,7 @@ public:
    }
 
 
-   function(base * pbase, const class ::time & timeTimeout = 0_s) :
+   function(base *pbase, const class ::time &timeTimeout = default_run_timeout()) :
       function_common_base(timeTimeout),
       base_pointer(pbase)
    {
@@ -1331,7 +1331,7 @@ public:
    template < typename PAYLOAD_WITH_PROCEDURE >
    requires (::is_same<::std::decay_t<PAYLOAD_WITH_PROCEDURE>, payload >
 || ::is_same<::std::decay_t <PAYLOAD_WITH_PROCEDURE>, property>)
-   function(PAYLOAD_WITH_PROCEDURE payloadWithProcedure, const class ::time& timeTimeout = 0_s) :
+   function(PAYLOAD_WITH_PROCEDURE payloadWithProcedure, const class ::time &timeTimeout = default_run_timeout()) :
    function_common_base(timeTimeout),
    base_pointer(dynamic_cast <base*>(as_subparticle(payloadWithProcedure)))
    {

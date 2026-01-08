@@ -190,7 +190,7 @@ namespace gpu_opengl
 
    
 
-   void approach::on_create_window(::windowing::window *pwindow)
+   void approach::on_create_window(::acme::windowing::window *pwindow)
    {
 
       ::cast<::gpu_opengl::approach> papproach = m_papplication->get_gpu_approach();

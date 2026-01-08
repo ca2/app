@@ -1070,6 +1070,17 @@ namespace userex
    //}
 
 
+   //void pane_tab_impact::create_options_impact(const ::atom &atom, ::user::interaction *puserinteractionParent)
+   //{
+
+   //   if (atom == "options_impact_handler://gpu")
+   //   {
+   //      auto playout = create_line_layout(puserinteractionParent, e_orientation_vertical);
+   //   }
+
+   //}
+
+
    void pane_tab_impact::prepare_form(const ::atom & atom, ::form_document * pdocument)
    {
 

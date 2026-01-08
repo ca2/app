@@ -3,6 +3,7 @@
 #include "acme/filesystem/file/file.h"
 #include "acme/filesystem/filesystem/file_context.h"
 #include "acme/platform/application.h"
+#include "acme/platform/system.h"
 #include "bred/gpu/context.h"
 #include "windowing_win32/window.h"
 #include <glad/glad_wgl.h>
@@ -97,15 +98,15 @@ namespace gpu_opengl
 
    
 
-//    void approach::_on_before_create_window(::windowing::window* pwindow)
-   //    {
-   //       //::cast < ::gpu_opengl::approach > papproach = m_papplication->get_gpu_approach();
-   //       //papproach->_on_before_create_window(pwindow);
+    void approach::_on_before_create_window(::acme::windowing::window* pwindow)
+       {
+          //::cast < ::gpu_opengl::approach > papproach = m_papplication->get_gpu_approach();
+          //papproach->_on_before_create_window(pwindow);
    // #if defined(WINDOWS_DESKTOP)
-   //       defer_load_wgl_extensions();
+          defer_load_wgl_extensions();
    // #endif
    //
-   //    }
+       }
 
    // void opengl_on_create_window(HWND hwnd, HINSTANCE hInstance, HGLRC* outRC, HDC* outDC)
    void opengl_on_create_window(HWND hwnd, HINSTANCE hInstance)
@@ -148,7 +149,7 @@ namespace gpu_opengl
    }
 
 
-   void approach::_on_create_window(::windowing::window *pwindowParam)
+   void approach::_on_create_window(::acme::windowing::window *pwindowParam)
    {
 
 //#if defined(WINDOWS_DESKTOP)
@@ -157,7 +158,7 @@ namespace gpu_opengl
 
       auto hwnd = pwindow->m_hwnd;
 
-      opengl_on_create_window(hwnd, (HINSTANCE) system()->m_hinstanceThis);
+      opengl_on_create_window(hwnd, (HINSTANCE) ::system()->m_hinstanceThis);
 
       DWM_BLURBEHIND bb = { 0 };
       HRGN hRgn = CreateRectRgn(0, 0, -1, -1);

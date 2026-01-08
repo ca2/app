@@ -8,6 +8,7 @@
 #include "bred/graphics3d/types.h"
 #include "apex/platform/app_consumer.h"
 #include "apex/platform/application.h"
+#include "bred/platform/fps_counter.h"
 
 
 namespace user
@@ -26,7 +27,7 @@ namespace user
       //::graphics3d::enum_mouse                  m_emouse;
       //::graphics3d::enum_keyboard               m_ekeyboard;
       //bool                                      m_bAbsoluteMousePosition;
-
+      fps_counter                               m_fpscounter;
       ::pointer < ::graphics3d::engine >			m_pengine;
 
       ::pointer < ::graphics3d::key_map >			m_pkeymap;

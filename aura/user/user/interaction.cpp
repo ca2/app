@@ -4372,6 +4372,14 @@ namespace user
    }
 
 
+   void interaction::show()
+   {
+         
+      display(e_display_normal); 
+      
+   }
+
+
    void interaction::hide()
    {
 
@@ -15342,6 +15350,8 @@ if(get_parent())
 
       top_down_prefix();
 
+      bool bNeedPerformLayoutHere = false;
+
       if (m_bNeedPerformLayout)
       {
 
@@ -15358,9 +15368,11 @@ if(get_parent())
 
          }
 
+         bNeedPerformLayoutHere = true;
+
       }
 
-      bool bNeedPerformLayoutHere = need_on_perform_layout(pgraphics);
+      bNeedPerformLayoutHere |= need_on_perform_layout(pgraphics);
 
       //_synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 

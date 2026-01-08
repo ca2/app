@@ -213,7 +213,7 @@ namespace gpu
    void context::_send(const ::procedure &procedure)
    {
 
-      auto procedureForward = [this, procedure]()
+      ::procedure procedureForward = [this, procedure]()
       {
          //_synchronous_lock(this->synchronization());
 
@@ -223,6 +223,13 @@ namespace gpu
       };
 
       // rear_guard rearguard(this);
+
+      if (procedure.timeout().is_set())
+      {
+
+         procedureForward.set_timeout(procedure.timeout());
+
+      }
 
       ::thread::_send(procedureForward);
    }
@@ -1743,7 +1750,7 @@ namespace gpu
 
       //::gpu::rear_guard rear_guard(this);
 
-      auto procedure = procedureParam;
+      ::procedure procedure = procedureParam;
 
       procedure.set_timeout(5_min);
 
@@ -1872,7 +1879,7 @@ namespace gpu
 
       }
 
-      send_on_context([this, pcontextInnerStart, bForDrawing, procedure]()
+      ::procedure procedureOnContext = [this, pcontextInnerStart, bForDrawing, procedure]()
          {
 
             auto pgpurenderer = get_gpu_renderer();
@@ -2018,7 +2025,17 @@ namespace gpu
 
                });
 
-         });
+         };
+
+
+         if (procedure.timeout().is_set())
+         {
+
+            procedureOnContext.set_timeout(procedure.timeout());
+
+         }
+
+         send_on_context(procedureOnContext);
 
          if (bForDrawing)
          {

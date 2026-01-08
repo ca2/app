@@ -1983,6 +1983,15 @@ void acme_node_layer::open_internet_link(const ::scoped_string& scopedstrUrl, co
    }
 
 
+   void acme_node_layer::restart_application()
+   {
+
+      throw ::interface_only();
+
+
+   }
+
+
    ::memory media_store_get_data(const ::scoped_string & scopedstrPath)
    {
 

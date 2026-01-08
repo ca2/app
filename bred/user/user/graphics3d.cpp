@@ -433,6 +433,20 @@ namespace user
 
          m_pengine->_001OnDraw(pgraphics);
 
+         m_fpscounter.update();
+
+         ::string strFps;
+
+         strFps.format("FPS {:.1f}", m_fpscounter.getAverageFps());
+
+         pgraphics->text_out({10.0, 100.0}, strFps);
+
+         ::string strFrameTime;
+
+         strFrameTime.format("Frame Time: {:.1f}ms", m_fpscounter.getAverageFrameTime());
+
+         pgraphics->text_out({10.0, 125.0}, strFrameTime);
+
       }
 
       if (m_papplication->m_gpu.m_bUseSwapChainWindow)

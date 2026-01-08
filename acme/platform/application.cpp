@@ -2552,6 +2552,67 @@ void application::start_application()
    }
 
 
+   void application::set_application_file_setting(const ::scoped_string &scopedstrFileName,
+                                                  const ::scoped_string &scopedstr)
+   {
+
+      {
+
+         ::file::path path;
+
+         path = "dropbox-app://" / scopedstrFileName;
+
+         bool bOk = false;
+
+         try
+         {
+
+            file()->put_text(path, scopedstr);
+
+            bOk = true;
+         }
+         catch (...)
+         {
+         }
+
+         if (bOk)
+         {
+
+            return;
+         }
+
+      }
+      {
+
+         ::file::path path;
+
+         path = directory()->appdata() / scopedstrFileName;
+
+         bool bOk = false;
+
+         try
+         {
+
+            file()->put_text(path, scopedstr);
+
+            bOk = true;
+         }
+         catch (...)
+         {
+         }
+
+         if (bOk)
+         {
+
+            return;
+         }
+      }
+
+      throw ::exception(error_failed, "Couldn't set_application_file_setting");
+       
+   }
+
+
 } // namespace platform
 
 

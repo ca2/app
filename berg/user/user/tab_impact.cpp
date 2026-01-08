@@ -969,12 +969,32 @@ namespace user
       if (pimpactdata->id() == OPTIONS_IMPACT
          || pimpactdata->id() == APP_OPTIONS_IMPACT
          || pimpactdata->id() == CONTEXT_OPTIONS_IMPACT
-         || pimpactdata->id() == ABOUT_IMPACT)
+         || pimpactdata->id() == ABOUT_IMPACT
+         || (pimpactdata->id().is_text() && pimpactdata->id().as_string().begins("options_impact_handler://")))
       {
 
          m_maphandlerimpact[pimpactdata->id()] = create_impact < handler_impact >(pimpactdata);
 
-         if (pimpactdata->id() == APP_OPTIONS_IMPACT)
+         if ((pimpactdata->id().is_text() && pimpactdata->id().as_string().begins("options_impact_handler://")))
+         {
+            auto phandlerimpact = m_maphandlerimpact[pimpactdata->id()];
+            ::cast<::user::options_impact_handler> poptionsimpacthandler = m_mapoptionsimpacthandler[pimpactdata->id()];
+
+            if (!poptionsimpacthandler)
+            {
+               poptionsimpacthandler = this;
+            }
+
+
+            auto functionHandler = [poptionsimpacthandler, pimpactdata](auto puserinteraction)
+            {
+                  poptionsimpacthandler->create_options_impact(pimpactdata->id(), puserinteraction);
+            };
+
+            phandlerimpact->call_handler(functionHandler);
+
+         }
+         else if (pimpactdata->id() == APP_OPTIONS_IMPACT)
          {
 
             auto phandlerimpact = m_maphandlerimpact[pimpactdata->id()];
@@ -987,7 +1007,7 @@ namespace user
                if(poptionsimpacthandler)
                {
 
-                  poptionsimpacthandler->create_options_impact(puserinteraction);
+                  poptionsimpacthandler->create_options_impact(APP_OPTIONS_IMPACT, puserinteraction);
 
                }
 
@@ -1004,7 +1024,7 @@ namespace user
             auto functionHandler = [this](auto puserinteraction)
                {
 
-                  application()->create_about_impact(puserinteraction);
+                  application()->create_about_impact(ABOUT_IMPACT, puserinteraction);
 
                };
 
@@ -1105,7 +1125,7 @@ namespace user
                [poptionsimpacthandler](auto puserinteractionParent)
                {
 
-                  poptionsimpacthandler->create_options_impact(puserinteractionParent);
+                  poptionsimpacthandler->create_options_impact(CONTEXT_OPTIONS_IMPACT, puserinteractionParent);
 
                });
 

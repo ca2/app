@@ -382,8 +382,8 @@ pixelAttribs.append({ WGL_DEPTH_BITS_ARB, 24 });              // optional, for d
 pixelAttribs.append({ WGL_STENCIL_BITS_ARB, 8 });            // optional, for stencil
 pixelAttribs.add(0); // terminator
 
-int format;
-UINT numFormats;
+int format = 0;
+UINT numFormats = 0;
 loaded_wglChoosePixelFormatARB(hdc, pixelAttribs.data(), NULL, 1, &format, &numFormats);
 PIXELFORMATDESCRIPTOR pfd;
 DescribePixelFormat(hdc, format, sizeof(pfd), &pfd);

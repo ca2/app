@@ -1317,7 +1317,9 @@ void main() {
       // vkCmdBeginRenderPass(cmd, &renderPassInfo, VK_SUBPASS_CONTENTS_INLINE);
       auto pcommandbuffer = prenderer->getCurrentCommandBuffer2(::gpu::current_frame());
 
-      auto ptextureTarget = prenderer->m_pgpurendertarget->current_texture(::gpu::current_frame());
+      auto pgpurendertarget = prenderer->render_target();
+
+      auto ptextureTarget = pgpurendertarget->current_texture(::gpu::current_frame());
 
       pshader->bind(pcommandbuffer, ptextureTarget);
 
@@ -5844,7 +5846,9 @@ color = vec4(c.r,c.g, c.b, c.a);
 
       auto pcommandbuffer = pcontext->m_pgpurenderer->getCurrentCommandBuffer2(::gpu::current_frame());
 
-      auto ptextureTarget = pcontext->m_pgpurenderer->m_pgpurendertarget->current_texture(::gpu::current_frame());
+      auto pgpurendertarget = pcontext->m_pgpurenderer->render_target();
+
+      auto ptextureTarget = pgpurendertarget->current_texture(::gpu::current_frame());
 
       m_pgpushaderTextOut->bind(pcommandbuffer, ptextureTarget);
 

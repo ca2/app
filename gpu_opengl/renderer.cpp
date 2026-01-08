@@ -208,10 +208,12 @@ namespace gpu_opengl
 
       //}
 
-      if (!m_pgpurendertarget->m_bRenderTargetInit)
+      auto pgpurendertarget = this->render_target();
+
+      if (!pgpurendertarget->m_bRenderTargetInit)
       {
 
-         m_pgpurendertarget->init();
+         pgpurendertarget->init();
 
       }
 
@@ -243,7 +245,9 @@ namespace gpu_opengl
 
       int height = r.height();
 
-      ::cast < texture > ptexture = m_pgpurendertarget->current_texture(pframe);
+      auto pgpurendertarget = this->render_target();
+
+      ::cast < texture > ptexture = pgpurendertarget->current_texture(pframe);
 
       if (m_pgpucontext->m_escene == ::gpu::e_scene_3d)
       {

@@ -5888,7 +5888,12 @@ color = vec4(c.r,c.g, c.b, c.a);
          warning() << "draw_text: " << str;
 
       }
-      //float scale;
+      else if (str == "hellomultiverse")
+      {
+
+         warning() << "draw_text: " << str;
+      }
+      // float scale;
       //if (pfont->m_fontsize.eunit() == e_unit_point)
       //{
       //   scale = pfont->m_fontsize.as_float() / FONT_POINT_DENOMINATOR;

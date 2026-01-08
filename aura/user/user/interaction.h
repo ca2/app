@@ -293,6 +293,9 @@ namespace user
       bool                                      m_bLoadingWindowRectangle;
 
 
+      ::int_rectangle                           m_rectangleMargin1;
+
+
       //bool                                      m_bVisualChanged;
 
       // <3ThomasBorreggardSoerensen_!!

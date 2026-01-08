@@ -1374,7 +1374,7 @@ namespace gpu
 
       ødefer_construct(player);
 
-      auto iFrameIndex = pgpurenderer->m_pgpurendertarget->get_frame_index();
+      auto iFrameIndex = pgpurenderer->render_target()->get_frame_index();
 
       player->initialize_gpu_layer(pgpurenderer, iFrameIndex, m_iLayer);
 

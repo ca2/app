@@ -131,7 +131,7 @@ namespace graphics3d
 
             //}
 
-            auto pgpurendertarget = prenderer->m_pgpurendertarget.m_p;
+            auto pgpurendertarget = prenderer->render_target();
 
             int iFrameIndex = pgpurendertarget->get_frame_index();
 

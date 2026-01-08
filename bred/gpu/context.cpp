@@ -970,8 +970,7 @@ namespace gpu
 
       ødefer_construct(pcommandbuffer);
 
-      pcommandbuffer->initialize_command_buffer(
-         m_pgpurenderer->m_pgpurendertarget, 
+      pcommandbuffer->initialize_command_buffer(m_pgpurenderer->render_target(), 
          pqueue,
          ecommandbuffer);
 
@@ -1936,9 +1935,9 @@ namespace gpu
 
                            auto prendererBackBuffer = get_gpu_renderer();
 
-                           auto iFrameIndex = prendererBackBuffer->m_pgpurendertarget->get_frame_index();
+                           auto prendertargetBackBuffer = prendererBackBuffer->render_target();
 
-                           auto prendertargetBackBuffer = prendererBackBuffer->m_pgpurendertarget;
+                           auto iFrameIndex = prendertargetBackBuffer->get_frame_index();
 
                            auto ptextureBackBuffer = prendertargetBackBuffer->current_texture(pgpuframe);
 

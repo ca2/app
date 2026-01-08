@@ -104,6 +104,35 @@ namespace gpu
    }
 
 
+   void renderer::defer_initialize_render_target()
+   {
+
+      auto previous = m_pgpurendertarget2;
+
+      auto prendertarget = render_target();
+
+      auto sizeRenderer = m_sizeRenderer;
+
+      if (!prendertarget->has_ok_flag() || prendertarget->m_size != sizeRenderer)
+      {
+
+///         m_sizeRenderer = size;
+
+         prendertarget->initialize_render_target(this, sizeRenderer, previous);
+
+         // if (!size.is_empty() && m_pgpucontext->is_current_task())
+         if (!prendertarget->m_size.is_empty())
+         // if (!size.is_empty())
+         {
+
+            render_target()->init();
+         }
+
+      }
+
+   }
+
+
    void renderer::on_resize(const ::int_size& size)
    {
 
@@ -116,23 +145,23 @@ namespace gpu
 
       auto eoutput = m_pgpucontext->m_eoutput;
 
-      auto previous = m_pgpurendertarget;
+      //auto previous = render_target();
 
-      //on_defer_update_renderer_allocate_render_target(eoutput, size, previous);
+      ////on_defer_update_renderer_allocate_render_target(eoutput, size, previous);
 
-      if (!m_pgpurendertarget)
-      {
+      //if (!m_pgpurendertarget)
+      //{
 
-         m_pgpurendertarget = on_create_render_target();
+      //   m_pgpurendertarget = on_create_render_target();
 
-         if (!m_pgpurendertarget)
-         {
+      //   if (!m_pgpurendertarget)
+      //   {
 
-            throw ::exception(error_wrong_state);
+      //      throw ::exception(error_wrong_state);
 
-         }
+      //   }
 
-      }
+      //}
 
       //m_pgpurendertarget = pgpurendertarget;
       //      else if (eoutput == ::gpu::e_output_gpu_buffer)
@@ -189,23 +218,10 @@ namespace gpu
       //
       //      }
       //
-      if (!m_pgpurendertarget->has_ok_flag() || m_sizeRenderer != size)
-      {
 
-         m_sizeRenderer = size;
+      m_sizeRenderer = size;
 
-         m_pgpurendertarget->initialize_render_target(this, size, previous);
-
-         //if (!size.is_empty() && m_pgpucontext->is_current_task())
-         if (!size.is_empty())
-            //if (!size.is_empty())
-         {
-
-            m_pgpurendertarget->init();
-
-         }
-
-      }
+      defer_initialize_render_target();
 
       //if (m_pgpurendertarget)
       //{
@@ -351,10 +367,27 @@ namespace gpu
    }
 
 
+   ::gpu::render_target * renderer::render_target()
+   {
+
+      if (!m_pgpurendertarget2)
+      {
+
+         m_pgpurendertarget2 = on_create_render_target();
+
+         defer_initialize_render_target();
+
+      }
+
+      return m_pgpurendertarget2;
+
+   }
+
+
    ::gpu::texture* renderer::current_render_target_texture(::gpu::frame* pgpuframe)
    {
 
-      return m_pgpurendertarget->current_texture(pgpuframe);
+      return render_target()->current_texture(pgpuframe);
 
    }
 
@@ -396,7 +429,7 @@ namespace gpu
       else
       {
 
-         iFrameIndex = m_pgpurendertarget->get_frame_index();
+         iFrameIndex = render_target()->get_frame_index();
 
          if (iFrameIndex < 0)
          {
@@ -459,8 +492,7 @@ namespace gpu
 
          ødefer_construct(pcommandbuffer);
 
-         pcommandbuffer->initialize_command_buffer(
-            m_pgpurendertarget,
+         pcommandbuffer->initialize_command_buffer(render_target(),
             m_pgpucontext->m_pgpudevice->graphics_queue(),
             e_command_buffer_graphics);
 
@@ -1107,7 +1139,9 @@ namespace gpu
 
       auto etypeContext = m_pgpucontext->m_etype;
 
-      if (m_pgpurendertarget && m_sizeRenderer == sizeContext)
+      auto prendertarget = render_target();
+
+      if (prendertarget && m_sizeRenderer == sizeContext)
       {
 
          //if (m_pgpucontext->is_current_task())
@@ -1116,10 +1150,10 @@ namespace gpu
             if (!sizeContext.is_empty())
             {
 
-               if (!m_pgpurendertarget->m_bRenderTargetInit)
+               if (!prendertarget->m_bRenderTargetInit)
                {
 
-                  m_pgpurendertarget->init();
+                  prendertarget->init();
 
                }
 
@@ -1139,7 +1173,7 @@ namespace gpu
    ::pointer < render_target > renderer::on_create_render_target()
    {
 
-      auto prendertarget = øcreate<render_target>();
+      auto prendertarget = øcreate<::gpu::render_target>();
 
       prendertarget->m_bAdvancedPipelineSynchronization = true;
 
@@ -1397,7 +1431,7 @@ namespace gpu
 
       beginFrame();
 
-      on_begin_render(m_pgpurendertarget->m_pgpuframe);
+      on_begin_render(render_target()->m_pgpuframe);
 
       m_pgpucontext->frame_prefix();
 
@@ -1509,7 +1543,7 @@ namespace gpu
 
       pgpuframe->m_pgpucommandbuffer = pcommandbuffer.m_p;
 
-      m_pgpurendertarget->m_pgpuframe = pgpuframe;
+      render_target()->m_pgpuframe = pgpuframe;
 
       auto bUseSwapChain = m_papplication->m_gpu.m_bUseSwapChainWindow;
 
@@ -1525,7 +1559,7 @@ namespace gpu
 
       }
 
-      return m_pgpurendertarget->m_pgpuframe;
+      return render_target()->m_pgpuframe;
 
    }
 
@@ -1606,7 +1640,7 @@ namespace gpu
 
       //end_layer();
 
-      on_end_render(m_pgpurendertarget->m_pgpuframe);
+      on_end_render(render_target()->m_pgpuframe);
 
       endFrame();
 

@@ -155,7 +155,7 @@ namespace gpu
    void render_target::restart_frame_counter()
    {
 
-      if (m_pgpurenderer->m_pgpurendertarget->get_frame_count() > 1)
+      if (get_frame_count() > 1)
       {
 
          m_pgpurenderer->m_pgpucontext->m_pgpudevice->restart_frame_counter();
@@ -177,7 +177,7 @@ namespace gpu
 
       }
 
-      if (m_pgpurenderer->m_pgpurendertarget->get_frame_count() > 1)
+      if (get_frame_count() > 1)
       {
 
          auto iFrameSerial2 = m_pgpurenderer->m_pgpucontext->m_pgpudevice->m_iFrameSerial2;

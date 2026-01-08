@@ -93,7 +93,7 @@ namespace gpu
 
       auto prenderer = pcontext->get_gpu_renderer();
 
-      auto prendertarget = prenderer->m_pgpurendertarget;
+      auto prendertarget = prenderer->render_target();
 
       int iFrameIndex = prendertarget->get_frame_index();
 
@@ -129,7 +129,7 @@ namespace gpu
 
       auto prenderer = pcontext->get_gpu_renderer();
 
-      auto prendertarget = prenderer->m_pgpurendertarget;
+      auto prendertarget = prenderer->render_target();
 
       if (prenderer->m_prenderstate->m_estate == ::gpu::e_state_began_render)
       {
@@ -314,7 +314,7 @@ namespace gpu
 
          auto prenderer = pcontext->get_gpu_renderer();
 
-         auto prendertarget = prenderer->m_pgpurendertarget;
+         auto prendertarget = prenderer->render_target();
 
          int iFrameIndex = prendertarget->get_frame_index();
 
@@ -1399,6 +1399,13 @@ namespace gpu
       // iterate through all characters
       ::string strChar;
 
+      if (str == "hello_multiverse")
+      {
+
+         warning() << "hello_multiverse";
+
+      }
+
       auto psz = str.c_str();
 
       //if (str == "Options")
@@ -1449,8 +1456,8 @@ namespace gpu
          //float ypos = (float) (point.y + h2);
          float ypos = (float) (point.y);
 
-         float w = (float) ch.Size.x;
-         float h = (float) ch.Size.y;
+         float sizex = (float) ch.Size.x;
+         float sizey = (float) ch.Size.y;
          // update VBO for each character
          // render glyph texture over quad
          if (ch.m_ppixmap 
@@ -1494,8 +1501,8 @@ namespace gpu
 
                double l = (double) (xpos);
                double t = (double) (ypos + ch.h2);
-               double r = (double) (xpos + w);
-               double b = (double) (t + h);
+               double r = (double) (xpos + sizex);
+               double b = (double) (t + sizey);
 
                double_point p1(l, t);
                double_point p2(r, b);

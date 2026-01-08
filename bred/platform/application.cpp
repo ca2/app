@@ -12,12 +12,6 @@ namespace bred
 {
 
 
-   //void initialize()
-   //{
-
-   //}
-
-
    application::application()
    {
 
@@ -91,18 +85,6 @@ namespace bred
    }
 
 
-   //::pointer<progress_control>application::show_progress(::user::interaction* puiParent, const ::scoped_string & scopedstrTitle, ::collection::count iProgressCount)
-   //{
-
-   //   auto pprogresscontrol = øcreate_new <  ::userex::progress_control >();
-
-   //   pprogresscontrol->defer_show(puiParent, pszTitle, iProgressCount);
-
-   //   return ::transfer(pprogresscontrol);
-
-   //}
-
-
    ::file::path application::get_main_weather_file_path(const ::scoped_string & scopedstringAspect)
    {
 
@@ -111,15 +93,6 @@ namespace bred
    }
 
    
-   //::pointer < ::graphics3d::application > application::start_graphics3d_aplication()
-   //{
-
-   //   auto p3dapplication = øcreate < graphics3d::application>();
-
-   //   return p3dapplication;
-
-   //}
-
    ::gpu::approach* application::get_gpu_approach()
    {
 
@@ -672,6 +645,7 @@ namespace bred
             //auto strGpuApiItem = straGpuApiItem[i];
             //auto strGpuApiName = straGpuApiName[i];
             poption->m_puserinteractionControl = create_check_box<::user::check_box>(playoutLine, ""); 
+            poption->m_puserinteractionControl->m_rectangleMargin1.right = 1;
             //auto pcheckbox = create_check_box<::user::check_box>(playoutLine, "");
             //m_mapGpuApiSelectionCheckBox[strGpuApiItem] = pcheckbox;
             if (poption->m_strId == strGpuApi)
@@ -687,6 +661,7 @@ namespace bred
                }
             };
             poption->m_puserinteractionLabel = create_label<::user::still>(playoutLine, poption->m_strName);
+            poption->m_puserinteractionLabel->m_rectangleMargin1.right = 16;
          }
       }
 
@@ -741,6 +716,7 @@ namespace bred
             auto pcheckbox = create_check_box<::user::check_box>(playoutLine, "");
             //m_mapDraw2dApiSelectionCheckBox[strDraw2dApiItem] = pcheckbox;
             poption->m_puserinteractionControl = pcheckbox;
+            poption->m_puserinteractionControl->m_rectangleMargin1.right = 1;
             if (poption->m_strId == strDraw2dApi)
             {
                pcheckbox->set_check(e_check_checked, ::e_source_initialize);
@@ -754,6 +730,7 @@ namespace bred
                }
             };
             poption->m_puserinteractionLabel=create_label<::user::still>(playoutLine, poption->m_strName);
+            poption->m_puserinteractionLabel->m_rectangleMargin1.right = 16;
          }
       }
 
@@ -787,6 +764,7 @@ namespace bred
             //auto strOutputItem = straOutput[i];
             //auto strOutputName = straOutputName[i];
             poption->m_puserinteractionControl = create_check_box<::user::check_box>(playoutLine, "");
+            poption->m_puserinteractionControl->m_rectangleMargin1.right = 1;
             if (poption->m_strId == strOutput)
             {
                poption->checkbox()->set_check(e_check_checked, ::e_source_initialize);
@@ -800,6 +778,8 @@ namespace bred
                }
             };
             poption->m_puserinteractionLabel=create_label<::user::still>(playoutLine, poption->m_strName);
+            poption->m_puserinteractionLabel->m_rectangleMargin1.right = 16;
+
          }
       }
       auto pbuttonRestartApp = create_button<::user::button>(pparent, "Restart App");

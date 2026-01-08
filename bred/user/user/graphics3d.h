@@ -24,6 +24,10 @@ namespace user
       //memory m_memory;
       //int m_i;
 
+      int m_iFrameCounter = 0;
+      ::write_text::font_pointer m_pfontThomasBS_;
+      ::string_array m_straLineStats;
+
       //::graphics3d::enum_mouse                  m_emouse;
       //::graphics3d::enum_keyboard               m_ekeyboard;
       //bool                                      m_bAbsoluteMousePosition;
@@ -71,7 +75,7 @@ namespace user
 
       //::user::document * get_document();
 
-
+      virtual void draw_gpu_statistics(::draw2d::graphics_pointer &pgraphics);
 
       //virtual ::pointer < ::graphics3d::application > start_graphics3d_application();
 

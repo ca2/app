@@ -254,7 +254,9 @@ namespace graphics3d
 
 	   auto iFrameSerial = pgpudevice->m_iFrameSerial2;
 
-	   auto ptextureDst = pgpurenderer->m_pgpurendertarget->current_texture(::gpu::current_frame());
+      auto prendertarget = pgpurenderer->render_target();
+
+	   auto ptextureDst = prendertarget->current_texture(::gpu::current_frame());
 
       pgpucontext->start_debug_happening(::gpu::current_command_buffer(), "skybox_render_system on_render");
 

@@ -39,7 +39,7 @@ namespace gpu
 
       auto pgpurenderer = m_pgpurenderer;
 
-      auto pgpurendertarget = pgpurenderer->m_pgpurendertarget;
+      auto pgpurendertarget = pgpurenderer->render_target();
 
       auto iFrameIndex = pgpurenderer->m_pgpucontext->m_pgpudevice->get_frame_index2();
 
@@ -120,8 +120,7 @@ namespace gpu
 
          ødefer_construct(pcommandbufferLayer);
 
-         pcommandbufferLayer->initialize_command_buffer(
-            m_pgpurenderer->m_pgpurendertarget,
+         pcommandbufferLayer->initialize_command_buffer(m_pgpurenderer->render_target(),
             m_pgpurenderer->m_pgpucontext->m_pgpudevice->graphics_queue(),
             ::gpu::e_command_buffer_graphics);
 

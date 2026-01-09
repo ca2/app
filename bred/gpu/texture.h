@@ -17,7 +17,8 @@ namespace gpu
    public:
 
 
-
+      ::collection::index                 m_iTextureSerial;
+      ::string                            m_strTextureName;
       texture_attributes                  m_textureattributes;
       texture_flags                       m_textureflags;
       enum_texture_state                  m_etexturestate;

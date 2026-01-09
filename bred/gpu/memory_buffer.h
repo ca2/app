@@ -30,12 +30,13 @@ namespace gpu
 
       };
 
-
-      enum_type m_etype;
+      ::collection::index        m_iMemoryBufferSerial;
+      ::string                   m_strMemoryBufferName;
+      enum_type                  m_etype;
       
-      ::gpu::model_buffer* m_pmodelbuffer;
-      ::gpu::context* m_pcontext;
-      ::gpu::frame_storage* m_pframestorage;
+      ::gpu::model_buffer *      m_pmodelbuffer;
+      ::gpu::context *           m_pcontext;
+      ::gpu::frame_storage *     m_pframestorage;
       //VkDeviceMemory m_vkdevicememory;
       //VkBuffer m_vkbuffer;
       memsize m_size;
@@ -89,6 +90,8 @@ namespace gpu
 
 
       virtual void _complete_map_allocate(::gpu::memory_buffer* pmemorybufferSource, ::gpu::frame_storage * pgpuframestorage, int size);
+
+      virtual void set_state(::gpu::command_buffer *pgpucommandbuffer, ::gpu::enum_buffer_state etexturestate);
 
 
    };

@@ -16,9 +16,13 @@
 namespace gpu
 {
 
+   interlocked_count g_iTextureSerial;
 
    texture::texture()
    {
+
+      m_iTextureSerial = ++g_iTextureSerial;
+      m_strTextureName.format("Texture {}", m_iTextureSerial);
 
       m_iAtlasX = 0;
       m_iAtlasY = 0;

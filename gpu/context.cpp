@@ -2,7 +2,7 @@
 #include "framework.h"
 #define STB_USE_HUNTER
 #include "context.h"
-//#include "device.h"
+#include "bred/gpu/device.h"
 //#include "frame_buffer.h"
 #include "model/model.h"
 #include "bred/gltf/vertex.h"
@@ -69,8 +69,28 @@ namespace gpu_gpu
          auto piblequirectangularcubemap = øcreate<::gpu::ibl::equirectangular_cubemap>();
 
          piblequirectangularcubemap->initialize_equirectangular_cubemap_with_hdr_on_memory(this, block);
+         auto pcommandbuffer = beginSingleTimeCommands(m_pgpudevice->graphics_queue());
 
-         piblequirectangularcubemap->compute();
+
+         //{
+
+         //   //auto piblspecularmap = ibl_specular_map();
+
+         //   // if (!piblspecularmap->m_pframebufferPrefilteredEnvMap)
+         //   {
+               // this->flushCommandBuffer(layoutCmd, m_vkqueueTransfer3, true);
+
+         {
+            start_debug_happening(pcommandbuffer, "compute equirectangular cubemap");
+            piblequirectangularcubemap->compute_equirectangular_cubemap(pcommandbuffer);
+            end_debug_happening(pcommandbuffer);
+         }
+               endSingleTimeCommands(pcommandbuffer);
+            //}
+
+            //return piblspecularmap->m_ptexturePrefilteredEnvMapCubemap;
+            //->compute();
+         //}
 
          pgputexture = piblequirectangularcubemap->m_ptextureCubemap;
 

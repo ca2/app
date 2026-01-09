@@ -55,7 +55,7 @@ namespace gpu
          virtual void initialize_equirectangular_cubemap_with_hdr_on_memory(::gpu::context *pgpucontext, const ::block & block);
 
 
-         virtual void compute();
+         virtual void compute_equirectangular_cubemap(::gpu::command_buffer *pgpucommandbuffer);
 
 
 

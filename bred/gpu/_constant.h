@@ -57,9 +57,20 @@ namespace gpu
       e_texture_state_none,
       e_texture_state_shader_read,
       e_texture_state_color_attachment,
+      e_texture_state_copy_target,
+      e_texture_state_copy_source,
+      e_texture_state_present,
 
    };
 
+            enum enum_buffer_state
+      {
+
+         e_buffer_state_none,
+         e_buffer_state_vertex,
+         e_buffer_state_index,
+
+      };
 
 
    enum enum_shader_source

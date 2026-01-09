@@ -10,10 +10,15 @@
 
 namespace gpu
 {
+   
+   
+   interlocked_count g_iMemoryBufferSerial;
 
 
    memory_buffer::memory_buffer()
    {
+      m_iMemoryBufferSerial = ++g_iMemoryBufferSerial;
+      m_strMemoryBufferName.format("Memory Buffer {}", m_iMemoryBufferSerial);
 
       m_iBufferOffset = -1;
       m_iSizeMapped = -1;
@@ -380,7 +385,11 @@ namespace gpu
 
    }
 
+   void memory_buffer::set_state(::gpu::command_buffer * pgpucommandbuffer, ::gpu::enum_buffer_state etexturestate)
+   {
 
+
+   }
 } // namespace gpu_vulkan
 
 

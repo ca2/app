@@ -112,20 +112,20 @@ namespace gpu
       }
 
 
-      void equirectangular_cubemap::compute()
+      void equirectangular_cubemap::compute_equirectangular_cubemap(::gpu::command_buffer * pgpucommandbuffer)
       {
 
          ::gpu::context_lock lockcontext(m_pgpucontext);
 
          ::bred::Timer timer;
 
-         auto pgpucommandbuffer = m_pgpucontext->beginSingleTimeCommands(m_pgpucontext->m_pgpudevice->graphics_queue());
+         //auto pgpucommandbuffer = m_pgpucontext->beginSingleTimeCommands(m_pgpucontext->m_pgpudevice->graphics_queue());
 
-         ::string strDebugScopeCompute;
+         //::string strDebugScopeCompute;
 
-         strDebugScopeCompute.format("gpu::ibl::equirectangular_cubemap::compute");
+         //strDebugScopeCompute.format("gpu::ibl::equirectangular_cubemap::compute");
 
-         ::gpu::debug_scope debugscopeCompute(pgpucommandbuffer, strDebugScopeCompute);
+         //::gpu::debug_scope debugscopeCompute(pgpucommandbuffer, strDebugScopeCompute);
 
          using namespace graphics3d;
 
@@ -203,6 +203,8 @@ namespace gpu
 
             pgpucommandbuffer->set_viewport(rectangleViewport);
 
+            pgpucommandbuffer->set_scissor(rectangleViewport);
+
             pgpucommandbuffer->set_source(m_ptextureHdr);
 
             pgpucommandbuffer->draw(m_prenderableCube);
@@ -221,7 +223,7 @@ namespace gpu
 
          m_ptextureCubemap->set_ok_flag();
 
-         m_pgpucontext->endSingleTimeCommands(pgpucommandbuffer);
+         //m_pgpucontext->endSingleTimeCommands(pgpucommandbuffer);
 
          timer.logDifference("Rendered equirectangular cubemap");
 

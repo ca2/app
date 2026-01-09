@@ -65,36 +65,41 @@ namespace gpu_gpu
         
       {
 
+         m_pcommandbufferMain = beginSingleTimeCommands(m_pgpudevice->graphics_queue());
+
          // Pre-compute IBL stuff
          auto piblequirectangularcubemap = øcreate<::gpu::ibl::equirectangular_cubemap>();
 
          piblequirectangularcubemap->initialize_equirectangular_cubemap_with_hdr_on_memory(this, block);
-         auto pcommandbuffer = beginSingleTimeCommands(m_pgpudevice->graphics_queue());
 
-
-         //{
-
-         //   //auto piblspecularmap = ibl_specular_map();
-
-         //   // if (!piblspecularmap->m_pframebufferPrefilteredEnvMap)
-         //   {
-               // this->flushCommandBuffer(layoutCmd, m_vkqueueTransfer3, true);
-
-         {
-            start_debug_happening(pcommandbuffer, "compute equirectangular cubemap");
-            piblequirectangularcubemap->compute_equirectangular_cubemap(pcommandbuffer);
-            end_debug_happening(pcommandbuffer);
-         }
-               endSingleTimeCommands(pcommandbuffer);
-            //}
-
-            //return piblspecularmap->m_ptexturePrefilteredEnvMapCubemap;
-            //->compute();
-         //}
-
-         pgputexture = piblequirectangularcubemap->m_ptextureCubemap;
-
+                  pgputexture = piblequirectangularcubemap->m_ptextureCubemap;
          pgputexture->m_bHdr = true;
+                  {
+
+
+
+                     //{
+
+                     //   //auto piblspecularmap = ibl_specular_map();
+
+                     //   // if (!piblspecularmap->m_pframebufferPrefilteredEnvMap)
+                     //   {
+                     // this->flushCommandBuffer(layoutCmd, m_vkqueueTransfer3, true);
+
+                     {
+                        start_debug_happening(m_pcommandbufferMain, "compute equirectangular cubemap");
+                        piblequirectangularcubemap->compute_equirectangular_cubemap(m_pcommandbufferMain);
+                        end_debug_happening(m_pcommandbufferMain);
+                     }
+                     endSingleTimeCommands(m_pcommandbufferMain);
+
+                     m_pcommandbufferMain.release();
+                     //}
+
+                     // return piblspecularmap->m_ptexturePrefilteredEnvMapCubemap;
+                     //->compute();
+                     //}
+                  }
 
       }
 

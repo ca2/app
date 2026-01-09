@@ -20,6 +20,14 @@ namespace gpu
       m_iMemoryBufferSerial = ++g_iMemoryBufferSerial;
       m_strMemoryBufferName.format("Memory Buffer {}", m_iMemoryBufferSerial);
 
+
+      if (m_iMemoryBufferSerial == 12)
+      {
+
+         ::debug("m_iMemoryBufferSerial == 12");
+
+      }
+
       m_iBufferOffset = -1;
       m_iSizeMapped = -1;
       m_bDynamic = false;
@@ -34,6 +42,14 @@ namespace gpu
 
    memory_buffer::~memory_buffer()
    {
+
+      
+      if (m_iMemoryBufferSerial == 12)
+      {
+
+         ::debug("destructing m_iMemoryBufferSerial == 12");
+      }
+
       //if (m_vkbuffer != VK_NULL_HANDLE)
       //{
       //   vkDestroyBuffer(m_pcontext->logicalDevice(), m_vkbuffer, nullptr);

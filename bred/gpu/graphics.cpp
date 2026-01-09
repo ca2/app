@@ -1409,12 +1409,12 @@ namespace gpu
       // iterate through all characters
       ::string strChar;
 
-      if (str == "hello_multiverse")
-      {
+      //if (str == "hello_multiverse")
+      //{
 
-         warning() << "hello_multiverse";
+      //   warning() << "hello_multiverse";
 
-      }
+      //}
 
       auto psz = str.c_str();
 

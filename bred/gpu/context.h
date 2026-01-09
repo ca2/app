@@ -160,6 +160,7 @@ namespace gpu
       ::pointer<::gpu::binding_set> m_pbindingsetIbl1;
       ::pointer<::gpu::binding_set> m_pbindingsetGltfPbr;
       ::pointer<::gpu::binding_set> m_pbindingsetSceneGltfPbr;
+      ::pointer<::gpu::command_buffer> m_pcommandbufferMain;
       //::pointer<::gpu::block> m_pblockGlobalUbo;
 
 

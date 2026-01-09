@@ -24,6 +24,13 @@ namespace gpu
       m_iTextureSerial = ++g_iTextureSerial;
       m_strTextureName.format("Texture {}", m_iTextureSerial);
 
+      if (m_iTextureSerial == 27)
+      {
+
+         ::information("m_iTextureSerial == 27");
+
+      }
+
       m_iAtlasX = 0;
       m_iAtlasY = 0;
       m_iAtlasCurrentRowHeight = 0;
@@ -65,6 +72,27 @@ namespace gpu
                                      int numChannels, bool bSrgb, const void * pdata,
                                      enum_texture etexture)
    {
+
+      //  if (m_rectangleTarget == rectangleTarget)
+      //{
+
+      //   return;
+      //}
+
+      ::gpu::texture_attributes textureattributes(rectangleTarget);
+
+      textureattributes.m_iChannelCount = numChannels;
+      textureattributes.m_iFloat = bSrgb ? 1 : 0;
+      textureattributes.m_etexture = etexture;
+
+      ::gpu::texture_flags textureflags;
+
+      ::gpu::texture_data texturedata(pdata);
+
+      //      auto sizeCurrent = m_textureattributes.m_rectangleTarget.size();
+
+      initialize_texture(pgpurenderer, textureattributes, textureflags, texturedata);
+
 
 
          }

@@ -364,7 +364,11 @@ namespace gpu
 
       ::gpu::texture_attributes textureattributes(rectangleSize);
 
-      ptextureEmpty->initialize_texture(m_pgpurenderer, textureattributes);
+      ::gpu::texture_flags textureflags;
+
+      textureflags.m_bShaderResource = true;
+
+      ptextureEmpty->initialize_texture(m_pgpurenderer, textureattributes, textureflags);
 
       return ptextureEmpty;
 

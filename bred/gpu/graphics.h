@@ -164,6 +164,8 @@ namespace gpu
       virtual void defer_soft_unbind_draw2d_compositor(::gpu::layer* player);
 
 
+      void draw_rectangle(const ::double_rectangle &rectangle, ::draw2d::pen *ppen) override;
+
       virtual void _fill_quad(const ::double_point points[4], const ::color::color& color);
 
       void fill_rectangle(const ::double_rectangle& rectangle, const ::color::color& color) override;

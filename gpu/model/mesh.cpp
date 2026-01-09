@@ -65,6 +65,20 @@ namespace gpu
       void mesh::draw2(::gpu::command_buffer *pcommandbuffer)
       {
 
+
+                     //auto pshader = pgpucommandbuffer->m_pgpurendertarget->m_pgpurenderer->m_pgpucontext->m_pshaderBound;
+         // pshader->binding_slot_set(2, m_pmaterial->m_pbindingset);
+         // pshader->on_before_draw(pgpucommandbuffer);
+//         ::cast<::gpu_vulkan::command_buffer> pcommandbuffer = pgpucommandbuffer;
+         //::cast<::gpu::vulkan> pcommandbuffer = pgpucommandbuffer;
+         // vkCmdDrawIndexed(pcommandbuffer->m_vkcommandbuffer, m_indexa.size(), 1, primitive->firstIndex, 0, 0);
+
+         m_pmodelbuffer->bind2(pcommandbuffer);
+
+         m_pmodelbuffer->draw2(pcommandbuffer);
+         //vkCmdDrawIndexed(pcommandbuffer->m_vkcommandbuffer, m_pmodeldata->index_count(), 1, 0, 0, 0);
+      //}
+
          // auto pshader = pcommandbuffer->m_pgpurendertarget->m_pgpurenderer->m_pgpucontext->m_pshaderBound;
          //
          // // albedo

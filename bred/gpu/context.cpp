@@ -1058,6 +1058,14 @@ namespace gpu
    }
 
 
+   void context::set_scissor(::gpu::command_buffer *pgpucommandbuffer, const ::int_rectangle &rectangle)
+   {
+
+      pgpucommandbuffer->set_scissor(rectangle);
+
+   }
+
+
    floating_matrix4 context::ortho(float left, float right, float bottom, float top, float zNear,
                            float zFar)
    {

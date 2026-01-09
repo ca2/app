@@ -824,6 +824,24 @@ namespace user
 
       }
 
+      if (m_pimpactdata->id().is_text() && m_pimpactdata->id().as_string().begins("options_impact_handler://"))
+      {
+
+         auto atom = pimpactdata->id();
+
+         auto phandlerimpact = m_maphandlerimpact[atom];
+
+         ::cast<::user::options_impact_handler> poptionsimpacthandler = m_mapoptionsimpacthandler[pimpactdata->id()];
+
+         if (poptionsimpacthandler)
+         {
+
+            poptionsimpacthandler->on_after_create_form(atom, phandlerimpact);
+
+         }
+
+      }
+
    }
 
 

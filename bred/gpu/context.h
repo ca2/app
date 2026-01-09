@@ -473,6 +473,7 @@ namespace gpu
 
 
       virtual void set_viewport(::gpu::command_buffer *pgpucommandbuffer, const ::int_rectangle &rectangle);
+      virtual void set_scissor(::gpu::command_buffer *pgpucommandbuffer, const ::int_rectangle &rectangle);
 
 //      /// @brief generatePrefilteredEnvMap
 //      /// @param environmentCubeExisting 

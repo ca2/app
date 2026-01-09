@@ -609,6 +609,25 @@ namespace bred
          ::berg::application::create_options_impact(atom, puserinteractionParent);
       }
    }
+
+   void application::on_after_create_form(const ::atom & atom, ::user::interaction * puserinteractionParent)
+   {
+
+            if (atom == "options_impact_handler://gpu")
+      {
+
+               on_change_graphics3d_output();
+
+      }
+      else
+      {
+         ::berg::application::on_after_create_form(atom, puserinteractionParent);
+      }
+
+            
+
+      }
+
    
 
    void application::create_gpu_api_selection_options_body(::user::interaction* pparent)

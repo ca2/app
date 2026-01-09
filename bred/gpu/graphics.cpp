@@ -212,7 +212,17 @@ namespace gpu
 
 
    //}
+   void graphics::draw_rectangle(const ::double_rectangle &rectangle, ::draw2d::pen *ppen)
+   {
 
+      line(rectangle.top_left(), rectangle.top_right(), ppen);
+      line(rectangle.top_right(), rectangle.bottom_right(), ppen);
+      line(rectangle.bottom_right(), rectangle.bottom_left(), ppen);
+      line(rectangle.bottom_left(), rectangle.top_left(), ppen);
+
+      //::draw2d::graphics::draw_rectangle(rectangle, ppen);
+     
+   }
 
    //::gpu::renderer* graphics::end_draw_renderer_output()
    //{

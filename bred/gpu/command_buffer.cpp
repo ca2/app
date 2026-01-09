@@ -236,7 +236,7 @@ namespace gpu
    void command_buffer::set_scissor(const ::int_rectangle& rectangle)
    {
 
-
+      m_pgpurendertarget->m_pgpurenderer->m_pgpucontext->set_scissor(this, rectangle);
 
    }
 

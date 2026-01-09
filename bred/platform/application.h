@@ -133,7 +133,8 @@ namespace bred
 
 
       virtual void enable_draw2d_api_checkboxes(const ::string_array &stra);
-      void create_options_impact(const ::atom &atom, ::user::interaction *pparent);
+      void create_options_impact(const ::atom &atom, ::user::interaction *pparent) override;
+      void on_after_create_form(const ::atom &atom, ::user::interaction *pparent) override;
       virtual void create_gpu_api_selection_options_body(::user::interaction *pparent);
       virtual void set_gpu_api(const ::scoped_string &scopedstrGpuApi);
       virtual void set_draw2d_api(const ::scoped_string &scopedstrGpuApi);

@@ -62,9 +62,9 @@ namespace typeface_freetype
       //Character& face::get_character(const ::scoped_string& scopedstr)
    {
 
+
       if (!m_bFace)
       {
-         m_bFace = true;
          //return ch;
 
          defer_initialize_freetype();
@@ -118,6 +118,7 @@ namespace typeface_freetype
          }
 
          //create_draw_buffers();
+         m_bFace = true;
 
       }
 

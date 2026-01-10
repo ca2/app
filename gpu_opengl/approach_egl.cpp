@@ -45,7 +45,7 @@ namespace gpu_opengl
    // }
 
 
-   void approach::_on_before_create_window(windowing::window* pwindowParam)
+   void approach::_on_before_create_window(::acme::windowing::window* pwindowParam)
    {
 
       ::cast < ::gpu_opengl::device_egl > pegldevice = get_gpu_device(pwindowParam);
@@ -56,7 +56,7 @@ namespace gpu_opengl
    }
 
 
-   void approach::_on_create_window(::windowing::window* pwindowParam)
+   void approach::_on_create_window(::acme::windowing::window* pwindowParam)
    {
 
       auto pgpucontextMain = m_pgpudevice->main_context(pwindowParam);

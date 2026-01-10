@@ -162,7 +162,7 @@ namespace gpu_opengl
 
 
 
-   void context_egl::_create_window_context(windowing::window* pwindow)
+   void context_egl::_create_window_context(::acme::windowing::window* pwindow)
    {
 
       __create_egl_context();

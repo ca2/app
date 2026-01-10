@@ -198,6 +198,8 @@ list(APPEND library_source
    prodevian/immersion.cpp
    prodevian/immersion.h
    typeface/_.h
+   typeface/allocator.cpp
+   typeface/allocator.h
    typeface/character.h
    typeface/face.cpp
    typeface/face.h

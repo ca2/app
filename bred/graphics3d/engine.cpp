@@ -1022,8 +1022,34 @@ namespace graphics3d
       //          m_prenderer->getRenderPass(),
         //        globalSetLayout->getDescriptorSetLayout()
           //  };
-
       auto pcontext = gpu_context();
+
+
+            auto pcommandbufferLoadAssets = ::transfer(pcontext->m_pgpurenderer->m_pcommandbufferLoadAssets);
+
+      if (pcommandbufferLoadAssets)
+      {
+
+         pcontext->m_pgpurenderer->m_pcommandbufferLoadAssets2 = pcommandbufferLoadAssets;
+         // if (prenderer->m_pcommandbufferLoadAssets)
+         //{
+
+         //   auto pcommandbufferLoadAssets = ::transfer(prenderer->m_pcommandbufferLoadAssets);
+
+         //   m_papplication->fork([pcommandbufferLoadAssets]()
+         //      {
+
+         pcommandbufferLoadAssets->submit_command_buffer(nullptr);
+
+         pcommandbufferLoadAssets->wait_commands_to_execute();
+
+         //         });
+
+         //   }
+
+         //}
+      }
+
 
       auto pscene = m_pimmersionlayer->m_pscene;
 

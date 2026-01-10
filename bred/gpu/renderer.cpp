@@ -1047,31 +1047,31 @@ namespace gpu
    void renderer::on_after_load_scene(::graphics3d::scene_base* pscene)
    {
 
-      auto pcommandbufferLoadAssets = ::transfer(m_pcommandbufferLoadAssets);
-
-      if (pcommandbufferLoadAssets)
-      {
-
-         m_pcommandbufferLoadAssets2 = pcommandbufferLoadAssets;
-         //if (prenderer->m_pcommandbufferLoadAssets)
-         //{
-
-         //   auto pcommandbufferLoadAssets = ::transfer(prenderer->m_pcommandbufferLoadAssets);
-
-         //   m_papplication->fork([pcommandbufferLoadAssets]()
-         //      {
-
-         pcommandbufferLoadAssets->submit_command_buffer(nullptr);
-
-         pcommandbufferLoadAssets->wait_commands_to_execute();
-
-//         });
-
-//   }
-
-//}
-
-      }
+//      auto pcommandbufferLoadAssets = ::transfer(m_pcommandbufferLoadAssets);
+//
+//      if (pcommandbufferLoadAssets)
+//      {
+//
+//         m_pcommandbufferLoadAssets2 = pcommandbufferLoadAssets;
+//         //if (prenderer->m_pcommandbufferLoadAssets)
+//         //{
+//
+//         //   auto pcommandbufferLoadAssets = ::transfer(prenderer->m_pcommandbufferLoadAssets);
+//
+//         //   m_papplication->fork([pcommandbufferLoadAssets]()
+//         //      {
+//
+//         pcommandbufferLoadAssets->submit_command_buffer(nullptr);
+//
+//         pcommandbufferLoadAssets->wait_commands_to_execute();
+//
+////         });
+//
+////   }
+//
+////}
+//
+//      }
 
    }
 

@@ -202,7 +202,7 @@ namespace gpu_gpu
    {
 
       ødefer_construct(ptexture);
-
+      ptexture->m_pgpurenderer = m_pgpurenderer;
       ptexture->m_textureflags.m_bShaderResource = true;
 
       auto memory = file()->as_memory(path);

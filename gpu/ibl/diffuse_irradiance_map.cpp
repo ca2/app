@@ -160,6 +160,8 @@ namespace gpu
 
              pgpucommandbuffer->set_viewport(r);
 
+             pgpucommandbuffer->set_scissor(r);
+
              pgpucommandbuffer->set_source(ptextureSkybox);
 
              auto mvp = projection * impact * model;

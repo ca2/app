@@ -2,6 +2,7 @@
 #include "scene_base.h"
 #include "acme/filesystem/filesystem/file_context.h"
 #include "asset_manager.h"
+#include "bred/gpu/device.h"
 #include "bred/gpu/texture.h"
 #include "bred/graphics3d/engine.h"
 #include "bred/graphics3d/global_ubo1.h"
@@ -856,6 +857,9 @@ namespace graphics3d
       //      }
       //   }
       //}
+      auto pcommandbuffer = m_pgpucontext->beginSingleTimeCommands(m_pgpucontext->m_pgpudevice->graphics_queue());
+      // this->flushCommandBuffer(layoutCmd, m_vkqueueTransfer3, true);
+      m_pgpucontext->m_pcommandbufferMain = pcommandbuffer;
 
       try
       {
@@ -878,8 +882,11 @@ namespace graphics3d
       {
          try
          {
+
+
             generateIblIrradianceMap();
             generateIblPrefilteredEnvMap();
+
             information("[scene] IBL assets generated successfully.");
          }
          catch (const ::exception &e)
@@ -887,6 +894,9 @@ namespace graphics3d
             errorf("[scene] IBL generation failed: %s", e.get_message().c_str());
          }
       }
+
+                  m_pgpucontext->endSingleTimeCommands(pcommandbuffer);
+      m_pgpucontext->m_pcommandbufferMain.release();
 
 
       //}

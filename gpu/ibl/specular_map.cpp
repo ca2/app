@@ -217,6 +217,8 @@ namespace gpu
 
                pgpucommandbuffer->set_viewport(r);
 
+               pgpucommandbuffer->set_scissor(r);
+
                auto impact = cameraAngles[iLayer];
 
                auto mvp = projection * impact * model;
@@ -269,13 +271,15 @@ namespace gpu
 
          rectangleViewport.set(0, 0, m_uBrdfConvolutionMapWidth, m_uBrdfConvolutionMapHeight);
 
-         m_pgpucontext->set_viewport(pcommandbuffer, rectangleViewport);
+         pcommandbuffer->set_viewport(rectangleViewport);
+
+         pcommandbuffer->set_scissor(rectangleViewport);
 
          m_pgpucontext->clear(m_ptextureBrdfConvolutionMap, ::color::transparent);
 
          pcommandbuffer->draw(m_pfullscreenquadBrdf);
          
-         m_pfullscreenquadBrdf->unbind(pcommandbuffer);
+         //m_pfullscreenquadBrdf->unbind(pcommandbuffer);
 
          pcommandbuffer->end_render();
 

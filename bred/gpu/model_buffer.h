@@ -127,12 +127,14 @@ namespace gpu
 
          modeldata.set_vertexes(vertexa);
 
-         ødefer_construct(m_pbufferVertex);
+         _static_initialize_vertex_buffer(modeldata.vertex_data());
 
-         auto blockVertexData = modeldata.vertex_data();
+         //ødefer_construct(m_pbufferVertex);
 
-         m_pbufferVertex->static_initialize_memory_buffer_with_model_buffer(
-            this, blockVertexData, memory_buffer::e_type_vertex_buffer);
+         //auto blockVertexData = modeldata.vertex_data();
+
+         //m_pbufferVertex->static_initialize_memory_buffer_with_model_buffer(
+         //   this, blockVertexData, memory_buffer::e_type_vertex_buffer);
 
          set_input_layout(m_pgpucontext->input_layout(::gpu_properties< VERTEX >()));
 
@@ -205,14 +207,14 @@ namespace gpu
 
          //auto size = iIndexCount * m_iIndexTypeSize;
 
-         ødefer_construct(m_pbufferIndex);
+         //ødefer_construct(m_pbufferIndex);
 
-         auto blockIndexData = m_pmodeldatabase2->index_data();
+         //auto blockIndexData = m_pmodeldatabase2->index_data();
 
-         m_pbufferIndex->static_initialize_memory_buffer_with_model_buffer(this, 
-            blockIndexData,
-                                                                           memory_buffer::e_type_index_buffer);
-
+         //m_pbufferIndex->static_initialize_memory_buffer_with_model_buffer(this, 
+           // blockIndexData,
+                                                                           //memory_buffer::e_type_index_buffer);
+                  _static_initialize_index_buffer(m_pmodeldatabase2->index_data());
 
       }
 

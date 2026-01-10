@@ -86,6 +86,8 @@ namespace gpu
 
          øconstruct(m_ptextureHdr);
 
+         m_ptextureHdr->m_textureflags.m_bShaderResource = true;
+
          m_ptextureHdr->initialize_hdr_texture_on_memory(m_pgpucontext->m_pgpurenderer, block);
 
          øconstruct(m_ptextureCubemap);
@@ -133,7 +135,7 @@ namespace gpu
 
          floating_matrix4 cameraAngles[6];
 
-         if (m_pgpucontext->m_eapi == ::gpu::e_api_vulkan)
+         if (m_pgpucontext->m_eapi == ::gpu::e_api_vulkan || m_pgpucontext->m_eapi == ::gpu::e_api_directx12)
          {
 
             cameraAngles[0] = lookAt(origin, unitX, -unitY); // X+ (right)

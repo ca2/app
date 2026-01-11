@@ -190,7 +190,7 @@ public:
    //::pointer<manual_reset_happening>                   m_pmanualresethappeningHappening;
    ::comparable_array<e_happening>                 m_ehappeninga;
 
-
+   ::string_map < ::procedure >                    m_mapDoHappenings;
 #ifdef WINDOWS
    error_code                                      m_errorcodeHresultCoInitialize;
 #endif

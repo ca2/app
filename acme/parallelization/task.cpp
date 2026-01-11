@@ -1122,6 +1122,26 @@ bool task::task_iteration()
 
    }
 
+   for (auto & pair : m_mapDoHappenings)
+   {
+
+      ::string strName = pair.m_element1;
+
+      ::procedure & procedureDoHappenings = pair.m_element2;
+
+      try
+      {
+
+         procedureDoHappenings();
+
+      }
+      catch (...)
+      {
+
+      }
+
+   }
+
    handle_next_posted_request();
 
    handle_posted_procedures();

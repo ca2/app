@@ -112,22 +112,23 @@ namespace gpu
                      continue;
                   }
 
-                  auto pmesh = pmodel->øcreate<::gpu::model::mesh>();
-                  pmesh->m_pgpucontext = pmodel->m_pgpucontext;
-                  
+                  ::pointer < ::gpu::model_data_base > pmodeldataNew;
+
+                  ::pointer < ::gpu::model::material > pmaterialNew;
+
                   if (pmodel->m_egpumodel == ::gpu::e_model_gltf)
                   {
 
                      auto pmodeldata = pmodel->øcreate_new < ::gpu::model_data<::gpu::gltf::vertex>>();
 
                      processMesh(pmodel, pmodeldata->vertexes(), pmodeldata->indexes(),
-                        
-                        pmesh->m_pmaterial,
+                        pmaterialNew,
                                  mesh, scene, pmodel->m_pmaterialOverride);
 
                      pmodeldata->update();
 
-                     pmesh->m_pmodeldata = pmodeldata;
+                     pmodeldataNew = pmodeldata;
+
                   }
                   else if (pmodel->m_egpumodel == ::gpu::e_model_wavefront)
                   {
@@ -138,12 +139,12 @@ namespace gpu
 
                      processMesh(pmodel, pmodeldata->vertexes(),
                               pmodeldata->indexes(), 
-                        pmesh->m_pmaterial,
+                        pmaterialNew,
                                  mesh, scene, pmodel->m_pmaterialOverride);
 
                      pmodeldata->update();
                     
-                     pmesh->m_pmodeldata = pmodeldata;
+                     pmodeldataNew = pmodeldata;
 
                   }
                   else
@@ -152,10 +153,19 @@ namespace gpu
                      throw ::exception(error_wrong_state);
 
                   }
-                  pmodel->øconstruct(pmesh->m_pmodelbuffer);
-                  pmesh->m_pmodelbuffer->initialize_gpu_context_object(pmodel->m_pgpucontext);
-                  pmesh->m_pmodelbuffer->set_data(pmesh->m_pmodeldata);
-                  pmesh->initialize_gpu_mesh(pmesh->m_pmaterial);
+
+                  auto pmesh = pmodel->øcreate<::gpu::model::mesh>();
+
+                  pmesh->initialize_gpu_mesh(
+                     pmodel->m_pgpucontext,
+                     pmaterialNew,
+                     pmodeldataNew);
+
+                  //  = pmodel->m_pgpucontext;
+                  //
+                  // pmodel->øconstruct(pmesh->m_pmodelbuffer);
+                  // pmesh->m_pmodelbuffer->initialize_gpu_context_object(pmodel->m_pgpucontext);
+                  // pmesh->m_pmodelbuffer->set_data(pmesh->m_pmodeldata);
                   auto m = node->mTransformation;
                   auto p = node->mParent;
 

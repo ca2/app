@@ -118,6 +118,14 @@ namespace gpu
    }
 
 
+   int swap_chain::swap_chain_frame_count()
+   {
+
+      return -1;
+
+   }
+
+
    ::gpu::texture* swap_chain::current_swap_chain_texture()
    {
 

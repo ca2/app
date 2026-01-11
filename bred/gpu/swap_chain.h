@@ -46,6 +46,7 @@ namespace gpu
       virtual void set_present_state();
       virtual void swap_buffers();
       virtual int swap_chain_frame_index();
+      virtual int swap_chain_frame_count();
       virtual ::gpu::texture* current_swap_chain_texture();
 
 

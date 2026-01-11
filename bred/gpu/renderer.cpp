@@ -404,6 +404,12 @@ namespace gpu
 
       }
 
+      if (m_pgpucontext->m_eoutput == e_output_swap_chain)
+      {
+         m_pgpucontext->get_swap_chain()->defer_check_swap_chain();
+      }
+
+
       if (m_commandbuffera.is_empty())
       {
 

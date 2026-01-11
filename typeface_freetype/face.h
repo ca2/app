@@ -29,6 +29,8 @@ namespace typeface_freetype
       void create_character(::typeface::character& ch, const ::scoped_string& scopedstr) override;
 
 
+      void get_text_metric(::write_text::text_metric* ptextmetrics);
+
    };
 
 

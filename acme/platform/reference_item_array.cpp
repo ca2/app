@@ -53,7 +53,12 @@ reference_item_array::reference_item_array(::subparticle* psubparticle, ::subpar
    else
    {
 
-      ASSERT(psubparticleParent->m_preferenceitema);
+      if (::is_null(psubparticleParent->m_preferenceitema))
+      {
+
+         throw ::exception(error_wrong_state);
+
+      }
 
       psubparticleParent->m_preferenceitema->add_item_array(this);
 

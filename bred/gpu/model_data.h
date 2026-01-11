@@ -292,32 +292,18 @@ namespace gpu
       }
 
 
-      virtual ::block vertex_data()
-      {
-
-         return {m_vertexes.data(), m_vertexes.get_size_in_bytes()};
-
-            }
-      virtual ::block index_data()
-      {
-
-         return {m_indexes.data(), m_indexes.get_size_in_bytes()};
-
-      }
+      virtual ::block vertex_data() { return {m_vertexes.data(), m_vertexes.get_size_in_bytes()}; }
+      virtual ::block index_data() { return {m_indexes.data(), m_indexes.get_size_in_bytes()}; }
 
       virtual const ::block vertex_data()const { return {m_vertexes.data(), m_vertexes.get_size_in_bytes()}; }
       virtual const ::block index_data() const { return {m_indexes.data(), m_indexes.get_size_in_bytes()}; }
 
-      const ::array_base<VERTEX> & vertexes() const
-      {
-
-         return m_vertexes;
-
-      }
+      const ::array_base<VERTEX> & vertexes() const { return m_vertexes; }
       const ::array_base<INDEX> &indexes() const { return m_indexes; }
 
-            ::array_base<VERTEX> &vertexes() { return m_vertexes; }
+      ::array_base<VERTEX> &vertexes() { return m_vertexes; }
       ::array_base<INDEX> &indexes() { return m_indexes; }
+
 
    };
 

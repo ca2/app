@@ -21,10 +21,14 @@ namespace typeface_fontconfig
    }
 
 
-   ::file::path typeface::_get_font_file_path_by_font_name(const ::scoped_string &scopedstr)
+   ::file::path typeface::_get_font_file_path_by_font_name(const ::scoped_string &scopedstrFontName)
    {
 
-      FcPattern *pat = FcNameParse((FcChar8 *)m_strFontName.c_str());
+      ::file::path path;
+
+      ::string strFontName(scopedstrFontName);
+
+      FcPattern *pat = FcNameParse((FcChar8 *)strFontName.c_str());
       FcConfigSubstitute(NULL, pat, FcMatchPattern);
       FcDefaultSubstitute(pat);
 
@@ -39,6 +43,9 @@ namespace typeface_fontconfig
 
          path = (const char *)file;
       }
+
+      return path;
+
    }
 
 

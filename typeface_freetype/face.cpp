@@ -7,6 +7,7 @@
 #include "bred/platform/system.h"
 #include "bred/typeface/typeface.h"
 
+#include "aura/graphics/write_text/text_metric.h"
 #ifdef WINDOWS_DESKTOP
 #pragma comment( lib, "freetype.lib" )
 #endif
@@ -286,6 +287,96 @@ namespace typeface_freetype
 //      //return ch;
 
    }
+
+
+
+   void face::get_text_metric(::write_text::text_metric* ptextmetrics)
+   {
+
+// #include <ft2build.h>
+// #include FT_FREETYPE_H
+//
+// void face::get_text_metric(::write_text::text_metric* pmetric)
+// {
+   if (!ptextmetrics)
+   {
+      throw ::exception(error_null_pointer);
+   }
+
+   if (!m_face)
+   {
+      throw ::exception(error_null_pointer);
+   }
+
+   // -----------------------------------------
+   // Configuration (match GDI+ behavior)
+   // -----------------------------------------
+
+    double fontSizePt = m_iPixelSize;     // same value you passed to GDI+ Font
+    double dpiY       = 96.0;             // or get from system if you prefer
+   //
+   // // Set character size in points (26.6 format)
+   // FT_Error err = FT_Set_Char_Size(
+   //    m_face,
+   //    0,
+   //    (FT_F26Dot6)(fontSizePt * 64.0),
+   //    (FT_UInt)dpiY,
+   //    (FT_UInt)dpiY
+   // );
+
+      FT_Set_Pixel_Sizes(m_face, 0, m_iPixelSize);
+   // if (err)
+   // {
+   //    throw ::exception(error_failed);
+   // }
+
+   FT_Size_Metrics& metrics = m_face->size->metrics;
+
+   // -----------------------------------------
+   // Raw font units
+   // -----------------------------------------
+
+   double emHeight     = (double)m_face->units_per_EM;
+   double cellAscent   = (double)m_face->ascender;
+   double cellDescent  = (double)(-m_face->descender);
+   double lineSpacing  = (double)m_face->height;
+
+   // -----------------------------------------
+   // Convert to pixels (match your math)
+   // -----------------------------------------
+
+   double ascentPx =
+      fontSizePt * cellAscent * dpiY / (emHeight * 72.0 + 0.5);
+
+   double descentPx =
+      fontSizePt * cellDescent * dpiY / (emHeight * 72.0 + 0.5);
+
+   // FreeType font height (already scaled)
+   double fontHeightPx =
+      metrics.height / 64.0;
+
+   double lineSpacingPx =
+      fontSizePt * lineSpacing * dpiY / (emHeight * 72.0 + 0.5);
+
+   double effectiveLineSpacing =
+      std::max(fontHeightPx, lineSpacingPx);
+
+   // -----------------------------------------
+   // Fill output
+   // -----------------------------------------
+
+   ptextmetrics->m_dAscent  = ascentPx;
+   ptextmetrics->m_dDescent = descentPx;
+   ptextmetrics->m_dHeight  = fontHeightPx;
+
+   ptextmetrics->m_dInternalLeading = 0.0;
+
+   ptextmetrics->m_dExternalLeading =
+      effectiveLineSpacing - (ascentPx + descentPx);
+//}
+
+   }
+
 
 
 } // namespace typeface_freetype

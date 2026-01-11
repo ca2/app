@@ -72,7 +72,7 @@ public:
             return pitem;
          }
       }
-      throw ::exception(error_not_found);
+      //throw ::exception(error_not_found);
       return nullptr;
    }
    MAIN_TYPE * operator[](const KEY &key)
@@ -84,7 +84,7 @@ public:
             return pitem;
          }
       }
-      throw ::exception(error_not_found);
+      //throw ::exception(error_not_found);
       return nullptr;
    }
 

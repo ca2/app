@@ -17,8 +17,10 @@ namespace bred
 
       m_optionaGpuApi.main_add("opengl", "OpenGL");
       m_optionaGpuApi.main_add("vulkan", "Vulkan");   
+#ifdef WINDOWS_DESKTOP
       m_optionaGpuApi.main_add("directx11", "DirectX 11");
       m_optionaGpuApi.main_add("directx12", "DirectX 12");
+#endif
 
 #ifdef WINDOWS_DESKTOP
       m_optionaDraw2dApi.main_add("gdiplus", "GDI+");
@@ -139,7 +141,7 @@ namespace bred
       try
       {
 
-         set_application_file_setting("graphics3d.txt", scopedstrGpuApi);
+         set_application_file_setting_by_operating_system("graphics3d.txt", scopedstrGpuApi);
 
       }
       catch (...)
@@ -249,7 +251,7 @@ namespace bred
    ::string application::get_gpu_api()
    { 
       
-      ::string strGpuApi = application_file_setting("graphics3d.txt");
+      ::string strGpuApi = application_file_setting_by_operating_system("graphics3d.txt");
 
       //::string_array straOk;
 
@@ -419,7 +421,7 @@ namespace bred
    ::string application::get_draw2d_api()
    {
 
-      ::string strDraw2dApi = application_file_setting("draw2d.txt");
+      ::string strDraw2dApi = application_file_setting_by_operating_system("draw2d.txt");
 
       auto straOk = get_ok_draw2d_api();
 
@@ -452,13 +454,13 @@ namespace bred
    }
 
 
-   void application::set_draw2d_api(const ::scoped_string &scopedstrGpuApi)
+   void application::set_draw2d_api(const ::scoped_string &scopedstrDraw2dApi)
    {
 
       try
       {
 
-         set_application_file_setting("draw2d.txt", scopedstrGpuApi);
+         set_application_file_setting_by_operating_system("draw2d.txt", scopedstrDraw2dApi);
 
       }
       catch (...)

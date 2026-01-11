@@ -203,6 +203,8 @@ list(APPEND library_source
    typeface/character.h
    typeface/face.cpp
    typeface/face.h
+   typeface/typeface.cpp
+   typeface/typeface.h
    user/user/graphics3d.cpp
    user/user/graphics3d.h
    user/user/user.cpp

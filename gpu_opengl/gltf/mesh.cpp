@@ -362,127 +362,127 @@ namespace gpu_opengl
       }
 
 
-      void mesh::on_initialize_gpu_mesh()
-      {
-
-         //// // create our data structures
-         //// glGenVertexArrays(1, &mVAO);
-         //// glGenBuffers(1, &mVBO);
-         //// glGenBuffers(1, &mEBO);
-         ////
-         //// glBindVertexArray(mVAO); // use this VAO for subsequent calls
-         ////
-         //// glBindBuffer(GL_ARRAY_BUFFER, mVBO); // use this VBO for subsequent calls
-         //// glBufferData(GL_ARRAY_BUFFER, mVertices.size() * sizeof(::gpu::gltf::vertex), &mVertices[0],
-         ////              GL_STATIC_DRAW); // copy over the vertex data
-         ////
-         //// glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mEBO); // use this EBO for subsequent calls
-         //// glBufferData(GL_ELEMENT_ARRAY_BUFFER, m_indexa.size() * sizeof(unsigned int), &m_indexa[0],
-         ////              GL_STATIC_DRAW); // copy over the index data
-         ////
-         //// // setup the locations of vertex data
-         //// // positions
-         //// glEnableVertexAttribArray(0);
-         //// glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(::gpu::gltf::vertex), (void *)0);
-         ////
-         //// // normals
-         //// glEnableVertexAttribArray(1);
-         //// glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(::gpu::gltf::vertex), (void *)offsetof(::gpu::gltf::vertex, mNormal));
-         ////
-         //// // texture coordinates
-         //// glEnableVertexAttribArray(2);
-         //// glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, sizeof(::gpu::gltf::vertex),
-         ////                       (void *)offsetof(::gpu::gltf::vertex, mTextureCoordinates));
-         ////
-         //// // tangents
-         //// glEnableVertexAttribArray(3);
-         //// glVertexAttribPointer(3, 3, GL_FLOAT, GL_FALSE, sizeof(::gpu::gltf::vertex),
-         ////                       (void *)offsetof(::gpu::gltf::vertex, mTangent));
-         ////
-         //// // bitangents
-         //// glEnableVertexAttribArray(4);
-         //// glVertexAttribPointer(4, 3, GL_FLOAT, GL_FALSE, sizeof(::gpu::gltf::vertex),
-         ////                       (void *)offsetof(::gpu::gltf::vertex, mBitangent));
-         ////
-         //// glBindVertexArray(0);
-         ////
-         //// create our data structures
-         //glGenVertexArrays(1, &m_uVAO);
-         //glGenBuffers(1, &m_uVBO);
-         //glGenBuffers(1, &m_uEBO);
-
-         //glBindVertexArray(m_uVAO); // use this VAO for subsequent calls
-
-
-         //m_pmodelbuffer->set_input_layout(m_pgpucontext->input_layout(m_pmodeldata->gpu_properties()));
-
-         ////if (m_pmodelbuffer->m_pmodeldatabas2->vertex_type() == typeid(::gpu::gltf::vertex))
-         ////{
-
-         ////   auto indexSize = m_modeldata.m_indexes.size();
-         ////   auto indexData = m_modeldata.m_indexes.data();
-
-         ////   if (indexSize == 2388)
-         ////   {
-
-         ////      information() << "2388 indexes";
-         ////   }
-
-         ////   auto vertexSize = m_modeldata.m_vertexes.size();
-         ////   auto vertexData = m_modeldata.m_vertexes.data();
-
-         ////   auto vertexByteCount = vertexSize * sizeof(::gpu::gltf::vertex);
-
-         ////   glBindBuffer(GL_ARRAY_BUFFER, m_uVBO); // use this VBO for subsequent calls
-         ////   glBufferData(GL_ARRAY_BUFFER, vertexByteCount, vertexData, GL_STATIC_DRAW); // copy over the vertex data
-
-
-         ////   glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_uEBO); // use this EBO for subsequent calls
-         ////   glBufferData(GL_ELEMENT_ARRAY_BUFFER, indexSize * sizeof(unsigned int), indexData,
-         ////                GL_STATIC_DRAW); // copy over the index data
-
-         ////   // setup the locations of vertex data
-         ////   // positions
-         ////   glEnableVertexAttribArray(0);
-         ////   glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(::gpu::gltf::vertex),
-         ////                         (void *)offsetof(::gpu::gltf::vertex, position));
-
-         ////   // normals
-         ////   glEnableVertexAttribArray(1);
-         ////   glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(::gpu::gltf::vertex),
-         ////                         (void *)offsetof(::gpu::gltf::vertex, normal));
-
-         ////   // texture coordinates
-         ////   glEnableVertexAttribArray(2);
-         ////   glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, sizeof(::gpu::gltf::vertex),
-         ////                         (void *)offsetof(::gpu::gltf::vertex, uv));
-
-         ////   // color
-         ////   glEnableVertexAttribArray(3);
-         ////   glVertexAttribPointer(3, 4, GL_FLOAT, GL_FALSE, sizeof(::gpu::gltf::vertex),
-         ////                         (void *)offsetof(::gpu::gltf::vertex, color));
-
-         ////   // tangent with .w = handness
-         ////   glEnableVertexAttribArray(4);
-         ////   glVertexAttribPointer(4, 4, GL_FLOAT, GL_FALSE, sizeof(::gpu::gltf::vertex),
-         ////                         (void *)offsetof(::gpu::gltf::vertex, tangent));
-
-         ////   glBindVertexArray(0);
-         ////}
-         ////else if (m_pmodelbuffer->m_pmodeldatabas2->vertex_type() == typeid(::graphcis3d::Vertex))
-         ////{
-
-
-
-         ////}
-         ////else
-         ////{
-
-         ////   throw ::exception(error_wrong_state);
-
-         ////}
-
-      }
+      // void mesh::on_initialize_gpu_mesh()
+      // {
+      //
+      //    //// // create our data structures
+      //    //// glGenVertexArrays(1, &mVAO);
+      //    //// glGenBuffers(1, &mVBO);
+      //    //// glGenBuffers(1, &mEBO);
+      //    ////
+      //    //// glBindVertexArray(mVAO); // use this VAO for subsequent calls
+      //    ////
+      //    //// glBindBuffer(GL_ARRAY_BUFFER, mVBO); // use this VBO for subsequent calls
+      //    //// glBufferData(GL_ARRAY_BUFFER, mVertices.size() * sizeof(::gpu::gltf::vertex), &mVertices[0],
+      //    ////              GL_STATIC_DRAW); // copy over the vertex data
+      //    ////
+      //    //// glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mEBO); // use this EBO for subsequent calls
+      //    //// glBufferData(GL_ELEMENT_ARRAY_BUFFER, m_indexa.size() * sizeof(unsigned int), &m_indexa[0],
+      //    ////              GL_STATIC_DRAW); // copy over the index data
+      //    ////
+      //    //// // setup the locations of vertex data
+      //    //// // positions
+      //    //// glEnableVertexAttribArray(0);
+      //    //// glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(::gpu::gltf::vertex), (void *)0);
+      //    ////
+      //    //// // normals
+      //    //// glEnableVertexAttribArray(1);
+      //    //// glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(::gpu::gltf::vertex), (void *)offsetof(::gpu::gltf::vertex, mNormal));
+      //    ////
+      //    //// // texture coordinates
+      //    //// glEnableVertexAttribArray(2);
+      //    //// glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, sizeof(::gpu::gltf::vertex),
+      //    ////                       (void *)offsetof(::gpu::gltf::vertex, mTextureCoordinates));
+      //    ////
+      //    //// // tangents
+      //    //// glEnableVertexAttribArray(3);
+      //    //// glVertexAttribPointer(3, 3, GL_FLOAT, GL_FALSE, sizeof(::gpu::gltf::vertex),
+      //    ////                       (void *)offsetof(::gpu::gltf::vertex, mTangent));
+      //    ////
+      //    //// // bitangents
+      //    //// glEnableVertexAttribArray(4);
+      //    //// glVertexAttribPointer(4, 3, GL_FLOAT, GL_FALSE, sizeof(::gpu::gltf::vertex),
+      //    ////                       (void *)offsetof(::gpu::gltf::vertex, mBitangent));
+      //    ////
+      //    //// glBindVertexArray(0);
+      //    ////
+      //    //// create our data structures
+      //    //glGenVertexArrays(1, &m_uVAO);
+      //    //glGenBuffers(1, &m_uVBO);
+      //    //glGenBuffers(1, &m_uEBO);
+      //
+      //    //glBindVertexArray(m_uVAO); // use this VAO for subsequent calls
+      //
+      //
+      //    //m_pmodelbuffer->set_input_layout(m_pgpucontext->input_layout(m_pmodeldata->gpu_properties()));
+      //
+      //    ////if (m_pmodelbuffer->m_pmodeldatabas2->vertex_type() == typeid(::gpu::gltf::vertex))
+      //    ////{
+      //
+      //    ////   auto indexSize = m_modeldata.m_indexes.size();
+      //    ////   auto indexData = m_modeldata.m_indexes.data();
+      //
+      //    ////   if (indexSize == 2388)
+      //    ////   {
+      //
+      //    ////      information() << "2388 indexes";
+      //    ////   }
+      //
+      //    ////   auto vertexSize = m_modeldata.m_vertexes.size();
+      //    ////   auto vertexData = m_modeldata.m_vertexes.data();
+      //
+      //    ////   auto vertexByteCount = vertexSize * sizeof(::gpu::gltf::vertex);
+      //
+      //    ////   glBindBuffer(GL_ARRAY_BUFFER, m_uVBO); // use this VBO for subsequent calls
+      //    ////   glBufferData(GL_ARRAY_BUFFER, vertexByteCount, vertexData, GL_STATIC_DRAW); // copy over the vertex data
+      //
+      //
+      //    ////   glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_uEBO); // use this EBO for subsequent calls
+      //    ////   glBufferData(GL_ELEMENT_ARRAY_BUFFER, indexSize * sizeof(unsigned int), indexData,
+      //    ////                GL_STATIC_DRAW); // copy over the index data
+      //
+      //    ////   // setup the locations of vertex data
+      //    ////   // positions
+      //    ////   glEnableVertexAttribArray(0);
+      //    ////   glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(::gpu::gltf::vertex),
+      //    ////                         (void *)offsetof(::gpu::gltf::vertex, position));
+      //
+      //    ////   // normals
+      //    ////   glEnableVertexAttribArray(1);
+      //    ////   glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(::gpu::gltf::vertex),
+      //    ////                         (void *)offsetof(::gpu::gltf::vertex, normal));
+      //
+      //    ////   // texture coordinates
+      //    ////   glEnableVertexAttribArray(2);
+      //    ////   glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, sizeof(::gpu::gltf::vertex),
+      //    ////                         (void *)offsetof(::gpu::gltf::vertex, uv));
+      //
+      //    ////   // color
+      //    ////   glEnableVertexAttribArray(3);
+      //    ////   glVertexAttribPointer(3, 4, GL_FLOAT, GL_FALSE, sizeof(::gpu::gltf::vertex),
+      //    ////                         (void *)offsetof(::gpu::gltf::vertex, color));
+      //
+      //    ////   // tangent with .w = handness
+      //    ////   glEnableVertexAttribArray(4);
+      //    ////   glVertexAttribPointer(4, 4, GL_FLOAT, GL_FALSE, sizeof(::gpu::gltf::vertex),
+      //    ////                         (void *)offsetof(::gpu::gltf::vertex, tangent));
+      //
+      //    ////   glBindVertexArray(0);
+      //    ////}
+      //    ////else if (m_pmodelbuffer->m_pmodeldatabas2->vertex_type() == typeid(::graphcis3d::Vertex))
+      //    ////{
+      //
+      //
+      //
+      //    ////}
+      //    ////else
+      //    ////{
+      //
+      //    ////   throw ::exception(error_wrong_state);
+      //
+      //    ////}
+      //
+      // }
 
    } // namespace gltf
 

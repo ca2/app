@@ -13,6 +13,8 @@ list(APPEND library_source
         face.h
         framework.cpp
         framework.h
+   typeface_fontconfig.cpp
+   typeface_fontconfig.h
 )
 
 list(APPEND library_references

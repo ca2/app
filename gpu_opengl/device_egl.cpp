@@ -447,7 +447,7 @@ namespace gpu_opengl
 
       ::Display * pDisplay = nullptr;
 
-      pdisplay->get_os_display_handle(&pDisplay, sizeof(pDisplay));
+      pDisplay = (Display *) pdisplay->_get_x11_display();
 
       //m_display = eglGetDisplay((EGLNativeDisplayType)0);
       //auto egldisplay = eglGetDisplay(EGL_DEFAULT_DISPLAY);

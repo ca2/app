@@ -114,7 +114,12 @@ namespace typeface
 
       //ch.m_ppixmap->initialize_gpu_pixmap(m_pgpurenderer, { ch.Size.x, ch.Size.y });
 
-      ch.m_ppixmap->set_pixels(p);
+      if (::is_set(p))
+      {
+
+         ch.m_ppixmap->set_pixels(p);
+
+      }
 
       //glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
       //// generate texture

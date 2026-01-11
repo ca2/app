@@ -137,7 +137,7 @@ namespace bred
       void on_after_create_form(const ::atom &atom, ::user::interaction *pparent) override;
       virtual void create_gpu_api_selection_options_body(::user::interaction *pparent);
       virtual void set_gpu_api(const ::scoped_string &scopedstrGpuApi);
-      virtual void set_draw2d_api(const ::scoped_string &scopedstrGpuApi);
+      virtual void set_draw2d_api(const ::scoped_string &scopedstrDraw2dApi);
       virtual void set_graphics3d_output(const ::scoped_string &scopedstrOutput);
       virtual ::string get_gpu_api();
       virtual ::string get_draw2d_api();

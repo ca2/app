@@ -13,7 +13,7 @@
 
 
 #include <assert.h>
-
+#include "swap_chain.h"
 
 namespace gpu
 {
@@ -207,6 +207,11 @@ namespace gpu
 
    int render_target::get_frame_count()
    {
+
+      if (m_pgpurenderer->m_pgpucontext->m_eoutput ==::gpu:: e_output_swap_chain)
+      {
+         return m_pgpurenderer->m_pgpucontext->get_swap_chain()->swap_chain_frame_count();
+      }
 
       return (int)m_ptexturea->size();
 

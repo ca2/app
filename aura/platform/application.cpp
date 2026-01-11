@@ -1791,7 +1791,7 @@ namespace aura
 
       {
 
-         ::string strImplementation = application_file_setting("draw2d.txt");
+         ::string strImplementation = application_file_setting_by_operating_system("draw2d.txt");
 
          strImplementation.make_lower();
 
@@ -1943,7 +1943,7 @@ namespace aura
 
       {
 
-         ::string strImplementation = application_file_setting("graphics3d.txt");
+         ::string strImplementation = application_file_setting_by_operating_system("graphics3d.txt");
 
          strImplementation.make_lower();
 

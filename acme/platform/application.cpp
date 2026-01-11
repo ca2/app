@@ -2613,6 +2613,39 @@ void application::start_application()
    }
 
 
+   string application::application_file_setting_by_operating_system(const ::scoped_string& scopedstrFileName)
+   {
+
+      ::string strFilename;
+
+      strFilename = OPERATING_SYSTEM_NAME;
+
+      strFilename += "/";
+
+      strFilename += scopedstrFileName;
+
+      return application_file_setting(strFilename);
+
+   }
+
+
+   void application::set_application_file_setting_by_operating_system(const ::scoped_string &scopedstrFileName,
+                                               const ::scoped_string &scopedstr)
+   {
+
+      ::string strFilename;
+
+      strFilename = OPERATING_SYSTEM_NAME;
+
+      strFilename += "/";
+
+      strFilename += scopedstrFileName;
+
+      set_application_file_setting(strFilename, scopedstr);
+
+   }
+
+
 } // namespace platform
 
 

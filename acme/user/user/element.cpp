@@ -4935,7 +4935,7 @@ namespace user
    }
 
 
-   void element::pick_single_file_to_save(const ::file::file_dialog_filter & filedialogfilter, const ::function < void(::file::file_dialog * pdialog) > & function)
+   void element::pick_single_file_to_save(const ::file::file_dialog_filter & filedialogfilter, const ::function < void(::file::file_dialog * pdialog) > & procedureResponse)
    {
 
       auto pfiledialog = node()->node_file_dialog();
@@ -4944,7 +4944,7 @@ namespace user
 
       pfiledialog->m_filedialogfilter.copy(filedialogfilter);
 
-      pfiledialog->m_function = function;
+      pfiledialog->m_procedureResponse = procedureResponse;
       //{
 
       //      function(pdialog);
@@ -4968,7 +4968,7 @@ namespace user
    }
 
 
-void element::pick_single_file_to_open(const ::file::file_dialog_filter & filedialogfilter, const ::function < void(::file::file_dialog* pdialog) > & function)
+void element::pick_single_file_to_open(const ::file::file_dialog_filter & filedialogfilter, const ::function < void(::file::file_dialog* pdialog) > & procedureResponse)
 {
 
    auto pfiledialog = node()->node_file_dialog();
@@ -4977,7 +4977,7 @@ void element::pick_single_file_to_open(const ::file::file_dialog_filter & filedi
 
    pfiledialog->m_filedialogfilter.copy(filedialogfilter);
 
-   pfiledialog->m_function = function;
+   pfiledialog->m_procedureResponse = procedureResponse;
 
    //pfiledialog->m_function = [function](auto pdialog)
    //{
@@ -5003,12 +5003,12 @@ void element::pick_single_file_to_open(const ::file::file_dialog_filter & filedi
 }
 
 
-void element::pick_multiple_file(const ::file::file_dialog_filter & filedialogfiltera, const ::function < void(::file::file_dialog * pdialog) > & function)
+void element::pick_multiple_file(const ::file::file_dialog_filter & filedialogfiltera, const ::function < void(::file::file_dialog * pdialog) > & procedureResponse)
    {
 
       auto pfiledialog = node()->node_file_dialog();
 
-      pfiledialog->m_function = function;
+      pfiledialog->m_procedureResponse = procedureResponse;
 
       //pfiledialog->m_function = [function](auto pdialog)
       //{
@@ -5035,12 +5035,12 @@ void element::pick_multiple_file(const ::file::file_dialog_filter & filedialogfi
    }
 
 
-   void element::pick_single_folder(const ::function < void(::file::file_dialog * pdialog) > & function)
+   void element::pick_single_folder(const ::function < void(::file::file_dialog * pdialog) > & procedureResponse)
    {
 
       auto pfiledialog = node()->node_file_dialog();
 
-      pfiledialog->m_function = function;
+      pfiledialog->m_procedureResponse = procedureResponse;
 
       //pfiledialog->m_function = [function](auto pdialog)
       //{

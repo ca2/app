@@ -91,6 +91,16 @@ namespace acme
       }
 
 
+      long long display::_get_x11_root_window()
+      {
+
+         throw ::interface_only();
+
+         return 0;
+
+      }
+
+
       void display::destroy()
       {
 

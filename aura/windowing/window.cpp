@@ -866,6 +866,13 @@ namespace windowing
       main_send([this]()
          {
 
+         if (!::system()->m_papplicationMain->m_pacmeuserinteractionMain)
+         {
+
+            ::system()->m_papplicationMain->m_pacmeuserinteractionMain = m_pacmeuserinteraction;
+
+         }
+
             _create_window();
 
             on_create_window();

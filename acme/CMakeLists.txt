@@ -3109,7 +3109,9 @@ if (${LINUX} OR ${__BSD__})
 endif ()
 
 
-add_library(${PROJECT_NAME} SHARED ${library_source})
+add_library(${PROJECT_NAME} SHARED ${library_source}
+   filesystem/filesystem/dialog_base.cpp
+   filesystem/filesystem/dialog_base.h)
 
 
 add_library(static_${PROJECT_NAME} STATIC ${library_source}

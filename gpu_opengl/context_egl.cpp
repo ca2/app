@@ -84,6 +84,13 @@ namespace gpu_opengl
 
          eglconfig = pegldevice->m_eglconfigPrimary;
 
+      if (eglconfig == EGL_NO_CONFIG_KHR)
+      {
+
+         throw ::exception(error_wrong_state);
+
+      }
+
       // }
       // else
       // {
@@ -192,6 +199,13 @@ namespace gpu_opengl
 
       auto eglconfig = pegldevice->m_eglconfigPrimary;
 
+      if (eglconfig == EGL_NO_CONFIG_KHR)
+      {
+
+         throw ::exception(error_wrong_state);
+
+      }
+
       auto window = (EGLNativeWindowType) pwindow->__x11_Window();
 
       // Step 6 - Create a surface to draw to.
@@ -250,6 +264,14 @@ namespace gpu_opengl
      auto egldisplay = pegldevice->m_egldisplay;
 
      auto eglconfig = pegldevice->m_eglconfigPrimary;
+
+      if (eglconfig == EGL_NO_CONFIG_KHR)
+      {
+
+         throw ::exception(error_wrong_state);
+
+      }
+
      //
      //  defer_bind_egl_api();
      //

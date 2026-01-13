@@ -2126,183 +2126,6 @@ void main() {
 //
 //   }
 
-   #if !defined(WINDOWS_DESKTOP)
-   void context::_create_window_buffer()
-   {
-
-#if defined(WINDOWS_DESKTOP)
-
-      ::cast<device_win32> pdevice = m_pgpudevice;
-
-      pdevice->_create_device(m_rectangle.size());
-
-#elif defined(LINUX)
-
-      ::cast<device_egl> pdevice = m_pgpudevice;
-
-      pdevice->_create_device(m_rectangle.size());
-
-#endif
-
-      //if (!m_hdc || !m_hrc)
-      //{
-
-      //   ::cast < device > pgpudevice = m_pgpudevice;
-
-      //   ::cast < approach > pgpuapproach = pgpudevice->m_pgpuapproach;
-
-      //   if (!pgpuapproach->m_atomClass)
-      //   {
-
-      //      informationf("MS GDI - RegisterClass failed");
-
-      //      informationf("last-error code: %d\n", GetLastError());
-
-      //      throw ::exception(error_failed);
-
-      //   }
-
-      //   // create WGL context, make current
-
-      //   PIXELFORMATDESCRIPTOR pixformat;
-
-      //   int chosenformat;
-
-      //   HDC hdc = GetDC(m_hwnd);
-
-      //   if (!hdc)
-      //   {
-
-      //      informationf("MS GDI - GetDC failed");
-
-      //      informationf("last-error code: %d\n", GetLastError());
-
-      //      throw ::exception(error_failed);
-
-      //   }
-
-      //   zero(pixformat);
-      //   pixformat.nSize = sizeof(pixformat);
-      //   pixformat.nVersion = 1;
-      //   pixformat.dwFlags = PFD_DRAW_TO_WINDOW | PFD_SUPPORT_OPENGL | PFD_DOUBLEBUFFER;
-      //   pixformat.iPixelType = PFD_TYPE_RGBA;
-      //   pixformat.cColorBits = 32;
-      //   pixformat.cRedShift = 16;
-      //   pixformat.cGreenShift = 8;
-      //   pixformat.cBlueShift = 0;
-      //   pixformat.cAlphaShift = 24;
-      //   pixformat.cAlphaBits = 8;
-      //   pixformat.cDepthBits = 24;
-      //   pixformat.cStencilBits = 8;
-
-      //   chosenformat = ChoosePixelFormat(hdc, &pixformat);
-
-      //   if (chosenformat == 0)
-      //   {
-
-      //      informationf("MS GDI - ChoosePixelFormat failed");
-
-      //      informationf("last-error code: %d\n", GetLastError());
-
-      //      ReleaseDC(m_hwnd, hdc);
-
-      //      throw ::exception(error_failed);
-
-      //   }
-
-      //   bool spfok = SetPixelFormat(hdc, chosenformat, &pixformat);
-
-      //   if (!spfok)
-      //   {
-
-      //      informationf("MS GDI - SetPixelFormat failed");
-
-      //      informationf("last-error code: %d\n", GetLastError());
-
-      //      ReleaseDC(m_hwnd, hdc);
-
-      //      throw ::exception(error_failed);
-
-      //   }
-
-      //   HGLRC hglrc = wglCreateContext(hdc);
-
-      //   if (!hglrc)
-      //   {
-
-      //      informationf("MS WGL - wglCreateContext failed");
-
-      //      informationf("last-error code: %d\n", GetLastError());
-
-      //      ReleaseDC(m_hwnd, hdc);
-
-      //      throw ::exception(error_failed);
-
-      //   }
-
-      //   bool bMakeCurrentOk = wglMakeCurrent(hdc, hglrc);
-
-      //   if (!bMakeCurrentOk)
-      //   {
-
-      //      informationf("MS WGL - wglMakeCurrent failed");
-
-      //      informationf("last-error code: %d\n", GetLastError());
-
-      //      ReleaseDC(m_hwnd, hdc);
-
-      //      throw ::exception(error_failed);
-
-      //   }
-
-      //   pgpuapproach->defer_init_gpu_library();
-
-      //   auto pszVersion = (const_char_pointer )glGetString(GL_VERSION);
-      //   //::e_status estatus =
-
-      //   ::string strVersion(scopedstrVersion);
-
-      //   if (strVersion.case_insensitive_contains("mesa"))
-      //   {
-
-      //      m_bMesa = true;
-
-      //   }
-
-      //   //if (!estatus)
-      //   //{
-
-      //   //   ReleaseDC(window, hdc);
-
-      //   //   return estatus;
-
-      //   //}
-
-      //   m_hwnd = m_hwnd;
-      //   m_hdc = hdc;
-      //   m_hrc = hglrc;
-
-      //}
-
-      //RECT rectClient;
-
-      //::GetClientRect(m_hwnd, &rectClient);
-
-      //m_size = { rectClient.right - rectClient.left,
-      //   rectClient.bottom - rectClient.top };
-
-      //get_renderer()->set_placement({ 0, 0, m_size.cx, m_size.cy });
-
-      //m_itaskGpu = ::current_itask();
-
-      //m_estatus = ::success;
-
-      //set_ok_flag();
-
-   }
-
-   #endif
-
 
    void context::_create_window_context(::acme::windowing::window *pwindowParam)
    {
@@ -2693,26 +2516,26 @@ void main() {
    //}
 
 
-   void context::_context_lock()
-   {
-
-      //::cast<device> pdevice = m_pgpudevice;
-
-      _opengl_lock();
-
-   }
-
-
-   void context::_context_unlock()
-   {
-
-      //::cast<device> pdevice = m_pgpudevice;
-
-      //pdevice->_opengl_unlock();
-
-      _opengl_unlock();
-
-   }
+   // void context::_context_lock()
+   // {
+   //
+   //    //::cast<device> pdevice = m_pgpudevice;
+   //
+   //    _opengl_lock();
+   //
+   // }
+   //
+   //
+   // void context::_context_unlock()
+   // {
+   //
+   //    //::cast<device> pdevice = m_pgpudevice;
+   //
+   //    //pdevice->_opengl_unlock();
+   //
+   //    _opengl_unlock();
+   //
+   // }
 
 
    void context::destroy_cpu_buffer()

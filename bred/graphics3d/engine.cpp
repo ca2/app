@@ -608,6 +608,8 @@ namespace graphics3d
 
       pgpuapproach->m_rectangleOffscreen = rectanglePlacement;
 
+      m_rectanglePlacementNew = rectanglePlacement;
+
       ::cast<::gpu::device> pgpudevice = get_gpu_context()->m_pgpudevice;
 
       //auto pgpucontext = pgpudevice->get_main_context();
@@ -727,6 +729,13 @@ namespace graphics3d
 
       if (!pcontext)
       {
+
+         if (m_rectanglePlacementNew.is_empty())
+         {
+
+            throw ::exception(error_wrong_state);
+
+         }
 
          auto pgpudevice = m_papplication->get_gpu_approach()->get_gpu_device(m_pusergraphics3d->acme_windowing_window());
 

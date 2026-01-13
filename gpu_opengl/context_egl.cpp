@@ -79,14 +79,18 @@ namespace gpu_opengl
 
       EGLConfig eglconfig;
 
-      if (m_eoutput == ::gpu::e_output_swap_chain)
-      {
-         eglconfig = pegldevice->m_eglconfigSwapChainWindow;
-      }
-      else
-      {
-         eglconfig = pegldevice->m_eglconfig2;
-      }
+      //if (m_eoutput == ::gpu::e_output_swap_chain)
+      //{
+
+         eglconfig = pegldevice->m_eglconfigPrimary;
+
+      // }
+      // else
+      // {
+      //
+      //    eglconfig = pegldevice->m_eglconfigPBuffer;
+      //
+      // }
 
       defer_bind_egl_api();
 
@@ -161,6 +165,14 @@ namespace gpu_opengl
    }
 
 
+   // void context_egl::swap_buffers()
+   // {
+   //
+   //    ::cast < ::gpu_opengl::device_egl > pegldevice = m_pgpudevice;
+   //
+   //    pegldevice->_swap_buffers();
+   //
+   // }
 
    void context_egl::_create_window_context(::acme::windowing::window* pwindow)
    {
@@ -178,10 +190,12 @@ namespace gpu_opengl
 
       auto egldisplay = pegldevice->m_egldisplay;
 
-      auto eglconfigSwapChain = pegldevice->m_eglconfigSwapChainWindow;
+      auto eglconfig = pegldevice->m_eglconfigPrimary;
+
+      auto window = (EGLNativeWindowType) pwindow->__x11_Window();
 
       // Step 6 - Create a surface to draw to.
-      m_eglsurface = eglCreateWindowSurface(egldisplay, eglconfigSwapChain, (EGLNativeWindowType) pwindow->__x11_Window(),
+      m_eglsurface = eglCreateWindowSurface(egldisplay, eglconfig, window,
          nullptr);
 
       if (m_eglsurface == EGL_NO_SURFACE)
@@ -220,6 +234,12 @@ namespace gpu_opengl
    void context_egl::_create_egl_context(const ::int_size & size)
    {
 
+      if (size.is_empty())
+      {
+
+         throw ::exception(error_bad_argument);
+
+      }
 
       __create_egl_context();
 
@@ -229,7 +249,7 @@ namespace gpu_opengl
 
      auto egldisplay = pegldevice->m_egldisplay;
 
-     auto eglconfig2 = pegldevice->m_eglconfig2;
+     auto eglconfig = pegldevice->m_eglconfigPrimary;
      //
      //  defer_bind_egl_api();
      //
@@ -278,7 +298,7 @@ namespace gpu_opengl
       pbufferAttribs[4] = EGL_NONE;
 
       // Step 6 - Create a surface to draw to.
-      m_eglsurface = eglCreatePbufferSurface(egldisplay, eglconfig2, pbufferAttribs);
+      m_eglsurface = eglCreatePbufferSurface(egldisplay, eglconfig, pbufferAttribs);
 
       if (m_eglsurface == EGL_NO_SURFACE)
       {
@@ -327,16 +347,23 @@ namespace gpu_opengl
 
 
 
-   void context_egl::_create_window_buffer()
-   {
-
-      _create_egl_context(m_rectangle.size());
-
-   }
+   // void context_egl::_create_window_buffer()
+   // {
+   //
+   //    _create_egl_context(m_rectangle.size());
+   //
+   // }
 
 
    void context_egl::_create_cpu_buffer(const ::int_size & size)
    {
+
+      if (size.is_empty())
+      {
+
+         throw ::exception(error_bad_argument);
+
+      }
 
       _create_egl_context(size);
 
@@ -611,12 +638,12 @@ namespace gpu_opengl
    // }
 
 
-   void context_egl::_create_offscreen_window(const int_size& size)
-   {
+//   void context_egl::_create_offscreen_window(const int_size& size)
+//   {
 
-      _create_egl_context(size);
+//      _create_egl_context(size);
 
-   }
+//   }
 
 
    void context_egl::destroy_cpu_buffer()

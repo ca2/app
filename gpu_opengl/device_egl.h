@@ -21,8 +21,11 @@ namespace gpu_opengl
 
 
       EGLDisplay                       m_egldisplay;
-      EGLConfig                        m_eglconfig2;
-      EGLConfig                        m_eglconfigSwapChainWindow;
+      //EGLConfig                        m_eglconfig2;
+      //EGLConfig                        m_eglconfigSwapChainWindow;
+      //EGLConfig                        m_eglconfigPBuffer;
+      //EGLConfig                        m_eglconfigWindow;
+      EGLConfig                        m_eglconfigPrimary;
       EGLContext                       m_eglcontextPrimary;
       long                             m_lX11NativeVisualId;
       // EGLSurface                       m_eglsurface;
@@ -50,8 +53,8 @@ namespace gpu_opengl
 
       //void _translate_shader(string_array_base& stra) override;
       virtual void _create_device(const ::int_size & size);
-      void _opengl_lock() override;
-      void _opengl_unlock() override;
+      virtual void _opengl_lock();
+      virtual void _opengl_unlock();
 
       void _swap_buffers() override;
 

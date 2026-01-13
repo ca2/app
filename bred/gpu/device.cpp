@@ -245,6 +245,13 @@ namespace gpu
    ::pointer < ::gpu::context > device::create_gpu_context(const ::gpu::enum_output& eoutput, const ::gpu::enum_scene & escene, const ::int_size& size)
    {
 
+      if (size.is_empty())
+      {
+
+         throw ::exception(error_bad_argument);
+
+      }
+
       auto pgpucontext = allocate_context();
 
       if (!pgpucontext)

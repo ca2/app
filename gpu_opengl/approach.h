@@ -72,8 +72,8 @@ namespace gpu_opengl
 
       //virtual void make_current();
 
-      void on_before_create_window(::acme::windowing::window* pwindow) override;
-      void on_create_window(::acme::windowing::window* pwindow) override;
+      void gpu_on_before_create_window(::acme::windowing::window* pwindow) override;
+      void gpu_on_create_window(::acme::windowing::window* pwindow) override;
 
 
    };

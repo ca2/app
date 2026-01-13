@@ -260,8 +260,8 @@ namespace gpu_opengl
    {
 
       m_egldisplay = EGL_NO_DISPLAY;
-      m_eglconfig2 = EGL_NO_CONFIG_KHR;
-      m_eglconfigSwapChainWindow = EGL_NO_CONFIG_KHR;
+      m_eglconfigPrimary = EGL_NO_CONFIG_KHR;
+      //m_eglconfigSwapChainWindow = EGL_NO_CONFIG_KHR;
       m_eglcontextPrimary = EGL_NO_CONTEXT;
       m_lX11NativeVisualId = -1;
 //      gladLoadGL();
@@ -418,22 +418,22 @@ namespace gpu_opengl
 //      m_egldisplay = egl_open_display();
 
 
-      EGLint attribList[]=
-      {
-
-         EGL_SURFACE_TYPE, EGL_PBUFFER_BIT,
-/// ;;;        EGL_RENDERABLE_TYPE, EGL_OPENGL_ES2_BIT,
-         //EGL_CONFORMANT, EGL_OPENGL_BIT,
-         //EGL_COLOR_BUFFER_TYPE, EGL_RGB_BUFFER,
-         EGL_RED_SIZE, 8,
-         EGL_GREEN_SIZE, 8,
-         EGL_BLUE_SIZE, 8,
-         EGL_ALPHA_SIZE, 8,
-         //EGL_LEVEL, 0,
-         //EGL_BUFFER_SIZE, 24,
-         EGL_NONE
-
-      };
+//       EGLint attribList[]=
+//       {
+//
+//          EGL_SURFACE_TYPE, EGL_PBUFFER_BIT,
+// /// ;;;        EGL_RENDERABLE_TYPE, EGL_OPENGL_ES2_BIT,
+//          //EGL_CONFORMANT, EGL_OPENGL_BIT,
+//          //EGL_COLOR_BUFFER_TYPE, EGL_RGB_BUFFER,
+//          EGL_RED_SIZE, 8,
+//          EGL_GREEN_SIZE, 8,
+//          EGL_BLUE_SIZE, 8,
+//          EGL_ALPHA_SIZE, 8,
+//          //EGL_LEVEL, 0,
+//          //EGL_BUFFER_SIZE, 24,
+//          EGL_NONE
+//
+//       };
 
       //synchronous_lock synchronouslock(x11_mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
@@ -508,14 +508,14 @@ EGL_ALPHA_SIZE, 8,  // IMPORTANT
 
 
       EGLint cfg_attr[] = {
-          EGL_SURFACE_TYPE, EGL_WINDOW_BIT,
-          EGL_RENDERABLE_TYPE, EGL_OPENGL_BIT,
+         EGL_SURFACE_TYPE, EGL_WINDOW_BIT|EGL_PBUFFER_BIT,
+         EGL_RENDERABLE_TYPE, EGL_OPENGL_BIT,
          EGL_RED_SIZE,   8,
-EGL_GREEN_SIZE, 8,
-EGL_BLUE_SIZE,  8,
-EGL_ALPHA_SIZE, 8,  // IMPORTANT
+         EGL_GREEN_SIZE, 8,
+         EGL_BLUE_SIZE,  8,
+         EGL_ALPHA_SIZE, 8,  // IMPORTANT
          EGL_DEPTH_SIZE, 24,
-          EGL_NONE
+         EGL_NONE
       };
 
       // EGLint numSwapChain;
@@ -551,12 +551,32 @@ EGL_ALPHA_SIZE, 8,  // IMPORTANT
 
       for (int i = 0; i < count; ++i)
       {
-         EGLint alpha, vid;
+         EGLint surfacetype = 0;
+         EGLint alpha = 0;
+         EGLint vid = 0;
 
-         eglGetConfigAttrib(egldisplay, configs[i], EGL_ALPHA_SIZE, &alpha);
-         eglGetConfigAttrib(egldisplay, configs[i], EGL_NATIVE_VISUAL_ID, &vid);
+         if (!eglGetConfigAttrib(egldisplay, configs[i], EGL_SURFACE_TYPE, &surfacetype))
+         {
+
+            throw ::exception(::error_failed);
+
+         }
+         if (!eglGetConfigAttrib(egldisplay, configs[i], EGL_ALPHA_SIZE, &alpha))
+         {
+
+            throw ::exception(::error_failed);
+
+         }
+         if (!eglGetConfigAttrib(egldisplay, configs[i], EGL_NATIVE_VISUAL_ID, &vid))
+         {
+
+            throw ::exception(::error_failed);
+
+         }
 
          if (alpha != 8)
+            continue;
+         if (surfacetype &(EGL_WINDOW_BIT | EGL_PBUFFER_BIT)!= (EGL_WINDOW_BIT | EGL_PBUFFER_BIT))
             continue;
 
          XVisualInfo vitemplate = {};

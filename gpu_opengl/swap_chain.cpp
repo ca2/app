@@ -183,7 +183,7 @@ FragColor = texture(uTexture, TexCoord);
          pcommandbuffer->end_render();
                      m_pgpucontext->defer_unbind_shader();
 
-         #if 0
+         #if 1
 
            glClearColor(0.f, 0.5f, 0.f, 0.5f);
           GLCheckError("");

@@ -108,14 +108,14 @@ namespace gpu
    }
 
 
-   void approach::on_before_create_window(::acme::windowing::window* pwindow)
+   void approach::gpu_on_before_create_window(::acme::windowing::window* pwindow)
    {
 
 
    }
 
 
-   void approach::on_create_window(::acme::windowing::window* pwindow)
+   void approach::gpu_on_create_window(::acme::windowing::window* pwindow)
    {
 
 

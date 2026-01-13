@@ -441,6 +441,13 @@ namespace gpu
 
       auto pcontextMain = pgpudevice->main_context();
 
+      // if (::is_null(pcontextMain) || !pcontextMain->m_bCreated)
+      // {
+      //
+      //    return;
+      //
+      // }
+
       ::cast < ::user::interaction > puserinteraction = m_puserinteraction;
 
       auto pwindow = puserinteraction->window();

@@ -42,8 +42,8 @@ namespace gpu_opengl
       virtual void __create_egl_context();
       virtual void _on_after_context_and_surface_creation();
       virtual void _create_egl_context(const ::int_size & size);
-      void _create_window_buffer() override;
-      void _create_offscreen_window(const ::int_size &size) override;
+      //void _create_window_buffer() override;
+      //void _create_offscreen_window(const ::int_size &size) override;
       void _create_window_context(::acme::windowing::window* pwindow) override;
       virtual void _create_cpu_buffer(const ::int_size& size) override;
       //virtual void resize_offscreen_buffer(const ::int_size& size) override;

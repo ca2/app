@@ -149,17 +149,17 @@ namespace gpu
    }
 
 
-   void bred_approach::on_before_create_window(::acme::windowing::window* pwindow)
+   void bred_approach::gpu_on_before_create_window(::acme::windowing::window* pwindow)
    {
 
 
    }
 
 
-   void bred_approach::on_create_window(::acme::windowing::window* pacmewindowingwindow)
+   void bred_approach::gpu_on_create_window(::acme::windowing::window* pacmewindowingwindow)
    {
 
-      ::gpu::approach::on_create_window(pacmewindowingwindow);
+      ::gpu::approach::gpu_on_create_window(pacmewindowingwindow);
       
       ::string strType;
 
@@ -167,14 +167,14 @@ namespace gpu
 
       const char *pszType = strType.c_str();
 
-      information("gpu::approach::on_create_window for type {}", pszType);
+      information("gpu::approach::gpu_on_create_window for type {}", pszType);
 
       auto pdevice = ::system()->m_papplication->gpu_approach()->get_gpu_device(pacmewindowingwindow);
 
       pdevice->create_main_context(pacmewindowingwindow);
 
       //::cast<::gpu_opengl::approach> papproach = m_papplication->get_gpu_approach();
-      _on_create_window(pacmewindowingwindow);
+      _gpu_on_create_window(pacmewindowingwindow);
       //::draw2d_gpu::draw2d::on_create_window(pwindowParam);
 
       //::cast < ::windowing_win32::window > pwindow = pwindowParam;
@@ -208,7 +208,7 @@ namespace gpu
    }
    */
 
-   void bred_approach::_on_create_window(::acme::windowing::window * pwindow)
+   void bred_approach::_gpu_on_create_window(::acme::windowing::window * pwindow)
    {
 
 

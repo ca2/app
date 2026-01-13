@@ -196,11 +196,11 @@ namespace draw2d_gpu
    //   *outDC = dc;
    //}
 
-   void draw2d::on_create_window(::windowing::window * pwindow)
+   void draw2d::_aaa_on_create_window(::windowing::window * pwindow)
    {
       ::cast < ::gpu_opengl::approach > papproach = m_papplication->get_gpu_approach();
       papproach->_on_create_window(pwindow);
-      //::draw2d_gpu::draw2d::on_create_window(pwindowParam);
+      //::draw2d_gpu::draw2d::_aaa_on_create_window(pwindowParam);
 
       //::cast < ::windowing_win32::window > pwindow = pwindowParam;
 

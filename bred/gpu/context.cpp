@@ -1382,6 +1382,13 @@ namespace gpu
    void context::create_gpu_context(::gpu::device* pgpudevice, const ::gpu::enum_output& eoutput, const ::gpu::enum_scene& escene, const ::int_size& size)
    {
 
+      if (size.is_empty())
+      {
+
+         throw ::exception(error_bad_argument);
+
+      }
+
       m_eoutput = eoutput;
 
       m_escene = escene;
@@ -1512,6 +1519,14 @@ namespace gpu
    void context::initialize_gpu_context(::gpu::device* pgpudevice, const ::gpu::enum_output& eoutput, ::acme::windowing::window* pwindow, const ::int_size& size)
    {
 
+      if (size.is_empty())
+      {
+
+         throw ::exception(error_bad_argument);
+
+      }
+
+
       ASSERT(is_current_task());
 
       if (m_etype == e_type_window)
@@ -1562,6 +1577,13 @@ namespace gpu
 
    void context::on_create_context(::gpu::device* pgpudevice, const ::gpu::enum_output& eoutput, ::acme::windowing::window* pwindow, const ::int_size& size)
    {
+
+      if (size.is_empty())
+      {
+
+         throw ::exception(error_wrong_state);
+
+      }
 
       if (eoutput == ::gpu::e_output_cpu_buffer)
       {

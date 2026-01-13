@@ -56,10 +56,14 @@ namespace gpu_opengl
    }
 
 
-   void approach::_on_create_window(::acme::windowing::window* pwindowParam)
+   void approach::_on_create_window(::acme::windowing::window* pacmewindowingwindow)
    {
 
-      auto pgpucontextMain = m_pgpudevice->main_context(pwindowParam);
+      //auto pgpucontextMain = m_pgpudevice->main_context(pwindowParam);
+
+      auto pgpudevice = get_gpu_device(pacmewindowingwindow);
+
+      pgpudevice->create_main_context(pacmewindowingwindow);
 
       // if (!pgpudevice->m_pgpucontextMain)
       // {

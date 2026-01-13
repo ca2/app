@@ -34,7 +34,12 @@ namespace file
    void dialog_base::on_chooser_response(const_char_pointer pszPath)
    {
 
-      m_patha.add(pszPath);
+      if (::has_character(pszPath))
+      {
+       
+         m_patha.add(pszPath);
+
+      }
 
       on_dialog_response();
 

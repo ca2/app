@@ -44,14 +44,14 @@ namespace gpu_opengl
    {
 
       glEnable(GL_SCISSOR_TEST);
-
+      GLCheckError("");
       glScissor(
          rectangle.left,
          rectangle.top,
          rectangle.width(),
          rectangle.height()
       );
-
+      GLCheckError("");
       //glDisable(GL_SCISSOR_TEST);
 
    }

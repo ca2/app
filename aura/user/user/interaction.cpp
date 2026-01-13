@@ -7022,6 +7022,8 @@ namespace user
    void interaction::defer_update_hover(::draw2d::graphics_pointer & pgraphics)
    {
 
+      return;
+
       {
 
          auto pmouse = ::transfer(m_pmousePendingBackUpdateHover);

@@ -67,9 +67,15 @@ namespace gpu
 
       m_pgpucontext = pgpucontext;
 
-      m_pwindow = pwindow;
+      m_pwindowSwapChain = pwindow;
 
       m_bWindowInitialized = true;
+
+      ::string strType = ::type(pwindow->m_pacmeuserinteraction).name();
+
+      const char *pszType = strType.c_str();
+
+      information("initialize_swap_chain_window {}", pszType);
 
    }
 
@@ -77,7 +83,7 @@ namespace gpu
    void swap_chain::initialize_gpu_swap_chain(::gpu::renderer * pgpurenderer)
    {
 
-      ASSERT(m_bWindowInitialized && m_pwindow);
+      ASSERT(m_bWindowInitialized && m_pwindowSwapChain);
 
       ASSERT(pgpurenderer->m_pgpucontext == m_pgpucontext
       && m_pgpucontext->m_etype == ::gpu::context::e_type_window);

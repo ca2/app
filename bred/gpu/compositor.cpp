@@ -53,7 +53,8 @@ namespace gpu
    }
 
 
-   void compositor::on_gpu_context_placement_change(const ::int_rectangle& rectanglePlacement)
+   void compositor::on_gpu_context_placement_change(const ::int_rectangle &rectanglePlacement,
+                                                    ::acme::windowing::window *pacmewindowingwindow)
    {
 
       if (!m_pgpucontextCompositor2)
@@ -61,7 +62,7 @@ namespace gpu
 
          auto pgpuapproach = application()->get_gpu_approach();
 
-         auto pgpudevice = pgpuapproach->get_gpu_device();
+         auto pgpudevice = pgpuapproach->get_gpu_device(pacmewindowingwindow);
 
          auto pgpucontext = pgpudevice->create_draw2d_context(::gpu::e_output_gpu_buffer, rectanglePlacement.size());
 

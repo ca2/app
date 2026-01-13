@@ -13,6 +13,10 @@ namespace gpu_opengl
    {
    public:
 
+      #ifdef WINDOWS_DESKTOP
+
+      HGLRC m_hglrcShare = nullptr;
+      #endif
       
       //__creatable_from_base(opengl, ::gpu::approach);
 

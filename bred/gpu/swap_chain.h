@@ -19,7 +19,7 @@ namespace gpu
 
       ::pointer < ::gpu::context >                       m_pgpucontext;
       ::pointer < ::gpu::renderer >                      m_pgpurenderer;
-      ::pointer < ::windowing::window >                  m_pwindow;
+      ::pointer < ::windowing::window >                  m_pwindowSwapChain;
       int                                                m_iSwapChainIndex;
 
       ::pointer < ::pointer_array < ::gpu::texture > >   m_ptextureaSwapChain;

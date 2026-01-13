@@ -56,6 +56,9 @@ namespace graphics3d
 		virtual void initialize_engine(::user::graphics3d* pimpact);
 
 
+      virtual void defer_process_load_assets_commands();
+
+
 		//virtual void create_global_ubo(::gpu::context *pgpucontext);
 
 		virtual ::gpu::enum_output get_engine_gpu_eoutput();

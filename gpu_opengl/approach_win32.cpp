@@ -1,5 +1,6 @@
 #include "framework.h"
 #include "approach.h"
+#include "device.h"
 #include "acme/filesystem/file/file.h"
 #include "acme/filesystem/filesystem/file_context.h"
 #include "acme/platform/application.h"
@@ -153,6 +154,8 @@ namespace gpu_opengl
    {
 
 //#if defined(WINDOWS_DESKTOP)
+
+   
 
       ::cast < ::windowing_win32::window > pwindow = pwindowParam;
 

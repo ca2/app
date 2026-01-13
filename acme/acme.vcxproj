@@ -1658,6 +1658,7 @@
     <ClCompile Include="exception\runtime_check.cpp" />
     <ClCompile Include="exception\serialization.cpp" />
     <ClCompile Include="exception\translator.cpp" />
+    <ClCompile Include="filesystem\filesystem\dialog_base.cpp" />
     <ClCompile Include="filesystem\filesystem\directory_context.cpp" />
     <ClCompile Include="filesystem\filesystem\directory_system.cpp" />
     <ClCompile Include="filesystem\filesystem\enumerator.cpp" />
@@ -1761,6 +1762,7 @@
     <ClInclude Include="constant\user_message.h" />
     <ClInclude Include="filesystem\filesystem\aaa_dir_system.h" />
     <ClInclude Include="filesystem\filesystem\aaa_file_system.h" />
+    <ClInclude Include="filesystem\filesystem\dialog_base.h" />
     <ClInclude Include="filesystem\filesystem\directory_context.h" />
     <ClInclude Include="filesystem\filesystem\directory_system.h" />
     <ClInclude Include="filesystem\filesystem\file_system_cache.h" />

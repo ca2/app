@@ -866,12 +866,12 @@ namespace windowing
       main_send([this]()
          {
 
-         if (!::system()->m_papplicationMain->m_pacmeuserinteractionMain)
-         {
+         //if (!::system()->m_papplicationMain->m_pacmeuserinteractionMain)
+         //{
 
-            ::system()->m_papplicationMain->m_pacmeuserinteractionMain = m_pacmeuserinteraction;
+         //   ::system()->m_papplicationMain->m_pacmeuserinteractionMain = m_pacmeuserinteraction;
 
-         }
+         //}
 
             _create_window();
 
@@ -12597,6 +12597,8 @@ namespace windowing
       ::pointer<::message::size> psize(pmessage);
 
       m_sizeWindow = psize->m_size;
+
+      information("windowing::window::on_message_size w={}, h={}", m_sizeWindow.cx, m_sizeWindow.cy);
 
       //      bool bLayered = user_interaction()->GetExStyle() & WS_EX_LAYERED;
       //

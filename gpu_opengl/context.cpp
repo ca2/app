@@ -47,6 +47,12 @@ namespace gpu_opengl
 
    context::context()
    {
+
+      #ifdef WINDOWS_DESKTOP
+      m_hdc = nullptr;
+      m_hglrc = nullptr;
+#endif
+
       m_eapi = ::gpu::e_api_opengl;
       m_gluLayerFrameBuffer = 0;
       //m_globalUBO = 0;
@@ -1183,6 +1189,30 @@ namespace gpu_opengl
    void context::merge_layers(::gpu::texture *ptextureTarget, ::pointer_array<::gpu::layer> *playera)
    {
 
+      {
+
+          int iLayer = 0;
+
+         for (auto player: *playera)
+         {
+
+            if (iLayer == 2)
+            {
+               // information("What happened to the 3D Layer?");
+            }
+
+
+            ::cast<::gpu_opengl::texture> ptextureSrc = player->texture();
+
+            ptextureSrc->wait_fence();
+
+            // m_pshaderBlend3->bind_source(nullptr, ptextureSrc, 0);
+            iLayer++;
+         }
+
+
+      }
+
       ::gpu::context_lock contextlock(this);
 
       if (!m_pmodelbufferDummy)
@@ -1292,7 +1322,7 @@ void main() {
 
          //   ::cast < ::gpu_directx11::device > pgpudevice = m_pgpudevice;
 
-         //   HRESULT hr = pgpudevice->m_pdevice->CreateBlendState(&blendDesc, &m_pd3d11blendstateBlend3);
+         //   HRESULT hr = pgpudevice->m_pd3d12device->CreateBlendState(&blendDesc, &m_pd3d11blendstateBlend3);
          //   ::defer_throw_hresult(hr);
 
          //}
@@ -1346,8 +1376,9 @@ void main() {
 
          if (1)
          {
-
             int iLayer = 0;
+
+          
 
             pcommandbuffer->begin_render(m_pshaderBlend3, ptextureDst);
 
@@ -1364,9 +1395,11 @@ void main() {
                }
 
 
-                  ::cast<::gpu_opengl::texture> ptextureSrc = player->texture();
+                  //::cast<::gpu_opengl::texture> ptextureSrc = player->texture();
 
-                  ptextureSrc->wait_fence();
+                  //ptextureSrc->wait_fence();
+
+                  ::cast<::gpu_opengl::texture> ptextureSrc = player->texture();
 
                   m_pshaderBlend3->bind_source(nullptr, ptextureSrc, 0);
 
@@ -1484,11 +1517,11 @@ void main() {
                   //vkCmdDraw(vkcommandbuffer, 3, 1, 0, 0);
                //}
                iLayer++;
-               if (iLayer >= 3)
-               {
-                  break;
+               //if (iLayer >= 3)
+               //{
+               //   break;
 
-               }
+               //}
             }
             pcommandbuffer->end_render();
             //m_pshaderBlend3->unbind(pcommandbuffer);
@@ -1843,6 +1876,13 @@ void main() {
       //glGenFramebuffers(1, &fboDst);
       //GLCheckError("");
 
+      GLint drawFboOld = 0;
+      glGetIntegerv(GL_DRAW_FRAMEBUFFER_BINDING, &drawFboOld);
+
+      GLint readFboOld = 0;
+      glGetIntegerv(GL_READ_FRAMEBUFFER_BINDING, &readFboOld);
+
+
       // Attach source texture to fboSrc
       auto gluSrcFbo = ptextureSrc->m_gluFbo;
       glBindFramebuffer(GL_READ_FRAMEBUFFER, gluSrcFbo);
@@ -1985,12 +2025,20 @@ void main() {
       }
 #endif
 
-      // Cleanup
-      glBindFramebuffer(GL_DRAW_FRAMEBUFFER, 0);
+
+
+
+      glBindFramebuffer(GL_DRAW_FRAMEBUFFER, drawFboOld);
       GLCheckError("");
-      glBindFramebuffer(GL_READ_FRAMEBUFFER, 0);
+      glBindFramebuffer(GL_READ_FRAMEBUFFER, readFboOld);
       GLCheckError("");
-      //glDeleteFramebuffers(1, &fboSrc);
+
+      //// Cleanup
+      //glBindFramebuffer(GL_DRAW_FRAMEBUFFER, 0);
+      //GLCheckError("");
+      //glBindFramebuffer(GL_READ_FRAMEBUFFER, 0);
+      //GLCheckError("");
+      ////glDeleteFramebuffers(1, &fboSrc);
       //GLCheckError("");
       //glDeleteFramebuffers(1, &fboDst);
       //GLCheckError("");
@@ -1998,87 +2046,87 @@ void main() {
    }
 
 
-   void context::_create_offscreen_window(const ::int_size &size)
-   {
+//   void context::_create_offscreen_window(const ::int_size &size)
+//   {
+//
+//#if defined(WINDOWS_DESKTOP)
+//
+//      ::cast<device_win32> pdevice = m_pgpudevice;
+//
+//      pdevice->_defer_create_offscreen_window(size);
+//
+//#elif defined(LINUX)
+//
+//      ::cast<device_egl> pdevice = m_pgpudevice;
+//
+//      pdevice->_defer_create_offscreen_window(size);
+//
+//#endif
+//
+//      //if (::IsWindow(m_hwnd))
+//      //{
+//
+//      //   if (!::SetWindowPos(m_hwnd,
+//      //      nullptr, 0, 0,
+//      //      size.cx
+//      //      , size.cy, SWP_NOMOVE | SWP_NOZORDER | SWP_NOACTIVATE
+//      //      | SWP_NOCOPYBITS | SWP_NOSENDCHANGING
+//      //      | SWP_NOREPOSITION | SWP_NOREDRAW))
+//      //   {
+//
+//      //      information() << "SetWindowPos Failed";
+//
+//      //   }
+//
+//
+//      //   //return m_hwnd;
+//
+//      //}
+//      //else
+//      //{
+//
+//      //   LPCTSTR lpClassName = L"draw2d_opengl_offscreen_buffer_window";
+//      //   LPCTSTR lpWindowName = L"draw2d_opengl_offscreen_buffer_window";
+//      //   //unsigned int dwStyle = WS_CAPTION | WS_POPUPWINDOW; // | WS_VISIBLE
+//      //   unsigned int dwExStyle = 0;
+//      //   unsigned int dwStyle = WS_OVERLAPPEDWINDOW;
+//      //   dwStyle |= WS_POPUP;
+//      //   //dwStyle |= WS_VISIBLE;
+//      //   //dwStyle |= WS_SYSMENU | WS_MINIMIZEBOX | WS_MAXIMIZEBOX;
+//      //   dwStyle &= ~WS_CAPTION;
+//      //   //dwStyle = 0;
+//      //   dwStyle &= ~WS_THICKFRAME;
+//      //   dwStyle &= ~WS_BORDER;
+//      //   int x = 0;
+//      //   int y = 0;
+//      //   int nWidth = size.cx;
+//      //   int nHeight = size.cy;
+//      //   HWND hWndParent = nullptr;
+//      //   HMENU hMenu = nullptr;
+//      //   HINSTANCE hInstance = ::GetModuleHandleW(L"gpu_opengl.dll");
+//      //   LPVOID lpParam = nullptr;
+//
+//      //   m_hwnd = CreateWindowExW(dwExStyle, lpClassName, lpWindowName, dwStyle, x, y, nWidth, nHeight, hWndParent, hMenu, hInstance, lpParam);
+//
+//      //   if (!m_hwnd)
+//      //   {
+//
+//      //      informationf("MS GDI - CreateWindow failed");
+//
+//      //      informationf("last-error code: %d\n", GetLastError());
+//
+//      //      throw ::exception(error_failed);
+//
+//      //   }
+//
+//      //   //return m_hwnd;
+//
+//      //}
+//
+//
+//   }
 
-#if defined(WINDOWS_DESKTOP)
-
-      ::cast<device_win32> pdevice = m_pgpudevice;
-
-      pdevice->_defer_create_offscreen_window(size);
-
-#elif defined(LINUX)
-
-      ::cast<device_egl> pdevice = m_pgpudevice;
-
-      pdevice->_defer_create_offscreen_window(size);
-
-#endif
-
-      //if (::IsWindow(m_hwnd))
-      //{
-
-      //   if (!::SetWindowPos(m_hwnd,
-      //      nullptr, 0, 0,
-      //      size.cx
-      //      , size.cy, SWP_NOMOVE | SWP_NOZORDER | SWP_NOACTIVATE
-      //      | SWP_NOCOPYBITS | SWP_NOSENDCHANGING
-      //      | SWP_NOREPOSITION | SWP_NOREDRAW))
-      //   {
-
-      //      information() << "SetWindowPos Failed";
-
-      //   }
-
-
-      //   //return m_hwnd;
-
-      //}
-      //else
-      //{
-
-      //   LPCTSTR lpClassName = L"draw2d_opengl_offscreen_buffer_window";
-      //   LPCTSTR lpWindowName = L"draw2d_opengl_offscreen_buffer_window";
-      //   //unsigned int dwStyle = WS_CAPTION | WS_POPUPWINDOW; // | WS_VISIBLE
-      //   unsigned int dwExStyle = 0;
-      //   unsigned int dwStyle = WS_OVERLAPPEDWINDOW;
-      //   dwStyle |= WS_POPUP;
-      //   //dwStyle |= WS_VISIBLE;
-      //   //dwStyle |= WS_SYSMENU | WS_MINIMIZEBOX | WS_MAXIMIZEBOX;
-      //   dwStyle &= ~WS_CAPTION;
-      //   //dwStyle = 0;
-      //   dwStyle &= ~WS_THICKFRAME;
-      //   dwStyle &= ~WS_BORDER;
-      //   int x = 0;
-      //   int y = 0;
-      //   int nWidth = size.cx;
-      //   int nHeight = size.cy;
-      //   HWND hWndParent = nullptr;
-      //   HMENU hMenu = nullptr;
-      //   HINSTANCE hInstance = ::GetModuleHandleW(L"gpu_opengl.dll");
-      //   LPVOID lpParam = nullptr;
-
-      //   m_hwnd = CreateWindowExW(dwExStyle, lpClassName, lpWindowName, dwStyle, x, y, nWidth, nHeight, hWndParent, hMenu, hInstance, lpParam);
-
-      //   if (!m_hwnd)
-      //   {
-
-      //      informationf("MS GDI - CreateWindow failed");
-
-      //      informationf("last-error code: %d\n", GetLastError());
-
-      //      throw ::exception(error_failed);
-
-      //   }
-
-      //   //return m_hwnd;
-
-      //}
-
-
-   }
-
-
+   #if !defined(WINDOWS_DESKTOP)
    void context::_create_window_buffer()
    {
 
@@ -2252,6 +2300,8 @@ void main() {
       //set_ok_flag();
 
    }
+
+   #endif
 
 
    void context::_create_window_context(::acme::windowing::window *pwindowParam)
@@ -2476,14 +2526,14 @@ void main() {
    }
 
 
-   void context::_create_cpu_buffer(const ::int_size &size)
-   {
+   //void context::_create_cpu_buffer(const ::int_size &size)
+   //{
 
-      _create_offscreen_window(size);
+   //   //_create_offscreen_window(size);
 
-      _create_window_buffer();
+   //   //_create_window_buffer();
 
-   }
+   //}
 
 
    void context::defer_create_window_context(::acme::windowing::window *pwindow)
@@ -2646,9 +2696,9 @@ void main() {
    void context::_context_lock()
    {
 
-      ::cast<device> pdevice = m_pgpudevice;
+      //::cast<device> pdevice = m_pgpudevice;
 
-      pdevice->_opengl_lock();
+      _opengl_lock();
 
    }
 
@@ -2656,9 +2706,11 @@ void main() {
    void context::_context_unlock()
    {
 
-      ::cast<device> pdevice = m_pgpudevice;
+      //::cast<device> pdevice = m_pgpudevice;
 
-      pdevice->_opengl_unlock();
+      //pdevice->_opengl_unlock();
+
+      _opengl_unlock();
 
    }
 
@@ -3170,13 +3222,13 @@ color = vec4(c.r,c.g, c.b, c.a);
 
 
 
-   void context::swap_buffers()
-   {
+   //void context::swap_buffers()
+   //{
 
 
 
 
-   }
+   //}
 
 
 

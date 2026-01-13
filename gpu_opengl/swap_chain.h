@@ -39,6 +39,7 @@ namespace gpu_opengl
       //::gpu::texture* current_texture() override;
       void present(::gpu::texture* ptexture) override;
 
+      void swap_buffers() override;
 
    };
 

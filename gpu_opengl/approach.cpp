@@ -1,9 +1,12 @@
 #include "framework.h"
 #include "_gpu_opengl.h"
 #include "approach.h"
+#include "device.h"
 #include "acme/filesystem/file/file.h"
 #include "acme/filesystem/filesystem/file_context.h"
 #include "acme/platform/application.h"
+#include "acme/user/user/interaction.h"
+#include "acme/windowing/window.h"
 #include "bred/gpu/context.h"
 
 //
@@ -190,22 +193,12 @@ namespace gpu_opengl
 
    
 
-   void approach::on_create_window(::acme::windowing::window *pwindow)
+   void approach::on_create_window(::acme::windowing::window *pacmewindowingwindow)
    {
 
-      ::cast<::gpu_opengl::approach> papproach = m_papplication->get_gpu_approach();
-      papproach->_on_create_window(pwindow);
-      //::draw2d_gpu::draw2d::on_create_window(pwindowParam);
+      ::gpu::bred_approach::on_create_window(pacmewindowingwindow);
 
-      //::cast < ::windowing_win32::window > pwindow = pwindowParam;
 
-      // auto hwnd = pwindow->m_hwnd;
-
-      // HRGN hRgn = CreateRectRgn(0, 0, -1, -1);
-      // bb.dwFlags = DWM_BB_ENABLE | DWM_BB_BLURREGION;
-      // bb.hRgnBlur = hRgn;
-      // bb.fEnable = TRUE;
-      // DwmEnableBlurBehindWindow(hwnd, &bb);
    }
 
 

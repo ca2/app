@@ -3793,6 +3793,12 @@ retry_license:
 
             m_puserinteractionaFrame->add_unique_interaction(puserinteraction);
 
+            if (m_pacmeuserinteractionMain == nullptr)
+            {
+
+               m_pacmeuserinteractionMain = puserinteraction;
+            }
+
          }
 
          information() << "::berg::application::add_user_interaction ::user::interaction = 0x" << (::iptr) (puserinteraction) << " (" << typeid(*puserinteraction).name() << ") app=" << ::platform::type(this).name();
@@ -3801,13 +3807,6 @@ retry_license:
          {
 
             psession->on_create_frame_window();
-
-         }
-
-         if (m_pacmeuserinteractionMain == nullptr)
-         {
-
-            m_pacmeuserinteractionMain = puserinteraction;
 
          }
 

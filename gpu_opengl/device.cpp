@@ -59,6 +59,12 @@ namespace gpu_opengl
    }
 
 
+   bool device::_is_ok() const
+   {
+
+      return true;
+
+   }
 
 //   bool device::make_current(::gpu::context* pgpucontext)
    //{
@@ -649,19 +655,19 @@ namespace gpu_opengl
    //}
 
    
-   void device::_opengl_lock()
-   {
+   //void device::_opengl_lock()
+   //{
 
 
-   }
+   //}
 
-   
-   void device::_opengl_unlock()
-   {
+   //
+   //void device::_opengl_unlock()
+   //{
 
 
 
-   }
+   //}
 
 
    int device::get_frame_index2()

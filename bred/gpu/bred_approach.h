@@ -45,7 +45,7 @@ namespace gpu
       //::pointer < device >       m_pgpudevice;
 
       //::int_rectangle            m_rectangleOffscreen;
-
+      ::map<::acme::windowing::window *, ::pointer<::gpu::device>> m_devicemap;
 
       bred_approach();
       ~bred_approach() override;
@@ -57,7 +57,7 @@ namespace gpu
       void initialize_gpu_approach() override;
 
 
-      ::gpu::device* get_gpu_device(::acme::windowing::window * pacmewindowingwindow = nullptr) override;
+      ::gpu::device* get_gpu_device(::acme::windowing::window * pacmewindowingwindow) override;
 
 
       void engine_on_frame_context_initialization(::gpu::context* pgpucontext) override;
@@ -70,6 +70,7 @@ namespace gpu
 
       
       void on_create_window(::acme::windowing::window* pwindow) override;
+      virtual void _on_create_window(::acme::windowing::window *pwindow);
 
     
    };

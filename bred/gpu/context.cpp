@@ -180,6 +180,9 @@ namespace gpu
 
       }
 
+
+      _create_cpu_buffer(pwindow->get_window_rectangle().size());
+
             m_bCreated = true;
          //});
    }
@@ -1185,7 +1188,10 @@ namespace gpu
                              ::gpu::texture *pgputexture)
    {
 
-      if (pgpushader == m_pshaderBound)
+      auto iFrameIndex = pgpucommandbuffer->m_iCommandBufferFrameIndex;
+      if (pgpushader == m_pshaderBound
+         && pgpushader->m_iFrameBound ==
+         iFrameIndex)
       {
 
          pgpushader->on_bind_already_bound(pgpucommandbuffer, pgputexture);
@@ -1314,7 +1320,7 @@ namespace gpu
 
 
 
-   void context::create_window_context(::gpu::device* pgpudevice, ::windowing::window* pwindow)
+   void context::create_window_context(::gpu::device* pgpudevice, ::acme::windowing::window* pwindow)
    {
 
       if (m_etype != e_type_window)
@@ -1326,26 +1332,49 @@ namespace gpu
 
       m_escene = e_scene_2d;
 
-      branch_synchronously();
+      if (m_htask.is_null())
+      {
 
-      m_pgpudevice = pgpudevice;
+         branch_synchronously();
 
-      //rear_guard guard(this);
+         m_pgpudevice = pgpudevice;
 
-      _send([this, pgpudevice, pwindow]()
-         {
+         // rear_guard guard(this);
 
-            auto eoutput = ::gpu::e_output_swap_chain;
+         _send(
+            [this, pgpudevice, pwindow]()
+            {
+               auto eoutput = ::gpu::e_output_swap_chain;
 
-            auto pwindowWindow = (::windowing::window*)pwindow;
+               auto pwindowWindow = (::acme::windowing::window *)pwindow;
 
-            auto rectangleWindow = pwindowWindow->get_window_rectangle();
+               auto rectangleWindow = pwindowWindow->get_window_rectangle();
 
-            auto size = rectangleWindow.size();
+               auto size = rectangleWindow.size();
 
-            initialize_gpu_context(pgpudevice, eoutput, pwindow, size);
+               initialize_gpu_context(pgpudevice, eoutput, pwindow, size);
 
-         });
+               if (m_papplication->m_gpu.m_bUseSwapChainWindow)
+               {
+
+                  auto pcontextMain = pgpudevice->main_context();
+
+                  if (pcontextMain != this)
+                  {
+
+                     throw ::exception(error_wrong_state);
+                  }
+
+                  auto pswapchain = pcontextMain->get_swap_chain();
+
+                  if (!pswapchain->m_bSwapChainInitialized)
+                  {
+
+                     pswapchain->initialize_swap_chain_window(pcontextMain, pwindow);
+                  }
+               }
+            });
+      }
 
    }
 
@@ -1375,6 +1404,27 @@ namespace gpu
 
    void context::create_draw2d_context(::gpu::device* pgpudevice, const ::gpu::enum_output& eoutput, const ::int_size& size)
    {
+
+      if (::is_null(pgpudevice))
+      {
+
+         throw ::exception(error_bad_argument);
+
+      }
+
+      if (::is_null(pgpudevice->m_pwindow))
+      {
+
+         throw ::exception(error_wrong_state);
+
+      }
+
+      if (!pgpudevice->_is_ok())
+      {
+
+         throw ::exception(error_wrong_state);
+
+      }
 
       m_etype = e_type_draw2d;
 
@@ -1731,7 +1781,7 @@ namespace gpu
       if (m_pgpucompositor)
       {
 
-         m_pgpucompositor->on_gpu_context_placement_change(size);
+         m_pgpucompositor->on_gpu_context_placement_change(size, m_pgpudevice->m_pwindow);
 
       }
 

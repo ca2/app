@@ -260,10 +260,11 @@ namespace gpu
    }
 
 
-   void graphics::on_gpu_context_placement_change(const ::int_rectangle& rectangle)
+   void graphics::on_gpu_context_placement_change(const ::int_rectangle &rectangle,
+                                                  ::acme::windowing::window *pacmewindowingwindow)
    {
 
-      ::gpu::compositor::on_gpu_context_placement_change(rectangle);
+      ::gpu::compositor::on_gpu_context_placement_change(rectangle, pacmewindowingwindow);
 
    }
 
@@ -436,7 +437,7 @@ namespace gpu
    void graphics::do_on_context(const ::procedure& procedure)
    {
 
-      auto pgpudevice = m_papplication->get_gpu_approach()->get_gpu_device();
+      auto pgpudevice = m_papplication->get_gpu_approach()->get_gpu_device(m_puserinteraction->acme_windowing_window());
 
       auto pcontextMain = pgpudevice->main_context();
 

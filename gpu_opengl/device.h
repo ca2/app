@@ -25,6 +25,8 @@ namespace gpu_opengl
       void on_initialize_particle() override;
 
 
+      bool _is_ok() const override;
+
       /// <summary>
       /// 
       /// </summary>
@@ -68,8 +70,6 @@ namespace gpu_opengl
       ::file::path shader_path(const ::file::path& pathShader) override;
 
 
-      virtual void _opengl_lock();
-      virtual void _opengl_unlock();
 
       int get_frame_index2() override;
 

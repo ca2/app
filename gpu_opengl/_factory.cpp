@@ -66,7 +66,7 @@ __FACTORY_EXPORT void gpu_opengl_factory(::factory::factory * pfactory)
    pfactory->add_factory_item < ::gpu_opengl::cpu_buffer, ::gpu::cpu_buffer >();
    pfactory->add_factory_item < ::gpu_opengl::renderer, ::gpu::renderer >();
 
-   pfactory->add_factory_item < ::gpu_opengl::object, ::gpu::object >();
+   //pfactory->add_factory_item < ::gpu_opengl::object, ::gpu::object >();
 
    pfactory->add_factory_item < ::gpu_opengl::texture, ::gpu::texture >();
 

@@ -14,6 +14,16 @@ namespace gpu_opengl
    {
    public:
 
+#ifdef WINDOWS_DESKTOP
+      HDC         m_hdc;
+      HGLRC       m_hglrc;
+      bool        m_bContextSelected = false;
+      task_index  m_taskindex = 0;
+      itask       m_itask;
+      htask       m_htask;
+#endif
+
+      bool m_bMesa = false;
 
       bool     m_bDepthBuffer = true;
       //GLuint m_vaoFullScreenQuad;
@@ -92,8 +102,12 @@ namespace gpu_opengl
       //virtual string get_shader_version_text();
 
 
+      #ifdef WINDOWS_DESKTOP
 
-      virtual void _create_offscreen_window(const ::int_size & size);
+      void assert_there_is_current_context() override;
+
+      #endif
+      //virtual void _create_offscreen_window(const ::int_size & size);
 
       void copy(::gpu::texture* ptextureTarget, ::gpu::texture* ptextureSource) override;
 
@@ -105,8 +119,9 @@ namespace gpu_opengl
       virtual void _create_window_context(::acme::windowing::window *pwindow);
 
 
-
+      #if !defined(WINDOWS_DESKTOP)
       virtual void _create_window_buffer();
+      #endif
       void _create_cpu_buffer(const ::int_size& size) override;
       void resize_cpu_buffer(const ::int_size& size) override;
       void destroy_cpu_buffer() override;
@@ -214,6 +229,12 @@ namespace gpu_opengl
 
 
       void swap_buffers() override;
+
+
+            virtual void _opengl_lock();
+      virtual void _opengl_unlock();
+
+      //void swap_buffers();
 
    };
 

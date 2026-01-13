@@ -91,6 +91,9 @@ FragColor = texture(uTexture, TexCoord);
             pbindingTexture->m_ebinding = ::gpu::e_binding_sampler2d;
             pbindingTexture->m_iTextureUnit = 0;
 
+            m_pshaderCopyTextureOnEndDraw->m_bDisableDepthTest = true;
+            m_pshaderCopyTextureOnEndDraw->m_bEnableBlend = false;
+
             m_pshaderCopyTextureOnEndDraw->initialize_shader_with_block(
                m_pgpurenderer, pvertexshader, pfragmentshader, 
                //{}, {},
@@ -101,10 +104,30 @@ FragColor = texture(uTexture, TexCoord);
             m_ptextureSwapChain->m_gluType = 0;
          }
 
+         auto r = m_pwindowSwapChain->get_window_rectangle();
+
+         if (r.area() <= 0)
+         {
+
+            return;
+
+         }
+
+
+
          glBindFramebuffer(GL_FRAMEBUFFER, 0);
          GLCheckError("");
-         glDrawBuffer(GL_BACK);
+         //glDrawBuffer(GL_BACK);
+         //GLCheckError("");
+
+
+         glDisable(GL_BLEND);
          GLCheckError("");
+         glDisable(GL_DEPTH_TEST);
+         GLCheckError("");
+         glDepthMask(GL_FALSE);
+         GLCheckError("");
+
 
          auto pcommandbuffer = m_pgpucontext->m_pgpurenderer->getCurrentCommandBuffer2(::gpu::current_frame());
 
@@ -113,28 +136,31 @@ FragColor = texture(uTexture, TexCoord);
          pcommandbuffer->begin_render(m_pshaderCopyTextureOnEndDraw, m_ptextureSwapChain);
 
          pcommandbuffer->set_viewport(sizeContext);
+         
+         glDisable(GL_SCISSOR_TEST);
 
-         pcommandbuffer->set_scissor(sizeContext);
+         //pcommandbuffer->set_scissor(sizeContext);
 
-         glDisable(GL_BLEND);
-         GLCheckError("");
-         glEnable(GL_DEPTH_TEST);
-         GLCheckError("");
-         glDepthMask(GL_TRUE);
-         GLCheckError("");
+         //glDisable(GL_BLEND);
+         //GLCheckError("");
+         //glEnable(GL_DEPTH_TEST);
+         //GLCheckError("");
+         //glDepthMask(GL_TRUE);
+         //GLCheckError("");
 
          glClearColor(0.8f, 0.5f, 0.f, 0.8f);
          GLCheckError("");
-         glClearDepth(1.0f);
+         //glClearDepth(1.0f);
+         //GLCheckError("");
+         //glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+         glClear(GL_COLOR_BUFFER_BIT);
          GLCheckError("");
-         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-         GLCheckError("");
-         glDisable(GL_BLEND);
-         GLCheckError("");
-         glDisable(GL_DEPTH_TEST);
-         GLCheckError("");
-         glDepthMask(GL_FALSE);
-         GLCheckError("");
+         //glDisable(GL_BLEND);
+         //GLCheckError("");
+         //glDisable(GL_DEPTH_TEST);
+         //GLCheckError("");
+         //glDepthMask(GL_FALSE);
+         //GLCheckError("");
 
          if (1)
          {
@@ -152,22 +178,53 @@ FragColor = texture(uTexture, TexCoord);
 
             pmodelbufferFullscreenQuad->unbind(pcommandbuffer);
 
-            m_pgpucontext->defer_unbind_shader();
 
          }
+         pcommandbuffer->end_render();
+                     m_pgpucontext->defer_unbind_shader();
 
-         //  glClearColor(0.f, 0.5f, 0.f, 0.5f);
-         // GLCheckError("");
-         //  glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-         // GLCheckError("");
-         //  glDisable(GL_BLEND);
-         // GLCheckError("");
-         //  glDisable(GL_DEPTH_TEST);
-         // GLCheckError("");
+         #if 0
 
-         ::cast<device> pdevice = m_pgpurenderer->m_pgpucontext->m_pgpudevice;
+           glClearColor(0.f, 0.5f, 0.f, 0.5f);
+          GLCheckError("");
+           glClear(GL_COLOR_BUFFER_BIT);
+           //glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+          GLCheckError("");
+          // glDisable(GL_BLEND);
+          //GLCheckError("");
+          // glDisable(GL_DEPTH_TEST);
+          //GLCheckError("");
+          #endif
 
-         pdevice->_swap_buffers();
+          //glDisable(GL_SCISSOR_TEST);
+
+          // 1. Is a context current?
+          if (!glGetString(GL_VERSION))
+          {
+             informationf("NO CURRENT GL CONTEXT\n");
+          }
+          //else
+          //{
+          //   informationf("GL VERSION: %s\n", glGetString(GL_VERSION));
+          //}
+
+          //// 2. Which framebuffer are we clearing?
+          //GLint fb = -1;
+          //glGetIntegerv(GL_DRAW_FRAMEBUFFER_BINDING, &fb);
+          //informationf("DRAW FB = %d\n", fb);
+
+          //// 3. Viewport
+          //GLint vp[4];
+          //glGetIntegerv(GL_VIEWPORT, vp);
+          //informationf("VIEWPORT = %d %d %d %d\n", vp[0], vp[1], vp[2], vp[3]);
+         //glClearColor(0, 0, 1, 1);
+         //glClear(GL_COLOR_BUFFER_BIT);
+         //glFinish(); // force GPU execution
+         //::cast<device> pdevice = m_pgpurenderer->m_pgpucontext->m_pgpudevice;
+
+         //pdevice->_swap_buffers();
+
+         swap_buffers();
 
       }
       catch (...)

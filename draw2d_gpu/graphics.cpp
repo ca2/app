@@ -280,9 +280,10 @@ void main() {
 
       auto pgpuapproach = application()->get_gpu_approach();
 
-      auto pgpudevice = pgpuapproach->get_gpu_device();
+      auto pgpudevice = pgpuapproach->get_gpu_device(m_puserinteraction->m_pacmewindowingwindow);
 
-      auto pgpucontextMain = m_papplication->get_gpu_approach()->get_gpu_device()->main_context();
+      auto pgpucontextMain =
+         m_papplication->get_gpu_approach()->get_gpu_device(m_puserinteraction->m_pacmewindowingwindow)->main_context();
 
       auto pgpucontextNew = pgpudevice->create_draw2d_context(
          ::gpu::e_output_gpu_buffer,
@@ -344,7 +345,7 @@ void main() {
 
       //   ASSERT(m_puserinteraction);
 
-      auto pgpudevice = pgpuapproach->get_gpu_device();
+      auto pgpudevice = pgpuapproach->get_gpu_device(m_puserinteraction->m_pacmewindowingwindow);
 
       auto pgpucontextNew = pgpudevice->create_draw2d_context(
          ::gpu::e_output_gpu_buffer,

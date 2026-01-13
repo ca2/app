@@ -56,7 +56,8 @@ namespace gpu
       void on_set_gpu_context() override;
 
 
-      void on_gpu_context_placement_change(const ::int_rectangle & rectanglePlacement) override;
+      void on_gpu_context_placement_change(const ::int_rectangle &rectanglePlacement,
+                                           ::acme::windowing::window *pacmewindowingwindow) override;
 
       virtual ::pool <::gpu::model_buffer >& model_buffer_pool(::draw2d::enum_model epool);
       virtual ::gpu::model_buffer * model_buffer(::draw2d::enum_model epool);

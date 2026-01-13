@@ -463,9 +463,9 @@ namespace graphics3d
 
       set_ok_flag();
 
-      auto pgpuapproach = m_papplication->get_gpu_approach();
+      //auto pgpuapproach = m_papplication->get_gpu_approach();
 
-      auto pgpudevice = pgpuapproach->get_gpu_device();
+      auto pgpudevice = gpu_context()->m_pgpudevice;
 
       m_papplication->fork([this]()
          {
@@ -608,7 +608,7 @@ namespace graphics3d
 
       pgpuapproach->m_rectangleOffscreen = rectanglePlacement;
 
-      ::cast < ::gpu::device > pgpudevice = pgpuapproach->get_gpu_device();
+      ::cast<::gpu::device> pgpudevice = get_gpu_context()->m_pgpudevice;
 
       //auto pgpucontext = pgpudevice->get_main_context();
 
@@ -728,7 +728,7 @@ namespace graphics3d
       if (!pcontext)
       {
 
-         auto pgpudevice = m_papplication->get_gpu_approach()->get_gpu_device();
+         auto pgpudevice = m_papplication->get_gpu_approach()->get_gpu_device(m_pusergraphics3d->acme_windowing_window());
 
          auto pgpucontextNew = pgpudevice->create_gpu_context(
             get_engine_gpu_eoutput(),
@@ -993,6 +993,39 @@ namespace graphics3d
    }
 
 
+   void engine::defer_process_load_assets_commands()
+   {
+
+      auto pcontext = gpu_context();
+
+      auto pcommandbufferLoadAssets = ::transfer(pcontext->m_pgpurenderer->m_pcommandbufferLoadAssets);
+
+      if (pcommandbufferLoadAssets)
+      {
+
+         pcontext->m_pgpurenderer->m_pcommandbufferLoadAssets2 = pcommandbufferLoadAssets;
+         // if (prenderer->m_pcommandbufferLoadAssets)
+         //{
+
+         //   auto pcommandbufferLoadAssets = ::transfer(prenderer->m_pcommandbufferLoadAssets);
+
+         //   m_papplication->fork([pcommandbufferLoadAssets]()
+         //      {
+
+         pcommandbufferLoadAssets->submit_command_buffer(nullptr);
+
+         pcommandbufferLoadAssets->wait_commands_to_execute();
+
+         //         });
+
+         //   }
+
+         //}
+      }
+
+   }
+
+
    void engine::defer_update_engine(const ::int_rectangle &rectanglePlacement)
    {
 
@@ -1022,36 +1055,12 @@ namespace graphics3d
       //          m_prenderer->getRenderPass(),
         //        globalSetLayout->getDescriptorSetLayout()
           //  };
-      auto pcontext = gpu_context();
 
-
-            auto pcommandbufferLoadAssets = ::transfer(pcontext->m_pgpurenderer->m_pcommandbufferLoadAssets);
-
-      if (pcommandbufferLoadAssets)
-      {
-
-         pcontext->m_pgpurenderer->m_pcommandbufferLoadAssets2 = pcommandbufferLoadAssets;
-         // if (prenderer->m_pcommandbufferLoadAssets)
-         //{
-
-         //   auto pcommandbufferLoadAssets = ::transfer(prenderer->m_pcommandbufferLoadAssets);
-
-         //   m_papplication->fork([pcommandbufferLoadAssets]()
-         //      {
-
-         pcommandbufferLoadAssets->submit_command_buffer(nullptr);
-
-         pcommandbufferLoadAssets->wait_commands_to_execute();
-
-         //         });
-
-         //   }
-
-         //}
-      }
-
+      defer_process_load_assets_commands();
 
       auto pscene = m_pimmersionlayer->m_pscene;
+
+      auto pcontext = gpu_context();
 
       pscene->defer_load_scene(pcontext);
 
@@ -1077,6 +1086,7 @@ namespace graphics3d
 
       }
 
+      defer_process_load_assets_commands();
 
    }
 

@@ -272,11 +272,11 @@ namespace gpu_opengl
 
             glBindFramebuffer(GL_FRAMEBUFFER, gluFbo);
             GLCheckError("");
+            glDrawBuffer(GL_COLOR_ATTACHMENT0);
+            GLCheckError("");
 
          }
 
-               glDrawBuffer(GL_COLOR_ATTACHMENT0);
-         GLCheckError("");
 
       }
 
@@ -597,9 +597,22 @@ namespace gpu_opengl
 
             auto iTextureUnit = bindingslot.m_pbinding->m_iTextureUnit;
 
+            GLint drawFboOld = 0;
+            glGetIntegerv(GL_DRAW_FRAMEBUFFER_BINDING, &drawFboOld);
+
+            GLint readFboOld = 0;
+            glGetIntegerv(GL_READ_FRAMEBUFFER_BINDING, &readFboOld);
+
+
             glActiveTexture(GL_TEXTURE0 + iTextureUnit);
 
-            m_pgpurenderer->m_pgpucontext->assert_there_is_current_context();
+            //auto ierror = glGetError();
+
+            //if (ierror == GL_INVALID_VALUE)
+            {
+
+              m_pgpurenderer->m_pgpucontext->assert_there_is_current_context();
+            }
 
             GLCheckError("");
 

@@ -50,6 +50,13 @@ namespace gpu_opengl
 
       ::cast < ::gpu_opengl::device_egl > pegldevice = get_gpu_device(pwindowParam);
 
+      if (pegldevice->m_lX11NativeVisualId < 0)
+      {
+
+         throw ::exception(error_wrong_state);
+
+      }
+
       pwindowParam->m_lX11NativeVisualId = pegldevice->m_lX11NativeVisualId;
 
 

@@ -473,39 +473,39 @@ namespace gpu_opengl
 
 
 
-      // Choose an EGLConfig
-      //EGLConfig config;
-      EGLint numConfigs2;
-      EGLint configAttribs2[] = {EGL_RENDERABLE_TYPE, EGL_OPENGL_BIT,
-
-         EGL_RED_SIZE,   8,
-EGL_GREEN_SIZE, 8,
-EGL_BLUE_SIZE,  8,
-EGL_ALPHA_SIZE, 8,  // IMPORTANT
-         EGL_DEPTH_SIZE, 24,
-         EGL_NONE};
-      if (!eglChooseConfig(egldisplay, configAttribs2, &m_eglconfig2, 1, &numConfigs2))
-      {
-
-         int iError = eglGetError();
-
-         const ::scoped_string & scopedstrError = eglQueryString(egldisplay, iError);
-
-         fprintf(stderr, "Failed to choose config (eglError: %s : 0x%x)\n", ::string(scopedstrError).c_str(), iError);
-
-         throw ::exception(::error_failed);
-
-      }
-
-      if (numConfigs2 != 1)
-      {
-
-         fprintf(stderr, "Didn't get just one config, but %d\n", numConfigs2);
-
-         throw ::exception(::error_failed);
-
-      }
-
+//       // Choose an EGLConfig
+//       //EGLConfig config;
+//       EGLint numConfigs2;
+//       EGLint configAttribs2[] = {EGL_RENDERABLE_TYPE, EGL_OPENGL_BIT,
+//
+//          EGL_RED_SIZE,   8,
+// EGL_GREEN_SIZE, 8,
+// EGL_BLUE_SIZE,  8,
+// EGL_ALPHA_SIZE, 8,  // IMPORTANT
+//          EGL_DEPTH_SIZE, 24,
+//          EGL_NONE};
+//       if (!eglChooseConfig(egldisplay, configAttribs2, &m_eglconfigPrimary, 1, &numConfigs2))
+//       {
+//
+//          int iError = eglGetError();
+//
+//          const ::scoped_string & scopedstrError = eglQueryString(egldisplay, iError);
+//
+//          fprintf(stderr, "Failed to choose config (eglError: %s : 0x%x)\n", ::string(scopedstrError).c_str(), iError);
+//
+//          throw ::exception(::error_failed);
+//
+//       }
+//
+//       if (numConfigs2 != 1)
+//       {
+//
+//          fprintf(stderr, "Didn't get just one config, but %d\n", numConfigs2);
+//
+//          throw ::exception(::error_failed);
+//
+//       }
+//
 
       EGLint cfg_attr[] = {
          EGL_SURFACE_TYPE, EGL_WINDOW_BIT|EGL_PBUFFER_BIT,
@@ -595,7 +595,7 @@ EGL_ALPHA_SIZE, 8,  // IMPORTANT
 
          if (vi->depth == 32)
          {
-            m_eglconfigSwapChainWindow = configs[i];
+            m_eglconfigPrimary = configs[i];
             m_lX11NativeVisualId = vid;
             XFree(vi);
             break;

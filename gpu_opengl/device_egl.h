@@ -21,7 +21,7 @@ namespace gpu_opengl
 
 
       EGLDisplay                       m_egldisplay;
-      //EGLConfig                        m_eglconfig2;
+      //EGLConfig                        m_eglconfigPrimary;
       //EGLConfig                        m_eglconfigSwapChainWindow;
       //EGLConfig                        m_eglconfigPBuffer;
       //EGLConfig                        m_eglconfigWindow;

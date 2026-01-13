@@ -1,0 +1,8 @@
+//
+// Created by camilo on 13/01/2026.
+//
+
+#ifndef SCENEFOUNDRY_CONTEXT_WIN32_H
+#define SCENEFOUNDRY_CONTEXT_WIN32_H
+
+#endif //SCENEFOUNDRY_CONTEXT_WIN32_H

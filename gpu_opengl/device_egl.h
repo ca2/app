@@ -58,7 +58,7 @@ namespace gpu_opengl
 
       void _swap_buffers() override;
 
-
+      virtual bool _find_config_for_x11(EGLConfig & eglconfig, long & lX11VisualId, bool bOpaque);
       virtual void __egl_x11_swap_buffers(void * pDisplay, long lWindow);
 
    };

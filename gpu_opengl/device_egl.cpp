@@ -552,10 +552,38 @@ namespace gpu_opengl
       for (int i = 0; i < count; ++i)
       {
          EGLint surfacetype = 0;
+         EGLint renderabletype = 0;
+         EGLint red = 0;
+         EGLint green = 0;
+         EGLint blue = 0;
          EGLint alpha = 0;
          EGLint vid = 0;
 
          if (!eglGetConfigAttrib(egldisplay, configs[i], EGL_SURFACE_TYPE, &surfacetype))
+         {
+
+            throw ::exception(::error_failed);
+
+         }
+         if (!eglGetConfigAttrib(egldisplay, configs[i], EGL_RENDERABLE_TYPE, &renderabletype))
+         {
+
+            throw ::exception(::error_failed);
+
+         }
+         if (!eglGetConfigAttrib(egldisplay, configs[i], EGL_RED_SIZE, &red))
+         {
+
+            throw ::exception(::error_failed);
+
+         }
+         if (!eglGetConfigAttrib(egldisplay, configs[i], EGL_GREEN_SIZE, &green))
+         {
+
+            throw ::exception(::error_failed);
+
+         }
+         if (!eglGetConfigAttrib(egldisplay, configs[i], EGL_BLUE_SIZE, &blue))
          {
 
             throw ::exception(::error_failed);
@@ -575,6 +603,14 @@ namespace gpu_opengl
          }
 
          if (alpha != 8)
+            continue;
+         if (red != 8)
+            continue;
+         if (green != 8)
+            continue;
+         if (blue != 8)
+            continue;
+         if (!(renderabletype & EGL_OPENGL_BIT))
             continue;
          if (surfacetype &(EGL_WINDOW_BIT | EGL_PBUFFER_BIT)!= (EGL_WINDOW_BIT | EGL_PBUFFER_BIT))
             continue;

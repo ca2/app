@@ -543,8 +543,8 @@ namespace gpu_opengl
          ::cast<texture> ptextureBound = pgputextureBound;
 
 
-         glBindTexture(ptextureBound->m_gluType, 0);
-         GLCheckError("");
+         //glBindTexture(ptextureBound->m_gluType, 0);
+         //GLCheckError("");
 
          //m_ptextureBound = nullptr;
 

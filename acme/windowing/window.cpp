@@ -125,6 +125,13 @@ namespace acme
       long window::__x11_Window()
       {
 
+         return 0;
+
+      }
+
+
+      void * window::__x11_Display()
+      {
 
          return 0;
 

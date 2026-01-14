@@ -113,14 +113,12 @@ FragColor = texture(uTexture, TexCoord);
 
          }
 
-
-
          glBindFramebuffer(GL_FRAMEBUFFER, 0);
          GLCheckError("");
          //glDrawBuffer(GL_BACK);
          //GLCheckError("");
-
-
+         glDisable(GL_SCISSOR_TEST);
+         GLCheckError("");
          glDisable(GL_BLEND);
          GLCheckError("");
          glDisable(GL_DEPTH_TEST);
@@ -128,6 +126,7 @@ FragColor = texture(uTexture, TexCoord);
          glDepthMask(GL_FALSE);
          GLCheckError("");
 
+#if 1
 
          auto pcommandbuffer = m_pgpucontext->m_pgpurenderer->getCurrentCommandBuffer2(::gpu::current_frame());
 
@@ -136,9 +135,11 @@ FragColor = texture(uTexture, TexCoord);
          pcommandbuffer->begin_render(m_pshaderCopyTextureOnEndDraw, m_ptextureSwapChain);
 
          pcommandbuffer->set_viewport(sizeContext);
+
+         //pcommandbuffer->set_scissor(sizeContext);
          
          glDisable(GL_SCISSOR_TEST);
-
+         GLCheckError("");
          //pcommandbuffer->set_scissor(sizeContext);
 
          //glDisable(GL_BLEND);
@@ -147,6 +148,7 @@ FragColor = texture(uTexture, TexCoord);
          //GLCheckError("");
          //glDepthMask(GL_TRUE);
          //GLCheckError("");
+
 
          glClearColor(0.8f, 0.5f, 0.f, 0.8f);
          GLCheckError("");
@@ -178,23 +180,30 @@ FragColor = texture(uTexture, TexCoord);
 
             pmodelbufferFullscreenQuad->unbind(pcommandbuffer);
 
-
          }
+
          pcommandbuffer->end_render();
-                     m_pgpucontext->defer_unbind_shader();
 
-         #if 1
+         m_pgpucontext->defer_unbind_shader();
 
-           glClearColor(0.f, 0.5f, 0.f, 0.5f);
-          GLCheckError("");
-           glClear(GL_COLOR_BUFFER_BIT);
+#endif
+
+         glBindFramebuffer(GL_FRAMEBUFFER, 0);
+         GLCheckError("");
+
+#if 1
+
+         glClearColor(0.f, 0.5f, 0.f, 0.5f);
+         GLCheckError("");
+         glClear(GL_COLOR_BUFFER_BIT);
            //glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-          GLCheckError("");
+         GLCheckError("");
           // glDisable(GL_BLEND);
           //GLCheckError("");
           // glDisable(GL_DEPTH_TEST);
           //GLCheckError("");
-          #endif
+
+#endif
 
           //glDisable(GL_SCISSOR_TEST);
 

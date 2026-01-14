@@ -458,7 +458,11 @@ namespace gpu_opengl
 
       }
 
-      if (!eglInitialize(egldisplay, NULL, NULL))
+      EGLint eglMajor = 0;
+
+      EGLint eglMinor = 0;
+
+      if (!eglInitialize(egldisplay, &eglMajor, &eglMinor))
       {
 
          ::warning("Unable to initialize EGL");
@@ -466,6 +470,9 @@ namespace gpu_opengl
          throw ::exception(::error_failed);
 
       }
+
+
+      information("eglInitialize Succeeded: major={}, minor={}", eglMajor, eglMinor);
 
 //       // Choose an EGLConfig
 //       //EGLConfig config;

@@ -169,7 +169,7 @@ namespace gpu
 
       information("gpu::approach::gpu_on_create_window for type {}", pszType);
 
-      auto pdevice = ::system()->m_papplication->gpu_approach()->get_gpu_device(pacmewindowingwindow);
+      auto pdevice = get_gpu_device(pacmewindowingwindow);
 
       pdevice->create_main_context(pacmewindowingwindow);
 

@@ -30,7 +30,9 @@
 #include "aura/platform/system.h"
 #include "aura/windowing/window.h"
 const char* eglErrorString(EGLint error);
-
+#ifdef WITH_X11
+#include <X11/Xlib.h>
+#endif
 
 namespace gpu_opengl
 {
@@ -212,9 +214,28 @@ namespace gpu_opengl
 
       }
 
+#if WITH_X11
+
+      // Get the visual ID from the EGL config
+      EGLint visualId;
+      eglGetConfigAttrib(egldisplay, eglconfig, EGL_NATIVE_VISUAL_ID, &visualId);
+      information("EGL config visual ID: {}", visualId);
+
+      // Get the X11 window's visual
+      auto display = (Display*)pacmewindowingwindow->__x11_Display();
+      XWindowAttributes attrs;
+      XGetWindowAttributes(display, window, &attrs);
+      information("X11 window visual ID: {}", attrs.visual->visualid);
+
+      // They should match!
+      if (visualId != (EGLint)attrs.visual->visualid) {
+         warning("Visual ID mismatch! EGL={} X11={}", visualId, attrs.visual->visualid);
+      }
+
+#endif
+
       // Step 6 - Create a surface to draw to.
-      m_eglsurface = eglCreateWindowSurface(egldisplay, eglconfig, window,
-         nullptr);
+      m_eglsurface = eglCreateWindowSurface(egldisplay, eglconfig, window,nullptr);
 
       if (m_eglsurface == EGL_NO_SURFACE)
       {
@@ -225,7 +246,7 @@ namespace gpu_opengl
 
          ::string strError;
 
-         strError.formatf("Failed to create pbuffer surface (eglError: %s : 0x%x)", ::string(scopedstrError).c_str(), iError);
+         strError.formatf("Failed to create windwo surface (eglError: %s : 0x%x)", ::string(scopedstrError).c_str(), iError);
 
          warning() << strError;
 
@@ -864,11 +885,37 @@ namespace gpu_opengl
    void context_egl::swap_buffers()
    {
 
+      if (m_eoutput != ::gpu::e_output_swap_chain)
+      {
+
+         throw ::exception(error_wrong_state);
+
+      }
 
       ::cast < ::gpu_opengl::device_egl > pegldevice = m_pgpudevice;
 
       auto egldisplay = pegldevice->m_egldisplay;
 
+      EGLint width, height;
+      eglQuerySurface(egldisplay, m_eglsurface, EGL_WIDTH, &width);
+      eglQuerySurface(egldisplay, m_eglsurface, EGL_HEIGHT, &height);
+      debug("EGL surface created: {}x{}", width, height);
+
+      // Check what framebuffer is currently bound
+      GLint currentFB = 0;
+      glGetIntegerv(GL_FRAMEBUFFER_BINDING, &currentFB);
+      debug("Current framebuffer bound: {}", currentFB);
+
+      // Read a pixel from the center to see what's actually there
+      GLubyte pixel[4];
+      glReadPixels(width/2, height/2, 1, 1, GL_RGBA, GL_UNSIGNED_BYTE, pixel);
+      debug("Center pixel color: R={} G={} B={} A={}", pixel[0], pixel[1], pixel[2], pixel[3]);
+
+      // Check for GL errors
+      GLenum glError = glGetError();
+      if (glError != GL_NO_ERROR) {
+         warning("OpenGL error before swap: 0x{:x}", glError);
+      }
 
       if (!eglSwapBuffers(egldisplay, m_eglsurface))
       {
@@ -885,9 +932,24 @@ namespace gpu_opengl
 
          throw ::exception(error_wrong_state, strError);
 
-
       }
 
+#if 0
+#if WITH_X11
+
+      auto pacmewindowingwindow = m_pgpudevice->m_pwindow;
+      // Force X11 to update
+      auto display = (Display*)pacmewindowingwindow->__x11_Display();
+      auto window = (Window)pacmewindowingwindow->__x11_Window();
+      XFlush(display);
+      XSync(display, False);
+
+      XWindowAttributes attrs;
+      XGetWindowAttributes(display, window, &attrs);
+      debug("Window map state: {}", attrs.map_state); // Should be 2 (IsViewable)
+
+#endif
+#endif
 
       // if (m_bEGLWindowSurface)
       // {

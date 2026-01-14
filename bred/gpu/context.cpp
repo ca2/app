@@ -1342,8 +1342,9 @@ namespace gpu
          // rear_guard guard(this);
 
          _send(
-            [this, pgpudevice, pwindow]()
+            [this, pwindow]()
             {
+
                auto eoutput = ::gpu::e_output_swap_chain;
 
                auto pwindowWindow = (::acme::windowing::window *)pwindow;
@@ -1352,17 +1353,18 @@ namespace gpu
 
                auto size = rectangleWindow.size();
 
-               initialize_gpu_context(pgpudevice, eoutput, pwindow, size);
+               initialize_gpu_context(m_pgpudevice, eoutput, pwindow, size);
 
                if (m_papplication->m_gpu.m_bUseSwapChainWindow)
                {
 
-                  auto pcontextMain = pgpudevice->main_context();
+                  auto pcontextMain = m_pgpudevice->main_context();
 
                   if (pcontextMain != this)
                   {
 
                      throw ::exception(error_wrong_state);
+
                   }
 
                   auto pswapchain = pcontextMain->get_swap_chain();

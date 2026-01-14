@@ -108,7 +108,9 @@ namespace acme
          virtual void initialize_window(::acme::user::interaction* pacmeuserinteraction);
 
          virtual ::oswindow oswindow();
-virtual long __x11_Window();
+
+         virtual long __x11_Window();
+         virtual void * __x11_Display();
          virtual void set_user_interaction(::acme::user::interaction * pacmeuserinteraction);
          virtual void set_user_thread(::user::thread * puserthread);
          virtual void set_user_graphics_thread(::user::graphics_thread * pusergraphicsthread);

@@ -39,7 +39,7 @@ namespace gpu_opengl
       ~context_egl() override;
 
 
-      virtual void __create_egl_context();
+      virtual void __create_egl_context(bool bForWindow);
       virtual void __create_egl_window_surface(::acme::windowing::window* pacmewindowingwindow);
       virtual void __create_egl_pbuffer_surface(const ::int_size & size);
       virtual void __on_after_egl_context_and_surface_creation();

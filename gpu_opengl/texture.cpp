@@ -729,11 +729,11 @@ namespace gpu_opengl
 
       }
 
-      GLint drawFboOld = 0;
-      glGetIntegerv(GL_DRAW_FRAMEBUFFER_BINDING, &drawFboOld);
+      //GLint drawFboOld = 0;
+      //glGetIntegerv(GL_DRAW_FRAMEBUFFER_BINDING, &drawFboOld);
 
-      GLint readFboOld = 0;
-      glGetIntegerv(GL_READ_FRAMEBUFFER_BINDING, &readFboOld);
+      //GLint readFboOld = 0;
+      //glGetIntegerv(GL_READ_FRAMEBUFFER_BINDING, &readFboOld);
 
       //::gpu::context_lock contextlock(m_pgpurenderer->m_pgpucontext);
 
@@ -798,8 +798,8 @@ namespace gpu_opengl
 
       }
 
-      glBindFramebuffer(GL_DRAW_FRAMEBUFFER, drawFboOld);
-      glBindFramebuffer(GL_READ_FRAMEBUFFER, readFboOld);
+      //glBindFramebuffer(GL_DRAW_FRAMEBUFFER, drawFboOld);
+      //glBindFramebuffer(GL_READ_FRAMEBUFFER, readFboOld);
    }
 
 

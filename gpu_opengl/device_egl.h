@@ -23,9 +23,9 @@ namespace gpu_opengl
       EGLDisplay                       m_egldisplay;
       //EGLConfig                        m_eglconfigPrimary;
       //EGLConfig                        m_eglconfigSwapChainWindow;
-      //EGLConfig                        m_eglconfigPBuffer;
-      //EGLConfig                        m_eglconfigWindow;
-      EGLConfig                        m_eglconfigPrimary;
+      EGLConfig                        m_eglconfigPBuffer;
+      EGLConfig                        m_eglconfigWindow;
+      //EGLConfig                        m_eglconfigPrimary;
       EGLContext                       m_eglcontextPrimary;
       long                             m_lX11NativeVisualId;
       // EGLSurface                       m_eglsurface;
@@ -53,12 +53,13 @@ namespace gpu_opengl
 
       //void _translate_shader(string_array_base& stra) override;
       virtual void _create_device(const ::int_size & size);
-      virtual void _opengl_lock();
-      virtual void _opengl_unlock();
+      //virtual void _opengl_lock();
+      //virtual void _opengl_unlock();
 
-      void _swap_buffers() override;
+      //void _swap_buffers() override;
 
-      virtual bool _find_config_for_x11(EGLConfig & eglconfig, long & lX11VisualId, bool bOpaque);
+      virtual bool _find_config_for_x11_window(EGLConfig & eglconfig, long & lX11VisualId, bool bOpaque);
+      virtual bool _find_config_for_pbuffer(EGLConfig & eglconfig, bool bOpaque);
       virtual void __egl_x11_swap_buffers(void * pDisplay, long lWindow);
 
    };

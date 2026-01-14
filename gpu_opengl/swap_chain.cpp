@@ -45,7 +45,7 @@ namespace gpu_opengl
       try
       {
 
-         ::gpu::context_lock contextlock(m_pgpurenderer->m_pgpucontext);
+         ::gpu::context_lock contextlock(m_pgpucontext);
 
          if (!m_pshaderCopyTextureOnEndDraw)
          {
@@ -125,7 +125,7 @@ FragColor = texture(uTexture, TexCoord);
          GLCheckError("");
          glDepthMask(GL_FALSE);
          GLCheckError("");
-
+#if 0
 #if 1
 
          auto pcommandbuffer = m_pgpucontext->m_pgpurenderer->getCurrentCommandBuffer2(::gpu::current_frame());
@@ -190,6 +190,7 @@ FragColor = texture(uTexture, TexCoord);
 
          glBindFramebuffer(GL_FRAMEBUFFER, 0);
          GLCheckError("");
+#endif
 
 #if 1
 

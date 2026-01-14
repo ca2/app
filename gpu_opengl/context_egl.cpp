@@ -72,7 +72,7 @@ namespace gpu_opengl
    }
 
 
-   void context_egl::__create_egl_context()
+   void context_egl::__create_egl_context(bool bForWindow)
    {
 
       auto pgpuapproach = m_papplication->get_gpu_approach();
@@ -88,7 +88,20 @@ namespace gpu_opengl
 
       }
 
-      EGLConfig eglconfig = pegldevice->m_eglconfigPrimary;
+      EGLConfig eglconfig;
+
+      if (bForWindow)
+      {
+
+         eglconfig = pegldevice->m_eglconfigWindow;
+
+      }
+      else
+      {
+
+         eglconfig = pegldevice->m_eglconfigPBuffer;
+
+      }
 
       if (eglconfig == EGL_NO_CONFIG_KHR)
       {
@@ -196,7 +209,7 @@ namespace gpu_opengl
 
       }
 
-      EGLConfig eglconfig = pegldevice->m_eglconfigPrimary;
+      EGLConfig eglconfig = pegldevice->m_eglconfigWindow;
 
       if (eglconfig == EGL_NO_CONFIG_KHR)
       {
@@ -262,7 +275,7 @@ namespace gpu_opengl
    void context_egl::_create_window_context(::acme::windowing::window* pacmewindowingwindow)
    {
 
-      __create_egl_context();
+      __create_egl_context(true);
 
       __create_egl_window_surface(pacmewindowingwindow);
 
@@ -296,7 +309,7 @@ namespace gpu_opengl
 
       }
 
-      EGLConfig eglconfig = pegldevice->m_eglconfigPrimary;
+      EGLConfig eglconfig = pegldevice->m_eglconfigPBuffer;
 
       if (eglconfig == EGL_NO_CONFIG_KHR)
       {
@@ -419,7 +432,7 @@ namespace gpu_opengl
 
       }
 
-      __create_egl_context();
+      __create_egl_context(false);
 
       __create_egl_pbuffer_surface(size);
 
@@ -886,6 +899,13 @@ namespace gpu_opengl
    {
 
       if (m_eoutput != ::gpu::e_output_swap_chain)
+      {
+
+         throw ::exception(error_wrong_state);
+
+      }
+
+      if (!m_bEGLWindowSurface)
       {
 
          throw ::exception(error_wrong_state);

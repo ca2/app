@@ -141,12 +141,14 @@ namespace gpu_opengl
 
    }
 
+
    void command_buffer::begin_render(::gpu::shader * pgpushader, ::gpu::texture * pgputextureTarget)
    {
 
       ::gpu::command_buffer::begin_render(pgpushader, pgputextureTarget);
 
    }
+
 
    void command_buffer::end_render()
    {

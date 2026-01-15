@@ -1432,44 +1432,44 @@ namespace gpu_opengl
    //}
 
 
-   void renderer::clear(::gpu::texture* ptextureParam)
-   {
-
-      ::gpu::context_lock contextlock(m_pgpucontext);
-
-      ::cast < texture > ptexture = ptextureParam;
-
-
-      GLuint framebuffer;
-      glGenFramebuffers(1, &framebuffer);
-      glBindFramebuffer(GL_FRAMEBUFFER, framebuffer);
-
-      // Bind the destination texture (textures[textureSrc]) as the framebuffer color attachment
-      glFramebufferTexture2D(
-         GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D,
-         ptexture->m_gluTextureID,
-         0);
-
-      if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE) {
-         printf("Framebuffer not complete!\n");
-         glDeleteFramebuffers(1, &framebuffer);
-         return;
-      }
-
-
-
-      // Set viewport size (match texture dimensions)
-      glViewport(0, 0, ptexture->size().cx, ptexture->size().cy);
-
-      // Clear destination texture before blending
-      glClearColor(0, 0, 0, 0); // Transparent
-      glClear(GL_COLOR_BUFFER_BIT);
-
-      glBindFramebuffer(GL_FRAMEBUFFER, 0); // Return to default framebuffer
-
-      glDeleteFramebuffers(1, &framebuffer);
-
-   }
+   // void renderer::clear(::gpu::texture* ptextureParam)
+   // {
+   //
+   //    ::gpu::context_lock contextlock(m_pgpucontext);
+   //
+   //    ::cast < texture > ptexture = ptextureParam;
+   //
+   //
+   //    GLuint framebuffer;
+   //    glGenFramebuffers(1, &framebuffer);
+   //    glBindFramebuffer(GL_FRAMEBUFFER, framebuffer);
+   //
+   //    // Bind the destination texture (textures[textureSrc]) as the framebuffer color attachment
+   //    glFramebufferTexture2D(
+   //       GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D,
+   //       ptexture->m_gluTextureID,
+   //       0);
+   //
+   //    if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE) {
+   //       printf("Framebuffer not complete!\n");
+   //       glDeleteFramebuffers(1, &framebuffer);
+   //       return;
+   //    }
+   //
+   //
+   //
+   //    // Set viewport size (match texture dimensions)
+   //    glViewport(0, 0, ptexture->size().cx, ptexture->size().cy);
+   //
+   //    // Clear destination texture before blending
+   //    glClearColor(0, 0, 0, 0); // Transparent
+   //    glClear(GL_COLOR_BUFFER_BIT);
+   //
+   //    glBindFramebuffer(GL_FRAMEBUFFER, 0); // Return to default framebuffer
+   //
+   //    glDeleteFramebuffers(1, &framebuffer);
+   //
+   // }
 
 
 //   void renderer::__blend(::gpu::texture* ptextureTarget, ::gpu::texture* ptextureSource)

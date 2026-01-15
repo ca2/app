@@ -476,6 +476,10 @@ namespace gpu_opengl
 
       information("eglInitialize Succeeded: major={}, minor={}", eglMajor, eglMinor);
 
+
+      m_egldisplay = egldisplay;
+
+
 //       // Choose an EGLConfig
 //       //EGLConfig config;
 //       EGLint numConfigs2;
@@ -508,10 +512,26 @@ namespace gpu_opengl
 //          throw ::exception(::error_failed);
 //
 //       }
-//
 
-      // EGLint numSwapChain;
-      // if (!eglChooseConfig(egldisplay, cfg_attr, &m_eglconfigSwapChainWindow,  1, &numSwapChain))
+
+      // // Choose an EGLConfig
+      // // EGLConfig config;
+      // // EGLint numConfigs2;
+      // EGLint configAttribs2[] =
+      // {
+      //    EGL_SURFACE_TYPE, EGL_WINDOW_BIT,
+      //    EGL_RENDERABLE_TYPE, EGL_OPENGL_BIT,
+      //    EGL_RED_SIZE,   8,
+      //    EGL_GREEN_SIZE, 8,
+      //    EGL_BLUE_SIZE,  8,
+      //    EGL_ALPHA_SIZE, 8,  // IMPORTANT
+      //    EGL_DEPTH_SIZE, 24,
+      //    EGL_NONE
+      // };
+      //
+      // EGLint numWindowConfig = 0;
+      //
+      // if (!eglChooseConfig(egldisplay, configAttribs2, &m_eglconfigWindow, 1, &numWindowConfig))
       // {
       //
       //    int iError = eglGetError();
@@ -524,17 +544,18 @@ namespace gpu_opengl
       //
       // }
       //
-      // if (numSwapChain != 1)
+      // if (numWindowConfig != 1)
       // {
       //
-      //    fprintf(stderr, "Didn't get just one config, but %d\n", numSwapChain);
+      //    fprintf(stderr, "Didn't get just one config, but %d\n", numWindowConfig);
       //
       //    throw ::exception(::error_failed);
       //
       // }
-
-      // EGLint vid = -1;
-      // if (!eglGetConfigAttrib(egldisplay, m_eglconfigSwapChainWindow, EGL_NATIVE_VISUAL_ID, &vid))
+      //
+      // EGLint visualid = -1;
+      //
+      // if (!eglGetConfigAttrib(egldisplay, m_eglconfigWindow, EGL_NATIVE_VISUAL_ID, &visualid))
       // {
       //
       //    int iError = eglGetError();
@@ -544,10 +565,10 @@ namespace gpu_opengl
       //    fprintf(stderr, "Failed to get X11 Native Visual Id(eglError: %s : 0x%x)\n", ::string(scopedstrError).c_str(), iError);
       //
       //    throw ::exception(::error_failed);
+      //
       // }
       //
-
-      m_egldisplay = egldisplay;
+      // m_lX11NativeVisualId = visualid;
 
       if (!_find_config_for_x11_window(m_eglconfigWindow, m_lX11NativeVisualId, false))
       {
@@ -674,14 +695,14 @@ namespace gpu_opengl
       // //printf("Loaded GL %d.%d after reload.\n",
       // //     GLAD_VERSION_MAJOR(gl_version), GLAD_VERSION_MINOR(gl_version));
 
-// if (!eglMakeCurrent(m_egldisplay, EGL_NO_SURFACE, EGL_NO_SURFACE, EGL_NO_CONTEXT))
-// {
-//
-//    throw ::exception(error_wrong_state);
-//
-// }
+      // if (!eglMakeCurrent(m_egldisplay, EGL_NO_SURFACE, EGL_NO_SURFACE, EGL_NO_CONTEXT))
+      // {
+      //
+      //    throw ::exception(error_wrong_state);
+      //
+      // }
 
-      //return ::success;
+      // return ::success;
 
    }
 
@@ -706,13 +727,16 @@ namespace gpu_opengl
 
       }
 
-      XVisualInfo argbVisual ={};
+      XVisualInfo argbVisual = {};
+
       {
 
 #if 1
-//         XVisualInfo visualinfo2={};
+
+         // XVisualInfo visualinfo2={};
 
          XMatchVisualInfo(pDisplay, DefaultScreen(pDisplay), 32, TrueColor, &argbVisual);
+
 #else
 
          XVisualInfo vtemplate = {};
@@ -735,8 +759,11 @@ namespace gpu_opengl
          }
 
          argbVisual = visuals[0];
+
          XFree(visuals);
+
 #endif
+
       }
 
       information("_find_config_for_x11_window X11 visual id = {}", argbVisual.visualid);
@@ -756,7 +783,6 @@ namespace gpu_opengl
 
       }
 
-
       EGLint configAttributes[] = {
          EGL_SURFACE_TYPE, EGL_WINDOW_BIT,
          //EGL_RENDERABLE_TYPE, EGL_OPENGL_BIT,
@@ -771,6 +797,7 @@ namespace gpu_opengl
       };
 
       EGLConfig configs[64];
+
       EGLint count = 0;
 
       if (!eglChooseConfig(egldisplay, configAttributes, configs, 64, &count))
@@ -781,8 +808,11 @@ namespace gpu_opengl
       }
 
       information("eglChooseConfig found {} of up to {} configs", count, 64);
-      EGLConfig best = EGL_NO_CONFIG_KHR;
+
+      EGLConfig eglconfigBest = EGL_NO_CONFIG_KHR;
+
       EGLint bestId = INT_MAX;
+
       int iBestVisualId = -1;
 
       for (int i = 0; i < count; ++i)
@@ -795,6 +825,7 @@ namespace gpu_opengl
          EGLint blue = 0;
          EGLint alpha = 0;
          EGLint depth = 0;
+         EGLint stencil = 0;
          EGLint visualid = 0;
          EGLint conformant = 0;
          EGLint colorbuffertype = 0;
@@ -863,6 +894,12 @@ namespace gpu_opengl
             throw ::exception(::error_failed);
 
          }
+         if (!eglGetConfigAttrib(egldisplay, config, EGL_STENCIL_SIZE, &stencil))
+         {
+
+            throw ::exception(::error_failed);
+
+         }
          if (!eglGetConfigAttrib(egldisplay, config, EGL_NATIVE_VISUAL_ID, &visualid))
          {
 
@@ -904,7 +941,13 @@ namespace gpu_opengl
          information("r={}, g={}, b={}, a={}, depth={}", red, green, blue, alpha, depth);
          if (depth != 24)
          {
-            information("Bad EGLConfig? Depth isn't 24?!");
+            information("Bad EGLConfig? Depth size isn't 24?!");
+
+            continue;
+         }
+         if (stencil != 8)
+         {
+            information("Bad EGLConfig? Stencil size isn't 8?!");
 
             continue;
          }
@@ -989,11 +1032,40 @@ namespace gpu_opengl
                continue;
             }
 
-            // EGLint maxW, maxH;
-            // eglGetConfigAttrib(egldisplay, config, EGL_MAX_PBUFFER_WIDTH, &maxW);
-            // eglGetConfigAttrib(egldisplay, config, EGL_MAX_PBUFFER_HEIGHT, &maxH);
-            // if (maxW < 1024 || maxH < 1024)
-            //    continue;
+            EGLint maxW = 0;
+            EGLint maxH = 0;
+            if (!eglGetConfigAttrib(egldisplay, config, EGL_MAX_PBUFFER_WIDTH, &maxW))
+            {
+
+               information("Couldn't get max width");
+
+               maxW = INT_MAX;
+
+            }
+            if (!eglGetConfigAttrib(egldisplay, config, EGL_MAX_PBUFFER_HEIGHT, &maxH))
+            {
+
+               information("Couldn't get max height");
+
+               maxH = INT_MAX;
+
+            }
+            if (maxW < 1920)
+            {
+
+               information("Bad EGLConfig? maximum width lesser than 1920");
+               continue; // reject slow / non-conformant
+
+
+            }
+         if (maxW < 1080)
+         {
+
+            information("Bad EGLConfig? maximum height lesser than 1080");
+            continue; // reject slow / non-conformant
+
+
+         }
 
 
          //}
@@ -1067,7 +1139,7 @@ namespace gpu_opengl
          }
 
 
-                  best = config;
+                  eglconfigBest = config;
                   bestId = configId;
                   iBestVisualId = visualid;
 
@@ -1093,12 +1165,16 @@ namespace gpu_opengl
 
       }
 
-   if (bestId == INT_MAX)
-   {
-      return false;
-   }
+      if (bestId == INT_MAX)
+      {
+
+         return false;
+
+      }
+
       information("Best found id is {} with visual id {}", bestId, iBestVisualId);
-      eglconfig = best;
+
+      eglconfig = eglconfigBest;
 
       lX11VisualId = iBestVisualId;
 
@@ -1151,6 +1227,7 @@ namespace gpu_opengl
          EGL_BLUE_SIZE,  8,
          EGL_ALPHA_SIZE, 8,  // IMPORTANT
          EGL_DEPTH_SIZE, 24,
+         EGL_STENCIL_SIZE, 8,
          EGL_NONE
       };
 
@@ -1176,6 +1253,8 @@ namespace gpu_opengl
          EGLint blue = 0;
          EGLint alpha = 0;
          EGLint visualid = 0;
+         EGLint depth = 0;
+         EGLint stencil = 0;
 //         EGLint visualtype = 0;
 
          EGLConfig config = configs[i];
@@ -1216,6 +1295,18 @@ namespace gpu_opengl
             throw ::exception(::error_failed);
 
          }
+         if (!eglGetConfigAttrib(egldisplay, config, EGL_DEPTH_SIZE, &depth))
+         {
+
+            throw ::exception(::error_failed);
+
+         }
+         if (!eglGetConfigAttrib(egldisplay, config, EGL_STENCIL_SIZE, &stencil))
+         {
+
+            throw ::exception(::error_failed);
+
+         }
          if (!eglGetConfigAttrib(egldisplay, config, EGL_NATIVE_VISUAL_ID, &visualid))
          {
 
@@ -1236,6 +1327,10 @@ namespace gpu_opengl
          if (green != 8)
             continue;
          if (blue != 8)
+            continue;
+         if (depth != 24)
+            continue;
+         if (stencil != 8)
             continue;
          // if (!(renderabletype & EGL_OPENGL_BIT))
          //    continue;

@@ -60,19 +60,24 @@ namespace gpu
    void command_buffer::begin_render(::gpu::shader * pgpushader, ::gpu::texture * pgputextureTarget)
    {
 
-      m_pgpurendertarget->m_pgpurenderer->m_pgpucontext->begin_render(this, pgputextureTarget);
+      auto pgpucontext = m_pgpurendertarget.m_p->m_pgpurenderer.m_p->m_pgpucontext.m_p;
 
-      m_pgpurendertarget->m_pgpurenderer->m_pgpucontext->defer_bind2(this, pgpushader, pgputextureTarget);
-      
+      pgpucontext->begin_render(this, pgputextureTarget);
+
+      pgpucontext->defer_bind2(this, pgpushader, pgputextureTarget);
 
    }
+
 
    void command_buffer::set_shader(::gpu::shader *pgpushader)
    {
 
       m_pgpurendertarget->m_pgpurenderer->m_pgpucontext->defer_bind3(this, pgpushader);
+
       // pgpushader->bind(this, pgputextureTarget);
+
    }
+
 
    void command_buffer::set_block3(::gpu::block *pgpublock)
    {

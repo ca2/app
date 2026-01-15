@@ -220,7 +220,7 @@ namespace gpu
       //virtual void on_graphics_end_draw(::user::interaction * puserinteraction);
 
       virtual void blend(::gpu::renderer* prenderer);
-      virtual void clear(::gpu::texture* ptexture);
+      //virtual void clear(::gpu::texture* ptexture);
       //virtual void copy(::gpu::texture* pgputextureTarget, ::gpu::texture* pgputextureSource);
       //virtual void blend(::gpu::texture* pgputextureTarget, ::gpu::texture* pgputextureSource);
 

@@ -1273,12 +1273,12 @@ namespace gpu
    }
 
 
-   void renderer::clear(::gpu::texture* ptexture)
-   {
-
-      throw ::interface_only();
-
-   }
+   // void renderer::clear(::gpu::texture* ptexture)
+   // {
+   //
+   //    throw ::interface_only();
+   //
+   // }
 
 
    //void renderer::copy(::gpu::texture* pgputextureTarget, ::gpu::texture* pgputextureSource)

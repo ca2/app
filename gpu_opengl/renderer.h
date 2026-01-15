@@ -50,7 +50,7 @@ namespace gpu_opengl
 
       void on_begin_render(::gpu::frame* pframe) override;
 
-      void Clear() const;
+      //void Clear() const;
 
 
       //int get_frame_count() override;
@@ -80,7 +80,7 @@ namespace gpu_opengl
 
 
       //void blend(::gpu::renderer* prendererSource) override;
-      void clear(::gpu::texture* ptextureSource) override;
+      //void clear(::gpu::texture* ptextureSource) override;
       //void copy(::gpu::texture* ptextureTarget, ::gpu::texture* ptextureSource) override;
       //void blend(::gpu::texture* ptextureTarget, ::gpu::texture* ptextureSource) override;
       void _blend_with_shader(::gpu::texture* ptextureTarget, ::gpu::texture* ptextureSource);

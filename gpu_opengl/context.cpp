@@ -961,10 +961,12 @@ namespace gpu_opengl
 
       ::gpu::context_lock contextlock(this);
       // Clear the screen
-      GLCheckError("");
+//      GLCheckError("");
       //   glClearColor(0.678f, 0.847f, 0.902f, 1.0f);//
       glClearColor(color.f32_red(), color.f32_green(), color.f32_blue(), color.f32_opacity()); //
+      GLCheckError("");
       glClearDepth(1.0f);
+      GLCheckError("");
       glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
       GLCheckError("");
 
@@ -1189,428 +1191,434 @@ namespace gpu_opengl
    void context::merge_layers(::gpu::texture *ptextureTarget, ::pointer_array<::gpu::layer> *playera)
    {
 
-      {
-
-          int iLayer = 0;
-
-         for (auto player: *playera)
-         {
-
-            if (iLayer == 2)
-            {
-               // information("What happened to the 3D Layer?");
-            }
-
-
-            ::cast<::gpu_opengl::texture> ptextureSrc = player->texture();
-
-            ptextureSrc->wait_fence();
-
-            // m_pshaderBlend3->bind_source(nullptr, ptextureSrc, 0);
-            iLayer++;
-         }
-
-
-      }
-
-      ::gpu::context_lock contextlock(this);
-
-      if (!m_pmodelbufferDummy)
-      {
-
-         ødefer_construct(m_pmodelbufferDummy);
-
-         m_pmodelbufferDummy->initialize_dummy_model(m_pgpurenderer, 3);
-
-         //m_pmodelbufferDummy->m_iVertexCount = 3;
-
-      }
-
-      {
-
-         if (!m_pshaderBlend3)
-         {
-
-            const char full_screen_triangle_vertex_shader[] = R"vert(
-#version 330 core
-
-out vec2 uv;
-
-void main() {
-    const vec2 pos[3] = vec2[](
-        vec2(-1.0, -1.0),
-        vec2(-1.0,  3.0),
-        vec2( 3.0, -1.0)
-    );
-
-    const vec2 tex[3] = vec2[](
-        vec2(0.0, 0.0),
-        vec2(0.0, 2.0),
-        vec2(2.0, 0.0)
-    );
-
-    gl_Position = vec4(pos[gl_VertexID], 0.0, 1.0);
-    uv = tex[gl_VertexID];
-}
-)vert";
-
-            const char full_screen_triangle_fragment_shader[] = R"frag(
-#version 330 core
-
-uniform sampler2D uTexture;
-
-in vec2 uv;
-out vec4 outColor;
-
-void main() {
-    vec4 color = texture(uTexture, uv);
-    outColor = color;
-}
-)frag";
-
-            ødefer_construct_new(m_pshaderBlend3);
-
-            m_pshaderBlend3->m_bEnableBlend = true;
-            //m_pshaderBlend3->m_bindingSampler.set();
-            m_pshaderBlend3->m_bDisableDepthTest = true;
-
-            auto pbindingSampler = m_pshaderBlend3->binding();
-            pbindingSampler->m_ebinding = ::gpu::e_binding_sampler2d;
-            pbindingSampler->m_iTextureUnit = 0;
-            //m_pshaderBlend3->m_bT
-            //m_pshaderBlend3->m_pgpurenderer = this;
-            //m_pshaderBlend3->m_setbindingSampler = 0;
-            // Image Blend descriptors
-            //if (!m_psetdescriptorlayoutImageBlend)
-
-            //m_pshaderBlend3->m_bClearColor = true;
-            //m_pshaderBlend3->m_colorClear = ::color::transparent;
-
-            //m_pshaderBlend3->m_bClearColor = false;
-            //m_pshaderBlend3->m_colorClear = ::color::transparent;
-
-            m_pshaderBlend3->initialize_shader_with_block(
-               m_pgpurenderer,
-               ::as_block(full_screen_triangle_vertex_shader),
-               ::as_block(full_screen_triangle_fragment_shader),
-               {},
-               //{},
-               //{},
-               // this means the vertex input layout will be null/empty
-               // the full screen shader is embed in the shader code
-               ::gpu::shader::e_flag_clear_default_bindings_and_attributes_descriptions
-
-               );
-
-         }
-
-
-         //if (!m_pd3d11blendstateBlend3)
-         //{
-
-         //   D3D12_BLEND_DESC blendDesc = { 0 };
-         //   blendDesc.RenderTarget[0].BlendEnable = TRUE;
-         //   blendDesc.RenderTarget[0].SrcBlend = D3D11_BLEND_ONE;              // Premultiplied alpha
-         //   blendDesc.RenderTarget[0].DestBlend = D3D11_BLEND_INV_SRC_ALPHA;   // Use inverse of alpha
-         //   blendDesc.RenderTarget[0].BlendOp = D3D11_BLEND_OP_ADD;
-
-         //   blendDesc.RenderTarget[0].SrcBlendAlpha = D3D11_BLEND_ONE;         // Alpha blending (optional)
-         //   blendDesc.RenderTarget[0].DestBlendAlpha = D3D11_BLEND_INV_SRC_ALPHA;
-         //   blendDesc.RenderTarget[0].BlendOpAlpha = D3D11_BLEND_OP_ADD;
-
-         //   blendDesc.RenderTarget[0].RenderTargetWriteMask = D3D11_COLOR_WRITE_ENABLE_ALL;
-
-         //   ::cast < ::gpu_directx11::device > pgpudevice = m_pgpudevice;
-
-         //   HRESULT hr = pgpudevice->m_pd3d12device->CreateBlendState(&blendDesc, &m_pd3d11blendstateBlend3);
-         //   ::defer_throw_hresult(hr);
-
-         //}
-
-         ::cast<renderer> prenderer = m_pgpurenderer;
-
-         ::cast<::gpu_opengl::command_buffer> pcommandbuffer = prenderer->getCurrentCommandBuffer2(
-            ::gpu::current_frame());
-
-         //auto vkcommandbuffer = pcommandbuffer->m_vkcommandbuffer;
-
-         ::cast<::gpu_opengl::texture> ptextureDst = ptextureTarget;
-
-         int iH = ptextureDst->m_pgpurenderer->m_pgpucontext->m_rectangle.height();
-
-         ptextureDst->bind_render_target();
-
-         {
-
-            //GLint objName = 0;
-            //glGetFramebufferAttachmentParameteriv(target, GL_COLOR_ATTACHMENT0,
-            //   GL_FRAMEBUFFER_ATTACHMENT_OBJECT_NAME, &objName);
-
-            GLint drawFbo = 0;
-            glGetIntegerv(GL_DRAW_FRAMEBUFFER_BINDING, &drawFbo);
-
-            GLint readFbo = 0;
-            glGetIntegerv(GL_READ_FRAMEBUFFER_BINDING, &readFbo);
-
-            ::string strMessage;
-
-            strMessage.formatf("ø clear drawFbo=%d readFbo=%d tex=%d", drawFbo, readFbo, ptextureDst->m_gluTextureID);
-
-            glDebugMessageInsert(GL_DEBUG_SOURCE_APPLICATION,
-                                 GL_DEBUG_TYPE_MARKER,
-                                 0,
-                                 GL_DEBUG_SEVERITY_NOTIFICATION,
-                                 -1,
-                                 strMessage);
-
-         }
-
-         glClearColor(0.f, 0.f, 0.f, 0.f);
-         GLCheckError("glClearColor");
-         glClearDepth(1.0f);
-         GLCheckError("glClearDepth");
-         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-         GLCheckError("glClear");
-
-
-
-         if (1)
-         {
-            int iLayer = 0;
-
-          
-
-            pcommandbuffer->begin_render(m_pshaderBlend3, ptextureDst);
-
-
-
-            //m_pshaderBlend3, ptextureDst, ptextureSrc);
-
-            for (auto player: *playera)
-            {
-
-               if (iLayer == 2)
-               {
-                  //information("What happened to the 3D Layer?");
-               }
-
-
-                  //::cast<::gpu_opengl::texture> ptextureSrc = player->texture();
-
-                  //ptextureSrc->wait_fence();
-
-                  ::cast<::gpu_opengl::texture> ptextureSrc = player->texture();
-
-                  m_pshaderBlend3->bind_source(nullptr, ptextureSrc, 0);
-
-                  //ptextureSrc->_new_state(
-                  //   pcommandbuffer,
-                  //   0,
-                  //   VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL,
-                  //   VK_PIPELINE_STAGE_FRAGMENT_SHADER_BIT
-                  //);
-
-                  auto r = ptextureSrc->rectangle();
-
-                  int h = r.height();
-
-                  r.top = iH - r.bottom;
-
-                  r.bottom = r.top + h;
-
-                  pcommandbuffer->set_viewport(r);
-
-                  pcommandbuffer->set_scissor(r);
-
-                  //m_pmodelbufferDummy->bind(pcommandbuffer);
-
-
-                  {
-
-                     //GLint objName = 0;
-                     //glGetFramebufferAttachmentParameteriv(target, GL_COLOR_ATTACHMENT0,
-                     //   GL_FRAMEBUFFER_ATTACHMENT_OBJECT_NAME, &objName);
-
-                     GLint drawFbo = 0;
-                     glGetIntegerv(GL_DRAW_FRAMEBUFFER_BINDING, &drawFbo);
-
-                     GLint readFbo = 0;
-                     glGetIntegerv(GL_READ_FRAMEBUFFER_BINDING, &readFbo);
-
-                     ::string strMessage;
-
-                     strMessage.formatf("ø merge%d drawFbo=%d readFbo=%d texDst=%d", iLayer, drawFbo, readFbo,
-                                        ptextureDst->m_gluTextureID);
-
-                     glDebugMessageInsert(GL_DEBUG_SOURCE_APPLICATION,
-                                          GL_DEBUG_TYPE_MARKER,
-                                          0,
-                                          GL_DEBUG_SEVERITY_NOTIFICATION,
-                                          -1,
-                                          strMessage);
-
-                  }
-
-                  {
-
-                     GLint activeTex = -1;
-
-                     glGetIntegerv(GL_TEXTURE_BINDING_2D, &activeTex); // query the bound texture for target
-
-                     auto samplerTex = ptextureSrc->m_gluTextureID;
-
-                     ::string strMessage;
-
-                     strMessage.formatf("ø merge%d activeTex=%d samplerTex=%d", iLayer, activeTex, samplerTex);
-
-                     glDebugMessageInsert(GL_DEBUG_SOURCE_APPLICATION,
-                                          GL_DEBUG_TYPE_MARKER,
-                                          0,
-                                          GL_DEBUG_SEVERITY_NOTIFICATION,
-                                          -1,
-                                          strMessage);
-
-                  }
-
-                  pcommandbuffer->draw(m_pmodelbufferDummy);
-
-                  m_pmodelbufferDummy->unbind(pcommandbuffer);
-
-                  //ID3D11SamplerState* samplerstatea[] =
-                  //{ ptexture->m_psamplerstate };
-                  //ID3D11ShaderResourceView* sharedresourceviewa[] =
-                  //{ ptexture->m_pshaderresourceview };
-
-                  // 1. Define viewport and scissor rectangle
-                  //D3D12_VIEWPORT viewport = {};
-                  //viewport.TopLeftX = ptextureSrc->m_rectangleTarget.left;
-                  //viewport.TopLeftY = ptextureSrc->m_rectangleTarget.top;
-                  //viewport.Width = static_cast<float>(ptextureSrc->m_rectangleTarget.width());
-                  //viewport.Height = static_cast<float>(ptextureSrc->m_rectangleTarget.height());
-                  //viewport.MinDepth = 0.0f;
-                  //viewport.MaxDepth = 1.0f;
-
-                  //D3D12_RECT scissorRect = {};
-                  //scissorRect.left = ptextureSrc->m_rectangleTarget.left;
-                  //scissorRect.top = ptextureSrc->m_rectangleTarget.top;
-                  //scissorRect.right = ptextureSrc->m_rectangleTarget.right;
-                  //scissorRect.bottom = ptextureSrc->m_rectangleTarget.bottom;
-
-
-                  ////// 4. Set the viewport and scissor
-                  //pcommandlist->RSSetViewports(1, &viewport);
-                  //pcommandlist->RSSetScissorRects(1, &scissorRect);
-                  //D3D11_VIEWPORT vp = {};
-                  //vp.TopLeftX = ptexture->rectangle().left;
-                  //vp.TopLeftY = ptexture->rectangle().top;
-                  //vp.Width = static_cast<float>(ptexture->rectangle().width());
-                  //vp.Height = static_cast<float>(ptexture->rectangle().height());
-                  //vp.MinDepth = 0.0f;
-                  //vp.MaxDepth = 1.0f;
-                  //m_pcontext->RSSetViewports(1, &vp);
-
-                  //m_pcontext->PSSetSamplers(0, 1, samplerstatea);
-                  //m_pcontext->PSSetShaderResources(0, 1, sharedresourceviewa);
-
-
-                  //pcommandlist->IASetPrimitiveTopology(D3D_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
-                  //vkCmdDraw(vkcommandbuffer, 3, 1, 0, 0);
-               //}
-               iLayer++;
-               //if (iLayer >= 3)
-               //{
-               //   break;
-
-               //}
-            }
-            pcommandbuffer->end_render();
-            //m_pshaderBlend3->unbind(pcommandbuffer);
-         }
-         //}
-
-
-         ////::cast <texture > ptextureDst = ptextureTarget;
-         //{
-         //
-         //   float clearColor2[4] = { 0.95f * 0.5f, 0.75f * 0.5f, 0.95f * 0.5f, 0.5f }; // Clear to transparent
-         //
-         //   D3D12_RECT r[1];
-         //
-         //   r[0].left = 100;
-         //   r[0].top = 200;
-         //   r[0].right = 200;
-         //   r[0].bottom = 300;
-         //
-         //   pcommandlist->ClearRenderTargetView(
-         //      ptextureDst->m_pheapRenderTargetView->GetCPUDescriptorHandleForHeapStart(),
-         //      clearColor2,
-         //      1, r);
-
-         //}
-
-
-      }
-
-
-      //::gpu::context::merge_layers(ptextureTarget, playera);
-
-      ////::gpu::context_lock contextlock(this);
-
-      ////::cast < texture > ptextureDst = ptextureTarget;
-
-      //////if()
-
-      //////GLuint framebuffer;
-      //////glGenFramebuffers(1, &framebuffer);
-      //////GLCheckError("glGenFramebuffers");
-      //////glBindFramebuffer(GL_DRAW_FRAMEBUFFER, framebuffer);
-      //////GLCheckError("glBindFramebuffer");
-
-      //////auto gluTextureID = ptextureDst->m_gluTextureID;
-
-      //////// Bind the destination texture (textures[textureSrc]) as the framebuffer color attachment
-      //////glFramebufferTexture2D(
-      //////   GL_DRAW_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D,
-      //////   gluTextureID,
-      //////   0);
-      //////GLCheckError("glFramebufferTexture2D");
-
-      //////if (glCheckFramebufferStatus(GL_DRAW_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE) {
-      //////   printf("Framebuffer not complete!\n");
-      //////   glDeleteFramebuffers(1, &framebuffer);
-      //////   return;
-      //////}
-
-      //////glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
-      ////////glClearColor(0.5f * 0.5f, 0.75f * 0.5f, 0.95f * 0.5f, 0.5f);
-      //////glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
-      ////glFlush();
-
-      ////::cast < renderer > prenderer = m_pgpurenderer;
-
-      ////for (auto& player : *playera)
-      ////{
-
-      ////   if (player.is_null())
-      ////   {
-
-      ////      continue;
-
-      ////   }
-
-      ////   prenderer->__blend(ptextureTarget, player->texture());
-
-      ////}
-
-      ////glBindFramebuffer(GL_FRAMEBUFFER, 0); // Return to default framebuffer
-      ////GLCheckError("glBindFramebuffer");
-
-      ////glDeleteFramebuffers(1, &framebuffer);
-      ////GLCheckError("glDeleteFramebuffers");
-
+      ::gpu::context::merge_layers(ptextureTarget, playera);
 
    }
+//    {
+//
+//       {
+//
+//           int iLayer = 0;
+//
+//          for (auto player: *playera)
+//          {
+//
+//             if (iLayer == 2)
+//             {
+//                // information("What happened to the 3D Layer?");
+//             }
+//
+//
+//             ::cast<::gpu_opengl::texture> ptextureSrc = player->texture();
+//
+//             ptextureSrc->wait_fence();
+//
+//             // m_pshaderBlend3->bind_source(nullptr, ptextureSrc, 0);
+//             iLayer++;
+//          }
+//
+//
+//       }
+//
+//       ::gpu::context_lock contextlock(this);
+//
+//       if (!m_pmodelbufferDummy)
+//       {
+//
+//          ødefer_construct(m_pmodelbufferDummy);
+//
+//          m_pmodelbufferDummy->initialize_dummy_model(m_pgpurenderer, 3);
+//
+//          //m_pmodelbufferDummy->m_iVertexCount = 3;
+//
+//       }
+//
+//       {
+//
+//          if (!m_pshaderBlend3)
+//          {
+//
+//             const char full_screen_triangle_vertex_shader[] = R"vert(
+// #version 330 core
+//
+// out vec2 uv;
+//
+// void main() {
+//     const vec2 pos[3] = vec2[](
+//         vec2(-1.0, -1.0),
+//         vec2(-1.0,  3.0),
+//         vec2( 3.0, -1.0)
+//     );
+//
+//     const vec2 tex[3] = vec2[](
+//         vec2(0.0, 0.0),
+//         vec2(0.0, 2.0),
+//         vec2(2.0, 0.0)
+//     );
+//
+//     gl_Position = vec4(pos[gl_VertexID], 0.0, 1.0);
+//     uv = tex[gl_VertexID];
+// }
+// )vert";
+//
+//             const char full_screen_triangle_fragment_shader[] = R"frag(
+// #version 330 core
+//
+// uniform sampler2D uTexture;
+//
+// in vec2 uv;
+// out vec4 outColor;
+//
+// void main() {
+//     vec4 color = texture(uTexture, uv);
+//     outColor = color;
+// }
+// )frag";
+//
+//             ødefer_construct_new(m_pshaderBlend3);
+//
+//             m_pshaderBlend3->m_bEnableBlend = true;
+//             //m_pshaderBlend3->m_bindingSampler.set();
+//             m_pshaderBlend3->m_bDisableDepthTest = true;
+//
+//             auto pbindingSampler = m_pshaderBlend3->binding();
+//             pbindingSampler->m_ebinding = ::gpu::e_binding_sampler2d;
+//             pbindingSampler->m_iTextureUnit = 0;
+//             //m_pshaderBlend3->m_bT
+//             //m_pshaderBlend3->m_pgpurenderer = this;
+//             //m_pshaderBlend3->m_setbindingSampler = 0;
+//             // Image Blend descriptors
+//             //if (!m_psetdescriptorlayoutImageBlend)
+//
+//             //m_pshaderBlend3->m_bClearColor = true;
+//             //m_pshaderBlend3->m_colorClear = ::color::transparent;
+//
+//             //m_pshaderBlend3->m_bClearColor = false;
+//             //m_pshaderBlend3->m_colorClear = ::color::transparent;
+//
+//             m_pshaderBlend3->initialize_shader_with_block(
+//                m_pgpurenderer,
+//                ::as_block(full_screen_triangle_vertex_shader),
+//                ::as_block(full_screen_triangle_fragment_shader),
+//                {},
+//                //{},
+//                //{},
+//                // this means the vertex input layout will be null/empty
+//                // the full screen shader is embed in the shader code
+//                ::gpu::shader::e_flag_clear_default_bindings_and_attributes_descriptions
+//
+//                );
+//
+//          }
+//
+//
+//          //if (!m_pd3d11blendstateBlend3)
+//          //{
+//
+//          //   D3D12_BLEND_DESC blendDesc = { 0 };
+//          //   blendDesc.RenderTarget[0].BlendEnable = TRUE;
+//          //   blendDesc.RenderTarget[0].SrcBlend = D3D11_BLEND_ONE;              // Premultiplied alpha
+//          //   blendDesc.RenderTarget[0].DestBlend = D3D11_BLEND_INV_SRC_ALPHA;   // Use inverse of alpha
+//          //   blendDesc.RenderTarget[0].BlendOp = D3D11_BLEND_OP_ADD;
+//
+//          //   blendDesc.RenderTarget[0].SrcBlendAlpha = D3D11_BLEND_ONE;         // Alpha blending (optional)
+//          //   blendDesc.RenderTarget[0].DestBlendAlpha = D3D11_BLEND_INV_SRC_ALPHA;
+//          //   blendDesc.RenderTarget[0].BlendOpAlpha = D3D11_BLEND_OP_ADD;
+//
+//          //   blendDesc.RenderTarget[0].RenderTargetWriteMask = D3D11_COLOR_WRITE_ENABLE_ALL;
+//
+//          //   ::cast < ::gpu_directx11::device > pgpudevice = m_pgpudevice;
+//
+//          //   HRESULT hr = pgpudevice->m_pd3d12device->CreateBlendState(&blendDesc, &m_pd3d11blendstateBlend3);
+//          //   ::defer_throw_hresult(hr);
+//
+//          //}
+//
+//          ::cast<renderer> prenderer = m_pgpurenderer;
+//
+//          ::cast<::gpu_opengl::command_buffer> pcommandbuffer = prenderer->getCurrentCommandBuffer2(
+//             ::gpu::current_frame());
+//
+//          //auto vkcommandbuffer = pcommandbuffer->m_vkcommandbuffer;
+//
+//          ::cast<::gpu_opengl::texture> ptextureDst = ptextureTarget;
+//
+//          // int iH = ptextureDst->m_pgpurenderer->m_pgpucontext->m_rectangle.height();
+//          //
+//          // ptextureDst->bind_render_target();
+//          //
+//          // {
+//          //
+//          //    //GLint objName = 0;
+//          //    //glGetFramebufferAttachmentParameteriv(target, GL_COLOR_ATTACHMENT0,
+//          //    //   GL_FRAMEBUFFER_ATTACHMENT_OBJECT_NAME, &objName);
+//          //
+//          //    GLint drawFbo = 0;
+//          //    glGetIntegerv(GL_DRAW_FRAMEBUFFER_BINDING, &drawFbo);
+//          //
+//          //    GLint readFbo = 0;
+//          //    glGetIntegerv(GL_READ_FRAMEBUFFER_BINDING, &readFbo);
+//          //
+//          //    ::string strMessage;
+//          //
+//          //    strMessage.formatf("ø clear drawFbo=%d readFbo=%d tex=%d", drawFbo, readFbo, ptextureDst->m_gluTextureID);
+//          //
+//          //    glDebugMessageInsert(GL_DEBUG_SOURCE_APPLICATION,
+//          //                         GL_DEBUG_TYPE_MARKER,
+//          //                         0,
+//          //                         GL_DEBUG_SEVERITY_NOTIFICATION,
+//          //                         -1,
+//          //                         strMessage);
+//          //
+//          // }
+//
+//          // glClearColor(0.f, 0.f, 0.f, 0.f);
+//          // GLCheckError("glClearColor");
+//          // glClearDepth(1.0f);
+//          // GLCheckError("glClearDepth");
+//          // glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+//          // GLCheckError("glClear");
+//
+//
+//
+//          if (1)
+//          {
+//
+//             int iLayer = 0;
+//
+//             pcommandbuffer.m_p->begin_render(m_pshaderBlend3.m_p, ptextureDst.m_p);
+//
+//             this->clear(ptextureDst, ::color::transparent);
+//
+//             //m_pshaderBlend3, ptextureDst, ptextureSrc);
+//
+//             for (auto player: *playera)
+//             {
+//
+//                if (iLayer == 2)
+//                {
+//                   //information("What happened to the 3D Layer?");
+//                }
+//
+//
+//                   //::cast<::gpu_opengl::texture> ptextureSrc = player->texture();
+//
+//                   //ptextureSrc->wait_fence();
+//
+//                   ::cast<::gpu_opengl::texture> ptextureSrc = player->texture();
+//
+//                   m_pshaderBlend3->bind_source(nullptr, ptextureSrc, 0);
+//
+//                   //ptextureSrc->_new_state(
+//                   //   pcommandbuffer,
+//                   //   0,
+//                   //   VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL,
+//                   //   VK_PIPELINE_STAGE_FRAGMENT_SHADER_BIT
+//                   //);
+//
+//                   auto r = ptextureSrc->rectangle();
+//
+//                   int h = r.height();
+//
+//                   int iH = ptextureDst->height();
+//
+//                   r.top = iH - r.bottom;
+//
+//                   r.bottom = r.top + h;
+//
+//                   pcommandbuffer->set_viewport(r);
+//
+//                   pcommandbuffer->set_scissor(r);
+//
+//                   //m_pmodelbufferDummy->bind(pcommandbuffer);
+//
+//
+//                   {
+//
+//                      //GLint objName = 0;
+//                      //glGetFramebufferAttachmentParameteriv(target, GL_COLOR_ATTACHMENT0,
+//                      //   GL_FRAMEBUFFER_ATTACHMENT_OBJECT_NAME, &objName);
+//
+//                      GLint drawFbo = 0;
+//                      glGetIntegerv(GL_DRAW_FRAMEBUFFER_BINDING, &drawFbo);
+//
+//                      GLint readFbo = 0;
+//                      glGetIntegerv(GL_READ_FRAMEBUFFER_BINDING, &readFbo);
+//
+//                      ::string strMessage;
+//
+//                      strMessage.formatf("ø merge%d drawFbo=%d readFbo=%d texDst=%d", iLayer, drawFbo, readFbo,
+//                                         ptextureDst->m_gluTextureID);
+//
+//                      glDebugMessageInsert(GL_DEBUG_SOURCE_APPLICATION,
+//                                           GL_DEBUG_TYPE_MARKER,
+//                                           0,
+//                                           GL_DEBUG_SEVERITY_NOTIFICATION,
+//                                           -1,
+//                                           strMessage);
+//
+//                   }
+//
+//                   {
+//
+//                      GLint activeTex = -1;
+//
+//                      glGetIntegerv(GL_TEXTURE_BINDING_2D, &activeTex); // query the bound texture for target
+//
+//                      auto samplerTex = ptextureSrc->m_gluTextureID;
+//
+//                      ::string strMessage;
+//
+//                      strMessage.formatf("ø merge%d activeTex=%d samplerTex=%d", iLayer, activeTex, samplerTex);
+//
+//                      glDebugMessageInsert(GL_DEBUG_SOURCE_APPLICATION,
+//                                           GL_DEBUG_TYPE_MARKER,
+//                                           0,
+//                                           GL_DEBUG_SEVERITY_NOTIFICATION,
+//                                           -1,
+//                                           strMessage);
+//
+//                   }
+//
+//                   pcommandbuffer->draw(m_pmodelbufferDummy);
+//
+//                   m_pmodelbufferDummy->unbind(pcommandbuffer);
+//
+//                   //ID3D11SamplerState* samplerstatea[] =
+//                   //{ ptexture->m_psamplerstate };
+//                   //ID3D11ShaderResourceView* sharedresourceviewa[] =
+//                   //{ ptexture->m_pshaderresourceview };
+//
+//                   // 1. Define viewport and scissor rectangle
+//                   //D3D12_VIEWPORT viewport = {};
+//                   //viewport.TopLeftX = ptextureSrc->m_rectangleTarget.left;
+//                   //viewport.TopLeftY = ptextureSrc->m_rectangleTarget.top;
+//                   //viewport.Width = static_cast<float>(ptextureSrc->m_rectangleTarget.width());
+//                   //viewport.Height = static_cast<float>(ptextureSrc->m_rectangleTarget.height());
+//                   //viewport.MinDepth = 0.0f;
+//                   //viewport.MaxDepth = 1.0f;
+//
+//                   //D3D12_RECT scissorRect = {};
+//                   //scissorRect.left = ptextureSrc->m_rectangleTarget.left;
+//                   //scissorRect.top = ptextureSrc->m_rectangleTarget.top;
+//                   //scissorRect.right = ptextureSrc->m_rectangleTarget.right;
+//                   //scissorRect.bottom = ptextureSrc->m_rectangleTarget.bottom;
+//
+//
+//                   ////// 4. Set the viewport and scissor
+//                   //pcommandlist->RSSetViewports(1, &viewport);
+//                   //pcommandlist->RSSetScissorRects(1, &scissorRect);
+//                   //D3D11_VIEWPORT vp = {};
+//                   //vp.TopLeftX = ptexture->rectangle().left;
+//                   //vp.TopLeftY = ptexture->rectangle().top;
+//                   //vp.Width = static_cast<float>(ptexture->rectangle().width());
+//                   //vp.Height = static_cast<float>(ptexture->rectangle().height());
+//                   //vp.MinDepth = 0.0f;
+//                   //vp.MaxDepth = 1.0f;
+//                   //m_pcontext->RSSetViewports(1, &vp);
+//
+//                   //m_pcontext->PSSetSamplers(0, 1, samplerstatea);
+//                   //m_pcontext->PSSetShaderResources(0, 1, sharedresourceviewa);
+//
+//
+//                   //pcommandlist->IASetPrimitiveTopology(D3D_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
+//                   //vkCmdDraw(vkcommandbuffer, 3, 1, 0, 0);
+//                //}
+//                iLayer++;
+//                //if (iLayer >= 3)
+//                //{
+//                //   break;
+//
+//                //}
+//             }
+//             pcommandbuffer->end_render();
+//             //m_pshaderBlend3->unbind(pcommandbuffer);
+//          }
+//          //}
+//
+//
+//          ////::cast <texture > ptextureDst = ptextureTarget;
+//          //{
+//          //
+//          //   float clearColor2[4] = { 0.95f * 0.5f, 0.75f * 0.5f, 0.95f * 0.5f, 0.5f }; // Clear to transparent
+//          //
+//          //   D3D12_RECT r[1];
+//          //
+//          //   r[0].left = 100;
+//          //   r[0].top = 200;
+//          //   r[0].right = 200;
+//          //   r[0].bottom = 300;
+//          //
+//          //   pcommandlist->ClearRenderTargetView(
+//          //      ptextureDst->m_pheapRenderTargetView->GetCPUDescriptorHandleForHeapStart(),
+//          //      clearColor2,
+//          //      1, r);
+//
+//          //}
+//
+//
+//       }
+//
+//
+//       //::gpu::context::merge_layers(ptextureTarget, playera);
+//
+//       ////::gpu::context_lock contextlock(this);
+//
+//       ////::cast < texture > ptextureDst = ptextureTarget;
+//
+//       //////if()
+//
+//       //////GLuint framebuffer;
+//       //////glGenFramebuffers(1, &framebuffer);
+//       //////GLCheckError("glGenFramebuffers");
+//       //////glBindFramebuffer(GL_DRAW_FRAMEBUFFER, framebuffer);
+//       //////GLCheckError("glBindFramebuffer");
+//
+//       //////auto gluTextureID = ptextureDst->m_gluTextureID;
+//
+//       //////// Bind the destination texture (textures[textureSrc]) as the framebuffer color attachment
+//       //////glFramebufferTexture2D(
+//       //////   GL_DRAW_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D,
+//       //////   gluTextureID,
+//       //////   0);
+//       //////GLCheckError("glFramebufferTexture2D");
+//
+//       //////if (glCheckFramebufferStatus(GL_DRAW_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE) {
+//       //////   printf("Framebuffer not complete!\n");
+//       //////   glDeleteFramebuffers(1, &framebuffer);
+//       //////   return;
+//       //////}
+//
+//       //////glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
+//       ////////glClearColor(0.5f * 0.5f, 0.75f * 0.5f, 0.95f * 0.5f, 0.5f);
+//       //////glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+//
+//       ////glFlush();
+//
+//       ////::cast < renderer > prenderer = m_pgpurenderer;
+//
+//       ////for (auto& player : *playera)
+//       ////{
+//
+//       ////   if (player.is_null())
+//       ////   {
+//
+//       ////      continue;
+//
+//       ////   }
+//
+//       ////   prenderer->__blend(ptextureTarget, player->texture());
+//
+//       ////}
+//
+//       ////glBindFramebuffer(GL_FRAMEBUFFER, 0); // Return to default framebuffer
+//       ////GLCheckError("glBindFramebuffer");
+//
+//       ////glDeleteFramebuffers(1, &framebuffer);
+//       ////GLCheckError("glDeleteFramebuffers");
+//
+//
+//    }
 
 
    void context::on_start_layer(::gpu::layer *player)

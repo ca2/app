@@ -112,19 +112,22 @@ namespace gpu_opengl
 
       defer_bind_egl_api();
 
-      EGLint contextAttribs[] = {
-         EGL_CONTEXT_MAJOR_VERSION, 3,
-         EGL_CONTEXT_MINOR_VERSION, 3,
-         EGL_CONTEXT_OPENGL_PROFILE_MASK, EGL_CONTEXT_OPENGL_CORE_PROFILE_BIT,
-         // optional debug flag:
-         EGL_CONTEXT_FLAGS_KHR, EGL_CONTEXT_OPENGL_DEBUG_BIT_KHR,
-         EGL_NONE
-      };      // Step 7 - Create a context.
+      // EGLint contextAttribs[] = {
+      //    EGL_CONTEXT_MAJOR_VERSION, 3,
+      //    EGL_CONTEXT_MINOR_VERSION, 3,
+      //    //EGL_CONTEXT_OPENGL_PROFILE_MASK, EGL_CONTEXT_OPENGL_CORE_PROFILE_BIT,
+      //    // optional debug flag:
+      //    //EGL_CONTEXT_FLAGS_KHR, EGL_CONTEXT_OPENGL_DEBUG_BIT_KHR,
+      //    EGL_NONE
+      // };      // Step 7 - Create a context.
 
       auto eglcontextPrimary = pegldevice->m_eglcontextPrimary;
 
       //EGLContext eglContext;
-      m_eglcontext = eglCreateContext(egldisplay, eglconfig, eglcontextPrimary, contextAttribs);
+      //m_eglcontext = eglCreateContext(egldisplay, eglconfig, eglcontextPrimary, contextAttribs);
+      m_eglcontext = eglCreateContext(egldisplay, eglconfig, eglcontextPrimary, nullptr);
+      //m_eglcontext = eglCreateContext(egldisplay, eglconfig, eglcontextPrimary, nullptr);
+      //m_eglcontext = eglCreateContext(egldisplay, eglconfig, nullptr, nullptr);
       //qDebug() << "egl error" << eglGetError();
 
       if (m_eglcontext == EGL_NO_CONTEXT)
@@ -268,6 +271,8 @@ namespace gpu_opengl
       }
 
       m_bEGLWindowSurface = true;
+
+//      m_pacmewindowingwindowWindowSurface = pacmewindowingwindow;
 
    }
 
@@ -817,22 +822,22 @@ namespace gpu_opengl
         // defer_bind_egl_api();
 
          // Make the context current
-         if (!eglMakeCurrent(egldisplay, m_eglsurface, m_eglsurface, m_eglcontext))
-         {
+      if (!eglMakeCurrent(egldisplay, m_eglsurface, m_eglsurface, m_eglcontext))
+      {
 
-            int iError = eglGetError();
+         int iError = eglGetError();
 
-            auto pszError = eglQueryString(egldisplay, iError);
+         auto pszError = eglQueryString(egldisplay, iError);
 
-            ::string strError;
+         ::string strError;
 
-            strError.formatf("Failed to set current egl context/surface (eglError: %s : 0x%x)", pszError, iError);
+         strError.formatf("Failed to set current egl context/surface (eglError: %s : 0x%x)", pszError, iError);
 
-            warning() << strError;
+         warning() << strError;
 
-            throw ::exception(error_wrong_state, strError);
+         throw ::exception(error_wrong_state, strError);
 
-         }
+      }
 
 //      load_glad_gl();
 

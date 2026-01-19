@@ -769,6 +769,13 @@ namespace user
 
       auto sizeNew = size;
 
+      if (size.cx < 10 || size.cy < 10)
+      {
+
+         information("interaction::set_size cx < 10 || cy < 10");
+
+      }
+
       if (!on_set_size(sizeNew, elayout))
       {
 
@@ -15771,6 +15778,13 @@ if(get_parent())
       auto yPos = rectangle.top;
       auto w = rectangle.width();
       auto h = rectangle.height();
+
+      if (w < 10 || h < 10)
+      {
+
+         information("_on_configure_notify_unlocked w < 10 || h < 10");
+
+      }
 
       //::int_point p(r.left, r.top);
 

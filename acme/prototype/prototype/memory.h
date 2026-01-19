@@ -40,7 +40,7 @@ public:
    bool        m_bAligned;
 
 
-   memory(::particle * pparticle = nullptr) { this->m_pprimitivememory = this; this->m_bAligned = false; }
+   memory();
    memory(enum_create_new, bool bAligned);
    template < prototype_integral INTEGRAL >
    memory(INTEGRAL i, bool bAligned = false) { this->m_pprimitivememory = this; this->m_bAligned = bAligned; this->set_size(i); }
@@ -81,15 +81,17 @@ public:
    inline memory & operator += (const ::memory & memory) { append(memory); return *this; };
 
    
-   character_count sz_len() const override;
-   void to_sz(char * sz, character_count len) const override;
+   virtual character_count sz_len() const;
+   virtual void to_sz(char * sz, character_count len) const;
 
 
 };
 
-using memory_pointer = ::pointer<memory>;
+using memory_particle = ::make_particle1 < memory >;
 
-inline memory_pointer create_memory() { return øallocate ::memory (); }
+using memory_pointer = ::pointer< ::memory_particle>;
+
+inline memory_pointer create_memory() { return øallocate ::memory_particle (); }
 
 
 inline ::memory memory_base::slice(memsize start, memsize count)

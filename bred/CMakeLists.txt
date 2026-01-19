@@ -236,7 +236,8 @@ list(APPEND library_references
    berg)
 
 
-add_library(${PROJECT_NAME} SHARED ${library_source})
+add_library(${PROJECT_NAME} SHARED ${library_source}
+   typeface/character.cpp)
 add_library(static_${PROJECT_NAME} STATIC ${library_source})
 
 

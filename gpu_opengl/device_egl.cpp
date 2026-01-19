@@ -570,12 +570,12 @@ namespace gpu_opengl
       //
       // m_lX11NativeVisualId = visualid;
 
-      if (!_find_config_for_x11_window(m_eglconfigWindow, m_lX11NativeVisualId, false))
+      if (!_simplified_find_config_for_x11_window(m_eglconfigWindow, m_lX11NativeVisualId, false))
       {
 
          warning("Couldn't find window config with transparent visual");
 
-         if (_find_config_for_x11_window(m_eglconfigWindow, m_lX11NativeVisualId, true))
+         if (_simplified_find_config_for_x11_window(m_eglconfigWindow, m_lX11NativeVisualId, true))
          {
 
             warning("An couldn't find window config with opaque visual");
@@ -707,7 +707,85 @@ namespace gpu_opengl
    }
 
 
-   bool device_egl::_find_config_for_x11_window(EGLConfig & eglconfig, long & lX11VisualId, bool bOpaque)
+
+   bool device_egl::_simplified_find_config_for_x11_window(EGLConfig & eglconfig, long & lX11VisualId, bool bOpaque)
+   {
+
+      auto psystem = system();
+
+      auto pwindowing = psystem->acme_windowing();
+
+      auto pdisplay = pwindowing->acme_display();
+
+      auto pDisplay = (Display *) pdisplay->_get_x11_display();
+
+      auto egldisplay = m_egldisplay;
+
+      if (egldisplay == EGL_NO_DISPLAY)
+      {
+
+         throw ::exception(error_wrong_state);
+
+      }
+
+      XVisualInfo argbVisual = {};
+
+      XMatchVisualInfo(pDisplay, DefaultScreen(pDisplay), 32, TrueColor, &argbVisual);
+
+      information("_simplified_find_config_for_x11_window X11 visual id = {}", argbVisual.visualid);
+
+      int depthFind;
+
+      if (bOpaque)
+      {
+
+         depthFind = 24;
+
+      }
+      else
+      {
+
+         depthFind = 32;
+
+      }
+
+      EGLint cfg_attribs[] = {
+         EGL_SURFACE_TYPE, EGL_WINDOW_BIT,
+         EGL_RENDERABLE_TYPE, EGL_OPENGL_BIT,
+
+         EGL_RED_SIZE,   8,
+         EGL_GREEN_SIZE, 8,
+         EGL_BLUE_SIZE,  8,
+         EGL_ALPHA_SIZE, 8,
+
+         EGL_NATIVE_VISUAL_ID, argbVisual.visualid,
+         EGL_NONE
+     };
+
+      //EGLConfig configs[64];
+
+      //EGLint count = 0;
+
+      EGLConfig cfg{};
+      EGLint num = 0;
+      if (!eglChooseConfig(egldisplay, cfg_attribs, &cfg, 1, &num) || num != 1)
+      {
+         ::string strError("eglChooseConfig failed");
+         information(strError);
+         throw ::exception(::error_failed, strError);
+         return false;
+      }
+
+      eglconfig = cfg;
+
+      lX11VisualId = argbVisual.visualid;
+
+      return true;
+
+   }
+
+
+   bool device_egl::_find_config_for_x11_window1(EGLConfig & eglconfig, long & lX11VisualId, bool bOpaque)
    {
 
       auto psystem = system();

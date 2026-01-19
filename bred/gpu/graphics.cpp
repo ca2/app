@@ -1181,8 +1181,20 @@ namespace gpu
          y = maximum(h, y);
          //// update VBO for each character
          // render glyph texture over quad
-         if (ch.m_ppixmap)
+         if (ch.m_memory.size() > 0)
          {
+
+            // ch.m_ppixmap = m_pgpurenderer->m_pgpucontext->create_gpu_pixmap({ ch.Size.x, ch.Size.y });
+            //
+            // //ch.m_ppixmap->initialize_gpu_pixmap(m_pgpurenderer, { ch.Size.x, ch.Size.y });
+            //
+            // if (::is_set(p))
+            // {
+            //
+            //    ch.m_ppixmap->set_pixels(p);
+            //
+            // }
+
             /* ::graphics3d::sequence2_uv vertexes[6] = {
                  {{xpos,     ypos + h},  { 0.0f, 0.0f } },
              { {xpos,     ypos    },     {  0.0f, 1.0f }},
@@ -1282,15 +1294,15 @@ namespace gpu
 
       auto pface = pdraw2d->_get_face(pfont);
 
-      if (!pface->m_pgpurenderer)
-      {
-
-         auto prenderer = gpu_context()->m_pgpurenderer;
-
-         pface->initialize_gpu_buffer(prenderer);
-
-      }
-
+      // if (!pface->m_pgpurenderer)
+      // {
+      //
+      //    auto prenderer = gpu_context()->m_pgpurenderer;
+      //
+      //    pface->initialize_gpu_buffer(prenderer);
+      //
+      // }
+      //
       return pface;
 
    }
@@ -1478,9 +1490,11 @@ namespace gpu
          float sizey = (float) ch.Size.y;
          // update VBO for each character
          // render glyph texture over quad
-         if (ch.m_ppixmap 
-            && ch.m_ppixmap->m_pgputexture
-            && ch.m_ppixmap->m_pgputexture->is_in_shader_sampling_state())
+
+         auto ppixmap = ch.get_gpu_pixmap(gpu_context()->m_pgpurenderer);
+         if (ppixmap
+            && ppixmap->m_pgputexture
+            && ppixmap->m_pgputexture->is_in_shader_sampling_state())
          {
 
 
@@ -1500,7 +1514,7 @@ namespace gpu
             //}
 
             //pmodelbuffer->set_vertex_array(vertexes, 6);
-            ppixmap = ch.m_ppixmap;
+            //ppixmap = ppixmap;
 
             //if (pshader->m_pgputextureBound != ppixmap->m_pgputexture)
             //{

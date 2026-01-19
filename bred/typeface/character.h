@@ -10,7 +10,8 @@ namespace typeface
    struct character
    {
 
-      ::pointer < ::gpu::pixmap > m_ppixmap;
+      ::pointer < ::gpu::pixmap > m_ppixmapOptional;
+      ::memory m_memory;
       int m_iUnicode;
       bool m_bInit;
       //unsigned int TextureID; // ID handle of the glyph texture
@@ -24,6 +25,8 @@ namespace typeface
          //TextureID = 0;
          Advance = 0;
       }
+
+      virtual ::gpu::pixmap * get_gpu_pixmap(::gpu::renderer * pgpurenderer);
 
    };
 

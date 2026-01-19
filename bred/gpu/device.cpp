@@ -817,6 +817,10 @@ void device::create_main_context(::acme::windowing::window * pacmewindowingwindo
          eoutput = ::gpu::e_output_gpu_buffer;
       }
 
+      m_eoutput = eoutput;
+
+      m_pgpucontextMain->m_eoutput = eoutput;
+
       auto pwindow = pacmewindowingwindow;
 
       if (::is_null(pwindow))

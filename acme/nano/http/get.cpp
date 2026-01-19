@@ -139,7 +139,7 @@ namespace nano
       memory_pointer get::get_memory_response()
       {
 
-         return payload("get_memory").cast < memory>();
+         return payload("get_memory").cast < memory_particle>();
 
       }
 

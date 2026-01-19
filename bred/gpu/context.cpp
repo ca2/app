@@ -242,7 +242,7 @@ namespace gpu
       if (m_eoutput == e_output_swap_chain)
       {
 
-         m_pacmewindowingwindowWindowSurface->_send(procedure);
+         m_pacmewindowingwindowWindowSurface->_user_send(procedure);
 
       }
       else
@@ -588,9 +588,10 @@ namespace gpu
          pproperty++;
       }
 
-      properties.m_memory.set_size(iSizeWithSamplers);
-      properties.m_blockWithoutSamplers = properties.m_memory(0, iSizeWithoutSamplers);
-      properties.m_blockWithSamplers = properties.m_memory;
+
+      properties.memory().set_size(iSizeWithSamplers);
+      properties.m_blockWithoutSamplers = properties.memory()(0, iSizeWithoutSamplers);
+      properties.m_blockWithSamplers = properties.memory();
    }
 
 
@@ -708,9 +709,9 @@ namespace gpu
          pproperty++;
       }
 
-      properties.m_memory.set_size(iSizeWithSamplers);
-      properties.m_blockWithoutSamplers = properties.m_memory(0, iSizeWithoutSamplers);
-      properties.m_blockWithSamplers = properties.m_memory;
+      properties.memory().set_size(iSizeWithSamplers);
+      properties.m_blockWithoutSamplers = properties.memory()(0, iSizeWithoutSamplers);
+      properties.m_blockWithSamplers = properties.memory();
    }
 
 
@@ -951,9 +952,9 @@ namespace gpu
    iSizeWithSamplers = (iSizeWithSamplers + 15) & ~15;
    iSizeWithoutSamplers = (iSizeWithoutSamplers + 15) & ~15;
 
-   properties.m_memory.set_size(iSizeWithSamplers);
-   properties.m_blockWithoutSamplers = properties.m_memory(0, iSizeWithoutSamplers);
-   properties.m_blockWithSamplers = properties.m_memory;
+   properties.memory().set_size(iSizeWithSamplers);
+   properties.m_blockWithoutSamplers = properties.memory()(0, iSizeWithoutSamplers);
+   properties.m_blockWithSamplers = properties.memory();
 
 
 }
@@ -1334,7 +1335,7 @@ namespace gpu
    //}
 
 
-   void context::create_window_context(::gpu::device* pgpudevice, ::acme::windowing::window* pwindow)
+   void context::create_window_context(::gpu::device* pgpudevice, ::acme::windowing::window* pacmewindowingwindow)
    {
 
       if (m_etype != e_type_window)
@@ -1346,6 +1347,8 @@ namespace gpu
 
       m_escene = e_scene_2d;
 
+      m_pacmewindowingwindowWindowSurface = pacmewindowingwindow;
+
       if (m_htask.is_null())
       {
 
@@ -1356,18 +1359,18 @@ namespace gpu
          // rear_guard guard(this);
 
          _send(
-            [this, pwindow]()
+            [this, pacmewindowingwindow]()
             {
 
                auto eoutput = ::gpu::e_output_swap_chain;
 
-               auto pwindowWindow = (::acme::windowing::window *)pwindow;
+               auto pwindowWindow = (::acme::windowing::window *)pacmewindowingwindow;
 
                auto rectangleWindow = pwindowWindow->get_window_rectangle();
 
                auto size = rectangleWindow.size();
 
-               initialize_gpu_context(m_pgpudevice, eoutput, pwindow, size);
+               initialize_gpu_context(m_pgpudevice, eoutput, pacmewindowingwindow, size);
 
                if (m_papplication->m_gpu.m_bUseSwapChainWindow)
                {
@@ -1386,7 +1389,7 @@ namespace gpu
                   if (!pswapchain->m_bSwapChainInitialized)
                   {
 
-                     pswapchain->initialize_swap_chain_window(pcontextMain, pwindow);
+                     pswapchain->initialize_swap_chain_window(pcontextMain, pacmewindowingwindow);
                   }
                }
             });
@@ -1542,17 +1545,16 @@ namespace gpu
 
       }
 
-
-      ASSERT(is_current_task());
-
       if (m_etype == e_type_window)
       {
 
-         task_set_name("gctx::window");
+//         task_set_name("gctx::window");
 
       }
       else if (m_etype == e_type_graphics3d)
       {
+
+         ASSERT(is_current_task());
 
          task_set_name("gctx::3d");
 
@@ -1560,17 +1562,23 @@ namespace gpu
       else if (m_etype == e_type_draw2d)
       {
 
+         ASSERT(is_current_task());
+
          task_set_name("gctx::draw2d");
 
       }
       else if (m_etype == e_type_generic)
       {
 
+         ASSERT(is_current_task());
+
          task_set_name("gctx::generic");
 
       }
       else
       {
+
+         ASSERT(is_current_task());
 
          task_set_name("gctx::unknown");
 

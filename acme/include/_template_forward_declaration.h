@@ -1045,7 +1045,7 @@ namespace write_text
 
 using item_pointer = ::pointer<::item>;
 
-using memory_pointer = ::pointer<::memory>;
+using memory_pointer = ::pointer<::make_particle1<::memory>>;
 
 
 template<class T, typename ARG_T = const T *, typename ARRAY_BASE = array_base<::pointer<T>, ARG_T>>

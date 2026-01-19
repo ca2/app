@@ -261,7 +261,8 @@ namespace gpu_opengl
          GLint readFbo = 0;
          glGetIntegerv(GL_READ_FRAMEBUFFER_BINDING, &readFbo);
 
-         if (drawFbo != gluFbo || readFbo != gluFbo)
+         //if (drawFbo != gluFbo || readFbo != gluFbo)
+         if (drawFbo != gluFbo)
          {
 
 
@@ -270,7 +271,8 @@ namespace gpu_opengl
             //    std::cerr << "Framebuffer is not complete: " << status << std::endl;
             // }
 
-            glBindFramebuffer(GL_FRAMEBUFFER, gluFbo);
+            //glBindFramebuffer(GL_FRAMEBUFFER, gluFbo);
+            glBindFramebuffer(GL_DRAW_FRAMEBUFFER, gluFbo);
             GLCheckError("");
             glDrawBuffer(GL_COLOR_ATTACHMENT0);
             GLCheckError("");

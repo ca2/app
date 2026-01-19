@@ -59,10 +59,21 @@ namespace typeface_freetype
    }
 
 
+   void face::initialize(::particle * pparticle)
+   {
+
+      ::typeface::face::initialize(pparticle);
+
+   }
+
+
    void face::create_character(::typeface::character& ch, const ::scoped_string& scopedstr)
       //Character& face::get_character(const ::scoped_string& scopedstr)
    {
 
+      _synchronous_lock synchronouslock(this->synchronization());
+
+      auto pszFontName = m_strFontName.c_str();
 
       if (!m_bFace)
       {
@@ -70,10 +81,7 @@ namespace typeface_freetype
 
          defer_initialize_freetype();
 
-         auto pszFontName = m_strFontName.c_str();
-
          //::file::path path;
-
 
          ::cast < ::bred::system > psystem = system();
 
@@ -108,11 +116,11 @@ namespace typeface_freetype
 
          //}
 
-         auto m = file()->as_memory(path);
+         m_memoryFace = file()->as_memory(path);
          // Roboto - Regular.ttf
             // load font as face
 
-         if (FT_New_Memory_Face(g_freetype, m.data(),(FT_Long) m.size(), 0, &m_face))
+         if (FT_New_Memory_Face(g_freetype, m_memoryFace.data(),(FT_Long) m_memoryFace.size(), 0, &m_face))
          {
             error() << "ERROR::FREETYPE: Failed to load font";
             throw ::exception(error_failed, "Failed to load font");
@@ -133,7 +141,18 @@ namespace typeface_freetype
          m_iCapHeight = (m_face->glyph->metrics.horiBearingY + 32 ) >> 6;
 
       }
-      if (FT_Load_Char(m_face, unicode_index(scopedstr), FT_LOAD_RENDER))
+      //auto iUnicodeIndex = unicode_index(scopedstr);
+
+      auto iUnicodeIndex = ch.m_iUnicode;
+
+      if (iUnicodeIndex == 32)
+      {
+
+         information("iUnicodeIndex == 32");
+
+      }
+
+      if (FT_Load_Char(m_face, iUnicodeIndex, FT_LOAD_RENDER))
       {
          warning() << "ERROR::FREETYTPE: Failed to load Glyph";
          return;

@@ -22,9 +22,15 @@ namespace typeface_freetype
       bool m_bFace;
       FT_Face m_face;
       int m_iCapHeight = -1;
+      ::memory m_memoryFace;
+
 
       face();
       ~face() override;
+
+
+      void initialize(::particle * pparticle) override;
+
 
       void create_character(::typeface::character& ch, const ::scoped_string& scopedstr) override;
 

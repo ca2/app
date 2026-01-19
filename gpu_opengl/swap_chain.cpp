@@ -113,10 +113,16 @@ FragColor = texture(uTexture, TexCoord);
 
          }
 
+         glBindVertexArray(0);
+         GLCheckError("");
+         glUseProgram(0);
+         GLCheckError("");
+
+
          glBindFramebuffer(GL_FRAMEBUFFER, 0);
          GLCheckError("");
-         //glDrawBuffer(GL_BACK);
-         //GLCheckError("");
+         glDrawBuffer(GL_BACK);
+         GLCheckError("");
          glDisable(GL_SCISSOR_TEST);
          GLCheckError("");
          glDisable(GL_BLEND);
@@ -194,7 +200,7 @@ FragColor = texture(uTexture, TexCoord);
 
 #if 1
 
-         glClearColor(0.f, 0.5f, 0.f, 0.5f);
+         glClearColor(0.5f, 0.5f, 0.5f, 0.5f);
          GLCheckError("");
          glClear(GL_COLOR_BUFFER_BIT);
            //glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);

@@ -30,6 +30,7 @@ namespace gpu
       ::collection::index                 m_iCommandBufferFrameIndex;
       ::collection::index                 m_iSerial;
       ::string                            m_strAnnotation;
+      ::string                            m_strName;
       ::pointer_array < ::particle >      m_particleaHold;
       ::graphics3d::render_system *       m_prendersystem = nullptr;
       //::gpu::binding_set_pointer          m_pbindingsetCurrent;

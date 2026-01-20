@@ -559,6 +559,7 @@
     <ClCompile Include="prodevian\actor.cpp" />
     <ClCompile Include="prodevian\game_object.cpp" />
     <ClCompile Include="prodevian\immersion.cpp" />
+    <ClCompile Include="typeface\character.cpp" />
     <ClCompile Include="typeface\face.cpp" />
     <ClCompile Include="typeface\typeface.cpp" />
     <ClCompile Include="typeface\allocator.cpp" />

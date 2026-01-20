@@ -1977,7 +1977,11 @@ namespace acme
          void interaction::on_create_window_object()
          {
 
-            øconstruct(m_pacmewindowingwindow, ::system()->m_pfactoryAcmeWindowing);
+            //auto pfactoryAcmeWindowing = ::system()->m_pfactoryAcmeWindowing.m_p;
+
+            //øconstruct(m_pacmewindowingwindow, pfactoryAcmeWindowing);
+
+            øconstruct(m_pacmewindowingwindow);
 
          }
 

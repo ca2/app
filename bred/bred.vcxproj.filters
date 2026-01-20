@@ -674,6 +674,9 @@
     <ClCompile Include="typeface\allocator.cpp">
       <Filter>Source Files\typeface</Filter>
     </ClCompile>
+    <ClCompile Include="typeface\character.cpp">
+      <Filter>Source Files\typeface</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="deployment.rc">

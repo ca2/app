@@ -386,6 +386,8 @@ namespace gpu_opengl
          glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
          // set linear filtering (so you can scale your image)
 
+         glBindTexture(GL_TEXTURE_2D, 0);
+
       }
 
       if (pimage->is_ok())
@@ -423,6 +425,8 @@ namespace gpu_opengl
                       0, GL_RGBA, GL_UNSIGNED_BYTE,
                       m_memorySwap.data()); // upload image data to the textur
 
+
+         glBindTexture(GL_TEXTURE_2D, 0);
 
       }
 
@@ -1878,6 +1882,24 @@ namespace gpu_opengl
 
       }
 
+      if (!ptextureSrc->m_gluFbo)
+      {
+
+         throw ::exception(error_wrong_state);
+
+      }
+
+      if (!ptextureDst->m_gluFbo)
+      {
+
+         throw ::exception(error_wrong_state);
+
+      }
+
+      auto gluSrcFbo = ptextureSrc->m_gluFbo;
+
+      auto gluDstFbo = ptextureDst->m_gluFbo;
+
       //GLuint fboSrc, fboDst;
       //glGenFramebuffers(1, &fboSrc);
       //GLCheckError("");
@@ -1890,9 +1912,7 @@ namespace gpu_opengl
       GLint readFboOld = 0;
       glGetIntegerv(GL_READ_FRAMEBUFFER_BINDING, &readFboOld);
 
-
       // Attach source texture to fboSrc
-      auto gluSrcFbo = ptextureSrc->m_gluFbo;
       glBindFramebuffer(GL_READ_FRAMEBUFFER, gluSrcFbo);
       GLCheckError("");
       //glFramebufferTexture2D(GL_READ_FRAMEBUFFER, GL_COLOR_ATTACHMENT0,
@@ -1900,7 +1920,6 @@ namespace gpu_opengl
       //GLCheckError("");
 
       // Attach dest texture to fboDst
-      auto gluDstFbo = ptextureDst->m_gluFbo;
       glBindFramebuffer(GL_DRAW_FRAMEBUFFER, gluDstFbo);
       GLCheckError("");
 
@@ -2036,10 +2055,10 @@ namespace gpu_opengl
 
 
 
-      glBindFramebuffer(GL_DRAW_FRAMEBUFFER, drawFboOld);
-      GLCheckError("");
-      glBindFramebuffer(GL_READ_FRAMEBUFFER, readFboOld);
-      GLCheckError("");
+      //glBindFramebuffer(GL_DRAW_FRAMEBUFFER, drawFboOld);
+      //GLCheckError("");
+      //glBindFramebuffer(GL_READ_FRAMEBUFFER, readFboOld);
+      //GLCheckError("");
 
       //// Cleanup
       //glBindFramebuffer(GL_DRAW_FRAMEBUFFER, 0);

@@ -44,7 +44,8 @@ namespace gpu_opengl
       GLCheckError("");
       glBindBuffer(GL_UNIFORM_BUFFER, m_iUBO);
       GLCheckError("");
-      glBufferData(GL_UNIFORM_BUFFER, iUboSize, NULL, GL_STATIC_DRAW); // For 2 mat4s = 2 * sizeof(float) * 16
+      //glBufferData(GL_UNIFORM_BUFFER, iUboSize, NULL, GL_STATIC_DRAW); // For 2 mat4s = 2 * sizeof(float) * 16
+      glBufferData(GL_UNIFORM_BUFFER, iUboSize, NULL, GL_DYNAMIC_DRAW); // For 2 mat4s = 2 * sizeof(float) * 16
       GLCheckError("");
       unsigned int uUboBindingPoint = 0;
       glBindBufferBase(GL_UNIFORM_BUFFER, uUboBindingPoint, m_iUBO);

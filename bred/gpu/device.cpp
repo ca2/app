@@ -829,10 +829,23 @@ void device::create_main_context(::acme::windowing::window * pacmewindowingwindo
          pwindow = m_papplication->m_pacmeuserinteractionMain->acme_windowing_window();
       }
 
+      auto sizeWindow = pwindow->get_window_rectangle().size();
+
       if (!m_pgpucontextMain->m_itask && pwindow)
       {
 
-         m_pgpucontextMain->create_window_context(this, pwindow);
+         if (m_pgpucontextMain->m_etype == ::gpu::context::e_type_window)
+         {
+
+            m_pgpucontextMain->create_window_context(this, pwindow);
+
+         }
+         else
+         {
+
+            m_pgpucontextMain->create_cpu_buffer(sizeWindow);
+
+         }
 
          /*m_pgpucontextMain->branch_synchronously();
 

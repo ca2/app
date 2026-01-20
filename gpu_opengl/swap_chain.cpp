@@ -42,6 +42,33 @@ namespace gpu_opengl
    void swap_chain::present(::gpu::texture* pgputexture)
    {
 
+      if (!m_pgpucontext)
+      {
+
+         information("swap_chain::present No gpu::context");
+
+         return;
+
+      }
+
+      if (!m_pgpucontext->m_pacmewindowingwindowWindowSurface)
+      {
+
+         information("swap_chain::present No window");
+
+         return;
+
+      }
+
+      if (m_pgpucontext->m_pacmewindowingwindowWindowSurface->m_lX11MapNotify != 1)
+      {
+
+         information("swap_chain::present m_lX11MapNotify != 1");
+
+         return;
+
+      }
+
       try
       {
 

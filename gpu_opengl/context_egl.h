@@ -33,7 +33,7 @@ namespace gpu_opengl
       EGLContext                       m_eglcontext;
       EGLSurface                       m_eglsurface;
       bool                             m_bEGLWindowSurface;
-
+      task_index                       m_taskindexLock;
 
       context_egl();
       ~context_egl() override;

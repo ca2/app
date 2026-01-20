@@ -125,6 +125,8 @@ namespace gpu_opengl
 
       }
 
+      glBindTexture(m_gluType, 0);
+
    }
 
    
@@ -692,21 +694,21 @@ namespace gpu_opengl
       // glGenerateMipmap(GL_TEXTURE_2D);
 
 
-      GLenum status = glCheckFramebufferStatus(GL_FRAMEBUFFER);
-
-      if (status != GL_FRAMEBUFFER_COMPLETE)
-      {
-
-         auto pszFramebufferStatusText = ::opengl::check_framebuffer_status_text(status);
-
-         if (::is_set(pszFramebufferStatusText))
-         {
-
-            warning("glCheckFramebufferStatus(GL_FRAMEBUFFER) return \"{}\".", pszFramebufferStatusText);
-
-         }
-
-      }
+      // GLenum status = glCheckFramebufferStatus(GL_FRAMEBUFFER);
+      //
+      // if (status != GL_FRAMEBUFFER_COMPLETE)
+      // {
+      //
+      //    auto pszFramebufferStatusText = ::opengl::check_framebuffer_status_text(status);
+      //
+      //    if (::is_set(pszFramebufferStatusText))
+      //    {
+      //
+      //       warning("glCheckFramebufferStatus(GL_FRAMEBUFFER) return \"{}\".", pszFramebufferStatusText);
+      //
+      //    }
+      //
+      // }
 
 
       // free(data);
@@ -766,6 +768,8 @@ namespace gpu_opengl
             glDrawBuffers(1, drawBufs); // REQUIRED for user-defined FBOs
             GLCheckError("");
 
+            glBindTexture(m_gluType, 0);
+
          }
 
       }
@@ -793,6 +797,8 @@ namespace gpu_opengl
          {
 
             warning("glCheckFramebufferStatus(GL_FRAMEBUFFER) return \"{}\".", pszFramebufferStatusText);
+
+            throw ::exception(error_wrong_state);
 
          }
 
@@ -837,6 +843,7 @@ namespace gpu_opengl
       {
 
          create_render_target();
+
       }
 
       if (!m_gluFbo)

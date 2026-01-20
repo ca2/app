@@ -88,6 +88,7 @@ namespace acme
          ::pointer < ::acme::windowing::display >           m_pacmewindowingdisplayWindow;
 
          long                                               m_lX11NativeVisualId;
+         int                                                m_lX11MapNotify = -1;
 
 
 

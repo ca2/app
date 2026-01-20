@@ -18,6 +18,12 @@ namespace typeface
       if (!m_ppixmapOptional)
       {
 
+         if (Size.cx <= 0 || Size.cy <= 0)
+         {
+
+            throw ::exception(error_wrong_state);
+
+         }
 
          m_ppixmapOptional = pgpurenderer->m_pgpucontext->create_gpu_pixmap({ Size.x, Size.y });
 

@@ -1491,145 +1491,153 @@ namespace gpu
          // update VBO for each character
          // render glyph texture over quad
 
-         auto ppixmap = ch.get_gpu_pixmap(gpu_context()->m_pgpurenderer);
-         if (ppixmap
-            && ppixmap->m_pgputexture
-            && ppixmap->m_pgputexture->is_in_shader_sampling_state())
+         if (sizex > 0 && sizey > 0)
          {
 
+            auto ppixmapFetch = ch.get_gpu_pixmap(gpu_context()->m_pgpurenderer);
 
-            //if (pmodelbuffer->is_new())
-            //{
-
-            //   pmodelbuffer->initialize_gpu_context_object(pcontext);
-
-            //   pmodelbuffer->bind(pcommandbuffer);
-
-            //   pmodelbuffer->create_vertexes < ::graphics3d::sequence2_uv>(6, true);
-
-            //   pmodelbuffer->unbind(pcommandbuffer);
-
-            //   //pmodelbuffer->defer_set_input_layout(m_pgpushaderTextOut->m_pinputlayout);
-
-            //}
-
-            //pmodelbuffer->set_vertex_array(vertexes, 6);
-            //ppixmap = ppixmap;
-
-            //if (pshader->m_pgputextureBound != ppixmap->m_pgputexture)
-            //{
-
-              // pgputexture = ppixmap->m_pgputexture;
-
-              pcommandbuffer->set_source(ppixmap);
-            //      pshader->bind_source(pcommandbuffer, ppixmap);
-            ///   pshader->on_before_draw(pcommandbuffer);
-
-            //}
-
-            //pshader->set_matrix4("projection", projection);
-
+            if (ppixmapFetch
+            && ppixmapFetch->m_pgputexture
+            && ppixmapFetch->m_pgputexture->is_in_shader_sampling_state())
             {
+               //if (pmodelbuffer->is_new())
+               //{
 
-               double l = (double) (xpos);
-               double t = (double) (ypos + ch.h2);
-               double r = (double) (xpos + sizex);
-               double b = (double) (t + sizey);
+               //   pmodelbuffer->initialize_gpu_context_object(pcontext);
 
-               double_point p1(l, t);
-               double_point p2(r, b);
+               //   pmodelbuffer->bind(pcommandbuffer);
 
-               __transform(p1);
-               __transform(p2);
+               //   pmodelbuffer->create_vertexes < ::graphics3d::sequence2_uv>(6, true);
 
-               context_matrix(e_transform_context_text).transform(p1);
-               context_matrix(e_transform_context_text).transform(p2);
+               //   pmodelbuffer->unbind(pcommandbuffer);
 
-               ::floating_sequence4 quad(p1.x, p1.y, p2.x, p2.y
-                  );
+               //   //pmodelbuffer->defer_set_input_layout(m_pgpushaderTextOut->m_pinputlayout);
+
+               //}
+
+               //pmodelbuffer->set_vertex_array(vertexes, 6);
+               //ppixmap = ppixmap;
+
+               //if (pshader->m_pgputextureBound != ppixmap->m_pgputexture)
+               //{
+
+               // pgputexture = ppixmap->m_pgputexture;
+
+               ppixmap = ppixmapFetch;
+
+               pcommandbuffer->set_source(ppixmap);
+               //      pshader->bind_source(pcommandbuffer, ppixmap);
+               ///   pshader->on_before_draw(pcommandbuffer);
+
+               //}
+
+               //pshader->set_matrix4("projection", projection);
+
+               {
+
+                  double l = (double) (xpos);
+                  double t = (double) (ypos + ch.h2);
+                  double r = (double) (xpos + sizex);
+                  double b = (double) (t + sizey);
+
+                  double_point p1(l, t);
+                  double_point p2(r, b);
+
+                  __transform(p1);
+                  __transform(p2);
+
+                  context_matrix(e_transform_context_text).transform(p1);
+                  context_matrix(e_transform_context_text).transform(p2);
+
+                  ::floating_sequence4 quad(p1.x, p1.y, p2.x, p2.y
+                     );
 
 
-               pshader->set_sequence4("quad", quad);
+                  pshader->set_sequence4("quad", quad);
+
+               }
+
+               {
+
+                  auto size = ppixmap->m_pgputexture->size();
+
+                  auto w = (float)(size.width());
+                  auto h = (float)(size.height());
+
+                  float_rectangle rectangle = ppixmap->m_rectangle;
+
+                  float l = rectangle.left / w;
+                  float t = rectangle.top / h;
+                  float r = rectangle.right / w;
+                  float b = rectangle.bottom / h;
+
+                  ::floating_sequence4 texcoords(l, t, r, b);
+
+                  pshader->set_sequence4("texcoords", texcoords);
+
+               }
+
+               pshader->push_properties(pcommandbuffer);
+
+               //glBindTexture(GL_TEXTURE_2D, ch.TextureID);
+               //GLCheckError("");
+               //// update content of VBO memory
+               //int iVbo = pface->m_FaceVBO;
+               //glBindBuffer(GL_ARRAY_BUFFER, iVbo);
+               //GLCheckError("");
+               //glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(vertexes), vertexes); // be sure to use glBufferSubData and not glBufferData
+               //GLCheckError("");
+               //glBindBuffer(GL_ARRAY_BUFFER, 0);
+               //GLCheckError("");
+               // render quad
+               //
+               //
+
+               //pcommandbuffer->draw(ch.m_ppixmap);
+
+               //pmodelbuffer->bind(pcommandbuffer);
+
+               auto w = ppixmap->m_rectangle.width();
+
+               auto h = ppixmap->m_rectangle.height();
+
+               strMessage.formatf("char bound '%s' (%d, %d)%s", strChar.c_str(), w, h, pshader->m_strPushConstantsDebugging.c_str());
+
+               ::gpu::debug_scope debugscope(::gpu::current_command_buffer(), strMessage);
+
+               //pcontext->gpu_debug_message(strMessage);
+
+               //pmodelbuffer->m_pbufferVertex->bind();
+
+
+
+               /* ::array < ::graphics3d::sequence2_uv > vertexes = {
+                 {{xpos,     ypos + h},{   l, t }},
+                 {{xpos,     ypos   }, {   l, b }},
+                 {{xpos + w, ypos   }, {   r, b }},
+                 {{xpos,     ypos + h},{   l, t }},
+                 {{xpos + w, ypos   }, {   r, b }},
+                 {{xpos + w, ypos + h},{   r, t} }
+                };*/
+
+
+               //pmodelbuffer->_set_vertexes(vertexes);
+
+               m_pmodelbufferTextOutDummy->m_bNew = false;
+               pcommandbuffer->draw(m_pmodelbufferTextOutDummy);
+
+               //pmodelbuffer->unbind(pcommandbuffer);
+
+               //glDrawArrays(GL_TRIANGLES, 0, 6);
+               //GLCheckError("");
+               // now advance cursors for next glyph (note that advance is number of 1/64 pixels)
 
             }
-
-            {
-
-               auto size = ppixmap->m_pgputexture->size();
-
-               auto w = (float)(size.width());
-               auto h = (float)(size.height());
-
-               float_rectangle rectangle = ppixmap->m_rectangle;
-             
-               float l = rectangle.left / w;
-               float t = rectangle.top / h;
-               float r = rectangle.right / w;
-               float b = rectangle.bottom / h;
-
-               ::floating_sequence4 texcoords(l, t, r, b);
-
-               pshader->set_sequence4("texcoords", texcoords);
-
-            }
-
-            pshader->push_properties(pcommandbuffer);
-
-            //glBindTexture(GL_TEXTURE_2D, ch.TextureID);
-            //GLCheckError("");
-            //// update content of VBO memory
-            //int iVbo = pface->m_FaceVBO;
-            //glBindBuffer(GL_ARRAY_BUFFER, iVbo);
-            //GLCheckError("");
-            //glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(vertexes), vertexes); // be sure to use glBufferSubData and not glBufferData
-            //GLCheckError("");
-            //glBindBuffer(GL_ARRAY_BUFFER, 0);
-            //GLCheckError("");
-            // render quad
-            // 
-            // 
-
-            //pcommandbuffer->draw(ch.m_ppixmap);
-
-            //pmodelbuffer->bind(pcommandbuffer);
-
-            auto w = ppixmap->m_rectangle.width();
-
-            auto h = ppixmap->m_rectangle.height();
-
-            strMessage.formatf("char bound '%s' (%d, %d)%s", strChar.c_str(), w, h, pshader->m_strPushConstantsDebugging.c_str());
-
-            ::gpu::debug_scope debugscope(::gpu::current_command_buffer(), strMessage);
-
-            //pcontext->gpu_debug_message(strMessage);
-
-            //pmodelbuffer->m_pbufferVertex->bind();
-
-
-
-           /* ::array < ::graphics3d::sequence2_uv > vertexes = {
-             {{xpos,     ypos + h},{   l, t }},
-             {{xpos,     ypos   }, {   l, b }},
-             {{xpos + w, ypos   }, {   r, b }},
-             {{xpos,     ypos + h},{   l, t }},
-             {{xpos + w, ypos   }, {   r, b }},
-             {{xpos + w, ypos + h},{   r, t} }
-            };*/
-
-
-            //pmodelbuffer->_set_vertexes(vertexes);
-
-            m_pmodelbufferTextOutDummy->m_bNew = false;
-            pcommandbuffer->draw(m_pmodelbufferTextOutDummy);
-
-            //pmodelbuffer->unbind(pcommandbuffer);
-
-            //glDrawArrays(GL_TRIANGLES, 0, 6);
-            //GLCheckError("");
-            // now advance cursors for next glyph (note that advance is number of 1/64 pixels)
-            Δx += ch.Advance; // bitshift by 6 to get value in pixels (2^6 = 64 (divide amount of 1/64th pixels by 64 to get amount of pixels))
 
          }
+
+         Δx += ch.Advance; // bitshift by 6 to get value in pixels (2^6 = 64 (divide amount of 1/64th pixels by 64 to get amount of pixels))
+
       }
 
       if (m_pmodelbufferTextOutDummy)

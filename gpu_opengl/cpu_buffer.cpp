@@ -43,7 +43,16 @@ namespace gpu_opengl
 
       ::cast < texture > ptexture = m_pgpucontext->current_target_texture(::gpu::current_frame());
 
-      glBindFramebuffer(GL_FRAMEBUFFER, ptexture->m_gluFbo);
+      auto gluSrcFbo = ptexture->m_gluFbo;
+
+      if (!gluSrcFbo)
+      {
+
+         throw ::exception(error_wrong_state);
+
+      }
+
+      glBindFramebuffer(GL_READ_FRAMEBUFFER, ptexture->m_gluFbo);
 
       ////m_pixmap.map();
 

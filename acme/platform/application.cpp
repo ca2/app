@@ -2525,7 +2525,7 @@ void application::start_application()
    }
 
 
-   string application::application_file_setting(const ::scoped_string& scopedstrFileName)
+   string application::user_cloud_application_file_setting(const ::scoped_string& scopedstrFileName)
    {
 
       ::file::path path;
@@ -2536,14 +2536,34 @@ void application::start_application()
 
       str.trim();
 
+      return str;
+
+   }
+
+
+   string application::app_roaming_application_file_setting(const ::scoped_string& scopedstrFileName)
+   {
+
+      auto path = directory()->home() / ".config" / m_strAppName / scopedstrFileName;
+
+      auto str = file()->safe_get_string(path);
+
+      str.trim();
+
+      return str;
+
+   }
+
+
+   string application::application_file_setting(const ::scoped_string& scopedstrFileName)
+   {
+
+      auto str = user_cloud_application_file_setting(scopedstrFileName);
+
       if (str.is_empty())
       {
 
-         path = directory()->home() / scopedstrFileName;
-
-         str = file()->safe_get_string(path);
-
-         str.trim();
+         str = app_roaming_application_file_setting(scopedstrFileName);
 
       }
 
@@ -2616,13 +2636,28 @@ void application::start_application()
    string application::application_file_setting_by_operating_system(const ::scoped_string& scopedstrFileName)
    {
 
-      ::string strFilename;
+      ::string strFilename(scopedstrFileName);
 
-      strFilename = OPERATING_SYSTEM_NAME;
+      ::string strFilenameWithOperatingSystem;
 
-      strFilename += "/";
+      strFilenameWithOperatingSystem = OPERATING_SYSTEM_NAME;
 
-      strFilename += scopedstrFileName;
+      strFilenameWithOperatingSystem += "/";
+
+      strFilenameWithOperatingSystem += scopedstrFileName;
+
+      auto str = user_cloud_application_file_setting(strFilenameWithOperatingSystem);
+
+      if (str.is_empty())
+      {
+
+         str = app_roaming_application_file_setting(strFilename);
+
+      }
+
+      return str;
+
+
 
       return application_file_setting(strFilename);
 

@@ -1120,7 +1120,8 @@ namespace user
 
 
       virtual bool _is_window() const override;
-      inline bool is_window() const { return m_ewindowflag & e_window_flag_is_window; }
+      inline bool is_window() const { return (m_ewindowflag & e_window_flag_is_window)
+         && (m_ewindowflag & e_window_flag_window_created); }
 
       virtual void ExitHelpMode();
 

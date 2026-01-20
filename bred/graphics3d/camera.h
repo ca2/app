@@ -11,7 +11,7 @@ namespace graphics3d
 {
 
 
-	class CLASS_DECL_BRED ccamera :
+	class CLASS_DECL_BRED camera :
 		virtual public ::particle
 	{
 	public:

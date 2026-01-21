@@ -81,8 +81,8 @@ public:
    inline memory & operator += (const ::memory & memory) { append(memory); return *this; };
 
    
-   virtual character_count sz_len() const;
-   virtual void to_sz(char * sz, character_count len) const;
+   character_count sz_len() const override;
+   void to_sz(char * sz, character_count len) const override;
 
 
 };

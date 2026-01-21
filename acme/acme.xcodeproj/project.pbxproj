@@ -5015,6 +5015,12 @@
 		9ADF750C2D1F0B690003083D /* activation_token.h in Headers */ = {isa = PBXBuildFile; fileRef = 9ADF75012D1F0B690003083D /* activation_token.h */; };
 		9ADF750D2D1F0B690003083D /* activation_token.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9ADF75022D1F0B690003083D /* activation_token.cpp */; };
 		9ADF750E2D1F0B690003083D /* activation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9ADF75002D1F0B690003083D /* activation.cpp */; };
+		9AE3820D2F2068A200FDA5D7 /* dialog_base.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE3820C2F2068A200FDA5D7 /* dialog_base.cpp */; };
+		9AE3820E2F2068A200FDA5D7 /* dialog_base.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE3820B2F2068A200FDA5D7 /* dialog_base.h */; };
+		9AE3820F2F2068A200FDA5D7 /* dialog_base.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE3820B2F2068A200FDA5D7 /* dialog_base.h */; };
+		9AE382102F2068A200FDA5D7 /* dialog_base.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE3820C2F2068A200FDA5D7 /* dialog_base.cpp */; };
+		9AE382112F2068A200FDA5D7 /* dialog_base.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE3820B2F2068A200FDA5D7 /* dialog_base.h */; };
+		9AE382122F2068A200FDA5D7 /* dialog_base.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE3820C2F2068A200FDA5D7 /* dialog_base.cpp */; };
 		9AE41EAD28E65CD500C6A830 /* _api.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE41EAC28E65CD400C6A830 /* _api.h */; };
 		9AE41EAE28E65CD500C6A830 /* _api.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE41EAC28E65CD400C6A830 /* _api.h */; };
 		9AE41EB128E65D6800C6A830 /* _api.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE41EAF28E65D6800C6A830 /* _api.cpp */; };
@@ -6971,6 +6977,8 @@
 		9ADF75002D1F0B690003083D /* activation.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = activation.cpp; sourceTree = "<group>"; };
 		9ADF75012D1F0B690003083D /* activation_token.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = activation_token.h; sourceTree = "<group>"; };
 		9ADF75022D1F0B690003083D /* activation_token.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = activation_token.cpp; sourceTree = "<group>"; };
+		9AE3820B2F2068A200FDA5D7 /* dialog_base.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = dialog_base.h; sourceTree = "<group>"; };
+		9AE3820C2F2068A200FDA5D7 /* dialog_base.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = dialog_base.cpp; sourceTree = "<group>"; };
 		9AE41EAC28E65CD400C6A830 /* _api.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _api.h; sourceTree = "<group>"; };
 		9AE41EAF28E65D6800C6A830 /* _api.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = _api.cpp; sourceTree = "<group>"; };
 		9AE4665E2AB1000200FE0DE4 /* matrix.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = matrix.cpp; sourceTree = "<group>"; };
@@ -8637,6 +8645,8 @@
 		9A68A7D625114430008DABD2 /* filesystem */ = {
 			isa = PBXGroup;
 			children = (
+				9AE3820B2F2068A200FDA5D7 /* dialog_base.h */,
+				9AE3820C2F2068A200FDA5D7 /* dialog_base.cpp */,
 				9A7AF0692B764E3D001F3D4D /* _.h */,
 				9A68A7D825114430008DABD2 /* _impl.h */,
 				9A2706922D921F9200D20305 /* _impl_path.h */,
@@ -10609,6 +10619,7 @@
 				9A892E0226CD9062008D6412 /* parallelization.h in Headers */,
 				9A08410829348AAB009F7FF4 /* millisecond.h in Headers */,
 				9A892DDE26CD9061008D6412 /* status.h in Headers */,
+				9AE382112F2068A200FDA5D7 /* dialog_base.h in Headers */,
 				9AA8FD5927BA729A008FF9AA /* file_lock.h in Headers */,
 				9A787CA5264C04A6003DF8A0 /* extended_status.h in Headers */,
 				9A68AEE225114435008DABD2 /* compare.h in Headers */,
@@ -10981,6 +10992,7 @@
 				9AC101532B6AC9BD0053DB45 /* micro_duration.h in Headers */,
 				9AC101542B6AC9BD0053DB45 /* address_array.h in Headers */,
 				9AC101552B6AC9BD0053DB45 /* application_exit.h in Headers */,
+				9AE3820F2F2068A200FDA5D7 /* dialog_base.h in Headers */,
 				9AC101562B6AC9BD0053DB45 /* aaa_plane_system.h in Headers */,
 				9AC101572B6AC9BD0053DB45 /* write_text_stream.h in Headers */,
 				9AC101582B6AC9BD0053DB45 /* _u32hash.h in Headers */,
@@ -12849,6 +12861,7 @@
 				9ADD64C426B5CB3800D11298 /* simple_log.h in Headers */,
 				9A0842A62935E694009F7FF4 /* aaa__sort_map_impl.h in Headers */,
 				9A0841932935C1FD009F7FF4 /* _inline_functions.h in Headers */,
+				9AE3820E2F2068A200FDA5D7 /* dialog_base.h in Headers */,
 				9AD690FB251A753A00C0EBD7 /* composite.h in Headers */,
 				9A2FCDFA2C9D33AB000CF701 /* a_system_menu.h in Headers */,
 				9A359B2C29A4A324007AAC52 /* file_dialog.h in Headers */,
@@ -13102,7 +13115,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "#exit 0\n\nprepare_project()\n{\n\n   cd ${WorkspaceDir}\n   \n   echo \"WorkspaceDir=${WorkspaceDir}\"\n   echo \"HOME=${HOME}\"\n   \n   ${HOME}/code/operating_system/tool/bin/application_build_helper --prepare-project app/acme\n\n}\n\nprepare_project\n\n\n\n";
+			shellScript = "#exit 0\n\nprepare_project()\n{\n\n   cd ${WorkspaceDir}\n   \n   echo \"WorkspaceDir=${WorkspaceDir}\"\n   echo \"HOME=${HOME}\"\n   \n   ${HOME}/code/operating_system/tool/bin/application_build_helper --prepare-project app/acme\n\n\n}\n\n\nif [[ ! \"${WorkspaceDir}\" =~ \"code/console_build_tools\" ]]; then\n\nprepare_project\n\nfi\n\n\n\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -13652,6 +13665,7 @@
 				9A5242712CD47440006ED868 /* stringtow.cpp in Sources */,
 				9A5242722CD47440006ED868 /* strw.cpp in Sources */,
 				9A5242732CD47440006ED868 /* strx.cpp in Sources */,
+				9AE382122F2068A200FDA5D7 /* dialog_base.cpp in Sources */,
 				9A5242742CD47440006ED868 /* sz.cpp in Sources */,
 				9A5242752CD47440006ED868 /* to_integer.cpp in Sources */,
 				9A5242762CD47440006ED868 /* tokenizer.cpp in Sources */,
@@ -14170,6 +14184,7 @@
 				9AC105E32B6AC9BD0053DB45 /* process.cpp in Sources */,
 				9AC105E42B6AC9BD0053DB45 /* command_line.cpp in Sources */,
 				9AD6B9D72BE84B37005C6189 /* operation.cpp in Sources */,
+				9AE382102F2068A200FDA5D7 /* dialog_base.cpp in Sources */,
 				9AC105E52B6AC9BD0053DB45 /* listing.cpp in Sources */,
 				9AC105E62B6AC9BD0053DB45 /* item.cpp in Sources */,
 				9AC105E72B6AC9BD0053DB45 /* data.cpp in Sources */,
@@ -14919,6 +14934,7 @@
 				9A15A560264B0ECB0080670E /* system_time.cpp in Sources */,
 				9AA44BB4297BFD2C00AA2F92 /* macos.cpp in Sources */,
 				9AFC61B02D573F08005ED062 /* message.cpp in Sources */,
+				9AE3820D2F2068A200FDA5D7 /* dialog_base.cpp in Sources */,
 				9A08431A2936667C009F7FF4 /* signalization.cpp in Sources */,
 				9AD69299251A753A00C0EBD7 /* fixed_alloc.cpp in Sources */,
 				9A78625B264B90B5003DF8A0 /* cvt_g.cpp in Sources */,

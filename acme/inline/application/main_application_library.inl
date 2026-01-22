@@ -48,7 +48,7 @@ APPLICATION_NAMESPACE_MAIN_EXPORT void APPLICATION_NAMESPACE_MAIN(create_system)
 
    {
 
-      //auto psystem = new ::PLATFORM_LAYER_NAME::system();
+      new ::PLATFORM_LAYER_NAME::system();
 
 #ifdef NETBSD
 

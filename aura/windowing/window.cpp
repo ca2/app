@@ -773,7 +773,7 @@ namespace windowing
 
             //auto puserinteraction = user_interaction();
 
-      auto pusersystem = user_interaction()->m_pusersystem;
+//      auto pusersystem = m_pacmeuserinteraction->m_pusersystem;
 
       //pusersystem->m_createstruct.hMenu = nullptr;
       //      pusersystem->m_createstruct.hInstance = ::aura::get_system()->m_hInstance;
@@ -833,26 +833,53 @@ namespace windowing
       //user_interaction()->m_pwindow = this;
 
       //pwindow->m_pwindow = this;
+      
+      int x = 0;
+      int y = 0;
+      int w = 0;
+      int h = 0;
 
       auto puserinteraction = user_interaction();
 
-      int x = puserinteraction->const_layout().sketch().origin().x;
-
-      int y = puserinteraction->const_layout().sketch().origin().y;
-
-      int cx = puserinteraction->const_layout().sketch().width();
-
-      int cy = puserinteraction->const_layout().sketch().height();
-
+      if(puserinteraction)
+      {
+         
+         x = puserinteraction->const_layout().sketch().origin().x;
+         
+         y = puserinteraction->const_layout().sketch().origin().y;
+         
+         w = puserinteraction->const_layout().sketch().width();
+         
+         h = puserinteraction->const_layout().sketch().height();
+         
+      }
+      else
+      {
+       
+         x = m_pacmeuserinteraction->get_rectangle().left;
+         
+         y = m_pacmeuserinteraction->get_rectangle().top;
+         
+         w = m_pacmeuserinteraction->get_rectangle().width();
+         
+         h = m_pacmeuserinteraction->get_rectangle().height();
+         
+      }
+         
       m_pointWindow.x = x;
 
       m_pointWindow.y = y;
 
-      m_sizeWindow.cx = cx;
+      m_sizeWindow.cx = w;
 
-      m_sizeWindow.cy = cy;
-
-      install_message_routing(user_interaction());
+      m_sizeWindow.cy = h;
+      
+      if(user_interaction())
+      {
+         
+         install_message_routing(user_interaction());
+         
+      }
 
       auto pwindowing = (::windowing::windowing*)system()->windowing();
       //      
@@ -892,12 +919,22 @@ namespace windowing
       //   pexception = øallocate::exception(error_catch_all_exception);
 
       //}
-
-      user_interaction()->m_ewindowflag |= e_window_flag_window_created;
+      
+      if(puserinteraction)
+      {
+         
+         puserinteraction->m_ewindowflag |= e_window_flag_window_created;
+         
+      }
 
       m_bUserImplCreated = true;
-
-      user_interaction()->set_flag(e_flag_task_started);
+      
+      if(puserinteraction)
+      {
+         
+         puserinteraction->set_flag(e_flag_task_started);
+         
+      }
 
       on_finished_window_creation();
 
@@ -937,8 +974,13 @@ namespace windowing
    {
 
       auto puserinteraction = user_interaction();
-
-      puserinteraction->send_message(::user::e_message_after_create, 0, 0);
+      
+      if(puserinteraction)
+      {
+         
+         puserinteraction->send_message(::user::e_message_after_create, 0, 0);
+         
+      }
 
    }
 
@@ -1398,8 +1440,15 @@ namespace windowing
       m_pointWindow = rectangle.top_left();
 
       m_sizeWindow = rectangle.size();
-
-      user_interaction()->_on_configure_notify_unlocked(rectangle);
+      
+      auto puserinteraction = user_interaction();
+      
+      if(puserinteraction)
+      {
+         
+         puserinteraction->_on_configure_notify_unlocked(rectangle);
+         
+      }
 
    }
 
@@ -1408,8 +1457,15 @@ namespace windowing
    {
 
       m_pointWindow = point;
-
-      user_interaction()->_on_reposition_notify_unlocked(point);
+      
+      auto puserinteraction = user_interaction();
+      
+      if(puserinteraction)
+      {
+         
+         puserinteraction->_on_reposition_notify_unlocked(point);
+         
+      }
 
    }
 
@@ -4892,7 +4948,7 @@ namespace windowing
 
       //::windowing::window_base::last_install_message_routing(pchannel);
 
-      if (!user_interaction()->m_bMessageOnlyWindow)
+      if (!m_pacmeuserinteraction->m_bMessageOnlyWindow)
       {
 
          //USER_MESSAGE_LINK(::user::e_message_redraw, pchannel, this, &window::_001OnRedraw);

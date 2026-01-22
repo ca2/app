@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 54;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -32,22 +32,18 @@
 		9A857C3C2F22905A001D08D1 /* skybox.frag.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A857BDD2F22905A001D08D1 /* skybox.frag.h */; };
 		9A857C3D2F22905A001D08D1 /* byte_order.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A857C2C2F22905A001D08D1 /* byte_order.h */; };
 		9A857C3E2F22905A001D08D1 /* prefiltered_environment_map.frag.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A857BD32F22905A001D08D1 /* prefiltered_environment_map.frag.h */; };
-		9A857C3F2F22905A001D08D1 /* aaa_cubemap_framebuffer.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A857BE92F22905A001D08D1 /* aaa_cubemap_framebuffer.h */; };
 		9A857C412F22905A001D08D1 /* aaa__library.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A857BFA2F22905A001D08D1 /* aaa__library.h */; };
-		9A857C422F22905A001D08D1 /* aaa_media_foundation.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A857C222F22905A001D08D1 /* aaa_media_foundation.h */; };
-		9A857C432F22905A001D08D1 /* application.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A857C2A2F22905A001D08D1 /* application.h */; };
+		9A857C432F22905A001D08D1 /* aaa_application.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A857C2A2F22905A001D08D1 /* aaa_application.h */; };
 		9A857C442F22905A001D08D1 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A857BF62F22905A001D08D1 /* _.h */; };
 		9A857C452F22905A001D08D1 /* prefiltered_environment_map.vert.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A857BD42F22905A001D08D1 /* prefiltered_environment_map.vert.h */; };
 		9A857C472F22905A001D08D1 /* console.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A857C082F22905A001D08D1 /* console.h */; };
 		9A857C482F22905A001D08D1 /* equirectangular_cubemap.frag.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A857BC92F22905A001D08D1 /* equirectangular_cubemap.frag.h */; };
-		9A857C492F22905A001D08D1 /* system.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A857C1A2F22905A001D08D1 /* system.h */; };
 		9A857C4A2F22905A001D08D1 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A857C382F22905A001D08D1 /* _.h */; };
 		9A857C4B2F22905A001D08D1 /* gltf.vert.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A857BCE2F22905A001D08D1 /* gltf.vert.h */; };
 		9A857C4C2F22905A001D08D1 /* __debug_box_set_impl.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A857BFF2F22905A001D08D1 /* __debug_box_set_impl.h */; };
 		9A857C4D2F22905A001D08D1 /* __assimp.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A857C0D2F22905A001D08D1 /* __assimp.h */; };
 		9A857C4E2F22905A001D08D1 /* _console_old.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A857C032F22905A001D08D1 /* _console_old.h */; };
 		9A857C4F2F22905A001D08D1 /* material.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A857C102F22905A001D08D1 /* material.h */; };
-		9A857C502F22905A001D08D1 /* _windows.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A857C1D2F22905A001D08D1 /* _windows.h */; };
 		9A857C512F22905A001D08D1 /* aaa__component.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A857BA52F22905A001D08D1 /* aaa__component.h */; };
 		9A857C522F22905A001D08D1 /* diffuse_irradiance_map.frag.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A857BC52F22905A001D08D1 /* diffuse_irradiance_map.frag.h */; };
 		9A857C532F22905A001D08D1 /* model_base.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A857C162F22905A001D08D1 /* model_base.h */; };
@@ -57,7 +53,6 @@
 		9A857C582F22905A001D08D1 /* equirectangular_cubemap.vert.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A857BCA2F22905A001D08D1 /* equirectangular_cubemap.vert.h */; };
 		9A857C592F22905A001D08D1 /* wavefront.vert.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A857BE22F22905A001D08D1 /* wavefront.vert.h */; };
 		9A857C5B2F22905A001D08D1 /* brdf_convolution_map.frag.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A857BC12F22905A001D08D1 /* brdf_convolution_map.frag.h */; };
-		9A857C5C2F22905A001D08D1 /* aaa_brdf_convolution_framebuffer.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A857BE72F22905A001D08D1 /* aaa_brdf_convolution_framebuffer.h */; };
 		9A857C5D2F22905A001D08D1 /* library.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A857C0A2F22905A001D08D1 /* library.h */; };
 		9A857C5E2F22905A001D08D1 /* _draw2d_impl.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A857C042F22905A001D08D1 /* _draw2d_impl.h */; };
 		9A857C5F2F22905A001D08D1 /* specular_map.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A857BF32F22905A001D08D1 /* specular_map.h */; };
@@ -65,7 +60,6 @@
 		9A857C612F22905A001D08D1 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A857BA42F22905A001D08D1 /* _.h */; };
 		9A857C622F22905A001D08D1 /* scene.frag.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A857BD72F22905A001D08D1 /* scene.frag.h */; };
 		9A857C632F22905A001D08D1 /* _acid_app_impl.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A857C002F22905A001D08D1 /* _acid_app_impl.h */; };
-		9A857C642F22905A001D08D1 /* aaa_hdri_cube.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A857BEB2F22905A001D08D1 /* aaa_hdri_cube.h */; };
 		9A857C652F22905A001D08D1 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A857C0C2F22905A001D08D1 /* _.h */; };
 		9A857C662F22905A001D08D1 /* tinyexpr.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A857C352F22905A001D08D1 /* tinyexpr.h */; };
 		9A857C672F22905A001D08D1 /* diffuse_irradiance_map.vert.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A857BC62F22905A001D08D1 /* diffuse_irradiance_map.vert.h */; };
@@ -82,16 +76,13 @@
 		9A857C722F22905A001D08D1 /* uwp.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A857BFC2F22905A001D08D1 /* uwp.h */; };
 		9A857C732F22905A001D08D1 /* _app_impl1.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A857C012F22905A001D08D1 /* _app_impl1.h */; };
 		9A857C742F22905A001D08D1 /* _assimp.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A857C0E2F22905A001D08D1 /* _assimp.h */; };
-		9A857C752F22905A001D08D1 /* aaa_mipmap_cubemap_framebuffer.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A857BED2F22905A001D08D1 /* aaa_mipmap_cubemap_framebuffer.h */; };
 		9A857C762F22905A001D08D1 /* _platform.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A857C272F22905A001D08D1 /* _platform.h */; };
-		9A857C772F22905A001D08D1 /* _uwp.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A857C192F22905A001D08D1 /* _uwp.h */; };
 		9A857C782F22905A001D08D1 /* skybox_hdr.frag.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A857BDC2F22905A001D08D1 /* skybox_hdr.frag.h */; };
 		9A857C792F22905A001D08D1 /* sha256.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A857C312F22905A001D08D1 /* sha256.h */; };
 		9A857C7A2F22905A001D08D1 /* session.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A857C2F2F22905A001D08D1 /* session.h */; };
 		9A857C7B2F22905A001D08D1 /* _constant.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A857C0F2F22905A001D08D1 /* _constant.h */; };
 		9A857C7C2F22905A001D08D1 /* _new_impl.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A857C052F22905A001D08D1 /* _new_impl.h */; };
 		9A857C7E2F22905A001D08D1 /* diffuse_irradiance_map.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A857BEF2F22905A001D08D1 /* diffuse_irradiance_map.h */; };
-		9A857C7F2F22905A001D08D1 /* system.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A857C1F2F22905A001D08D1 /* system.h */; };
 		9A857C812F22905A001D08D1 /* application.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A857C062F22905A001D08D1 /* application.h */; };
 		9A857C822F22905A001D08D1 /* _estamira.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A857BF82F22905A001D08D1 /* _estamira.h */; };
 		9A857C832F22905A001D08D1 /* controller.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A857C392F22905A001D08D1 /* controller.h */; };
@@ -104,48 +95,34 @@
 		9A857C8A2F22905A001D08D1 /* brdf_convolution_map.vert.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A857BC22F22905A001D08D1 /* brdf_convolution_map.vert.h */; };
 		9A857C8B2F22905A001D08D1 /* model.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A857C142F22905A001D08D1 /* model.h */; };
 		9A857C8C2F22905A001D08D1 /* mesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A857C132F22905A001D08D1 /* mesh.cpp */; };
-		9A857C8D2F22905A001D08D1 /* aaa_layer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A857C292F22905A001D08D1 /* aaa_layer.cpp */; };
 		9A857C8E2F22905A001D08D1 /* session.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A857C302F22905A001D08D1 /* session.cpp */; };
 		9A857C8F2F22905A001D08D1 /* material.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A857C112F22905A001D08D1 /* material.cpp */; };
-		9A857C902F22905A001D08D1 /* system.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A857C1B2F22905A001D08D1 /* system.cpp */; };
 		9A857C912F22905A001D08D1 /* hwid.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A857C2E2F22905A001D08D1 /* hwid.cpp */; };
 		9A857C922F22905A001D08D1 /* tinyexpr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A857C362F22905A001D08D1 /* tinyexpr.cpp */; };
 		9A857C932F22905A001D08D1 /* sha256.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A857C322F22905A001D08D1 /* sha256.cpp */; };
 		9A857C942F22905A001D08D1 /* _hlsl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A857BE62F22905A001D08D1 /* _hlsl.cpp */; };
-		9A857C952F22905A001D08D1 /* aaa_cubemap_framebuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A857BEA2F22905A001D08D1 /* aaa_cubemap_framebuffer.cpp */; };
 		9A857C962F22905A001D08D1 /* idpool.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A857BA22F22905A001D08D1 /* idpool.cpp */; };
-		9A857C972F22905A001D08D1 /* aaa_mipmap_cubemap_framebuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A857BEE2F22905A001D08D1 /* aaa_mipmap_cubemap_framebuffer.cpp */; };
-		9A857C982F22905A001D08D1 /* aaa_hdri_cube.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A857BEC2F22905A001D08D1 /* aaa_hdri_cube.cpp */; };
 		9A857C992F22905A001D08D1 /* specular_map.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A857BF42F22905A001D08D1 /* specular_map.cpp */; };
 		9A857C9A2F22905A001D08D1 /* diffuse_irradiance_map.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A857BF02F22905A001D08D1 /* diffuse_irradiance_map.cpp */; };
-		9A857C9B2F22905A001D08D1 /* audio.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A857C1E2F22905A001D08D1 /* audio.cpp */; };
-		9A857C9C2F22905A001D08D1 /* system.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A857C202F22905A001D08D1 /* system.cpp */; };
-		9A857C9D2F22905A001D08D1 /* aaa_brdf_convolution_framebuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A857BE82F22905A001D08D1 /* aaa_brdf_convolution_framebuffer.cpp */; };
-		9A857C9E2F22905A001D08D1 /* aaa_media_foundation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A857C232F22905A001D08D1 /* aaa_media_foundation.cpp */; };
 		9A857CA22F22905A001D08D1 /* model_base.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A857C172F22905A001D08D1 /* model_base.cpp */; };
-		9A857CA32F22905A001D08D1 /* application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A857C2B2F22905A001D08D1 /* application.cpp */; };
 		9A857CA42F22905A001D08D1 /* model.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A857C152F22905A001D08D1 /* model.cpp */; };
 		9A857CA52F22905A001D08D1 /* equirectangular_cubemap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A857BF22F22905A001D08D1 /* equirectangular_cubemap.cpp */; };
 		9A857CA82F22905A001D08D1 /* wavefront.frag.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A857BE12F22905A001D08D1 /* wavefront.frag.h */; };
 		9A857CA92F22905A001D08D1 /* skybox.frag.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A857BDD2F22905A001D08D1 /* skybox.frag.h */; };
 		9A857CAA2F22905A001D08D1 /* byte_order.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A857C2C2F22905A001D08D1 /* byte_order.h */; };
 		9A857CAB2F22905A001D08D1 /* prefiltered_environment_map.frag.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A857BD32F22905A001D08D1 /* prefiltered_environment_map.frag.h */; };
-		9A857CAC2F22905A001D08D1 /* aaa_cubemap_framebuffer.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A857BE92F22905A001D08D1 /* aaa_cubemap_framebuffer.h */; };
 		9A857CAE2F22905A001D08D1 /* aaa__library.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A857BFA2F22905A001D08D1 /* aaa__library.h */; };
-		9A857CAF2F22905A001D08D1 /* aaa_media_foundation.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A857C222F22905A001D08D1 /* aaa_media_foundation.h */; };
-		9A857CB02F22905A001D08D1 /* application.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A857C2A2F22905A001D08D1 /* application.h */; };
+		9A857CB02F22905A001D08D1 /* aaa_application.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A857C2A2F22905A001D08D1 /* aaa_application.h */; };
 		9A857CB12F22905A001D08D1 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A857BF62F22905A001D08D1 /* _.h */; };
 		9A857CB22F22905A001D08D1 /* prefiltered_environment_map.vert.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A857BD42F22905A001D08D1 /* prefiltered_environment_map.vert.h */; };
 		9A857CB42F22905A001D08D1 /* console.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A857C082F22905A001D08D1 /* console.h */; };
 		9A857CB52F22905A001D08D1 /* equirectangular_cubemap.frag.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A857BC92F22905A001D08D1 /* equirectangular_cubemap.frag.h */; };
-		9A857CB62F22905A001D08D1 /* system.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A857C1A2F22905A001D08D1 /* system.h */; };
 		9A857CB72F22905A001D08D1 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A857C382F22905A001D08D1 /* _.h */; };
 		9A857CB82F22905A001D08D1 /* gltf.vert.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A857BCE2F22905A001D08D1 /* gltf.vert.h */; };
 		9A857CB92F22905A001D08D1 /* __debug_box_set_impl.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A857BFF2F22905A001D08D1 /* __debug_box_set_impl.h */; };
 		9A857CBA2F22905A001D08D1 /* __assimp.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A857C0D2F22905A001D08D1 /* __assimp.h */; };
 		9A857CBB2F22905A001D08D1 /* _console_old.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A857C032F22905A001D08D1 /* _console_old.h */; };
 		9A857CBC2F22905A001D08D1 /* material.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A857C102F22905A001D08D1 /* material.h */; };
-		9A857CBD2F22905A001D08D1 /* _windows.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A857C1D2F22905A001D08D1 /* _windows.h */; };
 		9A857CBE2F22905A001D08D1 /* aaa__component.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A857BA52F22905A001D08D1 /* aaa__component.h */; };
 		9A857CBF2F22905A001D08D1 /* diffuse_irradiance_map.frag.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A857BC52F22905A001D08D1 /* diffuse_irradiance_map.frag.h */; };
 		9A857CC02F22905A001D08D1 /* model_base.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A857C162F22905A001D08D1 /* model_base.h */; };
@@ -155,7 +132,6 @@
 		9A857CC52F22905A001D08D1 /* equirectangular_cubemap.vert.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A857BCA2F22905A001D08D1 /* equirectangular_cubemap.vert.h */; };
 		9A857CC62F22905A001D08D1 /* wavefront.vert.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A857BE22F22905A001D08D1 /* wavefront.vert.h */; };
 		9A857CC82F22905A001D08D1 /* brdf_convolution_map.frag.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A857BC12F22905A001D08D1 /* brdf_convolution_map.frag.h */; };
-		9A857CC92F22905A001D08D1 /* aaa_brdf_convolution_framebuffer.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A857BE72F22905A001D08D1 /* aaa_brdf_convolution_framebuffer.h */; };
 		9A857CCA2F22905A001D08D1 /* library.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A857C0A2F22905A001D08D1 /* library.h */; };
 		9A857CCB2F22905A001D08D1 /* _draw2d_impl.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A857C042F22905A001D08D1 /* _draw2d_impl.h */; };
 		9A857CCC2F22905A001D08D1 /* specular_map.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A857BF32F22905A001D08D1 /* specular_map.h */; };
@@ -163,7 +139,6 @@
 		9A857CCE2F22905A001D08D1 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A857BA42F22905A001D08D1 /* _.h */; };
 		9A857CCF2F22905A001D08D1 /* scene.frag.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A857BD72F22905A001D08D1 /* scene.frag.h */; };
 		9A857CD02F22905A001D08D1 /* _acid_app_impl.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A857C002F22905A001D08D1 /* _acid_app_impl.h */; };
-		9A857CD12F22905A001D08D1 /* aaa_hdri_cube.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A857BEB2F22905A001D08D1 /* aaa_hdri_cube.h */; };
 		9A857CD22F22905A001D08D1 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A857C0C2F22905A001D08D1 /* _.h */; };
 		9A857CD32F22905A001D08D1 /* tinyexpr.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A857C352F22905A001D08D1 /* tinyexpr.h */; };
 		9A857CD42F22905A001D08D1 /* diffuse_irradiance_map.vert.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A857BC62F22905A001D08D1 /* diffuse_irradiance_map.vert.h */; };
@@ -180,16 +155,13 @@
 		9A857CDF2F22905A001D08D1 /* uwp.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A857BFC2F22905A001D08D1 /* uwp.h */; };
 		9A857CE02F22905A001D08D1 /* _app_impl1.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A857C012F22905A001D08D1 /* _app_impl1.h */; };
 		9A857CE12F22905A001D08D1 /* _assimp.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A857C0E2F22905A001D08D1 /* _assimp.h */; };
-		9A857CE22F22905A001D08D1 /* aaa_mipmap_cubemap_framebuffer.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A857BED2F22905A001D08D1 /* aaa_mipmap_cubemap_framebuffer.h */; };
 		9A857CE32F22905A001D08D1 /* _platform.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A857C272F22905A001D08D1 /* _platform.h */; };
-		9A857CE42F22905A001D08D1 /* _uwp.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A857C192F22905A001D08D1 /* _uwp.h */; };
 		9A857CE52F22905A001D08D1 /* skybox_hdr.frag.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A857BDC2F22905A001D08D1 /* skybox_hdr.frag.h */; };
 		9A857CE62F22905A001D08D1 /* sha256.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A857C312F22905A001D08D1 /* sha256.h */; };
 		9A857CE72F22905A001D08D1 /* session.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A857C2F2F22905A001D08D1 /* session.h */; };
 		9A857CE82F22905A001D08D1 /* _constant.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A857C0F2F22905A001D08D1 /* _constant.h */; };
 		9A857CE92F22905A001D08D1 /* _new_impl.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A857C052F22905A001D08D1 /* _new_impl.h */; };
 		9A857CEB2F22905A001D08D1 /* diffuse_irradiance_map.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A857BEF2F22905A001D08D1 /* diffuse_irradiance_map.h */; };
-		9A857CEC2F22905A001D08D1 /* system.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A857C1F2F22905A001D08D1 /* system.h */; };
 		9A857CEE2F22905A001D08D1 /* application.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A857C062F22905A001D08D1 /* application.h */; };
 		9A857CEF2F22905A001D08D1 /* _estamira.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A857BF82F22905A001D08D1 /* _estamira.h */; };
 		9A857CF02F22905A001D08D1 /* controller.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A857C392F22905A001D08D1 /* controller.h */; };
@@ -202,48 +174,34 @@
 		9A857CF72F22905A001D08D1 /* brdf_convolution_map.vert.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A857BC22F22905A001D08D1 /* brdf_convolution_map.vert.h */; };
 		9A857CF82F22905A001D08D1 /* model.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A857C142F22905A001D08D1 /* model.h */; };
 		9A857CF92F22905A001D08D1 /* mesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A857C132F22905A001D08D1 /* mesh.cpp */; };
-		9A857CFA2F22905A001D08D1 /* aaa_layer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A857C292F22905A001D08D1 /* aaa_layer.cpp */; };
 		9A857CFB2F22905A001D08D1 /* session.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A857C302F22905A001D08D1 /* session.cpp */; };
 		9A857CFC2F22905A001D08D1 /* material.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A857C112F22905A001D08D1 /* material.cpp */; };
-		9A857CFD2F22905A001D08D1 /* system.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A857C1B2F22905A001D08D1 /* system.cpp */; };
 		9A857CFE2F22905A001D08D1 /* hwid.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A857C2E2F22905A001D08D1 /* hwid.cpp */; };
 		9A857CFF2F22905A001D08D1 /* tinyexpr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A857C362F22905A001D08D1 /* tinyexpr.cpp */; };
 		9A857D002F22905A001D08D1 /* sha256.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A857C322F22905A001D08D1 /* sha256.cpp */; };
 		9A857D012F22905A001D08D1 /* _hlsl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A857BE62F22905A001D08D1 /* _hlsl.cpp */; };
-		9A857D022F22905A001D08D1 /* aaa_cubemap_framebuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A857BEA2F22905A001D08D1 /* aaa_cubemap_framebuffer.cpp */; };
 		9A857D032F22905A001D08D1 /* idpool.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A857BA22F22905A001D08D1 /* idpool.cpp */; };
-		9A857D042F22905A001D08D1 /* aaa_mipmap_cubemap_framebuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A857BEE2F22905A001D08D1 /* aaa_mipmap_cubemap_framebuffer.cpp */; };
-		9A857D052F22905A001D08D1 /* aaa_hdri_cube.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A857BEC2F22905A001D08D1 /* aaa_hdri_cube.cpp */; };
 		9A857D062F22905A001D08D1 /* specular_map.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A857BF42F22905A001D08D1 /* specular_map.cpp */; };
 		9A857D072F22905A001D08D1 /* diffuse_irradiance_map.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A857BF02F22905A001D08D1 /* diffuse_irradiance_map.cpp */; };
-		9A857D082F22905A001D08D1 /* audio.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A857C1E2F22905A001D08D1 /* audio.cpp */; };
-		9A857D092F22905A001D08D1 /* system.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A857C202F22905A001D08D1 /* system.cpp */; };
-		9A857D0A2F22905A001D08D1 /* aaa_brdf_convolution_framebuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A857BE82F22905A001D08D1 /* aaa_brdf_convolution_framebuffer.cpp */; };
-		9A857D0B2F22905A001D08D1 /* aaa_media_foundation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A857C232F22905A001D08D1 /* aaa_media_foundation.cpp */; };
 		9A857D0F2F22905A001D08D1 /* model_base.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A857C172F22905A001D08D1 /* model_base.cpp */; };
-		9A857D102F22905A001D08D1 /* application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A857C2B2F22905A001D08D1 /* application.cpp */; };
 		9A857D112F22905A001D08D1 /* model.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A857C152F22905A001D08D1 /* model.cpp */; };
 		9A857D122F22905A001D08D1 /* equirectangular_cubemap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A857BF22F22905A001D08D1 /* equirectangular_cubemap.cpp */; };
 		9A857D152F22905A001D08D1 /* wavefront.frag.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A857BE12F22905A001D08D1 /* wavefront.frag.h */; };
 		9A857D162F22905A001D08D1 /* skybox.frag.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A857BDD2F22905A001D08D1 /* skybox.frag.h */; };
 		9A857D172F22905A001D08D1 /* byte_order.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A857C2C2F22905A001D08D1 /* byte_order.h */; };
 		9A857D182F22905A001D08D1 /* prefiltered_environment_map.frag.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A857BD32F22905A001D08D1 /* prefiltered_environment_map.frag.h */; };
-		9A857D192F22905A001D08D1 /* aaa_cubemap_framebuffer.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A857BE92F22905A001D08D1 /* aaa_cubemap_framebuffer.h */; };
 		9A857D1B2F22905A001D08D1 /* aaa__library.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A857BFA2F22905A001D08D1 /* aaa__library.h */; };
-		9A857D1C2F22905A001D08D1 /* aaa_media_foundation.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A857C222F22905A001D08D1 /* aaa_media_foundation.h */; };
-		9A857D1D2F22905A001D08D1 /* application.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A857C2A2F22905A001D08D1 /* application.h */; };
+		9A857D1D2F22905A001D08D1 /* aaa_application.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A857C2A2F22905A001D08D1 /* aaa_application.h */; };
 		9A857D1E2F22905A001D08D1 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A857BF62F22905A001D08D1 /* _.h */; };
 		9A857D1F2F22905A001D08D1 /* prefiltered_environment_map.vert.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A857BD42F22905A001D08D1 /* prefiltered_environment_map.vert.h */; };
 		9A857D212F22905A001D08D1 /* console.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A857C082F22905A001D08D1 /* console.h */; };
 		9A857D222F22905A001D08D1 /* equirectangular_cubemap.frag.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A857BC92F22905A001D08D1 /* equirectangular_cubemap.frag.h */; };
-		9A857D232F22905A001D08D1 /* system.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A857C1A2F22905A001D08D1 /* system.h */; };
 		9A857D242F22905A001D08D1 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A857C382F22905A001D08D1 /* _.h */; };
 		9A857D252F22905A001D08D1 /* gltf.vert.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A857BCE2F22905A001D08D1 /* gltf.vert.h */; };
 		9A857D262F22905A001D08D1 /* __debug_box_set_impl.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A857BFF2F22905A001D08D1 /* __debug_box_set_impl.h */; };
 		9A857D272F22905A001D08D1 /* __assimp.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A857C0D2F22905A001D08D1 /* __assimp.h */; };
 		9A857D282F22905A001D08D1 /* _console_old.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A857C032F22905A001D08D1 /* _console_old.h */; };
 		9A857D292F22905A001D08D1 /* material.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A857C102F22905A001D08D1 /* material.h */; };
-		9A857D2A2F22905A001D08D1 /* _windows.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A857C1D2F22905A001D08D1 /* _windows.h */; };
 		9A857D2B2F22905A001D08D1 /* aaa__component.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A857BA52F22905A001D08D1 /* aaa__component.h */; };
 		9A857D2C2F22905A001D08D1 /* diffuse_irradiance_map.frag.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A857BC52F22905A001D08D1 /* diffuse_irradiance_map.frag.h */; };
 		9A857D2D2F22905A001D08D1 /* model_base.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A857C162F22905A001D08D1 /* model_base.h */; };
@@ -253,7 +211,6 @@
 		9A857D322F22905A001D08D1 /* equirectangular_cubemap.vert.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A857BCA2F22905A001D08D1 /* equirectangular_cubemap.vert.h */; };
 		9A857D332F22905A001D08D1 /* wavefront.vert.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A857BE22F22905A001D08D1 /* wavefront.vert.h */; };
 		9A857D352F22905A001D08D1 /* brdf_convolution_map.frag.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A857BC12F22905A001D08D1 /* brdf_convolution_map.frag.h */; };
-		9A857D362F22905A001D08D1 /* aaa_brdf_convolution_framebuffer.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A857BE72F22905A001D08D1 /* aaa_brdf_convolution_framebuffer.h */; };
 		9A857D372F22905A001D08D1 /* library.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A857C0A2F22905A001D08D1 /* library.h */; };
 		9A857D382F22905A001D08D1 /* _draw2d_impl.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A857C042F22905A001D08D1 /* _draw2d_impl.h */; };
 		9A857D392F22905A001D08D1 /* specular_map.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A857BF32F22905A001D08D1 /* specular_map.h */; };
@@ -261,7 +218,6 @@
 		9A857D3B2F22905A001D08D1 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A857BA42F22905A001D08D1 /* _.h */; };
 		9A857D3C2F22905A001D08D1 /* scene.frag.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A857BD72F22905A001D08D1 /* scene.frag.h */; };
 		9A857D3D2F22905A001D08D1 /* _acid_app_impl.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A857C002F22905A001D08D1 /* _acid_app_impl.h */; };
-		9A857D3E2F22905A001D08D1 /* aaa_hdri_cube.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A857BEB2F22905A001D08D1 /* aaa_hdri_cube.h */; };
 		9A857D3F2F22905A001D08D1 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A857C0C2F22905A001D08D1 /* _.h */; };
 		9A857D402F22905A001D08D1 /* tinyexpr.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A857C352F22905A001D08D1 /* tinyexpr.h */; };
 		9A857D412F22905A001D08D1 /* diffuse_irradiance_map.vert.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A857BC62F22905A001D08D1 /* diffuse_irradiance_map.vert.h */; };
@@ -278,16 +234,13 @@
 		9A857D4C2F22905A001D08D1 /* uwp.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A857BFC2F22905A001D08D1 /* uwp.h */; };
 		9A857D4D2F22905A001D08D1 /* _app_impl1.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A857C012F22905A001D08D1 /* _app_impl1.h */; };
 		9A857D4E2F22905A001D08D1 /* _assimp.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A857C0E2F22905A001D08D1 /* _assimp.h */; };
-		9A857D4F2F22905A001D08D1 /* aaa_mipmap_cubemap_framebuffer.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A857BED2F22905A001D08D1 /* aaa_mipmap_cubemap_framebuffer.h */; };
 		9A857D502F22905A001D08D1 /* _platform.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A857C272F22905A001D08D1 /* _platform.h */; };
-		9A857D512F22905A001D08D1 /* _uwp.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A857C192F22905A001D08D1 /* _uwp.h */; };
 		9A857D522F22905A001D08D1 /* skybox_hdr.frag.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A857BDC2F22905A001D08D1 /* skybox_hdr.frag.h */; };
 		9A857D532F22905A001D08D1 /* sha256.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A857C312F22905A001D08D1 /* sha256.h */; };
 		9A857D542F22905A001D08D1 /* session.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A857C2F2F22905A001D08D1 /* session.h */; };
 		9A857D552F22905A001D08D1 /* _constant.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A857C0F2F22905A001D08D1 /* _constant.h */; };
 		9A857D562F22905A001D08D1 /* _new_impl.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A857C052F22905A001D08D1 /* _new_impl.h */; };
 		9A857D582F22905A001D08D1 /* diffuse_irradiance_map.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A857BEF2F22905A001D08D1 /* diffuse_irradiance_map.h */; };
-		9A857D592F22905A001D08D1 /* system.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A857C1F2F22905A001D08D1 /* system.h */; };
 		9A857D5B2F22905A001D08D1 /* application.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A857C062F22905A001D08D1 /* application.h */; };
 		9A857D5C2F22905A001D08D1 /* _estamira.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A857BF82F22905A001D08D1 /* _estamira.h */; };
 		9A857D5D2F22905A001D08D1 /* controller.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A857C392F22905A001D08D1 /* controller.h */; };
@@ -300,26 +253,16 @@
 		9A857D642F22905A001D08D1 /* brdf_convolution_map.vert.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A857BC22F22905A001D08D1 /* brdf_convolution_map.vert.h */; };
 		9A857D652F22905A001D08D1 /* model.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A857C142F22905A001D08D1 /* model.h */; };
 		9A857D662F22905A001D08D1 /* mesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A857C132F22905A001D08D1 /* mesh.cpp */; };
-		9A857D672F22905A001D08D1 /* aaa_layer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A857C292F22905A001D08D1 /* aaa_layer.cpp */; };
 		9A857D682F22905A001D08D1 /* session.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A857C302F22905A001D08D1 /* session.cpp */; };
 		9A857D692F22905A001D08D1 /* material.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A857C112F22905A001D08D1 /* material.cpp */; };
-		9A857D6A2F22905A001D08D1 /* system.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A857C1B2F22905A001D08D1 /* system.cpp */; };
 		9A857D6B2F22905A001D08D1 /* hwid.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A857C2E2F22905A001D08D1 /* hwid.cpp */; };
 		9A857D6C2F22905A001D08D1 /* tinyexpr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A857C362F22905A001D08D1 /* tinyexpr.cpp */; };
 		9A857D6D2F22905A001D08D1 /* sha256.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A857C322F22905A001D08D1 /* sha256.cpp */; };
 		9A857D6E2F22905A001D08D1 /* _hlsl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A857BE62F22905A001D08D1 /* _hlsl.cpp */; };
-		9A857D6F2F22905A001D08D1 /* aaa_cubemap_framebuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A857BEA2F22905A001D08D1 /* aaa_cubemap_framebuffer.cpp */; };
 		9A857D702F22905A001D08D1 /* idpool.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A857BA22F22905A001D08D1 /* idpool.cpp */; };
-		9A857D712F22905A001D08D1 /* aaa_mipmap_cubemap_framebuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A857BEE2F22905A001D08D1 /* aaa_mipmap_cubemap_framebuffer.cpp */; };
-		9A857D722F22905A001D08D1 /* aaa_hdri_cube.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A857BEC2F22905A001D08D1 /* aaa_hdri_cube.cpp */; };
 		9A857D732F22905A001D08D1 /* specular_map.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A857BF42F22905A001D08D1 /* specular_map.cpp */; };
 		9A857D742F22905A001D08D1 /* diffuse_irradiance_map.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A857BF02F22905A001D08D1 /* diffuse_irradiance_map.cpp */; };
-		9A857D752F22905A001D08D1 /* audio.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A857C1E2F22905A001D08D1 /* audio.cpp */; };
-		9A857D762F22905A001D08D1 /* system.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A857C202F22905A001D08D1 /* system.cpp */; };
-		9A857D772F22905A001D08D1 /* aaa_brdf_convolution_framebuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A857BE82F22905A001D08D1 /* aaa_brdf_convolution_framebuffer.cpp */; };
-		9A857D782F22905A001D08D1 /* aaa_media_foundation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A857C232F22905A001D08D1 /* aaa_media_foundation.cpp */; };
 		9A857D7C2F22905A001D08D1 /* model_base.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A857C172F22905A001D08D1 /* model_base.cpp */; };
-		9A857D7D2F22905A001D08D1 /* application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A857C2B2F22905A001D08D1 /* application.cpp */; };
 		9A857D7E2F22905A001D08D1 /* model.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A857C152F22905A001D08D1 /* model.cpp */; };
 		9A857D7F2F22905A001D08D1 /* equirectangular_cubemap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A857BF22F22905A001D08D1 /* equirectangular_cubemap.cpp */; };
 		9A857D872F229088001D08D1 /* __defer.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A857D822F229088001D08D1 /* __defer.h */; };
@@ -337,6 +280,21 @@
 		9A857D932F229088001D08D1 /* full_screen_quad.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A857D852F229088001D08D1 /* full_screen_quad.h */; };
 		9A857D942F229088001D08D1 /* context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A857D842F229088001D08D1 /* context.cpp */; };
 		9A857D952F229088001D08D1 /* full_screen_quad.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A857D862F229088001D08D1 /* full_screen_quad.cpp */; };
+		9A8582DA2F229CC6001D08D1 /* _uwp.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8582CC2F229CC6001D08D1 /* _uwp.h */; };
+		9A8582DB2F229CC6001D08D1 /* system.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8582CD2F229CC6001D08D1 /* system.h */; };
+		9A8582DC2F229CC6001D08D1 /* _windows.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8582D02F229CC6001D08D1 /* _windows.h */; };
+		9A8582DD2F229CC6001D08D1 /* system.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8582D22F229CC6001D08D1 /* system.h */; };
+		9A8582DE2F229CC6001D08D1 /* aaa_media_foundation.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8582D52F229CC6001D08D1 /* aaa_media_foundation.h */; };
+		9A8582E72F229CC6001D08D1 /* _uwp.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8582CC2F229CC6001D08D1 /* _uwp.h */; };
+		9A8582E82F229CC6001D08D1 /* system.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8582CD2F229CC6001D08D1 /* system.h */; };
+		9A8582E92F229CC6001D08D1 /* _windows.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8582D02F229CC6001D08D1 /* _windows.h */; };
+		9A8582EA2F229CC6001D08D1 /* system.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8582D22F229CC6001D08D1 /* system.h */; };
+		9A8582EB2F229CC6001D08D1 /* aaa_media_foundation.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8582D52F229CC6001D08D1 /* aaa_media_foundation.h */; };
+		9A8582EC2F229CC6001D08D1 /* _uwp.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8582CC2F229CC6001D08D1 /* _uwp.h */; };
+		9A8582ED2F229CC6001D08D1 /* system.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8582CD2F229CC6001D08D1 /* system.h */; };
+		9A8582EE2F229CC6001D08D1 /* _windows.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8582D02F229CC6001D08D1 /* _windows.h */; };
+		9A8582EF2F229CC6001D08D1 /* system.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8582D22F229CC6001D08D1 /* system.h */; };
+		9A8582F02F229CC6001D08D1 /* aaa_media_foundation.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8582D52F229CC6001D08D1 /* aaa_media_foundation.h */; };
 		9A8E9E4F282A3210005FF778 /* console.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A28192825242523009FA9CB /* console.h */; };
 		9A8E9E58282A3210005FF778 /* library.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A28192D25242523009FA9CB /* library.h */; };
 		9A8E9E6E282A3210005FF778 /* framework.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A2819A825242523009FA9CB /* framework.h */; };
@@ -455,14 +413,6 @@
 		9A857BE42F22905A001D08D1 /* _.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
 		9A857BE52F22905A001D08D1 /* _hlsl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _hlsl.h; sourceTree = "<group>"; };
 		9A857BE62F22905A001D08D1 /* _hlsl.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = _hlsl.cpp; sourceTree = "<group>"; };
-		9A857BE72F22905A001D08D1 /* aaa_brdf_convolution_framebuffer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = aaa_brdf_convolution_framebuffer.h; sourceTree = "<group>"; };
-		9A857BE82F22905A001D08D1 /* aaa_brdf_convolution_framebuffer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = aaa_brdf_convolution_framebuffer.cpp; sourceTree = "<group>"; };
-		9A857BE92F22905A001D08D1 /* aaa_cubemap_framebuffer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = aaa_cubemap_framebuffer.h; sourceTree = "<group>"; };
-		9A857BEA2F22905A001D08D1 /* aaa_cubemap_framebuffer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = aaa_cubemap_framebuffer.cpp; sourceTree = "<group>"; };
-		9A857BEB2F22905A001D08D1 /* aaa_hdri_cube.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = aaa_hdri_cube.h; sourceTree = "<group>"; };
-		9A857BEC2F22905A001D08D1 /* aaa_hdri_cube.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = aaa_hdri_cube.cpp; sourceTree = "<group>"; };
-		9A857BED2F22905A001D08D1 /* aaa_mipmap_cubemap_framebuffer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = aaa_mipmap_cubemap_framebuffer.h; sourceTree = "<group>"; };
-		9A857BEE2F22905A001D08D1 /* aaa_mipmap_cubemap_framebuffer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = aaa_mipmap_cubemap_framebuffer.cpp; sourceTree = "<group>"; };
 		9A857BEF2F22905A001D08D1 /* diffuse_irradiance_map.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = diffuse_irradiance_map.h; sourceTree = "<group>"; };
 		9A857BF02F22905A001D08D1 /* diffuse_irradiance_map.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = diffuse_irradiance_map.cpp; sourceTree = "<group>"; };
 		9A857BF12F22905A001D08D1 /* equirectangular_cubemap.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = equirectangular_cubemap.h; sourceTree = "<group>"; };
@@ -500,21 +450,12 @@
 		9A857C152F22905A001D08D1 /* model.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = model.cpp; sourceTree = "<group>"; };
 		9A857C162F22905A001D08D1 /* model_base.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = model_base.h; sourceTree = "<group>"; };
 		9A857C172F22905A001D08D1 /* model_base.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = model_base.cpp; sourceTree = "<group>"; };
-		9A857C192F22905A001D08D1 /* _uwp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _uwp.h; sourceTree = "<group>"; };
-		9A857C1A2F22905A001D08D1 /* system.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = system.h; sourceTree = "<group>"; };
-		9A857C1B2F22905A001D08D1 /* system.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = system.cpp; sourceTree = "<group>"; };
-		9A857C1D2F22905A001D08D1 /* _windows.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _windows.h; sourceTree = "<group>"; };
-		9A857C1E2F22905A001D08D1 /* audio.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = audio.cpp; sourceTree = "<group>"; };
-		9A857C1F2F22905A001D08D1 /* system.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = system.h; sourceTree = "<group>"; };
-		9A857C202F22905A001D08D1 /* system.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = system.cpp; sourceTree = "<group>"; };
-		9A857C222F22905A001D08D1 /* aaa_media_foundation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = aaa_media_foundation.h; sourceTree = "<group>"; };
-		9A857C232F22905A001D08D1 /* aaa_media_foundation.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = aaa_media_foundation.cpp; sourceTree = "<group>"; };
 		9A857C262F22905A001D08D1 /* _impl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _impl.h; sourceTree = "<group>"; };
 		9A857C272F22905A001D08D1 /* _platform.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _platform.h; sourceTree = "<group>"; };
 		9A857C282F22905A001D08D1 /* aaa_layer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = aaa_layer.h; sourceTree = "<group>"; };
 		9A857C292F22905A001D08D1 /* aaa_layer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = aaa_layer.cpp; sourceTree = "<group>"; };
-		9A857C2A2F22905A001D08D1 /* application.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = application.h; sourceTree = "<group>"; };
-		9A857C2B2F22905A001D08D1 /* application.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = application.cpp; sourceTree = "<group>"; };
+		9A857C2A2F22905A001D08D1 /* aaa_application.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = aaa_application.h; sourceTree = "<group>"; };
+		9A857C2B2F22905A001D08D1 /* aaa_application.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = aaa_application.cpp; sourceTree = "<group>"; };
 		9A857C2C2F22905A001D08D1 /* byte_order.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = byte_order.h; sourceTree = "<group>"; };
 		9A857C2D2F22905A001D08D1 /* hwid.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = hwid.h; sourceTree = "<group>"; };
 		9A857C2E2F22905A001D08D1 /* hwid.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = hwid.cpp; sourceTree = "<group>"; };
@@ -535,8 +476,54 @@
 		9A857D862F229088001D08D1 /* full_screen_quad.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = full_screen_quad.cpp; sourceTree = "<group>"; };
 		9A857D962F2290B1001D08D1 /* bred.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = bred.xcodeproj; path = ../bred/bred.xcodeproj; sourceTree = SOURCE_ROOT; };
 		9A857DA72F2290F9001D08D1 /* bred.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = bred.xcodeproj; path = /Volumes/hstorage/Users/camilo/SceneFoundry/main/source/app/bred/bred.xcodeproj; sourceTree = "<absolute>"; };
+		9A8582CC2F229CC6001D08D1 /* _uwp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _uwp.h; sourceTree = "<group>"; };
+		9A8582CD2F229CC6001D08D1 /* system.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = system.h; sourceTree = "<group>"; };
+		9A8582CE2F229CC6001D08D1 /* system.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = system.cpp; sourceTree = "<group>"; };
+		9A8582D02F229CC6001D08D1 /* _windows.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _windows.h; sourceTree = "<group>"; };
+		9A8582D12F229CC6001D08D1 /* audio.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = audio.cpp; sourceTree = "<group>"; };
+		9A8582D22F229CC6001D08D1 /* system.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = system.h; sourceTree = "<group>"; };
+		9A8582D32F229CC6001D08D1 /* system.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = system.cpp; sourceTree = "<group>"; };
+		9A8582D52F229CC6001D08D1 /* aaa_media_foundation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = aaa_media_foundation.h; sourceTree = "<group>"; };
+		9A8582D62F229CC6001D08D1 /* aaa_media_foundation.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = aaa_media_foundation.cpp; sourceTree = "<group>"; };
 		9A8E9EB9282A3210005FF778 /* libios_gpu.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libios_gpu.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		9A8582A02F229C79001D08D1 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				aaa_brdf_convolution_framebuffer.cpp,
+				aaa_cubemap_framebuffer.cpp,
+				aaa_hdri_cube.cpp,
+				aaa_mipmap_cubemap_framebuffer.cpp,
+			);
+			target = 9A2818FD25242488009FA9CB /* gpu */;
+		};
+		9A8582A12F229C79001D08D1 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				aaa_brdf_convolution_framebuffer.cpp,
+				aaa_cubemap_framebuffer.cpp,
+				aaa_hdri_cube.cpp,
+				aaa_mipmap_cubemap_framebuffer.cpp,
+			);
+			target = 9A8E9E37282A3210005FF778 /* ios_gpu */;
+		};
+		9A8582A22F229C79001D08D1 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				aaa_brdf_convolution_framebuffer.cpp,
+				aaa_cubemap_framebuffer.cpp,
+				aaa_hdri_cube.cpp,
+				aaa_mipmap_cubemap_framebuffer.cpp,
+			);
+			target = 9A81890E2A71CC42008F470C /* static_gpu */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		9A85829C2F229C65001D08D1 /* _aaa_2025 */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (9A8582A02F229C79001D08D1 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 9A8582A12F229C79001D08D1 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 9A8582A22F229C79001D08D1 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = _aaa_2025; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		9A2818FC25242488009FA9CB /* Frameworks */ = {
@@ -582,13 +569,13 @@
 		9A28192625242523009FA9CB /* gpu */ = {
 			isa = PBXGroup;
 			children = (
+				9A8582D92F229CC6001D08D1 /* _aaa_2025 */,
 				9A857BA32F22905A001D08D1 /* constant */,
 				9A857BA62F22905A001D08D1 /* game */,
 				9A857BF52F22905A001D08D1 /* ibl */,
 				9A857BFB2F22905A001D08D1 /* include */,
 				9A857C0B2F22905A001D08D1 /* inline */,
 				9A857C182F22905A001D08D1 /* model */,
-				9A857C252F22905A001D08D1 /* operating_system */,
 				9A857C372F22905A001D08D1 /* platform */,
 				9A857C3A2F22905A001D08D1 /* user */,
 				9A03B7BC2A25B8F700A0E33E /* _____debug.xcconfig */,
@@ -707,14 +694,7 @@
 				9A857BE42F22905A001D08D1 /* _.h */,
 				9A857BE52F22905A001D08D1 /* _hlsl.h */,
 				9A857BE62F22905A001D08D1 /* _hlsl.cpp */,
-				9A857BE72F22905A001D08D1 /* aaa_brdf_convolution_framebuffer.h */,
-				9A857BE82F22905A001D08D1 /* aaa_brdf_convolution_framebuffer.cpp */,
-				9A857BE92F22905A001D08D1 /* aaa_cubemap_framebuffer.h */,
-				9A857BEA2F22905A001D08D1 /* aaa_cubemap_framebuffer.cpp */,
-				9A857BEB2F22905A001D08D1 /* aaa_hdri_cube.h */,
-				9A857BEC2F22905A001D08D1 /* aaa_hdri_cube.cpp */,
-				9A857BED2F22905A001D08D1 /* aaa_mipmap_cubemap_framebuffer.h */,
-				9A857BEE2F22905A001D08D1 /* aaa_mipmap_cubemap_framebuffer.cpp */,
+				9A85829C2F229C65001D08D1 /* _aaa_2025 */,
 				9A857BEF2F22905A001D08D1 /* diffuse_irradiance_map.h */,
 				9A857BF02F22905A001D08D1 /* diffuse_irradiance_map.cpp */,
 				9A857BF12F22905A001D08D1 /* equirectangular_cubemap.h */,
@@ -785,55 +765,12 @@
 			path = model;
 			sourceTree = "<group>";
 		};
-		9A857C1C2F22905A001D08D1 /* uwp */ = {
-			isa = PBXGroup;
-			children = (
-				9A857C192F22905A001D08D1 /* _uwp.h */,
-				9A857C1A2F22905A001D08D1 /* system.h */,
-				9A857C1B2F22905A001D08D1 /* system.cpp */,
-			);
-			path = uwp;
-			sourceTree = "<group>";
-		};
-		9A857C212F22905A001D08D1 /* windows */ = {
-			isa = PBXGroup;
-			children = (
-				9A857C1D2F22905A001D08D1 /* _windows.h */,
-				9A857C1E2F22905A001D08D1 /* audio.cpp */,
-				9A857C1F2F22905A001D08D1 /* system.h */,
-				9A857C202F22905A001D08D1 /* system.cpp */,
-			);
-			path = windows;
-			sourceTree = "<group>";
-		};
-		9A857C242F22905A001D08D1 /* windows_common */ = {
-			isa = PBXGroup;
-			children = (
-				9A857C222F22905A001D08D1 /* aaa_media_foundation.h */,
-				9A857C232F22905A001D08D1 /* aaa_media_foundation.cpp */,
-			);
-			path = windows_common;
-			sourceTree = "<group>";
-		};
-		9A857C252F22905A001D08D1 /* operating_system */ = {
-			isa = PBXGroup;
-			children = (
-				9A857C1C2F22905A001D08D1 /* uwp */,
-				9A857C212F22905A001D08D1 /* windows */,
-				9A857C242F22905A001D08D1 /* windows_common */,
-			);
-			path = operating_system;
-			sourceTree = "<group>";
-		};
 		9A857C372F22905A001D08D1 /* platform */ = {
 			isa = PBXGroup;
 			children = (
 				9A857C262F22905A001D08D1 /* _impl.h */,
 				9A857C272F22905A001D08D1 /* _platform.h */,
-				9A857C282F22905A001D08D1 /* aaa_layer.h */,
-				9A857C292F22905A001D08D1 /* aaa_layer.cpp */,
-				9A857C2A2F22905A001D08D1 /* application.h */,
-				9A857C2B2F22905A001D08D1 /* application.cpp */,
+				9A8582F52F229D3A001D08D1 /* _aaa_2025 */,
 				9A857C2C2F22905A001D08D1 /* byte_order.h */,
 				9A857C2D2F22905A001D08D1 /* hwid.h */,
 				9A857C2E2F22905A001D08D1 /* hwid.cpp */,
@@ -841,8 +778,6 @@
 				9A857C302F22905A001D08D1 /* session.cpp */,
 				9A857C312F22905A001D08D1 /* sha256.h */,
 				9A857C322F22905A001D08D1 /* sha256.cpp */,
-				9A857C332F22905A001D08D1 /* aaa_system.h */,
-				9A857C342F22905A001D08D1 /* aaa_system.cpp */,
 				9A857C352F22905A001D08D1 /* tinyexpr.h */,
 				9A857C362F22905A001D08D1 /* tinyexpr.cpp */,
 			);
@@ -876,6 +811,67 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		9A8582CF2F229CC6001D08D1 /* uwp */ = {
+			isa = PBXGroup;
+			children = (
+				9A8582CC2F229CC6001D08D1 /* _uwp.h */,
+				9A8582CD2F229CC6001D08D1 /* system.h */,
+				9A8582CE2F229CC6001D08D1 /* system.cpp */,
+			);
+			path = uwp;
+			sourceTree = "<group>";
+		};
+		9A8582D42F229CC6001D08D1 /* windows */ = {
+			isa = PBXGroup;
+			children = (
+				9A8582D02F229CC6001D08D1 /* _windows.h */,
+				9A8582D12F229CC6001D08D1 /* audio.cpp */,
+				9A8582D22F229CC6001D08D1 /* system.h */,
+				9A8582D32F229CC6001D08D1 /* system.cpp */,
+			);
+			path = windows;
+			sourceTree = "<group>";
+		};
+		9A8582D72F229CC6001D08D1 /* windows_common */ = {
+			isa = PBXGroup;
+			children = (
+				9A8582D52F229CC6001D08D1 /* aaa_media_foundation.h */,
+				9A8582D62F229CC6001D08D1 /* aaa_media_foundation.cpp */,
+			);
+			path = windows_common;
+			sourceTree = "<group>";
+		};
+		9A8582D82F229CC6001D08D1 /* operating_system */ = {
+			isa = PBXGroup;
+			children = (
+				9A8582CF2F229CC6001D08D1 /* uwp */,
+				9A8582D42F229CC6001D08D1 /* windows */,
+				9A8582D72F229CC6001D08D1 /* windows_common */,
+			);
+			path = operating_system;
+			sourceTree = "<group>";
+		};
+		9A8582D92F229CC6001D08D1 /* _aaa_2025 */ = {
+			isa = PBXGroup;
+			children = (
+				9A8582D82F229CC6001D08D1 /* operating_system */,
+			);
+			path = _aaa_2025;
+			sourceTree = "<group>";
+		};
+		9A8582F52F229D3A001D08D1 /* _aaa_2025 */ = {
+			isa = PBXGroup;
+			children = (
+				9A857C282F22905A001D08D1 /* aaa_layer.h */,
+				9A857C292F22905A001D08D1 /* aaa_layer.cpp */,
+				9A857C2A2F22905A001D08D1 /* aaa_application.h */,
+				9A857C2B2F22905A001D08D1 /* aaa_application.cpp */,
+				9A857C332F22905A001D08D1 /* aaa_system.h */,
+				9A857C342F22905A001D08D1 /* aaa_system.cpp */,
+			);
+			path = _aaa_2025;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -887,22 +883,18 @@
 				9A857D162F22905A001D08D1 /* skybox.frag.h in Headers */,
 				9A857D172F22905A001D08D1 /* byte_order.h in Headers */,
 				9A857D182F22905A001D08D1 /* prefiltered_environment_map.frag.h in Headers */,
-				9A857D192F22905A001D08D1 /* aaa_cubemap_framebuffer.h in Headers */,
 				9A857D1B2F22905A001D08D1 /* aaa__library.h in Headers */,
-				9A857D1C2F22905A001D08D1 /* aaa_media_foundation.h in Headers */,
-				9A857D1D2F22905A001D08D1 /* application.h in Headers */,
+				9A857D1D2F22905A001D08D1 /* aaa_application.h in Headers */,
 				9A857D1E2F22905A001D08D1 /* _.h in Headers */,
 				9A857D1F2F22905A001D08D1 /* prefiltered_environment_map.vert.h in Headers */,
 				9A857D212F22905A001D08D1 /* console.h in Headers */,
 				9A857D222F22905A001D08D1 /* equirectangular_cubemap.frag.h in Headers */,
-				9A857D232F22905A001D08D1 /* system.h in Headers */,
 				9A857D242F22905A001D08D1 /* _.h in Headers */,
 				9A857D252F22905A001D08D1 /* gltf.vert.h in Headers */,
 				9A857D262F22905A001D08D1 /* __debug_box_set_impl.h in Headers */,
 				9A857D272F22905A001D08D1 /* __assimp.h in Headers */,
 				9A857D282F22905A001D08D1 /* _console_old.h in Headers */,
 				9A857D292F22905A001D08D1 /* material.h in Headers */,
-				9A857D2A2F22905A001D08D1 /* _windows.h in Headers */,
 				9A857D2B2F22905A001D08D1 /* aaa__component.h in Headers */,
 				9A857D2C2F22905A001D08D1 /* diffuse_irradiance_map.frag.h in Headers */,
 				9A857D2D2F22905A001D08D1 /* model_base.h in Headers */,
@@ -912,7 +904,6 @@
 				9A857D322F22905A001D08D1 /* equirectangular_cubemap.vert.h in Headers */,
 				9A857D332F22905A001D08D1 /* wavefront.vert.h in Headers */,
 				9A857D352F22905A001D08D1 /* brdf_convolution_map.frag.h in Headers */,
-				9A857D362F22905A001D08D1 /* aaa_brdf_convolution_framebuffer.h in Headers */,
 				9A857D372F22905A001D08D1 /* library.h in Headers */,
 				9A857D382F22905A001D08D1 /* _draw2d_impl.h in Headers */,
 				9A857D392F22905A001D08D1 /* specular_map.h in Headers */,
@@ -923,7 +914,6 @@
 				9A857D922F229088001D08D1 /* context.h in Headers */,
 				9A857D932F229088001D08D1 /* full_screen_quad.h in Headers */,
 				9A857D3D2F22905A001D08D1 /* _acid_app_impl.h in Headers */,
-				9A857D3E2F22905A001D08D1 /* aaa_hdri_cube.h in Headers */,
 				9A857D3F2F22905A001D08D1 /* _.h in Headers */,
 				9A857D402F22905A001D08D1 /* tinyexpr.h in Headers */,
 				9A857D412F22905A001D08D1 /* diffuse_irradiance_map.vert.h in Headers */,
@@ -940,19 +930,21 @@
 				9A857D4C2F22905A001D08D1 /* uwp.h in Headers */,
 				9A857D4D2F22905A001D08D1 /* _app_impl1.h in Headers */,
 				9A857D4E2F22905A001D08D1 /* _assimp.h in Headers */,
-				9A857D4F2F22905A001D08D1 /* aaa_mipmap_cubemap_framebuffer.h in Headers */,
 				9A857D502F22905A001D08D1 /* _platform.h in Headers */,
-				9A857D512F22905A001D08D1 /* _uwp.h in Headers */,
 				9A857D522F22905A001D08D1 /* skybox_hdr.frag.h in Headers */,
 				9A857D532F22905A001D08D1 /* sha256.h in Headers */,
 				9A857D542F22905A001D08D1 /* session.h in Headers */,
 				9A857D552F22905A001D08D1 /* _constant.h in Headers */,
 				9A857D562F22905A001D08D1 /* _new_impl.h in Headers */,
 				9A857D582F22905A001D08D1 /* diffuse_irradiance_map.h in Headers */,
-				9A857D592F22905A001D08D1 /* system.h in Headers */,
 				9A857D5B2F22905A001D08D1 /* application.h in Headers */,
 				9A857D5C2F22905A001D08D1 /* _estamira.h in Headers */,
 				9A857D5D2F22905A001D08D1 /* controller.h in Headers */,
+				9A8582DA2F229CC6001D08D1 /* _uwp.h in Headers */,
+				9A8582DB2F229CC6001D08D1 /* system.h in Headers */,
+				9A8582DC2F229CC6001D08D1 /* _windows.h in Headers */,
+				9A8582DD2F229CC6001D08D1 /* system.h in Headers */,
+				9A8582DE2F229CC6001D08D1 /* aaa_media_foundation.h in Headers */,
 				9A857D5E2F22905A001D08D1 /* idpool.h in Headers */,
 				9A857D5F2F22905A001D08D1 /* _include.h in Headers */,
 				9A857D602F22905A001D08D1 /* aaa_layer.h in Headers */,
@@ -979,22 +971,18 @@
 				9A857C3C2F22905A001D08D1 /* skybox.frag.h in Headers */,
 				9A857C3D2F22905A001D08D1 /* byte_order.h in Headers */,
 				9A857C3E2F22905A001D08D1 /* prefiltered_environment_map.frag.h in Headers */,
-				9A857C3F2F22905A001D08D1 /* aaa_cubemap_framebuffer.h in Headers */,
 				9A857C412F22905A001D08D1 /* aaa__library.h in Headers */,
-				9A857C422F22905A001D08D1 /* aaa_media_foundation.h in Headers */,
-				9A857C432F22905A001D08D1 /* application.h in Headers */,
+				9A857C432F22905A001D08D1 /* aaa_application.h in Headers */,
 				9A857C442F22905A001D08D1 /* _.h in Headers */,
 				9A857C452F22905A001D08D1 /* prefiltered_environment_map.vert.h in Headers */,
 				9A857C472F22905A001D08D1 /* console.h in Headers */,
 				9A857C482F22905A001D08D1 /* equirectangular_cubemap.frag.h in Headers */,
-				9A857C492F22905A001D08D1 /* system.h in Headers */,
 				9A857C4A2F22905A001D08D1 /* _.h in Headers */,
 				9A857C4B2F22905A001D08D1 /* gltf.vert.h in Headers */,
 				9A857C4C2F22905A001D08D1 /* __debug_box_set_impl.h in Headers */,
 				9A857C4D2F22905A001D08D1 /* __assimp.h in Headers */,
 				9A857C4E2F22905A001D08D1 /* _console_old.h in Headers */,
 				9A857C4F2F22905A001D08D1 /* material.h in Headers */,
-				9A857C502F22905A001D08D1 /* _windows.h in Headers */,
 				9A857C512F22905A001D08D1 /* aaa__component.h in Headers */,
 				9A857C522F22905A001D08D1 /* diffuse_irradiance_map.frag.h in Headers */,
 				9A857C532F22905A001D08D1 /* model_base.h in Headers */,
@@ -1004,7 +992,6 @@
 				9A857C582F22905A001D08D1 /* equirectangular_cubemap.vert.h in Headers */,
 				9A857C592F22905A001D08D1 /* wavefront.vert.h in Headers */,
 				9A857C5B2F22905A001D08D1 /* brdf_convolution_map.frag.h in Headers */,
-				9A857C5C2F22905A001D08D1 /* aaa_brdf_convolution_framebuffer.h in Headers */,
 				9A857C5D2F22905A001D08D1 /* library.h in Headers */,
 				9A857C5E2F22905A001D08D1 /* _draw2d_impl.h in Headers */,
 				9A857C5F2F22905A001D08D1 /* specular_map.h in Headers */,
@@ -1015,7 +1002,6 @@
 				9A857D8D2F229088001D08D1 /* context.h in Headers */,
 				9A857D8E2F229088001D08D1 /* full_screen_quad.h in Headers */,
 				9A857C632F22905A001D08D1 /* _acid_app_impl.h in Headers */,
-				9A857C642F22905A001D08D1 /* aaa_hdri_cube.h in Headers */,
 				9A857C652F22905A001D08D1 /* _.h in Headers */,
 				9A857C662F22905A001D08D1 /* tinyexpr.h in Headers */,
 				9A857C672F22905A001D08D1 /* diffuse_irradiance_map.vert.h in Headers */,
@@ -1032,19 +1018,21 @@
 				9A857C722F22905A001D08D1 /* uwp.h in Headers */,
 				9A857C732F22905A001D08D1 /* _app_impl1.h in Headers */,
 				9A857C742F22905A001D08D1 /* _assimp.h in Headers */,
-				9A857C752F22905A001D08D1 /* aaa_mipmap_cubemap_framebuffer.h in Headers */,
 				9A857C762F22905A001D08D1 /* _platform.h in Headers */,
-				9A857C772F22905A001D08D1 /* _uwp.h in Headers */,
 				9A857C782F22905A001D08D1 /* skybox_hdr.frag.h in Headers */,
 				9A857C792F22905A001D08D1 /* sha256.h in Headers */,
 				9A857C7A2F22905A001D08D1 /* session.h in Headers */,
 				9A857C7B2F22905A001D08D1 /* _constant.h in Headers */,
 				9A857C7C2F22905A001D08D1 /* _new_impl.h in Headers */,
 				9A857C7E2F22905A001D08D1 /* diffuse_irradiance_map.h in Headers */,
-				9A857C7F2F22905A001D08D1 /* system.h in Headers */,
 				9A857C812F22905A001D08D1 /* application.h in Headers */,
 				9A857C822F22905A001D08D1 /* _estamira.h in Headers */,
 				9A857C832F22905A001D08D1 /* controller.h in Headers */,
+				9A8582EC2F229CC6001D08D1 /* _uwp.h in Headers */,
+				9A8582ED2F229CC6001D08D1 /* system.h in Headers */,
+				9A8582EE2F229CC6001D08D1 /* _windows.h in Headers */,
+				9A8582EF2F229CC6001D08D1 /* system.h in Headers */,
+				9A8582F02F229CC6001D08D1 /* aaa_media_foundation.h in Headers */,
 				9A857C842F22905A001D08D1 /* idpool.h in Headers */,
 				9A857C852F22905A001D08D1 /* _include.h in Headers */,
 				9A857C862F22905A001D08D1 /* aaa_layer.h in Headers */,
@@ -1071,22 +1059,18 @@
 				9A857CA92F22905A001D08D1 /* skybox.frag.h in Headers */,
 				9A857CAA2F22905A001D08D1 /* byte_order.h in Headers */,
 				9A857CAB2F22905A001D08D1 /* prefiltered_environment_map.frag.h in Headers */,
-				9A857CAC2F22905A001D08D1 /* aaa_cubemap_framebuffer.h in Headers */,
 				9A857CAE2F22905A001D08D1 /* aaa__library.h in Headers */,
-				9A857CAF2F22905A001D08D1 /* aaa_media_foundation.h in Headers */,
-				9A857CB02F22905A001D08D1 /* application.h in Headers */,
+				9A857CB02F22905A001D08D1 /* aaa_application.h in Headers */,
 				9A857CB12F22905A001D08D1 /* _.h in Headers */,
 				9A857CB22F22905A001D08D1 /* prefiltered_environment_map.vert.h in Headers */,
 				9A857CB42F22905A001D08D1 /* console.h in Headers */,
 				9A857CB52F22905A001D08D1 /* equirectangular_cubemap.frag.h in Headers */,
-				9A857CB62F22905A001D08D1 /* system.h in Headers */,
 				9A857CB72F22905A001D08D1 /* _.h in Headers */,
 				9A857CB82F22905A001D08D1 /* gltf.vert.h in Headers */,
 				9A857CB92F22905A001D08D1 /* __debug_box_set_impl.h in Headers */,
 				9A857CBA2F22905A001D08D1 /* __assimp.h in Headers */,
 				9A857CBB2F22905A001D08D1 /* _console_old.h in Headers */,
 				9A857CBC2F22905A001D08D1 /* material.h in Headers */,
-				9A857CBD2F22905A001D08D1 /* _windows.h in Headers */,
 				9A857CBE2F22905A001D08D1 /* aaa__component.h in Headers */,
 				9A857CBF2F22905A001D08D1 /* diffuse_irradiance_map.frag.h in Headers */,
 				9A857CC02F22905A001D08D1 /* model_base.h in Headers */,
@@ -1096,7 +1080,6 @@
 				9A857CC52F22905A001D08D1 /* equirectangular_cubemap.vert.h in Headers */,
 				9A857CC62F22905A001D08D1 /* wavefront.vert.h in Headers */,
 				9A857CC82F22905A001D08D1 /* brdf_convolution_map.frag.h in Headers */,
-				9A857CC92F22905A001D08D1 /* aaa_brdf_convolution_framebuffer.h in Headers */,
 				9A857CCA2F22905A001D08D1 /* library.h in Headers */,
 				9A857CCB2F22905A001D08D1 /* _draw2d_impl.h in Headers */,
 				9A857CCC2F22905A001D08D1 /* specular_map.h in Headers */,
@@ -1107,7 +1090,6 @@
 				9A857D882F229088001D08D1 /* context.h in Headers */,
 				9A857D892F229088001D08D1 /* full_screen_quad.h in Headers */,
 				9A857CD02F22905A001D08D1 /* _acid_app_impl.h in Headers */,
-				9A857CD12F22905A001D08D1 /* aaa_hdri_cube.h in Headers */,
 				9A857CD22F22905A001D08D1 /* _.h in Headers */,
 				9A857CD32F22905A001D08D1 /* tinyexpr.h in Headers */,
 				9A857CD42F22905A001D08D1 /* diffuse_irradiance_map.vert.h in Headers */,
@@ -1124,19 +1106,21 @@
 				9A857CDF2F22905A001D08D1 /* uwp.h in Headers */,
 				9A857CE02F22905A001D08D1 /* _app_impl1.h in Headers */,
 				9A857CE12F22905A001D08D1 /* _assimp.h in Headers */,
-				9A857CE22F22905A001D08D1 /* aaa_mipmap_cubemap_framebuffer.h in Headers */,
 				9A857CE32F22905A001D08D1 /* _platform.h in Headers */,
-				9A857CE42F22905A001D08D1 /* _uwp.h in Headers */,
 				9A857CE52F22905A001D08D1 /* skybox_hdr.frag.h in Headers */,
 				9A857CE62F22905A001D08D1 /* sha256.h in Headers */,
 				9A857CE72F22905A001D08D1 /* session.h in Headers */,
 				9A857CE82F22905A001D08D1 /* _constant.h in Headers */,
 				9A857CE92F22905A001D08D1 /* _new_impl.h in Headers */,
 				9A857CEB2F22905A001D08D1 /* diffuse_irradiance_map.h in Headers */,
-				9A857CEC2F22905A001D08D1 /* system.h in Headers */,
 				9A857CEE2F22905A001D08D1 /* application.h in Headers */,
 				9A857CEF2F22905A001D08D1 /* _estamira.h in Headers */,
 				9A857CF02F22905A001D08D1 /* controller.h in Headers */,
+				9A8582E72F229CC6001D08D1 /* _uwp.h in Headers */,
+				9A8582E82F229CC6001D08D1 /* system.h in Headers */,
+				9A8582E92F229CC6001D08D1 /* _windows.h in Headers */,
+				9A8582EA2F229CC6001D08D1 /* system.h in Headers */,
+				9A8582EB2F229CC6001D08D1 /* aaa_media_foundation.h in Headers */,
 				9A857CF12F22905A001D08D1 /* idpool.h in Headers */,
 				9A857CF22F22905A001D08D1 /* _include.h in Headers */,
 				9A857CF32F22905A001D08D1 /* aaa_layer.h in Headers */,
@@ -1171,6 +1155,9 @@
 			);
 			dependencies = (
 			);
+			fileSystemSynchronizedGroups = (
+				9A85829C2F229C65001D08D1 /* _aaa_2025 */,
+			);
 			name = gpu;
 			productName = aqua;
 			productReference = 9A2818FE25242488009FA9CB /* libgpu.dylib */;
@@ -1189,6 +1176,9 @@
 			dependencies = (
 				9A857DAB2F2290F9001D08D1 /* PBXTargetDependency */,
 			);
+			fileSystemSynchronizedGroups = (
+				9A85829C2F229C65001D08D1 /* _aaa_2025 */,
+			);
 			name = static_gpu;
 			productName = aqua;
 			productReference = 9A81898B2A71CC42008F470C /* libstatic_gpu.a */;
@@ -1204,6 +1194,9 @@
 			buildRules = (
 			);
 			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				9A85829C2F229C65001D08D1 /* _aaa_2025 */,
 			);
 			name = ios_gpu;
 			productName = aqua;
@@ -1317,28 +1310,18 @@
 				9ABFEA6E2850E44A008FF906 /* _.cpp in Sources */,
 				9A2819B025242523009FA9CB /* framework.cpp in Sources */,
 				9A857D662F22905A001D08D1 /* mesh.cpp in Sources */,
-				9A857D672F22905A001D08D1 /* aaa_layer.cpp in Sources */,
 				9A857D942F229088001D08D1 /* context.cpp in Sources */,
 				9A857D952F229088001D08D1 /* full_screen_quad.cpp in Sources */,
 				9A857D682F22905A001D08D1 /* session.cpp in Sources */,
 				9A857D692F22905A001D08D1 /* material.cpp in Sources */,
-				9A857D6A2F22905A001D08D1 /* system.cpp in Sources */,
 				9A857D6B2F22905A001D08D1 /* hwid.cpp in Sources */,
 				9A857D6C2F22905A001D08D1 /* tinyexpr.cpp in Sources */,
 				9A857D6D2F22905A001D08D1 /* sha256.cpp in Sources */,
 				9A857D6E2F22905A001D08D1 /* _hlsl.cpp in Sources */,
-				9A857D6F2F22905A001D08D1 /* aaa_cubemap_framebuffer.cpp in Sources */,
 				9A857D702F22905A001D08D1 /* idpool.cpp in Sources */,
-				9A857D712F22905A001D08D1 /* aaa_mipmap_cubemap_framebuffer.cpp in Sources */,
-				9A857D722F22905A001D08D1 /* aaa_hdri_cube.cpp in Sources */,
 				9A857D732F22905A001D08D1 /* specular_map.cpp in Sources */,
 				9A857D742F22905A001D08D1 /* diffuse_irradiance_map.cpp in Sources */,
-				9A857D752F22905A001D08D1 /* audio.cpp in Sources */,
-				9A857D762F22905A001D08D1 /* system.cpp in Sources */,
-				9A857D772F22905A001D08D1 /* aaa_brdf_convolution_framebuffer.cpp in Sources */,
-				9A857D782F22905A001D08D1 /* aaa_media_foundation.cpp in Sources */,
 				9A857D7C2F22905A001D08D1 /* model_base.cpp in Sources */,
-				9A857D7D2F22905A001D08D1 /* application.cpp in Sources */,
 				9A857D7E2F22905A001D08D1 /* model.cpp in Sources */,
 				9A857D7F2F22905A001D08D1 /* equirectangular_cubemap.cpp in Sources */,
 			);
@@ -1351,28 +1334,18 @@
 				9A8189622A71CC42008F470C /* _.cpp in Sources */,
 				9A8189652A71CC42008F470C /* framework.cpp in Sources */,
 				9A857C8C2F22905A001D08D1 /* mesh.cpp in Sources */,
-				9A857C8D2F22905A001D08D1 /* aaa_layer.cpp in Sources */,
 				9A857D8F2F229088001D08D1 /* context.cpp in Sources */,
 				9A857D902F229088001D08D1 /* full_screen_quad.cpp in Sources */,
 				9A857C8E2F22905A001D08D1 /* session.cpp in Sources */,
 				9A857C8F2F22905A001D08D1 /* material.cpp in Sources */,
-				9A857C902F22905A001D08D1 /* system.cpp in Sources */,
 				9A857C912F22905A001D08D1 /* hwid.cpp in Sources */,
 				9A857C922F22905A001D08D1 /* tinyexpr.cpp in Sources */,
 				9A857C932F22905A001D08D1 /* sha256.cpp in Sources */,
 				9A857C942F22905A001D08D1 /* _hlsl.cpp in Sources */,
-				9A857C952F22905A001D08D1 /* aaa_cubemap_framebuffer.cpp in Sources */,
 				9A857C962F22905A001D08D1 /* idpool.cpp in Sources */,
-				9A857C972F22905A001D08D1 /* aaa_mipmap_cubemap_framebuffer.cpp in Sources */,
-				9A857C982F22905A001D08D1 /* aaa_hdri_cube.cpp in Sources */,
 				9A857C992F22905A001D08D1 /* specular_map.cpp in Sources */,
 				9A857C9A2F22905A001D08D1 /* diffuse_irradiance_map.cpp in Sources */,
-				9A857C9B2F22905A001D08D1 /* audio.cpp in Sources */,
-				9A857C9C2F22905A001D08D1 /* system.cpp in Sources */,
-				9A857C9D2F22905A001D08D1 /* aaa_brdf_convolution_framebuffer.cpp in Sources */,
-				9A857C9E2F22905A001D08D1 /* aaa_media_foundation.cpp in Sources */,
 				9A857CA22F22905A001D08D1 /* model_base.cpp in Sources */,
-				9A857CA32F22905A001D08D1 /* application.cpp in Sources */,
 				9A857CA42F22905A001D08D1 /* model.cpp in Sources */,
 				9A857CA52F22905A001D08D1 /* equirectangular_cubemap.cpp in Sources */,
 			);
@@ -1385,28 +1358,18 @@
 				9ABFEA6F2850E44C008FF906 /* _.cpp in Sources */,
 				9A8E9E94282A3210005FF778 /* framework.cpp in Sources */,
 				9A857CF92F22905A001D08D1 /* mesh.cpp in Sources */,
-				9A857CFA2F22905A001D08D1 /* aaa_layer.cpp in Sources */,
 				9A857D8A2F229088001D08D1 /* context.cpp in Sources */,
 				9A857D8B2F229088001D08D1 /* full_screen_quad.cpp in Sources */,
 				9A857CFB2F22905A001D08D1 /* session.cpp in Sources */,
 				9A857CFC2F22905A001D08D1 /* material.cpp in Sources */,
-				9A857CFD2F22905A001D08D1 /* system.cpp in Sources */,
 				9A857CFE2F22905A001D08D1 /* hwid.cpp in Sources */,
 				9A857CFF2F22905A001D08D1 /* tinyexpr.cpp in Sources */,
 				9A857D002F22905A001D08D1 /* sha256.cpp in Sources */,
 				9A857D012F22905A001D08D1 /* _hlsl.cpp in Sources */,
-				9A857D022F22905A001D08D1 /* aaa_cubemap_framebuffer.cpp in Sources */,
 				9A857D032F22905A001D08D1 /* idpool.cpp in Sources */,
-				9A857D042F22905A001D08D1 /* aaa_mipmap_cubemap_framebuffer.cpp in Sources */,
-				9A857D052F22905A001D08D1 /* aaa_hdri_cube.cpp in Sources */,
 				9A857D062F22905A001D08D1 /* specular_map.cpp in Sources */,
 				9A857D072F22905A001D08D1 /* diffuse_irradiance_map.cpp in Sources */,
-				9A857D082F22905A001D08D1 /* audio.cpp in Sources */,
-				9A857D092F22905A001D08D1 /* system.cpp in Sources */,
-				9A857D0A2F22905A001D08D1 /* aaa_brdf_convolution_framebuffer.cpp in Sources */,
-				9A857D0B2F22905A001D08D1 /* aaa_media_foundation.cpp in Sources */,
 				9A857D0F2F22905A001D08D1 /* model_base.cpp in Sources */,
-				9A857D102F22905A001D08D1 /* application.cpp in Sources */,
 				9A857D112F22905A001D08D1 /* model.cpp in Sources */,
 				9A857D122F22905A001D08D1 /* equirectangular_cubemap.cpp in Sources */,
 			);

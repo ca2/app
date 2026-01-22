@@ -220,7 +220,7 @@
 
 /* Begin PBXFileReference section */
 		070B8EEA1B6E53F900D26137 /* _app_app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = _app_app.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		070B8EFD1B6E53FA00D26137 /* Hello Multiverse!!Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Hello Multiverse!!Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		070B8EFD1B6E53FA00D26137 /* _app_app_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = _app_app_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A1CC40C2CF2E396004A00CB /* operating_ambient_macos.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = operating_ambient_macos.xcodeproj; path = "../../../../operating_system/operating_system-macos/operating_ambient_macos/operating_ambient_macos.xcodeproj"; sourceTree = SOURCE_ROOT; };
 		9A1CC41B2CF2E999004A00CB /* liboperating_ambient_macos.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = liboperating_ambient_macos.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A1CF4BB2761556D00802DB8 /* crypto_openssl.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = crypto_openssl.xcodeproj; path = ../../crypto_openssl/crypto_openssl.xcodeproj; sourceTree = SOURCE_ROOT; };
@@ -328,7 +328,7 @@
 			isa = PBXGroup;
 			children = (
 				070B8EEA1B6E53F900D26137 /* _app_app.app */,
-				070B8EFD1B6E53FA00D26137 /* Hello Multiverse!!Tests.xctest */,
+				070B8EFD1B6E53FA00D26137 /* _app_app_Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -507,9 +507,9 @@
 			productReference = 070B8EEA1B6E53F900D26137 /* _app_app.app */;
 			productType = "com.apple.product-type.application";
 		};
-		070B8EFC1B6E53FA00D26137 /* Hello Multiverse!!Tests */ = {
+		070B8EFC1B6E53FA00D26137 /* _app_app_Tests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 070B8F0A1B6E53FA00D26137 /* Build configuration list for PBXNativeTarget "Hello Multiverse!!Tests" */;
+			buildConfigurationList = 070B8F0A1B6E53FA00D26137 /* Build configuration list for PBXNativeTarget "_app_app_Tests" */;
 			buildPhases = (
 				070B8EF91B6E53FA00D26137 /* Sources */,
 				070B8EFA1B6E53FA00D26137 /* Frameworks */,
@@ -520,9 +520,9 @@
 			dependencies = (
 				070B8EFF1B6E53FA00D26137 /* PBXTargetDependency */,
 			);
-			name = "Hello Multiverse!!Tests";
+			name = _app_app_Tests;
 			productName = "Hello Multiverse!!Tests";
-			productReference = 070B8EFD1B6E53FA00D26137 /* Hello Multiverse!!Tests.xctest */;
+			productReference = 070B8EFD1B6E53FA00D26137 /* _app_app_Tests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -581,7 +581,7 @@
 			projectRoot = "";
 			targets = (
 				070B8EE91B6E53F900D26137 /* _app_app */,
-				070B8EFC1B6E53FA00D26137 /* Hello Multiverse!!Tests */,
+				070B8EFC1B6E53FA00D26137 /* _app_app_Tests */,
 			);
 		};
 /* End PBXProject section */
@@ -1047,7 +1047,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		070B8F0A1B6E53FA00D26137 /* Build configuration list for PBXNativeTarget "Hello Multiverse!!Tests" */ = {
+		070B8F0A1B6E53FA00D26137 /* Build configuration list for PBXNativeTarget "_app_app_Tests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				070B8F0B1B6E53FA00D26137 /* Debug */,

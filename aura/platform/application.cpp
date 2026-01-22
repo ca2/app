@@ -1950,13 +1950,16 @@ namespace aura
          if (strImplementation == "directx11")
          {
 
-#if !defined(WIN32)
-
-            throw ::exception(error_wrong_state);
-
-#endif
+#if defined(WIN32)
 
             strImplementation = "directx11";
+            
+#else
+            
+            throw ::exception(error_wrong_state);
+            
+#endif
+
 
          }
          else if (strImplementation == "directx12")

@@ -118,38 +118,38 @@ namespace user
 
       }
 
-      prequest->m_countStack++;
-
-      at_end_of_scope
-      {
-
-         prequest->m_countStack--;
-
-         if (prequest->m_countStack <= 0)
-         {
-
-            for (auto & procedure : prequest->m_procedureaOnFinishRequest)
-            {
-
-               try
-               {
-
-                  procedure();
-
-               }
-               catch (...)
-               {
-
-
-               }
-
-            }
-
-            prequest->m_procedureaOnFinishRequest.clear();
-
-         }
-
-      };
+//      prequest->m_countStack++;
+//
+//      at_end_of_scope
+//      {
+//
+//         prequest->m_countStack--;
+//
+//         if (prequest->m_countStack <= 0)
+//         {
+//
+//            for (auto & procedure : prequest->m_procedureaOnFinishRequest)
+//            {
+//
+//               try
+//               {
+//
+//                  procedure();
+//
+//               }
+//               catch (...)
+//               {
+//
+//
+//               }
+//
+//            }
+//
+//            prequest->m_procedureaOnFinishRequest.clear();
+//
+//         }
+//
+//      };
 
       if (prequest->id().is_null())
       {
@@ -310,8 +310,14 @@ namespace user
       //
       //      }
 
-      application()->post([this, pdocument, pframe, prequest]()
+      auto prequeststackApplicationPost = prequest->push_request();
+      
+      application()->post([this, pdocument, pframe, prequeststackApplicationPost]()
          {
+         
+         request_scope requestscope(prequeststackApplicationPost);
+         
+         auto prequest = prequeststackApplicationPost->m_prequestHold;
 
             ::payload payloadFile = prequest->get_file();
 

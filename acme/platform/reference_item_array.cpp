@@ -323,7 +323,9 @@ void reference_item_array::add_referer(::reference_referer * preferer, bool bInc
    {
 
       ::string strList;
-
+       
+      auto iItemCount = m_itema.size();
+       
       for (auto & preferenceitem : m_itema)
       {
          try
@@ -356,10 +358,15 @@ void reference_item_array::add_referer(::reference_referer * preferer, bool bInc
          }
 
       }
+       
+       ::string strErrorMessage;
+       
+       
+       strErrorMessage = "referer wasn't on list (" + strList + ") with "+as_string(iItemCount)+" items.";
 
-      output_debug_string("referer wasn't on list_base : \n" + strList);
+      output_debug_string(strErrorMessage);
 
-      throw ::exception(error_debug_warning, "referer wasn't on list_base (" + strList + ")");
+      throw ::exception(error_debug_warning, strErrorMessage);
 
    }
 

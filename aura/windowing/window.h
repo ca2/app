@@ -200,8 +200,8 @@ namespace windowing
 
       void install_message_routing(::channel * pchannel) override;
 
-      virtual void * __x11_Display();
-      virtual long __x11_Window();
+      void * __x11_Display() override;
+      long __x11_Window() override;
 
       void create_window() override;
 

@@ -18,6 +18,42 @@
 
 #include "acme/graphics/graphics/output_purpose.h"
 
+class CLASS_DECL_ACME request_stack :
+virtual public ::particle
+{
+public:
+   
+   
+   ::pointer < class ::request > m_prequestHold;
+   
+   request_stack(::request * prequest);
+   
+   ~request_stack() override;
+   
+   
+   class ::request * request();
+
+};
+
+
+class CLASS_DECL_ACME request_scope
+{
+public:
+   
+   
+   ::pointer < ::request_stack > m_prequeststack;
+   
+   request_scope(::pointer < request_stack > && prequeststack);
+   request_scope(const ::pointer < request_stack > & prequeststack);
+
+   ~request_scope();
+   
+   
+   class ::request * request();
+   
+   
+};
+
 
 class CLASS_DECL_ACME request :
    virtual public ::object,
@@ -25,6 +61,10 @@ class CLASS_DECL_ACME request :
 {
 public:
 
+   
+
+
+   
    
    bool                             m_bNew;
    string                           m_strDescription;
@@ -57,8 +97,9 @@ public:
    bool                             m_bRunEmbedded;
    bool                             m_bRunAutomated;
    int                              m_nCmdShow;
-   ::interlocked_count              m_countStack;
-
+   ///::interlocked_count              m_countStack;
+   bool                             m_bFinishedStacking = false;
+   ::pointer_array < ::request_stack > m_requeststacka;
    // not ok for file_new
    //::payload                        m_payloadFile;
 
@@ -94,6 +135,11 @@ public:
 
 
    void common_construct();
+   
+   
+   [[nodiscard]]::pointer < ::request_stack> push_request();
+   void pop_request(::request_stack * pstack);
+   
 
 
    virtual void initialize_command_line2(const ::scoped_string & scopedstrCommandLine);

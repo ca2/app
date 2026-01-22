@@ -5052,7 +5052,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
 
          }
 
-         return strOperatingAmbient;
+//         return strOperatingAmbient;
 
       }
 

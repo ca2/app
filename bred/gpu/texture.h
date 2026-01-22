@@ -121,32 +121,12 @@ namespace gpu
 
       virtual void generate_mipmap(::gpu::command_buffer * pgpucommandbuffer);
 
-               /**
-       * Set the mip level to render with.
-       * @param mipLevel
-       */
       virtual void set_current_mip(int level);
 
-
-      /**
-       * Get the current width based on the mip level.
-       * @return
-       */
       virtual int mip_width();
 
-
-      /**
-       * Get the current height based on the mip level.
-       * @return
-       */
       virtual int mip_height();
 
-
-      /**
-       * Set which cube face texture to render to.
-       * @param index
-       */
-      //virtual void set_cube_face(int iFace, ::gpu::shader * pgpushader);
       virtual void set_current_layer(int iLayer);
 
 

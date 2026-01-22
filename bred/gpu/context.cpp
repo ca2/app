@@ -2044,7 +2044,7 @@ namespace gpu
 
                            auto prendertargetBackBuffer = prendererBackBuffer->render_target();
 
-                           auto iFrameIndex = prendertargetBackBuffer->get_frame_index();
+                           //auto iFrameIndex = prendertargetBackBuffer->get_frame_index();
 
                            auto ptextureBackBuffer = prendertargetBackBuffer->current_texture(pgpuframe);
 

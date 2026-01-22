@@ -93,7 +93,7 @@ public:
 
    /// @brief  attention, it doesn't actually destruct the object
    /// it just not regard it as part of the "filled" array...
-   /// @param i 
+   /// @param iErase is the item index to be erased
    void erase_at(::collection::index iErase, ::collection::count countErase = 1)
    {
 

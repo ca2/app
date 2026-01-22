@@ -28,7 +28,7 @@ namespace write_text
       if (i >= 0)
       {
 
-         return &this->element_at(i);
+         return this->element_at(i);
 
       }
       else
@@ -54,9 +54,9 @@ namespace write_text
             return -1;
          }
          iIndex = (iHiBound + iLoBound) / 2;
-         if(user == this->element_at(iIndex).m_ui)
+         if(user == this->element_at(iIndex)->m_ui)
             break;
-         else if(user < this->element_at(iIndex).m_ui)
+         else if(user < this->element_at(iIndex)->m_ui)
          {
             iHiBound = iIndex - 1;
             if(iHiBound < iLoBound)
@@ -64,7 +64,7 @@ namespace write_text
                return -1;
             }
          }
-         else if(user > this->element_at(iIndex).m_ui)
+         else if(user > this->element_at(iIndex)->m_ui)
          {
             iLoBound = iIndex + 1;
             if(iLoBound > iHiBound)
@@ -81,7 +81,7 @@ namespace write_text
          iIndex--;
          if(iIndex < 0)
             break;
-         if(user != this->element_at(iIndex).m_ui)
+         if(user != this->element_at(iIndex)->m_ui)
             break;
          iLastIndex = iIndex;
       }
@@ -90,82 +90,88 @@ namespace write_text
 
    void glyph_set::quick_sort()
    {
-      index_array stackLowerBound;
-      index_array stackUpperBound;
-      ::collection::index iLowerBound;
-      ::collection::index iUpperBound;
-      ::collection::index iLPos, iUPos, iMPos;
-      glyph glyph;
-
-      if(this->get_size() >= 2)
-      {
-         stackLowerBound.push(0UL);
-         stackUpperBound.push(this->get_size() - 1);
-         while(true)
-         {
-            iLowerBound = stackLowerBound.pop();
-            iUpperBound = stackUpperBound.pop();
-            iLPos = iLowerBound;
-            iMPos = iLowerBound;
-            iUPos = iUpperBound;
-            while(true)
-            {
-               while(true)
-               {
-                  if(iMPos == iUPos)
-                     break;
-                  if(this->element_at(iMPos) <= this->element_at(iUPos))
-                     iUPos--;
-                  else
-                  {
-                     glyph = this->element_at(iMPos);
-                     set_at(iMPos, this->element_at(iUPos));
-                     set_at(iUPos, glyph);
-                     break;
-                  }
-               }
-               if(iMPos == iUPos)
-                  break;
-               iMPos = iUPos;
-               while(true)
-               {
-                  if(iMPos == iLPos)
-                     break;
-                  if(this->element_at(iLPos) <= this->element_at(iMPos))
-                     iLPos++;
-                  else
-                  {
-                     glyph = this->element_at(iMPos);
-                     set_at(iMPos, this->element_at(iLPos));
-                     set_at(iLPos, glyph);
-                     break;
-                  }
-               }
-               if(iMPos == iLPos)
-                  break;
-               iMPos = iLPos;
-            }
-            if(iLowerBound < iMPos - 1)
-            {
-               stackLowerBound.push(iLowerBound);
-               stackUpperBound.push(iMPos - 1);
-            }
-            if(iMPos + 1 < iUpperBound)
-            {
-               stackLowerBound.push(iMPos + 1);
-               stackUpperBound.push(iUpperBound);
-            }
-            if(stackLowerBound.get_size() == 0)
-               break;
-         }
-      }
+      this->predicate_sort([](auto & a, auto & b)
+                           {
+         
+         return *a <= * b;
+         
+      });
+//      index_array stackLowerBound;
+//      index_array stackUpperBound;
+//      ::collection::index iLowerBound;
+//      ::collection::index iUpperBound;
+//      ::collection::index iLPos, iUPos, iMPos;
+//      ::pointer <glyph> pglyph;
+//
+//      if(this->get_size() >= 2)
+//      {
+//         stackLowerBound.push(0UL);
+//         stackUpperBound.push(this->get_size() - 1);
+//         while(true)
+//         {
+//            iLowerBound = stackLowerBound.pop();
+//            iUpperBound = stackUpperBound.pop();
+//            iLPos = iLowerBound;
+//            iMPos = iLowerBound;
+//            iUPos = iUpperBound;
+//            while(true)
+//            {
+//               while(true)
+//               {
+//                  if(iMPos == iUPos)
+//                     break;
+//                  if(*this->element_at(iMPos) <= *this->element_at(iUPos))
+//                     iUPos--;
+//                  else
+//                  {
+//                     pglyph = this->element_at(iMPos);
+//                     set_at(iMPos, this->element_at(iUPos));
+//                     set_at(iUPos, pglyph);
+//                     break;
+//                  }
+//               }
+//               if(iMPos == iUPos)
+//                  break;
+//               iMPos = iUPos;
+//               while(true)
+//               {
+//                  if(iMPos == iLPos)
+//                     break;
+//                  if(*this->element_at(iLPos) <= *this->element_at(iMPos))
+//                     iLPos++;
+//                  else
+//                  {
+//                     pglyph = this->element_at(iMPos);
+//                     set_at(iMPos, this->element_at(iLPos));
+//                     set_at(iLPos, p∫glyph);
+//                     break;
+//                  }
+//               }
+//               if(iMPos == iLPos)
+//                  break;
+//               iMPos = iLPos;
+//            }
+//            if(iLowerBound < iMPos - 1)
+//            {
+//               stackLowerBound.push(iLowerBound);
+//               stackUpperBound.push(iMPos - 1);
+//            }
+//            if(iMPos + 1 < iUpperBound)
+//            {
+//               stackLowerBound.push(iMPos + 1);
+//               stackUpperBound.push(iUpperBound);
+//            }
+//            if(stackLowerBound.get_size() == 0)
+//               break;
+//         }
+//      }
 
    }
 
 
-   ::collection::index glyph_set::add(class glyph &glyph)
+   ::collection::index glyph_set::add(class glyph * pglyph)
    {
-      iptr i = (int)array < class glyph, class glyph & >::add(glyph);
+      iptr i = (int)pointer_array < class glyph >::add(pglyph);
       quick_sort();
       return i;
    }

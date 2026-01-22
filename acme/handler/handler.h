@@ -12,6 +12,9 @@
 #include "acme/prototype/collection/pointer_array.h"
 
 
+class request_stack;
+
+
 namespace handler
 {
 
@@ -55,9 +58,11 @@ namespace handler
       };
 
 
-      ::pointer < ::request >             m_prequestHandler;
+      ::pointer < ::request_stack >       m_prequeststackHandler;
+       
+      ::pointer < ::request_stack >       m_prequeststackHandling;
       
-      ::pointer < ::request >             m_prequestBeingAttended;
+      ::pointer < ::request_stack >       m_prequeststackBeingAttended;
 
       ::payload                           m_payloadFile;
 

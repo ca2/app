@@ -134,6 +134,8 @@ namespace handler
 
          prequest->m_bNew = true;
 
+         prequest->push_request();
+         
          m_requestaPosted.add(prequest);
 
          new_main_loop_happening()->set_happening();
@@ -157,7 +159,7 @@ namespace handler
 
       }
       
-      if(m_prequestBeingAttended)
+      if(m_prequeststackBeingAttended)
       {
          
          return false;
@@ -196,7 +198,7 @@ namespace handler
 
          //m_requestaHistory.add(prequest);
 
-         m_prequestHandler = prequest;
+         m_prequeststackHandler = prequest->push_request();
 
          return true;
 
@@ -217,12 +219,14 @@ namespace handler
 
       while (pick_next_posted_request())
       {
+         
+         request_scope requestscope(m_prequeststackHandler);
 
-         handle(m_prequestHandler);
+         handle(m_prequeststackHandler->request());
+         
+         m_requestaHistory.add(m_prequeststackHandler->request());
 
-         m_requestaHistory.add(m_prequestHandler);
-
-         m_prequestHandler.release();
+         //m_prequestHandler.release();
 
       }
 
@@ -245,7 +249,7 @@ namespace handler
 
       return m_requestaPosted.predicate_contains([&prequest](auto& p) { return p.get() == prequest; })
              || m_requestaHistory.predicate_contains([&prequest](auto& p) { return p.get() == prequest; })
-             || m_prequestHandler.get() == prequest;
+             || (m_prequeststackHandler &&m_prequeststackHandler->request() == prequest);
 
    }
 
@@ -253,7 +257,7 @@ namespace handler
    string handler::command_line_text() const
    {
 
-      if (!m_prequestHandler)
+      if (!m_prequeststackHandler)
       {
 
          return "";
@@ -267,7 +271,7 @@ namespace handler
 
       //}
 
-      return m_prequestHandler->m_strCommandLine;
+      return m_prequeststackHandler->request()->m_strCommandLine;
 
    }
 
@@ -373,7 +377,9 @@ namespace handler
    void handler::handle(::request * prequest)
    {
 
-      m_prequestHandler = prequest;
+      m_prequeststackHandling = prequest->push_request();
+      
+      request_scope requestscope(m_prequeststackHandling);
       
       request(prequest);
 
@@ -403,10 +409,12 @@ namespace handler
    void handler::request(::request * prequest)
    {
       
-      ASSERT(m_prequestBeingAttended.is_null());
+      ASSERT(m_prequeststackBeingAttended.is_null());
       
-      m_prequestBeingAttended = prequest;
+      m_prequeststackBeingAttended = prequest->push_request();
 
+      request_scope requestscope(::transfer(m_prequeststackBeingAttended));
+      
       try
       {
          
@@ -421,9 +429,9 @@ namespace handler
       // Maybe it means that other request should'nt
       // be made to this handler while one request
       // is being attended.
-      ASSERT(m_prequestBeingAttended == prequest);
+      ASSERT(requestscope.request() == prequest);
       
-      m_prequestBeingAttended.release();
+      //m_prequestBeingAttended.release();
       
    }
 

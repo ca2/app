@@ -295,6 +295,13 @@
 		9A8582EE2F229CC6001D08D1 /* _windows.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8582D02F229CC6001D08D1 /* _windows.h */; };
 		9A8582EF2F229CC6001D08D1 /* system.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8582D22F229CC6001D08D1 /* system.h */; };
 		9A8582F02F229CC6001D08D1 /* aaa_media_foundation.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8582D52F229CC6001D08D1 /* aaa_media_foundation.h */; };
+		9A8583022F22A0B3001D08D1 /* libapex.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A8583012F22A0B3001D08D1 /* libapex.dylib */; };
+		9A8583042F22A0B3001D08D1 /* libaqua.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A8583032F22A0B3001D08D1 /* libaqua.dylib */; };
+		9A8583062F22A0B3001D08D1 /* libaura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A8583052F22A0B3001D08D1 /* libaura.dylib */; };
+		9A8583082F22A0B3001D08D1 /* libaxis.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A8583072F22A0B3001D08D1 /* libaxis.dylib */; };
+		9A85830A2F22A0B3001D08D1 /* libberg.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A8583092F22A0B3001D08D1 /* libberg.dylib */; };
+		9A8583182F22A10C001D08D1 /* libbred.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A8583172F22A10C001D08D1 /* libbred.dylib */; };
+		9A8583322F22A16D001D08D1 /* libassimp.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A8583312F22A156001D08D1 /* libassimp.dylib */; };
 		9A8E9E4F282A3210005FF778 /* console.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A28192825242523009FA9CB /* console.h */; };
 		9A8E9E58282A3210005FF778 /* library.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A28192D25242523009FA9CB /* library.h */; };
 		9A8E9E6E282A3210005FF778 /* framework.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A2819A825242523009FA9CB /* framework.h */; };
@@ -306,40 +313,47 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		9A857DAA2F2290F9001D08D1 /* PBXContainerItemProxy */ = {
+		9A85830F2F22A0F9001D08D1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 9A857DA72F2290F9001D08D1 /* bred.xcodeproj */;
+			containerPortal = 9A85830C2F22A0F8001D08D1 /* bred.xcodeproj */;
 			proxyType = 1;
 			remoteGlobalIDString = 9A281A5C252432B5009FA9CB;
 			remoteInfo = bred;
 		};
-		9A857DAE2F2290F9001D08D1 /* PBXContainerItemProxy */ = {
+		9A8583132F22A0F9001D08D1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 9A857DA72F2290F9001D08D1 /* bred.xcodeproj */;
+			containerPortal = 9A85830C2F22A0F8001D08D1 /* bred.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 9A281A5D252432B5009FA9CB;
 			remoteInfo = bred;
 		};
-		9A857DB02F2290F9001D08D1 /* PBXContainerItemProxy */ = {
+		9A8583152F22A0F9001D08D1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 9A857DA72F2290F9001D08D1 /* bred.xcodeproj */;
+			containerPortal = 9A85830C2F22A0F8001D08D1 /* bred.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 9AE64252284AA6570079EBA0;
 			remoteInfo = ios_bred;
 		};
-		9A85827A2F229962001D08D1 /* PBXContainerItemProxy */ = {
+		9A8583302F22A156001D08D1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 9A857D962F2290B1001D08D1 /* bred.xcodeproj */;
+			containerPortal = 9A85832A2F22A156001D08D1 /* assimp.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 9A281A5D252432B5009FA9CB;
-			remoteInfo = bred;
+			remoteGlobalIDString = 9A797F3A2A53A0B600261F46;
+			remoteInfo = assimp;
 		};
-		9A85827C2F229962001D08D1 /* PBXContainerItemProxy */ = {
+		9A85855A2F22A194001D08D1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 9A857D962F2290B1001D08D1 /* bred.xcodeproj */;
+			containerPortal = 9A85832A2F22A156001D08D1 /* assimp.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 9AE64252284AA6570079EBA0;
-			remoteInfo = ios_bred;
+			remoteGlobalIDString = 9A8585582F22A183001D08D1;
+			remoteInfo = ios_assimp;
+		};
+		9A85855C2F22A19B001D08D1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A85832A2F22A156001D08D1 /* assimp.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 9A797F392A53A0B600261F46;
+			remoteInfo = assimp;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -474,8 +488,7 @@
 		9A857D842F229088001D08D1 /* context.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = context.cpp; sourceTree = "<group>"; };
 		9A857D852F229088001D08D1 /* full_screen_quad.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = full_screen_quad.h; sourceTree = "<group>"; };
 		9A857D862F229088001D08D1 /* full_screen_quad.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = full_screen_quad.cpp; sourceTree = "<group>"; };
-		9A857D962F2290B1001D08D1 /* bred.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = bred.xcodeproj; path = ../bred/bred.xcodeproj; sourceTree = SOURCE_ROOT; };
-		9A857DA72F2290F9001D08D1 /* bred.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = bred.xcodeproj; path = /Volumes/hstorage/Users/camilo/SceneFoundry/main/source/app/bred/bred.xcodeproj; sourceTree = "<absolute>"; };
+		9A857DA72F2290F9001D08D1 /* bred.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = bred.xcodeproj; path = ../bred/bred.xcodeproj; sourceTree = SOURCE_ROOT; };
 		9A8582CC2F229CC6001D08D1 /* _uwp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _uwp.h; sourceTree = "<group>"; };
 		9A8582CD2F229CC6001D08D1 /* system.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = system.h; sourceTree = "<group>"; };
 		9A8582CE2F229CC6001D08D1 /* system.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = system.cpp; sourceTree = "<group>"; };
@@ -485,6 +498,15 @@
 		9A8582D32F229CC6001D08D1 /* system.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = system.cpp; sourceTree = "<group>"; };
 		9A8582D52F229CC6001D08D1 /* aaa_media_foundation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = aaa_media_foundation.h; sourceTree = "<group>"; };
 		9A8582D62F229CC6001D08D1 /* aaa_media_foundation.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = aaa_media_foundation.cpp; sourceTree = "<group>"; };
+		9A8583012F22A0B3001D08D1 /* libapex.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libapex.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A8583032F22A0B3001D08D1 /* libaqua.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libaqua.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A8583052F22A0B3001D08D1 /* libaura.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libaura.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A8583072F22A0B3001D08D1 /* libaxis.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libaxis.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A8583092F22A0B3001D08D1 /* libberg.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libberg.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A85830C2F22A0F8001D08D1 /* bred.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = bred.xcodeproj; path = /Volumes/hstorage/Users/camilo/SceneFoundry/main/source/app/bred/bred.xcodeproj; sourceTree = "<absolute>"; };
+		9A8583172F22A10C001D08D1 /* libbred.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libbred.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A8583192F22A13D001D08D1 /* assimp.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = assimp.xcodeproj; path = ../../../port/graphics3d/assimp/assimp.xcodeproj; sourceTree = SOURCE_ROOT; };
+		9A85832A2F22A156001D08D1 /* assimp.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = assimp.xcodeproj; path = /Volumes/hstorage/Users/camilo/SceneFoundry/main/port/graphics3d/assimp/assimp.xcodeproj; sourceTree = "<absolute>"; };
 		9A8E9EB9282A3210005FF778 /* libios_gpu.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libios_gpu.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -530,6 +552,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A8583322F22A16D001D08D1 /* libassimp.dylib in Frameworks */,
+				9A8583182F22A10C001D08D1 /* libbred.dylib in Frameworks */,
+				9A8583022F22A0B3001D08D1 /* libapex.dylib in Frameworks */,
+				9A8583042F22A0B3001D08D1 /* libaqua.dylib in Frameworks */,
+				9A8583062F22A0B3001D08D1 /* libaura.dylib in Frameworks */,
+				9A8583082F22A0B3001D08D1 /* libaxis.dylib in Frameworks */,
+				9A85830A2F22A0B3001D08D1 /* libberg.dylib in Frameworks */,
 				9A41243A266C3F3500C3FF0E /* libacme.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -548,11 +577,13 @@
 		9A2818F525242488009FA9CB = {
 			isa = PBXGroup;
 			children = (
-				9A857D962F2290B1001D08D1 /* bred.xcodeproj */,
+				9A8583192F22A13D001D08D1 /* assimp.xcodeproj */,
+				9A857DA72F2290F9001D08D1 /* bred.xcodeproj */,
 				9A28192625242523009FA9CB /* gpu */,
 				9A2818FF25242488009FA9CB /* Products */,
 				9A281A3B252428DD009FA9CB /* Frameworks */,
-				9A857DA72F2290F9001D08D1 /* bred.xcodeproj */,
+				9A85830C2F22A0F8001D08D1 /* bred.xcodeproj */,
+				9A85832A2F22A156001D08D1 /* assimp.xcodeproj */,
 			);
 			sourceTree = "<group>";
 		};
@@ -601,6 +632,12 @@
 		9A281A3B252428DD009FA9CB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9A8583172F22A10C001D08D1 /* libbred.dylib */,
+				9A8583012F22A0B3001D08D1 /* libapex.dylib */,
+				9A8583032F22A0B3001D08D1 /* libaqua.dylib */,
+				9A8583052F22A0B3001D08D1 /* libaura.dylib */,
+				9A8583072F22A0B3001D08D1 /* libaxis.dylib */,
+				9A8583092F22A0B3001D08D1 /* libberg.dylib */,
 				9A7864982650A3CF0034A0E1 /* libacme.dylib */,
 			);
 			name = Frameworks;
@@ -793,24 +830,6 @@
 			path = user;
 			sourceTree = "<group>";
 		};
-		9A857DA82F2290F9001D08D1 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				9A857DAF2F2290F9001D08D1 /* libbred.dylib */,
-				9A857DB12F2290F9001D08D1 /* libios_bred.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		9A8582762F229962001D08D1 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				9A85827B2F229962001D08D1 /* libbred.dylib */,
-				9A85827D2F229962001D08D1 /* libios_bred.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		9A8582CF2F229CC6001D08D1 /* uwp */ = {
 			isa = PBXGroup;
 			children = (
@@ -870,6 +889,24 @@
 				9A857C342F22905A001D08D1 /* aaa_system.cpp */,
 			);
 			path = _aaa_2025;
+			sourceTree = "<group>";
+		};
+		9A85830D2F22A0F9001D08D1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9A8583142F22A0F9001D08D1 /* libbred.dylib */,
+				9A8583162F22A0F9001D08D1 /* libios_bred.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		9A85832B2F22A156001D08D1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9A8583312F22A156001D08D1 /* libassimp.dylib */,
+				9A85855B2F22A194001D08D1 /* libios_assimp.dylib */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1154,6 +1191,8 @@
 			buildRules = (
 			);
 			dependencies = (
+				9A85855D2F22A19B001D08D1 /* PBXTargetDependency */,
+				9A8583102F22A0F9001D08D1 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				9A85829C2F229C65001D08D1 /* _aaa_2025 */,
@@ -1174,7 +1213,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				9A857DAB2F2290F9001D08D1 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				9A85829C2F229C65001D08D1 /* _aaa_2025 */,
@@ -1231,12 +1269,12 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 9A8582762F229962001D08D1 /* Products */;
-					ProjectRef = 9A857D962F2290B1001D08D1 /* bred.xcodeproj */;
+					ProductGroup = 9A85832B2F22A156001D08D1 /* Products */;
+					ProjectRef = 9A85832A2F22A156001D08D1 /* assimp.xcodeproj */;
 				},
 				{
-					ProductGroup = 9A857DA82F2290F9001D08D1 /* Products */;
-					ProjectRef = 9A857DA72F2290F9001D08D1 /* bred.xcodeproj */;
+					ProductGroup = 9A85830D2F22A0F9001D08D1 /* Products */;
+					ProjectRef = 9A85830C2F22A0F8001D08D1 /* bred.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -1249,32 +1287,32 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		9A857DAF2F2290F9001D08D1 /* libbred.dylib */ = {
+		9A8583142F22A0F9001D08D1 /* libbred.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
 			path = libbred.dylib;
-			remoteRef = 9A857DAE2F2290F9001D08D1 /* PBXContainerItemProxy */;
+			remoteRef = 9A8583132F22A0F9001D08D1 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		9A857DB12F2290F9001D08D1 /* libios_bred.a */ = {
+		9A8583162F22A0F9001D08D1 /* libios_bred.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
 			path = libios_bred.a;
-			remoteRef = 9A857DB02F2290F9001D08D1 /* PBXContainerItemProxy */;
+			remoteRef = 9A8583152F22A0F9001D08D1 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		9A85827B2F229962001D08D1 /* libbred.dylib */ = {
+		9A8583312F22A156001D08D1 /* libassimp.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
-			path = libbred.dylib;
-			remoteRef = 9A85827A2F229962001D08D1 /* PBXContainerItemProxy */;
+			path = libassimp.dylib;
+			remoteRef = 9A8583302F22A156001D08D1 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		9A85827D2F229962001D08D1 /* libios_bred.a */ = {
+		9A85855B2F22A194001D08D1 /* libios_assimp.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
-			path = libios_bred.a;
-			remoteRef = 9A85827C2F229962001D08D1 /* PBXContainerItemProxy */;
+			path = libios_assimp.dylib;
+			remoteRef = 9A85855A2F22A194001D08D1 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -1378,10 +1416,15 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		9A857DAB2F2290F9001D08D1 /* PBXTargetDependency */ = {
+		9A8583102F22A0F9001D08D1 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = bred;
-			targetProxy = 9A857DAA2F2290F9001D08D1 /* PBXContainerItemProxy */;
+			targetProxy = 9A85830F2F22A0F9001D08D1 /* PBXContainerItemProxy */;
+		};
+		9A85855D2F22A19B001D08D1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = assimp;
+			targetProxy = 9A85855C2F22A19B001D08D1 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

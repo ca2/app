@@ -395,6 +395,12 @@
 		9A7FEDBC2E7F4DDE0082C6FD /* player_input.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A7FED9A2E7F4DDE0082C6FD /* player_input.h */; };
 		9A8582932F2299F5001D08D1 /* rotation.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8582922F2299F5001D08D1 /* rotation.h */; };
 		9A8582942F2299F5001D08D1 /* rotation.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8582922F2299F5001D08D1 /* rotation.h */; };
+		9A8582FB2F22A052001D08D1 /* transform.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8582F92F22A052001D08D1 /* transform.h */; };
+		9A8582FC2F22A052001D08D1 /* _functions.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8582F82F22A052001D08D1 /* _functions.h */; };
+		9A8582FD2F22A052001D08D1 /* transform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8582FA2F22A052001D08D1 /* transform.cpp */; };
+		9A8582FE2F22A052001D08D1 /* transform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8582FA2F22A052001D08D1 /* transform.cpp */; };
+		9A8582FF2F22A052001D08D1 /* transform.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8582F92F22A052001D08D1 /* transform.h */; };
+		9A8583002F22A052001D08D1 /* _functions.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8582F82F22A052001D08D1 /* _functions.h */; };
 		9ADF04192C274B55004CF1C9 /* user.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9ADF04162C274B55004CF1C9 /* user.cpp */; };
 		9ADF041A2C274B55004CF1C9 /* user.h in Headers */ = {isa = PBXBuildFile; fileRef = 9ADF04172C274B55004CF1C9 /* user.h */; };
 		9ADF041B2C275401004CF1C9 /* user.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9ADF04162C274B55004CF1C9 /* user.cpp */; };
@@ -690,6 +696,9 @@
 		9A7FED9A2E7F4DDE0082C6FD /* player_input.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = player_input.h; sourceTree = "<group>"; };
 		9A7FED9B2E7F4DDE0082C6FD /* resource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = resource.h; sourceTree = "<group>"; };
 		9A8582922F2299F5001D08D1 /* rotation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = rotation.h; sourceTree = "<group>"; };
+		9A8582F82F22A052001D08D1 /* _functions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _functions.h; sourceTree = "<group>"; };
+		9A8582F92F22A052001D08D1 /* transform.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = transform.h; sourceTree = "<group>"; };
+		9A8582FA2F22A052001D08D1 /* transform.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = transform.cpp; sourceTree = "<group>"; };
 		9A8C03522A281A370049B167 /* _____debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "_____debug.xcconfig"; sourceTree = "<group>"; };
 		9A8C03532A281A380049B167 /* _____release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "_____release.xcconfig"; sourceTree = "<group>"; };
 		9ADF04162C274B55004CF1C9 /* user.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = user.cpp; sourceTree = "<group>"; };
@@ -983,6 +992,7 @@
 				9A1823BD2F20E03C007693F6 /* render_system */,
 				9A7FEC442E7F47420082C6FD /* _.h */,
 				9A7FEC452E7F47420082C6FD /* _constant.h */,
+				9A8582F82F22A052001D08D1 /* _functions.h */,
 				9A7FEC462E7F47420082C6FD /* _sandbox_interfaces.h */,
 				9A7FEC5B2E7F47420082C6FD /* asset_manager.h */,
 				9A7FEC5C2E7F47420082C6FD /* asset_manager.cpp */,
@@ -1030,6 +1040,8 @@
 				9A7FEC872E7F47420082C6FD /* skybox.h */,
 				9A7FEC882E7F47420082C6FD /* skybox.cpp */,
 				9A7FEC892E7F47420082C6FD /* static_array.h */,
+				9A8582F92F22A052001D08D1 /* transform.h */,
+				9A8582FA2F22A052001D08D1 /* transform.cpp */,
 				9A7FEC8B2E7F47420082C6FD /* types.h */,
 				9A7FEC8C2E7F47420082C6FD /* types.cpp */,
 				9A7FEC8D2E7F47420082C6FD /* utilities.h */,
@@ -1166,6 +1178,8 @@
 				9A7FEDA02E7F4DDE0082C6FD /* camera.h in Headers */,
 				9A7FEDA12E7F4DDE0082C6FD /* _.h in Headers */,
 				9A7FEDA22E7F4DDE0082C6FD /* actor.h in Headers */,
+				9A8582FB2F22A052001D08D1 /* transform.h in Headers */,
+				9A8582FC2F22A052001D08D1 /* _functions.h in Headers */,
 				9A7FEDA32E7F4DDE0082C6FD /* immersion.h in Headers */,
 				9A3CFE9F2EBB14120074E067 /* vertex.h in Headers */,
 				9A7FEDA42E7F4DDE0082C6FD /* game_object.h in Headers */,
@@ -1330,6 +1344,8 @@
 				9A7FEC192E7F47310082C6FD /* aaa_end_draw.h in Headers */,
 				9A7FEC1A2E7F47310082C6FD /* bred_approach.h in Headers */,
 				9A7FEC1B2E7F47310082C6FD /* compositor.h in Headers */,
+				9A8582FF2F22A052001D08D1 /* transform.h in Headers */,
+				9A8583002F22A052001D08D1 /* _functions.h in Headers */,
 				9A7FEC1C2E7F47310082C6FD /* _.h in Headers */,
 				9A3CFE642EBB0E740074E067 /* scene_base.h in Headers */,
 				9A3CFE652EBB0E740074E067 /* scene_renderable.h in Headers */,
@@ -1562,6 +1578,7 @@
 				9A18241D2F20E9AB007693F6 /* character.cpp in Sources */,
 				9A18241E2F20E9AB007693F6 /* typeface.cpp in Sources */,
 				9A7FEBBF2E7F47310082C6FD /* layer.cpp in Sources */,
+				9A8582FD2F22A052001D08D1 /* transform.cpp in Sources */,
 				9A7FEBC02E7F47310082C6FD /* memory_buffer.cpp in Sources */,
 				9A7FEBC12E7F47310082C6FD /* compositor.cpp in Sources */,
 				9A7FEBC22E7F47310082C6FD /* model_buffer.cpp in Sources */,
@@ -1647,6 +1664,7 @@
 				9A1824162F20E9AB007693F6 /* character.cpp in Sources */,
 				9A1824172F20E9AB007693F6 /* typeface.cpp in Sources */,
 				9A7FEBE22E7F47310082C6FD /* layer.cpp in Sources */,
+				9A8582FE2F22A052001D08D1 /* transform.cpp in Sources */,
 				9A7FEBE32E7F47310082C6FD /* memory_buffer.cpp in Sources */,
 				9A7FEBE42E7F47310082C6FD /* compositor.cpp in Sources */,
 				9A7FEBE52E7F47310082C6FD /* model_buffer.cpp in Sources */,

@@ -369,6 +369,20 @@
 			remoteGlobalIDString = 9AE64252284AA6570079EBA0;
 			remoteInfo = ios_bred;
 		};
+		9A85827A2F229962001D08D1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A857D962F2290B1001D08D1 /* bred.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9A281A5D252432B5009FA9CB;
+			remoteInfo = bred;
+		};
+		9A85827C2F229962001D08D1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A857D962F2290B1001D08D1 /* bred.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9AE64252284AA6570079EBA0;
+			remoteInfo = ios_bred;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -853,6 +867,15 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		9A8582762F229962001D08D1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9A85827B2F229962001D08D1 /* libbred.dylib */,
+				9A85827D2F229962001D08D1 /* libios_bred.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -1215,6 +1238,10 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
+					ProductGroup = 9A8582762F229962001D08D1 /* Products */;
+					ProjectRef = 9A857D962F2290B1001D08D1 /* bred.xcodeproj */;
+				},
+				{
 					ProductGroup = 9A857DA82F2290F9001D08D1 /* Products */;
 					ProjectRef = 9A857DA72F2290F9001D08D1 /* bred.xcodeproj */;
 				},
@@ -1241,6 +1268,20 @@
 			fileType = "compiled.mach-o.dylib";
 			path = libios_bred.a;
 			remoteRef = 9A857DB02F2290F9001D08D1 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		9A85827B2F229962001D08D1 /* libbred.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = libbred.dylib;
+			remoteRef = 9A85827A2F229962001D08D1 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		9A85827D2F229962001D08D1 /* libios_bred.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = libios_bred.a;
+			remoteRef = 9A85827C2F229962001D08D1 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */

@@ -619,7 +619,7 @@ namespace data
       {
 
          pitemNew->erase_item_from_parent();
-
+         
          ødefer_construct_new(m_ptreeitema2);
 
          m_ptreeitema2->insert_at(0, pitemNew);

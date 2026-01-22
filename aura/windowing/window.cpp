@@ -977,8 +977,13 @@ namespace windowing
 
    class placement_log* window::placement_log()
    {
-
-      ødefer_construct_new(m_pplacementlog);
+      
+      if(!m_pplacementlog)
+      {
+         
+         øconstruct_new(m_pplacementlog);
+         
+      }
 
       return m_pplacementlog;
 
@@ -9558,17 +9563,19 @@ namespace windowing
                   {
 
                      _synchronous_lock synchronouslock(m_pmutexRedrawItem);
-
-                     if (pgraphics->ødefer_construct_new(pgraphics->m_puserredraw))
+                     
+                     if(!pgraphics->m_puserredraw)
                      {
-
+                        
+                        øconstruct_new(pgraphics->m_puserredraw);
+                        
                         if (system()->draw2d()->graphics_context_does_full_redraw())
                         {
-
+                           
                            pgraphics->m_puserredraw->m_bEnabled = false;
-
+                           
                         }
-
+                        
                      }
 
                      if (pgraphics->m_puserredraw->m_bEnabled)

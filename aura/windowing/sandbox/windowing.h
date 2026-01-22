@@ -31,7 +31,7 @@ namespace sandbox_windowing
 
 //
 //      ::pointer<::sandbox_windowing::window>         m_pwindowKeyboardFocus;
-//      ::pointer<::sandbox_windowing::window>         m_pwindowMouseCapture;
+//      ::pointer<::sandbox_windowing::window>         m_pacmewindowingwindowMouseCapture;
 //      ::pointer<::sandbox_windowing::window>         m_pwindowActive;
 //
 //

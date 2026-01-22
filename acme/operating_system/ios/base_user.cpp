@@ -54,7 +54,7 @@ int _ui_MessageBoxA_sync(const_char_pointer pszMessageParam, const_char_pointer 
    
    auto pevent = ::platform::get()->øcreate_new< manual_reset_happening >();
    
-   auto eresult = (::enum_dialog_result) ui_MessageBoxA(scopedstrMessageParam, pszHeaderParam, (::user::enum_message_box) uType, pszDetails, [&edialogresult, pevent](enum_dialog_result eresult)
+   auto eresult = (::enum_dialog_result) ui_MessageBoxA(pszMessageParam, pszHeaderParam, (::user::enum_message_box) uType, pszDetails, [&edialogresult, pevent](enum_dialog_result eresult)
                                                         {
       
       edialogresult = eresult;

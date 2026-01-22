@@ -364,7 +364,7 @@ enum enum_id : ::uptr
    id_implementation_enabled,
    id_implementation_disabled,
    id_change_theme,
-
+   id_application_did_finish_launching,
 
 };
 

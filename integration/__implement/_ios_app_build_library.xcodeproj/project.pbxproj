@@ -1190,7 +1190,6 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "wiossimple_drawing_simple_drawingTests/wiossimple_drawing_simple_drawingTests-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "ca2.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
@@ -1214,7 +1213,6 @@
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = "wiossimple_drawing_simple_drawingTests/wiossimple_drawing_simple_drawingTests-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "ca2.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
@@ -1275,7 +1273,6 @@
 					"$(WorkspaceDir)/port/_",
 					"$(WorkspaceDir)/port/include",
 				);
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(WorkspaceDir)/operating_system",
@@ -1338,7 +1335,6 @@
 					"$(WorkspaceDir)/port/_",
 					"$(WorkspaceDir)/port/include",
 				);
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(WorkspaceDir)/operating_system",

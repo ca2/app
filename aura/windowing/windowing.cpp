@@ -226,8 +226,13 @@ namespace windowing
       KEEP(m_bSettingCursorMatter);
 
       synchronouslock.unlock();
-
-      ødefer_construct_new(m_pcursormanager);
+      
+      if(!m_pcursormanager)
+      {
+         
+         øconstruct_new(m_pcursormanager);
+         
+      }
 
       m_pcursormanager->m_pwindowing = this;
 

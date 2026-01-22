@@ -435,7 +435,7 @@
 //template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type t_etypeContainer >
 //inline ::collection::index array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::append(const array& src)
 //{
-//    // ASSERT_VALID(this);
+//    // ASSERT_OK(this);
 //   ASSERT(this != &src);   // cannot append to itself
 //
 //   if(this == &src)
@@ -451,7 +451,7 @@
 //inline void array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::copy(const array& src)
 //{
 //
-//    // ASSERT_VALID(this);
+//    // ASSERT_OK(this);
 //
 //   ASSERT(this != &src);
 //

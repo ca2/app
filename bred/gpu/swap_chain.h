@@ -2,12 +2,14 @@
 #pragma once
 
 
+#include "acme/windowing/window.h"
+
 namespace gpu
 {
 
 
    class CLASS_DECL_BRED swap_chain :
-      virtual public ::particle
+      virtual public ::acme::windowing::gpu_context_render_frame
    {
    public:
 
@@ -49,6 +51,7 @@ namespace gpu
       virtual int swap_chain_frame_count();
       virtual ::gpu::texture* current_swap_chain_texture();
 
+      void on_gpu_context_render_frame(int w, int h) override;
 
    };
 

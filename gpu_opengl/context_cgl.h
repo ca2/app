@@ -24,10 +24,13 @@ namespace gpu_opengl
    public:
 
       
-      CGLPBufferObj                    m_pbuffer;
+      //CGLPBufferObj                    m_pbuffer;
       CGLContextObj                    m_context;
       CGLContextObj                    m_contextOld;
 
+      int m_iFbo;
+      
+      int m_iTex;
 
       context_cgl();
       virtual ~context_cgl();
@@ -44,7 +47,9 @@ namespace gpu_opengl
       virtual string get_shader_version_text() override;
 
       virtual void _translate_shader(string_array_base& stra) override;
+      void _create_window_context(::acme::windowing::window* pacmewindowingwindow) override;
 
+      virtual void _defer_update_render_frame_buffer();
 
    };
 

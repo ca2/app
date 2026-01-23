@@ -160,14 +160,16 @@ namespace graphics
          debug() << "double_buffer::_on_begin_draw Deferred image Creation/Update : " << sizeImage;
 
          auto pgraphics = pimage->g();
-
+         
          if (pgraphics)
          {
 
+            pitem->m_pgraphics = pgraphics;
+            
             pgraphics->resize(pitem->m_sizeBufferItemDraw);
 
          }
-
+         
       }
 
       //return pitem;

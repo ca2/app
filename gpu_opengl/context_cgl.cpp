@@ -10,11 +10,14 @@
 #include "cpu_buffer.h"
 #include "context_cgl.h"
 #include "device_cgl.h"
+#include "swap_chain.h"
 #include "acme/platform/application.h"
+#include "acme/windowing/window.h"
 #include "aura/graphics/image/image.h"
 #include "aura/graphics/image/target.h"
 #include "aura/platform/system.h"
 #include "bred/gpu/context_lock.h"
+
 
 
 namespace gpu_opengl
@@ -60,21 +63,23 @@ namespace gpu_opengl
 //
 //      }
       
-      //m_itaskGpu = ::current_itask();
-      
+//      //m_itaskGpu = ::current_itask();
+//      
 //      unsigned long target = GL_TEXTURE_2D;
-//
+////
 //      unsigned long internalFormat = GL_RGBA;
-//
+////
 //      long max_level = 0;
 //
 //      CGLError error = CGLCreatePBuffer(size.cx, size.cy, target, internalFormat, max_level, &m_pbuffer);
 //
 //      if(error != kCGLNoError)
 //      {
-//
-//         return ::error_failed;
-//
+//         
+//         throw ::exception(error_wrong_state);
+//         
+//         return;
+//         
 //      }
 
 //      EGLint attribList[]=
@@ -108,16 +113,31 @@ namespace gpu_opengl
       
       ::cast < device_cgl > pdevice = m_pgpudevice;
       
-      auto error = CGLCreateContext(pdevice->m_cglpixelformat, NULL, &m_context);
+      auto error = CGLCreateContext(pdevice->m_cglpixelformat, pdevice->m_cglcontextShare, &m_context);
       
       if(error != kCGLNoError)
       {
          
+         throw ::exception(error_wrong_state);
+         
          return;
+         
+      }
+      
+      if(!pdevice->m_cglcontextShare)
+      {
+         
+         pdevice->m_cglcontextShare = m_context;
          
       }
 
       ::gpu::context_lock contextlock(this);
+      
+      m_rectangle.left = 0;
+      m_rectangle.top = 0;
+      m_rectangle.set_size(size);
+      
+      _defer_update_render_frame_buffer();
 
 //      defer_make_current();
       //::e_status estatus = make_current();
@@ -131,27 +151,94 @@ namespace gpu_opengl
 //         
 //      }
       
-      auto cx = context::m_pcpubuffer->m_pimagetarget->m_pimage->width();
-      auto cy = context::m_pcpubuffer->m_pimagetarget->m_pimage->height();
-      auto scan = context::m_pcpubuffer->m_pimagetarget->m_pimage->m_iScan;
-      auto data=context::m_pcpubuffer->m_pimagetarget->m_pimage->data();
-
-//      error = CGLSetOffScreen(m_context, cx,
-//                              cy, scan, data) ;
-//
-//      if(error != kCGLNoError)
-//      {
-//         
-//         //return ::error_failed;
-//         
-//         return;
-//         
-//      }
+      auto pcpubuffer = context::m_pcpubuffer;
+      
+      if(::is_set(pcpubuffer))
+      {
+         
+         auto pimagetarget = pcpubuffer->m_pimagetarget;
+         
+         if(::is_set(pimagetarget))
+         {
+            
+            auto pimage = pimagetarget->m_pimage;
+            
+            if(::is_set(pimage))
+            {
+               
+               auto cx = pimage->width();
+               auto cy = pimage->height();
+               auto scan = pimage->m_iScan;
+               auto data = pimage->data();
+               
+            }
+            
+         }
+         
+         //      error = CGLSetOffScreen(m_context, cx,
+         //                              cy, scan, data) ;
+         //
+         //      if(error != kCGLNoError)
+         //      {
+         //
+         //         //return ::error_failed;
+         //
+         //         return;
+         //
+         //      }
+         
+      }
+      
+      auto pgpurenderer = get_gpu_renderer();
+      
+      if(::is_null(pgpurenderer))
+      {
+         
+         throw ::exception(error_failed);
+         
+      }
 
       //return ::success;
 
    }
 
+
+void context_cgl::_defer_update_render_frame_buffer()
+{
+   
+   ::gpu::context_lock contextlock(this);
+   
+   auto size = m_rectangle.size();
+   
+   auto w = size.width();
+   auto h = size.height();
+   
+   GLuint fbo, tex;
+
+   glGenFramebuffers(1, &fbo);
+   GLCheckError("");
+   m_iFbo = fbo;
+   glBindFramebuffer(GL_FRAMEBUFFER, fbo);
+   GLCheckError("");
+   
+   
+   
+   glGenTextures(1, &tex);
+   GLCheckError("");
+   m_iTex = tex;
+   glBindTexture(GL_TEXTURE_2D, tex);
+   GLCheckError("");
+   glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, w, h, 0,
+                GL_RGBA, GL_UNSIGNED_BYTE, nullptr);
+   GLCheckError("");
+
+   glFramebufferTexture2D(GL_FRAMEBUFFER,
+                          GL_COLOR_ATTACHMENT0,
+                          GL_TEXTURE_2D,
+                          tex, 0);
+   GLCheckError("");
+   
+}
 
    void context_cgl::_context_lock()
 {
@@ -170,6 +257,8 @@ namespace gpu_opengl
          return;
 
       }
+      
+      glBindFramebuffer(GL_DRAW_FRAMEBUFFER, m_iFbo);
 
       //return ::success;
 
@@ -265,6 +354,22 @@ void context_cgl::_context_unlock()
          
       }
    }
+
+
+void context_cgl::_create_window_context(::acme::windowing::window* pacmewindowingwindow)
+{
+   
+   ::int_rectangle rectangle = pacmewindowingwindow->get_window_rectangle();
+   
+   m_pacmewindowingwindowWindowSurface = pacmewindowingwindow;
+   
+   m_pacmewindowingwindowWindowSurface->m_pgpucontextrenderframe = get_swap_chain();
+   
+   auto size = rectangle.size();
+   
+   _create_cpu_buffer(size);
+   
+}
 
 
 } // namespace gpu_opengl

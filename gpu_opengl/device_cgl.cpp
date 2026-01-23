@@ -15,11 +15,11 @@ int rotating_cube();
 
 ////#include "_opengl.h"
 ////
-//extern "C"
-//{
-//GLAPI int gladLoadCGL(void);
-//
-//} // extern "C"
+extern "C"
+{
+GLAPI int gladLoadCGL(void);
+
+} // extern "C"
 
 //const char* eglErrorString(EGLint error) {
 //   switch (error) {
@@ -41,6 +41,8 @@ int rotating_cube();
 //      default: return "Unknown error";
 //   }
 //}
+#include <dlfcn.h>
+
 namespace gpu_opengl
 {
 
@@ -61,52 +63,51 @@ namespace gpu_opengl
 // --- Step A: Define a loader function for GLAD ---
 // CGL doesn't have a simple "GetProcAddress" function, so we use
 // dlsym to look up symbols from the OpenGL framework.
-#include <dlfcn.h>
-static void* GetCGLProcAddress(const char* name) {
-    static void* handle = dlopen("/System/Library/Frameworks/OpenGL.framework/Versions/Current/OpenGL", RTLD_LAZY);
+void* GetCGLProcAddress(const char* name) {
+    static void* handle = dlopen("/System/Library/Frameworks/OpenGL.framework/Versions/Current/OpenGL", RTLD_NOW);
     return dlsym(handle, name);
 }
 //
 //   // should be called within a currently selected egl context
-//   void load_glad_cgl()
-//   {
-//
-//      if (g_bGladGL)
-//      {
-//
-//          return;
-//
-//      }
-//
-//      g_bGladGL = true;
-//
-//      auto gl_version = gladLoadGLLoader((GLADloadproc)GetCGLProcAddress);
-//
-//      if (!gl_version)
-//      {
-//
-//         printf("Unable to reload GL.\n");
-//
-//         throw ::exception(::error_failed);
-//
-//      }
-//
-//      auto pszGlVersion = glGetString(GL_VERSION);
-//
-//      auto pszGlRenderer = glGetString(GL_RENDERER);
-//
-//      printf("GL_VERSION = %s\n", pszGlVersion);
-//
-//      printf("GL_RENDERER = %s\n", pszGlRenderer);
-//
-//
-//      //printf("has GLES3: %d\n", GLAD_GL_ES_VERSION_3_0);
-//
-//      //printf("Loaded GL %d.%d after reload.\n",
-//      //     GLAD_VERSION_MAJOR(gl_version), GLAD_VERSION_MINOR(gl_version));
-//
-//   }
-//
+   void load_glad_cgl()
+   {
+
+      if (g_bGladGL)
+      {
+
+          return;
+
+      }
+
+      g_bGladGL = true;
+
+      auto gl_version = gladLoadGLLoader((GLADloadproc)GetCGLProcAddress);
+
+      if (!gl_version)
+      {
+
+         printf("Unable to reload GL.\n");
+
+         throw ::exception(::error_failed);
+
+      }
+
+      auto pszGlVersion = glGetString(GL_VERSION);
+
+      auto pszGlRenderer = glGetString(GL_RENDERER);
+
+      printf("GL_VERSION = %s\n", pszGlVersion);
+
+      printf("GL_RENDERER = %s\n", pszGlRenderer);
+
+
+      //printf("has GLES3: %d\n", GLAD_GL_ES_VERSION_3_0);
+
+      //printf("Loaded GL %d.%d after reload.\n",
+      //     GLAD_VERSION_MAJOR(gl_version), GLAD_VERSION_MINOR(gl_version));
+
+   }
+
 
    // critical_section * egl_critical_section()
    // {
@@ -263,7 +264,7 @@ static void* GetCGLProcAddress(const char* name) {
 
 
    device_cgl::device_cgl()
-   {
+{m_cglcontextShare = 0;
 
       m_cglpixelformat = 0;
       
@@ -311,8 +312,12 @@ static void* GetCGLProcAddress(const char* name) {
       //m_hwnd = (HWND) m_pwindow->oswindow();
 
       //auto size = m_pwindow->get_window_rectangle().size();
+      
+      pwindow->_lock_window_gpu_context();
 
       _create_device({});
+      
+      pwindow->_unlock_window_gpu_context();
 
 
    }
@@ -692,6 +697,11 @@ static void* GetCGLProcAddress(const char* name) {
       // m_itaskGpu = ::current_itask();
 
       //gladLoadGL();
+      
+      
+      
+      
+      load_glad_cgl();
 
       // auto gl_version = gladLoadGL();
       // if (!gl_version) {

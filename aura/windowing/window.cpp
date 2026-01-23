@@ -937,6 +937,8 @@ namespace windowing
       }
 
       on_finished_window_creation();
+      
+      set_ok_flag();
 
    }
 
@@ -2491,6 +2493,8 @@ namespace windowing
 
    bool window::is_window()
    {
+      
+      throw ::interface_only();
 
       return false;
 

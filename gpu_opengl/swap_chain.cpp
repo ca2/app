@@ -280,6 +280,69 @@ FragColor = texture(uTexture, TexCoord);
    }
 
 
+void swap_chain::on_gpu_context_render_frame(int w, int h)
+{
+   
+   ::int_rectangle rectangle(0, 0, w, h);
+   
+   if(m_pgpucontext->m_rectangle != rectangle)
+   {
+      
+      m_pgpucontext->on_resize(rectangle.size());
+      
+      if(m_iFbo != 0)
+      {
+         GLuint uFbo = m_iFbo;
+         glDeleteFramebuffers(1, &uFbo);
+         m_iFbo = 0;
+      }
+      if(m_iFboTex != 0)
+      {
+         GLuint uFboTex = m_iFboTex;
+         glDeleteTextures(1, &uFboTex);
+
+         m_iFboTex= 0;
+      }
+
+      if(m_iFbo == 0 && w > 0 && h > 0)
+      {
+         
+         GLuint uFbo = 0;
+         
+         glGenFramebuffers(1, &uFbo);
+         GLCheckError("");
+         
+         m_iFbo = uFbo;
+         
+         GLuint uTex = 0;
+         
+         glGenTextures(1, &uTex);
+         GLCheckError("");
+         
+         
+         m_iFboTex = uTex;
+         
+         
+         glBindTexture(GL_TEXTURE_2D, uTex);
+         glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, w, h, 0,
+                      GL_RGBA, GL_UNSIGNED_BYTE, nullptr);
+         
+         glFramebufferTexture2D(GL_FRAMEBUFFER,
+                                GL_COLOR_ATTACHMENT0,
+                                GL_TEXTURE_2D,
+                                uTex, 0);
+         
+      }
+      
+   }
+   
+   glViewport(0, 0, w, h);
+   glClearColor(0.2f, 0.4f, 0.9f, 1.0f);
+   glClear(GL_COLOR_BUFFER_BIT);
+   
+   
+}
+
 } // namespace gpu_opengl
 
 

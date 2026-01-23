@@ -1364,7 +1364,7 @@ namespace gpu
 
                auto eoutput = ::gpu::e_output_swap_chain;
 
-               auto pwindowWindow = (::acme::windowing::window *)pacmewindowingwindow;
+               ::cast <::acme::windowing::window > pwindowWindow = pacmewindowingwindow;
 
                auto rectangleWindow = pwindowWindow->get_window_rectangle();
 

@@ -49,7 +49,7 @@ namespace gpu_opengl
    void approach::_on_before_create_window(::acme::windowing::window* pwindowParam)
    {
 
-      ::cast < ::gpu_opengl::device_cgl > pegldevice = get_gpu_device(pwindowParam);
+//      ::cast < ::gpu_opengl::device_cgl > pegldevice = get_gpu_device(pwindowParam);
 
       //if (pegldevice->m_lX11NativeVisualId < 0)
       //{

@@ -66,12 +66,12 @@ namespace gpu
 
       }
 
-      if (!pacmewindowingwindow->is_window())
-      {
-
-         throw ::exception(error_bad_argument);
-
-      }
+//      if (!pacmewindowingwindow->is_window())
+//      {
+//
+//         throw ::exception(error_bad_argument);
+//
+//      }
 
       auto &pdevice = m_devicemap[pacmewindowingwindow];
 

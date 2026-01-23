@@ -18,7 +18,7 @@ namespace gpu_opengl
 
       
       CGLPixelFormatObj       m_cglpixelformat;
-
+      CGLContextObj m_cglcontextShare;
 //      EGLDisplay                       m_egldisplay;
 //      //EGLConfig                        m_eglconfigPrimary;
 //      //EGLConfig                        m_eglconfigSwapChainWindow;

@@ -2544,7 +2544,7 @@ void application::start_application()
    string application::app_roaming_application_file_setting(const ::scoped_string& scopedstrFileName)
    {
 
-      auto path = directory()->home() / ".config" / m_strAppName / scopedstrFileName;
+      auto path = directory_system()->roaming() / m_strAppName / scopedstrFileName;
 
       auto str = file()->safe_get_string(path);
 
@@ -2717,3 +2717,19 @@ void application_handle_command(::platform::application * papplication, const_ch
 
 
 
+
+bool platform_application_is_swap_chain(::platform::application * papplication)
+{
+   
+   if(::is_null(papplication))
+   {
+      
+      return false;
+      
+   }
+   
+   
+   bool bSwapChainWindow =papplication->m_gpu.m_bUseSwapChainWindow;
+   return bSwapChainWindow;
+   
+}

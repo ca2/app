@@ -645,7 +645,9 @@ void subparticle::_wait()
    if (::is_null(ptask))
    {
 
-      auto bOk = this->_wait(timeWait);
+      auto waitNow = ::minimum(timeWait, 100_ms);
+
+      auto bOk = this->_wait(waitNow);
 
       if (!bOk)
       {

@@ -1994,6 +1994,36 @@ void window::on_control_box_zoom()
       
       }
 
+   void window::on_gpu_context_render_frame(int w, int h)
+   
+   {
+      
+      if(::is_null(m_pgpucontextrenderframe))
+      {
+         
+         return nullptr;
+         
+         //throw ::exception(error_wrong_state);
+         
+      }
+      
+      m_pgpucontextrenderframe->on_gpu_context_render_frame(w, h);
+      
+      
+   }
+   
+   void window::_lock_window_gpu_context()
+   {
+      
+      
+   }
+   
+   
+    void  window::_unlock_window_gpu_context()
+   {
+       
+    
+    }
 
    
 

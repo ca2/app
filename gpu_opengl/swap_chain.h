@@ -15,6 +15,8 @@ namespace gpu_opengl
    public:
 
 
+      int m_iFbo = 0;
+      int m_iFboTex = 0;
       //VkSwapchainKHR                m_vkswapchain;
       //uint32_t                      m_uCurrentSwapChainImage;
       //::pointer < ::gpu::context >  m_pgpucontextSwapChain;
@@ -40,7 +42,10 @@ namespace gpu_opengl
       void present(::gpu::texture* ptexture) override;
 
       void swap_buffers() override;
+      
+      void on_gpu_context_render_frame(int w, int h) override;
 
+      
    };
 
 

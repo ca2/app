@@ -11435,10 +11435,14 @@ if(get_parent())
             return false;
             
          }
-         if(::is_set(m_pacmewindowingwindow ) && ! m_pacmewindowingwindow->is_window())
+         if(::is_set(m_pacmewindowingwindow ))
          {
             
-            return false;
+            if(!m_pacmewindowingwindow->is_window())
+            {
+               return false;
+               
+            }
             
          }
 
@@ -11461,7 +11465,7 @@ if(get_parent())
 
       }
 
-      return is_window();
+      return true;
 
    }
 

@@ -57,7 +57,7 @@ namespace gpu_opengl
    unsigned int shader::create_shader(const ::block &blockSource, GLenum type)
    {
 
-      ::gpu::context_lock contextlock(m_pgpurenderer->m_pgpucontext);
+      //::gpu::context_lock contextlock(m_pgpurenderer->m_pgpucontext);
 
       unsigned int uShader;
 
@@ -110,7 +110,7 @@ namespace gpu_opengl
    void shader::on_initialize_shader()
    {
 
-      ::gpu::context_lock contextlock(m_pgpurenderer->m_pgpucontext);
+      //::gpu::context_lock contextlock(m_pgpurenderer->m_pgpucontext);
 
       if (m_memoryVertex.is_empty())
       {

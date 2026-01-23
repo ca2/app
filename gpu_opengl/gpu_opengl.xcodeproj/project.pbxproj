@@ -57,7 +57,6 @@
 		9A4CC8702F236EB300D9A73A /* approach_cgl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4CC86F2F236EB300D9A73A /* approach_cgl.cpp */; };
 		9A4CC8832F23701A00D9A73A /* _gpu_opengl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4333512F232C4E00705FD8 /* _gpu_opengl.cpp */; };
 		9A4CC8852F23704B00D9A73A /* swap_chain_cgl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4CC8842F23704B00D9A73A /* swap_chain_cgl.cpp */; };
-		9AE0348C2F2343A7003579EA /* glad.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AE0348B2F2343A7003579EA /* glad.dylib */; };
 		9AE0348D2F2344AF003579EA /* context_ktx.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4333792F232C4E00705FD8 /* context_ktx.cpp */; };
 /* End PBXBuildFile section */
 
@@ -182,7 +181,6 @@
 		9A4333E82F232C4E00705FD8 /* object.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = object.cpp; sourceTree = "<group>"; };
 		9A4333E92F232C4E00705FD8 /* offscreen_render_target.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = offscreen_render_target.h; sourceTree = "<group>"; };
 		9A4333EA2F232C4E00705FD8 /* offscreen_render_target.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = offscreen_render_target.cpp; sourceTree = "<group>"; };
-		9A4333EB2F232C4E00705FD8 /* para_gpu_opengl.cbp */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = para_gpu_opengl.cbp; sourceTree = "<group>"; };
 		9A4333EC2F232C4E00705FD8 /* pixmap.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = pixmap.h; sourceTree = "<group>"; };
 		9A4333ED2F232C4E00705FD8 /* pixmap.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = pixmap.cpp; sourceTree = "<group>"; };
 		9A4333EE2F232C4E00705FD8 /* program.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = program.h; sourceTree = "<group>"; };
@@ -218,7 +216,6 @@
 			files = (
 				9A2060A22F233B5200D162D8 /* OpenGL.framework in Frameworks */,
 				9A1391702F23459D00C00FBD /* libktx.dylib in Frameworks */,
-				9AE0348C2F2343A7003579EA /* glad.dylib in Frameworks */,
 				9A2060A42F233B7100D162D8 /* libacme.dylib in Frameworks */,
 				9A2060A62F233B7100D162D8 /* libapex.dylib in Frameworks */,
 				9A2060A82F233B7100D162D8 /* libaqua.dylib in Frameworks */,
@@ -348,7 +345,6 @@
 				9A4333E82F232C4E00705FD8 /* object.cpp */,
 				9A4333E92F232C4E00705FD8 /* offscreen_render_target.h */,
 				9A4333EA2F232C4E00705FD8 /* offscreen_render_target.cpp */,
-				9A4333EB2F232C4E00705FD8 /* para_gpu_opengl.cbp */,
 				9A4333EC2F232C4E00705FD8 /* pixmap.h */,
 				9A4333ED2F232C4E00705FD8 /* pixmap.cpp */,
 				9A4333EE2F232C4E00705FD8 /* program.h */,

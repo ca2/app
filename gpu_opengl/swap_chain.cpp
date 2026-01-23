@@ -56,7 +56,7 @@ uniform sampler2D uTexture;
 void main() {
 if(TexCoord.x > 0.5)
 {
-FragColor=vec4(0.0, 0.0, 0.5, 0.5);
+FragColor=vec4(0.0, TexCoord.x *0.5, TexCoord.y *0.5 , 0.5);
 }
 else
 {
@@ -280,11 +280,13 @@ void swap_chain::on_gpu_context_render_frame(int w, int h)
    }
    
 #if 1
+   auto t = ::time::now().floating_second();
+   float fGreen = ::sin(t * 0.5  * 2.0 * 3.1415) * 0.25 + 0.5;
    //glEnable(GL_BLEND);
    //glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
    glViewport(0, 0, w, h);
    float alpha = 0.69;
-   glClearColor(0.2f * alpha, 1.0f * alpha, 0.5f * alpha, 1.0f * alpha);
+   glClearColor(0.2f * alpha, fGreen * alpha, 0.5f * alpha, 1.0f * alpha);
    glClear(GL_COLOR_BUFFER_BIT);
 #endif
 
@@ -366,7 +368,7 @@ void swap_chain::on_gpu_context_render_frame(int w, int h)
    glUseProgram(0);
    GLCheckError("");
    
-   glFlush();
+   //glFlush();
    //m_pgpucontext->defer_unbind_shader();
 
 //#endif

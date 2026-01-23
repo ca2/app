@@ -47,8 +47,12 @@ namespace gpu_opengl
 
       if (!m_gluVao)
       {
-
-         ::gpu::context_lock contextlock(m_pgpucontext);
+         
+#ifdef __APPLE__
+      
+         auto ctx = CGLGetCurrentContext();
+         
+#endif
 
          glGenVertexArrays(1, &m_gluVao);
          GLCheckError("");

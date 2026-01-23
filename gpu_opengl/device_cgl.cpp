@@ -464,9 +464,10 @@ namespace gpu_opengl
          //kCGLPFAAccelerated,
          //kCGLPFAOffScreen,
          kCGLPFAOpenGLProfile,
-         (CGLPixelFormatAttribute)kCGLOGLPVersion_3_2_Core,
+         (CGLPixelFormatAttribute)kCGLOGLPVersion_GL4_Core,
          kCGLPFAColorSize, (CGLPixelFormatAttribute)32,
-         kCGLPFADepthSize, (CGLPixelFormatAttribute)16,
+         kCGLPFADepthSize, (CGLPixelFormatAttribute)24,
+         kCGLPFAStencilSize, (CGLPixelFormatAttribute)8,
          (CGLPixelFormatAttribute)0
          
       };

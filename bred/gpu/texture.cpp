@@ -106,7 +106,7 @@ namespace gpu
       )
    {
 
-      ::gpu::context_lock contextlock(pgpurenderer->m_pgpucontext);
+      //::gpu::context_lock contextlock(pgpurenderer->m_pgpucontext);
 
       m_textureflags = textureflags;
 

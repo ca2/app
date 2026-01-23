@@ -139,7 +139,6 @@ namespace gpu
    void command_buffer::draw(::graphics3d::renderable *prenderable)
    {
 
-      //prenderable->bind2(this);
       prenderable->draw_model(this);
 
    }

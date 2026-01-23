@@ -17,7 +17,7 @@
 #include "gpu_opengl/texture.h"
 //#include "gpu/cube.h"
 #include "gpu/model/_constant.h"
-#include <glad/glad.h>
+//#include <glad/glad.h>
 #include "gpu/context.h"
 #include "bred/platform/timer.h"
 //#include "aaa_mipmap_cubemap_framebuffer.h"

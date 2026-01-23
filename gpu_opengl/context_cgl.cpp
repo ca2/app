@@ -208,35 +208,93 @@ void context_cgl::_defer_update_render_frame_buffer()
    
    ::gpu::context_lock contextlock(this);
    
+   _defer_update_render_frame_buffer_unlocked();
+   
+}
+
+
+void context_cgl::_defer_update_render_frame_buffer_unlocked()
+{
+   
    auto size = m_rectangle.size();
    
-   auto w = size.width();
-   auto h = size.height();
-   
-   GLuint fbo, tex;
-
-   glGenFramebuffers(1, &fbo);
-   GLCheckError("");
-   m_iFbo = fbo;
-   glBindFramebuffer(GL_FRAMEBUFFER, fbo);
-   GLCheckError("");
-   
-   
-   
-   glGenTextures(1, &tex);
-   GLCheckError("");
-   m_iTex = tex;
-   glBindTexture(GL_TEXTURE_2D, tex);
-   GLCheckError("");
-   glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, w, h, 0,
-                GL_RGBA, GL_UNSIGNED_BYTE, nullptr);
-   GLCheckError("");
-
-   glFramebufferTexture2D(GL_FRAMEBUFFER,
-                          GL_COLOR_ATTACHMENT0,
-                          GL_TEXTURE_2D,
-                          tex, 0);
-   GLCheckError("");
+   if(m_iFbo <= 0 || m_iTex <= 0 || size != m_sizeFbo)
+   {
+      
+      m_sizeFbo = size;
+      
+      auto w = size.width();
+      auto h = size.height();
+      
+      if(m_iFbo > 0)
+      {
+         
+         GLuint uFbo = m_iFbo;
+         
+         glDeleteFramebuffers(1, &uFbo);
+         GLCheckError("");
+         
+         m_iFbo = 0;
+         
+      }
+      
+      if(m_iTex > 0)
+      {
+         
+         GLuint uTex = m_iTex;
+         
+         glDeleteTextures(1, &uTex);
+         GLCheckError("");
+         
+         m_iTex = 0;
+         
+      }
+      
+      GLuint fbo = 0;
+      
+      glGenFramebuffers(1, &fbo);
+      GLCheckError("");
+      m_iFbo = fbo;
+      glBindFramebuffer(GL_FRAMEBUFFER, fbo);
+      GLCheckError("");
+      
+      GLuint tex = 0;
+      
+      glGenTextures(1, &tex);
+      GLCheckError("");
+      m_iTex = tex;
+      glBindTexture(GL_TEXTURE_2D, tex);
+      GLCheckError("");
+      glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, w, h, 0,
+                   GL_RGBA, GL_UNSIGNED_BYTE, nullptr);
+      GLCheckError("");
+      
+      glFramebufferTexture2D(GL_FRAMEBUFFER,
+                             GL_COLOR_ATTACHMENT0,
+                             GL_TEXTURE_2D,
+                             tex, 0);
+      GLCheckError("");
+      
+      auto status = glCheckFramebufferStatus(GL_FRAMEBUFFER);
+      GLCheckError("");
+      
+      if (status != GL_FRAMEBUFFER_COMPLETE)
+      {
+         
+         ::string strMessage;
+         
+         strMessage = "context_cgl::_context_lock,Framebuffer not complete!";
+         
+         warning(strMessage);
+         
+         throw ::exception(error_failed, strMessage);
+         
+      }
+      
+      glBindTexture(GL_TEXTURE_2D, 0);
+      GLCheckError("");
+      
+   }
    
 }
 
@@ -249,42 +307,63 @@ void context_cgl::_defer_update_render_frame_buffer()
 
       if (!bMakeCurrentOk)
       {
+         
+         ::string strMessage;
+         
+         strMessage = "CGLSetCurrentContext Failed to set current context";
 
-         printf("cglMakeCurrent failed!\n");
+         warning(strMessage);
 
-         //return ::error_failed;
+         throw ::exception(error_failed, strMessage);
          
          return;
 
       }
       
+      _defer_update_render_frame_buffer_unlocked();
+      
       glBindFramebuffer(GL_DRAW_FRAMEBUFFER, m_iFbo);
+      GLCheckError("");
+      
+      auto status = glCheckFramebufferStatus(GL_FRAMEBUFFER);
 
-      //return ::success;
+      if (status != GL_FRAMEBUFFER_COMPLETE)
+      {
+         
+         ::string strMessage;
+         
+         strMessage = "context_cgl::_context_lock,Framebuffer not complete!";
+
+         warning(strMessage);
+         
+         throw ::exception(error_failed, strMessage);
+
+      }
 
    }
 
-void context_cgl::_context_unlock()
-{
 
-   CGLError error = CGLSetCurrentContext(nullptr);
-   
-   bool bMakeCurrentOk = error == kCGLNoError;
-
-   if (!bMakeCurrentOk)
+   void context_cgl::_context_unlock()
    {
 
-      printf("cglMakeCurrent(null) failed!\n");
-
-      //return ::error_failed;
+      CGLError error = CGLSetCurrentContext(nullptr);
       
-      return;
+      bool bMakeCurrentOk = error == kCGLNoError;
+
+      if (!bMakeCurrentOk)
+      {
+
+         ::string strMessage;
+         
+         strMessage = "CGLSetCurrentContext(nullptr) Failed to clear current context";
+
+         warning(strMessage);
+
+         throw ::exception(error_failed, strMessage);
+         
+      }
 
    }
-
-   //return ::success;
-
-}
 
 
    void context_cgl::destroy_cpu_buffer()

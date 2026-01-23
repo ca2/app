@@ -14,7 +14,7 @@
 #include "bred/graphics3d/skybox.h"
 #include "gpu/model/_constant.h"
 //#include "gpu/cube.h"
-#include <glad/glad.h>
+//#include <glad/glad.h>
 //
 //
 #include "gpu_opengl/_gpu_opengl.h"

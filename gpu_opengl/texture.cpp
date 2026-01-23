@@ -429,8 +429,10 @@ namespace gpu_opengl
       }
 
       GLenum format;
+      
+      auto iChannelCount = m_textureattributes.m_iChannelCount;
 
-      switch (m_textureattributes.m_iChannelCount)
+      switch (iChannelCount)
       {
          case 1:
             format = GL_RED;

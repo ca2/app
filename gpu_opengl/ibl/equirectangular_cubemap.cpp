@@ -7,7 +7,7 @@
 #include "bred/graphics3d/engine.h"
 #include "bred/graphics3d/skybox.h"
 #include "bred/gpu/device.h"
-#include "glad/glad.h"
+//#include "glad/glad.h"
 #include "gpu/model/_constant.h"
 #include "bred/platform/timer.h"
 #include "gpu_opengl/_gpu_opengl.h"

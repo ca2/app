@@ -15,15 +15,20 @@ namespace gpu_opengl
    public:
 
 
-      int m_iFbo = 0;
-      int m_iFboTex = 0;
+      const_char_pointer m_pszCopyTextureVertexShader;
+      const_char_pointer m_pszCopyTextureFragmentShader;
+      //int m_iFbo = 0;
+      //int m_iFboTex = 0;
       //VkSwapchainKHR                m_vkswapchain;
       //uint32_t                      m_uCurrentSwapChainImage;
       //::pointer < ::gpu::context >  m_pgpucontextSwapChain;
       //GLuint m_VAOFullScreenQuad;
       //GLuint m_VBOFullScreenQuad;
-      ::pointer < ::gpu_opengl::texture > m_ptextureSwapChain;
-      ::pointer < ::gpu::shader > m_pshaderCopyTextureOnEndDraw;
+      ::pointer < ::gpu_opengl::texture > m_ptexturePresent;
+      //::pointer < ::gpu_opengl::texture > m_ptextureRender;
+      ::pointer < ::gpu::shader > m_pshaderPresent;
+      ::pointer < ::gpu::shader > m_pshaderRender;
+      ::pointer < ::gpu::model_buffer > m_pmodelbufferRender;
 
       //static constexpr int MAX_FRAMES_IN_FLIGHT = 2;
 
@@ -45,6 +50,10 @@ namespace gpu_opengl
       
       void on_gpu_context_render_frame(int w, int h) override;
 
+      virtual ::pointer < ::gpu::shader > create_copy_texture_shader();
+      virtual ::gpu::shader * present_shader();
+      virtual ::gpu::shader * render_shader(int w, int h);
+      
       
    };
 

@@ -29,13 +29,13 @@ namespace gpu_opengl
    void input_layout::__do_opengl_vao_vbo_and_ebo_input_layout(GLuint gluVAO, GLuint gluVBO, GLuint gluEBO)
 	{
 
-      ::gpu::context_lock contextlock(m_pgpucontext);
+      //::gpu::context_lock contextlock(m_pgpucontext);
 
-		//glBindVertexArray(gluVAO);
-		//GLCheckError("");
+		glBindVertexArray(gluVAO);
+		GLCheckError("");
 
-		//glBindBuffer(GL_ARRAY_BUFFER, gluVBO);
-		//GLCheckError("");
+		glBindBuffer(GL_ARRAY_BUFFER, gluVBO);
+		GLCheckError("");
 
 		//for(int i = 0; i < m)
 		//// vertex positions
@@ -90,19 +90,29 @@ namespace gpu_opengl
     
       }
 
-		//if (gluEBO)
-		//{
-			//glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, gluEBO);
-			//GLCheckError("");
-		//}
+		if (gluEBO)
+		{
+         
+         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, gluEBO);
+			GLCheckError("");
+         
+		}
 
-		//glBindBuffer(GL_ARRAY_BUFFER, 0);
-		//GLCheckError("");
+		glBindBuffer(GL_ARRAY_BUFFER, 0);
+		GLCheckError("");
 
-		//glBindVertexArray(0);
-		//GLCheckError("");
+		glBindVertexArray(0);
+		GLCheckError("");
 
-	}
+      if (gluEBO)
+      {
+         
+         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+         GLCheckError("");
+         
+      }
+
+   }
 
 
 } // namespace gpu_opengl

@@ -29,8 +29,8 @@ namespace gpu_opengl
       CGLContextObj                    m_contextOld;
 
       int m_iFbo;
-      
       int m_iTex;
+      ::int_size m_sizeFbo;
 
       context_cgl();
       virtual ~context_cgl();
@@ -50,6 +50,8 @@ namespace gpu_opengl
       void _create_window_context(::acme::windowing::window* pacmewindowingwindow) override;
 
       virtual void _defer_update_render_frame_buffer();
+      
+      virtual void _defer_update_render_frame_buffer_unlocked();
 
    };
 

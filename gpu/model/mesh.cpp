@@ -6,7 +6,7 @@
 #include "bred/gpu/command_buffer.h"
 #include "bred/gpu/context.h"
 #include "bred/gpu/model_buffer.h"
-#include <glad/glad.h>
+//#include <glad/glad.h>
 #include "bred/gpu/render_target.h"
 #include "bred/gpu/renderer.h"
 

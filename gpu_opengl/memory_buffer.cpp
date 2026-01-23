@@ -40,13 +40,13 @@ namespace gpu_opengl
 
       }
 
-      ::cast<::gpu_opengl::model_buffer> pmodelbuffer = m_pmodelbuffer;
+//      ::cast<::gpu_opengl::model_buffer> pmodelbuffer = m_pmodelbuffer;
+//
+//      auto vao = pmodelbuffer->m_gluVao;
 
-      auto vao = pmodelbuffer->m_gluVao;
+//      ::gpu::context_lock contextlock(m_pcontext);
 
-      glBindVertexArray(vao);
-
-      ::gpu::context_lock contextlock(m_pcontext);
+//      glBindVertexArray(vao);
 
       memsize size;
 
@@ -72,7 +72,7 @@ namespace gpu_opengl
          throw not_implemented();
 
       }
-
+      
       glGenBuffers(1, &m_gluVbo);                            // Create a buffer ID
       
       GLCheckError("");
@@ -80,11 +80,19 @@ namespace gpu_opengl
       glBindBuffer(m_iType, m_gluVbo);              // Bind as a vertex buffer
       
       GLCheckError("");
+      
+      auto iGlStaticDraw = GL_STATIC_DRAW;
+      
+      auto iGlDynamicDraw = GL_DYNAMIC_DRAW;
 
       //GLsizeiptr size = 1024; // e.g., 1 KB buffer
-      auto usageFlags = block.data() ? GL_STATIC_DRAW : GL_DYNAMIC_DRAW;
+      auto usageFlags = block.data() ? iGlStaticDraw : iGlDynamicDraw;
       
       glBufferData(m_iType, (GLsizeiptr)size, block.data(), usageFlags); // just allocate space
+      GLCheckError("");
+      
+      glBindBuffer(m_iType, 0);
+      
       GLCheckError("");
 
    }
@@ -100,11 +108,11 @@ namespace gpu_opengl
 
       }
 
-      m_pmodelbuffer->bind2(m_pcontext->m_pgpurenderer->getCurrentCommandBuffer2(::gpu::current_frame()));
+//      m_pmodelbuffer->bind2(m_pcontext->m_pgpurenderer->getCurrentCommandBuffer2(::gpu::current_frame()));
 
       _on_set_memory_buffer(block);
 
-      m_pmodelbuffer->unbind(m_pmodelbuffer->m_pcommandbufferLoading);
+//      m_pmodelbuffer->unbind(m_pmodelbuffer->m_pcommandbufferLoading);
 
    }
 
@@ -113,9 +121,15 @@ namespace gpu_opengl
    {
 
       bind();
+      
+      auto data = block.data();
+      
+      auto size = block.size();
 
-      glBufferData(m_iType, (GLsizeiptr)block.size(), block.data(), GL_DYNAMIC_DRAW); // just allocate space
+      glBufferData(m_iType, (GLsizeiptr)size, data, GL_DYNAMIC_DRAW); // just allocate space
       GLCheckError("");
+      
+      unbind();
 
    }
 
@@ -169,6 +183,19 @@ namespace gpu_opengl
 
    void memory_buffer::bind()
    {
+      
+      if(m_gluVbo <= 0)
+      {
+         
+         ::string strMessage;
+         
+         strMessage = "memory_buffer::bind vbo is null";
+         
+         warning(strMessage);
+         
+         throw ::exception(error_wrong_state, strMessage);
+         
+      }
 
       glBindBuffer(m_iType, m_gluVbo);
 
@@ -180,9 +207,9 @@ namespace gpu_opengl
    void memory_buffer::unbind()
    {
 
-      //glBindBuffer(m_iType, 0);
+      glBindBuffer(m_iType, 0);
       
-      //GLCheckError("");
+      GLCheckError("");
 
    }
 

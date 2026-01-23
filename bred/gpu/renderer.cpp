@@ -370,7 +370,7 @@ namespace gpu
    ::gpu::render_target * renderer::render_target()
    {
 
-      if (!m_pgpurendertarget2)
+      if (::is_null(m_pgpurendertarget2))
       {
 
          m_pgpurendertarget2 = on_create_render_target();

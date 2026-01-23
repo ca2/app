@@ -5938,7 +5938,14 @@ namespace user
                   if (puserinteraction->has_destroying_flag() || !puserinteraction->is_window())
                   {
 
-                     informationf("trying to draw window being destroyed");
+                     if(!puserinteraction->is_window())
+                     {
+                        informationf("trying to draw window being destroyed !window");
+                     }else{
+                        informationf("trying to draw window being destroyed");
+
+                        
+                     }
 
                      continue;
 
@@ -11435,16 +11442,16 @@ if(get_parent())
             return false;
             
          }
-         if(::is_set(m_pacmewindowingwindow ))
-         {
-            
-            if(!m_pacmewindowingwindow->is_window())
-            {
-               return false;
-               
-            }
-            
-         }
+//         if(::is_set(m_pacmewindowingwindow ))
+//         {
+//            
+//            if(!m_pacmewindowingwindow->is_window())
+//            {
+//               return false;
+//               
+//            }
+//            
+//         }
 
       //if (::is_null(window()))
       //{

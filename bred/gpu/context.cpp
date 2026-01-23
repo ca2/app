@@ -1263,10 +1263,9 @@ namespace gpu
       }
 
       start_debug_happening(pgpucommandbuffer, "shader changing");
-
       auto ptexture = pgpucommandbuffer->m_pgpurendertarget->current_texture(::gpu::current_frame());
 
-      pgpushader->bind(pgpucommandbuffer, ptexture);
+    pgpushader->bind(pgpucommandbuffer, ptexture);
 
       m_pshaderBound = pgpushader;
 
@@ -2087,6 +2086,8 @@ namespace gpu
                               }
 
                            }
+                           
+#if !defined(__APPLE__)
 
                            pswapchain->m_pwindowSwapChain->_main_send([pswapchain, ptextureBackBuffer]()
                            // system()->acme_windowing()
@@ -2096,6 +2097,8 @@ namespace gpu
                               pswapchain->present(ptextureBackBuffer);
 
                            });
+                           
+#endif
 
                         }
 
@@ -3012,7 +3015,7 @@ void main() {
 
                   pcommandbuffer->draw(m_pmodelbufferDummy);
 
-                  m_pmodelbufferDummy->unbind(pcommandbuffer);
+                  //m_pmodelbufferDummy->unbind(pcommandbuffer);
 
                   //ID3D11SamplerState* samplerstatea[] =
                   //{ ptexture->m_psamplerstate };
@@ -3363,17 +3366,32 @@ void main() {
 
    }
 
+::pointer <::gpu::model_buffer> context::create_sequence2_uv_fullscreen_quad_model_buffer(::gpu::frame* pgpuframe)
+{
+
+      auto pmodelbufferFullscreenQuad = øcreate <::gpu::model_buffer>();
+      
+      pmodelbufferFullscreenQuad->initialize_gpu_context_object(this);
+
+      pmodelbufferFullscreenQuad->sequence2_uv_create_fullscreen_quad(pgpuframe);
+   
+   return ::transfer(pmodelbufferFullscreenQuad);
+
+   //}
+
+   //return m_pmodelbufferFullscreenQuad;
+
+}
 
    ::gpu::model_buffer* context::sequence2_uv_fullscreen_quad_model_buffer(::gpu::frame* pgpuframe)
    {
 
       if (!m_pmodelbufferFullscreenQuad)
       {
-
-         ødefer_construct(m_pmodelbufferFullscreenQuad);
-
-         m_pmodelbufferFullscreenQuad->sequence2_uv_create_fullscreen_quad(pgpuframe);
-
+         
+         auto pmodelbuffer = ::transfer(this->create_sequence2_uv_fullscreen_quad_model_buffer(pgpuframe));
+         
+         m_pmodelbufferFullscreenQuad = ::transfer(pmodelbuffer);
       }
 
       return m_pmodelbufferFullscreenQuad;

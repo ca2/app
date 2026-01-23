@@ -478,11 +478,17 @@ namespace gpu_opengl
       if(error != kCGLNoError)
       {
          
-         //return ::error_failed;
+         throw ::exception(error_failed);
          
          return;
          
       }
+      
+      CGLContextObj currentContext = CGLGetCurrentContext();
+      
+      m_cglcontextShare = currentContext;
+      
+      
 
 //      auto pwindowing = psystem->acme_windowing();
 //

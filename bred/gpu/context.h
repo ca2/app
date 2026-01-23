@@ -430,6 +430,7 @@ namespace gpu
 
 
       virtual ::gpu::model_buffer* sequence2_uv_fullscreen_quad_model_buffer(::gpu::frame* pgpuframe);
+      virtual ::pointer < ::gpu::model_buffer> create_sequence2_uv_fullscreen_quad_model_buffer(::gpu::frame* pgpuframe);
 
 
       //::pointer<::graphics3d::renderable> load_model();

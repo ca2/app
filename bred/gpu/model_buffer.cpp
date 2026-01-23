@@ -113,7 +113,12 @@ namespace gpu
    void model_buffer::sequence2_uv_create_fullscreen_quad(::gpu::frame* pgpuframe)
    {
 
-      initialize_gpu_context_object(pgpuframe->m_pgpucommandbuffer->m_pgpurendertarget->m_pgpurenderer->m_pgpucontext);
+      if(::is_set(pgpuframe))
+      {
+         initialize_gpu_context_object(pgpuframe->m_pgpucommandbuffer->m_pgpurendertarget->m_pgpurenderer->m_pgpucontext);
+      }
+//
+//      initialize_gpu_context_object(pgpuframe->m_pgpucommandbuffer->m_pgpurendertarget->m_pgpurenderer->m_pgpucontext);
 
       // Vertex data: (x, y, u, v)
 #if 1
@@ -140,13 +145,13 @@ namespace gpu
       };
 #endif
 
-      this->bind2(pgpuframe->m_pgpucommandbuffer);
+      //this->bind2(pgpuframe->m_pgpucommandbuffer);
 
 
       this->static_initialize_vertexes<::graphics3d::sequence2_uv >(
          quadvertexes);
 
-      this->unbind(pgpuframe->m_pgpucommandbuffer);
+      //this->unbind(pgpuframe->m_pgpucommandbuffer);
 
 
 
@@ -163,11 +168,11 @@ namespace gpu
 
       auto pcommandbuffer = pgpuframe->m_pgpucommandbuffer;
 
-      bind2(pcommandbuffer);
+      //bind2(pcommandbuffer);
 
       this->create_vertexes<::graphics3d::sequence2_color >(6);
 
-      unbind(pcommandbuffer);
+      //unbind(pcommandbuffer);
 
       //defer_set_input_layout(pcontext->input_layout(::gpu_properties<::graphics3d::sequence2_color>()));
 

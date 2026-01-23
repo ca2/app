@@ -81,6 +81,8 @@ namespace graphics3d
       bind2(pcommandbuffer);
 
       draw2(pcommandbuffer);
+      
+      unbind(pcommandbuffer);
    
    }
 

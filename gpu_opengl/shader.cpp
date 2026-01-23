@@ -46,7 +46,12 @@ namespace gpu_opengl
    shader::shader() { m_ecullmode = ::gpu::e_cull_mode_none; }
 
 
-   shader::~shader() {}
+   shader::~shader()
+   {
+      
+      
+      
+   }
 
 
    unsigned int shader::create_shader(const ::block &blockSource, GLenum type)
@@ -230,58 +235,63 @@ namespace gpu_opengl
 
       //_bind(pgpucommandbuffer, ::gpu::e_scene_none);
 
-      ::cast<texture> ptexture = pgputextureTarget;
-
-      if (!ptexture->m_gluFbo && ptexture->m_gluTextureID != -1023)
+      ::cast<texture> ptextureTarget = pgputextureTarget;
+      
+      if(::is_set(ptextureTarget))
       {
-
-         ptexture->create_render_target();
-      }
-
-      // glBindFramebuffer(GL_DRAW_FRAMEBUFFER, ptexture->m_gluFbo);
-      // GLCheckError("");
-
-      if (!ptexture->m_gluFbo && ptexture->m_gluTextureID != -1023)
-      {
-
-         throw ::exception(error_wrong_state);
-      }
-
-      if (ptexture->m_gluTextureID == -1023)
-      {
-         glBindFramebuffer(GL_FRAMEBUFFER, 0);
-         GLCheckError("");
-      }
-      else
-      {
-
-         auto gluFbo = ptexture->m_gluFbo;
-
-         GLint drawFbo = 0;
-         glGetIntegerv(GL_DRAW_FRAMEBUFFER_BINDING, &drawFbo);
-
-         GLint readFbo = 0;
-         glGetIntegerv(GL_READ_FRAMEBUFFER_BINDING, &readFbo);
-
-         //if (drawFbo != gluFbo || readFbo != gluFbo)
-         if (drawFbo != gluFbo)
+         
+         if (!ptextureTarget->m_gluFbo && ptextureTarget->m_gluTextureID != -1023)
          {
-
-
-            // GLenum status = glCheckFramebufferStatus(GL_FRAMEBUFFER);
-            // if (status != GL_FRAMEBUFFER_COMPLETE) {
-            //    std::cerr << "Framebuffer is not complete: " << status << std::endl;
-            // }
-
-            //glBindFramebuffer(GL_FRAMEBUFFER, gluFbo);
-            glBindFramebuffer(GL_DRAW_FRAMEBUFFER, gluFbo);
-            GLCheckError("");
-            glDrawBuffer(GL_COLOR_ATTACHMENT0);
-            GLCheckError("");
-
+            
+            ptextureTarget->create_render_target();
          }
-
-
+         
+         // glBindFramebuffer(GL_DRAW_FRAMEBUFFER, ptexture->m_gluFbo);
+         // GLCheckError("");
+         
+         if (!ptextureTarget->m_gluFbo && ptextureTarget->m_gluTextureID != -1023)
+         {
+            
+            throw ::exception(error_wrong_state);
+         }
+         
+         if (ptextureTarget->m_gluTextureID == -1023)
+         {
+            glBindFramebuffer(GL_FRAMEBUFFER, 0);
+            GLCheckError("");
+         }
+         else
+         {
+            
+            auto gluFbo = ptextureTarget->m_gluFbo;
+            
+            GLint drawFbo = 0;
+            glGetIntegerv(GL_DRAW_FRAMEBUFFER_BINDING, &drawFbo);
+            
+            GLint readFbo = 0;
+            glGetIntegerv(GL_READ_FRAMEBUFFER_BINDING, &readFbo);
+            
+            //if (drawFbo != gluFbo || readFbo != gluFbo)
+            if (drawFbo != gluFbo)
+            {
+               
+               
+               // GLenum status = glCheckFramebufferStatus(GL_FRAMEBUFFER);
+               // if (status != GL_FRAMEBUFFER_COMPLETE) {
+               //    std::cerr << "Framebuffer is not complete: " << status << std::endl;
+               // }
+               
+               //glBindFramebuffer(GL_FRAMEBUFFER, gluFbo);
+               glBindFramebuffer(GL_DRAW_FRAMEBUFFER, gluFbo);
+               GLCheckError("");
+               glDrawBuffer(GL_COLOR_ATTACHMENT0);
+               GLCheckError("");
+               
+            }
+            
+            
+         }
+         
       }
 
 
@@ -389,28 +399,34 @@ namespace gpu_opengl
                                               ::gpu::texture *pgputextureTarget)
    {
 
-      ::cast<texture> ptexture = pgputextureTarget;
-
-      if (ptexture->m_textureattributes.m_etexture == ::gpu::e_texture_cube_map)
+      ::cast<texture> ptextureTarget = pgputextureTarget;
+      
+      if(::is_set(ptextureTarget))
       {
-
-         if (ptexture->m_iCurrentLayer >= 0)
+         
+         if (ptextureTarget->m_textureattributes.m_etexture == ::gpu::e_texture_cube_map)
          {
-
-            int iLayer = ptexture->m_iCurrentLayer;
-
-            int iMip = ptexture->m_iCurrentMip;
-
-            glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_CUBE_MAP_POSITIVE_X + iLayer,
-                                   ptexture->m_gluTextureID, iMip);
-
-            GLCheckError("");
-
-
-            glBindTexture(ptexture->m_gluType, ptexture->m_gluTextureID);
-            GLCheckError("");
+            
+            if (ptextureTarget->m_iCurrentLayer >= 0)
+            {
+               
+               int iLayer = ptextureTarget->m_iCurrentLayer;
+               
+               int iMip = ptextureTarget->m_iCurrentMip;
+               
+               glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_CUBE_MAP_POSITIVE_X + iLayer,
+                                      ptextureTarget->m_gluTextureID, iMip);
+               
+               GLCheckError("");
+               
+               
+               glBindTexture(ptextureTarget->m_gluType, ptextureTarget->m_gluTextureID);
+               GLCheckError("");
+            }
          }
+         
       }
+      
    }
 
 

@@ -136,17 +136,17 @@ namespace gpu_opengl
       auto scan = context::m_pcpubuffer->m_pimagetarget->m_pimage->m_iScan;
       auto data=context::m_pcpubuffer->m_pimagetarget->m_pimage->data();
 
-      error = CGLSetOffScreen(m_context, cx,
-                              cy, scan, data) ;
-
-      if(error != kCGLNoError)
-      {
-         
-         //return ::error_failed;
-         
-         return;
-         
-      }
+//      error = CGLSetOffScreen(m_context, cx,
+//                              cy, scan, data) ;
+//
+//      if(error != kCGLNoError)
+//      {
+//         
+//         //return ::error_failed;
+//         
+//         return;
+//         
+//      }
 
       //return ::success;
 

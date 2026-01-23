@@ -11422,6 +11422,25 @@ if(get_parent())
          return false;
 
       }
+      
+      if(!(m_ewindowflag & e_window_flag_is_window))
+      {
+         
+         return false;
+         
+      }
+         if(!(m_ewindowflag & e_window_flag_window_created))
+         {
+            
+            return false;
+            
+         }
+         if(::is_set(m_pacmewindowingwindow ) && ! m_pacmewindowingwindow->is_window())
+         {
+            
+            return false;
+            
+         }
 
       //if (::is_null(window()))
       //{

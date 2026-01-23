@@ -17,6 +17,8 @@
 #include "bred/gpu/renderer.h"
 #include "bred/gpu/types.h"
 
+void gl_debug_marker(const char* msg);
+
 
 namespace gpu_opengl
 {
@@ -289,19 +291,19 @@ namespace gpu_opengl
       // GLCheckError("");
 
       {
-
+         
          GLint drawFbo = 0;
          glGetIntegerv(GL_DRAW_FRAMEBUFFER_BINDING, &drawFbo);
-
+         
          GLint readFbo = 0;
          glGetIntegerv(GL_READ_FRAMEBUFFER_BINDING, &readFbo);
-
+         
          ::string strMessage;
-
+         
          strMessage.formatf("ø shader_bind drawFbo=%d readFbo=%d", drawFbo, readFbo);
-
-         glDebugMessageInsert(GL_DEBUG_SOURCE_APPLICATION, GL_DEBUG_TYPE_MARKER, 0, GL_DEBUG_SEVERITY_NOTIFICATION, -1,
-                              strMessage);
+         
+         gl_debug_marker(strMessage);
+         
       }
 
       auto pgpucontext = m_pgpurenderer->m_pgpucontext;

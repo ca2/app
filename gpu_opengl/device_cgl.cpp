@@ -13,13 +13,13 @@
 
 int rotating_cube();
 
-//#include "_opengl.h"
+////#include "_opengl.h"
+////
+//extern "C"
+//{
+//GLAPI int gladLoadCGL(void);
 //
-extern "C"
-{
-GLAPI int gladLoadCGL(void);
-
-} // extern "C"
+//} // extern "C"
 
 //const char* eglErrorString(EGLint error) {
 //   switch (error) {
@@ -66,47 +66,47 @@ static void* GetCGLProcAddress(const char* name) {
     static void* handle = dlopen("/System/Library/Frameworks/OpenGL.framework/Versions/Current/OpenGL", RTLD_LAZY);
     return dlsym(handle, name);
 }
-
-   // should be called within a currently selected egl context
-   void load_glad_cgl()
-   {
-
-      if (g_bGladGL)
-      {
-
-          return;
-
-      }
-
-      g_bGladGL = true;
-
-      auto gl_version = gladLoadGLLoader((GLADloadproc)GetCGLProcAddress);
-
-      if (!gl_version)
-      {
-
-         printf("Unable to reload GL.\n");
-
-         throw ::exception(::error_failed);
-
-      }
-
-      auto pszGlVersion = glGetString(GL_VERSION);
-
-      auto pszGlRenderer = glGetString(GL_RENDERER);
-
-      printf("GL_VERSION = %s\n", pszGlVersion);
-
-      printf("GL_RENDERER = %s\n", pszGlRenderer);
-
-
-      //printf("has GLES3: %d\n", GLAD_GL_ES_VERSION_3_0);
-
-      //printf("Loaded GL %d.%d after reload.\n",
-      //     GLAD_VERSION_MAJOR(gl_version), GLAD_VERSION_MINOR(gl_version));
-
-   }
-
+//
+//   // should be called within a currently selected egl context
+//   void load_glad_cgl()
+//   {
+//
+//      if (g_bGladGL)
+//      {
+//
+//          return;
+//
+//      }
+//
+//      g_bGladGL = true;
+//
+//      auto gl_version = gladLoadGLLoader((GLADloadproc)GetCGLProcAddress);
+//
+//      if (!gl_version)
+//      {
+//
+//         printf("Unable to reload GL.\n");
+//
+//         throw ::exception(::error_failed);
+//
+//      }
+//
+//      auto pszGlVersion = glGetString(GL_VERSION);
+//
+//      auto pszGlRenderer = glGetString(GL_RENDERER);
+//
+//      printf("GL_VERSION = %s\n", pszGlVersion);
+//
+//      printf("GL_RENDERER = %s\n", pszGlRenderer);
+//
+//
+//      //printf("has GLES3: %d\n", GLAD_GL_ES_VERSION_3_0);
+//
+//      //printf("Loaded GL %d.%d after reload.\n",
+//      //     GLAD_VERSION_MAJOR(gl_version), GLAD_VERSION_MINOR(gl_version));
+//
+//   }
+//
 
    // critical_section * egl_critical_section()
    // {

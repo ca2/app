@@ -4,4 +4,35 @@
 //
 //  Created by Camilo Sasuke Thomas Borregaard Sørensen on 23/01/26.
 //
+#include "framework.h"
 
+#define GLAD_GLAPI_EXPORT
+#include <glad/glad.h>
+
+
+
+
+
+
+void gl_debug_marker(const char* msg)
+{
+#if defined(GL_DEBUG_SOURCE_APPLICATION)
+    glDebugMessageInsert(
+        GL_DEBUG_SOURCE_APPLICATION,
+        GL_DEBUG_TYPE_OTHER,
+        0,
+        GL_DEBUG_SEVERITY_LOW,
+        -1,
+        msg
+    );
+#elif defined(GL_DEBUG_SOURCE_APPLICATION_ARB)
+    glDebugMessageInsertARB(
+        GL_DEBUG_SOURCE_APPLICATION_ARB,
+        GL_DEBUG_TYPE_OTHER_ARB,
+        0,
+        GL_DEBUG_SEVERITY_LOW_ARB,
+        -1,
+        msg
+    );
+#endif
+}

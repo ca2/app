@@ -58,6 +58,7 @@
 		9A4CC8822F236F7300D9A73A /* glad.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A4CC8732F236EB300D9A73A /* glad.dylib */; };
 		9A4CC8832F23701A00D9A73A /* _gpu_opengl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4333512F232C4E00705FD8 /* _gpu_opengl.cpp */; };
 		9A4CC8852F23704B00D9A73A /* swap_chain_cgl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4CC8842F23704B00D9A73A /* swap_chain_cgl.cpp */; };
+		9A8A57702F237EA200FBC673 /* _cgcl_glad.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8A576F2F237E9B00FBC673 /* _cgcl_glad.cpp */; };
 		9AE0348C2F2343A7003579EA /* glad.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AE0348B2F2343A7003579EA /* glad.dylib */; };
 		9AE0348D2F2344AF003579EA /* context_ktx.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4333792F232C4E00705FD8 /* context_ktx.cpp */; };
 /* End PBXBuildFile section */
@@ -220,6 +221,8 @@
 		9A4334012F232C4E00705FD8 /* texture.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = texture.cpp; sourceTree = "<group>"; };
 		9A4CC86F2F236EB300D9A73A /* approach_cgl.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = approach_cgl.cpp; sourceTree = "<group>"; };
 		9A4CC8842F23704B00D9A73A /* swap_chain_cgl.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = swap_chain_cgl.cpp; sourceTree = "<group>"; };
+		9A8A576F2F237E9B00FBC673 /* _cgcl_glad.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = _cgcl_glad.cpp; sourceTree = "<group>"; };
+		9A8A57712F23823800FBC673 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
 		9AC7C73D2F232F8000A059F9 /* gpu.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = gpu.xcodeproj; path = ../gpu/gpu.xcodeproj; sourceTree = SOURCE_ROOT; };
 		9AE0348B2F2343A7003579EA /* glad.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = glad.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AE034912F234518003579EA /* glad.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = glad.xcodeproj; path = ../../../port/graphics3d/glad/glad.xcodeproj; sourceTree = SOURCE_ROOT; };
@@ -230,6 +233,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A2060A22F233B5200D162D8 /* OpenGL.framework in Frameworks */,
 				9A4CC8822F236F7300D9A73A /* glad.dylib in Frameworks */,
 				9A1391702F23459D00C00FBD /* libktx.dylib in Frameworks */,
 				9AE0348C2F2343A7003579EA /* glad.dylib in Frameworks */,
@@ -241,7 +245,6 @@
 				9A2060AE2F233B7100D162D8 /* libberg.dylib in Frameworks */,
 				9A2060B02F233B7100D162D8 /* libbred.dylib in Frameworks */,
 				9A2060B12F233B7100D162D8 /* libgpu.dylib in Frameworks */,
-				9A2060A22F233B5200D162D8 /* OpenGL.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -267,6 +270,7 @@
 		9A2060A02F233B5200D162D8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9A8A57712F23823800FBC673 /* GLKit.framework */,
 				9A13916F2F23459D00C00FBD /* libktx.dylib */,
 				9AE0348B2F2343A7003579EA /* glad.dylib */,
 				9A2060A32F233B7100D162D8 /* libacme.dylib */,
@@ -310,6 +314,7 @@
 				9A43334C2F232C4E00705FD8 /* _.cpp */,
 				9A43334E2F232C4E00705FD8 /* _____release.xcconfig */,
 				9A43334F2F232C4E00705FD8 /* _factory.cpp */,
+				9A8A576F2F237E9B00FBC673 /* _cgcl_glad.cpp */,
 				9A4333502F232C4E00705FD8 /* _gpu_opengl.h */,
 				9A4333512F232C4E00705FD8 /* _gpu_opengl.cpp */,
 				9A4333582F232C4E00705FD8 /* approach.h */,
@@ -573,6 +578,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9A4334D92F232DCB00705FD8 /* program.cpp in Sources */,
+				9A8A57702F237EA200FBC673 /* _cgcl_glad.cpp in Sources */,
 				9A20609F2F23396000D162D8 /* full_screen_quad.cpp in Sources */,
 				9A4334E32F232DDB00705FD8 /* framework.cpp in Sources */,
 				9A4334E42F232DDB00705FD8 /* memory_buffer.cpp in Sources */,
